@@ -16,7 +16,14 @@
       "Read(//c/layera/**)",
       "Bash(git init:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(npm run dev:*)",
+      "Bash(firebase --version)",
+      "Bash(firebase init:*)",
+      "Bash(firebase projects:list:*)",
+      "Bash(firebase use:*)",
+      "Bash(firebase deploy:*)",
+      "Bash(git rm:*)"
     ],
     "deny": [],
     "ask": []
