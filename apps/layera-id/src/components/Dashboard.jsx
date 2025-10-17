@@ -1,10 +1,10 @@
 import React from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Dashboard.css';
 
 const Dashboard = () => {
-  const { currentUser, logout } = useAuth();
+  const { currentUser, logout, claims } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -44,6 +44,8 @@ const Dashboard = () => {
             <ul>
               <li><strong>User ID:</strong> {currentUser?.uid}</li>
               <li><strong>Email Verified:</strong> {currentUser?.emailVerified ? 'Ναι' : 'Όχι'}</li>
+              <li><strong>Ρόλος:</strong> {claims?.role === 'admin' ? 'Διαχειριστής' : claims?.role === 'broker' ? 'Μεσίτης' : claims?.role === 'builder' ? 'Κατασκευαστής' : 'Ιδιώτης'}</li>
+              <li><strong>2FA:</strong> {claims?.mfa ? 'Ενεργό' : 'Ανενεργό'}</li>
               <li><strong>Account Created:</strong> {currentUser?.metadata?.creationTime}</li>
               <li><strong>Last Sign In:</strong> {currentUser?.metadata?.lastSignInTime}</li>
             </ul>
@@ -52,9 +54,25 @@ const Dashboard = () => {
           <div className="dashboard-actions">
             <h3>Ενέργειες</h3>
             <div className="action-buttons">
-              <button className="action-button">Προφίλ</button>
+              <Link to="/account">
+                <button className="action-button">Ο λογαριασμός μου</button>
+              </Link>
               <button className="action-button">Ρυθμίσεις</button>
               <button className="action-button">Δεδομένα</button>
+              {!claims?.mfa && (
+                <Link to="/mfa-enroll">
+                  <button className="action-button" style={{ backgroundColor: '#28a745' }}>
+                    Ενεργοποίηση 2FA
+                  </button>
+                </Link>
+              )}
+              {claims?.role === 'admin' && (
+                <Link to="/admin/roles">
+                  <button className="action-button" style={{ backgroundColor: '#dc3545' }}>
+                    Διαχείριση ρόλων
+                  </button>
+                </Link>
+              )}
             </div>
           </div>
         </div>
