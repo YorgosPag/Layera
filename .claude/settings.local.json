@@ -23,7 +23,12 @@
       "Bash(firebase projects:list:*)",
       "Bash(firebase use:*)",
       "Bash(firebase deploy:*)",
-      "Bash(git rm:*)"
+      "Bash(git rm:*)",
+      "Bash(cmd.exe /c export-code.bat)",
+      "Bash(npm run build:*)",
+      "Bash(npm remove:*)",
+      "Bash(cmd /c:*)",
+      "Bash(npm run:*)"
     ],
     "deny": [],
     "ask": []

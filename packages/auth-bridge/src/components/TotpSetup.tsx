@@ -1,0 +1,384 @@
+import React, { useState } from 'react';
+import { useAuthContext } from './AuthProvider.js';
+import { useTotp } from '../hooks/useTotp.js';
+import type { TotpConfig } from '../utils/totp.js';
+
+/**
+ * Props για TotpSetup component
+ */
+interface TotpSetupProps {
+  /** TOTP configuration */
+  config?: Partial<TotpConfig>;
+  /** Callback όταν ολοκληρωθεί το setup */
+  onComplete?: () => void;
+  /** Callback όταν ακυρωθεί το setup */
+  onCancel?: () => void;
+  /** Custom styling */
+  className?: string;
+}
+
+/**
+ * Component για TOTP setup process
+ *
+ * @example
+ * ```typescript
+ * <TotpSetup
+ *   config={{ appName: 'MyApp' }}
+ *   onComplete={() => setMfaEnabled(true)}
+ *   onCancel={() => setShowSetup(false)}
+ * />
+ * ```
+ */
+export function TotpSetup({
+  config,
+  onComplete,
+  onCancel,
+  className = ''
+}: TotpSetupProps) {
+  const { user } = useAuthContext();
+  const {
+    setupData,
+    loading,
+    error,
+    startSetup,
+    verifySetup
+  } = useTotp(user, config);
+
+  const [verificationCode, setVerificationCode] = useState('');
+  const [step, setStep] = useState<'start' | 'verify'>('start');
+
+  /**
+   * Ξεκινά το TOTP setup
+   */
+  const handleStartSetup = async () => {
+    const result = await startSetup();
+    if (result.success) {
+      setStep('verify');
+    }
+  };
+
+  /**
+   * Επαληθεύει τον κωδικό και ολοκληρώνει το setup
+   */
+  const handleVerifyCode = async () => {
+    if (!verificationCode.trim()) return;
+
+    const result = await verifySetup(verificationCode);
+    if (result.success) {
+      onComplete?.();
+    }
+  };
+
+  /**
+   * Αντιγράφει το secret στο clipboard
+   */
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      alert('Αντιγράφηκε στο clipboard!');
+    } catch (error) {
+      console.error('Αποτυχία αντιγραφής:', error);
+    }
+  };
+
+  if (step === 'start') {
+    return (
+      <div className={`totp-setup ${className}`}>
+        <div className="setup-header">
+          <h2>Ενεργοποίηση 2FA (TOTP)</h2>
+          <p>
+            Η δίγραμμη επαλήθευση ταυτότητας προσθέτει ένα επιπλέον επίπεδο ασφάλειας στον λογαριασμό σας.
+          </p>
+        </div>
+
+        <div className="setup-steps">
+          <h3>Τι θα χρειαστείτε:</h3>
+          <ol>
+            <li>Μία εφαρμογή authenticator (Google Authenticator, Authy, 1Password, κλπ)</li>
+            <li>Το κινητό σας τηλέφωνο</li>
+          </ol>
+        </div>
+
+        {error && (
+          <div className="error-message">
+            {error}
+          </div>
+        )}
+
+        <div className="setup-actions">
+          <button
+            onClick={handleStartSetup}
+            disabled={loading}
+            className="btn btn-primary"
+          >
+            {loading ? 'Προετοιμασία...' : 'Ξεκίνημα Setup'}
+          </button>
+
+          {onCancel && (
+            <button
+              onClick={onCancel}
+              className="btn btn-secondary"
+            >
+              Ακύρωση
+            </button>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  if (step === 'verify' && setupData) {
+    return (
+      <div className={`totp-setup ${className}`}>
+        <div className="setup-header">
+          <h2>Ρύθμιση Authenticator</h2>
+          <p>Ακολουθήστε τα παρακάτω βήματα για να ολοκληρώσετε το setup:</p>
+        </div>
+
+        <div className="setup-content">
+          {/* QR Code Section */}
+          <div className="qr-section">
+            <h3>Βήμα 1: Σκάναρε το QR Code</h3>
+            <div className="qr-code-container">
+              <img
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(setupData.qrCodeUrl)}`}
+                alt="TOTP QR Code"
+                className="qr-code"
+              />
+            </div>
+            <p className="qr-instructions">
+              Άνοιξε την εφαρμογή authenticator και σκάναρε αυτόν τον QR κωδικό.
+            </p>
+          </div>
+
+          {/* Manual Entry Section */}
+          <div className="manual-section">
+            <h3>Εναλλακτικά: Χειροκίνητη εισαγωγή</h3>
+            <div className="manual-key">
+              <label>Secret Key:</label>
+              <div className="key-display">
+                <code>{setupData.manualEntryKey}</code>
+                <button
+                  onClick={() => copyToClipboard(setupData.secret)}
+                  className="copy-btn"
+                  title="Αντιγραφή"
+                >
+                  📋
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Verification Section */}
+          <div className="verification-section">
+            <h3>Βήμα 2: Εισάγετε τον κωδικό επαλήθευσης</h3>
+            <p>
+              Εισάγετε τον 6-ψήφιο κωδικό που εμφανίζεται στην εφαρμογή authenticator:
+            </p>
+
+            <div className="verification-input">
+              <input
+                type="text"
+                value={verificationCode}
+                onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                placeholder="123456"
+                className="totp-input"
+                maxLength={6}
+                autoComplete="off"
+              />
+            </div>
+
+            {error && (
+              <div className="error-message">
+                {error}
+              </div>
+            )}
+          </div>
+
+          {/* Backup Codes Section */}
+          <div className="backup-codes-section">
+            <h3>Backup Codes</h3>
+            <p>
+              Αποθηκεύστε αυτούς τους κωδικούς σε ασφαλές μέρος. Μπορείτε να τους χρησιμοποιήσετε
+              αν χάσετε πρόσβαση στο authenticator:
+            </p>
+            <div className="backup-codes">
+              {setupData.backupCodes.map((code, index) => (
+                <code key={index} className="backup-code">
+                  {code}
+                </code>
+              ))}
+            </div>
+            <button
+              onClick={() => copyToClipboard(setupData.backupCodes.join('\n'))}
+              className="copy-backup-btn"
+            >
+              Αντιγραφή όλων των backup codes
+            </button>
+          </div>
+        </div>
+
+        <div className="setup-actions">
+          <button
+            onClick={handleVerifyCode}
+            disabled={loading || verificationCode.length !== 6}
+            className="btn btn-primary"
+          >
+            {loading ? 'Επαλήθευση...' : 'Ολοκλήρωση Setup'}
+          </button>
+
+          <button
+            onClick={() => setStep('start')}
+            className="btn btn-secondary"
+          >
+            Πίσω
+          </button>
+
+          {onCancel && (
+            <button
+              onClick={onCancel}
+              className="btn btn-secondary"
+            >
+              Ακύρωση
+            </button>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  return null;
+}
+
+/**
+ * Component για TOTP verification κατά την είσοδο
+ */
+interface TotpVerificationProps {
+  /** Callback με τον κωδικό επαλήθευσης */
+  onVerify: (code: string) => Promise<void>;
+  /** Callback για χρήση backup code */
+  onUseBackup?: (code: string) => Promise<void>;
+  /** Εάν φορτώνει */
+  loading?: boolean;
+  /** Τυχόν σφάλμα */
+  error?: string;
+  /** Custom styling */
+  className?: string;
+}
+
+export function TotpVerification({
+  onVerify,
+  onUseBackup,
+  loading = false,
+  error,
+  className = ''
+}: TotpVerificationProps) {
+  const [code, setCode] = useState('');
+  const [showBackup, setShowBackup] = useState(false);
+  const [backupCode, setBackupCode] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (code.length === 6) {
+      await onVerify(code);
+    }
+  };
+
+  const handleBackupSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (backupCode.trim() && onUseBackup) {
+      await onUseBackup(backupCode.trim());
+    }
+  };
+
+  return (
+    <div className={`totp-verification ${className}`}>
+      <div className="verification-header">
+        <h2>Επαλήθευση Ταυτότητας</h2>
+        <p>
+          Εισάγετε τον 6-ψήφιο κωδικό από την εφαρμογή authenticator:
+        </p>
+      </div>
+
+      {!showBackup ? (
+        <form onSubmit={handleSubmit} className="verification-form">
+          <div className="totp-input-group">
+            <input
+              type="text"
+              value={code}
+              onChange={(e) => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+              placeholder="123456"
+              className="totp-input"
+              maxLength={6}
+              autoComplete="one-time-code"
+              autoFocus
+            />
+          </div>
+
+          {error && (
+            <div className="error-message">
+              {error}
+            </div>
+          )}
+
+          <button
+            type="submit"
+            disabled={loading || code.length !== 6}
+            className="btn btn-primary"
+          >
+            {loading ? 'Επαλήθευση...' : 'Επαλήθευση'}
+          </button>
+
+          {onUseBackup && (
+            <button
+              type="button"
+              onClick={() => setShowBackup(true)}
+              className="btn btn-link"
+            >
+              Χρήση backup κωδικού
+            </button>
+          )}
+        </form>
+      ) : (
+        <form onSubmit={handleBackupSubmit} className="backup-form">
+          <div className="backup-input-group">
+            <label htmlFor="backup-code">Backup Code:</label>
+            <input
+              id="backup-code"
+              type="text"
+              value={backupCode}
+              onChange={(e) => setBackupCode(e.target.value)}
+              placeholder="ABCD1234"
+              className="backup-input"
+              autoComplete="off"
+            />
+          </div>
+
+          {error && (
+            <div className="error-message">
+              {error}
+            </div>
+          )}
+
+          <div className="backup-actions">
+            <button
+              type="submit"
+              disabled={loading || !backupCode.trim()}
+              className="btn btn-primary"
+            >
+              {loading ? 'Επαλήθευση...' : 'Χρήση Backup Code'}
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setShowBackup(false)}
+              className="btn btn-secondary"
+            >
+              Πίσω στον TOTP
+            </button>
+          </div>
+        </form>
+      )}
+    </div>
+  );
+}

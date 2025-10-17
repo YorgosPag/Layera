@@ -1,18 +1,18 @@
 import React from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuthContext, UserDisplay, UserAvatar } from '@layera/auth-bridge';
 import { useNavigate, Link } from 'react-router-dom';
 import './Dashboard.css';
 
 const Dashboard = () => {
-  const { currentUser, logout, claims } = useAuth();
+  const { user, signOut } = useAuthContext();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    try {
-      await logout();
+    const result = await signOut();
+    if (result.success) {
       navigate('/login');
-    } catch (error) {
-      console.error('Σφάλμα κατά την αποσύνδεση:', error);
+    } else {
+      console.error('Σφάλμα κατά την αποσύνδεση:', result.error);
     }
   };
 
@@ -20,34 +20,53 @@ const Dashboard = () => {
     <div className="dashboard-container">
       <nav className="dashboard-nav">
         <div className="nav-brand">
-          <h1>Leyera</h1>
+          <h1>Layera</h1>
         </div>
         <div className="nav-user">
-          <span className="user-email">{currentUser?.email}</span>
-          <button onClick={handleLogout} className="logout-button">
-            Αποσύνδεση
-          </button>
+          {user && (
+            <>
+              <UserAvatar
+                user={user}
+                size="medium"
+                onClick={() => navigate('/account')}
+              />
+              <span className="user-email">{user.email}</span>
+              <button onClick={handleLogout} className="logout-button">
+                Αποσύνδεση
+              </button>
+            </>
+          )}
         </div>
       </nav>
 
       <div className="dashboard-content">
         <div className="welcome-card">
-          <h2>Καλώς ήρθατε στο Leyera!</h2>
-          <p>Συνδεθήκατε επιτυχώς με το email: <strong>{currentUser?.email}</strong></p>
+          <h2>Καλώς ήρθατε στο Layera!</h2>
+          {user && (
+            <>
+              <p>Συνδεθήκατε επιτυχώς με το email: <strong>{user.email}</strong></p>
 
-          {currentUser?.displayName && (
-            <p>Όνομα χρήστη: <strong>{currentUser.displayName}</strong></p>
-          )}
+              {user.displayName && (
+                <p>Όνομα χρήστη: <strong>{user.displayName}</strong></p>
+              )}
 
-          <div className="user-info">
-            <h3>Πληροφορίες Χρήστη</h3>
-            <ul>
-              <li><strong>User ID:</strong> {currentUser?.uid}</li>
-              <li><strong>Email Verified:</strong> {currentUser?.emailVerified ? 'Ναι' : 'Όχι'}</li>
-              <li><strong>Ρόλος:</strong> {claims?.role === 'admin' ? 'Διαχειριστής' : claims?.role === 'broker' ? 'Μεσίτης' : claims?.role === 'builder' ? 'Κατασκευαστής' : 'Ιδιώτης'}</li>
-              <li><strong>2FA:</strong> {claims?.mfa ? 'Ενεργό' : 'Ανενεργό'}</li>
-              <li><strong>Account Created:</strong> {currentUser?.metadata?.creationTime}</li>
-              <li><strong>Last Sign In:</strong> {currentUser?.metadata?.lastSignInTime}</li>
+              <div className="user-info">
+                <h3>Πληροφορίες Χρήστη</h3>
+
+                {/* Χρήση του νέου UserDisplay component */}
+                <UserDisplay
+                  user={user}
+                  showEmail
+                  showRole
+                  showMfaStatus
+                  showEmailVerification
+                  size="large"
+                />
+
+                <ul className="mt-4">
+                  <li><strong>User ID:</strong> {user.uid}</li>
+                  <li><strong>Account Created:</strong> {user.metadata?.creationTime}</li>
+                  <li><strong>Last Sign In:</strong> {user.metadata?.lastSignInTime}</li>
             </ul>
           </div>
 
@@ -75,6 +94,8 @@ const Dashboard = () => {
               )}
             </div>
           </div>
+            </>
+          )}
         </div>
       </div>
     </div>

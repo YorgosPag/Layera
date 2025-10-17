@@ -1,52 +1,81 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import { AuthProvider } from './contexts/AuthContext'
+import { RoleGuard, useAuthContext } from '@layera/auth-bridge'
 import Login from './components/Login'
 import Register from './components/Register'
 import Dashboard from './components/Dashboard'
 import Verify from './components/Verify'
 import MfaEnroll from './components/MfaEnroll'
-import PrivateRoute from './components/PrivateRoute'
 import Account from './pages/Account'
 import AdminRoles from './pages/AdminRoles'
 import './App.css'
 
+// Protected Route wrapper που χρησιμοποιεί το νέο RoleGuard
+function ProtectedRoute({ children, requiredRole, allowedRoles }) {
+  const { user, loading } = useAuthContext()
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Φόρτωση...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (!user) {
+    return <Navigate to="/login" replace />
+  }
+
+  return (
+    <RoleGuard
+      requiredRole={requiredRole}
+      allowedRoles={allowedRoles}
+      fallback={<Navigate to="/login" replace />}
+      emailVerificationRequired={<Navigate to="/verify" replace />}
+      mfaRequired={<Navigate to="/mfa-enroll" replace />}
+    >
+      {children}
+    </RoleGuard>
+  )
+}
+
 function App() {
   return (
     <Router>
-      <AuthProvider>
-        <Routes>
-          <Route path="/" element={<Navigate to="/login" />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/verify" element={<Verify />} />
-          <Route path="/mfa-enroll" element={<MfaEnroll />} />
-          <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute>
-                <Dashboard />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/account"
-            element={
-              <PrivateRoute>
-                <Account />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/admin/roles"
-            element={
-              <PrivateRoute requirePro>
-                <AdminRoles />
-              </PrivateRoute>
-            }
-          />
-        </Routes>
-      </AuthProvider>
+      <Routes>
+        <Route path="/" element={<Navigate to="/dashboard" />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/verify" element={<Verify />} />
+        <Route path="/mfa-enroll" element={<MfaEnroll />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/account"
+          element={
+            <ProtectedRoute>
+              <Account />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/roles"
+          element={
+            <ProtectedRoute allowedRoles={['broker', 'builder', 'admin']}>
+              <AdminRoles />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
     </Router>
   )
 }

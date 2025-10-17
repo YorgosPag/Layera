@@ -166,7 +166,7 @@ layera/
 "@
 
     # Αποθήκευση με UTF-8 encoding για σωστή εμφάνιση ελληνικών
-    [System.IO.File]::WriteAllText($VersionInfoPath, $VersionContent, [System.Text.Encoding]::UTF8)
+    $VersionContent | Out-File -FilePath $VersionInfoPath -Encoding UTF8
 
     # Δημιουργία ZIP αρχείου
     Write-Host "🗜️  Δημιουργία ZIP αρχείου..." -ForegroundColor Yellow

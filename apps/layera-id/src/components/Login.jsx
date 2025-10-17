@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuthContext } from '@layera/auth-bridge';
 import { useNavigate, Link } from 'react-router-dom';
 import './Auth.css';
 
@@ -7,24 +7,29 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+  const { signIn, loading } = useAuthContext();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      setError('');
-      setLoading(true);
-      await login(email, password);
+    setError('');
+    setIsLoading(true);
+
+    const result = await signIn({
+      email,
+      password,
+      rememberMe: true
+    });
+
+    if (result.success) {
       navigate('/dashboard');
-    } catch (error) {
-      setError('Αποτυχία σύνδεσης. Παρακαλώ ελέγξτε τα στοιχεία σας.');
-      console.error(error);
+    } else {
+      setError(result.error || 'Αποτυχία σύνδεσης. Παρακαλώ ελέγξτε τα στοιχεία σας.');
     }
 
-    setLoading(false);
+    setIsLoading(false);
   };
 
   return (
@@ -58,8 +63,8 @@ const Login = () => {
             />
           </div>
 
-          <button type="submit" disabled={loading} className="submit-button">
-            {loading ? 'Σύνδεση...' : 'Σύνδεση'}
+          <button type="submit" disabled={isLoading || loading} className="submit-button">
+            {(isLoading || loading) ? 'Σύνδεση...' : 'Σύνδεση'}
           </button>
         </form>
 

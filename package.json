@@ -1,15 +1,40 @@
 {
   "name": "layera",
   "version": "1.0.0",
-  "description": "Μια σύγχρονη εφαρμογή web με Firebase Authentication.",
-  "main": "index.js",
+  "description": "Layera Enterprise Authentication Platform - Monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npm run dev --workspace=@layera/layera-id",
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "verify": "npm run typecheck && npm run lint",
+    "clean": "npm run clean --workspaces --if-present && rimraf node_modules",
+    "fresh-install": "npm run clean && npm install"
   },
-  "keywords": [],
-  "author": "",
+  "devDependencies": {
+    "rimraf": "^6.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "keywords": [
+    "monorepo",
+    "authentication",
+    "rbac",
+    "mfa",
+    "firebase",
+    "enterprise"
+  ],
+  "author": "Layera Team",
   "license": "ISC"
 }

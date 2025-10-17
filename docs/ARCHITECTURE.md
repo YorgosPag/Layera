@@ -2,67 +2,70 @@
 
 ## 📋 Περιγραφή Συστήματος
 
-Το **Layera ID** είναι ένα ολοκληρωμένο σύστημα διαχείρισης ταυτότητας και πρόσβασης (Identity & Access Management) που υλοποιεί προηγμένες τεχνολογίες ασφάλειας για enterprise εφαρμογές.
+Το **Layera ID** είναι ένα ολοκληρωμένο **enterprise monorepo** συστήματος διαχείρισης ταυτότητας και πρόσβασης (Identity & Access Management) που υλοποιεί προηγμένες τεχνολογίες ασφάλειας και παρέχει επαναχρησιμοποιήσιμα packages για εύκολη ενσωμάτωση.
 
 ## 🎯 Κύριες Λειτουργίες
 
 ### 🔐 Σύστημα Πιστοποίησης (Authentication)
 - **Firebase Authentication** με Email/Password
 - **Υποχρεωτική Email Verification** για όλους τους χρήστες
-- **Multi-Factor Authentication (2FA)** με SMS για ειδικούς ρόλους
+- **Multi-Factor Authentication (TOTP)** με Google Authenticator/Authy για ειδικούς ρόλους
 - **Custom Claims** για προχωρημένο έλεγχο δικαιωμάτων
 
 ### 👥 Διαχείριση Ρόλων (RBAC - Role-Based Access Control)
 - **private**: Βασικός χρήστης (default)
-- **broker**: Μεσίτης με ειδικά δικαιώματα (απαιτεί 2FA)
-- **builder**: Κατασκευαστής με εκτεταμένα δικαιώματα (απαιτεί 2FA)
-- **admin**: Διαχειριστής με πλήρη δικαιώματα (απαιτεί 2FA)
+- **broker**: Μεσίτης με ειδικά δικαιώματα (απαιτεί TOTP)
+- **builder**: Κατασκευαστής με εκτεταμένα δικαιώματα (απαιτεί TOTP)
+- **admin**: Διαχειριστής με πλήρη δικαιώματα (απαιτεί TOTP)
 
 ### 🛡️ Ασφάλεια
 - **Firestore Security Rules** με έλεγχο ρόλων και MFA
 - **Secure Cloud Functions** για admin operations
 - **Email verification** υποχρεωτικό για όλες τις λειτουργίες
-- **2FA enforcement** για privileged roles
+- **TOTP enforcement** για privileged roles με backup codes
 
 ## 🏛️ Αρχιτεκτονική Συστήματος
 
-### 📁 Δομή Project
+### 📁 Monorepo Structure
 ```
-layera/
-├── apps/layera-id/                 # React Frontend Application
-│   ├── src/
-│   │   ├── components/            # UI Components
-│   │   │   ├── Header.jsx         # Navigation με user info
-│   │   │   ├── PrivateRoute.jsx   # Route protection με MFA check
-│   │   │   ├── MfaEnroll.jsx      # 2FA enrollment interface
-│   │   │   └── RoleDisplay.jsx    # Role status display
-│   │   ├── contexts/
-│   │   │   └── AuthContext.jsx    # Global auth state με claims
-│   │   ├── pages/
-│   │   │   ├── Login.jsx          # Login form
-│   │   │   ├── Signup.jsx         # Registration form
-│   │   │   ├── Dashboard.jsx      # Main dashboard
-│   │   │   └── Profile.jsx        # User profile management
-│   │   ├── firebase.js            # Firebase configuration
-│   │   └── test/                  # Testing setup
-│   ├── package.json               # Dependencies & scripts
-│   └── vite.config.js             # Build configuration
-├── functions/                      # Firebase Cloud Functions
+layera/                            # Root monorepo
+├── package.json                   # Workspace configuration
+├── apps/                          # Applications
+│   └── layera-id/                 # Main React Application
+│       ├── src/
+│       │   ├── components/        # UI Components
+│       │   ├── pages/             # Page components
+│       │   └── main.jsx           # App entry με AuthProvider
+│       └── package.json           # App dependencies
+├── packages/                      # Reusable packages
+│   └── auth-bridge/               # 🔥 Core Authentication Package
+│       ├── src/
+│       │   ├── components/        # AuthProvider, RoleGuard, TotpSetup
+│       │   ├── hooks/             # useAuth, useTotp, useRoleGuard
+│       │   ├── types/             # TypeScript definitions
+│       │   └── utils/             # Firebase, TOTP, Claims utilities
+│       ├── dist/                  # Built package
+│       ├── package.json           # Package configuration
+│       └── README.md              # Package documentation
+├── functions/                     # Firebase Cloud Functions
 │   ├── src/
 │   │   └── index.ts               # Admin role management APIs
 │   └── package.json               # Functions dependencies
-├── tools/admin/                    # Admin CLI tools
+├── tools/admin/                   # Admin CLI tools
 │   ├── set-role.mjs               # Role assignment script
 │   └── check-user.mjs             # User status verification
-├── docs/                          # Documentation
-│   ├── ARCHITECTURE.md            # Αυτό το αρχείο
+├── docs/                          # Enterprise Documentation
+│   ├── ARCHITECTURE.md            # System architecture (αυτό το αρχείο)
 │   ├── API.md                     # API Documentation
 │   ├── SECURITY.md                # Security Guidelines
-│   └── DEPLOYMENT.md              # Deployment Guide
+│   ├── DEPLOYMENT.md              # Deployment Guide
+│   ├── CODE_MAPPING.md            # Code-to-docs traceability
+│   └── MONOREPO_MIGRATION_PLAN.md # Migration guide
 ├── firestore.rules                # Database security rules
 ├── storage.rules                  # Storage security rules
 ├── firebase.json                  # Firebase configuration
-└── export-code.ps1               # Backup automation
+├── export-code.ps1                # Backup automation
+└── create-backup.ps1              # Simplified backup script
 ```
 
 ### 🔧 Τεχνολογικό Stack
@@ -84,6 +87,14 @@ layera/
 - **React Testing Library 16.3.0** - Component testing
 - **ESLint 9.36.0** - Code linting
 - **TypeScript** - Type safety για Cloud Functions
+
+#### Package Architecture
+- **@layera/auth-bridge** - Core επαναχρησιμοποιήσιμο authentication package
+  - React hooks & components
+  - TOTP utilities με QR code generation
+  - TypeScript types και interfaces
+  - Firebase integration utilities
+  - Comprehensive testing support
 
 ## 🌊 Data Flow Architecture
 
