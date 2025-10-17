@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAuthContext } from '@layera/auth-bridge';
+import { useAuthContext, GoogleSignInButton } from '@layera/auth-bridge';
 import { useNavigate, Link } from 'react-router-dom';
 import './Auth.css';
 
@@ -67,6 +67,22 @@ const Login = () => {
             {(isLoading || loading) ? 'Σύνδεση...' : 'Σύνδεση'}
           </button>
         </form>
+
+        <div className="divider">
+          <span>ή</span>
+        </div>
+
+        <GoogleSignInButton
+          onSuccess={(user) => {
+            console.log('Google sign-in successful:', user.email);
+            navigate('/dashboard');
+          }}
+          onError={(error) => {
+            console.error('Google sign-in error:', error);
+            setError(error);
+          }}
+          style={{ marginBottom: '20px', width: '100%' }}
+        />
 
         <div className="auth-links">
           <Link to="/forgot-password">Ξεχάσατε τον κωδικό σας;</Link>

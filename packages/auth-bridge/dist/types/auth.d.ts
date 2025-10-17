@@ -49,6 +49,12 @@ export interface AuthConfig {
     readonly apiKey: string;
     /** Auth domain */
     readonly authDomain: string;
+    /** Storage bucket */
+    readonly storageBucket?: string;
+    /** Messaging sender ID */
+    readonly messagingSenderId?: string;
+    /** App ID */
+    readonly appId?: string;
     /** Εάν απαιτείται email verification */
     readonly requireEmailVerification?: boolean;
     /** Εάν είναι ενεργοποιημένο το MFA */

@@ -7,7 +7,10 @@ import Dashboard from './components/Dashboard'
 import Verify from './components/Verify'
 import MfaEnroll from './components/MfaEnroll'
 import Account from './pages/Account'
+import Settings from './pages/Settings'
+import Data from './pages/Data'
 import AdminRoles from './pages/AdminRoles'
+import Support from './components/Support'
 import './App.css'
 
 // Protected Route wrapper που χρησιμοποιεί το νέο RoleGuard
@@ -68,6 +71,22 @@ function App() {
           }
         />
         <Route
+          path="/settings"
+          element={
+            <ProtectedRoute>
+              <Settings />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/data"
+          element={
+            <ProtectedRoute>
+              <Data />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/admin/roles"
           element={
             <ProtectedRoute allowedRoles={['broker', 'builder', 'admin']}>
@@ -75,6 +94,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/support" element={<Support />} />
       </Routes>
     </Router>
   )

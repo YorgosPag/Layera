@@ -28,7 +28,8 @@
       "Bash(npm run build:*)",
       "Bash(npm remove:*)",
       "Bash(cmd /c:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Read(//c/Users/user/Downloads/**)"
     ],
     "deny": [],
     "ask": []

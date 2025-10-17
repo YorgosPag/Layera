@@ -25,6 +25,25 @@
   gap: 20px;
 }
 
+.language-switcher-nav {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.language-switcher-nav:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
 .user-email {
   color: white;
   font-size: 14px;
@@ -47,22 +66,30 @@
 }
 
 .dashboard-content {
-  padding: 40px;
-  max-width: 1200px;
+  padding: 20px;
+  max-width: 100%;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - 80px);
 }
 
 .welcome-card {
   background: white;
-  padding: 40px;
+  padding: 30px 20px;
   border-radius: 12px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto;
 }
 
 .welcome-card h2 {
   color: #333;
   margin: 0 0 20px 0;
-  font-size: 32px;
+  font-size: 24px;
+  text-align: center;
 }
 
 .welcome-card p {
@@ -83,18 +110,39 @@
   font-size: 20px;
 }
 
-.user-info ul {
-  list-style: none;
-  padding: 0;
+.user-details {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
 }
 
-.user-info li {
-  padding: 10px;
-  background: #f8f8f8;
-  margin-bottom: 10px;
-  border-radius: 6px;
+.user-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #e9ecef;
   font-size: 14px;
-  color: #555;
+}
+
+.user-field:last-child {
+  border-bottom: none;
+}
+
+.user-field strong {
+  color: #495057;
+  font-weight: 600;
+  min-width: 120px;
+}
+
+.status-verified {
+  color: #28a745;
+  font-weight: 500;
+}
+
+.status-unverified {
+  color: #dc3545;
+  font-weight: 500;
 }
 
 .dashboard-actions {

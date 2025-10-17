@@ -16,6 +16,7 @@ import type { AuthResult, SignInParams, SignUpParams, LayeraUser, AuthCallbacks 
 export declare function useAuth(callbacks?: AuthCallbacks): {
     signIn: (params: SignInParams) => Promise<AuthResult<LayeraUser>>;
     signUp: (params: SignUpParams) => Promise<AuthResult<LayeraUser>>;
+    signInWithGoogle: () => Promise<AuthResult<LayeraUser>>;
     signOut: () => Promise<AuthResult>;
     sendVerificationEmail: () => Promise<AuthResult>;
     refreshUser: () => Promise<AuthResult<LayeraUser>>;

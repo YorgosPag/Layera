@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, sendEmailVerification, onAuthStateChanged } from 'firebase/auth';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, sendEmailVerification, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { getFirebaseAuth } from '../utils/firebase.js';
 import { createLayeraUser } from '../utils/claims.js';
 /**
@@ -83,6 +83,33 @@ export function useAuth(callbacks) {
         }
         catch (error) {
             const errorMessage = error instanceof Error ? error.message : 'Sign in failed';
+            updateState({ loading: false, error: errorMessage });
+            return {
+                success: false,
+                error: errorMessage
+            };
+        }
+    }, [updateState]);
+    /**
+     * Συνδέει χρήστη με Google
+     */
+    const signInWithGoogle = useCallback(async () => {
+        try {
+            updateState({ loading: true, error: null });
+            const auth = getFirebaseAuth();
+            const provider = new GoogleAuthProvider();
+            // Request access to email and profile
+            provider.addScope('email');
+            provider.addScope('profile');
+            const userCredential = await signInWithPopup(auth, provider);
+            const layeraUser = await createLayeraUser(userCredential.user);
+            return {
+                success: true,
+                data: layeraUser
+            };
+        }
+        catch (error) {
+            const errorMessage = error instanceof Error ? error.message : 'Google sign in failed';
             updateState({ loading: false, error: errorMessage });
             return {
                 success: false,
@@ -203,6 +230,7 @@ export function useAuth(callbacks) {
         ...state,
         signIn,
         signUp,
+        signInWithGoogle,
         signOut: signOutUser,
         sendVerificationEmail,
         refreshUser

@@ -56,5 +56,8 @@ export {
   UserDisplay,
   UserAvatar,
   TotpSetup,
-  TotpVerification
+  TotpVerification,
+  GoogleSignInButton
 } from './components/index.js';
+
+export type { GoogleSignInButtonProps } from './components/index.js';

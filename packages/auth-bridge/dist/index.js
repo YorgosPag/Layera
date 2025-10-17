@@ -13,4 +13,4 @@ export { initializeFirebaseApp, getFirebaseAuth, getFirebaseApp, getCustomClaims
 // Hooks
 export { useAuth, useRoleGuard, useHasAnyRole, useHasAllRoles, useTotp } from './hooks/index.js';
 // Components
-export { AuthProvider, useAuthContext, RoleGuard, withRoleGuard, UserDisplay, UserAvatar, TotpSetup, TotpVerification } from './components/index.js';
+export { AuthProvider, useAuthContext, RoleGuard, withRoleGuard, UserDisplay, UserAvatar, TotpSetup, TotpVerification, GoogleSignInButton } from './components/index.js';

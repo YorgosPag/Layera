@@ -1,0 +1,204 @@
+name: Layera CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  # Phase 1: Code Quality Checks
+  quality-checks:
+    name: 'Code Quality & Security'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: TypeScript type checking
+        run: npm run typecheck
+
+      - name: ESLint code analysis
+        run: npm run lint
+
+      - name: Security audit
+        run: npm audit --audit-level=moderate
+        continue-on-error: true
+
+  # Phase 2: Unit Tests
+  test:
+    name: 'Unit Tests'
+    runs-on: ubuntu-latest
+    needs: quality-checks
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test
+        env:
+          # Mock environment variables for testing
+          VITE_FIREBASE_API_KEY: mock-api-key
+          VITE_FIREBASE_AUTH_DOMAIN: mock.firebaseapp.com
+          VITE_FIREBASE_PROJECT_ID: mock-project
+          VITE_FIREBASE_STORAGE_BUCKET: mock.appspot.com
+          VITE_FIREBASE_MESSAGING_SENDER_ID: '123456789'
+          VITE_FIREBASE_APP_ID: mock-app-id
+
+      - name: Upload test coverage
+        uses: codecov/codecov-action@v3
+        if: github.event_name == 'push'
+        continue-on-error: true
+
+  # Phase 3: Build Verification
+  build:
+    name: 'Build Verification'
+    runs-on: ubuntu-latest
+    needs: [quality-checks, test]
+
+    strategy:
+      matrix:
+        workspace: [
+          '@layera/auth-bridge',
+          '@layera/layera-id'
+        ]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build workspace ${{ matrix.workspace }}
+        run: npm run build --workspace=${{ matrix.workspace }}
+
+      - name: Verify build artifacts
+        run: |
+          if [ "${{ matrix.workspace }}" = "@layera/auth-bridge" ]; then
+            ls -la packages/auth-bridge/dist/
+          else
+            ls -la apps/layera-id/dist/
+          fi
+
+  # Phase 4: Cloud Functions Validation (Free Tier)
+  functions:
+    name: 'Cloud Functions Validation'
+    runs-on: ubuntu-latest
+    needs: quality-checks
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Cloud Functions
+        run: npm run build --workspace=layera-admin-fns
+
+      - name: Validate Functions Structure
+        run: |
+          cd functions
+          ls -la lib/
+          echo "Functions built successfully"
+
+  # Phase 5: Security & Rules Validation
+  security:
+    name: 'Security Rules Validation'
+    runs-on: ubuntu-latest
+    needs: quality-checks
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate Firestore Rules
+        run: |
+          if [ -f "firestore.rules" ]; then
+            echo "✓ Firestore rules file exists"
+            grep -q "email_verified" firestore.rules && echo "✓ Email verification required"
+            grep -q "mfa" firestore.rules && echo "✓ MFA rules present"
+          else
+            echo "❌ Firestore rules file missing"
+            exit 1
+          fi
+
+      - name: Validate Storage Rules
+        run: |
+          if [ -f "storage.rules" ]; then
+            echo "✓ Storage rules file exists"
+            grep -q "email_verified" storage.rules && echo "✓ Email verification required"
+          else
+            echo "❌ Storage rules file missing"
+            exit 1
+          fi
+
+  # Phase 6: Deployment Readiness (Staging Only)
+  deployment-check:
+    name: 'Deployment Readiness'
+    runs-on: ubuntu-latest
+    needs: [build, functions, security]
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Environment Check
+        run: |
+          echo "🚀 Deployment readiness check"
+          echo "✓ All builds successful"
+          echo "✓ All tests passed"
+          echo "✓ Security validation complete"
+          echo "✓ Ready for deployment"
+
+      - name: Deployment Summary
+        run: |
+          echo "## 📊 Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status**: ✅ Ready for deployment" >> $GITHUB_STEP_SUMMARY
+          echo "- **Branch**: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Commit**: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Author**: ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+
+# Free Tier Optimizations:
+# - Uses ubuntu-latest (free)
+# - Efficient job parallelization
+# - Minimal external dependencies
+# - Quick feedback loops
+# - No expensive operations

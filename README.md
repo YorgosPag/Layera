@@ -230,4 +230,24 @@ ISC License - Layera Team
 
 ---
 
+## Αρχιτεκτονική (TL;DR)
+- Monorepo με workspaces: `apps/*`, `packages/*`, `services/*`, `functions`, `tools/*`.
+- Apps = τελικά προϊόντα. Packages = επαναχρησιμοποιήσιμα modules.
+- Τα όρια και οι κανόνες: δείτε `docs/PROJECT-RULES.md`.
+
+### Πυρήνας που υπάρχει τώρα
+- `apps/layera-id` (Login/Identity)
+- `packages/@layera/auth-bridge` (κουμπώνει login/verify σε άλλα apps)
+
+### Πώς προσθέτω νέο module
+1. `packages/@layera/<όνομα>/` με `README.md`, `src/index.ts`, `package.json`.
+2. Καθόλου imports από apps. Μόνο δημόσια API.
+3. Προσθέτω snippet χρήσης στο README.
+4. `npm run build` να περνά.
+
+### Πώς προστατεύω περιεχόμενο
+Τύλιξε την εφαρμογή με `AuthProvider` και φύλαξε με `RequireVerified` από `@layera/auth-bridge`.
+
+---
+
 **Built with ❤️ by Layera Team**

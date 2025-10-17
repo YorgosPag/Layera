@@ -1,4 +1,18 @@
 "use strict";
+/**
+ * @fileoverview Firebase Cloud Functions for Layera ID
+ *
+ * Provides secure admin operations για user role management
+ * και MFA status updates. Όλες οι functions απαιτούν admin authentication
+ * με email verification και MFA.
+ *
+ * @see {@link ../../docs/API.md#cloud-functions-apis} - API Documentation
+ * @see {@link ../../docs/SECURITY.md#cloud-functions-security} - Security Guidelines
+ * @see {@link ../../docs/DEPLOYMENT.md#cloud-functions-deployment} - Deployment Guide
+ *
+ * @author Layera Development Team
+ * @version 1.0
+ */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -38,6 +52,17 @@ const functions = __importStar(require("firebase-functions"));
 const admin = __importStar(require("firebase-admin"));
 admin.initializeApp();
 const region = "europe-west1";
+/**
+ * Validates admin authentication για secure operations
+ *
+ * Checks for valid authentication, email verification, admin role,
+ * και MFA requirement.
+ *
+ * @param ctx - Firebase callable context
+ * @throws {functions.https.HttpsError} When authentication fails
+ *
+ * @see {@link ../../docs/SECURITY.md#function-level-security} - Security Implementation
+ */
 function assertAdmin(ctx) {
     if (!ctx.auth?.token?.role || ctx.auth.token.role !== "admin") {
         throw new functions.https.HttpsError("permission-denied", "Admin only");

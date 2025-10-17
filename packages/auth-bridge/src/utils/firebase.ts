@@ -40,14 +40,20 @@ export function initializeFirebaseApp(config: AuthConfig): FirebaseApp {
     }
   }
 
-  const firebaseConfig = {
+  const firebaseConfig: any = {
     projectId: config.projectId,
     apiKey: config.apiKey,
     authDomain: config.authDomain,
-    storageBucket: `${config.projectId}.appspot.com`,
-    messagingSenderId: "123456789",
-    appId: "1:123456789:web:abcdef123456"
+    storageBucket: config.storageBucket || `${config.projectId}.appspot.com`
   };
+
+  if (config.messagingSenderId) {
+    firebaseConfig.messagingSenderId = config.messagingSenderId;
+  }
+
+  if (config.appId) {
+    firebaseConfig.appId = config.appId;
+  }
 
   firebaseApp = initializeApp(firebaseConfig);
   firebaseAuth = getAuth(firebaseApp);

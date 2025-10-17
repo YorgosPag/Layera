@@ -1,0 +1,208 @@
+{
+  "app": {
+    "name": "Layera",
+    "welcome": "Καλώς ήρθατε στο Layera!",
+    "loading": "Φόρτωση..."
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "account": "Ο λογαριασμός μου",
+    "settings": "Ρυθμίσεις",
+    "data": "Δεδομένα",
+    "logout": "Αποσύνδεση",
+    "back": "Επιστροφή"
+  },
+  "auth": {
+    "login": "Σύνδεση",
+    "register": "Εγγραφή",
+    "email": "Email",
+    "password": "Κωδικός",
+    "confirmPassword": "Επιβεβαίωση Κωδικού",
+    "signInWithGoogle": "Σύνδεση με Google",
+    "forgotPassword": "Ξεχάσατε τον κωδικό;",
+    "noAccount": "Δεν έχετε λογαριασμό;",
+    "hasAccount": "Έχετε ήδη λογαριασμό;",
+    "signOut": "Αποσύνδεση"
+  },
+  "mfa": {
+    "title": "Ενεργοποίηση 2FA",
+    "subtitle": "Προστατέψτε τον λογαριασμό σας με διπλή ταυτοποίηση μέσω SMS. Θα λαμβάνετε έναν κωδικό στο κινητό σας κάθε φορά που συνδέεστε.",
+    "whyNeeded": {
+      "title": "Γιατί χρειάζεται το 2FA;",
+      "description": "Η διπλή ταυτοποίηση προσθέτει ένα επιπλέον επίπεδο ασφαλείας:",
+      "benefits": {
+        "passwordProtection": "Προστασία από κλοπή κωδικών πρόσβασης",
+        "secureAccess": "Ασφαλής πρόσβαση ακόμα και από άγνωστες συσκευές",
+        "unauthorizedAlert": "Ειδοποίηση σε περίπτωση μη εξουσιοδοτημένης πρόσβασης"
+      }
+    },
+    "form": {
+      "phoneLabel": "Αριθμός Κινητού Τηλεφώνου",
+      "phoneHint": "Εισάγετε τον αριθμό με διεθνή κωδικό (π.χ. +30 για Ελλάδα)",
+      "enableButton": "Ενεργοποίηση 2FA"
+    },
+    "prompts": {
+      "enterSmsCode": "Εισάγετε τον κωδικό SMS:"
+    },
+    "success": {
+      "enrollmentComplete": "2FA εγγραφή επιτυχής!"
+    },
+    "errors": {
+      "enterPhone": "Εισάγετε αριθμό τηλεφώνου",
+      "operationNotAllowed": "Το SMS-based MFA δεν είναι ενεργοποιημένο στο Firebase Console. Παρακαλούμε επικοινωνήστε με τον διαχειριστή.",
+      "tooManyRequests": "Πάρα πολλές προσπάθειες. Δοκιμάστε ξανά αργότερα.",
+      "invalidPhoneNumber": "Μη έγκυρος αριθμός τηλεφώνου. Χρησιμοποιήστε τη μορφή +30xxxxxxxxxx",
+      "requiresRecentLogin": "Για λόγους ασφαλείας, χρειάζεται πρόσφατη σύνδεση. Παρακαλούμε κάντε logout και login ξανά."
+    }
+  },
+  "account": {
+    "title": "Ο λογαριασμός μου",
+    "info": "Πληροφορίες λογαριασμού",
+    "messages": {
+      "emailNotVerified": "Το email σας δεν είναι επιβεβαιωμένο. Παρακαλούμε ελέγξτε τα εισερχόμενά σας.",
+      "mfaRecommendation": "Προτείνουμε να ενεργοποιήσετε την διπλή ταυτοποίηση (2FA) για επιπλέον ασφάλεια."
+    },
+    "badges": {
+      "mfaActive": "2FA: Ενεργό",
+      "mfaInactive": "2FA: Ανενεργό"
+    },
+    "actions": {
+      "enable2fa": "Ενεργοποίηση 2FA",
+      "settings": "Ρυθμίσεις"
+    }
+  },
+  "settings": {
+    "title": "Ρυθμίσεις",
+    "subtitle": "Προσαρμόστε τις προτιμήσεις και τις ρυθμίσεις του λογαριασμού σας",
+    "sections": {
+      "security": "Ασφάλεια & Προσωπικά Δεδομένα",
+      "notifications": "Ειδοποιήσεις",
+      "appearance": "Εμφάνιση",
+      "dangerZone": "Επικίνδυνη Ζώνη"
+    },
+    "items": {
+      "changePassword": {
+        "title": "Αλλαγή Κωδικού",
+        "description": "Ενημερώστε τον κωδικό πρόσβασης"
+      },
+      "twoFactor": {
+        "title": "Διπλή Ταυτοποίηση (2FA)",
+        "description": "Κατάσταση: {{status}}",
+        "statusActive": "Ενεργή",
+        "statusInactive": "Ανενεργή"
+      },
+      "emailVerification": {
+        "title": "Επιβεβαίωση Email",
+        "description": "Κατάσταση: {{status}}",
+        "statusVerified": "Επιβεβαιωμένο",
+        "statusUnverified": "Μη επιβεβαιωμένο"
+      },
+      "emailNotifications": {
+        "title": "Email Ειδοποιήσεις",
+        "description": "Λάβετε ειδοποιήσεις για σημαντικές ενέργειες"
+      },
+      "smsNotifications": {
+        "title": "SMS Ειδοποιήσεις",
+        "description": "Λάβετε SMS για σημαντικές ενέργειες ασφαλείας"
+      },
+      "theme": {
+        "title": "Θέμα Εφαρμογής",
+        "description": "Επιλέξτε φωτεινό ή σκοτεινό θέμα",
+        "options": {
+          "light": "Φωτεινό",
+          "dark": "Σκοτεινό",
+          "auto": "Αυτόματο"
+        }
+      },
+      "language": {
+        "title": "Γλώσσα",
+        "description": "Επιλέξτε την προτιμώμενη γλώσσα",
+        "options": {
+          "el": "Ελληνικά",
+          "en": "English"
+        }
+      },
+      "deleteAccount": {
+        "title": "Διαγραφή Λογαριασμού",
+        "description": "Διαγράψτε οριστικά τον λογαριασμό σας"
+      }
+    }
+  },
+  "data": {
+    "title": "Τα Δεδομένα Μου",
+    "subtitle": "Δείτε και διαχειριστείτε όλα τα προσωπικά σας δεδομένα",
+    "personalInfo": "Προσωπικές Πληροφορίες",
+    "security": "Ασφάλεια",
+    "devices": "Συσκευές & Συνδέσεις",
+    "export": "Εξαγωγή Δεδομένων",
+    "privacy": "Προστασία Δεδομένων",
+    "fields": {
+      "email": "Email",
+      "name": "Όνομα",
+      "userId": "User ID",
+      "role": "Ρόλος",
+      "emailVerified": "Email Επιβεβαιωμένο",
+      "mfaEnabled": "2FA Ενεργοποιημένο",
+      "lastSignIn": "Τελευταία Σύνδεση",
+      "accountCreated": "Δημιουργία Λογαριασμού",
+      "currentDevice": "Τρέχουσα Συσκευή",
+      "ipAddress": "IP Address",
+      "connectionProvider": "Provider Σύνδεσης",
+      "notAvailable": "Μη διαθέσιμο",
+      "encrypted": "Κρυπτογραφημένο",
+      "webBrowser": "Web Browser"
+    },
+    "exportFormats": {
+      "pdf": "Εξαγωγή σε PDF",
+      "json": "Εξαγωγή σε JSON",
+      "csv": "Εξαγωγή σε CSV"
+    },
+    "exportDescription": "Μπορείτε να εξάγετε όλα τα προσωπικά σας δεδομένα σε διάφορες μορφές:",
+    "privacyPoints": {
+      "title": "Η προστασία των δεδομένων σας είναι προτεραιότητά μας.",
+      "encryption": "Όλα τα δεδομένα κρυπτογραφούνται κατά τη μετάδοση και αποθήκευση",
+      "noSharing": "Δεν μοιραζόμαστε προσωπικά δεδομένα με τρίτους",
+      "deleteAnytime": "Μπορείτε να διαγράψετε τον λογαριασμό σας ανά πάσα στιγμή",
+      "compliance": "Συμμορφώνεται με GDPR και τις ελληνικές νομοθεσίες"
+    }
+  },
+  "roles": {
+    "admin": "Διαχειριστής",
+    "broker": "Μεσίτης",
+    "builder": "Κατασκευαστής",
+    "private": "Ιδιώτης"
+  },
+  "status": {
+    "active": "Ενεργό",
+    "inactive": "Ανενεργό",
+    "verified": "Επιβεβαιωμένο",
+    "unverified": "Μη επιβεβαιωμένο",
+    "enabled": "Ενεργοποιημένο",
+    "disabled": "Απενεργοποιημένο"
+  },
+  "actions": {
+    "save": "Αποθήκευση",
+    "cancel": "Ακύρωση",
+    "edit": "Επεξεργασία",
+    "delete": "Διαγραφή",
+    "enable": "Ενεργοποίηση",
+    "disable": "Απενεργοποίηση",
+    "change": "Αλλαγή",
+    "manage": "Διαχείριση",
+    "verify": "Επιβεβαίωση"
+  },
+  "errors": {
+    "required": "Αυτό το πεδίο είναι υποχρεωτικό",
+    "invalidEmail": "Μη έγκυρη διεύθυνση email",
+    "invalidPhone": "Μη έγκυρος αριθμός τηλεφώνου",
+    "passwordTooShort": "Ο κωδικός πρέπει να έχει τουλάχιστον 6 χαρακτήρες",
+    "passwordMismatch": "Οι κωδικοί δεν ταιριάζουν",
+    "authError": "Σφάλμα αυθεντικοποίησης",
+    "networkError": "Σφάλμα δικτύου",
+    "unknownError": "Άγνωστο σφάλμα"
+  },
+  "common": {
+    "error": "Σφάλμα",
+    "processing": "Επεξεργασία..."
+  }
+}

@@ -84,6 +84,32 @@
   cursor: not-allowed;
 }
 
+.divider {
+  margin: 25px 0;
+  text-align: center;
+  position: relative;
+  color: #666;
+  font-size: 14px;
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #ddd;
+  z-index: 1;
+}
+
+.divider span {
+  background: white;
+  padding: 0 15px;
+  position: relative;
+  z-index: 2;
+}
+
 .auth-links {
   margin-top: 25px;
   text-align: center;

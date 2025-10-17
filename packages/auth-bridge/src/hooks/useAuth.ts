@@ -5,6 +5,8 @@ import {
   signOut,
   sendEmailVerification,
   onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
   type User,
   type Unsubscribe
 } from 'firebase/auth';
@@ -109,6 +111,38 @@ export function useAuth(callbacks?: AuthCallbacks) {
       };
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Sign in failed';
+      updateState({ loading: false, error: errorMessage });
+
+      return {
+        success: false,
+        error: errorMessage
+      };
+    }
+  }, [updateState]);
+
+  /**
+   * Συνδέει χρήστη με Google
+   */
+  const signInWithGoogle = useCallback(async (): Promise<AuthResult<LayeraUser>> => {
+    try {
+      updateState({ loading: true, error: null });
+
+      const auth = getFirebaseAuth();
+      const provider = new GoogleAuthProvider();
+
+      // Request access to email and profile
+      provider.addScope('email');
+      provider.addScope('profile');
+
+      const userCredential = await signInWithPopup(auth, provider);
+      const layeraUser = await createLayeraUser(userCredential.user);
+
+      return {
+        success: true,
+        data: layeraUser
+      };
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Google sign in failed';
       updateState({ loading: false, error: errorMessage });
 
       return {
@@ -251,6 +285,7 @@ export function useAuth(callbacks?: AuthCallbacks) {
     ...state,
     signIn,
     signUp,
+    signInWithGoogle,
     signOut: signOutUser,
     sendVerificationEmail,
     refreshUser

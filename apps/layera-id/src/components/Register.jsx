@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuthContext, GoogleSignInButton } from '@layera/auth-bridge';
 import { useNavigate, Link } from 'react-router-dom';
 import './Auth.css';
 
@@ -10,7 +10,7 @@ const Register = () => {
   const [displayName, setDisplayName] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signup, updateUserProfile } = useAuth();
+  const { signUp, signInWithGoogle } = useAuthContext();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -28,29 +28,44 @@ const Register = () => {
       setError('');
       setLoading(true);
 
-      // Δημιουργία λογαριασμού
-      const { user } = await signup(email, password);
+      // Δημιουργία λογαριασμού με auth-bridge
+      const result = await signUp({
+        email,
+        password,
+        displayName: displayName || undefined
+      });
 
-      // Ενημέρωση προφίλ με όνομα χρήστη
-      if (displayName) {
-        await updateUserProfile(displayName, null);
-      }
-
-      navigate('/dashboard');
-    } catch (error) {
-      if (error.code === 'auth/email-already-in-use') {
-        setError('Το email χρησιμοποιείται ήδη');
-      } else if (error.code === 'auth/weak-password') {
-        setError('Ο κωδικός είναι πολύ αδύναμος');
-      } else if (error.code === 'auth/invalid-email') {
-        setError('Μη έγκυρη διεύθυνση email');
+      if (result.success) {
+        navigate('/dashboard');
       } else {
-        setError('Αποτυχία εγγραφής. Παρακαλώ προσπαθήστε ξανά.');
+        setError(result.error || 'Αποτυχία εγγραφής. Παρακαλώ προσπαθήστε ξανά.');
       }
+    } catch (error) {
+      setError('Αποτυχία εγγραφής. Παρακαλώ προσπαθήστε ξανά.');
       console.error(error);
     }
 
     setLoading(false);
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      setError('');
+      setLoading(true);
+
+      const result = await signInWithGoogle();
+
+      if (result.success) {
+        navigate('/dashboard');
+      } else {
+        setError(result.error || 'Αποτυχία σύνδεσης με Google');
+      }
+    } catch (error) {
+      setError('Αποτυχία σύνδεσης με Google');
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -111,6 +126,15 @@ const Register = () => {
             {loading ? 'Εγγραφή...' : 'Εγγραφή'}
           </button>
         </form>
+
+        <div className="auth-divider">
+          <span>ή</span>
+        </div>
+
+        <GoogleSignInButton
+          onClick={handleGoogleSignIn}
+          disabled={loading}
+        />
 
         <div className="auth-links">
           <p>
