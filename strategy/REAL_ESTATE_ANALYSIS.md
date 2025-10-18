@@ -336,5 +336,134 @@ interface RealEstatePOISearch {
 
 ---
 
+## 🌳 **REAL ESTATE WIZARD PIPELINE - Workflow Δημιουργίας Καταχώρησης**
+
+### **🎯 Εκκίνηση από + Button → Real Estate Flow**
+
+```
+📂 REAL ESTATE PIPELINE (από OLD_geo-canvas analysis)
+│
+├── 📋 **STEP 1: Category Selection**
+│   └── 🏠 **Property** → intent
+│
+├── 🎯 **STEP 2: Intent Selection**
+│   ├── 💰 **Offer** (Προσφορά Ακινήτου) → transactionType
+│   └── 🔍 **Search** (Αναζήτηση Ακινήτου) → transactionType
+│
+├── 🏢 **STEP 3: Transaction Type**
+│   ├── 💸 **Sale** (Πώληση) → availability
+│   └── 🏠 **Rent** (Ενοικίαση) → availability
+│
+├── ⏰ **STEP 4: Availability Timing**
+│   ├── 🟢 **Now** (Άμεσα Διαθέσιμο) → location
+│   └── 🔮 **Future** (Μελλοντική Διαθεσιμότητα)
+│       ├── Property Offer → availabilityDetails
+│       └── Property Search → location
+│
+├── 📅 **STEP 5: Availability Details** [Conditional για Future Offers]
+│   ├── 📆 **Available Date** (Ημερομηνία διαθεσιμότητας)
+│   ├── ⏳ **Duration** (Διάρκεια - μήνες/χρόνια)
+│   └── → location
+│
+├── 📍 **STEP 6: Location & Property Definition**
+│   ├── 🎯 **Property Offer Flows:**
+│   │   ├── **Current Property (Now)** → 📁 **File Upload**
+│   │   │   ├── 📐 **DXF Files** (Architectural plans)
+│   │   │   ├── 🖼️ **Raster Images** (Photos, sketches)
+│   │   │   └── → StepPositioning (Layer editing)
+│   │   └── **Future Property (Future)** → ✏️ **Drawing Tool**
+│   │       ├── 📐 **Polygon Drawing** (Property boundaries)
+│   │       └── 📍 **Marker + Radius** (Property location)
+│   └── 🔍 **Property Search Flow:** → ✏️ **Drawing Tool**
+│       ├── 📐 **Polygon** (Desired search area)
+│       └── 📍 **Marker + Radius** (Preferred location)
+│
+├── 🎨 **STEP 6A: Property Positioning** [για File Upload]
+│   ├── 🔄 **Transform Controls** (Move, resize property)
+│   ├── 📏 **Scale Adjustment** (Accurate property dimensions)
+│   ├── 🔄 **Rotation** (Correct orientation)
+│   ├── 📐 **DXF Viewer** (για architectural plans)
+│   └── → propertyDetails
+│
+├── ✏️ **STEP 6B: Area Drawing** [για Drawing Tool]
+│   ├── 📐 **Polygon Mode** (Multi-point boundary)
+│   ├── 📍 **Marker Mode** (Point + customizable radius)
+│   ├── 📏 **Real-time Area Calculation**
+│   └── → propertyDetails
+│
+├── 🏠 **STEP 7: Property Details**
+│   ├── 💰 **Basic Property Info**
+│   │   ├── Price (€)
+│   │   ├── Area (τ.μ.)
+│   │   └── Property Type (Διαμέρισμα, Μονοκατοικία, κλπ)
+│   ├── 🏗️ **Technical Details**
+│   │   ├── Bedrooms (Υπνοδωμάτια)
+│   │   ├── Bathrooms (Μπάνια)
+│   │   ├── WC (Τουαλέτες)
+│   │   ├── Floor (Όροφος)
+│   │   ├── Total Floors (Συνολικοί όροφοι)
+│   │   ├── Construction Year (Έτος κατασκευής)
+│   │   ├── Condition (Κατάσταση)
+│   │   ├── Heating (Θέρμανση)
+│   │   └── Parking (Χώρος στάθμευσης)
+│   ├── ✨ **Property Features & Amenities**
+│   │   ├── Storage (Αποθήκη)
+│   │   ├── Fireplace (Τζάκι)
+│   │   ├── Elevator (Ασανσέρ)
+│   │   ├── Balcony (Μπαλκόνι)
+│   │   ├── Garden (Κήπος)
+│   │   ├── Security Door (Πόρτα ασφαλείας)
+│   │   └── Alarm (Συναγερμός)
+│   └── 📷 **Photos & Description**
+│       ├── Photo Upload (Multiple files)
+│       ├── Photo Descriptions
+│       ├── Photo Reordering
+│       └── Property Description (Text)
+│
+└── ✅ **STEP 8: Listing Completion**
+    ├── 🎉 **Success Confirmation**
+    ├── 📊 **Layer Finalization** (Property data enrichment)
+    ├── 🏷️ **Auto-generated Name** (e.g., "Πώληση Διαμερίσματος 85 τ.μ.")
+    └── 🔚 **Return to Dashboard**
+```
+
+### **🔄 Real Estate Specific Flows:**
+
+#### **🏠 Current Property Offer (Existing Property)**
+```
+Property + Offer + Now → File Upload (DXF/Images) → Positioning → Details → Complete
+```
+
+#### **🔮 Future Property Offer (Planned Development)**
+```
+Property + Offer + Future → Date Selection → Drawing Tool → Details → Complete
+```
+
+#### **🔍 Property Search (Buyer/Renter)**
+```
+Property + Search → Drawing Tool → Details → Complete
+```
+
+### **🎯 Real Estate Pipeline Benefits:**
+
+#### **For Property Offers:**
+- **📐 DXF Support**: Architectural plans με accurate scale
+- **🖼️ Visual Documentation**: Multiple photos with descriptions
+- **📏 Precise Positioning**: GPS-accurate property boundaries
+- **⏰ Future Planning**: Support για off-plan properties
+
+#### **For Property Search:**
+- **🎯 Precise Area Definition**: Exact search boundaries
+- **📍 Flexible Radius Search**: Point-based search με adjustable radius
+- **🔍 Intent-driven Matching**: Clear search criteria capture
+
+#### **Technical Advantages:**
+- **📊 Rich Metadata**: Comprehensive property characteristics
+- **🗂️ Structured Data**: Consistent property information format
+- **🔄 Real-time Updates**: Live property status tracking
+- **📱 Mobile Optimized**: Touch-friendly property creation
+
+---
+
 *Τελευταία ενημέρωση: 17 Οκτωβρίου 2025*
 *Δες επίσης: [JOBS_ANALYSIS.md](./JOBS_ANALYSIS.md) για συμπληρωματική ανάλυση*

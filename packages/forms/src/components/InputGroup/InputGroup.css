@@ -1,0 +1,390 @@
+/* InputGroup Component Styles */
+.layera-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--layera-font-family-primary);
+  position: relative;
+}
+
+.layera-input-group--full-width {
+  width: 100%;
+}
+
+.layera-input-group--disabled {
+  opacity: 0.6;
+}
+
+.layera-input-group--loading {
+  pointer-events: none;
+}
+
+/* Label */
+.layera-input-group__label {
+  color: var(--layera-color-text-primary);
+  font-size: var(--layera-font-size-body);
+  font-weight: var(--layera-font-weight-medium);
+  line-height: var(--layera-line-height-body);
+  margin: 0;
+}
+
+.layera-input-group--sm .layera-input-group__label {
+  font-size: var(--layera-font-size-sm);
+}
+
+.layera-input-group--lg .layera-input-group__label {
+  font-size: var(--layera-font-size-lg);
+}
+
+.layera-input-group--disabled .layera-input-group__label {
+  color: var(--layera-color-text-disabled);
+}
+
+.layera-input-group__required {
+  color: var(--layera-color-error);
+  margin-left: 2px;
+}
+
+/* Container base styles */
+.layera-input-group__container {
+  display: flex;
+  position: relative;
+  align-items: stretch;
+}
+
+/* Direction variants */
+.layera-input-group__container--horizontal {
+  flex-direction: row;
+}
+
+.layera-input-group__container--vertical {
+  flex-direction: column;
+}
+
+/* Distribution modes */
+.layera-input-group--equal .layera-input-group__item {
+  flex: 1;
+}
+
+.layera-input-group--auto .layera-input-group__item {
+  flex: 0 1 auto;
+}
+
+.layera-input-group--custom .layera-input-group__item {
+  /* Flex properties set by individual items */
+}
+
+/* Connected variant */
+.layera-input-group--connected .layera-input-group__container {
+  border: 2px solid var(--layera-color-border-default);
+  border-radius: var(--layera-border-radius-md);
+  background: var(--layera-color-bg-primary);
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+}
+
+.layera-input-group--connected.layera-input-group--sm .layera-input-group__container {
+  border-radius: var(--layera-border-radius-sm);
+}
+
+.layera-input-group--connected.layera-input-group--lg .layera-input-group__container {
+  border-radius: var(--layera-border-radius-lg);
+}
+
+/* Connected state variants */
+.layera-input-group--connected.layera-input-group--default .layera-input-group__container {
+  border-color: var(--layera-color-border-default);
+}
+
+.layera-input-group--connected.layera-input-group--focus .layera-input-group__container {
+  border-color: var(--layera-color-primary);
+  box-shadow: 0 0 0 2px var(--layera-color-primary-alpha-20);
+}
+
+.layera-input-group--connected.layera-input-group--error .layera-input-group__container {
+  border-color: var(--layera-color-error);
+}
+
+.layera-input-group--connected.layera-input-group--success .layera-input-group__container {
+  border-color: var(--layera-color-success);
+}
+
+.layera-input-group--connected.layera-input-group--warning .layera-input-group__container {
+  border-color: var(--layera-color-warning);
+}
+
+.layera-input-group--connected.layera-input-group--disabled .layera-input-group__container {
+  border-color: var(--layera-color-border-disabled);
+  background: var(--layera-color-bg-disabled);
+}
+
+/* Connected items */
+.layera-input-group--connected .layera-input-group__item {
+  border: none;
+  background: transparent;
+}
+
+.layera-input-group--connected.layera-input-group__container--horizontal .layera-input-group__item:not(:last-child) {
+  border-right: 1px solid var(--layera-color-border-subtle);
+}
+
+.layera-input-group--connected.layera-input-group__container--vertical .layera-input-group__item:not(:last-child) {
+  border-bottom: 1px solid var(--layera-color-border-subtle);
+}
+
+/* Remove borders and shadows from child inputs in connected mode */
+.layera-input-group--connected .layera-input-group__item > * {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+/* Outlined variant */
+.layera-input-group--outlined .layera-input-group__container {
+  gap: 1px;
+  padding: 1px;
+  border-radius: var(--layera-border-radius-md);
+  background: var(--layera-color-border-default);
+}
+
+.layera-input-group--outlined.layera-input-group--sm .layera-input-group__container {
+  border-radius: var(--layera-border-radius-sm);
+}
+
+.layera-input-group--outlined.layera-input-group--lg .layera-input-group__container {
+  border-radius: var(--layera-border-radius-lg);
+}
+
+.layera-input-group--outlined .layera-input-group__item {
+  background: var(--layera-color-bg-primary);
+}
+
+.layera-input-group--outlined.layera-input-group__container--horizontal .layera-input-group__item:first-child {
+  border-top-left-radius: var(--layera-border-radius-md);
+  border-bottom-left-radius: var(--layera-border-radius-md);
+}
+
+.layera-input-group--outlined.layera-input-group__container--horizontal .layera-input-group__item:last-child {
+  border-top-right-radius: var(--layera-border-radius-md);
+  border-bottom-right-radius: var(--layera-border-radius-md);
+}
+
+.layera-input-group--outlined.layera-input-group__container--vertical .layera-input-group__item:first-child {
+  border-top-left-radius: var(--layera-border-radius-md);
+  border-top-right-radius: var(--layera-border-radius-md);
+}
+
+.layera-input-group--outlined.layera-input-group__container--vertical .layera-input-group__item:last-child {
+  border-bottom-left-radius: var(--layera-border-radius-md);
+  border-bottom-right-radius: var(--layera-border-radius-md);
+}
+
+/* Filled variant */
+.layera-input-group--filled .layera-input-group__container {
+  background: var(--layera-color-bg-secondary);
+  border-radius: var(--layera-border-radius-md);
+  padding: 2px;
+  gap: 2px;
+}
+
+.layera-input-group--filled.layera-input-group--sm .layera-input-group__container {
+  border-radius: var(--layera-border-radius-sm);
+}
+
+.layera-input-group--filled.layera-input-group--lg .layera-input-group__container {
+  border-radius: var(--layera-border-radius-lg);
+}
+
+.layera-input-group--filled .layera-input-group__item {
+  background: var(--layera-color-bg-primary);
+  border-radius: var(--layera-border-radius-sm);
+}
+
+/* Separate variant */
+.layera-input-group--separate .layera-input-group__container {
+  /* Gap set by containerStyle */
+}
+
+.layera-input-group--separate .layera-input-group__item {
+  /* Individual styling maintained */
+}
+
+/* Item base styles */
+.layera-input-group__item {
+  display: flex;
+  align-items: stretch;
+  min-width: 0; /* Allow shrinking */
+  position: relative;
+}
+
+.layera-input-group__item--grow {
+  flex-grow: 1;
+}
+
+/* Size variants for items */
+.layera-input-group--sm .layera-input-group__item {
+  min-height: 32px;
+}
+
+.layera-input-group--md .layera-input-group__item {
+  min-height: 40px;
+}
+
+.layera-input-group--lg .layera-input-group__item {
+  min-height: 48px;
+}
+
+/* Ensure child inputs fill the item */
+.layera-input-group__item > * {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+}
+
+/* Special handling for different input types */
+.layera-input-group__item > .layera-input,
+.layera-input-group__item > .layera-select,
+.layera-input-group__item > .layera-textarea,
+.layera-input-group__item > .layera-numeric-input,
+.layera-input-group__item > .layera-datepicker {
+  margin: 0;
+}
+
+/* Remove margins from wrapped components */
+.layera-input-group__item > * > .layera-input-wrapper,
+.layera-input-group__item > * > .layera-select-wrapper,
+.layera-input-group__item > * > .layera-textarea-wrapper,
+.layera-input-group__item > * > .layera-numeric-input__input-wrapper,
+.layera-input-group__item > * > .layera-datepicker__input-wrapper {
+  margin: 0;
+}
+
+/* Loading */
+.layera-input-group__loading {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.layera-input-group__spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--layera-color-border-subtle);
+  border-top: 2px solid var(--layera-color-primary);
+  border-radius: 50%;
+  animation: layera-input-group-spin 1s linear infinite;
+}
+
+.layera-input-group--sm .layera-input-group__spinner {
+  width: 16px;
+  height: 16px;
+  border-width: 1px;
+}
+
+.layera-input-group--lg .layera-input-group__spinner {
+  width: 24px;
+  height: 24px;
+}
+
+@keyframes layera-input-group-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Footer */
+.layera-input-group__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.layera-input-group__description {
+  color: var(--layera-color-text-secondary);
+  font-size: var(--layera-font-size-sm);
+  line-height: var(--layera-line-height-sm);
+}
+
+.layera-input-group__error {
+  color: var(--layera-color-error);
+  font-size: var(--layera-font-size-sm);
+  font-weight: var(--layera-font-weight-medium);
+  line-height: var(--layera-line-height-sm);
+}
+
+/* Focus states for connected variant */
+.layera-input-group--connected .layera-input-group__item:focus-within ~ .layera-input-group__container,
+.layera-input-group--connected .layera-input-group__container:focus-within {
+  border-color: var(--layera-color-primary);
+  box-shadow: 0 0 0 2px var(--layera-color-primary-alpha-20);
+}
+
+.layera-input-group--connected.layera-input-group--error .layera-input-group__container:focus-within {
+  border-color: var(--layera-color-error);
+  box-shadow: 0 0 0 2px var(--layera-color-error-alpha-20);
+}
+
+/* Hover states */
+.layera-input-group--connected:hover:not(.layera-input-group--disabled) .layera-input-group__container {
+  border-color: var(--layera-color-primary);
+}
+
+.layera-input-group--connected.layera-input-group--error:hover:not(.layera-input-group--disabled) .layera-input-group__container {
+  border-color: var(--layera-color-error);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .layera-input-group__container {
+    border-width: 3px;
+  }
+
+  .layera-input-group--connected .layera-input-group__item:not(:last-child) {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .layera-input-group__container,
+  .layera-input-group__spinner {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  /* Force vertical layout on mobile for better UX */
+  .layera-input-group__container--horizontal {
+    flex-direction: column;
+  }
+
+  .layera-input-group--connected.layera-input-group__container--horizontal .layera-input-group__item:not(:last-child) {
+    border-right: none;
+    border-bottom: 1px solid var(--layera-color-border-subtle);
+  }
+
+  /* Adjust radius for vertical mobile layout */
+  .layera-input-group--outlined.layera-input-group__container--horizontal .layera-input-group__item:first-child {
+    border-radius: var(--layera-border-radius-md) var(--layera-border-radius-md) 0 0;
+  }
+
+  .layera-input-group--outlined.layera-input-group__container--horizontal .layera-input-group__item:last-child {
+    border-radius: 0 0 var(--layera-border-radius-md) var(--layera-border-radius-md);
+  }
+}
+
+/* Print styles */
+@media print {
+  .layera-input-group__loading {
+    display: none;
+  }
+
+  .layera-input-group__container {
+    border: 1px solid #000 !important;
+    box-shadow: none !important;
+  }
+}

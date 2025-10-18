@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { RoleGuard, useAuthContext } from '@layera/auth-bridge'
 import { ThemeProvider } from '@layera/theme-switcher'
+import { DeviceOverrideProvider, DeviceSimulator, DeviceSwitcher } from '@layera/viewport'
 import '../../../packages/theme-switcher/dist/styles.css'
 import Login from './components/Login'
 import Register from './components/Register'
@@ -50,64 +51,80 @@ function ProtectedRoute({ children, requiredRole, allowedRoles }) {
 function App() {
   return (
     <ThemeProvider defaultTheme="system" storageKey="layera-id-theme">
-      <Router>
-        <Routes>
-        <Route path="/" element={<Navigate to="/dashboard" />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/verify" element={<Verify />} />
-        <Route path="/mfa-enroll" element={<MfaEnroll />} />
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <NewDashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/account"
-          element={
-            <ProtectedRoute>
-              <Account />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/settings"
-          element={
-            <ProtectedRoute>
-              <Settings />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/data"
-          element={
-            <ProtectedRoute>
-              <Data />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/admin/roles"
-          element={
-            <ProtectedRoute allowedRoles={['broker', 'builder', 'admin']}>
-              <AdminRoles />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/admin-roles"
-          element={
-            <ProtectedRoute allowedRoles={['private', 'broker', 'builder', 'admin']}>
-              <AdminRoles />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/support" element={<Support />} />
-        </Routes>
-      </Router>
+      <DeviceOverrideProvider>
+        <DeviceSimulator>
+          <Router>
+            <Routes>
+            <Route path="/" element={<Navigate to="/dashboard" />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/verify" element={<Verify />} />
+            <Route path="/mfa-enroll" element={<MfaEnroll />} />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <NewDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/account"
+              element={
+                <ProtectedRoute>
+                  <Account />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/settings"
+              element={
+                <ProtectedRoute>
+                  <Settings />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/data"
+              element={
+                <ProtectedRoute>
+                  <Data />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/roles"
+              element={
+                <ProtectedRoute allowedRoles={['broker', 'builder', 'admin']}>
+                  <AdminRoles />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin-roles"
+              element={
+                <ProtectedRoute allowedRoles={['private', 'broker', 'builder', 'admin']}>
+                  <AdminRoles />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/support" element={<Support />} />
+            </Routes>
+          </Router>
+
+          {/* Device Controls - Εμφανίζονται στην επικεφαλίδα για testing */}
+          <DeviceSwitcher
+            position="top-center"
+            labels={{
+              auto: 'Auto',
+              mobile: 'Mobile',
+              tablet: 'Tablet',
+              desktop: 'Desktop',
+              overrideActive: 'Override Active'
+            }}
+          />
+        </DeviceSimulator>
+      </DeviceOverrideProvider>
     </ThemeProvider>
   )
 }

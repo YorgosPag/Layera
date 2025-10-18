@@ -26,6 +26,7 @@
     "@layera/forms": "*",
     "@layera/tables": "*",
     "@layera/notifications": "*",
+    "@layera/viewport": "*",
     "@vitejs/plugin-react": "^4.3.3",
     "firebase": "^12.4.0",
     "react": "^19.1.1",

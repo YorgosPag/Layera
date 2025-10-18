@@ -1,0 +1,53 @@
+{
+  "name": "@layera/file-import",
+  "version": "1.0.0",
+  "description": "Enterprise-grade file import system for Layera applications",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"src/**/*.{ts,tsx}\" --max-warnings=0",
+    "verify": "npm run typecheck && npm run lint"
+  },
+  "dependencies": {
+    "@layera/notifications": "workspace:*",
+    "@layera/loading": "workspace:*",
+    "@layera/cards": "workspace:*",
+    "@layera/buttons": "workspace:*",
+    "@layera/forms": "workspace:*",
+    "@layera/i18n": "workspace:*",
+    "@layera/constants": "workspace:*",
+    "@layera/error-boundary": "workspace:*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "typescript": "^5.0.0",
+    "tsup": "^8.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

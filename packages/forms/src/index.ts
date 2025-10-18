@@ -22,6 +22,21 @@ export type { FormActionsProps } from './components/FormActions/FormActions';
 export { TextArea } from './components/TextArea/TextArea';
 export type { TextAreaProps } from './components/TextArea/TextArea';
 
+export { Checkbox } from './components/Checkbox/Checkbox';
+export type { CheckboxProps } from './components/Checkbox/Checkbox';
+
+export { NumericInput } from './components/NumericInput/NumericInput';
+export type { NumericInputProps } from './components/NumericInput/NumericInput';
+
+export { Slider } from './components/Slider/Slider';
+export type { SliderProps, SliderMark } from './components/Slider/Slider';
+
+export { DatePicker } from './components/DatePicker/DatePicker';
+export type { DatePickerProps } from './components/DatePicker/DatePicker';
+
+export { InputGroup, useInputGroup } from './components/InputGroup/InputGroup';
+export type { InputGroupProps, InputGroupItemProps, InputGroupContextValue } from './components/InputGroup/InputGroup';
+
 // Re-export relevant constants
 export {
   FORM_TYPES,

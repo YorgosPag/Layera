@@ -30,20 +30,21 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/index.ts
 var src_exports = {};
 __export(src_exports, {
-  AUTOCOMPLETE_VALUES: () => import_constants5.AUTOCOMPLETE_VALUES,
-  FIELD_SIZES: () => import_constants5.FIELD_SIZES,
-  FORM_SIZES: () => import_constants5.FORM_SIZES,
-  FORM_STATES: () => import_constants5.FORM_STATES,
-  FORM_TYPES: () => import_constants5.FORM_TYPES,
+  AUTOCOMPLETE_VALUES: () => import_constants6.AUTOCOMPLETE_VALUES,
+  Checkbox: () => Checkbox,
+  FIELD_SIZES: () => import_constants6.FIELD_SIZES,
+  FORM_SIZES: () => import_constants6.FORM_SIZES,
+  FORM_STATES: () => import_constants6.FORM_STATES,
+  FORM_TYPES: () => import_constants6.FORM_TYPES,
   FormActions: () => FormActions,
   FormField: () => FormField,
   FormSection: () => FormSection,
-  INPUT_VARIANTS: () => import_constants5.INPUT_VARIANTS,
+  INPUT_VARIANTS: () => import_constants6.INPUT_VARIANTS,
   Input: () => Input,
   LAYERA_FORMS_VERSION: () => LAYERA_FORMS_VERSION,
   Select: () => Select,
   TextArea: () => TextArea,
-  VALIDATION_RULES: () => import_constants5.VALIDATION_RULES
+  VALIDATION_RULES: () => import_constants6.VALIDATION_RULES
 });
 module.exports = __toCommonJS(src_exports);
 
@@ -533,12 +534,140 @@ var TextArea = (0, import_react5.forwardRef)(({
 });
 TextArea.displayName = "TextArea";
 
-// src/index.ts
+// src/components/Checkbox/Checkbox.tsx
+var import_react6 = __toESM(require("react"));
 var import_constants5 = require("@layera/constants");
+var import_jsx_runtime7 = require("react/jsx-runtime");
+var Checkbox = (0, import_react6.forwardRef)(({
+  size = import_constants5.FORM_SIZES.MEDIUM,
+  state = import_constants5.FORM_STATES.DEFAULT,
+  label,
+  description,
+  error,
+  indeterminate = false,
+  fullWidth = false,
+  loading = false,
+  checkedIcon,
+  indeterminateIcon,
+  checked,
+  className = "",
+  disabled,
+  id,
+  ...props
+}, ref) => {
+  const t = (key) => {
+    const translations = {
+      "forms.required": "Required",
+      "forms.optional": "Optional"
+    };
+    return translations[key] || key;
+  };
+  const checkboxId = id || `checkbox-${Math.random().toString(36).substr(2, 9)}`;
+  const actualState = error ? import_constants5.FORM_STATES.ERROR : state;
+  const wrapperClasses = [
+    "layera-checkbox",
+    `layera-checkbox--${size}`,
+    `layera-checkbox--${actualState}`,
+    fullWidth && "layera-checkbox--full-width",
+    disabled && "layera-checkbox--disabled",
+    loading && "layera-checkbox--loading",
+    className
+  ].filter(Boolean).join(" ");
+  const inputClasses = [
+    "layera-checkbox__input",
+    indeterminate && "layera-checkbox__input--indeterminate"
+  ].filter(Boolean).join(" ");
+  const boxClasses = [
+    "layera-checkbox__box",
+    `layera-checkbox__box--${size}`,
+    `layera-checkbox__box--${actualState}`,
+    checked && "layera-checkbox__box--checked",
+    indeterminate && "layera-checkbox__box--indeterminate",
+    disabled && "layera-checkbox__box--disabled"
+  ].filter(Boolean).join(" ");
+  const inputRef = import_react6.default.useRef(null);
+  import_react6.default.useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.indeterminate = indeterminate;
+    }
+  }, [indeterminate]);
+  const combinedRef = import_react6.default.useCallback((node) => {
+    inputRef.current = node;
+    if (typeof ref === "function") {
+      ref(node);
+    } else if (ref) {
+      ref.current = node;
+    }
+  }, [ref]);
+  const renderIcon = () => {
+    if (loading) {
+      return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "layera-checkbox__spinner" });
+    }
+    if (indeterminate) {
+      return indeterminateIcon || /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "layera-checkbox__minus" });
+    }
+    if (checked) {
+      return checkedIcon || /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("svg", { className: "layera-checkbox__check", viewBox: "0 0 24 24", fill: "none", children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("polyline", { points: "20,6 9,17 4,12", stroke: "currentColor", strokeWidth: "2" }) });
+    }
+    return null;
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: wrapperClasses, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: "layera-checkbox__control", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+        "input",
+        {
+          ref: combinedRef,
+          type: "checkbox",
+          id: checkboxId,
+          checked,
+          disabled: disabled || loading,
+          className: inputClasses,
+          ...props
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: boxClasses, children: renderIcon() })
+    ] }),
+    (label || description || error) && /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: "layera-checkbox__content", children: [
+      label && /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(
+        "label",
+        {
+          htmlFor: checkboxId,
+          className: "layera-checkbox__label",
+          children: [
+            label,
+            props.required && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+              "span",
+              {
+                className: "layera-checkbox__required",
+                "aria-label": t("forms.required"),
+                children: "*"
+              }
+            )
+          ]
+        }
+      ),
+      description && !error && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "layera-checkbox__description", children: description }),
+      error && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+        "div",
+        {
+          className: "layera-checkbox__error",
+          role: "alert",
+          "aria-live": "polite",
+          children: error
+        }
+      )
+    ] })
+  ] });
+});
+Checkbox.displayName = "Checkbox";
+
+// src/index.ts
+var import_constants6 = require("@layera/constants");
 var LAYERA_FORMS_VERSION = "1.0.0";
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   AUTOCOMPLETE_VALUES,
+  Checkbox,
   FIELD_SIZES,
   FORM_SIZES,
   FORM_STATES,

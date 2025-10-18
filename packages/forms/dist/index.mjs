@@ -498,11 +498,141 @@ var TextArea = forwardRef3(({
 });
 TextArea.displayName = "TextArea";
 
+// src/components/Checkbox/Checkbox.tsx
+import React6, { forwardRef as forwardRef4 } from "react";
+import {
+  FORM_SIZES as FORM_SIZES4,
+  FORM_STATES as FORM_STATES5
+} from "@layera/constants";
+import { jsx as jsx7, jsxs as jsxs5 } from "react/jsx-runtime";
+var Checkbox = forwardRef4(({
+  size = FORM_SIZES4.MEDIUM,
+  state = FORM_STATES5.DEFAULT,
+  label,
+  description,
+  error,
+  indeterminate = false,
+  fullWidth = false,
+  loading = false,
+  checkedIcon,
+  indeterminateIcon,
+  checked,
+  className = "",
+  disabled,
+  id,
+  ...props
+}, ref) => {
+  const t = (key) => {
+    const translations = {
+      "forms.required": "Required",
+      "forms.optional": "Optional"
+    };
+    return translations[key] || key;
+  };
+  const checkboxId = id || `checkbox-${Math.random().toString(36).substr(2, 9)}`;
+  const actualState = error ? FORM_STATES5.ERROR : state;
+  const wrapperClasses = [
+    "layera-checkbox",
+    `layera-checkbox--${size}`,
+    `layera-checkbox--${actualState}`,
+    fullWidth && "layera-checkbox--full-width",
+    disabled && "layera-checkbox--disabled",
+    loading && "layera-checkbox--loading",
+    className
+  ].filter(Boolean).join(" ");
+  const inputClasses = [
+    "layera-checkbox__input",
+    indeterminate && "layera-checkbox__input--indeterminate"
+  ].filter(Boolean).join(" ");
+  const boxClasses = [
+    "layera-checkbox__box",
+    `layera-checkbox__box--${size}`,
+    `layera-checkbox__box--${actualState}`,
+    checked && "layera-checkbox__box--checked",
+    indeterminate && "layera-checkbox__box--indeterminate",
+    disabled && "layera-checkbox__box--disabled"
+  ].filter(Boolean).join(" ");
+  const inputRef = React6.useRef(null);
+  React6.useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.indeterminate = indeterminate;
+    }
+  }, [indeterminate]);
+  const combinedRef = React6.useCallback((node) => {
+    inputRef.current = node;
+    if (typeof ref === "function") {
+      ref(node);
+    } else if (ref) {
+      ref.current = node;
+    }
+  }, [ref]);
+  const renderIcon = () => {
+    if (loading) {
+      return /* @__PURE__ */ jsx7("div", { className: "layera-checkbox__spinner" });
+    }
+    if (indeterminate) {
+      return indeterminateIcon || /* @__PURE__ */ jsx7("div", { className: "layera-checkbox__minus" });
+    }
+    if (checked) {
+      return checkedIcon || /* @__PURE__ */ jsx7("svg", { className: "layera-checkbox__check", viewBox: "0 0 24 24", fill: "none", children: /* @__PURE__ */ jsx7("polyline", { points: "20,6 9,17 4,12", stroke: "currentColor", strokeWidth: "2" }) });
+    }
+    return null;
+  };
+  return /* @__PURE__ */ jsxs5("div", { className: wrapperClasses, children: [
+    /* @__PURE__ */ jsxs5("div", { className: "layera-checkbox__control", children: [
+      /* @__PURE__ */ jsx7(
+        "input",
+        {
+          ref: combinedRef,
+          type: "checkbox",
+          id: checkboxId,
+          checked,
+          disabled: disabled || loading,
+          className: inputClasses,
+          ...props
+        }
+      ),
+      /* @__PURE__ */ jsx7("div", { className: boxClasses, children: renderIcon() })
+    ] }),
+    (label || description || error) && /* @__PURE__ */ jsxs5("div", { className: "layera-checkbox__content", children: [
+      label && /* @__PURE__ */ jsxs5(
+        "label",
+        {
+          htmlFor: checkboxId,
+          className: "layera-checkbox__label",
+          children: [
+            label,
+            props.required && /* @__PURE__ */ jsx7(
+              "span",
+              {
+                className: "layera-checkbox__required",
+                "aria-label": t("forms.required"),
+                children: "*"
+              }
+            )
+          ]
+        }
+      ),
+      description && !error && /* @__PURE__ */ jsx7("div", { className: "layera-checkbox__description", children: description }),
+      error && /* @__PURE__ */ jsx7(
+        "div",
+        {
+          className: "layera-checkbox__error",
+          role: "alert",
+          "aria-live": "polite",
+          children: error
+        }
+      )
+    ] })
+  ] });
+});
+Checkbox.displayName = "Checkbox";
+
 // src/index.ts
 import {
   FORM_TYPES as FORM_TYPES2,
-  FORM_SIZES as FORM_SIZES4,
-  FORM_STATES as FORM_STATES5,
+  FORM_SIZES as FORM_SIZES5,
+  FORM_STATES as FORM_STATES6,
   INPUT_VARIANTS as INPUT_VARIANTS4,
   VALIDATION_RULES,
   AUTOCOMPLETE_VALUES as AUTOCOMPLETE_VALUES2,
@@ -511,9 +641,10 @@ import {
 var LAYERA_FORMS_VERSION = "1.0.0";
 export {
   AUTOCOMPLETE_VALUES2 as AUTOCOMPLETE_VALUES,
+  Checkbox,
   FIELD_SIZES,
-  FORM_SIZES4 as FORM_SIZES,
-  FORM_STATES5 as FORM_STATES,
+  FORM_SIZES5 as FORM_SIZES,
+  FORM_STATES6 as FORM_STATES,
   FORM_TYPES2 as FORM_TYPES,
   FormActions,
   FormField,

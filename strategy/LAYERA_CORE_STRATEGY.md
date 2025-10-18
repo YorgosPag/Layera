@@ -120,6 +120,154 @@
 - **Μεσίτες:** CRM + διαχείριση αγγελιών
 - **Κατασκευαστές:** Παρακολούθηση έργων + DXF Viewer
 
+---
+
+## 🌳 **UNIFIED LAYERA WIZARD PIPELINE - Dual Category Workflow**
+
+### **🎯 Κεντρικό + Button → Ενιαίο Pipeline για Ακίνητα & Εργασία**
+
+```
+📂 LAYERA UNIFIED PIPELINE (Integration Strategy)
+│
+├── 📋 **STEP 1: Category Selection** [ΚΟΙΝΟ ΣΗΜΕΙΟ ΕΚΚΙΝΗΣΗΣ]
+│   ├── 🏠 **Real Estate** (Ακίνητα) → intent
+│   └── 💼 **Jobs** (Εργασία) → intent
+│
+├── 🎯 **STEP 2: Intent Selection** [ΚΟΙΝΗ ΛΟΓΙΚΗ]
+│   ├── 💰 **Offer** (Προσφορά)
+│   │   ├── Property → transactionType
+│   │   └── Job → employmentType
+│   └── 🔍 **Search** (Αναζήτηση)
+│       ├── Property → transactionType
+│       └── Job → employmentType
+│
+├── 🏢 **STEP 3: Category-Specific Types**
+│   ├── **Real Estate Path:**
+│   │   ├── 💸 Sale (Πώληση) → availability
+│   │   └── 🏠 Rent (Ενοικίαση) → availability
+│   └── **Jobs Path:**
+│       ├── ⏰ Full Time → availability
+│       ├── 🕐 Part Time → availability
+│       ├── 🆓 Freelance → availability
+│       └── 🌴 Seasonal → availability
+│
+├── ⏰ **STEP 4: Availability Timing** [ΚΟΙΝΗ ΛΟΓΙΚΗ]
+│   ├── 🟢 **Now** (Άμεσα) → location
+│   └── 🔮 **Future** (Μελλοντικά)
+│       ├── Property Offer OR Job Offer → availabilityDetails
+│       └── Others → location
+│
+├── 📅 **STEP 5: Availability Details** [ΚΟΙΝΗ ΦΟΡΜΑ]
+│   ├── 📆 Available/Start Date
+│   ├── ⏳ Duration (months/years)
+│   └── → location
+│
+├── 📍 **STEP 6: Location Definition** [ΚΟΙΝΑ ΕΡΓΑΛΕΙΑ - ΔΙΑΦΟΡΕΤΙΚΕΣ ΧΡΗΣΕΙΣ]
+│   ├── **📁 File Upload Tool** [Property-specific]
+│   │   ├── 📐 DXF Support (Architectural plans)
+│   │   ├── 🖼️ Raster Images (Property photos)
+│   │   └── → positioning (Property editing)
+│   └── **✏️ Drawing Tool** [Universal για όλα]
+│       ├── 📐 Polygon Mode (Areas, boundaries)
+│       ├── 📍 Marker + Radius (Points, commute zones)
+│       └── → details OR complete
+│
+├── 🎨 **STEP 6A: Positioning** [Property File Upload only]
+│   ├── 🔄 Transform Controls → propertyDetails
+│   └── 📏 Scale & Rotation → propertyDetails
+│
+├── 📝 **STEP 7: Details** [ΔΙΑΦΟΡΕΤΙΚΕΣ ΦΟΡΜΕΣ]
+│   ├── **🏠 Property Details:**
+│   │   ├── 💰 Basic Info (Price, Area, Type)
+│   │   ├── 🏗️ Technical (Bedrooms, Bathrooms, Floor)
+│   │   ├── ✨ Features (Amenities)
+│   │   └── 📷 Photos & Description
+│   ├── **💼 Job Details:**
+│   │   ├── 👔 Basic Info (Title, Company, Salary)
+│   │   ├── 📍 Location Preferences
+│   │   └── 📝 Job Description
+│   └── **⚡ Job Search Fast Track:** Skips details → complete
+│
+└── ✅ **STEP 8: Completion** [ΚΟΙΝΗ ΛΟΓΙΚΗ]
+    ├── 🎉 Success Confirmation
+    ├── 📊 Layer Finalization (Category-aware data enrichment)
+    ├── 🏷️ Auto-generated Names
+    │   ├── Property: "Πώληση Διαμερίσματος 85 τ.μ."
+    │   └── Job: "Αναζήτηση Εργασίας: UI Designer"
+    └── 🔚 Return to Dashboard
+```
+
+### **🔄 Cross-Category Integration Points:**
+
+#### **🔄 Shared Components (High Reusability):**
+- **🎯 Category Selection**: Same UI, διαφορετικά εικονίδια
+- **🎯 Intent Selection**: Same logic (Offer/Search)
+- **⏰ Availability**: Same timing concepts
+- **✏️ Drawing Tools**: Same map interface, διαφορετικά contexts
+- **🎉 Completion Flow**: Same success patterns
+
+#### **🏗️ Category-Specific Components:**
+- **🏢 Transaction vs Employment Types**: Διαφορετικές επιλογές
+- **📁 File Upload**: Property-only feature
+- **📝 Details Forms**: Εντελώς διαφορετικά fields
+- **⚡ Fast Track Logic**: Jobs-specific optimization
+
+### **🎯 Implementation Strategy:**
+
+#### **Phase 1: Unified Core (8 εβδομάδες)**
+```typescript
+interface UnifiedWizardState {
+  // ΚΟΙΝΑ FIELDS
+  category: 'property' | 'job';
+  intent: 'offer' | 'search';
+  availability: 'now' | 'future';
+  associatedLayerId: string;
+
+  // CATEGORY-SPECIFIC FIELDS
+  propertyData?: PropertySpecificData;
+  jobData?: JobSpecificData;
+}
+```
+
+#### **Phase 2: Cross-Pollination Features**
+- **"Βρήκα δουλειά → Χρειάζομαι σπίτι"** flow
+- **"Μετακόμισα → Θέλω δουλειά κοντά"** flow
+- **Smart suggestions** based on category combinations
+
+#### **Phase 3: Advanced Integration**
+- **Commute-time based property search**
+- **Quality of life optimization**
+- **Cross-category analytics**
+
+### **💡 Strategic Decision Points:**
+
+#### **🔄 Option A: Single Unified Pipeline (Recommended για MVP)**
+**Pros:**
+- **Μέγιστη κώδικα επαναχρησιμοποίηση**
+- **Consistent UX** across categories
+- **Easy cross-category transitions**
+- **Single + button** → universal starting point
+
+**Cons:**
+- **Complexity** στη condition logic
+- **Potential performance** overhead
+
+#### **🔀 Option B: Separate Category Pipelines**
+**Pros:**
+- **Optimized flows** per category
+- **Independent development** cycles
+- **Easier testing** και debugging
+
+**Cons:**
+- **Code duplication**
+- **Inconsistent UX**
+- **Harder cross-category integration**
+
+### **🎯 Recommendation:**
+**Start with Option A (Unified)** για MVP, με **well-structured conditional logic**. Αν η complexity γίνει unmanageable, **split to Option B** post-MVP με shared component library.
+
+---
+
 ### Αν V1 δεν πετύχει - Pivot Plan:
 
 **Option A: Jobs ως ξεχωριστό "τουβλάκι"**

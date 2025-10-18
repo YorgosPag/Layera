@@ -452,5 +452,141 @@ interface JobsCommuteIntelligence {
 
 ---
 
+## 🌳 **JOBS WIZARD PIPELINE - Workflow Δημιουργίας Job Καταχώρησης**
+
+### **🎯 Εκκίνηση από + Button → Jobs Flow**
+
+```
+📂 JOBS PIPELINE (από OLD_geo-canvas analysis)
+│
+├── 📋 **STEP 1: Category Selection**
+│   └── 💼 **Job** → intent
+│
+├── 🎯 **STEP 2: Intent Selection**
+│   ├── 💰 **Offer** (Προσφορά Εργασίας) → employmentType
+│   └── 🔍 **Search** (Αναζήτηση Εργασίας) → employmentType
+│
+├── 💼 **STEP 3: Employment Type**
+│   ├── ⏰ **Full Time** (Πλήρης Απασχόληση) → availability
+│   ├── 🕐 **Part Time** (Μερική Απασχόληση) → availability
+│   ├── 🆓 **Freelance** (Ανεξάρτητος Συνεργάτης) → availability
+│   └── 🌴 **Seasonal** (Εποχιακή Εργασία) → availability
+│
+├── ⏰ **STEP 4: Availability Timing**
+│   ├── 🟢 **Now** (Άμεσα Διαθέσιμη Θέση) → location
+│   └── 🔮 **Future** (Μελλοντική Διαθεσιμότητα)
+│       ├── Job Offer → availabilityDetails
+│       └── Job Search → location
+│
+├── 📅 **STEP 5: Availability Details** [Conditional για Future Jobs]
+│   ├── 📆 **Start Date** (Ημερομηνία έναρξης)
+│   ├── ⏳ **Contract Duration** (Διάρκεια συμβολαίου)
+│   └── → location
+│
+├── 📍 **STEP 6: Job Location Definition**
+│   ├── 🎯 **Job Offer Flow:** → ✏️ **Drawing Tool**
+│   │   ├── 📐 **Polygon Drawing** (Office/Business area)
+│   │   └── 📍 **Marker + Radius** (Precise office location)
+│   └── 🔍 **Job Search Flow:** → ✏️ **Drawing Tool**
+│       ├── 📐 **Polygon** (Desired work area)
+│       ├── 📍 **Marker + Radius** (Commutable distance)
+│       └── 🎯 **Proximity Intelligence** (Distance optimization)
+│
+├── ✏️ **STEP 6: Job Area Drawing**
+│   ├── 📐 **Polygon Mode** (Work area boundaries)
+│   ├── 📍 **Marker Mode** (Point location + commute radius)
+│   ├── 📏 **Commute Distance Calculation**
+│   ├── 🚗 **Multi-modal Routing** (Car, Public Transport, Walking)
+│   └── → jobDetails OR complete
+│
+├── 💼 **STEP 7: Job Details** [Skipped για Job Search]
+│   ├── 👔 **Basic Job Information**
+│   │   ├── Job Title (Τίτλος θέσης)
+│   │   ├── Company (Εταιρεία)
+│   │   ├── Employment Type (Τύπος απασχόλησης)
+│   │   └── Salary (Μισθός - €)
+│   ├── 📍 **Location Preferences**
+│   │   ├── Proximity Preference (Προτίμηση γειτνίασης)
+│   │   ├── Proximity Radius (Ακτίνα προτίμησης - km)
+│   │   └── Remote Work Options (Δυνατότητα τηλεργασίας)
+│   └── 📝 **Job Description**
+│       ├── Responsibilities (Αρμοδιότητες)
+│       ├── Requirements (Απαιτήσεις)
+│       ├── Benefits (Παροχές)
+│       └── Additional Info (Επιπλέον πληροφορίες)
+│
+└── ✅ **STEP 8: Job Listing Completion**
+    ├── 🎉 **Success Confirmation**
+    ├── 📊 **Layer Finalization** (Job data enrichment)
+    ├── 🏷️ **Auto-generated Name** (e.g., "Προσφορά Εργασίας: Σχεδιαστής UI/UX")
+    └── 🔚 **Return to Dashboard**
+```
+
+### **🔄 Jobs Specific Flows:**
+
+#### **💼 Job Offer (Employer posting position)**
+```
+Job + Offer → Employment Type → Availability → Drawing Tool → Job Details → Complete
+```
+
+#### **🔍 Job Search (Job seeker) - FAST TRACK**
+```
+Job + Search → Employment Type → Availability → Drawing Tool → Complete
+(Skips detailed job information - focus on location preferences)
+```
+
+#### **🔮 Future Job Planning**
+```
+Job + Future → Date Selection → Drawing Tool → Details → Complete
+```
+
+### **🎯 Jobs Pipeline Benefits:**
+
+#### **For Job Offers (Employers):**
+- **📍 Precise Location Mapping**: Exact office/work location
+- **🎯 Catchment Area Analysis**: Employee commute zones
+- **⏰ Flexible Scheduling**: Current και future positions
+- **📊 Rich Job Data**: Comprehensive position details
+
+#### **For Job Search (Job Seekers):**
+- **🚗 Commute Optimization**: Distance-based job matching
+- **🎯 Area-based Search**: Define preferred work areas
+- **⚡ Fast Track Flow**: Minimal steps για quick search setup
+- **📍 Multi-modal Analysis**: Car, public transport, walking routes
+
+#### **Smart Commute Intelligence:**
+- **🧠 Time-based Matching**: Jobs within commute preferences
+- **🚌 Public Transport Integration**: Real-time transport data
+- **🚗 Traffic Analysis**: Peak hours consideration
+- **🏠 Home-to-work Optimization**: Reverse area discovery
+
+#### **Technical Advantages:**
+- **📊 Geospatial Job Matching**: Location-first job discovery
+- **🔄 Real-time Updates**: Live job status tracking
+- **📱 Mobile Optimized**: Touch-friendly job creation
+- **🎯 3-4x Higher Frequency**: More active user engagement vs real estate
+
+#### **Employment Types Support:**
+- **⏰ Full Time**: Traditional office positions
+- **🕐 Part Time**: Flexible work arrangements
+- **🆓 Freelance**: Project-based opportunities
+- **🌴 Seasonal**: Tourism, agriculture, temporary positions
+
+### **🎨 Job Search Innovation:**
+
+#### **Location-First Job Discovery:**
+- Ζωγραφίζεις πού θες να δουλέψεις
+- Βρίσκεις δουλειές βάσει commute preferences
+- Smart proximity matching
+- Multi-modal transport optimization
+
+#### **Quality of Life Focus:**
+- Work-life balance optimization
+- Commute time minimization
+- Area quality assessment
+- Lifestyle preference matching
+
+---
+
 *Τελευταία ενημέρωση: 17 Οκτωβρίου 2025*
 *Δες επίσης: [REAL_ESTATE_ANALYSIS.md](./REAL_ESTATE_ANALYSIS.md) για συμπληρωματική ανάλυση*

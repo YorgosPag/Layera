@@ -60,3 +60,216 @@
 ### OUTPUT FORMAT:
 **Μόνο σχέδιο αλλαγών + unified diff patch, τίποτα άλλο.**
 
+## 🌐 Development Ports Policy - ΣΤΑΘΕΡΕΣ ΠΟΡΤΕΣ
+
+### 🎯 Δύο Εφαρμογές - Δύο Σταθερές Πόρτες
+**Το Layera ecosystem έχει δύο κύριες εφαρμογές που πρέπει πάντοτε να τρέχουν σε ΣΤΑΘΕΡΕΣ πόρτες:**
+
+#### **📱 Layera ID (Authentication/Identity)**
+- **Port**: `3000`
+- **URL**: `http://localhost:3000`
+- **Περιγραφή**: Login/Identity service για όλο το ecosystem
+
+#### **🗺️ Layera GeoAlert (Main App)**
+- **Port**: `3001`
+- **URL**: `http://localhost:3001`
+- **Περιγραφή**: Κύρια εφαρμογή με χάρτες, alerts, dual categories
+
+### 🚫 ΑΥΣΤΗΡΗ ΑΠΑΓΟΡΕΥΣΗ
+- **ΜΗΝ ανοίγεις νέες πόρτες** εκτός από 3000 και 3001
+- **ΜΗΝ χρησιμοποιείς** τυχαίες πόρτες όπως 3002, 3003, κλπ
+- **ΠΑΝΤΟΤΕ έλεγχε** αν οι εφαρμογές τρέχουν ήδη στις σωστές πόρτες
+
+### ✅ Correct Development Workflow
+```bash
+# Πριν ξεκινήσεις development:
+1. Έλεγξε ποιες πόρτες είναι ενεργές: netstat -an | findstr ":300"
+2. Αν τρέχει κάτι στις 3000/3001: χρησιμοποίησε τις υπάρχουσες
+3. Αν δεν τρέχει τίποτα: ξεκίνα στις σωστές πόρτες
+
+# Σωστή εκκίνηση:
+cd apps/layera-id && npm run dev -- --port 3000
+cd apps/layera-geoalert && npm run dev -- --port 3001
+```
+
+### 🔍 Testing & Verification Commands
+**Πάντοτε χρησιμοποίησε αυτές τις URLs για tests:**
+```bash
+# Identity service test
+curl http://localhost:3000/health
+start http://localhost:3000
+
+# Main app test
+curl http://localhost:3001/health
+start http://localhost:3001
+```
+
+### 🎯 Claude Code Instructions
+**Όταν κάνω development ή testing:**
+1. **ΠΑΝΤΟΤΕ ελέγχω** τις πόρτες 3000 και 3001 πρώτα
+2. **ΠΑΝΤΟΤΕ χρησιμοποιώ** μόνο αυτές τις δύο πόρτες
+3. **ΠΟΤΕ δεν ανοίγω** νέες πόρτες χωρίς ρητή εντολή
+4. **ΠΑΝΤΟΤΕ τεστάρω** στις ίδιες σταθερές πόρτες
+
+## 🌍 Internationalization (i18n) Policy - ΥΠΟΧΡΕΩΤΙΚΗ ΜΕΤΑΦΡΑΣΗ
+
+### 🚫 ΑΠΑΓΟΡΕΥΣΗ Hardcoded Values & Texts
+**Κανένα hardcoded κείμενο ή τιμή δεν επιτρέπεται στον κώδικα:**
+
+#### **❌ ΛΑΘΟΣ - Hardcoded Examples:**
+```typescript
+// ΛΑΘΟΣ - Hardcoded text
+const message = "Καλώς ήρθες στη Layera";
+const error = "Παρουσιάστηκε σφάλμα";
+
+// ΛΑΘΟΣ - Hardcoded values
+const maxResults = 50;
+const timeout = 5000;
+const apiUrl = "https://api.example.com";
+```
+
+#### **✅ ΣΩΣΤΟ - i18n & Constants:**
+```typescript
+// ΣΩΣΤΟ - i18n για κείμενα
+const message = t('welcome.message');
+const error = t('errors.general');
+
+// ΣΩΣΤΟ - Constants για τιμές
+const MAX_RESULTS = CONFIG.search.maxResults;
+const REQUEST_TIMEOUT = CONFIG.api.timeout;
+const API_BASE_URL = CONFIG.api.baseUrl;
+```
+
+### 🎯 Υποχρεωτικά Languages
+**Όλα τα κείμενα πρέπει να υποστηρίζουν:**
+- **🇬🇷 Ελληνικά (el)** - Primary language
+- **🇺🇸 Αγγλικά (en)** - International support
+
+### 📝 i18n Implementation Rules
+
+#### **1. Translation Keys Structure:**
+```typescript
+// Hierarchy format: feature.component.element
+const keys = {
+  'auth.login.title': 'Σύνδεση | Login',
+  'auth.login.email': 'Email',
+  'auth.login.password': 'Κωδικός | Password',
+  'map.drawing.start': 'Ξεκίνα Σχεδίαση | Start Drawing',
+  'alerts.success.saved': 'Αποθηκεύτηκε | Saved Successfully'
+};
+```
+
+#### **2. Usage in Components:**
+```typescript
+// React component με i18n
+import { useTranslation } from 'react-i18next';
+
+function LoginForm() {
+  const { t } = useTranslation();
+
+  return (
+    <form>
+      <h1>{t('auth.login.title')}</h1>
+      <input placeholder={t('auth.login.email')} />
+      <button>{t('auth.login.submit')}</button>
+    </form>
+  );
+}
+```
+
+#### **3. Constants Configuration:**
+```typescript
+// config/constants.ts
+export const CONFIG = {
+  app: {
+    name: 'Layera',
+    version: process.env.APP_VERSION || '1.0.0'
+  },
+  api: {
+    baseUrl: process.env.API_BASE_URL || 'http://localhost:3000',
+    timeout: 10000,
+    retries: 3
+  },
+  map: {
+    defaultZoom: 13,
+    maxZoom: 18,
+    minZoom: 8
+  },
+  search: {
+    maxResults: 100,
+    debounceMs: 300
+  }
+} as const;
+```
+
+### 🔧 Mandatory Checks
+
+#### **ΠΡΙΝ submit κώδικα:**
+1. **Σάρωσε για hardcoded strings**: Βρες `"ελληνικό κείμενο"` ή `'Greek text'`
+2. **Ελέγχω για magic numbers**: Βρες αριθμούς που δεν είναι σε constants
+3. **Ελέγχω για URLs/paths**: Βρες hardcoded URLs
+4. **Επιβεβαίωσε i18n usage**: Όλα τα UI texts να χρησιμοποιούν `t()`
+
+#### **Validation Commands:**
+```bash
+# Έλεγχος για hardcoded ελληνικά
+grep -r "\".*[α-ωΑ-Ω].*\"" src/
+
+# Έλεγχος για missing translation calls
+grep -r "\"[A-Za-z ].*\"" src/ | grep -v "t("
+
+# Έλεγχος για magic numbers (εκτός 0, 1, -1)
+grep -r "[^a-zA-Z][2-9][0-9]*[^a-zA-Z]" src/
+```
+
+### 📋 Translation File Structure
+```json
+// public/locales/el/common.json
+{
+  "auth": {
+    "login": {
+      "title": "Σύνδεση",
+      "email": "Email",
+      "password": "Κωδικός Πρόσβασης",
+      "submit": "Σύνδεση",
+      "forgot": "Ξέχασα τον κωδικό μου"
+    }
+  },
+  "map": {
+    "drawing": {
+      "start": "Ξεκίνα Σχεδίαση",
+      "finish": "Ολοκλήρωση",
+      "clear": "Καθαρισμός"
+    }
+  }
+}
+
+// public/locales/en/common.json
+{
+  "auth": {
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign In",
+      "forgot": "Forgot Password"
+    }
+  },
+  "map": {
+    "drawing": {
+      "start": "Start Drawing",
+      "finish": "Finish",
+      "clear": "Clear"
+    }
+  }
+}
+```
+
+### 🎯 Claude Code Mandatory Actions
+**Κάθε φορά που γράφω κώδικα:**
+1. **ΠΟΤΕ hardcoded strings** - πάντοτε `t('key')`
+2. **ΠΟΤΕ magic numbers** - πάντοτε `CONFIG.section.value`
+3. **ΠΟΤΕ hardcoded URLs** - πάντοτε environment variables
+4. **ΠΑΝΤΟΤΕ ελέγχω** για existing translation keys πρώτα
+5. **ΠΑΝΤΟΤΕ προσθέτω** νέα keys σε ΚΑΙ el ΚΑΙ en files
+
