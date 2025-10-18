@@ -2,7 +2,14 @@ import React from 'react';
 import { useAuthContext, UserAvatar } from '@layera/auth-bridge';
 import { useNavigate, Link } from 'react-router-dom';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
+import { Text, Heading } from '@layera/typography';
+import { Button } from '@layera/buttons';
+import { ThemeSwitcher } from '@layera/theme-switcher';
+import { CheckIcon, XIcon } from './icons/LayeraIcons';
 import './Dashboard.css';
+import '../styles/typography.css';
+import '@layera/buttons/styles';
+import '@layera/theme-switcher/styles';
 
 const Dashboard = () => {
   const { user, signOut } = useAuthContext();
@@ -22,7 +29,7 @@ const Dashboard = () => {
     <div className="dashboard-container">
       <nav className="dashboard-nav">
         <div className="nav-brand">
-          <h1>Layera</h1>
+          <Heading as="h1" size="2xl" color="primary">Layera</Heading>
         </div>
         <div className="nav-user">
           {user && (
@@ -32,15 +39,24 @@ const Dashboard = () => {
                 className="language-switcher-nav"
                 showFlags={true}
               />
+              <ThemeSwitcher
+                variant="icon"
+                size="md"
+                className="theme-switcher-nav"
+              />
               <UserAvatar
                 user={user}
                 size="medium"
                 onClick={() => navigate('/account')}
               />
               <span className="user-email">{user.email}</span>
-              <button onClick={handleLogout} className="logout-button">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleLogout}
+              >
                 {t('navigation.logout')}
-              </button>
+              </Button>
             </>
           )}
         </div>
@@ -48,7 +64,7 @@ const Dashboard = () => {
 
       <div className="dashboard-content">
         <div className="welcome-card">
-          <h2>{t('dashboard:welcome', { name: user?.displayName || user?.email })}</h2>
+          <Heading as="h2" size="xl" color="primary">{t('dashboard:welcome', { name: user?.displayName || user?.email })}</Heading>
           {user && (
             <>
               <p>{t('dashboard:user.successfulLogin', { email: user.email })}</p>
@@ -70,13 +86,13 @@ const Dashboard = () => {
                   <div className="user-field">
                     <strong>{t('data.fields.emailVerified')}:</strong>
                     <span className={user.emailVerified ? 'status-verified' : 'status-unverified'}>
-                      {user.emailVerified ? ` ✅ ${t('status.verified')}` : ` ❌ ${t('status.unverified')}`}
+                      {user.emailVerified ? <> <CheckIcon size="xs" theme="success" /> {t('status.verified')}</> : <> <XIcon size="xs" theme="danger" /> {t('status.unverified')}</>}
                     </span>
                   </div>
                   <div className="user-field">
                     <strong>{t('data.fields.mfaEnabled')}:</strong>
                     <span className={user.layeraClaims?.mfa_verified ? 'status-verified' : 'status-unverified'}>
-                      {user.layeraClaims?.mfa_verified ? ` ✅ ${t('status.enabled')}` : ` ❌ ${t('status.disabled')}`}
+                      {user.layeraClaims?.mfa_verified ? <> <CheckIcon size="xs" theme="success" /> {t('status.enabled')}</> : <> <XIcon size="xs" theme="danger" /> {t('status.disabled')}</>}
                     </span>
                   </div>
                   <div className="user-field">
@@ -95,26 +111,32 @@ const Dashboard = () => {
             <h3>{t('dashboard:quickActions.title')}</h3>
             <div className="action-buttons">
               <Link to="/account">
-                <button className="action-button">{t('dashboard:cards.account.title')}</button>
+                <Button variant="secondary" size="md" fullWidth>
+                  {t('dashboard:cards.account.title')}
+                </Button>
               </Link>
               <Link to="/settings">
-                <button className="action-button">{t('dashboard:cards.settings.title')}</button>
+                <Button variant="secondary" size="md" fullWidth>
+                  {t('dashboard:cards.settings.title')}
+                </Button>
               </Link>
               <Link to="/data">
-                <button className="action-button">{t('dashboard:cards.data.title')}</button>
+                <Button variant="secondary" size="md" fullWidth>
+                  {t('dashboard:cards.data.title')}
+                </Button>
               </Link>
               {!user?.layeraClaims?.mfa_verified && (
                 <Link to="/mfa-enroll">
-                  <button className="action-button" style={{ backgroundColor: '#28a745' }}>
+                  <Button variant="primary" size="md" fullWidth>
                     {t('dashboard:cards.mfa.title')}
-                  </button>
+                  </Button>
                 </Link>
               )}
               {user?.layeraClaims?.role === 'admin' && (
                 <Link to="/admin/roles">
-                  <button className="action-button" style={{ backgroundColor: '#dc3545' }}>
+                  <Button variant="danger" size="md" fullWidth>
                     {t('dashboard:admin.roleManagement')}
-                  </button>
+                  </Button>
                 </Link>
               )}
             </div>

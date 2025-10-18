@@ -85,25 +85,25 @@ export default function AdminRoles() {
           <button
             onClick={onSetRole}
             disabled={loading}
-            style={{ padding: "10px 16px", backgroundColor: "#007bff", color: "white", border: "none", borderRadius: "4px" }}
+            style={{ padding: "10px 16px", backgroundColor: "var(--layera-bg-info)", color: "var(--layera-text-primary)", border: "none", borderRadius: "4px" }}
           >
             Ορισμός ρόλου
           </button>
           <button
             onClick={onRefreshMfa}
             disabled={loading}
-            style={{ padding: "10px 16px", backgroundColor: "#6c757d", color: "white", border: "none", borderRadius: "4px" }}
+            style={{ padding: "10px 16px", backgroundColor: "var(--layera-bg-secondary)", color: "var(--layera-text-primary)", border: "none", borderRadius: "4px" }}
           >
             Ανανέωση claim 2FA
           </button>
         </div>
-        {msg && <p style={{ padding: "8px", backgroundColor: "#f8f9fa", border: "1px solid #dee2e6", borderRadius: "4px" }}>{msg}</p>}
+        {msg && <p style={{ padding: "8px", backgroundColor: "var(--layera-bg-tertiary)", border: "1px solid var(--layera-border-primary)", borderRadius: "4px" }}>{msg}</p>}
         <p style={{ fontSize: 12, opacity: 0.7 }}>
           Σημείωση: μόνο admin μπορεί να καλέσει τα functions. Ο πελάτης δεν γράφει claims.
         </p>
       </div>
       <div style={{ marginTop: "24px" }}>
-        <Link to="/dashboard" style={{ color: '#007bff', textDecoration: 'none' }}>
+        <Link to="/dashboard" style={{ color: 'var(--layera-bg-info)', textDecoration: 'none' }}>
           ← Επιστροφή στο Dashboard
         </Link>
       </div>

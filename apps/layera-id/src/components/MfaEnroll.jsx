@@ -3,6 +3,7 @@ import { PhoneAuthProvider, RecaptchaVerifier, multiFactor } from 'firebase/auth
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
+import { LockIcon, ShieldIcon, RocketIcon } from './icons/LayeraIcons';
 import './MfaEnroll.css';
 
 export default function MfaEnroll() {
@@ -71,7 +72,7 @@ export default function MfaEnroll() {
         <div className="mfa-card">
           <div className="mfa-header">
             <div className="mfa-icon">
-              🔒
+              <LockIcon size="lg" theme="primary" />
             </div>
             <h2 className="mfa-title">{t('mfa.title')}</h2>
             <p className="mfa-subtitle">
@@ -81,7 +82,7 @@ export default function MfaEnroll() {
 
           <div className="security-info">
             <h4>
-              🛡️ {t('mfa.whyNeeded.title')}
+              <ShieldIcon size="md" theme="info" /> {t('mfa.whyNeeded.title')}
             </h4>
             <p>{t('mfa.whyNeeded.description')}</p>
             <ul>
@@ -94,7 +95,7 @@ export default function MfaEnroll() {
           <form className="mfa-form" onSubmit={(e) => { e.preventDefault(); start(); }}>
             <div className="form-group">
               <label className="form-label" htmlFor="phone">
-                📱 {t('mfa.form.phoneLabel')}
+                <SmartphoneIcon size="sm" theme="neutral" /> {t('mfa.form.phoneLabel')}
               </label>
               <input
                 id="phone"
@@ -127,7 +128,7 @@ export default function MfaEnroll() {
                   </>
                 ) : (
                   <>
-                    🚀 {t('mfa.form.enableButton')}
+                    <RocketIcon size="sm" theme="neutral" /> {t('mfa.form.enableButton')}
                   </>
                 )}
               </button>

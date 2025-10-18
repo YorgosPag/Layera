@@ -1,260 +1,48 @@
-13:22:40.324 react-dom_client.js?v=0f5f6c7f:20103 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
-13:22:40.526 main.jsx:28 User signed out
-13:22:46.839 useAuth.js:104 Cross-Origin-Opener-Policy policy would block the window.closed call.
-poll @ firebase_auth.js?v=2b73e9f9:7066
-setTimeout
-poll @ firebase_auth.js?v=2b73e9f9:7081
-setTimeout
-poll @ firebase_auth.js?v=2b73e9f9:7081
-pollUserCancellation @ firebase_auth.js?v=2b73e9f9:7083
-onExecution @ firebase_auth.js?v=2b73e9f9:7041
-await in onExecution
-(anonymous) @ firebase_auth.js?v=2b73e9f9:6893
-await in (anonymous)
-execute @ firebase_auth.js?v=2b73e9f9:6889
-executeNotNull @ firebase_auth.js?v=2b73e9f9:7009
-signInWithPopup @ firebase_auth.js?v=2b73e9f9:6974
-(anonymous) @ useAuth.js:104
-handleClick @ GoogleSignInButton.js:25
-executeDispatch @ react-dom_client.js?v=0f5f6c7f:13622
-runWithFiberInDEV @ react-dom_client.js?v=0f5f6c7f:997
-processDispatchQueue @ react-dom_client.js?v=0f5f6c7f:13658
-(anonymous) @ react-dom_client.js?v=0f5f6c7f:14071
-batchedUpdates$1 @ react-dom_client.js?v=0f5f6c7f:2626
-dispatchEventForPluginEventSystem @ react-dom_client.js?v=0f5f6c7f:13763
-dispatchEvent @ react-dom_client.js?v=0f5f6c7f:16784
-dispatchDiscreteEvent @ react-dom_client.js?v=0f5f6c7f:16765
-<button>
-exports.jsx @ react_jsx-runtime.js?v=73ee126d:247
-GoogleSignInButton @ GoogleSignInButton.js:62
-react_stack_bottom_frame @ react-dom_client.js?v=0f5f6c7f:18509
-renderWithHooksAgain @ react-dom_client.js?v=0f5f6c7f:5729
-renderWithHooks @ react-dom_client.js?v=0f5f6c7f:5665
-updateFunctionComponent @ react-dom_client.js?v=0f5f6c7f:7475
-beginWork @ react-dom_client.js?v=0f5f6c7f:8525
-runWithFiberInDEV @ react-dom_client.js?v=0f5f6c7f:997
-performUnitOfWork @ react-dom_client.js?v=0f5f6c7f:12561
-workLoopConcurrentByScheduler @ react-dom_client.js?v=0f5f6c7f:12557
-renderRootConcurrent @ react-dom_client.js?v=0f5f6c7f:12539
-performWorkOnRoot @ react-dom_client.js?v=0f5f6c7f:11766
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=0f5f6c7f:13505
-performWorkUntilDeadline @ react-dom_client.js?v=0f5f6c7f:36
-<GoogleSignInButton>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=73ee126d:247
-Login @ Login.jsx:75
-react_stack_bottom_frame @ react-dom_client.js?v=0f5f6c7f:18509
-renderWithHooksAgain @ react-dom_client.js?v=0f5f6c7f:5729
-renderWithHooks @ react-dom_client.js?v=0f5f6c7f:5665
-updateFunctionComponent @ react-dom_client.js?v=0f5f6c7f:7475
-beginWork @ react-dom_client.js?v=0f5f6c7f:8525
-runWithFiberInDEV @ react-dom_client.js?v=0f5f6c7f:997
-performUnitOfWork @ react-dom_client.js?v=0f5f6c7f:12561
-workLoopConcurrentByScheduler @ react-dom_client.js?v=0f5f6c7f:12557
-renderRootConcurrent @ react-dom_client.js?v=0f5f6c7f:12539
-performWorkOnRoot @ react-dom_client.js?v=0f5f6c7f:11766
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=0f5f6c7f:13505
-performWorkUntilDeadline @ react-dom_client.js?v=0f5f6c7f:36
-<Login>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=73ee126d:247
-App @ App.jsx:51
-react_stack_bottom_frame @ react-dom_client.js?v=0f5f6c7f:18509
-renderWithHooksAgain @ react-dom_client.js?v=0f5f6c7f:5729
-renderWithHooks @ react-dom_client.js?v=0f5f6c7f:5665
-updateFunctionComponent @ react-dom_client.js?v=0f5f6c7f:7475
-beginWork @ react-dom_client.js?v=0f5f6c7f:8525
-runWithFiberInDEV @ react-dom_client.js?v=0f5f6c7f:997
-performUnitOfWork @ react-dom_client.js?v=0f5f6c7f:12561
-workLoopSync @ react-dom_client.js?v=0f5f6c7f:12424
-renderRootSync @ react-dom_client.js?v=0f5f6c7f:12408
-performWorkOnRoot @ react-dom_client.js?v=0f5f6c7f:11766
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=0f5f6c7f:13505
-performWorkUntilDeadline @ react-dom_client.js?v=0f5f6c7f:36
-<App>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=73ee126d:247
-(anonymous) @ main.jsx:35
-13:22:46.840 useAuth.js:104 Cross-Origin-Opener-Policy policy would block the window.closed call.
-poll @ firebase_auth.js?v=2b73e9f9:7066
-setTimeout
-poll @ firebase_auth.js?v=2b73e9f9:7081
-setTimeout
-poll @ firebase_auth.js?v=2b73e9f9:7081
-pollUserCancellation @ firebase_auth.js?v=2b73e9f9:7083
-onExecution @ firebase_auth.js?v=2b73e9f9:7041
-await in onExecution
-(anonymous) @ firebase_auth.js?v=2b73e9f9:6893
-await in (anonymous)
-execute @ firebase_auth.js?v=2b73e9f9:6889
-executeNotNull @ firebase_auth.js?v=2b73e9f9:7009
-signInWithPopup @ firebase_auth.js?v=2b73e9f9:6974
-(anonymous) @ useAuth.js:104
-handleClick @ GoogleSignInButton.js:25
-executeDispatch @ react-dom_client.js?v=0f5f6c7f:13622
-runWithFiberInDEV @ react-dom_client.js?v=0f5f6c7f:997
-processDispatchQueue @ react-dom_client.js?v=0f5f6c7f:13658
-(anonymous) @ react-dom_client.js?v=0f5f6c7f:14071
-batchedUpdates$1 @ react-dom_client.js?v=0f5f6c7f:2626
-dispatchEventForPluginEventSystem @ react-dom_client.js?v=0f5f6c7f:13763
-dispatchEvent @ react-dom_client.js?v=0f5f6c7f:16784
-dispatchDiscreteEvent @ react-dom_client.js?v=0f5f6c7f:16765
-<button>
-exports.jsx @ react_jsx-runtime.js?v=73ee126d:247
-GoogleSignInButton @ GoogleSignInButton.js:62
-react_stack_bottom_frame @ react-dom_client.js?v=0f5f6c7f:18509
-renderWithHooksAgain @ react-dom_client.js?v=0f5f6c7f:5729
-renderWithHooks @ react-dom_client.js?v=0f5f6c7f:5665
-updateFunctionComponent @ react-dom_client.js?v=0f5f6c7f:7475
-beginWork @ react-dom_client.js?v=0f5f6c7f:8525
-runWithFiberInDEV @ react-dom_client.js?v=0f5f6c7f:997
-performUnitOfWork @ react-dom_client.js?v=0f5f6c7f:12561
-workLoopConcurrentByScheduler @ react-dom_client.js?v=0f5f6c7f:12557
-renderRootConcurrent @ react-dom_client.js?v=0f5f6c7f:12539
-performWorkOnRoot @ react-dom_client.js?v=0f5f6c7f:11766
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=0f5f6c7f:13505
-performWorkUntilDeadline @ react-dom_client.js?v=0f5f6c7f:36
-<GoogleSignInButton>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=73ee126d:247
-Login @ Login.jsx:75
-react_stack_bottom_frame @ react-dom_client.js?v=0f5f6c7f:18509
-renderWithHooksAgain @ react-dom_client.js?v=0f5f6c7f:5729
-renderWithHooks @ react-dom_client.js?v=0f5f6c7f:5665
-updateFunctionComponent @ react-dom_client.js?v=0f5f6c7f:7475
-beginWork @ react-dom_client.js?v=0f5f6c7f:8525
-runWithFiberInDEV @ react-dom_client.js?v=0f5f6c7f:997
-performUnitOfWork @ react-dom_client.js?v=0f5f6c7f:12561
-workLoopConcurrentByScheduler @ react-dom_client.js?v=0f5f6c7f:12557
-renderRootConcurrent @ react-dom_client.js?v=0f5f6c7f:12539
-performWorkOnRoot @ react-dom_client.js?v=0f5f6c7f:11766
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=0f5f6c7f:13505
-performWorkUntilDeadline @ react-dom_client.js?v=0f5f6c7f:36
-<Login>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=73ee126d:247
-App @ App.jsx:51
-react_stack_bottom_frame @ react-dom_client.js?v=0f5f6c7f:18509
-renderWithHooksAgain @ react-dom_client.js?v=0f5f6c7f:5729
-renderWithHooks @ react-dom_client.js?v=0f5f6c7f:5665
-updateFunctionComponent @ react-dom_client.js?v=0f5f6c7f:7475
-beginWork @ react-dom_client.js?v=0f5f6c7f:8525
-runWithFiberInDEV @ react-dom_client.js?v=0f5f6c7f:997
-performUnitOfWork @ react-dom_client.js?v=0f5f6c7f:12561
-workLoopSync @ react-dom_client.js?v=0f5f6c7f:12424
-renderRootSync @ react-dom_client.js?v=0f5f6c7f:12408
-performWorkOnRoot @ react-dom_client.js?v=0f5f6c7f:11766
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=0f5f6c7f:13505
-performWorkUntilDeadline @ react-dom_client.js?v=0f5f6c7f:36
-<App>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=73ee126d:247
-(anonymous) @ main.jsx:35
-13:22:54.667 cb=gapi.loaded_0?le=scs:195 Cross-Origin-Opener-Policy policy would block the window.close call.
-close @ firebase_auth.js?v=2b73e9f9:7530
-cleanUp @ firebase_auth.js?v=2b73e9f9:7055
-unregisterAndCleanUp @ firebase_auth.js?v=2b73e9f9:6958
-resolve @ firebase_auth.js?v=2b73e9f9:6946
-onAuthEvent @ firebase_auth.js?v=2b73e9f9:6916
-await in onAuthEvent
-sendToConsumer @ firebase_auth.js?v=2b73e9f9:7286
-(anonymous) @ firebase_auth.js?v=2b73e9f9:7267
-onEvent @ firebase_auth.js?v=2b73e9f9:7264
-(anonymous) @ firebase_auth.js?v=2b73e9f9:7692
-Sm @ cb=gapi.loaded_0?le=scs:195
-(anonymous) @ cb=gapi.loaded_0?le=scs:195
-gl @ cb=gapi.loaded_0?le=scs:174
-pl @ cb=gapi.loaded_0?le=scs:174
-Kk @ cb=gapi.loaded_0?le=scs:175
-Qk.hI @ cb=gapi.loaded_0?le=scs:168
-13:22:54.668 cb=gapi.loaded_0?le=scs:195 Cross-Origin-Opener-Policy policy would block the window.close call.
-close @ firebase_auth.js?v=2b73e9f9:7530
-cleanUp @ firebase_auth.js?v=2b73e9f9:7055
-unregisterAndCleanUp @ firebase_auth.js?v=2b73e9f9:6958
-resolve @ firebase_auth.js?v=2b73e9f9:6946
-onAuthEvent @ firebase_auth.js?v=2b73e9f9:6916
-await in onAuthEvent
-sendToConsumer @ firebase_auth.js?v=2b73e9f9:7286
-(anonymous) @ firebase_auth.js?v=2b73e9f9:7267
-onEvent @ firebase_auth.js?v=2b73e9f9:7264
-(anonymous) @ firebase_auth.js?v=2b73e9f9:7692
-Sm @ cb=gapi.loaded_0?le=scs:195
-(anonymous) @ cb=gapi.loaded_0?le=scs:195
-gl @ cb=gapi.loaded_0?le=scs:174
-pl @ cb=gapi.loaded_0?le=scs:174
-Kk @ cb=gapi.loaded_0?le=scs:175
-Qk.hI @ cb=gapi.loaded_0?le=scs:168
-13:22:54.668 main.jsx:25 User signed in: georgios.pagonis@gmail.com Role: private
-13:22:54.669 Login.jsx:77 Google sign-in successful: georgios.pagonis@gmail.com
-13:22:54.695 Dashboard.jsx:88 Uncaught ReferenceError: claims is not defined
-    at Dashboard (Dashboard.jsx:88:16)
-    at Object.react_stack_bottom_frame (react-dom_client.js?v=0f5f6c7f:18509:20)
-    at renderWithHooks (react-dom_client.js?v=0f5f6c7f:5654:24)
-    at updateFunctionComponent (react-dom_client.js?v=0f5f6c7f:7475:21)
-    at beginWork (react-dom_client.js?v=0f5f6c7f:8525:20)
-    at runWithFiberInDEV (react-dom_client.js?v=0f5f6c7f:997:72)
-    at performUnitOfWork (react-dom_client.js?v=0f5f6c7f:12561:98)
-    at workLoopSync (react-dom_client.js?v=0f5f6c7f:12424:43)
-    at renderRootSync (react-dom_client.js?v=0f5f6c7f:12408:13)
-    at performWorkOnRoot (react-dom_client.js?v=0f5f6c7f:11827:37)
-Dashboard @ Dashboard.jsx:88
-react_stack_bottom_frame @ react-dom_client.js?v=0f5f6c7f:18509
-renderWithHooks @ react-dom_client.js?v=0f5f6c7f:5654
-updateFunctionComponent @ react-dom_client.js?v=0f5f6c7f:7475
-beginWork @ react-dom_client.js?v=0f5f6c7f:8525
-runWithFiberInDEV @ react-dom_client.js?v=0f5f6c7f:997
-performUnitOfWork @ react-dom_client.js?v=0f5f6c7f:12561
-workLoopSync @ react-dom_client.js?v=0f5f6c7f:12424
-renderRootSync @ react-dom_client.js?v=0f5f6c7f:12408
-performWorkOnRoot @ react-dom_client.js?v=0f5f6c7f:11827
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=0f5f6c7f:13505
-performWorkUntilDeadline @ react-dom_client.js?v=0f5f6c7f:36
-<Dashboard>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=73ee126d:247
-App @ App.jsx:59
-react_stack_bottom_frame @ react-dom_client.js?v=0f5f6c7f:18509
-renderWithHooksAgain @ react-dom_client.js?v=0f5f6c7f:5729
-renderWithHooks @ react-dom_client.js?v=0f5f6c7f:5665
-updateFunctionComponent @ react-dom_client.js?v=0f5f6c7f:7475
-beginWork @ react-dom_client.js?v=0f5f6c7f:8525
-runWithFiberInDEV @ react-dom_client.js?v=0f5f6c7f:997
-performUnitOfWork @ react-dom_client.js?v=0f5f6c7f:12561
-workLoopSync @ react-dom_client.js?v=0f5f6c7f:12424
-renderRootSync @ react-dom_client.js?v=0f5f6c7f:12408
-performWorkOnRoot @ react-dom_client.js?v=0f5f6c7f:11766
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=0f5f6c7f:13505
-performWorkUntilDeadline @ react-dom_client.js?v=0f5f6c7f:36
-<App>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=73ee126d:247
-(anonymous) @ main.jsx:35
-13:22:54.696 App.jsx:59 An error occurred in the <Dashboard> component.
+10:24:12.893 react-dom_client.js?v=5d0b1aa6:20103 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+10:24:12.901 config.ts:74 i18next: languageChanged el
+10:24:12.901 config.ts:74 i18next: initialized {debug: true, initImmediate: true, ns: Array(2), defaultNS: 'common', fallbackLng: Array(1), …}appendNamespaceToCIMode: falseappendNamespaceToMissingKey: falsecontextSeparator: "_"debug: truedefaultNS: "common"detection: caches: Array(1)0: "localStorage"length: 1[[Prototype]]: Array(0)convertDetectedLanguage: ƒ convertDetectedLanguage(l)length: 1name: "convertDetectedLanguage"prototype: {}arguments: (...)caller: (...)[[FunctionLocation]]: i18next-browser-languagedetector.js?v=5e805a3f:320[[Prototype]]: ƒ ()[[Scopes]]: Scopes[2]excludeCacheFor: Array(1)0: "cimode"length: 1[[Prototype]]: Array(0)lookupCookie: "i18next"lookupLocalStorage: "layera-language"lookupQuerystring: "lng"lookupSessionStorage: "i18nextLng"order: Array(3)0: "localStorage"1: "navigator"2: "htmlTag"length: 3[[Prototype]]: Array(0)[[Prototype]]: ObjectfallbackLng: Array(1)0: "el"length: 1[[Prototype]]: Array(0)fallbackNS: falseignoreJSONStructure: trueinitImmediate: trueinterpolation: escapeValue: falseformat: ƒ ()length: 3name: "bound format"arguments: (...)caller: (...)[[Prototype]]: ƒ ()[[TargetFunction]]: format(value, format, lng) {     let options = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : {};     const formats = format.split(this.formatSeparator);     if (formats.length > 1 && formats[0].indexOf("(") > 1 && formats[0].indexOf(")") < 0 && formats.find((f) => {…}[[BoundThis]]: Formatter[[BoundArgs]]: Array(0)formatSeparator: ","maxReplaces: 1000nestingOptionsSeparator: ","nestingPrefix: "$t("nestingSuffix: ")"prefix: "{{"skipOnVariables: truesuffix: "}}"unescapePrefix: "-"[[Prototype]]: ObjectjoinArrays: falsekeySeparator: "."lng: "el"load: "all"missingInterpolationHandler: falsemissingKeyHandler: falsenonExplicitSupportedLngs: falsens: Array(2)0: "common"1: "dashboard"length: 2[[Prototype]]: Array(0)nsSeparator: ":"overloadTranslationOptionHandler: (args) => {…}length: 1name: "overloadTranslationOptionHandler"arguments: (...)caller: (...)[[FunctionLocation]]: i18next.js?v=0de43ae2:1835[[Prototype]]: ƒ ()[[Scopes]]: Scopes[2]parseMissingKeyHandler: falsepartialBundledLanguages: falsepluralSeparator: "_"postProcess: falsepostProcessPassResolved: falsepreload: falsereact: bindI18n: "languageChanged"bindI18nStore: ""transEmptyNodeValue: ""transKeepBasicHtmlNodesFor: Array(5)0: "br"1: "strong"2: "i"3: "p"4: "span"length: 5[[Prototype]]: Array(0)transSupportBasicHtmlNodes: trueuseSuspense: false[[Prototype]]: Objectresources: el: {common: {…}, dashboard: {…}}en: {common: {…}, dashboard: {…}}[[Prototype]]: ObjectreturnEmptyString: truereturnNull: falsereturnObjects: falsereturnedObjectHandler: falsesaveMissing: falsesaveMissingPlurals: truesaveMissingTo: "fallback"simplifyPluralSuffix: truesupportedLngs: Array(3)0: "el"1: "en"2: "cimode"length: 3[[Prototype]]: Array(0)updateMissing: false[[Prototype]]: Object
+10:24:13.286 main.jsx:25 User signed in: georgios.pagonis@gmail.com Role: private
+10:30:44.543 useLayeraTranslation.ts:23 i18next: languageChanged en
+10:30:51.962 useLayeraTranslation.ts:23 i18next: languageChanged el
+10:33:03.140 MfaEnroll.jsx:98 Uncaught ReferenceError: SmartphoneIcon is not defined
+    at MfaEnroll (MfaEnroll.jsx:98:18)
+    at Object.react_stack_bottom_frame (react-dom_client.js?v=5d0b1aa6:18509:20)
+    at renderWithHooks (react-dom_client.js?v=5d0b1aa6:5654:24)
+    at updateFunctionComponent (react-dom_client.js?v=5d0b1aa6:7475:21)
+    at beginWork (react-dom_client.js?v=5d0b1aa6:8525:20)
+    at runWithFiberInDEV (react-dom_client.js?v=5d0b1aa6:997:72)
+    at performUnitOfWork (react-dom_client.js?v=5d0b1aa6:12561:98)
+    at workLoopSync (react-dom_client.js?v=5d0b1aa6:12424:43)
+    at renderRootSync (react-dom_client.js?v=5d0b1aa6:12408:13)
+    at performWorkOnRoot (react-dom_client.js?v=5d0b1aa6:11827:37)
+MfaEnroll @ MfaEnroll.jsx:98
+react_stack_bottom_frame @ react-dom_client.js?v=5d0b1aa6:18509
+renderWithHooks @ react-dom_client.js?v=5d0b1aa6:5654
+updateFunctionComponent @ react-dom_client.js?v=5d0b1aa6:7475
+beginWork @ react-dom_client.js?v=5d0b1aa6:8525
+runWithFiberInDEV @ react-dom_client.js?v=5d0b1aa6:997
+performUnitOfWork @ react-dom_client.js?v=5d0b1aa6:12561
+workLoopSync @ react-dom_client.js?v=5d0b1aa6:12424
+renderRootSync @ react-dom_client.js?v=5d0b1aa6:12408
+performWorkOnRoot @ react-dom_client.js?v=5d0b1aa6:11827
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=5d0b1aa6:13505
+performWorkUntilDeadline @ react-dom_client.js?v=5d0b1aa6:36
+10:33:03.141 react-dom_client.js?v=5d0b1aa6:6966 An error occurred in the <MfaEnroll> component.
 
 Consider adding an error boundary to your tree to customize error handling behavior.
 Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
 
-defaultOnUncaughtError @ react-dom_client.js?v=0f5f6c7f:6966
-logUncaughtError @ react-dom_client.js?v=0f5f6c7f:7020
-runWithFiberInDEV @ react-dom_client.js?v=0f5f6c7f:997
-lane.callback @ react-dom_client.js?v=0f5f6c7f:7048
-callCallback @ react-dom_client.js?v=0f5f6c7f:5491
-commitCallbacks @ react-dom_client.js?v=0f5f6c7f:5503
-runWithFiberInDEV @ react-dom_client.js?v=0f5f6c7f:999
-commitLayoutEffectOnFiber @ react-dom_client.js?v=0f5f6c7f:9976
-flushLayoutEffects @ react-dom_client.js?v=0f5f6c7f:12924
-commitRoot @ react-dom_client.js?v=0f5f6c7f:12803
-commitRootWhenReady @ react-dom_client.js?v=0f5f6c7f:12016
-performWorkOnRoot @ react-dom_client.js?v=0f5f6c7f:11950
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=0f5f6c7f:13505
-performWorkUntilDeadline @ react-dom_client.js?v=0f5f6c7f:36
-<Dashboard>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=73ee126d:247
-App @ App.jsx:59
-react_stack_bottom_frame @ react-dom_client.js?v=0f5f6c7f:18509
-renderWithHooksAgain @ react-dom_client.js?v=0f5f6c7f:5729
-renderWithHooks @ react-dom_client.js?v=0f5f6c7f:5665
-updateFunctionComponent @ react-dom_client.js?v=0f5f6c7f:7475
-beginWork @ react-dom_client.js?v=0f5f6c7f:8525
-runWithFiberInDEV @ react-dom_client.js?v=0f5f6c7f:997
-performUnitOfWork @ react-dom_client.js?v=0f5f6c7f:12561
-workLoopSync @ react-dom_client.js?v=0f5f6c7f:12424
-renderRootSync @ react-dom_client.js?v=0f5f6c7f:12408
-performWorkOnRoot @ react-dom_client.js?v=0f5f6c7f:11766
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=0f5f6c7f:13505
-performWorkUntilDeadline @ react-dom_client.js?v=0f5f6c7f:36
-<App>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=73ee126d:247
-(anonymous) @ main.jsx:35
+defaultOnUncaughtError @ react-dom_client.js?v=5d0b1aa6:6966
+logUncaughtError @ react-dom_client.js?v=5d0b1aa6:7020
+runWithFiberInDEV @ react-dom_client.js?v=5d0b1aa6:997
+lane.callback @ react-dom_client.js?v=5d0b1aa6:7048
+callCallback @ react-dom_client.js?v=5d0b1aa6:5491
+commitCallbacks @ react-dom_client.js?v=5d0b1aa6:5503
+runWithFiberInDEV @ react-dom_client.js?v=5d0b1aa6:999
+commitLayoutEffectOnFiber @ react-dom_client.js?v=5d0b1aa6:9976
+flushLayoutEffects @ react-dom_client.js?v=5d0b1aa6:12924
+commitRoot @ react-dom_client.js?v=5d0b1aa6:12803
+commitRootWhenReady @ react-dom_client.js?v=5d0b1aa6:12016
+performWorkOnRoot @ react-dom_client.js?v=5d0b1aa6:11950
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=5d0b1aa6:13505
+performWorkUntilDeadline @ react-dom_client.js?v=5d0b1aa6:36

@@ -1,15 +1,15 @@
 .settings-container {
   min-height: 100vh;
-  background: #f5f5f5;
+  background: var(--layera-bg-secondary);
 }
 
 .settings-nav {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--layera-bg-info) 0%, color-mix(in srgb, var(--layera-bg-info) 80%, purple 20%) 100%);
   padding: 15px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px color-mix(in srgb, black 10%, transparent 90%);
 }
 
 .nav-user {
@@ -19,9 +19,9 @@
 }
 
 .language-switcher-nav {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: color-mix(in srgb, var(--layera-bg-primary) 20%, transparent 80%);
+  color: var(--layera-bg-primary);
+  border: 1px solid color-mix(in srgb, var(--layera-bg-primary) 30%, transparent 70%);
   padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
@@ -34,11 +34,11 @@
 }
 
 .language-switcher-nav:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: color-mix(in srgb, var(--layera-bg-primary) 30%, transparent 70%);
 }
 
 .nav-brand h1 {
-  color: white;
+  color: var(--layera-bg-primary);
   margin: 0;
   font-size: 24px;
   font-weight: 700;
@@ -55,10 +55,10 @@
 }
 
 .settings-card {
-  background: white;
+  background: var(--layera-bg-primary);
   padding: 30px 20px;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 10px color-mix(in srgb, black 5%, transparent 95%);
   width: 100%;
   max-width: 500px;
   margin: 20px auto;
@@ -73,7 +73,7 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--layera-bg-info) 0%, color-mix(in srgb, var(--layera-bg-info) 80%, purple 20%) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,14 +82,14 @@
 }
 
 .settings-title {
-  color: #333;
+  color: var(--layera-text-primary);
   margin: 0 0 10px 0;
   font-size: 28px;
   font-weight: 700;
 }
 
 .settings-subtitle {
-  color: #666;
+  color: var(--layera-text-secondary);
   font-size: 16px;
   margin: 0;
   line-height: 1.5;
@@ -102,18 +102,18 @@
 .settings-section {
   margin-bottom: 40px;
   padding: 25px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--layera-border-primary);
   border-radius: 8px;
-  background: #fafafa;
+  background: var(--layera-bg-tertiary);
 }
 
 .settings-section.danger {
-  border-color: #ff6b6b;
-  background: #fff5f5;
+  border-color: var(--layera-bg-danger);
+  background: color-mix(in srgb, var(--layera-bg-danger) 10%, var(--layera-bg-primary) 90%);
 }
 
 .settings-section h3 {
-  color: #333;
+  color: var(--layera-text-primary);
   margin: 0 0 20px 0;
   font-size: 18px;
   font-weight: 600;
@@ -123,7 +123,7 @@
 }
 
 .settings-section.danger h3 {
-  color: #dc3545;
+  color: var(--layera-bg-danger);
 }
 
 .settings-items {
@@ -137,9 +137,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px;
-  background: white;
+  background: var(--layera-bg-primary);
   border-radius: 6px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--layera-border-primary);
 }
 
 .item-info {
@@ -148,19 +148,19 @@
 
 .item-info strong {
   display: block;
-  color: #333;
+  color: var(--layera-text-primary);
   font-size: 14px;
   margin-bottom: 4px;
 }
 
 .item-info small {
-  color: #666;
+  color: var(--layera-text-secondary);
   font-size: 12px;
 }
 
 .settings-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: linear-gradient(135deg, var(--layera-bg-info) 0%, color-mix(in srgb, var(--layera-bg-info) 80%, purple 20%) 100%);
+  color: var(--layera-bg-primary);
   border: none;
   padding: 8px 16px;
   border-radius: 6px;
@@ -174,41 +174,41 @@
 
 .settings-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 3px 10px color-mix(in srgb, var(--layera-bg-info) 30%, transparent 70%);
   text-decoration: none;
-  color: white;
+  color: var(--layera-bg-primary);
 }
 
 .settings-btn.secondary {
-  background: #6c757d;
+  background: var(--layera-text-secondary);
 }
 
 .settings-btn.secondary:hover {
-  box-shadow: 0 3px 10px rgba(108, 117, 125, 0.3);
+  box-shadow: 0 3px 10px color-mix(in srgb, var(--layera-text-secondary) 30%, transparent 70%);
 }
 
 .settings-btn.danger {
-  background: #dc3545;
+  background: var(--layera-bg-danger);
 }
 
 .settings-btn.danger:hover {
-  box-shadow: 0 3px 10px rgba(220, 53, 69, 0.3);
+  box-shadow: 0 3px 10px color-mix(in srgb, var(--layera-bg-danger) 30%, transparent 70%);
 }
 
 .settings-select {
   padding: 8px 12px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--layera-border-primary);
   border-radius: 4px;
-  background: white;
-  color: #333;
+  background: var(--layera-bg-primary);
+  color: var(--layera-text-primary);
   font-size: 12px;
   cursor: pointer;
 }
 
 .settings-select:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+  border-color: var(--layera-bg-info);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--layera-bg-info) 10%, transparent 90%);
 }
 
 .settings-toggle {
@@ -231,7 +231,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: var(--layera-border-primary);
   transition: 0.3s;
   border-radius: 24px;
 }
@@ -243,13 +243,13 @@
   width: 18px;
   left: 3px;
   bottom: 3px;
-  background-color: white;
+  background-color: var(--layera-bg-primary);
   transition: 0.3s;
   border-radius: 50%;
 }
 
 input:checked + .toggle-slider {
-  background-color: #667eea;
+  background-color: var(--layera-bg-info);
 }
 
 input:checked + .toggle-slider:before {
@@ -260,11 +260,11 @@ input:checked + .toggle-slider:before {
   text-align: center;
   margin-top: 30px;
   padding-top: 20px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--layera-border-primary);
 }
 
 .back-link {
-  color: #007bff;
+  color: var(--layera-bg-info);
   text-decoration: none;
   font-size: 14px;
   display: inline-flex;
@@ -274,7 +274,7 @@ input:checked + .toggle-slider:before {
 }
 
 .back-link:hover {
-  color: #0056b3;
+  color: color-mix(in srgb, var(--layera-bg-info) 80%, black 20%);
   text-decoration: none;
 }
 

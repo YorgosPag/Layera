@@ -1,10 +1,10 @@
 .mfa-container {
   min-height: 100vh;
-  background: #f5f5f5;
+  background: var(--layera-bg-secondary);
 }
 
 .mfa-nav {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--layera-bg-info);
   padding: 15px 30px;
   display: flex;
   justify-content: space-between;
@@ -13,7 +13,7 @@
 }
 
 .nav-brand h1 {
-  color: white;
+  color: var(--layera-bg-primary);
   margin: 0;
   font-size: 24px;
   font-weight: 700;
@@ -28,7 +28,7 @@
 .language-switcher-nav {
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
+  color: var(--layera-bg-primary);
 }
 
 .language-switcher-nav:hover {
@@ -46,7 +46,7 @@
 }
 
 .mfa-card {
-  background: white;
+  background: var(--layera-bg-primary);
   padding: 30px 20px;
   border-radius: 12px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -64,7 +64,7 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--layera-bg-info);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -73,14 +73,14 @@
 }
 
 .mfa-title {
-  color: #333;
+  color: var(--layera-text-primary);
   margin: 0 0 10px 0;
   font-size: 28px;
   font-weight: 700;
 }
 
 .mfa-subtitle {
-  color: #666;
+  color: var(--layera-text-secondary);
   font-size: 16px;
   margin: 0;
   line-height: 1.5;
@@ -96,7 +96,7 @@
 
 .form-label {
   display: block;
-  color: #333;
+  color: var(--layera-text-primary);
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 8px;
@@ -105,7 +105,7 @@
 .form-input {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--layera-border-primary);
   border-radius: 8px;
   font-size: 16px;
   transition: border-color 0.3s, box-shadow 0.3s;
@@ -114,17 +114,17 @@
 
 .form-input:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: var(--layera-bg-info);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .form-input:disabled {
-  background-color: #f5f5f5;
+  background-color: var(--layera-bg-secondary);
   cursor: not-allowed;
 }
 
 .form-hint {
-  color: #666;
+  color: var(--layera-text-secondary);
   font-size: 12px;
   margin-top: 5px;
   display: block;
@@ -144,8 +144,8 @@
 }
 
 .mfa-button {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: var(--layera-bg-info);
+  color: var(--layera-bg-primary);
   border: none;
   padding: 12px 30px;
   border-radius: 8px;
@@ -162,7 +162,7 @@
 
 .mfa-button:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
 }
 
 .mfa-button:disabled {
@@ -173,16 +173,16 @@
 }
 
 .mfa-button.secondary {
-  background: #6c757d;
-  color: white;
+  background: var(--layera-text-secondary);
+  color: var(--layera-bg-primary);
 }
 
 .mfa-button.secondary:hover:not(:disabled) {
-  box-shadow: 0 5px 15px rgba(108, 117, 125, 0.3);
+  box-shadow: 0 5px 15px rgba(100, 116, 139, 0.3);
 }
 
 .back-link {
-  color: #007bff;
+  color: var(--layera-bg-info);
   text-decoration: none;
   font-size: 14px;
   display: inline-flex;
@@ -193,20 +193,20 @@
 }
 
 .back-link:hover {
-  color: #0056b3;
+  color: var(--layera-bg-info);
   text-decoration: none;
 }
 
 .security-info {
-  background: #e7f3ff;
-  border: 1px solid #b3d9ff;
+  background: var(--layera-bg-tertiary);
+  border: 1px solid var(--layera-border-primary);
   border-radius: 8px;
   padding: 20px;
   margin: 25px 0;
 }
 
 .security-info h4 {
-  color: #0066cc;
+  color: var(--layera-bg-info);
   margin: 0 0 10px 0;
   font-size: 16px;
   display: flex;
@@ -215,7 +215,7 @@
 }
 
 .security-info p {
-  color: #333;
+  color: var(--layera-text-primary);
   margin: 0;
   font-size: 14px;
   line-height: 1.5;
@@ -224,7 +224,7 @@
 .security-info ul {
   margin: 10px 0 0 0;
   padding-left: 20px;
-  color: #333;
+  color: var(--layera-text-primary);
   font-size: 14px;
 }
 

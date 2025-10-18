@@ -29,7 +29,19 @@
       "Bash(npm remove:*)",
       "Bash(cmd /c:*)",
       "Bash(npm run:*)",
-      "Read(//c/Users/user/Downloads/**)"
+      "Read(//c/Users/user/Downloads/**)",
+      "Bash(move \"C:\\Layera\\apps\\geo-alert\" \"C:\\Layera\\apps\\layera-alert\")",
+      "Bash(npm:*)",
+      "Bash(del \"C:\\Layera\\apps\\layera-geoalert\\src\\components\\LanguageSwitcher.tsx\")",
+      "Bash(npx vite:*)",
+      "Bash(move:*)",
+      "WebSearch",
+      "Bash(tasklist)",
+      "Bash(netstat:*)",
+      "Bash(curl:*)",
+      "Bash(del \"C:\\Layera\\apps\\layera-geoalert\\src\\styles\\typography.css\")",
+      "Bash(find:*)",
+      "Bash(rm:*)"
     ],
     "deny": [],
     "ask": []

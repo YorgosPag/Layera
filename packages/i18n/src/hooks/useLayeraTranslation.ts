@@ -9,7 +9,7 @@ type Namespace = typeof namespaces[number];
  */
 export function useLayeraTranslation(
   ns: Namespace = defaultNS,
-  options?: UseTranslationOptions<any>
+  options?: UseTranslationOptions<Namespace>
 ) {
   const { t, i18n, ready } = useTranslation(ns, {
     useSuspense: false,

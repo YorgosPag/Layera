@@ -40,7 +40,12 @@ export function initializeFirebaseApp(config: AuthConfig): FirebaseApp {
     }
   }
 
-  const firebaseConfig: any = {
+  const firebaseConfig: {
+    projectId: string;
+    apiKey: string;
+    authDomain: string;
+    storageBucket: string;
+  } = {
     projectId: config.projectId,
     apiKey: config.apiKey,
     authDomain: config.authDomain,

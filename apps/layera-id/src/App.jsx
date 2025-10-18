@@ -1,6 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { RoleGuard, useAuthContext } from '@layera/auth-bridge'
+import { ThemeProvider } from '@layera/theme-switcher'
+import '@layera/theme-switcher/styles'
 import Login from './components/Login'
 import Register from './components/Register'
 import Dashboard from './components/Dashboard'
@@ -47,8 +49,9 @@ function ProtectedRoute({ children, requiredRole, allowedRoles }) {
 
 function App() {
   return (
-    <Router>
-      <Routes>
+    <ThemeProvider defaultTheme="system" storageKey="layera-id-theme">
+      <Router>
+        <Routes>
         <Route path="/" element={<Navigate to="/dashboard" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -95,8 +98,9 @@ function App() {
           }
         />
         <Route path="/support" element={<Support />} />
-      </Routes>
-    </Router>
+        </Routes>
+      </Router>
+    </ThemeProvider>
   )
 }
 

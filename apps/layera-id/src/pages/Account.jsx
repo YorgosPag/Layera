@@ -3,6 +3,8 @@ import RoleBadge from "../components/RoleBadge";
 import MfaStatus from "../components/MfaStatus";
 import { Link } from "react-router-dom";
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
+import { ThemeSwitcher } from '@layera/theme-switcher';
+import { UserIcon, LockIcon, UnlockIcon, WarningIcon, SettingsIcon } from '../components/icons/LayeraIcons';
 import './Account.css';
 
 export default function Account() {
@@ -27,6 +29,11 @@ export default function Account() {
             className="language-switcher-nav"
             showFlags={true}
           />
+          <ThemeSwitcher
+            variant="icon"
+            size="md"
+            className="theme-switcher-nav"
+          />
         </div>
       </nav>
 
@@ -47,11 +54,11 @@ export default function Account() {
               <h3>{t('account.info')}</h3>
               <div className="badges-container">
                 <div className="account-badge role-badge">
-                  <span>👤</span>
+                  <UserIcon size="sm" theme="neutral" />
                   {formatters.role(user.layeraClaims?.role || "private")}
                 </div>
                 <div className={`account-badge mfa-badge ${!user.layeraClaims?.mfa_verified ? 'inactive' : ''}`}>
-                  <span>{user.layeraClaims?.mfa_verified ? '🔒' : '🔓'}</span>
+                  {user.layeraClaims?.mfa_verified ? <LockIcon size="sm" theme="success" /> : <UnlockIcon size="sm" theme="warning" />}
                   {user.layeraClaims?.mfa_verified ? t('account.badges.mfaActive') : t('account.badges.mfaInactive')}
                 </div>
               </div>
@@ -60,12 +67,12 @@ export default function Account() {
             <div className="status-messages">
               {!user.emailVerified && (
                 <div className="warning-message">
-                  ⚠️ {t('account.messages.emailNotVerified')}
+                  <WarningIcon size="sm" theme="warning" /> {t('account.messages.emailNotVerified')}
                 </div>
               )}
               {!user.layeraClaims?.mfa_verified && (
                 <div className="info-message">
-                  🔒 {t('account.messages.mfaRecommendation')}
+                  <LockIcon size="sm" theme="info" /> {t('account.messages.mfaRecommendation')}
                 </div>
               )}
             </div>
@@ -80,13 +87,13 @@ export default function Account() {
               {!user.layeraClaims?.mfa_verified && (
                 <Link to="/mfa-enroll" className="action-link">
                   <button className="action-button">
-                    🔒 {t('account.actions.enable2fa')}
+                    <LockIcon size="sm" theme="neutral" /> {t('account.actions.enable2fa')}
                   </button>
                 </Link>
               )}
               <Link to="/settings" className="action-link">
                 <button className="action-button secondary">
-                  ⚙️ {t('account.actions.settings')}
+                  <SettingsIcon size="sm" theme="neutral" /> {t('account.actions.settings')}
                 </button>
               </Link>
             </div>

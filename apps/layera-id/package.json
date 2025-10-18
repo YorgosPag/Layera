@@ -17,6 +17,9 @@
   "dependencies": {
     "@layera/auth-bridge": "*",
     "@layera/i18n": "*",
+    "@layera/typography": "*",
+    "@layera/buttons": "*",
+    "@layera/theme-switcher": "*",
     "@vitejs/plugin-react": "^4.3.3",
     "firebase": "^12.4.0",
     "react": "^19.1.1",

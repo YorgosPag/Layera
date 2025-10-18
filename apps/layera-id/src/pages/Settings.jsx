@@ -1,6 +1,8 @@
 import { useAuthContext } from '@layera/auth-bridge';
 import { Link } from 'react-router-dom';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
+import { ThemeSwitcher } from '@layera/theme-switcher';
+import { SettingsIcon, ShieldIcon, BellIcon, PaletteIcon, WarningIcon } from '../components/icons/LayeraIcons';
 import './Settings.css';
 
 export default function Settings() {
@@ -21,6 +23,11 @@ export default function Settings() {
             className="language-switcher-nav"
             showFlags={true}
           />
+          <ThemeSwitcher
+            variant="icon"
+            size="md"
+            className="theme-switcher-nav"
+          />
         </div>
       </nav>
 
@@ -28,7 +35,7 @@ export default function Settings() {
         <div className="settings-card">
           <div className="settings-header">
             <div className="settings-icon">
-              ⚙️
+              <SettingsIcon size="lg" theme="primary" />
             </div>
             <h2 className="settings-title">{t('settings.title')}</h2>
             <p className="settings-subtitle">
@@ -38,7 +45,7 @@ export default function Settings() {
 
           <div className="settings-sections">
             <div className="settings-section">
-              <h3>🔐 {t('settings.sections.security')}</h3>
+              <h3><ShieldIcon size="md" theme="neutral" /> {t('settings.sections.security')}</h3>
               <div className="settings-items">
                 <div className="settings-item">
                   <div className="item-info">
@@ -73,7 +80,7 @@ export default function Settings() {
             </div>
 
             <div className="settings-section">
-              <h3>🔔 {t('settings.sections.notifications')}</h3>
+              <h3><BellIcon size="md" theme="neutral" /> {t('settings.sections.notifications')}</h3>
               <div className="settings-items">
                 <div className="settings-item">
                   <div className="item-info">
@@ -100,7 +107,7 @@ export default function Settings() {
             </div>
 
             <div className="settings-section">
-              <h3>🎨 {t('settings.sections.appearance')}</h3>
+              <h3><PaletteIcon size="md" theme="neutral" /> {t('settings.sections.appearance')}</h3>
               <div className="settings-items">
                 <div className="settings-item">
                   <div className="item-info">
@@ -128,7 +135,7 @@ export default function Settings() {
             </div>
 
             <div className="settings-section danger">
-              <h3>⚠️ {t('settings.sections.dangerZone')}</h3>
+              <h3><WarningIcon size="md" theme="warning" /> {t('settings.sections.dangerZone')}</h3>
               <div className="settings-items">
                 <div className="settings-item">
                   <div className="item-info">

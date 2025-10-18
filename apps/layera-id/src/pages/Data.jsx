@@ -1,6 +1,8 @@
 import { useAuthContext } from '@layera/auth-bridge';
 import { Link } from 'react-router-dom';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
+import { ThemeSwitcher } from '@layera/theme-switcher';
+import { ChartIcon, UserIcon, ShieldIcon, SmartphoneIcon, FolderIcon, FileIcon, TrendingUpIcon, CheckIcon, XIcon, LockIcon } from '../components/icons/LayeraIcons';
 import './Data.css';
 
 export default function Data() {
@@ -26,6 +28,11 @@ export default function Data() {
             className="language-switcher-nav"
             showFlags={true}
           />
+          <ThemeSwitcher
+            variant="icon"
+            size="md"
+            className="theme-switcher-nav"
+          />
         </div>
       </nav>
 
@@ -33,7 +40,7 @@ export default function Data() {
         <div className="data-card">
           <div className="data-header">
             <div className="data-icon">
-              📊
+              <ChartIcon size="lg" theme="primary" />
             </div>
             <h2 className="data-title">{t('data.title')}</h2>
             <p className="data-subtitle">
@@ -43,7 +50,7 @@ export default function Data() {
 
           <div className="data-sections">
             <div className="data-section">
-              <h3>👤 {t('data.personalInfo')}</h3>
+              <h3><UserIcon size="md" theme="neutral" /> {t('data.personalInfo')}</h3>
               <div className="data-table">
                 <div className="data-row">
                   <span className="data-label">{t('data.fields.email')}:</span>
@@ -65,18 +72,18 @@ export default function Data() {
             </div>
 
             <div className="data-section">
-              <h3>🔐 {t('data.security')}</h3>
+              <h3><ShieldIcon size="md" theme="neutral" /> {t('data.security')}</h3>
               <div className="data-table">
                 <div className="data-row">
                   <span className="data-label">{t('data.fields.emailVerified')}:</span>
                   <span className={`data-value ${user.emailVerified ? 'verified' : 'unverified'}`}>
-                    {user.emailVerified ? '✅ ' + t('status.verified') : '❌ ' + t('status.unverified')}
+                    {user.emailVerified ? <><CheckIcon size="xs" theme="success" /> {t('status.verified')}</> : <><XIcon size="xs" theme="danger" /> {t('status.unverified')}</>}
                   </span>
                 </div>
                 <div className="data-row">
                   <span className="data-label">{t('data.fields.mfaEnabled')}:</span>
                   <span className={`data-value ${user.layeraClaims?.mfa_verified ? 'verified' : 'unverified'}`}>
-                    {user.layeraClaims?.mfa_verified ? '✅ ' + t('status.enabled') : '❌ ' + t('status.disabled')}
+                    {user.layeraClaims?.mfa_verified ? <><CheckIcon size="xs" theme="success" /> {t('status.enabled')}</> : <><XIcon size="xs" theme="danger" /> {t('status.disabled')}</>}
                   </span>
                 </div>
                 <div className="data-row">
@@ -91,7 +98,7 @@ export default function Data() {
             </div>
 
             <div className="data-section">
-              <h3>📱 {t('data.devices')}</h3>
+              <h3><SmartphoneIcon size="md" theme="neutral" /> {t('data.devices')}</h3>
               <div className="data-table">
                 <div className="data-row">
                   <span className="data-label">{t('data.fields.currentDevice')}:</span>
@@ -111,25 +118,25 @@ export default function Data() {
             </div>
 
             <div className="data-section">
-              <h3>📁 {t('data.export')}</h3>
+              <h3><FolderIcon size="md" theme="neutral" /> {t('data.export')}</h3>
               <div className="export-actions">
                 <p>{t('data.exportDescription')}</p>
                 <div className="export-buttons">
                   <button className="export-btn">
-                    📄 {t('data.exportFormats.pdf')}
+                    <FileIcon size="sm" theme="neutral" /> {t('data.exportFormats.pdf')}
                   </button>
                   <button className="export-btn">
-                    📊 {t('data.exportFormats.json')}
+                    <ChartIcon size="sm" theme="neutral" /> {t('data.exportFormats.json')}
                   </button>
                   <button className="export-btn">
-                    📈 {t('data.exportFormats.csv')}
+                    <TrendingUpIcon size="sm" theme="neutral" /> {t('data.exportFormats.csv')}
                   </button>
                 </div>
               </div>
             </div>
 
             <div className="data-section privacy">
-              <h3>🔒 {t('data.privacy')}</h3>
+              <h3><LockIcon size="md" theme="neutral" /> {t('data.privacy')}</h3>
               <div className="privacy-info">
                 <p>
                   <strong>{t('data.privacyPoints.title')}</strong>
