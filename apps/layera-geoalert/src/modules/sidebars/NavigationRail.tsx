@@ -1,5 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Button } from '@layera/buttons';
+import { BUTTON_VARIANTS, BUTTON_SIZES } from '@layera/constants';
+import '../../../../packages/buttons/dist/styles.css';
 
 interface NavButtonProps {
   title: string;
@@ -9,15 +12,19 @@ interface NavButtonProps {
 }
 
 const NavButton: React.FC<NavButtonProps> = ({ title, onClick, isActive, children }) => (
-  <button
+  <Button
+    variant={isActive ? BUTTON_VARIANTS.PRIMARY : BUTTON_VARIANTS.GHOST}
+    size={BUTTON_SIZES.MEDIUM}
     onClick={onClick}
-    title={title}
-    className={`w-12 h-12 flex items-center justify-center rounded-lg transition-colors ${
-      isActive ? 'bg-blue-500 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-    }`}
-  >
-    {children}
-  </button>
+    icon={children}
+    iconPosition="only"
+    className="w-12 h-12"
+    style={{
+      backgroundColor: isActive ? 'var(--layera-color-primary)' : 'transparent',
+      color: isActive ? 'white' : 'var(--layera-color-text-secondary)'
+    }}
+    aria-label={title}
+  />
 );
 
 interface NavigationRailProps {
@@ -42,15 +49,23 @@ const NavigationRail: React.FC<NavigationRailProps> = ({
   return (
     <aside className="w-16 bg-gray-800 text-white flex flex-col items-center py-4 space-y-6 flex-shrink-0 z-30">
       {/* Main Action Button */}
-      <button
+      <Button
+        variant={BUTTON_VARIANTS.PRIMARY}
+        size={BUTTON_SIZES.MEDIUM}
         onClick={onNewAlert}
-        title={t('newAlert')}
-        className="w-12 h-12 flex items-center justify-center rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-        </svg>
-      </button>
+        icon={
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+          </svg>
+        }
+        iconPosition="only"
+        className="w-12 h-12 rounded-full shadow-lg"
+        style={{
+          backgroundColor: 'var(--layera-color-primary)',
+          color: 'white'
+        }}
+        aria-label={t('newAlert')}
+      />
 
       <div className="flex-grow flex flex-col items-center space-y-4">
         <NavButton

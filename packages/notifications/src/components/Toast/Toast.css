@@ -5,11 +5,10 @@
 :root {
   --layera-toast-width: 400px;
   --layera-toast-max-width: calc(100vw - 32px);
-  --layera-toast-padding: 16px;
-  --layera-toast-gap: 12px;
-  --layera-toast-radius: var(--border-radius-lg, 12px);
-  --layera-toast-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-                         0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --layera-toast-padding: var(--layera-space-md);
+  --layera-toast-gap: var(--layera-space-3);
+  --layera-toast-radius: var(--layera-radius-xl);
+  --layera-toast-shadow: var(--layera-shadow-lg);
   --layera-toast-border-width: 1px;
 
   /* Colors */
@@ -25,7 +24,7 @@
   --layera-toast-error-color: var(--color-error, #ef4444);
 
   /* Animation */
-  --layera-toast-duration: 300ms;
+  --layera-toast-duration: var(--layera-transition-normal);
   --layera-toast-timing: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -168,13 +167,13 @@
   height: 32px;
   padding: 0 12px;
   border: 1px solid var(--layera-toast-border);
-  border-radius: var(--border-radius-md, 8px);
+  border-radius: var(--layera-radius-md);
   background-color: transparent;
   font-size: 0.75rem;
   font-weight: 500;
   color: var(--layera-toast-text);
   cursor: pointer;
-  transition: all 150ms ease;
+  transition: all var(--layera-transition-fast);
   flex-shrink: 0;
 }
 
@@ -190,11 +189,11 @@
   width: 24px;
   height: 24px;
   border: none;
-  border-radius: var(--border-radius-sm, 6px);
+  border-radius: var(--layera-radius-sm);
   background-color: transparent;
   color: var(--layera-toast-text-secondary);
   cursor: pointer;
-  transition: all 150ms ease;
+  transition: all var(--layera-transition-fast);
   flex-shrink: 0;
 }
 

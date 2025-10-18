@@ -1,0 +1,6 @@
+/**
+ * @layera/tables CSS
+ * Import all table component styles
+ */
+
+@import '../src/components/DataTable/DataTable.css';

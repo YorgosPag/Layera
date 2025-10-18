@@ -9,6 +9,9 @@
   width: 100%;
   grid-template-columns: repeat(var(--grid-cols-xs, 1), 1fr);
   gap: var(--layera-dashboard-grid-gap-md);
+  /* Σταθερότητα layout κατά την αλλαγή γλώσσας */
+  grid-auto-rows: min-content;
+  align-items: start;
 }
 
 /* Gap variants */
@@ -97,6 +100,22 @@
 
 .layera-dashboard-section__content {
   width: 100%;
+}
+
+/* ============ LANGUAGE STABILITY ============ */
+
+/* Σταθερότητα για titles και labels στα cards */
+.layera-dashboard-section__title,
+.layera-dashboard-section__subtitle {
+  /* Διατήρηση σταθερού ύψους ανεξάρτητα από γλώσσα */
+  min-height: 1.875rem; /* για το title */
+  display: flex;
+  align-items: center;
+  word-wrap: break-word;
+}
+
+.layera-dashboard-section__subtitle {
+  min-height: 1.4rem; /* για το subtitle */
 }
 
 /* ============ RESPONSIVE DASHBOARD SECTIONS ============ */

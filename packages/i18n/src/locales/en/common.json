@@ -1,6 +1,7 @@
 {
   "app": {
     "name": "Layera",
+    "subtitle": "Enterprise Identity Management",
     "welcome": "Welcome to Layera!",
     "loading": "Loading..."
   },
@@ -10,7 +11,8 @@
     "settings": "Settings",
     "data": "Data",
     "logout": "Logout",
-    "back": "Back"
+    "back": "Back",
+    "backToDashboard": "Back to Dashboard"
   },
   "auth": {
     "login": "Login",
@@ -58,6 +60,7 @@
   "account": {
     "title": "My Account",
     "info": "Account Information",
+    "security": "Security",
     "messages": {
       "emailNotVerified": "Your email is not verified. Please check your inbox.",
       "mfaRecommendation": "We recommend enabling two-factor authentication (2FA) for additional security."
@@ -139,6 +142,7 @@
     "fields": {
       "email": "Email",
       "name": "Name",
+      "displayName": "Display Name",
       "userId": "User ID",
       "role": "Role",
       "emailVerified": "Email Verified",
@@ -172,6 +176,38 @@
     "builder": "Builder",
     "private": "Private"
   },
+  "admin": {
+    "roleManagement": {
+      "title": "Role Management",
+      "subtitle": "Manage user roles and security settings",
+      "form": {
+        "title": "Set User Role",
+        "description": "Enter user details to modify their role",
+        "emailHint": "The email of the user you want to modify",
+        "roleHint": "Select the new role to assign to the user"
+      },
+      "info": {
+        "title": "Management Information",
+        "adminOnly": "Only admin can call management functions",
+        "clientRestrictions": "Client does not write claims directly",
+        "mfaRefresh": "2FA refresh checks the user's current status"
+      }
+    },
+    "actions": {
+      "setRole": "Set Role",
+      "refreshMfa": "Refresh 2FA"
+    },
+    "errors": {
+      "enterEmail": "Enter user email",
+      "roleSetFailed": "❌ Role set error: {{error}}",
+      "mfaRefreshFailed": "❌ 2FA refresh error: {{error}}"
+    },
+    "success": {
+      "roleSet": "✅ Role set: {{uid}} → {{role}}",
+      "mfaRefreshed": "✅ 2FA refreshed: {{uid}} → {{status}}"
+    },
+    "checking2FA": "Checking 2FA status..."
+  },
   "status": {
     "active": "Active",
     "inactive": "Inactive",
@@ -199,10 +235,125 @@
     "passwordMismatch": "Passwords do not match",
     "authError": "Authentication error",
     "networkError": "Network error",
-    "unknownError": "Unknown error"
+    "unknownError": "Unknown error",
+    "adminRequired": {
+      "title": "Admin Access Required",
+      "description": "Access denied. Only admin can view this page."
+    }
   },
   "common": {
     "error": "Error",
     "processing": "Processing..."
+  },
+  "notifications": {
+    "loading": "Loading...",
+    "retry": "Retry",
+    "tryAgain": "Try Again",
+    "somethingWentWrong": "Something Went Wrong",
+    "dismiss": "Dismiss",
+    "ok": "OK",
+    "cancel": "Cancel",
+    "types": {
+      "success": "Success",
+      "warning": "Warning",
+      "error": "Error",
+      "info": "Information"
+    },
+    "messages": {
+      "generalError": "An unexpected error occurred",
+      "networkError": "Network connection error",
+      "operationComplete": "Operation completed successfully",
+      "operationFailed": "Operation failed"
+    }
+  },
+  "forms": {
+    "validation": {
+      "required": "This field is required"
+    },
+    "labels": {
+      "email": "Email Address",
+      "name": "Name",
+      "phone": "Phone",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "role": "Role",
+      "status": "Status"
+    },
+    "placeholders": {
+      "email": "user@example.com",
+      "password": "Enter your password",
+      "confirmPassword": "Confirm your password",
+      "displayName": "Enter your name",
+      "enterValue": "Enter value",
+      "selectRole": "Select role",
+      "search": "Search..."
+    },
+    "hints": {
+      "emailPrivacy": "We'll never share your email",
+      "passwordRequirements": "At least 8 characters, upper and lowercase letters",
+      "displayName": "This will be your display name (optional)"
+    },
+    "select": {
+      "noOptions": "No options available",
+      "clear": "Clear",
+      "loading": "Loading..."
+    }
+  },
+  "tables": {
+    "selectAll": "Select all",
+    "selectNone": "Clear selection",
+    "selectRow": "Select row {{index}}",
+    "selectedCount": "{{count}} of {{total}} selected",
+    "noData": {
+      "title": "No data available",
+      "description": "No records found to display"
+    },
+    "search": {
+      "placeholder": "Search..."
+    },
+    "pagination": {
+      "showing": "Showing {{start}}-{{end}} of {{total}}",
+      "itemsPerPage": "Items per page",
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "headers": {
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "status": "Status",
+      "actions": "Actions",
+      "createdAt": "Created",
+      "updatedAt": "Updated"
+    }
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "dashboard": {
+    "overview": "Overview of your account status",
+    "userInfo": "User Information",
+    "accountDetails": "Account Details",
+    "personalInformation": "Personal Information",
+    "quickActions": "Quick Actions",
+    "accountAge": "Account Age",
+    "daysSinceCreated": "Days since created",
+    "emailStatus": "Email Status",
+    "mfaStatus": "MFA Status",
+    "accountRole": "Account Role",
+    "descriptions": {
+      "account": "Manage your account settings and profile information",
+      "settings": "Configure application preferences and security settings",
+      "data": "View and manage your data and privacy settings",
+      "mfa": "Enable multi-factor authentication for enhanced security"
+    },
+    "actionDescriptions": {
+      "manageAccount": "Manage your account settings and profile information",
+      "configureSettings": "Configure application preferences and security settings",
+      "manageData": "View and manage your data and privacy settings",
+      "enableMfa": "Enable multi-factor authentication for enhanced security"
+    }
   }
 }

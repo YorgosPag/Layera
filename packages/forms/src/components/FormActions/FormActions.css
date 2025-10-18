@@ -1,0 +1,63 @@
+/* FormActions Styles */
+.layera-form-actions {
+  margin-top: var(--layera-space-lg);
+  padding-top: var(--layera-space-md);
+  border-top: 1px solid var(--layera-color-border-secondary);
+}
+
+.layera-form-actions__content {
+  display: flex;
+  align-items: center;
+  gap: var(--layera-space-sm);
+  flex-wrap: wrap;
+}
+
+/* Alignment options */
+.layera-form-actions--left .layera-form-actions__content {
+  justify-content: flex-start;
+}
+
+.layera-form-actions--center .layera-form-actions__content {
+  justify-content: center;
+}
+
+.layera-form-actions--right .layera-form-actions__content {
+  justify-content: flex-end;
+}
+
+.layera-form-actions--space-between .layera-form-actions__content {
+  justify-content: space-between;
+}
+
+/* Sticky actions */
+.layera-form-actions--sticky {
+  position: sticky;
+  bottom: 0;
+  background: var(--layera-color-background-primary);
+  border-top: 1px solid var(--layera-color-border-primary);
+  box-shadow: var(--layera-shadow-lg);
+  z-index: 10;
+  margin-top: var(--layera-space-xl);
+  margin-left: calc(-1 * var(--layera-space-lg));
+  margin-right: calc(-1 * var(--layera-space-lg));
+  padding: var(--layera-space-md) var(--layera-space-lg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .layera-form-actions__content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .layera-form-actions--space-between .layera-form-actions__content {
+    flex-direction: column;
+    justify-content: stretch;
+  }
+
+  .layera-form-actions--sticky {
+    margin-left: calc(-1 * var(--layera-space-md));
+    margin-right: calc(-1 * var(--layera-space-md));
+    padding: var(--layera-space-sm) var(--layera-space-md);
+  }
+}

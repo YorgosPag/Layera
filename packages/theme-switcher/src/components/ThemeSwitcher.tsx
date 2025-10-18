@@ -2,7 +2,7 @@
 
 import React, { forwardRef } from 'react';
 import { useTheme } from '../hooks/useTheme';
-import type { ThemeSwitcherProps } from '../types';
+import type { ThemeSwitcherProps, Theme } from '../types';
 
 /**
  * ThemeSwitcher Component - Enterprise Theme Toggle για Headers
@@ -91,6 +91,34 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
   ...props
 }, ref) => {
   const { theme, resolvedTheme, setTheme, cycleTheme, toggleTheme } = useTheme();
+
+  // State για dropdown variant - πρέπει να είναι στην αρχή του component
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  // Dropdown functions
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleSelect = (selectedTheme: Theme) => {
+    setTheme(selectedTheme);
+    setIsOpen(false);
+  };
+
+  // Close dropdown when clicking outside
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (!target.closest('.layera-theme-switcher--dropdown-container')) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('click', handleClickOutside);
+      return () => document.removeEventListener('click', handleClickOutside);
+    }
+  }, [isOpen]);
 
   // Size classes
   const sizeClasses = {
@@ -182,13 +210,17 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
 
   // Dropdown variant (advanced - για settings pages)
   if (variant === 'dropdown') {
+
     return (
-      <div className={`layera-theme-switcher--dropdown-container ${classes}`}>
+      <div className={`layera-theme-switcher--dropdown-container ${classes} ${isOpen ? 'layera-theme-switcher--open' : ''}`}>
         <button
           ref={ref}
           type="button"
           className="layera-theme-switcher__trigger"
+          onClick={handleToggle}
           aria-label={`Επιλογή θέματος. Τρέχον: ${getCurrentLabel()}`}
+          aria-expanded={isOpen}
+          aria-haspopup="menu"
           {...props}
         >
           <span className="layera-theme-switcher__icon" aria-hidden="true">
@@ -202,49 +234,51 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
           </span>
         </button>
 
-        <div className={`layera-theme-switcher__dropdown layera-theme-switcher__dropdown--${align}`}>
-          <button
-            type="button"
-            className={`layera-theme-switcher__option ${theme === 'light' ? 'layera-theme-switcher__option--active' : ''}`}
-            onClick={() => setTheme('light')}
-            role="menuitem"
-          >
-            <span className="layera-theme-switcher__option-icon" aria-hidden="true">
-              {icons.light}
-            </span>
-            <span className="layera-theme-switcher__option-label">
-              {labels.light}
-            </span>
-          </button>
+        {isOpen && (
+          <div className={`layera-theme-switcher__dropdown layera-theme-switcher__dropdown--${align}`}>
+            <button
+              type="button"
+              className={`layera-theme-switcher__option ${theme === 'light' ? 'layera-theme-switcher__option--active' : ''}`}
+              onClick={() => handleSelect('light')}
+              role="menuitem"
+            >
+              <span className="layera-theme-switcher__option-icon" aria-hidden="true">
+                {icons.light}
+              </span>
+              <span className="layera-theme-switcher__option-label">
+                {labels.light}
+              </span>
+            </button>
 
-          <button
-            type="button"
-            className={`layera-theme-switcher__option ${theme === 'dark' ? 'layera-theme-switcher__option--active' : ''}`}
-            onClick={() => setTheme('dark')}
-            role="menuitem"
-          >
-            <span className="layera-theme-switcher__option-icon" aria-hidden="true">
-              {icons.dark}
-            </span>
-            <span className="layera-theme-switcher__option-label">
-              {labels.dark}
-            </span>
-          </button>
+            <button
+              type="button"
+              className={`layera-theme-switcher__option ${theme === 'dark' ? 'layera-theme-switcher__option--active' : ''}`}
+              onClick={() => handleSelect('dark')}
+              role="menuitem"
+            >
+              <span className="layera-theme-switcher__option-icon" aria-hidden="true">
+                {icons.dark}
+              </span>
+              <span className="layera-theme-switcher__option-label">
+                {labels.dark}
+              </span>
+            </button>
 
-          <button
-            type="button"
-            className={`layera-theme-switcher__option ${theme === 'system' ? 'layera-theme-switcher__option--active' : ''}`}
-            onClick={() => setTheme('system')}
-            role="menuitem"
-          >
-            <span className="layera-theme-switcher__option-icon" aria-hidden="true">
-              {icons.system}
-            </span>
-            <span className="layera-theme-switcher__option-label">
-              {labels.system}
-            </span>
-          </button>
-        </div>
+            <button
+              type="button"
+              className={`layera-theme-switcher__option ${theme === 'system' ? 'layera-theme-switcher__option--active' : ''}`}
+              onClick={() => handleSelect('system')}
+              role="menuitem"
+            >
+              <span className="layera-theme-switcher__option-icon" aria-hidden="true">
+                {icons.system}
+              </span>
+              <span className="layera-theme-switcher__option-label">
+                {labels.system}
+              </span>
+            </button>
+          </div>
+        )}
       </div>
     );
   }

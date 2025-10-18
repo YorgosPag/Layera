@@ -1,163 +1,299 @@
-import { useAuthContext } from '@layera/auth-bridge';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { useAuthContext, UserAvatar } from '@layera/auth-bridge';
+import { useNavigate } from 'react-router-dom';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
 import { ThemeSwitcher } from '@layera/theme-switcher';
-import { ChartIcon, UserIcon, ShieldIcon, SmartphoneIcon, FolderIcon, FileIcon, TrendingUpIcon, CheckIcon, XIcon, LockIcon } from '../components/icons/LayeraIcons';
-import './Data.css';
+import { Button } from '@layera/buttons';
+import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader } from '@layera/layout';
+import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
+import { ChartIcon, UserIcon, ShieldIcon, SmartphoneIcon, FolderIcon, FileIcon, CheckIcon, XIcon, LockIcon, SettingsIcon } from '../components/icons/LayeraIcons';
+import QuickActions from '../components/QuickActions';
+import '../../../../packages/layout/dist/styles.css';
+import '../../../../packages/cards/dist/styles.css';
 
 export default function Data() {
-  const { user } = useAuthContext();
+  const { user, signOut } = useAuthContext();
   const { t } = useLayeraTranslation();
+  const navigate = useNavigate();
 
   if (!user) return null;
+
+  const handleLogout = async () => {
+    const result = await signOut();
+    if (result.success) {
+      navigate('/login');
+    } else {
+      console.error('Logout error:', result.error);
+    }
+  };
 
   const formatDate = (dateString) => {
     if (!dateString) return t('data.fields.notAvailable');
     return new Date(dateString).toLocaleString('el-GR');
   };
 
+  // Header actions
+  const headerActions = (
+    <HeaderActionsGroup>
+      <LanguageSwitcher variant="toggle" showFlags={true} />
+      <ThemeSwitcher variant="icon" size="md" />
+      {user && (
+        <>
+          <UserAvatar
+            user={user}
+            size="medium"
+            onClick={() => navigate('/account')}
+          />
+          <Button variant="ghost" size="sm" onClick={handleLogout}>
+            {t('navigation.logout')}
+          </Button>
+        </>
+      )}
+    </HeaderActionsGroup>
+  );
+
   return (
-    <div className="data-container">
-      <nav className="data-nav">
-        <div className="nav-brand">
-          <h1>Layera</h1>
-        </div>
-        <div className="nav-user">
-          <LanguageSwitcher
-            variant="toggle"
-            className="language-switcher-nav"
-            showFlags={true}
+    <AppShell
+      layout="fullscreen"
+      header={
+        <LayeraHeader
+          title={t('app.name')}
+          subtitle={t('app.subtitle')}
+          variant="standard"
+          actions={headerActions}
+        />
+      }
+    >
+      <PageContainer maxWidth="full" padding="none">
+        <div style={{ padding: 'var(--layera-space-lg)' }}>
+          <PageHeader
+            title={t('data.title')}
+            subtitle={t('data.subtitle')}
           />
-          <ThemeSwitcher
-            variant="icon"
-            size="md"
-            className="theme-switcher-nav"
-          />
         </div>
-      </nav>
 
-      <div className="data-content">
-        <div className="data-card">
-          <div className="data-header">
-            <div className="data-icon">
-              <ChartIcon size="lg" theme="primary" />
-            </div>
-            <h2 className="data-title">{t('data.title')}</h2>
-            <p className="data-subtitle">
-              {t('data.subtitle')}
-            </p>
-          </div>
-
-          <div className="data-sections">
-            <div className="data-section">
-              <h3><UserIcon size="md" theme="neutral" /> {t('data.personalInfo')}</h3>
-              <div className="data-table">
-                <div className="data-row">
-                  <span className="data-label">{t('data.fields.email')}:</span>
-                  <span className="data-value">{user.email}</span>
-                </div>
-                <div className="data-row">
-                  <span className="data-label">{t('data.fields.name')}:</span>
-                  <span className="data-value">{user.displayName || t('data.fields.notAvailable')}</span>
-                </div>
-                <div className="data-row">
-                  <span className="data-label">{t('data.fields.userId')}:</span>
-                  <span className="data-value">{user.uid}</span>
-                </div>
-                <div className="data-row">
-                  <span className="data-label">{t('data.fields.role')}:</span>
-                  <span className="data-value">{user.layeraClaims?.role || 'private'}</span>
-                </div>
+        {/* Personal Information Section */}
+        <div style={{ padding: 'var(--layera-space-lg)' }}>
+          <DashboardSection
+            title={t('data.personalInfo')}
+            icon={<UserIcon size="md" theme="neutral" />}
+          >
+          <DashboardGrid columns={{ xs: 1, sm: 1, md: 2, lg: 4 }}>
+            <DashboardCard
+              title={t('data.fields.email')}
+              variant="info"
+            >
+              <div style={{ fontSize: '1.125rem', fontWeight: '600', color: 'var(--color-text-primary)' }}>
+                {user.email}
               </div>
-            </div>
-
-            <div className="data-section">
-              <h3><ShieldIcon size="md" theme="neutral" /> {t('data.security')}</h3>
-              <div className="data-table">
-                <div className="data-row">
-                  <span className="data-label">{t('data.fields.emailVerified')}:</span>
-                  <span className={`data-value ${user.emailVerified ? 'verified' : 'unverified'}`}>
-                    {user.emailVerified ? <><CheckIcon size="xs" theme="success" /> {t('status.verified')}</> : <><XIcon size="xs" theme="danger" /> {t('status.unverified')}</>}
-                  </span>
-                </div>
-                <div className="data-row">
-                  <span className="data-label">{t('data.fields.mfaEnabled')}:</span>
-                  <span className={`data-value ${user.layeraClaims?.mfa_verified ? 'verified' : 'unverified'}`}>
-                    {user.layeraClaims?.mfa_verified ? <><CheckIcon size="xs" theme="success" /> {t('status.enabled')}</> : <><XIcon size="xs" theme="danger" /> {t('status.disabled')}</>}
-                  </span>
-                </div>
-                <div className="data-row">
-                  <span className="data-label">{t('data.fields.lastSignIn')}:</span>
-                  <span className="data-value">{formatDate(user.metadata?.lastSignInTime)}</span>
-                </div>
-                <div className="data-row">
-                  <span className="data-label">{t('data.fields.accountCreated')}:</span>
-                  <span className="data-value">{formatDate(user.metadata?.creationTime)}</span>
-                </div>
+              <div style={{ marginTop: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                {user.emailVerified ? (
+                  <>
+                    <CheckIcon size="sm" theme="success" />
+                    <span style={{ color: 'var(--color-success)' }}>{t('status.verified')}</span>
+                  </>
+                ) : (
+                  <>
+                    <XIcon size="sm" theme="danger" />
+                    <span style={{ color: 'var(--color-error)' }}>{t('status.unverified')}</span>
+                  </>
+                )}
               </div>
-            </div>
+            </DashboardCard>
 
-            <div className="data-section">
-              <h3><SmartphoneIcon size="md" theme="neutral" /> {t('data.devices')}</h3>
-              <div className="data-table">
-                <div className="data-row">
-                  <span className="data-label">{t('data.fields.currentDevice')}:</span>
-                  <span className="data-value">{t('data.fields.webBrowser')}</span>
-                </div>
-                <div className="data-row">
-                  <span className="data-label">{t('data.fields.ipAddress')}:</span>
-                  <span className="data-value">{t('data.fields.encrypted')}</span>
-                </div>
-                <div className="data-row">
-                  <span className="data-label">{t('data.fields.connectionProvider')}:</span>
-                  <span className="data-value">
-                    {user.providerData?.map(p => p.providerId).join(', ') || 'Email/Password'}
-                  </span>
-                </div>
+            <DashboardCard
+              title={t('data.fields.displayName')}
+              variant="info"
+            >
+              <div style={{ fontSize: '1.125rem', fontWeight: '600', color: 'var(--color-text-primary)' }}>
+                {user.displayName || t('data.fields.notAvailable')}
               </div>
-            </div>
-
-            <div className="data-section">
-              <h3><FolderIcon size="md" theme="neutral" /> {t('data.export')}</h3>
-              <div className="export-actions">
-                <p>{t('data.exportDescription')}</p>
-                <div className="export-buttons">
-                  <button className="export-btn">
-                    <FileIcon size="sm" theme="neutral" /> {t('data.exportFormats.pdf')}
-                  </button>
-                  <button className="export-btn">
-                    <ChartIcon size="sm" theme="neutral" /> {t('data.exportFormats.json')}
-                  </button>
-                  <button className="export-btn">
-                    <TrendingUpIcon size="sm" theme="neutral" /> {t('data.exportFormats.csv')}
-                  </button>
-                </div>
+              <div style={{ marginTop: '0.5rem', fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
+                {user.displayName ? 'Διαθέσιμο' : 'Μη διαθέσιμο'}
               </div>
-            </div>
+            </DashboardCard>
 
-            <div className="data-section privacy">
-              <h3><LockIcon size="md" theme="neutral" /> {t('data.privacy')}</h3>
-              <div className="privacy-info">
-                <p>
-                  <strong>{t('data.privacyPoints.title')}</strong>
-                </p>
-                <ul>
-                  <li>{t('data.privacyPoints.encryption')}</li>
-                  <li>{t('data.privacyPoints.noSharing')}</li>
-                  <li>{t('data.privacyPoints.deleteAnytime')}</li>
-                  <li>{t('data.privacyPoints.compliance')}</li>
-                </ul>
+            <DashboardCard
+              title={t('data.fields.userId')}
+              variant="info"
+            >
+              <div style={{ fontSize: '0.875rem', fontFamily: 'monospace', color: 'var(--color-text-secondary)', wordBreak: 'break-all' }}>
+                {user.uid}
               </div>
-            </div>
-          </div>
+              <div style={{ marginTop: '0.5rem', fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
+                Μοναδικό αναγνωριστικό
+              </div>
+            </DashboardCard>
 
-          <div className="data-actions">
-            <Link to="/dashboard" className="back-link">
-              ← {t('navigation.back')} Dashboard
-            </Link>
-          </div>
+            <DashboardCard
+              title={t('data.fields.role')}
+              variant="info"
+            >
+              <div style={{ fontSize: '1.125rem', fontWeight: '600', color: 'var(--color-text-primary)' }}>
+                {t(`roles.${user.layeraClaims?.role || 'private'}`)}
+              </div>
+              <div style={{ marginTop: '0.5rem', fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
+                Τύπος λογαριασμού
+              </div>
+            </DashboardCard>
+          </DashboardGrid>
+          </DashboardSection>
         </div>
-      </div>
-    </div>
+
+        {/* Security Section */}
+        <div style={{ padding: 'var(--layera-space-lg)' }}>
+          <DashboardSection
+          title={t('data.security')}
+          icon={<ShieldIcon size="md" theme="neutral" />}
+        >
+          <DashboardGrid columns={{ xs: 1, sm: 1, md: 2, lg: 2 }}>
+            <DashboardCard
+              title={t('data.fields.mfaEnabled')}
+              variant="status"
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                {user.layeraClaims?.mfa_verified ? (
+                  <>
+                    <LockIcon size="lg" theme="success" />
+                    <div>
+                      <div style={{ fontWeight: '600', color: 'var(--color-success)' }}>
+                        {t('status.enabled')}
+                      </div>
+                      <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
+                        {t('account.badges.mfaActive')}
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <XIcon size="lg" theme="warning" />
+                    <div>
+                      <div style={{ fontWeight: '600', color: 'var(--color-warning)' }}>
+                        {t('status.disabled')}
+                      </div>
+                      <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
+                        {t('account.badges.mfaInactive')}
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+              {!user.layeraClaims?.mfa_verified && (
+                <Button
+                  variant="primary"
+                  size="sm"
+                  style={{ marginTop: '1rem' }}
+                  onClick={() => navigate('/mfa-enroll')}
+                >
+                  {t('account.actions.enable2fa')}
+                </Button>
+              )}
+            </DashboardCard>
+          </DashboardGrid>
+          </DashboardSection>
+        </div>
+
+        {/* Account Information Section */}
+        <div style={{ padding: 'var(--layera-space-lg)' }}>
+          <DashboardSection
+          title={t('dashboard.accountDetails')}
+          icon={<UserIcon size="md" theme="neutral" />}
+        >
+          <DashboardGrid columns={{ xs: 1, sm: 1, md: 2, lg: 2 }}>
+            <DashboardCard
+              title={t('data.fields.accountCreated')}
+              variant="info"
+            >
+              <div style={{ fontSize: '1rem', color: 'var(--color-text-primary)' }}>
+                {formatDate(user.metadata?.creationTime)}
+              </div>
+              <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', marginTop: '0.25rem' }}>
+                Ημερομηνία δημιουργίας
+              </div>
+            </DashboardCard>
+
+            <DashboardCard
+              title={t('data.fields.lastSignIn')}
+              variant="info"
+            >
+              <div style={{ fontSize: '1rem', color: 'var(--color-text-primary)' }}>
+                {formatDate(user.metadata?.lastSignInTime)}
+              </div>
+              <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', marginTop: '0.25rem' }}>
+                Τελευταία σύνδεση
+              </div>
+            </DashboardCard>
+          </DashboardGrid>
+          </DashboardSection>
+        </div>
+
+        {/* Data Export Section */}
+        <div style={{ padding: 'var(--layera-space-lg)' }}>
+          <DashboardSection
+          title={t('data.export')}
+          icon={<FolderIcon size="md" theme="neutral" />}
+        >
+          <DashboardCard
+            title={t('data.exportDescription')}
+            variant="actions"
+          >
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                <Button variant="secondary" size="sm">
+                  <FileIcon size="sm" theme="neutral" />
+                  {t('data.exportFormats.pdf')}
+                </Button>
+                <Button variant="secondary" size="sm">
+                  <FileIcon size="sm" theme="neutral" />
+                  {t('data.exportFormats.json')}
+                </Button>
+                <Button variant="secondary" size="sm">
+                  <FileIcon size="sm" theme="neutral" />
+                  {t('data.exportFormats.csv')}
+                </Button>
+              </div>
+            </div>
+          </DashboardCard>
+          </DashboardSection>
+        </div>
+
+        {/* Privacy Section */}
+        <div style={{ padding: 'var(--layera-space-lg)' }}>
+          <DashboardSection
+          title={t('data.privacy')}
+          icon={<LockIcon size="md" theme="neutral" />}
+        >
+          <DashboardCard
+            title={t('data.privacyPoints.title')}
+            variant="info"
+          >
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
+                <CheckIcon size="sm" theme="success" style={{ marginTop: '0.125rem' }} />
+                <span>{t('data.privacyPoints.encryption')}</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
+                <CheckIcon size="sm" theme="success" style={{ marginTop: '0.125rem' }} />
+                <span>{t('data.privacyPoints.noSharing')}</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
+                <CheckIcon size="sm" theme="success" style={{ marginTop: '0.125rem' }} />
+                <span>{t('data.privacyPoints.deleteAnytime')}</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
+                <CheckIcon size="sm" theme="success" style={{ marginTop: '0.125rem' }} />
+                <span>{t('data.privacyPoints.compliance')}</span>
+              </div>
+            </div>
+          </DashboardCard>
+          </DashboardSection>
+        </div>
+
+        {/* Navigation */}
+        <div style={{ padding: 'var(--layera-space-lg)' }}>
+          <QuickActions />
+        </div>
+      </PageContainer>
+    </AppShell>
   );
 }

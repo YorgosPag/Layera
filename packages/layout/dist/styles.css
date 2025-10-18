@@ -160,6 +160,16 @@
   grid-template-columns: var(--layera-sidebar-width) 1fr;
 }
 
+/* Dashboard Layout χωρίς sidebar - πλήρες πλάτος */
+
+.layera-app-shell--dashboard.no-sidebar {
+  grid-template-areas:
+    "header"
+    "content";
+  grid-template-rows: var(--layera-header-height) 1fr;
+  grid-template-columns: 1fr;
+}
+
 .layera-app-shell--dashboard.sidebar-collapsed {
   grid-template-columns: var(--layera-sidebar-width-collapsed) 1fr;
 }
@@ -172,6 +182,8 @@
     "content";
   grid-template-rows: var(--layera-header-height) 1fr;
   grid-template-columns: 1fr;
+  width: 100vw;
+  max-width: 100vw;
 }
 
 /* Fullscreen Map Layout - Minimal header + sidebar + map content */
@@ -238,6 +250,8 @@
   background-color: var(--layera-content-bg);
   overflow-y: auto;
   position: relative;
+  width: 100%;
+  max-width: 100%;
 }
 
 .layera-layout-footer {
@@ -823,8 +837,15 @@
 
 .layera-page-container {
   width: 100%;
-  margin: 0 auto;
+  margin: 0;
   height: 100%;
+  /* Σταθερότητα layout κατά την αλλαγή γλώσσας */
+  min-height: 100%;
+  overflow-x: auto;
+  overflow-y: auto;
+  /* Διατήρηση σταθερού layout ανεξάρτητα από γλώσσα */
+  box-sizing: border-box;
+  position: relative;
 }
 
 /* Container max-width variants */
@@ -846,7 +867,8 @@
 }
 
 .layera-page-container--max-full {
-  max-width: var(--layera-container-full);
+  max-width: 100vw;
+  width: 100%;
 }
 
 /* Custom max-width via CSS variable */
@@ -906,6 +928,10 @@
   font-weight: 700;
   line-height: 1.2;
   color: inherit;
+  /* Σταθερότητα τίτλου ανεξάρτητα από γλώσσα */
+  min-height: 2.25rem; /* περίπου 1.875rem * 1.2 line-height */
+  display: flex;
+  align-items: center;
 }
 
 .layera-page-header__subtitle {
@@ -993,6 +1019,40 @@
   outline: 2px solid hsl(var(--ring));
   outline-offset: 2px;
   border-radius: var(--layera-radius-sm);
+}
+
+/* ============ LANGUAGE STABILITY ============ */
+
+/* Σταθερότητα layout για αλλαγή γλώσσας */
+
+.layera-page-container * {
+  /* Αποφυγή layout shift από διαφορετικό μήκος κειμένου */
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Σταθερότητα για headers και titles */
+
+.layera-page-header,
+.layera-dashboard-section__header,
+[class*="__title"],
+[class*="__subtitle"] {
+  /* Διατήρηση σταθερού ύψους */
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Σταθερότητα για buttons και navigation */
+
+button,
+[role="button"],
+.layera-button,
+nav a {
+  /* Σταθερό πλάτος για buttons ανεξάρτητα από κείμενο */
+  flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* ============ PRINT STYLES ============ */

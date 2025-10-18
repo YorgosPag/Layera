@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ErrorDetails } from '../ErrorDetails';
 import { getErrorSeverity, isNetworkError, isChunkError } from '../../utils';
+import { ERROR_MESSAGES, ERROR_ICON_SIZES } from '../../constants';
 import type { ErrorFallbackProps } from '../../types';
 import './ErrorFallback.css';
 
@@ -70,42 +71,42 @@ export const ErrorFallback: React.FC<ErrorFallbackProps> = ({
   };
 
   const getErrorTitle = () => {
-    if (isNetwork) return 'Σφάλμα Δικτύου';
-    if (isChunk) return 'Σφάλμα Φόρτωσης';
+    if (isNetwork) return ERROR_MESSAGES.NETWORK_TITLE;
+    if (isChunk) return ERROR_MESSAGES.CHUNK_TITLE;
 
     switch (level) {
       case 'page':
-        return 'Σφάλμα Σελίδας';
+        return ERROR_MESSAGES.PAGE_TITLE;
       case 'section':
-        return 'Σφάλμα Ενότητας';
+        return ERROR_MESSAGES.SECTION_TITLE;
       default:
-        return 'Κάτι πήγε στραβά';
+        return ERROR_MESSAGES.COMPONENT_TITLE;
     }
   };
 
   const getErrorMessage = () => {
     if (isNetwork) {
-      return 'Δεν μπορούμε να συνδεθούμε στο διαδίκτυο. Παρακαλώ ελέγξτε τη σύνδεσή σας.';
+      return ERROR_MESSAGES.NETWORK_MESSAGE;
     }
 
     if (isChunk) {
-      return 'Υπήρξε πρόβλημα κατά τη φόρτωση των αρχείων. Παρακαλώ ανανεώστε τη σελίδα.';
+      return ERROR_MESSAGES.CHUNK_MESSAGE;
     }
 
     switch (level) {
       case 'page':
-        return 'Η σελίδα αντιμετώπισε ένα απροσδόκητο σφάλμα και δεν μπορεί να φορτωθεί.';
+        return ERROR_MESSAGES.PAGE_MESSAGE;
       case 'section':
-        return 'Αυτή η ενότητα αντιμετώπισε ένα σφάλμα και δεν μπορεί να εμφανιστεί.';
+        return ERROR_MESSAGES.SECTION_MESSAGE;
       default:
-        return 'Αυτό το στοιχείο αντιμετώπισε ένα σφάλμα. Παρακαλώ δοκιμάστε ξανά.';
+        return ERROR_MESSAGES.COMPONENT_MESSAGE;
     }
   };
 
   const getRetryText = () => {
-    if (isNetwork) return 'Επανάληψη σύνδεσης';
-    if (isChunk) return 'Ανανέωση σελίδας';
-    return 'Δοκιμάστε ξανά';
+    if (isNetwork) return ERROR_MESSAGES.NETWORK_RETRY;
+    if (isChunk) return ERROR_MESSAGES.CHUNK_RETRY;
+    return ERROR_MESSAGES.GENERIC_RETRY;
   };
 
   const handleRetry = () => {
@@ -156,7 +157,7 @@ export const ErrorFallback: React.FC<ErrorFallbackProps> = ({
               className="layera-error-fallback__details-toggle"
               onClick={() => setShowDetails(!showDetails)}
             >
-              {showDetails ? 'Απόκρυψη λεπτομερειών' : 'Εμφάνιση λεπτομερειών'}
+              {showDetails ? ERROR_MESSAGES.HIDE_DETAILS : ERROR_MESSAGES.SHOW_DETAILS}
             </button>
           )}
         </div>

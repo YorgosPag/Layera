@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { RoleGuard, useAuthContext } from '@layera/auth-bridge'
 import { ThemeProvider } from '@layera/theme-switcher'
-import '@layera/theme-switcher/styles'
+import '../../../packages/theme-switcher/dist/styles.css'
 import Login from './components/Login'
 import Register from './components/Register'
 import NewDashboard from './components/NewDashboard'
@@ -93,6 +93,14 @@ function App() {
           path="/admin/roles"
           element={
             <ProtectedRoute allowedRoles={['broker', 'builder', 'admin']}>
+              <AdminRoles />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin-roles"
+          element={
+            <ProtectedRoute allowedRoles={['private', 'broker', 'builder', 'admin']}>
               <AdminRoles />
             </ProtectedRoute>
           }

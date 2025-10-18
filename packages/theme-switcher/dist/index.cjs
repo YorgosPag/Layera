@@ -40,7 +40,7 @@ __export(src_exports, {
 module.exports = __toCommonJS(src_exports);
 
 // src/components/ThemeSwitcher.tsx
-var import_react3 = require("react");
+var import_react3 = __toESM(require("react"), 1);
 
 // src/hooks/useTheme.ts
 var import_react2 = require("react");
@@ -244,6 +244,26 @@ var ThemeSwitcher = (0, import_react3.forwardRef)(({
   ...props
 }, ref) => {
   const { theme, resolvedTheme, setTheme, cycleTheme, toggleTheme } = useTheme();
+  const [isOpen, setIsOpen] = import_react3.default.useState(false);
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
+  const handleSelect = (selectedTheme) => {
+    setTheme(selectedTheme);
+    setIsOpen(false);
+  };
+  import_react3.default.useEffect(() => {
+    const handleClickOutside = (event) => {
+      const target = event.target;
+      if (!target.closest(".layera-theme-switcher--dropdown-container")) {
+        setIsOpen(false);
+      }
+    };
+    if (isOpen) {
+      document.addEventListener("click", handleClickOutside);
+      return () => document.removeEventListener("click", handleClickOutside);
+    }
+  }, [isOpen]);
   const sizeClasses = {
     sm: "layera-theme-switcher--sm",
     md: "layera-theme-switcher--md",
@@ -312,14 +332,17 @@ var ThemeSwitcher = (0, import_react3.forwardRef)(({
     );
   }
   if (variant === "dropdown") {
-    return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: `layera-theme-switcher--dropdown-container ${classes}`, children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: `layera-theme-switcher--dropdown-container ${classes} ${isOpen ? "layera-theme-switcher--open" : ""}`, children: [
       /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
         "button",
         {
           ref,
           type: "button",
           className: "layera-theme-switcher__trigger",
+          onClick: handleToggle,
           "aria-label": `\u0395\u03C0\u03B9\u03BB\u03BF\u03B3\u03AE \u03B8\u03AD\u03BC\u03B1\u03C4\u03BF\u03C2. \u03A4\u03C1\u03AD\u03C7\u03BF\u03BD: ${getCurrentLabel()}`,
+          "aria-expanded": isOpen,
+          "aria-haspopup": "menu",
           ...props,
           children: [
             /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "layera-theme-switcher__icon", "aria-hidden": "true", children: getCurrentIcon() }),
@@ -328,13 +351,13 @@ var ThemeSwitcher = (0, import_react3.forwardRef)(({
           ]
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: `layera-theme-switcher__dropdown layera-theme-switcher__dropdown--${align}`, children: [
+      isOpen && /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: `layera-theme-switcher__dropdown layera-theme-switcher__dropdown--${align}`, children: [
         /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
           "button",
           {
             type: "button",
             className: `layera-theme-switcher__option ${theme === "light" ? "layera-theme-switcher__option--active" : ""}`,
-            onClick: () => setTheme("light"),
+            onClick: () => handleSelect("light"),
             role: "menuitem",
             children: [
               /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "layera-theme-switcher__option-icon", "aria-hidden": "true", children: icons.light }),
@@ -347,7 +370,7 @@ var ThemeSwitcher = (0, import_react3.forwardRef)(({
           {
             type: "button",
             className: `layera-theme-switcher__option ${theme === "dark" ? "layera-theme-switcher__option--active" : ""}`,
-            onClick: () => setTheme("dark"),
+            onClick: () => handleSelect("dark"),
             role: "menuitem",
             children: [
               /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "layera-theme-switcher__option-icon", "aria-hidden": "true", children: icons.dark }),
@@ -360,7 +383,7 @@ var ThemeSwitcher = (0, import_react3.forwardRef)(({
           {
             type: "button",
             className: `layera-theme-switcher__option ${theme === "system" ? "layera-theme-switcher__option--active" : ""}`,
-            onClick: () => setTheme("system"),
+            onClick: () => handleSelect("system"),
             role: "menuitem",
             children: [
               /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("span", { className: "layera-theme-switcher__option-icon", "aria-hidden": "true", children: icons.system }),

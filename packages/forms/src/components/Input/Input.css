@@ -1,0 +1,187 @@
+/* Input Component Styles */
+.layera-input-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background: var(--layera-color-background-primary);
+  border: 1px solid var(--layera-color-border-primary);
+  border-radius: var(--layera-radius-md);
+  transition: all 0.2s ease-in-out;
+}
+
+.layera-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--layera-color-text-primary);
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.layera-input::placeholder {
+  color: var(--layera-color-text-placeholder);
+}
+
+/* Sizes */
+.layera-input--sm,
+.layera-input-wrapper--sm .layera-input {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.layera-input-wrapper--sm {
+  border-radius: var(--layera-radius-sm);
+}
+
+.layera-input--lg,
+.layera-input-wrapper--lg .layera-input {
+  padding: 1rem 1.25rem;
+  font-size: 1.125rem;
+}
+
+.layera-input-wrapper--lg {
+  border-radius: var(--layera-radius-lg);
+}
+
+/* Variants */
+.layera-input-wrapper--outline {
+  background: transparent;
+  border: 2px solid var(--layera-color-border-primary);
+}
+
+.layera-input-wrapper--filled {
+  background: var(--layera-color-background-secondary);
+  border: 1px solid transparent;
+}
+
+.layera-input-wrapper--ghost {
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.layera-input-wrapper--underline {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--layera-color-border-primary);
+  border-radius: 0;
+}
+
+/* States */
+.layera-input-wrapper:focus-within {
+  border-color: var(--layera-color-primary-500);
+  box-shadow: 0 0 0 3px var(--layera-color-primary-100);
+}
+
+.layera-input-wrapper--error {
+  border-color: var(--layera-color-error-500);
+}
+
+.layera-input-wrapper--error:focus-within {
+  border-color: var(--layera-color-error-500);
+  box-shadow: 0 0 0 3px var(--layera-color-error-100);
+}
+
+.layera-input-wrapper--success {
+  border-color: var(--layera-color-success-500);
+}
+
+.layera-input-wrapper--success:focus-within {
+  border-color: var(--layera-color-success-500);
+  box-shadow: 0 0 0 3px var(--layera-color-success-100);
+}
+
+.layera-input-wrapper--warning {
+  border-color: var(--layera-color-warning-500);
+}
+
+.layera-input-wrapper--warning:focus-within {
+  border-color: var(--layera-color-warning-500);
+  box-shadow: 0 0 0 3px var(--layera-color-warning-100);
+}
+
+.layera-input-wrapper--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: var(--layera-color-background-disabled);
+}
+
+.layera-input--disabled {
+  cursor: not-allowed;
+  color: var(--layera-color-text-disabled);
+}
+
+/* Icons */
+.layera-input__start-icon,
+.layera-input__end-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--layera-color-text-secondary);
+  flex-shrink: 0;
+}
+
+.layera-input__start-icon {
+  padding-left: 1rem;
+}
+
+.layera-input__end-icon {
+  padding-right: 1rem;
+}
+
+.layera-input--has-start-icon {
+  padding-left: 0.5rem;
+}
+
+.layera-input--has-end-icon {
+  padding-right: 0.5rem;
+}
+
+/* Loading */
+.layera-input__loading {
+  position: absolute;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layera-input__spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--layera-color-border-primary);
+  border-top: 2px solid var(--layera-color-primary-500);
+  border-radius: 50%;
+  animation: layera-input-spin 1s linear infinite;
+}
+
+@keyframes layera-input-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Full width */
+.layera-input-wrapper--full-width {
+  width: 100%;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .layera-input-wrapper:focus-within {
+    box-shadow: 0 0 0 3px var(--layera-color-primary-800);
+  }
+
+  .layera-input-wrapper--error:focus-within {
+    box-shadow: 0 0 0 3px var(--layera-color-error-800);
+  }
+
+  .layera-input-wrapper--success:focus-within {
+    box-shadow: 0 0 0 3px var(--layera-color-success-800);
+  }
+
+  .layera-input-wrapper--warning:focus-within {
+    box-shadow: 0 0 0 3px var(--layera-color-warning-800);
+  }
+}

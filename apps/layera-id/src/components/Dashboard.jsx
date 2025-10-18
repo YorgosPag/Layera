@@ -8,7 +8,7 @@ import { ThemeSwitcher } from '@layera/theme-switcher';
 import { CheckIcon, XIcon } from './icons/LayeraIcons';
 import './Dashboard.css';
 import '../styles/typography.css';
-import '@layera/buttons/styles';
+import '../../../../packages/buttons/dist/styles.css';
 import '@layera/theme-switcher/styles';
 
 const Dashboard = () => {

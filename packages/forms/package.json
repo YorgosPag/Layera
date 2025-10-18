@@ -1,0 +1,46 @@
+{
+  "name": "@layera/forms",
+  "version": "1.0.0",
+  "description": "Enterprise form components with validation, accessibility, and TypeScript support",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "files": [
+    "dist",
+    "styles"
+  ],
+  "keywords": [
+    "layera",
+    "forms",
+    "design-system",
+    "enterprise",
+    "validation",
+    "accessibility"
+  ],
+  "author": "Layera Team",
+  "license": "ISC",
+  "dependencies": {
+    "@layera/constants": "workspace:*",
+    "@layera/i18n": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

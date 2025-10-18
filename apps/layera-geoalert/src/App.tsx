@@ -6,7 +6,7 @@ import { Button } from '@layera/buttons';
 import { ThemeProvider, ThemeSwitcher } from '@layera/theme-switcher';
 import { AppShell } from '@layera/layout';
 import '@layera/typography/styles';
-import '@layera/buttons/styles';
+import '../../../packages/buttons/dist/styles.css';
 import '@layera/theme-switcher/styles';
 import '@layera/layout/styles';
 import { ArrowLeftIcon, MapIcon, PuzzleIcon, LinkIcon, FolderIcon, ZapIcon, CheckIcon, PartyIcon } from './components/icons/LayeraIcons';

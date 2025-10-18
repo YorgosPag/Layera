@@ -1,0 +1,158 @@
+/* TextArea Component Styles */
+.layera-textarea-wrapper {
+  position: relative;
+  display: inline-flex;
+  background: var(--layera-color-background-primary);
+  border: 1px solid var(--layera-color-border-primary);
+  border-radius: var(--layera-radius-md);
+  transition: all 0.2s ease-in-out;
+}
+
+.layera-textarea {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--layera-color-text-primary);
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease-in-out;
+  line-height: 1.375;
+  resize: vertical;
+}
+
+.layera-textarea::placeholder {
+  color: var(--layera-color-text-placeholder);
+}
+
+/* Resize options */
+.layera-textarea--resize-none {
+  resize: none;
+}
+
+.layera-textarea--resize-vertical {
+  resize: vertical;
+}
+
+.layera-textarea--resize-horizontal {
+  resize: horizontal;
+}
+
+.layera-textarea--resize-both {
+  resize: both;
+}
+
+/* Sizes */
+.layera-textarea--sm,
+.layera-textarea-wrapper--sm .layera-textarea {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25;
+}
+
+.layera-textarea-wrapper--sm {
+  border-radius: var(--layera-radius-sm);
+}
+
+.layera-textarea--lg,
+.layera-textarea-wrapper--lg .layera-textarea {
+  padding: 1rem 1.25rem;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.layera-textarea-wrapper--lg {
+  border-radius: var(--layera-radius-lg);
+}
+
+/* Variants */
+.layera-textarea-wrapper--outline {
+  background: transparent;
+  border: 2px solid var(--layera-color-border-primary);
+}
+
+.layera-textarea-wrapper--filled {
+  background: var(--layera-color-background-secondary);
+  border: 1px solid transparent;
+}
+
+.layera-textarea-wrapper--ghost {
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.layera-textarea-wrapper--underline {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--layera-color-border-primary);
+  border-radius: 0;
+}
+
+/* States */
+.layera-textarea-wrapper:focus-within {
+  border-color: var(--layera-color-primary-500);
+  box-shadow: 0 0 0 3px var(--layera-color-primary-100);
+}
+
+.layera-textarea-wrapper--error {
+  border-color: var(--layera-color-error-500);
+}
+
+.layera-textarea-wrapper--error:focus-within {
+  border-color: var(--layera-color-error-500);
+  box-shadow: 0 0 0 3px var(--layera-color-error-100);
+}
+
+.layera-textarea-wrapper--success {
+  border-color: var(--layera-color-success-500);
+}
+
+.layera-textarea-wrapper--success:focus-within {
+  border-color: var(--layera-color-success-500);
+  box-shadow: 0 0 0 3px var(--layera-color-success-100);
+}
+
+.layera-textarea-wrapper--warning {
+  border-color: var(--layera-color-warning-500);
+}
+
+.layera-textarea-wrapper--warning:focus-within {
+  border-color: var(--layera-color-warning-500);
+  box-shadow: 0 0 0 3px var(--layera-color-warning-100);
+}
+
+.layera-textarea-wrapper--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: var(--layera-color-background-disabled);
+}
+
+.layera-textarea--disabled {
+  cursor: not-allowed;
+  color: var(--layera-color-text-disabled);
+}
+
+/* Full width */
+.layera-textarea-wrapper--full-width {
+  width: 100%;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .layera-textarea-wrapper:focus-within {
+    box-shadow: 0 0 0 3px var(--layera-color-primary-800);
+  }
+
+  .layera-textarea-wrapper--error:focus-within {
+    box-shadow: 0 0 0 3px var(--layera-color-error-800);
+  }
+
+  .layera-textarea-wrapper--success:focus-within {
+    box-shadow: 0 0 0 3px var(--layera-color-success-800);
+  }
+
+  .layera-textarea-wrapper--warning:focus-within {
+    box-shadow: 0 0 0 3px var(--layera-color-warning-800);
+  }
+}

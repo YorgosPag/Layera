@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLayeraTranslation } from '../hooks/useLayeraTranslation';
 import type { SupportedLanguage } from '../config';
 
@@ -6,6 +6,7 @@ interface LanguageSwitcherProps {
   className?: string;
   variant?: 'dropdown' | 'toggle' | 'buttons';
   showFlags?: boolean;
+  align?: 'left' | 'right' | 'center';
 }
 
 const languageLabels: Record<SupportedLanguage, string> = {
@@ -22,27 +23,74 @@ export function LanguageSwitcher({
   className = '',
   variant = 'dropdown',
   showFlags = true,
+  align = 'right',
 }: LanguageSwitcherProps) {
   const { currentLanguage, changeLanguage, availableLanguages } = useLayeraTranslation();
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleLanguageChange = (language: SupportedLanguage) => {
     changeLanguage(language);
+    setIsOpen(false);
   };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (!target.closest('.language-switcher-dropdown-container')) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('click', handleClickOutside);
+      return () => document.removeEventListener('click', handleClickOutside);
+    }
+  }, [isOpen]);
 
   if (variant === 'dropdown') {
     return (
-      <select
-        value={currentLanguage}
-        onChange={(e) => handleLanguageChange(e.target.value as SupportedLanguage)}
-        className={`language-switcher ${className}`}
-        aria-label="Select language"
-      >
-        {availableLanguages.map((lang) => (
-          <option key={lang} value={lang}>
-            {showFlags && languageFlags[lang]} {languageLabels[lang]}
-          </option>
-        ))}
-      </select>
+      <div className={`language-switcher-dropdown-container ${className} ${isOpen ? 'language-switcher--open' : ''}`}>
+        <button
+          type="button"
+          className="language-switcher__trigger"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label={`Select language. Current: ${languageLabels[currentLanguage]}`}
+          aria-expanded={isOpen}
+          aria-haspopup="menu"
+        >
+          <span className="language-switcher__icon" aria-hidden="true">
+            {showFlags && languageFlags[currentLanguage]}
+          </span>
+          <span className="language-switcher__label">
+            {languageLabels[currentLanguage]}
+          </span>
+          <span className="language-switcher__arrow" aria-hidden="true">
+            ▼
+          </span>
+        </button>
+
+        {isOpen && (
+          <div className={`language-switcher__dropdown language-switcher__dropdown--${align}`}>
+            {availableLanguages.map((lang) => (
+              <button
+                key={lang}
+                type="button"
+                className={`language-switcher__option ${currentLanguage === lang ? 'language-switcher__option--active' : ''}`}
+                onClick={() => handleLanguageChange(lang)}
+                role="menuitem"
+              >
+                <span className="language-switcher__option-icon" aria-hidden="true">
+                  {showFlags && languageFlags[lang]}
+                </span>
+                <span className="language-switcher__option-label">
+                  {languageLabels[lang]}
+                </span>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
     );
   }
 

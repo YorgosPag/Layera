@@ -1,16 +1,18 @@
 {
   "app": {
     "name": "Layera",
+    "subtitle": "Επιχειρησιακή Διαχείριση Ταυτότητας",
     "welcome": "Καλώς ήρθατε στο Layera!",
     "loading": "Φόρτωση..."
   },
   "navigation": {
-    "dashboard": "Dashboard",
+    "dashboard": "Πίνακας Ελέγχου",
     "account": "Ο λογαριασμός μου",
     "settings": "Ρυθμίσεις",
     "data": "Δεδομένα",
     "logout": "Αποσύνδεση",
-    "back": "Επιστροφή"
+    "back": "Επιστροφή",
+    "backToDashboard": "Επιστροφή στον Πίνακα Ελέγχου"
   },
   "auth": {
     "login": "Σύνδεση",
@@ -58,6 +60,7 @@
   "account": {
     "title": "Ο λογαριασμός μου",
     "info": "Πληροφορίες λογαριασμού",
+    "security": "Ασφάλεια",
     "messages": {
       "emailNotVerified": "Το email σας δεν είναι επιβεβαιωμένο. Παρακαλούμε ελέγξτε τα εισερχόμενά σας.",
       "mfaRecommendation": "Προτείνουμε να ενεργοποιήσετε την διπλή ταυτοποίηση (2FA) για επιπλέον ασφάλεια."
@@ -139,6 +142,7 @@
     "fields": {
       "email": "Email",
       "name": "Όνομα",
+      "displayName": "Όνομα Χρήστη",
       "userId": "User ID",
       "role": "Ρόλος",
       "emailVerified": "Email Επιβεβαιωμένο",
@@ -172,6 +176,38 @@
     "builder": "Κατασκευαστής",
     "private": "Ιδιώτης"
   },
+  "admin": {
+    "roleManagement": {
+      "title": "Διαχείριση Ρόλων",
+      "subtitle": "Διαχείριση ρόλων χρηστών και ρυθμίσεων ασφαλείας",
+      "form": {
+        "title": "Ορισμός Ρόλου Χρήστη",
+        "description": "Εισάγετε τα στοιχεία του χρήστη για τροποποίηση του ρόλου του",
+        "emailHint": "Το email του χρήστη που θέλετε να τροποποιήσετε",
+        "roleHint": "Επιλέξτε το νέο ρόλο που θα ανατεθεί στον χρήστη"
+      },
+      "info": {
+        "title": "Πληροφορίες Διαχείρισης",
+        "adminOnly": "Μόνο admin μπορεί να καλέσει τα functions διαχείρισης",
+        "clientRestrictions": "Ο πελάτης δεν γράφει claims απευθείας",
+        "mfaRefresh": "Η ανανέωση 2FA ελέγχει την τρέχουσα κατάσταση του χρήστη"
+      }
+    },
+    "actions": {
+      "setRole": "Ορισμός Ρόλου",
+      "refreshMfa": "Ανανέωση 2FA"
+    },
+    "errors": {
+      "enterEmail": "Εισάγετε email χρήστη",
+      "roleSetFailed": "❌ Σφάλμα ορισμού ρόλου: {{error}}",
+      "mfaRefreshFailed": "❌ Σφάλμα ανανέωσης 2FA: {{error}}"
+    },
+    "success": {
+      "roleSet": "✅ Ρόλος ορίστηκε: {{uid}} → {{role}}",
+      "mfaRefreshed": "✅ 2FA ανανεώθηκε: {{uid}} → {{status}}"
+    },
+    "checking2FA": "Έλεγχος κατάστασης 2FA..."
+  },
   "status": {
     "active": "Ενεργό",
     "inactive": "Ανενεργό",
@@ -199,10 +235,125 @@
     "passwordMismatch": "Οι κωδικοί δεν ταιριάζουν",
     "authError": "Σφάλμα αυθεντικοποίησης",
     "networkError": "Σφάλμα δικτύου",
-    "unknownError": "Άγνωστο σφάλμα"
+    "unknownError": "Άγνωστο σφάλμα",
+    "adminRequired": {
+      "title": "Απαιτείται Δικαίωμα Admin",
+      "description": "Απαγορεύεται. Μόνο admin μπορεί να δει αυτή τη σελίδα."
+    }
   },
   "common": {
     "error": "Σφάλμα",
     "processing": "Επεξεργασία..."
+  },
+  "notifications": {
+    "loading": "Φόρτωση...",
+    "retry": "Επανάληψη",
+    "tryAgain": "Δοκιμάστε ξανά",
+    "somethingWentWrong": "Κάτι πήγε στραβά",
+    "dismiss": "Απόρριψη",
+    "ok": "ΟΚ",
+    "cancel": "Ακύρωση",
+    "types": {
+      "success": "Επιτυχία",
+      "warning": "Προειδοποίηση",
+      "error": "Σφάλμα",
+      "info": "Πληροφορία"
+    },
+    "messages": {
+      "generalError": "Παρουσιάστηκε ένα απροσδόκητο σφάλμα",
+      "networkError": "Σφάλμα σύνδεσης δικτύου",
+      "operationComplete": "Η ενέργεια ολοκληρώθηκε επιτυχώς",
+      "operationFailed": "Η ενέργεια απέτυχε"
+    }
+  },
+  "forms": {
+    "validation": {
+      "required": "Αυτό το πεδίο είναι υποχρεωτικό"
+    },
+    "labels": {
+      "email": "Διεύθυνση Email",
+      "name": "Όνομα",
+      "phone": "Τηλέφωνο",
+      "password": "Κωδικός Πρόσβασης",
+      "confirmPassword": "Επιβεβαίωση Κωδικού",
+      "role": "Ρόλος",
+      "status": "Κατάσταση"
+    },
+    "placeholders": {
+      "email": "user@example.com",
+      "password": "Εισάγετε τον κωδικό σας",
+      "confirmPassword": "Επιβεβαιώστε τον κωδικό σας",
+      "displayName": "Εισάγετε το όνομά σας",
+      "enterValue": "Εισάγετε τιμή",
+      "selectRole": "Επιλέξτε ρόλο",
+      "search": "Αναζήτηση..."
+    },
+    "hints": {
+      "emailPrivacy": "Δεν θα μοιραστούμε το email σας ποτέ",
+      "passwordRequirements": "Τουλάχιστον 8 χαρακτήρες, πεζά και κεφαλαία γράμματα",
+      "displayName": "Αυτό θα είναι το εμφανιζόμενο όνομά σας (προαιρετικό)"
+    },
+    "select": {
+      "noOptions": "Δεν υπάρχουν επιλογές",
+      "clear": "Καθαρισμός",
+      "loading": "Φόρτωση..."
+    }
+  },
+  "tables": {
+    "selectAll": "Επιλογή όλων",
+    "selectNone": "Καθαρισμός επιλογών",
+    "selectRow": "Επιλογή γραμμής {{index}}",
+    "selectedCount": "{{count}} από {{total}} επιλεγμένα",
+    "noData": {
+      "title": "Δεν υπάρχουν δεδομένα",
+      "description": "Δεν βρέθηκαν εγγραφές για εμφάνιση"
+    },
+    "search": {
+      "placeholder": "Αναζήτηση..."
+    },
+    "pagination": {
+      "showing": "Εμφάνιση {{start}}-{{end}} από {{total}}",
+      "itemsPerPage": "Στοιχεία ανά σελίδα",
+      "previous": "Προηγούμενη",
+      "next": "Επόμενη"
+    },
+    "headers": {
+      "name": "Όνομα",
+      "email": "Email",
+      "role": "Ρόλος",
+      "status": "Κατάσταση",
+      "actions": "Ενέργειες",
+      "createdAt": "Δημιουργήθηκε",
+      "updatedAt": "Ενημερώθηκε"
+    }
+  },
+  "dashboard": {
+    "overview": "Επισκόπηση κατάστασης λογαριασμού",
+    "userInfo": "Πληροφορίες Χρήστη",
+    "accountDetails": "Λεπτομέρειες Λογαριασμού",
+    "personalInformation": "Προσωπικές Πληροφορίες",
+    "quickActions": "Γρήγορες Ενέργειες",
+    "accountAge": "Ηλικία Λογαριασμού",
+    "daysSinceCreated": "Ημέρες από τη δημιουργία",
+    "emailStatus": "Κατάσταση Email",
+    "mfaStatus": "Κατάσταση MFA",
+    "accountRole": "Ρόλος Λογαριασμού",
+    "descriptions": {
+      "account": "Διαχειριστείτε τις ρυθμίσεις και τις πληροφορίες του προφίλ σας",
+      "settings": "Διαμορφώστε τις προτιμήσεις εφαρμογής και τις ρυθμίσεις ασφαλείας",
+      "data": "Δείτε και διαχειριστείτε τα δεδομένα και τις ρυθμίσεις απορρήτου σας",
+      "mfa": "Ενεργοποίηση πολυπαραγοντικής ταυτοποίησης για ενισχυμένη ασφάλεια"
+    },
+    "actionDescriptions": {
+      "manageAccount": "Διαχειριστείτε τις ρυθμίσεις και τις πληροφορίες του προφίλ σας",
+      "configureSettings": "Διαμορφώστε τις προτιμήσεις εφαρμογής και τις ρυθμίσεις ασφαλείας",
+      "manageData": "Δείτε και διαχειριστείτε τα δεδομένα και τις ρυθμίσεις απορρήτου σας",
+      "enableMfa": "Ενεργοποίηση πολυπαραγοντικής ταυτοποίησης για ενισχυμένη ασφάλεια"
+    },
+    "theme": {
+      "light": "Φωτεινό θέμα",
+      "dark": "Σκοτεινό θέμα",
+      "system": "Σύστημα"
+    }
   }
 }

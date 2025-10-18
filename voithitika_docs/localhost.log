@@ -1,48 +1,8 @@
-10:24:12.893 react-dom_client.js?v=5d0b1aa6:20103 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
-10:24:12.901 config.ts:74 i18next: languageChanged el
-10:24:12.901 config.ts:74 i18next: initialized {debug: true, initImmediate: true, ns: Array(2), defaultNS: 'common', fallbackLng: Array(1), …}appendNamespaceToCIMode: falseappendNamespaceToMissingKey: falsecontextSeparator: "_"debug: truedefaultNS: "common"detection: caches: Array(1)0: "localStorage"length: 1[[Prototype]]: Array(0)convertDetectedLanguage: ƒ convertDetectedLanguage(l)length: 1name: "convertDetectedLanguage"prototype: {}arguments: (...)caller: (...)[[FunctionLocation]]: i18next-browser-languagedetector.js?v=5e805a3f:320[[Prototype]]: ƒ ()[[Scopes]]: Scopes[2]excludeCacheFor: Array(1)0: "cimode"length: 1[[Prototype]]: Array(0)lookupCookie: "i18next"lookupLocalStorage: "layera-language"lookupQuerystring: "lng"lookupSessionStorage: "i18nextLng"order: Array(3)0: "localStorage"1: "navigator"2: "htmlTag"length: 3[[Prototype]]: Array(0)[[Prototype]]: ObjectfallbackLng: Array(1)0: "el"length: 1[[Prototype]]: Array(0)fallbackNS: falseignoreJSONStructure: trueinitImmediate: trueinterpolation: escapeValue: falseformat: ƒ ()length: 3name: "bound format"arguments: (...)caller: (...)[[Prototype]]: ƒ ()[[TargetFunction]]: format(value, format, lng) {     let options = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : {};     const formats = format.split(this.formatSeparator);     if (formats.length > 1 && formats[0].indexOf("(") > 1 && formats[0].indexOf(")") < 0 && formats.find((f) => {…}[[BoundThis]]: Formatter[[BoundArgs]]: Array(0)formatSeparator: ","maxReplaces: 1000nestingOptionsSeparator: ","nestingPrefix: "$t("nestingSuffix: ")"prefix: "{{"skipOnVariables: truesuffix: "}}"unescapePrefix: "-"[[Prototype]]: ObjectjoinArrays: falsekeySeparator: "."lng: "el"load: "all"missingInterpolationHandler: falsemissingKeyHandler: falsenonExplicitSupportedLngs: falsens: Array(2)0: "common"1: "dashboard"length: 2[[Prototype]]: Array(0)nsSeparator: ":"overloadTranslationOptionHandler: (args) => {…}length: 1name: "overloadTranslationOptionHandler"arguments: (...)caller: (...)[[FunctionLocation]]: i18next.js?v=0de43ae2:1835[[Prototype]]: ƒ ()[[Scopes]]: Scopes[2]parseMissingKeyHandler: falsepartialBundledLanguages: falsepluralSeparator: "_"postProcess: falsepostProcessPassResolved: falsepreload: falsereact: bindI18n: "languageChanged"bindI18nStore: ""transEmptyNodeValue: ""transKeepBasicHtmlNodesFor: Array(5)0: "br"1: "strong"2: "i"3: "p"4: "span"length: 5[[Prototype]]: Array(0)transSupportBasicHtmlNodes: trueuseSuspense: false[[Prototype]]: Objectresources: el: {common: {…}, dashboard: {…}}en: {common: {…}, dashboard: {…}}[[Prototype]]: ObjectreturnEmptyString: truereturnNull: falsereturnObjects: falsereturnedObjectHandler: falsesaveMissing: falsesaveMissingPlurals: truesaveMissingTo: "fallback"simplifyPluralSuffix: truesupportedLngs: Array(3)0: "el"1: "en"2: "cimode"length: 3[[Prototype]]: Array(0)updateMissing: false[[Prototype]]: Object
-10:24:13.286 main.jsx:25 User signed in: georgios.pagonis@gmail.com Role: private
-10:30:44.543 useLayeraTranslation.ts:23 i18next: languageChanged en
-10:30:51.962 useLayeraTranslation.ts:23 i18next: languageChanged el
-10:33:03.140 MfaEnroll.jsx:98 Uncaught ReferenceError: SmartphoneIcon is not defined
-    at MfaEnroll (MfaEnroll.jsx:98:18)
-    at Object.react_stack_bottom_frame (react-dom_client.js?v=5d0b1aa6:18509:20)
-    at renderWithHooks (react-dom_client.js?v=5d0b1aa6:5654:24)
-    at updateFunctionComponent (react-dom_client.js?v=5d0b1aa6:7475:21)
-    at beginWork (react-dom_client.js?v=5d0b1aa6:8525:20)
-    at runWithFiberInDEV (react-dom_client.js?v=5d0b1aa6:997:72)
-    at performUnitOfWork (react-dom_client.js?v=5d0b1aa6:12561:98)
-    at workLoopSync (react-dom_client.js?v=5d0b1aa6:12424:43)
-    at renderRootSync (react-dom_client.js?v=5d0b1aa6:12408:13)
-    at performWorkOnRoot (react-dom_client.js?v=5d0b1aa6:11827:37)
-MfaEnroll @ MfaEnroll.jsx:98
-react_stack_bottom_frame @ react-dom_client.js?v=5d0b1aa6:18509
-renderWithHooks @ react-dom_client.js?v=5d0b1aa6:5654
-updateFunctionComponent @ react-dom_client.js?v=5d0b1aa6:7475
-beginWork @ react-dom_client.js?v=5d0b1aa6:8525
-runWithFiberInDEV @ react-dom_client.js?v=5d0b1aa6:997
-performUnitOfWork @ react-dom_client.js?v=5d0b1aa6:12561
-workLoopSync @ react-dom_client.js?v=5d0b1aa6:12424
-renderRootSync @ react-dom_client.js?v=5d0b1aa6:12408
-performWorkOnRoot @ react-dom_client.js?v=5d0b1aa6:11827
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=5d0b1aa6:13505
-performWorkUntilDeadline @ react-dom_client.js?v=5d0b1aa6:36
-10:33:03.141 react-dom_client.js?v=5d0b1aa6:6966 An error occurred in the <MfaEnroll> component.
-
-Consider adding an error boundary to your tree to customize error handling behavior.
-Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
-
-defaultOnUncaughtError @ react-dom_client.js?v=5d0b1aa6:6966
-logUncaughtError @ react-dom_client.js?v=5d0b1aa6:7020
-runWithFiberInDEV @ react-dom_client.js?v=5d0b1aa6:997
-lane.callback @ react-dom_client.js?v=5d0b1aa6:7048
-callCallback @ react-dom_client.js?v=5d0b1aa6:5491
-commitCallbacks @ react-dom_client.js?v=5d0b1aa6:5503
-runWithFiberInDEV @ react-dom_client.js?v=5d0b1aa6:999
-commitLayoutEffectOnFiber @ react-dom_client.js?v=5d0b1aa6:9976
-flushLayoutEffects @ react-dom_client.js?v=5d0b1aa6:12924
-commitRoot @ react-dom_client.js?v=5d0b1aa6:12803
-commitRootWhenReady @ react-dom_client.js?v=5d0b1aa6:12016
-performWorkOnRoot @ react-dom_client.js?v=5d0b1aa6:11950
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=5d0b1aa6:13505
-performWorkUntilDeadline @ react-dom_client.js?v=5d0b1aa6:36
+15:24:04.104 react-dom_client.js?v=a17ed61e:20103 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+15:24:04.114 i18next.js?v=ce03d866:204 i18next: languageChanged el
+15:24:04.114 i18next.js?v=ce03d866:204 i18next: initialized ObjectappendNamespaceToCIMode: falseappendNamespaceToMissingKey: falsecontextSeparator: "_"debug: truedefaultNS: "common"detection: {order: Array(3), lookupLocalStorage: 'layera-language', caches: Array(1), lookupQuerystring: 'lng', lookupCookie: 'i18next', …}fallbackLng: ['el']fallbackNS: falseignoreJSONStructure: trueinitImmediate: trueinterpolation: {escapeValue: false, prefix: '{{', suffix: '}}', formatSeparator: ',', format: ƒ, …}joinArrays: falsekeySeparator: "."lng: "el"load: "all"missingInterpolationHandler: falsemissingKeyHandler: falsenonExplicitSupportedLngs: falsens: (2) ['common', 'dashboard']nsSeparator: ":"overloadTranslationOptionHandler: (args) => {…}parseMissingKeyHandler: falsepartialBundledLanguages: falsepluralSeparator: "_"postProcess: falsepostProcessPassResolved: falsepreload: falsereact: {useSuspense: false, bindI18n: 'languageChanged', bindI18nStore: '', transEmptyNodeValue: '', transSupportBasicHtmlNodes: true, …}resources: {el: {…}, en: {…}}returnEmptyString: truereturnNull: falsereturnObjects: falsereturnedObjectHandler: falsesaveMissing: falsesaveMissingPlurals: truesaveMissingTo: "fallback"simplifyPluralSuffix: truesupportedLngs: (3) ['el', 'en', 'cimode']updateMissing: false[[Prototype]]: Object
+15:24:04.158 react-router-dom.js?v=ca7a09e8:532 No routes matched location "/admin-roles" 
+warning @ react-router-dom.js?v=ca7a09e8:532
+15:24:04.159 react-router-dom.js?v=ca7a09e8:532 No routes matched location "/admin-roles" 
+warning @ react-router-dom.js?v=ca7a09e8:532
+15:24:06.024 main.jsx:25 User signed in: georgios.pagonis@gmail.com Role: private

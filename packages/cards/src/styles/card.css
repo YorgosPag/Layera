@@ -15,6 +15,11 @@
   overflow: hidden;
 }
 
+/* Special case for cards containing dropdown menus */
+.layera-card--dropdown-container {
+  overflow: visible;
+}
+
 /* Card variants */
 .layera-card--elevated {
   border: none;

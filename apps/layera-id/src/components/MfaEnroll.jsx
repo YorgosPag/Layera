@@ -1,16 +1,37 @@
 import { auth } from '../firebase';
 import { PhoneAuthProvider, RecaptchaVerifier, multiFactor } from 'firebase/auth';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuthContext, UserAvatar } from '@layera/auth-bridge';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
-import { LockIcon, ShieldIcon, RocketIcon } from './icons/LayeraIcons';
+import { ThemeSwitcher } from '@layera/theme-switcher';
+import { Button } from '@layera/buttons';
+import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader } from '@layera/layout';
+import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
+import { LockIcon, ShieldIcon, RocketIcon, SmartphoneIcon, CheckIcon } from './icons/LayeraIcons';
+import QuickActions from './QuickActions';
+import '../../../../packages/layout/dist/styles.css';
+import '../../../../packages/cards/dist/styles.css';
 import './MfaEnroll.css';
 
 export default function MfaEnroll() {
+  const { user, signOut } = useAuthContext();
   const { t } = useLayeraTranslation();
+  const navigate = useNavigate();
   const [phone, setPhone] = useState('');
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState('phone'); // 'phone' or 'verification'
+
+  if (!user) return null;
+
+  const handleLogout = async () => {
+    const result = await signOut();
+    if (result.success) {
+      navigate('/login');
+    } else {
+      console.error('Logout error:', result.error);
+    }
+  };
 
   async function start() {
     if (!phone.trim()) {
@@ -30,7 +51,7 @@ export default function MfaEnroll() {
         const cred = PhoneAuthProvider.credential(verId, code);
         await multiFactor(auth.currentUser).enroll(cred, 'primary');
         alert(t('mfa.success.enrollmentComplete'));
-        window.location.href = '/account';
+        navigate('/account');
       }
     } catch (error) {
       console.error('2FA enrollment error:', error);
@@ -53,95 +74,136 @@ export default function MfaEnroll() {
     }
   }
 
+  // Header actions
+  const headerActions = (
+    <HeaderActionsGroup>
+      <LanguageSwitcher variant="toggle" showFlags={true} />
+      <ThemeSwitcher variant="icon" size="md" />
+      {user && (
+        <>
+          <UserAvatar
+            user={user}
+            size="medium"
+            onClick={() => navigate('/account')}
+          />
+          <Button variant="ghost" size="sm" onClick={handleLogout}>
+            {t('navigation.logout')}
+          </Button>
+        </>
+      )}
+    </HeaderActionsGroup>
+  );
+
   return (
-    <div className="mfa-container">
-      <nav className="mfa-nav">
-        <div className="nav-brand">
-          <h1>Layera</h1>
-        </div>
-        <div className="nav-user">
-          <LanguageSwitcher
-            variant="toggle"
-            className="language-switcher-nav"
-            showFlags={true}
+    <AppShell
+      layout="fullscreen"
+      header={
+        <LayeraHeader
+          title={t('app.name')}
+          subtitle={t('app.subtitle')}
+          variant="standard"
+          actions={headerActions}
+        />
+      }
+    >
+      <PageContainer maxWidth="full" padding="none">
+        <div style={{ padding: 'var(--layera-space-lg)' }}>
+          <PageHeader
+            title={t('mfa.title')}
+            subtitle={t('mfa.subtitle')}
           />
         </div>
-      </nav>
 
-      <div className="mfa-content">
-        <div className="mfa-card">
-          <div className="mfa-header">
-            <div className="mfa-icon">
-              <LockIcon size="lg" theme="primary" />
-            </div>
-            <h2 className="mfa-title">{t('mfa.title')}</h2>
-            <p className="mfa-subtitle">
-              {t('mfa.subtitle')}
-            </p>
-          </div>
-
-          <div className="security-info">
-            <h4>
-              <ShieldIcon size="md" theme="info" /> {t('mfa.whyNeeded.title')}
-            </h4>
-            <p>{t('mfa.whyNeeded.description')}</p>
-            <ul>
-              <li>{t('mfa.whyNeeded.benefits.passwordProtection')}</li>
-              <li>{t('mfa.whyNeeded.benefits.secureAccess')}</li>
-              <li>{t('mfa.whyNeeded.benefits.unauthorizedAlert')}</li>
-            </ul>
-          </div>
-
-          <form className="mfa-form" onSubmit={(e) => { e.preventDefault(); start(); }}>
-            <div className="form-group">
-              <label className="form-label" htmlFor="phone">
-                <SmartphoneIcon size="sm" theme="neutral" /> {t('mfa.form.phoneLabel')}
-              </label>
-              <input
-                id="phone"
-                type="tel"
-                value={phone}
-                onChange={e => setPhone(e.target.value)}
-                placeholder="+30 697 405 0023"
-                className="form-input"
-                disabled={loading}
-                required
-              />
-              <small className="form-hint">
-                {t('mfa.form.phoneHint')}
-              </small>
-            </div>
-
-            <div className="recaptcha-container">
-              <div id="recaptcha"></div>
-            </div>
-
-            <div className="mfa-actions">
-              <button
-                type="submit"
-                className="mfa-button"
-                disabled={loading || !phone.trim()}
-              >
-                {loading ? (
-                  <>
-                    ⏳ {t('common.processing')}
-                  </>
-                ) : (
-                  <>
-                    <RocketIcon size="sm" theme="neutral" /> {t('mfa.form.enableButton')}
-                  </>
-                )}
-              </button>
-            </div>
-          </form>
-
-          <div style={{ textAlign: 'center', marginTop: '30px' }}>
-            <Link to="/account" className="back-link">
-              ← {t('navigation.back')} {t('navigation.account')}
-            </Link>
-          </div>
+        {/* Security Information Section */}
+        <div style={{ padding: 'var(--layera-space-lg)' }}>
+          <DashboardSection
+            title={t('mfa.whyNeeded.title')}
+            icon={<ShieldIcon size="md" theme="neutral" />}
+          >
+            <DashboardCard
+              title={t('mfa.whyNeeded.description')}
+              variant="info"
+            >
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
+                  <CheckIcon size="sm" theme="success" style={{ marginTop: '0.125rem' }} />
+                  <span>{t('mfa.whyNeeded.benefits.passwordProtection')}</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
+                  <CheckIcon size="sm" theme="success" style={{ marginTop: '0.125rem' }} />
+                  <span>{t('mfa.whyNeeded.benefits.secureAccess')}</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
+                  <CheckIcon size="sm" theme="success" style={{ marginTop: '0.125rem' }} />
+                  <span>{t('mfa.whyNeeded.benefits.unauthorizedAlert')}</span>
+                </div>
+              </div>
+            </DashboardCard>
+          </DashboardSection>
         </div>
-      </div>
-    </div>
+
+        {/* MFA Setup Form */}
+        <div style={{ padding: 'var(--layera-space-lg)' }}>
+          <DashboardSection
+            title={t('mfa.form.enableButton')}
+            icon={<LockIcon size="md" theme="neutral" />}
+          >
+            <DashboardCard
+              title={t('mfa.form.phoneLabel')}
+              variant="actions"
+            >
+              <form onSubmit={(e) => { e.preventDefault(); start(); }} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <label htmlFor="phone" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: '600' }}>
+                    <SmartphoneIcon size="sm" theme="neutral" /> {t('mfa.form.phoneLabel')}
+                  </label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    value={phone}
+                    onChange={e => setPhone(e.target.value)}
+                    style={{
+                      padding: '0.75rem',
+                      border: '1px solid var(--layera-layout-border)',
+                      borderRadius: 'var(--layera-radius-md)',
+                      fontSize: '1rem',
+                      width: '100%',
+                      boxSizing: 'border-box'
+                    }}
+                    placeholder="+30 6912345678"
+                    disabled={loading}
+                    required
+                  />
+                  <small style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>
+                    {t('mfa.form.phoneHint')}
+                  </small>
+                </div>
+
+                <div id="recaptcha" style={{ margin: '1rem 0' }}></div>
+
+                <Button
+                  type="submit"
+                  variant="primary"
+                  size="lg"
+                  disabled={loading || !phone.trim()}
+                  style={{ width: '100%' }}
+                >
+                  {loading ? (
+                    <>⏳ {t('common.processing')}</>
+                  ) : (
+                    <><RocketIcon size="sm" theme="neutral" /> {t('mfa.form.enableButton')}</>
+                  )}
+                </Button>
+              </form>
+            </DashboardCard>
+          </DashboardSection>
+        </div>
+
+        {/* Navigation */}
+        <div style={{ padding: 'var(--layera-space-lg)' }}>
+          <QuickActions />
+        </div>
+      </PageContainer>
+    </AppShell>
   );
 }

@@ -1,0 +1,512 @@
+"use strict";
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// src/index.ts
+var src_exports = {};
+__export(src_exports, {
+  AUTOCOMPLETE_VALUES: () => AUTOCOMPLETE_VALUES,
+  BORDER_RADIUS: () => BORDER_RADIUS,
+  BULK_ACTIONS: () => BULK_ACTIONS,
+  BUTTON_SIZES: () => BUTTON_SIZES,
+  BUTTON_STATES: () => BUTTON_STATES,
+  CARD_STATES: () => CARD_STATES,
+  COLOR_SCHEMES: () => COLOR_SCHEMES,
+  COLUMN_TYPES: () => COLUMN_TYPES,
+  COMPONENT_SIZES: () => COMPONENT_SIZES,
+  COMPONENT_VARIANTS: () => COMPONENT_VARIANTS,
+  DATA_STATES: () => DATA_STATES,
+  ELEVATION_LEVELS: () => ELEVATION_LEVELS,
+  EXPORT_FORMATS: () => EXPORT_FORMATS,
+  FIELD_SIZES: () => FIELD_SIZES,
+  FILTER_TYPES: () => FILTER_TYPES,
+  FORM_SIZES: () => FORM_SIZES,
+  FORM_STATES: () => FORM_STATES,
+  FORM_TYPES: () => FORM_TYPES,
+  ICON_SIZES: () => ICON_SIZES,
+  INPUT_VARIANTS: () => INPUT_VARIANTS,
+  LAYERA_CONSTANTS_VERSION: () => LAYERA_CONSTANTS_VERSION,
+  LINK_TARGETS: () => LINK_TARGETS,
+  MENU_POSITIONS: () => MENU_POSITIONS,
+  NAVIGATION_TYPES: () => NAVIGATION_TYPES,
+  PAGE_LAYOUTS: () => PAGE_LAYOUTS,
+  PAGINATION_SIZES: () => PAGINATION_SIZES,
+  PERMISSIONS: () => PERMISSIONS,
+  ROLE_HIERARCHY: () => ROLE_HIERARCHY,
+  ROLE_PERMISSIONS: () => ROLE_PERMISSIONS,
+  ROUTE_PATTERNS: () => ROUTE_PATTERNS,
+  SORT_DIRECTIONS: () => SORT_DIRECTIONS,
+  SPACING_SCALE: () => SPACING_SCALE,
+  TABLE_COLUMN_WIDTHS: () => TABLE_COLUMN_WIDTHS,
+  TABLE_DENSITIES: () => TABLE_DENSITIES,
+  TABLE_VARIANTS: () => TABLE_VARIANTS,
+  THEME_MODES: () => THEME_MODES,
+  USER_ROLES: () => USER_ROLES,
+  USER_STATUS: () => USER_STATUS,
+  VALIDATION_RULES: () => VALIDATION_RULES
+});
+module.exports = __toCommonJS(src_exports);
+
+// src/sizes.ts
+var COMPONENT_SIZES = {
+  XS: "xs",
+  SM: "sm",
+  MD: "md",
+  LG: "lg",
+  XL: "xl"
+};
+var FORM_SIZES = {
+  SMALL: "sm",
+  MEDIUM: "md",
+  LARGE: "lg"
+};
+var BUTTON_SIZES = {
+  XS: "xs",
+  SM: "sm",
+  MD: "md",
+  LG: "lg",
+  XL: "xl"
+};
+var ICON_SIZES = {
+  XS: "xs",
+  SM: "sm",
+  MD: "md",
+  LG: "lg",
+  XL: "xl"
+};
+var TABLE_COLUMN_WIDTHS = {
+  NARROW: 80,
+  SMALL: 120,
+  STANDARD: 200,
+  WIDE: 300,
+  EXTRA_WIDE: 400
+};
+
+// src/states.ts
+var FORM_STATES = {
+  DEFAULT: "default",
+  FOCUS: "focus",
+  ERROR: "error",
+  SUCCESS: "success",
+  WARNING: "warning",
+  DISABLED: "disabled",
+  LOADING: "loading"
+};
+var BUTTON_STATES = {
+  DEFAULT: "default",
+  HOVER: "hover",
+  ACTIVE: "active",
+  FOCUS: "focus",
+  DISABLED: "disabled",
+  LOADING: "loading"
+};
+var CARD_STATES = {
+  DEFAULT: "default",
+  HOVER: "hover",
+  ACTIVE: "active",
+  DISABLED: "disabled",
+  LOADING: "loading"
+};
+var DATA_STATES = {
+  LOADING: "loading",
+  SUCCESS: "success",
+  ERROR: "error",
+  EMPTY: "empty",
+  IDLE: "idle"
+};
+var USER_STATUS = {
+  ACTIVE: "active",
+  INACTIVE: "inactive",
+  PENDING: "pending",
+  SUSPENDED: "suspended",
+  VERIFIED: "verified",
+  UNVERIFIED: "unverified"
+};
+
+// src/roles.ts
+var USER_ROLES = {
+  SUPER_ADMIN: "super_admin",
+  ADMIN: "admin",
+  MANAGER: "manager",
+  EDITOR: "editor",
+  MODERATOR: "moderator",
+  USER: "user",
+  VIEWER: "viewer",
+  GUEST: "guest"
+};
+var ROLE_HIERARCHY = {
+  [USER_ROLES.SUPER_ADMIN]: 100,
+  [USER_ROLES.ADMIN]: 90,
+  [USER_ROLES.MANAGER]: 80,
+  [USER_ROLES.EDITOR]: 70,
+  [USER_ROLES.MODERATOR]: 60,
+  [USER_ROLES.USER]: 50,
+  [USER_ROLES.VIEWER]: 30,
+  [USER_ROLES.GUEST]: 10
+};
+var PERMISSIONS = {
+  // User management
+  USER_CREATE: "user:create",
+  USER_READ: "user:read",
+  USER_UPDATE: "user:update",
+  USER_DELETE: "user:delete",
+  USER_MANAGE_ROLES: "user:manage_roles",
+  // System administration
+  SYSTEM_ADMIN: "system:admin",
+  SYSTEM_CONFIG: "system:config",
+  SYSTEM_LOGS: "system:logs",
+  SYSTEM_BACKUP: "system:backup",
+  // Data management
+  DATA_READ: "data:read",
+  DATA_WRITE: "data:write",
+  DATA_DELETE: "data:delete",
+  DATA_EXPORT: "data:export",
+  DATA_IMPORT: "data:import",
+  // Geographic data
+  GEO_READ: "geo:read",
+  GEO_WRITE: "geo:write",
+  GEO_ALERT: "geo:alert",
+  GEO_MONITOR: "geo:monitor"
+};
+var ROLE_PERMISSIONS = {
+  [USER_ROLES.SUPER_ADMIN]: Object.values(PERMISSIONS),
+  [USER_ROLES.ADMIN]: [
+    PERMISSIONS.USER_CREATE,
+    PERMISSIONS.USER_READ,
+    PERMISSIONS.USER_UPDATE,
+    PERMISSIONS.USER_DELETE,
+    PERMISSIONS.USER_MANAGE_ROLES,
+    PERMISSIONS.SYSTEM_CONFIG,
+    PERMISSIONS.SYSTEM_LOGS,
+    PERMISSIONS.DATA_READ,
+    PERMISSIONS.DATA_WRITE,
+    PERMISSIONS.DATA_DELETE,
+    PERMISSIONS.DATA_EXPORT,
+    PERMISSIONS.GEO_READ,
+    PERMISSIONS.GEO_WRITE,
+    PERMISSIONS.GEO_ALERT,
+    PERMISSIONS.GEO_MONITOR
+  ],
+  [USER_ROLES.MANAGER]: [
+    PERMISSIONS.USER_READ,
+    PERMISSIONS.USER_UPDATE,
+    PERMISSIONS.DATA_READ,
+    PERMISSIONS.DATA_WRITE,
+    PERMISSIONS.DATA_EXPORT,
+    PERMISSIONS.GEO_READ,
+    PERMISSIONS.GEO_WRITE,
+    PERMISSIONS.GEO_ALERT
+  ],
+  [USER_ROLES.EDITOR]: [
+    PERMISSIONS.USER_READ,
+    PERMISSIONS.DATA_READ,
+    PERMISSIONS.DATA_WRITE,
+    PERMISSIONS.GEO_READ,
+    PERMISSIONS.GEO_WRITE
+  ],
+  [USER_ROLES.MODERATOR]: [
+    PERMISSIONS.USER_READ,
+    PERMISSIONS.DATA_READ,
+    PERMISSIONS.GEO_READ,
+    PERMISSIONS.GEO_MONITOR
+  ],
+  [USER_ROLES.USER]: [
+    PERMISSIONS.DATA_READ,
+    PERMISSIONS.GEO_READ
+  ],
+  [USER_ROLES.VIEWER]: [
+    PERMISSIONS.DATA_READ,
+    PERMISSIONS.GEO_READ
+  ],
+  [USER_ROLES.GUEST]: [
+    PERMISSIONS.DATA_READ
+  ]
+};
+
+// src/forms.ts
+var FORM_TYPES = {
+  TEXT: "text",
+  EMAIL: "email",
+  PASSWORD: "password",
+  TEL: "tel",
+  URL: "url",
+  NUMBER: "number",
+  DATE: "date",
+  DATETIME_LOCAL: "datetime-local",
+  TIME: "time",
+  SEARCH: "search",
+  TEXTAREA: "textarea",
+  SELECT: "select",
+  CHECKBOX: "checkbox",
+  RADIO: "radio",
+  FILE: "file"
+};
+var INPUT_VARIANTS = {
+  DEFAULT: "default",
+  OUTLINE: "outline",
+  FILLED: "filled",
+  GHOST: "ghost",
+  UNDERLINE: "underline"
+};
+var VALIDATION_RULES = {
+  REQUIRED: "required",
+  MIN_LENGTH: "minLength",
+  MAX_LENGTH: "maxLength",
+  PATTERN: "pattern",
+  EMAIL: "email",
+  URL: "url",
+  NUMBER: "number",
+  MIN: "min",
+  MAX: "max",
+  CUSTOM: "custom"
+};
+var AUTOCOMPLETE_VALUES = {
+  OFF: "off",
+  ON: "on",
+  NAME: "name",
+  EMAIL: "email",
+  USERNAME: "username",
+  NEW_PASSWORD: "new-password",
+  CURRENT_PASSWORD: "current-password",
+  PHONE: "tel",
+  ORGANIZATION: "organization",
+  STREET_ADDRESS: "street-address",
+  COUNTRY: "country",
+  POSTAL_CODE: "postal-code"
+};
+var FIELD_SIZES = {
+  SM: "sm",
+  MD: "md",
+  LG: "lg",
+  FULL: "full"
+};
+
+// src/tables.ts
+var TABLE_VARIANTS = {
+  DEFAULT: "default",
+  STRIPED: "striped",
+  BORDERED: "bordered",
+  BORDERLESS: "borderless",
+  COMPACT: "compact",
+  SPACIOUS: "spacious"
+};
+var SORT_DIRECTIONS = {
+  ASC: "asc",
+  DESC: "desc",
+  NONE: "none"
+};
+var FILTER_TYPES = {
+  TEXT: "text",
+  SELECT: "select",
+  MULTISELECT: "multiselect",
+  DATE: "date",
+  DATE_RANGE: "dateRange",
+  NUMBER: "number",
+  NUMBER_RANGE: "numberRange",
+  BOOLEAN: "boolean",
+  CUSTOM: "custom"
+};
+var COLUMN_TYPES = {
+  TEXT: "text",
+  NUMBER: "number",
+  DATE: "date",
+  BOOLEAN: "boolean",
+  BADGE: "badge",
+  AVATAR: "avatar",
+  ACTIONS: "actions",
+  LINK: "link",
+  CUSTOM: "custom"
+};
+var TABLE_DENSITIES = {
+  COMPACT: "compact",
+  NORMAL: "normal",
+  COMFORTABLE: "comfortable"
+};
+var PAGINATION_SIZES = {
+  SMALL: 10,
+  MEDIUM: 25,
+  LARGE: 50,
+  EXTRA_LARGE: 100
+};
+var BULK_ACTIONS = {
+  SELECT_ALL: "selectAll",
+  SELECT_NONE: "selectNone",
+  SELECT_PAGE: "selectPage",
+  EXPORT: "export",
+  DELETE: "delete",
+  ARCHIVE: "archive",
+  ACTIVATE: "activate",
+  DEACTIVATE: "deactivate"
+};
+var EXPORT_FORMATS = {
+  CSV: "csv",
+  EXCEL: "xlsx",
+  PDF: "pdf",
+  JSON: "json"
+};
+
+// src/themes.ts
+var THEME_MODES = {
+  LIGHT: "light",
+  DARK: "dark",
+  AUTO: "auto",
+  SYSTEM: "system"
+};
+var COLOR_SCHEMES = {
+  PRIMARY: "primary",
+  SECONDARY: "secondary",
+  SUCCESS: "success",
+  WARNING: "warning",
+  ERROR: "error",
+  INFO: "info",
+  NEUTRAL: "neutral"
+};
+var COMPONENT_VARIANTS = {
+  PRIMARY: "primary",
+  SECONDARY: "secondary",
+  TERTIARY: "tertiary",
+  GHOST: "ghost",
+  OUTLINE: "outline",
+  LINK: "link",
+  DANGER: "danger",
+  SUCCESS: "success",
+  WARNING: "warning",
+  INFO: "info"
+};
+var ELEVATION_LEVELS = {
+  NONE: 0,
+  XS: 1,
+  SM: 2,
+  MD: 3,
+  LG: 4,
+  XL: 5,
+  XXL: 6
+};
+var BORDER_RADIUS = {
+  NONE: 0,
+  XS: 2,
+  SM: 4,
+  MD: 6,
+  LG: 8,
+  XL: 12,
+  XXL: 16,
+  FULL: 9999
+};
+var SPACING_SCALE = {
+  NONE: 0,
+  XS: 4,
+  SM: 8,
+  MD: 16,
+  LG: 24,
+  XL: 32,
+  XXL: 48,
+  XXXL: 64
+};
+
+// src/navigation.ts
+var NAVIGATION_TYPES = {
+  HORIZONTAL: "horizontal",
+  VERTICAL: "vertical",
+  SIDEBAR: "sidebar",
+  BREADCRUMB: "breadcrumb",
+  TAB: "tab",
+  STEPPER: "stepper"
+};
+var MENU_POSITIONS = {
+  TOP: "top",
+  BOTTOM: "bottom",
+  LEFT: "left",
+  RIGHT: "right",
+  CENTER: "center"
+};
+var LINK_TARGETS = {
+  SELF: "_self",
+  BLANK: "_blank",
+  PARENT: "_parent",
+  TOP: "_top"
+};
+var ROUTE_PATTERNS = {
+  HOME: "/",
+  LOGIN: "/login",
+  REGISTER: "/register",
+  ACCOUNT: "/account",
+  SETTINGS: "/settings",
+  DATA: "/data",
+  DASHBOARD: "/dashboard",
+  ADMIN: "/admin",
+  MFA_ENROLL: "/mfa-enroll",
+  PROFILE: "/profile",
+  USERS: "/users",
+  ROLES: "/roles",
+  AUDIT: "/audit",
+  REPORTS: "/reports",
+  GEO_ALERTS: "/geo-alerts",
+  MAPS: "/maps"
+};
+var PAGE_LAYOUTS = {
+  FULLSCREEN: "fullscreen",
+  CENTERED: "centered",
+  SIDEBAR: "sidebar",
+  SPLIT: "split",
+  MODAL: "modal"
+};
+
+// src/index.ts
+var LAYERA_CONSTANTS_VERSION = "1.0.0";
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  AUTOCOMPLETE_VALUES,
+  BORDER_RADIUS,
+  BULK_ACTIONS,
+  BUTTON_SIZES,
+  BUTTON_STATES,
+  CARD_STATES,
+  COLOR_SCHEMES,
+  COLUMN_TYPES,
+  COMPONENT_SIZES,
+  COMPONENT_VARIANTS,
+  DATA_STATES,
+  ELEVATION_LEVELS,
+  EXPORT_FORMATS,
+  FIELD_SIZES,
+  FILTER_TYPES,
+  FORM_SIZES,
+  FORM_STATES,
+  FORM_TYPES,
+  ICON_SIZES,
+  INPUT_VARIANTS,
+  LAYERA_CONSTANTS_VERSION,
+  LINK_TARGETS,
+  MENU_POSITIONS,
+  NAVIGATION_TYPES,
+  PAGE_LAYOUTS,
+  PAGINATION_SIZES,
+  PERMISSIONS,
+  ROLE_HIERARCHY,
+  ROLE_PERMISSIONS,
+  ROUTE_PATTERNS,
+  SORT_DIRECTIONS,
+  SPACING_SCALE,
+  TABLE_COLUMN_WIDTHS,
+  TABLE_DENSITIES,
+  TABLE_VARIANTS,
+  THEME_MODES,
+  USER_ROLES,
+  USER_STATUS,
+  VALIDATION_RULES
+});

@@ -1,0 +1,98 @@
+/* FormSection Styles */
+.layera-form-section {
+  margin-bottom: var(--layera-space-lg);
+}
+
+.layera-form-section__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--layera-space-sm);
+  margin-bottom: var(--layera-space-md);
+}
+
+.layera-form-section--collapsible .layera-form-section__header {
+  cursor: pointer;
+  padding: var(--layera-space-sm);
+  border-radius: var(--layera-radius-md);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.layera-form-section--collapsible .layera-form-section__header:hover {
+  background: var(--layera-color-background-hover);
+}
+
+.layera-form-section--collapsible .layera-form-section__header:focus {
+  outline: 2px solid var(--layera-color-primary-500);
+  outline-offset: 2px;
+}
+
+.layera-form-section__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+  color: var(--layera-color-primary-600);
+}
+
+.layera-form-section__header-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.layera-form-section__title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--layera-color-text-primary);
+  line-height: 1.5;
+}
+
+.layera-form-section__description {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.875rem;
+  color: var(--layera-color-text-secondary);
+  line-height: 1.5;
+}
+
+.layera-form-section__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--layera-color-text-secondary);
+  transition: transform 0.2s ease-in-out;
+}
+
+.layera-form-section__chevron {
+  transition: transform 0.2s ease-in-out;
+}
+
+.layera-form-section--collapsed .layera-form-section__chevron {
+  transform: rotate(-90deg);
+}
+
+.layera-form-section__content {
+  transition: all 0.2s ease-in-out;
+}
+
+.layera-form-section--collapsed .layera-form-section__content {
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .layera-form-section {
+    margin-bottom: var(--layera-space-md);
+  }
+
+  .layera-form-section__header {
+    margin-bottom: var(--layera-space-sm);
+  }
+
+  .layera-form-section__title {
+    font-size: 1.125rem;
+  }
+}

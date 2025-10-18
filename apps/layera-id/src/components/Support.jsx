@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 import { useAuthContext } from '@layera/auth-bridge';
+import { FormField, FormSection, FormActions, Select, TextArea } from '@layera/forms';
+import { Button } from '@layera/buttons';
+import { useLayeraTranslation } from '@layera/i18n';
+import { FORM_SIZES } from '@layera/constants';
+import '../../../../packages/forms/dist/index.css';
+import '../../../../packages/buttons/dist/styles.css';
 import './Support.css';
 
 const Support = () => {
@@ -7,6 +13,7 @@ const Support = () => {
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const { user } = useAuthContext();
+  const { t } = useLayeraTranslation();
 
   const supportEmail = import.meta.env.VITE_SUPPORT_EMAIL || 'support@layera.gr';
 
@@ -77,41 +84,55 @@ ${message}
         </div>
 
         <form onSubmit={handleSubmit} className="support-form">
-          <div className="form-group">
-            <label htmlFor="subject">Θέμα *</label>
-            <select
-              id="subject"
-              value={subject}
-              onChange={(e) => setSubject(e.target.value)}
+          <FormSection>
+            <FormField
+              label="Θέμα *"
               required
-              className="form-select"
             >
-              <option value="">Επιλέξτε θέμα</option>
-              <option value="Πρόβλημα σύνδεσης">Πρόβλημα σύνδεσης</option>
-              <option value="Πρόβλημα με MFA">Πρόβλημα με MFA</option>
-              <option value="Αίτημα αλλαγής ρόλου">Αίτημα αλλαγής ρόλου</option>
-              <option value="Τεχνικό πρόβλημα">Τεχνικό πρόβλημα</option>
-              <option value="Γενική ερώτηση">Γενική ερώτηση</option>
-              <option value="Άλλο">Άλλο</option>
-            </select>
-          </div>
+              <Select
+                value={subject}
+                onChange={(value) => setSubject(value)}
+                size={FORM_SIZES.MEDIUM}
+                placeholder="Επιλέξτε θέμα"
+                options={[
+                  { value: 'Πρόβλημα σύνδεσης', label: 'Πρόβλημα σύνδεσης' },
+                  { value: 'Πρόβλημα με MFA', label: 'Πρόβλημα με MFA' },
+                  { value: 'Αίτημα αλλαγής ρόλου', label: 'Αίτημα αλλαγής ρόλου' },
+                  { value: 'Τεχνικό πρόβλημα', label: 'Τεχνικό πρόβλημα' },
+                  { value: 'Γενική ερώτηση', label: 'Γενική ερώτηση' },
+                  { value: 'Άλλο', label: 'Άλλο' }
+                ]}
+                fullWidth
+                required
+              />
+            </FormField>
 
-          <div className="form-group">
-            <label htmlFor="message">Μήνυμα *</label>
-            <textarea
-              id="message"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
+            <FormField
+              label="Μήνυμα *"
               required
-              rows={6}
-              placeholder="Περιγράψτε το πρόβλημα ή την ερώτησή σας..."
-              className="form-textarea"
-            />
-          </div>
+            >
+              <TextArea
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                size={FORM_SIZES.MEDIUM}
+                placeholder="Περιγράψτε το πρόβλημα ή την ερώτησή σας..."
+                minRows={6}
+                fullWidth
+                required
+              />
+            </FormField>
 
-          <button type="submit" className="submit-button">
-            Αποστολή Αιτήματος
-          </button>
+            <FormActions>
+              <Button
+                type="submit"
+                variant="primary"
+                size="lg"
+                fullWidth
+              >
+                Αποστολή Αιτήματος
+              </Button>
+            </FormActions>
+          </FormSection>
         </form>
 
         <div className="support-footer">

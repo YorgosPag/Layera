@@ -3,6 +3,7 @@ import { Modal } from '../Modal';
 import { ModalHeader } from '../ModalHeader';
 import { ModalContent } from '../ModalContent';
 import { ModalFooter } from '../ModalFooter';
+import { MODAL_ANIMATION_DURATIONS, MODAL_SIZES } from '../../constants';
 import type { DialogProps } from '../../types';
 import './Dialog.css';
 
@@ -142,10 +143,10 @@ export const Dialog: React.FC<DialogProps> = ({
             disabled={loading || isConfirmLoading}
           >
             {(loading || isConfirmLoading) && (
-              <svg className="layera-dialog__spinner" width="16" height="16" viewBox="0 0 24 24">
+              <svg className="layera-dialog__spinner" width={MODAL_SIZES.spinner.width} height={MODAL_SIZES.spinner.height} viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="32" strokeDashoffset="32">
-                  <animate attributeName="stroke-dasharray" dur="2s" values="0 32;16 16;0 32;0 32" repeatCount="indefinite"/>
-                  <animate attributeName="stroke-dashoffset" dur="2s" values="0;-16;-32;-32" repeatCount="indefinite"/>
+                  <animate attributeName="stroke-dasharray" dur={MODAL_ANIMATION_DURATIONS.normal} values="0 32;16 16;0 32;0 32" repeatCount="indefinite"/>
+                  <animate attributeName="stroke-dashoffset" dur={MODAL_ANIMATION_DURATIONS.normal} values="0;-16;-32;-32" repeatCount="indefinite"/>
                 </circle>
               </svg>
             )}

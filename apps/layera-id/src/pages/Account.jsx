@@ -1,105 +1,141 @@
-import { useAuthContext } from '@layera/auth-bridge';
+import { useAuthContext, UserAvatar } from '@layera/auth-bridge';
 import RoleBadge from "../components/RoleBadge";
 import MfaStatus from "../components/MfaStatus";
-import { Link } from "react-router-dom";
+import QuickActions from "../components/QuickActions";
+import { Link, useNavigate } from "react-router-dom";
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
 import { ThemeSwitcher } from '@layera/theme-switcher';
-import { UserIcon, LockIcon, UnlockIcon, WarningIcon, SettingsIcon } from '../components/icons/LayeraIcons';
+import { Button } from '@layera/buttons';
+import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader } from '@layera/layout';
+import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
+import { UserIcon, LockIcon, UnlockIcon, WarningIcon, SettingsIcon, ChartIcon } from '../components/icons/LayeraIcons';
+import '../../../../packages/layout/dist/styles.css';
+import '../../../../packages/cards/dist/styles.css';
 import './Account.css';
 
 export default function Account() {
-  const { user } = useAuthContext();
+  const { user, signOut } = useAuthContext();
   const { t, formatters } = useLayeraTranslation();
+  const navigate = useNavigate();
 
   if (!user) return null;
 
-  const getInitials = (email) => {
-    return email ? email.substring(0, 2).toUpperCase() : 'GP';
+  const handleLogout = async () => {
+    const result = await signOut();
+    if (result.success) {
+      navigate('/login');
+    } else {
+      console.error('Logout error:', result.error);
+    }
   };
 
+  // Header actions
+  const headerActions = (
+    <HeaderActionsGroup>
+      <LanguageSwitcher variant="toggle" showFlags={true} />
+      <ThemeSwitcher variant="icon" size="md" />
+      {user && (
+        <>
+          <UserAvatar
+            user={user}
+            size="medium"
+            onClick={() => navigate('/account')}
+          />
+          <Button variant="ghost" size="sm" onClick={handleLogout}>
+            {t('navigation.logout')}
+          </Button>
+        </>
+      )}
+    </HeaderActionsGroup>
+  );
+
   return (
-    <div className="account-container">
-      <nav className="account-nav">
-        <div className="nav-brand">
-          <h1>Layera</h1>
-        </div>
-        <div className="nav-user">
-          <LanguageSwitcher
-            variant="toggle"
-            className="language-switcher-nav"
-            showFlags={true}
+    <AppShell
+      layout="fullscreen"
+      header={
+        <LayeraHeader
+          title={t('app.name')}
+          subtitle={t('app.subtitle')}
+          variant="standard"
+          actions={headerActions}
+        />
+      }
+    >
+      <PageContainer maxWidth="full" padding="none">
+        <div style={{ padding: 'var(--layera-space-lg)' }}>
+          <PageHeader
+            title={t('account.title')}
+            subtitle={t('account.info')}
           />
-          <ThemeSwitcher
-            variant="icon"
-            size="md"
-            className="theme-switcher-nav"
-          />
         </div>
-      </nav>
 
-      <div className="account-content">
-        <div className="account-card">
-          <div className="account-header">
-            <div className="account-avatar">
-              {getInitials(user.email)}
-            </div>
-            <div className="account-title">
-              <h2>{t('account.title')}</h2>
-              <p className="account-email">{user.email}</p>
-            </div>
-          </div>
-
-          <div className="account-info">
-            <div className="info-section">
-              <h3>{t('account.info')}</h3>
-              <div className="badges-container">
-                <div className="account-badge role-badge">
-                  <UserIcon size="sm" theme="neutral" />
-                  {formatters.role(user.layeraClaims?.role || "private")}
+        <div style={{ padding: 'var(--layera-space-lg)' }}>
+          <DashboardSection title={t('account.info')}>
+          <DashboardGrid columns={{ xs: 1, sm: 1, md: 1, lg: 1 }}>
+            <DashboardCard
+              title={t('data.personalInfo')}
+              variant="info"
+            >
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                <div>
+                  <strong>{t('data.fields.email')}:</strong> {user.email}
                 </div>
-                <div className={`account-badge mfa-badge ${!user.layeraClaims?.mfa_verified ? 'inactive' : ''}`}>
-                  {user.layeraClaims?.mfa_verified ? <LockIcon size="sm" theme="success" /> : <UnlockIcon size="sm" theme="warning" />}
-                  {user.layeraClaims?.mfa_verified ? t('account.badges.mfaActive') : t('account.badges.mfaInactive')}
+                <div>
+                  <strong>{t('data.fields.role')}:</strong> {formatters.role(user.layeraClaims?.role || "private")}
+                </div>
+                <div>
+                  <strong>{t('data.fields.emailVerified')}:</strong> {user.emailVerified ? t('status.verified') : t('status.unverified')}
+                </div>
+                <div>
+                  <strong>{t('data.fields.mfaEnabled')}:</strong> {user.layeraClaims?.mfa_verified ? t('status.enabled') : t('status.disabled')}
                 </div>
               </div>
-            </div>
+            </DashboardCard>
 
-            <div className="status-messages">
-              {!user.emailVerified && (
-                <div className="warning-message">
-                  <WarningIcon size="sm" theme="warning" /> {t('account.messages.emailNotVerified')}
-                </div>
-              )}
-              {!user.layeraClaims?.mfa_verified && (
-                <div className="info-message">
-                  <LockIcon size="sm" theme="info" /> {t('account.messages.mfaRecommendation')}
-                </div>
-              )}
-            </div>
-          </div>
-
-          <div className="account-actions">
-            <Link to="/dashboard" className="back-link">
-              ← {t('navigation.back')} Dashboard
-            </Link>
-
-            <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
-              {!user.layeraClaims?.mfa_verified && (
-                <Link to="/mfa-enroll" className="action-link">
-                  <button className="action-button">
-                    <LockIcon size="sm" theme="neutral" /> {t('account.actions.enable2fa')}
-                  </button>
-                </Link>
-              )}
-              <Link to="/settings" className="action-link">
-                <button className="action-button secondary">
-                  <SettingsIcon size="sm" theme="neutral" /> {t('account.actions.settings')}
-                </button>
-              </Link>
-            </div>
-          </div>
+            <DashboardCard
+              title={t('account.actions.settings')}
+              variant="info"
+            >
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                {!user.emailVerified && (
+                  <div className="warning-message" style={{ color: 'var(--color-warning)', fontSize: '0.875rem' }}>
+                    <WarningIcon size="sm" theme="warning" /> {t('account.messages.emailNotVerified')}
+                  </div>
+                )}
+                {!user.layeraClaims?.mfa_verified && (
+                  <div className="info-message" style={{ color: 'var(--color-info)', fontSize: '0.875rem' }}>
+                    <LockIcon size="sm" theme="info" /> {t('account.messages.mfaRecommendation')}
+                  </div>
+                )}
+              </div>
+            </DashboardCard>
+          </DashboardGrid>
+          </DashboardSection>
         </div>
-      </div>
-    </div>
+
+        {/* MFA Ενέργεια αν χρειάζεται */}
+        {!user.layeraClaims?.mfa_verified && (
+          <div style={{ padding: 'var(--layera-space-lg)' }}>
+            <DashboardSection title={t('account.security')}>
+              <DashboardGrid columns={{ xs: 1, sm: 1, md: 1, lg: 1 }}>
+                <DashboardCard
+                  title={t('account.actions.enable2fa')}
+                  variant="actions"
+                  clickable
+                  onClick={() => navigate('/mfa-enroll')}
+                >
+                  <LockIcon size="lg" theme="info" />
+                </DashboardCard>
+              </DashboardGrid>
+            </DashboardSection>
+          </div>
+        )}
+
+        {/* Γρήγορες Ενέργειες */}
+        <div style={{ padding: 'var(--layera-space-lg)' }}>
+          <QuickActions />
+        </div>
+      </PageContainer>
+    </AppShell>
   );
 }

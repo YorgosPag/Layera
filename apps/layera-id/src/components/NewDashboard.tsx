@@ -7,9 +7,10 @@ import { Button } from '@layera/buttons';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
-import { CheckIcon, XIcon } from './icons/LayeraIcons';
-import '@layera/layout/styles';
-import '@layera/cards/styles';
+import { CheckIcon, XIcon, UserIcon, SettingsIcon, FolderIcon, LockIcon, ShieldIcon, ChartIcon } from './icons/LayeraIcons';
+import QuickActions from './QuickActions';
+import '../../../../packages/layout/dist/styles.css';
+import '../../../../packages/cards/dist/styles.css';
 
 /**
  * NewDashboard - Modernized dashboard με @layera/layout και @layera/cards
@@ -50,36 +51,39 @@ const NewDashboard: React.FC = () => {
 
   return (
     <AppShell
-      layout="dashboard"
+      layout="fullscreen"
       header={
         <LayeraHeader
-          title="Layera ID"
-          subtitle="Enterprise Identity Management"
+          title={t('app.name')}
+          subtitle={t('app.subtitle')}
           variant="standard"
           actions={headerActions}
         />
       }
     >
-      <PageContainer maxWidth="xl" padding="lg">
-        <PageHeader
-          title={t('dashboard:welcome', { name: user?.displayName || user?.email })}
-          subtitle={user ? t('dashboard:user.successfulLogin', { email: user.email }) : ''}
-        />
+      <PageContainer maxWidth="full" padding="none">
+        <div style={{ padding: 'var(--layera-space-lg)' }}>
+          <PageHeader
+            title={t('dashboard:welcome', { name: user?.displayName || user?.email })}
+            subtitle={user ? t('dashboard:user.successfulLogin', { email: user.email }) : ''}
+          />
+        </div>
 
         {user && (
           <>
             {/* User Status Cards */}
-            <DashboardSection
-              title={t('dashboard:user.info')}
-              subtitle="Overview of your account status"
-            >
-              <DashboardGrid columns={{ xs: 1, md: 2, lg: 4 }}>
+            <div style={{ padding: 'var(--layera-space-lg)' }}>
+              <DashboardSection
+                title={t('dashboard:user.info')}
+                subtitle={t('dashboard.overview')}
+              >
+              <DashboardGrid columns={{ xs: 1, sm: 2, md: 2, lg: 4 }}>
                 <DashboardCard
                   title={t('data.fields.emailVerified')}
                   variant="status"
                   metric={{
                     value: user.emailVerified ? t('status.verified') : t('status.unverified'),
-                    label: 'Email Status'
+                    label: t('dashboard.emailStatus')
                   }}
                 >
                   <div style={{ textAlign: 'center', padding: '1rem' }}>
@@ -96,7 +100,7 @@ const NewDashboard: React.FC = () => {
                   variant="status"
                   metric={{
                     value: user.layeraClaims?.mfa_verified ? t('status.enabled') : t('status.disabled'),
-                    label: 'MFA Status'
+                    label: t('dashboard.mfaStatus')
                   }}
                 >
                   <div style={{ textAlign: 'center', padding: '1rem' }}>
@@ -113,28 +117,30 @@ const NewDashboard: React.FC = () => {
                   variant="info"
                   metric={{
                     value: t(`roles.${user.layeraClaims?.role || 'private'}`),
-                    label: 'Account Role'
+                    label: t('dashboard.accountRole')
                   }}
                 />
 
                 <DashboardCard
-                  title="Account Age"
+                  title={t('dashboard.accountAge')}
                   variant="stats"
                   metric={{
                     value: user.metadata?.creationTime
                       ? Math.floor((Date.now() - new Date(user.metadata.creationTime).getTime()) / (1000 * 60 * 60 * 24))
                       : 0,
-                    label: 'Days since created'
+                    label: t('dashboard.daysSinceCreated')
                   }}
                 />
               </DashboardGrid>
-            </DashboardSection>
+              </DashboardSection>
+            </div>
 
             {/* User Details Card */}
-            <DashboardSection title="Account Details">
-              <DashboardGrid columns={{ xs: 1, lg: 2 }}>
+            <div style={{ padding: 'var(--layera-space-lg)' }}>
+              <DashboardSection title={t('dashboard.accountDetails')}>
+                <DashboardGrid columns={{ xs: 1, sm: 1, md: 1, lg: 2 }}>
                 <DashboardCard
-                  title="Personal Information"
+                  title={t('dashboard.personalInformation')}
                   variant="info"
                   className="layera-dashboard-card--span-2"
                 >
@@ -162,61 +168,51 @@ const NewDashboard: React.FC = () => {
                   </div>
                 </DashboardCard>
               </DashboardGrid>
-            </DashboardSection>
+              </DashboardSection>
+            </div>
 
-            {/* Quick Actions */}
-            <DashboardSection title={t('dashboard:quickActions.title')}>
-              <DashboardGrid columns={{ xs: 1, sm: 2, lg: 3 }}>
-                <DashboardCard
-                  title={t('dashboard:cards.account.title')}
-                  variant="actions"
-                  clickable
-                  onClick={() => navigate('/account')}
-                >
-                  <Text>Manage your account settings and profile information</Text>
-                </DashboardCard>
-
-                <DashboardCard
-                  title={t('dashboard:cards.settings.title')}
-                  variant="actions"
-                  clickable
-                  onClick={() => navigate('/settings')}
-                >
-                  <Text>Configure application preferences and security settings</Text>
-                </DashboardCard>
-
-                <DashboardCard
-                  title={t('dashboard:cards.data.title')}
-                  variant="actions"
-                  clickable
-                  onClick={() => navigate('/data')}
-                >
-                  <Text>View and manage your data and privacy settings</Text>
-                </DashboardCard>
-
-                {!user?.layeraClaims?.mfa_verified && (
+            {/* MFA Action if needed */}
+            {!user?.layeraClaims?.mfa_verified && (
+              <div style={{ padding: 'var(--layera-space-lg)' }}>
+                <DashboardSection title={t('account.security')}>
+                  <DashboardGrid columns={{ xs: 1, sm: 1, md: 1, lg: 1 }}>
                   <DashboardCard
                     title={t('dashboard:cards.mfa.title')}
                     variant="stats"
                     clickable
                     onClick={() => navigate('/mfa-enroll')}
                   >
-                    <Text>Enable multi-factor authentication for enhanced security</Text>
+                    <LockIcon size="lg" theme="info" />
+                    <Text>{t('dashboard.actionDescriptions.enableMfa')}</Text>
                   </DashboardCard>
-                )}
+                </DashboardGrid>
+                </DashboardSection>
+              </div>
+            )}
 
-                {user?.layeraClaims?.role === 'admin' && (
+            {/* Admin Actions */}
+            {user?.layeraClaims?.role === 'admin' && (
+              <div style={{ padding: 'var(--layera-space-lg)' }}>
+                <DashboardSection title={t('dashboard:admin.roleManagement')}>
+                  <DashboardGrid columns={{ xs: 1, sm: 1, md: 1, lg: 1 }}>
                   <DashboardCard
                     title={t('dashboard:admin.roleManagement')}
                     variant="chart"
                     clickable
                     onClick={() => navigate('/admin/roles')}
                   >
+                    <ShieldIcon size="lg" theme="info" />
                     <Text>Manage user roles and permissions</Text>
                   </DashboardCard>
-                )}
-              </DashboardGrid>
-            </DashboardSection>
+                </DashboardGrid>
+                </DashboardSection>
+              </div>
+            )}
+
+            {/* Quick Actions */}
+            <div style={{ padding: 'var(--layera-space-lg)' }}>
+              <QuickActions />
+            </div>
           </>
         )}
       </PageContainer>

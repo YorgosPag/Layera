@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { useAuthContext, GoogleSignInButton } from '@layera/auth-bridge';
 import { useNavigate, Link } from 'react-router-dom';
+import { FormField, FormSection, FormActions, Input } from '@layera/forms';
+import { Button } from '@layera/buttons';
+import { useLayeraTranslation } from '@layera/i18n';
+import { FORM_TYPES, FORM_SIZES } from '@layera/constants';
+import '../../../../packages/forms/dist/index.css';
+import '../../../../packages/buttons/dist/styles.css';
 import './Auth.css';
 
 const Register = () => {
@@ -11,17 +17,18 @@ const Register = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { signUp, signInWithGoogle } = useAuthContext();
+  const { t } = useLayeraTranslation();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      return setError('Οι κωδικοί δεν ταιριάζουν');
+      return setError(t('errors.passwordMismatch'));
     }
 
     if (password.length < 6) {
-      return setError('Ο κωδικός πρέπει να έχει τουλάχιστον 6 χαρακτήρες');
+      return setError(t('errors.passwordTooShort'));
     }
 
     try {
@@ -38,10 +45,10 @@ const Register = () => {
       if (result.success) {
         navigate('/dashboard');
       } else {
-        setError(result.error || 'Αποτυχία εγγραφής. Παρακαλώ προσπαθήστε ξανά.');
+        setError(result.error || t('errors.unknownError'));
       }
     } catch (error) {
-      setError('Αποτυχία εγγραφής. Παρακαλώ προσπαθήστε ξανά.');
+      setError(t('errors.unknownError'));
       console.error(error);
     }
 
@@ -58,10 +65,10 @@ const Register = () => {
       if (result.success) {
         navigate('/dashboard');
       } else {
-        setError(result.error || 'Αποτυχία σύνδεσης με Google');
+        setError(result.error || t('errors.authError'));
       }
     } catch (error) {
-      setError('Αποτυχία σύνδεσης με Google');
+      setError(t('errors.authError'));
       console.error(error);
     } finally {
       setLoading(false);
@@ -71,60 +78,90 @@ const Register = () => {
   return (
     <div className="auth-container">
       <div className="auth-card">
-        <h2>Εγγραφή</h2>
+        <h2>{t('auth.register')}</h2>
         {error && <div className="error-message">{error}</div>}
 
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="displayName">Όνομα Χρήστη</label>
-            <input
-              type="text"
-              id="displayName"
-              value={displayName}
-              onChange={(e) => setDisplayName(e.target.value)}
-              placeholder="Εισάγετε το όνομά σας"
-            />
-          </div>
+          <FormSection>
+            <FormField
+              labelKey="forms.labels.name"
+              hintKey="forms.hints.displayName"
+            >
+              <Input
+                type={FORM_TYPES.TEXT}
+                size={FORM_SIZES.MEDIUM}
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+                placeholderKey="forms.placeholders.displayName"
+                disabled={loading}
+                fullWidth
+                autoComplete="name"
+              />
+            </FormField>
 
-          <div className="form-group">
-            <label htmlFor="email">Email *</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+            <FormField
+              labelKey="forms.labels.email"
               required
-              placeholder="Εισάγετε το email σας"
-            />
-          </div>
+            >
+              <Input
+                type={FORM_TYPES.EMAIL}
+                size={FORM_SIZES.MEDIUM}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholderKey="forms.placeholders.email"
+                disabled={loading}
+                fullWidth
+                autoComplete="email"
+              />
+            </FormField>
 
-          <div className="form-group">
-            <label htmlFor="password">Κωδικός *</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+            <FormField
+              labelKey="forms.labels.password"
+              hintKey="forms.hints.passwordRequirements"
               required
-              placeholder="Τουλάχιστον 6 χαρακτήρες"
-            />
-          </div>
+            >
+              <Input
+                type={FORM_TYPES.PASSWORD}
+                size={FORM_SIZES.MEDIUM}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholderKey="forms.placeholders.password"
+                disabled={loading}
+                fullWidth
+                autoComplete="new-password"
+              />
+            </FormField>
 
-          <div className="form-group">
-            <label htmlFor="confirmPassword">Επιβεβαίωση Κωδικού *</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+            <FormField
+              labelKey="forms.labels.confirmPassword"
               required
-              placeholder="Εισάγετε ξανά τον κωδικό"
-            />
-          </div>
+            >
+              <Input
+                type={FORM_TYPES.PASSWORD}
+                size={FORM_SIZES.MEDIUM}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholderKey="forms.placeholders.confirmPassword"
+                disabled={loading}
+                fullWidth
+                autoComplete="new-password"
+              />
+            </FormField>
 
-          <button type="submit" disabled={loading} className="submit-button">
-            {loading ? 'Εγγραφή...' : 'Εγγραφή'}
-          </button>
+            <FormActions>
+              <Button
+                type="submit"
+                variant="primary"
+                size="lg"
+                disabled={loading}
+                loading={loading}
+                loadingText={t('common.processing')}
+                fullWidth
+              >
+                {t('auth.register')}
+              </Button>
+            </FormActions>
+          </FormSection>
         </form>
 
         <div className="auth-divider">
@@ -138,7 +175,7 @@ const Register = () => {
 
         <div className="auth-links">
           <p>
-            Έχετε ήδη λογαριασμό; <Link to="/login">Σύνδεση</Link>
+            {t('auth.hasAccount')} <Link to="/login">{t('auth.login')}</Link>
           </p>
         </div>
       </div>

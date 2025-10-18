@@ -61,6 +61,7 @@ export const AppShell: React.FC<AppShellProps> = ({
     'layera-app-shell',
     `layera-app-shell--${layout}`,
     sidebarCollapsed && !isMobile ? 'sidebar-collapsed' : '',
+    !sidebar ? 'no-sidebar' : '',
     className
   ].filter(Boolean).join(' ');
 
