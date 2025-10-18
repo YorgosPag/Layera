@@ -16,7 +16,9 @@
   },
   "dependencies": {
     "@layera/auth-bridge": "*",
+    "@layera/cards": "*",
     "@layera/i18n": "*",
+    "@layera/layout": "*",
     "@layera/typography": "*",
     "@layera/buttons": "*",
     "@layera/theme-switcher": "*",

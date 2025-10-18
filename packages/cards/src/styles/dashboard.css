@@ -1,0 +1,182 @@
+/**
+ * Layera Cards System - Dashboard Grid Styles
+ */
+
+/* ============ DASHBOARD GRID ============ */
+
+.layera-dashboard-grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(var(--grid-cols-xs, 1), 1fr);
+  gap: var(--layera-dashboard-grid-gap-md);
+}
+
+/* Gap variants */
+.layera-dashboard-grid--gap-sm {
+  gap: var(--layera-dashboard-grid-gap-sm);
+}
+
+.layera-dashboard-grid--gap-md {
+  gap: var(--layera-dashboard-grid-gap-md);
+}
+
+.layera-dashboard-grid--gap-lg {
+  gap: var(--layera-dashboard-grid-gap-lg);
+}
+
+/* Responsive grid columns */
+@media (min-width: 640px) {
+  .layera-dashboard-grid {
+    grid-template-columns: repeat(var(--grid-cols-sm, 1), 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .layera-dashboard-grid {
+    grid-template-columns: repeat(var(--grid-cols-md, 2), 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .layera-dashboard-grid {
+    grid-template-columns: repeat(var(--grid-cols-lg, 3), 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .layera-dashboard-grid {
+    grid-template-columns: repeat(var(--grid-cols-xl, 4), 1fr);
+  }
+}
+
+/* ============ DASHBOARD SECTION ============ */
+
+.layera-dashboard-section {
+  margin-bottom: var(--layera-space-8, 2rem);
+}
+
+.layera-dashboard-section:last-child {
+  margin-bottom: 0;
+}
+
+.layera-dashboard-section__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--layera-space-4, 1rem);
+  margin-bottom: var(--layera-space-6, 1.5rem);
+}
+
+.layera-dashboard-section__header-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.layera-dashboard-section__title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: inherit;
+}
+
+.layera-dashboard-section__subtitle {
+  margin: var(--layera-space-1, 0.25rem) 0 0 0;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: hsl(var(--muted-foreground, 0 0% 60%));
+}
+
+.layera-dashboard-section__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--layera-space-2, 0.5rem);
+  flex-shrink: 0;
+}
+
+.layera-dashboard-section__content {
+  width: 100%;
+}
+
+/* ============ RESPONSIVE DASHBOARD SECTIONS ============ */
+
+@media (max-width: 767px) {
+  .layera-dashboard-section__header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--layera-space-3, 0.75rem);
+  }
+
+  .layera-dashboard-section__actions {
+    justify-content: flex-end;
+  }
+
+  .layera-dashboard-section__title {
+    font-size: 1.25rem;
+  }
+}
+
+/* ============ CARD GRID ITEM UTILITIES ============ */
+
+/* Card spanning utilities */
+.layera-dashboard-card--span-2 {
+  grid-column: span 2;
+}
+
+.layera-dashboard-card--span-3 {
+  grid-column: span 3;
+}
+
+.layera-dashboard-card--span-full {
+  grid-column: 1 / -1;
+}
+
+/* Responsive card spanning */
+@media (max-width: 767px) {
+  .layera-dashboard-card--span-2,
+  .layera-dashboard-card--span-3 {
+    grid-column: span 1;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .layera-dashboard-card--span-3 {
+    grid-column: span 2;
+  }
+}
+
+/* ============ DASHBOARD CARD HEIGHTS ============ */
+
+.layera-dashboard-card--height-sm {
+  min-height: 120px;
+}
+
+.layera-dashboard-card--height-md {
+  min-height: 180px;
+}
+
+.layera-dashboard-card--height-lg {
+  min-height: 240px;
+}
+
+.layera-dashboard-card--height-xl {
+  min-height: 320px;
+}
+
+/* ============ PRINT STYLES ============ */
+
+@media print {
+  .layera-dashboard-grid {
+    display: block;
+  }
+
+  .layera-dashboard-card {
+    break-inside: avoid;
+    margin-bottom: var(--layera-space-4, 1rem);
+  }
+
+  .layera-dashboard-section__actions {
+    display: none;
+  }
+}

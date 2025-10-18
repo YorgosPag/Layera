@@ -5,7 +5,7 @@ import { ThemeProvider } from '@layera/theme-switcher'
 import '@layera/theme-switcher/styles'
 import Login from './components/Login'
 import Register from './components/Register'
-import Dashboard from './components/Dashboard'
+import NewDashboard from './components/NewDashboard'
 import Verify from './components/Verify'
 import MfaEnroll from './components/MfaEnroll'
 import Account from './pages/Account'
@@ -61,7 +61,7 @@ function App() {
           path="/dashboard"
           element={
             <ProtectedRoute>
-              <Dashboard />
+              <NewDashboard />
             </ProtectedRoute>
           }
         />

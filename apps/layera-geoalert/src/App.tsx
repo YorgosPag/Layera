@@ -4,14 +4,16 @@ import { DeviceOverrideProvider, DeviceSimulator } from '@layera/viewport';
 import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { ThemeProvider, ThemeSwitcher } from '@layera/theme-switcher';
+import { AppShell } from '@layera/layout';
 import '@layera/typography/styles';
 import '@layera/buttons/styles';
 import '@layera/theme-switcher/styles';
+import '@layera/layout/styles';
 import { ArrowLeftIcon, MapIcon, PuzzleIcon, LinkIcon, FolderIcon, ZapIcon, CheckIcon, PartyIcon } from './components/icons/LayeraIcons';
 import LanguageSwitcher from './components/LanguageSwitcher';
+import { GeoHeader } from './components/GeoHeader';
+import { SimpleNavigationRail } from './components/SimpleNavigationRail';
 import GeoMap, { DrawnArea } from './components/GeoMap';
-import NavigationRail from './modules/sidebars/NavigationRail';
-import AreasPanel from './modules/sidebars/AreasPanel';
 
 function App() {
   const { t } = useTranslation();
@@ -71,57 +73,15 @@ function App() {
       <ThemeProvider defaultTheme="system" storageKey="layera-geoalert-theme">
         <DeviceOverrideProvider>
           <DeviceSimulator>
-          <div style={{ height: '100vh', width: '100vw', position: 'fixed', top: 0, left: 0, display: 'flex' }}>
-          {/* Black Navigation Rail */}
-        <div style={{
-          width: '64px',
-          height: '100vh',
-          backgroundColor: 'var(--layera-bg-secondary)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          padding: '1rem 0',
-          zIndex: 1000
-        }}>
-          <Button
-            variant="ghost"
-            size="md"
-            onClick={() => setIsMapMode(false)}
-            icon={<ArrowLeftIcon size="sm" theme="neutral" />}
-            iconPosition="only"
-            title="Πίσω"
-            className="layera-mb-4"
-          />
-        </div>
-
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-          {/* Header */}
-          <div style={{
-            height: '64px',
-            backgroundColor: 'var(--layera-bg-primary)',
-            borderBottom: '1px solid var(--layera-border-primary)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            padding: '0 1rem',
-            zIndex: 100
-          }}>
-            <Heading as="h1" size="xl" color="primary" className="layera-flex layera-items-center layera-gap-2">
-              <MapIcon size="md" theme="primary" />
-              {t('title')} - Layera GeoCanvas
-            </Heading>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <ThemeSwitcher variant="icon" size="md" />
-              <LanguageSwitcher />
-            </div>
-          </div>
-
-          {/* Map Container */}
-          <div style={{ flex: 1, position: 'relative' }}>
-            <GeoMap onAreaCreated={handleAreaCreated} />
-          </div>
-        </div>
-          </div>
+            <AppShell
+              layout="fullscreen-map"
+              header={<GeoHeader />}
+              sidebar={
+                <SimpleNavigationRail onBackClick={() => setIsMapMode(false)} />
+              }
+            >
+              <GeoMap onAreaCreated={handleAreaCreated} />
+            </AppShell>
           </DeviceSimulator>
         </DeviceOverrideProvider>
       </ThemeProvider>
@@ -207,10 +167,10 @@ function App() {
             <CheckIcon size="xs" theme="success" /> {t('enterpriseArchitecture')}
           </Text>
           <Text size="base" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
-            <CheckIcon size="xs" theme="success" /> Dual Sidebar Layout: NavigationRail + AreasPanel
+            <CheckIcon size="xs" theme="success" /> @layera/layout Integration: AppShell + LayeraHeader
           </Text>
           <Text size="base" className="layera-flex layera-items-center layera-gap-2">
-            <CheckIcon size="xs" theme="success" /> Geo-Canvas Micromodules Integration
+            <CheckIcon size="xs" theme="success" /> Unified Layout System με fullscreen-map layout
           </Text>
         </div>
       </div>
@@ -249,7 +209,7 @@ function App() {
             <LinkIcon size="sm" theme="info" /> {t('crossAppNavigation')}
           </Text>
           <Text size="sm" color="secondary" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
-            <FolderIcon size="sm" theme="info" /> {t('dualSidebarLayout')}
+            <FolderIcon size="sm" theme="info" /> Unified Layout System: @layera/layout
           </Text>
           <Text size="sm" color="secondary" className="layera-flex layera-items-center layera-gap-2">
             <ZapIcon size="sm" theme="warning" /> {t('readyForImplementation')}

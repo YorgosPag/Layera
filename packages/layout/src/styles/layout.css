@@ -1,0 +1,214 @@
+/**
+ * Layera Layout System - Core Layout Styles
+ * Βασικά CSS utilities και layout patterns
+ */
+
+/* ============ BASE LAYOUT UTILITIES ============ */
+
+.layera-layout-container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--layera-layout-bg);
+}
+
+/* ============ APP SHELL LAYOUTS ============ */
+
+.layera-app-shell {
+  display: grid;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--layera-layout-bg);
+}
+
+/* Dashboard Layout - Header + Sidebar + Content */
+.layera-app-shell--dashboard {
+  grid-template-areas:
+    "header header"
+    "sidebar content";
+  grid-template-rows: var(--layera-header-height) 1fr;
+  grid-template-columns: var(--layera-sidebar-width) 1fr;
+}
+
+.layera-app-shell--dashboard.sidebar-collapsed {
+  grid-template-columns: var(--layera-sidebar-width-collapsed) 1fr;
+}
+
+/* Fullscreen Layout - Header + Content (no sidebar) */
+.layera-app-shell--fullscreen {
+  grid-template-areas:
+    "header"
+    "content";
+  grid-template-rows: var(--layera-header-height) 1fr;
+  grid-template-columns: 1fr;
+}
+
+/* Fullscreen Map Layout - Minimal header + sidebar + map content */
+.layera-app-shell--fullscreen-map {
+  grid-template-areas:
+    "header header"
+    "sidebar content";
+  grid-template-rows: var(--layera-header-height-minimal) 1fr;
+  grid-template-columns: var(--layera-sidebar-width-collapsed) 1fr;
+}
+
+/* Minimal Layout - Just content */
+.layera-app-shell--minimal {
+  grid-template-areas: "content";
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
+}
+
+/* Dual Sidebar Layout */
+.layera-app-shell--dual-sidebar {
+  grid-template-areas:
+    "header header header"
+    "sidebar-left content sidebar-right";
+  grid-template-rows: var(--layera-header-height) 1fr;
+  grid-template-columns: var(--layera-sidebar-width) 1fr var(--layera-sidebar-width);
+}
+
+/* ============ LAYOUT REGIONS ============ */
+
+.layera-layout-header {
+  grid-area: header;
+  z-index: var(--layera-z-header);
+  border-bottom: 1px solid var(--layera-layout-border);
+  background-color: var(--layera-header-bg);
+}
+
+.layera-layout-sidebar {
+  grid-area: sidebar;
+  z-index: var(--layera-z-sidebar);
+  border-right: 1px solid var(--layera-layout-border);
+  background-color: var(--layera-sidebar-bg);
+  overflow-y: auto;
+}
+
+.layera-layout-sidebar-left {
+  grid-area: sidebar-left;
+  z-index: var(--layera-z-sidebar);
+  border-right: 1px solid var(--layera-layout-border);
+  background-color: var(--layera-sidebar-bg);
+}
+
+.layera-layout-sidebar-right {
+  grid-area: sidebar-right;
+  z-index: var(--layera-z-sidebar);
+  border-left: 1px solid var(--layera-layout-border);
+  background-color: var(--layera-sidebar-bg);
+}
+
+.layera-layout-content {
+  grid-area: content;
+  background-color: var(--layera-content-bg);
+  overflow-y: auto;
+  position: relative;
+}
+
+.layera-layout-footer {
+  grid-area: footer;
+  border-top: 1px solid var(--layera-layout-border);
+  background-color: var(--layera-header-bg);
+}
+
+/* ============ RESPONSIVE UTILITIES ============ */
+
+/* Mobile breakpoint adjustments */
+@media (max-width: 767px) {
+  .layera-app-shell--dashboard {
+    grid-template-areas:
+      "header"
+      "content";
+    grid-template-rows: var(--layera-header-height) 1fr;
+    grid-template-columns: 1fr;
+  }
+
+  .layera-layout-sidebar {
+    position: fixed;
+    top: var(--layera-header-height);
+    left: 0;
+    width: var(--layera-sidebar-width);
+    height: calc(100vh - var(--layera-header-height));
+    transform: translateX(-100%);
+    transition: transform var(--layera-transition-normal);
+  }
+
+  .layera-layout-sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+
+  .layera-layout-sidebar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0 0 0 / 0.5);
+    z-index: calc(var(--layera-z-sidebar) - 1);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--layera-transition-normal);
+  }
+
+  .layera-layout-sidebar-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* Tablet breakpoint adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .layera-app-shell--dashboard {
+    grid-template-columns: var(--layera-sidebar-width-compact) 1fr;
+  }
+
+  .layera-app-shell--dashboard.sidebar-collapsed {
+    grid-template-columns: var(--layera-sidebar-width-collapsed) 1fr;
+  }
+}
+
+/* ============ ANIMATION UTILITIES ============ */
+
+.layera-layout-transition {
+  transition: all var(--layera-transition-normal);
+}
+
+.layera-sidebar-transition {
+  transition: width var(--layera-transition-normal), transform var(--layera-transition-normal);
+}
+
+/* ============ ACCESSIBILITY ============ */
+
+.layera-skip-to-content {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  z-index: 999;
+  padding: var(--layera-space-md);
+  background-color: var(--layera-header-bg);
+  color: inherit;
+  text-decoration: none;
+  border: 2px solid var(--layera-layout-border);
+  border-radius: var(--layera-radius-md);
+}
+
+.layera-skip-to-content:focus {
+  top: var(--layera-space-md);
+  left: var(--layera-space-md);
+}
+
+/* ============ PRINT STYLES ============ */
+
+@media print {
+  .layera-layout-sidebar,
+  .layera-layout-header {
+    display: none !important;
+  }
+
+  .layera-app-shell {
+    grid-template-areas: "content" !important;
+    grid-template-rows: 1fr !important;
+    grid-template-columns: 1fr !important;
+  }
+}

@@ -1,0 +1,82 @@
+/**
+ * Layera Cards System - Design Tokens
+ */
+
+:root {
+  /* ============ CARD DIMENSIONS ============ */
+  /* Card padding */
+  --layera-card-padding-none: 0;
+  --layera-card-padding-sm: var(--layera-space-3, 0.75rem);
+  --layera-card-padding-md: var(--layera-space-4, 1rem);
+  --layera-card-padding-lg: var(--layera-space-6, 1.5rem);
+
+  /* Card sizes */
+  --layera-card-size-sm: 200px;
+  --layera-card-size-md: 280px;
+  --layera-card-size-lg: 360px;
+  --layera-card-size-xl: 480px;
+
+  /* ============ CARD COLORS ============ */
+  /* Base card colors */
+  --layera-card-bg: hsl(0 0% 100%);
+  --layera-card-border: hsl(0 0% 90%);
+  --layera-card-shadow: 0 2px 4px rgb(0 0 0 / 0.05);
+  --layera-card-shadow-hover: 0 4px 8px rgb(0 0 0 / 0.1);
+
+  /* Card variants */
+  --layera-card-elevated-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --layera-card-elevated-shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  /* Dashboard card variants */
+  --layera-card-stats-bg: linear-gradient(135deg, hsl(210 100% 97%) 0%, hsl(210 100% 95%) 100%);
+  --layera-card-chart-bg: hsl(0 0% 99%);
+  --layera-card-status-bg: hsl(0 0% 98%);
+  --layera-card-actions-bg: hsl(210 100% 98%);
+  --layera-card-info-bg: hsl(200 100% 98%);
+
+  /* ============ BORDER RADIUS ============ */
+  --layera-card-radius: var(--layera-radius-lg, 0.5rem);
+  --layera-card-radius-sm: var(--layera-radius-md, 0.25rem);
+
+  /* ============ TRANSITIONS ============ */
+  --layera-card-transition: all var(--layera-transition-normal, 250ms ease-in-out);
+
+  /* ============ TYPOGRAPHY ============ */
+  --layera-card-title-size: 1.125rem;
+  --layera-card-title-weight: 600;
+  --layera-card-subtitle-size: 0.875rem;
+  --layera-card-subtitle-weight: 400;
+
+  /* Dashboard metric typography */
+  --layera-dashboard-metric-value-size: 2rem;
+  --layera-dashboard-metric-value-weight: 700;
+  --layera-dashboard-metric-label-size: 0.875rem;
+  --layera-dashboard-metric-change-size: 0.75rem;
+
+  /* ============ SPACING ============ */
+  --layera-card-header-spacing: var(--layera-space-4, 1rem);
+  --layera-card-content-spacing: var(--layera-space-3, 0.75rem);
+  --layera-card-footer-spacing: var(--layera-space-4, 1rem);
+
+  /* Grid spacing */
+  --layera-dashboard-grid-gap-sm: var(--layera-space-3, 0.75rem);
+  --layera-dashboard-grid-gap-md: var(--layera-space-4, 1rem);
+  --layera-dashboard-grid-gap-lg: var(--layera-space-6, 1.5rem);
+}
+
+/* Dark theme overrides */
+[data-theme="dark"] {
+  --layera-card-bg: hsl(222 84% 5%);
+  --layera-card-border: hsl(217 32% 17%);
+  --layera-card-shadow: 0 2px 4px rgb(0 0 0 / 0.3);
+  --layera-card-shadow-hover: 0 4px 8px rgb(0 0 0 / 0.4);
+
+  --layera-card-elevated-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --layera-card-elevated-shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+
+  --layera-card-stats-bg: linear-gradient(135deg, hsl(222 84% 7%) 0%, hsl(222 84% 9%) 100%);
+  --layera-card-chart-bg: hsl(222 84% 6%);
+  --layera-card-status-bg: hsl(222 84% 7%);
+  --layera-card-actions-bg: hsl(222 84% 8%);
+  --layera-card-info-bg: hsl(220 100% 8%);
+}

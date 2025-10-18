@@ -1,0 +1,332 @@
+/**
+ * Layera Cards System - Base Card Styles
+ */
+
+/* ============ BASE CARD ============ */
+
+.layera-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--layera-card-bg);
+  border: 1px solid var(--layera-card-border);
+  border-radius: var(--layera-card-radius);
+  transition: var(--layera-card-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Card variants */
+.layera-card--elevated {
+  border: none;
+  box-shadow: var(--layera-card-elevated-shadow);
+}
+
+.layera-card--outlined {
+  border: 2px solid var(--layera-card-border);
+  box-shadow: none;
+}
+
+.layera-card--filled {
+  background-color: var(--layera-card-bg);
+  border: none;
+  box-shadow: none;
+}
+
+/* Card sizes */
+.layera-card--sm {
+  min-width: var(--layera-card-size-sm);
+}
+
+.layera-card--md {
+  min-width: var(--layera-card-size-md);
+}
+
+.layera-card--lg {
+  min-width: var(--layera-card-size-lg);
+}
+
+.layera-card--xl {
+  min-width: var(--layera-card-size-xl);
+}
+
+/* Card padding */
+.layera-card--padding-none {
+  padding: var(--layera-card-padding-none);
+}
+
+.layera-card--padding-sm {
+  padding: var(--layera-card-padding-sm);
+}
+
+.layera-card--padding-md {
+  padding: var(--layera-card-padding-md);
+}
+
+.layera-card--padding-lg {
+  padding: var(--layera-card-padding-lg);
+}
+
+/* Interactive states */
+.layera-card--hoverable:hover {
+  box-shadow: var(--layera-card-shadow-hover);
+  transform: translateY(-1px);
+}
+
+.layera-card--elevated.layera-card--hoverable:hover {
+  box-shadow: var(--layera-card-elevated-shadow-hover);
+}
+
+.layera-card--clickable {
+  cursor: pointer;
+  border: none;
+  background: inherit;
+  font: inherit;
+  text-align: inherit;
+  width: 100%;
+}
+
+.layera-card--clickable:hover {
+  box-shadow: var(--layera-card-shadow-hover);
+  transform: translateY(-1px);
+}
+
+.layera-card--clickable:focus-visible {
+  outline: 2px solid hsl(var(--ring, 210 100% 50%));
+  outline-offset: 2px;
+}
+
+.layera-card--clickable:active {
+  transform: translateY(0);
+}
+
+/* ============ CARD STRUCTURE ============ */
+
+.layera-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--layera-card-header-spacing);
+  margin-bottom: var(--layera-card-content-spacing);
+}
+
+.layera-card__header-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.layera-card__title {
+  margin: 0;
+  font-size: var(--layera-card-title-size);
+  font-weight: var(--layera-card-title-weight);
+  line-height: 1.25;
+  color: inherit;
+}
+
+.layera-card__subtitle {
+  margin: var(--layera-space-1, 0.25rem) 0 0 0;
+  font-size: var(--layera-card-subtitle-size);
+  font-weight: var(--layera-card-subtitle-weight);
+  line-height: 1.4;
+  color: hsl(var(--muted-foreground, 0 0% 60%));
+}
+
+.layera-card__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--layera-space-2, 0.5rem);
+  flex-shrink: 0;
+}
+
+.layera-card__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.layera-card__footer {
+  margin-top: var(--layera-card-footer-spacing);
+  padding-top: var(--layera-card-footer-spacing);
+  border-top: 1px solid var(--layera-card-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--layera-space-2, 0.5rem);
+}
+
+/* ============ DASHBOARD CARDS ============ */
+
+.layera-dashboard-card--stats {
+  background: var(--layera-card-stats-bg);
+}
+
+.layera-dashboard-card--chart {
+  background: var(--layera-card-chart-bg);
+}
+
+.layera-dashboard-card--status {
+  background: var(--layera-card-status-bg);
+}
+
+.layera-dashboard-card--actions {
+  background: var(--layera-card-actions-bg);
+}
+
+.layera-dashboard-card--info {
+  background: var(--layera-card-info-bg);
+}
+
+/* Dashboard card states */
+.layera-dashboard-card--loading {
+  position: relative;
+}
+
+.layera-dashboard-card--error {
+  border-color: hsl(var(--destructive, 0 84% 60%) / 0.3);
+  background: hsl(var(--destructive, 0 84% 60%) / 0.05);
+}
+
+/* ============ DASHBOARD CARD CONTENT ============ */
+
+.layera-dashboard-card__metric {
+  display: flex;
+  flex-direction: column;
+  gap: var(--layera-space-2, 0.5rem);
+}
+
+.layera-dashboard-card__metric-value {
+  font-size: var(--layera-dashboard-metric-value-size);
+  font-weight: var(--layera-dashboard-metric-value-weight);
+  line-height: 1;
+  color: inherit;
+}
+
+.layera-dashboard-card__metric-label {
+  font-size: var(--layera-dashboard-metric-label-size);
+  font-weight: 500;
+  color: hsl(var(--muted-foreground, 0 0% 60%));
+}
+
+.layera-dashboard-card__metric-change {
+  display: flex;
+  align-items: center;
+  gap: var(--layera-space-1, 0.25rem);
+  font-size: var(--layera-dashboard-metric-change-size);
+  font-weight: 500;
+}
+
+.layera-dashboard-card__metric-change--up {
+  color: hsl(var(--success, 142 76% 36%));
+}
+
+.layera-dashboard-card__metric-change--down {
+  color: hsl(var(--destructive, 0 84% 60%));
+}
+
+.layera-dashboard-card__metric-change--neutral {
+  color: hsl(var(--muted-foreground, 0 0% 60%));
+}
+
+.layera-dashboard-card__metric-change-period {
+  color: hsl(var(--muted-foreground, 0 0% 60%));
+  font-weight: 400;
+}
+
+/* ============ LOADING & ERROR STATES ============ */
+
+.layera-dashboard-card__loading {
+  padding: var(--layera-card-padding-md);
+}
+
+.layera-dashboard-card__skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--layera-space-2, 0.5rem);
+}
+
+.layera-skeleton {
+  background: linear-gradient(90deg, hsl(0 0% 95%) 25%, hsl(0 0% 90%) 50%, hsl(0 0% 95%) 75%);
+  background-size: 200% 100%;
+  animation: layera-skeleton 1.5s infinite;
+  border-radius: var(--layera-radius-sm, 0.25rem);
+}
+
+.layera-skeleton--text {
+  height: 1rem;
+  width: 100%;
+}
+
+.layera-skeleton--sm {
+  width: 60%;
+}
+
+@keyframes layera-skeleton {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+[data-theme="dark"] .layera-skeleton {
+  background: linear-gradient(90deg, hsl(222 84% 8%) 25%, hsl(222 84% 12%) 50%, hsl(222 84% 8%) 75%);
+  background-size: 200% 100%;
+}
+
+.layera-dashboard-card__error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--layera-space-2, 0.5rem);
+  padding: var(--layera-card-padding-md);
+  text-align: center;
+}
+
+.layera-dashboard-card__error-icon {
+  font-size: 2rem;
+  opacity: 0.6;
+}
+
+.layera-dashboard-card__error-message {
+  margin: 0;
+  font-size: var(--layera-card-subtitle-size);
+  color: hsl(var(--destructive, 0 84% 60%));
+}
+
+/* ============ RESPONSIVE ADJUSTMENTS ============ */
+
+@media (max-width: 767px) {
+  .layera-card__header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--layera-space-2, 0.5rem);
+  }
+
+  .layera-card__actions {
+    justify-content: flex-end;
+  }
+
+  .layera-dashboard-card__metric-value {
+    font-size: 1.5rem;
+  }
+}
+
+/* ============ ACCESSIBILITY ============ */
+
+@media (prefers-reduced-motion: reduce) {
+  .layera-card,
+  .layera-skeleton {
+    transition: none;
+    animation: none;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .layera-card {
+    border-width: 2px;
+  }
+
+  .layera-card--elevated {
+    border: 2px solid var(--layera-card-border);
+  }
+}
