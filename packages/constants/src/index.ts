@@ -24,5 +24,11 @@ export * from './themes';
 // Navigation
 export * from './navigation';
 
+// Snap system
+export * from './snap';
+
+// Geo-Drawing system
+export * from './geo-drawing';
+
 // Version
 export const LAYERA_CONSTANTS_VERSION = '1.0.0';
