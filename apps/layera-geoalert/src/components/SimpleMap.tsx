@@ -65,8 +65,8 @@ const SimpleMap: React.FC = () => {
         style={{
           height: '400px',
           width: '100%',
-          backgroundColor: '#f0f0f0',
-          border: '1px solid #ccc',
+          backgroundColor: 'var(--layera-bg-secondary)',
+          border: '1px solid var(--layera-border-primary)',
           borderRadius: '8px'
         }}
       >
@@ -75,7 +75,7 @@ const SimpleMap: React.FC = () => {
           justifyContent: 'center',
           alignItems: 'center',
           height: '100%',
-          color: '#666'
+          color: 'var(--layera-text-secondary)'
         }}>
           🗺️ Loading Map...
         </div>

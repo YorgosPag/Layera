@@ -15,7 +15,7 @@ const DEVICE_SPECS = {
     height: 844,
     scale: 0.7, // Scale για να χωράει στην οθόνη
     borderRadius: '25px',
-    bezelColor: '#000000'
+    bezelColor: 'var(--layera-bg-secondary)'
   },
   tablet: {
     name: 'iPad Pro 11"',
@@ -23,7 +23,7 @@ const DEVICE_SPECS = {
     height: 1194,
     scale: 0.5,
     borderRadius: '20px',
-    bezelColor: '#333333'
+    bezelColor: 'var(--layera-text-secondary)'
   },
   desktop: {
     name: 'Desktop 1920x1080',
@@ -31,7 +31,7 @@ const DEVICE_SPECS = {
     height: 1080,
     scale: 0.4,
     borderRadius: '10px',
-    bezelColor: '#666666'
+    bezelColor: 'var(--layera-text-tertiary)'
   }
 };
 
@@ -72,7 +72,7 @@ export const DeviceSimulator: React.FC<DeviceSimulatorProps> = ({
         width: `${scaledWidth}px`,
         height: `${scaledHeight}px`,
         margin: '0 auto',
-        border: '2px solid #ddd',
+        border: '2px solid var(--layera-border-primary)',
         borderRadius: '8px',
         overflow: 'hidden',
         transform: `scale(${spec.scale})`,
@@ -95,25 +95,25 @@ export const DeviceSimulator: React.FC<DeviceSimulatorProps> = ({
       flexDirection: 'column',
       alignItems: 'center',
       padding: '2rem',
-      backgroundColor: '#f5f5f5',
+      backgroundColor: 'var(--layera-bg-tertiary)',
       minHeight: '100vh'
     }}>
       {/* Device Header με Controls */}
       <div style={{
         marginBottom: '1rem',
         padding: '1rem',
-        backgroundColor: 'white',
+        backgroundColor: 'var(--layera-bg-primary)',
         borderRadius: '8px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        boxShadow: '0 2px 4px color-mix(in srgb, var(--layera-bg-secondary) 10%, transparent 90%)',
         display: 'flex',
         alignItems: 'center',
         gap: '1rem'
       }}>
         <div>
-          <h3 style={{ margin: 0, color: '#333' }}>
+          <h3 style={{ margin: 0, color: 'var(--layera-text-primary)' }}>
             {spec.name} Simulator
           </h3>
-          <p style={{ margin: 0, color: '#666', fontSize: '0.875rem' }}>
+          <p style={{ margin: 0, color: 'var(--layera-text-secondary)', fontSize: '0.875rem' }}>
             {finalWidth} × {finalHeight}px ({Math.round(spec.scale * 100)}% scale)
           </p>
         </div>
@@ -122,8 +122,8 @@ export const DeviceSimulator: React.FC<DeviceSimulatorProps> = ({
           <button
             onClick={() => setOrientation(prev => prev === 'portrait' ? 'landscape' : 'portrait')}
             style={{
-              backgroundColor: '#2563eb',
-              color: 'white',
+              backgroundColor: 'var(--layera-bg-info)',
+              color: 'var(--layera-text-on-info)',
               border: 'none',
               borderRadius: '6px',
               padding: '0.5rem 1rem',
@@ -145,18 +145,18 @@ export const DeviceSimulator: React.FC<DeviceSimulatorProps> = ({
         padding: '20px',
         backgroundColor: spec.bezelColor,
         borderRadius: `calc(${spec.borderRadius} + 20px)`,
-        boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
+        boxShadow: '0 8px 32px color-mix(in srgb, var(--layera-bg-secondary) 30%, transparent 70%)',
         position: 'relative'
       }}>
         {/* Screen */}
         <div style={{
           width: `${scaledWidth}px`,
           height: `${scaledHeight}px`,
-          backgroundColor: 'white',
+          backgroundColor: 'var(--layera-bg-primary)',
           borderRadius: spec.borderRadius,
           overflow: 'hidden',
           position: 'relative',
-          boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)'
+          boxShadow: 'inset 0 0 0 1px color-mix(in srgb, var(--layera-border-primary) 10%, transparent 90%)'
         }}>
           {/* Viewport Content */}
           <div style={{
@@ -180,7 +180,7 @@ export const DeviceSimulator: React.FC<DeviceSimulatorProps> = ({
                 transform: 'translateX(-50%)',
                 width: '134px',
                 height: '5px',
-                backgroundColor: 'rgba(0,0,0,0.3)',
+                backgroundColor: 'color-mix(in srgb, var(--layera-bg-secondary) 30%, transparent 70%)',
                 borderRadius: '2.5px'
               }} />
             </>
@@ -229,16 +229,16 @@ export const DeviceSimulator: React.FC<DeviceSimulatorProps> = ({
       <div style={{
         marginTop: '1rem',
         padding: '1rem',
-        backgroundColor: 'white',
+        backgroundColor: 'var(--layera-bg-primary)',
         borderRadius: '8px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        boxShadow: '0 2px 4px color-mix(in srgb, var(--layera-bg-secondary) 10%, transparent 90%)',
         maxWidth: '600px',
         textAlign: 'center'
       }}>
-        <h4 style={{ margin: '0 0 0.5rem 0', color: '#333' }}>
+        <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--layera-text-primary)' }}>
           Device Simulation Active
         </h4>
-        <p style={{ margin: 0, color: '#666', fontSize: '0.875rem' }}>
+        <p style={{ margin: 0, color: 'var(--layera-text-secondary)', fontSize: '0.875rem' }}>
           Η εφαρμογή εμφανίζεται όπως θα φαίνεται σε πραγματική {spec.name} συσκευή.
           Χρησιμοποίησε τα Device Switcher buttons για εναλλαγή συσκευών.
         </p>

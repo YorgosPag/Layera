@@ -54,6 +54,13 @@ export const useViewportWithOverride = () => {
 interface DeviceSwitcherProps {
   position?: 'top-left' | 'top-center' | 'top-right';
   showInProduction?: boolean;
+  labels?: {
+    auto?: string;
+    mobile?: string;
+    tablet?: string;
+    desktop?: string;
+    overrideActive?: string;
+  };
 }
 
 /**
@@ -61,7 +68,8 @@ interface DeviceSwitcherProps {
  */
 export const DeviceSwitcher: React.FC<DeviceSwitcherProps> = ({
   position = 'top-center',
-  showInProduction = false
+  showInProduction = false,
+  labels = {}
 }) => {
   const { overrideDevice, setOverrideDevice } = useContext(DeviceOverrideContext);
   const originalViewport = useOriginalViewport();
@@ -77,7 +85,7 @@ export const DeviceSwitcher: React.FC<DeviceSwitcherProps> = ({
       zIndex: 9998, // Below debugger
       backdropFilter: 'blur(8px)',
       borderRadius: '8px',
-      border: '1px solid rgba(255, 255, 255, 0.2)',
+      border: '1px solid color-mix(in srgb, var(--layera-border-primary) 60%, transparent 40%)',
       padding: '0.5rem'
     };
 
@@ -99,10 +107,10 @@ export const DeviceSwitcher: React.FC<DeviceSwitcherProps> = ({
   };
 
   const devices: { type: DeviceType | null; icon: React.ReactNode; label: string }[] = [
-    { type: null, icon: <RefreshIcon size="sm" theme="neutral" />, label: 'Auto' },
-    { type: 'mobile', icon: <MobileIcon size="sm" theme="neutral" />, label: 'Mobile' },
-    { type: 'tablet', icon: <TabletIcon size="sm" theme="neutral" />, label: 'Tablet' },
-    { type: 'desktop', icon: <DesktopIcon size="sm" theme="neutral" />, label: 'Desktop' }
+    { type: null, icon: <RefreshIcon size="sm" theme="neutral" />, label: labels.auto || 'Auto' },
+    { type: 'mobile', icon: <MobileIcon size="sm" theme="neutral" />, label: labels.mobile || 'Mobile' },
+    { type: 'tablet', icon: <TabletIcon size="sm" theme="neutral" />, label: labels.tablet || 'Tablet' },
+    { type: 'desktop', icon: <DesktopIcon size="sm" theme="neutral" />, label: labels.desktop || 'Desktop' }
   ];
 
   const currentDevice = overrideDevice || originalViewport.deviceType;
@@ -112,7 +120,7 @@ export const DeviceSwitcher: React.FC<DeviceSwitcherProps> = ({
       <div style={{
         display: 'flex',
         gap: '0.25rem',
-        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        backgroundColor: 'color-mix(in srgb, var(--layera-bg-secondary) 80%, transparent 20%)',
         borderRadius: '6px',
         padding: '0.25rem'
       }}>
@@ -122,11 +130,11 @@ export const DeviceSwitcher: React.FC<DeviceSwitcherProps> = ({
             onClick={() => setOverrideDevice(type)}
             style={{
               background: (type || 'auto') === (overrideDevice || 'auto')
-                ? 'rgba(59, 130, 246, 0.8)'
-                : 'rgba(255, 255, 255, 0.1)',
+                ? 'color-mix(in srgb, var(--layera-bg-info) 80%, transparent 20%)'
+                : 'color-mix(in srgb, var(--layera-bg-tertiary) 80%, transparent 20%)',
               border: 'none',
               borderRadius: '4px',
-              color: 'white',
+              color: 'var(--layera-text-primary)',
               padding: '0.5rem 0.75rem',
               fontSize: '0.75rem',
               cursor: 'pointer',
@@ -148,13 +156,13 @@ export const DeviceSwitcher: React.FC<DeviceSwitcherProps> = ({
         <div style={{
           marginTop: '0.5rem',
           fontSize: '0.75rem',
-          color: 'rgba(255, 255, 255, 0.8)',
+          color: 'var(--layera-text-on-warning)',
           textAlign: 'center',
-          backgroundColor: 'rgba(255, 165, 0, 0.8)',
+          backgroundColor: 'color-mix(in srgb, var(--layera-bg-warning) 80%, transparent 20%)',
           padding: '0.25rem 0.5rem',
           borderRadius: '4px'
         }}>
-          Override Active
+          {labels.overrideActive || 'Override Active'}
         </div>
       )}
     </div>

@@ -13,8 +13,19 @@ interface RulerProps {
 }
 
 const RULER_SIZE = 40;
-const TICK_COLOR = '#4A5568';
-const RULER_BG = '#F7FAFC';
+
+// Function to get computed CSS variable values for Canvas
+const getCSSVariableValue = (variableName: string): string => {
+  if (typeof window !== 'undefined') {
+    const value = getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
+    return value || '#64748b'; // fallback color
+  }
+  return '#64748b'; // fallback for SSR
+};
+
+const getTickColor = () => getCSSVariableValue('--layera-text-secondary');
+const getRulerBg = () => getCSSVariableValue('--layera-bg-secondary');
+const getBorderColor = () => getCSSVariableValue('--layera-border-primary');
 
 const getTicks = (min: number, max: number, maxTicks: number): number[] => {
   const range = max - min;
@@ -58,17 +69,17 @@ const LongitudeRuler: React.FC<RulerProps> = ({ bounds, mapSize }) => {
     ctx.scale(dpr, dpr);
 
     ctx.clearRect(0, 0, rect.width, rect.height);
-    ctx.fillStyle = RULER_BG;
+    ctx.fillStyle = getRulerBg();
     ctx.fillRect(0, 0, rect.width, rect.height);
 
-    ctx.strokeStyle = '#E2E8F0';
+    ctx.strokeStyle = getBorderColor();
     ctx.beginPath();
     ctx.moveTo(0, 0.5);
     ctx.lineTo(mapSize.width, 0.5);
     ctx.stroke();
 
-    ctx.fillStyle = TICK_COLOR;
-    ctx.strokeStyle = TICK_COLOR;
+    ctx.fillStyle = getTickColor();
+    ctx.strokeStyle = getTickColor();
     ctx.font = '10px sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
@@ -86,6 +97,75 @@ const LongitudeRuler: React.FC<RulerProps> = ({ bounds, mapSize }) => {
       ctx.fillText(formatCoord(lon, false, 4), x, RULER_SIZE / 2 + 5);
     });
 
+  }, [bounds, mapSize]);
+
+  // Listen for theme changes and re-render canvas
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const handleThemeChange = () => {
+      console.log('🎨 LongitudeRuler: Theme change detected!');
+      // Force re-render by updating the canvas
+      setTimeout(() => {
+        const ctx = canvas.getContext('2d');
+        if (ctx && bounds && mapSize) {
+          // Clear and redraw with new colors
+          const rect = canvas.getBoundingClientRect();
+          ctx.clearRect(0, 0, rect.width, rect.height);
+
+          // Redraw background
+          ctx.fillStyle = getRulerBg();
+          ctx.fillRect(0, 0, rect.width, rect.height);
+
+          // Redraw border
+          ctx.strokeStyle = getBorderColor();
+          ctx.beginPath();
+          ctx.moveTo(0, 0.5);
+          ctx.lineTo(mapSize.width, 0.5);
+          ctx.stroke();
+
+          // Redraw ticks with new colors
+          ctx.fillStyle = getTickColor();
+          ctx.strokeStyle = getTickColor();
+          ctx.font = '10px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+
+          // Redraw all ticks
+          const ticks = getTicks(bounds.getWest(), bounds.getEast(), Math.round(mapSize.width / 80));
+          ticks.forEach(lon => {
+            const x = ((lon - bounds.getWest()) / (bounds.getEast() - bounds.getWest())) * mapSize.width;
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, 10);
+            ctx.stroke();
+
+            ctx.fillText(formatCoord(lon, false, 4), x, RULER_SIZE / 2 + 5);
+          });
+        }
+      }, 50);
+    };
+
+    // Listen for theme changes via multiple methods
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes') {
+          if (mutation.attributeName === 'data-theme' || mutation.attributeName === 'class') {
+            handleThemeChange();
+          }
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme', 'class']
+    });
+
+    return () => {
+      observer.disconnect();
+    };
   }, [bounds, mapSize]);
 
   return (

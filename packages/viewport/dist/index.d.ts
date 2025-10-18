@@ -109,6 +109,13 @@ declare const useViewportWithOverride: () => ViewportInfo;
 interface DeviceSwitcherProps {
     position?: 'top-left' | 'top-center' | 'top-right';
     showInProduction?: boolean;
+    labels?: {
+        auto?: string;
+        mobile?: string;
+        tablet?: string;
+        desktop?: string;
+        overrideActive?: string;
+    };
 }
 /**
  * Device Switcher Button για manual testing

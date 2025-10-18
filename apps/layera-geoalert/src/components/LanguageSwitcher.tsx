@@ -13,8 +13,8 @@ const LanguageSwitcher = () => {
     <button
       onClick={toggleLanguage}
       style={{
-        backgroundColor: '#3b82f6',
-        color: 'white',
+        backgroundColor: 'var(--layera-bg-info)',
+        color: 'var(--layera-text-on-info)',
         border: 'none',
         borderRadius: '6px',
         padding: '0.5rem 1rem',
@@ -27,10 +27,10 @@ const LanguageSwitcher = () => {
         gap: '0.5rem'
       }}
       onMouseOver={(e) => {
-        e.currentTarget.style.backgroundColor = '#2563eb';
+        e.currentTarget.style.backgroundColor = 'var(--layera-bg-info)';
       }}
       onMouseOut={(e) => {
-        e.currentTarget.style.backgroundColor = '#3b82f6';
+        e.currentTarget.style.backgroundColor = 'var(--layera-bg-info)';
       }}
     >
       <GlobalIcon size="sm" theme="neutral" />

@@ -16,7 +16,7 @@ export interface FormattedMeasurement {
 /**
  * Format area in square meters to human-readable format
  */
-export const formatArea = (areaInSquareMeters: number): FormattedMeasurement => {
+export const formatArea = (areaInSquareMeters: number, hectaresLabel: string = 'hectares'): FormattedMeasurement => {
   if (areaInSquareMeters < 1) {
     return {
       value: '< 1',
@@ -37,8 +37,8 @@ export const formatArea = (areaInSquareMeters: number): FormattedMeasurement => 
     const hectares = areaInSquareMeters / 10000;
     return {
       value: hectares.toFixed(2),
-      unit: 'εκτάρια',
-      full: `${hectares.toFixed(2)} εκτάρια`
+      unit: hectaresLabel,
+      full: `${hectares.toFixed(2)} ${hectaresLabel}`
     };
   }
 
@@ -117,34 +117,40 @@ export const formatCoordinateWithDirection = (lat: number, lng: number, precisio
 export const formatAreaDescription = (
   type: 'polygon' | 'marker',
   areaInSquareMeters: number,
-  radiusInMeters?: number
+  radiusInMeters?: number,
+  labels?: {
+    circularArea?: string;
+    polygonArea?: string;
+    area?: string;
+    hectares?: string;
+  }
 ): string => {
-  const areaFormatted = formatArea(areaInSquareMeters);
+  const areaFormatted = formatArea(areaInSquareMeters, labels?.hectares);
 
   if (type === 'marker' && radiusInMeters) {
     const radiusFormatted = formatRadius(radiusInMeters);
-    return `Κυκλική περιοχή ${radiusFormatted.full} (${areaFormatted.full})`;
+    return `${labels?.circularArea || 'Circular area'} ${radiusFormatted.full} (${areaFormatted.full})`;
   }
 
   if (type === 'polygon') {
-    return `Πολυγωνική περιοχή ${areaFormatted.full}`;
+    return `${labels?.polygonArea || 'Polygon area'} ${areaFormatted.full}`;
   }
 
-  return `Περιοχή ${areaFormatted.full}`;
+  return `${labels?.area || 'Area'} ${areaFormatted.full}`;
 };
 
 /**
  * Format measurement για compact display (μικρά UI elements)
  */
-export const formatCompactMeasurement = (areaInSquareMeters: number): string => {
-  const formatted = formatArea(areaInSquareMeters);
+export const formatCompactMeasurement = (areaInSquareMeters: number, hectaresLabel: string = 'hectares'): string => {
+  const formatted = formatArea(areaInSquareMeters, hectaresLabel);
   return formatted.full;
 };
 
 /**
  * Validate and format numeric input για area/distance inputs
  */
-export const formatNumericInput = (value: string, unit: 'area' | 'distance'): {
+export const formatNumericInput = (value: string, unit: 'area' | 'distance', hectaresLabel: string = 'hectares'): {
   isValid: boolean;
   formatted: string;
   numericValue: number;
@@ -167,7 +173,7 @@ export const formatNumericInput = (value: string, unit: 'area' | 'distance'): {
     formatted = formatDistance(numericValue).full;
   } else {
     maxValue = 25000000; // 25 km² max area
-    formatted = formatArea(numericValue).full;
+    formatted = formatArea(numericValue, hectaresLabel).full;
   }
 
   return {

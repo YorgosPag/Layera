@@ -20,13 +20,13 @@ const ICON_SIZES = {
 };
 
 const THEME_COLORS = {
-  primary: '#2563eb',
-  secondary: '#64748b',
-  success: '#10b981',
-  warning: '#f59e0b',
-  danger: '#ef4444',
-  info: '#06b6d4',
-  neutral: '#6b7280'
+  primary: 'var(--layera-bg-info)',
+  secondary: 'var(--layera-text-secondary)',
+  success: 'var(--layera-bg-success)',
+  warning: 'var(--layera-bg-warning)',
+  danger: 'var(--layera-bg-danger)',
+  info: 'var(--layera-bg-info)',
+  neutral: 'var(--layera-text-secondary)'
 };
 
 export const ArrowLeftIcon: React.FC<IconProps> = ({

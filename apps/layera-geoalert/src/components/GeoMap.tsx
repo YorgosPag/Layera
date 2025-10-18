@@ -55,6 +55,8 @@ interface DrawnArea {
   type: 'polygon' | 'marker';
   coordinates: number[][];
   name: string;
+  nameTemplate?: string; // For dynamic translation
+  nameNumber?: number;   // Counter for the area
   area?: number;
   category: 'real_estate' | 'jobs';
   isVisible?: boolean;
@@ -93,6 +95,17 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
   const [mapBounds, setMapBounds] = useState<LatLngBounds | null>(null);
   const [mapSize, setMapSize] = useState({ width: 0, height: 0 });
   const [isLoading, setIsLoading] = useState(true);
+
+  // Helper function to generate dynamic area names
+  const getAreaName = (area: DrawnArea): string => {
+    if (area.nameTemplate && area.nameNumber) {
+      const template = area.nameTemplate === 'realEstate'
+        ? (area.type === 'polygon' ? t('realEstateArea') : t('realEstate'))
+        : (area.type === 'polygon' ? t('jobArea') : t('job'));
+      return `${template} ${area.nameNumber}`;
+    }
+    return area.name; // Fallback to original name
+  };
 
   useEffect(() => {
     if (mapInitialized.current) return;
@@ -263,7 +276,9 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
           id: Date.now().toString(),
           type: 'marker',
           coordinates: [[lat, lng]],
-          name: `${activeCategory === 'real_estate' ? 'Ακίνητο' : 'Εργασία'} ${drawnAreas.length + 1}`,
+          name: `${activeCategory === 'real_estate' ? t('realEstate') : t('job')} ${drawnAreas.length + 1}`,
+          nameTemplate: activeCategory === 'real_estate' ? 'realEstate' : 'job',
+          nameNumber: drawnAreas.length + 1,
           category: activeCategory,
           isVisible: true,
           opacity: 1
@@ -290,10 +305,11 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
 
         // Αν είναι το πρώτο σημείο, δημιουργούμε νέο polygon
         if (polygonPoints.current.length === 1) {
+          const bgInfo = getComputedStyle(document.documentElement).getPropertyValue('--layera-bg-info').trim();
           currentPolygon.current = L.polygon(polygonPoints.current, {
-            color: 'blue',
-            fillColor: 'lightblue',
-            fillOpacity: 0.5
+            color: bgInfo || '#3b82f6',
+            fillColor: bgInfo || '#3b82f6',
+            fillOpacity: 0.3
           }).addTo(mapRef.current);
         } else if (currentPolygon.current) {
           // Ενημερώνουμε το υπάρχον polygon
@@ -302,7 +318,7 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
 
         // Αν έχουμε 3+ σημεία, μπορούμε να τελειώσουμε με double-click
         if (polygonPoints.current.length >= 3) {
-          console.log('Κάντε double-click για να ολοκληρώσετε το πολύγωνο');
+          console.log(t('doubleClickFinish'));
         }
       } catch (error) {
         console.warn('Error adding polygon point:', error);
@@ -316,7 +332,9 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
         id: Date.now().toString(),
         type: 'polygon',
         coordinates: polygonPoints.current,
-        name: `${activeCategory === 'real_estate' ? 'Περιοχή Ακινήτων' : 'Περιοχή Εργασίας'} ${drawnAreas.length + 1}`,
+        name: `${activeCategory === 'real_estate' ? t('realEstateArea') : t('jobArea')} ${drawnAreas.length + 1}`,
+        nameTemplate: activeCategory === 'real_estate' ? 'realEstate' : 'job',
+        nameNumber: drawnAreas.length + 1,
         area: calculatePolygonArea(polygonPoints.current),
         category: activeCategory,
         isVisible: true,
@@ -418,25 +436,25 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
         left: 0,
         width: '100%',
         height: '100%',
-        backgroundColor: 'rgba(0,0,0,0.5)',
+        backgroundColor: 'color-mix(in srgb, var(--layera-bg-primary) 50%, transparent 50%)',
         zIndex: 2000,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'
       }}>
         <div style={{
-          backgroundColor: 'white',
+          backgroundColor: 'var(--layera-bg-primary)',
           padding: '2rem',
           borderRadius: '8px',
           maxWidth: '400px',
           width: '90%'
         }}>
-          <h3>Στοιχεία {tempAreaData.category === 'real_estate' ? 'Ακινήτου' : 'Εργασίας'}</h3>
+          <h3>{tempAreaData.category === 'real_estate' ? t('realEstateDetails') : t('jobDetails')}</h3>
 
           {tempAreaData.category === 'real_estate' ? (
             <>
               <div style={{ marginBottom: '1rem' }}>
-                <label>Τιμή (€):</label>
+                <label>{t('price')}</label>
                 <input
                   type="number"
                   value={formData.price || ''}
@@ -445,7 +463,7 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
                 />
               </div>
               <div style={{ marginBottom: '1rem' }}>
-                <label>Τετραγωνικά μέτρα:</label>
+                <label>{t('squareMeters')}</label>
                 <input
                   type="number"
                   value={formData.squareMeters || ''}
@@ -454,7 +472,7 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
                 />
               </div>
               <div style={{ marginBottom: '1rem' }}>
-                <label>Δωμάτια:</label>
+                <label>{t('rooms')}</label>
                 <input
                   type="number"
                   value={formData.rooms || ''}
@@ -499,8 +517,8 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
             <button
               onClick={handleSubmit}
               style={{
-                backgroundColor: '#10b981',
-                color: 'white',
+                backgroundColor: 'var(--layera-bg-success)',
+                color: 'var(--layera-text-on-success)',
                 border: 'none',
                 borderRadius: '6px',
                 padding: '0.75rem 1.5rem',
@@ -508,13 +526,13 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
                 flex: 1
               }}
             >
-              Αποθήκευση
+              {t('save')}
             </button>
             <button
               onClick={handleCancel}
               style={{
-                backgroundColor: '#6b7280',
-                color: 'white',
+                backgroundColor: 'var(--layera-text-secondary)',
+                color: 'var(--layera-text-on-dark)',
                 border: 'none',
                 borderRadius: '6px',
                 padding: '0.75rem 1.5rem',
@@ -522,7 +540,7 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
                 flex: 1
               }}
             >
-              Ακύρωση
+              {t('cancel')}
             </button>
           </div>
         </div>
@@ -546,9 +564,9 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
             left: 0,
             width: `${RULER_SIZE}px`,
             height: `${RULER_SIZE}px`,
-            backgroundColor: '#F7FAFC',
-            borderTop: '1px solid #E2E8F0',
-            borderRight: '1px solid #E2E8F0',
+            backgroundColor: 'var(--layera-bg-secondary)',
+            borderTop: '1px solid var(--layera-border-primary)',
+            borderRight: '1px solid var(--layera-border-primary)',
             zIndex: 30
           }} />
         </>
@@ -562,16 +580,16 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
         transform: 'translateX(-50%)',
         zIndex: 1000,
         display: 'flex',
-        backgroundColor: 'white',
+        backgroundColor: 'var(--layera-bg-primary)',
         borderRadius: '8px',
-        border: '1px solid #e2e8f0',
+        border: '1px solid var(--layera-border-primary)',
         overflow: 'hidden'
       }}>
         <button
           onClick={() => setActiveCategory('real_estate')}
           style={{
-            backgroundColor: activeCategory === 'real_estate' ? '#2563eb' : 'white',
-            color: activeCategory === 'real_estate' ? 'white' : '#2563eb',
+            backgroundColor: activeCategory === 'real_estate' ? 'var(--layera-bg-info)' : 'var(--layera-bg-primary)',
+            color: activeCategory === 'real_estate' ? 'var(--layera-text-on-info)' : 'var(--layera-bg-info)',
             border: 'none',
             padding: '0.75rem 1.5rem',
             fontSize: '0.875rem',
@@ -579,13 +597,13 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
             fontWeight: 'bold'
           }}
         >
-          <HomeIcon size="sm" theme="neutral" /> Ακίνητα
+          <HomeIcon size="sm" theme="neutral" /> {t('realEstate')}
         </button>
         <button
           onClick={() => setActiveCategory('jobs')}
           style={{
-            backgroundColor: activeCategory === 'jobs' ? '#2563eb' : 'white',
-            color: activeCategory === 'jobs' ? 'white' : '#2563eb',
+            backgroundColor: activeCategory === 'jobs' ? 'var(--layera-bg-info)' : 'var(--layera-bg-primary)',
+            color: activeCategory === 'jobs' ? 'var(--layera-text-on-info)' : 'var(--layera-bg-info)',
             border: 'none',
             padding: '0.75rem 1.5rem',
             fontSize: '0.875rem',
@@ -593,7 +611,7 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
             fontWeight: 'bold'
           }}
         >
-          <BriefcaseIcon size="sm" theme="neutral" /> Εργασία
+          <BriefcaseIcon size="sm" theme="neutral" /> {t('job')}
         </button>
       </div>
 
@@ -612,14 +630,14 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
           onClick={() => startDrawing('marker')}
           disabled={activeDrawingMode === 'marker'}
           style={{
-            backgroundColor: activeDrawingMode === 'marker' ? '#059669' : '#10b981',
-            color: 'white',
-            border: 'none',
+            backgroundColor: activeDrawingMode === 'marker' ? 'var(--layera-bg-success)' : 'var(--layera-bg-secondary)',
+            color: activeDrawingMode === 'marker' ? 'var(--layera-text-on-success)' : 'var(--layera-text-primary)',
+            border: `1px solid ${activeDrawingMode === 'marker' ? 'var(--layera-bg-success)' : 'var(--layera-border-primary)'}`,
             borderRadius: '6px',
             padding: isMobile ? '0.375rem 0.75rem' : '0.5rem 1rem',
             fontSize: isMobile ? '0.75rem' : '0.875rem',
             cursor: activeDrawingMode === 'marker' ? 'default' : 'pointer',
-            opacity: activeDrawingMode === 'marker' ? 0.7 : 1
+            opacity: activeDrawingMode === 'marker' ? 0.9 : 1
           }}
         >
           <MarkerIcon size="sm" theme="neutral" /> {t('marker')}
@@ -629,14 +647,14 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
           onClick={() => startDrawing('polygon')}
           disabled={activeDrawingMode === 'polygon'}
           style={{
-            backgroundColor: activeDrawingMode === 'polygon' ? '#059669' : '#10b981',
-            color: 'white',
-            border: 'none',
+            backgroundColor: activeDrawingMode === 'polygon' ? 'var(--layera-bg-info)' : 'var(--layera-bg-secondary)',
+            color: activeDrawingMode === 'polygon' ? 'var(--layera-text-on-info)' : 'var(--layera-text-primary)',
+            border: `1px solid ${activeDrawingMode === 'polygon' ? 'var(--layera-bg-info)' : 'var(--layera-border-primary)'}`,
             borderRadius: '6px',
             padding: isMobile ? '0.375rem 0.75rem' : '0.5rem 1rem',
             fontSize: isMobile ? '0.75rem' : '0.875rem',
             cursor: activeDrawingMode === 'polygon' ? 'default' : 'pointer',
-            opacity: activeDrawingMode === 'polygon' ? 0.7 : 1
+            opacity: activeDrawingMode === 'polygon' ? 0.9 : 1
           }}
         >
           <PolygonIcon size="sm" theme="neutral" /> {t('polygon')}
@@ -646,25 +664,25 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
           <button
             onClick={finishPolygon}
             style={{
-              backgroundColor: '#f59e0b',
-              color: 'white',
-              border: 'none',
+              backgroundColor: 'var(--layera-bg-warning)',
+              color: 'var(--layera-text-on-dark)',
+              border: '1px solid var(--layera-bg-warning)',
               borderRadius: '6px',
               padding: '0.5rem 1rem',
               fontSize: '0.875rem',
               cursor: 'pointer'
             }}
           >
-            <CheckIcon size="sm" theme="neutral" /> Τέλος
+            <CheckIcon size="sm" theme="neutral" /> {t('finish')}
           </button>
         )}
 
         <button
           onClick={clearAll}
           style={{
-            backgroundColor: '#ef4444',
-            color: 'white',
-            border: 'none',
+            backgroundColor: 'var(--layera-bg-danger)',
+            color: 'var(--layera-text-on-dark)',
+            border: '1px solid var(--layera-bg-danger)',
             borderRadius: '6px',
             padding: '0.5rem 1rem',
             fontSize: '0.875rem',
@@ -682,18 +700,18 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
           top: '60px',
           left: '10px',
           zIndex: 1000,
-          backgroundColor: 'rgba(0,0,0,0.8)',
-          color: 'white',
+          backgroundColor: 'color-mix(in srgb, var(--layera-bg-secondary) 90%, transparent 10%)',
+          color: 'var(--layera-text-primary)',
           padding: '0.5rem 1rem',
           borderRadius: '6px',
           fontSize: '0.875rem'
         }}>
-          {activeDrawingMode === 'marker' && (<><MarkerIcon size="sm" theme="neutral" /> Κάντε κλικ στον χάρτη για να τοποθετήσετε marker</>)}
+          {activeDrawingMode === 'marker' && (<><MarkerIcon size="sm" theme="neutral" /> {t('clickOnMap')}</>)}
           {activeDrawingMode === 'polygon' && (
             <>
-              <PolygonIcon size="sm" theme="neutral" /> Κάντε κλικ για προσθήκη σημείων ({polygonPoints.current.length}/3+ σημεία)
+              <PolygonIcon size="sm" theme="neutral" /> {t('clickToAddPoints')} ({polygonPoints.current.length}/3+ {t('pointsCount')})
               {polygonPoints.current.length >= 3 && <br />}
-              {polygonPoints.current.length >= 3 && (<><CheckIcon size="sm" theme="neutral" /> Κάντε κλικ στο "Τέλος" για ολοκλήρωση</>)}
+              {polygonPoints.current.length >= 3 && (<><CheckIcon size="sm" theme="neutral" /> {t('finishPolygon')}</>)}
             </>
           )}
         </div>
@@ -708,7 +726,7 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
           left: `${RULER_SIZE}px`,
           bottom: `${RULER_SIZE}px`,
           right: 0,
-          backgroundColor: '#e5e7eb',
+          backgroundColor: 'var(--layera-bg-tertiary)',
           overflow: 'hidden',
           zIndex: 1
         }}
@@ -722,39 +740,39 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
           bottom: '10px',
           right: '10px',
           zIndex: 1000,
-          backgroundColor: 'rgba(255,255,255,0.95)',
+          backgroundColor: 'color-mix(in srgb, var(--layera-bg-primary) 95%, transparent 5%)',
           padding: '1rem',
           borderRadius: '8px',
-          border: '1px solid #ccc',
+          border: '1px solid var(--layera-border-secondary)',
           maxWidth: '300px',
           maxHeight: '200px',
           overflow: 'auto'
         }}>
-          <h4 style={{ margin: '0 0 0.5rem 0', fontSize: '0.875rem' }}>Δημιουργημένες Περιοχές:</h4>
+          <h4 style={{ margin: '0 0 0.5rem 0', fontSize: '0.875rem' }}>{t('createdAreas')}</h4>
           {drawnAreas.map(area => (
             <div key={area.id} style={{
               fontSize: '0.75rem',
               marginBottom: '0.5rem',
               padding: '0.5rem',
-              backgroundColor: area.category === 'real_estate' ? '#fef3c7' : '#dbeafe',
+              backgroundColor: area.category === 'real_estate' ? 'var(--layera-bg-warning)' : 'var(--layera-bg-info)',
               borderRadius: '4px',
-              border: `1px solid ${area.category === 'real_estate' ? '#f59e0b' : '#3b82f6'}`
+              border: `1px solid ${area.category === 'real_estate' ? 'var(--layera-bg-warning)' : 'var(--layera-bg-info)'}`
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
                 <span>{area.category === 'real_estate' ? <HomeIcon size="xs" theme="neutral" /> : <BriefcaseIcon size="xs" theme="neutral" />}</span>
-                <strong>{area.name}</strong>
-                <span style={{ color: '#6b7280' }}>({area.type})</span>
+                <strong>{getAreaName(area)}</strong>
+                <span style={{ color: 'var(--layera-text-secondary)' }}>({area.type})</span>
               </div>
 
-              {area.area && <div>Περιοχή: {Math.round(area.area).toLocaleString()} m²</div>}
+              {area.area && <div>{t('area')}: {Math.round(area.area).toLocaleString()} m²</div>}
 
               {area.metadata && (
-                <div style={{ marginTop: '0.25rem', fontSize: '0.7rem', color: '#4b5563' }}>
+                <div style={{ marginTop: '0.25rem', fontSize: '0.7rem', color: 'var(--layera-text-secondary)' }}>
                   {area.category === 'real_estate' ? (
                     <>
                       {area.metadata.price && <div>💰 {area.metadata.price.toLocaleString()}€</div>}
                       {area.metadata.squareMeters && <div>📐 {area.metadata.squareMeters}m²</div>}
-                      {area.metadata.rooms && <div><HomeIcon size="xs" theme="neutral" /> {area.metadata.rooms} δωμάτια</div>}
+                      {area.metadata.rooms && <div><HomeIcon size="xs" theme="neutral" /> {area.metadata.rooms} {t('roomsUnit')}</div>}
                     </>
                   ) : (
                     <>
@@ -774,10 +792,20 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
       {showCategoryForm && tempAreaData && <CategoryForm />}
 
       {/* Device Controls - Εμφανίζονται στην επικεφαλίδα για testing */}
-      <DeviceSwitcher position="top-center" />
+      <DeviceSwitcher
+        position="top-center"
+        labels={{
+          auto: t('auto'),
+          mobile: t('mobile'),
+          tablet: t('tablet'),
+          desktop: t('desktop'),
+          overrideActive: t('overrideActive')
+        }}
+      />
       <ViewportDebugger position="top-right" compact={isMobile} />
     </div>
   );
 };
 
 export default GeoMap;
+export type { DrawnArea };

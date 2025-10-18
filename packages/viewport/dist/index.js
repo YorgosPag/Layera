@@ -237,13 +237,13 @@ var ICON_SIZES = {
   xl: 32
 };
 var THEME_COLORS = {
-  primary: "#2563eb",
-  secondary: "#64748b",
-  success: "#10b981",
-  warning: "#f59e0b",
-  danger: "#ef4444",
-  info: "#06b6d4",
-  neutral: "#6b7280"
+  primary: "var(--layera-bg-info)",
+  secondary: "var(--layera-text-secondary)",
+  success: "var(--layera-bg-success)",
+  warning: "var(--layera-bg-warning)",
+  danger: "var(--layera-bg-danger)",
+  info: "var(--layera-bg-info)",
+  neutral: "var(--layera-text-secondary)"
 };
 var RefreshIcon = ({
   size = "md",
@@ -459,8 +459,8 @@ var ViewportDebugger = ({
     const baseStyles = {
       position: "fixed",
       zIndex: 9999,
-      backgroundColor: "rgba(0, 0, 0, 0.8)",
-      color: "white",
+      backgroundColor: "color-mix(in srgb, var(--layera-bg-secondary) 90%, transparent 10%)",
+      color: "var(--layera-text-primary)",
       padding: compact ? "0.5rem" : "1rem",
       borderRadius: "6px",
       fontSize: compact ? "0.75rem" : "0.875rem",
@@ -524,7 +524,7 @@ var ViewportDebugger = ({
           right: "0.25rem",
           background: "none",
           border: "none",
-          color: "white",
+          color: "var(--layera-text-primary)",
           cursor: "pointer",
           fontSize: "0.75rem"
         },
@@ -598,7 +598,8 @@ var useViewportWithOverride = () => {
 };
 var DeviceSwitcher = ({
   position = "top-center",
-  showInProduction = false
+  showInProduction = false,
+  labels = {}
 }) => {
   const { overrideDevice, setOverrideDevice } = (0, import_react3.useContext)(DeviceOverrideContext);
   const originalViewport = useViewport();
@@ -612,7 +613,7 @@ var DeviceSwitcher = ({
       // Below debugger
       backdropFilter: "blur(8px)",
       borderRadius: "8px",
-      border: "1px solid rgba(255, 255, 255, 0.2)",
+      border: "1px solid color-mix(in srgb, var(--layera-border-primary) 60%, transparent 40%)",
       padding: "0.5rem"
     };
     switch (position) {
@@ -632,17 +633,17 @@ var DeviceSwitcher = ({
     }
   };
   const devices = [
-    { type: null, icon: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(RefreshIcon, { size: "sm", theme: "neutral" }), label: "Auto" },
-    { type: "mobile", icon: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(MobileIcon, { size: "sm", theme: "neutral" }), label: "Mobile" },
-    { type: "tablet", icon: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(TabletIcon, { size: "sm", theme: "neutral" }), label: "Tablet" },
-    { type: "desktop", icon: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(DesktopIcon, { size: "sm", theme: "neutral" }), label: "Desktop" }
+    { type: null, icon: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(RefreshIcon, { size: "sm", theme: "neutral" }), label: labels.auto || "Auto" },
+    { type: "mobile", icon: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(MobileIcon, { size: "sm", theme: "neutral" }), label: labels.mobile || "Mobile" },
+    { type: "tablet", icon: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(TabletIcon, { size: "sm", theme: "neutral" }), label: labels.tablet || "Tablet" },
+    { type: "desktop", icon: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(DesktopIcon, { size: "sm", theme: "neutral" }), label: labels.desktop || "Desktop" }
   ];
   const currentDevice = overrideDevice || originalViewport.deviceType;
   return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { style: getPositionStyles(), children: [
     /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { style: {
       display: "flex",
       gap: "0.25rem",
-      backgroundColor: "rgba(0, 0, 0, 0.8)",
+      backgroundColor: "color-mix(in srgb, var(--layera-bg-secondary) 80%, transparent 20%)",
       borderRadius: "6px",
       padding: "0.25rem"
     }, children: devices.map(({ type, icon, label }) => /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(
@@ -650,10 +651,10 @@ var DeviceSwitcher = ({
       {
         onClick: () => setOverrideDevice(type),
         style: {
-          background: (type || "auto") === (overrideDevice || "auto") ? "rgba(59, 130, 246, 0.8)" : "rgba(255, 255, 255, 0.1)",
+          background: (type || "auto") === (overrideDevice || "auto") ? "color-mix(in srgb, var(--layera-bg-info) 80%, transparent 20%)" : "color-mix(in srgb, var(--layera-bg-tertiary) 80%, transparent 20%)",
           border: "none",
           borderRadius: "4px",
-          color: "white",
+          color: "var(--layera-text-primary)",
           padding: "0.5rem 0.75rem",
           fontSize: "0.75rem",
           cursor: "pointer",
@@ -674,12 +675,12 @@ var DeviceSwitcher = ({
     overrideDevice && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { style: {
       marginTop: "0.5rem",
       fontSize: "0.75rem",
-      color: "rgba(255, 255, 255, 0.8)",
+      color: "var(--layera-text-on-warning)",
       textAlign: "center",
-      backgroundColor: "rgba(255, 165, 0, 0.8)",
+      backgroundColor: "color-mix(in srgb, var(--layera-bg-warning) 80%, transparent 20%)",
       padding: "0.25rem 0.5rem",
       borderRadius: "4px"
-    }, children: "Override Active" })
+    }, children: labels.overrideActive || "Override Active" })
   ] });
 };
 
@@ -694,7 +695,7 @@ var DEVICE_SPECS = {
     scale: 0.7,
     // Scale για να χωράει στην οθόνη
     borderRadius: "25px",
-    bezelColor: "#000000"
+    bezelColor: "var(--layera-bg-secondary)"
   },
   tablet: {
     name: 'iPad Pro 11"',
@@ -702,7 +703,7 @@ var DEVICE_SPECS = {
     height: 1194,
     scale: 0.5,
     borderRadius: "20px",
-    bezelColor: "#333333"
+    bezelColor: "var(--layera-text-secondary)"
   },
   desktop: {
     name: "Desktop 1920x1080",
@@ -710,7 +711,7 @@ var DEVICE_SPECS = {
     height: 1080,
     scale: 0.4,
     borderRadius: "10px",
-    bezelColor: "#666666"
+    bezelColor: "var(--layera-text-tertiary)"
   }
 };
 var DeviceSimulator = ({
@@ -733,7 +734,7 @@ var DeviceSimulator = ({
       width: `${scaledWidth}px`,
       height: `${scaledHeight}px`,
       margin: "0 auto",
-      border: "2px solid #ddd",
+      border: "2px solid var(--layera-border-primary)",
       borderRadius: "8px",
       overflow: "hidden",
       transform: `scale(${spec.scale})`,
@@ -749,25 +750,25 @@ var DeviceSimulator = ({
     flexDirection: "column",
     alignItems: "center",
     padding: "2rem",
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "var(--layera-bg-tertiary)",
     minHeight: "100vh"
   }, children: [
     /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { style: {
       marginBottom: "1rem",
       padding: "1rem",
-      backgroundColor: "white",
+      backgroundColor: "var(--layera-bg-primary)",
       borderRadius: "8px",
-      boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+      boxShadow: "0 2px 4px color-mix(in srgb, var(--layera-bg-secondary) 10%, transparent 90%)",
       display: "flex",
       alignItems: "center",
       gap: "1rem"
     }, children: [
       /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("h3", { style: { margin: 0, color: "#333" }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("h3", { style: { margin: 0, color: "var(--layera-text-primary)" }, children: [
           spec.name,
           " Simulator"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("p", { style: { margin: 0, color: "#666", fontSize: "0.875rem" }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("p", { style: { margin: 0, color: "var(--layera-text-secondary)", fontSize: "0.875rem" }, children: [
           finalWidth,
           " \xD7 ",
           finalHeight,
@@ -781,8 +782,8 @@ var DeviceSimulator = ({
         {
           onClick: () => setOrientation((prev) => prev === "portrait" ? "landscape" : "portrait"),
           style: {
-            backgroundColor: "#2563eb",
-            color: "white",
+            backgroundColor: "var(--layera-bg-info)",
+            color: "var(--layera-text-on-info)",
             border: "none",
             borderRadius: "6px",
             padding: "0.5rem 1rem",
@@ -803,17 +804,17 @@ var DeviceSimulator = ({
       padding: "20px",
       backgroundColor: spec.bezelColor,
       borderRadius: `calc(${spec.borderRadius} + 20px)`,
-      boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+      boxShadow: "0 8px 32px color-mix(in srgb, var(--layera-bg-secondary) 30%, transparent 70%)",
       position: "relative"
     }, children: [
       /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { style: {
         width: `${scaledWidth}px`,
         height: `${scaledHeight}px`,
-        backgroundColor: "white",
+        backgroundColor: "var(--layera-bg-primary)",
         borderRadius: spec.borderRadius,
         overflow: "hidden",
         position: "relative",
-        boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.1)"
+        boxShadow: "inset 0 0 0 1px color-mix(in srgb, var(--layera-border-primary) 10%, transparent 90%)"
       }, children: [
         /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { style: {
           width: `${finalWidth}px`,
@@ -829,7 +830,7 @@ var DeviceSimulator = ({
           transform: "translateX(-50%)",
           width: "134px",
           height: "5px",
-          backgroundColor: "rgba(0,0,0,0.3)",
+          backgroundColor: "color-mix(in srgb, var(--layera-bg-secondary) 30%, transparent 70%)",
           borderRadius: "2.5px"
         } }) })
       ] }),
@@ -867,14 +868,14 @@ var DeviceSimulator = ({
     /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { style: {
       marginTop: "1rem",
       padding: "1rem",
-      backgroundColor: "white",
+      backgroundColor: "var(--layera-bg-primary)",
       borderRadius: "8px",
-      boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+      boxShadow: "0 2px 4px color-mix(in srgb, var(--layera-bg-secondary) 10%, transparent 90%)",
       maxWidth: "600px",
       textAlign: "center"
     }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("h4", { style: { margin: "0 0 0.5rem 0", color: "#333" }, children: "Device Simulation Active" }),
-      /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("p", { style: { margin: 0, color: "#666", fontSize: "0.875rem" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("h4", { style: { margin: "0 0 0.5rem 0", color: "var(--layera-text-primary)" }, children: "Device Simulation Active" }),
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("p", { style: { margin: 0, color: "var(--layera-text-secondary)", fontSize: "0.875rem" }, children: [
         "\u0397 \u03B5\u03C6\u03B1\u03C1\u03BC\u03BF\u03B3\u03AE \u03B5\u03BC\u03C6\u03B1\u03BD\u03AF\u03B6\u03B5\u03C4\u03B1\u03B9 \u03CC\u03C0\u03C9\u03C2 \u03B8\u03B1 \u03C6\u03B1\u03AF\u03BD\u03B5\u03C4\u03B1\u03B9 \u03C3\u03B5 \u03C0\u03C1\u03B1\u03B3\u03BC\u03B1\u03C4\u03B9\u03BA\u03AE ",
         spec.name,
         " \u03C3\u03C5\u03C3\u03BA\u03B5\u03C5\u03AE. \u03A7\u03C1\u03B7\u03C3\u03B9\u03BC\u03BF\u03C0\u03BF\u03AF\u03B7\u03C3\u03B5 \u03C4\u03B1 Device Switcher buttons \u03B3\u03B9\u03B1 \u03B5\u03BD\u03B1\u03BB\u03BB\u03B1\u03B3\u03AE \u03C3\u03C5\u03C3\u03BA\u03B5\u03C5\u03CE\u03BD."

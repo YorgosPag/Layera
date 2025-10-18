@@ -34,8 +34,8 @@ export const ViewportDebugger: React.FC<ViewportDebuggerProps> = ({
     const baseStyles: React.CSSProperties = {
       position: 'fixed',
       zIndex: 9999,
-      backgroundColor: 'rgba(0, 0, 0, 0.8)',
-      color: 'white',
+      backgroundColor: 'color-mix(in srgb, var(--layera-bg-secondary) 90%, transparent 10%)',
+      color: 'var(--layera-text-primary)',
       padding: compact ? '0.5rem' : '1rem',
       borderRadius: '6px',
       fontSize: compact ? '0.75rem' : '0.875rem',
@@ -104,7 +104,7 @@ export const ViewportDebugger: React.FC<ViewportDebuggerProps> = ({
             right: '0.25rem',
             background: 'none',
             border: 'none',
-            color: 'white',
+            color: 'var(--layera-text-primary)',
             cursor: 'pointer',
             fontSize: '0.75rem'
           }}

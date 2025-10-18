@@ -172,7 +172,7 @@ function App() {
           onClick={() => setIsMapMode(true)}
           icon={<MapIcon size="lg" theme="neutral" />}
           className="layera-mb-8"
-          style={{ margin: '0 auto 2rem auto', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)' }}
+          style={{ margin: '0 auto 2rem auto', boxShadow: '0 4px 6px color-mix(in srgb, var(--layera-bg-secondary) 10%, transparent 90%)' }}
         >
           {t('enterGeoCanvas')}
         </Button>

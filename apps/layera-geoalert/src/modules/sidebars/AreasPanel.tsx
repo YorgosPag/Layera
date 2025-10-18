@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { DrawnArea } from '../../components/GeoMap';
 import { SearchIcon, EyeIcon, EyeOffIcon, TrashIcon } from '../../components/icons/LayeraIcons';
 
@@ -27,6 +28,7 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
   onUpdateAreaOpacity,
   onReorderAreas
 }) => {
+  const { t } = useTranslation();
   const dragItem = useRef<number | null>(null);
   const dragOverItem = useRef<number | null>(null);
 
@@ -57,10 +59,10 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
     <aside className={`bg-white border-r border-gray-200 flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out z-20 overflow-hidden ${isOpen ? 'w-80' : 'w-0'}`}>
       <div className="flex flex-col flex-grow min-w-0 w-80">
         <div className="p-4 border-b border-gray-200 flex justify-between items-center">
-          <h2 className="text-lg font-bold text-gray-800">Περιοχές</h2>
+          <h2 className="text-lg font-bold text-gray-800">{t('areas')}</h2>
           <button
             onClick={onTogglePanel}
-            title="Κλείσιμο"
+            title={t('close')}
             className="text-gray-500 hover:text-gray-800"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -72,8 +74,8 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
         {areas.length === 0 && (
           <div className="flex-grow flex items-center justify-center p-4">
             <p className="text-sm text-gray-500 text-center">
-              Δεν υπάρχουν περιοχές. <br />
-              Πατήστε '+' για να δημιουργήσετε μια "Νέα Ειδοποίηση".
+              {t('noAreas')} <br />
+              {t('clickPlusCreate')}
             </p>
           </div>
         )}
@@ -96,7 +98,7 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
                 <div className="flex items-center space-x-2">
                   <button
                     onMouseDown={(e) => { e.preventDefault(); e.stopPropagation(); onEditArea(area); }}
-                    title="Επεξεργασία Περιοχής"
+                    title={t('editArea')}
                     className={`hover:text-blue-600 ${editingAreaId === area.id ? 'text-blue-700' : 'text-gray-600'}`}
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -106,7 +108,7 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
 
                   <button
                     onMouseDown={(e) => { e.preventDefault(); e.stopPropagation(); onZoomToArea(area.id); }}
-                    title="Zoom στην περιοχή"
+                    title={t('zoomToArea')}
                     className="hover:text-blue-600"
                   >
                     <SearchIcon size="sm" theme="neutral" />
@@ -114,7 +116,7 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
 
                   <button
                     onMouseDown={(e) => { e.preventDefault(); e.stopPropagation(); onToggleAreaVisibility(area.id); }}
-                    title={area.isVisible ? "Απόκρυψη" : "Εμφάνιση"}
+                    title={area.isVisible ? t('hide') : t('show')}
                     className="hover:text-blue-600"
                   >
                     {area.isVisible ? <EyeIcon size="sm" theme="neutral" /> : <EyeOffIcon size="sm" theme="neutral" />}
@@ -122,12 +124,12 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
 
                   <button
                     onClick={() => {
-                      if (window.confirm('Είστε σίγουροι ότι θέλετε να διαγράψετε αυτή την περιοχή;')) {
+                      if (window.confirm(t('confirmDelete'))) {
                         onRemoveArea(area.id);
                       }
                     }}
                     onMouseDown={(e) => e.stopPropagation()}
-                    title="Διαγραφή περιοχής"
+                    title={t('deleteArea')}
                     className="hover:text-red-600"
                   >
                     <TrashIcon size="sm" theme="danger" />
