@@ -1,0 +1,136 @@
+import React, { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
+import type { BaseModalProps } from '../../types';
+import './Modal.css';
+
+/**
+ * Modal - Βασικό modal component για το Layera Modal System
+ */
+export const Modal: React.FC<BaseModalProps> = ({
+  open,
+  onClose,
+  children,
+  size = 'md',
+  variant = 'default',
+  animation = 'fade',
+  closeOnOverlayClick = true,
+  closeOnEscape = true,
+  showCloseButton = true,
+  preventBodyScroll = true,
+  className = '',
+  overlayClassName = '',
+  'aria-labelledby': ariaLabelledBy,
+  'aria-describedby': ariaDescribedBy
+}) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
+
+  // Handle ESC key
+  useEffect(() => {
+    if (!open || !closeOnEscape) return;
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [open, closeOnEscape, onClose]);
+
+  // Handle body scroll prevention
+  useEffect(() => {
+    if (!open || !preventBodyScroll) return;
+
+    const originalStyle = window.getComputedStyle(document.body).overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = originalStyle;
+    };
+  }, [open, preventBodyScroll]);
+
+  // Handle focus management
+  useEffect(() => {
+    if (!open) return;
+
+    const focusableElements = modalRef.current?.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+
+    if (focusableElements && focusableElements.length > 0) {
+      (focusableElements[0] as HTMLElement).focus();
+    }
+  }, [open]);
+
+  const handleOverlayClick = (event: React.MouseEvent) => {
+    if (closeOnOverlayClick && event.target === overlayRef.current) {
+      onClose();
+    }
+  };
+
+  const handleCloseClick = () => {
+    onClose();
+  };
+
+  if (!open) return null;
+
+  const modalClasses = [
+    'layera-modal',
+    `layera-modal--${size}`,
+    `layera-modal--${variant}`,
+    `layera-modal--${animation}`,
+    className
+  ].filter(Boolean).join(' ');
+
+  const overlayClasses = [
+    'layera-modal-overlay',
+    `layera-modal-overlay--${animation}`,
+    overlayClassName
+  ].filter(Boolean).join(' ');
+
+  const modalContent = (
+    <div
+      ref={overlayRef}
+      className={overlayClasses}
+      onClick={handleOverlayClick}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={ariaLabelledBy}
+      aria-describedby={ariaDescribedBy}
+    >
+      <div
+        ref={modalRef}
+        className={modalClasses}
+        role="document"
+      >
+        {showCloseButton && (
+          <button
+            type="button"
+            className="layera-modal__close"
+            onClick={handleCloseClick}
+            aria-label="Close modal"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        )}
+        {children}
+      </div>
+    </div>
+  );
+
+  return createPortal(modalContent, document.body);
+};

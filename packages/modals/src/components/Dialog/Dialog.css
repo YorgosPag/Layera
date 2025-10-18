@@ -1,0 +1,195 @@
+/**
+ * Layera Dialog - Styles
+ */
+
+.layera-dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-md, 16px);
+}
+
+.layera-dialog__icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-bottom: var(--space-sm, 8px);
+}
+
+.layera-dialog__icon {
+  width: 24px;
+  height: 24px;
+}
+
+.layera-dialog__icon--info {
+  color: var(--color-info, #3b82f6);
+}
+
+.layera-dialog__icon--success {
+  color: var(--color-success, #10b981);
+}
+
+.layera-dialog__icon--warning {
+  color: var(--color-warning, #f59e0b);
+}
+
+.layera-dialog__icon--error {
+  color: var(--color-error, #ef4444);
+}
+
+.layera-dialog__icon--question {
+  color: var(--color-primary, #3b82f6);
+}
+
+/* Icon backgrounds */
+.layera-dialog--info .layera-dialog__icon-container {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.layera-dialog--success .layera-dialog__icon-container {
+  background-color: rgba(16, 185, 129, 0.1);
+}
+
+.layera-dialog--warning .layera-dialog__icon-container {
+  background-color: rgba(245, 158, 11, 0.1);
+}
+
+.layera-dialog--error .layera-dialog__icon-container {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+.layera-dialog--question .layera-dialog__icon-container {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.layera-dialog__message {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-primary, #111827);
+  max-width: 400px;
+}
+
+.layera-dialog__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm, 8px);
+}
+
+/* Button styles */
+.layera-dialog__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs, 4px);
+  height: 40px;
+  padding: 0 var(--space-md, 16px);
+  border: 1px solid transparent;
+  border-radius: var(--border-radius-md, 8px);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 150ms ease;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.layera-dialog__button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.layera-dialog__button--ghost {
+  background-color: transparent;
+  border-color: var(--color-border, #e5e7eb);
+  color: var(--color-text-secondary, #6b7280);
+}
+
+.layera-dialog__button--ghost:hover:not(:disabled) {
+  background-color: var(--color-surface-hover, #f3f4f6);
+  border-color: var(--color-border-hover, #d1d5db);
+  color: var(--color-text-primary, #111827);
+}
+
+.layera-dialog__button--primary {
+  background-color: var(--color-primary, #3b82f6);
+  color: white;
+}
+
+.layera-dialog__button--primary:hover:not(:disabled) {
+  background-color: var(--color-primary-hover, #2563eb);
+}
+
+.layera-dialog__button--success {
+  background-color: var(--color-success, #10b981);
+  color: white;
+}
+
+.layera-dialog__button--success:hover:not(:disabled) {
+  background-color: var(--color-success-hover, #059669);
+}
+
+.layera-dialog__button--warning {
+  background-color: var(--color-warning, #f59e0b);
+  color: white;
+}
+
+.layera-dialog__button--warning:hover:not(:disabled) {
+  background-color: var(--color-warning-hover, #d97706);
+}
+
+.layera-dialog__button--danger {
+  background-color: var(--color-error, #ef4444);
+  color: white;
+}
+
+.layera-dialog__button--danger:hover:not(:disabled) {
+  background-color: var(--color-error-hover, #dc2626);
+}
+
+.layera-dialog__spinner {
+  animation: layera-dialog-spin 1s linear infinite;
+}
+
+@keyframes layera-dialog-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dark theme support */
+[data-theme="dark"] .layera-dialog__message {
+  color: var(--color-text-primary-dark, #f9fafb);
+}
+
+[data-theme="dark"] .layera-dialog__button--ghost {
+  border-color: var(--color-border-dark, #374151);
+  color: var(--color-text-secondary-dark, #d1d5db);
+}
+
+[data-theme="dark"] .layera-dialog__button--ghost:hover:not(:disabled) {
+  background-color: var(--color-surface-hover-dark, #374151);
+  border-color: var(--color-border-hover-dark, #4b5563);
+  color: var(--color-text-primary-dark, #f9fafb);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 640px) {
+  .layera-dialog__actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .layera-dialog__button {
+    width: 100%;
+  }
+}

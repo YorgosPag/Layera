@@ -1,0 +1,9 @@
+/**
+ * Layera Modals - Main Styles Import
+ */
+
+@import '../components/Modal/Modal.css';
+@import '../components/ModalHeader/ModalHeader.css';
+@import '../components/ModalContent/ModalContent.css';
+@import '../components/ModalFooter/ModalFooter.css';
+@import '../components/Dialog/Dialog.css';

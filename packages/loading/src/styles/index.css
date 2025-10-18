@@ -1,0 +1,8 @@
+/**
+ * Layera Loading - Main Styles Import
+ */
+
+@import '../components/Spinner/Spinner.css';
+@import '../components/Skeleton/Skeleton.css';
+@import '../components/SkeletonText/SkeletonText.css';
+@import '../components/LoadingSpinner/LoadingSpinner.css';

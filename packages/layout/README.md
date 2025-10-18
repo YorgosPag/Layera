@@ -89,6 +89,50 @@ interface AppShellProps {
 }
 ```
 
+## 🚀 Upcoming Components
+
+Τα επόμενα components που θα προστεθούν στο Layout System:
+
+### 1. Modal/Dialog System 🪟
+```tsx
+<Modal open={isOpen} onClose={onClose} size="lg">
+  <ModalHeader title="Confirmation" />
+  <ModalContent>Are you sure?</ModalContent>
+  <ModalFooter>
+    <Button variant="ghost" onClick={onClose}>Cancel</Button>
+    <Button variant="primary" onClick={onConfirm}>Confirm</Button>
+  </ModalFooter>
+</Modal>
+```
+
+### 2. Notification/Toast System 📢
+```tsx
+const { showNotification } = useNotifications();
+showNotification({
+  type: 'success',
+  title: 'Success!',
+  message: 'Operation completed successfully',
+  duration: 5000
+});
+```
+
+### 3. Loading States & Skeletons ⏳
+```tsx
+<LoadingSpinner size="lg" />
+<SkeletonCard />
+<SkeletonText lines={3} />
+```
+
+### 4. Error Boundary Components 🛡️
+```tsx
+<ErrorBoundary
+  fallback={<ErrorFallback />}
+  onError={(error, errorInfo) => logError(error, errorInfo)}
+>
+  <YourComponent />
+</ErrorBoundary>
+```
+
 ### LayeraHeader
 Standardized header με variants:
 

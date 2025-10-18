@@ -1,0 +1,265 @@
+/**
+ * Layera Spinner - Styles
+ */
+
+:root {
+  --layera-spinner-color: var(--color-primary, #3b82f6);
+
+  /* Sizes */
+  --layera-spinner-xs: 16px;
+  --layera-spinner-sm: 20px;
+  --layera-spinner-md: 24px;
+  --layera-spinner-lg: 32px;
+  --layera-spinner-xl: 48px;
+
+  /* Speeds */
+  --layera-spinner-speed-slow: 2s;
+  --layera-spinner-speed-normal: 1s;
+  --layera-spinner-speed-fast: 0.5s;
+}
+
+.layera-spinner {
+  display: inline-block;
+  color: var(--layera-spinner-color);
+}
+
+/* Size variants */
+.layera-spinner--xs {
+  width: var(--layera-spinner-xs);
+  height: var(--layera-spinner-xs);
+}
+
+.layera-spinner--sm {
+  width: var(--layera-spinner-sm);
+  height: var(--layera-spinner-sm);
+}
+
+.layera-spinner--md {
+  width: var(--layera-spinner-md);
+  height: var(--layera-spinner-md);
+}
+
+.layera-spinner--lg {
+  width: var(--layera-spinner-lg);
+  height: var(--layera-spinner-lg);
+}
+
+.layera-spinner--xl {
+  width: var(--layera-spinner-xl);
+  height: var(--layera-spinner-xl);
+}
+
+/* Default circular spinner */
+.layera-spinner__circle {
+  width: 100%;
+  height: 100%;
+  animation: layera-spinner-rotate var(--layera-spinner-speed-normal) linear infinite;
+}
+
+.layera-spinner--speed-slow .layera-spinner__circle {
+  animation-duration: var(--layera-spinner-speed-slow);
+}
+
+.layera-spinner--speed-fast .layera-spinner__circle {
+  animation-duration: var(--layera-spinner-speed-fast);
+}
+
+.layera-spinner__progress {
+  animation: layera-spinner-dash 1.5s ease-in-out infinite;
+}
+
+@keyframes layera-spinner-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes layera-spinner-dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
+}
+
+/* Dots variant */
+.layera-spinner--dots {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.layera-spinner__dot {
+  width: 25%;
+  height: 25%;
+  background-color: currentColor;
+  border-radius: 50%;
+  animation: layera-spinner-dots var(--layera-spinner-speed-normal) ease-in-out infinite;
+}
+
+.layera-spinner__dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.layera-spinner__dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+.layera-spinner__dot:nth-child(3) {
+  animation-delay: 0s;
+}
+
+.layera-spinner--speed-slow .layera-spinner__dot {
+  animation-duration: var(--layera-spinner-speed-slow);
+}
+
+.layera-spinner--speed-fast .layera-spinner__dot {
+  animation-duration: var(--layera-spinner-speed-fast);
+}
+
+@keyframes layera-spinner-dots {
+  0%, 80%, 100% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Pulse variant */
+.layera-spinner__pulse {
+  width: 100%;
+  height: 100%;
+  background-color: currentColor;
+  border-radius: 50%;
+  animation: layera-spinner-pulse var(--layera-spinner-speed-normal) ease-in-out infinite;
+}
+
+.layera-spinner--speed-slow .layera-spinner__pulse {
+  animation-duration: var(--layera-spinner-speed-slow);
+}
+
+.layera-spinner--speed-fast .layera-spinner__pulse {
+  animation-duration: var(--layera-spinner-speed-fast);
+}
+
+@keyframes layera-spinner-pulse {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+/* Ring variant */
+.layera-spinner__ring {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.layera-spinner__ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid currentColor;
+  border-radius: 50%;
+  animation: layera-spinner-ring var(--layera-spinner-speed-normal) cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: currentColor transparent transparent transparent;
+}
+
+.layera-spinner__ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.layera-spinner__ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.layera-spinner__ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+.layera-spinner--speed-slow .layera-spinner__ring div {
+  animation-duration: var(--layera-spinner-speed-slow);
+}
+
+.layera-spinner--speed-fast .layera-spinner__ring div {
+  animation-duration: var(--layera-spinner-speed-fast);
+}
+
+@keyframes layera-spinner-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Bars variant */
+.layera-spinner__bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.layera-spinner__bars div {
+  width: 15%;
+  background-color: currentColor;
+  animation: layera-spinner-bars var(--layera-spinner-speed-normal) ease-in-out infinite;
+}
+
+.layera-spinner__bars div:nth-child(1) {
+  animation-delay: -0.4s;
+}
+
+.layera-spinner__bars div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.layera-spinner__bars div:nth-child(3) {
+  animation-delay: -0.2s;
+}
+
+.layera-spinner__bars div:nth-child(4) {
+  animation-delay: -0.1s;
+}
+
+.layera-spinner__bars div:nth-child(5) {
+  animation-delay: 0s;
+}
+
+.layera-spinner--speed-slow .layera-spinner__bars div {
+  animation-duration: var(--layera-spinner-speed-slow);
+}
+
+.layera-spinner--speed-fast .layera-spinner__bars div {
+  animation-duration: var(--layera-spinner-speed-fast);
+}
+
+@keyframes layera-spinner-bars {
+  0%, 40%, 100% {
+    height: 30%;
+  }
+  20% {
+    height: 100%;
+  }
+}

@@ -1,0 +1,204 @@
+/**
+ * Layera Modal - Styles
+ */
+
+:root {
+  --layera-modal-z-index: 1000;
+  --layera-modal-overlay-bg: rgba(0, 0, 0, 0.5);
+  --layera-modal-bg: var(--color-surface, #ffffff);
+  --layera-modal-border: var(--color-border, #e5e7eb);
+  --layera-modal-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                         0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --layera-modal-radius: var(--border-radius-lg, 12px);
+
+  /* Sizes */
+  --layera-modal-xs: 320px;
+  --layera-modal-sm: 448px;
+  --layera-modal-md: 512px;
+  --layera-modal-lg: 768px;
+  --layera-modal-xl: 1024px;
+
+  /* Spacing */
+  --layera-modal-padding: var(--space-lg, 24px);
+  --layera-modal-gap: var(--space-md, 16px);
+
+  /* Animation */
+  --layera-modal-duration: 200ms;
+  --layera-modal-timing: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Dark theme support */
+[data-theme="dark"] {
+  --layera-modal-bg: var(--color-surface-dark, #1f2937);
+  --layera-modal-border: var(--color-border-dark, #374151);
+  --layera-modal-overlay-bg: rgba(0, 0, 0, 0.8);
+}
+
+/* Overlay */
+.layera-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--layera-modal-z-index);
+  background-color: var(--layera-modal-overlay-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--layera-modal-padding);
+}
+
+/* Modal container */
+.layera-modal {
+  position: relative;
+  background-color: var(--layera-modal-bg);
+  border: 1px solid var(--layera-modal-border);
+  border-radius: var(--layera-modal-radius);
+  box-shadow: var(--layera-modal-shadow);
+  width: 100%;
+  max-height: calc(100vh - 2 * var(--layera-modal-padding));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Modal sizes */
+.layera-modal--xs {
+  max-width: var(--layera-modal-xs);
+}
+
+.layera-modal--sm {
+  max-width: var(--layera-modal-sm);
+}
+
+.layera-modal--md {
+  max-width: var(--layera-modal-md);
+}
+
+.layera-modal--lg {
+  max-width: var(--layera-modal-lg);
+}
+
+.layera-modal--xl {
+  max-width: var(--layera-modal-xl);
+}
+
+.layera-modal--full {
+  max-width: calc(100vw - 2 * var(--layera-modal-padding));
+  max-height: calc(100vh - 2 * var(--layera-modal-padding));
+}
+
+/* Modal variants */
+.layera-modal--elevated {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.layera-modal--centered {
+  margin: auto;
+}
+
+.layera-modal--sidebar {
+  height: 100vh;
+  max-height: 100vh;
+  border-radius: 0;
+  margin: 0;
+}
+
+/* Close button */
+.layera-modal__close {
+  position: absolute;
+  top: var(--layera-modal-gap);
+  right: var(--layera-modal-gap);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: var(--border-radius-md, 8px);
+  background-color: transparent;
+  color: var(--color-text-secondary, #6b7280);
+  cursor: pointer;
+  transition: all var(--layera-modal-duration) var(--layera-modal-timing);
+}
+
+.layera-modal__close:hover {
+  background-color: var(--color-surface-hover, #f3f4f6);
+  color: var(--color-text-primary, #111827);
+}
+
+.layera-modal__close:focus {
+  outline: 2px solid var(--color-primary, #3b82f6);
+  outline-offset: 2px;
+}
+
+/* Animations */
+.layera-modal-overlay--fade {
+  animation: layera-modal-fade-in var(--layera-modal-duration) var(--layera-modal-timing);
+}
+
+.layera-modal--fade {
+  animation: layera-modal-scale-in var(--layera-modal-duration) var(--layera-modal-timing);
+}
+
+.layera-modal--slide {
+  animation: layera-modal-slide-in var(--layera-modal-duration) var(--layera-modal-timing);
+}
+
+.layera-modal--scale {
+  animation: layera-modal-scale-in var(--layera-modal-duration) var(--layera-modal-timing);
+}
+
+@keyframes layera-modal-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes layera-modal-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes layera-modal-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 640px) {
+  .layera-modal-overlay {
+    padding: var(--space-sm, 8px);
+  }
+
+  .layera-modal {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .layera-modal--xs,
+  .layera-modal--sm,
+  .layera-modal--md,
+  .layera-modal--lg,
+  .layera-modal--xl {
+    max-width: 100%;
+  }
+}

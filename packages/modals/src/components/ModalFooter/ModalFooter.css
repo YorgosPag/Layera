@@ -1,0 +1,70 @@
+/**
+ * Layera ModalFooter - Styles
+ */
+
+.layera-modal-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md, 16px);
+  padding: var(--space-md, 16px) var(--layera-modal-padding, 24px) var(--layera-modal-padding, 24px);
+  border-top: 1px solid var(--layera-modal-border, #e5e7eb);
+  background-color: var(--layera-modal-bg, #ffffff);
+  border-radius: 0 0 var(--layera-modal-radius, 12px) var(--layera-modal-radius, 12px);
+}
+
+.layera-modal-footer__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.layera-modal-footer__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm, 8px);
+  flex-shrink: 0;
+}
+
+/* Alignment variants */
+.layera-modal-footer--left {
+  justify-content: flex-start;
+}
+
+.layera-modal-footer--center {
+  justify-content: center;
+}
+
+.layera-modal-footer--right {
+  justify-content: flex-end;
+}
+
+.layera-modal-footer--between {
+  justify-content: space-between;
+}
+
+.layera-modal-footer--between .layera-modal-footer__content {
+  flex: 0 0 auto;
+}
+
+/* Dark theme support */
+[data-theme="dark"] .layera-modal-footer {
+  background-color: var(--color-surface-dark, #1f2937);
+  border-top-color: var(--color-border-dark, #374151);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 640px) {
+  .layera-modal-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-sm, 8px);
+  }
+
+  .layera-modal-footer__actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .layera-modal-footer__actions > * {
+    flex: 1;
+  }
+}

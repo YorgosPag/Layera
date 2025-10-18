@@ -1,0 +1,62 @@
+/**
+ * Layera ModalContent - Styles
+ */
+
+.layera-modal-content {
+  flex: 1;
+  min-height: 0;
+  background-color: var(--layera-modal-bg, #ffffff);
+}
+
+/* Padding variants */
+.layera-modal-content--none {
+  padding: 0;
+}
+
+.layera-modal-content--sm {
+  padding: var(--space-sm, 8px) var(--space-md, 16px);
+}
+
+.layera-modal-content--md {
+  padding: var(--space-md, 16px) var(--layera-modal-padding, 24px);
+}
+
+.layera-modal-content--lg {
+  padding: var(--layera-modal-padding, 24px);
+}
+
+/* Scrollable content */
+.layera-modal-content--scrollable {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.layera-modal-content--scrollable::-webkit-scrollbar {
+  width: 6px;
+}
+
+.layera-modal-content--scrollable::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.layera-modal-content--scrollable::-webkit-scrollbar-thumb {
+  background: var(--color-border, #e5e7eb);
+  border-radius: 3px;
+}
+
+.layera-modal-content--scrollable::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary, #6b7280);
+}
+
+/* Dark theme support */
+[data-theme="dark"] .layera-modal-content {
+  background-color: var(--color-surface-dark, #1f2937);
+}
+
+[data-theme="dark"] .layera-modal-content--scrollable::-webkit-scrollbar-thumb {
+  background: var(--color-border-dark, #374151);
+}
+
+[data-theme="dark"] .layera-modal-content--scrollable::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary-dark, #d1d5db);
+}

@@ -1,0 +1,81 @@
+/**
+ * Layera NotificationContainer - Styles
+ */
+
+.layera-notification-container {
+  position: fixed;
+  z-index: var(--layera-notification-z-index, 1050);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm, 8px);
+  pointer-events: none;
+}
+
+.layera-notification-container > * {
+  pointer-events: auto;
+}
+
+/* Position variants */
+.layera-notification-container--top-left {
+  top: var(--space-lg, 24px);
+  left: var(--space-lg, 24px);
+}
+
+.layera-notification-container--top-center {
+  top: var(--space-lg, 24px);
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
+}
+
+.layera-notification-container--top-right {
+  top: var(--space-lg, 24px);
+  right: var(--space-lg, 24px);
+  align-items: flex-end;
+}
+
+.layera-notification-container--bottom-left {
+  bottom: var(--space-lg, 24px);
+  left: var(--space-lg, 24px);
+  flex-direction: column-reverse;
+}
+
+.layera-notification-container--bottom-center {
+  bottom: var(--space-lg, 24px);
+  left: 50%;
+  transform: translateX(-50%);
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.layera-notification-container--bottom-right {
+  bottom: var(--space-lg, 24px);
+  right: var(--space-lg, 24px);
+  flex-direction: column-reverse;
+  align-items: flex-end;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 640px) {
+  .layera-notification-container--top-left,
+  .layera-notification-container--bottom-left {
+    left: var(--space-sm, 8px);
+  }
+
+  .layera-notification-container--top-right,
+  .layera-notification-container--bottom-right {
+    right: var(--space-sm, 8px);
+  }
+
+  .layera-notification-container--top-left,
+  .layera-notification-container--top-center,
+  .layera-notification-container--top-right {
+    top: var(--space-sm, 8px);
+  }
+
+  .layera-notification-container--bottom-left,
+  .layera-notification-container--bottom-center,
+  .layera-notification-container--bottom-right {
+    bottom: var(--space-sm, 8px);
+  }
+}

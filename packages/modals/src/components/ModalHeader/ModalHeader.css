@@ -1,0 +1,83 @@
+/**
+ * Layera ModalHeader - Styles
+ */
+
+.layera-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md, 16px);
+  padding: var(--layera-modal-padding, 24px);
+  padding-bottom: var(--space-md, 16px);
+  border-bottom: 1px solid var(--layera-modal-border, #e5e7eb);
+  background-color: var(--layera-modal-bg, #ffffff);
+  border-radius: var(--layera-modal-radius, 12px) var(--layera-modal-radius, 12px) 0 0;
+}
+
+.layera-modal-header__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.layera-modal-header__title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--color-text-primary, #111827);
+}
+
+.layera-modal-header__subtitle {
+  margin: var(--space-xs, 4px) 0 0 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary, #6b7280);
+}
+
+.layera-modal-header__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: var(--border-radius-md, 8px);
+  background-color: transparent;
+  color: var(--color-text-secondary, #6b7280);
+  cursor: pointer;
+  transition: all 150ms ease;
+  flex-shrink: 0;
+}
+
+.layera-modal-header__close:hover {
+  background-color: var(--color-surface-hover, #f3f4f6);
+  color: var(--color-text-primary, #111827);
+}
+
+.layera-modal-header__close:focus {
+  outline: 2px solid var(--color-primary, #3b82f6);
+  outline-offset: 2px;
+}
+
+/* Dark theme support */
+[data-theme="dark"] .layera-modal-header {
+  background-color: var(--color-surface-dark, #1f2937);
+  border-bottom-color: var(--color-border-dark, #374151);
+}
+
+[data-theme="dark"] .layera-modal-header__title {
+  color: var(--color-text-primary-dark, #f9fafb);
+}
+
+[data-theme="dark"] .layera-modal-header__subtitle {
+  color: var(--color-text-secondary-dark, #d1d5db);
+}
+
+[data-theme="dark"] .layera-modal-header__close {
+  color: var(--color-text-secondary-dark, #d1d5db);
+}
+
+[data-theme="dark"] .layera-modal-header__close:hover {
+  background-color: var(--color-surface-hover-dark, #374151);
+  color: var(--color-text-primary-dark, #f9fafb);
+}

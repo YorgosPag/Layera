@@ -1,0 +1,21 @@
+/**
+ * Layera SkeletonText - Styles
+ */
+
+.layera-skeleton-text {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Spacing variants */
+.layera-skeleton-text--spacing-sm {
+  gap: var(--space-xs, 4px);
+}
+
+.layera-skeleton-text--spacing-md {
+  gap: var(--space-sm, 8px);
+}
+
+.layera-skeleton-text--spacing-lg {
+  gap: var(--space-md, 16px);
+}

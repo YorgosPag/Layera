@@ -1,0 +1,247 @@
+/**
+ * Layera Toast - Styles
+ */
+
+:root {
+  --layera-toast-width: 400px;
+  --layera-toast-max-width: calc(100vw - 32px);
+  --layera-toast-padding: 16px;
+  --layera-toast-gap: 12px;
+  --layera-toast-radius: var(--border-radius-lg, 12px);
+  --layera-toast-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+                         0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --layera-toast-border-width: 1px;
+
+  /* Colors */
+  --layera-toast-bg: var(--color-surface, #ffffff);
+  --layera-toast-border: var(--color-border, #e5e7eb);
+  --layera-toast-text: var(--color-text-primary, #111827);
+  --layera-toast-text-secondary: var(--color-text-secondary, #6b7280);
+
+  /* Type colors */
+  --layera-toast-info-color: var(--color-info, #3b82f6);
+  --layera-toast-success-color: var(--color-success, #10b981);
+  --layera-toast-warning-color: var(--color-warning, #f59e0b);
+  --layera-toast-error-color: var(--color-error, #ef4444);
+
+  /* Animation */
+  --layera-toast-duration: 300ms;
+  --layera-toast-timing: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --layera-toast-bg: var(--color-surface-dark, #1f2937);
+  --layera-toast-border: var(--color-border-dark, #374151);
+  --layera-toast-text: var(--color-text-primary-dark, #f9fafb);
+  --layera-toast-text-secondary: var(--color-text-secondary-dark, #d1d5db);
+}
+
+.layera-toast {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--layera-toast-gap);
+  width: var(--layera-toast-width);
+  max-width: var(--layera-toast-max-width);
+  padding: var(--layera-toast-padding);
+  background-color: var(--layera-toast-bg);
+  border: var(--layera-toast-border-width) solid var(--layera-toast-border);
+  border-radius: var(--layera-toast-radius);
+  box-shadow: var(--layera-toast-shadow);
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all var(--layera-toast-duration) var(--layera-toast-timing);
+  overflow: hidden;
+}
+
+.layera-toast--visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.layera-toast--exiting {
+  opacity: 0;
+  transform: scale(0.95) translateX(100%);
+}
+
+/* Position variants */
+.layera-toast--top-left,
+.layera-toast--bottom-left {
+  transform: translateX(-100%);
+}
+
+.layera-toast--top-left.layera-toast--visible,
+.layera-toast--bottom-left.layera-toast--visible {
+  transform: translateX(0);
+}
+
+.layera-toast--top-left.layera-toast--exiting,
+.layera-toast--bottom-left.layera-toast--exiting {
+  transform: scale(0.95) translateX(-100%);
+}
+
+.layera-toast--top-center,
+.layera-toast--bottom-center {
+  transform: translateY(-20px);
+}
+
+.layera-toast--top-center.layera-toast--visible,
+.layera-toast--bottom-center.layera-toast--visible {
+  transform: translateY(0);
+}
+
+.layera-toast--top-center.layera-toast--exiting {
+  transform: scale(0.95) translateY(-20px);
+}
+
+.layera-toast--bottom-center.layera-toast--exiting {
+  transform: scale(0.95) translateY(20px);
+}
+
+/* Type variants */
+.layera-toast--info {
+  border-left: 4px solid var(--layera-toast-info-color);
+}
+
+.layera-toast--success {
+  border-left: 4px solid var(--layera-toast-success-color);
+}
+
+.layera-toast--warning {
+  border-left: 4px solid var(--layera-toast-warning-color);
+}
+
+.layera-toast--error {
+  border-left: 4px solid var(--layera-toast-error-color);
+}
+
+.layera-toast__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+}
+
+.layera-toast--info .layera-toast__icon {
+  color: var(--layera-toast-info-color);
+}
+
+.layera-toast--success .layera-toast__icon {
+  color: var(--layera-toast-success-color);
+}
+
+.layera-toast--warning .layera-toast__icon {
+  color: var(--layera-toast-warning-color);
+}
+
+.layera-toast--error .layera-toast__icon {
+  color: var(--layera-toast-error-color);
+}
+
+.layera-toast__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.layera-toast__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--layera-toast-text);
+  margin-bottom: 4px;
+}
+
+.layera-toast__message {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--layera-toast-text-secondary);
+}
+
+.layera-toast__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--layera-toast-border);
+  border-radius: var(--border-radius-md, 8px);
+  background-color: transparent;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--layera-toast-text);
+  cursor: pointer;
+  transition: all 150ms ease;
+  flex-shrink: 0;
+}
+
+.layera-toast__action:hover {
+  background-color: var(--color-surface-hover, #f3f4f6);
+  border-color: var(--color-border-hover, #d1d5db);
+}
+
+.layera-toast__dismiss {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: var(--border-radius-sm, 6px);
+  background-color: transparent;
+  color: var(--layera-toast-text-secondary);
+  cursor: pointer;
+  transition: all 150ms ease;
+  flex-shrink: 0;
+}
+
+.layera-toast__dismiss:hover {
+  background-color: var(--color-surface-hover, #f3f4f6);
+  color: var(--layera-toast-text);
+}
+
+.layera-toast__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background-color: var(--layera-toast-info-color);
+  animation: layera-toast-progress linear forwards;
+}
+
+.layera-toast--success .layera-toast__progress {
+  background-color: var(--layera-toast-success-color);
+}
+
+.layera-toast--warning .layera-toast__progress {
+  background-color: var(--layera-toast-warning-color);
+}
+
+.layera-toast--error .layera-toast__progress {
+  background-color: var(--layera-toast-error-color);
+}
+
+@keyframes layera-toast-progress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 640px) {
+  .layera-toast {
+    width: 100%;
+    max-width: calc(100vw - 16px);
+    margin: 0 8px;
+  }
+
+  .layera-toast__action {
+    display: none;
+  }
+}

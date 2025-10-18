@@ -1,0 +1,85 @@
+/**
+ * Layera Skeleton - Styles
+ */
+
+:root {
+  --layera-skeleton-bg: var(--color-surface-secondary, #f3f4f6);
+  --layera-skeleton-highlight: var(--color-surface-tertiary, #e5e7eb);
+  --layera-skeleton-radius: var(--border-radius-md, 8px);
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --layera-skeleton-bg: var(--color-surface-secondary-dark, #374151);
+  --layera-skeleton-highlight: var(--color-surface-tertiary-dark, #4b5563);
+}
+
+.layera-skeleton {
+  display: block;
+  background-color: var(--layera-skeleton-bg);
+  border-radius: var(--layera-skeleton-radius);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Variant styles */
+.layera-skeleton--text {
+  border-radius: 4px;
+  height: 1em;
+}
+
+.layera-skeleton--rectangular {
+  border-radius: var(--layera-skeleton-radius);
+}
+
+.layera-skeleton--circular {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+/* Wave animation */
+.layera-skeleton--wave {
+  background: linear-gradient(
+    90deg,
+    var(--layera-skeleton-bg) 25%,
+    var(--layera-skeleton-highlight) 50%,
+    var(--layera-skeleton-bg) 75%
+  );
+  background-size: 200% 100%;
+  animation: layera-skeleton-wave 1.5s ease-in-out infinite;
+}
+
+@keyframes layera-skeleton-wave {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Pulse animation */
+.layera-skeleton--pulse {
+  animation: layera-skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes layera-skeleton-pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .layera-skeleton--wave,
+  .layera-skeleton--pulse {
+    animation: none;
+  }
+}
