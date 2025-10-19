@@ -27,5 +27,5 @@ export interface GoogleSignInButtonProps {
  * </GoogleSignInButton>
  * ```
  */
-export declare function GoogleSignInButton({ children, className, style, onSuccess, onError, disabled: externalDisabled }: GoogleSignInButtonProps): import("react/jsx-runtime").JSX.Element;
+export declare function GoogleSignInButton({ children, className, style, onSuccess, onError, disabled: externalDisabled }: GoogleSignInButtonProps): import("react/jsx-runtime.js").JSX.Element;
 //# sourceMappingURL=GoogleSignInButton.d.ts.map

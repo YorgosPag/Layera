@@ -40,4 +40,121 @@ export const MeasurementControls: React.FC<MeasurementControlsProps> = ({
   const { t } = useTranslation();
 
   return (
-    <Card variant=\"floating\" className=\"min-w-[200px]\">\n      <Typography variant=\"h6\" className=\"text-center mb-3\">\n        {t('geo-drawing.measurement-title')}\n      </Typography>\n\n      {/* Mode Selection */}\n      <Layout direction=\"horizontal\" spacing=\"sm\" className=\"mb-3\">\n        <Button\n          variant={mode === 'distance' ? 'primary' : 'secondary'}\n          size=\"sm\"\n          onClick={() => onModeChange('distance')}\n          disabled={isDrawing}\n          className=\"flex-1\"\n        >\n          <Icons.Rule className=\"w-4 h-4 mr-1\" />\n          {t('geo-drawing.modes.distance')}\n        </Button>\n        \n        <Button\n          variant={mode === 'area' ? 'primary' : 'secondary'}\n          size=\"sm\"\n          onClick={() => onModeChange('area')}\n          disabled={isDrawing}\n          className=\"flex-1\"\n        >\n          <Icons.Square className=\"w-4 h-4 mr-1\" />\n          {t('geo-drawing.modes.area')}\n        </Button>\n      </Layout>\n\n      <Layout direction=\"horizontal\" spacing=\"sm\" className=\"mb-3\">\n        <Button\n          variant={mode === 'point' ? 'primary' : 'secondary'}\n          size=\"sm\"\n          onClick={() => onModeChange('point')}\n          disabled={isDrawing}\n          className=\"flex-1\"\n        >\n          <Icons.MapPin className=\"w-4 h-4 mr-1\" />\n          {t('geo-drawing.modes.point')}\n        </Button>\n      </Layout>\n\n      {/* Current Measurement Display */}\n      <Card variant=\"inner\" className=\"mb-3 p-2 min-h-[60px] flex items-center justify-center\">\n        <Typography variant=\"body\" className=\"text-center\">\n          {displayValue || (\n            mode === 'distance' \n              ? `${t('geo-drawing.labels.distance')}: ${distance.toFixed(2)} m`\n              : mode === 'area'\n              ? `${t('geo-drawing.labels.area')}: ${area.toFixed(2)} m²`\n              : t('geo-drawing.labels.select-point')\n          )}\n        </Typography>\n      </Card>\n\n      {/* Action Buttons */}\n      <Layout direction=\"vertical\" spacing=\"sm\">\n        {isDrawing && (\n          <Layout direction=\"horizontal\" spacing=\"sm\">\n            {canFinish && onFinish && (\n              <Button\n                variant=\"success\"\n                size=\"sm\"\n                onClick={onFinish}\n                className=\"flex-1\"\n              >\n                <Icons.Check className=\"w-4 h-4 mr-1\" />\n                {t('geo-drawing.actions.finish')}\n              </Button>\n            )}\n            \n            {onCancel && (\n              <Button\n                variant=\"secondary\"\n                size=\"sm\"\n                onClick={onCancel}\n                className=\"flex-1\"\n              >\n                <Icons.X className=\"w-4 h-4 mr-1\" />\n                {t('geo-drawing.actions.cancel')}\n              </Button>\n            )}\n          </Layout>\n        )}\n\n        <Button\n          variant=\"danger\"\n          size=\"sm\"\n          onClick={onReset}\n          className=\"w-full\"\n        >\n          <Icons.Trash className=\"w-4 h-4 mr-1\" />\n          {t('geo-drawing.actions.clear')}\n        </Button>\n      </Layout>\n\n      {/* Instructions */}\n      <Card variant=\"inner\" className=\"mt-3 p-2\">\n        <Typography variant=\"caption\" className=\"text-center leading-tight\">\n          {isDrawing ? (\n            <>\n              {t('geo-drawing.instructions.click-add')}<br/>\n              {mode !== 'point' && (\n                <>\n                  {t('geo-drawing.instructions.double-click-finish')}<br/>\n                </>n              )}\n              {t('geo-drawing.instructions.esc-cancel')}\n            </>\n          ) : (\n            t('geo-drawing.instructions.select-mode')\n          )}\n        </Typography>\n      </Card>\n    </Card>\n  );\n};
+    <Card variant="floating" className="min-w-[200px]">
+      <Typography variant="h6" className="text-center mb-3">
+        {t('geo-drawing.measurement-title')}
+      </Typography>
+
+      {/* Mode Selection */}
+      <Layout direction="horizontal" spacing="sm" className="mb-3">
+        <Button
+          variant={mode === 'distance' ? 'primary' : 'secondary'}
+          size="sm"
+          onClick={() => onModeChange('distance')}
+          disabled={isDrawing}
+          className="flex-1"
+        >
+          <Icons.Rule className="w-4 h-4 mr-1" />
+          {t('geo-drawing.modes.distance')}
+        </Button>
+
+        <Button
+          variant={mode === 'area' ? 'primary' : 'secondary'}
+          size="sm"
+          onClick={() => onModeChange('area')}
+          disabled={isDrawing}
+          className="flex-1"
+        >
+          <Icons.Square className="w-4 h-4 mr-1" />
+          {t('geo-drawing.modes.area')}
+        </Button>
+      </Layout>
+
+      <Layout direction="horizontal" spacing="sm" className="mb-3">
+        <Button
+          variant={mode === 'point' ? 'primary' : 'secondary'}
+          size="sm"
+          onClick={() => onModeChange('point')}
+          disabled={isDrawing}
+          className="flex-1"
+        >
+          <Icons.MapPin className="w-4 h-4 mr-1" />
+          {t('geo-drawing.modes.point')}
+        </Button>
+      </Layout>
+
+      {/* Current Measurement Display */}
+      <Card variant="inner" className="mb-3 p-2 min-h-[60px] flex items-center justify-center">
+        <Typography variant="body" className="text-center">
+          {displayValue || (
+            mode === 'distance'
+              ? `${t('geo-drawing.labels.distance')}: ${distance.toFixed(2)} m`
+              : mode === 'area'
+              ? `${t('geo-drawing.labels.area')}: ${area.toFixed(2)} m²`
+              : t('geo-drawing.labels.select-point')
+          )}
+        </Typography>
+      </Card>
+
+      {/* Action Buttons */}
+      <Layout direction="vertical" spacing="sm">
+        {isDrawing && (
+          <Layout direction="horizontal" spacing="sm">
+            {canFinish && onFinish && (
+              <Button
+                variant="success"
+                size="sm"
+                onClick={onFinish}
+                className="flex-1"
+              >
+                <Icons.Check className="w-4 h-4 mr-1" />
+                {t('geo-drawing.actions.finish')}
+              </Button>
+            )}
+
+            {onCancel && (
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={onCancel}
+                className="flex-1"
+              >
+                <Icons.X className="w-4 h-4 mr-1" />
+                {t('geo-drawing.actions.cancel')}
+              </Button>
+            )}
+          </Layout>
+        )}
+
+        <Button
+          variant="danger"
+          size="sm"
+          onClick={onReset}
+          className="w-full"
+        >
+          <Icons.Trash className="w-4 h-4 mr-1" />
+          {t('geo-drawing.actions.clear')}
+        </Button>
+      </Layout>
+
+      {/* Instructions */}
+      <Card variant="inner" className="mt-3 p-2">
+        <Typography variant="caption" className="text-center leading-tight">
+          {isDrawing ? (
+            <>
+              {t('geo-drawing.instructions.click-add')}<br/>
+              {mode !== 'point' && (
+                <>
+                  {t('geo-drawing.instructions.double-click-finish')}<br/>
+                </>
+              )}
+              {t('geo-drawing.instructions.esc-cancel')}
+            </>
+          ) : (
+            t('geo-drawing.instructions.select-mode')
+          )}
+        </Typography>
+      </Card>
+    </Card>
+  );
+};

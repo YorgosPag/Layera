@@ -1,17 +1,16 @@
 import { useState, useCallback, useRef } from 'react';
-import { toast } from '@layera/notifications';
-import { useLayeraTranslation } from '@layera/i18n/hooks';
+import { useNotifications } from '@layera/notifications';
+import { useLayeraTranslation } from '@layera/i18n';
 import {
   ImportedFile,
   FileValidationRule,
-  FileProcessingOptions,
   FileImportProgress,
   FileImportError,
   SupportedFormat
 } from '../types';
 import { validateFile, extractFileMetadata, SUPPORTED_FILE_TYPES } from '../utils/fileValidation';
 
-interface UseFileImportOptions {
+export interface UseFileImportOptions {
   allowedFormats?: SupportedFormat[];
   maxFileSize?: number;
   maxFiles?: number;
@@ -22,7 +21,7 @@ interface UseFileImportOptions {
   onError?: (error: FileImportError) => void;
 }
 
-interface UseFileImportReturn {
+export interface UseFileImportReturn {
   // State
   files: ImportedFile[];
   isProcessing: boolean;
@@ -43,6 +42,7 @@ interface UseFileImportReturn {
 
 export function useFileImport(options: UseFileImportOptions = {}): UseFileImportReturn {
   const { t } = useLayeraTranslation();
+  const { addNotification } = useNotifications();
   const [files, setFiles] = useState<ImportedFile[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -53,7 +53,6 @@ export function useFileImport(options: UseFileImportOptions = {}): UseFileImport
     allowedFormats,
     maxFileSize = 100 * 1024 * 1024, // 100MB default
     maxFiles = 10,
-    autoProcess = true,
     showNotifications = true,
     onProgress,
     onComplete,
@@ -66,7 +65,7 @@ export function useFileImport(options: UseFileImportOptions = {}): UseFileImport
     allowedExtensions: allowedFormats || Object.keys(SUPPORTED_FILE_TYPES),
     allowedMimeTypes: allowedFormats
       ? allowedFormats.flatMap(format => SUPPORTED_FILE_TYPES[format]?.mimeTypes || [])
-      : undefined
+      : []
   };
 
   const generateFileId = useCallback((): string => {
@@ -122,10 +121,12 @@ export function useFileImport(options: UseFileImportOptions = {}): UseFileImport
       // Show warnings αν υπάρχουν
       if (validationResult.warnings.length > 0 && showNotifications) {
         validationResult.warnings.forEach(warning => {
-          toast.warning(warning.message, {
+          addNotification({
+            type: 'warning',
+            message: warning.message,
             duration: 4000,
             ...(warning.suggestion && {
-              actions: [{ label: t('file.import.suggestion'), onClick: () => {} }]
+              action: { label: t('file.import.suggestion'), onClick: () => {} }
             })
           });
         });
@@ -140,7 +141,7 @@ export function useFileImport(options: UseFileImportOptions = {}): UseFileImport
       const processedData = await file.arrayBuffer();
 
       // Step 4: Preview generation (για images)
-      let previewUrl: string | undefined;
+      let previewUrl = '';
       if (metadata.type.startsWith('image/')) {
         reportProgress(fileId, 80, 'preview', t('file.import.generating.preview'));
         previewUrl = URL.createObjectURL(file);
@@ -161,7 +162,9 @@ export function useFileImport(options: UseFileImportOptions = {}): UseFileImport
       updateFileStatus(fileId, completedFile);
 
       if (showNotifications) {
-        toast.success(t('file.import.success', { filename: file.name }), {
+        addNotification({
+          type: 'success',
+          message: t('file.import.success', { filename: file.name }),
           duration: 3000
         });
       }
@@ -177,14 +180,14 @@ export function useFileImport(options: UseFileImportOptions = {}): UseFileImport
       });
 
       if (showNotifications) {
-        toast.error(t('file.import.failed', {
-          filename: file.name,
-          error: errorMessage
-        }), {
+        addNotification({
+          type: 'error',
+          message: t('file.import.failed', {
+            filename: file.name,
+            error: errorMessage
+          }),
           duration: 5000,
-          actions: [
-            { label: t('file.import.retry'), onClick: () => retryFile(fileId) }
-          ]
+          action: { label: t('file.import.retry'), onClick: () => retryFile(fileId) }
         });
       }
 
@@ -208,7 +211,10 @@ export function useFileImport(options: UseFileImportOptions = {}): UseFileImport
       );
 
       if (showNotifications) {
-        toast.error(error.message);
+        addNotification({
+          type: 'error',
+          message: error.message
+        });
       }
 
       onError?.(error);
@@ -279,7 +285,10 @@ export function useFileImport(options: UseFileImportOptions = {}): UseFileImport
 
   const retryFile = useCallback(async (fileId: string): Promise<void> => {
     const file = files.find(f => f.id === fileId);
-    if (!file) return;
+    if (!file) {
+      console.warn(`File with id ${fileId} not found for retry`);
+      return;
+    }
 
     // Remove old file και add new one
     removeFile(fileId);

@@ -13,6 +13,8 @@
     "@layera/buttons": "file:../../packages/buttons",
     "@layera/icons": "file:../../packages/icons",
     "@layera/layout": "file:../../packages/layout",
+    "@layera/notifications": "file:../../packages/notifications",
+    "@layera/loading": "file:../../packages/loading",
     "@layera/typography": "file:../../packages/typography",
     "@layera/viewport": "file:../../packages/viewport",
     "@layera/theme-switcher": "file:../../packages/theme-switcher",

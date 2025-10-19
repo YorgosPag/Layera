@@ -6,4 +6,169 @@ import { useMeasurement } from '../hooks/useMeasurement';
 import { useGeometrySnap } from '../hooks/useGeometrySnap';
 import type { MeasurementMode, CanvasInteractionEvent } from '../types';
 
-interface MeasurementCanvasProps {\n  mode: MeasurementMode;\n  enableSnapping?: boolean;\n  onMeasurementChange?: (result: any) => void;\n  className?: string;\n}\n\n/**\n * Interactive measurement canvas component\n * Ενσωματώνει το measurement logic με snap-to-geometry functionality\n */\nexport const MeasurementCanvas: React.FC<MeasurementCanvasProps> = ({\n  mode,\n  enableSnapping = true,\n  onMeasurementChange,\n  className\n}) => {\n  const { theme } = useTheme();\n  const {\n    points,\n    state,\n    addPoint,\n    finishMeasurement,\n    cancelMeasurement,\n    changeMeasurementMode,\n    currentResult\n  } = useMeasurement();\n\n  const {\n    getSnappedPoint,\n    isSnappingEffective\n  } = useGeometrySnap(enableSnapping);\n\n  // Sync external mode changes\n  useEffect(() => {\n    changeMeasurementMode(mode);\n  }, [mode, changeMeasurementMode]);\n\n  // Notify parent of measurement changes\n  useEffect(() => {\n    if (currentResult && onMeasurementChange) {\n      onMeasurementChange(currentResult);\n    }\n  }, [currentResult, onMeasurementChange]);\n\n  // Handle map interactions\n  const mapEvents = useMapEvents({\n    click: useCallback((e: L.LeafletMouseEvent) => {\n      if (state === 'finished') return;\n\n      let latlng = e.latlng;\n      let snapped = false;\n      let snapResult;\n\n      // Apply snapping if enabled\n      if (enableSnapping && isSnappingEffective) {\n        const result = getSnappedPoint(e.latlng);\n        if (result.isSnapped && result.snappedLatLng) {\n          latlng = result.snappedLatLng;\n          snapped = true;\n          snapResult = {\n            snapPoint: result.snapPoint!,\n            snapType: result.snapType as 'vertex' | 'edge'\n          };\n        }\n      }\n\n      // Create interaction event\n      const interactionEvent: CanvasInteractionEvent = {\n        type: 'click',\n        latlng,\n        originalEvent: e.originalEvent,\n        snapped,\n        snapResult\n      };\n\n      addPoint(latlng);\n    }, [state, enableSnapping, isSnappingEffective, getSnappedPoint, addPoint]),\n\n    dblclick: useCallback((e: L.LeafletMouseEvent) => {\n      e.originalEvent.preventDefault();\n      e.originalEvent.stopPropagation();\n      \n      if (state === 'drawing' && mode !== 'point') {\n        finishMeasurement();\n      }\n    }, [state, mode, finishMeasurement]),\n\n    keydown: useCallback((e: L.LeafletKeyboardEvent) => {\n      if (e.originalEvent.key === 'Escape' && state === 'drawing') {\n        cancelMeasurement();\n      }\n    }, [state, cancelMeasurement])\n  });\n\n  // Get theme-aware colors\n  const getColors = useCallback(() => {\n    const isDark = theme === 'dark';\n    return {\n      line: isDark ? '#60a5fa' : '#3b82f6',\n      fill: isDark ? 'rgba(96, 165, 250, 0.2)' : 'rgba(59, 130, 246, 0.2)',\n      point: isDark ? '#f59e0b' : '#d97706',\n      pointBorder: isDark ? '#1f2937' : '#ffffff'\n    };\n  }, [theme]);\n\n  const colors = getColors();\n\n  // Render measurement geometry\n  const renderGeometry = () => {\n    if (points.length === 0) return null;\n\n    const latlngs = points.map(p => p.latlng);\n\n    return (\n      <>\n        {/* Render points */}\n        {points.map((point, index) => (\n          <CircleMarker\n            key={point.id}\n            center={point.latlng}\n            radius={6}\n            pathOptions={{\n              color: colors.pointBorder,\n              fillColor: colors.point,\n              fillOpacity: 1,\n              weight: 2\n            }}\n          />\n        ))}\n\n        {/* Render lines for distance mode or area outline */}\n        {((mode === 'distance' || mode === 'area') && latlngs.length >= 2) && (\n          <Polyline\n            positions={latlngs}\n            pathOptions={{\n              color: colors.line,\n              weight: 3,\n              opacity: 0.8,\n              dashArray: state === 'drawing' ? '5, 5' : undefined\n            }}\n          />\n        )}\n\n        {/* Render polygon fill for area mode */}\n        {(mode === 'area' && latlngs.length >= 3 && state === 'finished') && (\n          <Polygon\n            positions={latlngs}\n            pathOptions={{\n              color: colors.line,\n              fillColor: colors.fill,\n              fillOpacity: 0.3,\n              weight: 2\n            }}\n          />\n        )}\n      </>\n    );\n  };\n\n  return (\n    <div className={className}>\n      {renderGeometry()}\n    </div>\n  );\n};
+interface MeasurementCanvasProps {
+  mode: MeasurementMode;
+  enableSnapping?: boolean;
+  onMeasurementChange?: (result: any) => void;
+  className?: string;
+}
+
+/**
+ * Interactive measurement canvas component
+ * Ενσωματώνει το measurement logic με snap-to-geometry functionality
+ */
+export const MeasurementCanvas: React.FC<MeasurementCanvasProps> = ({
+  mode,
+  enableSnapping = true,
+  onMeasurementChange,
+  className
+}) => {
+  const { theme } = useTheme();
+  const {
+    points,
+    state,
+    addPoint,
+    finishMeasurement,
+    cancelMeasurement,
+    changeMeasurementMode,
+    currentResult
+  } = useMeasurement();
+
+  const {
+    getSnappedPoint,
+    isSnappingEffective
+  } = useGeometrySnap(enableSnapping);
+
+  // Sync external mode changes
+  useEffect(() => {
+    changeMeasurementMode(mode);
+  }, [mode, changeMeasurementMode]);
+
+  // Notify parent of measurement changes
+  useEffect(() => {
+    if (currentResult && onMeasurementChange) {
+      onMeasurementChange(currentResult);
+    }
+  }, [currentResult, onMeasurementChange]);
+
+  // Handle map interactions
+  const mapEvents = useMapEvents({
+    click: useCallback((e: L.LeafletMouseEvent) => {
+      if (state === 'finished') return;
+
+      let latlng = e.latlng;
+      let snapped = false;
+      let snapResult;
+
+      // Apply snapping if enabled
+      if (enableSnapping && isSnappingEffective) {
+        const result = getSnappedPoint(e.latlng);
+        if (result.isSnapped && result.snappedLatLng) {
+          latlng = result.snappedLatLng;
+          snapped = true;
+          snapResult = {
+            snapPoint: result.snapPoint!,
+            snapType: result.snapType as 'vertex' | 'edge'
+          };
+        }
+      }
+
+      // Create interaction event
+      const interactionEvent: CanvasInteractionEvent = {
+        type: 'click',
+        latlng,
+        originalEvent: e.originalEvent,
+        snapped,
+        snapResult
+      };
+
+      addPoint(latlng);
+    }, [state, enableSnapping, isSnappingEffective, getSnappedPoint, addPoint]),
+
+    dblclick: useCallback((e: L.LeafletMouseEvent) => {
+      e.originalEvent.preventDefault();
+      e.originalEvent.stopPropagation();
+
+      if (state === 'drawing' && mode !== 'point') {
+        finishMeasurement();
+      }
+    }, [state, mode, finishMeasurement]),
+
+    keydown: useCallback((e: L.LeafletKeyboardEvent) => {
+      if (e.originalEvent.key === 'Escape' && state === 'drawing') {
+        cancelMeasurement();
+      }
+    }, [state, cancelMeasurement])
+  });
+
+  // Get theme-aware colors
+  const getColors = useCallback(() => {
+    const isDark = theme === 'dark';
+    return {
+      line: isDark ? '#60a5fa' : '#3b82f6',
+      fill: isDark ? 'rgba(96, 165, 250, 0.2)' : 'rgba(59, 130, 246, 0.2)',
+      point: isDark ? '#f59e0b' : '#d97706',
+      pointBorder: isDark ? '#1f2937' : '#ffffff'
+    };
+  }, [theme]);
+
+  const colors = getColors();
+
+  // Render measurement geometry
+  const renderGeometry = () => {
+    if (points.length === 0) return null;
+
+    const latlngs = points.map(p => p.latlng);
+
+    return (
+      <>
+        {/* Render points */}
+        {points.map((point, index) => (
+          <CircleMarker
+            key={point.id}
+            center={point.latlng}
+            radius={6}
+            pathOptions={{
+              color: colors.pointBorder,
+              fillColor: colors.point,
+              fillOpacity: 1,
+              weight: 2
+            }}
+          />
+        ))}
+
+        {/* Render lines for distance mode or area outline */}
+        {((mode === 'distance' || mode === 'area') && latlngs.length >= 2) && (
+          <Polyline
+            positions={latlngs}
+            pathOptions={{
+              color: colors.line,
+              weight: 3,
+              opacity: 0.8,
+              dashArray: state === 'drawing' ? '5, 5' : undefined
+            }}
+          />
+        )}
+
+        {/* Render polygon fill for area mode */}
+        {(mode === 'area' && latlngs.length >= 3 && state === 'finished') && (
+          <Polygon
+            positions={latlngs}
+            pathOptions={{
+              color: colors.line,
+              fillColor: colors.fill,
+              fillOpacity: 0.3,
+              weight: 2
+            }}
+          />
+        )}
+      </>
+    );
+  };
+
+  return (
+    <div className={className}>
+      {renderGeometry()}
+    </div>
+  );
+};

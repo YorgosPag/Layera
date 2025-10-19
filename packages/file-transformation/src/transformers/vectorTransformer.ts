@@ -3,7 +3,6 @@ import {
   TransformationOptions,
   SupportedFormat,
   TransformationError,
-  BoundingBox,
   GeometryStatistics
 } from '../types';
 import { CoordinateTransformer } from '../utils/coordinateTransformer';
@@ -208,11 +207,15 @@ export class LayeraVectorTransformer implements VectorTransformer {
 
     switch (geometry.type) {
       case 'Point':
+        if (!Array.isArray(geometry.coordinates) || geometry.coordinates.length < 2) {
+          throw new TransformationError('Invalid Point coordinates', 'INVALID_GEOMETRY');
+        }
+        const [x, y, z] = geometry.coordinates as number[];
         const point = await this.coordinateTransformer.transformPoint(
-          geometry.coordinates[0],
-          geometry.coordinates[1],
+          x ?? 0,
+          y ?? 0,
           transform,
-          geometry.coordinates[2]
+          z
         );
         return {
           type: 'Point',
@@ -220,10 +223,13 @@ export class LayeraVectorTransformer implements VectorTransformer {
         };
 
       case 'LineString':
-        const linePoints = geometry.coordinates.map(coord => ({
-          x: coord[0],
-          y: coord[1],
-          z: coord[2]
+        if (!Array.isArray(geometry.coordinates)) {
+          throw new TransformationError('Invalid LineString coordinates', 'INVALID_GEOMETRY');
+        }
+        const linePoints = (geometry.coordinates as number[][]).map(coord => ({
+          x: coord[0] ?? 0,
+          y: coord[1] ?? 0,
+          ...(coord[2] !== undefined && { z: coord[2] })
         }));
         const transformedLinePoints = await this.coordinateTransformer.transformPoints(
           linePoints,
@@ -237,12 +243,15 @@ export class LayeraVectorTransformer implements VectorTransformer {
         };
 
       case 'Polygon':
+        if (!Array.isArray(geometry.coordinates)) {
+          throw new TransformationError('Invalid Polygon coordinates', 'INVALID_GEOMETRY');
+        }
         const transformedRings: number[][][] = [];
-        for (const ring of geometry.coordinates) {
+        for (const ring of geometry.coordinates as number[][][]) {
           const ringPoints = ring.map(coord => ({
-            x: coord[0],
-            y: coord[1],
-            z: coord[2]
+            x: coord[0] ?? 0,
+            y: coord[1] ?? 0,
+            ...(coord[2] !== undefined && { z: coord[2] })
           }));
           const transformedRingPoints = await this.coordinateTransformer.transformPoints(
             ringPoints,
@@ -323,36 +332,43 @@ export class LayeraVectorTransformer implements VectorTransformer {
       // Simple regex-based parsing για basic SVG elements
       const pathRegex = /<path[^>]*d="([^"]*)"[^>]*>/g;
       const circleRegex = /<circle[^>]*cx="([^"]*)"[^>]*cy="([^"]*)"[^>]*r="([^"]*)"[^>]*>/g;
-      const rectRegex = /<rect[^>]*x="([^"]*)"[^>]*y="([^"]*)"[^>]*width="([^"]*)"[^>]*height="([^"]*)"[^>]*>/g;
 
       // Parse paths (simplified)
       let match;
       while ((match = pathRegex.exec(svgContent)) !== null) {
         const pathData = match[1];
-        const geometry = this.parseSimpleSVGPath(pathData);
-        if (geometry) {
-          features.push({
-            type: 'Feature',
-            geometry,
-            properties: { type: 'path', pathData }
-          });
+        if (pathData) {
+          const geometry = this.parseSimpleSVGPath(pathData);
+          if (geometry) {
+            features.push({
+              type: 'Feature',
+              geometry,
+              properties: { type: 'path', pathData }
+            });
+          }
         }
       }
 
       // Parse circles
       while ((match = circleRegex.exec(svgContent)) !== null) {
-        const cx = parseFloat(match[1]);
-        const cy = parseFloat(match[2]);
-        const r = parseFloat(match[3]);
+        const cxStr = match[1];
+        const cyStr = match[2];
+        const rStr = match[3];
 
-        features.push({
-          type: 'Feature',
-          geometry: {
-            type: 'Point',
-            coordinates: [cx, cy]
-          },
-          properties: { type: 'circle', radius: r }
-        });
+        if (cxStr && cyStr && rStr) {
+          const cx = parseFloat(cxStr);
+          const cy = parseFloat(cyStr);
+          const r = parseFloat(rStr);
+
+          features.push({
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [cx, cy]
+            },
+            properties: { type: 'circle', radius: r }
+          });
+        }
       }
 
       return {
@@ -387,13 +403,17 @@ export class LayeraVectorTransformer implements VectorTransformer {
         if (type === 'M' || type === 'L') {
           for (let i = 0; i < coords.length; i += 2) {
             if (i + 1 < coords.length) {
-              coordinates.push([coords[i], coords[i + 1]]);
+              const x = coords[i];
+              const y = coords[i + 1];
+              if (x !== undefined && y !== undefined && !isNaN(x) && !isNaN(y)) {
+                coordinates.push([x, y]);
+              }
             }
           }
         }
       }
 
-      if (coordinates.length === 1) {
+      if (coordinates.length === 1 && coordinates[0]) {
         return {
           type: 'Point',
           coordinates: coordinates[0]
@@ -414,32 +434,32 @@ export class LayeraVectorTransformer implements VectorTransformer {
   }
 
   // Placeholder methods για άλλα formats - θα υλοποιηθούν στο επόμενο στάδιο
-  private parseKML(data: unknown): VectorData {
+  private parseKML(_data: unknown): VectorData {
     throw new TransformationError('KML parser not yet implemented', 'KML_PARSER_NOT_IMPLEMENTED');
   }
 
-  private parseGPX(data: unknown): VectorData {
+  private parseGPX(_data: unknown): VectorData {
     throw new TransformationError('GPX parser not yet implemented', 'GPX_PARSER_NOT_IMPLEMENTED');
   }
 
-  private parseDXF(data: unknown): VectorData {
+  private parseDXF(_data: unknown): VectorData {
     // Θα συνδεθεί με το @layera/cad-processing package
     throw new TransformationError('DXF parser will be implemented in @layera/cad-processing', 'DXF_PARSER_EXTERNAL');
   }
 
-  private toKML(vectorData: VectorData): string {
+  private toKML(_vectorData: VectorData): string {
     throw new TransformationError('KML converter not yet implemented', 'KML_CONVERTER_NOT_IMPLEMENTED');
   }
 
-  private toGPX(vectorData: VectorData): string {
+  private toGPX(_vectorData: VectorData): string {
     throw new TransformationError('GPX converter not yet implemented', 'GPX_CONVERTER_NOT_IMPLEMENTED');
   }
 
-  private toSVG(vectorData: VectorData): string {
+  private toSVG(_vectorData: VectorData): string {
     throw new TransformationError('SVG converter not yet implemented', 'SVG_CONVERTER_NOT_IMPLEMENTED');
   }
 
-  private toDXF(vectorData: VectorData): string {
+  private toDXF(_vectorData: VectorData): string {
     throw new TransformationError('DXF converter will be implemented in @layera/cad-processing', 'DXF_CONVERTER_EXTERNAL');
   }
 
@@ -462,7 +482,7 @@ export class LayeraVectorTransformer implements VectorTransformer {
    */
   private applyGeometricTransformations(
     vectorData: VectorData,
-    params: NonNullable<TransformationOptions['transformationParams']>
+    _params: NonNullable<TransformationOptions['transformationParams']>
   ): VectorData {
     // Implementation για geometric transformations
     // Προς το παρόν επιστρέφει τα δεδομένα αμετάβλητα
@@ -475,7 +495,7 @@ export class LayeraVectorTransformer implements VectorTransformer {
    */
   private optimizeGeometry(
     vectorData: VectorData,
-    tolerance: number
+    _tolerance: number
   ): VectorData {
     // Implementation για geometry optimization
     // Προς το παρόν επιστρέφει τα δεδομένα αμετάβλητα
@@ -501,10 +521,12 @@ export class LayeraVectorTransformer implements VectorTransformer {
       vertexCount += coords.length;
 
       for (const coord of coords) {
-        minX = Math.min(minX, coord[0]);
-        minY = Math.min(minY, coord[1]);
-        maxX = Math.max(maxX, coord[0]);
-        maxY = Math.max(maxY, coord[1]);
+        if (coord.length >= 2 && typeof coord[0] === 'number' && typeof coord[1] === 'number') {
+          minX = Math.min(minX, coord[0]);
+          minY = Math.min(minY, coord[1]);
+          maxX = Math.max(maxX, coord[0]);
+          maxY = Math.max(maxY, coord[1]);
+        }
       }
     }
 
@@ -527,11 +549,20 @@ export class LayeraVectorTransformer implements VectorTransformer {
   private extractCoordinates(geometry: VectorGeometry): number[][] {
     switch (geometry.type) {
       case 'Point':
-        return [geometry.coordinates];
+        if (Array.isArray(geometry.coordinates) && typeof geometry.coordinates[0] === 'number') {
+          return [geometry.coordinates as number[]];
+        }
+        return [];
       case 'LineString':
-        return geometry.coordinates;
+        if (Array.isArray(geometry.coordinates)) {
+          return geometry.coordinates as number[][];
+        }
+        return [];
       case 'Polygon':
-        return geometry.coordinates.flat();
+        if (Array.isArray(geometry.coordinates)) {
+          return (geometry.coordinates as number[][][]).flat();
+        }
+        return [];
       default:
         return [];
     }

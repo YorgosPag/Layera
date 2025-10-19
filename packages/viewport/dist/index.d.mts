@@ -132,4 +132,4 @@ interface DeviceSimulatorProps {
  */
 declare const DeviceSimulator: React.FC<DeviceSimulatorProps>;
 
-export { DesktopOnly, DeviceOverrideProvider, DeviceSimulator, DeviceSwitcher, DeviceType, MobileAndTablet, MobileOnly, Orientation, ResponsiveConfig, ResponsiveContainer, TabletAndDesktop, TabletOnly, ViewportBreakpoints, ViewportDebugger, ViewportInfo, useIsDesktop, useIsMobile, useIsTablet, useOrientation, useViewport, useViewportWithOverride };
+export { DesktopOnly, DeviceOverrideProvider, DeviceSimulator, DeviceSwitcher, type DeviceType, MobileAndTablet, MobileOnly, type Orientation, type ResponsiveConfig, ResponsiveContainer, TabletAndDesktop, TabletOnly, type ViewportBreakpoints, ViewportDebugger, type ViewportInfo, useIsDesktop, useIsMobile, useIsTablet, useOrientation, useViewport, useViewportWithOverride };

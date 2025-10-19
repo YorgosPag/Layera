@@ -9,13 +9,6 @@ import {
 
 const SUPPORTED_FORMATS = ['jpeg', 'webp', 'avif', 'png', 'original'] as const;
 
-const FORMAT_RECOMMENDATIONS = {
-  photo: 'jpeg',
-  graphics: 'png',
-  modern: 'webp',
-  nextgen: 'avif'
-} as const;
-
 /**
  * Validates compression options
  */

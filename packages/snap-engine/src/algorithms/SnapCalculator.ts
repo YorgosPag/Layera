@@ -237,8 +237,8 @@ export class SnapCalculator {
     // Midpoint snaps για κάθε edge
     if (this.config.enabledTypes.has('midpoint')) {
       for (let i = 0; i < polyline.vertices.length - 1; i++) {
-        const start = polyline.vertices[i];
-        const end = polyline.vertices[i + 1];
+        const start = polyline.vertices[i]!;
+        const end = polyline.vertices[i + 1]!;
         const midpoint: Point2D = {
           x: (start.x + end.x) / 2,
           y: (start.y + end.y) / 2
@@ -248,8 +248,8 @@ export class SnapCalculator {
 
       // Closed polyline - last edge
       if (polyline.closed && polyline.vertices.length > 2) {
-        const start = polyline.vertices[polyline.vertices.length - 1];
-        const end = polyline.vertices[0];
+        const start = polyline.vertices[polyline.vertices.length - 1]!;
+        const end = polyline.vertices[0]!;
         const midpoint: Point2D = {
           x: (start.x + end.x) / 2,
           y: (start.y + end.y) / 2

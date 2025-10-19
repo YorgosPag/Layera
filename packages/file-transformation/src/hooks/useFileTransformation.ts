@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
-import { toast } from '@layera/notifications';
-import { useLayeraTranslation } from '@layera/i18n/hooks';
+import { useNotifications } from '@layera/notifications';
+import { useLayeraTranslation } from '@layera/i18n';
 import {
   TransformationOptions,
   TransformationResult,
@@ -14,7 +14,7 @@ import {
 import { LayeraVectorTransformer } from '../transformers/vectorTransformer';
 import { validateTransformationOptions, getFormatCompatibility } from '../utils/transformationValidator';
 
-interface UseFileTransformationOptions {
+export interface UseFileTransformationOptions {
   defaultOptions?: Partial<TransformationOptions>;
   maxConcurrentFiles?: number;
   showNotifications?: boolean;
@@ -23,7 +23,7 @@ interface UseFileTransformationOptions {
   onError?: (error: TransformationError) => void;
 }
 
-interface UseFileTransformationReturn {
+export interface UseFileTransformationReturn {
   // State
   isTransforming: boolean;
   progress: number;
@@ -58,6 +58,7 @@ export function useFileTransformation(
   options: UseFileTransformationOptions = {}
 ): UseFileTransformationReturn {
   const { t } = useLayeraTranslation();
+  const { addNotification } = useNotifications();
   const [isTransforming, setIsTransforming] = useState(false);
   const [progress, setProgress] = useState(0);
   const [results, setResults] = useState<TransformationResult[]>([]);
@@ -82,7 +83,10 @@ export function useFileTransformation(
     } catch (error) {
       console.error('Failed to initialize transformation engines:', error);
       if (showNotifications) {
-        toast.error(t('transformation.engine.init.error'));
+        addNotification({
+          type: 'error',
+          message: t('transformation.engine.init.error')
+        });
       }
     }
 
@@ -105,14 +109,16 @@ export function useFileTransformation(
       stage,
       progress,
       message,
-      currentOperation
+      ...(currentOperation && { currentOperation })
     };
 
     setProgress(progress);
     onProgress?.(progressData);
 
     if (showNotifications && stage === 'complete') {
-      toast.success(t('transformation.file.success', { progress: Math.round(progress) }), {
+      addNotification({
+        type: 'success',
+        message: t('transformation.file.success', { progress: Math.round(progress) }),
         duration: 3000
       });
     }
@@ -123,21 +129,18 @@ export function useFileTransformation(
     onError?.(error);
 
     if (showNotifications) {
-      toast.error(t('transformation.file.error', {
-        error: error.message
-      }), {
+      addNotification({
+        type: 'error',
+        message: t('transformation.file.error', {
+          error: error.message
+        }),
         duration: 5000,
-        actions: [
-          { label: t('transformation.retry'), onClick: () => {} }
-        ]
+        action: { label: t('transformation.retry'), onClick: () => {} }
       });
     }
   }, [onError, showNotifications, t]);
 
-  const transformFile = useCallback(async (
-    file: File,
-    transformationOptions: TransformationOptions
-  ): Promise<TransformationResult> {
+  const transformFile = useCallback(async (file: File, transformationOptions: TransformationOptions): Promise<TransformationResult> => {
     if (!vectorTransformerRef.current) {
       throw new TransformationError(
         'Transformation engine not initialized',
@@ -165,10 +168,12 @@ export function useFileTransformation(
       // Show warnings
       if (validation.warnings.length > 0 && showNotifications) {
         validation.warnings.forEach(warning => {
-          toast.warning(warning.message, {
+          addNotification({
+            type: 'warning',
+            message: warning.message,
             duration: 4000,
             ...(warning.suggestion && {
-              actions: [{ label: t('transformation.suggestion'), onClick: () => {} }]
+              action: { label: t('transformation.suggestion'), onClick: () => {} }
             })
           });
         });
@@ -208,19 +213,23 @@ export function useFileTransformation(
             finalOptions.qualitySettings?.optimizeGeometry ? 'geometry-optimization' : ''
           ].filter(Boolean),
           qualitySettings: finalOptions.qualitySettings || {},
-          coordinateSystemInfo: finalOptions.sourceCRS && finalOptions.targetCRS ? {
-            source: finalOptions.sourceCRS,
-            target: finalOptions.targetCRS,
-            accuracy: 0.5 // Simplified accuracy
-          } : undefined,
+          ...(finalOptions.sourceCRS && finalOptions.targetCRS && {
+            coordinateSystemInfo: {
+              source: finalOptions.sourceCRS,
+              target: finalOptions.targetCRS,
+              accuracy: 0.5 // Simplified accuracy
+            }
+          }),
           geometryStatistics: statistics
         },
-        coordinateInfo: finalOptions.sourceCRS && finalOptions.targetCRS ? {
-          sourceCRS: finalOptions.sourceCRS,
-          targetCRS: finalOptions.targetCRS,
-          transformationAccuracy: 0.5,
-          transformedPoints: statistics.vertexCount
-        } : undefined
+        ...(finalOptions.sourceCRS && finalOptions.targetCRS && {
+          coordinateInfo: {
+            sourceCRS: finalOptions.sourceCRS,
+            targetCRS: finalOptions.targetCRS,
+            transformationAccuracy: 0.5,
+            transformedPoints: statistics.vertexCount
+          }
+        })
       };
 
       setResults(prev => [...prev, result]);
@@ -244,10 +253,7 @@ export function useFileTransformation(
     }
   }, [defaultOptions, reportProgress, handleError, showNotifications, t]);
 
-  const transformFiles = useCallback(async (
-    files: File[],
-    batchOptions: BatchTransformationOptions
-  ): Promise<BatchTransformationResult> {
+  const transformFiles = useCallback(async (files: File[], batchOptions: BatchTransformationOptions): Promise<BatchTransformationResult> => {
     const startTime = performance.now();
     const batchResults: TransformationResult[] = [];
     const batchErrors: TransformationError[] = [];
@@ -311,10 +317,12 @@ export function useFileTransformation(
       onComplete?.(batchResults);
 
       if (showNotifications) {
-        toast.success(t('transformation.batch.complete', {
-          successful: batchResults.length,
-          total: files.length
-        }), {
+        addNotification({
+          type: 'success',
+          message: t('transformation.batch.complete', {
+            successful: batchResults.length,
+            total: files.length
+          }),
           duration: 5000
         });
       }
@@ -335,7 +343,10 @@ export function useFileTransformation(
       setProgress(0);
 
       if (showNotifications) {
-        toast.info(t('transformation.cancelled'));
+        addNotification({
+          type: 'info',
+          message: t('transformation.cancelled')
+        });
       }
     }
   }, [showNotifications, t]);
@@ -354,7 +365,12 @@ export function useFileTransformation(
     sourceFormat: SupportedFormat,
     targetFormat: SupportedFormat
   ) => {
-    return getFormatCompatibility(sourceFormat, targetFormat);
+    const formatCompatibility = getFormatCompatibility(sourceFormat, targetFormat);
+    return {
+      compatible: formatCompatibility.sourceSupported && formatCompatibility.targetSupported,
+      dataLossRisk: formatCompatibility.dataLossRisk,
+      limitations: formatCompatibility.limitations
+    };
   }, []);
 
   const detectFileFormat = useCallback(async (file: File): Promise<{

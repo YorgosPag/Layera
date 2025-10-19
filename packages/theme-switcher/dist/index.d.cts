@@ -90,4 +90,4 @@ declare function useThemeContext(): ThemeContextValue;
  */
 declare function useTheme(): UseThemeReturn;
 
-export { Theme, ThemeConfig, ThemeContextValue, ThemeProvider, ThemeProviderProps, ThemeSwitcher, ThemeSwitcherProps, UseThemeReturn, useTheme, useThemeContext };
+export { type Theme, type ThemeConfig, type ThemeContextValue, ThemeProvider, type ThemeProviderProps, ThemeSwitcher, type ThemeSwitcherProps, type UseThemeReturn, useTheme, useThemeContext };

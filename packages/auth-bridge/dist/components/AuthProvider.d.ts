@@ -46,7 +46,7 @@ interface AuthProviderProps {
  * }
  * ```
  */
-export declare function AuthProvider({ children, callbacks, LoadingComponent, ErrorComponent }: AuthProviderProps): import("react/jsx-runtime").JSX.Element;
+export declare function AuthProvider({ children, callbacks, LoadingComponent, ErrorComponent }: AuthProviderProps): import("react/jsx-runtime.js").JSX.Element;
 /**
  * Hook για χρήση του authentication context
  *

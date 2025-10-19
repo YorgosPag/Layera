@@ -12,7 +12,7 @@ import { useNotifications } from '@layera/notifications';
  */
 export const useMeasurement = () => {
   const { t } = useTranslation();
-  const { showSuccess, showError } = useNotifications();
+  const { addNotification } = useNotifications();
   const { formatDistanceWithLabels, formatAreaWithLabels } = useMeasurementFormatter();
 
   const [mode, setMode] = useState<MeasurementMode>('distance');
@@ -61,8 +61,8 @@ export const useMeasurement = () => {
     const result: MeasurementResult = {
       type: mode,
       points: updatedPoints,
-      distance: mode === 'distance' ? distance : undefined,
-      area: mode === 'area' ? area : undefined,
+      ...(mode === 'distance' && distance !== undefined && { distance }),
+      ...(mode === 'area' && area !== undefined && { area }),
       displayValue,
       timestamp: Date.now()
     };
@@ -78,23 +78,32 @@ export const useMeasurement = () => {
 
     // Validation based on mode
     if (mode === 'distance' && points.length < 2) {
-      showError(t('geo-drawing.errors.minimum-points-distance'));
+      addNotification({
+        type: 'error',
+        message: t('geo-drawing.errors.minimum-points-distance')
+      });
       return;
     }
 
     if (mode === 'area' && points.length < 3) {
-      showError(t('geo-drawing.errors.minimum-points-area'));
+      addNotification({
+        type: 'error',
+        message: t('geo-drawing.errors.minimum-points-area')
+      });
       return;
     }
 
     setResults(prev => [...prev, currentResult]);
     setState('finished');
 
-    showSuccess(t('geo-drawing.measurement-completed', {
-      type: t(`geo-drawing.modes.${mode}`),
-      value: currentResult.displayValue
-    }));
-  }, [currentResult, mode, points.length, showError, showSuccess, t]);
+    addNotification({
+      type: 'success',
+      message: t('geo-drawing.measurement-completed', {
+        type: t(`geo-drawing.modes.${mode}`),
+        value: currentResult.displayValue
+      })
+    });
+  }, [currentResult, mode, points.length, addNotification, t]);
 
   /**
    * Cancels the current measurement
@@ -162,8 +171,8 @@ export const useMeasurement = () => {
       const result: MeasurementResult = {
         type: mode,
         points: updatedPoints,
-        distance: mode === 'distance' ? distance : undefined,
-        area: mode === 'area' ? area : undefined,
+        ...(mode === 'distance' && distance !== undefined && { distance }),
+        ...(mode === 'area' && area !== undefined && { area }),
         displayValue,
         timestamp: Date.now()
       };

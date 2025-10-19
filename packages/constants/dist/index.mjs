@@ -402,6 +402,230 @@ var PAGE_LAYOUTS = {
   MODAL: "modal"
 };
 
+// src/snap.ts
+var SNAP_CONSTANTS = {
+  // Default snap tolerance σε pixels
+  DEFAULT_TOLERANCE: 10,
+  // Maximum results από spatial queries
+  MAX_RESULTS: 50,
+  // Snap type priorities (0-100, higher = more priority)
+  DEFAULT_PRIORITIES: {
+    endpoint: 100,
+    midpoint: 80,
+    center: 90,
+    vertex: 85,
+    intersection: 95,
+    perpendicular: 70,
+    tangent: 65,
+    nearest: 60,
+    grid: 50,
+    edge: 75
+  },
+  // Spatial index configuration
+  SPATIAL_INDEX: {
+    MAX_ENTRIES: 16,
+    MIN_ENTRIES: 4,
+    AUTO_REBALANCE_THRESHOLD: 1e3
+  },
+  // Performance thresholds
+  PERFORMANCE: {
+    HIGH_GEOMETRY_COUNT: 1e4,
+    MEDIUM_GEOMETRY_COUNT: 5e3,
+    LOW_GEOMETRY_COUNT: 1e3,
+    MAX_SEARCH_TIME_MS: 16,
+    // ~60fps
+    INDEX_REBUILD_WARNING_MS: 100
+  },
+  // Visual feedback
+  VISUAL: {
+    INDICATOR_SIZE: 16,
+    CURSOR_SIZE: 24,
+    ANIMATION_DURATION_MS: 200,
+    GUIDELINE_OPACITY: 0.6
+  }
+};
+var SNAP_VISUAL = {
+  // Colors per snap type (theme-aware)
+  COLORS: {
+    light: {
+      endpoint: "#ff6b6b",
+      midpoint: "#4ecdc4",
+      center: "#45b7d1",
+      vertex: "#96ceb4",
+      intersection: "#ffeaa7",
+      perpendicular: "#dda0dd",
+      tangent: "#98d8c8",
+      nearest: "#f7dc6f",
+      grid: "#bb8fce",
+      edge: "#85c1e9"
+    },
+    dark: {
+      endpoint: "#e74c3c",
+      midpoint: "#1abc9c",
+      center: "#3498db",
+      vertex: "#2ecc71",
+      intersection: "#f39c12",
+      perpendicular: "#9b59b6",
+      tangent: "#16a085",
+      nearest: "#f1c40f",
+      grid: "#8e44ad",
+      edge: "#2980b9"
+    }
+  },
+  // Icons per snap type
+  ICONS: {
+    endpoint: "square",
+    midpoint: "triangle",
+    center: "circle",
+    vertex: "diamond",
+    intersection: "cross",
+    perpendicular: "perpendicular",
+    tangent: "tangent",
+    nearest: "target",
+    grid: "grid",
+    edge: "line"
+  }
+};
+var SNAP_DEVICE_DEFAULTS = {
+  DESKTOP: {
+    tolerance: 10,
+    showGuidelines: true,
+    showTooltips: true,
+    animationEnabled: true,
+    maxGeometries: 1e4
+  },
+  TABLET: {
+    tolerance: 15,
+    showGuidelines: true,
+    showTooltips: false,
+    animationEnabled: true,
+    maxGeometries: 5e3
+  },
+  MOBILE: {
+    tolerance: 25,
+    showGuidelines: false,
+    showTooltips: false,
+    animationEnabled: false,
+    maxGeometries: 1e3
+  }
+};
+var SNAP_TYPE_GROUPS = {
+  BASIC: ["endpoint", "midpoint", "center", "vertex"],
+  ADVANCED: ["intersection", "grid", "edge"],
+  PRECISION: ["perpendicular", "tangent", "nearest"],
+  CAD_RECOMMENDED: ["endpoint", "midpoint", "center", "vertex", "intersection"],
+  GIS_RECOMMENDED: ["endpoint", "vertex", "nearest"],
+  MOBILE_RECOMMENDED: ["endpoint", "vertex"]
+};
+
+// src/geo-drawing.ts
+var GEO_DRAWING_SNAP = {
+  /** Default snap tolerance σε pixels */
+  DEFAULT_TOLERANCE: 15,
+  /** Minimum zoom level για OSM data fetching */
+  MIN_SNAP_ZOOM: 16,
+  /** Maximum zoom για OSM API calls */
+  MAX_SNAP_ZOOM: 20,
+  /** Debounce time για map movement events (ms) */
+  DEBOUNCE_MS: 500,
+  /** Priority order για snap types */
+  SNAP_PRIORITY: ["vertex", "center", "midpoint", "edge", "nearest"]
+};
+var GEO_DRAWING_MEASUREMENT = {
+  /** Default decimal places για distance display */
+  DISTANCE_DECIMALS: 2,
+  /** Default decimal places για area display */
+  AREA_DECIMALS: 2,
+  /** Default decimal places για coordinates */
+  COORDINATE_DECIMALS: 6,
+  /** Threshold για switching από meters σε kilometers */
+  DISTANCE_KM_THRESHOLD: 1e3,
+  /** Threshold για switching από m² σε hectares */
+  AREA_HECTARE_THRESHOLD: 1e4,
+  /** Threshold για switching από hectares σε km² */
+  AREA_KM_THRESHOLD: 1e6
+};
+var GEO_DRAWING_OSM = {
+  /** Overpass API URL */
+  OVERPASS_API_URL: "https://overpass-api.de/api/interpreter",
+  /** Request timeout σε milliseconds */
+  REQUEST_TIMEOUT: 3e4,
+  /** Maximum cache entries */
+  MAX_CACHE_ENTRIES: 100,
+  /** Cache TTL σε milliseconds (5 minutes) */
+  CACHE_TTL: 5 * 60 * 1e3,
+  /** Coordinate precision για cache keys */
+  CACHE_PRECISION: 4
+};
+var GEO_DRAWING_INTERACTION = {
+  /** Double-click timeout σε milliseconds */
+  DOUBLE_CLICK_TIMEOUT: 300,
+  /** Key codes για shortcuts */
+  KEY_CODES: {
+    ESCAPE: "Escape",
+    ENTER: "Enter",
+    DELETE: "Delete",
+    BACKSPACE: "Backspace"
+  },
+  /** Mouse button codes */
+  MOUSE_BUTTONS: {
+    LEFT: 0,
+    MIDDLE: 1,
+    RIGHT: 2
+  }
+};
+var GEO_DRAWING_STYLES = {
+  /** Default line weights */
+  LINE_WEIGHTS: {
+    THIN: 1,
+    NORMAL: 2,
+    THICK: 3,
+    MEASUREMENT: 3,
+    OSM_BUILDING: 1
+  },
+  /** Point marker sizes */
+  POINT_SIZES: {
+    SMALL: 4,
+    NORMAL: 6,
+    LARGE: 8
+  },
+  /** Opacity values */
+  OPACITY: {
+    DRAWING: 0.8,
+    FINISHED: 1,
+    BUILDING_FILL: 0.1,
+    BUILDING_HOVER: 0.3,
+    MEASUREMENT_FILL: 0.3
+  }
+};
+var GEO_DRAWING_ERRORS = {
+  MINIMUM_POINTS_DISTANCE: "geo-drawing.errors.minimum-points-distance",
+  MINIMUM_POINTS_AREA: "geo-drawing.errors.minimum-points-area",
+  OSM_FETCH_FAILED: "geo-drawing.errors.osm-fetch-failed",
+  SNAP_ENGINE_ERROR: "geo-drawing.errors.snap-engine-error",
+  CALCULATION_ERROR: "geo-drawing.errors.calculation-error"
+};
+var GEO_DRAWING_SUCCESS = {
+  MEASUREMENT_COMPLETED: "geo-drawing.success.measurement-completed",
+  MEASUREMENT_SAVED: "geo-drawing.success.measurement-saved",
+  MEASUREMENT_CLEARED: "geo-drawing.success.measurement-cleared"
+};
+var CONFIG = {
+  geoDrawing: {
+    snapTolerance: GEO_DRAWING_SNAP.DEFAULT_TOLERANCE,
+    minSnapZoom: GEO_DRAWING_SNAP.MIN_SNAP_ZOOM,
+    debounceMs: GEO_DRAWING_SNAP.DEBOUNCE_MS,
+    ...GEO_DRAWING_MEASUREMENT,
+    ...GEO_DRAWING_INTERACTION
+  },
+  osm: {
+    overpassApiUrl: GEO_DRAWING_OSM.OVERPASS_API_URL,
+    requestTimeout: GEO_DRAWING_OSM.REQUEST_TIMEOUT,
+    maxCacheEntries: GEO_DRAWING_OSM.MAX_CACHE_ENTRIES,
+    cacheTtl: GEO_DRAWING_OSM.CACHE_TTL
+  }
+};
+
 // src/index.ts
 var LAYERA_CONSTANTS_VERSION = "1.0.0";
 export {
@@ -415,6 +639,7 @@ export {
   COLUMN_TYPES,
   COMPONENT_SIZES,
   COMPONENT_VARIANTS,
+  CONFIG,
   DATA_STATES,
   ELEVATION_LEVELS,
   EXPORT_FORMATS,
@@ -423,6 +648,13 @@ export {
   FORM_SIZES,
   FORM_STATES,
   FORM_TYPES,
+  GEO_DRAWING_ERRORS,
+  GEO_DRAWING_INTERACTION,
+  GEO_DRAWING_MEASUREMENT,
+  GEO_DRAWING_OSM,
+  GEO_DRAWING_SNAP,
+  GEO_DRAWING_STYLES,
+  GEO_DRAWING_SUCCESS,
   ICON_SIZES,
   INPUT_VARIANTS,
   LAYERA_CONSTANTS_VERSION,
@@ -435,6 +667,10 @@ export {
   ROLE_HIERARCHY,
   ROLE_PERMISSIONS,
   ROUTE_PATTERNS,
+  SNAP_CONSTANTS,
+  SNAP_DEVICE_DEFAULTS,
+  SNAP_TYPE_GROUPS,
+  SNAP_VISUAL,
   SORT_DIRECTIONS,
   SPACING_SCALE,
   TABLE_COLUMN_WIDTHS,

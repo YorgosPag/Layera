@@ -8,6 +8,7 @@ import type { ErrorBoundaryProps, ErrorBoundaryState } from '../../types';
  * ErrorBoundary - Main error boundary component
  */
 export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  refs: Record<string, React.ReactInstance> = {};
   private resetTimeoutId: number | null = null;
 
   constructor(props: ErrorBoundaryProps) {

@@ -48,7 +48,7 @@ interface UserDisplayProps {
  * />
  * ```
  */
-export declare function UserDisplay({ user, showEmail, showRole, showMfaStatus, showEmailVerification, className, roleFormat, size }: UserDisplayProps): import("react/jsx-runtime").JSX.Element;
+export declare function UserDisplay({ user, showEmail, showRole, showMfaStatus, showEmailVerification, className, roleFormat, size }: UserDisplayProps): import("react/jsx-runtime.js").JSX.Element;
 /**
  * Compact version του UserDisplay για χρήση σε headers/navigation
  */
@@ -56,6 +56,6 @@ export declare function UserAvatar({ user, size, onClick }: {
     user: LayeraUser;
     size?: 'small' | 'medium' | 'large';
     onClick?: () => void;
-}): import("react/jsx-runtime").JSX.Element;
+}): import("react/jsx-runtime.js").JSX.Element;
 export {};
 //# sourceMappingURL=UserDisplay.d.ts.map

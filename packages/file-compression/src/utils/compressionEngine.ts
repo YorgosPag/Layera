@@ -334,9 +334,9 @@ export class CompressionEngine {
             const pi = (py * width + px) * 4;
             const ki = ky * kernelSize + kx;
 
-            r += data[pi] * kernel[ki];
-            g += data[pi + 1] * kernel[ki];
-            b += data[pi + 2] * kernel[ki];
+            r += (data[pi] ?? 0) * (kernel[ki] ?? 0);
+            g += (data[pi + 1] ?? 0) * (kernel[ki] ?? 0);
+            b += (data[pi + 2] ?? 0) * (kernel[ki] ?? 0);
           }
         }
 

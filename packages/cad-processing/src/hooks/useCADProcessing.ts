@@ -17,7 +17,7 @@ import { LayeraDXFParser } from '../parsers/dxfParser';
 import { CADRenderer } from '../renderers/cadRenderer';
 import { validateCADFile } from '../utils/cadValidator';
 
-interface UseCADProcessingOptions {
+export interface UseCADProcessingOptions {
   defaultOptions?: Partial<CADProcessingOptions>;
   showNotifications?: boolean;
   autoRender?: boolean;
@@ -26,7 +26,7 @@ interface UseCADProcessingOptions {
   onError?: (error: CADProcessingError) => void;
 }
 
-interface UseCADProcessingReturn {
+export interface UseCADProcessingReturn {
   // State
   isProcessing: boolean;
   progress: number;

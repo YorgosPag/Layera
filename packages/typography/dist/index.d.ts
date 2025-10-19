@@ -75,4 +75,4 @@ declare const useTypography: () => {
     };
 };
 
-export { FontSize, FontWeight, Heading, HeadingProps, LineHeight, Text, TextAlign, TextColor, TextProps, TypographyProps, TypographyScale, useTypography };
+export { type FontSize, type FontWeight, Heading, type HeadingProps, type LineHeight, Text, type TextAlign, type TextColor, type TextProps, type TypographyProps, type TypographyScale, useTypography };

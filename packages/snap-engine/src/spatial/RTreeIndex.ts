@@ -4,6 +4,7 @@
  * Βασισμένο σε enterprise patterns από ESRI & PostGIS
  */
 
+// ΟΛΟΚΛΗΡΩΜΕΝΗ ENTERPRISE ΛΥΣΗ με rbush
 import RBush from 'rbush';
 import knn from 'rbush-knn';
 import type {
@@ -200,7 +201,7 @@ export class RTreeSpatialIndex {
   public findKNearest(point: Point2D, k: number = 5): GeometryEntity[] {
     try {
       const results = knn(this.tree, point.x, point.y, k);
-      return results.map(item => item.geometry);
+      return results.map((item: RTreeItem) => item.geometry);
     } catch (error) {
       console.error('KNN search failed:', error);
       return [];

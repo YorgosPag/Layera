@@ -46,7 +46,7 @@ interface RoleGuardProps {
  * </RoleGuard>
  * ```
  */
-export declare function RoleGuard({ requiredRole, allowedRoles, children, fallback, accessDenied, emailVerificationRequired, mfaRequired, showLoadingFallback }: RoleGuardProps): import("react/jsx-runtime").JSX.Element | null;
+export declare function RoleGuard({ requiredRole, allowedRoles, children, fallback, accessDenied, emailVerificationRequired, mfaRequired, showLoadingFallback }: RoleGuardProps): import("react/jsx-runtime.js").JSX.Element | null;
 /**
  * HOC για wrap components με role guard
  *
@@ -62,7 +62,7 @@ export declare function RoleGuard({ requiredRole, allowedRoles, children, fallba
  * ```
  */
 export declare function withRoleGuard<P extends object>(Component: React.ComponentType<P>, guardProps: Omit<RoleGuardProps, 'children'>): {
-    (props: P): import("react/jsx-runtime").JSX.Element;
+    (props: P): import("react/jsx-runtime.js").JSX.Element;
     displayName: string;
 };
 export {};

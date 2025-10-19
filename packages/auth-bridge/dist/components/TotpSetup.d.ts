@@ -24,7 +24,7 @@ interface TotpSetupProps {
  * />
  * ```
  */
-export declare function TotpSetup({ config, onComplete, onCancel, className }: TotpSetupProps): import("react/jsx-runtime").JSX.Element | null;
+export declare function TotpSetup({ config, onComplete, onCancel, className }: TotpSetupProps): import("react/jsx-runtime.js").JSX.Element | null;
 /**
  * Component για TOTP verification κατά την είσοδο
  */
@@ -40,6 +40,6 @@ interface TotpVerificationProps {
     /** Custom styling */
     className?: string;
 }
-export declare function TotpVerification({ onVerify, onUseBackup, loading, error, className }: TotpVerificationProps): import("react/jsx-runtime").JSX.Element;
+export declare function TotpVerification({ onVerify, onUseBackup, loading, error, className }: TotpVerificationProps): import("react/jsx-runtime.js").JSX.Element;
 export {};
 //# sourceMappingURL=TotpSetup.d.ts.map

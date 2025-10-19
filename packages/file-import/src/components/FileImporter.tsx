@@ -1,11 +1,28 @@
 import React, { useState, useCallback } from 'react';
-import { Card, CardContent, CardHeader } from '@layera/cards';
-import { Button, IconButton } from '@layera/buttons';
-import { ProgressBar, LoadingSpinner } from '@layera/loading';
-import { toast } from '@layera/notifications';
-import { useLayeraTranslation } from '@layera/i18n/hooks';
+import { BaseCard } from '@layera/cards';
+import { Button } from '@layera/buttons';
+import { LoadingSpinner } from '@layera/loading';
+import { useLayeraTranslation } from '@layera/i18n';
 import { ErrorBoundary } from '@layera/error-boundary';
 import { Heading, Text } from '@layera/typography';
+
+// Enterprise-safe wrapper functions για React 19 compatibility
+interface SafeErrorBoundaryProps {
+  children: React.ReactNode;
+  fallback?: React.ReactNode;
+}
+
+const SafeErrorBoundary: React.FC<SafeErrorBoundaryProps> = ({ children, fallback }) => {
+  return React.createElement(ErrorBoundary, { fallback }, children);
+};
+
+interface SafeLoadingSpinnerProps {
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+}
+
+const SafeLoadingSpinner: React.FC<SafeLoadingSpinnerProps> = (props) => {
+  return React.createElement(LoadingSpinner, props);
+};
 import {
   ImportedFile,
   SupportedFormat,
@@ -65,16 +82,15 @@ export const FileImporter: React.FC<FileImporterProps> = ({
     importFiles,
     removeFile,
     clearFiles,
-    retryFile,
-    isFileSupported
+    retryFile
   } = useFileImport({
     allowedFormats: acceptedFormats,
     maxFileSize,
     maxFiles,
     showNotifications: true,
-    onProgress,
+    ...(onProgress && { onProgress }),
     onComplete: onFileImported,
-    onError
+    ...(onError && { onError })
   });
 
   const handleFilesDrop = useCallback(async (droppedFiles: FileList | File[]) => {
@@ -118,7 +134,7 @@ export const FileImporter: React.FC<FileImporterProps> = ({
 
   if (compact) {
     return (
-      <ErrorBoundary fallback={<div>{t('file.import.error.boundary')}</div>}>
+      <SafeErrorBoundary fallback={<div>{t('file.import.error.boundary')}</div>}>
         <div className="file-importer-compact">
           <DragDropZone
             onFilesDrop={handleFilesDrop}
@@ -143,7 +159,7 @@ export const FileImporter: React.FC<FileImporterProps> = ({
               >
                 {isProcessing ? (
                   <>
-                    <LoadingSpinner size="small" />
+                    <SafeLoadingSpinner size="sm" />
                     {t('file.import.processing')}
                   </>
                 ) : (
@@ -153,35 +169,33 @@ export const FileImporter: React.FC<FileImporterProps> = ({
             </label>
 
             {showProgress && isProcessing && (
-              <ProgressBar
-                value={progress}
-                size="small"
-                showPercentage={false}
-              />
+              <div style={{ marginTop: '8px', fontSize: '12px', color: '#666' }}>
+                {t('file.import.progress')}: {Math.round(progress)}%
+              </div>
             )}
           </DragDropZone>
         </div>
-      </ErrorBoundary>
+      </SafeErrorBoundary>
     );
   }
 
   return (
-    <ErrorBoundary fallback={<div>{t('file.import.error.boundary')}</div>}>
-      <Card className="file-importer">
-        <CardHeader>
-          <Heading level={3}>
+    <SafeErrorBoundary fallback={<div>{t('file.import.error.boundary')}</div>}>
+      <BaseCard className="file-importer">
+        <div style={{ padding: '16px', borderBottom: '1px solid #eee' }}>
+          <Heading as="h3">
             {title || t('file.import.title')}
           </Heading>
-          <Text variant="caption" color="secondary">
+          <Text size="sm" color="secondary">
             {description || t('file.import.description', {
               formats: formatFileTypes(),
               maxSize: formatMaxSize(),
               maxFiles
             })}
           </Text>
-        </CardHeader>
+        </div>
 
-        <CardContent>
+        <div style={{ padding: '16px' }}>
           {/* Drop zone */}
           <DragDropZone
             onFilesDrop={handleFilesDrop}
@@ -202,13 +216,13 @@ export const FileImporter: React.FC<FileImporterProps> = ({
             <label htmlFor="file-input">
               <Button
                 variant="primary"
-                size="large"
+                size="lg"
                 disabled={disabled || isProcessing}
                 style={{ cursor: disabled || isProcessing ? 'not-allowed' : 'pointer' }}
               >
                 {isProcessing ? (
                   <>
-                    <LoadingSpinner size="small" />
+                    <SafeLoadingSpinner size="sm" />
                     {t('file.import.processing')}
                   </>
                 ) : (
@@ -218,21 +232,30 @@ export const FileImporter: React.FC<FileImporterProps> = ({
             </label>
           </DragDropZone>
 
-          {/* Progress bar */}
+          {/* Progress display */}
           {showProgress && isProcessing && (
-            <div style={{ marginTop: '16px' }}>
-              <ProgressBar
-                value={progress}
-                label={t('file.import.progress')}
-                showPercentage={true}
-              />
+            <div style={{ marginTop: '16px', padding: '12px', backgroundColor: '#f5f5f5', borderRadius: '4px' }}>
+              <div style={{ fontSize: '14px', marginBottom: '4px' }}>
+                {t('file.import.progress')}: {Math.round(progress)}%
+              </div>
+              <div style={{ width: '100%', height: '4px', backgroundColor: '#e0e0e0', borderRadius: '2px' }}>
+                <div
+                  style={{
+                    width: `${progress}%`,
+                    height: '100%',
+                    backgroundColor: '#007bff',
+                    borderRadius: '2px',
+                    transition: 'width 0.3s ease'
+                  }}
+                />
+              </div>
             </div>
           )}
 
           {/* Error display */}
           {error && (
             <div style={{ marginTop: '16px' }}>
-              <Text color="error">{error}</Text>
+              <Text color="danger">{error}</Text>
             </div>
           )}
 
@@ -240,12 +263,12 @@ export const FileImporter: React.FC<FileImporterProps> = ({
           {files.length > 0 && (
             <div style={{ marginTop: '16px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                <Text variant="body" weight="medium">
+                <Text size="base" weight="medium">
                   {t('file.import.files.selected', { count: files.length })}
                 </Text>
                 <Button
                   variant="secondary"
-                  size="small"
+                  size="sm"
                   onClick={clearFiles}
                   disabled={isProcessing}
                 >
@@ -258,7 +281,7 @@ export const FileImporter: React.FC<FileImporterProps> = ({
                 onFileSelect={handleFileSelect}
                 onFileRemove={handleFileRemove}
                 onFileRetry={retryFile}
-                selectedFileId={selectedFile?.id}
+                {...(selectedFile?.id && { selectedFileId: selectedFile.id })}
                 disabled={isProcessing}
               />
             </div>
@@ -273,8 +296,8 @@ export const FileImporter: React.FC<FileImporterProps> = ({
               />
             </div>
           )}
-        </CardContent>
-      </Card>
-    </ErrorBoundary>
+        </div>
+      </BaseCard>
+    </SafeErrorBoundary>
   );
 };

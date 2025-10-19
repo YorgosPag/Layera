@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
-import { toast } from '@layera/notifications';
-import { useLayeraTranslation } from '@layera/i18n/hooks';
+import { useNotifications } from '@layera/notifications';
+import { useLayeraTranslation } from '@layera/i18n';
 import {
   CompressionOptions,
   CompressionResult,
@@ -13,7 +13,7 @@ import {
 import { CompressionEngine } from '../utils/compressionEngine';
 import { validateCompressionOptions, recommendOptimizations } from '../utils/compressionValidator';
 
-interface UseFileCompressionOptions {
+export interface UseFileCompressionOptions {
   defaultOptions?: CompressionOptions;
   maxConcurrentFiles?: number;
   showNotifications?: boolean;
@@ -22,7 +22,7 @@ interface UseFileCompressionOptions {
   onError?: (error: CompressionError) => void;
 }
 
-interface UseFileCompressionReturn {
+export interface UseFileCompressionReturn {
   // State
   isCompressing: boolean;
   progress: number;
@@ -48,6 +48,7 @@ export function useFileCompression(
   options: UseFileCompressionOptions = {}
 ): UseFileCompressionReturn {
   const { t } = useLayeraTranslation();
+  const { addNotification } = useNotifications();
   const [isCompressing, setIsCompressing] = useState(false);
   const [progress, setProgress] = useState(0);
   const [results, setResults] = useState<CompressionResult[]>([]);
@@ -72,7 +73,10 @@ export function useFileCompression(
     } catch (error) {
       console.error('Failed to initialize compression engine:', error);
       if (showNotifications) {
-        toast.error(t('compression.engine.init.error'));
+        addNotification({
+          type: 'error',
+          message: t('compression.engine.init.error')
+        });
       }
     }
 
@@ -100,7 +104,9 @@ export function useFileCompression(
     onProgress?.(progressData);
 
     if (showNotifications && stage === 'complete') {
-      toast.success(t('compression.file.success', { progress: Math.round(progress) }), {
+      addNotification({
+        type: 'success',
+        message: t('compression.file.success', { progress: Math.round(progress) }),
         duration: 3000
       });
     }
@@ -111,9 +117,11 @@ export function useFileCompression(
     onError?.(error);
 
     if (showNotifications) {
-      toast.error(t('compression.file.error', {
-        error: error.message
-      }), {
+      addNotification({
+        type: 'error',
+        message: t('compression.file.error', {
+          error: error.message
+        }),
         duration: 5000
       });
     }
@@ -149,10 +157,12 @@ export function useFileCompression(
       // Show warnings
       if (validation.warnings.length > 0 && showNotifications) {
         validation.warnings.forEach(warning => {
-          toast.warning(warning.message, {
+          addNotification({
+            type: 'warning',
+            message: warning.message,
             duration: 4000,
             ...(warning.suggestion && {
-              actions: [{ label: t('compression.suggestion'), onClick: () => {} }]
+              action: { label: t('compression.suggestion'), onClick: () => {} }
             })
           });
         });
@@ -267,11 +277,13 @@ export function useFileCompression(
       onComplete?.(batchResults);
 
       if (showNotifications) {
-        toast.success(t('compression.batch.complete', {
-          successful: batchResults.length,
-          total: files.length,
-          savings: batchResult.overallCompressionRatio
-        }), {
+        addNotification({
+          type: 'success',
+          message: t('compression.batch.complete', {
+            successful: batchResults.length,
+            total: files.length,
+            savings: batchResult.overallCompressionRatio
+          }),
           duration: 5000
         });
       }
@@ -292,7 +304,10 @@ export function useFileCompression(
       setProgress(0);
 
       if (showNotifications) {
-        toast.info(t('compression.cancelled'));
+        addNotification({
+          type: 'info',
+          message: t('compression.cancelled')
+        });
       }
     }
   }, [showNotifications, t]);

@@ -406,10 +406,280 @@ type RoutePattern = typeof ROUTE_PATTERNS[keyof typeof ROUTE_PATTERNS];
 type PageLayout = typeof PAGE_LAYOUTS[keyof typeof PAGE_LAYOUTS];
 
 /**
+ * 🎯 SNAP CONSTANTS
+ * Constants για το snap-to-geometry system
+ */
+declare const SNAP_CONSTANTS: {
+    readonly DEFAULT_TOLERANCE: 10;
+    readonly MAX_RESULTS: 50;
+    readonly DEFAULT_PRIORITIES: {
+        readonly endpoint: 100;
+        readonly midpoint: 80;
+        readonly center: 90;
+        readonly vertex: 85;
+        readonly intersection: 95;
+        readonly perpendicular: 70;
+        readonly tangent: 65;
+        readonly nearest: 60;
+        readonly grid: 50;
+        readonly edge: 75;
+    };
+    readonly SPATIAL_INDEX: {
+        readonly MAX_ENTRIES: 16;
+        readonly MIN_ENTRIES: 4;
+        readonly AUTO_REBALANCE_THRESHOLD: 1000;
+    };
+    readonly PERFORMANCE: {
+        readonly HIGH_GEOMETRY_COUNT: 10000;
+        readonly MEDIUM_GEOMETRY_COUNT: 5000;
+        readonly LOW_GEOMETRY_COUNT: 1000;
+        readonly MAX_SEARCH_TIME_MS: 16;
+        readonly INDEX_REBUILD_WARNING_MS: 100;
+    };
+    readonly VISUAL: {
+        readonly INDICATOR_SIZE: 16;
+        readonly CURSOR_SIZE: 24;
+        readonly ANIMATION_DURATION_MS: 200;
+        readonly GUIDELINE_OPACITY: 0.6;
+    };
+};
+declare const SNAP_VISUAL: {
+    readonly COLORS: {
+        readonly light: {
+            readonly endpoint: "#ff6b6b";
+            readonly midpoint: "#4ecdc4";
+            readonly center: "#45b7d1";
+            readonly vertex: "#96ceb4";
+            readonly intersection: "#ffeaa7";
+            readonly perpendicular: "#dda0dd";
+            readonly tangent: "#98d8c8";
+            readonly nearest: "#f7dc6f";
+            readonly grid: "#bb8fce";
+            readonly edge: "#85c1e9";
+        };
+        readonly dark: {
+            readonly endpoint: "#e74c3c";
+            readonly midpoint: "#1abc9c";
+            readonly center: "#3498db";
+            readonly vertex: "#2ecc71";
+            readonly intersection: "#f39c12";
+            readonly perpendicular: "#9b59b6";
+            readonly tangent: "#16a085";
+            readonly nearest: "#f1c40f";
+            readonly grid: "#8e44ad";
+            readonly edge: "#2980b9";
+        };
+    };
+    readonly ICONS: {
+        readonly endpoint: "square";
+        readonly midpoint: "triangle";
+        readonly center: "circle";
+        readonly vertex: "diamond";
+        readonly intersection: "cross";
+        readonly perpendicular: "perpendicular";
+        readonly tangent: "tangent";
+        readonly nearest: "target";
+        readonly grid: "grid";
+        readonly edge: "line";
+    };
+};
+declare const SNAP_DEVICE_DEFAULTS: {
+    readonly DESKTOP: {
+        readonly tolerance: 10;
+        readonly showGuidelines: true;
+        readonly showTooltips: true;
+        readonly animationEnabled: true;
+        readonly maxGeometries: 10000;
+    };
+    readonly TABLET: {
+        readonly tolerance: 15;
+        readonly showGuidelines: true;
+        readonly showTooltips: false;
+        readonly animationEnabled: true;
+        readonly maxGeometries: 5000;
+    };
+    readonly MOBILE: {
+        readonly tolerance: 25;
+        readonly showGuidelines: false;
+        readonly showTooltips: false;
+        readonly animationEnabled: false;
+        readonly maxGeometries: 1000;
+    };
+};
+declare const SNAP_TYPE_GROUPS: {
+    readonly BASIC: readonly ["endpoint", "midpoint", "center", "vertex"];
+    readonly ADVANCED: readonly ["intersection", "grid", "edge"];
+    readonly PRECISION: readonly ["perpendicular", "tangent", "nearest"];
+    readonly CAD_RECOMMENDED: readonly ["endpoint", "midpoint", "center", "vertex", "intersection"];
+    readonly GIS_RECOMMENDED: readonly ["endpoint", "vertex", "nearest"];
+    readonly MOBILE_RECOMMENDED: readonly ["endpoint", "vertex"];
+};
+
+/**
+ * Geo-Drawing constants for @layera/geo-drawing LEGO system
+ * Αντικαθιστά τα hardcoded values από OLD_geo-canvas
+ */
+/**
+ * Snap-to-geometry configuration
+ */
+declare const GEO_DRAWING_SNAP: {
+    /** Default snap tolerance σε pixels */
+    readonly DEFAULT_TOLERANCE: 15;
+    /** Minimum zoom level για OSM data fetching */
+    readonly MIN_SNAP_ZOOM: 16;
+    /** Maximum zoom για OSM API calls */
+    readonly MAX_SNAP_ZOOM: 20;
+    /** Debounce time για map movement events (ms) */
+    readonly DEBOUNCE_MS: 500;
+    /** Priority order για snap types */
+    readonly SNAP_PRIORITY: readonly ["vertex", "center", "midpoint", "edge", "nearest"];
+};
+/**
+ * Measurement configuration
+ */
+declare const GEO_DRAWING_MEASUREMENT: {
+    /** Default decimal places για distance display */
+    readonly DISTANCE_DECIMALS: 2;
+    /** Default decimal places για area display */
+    readonly AREA_DECIMALS: 2;
+    /** Default decimal places για coordinates */
+    readonly COORDINATE_DECIMALS: 6;
+    /** Threshold για switching από meters σε kilometers */
+    readonly DISTANCE_KM_THRESHOLD: 1000;
+    /** Threshold για switching από m² σε hectares */
+    readonly AREA_HECTARE_THRESHOLD: 10000;
+    /** Threshold για switching από hectares σε km² */
+    readonly AREA_KM_THRESHOLD: 1000000;
+};
+/**
+ * OSM service configuration
+ */
+declare const GEO_DRAWING_OSM: {
+    /** Overpass API URL */
+    readonly OVERPASS_API_URL: "https://overpass-api.de/api/interpreter";
+    /** Request timeout σε milliseconds */
+    readonly REQUEST_TIMEOUT: 30000;
+    /** Maximum cache entries */
+    readonly MAX_CACHE_ENTRIES: 100;
+    /** Cache TTL σε milliseconds (5 minutes) */
+    readonly CACHE_TTL: number;
+    /** Coordinate precision για cache keys */
+    readonly CACHE_PRECISION: 4;
+};
+/**
+ * Drawing interaction configuration
+ */
+declare const GEO_DRAWING_INTERACTION: {
+    /** Double-click timeout σε milliseconds */
+    readonly DOUBLE_CLICK_TIMEOUT: 300;
+    /** Key codes για shortcuts */
+    readonly KEY_CODES: {
+        readonly ESCAPE: "Escape";
+        readonly ENTER: "Enter";
+        readonly DELETE: "Delete";
+        readonly BACKSPACE: "Backspace";
+    };
+    /** Mouse button codes */
+    readonly MOUSE_BUTTONS: {
+        readonly LEFT: 0;
+        readonly MIDDLE: 1;
+        readonly RIGHT: 2;
+    };
+};
+/**
+ * Visual styling configuration
+ */
+declare const GEO_DRAWING_STYLES: {
+    /** Default line weights */
+    readonly LINE_WEIGHTS: {
+        readonly THIN: 1;
+        readonly NORMAL: 2;
+        readonly THICK: 3;
+        readonly MEASUREMENT: 3;
+        readonly OSM_BUILDING: 1;
+    };
+    /** Point marker sizes */
+    readonly POINT_SIZES: {
+        readonly SMALL: 4;
+        readonly NORMAL: 6;
+        readonly LARGE: 8;
+    };
+    /** Opacity values */
+    readonly OPACITY: {
+        readonly DRAWING: 0.8;
+        readonly FINISHED: 1;
+        readonly BUILDING_FILL: 0.1;
+        readonly BUILDING_HOVER: 0.3;
+        readonly MEASUREMENT_FILL: 0.3;
+    };
+};
+/**
+ * Error messages keys για i18n
+ */
+declare const GEO_DRAWING_ERRORS: {
+    readonly MINIMUM_POINTS_DISTANCE: "geo-drawing.errors.minimum-points-distance";
+    readonly MINIMUM_POINTS_AREA: "geo-drawing.errors.minimum-points-area";
+    readonly OSM_FETCH_FAILED: "geo-drawing.errors.osm-fetch-failed";
+    readonly SNAP_ENGINE_ERROR: "geo-drawing.errors.snap-engine-error";
+    readonly CALCULATION_ERROR: "geo-drawing.errors.calculation-error";
+};
+/**
+ * Success messages keys για i18n
+ */
+declare const GEO_DRAWING_SUCCESS: {
+    readonly MEASUREMENT_COMPLETED: "geo-drawing.success.measurement-completed";
+    readonly MEASUREMENT_SAVED: "geo-drawing.success.measurement-saved";
+    readonly MEASUREMENT_CLEARED: "geo-drawing.success.measurement-cleared";
+};
+/**
+ * Combined configuration object
+ */
+declare const CONFIG: {
+    readonly geoDrawing: {
+        /** Double-click timeout σε milliseconds */
+        readonly DOUBLE_CLICK_TIMEOUT: 300;
+        /** Key codes για shortcuts */
+        readonly KEY_CODES: {
+            readonly ESCAPE: "Escape";
+            readonly ENTER: "Enter";
+            readonly DELETE: "Delete";
+            readonly BACKSPACE: "Backspace";
+        };
+        /** Mouse button codes */
+        readonly MOUSE_BUTTONS: {
+            readonly LEFT: 0;
+            readonly MIDDLE: 1;
+            readonly RIGHT: 2;
+        };
+        /** Default decimal places για distance display */
+        readonly DISTANCE_DECIMALS: 2;
+        /** Default decimal places για area display */
+        readonly AREA_DECIMALS: 2;
+        /** Default decimal places για coordinates */
+        readonly COORDINATE_DECIMALS: 6;
+        /** Threshold για switching από meters σε kilometers */
+        readonly DISTANCE_KM_THRESHOLD: 1000;
+        /** Threshold για switching από m² σε hectares */
+        readonly AREA_HECTARE_THRESHOLD: 10000;
+        /** Threshold για switching από hectares σε km² */
+        readonly AREA_KM_THRESHOLD: 1000000;
+        readonly snapTolerance: 15;
+        readonly minSnapZoom: 16;
+        readonly debounceMs: 500;
+    };
+    readonly osm: {
+        readonly overpassApiUrl: "https://overpass-api.de/api/interpreter";
+        readonly requestTimeout: 30000;
+        readonly maxCacheEntries: 100;
+        readonly cacheTtl: number;
+    };
+};
+
+/**
  * @layera/constants
  * Centralized constants and configuration values for the Layera design system
  */
 
 declare const LAYERA_CONSTANTS_VERSION = "1.0.0";
 
-export { AUTOCOMPLETE_VALUES, AutocompleteValue, BORDER_RADIUS, BULK_ACTIONS, BUTTON_SIZES, BUTTON_STATES, BorderRadius, BulkAction, ButtonSize, ButtonState, CARD_STATES, COLOR_SCHEMES, COLUMN_TYPES, COMPONENT_SIZES, COMPONENT_VARIANTS, CardState, ColorScheme, ColumnType, ComponentSize, ComponentVariant, DATA_STATES, DataState, ELEVATION_LEVELS, EXPORT_FORMATS, ElevationLevel, ExportFormat, FIELD_SIZES, FILTER_TYPES, FORM_SIZES, FORM_STATES, FORM_TYPES, FieldSize, FilterType, FormSize, FormState, FormType, ICON_SIZES, INPUT_VARIANTS, IconSize, InputVariant, LAYERA_CONSTANTS_VERSION, LINK_TARGETS, LinkTarget, MENU_POSITIONS, MenuPosition, NAVIGATION_TYPES, NavigationType, PAGE_LAYOUTS, PAGINATION_SIZES, PERMISSIONS, PageLayout, PaginationSize, Permission, ROLE_HIERARCHY, ROLE_PERMISSIONS, ROUTE_PATTERNS, RoleHierarchy, RoutePattern, SORT_DIRECTIONS, SPACING_SCALE, SortDirection, SpacingScale, TABLE_COLUMN_WIDTHS, TABLE_DENSITIES, TABLE_VARIANTS, THEME_MODES, TableColumnWidth, TableDensity, TableVariant, ThemeMode, USER_ROLES, USER_STATUS, UserRole, UserStatus, VALIDATION_RULES, ValidationRule };
+export { AUTOCOMPLETE_VALUES, type AutocompleteValue, BORDER_RADIUS, BULK_ACTIONS, BUTTON_SIZES, BUTTON_STATES, type BorderRadius, type BulkAction, type ButtonSize, type ButtonState, CARD_STATES, COLOR_SCHEMES, COLUMN_TYPES, COMPONENT_SIZES, COMPONENT_VARIANTS, CONFIG, type CardState, type ColorScheme, type ColumnType, type ComponentSize, type ComponentVariant, DATA_STATES, type DataState, ELEVATION_LEVELS, EXPORT_FORMATS, type ElevationLevel, type ExportFormat, FIELD_SIZES, FILTER_TYPES, FORM_SIZES, FORM_STATES, FORM_TYPES, type FieldSize, type FilterType, type FormSize, type FormState, type FormType, GEO_DRAWING_ERRORS, GEO_DRAWING_INTERACTION, GEO_DRAWING_MEASUREMENT, GEO_DRAWING_OSM, GEO_DRAWING_SNAP, GEO_DRAWING_STYLES, GEO_DRAWING_SUCCESS, ICON_SIZES, INPUT_VARIANTS, type IconSize, type InputVariant, LAYERA_CONSTANTS_VERSION, LINK_TARGETS, type LinkTarget, MENU_POSITIONS, type MenuPosition, NAVIGATION_TYPES, type NavigationType, PAGE_LAYOUTS, PAGINATION_SIZES, PERMISSIONS, type PageLayout, type PaginationSize, type Permission, ROLE_HIERARCHY, ROLE_PERMISSIONS, ROUTE_PATTERNS, type RoleHierarchy, type RoutePattern, SNAP_CONSTANTS, SNAP_DEVICE_DEFAULTS, SNAP_TYPE_GROUPS, SNAP_VISUAL, SORT_DIRECTIONS, SPACING_SCALE, type SortDirection, type SpacingScale, TABLE_COLUMN_WIDTHS, TABLE_DENSITIES, TABLE_VARIANTS, THEME_MODES, type TableColumnWidth, type TableDensity, type TableVariant, type ThemeMode, USER_ROLES, USER_STATUS, type UserRole, type UserStatus, VALIDATION_RULES, type ValidationRule };

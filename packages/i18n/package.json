@@ -1,6 +1,7 @@
 {
   "name": "@layera/i18n",
   "version": "1.0.0",
+  "type": "module",
   "description": "Enterprise-grade internationalization package for Layera applications",
   "main": "src/index.ts",
   "types": "src/index.ts",

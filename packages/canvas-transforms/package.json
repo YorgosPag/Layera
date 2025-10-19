@@ -1,0 +1,57 @@
+{
+  "name": "@layera/canvas-transforms",
+  "version": "1.0.0",
+  "description": "Canvas transformation utilities για το Layera ecosystem - Matrix transformations, coordinate systems, scaling operations",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist/**/*",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "verify": "npm run typecheck && npm run lint --max-warnings=0"
+  },
+  "keywords": [
+    "layera",
+    "canvas",
+    "transforms",
+    "matrix",
+    "coordinates",
+    "scaling",
+    "viewport",
+    "geometry",
+    "mapping"
+  ],
+  "author": "Layera Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "tsup": "^7.0.0",
+    "eslint": "^8.0.0"
+  },
+  "dependencies": {
+    "@layera/constants": "workspace:*"
+  },
+  "peerDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/layera/layera.git",
+    "directory": "packages/canvas-transforms"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

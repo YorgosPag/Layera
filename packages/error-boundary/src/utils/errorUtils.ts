@@ -67,7 +67,7 @@ export const createErrorReport = (
       stack: error.stack
     },
     errorInfo: {
-      componentStack: errorInfo.componentStack
+      componentStack: errorInfo.componentStack || ''
     },
     errorId,
     timestamp: Date.now(),
@@ -82,7 +82,7 @@ export const sanitizeErrorForLogging = (error: Error): Record<string, unknown> =
     name: error.name,
     message: error.message,
     stack: error.stack,
-    cause: error.cause
+    cause: 'cause' in error ? (error as { cause: unknown }).cause : undefined
   };
 };
 

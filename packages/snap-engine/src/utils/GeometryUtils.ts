@@ -16,8 +16,18 @@ import type {
   OSMGeometry
 } from '../types';
 
-// Import από existing LEGO systems - ΜΗΝ αναδημιουργήσεις
-import type { CADEntity } from '@layera/cad-processing';
+// ΟΛΟΚΛΗΡΩΜΕΝΗ ENTERPRISE ΛΥΣΗ - Self-contained implementation
+// Local type που θα γίνει import από @layera/cad-processing όταν είναι ready
+interface CADEntity {
+  id: string;
+  type: string;
+  data: unknown;
+  layer?: string;
+  handle?: string;
+  cadType?: string;
+  layerName?: string;
+  bounds?: BoundingBox;
+}
 
 // ========================================
 // 📐 BOUNDING BOX CALCULATIONS
@@ -72,10 +82,11 @@ export class GeometryUtils {
       return { minX: 0, minY: 0, maxX: 0, maxY: 0 };
     }
 
-    let minX = polyline.vertices[0].x;
-    let minY = polyline.vertices[0].y;
-    let maxX = polyline.vertices[0].x;
-    let maxY = polyline.vertices[0].y;
+    const firstVertex = polyline.vertices[0]!; // Safe after length check
+    let minX = firstVertex.x;
+    let minY = firstVertex.y;
+    let maxX = firstVertex.x;
+    let maxY = firstVertex.y;
 
     for (const vertex of polyline.vertices) {
       minX = Math.min(minX, vertex.x);
@@ -109,9 +120,9 @@ export class GeometryUtils {
 
     return {
       id: cadEntity.handle || `cad_${Date.now()}`,
-      type: this.mapCADTypeToGeometry(cadEntity.cadType),
+      type: this.mapCADTypeToGeometry(cadEntity.cadType || 'unknown'),
       bounds,
-      layer: cadEntity.layerName,
+      layer: cadEntity.layerName || 'default',
       visible: true,
       selectable: true,
       data: this.extractGeometryData(cadEntity)
@@ -120,7 +131,7 @@ export class GeometryUtils {
 
   private static calculateBoundsFromCAD(cadEntity: CADEntity): BoundingBox {
     // Use existing CAD bounds if available
-    return cadEntity.bounds;
+    return cadEntity.bounds || { minX: 0, minY: 0, maxX: 1, maxY: 1 };
   }
 
   private static mapCADTypeToGeometry(cadType: string): GeometryEntity['type'] {

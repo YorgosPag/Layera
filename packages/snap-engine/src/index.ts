@@ -12,11 +12,27 @@
  * @version 1.0.0
  */
 
+// Import types for internal use
+import type {
+  SnapConfiguration,
+  GeometryType,
+  GeometryEntity,
+  LineGeometry,
+  CircleGeometry,
+  ArcGeometry,
+  PolylineGeometry,
+  PointGeometry
+} from './types';
+
+// Import classes for internal use
+import { SnapEngine } from './SnapEngine';
+import { GeometryUtils } from './utils/GeometryUtils';
+
 // ========================================
 // 🚀 MAIN ENGINE EXPORT
 // ========================================
 
-export { SnapEngine } from './SnapEngine';
+export { SnapEngine };
 
 // ========================================
 // 🧩 CORE ALGORITHMS
@@ -29,7 +45,7 @@ export { RTreeSpatialIndex } from './spatial/RTreeIndex';
 // 🔧 UTILITIES
 // ========================================
 
-export { GeometryUtils } from './utils/GeometryUtils';
+export { GeometryUtils };
 
 // ========================================
 // 📝 TYPE DEFINITIONS

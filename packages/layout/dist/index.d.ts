@@ -153,4 +153,4 @@ declare const useLayout: () => [LayoutState, LayoutActions];
  */
 declare const useResponsive: () => ResponsiveState;
 
-export { AppShell, AppShellProps, BreakpointSize, ContainerMaxWidth, HeaderActionsGroup, HeaderActionsGroupProps, HeaderVariant, LayeraHeader, LayeraHeaderProps, LayoutActions, LayoutState, LayoutVariant, NavItem, NavItemProps, NavSection, NavSectionProps, NavigationSidebar, NavigationSidebarProps, PageContainer, PageContainerProps, PageHeader, PageHeaderProps, ResponsiveState, SidebarPosition, SidebarVariant, SpacingSize, useLayout, useResponsive };
+export { AppShell, type AppShellProps, type BreakpointSize, type ContainerMaxWidth, HeaderActionsGroup, type HeaderActionsGroupProps, type HeaderVariant, LayeraHeader, type LayeraHeaderProps, type LayoutActions, type LayoutState, type LayoutVariant, NavItem, type NavItemProps, NavSection, type NavSectionProps, NavigationSidebar, type NavigationSidebarProps, PageContainer, type PageContainerProps, PageHeader, type PageHeaderProps, type ResponsiveState, type SidebarPosition, type SidebarVariant, type SpacingSize, useLayout, useResponsive };

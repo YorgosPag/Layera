@@ -1025,10 +1025,17 @@
 
 /* Σταθερότητα layout για αλλαγή γλώσσας */
 
+.layera-page-container {
+  /* Αποφυγή layout shift κατά την αλλαγή γλώσσας */
+  contain: layout style;
+}
+
 .layera-page-container * {
   /* Αποφυγή layout shift από διαφορετικό μήκος κειμένου */
   word-wrap: break-word;
   hyphens: auto;
+  /* Σταθερό box sizing */
+  box-sizing: border-box;
 }
 
 /* Σταθερότητα για headers και titles */
@@ -1040,6 +1047,8 @@
   /* Διατήρηση σταθερού ύψους */
   overflow-wrap: break-word;
   word-break: break-word;
+  /* Σταθερό ύψος γραμμής */
+  line-height: 1.5;
 }
 
 /* Σταθερότητα για buttons και navigation */
@@ -1053,6 +1062,32 @@ nav a {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  /* Minimum width για σταθερότητα */
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+}
+
+/* Σταθερότητα για cards και grid layouts */
+
+.layera-dashboard-grid {
+  /* Σταθερό grid layout ανεξάρτητα από περιεχόμενο */
+  contain: layout;
+}
+
+.layera-dashboard-card {
+  /* Σταθερό ύψος κάρτας */
+  min-height: 120px;
+  contain: layout style;
+}
+
+/* Σταθερότητα για κείμενο που αλλάζει μήκος */
+
+[class*="dashboard"],
+[class*="section"],
+[class*="card"] {
+  /* Αποφυγή cumulative layout shift */
+  transform: translateZ(0);
+  will-change: auto;
 }
 
 /* ============ PRINT STYLES ============ */

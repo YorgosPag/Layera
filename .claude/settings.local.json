@@ -67,7 +67,18 @@
       "Bash(start http://localhost:3007/settings)",
       "Bash(npx tsc:*)",
       "Bash(node validate-snap-packages.js)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(awk:*)",
+      "Bash(grep:*)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm run:*)",
+      "Bash(pnpm add:*)",
+      "Bash(for pkg in packages/*/)",
+      "Bash(if [[ -d \"$pkgdist\" ]])",
+      "Bash(then echo \"✅ BUILT\")",
+      "Bash(else echo \"❌ NOT BUILT\")",
+      "Bash(fi)",
+      "Bash(done)"
     ],
     "deny": [],
     "ask": []

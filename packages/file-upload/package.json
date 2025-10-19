@@ -1,0 +1,63 @@
+{
+  "name": "@layera/file-upload",
+  "version": "1.0.0",
+  "description": "Enterprise file upload system με progressive upload, chunked transfers, and comprehensive LEGO integration",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "verify": "npm run typecheck && npm run lint --max-warnings=0"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@layera/constants": "workspace:*",
+    "@layera/i18n": "workspace:*",
+    "@layera/theme-switcher": "workspace:*",
+    "@layera/error-boundary": "workspace:*",
+    "@layera/notifications": "workspace:*",
+    "@layera/loading": "workspace:*",
+    "@layera/buttons": "workspace:*",
+    "@layera/icons": "workspace:*",
+    "@layera/typography": "workspace:*",
+    "@layera/layout": "workspace:*",
+    "@layera/cards": "workspace:*",
+    "@layera/forms": "workspace:*",
+    "@layera/modals": "workspace:*",
+    "@layera/tables": "workspace:*",
+    "@layera/viewport": "workspace:*",
+    "@layera/auth-bridge": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "typescript": "^5.0.0",
+    "tsup": "^8.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "keywords": [
+    "layera",
+    "lego",
+    "file-upload",
+    "drag-drop",
+    "progressive-upload",
+    "chunked-transfer",
+    "enterprise"
+  ],
+  "author": "Layera Team",
+  "license": "MIT"
+}
