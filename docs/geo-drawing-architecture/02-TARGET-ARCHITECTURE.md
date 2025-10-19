@@ -5,6 +5,28 @@
 
 ---
 
+## 📚 **COMPLETE DOCUMENTATION NAVIGATION**
+
+### **🗺️ Geo-Drawing Architecture Series:**
+1. **[🗺️ GEO-DRAWING CURRENT STATE](./01-CURRENT-STATE-ANALYSIS.md)** - Geo-spatial Systems Analysis
+2. **[🎯 GEO-DRAWING TARGET](./02-TARGET-ARCHITECTURE.md)** ← *You are here*
+3. **[🔄 GEO-DRAWING MIGRATION](./03-MIGRATION-STRATEGY.md)** - Drawing System Migration
+4. **[🛠️ GEO-DRAWING IMPLEMENTATION](./04-IMPLEMENTATION-GUIDE.md)** - Drawing Development Guide
+
+### **🧩 Related Pipeline Architecture:**
+5. **[📊 PIPELINE CURRENT STATE](../pipeline-architecture/01-CURRENT-STATE-ANALYSIS.md)** - System Analysis & Readiness
+6. **[🏗️ PIPELINE TARGET](../pipeline-architecture/02-TARGET-ARCHITECTURE.md)** - LEGO-Style Pipeline Vision
+7. **[🔄 PIPELINE MIGRATION](../pipeline-architecture/03-MIGRATION-STRATEGY.md)** - Step-by-step Transition Plan
+8. **[🛠️ PIPELINE IMPLEMENTATION](../pipeline-architecture/04-IMPLEMENTATION-GUIDE.md)** - Detailed Developer Instructions
+9. **[📁 FILE PROCESSING SYSTEMS](../pipeline-architecture/05-FILE-PROCESSING-LEGO-SYSTEMS.md)** - Advanced LEGO Components
+
+### **📋 Strategic Documents:**
+10. **[🎯 CORE STRATEGY](../../strategy/LAYERA_CORE_STRATEGY.md)** - Business Architecture & Dual Categories
+11. **[🏠 REAL ESTATE ANALYSIS](../../strategy/REAL_ESTATE_ANALYSIS.md)** - Property Market Strategy
+12. **[💼 JOBS ANALYSIS](../../strategy/JOBS_ANALYSIS.md)** - Employment Market Strategy
+
+---
+
 ## 🎯 **ΣΤΟΧΟΣ: Professional LEGO-Style Geo-Drawing System**
 
 ### **🌟 Vision Statement:**

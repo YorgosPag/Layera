@@ -1,346 +1,10 @@
-var __create = Object.create;
 var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __commonJS = (cb, mod) => function __require() {
-  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
-};
-var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
-      if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-  }
-  return to;
-};
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-  // If the importer is in node compatibility mode or this is not an ESM
-  // file that has been converted to a CommonJS file using a Babel-
-  // compatible transform (i.e. "__esModule" has not been set), then set
-  // "default" to the CommonJS "module.exports" for node compatibility.
-  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-  mod
-));
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 
-// ../../node_modules/@babel/runtime/helpers/extends.js
-var require_extends = __commonJS({
-  "../../node_modules/@babel/runtime/helpers/extends.js"(exports, module) {
-    "use strict";
-    function _extends2() {
-      return module.exports = _extends2 = Object.assign ? Object.assign.bind() : function(n) {
-        for (var e2 = 1; e2 < arguments.length; e2++) {
-          var t = arguments[e2];
-          for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]);
-        }
-        return n;
-      }, module.exports.__esModule = true, module.exports["default"] = module.exports, _extends2.apply(null, arguments);
-    }
-    module.exports = _extends2, module.exports.__esModule = true, module.exports["default"] = module.exports;
-  }
-});
-
-// ../../node_modules/void-elements/index.js
-var require_void_elements = __commonJS({
-  "../../node_modules/void-elements/index.js"(exports, module) {
-    "use strict";
-    module.exports = {
-      "area": true,
-      "base": true,
-      "br": true,
-      "col": true,
-      "embed": true,
-      "hr": true,
-      "img": true,
-      "input": true,
-      "link": true,
-      "meta": true,
-      "param": true,
-      "source": true,
-      "track": true,
-      "wbr": true
-    };
-  }
-});
-
 // src/components/FileUploader.tsx
-import { useState as useState4, useCallback as useCallback2, useRef as useRef2, useEffect as useEffect3 } from "react";
-
-// ../../node_modules/react-i18next/dist/es/Trans.js
-import { useContext } from "react";
-
-// ../../node_modules/react-i18next/dist/es/TransWithoutContext.js
-var import_extends = __toESM(require_extends(), 1);
-import React, { isValidElement, cloneElement, createElement, Children } from "react";
-
-// ../../node_modules/html-parse-stringify/dist/html-parse-stringify.module.js
-var import_void_elements = __toESM(require_void_elements());
-
-// ../../node_modules/react-i18next/dist/es/utils.js
-function warn() {
-  if (console && console.warn) {
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-    if (typeof args[0] === "string") args[0] = `react-i18next:: ${args[0]}`;
-    console.warn(...args);
-  }
-}
-var alreadyWarned = {};
-function warnOnce() {
-  for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-    args[_key2] = arguments[_key2];
-  }
-  if (typeof args[0] === "string" && alreadyWarned[args[0]]) return;
-  if (typeof args[0] === "string") alreadyWarned[args[0]] = /* @__PURE__ */ new Date();
-  warn(...args);
-}
-var loadedClb = (i18n, cb) => () => {
-  if (i18n.isInitialized) {
-    cb();
-  } else {
-    const initialized = () => {
-      setTimeout(() => {
-        i18n.off("initialized", initialized);
-      }, 0);
-      cb();
-    };
-    i18n.on("initialized", initialized);
-  }
-};
-function loadNamespaces(i18n, ns, cb) {
-  i18n.loadNamespaces(ns, loadedClb(i18n, cb));
-}
-function loadLanguages(i18n, lng, ns, cb) {
-  if (typeof ns === "string") ns = [ns];
-  ns.forEach((n) => {
-    if (i18n.options.ns.indexOf(n) < 0) i18n.options.ns.push(n);
-  });
-  i18n.loadLanguages(lng, loadedClb(i18n, cb));
-}
-function oldI18nextHasLoadedNamespace(ns, i18n) {
-  let options = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {};
-  const lng = i18n.languages[0];
-  const fallbackLng = i18n.options ? i18n.options.fallbackLng : false;
-  const lastLng = i18n.languages[i18n.languages.length - 1];
-  if (lng.toLowerCase() === "cimode") return true;
-  const loadNotPending = (l, n) => {
-    const loadState = i18n.services.backendConnector.state[`${l}|${n}`];
-    return loadState === -1 || loadState === 2;
-  };
-  if (options.bindI18n && options.bindI18n.indexOf("languageChanging") > -1 && i18n.services.backendConnector.backend && i18n.isLanguageChangingTo && !loadNotPending(i18n.isLanguageChangingTo, ns)) return false;
-  if (i18n.hasResourceBundle(lng, ns)) return true;
-  if (!i18n.services.backendConnector.backend || i18n.options.resources && !i18n.options.partialBundledLanguages) return true;
-  if (loadNotPending(lng, ns) && (!fallbackLng || loadNotPending(lastLng, ns))) return true;
-  return false;
-}
-function hasLoadedNamespace(ns, i18n) {
-  let options = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {};
-  if (!i18n.languages || !i18n.languages.length) {
-    warnOnce("i18n.languages were undefined or empty", i18n.languages);
-    return true;
-  }
-  const isNewerI18next = i18n.options.ignoreJSONStructure !== void 0;
-  if (!isNewerI18next) {
-    return oldI18nextHasLoadedNamespace(ns, i18n, options);
-  }
-  return i18n.hasLoadedNamespace(ns, {
-    lng: options.lng,
-    precheck: (i18nInstance2, loadNotPending) => {
-      if (options.bindI18n && options.bindI18n.indexOf("languageChanging") > -1 && i18nInstance2.services.backendConnector.backend && i18nInstance2.isLanguageChangingTo && !loadNotPending(i18nInstance2.isLanguageChangingTo, ns)) return false;
-    }
-  });
-}
-
-// ../../node_modules/react-i18next/dist/es/unescape.js
-var matchHtmlEntity = /&(?:amp|#38|lt|#60|gt|#62|apos|#39|quot|#34|nbsp|#160|copy|#169|reg|#174|hellip|#8230|#x2F|#47);/g;
-var htmlEntities = {
-  "&amp;": "&",
-  "&#38;": "&",
-  "&lt;": "<",
-  "&#60;": "<",
-  "&gt;": ">",
-  "&#62;": ">",
-  "&apos;": "'",
-  "&#39;": "'",
-  "&quot;": '"',
-  "&#34;": '"',
-  "&nbsp;": " ",
-  "&#160;": " ",
-  "&copy;": "\xA9",
-  "&#169;": "\xA9",
-  "&reg;": "\xAE",
-  "&#174;": "\xAE",
-  "&hellip;": "\u2026",
-  "&#8230;": "\u2026",
-  "&#x2F;": "/",
-  "&#47;": "/"
-};
-var unescapeHtmlEntity = (m) => htmlEntities[m];
-var unescape = (text) => text.replace(matchHtmlEntity, unescapeHtmlEntity);
-
-// ../../node_modules/react-i18next/dist/es/defaults.js
-var defaultOptions = {
-  bindI18n: "languageChanged",
-  bindI18nStore: "",
-  transEmptyNodeValue: "",
-  transSupportBasicHtmlNodes: true,
-  transWrapTextNodes: "",
-  transKeepBasicHtmlNodesFor: ["br", "strong", "i", "p"],
-  useSuspense: true,
-  unescape
-};
-function getDefaults() {
-  return defaultOptions;
-}
-
-// ../../node_modules/react-i18next/dist/es/i18nInstance.js
-var i18nInstance;
-function getI18n() {
-  return i18nInstance;
-}
-
-// ../../node_modules/react-i18next/dist/es/context.js
-import { createContext } from "react";
-var I18nContext = createContext();
-var ReportNamespaces = class {
-  constructor() {
-    this.usedNamespaces = {};
-  }
-  addUsedNamespaces(namespaces) {
-    namespaces.forEach((ns) => {
-      if (!this.usedNamespaces[ns]) this.usedNamespaces[ns] = true;
-    });
-  }
-  getUsedNamespaces() {
-    return Object.keys(this.usedNamespaces);
-  }
-};
-
-// ../../node_modules/react-i18next/dist/es/useTranslation.js
-import { useState, useEffect, useContext as useContext2, useRef } from "react";
-var usePrevious = (value, ignore) => {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = ignore ? ref.current : value;
-  }, [value, ignore]);
-  return ref.current;
-};
-function useTranslation(ns) {
-  let props = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
-  const {
-    i18n: i18nFromProps
-  } = props;
-  const {
-    i18n: i18nFromContext,
-    defaultNS: defaultNSFromContext
-  } = useContext2(I18nContext) || {};
-  const i18n = i18nFromProps || i18nFromContext || getI18n();
-  if (i18n && !i18n.reportNamespaces) i18n.reportNamespaces = new ReportNamespaces();
-  if (!i18n) {
-    warnOnce("You will need to pass in an i18next instance by using initReactI18next");
-    const notReadyT = (k, optsOrDefaultValue) => {
-      if (typeof optsOrDefaultValue === "string") return optsOrDefaultValue;
-      if (optsOrDefaultValue && typeof optsOrDefaultValue === "object" && typeof optsOrDefaultValue.defaultValue === "string") return optsOrDefaultValue.defaultValue;
-      return Array.isArray(k) ? k[k.length - 1] : k;
-    };
-    const retNotReady = [notReadyT, {}, false];
-    retNotReady.t = notReadyT;
-    retNotReady.i18n = {};
-    retNotReady.ready = false;
-    return retNotReady;
-  }
-  if (i18n.options.react && i18n.options.react.wait !== void 0) warnOnce("It seems you are still using the old wait option, you may migrate to the new useSuspense behaviour.");
-  const i18nOptions = {
-    ...getDefaults(),
-    ...i18n.options.react,
-    ...props
-  };
-  const {
-    useSuspense,
-    keyPrefix
-  } = i18nOptions;
-  let namespaces = ns || defaultNSFromContext || i18n.options && i18n.options.defaultNS;
-  namespaces = typeof namespaces === "string" ? [namespaces] : namespaces || ["translation"];
-  if (i18n.reportNamespaces.addUsedNamespaces) i18n.reportNamespaces.addUsedNamespaces(namespaces);
-  const ready = (i18n.isInitialized || i18n.initializedStoreOnce) && namespaces.every((n) => hasLoadedNamespace(n, i18n, i18nOptions));
-  function getT() {
-    return i18n.getFixedT(props.lng || null, i18nOptions.nsMode === "fallback" ? namespaces : namespaces[0], keyPrefix);
-  }
-  const [t, setT] = useState(getT);
-  let joinedNS = namespaces.join();
-  if (props.lng) joinedNS = `${props.lng}${joinedNS}`;
-  const previousJoinedNS = usePrevious(joinedNS);
-  const isMounted = useRef(true);
-  useEffect(() => {
-    const {
-      bindI18n,
-      bindI18nStore
-    } = i18nOptions;
-    isMounted.current = true;
-    if (!ready && !useSuspense) {
-      if (props.lng) {
-        loadLanguages(i18n, props.lng, namespaces, () => {
-          if (isMounted.current) setT(getT);
-        });
-      } else {
-        loadNamespaces(i18n, namespaces, () => {
-          if (isMounted.current) setT(getT);
-        });
-      }
-    }
-    if (ready && previousJoinedNS && previousJoinedNS !== joinedNS && isMounted.current) {
-      setT(getT);
-    }
-    function boundReset() {
-      if (isMounted.current) setT(getT);
-    }
-    if (bindI18n && i18n) i18n.on(bindI18n, boundReset);
-    if (bindI18nStore && i18n) i18n.store.on(bindI18nStore, boundReset);
-    return () => {
-      isMounted.current = false;
-      if (bindI18n && i18n) bindI18n.split(" ").forEach((e2) => i18n.off(e2, boundReset));
-      if (bindI18nStore && i18n) bindI18nStore.split(" ").forEach((e2) => i18n.store.off(e2, boundReset));
-    };
-  }, [i18n, joinedNS]);
-  const isInitial = useRef(true);
-  useEffect(() => {
-    if (isMounted.current && !isInitial.current) {
-      setT(getT);
-    }
-    isInitial.current = false;
-  }, [i18n, keyPrefix]);
-  const ret = [t, i18n, ready];
-  ret.t = t;
-  ret.i18n = i18n;
-  ret.ready = ready;
-  if (ready) return ret;
-  if (!ready && !useSuspense) return ret;
-  throw new Promise((resolve) => {
-    if (props.lng) {
-      loadLanguages(i18n, props.lng, namespaces, () => resolve());
-    } else {
-      loadNamespaces(i18n, namespaces, () => resolve());
-    }
-  });
-}
-
-// ../../node_modules/react-i18next/dist/es/withTranslation.js
-import { createElement as createElement2, forwardRef as forwardRefReact } from "react";
-
-// ../../node_modules/react-i18next/dist/es/I18nextProvider.js
-import { createElement as createElement3, useMemo } from "react";
-
-// ../../node_modules/react-i18next/dist/es/withSSR.js
-import { createElement as createElement4 } from "react";
-
-// ../../node_modules/react-i18next/dist/es/useSSR.js
-import { useContext as useContext3 } from "react";
-
-// src/components/FileUploader.tsx
+import { useState as useState3, useCallback as useCallback2, useRef, useEffect as useEffect2 } from "react";
+import { useLayeraTranslation as useLayeraTranslation4 } from "@layera/i18n";
 import { useNotifications } from "@layera/notifications";
 import { ErrorBoundary } from "@layera/error-boundary";
 import { Text as Typography4 } from "@layera/typography";
@@ -349,7 +13,8 @@ import { UploadIcon as UploadIcon4, DeleteIcon as DeleteIcon2 } from "@layera/ic
 import { useTheme as useTheme4 } from "@layera/theme-switcher";
 
 // src/components/DragDropZone.tsx
-import { useCallback, useState as useState2 } from "react";
+import { useCallback, useState } from "react";
+import { useLayeraTranslation } from "@layera/i18n";
 import { BaseCard as Card } from "@layera/cards";
 import { Text as Typography } from "@layera/typography";
 import { UploadIcon } from "@layera/icons";
@@ -364,22 +29,22 @@ var DragDropZone = ({
   className = "",
   multiple = true
 }) => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
   const { theme } = useTheme();
-  const [isDragOver, setIsDragOver] = useState2(false);
-  const [dragCounter, setDragCounter] = useState2(0);
-  const handleDragEnter = useCallback((e2) => {
-    e2.preventDefault();
-    e2.stopPropagation();
+  const [isDragOver, setIsDragOver] = useState(false);
+  const [dragCounter, setDragCounter] = useState(0);
+  const handleDragEnter = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (!enabled) return;
     setDragCounter((prev) => prev + 1);
-    if (e2.dataTransfer?.items && e2.dataTransfer.items.length > 0) {
+    if (e.dataTransfer?.items && e.dataTransfer.items.length > 0) {
       setIsDragOver(true);
     }
   }, [enabled]);
-  const handleDragLeave = useCallback((e2) => {
-    e2.preventDefault();
-    e2.stopPropagation();
+  const handleDragLeave = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (!enabled) return;
     setDragCounter((prev) => {
       const newCounter = prev - 1;
@@ -389,21 +54,21 @@ var DragDropZone = ({
       return newCounter;
     });
   }, [enabled]);
-  const handleDragOver = useCallback((e2) => {
-    e2.preventDefault();
-    e2.stopPropagation();
+  const handleDragOver = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (!enabled) return;
-    if (e2.dataTransfer) {
-      e2.dataTransfer.dropEffect = "copy";
+    if (e.dataTransfer) {
+      e.dataTransfer.dropEffect = "copy";
     }
   }, [enabled]);
-  const handleDrop = useCallback((e2) => {
-    e2.preventDefault();
-    e2.stopPropagation();
+  const handleDrop = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (!enabled) return;
     setIsDragOver(false);
     setDragCounter(0);
-    const { files } = e2.dataTransfer;
+    const { files } = e.dataTransfer;
     if (files && files.length > 0) {
       const fileArray = Array.from(files);
       const limitedFiles = maxFiles ? fileArray.slice(0, maxFiles) : fileArray;
@@ -415,13 +80,13 @@ var DragDropZone = ({
       }
     }
   }, [enabled, maxFiles, acceptedTypes, onFilesDrop]);
-  const handleFileInputChange = useCallback((e2) => {
-    const { files } = e2.target;
+  const handleFileInputChange = useCallback((e) => {
+    const { files } = e.target;
     if (files && files.length > 0) {
       const fileArray = Array.from(files);
       onFilesDrop(fileArray);
     }
-    e2.target.value = "";
+    e.target.value = "";
   }, [onFilesDrop]);
   const getZoneClasses = () => {
     const baseClasses = [
@@ -503,6 +168,7 @@ var DragDropZone = ({
 };
 
 // src/components/FileList.tsx
+import { useLayeraTranslation as useLayeraTranslation2 } from "@layera/i18n";
 import { BaseCard as Card2 } from "@layera/cards";
 import { Text as Typography2 } from "@layera/typography";
 import { Button } from "@layera/buttons";
@@ -659,7 +325,7 @@ var FileList = ({
   onCancel,
   onRetry
 }) => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation2();
   const { theme } = useTheme2();
   if (files.length === 0) {
     return /* @__PURE__ */ jsxs2(Card2, { className: `p-6 text-center ${theme === "dark" ? "bg-gray-800" : "bg-gray-50"}`, children: [
@@ -688,7 +354,7 @@ var FileListItem = ({
   onCancel,
   onRetry
 }) => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation2();
   const { theme } = useTheme2();
   const getStatusIcon = () => {
     switch (file.status) {
@@ -808,7 +474,8 @@ var FileListItem = ({
 };
 
 // src/components/FilePreview.tsx
-import { useState as useState3, useEffect as useEffect2 } from "react";
+import { useState as useState2, useEffect } from "react";
+import { useLayeraTranslation as useLayeraTranslation3 } from "@layera/i18n";
 import { BaseCard as Card3 } from "@layera/cards";
 import { Text as Typography3 } from "@layera/typography";
 import { Button as Button2 } from "@layera/buttons";
@@ -821,11 +488,11 @@ var FilePreview = ({
   onRemove,
   onClick
 }) => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation3();
   const { theme } = useTheme3();
-  const [previewUrl, setPreviewUrl] = useState3(null);
-  const [previewError, setPreviewError] = useState3(false);
-  useEffect2(() => {
+  const [previewUrl, setPreviewUrl] = useState2(null);
+  const [previewError, setPreviewError] = useState2(false);
+  useEffect(() => {
     if (!showPreview || !isImageFile(file.file)) {
       return;
     }
@@ -895,8 +562,8 @@ var FilePreview = ({
         {
           variant: "outline",
           size: "sm",
-          onClick: (e2) => {
-            e2.stopPropagation();
+          onClick: (e) => {
+            e.stopPropagation();
             onRemove(file.id);
           },
           className: "bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-600 hover:text-red-600 border-0 p-1 w-6 h-6",
@@ -1199,14 +866,14 @@ var FileUploader = ({
   onFileRemove,
   onAllUploadsComplete
 }) => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation4();
   const { theme } = useTheme4();
   const { addNotification } = useNotifications();
-  const [files, setFiles] = useState4([]);
-  const [isUploading, setIsUploading] = useState4(false);
-  const [viewMode, setViewMode] = useState4("list");
-  const uploadEngineRef = useRef2(null);
-  useEffect3(() => {
+  const [files, setFiles] = useState3([]);
+  const [isUploading, setIsUploading] = useState3(false);
+  const [viewMode, setViewMode] = useState3("list");
+  const uploadEngineRef = useRef(null);
+  useEffect2(() => {
     uploadEngineRef.current = new UploadEngine(config, {
       onUploadStart: (file) => {
         setFiles((prev) => prev.map((f) => f.id === file.id ? file : f));
@@ -1257,7 +924,7 @@ var FileUploader = ({
       uploadEngineRef.current?.clearAll();
     };
   }, [config, onUploadStart, onUploadProgress, onUploadComplete, onUploadError, onUploadCancel, onAllUploadsComplete, t, addNotification]);
-  useEffect3(() => {
+  useEffect2(() => {
     if (initialFiles.length > 0) {
       handleFilesAdded(initialFiles);
     }

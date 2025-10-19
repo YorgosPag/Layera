@@ -1,7 +1,6 @@
 import proj4 from 'proj4';
 import {
   CoordinateTransform,
-  CoordinateInfo,
   CoordinateTransformationError,
   BoundingBox
 } from '../types';
@@ -60,7 +59,14 @@ export class CoordinateTransformer {
 
       commonTransformations.forEach(([source, target]) => {
         const key = `${source}->${target}`;
-        this.projCache.set(key, proj4(source, target));
+        if (source && target) {
+          try {
+            const converter = proj4(source, target);
+            this.projCache.set(key, converter);
+          } catch (conversionError) {
+            console.warn(`Failed to initialize transformation ${key}:`, conversionError);
+          }
+        }
       });
 
     } catch (error) {
@@ -88,6 +94,14 @@ export class CoordinateTransformer {
       const converter = this.getConverter(transform.sourceEPSG, transform.targetEPSG);
       const input = z !== undefined ? [x, y, z] : [x, y];
       const result = converter.forward(input);
+
+      if (result[0] === undefined || result[1] === undefined) {
+        throw new CoordinateTransformationError(
+          transform.sourceEPSG,
+          transform.targetEPSG,
+          'Invalid coordinate transformation result'
+        );
+      }
 
       return {
         x: result[0],
@@ -121,6 +135,14 @@ export class CoordinateTransformer {
       for (const point of points) {
         const input = point.z !== undefined ? [point.x, point.y, point.z] : [point.x, point.y];
         const result = converter.forward(input);
+
+        if (result[0] === undefined || result[1] === undefined) {
+          throw new CoordinateTransformationError(
+            transform.sourceEPSG,
+            transform.targetEPSG,
+            `Invalid coordinate transformation result for point ${JSON.stringify(point)}`
+          );
+        }
 
         results.push({
           x: result[0],

@@ -1,5 +1,30 @@
 # 🏗️ Layera ID - Architecture Documentation
 
+## 📚 **ARCHITECTURE DOCUMENTATION NAVIGATION**
+
+### **🔝 Master Documentation Index:**
+- **[📚 DOCUMENTATION INDEX](../DOCUMENTATION_INDEX.md)** - Complete Layera Documentation Map
+
+### **🧩 Core System Architecture:**
+1. **[🏗️ MAIN ARCHITECTURE](./ARCHITECTURE.md)** ← *You are here*
+2. **[🧩 LEGO COMPLIANCE AUDIT](./core-systems/LEGO_COMPLIANCE_AUDIT_REPORT.md)** - 100% LEGO Systems Implementation
+3. **[📋 CODE MAPPING](./CODE_MAPPING.md)** - Codebase Structure & Organization
+4. **[🛣️ COMPLETION ROADMAP](./COMPLETION_ROADMAP.md)** - Development Roadmap
+
+### **🗺️ Pipeline & Geo-Drawing Architecture:**
+5. **[📊 PIPELINE CURRENT STATE](./pipeline-architecture/01-CURRENT-STATE-ANALYSIS.md)** - System Analysis
+6. **[🏗️ PIPELINE TARGET](./pipeline-architecture/02-TARGET-ARCHITECTURE.md)** - Target Vision
+7. **[🔄 PIPELINE MIGRATION](./pipeline-architecture/03-MIGRATION-STRATEGY.md)** - Migration Plan
+8. **[🛠️ PIPELINE IMPLEMENTATION](./pipeline-architecture/04-IMPLEMENTATION-GUIDE.md)** - Developer Guide
+9. **[🗺️ GEO-DRAWING ARCHITECTURE](./geo-drawing-architecture/02-TARGET-ARCHITECTURE.md)** - Map Drawing Systems
+
+### **📋 Strategic Documents:**
+10. **[🎯 CORE STRATEGY](../strategy/LAYERA_CORE_STRATEGY.md)** - Business Architecture
+11. **[🏠 REAL ESTATE ANALYSIS](../strategy/REAL_ESTATE_ANALYSIS.md)** - Property Strategy
+12. **[💼 JOBS ANALYSIS](../strategy/JOBS_ANALYSIS.md)** - Employment Strategy
+
+---
+
 ## 📋 Περιγραφή Συστήματος
 
 Το **Layera ID** είναι ένα ολοκληρωμένο **enterprise monorepo** συστήματος διαχείρισης ταυτότητας και πρόσβασης (Identity & Access Management) που υλοποιεί προηγμένες τεχνολογίες ασφάλειας και παρέχει επαναχρησιμοποιήσιμα packages για εύκολη ενσωμάτωση.

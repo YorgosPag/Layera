@@ -78,7 +78,13 @@
       "Bash(then echo \"✅ BUILT\")",
       "Bash(else echo \"❌ NOT BUILT\")",
       "Bash(fi)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(start http://localhost:3008)",
+      "Bash(taskkill:*)",
+      "Bash(tasklist:*)",
+      "Bash(del /Q /S node_modules)",
+      "Bash(del package-lock.json)",
+      "Bash(start http://localhost:3009)"
     ],
     "deny": [],
     "ask": []

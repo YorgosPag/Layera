@@ -1,219 +1,165 @@
-# Layera Authentication System - Τελική Υλοποίηση
+C:\Layera\.claude\settings.local.json
+  35,71:       "Bash(del \"C:\\Layera\\apps\\layera-geoalert\\src\\components\\LanguageSwitcher.tsx\")",
 
-## 🎯 Τρέχουσα Κατάσταση (Updated: 17/10/2025)
+C:\Layera\apps\layera-geoalert\docs\DETAILED_IMPLEMENTATION_STEPS.md
+  53,5: - ✅ LanguageSwitcher component
+  65,9:     └── LanguageSwitcher.tsx ✅ Language toggle component
+  207,3: - LanguageSwitcher component στα headers
 
-### ✅ ΟΛΟΚΛΗΡΩΜΕΝΟ - Complete Enterprise i18n Implementation
-- **Πλήρης μετάφραση** όλων των σελίδων: Dashboard, Account, Settings, Data, MFA Enrollment
-- **LanguageSwitcher integration** σε όλες τις σελίδες με consistent styling
-- **Enterprise-grade translation system** με namespace organization
-- **No mixed language expressions** - όλα τα strings χρησιμοποιούν translation keys
-- **Dynamic language switching** Ελληνικά ↔ Αγγλικά
-- **Template variables support**: `{{name}}`, `{{email}}` interpolation
-- **Fixed namespace issues** στο Dashboard - όλες οι μεταφράσεις λειτουργούν σωστά
+C:\Layera\apps\layera-geoalert\docs\ENTERPRISE_ARCHITECTURE.md
+  50,13:         └── LanguageSwitcher.tsx    # ✅ Language toggle component
+  194,5: ### LanguageSwitcher Component
+  198,7: const LanguageSwitcher = () => {
 
-### 🔧 Translation System Architecture
-```
-packages/i18n/src/locales/
-├── el/
-│   ├── common.json          # Shared translations (navigation, auth, mfa, data, etc.)
-│   └── dashboard.json       # Dashboard-specific translations
-└── en/
-    ├── common.json          # English equivalents
-    └── dashboard.json       # English dashboard translations
-```
+C:\Layera\apps\layera-geoalert\docs\I18N_IMPLEMENTATION.md
+  35,5: └── LanguageSwitcher.tsx            # ✅ Language toggle component
+  87,8: import LanguageSwitcher from './components/LanguageSwitcher';
+  87,44: import LanguageSwitcher from './components/LanguageSwitcher';
+  98,10:         <LanguageSwitcher />
+  153,8: ## 🎛️ LanguageSwitcher Component
+  155,36: ### Implementation (src/components/LanguageSwitcher.tsx)
+  159,7: const LanguageSwitcher = () => {
+  196,16: export default LanguageSwitcher;
 
-### 🌍 Διαθέσιμες Σελίδες με Πλήρη i18n
-1. **Dashboard** (`/dashboard`) - Welcome, user info, quick actions
-2. **Account** (`/account`) - Profile, MFA status, badges
-3. **Settings** (`/settings`) - Security, notifications, appearance, danger zone
-4. **Data** (`/data`) - Personal data, export options, privacy info
-5. **MFA Enrollment** (`/mfa-enroll`) - 2FA setup με SMS
+C:\Layera\apps\layera-geoalert\docs\IMPLEMENTATION_PLAN.md
+  136,30: 6. ✅ **Language Switching:** LanguageSwitcher component με react-i18next
 
-### 🔐 Enterprise Security Features
-- **Firebase Authentication** με email/password + Google OAuth
-- **SMS-based MFA (2FA)** με comprehensive error handling
-- **Role-based access control** (admin, broker, builder, private)
-- **Email verification** requirements
-- **Security status indicators** με visual feedback
+C:\Layera\apps\layera-geoalert\docs\LAYOUT_MIGRATION_PLAN.md
+  11,8:       <LanguageSwitcher />    {/* Custom positioned */}
+  43,16:               <LanguageSwitcher />
+  77,8:       <LanguageSwitcher />
+  129,10: import { LanguageSwitcher } from './LanguageSwitcher';
+  129,37: import { LanguageSwitcher } from './LanguageSwitcher';
+  142,12:           <LanguageSwitcher />
+  186,9: - Check LanguageSwitcher functionality
+  209,7: - [ ] LanguageSwitcher changes app language
 
-### 📱 Modern UI/UX
-- **Responsive design** για mobile και desktop
-- **Professional navigation** με user avatars και language switcher
-- **Gradient styling** με modern CSS
-- **Status badges** για verification, MFA, roles
-- **Consistent component styling** across all pages
+C:\Layera\apps\layera-geoalert\src\components\GeoHeader.tsx
+  5,10: import { LanguageSwitcher } from '@layera/i18n';
+  20,12:           <LanguageSwitcher />
 
----
+C:\Layera\apps\layera-geoalert\src\App-simple.tsx
+  3,8: import LanguageSwitcher from './components/LanguageSwitcher';
+  3,44: import LanguageSwitcher from './components/LanguageSwitcher';
+  12,10:         <LanguageSwitcher />
 
-## 🚀 ΕΠΟΜΕΝΟΣ ΣΤΟΧΟΣ: Role-Based Access Control (RBAC) + Mandatory 2FA
+C:\Layera\apps\layera-geoalert\src\App.tsx
+  15,10: import { LanguageSwitcher } from '@layera/i18n';
+  253,20:                   <LanguageSwitcher />
 
-### 1️⃣ Firebase Console Configuration
-```
-✅ Enable Authentication methods:
-   - Email/Password ✓
-   - Google OAuth ✓
-   - Multi-factor Authentication (SMS) ✓
+C:\Layera\apps\layera-id\src\components\Dashboard.jsx
+  4,10: import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
+  37,16:               <LanguageSwitcher
 
-🔧 Configure Custom Claims για roles:
-   - private (default)
-   - broker (επαγγελματίας)
-   - builder (κατασκευαστής)
-   - admin (διαχειριστής)
-```
+C:\Layera\apps\layera-id\src\components\Login.jsx
+  6,10: import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
+  59,8:       <LanguageSwitcher variant="toggle" showFlags={true} />
 
-### 2️⃣ Firestore Security Rules (με RBAC + MFA)
-```javascript
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{db}/documents {
-    function isVerified() { return request.auth.token.email_verified == true; }
-    function role(r) { return request.auth.token.role == r; }
-    function hasMfa() { return request.auth.token.mfa == true; }
+C:\Layera\apps\layera-id\src\components\MfaEnroll.jsx
+  6,10: import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
+  80,8:       <LanguageSwitcher variant="toggle" showFlags={true} />
 
-    match /users/{uid} {
-      allow read: if isVerified() && request.auth.uid == uid;
-      allow write: if isVerified() && request.auth.uid == uid;
-    }
+C:\Layera\apps\layera-id\src\components\NewDashboard.tsx
+  4,10: import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
+  35,8:       <LanguageSwitcher variant="toggle" showFlags={true} />
 
-    // Professional collections require MFA
-    match /projects/{id} {
-      allow read: if isVerified();
-      allow write: if isVerified() && hasMfa() &&
-                    (role('admin') || role('broker') || role('builder'));
-    }
+C:\Layera\apps\layera-id\src\pages\Account.jsx
+  6,10: import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
+  35,8:       <LanguageSwitcher variant="toggle" showFlags={true} />
 
-    match /admin/{doc=**} {
-      allow read, write: if isVerified() && hasMfa() && role('admin');
-    }
-  }
-}
-```
+C:\Layera\apps\layera-id\src\pages\AdminRoles.jsx
+  6,10: import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
+  136,8:       <LanguageSwitcher variant="toggle" showFlags={true} />
 
-### 3️⃣ Cloud Functions για Admin Role Management
-```typescript
-// functions/src/index.ts
-export const setRole = functions.https.onCall(async (data, ctx) => {
-  assertAdmin(ctx); // Only admin can change roles
-  const { email, uid, role } = data;
-  const user = uid ? await auth.getUser(uid) : await auth.getUserByEmail(email);
-  await auth.setCustomUserClaims(user.uid, {
-    ...(user.customClaims||{}),
-    role
-  });
-  return { uid: user.uid, role };
-});
+C:\Layera\apps\layera-id\src\pages\Data.jsx
+  4,10: import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
+  38,8:       <LanguageSwitcher variant="toggle" showFlags={true} />
 
-export const refreshMfaClaim = functions.https.onCall(async (data, ctx) => {
-  assertAdmin(ctx);
-  const { email, uid } = data;
-  const user = uid ? await auth.getUser(uid) : await auth.getUserByEmail(email);
-  const enrolled = (user.multiFactor?.enrolledFactors?.length || 0) > 0;
-  await auth.setCustomUserClaims(user.uid, {
-    ...(user.customClaims||{}),
-    mfa: enrolled
-  });
-  return { uid: user.uid, mfa: enrolled };
-});
-```
+C:\Layera\apps\layera-id\src\pages\Settings.jsx
+  4,10: import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
+  43,8:       <LanguageSwitcher variant="toggle" showFlags={true} />
+  209,18:                 <LanguageSwitcher variant="dropdown" showFlags={true} align="center" />
 
-### 4️⃣ Client-Side Components για RBAC
-```jsx
-// RoleBadge.jsx - Visual role display
-const LABELS = {
-  admin: "Διαχειριστής",
-  broker: "Μεσίτης",
-  builder: "Κατασκευαστής",
-  private: "Ιδιώτης"
-};
+C:\Layera\apps\layera-id\README.md
+  25,33: - Dynamic language switching με LanguageSwitcher component
+  112,26: Κάθε σελίδα περιλαμβάνει LanguageSwitcher component στο header:
+  114,2: <LanguageSwitcher
+  190,5: - ✅ LanguageSwitcher integration σε όλες τις σελίδες
 
-// MfaStatus.jsx - 2FA status indicator
-// AdminRoles.jsx - Admin interface για role management
-// PrivateRoute.jsx - Route protection με role + MFA requirements
-```
+C:\Layera\docs\core-systems\components\components\i18n\LanguageSwitcher.md
+  1,3: # LanguageSwitcher Component
+  7,4: Το LanguageSwitcher component είναι μέρος του @layera/i18n package και παρέχει μια ολοκληρωμένη λύση για language switching σε Layera applications. Υποστηρίζει multiple display modes και automatic flag detection.
+  29,10: import { LanguageSwitcher, LayeraI18nProvider } from '@layera/i18n';
+  35,10:         <LanguageSwitcher mode="dropdown" />
+  44,5: ### LanguageSwitcherProps
+  47,11: interface LanguageSwitcherProps {
+  64,10: import { LanguageSwitcher } from '@layera/i18n';
+  67,2: <LanguageSwitcher mode="icon" />
+  70,2: <LanguageSwitcher mode="button" />
+  73,2: <LanguageSwitcher mode="dropdown" />
 
-### 5️⃣ User Flow για Professional Roles
-```
-1. User registers → gets 'private' role by default
-2. Admin assigns professional role (broker/builder/admin)
-3. User must enroll in 2FA to access professional features
-4. Admin runs refreshMfaClaim to update MFA status in claims
-5. User gains write access to professional collections
-```
+C:\Layera\docs\core-systems\components\components\README.md
+  81,4: | [LanguageSwitcher](./i18n/LanguageSwitcher.md) | ✅ Complete | Language selection με flags | [View Docs](./i18n/LanguageSwitcher.md) |
+  81,29: | [LanguageSwitcher](./i18n/LanguageSwitcher.md) | ✅ Complete | Language selection με flags | [View Docs](./i18n/LanguageSwitcher.md) |
+  81,114: | [LanguageSwitcher](./i18n/LanguageSwitcher.md) | ✅ Complete | Language selection με flags | [View Docs](./i18n/LanguageSwitcher.md) |
+  91,10: import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
+  99,8:       <LanguageSwitcher mode="dropdown" showFlags />
 
----
+C:\Layera\docs\enterprise\ENTERPRISE_COMPONENT_AUDIT.md
+  62,3: ❌ LanguageSwitcher: Mixed native HTML select + React dropdown
+  79,3: ❌ LanguageSwitcher: native <select> για dropdown variant
+  230,3: - LanguageSwitcher dropdown
+  293,16: #### **Week 2: LanguageSwitcher Standardization**
+  295,22: 🔧 Task 2.1: Upgrade LanguageSwitcher dropdown variant
+  409,6: 3. **LanguageSwitcher standardization** - Used globally
 
-## 📋 Implementation Tasks Remaining
+C:\Layera\docs\meta\DOCUMENTATION_INDEX.md
+  78,72: 47. **[🌍 Language Switcher Component](../core-systems/components/i18n/LanguageSwitcher.md)** - Multi-language Support
 
-### 🔧 Backend Setup
-- [ ] Deploy Cloud Functions για role management
-- [ ] Set up Admin SDK scripts για initial role assignment
-- [ ] Configure Firestore security rules
-- [ ] Set up service account για admin operations
+C:\Layera\docs\I18N_ROADMAP.md
+  21,7: - ✅ **LanguageSwitcher**: Multi-variant component (toggle, dropdown, buttons)
 
-### 💻 Frontend Development
-- [ ] Implement custom claims reading στο AuthContext
-- [ ] Create RoleBadge και MfaStatus components
-- [ ] Build AdminRoles page για role management UI
-- [ ] Add route protection με requirePro flag
-- [ ] Integrate callable functions για role changes
+C:\Layera\packages\i18n\dist\components\LanguageSwitcher.d.ts
+  1,11: interface LanguageSwitcherProps {
+  7,25: export declare function LanguageSwitcher({ className, variant, showFlags, align, }: LanguageSwitcherProps): import("react/jsx-runtime").JSX.Element | null;
+  7,85: export declare function LanguageSwitcher({ className, variant, showFlags, align, }: LanguageSwitcherProps): import("react/jsx-runtime").JSX.Element | null;
+  8,16: export default LanguageSwitcher;
+  9,22: //# sourceMappingURL=LanguageSwitcher.d.ts.map
 
-### 🧪 Testing & Quality
-- [ ] Unit tests για RBAC components
-- [ ] Integration tests για role assignment flow
-- [ ] Security testing για unauthorized access
-- [ ] UI/UX testing για professional workflows
+C:\Layera\packages\i18n\dist\components\LanguageSwitcher.d.ts.map
+  1,22: {"version":3,"file":"LanguageSwitcher.d.ts","sourceRoot":"","sources":["../../src/components/LanguageSwitcher.tsx"],"names":[],"mappings":"AAIA,UAAU,qBAAqB;IAC7B,SAAS,CAAC,EAAE,MAAM,CAAC;IACnB,OAAO,CAAC,EAAE,UAAU,GAAG,QAAQ,GAAG,SAAS,CAAC;IAC5C,SAAS,CAAC,EAAE,OAAO,CAAC;IACpB,KAAK,CAAC,EAAE,MAAM,GAAG,OAAO,GAAG,QAAQ,CAAC;CACrC;AAYD,wBAAgB,gBAAgB,CAAC,EAC/B,SAAc,EACd,OAAoB,EACpB,SAAgB,EAChB,KAAe,GAChB,EAAE,qBAAqB,kDAuGvB;AAED,eAAe,gBAAgB,CAAC"}
+  1,94: {"version":3,"file":"LanguageSwitcher.d.ts","sourceRoot":"","sources":["../../src/components/LanguageSwitcher.tsx"],"names":[],"mappings":"AAIA,UAAU,qBAAqB;IAC7B,SAAS,CAAC,EAAE,MAAM,CAAC;IACnB,OAAO,CAAC,EAAE,UAAU,GAAG,QAAQ,GAAG,SAAS,CAAC;IAC5C,SAAS,CAAC,EAAE,OAAO,CAAC;IACpB,KAAK,CAAC,EAAE,MAAM,GAAG,OAAO,GAAG,QAAQ,CAAC;CACrC;AAYD,wBAAgB,gBAAgB,CAAC,EAC/B,SAAc,EACd,OAAoB,EACpB,SAAgB,EAChB,KAAe,GAChB,EAAE,qBAAqB,kDAuGvB;AAED,eAAe,gBAAgB,CAAC"}
 
-### 📚 Documentation
-- [ ] Admin setup guide
-- [ ] User onboarding flow documentation
-- [ ] Security model documentation
-- [ ] API reference για callable functions
+C:\Layera\packages\i18n\dist\index.d.ts
+  4,10: export { LanguageSwitcher } from './components/LanguageSwitcher';
+  4,48: export { LanguageSwitcher } from './components/LanguageSwitcher';
 
----
+C:\Layera\packages\i18n\dist\index.js
+  1104,10: function LanguageSwitcher({ className = '', variant = 'dropdown', showFlags = true, align = 'right', }) {
+  1219,10: export { LanguageSwitcher, LayeraI18nProvider, defaultNS, i18nConfig, namespaces, supportedLngs, useLayeraI18nContext, useLayeraTranslation, withLayeraI18n };
 
-## 🎯 Success Metrics
-✅ **Completed**: Enterprise i18n system με 100% μετάφραση
-🔧 **In Progress**: RBAC implementation με mandatory 2FA
-🚀 **Next**: Production deployment και user onboarding
+C:\Layera\packages\i18n\dist\index.js.map
+  1,120: {"version":3,"file":"index.js","sources":["../src/config.ts","../src/hooks/useLayeraTranslation.ts","../src/components/LanguageSwitcher.tsx","../src/components/LayeraI18nProvider.tsx"],"sourcesContent":[null,null,null,null],"names":["_jsxs","_jsx"],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
----
+C:\Layera\packages\i18n\src\components\LanguageSwitcher.tsx
+  5,11: interface LanguageSwitcherProps {
+  22,17: export function LanguageSwitcher({
+  27,4: }: LanguageSwitcherProps) {
+  132,16: export default LanguageSwitcher;
 
-## 🔄 Development Status
+C:\Layera\packages\i18n\src\index.ts
+  9,10: export { LanguageSwitcher } from './components/LanguageSwitcher';
+  9,48: export { LanguageSwitcher } from './components/LanguageSwitcher';
 
-### Current Session Achievements
-1. ✅ Fixed all mixed language expressions στο Dashboard
-2. ✅ Implemented complete translation system με namespace support
-3. ✅ Added LanguageSwitcher to all page headers
-4. ✅ Resolved translation key namespace conflicts
-5. ✅ Updated comprehensive documentation
+C:\Layera\packages\i18n\README.md
+  65,10: import { LanguageSwitcher } from '@layera/i18n';
+  70,8:       <LanguageSwitcher variant="dropdown" showFlags={true} />
+  126,5: ### LanguageSwitcher Props
 
-### Code Quality Standards
-- **No hardcoded strings** - Όλα μέσω translation keys
-- **Enterprise naming conventions**
-- **Consistent component styling**
-- **Proper error handling** για Firebase operations
-- **Modern React patterns** με hooks και context
-- **TypeScript support** στα packages
-- **Responsive design** για όλες τις συσκευές
+C:\Layera\packages\layout\README.md
+  221,17:       actions={<LanguageSwitcher />}
 
-### File Structure
-```
-apps/layera-id/src/
-├── components/
-│   ├── Dashboard.jsx ✅ Full i18n
-│   ├── MfaEnroll.jsx ✅ Full i18n
-│   └── *.css
-├── pages/
-│   ├── Account.jsx ✅ Full i18n
-│   ├── Settings.jsx ✅ Full i18n
-│   ├── Data.jsx ✅ Full i18n
-│   └── *.css
-└── firebase.js
-
-packages/i18n/src/
-├── locales/el/ ✅ Complete Greek translations
-├── locales/en/ ✅ Complete English translations
-└── components/LanguageSwitcher.jsx ✅ Working
-```
-
-**Status**: Ready for RBAC implementation και production deployment 🚀
+C:\Layera\voithitika_docs\diavase_3.md
+  1,59: [plugin:vite:import-analysis] Failed to resolve import "./LanguageSwitcher" from "src\components\GeoHeader.tsx". Does the file exist?
+  5,14: 21 |  import LanguageSwitcher from "./LanguageSwitcher";
+  5,39: 21 |  import LanguageSwitcher from "./LanguageSwitcher";

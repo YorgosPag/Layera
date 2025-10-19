@@ -1,342 +1,6 @@
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __commonJS = (cb, mod) => function __require() {
-  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
-};
-var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
-      if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-  }
-  return to;
-};
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-  // If the importer is in node compatibility mode or this is not an ESM
-  // file that has been converted to a CommonJS file using a Babel-
-  // compatible transform (i.e. "__esModule" has not been set), then set
-  // "default" to the CommonJS "module.exports" for node compatibility.
-  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-  mod
-));
-
-// ../../node_modules/@babel/runtime/helpers/extends.js
-var require_extends = __commonJS({
-  "../../node_modules/@babel/runtime/helpers/extends.js"(exports, module) {
-    "use strict";
-    function _extends2() {
-      return module.exports = _extends2 = Object.assign ? Object.assign.bind() : function(n) {
-        for (var e2 = 1; e2 < arguments.length; e2++) {
-          var t = arguments[e2];
-          for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]);
-        }
-        return n;
-      }, module.exports.__esModule = true, module.exports["default"] = module.exports, _extends2.apply(null, arguments);
-    }
-    module.exports = _extends2, module.exports.__esModule = true, module.exports["default"] = module.exports;
-  }
-});
-
-// ../../node_modules/void-elements/index.js
-var require_void_elements = __commonJS({
-  "../../node_modules/void-elements/index.js"(exports, module) {
-    "use strict";
-    module.exports = {
-      "area": true,
-      "base": true,
-      "br": true,
-      "col": true,
-      "embed": true,
-      "hr": true,
-      "img": true,
-      "input": true,
-      "link": true,
-      "meta": true,
-      "param": true,
-      "source": true,
-      "track": true,
-      "wbr": true
-    };
-  }
-});
-
 // src/hooks/useMeasurement.ts
-import { useState as useState2, useCallback, useRef as useRef2 } from "react";
-
-// ../../node_modules/react-i18next/dist/es/Trans.js
-import { useContext } from "react";
-
-// ../../node_modules/react-i18next/dist/es/TransWithoutContext.js
-var import_extends = __toESM(require_extends(), 1);
-import React, { isValidElement, cloneElement, createElement, Children } from "react";
-
-// ../../node_modules/html-parse-stringify/dist/html-parse-stringify.module.js
-var import_void_elements = __toESM(require_void_elements());
-
-// ../../node_modules/react-i18next/dist/es/utils.js
-function warn() {
-  if (console && console.warn) {
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-    if (typeof args[0] === "string") args[0] = `react-i18next:: ${args[0]}`;
-    console.warn(...args);
-  }
-}
-var alreadyWarned = {};
-function warnOnce() {
-  for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-    args[_key2] = arguments[_key2];
-  }
-  if (typeof args[0] === "string" && alreadyWarned[args[0]]) return;
-  if (typeof args[0] === "string") alreadyWarned[args[0]] = /* @__PURE__ */ new Date();
-  warn(...args);
-}
-var loadedClb = (i18n, cb) => () => {
-  if (i18n.isInitialized) {
-    cb();
-  } else {
-    const initialized = () => {
-      setTimeout(() => {
-        i18n.off("initialized", initialized);
-      }, 0);
-      cb();
-    };
-    i18n.on("initialized", initialized);
-  }
-};
-function loadNamespaces(i18n, ns, cb) {
-  i18n.loadNamespaces(ns, loadedClb(i18n, cb));
-}
-function loadLanguages(i18n, lng, ns, cb) {
-  if (typeof ns === "string") ns = [ns];
-  ns.forEach((n) => {
-    if (i18n.options.ns.indexOf(n) < 0) i18n.options.ns.push(n);
-  });
-  i18n.loadLanguages(lng, loadedClb(i18n, cb));
-}
-function oldI18nextHasLoadedNamespace(ns, i18n) {
-  let options = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {};
-  const lng = i18n.languages[0];
-  const fallbackLng = i18n.options ? i18n.options.fallbackLng : false;
-  const lastLng = i18n.languages[i18n.languages.length - 1];
-  if (lng.toLowerCase() === "cimode") return true;
-  const loadNotPending = (l, n) => {
-    const loadState = i18n.services.backendConnector.state[`${l}|${n}`];
-    return loadState === -1 || loadState === 2;
-  };
-  if (options.bindI18n && options.bindI18n.indexOf("languageChanging") > -1 && i18n.services.backendConnector.backend && i18n.isLanguageChangingTo && !loadNotPending(i18n.isLanguageChangingTo, ns)) return false;
-  if (i18n.hasResourceBundle(lng, ns)) return true;
-  if (!i18n.services.backendConnector.backend || i18n.options.resources && !i18n.options.partialBundledLanguages) return true;
-  if (loadNotPending(lng, ns) && (!fallbackLng || loadNotPending(lastLng, ns))) return true;
-  return false;
-}
-function hasLoadedNamespace(ns, i18n) {
-  let options = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {};
-  if (!i18n.languages || !i18n.languages.length) {
-    warnOnce("i18n.languages were undefined or empty", i18n.languages);
-    return true;
-  }
-  const isNewerI18next = i18n.options.ignoreJSONStructure !== void 0;
-  if (!isNewerI18next) {
-    return oldI18nextHasLoadedNamespace(ns, i18n, options);
-  }
-  return i18n.hasLoadedNamespace(ns, {
-    lng: options.lng,
-    precheck: (i18nInstance2, loadNotPending) => {
-      if (options.bindI18n && options.bindI18n.indexOf("languageChanging") > -1 && i18nInstance2.services.backendConnector.backend && i18nInstance2.isLanguageChangingTo && !loadNotPending(i18nInstance2.isLanguageChangingTo, ns)) return false;
-    }
-  });
-}
-
-// ../../node_modules/react-i18next/dist/es/unescape.js
-var matchHtmlEntity = /&(?:amp|#38|lt|#60|gt|#62|apos|#39|quot|#34|nbsp|#160|copy|#169|reg|#174|hellip|#8230|#x2F|#47);/g;
-var htmlEntities = {
-  "&amp;": "&",
-  "&#38;": "&",
-  "&lt;": "<",
-  "&#60;": "<",
-  "&gt;": ">",
-  "&#62;": ">",
-  "&apos;": "'",
-  "&#39;": "'",
-  "&quot;": '"',
-  "&#34;": '"',
-  "&nbsp;": " ",
-  "&#160;": " ",
-  "&copy;": "\xA9",
-  "&#169;": "\xA9",
-  "&reg;": "\xAE",
-  "&#174;": "\xAE",
-  "&hellip;": "\u2026",
-  "&#8230;": "\u2026",
-  "&#x2F;": "/",
-  "&#47;": "/"
-};
-var unescapeHtmlEntity = (m) => htmlEntities[m];
-var unescape = (text) => text.replace(matchHtmlEntity, unescapeHtmlEntity);
-
-// ../../node_modules/react-i18next/dist/es/defaults.js
-var defaultOptions = {
-  bindI18n: "languageChanged",
-  bindI18nStore: "",
-  transEmptyNodeValue: "",
-  transSupportBasicHtmlNodes: true,
-  transWrapTextNodes: "",
-  transKeepBasicHtmlNodesFor: ["br", "strong", "i", "p"],
-  useSuspense: true,
-  unescape
-};
-function getDefaults() {
-  return defaultOptions;
-}
-
-// ../../node_modules/react-i18next/dist/es/i18nInstance.js
-var i18nInstance;
-function getI18n() {
-  return i18nInstance;
-}
-
-// ../../node_modules/react-i18next/dist/es/context.js
-import { createContext } from "react";
-var I18nContext = createContext();
-var ReportNamespaces = class {
-  constructor() {
-    this.usedNamespaces = {};
-  }
-  addUsedNamespaces(namespaces) {
-    namespaces.forEach((ns) => {
-      if (!this.usedNamespaces[ns]) this.usedNamespaces[ns] = true;
-    });
-  }
-  getUsedNamespaces() {
-    return Object.keys(this.usedNamespaces);
-  }
-};
-
-// ../../node_modules/react-i18next/dist/es/useTranslation.js
-import { useState, useEffect, useContext as useContext2, useRef } from "react";
-var usePrevious = (value, ignore) => {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = ignore ? ref.current : value;
-  }, [value, ignore]);
-  return ref.current;
-};
-function useTranslation(ns) {
-  let props = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
-  const {
-    i18n: i18nFromProps
-  } = props;
-  const {
-    i18n: i18nFromContext,
-    defaultNS: defaultNSFromContext
-  } = useContext2(I18nContext) || {};
-  const i18n = i18nFromProps || i18nFromContext || getI18n();
-  if (i18n && !i18n.reportNamespaces) i18n.reportNamespaces = new ReportNamespaces();
-  if (!i18n) {
-    warnOnce("You will need to pass in an i18next instance by using initReactI18next");
-    const notReadyT = (k, optsOrDefaultValue) => {
-      if (typeof optsOrDefaultValue === "string") return optsOrDefaultValue;
-      if (optsOrDefaultValue && typeof optsOrDefaultValue === "object" && typeof optsOrDefaultValue.defaultValue === "string") return optsOrDefaultValue.defaultValue;
-      return Array.isArray(k) ? k[k.length - 1] : k;
-    };
-    const retNotReady = [notReadyT, {}, false];
-    retNotReady.t = notReadyT;
-    retNotReady.i18n = {};
-    retNotReady.ready = false;
-    return retNotReady;
-  }
-  if (i18n.options.react && i18n.options.react.wait !== void 0) warnOnce("It seems you are still using the old wait option, you may migrate to the new useSuspense behaviour.");
-  const i18nOptions = {
-    ...getDefaults(),
-    ...i18n.options.react,
-    ...props
-  };
-  const {
-    useSuspense,
-    keyPrefix
-  } = i18nOptions;
-  let namespaces = ns || defaultNSFromContext || i18n.options && i18n.options.defaultNS;
-  namespaces = typeof namespaces === "string" ? [namespaces] : namespaces || ["translation"];
-  if (i18n.reportNamespaces.addUsedNamespaces) i18n.reportNamespaces.addUsedNamespaces(namespaces);
-  const ready = (i18n.isInitialized || i18n.initializedStoreOnce) && namespaces.every((n) => hasLoadedNamespace(n, i18n, i18nOptions));
-  function getT() {
-    return i18n.getFixedT(props.lng || null, i18nOptions.nsMode === "fallback" ? namespaces : namespaces[0], keyPrefix);
-  }
-  const [t, setT] = useState(getT);
-  let joinedNS = namespaces.join();
-  if (props.lng) joinedNS = `${props.lng}${joinedNS}`;
-  const previousJoinedNS = usePrevious(joinedNS);
-  const isMounted = useRef(true);
-  useEffect(() => {
-    const {
-      bindI18n,
-      bindI18nStore
-    } = i18nOptions;
-    isMounted.current = true;
-    if (!ready && !useSuspense) {
-      if (props.lng) {
-        loadLanguages(i18n, props.lng, namespaces, () => {
-          if (isMounted.current) setT(getT);
-        });
-      } else {
-        loadNamespaces(i18n, namespaces, () => {
-          if (isMounted.current) setT(getT);
-        });
-      }
-    }
-    if (ready && previousJoinedNS && previousJoinedNS !== joinedNS && isMounted.current) {
-      setT(getT);
-    }
-    function boundReset() {
-      if (isMounted.current) setT(getT);
-    }
-    if (bindI18n && i18n) i18n.on(bindI18n, boundReset);
-    if (bindI18nStore && i18n) i18n.store.on(bindI18nStore, boundReset);
-    return () => {
-      isMounted.current = false;
-      if (bindI18n && i18n) bindI18n.split(" ").forEach((e2) => i18n.off(e2, boundReset));
-      if (bindI18nStore && i18n) bindI18nStore.split(" ").forEach((e2) => i18n.store.off(e2, boundReset));
-    };
-  }, [i18n, joinedNS]);
-  const isInitial = useRef(true);
-  useEffect(() => {
-    if (isMounted.current && !isInitial.current) {
-      setT(getT);
-    }
-    isInitial.current = false;
-  }, [i18n, keyPrefix]);
-  const ret = [t, i18n, ready];
-  ret.t = t;
-  ret.i18n = i18n;
-  ret.ready = ready;
-  if (ready) return ret;
-  if (!ready && !useSuspense) return ret;
-  throw new Promise((resolve) => {
-    if (props.lng) {
-      loadLanguages(i18n, props.lng, namespaces, () => resolve());
-    } else {
-      loadNamespaces(i18n, namespaces, () => resolve());
-    }
-  });
-}
-
-// ../../node_modules/react-i18next/dist/es/withTranslation.js
-import { createElement as createElement2, forwardRef as forwardRefReact } from "react";
-
-// ../../node_modules/react-i18next/dist/es/I18nextProvider.js
-import { createElement as createElement3, useMemo } from "react";
-
-// ../../node_modules/react-i18next/dist/es/withSSR.js
-import { createElement as createElement4 } from "react";
-
-// ../../node_modules/react-i18next/dist/es/useSSR.js
-import { useContext as useContext3 } from "react";
+import { useState, useCallback, useRef } from "react";
+import { useLayeraTranslation as useLayeraTranslation2 } from "@layera/i18n";
 
 // src/utils/calculations.ts
 import L from "leaflet";
@@ -406,6 +70,7 @@ var calculateBounds = (latlngs) => {
 };
 
 // src/utils/formatters.ts
+import { useLayeraTranslation } from "@layera/i18n";
 var formatDistance = (meters, decimals = 2) => {
   if (meters === 0) return "0 m";
   if (meters >= 1e3) {
@@ -424,7 +89,7 @@ var formatArea = (sqMeters) => {
   return `${sqMeters.toFixed(2)} m\xB2`;
 };
 var useMeasurementFormatter = () => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
   const formatDistanceWithLabels = (meters, decimals = 2) => {
     if (meters === 0) return `0 ${t("geo-drawing.units.meters")}`;
     if (meters >= 1e3) {
@@ -479,15 +144,15 @@ var formatBearing = (bearing) => {
 // src/hooks/useMeasurement.ts
 import { useNotifications } from "@layera/notifications";
 var useMeasurement = () => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation2();
   const { addNotification } = useNotifications();
   const { formatDistanceWithLabels, formatAreaWithLabels } = useMeasurementFormatter();
-  const [mode, setMode] = useState2("distance");
-  const [state, setState] = useState2("idle");
-  const [points, setPoints] = useState2([]);
-  const [currentResult, setCurrentResult] = useState2(null);
-  const [results, setResults] = useState2([]);
-  const pointIdCounter = useRef2(0);
+  const [mode, setMode] = useState("distance");
+  const [state, setState] = useState("idle");
+  const [points, setPoints] = useState([]);
+  const [currentResult, setCurrentResult] = useState(null);
+  const [results, setResults] = useState([]);
+  const pointIdCounter = useRef(0);
   const addPoint = useCallback((latlng) => {
     const newPoint = {
       id: `point-${pointIdCounter.current++}`,
@@ -640,7 +305,7 @@ var useMeasurement = () => {
 };
 
 // src/hooks/useGeometrySnap.ts
-import { useState as useState3, useEffect as useEffect2, useCallback as useCallback2, useRef as useRef3 } from "react";
+import { useState as useState2, useEffect, useCallback as useCallback2, useRef as useRef2 } from "react";
 import { useMap } from "react-leaflet";
 import { useSnapEngine } from "@layera/snap-interactions";
 
@@ -812,15 +477,15 @@ var extractOSMGeometry = (feature) => {
 import { CONFIG as CONFIG2 } from "@layera/constants";
 var useGeometrySnap = (isEnabled = true) => {
   const map = useMap();
-  const [osmData, setOsmData] = useState3(null);
-  const [isSnappingEffective, setIsSnappingEffective] = useState3(false);
-  const timeoutRef = useRef3(null);
+  const [osmData, setOsmData] = useState2(null);
+  const [isSnappingEffective, setIsSnappingEffective] = useState2(false);
+  const timeoutRef = useRef2(null);
   const snapEngine = useSnapEngine({
     tolerance: CONFIG2.geoDrawing.snapTolerance,
     enabledTypes: /* @__PURE__ */ new Set(["vertex", "edge", "center", "nearest"]),
     spatialIndexing: true
   });
-  useEffect2(() => {
+  useEffect(() => {
     const fetchData = async () => {
       const currentZoom = map.getZoom();
       if (!isEnabled || currentZoom < CONFIG2.geoDrawing.minSnapZoom) {
@@ -929,6 +594,7 @@ var useGeometrySnap = (isEnabled = true) => {
 };
 
 // src/components/MeasurementControls.tsx
+import { useLayeraTranslation as useLayeraTranslation3 } from "@layera/i18n";
 import { Button } from "@layera/buttons";
 import { Card } from "@layera/cards";
 import { Typography } from "@layera/typography";
@@ -947,7 +613,7 @@ var MeasurementControls = ({
   canFinish,
   displayValue
 }) => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation3();
   return /* @__PURE__ */ jsxs(Card, { variant: "floating", className: "min-w-[200px]", children: [
     /* @__PURE__ */ jsx(Typography, { variant: "h6", className: "text-center mb-3", children: t("geo-drawing.measurement-title") }),
     /* @__PURE__ */ jsxs(Layout, { direction: "horizontal", spacing: "sm", className: "mb-3", children: [
@@ -1051,7 +717,7 @@ var MeasurementControls = ({
 };
 
 // src/components/MeasurementCanvas.tsx
-import { useCallback as useCallback3, useEffect as useEffect3 } from "react";
+import { useCallback as useCallback3, useEffect as useEffect2 } from "react";
 import { Polygon, Polyline, CircleMarker, useMapEvents } from "react-leaflet";
 import { useTheme } from "@layera/theme-switcher";
 import { Fragment as Fragment2, jsx as jsx2, jsxs as jsxs2 } from "react/jsx-runtime";
@@ -1075,22 +741,22 @@ var MeasurementCanvas = ({
     getSnappedPoint,
     isSnappingEffective
   } = useGeometrySnap(enableSnapping);
-  useEffect3(() => {
+  useEffect2(() => {
     changeMeasurementMode(mode);
   }, [mode, changeMeasurementMode]);
-  useEffect3(() => {
+  useEffect2(() => {
     if (currentResult && onMeasurementChange) {
       onMeasurementChange(currentResult);
     }
   }, [currentResult, onMeasurementChange]);
   const mapEvents = useMapEvents({
-    click: useCallback3((e2) => {
+    click: useCallback3((e) => {
       if (state === "finished") return;
-      let latlng = e2.latlng;
+      let latlng = e.latlng;
       let snapped = false;
       let snapResult;
       if (enableSnapping && isSnappingEffective) {
-        const result = getSnappedPoint(e2.latlng);
+        const result = getSnappedPoint(e.latlng);
         if (result.isSnapped && result.snappedLatLng) {
           latlng = result.snappedLatLng;
           snapped = true;
@@ -1103,21 +769,21 @@ var MeasurementCanvas = ({
       const interactionEvent = {
         type: "click",
         latlng,
-        originalEvent: e2.originalEvent,
+        originalEvent: e.originalEvent,
         snapped,
         snapResult
       };
       addPoint(latlng);
     }, [state, enableSnapping, isSnappingEffective, getSnappedPoint, addPoint]),
-    dblclick: useCallback3((e2) => {
-      e2.originalEvent.preventDefault();
-      e2.originalEvent.stopPropagation();
+    dblclick: useCallback3((e) => {
+      e.originalEvent.preventDefault();
+      e.originalEvent.stopPropagation();
       if (state === "drawing" && mode !== "point") {
         finishMeasurement();
       }
     }, [state, mode, finishMeasurement]),
-    keydown: useCallback3((e2) => {
-      if (e2.originalEvent.key === "Escape" && state === "drawing") {
+    keydown: useCallback3((e) => {
+      if (e.originalEvent.key === "Escape" && state === "drawing") {
         cancelMeasurement();
       }
     }, [state, cancelMeasurement])
@@ -1180,10 +846,11 @@ var MeasurementCanvas = ({
 };
 
 // src/components/GeometryRenderer.tsx
-import React3, { useMemo as useMemo2 } from "react";
+import React2, { useMemo } from "react";
 import { Polygon as Polygon2, Polyline as Polyline2, CircleMarker as CircleMarker2, Popup } from "react-leaflet";
 import { useTheme as useTheme2 } from "@layera/theme-switcher";
 import { Typography as Typography2 } from "@layera/typography";
+import { useLayeraTranslation as useLayeraTranslation4 } from "@layera/i18n";
 import { Fragment as Fragment3, jsx as jsx3, jsxs as jsxs3 } from "react/jsx-runtime";
 var GeometryRenderer = ({
   measurements = [],
@@ -1194,9 +861,9 @@ var GeometryRenderer = ({
   onBuildingClick
 }) => {
   const { theme } = useTheme2();
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation4();
   const { formatDistanceWithLabels, formatAreaWithLabels } = useMeasurementFormatter();
-  const colors = useMemo2(() => {
+  const colors = useMemo(() => {
     const isDark = theme === "dark";
     return {
       // Measurement colors
@@ -1230,14 +897,14 @@ var GeometryRenderer = ({
             },
             eventHandlers: {
               click: () => onBuildingClick?.(feature),
-              mouseover: (e2) => {
-                e2.target.setStyle({
+              mouseover: (e) => {
+                e.target.setStyle({
                   fillColor: colors.buildingHover,
                   fillOpacity: 0.3
                 });
               },
-              mouseout: (e2) => {
-                e2.target.setStyle({
+              mouseout: (e) => {
+                e.target.setStyle({
                   fillColor: colors.buildingFill,
                   fillOpacity: 0.1
                 });
@@ -1267,7 +934,7 @@ var GeometryRenderer = ({
     return measurements.map((measurement) => {
       const latlngs = measurement.points.map((p) => p.latlng);
       const key = `measurement-${measurement.timestamp}`;
-      return /* @__PURE__ */ jsxs3(React3.Fragment, { children: [
+      return /* @__PURE__ */ jsxs3(React2.Fragment, { children: [
         measurement.points.map((point, index) => /* @__PURE__ */ jsx3(
           CircleMarker2,
           {

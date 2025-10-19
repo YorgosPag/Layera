@@ -84,5 +84,7 @@ declare const ShareIcon: React$1.FC<Omit<IconProps, 'name' | 'children'>>;
 declare const PrintIcon: React$1.FC<Omit<IconProps, 'name' | 'children'>>;
 declare const UndoIcon: React$1.FC<Omit<IconProps, 'name' | 'children'>>;
 declare const RedoIcon: React$1.FC<Omit<IconProps, 'name' | 'children'>>;
+declare const CheckIcon: React$1.FC<Omit<IconProps, 'name' | 'children'>>;
+declare const WorkIcon: React$1.FC<Omit<IconProps, 'name' | 'children'>>;
 
-export { AlertTriangleIcon, ArrowLeftIcon, ArrowRightIcon, type BaseIconProps, CloseIcon, CompassIcon, CopyIcon, CrosshairsIcon, DeleteIcon, DownloadIcon, EditIcon, GlobeIcon, HomeIcon, Icon, type IconCategory, type IconDefinition, type IconSize, type IconTheme, type IconVariant, LaptopIcon, LayersIcon, LocationIcon, MapIcon, MenuIcon, MonitorIcon, MoreIcon, PhoneIcon, PlusIcon, PrintIcon, RedoIcon, RefreshIcon, RotateIcon, RouteIcon, SatelliteIcon, SaveIcon, SearchIcon, SettingsIcon, ShareIcon, SmartphoneIcon, TabletIcon, TvIcon, UndoIcon, UploadIcon, WatchIcon, ZoomInIcon, ZoomOutIcon };
+export { AlertTriangleIcon, ArrowLeftIcon, ArrowRightIcon, type BaseIconProps, CheckIcon, CloseIcon, CompassIcon, CopyIcon, CrosshairsIcon, DeleteIcon, DownloadIcon, EditIcon, GlobeIcon, HomeIcon, Icon, type IconCategory, type IconDefinition, type IconSize, type IconTheme, type IconVariant, LaptopIcon, LayersIcon, LocationIcon, MapIcon, MenuIcon, MonitorIcon, MoreIcon, PhoneIcon, PlusIcon, PrintIcon, RedoIcon, RefreshIcon, RotateIcon, RouteIcon, SatelliteIcon, SaveIcon, SearchIcon, SettingsIcon, ShareIcon, SmartphoneIcon, TabletIcon, TvIcon, UndoIcon, UploadIcon, WatchIcon, WorkIcon, ZoomInIcon, ZoomOutIcon };

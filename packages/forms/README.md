@@ -2,6 +2,27 @@
 
 Enterprise form components with validation, accessibility, and TypeScript support.
 
+---
+
+## 📚 **RELATED DOCUMENTATION**
+
+### **🎯 Component Documentation:**
+- **[📝 Form Systems Guide](../../docs/core-systems/components/forms/advanced-controls/README.md)** - Advanced Form Controls
+- **[☑️ Checkbox Component](../../docs/core-systems/components/forms/advanced-controls/Checkbox.md)** - Checkbox Implementation
+- **[📅 DatePicker Component](../../docs/core-systems/components/forms/advanced-controls/DatePicker.md)** - Date Selection Component
+- **[🔢 NumericInput Component](../../docs/core-systems/components/forms/advanced-controls/NumericInput.md)** - Numeric Input Fields
+
+### **🏗️ Core Architecture:**
+- **[🧩 LEGO Systems Analysis](../../docs/core-systems/LEGO_SYSTEMS_ANALYSIS.md)** - Component Architecture
+- **[📚 Documentation Index](../../docs/meta/DOCUMENTATION_INDEX.md)** - Complete Documentation Navigation (84 files)
+
+### **📦 Related Packages:**
+- **[🎨 Icons Package](../icons/README.md)** - Icon Component Library
+- **[📐 Layout Package](../layout/README.md)** - Layout Components
+- **[🌍 i18n Package](../i18n/README.md)** - Internationalization System
+
+---
+
 ## 🚀 Installation
 
 ```bash

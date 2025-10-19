@@ -1,8 +1,75 @@
-15:24:04.104 react-dom_client.js?v=a17ed61e:20103 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
-15:24:04.114 i18next.js?v=ce03d866:204 i18next: languageChanged el
-15:24:04.114 i18next.js?v=ce03d866:204 i18next: initialized ObjectappendNamespaceToCIMode: falseappendNamespaceToMissingKey: falsecontextSeparator: "_"debug: truedefaultNS: "common"detection: {order: Array(3), lookupLocalStorage: 'layera-language', caches: Array(1), lookupQuerystring: 'lng', lookupCookie: 'i18next', …}fallbackLng: ['el']fallbackNS: falseignoreJSONStructure: trueinitImmediate: trueinterpolation: {escapeValue: false, prefix: '{{', suffix: '}}', formatSeparator: ',', format: ƒ, …}joinArrays: falsekeySeparator: "."lng: "el"load: "all"missingInterpolationHandler: falsemissingKeyHandler: falsenonExplicitSupportedLngs: falsens: (2) ['common', 'dashboard']nsSeparator: ":"overloadTranslationOptionHandler: (args) => {…}parseMissingKeyHandler: falsepartialBundledLanguages: falsepluralSeparator: "_"postProcess: falsepostProcessPassResolved: falsepreload: falsereact: {useSuspense: false, bindI18n: 'languageChanged', bindI18nStore: '', transEmptyNodeValue: '', transSupportBasicHtmlNodes: true, …}resources: {el: {…}, en: {…}}returnEmptyString: truereturnNull: falsereturnObjects: falsereturnedObjectHandler: falsesaveMissing: falsesaveMissingPlurals: truesaveMissingTo: "fallback"simplifyPluralSuffix: truesupportedLngs: (3) ['el', 'en', 'cimode']updateMissing: false[[Prototype]]: Object
-15:24:04.158 react-router-dom.js?v=ca7a09e8:532 No routes matched location "/admin-roles" 
-warning @ react-router-dom.js?v=ca7a09e8:532
-15:24:04.159 react-router-dom.js?v=ca7a09e8:532 No routes matched location "/admin-roles" 
-warning @ react-router-dom.js?v=ca7a09e8:532
-15:24:06.024 main.jsx:25 User signed in: georgios.pagonis@gmail.com Role: private
+12:32:18.661 react-dom_client.js?v=b3659a83:20359 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+12:32:18.663 config.ts:74 i18next: languageChanged el
+12:32:18.663 config.ts:74 i18next: initialized {debug: true, initAsync: true, ns: Array(2), defaultNS: 'common', fallbackLng: Array(1), …}
+12:32:18.687 App.tsx:248 i18next::translator: missingKey el common title title
+12:32:18.688 App.tsx:256 i18next::translator: missingKey el common subtitle subtitle
+12:32:18.688 App.tsx:267 i18next::translator: missingKey el common geoCanvasReady geoCanvasReady
+12:32:18.689 App.tsx:269 i18next::translator: missingKey el common professionalArchitecture professionalArchitecture
+12:32:18.689 App.tsx:280 i18next::translator: missingKey el common enterGeoCanvas enterGeoCanvas
+12:32:18.690 App.tsx:296 i18next::translator: missingKey el common statusCheck statusCheck
+12:32:18.690 App.tsx:300 i18next::translator: missingKey el common port port
+12:32:18.690 App.tsx:303 i18next::translator: missingKey el common reactReady reactReady
+12:32:18.690 App.tsx:306 i18next::translator: missingKey el common typescriptStrict typescriptStrict
+12:32:18.691 App.tsx:309 i18next::translator: missingKey el common independentApp independentApp
+12:32:18.691 App.tsx:312 i18next::translator: missingKey el common enterpriseArchitecture enterpriseArchitecture
+12:32:18.692 App.tsx:348 i18next::translator: missingKey el common navigateToLayeraId navigateToLayeraId
+12:32:18.695 App.tsx:248 i18next::translator: missingKey el common title title
+12:32:18.696 App.tsx:256 i18next::translator: missingKey el common subtitle subtitle
+12:32:18.696 App.tsx:267 i18next::translator: missingKey el common geoCanvasReady geoCanvasReady
+12:32:18.696 App.tsx:269 i18next::translator: missingKey el common professionalArchitecture professionalArchitecture
+12:32:18.697 App.tsx:280 i18next::translator: missingKey el common enterGeoCanvas enterGeoCanvas
+12:32:18.697 App.tsx:296 i18next::translator: missingKey el common statusCheck statusCheck
+12:32:18.697 App.tsx:300 i18next::translator: missingKey el common port port
+12:32:18.698 App.tsx:303 i18next::translator: missingKey el common reactReady reactReady
+12:32:18.698 App.tsx:306 i18next::translator: missingKey el common typescriptStrict typescriptStrict
+12:32:18.698 App.tsx:309 i18next::translator: missingKey el common independentApp independentApp
+12:32:18.698 App.tsx:312 i18next::translator: missingKey el common enterpriseArchitecture enterpriseArchitecture
+12:32:18.699 App.tsx:348 i18next::translator: missingKey el common navigateToLayeraId navigateToLayeraId
+12:32:18.700 App.tsx:354 Uncaught ReferenceError: PuzzleIcon is not defined
+    at App (App.tsx:354:20)
+    at Object.react_stack_bottom_frame (react-dom_client.js?v=b3659a83:18763:20)
+    at renderWithHooks (react-dom_client.js?v=b3659a83:5769:24)
+    at updateFunctionComponent (react-dom_client.js?v=b3659a83:7604:21)
+    at beginWork (react-dom_client.js?v=b3659a83:8664:20)
+    at runWithFiberInDEV (react-dom_client.js?v=b3659a83:1027:72)
+    at performUnitOfWork (react-dom_client.js?v=b3659a83:12748:98)
+    at workLoopSync (react-dom_client.js?v=b3659a83:12607:11)
+    at renderRootSync (react-dom_client.js?v=b3659a83:12590:15)
+    at performWorkOnRoot (react-dom_client.js?v=b3659a83:12001:37)
+App @ App.tsx:354
+react_stack_bottom_frame @ react-dom_client.js?v=b3659a83:18763
+renderWithHooks @ react-dom_client.js?v=b3659a83:5769
+updateFunctionComponent @ react-dom_client.js?v=b3659a83:7604
+beginWork @ react-dom_client.js?v=b3659a83:8664
+runWithFiberInDEV @ react-dom_client.js?v=b3659a83:1027
+performUnitOfWork @ react-dom_client.js?v=b3659a83:12748
+workLoopSync @ react-dom_client.js?v=b3659a83:12607
+renderRootSync @ react-dom_client.js?v=b3659a83:12590
+performWorkOnRoot @ react-dom_client.js?v=b3659a83:12001
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=b3659a83:13702
+performWorkUntilDeadline @ react-dom_client.js?v=b3659a83:36
+<App>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=b3659a83:253
+(anonymous) @ main.tsx:9
+12:32:18.700 main.tsx:9 An error occurred in the <App> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
+defaultOnUncaughtError @ react-dom_client.js?v=b3659a83:7092
+logUncaughtError @ react-dom_client.js?v=b3659a83:7146
+runWithFiberInDEV @ react-dom_client.js?v=b3659a83:1027
+lane.callback @ react-dom_client.js?v=b3659a83:7174
+callCallback @ react-dom_client.js?v=b3659a83:5601
+commitCallbacks @ react-dom_client.js?v=b3659a83:5613
+runWithFiberInDEV @ react-dom_client.js?v=b3659a83:1029
+commitLayoutEffectOnFiber @ react-dom_client.js?v=b3659a83:10141
+flushLayoutEffects @ react-dom_client.js?v=b3659a83:13114
+commitRoot @ react-dom_client.js?v=b3659a83:12993
+commitRootWhenReady @ react-dom_client.js?v=b3659a83:12194
+performWorkOnRoot @ react-dom_client.js?v=b3659a83:12128
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=b3659a83:13702
+performWorkUntilDeadline @ react-dom_client.js?v=b3659a83:36
+<App>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=b3659a83:253
+(anonymous) @ main.tsx:9

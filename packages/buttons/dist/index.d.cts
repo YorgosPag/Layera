@@ -197,4 +197,4 @@ declare const useButton: () => {
     getCSSCustomProperties: () => Record<string, string>;
 };
 
-export { BaseButtonProps, Button, ButtonGroup, ButtonGroupProps, ButtonLoadingVariant, ButtonProps, ButtonSize, ButtonTokens, ButtonVariant, IconPosition, LinkButton, LinkButtonProps, useButton };
+export { type BaseButtonProps, Button, ButtonGroup, type ButtonGroupProps, type ButtonLoadingVariant, type ButtonProps, type ButtonSize, type ButtonTokens, type ButtonVariant, type IconPosition, LinkButton, type LinkButtonProps, useButton };

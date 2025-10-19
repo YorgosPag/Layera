@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useLayeraTranslation } from '@layera/i18n';
 import { Button } from '@layera/buttons';
 import { Card } from '@layera/cards';
 import { Typography } from '@layera/typography';
@@ -37,7 +37,7 @@ export const MeasurementControls: React.FC<MeasurementControlsProps> = ({
   canFinish,
   displayValue
 }) => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
 
   return (
     <Card variant="floating" className="min-w-[200px]">

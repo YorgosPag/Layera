@@ -4,11 +4,15 @@ import { useNavigate, Link } from 'react-router-dom';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
 import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
+import { BaseCard } from '@layera/cards';
+import { Stack } from '@layera/layout';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { CheckIcon, XIcon } from './icons/LayeraIcons';
 import './Dashboard.css';
 import '../styles/typography.css';
-import '../../../../packages/buttons/dist/styles.css';
+import '@layera/buttons/styles';
+import '@layera/cards/styles';
+import '@layera/layout/styles';
 import '@layera/theme-switcher/styles';
 
 const Dashboard = () => {
@@ -63,8 +67,11 @@ const Dashboard = () => {
       </nav>
 
       <div className="dashboard-content">
-        <div className="welcome-card">
-          <Heading as="h2" size="xl" color="primary">{t('dashboard:welcome', { name: user?.displayName || user?.email })}</Heading>
+        <BaseCard
+          title={t('dashboard:welcome', { name: user?.displayName || user?.email })}
+          variant="welcome"
+          className="welcome-card-replacement"
+        >
           {user && (
             <>
               <p>{t('dashboard:user.successfulLogin', { email: user.email })}</p>
@@ -109,7 +116,7 @@ const Dashboard = () => {
 
           <div className="dashboard-actions">
             <h3>{t('dashboard:quickActions.title')}</h3>
-            <div className="action-buttons">
+            <Stack direction="vertical" spacing="sm" className="action-buttons-replacement">
               <Link to="/account">
                 <Button variant="secondary" size="md" fullWidth>
                   {t('dashboard:cards.account.title')}
@@ -139,11 +146,11 @@ const Dashboard = () => {
                   </Button>
                 </Link>
               )}
-            </div>
+            </Stack>
           </div>
             </>
           )}
-        </div>
+        </BaseCard>
       </div>
     </div>
   );

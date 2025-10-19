@@ -109,8 +109,8 @@ interface ExistingLayeraUIEcosystem {
   infrastructureSystems: {
     '@layera/i18n': {
       purpose: 'Internationalization με Greek/English support',
-      usage: 'useTranslation για snap tooltips, labels, messages',
-      api: 'useTranslation hook, t() function, TranslationProvider',
+      usage: 'useLayeraTranslation για snap tooltips, labels, messages',
+      api: 'useLayeraTranslation hook, t() function, TranslationProvider',
       avoidReimplementing: 'Translation systems, language switching'
     };
 
@@ -195,13 +195,13 @@ import { Card, CardHeader, CardContent } from '@layera/cards';
 import { Button, ToggleButton } from '@layera/buttons';
 import { Slider, FormField } from '@layera/forms';
 import { useTheme } from '@layera/theme-switcher';
-import { useTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/i18n';
 import { useNotification } from '@layera/notifications';
 
 // SnapSettingsPanel που χρησιμοποιεί existing components
 const SnapSettingsPanel = () => {
   const { theme } = useTheme();
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
   const { toast } = useNotification();
 
   return (
@@ -736,7 +736,7 @@ const SnapSettingsPanel: React.FC<SnapSettingsPanelProps> = ({
   onSettingsChange,
   onReset
 }) => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
   const [activeTab, setActiveTab] = useState<SettingsTab>('snapTypes');
 
   return (

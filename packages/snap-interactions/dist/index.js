@@ -20,7 +20,7 @@ var loading = require('@layera/loading');
 // src/hooks/useSnapEngine.ts
 function useSnapEngine2(options = {}) {
   const { toast } = notifications.useNotification();
-  const { t } = i18n.useTranslation();
+  const { t } = i18n.useLayeraTranslation();
   const [snapEngine$1, setSnapEngine] = react.useState(null);
   const [lastSnapResult, setLastSnapResult] = react.useState(null);
   const [isEnabled, setIsEnabledState] = react.useState(options.enabled ?? true);
@@ -294,7 +294,7 @@ var SnapIndicator = ({
   className = ""
 }) => {
   const { theme } = themeSwitcher.useTheme();
-  const { t } = i18n.useTranslation();
+  const { t } = i18n.useLayeraTranslation();
   if (!visible || !snapResult.snapped || !snapResult.target) {
     return null;
   }
@@ -407,7 +407,7 @@ var SnapGuidelines = ({
   showDistance = true
 }) => {
   const { theme } = themeSwitcher.useTheme();
-  const { t } = i18n.useTranslation();
+  const { t } = i18n.useLayeraTranslation();
   if (!visible || !snapResult.snapped || !snapResult.target) {
     return null;
   }
@@ -475,7 +475,7 @@ var SnapSettingsPanel = ({
   disabled = false
 }) => {
   const { theme } = themeSwitcher.useTheme();
-  const { t } = i18n.useTranslation();
+  const { t } = i18n.useLayeraTranslation();
   const { toast } = notifications.useNotification();
   const [activeCategory, setActiveCategory] = react.useState("basic");
   const handleToleranceChange = react.useCallback((value) => {
@@ -673,7 +673,7 @@ var SnapToolbar = ({
   enabled,
   onToggleEnabled
 }) => {
-  const { t } = i18n.useTranslation();
+  const { t } = i18n.useLayeraTranslation();
   const quickTypes = ["endpoint", "midpoint", "center", "vertex"];
   return /* @__PURE__ */ jsxRuntime.jsxs(layout.Stack, { direction: "row", spacing: 8, align: "center", children: [
     /* @__PURE__ */ jsxRuntime.jsxs(

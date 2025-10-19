@@ -64,6 +64,8 @@ export {
   ShareIcon,
   PrintIcon,
   UndoIcon,
-  RedoIcon
+  RedoIcon,
+  CheckIcon,
+  WorkIcon
 } from './icons/ActionIcons';
 

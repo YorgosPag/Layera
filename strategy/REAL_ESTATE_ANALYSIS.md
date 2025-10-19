@@ -1,10 +1,23 @@
 # 🏠 Layera - Ανάλυση Αγοράς Ακινήτων
 
+## 📚 **STRATEGIC DOCUMENTATION NAVIGATION**
+
+### **🎯 Strategic Analysis Documents:**
+1. **[🎯 CORE STRATEGY](./LAYERA_CORE_STRATEGY.md)** - Main Business Strategy
+2. **[🏠 REAL ESTATE ANALYSIS](./REAL_ESTATE_ANALYSIS.md)** ← *You are here*
+3. **[💼 JOBS ANALYSIS](./JOBS_ANALYSIS.md)** - Employment Market Strategy
+
+### **🏗️ Architecture & Implementation:**
+4. **[🏗️ MAIN ARCHITECTURE](../docs/ARCHITECTURE.md)** - Core System Architecture
+5. **[🧩 LEGO COMPLIANCE AUDIT](../docs/core-systems/LEGO_COMPLIANCE_AUDIT_REPORT.md)** - 100% LEGO Implementation
+6. **[🛠️ PIPELINE IMPLEMENTATION](../docs/pipeline-architecture/04-IMPLEMENTATION-GUIDE.md)** - Pipeline Development
+7. **[🗺️ GEO-DRAWING IMPLEMENTATION](../docs/geo-drawing-architecture/04-IMPLEMENTATION-GUIDE.md)** - Map Drawing Implementation
+
+---
+
 ## 📋 Περίληψη
 
 Εξειδικευμένη ανάλυση για την κατηγορία **Ακίνητα** στο πλαίσιο της dual-launch στρατηγικής της Layera.
-
-**Cross-Reference:** Δες επίσης [JOBS_ANALYSIS.md](./JOBS_ANALYSIS.md) | [LAYERA_CORE_STRATEGY.md](./LAYERA_CORE_STRATEGY.md)
 
 ---
 

@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+import { useLayeraTranslation } from '@layera/i18n';
 
 /**
  * Formats a distance in meters into a readable string, switching to kilometers for large distances.
@@ -37,7 +37,7 @@ export const formatArea = (sqMeters: number): string => {
  * Αντικαθιστά τα hardcoded strings με i18n keys
  */
 export const useMeasurementFormatter = () => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
 
   const formatDistanceWithLabels = (meters: number, decimals: number = 2): string => {
     if (meters === 0) return `0 ${t('geo-drawing.units.meters')}`;

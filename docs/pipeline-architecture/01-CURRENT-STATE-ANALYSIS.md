@@ -5,6 +5,30 @@
 
 ---
 
+## 📚 **PIPELINE DOCUMENTATION NAVIGATION**
+
+### **🧩 Complete Pipeline Architecture Series:**
+1. **[📊 CURRENT STATE](./01-CURRENT-STATE-ANALYSIS.md)** ← *You are here*
+2. **[🏗️ TARGET ARCHITECTURE](./02-TARGET-ARCHITECTURE.md)** - LEGO-Style Pipeline Vision
+3. **[🔄 MIGRATION STRATEGY](./03-MIGRATION-STRATEGY.md)** - Step-by-step Transition Plan
+4. **[🛠️ IMPLEMENTATION GUIDE](./04-IMPLEMENTATION-GUIDE.md)** - Detailed Developer Instructions
+5. **[📁 FILE PROCESSING SYSTEMS](./05-FILE-PROCESSING-LEGO-SYSTEMS.md)** - Advanced LEGO Components
+6. **[✅ PIPELINE UPDATES](./06-PIPELINE-ARCHITECTURE-UPDATES.md)** - System Updates & Changes
+
+### **🗺️ Related Geo-Drawing Architecture:**
+7. **[🗺️ GEO-DRAWING CURRENT STATE](../geo-drawing-architecture/01-CURRENT-STATE-ANALYSIS.md)** - Geo-spatial Systems Analysis
+8. **[🎯 GEO-DRAWING TARGET](../geo-drawing-architecture/02-TARGET-ARCHITECTURE.md)** - Drawing Canvas Vision
+9. **[🔄 GEO-DRAWING MIGRATION](../geo-drawing-architecture/03-MIGRATION-STRATEGY.md)** - Drawing System Migration
+10. **[🛠️ GEO-DRAWING IMPLEMENTATION](../geo-drawing-architecture/04-IMPLEMENTATION-GUIDE.md)** - Drawing Development Guide
+11. **[✅ GEO-DRAWING UPDATES](../geo-drawing-architecture/05-GEO-DRAWING-UPDATES.md)** - Drawing System Updates
+
+### **📋 Strategic Documents:**
+12. **[🎯 CORE STRATEGY](../../strategy/LAYERA_CORE_STRATEGY.md)** - Business Architecture & Dual Categories
+13. **[🏠 REAL ESTATE ANALYSIS](../../strategy/REAL_ESTATE_ANALYSIS.md)** - Property Market Strategy
+14. **[💼 JOBS ANALYSIS](../../strategy/JOBS_ANALYSIS.md)** - Employment Market Strategy
+
+---
+
 ## 🧩 **LEGO SYSTEMS READINESS ANALYSIS**
 
 ### **✅ ΥΠΑΡΧΟΝΤΑ LAYERA LEGO ΣΥΣΤΗΜΑΤΑ:**

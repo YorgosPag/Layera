@@ -1,14 +1,9 @@
 "use strict";
-var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __commonJS = (cb, mod) => function __require() {
-  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
-};
 var __export = (target, all) => {
   for (var name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
@@ -21,56 +16,8 @@ var __copyProps = (to, from, except, desc) => {
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-  // If the importer is in node compatibility mode or this is not an ESM
-  // file that has been converted to a CommonJS file using a Babel-
-  // compatible transform (i.e. "__esModule" has not been set), then set
-  // "default" to the CommonJS "module.exports" for node compatibility.
-  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-  mod
-));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
-
-// ../../node_modules/@babel/runtime/helpers/extends.js
-var require_extends = __commonJS({
-  "../../node_modules/@babel/runtime/helpers/extends.js"(exports2, module2) {
-    "use strict";
-    function _extends2() {
-      return module2.exports = _extends2 = Object.assign ? Object.assign.bind() : function(n) {
-        for (var e2 = 1; e2 < arguments.length; e2++) {
-          var t = arguments[e2];
-          for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]);
-        }
-        return n;
-      }, module2.exports.__esModule = true, module2.exports["default"] = module2.exports, _extends2.apply(null, arguments);
-    }
-    module2.exports = _extends2, module2.exports.__esModule = true, module2.exports["default"] = module2.exports;
-  }
-});
-
-// ../../node_modules/void-elements/index.js
-var require_void_elements = __commonJS({
-  "../../node_modules/void-elements/index.js"(exports2, module2) {
-    "use strict";
-    module2.exports = {
-      "area": true,
-      "base": true,
-      "br": true,
-      "col": true,
-      "embed": true,
-      "hr": true,
-      "img": true,
-      "input": true,
-      "link": true,
-      "meta": true,
-      "param": true,
-      "source": true,
-      "track": true,
-      "wbr": true
-    };
-  }
-});
 
 // src/index.ts
 var index_exports = {};
@@ -90,280 +37,8 @@ __export(index_exports, {
 module.exports = __toCommonJS(index_exports);
 
 // src/components/FileUploader.tsx
-var import_react11 = require("react");
-
-// ../../node_modules/react-i18next/dist/es/Trans.js
 var import_react3 = require("react");
-
-// ../../node_modules/react-i18next/dist/es/TransWithoutContext.js
-var import_extends = __toESM(require_extends(), 1);
-var import_react = __toESM(require("react"), 1);
-
-// ../../node_modules/html-parse-stringify/dist/html-parse-stringify.module.js
-var import_void_elements = __toESM(require_void_elements());
-
-// ../../node_modules/react-i18next/dist/es/utils.js
-function warn() {
-  if (console && console.warn) {
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-    if (typeof args[0] === "string") args[0] = `react-i18next:: ${args[0]}`;
-    console.warn(...args);
-  }
-}
-var alreadyWarned = {};
-function warnOnce() {
-  for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-    args[_key2] = arguments[_key2];
-  }
-  if (typeof args[0] === "string" && alreadyWarned[args[0]]) return;
-  if (typeof args[0] === "string") alreadyWarned[args[0]] = /* @__PURE__ */ new Date();
-  warn(...args);
-}
-var loadedClb = (i18n, cb) => () => {
-  if (i18n.isInitialized) {
-    cb();
-  } else {
-    const initialized = () => {
-      setTimeout(() => {
-        i18n.off("initialized", initialized);
-      }, 0);
-      cb();
-    };
-    i18n.on("initialized", initialized);
-  }
-};
-function loadNamespaces(i18n, ns, cb) {
-  i18n.loadNamespaces(ns, loadedClb(i18n, cb));
-}
-function loadLanguages(i18n, lng, ns, cb) {
-  if (typeof ns === "string") ns = [ns];
-  ns.forEach((n) => {
-    if (i18n.options.ns.indexOf(n) < 0) i18n.options.ns.push(n);
-  });
-  i18n.loadLanguages(lng, loadedClb(i18n, cb));
-}
-function oldI18nextHasLoadedNamespace(ns, i18n) {
-  let options = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {};
-  const lng = i18n.languages[0];
-  const fallbackLng = i18n.options ? i18n.options.fallbackLng : false;
-  const lastLng = i18n.languages[i18n.languages.length - 1];
-  if (lng.toLowerCase() === "cimode") return true;
-  const loadNotPending = (l, n) => {
-    const loadState = i18n.services.backendConnector.state[`${l}|${n}`];
-    return loadState === -1 || loadState === 2;
-  };
-  if (options.bindI18n && options.bindI18n.indexOf("languageChanging") > -1 && i18n.services.backendConnector.backend && i18n.isLanguageChangingTo && !loadNotPending(i18n.isLanguageChangingTo, ns)) return false;
-  if (i18n.hasResourceBundle(lng, ns)) return true;
-  if (!i18n.services.backendConnector.backend || i18n.options.resources && !i18n.options.partialBundledLanguages) return true;
-  if (loadNotPending(lng, ns) && (!fallbackLng || loadNotPending(lastLng, ns))) return true;
-  return false;
-}
-function hasLoadedNamespace(ns, i18n) {
-  let options = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {};
-  if (!i18n.languages || !i18n.languages.length) {
-    warnOnce("i18n.languages were undefined or empty", i18n.languages);
-    return true;
-  }
-  const isNewerI18next = i18n.options.ignoreJSONStructure !== void 0;
-  if (!isNewerI18next) {
-    return oldI18nextHasLoadedNamespace(ns, i18n, options);
-  }
-  return i18n.hasLoadedNamespace(ns, {
-    lng: options.lng,
-    precheck: (i18nInstance2, loadNotPending) => {
-      if (options.bindI18n && options.bindI18n.indexOf("languageChanging") > -1 && i18nInstance2.services.backendConnector.backend && i18nInstance2.isLanguageChangingTo && !loadNotPending(i18nInstance2.isLanguageChangingTo, ns)) return false;
-    }
-  });
-}
-
-// ../../node_modules/react-i18next/dist/es/unescape.js
-var matchHtmlEntity = /&(?:amp|#38|lt|#60|gt|#62|apos|#39|quot|#34|nbsp|#160|copy|#169|reg|#174|hellip|#8230|#x2F|#47);/g;
-var htmlEntities = {
-  "&amp;": "&",
-  "&#38;": "&",
-  "&lt;": "<",
-  "&#60;": "<",
-  "&gt;": ">",
-  "&#62;": ">",
-  "&apos;": "'",
-  "&#39;": "'",
-  "&quot;": '"',
-  "&#34;": '"',
-  "&nbsp;": " ",
-  "&#160;": " ",
-  "&copy;": "\xA9",
-  "&#169;": "\xA9",
-  "&reg;": "\xAE",
-  "&#174;": "\xAE",
-  "&hellip;": "\u2026",
-  "&#8230;": "\u2026",
-  "&#x2F;": "/",
-  "&#47;": "/"
-};
-var unescapeHtmlEntity = (m) => htmlEntities[m];
-var unescape = (text) => text.replace(matchHtmlEntity, unescapeHtmlEntity);
-
-// ../../node_modules/react-i18next/dist/es/defaults.js
-var defaultOptions = {
-  bindI18n: "languageChanged",
-  bindI18nStore: "",
-  transEmptyNodeValue: "",
-  transSupportBasicHtmlNodes: true,
-  transWrapTextNodes: "",
-  transKeepBasicHtmlNodesFor: ["br", "strong", "i", "p"],
-  useSuspense: true,
-  unescape
-};
-function getDefaults() {
-  return defaultOptions;
-}
-
-// ../../node_modules/react-i18next/dist/es/i18nInstance.js
-var i18nInstance;
-function getI18n() {
-  return i18nInstance;
-}
-
-// ../../node_modules/react-i18next/dist/es/context.js
-var import_react2 = require("react");
-var I18nContext = (0, import_react2.createContext)();
-var ReportNamespaces = class {
-  constructor() {
-    this.usedNamespaces = {};
-  }
-  addUsedNamespaces(namespaces) {
-    namespaces.forEach((ns) => {
-      if (!this.usedNamespaces[ns]) this.usedNamespaces[ns] = true;
-    });
-  }
-  getUsedNamespaces() {
-    return Object.keys(this.usedNamespaces);
-  }
-};
-
-// ../../node_modules/react-i18next/dist/es/useTranslation.js
-var import_react4 = require("react");
-var usePrevious = (value, ignore) => {
-  const ref = (0, import_react4.useRef)();
-  (0, import_react4.useEffect)(() => {
-    ref.current = ignore ? ref.current : value;
-  }, [value, ignore]);
-  return ref.current;
-};
-function useTranslation(ns) {
-  let props = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
-  const {
-    i18n: i18nFromProps
-  } = props;
-  const {
-    i18n: i18nFromContext,
-    defaultNS: defaultNSFromContext
-  } = (0, import_react4.useContext)(I18nContext) || {};
-  const i18n = i18nFromProps || i18nFromContext || getI18n();
-  if (i18n && !i18n.reportNamespaces) i18n.reportNamespaces = new ReportNamespaces();
-  if (!i18n) {
-    warnOnce("You will need to pass in an i18next instance by using initReactI18next");
-    const notReadyT = (k, optsOrDefaultValue) => {
-      if (typeof optsOrDefaultValue === "string") return optsOrDefaultValue;
-      if (optsOrDefaultValue && typeof optsOrDefaultValue === "object" && typeof optsOrDefaultValue.defaultValue === "string") return optsOrDefaultValue.defaultValue;
-      return Array.isArray(k) ? k[k.length - 1] : k;
-    };
-    const retNotReady = [notReadyT, {}, false];
-    retNotReady.t = notReadyT;
-    retNotReady.i18n = {};
-    retNotReady.ready = false;
-    return retNotReady;
-  }
-  if (i18n.options.react && i18n.options.react.wait !== void 0) warnOnce("It seems you are still using the old wait option, you may migrate to the new useSuspense behaviour.");
-  const i18nOptions = {
-    ...getDefaults(),
-    ...i18n.options.react,
-    ...props
-  };
-  const {
-    useSuspense,
-    keyPrefix
-  } = i18nOptions;
-  let namespaces = ns || defaultNSFromContext || i18n.options && i18n.options.defaultNS;
-  namespaces = typeof namespaces === "string" ? [namespaces] : namespaces || ["translation"];
-  if (i18n.reportNamespaces.addUsedNamespaces) i18n.reportNamespaces.addUsedNamespaces(namespaces);
-  const ready = (i18n.isInitialized || i18n.initializedStoreOnce) && namespaces.every((n) => hasLoadedNamespace(n, i18n, i18nOptions));
-  function getT() {
-    return i18n.getFixedT(props.lng || null, i18nOptions.nsMode === "fallback" ? namespaces : namespaces[0], keyPrefix);
-  }
-  const [t, setT] = (0, import_react4.useState)(getT);
-  let joinedNS = namespaces.join();
-  if (props.lng) joinedNS = `${props.lng}${joinedNS}`;
-  const previousJoinedNS = usePrevious(joinedNS);
-  const isMounted = (0, import_react4.useRef)(true);
-  (0, import_react4.useEffect)(() => {
-    const {
-      bindI18n,
-      bindI18nStore
-    } = i18nOptions;
-    isMounted.current = true;
-    if (!ready && !useSuspense) {
-      if (props.lng) {
-        loadLanguages(i18n, props.lng, namespaces, () => {
-          if (isMounted.current) setT(getT);
-        });
-      } else {
-        loadNamespaces(i18n, namespaces, () => {
-          if (isMounted.current) setT(getT);
-        });
-      }
-    }
-    if (ready && previousJoinedNS && previousJoinedNS !== joinedNS && isMounted.current) {
-      setT(getT);
-    }
-    function boundReset() {
-      if (isMounted.current) setT(getT);
-    }
-    if (bindI18n && i18n) i18n.on(bindI18n, boundReset);
-    if (bindI18nStore && i18n) i18n.store.on(bindI18nStore, boundReset);
-    return () => {
-      isMounted.current = false;
-      if (bindI18n && i18n) bindI18n.split(" ").forEach((e2) => i18n.off(e2, boundReset));
-      if (bindI18nStore && i18n) bindI18nStore.split(" ").forEach((e2) => i18n.store.off(e2, boundReset));
-    };
-  }, [i18n, joinedNS]);
-  const isInitial = (0, import_react4.useRef)(true);
-  (0, import_react4.useEffect)(() => {
-    if (isMounted.current && !isInitial.current) {
-      setT(getT);
-    }
-    isInitial.current = false;
-  }, [i18n, keyPrefix]);
-  const ret = [t, i18n, ready];
-  ret.t = t;
-  ret.i18n = i18n;
-  ret.ready = ready;
-  if (ready) return ret;
-  if (!ready && !useSuspense) return ret;
-  throw new Promise((resolve) => {
-    if (props.lng) {
-      loadLanguages(i18n, props.lng, namespaces, () => resolve());
-    } else {
-      loadNamespaces(i18n, namespaces, () => resolve());
-    }
-  });
-}
-
-// ../../node_modules/react-i18next/dist/es/withTranslation.js
-var import_react5 = require("react");
-
-// ../../node_modules/react-i18next/dist/es/I18nextProvider.js
-var import_react6 = require("react");
-
-// ../../node_modules/react-i18next/dist/es/withSSR.js
-var import_react8 = require("react");
-
-// ../../node_modules/react-i18next/dist/es/useSSR.js
-var import_react7 = require("react");
-
-// src/components/FileUploader.tsx
+var import_i18n4 = require("@layera/i18n");
 var import_notifications = require("@layera/notifications");
 var import_error_boundary = require("@layera/error-boundary");
 var import_typography4 = require("@layera/typography");
@@ -372,7 +47,8 @@ var import_icons4 = require("@layera/icons");
 var import_theme_switcher4 = require("@layera/theme-switcher");
 
 // src/components/DragDropZone.tsx
-var import_react9 = require("react");
+var import_react = require("react");
+var import_i18n = require("@layera/i18n");
 var import_cards = require("@layera/cards");
 var import_typography = require("@layera/typography");
 var import_icons = require("@layera/icons");
@@ -387,22 +63,22 @@ var DragDropZone = ({
   className = "",
   multiple = true
 }) => {
-  const { t } = useTranslation();
+  const { t } = (0, import_i18n.useLayeraTranslation)();
   const { theme } = (0, import_theme_switcher.useTheme)();
-  const [isDragOver, setIsDragOver] = (0, import_react9.useState)(false);
-  const [dragCounter, setDragCounter] = (0, import_react9.useState)(0);
-  const handleDragEnter = (0, import_react9.useCallback)((e2) => {
-    e2.preventDefault();
-    e2.stopPropagation();
+  const [isDragOver, setIsDragOver] = (0, import_react.useState)(false);
+  const [dragCounter, setDragCounter] = (0, import_react.useState)(0);
+  const handleDragEnter = (0, import_react.useCallback)((e) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (!enabled) return;
     setDragCounter((prev) => prev + 1);
-    if (e2.dataTransfer?.items && e2.dataTransfer.items.length > 0) {
+    if (e.dataTransfer?.items && e.dataTransfer.items.length > 0) {
       setIsDragOver(true);
     }
   }, [enabled]);
-  const handleDragLeave = (0, import_react9.useCallback)((e2) => {
-    e2.preventDefault();
-    e2.stopPropagation();
+  const handleDragLeave = (0, import_react.useCallback)((e) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (!enabled) return;
     setDragCounter((prev) => {
       const newCounter = prev - 1;
@@ -412,21 +88,21 @@ var DragDropZone = ({
       return newCounter;
     });
   }, [enabled]);
-  const handleDragOver = (0, import_react9.useCallback)((e2) => {
-    e2.preventDefault();
-    e2.stopPropagation();
+  const handleDragOver = (0, import_react.useCallback)((e) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (!enabled) return;
-    if (e2.dataTransfer) {
-      e2.dataTransfer.dropEffect = "copy";
+    if (e.dataTransfer) {
+      e.dataTransfer.dropEffect = "copy";
     }
   }, [enabled]);
-  const handleDrop = (0, import_react9.useCallback)((e2) => {
-    e2.preventDefault();
-    e2.stopPropagation();
+  const handleDrop = (0, import_react.useCallback)((e) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (!enabled) return;
     setIsDragOver(false);
     setDragCounter(0);
-    const { files } = e2.dataTransfer;
+    const { files } = e.dataTransfer;
     if (files && files.length > 0) {
       const fileArray = Array.from(files);
       const limitedFiles = maxFiles ? fileArray.slice(0, maxFiles) : fileArray;
@@ -438,13 +114,13 @@ var DragDropZone = ({
       }
     }
   }, [enabled, maxFiles, acceptedTypes, onFilesDrop]);
-  const handleFileInputChange = (0, import_react9.useCallback)((e2) => {
-    const { files } = e2.target;
+  const handleFileInputChange = (0, import_react.useCallback)((e) => {
+    const { files } = e.target;
     if (files && files.length > 0) {
       const fileArray = Array.from(files);
       onFilesDrop(fileArray);
     }
-    e2.target.value = "";
+    e.target.value = "";
   }, [onFilesDrop]);
   const getZoneClasses = () => {
     const baseClasses = [
@@ -526,6 +202,7 @@ var DragDropZone = ({
 };
 
 // src/components/FileList.tsx
+var import_i18n2 = require("@layera/i18n");
 var import_cards2 = require("@layera/cards");
 var import_typography2 = require("@layera/typography");
 var import_buttons = require("@layera/buttons");
@@ -682,7 +359,7 @@ var FileList = ({
   onCancel,
   onRetry
 }) => {
-  const { t } = useTranslation();
+  const { t } = (0, import_i18n2.useLayeraTranslation)();
   const { theme } = (0, import_theme_switcher2.useTheme)();
   if (files.length === 0) {
     return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(import_cards2.BaseCard, { className: `p-6 text-center ${theme === "dark" ? "bg-gray-800" : "bg-gray-50"}`, children: [
@@ -711,7 +388,7 @@ var FileListItem = ({
   onCancel,
   onRetry
 }) => {
-  const { t } = useTranslation();
+  const { t } = (0, import_i18n2.useLayeraTranslation)();
   const { theme } = (0, import_theme_switcher2.useTheme)();
   const getStatusIcon = () => {
     switch (file.status) {
@@ -831,7 +508,8 @@ var FileListItem = ({
 };
 
 // src/components/FilePreview.tsx
-var import_react10 = require("react");
+var import_react2 = require("react");
+var import_i18n3 = require("@layera/i18n");
 var import_cards3 = require("@layera/cards");
 var import_typography3 = require("@layera/typography");
 var import_buttons2 = require("@layera/buttons");
@@ -844,11 +522,11 @@ var FilePreview = ({
   onRemove,
   onClick
 }) => {
-  const { t } = useTranslation();
+  const { t } = (0, import_i18n3.useLayeraTranslation)();
   const { theme } = (0, import_theme_switcher3.useTheme)();
-  const [previewUrl, setPreviewUrl] = (0, import_react10.useState)(null);
-  const [previewError, setPreviewError] = (0, import_react10.useState)(false);
-  (0, import_react10.useEffect)(() => {
+  const [previewUrl, setPreviewUrl] = (0, import_react2.useState)(null);
+  const [previewError, setPreviewError] = (0, import_react2.useState)(false);
+  (0, import_react2.useEffect)(() => {
     if (!showPreview || !isImageFile(file.file)) {
       return;
     }
@@ -918,8 +596,8 @@ var FilePreview = ({
         {
           variant: "outline",
           size: "sm",
-          onClick: (e2) => {
-            e2.stopPropagation();
+          onClick: (e) => {
+            e.stopPropagation();
             onRemove(file.id);
           },
           className: "bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-600 hover:text-red-600 border-0 p-1 w-6 h-6",
@@ -1222,14 +900,14 @@ var FileUploader = ({
   onFileRemove,
   onAllUploadsComplete
 }) => {
-  const { t } = useTranslation();
+  const { t } = (0, import_i18n4.useLayeraTranslation)();
   const { theme } = (0, import_theme_switcher4.useTheme)();
   const { addNotification } = (0, import_notifications.useNotifications)();
-  const [files, setFiles] = (0, import_react11.useState)([]);
-  const [isUploading, setIsUploading] = (0, import_react11.useState)(false);
-  const [viewMode, setViewMode] = (0, import_react11.useState)("list");
-  const uploadEngineRef = (0, import_react11.useRef)(null);
-  (0, import_react11.useEffect)(() => {
+  const [files, setFiles] = (0, import_react3.useState)([]);
+  const [isUploading, setIsUploading] = (0, import_react3.useState)(false);
+  const [viewMode, setViewMode] = (0, import_react3.useState)("list");
+  const uploadEngineRef = (0, import_react3.useRef)(null);
+  (0, import_react3.useEffect)(() => {
     uploadEngineRef.current = new UploadEngine(config, {
       onUploadStart: (file) => {
         setFiles((prev) => prev.map((f) => f.id === file.id ? file : f));
@@ -1280,7 +958,7 @@ var FileUploader = ({
       uploadEngineRef.current?.clearAll();
     };
   }, [config, onUploadStart, onUploadProgress, onUploadComplete, onUploadError, onUploadCancel, onAllUploadsComplete, t, addNotification]);
-  (0, import_react11.useEffect)(() => {
+  (0, import_react3.useEffect)(() => {
     if (initialFiles.length > 0) {
       handleFilesAdded(initialFiles);
     }
@@ -1296,7 +974,7 @@ var FileUploader = ({
       progress: 0
     };
   };
-  const handleFilesAdded = (0, import_react11.useCallback)((newFiles) => {
+  const handleFilesAdded = (0, import_react3.useCallback)((newFiles) => {
     if (disabled) return;
     const validation = validateFileList(newFiles, config);
     if (!validation.isValid) {
@@ -1325,7 +1003,7 @@ var FileUploader = ({
       setIsUploading(true);
     }
   }, [config, disabled, t, addNotification]);
-  const handleStartUpload = (0, import_react11.useCallback)(() => {
+  const handleStartUpload = (0, import_react3.useCallback)(() => {
     if (!uploadEngineRef.current || isUploading) return;
     const pendingFiles = files.filter((f) => f.status === "idle");
     if (pendingFiles.length === 0) return;
@@ -1334,7 +1012,7 @@ var FileUploader = ({
       uploadEngineRef.current?.uploadFile(file);
     });
   }, [files, isUploading]);
-  const handlePauseUpload = (0, import_react11.useCallback)(() => {
+  const handlePauseUpload = (0, import_react3.useCallback)(() => {
     if (!uploadEngineRef.current) return;
     const uploadingFiles = files.filter((f) => f.status === "uploading");
     uploadingFiles.forEach((file) => {
@@ -1342,10 +1020,10 @@ var FileUploader = ({
     });
     setIsUploading(false);
   }, [files]);
-  const handleCancelUpload = (0, import_react11.useCallback)((fileId) => {
+  const handleCancelUpload = (0, import_react3.useCallback)((fileId) => {
     uploadEngineRef.current?.cancelUpload(fileId);
   }, []);
-  const handleRetryUpload = (0, import_react11.useCallback)((fileId) => {
+  const handleRetryUpload = (0, import_react3.useCallback)((fileId) => {
     const file = files.find((f) => f.id === fileId);
     if (!file) return;
     const resetFile = { ...file, status: "idle", progress: 0, error: void 0 };
@@ -1355,7 +1033,7 @@ var FileUploader = ({
       setIsUploading(true);
     }
   }, [files, config.autoUpload]);
-  const handleRemoveFile = (0, import_react11.useCallback)((fileId) => {
+  const handleRemoveFile = (0, import_react3.useCallback)((fileId) => {
     const file = files.find((f) => f.id === fileId);
     if (!file) return;
     if (file.status === "uploading") {
@@ -1364,7 +1042,7 @@ var FileUploader = ({
     setFiles((prev) => prev.filter((f) => f.id !== fileId));
     onFileRemove?.(file);
   }, [files, onFileRemove]);
-  const handleClearAll = (0, import_react11.useCallback)(() => {
+  const handleClearAll = (0, import_react3.useCallback)(() => {
     uploadEngineRef.current?.clearAll();
     setFiles([]);
     setIsUploading(false);

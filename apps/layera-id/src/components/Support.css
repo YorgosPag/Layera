@@ -7,20 +7,10 @@
   padding: 20px;
 }
 
-.support-card {
-  background: var(--layera-bg-primary);
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+/* Legacy support-card removed - now using @layera/cards BaseCard */
+.support-card-replacement {
   width: 100%;
   max-width: 600px;
-}
-
-.support-card h2 {
-  margin: 0 0 20px 0;
-  color: var(--layera-text-primary);
-  font-size: 28px;
-  text-align: center;
 }
 
 .support-description {
@@ -156,11 +146,7 @@
     padding: 10px;
   }
 
-  .support-card {
-    padding: 30px 20px;
-  }
-
-  .support-card h2 {
-    font-size: 24px;
+  .support-card-replacement {
+    padding: 20px;
   }
 }

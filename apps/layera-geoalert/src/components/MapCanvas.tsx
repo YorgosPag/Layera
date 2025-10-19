@@ -3,7 +3,8 @@
 // Architecture: Composition over inheritance
 
 import React, { useEffect, useState, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useLayeraTranslation } from '@layera/i18n';
+import { Button } from '@layera/buttons';
 
 // Micro-modules imports
 import MapCore from '../map/core/MapCore';
@@ -29,7 +30,7 @@ const MapCanvas: React.FC<MapCanvasProps> = ({
   onAreaCreated,
   className = ''
 }) => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
   const [isMapReady, setIsMapReady] = useState(false);
   const [mapInstance, setMapInstance] = useState<L.Map | null>(null);
   const [isLoadingLocation, setIsLoadingLocation] = useState(false);
@@ -147,11 +148,17 @@ const MapCanvas: React.FC<MapCanvasProps> = ({
 
       {/* Location Button */}
       <div className="absolute top-20 left-4 z-[1000]">
-        <button
+        <Button
           onClick={handleFindLocation}
           disabled={!mapInstance || isLoadingLocation}
-          className="bg-white hover:bg-gray-50 disabled:bg-gray-100 rounded-lg shadow-lg p-3 transition-colors duration-200"
+          variant="secondary"
+          size="sm"
           title={t('findMyLocation')}
+          style={{
+            background: 'white',
+            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+            padding: '12px'
+          }}
         >
           {isLoadingLocation ? (
             <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
@@ -169,7 +176,7 @@ const MapCanvas: React.FC<MapCanvasProps> = ({
               />
             </svg>
           )}
-        </button>
+        </Button>
       </div>
 
       {/* Guest Mode Overlay */}

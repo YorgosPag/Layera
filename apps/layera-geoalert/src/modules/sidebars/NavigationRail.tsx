@@ -1,8 +1,8 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useLayeraTranslation } from '@layera/i18n';
 import { Button } from '@layera/buttons';
 import { BUTTON_VARIANTS, BUTTON_SIZES } from '@layera/constants';
-import '../../../../packages/buttons/dist/styles.css';
+import '@layera/buttons/styles';
 
 interface NavButtonProps {
   title: string;
@@ -44,7 +44,7 @@ const NavigationRail: React.FC<NavigationRailProps> = ({
   onNewAlert,
   onFlyToUserLocation
 }) => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
 
   return (
     <aside className="w-16 bg-gray-800 text-white flex flex-col items-center py-4 space-y-6 flex-shrink-0 z-30">

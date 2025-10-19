@@ -1,5 +1,27 @@
 # 🏢 LayeraID Architecture Documentation
 
+---
+
+## 📚 **RELATED DOCUMENTATION NAVIGATION**
+
+### **🧩 Core Architecture Series:**
+- **[📊 Pipeline Architecture](../../docs/pipeline-architecture/01-CURRENT-STATE-ANALYSIS.md)** - System Analysis & LEGO Readiness
+- **[🗺️ Geo-Drawing Architecture](../../docs/geo-drawing-architecture/01-CURRENT-STATE-ANALYSIS.md)** - Geo-spatial Systems Analysis
+- **[🏗️ Core Systems](../../docs/core-systems/LEGO_SYSTEMS_ANALYSIS.md)** - Component Architecture Analysis
+
+### **📱 Application Docs:**
+- **[📖 ID App README](./README.md)** - Identity Service Overview
+- **[📐 ID Layout Migration Plan](./docs/LAYOUT_MIGRATION_PLAN.md)** - Layout Migration Strategy
+
+### **🗺️ Related App Documentation:**
+- **[🗺️ GeoAlert Architecture](../layera-geoalert/ARCHITECTURE.md)** - GeoAlert Application Architecture
+
+### **📚 Master Documentation:**
+- **[📚 Documentation Index](../../docs/meta/DOCUMENTATION_INDEX.md)** - Complete Documentation Navigation (84 files)
+- **[🎯 Strategic Documents](../../strategy/LAYERA_CORE_STRATEGY.md)** - Business Architecture & Dual Categories
+
+---
+
 ## 📋 Application Overview
 
 LayeraID is the core identity management application of the Layera enterprise platform, providing authentication, user management, and access control functionality.

@@ -143,6 +143,28 @@ declare const PageContainer: React.FC<PageContainerProps>;
  */
 declare const PageHeader: React.FC<PageHeaderProps>;
 
+interface StackProps {
+    children: React.ReactNode;
+    spacing?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+    direction?: 'vertical' | 'horizontal';
+    align?: 'start' | 'center' | 'end' | 'stretch';
+    className?: string;
+    style?: React.CSSProperties;
+}
+declare const Stack: React.FC<StackProps>;
+
+interface FlexProps {
+    children: React.ReactNode;
+    direction?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
+    align?: 'start' | 'center' | 'end' | 'stretch' | 'baseline';
+    justify?: 'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'space-evenly';
+    wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
+    gap?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+    className?: string;
+    style?: React.CSSProperties;
+}
+declare const Flex: React.FC<FlexProps>;
+
 /**
  * useLayout - Hook για layout state management
  */
@@ -153,4 +175,4 @@ declare const useLayout: () => [LayoutState, LayoutActions];
  */
 declare const useResponsive: () => ResponsiveState;
 
-export { AppShell, type AppShellProps, type BreakpointSize, type ContainerMaxWidth, HeaderActionsGroup, type HeaderActionsGroupProps, type HeaderVariant, LayeraHeader, type LayeraHeaderProps, type LayoutActions, type LayoutState, type LayoutVariant, NavItem, type NavItemProps, NavSection, type NavSectionProps, NavigationSidebar, type NavigationSidebarProps, PageContainer, type PageContainerProps, PageHeader, type PageHeaderProps, type ResponsiveState, type SidebarPosition, type SidebarVariant, type SpacingSize, useLayout, useResponsive };
+export { AppShell, type AppShellProps, type BreakpointSize, type ContainerMaxWidth, Flex, HeaderActionsGroup, type HeaderActionsGroupProps, type HeaderVariant, LayeraHeader, type LayeraHeaderProps, type LayoutActions, type LayoutState, type LayoutVariant, NavItem, type NavItemProps, NavSection, type NavSectionProps, NavigationSidebar, type NavigationSidebarProps, PageContainer, type PageContainerProps, PageHeader, type PageHeaderProps, type ResponsiveState, type SidebarPosition, type SidebarVariant, type SpacingSize, Stack, useLayout, useResponsive };

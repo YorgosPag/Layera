@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useLayeraTranslation } from '@layera/i18n';
 import { BaseCard as Card } from '@layera/cards';
 import { Text as Typography } from '@layera/typography';
 import { Button } from '@layera/buttons';
@@ -18,7 +18,7 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
   onRemove,
   onClick
 }) => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
   const { theme } = useTheme();
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [previewError, setPreviewError] = useState(false);

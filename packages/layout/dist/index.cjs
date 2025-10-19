@@ -21,6 +21,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var src_exports = {};
 __export(src_exports, {
   AppShell: () => AppShell,
+  Flex: () => Flex,
   HeaderActionsGroup: () => HeaderActionsGroup,
   LayeraHeader: () => LayeraHeader,
   NavItem: () => NavItem,
@@ -28,6 +29,7 @@ __export(src_exports, {
   NavigationSidebar: () => NavigationSidebar,
   PageContainer: () => PageContainer,
   PageHeader: () => PageHeader,
+  Stack: () => Stack,
   useLayout: () => useLayout,
   useResponsive: () => useResponsive
 });
@@ -337,6 +339,64 @@ var PageHeader = ({
   ] });
 };
 
+// src/components/Stack.tsx
+var import_jsx_runtime9 = require("react/jsx-runtime");
+var SPACING_VALUES = {
+  xs: "0.25rem",
+  sm: "0.5rem",
+  md: "1rem",
+  lg: "1.5rem",
+  xl: "2rem"
+};
+var Stack = ({
+  children,
+  spacing = "md",
+  direction = "vertical",
+  align = "stretch",
+  className,
+  style
+}) => {
+  const stackStyles = {
+    display: "flex",
+    flexDirection: direction === "vertical" ? "column" : "row",
+    alignItems: align === "start" ? "flex-start" : align === "end" ? "flex-end" : align,
+    gap: SPACING_VALUES[spacing],
+    ...style
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { className, style: stackStyles, children });
+};
+
+// src/components/Flex.tsx
+var import_jsx_runtime10 = require("react/jsx-runtime");
+var GAP_VALUES = {
+  xs: "0.25rem",
+  sm: "0.5rem",
+  md: "1rem",
+  lg: "1.5rem",
+  xl: "2rem"
+};
+var Flex = ({
+  children,
+  direction = "row",
+  align = "start",
+  justify = "start",
+  wrap = "nowrap",
+  gap,
+  className,
+  style
+}) => {
+  const flexStyles = {
+    display: "flex",
+    flexDirection: direction,
+    alignItems: align === "start" ? "flex-start" : align === "end" ? "flex-end" : align,
+    justifyContent: justify === "start" ? "flex-start" : justify === "end" ? "flex-end" : justify,
+    flexWrap: wrap,
+    gap: gap ? GAP_VALUES[gap] : void 0,
+    ...style
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className, style: flexStyles, children });
+};
+
 // src/hooks/useLayout.ts
 var import_react4 = require("react");
 
@@ -408,6 +468,7 @@ var useLayout = () => {
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   AppShell,
+  Flex,
   HeaderActionsGroup,
   LayeraHeader,
   NavItem,
@@ -415,6 +476,7 @@ var useLayout = () => {
   NavigationSidebar,
   PageContainer,
   PageHeader,
+  Stack,
   useLayout,
   useResponsive
 });

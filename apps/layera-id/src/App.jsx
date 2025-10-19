@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { RoleGuard, useAuthContext } from '@layera/auth-bridge'
 import { ThemeProvider } from '@layera/theme-switcher'
 import { DeviceOverrideProvider, DeviceSimulator, DeviceSwitcher } from '@layera/viewport'
-import '../../../packages/theme-switcher/dist/styles.css'
+import '@layera/theme-switcher/styles'
 import Login from './components/Login'
 import Register from './components/Register'
 import NewDashboard from './components/NewDashboard'

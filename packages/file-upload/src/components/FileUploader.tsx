@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useLayeraTranslation } from '@layera/i18n';
 import { useNotifications } from '@layera/notifications';
 import { ErrorBoundary } from '@layera/error-boundary';
 import { Text as Typography } from '@layera/typography';
@@ -32,7 +32,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
   onFileRemove,
   onAllUploadsComplete
 }) => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
   const { theme } = useTheme();
   const { addNotification } = useNotifications();
   const [files, setFiles] = useState<FileUploadItem[]>([]);

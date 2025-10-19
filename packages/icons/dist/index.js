@@ -298,10 +298,17 @@ var RedoIcon = (props) => /* @__PURE__ */ jsxs5(Icon, { name: "redo", ...props, 
   /* @__PURE__ */ jsx5("polyline", { points: "23,4 23,10 17,10" }),
   /* @__PURE__ */ jsx5("path", { d: "M20.49 15a9 9 0 1 1-2.13-9.36L23 10" })
 ] });
+var CheckIcon = (props) => /* @__PURE__ */ jsx5(Icon, { name: "check", ...props, children: /* @__PURE__ */ jsx5("polyline", { points: "20,6 9,17 4,12" }) });
+var WorkIcon = (props) => /* @__PURE__ */ jsxs5(Icon, { name: "work", ...props, children: [
+  /* @__PURE__ */ jsx5("rect", { x: "2", y: "3", width: "20", height: "14", rx: "2", ry: "2" }),
+  /* @__PURE__ */ jsx5("line", { x1: "8", y1: "21", x2: "16", y2: "21" }),
+  /* @__PURE__ */ jsx5("line", { x1: "12", y1: "17", x2: "12", y2: "21" })
+] });
 export {
   AlertTriangleIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
+  CheckIcon,
   CloseIcon,
   CompassIcon,
   CopyIcon,
@@ -337,6 +344,7 @@ export {
   UndoIcon,
   UploadIcon,
   WatchIcon,
+  WorkIcon,
   ZoomInIcon,
   ZoomOutIcon
 };

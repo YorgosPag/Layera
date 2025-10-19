@@ -1,9 +1,9 @@
-import { useTranslation } from 'react-i18next';
-import { PuzzleIcon, LinkIcon, FolderIcon, ZapIcon, CheckIcon, PartyIcon } from './components/icons/LayeraIcons';
-import LanguageSwitcher from './components/LanguageSwitcher';
+import { useLayeraTranslation } from '@layera/i18n';
+import { CheckIcon, AlertTriangleIcon, MoreIcon, ShareIcon, LayersIcon } from '@layera/icons';
+import { LanguageSwitcher } from '@layera/i18n';
 
 function App() {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
 
   return (
     <div style={{ padding: '2rem', textAlign: 'center', fontFamily: 'Arial, sans-serif' }}>
@@ -44,7 +44,7 @@ function App() {
           borderRadius: '8px',
           marginBottom: '1rem'
         }}>
-          <h3><PartyIcon size="sm" theme="success" /> ΕΠΙΤΥΧΙΑ!</h3>
+          <h3><MoreIcon size="sm" theme="success" /> ΕΠΙΤΥΧΙΑ!</h3>
           <p>Enterprise Micro-Modules Architecture Working!</p>
         </div>
 
@@ -75,10 +75,10 @@ function App() {
       </div>
 
       <div style={{ marginTop: '2rem', color: 'var(--layera-text-secondary)', fontSize: '0.875rem' }}>
-        <p><PuzzleIcon size="sm" theme="info" /> {t('modularMicroservice')}</p>
-        <p><LinkIcon size="sm" theme="info" /> {t('crossAppNavigation')}</p>
-        <p><FolderIcon size="sm" theme="info" /> Created 7 Micro-Modules Successfully</p>
-        <p><ZapIcon size="sm" theme="warning" /> Ready for PHASE 2 Implementation</p>
+        <p><LayersIcon size="sm" theme="info" /> {t('modularMicroservice')}</p>
+        <p><ShareIcon size="sm" theme="info" /> {t('crossAppNavigation')}</p>
+        <p><LayersIcon size="sm" theme="info" /> Created 7 Micro-Modules Successfully</p>
+        <p><AlertTriangleIcon size="sm" theme="warning" /> Ready for PHASE 2 Implementation</p>
       </div>
     </div>
   )

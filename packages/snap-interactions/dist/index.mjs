@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { SnapEngine } from '@layera/snap-engine';
 import { useNotification } from '@layera/notifications';
-import { useTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/i18n';
 import { SNAP_CONSTANTS } from '@layera/constants';
 import { useTheme } from '@layera/theme-switcher';
 import { Icon } from '@layera/icons';
@@ -18,7 +18,7 @@ import { LoadingSpinner } from '@layera/loading';
 // src/hooks/useSnapEngine.ts
 function useSnapEngine2(options = {}) {
   const { toast } = useNotification();
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
   const [snapEngine, setSnapEngine] = useState(null);
   const [lastSnapResult, setLastSnapResult] = useState(null);
   const [isEnabled, setIsEnabledState] = useState(options.enabled ?? true);
@@ -292,7 +292,7 @@ var SnapIndicator = ({
   className = ""
 }) => {
   const { theme } = useTheme();
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
   if (!visible || !snapResult.snapped || !snapResult.target) {
     return null;
   }
@@ -405,7 +405,7 @@ var SnapGuidelines = ({
   showDistance = true
 }) => {
   const { theme } = useTheme();
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
   if (!visible || !snapResult.snapped || !snapResult.target) {
     return null;
   }
@@ -473,7 +473,7 @@ var SnapSettingsPanel = ({
   disabled = false
 }) => {
   const { theme } = useTheme();
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
   const { toast } = useNotification();
   const [activeCategory, setActiveCategory] = useState("basic");
   const handleToleranceChange = useCallback((value) => {
@@ -671,7 +671,7 @@ var SnapToolbar = ({
   enabled,
   onToggleEnabled
 }) => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
   const quickTypes = ["endpoint", "midpoint", "center", "vertex"];
   return /* @__PURE__ */ jsxs(Stack, { direction: "row", spacing: 8, align: "center", children: [
     /* @__PURE__ */ jsxs(

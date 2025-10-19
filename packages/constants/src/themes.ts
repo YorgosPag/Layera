@@ -64,6 +64,17 @@ export const SPACING_SCALE = {
   XXXL: 64
 } as const;
 
+export const Z_INDEX = {
+  DROPDOWN: 1000,
+  STICKY: 1020,
+  FIXED: 1030,
+  MODAL_BACKDROP: 1040,
+  MODAL: 1050,
+  POPOVER: 1060,
+  TOOLTIP: 1070,
+  TOAST: 1080
+} as const;
+
 // Type exports
 export type ThemeMode = typeof THEME_MODES[keyof typeof THEME_MODES];
 export type ColorScheme = typeof COLOR_SCHEMES[keyof typeof COLOR_SCHEMES];
@@ -71,3 +82,4 @@ export type ComponentVariant = typeof COMPONENT_VARIANTS[keyof typeof COMPONENT_
 export type ElevationLevel = typeof ELEVATION_LEVELS[keyof typeof ELEVATION_LEVELS];
 export type BorderRadius = typeof BORDER_RADIUS[keyof typeof BORDER_RADIUS];
 export type SpacingScale = typeof SPACING_SCALE[keyof typeof SPACING_SCALE];
+export type ZIndex = typeof Z_INDEX[keyof typeof Z_INDEX];

@@ -9,8 +9,8 @@ import { Button } from '@layera/buttons';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
 import { UserIcon, LockIcon, UnlockIcon, WarningIcon, SettingsIcon, ChartIcon } from '../components/icons/LayeraIcons';
-import '../../../../packages/layout/dist/styles.css';
-import '../../../../packages/cards/dist/styles.css';
+import '@layera/layout/styles';
+import '@layera/cards/styles';
 import './Account.css';
 
 export default function Account() {

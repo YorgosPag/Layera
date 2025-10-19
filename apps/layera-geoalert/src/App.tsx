@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useLayeraTranslation } from '@layera/i18n';
 import { DeviceOverrideProvider, DeviceSimulator } from '@layera/viewport';
 import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
@@ -8,13 +8,14 @@ import { AppShell } from '@layera/layout';
 import { NotificationProvider, useNotifications } from '@layera/notifications';
 import { LoadingSpinner } from '@layera/loading';
 import '@layera/typography/styles';
-import '../../../packages/buttons/dist/styles.css';
+import '@layera/buttons/styles';
 import '@layera/theme-switcher/styles';
 import '@layera/layout/styles';
-import { ArrowLeftIcon, MapIcon, PuzzleIcon, LinkIcon, FolderIcon, ZapIcon, CheckIcon, PartyIcon } from './components/icons/LayeraIcons';
-import LanguageSwitcher from './components/LanguageSwitcher';
+import { ArrowLeftIcon, MapIcon, PlusIcon, ShareIcon, LayersIcon, AlertTriangleIcon, CheckIcon, MoreIcon } from '@layera/icons';
+import { LanguageSwitcher } from '@layera/i18n';
 import { GeoHeader } from './components/GeoHeader';
 import { SimpleNavigationRail } from './components/SimpleNavigationRail';
+import { UnifiedPipeline } from './components/UnifiedPipeline';
 import GeoMap, { DrawnArea } from './components/GeoMap';
 
 function TestNotificationsComponent() {
@@ -141,12 +142,13 @@ function TestNotificationsComponent() {
 }
 
 function App() {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
   const [isMapMode, setIsMapMode] = useState(false);
   const [savedAreas, setSavedAreas] = useState<DrawnArea[]>([]);
   const [activeView, setActiveView] = useState<'dashboard' | 'map'>('dashboard');
   const [isAreasPanelOpen, setIsAreasPanelOpen] = useState(false);
   const [editingAreaId, setEditingAreaId] = useState<string | null>(null);
+  const [showUnifiedPipeline, setShowUnifiedPipeline] = useState(false);
 
   const handleAreaCreated = (area: DrawnArea) => {
     setSavedAreas(prev => [...prev, area]);
@@ -193,6 +195,11 @@ function App() {
     console.log('Flying to user location');
   };
 
+  const handleNewEntryClick = () => {
+    console.log('Opening Unified Pipeline...');
+    setShowUnifiedPipeline(true);
+  };
+
   if (isMapMode) {
     return (
       <ThemeProvider defaultTheme="system" storageKey="layera-geoalert-theme">
@@ -203,10 +210,19 @@ function App() {
                 layout="fullscreen-map"
                 header={<GeoHeader />}
                 sidebar={
-                  <SimpleNavigationRail onBackClick={() => setIsMapMode(false)} />
+                  <SimpleNavigationRail
+                    onBackClick={() => setIsMapMode(false)}
+                    onNewEntryClick={handleNewEntryClick}
+                  />
                 }
               >
                 <GeoMap onAreaCreated={handleAreaCreated} />
+
+                {/* Unified Pipeline Modal */}
+                <UnifiedPipeline
+                  isOpen={showUnifiedPipeline}
+                  onClose={() => setShowUnifiedPipeline(false)}
+                />
               </AppShell>
             </DeviceSimulator>
           </DeviceOverrideProvider>
@@ -230,7 +246,7 @@ function App() {
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                 <Heading as="h1" size="2xl" color="primary" className="layera-flex layera-items-center layera-gap-2">
                   <MapIcon size="md" theme="primary" />
-                  {t('title')}
+                  {t('geoalert.title')}
                 </Heading>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <ThemeSwitcher variant="icon" size="md" />
@@ -238,7 +254,7 @@ function App() {
                 </div>
               </div>
 
-              <Text size="lg" color="secondary" className="layera-mb-8">{t('subtitle')}</Text>
+              <Text size="lg" color="secondary" className="layera-mb-8">{t('geoalert.subtitle')}</Text>
 
               <div style={{ margin: '2rem 0' }}>
                 <div style={{
@@ -249,9 +265,9 @@ function App() {
                   marginBottom: '2rem'
                 }}>
                   <Heading as="h3" size="lg" color="neutral" className="layera-mb-4 layera-flex layera-items-center layera-gap-2">
-                    <PartyIcon size="sm" theme="success" /> {t('geoCanvasReady')}
+                    <MoreIcon size="sm" theme="success" /> {t('geoalert.geoCanvasReady')}
                   </Heading>
-                  <Text size="base" color="neutral">{t('professionalArchitecture')}</Text>
+                  <Text size="base" color="neutral">{t('geoalert.professionalArchitecture')}</Text>
                 </div>
 
                 <Button
@@ -262,7 +278,7 @@ function App() {
                   className="layera-mb-8"
                   style={{ margin: '0 auto 2rem auto', boxShadow: '0 4px 6px color-mix(in srgb, var(--layera-bg-secondary) 10%, transparent 90%)' }}
                 >
-                  {t('enterGeoCanvas')}
+                  {t('geoalert.enterGeoCanvas')}
                 </Button>
 
                 <TestNotificationsComponent />
@@ -278,23 +294,23 @@ function App() {
                   marginRight: 'auto'
                 }}>
                   <Heading as="h3" size="lg" color="primary" className="layera-mb-4 layera-flex layera-items-center layera-gap-2">
-                    <CheckIcon size="xs" theme="success" /> {t('statusCheck')}
+                    <CheckIcon size="xs" theme="success" /> {t('geoalert.statusCheck')}
                   </Heading>
                   <div style={{ textAlign: 'left' }}>
                     <Text size="base" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
-                      <CheckIcon size="xs" theme="success" /> {t('port')}: 3002
+                      <CheckIcon size="xs" theme="success" /> {t('geoalert.port')}: 3002
                     </Text>
                     <Text size="base" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
-                      <CheckIcon size="xs" theme="success" /> {t('reactReady')}
+                      <CheckIcon size="xs" theme="success" /> {t('geoalert.reactReady')}
                     </Text>
                     <Text size="base" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
-                      <CheckIcon size="xs" theme="success" /> {t('typescriptStrict')}
+                      <CheckIcon size="xs" theme="success" /> {t('geoalert.typescriptStrict')}
                     </Text>
                     <Text size="base" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
-                      <CheckIcon size="xs" theme="success" /> {t('independentApp')}
+                      <CheckIcon size="xs" theme="success" /> {t('geoalert.independentApp')}
                     </Text>
                     <Text size="base" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
-                      <CheckIcon size="xs" theme="success" /> {t('enterpriseArchitecture')}
+                      <CheckIcon size="xs" theme="success" /> {t('geoalert.enterpriseArchitecture')}
                     </Text>
                     <Text size="base" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
                       <CheckIcon size="xs" theme="success" /> @layera/layout Integration: AppShell + LayeraHeader
@@ -330,22 +346,22 @@ function App() {
                     e.currentTarget.style.color = 'var(--layera-bg-info)';
                   }}
                 >
-                  {t('navigateToLayeraId')}
+                  {t('geoalert.navigateToLayeraId')}
                 </a>
               </div>
 
               <div style={{ marginTop: '2rem' }}>
                 <Text size="sm" color="secondary" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
-                  <PuzzleIcon size="sm" theme="info" /> {t('modularMicroservice')}
+                  <LayersIcon size="sm" theme="info" /> {t('geoalert.modularMicroservice')}
                 </Text>
                 <Text size="sm" color="secondary" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
-                  <LinkIcon size="sm" theme="info" /> {t('crossAppNavigation')}
+                  <ShareIcon size="sm" theme="info" /> {t('geoalert.crossAppNavigation')}
                 </Text>
                 <Text size="sm" color="secondary" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
-                  <FolderIcon size="sm" theme="info" /> Unified Layout System: @layera/layout
+                  <LayersIcon size="sm" theme="info" /> Unified Layout System: @layera/layout
                 </Text>
                 <Text size="sm" color="secondary" className="layera-flex layera-items-center layera-gap-2">
-                  <ZapIcon size="sm" theme="warning" /> {t('readyForImplementation')}
+                  <AlertTriangleIcon size="sm" theme="warning" /> {t('geoalert.readyForImplementation')}
                 </Text>
               </div>
             </div>

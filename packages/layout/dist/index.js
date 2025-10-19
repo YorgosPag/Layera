@@ -302,6 +302,64 @@ var PageHeader = ({
   ] });
 };
 
+// src/components/Stack.tsx
+import { jsx as jsx9 } from "react/jsx-runtime";
+var SPACING_VALUES = {
+  xs: "0.25rem",
+  sm: "0.5rem",
+  md: "1rem",
+  lg: "1.5rem",
+  xl: "2rem"
+};
+var Stack = ({
+  children,
+  spacing = "md",
+  direction = "vertical",
+  align = "stretch",
+  className,
+  style
+}) => {
+  const stackStyles = {
+    display: "flex",
+    flexDirection: direction === "vertical" ? "column" : "row",
+    alignItems: align === "start" ? "flex-start" : align === "end" ? "flex-end" : align,
+    gap: SPACING_VALUES[spacing],
+    ...style
+  };
+  return /* @__PURE__ */ jsx9("div", { className, style: stackStyles, children });
+};
+
+// src/components/Flex.tsx
+import { jsx as jsx10 } from "react/jsx-runtime";
+var GAP_VALUES = {
+  xs: "0.25rem",
+  sm: "0.5rem",
+  md: "1rem",
+  lg: "1.5rem",
+  xl: "2rem"
+};
+var Flex = ({
+  children,
+  direction = "row",
+  align = "start",
+  justify = "start",
+  wrap = "nowrap",
+  gap,
+  className,
+  style
+}) => {
+  const flexStyles = {
+    display: "flex",
+    flexDirection: direction,
+    alignItems: align === "start" ? "flex-start" : align === "end" ? "flex-end" : align,
+    justifyContent: justify === "start" ? "flex-start" : justify === "end" ? "flex-end" : justify,
+    flexWrap: wrap,
+    gap: gap ? GAP_VALUES[gap] : void 0,
+    ...style
+  };
+  return /* @__PURE__ */ jsx10("div", { className, style: flexStyles, children });
+};
+
 // src/hooks/useLayout.ts
 import { useState as useState4, useCallback } from "react";
 
@@ -372,6 +430,7 @@ var useLayout = () => {
 };
 export {
   AppShell,
+  Flex,
   HeaderActionsGroup,
   LayeraHeader,
   NavItem,
@@ -379,6 +438,7 @@ export {
   NavigationSidebar,
   PageContainer,
   PageHeader,
+  Stack,
   useLayout,
   useResponsive
 };

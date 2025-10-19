@@ -5,6 +5,35 @@
 
 ---
 
+## 📚 **PIPELINE DOCUMENTATION NAVIGATION**
+
+### **🧩 Complete Pipeline Architecture Series:**
+1. **[📊 CURRENT STATE](./01-CURRENT-STATE-ANALYSIS.md)** - System Analysis & Readiness
+2. **[🏗️ TARGET ARCHITECTURE](./02-TARGET-ARCHITECTURE.md)** ← *You are here*
+3. **[🔄 MIGRATION STRATEGY](./03-MIGRATION-STRATEGY.md)** - Step-by-step Transition Plan
+4. **[🛠️ IMPLEMENTATION GUIDE](./04-IMPLEMENTATION-GUIDE.md)** - Detailed Developer Instructions
+5. **[📁 FILE PROCESSING SYSTEMS](./05-FILE-PROCESSING-LEGO-SYSTEMS.md)** - Advanced LEGO Components
+6. **[✅ PIPELINE UPDATES](./06-PIPELINE-ARCHITECTURE-UPDATES.md)** - System Updates & Changes
+
+### **🗺️ Related Geo-Drawing Architecture:**
+7. **[🗺️ GEO-DRAWING CURRENT STATE](../geo-drawing-architecture/01-CURRENT-STATE-ANALYSIS.md)** - Geo-spatial Systems Analysis
+8. **[🎯 GEO-DRAWING TARGET](../geo-drawing-architecture/02-TARGET-ARCHITECTURE.md)** - Drawing Canvas Vision
+9. **[🔄 GEO-DRAWING MIGRATION](../geo-drawing-architecture/03-MIGRATION-STRATEGY.md)** - Drawing System Migration
+10. **[🛠️ GEO-DRAWING IMPLEMENTATION](../geo-drawing-architecture/04-IMPLEMENTATION-GUIDE.md)** - Drawing Development Guide
+11. **[✅ GEO-DRAWING UPDATES](../geo-drawing-architecture/05-GEO-DRAWING-UPDATES.md)** - Drawing System Updates
+
+### **📋 Strategic Documents:**
+12. **[🎯 CORE STRATEGY](../../strategy/LAYERA_CORE_STRATEGY.md)** - Business Architecture & Dual Categories
+13. **[🏠 REAL ESTATE ANALYSIS](../../strategy/REAL_ESTATE_ANALYSIS.md)** - Property Market Strategy
+14. **[💼 JOBS ANALYSIS](../../strategy/JOBS_ANALYSIS.md)** - Employment Market Strategy
+
+### **🧩 LEGO Systems & Quality Assurance:**
+15. **[🧩 LEGO COMPLIANCE AUDIT](../core-systems/LEGO_COMPLIANCE_AUDIT_REPORT.md)** - 100% LEGO Implementation Audit
+16. **[🏗️ LAYOUT SYSTEM IMPLEMENTATION](../core-systems/LAYERA_LAYOUT_SYSTEM_IMPLEMENTATION.md)** - Layout Components
+17. **[🧩 GEO-DRAWING COMPLETE](../core-systems/GEO_DRAWING_IMPLEMENTATION_COMPLETE.md)** - Geo-Drawing Systems
+
+---
+
 ## 🎯 **ΣΤΟΧΟΣ: LEGO-Style Pipeline Architecture**
 
 ### **🌟 Vision Statement:**
@@ -387,7 +416,7 @@ import { Card, CardHeader, CardContent } from '@layera/cards';
 import { Button, PrimaryButton, SecondaryButton } from '@layera/buttons';
 import { Dropdown, Input, FormField, Checkbox, NumericInput, Slider, DatePicker, InputGroup } from '@layera/forms';
 import { Heading, Text } from '@layera/typography';
-import { useTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/i18n';
 import { CONSTANTS } from '@layera/constants';
 
 export const UNIVERSAL_COMPONENTS = {
@@ -423,7 +452,7 @@ export const UNIVERSAL_COMPONENTS = {
 };
 
 // ΚΑΝΕΝΑ hardcoded string ή any type - ΠΑΝΤΑ:
-// - useTranslation() από @layera/i18n για κείμενα
+// - useLayeraTranslation() από @layera/i18n για κείμενα
 // - CONSTANTS από @layera/constants για τιμές
 // - Ακριβείς TypeScript types (ΠΟΤΕ any)
 ```

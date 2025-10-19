@@ -7,7 +7,7 @@ import React from 'react';
 
 // Import από existing LEGO systems - ΜΗΝ αναδημιουργήσεις
 import { useTheme } from '@layera/theme-switcher';
-import { useTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/i18n';
 import { Icon } from '@layera/icons';
 
 // Import από snap engine
@@ -84,7 +84,7 @@ export const SnapIndicator: React.FC<SnapIndicatorProps> = ({
 }) => {
   // Existing LEGO systems integration - ΜΗΝ αναδημιουργήσεις
   const { theme } = useTheme();
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
 
   // Early return αν δεν είναι snapped ή visible
   if (!visible || !snapResult.snapped || !snapResult.target) {
@@ -250,7 +250,7 @@ export const SnapGuidelines: React.FC<SnapGuidelinesProps> = ({
   showDistance = true
 }) => {
   const { theme } = useTheme();
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
 
   if (!visible || !snapResult.snapped || !snapResult.target) {
     return null;

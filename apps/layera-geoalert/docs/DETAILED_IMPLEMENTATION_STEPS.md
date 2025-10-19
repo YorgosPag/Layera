@@ -48,7 +48,7 @@ resolve: {
 
 ### ✅ 0.3 i18n System Implementation (COMPLETED)
 **Πραγματοποιήθηκε:**
-- ✅ react-i18next integration
+- ✅ @layera/i18n LEGO system integration
 - ✅ Μεταφράσεις σε ελληνικά/αγγλικά
 - ✅ LanguageSwitcher component
 - ✅ Proper translation file structure

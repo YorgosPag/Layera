@@ -23,6 +23,7 @@ __export(src_exports, {
   AlertTriangleIcon: () => AlertTriangleIcon,
   ArrowLeftIcon: () => ArrowLeftIcon,
   ArrowRightIcon: () => ArrowRightIcon,
+  CheckIcon: () => CheckIcon,
   CloseIcon: () => CloseIcon,
   CompassIcon: () => CompassIcon,
   CopyIcon: () => CopyIcon,
@@ -58,6 +59,7 @@ __export(src_exports, {
   UndoIcon: () => UndoIcon,
   UploadIcon: () => UploadIcon,
   WatchIcon: () => WatchIcon,
+  WorkIcon: () => WorkIcon,
   ZoomInIcon: () => ZoomInIcon,
   ZoomOutIcon: () => ZoomOutIcon
 });
@@ -363,11 +365,18 @@ var RedoIcon = (props) => /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(Icon, { 
   /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("polyline", { points: "23,4 23,10 17,10" }),
   /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("path", { d: "M20.49 15a9 9 0 1 1-2.13-9.36L23 10" })
 ] });
+var CheckIcon = (props) => /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Icon, { name: "check", ...props, children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("polyline", { points: "20,6 9,17 4,12" }) });
+var WorkIcon = (props) => /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(Icon, { name: "work", ...props, children: [
+  /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("rect", { x: "2", y: "3", width: "20", height: "14", rx: "2", ry: "2" }),
+  /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("line", { x1: "8", y1: "21", x2: "16", y2: "21" }),
+  /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("line", { x1: "12", y1: "17", x2: "12", y2: "21" })
+] });
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   AlertTriangleIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
+  CheckIcon,
   CloseIcon,
   CompassIcon,
   CopyIcon,
@@ -403,6 +412,7 @@ var RedoIcon = (props) => /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(Icon, { 
   UndoIcon,
   UploadIcon,
   WatchIcon,
+  WorkIcon,
   ZoomInIcon,
   ZoomOutIcon
 });

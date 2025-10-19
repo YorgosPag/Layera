@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useLayeraTranslation } from '@layera/i18n';
+import { Button } from '@layera/buttons';
 import LatitudeRuler from './rulers/LatitudeRuler';
 import LongitudeRuler from './rulers/LongitudeRuler';
 import {
@@ -80,7 +81,7 @@ interface GeoMapProps {
 }
 
 const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
   const { deviceType, isMobile, isTablet, isDesktop } = useViewportWithOverride();
   const mapInitialized = useRef(false);
   const mapRef = useRef<LeafletMap | null>(null);
@@ -514,34 +515,22 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
           )}
 
           <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
-            <button
+            <Button
               onClick={handleSubmit}
-              style={{
-                backgroundColor: 'var(--layera-bg-success)',
-                color: 'var(--layera-text-on-success)',
-                border: 'none',
-                borderRadius: '6px',
-                padding: '0.75rem 1.5rem',
-                cursor: 'pointer',
-                flex: 1
-              }}
+              variant="success"
+              size="md"
+              style={{ flex: 1 }}
             >
               {t('save')}
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={handleCancel}
-              style={{
-                backgroundColor: 'var(--layera-text-secondary)',
-                color: 'var(--layera-text-on-dark)',
-                border: 'none',
-                borderRadius: '6px',
-                padding: '0.75rem 1.5rem',
-                cursor: 'pointer',
-                flex: 1
-              }}
+              variant="secondary"
+              size="md"
+              style={{ flex: 1 }}
             >
               {t('cancel')}
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -585,34 +574,22 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
         border: '1px solid var(--layera-border-primary)',
         overflow: 'hidden'
       }}>
-        <button
+        <Button
           onClick={() => setActiveCategory('real_estate')}
-          style={{
-            backgroundColor: activeCategory === 'real_estate' ? 'var(--layera-bg-info)' : 'var(--layera-bg-primary)',
-            color: activeCategory === 'real_estate' ? 'var(--layera-text-on-info)' : 'var(--layera-bg-info)',
-            border: 'none',
-            padding: '0.75rem 1.5rem',
-            fontSize: '0.875rem',
-            cursor: 'pointer',
-            fontWeight: 'bold'
-          }}
+          variant={activeCategory === 'real_estate' ? 'primary' : 'ghost'}
+          size="sm"
+          icon={<HomeIcon size="sm" theme="neutral" />}
         >
-          <HomeIcon size="sm" theme="neutral" /> {t('realEstate')}
-        </button>
-        <button
+          {t('realEstate')}
+        </Button>
+        <Button
           onClick={() => setActiveCategory('jobs')}
-          style={{
-            backgroundColor: activeCategory === 'jobs' ? 'var(--layera-bg-info)' : 'var(--layera-bg-primary)',
-            color: activeCategory === 'jobs' ? 'var(--layera-text-on-info)' : 'var(--layera-bg-info)',
-            border: 'none',
-            padding: '0.75rem 1.5rem',
-            fontSize: '0.875rem',
-            cursor: 'pointer',
-            fontWeight: 'bold'
-          }}
+          variant={activeCategory === 'jobs' ? 'primary' : 'ghost'}
+          size="sm"
+          icon={<BriefcaseIcon size="sm" theme="neutral" />}
         >
-          <BriefcaseIcon size="sm" theme="neutral" /> {t('job')}
-        </button>
+          {t('job')}
+        </Button>
       </div>
 
       {/* Drawing Toolbar - Responsive για κάθε device */}
@@ -626,71 +603,45 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
         flexWrap: 'wrap',
         maxWidth: isMobile ? '90vw' : 'auto'
       }}>
-        <button
+        <Button
           onClick={() => startDrawing('marker')}
           disabled={activeDrawingMode === 'marker'}
-          style={{
-            backgroundColor: activeDrawingMode === 'marker' ? 'var(--layera-bg-success)' : 'var(--layera-bg-secondary)',
-            color: activeDrawingMode === 'marker' ? 'var(--layera-text-on-success)' : 'var(--layera-text-primary)',
-            border: `1px solid ${activeDrawingMode === 'marker' ? 'var(--layera-bg-success)' : 'var(--layera-border-primary)'}`,
-            borderRadius: '6px',
-            padding: isMobile ? '0.375rem 0.75rem' : '0.5rem 1rem',
-            fontSize: isMobile ? '0.75rem' : '0.875rem',
-            cursor: activeDrawingMode === 'marker' ? 'default' : 'pointer',
-            opacity: activeDrawingMode === 'marker' ? 0.9 : 1
-          }}
+          variant={activeDrawingMode === 'marker' ? 'success' : 'secondary'}
+          size={isMobile ? 'xs' : 'sm'}
+          icon={<MarkerIcon size="sm" theme="neutral" />}
         >
-          <MarkerIcon size="sm" theme="neutral" /> {t('marker')}
-        </button>
+          {t('marker')}
+        </Button>
 
-        <button
+        <Button
           onClick={() => startDrawing('polygon')}
           disabled={activeDrawingMode === 'polygon'}
-          style={{
-            backgroundColor: activeDrawingMode === 'polygon' ? 'var(--layera-bg-info)' : 'var(--layera-bg-secondary)',
-            color: activeDrawingMode === 'polygon' ? 'var(--layera-text-on-info)' : 'var(--layera-text-primary)',
-            border: `1px solid ${activeDrawingMode === 'polygon' ? 'var(--layera-bg-info)' : 'var(--layera-border-primary)'}`,
-            borderRadius: '6px',
-            padding: isMobile ? '0.375rem 0.75rem' : '0.5rem 1rem',
-            fontSize: isMobile ? '0.75rem' : '0.875rem',
-            cursor: activeDrawingMode === 'polygon' ? 'default' : 'pointer',
-            opacity: activeDrawingMode === 'polygon' ? 0.9 : 1
-          }}
+          variant={activeDrawingMode === 'polygon' ? 'primary' : 'secondary'}
+          size={isMobile ? 'xs' : 'sm'}
+          icon={<PolygonIcon size="sm" theme="neutral" />}
         >
-          <PolygonIcon size="sm" theme="neutral" /> {t('polygon')}
-        </button>
+          {t('polygon')}
+        </Button>
 
         {activeDrawingMode === 'polygon' && polygonPoints.current.length >= 3 && (
-          <button
+          <Button
             onClick={finishPolygon}
-            style={{
-              backgroundColor: 'var(--layera-bg-warning)',
-              color: 'var(--layera-text-on-dark)',
-              border: '1px solid var(--layera-bg-warning)',
-              borderRadius: '6px',
-              padding: '0.5rem 1rem',
-              fontSize: '0.875rem',
-              cursor: 'pointer'
-            }}
+            variant="warning"
+            size="sm"
+            icon={<CheckIcon size="sm" theme="neutral" />}
           >
-            <CheckIcon size="sm" theme="neutral" /> {t('finish')}
-          </button>
+            {t('finish')}
+          </Button>
         )}
 
-        <button
+        <Button
           onClick={clearAll}
-          style={{
-            backgroundColor: 'var(--layera-bg-danger)',
-            color: 'var(--layera-text-on-dark)',
-            border: '1px solid var(--layera-bg-danger)',
-            borderRadius: '6px',
-            padding: '0.5rem 1rem',
-            fontSize: '0.875rem',
-            cursor: 'pointer'
-          }}
+          variant="danger"
+          size="sm"
+          icon={<TrashIcon size="sm" theme="neutral" />}
         >
-          <TrashIcon size="sm" theme="neutral" /> {t('clear')}
-        </button>
+          {t('clear')}
+        </Button>
       </div>
 
       {/* Status Info */}

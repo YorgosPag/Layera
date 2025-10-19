@@ -228,195 +228,195 @@ var useButton = () => {
     },
     variants: {
       primary: {
-        background: "#2563eb",
-        color: "#ffffff",
-        border: "#2563eb",
+        background: "var(--layera-bg-info)",
+        color: "var(--layera-text-on-info)",
+        border: "var(--layera-bg-info)",
         hover: {
-          background: "#1d4ed8",
-          color: "#ffffff",
-          border: "#1d4ed8"
+          background: "color-mix(in srgb, var(--layera-bg-info) 80%, black 20%)",
+          color: "var(--layera-text-on-info)",
+          border: "color-mix(in srgb, var(--layera-bg-info) 80%, black 20%)"
         },
         active: {
-          background: "#1e40af",
-          color: "#ffffff",
-          border: "#1e40af"
+          background: "color-mix(in srgb, var(--layera-bg-info) 70%, black 30%)",
+          color: "var(--layera-text-on-info)",
+          border: "color-mix(in srgb, var(--layera-bg-info) 70%, black 30%)"
         },
         focus: {
-          outline: "2px solid #93c5fd",
-          ring: "0 0 0 2px rgba(59, 130, 246, 0.5)"
+          outline: "2px solid color-mix(in srgb, var(--layera-bg-info) 50%, transparent 50%)",
+          ring: "0 0 0 2px color-mix(in srgb, var(--layera-bg-info) 30%, transparent 70%)"
         },
         disabled: {
-          background: "#f3f4f6",
-          color: "#9ca3af",
-          border: "#e5e7eb"
+          background: "var(--layera-bg-tertiary)",
+          color: "var(--layera-text-tertiary)",
+          border: "var(--layera-border-primary)"
         }
       },
       secondary: {
-        background: "#6b7280",
-        color: "#ffffff",
-        border: "#6b7280",
+        background: "var(--layera-text-secondary)",
+        color: "var(--layera-text-on-dark)",
+        border: "var(--layera-text-secondary)",
         hover: {
-          background: "#4b5563",
-          color: "#ffffff",
-          border: "#4b5563"
+          background: "color-mix(in srgb, var(--layera-text-secondary) 80%, black 20%)",
+          color: "var(--layera-text-on-dark)",
+          border: "color-mix(in srgb, var(--layera-text-secondary) 80%, black 20%)"
         },
         active: {
-          background: "#374151",
-          color: "#ffffff",
-          border: "#374151"
+          background: "color-mix(in srgb, var(--layera-text-secondary) 70%, black 30%)",
+          color: "var(--layera-text-on-dark)",
+          border: "color-mix(in srgb, var(--layera-text-secondary) 70%, black 30%)"
         },
         focus: {
-          outline: "2px solid #9ca3af",
-          ring: "0 0 0 2px rgba(107, 114, 128, 0.5)"
+          outline: "2px solid color-mix(in srgb, var(--layera-text-secondary) 50%, transparent 50%)",
+          ring: "0 0 0 2px color-mix(in srgb, var(--layera-text-secondary) 30%, transparent 70%)"
         },
         disabled: {
-          background: "#f3f4f6",
-          color: "#9ca3af",
-          border: "#e5e7eb"
+          background: "var(--layera-bg-tertiary)",
+          color: "var(--layera-text-tertiary)",
+          border: "var(--layera-border-primary)"
         }
       },
       outline: {
         background: "transparent",
-        color: "#2563eb",
-        border: "#2563eb",
+        color: "var(--layera-bg-info)",
+        border: "var(--layera-bg-info)",
         hover: {
-          background: "#2563eb",
-          color: "#ffffff",
-          border: "#2563eb"
+          background: "var(--layera-bg-info)",
+          color: "var(--layera-text-on-info)",
+          border: "var(--layera-bg-info)"
         },
         active: {
-          background: "#1e40af",
-          color: "#ffffff",
-          border: "#1e40af"
+          background: "color-mix(in srgb, var(--layera-bg-info) 70%, black 30%)",
+          color: "var(--layera-text-on-info)",
+          border: "color-mix(in srgb, var(--layera-bg-info) 70%, black 30%)"
         },
         focus: {
-          outline: "2px solid #93c5fd",
-          ring: "0 0 0 2px rgba(59, 130, 246, 0.5)"
+          outline: "2px solid color-mix(in srgb, var(--layera-bg-info) 50%, transparent 50%)",
+          ring: "0 0 0 2px color-mix(in srgb, var(--layera-bg-info) 30%, transparent 70%)"
         },
         disabled: {
-          background: "#f3f4f6",
-          color: "#9ca3af",
-          border: "#e5e7eb"
+          background: "var(--layera-bg-tertiary)",
+          color: "var(--layera-text-tertiary)",
+          border: "var(--layera-border-primary)"
         }
       },
       ghost: {
         background: "transparent",
-        color: "#374151",
+        color: "var(--layera-text-primary)",
         border: "transparent",
         hover: {
-          background: "#f3f4f6",
-          color: "#111827",
+          background: "var(--layera-bg-tertiary)",
+          color: "var(--layera-text-primary)",
           border: "transparent"
         },
         active: {
-          background: "#e5e7eb",
-          color: "#111827",
+          background: "var(--layera-bg-secondary)",
+          color: "var(--layera-text-primary)",
           border: "transparent"
         },
         focus: {
-          outline: "2px solid #d1d5db",
-          ring: "0 0 0 2px rgba(156, 163, 175, 0.5)"
+          outline: "2px solid var(--layera-border-secondary)",
+          ring: "0 0 0 2px color-mix(in srgb, var(--layera-border-primary) 30%, transparent 70%)"
         },
         disabled: {
-          background: "#f3f4f6",
-          color: "#9ca3af",
-          border: "#e5e7eb"
+          background: "var(--layera-bg-tertiary)",
+          color: "var(--layera-text-tertiary)",
+          border: "var(--layera-border-primary)"
         }
       },
       danger: {
-        background: "#dc2626",
-        color: "#ffffff",
-        border: "#dc2626",
+        background: "var(--layera-bg-danger)",
+        color: "var(--layera-text-on-dark)",
+        border: "var(--layera-bg-danger)",
         hover: {
-          background: "#b91c1c",
-          color: "#ffffff",
-          border: "#b91c1c"
+          background: "color-mix(in srgb, var(--layera-bg-danger) 80%, black 20%)",
+          color: "var(--layera-text-on-dark)",
+          border: "color-mix(in srgb, var(--layera-bg-danger) 80%, black 20%)"
         },
         active: {
-          background: "#991b1b",
-          color: "#ffffff",
-          border: "#991b1b"
+          background: "color-mix(in srgb, var(--layera-bg-danger) 70%, black 30%)",
+          color: "var(--layera-text-on-dark)",
+          border: "color-mix(in srgb, var(--layera-bg-danger) 70%, black 30%)"
         },
         focus: {
-          outline: "2px solid #fca5a5",
-          ring: "0 0 0 2px rgba(239, 68, 68, 0.5)"
+          outline: "2px solid color-mix(in srgb, var(--layera-bg-danger) 50%, transparent 50%)",
+          ring: "0 0 0 2px color-mix(in srgb, var(--layera-bg-danger) 30%, transparent 70%)"
         },
         disabled: {
-          background: "#f3f4f6",
-          color: "#9ca3af",
-          border: "#e5e7eb"
+          background: "var(--layera-bg-tertiary)",
+          color: "var(--layera-text-tertiary)",
+          border: "var(--layera-border-primary)"
         }
       },
       success: {
-        background: "#059669",
-        color: "#ffffff",
-        border: "#059669",
+        background: "var(--layera-bg-success)",
+        color: "var(--layera-text-on-success)",
+        border: "var(--layera-bg-success)",
         hover: {
-          background: "#047857",
-          color: "#ffffff",
-          border: "#047857"
+          background: "color-mix(in srgb, var(--layera-bg-success) 80%, black 20%)",
+          color: "var(--layera-text-on-success)",
+          border: "color-mix(in srgb, var(--layera-bg-success) 80%, black 20%)"
         },
         active: {
-          background: "#065f46",
-          color: "#ffffff",
-          border: "#065f46"
+          background: "color-mix(in srgb, var(--layera-bg-success) 70%, black 30%)",
+          color: "var(--layera-text-on-success)",
+          border: "color-mix(in srgb, var(--layera-bg-success) 70%, black 30%)"
         },
         focus: {
-          outline: "2px solid #6ee7b7",
-          ring: "0 0 0 2px rgba(16, 185, 129, 0.5)"
+          outline: "2px solid color-mix(in srgb, var(--layera-bg-success) 50%, transparent 50%)",
+          ring: "0 0 0 2px color-mix(in srgb, var(--layera-bg-success) 30%, transparent 70%)"
         },
         disabled: {
-          background: "#f3f4f6",
-          color: "#9ca3af",
-          border: "#e5e7eb"
+          background: "var(--layera-bg-tertiary)",
+          color: "var(--layera-text-tertiary)",
+          border: "var(--layera-border-primary)"
         }
       },
       warning: {
-        background: "#d97706",
-        color: "#ffffff",
-        border: "#d97706",
+        background: "var(--layera-bg-warning)",
+        color: "var(--layera-text-on-dark)",
+        border: "var(--layera-bg-warning)",
         hover: {
-          background: "#b45309",
-          color: "#ffffff",
-          border: "#b45309"
+          background: "color-mix(in srgb, var(--layera-bg-warning) 80%, black 20%)",
+          color: "var(--layera-text-on-dark)",
+          border: "color-mix(in srgb, var(--layera-bg-warning) 80%, black 20%)"
         },
         active: {
-          background: "#92400e",
-          color: "#ffffff",
-          border: "#92400e"
+          background: "color-mix(in srgb, var(--layera-bg-warning) 70%, black 30%)",
+          color: "var(--layera-text-on-dark)",
+          border: "color-mix(in srgb, var(--layera-bg-warning) 70%, black 30%)"
         },
         focus: {
-          outline: "2px solid #fbbf24",
-          ring: "0 0 0 2px rgba(217, 119, 6, 0.5)"
+          outline: "2px solid color-mix(in srgb, var(--layera-bg-warning) 50%, transparent 50%)",
+          ring: "0 0 0 2px color-mix(in srgb, var(--layera-bg-warning) 30%, transparent 70%)"
         },
         disabled: {
-          background: "#f3f4f6",
-          color: "#9ca3af",
-          border: "#e5e7eb"
+          background: "var(--layera-bg-tertiary)",
+          color: "var(--layera-text-tertiary)",
+          border: "var(--layera-border-primary)"
         }
       },
       info: {
-        background: "#0891b2",
-        color: "#ffffff",
-        border: "#0891b2",
+        background: "var(--layera-bg-info)",
+        color: "var(--layera-text-on-info)",
+        border: "var(--layera-bg-info)",
         hover: {
-          background: "#0e7490",
-          color: "#ffffff",
-          border: "#0e7490"
+          background: "color-mix(in srgb, var(--layera-bg-info) 80%, black 20%)",
+          color: "var(--layera-text-on-info)",
+          border: "color-mix(in srgb, var(--layera-bg-info) 80%, black 20%)"
         },
         active: {
-          background: "#155e75",
-          color: "#ffffff",
-          border: "#155e75"
+          background: "color-mix(in srgb, var(--layera-bg-info) 70%, black 30%)",
+          color: "var(--layera-text-on-info)",
+          border: "color-mix(in srgb, var(--layera-bg-info) 70%, black 30%)"
         },
         focus: {
-          outline: "2px solid #67e8f9",
-          ring: "0 0 0 2px rgba(8, 145, 178, 0.5)"
+          outline: "2px solid color-mix(in srgb, var(--layera-bg-info) 50%, transparent 50%)",
+          ring: "0 0 0 2px color-mix(in srgb, var(--layera-bg-info) 30%, transparent 70%)"
         },
         disabled: {
-          background: "#f3f4f6",
-          color: "#9ca3af",
-          border: "#e5e7eb"
+          background: "var(--layera-bg-tertiary)",
+          color: "var(--layera-text-tertiary)",
+          border: "var(--layera-border-primary)"
         }
       }
     },

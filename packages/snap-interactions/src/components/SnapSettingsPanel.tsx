@@ -13,7 +13,7 @@ import { Text, Heading } from '@layera/typography';
 import { Stack, Grid } from '@layera/layout';
 import { Icon } from '@layera/icons';
 import { useTheme } from '@layera/theme-switcher';
-import { useTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/i18n';
 import { useNotification } from '@layera/notifications';
 
 // Import από snap engine
@@ -66,7 +66,7 @@ export const SnapSettingsPanel: React.FC<SnapSettingsPanelProps> = ({
 }) => {
   // Existing LEGO systems integration - ΜΗΝ αναδημιουργήσεις
   const { theme } = useTheme();
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
   const { toast } = useNotification();
 
   // Local state
@@ -342,7 +342,7 @@ export const SnapToolbar: React.FC<SnapToolbarProps> = ({
   enabled,
   onToggleEnabled
 }) => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
 
   // Quick toggle για common snap types
   const quickTypes: SnapType[] = ['endpoint', 'midpoint', 'center', 'vertex'];

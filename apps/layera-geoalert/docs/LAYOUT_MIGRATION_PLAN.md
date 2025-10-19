@@ -130,7 +130,7 @@ import { LanguageSwitcher } from './LanguageSwitcher';
 import { DeviceSwitcher } from '@layera/viewport';
 
 export const GeoHeader: React.FC = () => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
 
   return (
     <LayeraHeader

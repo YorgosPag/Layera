@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useLayeraTranslation } from '@layera/i18n';
 import { BaseCard as Card } from '@layera/cards';
 import { Text as Typography } from '@layera/typography';
 import { UploadIcon } from '@layera/icons';
@@ -19,7 +19,7 @@ export const DragDropZone: React.FC<DragDropZoneProps> = ({
   className = '',
   multiple = true
 }) => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
   const { theme } = useTheme();
   const [isDragOver, setIsDragOver] = useState(false);
   const [dragCounter, setDragCounter] = useState(0);

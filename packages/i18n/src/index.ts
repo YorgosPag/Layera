@@ -13,12 +13,5 @@ export {
   withLayeraI18n
 } from './components/LayeraI18nProvider';
 
-// Re-export react-i18next for convenience
-export { useTranslation, Trans, I18nextProvider } from 'react-i18next';
-
-// Types
-export type {
-  UseTranslationOptions,
-  TFunction,
-  i18n as I18n,
-} from 'react-i18next';
+// Enterprise-grade LEGO i18n system - NO direct react-i18next exports
+// Applications should use ONLY @layera/i18n exports for 100% LEGO compliance

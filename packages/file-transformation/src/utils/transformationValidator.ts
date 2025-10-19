@@ -370,8 +370,12 @@ export function getFormatCompatibility(
   }
 
   const compatible = sourceConfig.canTransformTo.includes(targetFormat);
-  const dataLossRisk = sourceConfig.dataLossRisk[targetFormat] || 'high';
-  const limitations = sourceConfig.limitations[targetFormat] || [];
+  const dataLossRisk = Object.prototype.hasOwnProperty.call(sourceConfig.dataLossRisk, targetFormat)
+    ? sourceConfig.dataLossRisk[targetFormat]!
+    : 'high';
+  const limitations = Object.prototype.hasOwnProperty.call(sourceConfig.limitations, targetFormat)
+    ? sourceConfig.limitations[targetFormat]!
+    : [];
 
   // Get recommended alternatives if not compatible
   const recommendedAlternatives = compatible ? [] : sourceConfig.canTransformTo.slice(0, 3);
@@ -430,7 +434,9 @@ export function getFormatCategory(format: SupportedFormat): 'vector' | 'raster' 
     'pdf': 'document'
   };
 
-  return categories[format] || 'document';
+  return Object.prototype.hasOwnProperty.call(categories, format)
+    ? categories[format]!
+    : 'document';
 }
 
 /**

@@ -5,7 +5,8 @@
 import React, { useState, useCallback } from 'react';
 import { useMapEvents, Circle, Polygon, Marker } from 'react-leaflet';
 import L from 'leaflet';
-import { useTranslation } from 'react-i18next';
+import { useLayeraTranslation } from '@layera/i18n';
+import { Button } from '@layera/buttons';
 import { DrawingShape, DrawingState, GeoAlertArea, DRAWING_LIMITS } from '../../types';
 
 interface DrawingToolsProps {
@@ -14,7 +15,7 @@ interface DrawingToolsProps {
 }
 
 const DrawingTools: React.FC<DrawingToolsProps> = ({ onAreaCreated, isGuest = false }) => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
 
   const [drawingState, setDrawingState] = useState<DrawingState>({
     isActive: false,
@@ -121,26 +122,22 @@ const DrawingTools: React.FC<DrawingToolsProps> = ({ onAreaCreated, isGuest = fa
         </div>
 
         <div className="grid grid-cols-2 gap-2">
-          <button
+          <Button
             onClick={() => startDrawing('polygon')}
-            className={`px-3 py-2 text-xs font-medium rounded ${
-              drawingState.shape === 'polygon' && drawingState.isActive
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
-            }`}
+            variant={drawingState.shape === 'polygon' && drawingState.isActive ? 'primary' : 'secondary'}
+            size="xs"
+            fullWidth
           >
             {t('polygon')}
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={() => startDrawing('marker')}
-            className={`px-3 py-2 text-xs font-medium rounded ${
-              drawingState.shape === 'marker' && drawingState.isActive
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
-            }`}
+            variant={drawingState.shape === 'marker' && drawingState.isActive ? 'primary' : 'secondary'}
+            size="xs"
+            fullWidth
           >
             {t('marker')}
-          </button>
+          </Button>
         </div>
 
         {drawingState.isActive && !drawingState.isFinished && (
@@ -171,19 +168,23 @@ const DrawingTools: React.FC<DrawingToolsProps> = ({ onAreaCreated, isGuest = fa
         {drawingState.isFinished && (
           <div className="flex gap-2">
             {!isGuest && (
-              <button
+              <Button
                 onClick={saveArea}
-                className="flex-1 px-3 py-2 text-xs font-medium text-white bg-green-600 rounded hover:bg-green-700"
+                variant="success"
+                size="xs"
+                style={{ flex: 1 }}
               >
                 {t('save')}
-              </button>
+              </Button>
             )}
-            <button
+            <Button
               onClick={clearDrawing}
-              className="flex-1 px-3 py-2 text-xs font-medium text-gray-600 bg-gray-200 rounded hover:bg-gray-300"
+              variant="secondary"
+              size="xs"
+              style={{ flex: 1 }}
             >
               {t('clear')}
-            </button>
+            </Button>
           </div>
         )}
 

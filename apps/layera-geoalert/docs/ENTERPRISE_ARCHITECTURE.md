@@ -111,8 +111,7 @@ export default defineConfig({
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-i18next": "^16.0.1",
-    "i18next": "^25.6.0"
+    "@layera/i18n": "file:../../packages/i18n"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
@@ -136,8 +135,8 @@ export default defineConfig({
 
 ## 🌐 i18n Architecture Implementation
 
-### Αρχιτεκτονική επιλογή: Local i18n με react-i18next
-**Λόγος:** Μέγιστη ανεξαρτησία και control για κάθε app
+### Αρχιτεκτονική επιλογή: @layera/i18n LEGO system
+**Λόγος:** Enterprise consistency και shared functionality με LEGO architecture
 
 ### Translation Structure
 ```bash
@@ -150,26 +149,16 @@ src/i18n/
 
 ### i18n Configuration (src/i18n/index.ts)
 ```typescript
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
+import { LayeraI18nProvider } from '@layera/i18n';
 import el from './locales/el.json';
 import en from './locales/en.json';
 
-i18n
-  .use(initReactI18next)
-  .init({
-    resources: {
-      el: { translation: el },
-      en: { translation: en }
-    },
-    lng: 'el',                      // Default Greek
-    fallbackLng: 'en',
-    interpolation: {
-      escapeValue: false
-    }
-  });
+const resources = {
+  el: { translation: el },
+  en: { translation: en }
+};
 
-export default i18n;
+export { resources };
 ```
 
 ### Translation Implementation
@@ -193,19 +182,19 @@ export default i18n;
 
 ### LanguageSwitcher Component
 ```tsx
-import { useTranslation } from 'react-i18next';
+import { useLayeraTranslation } from '@layera/i18n';
 
 const LanguageSwitcher = () => {
-  const { i18n, t } = useTranslation();
+  const { currentLanguage, changeLanguage, t } = useLayeraTranslation();
 
   const toggleLanguage = () => {
-    const newLang = i18n.language === 'el' ? 'en' : 'el';
-    i18n.changeLanguage(newLang);
+    const newLang = currentLanguage === 'el' ? 'en' : 'el';
+    changeLanguage(newLang);
   };
 
   return (
     <button onClick={toggleLanguage}>
-      {t('languageSwitch')} ({i18n.language.toUpperCase()})
+      {t('languageSwitch')} ({currentLanguage.toUpperCase()})
     </button>
   );
 };

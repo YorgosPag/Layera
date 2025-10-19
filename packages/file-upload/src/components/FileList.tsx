@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useLayeraTranslation } from '@layera/i18n';
 import { BaseCard as Card } from '@layera/cards';
 import { Text as Typography } from '@layera/typography';
 import { Button } from '@layera/buttons';
@@ -20,7 +20,7 @@ export const FileList: React.FC<FileListProps> = ({
   onCancel,
   onRetry
 }) => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
   const { theme } = useTheme();
 
   if (files.length === 0) {
@@ -68,7 +68,7 @@ const FileListItem: React.FC<FileListItemProps> = ({
   onCancel,
   onRetry
 }) => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
   const { theme } = useTheme();
 
   const getStatusIcon = () => {

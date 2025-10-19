@@ -8,11 +8,11 @@ import { ThemeSwitcher } from '@layera/theme-switcher';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer } from '@layera/layout';
 import { DashboardCard } from '@layera/cards';
 import { FORM_TYPES, FORM_SIZES } from '@layera/constants';
-import '../../../../packages/forms/dist/index.css';
-import '../../../../packages/buttons/dist/styles.css';
-import '../../../../packages/layout/dist/styles.css';
-import '../../../../packages/cards/dist/styles.css';
-import '../../../../packages/i18n/src/styles/index.css';
+import '@layera/forms/styles';
+import '@layera/buttons/styles';
+import '@layera/layout/styles';
+import '@layera/cards/styles';
+import '@layera/i18n/styles';
 
 const Login = () => {
   const [email, setEmail] = useState('');

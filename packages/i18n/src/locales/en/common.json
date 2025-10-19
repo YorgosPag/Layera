@@ -3,7 +3,8 @@
     "name": "Layera",
     "subtitle": "Enterprise Identity Management",
     "welcome": "Welcome to Layera!",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "languageSwitch": "Language"
   },
   "navigation": {
     "dashboard": "Dashboard",
@@ -331,6 +332,59 @@
     "light": "Light",
     "dark": "Dark",
     "system": "System"
+  },
+  "pipeline": {
+    "newEntry": {
+      "title": "New Entry"
+    },
+    "category": {
+      "selection": {
+        "title": "Select Category"
+      },
+      "property": {
+        "title": "Property",
+        "description": "Search or advertise real estate"
+      },
+      "job": {
+        "title": "Job",
+        "description": "Search or advertise job positions"
+      }
+    },
+    "intent": {
+      "selection": {
+        "title": "Select Intent"
+      },
+      "offer": {
+        "title": "Offer"
+      },
+      "search": {
+        "title": "Search"
+      }
+    },
+    "preview": {
+      "ready": {
+        "title": "Ready to Save",
+        "description": "Your entry is ready"
+      },
+      "continue": "Continue"
+    }
+  },
+  "geoalert": {
+    "title": "Layera GeoAlert",
+    "subtitle": "Advanced Geographic Notifications System",
+    "geoCanvasReady": "Geo Canvas is Ready",
+    "professionalArchitecture": "Professional architecture with LEGO systems",
+    "enterGeoCanvas": "Enter Geo Canvas",
+    "statusCheck": "Status Check",
+    "port": "Port",
+    "reactReady": "React 19 Ready",
+    "typescriptStrict": "TypeScript Strict Mode",
+    "independentApp": "Independent Application",
+    "enterpriseArchitecture": "Enterprise Architecture",
+    "navigateToLayeraId": "Navigate to Layera ID",
+    "modularMicroservice": "Modular Microservice",
+    "crossAppNavigation": "Cross-App Navigation",
+    "readyForImplementation": "Ready for Implementation"
   },
   "dashboard": {
     "overview": "Overview of your account status",

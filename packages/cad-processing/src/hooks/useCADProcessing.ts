@@ -1,6 +1,5 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
-import { toast } from '@layera/notifications';
-import { useLayeraTranslation } from '@layera/i18n/hooks';
+import { useNotifications } from '@layera/notifications';
 import {
   CADData,
   CADProcessingOptions,
@@ -49,7 +48,7 @@ export interface UseCADProcessingReturn {
 export function useCADProcessing(
   options: UseCADProcessingOptions = {}
 ): UseCADProcessingReturn {
-  const { t } = useLayeraTranslation();
+  // TODO: Add i18n support when @layera/i18n is ready
   const [isProcessing, setIsProcessing] = useState(false);
   const [progress, setProgress] = useState(0);
   const [result, setResult] = useState<CADProcessingResult | null>(null);
@@ -68,6 +67,8 @@ export function useCADProcessing(
     onError
   } = options;
 
+  const { addNotification } = useNotifications();
+
   // Initialize parsers and renderers
   useEffect(() => {
     try {
@@ -76,7 +77,10 @@ export function useCADProcessing(
     } catch (error) {
       console.error('Failed to initialize CAD processing engines:', error);
       if (showNotifications) {
-        toast.error(t('cad.engine.init.error'));
+        addNotification({
+          type: 'error',
+          message: 'CAD Engine Initialization Error'
+        });
       }
     }
 
@@ -97,33 +101,33 @@ export function useCADProcessing(
       stage,
       progress,
       message,
-      currentEntity,
-      entitiesProcessed,
-      totalEntities
+      ...(currentEntity !== undefined && { currentEntity }),
+      ...(entitiesProcessed !== undefined && { entitiesProcessed }),
+      ...(totalEntities !== undefined && { totalEntities })
     };
 
     setProgress(progress);
     onProgress?.(progressData);
 
     if (showNotifications && stage === 'complete') {
-      toast.success(t('cad.processing.success'), {
-        duration: 3000
+      addNotification({
+        type: 'success',
+        message: 'CAD Processing completed successfully'
       });
     }
-  }, [onProgress, showNotifications, t]);
+  }, [onProgress, showNotifications, addNotification]);
 
   const handleError = useCallback((error: CADProcessingError) => {
     setErrors(prev => [...prev, error]);
     onError?.(error);
 
     if (showNotifications) {
-      toast.error(t('cad.processing.error', {
-        error: error.message
-      }), {
-        duration: 5000
+      addNotification({
+        type: 'error',
+        message: `CAD Processing Error: ${error.message}`
       });
     }
-  }, [onError, showNotifications, t]);
+  }, [onError, showNotifications, addNotification]);
 
   const processCADFile = useCallback(async (
     file: File,
@@ -148,7 +152,7 @@ export function useCADProcessing(
       setErrors([]);
 
       // Step 1: Detect file format
-      reportProgress('parsing', 5, t('cad.detecting.format'));
+      reportProgress('parsing', 5, 'Detecting CAD format');
       const detectedFormat = await detectCADFormat(file);
       finalOptions.format = detectedFormat;
 
@@ -165,17 +169,17 @@ export function useCADProcessing(
       }
 
       // Step 2: Read file content
-      reportProgress('parsing', 15, t('cad.reading.file'));
+      reportProgress('parsing', 15, 'Reading CAD file');
       const fileContent = await file.text();
 
       // Step 3: Parse CAD data
-      reportProgress('parsing', 25, t('cad.parsing.data'));
+      reportProgress('parsing', 25, 'Parsing CAD data');
       const cadData = await dxfParserRef.current.parseDXF(
         fileContent,
         finalOptions.parseOptions
       );
 
-      reportProgress('processing', 50, t('cad.processing.entities'));
+      reportProgress('processing', 50, 'Processing CAD entities');
 
       // Step 4: Apply transformations if needed
       if (finalOptions.transformOptions) {
@@ -185,7 +189,7 @@ export function useCADProcessing(
 
       // Step 5: Apply optimizations if needed
       if (finalOptions.optimizationOptions) {
-        reportProgress('optimizing', 70, t('cad.optimizing.geometry'));
+        reportProgress('optimizing', 70, 'Optimizing CAD geometry');
         // Apply geometry optimizations
         // Implementation would go here
       }
@@ -193,7 +197,7 @@ export function useCADProcessing(
       // Step 6: Generate render data if auto-render is enabled
       let renderResult: CADRenderData | undefined;
       if (autoRender) {
-        reportProgress('rendering', 85, t('cad.rendering.graphics'));
+        reportProgress('rendering', 85, 'Rendering CAD graphics');
         renderResult = await cadRendererRef.current.render(
           cadData,
           finalOptions.renderOptions
@@ -201,7 +205,7 @@ export function useCADProcessing(
         setRenderData(renderResult);
       }
 
-      reportProgress('complete', 100, t('cad.processing.completed'));
+      reportProgress('complete', 100, 'CAD processing completed');
 
       // Create result
       const processingResult: CADProcessingResult = {
@@ -210,7 +214,7 @@ export function useCADProcessing(
         processingTime: performance.now() - startTime,
         warnings: dxfParserRef.current.getWarnings(),
         errors: dxfParserRef.current.getErrors(),
-        renderData: renderResult
+        ...(renderResult !== undefined && { renderData: renderResult })
       };
 
       setResult(processingResult);
@@ -248,16 +252,17 @@ export function useCADProcessing(
 
     try {
       setIsProcessing(true);
-      reportProgress('rendering', 0, t('cad.rendering.start'));
+      reportProgress('rendering', 0, 'CAD rendering started');
 
       const renderResult = await cadRendererRef.current.render(cadData, renderOptions);
       setRenderData(renderResult);
 
-      reportProgress('complete', 100, t('cad.rendering.completed'));
+      reportProgress('complete', 100, 'CAD rendering completed');
 
       if (showNotifications) {
-        toast.success(t('cad.rendering.success'), {
-          duration: 3000
+        addNotification({
+          type: 'success',
+          message: 'CAD rendering completed successfully'
         });
       }
 
@@ -285,7 +290,7 @@ export function useCADProcessing(
   ): Promise<Blob> => {
     try {
       setIsProcessing(true);
-      reportProgress('processing', 0, t('cad.exporting.data'));
+      reportProgress('processing', 0, 'Exporting CAD data');
 
       // Implementation will depend on the export format
       switch (exportOptions.format) {
@@ -398,22 +403,22 @@ async function detectCADFormat(file: File): Promise<CADFormat> {
 }
 
 // Placeholder export functions - θα υλοποιηθούν πλήρως
-async function exportToGeoJSON(cadData: CADData, options: unknown): Promise<Blob> {
+async function exportToGeoJSON(_cadData: CADData, _options: unknown): Promise<Blob> {
   // Integration με @layera/file-transformation
   throw new CADProcessingError('GeoJSON export not yet implemented', 'EXPORT_NOT_IMPLEMENTED');
 }
 
-async function exportToSVG(cadData: CADData, options: unknown): Promise<Blob> {
+async function exportToSVG(_cadData: CADData, _options: unknown): Promise<Blob> {
   // Use CADRenderer to generate SVG
   throw new CADProcessingError('SVG export not yet implemented', 'EXPORT_NOT_IMPLEMENTED');
 }
 
-async function exportToDXF(cadData: CADData, options: unknown): Promise<Blob> {
+async function exportToDXF(_cadData: CADData, _options: unknown): Promise<Blob> {
   // Serialize back to DXF format
   throw new CADProcessingError('DXF export not yet implemented', 'EXPORT_NOT_IMPLEMENTED');
 }
 
-async function exportToPDF(cadData: CADData, options: unknown): Promise<Blob> {
+async function exportToPDF(_cadData: CADData, _options: unknown): Promise<Blob> {
   // Convert to PDF format
   throw new CADProcessingError('PDF export not yet implemented', 'EXPORT_NOT_IMPLEMENTED');
 }

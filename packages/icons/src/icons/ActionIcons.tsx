@@ -100,3 +100,19 @@ export const RedoIcon: React.FC<Omit<IconProps, 'name' | 'children'>> = (props) 
     <path d="M20.49 15a9 9 0 1 1-2.13-9.36L23 10" />
   </Icon>
 );
+
+// Check Icon - Επιβεβαίωση/Επιτυχία
+export const CheckIcon: React.FC<Omit<IconProps, 'name' | 'children'>> = (props) => (
+  <Icon name="check" {...props}>
+    <polyline points="20,6 9,17 4,12" />
+  </Icon>
+);
+
+// Work Icon - Εργασία/Επαγγελματικό
+export const WorkIcon: React.FC<Omit<IconProps, 'name' | 'children'>> = (props) => (
+  <Icon name="work" {...props}>
+    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+    <line x1="8" y1="21" x2="16" y2="21" />
+    <line x1="12" y1="17" x2="12" y2="21" />
+  </Icon>
+);

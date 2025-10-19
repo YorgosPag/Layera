@@ -79,7 +79,14 @@ var CoordinateTransformer = class {
       ];
       commonTransformations.forEach(([source, target]) => {
         const key = `${source}->${target}`;
-        this.projCache.set(key, proj4(source, target));
+        if (source && target) {
+          try {
+            const converter = proj4(source, target);
+            this.projCache.set(key, converter);
+          } catch (conversionError) {
+            console.warn(`Failed to initialize transformation ${key}:`, conversionError);
+          }
+        }
       });
     } catch (error) {
       console.error("Failed to initialize coordinate projections:", error);
@@ -99,6 +106,13 @@ var CoordinateTransformer = class {
       const converter = this.getConverter(transform.sourceEPSG, transform.targetEPSG);
       const input = z !== void 0 ? [x, y, z] : [x, y];
       const result = converter.forward(input);
+      if (result[0] === void 0 || result[1] === void 0) {
+        throw new CoordinateTransformationError(
+          transform.sourceEPSG,
+          transform.targetEPSG,
+          "Invalid coordinate transformation result"
+        );
+      }
       return {
         x: result[0],
         y: result[1],
@@ -123,6 +137,13 @@ var CoordinateTransformer = class {
       for (const point of points) {
         const input = point.z !== void 0 ? [point.x, point.y, point.z] : [point.x, point.y];
         const result = converter.forward(input);
+        if (result[0] === void 0 || result[1] === void 0) {
+          throw new CoordinateTransformationError(
+            transform.sourceEPSG,
+            transform.targetEPSG,
+            `Invalid coordinate transformation result for point ${JSON.stringify(point)}`
+          );
+        }
         results.push({
           x: result[0],
           y: result[1],
@@ -1141,8 +1162,8 @@ function getFormatCompatibility(sourceFormat, targetFormat) {
     };
   }
   const compatible = sourceConfig.canTransformTo.includes(targetFormat);
-  const dataLossRisk = sourceConfig.dataLossRisk[targetFormat] || "high";
-  const limitations = sourceConfig.limitations[targetFormat] || [];
+  const dataLossRisk = Object.prototype.hasOwnProperty.call(sourceConfig.dataLossRisk, targetFormat) ? sourceConfig.dataLossRisk[targetFormat] : "high";
+  const limitations = Object.prototype.hasOwnProperty.call(sourceConfig.limitations, targetFormat) ? sourceConfig.limitations[targetFormat] : [];
   const recommendedAlternatives = compatible ? [] : sourceConfig.canTransformTo.slice(0, 3);
   return {
     sourceSupported: true,
@@ -1183,7 +1204,7 @@ function getFormatCategory(format) {
     "webp": "raster",
     "pdf": "document"
   };
-  return categories[format] || "document";
+  return Object.prototype.hasOwnProperty.call(categories, format) ? categories[format] : "document";
 }
 function validateBatchTransformation(files, options) {
   const errors = [];

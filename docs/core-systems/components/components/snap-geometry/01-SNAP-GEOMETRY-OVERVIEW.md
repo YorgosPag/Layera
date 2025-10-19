@@ -318,7 +318,7 @@ interface SnapSystemLayeraIntegration {
 
     '@layera/i18n': {
       purpose: 'Multilingual snap type descriptions (el/en)',
-      usage: 'useTranslation hook για snap tooltips και messages',
+      usage: 'useLayeraTranslation hook για snap tooltips και messages',
       avoid: 'ΜΗΝ hardcode strings - πάντοτε t() function'
     };
 

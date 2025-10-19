@@ -18,7 +18,7 @@ import {
 
 // Import από existing LEGO systems - ΜΗΝ αναδημιουργήσεις
 import { useNotification } from '@layera/notifications';
-import { useTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/i18n';
 import { SNAP_CONSTANTS } from '@layera/constants';
 
 // ========================================
@@ -72,7 +72,7 @@ export interface UseSnapEngineReturn {
 export function useSnapEngine(options: UseSnapEngineOptions = {}): UseSnapEngineReturn {
   // Existing LEGO systems integration - ΜΗΝ αναδημιουργήσεις
   const { toast } = useNotification();
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
 
   // Local state
   const [snapEngine, setSnapEngine] = useState<SnapEngine | null>(null);

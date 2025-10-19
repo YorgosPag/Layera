@@ -3,7 +3,7 @@ import { Polygon, Polyline, CircleMarker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import { useTheme } from '@layera/theme-switcher';
 import { Typography } from '@layera/typography';
-import { useTranslation } from 'react-i18next';
+import { useLayeraTranslation } from '@layera/i18n';
 import type { MeasurementResult, OSMBuildingFeature } from '../types';
 import { extractOSMGeometry } from '../utils/geometry';
 import { useMeasurementFormatter } from '../utils/formatters';
@@ -30,7 +30,7 @@ export const GeometryRenderer: React.FC<GeometryRendererProps> = ({
   onBuildingClick
 }) => {
   const { theme } = useTheme();
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
   const { formatDistanceWithLabels, formatAreaWithLabels } = useMeasurementFormatter();
 
   // Get theme-aware colors

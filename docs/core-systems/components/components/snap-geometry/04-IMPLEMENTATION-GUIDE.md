@@ -600,7 +600,7 @@ packages/snap-interactions/
 ```typescript
 // packages/snap-interactions/src/hooks/useSnapInteractions.ts
 import { useState, useCallback, useRef, useEffect } from 'react';
-import { useTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/i18n';
 import { useNotification } from '@layera/notifications';
 import { useTheme } from '@layera/theme-switcher';
 
@@ -649,7 +649,7 @@ export function useSnapInteractions(
   } = options;
 
   // ✅ ΧΡΗΣΗ ΥΠΑΡΧΟΝΤΩΝ LAYERA HOOKS - ΜΗ CUSTOM IMPLEMENTATIONS
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
   const { toast } = useNotification();
   const { theme } = useTheme();
 
@@ -833,7 +833,7 @@ import { Slider, FormField, FormSection } from '@layera/forms';
 import { Text, Heading } from '@layera/typography';
 import { Stack, Grid } from '@layera/layout';
 import { Icon } from '@layera/icons';
-import { useTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/i18n';
 import { useTheme } from '@layera/theme-switcher';
 
 import type { SnapType } from '@layera/snap-engine';
@@ -852,7 +852,7 @@ export const SnapSettingsPanel: React.FC<SnapSettingsPanelProps> = ({
   className
 }) => {
   // ✅ ΧΡΗΣΗ @layera/i18n ΚΑΙ @layera/theme-switcher
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
   const { theme } = useTheme();
 
   const handleSnapTypeToggle = (snapType: SnapType) => {

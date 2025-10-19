@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef } from 'react';
 import L from 'leaflet';
-import { useTranslation } from 'react-i18next';
+import { useLayeraTranslation } from '@layera/i18n';
 import type { MeasurementMode, MeasurementPoint, MeasurementResult, DrawingState } from '../types';
 import { calculateDistance, calculateProjectedArea } from '../utils/calculations';
 import { useMeasurementFormatter } from '../utils/formatters';
@@ -11,7 +11,7 @@ import { useNotifications } from '@layera/notifications';
  * Μεταφέρθηκε και βελτιώθηκε από OLD_geo-canvas
  */
 export const useMeasurement = () => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
   const { addNotification } = useNotifications();
   const { formatDistanceWithLabels, formatAreaWithLabels } = useMeasurementFormatter();
 

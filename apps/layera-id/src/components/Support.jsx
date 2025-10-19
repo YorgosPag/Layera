@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useAuthContext } from '@layera/auth-bridge';
 import { FormField, FormSection, FormActions, Select, TextArea } from '@layera/forms';
 import { Button } from '@layera/buttons';
+import { BaseCard } from '@layera/cards';
 import { useLayeraTranslation } from '@layera/i18n';
 import { FORM_SIZES } from '@layera/constants';
-import '../../../../packages/forms/dist/index.css';
-import '../../../../packages/buttons/dist/styles.css';
+import '@layera/forms/styles';
+import '@layera/buttons/styles';
+import '@layera/cards/styles';
 import './Support.css';
 
 const Support = () => {
@@ -53,21 +55,27 @@ ${message}
   if (submitted) {
     return (
       <div className="support-container">
-        <div className="support-card">
+        <BaseCard
+          title="✓ Αίτημα Στάλθηκε"
+          variant="success"
+          className="support-card-replacement"
+        >
           <div className="success-message">
-            <h2>✓ Αίτημα Στάλθηκε</h2>
             <p>Το πρόγραμμα email σας άνοιξε με το αίτημά σας.</p>
             <p>Θα επικοινωνήσουμε μαζί σας σύντομα στο <strong>{user?.email}</strong></p>
           </div>
-        </div>
+        </BaseCard>
       </div>
     );
   }
 
   return (
     <div className="support-container">
-      <div className="support-card">
-        <h2>Επικοινωνία</h2>
+      <BaseCard
+        title="Επικοινωνία"
+        variant="support"
+        className="support-card-replacement"
+      >
         <p className="support-description">
           Χρειάζεστε βοήθεια; Στείλτε μας το αίτημά σας και θα επικοινωνήσουμε μαζί σας.
         </p>
@@ -141,7 +149,7 @@ ${message}
             Μπορείτε να προσθέσετε επιπλέον πληροφορίες πριν την αποστολή.
           </p>
         </div>
-      </div>
+      </BaseCard>
     </div>
   );
 };

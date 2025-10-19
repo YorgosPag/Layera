@@ -1,14 +1,14 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useLayeraTranslation } from '@layera/i18n';
 import { LayeraHeader, HeaderActionsGroup } from '@layera/layout';
 import { ThemeSwitcher } from '@layera/theme-switcher';
-import LanguageSwitcher from './LanguageSwitcher';
+import { LanguageSwitcher } from '@layera/i18n';
 
 /**
  * GeoHeader - Standardized header for GeoAlert app
  */
 export const GeoHeader: React.FC = () => {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
 
   return (
     <LayeraHeader

@@ -1,5 +1,25 @@
 # 🎯 Layera - Στρατηγική Διείσδυσης & Εκκίνησης
 
+## 📚 **STRATEGIC DOCUMENTATION NAVIGATION**
+
+### **🎯 Strategic Analysis Documents:**
+1. **[🎯 CORE STRATEGY](./LAYERA_CORE_STRATEGY.md)** ← *You are here*
+2. **[🏠 REAL ESTATE ANALYSIS](./REAL_ESTATE_ANALYSIS.md)** - Property Market Strategy
+3. **[💼 JOBS ANALYSIS](./JOBS_ANALYSIS.md)** - Employment Market Strategy
+
+### **🏗️ Architecture & Implementation:**
+4. **[🏗️ MAIN ARCHITECTURE](../docs/ARCHITECTURE.md)** - Core System Architecture
+5. **[🧩 LEGO COMPLIANCE AUDIT](../docs/core-systems/LEGO_COMPLIANCE_AUDIT_REPORT.md)** - 100% LEGO Implementation
+6. **[🛠️ PIPELINE IMPLEMENTATION](../docs/pipeline-architecture/04-IMPLEMENTATION-GUIDE.md)** - Pipeline Development
+7. **[🗺️ GEO-DRAWING IMPLEMENTATION](../docs/geo-drawing-architecture/04-IMPLEMENTATION-GUIDE.md)** - Map Drawing Implementation
+
+### **📋 Technical Documentation:**
+8. **[📋 CODE MAPPING](../docs/CODE_MAPPING.md)** - Codebase Structure
+9. **[🛣️ COMPLETION ROADMAP](../docs/COMPLETION_ROADMAP.md)** - Development Roadmap
+10. **[📁 FILE PROCESSING SYSTEMS](../docs/pipeline-architecture/05-FILE-PROCESSING-LEGO-SYSTEMS.md)** - LEGO Components
+
+---
+
 ## 📋 Περίληψη Στρατηγικής
 
 Η **Layera** είναι η πρώτη πλατφόρμα γεωεντοπισμού με layers (επίπεδα) για ακίνητα που επιτρέπει στους χρήστες να τοποθετούν περιοχές ενδιαφέροντος σε χάρτη και να λαμβάνουν στοχευμένες ειδοποιήσεις.

@@ -3,7 +3,8 @@
     "name": "Layera",
     "subtitle": "Επιχειρησιακή Διαχείριση Ταυτότητας",
     "welcome": "Καλώς ήρθατε στο Layera!",
-    "loading": "Φόρτωση..."
+    "loading": "Φόρτωση...",
+    "languageSwitch": "Γλώσσα"
   },
   "navigation": {
     "dashboard": "Πίνακας Ελέγχου",
@@ -326,6 +327,59 @@
       "createdAt": "Δημιουργήθηκε",
       "updatedAt": "Ενημερώθηκε"
     }
+  },
+  "pipeline": {
+    "newEntry": {
+      "title": "Νέα Καταχώριση"
+    },
+    "category": {
+      "selection": {
+        "title": "Επιλέξτε Κατηγορία"
+      },
+      "property": {
+        "title": "Ακίνητο",
+        "description": "Αναζητήστε ή διαφημίστε ακίνητα"
+      },
+      "job": {
+        "title": "Εργασία",
+        "description": "Αναζητήστε ή διαφημίστε θέσεις εργασίας"
+      }
+    },
+    "intent": {
+      "selection": {
+        "title": "Επιλέξτε Πρόθεση"
+      },
+      "offer": {
+        "title": "Προσφορά"
+      },
+      "search": {
+        "title": "Αναζήτηση"
+      }
+    },
+    "preview": {
+      "ready": {
+        "title": "Έτοιμο για Αποθήκευση",
+        "description": "Η καταχώρισή σας είναι έτοιμη"
+      },
+      "continue": "Συνέχεια"
+    }
+  },
+  "geoalert": {
+    "title": "Layera GeoAlert",
+    "subtitle": "Προηγμένο σύστημα γεωγραφικών ειδοποιήσεων",
+    "geoCanvasReady": "Ο Geo Canvas είναι έτοιμος",
+    "professionalArchitecture": "Επαγγελματική αρχιτεκτονική με LEGO systems",
+    "enterGeoCanvas": "Είσοδος στον Geo Canvas",
+    "statusCheck": "Έλεγχος Κατάστασης",
+    "port": "Πόρτα",
+    "reactReady": "React 19 Έτοιμο",
+    "typescriptStrict": "TypeScript Strict Mode",
+    "independentApp": "Ανεξάρτητη Εφαρμογή",
+    "enterpriseArchitecture": "Enterprise Architecture",
+    "navigateToLayeraId": "Μετάβαση στο Layera ID",
+    "modularMicroservice": "Modular Microservice",
+    "crossAppNavigation": "Cross-App Navigation",
+    "readyForImplementation": "Έτοιμο για υλοποίηση"
   },
   "dashboard": {
     "overview": "Επισκόπηση κατάστασης λογαριασμού",

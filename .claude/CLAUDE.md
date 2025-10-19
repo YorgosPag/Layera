@@ -162,10 +162,10 @@ const keys = {
 #### **2. Usage in Components:**
 ```typescript
 // React component με i18n
-import { useTranslation } from 'react-i18next';
+import { useLayeraTranslation } from '@layera/i18n';
 
 function LoginForm() {
-  const { t } = useTranslation();
+  const { t } = useLayeraTranslation();
 
   return (
     <form>
@@ -272,4 +272,132 @@ grep -r "[^a-zA-Z][2-9][0-9]*[^a-zA-Z]" src/
 3. **ΠΟΤΕ hardcoded URLs** - πάντοτε environment variables
 4. **ΠΑΝΤΟΤΕ ελέγχω** για existing translation keys πρώτα
 5. **ΠΑΝΤΟΤΕ προσθέτω** νέα keys σε ΚΑΙ el ΚΑΙ en files
+
+## 🧩 LEGO Systems Policy - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
+
+### 🚫 ΑΠΑΓΟΡΕΥΣΗ Διπλότυπων & Custom Implementations
+**Κάθε φορά που γράφω κώδικα πρέπει να εξασφαλίζω ότι χρησιμοποιώ τα υπάρχοντα LEGO systems:**
+
+#### **🔍 ΥΠΟΧΡΕΩΤΙΚΟΣ ΕΛΕΓΧΟΣ ΠΡΙΝ ΤΗ ΓΡΑΦΗ:**
+1. **Έλεγχος για υπάρχοντα παρόμοια components**: Σάρωσε όλο το repo για παρόμοια υλοποίηση
+2. **Έλεγχος LEGO packages**: Ελέγξε τι exports υπάρχουν στα @layera packages
+3. **Έλεγχος για διπλότυπα**: Βεβαιώσου ότι δεν δημιουργείς duplicate functionality
+
+#### **🧩 ΥΠΟΧΡΕΩΤΙΚΗ ΧΡΗΣΗ LEGO SYSTEMS:**
+```typescript
+// ✅ ΣΩΣΤΟ - Χρήση υπαρχόντων LEGO systems
+import { BaseCard } from '@layera/cards';
+import { Button } from '@layera/buttons';
+import { HomeIcon, WorkIcon } from '@layera/icons';
+import { Stack, Flex } from '@layera/layout';
+import { useLayeraTranslation } from '@layera/i18n';
+import { Z_INDEX } from '@layera/constants';
+
+// ❌ ΛΑΘΟΣ - Custom implementations
+const CustomCard = () => <div className="card">...</div>;
+const CustomButton = styled.button`...`;
+const customIcon = <span>🏠</span>; // NO EMOJIS!
+```
+
+#### **📦 Διαθέσιμα LEGO Systems:**
+- **@layera/cards**: BaseCard, DashboardCard
+- **@layera/buttons**: Button με όλα τα variants
+- **@layera/icons**: Όλα τα icons (ΟΧΙ emojis)
+- **@layera/layout**: Stack, Flex, Grid layouts
+- **@layera/typography**: Text, Heading components
+- **@layera/i18n**: useLayeraTranslation hook
+- **@layera/constants**: Όλες οι constants (Z_INDEX, themes, κλπ)
+- **@layera/theme-switcher**: Theme management
+- **@layera/forms**: FormField, Input, Select κλπ
+
+### 🔍 Mandatory Pre-Code Checks
+
+#### **ΠΡΙΝ ΓΡΑΨΩ ΟΠΟΙΟΔΗΠΟΤΕ COMPONENT:**
+1. **Grep search για παρόμοιο κώδικα**:
+   ```bash
+   # Ψάξε για παρόμοια components
+   grep -r "ComponentName" src/
+   grep -r "similar-functionality" src/
+   ```
+
+2. **Έλεγχος LEGO exports**:
+   ```bash
+   # Ελέγξε τι υπάρχει στα packages
+   cat packages/*/src/index.ts
+   cat packages/*/dist/index.js
+   ```
+
+3. **Αναφορά ευρημάτων**:
+   - "Βρέθηκαν 0 διπλότυπα" ή
+   - "Βρέθηκαν X παρόμοια components: [λίστα]"
+
+### 🎯 LEGO Integration Rules
+
+#### **1. ΠΑΝΤΟΤΕ προτίμησε LEGO component:**
+```typescript
+// ✅ ΣΩΣΤΟ - Χρησιμοποιώ υπάρχον LEGO
+import { BaseCard } from '@layera/cards';
+
+<BaseCard title="Title" actions={actions}>
+  {content}
+</BaseCard>
+
+// ❌ ΛΑΘΟΣ - Custom implementation
+const MyCard = () => (
+  <div className="card">
+    <div className="header">{title}</div>
+    <div className="content">{content}</div>
+  </div>
+);
+```
+
+#### **2. ΠΑΝΤΟΤΕ ελέγξε exports πρώτα:**
+```typescript
+// ✅ ΣΩΣΤΟ - Έλεγξα τι exports το package
+// Βρήκα ότι το @layera/icons exports: HomeIcon, WorkIcon αλλά ΟΧΙ CheckIcon
+// Άρα θα χρησιμοποιήσω το διαθέσιμο ή θα το προσθέσω
+
+// ❌ ΛΑΘΟΣ - Υποθέτω ότι υπάρχει
+import { CheckIcon } from '@layera/icons'; // Αν δεν υπάρχει!
+```
+
+#### **3. ΑΝ ΔΕΝ ΥΠΑΡΧΕΙ ΣΤΟ LEGO:**
+- **Πρώτα**: Προσπάθησε να το προσθέσεις στο σωστό LEGO package
+- **Δεύτερο**: Χρησιμοποίησε το πιο κοντινό υπάρχον
+- **Τελευταίο**: Δημιούργησε custom αλλά τεκμηρίωσε γιατί
+
+### 🔧 LEGO Validation Commands
+
+#### **ΠΡΙΝ commit κώδικα:**
+```bash
+# 1. Έλεγχος για missing LEGO imports
+grep -r "import.*from.*@layera" src/
+
+# 2. Έλεγχος για custom implementations που θα μπορούσαν να είναι LEGO
+grep -r "const.*Card\|const.*Button\|const.*Icon" src/
+
+# 3. Έλεγχος για emojis (ΑΠΑΓΟΡΕΥΜΕΝΑ)
+grep -r "[🏠🏢⚠️✅❌📍🔍]" src/
+
+# 4. Validation που όλα τα imports υπάρχουν
+npm run typecheck
+```
+
+### 📋 Single Source of Truth Principle
+
+**Κάθε functionality πρέπει να υπάρχει ΜΟΝΟ σε ένα μέρος:**
+
+#### **✅ ΣΩΣΤΑ Patterns:**
+- **Buttons**: Μόνο από @layera/buttons
+- **Icons**: Μόνο από @layera/icons (ΟΧΙ emojis, ΟΧΙ SVGs)
+- **Layout**: Μόνο από @layera/layout (ΟΧΙ custom CSS grids)
+- **Typography**: Μόνο από @layera/typography
+- **Forms**: Μόνο από @layera/forms
+
+#### **❌ ΑΠΑΓΟΡΕΥΜΕΝΑ Patterns:**
+- Πολλαπλά card components σε διαφορετικά files
+- Custom button implementations
+- Emoji icons αντί για proper icon components
+- Inline styles αντί για design system
+- Hardcoded colors/spacing αντί για theme tokens
 
