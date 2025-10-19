@@ -1,0 +1,34 @@
+{
+  "name": "@layera/geocoding",
+  "version": "1.0.0",
+  "description": "Enterprise geocoding and location search services for the Layera platform",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "layera",
+    "geocoding",
+    "location-search",
+    "mapping",
+    "enterprise"
+  ],
+  "author": "Layera Team",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {},
+  "publishConfig": {
+    "access": "public"
+  }
+}

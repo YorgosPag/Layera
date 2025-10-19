@@ -4,6 +4,9 @@
 /* Import the official LEGO layout styles */
 @import '../layout/dist/styles.css';
 
+/* Import the official LEGO card styles */
+@import '../cards/dist/styles.css';
+
 /* Additional utility classes that complement LEGO components */
 .layera-mb-2 { margin-bottom: 0.5rem; }
 .layera-mb-4 { margin-bottom: 1rem; }

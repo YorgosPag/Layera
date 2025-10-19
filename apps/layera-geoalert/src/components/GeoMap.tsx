@@ -85,9 +85,12 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
   const { deviceType, isMobile, isTablet, isDesktop } = useViewportWithOverride();
   const mapInitialized = useRef(false);
   const mapRef = useRef<LeafletMap | null>(null);
+  const leafletRef = useRef<typeof import('leaflet').default | null>(null); // Store Leaflet reference
   const drawingMode = useRef<'none' | 'polygon' | 'marker'>('none');
   const currentPolygon = useRef<LeafletLayer | null>(null);
   const polygonPoints = useRef<number[][]>([]);
+  const userLocationMarker = useRef<LeafletLayer | null>(null); // Ref για το user location marker
+  const searchResultMarker = useRef<LeafletLayer | null>(null); // Ref για το search result marker
   const [drawnAreas, setDrawnAreas] = useState<DrawnArea[]>([]);
   const [activeDrawingMode, setActiveDrawingMode] = useState<'none' | 'polygon' | 'marker'>('none');
   const [activeCategory, setActiveCategory] = useState<'real_estate' | 'jobs'>('real_estate');
@@ -130,6 +133,151 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
       });
     };
 
+    // Event listener για geolocation - Βρες τη θέση μου (εκτός του initMap)
+    const handleCenterMapToLocation = (event: CustomEvent) => {
+      console.log('🎯 GeoMap: Received centerMapToLocation event', event.detail);
+
+      if (isComponentMounted && mapRef.current) {
+        const { latitude, longitude, zoom = 16 } = event.detail;
+        console.log('🗺️ GeoMap: Setting view to:', { latitude, longitude, zoom });
+
+        // Αφαιρούμε το παλιό user location marker αν υπάρχει
+        if (userLocationMarker.current && mapRef.current) {
+          try {
+            mapRef.current.removeLayer(userLocationMarker.current);
+            userLocationMarker.current = null;
+            console.log('🗑️ GeoMap: Removed old location marker');
+          } catch (e) {
+            console.warn('Error removing old user location marker:', e);
+          }
+        }
+
+        // Κεντράρισμα του χάρτη στη θέση του χρήστη
+        mapRef.current.setView([latitude, longitude], zoom);
+        console.log('✅ GeoMap: Map centered successfully');
+
+        // Προσθήκη ενός διακριτικού location marker
+        const L = leafletRef.current;
+        console.log('🔍 GeoMap: Checking Leaflet availability:', { L, hasL: !!L });
+
+        if (L) {
+          console.log('📍 GeoMap: Creating location marker...');
+
+          // Δημιουργούμε custom icon για τη θέση του χρήστη
+          const userLocationIcon = L.divIcon({
+            className: 'user-location-marker',
+            html: `
+              <div style="
+                width: 20px;
+                height: 20px;
+                background-color: #007AFF;
+                border: 3px solid white;
+                border-radius: 50%;
+                box-shadow: 0 2px 6px rgba(0, 122, 255, 0.3);
+                position: relative;
+                animation: pulse 2s infinite;
+              "></div>
+              <style>
+                @keyframes pulse {
+                  0% { box-shadow: 0 2px 6px rgba(0, 122, 255, 0.3), 0 0 0 0 rgba(0, 122, 255, 0.7); }
+                  70% { box-shadow: 0 2px 6px rgba(0, 122, 255, 0.3), 0 0 0 10px rgba(0, 122, 255, 0); }
+                  100% { box-shadow: 0 2px 6px rgba(0, 122, 255, 0.3), 0 0 0 0 rgba(0, 122, 255, 0); }
+                }
+              </style>
+            `,
+            iconSize: [26, 26],
+            iconAnchor: [13, 13]
+          });
+
+          // Προσθέτουμε το νέο marker και το αποθηκεύουμε στο ref
+          userLocationMarker.current = L.marker([latitude, longitude], { icon: userLocationIcon })
+            .addTo(mapRef.current)
+            .bindPopup('<div style="text-align: center; font-weight: 600; color: #007AFF;">📍 Η θέση σας</div>')
+            .openPopup();
+
+          console.log('✨ GeoMap: Location marker created and added successfully!');
+        } else {
+          console.error('❌ GeoMap: Leaflet not available for marker creation');
+        }
+      } else {
+        console.warn('⚠️ GeoMap: Cannot handle location - component not mounted or map not ready');
+      }
+    };
+
+    // Event listener για search results - Αποτελέσματα αναζήτησης
+    const handleShowSearchResult = (event: CustomEvent) => {
+      console.log('🔍 GeoMap: Received showSearchResult event', event.detail);
+
+      if (isComponentMounted && mapRef.current) {
+        const { latitude, longitude, zoom = 16, displayName } = event.detail;
+        console.log('🗺️ GeoMap: Showing search result:', { latitude, longitude, displayName });
+
+        // Αφαιρούμε το παλιό search result marker αν υπάρχει
+        if (searchResultMarker.current && mapRef.current) {
+          try {
+            mapRef.current.removeLayer(searchResultMarker.current);
+            searchResultMarker.current = null;
+            console.log('🗑️ GeoMap: Removed old search result marker');
+          } catch (e) {
+            console.warn('Error removing old search result marker:', e);
+          }
+        }
+
+        // Κεντράρισμα του χάρτη στην αναζητημένη τοποθεσία
+        mapRef.current.setView([latitude, longitude], zoom);
+        console.log('✅ GeoMap: Map centered to search result');
+
+        // Προσθήκη search result marker
+        const L = leafletRef.current;
+        if (L) {
+          console.log('📍 GeoMap: Creating search result marker...');
+
+          // Δημιουργούμε custom icon για το search result
+          const searchResultIcon = L.divIcon({
+            className: 'search-result-marker',
+            html: `
+              <div style="
+                width: 30px;
+                height: 30px;
+                background-color: #10b981;
+                border: 4px solid white;
+                border-radius: 50%;
+                box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-weight: bold;
+                font-size: 16px;
+                animation: searchResultPulse 2s infinite;
+              ">📍</div>
+              <style>
+                @keyframes searchResultPulse {
+                  0% { box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4), 0 0 0 0 rgba(16, 185, 129, 0.7); }
+                  70% { box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4), 0 0 0 15px rgba(16, 185, 129, 0); }
+                  100% { box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4), 0 0 0 0 rgba(16, 185, 129, 0); }
+                }
+              </style>
+            `,
+            iconSize: [38, 38],
+            iconAnchor: [19, 19]
+          });
+
+          // Προσθέτουμε το νέο search result marker
+          searchResultMarker.current = L.marker([latitude, longitude], { icon: searchResultIcon })
+            .addTo(mapRef.current)
+            .bindPopup(`<div style="text-align: center; font-weight: 600; color: #10b981; max-width: 200px;">🔍 ${displayName}</div>`)
+            .openPopup();
+
+          console.log('✨ GeoMap: Search result marker created and added successfully!');
+        } else {
+          console.error('❌ GeoMap: Leaflet not available for search result marker creation');
+        }
+      } else {
+        console.warn('⚠️ GeoMap: Cannot handle search result - component not mounted or map not ready');
+      }
+    };
+
     const initMap = async () => {
       try {
         if (!isComponentMounted) return;
@@ -147,6 +295,7 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
         if (!isComponentMounted) return;
 
         console.log('Leaflet library loaded');
+        leafletRef.current = L.default; // Store Leaflet reference
 
         const mapContainer = document.getElementById('geo-map');
         console.log('Map container found:', !!mapContainer);
@@ -195,6 +344,10 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
             }
           });
 
+          // Προσθήκη των event listeners
+          window.addEventListener('centerMapToLocation', handleCenterMapToLocation as EventListener);
+          window.addEventListener('showSearchResult', handleShowSearchResult as EventListener);
+
           // Initial bounds and size
           const bounds = map.getBounds();
           const size = map.getSize();
@@ -226,6 +379,10 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
       isComponentMounted = false;
       clearTimeout(initTimeout);
 
+      // Cleanup των window event listeners
+      window.removeEventListener('centerMapToLocation', handleCenterMapToLocation as EventListener);
+      window.removeEventListener('showSearchResult', handleShowSearchResult as EventListener);
+
       try {
         if (mapRef.current) {
           // Remove all event listeners first
@@ -256,9 +413,11 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
         }
 
         mapInitialized.current = false;
+        leafletRef.current = null;
       } catch (error) {
         console.warn('Map cleanup warning:', error);
         mapInitialized.current = false;
+        leafletRef.current = null;
       }
     };
   }, []);
@@ -392,6 +551,26 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
             }
           }
         });
+
+        // Αφαιρούμε και το user location marker
+        if (userLocationMarker.current) {
+          try {
+            mapRef.current.removeLayer(userLocationMarker.current);
+            userLocationMarker.current = null;
+          } catch (e) {
+            console.warn('Error removing user location marker in clearAll:', e);
+          }
+        }
+
+        // Αφαιρούμε και το search result marker
+        if (searchResultMarker.current) {
+          try {
+            mapRef.current.removeLayer(searchResultMarker.current);
+            searchResultMarker.current = null;
+          } catch (e) {
+            console.warn('Error removing search result marker in clearAll:', e);
+          }
+        }
       } catch (error) {
         console.warn('Error clearing layers:', error);
       }

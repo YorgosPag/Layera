@@ -1,14 +1,108 @@
-[plugin:vite:css] [postcss] ENOENT: no such file or directory, open 'C:\Layera\packages\layout\src\index.ts\dist\styles.css'
-C:/layera/packages/styles/index.css
-    at async open (node:internal/fs/promises:639:25)
-    at async Object.readFile (node:internal/fs/promises:1242:14)
-    at async Object.load (file:///C:/layera/node_modules/.pnpm/vite@4.5.14_@types+node@22.18.11/node_modules/vite/dist/node/chunks/dep-827b23df.js:38850:30)
-    at async Promise.all (index 0)
-    at async LazyResult.runAsync (C:\layera\node_modules\.pnpm\postcss@8.5.6\node_modules\postcss\lib\lazy-result.js:293:11)
-    at async compileCSS (file:///C:/layera/node_modules/.pnpm/vite@4.5.14_@types+node@22.18.11/node_modules/vite/dist/node/chunks/dep-827b23df.js:38904:25)
-    at async TransformContext.transform (file:///C:/layera/node_modules/.pnpm/vite@4.5.14_@types+node@22.18.11/node_modules/vite/dist/node/chunks/dep-827b23df.js:38301:56)
-    at async Object.transform (file:///C:/layera/node_modules/.pnpm/vite@4.5.14_@types+node@22.18.11/node_modules/vite/dist/node/chunks/dep-827b23df.js:44356:30)
-    at async loadAndTransform (file:///C:/layera/node_modules/.pnpm/vite@4.5.14_@types+node@22.18.11/node_modules/vite/dist/node/chunks/dep-827b23df.js:55088:29)
-    at async viteTransformMiddleware (file:///C:/layera/node_modules/.pnpm/vite@4.5.14_@types+node@22.18.11/node_modules/vite/dist/node/chunks/dep-827b23df.js:64699:32
-Click outside, press Esc key, or fix the code to dismiss.
-You can also disable this overlay by setting server.hmr.overlay to false in vite.config.js.
+Ναι, θέλει διάσπαση. Κράτα το modal “shell” λεπτό και βγάλε state, πλοήγηση, CSS, utilities έξω.
+
+Στόχος
+UnifiedPipelineModal = καθαρό shell που συνθέτει βήματα.
+
+Κατάσταση/κανόνες ροής = ξεχωριστό hook ή state machine.
+
+CSS/DOM side-effects εκτός component.
+
+SSR-safe container detection.
+
+Προτεινόμενη δομή φακέλων
+packages/pipelines/unified/
+  UnifiedPipelineModal.tsx          // μόνο compose + wiring
+  hooks/
+    useUnifiedPipeline.ts           // state, actions, guards
+    useModalContainer.ts            // SSR-safe container resolver
+  state/
+    types.ts                        // Category/Intent/... + DTOs
+    reducer.ts                      // ή machine.ts (XState)
+    guards.ts
+    selectors.ts
+  utils/
+    navigation.ts                   // from→to rules, pure
+  styles/
+    modal.css                       // overlay/classes; ΚΑΘΟΛΟΥ inline <style>
+Εργασίες διάσπασης
+State & πλοήγηση
+
+Μετέφερε όλα τα pipelineState + handlers σε useUnifiedPipeline.
+
+Χρησιμοποίησε useReducer με καθαρά events. Όχι setState({...pipelineState,...}). Πάντα functional updates.
+
+Οι κανόνες μετάβασης να είναι pure (guards σε guards.ts).
+
+Το modal shell κάνει μόνο:
+
+const {state, actions} = useUnifiedPipeline({ onSubmit });
+και switch(state.step) για render.
+
+Τύποι & DTO
+
+Ορίσσε UnifiedPipelineDTO και μην χρησιμοποιείς any στο onSubmit.
+
+Discriminated unions για property/job ώστε να μην χρειάζονται non-null assertions (!).
+
+Container detection (SSR-safe)
+
+Βγάλε getModalContainer σε useModalContainer:
+
+Μη διαβάζεις document στο render.
+
+Επιστρέφεις () => Element ή null μετά από useEffect/useLayoutEffect guard:
+
+const container = useModalContainer({ preferredId: 'layera-device-simulator-viewport' });
+<Modal container={container} />
+Αν το Modal δέχεται function, πέρασέ την function, όχι getModalContainer() στο render.
+
+CSS
+
+Αφαίρεσε όλο το document.createElement('style').
+
+Μετέφερε τις κλάσεις σε styles/modal.css (overlay, modal box, dark theme).
+
+Τα tokens να προέρχονται από @layera/responsive-design ή global CSS vars. Καμία “magic” HSL εδώ.
+
+Steps API
+
+Κάθε step να είναι “dumb”: δέχεται value(s), onNext, onBack. Δεν ξέρει global state shape.
+
+Προσάρμοσε LocationStep, LayoutStep, DetailsStep να μην διαβάζουν ! properties, ο συσχετισμός γίνεται στο hook.
+
+Υποβολή & λάθη
+
+handleDetailsSubmit να έχει try/catch, loading flag, disable κουμπιών, idempotency (μη διπλό submit).
+
+Lazy loading
+
+const CategoryStep = lazy(() => import('./steps/CategoryStep')); με <Suspense fallback={<Spinner/>}>.
+
+Τηλεμετρία
+
+Στο hook: events step_viewed, step_completed, duration μέσω performance.now().
+
+Tests
+
+Unit: reducer/guards (happy/edge paths).
+
+RTL: modal shell render ανά step.
+
+Contract: DTO validators.
+
+Ενδεικτικό wiring μετά τη διάσπαση (σύντομο)
+// UnifiedPipelineModal.tsx
+export function UnifiedPipelineModal({ isOpen, onClose, onSubmit }: Props) {
+  const container = useModalContainer({ preferredId: 'layera-device-simulator-viewport' });
+  const { state, actions, can } = useUnifiedPipeline({ onSubmit, onClose });
+
+  return (
+    <Modal open={isOpen} onClose={actions.reset} container={container} className="unified-pipeline-modal">
+      {state.step === 'category' && <CategoryStep onNext={actions.setCategory} />}
+      {state.step === 'intent' && <IntentStep category={state.category!} onNext={actions.setIntent} onBack={actions.back} />}
+      {/* ...τα υπόλοιπα βήματα... */}
+    </Modal>
+  );
+}
+Συνοπτικό συμπέρασμα
+Ναι, διάσπαση τώρα: hook για ροή, utils για container, CSS σε αρχείο, strong types για DTO, dumb steps. Το modal μένει λεπτό και enterprise-έτοιμο.

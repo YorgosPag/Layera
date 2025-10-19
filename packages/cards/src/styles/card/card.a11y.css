@@ -1,0 +1,24 @@
+/**
+ * Layera Cards System - Accessibility
+ * Accessibility enhancements and user preferences
+ */
+
+/* ============ ACCESSIBILITY ============ */
+
+@media (prefers-reduced-motion: reduce) {
+  .layera-card,
+  .layera-skeleton {
+    transition: none;
+    animation: none;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .layera-card {
+    border-width: 2px;
+  }
+
+  .layera-card--elevated {
+    border: 2px solid var(--layera-card-border);
+  }
+}

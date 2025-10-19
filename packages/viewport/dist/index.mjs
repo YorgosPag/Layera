@@ -775,13 +775,20 @@ var DeviceSimulator = ({
         position: "relative",
         boxShadow: "inset 0 0 0 1px color-mix(in srgb, var(--layera-border-primary) 10%, transparent 90%)"
       }, children: [
-        /* @__PURE__ */ jsx5("div", { style: {
-          width: `${finalWidth}px`,
-          height: `${finalHeight}px`,
-          transform: `scale(${spec.scale})`,
-          transformOrigin: "top left",
-          overflow: "hidden"
-        }, children }),
+        /* @__PURE__ */ jsx5(
+          "div",
+          {
+            id: "layera-device-simulator-viewport",
+            style: {
+              width: `${finalWidth}px`,
+              height: `${finalHeight}px`,
+              transform: `scale(${spec.scale})`,
+              transformOrigin: "top left",
+              overflow: "hidden"
+            },
+            children
+          }
+        ),
         overrideDevice === "mobile" && /* @__PURE__ */ jsx5(Fragment3, { children: /* @__PURE__ */ jsx5("div", { style: {
           position: "absolute",
           bottom: "8px",

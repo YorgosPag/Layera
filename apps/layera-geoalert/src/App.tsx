@@ -13,7 +13,7 @@ import { ArrowLeftIcon, MapIcon, PlusIcon, ShareIcon, LayersIcon, AlertTriangleI
 import { LanguageSwitcher } from '@layera/i18n';
 import { GeoHeader } from './components/GeoHeader';
 import { SimpleNavigationRail } from './components/SimpleNavigationRail';
-import { UnifiedPipeline } from './components/UnifiedPipeline';
+import { UnifiedPipelineModal } from '../../../packages/pipelines/unified/UnifiedPipelineModal';
 import GeoMap, { DrawnArea } from './components/GeoMap';
 
 function TestNotificationsComponent() {
@@ -198,6 +198,13 @@ function App() {
     setShowUnifiedPipeline(true);
   };
 
+  const handleUnifiedPipelineSubmit = async (data: any) => {
+    console.log('Unified Pipeline submitted with data:', data);
+    // TODO: Implement API submission logic
+    // For now, just close the modal after submission
+    setShowUnifiedPipeline(false);
+  };
+
   if (isMapMode) {
     return (
       <ThemeProvider defaultTheme="system" storageKey="layera-geoalert-theme">
@@ -217,9 +224,10 @@ function App() {
                 <GeoMap onAreaCreated={handleAreaCreated} />
 
                 {/* Unified Pipeline Modal */}
-                <UnifiedPipeline
+                <UnifiedPipelineModal
                   isOpen={showUnifiedPipeline}
                   onClose={() => setShowUnifiedPipeline(false)}
+                  onSubmit={handleUnifiedPipelineSubmit}
                 />
               </AppShell>
             </DeviceSimulator>

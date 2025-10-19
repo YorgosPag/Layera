@@ -352,6 +352,8 @@ declare const Z_INDEX: {
     readonly POPOVER: 1060;
     readonly TOOLTIP: 1070;
     readonly TOAST: 1080;
+    readonly MAP_OVERLAY: 10000;
+    readonly MAP_MODAL: 10050;
 };
 type ThemeMode = typeof THEME_MODES[keyof typeof THEME_MODES];
 type ColorScheme = typeof COLOR_SCHEMES[keyof typeof COLOR_SCHEMES];

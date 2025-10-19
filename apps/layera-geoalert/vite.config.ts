@@ -21,6 +21,8 @@ export default defineConfig({
       '@layera/typography': resolve(__dirname, '../../packages/typography/src/index.ts'),
       '@layera/theme-switcher': resolve(__dirname, '../../packages/theme-switcher/src/index.ts'),
       '@layera/layout': resolve(__dirname, '../../packages/layout/src/index.ts'),
+      '@layera/forms': resolve(__dirname, '../../packages/forms/src/index.ts'),
+      '@layera/cards': resolve(__dirname, '../../packages/cards/src/index.ts'),
       '@layera/constants': resolve(__dirname, '../../packages/constants/src'),
       '@layera/viewport': resolve(__dirname, '../../packages/viewport/src'),
       '@layera/notifications': resolve(__dirname, '../../packages/notifications/src'),

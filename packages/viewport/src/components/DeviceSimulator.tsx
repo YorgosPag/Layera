@@ -159,13 +159,15 @@ export const DeviceSimulator: React.FC<DeviceSimulatorProps> = ({
           boxShadow: 'inset 0 0 0 1px color-mix(in srgb, var(--layera-border-primary) 10%, transparent 90%)'
         }}>
           {/* Viewport Content */}
-          <div style={{
-            width: `${finalWidth}px`,
-            height: `${finalHeight}px`,
-            transform: `scale(${spec.scale})`,
-            transformOrigin: 'top left',
-            overflow: 'hidden'
-          }}>
+          <div
+            id="layera-device-simulator-viewport"
+            style={{
+              width: `${finalWidth}px`,
+              height: `${finalHeight}px`,
+              transform: `scale(${spec.scale})`,
+              transformOrigin: 'top left',
+              overflow: 'hidden'
+            }}>
             {children}
           </div>
 

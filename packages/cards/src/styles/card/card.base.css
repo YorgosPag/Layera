@@ -1,0 +1,76 @@
+/**
+ * Layera Cards System - Base Card Structure
+ * Core card component and structural elements
+ */
+
+/* ============ BASE CARD ============ */
+
+.layera-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--layera-card-bg);
+  border: 1px solid var(--layera-card-border);
+  border-radius: var(--layera-card-radius);
+  transition: var(--layera-card-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Special case for cards containing dropdown menus */
+.layera-card--dropdown-container {
+  overflow: visible;
+}
+
+/* ============ CARD STRUCTURE ============ */
+
+.layera-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--layera-card-header-spacing);
+  margin-bottom: var(--layera-card-content-spacing);
+}
+
+.layera-card__header-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.layera-card__title {
+  margin: 0;
+  font-size: var(--layera-card-title-size);
+  font-weight: var(--layera-card-title-weight);
+  line-height: 1.25;
+  color: inherit;
+}
+
+.layera-card__subtitle {
+  margin: var(--layera-space-1, 0.25rem) 0 0 0;
+  font-size: var(--layera-card-subtitle-size);
+  font-weight: var(--layera-card-subtitle-weight);
+  line-height: 1.4;
+  color: var(--layera-text-secondary);
+}
+
+.layera-card__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--layera-space-2, 0.5rem);
+  flex-shrink: 0;
+}
+
+.layera-card__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.layera-card__footer {
+  margin-top: var(--layera-card-footer-spacing);
+  padding-top: var(--layera-card-footer-spacing);
+  border-top: 1px solid var(--layera-card-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--layera-space-2, 0.5rem);
+}

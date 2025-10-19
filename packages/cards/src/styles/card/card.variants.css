@@ -1,0 +1,58 @@
+/**
+ * Layera Cards System - Card Variants
+ * Different card styles, sizes, and padding options
+ */
+
+/* ============ CARD VARIANTS ============ */
+
+.layera-card--elevated {
+  border: none;
+  box-shadow: var(--layera-card-elevated-shadow);
+}
+
+.layera-card--outlined {
+  border: 2px solid var(--layera-card-border);
+  box-shadow: none;
+}
+
+.layera-card--filled {
+  background-color: var(--layera-card-bg);
+  border: none;
+  box-shadow: none;
+}
+
+/* ============ CARD SIZES ============ */
+
+.layera-card--sm {
+  min-width: var(--layera-card-size-sm);
+}
+
+.layera-card--md {
+  min-width: var(--layera-card-size-md);
+}
+
+.layera-card--lg {
+  min-width: var(--layera-card-size-lg);
+}
+
+.layera-card--xl {
+  min-width: var(--layera-card-size-xl);
+}
+
+/* ============ CARD PADDING ============ */
+
+.layera-card--padding-none {
+  padding: var(--layera-card-padding-none);
+}
+
+.layera-card--padding-sm {
+  padding: var(--layera-card-padding-sm);
+}
+
+.layera-card--padding-md {
+  padding: var(--layera-card-padding-md);
+}
+
+.layera-card--padding-lg {
+  padding: var(--layera-card-padding-lg);
+}

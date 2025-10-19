@@ -304,12 +304,95 @@ var WorkIcon = (props) => /* @__PURE__ */ jsxs5(Icon, { name: "work", ...props, 
   /* @__PURE__ */ jsx5("line", { x1: "8", y1: "21", x2: "16", y2: "21" }),
   /* @__PURE__ */ jsx5("line", { x1: "12", y1: "17", x2: "12", y2: "21" })
 ] });
+
+// src/icons/PropertyIcons.tsx
+import { jsx as jsx6, jsxs as jsxs6 } from "react/jsx-runtime";
+var BuildingIcon = (props) => /* @__PURE__ */ jsxs6(Icon, { name: "building", ...props, children: [
+  /* @__PURE__ */ jsx6("rect", { x: "4", y: "2", width: "16", height: "20", rx: "1", ry: "1" }),
+  /* @__PURE__ */ jsx6("rect", { x: "6", y: "5", width: "2", height: "2" }),
+  /* @__PURE__ */ jsx6("rect", { x: "10", y: "5", width: "2", height: "2" }),
+  /* @__PURE__ */ jsx6("rect", { x: "14", y: "5", width: "2", height: "2" }),
+  /* @__PURE__ */ jsx6("rect", { x: "6", y: "9", width: "2", height: "2" }),
+  /* @__PURE__ */ jsx6("rect", { x: "10", y: "9", width: "2", height: "2" }),
+  /* @__PURE__ */ jsx6("rect", { x: "14", y: "9", width: "2", height: "2" }),
+  /* @__PURE__ */ jsx6("rect", { x: "6", y: "13", width: "2", height: "2" }),
+  /* @__PURE__ */ jsx6("rect", { x: "10", y: "13", width: "2", height: "2" }),
+  /* @__PURE__ */ jsx6("rect", { x: "14", y: "13", width: "2", height: "2" }),
+  /* @__PURE__ */ jsx6("rect", { x: "9", y: "17", width: "3", height: "5" })
+] });
+var VillaIcon = (props) => /* @__PURE__ */ jsxs6(Icon, { name: "villa", ...props, children: [
+  /* @__PURE__ */ jsx6("polygon", { points: "12,2 2,7 2,22 22,22 22,7" }),
+  /* @__PURE__ */ jsx6("polyline", { points: "6,9 6,22" }),
+  /* @__PURE__ */ jsx6("polyline", { points: "10,9 10,22" }),
+  /* @__PURE__ */ jsx6("polyline", { points: "14,9 14,22" }),
+  /* @__PURE__ */ jsx6("polyline", { points: "18,9 18,22" }),
+  /* @__PURE__ */ jsx6("rect", { x: "8", y: "16", width: "3", height: "6" }),
+  /* @__PURE__ */ jsx6("rect", { x: "13", y: "12", width: "2", height: "2" }),
+  /* @__PURE__ */ jsx6("rect", { x: "16", y: "12", width: "2", height: "2" })
+] });
+var CommercialIcon = (props) => /* @__PURE__ */ jsxs6(Icon, { name: "commercial", ...props, children: [
+  /* @__PURE__ */ jsx6("rect", { x: "2", y: "6", width: "20", height: "16", rx: "1", ry: "1" }),
+  /* @__PURE__ */ jsx6("rect", { x: "4", y: "2", width: "16", height: "6", rx: "1", ry: "1" }),
+  /* @__PURE__ */ jsx6("rect", { x: "6", y: "10", width: "4", height: "8" }),
+  /* @__PURE__ */ jsx6("rect", { x: "14", y: "10", width: "4", height: "8" }),
+  /* @__PURE__ */ jsx6("rect", { x: "11", y: "12", width: "2", height: "2" }),
+  /* @__PURE__ */ jsx6("line", { x1: "2", y1: "6", x2: "22", y2: "6" }),
+  /* @__PURE__ */ jsx6("circle", { cx: "19", cy: "4", r: "1" })
+] });
+var IndustrialIcon = (props) => /* @__PURE__ */ jsxs6(Icon, { name: "industrial", ...props, children: [
+  /* @__PURE__ */ jsx6("rect", { x: "3", y: "10", width: "18", height: "12", rx: "1", ry: "1" }),
+  /* @__PURE__ */ jsx6("polygon", { points: "3,10 12,2 21,10" }),
+  /* @__PURE__ */ jsx6("rect", { x: "6", y: "13", width: "3", height: "5" }),
+  /* @__PURE__ */ jsx6("rect", { x: "10", y: "13", width: "4", height: "9" }),
+  /* @__PURE__ */ jsx6("rect", { x: "15", y: "13", width: "3", height: "5" }),
+  /* @__PURE__ */ jsx6("line", { x1: "8", y1: "2", x2: "8", y2: "8" }),
+  /* @__PURE__ */ jsx6("line", { x1: "16", y1: "2", x2: "16", y2: "8" })
+] });
+var BriefcaseIcon = (props) => /* @__PURE__ */ jsxs6(Icon, { name: "briefcase", ...props, children: [
+  /* @__PURE__ */ jsx6("rect", { x: "2", y: "7", width: "20", height: "14", rx: "2", ry: "2" }),
+  /* @__PURE__ */ jsx6("path", { d: "M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" }),
+  /* @__PURE__ */ jsx6("line", { x1: "2", y1: "11", x2: "22", y2: "11" }),
+  /* @__PURE__ */ jsx6("circle", { cx: "12", cy: "14", r: "2" })
+] });
+var ToolIcon = (props) => /* @__PURE__ */ jsx6(Icon, { name: "tool", ...props, children: /* @__PURE__ */ jsx6("path", { d: "M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" }) });
+var TruckIcon = (props) => /* @__PURE__ */ jsxs6(Icon, { name: "truck", ...props, children: [
+  /* @__PURE__ */ jsx6("rect", { x: "1", y: "3", width: "15", height: "13" }),
+  /* @__PURE__ */ jsx6("polygon", { points: "16,8 20,8 23,11 23,16 16,16" }),
+  /* @__PURE__ */ jsx6("circle", { cx: "5.5", cy: "18", r: "2.5" }),
+  /* @__PURE__ */ jsx6("circle", { cx: "18.5", cy: "18", r: "2.5" }),
+  /* @__PURE__ */ jsx6("line", { x1: "1", y1: "8", x2: "16", y2: "8" })
+] });
+var StoreIcon = (props) => /* @__PURE__ */ jsxs6(Icon, { name: "store", ...props, children: [
+  /* @__PURE__ */ jsx6("path", { d: "M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7" }),
+  /* @__PURE__ */ jsx6("path", { d: "M21 7L12 2 3 7" }),
+  /* @__PURE__ */ jsx6("path", { d: "M12 2v5" }),
+  /* @__PURE__ */ jsx6("rect", { x: "8", y: "13", width: "8", height: "6" }),
+  /* @__PURE__ */ jsx6("rect", { x: "10", y: "15", width: "4", height: "2" })
+] });
+var RestaurantIcon = (props) => /* @__PURE__ */ jsxs6(Icon, { name: "restaurant", ...props, children: [
+  /* @__PURE__ */ jsx6("path", { d: "M3 2v7c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2V2" }),
+  /* @__PURE__ */ jsx6("path", { d: "M7 2v20" }),
+  /* @__PURE__ */ jsx6("path", { d: "M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3z" }),
+  /* @__PURE__ */ jsx6("path", { d: "M19 15v7" })
+] });
+var HospitalIcon = (props) => /* @__PURE__ */ jsxs6(Icon, { name: "hospital", ...props, children: [
+  /* @__PURE__ */ jsx6("rect", { x: "2", y: "3", width: "20", height: "18", rx: "2", ry: "2" }),
+  /* @__PURE__ */ jsx6("path", { d: "M12 7v10" }),
+  /* @__PURE__ */ jsx6("path", { d: "M7 12h10" }),
+  /* @__PURE__ */ jsx6("rect", { x: "6", y: "15", width: "2", height: "2" }),
+  /* @__PURE__ */ jsx6("rect", { x: "10", y: "15", width: "2", height: "2" }),
+  /* @__PURE__ */ jsx6("rect", { x: "14", y: "15", width: "2", height: "2" }),
+  /* @__PURE__ */ jsx6("rect", { x: "18", y: "15", width: "2", height: "2" })
+] });
 export {
   AlertTriangleIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
+  BriefcaseIcon,
+  BuildingIcon,
   CheckIcon,
   CloseIcon,
+  CommercialIcon,
   CompassIcon,
   CopyIcon,
   CrosshairsIcon,
@@ -318,7 +401,9 @@ export {
   EditIcon,
   GlobeIcon,
   HomeIcon,
+  HospitalIcon,
   Icon,
+  IndustrialIcon,
   LaptopIcon,
   LayersIcon,
   LocationIcon,
@@ -331,6 +416,7 @@ export {
   PrintIcon,
   RedoIcon,
   RefreshIcon,
+  RestaurantIcon,
   RotateIcon,
   RouteIcon,
   SatelliteIcon,
@@ -339,10 +425,14 @@ export {
   SettingsIcon,
   ShareIcon,
   SmartphoneIcon,
+  StoreIcon,
   TabletIcon,
+  ToolIcon,
+  TruckIcon,
   TvIcon,
   UndoIcon,
   UploadIcon,
+  VillaIcon,
   WatchIcon,
   WorkIcon,
   ZoomInIcon,

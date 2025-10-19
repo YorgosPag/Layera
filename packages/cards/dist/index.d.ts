@@ -19,6 +19,7 @@ interface BaseCardProps {
     clickable?: boolean;
     onClick?: () => void;
     className?: string;
+    style?: React.CSSProperties;
 }
 interface CardHeaderProps {
     title?: string;

@@ -1,0 +1,38 @@
+/**
+ * Layera Cards System - Interactive States
+ * Hover, click, focus, and active states for cards
+ */
+
+/* ============ INTERACTIVE STATES ============ */
+
+.layera-card--hoverable:hover {
+  box-shadow: var(--layera-card-shadow-hover);
+  transform: translateY(-1px);
+}
+
+.layera-card--elevated.layera-card--hoverable:hover {
+  box-shadow: var(--layera-card-elevated-shadow-hover);
+}
+
+.layera-card--clickable {
+  cursor: pointer;
+  border: none;
+  background: inherit;
+  font: inherit;
+  text-align: inherit;
+  width: 100%;
+}
+
+.layera-card--clickable:hover {
+  box-shadow: var(--layera-card-shadow-hover);
+  transform: translateY(-1px);
+}
+
+.layera-card--clickable:focus-visible {
+  outline: 2px solid var(--layera-color-focus);
+  outline-offset: 2px;
+}
+
+.layera-card--clickable:active {
+  transform: translateY(0);
+}

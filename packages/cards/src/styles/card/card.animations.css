@@ -1,0 +1,15 @@
+/**
+ * Layera Cards System - Animations
+ * Animation definitions and keyframes
+ */
+
+/* ============ ANIMATIONS ============ */
+
+@keyframes layera-skeleton {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

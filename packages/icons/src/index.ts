@@ -69,3 +69,17 @@ export {
   WorkIcon
 } from './icons/ActionIcons';
 
+// Property & Real Estate Icons
+export {
+  BuildingIcon,
+  VillaIcon,
+  CommercialIcon,
+  IndustrialIcon,
+  BriefcaseIcon,
+  ToolIcon,
+  TruckIcon,
+  StoreIcon,
+  RestaurantIcon,
+  HospitalIcon
+} from './icons/PropertyIcons';
+

@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 /**
  * Modal - Βασικό modal component για το Layera Modal System
  */
-const Modal = ({ open, onClose, children, size = 'md', variant = 'default', animation = 'fade', closeOnOverlayClick = true, closeOnEscape = true, showCloseButton = true, preventBodyScroll = true, className = '', overlayClassName = '', 'aria-labelledby': ariaLabelledBy, 'aria-describedby': ariaDescribedBy }) => {
+const Modal = ({ open, onClose, children, size = 'md', variant = 'default', animation = 'fade', closeOnOverlayClick = true, closeOnEscape = true, showCloseButton = true, preventBodyScroll = true, className = '', overlayClassName = '', container, 'aria-labelledby': ariaLabelledBy, 'aria-describedby': ariaDescribedBy }) => {
     const modalRef = useRef(null);
     const overlayRef = useRef(null);
     // Handle ESC key
@@ -67,7 +67,16 @@ const Modal = ({ open, onClose, children, size = 'md', variant = 'default', anim
                     React.createElement("line", { x1: "18", y1: "6", x2: "6", y2: "18" }),
                     React.createElement("line", { x1: "6", y1: "6", x2: "18", y2: "18" })))),
             children)));
-    return createPortal(modalContent, document.body);
+    const portalContainer = (() => {
+        if (container === null)
+            return document.body;
+        if (typeof container === 'function')
+            return container();
+        if (container)
+            return container;
+        return document.body;
+    })();
+    return createPortal(modalContent, portalContainer);
 };
 
 /**

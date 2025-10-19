@@ -19,6 +19,7 @@ export const Modal: React.FC<BaseModalProps> = ({
   preventBodyScroll = true,
   className = '',
   overlayClassName = '',
+  container,
   'aria-labelledby': ariaLabelledBy,
   'aria-describedby': ariaDescribedBy
 }) => {
@@ -132,5 +133,12 @@ export const Modal: React.FC<BaseModalProps> = ({
     </div>
   );
 
-  return createPortal(modalContent, document.body);
+  const portalContainer = (() => {
+    if (container === null) return document.body;
+    if (typeof container === 'function') return container();
+    if (container) return container;
+    return document.body;
+  })();
+
+  return createPortal(modalContent, portalContainer);
 };

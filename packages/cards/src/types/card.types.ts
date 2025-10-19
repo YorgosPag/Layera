@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
 /**
  * Card Types για το Layera Cards System
@@ -21,6 +21,7 @@ export interface BaseCardProps {
   clickable?: boolean;
   onClick?: () => void;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 export interface CardHeaderProps {

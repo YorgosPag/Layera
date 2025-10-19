@@ -16,7 +16,8 @@ export const BaseCard: React.FC<BaseCardProps> = ({
   hoverable = false,
   clickable = false,
   onClick,
-  className = ''
+  className = '',
+  style
 }) => {
   const cardClasses = [
     'layera-card',
@@ -53,7 +54,7 @@ export const BaseCard: React.FC<BaseCardProps> = ({
     : {};
 
   return (
-    <CardElement className={cardClasses} {...extraProps}>
+    <CardElement className={cardClasses} style={style} {...extraProps}>
       {/* Header Section */}
       {(title || subtitle || actions) && (
         <div className="layera-card__header">

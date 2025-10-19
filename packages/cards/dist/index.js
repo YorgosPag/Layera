@@ -12,7 +12,8 @@ var BaseCard = ({
   hoverable = false,
   clickable = false,
   onClick,
-  className = ""
+  className = "",
+  style
 }) => {
   const cardClasses = [
     "layera-card",
@@ -42,7 +43,7 @@ var BaseCard = ({
     role: "button",
     "aria-pressed": false
   } : {};
-  return /* @__PURE__ */ jsxs(CardElement, { className: cardClasses, ...extraProps, children: [
+  return /* @__PURE__ */ jsxs(CardElement, { className: cardClasses, style, ...extraProps, children: [
     (title || subtitle || actions) && /* @__PURE__ */ jsxs("div", { className: "layera-card__header", children: [
       /* @__PURE__ */ jsxs("div", { className: "layera-card__header-content", children: [
         title && /* @__PURE__ */ jsx("h3", { className: "layera-card__title", children: title }),

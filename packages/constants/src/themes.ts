@@ -72,7 +72,10 @@ export const Z_INDEX = {
   MODAL: 1050,
   POPOVER: 1060,
   TOOLTIP: 1070,
-  TOAST: 1080
+  TOAST: 1080,
+  // Υψηλά z-index για elements που πρέπει να εμφανίζονται πάνω από χάρτες
+  MAP_OVERLAY: 10000,
+  MAP_MODAL: 10050
 } as const;
 
 // Type exports

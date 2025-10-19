@@ -18,6 +18,7 @@ export interface BaseModalProps {
     preventBodyScroll?: boolean;
     className?: string;
     overlayClassName?: string;
+    container?: Element | (() => Element) | null;
     'aria-labelledby'?: string;
     'aria-describedby'?: string;
 }

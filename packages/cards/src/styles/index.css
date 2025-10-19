@@ -1,8 +1,24 @@
 /**
  * Layera Cards System - Main Styles Entry Point
+ * Enterprise CSS Architecture with Layers
  */
 
-/* Import order matters - tokens first, then components */
+/* Import design tokens first */
 @import './tokens.css';
-@import './card.css';
-@import './dashboard.css';
+
+/* CSS Layers for proper cascade control */
+@layer base {
+  @import './card/card.base.css';
+}
+
+@layer components {
+  @import './card/card.variants.css';
+  @import './card/card.interactions.css';
+  @import './card/card.dashboard.css';
+}
+
+@layer utilities {
+  @import './card/card.responsive.css';
+  @import './card/card.a11y.css';
+  @import './card/card.animations.css';
+}
