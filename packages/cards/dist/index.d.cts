@@ -102,4 +102,4 @@ interface DashboardSectionProps {
 }
 declare const DashboardSection: React.FC<DashboardSectionProps>;
 
-export { BaseCard, BaseCardProps, CardContentProps, CardFooterProps, CardHeaderProps, CardPadding, CardSize, CardVariant, DashboardCard, DashboardCardProps, DashboardCardVariant, DashboardGrid, DashboardSection, DataCardProps, InfoCardProps };
+export { BaseCard, type BaseCardProps, type CardContentProps, type CardFooterProps, type CardHeaderProps, type CardPadding, type CardSize, type CardVariant, DashboardCard, type DashboardCardProps, type DashboardCardVariant, DashboardGrid, DashboardSection, type DataCardProps, type InfoCardProps };

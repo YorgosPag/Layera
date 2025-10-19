@@ -8,9 +8,6 @@ import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader }
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
 import { SettingsIcon, ShieldIcon, BellIcon, PaletteIcon, WarningIcon, ChartIcon, UserIcon, FolderIcon } from '../components/icons/LayeraIcons';
 import QuickActions from '../components/QuickActions';
-import '@layera/layout/styles';
-import '@layera/cards/styles';
-import '@layera/i18n/styles';
 
 export default function Settings() {
   const { user, signOut } = useAuthContext();

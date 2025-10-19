@@ -5,9 +5,6 @@ import { Button } from '@layera/buttons';
 import { BaseCard } from '@layera/cards';
 import { useLayeraTranslation } from '@layera/i18n';
 import { FORM_SIZES } from '@layera/constants';
-import '@layera/forms/styles';
-import '@layera/buttons/styles';
-import '@layera/cards/styles';
 import './Support.css';
 
 const Support = () => {

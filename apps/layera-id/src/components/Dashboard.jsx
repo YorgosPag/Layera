@@ -10,10 +10,6 @@ import { ThemeSwitcher } from '@layera/theme-switcher';
 import { CheckIcon, XIcon } from './icons/LayeraIcons';
 import './Dashboard.css';
 import '../styles/typography.css';
-import '@layera/buttons/styles';
-import '@layera/cards/styles';
-import '@layera/layout/styles';
-import '@layera/theme-switcher/styles';
 
 const Dashboard = () => {
   const { user, signOut } = useAuthContext();

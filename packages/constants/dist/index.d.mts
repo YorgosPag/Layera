@@ -343,12 +343,23 @@ declare const SPACING_SCALE: {
     readonly XXL: 48;
     readonly XXXL: 64;
 };
+declare const Z_INDEX: {
+    readonly DROPDOWN: 1000;
+    readonly STICKY: 1020;
+    readonly FIXED: 1030;
+    readonly MODAL_BACKDROP: 1040;
+    readonly MODAL: 1050;
+    readonly POPOVER: 1060;
+    readonly TOOLTIP: 1070;
+    readonly TOAST: 1080;
+};
 type ThemeMode = typeof THEME_MODES[keyof typeof THEME_MODES];
 type ColorScheme = typeof COLOR_SCHEMES[keyof typeof COLOR_SCHEMES];
 type ComponentVariant = typeof COMPONENT_VARIANTS[keyof typeof COMPONENT_VARIANTS];
 type ElevationLevel = typeof ELEVATION_LEVELS[keyof typeof ELEVATION_LEVELS];
 type BorderRadius = typeof BORDER_RADIUS[keyof typeof BORDER_RADIUS];
 type SpacingScale = typeof SPACING_SCALE[keyof typeof SPACING_SCALE];
+type ZIndex = typeof Z_INDEX[keyof typeof Z_INDEX];
 
 /**
  * Navigation and routing constants
@@ -682,4 +693,4 @@ declare const CONFIG: {
 
 declare const LAYERA_CONSTANTS_VERSION = "1.0.0";
 
-export { AUTOCOMPLETE_VALUES, type AutocompleteValue, BORDER_RADIUS, BULK_ACTIONS, BUTTON_SIZES, BUTTON_STATES, type BorderRadius, type BulkAction, type ButtonSize, type ButtonState, CARD_STATES, COLOR_SCHEMES, COLUMN_TYPES, COMPONENT_SIZES, COMPONENT_VARIANTS, CONFIG, type CardState, type ColorScheme, type ColumnType, type ComponentSize, type ComponentVariant, DATA_STATES, type DataState, ELEVATION_LEVELS, EXPORT_FORMATS, type ElevationLevel, type ExportFormat, FIELD_SIZES, FILTER_TYPES, FORM_SIZES, FORM_STATES, FORM_TYPES, type FieldSize, type FilterType, type FormSize, type FormState, type FormType, GEO_DRAWING_ERRORS, GEO_DRAWING_INTERACTION, GEO_DRAWING_MEASUREMENT, GEO_DRAWING_OSM, GEO_DRAWING_SNAP, GEO_DRAWING_STYLES, GEO_DRAWING_SUCCESS, ICON_SIZES, INPUT_VARIANTS, type IconSize, type InputVariant, LAYERA_CONSTANTS_VERSION, LINK_TARGETS, type LinkTarget, MENU_POSITIONS, type MenuPosition, NAVIGATION_TYPES, type NavigationType, PAGE_LAYOUTS, PAGINATION_SIZES, PERMISSIONS, type PageLayout, type PaginationSize, type Permission, ROLE_HIERARCHY, ROLE_PERMISSIONS, ROUTE_PATTERNS, type RoleHierarchy, type RoutePattern, SNAP_CONSTANTS, SNAP_DEVICE_DEFAULTS, SNAP_TYPE_GROUPS, SNAP_VISUAL, SORT_DIRECTIONS, SPACING_SCALE, type SortDirection, type SpacingScale, TABLE_COLUMN_WIDTHS, TABLE_DENSITIES, TABLE_VARIANTS, THEME_MODES, type TableColumnWidth, type TableDensity, type TableVariant, type ThemeMode, USER_ROLES, USER_STATUS, type UserRole, type UserStatus, VALIDATION_RULES, type ValidationRule };
+export { AUTOCOMPLETE_VALUES, type AutocompleteValue, BORDER_RADIUS, BULK_ACTIONS, BUTTON_SIZES, BUTTON_STATES, type BorderRadius, type BulkAction, type ButtonSize, type ButtonState, CARD_STATES, COLOR_SCHEMES, COLUMN_TYPES, COMPONENT_SIZES, COMPONENT_VARIANTS, CONFIG, type CardState, type ColorScheme, type ColumnType, type ComponentSize, type ComponentVariant, DATA_STATES, type DataState, ELEVATION_LEVELS, EXPORT_FORMATS, type ElevationLevel, type ExportFormat, FIELD_SIZES, FILTER_TYPES, FORM_SIZES, FORM_STATES, FORM_TYPES, type FieldSize, type FilterType, type FormSize, type FormState, type FormType, GEO_DRAWING_ERRORS, GEO_DRAWING_INTERACTION, GEO_DRAWING_MEASUREMENT, GEO_DRAWING_OSM, GEO_DRAWING_SNAP, GEO_DRAWING_STYLES, GEO_DRAWING_SUCCESS, ICON_SIZES, INPUT_VARIANTS, type IconSize, type InputVariant, LAYERA_CONSTANTS_VERSION, LINK_TARGETS, type LinkTarget, MENU_POSITIONS, type MenuPosition, NAVIGATION_TYPES, type NavigationType, PAGE_LAYOUTS, PAGINATION_SIZES, PERMISSIONS, type PageLayout, type PaginationSize, type Permission, ROLE_HIERARCHY, ROLE_PERMISSIONS, ROUTE_PATTERNS, type RoleHierarchy, type RoutePattern, SNAP_CONSTANTS, SNAP_DEVICE_DEFAULTS, SNAP_TYPE_GROUPS, SNAP_VISUAL, SORT_DIRECTIONS, SPACING_SCALE, type SortDirection, type SpacingScale, TABLE_COLUMN_WIDTHS, TABLE_DENSITIES, TABLE_VARIANTS, THEME_MODES, type TableColumnWidth, type TableDensity, type TableVariant, type ThemeMode, USER_ROLES, USER_STATUS, type UserRole, type UserStatus, VALIDATION_RULES, type ValidationRule, type ZIndex, Z_INDEX };

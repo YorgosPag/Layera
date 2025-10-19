@@ -10,8 +10,6 @@ import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader }
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
 import { LockIcon, ShieldIcon, RocketIcon, SmartphoneIcon, CheckIcon } from './icons/LayeraIcons';
 import QuickActions from './QuickActions';
-import '@layera/layout/styles';
-import '@layera/cards/styles';
 import './MfaEnroll.css';
 
 export default function MfaEnroll() {

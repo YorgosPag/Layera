@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { RoleGuard, useAuthContext } from '@layera/auth-bridge'
 import { ThemeProvider } from '@layera/theme-switcher'
 import { DeviceOverrideProvider, DeviceSimulator, DeviceSwitcher } from '@layera/viewport'
-import '@layera/theme-switcher/styles'
+// Enterprise LEGO Styles - Central Import
+import '@layera/styles'
 import Login from './components/Login'
 import Register from './components/Register'
 import NewDashboard from './components/NewDashboard'

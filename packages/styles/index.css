@@ -1,0 +1,99 @@
+/* Enterprise LEGO Central Styles Import */
+/* This file imports and aggregates all LEGO component styles */
+
+/* Import the official LEGO layout styles */
+@import '../layout/dist/styles.css';
+
+/* Additional utility classes that complement LEGO components */
+.layera-mb-2 { margin-bottom: 0.5rem; }
+.layera-mb-4 { margin-bottom: 1rem; }
+.layera-mb-8 { margin-bottom: 2rem; }
+
+.layera-items-center { align-items: center; }
+.layera-gap-2 { gap: 0.5rem; }
+.layera-flex { display: flex; }
+
+/* Enterprise CSS Variables for LEGO System */
+:root {
+  /* Layera Color Palette */
+  --layera-bg-primary: #ffffff;
+  --layera-bg-secondary: #f8fafc;
+  --layera-bg-tertiary: #f1f5f9;
+
+  --layera-text-primary: #1e293b;
+  --layera-text-secondary: #64748b;
+  --layera-text-tertiary: #94a3b8;
+
+  --layera-border-primary: #e2e8f0;
+  --layera-border-secondary: #cbd5e1;
+
+  /* Semantic Colors */
+  --layera-bg-info: #667eea;
+  --layera-bg-success: #10b981;
+  --layera-bg-warning: #f59e0b;
+  --layera-bg-danger: #ef4444;
+
+  --layera-text-on-info: #ffffff;
+  --layera-text-on-success: #ffffff;
+  --layera-text-on-warning: #ffffff;
+  --layera-text-on-danger: #ffffff;
+
+  /* Z-Index Scale */
+  --layera-z-dropdown: 1000;
+  --layera-z-sticky: 1020;
+  --layera-z-fixed: 1030;
+  --layera-z-modal-backdrop: 1040;
+  --layera-z-modal: 1050;
+  --layera-z-popover: 1060;
+  --layera-z-tooltip: 1070;
+  --layera-z-toast: 1080;
+}
+
+/* Dark Theme Support */
+[data-theme="dark"] {
+  --layera-bg-primary: #0f172a;
+  --layera-bg-secondary: #1e293b;
+  --layera-bg-tertiary: #334155;
+
+  --layera-text-primary: #f8fafc;
+  --layera-text-secondary: #cbd5e1;
+  --layera-text-tertiary: #94a3b8;
+
+  --layera-border-primary: #334155;
+  --layera-border-secondary: #475569;
+}
+
+/* Enterprise Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--layera-bg-primary);
+  color: var(--layera-text-primary);
+  margin: 0;
+  padding: 0;
+}
+
+/* Global Enterprise Utilities */
+.layera-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.layera-focus-ring:focus {
+  outline: 2px solid var(--layera-bg-info);
+  outline-offset: 2px;
+}

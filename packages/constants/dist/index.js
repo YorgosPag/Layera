@@ -70,7 +70,8 @@ __export(index_exports, {
   THEME_MODES: () => THEME_MODES,
   USER_ROLES: () => USER_ROLES,
   USER_STATUS: () => USER_STATUS,
-  VALIDATION_RULES: () => VALIDATION_RULES
+  VALIDATION_RULES: () => VALIDATION_RULES,
+  Z_INDEX: () => Z_INDEX
 });
 module.exports = __toCommonJS(index_exports);
 
@@ -429,6 +430,16 @@ var SPACING_SCALE = {
   XXL: 48,
   XXXL: 64
 };
+var Z_INDEX = {
+  DROPDOWN: 1e3,
+  STICKY: 1020,
+  FIXED: 1030,
+  MODAL_BACKDROP: 1040,
+  MODAL: 1050,
+  POPOVER: 1060,
+  TOOLTIP: 1070,
+  TOAST: 1080
+};
 
 // src/navigation.ts
 var NAVIGATION_TYPES = {
@@ -756,5 +767,6 @@ var LAYERA_CONSTANTS_VERSION = "1.0.0";
   THEME_MODES,
   USER_ROLES,
   USER_STATUS,
-  VALIDATION_RULES
+  VALIDATION_RULES,
+  Z_INDEX
 });

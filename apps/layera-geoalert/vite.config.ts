@@ -6,18 +6,15 @@ import { resolve } from 'path'
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 3002,
+    port: 3001,
     host: true,
   },
   resolve: {
     alias: {
       '@': resolve(__dirname, './src'),
-      // CSS aliases ΠΡΩΤΑ - για να μην τα override τα TypeScript aliases
-      '@layera/buttons/styles': resolve(__dirname, '../../packages/buttons/dist/styles.css'),
-      '@layera/typography/styles': resolve(__dirname, '../../packages/typography/dist/styles.css'),
-      '@layera/theme-switcher/styles': resolve(__dirname, '../../packages/theme-switcher/dist/styles.css'),
-      '@layera/layout/styles': resolve(__dirname, '../../packages/layout/dist/styles.css'),
-      // TypeScript aliases ΜΕΤΑ
+      // Enterprise LEGO Styles
+      '@layera/styles': resolve(__dirname, '../../packages/styles/index.css'),
+      // LEGO Component Aliases
       '@layera/auth-bridge': resolve(__dirname, '../../packages/auth-bridge/src/index.ts'),
       '@layera/i18n': resolve(__dirname, '../../packages/i18n/src/index.ts'),
       '@layera/buttons': resolve(__dirname, '../../packages/buttons/src/index.ts'),
@@ -25,6 +22,10 @@ export default defineConfig({
       '@layera/theme-switcher': resolve(__dirname, '../../packages/theme-switcher/src/index.ts'),
       '@layera/layout': resolve(__dirname, '../../packages/layout/src/index.ts'),
       '@layera/constants': resolve(__dirname, '../../packages/constants/src'),
+      '@layera/viewport': resolve(__dirname, '../../packages/viewport/src'),
+      '@layera/notifications': resolve(__dirname, '../../packages/notifications/src'),
+      '@layera/loading': resolve(__dirname, '../../packages/loading/src'),
+      '@layera/icons': resolve(__dirname, '../../packages/icons/src'),
     },
   },
 })

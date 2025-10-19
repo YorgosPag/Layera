@@ -7,10 +7,8 @@ import { ThemeProvider, ThemeSwitcher } from '@layera/theme-switcher';
 import { AppShell } from '@layera/layout';
 import { NotificationProvider, useNotifications } from '@layera/notifications';
 import { LoadingSpinner } from '@layera/loading';
-import '@layera/typography/styles';
-import '@layera/buttons/styles';
-import '@layera/theme-switcher/styles';
-import '@layera/layout/styles';
+// Enterprise LEGO Styles - Central Import
+import '@layera/styles';
 import { ArrowLeftIcon, MapIcon, PlusIcon, ShareIcon, LayersIcon, AlertTriangleIcon, CheckIcon, MoreIcon } from '@layera/icons';
 import { LanguageSwitcher } from '@layera/i18n';
 import { GeoHeader } from './components/GeoHeader';

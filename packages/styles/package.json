@@ -1,0 +1,32 @@
+{
+  "name": "@layera/styles",
+  "version": "1.0.0",
+  "description": "Enterprise LEGO Styles - Central style management for Layera ecosystem",
+  "main": "index.css",
+  "style": "index.css",
+  "files": [
+    "index.css"
+  ],
+  "keywords": [
+    "layera",
+    "styles",
+    "css",
+    "enterprise",
+    "lego-system"
+  ],
+  "author": "Layera Team",
+  "license": "MIT",
+  "peerDependencies": {
+    "@layera/buttons": "*",
+    "@layera/cards": "*",
+    "@layera/forms": "*",
+    "@layera/layout": "*",
+    "@layera/typography": "*",
+    "@layera/theme-switcher": "*",
+    "@layera/notifications": "*",
+    "@layera/modals": "*",
+    "@layera/loading": "*",
+    "@layera/i18n": "*",
+    "@layera/error-boundary": "*"
+  }
+}

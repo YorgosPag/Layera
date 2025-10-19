@@ -6,8 +6,6 @@ import { Stack, Flex } from '@layera/layout';
 import { useLayeraTranslation } from '@layera/i18n';
 import { MapIcon, CheckIcon, ArrowLeftIcon, HomeIcon, WorkIcon, CloseIcon, UploadIcon, SearchIcon } from '@layera/icons';
 import { Z_INDEX } from '@layera/constants';
-import '@layera/typography/styles';
-import '@layera/buttons/styles';
 
 interface UnifiedPipelineProps {
   isOpen: boolean;

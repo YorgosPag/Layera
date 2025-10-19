@@ -84,7 +84,8 @@
       "Bash(tasklist:*)",
       "Bash(del /Q /S node_modules)",
       "Bash(del package-lock.json)",
-      "Bash(start http://localhost:3009)"
+      "Bash(start http://localhost:3009)",
+      "Bash(xargs rg:*)"
     ],
     "deny": [],
     "ask": []

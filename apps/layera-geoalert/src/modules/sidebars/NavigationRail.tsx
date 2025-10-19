@@ -2,7 +2,6 @@ import React from 'react';
 import { useLayeraTranslation } from '@layera/i18n';
 import { Button } from '@layera/buttons';
 import { BUTTON_VARIANTS, BUTTON_SIZES } from '@layera/constants';
-import '@layera/buttons/styles';
 
 interface NavButtonProps {
   title: string;
