@@ -19,6 +19,11 @@ export const Modal: React.FC<BaseModalProps> = ({
   preventBodyScroll = true,
   className = '',
   overlayClassName = '',
+  contentClassName = '',
+  contentStyle,
+  contentPadding,
+  overlayPadding,
+  panelPadding,
   container,
   'aria-labelledby': ariaLabelledBy,
   'aria-describedby': ariaDescribedBy
@@ -100,11 +105,24 @@ export const Modal: React.FC<BaseModalProps> = ({
       aria-modal="true"
       aria-labelledby={ariaLabelledBy}
       aria-describedby={ariaDescribedBy}
+      style={{
+        ...(overlayPadding !== undefined && {
+          padding: typeof overlayPadding === 'number' ? `${overlayPadding}px` : overlayPadding
+        })
+      }}
     >
       <div
         ref={modalRef}
         className={modalClasses}
         role="document"
+        style={{
+          ...(contentPadding !== undefined && {
+            padding: typeof contentPadding === 'number' ? `${contentPadding}px` : contentPadding
+          }),
+          ...(panelPadding !== undefined && {
+            '--layera-modal-inner-padding': typeof panelPadding === 'number' ? `${panelPadding}px` : panelPadding
+          })
+        } as React.CSSProperties}
       >
         {showCloseButton && (
           <button
@@ -128,7 +146,12 @@ export const Modal: React.FC<BaseModalProps> = ({
             </svg>
           </button>
         )}
-        {children}
+        <div
+          className={`layera-modal-content ${contentClassName}`.trim()}
+          style={contentStyle}
+        >
+          {children}
+        </div>
       </div>
     </div>
   );

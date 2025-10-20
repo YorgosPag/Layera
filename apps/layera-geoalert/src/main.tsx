@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
-import { LayeraI18nProvider } from '@layera/i18n'
+import { TolgeeProvider } from '@layera/tolgee'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <LayeraI18nProvider>
+    <TolgeeProvider>
       <App />
-    </LayeraI18nProvider>
+    </TolgeeProvider>
   </React.StrictMode>,
 )

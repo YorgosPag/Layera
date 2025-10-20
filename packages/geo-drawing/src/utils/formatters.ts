@@ -1,4 +1,4 @@
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 /**
  * Formats a distance in meters into a readable string, switching to kilometers for large distances.

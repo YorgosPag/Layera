@@ -1,6 +1,6 @@
 import React from 'react';
 import { FORM_STATES, type FormState } from '@layera/constants';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import './FormField.css';
 
 export interface FormFieldProps {

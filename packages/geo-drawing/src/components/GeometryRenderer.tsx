@@ -3,7 +3,7 @@ import { Polygon, Polyline, CircleMarker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import { useTheme } from '@layera/theme-switcher';
 import { Typography } from '@layera/typography';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import type { MeasurementResult, OSMBuildingFeature } from '../types';
 import { extractOSMGeometry } from '../utils/geometry';
 import { useMeasurementFormatter } from '../utils/formatters';

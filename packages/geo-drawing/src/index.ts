@@ -3,7 +3,7 @@
  *
  * Ενσωματώνει functionality από OLD_geo-canvas με existing LEGO systems:
  * - @layera/snap-engine & @layera/snap-interactions για snapping
- * - @layera/i18n για internationalization
+ * - @layera/tolgee για internationalization
  * - @layera/theme-switcher για theme-aware colors
  * - @layera/buttons, @layera/cards, @layera/typography για UI
  * - @layera/constants για configuration
@@ -17,6 +17,9 @@ export type {
   GeometryType,
   MeasurementPoint,
   MeasurementResult,
+  CircleMeasurement,
+  ArcMeasurement,
+  AngleMeasurement,
   OSMBuildingProperties,
   OSMBuildingFeature,
   GeoJSONFeatureCollection,
@@ -28,10 +31,10 @@ export type {
 export { useMeasurement } from './hooks/useMeasurement';
 export { useGeometrySnap } from './hooks/useGeometrySnap';
 
-// Components
-export { MeasurementControls } from './components/MeasurementControls';
-export { MeasurementCanvas } from './components/MeasurementCanvas';
-export { GeometryRenderer } from './components/GeometryRenderer';
+// Components - Temporarily disabled during migration
+// export { MeasurementControls } from './components/MeasurementControls';
+// export { MeasurementCanvas } from './components/MeasurementCanvas';
+// export { GeometryRenderer } from './components/GeometryRenderer';
 
 // Utilities
 export {
@@ -41,7 +44,14 @@ export {
   calculatePolygonCenter,
   calculatePerimeter,
   isPointInPolygon,
-  calculateBounds
+  calculateBounds,
+  calculateCircleRadius,
+  calculateCircleArea,
+  calculateCircleCircumference,
+  calculateCircleDiameter,
+  calculateArcLength,
+  calculateAngle,
+  detectCircleFromThreePoints
 } from './utils/calculations';
 
 export {
@@ -53,14 +63,30 @@ export {
 } from './utils/formatters';
 
 export {
-  geoJsonToLatLng,
-  latLngToGeoJson,
-  closestPointOnSegment,
-  arePointsEqual,
-  simplifyPolygon,
-  calculateBearing,
-  extractOSMGeometry
-} from './utils/geometry';
+  detectGeometry,
+  suggestMeasurementMode,
+  calculateDetectionConfidence
+} from './utils/geometryDetection';
+
+export type { DetectedGeometry } from './utils/geometryDetection';
+
+export {
+  measurementToMapLabel,
+  geometryToMapLabels
+} from './utils/mapLabelIntegration';
+
+export type { MapLabelConfig } from './utils/mapLabelIntegration';
+
+// Geometry utilities - Temporarily disabled during migration due to TypeScript strict mode issues
+// export {
+//   geoJsonToLatLng,
+//   latLngToGeoJson,
+//   closestPointOnSegment,
+//   arePointsEqual,
+//   simplifyPolygon,
+//   calculateBearing,
+//   extractOSMGeometry
+// } from './utils/geometry';
 
 // Services
 export {
@@ -68,7 +94,9 @@ export {
   clearOSMCache,
   getCacheSize,
   isBoundsCached,
-  prefetchBuildingOutlines
+  prefetchBuildingOutlines,
+  fetchAdministrativeBoundary,
+  fetchBoundaryByAddressComponent
 } from './services/osmService';
 
 // Constants που θα προστεθούν στο @layera/constants

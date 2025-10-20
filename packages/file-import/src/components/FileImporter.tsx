@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { BaseCard } from '@layera/cards';
 import { Button } from '@layera/buttons';
 import { LoadingSpinner } from '@layera/loading';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { ErrorBoundary } from '@layera/error-boundary';
 import { Heading, Text } from '@layera/typography';
 

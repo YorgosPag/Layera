@@ -247,32 +247,76 @@ export declare const resources: {
                     description: string;
                 };
             };
-            common: {
-                error: string;
-                processing: string;
+            geoalert: {
+                title: string;
+                subtitle: string;
+                geoCanvasReady: string;
+                professionalArchitecture: string;
+                enterGeoCanvas: string;
+                statusCheck: string;
+                port: string;
+                reactReady: string;
+                typescriptStrict: string;
+                independentApp: string;
+                enterpriseArchitecture: string;
+                navigateToLayeraId: string;
+                modularMicroservice: string;
+                crossAppNavigation: string;
+                readyForImplementation: string;
             };
-            notifications: {
+            map: {
+                title: string;
                 loading: string;
-                retry: string;
-                tryAgain: string;
-                somethingWentWrong: string;
-                dismiss: string;
-                ok: string;
+                center: string;
+                zoom: string;
+                fullscreen: string;
+                layers: string;
+                drawing: string;
+            };
+            buttons: {
+                save: string;
                 cancel: string;
-                types: {
-                    success: string;
-                    warning: string;
-                    error: string;
-                    info: string;
-                };
-                messages: {
-                    generalError: string;
-                    networkError: string;
-                    operationComplete: string;
-                    operationFailed: string;
-                };
+                delete: string;
+                edit: string;
+                create: string;
+                update: string;
+                close: string;
+                open: string;
+                search: string;
+                filter: string;
+                export: string;
+                import: string;
+                download: string;
+                upload: string;
+                submit: string;
+                reset: string;
+                clear: string;
+                apply: string;
+                confirm: string;
+                reject: string;
+            };
+            alerts: {
+                success: string;
+                error: string;
+                warning: string;
+                info: string;
+                loading: string;
+                saving: string;
+                deleting: string;
+                updating: string;
+                processing: string;
+                completed: string;
+                failed: string;
             };
             forms: {
+                required: string;
+                invalid: string;
+                tooShort: string;
+                tooLong: string;
+                invalidEmail: string;
+                invalidPhone: string;
+                passwordMismatch: string;
+                weakPassword: string;
                 validation: {
                     required: string;
                 };
@@ -303,6 +347,129 @@ export declare const resources: {
                     noOptions: string;
                     clear: string;
                     loading: string;
+                };
+            };
+            realEstate: {
+                newListing: string;
+                categorySelection: string;
+                properties: string;
+                propertyDescription: string;
+                jobs: string;
+                jobDescription: string;
+                wantToOffer: string;
+                offerDescription: string;
+                wantToSearch: string;
+                searchDescription: string;
+                transactionType: string;
+                sale: string;
+                saleDescription: string;
+                rental: string;
+                rentalDescription: string;
+            };
+            availability: {
+                whenAvailable: string;
+                selectPeriod: string;
+                now: string;
+                nowDescription: string;
+                future: string;
+                futureDescription: string;
+                details: string;
+                pleaseSetDateAndDuration: string;
+                startDate: string;
+                datePlaceholder: string;
+                duration: string;
+                durationExample: string;
+                unit: string;
+                months: string;
+            };
+            location: {
+                locationAndFloorplan: string;
+                uploadFloorplan: string;
+                selectFile: string;
+                clickToUpload: string;
+                or: string;
+                searchLocation: string;
+                locationExample: string;
+                placementTools: string;
+                toolsDescription: string;
+                rotation: string;
+                scale: string;
+                cmToM: string;
+                mmToM: string;
+                mToM: string;
+            };
+            jobs: {
+                listingType: string;
+                wantToOfferPosition: string;
+                offerPositionDescription: string;
+                lookingForJob: string;
+                lookingForJobDescription: string;
+                employmentType: string;
+                fullTime: string;
+                fullTimeDescription: string;
+                partTime: string;
+                partTimeDescription: string;
+                freelance: string;
+                freelanceDescription: string;
+                seasonal: string;
+                seasonalDescription: string;
+                drawingArea: string;
+                drawingSearchArea: string;
+                openDrawingTool: string;
+                clickToDrawOnMap: string;
+                jobDetails: string;
+                fillSearchDetails: string;
+                title: string;
+                titleExample: string;
+                description: string;
+                descriptionPlaceholder: string;
+                salary: string;
+                salaryExample: string;
+                contactInfo: string;
+                contactExample: string;
+                required: string;
+            };
+            common: {
+                error: string;
+                processing: string;
+                addressDetails: string;
+                showOnMap: string;
+                clickToShowBoundary: string;
+                title: string;
+                subtitle: string;
+                realEstate: string;
+                job: string;
+                marker: string;
+                polygon: string;
+                clear: string;
+                auto: string;
+                mobile: string;
+                tablet: string;
+                desktop: string;
+                overrideActive: string;
+            };
+            addressDetails: string;
+            showOnMap: string;
+            clickToShowBoundary: string;
+            notifications: {
+                loading: string;
+                retry: string;
+                tryAgain: string;
+                somethingWentWrong: string;
+                dismiss: string;
+                ok: string;
+                cancel: string;
+                types: {
+                    success: string;
+                    warning: string;
+                    error: string;
+                    info: string;
+                };
+                messages: {
+                    generalError: string;
+                    networkError: string;
+                    operationComplete: string;
+                    operationFailed: string;
                 };
             };
             tables: {
@@ -355,10 +522,24 @@ export declare const resources: {
                         title: string;
                     };
                     offer: {
-                        title: string;
+                        property: {
+                            title: string;
+                            description: string;
+                        };
+                        job: {
+                            title: string;
+                            description: string;
+                        };
                     };
                     search: {
-                        title: string;
+                        property: {
+                            title: string;
+                            description: string;
+                        };
+                        job: {
+                            title: string;
+                            description: string;
+                        };
                     };
                 };
                 preview: {
@@ -368,23 +549,6 @@ export declare const resources: {
                     };
                     continue: string;
                 };
-            };
-            geoalert: {
-                title: string;
-                subtitle: string;
-                geoCanvasReady: string;
-                professionalArchitecture: string;
-                enterGeoCanvas: string;
-                statusCheck: string;
-                port: string;
-                reactReady: string;
-                typescriptStrict: string;
-                independentApp: string;
-                enterpriseArchitecture: string;
-                navigateToLayeraId: string;
-                modularMicroservice: string;
-                crossAppNavigation: string;
-                readyForImplementation: string;
             };
             dashboard: {
                 overview: string;
@@ -413,6 +577,153 @@ export declare const resources: {
                     light: string;
                     dark: string;
                     system: string;
+                };
+            };
+            pipelines: {
+                steps: {
+                    details: {
+                        title: string;
+                        subtitle: string;
+                        property: string;
+                        job: string;
+                        offer: string;
+                        search: string;
+                        fields: {
+                            title: string;
+                            description: string;
+                            price: string;
+                            salary: string;
+                            contactInfo: string;
+                        };
+                        placeholders: {
+                            propertyTitle: string;
+                            jobTitle: string;
+                            description: string;
+                            price: string;
+                            salary: string;
+                            contact: string;
+                        };
+                    };
+                    transaction: {
+                        title: string;
+                        sale: {
+                            title: string;
+                            description: string;
+                        };
+                        rent: {
+                            title: string;
+                            description: string;
+                        };
+                    };
+                    layout: {
+                        title: string;
+                        findMyLocation: string;
+                        or: string;
+                        searchLocation: string;
+                        locationPlaceholder: string;
+                        results: string;
+                        locationPin: string;
+                        placementTools: {
+                            title: string;
+                            description: string;
+                            rotation: string;
+                            scale: string;
+                            units: {
+                                cmToM: string;
+                                mmToM: string;
+                                mToM: string;
+                            };
+                        };
+                        actions: {
+                            back: string;
+                            saveLocation: string;
+                        };
+                    };
+                    employmentType: {
+                        title: string;
+                        fullTime: {
+                            title: string;
+                            description: string;
+                        };
+                        partTime: {
+                            title: string;
+                            description: string;
+                        };
+                        freelance: {
+                            title: string;
+                            description: string;
+                        };
+                        seasonal: {
+                            title: string;
+                            description: string;
+                        };
+                    };
+                    availability: {
+                        title: string;
+                        subtitle: string;
+                        fields: {
+                            startDate: string;
+                            duration: string;
+                            unit: string;
+                        };
+                        units: {
+                            months: string;
+                            years: string;
+                        };
+                        placeholders: {
+                            duration: string;
+                            datePlaceholder: string;
+                        };
+                        question: {
+                            title: string;
+                            subtitle: string;
+                        };
+                        options: {
+                            now: {
+                                title: string;
+                                description: string;
+                            };
+                            future: {
+                                title: string;
+                                description: string;
+                            };
+                        };
+                    };
+                };
+                actions: {
+                    back: string;
+                    continue: string;
+                    save: string;
+                    cancel: string;
+                };
+            };
+            progress: {
+                stepper: {
+                    optional: string;
+                    labels: {
+                        category: string;
+                        intent: string;
+                        transactionType: string;
+                        employmentType: string;
+                        availability: string;
+                        availabilityDetails: string;
+                        location: string;
+                        layout: string;
+                        details: string;
+                        complete: string;
+                    };
+                    descriptions: {
+                        category: string;
+                        intent: string;
+                        transactionType: string;
+                        employmentType: string;
+                        availability: string;
+                        availabilityDetails: string;
+                        location: string;
+                        layout: string;
+                        details: string;
+                        complete: string;
+                    };
                 };
             };
         };
@@ -709,32 +1020,76 @@ export declare const resources: {
                     description: string;
                 };
             };
-            common: {
-                error: string;
-                processing: string;
+            geoalert: {
+                title: string;
+                subtitle: string;
+                geoCanvasReady: string;
+                professionalArchitecture: string;
+                enterGeoCanvas: string;
+                statusCheck: string;
+                port: string;
+                reactReady: string;
+                typescriptStrict: string;
+                independentApp: string;
+                enterpriseArchitecture: string;
+                navigateToLayeraId: string;
+                modularMicroservice: string;
+                crossAppNavigation: string;
+                readyForImplementation: string;
             };
-            notifications: {
+            map: {
+                title: string;
                 loading: string;
-                retry: string;
-                tryAgain: string;
-                somethingWentWrong: string;
-                dismiss: string;
-                ok: string;
+                center: string;
+                zoom: string;
+                fullscreen: string;
+                layers: string;
+                drawing: string;
+            };
+            buttons: {
+                save: string;
                 cancel: string;
-                types: {
-                    success: string;
-                    warning: string;
-                    error: string;
-                    info: string;
-                };
-                messages: {
-                    generalError: string;
-                    networkError: string;
-                    operationComplete: string;
-                    operationFailed: string;
-                };
+                delete: string;
+                edit: string;
+                create: string;
+                update: string;
+                close: string;
+                open: string;
+                search: string;
+                filter: string;
+                export: string;
+                import: string;
+                download: string;
+                upload: string;
+                submit: string;
+                reset: string;
+                clear: string;
+                apply: string;
+                confirm: string;
+                reject: string;
+            };
+            alerts: {
+                success: string;
+                error: string;
+                warning: string;
+                info: string;
+                loading: string;
+                saving: string;
+                deleting: string;
+                updating: string;
+                processing: string;
+                completed: string;
+                failed: string;
             };
             forms: {
+                required: string;
+                invalid: string;
+                tooShort: string;
+                tooLong: string;
+                invalidEmail: string;
+                invalidPhone: string;
+                passwordMismatch: string;
+                weakPassword: string;
                 validation: {
                     required: string;
                 };
@@ -765,6 +1120,135 @@ export declare const resources: {
                     noOptions: string;
                     clear: string;
                     loading: string;
+                };
+            };
+            realEstate: {
+                newListing: string;
+                categorySelection: string;
+                properties: string;
+                propertyDescription: string;
+                jobs: string;
+                jobDescription: string;
+                wantToOffer: string;
+                offerDescription: string;
+                wantToSearch: string;
+                searchDescription: string;
+                transactionType: string;
+                sale: string;
+                saleDescription: string;
+                rental: string;
+                rentalDescription: string;
+            };
+            availability: {
+                whenAvailable: string;
+                selectPeriod: string;
+                now: string;
+                nowDescription: string;
+                future: string;
+                futureDescription: string;
+                details: string;
+                pleaseSetDateAndDuration: string;
+                startDate: string;
+                datePlaceholder: string;
+                duration: string;
+                durationExample: string;
+                unit: string;
+                months: string;
+            };
+            location: {
+                locationAndFloorplan: string;
+                uploadFloorplan: string;
+                selectFile: string;
+                clickToUpload: string;
+                or: string;
+                searchLocation: string;
+                locationExample: string;
+                placementTools: string;
+                toolsDescription: string;
+                rotation: string;
+                scale: string;
+                cmToM: string;
+                mmToM: string;
+                mToM: string;
+            };
+            jobs: {
+                listingType: string;
+                wantToOfferPosition: string;
+                offerPositionDescription: string;
+                lookingForWork: string;
+                lookingForWorkDescription: string;
+                employmentType: string;
+                fullTime: string;
+                fullTimeDescription: string;
+                partTime: string;
+                partTimeDescription: string;
+                freelance: string;
+                freelanceDescription: string;
+                seasonal: string;
+                seasonalDescription: string;
+                whenAvailable: string;
+                selectAvailabilityPeriod: string;
+                now: string;
+                nowDescription: string;
+                future: string;
+                futureDescription: string;
+                locationAndMap: string;
+                drawPropertyArea: string;
+                drawingSearchArea: string;
+                openDrawingTool: string;
+                clickToDrawOnMap: string;
+                jobDetails: string;
+                fillJobSearchDetails: string;
+                title: string;
+                titleExample: string;
+                description: string;
+                describeDetailed: string;
+                salary: string;
+                salaryExample: string;
+                contactInfo: string;
+                contactExample: string;
+            };
+            common: {
+                error: string;
+                processing: string;
+                addressDetails: string;
+                showOnMap: string;
+                clickToShowBoundary: string;
+                title: string;
+                subtitle: string;
+                realEstate: string;
+                job: string;
+                marker: string;
+                polygon: string;
+                clear: string;
+                auto: string;
+                mobile: string;
+                tablet: string;
+                desktop: string;
+                overrideActive: string;
+            };
+            addressDetails: string;
+            showOnMap: string;
+            clickToShowBoundary: string;
+            notifications: {
+                loading: string;
+                retry: string;
+                tryAgain: string;
+                somethingWentWrong: string;
+                dismiss: string;
+                ok: string;
+                cancel: string;
+                types: {
+                    success: string;
+                    warning: string;
+                    error: string;
+                    info: string;
+                };
+                messages: {
+                    generalError: string;
+                    networkError: string;
+                    operationComplete: string;
+                    operationFailed: string;
                 };
             };
             tables: {
@@ -822,10 +1306,24 @@ export declare const resources: {
                         title: string;
                     };
                     offer: {
-                        title: string;
+                        property: {
+                            title: string;
+                            description: string;
+                        };
+                        job: {
+                            title: string;
+                            description: string;
+                        };
                     };
                     search: {
-                        title: string;
+                        property: {
+                            title: string;
+                            description: string;
+                        };
+                        job: {
+                            title: string;
+                            description: string;
+                        };
                     };
                 };
                 preview: {
@@ -835,23 +1333,6 @@ export declare const resources: {
                     };
                     continue: string;
                 };
-            };
-            geoalert: {
-                title: string;
-                subtitle: string;
-                geoCanvasReady: string;
-                professionalArchitecture: string;
-                enterGeoCanvas: string;
-                statusCheck: string;
-                port: string;
-                reactReady: string;
-                typescriptStrict: string;
-                independentApp: string;
-                enterpriseArchitecture: string;
-                navigateToLayeraId: string;
-                modularMicroservice: string;
-                crossAppNavigation: string;
-                readyForImplementation: string;
             };
             dashboard: {
                 overview: string;
@@ -875,6 +1356,152 @@ export declare const resources: {
                     configureSettings: string;
                     manageData: string;
                     enableMfa: string;
+                };
+            };
+            pipelines: {
+                steps: {
+                    details: {
+                        title: string;
+                        subtitle: string;
+                        property: string;
+                        job: string;
+                        offer: string;
+                        search: string;
+                        fields: {
+                            title: string;
+                            description: string;
+                            price: string;
+                            salary: string;
+                            contactInfo: string;
+                        };
+                        placeholders: {
+                            propertyTitle: string;
+                            jobTitle: string;
+                            description: string;
+                            price: string;
+                            salary: string;
+                            contact: string;
+                        };
+                    };
+                    layout: {
+                        title: string;
+                        findMyLocation: string;
+                        or: string;
+                        searchLocation: string;
+                        locationPlaceholder: string;
+                        results: string;
+                        locationPin: string;
+                        placementTools: {
+                            title: string;
+                            description: string;
+                            rotation: string;
+                            scale: string;
+                            units: {
+                                cmToM: string;
+                                mmToM: string;
+                                mToM: string;
+                            };
+                        };
+                        actions: {
+                            back: string;
+                            saveLocation: string;
+                        };
+                    };
+                    transaction: {
+                        title: string;
+                        sale: {
+                            title: string;
+                            description: string;
+                        };
+                        rent: {
+                            title: string;
+                            description: string;
+                        };
+                    };
+                    employmentType: {
+                        title: string;
+                        fullTime: {
+                            title: string;
+                            description: string;
+                        };
+                        partTime: {
+                            title: string;
+                            description: string;
+                        };
+                        freelance: {
+                            title: string;
+                            description: string;
+                        };
+                        seasonal: {
+                            title: string;
+                            description: string;
+                        };
+                    };
+                    availability: {
+                        title: string;
+                        subtitle: string;
+                        fields: {
+                            startDate: string;
+                            duration: string;
+                            unit: string;
+                        };
+                        units: {
+                            months: string;
+                            years: string;
+                        };
+                        placeholders: {
+                            duration: string;
+                            datePlaceholder: string;
+                        };
+                        question: {
+                            title: string;
+                            subtitle: string;
+                        };
+                        options: {
+                            now: {
+                                title: string;
+                                description: string;
+                            };
+                            future: {
+                                title: string;
+                                description: string;
+                            };
+                        };
+                    };
+                };
+                actions: {
+                    back: string;
+                    continue: string;
+                    save: string;
+                };
+            };
+            progress: {
+                stepper: {
+                    optional: string;
+                    labels: {
+                        category: string;
+                        intent: string;
+                        transactionType: string;
+                        employmentType: string;
+                        availability: string;
+                        availabilityDetails: string;
+                        location: string;
+                        layout: string;
+                        details: string;
+                        complete: string;
+                    };
+                    descriptions: {
+                        category: string;
+                        intent: string;
+                        transactionType: string;
+                        employmentType: string;
+                        availability: string;
+                        availabilityDetails: string;
+                        location: string;
+                        layout: string;
+                        details: string;
+                        complete: string;
+                    };
                 };
             };
         };
@@ -1182,32 +1809,76 @@ export declare const i18nConfig: {
                         description: string;
                     };
                 };
-                common: {
-                    error: string;
-                    processing: string;
+                geoalert: {
+                    title: string;
+                    subtitle: string;
+                    geoCanvasReady: string;
+                    professionalArchitecture: string;
+                    enterGeoCanvas: string;
+                    statusCheck: string;
+                    port: string;
+                    reactReady: string;
+                    typescriptStrict: string;
+                    independentApp: string;
+                    enterpriseArchitecture: string;
+                    navigateToLayeraId: string;
+                    modularMicroservice: string;
+                    crossAppNavigation: string;
+                    readyForImplementation: string;
                 };
-                notifications: {
+                map: {
+                    title: string;
                     loading: string;
-                    retry: string;
-                    tryAgain: string;
-                    somethingWentWrong: string;
-                    dismiss: string;
-                    ok: string;
+                    center: string;
+                    zoom: string;
+                    fullscreen: string;
+                    layers: string;
+                    drawing: string;
+                };
+                buttons: {
+                    save: string;
                     cancel: string;
-                    types: {
-                        success: string;
-                        warning: string;
-                        error: string;
-                        info: string;
-                    };
-                    messages: {
-                        generalError: string;
-                        networkError: string;
-                        operationComplete: string;
-                        operationFailed: string;
-                    };
+                    delete: string;
+                    edit: string;
+                    create: string;
+                    update: string;
+                    close: string;
+                    open: string;
+                    search: string;
+                    filter: string;
+                    export: string;
+                    import: string;
+                    download: string;
+                    upload: string;
+                    submit: string;
+                    reset: string;
+                    clear: string;
+                    apply: string;
+                    confirm: string;
+                    reject: string;
+                };
+                alerts: {
+                    success: string;
+                    error: string;
+                    warning: string;
+                    info: string;
+                    loading: string;
+                    saving: string;
+                    deleting: string;
+                    updating: string;
+                    processing: string;
+                    completed: string;
+                    failed: string;
                 };
                 forms: {
+                    required: string;
+                    invalid: string;
+                    tooShort: string;
+                    tooLong: string;
+                    invalidEmail: string;
+                    invalidPhone: string;
+                    passwordMismatch: string;
+                    weakPassword: string;
                     validation: {
                         required: string;
                     };
@@ -1238,6 +1909,129 @@ export declare const i18nConfig: {
                         noOptions: string;
                         clear: string;
                         loading: string;
+                    };
+                };
+                realEstate: {
+                    newListing: string;
+                    categorySelection: string;
+                    properties: string;
+                    propertyDescription: string;
+                    jobs: string;
+                    jobDescription: string;
+                    wantToOffer: string;
+                    offerDescription: string;
+                    wantToSearch: string;
+                    searchDescription: string;
+                    transactionType: string;
+                    sale: string;
+                    saleDescription: string;
+                    rental: string;
+                    rentalDescription: string;
+                };
+                availability: {
+                    whenAvailable: string;
+                    selectPeriod: string;
+                    now: string;
+                    nowDescription: string;
+                    future: string;
+                    futureDescription: string;
+                    details: string;
+                    pleaseSetDateAndDuration: string;
+                    startDate: string;
+                    datePlaceholder: string;
+                    duration: string;
+                    durationExample: string;
+                    unit: string;
+                    months: string;
+                };
+                location: {
+                    locationAndFloorplan: string;
+                    uploadFloorplan: string;
+                    selectFile: string;
+                    clickToUpload: string;
+                    or: string;
+                    searchLocation: string;
+                    locationExample: string;
+                    placementTools: string;
+                    toolsDescription: string;
+                    rotation: string;
+                    scale: string;
+                    cmToM: string;
+                    mmToM: string;
+                    mToM: string;
+                };
+                jobs: {
+                    listingType: string;
+                    wantToOfferPosition: string;
+                    offerPositionDescription: string;
+                    lookingForJob: string;
+                    lookingForJobDescription: string;
+                    employmentType: string;
+                    fullTime: string;
+                    fullTimeDescription: string;
+                    partTime: string;
+                    partTimeDescription: string;
+                    freelance: string;
+                    freelanceDescription: string;
+                    seasonal: string;
+                    seasonalDescription: string;
+                    drawingArea: string;
+                    drawingSearchArea: string;
+                    openDrawingTool: string;
+                    clickToDrawOnMap: string;
+                    jobDetails: string;
+                    fillSearchDetails: string;
+                    title: string;
+                    titleExample: string;
+                    description: string;
+                    descriptionPlaceholder: string;
+                    salary: string;
+                    salaryExample: string;
+                    contactInfo: string;
+                    contactExample: string;
+                    required: string;
+                };
+                common: {
+                    error: string;
+                    processing: string;
+                    addressDetails: string;
+                    showOnMap: string;
+                    clickToShowBoundary: string;
+                    title: string;
+                    subtitle: string;
+                    realEstate: string;
+                    job: string;
+                    marker: string;
+                    polygon: string;
+                    clear: string;
+                    auto: string;
+                    mobile: string;
+                    tablet: string;
+                    desktop: string;
+                    overrideActive: string;
+                };
+                addressDetails: string;
+                showOnMap: string;
+                clickToShowBoundary: string;
+                notifications: {
+                    loading: string;
+                    retry: string;
+                    tryAgain: string;
+                    somethingWentWrong: string;
+                    dismiss: string;
+                    ok: string;
+                    cancel: string;
+                    types: {
+                        success: string;
+                        warning: string;
+                        error: string;
+                        info: string;
+                    };
+                    messages: {
+                        generalError: string;
+                        networkError: string;
+                        operationComplete: string;
+                        operationFailed: string;
                     };
                 };
                 tables: {
@@ -1290,10 +2084,24 @@ export declare const i18nConfig: {
                             title: string;
                         };
                         offer: {
-                            title: string;
+                            property: {
+                                title: string;
+                                description: string;
+                            };
+                            job: {
+                                title: string;
+                                description: string;
+                            };
                         };
                         search: {
-                            title: string;
+                            property: {
+                                title: string;
+                                description: string;
+                            };
+                            job: {
+                                title: string;
+                                description: string;
+                            };
                         };
                     };
                     preview: {
@@ -1303,23 +2111,6 @@ export declare const i18nConfig: {
                         };
                         continue: string;
                     };
-                };
-                geoalert: {
-                    title: string;
-                    subtitle: string;
-                    geoCanvasReady: string;
-                    professionalArchitecture: string;
-                    enterGeoCanvas: string;
-                    statusCheck: string;
-                    port: string;
-                    reactReady: string;
-                    typescriptStrict: string;
-                    independentApp: string;
-                    enterpriseArchitecture: string;
-                    navigateToLayeraId: string;
-                    modularMicroservice: string;
-                    crossAppNavigation: string;
-                    readyForImplementation: string;
                 };
                 dashboard: {
                     overview: string;
@@ -1348,6 +2139,153 @@ export declare const i18nConfig: {
                         light: string;
                         dark: string;
                         system: string;
+                    };
+                };
+                pipelines: {
+                    steps: {
+                        details: {
+                            title: string;
+                            subtitle: string;
+                            property: string;
+                            job: string;
+                            offer: string;
+                            search: string;
+                            fields: {
+                                title: string;
+                                description: string;
+                                price: string;
+                                salary: string;
+                                contactInfo: string;
+                            };
+                            placeholders: {
+                                propertyTitle: string;
+                                jobTitle: string;
+                                description: string;
+                                price: string;
+                                salary: string;
+                                contact: string;
+                            };
+                        };
+                        transaction: {
+                            title: string;
+                            sale: {
+                                title: string;
+                                description: string;
+                            };
+                            rent: {
+                                title: string;
+                                description: string;
+                            };
+                        };
+                        layout: {
+                            title: string;
+                            findMyLocation: string;
+                            or: string;
+                            searchLocation: string;
+                            locationPlaceholder: string;
+                            results: string;
+                            locationPin: string;
+                            placementTools: {
+                                title: string;
+                                description: string;
+                                rotation: string;
+                                scale: string;
+                                units: {
+                                    cmToM: string;
+                                    mmToM: string;
+                                    mToM: string;
+                                };
+                            };
+                            actions: {
+                                back: string;
+                                saveLocation: string;
+                            };
+                        };
+                        employmentType: {
+                            title: string;
+                            fullTime: {
+                                title: string;
+                                description: string;
+                            };
+                            partTime: {
+                                title: string;
+                                description: string;
+                            };
+                            freelance: {
+                                title: string;
+                                description: string;
+                            };
+                            seasonal: {
+                                title: string;
+                                description: string;
+                            };
+                        };
+                        availability: {
+                            title: string;
+                            subtitle: string;
+                            fields: {
+                                startDate: string;
+                                duration: string;
+                                unit: string;
+                            };
+                            units: {
+                                months: string;
+                                years: string;
+                            };
+                            placeholders: {
+                                duration: string;
+                                datePlaceholder: string;
+                            };
+                            question: {
+                                title: string;
+                                subtitle: string;
+                            };
+                            options: {
+                                now: {
+                                    title: string;
+                                    description: string;
+                                };
+                                future: {
+                                    title: string;
+                                    description: string;
+                                };
+                            };
+                        };
+                    };
+                    actions: {
+                        back: string;
+                        continue: string;
+                        save: string;
+                        cancel: string;
+                    };
+                };
+                progress: {
+                    stepper: {
+                        optional: string;
+                        labels: {
+                            category: string;
+                            intent: string;
+                            transactionType: string;
+                            employmentType: string;
+                            availability: string;
+                            availabilityDetails: string;
+                            location: string;
+                            layout: string;
+                            details: string;
+                            complete: string;
+                        };
+                        descriptions: {
+                            category: string;
+                            intent: string;
+                            transactionType: string;
+                            employmentType: string;
+                            availability: string;
+                            availabilityDetails: string;
+                            location: string;
+                            layout: string;
+                            details: string;
+                            complete: string;
+                        };
                     };
                 };
             };
@@ -1644,32 +2582,76 @@ export declare const i18nConfig: {
                         description: string;
                     };
                 };
-                common: {
-                    error: string;
-                    processing: string;
+                geoalert: {
+                    title: string;
+                    subtitle: string;
+                    geoCanvasReady: string;
+                    professionalArchitecture: string;
+                    enterGeoCanvas: string;
+                    statusCheck: string;
+                    port: string;
+                    reactReady: string;
+                    typescriptStrict: string;
+                    independentApp: string;
+                    enterpriseArchitecture: string;
+                    navigateToLayeraId: string;
+                    modularMicroservice: string;
+                    crossAppNavigation: string;
+                    readyForImplementation: string;
                 };
-                notifications: {
+                map: {
+                    title: string;
                     loading: string;
-                    retry: string;
-                    tryAgain: string;
-                    somethingWentWrong: string;
-                    dismiss: string;
-                    ok: string;
+                    center: string;
+                    zoom: string;
+                    fullscreen: string;
+                    layers: string;
+                    drawing: string;
+                };
+                buttons: {
+                    save: string;
                     cancel: string;
-                    types: {
-                        success: string;
-                        warning: string;
-                        error: string;
-                        info: string;
-                    };
-                    messages: {
-                        generalError: string;
-                        networkError: string;
-                        operationComplete: string;
-                        operationFailed: string;
-                    };
+                    delete: string;
+                    edit: string;
+                    create: string;
+                    update: string;
+                    close: string;
+                    open: string;
+                    search: string;
+                    filter: string;
+                    export: string;
+                    import: string;
+                    download: string;
+                    upload: string;
+                    submit: string;
+                    reset: string;
+                    clear: string;
+                    apply: string;
+                    confirm: string;
+                    reject: string;
+                };
+                alerts: {
+                    success: string;
+                    error: string;
+                    warning: string;
+                    info: string;
+                    loading: string;
+                    saving: string;
+                    deleting: string;
+                    updating: string;
+                    processing: string;
+                    completed: string;
+                    failed: string;
                 };
                 forms: {
+                    required: string;
+                    invalid: string;
+                    tooShort: string;
+                    tooLong: string;
+                    invalidEmail: string;
+                    invalidPhone: string;
+                    passwordMismatch: string;
+                    weakPassword: string;
                     validation: {
                         required: string;
                     };
@@ -1700,6 +2682,135 @@ export declare const i18nConfig: {
                         noOptions: string;
                         clear: string;
                         loading: string;
+                    };
+                };
+                realEstate: {
+                    newListing: string;
+                    categorySelection: string;
+                    properties: string;
+                    propertyDescription: string;
+                    jobs: string;
+                    jobDescription: string;
+                    wantToOffer: string;
+                    offerDescription: string;
+                    wantToSearch: string;
+                    searchDescription: string;
+                    transactionType: string;
+                    sale: string;
+                    saleDescription: string;
+                    rental: string;
+                    rentalDescription: string;
+                };
+                availability: {
+                    whenAvailable: string;
+                    selectPeriod: string;
+                    now: string;
+                    nowDescription: string;
+                    future: string;
+                    futureDescription: string;
+                    details: string;
+                    pleaseSetDateAndDuration: string;
+                    startDate: string;
+                    datePlaceholder: string;
+                    duration: string;
+                    durationExample: string;
+                    unit: string;
+                    months: string;
+                };
+                location: {
+                    locationAndFloorplan: string;
+                    uploadFloorplan: string;
+                    selectFile: string;
+                    clickToUpload: string;
+                    or: string;
+                    searchLocation: string;
+                    locationExample: string;
+                    placementTools: string;
+                    toolsDescription: string;
+                    rotation: string;
+                    scale: string;
+                    cmToM: string;
+                    mmToM: string;
+                    mToM: string;
+                };
+                jobs: {
+                    listingType: string;
+                    wantToOfferPosition: string;
+                    offerPositionDescription: string;
+                    lookingForWork: string;
+                    lookingForWorkDescription: string;
+                    employmentType: string;
+                    fullTime: string;
+                    fullTimeDescription: string;
+                    partTime: string;
+                    partTimeDescription: string;
+                    freelance: string;
+                    freelanceDescription: string;
+                    seasonal: string;
+                    seasonalDescription: string;
+                    whenAvailable: string;
+                    selectAvailabilityPeriod: string;
+                    now: string;
+                    nowDescription: string;
+                    future: string;
+                    futureDescription: string;
+                    locationAndMap: string;
+                    drawPropertyArea: string;
+                    drawingSearchArea: string;
+                    openDrawingTool: string;
+                    clickToDrawOnMap: string;
+                    jobDetails: string;
+                    fillJobSearchDetails: string;
+                    title: string;
+                    titleExample: string;
+                    description: string;
+                    describeDetailed: string;
+                    salary: string;
+                    salaryExample: string;
+                    contactInfo: string;
+                    contactExample: string;
+                };
+                common: {
+                    error: string;
+                    processing: string;
+                    addressDetails: string;
+                    showOnMap: string;
+                    clickToShowBoundary: string;
+                    title: string;
+                    subtitle: string;
+                    realEstate: string;
+                    job: string;
+                    marker: string;
+                    polygon: string;
+                    clear: string;
+                    auto: string;
+                    mobile: string;
+                    tablet: string;
+                    desktop: string;
+                    overrideActive: string;
+                };
+                addressDetails: string;
+                showOnMap: string;
+                clickToShowBoundary: string;
+                notifications: {
+                    loading: string;
+                    retry: string;
+                    tryAgain: string;
+                    somethingWentWrong: string;
+                    dismiss: string;
+                    ok: string;
+                    cancel: string;
+                    types: {
+                        success: string;
+                        warning: string;
+                        error: string;
+                        info: string;
+                    };
+                    messages: {
+                        generalError: string;
+                        networkError: string;
+                        operationComplete: string;
+                        operationFailed: string;
                     };
                 };
                 tables: {
@@ -1757,10 +2868,24 @@ export declare const i18nConfig: {
                             title: string;
                         };
                         offer: {
-                            title: string;
+                            property: {
+                                title: string;
+                                description: string;
+                            };
+                            job: {
+                                title: string;
+                                description: string;
+                            };
                         };
                         search: {
-                            title: string;
+                            property: {
+                                title: string;
+                                description: string;
+                            };
+                            job: {
+                                title: string;
+                                description: string;
+                            };
                         };
                     };
                     preview: {
@@ -1770,23 +2895,6 @@ export declare const i18nConfig: {
                         };
                         continue: string;
                     };
-                };
-                geoalert: {
-                    title: string;
-                    subtitle: string;
-                    geoCanvasReady: string;
-                    professionalArchitecture: string;
-                    enterGeoCanvas: string;
-                    statusCheck: string;
-                    port: string;
-                    reactReady: string;
-                    typescriptStrict: string;
-                    independentApp: string;
-                    enterpriseArchitecture: string;
-                    navigateToLayeraId: string;
-                    modularMicroservice: string;
-                    crossAppNavigation: string;
-                    readyForImplementation: string;
                 };
                 dashboard: {
                     overview: string;
@@ -1810,6 +2918,152 @@ export declare const i18nConfig: {
                         configureSettings: string;
                         manageData: string;
                         enableMfa: string;
+                    };
+                };
+                pipelines: {
+                    steps: {
+                        details: {
+                            title: string;
+                            subtitle: string;
+                            property: string;
+                            job: string;
+                            offer: string;
+                            search: string;
+                            fields: {
+                                title: string;
+                                description: string;
+                                price: string;
+                                salary: string;
+                                contactInfo: string;
+                            };
+                            placeholders: {
+                                propertyTitle: string;
+                                jobTitle: string;
+                                description: string;
+                                price: string;
+                                salary: string;
+                                contact: string;
+                            };
+                        };
+                        layout: {
+                            title: string;
+                            findMyLocation: string;
+                            or: string;
+                            searchLocation: string;
+                            locationPlaceholder: string;
+                            results: string;
+                            locationPin: string;
+                            placementTools: {
+                                title: string;
+                                description: string;
+                                rotation: string;
+                                scale: string;
+                                units: {
+                                    cmToM: string;
+                                    mmToM: string;
+                                    mToM: string;
+                                };
+                            };
+                            actions: {
+                                back: string;
+                                saveLocation: string;
+                            };
+                        };
+                        transaction: {
+                            title: string;
+                            sale: {
+                                title: string;
+                                description: string;
+                            };
+                            rent: {
+                                title: string;
+                                description: string;
+                            };
+                        };
+                        employmentType: {
+                            title: string;
+                            fullTime: {
+                                title: string;
+                                description: string;
+                            };
+                            partTime: {
+                                title: string;
+                                description: string;
+                            };
+                            freelance: {
+                                title: string;
+                                description: string;
+                            };
+                            seasonal: {
+                                title: string;
+                                description: string;
+                            };
+                        };
+                        availability: {
+                            title: string;
+                            subtitle: string;
+                            fields: {
+                                startDate: string;
+                                duration: string;
+                                unit: string;
+                            };
+                            units: {
+                                months: string;
+                                years: string;
+                            };
+                            placeholders: {
+                                duration: string;
+                                datePlaceholder: string;
+                            };
+                            question: {
+                                title: string;
+                                subtitle: string;
+                            };
+                            options: {
+                                now: {
+                                    title: string;
+                                    description: string;
+                                };
+                                future: {
+                                    title: string;
+                                    description: string;
+                                };
+                            };
+                        };
+                    };
+                    actions: {
+                        back: string;
+                        continue: string;
+                        save: string;
+                    };
+                };
+                progress: {
+                    stepper: {
+                        optional: string;
+                        labels: {
+                            category: string;
+                            intent: string;
+                            transactionType: string;
+                            employmentType: string;
+                            availability: string;
+                            availabilityDetails: string;
+                            location: string;
+                            layout: string;
+                            details: string;
+                            complete: string;
+                        };
+                        descriptions: {
+                            category: string;
+                            intent: string;
+                            transactionType: string;
+                            employmentType: string;
+                            availability: string;
+                            availabilityDetails: string;
+                            location: string;
+                            layout: string;
+                            details: string;
+                            complete: string;
+                        };
                     };
                 };
             };

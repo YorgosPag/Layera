@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, Heading } from '@layera/typography';
 import { Stack, Flex } from '@layera/layout';
 import { Button } from '@layera/buttons';
@@ -6,6 +6,8 @@ import { FormActions } from '@layera/forms';
 import { Input } from '@layera/forms';
 import { LocationIcon } from '@layera/icons';
 import { useGeocode } from '../../../geocoding/src/index';
+import { AddressBreakdownCard } from '../../../address-breakdown/src/index';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 export interface LayoutState {
   layoutLocation: string | null;
@@ -29,6 +31,7 @@ export interface LayoutStepProps {
  * Dependencies: ONLY @layera LEGO systems
  */
 export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
+  const { t } = useLayeraTranslation();
   const [layoutRotation, setLayoutRotation] = useState<number>(0);
   const [layoutScaleWidth, setLayoutScaleWidth] = useState<number>(1);
   const [layoutScaleHeight, setLayoutScaleHeight] = useState<number>(1);
@@ -55,6 +58,33 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
       window.dispatchEvent(mapEvent);
     }
   });
+
+  // Listen για αλλαγές γλώσσας και ξανάκανε αναζήτηση αν υπάρχουν αποτελέσματα
+  useEffect(() => {
+    const handleLanguageChange = () => {
+      const currentLang = localStorage.getItem('i18nextLng');
+      console.log('🌍 LayoutStep detected language change to:', currentLang);
+
+      // Αν έχουμε αποτελέσματα, ξανάκανε την αναζήτηση
+      if (layoutLocation && results.length > 0) {
+        console.log('🔄 Re-searching location with new language:', currentLang);
+        geocodeActions.search(layoutLocation);
+      }
+    };
+
+    // Έλεγχος κάθε 1 δευτερόλεπτο για αλλαγή γλώσσας
+    let lastLang = localStorage.getItem('i18nextLng');
+    const interval = setInterval(() => {
+      const storedLang = localStorage.getItem('i18nextLng');
+
+      if (storedLang !== lastLang) {
+        lastLang = storedLang;
+        handleLanguageChange();
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [layoutLocation, results.length, geocodeActions]);
 
   const handleFindMyLocation = () => {
     console.log('🔍 LayoutStep: Find location button clicked');
@@ -115,7 +145,7 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
   return (
     <Stack spacing="lg">
       <Heading as="h3" size="lg" color="primary">
-        Τοποθεσία & Κάτοψη
+        {t('pipelines.steps.layout.title')}
       </Heading>
 
       {/* Βρες τη θέση μου button */}
@@ -134,7 +164,7 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
         }}
       >
         <LocationIcon size="sm" theme="neutral" style={{ marginRight: '4px' }} />
-        Βρες τη θέση μου
+        {t('pipelines.steps.layout.findMyLocation')}
       </Button>
 
       {/* Διαχωριστικό "ή" */}
@@ -149,7 +179,7 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
           height: '1px',
           backgroundColor: '#dee2e6'
         }} />
-        <Text size="sm" color="secondary">ή</Text>
+        <Text size="sm" color="secondary">{t('pipelines.steps.layout.or')}</Text>
         <div style={{
           flex: 1,
           height: '1px',
@@ -160,7 +190,7 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
       {/* Αναζήτηση Τοποθεσίας */}
       <div style={{ marginBottom: '2px' }}>
         <Text size="base" weight="bold">
-          Αναζήτηση Τοποθεσίας
+          {t('pipelines.steps.layout.searchLocation')}
         </Text>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', gap: '2px', position: 'relative' }}>
           <Input
@@ -168,7 +198,7 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               geocodeActions.setQuery(e.target.value)
             }
-            placeholder="π.χ. Ερμού 10, Αθήνα"
+            placeholder={t('pipelines.steps.layout.locationPlaceholder')}
             size="lg"
             variant="outline"
             className="layera-form-input"
@@ -201,41 +231,47 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
           </Button>
         </div>
 
-        {/* Αποτελέσματα αναζήτησης */}
+        {/* Αποτελέσματα αναζήτησης με νέο AddressBreakdownCard */}
         {results.length > 0 && (
-          <div style={{
-            marginTop: '8px',
-            backgroundColor: '#f8f9fa',
-            border: '1px solid #dee2e6',
-            borderRadius: '8px',
-            padding: '8px',
-            maxHeight: '150px',
-            overflowY: 'auto'
-          }}>
-            <Text size="sm" weight="bold" style={{ marginBottom: '4px' }}>
-              Αποτελέσματα ({results.length})
+          <div style={{ marginTop: '8px' }}>
+            <Text size="sm" weight="bold" style={{ marginBottom: '8px' }}>
+              {t('pipelines.steps.layout.results', { count: results.length })}
             </Text>
             {results.map((result) => (
-              <div
-                key={result.id}
-                onClick={() => geocodeActions.selectResult(result)}
-                style={{
-                  padding: '6px 8px',
-                  backgroundColor: selectedResult?.id === result.id ? '#e3f2fd' : 'white',
-                  border: '1px solid #dee2e6',
-                  borderRadius: '4px',
-                  marginBottom: '2px',
-                  cursor: 'pointer',
-                  fontSize: '12px',
-                  lineHeight: '1.3'
-                }}
-              >
-                <div style={{ fontWeight: 'bold' }}>
-                  {result.address.street} {result.address.houseNumber}
-                </div>
-                <div style={{ color: '#6c757d' }}>
-                  {result.address.city}, {result.address.postalCode}
-                </div>
+              <div key={result.id} style={{ marginBottom: '8px' }}>
+                <AddressBreakdownCard
+                  geocodeResult={result}
+                  config={{
+                    layout: 'list',
+                    enableBoundarySearch: true,
+                    onComponentClick: (component) => {
+                      console.log('🎯 Address component clicked:', component);
+                    }
+                  }}
+                  title={(() => {
+                    // Για διευθύνσεις με οδό
+                    if (result.address.street) {
+                      return `📍 ${result.address.street}${result.address.houseNumber ? ' ' + result.address.houseNumber : ''}`;
+                    }
+
+                    // Για πόλεις/χωριά/κωμοπόλεις
+                    const location = result.address.city || result.address.town || result.address.village;
+                    const state = result.address.state || result.address.region;
+                    const country = result.address.country;
+
+                    if (location && country) {
+                      // Πλήρης τίτλος με πόλη και χώρα
+                      return `📍 ${location}${state ? ', ' + state : ''}, ${country}`;
+                    } else if (location) {
+                      return `📍 ${location}`;
+                    } else if (country) {
+                      return `📍 ${country}`;
+                    }
+
+                    // Fallback αν δεν έχουμε τίποτα
+                    return `📍 ${t('pipelines.steps.layout.locationPin')}`;
+                  })()}
+                />
               </div>
             ))}
           </div>
@@ -253,17 +289,17 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
         }}
       >
         <Text size="base" weight="bold" color="primary">
-          Εργαλεία Τοποθέτησης
+          {t('pipelines.steps.layout.placementTools.title')}
         </Text>
 
         <Text size="sm" color="secondary">
-          Τοποθετήστε το σχέδιο σας επάνω στον χάρτη για να δείτε ακριβώς την θέση του στο πραγματικό περιβάλλον. Τα εργαλεία παρακάτω σας επιτρέπουν να αλλάξετε μέγεθος της κάτοψης για να ταιριάξει με τις πραγματικές διαστάσεις του ακινήτου σας.
+          {t('pipelines.steps.layout.placementTools.description')}
         </Text>
 
         {/* Περιστροφή */}
         <div style={{ marginBottom: '16px' }}>
           <Text size="sm" weight="bold">
-            Περιστροφή
+            {t('pipelines.steps.layout.placementTools.rotation')}
           </Text>
           <Flex gap="md" align="center" justify="center">
             <Button
@@ -309,7 +345,7 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
           margin: '8px 0'
         }}>
           <Text size="sm" weight="bold">
-            Κλίμακα
+            {t('pipelines.steps.layout.placementTools.scale')}
           </Text>
           <div style={{
             display: 'flex',
@@ -320,7 +356,7 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
           {/* cm - m */}
           <div style={{ flex: 1, minWidth: 0 }}>
             <Text size="sm" weight="bold">
-              cm - m
+              {t('pipelines.steps.layout.placementTools.units.cmToM')}
             </Text>
             <div style={{ display: 'flex', gap: '2px', alignItems: 'center' }}>
               <Input
@@ -373,7 +409,7 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
           {/* mm - m */}
           <div style={{ flex: 1, minWidth: 0 }}>
             <Text size="sm" weight="bold">
-              mm - m
+              {t('pipelines.steps.layout.placementTools.units.mmToM')}
             </Text>
             <div style={{ display: 'flex', gap: '2px', alignItems: 'center' }}>
               <Input
@@ -426,7 +462,7 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
           {/* m - m */}
           <div style={{ flex: 1, minWidth: 0 }}>
             <Text size="sm" weight="bold">
-              m - m
+              {t('pipelines.steps.layout.placementTools.units.mToM')}
             </Text>
             <div style={{ display: 'flex', gap: '2px', alignItems: 'center' }}>
               <Input
@@ -490,7 +526,7 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
             color: '#6c757d'
           }}
         >
-          Πίσω
+          {t('pipelines.steps.layout.actions.back')}
         </Button>
         <Button
           variant="primary"
@@ -503,7 +539,7 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
             fontWeight: 'bold'
           }}
         >
-          Αποθήκευση Τοποθεσίας & Συνέχεια
+          {t('pipelines.steps.layout.actions.saveLocation')}
         </Button>
       </FormActions>
     </Stack>

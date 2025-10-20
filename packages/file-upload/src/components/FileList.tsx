@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { BaseCard as Card } from '@layera/cards';
 import { Text as Typography } from '@layera/typography';
 import { Button } from '@layera/buttons';

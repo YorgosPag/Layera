@@ -21,6 +21,11 @@ export interface BaseModalProps {
   preventBodyScroll?: boolean;
   className?: string;
   overlayClassName?: string;
+  contentClassName?: string;
+  contentStyle?: React.CSSProperties;
+  contentPadding?: string | number;
+  overlayPadding?: string | number;
+  panelPadding?: string | number;
   container?: Element | (() => Element) | null;
   'aria-labelledby'?: string;
   'aria-describedby'?: string;

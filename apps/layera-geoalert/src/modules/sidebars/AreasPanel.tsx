@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { DrawnArea } from '../../components/GeoMap';

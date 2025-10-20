@@ -5,6 +5,7 @@ import { Stack, Flex } from '@layera/layout';
 import { Button } from '@layera/buttons';
 import { FormActions } from '@layera/forms';
 import { UploadIcon, MapIcon } from '@layera/icons';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 export interface LocationDetails {
   type: 'upload' | 'drawing';
@@ -33,17 +34,19 @@ export const LocationStep: React.FC<LocationStepProps> = ({
   onNext,
   onBack
 }) => {
+  const { t } = useLayeraTranslation();
+
   return (
     <Stack spacing="md">
       <Heading as="h3" size="lg" color="primary">
-        Τοποθεσία & Κάτοψη
+        {t('pipelines.steps.layout.title')}
       </Heading>
 
       {/* Property + Offer + Now = File Upload, everything else = Drawing */}
       {category === 'property' && intent === 'offer' && availability === 'now' ? (
         <Stack spacing="md">
           <Text size="base" color="secondary">
-            Φορτώστε το αρχείο με την κάτοψη του ακινήτου:
+            {t('location.uploadFloorplan')}
           </Text>
           <BaseCard
             clickable
@@ -60,9 +63,9 @@ export const LocationStep: React.FC<LocationStepProps> = ({
             <Flex align="start" gap="lg">
               <UploadIcon size="xl" theme="primary" />
               <Stack spacing="xs" style={{ flex: 1, minWidth: 0 }}>
-                <Text size="xl" weight="bold" className="card-title">Επιλογή Αρχείου</Text>
+                <Text size="xl" weight="bold" className="card-title">{t('location.selectFile')}</Text>
                 <Text size="base" color="secondary" className="card-text">
-                  Κάντε κλικ για να ανεβάσετε την κάτοψη
+                  {t('location.clickToUpload')}
                 </Text>
               </Stack>
             </Flex>
@@ -72,8 +75,8 @@ export const LocationStep: React.FC<LocationStepProps> = ({
         <Stack spacing="md">
           <Text size="base" color="secondary">
             {intent === 'offer'
-              ? 'Σχεδιάστε την περιοχή του ακινήτου/εργασίας:'
-              : 'Σχεδιάστε την περιοχή αναζήτησης:'
+              ? t('drawingArea')
+              : t('drawingSearchArea')
             }
           </Text>
           <BaseCard
@@ -91,9 +94,9 @@ export const LocationStep: React.FC<LocationStepProps> = ({
             <Flex align="start" gap="lg">
               <MapIcon size="xl" theme="primary" />
               <Stack spacing="xs" style={{ flex: 1, minWidth: 0 }}>
-                <Text size="xl" weight="bold" className="card-title">Ανοίγμα Εργαλείου Σχεδίασης</Text>
+                <Text size="xl" weight="bold" className="card-title">{t('openDrawingTool')}</Text>
                 <Text size="base" color="secondary" className="card-text">
-                  Κάντε κλικ για να σχεδιάσετε στον χάρτη
+                  {t('clickToDrawOnMap')}
                 </Text>
               </Stack>
             </Flex>
@@ -107,7 +110,7 @@ export const LocationStep: React.FC<LocationStepProps> = ({
           onClick={onBack}
           className="layera-unified-button"
         >
-          Πίσω
+          {t('pipelines.actions.back')}
         </Button>
       </FormActions>
     </Stack>

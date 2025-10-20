@@ -10,7 +10,7 @@ export default defineConfig({
     'react',
     'react-dom',
     '@layera/constants',
-    '@layera/i18n',
+    '@layera/tolgee',
     '@layera/theme-switcher',
     '@layera/error-boundary',
     '@layera/notifications',

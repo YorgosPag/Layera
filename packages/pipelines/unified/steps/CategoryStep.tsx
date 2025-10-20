@@ -3,6 +3,7 @@ import { BaseCard } from '@layera/cards';
 import { Text, Heading } from '@layera/typography';
 import { Stack, Flex } from '@layera/layout';
 import { VillaIcon, BriefcaseIcon } from '@layera/icons';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 export type Category = 'property' | 'job';
 
@@ -18,10 +19,12 @@ export interface CategoryStepProps {
  * Dependencies: ONLY @layera LEGO systems
  */
 export const CategoryStep: React.FC<CategoryStepProps> = ({ onNext }) => {
+  const { t } = useLayeraTranslation();
+
   return (
     <Stack spacing="md">
       <Heading as="h3" size="lg" color="primary">
-        Επιλογή Κατηγορίας
+        {t('pipeline.category.selection.title')}
       </Heading>
 
       <Stack spacing="md">
@@ -37,13 +40,13 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({ onNext }) => {
           <Flex align="start" gap="lg">
             <VillaIcon size="xl" theme="primary" />
             <Stack spacing="xs" style={{ flex: 1, minWidth: 0 }}>
-              <Text size="xl" weight="bold" className="card-title">Ακίνητα</Text>
+              <Text size="xl" weight="bold" className="card-title">{t('pipeline.category.property.title')}</Text>
               <Text
                 size="base"
                 color="secondary"
                 className="card-text"
               >
-                Καταχωρήστε ένα ακίνητο προς πώληση, ενοικίαση ή δημιουργήστε μια ειδοποίηση αναζήτησης.
+                {t('pipeline.category.property.description')}
               </Text>
             </Stack>
           </Flex>
@@ -61,13 +64,13 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({ onNext }) => {
           <Flex align="start" gap="lg">
             <BriefcaseIcon size="xl" theme="success" />
             <Stack spacing="xs" style={{ flex: 1, minWidth: 0 }}>
-              <Text size="xl" weight="bold" className="card-title">Εργασία</Text>
+              <Text size="xl" weight="bold" className="card-title">{t('pipeline.category.job.title')}</Text>
               <Text
                 size="base"
                 color="secondary"
                 className="card-text"
               >
-                Προσφέρετε μια θέση εργασίας ή δηλώστε τη διαθεσιμότητά σας σε μια συγκεκριμένη περιοχή.
+                {t('pipeline.category.job.description')}
               </Text>
             </Stack>
           </Flex>

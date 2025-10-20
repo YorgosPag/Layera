@@ -242,32 +242,76 @@
       "description": "Access denied. Only admin can view this page."
     }
   },
-  "common": {
-    "error": "Error",
-    "processing": "Processing..."
+  "geoalert": {
+    "title": "Layera GeoAlert",
+    "subtitle": "Advanced Geographic Notifications System",
+    "geoCanvasReady": "Geo Canvas is Ready",
+    "professionalArchitecture": "Professional architecture with LEGO systems",
+    "enterGeoCanvas": "Enter Geo Canvas",
+    "statusCheck": "Status Check",
+    "port": "Port",
+    "reactReady": "React 19 Ready",
+    "typescriptStrict": "TypeScript Strict Mode",
+    "independentApp": "Independent Application",
+    "enterpriseArchitecture": "Enterprise Architecture",
+    "navigateToLayeraId": "Navigate to Layera ID",
+    "modularMicroservice": "Modular Microservice",
+    "crossAppNavigation": "Cross-App Navigation",
+    "readyForImplementation": "Ready for Implementation"
   },
-  "notifications": {
-    "loading": "Loading...",
-    "retry": "Retry",
-    "tryAgain": "Try Again",
-    "somethingWentWrong": "Something Went Wrong",
-    "dismiss": "Dismiss",
-    "ok": "OK",
+  "map": {
+    "title": "Map",
+    "loading": "Loading map...",
+    "center": "Center",
+    "zoom": "Zoom",
+    "fullscreen": "Fullscreen",
+    "layers": "Layers",
+    "drawing": "Drawing"
+  },
+  "buttons": {
+    "save": "Save",
     "cancel": "Cancel",
-    "types": {
-      "success": "Success",
-      "warning": "Warning",
-      "error": "Error",
-      "info": "Information"
-    },
-    "messages": {
-      "generalError": "An unexpected error occurred",
-      "networkError": "Network connection error",
-      "operationComplete": "Operation completed successfully",
-      "operationFailed": "Operation failed"
-    }
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "update": "Update",
+    "close": "Close",
+    "open": "Open",
+    "search": "Search",
+    "filter": "Filter",
+    "export": "Export",
+    "import": "Import",
+    "download": "Download",
+    "upload": "Upload",
+    "submit": "Submit",
+    "reset": "Reset",
+    "clear": "Clear",
+    "apply": "Apply",
+    "confirm": "Confirm",
+    "reject": "Reject"
+  },
+  "alerts": {
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Information",
+    "loading": "Loading...",
+    "saving": "Saving...",
+    "deleting": "Deleting...",
+    "updating": "Updating...",
+    "processing": "Processing...",
+    "completed": "Completed",
+    "failed": "Failed"
   },
   "forms": {
+    "required": "Required field",
+    "invalid": "Invalid value",
+    "tooShort": "Too short",
+    "tooLong": "Too long",
+    "invalidEmail": "Invalid email",
+    "invalidPhone": "Invalid phone number",
+    "passwordMismatch": "Passwords don't match",
+    "weakPassword": "Weak password",
     "validation": {
       "required": "This field is required"
     },
@@ -298,6 +342,135 @@
       "noOptions": "No options available",
       "clear": "Clear",
       "loading": "Loading..."
+    }
+  },
+  "realEstate": {
+    "newListing": "New Listing",
+    "categorySelection": "Category Selection",
+    "properties": "Properties",
+    "propertyDescription": "List a property for sale, rent, or create a search alert.",
+    "jobs": "Jobs",
+    "jobDescription": "Offer a job position or declare your availability in a specific area.",
+    "wantToOffer": "I Want to Offer",
+    "offerDescription": "List a property for sale or rent.",
+    "wantToSearch": "I Want to Search (Geo-Alert)",
+    "searchDescription": "Create an alert for future properties in an area.",
+    "transactionType": "Properties - Transaction Type",
+    "sale": "Sale",
+    "saleDescription": "Permanent transfer of property ownership",
+    "rental": "Rental",
+    "rentalDescription": "Grant use of the property for a specific time"
+  },
+  "availability": {
+    "whenAvailable": "When are you available?",
+    "selectPeriod": "Select your availability period",
+    "now": "Now",
+    "nowDescription": "I am immediately available for collaboration",
+    "future": "In the Future",
+    "futureDescription": "I will be available at a specific future date",
+    "details": "Availability Details",
+    "pleaseSetDateAndDuration": "Please set the availability date and duration",
+    "startDate": "Start Date",
+    "datePlaceholder": "dd/mm/yyyy",
+    "duration": "Duration",
+    "durationExample": "12",
+    "unit": "Unit",
+    "months": "Months"
+  },
+  "location": {
+    "locationAndFloorplan": "Location & Floor Plan",
+    "uploadFloorplan": "Upload the floor plan file:",
+    "selectFile": "Select File",
+    "clickToUpload": "Click to upload the floor plan",
+    "or": "or",
+    "searchLocation": "Search Location",
+    "locationExample": "e.g. Ermou 10, Athens",
+    "placementTools": "Placement Tools",
+    "toolsDescription": "Place your design on the map to see exactly where it is in the real environment. The tools below allow you to resize the floor plan to match the actual dimensions of your property.",
+    "rotation": "Rotation",
+    "scale": "Scale",
+    "cmToM": "cm - m",
+    "mmToM": "mm - m",
+    "mToM": "m - m"
+  },
+  "jobs": {
+    "listingType": "Jobs - Listing Type",
+    "wantToOfferPosition": "I Want to Offer a Position",
+    "offerPositionDescription": "Post a job listing for an available position.",
+    "lookingForWork": "Looking for Work",
+    "lookingForWorkDescription": "Declare your availability and skills in an area.",
+    "employmentType": "Jobs - Employment Type",
+    "fullTime": "Full Time",
+    "fullTimeDescription": "40 hours per week with full benefits",
+    "partTime": "Part Time",
+    "partTimeDescription": "Less than 40 hours per week",
+    "freelance": "Freelance",
+    "freelanceDescription": "Independent contractor with flexibility",
+    "seasonal": "Seasonal",
+    "seasonalDescription": "Temporary work for a specific period",
+    "whenAvailable": "When are you available?",
+    "selectAvailabilityPeriod": "Select your availability period",
+    "now": "Now",
+    "nowDescription": "I am immediately available for collaboration",
+    "future": "In the Future",
+    "futureDescription": "I will be available at a specific future date",
+    "locationAndMap": "Location & Map",
+    "drawPropertyArea": "Draw the property/job area:",
+    "drawingSearchArea": "Draw the search area:",
+    "openDrawingTool": "Open Drawing Tool",
+    "clickToDrawOnMap": "Click to draw on the map",
+    "jobDetails": "Job Details",
+    "fillJobSearchDetails": "Fill in the details for your search",
+    "title": "Title",
+    "titleExample": "e.g. Frontend Developer with React",
+    "description": "Description",
+    "describeDetailed": "Describe in detail...",
+    "salary": "Salary (€)",
+    "salaryExample": "e.g. 2500",
+    "contactInfo": "Contact Information",
+    "contactExample": "e.g. email@example.com or +30 6912345678"
+  },
+  "common": {
+    "error": "Error",
+    "processing": "Processing...",
+    "addressDetails": "Address Details",
+    "showOnMap": "Show on Map",
+    "clickToShowBoundary": "Click to show boundary",
+    "title": "Title",
+    "subtitle": "Subtitle",
+    "realEstate": "Real Estate",
+    "job": "Job",
+    "marker": "Marker",
+    "polygon": "Polygon",
+    "clear": "Clear",
+    "auto": "Auto",
+    "mobile": "Mobile",
+    "tablet": "Tablet",
+    "desktop": "Desktop",
+    "overrideActive": "Override Active"
+  },
+  "addressDetails": "Address Details",
+  "showOnMap": "Show on Map",
+  "clickToShowBoundary": "Click to show boundary",
+  "notifications": {
+    "loading": "Loading...",
+    "retry": "Retry",
+    "tryAgain": "Try Again",
+    "somethingWentWrong": "Something Went Wrong",
+    "dismiss": "Dismiss",
+    "ok": "OK",
+    "cancel": "Cancel",
+    "types": {
+      "success": "Success",
+      "warning": "Warning",
+      "error": "Error",
+      "info": "Information"
+    },
+    "messages": {
+      "generalError": "An unexpected error occurred",
+      "networkError": "Network connection error",
+      "operationComplete": "Operation completed successfully",
+      "operationFailed": "Operation failed"
     }
   },
   "tables": {
@@ -339,26 +512,40 @@
     },
     "category": {
       "selection": {
-        "title": "Select Category"
+        "title": "Category Selection"
       },
       "property": {
-        "title": "Property",
-        "description": "Search or advertise real estate"
+        "title": "Properties",
+        "description": "List a property for sale, rent, or create a search alert."
       },
       "job": {
-        "title": "Job",
-        "description": "Search or advertise job positions"
+        "title": "Jobs",
+        "description": "Offer a job position or declare your availability in a specific area."
       }
     },
     "intent": {
       "selection": {
-        "title": "Select Intent"
+        "title": "{{category}} - Listing Type"
       },
       "offer": {
-        "title": "Offer"
+        "property": {
+          "title": "I Want to Offer",
+          "description": "List a property for sale or rent."
+        },
+        "job": {
+          "title": "I Want to Offer a Position",
+          "description": "Post a job listing for an available position."
+        }
       },
       "search": {
-        "title": "Search"
+        "property": {
+          "title": "I Want to Search (Geo-Alert)",
+          "description": "Create an alert for future properties in an area."
+        },
+        "job": {
+          "title": "Looking for Work",
+          "description": "Declare your availability and skills in an area."
+        }
       }
     },
     "preview": {
@@ -368,23 +555,6 @@
       },
       "continue": "Continue"
     }
-  },
-  "geoalert": {
-    "title": "Layera GeoAlert",
-    "subtitle": "Advanced Geographic Notifications System",
-    "geoCanvasReady": "Geo Canvas is Ready",
-    "professionalArchitecture": "Professional architecture with LEGO systems",
-    "enterGeoCanvas": "Enter Geo Canvas",
-    "statusCheck": "Status Check",
-    "port": "Port",
-    "reactReady": "React 19 Ready",
-    "typescriptStrict": "TypeScript Strict Mode",
-    "independentApp": "Independent Application",
-    "enterpriseArchitecture": "Enterprise Architecture",
-    "navigateToLayeraId": "Navigate to Layera ID",
-    "modularMicroservice": "Modular Microservice",
-    "crossAppNavigation": "Cross-App Navigation",
-    "readyForImplementation": "Ready for Implementation"
   },
   "dashboard": {
     "overview": "Overview of your account status",
@@ -408,6 +578,152 @@
       "configureSettings": "Configure application preferences and security settings",
       "manageData": "View and manage your data and privacy settings",
       "enableMfa": "Enable multi-factor authentication for enhanced security"
+    }
+  },
+  "pipelines": {
+    "steps": {
+      "details": {
+        "title": "{{type}} Details",
+        "subtitle": "Fill in the details for {{intent}}",
+        "property": "Property",
+        "job": "Job",
+        "offer": "your offer",
+        "search": "your search",
+        "fields": {
+          "title": "Title",
+          "description": "Description",
+          "price": "Price (€)",
+          "salary": "Salary (€)",
+          "contactInfo": "Contact Information"
+        },
+        "placeholders": {
+          "propertyTitle": "e.g. 85m² Apartment in Kolonaki",
+          "jobTitle": "e.g. Frontend Developer with React",
+          "description": "Describe in detail...",
+          "price": "e.g. 250000",
+          "salary": "e.g. 2500",
+          "contact": "e.g. email@example.com or +30 6912345678"
+        }
+      },
+      "layout": {
+        "title": "Location & Floor Plan",
+        "findMyLocation": "Find My Location",
+        "or": "or",
+        "searchLocation": "Search Location",
+        "locationPlaceholder": "e.g. Ermou 10, Athens",
+        "results": "Results ({{count}})",
+        "locationPin": "Location",
+        "placementTools": {
+          "title": "Placement Tools",
+          "description": "Place your design on the map to see exactly where it is in the real environment. The tools below allow you to resize the floor plan to match the actual dimensions of your property.",
+          "rotation": "Rotation",
+          "scale": "Scale",
+          "units": {
+            "cmToM": "cm - m",
+            "mmToM": "mm - m",
+            "mToM": "m - m"
+          }
+        },
+        "actions": {
+          "back": "Back",
+          "saveLocation": "Save Location & Continue"
+        }
+      },
+      "transaction": {
+        "title": "Properties - Transaction Type",
+        "sale": {
+          "title": "Sale",
+          "description": "Permanent transfer of property ownership"
+        },
+        "rent": {
+          "title": "Rental",
+          "description": "Grant use of the property for a specific time"
+        }
+      },
+      "employmentType": {
+        "title": "Job - Employment Type",
+        "fullTime": {
+          "title": "Full Time",
+          "description": "40 hours per week with full benefits"
+        },
+        "partTime": {
+          "title": "Part Time",
+          "description": "Less than 40 hours per week"
+        },
+        "freelance": {
+          "title": "Freelance",
+          "description": "Independent contractor with flexibility"
+        },
+        "seasonal": {
+          "title": "Seasonal",
+          "description": "Temporary work for a specific period"
+        }
+      },
+      "availability": {
+        "title": "Availability Details",
+        "subtitle": "Please set the availability date and duration",
+        "fields": {
+          "startDate": "Start Date",
+          "duration": "Duration",
+          "unit": "Unit"
+        },
+        "units": {
+          "months": "Months",
+          "years": "Years"
+        },
+        "placeholders": {
+          "duration": "12",
+          "datePlaceholder": "dd/mm/yyyy"
+        },
+        "question": {
+          "title": "When are you available?",
+          "subtitle": "Select your availability period"
+        },
+        "options": {
+          "now": {
+            "title": "Now",
+            "description": "I am immediately available for collaboration"
+          },
+          "future": {
+            "title": "In the Future",
+            "description": "I will be available at a specific future date"
+          }
+        }
+      }
+    },
+    "actions": {
+      "back": "Back",
+      "continue": "Continue",
+      "save": "Save"
+    }
+  },
+  "progress": {
+    "stepper": {
+      "optional": "Optional",
+      "labels": {
+        "category": "Category",
+        "intent": "Purpose",
+        "transactionType": "Transaction",
+        "employmentType": "Employment",
+        "availability": "Availability",
+        "availabilityDetails": "Details",
+        "location": "Location",
+        "layout": "Floorplan",
+        "details": "Details",
+        "complete": "Complete"
+      },
+      "descriptions": {
+        "category": "Type",
+        "intent": "Action",
+        "transactionType": "Type",
+        "employmentType": "Type",
+        "availability": "When",
+        "availabilityDetails": "Dates",
+        "location": "Map",
+        "layout": "Layout",
+        "details": "Description",
+        "complete": "Confirmation"
+      }
     }
   }
 }

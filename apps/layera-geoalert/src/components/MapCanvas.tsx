@@ -3,7 +3,7 @@
 // Architecture: Composition over inheritance
 
 import React, { useEffect, useState, useCallback } from 'react';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { Button } from '@layera/buttons';
 
 // Micro-modules imports

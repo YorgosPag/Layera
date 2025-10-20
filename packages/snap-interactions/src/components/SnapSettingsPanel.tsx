@@ -6,14 +6,14 @@
 import React, { useState, useCallback } from 'react';
 
 // Import από existing LEGO systems - ΜΗΝ αναδημιουργήσεις
-import { Card, CardHeader, CardContent } from '@layera/cards';
+import { BaseCard } from '@layera/cards';
 import { Button, ToggleButton } from '@layera/buttons';
 import { Slider, FormField, FormSection } from '@layera/forms';
 import { Text, Heading } from '@layera/typography';
 import { Stack, Grid } from '@layera/layout';
 import { Icon } from '@layera/icons';
 import { useTheme } from '@layera/theme-switcher';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { useNotification } from '@layera/notifications';
 
 // Import από snap engine
@@ -186,32 +186,33 @@ export const SnapSettingsPanel: React.FC<SnapSettingsPanelProps> = ({
   // 🎛️ MAIN RENDER
   // ========================================
 
+  // Card title με close button
+  const cardTitle = (
+    <Stack direction="row" spacing={8} align="center">
+      <Icon name="settings" size={20} />
+      <Heading level={compact ? 4 : 3}>
+        {t('snap.settings.title')}
+      </Heading>
+    </Stack>
+  );
+
+  const cardActions = onClose ? (
+    <Button
+      variant="ghost"
+      size="small"
+      onClick={onClose}
+      disabled={disabled}
+    >
+      <Icon name="close" size={16} />
+    </Button>
+  ) : undefined;
+
   return (
-    <Card className={compact ? 'snap-settings-compact' : 'snap-settings-full'}>
-      {/* Header με @layera/cards, @layera/typography, @layera/buttons */}
-      <CardHeader>
-        <Stack direction="row" justify="space-between" align="center">
-          <Stack direction="row" spacing={8} align="center">
-            <Icon name="settings" size={20} />
-            <Heading level={compact ? 4 : 3}>
-              {t('snap.settings.title')}
-            </Heading>
-          </Stack>
-
-          {onClose && (
-            <Button
-              variant="ghost"
-              size="small"
-              onClick={onClose}
-              disabled={disabled}
-            >
-              <Icon name="close" size={16} />
-            </Button>
-          )}
-        </Stack>
-      </CardHeader>
-
-      <CardContent>
+    <BaseCard
+      title={cardTitle}
+      actions={cardActions}
+      className={compact ? 'snap-settings-compact' : 'snap-settings-full'}
+    >
         <Stack spacing={compact ? 16 : 24}>
           {/* Tolerance Slider με @layera/forms */}
           <FormSection title={t('snap.settings.tolerance.title')}>
@@ -318,8 +319,7 @@ export const SnapSettingsPanel: React.FC<SnapSettingsPanelProps> = ({
             )}
           </Stack>
         </Stack>
-      </CardContent>
-    </Card>
+    </BaseCard>
   );
 };
 

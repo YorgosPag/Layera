@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { useNotifications } from '@layera/notifications';
 import { ErrorBoundary } from '@layera/error-boundary';
 import { Text as Typography } from '@layera/typography';

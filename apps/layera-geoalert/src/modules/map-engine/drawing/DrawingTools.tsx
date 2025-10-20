@@ -5,7 +5,7 @@
 import React, { useState, useCallback } from 'react';
 import { useMapEvents, Circle, Polygon, Marker } from 'react-leaflet';
 import L from 'leaflet';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { Button } from '@layera/buttons';
 import { DrawingShape, DrawingState, GeoAlertArea, DRAWING_LIMITS } from '../../types';
 

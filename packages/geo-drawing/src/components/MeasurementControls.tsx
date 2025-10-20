@@ -1,10 +1,10 @@
 import React from 'react';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { Button } from '@layera/buttons';
-import { Card } from '@layera/cards';
-import { Typography } from '@layera/typography';
-import { Layout } from '@layera/layout';
-import { Icons } from '@layera/icons';
+import { BaseCard } from '@layera/cards';
+import { Text, Heading } from '@layera/typography';
+import { Stack, Flex } from '@layera/layout';
+import { RulerIcon, CircleIcon, PointIcon } from '@layera/icons';
 import type { MeasurementMode } from '../types';
 
 interface MeasurementControlsProps {

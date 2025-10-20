@@ -5,6 +5,7 @@ import { Stack, Flex } from '@layera/layout';
 import { Button } from '@layera/buttons';
 import { FormActions } from '@layera/forms';
 import { ToolIcon, HospitalIcon, TruckIcon, StoreIcon } from '@layera/icons';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 export type EmploymentType = 'full_time' | 'part_time' | 'freelance' | 'seasonal';
 
@@ -21,10 +22,12 @@ export interface EmploymentTypeStepProps {
  * Dependencies: ONLY @layera LEGO systems
  */
 export const EmploymentTypeStep: React.FC<EmploymentTypeStepProps> = ({ onNext, onBack }) => {
+  const { t } = useLayeraTranslation();
+
   return (
     <Stack spacing="md">
       <Heading as="h3" size="lg" color="primary">
-        Εργασία - Είδος Απασχόλησης
+        {t('pipelines.steps.employmentType.title')}
       </Heading>
 
       <Stack spacing="md">
@@ -40,13 +43,13 @@ export const EmploymentTypeStep: React.FC<EmploymentTypeStepProps> = ({ onNext, 
           <Flex align="start" gap="lg">
             <ToolIcon size="xl" theme="primary" />
             <Stack spacing="xs" style={{ flex: 1, minWidth: 0 }}>
-              <Text size="xl" weight="bold" className="card-title">Πλήρης Απασχόληση</Text>
+              <Text size="xl" weight="bold" className="card-title">{t('pipelines.steps.employmentType.fullTime.title')}</Text>
               <Text
                 size="base"
                 color="secondary"
                 className="card-text"
               >
-                40 ώρες την εβδομάδα με πλήρη παροχές
+                {t('pipelines.steps.employmentType.fullTime.description')}
               </Text>
             </Stack>
           </Flex>
@@ -64,13 +67,13 @@ export const EmploymentTypeStep: React.FC<EmploymentTypeStepProps> = ({ onNext, 
           <Flex align="start" gap="lg">
             <HospitalIcon size="xl" theme="info" />
             <Stack spacing="xs" style={{ flex: 1, minWidth: 0 }}>
-              <Text size="xl" weight="bold" className="card-title">Μερική Απασχόληση</Text>
+              <Text size="xl" weight="bold" className="card-title">{t('pipelines.steps.employmentType.partTime.title')}</Text>
               <Text
                 size="base"
                 color="secondary"
                 className="card-text"
               >
-                Λιγότερες από 40 ώρες την εβδομάδα
+                {t('pipelines.steps.employmentType.partTime.description')}
               </Text>
             </Stack>
           </Flex>
@@ -88,13 +91,13 @@ export const EmploymentTypeStep: React.FC<EmploymentTypeStepProps> = ({ onNext, 
           <Flex align="start" gap="lg">
             <TruckIcon size="xl" theme="success" />
             <Stack spacing="xs" style={{ flex: 1, minWidth: 0 }}>
-              <Text size="xl" weight="bold" className="card-title">Freelance</Text>
+              <Text size="xl" weight="bold" className="card-title">{t('pipelines.steps.employmentType.freelance.title')}</Text>
               <Text
                 size="base"
                 color="secondary"
                 className="card-text"
               >
-                Ανεξάρτητος συνεργάτης με ευελιξία
+                {t('pipelines.steps.employmentType.freelance.description')}
               </Text>
             </Stack>
           </Flex>
@@ -112,13 +115,13 @@ export const EmploymentTypeStep: React.FC<EmploymentTypeStepProps> = ({ onNext, 
           <Flex align="start" gap="lg">
             <StoreIcon size="xl" theme="warning" />
             <Stack spacing="xs" style={{ flex: 1, minWidth: 0 }}>
-              <Text size="xl" weight="bold" className="card-title">Εποχιακή</Text>
+              <Text size="xl" weight="bold" className="card-title">{t('pipelines.steps.employmentType.seasonal.title')}</Text>
               <Text
                 size="base"
                 color="secondary"
                 className="card-text"
               >
-                Προσωρινή εργασία για ορισμένη περίοδο
+                {t('pipelines.steps.employmentType.seasonal.description')}
               </Text>
             </Stack>
           </Flex>
@@ -131,7 +134,7 @@ export const EmploymentTypeStep: React.FC<EmploymentTypeStepProps> = ({ onNext, 
           onClick={onBack}
           className="layera-unified-button"
         >
-          Πίσω
+          {t('pipelines.actions.back')}
         </Button>
       </FormActions>
     </Stack>

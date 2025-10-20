@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { Button } from '@layera/buttons';
 import LatitudeRuler from './rulers/LatitudeRuler';
 import LongitudeRuler from './rulers/LongitudeRuler';
@@ -91,6 +91,7 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
   const polygonPoints = useRef<number[][]>([]);
   const userLocationMarker = useRef<LeafletLayer | null>(null); // Ref για το user location marker
   const searchResultMarker = useRef<LeafletLayer | null>(null); // Ref για το search result marker
+  const boundaryLayer = useRef<LeafletLayer | null>(null); // Ref για administrative boundaries
   const [drawnAreas, setDrawnAreas] = useState<DrawnArea[]>([]);
   const [activeDrawingMode, setActiveDrawingMode] = useState<'none' | 'polygon' | 'marker'>('none');
   const [activeCategory, setActiveCategory] = useState<'real_estate' | 'jobs'>('real_estate');
@@ -278,6 +279,62 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
       }
     };
 
+    // Handler για administrative boundary visualization
+    const handleShowAdministrativeBoundary = (event: CustomEvent) => {
+      console.log('🏛️ GeoMap: Received showAdministrativeBoundary event', event.detail);
+
+      if (isComponentMounted && mapRef.current && leafletRef.current) {
+        const { boundary, component } = event.detail;
+        const L = leafletRef.current;
+
+        try {
+          // Remove previous boundary layer
+          if (boundaryLayer.current) {
+            mapRef.current.removeLayer(boundaryLayer.current);
+            boundaryLayer.current = null;
+          }
+
+          if (boundary && boundary.features && boundary.features.length > 0) {
+            console.log('🗺️ GeoMap: Creating boundary layer for:', component.label);
+
+            // Create GeoJSON layer for the boundary
+            const geoJsonLayer = L.geoJSON(boundary, {
+              style: {
+                color: '#8b5cf6',
+                weight: 3,
+                opacity: 0.8,
+                fillColor: '#8b5cf6',
+                fillOpacity: 0.1
+              }
+            }).bindPopup(`
+              <div style="text-align: center; font-weight: 600; color: #8b5cf6; max-width: 200px;">
+                🏛️ ${component.label}
+                <br><small style="color: #6b7280;">Διοικητικό όριο</small>
+              </div>
+            `);
+
+            // Add to map and store reference
+            geoJsonLayer.addTo(mapRef.current);
+            boundaryLayer.current = geoJsonLayer;
+
+            // Fit map to boundary bounds
+            const bounds = geoJsonLayer.getBounds();
+            if (bounds.isValid()) {
+              mapRef.current.fitBounds(bounds, { padding: [20, 20] });
+            }
+
+            console.log('✅ GeoMap: Boundary layer created and displayed');
+          } else {
+            console.warn('⚠️ GeoMap: No boundary features found');
+          }
+        } catch (error) {
+          console.error('❌ GeoMap: Error creating boundary layer:', error);
+        }
+      } else {
+        console.warn('⚠️ GeoMap: Cannot handle boundary - component not mounted or map not ready');
+      }
+    };
+
     const initMap = async () => {
       try {
         if (!isComponentMounted) return;
@@ -347,6 +404,7 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
           // Προσθήκη των event listeners
           window.addEventListener('centerMapToLocation', handleCenterMapToLocation as EventListener);
           window.addEventListener('showSearchResult', handleShowSearchResult as EventListener);
+          window.addEventListener('showAdministrativeBoundary', handleShowAdministrativeBoundary as EventListener);
 
           // Initial bounds and size
           const bounds = map.getBounds();
@@ -360,8 +418,22 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
             if (map && isComponentMounted) {
               map.invalidateSize();
               // Clear any leftover popups/tooltips that might cause visual issues
-              map.closePopup();
-              map.closeTooltip();
+              try {
+                if (map.closePopup && typeof map.closePopup === 'function') {
+                  map.closePopup();
+                }
+              } catch (error) {
+                console.warn('Error closing popup:', error);
+              }
+
+              try {
+                // Safer check for tooltip methods - some Leaflet versions don't have these
+                if (map && 'closeTooltip' in map && typeof map.closeTooltip === 'function') {
+                  map.closeTooltip();
+                }
+              } catch (error) {
+                // Silently ignore tooltip errors
+              }
             }
           }, 100);
 
@@ -382,6 +454,7 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
       // Cleanup των window event listeners
       window.removeEventListener('centerMapToLocation', handleCenterMapToLocation as EventListener);
       window.removeEventListener('showSearchResult', handleShowSearchResult as EventListener);
+      window.removeEventListener('showAdministrativeBoundary', handleShowAdministrativeBoundary as EventListener);
 
       try {
         if (mapRef.current) {
@@ -569,6 +642,16 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
             searchResultMarker.current = null;
           } catch (e) {
             console.warn('Error removing search result marker in clearAll:', e);
+          }
+        }
+
+        // Αφαιρούμε και το boundary layer
+        if (boundaryLayer.current) {
+          try {
+            mapRef.current.removeLayer(boundaryLayer.current);
+            boundaryLayer.current = null;
+          } catch (e) {
+            console.warn('Error removing boundary layer in clearAll:', e);
           }
         }
       } catch (error) {

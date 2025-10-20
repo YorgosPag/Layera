@@ -61,6 +61,27 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  padding: var(--layera-modal-inner-padding, 24px);
+}
+
+/* Remove external margins from content */
+.layera-modal-content > :first-child {
+  margin-top: 0 !important;
+}
+
+.layera-modal-content > :last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Remove margins from headings and paragraphs */
+.layera-modal-content h1,
+.layera-modal-content h2,
+.layera-modal-content h3,
+.layera-modal-content h4,
+.layera-modal-content h5,
+.layera-modal-content h6,
+.layera-modal-content p {
+  margin: 0 !important;
 }
 
 /* Modal sizes */

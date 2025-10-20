@@ -7,7 +7,7 @@ import {
   type FormState,
   type InputVariant
 } from '@layera/constants';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import './Select.css';
 
 export interface SelectOption {

@@ -1,38 +1,27 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import L from 'leaflet';
 import { useMap } from 'react-leaflet';
-import { useSnapEngine } from '@layera/snap-interactions';
-import type { GeoJSONFeatureCollection, OSMBuildingFeature } from '../types';
+import type { OSMBuildingCollection } from '@layera/geo-core';
 import { fetchBuildingOutlines } from '../services/osmService';
-import { extractOSMGeometry } from '../utils/geometry';
 import { CONFIG } from '@layera/constants';
 
 /**
  * Hook που ενσωματώνει το snap-to-geometry με OSM building data
- * Βασισμένο στο OLD_geo-canvas/packages/app/src/hooks/useSnapping.ts
- * αλλά χρησιμοποιεί το νέο @layera/snap-engine LEGO system
+ * Temporary simplified version μέχρι να συμβατοποιηθούν τα snap packages
  */
 export const useGeometrySnap = (isEnabled: boolean = true) => {
   const map = useMap();
-  const [osmData, setOsmData] = useState<GeoJSONFeatureCollection | null>(null);
+  const [osmData, setOsmData] = useState<OSMBuildingCollection | null>(null);
   const [isSnappingEffective, setIsSnappingEffective] = useState(false);
   const timeoutRef = useRef<number | null>(null);
-
-  // Initialize snap engine με OSM-specific configuration
-  const snapEngine = useSnapEngine({
-    tolerance: CONFIG.geoDrawing.snapTolerance,
-    enabledTypes: new Set(['vertex', 'edge', 'center', 'nearest']),
-    spatialIndexing: true
-  });
 
   // Effect για fetching OSM data όταν ο χάρτης κινείται
   useEffect(() => {
     const fetchData = async () => {
       const currentZoom = map.getZoom();
-      if (!isEnabled || currentZoom < CONFIG.geoDrawing.minSnapZoom) {
+      if (!isEnabled || currentZoom < (CONFIG.geoDrawing?.minSnapZoom || 16)) {
         setOsmData(null);
         setIsSnappingEffective(false);
-        snapEngine.clearGeometries();
         return;
       }
 
@@ -40,142 +29,74 @@ export const useGeometrySnap = (isEnabled: boolean = true) => {
       try {
         const geojson = await fetchBuildingOutlines(map.getBounds());
         setOsmData(geojson);
-
-        // Convert OSM features to geometries για το snap engine
-        const geometries: L.LatLng[][] = [];
-        geojson.features.forEach((feature: OSMBuildingFeature) => {
-          const polygons = extractOSMGeometry(feature);
-          geometries.push(...polygons);
-        });
-
-        // Update snap engine με νέα geometries
-        snapEngine.setGeometries(geometries);
       } catch (error) {
-        console.warn('Failed to fetch OSM data for snapping:', error);
+        console.error('Error fetching OSM data for snapping:', error);
         setOsmData(null);
         setIsSnappingEffective(false);
       }
     };
 
-    const handleMoveEnd = () => {
+    const debouncedFetch = () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
-      // Debounce the fetch request to avoid spamming the API
-      timeoutRef.current = window.setTimeout(fetchData, CONFIG.geoDrawing.debounceMs);
+      timeoutRef.current = window.setTimeout(fetchData, CONFIG.geoDrawing?.debounceMs || 500);
     };
 
-    map.on('moveend zoomend', handleMoveEnd);
-    fetchData(); // Initial check/fetch for the current view
+    map.on('moveend', debouncedFetch);
+    map.on('zoomend', debouncedFetch);
+
+    // Initial fetch
+    fetchData();
 
     return () => {
-      map.off('moveend zoomend', handleMoveEnd);
+      map.off('moveend', debouncedFetch);
+      map.off('zoomend', debouncedFetch);
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
-      setIsSnappingEffective(false);
-      snapEngine.clearGeometries();
     };
-  }, [map, isEnabled, snapEngine]);
+  }, [map, isEnabled]);
 
   /**
-   * Performs snapping calculation για ένα cursor point
-   * @param latlng Original cursor position
-   * @returns Snap result with snapped position
+   * Snap function που δέχεται LatLng και επιστρέφει snapped coordinates
+   * Temporary implementation που επιστρέφει το original point
    */
-  const getSnappedPoint = useCallback((latlng: L.LatLng) => {
-    if (!isEnabled || !isSnappingEffective || map.getZoom() < CONFIG.geoDrawing.minSnapZoom) {
-      return {
-        snappedLatLng: latlng,
-        snapPoint: null,
-        snapType: null,
-        isSnapped: false
-      };
-    }
-
-    return snapEngine.snapToPoint(latlng);
-  }, [isEnabled, isSnappingEffective, map, snapEngine]);
+  const snapToGeometry = useCallback(async (point: L.LatLng): Promise<L.LatLng> => {
+    // TODO: Implement actual snapping when snap packages are compatible
+    return point;
+  }, []);
 
   /**
-   * Snap σε κοντινότερο vertex
+   * Toggles snap types - placeholder
    */
-  const snapToVertex = useCallback((latlng: L.LatLng) => {
-    if (!isEnabled || !isSnappingEffective) {
-      return { snappedLatLng: latlng, snapPoint: null, isSnapped: false };
-    }
-
-    return snapEngine.snapToVertex(latlng);
-  }, [isEnabled, isSnappingEffective, snapEngine]);
+  const toggleSnapType = useCallback((type: string, enabled: boolean) => {
+    // TODO: Implement when snap engine is compatible
+    console.log(`Toggle snap type ${type}: ${enabled}`);
+  }, []);
 
   /**
-   * Snap σε κοντινότερο edge
+   * Updates snap tolerance - placeholder
    */
-  const snapToEdge = useCallback((latlng: L.LatLng) => {
-    if (!isEnabled || !isSnappingEffective) {
-      return { snappedLatLng: latlng, snapPoint: null, isSnapped: false };
-    }
-
-    return snapEngine.snapToEdge(latlng);
-  }, [isEnabled, isSnappingEffective, snapEngine]);
-
-  /**
-   * Enables/disables specific snap types
-   */
-  const setSnapTypes = useCallback((types: Set<string>) => {
-    snapEngine.setEnabledTypes(types);
-  }, [snapEngine]);
-
-  /**
-   * Updates snap tolerance
-   */
-  const setSnapTolerance = useCallback((tolerance: number) => {
-    snapEngine.setTolerance(tolerance);
-  }, [snapEngine]);
-
-  /**
-   * Gets building information at a point
-   */
-  const getBuildingInfo = useCallback((latlng: L.LatLng) => {
-    if (!osmData) return null;
-
-    for (const feature of osmData.features) {
-      const polygons = extractOSMGeometry(feature);
-      for (const polygon of polygons) {
-        // Simple point-in-polygon check
-        let inside = false;
-        for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
-          if (((polygon[i].lat > latlng.lat) !== (polygon[j].lat > latlng.lat)) &&
-              (latlng.lng < (polygon[j].lng - polygon[i].lng) * (latlng.lat - polygon[i].lat) / (polygon[j].lat - polygon[i].lat) + polygon[i].lng)) {
-            inside = !inside;
-          }
-        }
-        if (inside) {
-          return feature.properties;
-        }
-      }
-    }
-    return null;
-  }, [osmData]);
+  const updateTolerance = useCallback((tolerance: number) => {
+    // TODO: Implement when snap engine is compatible
+    console.log(`Update tolerance: ${tolerance}`);
+  }, []);
 
   return {
     // State
     isSnappingEffective,
     osmData,
-    snapEngine,
+    isSnapped: false,
+    lastSnapResult: null,
 
-    // Snap functions
-    getSnappedPoint,
-    snapToVertex,
-    snapToEdge,
+    // Functions
+    snapToGeometry,
+    toggleSnapType,
+    updateTolerance,
 
-    // Configuration
-    setSnapTypes,
-    setSnapTolerance,
-
-    // Utility
-    getBuildingInfo,
-
-    // Backward compatibility με το παλιό API
-    snappingData: osmData
+    // Placeholder values
+    snapEngine: null,
+    performanceMetrics: null
   };
 };

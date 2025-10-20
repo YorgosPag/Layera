@@ -1,6 +1,6 @@
 import React from 'react';
 import { PAGINATION_SIZES, type PaginationSize } from '@layera/constants';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 interface TablePaginationProps {
   page: number;

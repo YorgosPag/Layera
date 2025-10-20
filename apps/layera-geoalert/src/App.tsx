@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { DeviceOverrideProvider, DeviceSimulator } from '@layera/viewport';
 import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
@@ -10,7 +10,7 @@ import { LoadingSpinner } from '@layera/loading';
 // Enterprise LEGO Styles - Central Import
 import '@layera/styles';
 import { ArrowLeftIcon, MapIcon, PlusIcon, ShareIcon, LayersIcon, AlertTriangleIcon, CheckIcon, MoreIcon } from '@layera/icons';
-import { LanguageSwitcher } from '@layera/i18n';
+import { LanguageSwitcher } from '@layera/tolgee';
 import { GeoHeader } from './components/GeoHeader';
 import { SimpleNavigationRail } from './components/SimpleNavigationRail';
 import { UnifiedPipelineModal } from '../../../packages/pipelines/unified/UnifiedPipelineModal';

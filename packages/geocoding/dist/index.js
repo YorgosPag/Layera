@@ -48,8 +48,7 @@ var require_react_production = __commonJS({
     var REACT_ACTIVITY_TYPE = Symbol.for("react.activity");
     var MAYBE_ITERATOR_SYMBOL = Symbol.iterator;
     function getIteratorFn(maybeIterable) {
-      if (null === maybeIterable || "object" !== typeof maybeIterable)
-        return null;
+      if (null === maybeIterable || "object" !== typeof maybeIterable) return null;
       maybeIterable = MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL] || maybeIterable["@@iterator"];
       return "function" === typeof maybeIterable ? maybeIterable : null;
     }
@@ -152,11 +151,9 @@ var require_react_production = __commonJS({
     }
     function mapIntoArray(children, array, escapedPrefix, nameSoFar, callback) {
       var type = typeof children;
-      if ("undefined" === type || "boolean" === type)
-        children = null;
+      if ("undefined" === type || "boolean" === type) children = null;
       var invokeCallback = false;
-      if (null === children)
-        invokeCallback = true;
+      if (null === children) invokeCallback = true;
       else
         switch (type) {
           case "bigint":
@@ -227,8 +224,7 @@ var require_react_production = __commonJS({
       return invokeCallback;
     }
     function mapChildren(children, func, context) {
-      if (null == children)
-        return children;
+      if (null == children) return children;
       var result = [], count = 0;
       mapIntoArray(children, result, "", "", function(child) {
         return func.call(context, child, count++);
@@ -251,8 +247,7 @@ var require_react_production = __commonJS({
         );
         -1 === payload._status && (payload._status = 0, payload._result = ctor);
       }
-      if (1 === payload._status)
-        return payload._result.default;
+      if (1 === payload._status) return payload._result.default;
       throw payload._result;
     }
     var reportGlobalError = "function" === typeof reportError ? reportError : function(error) {
@@ -263,8 +258,7 @@ var require_react_production = __commonJS({
           message: "object" === typeof error && null !== error && "string" === typeof error.message ? String(error.message) : String(error),
           error
         });
-        if (!window.dispatchEvent(event))
-          return;
+        if (!window.dispatchEvent(event)) return;
       } else if ("object" === typeof process && "function" === typeof process.emit) {
         process.emit("uncaughtException", error);
         return;
@@ -335,8 +329,7 @@ var require_react_production = __commonJS({
         for (propName in void 0 !== config.key && (key = "" + config.key), config)
           !hasOwnProperty.call(config, propName) || "key" === propName || "__self" === propName || "__source" === propName || "ref" === propName && void 0 === config.ref || (props[propName] = config[propName]);
       var propName = arguments.length - 2;
-      if (1 === propName)
-        props.children = children;
+      if (1 === propName) props.children = children;
       else if (1 < propName) {
         for (var childArray = Array(propName), i = 0; i < propName; i++)
           childArray[i] = arguments[i + 2];
@@ -366,8 +359,7 @@ var require_react_production = __commonJS({
         for (propName in void 0 !== config.key && (key = "" + config.key), config)
           hasOwnProperty.call(config, propName) && "key" !== propName && "__self" !== propName && "__source" !== propName && (props[propName] = config[propName]);
       var childrenLength = arguments.length - 2;
-      if (1 === childrenLength)
-        props.children = children;
+      if (1 === childrenLength) props.children = children;
       else if (1 < childrenLength) {
         for (var childArray = Array(childrenLength), i = 0; i < childrenLength; i++)
           childArray[i] = arguments[i + 2];
@@ -483,7 +475,7 @@ var require_react_production = __commonJS({
 var require_react_development = __commonJS({
   "../../node_modules/.pnpm/react@19.2.0/node_modules/react/cjs/react.development.js"(exports2, module2) {
     "use strict";
-    "production" !== process.env.NODE_ENV && function() {
+    "production" !== process.env.NODE_ENV && (function() {
       function defineDeprecationWarning(methodName, info) {
         Object.defineProperty(Component.prototype, methodName, {
           get: function() {
@@ -549,12 +541,10 @@ var require_react_development = __commonJS({
         }
       }
       function getComponentNameFromType(type) {
-        if (null == type)
-          return null;
+        if (null == type) return null;
         if ("function" === typeof type)
           return type.$$typeof === REACT_CLIENT_REFERENCE ? null : type.displayName || type.name || null;
-        if ("string" === typeof type)
-          return type;
+        if ("string" === typeof type) return type;
         switch (type) {
           case REACT_FRAGMENT_TYPE:
             return "Fragment";
@@ -597,8 +587,7 @@ var require_react_development = __commonJS({
         return null;
       }
       function getTaskName(type) {
-        if (type === REACT_FRAGMENT_TYPE)
-          return "<>";
+        if (type === REACT_FRAGMENT_TYPE) return "<>";
         if ("object" === typeof type && null !== type && type.$$typeof === REACT_LAZY_TYPE)
           return "<...>";
         try {
@@ -618,8 +607,7 @@ var require_react_development = __commonJS({
       function hasValidKey(config) {
         if (hasOwnProperty.call(config, "key")) {
           var getter = Object.getOwnPropertyDescriptor(config, "key").get;
-          if (getter && getter.isReactWarning)
-            return false;
+          if (getter && getter.isReactWarning) return false;
         }
         return void 0 !== config.key;
       }
@@ -737,11 +725,9 @@ var require_react_development = __commonJS({
       }
       function mapIntoArray(children, array, escapedPrefix, nameSoFar, callback) {
         var type = typeof children;
-        if ("undefined" === type || "boolean" === type)
-          children = null;
+        if ("undefined" === type || "boolean" === type) children = null;
         var invokeCallback = false;
-        if (null === children)
-          invokeCallback = true;
+        if (null === children) invokeCallback = true;
         else
           switch (type) {
             case "bigint":
@@ -819,8 +805,7 @@ var require_react_development = __commonJS({
         return invokeCallback;
       }
       function mapChildren(children, func, context) {
-        if (null == children)
-          return children;
+        if (null == children) return children;
         var result = [], count = 0;
         mapIntoArray(children, result, "", "", function(child) {
           return func.call(context, child, count++);
@@ -923,8 +908,7 @@ var require_react_development = __commonJS({
             } catch (error) {
               ReactSharedInternals.thrownErrors.push(error);
             }
-          else
-            ReactSharedInternals.actQueue = null;
+          else ReactSharedInternals.actQueue = null;
         0 < ReactSharedInternals.thrownErrors.length ? (queue = aggregateErrors(ReactSharedInternals.thrownErrors), ReactSharedInternals.thrownErrors.length = 0, reject(queue)) : resolve(returnValue);
       }
       function flushActQueue(queue) {
@@ -944,8 +928,7 @@ var require_react_development = __commonJS({
                     return;
                   }
                   callback = continuation;
-                } else
-                  break;
+                } else break;
               } while (1);
             }
             queue.length = 0;
@@ -1036,8 +1019,7 @@ var require_react_development = __commonJS({
             message: "object" === typeof error && null !== error && "string" === typeof error.message ? String(error.message) : String(error),
             error
           });
-          if (!window.dispatchEvent(event))
-            return;
+          if (!window.dispatchEvent(event)) return;
         } else if ("object" === typeof process && "function" === typeof process.emit) {
           process.emit("uncaughtException", error);
           return;
@@ -1138,8 +1120,7 @@ var require_react_development = __commonJS({
                       ReactSharedInternals.thrownErrors.length = 0;
                       reject(_thrownError);
                     }
-                  } else
-                    resolve(returnValue);
+                  } else resolve(returnValue);
                 },
                 function(error) {
                   popActScope(prevActQueue, prevActScopeDepth);
@@ -1209,8 +1190,7 @@ var require_react_development = __commonJS({
             !hasOwnProperty.call(config, propName) || "key" === propName || "__self" === propName || "__source" === propName || "ref" === propName && void 0 === config.ref || (props[propName] = config[propName]);
         }
         var propName = arguments.length - 2;
-        if (1 === propName)
-          props.children = children;
+        if (1 === propName) props.children = children;
         else if (1 < propName) {
           JSCompiler_inline_result = Array(propName);
           for (var i = 0; i < propName; i++)
@@ -1258,8 +1238,7 @@ var require_react_development = __commonJS({
           )), hasValidKey(config) && (checkKeyStringCoercion(config.key), key = "" + config.key), config)
             hasOwnProperty.call(config, propName) && "key" !== propName && "__self" !== propName && "__source" !== propName && (i[propName] = config[propName]);
         var childrenLength = arguments.length - 2;
-        if (1 === childrenLength)
-          i.children = children;
+        if (1 === childrenLength) i.children = children;
         else if (1 < childrenLength) {
           for (var childArray = Array(childrenLength), _i = 0; _i < childrenLength; _i++)
             childArray[_i] = arguments[_i + 2];
@@ -1460,7 +1439,7 @@ var require_react_development = __commonJS({
       };
       exports2.version = "19.2.0";
       "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(Error());
-    }();
+    })();
   }
 });
 
@@ -1477,24 +1456,25 @@ var require_react = __commonJS({
 });
 
 // src/index.ts
-var src_exports = {};
-__export(src_exports, {
+var index_exports = {};
+__export(index_exports, {
   LAYERA_GEOCODING_VERSION: () => LAYERA_GEOCODING_VERSION,
   nominatimProvider: () => nominatimProvider,
   useGeocode: () => useGeocode
 });
-module.exports = __toCommonJS(src_exports);
+module.exports = __toCommonJS(index_exports);
 
 // src/hooks/useGeocode.ts
 var import_react = __toESM(require_react());
 
 // src/providers/nominatim.ts
-var NOMINATIM_BASE_URL = "https://nominatim.openstreetmap.org/search";
-function mapAccuracy(osmClass, osmType) {
-  if (osmType === "house")
-    return "exact";
-  if (osmClass === "highway" || osmType === "residential")
-    return "street";
+var NOMINATIM_BASE_URL = "https://nominatim.openstreetmap.org";
+var NOMINATIM_SEARCH = `${NOMINATIM_BASE_URL}/search`;
+var NOMINATIM_REVERSE = `${NOMINATIM_BASE_URL}/reverse`;
+function mapAccuracy(osmClass, osmType, interpolated) {
+  if (interpolated) return "interpolated";
+  if (osmType === "house") return "exact";
+  if (osmClass === "highway" || osmType === "residential") return "street";
   if (osmClass === "place" && (osmType === "city" || osmType === "town" || osmType === "village")) {
     return "city";
   }
@@ -1506,22 +1486,25 @@ function parseNominatimResult(item) {
     longitude: parseFloat(item.lon)
   };
   const address = {};
-  if (item.address?.road)
-    address.street = item.address.road;
-  if (item.address?.house_number)
-    address.houseNumber = item.address.house_number;
-  if (item.address?.postcode)
-    address.postalCode = item.address.postcode;
+  if (item.address?.road) address.street = item.address.road;
+  if (item.address?.house_number) address.houseNumber = item.address.house_number;
+  if (item.address?.postcode) address.postalCode = item.address.postcode;
+  if (item.address?.suburb) address.suburb = item.address.suburb;
+  if (item.address?.village) address.village = item.address.village;
+  if (item.address?.town) address.town = item.address.town;
+  if (item.address?.county) address.county = item.address.county;
   if (item.address?.city) {
     address.city = item.address.city;
   } else if (item.address?.municipality) {
     address.city = item.address.municipality;
+  } else if (item.address?.town) {
+    address.city = item.address.town;
+  } else if (item.address?.village) {
+    address.city = item.address.village;
   }
-  if (item.address?.state)
-    address.region = item.address.state;
-  if (item.address?.country)
-    address.country = item.address.country;
-  return {
+  if (item.address?.state) address.region = item.address.state;
+  if (item.address?.country) address.country = item.address.country;
+  const result = {
     id: `nominatim_${item.place_id}`,
     displayName: item.display_name,
     coordinates,
@@ -1529,22 +1512,72 @@ function parseNominatimResult(item) {
     address,
     metadata: {
       source: "nominatim",
-      confidence: Math.min(item.importance || 0.5, 1)
+      confidence: Math.min(item.importance || 0.5, 1),
+      osmType: item.osm_type,
+      osmId: item.osm_id,
+      class: item.class,
+      type: item.type,
+      importance: item.importance,
+      licence: item.licence
     }
   };
+  if (item.geojson) {
+    result.geometry = item.geojson;
+  }
+  if (item.boundingbox && item.boundingbox.length === 4) {
+    result.boundingBox = [
+      parseFloat(item.boundingbox[0] || "0"),
+      parseFloat(item.boundingbox[1] || "0"),
+      parseFloat(item.boundingbox[2] || "0"),
+      parseFloat(item.boundingbox[3] || "0")
+    ];
+  }
+  if (item.extratags) result.extraTags = item.extratags;
+  if (item.namedetails) result.nameDetails = item.namedetails;
+  return result;
 }
 async function searchNominatim(request) {
   try {
     const params = new URLSearchParams({
-      q: request.query,
       format: "json",
-      addressdetails: "1",
+      addressdetails: request.addressDetails !== false ? "1" : "0",
       limit: String(request.limit || 5),
-      countrycodes: request.countryCode || "GR",
-      "accept-language": request.language === "en" ? "en" : "el,en"
+      "accept-language": request.language === "el" ? "el,en" : "en"
     });
-    console.log("\u{1F50D} NominatimProvider: Searching for:", request.query);
-    const response = await fetch(`${NOMINATIM_BASE_URL}?${params.toString()}`, {
+    if (request.structured) {
+      if (request.structured.street) params.append("street", request.structured.street);
+      if (request.structured.city) params.append("city", request.structured.city);
+      if (request.structured.postalcode) params.append("postalcode", request.structured.postalcode);
+      if (request.structured.state) params.append("state", request.structured.state);
+      if (request.structured.country) params.append("country", request.structured.country);
+      if (request.structured.amenity) params.append("amenity", request.structured.amenity);
+      console.log("\u{1F3AF} Using STRUCTURED search:", request.structured);
+    } else {
+      params.append("q", request.query);
+    }
+    if (request.countryCode) {
+      params.append("countrycodes", request.countryCode);
+    }
+    if (request.viewbox) {
+      params.append("viewbox", request.viewbox.join(","));
+      if (request.bounded) {
+        params.append("bounded", "1");
+      }
+    }
+    if (request.polygonGeoJSON) {
+      params.append("polygon_geojson", "1");
+    }
+    if (request.extraTags) {
+      params.append("extratags", "1");
+    }
+    if (request.nameDetails) {
+      params.append("namedetails", "1");
+    }
+    if (request.excludePlaceIds?.length) {
+      params.append("exclude_place_ids", request.excludePlaceIds.join(","));
+    }
+    console.log("\u{1F50D} NominatimProvider: Advanced search with params:", params.toString());
+    const response = await fetch(`${NOMINATIM_SEARCH}?${params.toString()}`, {
       headers: {
         "User-Agent": "Layera-GeoAlert/1.0 (contact@layera.com)"
       }
@@ -1552,8 +1585,60 @@ async function searchNominatim(request) {
     if (!response.ok) {
       throw new Error(`Nominatim API error: ${response.status} ${response.statusText}`);
     }
-    const data = await response.json();
+    let data = await response.json();
     console.log("\u{1F4CD} NominatimProvider: Found", data.length, "results");
+    if (data.length === 0 && request.query.includes(",")) {
+      console.log("\u{1F504} No exact match. Attempting interpolation and broader search...");
+      const userRequestedResult = {
+        place_id: -1,
+        licence: "User Input",
+        osm_id: -1,
+        osm_type: "interpolated",
+        lat: "0",
+        lon: "0",
+        class: "place",
+        type: "address",
+        display_name: `\u2753 \u0391\u03BD\u03B1\u03B6\u03B7\u03C4\u03AE\u03C3\u03B1\u03C4\u03B5: "${request.query}" (interpolated)`,
+        address: {
+          road: request.query.split(",")[0]?.trim() || "",
+          city: request.query.split(",")[request.query.split(",").length - 2]?.trim() || "",
+          country: request.query.split(",")[request.query.split(",").length - 1]?.trim() || ""
+        },
+        importance: 0,
+        boundingbox: []
+      };
+      data.push(userRequestedResult);
+      const parts = request.query.split(",");
+      if (parts.length > 1) {
+        const broaderQuery = parts.slice(-2).join(",").trim();
+        const broaderParams = new URLSearchParams({
+          q: broaderQuery,
+          format: "json",
+          addressdetails: "1",
+          limit: String((request.limit || 5) - 1),
+          "accept-language": request.language === "el" ? "el,en" : "en"
+        });
+        if (request.polygonGeoJSON) {
+          broaderParams.append("polygon_geojson", "1");
+        }
+        const broaderResponse = await fetch(`${NOMINATIM_SEARCH}?${broaderParams.toString()}`, {
+          headers: {
+            "User-Agent": "Layera-GeoAlert/1.0 (contact@layera.com)"
+          }
+        });
+        if (broaderResponse.ok) {
+          const broaderData = await broaderResponse.json();
+          if (broaderData.length > 0) {
+            console.log("\u2705 Found alternative results via interpolation");
+            const alternativeResults = broaderData.map((item, index) => ({
+              ...item,
+              display_name: `\u{1F4A1} \u0395\u03BD\u03B1\u03BB\u03BB\u03B1\u03BA\u03C4\u03B9\u03BA\u03AC ${index + 1}: ${item.display_name}`
+            }));
+            data.push(...alternativeResults);
+          }
+        }
+      }
+    }
     const results = data.map(parseNominatimResult);
     return {
       results,
@@ -1572,9 +1657,127 @@ async function searchNominatim(request) {
     };
   }
 }
+async function reverseGeocode(coordinates, options) {
+  try {
+    const params = new URLSearchParams({
+      format: "json",
+      lat: String(coordinates.latitude),
+      lon: String(coordinates.longitude),
+      zoom: String(options?.zoom || 18),
+      addressdetails: options?.addressDetails !== false ? "1" : "0",
+      "accept-language": options?.language === "en" ? "en" : "el,en"
+    });
+    console.log(`\u{1F4CD} Reverse geocoding for: ${coordinates.latitude}, ${coordinates.longitude}`);
+    const response = await fetch(`${NOMINATIM_REVERSE}?${params.toString()}`, {
+      headers: {
+        "User-Agent": "Layera-GeoAlert/1.0 (contact@layera.com)"
+      }
+    });
+    if (!response.ok) {
+      throw new Error(`Reverse geocoding failed: ${response.status}`);
+    }
+    const data = await response.json();
+    if (!data || !data.place_id) {
+      return null;
+    }
+    return parseNominatimResult(data);
+  } catch (error) {
+    console.error("\u274C Reverse geocoding error:", error);
+    return null;
+  }
+}
+async function batchGeocode(requests) {
+  console.log(`\u{1F680} Batch geocoding ${requests.length} addresses...`);
+  const batchSize = 5;
+  const results = [];
+  for (let i = 0; i < requests.length; i += batchSize) {
+    const batch = requests.slice(i, i + batchSize);
+    const batchPromises = batch.map((req) => searchNominatim(req));
+    try {
+      const batchResults = await Promise.all(batchPromises);
+      results.push(...batchResults);
+      if (i + batchSize < requests.length) {
+        await new Promise((resolve) => setTimeout(resolve, 1e3));
+      }
+    } catch (error) {
+      console.error(`\u274C Batch ${i / batchSize + 1} failed:`, error);
+      batch.forEach(() => results.push({
+        results: [],
+        total: 0,
+        query: "",
+        status: "error",
+        error: "Batch processing failed"
+      }));
+    }
+  }
+  console.log(`\u2705 Batch geocoding completed: ${results.length} results`);
+  return results;
+}
+async function interpolateAddress(street, houseNumber) {
+  console.log(`\u{1F522} Interpolating address: ${street} ${houseNumber}`);
+  const streetSearch = {
+    query: street,
+    limit: 1,
+    polygonGeoJSON: true,
+    addressDetails: true
+  };
+  const streetResult = await searchNominatim(streetSearch);
+  if (streetResult.results.length === 0) {
+    console.log("\u274C Street not found for interpolation");
+    return null;
+  }
+  const streetData = streetResult.results[0];
+  if (!streetData) {
+    console.log("\u274C No street data for interpolation");
+    return null;
+  }
+  const interpolated = {
+    ...streetData,
+    id: `nominatim_interpolated_${Date.now()}`,
+    displayName: `${street} ${houseNumber} (estimated)`,
+    accuracy: "interpolated",
+    address: {
+      ...streetData.address,
+      street,
+      houseNumber
+    },
+    metadata: {
+      ...streetData.metadata,
+      confidence: 0.7,
+      // Lower confidence for interpolated
+      type: "interpolated"
+    }
+  };
+  console.log("\u2705 Address interpolated successfully");
+  return interpolated;
+}
+async function getSuggestions(partial, options) {
+  const searchRequest = {
+    query: partial,
+    limit: options?.limit || 5
+  };
+  if (options?.countryCode) {
+    searchRequest.countryCode = options.countryCode;
+  }
+  if (options?.focus) {
+    const offset = 0.1;
+    searchRequest.viewbox = [
+      options.focus.longitude - offset,
+      options.focus.latitude - offset,
+      options.focus.longitude + offset,
+      options.focus.latitude + offset
+    ];
+  }
+  const response = await searchNominatim(searchRequest);
+  return response.results.map((r) => r.displayName);
+}
 var nominatimProvider = {
   name: "nominatim",
   search: searchNominatim,
+  reverse: reverseGeocode,
+  batch: batchGeocode,
+  interpolate: interpolateAddress,
+  suggest: getSuggestions,
   isAvailable: () => typeof fetch !== "undefined"
 };
 
@@ -1591,6 +1794,12 @@ function useGeocode(options = {}) {
   const [isLoading, setIsLoading] = (0, import_react.useState)(false);
   const [error, setError] = (0, import_react.useState)(null);
   const [selectedResult, setSelectedResult] = (0, import_react.useState)(null);
+  const [currentLanguage, setCurrentLanguage] = (0, import_react.useState)(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("i18nextLng") || "el";
+    }
+    return "el";
+  });
   const debounceTimeoutRef = (0, import_react.useRef)(null);
   const abortControllerRef = (0, import_react.useRef)(null);
   const search = (0, import_react.useCallback)(async (searchQuery) => {
@@ -1608,11 +1817,15 @@ function useGeocode(options = {}) {
     setIsLoading(true);
     setError(null);
     try {
+      const storedLang = typeof window !== "undefined" ? localStorage.getItem("i18nextLng") : null;
+      const userLanguage = storedLang || (typeof navigator !== "undefined" ? navigator.language.slice(0, 2) : "el");
+      console.log("\u{1F310} Detected language:", userLanguage, "(stored:", storedLang, ")");
       const request = {
         query: queryToSearch,
-        countryCode: "GR",
+        // Αφαιρούμε το countryCode για παγκόσμια αναζήτηση
         limit: 5,
-        language: "el"
+        language: userLanguage.startsWith("el") ? "el" : "en"
+        // Χρήση γλώσσας χρήστη
       };
       console.log("\u{1F4E1} useGeocode: Making API request with:", request);
       const response = await provider.search(request);
@@ -1658,6 +1871,32 @@ function useGeocode(options = {}) {
       }
     };
   }, [query, autoSearch, debouncedSearch]);
+  (0, import_react.useEffect)(() => {
+    const handleLanguageChange = () => {
+      const newLanguage = localStorage.getItem("i18nextLng") || "el";
+      console.log("\u{1F30D} Language changed from", currentLanguage, "to", newLanguage);
+      if (newLanguage !== currentLanguage) {
+        setCurrentLanguage(newLanguage);
+        if (query.trim() && results.length > 0) {
+          console.log("\u{1F504} Re-searching with new language:", newLanguage);
+          search(query);
+        }
+      }
+    };
+    window.addEventListener("storage", handleLanguageChange);
+    window.addEventListener("languagechange", handleLanguageChange);
+    const interval = setInterval(() => {
+      const newLang = localStorage.getItem("i18nextLng") || "el";
+      if (newLang !== currentLanguage) {
+        handleLanguageChange();
+      }
+    }, 500);
+    return () => {
+      window.removeEventListener("storage", handleLanguageChange);
+      window.removeEventListener("languagechange", handleLanguageChange);
+      clearInterval(interval);
+    };
+  }, [currentLanguage, query, results.length, search]);
   (0, import_react.useEffect)(() => {
     return () => {
       if (abortControllerRef.current) {

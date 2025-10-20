@@ -1,0 +1,59 @@
+{
+  "name": "@layera/geo-mapping",
+  "version": "1.0.0",
+  "description": "Layera Geo Mapping - OSM services, administrative boundaries, and external mapping APIs",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@layera/geo-core": "workspace:*",
+    "@layera/constants": "workspace:*",
+    "@layera/osm": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "tsup": "^8.5.0",
+    "leaflet": "^1.9.4",
+    "@types/leaflet": "^1.9.12"
+  },
+  "peerDependencies": {
+    "leaflet": "^1.9.4"
+  },
+  "publishConfig": {
+    "access": "restricted",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/layera/layera.git",
+    "directory": "packages/geo-mapping"
+  },
+  "keywords": [
+    "layera",
+    "geo",
+    "mapping",
+    "osm",
+    "openstreetmap",
+    "boundaries",
+    "gis",
+    "enterprise"
+  ],
+  "author": "Layera Team",
+  "license": "MIT"
+}

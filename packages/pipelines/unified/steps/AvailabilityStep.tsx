@@ -3,6 +3,7 @@ import { BaseCard } from '@layera/cards';
 import { Text, Heading } from '@layera/typography';
 import { Stack, Flex } from '@layera/layout';
 import { CheckIcon, RefreshIcon } from '@layera/icons';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 export type Availability = 'now' | 'future';
 
@@ -18,14 +19,16 @@ export interface AvailabilityStepProps {
  * Dependencies: ONLY @layera LEGO systems
  */
 export const AvailabilityStep: React.FC<AvailabilityStepProps> = ({ onNext }) => {
+  const { t } = useLayeraTranslation();
+
   return (
     <Stack spacing="lg">
       <Heading as="h2" size="xl" color="primary">
-        Πότε είστε διαθέσιμοι;
+        {t('pipelines.steps.availability.question.title')}
       </Heading>
 
       <Text size="lg" color="secondary">
-        Επιλέξτε την περίοδο διαθεσιμότητάς σας
+        {t('pipelines.steps.availability.question.subtitle')}
       </Text>
 
       <Stack spacing="md">
@@ -41,9 +44,9 @@ export const AvailabilityStep: React.FC<AvailabilityStepProps> = ({ onNext }) =>
           <Flex align="start" gap="lg">
             <CheckIcon size="xl" theme="primary" />
             <Stack spacing="xs" style={{ flex: 1, minWidth: 0 }}>
-              <Text size="xl" weight="bold" className="card-title">Τώρα</Text>
+              <Text size="xl" weight="bold" className="card-title">{t('pipelines.steps.availability.options.now.title')}</Text>
               <Text size="base" color="secondary" className="card-text">
-                Είμαι διαθέσιμος άμεσα για συνεργασία
+                {t('pipelines.steps.availability.options.now.description')}
               </Text>
             </Stack>
           </Flex>
@@ -61,9 +64,9 @@ export const AvailabilityStep: React.FC<AvailabilityStepProps> = ({ onNext }) =>
           <Flex align="start" gap="lg">
             <RefreshIcon size="xl" theme="secondary" />
             <Stack spacing="xs" style={{ flex: 1, minWidth: 0 }}>
-              <Text size="xl" weight="bold" className="card-title">Στο Μέλλον</Text>
+              <Text size="xl" weight="bold" className="card-title">{t('pipelines.steps.availability.options.future.title')}</Text>
               <Text size="base" color="secondary" className="card-text">
-                Θα είμαι διαθέσιμος σε συγκεκριμένη μελλοντική ημερομηνία
+                {t('pipelines.steps.availability.options.future.description')}
               </Text>
             </Stack>
           </Flex>

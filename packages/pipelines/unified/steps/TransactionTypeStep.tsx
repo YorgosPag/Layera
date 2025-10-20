@@ -5,6 +5,7 @@ import { Stack, Flex } from '@layera/layout';
 import { Button } from '@layera/buttons';
 import { FormActions } from '@layera/forms';
 import { CommercialIcon, BuildingIcon } from '@layera/icons';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 export type TransactionType = 'sale' | 'rent';
 
@@ -21,10 +22,12 @@ export interface TransactionTypeStepProps {
  * Dependencies: ONLY @layera LEGO systems
  */
 export const TransactionTypeStep: React.FC<TransactionTypeStepProps> = ({ onNext, onBack }) => {
+  const { t } = useLayeraTranslation();
+
   return (
     <Stack spacing="md">
       <Heading as="h3" size="lg" color="primary">
-        Ακίνητα - Είδος Συναλλαγής
+        {t('pipelines.steps.transaction.title')}
       </Heading>
 
       <Stack spacing="md">
@@ -40,13 +43,13 @@ export const TransactionTypeStep: React.FC<TransactionTypeStepProps> = ({ onNext
           <Flex align="start" gap="lg">
             <CommercialIcon size="xl" theme="success" />
             <Stack spacing="xs" style={{ flex: 1, minWidth: 0 }}>
-              <Text size="xl" weight="bold" className="card-title">Πώληση</Text>
+              <Text size="xl" weight="bold" className="card-title">{t('pipelines.steps.transaction.sale.title')}</Text>
               <Text
                 size="base"
                 color="secondary"
                 className="card-text"
               >
-                Μόνιμη μεταβίβαση της ιδιοκτησίας του ακινήτου
+                {t('pipelines.steps.transaction.sale.description')}
               </Text>
             </Stack>
           </Flex>
@@ -64,13 +67,13 @@ export const TransactionTypeStep: React.FC<TransactionTypeStepProps> = ({ onNext
           <Flex align="start" gap="lg">
             <BuildingIcon size="xl" theme="neutral" />
             <Stack spacing="xs" style={{ flex: 1, minWidth: 0 }}>
-              <Text size="xl" weight="bold" className="card-title">Ενοικίαση</Text>
+              <Text size="xl" weight="bold" className="card-title">{t('pipelines.steps.transaction.rent.title')}</Text>
               <Text
                 size="base"
                 color="secondary"
                 className="card-text"
               >
-                Παραχώρηση χρήσης του ακινήτου για συγκεκριμένο χρόνο
+                {t('pipelines.steps.transaction.rent.description')}
               </Text>
             </Stack>
           </Flex>
@@ -83,7 +86,7 @@ export const TransactionTypeStep: React.FC<TransactionTypeStepProps> = ({ onNext
           onClick={onBack}
           className="layera-unified-button"
         >
-          Πίσω
+          {t('pipelines.actions.back')}
         </Button>
       </FormActions>
     </Stack>

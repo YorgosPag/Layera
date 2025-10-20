@@ -16,7 +16,7 @@ export default defineConfig({
       '@layera/styles': resolve(__dirname, '../../packages/styles/index.css'),
       // LEGO Component Aliases
       '@layera/auth-bridge': resolve(__dirname, '../../packages/auth-bridge/src/index.ts'),
-      '@layera/i18n': resolve(__dirname, '../../packages/i18n/src/index.ts'),
+      '@layera/tolgee': resolve(__dirname, '../../packages/tolgee/src/index.ts'),
       '@layera/buttons': resolve(__dirname, '../../packages/buttons/src/index.ts'),
       '@layera/typography': resolve(__dirname, '../../packages/typography/src/index.ts'),
       '@layera/theme-switcher': resolve(__dirname, '../../packages/theme-switcher/src/index.ts'),
@@ -28,6 +28,8 @@ export default defineConfig({
       '@layera/notifications': resolve(__dirname, '../../packages/notifications/src'),
       '@layera/loading': resolve(__dirname, '../../packages/loading/src'),
       '@layera/icons': resolve(__dirname, '../../packages/icons/src'),
+      '@layera/osm': resolve(__dirname, '../../packages/osm/src'),
+      '@layera/geo-mapping': resolve(__dirname, '../../packages/geo-mapping/src'),
     },
   },
 })

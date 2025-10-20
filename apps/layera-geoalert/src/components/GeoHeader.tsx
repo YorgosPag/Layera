@@ -1,8 +1,8 @@
 import React from 'react';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { LayeraHeader, HeaderActionsGroup } from '@layera/layout';
 import { ThemeSwitcher } from '@layera/theme-switcher';
-import { LanguageSwitcher } from '@layera/i18n';
+import { LanguageSwitcher } from '@layera/tolgee';
 
 /**
  * GeoHeader - Standardized header for GeoAlert app

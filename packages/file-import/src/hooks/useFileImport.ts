@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef } from 'react';
 import { useNotifications } from '@layera/notifications';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import {
   ImportedFile,
   FileValidationRule,

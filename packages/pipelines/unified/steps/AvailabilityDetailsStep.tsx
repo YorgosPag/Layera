@@ -3,6 +3,7 @@ import { Text, Heading } from '@layera/typography';
 import { Stack } from '@layera/layout';
 import { FormField, Input, FormActions } from '@layera/forms';
 import { Button } from '@layera/buttons';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 export interface AvailabilityDetails {
   date: string;
@@ -22,6 +23,7 @@ export interface AvailabilityDetailsStepProps {
  * Dependencies: ONLY @layera LEGO systems
  */
 export const AvailabilityDetailsStep: React.FC<AvailabilityDetailsStepProps> = ({ onNext }) => {
+  const { t } = useLayeraTranslation();
   const [date, setDate] = useState('');
   const [duration, setDuration] = useState<number>(12);
   const [unit, setUnit] = useState<'months' | 'years'>('months');
@@ -37,43 +39,44 @@ export const AvailabilityDetailsStep: React.FC<AvailabilityDetailsStepProps> = (
   return (
     <Stack spacing="lg">
       <Heading as="h2" size="xl" color="primary">
-        Λεπτομέρειες Διαθεσιμότητας
+        {t('pipelines.steps.availability.title')}
       </Heading>
 
       <Text size="lg" color="secondary">
-        Παρακαλώ ορίστε την ημερομηνία και διάρκεια διαθεσιμότητας
+        {t('pipelines.steps.availability.subtitle')}
       </Text>
 
       <Stack spacing="md">
-        <FormField label="Ημερομηνία Έναρξης" required>
+        <FormField label={t('pipelines.steps.availability.fields.startDate')} required>
           <Input
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
+            placeholder={t('pipelines.steps.availability.placeholders.datePlaceholder')}
             size="lg"
             variant="outline"
           />
         </FormField>
 
-        <FormField label="Διάρκεια" required>
+        <FormField label={t('pipelines.steps.availability.fields.duration')} required>
           <Input
             type="number"
             value={duration}
             onChange={(e) => setDuration(parseInt(e.target.value) || 0)}
-            placeholder="12"
+            placeholder={t('pipelines.steps.availability.placeholders.duration')}
             size="lg"
             variant="outline"
           />
         </FormField>
 
-        <FormField label="Μονάδα" required>
+        <FormField label={t('pipelines.steps.availability.fields.unit')} required>
           <select
             value={unit}
             onChange={(e) => setUnit(e.target.value as 'months' | 'years')}
             style={{ padding: '12px', fontSize: '16px', borderRadius: '4px' }}
           >
-            <option value="months">Μήνες</option>
-            <option value="years">Χρόνια</option>
+            <option value="months">{t('pipelines.steps.availability.units.months')}</option>
+            <option value="years">{t('pipelines.steps.availability.units.years')}</option>
           </select>
         </FormField>
       </Stack>
@@ -85,7 +88,7 @@ export const AvailabilityDetailsStep: React.FC<AvailabilityDetailsStepProps> = (
           onClick={handleNext}
           disabled={!isValid}
         >
-          Συνέχεια
+          {t('pipelines.actions.continue')}
         </Button>
       </FormActions>
     </Stack>

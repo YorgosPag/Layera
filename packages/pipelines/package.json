@@ -6,8 +6,8 @@
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
-    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "build": "tsup",
+    "dev": "tsup --watch",
     "typecheck": "tsc --noEmit"
   },
   "files": [
@@ -30,6 +30,8 @@
     "@layera/icons": "*",
     "@layera/layout": "*",
     "@layera/modals": "*",
+    "@layera/progress-stepper": "*",
+    "@layera/tolgee": "*",
     "@layera/typography": "*",
     "react": "^18.0.0"
   },

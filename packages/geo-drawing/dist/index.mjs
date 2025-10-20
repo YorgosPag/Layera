@@ -3,7 +3,7 @@ import { useState, useCallback, useRef } from "react";
 import { useLayeraTranslation as useLayeraTranslation2 } from "@layera/i18n";
 
 // src/utils/calculations.ts
-import L from "leaflet";
+import * as L from "leaflet";
 var calculateProjectedArea = (latlngs) => {
   if (latlngs.length < 3) return 0;
   const map = L.CRS.EPSG3857;
@@ -13,7 +13,9 @@ var calculateProjectedArea = (latlngs) => {
   for (let i = 0; i < n; i++) {
     const p1 = points[i];
     const p2 = points[(i + 1) % n];
-    area += p1.x * p2.y - p2.x * p1.y;
+    if (p1 && p2) {
+      area += p1.x * p2.y - p2.x * p1.y;
+    }
   }
   return Math.abs(area / 2);
 };
@@ -23,7 +25,11 @@ var calculateDistance = (latlngs) => {
   }
   let totalDistance = 0;
   for (let i = 0; i < latlngs.length - 1; i++) {
-    totalDistance += latlngs[i].distanceTo(latlngs[i + 1]);
+    const point1 = latlngs[i];
+    const point2 = latlngs[i + 1];
+    if (point1 && point2) {
+      totalDistance += point1.distanceTo(point2);
+    }
   }
   return totalDistance;
 };
@@ -36,26 +42,31 @@ var calculatePolygonCenter = (latlngs) => {
   }
   let latSum = 0;
   let lngSum = 0;
-  for (const point of latlngs) {
-    latSum += point.lat;
-    lngSum += point.lng;
+  for (const point2 of latlngs) {
+    latSum += point2.lat;
+    lngSum += point2.lng;
   }
   return L.latLng(latSum / latlngs.length, lngSum / latlngs.length);
 };
 var calculatePerimeter = (latlngs) => {
   if (latlngs.length < 2) return 0;
-  const closedPolygon = [...latlngs, latlngs[0]];
+  const firstPoint = latlngs[0];
+  if (!firstPoint) return 0;
+  const closedPolygon = [...latlngs, firstPoint];
   return calculateDistance(closedPolygon);
 };
-var isPointInPolygon = (point, polygon) => {
+var isPointInPolygon = (point2, polygon) => {
   let inside = false;
-  const x = point.lng;
-  const y = point.lat;
+  const x = point2.lng;
+  const y = point2.lat;
   for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
-    const xi = polygon[i].lng;
-    const yi = polygon[i].lat;
-    const xj = polygon[j].lng;
-    const yj = polygon[j].lat;
+    const pointI = polygon[i];
+    const pointJ = polygon[j];
+    if (!pointI || !pointJ) continue;
+    const xi = pointI.lng;
+    const yi = pointI.lat;
+    const xj = pointJ.lng;
+    const yj = pointJ.lat;
     if (yi > y !== yj > y && x < (xj - xi) * (y - yi) / (yj - yi) + xi) {
       inside = !inside;
     }
@@ -67,6 +78,60 @@ var calculateBounds = (latlngs) => {
     throw new Error("Cannot calculate bounds of empty point array");
   }
   return L.latLngBounds(latlngs);
+};
+var calculateCircleRadius = (center, circumferencePoint) => {
+  return center.distanceTo(circumferencePoint);
+};
+var calculateCircleArea = (radius) => {
+  if (radius <= 0) return 0;
+  return Math.PI * radius * radius;
+};
+var calculateCircleCircumference = (radius) => {
+  if (radius <= 0) return 0;
+  return 2 * Math.PI * radius;
+};
+var calculateCircleDiameter = (radius) => {
+  if (radius <= 0) return 0;
+  return 2 * radius;
+};
+var calculateArcLength = (radius, angleRadians) => {
+  if (radius <= 0 || angleRadians <= 0) return 0;
+  return radius * angleRadians;
+};
+var calculateAngle = (point1, vertex, point2) => {
+  const map = L.CRS.EPSG3857;
+  const p1 = map.project(point1);
+  const v = map.project(vertex);
+  const p2 = map.project(point2);
+  const vector1 = { x: p1.x - v.x, y: p1.y - v.y };
+  const vector2 = { x: p2.x - v.x, y: p2.y - v.y };
+  const dotProduct = vector1.x * vector2.x + vector1.y * vector2.y;
+  const magnitude1 = Math.sqrt(vector1.x * vector1.x + vector1.y * vector1.y);
+  const magnitude2 = Math.sqrt(vector2.x * vector2.x + vector2.y * vector2.y);
+  if (magnitude1 === 0 || magnitude2 === 0) return 0;
+  const cosAngle = dotProduct / (magnitude1 * magnitude2);
+  const clampedCos = Math.max(-1, Math.min(1, cosAngle));
+  return Math.acos(clampedCos);
+};
+var detectCircleFromThreePoints = (point1, point2, point3) => {
+  const map = L.CRS.EPSG3857;
+  const p1 = map.project(point1);
+  const p2 = map.project(point2);
+  const p3 = map.project(point3);
+  const area = Math.abs((p1.x * (p2.y - p3.y) + p2.x * (p3.y - p1.y) + p3.x * (p1.y - p2.y)) / 2);
+  if (area < 1e-10) {
+    return null;
+  }
+  const d = 2 * (p1.x * (p2.y - p3.y) + p2.x * (p3.y - p1.y) + p3.x * (p1.y - p2.y));
+  if (Math.abs(d) < 1e-10) {
+    return null;
+  }
+  const ux = ((p1.x * p1.x + p1.y * p1.y) * (p2.y - p3.y) + (p2.x * p2.x + p2.y * p2.y) * (p3.y - p1.y) + (p3.x * p3.x + p3.y * p3.y) * (p1.y - p2.y)) / d;
+  const uy = ((p1.x * p1.x + p1.y * p1.y) * (p3.x - p2.x) + (p2.x * p2.x + p2.y * p2.y) * (p1.x - p3.x) + (p3.x * p3.x + p3.y * p3.y) * (p2.x - p1.x)) / d;
+  const centerProjected = L.point(ux, uy);
+  const center = map.unproject(centerProjected);
+  const radius = center.distanceTo(point1);
+  return { center, radius };
 };
 
 // src/utils/formatters.ts
@@ -307,705 +372,674 @@ var useMeasurement = () => {
 // src/hooks/useGeometrySnap.ts
 import { useState as useState2, useEffect, useCallback as useCallback2, useRef as useRef2 } from "react";
 import { useMap } from "react-leaflet";
-import { useSnapEngine } from "@layera/snap-interactions";
 
 // src/services/osmService.ts
-import { CONFIG } from "@layera/constants";
-var cache = /* @__PURE__ */ new Map();
-var fetchBuildingOutlines = async (bounds) => {
-  const boundsStr = `${bounds.getSouth().toFixed(4)},${bounds.getWest().toFixed(4)},${bounds.getNorth().toFixed(4)},${bounds.getEast().toFixed(4)}`;
-  if (cache.has(boundsStr)) {
-    return Promise.resolve(cache.get(boundsStr));
-  }
-  const bbox = `${bounds.getSouth()},${bounds.getWest()},${bounds.getNorth()},${bounds.getEast()}`;
-  const query = `
-    [out:json][timeout:${CONFIG.osm.requestTimeout / 1e3}];
-    (
-      node["building"](${bbox});
-      way["building"](${bbox});
-      relation["building"](${bbox});
-    );
-    out body;
-    >;
-    out skel qt;
-  `;
-  try {
-    const response = await fetch(CONFIG.osm.overpassApiUrl, {
-      method: "POST",
-      body: `data=${encodeURIComponent(query)}`
-    });
-    if (!response.ok) {
-      if (response.status !== 429 && response.status !== 504) {
-        console.error(`Overpass API error: ${response.statusText}`);
-      }
-      throw new Error(`Network response was not ok: ${response.statusText}`);
-    }
-    const osmData = await response.json();
-    const geojson = osmtogeojson(osmData);
-    geojson.features = geojson.features.filter(
-      (f) => f.geometry && (f.geometry.type === "Polygon" || f.geometry.type === "MultiPolygon")
-    );
-    cache.set(boundsStr, geojson);
-    return geojson;
-  } catch (error) {
-    return { type: "FeatureCollection", features: [] };
-  }
-};
-var clearOSMCache = () => {
-  cache.clear();
-};
-var getCacheSize = () => {
-  return cache.size;
-};
-var isBoundsCached = (bounds) => {
-  const boundsStr = `${bounds.getSouth().toFixed(4)},${bounds.getWest().toFixed(4)},${bounds.getNorth().toFixed(4)},${bounds.getEast().toFixed(4)}`;
-  return cache.has(boundsStr);
-};
-var prefetchBuildingOutlines = async (bounds) => {
-  try {
-    await fetchBuildingOutlines(bounds);
-  } catch (error) {
-  }
-};
-
-// src/utils/geometry.ts
-import L2 from "leaflet";
-var geoJsonToLatLng = (coordinates, geometryType) => {
-  if (geometryType === "Polygon" && Array.isArray(coordinates[0]) && Array.isArray(coordinates[0][0])) {
-    const ring = coordinates;
-    return ring[0].map((coord) => L2.latLng(coord[1], coord[0]));
-  }
-  if (geometryType === "LineString" && Array.isArray(coordinates[0]) && typeof coordinates[0][0] === "number") {
-    const line = coordinates;
-    return line.map((coord) => L2.latLng(coord[1], coord[0]));
-  }
-  if (geometryType === "Point" && typeof coordinates[0] === "number") {
-    const point = coordinates;
-    return [L2.latLng(point[1], point[0])];
-  }
-  return [];
-};
-var latLngToGeoJson = (latlngs, geometryType) => {
-  const coords = latlngs.map((latlng) => [latlng.lng, latlng.lat]);
-  if (geometryType === "Polygon") {
-    const closedCoords = [...coords];
-    if (coords.length > 0 && (coords[0][0] !== coords[coords.length - 1][0] || coords[0][1] !== coords[coords.length - 1][1])) {
-      closedCoords.push(coords[0]);
-    }
-    return [closedCoords];
-  }
-  return coords;
-};
-var closestPointOnSegment = (point, segmentStart, segmentEnd) => {
-  const map = L2.CRS.EPSG3857;
-  const p = map.project(point);
-  const a = map.project(segmentStart);
-  const b = map.project(segmentEnd);
-  const dx = b.x - a.x;
-  const dy = b.y - a.y;
-  if (dx === 0 && dy === 0) {
-    const closestPoint2 = segmentStart;
-    return {
-      point: closestPoint2,
-      distance: point.distanceTo(closestPoint2)
-    };
-  }
-  const t = Math.max(0, Math.min(1, ((p.x - a.x) * dx + (p.y - a.y) * dy) / (dx * dx + dy * dy)));
-  const closestProjected = L2.point(a.x + t * dx, a.y + t * dy);
-  const closestPoint = map.unproject(closestProjected);
-  return {
-    point: closestPoint,
-    distance: point.distanceTo(closestPoint)
-  };
-};
-var arePointsEqual = (point1, point2, tolerance = 0.1) => {
-  return point1.distanceTo(point2) <= tolerance;
-};
-var simplifyPolygon = (latlngs, tolerance = 1) => {
-  if (latlngs.length <= 2) return latlngs;
-  const douglasPeucker = (points, epsilon) => {
-    if (points.length <= 2) return points;
-    let maxDistance = 0;
-    let maxIndex = 0;
-    for (let i = 1; i < points.length - 1; i++) {
-      const { distance } = closestPointOnSegment(points[i], points[0], points[points.length - 1]);
-      if (distance > maxDistance) {
-        maxDistance = distance;
-        maxIndex = i;
-      }
-    }
-    if (maxDistance > epsilon) {
-      const leftPart = douglasPeucker(points.slice(0, maxIndex + 1), epsilon);
-      const rightPart = douglasPeucker(points.slice(maxIndex), epsilon);
-      return [...leftPart.slice(0, -1), ...rightPart];
-    }
-    return [points[0], points[points.length - 1]];
-  };
-  return douglasPeucker(latlngs, tolerance);
-};
-var calculateBearing = (point1, point2) => {
-  const lat1 = point1.lat * Math.PI / 180;
-  const lat2 = point2.lat * Math.PI / 180;
-  const deltaLng = (point2.lng - point1.lng) * Math.PI / 180;
-  const y = Math.sin(deltaLng) * Math.cos(lat2);
-  const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(deltaLng);
-  let bearing = Math.atan2(y, x) * 180 / Math.PI;
-  return (bearing + 360) % 360;
-};
-var extractOSMGeometry = (feature) => {
-  const { geometry } = feature;
-  const results = [];
-  if (geometry.type === "Polygon") {
-    const coords = geometry.coordinates;
-    coords.forEach((ring) => {
-      const latlngs = ring.map((coord) => L2.latLng(coord[1], coord[0]));
-      results.push(latlngs);
-    });
-  } else if (geometry.type === "MultiPolygon") {
-    const coords = geometry.coordinates;
-    coords.forEach((polygon) => {
-      polygon.forEach((ring) => {
-        const latlngs = ring.map((coord) => L2.latLng(coord[1], coord[0]));
-        results.push(latlngs);
-      });
-    });
-  }
-  return results;
-};
+import {
+  fetchBuildingOutlines,
+  fetchAdministrativeBoundary,
+  fetchBoundaryByAddressComponent,
+  clearOSMCache,
+  getCacheSize,
+  isBoundsCached,
+  prefetchBuildingOutlines
+} from "@layera/geo-mapping";
 
 // src/hooks/useGeometrySnap.ts
-import { CONFIG as CONFIG2 } from "@layera/constants";
+import { CONFIG } from "@layera/constants";
 var useGeometrySnap = (isEnabled = true) => {
   const map = useMap();
   const [osmData, setOsmData] = useState2(null);
   const [isSnappingEffective, setIsSnappingEffective] = useState2(false);
   const timeoutRef = useRef2(null);
-  const snapEngine = useSnapEngine({
-    tolerance: CONFIG2.geoDrawing.snapTolerance,
-    enabledTypes: /* @__PURE__ */ new Set(["vertex", "edge", "center", "nearest"]),
-    spatialIndexing: true
-  });
   useEffect(() => {
     const fetchData = async () => {
       const currentZoom = map.getZoom();
-      if (!isEnabled || currentZoom < CONFIG2.geoDrawing.minSnapZoom) {
+      if (!isEnabled || currentZoom < (CONFIG.geoDrawing?.minSnapZoom || 16)) {
         setOsmData(null);
         setIsSnappingEffective(false);
-        snapEngine.clearGeometries();
         return;
       }
       setIsSnappingEffective(true);
       try {
         const geojson = await fetchBuildingOutlines(map.getBounds());
         setOsmData(geojson);
-        const geometries = [];
-        geojson.features.forEach((feature) => {
-          const polygons = extractOSMGeometry(feature);
-          geometries.push(...polygons);
-        });
-        snapEngine.setGeometries(geometries);
       } catch (error) {
-        console.warn("Failed to fetch OSM data for snapping:", error);
+        console.error("Error fetching OSM data for snapping:", error);
         setOsmData(null);
         setIsSnappingEffective(false);
       }
     };
-    const handleMoveEnd = () => {
+    const debouncedFetch = () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
-      timeoutRef.current = window.setTimeout(fetchData, CONFIG2.geoDrawing.debounceMs);
+      timeoutRef.current = window.setTimeout(fetchData, CONFIG.geoDrawing?.debounceMs || 500);
     };
-    map.on("moveend zoomend", handleMoveEnd);
+    map.on("moveend", debouncedFetch);
+    map.on("zoomend", debouncedFetch);
     fetchData();
     return () => {
-      map.off("moveend zoomend", handleMoveEnd);
+      map.off("moveend", debouncedFetch);
+      map.off("zoomend", debouncedFetch);
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
-      setIsSnappingEffective(false);
-      snapEngine.clearGeometries();
     };
-  }, [map, isEnabled, snapEngine]);
-  const getSnappedPoint = useCallback2((latlng) => {
-    if (!isEnabled || !isSnappingEffective || map.getZoom() < CONFIG2.geoDrawing.minSnapZoom) {
-      return {
-        snappedLatLng: latlng,
-        snapPoint: null,
-        snapType: null,
-        isSnapped: false
-      };
-    }
-    return snapEngine.snapToPoint(latlng);
-  }, [isEnabled, isSnappingEffective, map, snapEngine]);
-  const snapToVertex = useCallback2((latlng) => {
-    if (!isEnabled || !isSnappingEffective) {
-      return { snappedLatLng: latlng, snapPoint: null, isSnapped: false };
-    }
-    return snapEngine.snapToVertex(latlng);
-  }, [isEnabled, isSnappingEffective, snapEngine]);
-  const snapToEdge = useCallback2((latlng) => {
-    if (!isEnabled || !isSnappingEffective) {
-      return { snappedLatLng: latlng, snapPoint: null, isSnapped: false };
-    }
-    return snapEngine.snapToEdge(latlng);
-  }, [isEnabled, isSnappingEffective, snapEngine]);
-  const setSnapTypes = useCallback2((types) => {
-    snapEngine.setEnabledTypes(types);
-  }, [snapEngine]);
-  const setSnapTolerance = useCallback2((tolerance) => {
-    snapEngine.setTolerance(tolerance);
-  }, [snapEngine]);
-  const getBuildingInfo = useCallback2((latlng) => {
-    if (!osmData) return null;
-    for (const feature of osmData.features) {
-      const polygons = extractOSMGeometry(feature);
-      for (const polygon of polygons) {
-        let inside = false;
-        for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
-          if (polygon[i].lat > latlng.lat !== polygon[j].lat > latlng.lat && latlng.lng < (polygon[j].lng - polygon[i].lng) * (latlng.lat - polygon[i].lat) / (polygon[j].lat - polygon[i].lat) + polygon[i].lng) {
-            inside = !inside;
-          }
-        }
-        if (inside) {
-          return feature.properties;
-        }
-      }
-    }
-    return null;
-  }, [osmData]);
+  }, [map, isEnabled]);
+  const snapToGeometry = useCallback2(async (point2) => {
+    return point2;
+  }, []);
+  const toggleSnapType = useCallback2((type, enabled) => {
+    console.log(`Toggle snap type ${type}: ${enabled}`);
+  }, []);
+  const updateTolerance = useCallback2((tolerance) => {
+    console.log(`Update tolerance: ${tolerance}`);
+  }, []);
   return {
     // State
     isSnappingEffective,
     osmData,
-    snapEngine,
-    // Snap functions
-    getSnappedPoint,
-    snapToVertex,
-    snapToEdge,
-    // Configuration
-    setSnapTypes,
-    setSnapTolerance,
-    // Utility
-    getBuildingInfo,
-    // Backward compatibility με το παλιό API
-    snappingData: osmData
+    isSnapped: false,
+    lastSnapResult: null,
+    // Functions
+    snapToGeometry,
+    toggleSnapType,
+    updateTolerance,
+    // Placeholder values
+    snapEngine: null,
+    performanceMetrics: null
   };
 };
 
-// src/components/MeasurementControls.tsx
-import { useLayeraTranslation as useLayeraTranslation3 } from "@layera/i18n";
-import { Button } from "@layera/buttons";
-import { Card } from "@layera/cards";
-import { Typography } from "@layera/typography";
-import { Layout } from "@layera/layout";
-import { Icons } from "@layera/icons";
-import { Fragment, jsx, jsxs } from "react/jsx-runtime";
-var MeasurementControls = ({
-  mode,
-  distance,
-  area,
-  onModeChange,
-  onReset,
-  onFinish,
-  onCancel,
-  isDrawing,
-  canFinish,
-  displayValue
-}) => {
-  const { t } = useLayeraTranslation3();
-  return /* @__PURE__ */ jsxs(Card, { variant: "floating", className: "min-w-[200px]", children: [
-    /* @__PURE__ */ jsx(Typography, { variant: "h6", className: "text-center mb-3", children: t("geo-drawing.measurement-title") }),
-    /* @__PURE__ */ jsxs(Layout, { direction: "horizontal", spacing: "sm", className: "mb-3", children: [
-      /* @__PURE__ */ jsxs(
-        Button,
-        {
-          variant: mode === "distance" ? "primary" : "secondary",
-          size: "sm",
-          onClick: () => onModeChange("distance"),
-          disabled: isDrawing,
-          className: "flex-1",
-          children: [
-            /* @__PURE__ */ jsx(Icons.Rule, { className: "w-4 h-4 mr-1" }),
-            t("geo-drawing.modes.distance")
-          ]
-        }
-      ),
-      /* @__PURE__ */ jsxs(
-        Button,
-        {
-          variant: mode === "area" ? "primary" : "secondary",
-          size: "sm",
-          onClick: () => onModeChange("area"),
-          disabled: isDrawing,
-          className: "flex-1",
-          children: [
-            /* @__PURE__ */ jsx(Icons.Square, { className: "w-4 h-4 mr-1" }),
-            t("geo-drawing.modes.area")
-          ]
-        }
-      )
-    ] }),
-    /* @__PURE__ */ jsx(Layout, { direction: "horizontal", spacing: "sm", className: "mb-3", children: /* @__PURE__ */ jsxs(
-      Button,
-      {
-        variant: mode === "point" ? "primary" : "secondary",
-        size: "sm",
-        onClick: () => onModeChange("point"),
-        disabled: isDrawing,
-        className: "flex-1",
-        children: [
-          /* @__PURE__ */ jsx(Icons.MapPin, { className: "w-4 h-4 mr-1" }),
-          t("geo-drawing.modes.point")
-        ]
-      }
-    ) }),
-    /* @__PURE__ */ jsx(Card, { variant: "inner", className: "mb-3 p-2 min-h-[60px] flex items-center justify-center", children: /* @__PURE__ */ jsx(Typography, { variant: "body", className: "text-center", children: displayValue || (mode === "distance" ? `${t("geo-drawing.labels.distance")}: ${distance.toFixed(2)} m` : mode === "area" ? `${t("geo-drawing.labels.area")}: ${area.toFixed(2)} m\xB2` : t("geo-drawing.labels.select-point")) }) }),
-    /* @__PURE__ */ jsxs(Layout, { direction: "vertical", spacing: "sm", children: [
-      isDrawing && /* @__PURE__ */ jsxs(Layout, { direction: "horizontal", spacing: "sm", children: [
-        canFinish && onFinish && /* @__PURE__ */ jsxs(
-          Button,
-          {
-            variant: "success",
-            size: "sm",
-            onClick: onFinish,
-            className: "flex-1",
-            children: [
-              /* @__PURE__ */ jsx(Icons.Check, { className: "w-4 h-4 mr-1" }),
-              t("geo-drawing.actions.finish")
-            ]
-          }
-        ),
-        onCancel && /* @__PURE__ */ jsxs(
-          Button,
-          {
-            variant: "secondary",
-            size: "sm",
-            onClick: onCancel,
-            className: "flex-1",
-            children: [
-              /* @__PURE__ */ jsx(Icons.X, { className: "w-4 h-4 mr-1" }),
-              t("geo-drawing.actions.cancel")
-            ]
-          }
-        )
-      ] }),
-      /* @__PURE__ */ jsxs(
-        Button,
-        {
-          variant: "danger",
-          size: "sm",
-          onClick: onReset,
-          className: "w-full",
-          children: [
-            /* @__PURE__ */ jsx(Icons.Trash, { className: "w-4 h-4 mr-1" }),
-            t("geo-drawing.actions.clear")
-          ]
-        }
-      )
-    ] }),
-    /* @__PURE__ */ jsx(Card, { variant: "inner", className: "mt-3 p-2", children: /* @__PURE__ */ jsx(Typography, { variant: "caption", className: "text-center leading-tight", children: isDrawing ? /* @__PURE__ */ jsxs(Fragment, { children: [
-      t("geo-drawing.instructions.click-add"),
-      /* @__PURE__ */ jsx("br", {}),
-      mode !== "point" && /* @__PURE__ */ jsxs(Fragment, { children: [
-        t("geo-drawing.instructions.double-click-finish"),
-        /* @__PURE__ */ jsx("br", {})
-      ] }),
-      t("geo-drawing.instructions.esc-cancel")
-    ] }) : t("geo-drawing.instructions.select-mode") }) })
-  ] });
+// src/utils/geometryDetection.ts
+var DETECTION_THRESHOLDS = {
+  /** Tolerance για circle detection (percentage deviation from perfect circle) */
+  CIRCLE_TOLERANCE: 0.05,
+  // 5%
+  /** Minimum points required για reliable circle detection */
+  MIN_CIRCLE_POINTS: 3,
+  /** Maximum points to consider για circle detection (performance) */
+  MAX_CIRCLE_POINTS: 8,
+  /** Tolerance για line detection (max deviation from straight line) */
+  LINE_TOLERANCE: 5,
+  // meters
+  /** Tolerance για right angle detection */
+  RIGHT_ANGLE_TOLERANCE: Math.PI / 36,
+  // 5 degrees in radians
+  /** Minimum distance between points to be considered significant */
+  MIN_SIGNIFICANT_DISTANCE: 1
+  // meters
 };
-
-// src/components/MeasurementCanvas.tsx
-import { useCallback as useCallback3, useEffect as useEffect2 } from "react";
-import { Polygon, Polyline, CircleMarker, useMapEvents } from "react-leaflet";
-import { useTheme } from "@layera/theme-switcher";
-import { Fragment as Fragment2, jsx as jsx2, jsxs as jsxs2 } from "react/jsx-runtime";
-var MeasurementCanvas = ({
-  mode,
-  enableSnapping = true,
-  onMeasurementChange,
-  className
-}) => {
-  const { theme } = useTheme();
-  const {
-    points,
-    state,
-    addPoint,
-    finishMeasurement,
-    cancelMeasurement,
-    changeMeasurementMode,
-    currentResult
-  } = useMeasurement();
-  const {
-    getSnappedPoint,
-    isSnappingEffective
-  } = useGeometrySnap(enableSnapping);
-  useEffect2(() => {
-    changeMeasurementMode(mode);
-  }, [mode, changeMeasurementMode]);
-  useEffect2(() => {
-    if (currentResult && onMeasurementChange) {
-      onMeasurementChange(currentResult);
+var detectGeometry = (points) => {
+  if (points.length < 2) {
+    return { type: "unknown", properties: {} };
+  }
+  const latlngs = points.map((p) => p.latlng);
+  if (points.length >= DETECTION_THRESHOLDS.MIN_CIRCLE_POINTS) {
+    const circleResult = detectCircle(latlngs);
+    if (circleResult) {
+      return { type: "circle", properties: circleResult };
     }
-  }, [currentResult, onMeasurementChange]);
-  const mapEvents = useMapEvents({
-    click: useCallback3((e) => {
-      if (state === "finished") return;
-      let latlng = e.latlng;
-      let snapped = false;
-      let snapResult;
-      if (enableSnapping && isSnappingEffective) {
-        const result = getSnappedPoint(e.latlng);
-        if (result.isSnapped && result.snappedLatLng) {
-          latlng = result.snappedLatLng;
-          snapped = true;
-          snapResult = {
-            snapPoint: result.snapPoint,
-            snapType: result.snapType
-          };
-        }
-      }
-      const interactionEvent = {
-        type: "click",
-        latlng,
-        originalEvent: e.originalEvent,
-        snapped,
-        snapResult
-      };
-      addPoint(latlng);
-    }, [state, enableSnapping, isSnappingEffective, getSnappedPoint, addPoint]),
-    dblclick: useCallback3((e) => {
-      e.originalEvent.preventDefault();
-      e.originalEvent.stopPropagation();
-      if (state === "drawing" && mode !== "point") {
-        finishMeasurement();
-      }
-    }, [state, mode, finishMeasurement]),
-    keydown: useCallback3((e) => {
-      if (e.originalEvent.key === "Escape" && state === "drawing") {
-        cancelMeasurement();
-      }
-    }, [state, cancelMeasurement])
-  });
-  const getColors = useCallback3(() => {
-    const isDark = theme === "dark";
+  }
+  if (points.length === 2) {
     return {
-      line: isDark ? "#60a5fa" : "#3b82f6",
-      fill: isDark ? "rgba(96, 165, 250, 0.2)" : "rgba(59, 130, 246, 0.2)",
-      point: isDark ? "#f59e0b" : "#d97706",
-      pointBorder: isDark ? "#1f2937" : "#ffffff"
+      type: "line",
+      properties: {
+        start: latlngs[0],
+        end: latlngs[1],
+        length: calculateDistance(latlngs)
+      }
     };
-  }, [theme]);
-  const colors = getColors();
-  const renderGeometry = () => {
-    if (points.length === 0) return null;
-    const latlngs = points.map((p) => p.latlng);
-    return /* @__PURE__ */ jsxs2(Fragment2, { children: [
-      points.map((point, index) => /* @__PURE__ */ jsx2(
-        CircleMarker,
-        {
-          center: point.latlng,
-          radius: 6,
-          pathOptions: {
-            color: colors.pointBorder,
-            fillColor: colors.point,
-            fillOpacity: 1,
-            weight: 2
-          }
-        },
-        point.id
-      )),
-      (mode === "distance" || mode === "area") && latlngs.length >= 2 && /* @__PURE__ */ jsx2(
-        Polyline,
-        {
-          positions: latlngs,
-          pathOptions: {
-            color: colors.line,
-            weight: 3,
-            opacity: 0.8,
-            dashArray: state === "drawing" ? "5, 5" : void 0
-          }
-        }
-      ),
-      mode === "area" && latlngs.length >= 3 && state === "finished" && /* @__PURE__ */ jsx2(
-        Polygon,
-        {
-          positions: latlngs,
-          pathOptions: {
-            color: colors.line,
-            fillColor: colors.fill,
-            fillOpacity: 0.3,
-            weight: 2
-          }
-        }
-      )
-    ] });
+  }
+  if (points.length === 4 || points.length === 5) {
+    const rectangleResult = detectRectangle(latlngs);
+    if (rectangleResult) {
+      return { type: "rectangle", properties: rectangleResult };
+    }
+  }
+  if (points.length === 3 || points.length === 4) {
+    const triangleResult = detectTriangle(latlngs.slice(0, 3));
+    if (triangleResult) {
+      return { type: "triangle", properties: triangleResult };
+    }
+  }
+  return detectPolygon(latlngs);
+};
+var detectCircle = (points) => {
+  if (points.length < DETECTION_THRESHOLDS.MIN_CIRCLE_POINTS) {
+    return null;
+  }
+  const samplePoints = points.length > DETECTION_THRESHOLDS.MAX_CIRCLE_POINTS ? samplePointsEvenly(points, DETECTION_THRESHOLDS.MAX_CIRCLE_POINTS) : points;
+  const circleFromThree = detectCircleFromThreePoints(
+    samplePoints[0],
+    samplePoints[1],
+    samplePoints[2]
+  );
+  if (!circleFromThree) {
+    return null;
+  }
+  const { center, radius } = circleFromThree;
+  let totalDeviation = 0;
+  let validPoints = 0;
+  for (const point2 of samplePoints) {
+    const distanceToCenter = calculateCircleRadius(center, point2);
+    const deviation = Math.abs(distanceToCenter - radius) / radius;
+    if (deviation <= DETECTION_THRESHOLDS.CIRCLE_TOLERANCE) {
+      validPoints++;
+    }
+    totalDeviation += deviation;
+  }
+  const validRatio = validPoints / samplePoints.length;
+  if (validRatio < 0.8) {
+    return null;
+  }
+  const area = Math.PI * radius * radius;
+  const circumference = 2 * Math.PI * radius;
+  const diameter = 2 * radius;
+  return {
+    center,
+    radius,
+    area,
+    circumference,
+    diameter
   };
-  return /* @__PURE__ */ jsx2("div", { className, children: renderGeometry() });
+};
+var detectRectangle = (points) => {
+  if (points.length !== 4 && points.length !== 5) {
+    return null;
+  }
+  const corners = points.length === 5 ? points.slice(0, 4) : points;
+  const angles = [];
+  for (let i = 0; i < 4; i++) {
+    const prev = corners[(i + 3) % 4];
+    const current = corners[i];
+    const next = corners[(i + 1) % 4];
+    const angle = calculateAngle(prev, current, next);
+    angles.push(angle);
+  }
+  const rightAngle = Math.PI / 2;
+  const rightAngleCount = angles.filter(
+    (angle) => Math.abs(angle - rightAngle) <= DETECTION_THRESHOLDS.RIGHT_ANGLE_TOLERANCE
+  ).length;
+  if (rightAngleCount < 3) {
+    return null;
+  }
+  let area = 0;
+  for (let i = 0; i < 4; i++) {
+    const current = corners[i];
+    const next = corners[(i + 1) % 4];
+    area += current.lng * next.lat - next.lng * current.lat;
+  }
+  area = Math.abs(area) / 2;
+  let perimeter = 0;
+  for (let i = 0; i < 4; i++) {
+    const current = corners[i];
+    const next = corners[(i + 1) % 4];
+    perimeter += calculateDistance([current, next]);
+  }
+  return {
+    corners,
+    area,
+    perimeter
+  };
+};
+var detectTriangle = (points) => {
+  if (points.length < 3) {
+    return null;
+  }
+  const vertices = points.slice(0, 3);
+  const angles = [
+    calculateAngle(vertices[2], vertices[0], vertices[1]),
+    calculateAngle(vertices[0], vertices[1], vertices[2]),
+    calculateAngle(vertices[1], vertices[2], vertices[0])
+  ];
+  const a = vertices[0];
+  const b = vertices[1];
+  const c = vertices[2];
+  const area = Math.abs(
+    (b.lat - a.lat) * (c.lng - a.lng) - (c.lat - a.lat) * (b.lng - a.lng)
+  ) / 2;
+  return {
+    vertices,
+    area,
+    angles
+  };
+};
+var detectPolygon = (points) => {
+  if (points.length < 3) {
+    return { type: "unknown", properties: {} };
+  }
+  let area = 0;
+  const n = points.length;
+  for (let i = 0; i < n; i++) {
+    const current = points[i];
+    const next = points[(i + 1) % n];
+    area += current.lng * next.lat - next.lng * current.lat;
+  }
+  area = Math.abs(area) / 2;
+  let perimeter = 0;
+  for (let i = 0; i < n; i++) {
+    const current = points[i];
+    const next = points[(i + 1) % n];
+    perimeter += calculateDistance([current, next]);
+  }
+  return {
+    type: "polygon",
+    properties: {
+      vertices: points,
+      area,
+      perimeter
+    }
+  };
+};
+var samplePointsEvenly = (points, targetCount) => {
+  if (points.length <= targetCount) {
+    return points;
+  }
+  const result = [];
+  const step = points.length / targetCount;
+  for (let i = 0; i < targetCount; i++) {
+    const index = Math.floor(i * step);
+    const point2 = points[index];
+    if (point2) {
+      result.push(point2);
+    }
+  }
+  return result;
+};
+var suggestMeasurementMode = (detectedGeometry) => {
+  switch (detectedGeometry.type) {
+    case "circle":
+      return "circle-area";
+    case "line":
+      return "distance";
+    case "rectangle":
+    case "triangle":
+    case "polygon":
+      return "area";
+    case "arc":
+      return "arc-length";
+    default:
+      return "point";
+  }
+};
+var calculateDetectionConfidence = (points, detectedGeometry) => {
+  if (points.length < 2) {
+    return 0;
+  }
+  switch (detectedGeometry.type) {
+    case "circle":
+      return calculateCircleConfidence(points.map((p) => p.latlng), detectedGeometry.properties);
+    case "line":
+      return points.length === 2 ? 1 : 0.5;
+    case "rectangle":
+      return calculateRectangleConfidence(points.map((p) => p.latlng));
+    case "triangle":
+      return points.length === 3 ? 0.9 : 0.6;
+    case "polygon":
+      return 0.7;
+    // Moderate confidence για general polygons
+    default:
+      return 0.1;
+  }
+};
+var calculateCircleConfidence = (points, circle) => {
+  let totalDeviation = 0;
+  for (const point2 of points) {
+    const distanceToCenter = calculateCircleRadius(circle.center, point2);
+    const deviation = Math.abs(distanceToCenter - circle.radius) / circle.radius;
+    totalDeviation += deviation;
+  }
+  const averageDeviation = totalDeviation / points.length;
+  return Math.max(0, 1 - averageDeviation / DETECTION_THRESHOLDS.CIRCLE_TOLERANCE);
+};
+var calculateRectangleConfidence = (points) => {
+  if (points.length !== 4 && points.length !== 5) {
+    return 0;
+  }
+  const corners = points.length === 5 ? points.slice(0, 4) : points;
+  const rightAngle = Math.PI / 2;
+  let rightAngleCount = 0;
+  for (let i = 0; i < 4; i++) {
+    const prev = corners[(i + 3) % 4];
+    const current = corners[i];
+    const next = corners[(i + 1) % 4];
+    const angle = calculateAngle(prev, current, next);
+    if (Math.abs(angle - rightAngle) <= DETECTION_THRESHOLDS.RIGHT_ANGLE_TOLERANCE) {
+      rightAngleCount++;
+    }
+  }
+  return rightAngleCount / 4;
 };
 
-// src/components/GeometryRenderer.tsx
-import React2, { useMemo } from "react";
-import { Polygon as Polygon2, Polyline as Polyline2, CircleMarker as CircleMarker2, Popup } from "react-leaflet";
-import { useTheme as useTheme2 } from "@layera/theme-switcher";
-import { Typography as Typography2 } from "@layera/typography";
-import { useLayeraTranslation as useLayeraTranslation4 } from "@layera/i18n";
-import { Fragment as Fragment3, jsx as jsx3, jsxs as jsxs3 } from "react/jsx-runtime";
-var GeometryRenderer = ({
-  measurements = [],
-  osmFeatures = [],
-  showOSMBuildings = true,
-  showMeasurements = true,
-  onMeasurementClick,
-  onBuildingClick
-}) => {
-  const { theme } = useTheme2();
-  const { t } = useLayeraTranslation4();
-  const { formatDistanceWithLabels, formatAreaWithLabels } = useMeasurementFormatter();
-  const colors = useMemo(() => {
-    const isDark = theme === "dark";
-    return {
-      // Measurement colors
-      measurementLine: isDark ? "#10b981" : "#059669",
-      measurementFill: isDark ? "rgba(16, 185, 129, 0.2)" : "rgba(5, 150, 105, 0.2)",
-      measurementPoint: isDark ? "#f59e0b" : "#d97706",
-      // OSM building colors
-      buildingLine: isDark ? "#6b7280" : "#9ca3af",
-      buildingFill: isDark ? "rgba(107, 114, 128, 0.1)" : "rgba(156, 163, 175, 0.1)",
-      buildingHover: isDark ? "#374151" : "#d1d5db",
-      // Border colors
-      border: isDark ? "#1f2937" : "#ffffff"
-    };
-  }, [theme]);
-  const renderOSMBuildings = () => {
-    if (!showOSMBuildings || osmFeatures.length === 0) return null;
-    return osmFeatures.map((feature, index) => {
-      const polygons = extractOSMGeometry(feature);
-      return polygons.map((polygon, polygonIndex) => {
-        const key = `building-${index}-${polygonIndex}`;
-        return /* @__PURE__ */ jsx3(
-          Polygon2,
-          {
-            positions: polygon,
-            pathOptions: {
-              color: colors.buildingLine,
-              fillColor: colors.buildingFill,
-              fillOpacity: 0.1,
-              weight: 1,
-              opacity: 0.6
-            },
-            eventHandlers: {
-              click: () => onBuildingClick?.(feature),
-              mouseover: (e) => {
-                e.target.setStyle({
-                  fillColor: colors.buildingHover,
-                  fillOpacity: 0.3
-                });
-              },
-              mouseout: (e) => {
-                e.target.setStyle({
-                  fillColor: colors.buildingFill,
-                  fillOpacity: 0.1
-                });
-              }
-            },
-            children: feature.properties.name && /* @__PURE__ */ jsx3(Popup, { children: /* @__PURE__ */ jsxs3("div", { children: [
-              /* @__PURE__ */ jsx3(Typography2, { variant: "subtitle", className: "font-semibold", children: feature.properties.name }),
-              feature.properties.building && /* @__PURE__ */ jsxs3(Typography2, { variant: "caption", className: "text-gray-600", children: [
-                t("geo-drawing.building-type"),
-                ": ",
-                feature.properties.building
-              ] }),
-              feature.properties["addr:street"] && /* @__PURE__ */ jsxs3(Typography2, { variant: "caption", className: "text-gray-600", children: [
-                feature.properties["addr:street"],
-                " ",
-                feature.properties["addr:housenumber"]
-              ] })
-            ] }) })
-          },
-          key
-        );
+// src/utils/mapLabelIntegration.ts
+import * as L2 from "leaflet";
+var measurementToMapLabel = (measurement, options = {}) => {
+  const {
+    showUnits = true,
+    locale = "el-GR",
+    precision,
+    customPosition
+  } = options;
+  const position = customPosition || calculateOptimalLabelPosition(measurement.points);
+  const variant = getVariantForMeasurementType(measurement.type);
+  const text = formatMeasurementForLabel(measurement, {
+    showUnits,
+    locale,
+    precision: precision ?? void 0
+  });
+  return {
+    position,
+    text,
+    variant,
+    background: "semi-transparent",
+    align: "center",
+    clickable: true,
+    priority: "normal"
+  };
+};
+var geometryToMapLabels = (geometry, points, options = {}) => {
+  const { showCoordinates = false } = options;
+  const labels = [];
+  switch (geometry.type) {
+    case "circle":
+      labels.push(...createCircleLabels(geometry.properties, options));
+      break;
+    case "rectangle":
+      labels.push(...createRectangleLabels(geometry.properties, options));
+      break;
+    case "triangle":
+      labels.push(...createTriangleLabels(geometry.properties, options));
+      break;
+    case "line":
+      labels.push(createLineLabel(geometry.properties, options));
+      break;
+    case "polygon":
+      labels.push(...createPolygonLabels(geometry.properties, options));
+      break;
+    default:
+      if (showCoordinates) {
+        labels.push(...createPointLabels(points, options));
+      }
+  }
+  return labels;
+};
+var createCircleLabels = (circle, options) => {
+  const labels = [];
+  const { showDetails = true, locale = "el-GR" } = options;
+  labels.push({
+    position: circle.center,
+    text: formatArea2(circle.area, locale),
+    variant: "area",
+    background: "semi-transparent",
+    align: "center",
+    clickable: true,
+    priority: "high"
+  });
+  if (showDetails) {
+    const radiusPosition = calculateRadiusLabelPosition(circle.center, circle.radius);
+    labels.push({
+      position: radiusPosition,
+      text: `R: ${formatDistance2(circle.radius, locale)}`,
+      variant: "distance",
+      background: "semi-transparent",
+      align: "center",
+      clickable: false,
+      priority: "normal"
+    });
+    const circumferencePosition = calculateCircumferenceLabelPosition(circle.center, circle.radius);
+    labels.push({
+      position: circumferencePosition,
+      text: `C: ${formatDistance2(circle.circumference, locale)}`,
+      variant: "info",
+      background: "semi-transparent",
+      align: "center",
+      clickable: false,
+      priority: "normal"
+    });
+  }
+  return labels;
+};
+var createRectangleLabels = (rectangle, options) => {
+  const labels = [];
+  const { showDetails = true, locale = "el-GR" } = options;
+  const center = calculatePolygonCenter2(rectangle.corners);
+  labels.push({
+    position: center,
+    text: formatArea2(rectangle.area, locale),
+    variant: "area",
+    background: "semi-transparent",
+    align: "center",
+    clickable: true,
+    priority: "high"
+  });
+  if (showDetails) {
+    labels.push({
+      position: calculatePerimeterLabelPosition(rectangle.corners),
+      text: `P: ${formatDistance2(rectangle.perimeter, locale)}`,
+      variant: "distance",
+      background: "semi-transparent",
+      align: "center",
+      clickable: false,
+      priority: "normal"
+    });
+    const sideLabels = calculateSideLengthLabels(rectangle.corners, locale);
+    labels.push(...sideLabels);
+  }
+  return labels;
+};
+var createTriangleLabels = (triangle, options) => {
+  const labels = [];
+  const { showDetails = true, locale = "el-GR" } = options;
+  const center = calculatePolygonCenter2(triangle.vertices);
+  labels.push({
+    position: center,
+    text: formatArea2(triangle.area, locale),
+    variant: "area",
+    background: "semi-transparent",
+    align: "center",
+    clickable: true,
+    priority: "high"
+  });
+  if (showDetails) {
+    triangle.vertices.forEach((vertex, index) => {
+      const angleDegrees = triangle.angles[index] * 180 / Math.PI;
+      labels.push({
+        position: vertex,
+        text: `${angleDegrees.toFixed(1)}\xB0`,
+        variant: "info",
+        background: "semi-transparent",
+        align: "center",
+        clickable: false,
+        priority: "normal"
       });
     });
+  }
+  return labels;
+};
+var createLineLabel = (line, options) => {
+  const { locale = "el-GR" } = options;
+  const midPoint = L2.latLng(
+    (line.start.lat + line.end.lat) / 2,
+    (line.start.lng + line.end.lng) / 2
+  );
+  return {
+    position: midPoint,
+    text: formatDistance2(line.length, locale),
+    variant: "distance",
+    background: "semi-transparent",
+    align: "center",
+    clickable: true,
+    priority: "normal"
   };
-  const renderMeasurements = () => {
-    if (!showMeasurements || measurements.length === 0) return null;
-    return measurements.map((measurement) => {
-      const latlngs = measurement.points.map((p) => p.latlng);
-      const key = `measurement-${measurement.timestamp}`;
-      return /* @__PURE__ */ jsxs3(React2.Fragment, { children: [
-        measurement.points.map((point, index) => /* @__PURE__ */ jsx3(
-          CircleMarker2,
-          {
-            center: point.latlng,
-            radius: 5,
-            pathOptions: {
-              color: colors.border,
-              fillColor: colors.measurementPoint,
-              fillOpacity: 1,
-              weight: 2
-            },
-            eventHandlers: {
-              click: () => onMeasurementClick?.(measurement)
-            },
-            children: /* @__PURE__ */ jsx3(Popup, { children: /* @__PURE__ */ jsxs3("div", { children: [
-              /* @__PURE__ */ jsx3(Typography2, { variant: "subtitle", className: "font-semibold", children: t("geo-drawing.point-info", { index: index + 1 }) }),
-              /* @__PURE__ */ jsxs3(Typography2, { variant: "caption", children: [
-                point.latlng.lat.toFixed(6),
-                ", ",
-                point.latlng.lng.toFixed(6)
-              ] })
-            ] }) })
-          },
-          `${key}-point-${index}`
-        )),
-        (measurement.type === "distance" || measurement.type === "area") && latlngs.length >= 2 && /* @__PURE__ */ jsx3(
-          Polyline2,
-          {
-            positions: latlngs,
-            pathOptions: {
-              color: colors.measurementLine,
-              weight: 3,
-              opacity: 0.8
-            },
-            eventHandlers: {
-              click: () => onMeasurementClick?.(measurement)
-            },
-            children: /* @__PURE__ */ jsx3(Popup, { children: /* @__PURE__ */ jsxs3("div", { children: [
-              /* @__PURE__ */ jsx3(Typography2, { variant: "subtitle", className: "font-semibold", children: t(`geo-drawing.modes.${measurement.type}`) }),
-              /* @__PURE__ */ jsx3(Typography2, { variant: "body", children: measurement.displayValue }),
-              /* @__PURE__ */ jsx3(Typography2, { variant: "caption", className: "text-gray-600", children: new Date(measurement.timestamp).toLocaleString() })
-            ] }) })
-          }
-        ),
-        measurement.type === "area" && latlngs.length >= 3 && /* @__PURE__ */ jsx3(
-          Polygon2,
-          {
-            positions: latlngs,
-            pathOptions: {
-              color: colors.measurementLine,
-              fillColor: colors.measurementFill,
-              fillOpacity: 0.3,
-              weight: 2
-            },
-            eventHandlers: {
-              click: () => onMeasurementClick?.(measurement)
-            },
-            children: /* @__PURE__ */ jsx3(Popup, { children: /* @__PURE__ */ jsxs3("div", { children: [
-              /* @__PURE__ */ jsx3(Typography2, { variant: "subtitle", className: "font-semibold", children: t("geo-drawing.area-measurement") }),
-              /* @__PURE__ */ jsx3(Typography2, { variant: "body", children: measurement.area && formatAreaWithLabels(measurement.area) }),
-              /* @__PURE__ */ jsx3(Typography2, { variant: "caption", className: "text-gray-600", children: t("geo-drawing.points-count", { count: measurement.points.length }) })
-            ] }) })
-          }
-        )
-      ] }, key);
+};
+var createPolygonLabels = (polygon, options) => {
+  const labels = [];
+  const { showDetails = true, locale = "el-GR" } = options;
+  const center = calculatePolygonCenter2(polygon.vertices);
+  labels.push({
+    position: center,
+    text: formatArea2(polygon.area, locale),
+    variant: "area",
+    background: "semi-transparent",
+    align: "center",
+    clickable: true,
+    priority: "high"
+  });
+  if (showDetails) {
+    labels.push({
+      position: calculatePerimeterLabelPosition(polygon.vertices),
+      text: `P: ${formatDistance2(polygon.perimeter, locale)}`,
+      variant: "distance",
+      background: "semi-transparent",
+      align: "center",
+      clickable: false,
+      priority: "normal"
     });
-  };
-  return /* @__PURE__ */ jsxs3(Fragment3, { children: [
-    renderOSMBuildings(),
-    renderMeasurements()
-  ] });
+  }
+  return labels;
+};
+var createPointLabels = (points, options) => {
+  const { locale: _locale = "el-GR" } = options;
+  return points.map((point2, index) => ({
+    position: point2.latlng,
+    text: point2.label || `P${index + 1}`,
+    variant: "info",
+    background: "transparent",
+    align: "center",
+    clickable: true,
+    priority: "normal"
+  }));
+};
+var calculateOptimalLabelPosition = (points) => {
+  if (points.length === 0) {
+    return L2.latLng(0, 0);
+  }
+  const latlngs = points.map((p) => p.latlng);
+  return calculatePolygonCenter2(latlngs);
+};
+var calculatePolygonCenter2 = (points) => {
+  let latSum = 0;
+  let lngSum = 0;
+  for (const point2 of points) {
+    latSum += point2.lat;
+    lngSum += point2.lng;
+  }
+  return L2.latLng(latSum / points.length, lngSum / points.length);
+};
+var calculateRadiusLabelPosition = (center, radius) => {
+  const bearing = Math.PI / 4;
+  const distance = radius * 0.7;
+  const lat = center.lat + distance / 111320 * Math.cos(bearing);
+  const lng = center.lng + distance / (111320 * Math.cos(center.lat * Math.PI / 180)) * Math.sin(bearing);
+  return L2.latLng(lat, lng);
+};
+var calculateCircumferenceLabelPosition = (center, radius) => {
+  const bearing = 3 * Math.PI / 4;
+  const distance = radius * 1.1;
+  const lat = center.lat + distance / 111320 * Math.cos(bearing);
+  const lng = center.lng + distance / (111320 * Math.cos(center.lat * Math.PI / 180)) * Math.sin(bearing);
+  return L2.latLng(lat, lng);
+};
+var calculatePerimeterLabelPosition = (vertices) => {
+  let longestEdge = { start: vertices[0], end: vertices[1], length: 0 };
+  for (let i = 0; i < vertices.length; i++) {
+    const start = vertices[i];
+    const end = vertices[(i + 1) % vertices.length];
+    const length = calculateDistance([start, end]);
+    if (length > longestEdge.length) {
+      longestEdge = { start, end, length };
+    }
+  }
+  return L2.latLng(
+    (longestEdge.start.lat + longestEdge.end.lat) / 2,
+    (longestEdge.start.lng + longestEdge.end.lng) / 2
+  );
+};
+var calculateSideLengthLabels = (corners, locale) => {
+  const labels = [];
+  for (let i = 0; i < corners.length; i++) {
+    const start = corners[i];
+    const end = corners[(i + 1) % corners.length];
+    const length = calculateDistance([start, end]);
+    const midPoint = L2.latLng(
+      (start.lat + end.lat) / 2,
+      (start.lng + end.lng) / 2
+    );
+    labels.push({
+      position: midPoint,
+      text: formatDistance2(length, locale),
+      variant: "distance",
+      background: "transparent",
+      align: "center",
+      clickable: false,
+      priority: "normal"
+    });
+  }
+  return labels;
+};
+var getVariantForMeasurementType = (type) => {
+  switch (type) {
+    case "area":
+    case "circle-area":
+      return "area";
+    case "distance":
+    case "circle-radius":
+    case "circle-diameter":
+    case "circle-circumference":
+    case "arc-length":
+      return "distance";
+    case "angle":
+      return "info";
+    case "perimeter":
+      return "distance";
+    default:
+      return "info";
+  }
+};
+var formatMeasurementForLabel = (measurement, options) => {
+  const { showUnits = true, locale = "el-GR", precision } = options;
+  if (measurement.displayValue && showUnits) {
+    return measurement.displayValue;
+  }
+  switch (measurement.type) {
+    case "area":
+    case "circle-area":
+      return formatArea2(measurement.area || 0, locale, precision);
+    case "distance":
+      return formatDistance2(measurement.distance || 0, locale, precision);
+    case "circle-radius":
+      return formatDistance2(measurement.radius || 0, locale, precision);
+    case "circle-circumference":
+      return formatDistance2(measurement.circumference || 0, locale, precision);
+    case "circle-diameter":
+      return formatDistance2(measurement.diameter || 0, locale, precision);
+    case "arc-length":
+      return formatDistance2(measurement.arcLength || 0, locale, precision);
+    case "angle":
+      const degrees = (measurement.angle || 0) * 180 / Math.PI;
+      return `${degrees.toFixed(precision || 1)}\xB0`;
+    case "perimeter":
+      return formatDistance2(measurement.perimeter || 0, locale, precision);
+    default:
+      return measurement.displayValue || "";
+  }
+};
+var formatArea2 = (area, _locale, precision) => {
+  if (area >= 1e6) {
+    return `${(area / 1e6).toFixed(precision || 2)} km\xB2`;
+  } else if (area >= 1e4) {
+    return `${(area / 1e4).toFixed(precision || 1)} ha`;
+  } else {
+    return `${area.toFixed(precision || 0)} m\xB2`;
+  }
+};
+var formatDistance2 = (distance, _locale, precision) => {
+  if (distance >= 1e3) {
+    return `${(distance / 1e3).toFixed(precision || 2)} km`;
+  } else {
+    return `${distance.toFixed(precision || 0)} m`;
+  }
 };
 
 // src/index.ts
@@ -1017,32 +1051,36 @@ var GEO_DRAWING_CONSTANTS = {
 };
 export {
   GEO_DRAWING_CONSTANTS,
-  GeometryRenderer,
-  MeasurementCanvas,
-  MeasurementControls,
-  arePointsEqual,
-  calculateBearing,
+  calculateAngle,
+  calculateArcLength,
   calculateBounds,
+  calculateCircleArea,
+  calculateCircleCircumference,
+  calculateCircleDiameter,
+  calculateCircleRadius,
+  calculateDetectionConfidence,
   calculateDistance,
   calculatePerimeter,
   calculatePointDistance,
   calculatePolygonCenter,
   calculateProjectedArea,
   clearOSMCache,
-  closestPointOnSegment,
-  extractOSMGeometry,
+  detectCircleFromThreePoints,
+  detectGeometry,
+  fetchAdministrativeBoundary,
+  fetchBoundaryByAddressComponent,
   fetchBuildingOutlines,
   formatArea,
   formatBearing,
   formatCoordinatesBySystem,
   formatDistance,
-  geoJsonToLatLng,
+  geometryToMapLabels,
   getCacheSize,
   isBoundsCached,
   isPointInPolygon,
-  latLngToGeoJson,
+  measurementToMapLabel,
   prefetchBuildingOutlines,
-  simplifyPolygon,
+  suggestMeasurementMode,
   useGeometrySnap,
   useMeasurement,
   useMeasurementFormatter

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { Button } from '@layera/buttons';
 import { BUTTON_VARIANTS, BUTTON_SIZES } from '@layera/constants';
 

@@ -7,6 +7,8 @@
 export * from '../unified/UnifiedPipelineModal';
 export * from '../unified/hooks/useUnifiedPipeline';
 export * from '../unified/hooks/useModalContainer';
+export * from '../unified/hooks/useMediaQuery';
+export * from '../unified/utils/stepperConfig';
 
 // Steps
 export * from '../unified/steps/CategoryStep';

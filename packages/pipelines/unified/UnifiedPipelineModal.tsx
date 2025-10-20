@@ -4,14 +4,18 @@
  * Architecture: Clean separation of concerns - ΟΧΙ inline CSS, ΟΧΙ state management
  */
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Modal } from '@layera/modals';
 import { Stack, Flex } from '@layera/layout';
 import { Button } from '@layera/buttons';
 import { FormActions } from '@layera/forms';
 import { Heading } from '@layera/typography';
+import { LayeraProgressStepper } from '@layera/progress-stepper';
 import { useModalContainer } from './hooks/useModalContainer';
 import { useUnifiedPipeline } from './hooks/useUnifiedPipeline';
+import { useLayeraTranslation } from '@layera/tolgee';
+import { useMediaQuery } from './hooks/useMediaQuery';
+import { createStepperConfig, getStepIndex, updateStepCompletion } from './utils/stepperConfig';
 import {
   CategoryStep, IntentStep, TransactionTypeStep, EmploymentTypeStep,
   AvailabilityStep, AvailabilityDetailsStep, LocationStep, LayoutStep,
@@ -40,6 +44,8 @@ export const UnifiedPipelineModal: React.FC<UnifiedPipelineModalProps> = ({
   onSubmit,
   container
 }) => {
+  const { t } = useLayeraTranslation();
+
   // SSR-safe container resolution
   const containerFn = useModalContainer({
     preferredId: 'layera-device-simulator-viewport',
@@ -49,6 +55,28 @@ export const UnifiedPipelineModal: React.FC<UnifiedPipelineModalProps> = ({
   // Enterprise state management - clean separation
   const { state, actions, can } = useUnifiedPipeline({ onSubmit, onClose });
 
+  // Mobile detection for responsive design
+  const isMobile = useMediaQuery('(max-width: 768px)');
+
+  // Stepper configuration based on current category
+  const stepperSteps = useMemo(() => {
+    const baseSteps = createStepperConfig(state.category, t);
+    const completedSteps: string[] = [];
+
+    // Determine completed steps based on current state
+    if (state.category) completedSteps.push('category');
+    if (state.intent) completedSteps.push('intent');
+    if (state.transactionType || state.employmentType) {
+      completedSteps.push(state.category === 'property' ? 'transactionType' : 'employmentType');
+    }
+    if (state.availability) completedSteps.push('availability');
+    if (state.availabilityDetails) completedSteps.push('availabilityDetails');
+
+    return updateStepCompletion(baseSteps, completedSteps as any);
+  }, [state.category, state.intent, state.transactionType, state.employmentType, state.availability, state.availabilityDetails, t]);
+
+  const currentStepIndex = getStepIndex(state.step, stepperSteps);
+
   // Use provided container or SSR-safe resolver
   const finalContainer = container !== undefined ? container : containerFn;
 
@@ -56,19 +84,27 @@ export const UnifiedPipelineModal: React.FC<UnifiedPipelineModalProps> = ({
     <Modal
       open={isOpen}
       onClose={actions.reset}
-      size="lg"
+      size="xs"
       variant="centered"
       closeOnOverlayClick={true}
       closeOnEscape={true}
       showCloseButton={true}
       overlayClassName="unified-pipeline-modal-overlay"
       className="unified-pipeline-modal"
+      panelPadding="2px"
+      overlayPadding="2px"
       container={finalContainer}
     >
-      <Stack spacing="lg">
+      <Stack
+        spacing="sm"
+        style={{
+          transform: 'scale(0.7)',
+          transformOrigin: 'center',
+        }}
+      >
         <Flex justify="between" align="center">
           <Heading as="h2" size="xl" color="primary">
-            Νέα Καταχώρηση
+            {t('pipeline.newEntry.title')}
           </Heading>
           <Flex gap="xs">
             <Button
@@ -95,6 +131,55 @@ export const UnifiedPipelineModal: React.FC<UnifiedPipelineModalProps> = ({
             </Button>
           </Flex>
         </Flex>
+
+        {/* Enterprise Progress Stepper - Responsive & Compact with Horizontal Scroll */}
+        {stepperSteps.length > 2 && (
+          <div style={{
+            overflowX: 'auto',
+            overflowY: 'hidden',
+            width: '100%',
+            paddingBottom: '8px',
+            marginBottom: '8px'
+          }}>
+            <LayeraProgressStepper
+              steps={stepperSteps}
+              activeStep={currentStepIndex}
+              orientation="horizontal"
+              alternativeLabel={false}
+              sx={{
+                minWidth: 'max-content',
+                width: 'max-content',
+                paddingX: '8px',
+                '& .MuiStepLabel-label': {
+                  fontSize: '0.75rem',
+                  fontWeight: '500',
+                  lineHeight: '1.2',
+                  whiteSpace: 'nowrap',
+                },
+                '& .MuiStepLabel-iconContainer': {
+                  paddingRight: '8px',
+                },
+                '& .MuiStepConnector-root': {
+                  top: '16px',
+                },
+                '& .MuiStep-root': {
+                  paddingLeft: 0,
+                  paddingRight: '12px',
+                  minWidth: '100px',
+                },
+                '& .MuiStepLabel-root': {
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '4px',
+                },
+                '& .MuiStepLabel-labelContainer': {
+                  textAlign: 'center',
+                  maxWidth: '90px',
+                }
+              }}
+            />
+          </div>
+        )}
 
         {/* Clean Step Rendering - Pure Composition */}
         {state.step === 'category' && (
@@ -182,7 +267,7 @@ export const UnifiedPipelineModal: React.FC<UnifiedPipelineModalProps> = ({
               variant="outline"
               onClick={actions.reset}
             >
-              Ακύρωση
+              {t('pipelines.actions.cancel')}
             </Button>
           </FormActions>
         )}

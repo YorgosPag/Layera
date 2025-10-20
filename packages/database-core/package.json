@@ -1,0 +1,51 @@
+{
+  "name": "@layera/database-core",
+  "version": "1.0.0",
+  "description": "Enterprise database core για LEGO systems με isolated namespaces",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts",
+    "dev": "tsup src/index.ts --dts --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "verify": "npm run typecheck && npm run lint --max-warnings=0"
+  },
+  "keywords": [
+    "database",
+    "firestore",
+    "lego",
+    "enterprise",
+    "namespace",
+    "modular"
+  ],
+  "author": "Layera Development Team",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "firebase": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "tsup": "^8.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "import": "./dist/react/index.js",
+      "require": "./dist/react/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ]
+}

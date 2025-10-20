@@ -1,6 +1,6 @@
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { CheckIcon, AlertTriangleIcon, MoreIcon, ShareIcon, LayersIcon } from '@layera/icons';
-import { LanguageSwitcher } from '@layera/i18n';
+import { LanguageSwitcher } from '@layera/tolgee';
 
 function App() {
   const { t } = useLayeraTranslation();

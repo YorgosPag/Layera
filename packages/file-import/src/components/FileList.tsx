@@ -3,7 +3,7 @@ import { Card, CardContent } from '@layera/cards';
 import { Button, IconButton } from '@layera/buttons';
 import { ProgressBar, LoadingSpinner } from '@layera/loading';
 import { Text, Heading } from '@layera/typography';
-import { useLayeraTranslation } from '@layera/i18n/hooks';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { ImportedFile } from '../types';
 
 export interface FileListProps {

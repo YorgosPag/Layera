@@ -3,6 +3,7 @@ import { Text, Heading } from '@layera/typography';
 import { Stack } from '@layera/layout';
 import { FormField, Input, TextArea, FormActions } from '@layera/forms';
 import { Button } from '@layera/buttons';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 export interface DetailsData {
   title: string;
@@ -27,6 +28,7 @@ export interface DetailsStepProps {
  * Dependencies: ONLY @layera LEGO systems
  */
 export const DetailsStep: React.FC<DetailsStepProps> = ({ category, intent, onNext, onBack }) => {
+  const { t } = useLayeraTranslation();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState<number | undefined>();
@@ -53,34 +55,38 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({ category, intent, onNe
   return (
     <Stack spacing="lg">
       <Heading as="h2" size="xl" color="primary">
-        Λεπτομέρειες {isProperty ? 'Ακινήτου' : 'Εργασίας'}
+        {t('pipelines.steps.details.title', {
+          type: isProperty ? t('pipelines.steps.details.property') : t('pipelines.steps.details.job')
+        })}
       </Heading>
 
       <Text size="lg" color="secondary">
-        Συμπληρώστε τις λεπτομέρειες για {isOffer ? 'την προσφορά σας' : 'την αναζήτησή σας'}
+        {t('pipelines.steps.details.subtitle', {
+          intent: isOffer ? t('pipelines.steps.details.offer') : t('pipelines.steps.details.search')
+        })}
       </Text>
 
       <Stack spacing="md">
-        <FormField label="Τίτλος" required>
+        <FormField label={t('pipelines.steps.details.fields.title')} required>
           <Input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder={
               isProperty
-                ? "π.χ. Διαμέρισμα 85τμ στο Κολωνάκι"
-                : "π.χ. Frontend Developer με React"
+                ? t('pipelines.steps.details.placeholders.propertyTitle')
+                : t('pipelines.steps.details.placeholders.jobTitle')
             }
             size="lg"
             variant="outline"
           />
         </FormField>
 
-        <FormField label="Περιγραφή" required>
+        <FormField label={t('pipelines.steps.details.fields.description')} required>
           <TextArea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Περιγράψτε αναλυτικά..."
+            placeholder={t('pipelines.steps.details.placeholders.description')}
             rows={4}
             size="lg"
             variant="outline"
@@ -88,12 +94,12 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({ category, intent, onNe
         </FormField>
 
         {isProperty && (
-          <FormField label="Τιμή (€)" required={isOffer}>
+          <FormField label={t('pipelines.steps.details.fields.price')} required={isOffer}>
             <Input
               type="number"
               value={price || ''}
               onChange={(e) => setPrice(e.target.value ? parseInt(e.target.value) : undefined)}
-              placeholder="π.χ. 250000"
+              placeholder={t('pipelines.steps.details.placeholders.price')}
               size="lg"
               variant="outline"
             />
@@ -101,24 +107,24 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({ category, intent, onNe
         )}
 
         {!isProperty && (
-          <FormField label="Μισθός (€)" required={isOffer}>
+          <FormField label={t('pipelines.steps.details.fields.salary')} required={isOffer}>
             <Input
               type="number"
               value={salary || ''}
               onChange={(e) => setSalary(e.target.value ? parseInt(e.target.value) : undefined)}
-              placeholder="π.χ. 2500"
+              placeholder={t('pipelines.steps.details.placeholders.salary')}
               size="lg"
               variant="outline"
             />
           </FormField>
         )}
 
-        <FormField label="Στοιχεία Επικοινωνίας" required>
+        <FormField label={t('pipelines.steps.details.fields.contactInfo')} required>
           <Input
             type="text"
             value={contactInfo}
             onChange={(e) => setContactInfo(e.target.value)}
-            placeholder="π.χ. email@example.com ή +30 6912345678"
+            placeholder={t('pipelines.steps.details.placeholders.contact')}
             size="lg"
             variant="outline"
           />
@@ -131,7 +137,7 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({ category, intent, onNe
           size="lg"
           onClick={onBack}
         >
-          Πίσω
+          {t('pipelines.actions.back')}
         </Button>
         <Button
           variant="primary"
@@ -139,7 +145,7 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({ category, intent, onNe
           onClick={handleNext}
           disabled={!isValid}
         >
-          Συνέχεια
+          {t('pipelines.actions.continue')}
         </Button>
       </FormActions>
     </Stack>

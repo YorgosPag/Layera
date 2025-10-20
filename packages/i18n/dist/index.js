@@ -249,32 +249,76 @@ var errors$1 = {
 		description: "Απαγορεύεται. Μόνο admin μπορεί να δει αυτή τη σελίδα."
 	}
 };
-var common$1 = {
-	error: "Σφάλμα",
-	processing: "Επεξεργασία..."
+var geoalert$1 = {
+	title: "Layera GeoAlert",
+	subtitle: "Προηγμένο σύστημα γεωγραφικών ειδοποιήσεων",
+	geoCanvasReady: "Ο Geo Canvas είναι έτοιμος",
+	professionalArchitecture: "Επαγγελματική αρχιτεκτονική με LEGO systems",
+	enterGeoCanvas: "Είσοδος στον Geo Canvas",
+	statusCheck: "Έλεγχος Κατάστασης",
+	port: "Πόρτα",
+	reactReady: "React 19 Έτοιμο",
+	typescriptStrict: "TypeScript Strict Mode",
+	independentApp: "Ανεξάρτητη Εφαρμογή",
+	enterpriseArchitecture: "Enterprise Architecture",
+	navigateToLayeraId: "Μετάβαση στο Layera ID",
+	modularMicroservice: "Modular Microservice",
+	crossAppNavigation: "Cross-App Navigation",
+	readyForImplementation: "Έτοιμο για υλοποίηση"
 };
-var notifications$1 = {
-	loading: "Φόρτωση...",
-	retry: "Επανάληψη",
-	tryAgain: "Δοκιμάστε ξανά",
-	somethingWentWrong: "Κάτι πήγε στραβά",
-	dismiss: "Απόρριψη",
-	ok: "ΟΚ",
+var map$1 = {
+	title: "Χάρτης",
+	loading: "Φόρτωση χάρτη...",
+	center: "Κεντράρισμα",
+	zoom: "Ζουμ",
+	fullscreen: "Πλήρης οθόνη",
+	layers: "Επίπεδα",
+	drawing: "Σχεδίαση"
+};
+var buttons$1 = {
+	save: "Αποθήκευση",
 	cancel: "Ακύρωση",
-	types: {
-		success: "Επιτυχία",
-		warning: "Προειδοποίηση",
-		error: "Σφάλμα",
-		info: "Πληροφορία"
-	},
-	messages: {
-		generalError: "Παρουσιάστηκε ένα απροσδόκητο σφάλμα",
-		networkError: "Σφάλμα σύνδεσης δικτύου",
-		operationComplete: "Η ενέργεια ολοκληρώθηκε επιτυχώς",
-		operationFailed: "Η ενέργεια απέτυχε"
-	}
+	"delete": "Διαγραφή",
+	edit: "Επεξεργασία",
+	create: "Δημιουργία",
+	update: "Ενημέρωση",
+	close: "Κλείσιμο",
+	open: "Άνοιγμα",
+	search: "Αναζήτηση",
+	filter: "Φίλτρο",
+	"export": "Εξαγωγή",
+	"import": "Εισαγωγή",
+	download: "Λήψη",
+	upload: "Μεταφόρτωση",
+	submit: "Υποβολή",
+	reset: "Επαναφορά",
+	clear: "Καθαρισμός",
+	apply: "Εφαρμογή",
+	confirm: "Επιβεβαίωση",
+	reject: "Απόρριψη"
+};
+var alerts$1 = {
+	success: "Επιτυχία",
+	error: "Σφάλμα",
+	warning: "Προειδοποίηση",
+	info: "Πληροφορία",
+	loading: "Φόρτωση...",
+	saving: "Αποθήκευση...",
+	deleting: "Διαγραφή...",
+	updating: "Ενημέρωση...",
+	processing: "Επεξεργασία...",
+	completed: "Ολοκληρώθηκε",
+	failed: "Απέτυχε"
 };
 var forms$1 = {
+	required: "Υποχρεωτικό πεδίο",
+	invalid: "Μη έγκυρη τιμή",
+	tooShort: "Πολύ σύντομο",
+	tooLong: "Πολύ μακρύ",
+	invalidEmail: "Μη έγκυρο email",
+	invalidPhone: "Μη έγκυρος αριθμός τηλεφώνου",
+	passwordMismatch: "Οι κωδικοί δεν ταιριάζουν",
+	weakPassword: "Αδύναμος κωδικός",
 	validation: {
 		required: "Αυτό το πεδίο είναι υποχρεωτικό"
 	},
@@ -305,6 +349,129 @@ var forms$1 = {
 		noOptions: "Δεν υπάρχουν επιλογές",
 		clear: "Καθαρισμός",
 		loading: "Φόρτωση..."
+	}
+};
+var realEstate$1 = {
+	newListing: "Νέα Καταχώρηση",
+	categorySelection: "Επιλογή Κατηγορίας",
+	properties: "Ακίνητα",
+	propertyDescription: "Καταχωρήστε ένα ακίνητο προς πώληση, ενοικίαση ή δημιουργήστε μια ειδοποίηση αναζήτησης.",
+	jobs: "Εργασία",
+	jobDescription: "Προσφέρετε μια θέση εργασίας ή δηλώστε τη διαθεσιμότητά σας σε μια συγκεκριμένη περιοχή.",
+	wantToOffer: "Θέλω να Προσφέρω",
+	offerDescription: "Καταχωρήστε ένα ακίνητο προς πώληση ή ενοικίαση.",
+	wantToSearch: "Θέλω να Αναζητήσω (Geo-Alert)",
+	searchDescription: "Δημιουργήστε μια ειδοποίηση για μελλοντικά ακίνητα σε μια περιοχή.",
+	transactionType: "Ακίνητα - Είδος Συναλλαγής",
+	sale: "Πώληση",
+	saleDescription: "Μόνιμη μεταβίβαση της ιδιοκτησίας του ακινήτου",
+	rental: "Ενοικίαση",
+	rentalDescription: "Παραχώρηση χρήσης του ακινήτου για συγκεκριμένο χρόνο"
+};
+var availability$1 = {
+	whenAvailable: "Πότε είστε διαθέσιμοι;",
+	selectPeriod: "Επιλέξτε την περίοδο διαθεσιμότητάς σας",
+	now: "Τώρα",
+	nowDescription: "Είμαι διαθέσιμος άμεσα για συνεργασία",
+	future: "Στο Μέλλον",
+	futureDescription: "Θα είμαι διαθέσιμος σε συγκεκριμένη μελλοντική ημερομηνία",
+	details: "Λεπτομέρειες Διαθεσιμότητας",
+	pleaseSetDateAndDuration: "Παρακαλώ ορίστε την ημερομηνία και διάρκεια διαθεσιμότητας",
+	startDate: "Ημερομηνία Έναρξης",
+	datePlaceholder: "ηη/μμ/εεεε",
+	duration: "Διάρκεια",
+	durationExample: "12",
+	unit: "Μονάδα",
+	months: "Μήνες"
+};
+var location$1 = {
+	locationAndFloorplan: "Τοποθεσία & Κάτοψη",
+	uploadFloorplan: "Φορτώστε το αρχείο με την κάτοψη του ακινήτου:",
+	selectFile: "Επιλογή Αρχείου",
+	clickToUpload: "Κάντε κλικ για να ανεβάσετε την κάτοψη",
+	or: "ή",
+	searchLocation: "Αναζήτηση Τοποθεσίας",
+	locationExample: "π.χ. Ερμού 10, Αθήνα",
+	placementTools: "Εργαλεία Τοποθέτησης",
+	toolsDescription: "Τοποθετήστε το σχέδιο σας επάνω στον χάρτη για να δείτε ακριβώς την θέση του στο πραγματικό περιβάλλον. Τα εργαλεία παρακάτω σας επιτρέπουν να αλλάξετε μέγεθος της κάτοψης για να ταιριάξει με τις πραγματικές διαστάσεις του ακινήτου σας.",
+	rotation: "Περιστροφή",
+	scale: "Κλίμακα",
+	cmToM: "cm - m",
+	mmToM: "mm - m",
+	mToM: "m - m"
+};
+var jobs$1 = {
+	listingType: "Εργασία - Τύπος Καταχώρησης",
+	wantToOfferPosition: "Θέλω να Προσφέρω Θέση",
+	offerPositionDescription: "Δημοσιεύστε μια αγγελία για μια διαθέσιμη θέση εργασίας.",
+	lookingForJob: "Αναζητώ Εργασία",
+	lookingForJobDescription: "Δηλώστε τη διαθεσιμότητά σας και τις δεξιότητές σας σε μια περιοχή.",
+	employmentType: "Εργασία - Είδος Απασχόλησης",
+	fullTime: "Πλήρης Απασχόληση",
+	fullTimeDescription: "40 ώρες την εβδομάδα με πλήρη παροχές",
+	partTime: "Μερική Απασχόληση",
+	partTimeDescription: "Λιγότερες από 40 ώρες την εβδομάδα",
+	freelance: "Freelance",
+	freelanceDescription: "Ανεξάρτητος συνεργάτης με ευελιξία",
+	seasonal: "Εποχιακή",
+	seasonalDescription: "Προσωρινή εργασία για ορισμένη περίοδο",
+	drawingArea: "Σχεδιάστε την περιοχή του ακινήτου/εργασίας:",
+	drawingSearchArea: "Σχεδιάστε την περιοχή αναζήτησης:",
+	openDrawingTool: "Ανοίγμα Εργαλείου Σχεδίασης",
+	clickToDrawOnMap: "Κάντε κλικ για να σχεδιάσετε στον χάρτη",
+	jobDetails: "Λεπτομέρειες Εργασίας",
+	fillSearchDetails: "Συμπληρώστε τις λεπτομέρειες για την αναζήτησή σας",
+	title: "Τίτλος",
+	titleExample: "π.χ. Frontend Developer με React",
+	description: "Περιγραφή",
+	descriptionPlaceholder: "Περιγράψτε αναλυτικά...",
+	salary: "Μισθός (€)",
+	salaryExample: "π.χ. 2500",
+	contactInfo: "Στοιχεία Επικοινωνίας",
+	contactExample: "π.χ. email@example.com ή +30 6912345678",
+	required: "*"
+};
+var common$1 = {
+	error: "Σφάλμα",
+	processing: "Επεξεργασία...",
+	addressDetails: "Στοιχεία Διεύθυνσης",
+	showOnMap: "Εμφάνιση στο Χάρτη",
+	clickToShowBoundary: "Κλικ για εμφάνιση ορίων",
+	title: "Τίτλος",
+	subtitle: "Υπότιτλος",
+	realEstate: "Ακίνητα",
+	job: "Εργασία",
+	marker: "Σημείο",
+	polygon: "Πολύγωνο",
+	clear: "Καθαρισμός",
+	auto: "Αυτόματο",
+	mobile: "Κινητό",
+	tablet: "Tablet",
+	desktop: "Desktop",
+	overrideActive: "Παράκαμψη Ενεργού"
+};
+var addressDetails$1 = "Στοιχεία Διεύθυνσης";
+var showOnMap$1 = "Εμφάνιση στο Χάρτη";
+var clickToShowBoundary$1 = "Κλικ για εμφάνιση ορίων";
+var notifications$1 = {
+	loading: "Φόρτωση...",
+	retry: "Επανάληψη",
+	tryAgain: "Δοκιμάστε ξανά",
+	somethingWentWrong: "Κάτι πήγε στραβά",
+	dismiss: "Απόρριψη",
+	ok: "ΟΚ",
+	cancel: "Ακύρωση",
+	types: {
+		success: "Επιτυχία",
+		warning: "Προειδοποίηση",
+		error: "Σφάλμα",
+		info: "Πληροφορία"
+	},
+	messages: {
+		generalError: "Παρουσιάστηκε ένα απροσδόκητο σφάλμα",
+		networkError: "Σφάλμα σύνδεσης δικτύου",
+		operationComplete: "Η ενέργεια ολοκληρώθηκε επιτυχώς",
+		operationFailed: "Η ενέργεια απέτυχε"
 	}
 };
 var tables$1 = {
@@ -341,26 +508,40 @@ var pipeline$1 = {
 	},
 	category: {
 		selection: {
-			title: "Επιλέξτε Κατηγορία"
+			title: "Επιλογή Κατηγορίας"
 		},
 		property: {
-			title: "Ακίνητο",
-			description: "Αναζητήστε ή διαφημίστε ακίνητα"
+			title: "Ακίνητα",
+			description: "Καταχωρήστε ένα ακίνητο προς πώληση, ενοικίαση ή δημιουργήστε μια ειδοποίηση αναζήτησης."
 		},
 		job: {
 			title: "Εργασία",
-			description: "Αναζητήστε ή διαφημίστε θέσεις εργασίας"
+			description: "Προσφέρετε μια θέση εργασίας ή δηλώστε τη διαθεσιμότητά σας σε μια συγκεκριμένη περιοχή."
 		}
 	},
 	intent: {
 		selection: {
-			title: "Επιλέξτε Πρόθεση"
+			title: "{{category}} - Τύπος Καταχώρησης"
 		},
 		offer: {
-			title: "Προσφορά"
+			property: {
+				title: "Θέλω να Προσφέρω",
+				description: "Καταχωρήστε ένα ακίνητο προς πώληση ή ενοικίαση."
+			},
+			job: {
+				title: "Θέλω να Προσφέρω Θέση",
+				description: "Δημοσιεύστε μια αγγελία για μια διαθέσιμη θέση εργασίας."
+			}
 		},
 		search: {
-			title: "Αναζήτηση"
+			property: {
+				title: "Θέλω να Αναζητήσω (Geo-Alert)",
+				description: "Δημιουργήστε μια ειδοποίηση για μελλοντικά ακίνητα σε μια περιοχή."
+			},
+			job: {
+				title: "Αναζητώ Εργασία",
+				description: "Δηλώστε τη διαθεσιμότητά σας και τις δεξιότητές σας σε μια περιοχή."
+			}
 		}
 	},
 	preview: {
@@ -370,23 +551,6 @@ var pipeline$1 = {
 		},
 		"continue": "Συνέχεια"
 	}
-};
-var geoalert$1 = {
-	title: "Layera GeoAlert",
-	subtitle: "Προηγμένο σύστημα γεωγραφικών ειδοποιήσεων",
-	geoCanvasReady: "Ο Geo Canvas είναι έτοιμος",
-	professionalArchitecture: "Επαγγελματική αρχιτεκτονική με LEGO systems",
-	enterGeoCanvas: "Είσοδος στον Geo Canvas",
-	statusCheck: "Έλεγχος Κατάστασης",
-	port: "Πόρτα",
-	reactReady: "React 19 Έτοιμο",
-	typescriptStrict: "TypeScript Strict Mode",
-	independentApp: "Ανεξάρτητη Εφαρμογή",
-	enterpriseArchitecture: "Enterprise Architecture",
-	navigateToLayeraId: "Μετάβαση στο Layera ID",
-	modularMicroservice: "Modular Microservice",
-	crossAppNavigation: "Cross-App Navigation",
-	readyForImplementation: "Έτοιμο για υλοποίηση"
 };
 var dashboard$1 = {
 	overview: "Επισκόπηση κατάστασης λογαριασμού",
@@ -417,6 +581,153 @@ var dashboard$1 = {
 		system: "Σύστημα"
 	}
 };
+var pipelines$1 = {
+	steps: {
+		details: {
+			title: "Λεπτομέρειες {{type}}",
+			subtitle: "Συμπληρώστε τις λεπτομέρειες για {{intent}}",
+			property: "Ακινήτου",
+			job: "Εργασίας",
+			offer: "την προσφορά σας",
+			search: "την αναζήτησή σας",
+			fields: {
+				title: "Τίτλος",
+				description: "Περιγραφή",
+				price: "Τιμή (€)",
+				salary: "Μισθός (€)",
+				contactInfo: "Στοιχεία Επικοινωνίας"
+			},
+			placeholders: {
+				propertyTitle: "π.χ. Διαμέρισμα 85τμ στο Κολωνάκι",
+				jobTitle: "π.χ. Frontend Developer με React",
+				description: "Περιγράψτε αναλυτικά...",
+				price: "π.χ. 250000",
+				salary: "π.χ. 2500",
+				contact: "π.χ. email@example.com ή +30 6912345678"
+			}
+		},
+		transaction: {
+			title: "Ακίνητα - Είδος Συναλλαγής",
+			sale: {
+				title: "Πώληση",
+				description: "Μόνιμη μεταβίβαση της ιδιοκτησίας του ακινήτου"
+			},
+			rent: {
+				title: "Ενοικίαση",
+				description: "Παραχώρηση χρήσης του ακινήτου για συγκεκριμένο χρόνο"
+			}
+		},
+		layout: {
+			title: "Τοποθεσία & Κάτοψη",
+			findMyLocation: "Βρες τη θέση μου",
+			or: "ή",
+			searchLocation: "Αναζήτηση Τοποθεσίας",
+			locationPlaceholder: "π.χ. Ερμού 10, Αθήνα",
+			results: "Αποτελέσματα ({{count}})",
+			locationPin: "Τοποθεσία",
+			placementTools: {
+				title: "Εργαλεία Τοποθέτησης",
+				description: "Τοποθετήστε το σχέδιο σας επάνω στον χάρτη για να δείτε ακριβώς την θέση του στο πραγματικό περιβάλλον. Τα εργαλεία παρακάτω σας επιτρέπουν να αλλάξετε μέγεθος της κάτοψης για να ταιριάξει με τις πραγματικές διαστάσεις του ακινήτου σας.",
+				rotation: "Περιστροφή",
+				scale: "Κλίμακα",
+				units: {
+					cmToM: "cm - m",
+					mmToM: "mm - m",
+					mToM: "m - m"
+				}
+			},
+			actions: {
+				back: "Πίσω",
+				saveLocation: "Αποθήκευση Τοποθεσίας & Συνέχεια"
+			}
+		},
+		employmentType: {
+			title: "Εργασία - Είδος Απασχόλησης",
+			fullTime: {
+				title: "Πλήρης Απασχόληση",
+				description: "40 ώρες την εβδομάδα με πλήρη παροχές"
+			},
+			partTime: {
+				title: "Μερική Απασχόληση",
+				description: "Λιγότερες από 40 ώρες την εβδομάδα"
+			},
+			freelance: {
+				title: "Freelance",
+				description: "Ανεξάρτητος συνεργάτης με ευελιξία"
+			},
+			seasonal: {
+				title: "Εποχιακή",
+				description: "Προσωρινή εργασία για ορισμένη περίοδο"
+			}
+		},
+		availability: {
+			title: "Λεπτομέρειες Διαθεσιμότητας",
+			subtitle: "Παρακαλώ ορίστε την ημερομηνία και διάρκεια διαθεσιμότητας",
+			fields: {
+				startDate: "Ημερομηνία Έναρξης",
+				duration: "Διάρκεια",
+				unit: "Μονάδα"
+			},
+			units: {
+				months: "Μήνες",
+				years: "Χρόνια"
+			},
+			placeholders: {
+				duration: "12",
+				datePlaceholder: "ηη/μμ/εεεε"
+			},
+			question: {
+				title: "Πότε είστε διαθέσιμοι;",
+				subtitle: "Επιλέξτε την περίοδο διαθεσιμότητάς σας"
+			},
+			options: {
+				now: {
+					title: "Τώρα",
+					description: "Είμαι διαθέσιμος άμεσα για συνεργασία"
+				},
+				future: {
+					title: "Στο Μέλλον",
+					description: "Θα είμαι διαθέσιμος σε συγκεκριμένη μελλοντική ημερομηνία"
+				}
+			}
+		}
+	},
+	actions: {
+		back: "Πίσω",
+		"continue": "Συνέχεια",
+		save: "Αποθήκευση",
+		cancel: "Ακύρωση"
+	}
+};
+var progress$1 = {
+	stepper: {
+		optional: "Προαιρετικό",
+		labels: {
+			category: "Κατηγορία",
+			intent: "Σκοπός",
+			transactionType: "Συναλλαγή",
+			employmentType: "Εργασία",
+			availability: "Διαθεσιμότητα",
+			availabilityDetails: "Λεπτομέρειες",
+			location: "Τοποθεσία",
+			layout: "Κάτοψη",
+			details: "Στοιχεία",
+			complete: "Τέλος"
+		},
+		descriptions: {
+			category: "Τύπος",
+			intent: "Δράση",
+			transactionType: "Τύπος",
+			employmentType: "Τύπος",
+			availability: "Πότε",
+			availabilityDetails: "Ημερομηνίες",
+			location: "Χάρτης",
+			layout: "Διάταξη",
+			details: "Περιγραφή",
+			complete: "Επιβεβαίωση"
+		}
+	}
+};
 var elCommon = {
 	app: app$1,
 	navigation: navigation$1,
@@ -430,13 +741,25 @@ var elCommon = {
 	status: status$1,
 	actions: actions$1,
 	errors: errors$1,
-	common: common$1,
-	notifications: notifications$1,
+	geoalert: geoalert$1,
+	map: map$1,
+	buttons: buttons$1,
+	alerts: alerts$1,
 	forms: forms$1,
+	realEstate: realEstate$1,
+	availability: availability$1,
+	location: location$1,
+	jobs: jobs$1,
+	common: common$1,
+	addressDetails: addressDetails$1,
+	showOnMap: showOnMap$1,
+	clickToShowBoundary: clickToShowBoundary$1,
+	notifications: notifications$1,
 	tables: tables$1,
 	pipeline: pipeline$1,
-	geoalert: geoalert$1,
-	dashboard: dashboard$1
+	dashboard: dashboard$1,
+	pipelines: pipelines$1,
+	progress: progress$1
 };
 
 var app = {
@@ -682,32 +1005,76 @@ var errors = {
 		description: "Access denied. Only admin can view this page."
 	}
 };
-var common = {
-	error: "Error",
-	processing: "Processing..."
+var geoalert = {
+	title: "Layera GeoAlert",
+	subtitle: "Advanced Geographic Notifications System",
+	geoCanvasReady: "Geo Canvas is Ready",
+	professionalArchitecture: "Professional architecture with LEGO systems",
+	enterGeoCanvas: "Enter Geo Canvas",
+	statusCheck: "Status Check",
+	port: "Port",
+	reactReady: "React 19 Ready",
+	typescriptStrict: "TypeScript Strict Mode",
+	independentApp: "Independent Application",
+	enterpriseArchitecture: "Enterprise Architecture",
+	navigateToLayeraId: "Navigate to Layera ID",
+	modularMicroservice: "Modular Microservice",
+	crossAppNavigation: "Cross-App Navigation",
+	readyForImplementation: "Ready for Implementation"
 };
-var notifications = {
-	loading: "Loading...",
-	retry: "Retry",
-	tryAgain: "Try Again",
-	somethingWentWrong: "Something Went Wrong",
-	dismiss: "Dismiss",
-	ok: "OK",
+var map = {
+	title: "Map",
+	loading: "Loading map...",
+	center: "Center",
+	zoom: "Zoom",
+	fullscreen: "Fullscreen",
+	layers: "Layers",
+	drawing: "Drawing"
+};
+var buttons = {
+	save: "Save",
 	cancel: "Cancel",
-	types: {
-		success: "Success",
-		warning: "Warning",
-		error: "Error",
-		info: "Information"
-	},
-	messages: {
-		generalError: "An unexpected error occurred",
-		networkError: "Network connection error",
-		operationComplete: "Operation completed successfully",
-		operationFailed: "Operation failed"
-	}
+	"delete": "Delete",
+	edit: "Edit",
+	create: "Create",
+	update: "Update",
+	close: "Close",
+	open: "Open",
+	search: "Search",
+	filter: "Filter",
+	"export": "Export",
+	"import": "Import",
+	download: "Download",
+	upload: "Upload",
+	submit: "Submit",
+	reset: "Reset",
+	clear: "Clear",
+	apply: "Apply",
+	confirm: "Confirm",
+	reject: "Reject"
+};
+var alerts = {
+	success: "Success",
+	error: "Error",
+	warning: "Warning",
+	info: "Information",
+	loading: "Loading...",
+	saving: "Saving...",
+	deleting: "Deleting...",
+	updating: "Updating...",
+	processing: "Processing...",
+	completed: "Completed",
+	failed: "Failed"
 };
 var forms = {
+	required: "Required field",
+	invalid: "Invalid value",
+	tooShort: "Too short",
+	tooLong: "Too long",
+	invalidEmail: "Invalid email",
+	invalidPhone: "Invalid phone number",
+	passwordMismatch: "Passwords don't match",
+	weakPassword: "Weak password",
 	validation: {
 		required: "This field is required"
 	},
@@ -738,6 +1105,135 @@ var forms = {
 		noOptions: "No options available",
 		clear: "Clear",
 		loading: "Loading..."
+	}
+};
+var realEstate = {
+	newListing: "New Listing",
+	categorySelection: "Category Selection",
+	properties: "Properties",
+	propertyDescription: "List a property for sale, rent, or create a search alert.",
+	jobs: "Jobs",
+	jobDescription: "Offer a job position or declare your availability in a specific area.",
+	wantToOffer: "I Want to Offer",
+	offerDescription: "List a property for sale or rent.",
+	wantToSearch: "I Want to Search (Geo-Alert)",
+	searchDescription: "Create an alert for future properties in an area.",
+	transactionType: "Properties - Transaction Type",
+	sale: "Sale",
+	saleDescription: "Permanent transfer of property ownership",
+	rental: "Rental",
+	rentalDescription: "Grant use of the property for a specific time"
+};
+var availability = {
+	whenAvailable: "When are you available?",
+	selectPeriod: "Select your availability period",
+	now: "Now",
+	nowDescription: "I am immediately available for collaboration",
+	future: "In the Future",
+	futureDescription: "I will be available at a specific future date",
+	details: "Availability Details",
+	pleaseSetDateAndDuration: "Please set the availability date and duration",
+	startDate: "Start Date",
+	datePlaceholder: "dd/mm/yyyy",
+	duration: "Duration",
+	durationExample: "12",
+	unit: "Unit",
+	months: "Months"
+};
+var location = {
+	locationAndFloorplan: "Location & Floor Plan",
+	uploadFloorplan: "Upload the floor plan file:",
+	selectFile: "Select File",
+	clickToUpload: "Click to upload the floor plan",
+	or: "or",
+	searchLocation: "Search Location",
+	locationExample: "e.g. Ermou 10, Athens",
+	placementTools: "Placement Tools",
+	toolsDescription: "Place your design on the map to see exactly where it is in the real environment. The tools below allow you to resize the floor plan to match the actual dimensions of your property.",
+	rotation: "Rotation",
+	scale: "Scale",
+	cmToM: "cm - m",
+	mmToM: "mm - m",
+	mToM: "m - m"
+};
+var jobs = {
+	listingType: "Jobs - Listing Type",
+	wantToOfferPosition: "I Want to Offer a Position",
+	offerPositionDescription: "Post a job listing for an available position.",
+	lookingForWork: "Looking for Work",
+	lookingForWorkDescription: "Declare your availability and skills in an area.",
+	employmentType: "Jobs - Employment Type",
+	fullTime: "Full Time",
+	fullTimeDescription: "40 hours per week with full benefits",
+	partTime: "Part Time",
+	partTimeDescription: "Less than 40 hours per week",
+	freelance: "Freelance",
+	freelanceDescription: "Independent contractor with flexibility",
+	seasonal: "Seasonal",
+	seasonalDescription: "Temporary work for a specific period",
+	whenAvailable: "When are you available?",
+	selectAvailabilityPeriod: "Select your availability period",
+	now: "Now",
+	nowDescription: "I am immediately available for collaboration",
+	future: "In the Future",
+	futureDescription: "I will be available at a specific future date",
+	locationAndMap: "Location & Map",
+	drawPropertyArea: "Draw the property/job area:",
+	drawingSearchArea: "Draw the search area:",
+	openDrawingTool: "Open Drawing Tool",
+	clickToDrawOnMap: "Click to draw on the map",
+	jobDetails: "Job Details",
+	fillJobSearchDetails: "Fill in the details for your search",
+	title: "Title",
+	titleExample: "e.g. Frontend Developer with React",
+	description: "Description",
+	describeDetailed: "Describe in detail...",
+	salary: "Salary (€)",
+	salaryExample: "e.g. 2500",
+	contactInfo: "Contact Information",
+	contactExample: "e.g. email@example.com or +30 6912345678"
+};
+var common = {
+	error: "Error",
+	processing: "Processing...",
+	addressDetails: "Address Details",
+	showOnMap: "Show on Map",
+	clickToShowBoundary: "Click to show boundary",
+	title: "Title",
+	subtitle: "Subtitle",
+	realEstate: "Real Estate",
+	job: "Job",
+	marker: "Marker",
+	polygon: "Polygon",
+	clear: "Clear",
+	auto: "Auto",
+	mobile: "Mobile",
+	tablet: "Tablet",
+	desktop: "Desktop",
+	overrideActive: "Override Active"
+};
+var addressDetails = "Address Details";
+var showOnMap = "Show on Map";
+var clickToShowBoundary = "Click to show boundary";
+var notifications = {
+	loading: "Loading...",
+	retry: "Retry",
+	tryAgain: "Try Again",
+	somethingWentWrong: "Something Went Wrong",
+	dismiss: "Dismiss",
+	ok: "OK",
+	cancel: "Cancel",
+	types: {
+		success: "Success",
+		warning: "Warning",
+		error: "Error",
+		info: "Information"
+	},
+	messages: {
+		generalError: "An unexpected error occurred",
+		networkError: "Network connection error",
+		operationComplete: "Operation completed successfully",
+		operationFailed: "Operation failed"
 	}
 };
 var tables = {
@@ -779,26 +1275,40 @@ var pipeline = {
 	},
 	category: {
 		selection: {
-			title: "Select Category"
+			title: "Category Selection"
 		},
 		property: {
-			title: "Property",
-			description: "Search or advertise real estate"
+			title: "Properties",
+			description: "List a property for sale, rent, or create a search alert."
 		},
 		job: {
-			title: "Job",
-			description: "Search or advertise job positions"
+			title: "Jobs",
+			description: "Offer a job position or declare your availability in a specific area."
 		}
 	},
 	intent: {
 		selection: {
-			title: "Select Intent"
+			title: "{{category}} - Listing Type"
 		},
 		offer: {
-			title: "Offer"
+			property: {
+				title: "I Want to Offer",
+				description: "List a property for sale or rent."
+			},
+			job: {
+				title: "I Want to Offer a Position",
+				description: "Post a job listing for an available position."
+			}
 		},
 		search: {
-			title: "Search"
+			property: {
+				title: "I Want to Search (Geo-Alert)",
+				description: "Create an alert for future properties in an area."
+			},
+			job: {
+				title: "Looking for Work",
+				description: "Declare your availability and skills in an area."
+			}
 		}
 	},
 	preview: {
@@ -808,23 +1318,6 @@ var pipeline = {
 		},
 		"continue": "Continue"
 	}
-};
-var geoalert = {
-	title: "Layera GeoAlert",
-	subtitle: "Advanced Geographic Notifications System",
-	geoCanvasReady: "Geo Canvas is Ready",
-	professionalArchitecture: "Professional architecture with LEGO systems",
-	enterGeoCanvas: "Enter Geo Canvas",
-	statusCheck: "Status Check",
-	port: "Port",
-	reactReady: "React 19 Ready",
-	typescriptStrict: "TypeScript Strict Mode",
-	independentApp: "Independent Application",
-	enterpriseArchitecture: "Enterprise Architecture",
-	navigateToLayeraId: "Navigate to Layera ID",
-	modularMicroservice: "Modular Microservice",
-	crossAppNavigation: "Cross-App Navigation",
-	readyForImplementation: "Ready for Implementation"
 };
 var dashboard = {
 	overview: "Overview of your account status",
@@ -850,6 +1343,152 @@ var dashboard = {
 		enableMfa: "Enable multi-factor authentication for enhanced security"
 	}
 };
+var pipelines = {
+	steps: {
+		details: {
+			title: "{{type}} Details",
+			subtitle: "Fill in the details for {{intent}}",
+			property: "Property",
+			job: "Job",
+			offer: "your offer",
+			search: "your search",
+			fields: {
+				title: "Title",
+				description: "Description",
+				price: "Price (€)",
+				salary: "Salary (€)",
+				contactInfo: "Contact Information"
+			},
+			placeholders: {
+				propertyTitle: "e.g. 85m² Apartment in Kolonaki",
+				jobTitle: "e.g. Frontend Developer with React",
+				description: "Describe in detail...",
+				price: "e.g. 250000",
+				salary: "e.g. 2500",
+				contact: "e.g. email@example.com or +30 6912345678"
+			}
+		},
+		layout: {
+			title: "Location & Floor Plan",
+			findMyLocation: "Find My Location",
+			or: "or",
+			searchLocation: "Search Location",
+			locationPlaceholder: "e.g. Ermou 10, Athens",
+			results: "Results ({{count}})",
+			locationPin: "Location",
+			placementTools: {
+				title: "Placement Tools",
+				description: "Place your design on the map to see exactly where it is in the real environment. The tools below allow you to resize the floor plan to match the actual dimensions of your property.",
+				rotation: "Rotation",
+				scale: "Scale",
+				units: {
+					cmToM: "cm - m",
+					mmToM: "mm - m",
+					mToM: "m - m"
+				}
+			},
+			actions: {
+				back: "Back",
+				saveLocation: "Save Location & Continue"
+			}
+		},
+		transaction: {
+			title: "Properties - Transaction Type",
+			sale: {
+				title: "Sale",
+				description: "Permanent transfer of property ownership"
+			},
+			rent: {
+				title: "Rental",
+				description: "Grant use of the property for a specific time"
+			}
+		},
+		employmentType: {
+			title: "Job - Employment Type",
+			fullTime: {
+				title: "Full Time",
+				description: "40 hours per week with full benefits"
+			},
+			partTime: {
+				title: "Part Time",
+				description: "Less than 40 hours per week"
+			},
+			freelance: {
+				title: "Freelance",
+				description: "Independent contractor with flexibility"
+			},
+			seasonal: {
+				title: "Seasonal",
+				description: "Temporary work for a specific period"
+			}
+		},
+		availability: {
+			title: "Availability Details",
+			subtitle: "Please set the availability date and duration",
+			fields: {
+				startDate: "Start Date",
+				duration: "Duration",
+				unit: "Unit"
+			},
+			units: {
+				months: "Months",
+				years: "Years"
+			},
+			placeholders: {
+				duration: "12",
+				datePlaceholder: "dd/mm/yyyy"
+			},
+			question: {
+				title: "When are you available?",
+				subtitle: "Select your availability period"
+			},
+			options: {
+				now: {
+					title: "Now",
+					description: "I am immediately available for collaboration"
+				},
+				future: {
+					title: "In the Future",
+					description: "I will be available at a specific future date"
+				}
+			}
+		}
+	},
+	actions: {
+		back: "Back",
+		"continue": "Continue",
+		save: "Save"
+	}
+};
+var progress = {
+	stepper: {
+		optional: "Optional",
+		labels: {
+			category: "Category",
+			intent: "Purpose",
+			transactionType: "Transaction",
+			employmentType: "Employment",
+			availability: "Availability",
+			availabilityDetails: "Details",
+			location: "Location",
+			layout: "Floorplan",
+			details: "Details",
+			complete: "Complete"
+		},
+		descriptions: {
+			category: "Type",
+			intent: "Action",
+			transactionType: "Type",
+			employmentType: "Type",
+			availability: "When",
+			availabilityDetails: "Dates",
+			location: "Map",
+			layout: "Layout",
+			details: "Description",
+			complete: "Confirmation"
+		}
+	}
+};
 var enCommon = {
 	app: app,
 	navigation: navigation,
@@ -863,14 +1502,26 @@ var enCommon = {
 	status: status,
 	actions: actions,
 	errors: errors,
-	common: common,
-	notifications: notifications,
+	geoalert: geoalert,
+	map: map,
+	buttons: buttons,
+	alerts: alerts,
 	forms: forms,
+	realEstate: realEstate,
+	availability: availability,
+	location: location,
+	jobs: jobs,
+	common: common,
+	addressDetails: addressDetails,
+	showOnMap: showOnMap,
+	clickToShowBoundary: clickToShowBoundary,
+	notifications: notifications,
 	tables: tables,
 	theme: theme,
 	pipeline: pipeline,
-	geoalert: geoalert,
-	dashboard: dashboard
+	dashboard: dashboard,
+	pipelines: pipelines,
+	progress: progress
 };
 
 var title$1 = "Dashboard";

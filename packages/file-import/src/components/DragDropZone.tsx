@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useRef, ReactNode } from 'react';
 import { Card, CardContent } from '@layera/cards';
 import { Text } from '@layera/typography';
-import { useLayeraTranslation } from '@layera/i18n/hooks';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { SupportedFormat, DragDropState } from '../types';
 
 export interface DragDropZoneProps {

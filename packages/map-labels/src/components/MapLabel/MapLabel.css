@@ -1,0 +1,337 @@
+/**
+ * @layera/map-labels - MapLabel Component Styles
+ *
+ * Enterprise CSS για map label system.
+ * Consistent με Layera design tokens.
+ */
+
+/* CSS Variables (Design Tokens) */
+:root {
+  /* Label backgrounds */
+  --layera-label-bg-transparent: rgba(255, 255, 255, 0);
+  --layera-label-bg-semi: rgba(255, 255, 255, 0.85);
+  --layera-label-bg-solid: rgba(255, 255, 255, 0.95);
+
+  /* Label borders */
+  --layera-label-border: 1px solid rgba(0, 0, 0, 0.1);
+  --layera-label-border-radius: 4px;
+
+  /* Label shadows */
+  --layera-label-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --layera-label-shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+  /* Label z-indexes */
+  --layera-label-z-base: 1000;
+  --layera-label-z-hover: 1001;
+  --layera-label-z-active: 1002;
+
+  /* Text colors */
+  --layera-label-text-primary: #1F2937;
+  --layera-label-text-secondary: #6B7280;
+  --layera-label-text-muted: #9CA3AF;
+  --layera-label-text-success: #059669;
+  --layera-label-text-warning: #D97706;
+  --layera-label-text-error: #DC2626;
+
+  /* Transitions */
+  --layera-label-transition: all 0.2s ease-in-out;
+}
+
+/* Base MapLabel Styles */
+.layera-map-label {
+  position: absolute;
+  z-index: var(--layera-label-z-base);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  pointer-events: auto;
+  user-select: none;
+  transition: var(--layera-label-transition);
+
+  /* Prevent text selection */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Visibility States */
+.layera-map-label--visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.layera-map-label--hidden {
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
+}
+
+.layera-map-label--animating {
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Background Variants */
+.layera-map-label--bg-transparent {
+  background: var(--layera-label-bg-transparent);
+  border: none;
+  box-shadow: none;
+}
+
+.layera-map-label--bg-semi {
+  background: var(--layera-label-bg-semi);
+  border: var(--layera-label-border);
+  box-shadow: var(--layera-label-shadow);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.layera-map-label--bg-solid {
+  background: var(--layera-label-bg-solid);
+  border: var(--layera-label-border);
+  box-shadow: var(--layera-label-shadow);
+}
+
+/* Label Variants */
+
+/* Title variant - για boundary names */
+.layera-map-label--title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--layera-label-text-primary);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--layera-label-border-radius);
+  line-height: 1.2;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Subtitle variant - για secondary information */
+.layera-map-label--subtitle {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--layera-label-text-primary);
+  padding: 0.375rem 0.625rem;
+  border-radius: var(--layera-label-border-radius);
+  line-height: 1.3;
+  text-align: center;
+}
+
+/* Area variant - για area calculations */
+.layera-map-label--area {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--layera-label-text-secondary);
+  padding: 0.25rem 0.5rem;
+  border-radius: calc(var(--layera-label-border-radius) * 0.75);
+  line-height: 1.4;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Distance variant - για distance measurements */
+.layera-map-label--distance {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--layera-label-text-secondary);
+  padding: 0.25rem 0.5rem;
+  border-radius: calc(var(--layera-label-border-radius) * 0.75);
+  line-height: 1.4;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Info variant - για general information */
+.layera-map-label--info {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--layera-label-text-muted);
+  padding: 0.25rem 0.5rem;
+  border-radius: calc(var(--layera-label-border-radius) * 0.5);
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* Warning variant - για warning messages */
+.layera-map-label--warning {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--layera-label-text-warning);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--layera-label-border-radius);
+  line-height: 1.4;
+  text-align: center;
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+/* Success variant - για success states */
+.layera-map-label--success {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--layera-label-text-success);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--layera-label-border-radius);
+  line-height: 1.4;
+  text-align: center;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+/* Text Alignment */
+.layera-map-label--align-left {
+  text-align: left;
+}
+
+.layera-map-label--align-center {
+  text-align: center;
+}
+
+.layera-map-label--align-right {
+  text-align: right;
+}
+
+/* Interactive States */
+.layera-map-label--clickable {
+  cursor: pointer;
+}
+
+.layera-map-label--clickable:hover {
+  z-index: var(--layera-label-z-hover);
+  box-shadow: var(--layera-label-shadow-hover);
+  transform: translateY(-1px);
+}
+
+.layera-map-label--clickable:active {
+  z-index: var(--layera-label-z-active);
+  transform: translateY(0);
+}
+
+.layera-map-label--hover {
+  z-index: var(--layera-label-z-hover);
+  box-shadow: var(--layera-label-shadow-hover);
+}
+
+.layera-map-label--active {
+  z-index: var(--layera-label-z-active);
+  box-shadow: var(--layera-label-shadow-hover);
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+/* Animation Classes */
+.layera-map-label--fade-in {
+  animation: layeraLabelFadeIn 0.3s ease-out forwards;
+}
+
+.layera-map-label--fade-out {
+  animation: layeraLabelFadeOut 0.3s ease-in forwards;
+}
+
+.layera-map-label--scale-in {
+  animation: layeraLabelScaleIn 0.3s ease-out forwards;
+}
+
+.layera-map-label--scale-out {
+  animation: layeraLabelScaleOut 0.3s ease-in forwards;
+}
+
+/* Keyframe Animations */
+@keyframes layeraLabelFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes layeraLabelFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes layeraLabelScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes layeraLabelScaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .layera-map-label--title {
+    font-size: 1rem;
+    padding: 0.375rem 0.625rem;
+  }
+
+  .layera-map-label--subtitle {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .layera-map-label--area,
+  .layera-map-label--distance {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.375rem;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .layera-map-label {
+    border-width: 2px;
+  }
+
+  .layera-map-label--bg-semi {
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  .layera-map-label--bg-solid {
+    background: rgba(255, 255, 255, 1);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .layera-map-label,
+  .layera-map-label--animating {
+    transition: none;
+  }
+
+  .layera-map-label--fade-in,
+  .layera-map-label--fade-out,
+  .layera-map-label--scale-in,
+  .layera-map-label--scale-out {
+    animation: none;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --layera-label-bg-transparent: rgba(0, 0, 0, 0);
+    --layera-label-bg-semi: rgba(0, 0, 0, 0.85);
+    --layera-label-bg-solid: rgba(0, 0, 0, 0.95);
+    --layera-label-border: 1px solid rgba(255, 255, 255, 0.2);
+    --layera-label-text-primary: #F9FAFB;
+    --layera-label-text-secondary: #D1D5DB;
+    --layera-label-text-muted: #9CA3AF;
+  }
+}

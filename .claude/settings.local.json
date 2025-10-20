@@ -88,7 +88,21 @@
       "Bash(xargs rg:*)",
       "mcp__ide__getDiagnostics",
       "Bash(mklink:*)",
-      "Bash(cmd.exe /c robocopy:*)"
+      "Bash(cmd.exe /c robocopy:*)",
+      "Bash(start \"\" explorer \"C:\\layera_backups\")",
+      "Read(//c/layera_backups/**)",
+      "Bash(pnpm list:*)",
+      "Bash(del:*)",
+      "Bash(timeout 5 tail -f voithitika_docs/localhost.log)",
+      "Bash(echo:*)",
+      "Bash(pnpm build:*)",
+      "Bash(timeout 10 tail -f voithitika_docs/localhost.log)",
+      "Bash(timeout 15 tail -f voithitika_docs/localhost.log)",
+      "Bash(timeout 30 tail -f voithitika_docs/localhost.log)",
+      "Bash(timeout 60 tail -f voithitika_docs/localhost.log)",
+      "Bash(python:*)",
+      "Bash(pnpm -w -r run clean)",
+      "Bash(pnpm -w -r build)"
     ],
     "deny": [],
     "ask": []

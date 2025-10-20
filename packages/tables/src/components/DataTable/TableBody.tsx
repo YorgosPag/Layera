@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import type { TableColumn } from './DataTable';
 
 interface TableBodyProps<T = unknown> {

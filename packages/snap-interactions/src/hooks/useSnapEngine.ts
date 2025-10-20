@@ -18,7 +18,7 @@ import {
 
 // Import από existing LEGO systems - ΜΗΝ αναδημιουργήσεις
 import { useNotification } from '@layera/notifications';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { SNAP_CONSTANTS } from '@layera/constants';
 
 // ========================================

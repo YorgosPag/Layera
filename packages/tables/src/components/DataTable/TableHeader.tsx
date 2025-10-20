@@ -1,6 +1,6 @@
 import React from 'react';
 import { SORT_DIRECTIONS, type SortDirection } from '@layera/constants';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import type { TableColumn } from './DataTable';
 
 interface TableHeaderProps<T = unknown> {

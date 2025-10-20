@@ -401,3 +401,101 @@ npm run typecheck
 - Inline styles αντί για design system
 - Hardcoded colors/spacing αντί για theme tokens
 
+
+--- a/CLAUDE.md
++++ b/CLAUDE.md
+@@
+ ## 🧩 LEGO Systems Policy - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
+@@
+ #### **❌ ΑΠΑΓΟΡΕΥΜΕΝΑ Patterns:**
+ - Πολλαπλά card components σε διαφορετικά files
+ - Custom button implementations
+ - Emoji icons αντί για proper icon components
+ - Inline styles αντί για design system
+ - Hardcoded colors/spacing αντί για theme tokens
++
++## 🔎 Duplicate Check & FREE API Sourcing (Enterprise)
++
++### 🎯 Σκοπός
++Εξάλειψη διπλότυπου κώδικα και επιλογή **μόνο δωρεάν** APIs με ενσωμάτωση σε αρθρωτή αρχιτεκτονική LEGO, ώστε κάθε υποσύστημα να αποσπάται και να επαναχρησιμοποιείται χωρίς να «σπάει» η εφαρμογή.
++
++### 1) Πριν γράψεις κώδικα → Έλεγχος ύπαρξης
++1. Σάρωση για υλοποιήσεις/ονόματα/exports:
++   ```bash
++   grep -r "function .*<ΟΝΟΜΑ>\|class .*<ΟΝΟΜΑ>\|export .*<ΟΝΟΜΑ>" .
++   grep -r "use[A-Z].*<ΣΧΕΤΙΚΟ>" src/ packages/
++   ```
++2. Αν υπάρχει αντίστοιχος κώδικας:
++   - **Επέκτεινε/επανάχρησου** τον υπάρχοντα.
++   - Αν υπάρχει επικάλυψη → **refactor σε κοινό util** και αντικατάσταση κλήσεων.
++3. Αν δεν υπάρχει κατάλληλο σημείο:
++   - Τεκμηρίωσε γιατί κανένα αρχείο δεν επαρκεί και πρότεινε θέση νέου module.
++
++### 2) Μετά τον εσωτερικό έλεγχο → FREE-ONLY API scouting
++**Στόχος:** εντοπισμός του βέλτιστου **δωρεάν** API (μηδενικό κόστος παραγωγής ή μόνιμο free-tier χωρίς κάρτα) για το συγκεκριμένο feature.
++
++**Έλεγχος καταλληλότητας:**
++- Τιμολόγηση: 0€ σε prod ή μόνιμο free-tier. Όριο rate-limit ≥ τις ανάγκες.
++- Όροι χρήσης: επιτρέπεται εμπορική χρήση και αποθήκευση/κρυφή μνήμη όπου απαιτείται.
++- Αδειοδότηση δεδομένων: άδεια που επιτρέπει redistribution μέσα στο προϊόν.
++- Ιδιωτικότητα: συμβατότητα με GDPR, χωρίς προσωπικά δεδομένα όπου δεν απαιτούνται.
++- Αξιοπιστία: uptime/SLAs δηλωμένα, ενεργό repo ή τεκμηρίωση.
++
++**Παραδοτέα scouting (markdown στο PR):**
++```md
++### API candidates
++| Provider | Free? | Rate limit | License/ToS | Data scope | Notes |
++|----------|-------|------------|-------------|------------|-------|
++| <name>   | Yes   | 60 req/min | Permits commercial | <scope> | <pros/cons> |
++```
++Απόφαση = τεκμηριωμένη επιλογή + αιτιολόγηση απόρριψης εναλλακτικών.
++
++**Αν οι όροι/όρια δεν καλύπτουν:** πρότεινε **self-hosted open-source** υπηρεσία ή caching strategy. Καμία ενσωμάτωση επί πληρωμή χωρίς ρητή έγκριση.
++
++### 3) Ενσωμάτωση API ως αποσπώμενο module
++**Κανόνας:** κάθε εξωτερικό API τυλίγεται σε adapter package για να μην διαρρέουν vendor types.
++
++**Δομή:**
++```
++packages/api-<provider>/
++  src/
++    index.ts            # δημόσιο API
++    adapter.ts          # mapping vendor -> domain types
++    types.ts            # καθαροί domain types
++    __tests__/
++```
++
++**Port/Adapter interface (παράδειγμα):**
++```ts
++// domain port
++export interface PlaceSearchPort {
++  search(q: string, opts?: { limit?: number }): Promise<Place[]>;
++}
++// adapter υλοποιεί το port, δεν εκθέτει vendor σχήματα
++```
++
++**Κανόνες:**
++- **Όχι** hardcoded URLs/keys. Μόνο μέσω env + CONFIG.
++- Feature flag: `CONFIG.features.<apiFeature>` για ενεργοποίηση/εναλλακτική.
++- Fallback strategy: αν αποτύχει ο provider → graceful degrade ή local cache.
++- Test contract: unit tests στον adapter με mocked responses.
++
++### 4) LEGO και αποσπασιμότητα
++- Κάθε νέο feature = **module/micro-module** που μπορεί να αφαιρεθεί χωρίς side effects.
++- **Καμία** άμεση χρήση UI βιβλιοθηκών μέσα στο API package. Μόνο domain logic.
++- Cross-module επικοινωνία μέσω σταθερών interfaces. Όχι κυκλικές εξαρτήσεις.
++
++### 5) PR Checklist (υποχρεωτικό)
++- [ ] Έγινε σάρωση για υπάρχον κώδικα και δηλώθηκαν τα ευρήματα.
++- [ ] Συγκριτικός πίνακας FREE APIs + απόφαση.
++- [ ] Νέο API σε `packages/api-<provider>` με καθαρό port και tests.
++- [ ] ENV + CONFIG χωρίς hardcoded μυστικά/URLs.
++- [ ] Feature flag + fallback documented.
++- [ ] Δείκτης διπλοτύπων μετά το refactor: `duplicates: 0`.
++
++### 6) Prompt για τον developer agent (να επικολλάται πριν από tasks)
++> Μίλα στα ελληνικά. Επιβλέπων αρχιτέκτονας: Γιώργος Παγώνης.  
++> 1) Σάρωσε το repo και επιβεβαίωσε αν υπάρχει σχετικός κώδικας. Αν ναι, πρότεινε ελάχιστο refactor χωρίς δημιουργία διπλότυπων.  
++> 2) Κάνε βαθιά αναζήτηση για **δωρεάν** APIs που ταιριάζουν στο feature. Παράδωσε συγκριτικό πίνακα και αιτιολόγηση επιλογής.  
++> 3) Υλοποίησε adapter package `packages/api-<provider>` που εκθέτει μόνο domain ports. Όχι any. Τήρησε TypeScript strict, i18n/CONFIG κανόνες, LEGO εξαρτήσεις.  
++> 4) Παράδωσε unified diff με τις ελάχιστες αλλαγές και tests. Δήλωσε `duplicates: 0`.

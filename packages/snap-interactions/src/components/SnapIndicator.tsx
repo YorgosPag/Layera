@@ -7,7 +7,7 @@ import React from 'react';
 
 // Import από existing LEGO systems - ΜΗΝ αναδημιουργήσεις
 import { useTheme } from '@layera/theme-switcher';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { Icon } from '@layera/icons';
 
 // Import από snap engine
@@ -139,7 +139,7 @@ export const SnapIndicator: React.FC<SnapIndicatorProps> = ({
   };
 
   // ========================================
-  // 📝 TOOLTIP CONTENT - Χρησιμοποιεί @layera/i18n
+  // 📝 TOOLTIP CONTENT - Χρησιμοποιεί @layera/tolgee
   // ========================================
 
   const tooltipContent = showTooltip ? (

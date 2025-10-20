@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef } from 'react';
 import L from 'leaflet';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import type { MeasurementMode, MeasurementPoint, MeasurementResult, DrawingState } from '../types';
 import { calculateDistance, calculateProjectedArea } from '../utils/calculations';
 import { useMeasurementFormatter } from '../utils/formatters';

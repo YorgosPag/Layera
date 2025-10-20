@@ -561,110 +561,114 @@ var SnapSettingsPanel = ({
       }
     );
   };
-  return /* @__PURE__ */ jsxRuntime.jsxs(cards.Card, { className: compact ? "snap-settings-compact" : "snap-settings-full", children: [
-    /* @__PURE__ */ jsxRuntime.jsx(cards.CardHeader, { children: /* @__PURE__ */ jsxRuntime.jsxs(layout.Stack, { direction: "row", justify: "space-between", align: "center", children: [
-      /* @__PURE__ */ jsxRuntime.jsxs(layout.Stack, { direction: "row", spacing: 8, align: "center", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(icons.Icon, { name: "settings", size: 20 }),
-        /* @__PURE__ */ jsxRuntime.jsx(typography.Heading, { level: compact ? 4 : 3, children: t("snap.settings.title") })
-      ] }),
-      onClose && /* @__PURE__ */ jsxRuntime.jsx(
-        buttons.Button,
-        {
-          variant: "ghost",
-          size: "small",
-          onClick: onClose,
-          disabled,
-          children: /* @__PURE__ */ jsxRuntime.jsx(icons.Icon, { name: "close", size: 16 })
-        }
-      )
-    ] }) }),
-    /* @__PURE__ */ jsxRuntime.jsx(cards.CardContent, { children: /* @__PURE__ */ jsxRuntime.jsxs(layout.Stack, { spacing: compact ? 16 : 24, children: [
-      /* @__PURE__ */ jsxRuntime.jsx(forms.FormSection, { title: t("snap.settings.tolerance.title"), children: /* @__PURE__ */ jsxRuntime.jsx(
-        forms.FormField,
-        {
-          label: t("snap.settings.tolerance.label"),
-          description: !compact ? t("snap.settings.tolerance.description") : void 0,
-          children: /* @__PURE__ */ jsxRuntime.jsxs(layout.Stack, { spacing: 8, children: [
-            /* @__PURE__ */ jsxRuntime.jsx(
-              forms.Slider,
-              {
-                min: 1,
-                max: 50,
-                step: 1,
-                value: configuration.tolerance,
-                onChange: handleToleranceChange,
-                disabled,
-                showValue: true,
-                formatValue: (value) => `${value}px`
-              }
-            ),
-            /* @__PURE__ */ jsxRuntime.jsx(typography.Text, { variant: "caption", color: "muted", children: t("snap.settings.tolerance.current", { value: configuration.tolerance }) })
-          ] })
-        }
-      ) }),
-      /* @__PURE__ */ jsxRuntime.jsxs(forms.FormSection, { title: t("snap.settings.types.title"), children: [
-        !compact && /* @__PURE__ */ jsxRuntime.jsx(layout.Stack, { direction: "row", spacing: 8, style: { marginBottom: 16 }, children: ["basic", "advanced", "precision"].map((category) => /* @__PURE__ */ jsxRuntime.jsx(
-          buttons.Button,
+  const cardTitle = /* @__PURE__ */ jsxRuntime.jsxs(layout.Stack, { direction: "row", spacing: 8, align: "center", children: [
+    /* @__PURE__ */ jsxRuntime.jsx(icons.Icon, { name: "settings", size: 20 }),
+    /* @__PURE__ */ jsxRuntime.jsx(typography.Heading, { level: compact ? 4 : 3, children: t("snap.settings.title") })
+  ] });
+  const cardActions = onClose ? /* @__PURE__ */ jsxRuntime.jsx(
+    buttons.Button,
+    {
+      variant: "ghost",
+      size: "small",
+      onClick: onClose,
+      disabled,
+      children: /* @__PURE__ */ jsxRuntime.jsx(icons.Icon, { name: "close", size: 16 })
+    }
+  ) : void 0;
+  return /* @__PURE__ */ jsxRuntime.jsx(
+    cards.BaseCard,
+    {
+      title: cardTitle,
+      actions: cardActions,
+      className: compact ? "snap-settings-compact" : "snap-settings-full",
+      children: /* @__PURE__ */ jsxRuntime.jsxs(layout.Stack, { spacing: compact ? 16 : 24, children: [
+        /* @__PURE__ */ jsxRuntime.jsx(forms.FormSection, { title: t("snap.settings.tolerance.title"), children: /* @__PURE__ */ jsxRuntime.jsx(
+          forms.FormField,
           {
-            variant: activeCategory === category ? "primary" : "outline",
-            size: "small",
-            onClick: () => setActiveCategory(category),
-            disabled,
-            children: t(`snap.categories.${category}`)
-          },
-          category
-        )) }),
-        compact ? (
-          // Compact mode - show all in grid
-          /* @__PURE__ */ jsxRuntime.jsx(layout.Grid, { columns: 2, spacing: 8, children: Object.keys(SNAP_TYPE_INFO).map(
-            (type) => renderSnapTypeToggle(type)
-          ) })
-        ) : (
-          // Full mode - show by category
-          /* @__PURE__ */ jsxRuntime.jsxs(layout.Stack, { spacing: 16, children: [
-            renderCategorySection("basic"),
-            renderCategorySection("advanced"),
-            renderCategorySection("precision")
-          ] })
-        )
-      ] }),
-      /* @__PURE__ */ jsxRuntime.jsx(forms.FormSection, { title: t("snap.settings.performance.title"), children: /* @__PURE__ */ jsxRuntime.jsx(
-        forms.FormField,
-        {
-          label: t("snap.settings.performance.label"),
-          description: !compact ? t("snap.settings.performance.description") : void 0,
-          children: /* @__PURE__ */ jsxRuntime.jsx(layout.Stack, { direction: "row", spacing: 8, children: ["low", "medium", "high"].map((level) => /* @__PURE__ */ jsxRuntime.jsx(
+            label: t("snap.settings.tolerance.label"),
+            description: !compact ? t("snap.settings.tolerance.description") : void 0,
+            children: /* @__PURE__ */ jsxRuntime.jsxs(layout.Stack, { spacing: 8, children: [
+              /* @__PURE__ */ jsxRuntime.jsx(
+                forms.Slider,
+                {
+                  min: 1,
+                  max: 50,
+                  step: 1,
+                  value: configuration.tolerance,
+                  onChange: handleToleranceChange,
+                  disabled,
+                  showValue: true,
+                  formatValue: (value) => `${value}px`
+                }
+              ),
+              /* @__PURE__ */ jsxRuntime.jsx(typography.Text, { variant: "caption", color: "muted", children: t("snap.settings.tolerance.current", { value: configuration.tolerance }) })
+            ] })
+          }
+        ) }),
+        /* @__PURE__ */ jsxRuntime.jsxs(forms.FormSection, { title: t("snap.settings.types.title"), children: [
+          !compact && /* @__PURE__ */ jsxRuntime.jsx(layout.Stack, { direction: "row", spacing: 8, style: { marginBottom: 16 }, children: ["basic", "advanced", "precision"].map((category) => /* @__PURE__ */ jsxRuntime.jsx(
             buttons.Button,
             {
-              variant: configuration.performanceLevel === level ? "primary" : "outline",
-              size: compact ? "small" : "medium",
-              onClick: () => handlePerformanceLevelChange(level),
+              variant: activeCategory === category ? "primary" : "outline",
+              size: "small",
+              onClick: () => setActiveCategory(category),
               disabled,
-              children: t(`snap.performance.${level}`)
+              children: t(`snap.categories.${category}`)
             },
-            level
-          )) })
-        }
-      ) }),
-      /* @__PURE__ */ jsxRuntime.jsxs(layout.Stack, { direction: "row", spacing: 12, justify: "space-between", children: [
-        /* @__PURE__ */ jsxRuntime.jsxs(
-          buttons.Button,
+            category
+          )) }),
+          compact ? (
+            // Compact mode - show all in grid
+            /* @__PURE__ */ jsxRuntime.jsx(layout.Grid, { columns: 2, spacing: 8, children: Object.keys(SNAP_TYPE_INFO).map(
+              (type) => renderSnapTypeToggle(type)
+            ) })
+          ) : (
+            // Full mode - show by category
+            /* @__PURE__ */ jsxRuntime.jsxs(layout.Stack, { spacing: 16, children: [
+              renderCategorySection("basic"),
+              renderCategorySection("advanced"),
+              renderCategorySection("precision")
+            ] })
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntime.jsx(forms.FormSection, { title: t("snap.settings.performance.title"), children: /* @__PURE__ */ jsxRuntime.jsx(
+          forms.FormField,
           {
-            variant: "outline",
-            onClick: handleResetToDefaults,
-            disabled,
-            children: [
-              /* @__PURE__ */ jsxRuntime.jsx(icons.Icon, { name: "refresh", size: 16, style: { marginRight: 8 } }),
-              t("snap.settings.reset_defaults")
-            ]
+            label: t("snap.settings.performance.label"),
+            description: !compact ? t("snap.settings.performance.description") : void 0,
+            children: /* @__PURE__ */ jsxRuntime.jsx(layout.Stack, { direction: "row", spacing: 8, children: ["low", "medium", "high"].map((level) => /* @__PURE__ */ jsxRuntime.jsx(
+              buttons.Button,
+              {
+                variant: configuration.performanceLevel === level ? "primary" : "outline",
+                size: compact ? "small" : "medium",
+                onClick: () => handlePerformanceLevelChange(level),
+                disabled,
+                children: t(`snap.performance.${level}`)
+              },
+              level
+            )) })
           }
-        ),
-        !compact && /* @__PURE__ */ jsxRuntime.jsx(layout.Stack, { direction: "row", spacing: 8, children: /* @__PURE__ */ jsxRuntime.jsx(typography.Text, { variant: "caption", color: "muted", children: t("snap.settings.enabled_count", {
-          count: configuration.enabledTypes.size
-        }) }) })
+        ) }),
+        /* @__PURE__ */ jsxRuntime.jsxs(layout.Stack, { direction: "row", spacing: 12, justify: "space-between", children: [
+          /* @__PURE__ */ jsxRuntime.jsxs(
+            buttons.Button,
+            {
+              variant: "outline",
+              onClick: handleResetToDefaults,
+              disabled,
+              children: [
+                /* @__PURE__ */ jsxRuntime.jsx(icons.Icon, { name: "refresh", size: 16, style: { marginRight: 8 } }),
+                t("snap.settings.reset_defaults")
+              ]
+            }
+          ),
+          !compact && /* @__PURE__ */ jsxRuntime.jsx(layout.Stack, { direction: "row", spacing: 8, children: /* @__PURE__ */ jsxRuntime.jsx(typography.Text, { variant: "caption", color: "muted", children: t("snap.settings.enabled_count", {
+            count: configuration.enabledTypes.size
+          }) }) })
+        ] })
       ] })
-    ] }) })
-  ] });
+    }
+  );
 };
 var SnapToolbar = ({
   configuration,

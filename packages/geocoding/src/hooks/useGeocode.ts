@@ -26,6 +26,12 @@ export function useGeocode(options: UseGeocodeOptions = {}): UseGeocodeReturn {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedResult, setSelectedResult] = useState<GeocodeResult | null>(null);
+  const [currentLanguage, setCurrentLanguage] = useState<string>(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('i18nextLng') || 'el';
+    }
+    return 'el';
+  });
 
   // Refs για debouncing και cleanup
   const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -55,11 +61,18 @@ export function useGeocode(options: UseGeocodeOptions = {}): UseGeocodeReturn {
     setError(null);
 
     try {
+      // Ανίχνευση γλώσσας από browser ή localStorage
+      // ΣΗΜΑΝΤΙΚΟ: Το i18nextLng μπορεί να είναι 'el' ή 'en', όχι 'el-GR' ή 'en-US'
+      const storedLang = typeof window !== 'undefined' ? localStorage.getItem('i18nextLng') : null;
+      const userLanguage = storedLang || (typeof navigator !== 'undefined' ? navigator.language.slice(0, 2) : 'el');
+
+      console.log('🌐 Detected language:', userLanguage, '(stored:', storedLang, ')');
+
       const request: GeocodeRequest = {
         query: queryToSearch,
-        countryCode: 'GR',
+        // Αφαιρούμε το countryCode για παγκόσμια αναζήτηση
         limit: 5,
-        language: 'el'
+        language: userLanguage.startsWith('el') ? 'el' : 'en' // Χρήση γλώσσας χρήστη
       };
 
       console.log('📡 useGeocode: Making API request with:', request);
@@ -120,6 +133,44 @@ export function useGeocode(options: UseGeocodeOptions = {}): UseGeocodeReturn {
       }
     };
   }, [query, autoSearch, debouncedSearch]);
+
+  // Listen για αλλαγές γλώσσας και re-search αν υπάρχουν αποτελέσματα
+  useEffect(() => {
+    const handleLanguageChange = () => {
+      const newLanguage = localStorage.getItem('i18nextLng') || 'el';
+      console.log('🌍 Language changed from', currentLanguage, 'to', newLanguage);
+
+      if (newLanguage !== currentLanguage) {
+        setCurrentLanguage(newLanguage);
+
+        // Αν υπάρχουν αποτελέσματα ή active query, ξανακάνε αναζήτηση
+        if (query.trim() && results.length > 0) {
+          console.log('🔄 Re-searching with new language:', newLanguage);
+          search(query);
+        }
+      }
+    };
+
+    // Listen για storage events (αλλαγές από άλλα tabs)
+    window.addEventListener('storage', handleLanguageChange);
+
+    // Listen για custom event από language switcher
+    window.addEventListener('languagechange', handleLanguageChange);
+
+    // Polling για τοπικές αλλαγές (same tab)
+    const interval = setInterval(() => {
+      const newLang = localStorage.getItem('i18nextLng') || 'el';
+      if (newLang !== currentLanguage) {
+        handleLanguageChange();
+      }
+    }, 500);
+
+    return () => {
+      window.removeEventListener('storage', handleLanguageChange);
+      window.removeEventListener('languagechange', handleLanguageChange);
+      clearInterval(interval);
+    };
+  }, [currentLanguage, query, results.length, search]);
 
   // Cleanup όταν unmount το component
   useEffect(() => {

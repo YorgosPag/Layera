@@ -5,7 +5,7 @@
  *
  * Χρησιμοποιεί existing LEGO systems:
  * - @layera/theme-switcher για theming
- * - @layera/i18n για internationalization
+ * - @layera/tolgee για internationalization
  * - @layera/notifications για user feedback
  * - @layera/buttons, @layera/forms, @layera/cards για UI components
  * - @layera/icons, @layera/typography, @layera/layout για styling
@@ -257,7 +257,7 @@ export const BUILD_INFO = {
   dependencies: {
     engine: '@layera/snap-engine@1.0.0',
     theme: '@layera/theme-switcher@workspace:*',
-    i18n: '@layera/i18n@workspace:*',
+    tolgee: '@layera/tolgee@workspace:*',
     notifications: '@layera/notifications@workspace:*',
     buttons: '@layera/buttons@workspace:*',
     forms: '@layera/forms@workspace:*',

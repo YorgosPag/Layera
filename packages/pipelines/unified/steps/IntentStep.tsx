@@ -5,6 +5,7 @@ import { Stack, Flex } from '@layera/layout';
 import { Button } from '@layera/buttons';
 import { FormActions } from '@layera/forms';
 import { IndustrialIcon, RestaurantIcon } from '@layera/icons';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 export type Intent = 'offer' | 'search';
 
@@ -22,10 +23,14 @@ export interface IntentStepProps {
  * Dependencies: ONLY @layera LEGO systems
  */
 export const IntentStep: React.FC<IntentStepProps> = ({ category, onNext, onBack }) => {
+  const { t } = useLayeraTranslation();
+
   return (
     <Stack spacing="md">
       <Heading as="h3" size="lg" color="primary">
-        {category === 'property' ? 'Ακίνητα' : 'Εργασία'} - Τύπος Καταχώρησης
+        {t('pipeline.intent.selection.title', {
+          category: category === 'property' ? t('pipeline.category.property.title') : t('pipeline.category.job.title')
+        })}
       </Heading>
 
       <Stack spacing="md">
@@ -42,17 +47,14 @@ export const IntentStep: React.FC<IntentStepProps> = ({ category, onNext, onBack
             <IndustrialIcon size="xl" theme="info" />
             <Stack spacing="xs" style={{ flex: 1, minWidth: 0 }}>
               <Text size="xl" weight="bold" className="card-title">
-                {category === 'property' ? 'Θέλω να Προσφέρω' : 'Θέλω να Προσφέρω Θέση'}
+                {t(`pipeline.intent.offer.${category}.title`)}
               </Text>
               <Text
                 size="base"
                 color="secondary"
                 className="card-text"
               >
-                {category === 'property'
-                  ? 'Καταχωρήστε ένα ακίνητο προς πώληση ή ενοικίαση.'
-                  : 'Δημοσιεύστε μια αγγελία για μια διαθέσιμη θέση εργασίας.'
-                }
+                {t(`pipeline.intent.offer.${category}.description`)}
               </Text>
             </Stack>
           </Flex>
@@ -71,17 +73,14 @@ export const IntentStep: React.FC<IntentStepProps> = ({ category, onNext, onBack
             <RestaurantIcon size="xl" theme="warning" />
             <Stack spacing="xs" style={{ flex: 1, minWidth: 0 }}>
               <Text size="xl" weight="bold" className="card-title">
-                {category === 'property' ? 'Θέλω να Αναζητήσω (Geo-Alert)' : 'Αναζητώ Εργασία'}
+                {t(`pipeline.intent.search.${category}.title`)}
               </Text>
               <Text
                 size="base"
                 color="secondary"
                 className="card-text"
               >
-                {category === 'property'
-                  ? 'Δημιουργήστε μια ειδοποίηση για μελλοντικά ακίνητα σε μια περιοχή.'
-                  : 'Δηλώστε τη διαθεσιμότητά σας και τις δεξιότητές σας σε μια περιοχή.'
-                }
+                {t(`pipeline.intent.search.${category}.description`)}
               </Text>
             </Stack>
           </Flex>
@@ -95,7 +94,7 @@ export const IntentStep: React.FC<IntentStepProps> = ({ category, onNext, onBack
           onClick={onBack}
           className="layera-pipeline-button-secondary"
         >
-          Πίσω
+          {t('pipelines.actions.back')}
         </Button>
       </FormActions>
     </Stack>

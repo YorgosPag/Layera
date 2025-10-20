@@ -79,7 +79,7 @@ export const NumericInput = forwardRef<HTMLInputElement, NumericInputProps>(({
   id,
   ...props
 }, ref) => {
-  // Translation function - could be integrated with @layera/i18n when ready
+  // Translation function - could be integrated with @layera/tolgee when ready
   const t = (key: string) => {
     const translations: Record<string, string> = {
       'forms.required': 'Required',

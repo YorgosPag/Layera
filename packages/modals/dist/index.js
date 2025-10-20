@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 /**
  * Modal - Βασικό modal component για το Layera Modal System
  */
-const Modal = ({ open, onClose, children, size = 'md', variant = 'default', animation = 'fade', closeOnOverlayClick = true, closeOnEscape = true, showCloseButton = true, preventBodyScroll = true, className = '', overlayClassName = '', container, 'aria-labelledby': ariaLabelledBy, 'aria-describedby': ariaDescribedBy }) => {
+const Modal = ({ open, onClose, children, size = 'md', variant = 'default', animation = 'fade', closeOnOverlayClick = true, closeOnEscape = true, showCloseButton = true, preventBodyScroll = true, className = '', overlayClassName = '', contentClassName = '', contentStyle, contentPadding, overlayPadding, panelPadding, container, 'aria-labelledby': ariaLabelledBy, 'aria-describedby': ariaDescribedBy }) => {
     const modalRef = useRef(null);
     const overlayRef = useRef(null);
     // Handle ESC key
@@ -60,13 +60,24 @@ const Modal = ({ open, onClose, children, size = 'md', variant = 'default', anim
         `layera-modal-overlay--${animation}`,
         overlayClassName
     ].filter(Boolean).join(' ');
-    const modalContent = (React.createElement("div", { ref: overlayRef, className: overlayClasses, onClick: handleOverlayClick, role: "dialog", "aria-modal": "true", "aria-labelledby": ariaLabelledBy, "aria-describedby": ariaDescribedBy },
-        React.createElement("div", { ref: modalRef, className: modalClasses, role: "document" },
+    const modalContent = (React.createElement("div", { ref: overlayRef, className: overlayClasses, onClick: handleOverlayClick, role: "dialog", "aria-modal": "true", "aria-labelledby": ariaLabelledBy, "aria-describedby": ariaDescribedBy, style: {
+            ...(overlayPadding !== undefined && {
+                padding: typeof overlayPadding === 'number' ? `${overlayPadding}px` : overlayPadding
+            })
+        } },
+        React.createElement("div", { ref: modalRef, className: modalClasses, role: "document", style: {
+                ...(contentPadding !== undefined && {
+                    padding: typeof contentPadding === 'number' ? `${contentPadding}px` : contentPadding
+                }),
+                ...(panelPadding !== undefined && {
+                    '--layera-modal-inner-padding': typeof panelPadding === 'number' ? `${panelPadding}px` : panelPadding
+                })
+            } },
             showCloseButton && (React.createElement("button", { type: "button", className: "layera-modal__close", onClick: handleCloseClick, "aria-label": "Close modal" },
                 React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" },
                     React.createElement("line", { x1: "18", y1: "6", x2: "6", y2: "18" }),
                     React.createElement("line", { x1: "6", y1: "6", x2: "18", y2: "18" })))),
-            children)));
+            React.createElement("div", { className: `layera-modal-content ${contentClassName}`.trim(), style: contentStyle }, children))));
     const portalContainer = (() => {
         if (container === null)
             return document.body;

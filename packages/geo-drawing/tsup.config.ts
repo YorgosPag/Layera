@@ -12,7 +12,7 @@ export default defineConfig({
     'react-leaflet',
     'leaflet',
     '@layera/constants',
-    '@layera/i18n',
+    '@layera/tolgee',
     '@layera/theme-switcher',
     '@layera/error-boundary',
     '@layera/notifications',

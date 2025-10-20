@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuthContext, UserAvatar } from '@layera/auth-bridge';
 import { useNavigate, Link } from 'react-router-dom';
-import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
+import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { ThemeSwitcher } from '@layera/theme-switcher';
