@@ -14,6 +14,15 @@ import { HomeIcon, BriefcaseIcon, MarkerIcon, PolygonIcon, CheckIcon, TrashIcon,
 import LatitudeRuler from './rulers/LatitudeRuler';
 import LongitudeRuler from './rulers/LongitudeRuler';
 import { RULER_SIZE, RULER_BG } from './utils/rulerUtils';
+import { UnifiedPipelineContent } from '../../../../packages/pipelines/unified/UnifiedPipelineContent';
+import { MobileGeoMap } from './device-specific/mobile/MobileGeoMap';
+import {
+  GeoMap as iPhone14ProMaxGeoMap,
+  FloatingStepper as iPhone14ProMaxFloatingStepper,
+  CategoryStep as iPhone14ProMaxCategoryStep
+} from './device-specific/mobile/iphone-14-pro-max';
+import { DesktopGeoMap } from './device-specific/DesktopGeoMap';
+import { TabletGeoMap } from './device-specific/TabletGeoMap';
 
 interface LatLngBounds {
   getSouth(): number;
@@ -89,6 +98,11 @@ interface DrawnArea {
 interface GeoMapProps {
   onAreaCreated?: (area: DrawnArea) => void;
   onNewEntryClick?: () => void;
+  showUnifiedPipeline?: boolean;
+  onCloseUnifiedPipeline?: () => void;
+  onSubmitUnifiedPipeline?: (data: any) => Promise<void>;
+  isIPhone14ProMaxDevice?: boolean;
+  onCategoryElementsChange?: (show: boolean) => void;
 }
 
 /**
@@ -191,8 +205,36 @@ const formatBoundary = (p: any) => {
           </div>`;
 };
 
+// iPhone 14 Pro Max Detection
+const isIPhone14ProMax = (): boolean => {
+  const userAgent = navigator.userAgent;
+  const isIPhone = /iPhone/i.test(userAgent);
 
-const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated, onNewEntryClick }) => {
+  // iPhone 14 Pro Max specific detection
+  // Screen resolution: 1290 x 2796 (6.7 inch)
+  const screenHeight = window.screen.height;
+  const screenWidth = window.screen.width;
+  const devicePixelRatio = window.devicePixelRatio;
+
+  // iPhone 14 Pro Max characteristics
+  const isProMaxResolution = (
+    (screenHeight === 2796 && screenWidth === 1290) ||
+    (screenHeight === 1290 && screenWidth === 2796) ||
+    (screenHeight === 932 && screenWidth === 430) // Logical pixels
+  );
+
+  return isIPhone && isProMaxResolution && devicePixelRatio >= 3;
+};
+
+const GeoMap: React.FC<GeoMapProps> = ({
+  onAreaCreated,
+  onNewEntryClick,
+  showUnifiedPipeline,
+  onCloseUnifiedPipeline,
+  onSubmitUnifiedPipeline,
+  isIPhone14ProMaxDevice = false,
+  onCategoryElementsChange
+}) => {
   const { t } = useLayeraTranslation();
   const { deviceType, isMobile, isTablet, isDesktop } = useViewportWithOverride();
   const mapInitialized = useRef(false);
@@ -213,7 +255,13 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated, onNewEntryClick }) => {
   const [mapBounds, setMapBounds] = useState<LatLngBounds | null>(null);
   const [mapSize, setMapSize] = useState({ width: 0, height: 0 });
   const [isLoading, setIsLoading] = useState(true);
-  const [showRulers, setShowRulers] = useState(true);
+
+  // Device detection πλέον γίνεται από το App.tsx και περνάει ως prop
+
+  // Rulers απενεργοποιημένοι για iPhone 14 Pro Max
+  const [showRulers, setShowRulers] = useState(!isIPhone14ProMaxDevice);
+  // iPhone 14 Pro Max category elements - αρχικά κρυμμένα
+  const [showCategoryElements, setShowCategoryElements] = useState(false);
   // ViewportFrame FAB logic από diavase_3.md
   const frameRef = useRef<HTMLDivElement | null>(null);
   const [fabPos, setFabPos] = useState({ x: 15, y: 15 }); // left/top
@@ -221,6 +269,21 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated, onNewEntryClick }) => {
 
   const BTN_SIZE = 56;
   const MARGIN = 15;
+
+
+  // Custom handler για το πράσινο κουμπί - διαφορετική συμπεριφορά για iPhone 14 Pro Max
+  const handleNewEntryClick = () => {
+    if (isIPhone14ProMaxDevice) {
+      // Για iPhone: εμφάνιση των category elements
+      const newState = !showCategoryElements;
+      setShowCategoryElements(newState);
+      // Ειδοποίηση του parent component
+      onCategoryElementsChange?.(newState);
+    } else {
+      // Για άλλες συσκευές: κανονική συμπεριφορά
+      onNewEntryClick?.();
+    }
+  };
 
   // Helper function to generate dynamic area names
   const getAreaName = (area: DrawnArea): string => {
@@ -772,25 +835,29 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated, onNewEntryClick }) => {
           });
 
           const map = L.map('geo-map', {
-            zoomControl: false  // Απενεργοποιούμε τα default zoom controls
+            zoomControl: false,  // Απενεργοποιούμε τα default zoom controls
           }).setView([37.9755, 23.7348], 13);
 
-          // Προσθέτουμε custom zoom control στην πάνω δεξιά γωνία
-          L.control.zoom({
-            position: 'topright'
-          }).addTo(map);
+          // Προσθέτουμε custom zoom control στην πάνω δεξιά γωνία - όχι για iPhone
+          if (!isIPhone14ProMaxDevice) {
+            L.control.zoom({
+              position: 'topright'
+            }).addTo(map);
+          }
 
           L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
           }).addTo(map);
 
-          // OpenStreetMap standard: μόνο scale bar
-          L.control.scale({
-            position: 'bottomleft',
-            metric: true,
-            imperial: false,
-            maxWidth: 200
-          }).addTo(map);
+          // OpenStreetMap standard: μόνο scale bar - όχι για iPhone
+          if (!isIPhone14ProMaxDevice) {
+            L.control.scale({
+              position: 'bottomleft',
+              metric: true,
+              imperial: false,
+              maxWidth: 200
+            }).addTo(map);
+          }
 
 
           mapRef.current = map;
@@ -1251,17 +1318,17 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated, onNewEntryClick }) => {
 
 
 
-  const mapOffset = showRulers ? (isMobile ? 0 : RULER_SIZE) : 0;
+  const mapOffset = showRulers && !isIPhone14ProMaxDevice ? (isMobile ? 0 : RULER_SIZE) : 0;
 
   return (
     <div style={{ height: '100%', width: '100%', position: 'relative', overflow: 'hidden' }}>
 
-      {/* Canvas Rulers */}
-      {showRulers && mapBounds && mapSize && !isMobile && <LatitudeRuler bounds={mapBounds} mapSize={mapSize} />}
-      {showRulers && mapBounds && mapSize && <LongitudeRuler bounds={mapBounds} mapSize={mapSize} />}
+      {/* Canvas Rulers - Εντελώς απενεργοποιημένοι για iPhone 14 Pro Max */}
+      {showRulers && !isIPhone14ProMaxDevice && !isMobile && mapBounds && mapSize && <LatitudeRuler bounds={mapBounds} mapSize={mapSize} />}
+      {showRulers && !isIPhone14ProMaxDevice && !isMobile && mapBounds && mapSize && <LongitudeRuler bounds={mapBounds} mapSize={mapSize} />}
 
-      {/* Ruler Corner */}
-      {showRulers && !isMobile && (
+      {/* Ruler Corner - Εντελώς απενεργοποιημένο για iPhone 14 Pro Max */}
+      {showRulers && !isIPhone14ProMaxDevice && !isMobile && (
         <div
           className="absolute bottom-0 left-0 z-30"
           style={{
@@ -1274,8 +1341,8 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated, onNewEntryClick }) => {
         />
       )}
 
-      {/* Category Tabs */}
-      <div style={{
+      {/* Category Tabs - Κρυμμένα για iPhone 14 Pro Max */}
+      {!isIPhone14ProMaxDevice && <div style={{
         position: 'absolute',
         top: '10px',
         left: '50%',
@@ -1303,10 +1370,10 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated, onNewEntryClick }) => {
         >
           {t('job')}
         </Button>
-      </div>
+      </div>}
 
-      {/* Drawing Toolbar - Responsive για κάθε device */}
-      <div style={{
+      {/* Drawing Toolbar - Κρυμμένο για iPhone 14 Pro Max */}
+      {!isIPhone14ProMaxDevice && <div style={{
         position: 'absolute',
         top: isMobile ? '10px' : '10px',
         left: '10px',
@@ -1356,19 +1423,78 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated, onNewEntryClick }) => {
           {t('clear')}
         </Button>
 
-        <Button
-          onClick={() => setShowRulers(!showRulers)}
-          variant={showRulers ? 'primary' : 'secondary'}
-          size={isMobile ? 'xs' : 'sm'}
-          icon={<RulerIcon size="sm" theme="neutral" />}
-        >
-          {t('rulers')}
-        </Button>
-      </div>
+        {/* Κουμπί Rulers - Κρυμμένο για iPhone 14 Pro Max */}
+        {!isIPhone14ProMaxDevice && (
+          <Button
+            onClick={() => setShowRulers(!showRulers)}
+            variant={showRulers ? 'primary' : 'secondary'}
+            size={isMobile ? 'xs' : 'sm'}
+            icon={<RulerIcon size="sm" theme="neutral" />}
+          >
+            {t('rulers')}
+          </Button>
+        )}
+      </div>}
+
+      {/* Device-Specific UI Components */}
+
+      {/* iPhone 14 Pro Max Components - ΧΡΗΣΗ PROP ΑΠΟ APP.TSX */}
+      {isIPhone14ProMaxDevice ? (
+          <>
+            <div style={{
+              position: 'fixed',
+              top: '10px',
+              right: '450px',  // Δεξιότερα, εκτός του device frame
+              backgroundColor: '#10b981',  // Πράσινο
+              color: 'white',
+              padding: '6px 10px',
+              borderRadius: '6px',
+              fontSize: '11px',
+              fontWeight: 'bold',
+              zIndex: 9998,
+              opacity: 0.9,
+              boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
+            }}>
+              📱 iPhone14ProMax Mode
+            </div>
 
 
-      {/* Status Info */}
-      {activeDrawingMode !== 'none' && (
+            {React.createElement(iPhone14ProMaxGeoMap)}
+            {/* Category UI - εμφανίζεται μόνο όταν ενεργοποιηθεί */}
+            {showCategoryElements && (
+              <>
+                {React.createElement(iPhone14ProMaxFloatingStepper, {
+                  currentStep: "category",
+                  totalSteps: 7,
+                  stepIndex: 0,
+                  stepTitle: "Επιλογή Κατηγορίας",
+                  canGoNext: true,
+                  canGoPrevious: false,
+                  onReset: () => {
+                    console.log('🔄 Reset clicked - hiding stepper and showing FAB');
+                    setShowCategoryElements(false);
+                    onCategoryElementsChange?.(false);
+                  }
+                })}
+                {React.createElement(iPhone14ProMaxCategoryStep, {
+                  onNext: (category) => console.log('Category selected:', category),
+                  isVisible: true
+                })}
+              </>
+            )}
+          </>
+        ) : null}
+
+      <TabletOnly>
+        <TabletGeoMap />
+      </TabletOnly>
+
+      <DesktopOnly>
+        <DesktopGeoMap />
+      </DesktopOnly>
+
+      {/* Status Info - Κρυμμένο για iPhone 14 Pro Max */}
+      {activeDrawingMode !== 'none' && !isIPhone14ProMaxDevice && (
         <div style={{
           position: 'absolute',
           top: '60px',
@@ -1398,20 +1524,24 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated, onNewEntryClick }) => {
           position: 'absolute',
           top: 0,
           left: `${mapOffset}px`,
-          bottom: `${showRulers ? RULER_SIZE : 0}px`,
+          bottom: `${showRulers && !isIPhone14ProMaxDevice ? RULER_SIZE : 0}px`,
           right: 0,
           backgroundColor: 'var(--layera-bg-tertiary)',
           overflow: 'hidden',
-          zIndex: 1
+          zIndex: 1,
+          // Normal positioning για iPhone - χωρίς external header
+          ...(isIPhone14ProMaxDevice && {
+            touchAction: 'pan-x pan-y'
+          })
         }}
       >
       </div>
 
       {/* ViewportFrame Draggable FAB - από diavase_3.md */}
-      {onNewEntryClick && (
+      {(onNewEntryClick || isIPhone14ProMaxDevice) && !showCategoryElements && (
         <div
           onPointerDown={handleFabPointerDown}
-          onClick={onNewEntryClick}
+          onClick={handleNewEntryClick}
           aria-label="Νέα Καταχώρηση"
           title="Νέα Καταχώρηση"
           style={{
@@ -1437,8 +1567,8 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated, onNewEntryClick }) => {
         </div>
       )}
 
-      {/* Areas List */}
-      {drawnAreas.length > 0 && (
+      {/* Areas List - Κρυμμένο για iPhone 14 Pro Max */}
+      {drawnAreas.length > 0 && !isIPhone14ProMaxDevice && (
         <div style={{
           position: 'absolute',
           bottom: '10px',
@@ -1492,11 +1622,32 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated, onNewEntryClick }) => {
         </div>
       )}
 
-      {/* Category Form Modal */}
-      {showCategoryForm && tempAreaData && <CategoryForm />}
+      {/* Category Form Modal - Κρυμμένο για iPhone 14 Pro Max */}
+      {showCategoryForm && tempAreaData && !isIPhone14ProMaxDevice && <CategoryForm />}
 
-      {/* Device Controls - Τώρα θα είναι εκτός των viewport containers */}
-      <ViewportDebugger position="top-right" compact={isMobile} />
+      {/* Device Controls - Κρυμμένο για iPhone 14 Pro Max */}
+      {!isIPhone14ProMaxDevice && <ViewportDebugger position="top-right" compact={isMobile} />}
+
+      {/* Unified Pipeline Panel - Inline instead of modal */}
+      {/* ΔΕΝ εμφανίζουμε το παλιό UnifiedPipeline αν είμαστε σε iPhone 14 Pro Max */}
+      {showUnifiedPipeline && onCloseUnifiedPipeline && onSubmitUnifiedPipeline && !isIPhone14ProMaxDevice && (
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.3)',
+          zIndex: 2000,
+          padding: '8px',
+          overflow: 'hidden'
+        }}>
+          <UnifiedPipelineContent
+            onClose={onCloseUnifiedPipeline}
+            onSubmit={onSubmitUnifiedPipeline}
+          />
+        </div>
+      )}
 
     </div>
   );
