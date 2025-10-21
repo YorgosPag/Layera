@@ -14,7 +14,22 @@ import { LanguageSwitcher } from '@layera/tolgee';
 import { GeoHeader } from './components/GeoHeader';
 import { SimpleNavigationRail } from './components/SimpleNavigationRail';
 import { UnifiedPipelineModal } from '../../../packages/pipelines/unified/UnifiedPipelineModal';
-import GeoMap, { DrawnArea } from './components/GeoMap';
+import { GeoMap } from './components/GeoMapNew';
+
+// Import DrawnArea type from the new map-core package
+interface DrawnArea {
+  id: string;
+  type: 'polygon' | 'marker';
+  coordinates: number[][];
+  name: string;
+  nameTemplate?: string;
+  nameNumber?: number;
+  area?: number;
+  category: 'real_estate' | 'jobs';
+  isVisible?: boolean;
+  opacity?: number;
+  metadata?: any;
+}
 import { ViewportFrame } from './components/ViewportFrame';
 import { DeviceFrameWrapper } from './components/DeviceFrameWrapper';
 // Device frames temporarily disabled for debugging
