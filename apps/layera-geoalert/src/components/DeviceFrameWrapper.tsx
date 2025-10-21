@@ -114,7 +114,7 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
         overflow: 'auto'
       }}>
         <div style={getFrameStyles()}>
-          <div style={getScreenStyles()}>
+          <div id="layera-device-simulator-viewport" style={getScreenStyles()}>
             <div style={getNotchStyles()} />
             {children}
             <div style={getHomeIndicatorStyles()} />

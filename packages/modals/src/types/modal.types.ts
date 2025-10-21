@@ -32,7 +32,7 @@ export interface BaseModalProps {
 }
 
 export interface ModalHeaderProps {
-  children: ReactNode;
+  children?: ReactNode;
   title?: string;
   subtitle?: string;
   onClose?: () => void;

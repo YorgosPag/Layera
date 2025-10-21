@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { CheckIcon, AlertTriangleIcon } from '@layera/icons';
 import { Modal } from '../Modal';
 import { ModalHeader } from '../ModalHeader';
 import { ModalContent } from '../ModalContent';
@@ -48,41 +49,21 @@ export const Dialog: React.FC<DialogProps> = ({
   };
 
   const getTypeIcon = () => {
+    const iconProps = { size: "md" as const, className: `layera-dialog__icon layera-dialog__icon--${type}` };
+
     switch (type) {
       case 'success':
-        return (
-          <svg className="layera-dialog__icon layera-dialog__icon--success" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M9 12l2 2 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2"/>
-          </svg>
-        );
+        return <CheckIcon {...iconProps} theme="success" />;
       case 'warning':
-        return (
-          <svg className="layera-dialog__icon layera-dialog__icon--warning" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        );
+        return <AlertTriangleIcon {...iconProps} theme="warning" />;
       case 'error':
-        return (
-          <svg className="layera-dialog__icon layera-dialog__icon--error" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2"/>
-            <path d="M12 8v4m0 4h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        );
+        return <AlertTriangleIcon {...iconProps} theme="danger" />;
       case 'question':
-        return (
-          <svg className="layera-dialog__icon layera-dialog__icon--question" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2"/>
-            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3m.08 4h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        );
-      default:
-        return (
-          <svg className="layera-dialog__icon layera-dialog__icon--info" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2"/>
-            <path d="M12 8h.01M11 12h1v4h1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        );
+        // Προσωρινό fallback στο AlertTriangle μέχρι να προστεθεί HelpIcon
+        return <AlertTriangleIcon {...iconProps} theme="neutral" />;
+      default: // info
+        // Προσωρινό fallback μέχρι να προστεθεί InfoIcon
+        return <CheckIcon {...iconProps} theme="primary" />;
     }
   };
 
@@ -111,7 +92,9 @@ export const Dialog: React.FC<DialogProps> = ({
       aria-describedby="dialog-description"
       {...modalProps}
     >
-      <ModalHeader title={title} showCloseButton={false} />
+      <ModalHeader title={title} showCloseButton={false}>
+        {/* Header for dialog */}
+      </ModalHeader>
 
       <ModalContent padding="lg">
         <div className={`layera-dialog layera-dialog--${type}`}>

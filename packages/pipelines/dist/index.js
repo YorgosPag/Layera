@@ -189,6 +189,7 @@ __export(index_exports, {
   LayoutStep: () => LayoutStep,
   LocationStep: () => LocationStep,
   TransactionTypeStep: () => TransactionTypeStep,
+  UnifiedPipelineContent: () => UnifiedPipelineContent,
   UnifiedPipelineModal: () => UnifiedPipelineModal,
   createStepperConfig: () => createStepperConfig,
   getStepIndex: () => getStepIndex,
@@ -1431,7 +1432,7 @@ async function searchNominatim(request) {
       const bHasStreet = b.address.street && !b.address.houseNumber;
       if (aHasStreet && !bHasStreet) return -1;
       if (!aHasStreet && bHasStreet) return 1;
-      const getAdministrativeLevel = (result) => {
+      const getAdministrativeLevel2 = (result) => {
         const address = result.address;
         if (address.street) return 1;
         if (address.suburb || address.village) return 2;
@@ -1442,8 +1443,8 @@ async function searchNominatim(request) {
         if (address.country) return 7;
         return 8;
       };
-      const aLevel = getAdministrativeLevel(a);
-      const bLevel = getAdministrativeLevel(b);
+      const aLevel = getAdministrativeLevel2(a);
+      const bLevel = getAdministrativeLevel2(b);
       if (aLevel !== bLevel) return aLevel - bLevel;
       const queryLower = request.query.toLowerCase();
       const aDisplayLower = a.displayName.toLowerCase();
@@ -1774,6 +1775,9 @@ function useGeocode(options = {}) {
   };
 }
 
+// unified/steps/LayoutStep.tsx
+var import_i18n = require("@layera/i18n");
+
 // ../address-breakdown/src/components/AddressBreakdownCard.tsx
 var import_react7 = require("react");
 var import_cards7 = require("@layera/cards");
@@ -1781,6 +1785,178 @@ var import_buttons6 = require("@layera/buttons");
 var import_icons7 = require("@layera/icons");
 var import_loading = require("@layera/loading");
 var import_tolgee8 = require("@layera/tolgee");
+
+// ../geo-mapping/src/utils/administrativeHierarchy.ts
+var GREEK_PATTERNS = {
+  [1 /* STREET */]: [
+    /^.*?\s*\d+/,
+    // Οδός με αριθμό
+    /οδός|λεωφόρος|πλατεία|αγίου|αγίας/i
+  ],
+  [2 /* COMMUNITY */]: [
+    /κοινότητα|community/i
+  ],
+  [3 /* NEIGHBORHOOD */]: [
+    /συνοικία|γειτονιά|περιοχή/i
+  ],
+  [4 /* VILLAGE */]: [
+    /χωριό|κωμόπολη|οικισμός/i
+  ],
+  [5 /* MUNICIPAL_UNIT */]: [
+    /δημοτική\s+ενότητα|municipal\s+unit/i
+  ],
+  [6 /* MUNICIPALITY */]: [
+    /^δήμος\s+|municipality\s+of/i
+  ],
+  [7 /* METROPOLITAN */]: [
+    /μητροπολιτική\s+ενότητα|metropolitan/i
+  ],
+  [8 /* PREFECTURE */]: [
+    /νομός|νομαρχία|prefecture/i
+  ],
+  [9 /* REGION */]: [
+    /περιφέρεια|region/i
+  ],
+  [10 /* DECENTRALIZED */]: [
+    /αποκεντρωμένη\s+διοίκηση|decentralized/i
+  ],
+  [11 /* COUNTRY */]: [
+    /ελλάδα|greece/i
+  ]
+};
+function getAdministrativeLevel(text) {
+  const cleanText = text.trim();
+  for (const [level, patterns] of Object.entries(GREEK_PATTERNS)) {
+    for (const pattern of patterns) {
+      if (pattern.test(cleanText)) {
+        return parseInt(level);
+      }
+    }
+  }
+  return 3 /* NEIGHBORHOOD */;
+}
+function removeDuplicates(items) {
+  const cleaned = [];
+  const seen = /* @__PURE__ */ new Set();
+  for (const item of items) {
+    const normalized = normalizeText(item);
+    if (seen.has(normalized)) {
+      continue;
+    }
+    const isDuplicate = Array.from(seen).some((existing) => {
+      return areTextsSimilar(normalized, existing);
+    });
+    if (!isDuplicate) {
+      seen.add(normalized);
+      cleaned.push(item);
+    }
+  }
+  return cleaned;
+}
+function normalizeText(text) {
+  return text.toLowerCase().replace(/^(δήμος|δημοτική\s+ενότητα|περιφέρεια|νομός)\s+/i, "").replace(/\s*-\s*/g, "-").replace(/\s+/g, " ").trim();
+}
+function areTextsSimilar(text1, text2) {
+  if (text1 === text2) return true;
+  if (text1.includes(text2)) {
+    const ratio = text2.length / text1.length;
+    if (ratio < 0.6) return true;
+  }
+  if (text2.includes(text1)) {
+    const ratio = text1.length / text2.length;
+    if (ratio < 0.6) return true;
+  }
+  const similarity = calculateSimilarity(text1, text2);
+  return similarity > 0.85;
+}
+function calculateSimilarity(str1, str2) {
+  const longer = str1.length > str2.length ? str1 : str2;
+  const shorter = str1.length > str2.length ? str2 : str1;
+  if (longer.length === 0) return 1;
+  const distance = levenshteinDistance(longer, shorter);
+  return (longer.length - distance) / longer.length;
+}
+function levenshteinDistance(str1, str2) {
+  const matrix = Array(str2.length + 1).fill(null).map(() => Array(str1.length + 1).fill(null));
+  for (let i = 0; i <= str1.length; i++) matrix[0][i] = i;
+  for (let j = 0; j <= str2.length; j++) matrix[j][0] = j;
+  for (let j = 1; j <= str2.length; j++) {
+    for (let i = 1; i <= str1.length; i++) {
+      const cost = str1[i - 1] === str2[j - 1] ? 0 : 1;
+      matrix[j][i] = Math.min(
+        matrix[j][i - 1] + 1,
+        // deletion
+        matrix[j - 1][i] + 1,
+        // insertion
+        matrix[j - 1][i - 1] + cost
+        // substitution
+      );
+    }
+  }
+  return matrix[str2.length][str1.length];
+}
+function processDisplayNameToHierarchy(displayName) {
+  console.log("\u{1F504} Processing display name for hierarchy:", displayName);
+  const parts = displayName.split(",").map((part) => part.trim()).filter((part) => part.length > 0);
+  console.log("\u{1F4DD} Initial parts:", parts);
+  let streetWithNumberAndPostal = "";
+  const nonStreetParts = [];
+  let postalCode = "";
+  const postalIndex = parts.findIndex((part) => /^\d{3,5}(-\d{4})?$/.test(part));
+  if (postalIndex !== -1) {
+    postalCode = parts[postalIndex];
+  }
+  const streetIndex = parts.findIndex((part) => /^.*?\s*\d+/.test(part));
+  if (streetIndex !== -1) {
+    streetWithNumberAndPostal = postalCode ? `${parts[streetIndex]}, ${postalCode}` : parts[streetIndex];
+  }
+  for (let i = 0; i < parts.length; i++) {
+    const part = parts[i];
+    if (/^\d{3,5}(-\d{4})?$/.test(part)) continue;
+    if (/^\d+$/.test(part)) continue;
+    if (i === streetIndex) continue;
+    nonStreetParts.push(part);
+  }
+  console.log("\u{1F6E3}\uFE0F Street with number and postal:", streetWithNumberAndPostal);
+  console.log("\u{1F9F9} Non-street parts:", nonStreetParts);
+  const uniqueNonStreetParts = removeDuplicates(nonStreetParts);
+  console.log("\u2728 Unique non-street parts:", uniqueNonStreetParts);
+  const hierarchicalParts = uniqueNonStreetParts.map((part) => ({
+    text: part,
+    level: getAdministrativeLevel(part)
+  })).sort((a, b) => a.level - b.level).map((item) => item.text);
+  console.log("\u{1F3DB}\uFE0F Hierarchically sorted non-street parts:", hierarchicalParts);
+  const finalParts = [];
+  if (streetWithNumberAndPostal) {
+    finalParts.push(streetWithNumberAndPostal);
+  }
+  finalParts.push(...hierarchicalParts);
+  const formattedHierarchy = finalParts.join("\n");
+  console.log("\u{1F4CB} Final formatted hierarchy:", formattedHierarchy);
+  return formattedHierarchy;
+}
+function getCountryFromDisplayName(displayName) {
+  const lowerName = displayName.toLowerCase();
+  if (lowerName.includes("\u03B5\u03BB\u03BB\u03AC\u03B4\u03B1") || lowerName.includes("greece")) {
+    return "greece";
+  }
+  if (lowerName.includes("bulgaria") || lowerName.includes("\u03B2\u03BF\u03C5\u03BB\u03B3\u03B1\u03C1\u03AF\u03B1")) {
+    return "bulgaria";
+  }
+  return "unknown";
+}
+function processDisplayNameByCountry(displayName) {
+  const country = getCountryFromDisplayName(displayName);
+  switch (country) {
+    case "greece":
+      return processDisplayNameToHierarchy(displayName);
+    case "bulgaria":
+      return displayName;
+    // Fallback προς το παρόν
+    default:
+      return processDisplayNameToHierarchy(displayName);
+  }
+}
 
 // ../geo-mapping/src/services/osmService.ts
 var fetchBoundaryByAddressComponent = async (addressComponent) => {
@@ -1805,7 +1981,7 @@ var fetchBoundaryByAddressComponent = async (addressComponent) => {
           features: [{
             type: "Feature",
             properties: {
-              name: result.display_name || addressComponent.label,
+              name: result.display_name ? processDisplayNameByCountry(result.display_name) : addressComponent.label,
               admin_level: "8",
               boundary: "administrative",
               osm_id: result.osm_id || 0,
@@ -1826,7 +2002,7 @@ var fetchBoundaryByAddressComponent = async (addressComponent) => {
           features: [{
             type: "Feature",
             properties: {
-              name: result.display_name || addressComponent.label,
+              name: result.display_name ? processDisplayNameByCountry(result.display_name) : addressComponent.label,
               admin_level: "8",
               boundary: "administrative",
               osm_id: result.osm_id || 0,
@@ -2004,13 +2180,29 @@ function parseDisplayNameToAdditionalComponents(result, existingComponents) {
   }
   return additionalComponents;
 }
+function getAdministrativeHierarchy(label) {
+  const lowerLabel = label.toLowerCase();
+  if (lowerLabel.includes("\u03BF\u03B4\u03CC\u03C2") || lowerLabel.includes("\u03BF\u03B4\u03CC") || lowerLabel.includes("\u03BB\u03B5\u03C9\u03C6\u03CC\u03C1\u03BF\u03C2")) return 1;
+  if (lowerLabel.includes("\u03C3\u03C5\u03BD\u03BF\u03B9\u03BA\u03AF\u03B1") || lowerLabel.includes("\u03B3\u03B5\u03B9\u03C4\u03BF\u03BD\u03B9\u03AC")) return 2;
+  if (lowerLabel.includes("\u03C7\u03C9\u03C1\u03B9\u03CC") || lowerLabel.includes("\u03BA\u03C9\u03BC\u03CC\u03C0\u03BF\u03BB\u03B7")) return 3;
+  if (lowerLabel.includes("\u03C0\u03CC\u03BB\u03B7") || lowerLabel.includes("\u03B4\u03AE\u03BC\u03BF\u03C2") || lowerLabel.includes("\u03B4\u03B7\u03BC\u03CC\u03C4\u03B7\u03C4\u03B1")) return 4;
+  if (lowerLabel.includes("\u03BD\u03BF\u03BC\u03CC\u03C2") || lowerLabel.includes("\u03B5\u03C0\u03B1\u03C1\u03C7\u03AF\u03B1")) return 5;
+  if (lowerLabel.includes("\u03C0\u03B5\u03C1\u03B9\u03C6\u03AD\u03C1\u03B5\u03B9\u03B1") || lowerLabel.includes("\u03BC\u03B1\u03BA\u03B5\u03B4\u03BF\u03BD\u03AF\u03B1") || lowerLabel.includes("\u03B8\u03C1\u03AC\u03BA\u03B7") || lowerLabel.includes("\u03B8\u03B5\u03C3\u03C3\u03B1\u03BB\u03BF\u03BD\u03AF\u03BA\u03B7")) return 6;
+  if (lowerLabel.includes("\u03B5\u03BB\u03BB\u03AC\u03B4\u03B1") || lowerLabel.includes("greece")) return 7;
+  return 5;
+}
 function parseFullAddress(result) {
   const baseComponents = parseGeocodeToComponents(result);
   const additionalComponents = parseDisplayNameToAdditionalComponents(result, baseComponents);
   const allComponents = [...baseComponents, ...additionalComponents];
   return allComponents.sort((a, b) => {
-    if (a.clickable && !b.clickable) return -1;
-    if (!a.clickable && b.clickable) return 1;
+    if (!a.clickable && b.clickable) return -1;
+    if (a.clickable && !b.clickable) return 1;
+    if (a.clickable && b.clickable) {
+      const hierarchyA = getAdministrativeHierarchy(a.label);
+      const hierarchyB = getAdministrativeHierarchy(b.label);
+      return hierarchyA - hierarchyB;
+    }
     const typePriority = {
       "street": 1,
       "houseNumber": 2,
@@ -2030,6 +2222,8 @@ function AddressBreakdownCard({
   geocodeResult,
   config = {},
   title,
+  onClick,
+  style,
   isLoading = false,
   error = null
 }) {
@@ -2151,6 +2345,8 @@ function AddressBreakdownCard({
           border: "1px solid #E5E7EB",
           transition: "all 0.2s ease-in-out",
           backgroundColor: isClickable ? "#FFFFFF" : "#F9FAFB",
+          textAlign: "left",
+          // Ευθυγράμμιση προς τα αριστερά
           ...isClickable && {
             ":hover": {
               backgroundColor: "#F3F4F6",
@@ -2180,7 +2376,10 @@ function AddressBreakdownCard({
           /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "list-item-content", style: {
             display: "flex",
             alignItems: "center",
-            gap: "0.5rem"
+            justifyContent: "flex-start",
+            // Ευθυγράμμιση προς τα αριστερά
+            gap: "0.5rem",
+            width: "100%"
           }, children: [
             isLoading2 ? /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(import_loading.Spinner, { size: "sm", variant: "default" }) : isClickable ? /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(import_icons7.MapIcon, { className: "list-icon", style: {
               width: "1rem",
@@ -2195,7 +2394,12 @@ function AddressBreakdownCard({
               flex: 1,
               fontSize: "0.875rem",
               color: isClickable ? "#1F2937" : "#6B7280",
-              fontWeight: isClickable ? "500" : "400"
+              fontWeight: isClickable ? "500" : "400",
+              textAlign: "left",
+              // Ευθυγράμμιση κειμένου προς τα αριστερά
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis"
             }, children: component.label })
           ] }),
           isLoading2 && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "loading-indicator", style: {
@@ -2246,6 +2450,8 @@ function AddressBreakdownCard({
       title: title || t("addressDetails"),
       actions: cardActions,
       className: `address-breakdown-card ${finalConfig.className || ""}`,
+      onClick,
+      style,
       children: [
         error && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("div", { className: "error-message", children: error }),
         boundaryError && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("div", { className: "boundary-error", children: boundaryError }),
@@ -2267,8 +2473,126 @@ function AddressBreakdownCard({
 }
 
 // unified/steps/LayoutStep.tsx
-var import_i18n = require("@layera/i18n");
 var import_jsx_runtime9 = require("react/jsx-runtime");
+function renderSearchResultItem(result, layoutLocation, index) {
+  const getBadgeStyle = (badgeText2) => {
+    const badgeColors = {
+      "\u039F\u0394\u039F\u03A3+": { bg: "#22c55e", text: "white" },
+      "\u039F\u0394\u039F\u03A3": { bg: "#3b82f6", text: "white" },
+      "\u03A3\u03A5\u039D\u039F\u0399\u039A\u0399\u0391": { bg: "#f59e0b", text: "white" },
+      "\u03A7\u03A9\u03A1\u0399\u039F": { bg: "#f59e0b", text: "white" },
+      "\u03A0\u039F\u039B\u0397": { bg: "#8b5cf6", text: "white" },
+      "\u0394\u0397\u039C\u039F\u03A3": { bg: "#8b5cf6", text: "white" },
+      "\u039D\u039F\u039C\u039F\u03A3": { bg: "#6b7280", text: "white" },
+      "\u03A0\u0395\u03A1\u0399\u03A6\u0395\u03A1\u0395\u0399\u0391": { bg: "#6b7280", text: "white" },
+      "\u03A7\u03A9\u03A1\u0391": { bg: "#374151", text: "white" },
+      "\u03A4\u039F\u03A0\u039F\u03A3": { bg: "#84cc16", text: "white" }
+    };
+    return badgeColors[badgeText2] || { bg: "#6b7280", text: "white" };
+  };
+  const hasStreetAndNumber = result.address.street && result.address.houseNumber;
+  const hasStreetOnly = result.address.street && !result.address.houseNumber;
+  let content = "";
+  let badgeText = "";
+  let subtitle = "";
+  if (hasStreetAndNumber) {
+    content = `${result.address.street} ${result.address.houseNumber}`;
+    badgeText = "\u039F\u0394\u039F\u03A3+";
+    const locationParts = [];
+    if (result.address.postalCode) locationParts.push(result.address.postalCode);
+    if (result.address.suburb || result.address.city) {
+      locationParts.push(result.address.suburb || result.address.city);
+    }
+    if (locationParts.length > 0) {
+      subtitle = locationParts.join(", ");
+    }
+  } else if (hasStreetOnly) {
+    content = result.address.street;
+    badgeText = "\u039F\u0394\u039F\u03A3";
+    const locationParts = [];
+    if (result.address.suburb || result.address.city) {
+      locationParts.push(result.address.suburb || result.address.city);
+    }
+    if (result.address.region) locationParts.push(result.address.region);
+    if (locationParts.length > 0) {
+      subtitle = locationParts.join(", ");
+    }
+  } else {
+    const address = result.address;
+    if (address.suburb) {
+      content = address.suburb;
+      badgeText = "\u03A3\u03A5\u039D\u039F\u0399\u039A\u0399\u0391";
+      if (address.city && address.city !== address.suburb) {
+        subtitle = address.city;
+      }
+    } else if (address.village) {
+      content = address.village;
+      badgeText = "\u03A7\u03A9\u03A1\u0399\u039F";
+      if (address.county) subtitle = address.county;
+    } else if (address.town) {
+      content = address.town;
+      badgeText = "\u03A0\u039F\u039B\u0397";
+      if (address.region) subtitle = address.region;
+    } else if (address.city) {
+      content = address.city;
+      badgeText = "\u0394\u0397\u039C\u039F\u03A3";
+      if (address.region) subtitle = address.region;
+    } else if (address.county) {
+      content = address.county;
+      badgeText = "\u039D\u039F\u039C\u039F\u03A3";
+      if (address.region) subtitle = address.region;
+    } else if (address.region) {
+      content = address.region;
+      badgeText = "\u03A0\u0395\u03A1\u0399\u03A6\u0395\u03A1\u0395\u0399\u0391";
+      if (address.country) subtitle = address.country;
+    } else if (address.country) {
+      content = address.country;
+      badgeText = "\u03A7\u03A9\u03A1\u0391";
+    } else {
+      const queryWords = layoutLocation.toLowerCase().split(/[\s,]+/);
+      const displayParts = result.displayName.split(",").map((p) => p.trim());
+      let bestMatch = displayParts[0] || result.displayName;
+      for (const part of displayParts) {
+        for (const word of queryWords) {
+          if (word.length > 2 && part.toLowerCase().includes(word)) {
+            bestMatch = part;
+            break;
+          }
+        }
+      }
+      content = bestMatch;
+      badgeText = "\u03A4\u039F\u03A0\u039F\u03A3";
+      if (displayParts.length > 1 && bestMatch !== result.displayName) {
+        subtitle = displayParts.filter((p) => p !== bestMatch).slice(0, 2).join(", ");
+      }
+    }
+  }
+  return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(import_layout8.Flex, { gap: "sm", align: "center", style: { width: "100%" }, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(import_icons8.LocationIcon, { size: "sm", theme: hasStreetAndNumber || hasStreetOnly ? "primary" : "neutral" }),
+    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { style: { flex: 1, minWidth: 0 }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { style: {
+        fontWeight: hasStreetAndNumber || hasStreetOnly ? "bold" : "normal",
+        color: hasStreetAndNumber || hasStreetOnly ? "#1f2937" : "#6b7280",
+        fontSize: hasStreetAndNumber || hasStreetOnly ? "14px" : "13px"
+      }, children: content }),
+      subtitle && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { style: {
+        fontSize: "11px",
+        color: "#9ca3af",
+        marginTop: "2px"
+      }, children: subtitle })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { style: {
+      backgroundColor: getBadgeStyle(badgeText).bg,
+      color: getBadgeStyle(badgeText).text,
+      padding: "2px 6px",
+      borderRadius: "4px",
+      fontSize: "9px",
+      fontWeight: "bold",
+      textTransform: "uppercase",
+      letterSpacing: "0.5px"
+    }, children: badgeText })
+  ] });
+}
 var LayoutStep = ({ onNext, onBack }) => {
   const { t } = (0, import_i18n.useLayeraTranslation)();
   const [layoutRotation, setLayoutRotation] = (0, import_react8.useState)(0);
@@ -2286,7 +2610,9 @@ var LayoutStep = ({ onNext, onBack }) => {
           latitude: result.coordinates.latitude,
           longitude: result.coordinates.longitude,
           zoom: 16,
-          displayName: result.displayName
+          displayName: result.displayName,
+          result
+          // Προσθήκη ολόκληρου του structured result
         }
       });
       console.log("\u{1F4E1} LayoutStep: Dispatching showSearchResult event for search result");
@@ -2461,17 +2787,9 @@ var LayoutStep = ({ onNext, onBack }) => {
       ] }),
       results.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { style: { marginTop: "8px" }, children: [
         /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(import_typography8.Text, { size: "sm", weight: "bold", style: { marginBottom: "8px" }, children: t("pipelines.steps.layout.results", { count: results.length }) }),
-        results.map((result, index) => /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { style: { marginBottom: "8px" }, children: /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
-          AddressBreakdownCard,
+        results.map((result, index) => /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+          "div",
           {
-            geocodeResult: result,
-            config: {
-              layout: "list",
-              enableBoundarySearch: true,
-              onComponentClick: (component) => {
-                console.log("\u{1F3AF} Address component clicked:", component);
-              }
-            },
             onClick: () => {
               console.log("\u{1F3AF} LayoutStep: Card clicked, selecting result:", result.displayName);
               geocodeActions.selectResult(result);
@@ -2482,145 +2800,48 @@ var LayoutStep = ({ onNext, onBack }) => {
               backgroundColor: index === 0 ? "#f0f9ff" : "white",
               borderRadius: "8px",
               padding: "12px",
-              transition: "all 0.2s ease",
-              ":hover": {
-                backgroundColor: "#f8fafc",
-                borderColor: "#3b82f6"
-              }
+              marginBottom: "8px",
+              transition: "all 0.2s ease"
             },
-            title: (() => {
-              const getBadgeStyle = (badgeText2) => {
-                const colors = {
-                  "\u039F\u0394\u039F\u03A3+": { bg: "#22c55e", text: "white" },
-                  // πράσινο για ακριβή διεύθυνση
-                  "\u039F\u0394\u039F\u03A3": { bg: "#3b82f6", text: "white" },
-                  // μπλε για οδό
-                  "\u03A3\u03A5\u039D\u039F\u0399\u039A\u0399\u0391": { bg: "#f59e0b", text: "white" },
-                  // πορτοκαλί για συνοικία
-                  "\u03A7\u03A9\u03A1\u0399\u039F": { bg: "#f59e0b", text: "white" },
-                  // πορτοκαλί για χωριό
-                  "\u03A0\u039F\u039B\u0397": { bg: "#8b5cf6", text: "white" },
-                  // μωβ για πόλη
-                  "\u0394\u0397\u039C\u039F\u03A3": { bg: "#8b5cf6", text: "white" },
-                  // μωβ για δήμο
-                  "\u039D\u039F\u039C\u039F\u03A3": { bg: "#6b7280", text: "white" },
-                  // γκρι για νομό
-                  "\u03A0\u0395\u03A1\u0399\u03A6\u0395\u03A1\u0395\u0399\u0391": { bg: "#6b7280", text: "white" },
-                  // γκρι για περιφέρεια
-                  "\u03A7\u03A9\u03A1\u0391": { bg: "#374151", text: "white" },
-                  // σκούρο γκρι για χώρα
-                  "\u03A4\u039F\u03A0\u039F\u03A3": { bg: "#84cc16", text: "white" }
-                  // lime για γενικό τόπο
-                };
-                return colors[badgeText2] || { bg: "#6b7280", text: "white" };
-              };
-              const hasStreetAndNumber = result.address.street && result.address.houseNumber;
-              const hasStreetOnly = result.address.street && !result.address.houseNumber;
-              let content = "";
-              let badgeText = "";
-              let subtitle = "";
-              if (hasStreetAndNumber) {
-                content = `${result.address.street} ${result.address.houseNumber}`;
-                badgeText = "\u039F\u0394\u039F\u03A3+";
-                const locationParts = [];
-                if (result.address.postalCode) locationParts.push(result.address.postalCode);
-                if (result.address.suburb || result.address.city) {
-                  locationParts.push(result.address.suburb || result.address.city);
-                }
-                if (locationParts.length > 0) {
-                  subtitle = locationParts.join(", ");
-                }
-              } else if (hasStreetOnly) {
-                content = result.address.street;
-                badgeText = "\u039F\u0394\u039F\u03A3";
-                const locationParts = [];
-                if (result.address.suburb || result.address.city) {
-                  locationParts.push(result.address.suburb || result.address.city);
-                }
-                if (result.address.region) locationParts.push(result.address.region);
-                if (locationParts.length > 0) {
-                  subtitle = locationParts.join(", ");
-                }
-              } else {
-                const address = result.address;
-                if (address.suburb) {
-                  content = address.suburb;
-                  badgeText = "\u03A3\u03A5\u039D\u039F\u0399\u039A\u0399\u0391";
-                  if (address.city && address.city !== address.suburb) {
-                    subtitle = address.city;
-                  }
-                } else if (address.village) {
-                  content = address.village;
-                  badgeText = "\u03A7\u03A9\u03A1\u0399\u039F";
-                  if (address.county) subtitle = address.county;
-                } else if (address.town) {
-                  content = address.town;
-                  badgeText = "\u03A0\u039F\u039B\u0397";
-                  if (address.region) subtitle = address.region;
-                } else if (address.city) {
-                  content = address.city;
-                  badgeText = "\u0394\u0397\u039C\u039F\u03A3";
-                  if (address.region) subtitle = address.region;
-                } else if (address.county) {
-                  content = address.county;
-                  badgeText = "\u039D\u039F\u039C\u039F\u03A3";
-                  if (address.region) subtitle = address.region;
-                } else if (address.region) {
-                  content = address.region;
-                  badgeText = "\u03A0\u0395\u03A1\u0399\u03A6\u0395\u03A1\u0395\u0399\u0391";
-                  if (address.country) subtitle = address.country;
-                } else if (address.country) {
-                  content = address.country;
-                  badgeText = "\u03A7\u03A9\u03A1\u0391";
-                } else {
-                  const queryWords = layoutLocation.toLowerCase().split(/[\s,]+/);
-                  const displayParts = result.displayName.split(",").map((p) => p.trim());
-                  let bestMatch = displayParts[0] || result.displayName;
-                  for (const part of displayParts) {
-                    for (const word of queryWords) {
-                      if (word.length > 2 && part.toLowerCase().includes(word)) {
-                        bestMatch = part;
-                        break;
-                      }
-                    }
-                  }
-                  content = bestMatch;
-                  badgeText = "\u03A4\u039F\u03A0\u039F\u03A3";
-                  if (displayParts.length > 1 && bestMatch !== result.displayName) {
-                    subtitle = displayParts.filter((p) => p !== bestMatch).slice(0, 2).join(", ");
-                  }
-                }
-              }
-              return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(import_layout8.Flex, { gap: "sm", align: "center", style: { width: "100%" }, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(import_icons8.LocationIcon, { size: "sm", theme: hasStreetAndNumber || hasStreetOnly ? "primary" : "neutral" }),
-                /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { style: { flex: 1, minWidth: 0 }, children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { style: {
-                    fontWeight: hasStreetAndNumber || hasStreetOnly ? "bold" : "normal",
-                    color: hasStreetAndNumber || hasStreetOnly ? "#1f2937" : "#6b7280",
-                    fontSize: hasStreetAndNumber || hasStreetOnly ? "14px" : "13px"
-                  }, children: content }),
-                  subtitle && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { style: {
-                    fontSize: "11px",
-                    color: "#9ca3af",
-                    marginTop: "2px"
-                  }, children: subtitle })
-                ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { style: {
-                  backgroundColor: getBadgeStyle(badgeText).bg,
-                  color: getBadgeStyle(badgeText).text,
-                  padding: "2px 6px",
-                  borderRadius: "4px",
-                  fontSize: "9px",
-                  fontWeight: "bold",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.5px"
-                }, children: badgeText })
-              ] });
-            })()
-          }
-        ) }, result.id))
+            onMouseEnter: (e) => {
+              e.currentTarget.style.backgroundColor = "#f8fafc";
+              e.currentTarget.style.borderColor = "#3b82f6";
+            },
+            onMouseLeave: (e) => {
+              e.currentTarget.style.backgroundColor = index === 0 ? "#f0f9ff" : "white";
+              e.currentTarget.style.borderColor = index === 0 ? "#3b82f6" : "#e5e7eb";
+            },
+            children: renderSearchResultItem(result, layoutLocation, index)
+          },
+          result.id
+        ))
       ] })
     ] }),
+    (selectedResult || results.length > 0 && !isLoading) && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+      "div",
+      {
+        style: {
+          backgroundColor: "#ffffff",
+          border: "2px solid #60a5fa",
+          borderRadius: "12px",
+          padding: "20px",
+          marginTop: "16px",
+          marginBottom: "16px"
+        },
+        children: /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+          AddressBreakdownCard,
+          {
+            geocodeResult: selectedResult || results[0],
+            title: /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(import_typography8.Text, { size: "base", weight: "bold", color: "primary", children: t("pipelines.steps.layout.addressBreakdown.title") }),
+            config: {
+              layout: "list",
+              enableBoundarySearch: true,
+              maxComponents: 8
+            }
+          }
+        )
+      }
+    ),
     /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(
       "div",
       {
@@ -3304,6 +3525,222 @@ var UnifiedPipelineModal = ({
   );
 };
 
+// unified/UnifiedPipelineContent.tsx
+var import_react11 = require("react");
+var import_layout12 = require("@layera/layout");
+var import_buttons11 = require("@layera/buttons");
+var import_forms10 = require("@layera/forms");
+var import_typography12 = require("@layera/typography");
+var import_progress_stepper2 = require("@layera/progress-stepper");
+var import_tolgee11 = require("@layera/tolgee");
+var import_jsx_runtime13 = require("react/jsx-runtime");
+var UnifiedPipelineContent = ({
+  onClose,
+  onSubmit
+}) => {
+  const { t } = (0, import_tolgee11.useLayeraTranslation)();
+  const { state, actions, can } = useUnifiedPipeline({ onSubmit, onClose });
+  const isMobile = useMediaQuery("(max-width: 768px)");
+  const stepperSteps = (0, import_react11.useMemo)(() => {
+    const baseSteps = createStepperConfig(state.category, t);
+    const completedSteps = [];
+    if (state.category) completedSteps.push("category");
+    if (state.intent) completedSteps.push("intent");
+    if (state.transactionType || state.employmentType) {
+      completedSteps.push(state.category === "property" ? "transactionType" : "employmentType");
+    }
+    if (state.availability) completedSteps.push("availability");
+    if (state.availabilityDetails) completedSteps.push("availabilityDetails");
+    return updateStepCompletion(baseSteps, completedSteps);
+  }, [state.category, state.intent, state.transactionType, state.employmentType, state.availability, state.availabilityDetails, t]);
+  const currentStepIndex = getStepIndex(state.step, stepperSteps);
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(
+    import_layout12.Stack,
+    {
+      spacing: "sm",
+      style: {
+        height: "100%",
+        overflow: "auto",
+        backgroundColor: "transparent",
+        padding: "12px"
+      },
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { style: {
+          backgroundColor: "var(--layera-bg-primary)",
+          borderRadius: "8px",
+          padding: "12px",
+          marginBottom: "8px"
+        }, children: /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(import_layout12.Flex, { justify: "between", align: "center", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(import_typography12.Heading, { as: "h2", size: "xl", color: "primary", children: t("pipeline.newEntry.title") }),
+          /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(import_layout12.Flex, { gap: "xs", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+              import_buttons11.Button,
+              {
+                variant: "outline",
+                size: "sm",
+                onClick: actions.reset,
+                children: "RESET"
+              }
+            ),
+            /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+              import_buttons11.Button,
+              {
+                variant: "ghost",
+                size: "sm",
+                onClick: actions.reset,
+                style: {
+                  minWidth: "32px",
+                  height: "32px",
+                  padding: "0",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center"
+                },
+                children: "\u2715"
+              }
+            )
+          ] })
+        ] }) }),
+        stepperSteps.length > 2 && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { style: {
+          overflowX: "auto",
+          overflowY: "hidden",
+          width: "100%",
+          paddingBottom: "8px",
+          marginBottom: "8px"
+        }, children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+          import_progress_stepper2.LayeraProgressStepper,
+          {
+            steps: stepperSteps,
+            activeStep: currentStepIndex,
+            orientation: "horizontal",
+            alternativeLabel: false,
+            sx: {
+              minWidth: "max-content",
+              width: "max-content",
+              paddingX: "8px",
+              "& .MuiStepLabel-label": {
+                fontSize: "0.75rem",
+                fontWeight: "500",
+                lineHeight: "1.2",
+                whiteSpace: "nowrap"
+              },
+              "& .MuiStepLabel-iconContainer": {
+                paddingRight: "8px"
+              },
+              "& .MuiStepConnector-root": {
+                top: "16px"
+              },
+              "& .MuiStep-root": {
+                paddingLeft: 0,
+                paddingRight: "12px",
+                minWidth: "100px"
+              },
+              "& .MuiStepLabel-root": {
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "4px"
+              },
+              "& .MuiStepLabel-labelContainer": {
+                textAlign: "center",
+                maxWidth: "90px"
+              }
+            }
+          }
+        ) }),
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { style: {
+          backgroundColor: "var(--layera-bg-primary)",
+          borderRadius: "8px",
+          padding: "16px"
+        }, children: [
+          state.step === "category" && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(CategoryStep, { onNext: actions.setCategory }),
+          state.step === "intent" && state.category && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+            IntentStep,
+            {
+              category: state.category,
+              onNext: actions.setIntent,
+              onBack: can.goBack ? actions.back : void 0
+            }
+          ),
+          state.step === "transactionType" && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+            TransactionTypeStep,
+            {
+              onNext: actions.setTransactionType,
+              onBack: can.goBack ? actions.back : void 0
+            }
+          ),
+          state.step === "employmentType" && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+            EmploymentTypeStep,
+            {
+              onNext: actions.setEmploymentType,
+              onBack: can.goBack ? actions.back : void 0
+            }
+          ),
+          state.step === "availability" && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+            AvailabilityStep,
+            {
+              onNext: actions.setAvailability,
+              onBack: can.goBack ? actions.back : void 0
+            }
+          ),
+          state.step === "availabilityDetails" && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+            AvailabilityDetailsStep,
+            {
+              availabilityDate: state.availabilityDetails?.date || null,
+              availabilityDuration: state.availabilityDetails?.duration || null,
+              availabilityDurationUnit: state.availabilityDetails?.unit || null,
+              onDateChange: (date) => actions.setAvailabilityDetails(date, state.availabilityDetails?.duration || 1, state.availabilityDetails?.unit || "months"),
+              onDurationChange: (duration) => actions.setAvailabilityDetails(state.availabilityDetails?.date || "", duration, state.availabilityDetails?.unit || "months"),
+              onUnitChange: (unit) => actions.setAvailabilityDetails(state.availabilityDetails?.date || "", state.availabilityDetails?.duration || 1, unit),
+              onNext: actions.locationReady,
+              onBack: can.goBack ? actions.back : void 0
+            }
+          ),
+          state.step === "location" && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+            LocationStep,
+            {
+              category: state.category,
+              intent: state.intent,
+              availability: state.availability,
+              onNext: actions.locationReady,
+              onBack: can.goBack ? actions.back : void 0
+            }
+          ),
+          state.step === "layout" && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+            LayoutStep,
+            {
+              onNext: actions.layoutReady,
+              onBack: can.goBack ? actions.back : void 0
+            }
+          ),
+          state.step === "details" && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+            DetailsStep,
+            {
+              category: state.category,
+              onSubmit: actions.detailsReady,
+              onBack: can.goBack ? actions.back : void 0
+            }
+          ),
+          state.step === "complete" && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+            CompleteStep,
+            {
+              pipelineState: state,
+              onClose: actions.reset
+            }
+          ),
+          state.step === "category" && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(import_forms10.FormActions, { children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+            import_buttons11.Button,
+            {
+              variant: "outline",
+              onClick: actions.reset,
+              children: t("pipelines.actions.cancel")
+            }
+          ) })
+        ] })
+      ]
+    }
+  );
+};
+
 // src/index.ts
 var LAYERA_PIPELINES_VERSION = "1.0.0";
 // Annotate the CommonJS export names for ESM import in node:
@@ -3319,6 +3756,7 @@ var LAYERA_PIPELINES_VERSION = "1.0.0";
   LayoutStep,
   LocationStep,
   TransactionTypeStep,
+  UnifiedPipelineContent,
   UnifiedPipelineModal,
   createStepperConfig,
   getStepIndex,

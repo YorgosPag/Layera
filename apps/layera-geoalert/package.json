@@ -15,7 +15,6 @@
     "@layera/buttons": "file:../../packages/buttons",
     "@layera/cards": "file:../../packages/cards",
     "@layera/database-core": "file:../../packages/database-core",
-    "@layera/device-frames": "workspace:^",
     "@layera/geo-drawing": "file:../../packages/geo-drawing",
     "@layera/geocoding": "file:../../packages/geocoding",
     "@layera/i18n": "file:../../packages/i18n",
@@ -30,7 +29,6 @@
     "leaflet-auto-graticule": "^2.0.0",
     "leaflet-ruler": "^1.0.0",
     "react": "^19.0.0",
-    "react-device-frameset": "^1.3.4",
     "react-dom": "^19.0.0",
     "react-leaflet": "^5.0.0"
   },

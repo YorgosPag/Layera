@@ -91,9 +91,47 @@ export const useViewport = (): ViewportInfo => {
 };
 
 /**
- * Determine device type based on width
+ * Determine device type based on width and browser simulator detection
  */
 function getDeviceType(width: number): DeviceType {
+  // Enhanced detection για browser device simulators
+  if (typeof window !== 'undefined') {
+    // Έλεγχος για Chrome DevTools device simulation
+    const isSimulator =
+      navigator.userAgent.includes('Mobile') ||
+      navigator.userAgent.includes('Android') ||
+      navigator.userAgent.includes('iPhone') ||
+      navigator.userAgent.includes('iPad') ||
+      // Browser simulator detection - όταν το viewport είναι μικρό αλλά το screen μεγάλο
+      (width <= 430 && window.screen.width > 1000) ||
+      // Specific mobile simulator sizes
+      (width === 375 && window.innerHeight === 667) || // iPhone 6/7/8
+      (width === 414 && window.innerHeight === 896) || // iPhone 11/XR
+      (width === 430 && window.innerHeight === 932) || // iPhone 14 Pro Max
+      (width === 390 && window.innerHeight === 844) || // iPhone 12/13/14
+      // DevTools mobile simulation indicators
+      window.orientation !== undefined ||
+      'ontouchstart' in window ||
+      navigator.maxTouchPoints > 0;
+
+    // Αν ανιχνεύθηκε simulator/mobile device, επιστρέφουμε mobile
+    if (isSimulator && width <= 768) {
+      return 'mobile';
+    }
+
+    // Testing mode: εάν το browser window είναι μικρό, θεώρησέ το mobile
+    // Ή αν είμαστε σε DevTools simulator (aspect ratio check)
+    const height = window.innerHeight;
+    const aspectRatio = width / height;
+    const isSimulatorSize = width <= 430 || (aspectRatio < 0.8 && width <= 768);
+
+    if (width <= 480 || isSimulatorSize) {
+      console.log('🎯 useViewport: Mobile detected:', { width, height, aspectRatio, isSimulatorSize });
+      return 'mobile';
+    }
+  }
+
+  // Fallback σε breakpoint-based detection
   if (width < DEFAULT_BREAKPOINTS.mobile) {
     return 'mobile';
   } else if (width < DEFAULT_BREAKPOINTS.tablet) {

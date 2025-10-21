@@ -23,19 +23,19 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({ onNext }) => {
 
   return (
     <Stack spacing="md">
-      <Heading as="h3" size="lg" color="primary">
-        {t('pipeline.category.selection.title')}
-      </Heading>
-
-      <Stack spacing="md">
         <BaseCard
           clickable
           onClick={() => onNext('property')}
-          variant="outlined"
+          variant="elevated"
           size="lg"
           padding="lg"
           hoverable
-          className="layera-unified-card"
+          style={{
+            backgroundColor: 'var(--layera-bg-primary)',
+            border: '1px solid var(--layera-border-primary)',
+            borderRadius: '12px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+          }}
         >
           <Flex align="start" gap="lg">
             <VillaIcon size="xl" theme="primary" />
@@ -55,11 +55,16 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({ onNext }) => {
         <BaseCard
           clickable
           onClick={() => onNext('job')}
-          variant="outlined"
+          variant="elevated"
           size="lg"
           padding="lg"
           hoverable
-          className="layera-unified-card"
+          style={{
+            backgroundColor: 'var(--layera-bg-primary)',
+            border: '1px solid var(--layera-border-primary)',
+            borderRadius: '12px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+          }}
         >
           <Flex align="start" gap="lg">
             <BriefcaseIcon size="xl" theme="success" />
@@ -75,7 +80,6 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({ onNext }) => {
             </Stack>
           </Flex>
         </BaseCard>
-      </Stack>
     </Stack>
   );
 };

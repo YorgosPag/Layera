@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import { CloseIcon } from '@layera/icons';
 import type { BaseModalProps } from '../../types';
 import './Modal.css';
 
@@ -131,19 +132,7 @@ export const Modal: React.FC<BaseModalProps> = ({
             onClick={handleCloseClick}
             aria-label="Close modal"
           >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
+            <CloseIcon size="md" theme="neutral" />
           </button>
         )}
         <div

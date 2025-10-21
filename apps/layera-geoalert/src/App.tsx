@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { useViewportWithOverride, DeviceOverrideProvider } from '@layera/viewport';
 import { Text, Heading } from '@layera/typography';
@@ -146,6 +146,56 @@ function App() {
   const { t } = useLayeraTranslation();
   const { isMobile } = useViewportWithOverride();
   const [isMapMode, setIsMapMode] = useState(false);
+  const [showCategoryElements, setShowCategoryElements] = useState(false);
+
+  // iPhone 14 Pro Max detection - immediate check
+  const deviceFrameElement = document.getElementById('layera-device-simulator-viewport');
+  const isInDeviceFrame = !!deviceFrameElement;
+  let frameWidth = 0;
+  let frameHeight = 0;
+
+  if (isInDeviceFrame && deviceFrameElement) {
+    const rect = deviceFrameElement.getBoundingClientRect();
+    frameWidth = rect.width;
+    frameHeight = rect.height;
+  }
+
+  const isIPhone14ProMaxDevice = isInDeviceFrame &&
+    ((frameWidth === 414 && frameHeight === 916) ||
+     (frameWidth >= 412 && frameWidth <= 416 && frameHeight >= 914 && frameHeight <= 920));
+
+  // State για re-render αν αλλάξει
+  const [deviceDetected, setDeviceDetected] = useState(isIPhone14ProMaxDevice);
+
+  useEffect(() => {
+    const checkDevice = () => {
+      const deviceFrameElement = document.getElementById('layera-device-simulator-viewport');
+      const isInDeviceFrame = !!deviceFrameElement;
+
+      if (isInDeviceFrame && deviceFrameElement) {
+        const rect = deviceFrameElement.getBoundingClientRect();
+        const frameWidth = rect.width;
+        const frameHeight = rect.height;
+
+        const isIPhone14ProMax = ((frameWidth === 414 && frameHeight === 916) ||
+                                 (frameWidth >= 412 && frameWidth <= 416 && frameHeight >= 914 && frameHeight <= 920));
+
+        console.log('🎯 App.tsx Device Detection Update:', {
+          deviceFrameElement: !!deviceFrameElement,
+          frameWidth,
+          frameHeight,
+          isIPhone14ProMax
+        });
+
+        setDeviceDetected(isIPhone14ProMax);
+      }
+    };
+
+    // Έλεγχος μετά από λίγο για DOM updates
+    const timer = setTimeout(checkDevice, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
   const [savedAreas, setSavedAreas] = useState<DrawnArea[]>([]);
   const [activeView, setActiveView] = useState<'dashboard' | 'map'>('dashboard');
   const [isAreasPanelOpen, setIsAreasPanelOpen] = useState(false);
@@ -214,24 +264,80 @@ function App() {
       <ThemeProvider defaultTheme="system" storageKey="layera-geoalert-theme">
         <NotificationProvider>
           <DeviceOverrideProvider>
-            <DeviceFrameWrapper enabled={true}>
-              <AppShell
-                layout="fullscreen"
-                header={<GeoHeader onBackClick={() => setIsMapMode(false)} />}
-                className="geo-map-shell"
-              >
-                <ViewportFrame id="geo-viewport">
-                  <GeoMap onAreaCreated={handleAreaCreated} onNewEntryClick={handleNewEntryClick} />
-                </ViewportFrame>
+            {/* CSS για κρύψιμο header όταν stepper είναι ενεργό */}
+            <style>
+              {`
+                .hide-header .layera-layout-header {
+                  display: none !important;
+                  height: 0 !important;
+                  margin: 0 !important;
+                  padding: 0 !important;
+                  border: none !important;
+                }
+                .hide-header {
+                  grid-template-rows: 0 1fr !important;
+                }
+              `}
+            </style>
+            <div style={{
+              display: 'flex',
+              height: '100vh',
+              backgroundColor: '#f0f0f0'
+            }}>
 
-            {/* Unified Pipeline Modal */}
-            <UnifiedPipelineModal
-              isOpen={showUnifiedPipeline}
-              onClose={() => setShowUnifiedPipeline(false)}
-              onSubmit={handleUnifiedPipelineSubmit}
-            />
-              </AppShell>
-            </DeviceFrameWrapper>
+              {/* Device Frame - Left Side */}
+              <div style={{ flex: 1 }}>
+                <DeviceFrameWrapper enabled={true}>
+                  <AppShell
+                    layout="fullscreen"
+                    header={(!showCategoryElements || !(deviceDetected || isIPhone14ProMaxDevice)) ?
+                      <GeoHeader onBackClick={() => setIsMapMode(false)} isIPhone14ProMax={deviceDetected || isIPhone14ProMaxDevice} /> :
+                      null}
+                    className={`geo-map-shell ${showCategoryElements && (deviceDetected || isIPhone14ProMaxDevice) ? 'hide-header' : ''}`}
+                  >
+                    <ViewportFrame id="layera-device-simulator-viewport">
+                      <GeoMap
+                        onAreaCreated={handleAreaCreated}
+                        onNewEntryClick={handleNewEntryClick}
+                        showUnifiedPipeline={showUnifiedPipeline}
+                        onCloseUnifiedPipeline={() => setShowUnifiedPipeline(false)}
+                        onSubmitUnifiedPipeline={handleUnifiedPipelineSubmit}
+                        isIPhone14ProMaxDevice={deviceDetected || isIPhone14ProMaxDevice}
+                        onCategoryElementsChange={setShowCategoryElements}
+                      />
+                    </ViewportFrame>
+                  </AppShell>
+                </DeviceFrameWrapper>
+              </div>
+
+              {/* Pipeline Control Panel - Right Side */}
+              {showUnifiedPipeline && (
+                <div style={{
+                  width: '400px',
+                  backgroundColor: 'var(--layera-bg-secondary)',
+                  border: '1px solid var(--layera-border-primary)',
+                  padding: '20px',
+                  overflow: 'auto'
+                }}>
+                  <h3 style={{
+                    margin: '0 0 16px 0',
+                    color: 'var(--layera-text-primary)',
+                    fontSize: '18px',
+                    fontWeight: 'bold'
+                  }}>
+                    🎯 Pipeline Control Panel
+                  </h3>
+
+                  <UnifiedPipelineModal
+                    isOpen={true}
+                    onClose={() => setShowUnifiedPipeline(false)}
+                    onSubmit={handleUnifiedPipelineSubmit}
+                    container={null}
+                  />
+                </div>
+              )}
+
+            </div>
           </DeviceOverrideProvider>
         </NotificationProvider>
       </ThemeProvider>

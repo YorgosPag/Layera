@@ -72,6 +72,26 @@ var useViewport = () => {
   return viewport;
 };
 function getDeviceType(width) {
+  if (typeof window !== "undefined") {
+    const isSimulator = navigator.userAgent.includes("Mobile") || navigator.userAgent.includes("Android") || navigator.userAgent.includes("iPhone") || navigator.userAgent.includes("iPad") || // Browser simulator detection - όταν το viewport είναι μικρό αλλά το screen μεγάλο
+    width <= 430 && window.screen.width > 1e3 || // Specific mobile simulator sizes
+    width === 375 && window.innerHeight === 667 || // iPhone 6/7/8
+    width === 414 && window.innerHeight === 896 || // iPhone 11/XR
+    width === 430 && window.innerHeight === 932 || // iPhone 14 Pro Max
+    width === 390 && window.innerHeight === 844 || // iPhone 12/13/14
+    // DevTools mobile simulation indicators
+    window.orientation !== void 0 || "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    if (isSimulator && width <= 768) {
+      return "mobile";
+    }
+    const height = window.innerHeight;
+    const aspectRatio = width / height;
+    const isSimulatorSize = width <= 430 || aspectRatio < 0.8 && width <= 768;
+    if (width <= 480 || isSimulatorSize) {
+      console.log("\u{1F3AF} useViewport: Mobile detected:", { width, height, aspectRatio, isSimulatorSize });
+      return "mobile";
+    }
+  }
   if (width < DEFAULT_BREAKPOINTS.mobile) {
     return "mobile";
   } else if (width < DEFAULT_BREAKPOINTS.tablet) {
@@ -331,40 +351,6 @@ var TabletIcon = ({
       children: [
         /* @__PURE__ */ jsx2("rect", { x: "4", y: "2", width: "16", height: "20", rx: "2", ry: "2" }),
         /* @__PURE__ */ jsx2("line", { x1: "12", y1: "18", x2: "12.01", y2: "18" })
-      ]
-    }
-  );
-};
-var RotateIcon = ({
-  size = "md",
-  theme = "neutral",
-  className = "",
-  style = {},
-  onClick
-}) => {
-  const iconSize = typeof size === "number" ? size : ICON_SIZES[size];
-  const color = THEME_COLORS[theme];
-  return /* @__PURE__ */ jsxs(
-    "svg",
-    {
-      width: iconSize,
-      height: iconSize,
-      viewBox: "0 0 24 24",
-      fill: "none",
-      stroke: color,
-      strokeWidth: 2,
-      strokeLinecap: "round",
-      strokeLinejoin: "round",
-      className: `viewport-icon ${className}`,
-      style,
-      onClick,
-      role: onClick ? "button" : "img",
-      tabIndex: onClick ? 0 : void 0,
-      children: [
-        /* @__PURE__ */ jsx2("path", { d: "M21 2v6h-6" }),
-        /* @__PURE__ */ jsx2("path", { d: "M3 12a9 9 0 0 1 15-6.7L21 8" }),
-        /* @__PURE__ */ jsx2("path", { d: "M3 22v-6h6" }),
-        /* @__PURE__ */ jsx2("path", { d: "M21 12a9 9 0 0 1-15 6.7L3 16" })
       ]
     }
   );
@@ -642,217 +628,9 @@ var DeviceSwitcher = ({
     }, children: labels.overrideActive || "Override Active" })
   ] });
 };
-
-// src/components/DeviceSimulator.tsx
-import { useState as useState4, useContext as useContext2 } from "react";
-import { Fragment as Fragment3, jsx as jsx5, jsxs as jsxs4 } from "react/jsx-runtime";
-var DEVICE_SPECS = {
-  mobile: {
-    name: "iPhone 13 Pro",
-    width: 390,
-    height: 844,
-    scale: 0.7,
-    // Scale για να χωράει στην οθόνη
-    borderRadius: "25px",
-    bezelColor: "var(--layera-bg-secondary)"
-  },
-  tablet: {
-    name: 'iPad Pro 11"',
-    width: 834,
-    height: 1194,
-    scale: 0.5,
-    borderRadius: "20px",
-    bezelColor: "var(--layera-text-secondary)"
-  },
-  desktop: {
-    name: "Desktop 1920x1080",
-    width: 1920,
-    height: 1080,
-    scale: 0.4,
-    borderRadius: "10px",
-    bezelColor: "var(--layera-text-tertiary)"
-  }
-};
-var DeviceSimulator = ({
-  children,
-  showDeviceFrame = true
-}) => {
-  const { overrideDevice } = useContext2(DeviceOverrideContext);
-  const [orientation, setOrientation] = useState4("portrait");
-  if (!overrideDevice) {
-    return /* @__PURE__ */ jsx5(Fragment3, { children });
-  }
-  const spec = DEVICE_SPECS[overrideDevice];
-  const isLandscape = orientation === "landscape";
-  const finalWidth = isLandscape ? spec.height : spec.width;
-  const finalHeight = isLandscape ? spec.width : spec.height;
-  const scaledWidth = finalWidth * spec.scale;
-  const scaledHeight = finalHeight * spec.scale;
-  if (!showDeviceFrame) {
-    return /* @__PURE__ */ jsx5("div", { style: {
-      width: `${scaledWidth}px`,
-      height: `${scaledHeight}px`,
-      margin: "0 auto",
-      border: "2px solid var(--layera-border-primary)",
-      borderRadius: "8px",
-      overflow: "hidden",
-      transform: `scale(${spec.scale})`,
-      transformOrigin: "top center"
-    }, children: /* @__PURE__ */ jsx5("div", { style: {
-      width: `${finalWidth}px`,
-      height: `${finalHeight}px`,
-      transform: `scale(${1 / spec.scale})`
-    }, children }) });
-  }
-  return /* @__PURE__ */ jsxs4("div", { style: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: "2rem",
-    backgroundColor: "var(--layera-bg-tertiary)",
-    minHeight: "100vh"
-  }, children: [
-    /* @__PURE__ */ jsxs4("div", { style: {
-      marginBottom: "1rem",
-      padding: "1rem",
-      backgroundColor: "var(--layera-bg-primary)",
-      borderRadius: "8px",
-      boxShadow: "0 2px 4px color-mix(in srgb, var(--layera-bg-secondary) 10%, transparent 90%)",
-      display: "flex",
-      alignItems: "center",
-      gap: "1rem"
-    }, children: [
-      /* @__PURE__ */ jsxs4("div", { children: [
-        /* @__PURE__ */ jsxs4("h3", { style: { margin: 0, color: "var(--layera-text-primary)" }, children: [
-          spec.name,
-          " Simulator"
-        ] }),
-        /* @__PURE__ */ jsxs4("p", { style: { margin: 0, color: "var(--layera-text-secondary)", fontSize: "0.875rem" }, children: [
-          finalWidth,
-          " \xD7 ",
-          finalHeight,
-          "px (",
-          Math.round(spec.scale * 100),
-          "% scale)"
-        ] })
-      ] }),
-      overrideDevice !== "desktop" && /* @__PURE__ */ jsxs4(
-        "button",
-        {
-          onClick: () => setOrientation((prev) => prev === "portrait" ? "landscape" : "portrait"),
-          style: {
-            backgroundColor: "var(--layera-bg-info)",
-            color: "var(--layera-text-on-info)",
-            border: "none",
-            borderRadius: "6px",
-            padding: "0.5rem 1rem",
-            fontSize: "0.875rem",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            gap: "0.5rem"
-          },
-          children: [
-            /* @__PURE__ */ jsx5(RotateIcon, { size: "sm", theme: "neutral" }),
-            isLandscape ? "Portrait" : "Landscape"
-          ]
-        }
-      )
-    ] }),
-    /* @__PURE__ */ jsxs4("div", { style: {
-      padding: "20px",
-      backgroundColor: spec.bezelColor,
-      borderRadius: `calc(${spec.borderRadius} + 20px)`,
-      boxShadow: "0 8px 32px color-mix(in srgb, var(--layera-bg-secondary) 30%, transparent 70%)",
-      position: "relative"
-    }, children: [
-      /* @__PURE__ */ jsxs4("div", { style: {
-        width: `${scaledWidth}px`,
-        height: `${scaledHeight}px`,
-        backgroundColor: "var(--layera-bg-primary)",
-        borderRadius: spec.borderRadius,
-        overflow: "hidden",
-        position: "relative",
-        boxShadow: "inset 0 0 0 1px color-mix(in srgb, var(--layera-border-primary) 10%, transparent 90%)"
-      }, children: [
-        /* @__PURE__ */ jsx5(
-          "div",
-          {
-            id: "layera-device-simulator-viewport",
-            style: {
-              width: `${finalWidth}px`,
-              height: `${finalHeight}px`,
-              transform: `scale(${spec.scale})`,
-              transformOrigin: "top left",
-              overflow: "hidden"
-            },
-            children
-          }
-        ),
-        overrideDevice === "mobile" && /* @__PURE__ */ jsx5(Fragment3, { children: /* @__PURE__ */ jsx5("div", { style: {
-          position: "absolute",
-          bottom: "8px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: "134px",
-          height: "5px",
-          backgroundColor: "color-mix(in srgb, var(--layera-bg-secondary) 30%, transparent 70%)",
-          borderRadius: "2.5px"
-        } }) })
-      ] }),
-      overrideDevice === "mobile" && /* @__PURE__ */ jsxs4(Fragment3, { children: [
-        /* @__PURE__ */ jsx5("div", { style: {
-          position: "absolute",
-          right: "-3px",
-          top: isLandscape ? "20%" : "25%",
-          width: "3px",
-          height: "60px",
-          backgroundColor: spec.bezelColor,
-          borderRadius: "0 2px 2px 0"
-        } }),
-        /* @__PURE__ */ jsx5("div", { style: {
-          position: "absolute",
-          left: "-3px",
-          top: isLandscape ? "15%" : "20%",
-          width: "3px",
-          height: "40px",
-          backgroundColor: spec.bezelColor,
-          borderRadius: "2px 0 0 2px"
-        } }),
-        /* @__PURE__ */ jsx5("div", { style: {
-          position: "absolute",
-          left: "-3px",
-          top: isLandscape ? "25%" : "30%",
-          width: "3px",
-          height: "40px",
-          backgroundColor: spec.bezelColor,
-          borderRadius: "2px 0 0 2px",
-          marginTop: "10px"
-        } })
-      ] })
-    ] }),
-    /* @__PURE__ */ jsxs4("div", { style: {
-      marginTop: "1rem",
-      padding: "1rem",
-      backgroundColor: "var(--layera-bg-primary)",
-      borderRadius: "8px",
-      boxShadow: "0 2px 4px color-mix(in srgb, var(--layera-bg-secondary) 10%, transparent 90%)",
-      maxWidth: "600px",
-      textAlign: "center"
-    }, children: [
-      /* @__PURE__ */ jsx5("h4", { style: { margin: "0 0 0.5rem 0", color: "var(--layera-text-primary)" }, children: "Device Simulation Active" }),
-      /* @__PURE__ */ jsxs4("p", { style: { margin: 0, color: "var(--layera-text-secondary)", fontSize: "0.875rem" }, children: [
-        "\u0397 \u03B5\u03C6\u03B1\u03C1\u03BC\u03BF\u03B3\u03AE \u03B5\u03BC\u03C6\u03B1\u03BD\u03AF\u03B6\u03B5\u03C4\u03B1\u03B9 \u03CC\u03C0\u03C9\u03C2 \u03B8\u03B1 \u03C6\u03B1\u03AF\u03BD\u03B5\u03C4\u03B1\u03B9 \u03C3\u03B5 \u03C0\u03C1\u03B1\u03B3\u03BC\u03B1\u03C4\u03B9\u03BA\u03AE ",
-        spec.name,
-        " \u03C3\u03C5\u03C3\u03BA\u03B5\u03C5\u03AE. \u03A7\u03C1\u03B7\u03C3\u03B9\u03BC\u03BF\u03C0\u03BF\u03AF\u03B7\u03C3\u03B5 \u03C4\u03B1 Device Switcher buttons \u03B3\u03B9\u03B1 \u03B5\u03BD\u03B1\u03BB\u03BB\u03B1\u03B3\u03AE \u03C3\u03C5\u03C3\u03BA\u03B5\u03C5\u03CE\u03BD."
-      ] })
-    ] })
-  ] });
-};
 export {
   DesktopOnly,
   DeviceOverrideProvider,
-  DeviceSimulator,
   DeviceSwitcher,
   MobileAndTablet,
   MobileOnly,

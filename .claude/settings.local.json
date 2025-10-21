@@ -111,7 +111,10 @@
       "WebFetch(domain:github.com)",
       "Bash(pnpm tsup:*)",
       "Bash(pnpm clean:*)",
-      "Bash(pnpm remove:*)"
+      "Bash(pnpm remove:*)",
+      "Bash(Sort-Object LastWriteTime -Descending)",
+      "Bash(Select-Object -First 1)",
+      "Bash(timeout:*)"
     ],
     "deny": [],
     "ask": []

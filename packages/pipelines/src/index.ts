@@ -5,6 +5,7 @@
 
 // Unified Pipeline System
 export * from '../unified/UnifiedPipelineModal';
+export * from '../unified/UnifiedPipelineContent';
 export * from '../unified/hooks/useUnifiedPipeline';
 export * from '../unified/hooks/useModalContainer';
 export * from '../unified/hooks/useMediaQuery';

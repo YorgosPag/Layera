@@ -45,6 +45,17 @@ Write-Host "Creating: $zipName" -ForegroundColor Yellow
 # Ensure backup directory exists
 New-Item -Path "C:\layera_backups" -ItemType Directory -Force | Out-Null
 
+# Enterprise Feature: Clean old backups (keep last 10)
+Write-Host "Checking for old backups..." -ForegroundColor Cyan
+$oldBackups = Get-ChildItem "C:\layera_backups\" -Filter "*.zip" -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -Skip 10
+if ($oldBackups.Count -gt 0) {
+    Write-Host "  Found $($oldBackups.Count) old backups to remove (keeping last 10)" -ForegroundColor Yellow
+    foreach ($oldBackup in $oldBackups) {
+        Remove-Item $oldBackup.FullName -Force
+        Write-Host "    Removed: $($oldBackup.Name)" -ForegroundColor DarkGray
+    }
+}
+
 # Create temporary folder for organizing files before zip
 $tempDir = "$env:TEMP\layera-backup-$timestamp"
 New-Item -Path $tempDir -ItemType Directory -Force | Out-Null
@@ -186,11 +197,23 @@ Write-Host "Collecting source files..." -ForegroundColor Cyan
 try {
     # Copy apps (excluding node_modules, dist, build)
     Write-Host "  Copying apps..." -ForegroundColor Gray
-    robocopy "C:\Layera\apps" "$tempDir\apps" /E /XD node_modules dist build coverage .cache .git /XF *.log *.tmp nul *.lock /R:1 /W:1 /NP /NDL /NJH /NJS
+    $appCount = (Get-ChildItem "C:\Layera\apps" -Directory).Count
+    $current = 0
+    foreach ($app in Get-ChildItem "C:\Layera\apps" -Directory) {
+        $current++
+        Write-Host "    [$current/$appCount] $($app.Name)" -ForegroundColor DarkGray
+        robocopy "$($app.FullName)" "$tempDir\apps\$($app.Name)" /E /XD node_modules dist build coverage .cache .git .turbo /XF *.log *.tmp nul *.lock /R:1 /W:1 /NP /NDL /NJH /NJS
+    }
 
     # Copy packages (excluding node_modules, dist, build)
     Write-Host "  Copying packages..." -ForegroundColor Gray
-    robocopy "C:\Layera\packages" "$tempDir\packages" /E /XD node_modules dist build coverage .cache .git /XF *.log *.tmp nul *.lock /R:1 /W:1 /NP /NDL /NJH /NJS
+    $packageCount = (Get-ChildItem "C:\Layera\packages" -Directory).Count
+    $current = 0
+    foreach ($package in Get-ChildItem "C:\Layera\packages" -Directory) {
+        $current++
+        Write-Host "    [$current/$packageCount] $($package.Name)" -ForegroundColor DarkGray
+        robocopy "$($package.FullName)" "$tempDir\packages\$($package.Name)" /E /XD node_modules dist build coverage .cache .git .turbo /XF *.log *.tmp nul *.lock /R:1 /W:1 /NP /NDL /NJH /NJS
+    }
 
     # Copy documentation
     Write-Host "  Copying documentation..." -ForegroundColor Gray
@@ -223,19 +246,38 @@ try {
 
     # Summary already created above, no need for additional readme
 
-    # Create the ZIP file directly
+    # Calculate source size before compression
+    Write-Host "Calculating source size..." -ForegroundColor Cyan
+    $sourceSize = 0
+    Get-ChildItem $tempDir -Recurse -File | ForEach-Object { $sourceSize += $_.Length }
+    $sourceSizeMB = [math]::Round($sourceSize / 1MB, 2)
+    Write-Host "  Total source size: $sourceSizeMB MB" -ForegroundColor Gray
+
+    # Create the ZIP file directly with progress
     Write-Host "Creating ZIP archive..." -ForegroundColor Cyan
-    Compress-Archive -Path "$tempDir\*" -DestinationPath $zipPath -Force
+    Write-Host "  Compressing $sourceSizeMB MB of source files..." -ForegroundColor Gray
+
+    # Use .NET for better compression
+    Add-Type -Assembly System.IO.Compression.FileSystem
+    [System.IO.Compression.ZipFile]::CreateFromDirectory($tempDir, $zipPath, 'Optimal', $false)
 
     # Clean up temp directory
+    Write-Host "  Cleaning up temporary files..." -ForegroundColor Gray
     Remove-Item $tempDir -Recurse -Force
 
     # Show results
     $zipSize = [math]::Round((Get-Item $zipPath).Length / 1MB, 2)
+    $compressionRatio = [math]::Round((($sourceSizeMB - $zipSize) / $sourceSizeMB * 100), 1)
+
     Write-Host ""
-    Write-Host "SUCCESS! BACKUP COMPLETED!" -ForegroundColor Green
-    Write-Host "ZIP Location: $zipPath" -ForegroundColor White
-    Write-Host "ZIP Size: $zipSize MB" -ForegroundColor White
+    Write-Host "════════════════════════════════════════════════════" -ForegroundColor Green
+    Write-Host "SUCCESS! ENTERPRISE BACKUP COMPLETED!" -ForegroundColor Green
+    Write-Host "════════════════════════════════════════════════════" -ForegroundColor Green
+    Write-Host ""
+    Write-Host "📦 ZIP Location: $zipPath" -ForegroundColor White
+    Write-Host "📊 Source Size: $sourceSizeMB MB" -ForegroundColor Cyan
+    Write-Host "🗜️  ZIP Size: $zipSize MB" -ForegroundColor Cyan
+    Write-Host "✨ Compression: $compressionRatio% reduction" -ForegroundColor Yellow
     Write-Host ""
     Write-Host "BACKUP SUMMARY:" -ForegroundColor Cyan
     Write-Host "  All changes since last backup documented" -ForegroundColor Gray

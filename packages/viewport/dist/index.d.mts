@@ -122,14 +122,4 @@ interface DeviceSwitcherProps {
  */
 declare const DeviceSwitcher: React.FC<DeviceSwitcherProps>;
 
-interface DeviceSimulatorProps {
-    children: ReactNode;
-    showDeviceFrame?: boolean;
-}
-/**
- * Visual Device Simulator
- * Εμφανίζει την εφαρμογή σε πραγματικές διαστάσεις συσκευών
- */
-declare const DeviceSimulator: React.FC<DeviceSimulatorProps>;
-
-export { DesktopOnly, DeviceOverrideProvider, DeviceSimulator, DeviceSwitcher, type DeviceType, MobileAndTablet, MobileOnly, type Orientation, type ResponsiveConfig, ResponsiveContainer, TabletAndDesktop, TabletOnly, type ViewportBreakpoints, ViewportDebugger, type ViewportInfo, useIsDesktop, useIsMobile, useIsTablet, useOrientation, useViewport, useViewportWithOverride };
+export { DesktopOnly, DeviceOverrideProvider, DeviceSwitcher, type DeviceType, MobileAndTablet, MobileOnly, type Orientation, type ResponsiveConfig, ResponsiveContainer, TabletAndDesktop, TabletOnly, type ViewportBreakpoints, ViewportDebugger, type ViewportInfo, useIsDesktop, useIsMobile, useIsTablet, useOrientation, useViewport, useViewportWithOverride };

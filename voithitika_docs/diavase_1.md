@@ -1,104 +1,91 @@
-Θέλω να κάνεις μια πολύ μεγάλη βουτιά πάλι, βαθιά βουτιά στο διαδίκτυο και να βρεις αν υπάρχει κάποιο plug-in ή κάποιο API που αναφέρεται σε modal, επαγγελματικό enterprise ούτως ώστε να μπορώ να το προσθέτω σαν puzzle, σαν lego-σύστημα στις εφαρμογές ή να το αφαιρώ χωρίς να σπάσουν οι εφαρμογές.Ψάξε να βρεις το καλύτερο δωρεάν modal σύστημα που μπορεί να χειρίζονται οι μεγαλύτερες εταιρείες παγκοσμίως.
+Αιτία: το header χάνεται γιατί:
 
-Σκέφτηκε για 54s
+iOS Safari κρύβει τα browser bars όταν υπάρχει κατακόρυφο scroll στο root.
 
-Σύντομη σύσταση: επίλεξε Radix UI Dialog για React apps, ή Shoelace <sl-dialog> για framework-agnostic “lego” ένταξη. Αν θες hooks-API με μέγιστο έλεγχο, χρησιμοποίησε Adobe React Aria. Και τα τρία είναι δωρεάν, παραγωγικά, με πλήρη a11y και μπορούν να μπουν/βγουν χωρίς να “σπάνε” το UI.
+position: fixed χαλάει σε iOS αν οποιοσδήποτε πρόγονος έχει transform/filter/perspective ή αν το header είναι μέσα σε container με overflow.
 
-Κορυφαίες επιλογές
+100vh μεταβάλλεται σε iOS· το layout πηδάει και το header βγαίνει εκτός ορατού.
 
-Radix UI – Dialog (React, headless, MIT): unstyled primitives, focus-trap, portal, modal/non-modal, controlled/uncontrolled. Ιδανικό ως βάση enterprise design system και “κουμπώνει” με shadcn/ui. 
-radix-ui.com
-+1
+Λύση αρχιτεκτονικά: μηδενικό scroll στο root, header έξω από το “device frame”/map containers, χρήση 100dvh, και render του header με Portal στο document.body.
 
-Shoelace – <sl-dialog> (Web Components, MIT): framework-agnostic, εισαγωγή με CDN ή npm, πλήρως παραμετροποιήσιμο και προσθέτει/αφαιρείται σαν “πλακίδιο” σε οποιαδήποτε εφαρμογή. 
-shoelace.style
-+2
-shoelace.style
-+2
+Εφάρμοσε αυτά τα 5 βήματα:
 
-React Aria – useDialog (Adobe, hooks): δίνει το behavior/a11y μέσω hooks ώστε να ορίσεις εσύ DOM/στυλ· enterprise-grade focus management. 
-react-spectrum.adobe.com
-+1
+Global CSS
 
-“Lego” ενσωμάτωση (μοτίβο adapter)
+html, body { height: 100%; overflow: hidden; }
+#root, #app { height: 100dvh; position: relative; }
+:root { --safe-top: env(safe-area-inset-top, 0px); --header-h: 56px; }
 
-Ορίζεις ένα ουδέτερο API και υλοποιείς drivers για κάθε βιβλιοθήκη· έτσι αλλάζεις backend χωρίς refactor.
 
-// modal-api.ts
-export interface ModalHandle { open(): void; close(): void; toggle(): void; }
-export interface ModalAdapter {
-  mount(container: HTMLElement): ModalHandle; // returns imperative API
+Αντικατάστησε παντού 100vh με 100dvh. Αν χρειάζεται fallback:
+
+useEffect(() => {
+  const setVH = () => document.documentElement.style
+    .setProperty('--vh', `${window.innerHeight * 0.01}px`);
+  setVH(); window.addEventListener('resize', setVH);
+  return () => window.removeEventListener('resize', setVH);
+}, []);
+/* και CSS εναλλακτικά: height: calc(var(--vh, 1vh) * 100); */
+
+
+Κάνε τον header Portal ώστε να μην έχει προγόνους με transform/overflow:
+
+import { createPortal } from 'react-dom';
+function FixedTopChrome({ children }: { children: React.ReactNode }) {
+  const ref = React.useRef<HTMLDivElement | null>(null);
+  if (!ref.current) ref.current = document.createElement('div');
+  React.useEffect(() => {
+    const el = ref.current!;
+    Object.assign(el.style, {
+      position: 'fixed', top: '0', left: '0', right: '0',
+      zIndex: '2147483647', paddingTop: 'var(--safe-top)',
+    });
+    document.body.appendChild(el);
+    return () => { document.body.removeChild(el); };
+  }, []);
+  return createPortal(children, ref.current);
 }
 
 
-Radix driver (σκίτσο):
+Χρήση στο iPhone layout:
 
-// RadixModalAdapter.tsx
-import * as Dialog from '@radix-ui/react-dialog';
-export const RadixAdapter: ModalAdapter = {
-  mount(el) {
-    let setOpen: (v:boolean)=>void = () => {};
-    const Root = () => {
-      const [open, _setOpen] = React.useState(false);
-      setOpen = _setOpen;
-      return (
-        <Dialog.Root open={open} onOpenChange={_setOpen}>
-          <Dialog.Trigger asChild><button /></Dialog.Trigger>
-          <Dialog.Content><slot /></Dialog.Content>
-        </Dialog.Root>
-      );
-    };
-    ReactDOM.render(<Root />, el);
-    return { open: ()=>setOpen(true), close: ()=>setOpen(false), toggle: ()=>setOpen(o=>!o) };
-  }
-};
+{isIPhone14ProMaxDevice && (
+  <FixedTopChrome>
+    <AppHeader /* back, τίτλος, γλώσσα */ />
+  </FixedTopChrome>
+)}
 
 
-Radix Dialog χαρακτηριστικά και a11y: 
-radix-ui.com
+Το map να μην προκαλεί page scroll και να ξεκινά κάτω από τον header:
 
-Shoelace driver (σκίτσο):
+<div
+  id="map-wrap"
+  style={{
+    position: 'absolute',
+    top: `calc(var(--header-h) + var(--safe-top))`,
+    left: 0, right: 0, bottom: 0,
+    overflow: 'hidden',
+    touchAction: 'pan-x pan-y',
+  }}
+>
+  {/* leaflet map container εδώ */}
+</div>
 
-// ShoelaceModalAdapter.ts
-import '@shoelace-style/shoelace/dist/components/dialog/dialog.js';
-export const ShoelaceAdapter: ModalAdapter = {
-  mount(el) {
-    const dlg = document.createElement('sl-dialog');
-    el.appendChild(dlg);
-    return { open: ()=>dlg.show(), close: ()=>dlg.hide(), toggle: ()=>dlg.open?dlg.hide():dlg.show() };
-  }
-};
 
+Καθάρισε hacks που μπλέκουν:
 
-Shoelace dialog και framework-agnostic χρήση: 
-shoelace.style
-+1
+Βγάλε transform από wrappers του “device frame” που περιέχουν τον header. Αν το frame χρειάζεται transform, άφησέ το μόνο γύρω από τον χάρτη, όχι γύρω από τον header.
 
-Εναλλακτικές “όλα-σε-ένα”
+Αφαίρεσε τα meta/JS που τροποποιούν viewport ή body σε runtime. Δεν χρειάζονται με το παραπάνω layout.
 
-MUI Dialog: ώριμο, MIT, με Modal θεμέλιο. Καλό για teams που υιοθετούν Material. 
-MUI
-+2
-MUI
-+2
+Ξαναενεργοποίησε τα Leaflet interactions στο iPhone. Δεν θα κρύβεται η μπάρα αφού δεν υπάρχει root scroll.
 
-Ant Design Modal: δημοφιλές σε enterprise, MIT. Κατάλληλο αν υιοθετείς Ant Design system. 
-DUMBO Design
-+1
+Έλεγχοι-κλειδιά:
 
-Vaadin Dialog (Web Component): enterprise προσανατολισμός, αaccessibility δηλωμένη, core υπό Apache-2.0. 
-Vaadin
-+2
-Vaadin
-+2
+Ο header πρέπει να είναι sibling του map container και να γίνεται render σε document.body μέσω Portal.
 
-Επιλογή για Layera
+Κανένας πρόγονος του header με transform, filter, perspective, backdrop-filter, will-change, ή overflow.
 
-Αν μένεις σε React + shadcn/ui, καθιέρωσε Radix Dialog ως standard driver πίσω από ένα adapter όπως παραπάνω. 
-shadcn.io
-+1
+Καμία χρήση 100vh. Μόνο 100dvh ή το --vh hack.
 
-Αν χρειάζεσαι drop-in σε διαφορετικά stacks ή micro-frontends, χρησιμοποίησε Shoelace <sl-dialog> ως κοινό web-component driver. 
-shoelace.style
-
-Θες να σου δώσω έτοιμο @layera/modals package με τους δύο adapters και sandbox demo;
+Με αυτά ο back button και ο τίτλος μένουν σταθερά ορατά ενώ μετακινείς τον χάρτη.
