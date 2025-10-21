@@ -20,6 +20,8 @@
     "@layera/i18n": "file:../../packages/i18n",
     "@layera/icons": "file:../../packages/icons",
     "@layera/layout": "file:../../packages/layout",
+    "@layera/map-core": "file:../../packages/map-core",
+    "@layera/map-drawing": "file:../../packages/map-drawing",
     "@layera/loading": "file:../../packages/loading",
     "@layera/notifications": "file:../../packages/notifications",
     "@layera/theme-switcher": "file:../../packages/theme-switcher",

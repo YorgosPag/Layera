@@ -114,7 +114,10 @@
       "Bash(pnpm remove:*)",
       "Bash(Sort-Object LastWriteTime -Descending)",
       "Bash(Select-Object -First 1)",
-      "Bash(timeout:*)"
+      "Bash(timeout:*)",
+      "Bash(git tag:*)",
+      "Bash(git checkout:*)",
+      "Bash(pnpm typecheck:*)"
     ],
     "deny": [],
     "ask": []
