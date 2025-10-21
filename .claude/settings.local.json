@@ -102,7 +102,16 @@
       "Bash(timeout 60 tail -f voithitika_docs/localhost.log)",
       "Bash(python:*)",
       "Bash(pnpm -w -r run clean)",
-      "Bash(pnpm -w -r build)"
+      "Bash(pnpm -w -r build)",
+      "Bash(timeout 10 pnpm run dev --port 3001)",
+      "Bash(start http://localhost:3010)",
+      "WebFetch(domain:www.svgrepo.com)",
+      "WebFetch(domain:www.untitledui.com)",
+      "WebFetch(domain:leafletjs.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(pnpm tsup:*)",
+      "Bash(pnpm clean:*)",
+      "Bash(pnpm remove:*)"
     ],
     "deny": [],
     "ask": []

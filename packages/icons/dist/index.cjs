@@ -54,6 +54,7 @@ __export(src_exports, {
   RestaurantIcon: () => RestaurantIcon,
   RotateIcon: () => RotateIcon,
   RouteIcon: () => RouteIcon,
+  RulerIcon: () => RulerIcon,
   SatelliteIcon: () => SatelliteIcon,
   SaveIcon: () => SaveIcon,
   SearchIcon: () => SearchIcon,
@@ -283,6 +284,7 @@ var SatelliteIcon = (props) => /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(Ico
   /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("path", { d: "M19 13l-4-4 4-4" }),
   /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("circle", { cx: "12", cy: "12", r: "2" })
 ] });
+var RulerIcon = (props) => /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(Icon, { name: "ruler", ...props, children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("path", { d: "M21 10V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5M7 10h4M15 10h2M7 14h2m4 0h4" }) });
 
 // src/icons/DeviceIcons.tsx
 var import_jsx_runtime4 = require("react/jsx-runtime");
@@ -497,6 +499,7 @@ var HospitalIcon = (props) => /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(Icon
   RestaurantIcon,
   RotateIcon,
   RouteIcon,
+  RulerIcon,
   SatelliteIcon,
   SaveIcon,
   SearchIcon,

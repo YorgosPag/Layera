@@ -163,7 +163,7 @@ var init_fallbackBoundaries = __esm({
 });
 
 // src/components/AddressBreakdownCard.tsx
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback as useCallback3, useEffect } from "react";
 import { BaseCard } from "@layera/cards";
 import { Button } from "@layera/buttons";
 import { LocationIcon, MapIcon } from "@layera/icons";
@@ -238,8 +238,61 @@ var Spinner = ({ size = "md", variant = "default", color, speed = "normal", clas
   return renderSpinner();
 };
 
-// src/components/AddressBreakdownCard.tsx
-import { useLayeraTranslation } from "@layera/i18n";
+// ../tolgee/dist/index.mjs
+import React2, { createContext, useContext } from "react";
+import { jsx } from "react/jsx-runtime";
+import { useCallback } from "react";
+import { jsx as jsx2 } from "react/jsx-runtime";
+import { useCallback as useCallback2 } from "react";
+var MinimalTolgeeContext = createContext(null);
+var useMinimalTolgee = () => {
+  const context = useContext(MinimalTolgeeContext);
+  if (!context) {
+    throw new Error("useMinimalTolgee must be used within MinimalTolgeeProvider");
+  }
+  return context;
+};
+var TOLGEE_CONFIG = {
+  // API Configuration
+  apiUrl: typeof process !== "undefined" && process.env?.TOLGEE_API_URL || "https://app.tolgee.io",
+  apiKey: typeof process !== "undefined" && process.env?.TOLGEE_API_KEY || "",
+  // Project Settings
+  projectId: typeof process !== "undefined" && process.env?.TOLGEE_PROJECT_ID || "",
+  // Language Settings
+  defaultLanguage: "el",
+  // Greek as default
+  fallbackLanguage: "en",
+  supportedLanguages: ["el", "en"],
+  // Development Settings
+  isDevelopment: typeof process !== "undefined" && process.env?.NODE_ENV === "development",
+  inContextEditing: typeof process !== "undefined" && process.env?.NODE_ENV === "development",
+  // Cache Settings
+  cacheEnabled: true,
+  cacheExpirationMs: 24 * 60 * 60 * 1e3,
+  // 24 hours
+  // Features
+  features: {
+    autoTranslate: true,
+    machineTranslation: true,
+    inContextEditing: true,
+    screenshots: true,
+    comments: true
+  }
+};
+function useLayeraTranslation() {
+  const { t, language, changeLanguage } = useMinimalTolgee();
+  return {
+    t,
+    i18n: {
+      language,
+      changeLanguage,
+      languages: {
+        el: "\u0395\u03BB\u03BB\u03B7\u03BD\u03B9\u03BA\u03AC",
+        en: "English"
+      }
+    }
+  };
+}
 
 // ../geo-mapping/src/services/osmService.ts
 var fetchBoundaryByAddressComponent = async (addressComponent) => {
@@ -484,11 +537,13 @@ function parseFullAddress(result) {
 }
 
 // src/components/AddressBreakdownCard.tsx
-import { jsx, jsxs } from "react/jsx-runtime";
+import { jsx as jsx3, jsxs } from "react/jsx-runtime";
 function AddressBreakdownCard({
   geocodeResult,
   config = {},
   title,
+  onClick,
+  style,
   isLoading = false,
   error = null
 }) {
@@ -520,7 +575,7 @@ function AddressBreakdownCard({
   };
   const components = parseFullAddress(geocodeResult);
   const visibleComponents = finalConfig.maxComponents ? components.slice(0, finalConfig.maxComponents) : components;
-  const handleComponentClick = useCallback(async (component) => {
+  const handleComponentClick = useCallback3(async (component) => {
     if (!component.clickable || !finalConfig.enableBoundarySearch) {
       return;
     }
@@ -579,7 +634,7 @@ function AddressBreakdownCard({
           ...componentProps,
           variant: isClickable ? "outline" : "ghost",
           size: "sm",
-          startIcon: isClickable ? /* @__PURE__ */ jsx(MapIcon, {}) : /* @__PURE__ */ jsx(LocationIcon, {}),
+          startIcon: isClickable ? /* @__PURE__ */ jsx3(MapIcon, {}) : /* @__PURE__ */ jsx3(LocationIcon, {}),
           loading: isLoading2,
           children: [
             component.label,
@@ -641,16 +696,16 @@ function AddressBreakdownCard({
             alignItems: "center",
             gap: "0.5rem"
           }, children: [
-            isLoading2 ? /* @__PURE__ */ jsx(Spinner, { size: "sm", variant: "default" }) : isClickable ? /* @__PURE__ */ jsx(MapIcon, { className: "list-icon", style: {
+            isLoading2 ? /* @__PURE__ */ jsx3(Spinner, { size: "sm", variant: "default" }) : isClickable ? /* @__PURE__ */ jsx3(MapIcon, { className: "list-icon", style: {
               width: "1rem",
               height: "1rem",
               color: "#3B82F6"
-            } }) : /* @__PURE__ */ jsx(LocationIcon, { className: "list-icon", style: {
+            } }) : /* @__PURE__ */ jsx3(LocationIcon, { className: "list-icon", style: {
               width: "1rem",
               height: "1rem",
               color: "#6B7280"
             } }),
-            /* @__PURE__ */ jsx("span", { className: "list-label", style: {
+            /* @__PURE__ */ jsx3("span", { className: "list-label", style: {
               flex: 1,
               fontSize: "0.875rem",
               color: isClickable ? "#1F2937" : "#6B7280",
@@ -665,7 +720,7 @@ function AddressBreakdownCard({
             alignItems: "center",
             gap: "0.5rem"
           }, children: [
-            /* @__PURE__ */ jsx("span", { children: "\u0391\u03BD\u03B1\u03B6\u03AE\u03C4\u03B7\u03C3\u03B7 \u03C0\u03B5\u03C1\u03B9\u03B3\u03C1\u03AC\u03BC\u03BC\u03B1\u03C4\u03BF\u03C2..." }),
+            /* @__PURE__ */ jsx3("span", { children: "\u0391\u03BD\u03B1\u03B6\u03AE\u03C4\u03B7\u03C3\u03B7 \u03C0\u03B5\u03C1\u03B9\u03B3\u03C1\u03AC\u03BC\u03BC\u03B1\u03C4\u03BF\u03C2..." }),
             /* @__PURE__ */ jsxs("span", { style: {
               fontWeight: "500",
               color: "#3B82F6",
@@ -680,7 +735,7 @@ function AddressBreakdownCard({
       component.id
     );
   };
-  const cardActions = /* @__PURE__ */ jsx(
+  const cardActions = /* @__PURE__ */ jsx3(
     Button,
     {
       variant: "ghost",
@@ -705,16 +760,18 @@ function AddressBreakdownCard({
       title: title || t("addressDetails"),
       actions: cardActions,
       className: `address-breakdown-card ${finalConfig.className || ""}`,
+      onClick,
+      style,
       children: [
-        error && /* @__PURE__ */ jsx("div", { className: "error-message", children: error }),
-        boundaryError && /* @__PURE__ */ jsx("div", { className: "boundary-error", children: boundaryError }),
-        !isLoading && visibleComponents.some((c) => c.clickable) && finalConfig.enableBoundarySearch && /* @__PURE__ */ jsx("div", { style: {
+        error && /* @__PURE__ */ jsx3("div", { className: "error-message", children: error }),
+        boundaryError && /* @__PURE__ */ jsx3("div", { className: "boundary-error", children: boundaryError }),
+        !isLoading && visibleComponents.some((c) => c.clickable) && finalConfig.enableBoundarySearch && /* @__PURE__ */ jsx3("div", { style: {
           fontSize: "0.875rem",
           color: "#6B7280",
           marginBottom: "0.75rem",
           fontStyle: "italic"
         }, children: t("clickToShowBoundary") }),
-        /* @__PURE__ */ jsx("div", { className: `address-components layout-${finalConfig.layout}`, children: isLoading ? /* @__PURE__ */ jsx("div", { className: "loading-state", children: "Loading..." }) : visibleComponents.map(renderComponent) }),
+        /* @__PURE__ */ jsx3("div", { className: `address-components layout-${finalConfig.layout}`, children: isLoading ? /* @__PURE__ */ jsx3("div", { className: "loading-state", children: "Loading..." }) : visibleComponents.map(renderComponent) }),
         components.length > visibleComponents.length && /* @__PURE__ */ jsxs("div", { className: "components-overflow", children: [
           "+",
           components.length - visibleComponents.length,

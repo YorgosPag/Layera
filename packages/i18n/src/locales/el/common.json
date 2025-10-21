@@ -629,9 +629,19 @@
             "mToM": "m - m"
           }
         },
+        "floorPlan": {
+          "title": "Φορτώστε το αρχείο με την κάτοψη του ακινήτου",
+          "description": "Κάντε κλικ για να ανεβάσετε την κάτοψη",
+          "selectFile": "Επιλογή Αρχείου",
+          "uploaded": "Κάτοψη φορτώθηκε",
+          "supportedTypes": "Υποστηρίζονται: Εικόνες (JPG, PNG, GIF), PDF, CAD (DXF, DWG)"
+        },
         "actions": {
           "back": "Πίσω",
           "saveLocation": "Αποθήκευση Τοποθεσίας & Συνέχεια"
+        },
+        "addressBreakdown": {
+          "title": "Ανάλυση Διεύθυνσης"
         }
       },
       "employmentType": {
@@ -720,5 +730,9 @@
         "complete": "Επιβεβαίωση"
       }
     }
+  },
+  "rulers": {
+    "showRulers": "Εμφάνιση Χαρακών",
+    "hideRulers": "Απόκρυψη Χαρακών"
   }
 }

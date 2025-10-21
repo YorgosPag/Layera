@@ -104,3 +104,10 @@ export const SatelliteIcon: React.FC<Omit<IconProps, 'name' | 'children'>> = (pr
     <circle cx="12" cy="12" r="2" />
   </Icon>
 );
+
+// Ruler - Χάρακας για μετρήσεις
+export const RulerIcon: React.FC<Omit<IconProps, 'name' | 'children'>> = (props) => (
+  <Icon name="ruler" {...props}>
+    <path d="M21 10V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5M7 10h4M15 10h2M7 14h2m4 0h4" />
+  </Icon>
+);

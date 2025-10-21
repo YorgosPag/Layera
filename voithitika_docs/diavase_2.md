@@ -1,22 +1,11 @@
-Αιτία: έχεις ρίξει το panel padding, αλλά το υπόλοιπο κενό προέρχεται από margins των εσωτερικών παιδιών (πρώτο/τελευταίο element, κυρίως Heading και τυχόν Card/Stack που βάζουν margin ή gap). Γι’ αυτό “μειώθηκε λίγο” και μετά σταμάτησε.
+Αιτία: Το “device simulation” τυλίγει την εφαρμογή σε κοντέινερ που είναι είτε iframe είτε στοιχείο με transform/overflow hidden/filter/contain. Αυτό δημιουργεί νέο containing block. Κάθε απόγονος, ακόμη και με position: fixed και τεράστιο z-index, κόβεται από τα όρια αυτού του κοντέινερ. Γι’ αυτό το floating panel δεν βγαίνει ποτέ έξω.
 
-Λύση μικρών κινήσεων που δουλεύει πάντα:
+Τι κάνεις:
 
-Κράτα panelPadding="2px" όπως τώρα.
+Αν είναι iframe: δεν γίνεται να βγεις έξω. Απόδωσε το panel στον γονικό της προσομοίωσης (shell) ή τρέξε τη σελίδα εκτός simulator.
 
-Μηδένισε τα εξωτερικά margins του περιεχομένου:
+Αν είναι div με transform/overflow: απόδωσε το panel εκτός DOM του simulator με React Portal στο document.body ή σε ρίζα που είναι αδελφή του simulator. Μόνο έτσι αποφεύγεις το clipping.
 
-/* global ή στο CSS του @layera/modals */
-.layera-modal-content > :first-child { margin-top: 0 !important; }
-.layera-modal-content > :last-child  { margin-bottom: 0 !important; }
+Εναλλακτικά, αφαίρεσε τον μετασχηματισμό/overflow:hidden από τον πρόγονο που φτιάχνει το frame. Αν μείνει, θα συνεχίσει να κόβει.
 
-/* προαιρετικά: headings/paragraphs */
-.layera-modal-content h1,
-.layera-modal-content h2,
-.layera-modal-content h3,
-.layera-modal-content p { margin: 0 !important; }
-
-
-Αν χρησιμοποιείς Stack με gap, άφησέ το για εσωτερικό spacing. Βγάλε τυχόν margin από Card containers στην πρώτη και τελευταία θέση.
-
-Με αυτά, το κενό γύρω από τις κάρτες θα εξαφανιστεί.
+Έλεγχος: με DevTools, βρες τον πρώτο πρόγονο που έχει transform/overflow:hidden/filter/contain ή δες αν το περιεχόμενο είναι σε iframe. Αν ναι, ισχύουν τα παραπάνω.

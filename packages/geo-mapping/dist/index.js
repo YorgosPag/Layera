@@ -161,41 +161,241 @@ var init_fallbackBoundaries = __esm({
   }
 });
 
+// src/utils/administrativeHierarchy.ts
+var GREEK_PATTERNS = {
+  [1 /* STREET */]: [
+    /^.*?\s*\d+/,
+    // Οδός με αριθμό
+    /οδός|λεωφόρος|πλατεία|αγίου|αγίας/i
+  ],
+  [2 /* COMMUNITY */]: [
+    /κοινότητα|community/i
+  ],
+  [3 /* NEIGHBORHOOD */]: [
+    /συνοικία|γειτονιά|περιοχή/i
+  ],
+  [4 /* VILLAGE */]: [
+    /χωριό|κωμόπολη|οικισμός/i
+  ],
+  [5 /* MUNICIPAL_UNIT */]: [
+    /δημοτική\s+ενότητα|municipal\s+unit/i
+  ],
+  [6 /* MUNICIPALITY */]: [
+    /^δήμος\s+|municipality\s+of/i
+  ],
+  [7 /* METROPOLITAN */]: [
+    /μητροπολιτική\s+ενότητα|metropolitan/i
+  ],
+  [8 /* PREFECTURE */]: [
+    /νομός|νομαρχία|prefecture/i
+  ],
+  [9 /* REGION */]: [
+    /περιφέρεια|region/i
+  ],
+  [10 /* DECENTRALIZED */]: [
+    /αποκεντρωμένη\s+διοίκηση|decentralized/i
+  ],
+  [11 /* COUNTRY */]: [
+    /ελλάδα|greece/i
+  ]
+};
+function getAdministrativeLevel(text) {
+  const cleanText = text.trim();
+  for (const [level, patterns] of Object.entries(GREEK_PATTERNS)) {
+    for (const pattern of patterns) {
+      if (pattern.test(cleanText)) {
+        return parseInt(level);
+      }
+    }
+  }
+  return 3 /* NEIGHBORHOOD */;
+}
+function removeDuplicates(items) {
+  const cleaned = [];
+  const seen = /* @__PURE__ */ new Set();
+  for (const item of items) {
+    const normalized = normalizeText(item);
+    if (seen.has(normalized)) {
+      continue;
+    }
+    const isDuplicate = Array.from(seen).some((existing) => {
+      return areTextsSimilar(normalized, existing);
+    });
+    if (!isDuplicate) {
+      seen.add(normalized);
+      cleaned.push(item);
+    }
+  }
+  return cleaned;
+}
+function normalizeText(text) {
+  return text.toLowerCase().replace(/^(δήμος|δημοτική\s+ενότητα|περιφέρεια|νομός)\s+/i, "").replace(/\s*-\s*/g, "-").replace(/\s+/g, " ").trim();
+}
+function areTextsSimilar(text1, text2) {
+  if (text1 === text2) return true;
+  if (text1.includes(text2)) {
+    const ratio = text2.length / text1.length;
+    if (ratio < 0.6) return true;
+  }
+  if (text2.includes(text1)) {
+    const ratio = text1.length / text2.length;
+    if (ratio < 0.6) return true;
+  }
+  const similarity = calculateSimilarity(text1, text2);
+  return similarity > 0.85;
+}
+function calculateSimilarity(str1, str2) {
+  const longer = str1.length > str2.length ? str1 : str2;
+  const shorter = str1.length > str2.length ? str2 : str1;
+  if (longer.length === 0) return 1;
+  const distance = levenshteinDistance(longer, shorter);
+  return (longer.length - distance) / longer.length;
+}
+function levenshteinDistance(str1, str2) {
+  const matrix = Array(str2.length + 1).fill(null).map(() => Array(str1.length + 1).fill(null));
+  for (let i = 0; i <= str1.length; i++) matrix[0][i] = i;
+  for (let j = 0; j <= str2.length; j++) matrix[j][0] = j;
+  for (let j = 1; j <= str2.length; j++) {
+    for (let i = 1; i <= str1.length; i++) {
+      const cost = str1[i - 1] === str2[j - 1] ? 0 : 1;
+      matrix[j][i] = Math.min(
+        matrix[j][i - 1] + 1,
+        // deletion
+        matrix[j - 1][i] + 1,
+        // insertion
+        matrix[j - 1][i - 1] + cost
+        // substitution
+      );
+    }
+  }
+  return matrix[str2.length][str1.length];
+}
+function processDisplayNameToHierarchy(displayName) {
+  console.log("\u{1F504} Processing display name for hierarchy:", displayName);
+  const parts = displayName.split(",").map((part) => part.trim()).filter((part) => part.length > 0);
+  console.log("\u{1F4DD} Initial parts:", parts);
+  let streetWithNumberAndPostal = "";
+  const nonStreetParts = [];
+  let postalCode = "";
+  const postalIndex = parts.findIndex((part) => /^\d{3,5}(-\d{4})?$/.test(part));
+  if (postalIndex !== -1) {
+    postalCode = parts[postalIndex];
+  }
+  const streetIndex = parts.findIndex((part) => /^.*?\s*\d+/.test(part));
+  if (streetIndex !== -1) {
+    streetWithNumberAndPostal = postalCode ? `${parts[streetIndex]}, ${postalCode}` : parts[streetIndex];
+  }
+  for (let i = 0; i < parts.length; i++) {
+    const part = parts[i];
+    if (/^\d{3,5}(-\d{4})?$/.test(part)) continue;
+    if (/^\d+$/.test(part)) continue;
+    if (i === streetIndex) continue;
+    nonStreetParts.push(part);
+  }
+  console.log("\u{1F6E3}\uFE0F Street with number and postal:", streetWithNumberAndPostal);
+  console.log("\u{1F9F9} Non-street parts:", nonStreetParts);
+  const uniqueNonStreetParts = removeDuplicates(nonStreetParts);
+  console.log("\u2728 Unique non-street parts:", uniqueNonStreetParts);
+  const hierarchicalParts = uniqueNonStreetParts.map((part) => ({
+    text: part,
+    level: getAdministrativeLevel(part)
+  })).sort((a, b) => a.level - b.level).map((item) => item.text);
+  console.log("\u{1F3DB}\uFE0F Hierarchically sorted non-street parts:", hierarchicalParts);
+  const finalParts = [];
+  if (streetWithNumberAndPostal) {
+    finalParts.push(streetWithNumberAndPostal);
+  }
+  finalParts.push(...hierarchicalParts);
+  const formattedHierarchy = finalParts.join("\n");
+  console.log("\u{1F4CB} Final formatted hierarchy:", formattedHierarchy);
+  return formattedHierarchy;
+}
+function getCountryFromDisplayName(displayName) {
+  const lowerName = displayName.toLowerCase();
+  if (lowerName.includes("\u03B5\u03BB\u03BB\u03AC\u03B4\u03B1") || lowerName.includes("greece")) {
+    return "greece";
+  }
+  if (lowerName.includes("bulgaria") || lowerName.includes("\u03B2\u03BF\u03C5\u03BB\u03B3\u03B1\u03C1\u03AF\u03B1")) {
+    return "bulgaria";
+  }
+  return "unknown";
+}
+function processDisplayNameByCountry(displayName) {
+  const country = getCountryFromDisplayName(displayName);
+  switch (country) {
+    case "greece":
+      return processDisplayNameToHierarchy(displayName);
+    case "bulgaria":
+      return displayName;
+    // Fallback προς το παρόν
+    default:
+      return processDisplayNameToHierarchy(displayName);
+  }
+}
+
 // src/services/osmService.ts
 var fetchBoundaryByAddressComponent = async (addressComponent) => {
   try {
-    console.log(`\u{1F30D} Direct OSM Overpass API \u03B3\u03B9\u03B1: ${addressComponent.label}`);
-    if (addressComponent.label.toLowerCase() === "rome") {
-      console.log(`\u2705 Returning placeholder boundary \u03B3\u03B9\u03B1 Rome`);
-      const romeBounds = {
-        north: 42.0505,
-        south: 41.7555,
-        east: 12.6569,
-        west: 12.3545
-      };
-      return {
-        type: "FeatureCollection",
-        features: [{
-          type: "Feature",
-          properties: {
-            name: "Rome",
-            admin_level: "8",
-            boundary: "administrative",
-            osm_id: 41485,
-            osm_type: "relation"
-          },
-          geometry: {
-            type: "Polygon",
-            coordinates: [[
-              [romeBounds.west, romeBounds.north],
-              [romeBounds.east, romeBounds.north],
-              [romeBounds.east, romeBounds.south],
-              [romeBounds.west, romeBounds.south],
-              [romeBounds.west, romeBounds.north]
-            ]]
-          }
-        }]
-      };
+    console.log(`\u{1F30D} Fetching boundary \u03B3\u03B9\u03B1: ${addressComponent.label}`);
+    const searchUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(addressComponent.label)}&format=json&limit=1&polygon_geojson=1`;
+    const searchResponse = await fetch(searchUrl, {
+      headers: {
+        "User-Agent": "Layera-GeoAlert/1.0"
+      }
+    });
+    if (!searchResponse.ok) {
+      throw new Error(`Nominatim error: ${searchResponse.status}`);
+    }
+    const searchData = await searchResponse.json();
+    if (searchData && searchData.length > 0) {
+      const result = searchData[0];
+      if (result.geojson) {
+        console.log(`\u2705 Found FULL POLYGON \u03B3\u03B9\u03B1 ${addressComponent.label} \u03BC\u03B5 ${result.geojson.coordinates?.[0]?.length || 0} \u03C3\u03B7\u03BC\u03B5\u03AF\u03B1`);
+        return {
+          type: "FeatureCollection",
+          features: [{
+            type: "Feature",
+            properties: {
+              name: result.display_name ? processDisplayNameByCountry(result.display_name) : addressComponent.label,
+              admin_level: "8",
+              boundary: "administrative",
+              osm_id: result.osm_id || 0,
+              osm_type: result.osm_type || "node"
+            },
+            geometry: result.geojson
+          }]
+        };
+      } else if (result.boundingbox) {
+        const bbox = result.boundingbox;
+        const south = parseFloat(bbox[0]);
+        const north = parseFloat(bbox[1]);
+        const west = parseFloat(bbox[2]);
+        const east = parseFloat(bbox[3]);
+        console.log(`\u26A0\uFE0F Using bounding box \u03B3\u03B9\u03B1 ${addressComponent.label} (no polygon available)`);
+        return {
+          type: "FeatureCollection",
+          features: [{
+            type: "Feature",
+            properties: {
+              name: result.display_name ? processDisplayNameByCountry(result.display_name) : addressComponent.label,
+              admin_level: "8",
+              boundary: "administrative",
+              osm_id: result.osm_id || 0,
+              osm_type: result.osm_type || "node"
+            },
+            geometry: {
+              type: "Polygon",
+              coordinates: [[
+                [west, north],
+                [east, north],
+                [east, south],
+                [west, south],
+                [west, north]
+              ]]
+            }
+          }]
+        };
+      }
     }
     const query = `
       [out:json][timeout:10];
@@ -219,26 +419,7 @@ var fetchBoundaryByAddressComponent = async (addressComponent) => {
       console.log(`\u2705 OSM boundary IDs found \u03B3\u03B9\u03B1: ${addressComponent.label} (${data.elements.length} elements)`);
       return {
         type: "FeatureCollection",
-        features: [{
-          type: "Feature",
-          properties: {
-            name: addressComponent.label,
-            admin_level: "8",
-            boundary: "administrative",
-            osm_id: data.elements[0].id,
-            osm_type: "relation"
-          },
-          geometry: {
-            type: "Polygon",
-            coordinates: [[
-              [-0.1, -0.1],
-              [0.1, -0.1],
-              [0.1, 0.1],
-              [-0.1, 0.1],
-              [-0.1, -0.1]
-            ]]
-          }
-        }]
+        features: []
       };
     }
     console.log(`\u26A0\uFE0F No OSM boundary found \u03B3\u03B9\u03B1: ${addressComponent.label}`);

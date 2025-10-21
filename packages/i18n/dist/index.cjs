@@ -1,10 +1,11 @@
-import i18n from 'i18next';
-export { default as i18n } from 'i18next';
-import { initReactI18next, useTranslation, I18nextProvider } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
-import Backend from 'i18next-http-backend';
-import { jsxs, jsx } from 'react/jsx-runtime';
-import { useState, useEffect, createContext, useContext } from 'react';
+'use strict';
+
+var i18n = require('i18next');
+var reactI18next = require('react-i18next');
+var LanguageDetector = require('i18next-browser-languagedetector');
+var Backend = require('i18next-http-backend');
+var jsxRuntime = require('react/jsx-runtime');
+var react = require('react');
 
 var app$1 = {
 	name: "Layera",
@@ -635,6 +636,13 @@ var pipelines$1 = {
 					mmToM: "mm - m",
 					mToM: "m - m"
 				}
+			},
+			floorPlan: {
+				title: "Φορτώστε το αρχείο με την κάτοψη του ακινήτου",
+				description: "Κάντε κλικ για να ανεβάσετε την κάτοψη",
+				selectFile: "Επιλογή Αρχείου",
+				uploaded: "Κάτοψη φορτώθηκε",
+				supportedTypes: "Υποστηρίζονται: Εικόνες (JPG, PNG, GIF), PDF, CAD (DXF, DWG)"
 			},
 			actions: {
 				back: "Πίσω",
@@ -1387,6 +1395,13 @@ var pipelines = {
 					mToM: "m - m"
 				}
 			},
+			floorPlan: {
+				title: "Upload the floor plan file",
+				description: "Click to upload the floor plan",
+				selectFile: "Select File",
+				uploaded: "Floor plan uploaded",
+				supportedTypes: "Supported: Images (JPG, PNG, GIF), PDF, CAD (DXF, DWG)"
+			},
 			actions: {
 				back: "Back",
 				saveLocation: "Save Location & Continue"
@@ -1681,7 +1696,7 @@ const i18nConfig = {
 i18n
     .use(Backend)
     .use(LanguageDetector)
-    .use(initReactI18next)
+    .use(reactI18next.initReactI18next)
     .init(i18nConfig);
 
 /**
@@ -1689,7 +1704,7 @@ i18n
  * Provides type-safe translation with automatic namespace handling
  */
 function useLayeraTranslation(ns = defaultNS, options) {
-    const { t, i18n, ready } = useTranslation(ns, {
+    const { t, i18n, ready } = reactI18next.useTranslation(ns, {
         useSuspense: false,
         ...options,
     });
@@ -1753,13 +1768,13 @@ const languageFlags = {
 };
 function LanguageSwitcher({ className = '', variant = 'dropdown', showFlags = true, align = 'right', }) {
     const { currentLanguage, changeLanguage, availableLanguages } = useLayeraTranslation();
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = react.useState(false);
     const handleLanguageChange = (language) => {
         changeLanguage(language);
         setIsOpen(false);
     };
     // Close dropdown when clicking outside
-    useEffect(() => {
+    react.useEffect(() => {
         const handleClickOutside = (event) => {
             const target = event.target;
             if (!target.closest('.language-switcher-dropdown-container')) {
@@ -1772,21 +1787,21 @@ function LanguageSwitcher({ className = '', variant = 'dropdown', showFlags = tr
         }
     }, [isOpen]);
     if (variant === 'dropdown') {
-        return (jsxs("div", { className: `language-switcher-dropdown-container ${className} ${isOpen ? 'language-switcher--open' : ''}`, children: [jsxs("button", { type: "button", className: "language-switcher__trigger", onClick: () => setIsOpen(!isOpen), "aria-label": `Select language. Current: ${languageLabels[currentLanguage]}`, "aria-expanded": isOpen, "aria-haspopup": "menu", children: [jsx("span", { className: "language-switcher__icon", "aria-hidden": "true", children: showFlags && languageFlags[currentLanguage] }), jsx("span", { className: "language-switcher__label", children: languageLabels[currentLanguage] }), jsx("span", { className: "language-switcher__arrow", "aria-hidden": "true", children: "\u25BC" })] }), isOpen && (jsx("div", { className: `language-switcher__dropdown language-switcher__dropdown--${align}`, children: availableLanguages.map((lang) => (jsxs("button", { type: "button", className: `language-switcher__option ${currentLanguage === lang ? 'language-switcher__option--active' : ''}`, onClick: () => handleLanguageChange(lang), role: "menuitem", children: [jsx("span", { className: "language-switcher__option-icon", "aria-hidden": "true", children: showFlags && languageFlags[lang] }), jsx("span", { className: "language-switcher__option-label", children: languageLabels[lang] })] }, lang))) }))] }));
+        return (jsxRuntime.jsxs("div", { className: `language-switcher-dropdown-container ${className} ${isOpen ? 'language-switcher--open' : ''}`, children: [jsxRuntime.jsxs("button", { type: "button", className: "language-switcher__trigger", onClick: () => setIsOpen(!isOpen), "aria-label": `Select language. Current: ${languageLabels[currentLanguage]}`, "aria-expanded": isOpen, "aria-haspopup": "menu", children: [jsxRuntime.jsx("span", { className: "language-switcher__icon", "aria-hidden": "true", children: showFlags && languageFlags[currentLanguage] }), jsxRuntime.jsx("span", { className: "language-switcher__label", children: languageLabels[currentLanguage] }), jsxRuntime.jsx("span", { className: "language-switcher__arrow", "aria-hidden": "true", children: "\u25BC" })] }), isOpen && (jsxRuntime.jsx("div", { className: `language-switcher__dropdown language-switcher__dropdown--${align}`, children: availableLanguages.map((lang) => (jsxRuntime.jsxs("button", { type: "button", className: `language-switcher__option ${currentLanguage === lang ? 'language-switcher__option--active' : ''}`, onClick: () => handleLanguageChange(lang), role: "menuitem", children: [jsxRuntime.jsx("span", { className: "language-switcher__option-icon", "aria-hidden": "true", children: showFlags && languageFlags[lang] }), jsxRuntime.jsx("span", { className: "language-switcher__option-label", children: languageLabels[lang] })] }, lang))) }))] }));
     }
     if (variant === 'toggle') {
-        return (jsxs("button", { onClick: () => {
+        return (jsxRuntime.jsxs("button", { onClick: () => {
                 const nextLang = currentLanguage === 'el' ? 'en' : 'el';
                 handleLanguageChange(nextLang);
             }, className: `language-toggle ${className}`, "aria-label": "Toggle language", children: [showFlags && languageFlags[currentLanguage], " ", languageLabels[currentLanguage]] }));
     }
     if (variant === 'buttons') {
-        return (jsx("div", { className: `language-buttons ${className}`, children: availableLanguages.map((lang) => (jsxs("button", { onClick: () => handleLanguageChange(lang), className: `language-button ${currentLanguage === lang ? 'active' : ''}`, "aria-label": `Switch to ${languageLabels[lang]}`, children: [showFlags && languageFlags[lang], " ", languageLabels[lang]] }, lang))) }));
+        return (jsxRuntime.jsx("div", { className: `language-buttons ${className}`, children: availableLanguages.map((lang) => (jsxRuntime.jsxs("button", { onClick: () => handleLanguageChange(lang), className: `language-button ${currentLanguage === lang ? 'active' : ''}`, "aria-label": `Switch to ${languageLabels[lang]}`, children: [showFlags && languageFlags[lang], " ", languageLabels[lang]] }, lang))) }));
     }
     return null;
 }
 
-const I18nContext = createContext(null);
+const I18nContext = react.createContext(null);
 /**
  * Enterprise-grade i18n provider for Layera applications
  *
@@ -1799,10 +1814,10 @@ const I18nContext = createContext(null);
  * - Modular namespace support
  */
 function LayeraI18nProvider({ children, fallbackLanguage = 'el', onLanguageChange, onError, }) {
-    const [language, setLanguage] = useState(() => i18n.language || fallbackLanguage);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
-    useEffect(() => {
+    const [language, setLanguage] = react.useState(() => i18n.language || fallbackLanguage);
+    const [isLoading, setIsLoading] = react.useState(false);
+    const [error, setError] = react.useState(null);
+    react.useEffect(() => {
         // Set fallback language if current language is not supported
         if (!supportedLngs.includes(i18n.language)) {
             i18n.changeLanguage(fallbackLanguage);
@@ -1844,14 +1859,14 @@ function LayeraI18nProvider({ children, fallbackLanguage = 'el', onLanguageChang
         error,
         supportedLanguages: supportedLngs,
     };
-    return (jsx(I18nextProvider, { i18n: i18n, children: jsx(I18nContext.Provider, { value: contextValue, children: children }) }));
+    return (jsxRuntime.jsx(reactI18next.I18nextProvider, { i18n: i18n, children: jsxRuntime.jsx(I18nContext.Provider, { value: contextValue, children: children }) }));
 }
 /**
  * Hook to access i18n context value
  * Must be used within LayeraI18nProvider
  */
 function useLayeraI18nContext() {
-    const context = useContext(I18nContext);
+    const context = react.useContext(I18nContext);
     if (!context) {
         throw new Error('useLayeraI18nContext must be used within LayeraI18nProvider');
     }
@@ -1862,9 +1877,18 @@ function useLayeraI18nContext() {
  */
 function withLayeraI18n(Component, options) {
     return function WrappedComponent(props) {
-        return (jsx(LayeraI18nProvider, { ...options, children: jsx(Component, { ...props }) }));
+        return (jsxRuntime.jsx(LayeraI18nProvider, { ...options, children: jsxRuntime.jsx(Component, { ...props }) }));
     };
 }
 
-export { LanguageSwitcher, LayeraI18nProvider, defaultNS, i18nConfig, namespaces, supportedLngs, useLayeraI18nContext, useLayeraTranslation, withLayeraI18n };
-//# sourceMappingURL=index.js.map
+exports.i18n = i18n;
+exports.LanguageSwitcher = LanguageSwitcher;
+exports.LayeraI18nProvider = LayeraI18nProvider;
+exports.defaultNS = defaultNS;
+exports.i18nConfig = i18nConfig;
+exports.namespaces = namespaces;
+exports.supportedLngs = supportedLngs;
+exports.useLayeraI18nContext = useLayeraI18nContext;
+exports.useLayeraTranslation = useLayeraTranslation;
+exports.withLayeraI18n = withLayeraI18n;
+//# sourceMappingURL=index.cjs.map

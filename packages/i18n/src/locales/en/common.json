@@ -624,9 +624,19 @@
             "mToM": "m - m"
           }
         },
+        "floorPlan": {
+          "title": "Upload the floor plan file",
+          "description": "Click to upload the floor plan",
+          "selectFile": "Select File",
+          "uploaded": "Floor plan uploaded",
+          "supportedTypes": "Supported: Images (JPG, PNG, GIF), PDF, CAD (DXF, DWG)"
+        },
         "actions": {
           "back": "Back",
           "saveLocation": "Save Location & Continue"
+        },
+        "addressBreakdown": {
+          "title": "Address Breakdown"
         }
       },
       "transaction": {
@@ -725,5 +735,9 @@
         "complete": "Confirmation"
       }
     }
+  },
+  "rulers": {
+    "showRulers": "Show Rulers",
+    "hideRulers": "Hide Rulers"
   }
 }

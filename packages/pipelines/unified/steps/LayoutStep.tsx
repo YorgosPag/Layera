@@ -6,8 +6,8 @@ import { FormActions } from '@layera/forms';
 import { Input } from '@layera/forms';
 import { LocationIcon } from '@layera/icons';
 import { useGeocode } from '../../../geocoding/src/index';
-import { AddressBreakdownCard } from '../../../address-breakdown/src/index';
-import { useLayeraTranslation } from '@layera/tolgee';
+import { useLayeraTranslation } from '@layera/i18n';
+import { AddressBreakdownCard } from '../../../address-breakdown/src/components/AddressBreakdownCard';
 
 export interface LayoutState {
   layoutLocation: string | null;
@@ -30,6 +30,142 @@ export interface LayoutStepProps {
  * Complexity: High (matching original)
  * Dependencies: ONLY @layera LEGO systems
  */
+
+// Helper function για τη δημιουργία του search result item
+function renderSearchResultItem(result: any, layoutLocation: string, index: number): JSX.Element {
+  const getBadgeStyle = (badgeText: string) => {
+    const badgeColors: Record<string, { bg: string; text: string }> = {
+      'ΟΔΟΣ+': { bg: '#22c55e', text: 'white' },
+      'ΟΔΟΣ': { bg: '#3b82f6', text: 'white' },
+      'ΣΥΝΟΙΚΙΑ': { bg: '#f59e0b', text: 'white' },
+      'ΧΩΡΙΟ': { bg: '#f59e0b', text: 'white' },
+      'ΠΟΛΗ': { bg: '#8b5cf6', text: 'white' },
+      'ΔΗΜΟΣ': { bg: '#8b5cf6', text: 'white' },
+      'ΝΟΜΟΣ': { bg: '#6b7280', text: 'white' },
+      'ΠΕΡΙΦΕΡΕΙΑ': { bg: '#6b7280', text: 'white' },
+      'ΧΩΡΑ': { bg: '#374151', text: 'white' },
+      'ΤΟΠΟΣ': { bg: '#84cc16', text: 'white' }
+    };
+    return badgeColors[badgeText] || { bg: '#6b7280', text: 'white' };
+  };
+
+  const hasStreetAndNumber = result.address.street && result.address.houseNumber;
+  const hasStreetOnly = result.address.street && !result.address.houseNumber;
+
+  let content = '';
+  let badgeText = '';
+  let subtitle = '';
+
+  if (hasStreetAndNumber) {
+    content = `${result.address.street} ${result.address.houseNumber}`;
+    badgeText = 'ΟΔΟΣ+';
+    const locationParts = [];
+    if (result.address.postalCode) locationParts.push(result.address.postalCode);
+    if (result.address.suburb || result.address.city) {
+      locationParts.push(result.address.suburb || result.address.city);
+    }
+    if (locationParts.length > 0) {
+      subtitle = locationParts.join(', ');
+    }
+  } else if (hasStreetOnly) {
+    content = result.address.street;
+    badgeText = 'ΟΔΟΣ';
+    const locationParts = [];
+    if (result.address.suburb || result.address.city) {
+      locationParts.push(result.address.suburb || result.address.city);
+    }
+    if (result.address.region) locationParts.push(result.address.region);
+    if (locationParts.length > 0) {
+      subtitle = locationParts.join(', ');
+    }
+  } else {
+    const address = result.address;
+    if (address.suburb) {
+      content = address.suburb;
+      badgeText = 'ΣΥΝΟΙΚΙΑ';
+      if (address.city && address.city !== address.suburb) {
+        subtitle = address.city;
+      }
+    } else if (address.village) {
+      content = address.village;
+      badgeText = 'ΧΩΡΙΟ';
+      if (address.county) subtitle = address.county;
+    } else if (address.town) {
+      content = address.town;
+      badgeText = 'ΠΟΛΗ';
+      if (address.region) subtitle = address.region;
+    } else if (address.city) {
+      content = address.city;
+      badgeText = 'ΔΗΜΟΣ';
+      if (address.region) subtitle = address.region;
+    } else if (address.county) {
+      content = address.county;
+      badgeText = 'ΝΟΜΟΣ';
+      if (address.region) subtitle = address.region;
+    } else if (address.region) {
+      content = address.region;
+      badgeText = 'ΠΕΡΙΦΕΡΕΙΑ';
+      if (address.country) subtitle = address.country;
+    } else if (address.country) {
+      content = address.country;
+      badgeText = 'ΧΩΡΑ';
+    } else {
+      const queryWords = layoutLocation.toLowerCase().split(/[\s,]+/);
+      const displayParts = result.displayName.split(',').map((p: string) => p.trim());
+      let bestMatch = displayParts[0] || result.displayName;
+      for (const part of displayParts) {
+        for (const word of queryWords) {
+          if (word.length > 2 && part.toLowerCase().includes(word)) {
+            bestMatch = part;
+            break;
+          }
+        }
+      }
+      content = bestMatch;
+      badgeText = 'ΤΟΠΟΣ';
+      if (displayParts.length > 1 && bestMatch !== result.displayName) {
+        subtitle = displayParts.filter((p: string) => p !== bestMatch).slice(0, 2).join(', ');
+      }
+    }
+  }
+
+  return (
+    <Flex gap="sm" align="center" style={{ width: '100%' }}>
+      <LocationIcon size="sm" theme={hasStreetAndNumber || hasStreetOnly ? "primary" : "neutral"} />
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{
+          fontWeight: hasStreetAndNumber || hasStreetOnly ? 'bold' : 'normal',
+          color: hasStreetAndNumber || hasStreetOnly ? '#1f2937' : '#6b7280',
+          fontSize: hasStreetAndNumber || hasStreetOnly ? '14px' : '13px'
+        }}>
+          {content}
+        </div>
+        {subtitle && (
+          <div style={{
+            fontSize: '11px',
+            color: '#9ca3af',
+            marginTop: '2px'
+          }}>
+            {subtitle}
+          </div>
+        )}
+      </div>
+      <div style={{
+        backgroundColor: getBadgeStyle(badgeText).bg,
+        color: getBadgeStyle(badgeText).text,
+        padding: '2px 6px',
+        borderRadius: '4px',
+        fontSize: '9px',
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
+        letterSpacing: '0.5px'
+      }}>
+        {badgeText}
+      </div>
+    </Flex>
+  );
+}
+
 export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
   const { t } = useLayeraTranslation();
   const [layoutRotation, setLayoutRotation] = useState<number>(0);
@@ -51,11 +187,24 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
           latitude: result.coordinates.latitude,
           longitude: result.coordinates.longitude,
           zoom: 16,
-          displayName: result.displayName
+          displayName: result.displayName,
+          result: result // Προσθήκη ολόκληρου του structured result
         }
       });
       console.log('📡 LayoutStep: Dispatching showSearchResult event for search result');
       window.dispatchEvent(mapEvent);
+
+      // Μετακίνηση floor plan στην επιλεγμένη τοποθεσία (για Property Offers)
+      const floorPlanEvent = new CustomEvent('moveFloorPlanToLocation', {
+        detail: {
+          latitude: result.coordinates.latitude,
+          longitude: result.coordinates.longitude,
+          reason: 'search_result',
+          displayName: result.displayName
+        }
+      });
+      console.log('🏠 LayoutStep: Dispatching moveFloorPlanToLocation event for search result:', result.displayName);
+      window.dispatchEvent(floorPlanEvent);
     }
   });
 
@@ -104,6 +253,17 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
           });
           console.log('📡 LayoutStep: Dispatching centerMapToLocation event with:', { latitude, longitude, zoom: 16 });
           window.dispatchEvent(mapEvent);
+
+          // Μετακίνηση floor plan στη θέση του χρήστη (για Property Offers)
+          const floorPlanEvent = new CustomEvent('moveFloorPlanToLocation', {
+            detail: {
+              latitude,
+              longitude,
+              reason: 'user_location'
+            }
+          });
+          console.log('🏠 LayoutStep: Dispatching moveFloorPlanToLocation event for user location');
+          window.dispatchEvent(floorPlanEvent);
 
           // Ενημέρωση του input field με τις συντεταγμένες
           geocodeActions.setQuery(`${latitude.toFixed(6)}, ${longitude.toFixed(6)}`);
@@ -231,52 +391,71 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
           </Button>
         </div>
 
-        {/* Αποτελέσματα αναζήτησης με νέο AddressBreakdownCard */}
+        {/* Αποτελέσματα αναζήτησης με χρωματιστά badges */}
         {results.length > 0 && (
           <div style={{ marginTop: '8px' }}>
             <Text size="sm" weight="bold" style={{ marginBottom: '8px' }}>
               {t('pipelines.steps.layout.results', { count: results.length })}
             </Text>
-            {results.map((result) => (
-              <div key={result.id} style={{ marginBottom: '8px' }}>
-                <AddressBreakdownCard
-                  geocodeResult={result}
-                  config={{
-                    layout: 'list',
-                    enableBoundarySearch: true,
-                    onComponentClick: (component) => {
-                      console.log('🎯 Address component clicked:', component);
-                    }
-                  }}
-                  title={(() => {
-                    // Για διευθύνσεις με οδό
-                    if (result.address.street) {
-                      return `📍 ${result.address.street}${result.address.houseNumber ? ' ' + result.address.houseNumber : ''}`;
-                    }
-
-                    // Για πόλεις/χωριά/κωμοπόλεις
-                    const location = result.address.city || result.address.town || result.address.village;
-                    const state = result.address.state || result.address.region;
-                    const country = result.address.country;
-
-                    if (location && country) {
-                      // Πλήρης τίτλος με πόλη και χώρα
-                      return `📍 ${location}${state ? ', ' + state : ''}, ${country}`;
-                    } else if (location) {
-                      return `📍 ${location}`;
-                    } else if (country) {
-                      return `📍 ${country}`;
-                    }
-
-                    // Fallback αν δεν έχουμε τίποτα
-                    return `📍 ${t('pipelines.steps.layout.locationPin')}`;
-                  })()}
-                />
+            {results.map((result, index) => (
+              <div
+                key={result.id}
+                onClick={() => {
+                  console.log('🎯 LayoutStep: Card clicked, selecting result:', result.displayName);
+                  geocodeActions.selectResult(result);
+                }}
+                style={{
+                  cursor: 'pointer',
+                  border: index === 0 ? '2px solid #3b82f6' : '1px solid #e5e7eb',
+                  backgroundColor: index === 0 ? '#f0f9ff' : 'white',
+                  borderRadius: '8px',
+                  padding: '12px',
+                  marginBottom: '8px',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#f8fafc';
+                  e.currentTarget.style.borderColor = '#3b82f6';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = index === 0 ? '#f0f9ff' : 'white';
+                  e.currentTarget.style.borderColor = index === 0 ? '#3b82f6' : '#e5e7eb';
+                }}
+              >
+                {renderSearchResultItem(result, layoutLocation, index)}
               </div>
             ))}
           </div>
         )}
       </div>
+
+      {/* Address Breakdown Card - Ξεχωριστή ενότητα */}
+      {(selectedResult || (results.length > 0 && !isLoading)) && (
+        <div
+          style={{
+            backgroundColor: '#ffffff',
+            border: '2px solid #60a5fa',
+            borderRadius: '12px',
+            padding: '20px',
+            marginTop: '16px',
+            marginBottom: '16px'
+          }}
+        >
+          <AddressBreakdownCard
+            geocodeResult={selectedResult || results[0]}
+            title={(
+              <Text size="base" weight="bold" color="primary">
+                {t('pipelines.steps.layout.addressBreakdown.title')}
+              </Text>
+            )}
+            config={{
+              layout: 'list',
+              enableBoundarySearch: true,
+              maxComponents: 8
+            }}
+          />
+        </div>
+      )}
 
       {/* Εργαλεία Τοποθέτησης - Γαλάζιο πλαίσιο */}
       <div
@@ -514,6 +693,7 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
           </div>
         </div>
       </div>
+
 
       <FormActions>
         <Button

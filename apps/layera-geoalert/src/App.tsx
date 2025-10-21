@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
-import { DeviceOverrideProvider, DeviceSimulator } from '@layera/viewport';
+import { useViewportWithOverride, DeviceOverrideProvider } from '@layera/viewport';
 import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { ThemeProvider, ThemeSwitcher } from '@layera/theme-switcher';
@@ -15,6 +15,9 @@ import { GeoHeader } from './components/GeoHeader';
 import { SimpleNavigationRail } from './components/SimpleNavigationRail';
 import { UnifiedPipelineModal } from '../../../packages/pipelines/unified/UnifiedPipelineModal';
 import GeoMap, { DrawnArea } from './components/GeoMap';
+import { ViewportFrame } from './components/ViewportFrame';
+import { DeviceFrameWrapper } from './components/DeviceFrameWrapper';
+// Device frames temporarily disabled for debugging
 
 function TestNotificationsComponent() {
   const { addNotification } = useNotifications();
@@ -141,6 +144,7 @@ function TestNotificationsComponent() {
 
 function App() {
   const { t } = useLayeraTranslation();
+  const { isMobile } = useViewportWithOverride();
   const [isMapMode, setIsMapMode] = useState(false);
   const [savedAreas, setSavedAreas] = useState<DrawnArea[]>([]);
   const [activeView, setActiveView] = useState<'dashboard' | 'map'>('dashboard');
@@ -210,27 +214,24 @@ function App() {
       <ThemeProvider defaultTheme="system" storageKey="layera-geoalert-theme">
         <NotificationProvider>
           <DeviceOverrideProvider>
-            <DeviceSimulator>
+            <DeviceFrameWrapper enabled={true}>
               <AppShell
-                layout="fullscreen-map"
-                header={<GeoHeader />}
-                sidebar={
-                  <SimpleNavigationRail
-                    onBackClick={() => setIsMapMode(false)}
-                    onNewEntryClick={handleNewEntryClick}
-                  />
-                }
+                layout="fullscreen"
+                header={<GeoHeader onBackClick={() => setIsMapMode(false)} />}
+                className="geo-map-shell"
               >
-                <GeoMap onAreaCreated={handleAreaCreated} />
+                <ViewportFrame id="geo-viewport">
+                  <GeoMap onAreaCreated={handleAreaCreated} onNewEntryClick={handleNewEntryClick} />
+                </ViewportFrame>
 
-                {/* Unified Pipeline Modal */}
-                <UnifiedPipelineModal
-                  isOpen={showUnifiedPipeline}
-                  onClose={() => setShowUnifiedPipeline(false)}
-                  onSubmit={handleUnifiedPipelineSubmit}
-                />
+            {/* Unified Pipeline Modal */}
+            <UnifiedPipelineModal
+              isOpen={showUnifiedPipeline}
+              onClose={() => setShowUnifiedPipeline(false)}
+              onSubmit={handleUnifiedPipelineSubmit}
+            />
               </AppShell>
-            </DeviceSimulator>
+            </DeviceFrameWrapper>
           </DeviceOverrideProvider>
         </NotificationProvider>
       </ThemeProvider>
@@ -241,8 +242,7 @@ function App() {
     <ThemeProvider defaultTheme="system" storageKey="layera-geoalert-theme">
       <NotificationProvider>
         <DeviceOverrideProvider>
-          <DeviceSimulator>
-            <div style={{
+          <div style={{
               padding: '2rem',
               textAlign: 'center',
               backgroundColor: 'var(--layera-bg-primary)',
@@ -304,7 +304,7 @@ function App() {
                   </Heading>
                   <div style={{ textAlign: 'left' }}>
                     <Text size="base" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
-                      <CheckIcon size="xs" theme="success" /> {t('geoalert.port')}: 3002
+                      <CheckIcon size="xs" theme="success" /> {t('geoalert.port')}: 3003
                     </Text>
                     <Text size="base" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
                       <CheckIcon size="xs" theme="success" /> {t('geoalert.reactReady')}
@@ -331,7 +331,7 @@ function App() {
                 </div>
 
                 <a
-                  href="http://localhost:3001"
+                  href="http://localhost:3000"
                   target="_blank"
                   style={{
                     color: 'var(--layera-bg-info)',
@@ -370,8 +370,7 @@ function App() {
                   <AlertTriangleIcon size="sm" theme="warning" /> {t('geoalert.readyForImplementation')}
                 </Text>
               </div>
-            </div>
-          </DeviceSimulator>
+          </div>
         </DeviceOverrideProvider>
       </NotificationProvider>
     </ThemeProvider>

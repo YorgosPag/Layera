@@ -441,15 +441,16 @@ var useMediaQuery = (query) => {
 
 // unified/utils/stepperConfig.ts
 var createStepperConfig = (category, t) => {
-  if (t) {
-    console.log("Translation test:", t("progress.stepper.labels.category"));
-    console.log("Has translation function:", !!t);
-  }
+  const smartTranslate = (key, fallback) => {
+    if (!t) return fallback;
+    const translated = t(key);
+    return translated === key ? fallback : translated;
+  };
   const baseSteps = [
     {
       id: "category",
-      label: t ? t("progress.stepper.labels.category") : "\u039A\u03B1\u03C4\u03B7\u03B3\u03BF\u03C1\u03AF\u03B1",
-      description: t ? t("progress.stepper.descriptions.category") : "\u03A4\u03CD\u03C0\u03BF\u03C2"
+      label: smartTranslate("progress.stepper.labels.category", "\u039A\u03B1\u03C4\u03B7\u03B3\u03BF\u03C1\u03AF\u03B1"),
+      description: smartTranslate("progress.stepper.descriptions.category", "\u03A4\u03CD\u03C0\u03BF\u03C2")
     },
     {
       id: "intent",
@@ -1032,12 +1033,13 @@ var AvailabilityDetailsStep = ({ onNext }) => {
 };
 
 // unified/steps/LocationStep.tsx
+import { useState as useState4 } from "react";
 import { BaseCard as BaseCard6 } from "@layera/cards";
 import { Text as Text7, Heading as Heading7 } from "@layera/typography";
 import { Stack as Stack7, Flex as Flex6 } from "@layera/layout";
 import { Button as Button5 } from "@layera/buttons";
 import { FormActions as FormActions5 } from "@layera/forms";
-import { UploadIcon, MapIcon } from "@layera/icons";
+import { UploadIcon, MapIcon, CheckIcon as CheckIcon2 } from "@layera/icons";
 import { useLayeraTranslation as useLayeraTranslation7 } from "@layera/tolgee";
 import { jsx as jsx7, jsxs as jsxs7 } from "react/jsx-runtime";
 var LocationStep = ({
@@ -1048,6 +1050,43 @@ var LocationStep = ({
   onBack
 }) => {
   const { t } = useLayeraTranslation7();
+  const [uploadedFile, setUploadedFile] = useState4(null);
+  const getFileType = (file) => {
+    const extension = file.name.toLowerCase().split(".").pop();
+    const mimeType = file.type.toLowerCase();
+    if (mimeType.startsWith("image/") || ["jpg", "jpeg", "png", "gif", "webp"].includes(extension || "")) {
+      return "image";
+    }
+    if (mimeType === "application/pdf" || extension === "pdf") {
+      return "pdf";
+    }
+    if (["dxf", "dwg"].includes(extension || "") || mimeType.includes("acad") || mimeType.includes("autocad")) {
+      return "cad";
+    }
+    return "unknown";
+  };
+  const sendFileToMap = (file) => {
+    const fileType = getFileType(file);
+    const fileUrl = URL.createObjectURL(file);
+    const mapEvent = new CustomEvent("showFloorPlan", {
+      detail: {
+        file,
+        fileUrl,
+        fileName: file.name,
+        fileType,
+        fileSize: file.size
+      }
+    });
+    console.log("\u{1F4C2} Sending floor plan to map:", {
+      fileName: file.name,
+      fileType,
+      fileSize: `${(file.size / 1024 / 1024).toFixed(2)} MB`,
+      fileUrl
+    });
+    console.log("\u{1F4E4} Dispatching showFloorPlan event to window...");
+    window.dispatchEvent(mapEvent);
+    console.log("\u2705 Event dispatched successfully");
+  };
   return /* @__PURE__ */ jsxs7(Stack7, { spacing: "md", children: [
     /* @__PURE__ */ jsx7(Heading7, { as: "h3", size: "lg", color: "primary", children: t("pipelines.steps.layout.title") }),
     category === "property" && intent === "offer" && availability === "now" ? /* @__PURE__ */ jsxs7(Stack7, { spacing: "md", children: [
@@ -1057,20 +1096,72 @@ var LocationStep = ({
         {
           clickable: true,
           onClick: () => {
-            onNext();
+            const fileInput = document.createElement("input");
+            fileInput.type = "file";
+            fileInput.accept = "image/jpeg,image/png,image/gif,image/webp,application/pdf,.dxf,.dwg,application/acad,application/x-autocad";
+            fileInput.style.display = "none";
+            fileInput.onchange = (e) => {
+              const target = e.target;
+              const file = target.files?.[0];
+              if (file) {
+                setUploadedFile(file);
+                sendFileToMap(file);
+                console.log("Floor plan selected:", file.name, "Type:", getFileType(file));
+                setTimeout(() => {
+                  onNext();
+                }, 500);
+              }
+            };
+            document.body.appendChild(fileInput);
+            fileInput.click();
+            document.body.removeChild(fileInput);
           },
           variant: "outlined",
           size: "lg",
           padding: "lg",
           hoverable: true,
           className: "layera-unified-card",
-          children: /* @__PURE__ */ jsxs7(Flex6, { align: "start", gap: "lg", children: [
-            /* @__PURE__ */ jsx7(UploadIcon, { size: "xl", theme: "primary" }),
-            /* @__PURE__ */ jsxs7(Stack7, { spacing: "xs", style: { flex: 1, minWidth: 0 }, children: [
-              /* @__PURE__ */ jsx7(Text7, { size: "xl", weight: "bold", className: "card-title", children: t("location.selectFile") }),
-              /* @__PURE__ */ jsx7(Text7, { size: "base", color: "secondary", className: "card-text", children: t("location.clickToUpload") })
+          children: /* @__PURE__ */ jsx7(Stack7, { spacing: "md", style: { width: "100%" }, children: uploadedFile ? (
+            // Επιβεβαίωση ότι το αρχείο στάλθηκε στον χάρτη
+            /* @__PURE__ */ jsxs7(Stack7, { spacing: "sm", align: "center", children: [
+              /* @__PURE__ */ jsxs7(Flex6, { gap: "sm", align: "center", children: [
+                /* @__PURE__ */ jsx7(CheckIcon2, { size: "md", theme: "success" }),
+                /* @__PURE__ */ jsx7(Text7, { size: "lg", weight: "bold", color: "success", children: "\u0397 \u03BA\u03AC\u03C4\u03BF\u03C8\u03B7 \u03B5\u03BC\u03C6\u03B1\u03BD\u03AF\u03C3\u03C4\u03B7\u03BA\u03B5 \u03C3\u03C4\u03BF\u03BD \u03C7\u03AC\u03C1\u03C4\u03B7!" })
+              ] }),
+              /* @__PURE__ */ jsxs7("div", { style: {
+                wordBreak: "break-all",
+                padding: "12px",
+                backgroundColor: "#f0fdf4",
+                border: "1px solid #10b981",
+                borderRadius: "8px",
+                maxWidth: "300px",
+                textAlign: "center"
+              }, children: [
+                /* @__PURE__ */ jsx7(Text7, { size: "sm", color: "secondary", children: uploadedFile.name }),
+                /* @__PURE__ */ jsx7("br", {}),
+                /* @__PURE__ */ jsxs7(Text7, { size: "xs", color: "secondary", children: [
+                  getFileType(uploadedFile).toUpperCase(),
+                  " \u2022 ",
+                  (uploadedFile.size / 1024 / 1024).toFixed(2),
+                  " MB"
+                ] })
+              ] }),
+              /* @__PURE__ */ jsx7(Text7, { size: "sm", color: "secondary", align: "center", style: {
+                fontStyle: "italic",
+                maxWidth: "280px"
+              }, children: "\u03A3\u03C5\u03BD\u03B5\u03C7\u03AF\u03C3\u03C4\u03B5 \u03C3\u03C4\u03BF \u03B5\u03C0\u03CC\u03BC\u03B5\u03BD\u03BF \u03B2\u03AE\u03BC\u03B1 \u03B3\u03B9\u03B1 \u03C4\u03BF\u03C0\u03BF\u03B8\u03AD\u03C4\u03B7\u03C3\u03B7 \u03BA\u03B1\u03B9 \u03C0\u03C1\u03BF\u03C3\u03B1\u03C1\u03BC\u03BF\u03B3\u03AE" })
             ] })
-          ] })
+          ) : (
+            // Default Upload UI
+            /* @__PURE__ */ jsxs7(Flex6, { align: "start", gap: "lg", children: [
+              /* @__PURE__ */ jsx7(UploadIcon, { size: "xl", theme: "primary" }),
+              /* @__PURE__ */ jsxs7(Stack7, { spacing: "xs", style: { flex: 1, minWidth: 0 }, children: [
+                /* @__PURE__ */ jsx7(Text7, { size: "xl", weight: "bold", className: "card-title", children: t("pipelines.steps.layout.floorPlan.selectFile") }),
+                /* @__PURE__ */ jsx7(Text7, { size: "base", color: "secondary", className: "card-text", children: t("pipelines.steps.layout.floorPlan.description") }),
+                /* @__PURE__ */ jsx7(Text7, { size: "sm", color: "secondary", style: { marginTop: "8px" }, children: t("pipelines.steps.layout.floorPlan.supportedTypes") })
+              ] })
+            ] })
+          ) })
         }
       )
     ] }) : /* @__PURE__ */ jsxs7(Stack7, { spacing: "md", children: [
@@ -1110,7 +1201,7 @@ var LocationStep = ({
 };
 
 // unified/steps/LayoutStep.tsx
-import { useState as useState6, useEffect as useEffect6 } from "react";
+import { useState as useState7, useEffect as useEffect6 } from "react";
 import { Text as Text8, Heading as Heading8 } from "@layera/typography";
 import { Stack as Stack8, Flex as Flex7 } from "@layera/layout";
 import { Button as Button7 } from "@layera/buttons";
@@ -1119,7 +1210,7 @@ import { Input as Input2 } from "@layera/forms";
 import { LocationIcon as LocationIcon2 } from "@layera/icons";
 
 // ../geocoding/src/hooks/useGeocode.ts
-import { useState as useState4, useCallback as useCallback2, useEffect as useEffect4, useRef } from "react";
+import { useState as useState5, useCallback as useCallback2, useEffect as useEffect4, useRef } from "react";
 
 // ../geocoding/src/providers/nominatim.ts
 var NOMINATIM_BASE_URL = "https://nominatim.openstreetmap.org";
@@ -1294,11 +1385,60 @@ async function searchNominatim(request) {
       }
     }
     const results = data.map(parseNominatimResult);
+    const sortedResults = results.sort((a, b) => {
+      const aHasStreetAndNumber = a.address.street && a.address.houseNumber;
+      const bHasStreetAndNumber = b.address.street && b.address.houseNumber;
+      if (aHasStreetAndNumber && !bHasStreetAndNumber) return -1;
+      if (!aHasStreetAndNumber && bHasStreetAndNumber) return 1;
+      const aHasStreet = a.address.street && !a.address.houseNumber;
+      const bHasStreet = b.address.street && !b.address.houseNumber;
+      if (aHasStreet && !bHasStreet) return -1;
+      if (!aHasStreet && bHasStreet) return 1;
+      const getAdministrativeLevel = (result) => {
+        const address = result.address;
+        if (address.street) return 1;
+        if (address.suburb || address.village) return 2;
+        if (address.town) return 3;
+        if (address.city) return 4;
+        if (address.county) return 5;
+        if (address.region) return 6;
+        if (address.country) return 7;
+        return 8;
+      };
+      const aLevel = getAdministrativeLevel(a);
+      const bLevel = getAdministrativeLevel(b);
+      if (aLevel !== bLevel) return aLevel - bLevel;
+      const queryLower = request.query.toLowerCase();
+      const aDisplayLower = a.displayName.toLowerCase();
+      const bDisplayLower = b.displayName.toLowerCase();
+      const aStartsWithQuery = aDisplayLower.startsWith(queryLower);
+      const bStartsWithQuery = bDisplayLower.startsWith(queryLower);
+      if (aStartsWithQuery && !bStartsWithQuery) return -1;
+      if (!aStartsWithQuery && bStartsWithQuery) return 1;
+      const aIncludesQuery = aDisplayLower.includes(queryLower);
+      const bIncludesQuery = bDisplayLower.includes(queryLower);
+      if (aIncludesQuery && !bIncludesQuery) return -1;
+      if (!aIncludesQuery && bIncludesQuery) return 1;
+      const accuracyOrder = {
+        "exact": 1,
+        "interpolated": 2,
+        "street": 3,
+        "city": 4,
+        "region": 5
+      };
+      const aAccuracy = accuracyOrder[a.accuracy] || 6;
+      const bAccuracy = accuracyOrder[b.accuracy] || 6;
+      if (aAccuracy !== bAccuracy) return aAccuracy - bAccuracy;
+      const aConfidence = a.metadata?.confidence || 0;
+      const bConfidence = b.metadata?.confidence || 0;
+      return bConfidence - aConfidence;
+    });
+    console.log("\u{1F4CD} NominatimProvider: Results sorted with street priority");
     return {
-      results,
-      total: results.length,
+      results: sortedResults,
+      total: sortedResults.length,
       query: request.query,
-      status: results.length > 0 ? "success" : "no_results"
+      status: sortedResults.length > 0 ? "success" : "no_results"
     };
   } catch (error) {
     console.error("\u274C NominatimProvider: Search error:", error);
@@ -1443,12 +1583,12 @@ function useGeocode(options = {}) {
     autoSearch = false,
     onSelect
   } = options;
-  const [query, setQuery] = useState4("");
-  const [results, setResults] = useState4([]);
-  const [isLoading, setIsLoading] = useState4(false);
-  const [error, setError] = useState4(null);
-  const [selectedResult, setSelectedResult] = useState4(null);
-  const [currentLanguage, setCurrentLanguage] = useState4(() => {
+  const [query, setQuery] = useState5("");
+  const [results, setResults] = useState5([]);
+  const [isLoading, setIsLoading] = useState5(false);
+  const [error, setError] = useState5(null);
+  const [selectedResult, setSelectedResult] = useState5(null);
+  const [currentLanguage, setCurrentLanguage] = useState5(() => {
     if (typeof window !== "undefined") {
       return localStorage.getItem("i18nextLng") || "el";
     }
@@ -1598,7 +1738,7 @@ function useGeocode(options = {}) {
 }
 
 // ../address-breakdown/src/components/AddressBreakdownCard.tsx
-import { useState as useState5, useCallback as useCallback3, useEffect as useEffect5 } from "react";
+import { useState as useState6, useCallback as useCallback3, useEffect as useEffect5 } from "react";
 import { BaseCard as BaseCard7 } from "@layera/cards";
 import { Button as Button6 } from "@layera/buttons";
 import { LocationIcon, MapIcon as MapIcon2 } from "@layera/icons";
@@ -1857,9 +1997,9 @@ function AddressBreakdownCard({
   error = null
 }) {
   const { t } = useLayeraTranslation8();
-  const [boundaryLoading, setBoundaryLoading] = useState5(null);
-  const [boundaryError, setBoundaryError] = useState5(null);
-  const [loadingTimer, setLoadingTimer] = useState5(0);
+  const [boundaryLoading, setBoundaryLoading] = useState6(null);
+  const [boundaryError, setBoundaryError] = useState6(null);
+  const [loadingTimer, setLoadingTimer] = useState6(0);
   useEffect5(() => {
     let interval;
     if (boundaryLoading) {
@@ -2090,15 +2230,15 @@ function AddressBreakdownCard({
 }
 
 // unified/steps/LayoutStep.tsx
-import { useLayeraTranslation as useLayeraTranslation9 } from "@layera/tolgee";
+import { useLayeraTranslation as useLayeraTranslation9 } from "@layera/i18n";
 import { jsx as jsx9, jsxs as jsxs9 } from "react/jsx-runtime";
 var LayoutStep = ({ onNext, onBack }) => {
   const { t } = useLayeraTranslation9();
-  const [layoutRotation, setLayoutRotation] = useState6(0);
-  const [layoutScaleWidth, setLayoutScaleWidth] = useState6(1);
-  const [layoutScaleHeight, setLayoutScaleHeight] = useState6(1);
-  const [layoutScaleDepth, setLayoutScaleDepth] = useState6(1);
-  const [activeScaleField, setActiveScaleField] = useState6(null);
+  const [layoutRotation, setLayoutRotation] = useState7(0);
+  const [layoutScaleWidth, setLayoutScaleWidth] = useState7(1);
+  const [layoutScaleHeight, setLayoutScaleHeight] = useState7(1);
+  const [layoutScaleDepth, setLayoutScaleDepth] = useState7(1);
+  const [activeScaleField, setActiveScaleField] = useState7(null);
   const { query: layoutLocation, actions: geocodeActions, isLoading, results, selectedResult } = useGeocode({
     debounceMs: 500,
     autoSearch: false,
@@ -2114,6 +2254,16 @@ var LayoutStep = ({ onNext, onBack }) => {
       });
       console.log("\u{1F4E1} LayoutStep: Dispatching showSearchResult event for search result");
       window.dispatchEvent(mapEvent);
+      const floorPlanEvent = new CustomEvent("moveFloorPlanToLocation", {
+        detail: {
+          latitude: result.coordinates.latitude,
+          longitude: result.coordinates.longitude,
+          reason: "search_result",
+          displayName: result.displayName
+        }
+      });
+      console.log("\u{1F3E0} LayoutStep: Dispatching moveFloorPlanToLocation event for search result:", result.displayName);
+      window.dispatchEvent(floorPlanEvent);
     }
   });
   useEffect6(() => {
@@ -2148,6 +2298,15 @@ var LayoutStep = ({ onNext, onBack }) => {
           });
           console.log("\u{1F4E1} LayoutStep: Dispatching centerMapToLocation event with:", { latitude, longitude, zoom: 16 });
           window.dispatchEvent(mapEvent);
+          const floorPlanEvent = new CustomEvent("moveFloorPlanToLocation", {
+            detail: {
+              latitude,
+              longitude,
+              reason: "user_location"
+            }
+          });
+          console.log("\u{1F3E0} LayoutStep: Dispatching moveFloorPlanToLocation event for user location");
+          window.dispatchEvent(floorPlanEvent);
           geocodeActions.setQuery(`${latitude.toFixed(6)}, ${longitude.toFixed(6)}`);
           console.log("\u2705 LayoutStep: Location field updated");
         },
@@ -2265,7 +2424,7 @@ var LayoutStep = ({ onNext, onBack }) => {
       ] }),
       results.length > 0 && /* @__PURE__ */ jsxs9("div", { style: { marginTop: "8px" }, children: [
         /* @__PURE__ */ jsx9(Text8, { size: "sm", weight: "bold", style: { marginBottom: "8px" }, children: t("pipelines.steps.layout.results", { count: results.length }) }),
-        results.map((result) => /* @__PURE__ */ jsx9("div", { style: { marginBottom: "8px" }, children: /* @__PURE__ */ jsx9(
+        results.map((result, index) => /* @__PURE__ */ jsx9("div", { style: { marginBottom: "8px" }, children: /* @__PURE__ */ jsx9(
           AddressBreakdownCard,
           {
             geocodeResult: result,
@@ -2276,21 +2435,150 @@ var LayoutStep = ({ onNext, onBack }) => {
                 console.log("\u{1F3AF} Address component clicked:", component);
               }
             },
+            onClick: () => {
+              console.log("\u{1F3AF} LayoutStep: Card clicked, selecting result:", result.displayName);
+              geocodeActions.selectResult(result);
+            },
+            style: {
+              cursor: "pointer",
+              border: index === 0 ? "2px solid #3b82f6" : "1px solid #e5e7eb",
+              backgroundColor: index === 0 ? "#f0f9ff" : "white",
+              borderRadius: "8px",
+              padding: "12px",
+              transition: "all 0.2s ease",
+              ":hover": {
+                backgroundColor: "#f8fafc",
+                borderColor: "#3b82f6"
+              }
+            },
             title: (() => {
-              if (result.address.street) {
-                return `\u{1F4CD} ${result.address.street}${result.address.houseNumber ? " " + result.address.houseNumber : ""}`;
+              const getBadgeStyle = (badgeText2) => {
+                const colors = {
+                  "\u039F\u0394\u039F\u03A3+": { bg: "#22c55e", text: "white" },
+                  // πράσινο για ακριβή διεύθυνση
+                  "\u039F\u0394\u039F\u03A3": { bg: "#3b82f6", text: "white" },
+                  // μπλε για οδό
+                  "\u03A3\u03A5\u039D\u039F\u0399\u039A\u0399\u0391": { bg: "#f59e0b", text: "white" },
+                  // πορτοκαλί για συνοικία
+                  "\u03A7\u03A9\u03A1\u0399\u039F": { bg: "#f59e0b", text: "white" },
+                  // πορτοκαλί για χωριό
+                  "\u03A0\u039F\u039B\u0397": { bg: "#8b5cf6", text: "white" },
+                  // μωβ για πόλη
+                  "\u0394\u0397\u039C\u039F\u03A3": { bg: "#8b5cf6", text: "white" },
+                  // μωβ για δήμο
+                  "\u039D\u039F\u039C\u039F\u03A3": { bg: "#6b7280", text: "white" },
+                  // γκρι για νομό
+                  "\u03A0\u0395\u03A1\u0399\u03A6\u0395\u03A1\u0395\u0399\u0391": { bg: "#6b7280", text: "white" },
+                  // γκρι για περιφέρεια
+                  "\u03A7\u03A9\u03A1\u0391": { bg: "#374151", text: "white" },
+                  // σκούρο γκρι για χώρα
+                  "\u03A4\u039F\u03A0\u039F\u03A3": { bg: "#84cc16", text: "white" }
+                  // lime για γενικό τόπο
+                };
+                return colors[badgeText2] || { bg: "#6b7280", text: "white" };
+              };
+              const hasStreetAndNumber = result.address.street && result.address.houseNumber;
+              const hasStreetOnly = result.address.street && !result.address.houseNumber;
+              let content = "";
+              let badgeText = "";
+              let subtitle = "";
+              if (hasStreetAndNumber) {
+                content = `${result.address.street} ${result.address.houseNumber}`;
+                badgeText = "\u039F\u0394\u039F\u03A3+";
+                const locationParts = [];
+                if (result.address.postalCode) locationParts.push(result.address.postalCode);
+                if (result.address.suburb || result.address.city) {
+                  locationParts.push(result.address.suburb || result.address.city);
+                }
+                if (locationParts.length > 0) {
+                  subtitle = locationParts.join(", ");
+                }
+              } else if (hasStreetOnly) {
+                content = result.address.street;
+                badgeText = "\u039F\u0394\u039F\u03A3";
+                const locationParts = [];
+                if (result.address.suburb || result.address.city) {
+                  locationParts.push(result.address.suburb || result.address.city);
+                }
+                if (result.address.region) locationParts.push(result.address.region);
+                if (locationParts.length > 0) {
+                  subtitle = locationParts.join(", ");
+                }
+              } else {
+                const address = result.address;
+                if (address.suburb) {
+                  content = address.suburb;
+                  badgeText = "\u03A3\u03A5\u039D\u039F\u0399\u039A\u0399\u0391";
+                  if (address.city && address.city !== address.suburb) {
+                    subtitle = address.city;
+                  }
+                } else if (address.village) {
+                  content = address.village;
+                  badgeText = "\u03A7\u03A9\u03A1\u0399\u039F";
+                  if (address.county) subtitle = address.county;
+                } else if (address.town) {
+                  content = address.town;
+                  badgeText = "\u03A0\u039F\u039B\u0397";
+                  if (address.region) subtitle = address.region;
+                } else if (address.city) {
+                  content = address.city;
+                  badgeText = "\u0394\u0397\u039C\u039F\u03A3";
+                  if (address.region) subtitle = address.region;
+                } else if (address.county) {
+                  content = address.county;
+                  badgeText = "\u039D\u039F\u039C\u039F\u03A3";
+                  if (address.region) subtitle = address.region;
+                } else if (address.region) {
+                  content = address.region;
+                  badgeText = "\u03A0\u0395\u03A1\u0399\u03A6\u0395\u03A1\u0395\u0399\u0391";
+                  if (address.country) subtitle = address.country;
+                } else if (address.country) {
+                  content = address.country;
+                  badgeText = "\u03A7\u03A9\u03A1\u0391";
+                } else {
+                  const queryWords = layoutLocation.toLowerCase().split(/[\s,]+/);
+                  const displayParts = result.displayName.split(",").map((p) => p.trim());
+                  let bestMatch = displayParts[0] || result.displayName;
+                  for (const part of displayParts) {
+                    for (const word of queryWords) {
+                      if (word.length > 2 && part.toLowerCase().includes(word)) {
+                        bestMatch = part;
+                        break;
+                      }
+                    }
+                  }
+                  content = bestMatch;
+                  badgeText = "\u03A4\u039F\u03A0\u039F\u03A3";
+                  if (displayParts.length > 1 && bestMatch !== result.displayName) {
+                    subtitle = displayParts.filter((p) => p !== bestMatch).slice(0, 2).join(", ");
+                  }
+                }
               }
-              const location = result.address.city || result.address.town || result.address.village;
-              const state = result.address.state || result.address.region;
-              const country = result.address.country;
-              if (location && country) {
-                return `\u{1F4CD} ${location}${state ? ", " + state : ""}, ${country}`;
-              } else if (location) {
-                return `\u{1F4CD} ${location}`;
-              } else if (country) {
-                return `\u{1F4CD} ${country}`;
-              }
-              return `\u{1F4CD} ${t("pipelines.steps.layout.locationPin")}`;
+              return /* @__PURE__ */ jsxs9(Flex7, { gap: "sm", align: "center", style: { width: "100%" }, children: [
+                /* @__PURE__ */ jsx9(LocationIcon2, { size: "sm", theme: hasStreetAndNumber || hasStreetOnly ? "primary" : "neutral" }),
+                /* @__PURE__ */ jsxs9("div", { style: { flex: 1, minWidth: 0 }, children: [
+                  /* @__PURE__ */ jsx9("div", { style: {
+                    fontWeight: hasStreetAndNumber || hasStreetOnly ? "bold" : "normal",
+                    color: hasStreetAndNumber || hasStreetOnly ? "#1f2937" : "#6b7280",
+                    fontSize: hasStreetAndNumber || hasStreetOnly ? "14px" : "13px"
+                  }, children: content }),
+                  subtitle && /* @__PURE__ */ jsx9("div", { style: {
+                    fontSize: "11px",
+                    color: "#9ca3af",
+                    marginTop: "2px"
+                  }, children: subtitle })
+                ] }),
+                /* @__PURE__ */ jsx9("div", { style: {
+                  backgroundColor: getBadgeStyle(badgeText).bg,
+                  color: getBadgeStyle(badgeText).text,
+                  padding: "2px 6px",
+                  borderRadius: "4px",
+                  fontSize: "9px",
+                  fontWeight: "bold",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.5px"
+                }, children: badgeText })
+              ] });
             })()
           }
         ) }, result.id))
@@ -2560,7 +2848,7 @@ var LayoutStep = ({ onNext, onBack }) => {
 };
 
 // unified/steps/DetailsStep.tsx
-import { useState as useState7 } from "react";
+import { useState as useState8 } from "react";
 import { Text as Text9, Heading as Heading9 } from "@layera/typography";
 import { Stack as Stack9 } from "@layera/layout";
 import { FormField as FormField2, Input as Input3, TextArea, FormActions as FormActions7 } from "@layera/forms";
@@ -2569,11 +2857,11 @@ import { useLayeraTranslation as useLayeraTranslation10 } from "@layera/tolgee";
 import { jsx as jsx10, jsxs as jsxs10 } from "react/jsx-runtime";
 var DetailsStep = ({ category, intent, onNext, onBack }) => {
   const { t } = useLayeraTranslation10();
-  const [title, setTitle] = useState7("");
-  const [description, setDescription] = useState7("");
-  const [price, setPrice] = useState7();
-  const [salary, setSalary] = useState7();
-  const [contactInfo, setContactInfo] = useState7("");
+  const [title, setTitle] = useState8("");
+  const [description, setDescription] = useState8("");
+  const [price, setPrice] = useState8();
+  const [salary, setSalary] = useState8();
+  const [contactInfo, setContactInfo] = useState8("");
   const isProperty = category === "property";
   const isOffer = intent === "offer";
   const handleNext = () => {
@@ -2681,7 +2969,7 @@ import { BaseCard as BaseCard8 } from "@layera/cards";
 import { Text as Text10, Heading as Heading10 } from "@layera/typography";
 import { Stack as Stack10, Flex as Flex8 } from "@layera/layout";
 import { Button as Button9 } from "@layera/buttons";
-import { CheckIcon as CheckIcon2, AlertTriangleIcon } from "@layera/icons";
+import { CheckIcon as CheckIcon3, AlertTriangleIcon } from "@layera/icons";
 import { jsx as jsx11, jsxs as jsxs11 } from "react/jsx-runtime";
 var CompleteStep = ({
   category,
@@ -2720,7 +3008,7 @@ var CompleteStep = ({
   };
   return /* @__PURE__ */ jsxs11(Stack10, { spacing: "lg", children: [
     /* @__PURE__ */ jsx11(BaseCard8, { variant: "outlined", size: "lg", padding: "lg", className: "layera-unified-card", children: /* @__PURE__ */ jsxs11(Stack10, { spacing: "lg", style: { textAlign: "center" }, children: [
-      /* @__PURE__ */ jsx11(CheckIcon2, { size: "xl", theme: "success" }),
+      /* @__PURE__ */ jsx11(CheckIcon3, { size: "xl", theme: "success" }),
       /* @__PURE__ */ jsx11(Heading10, { as: "h2", size: "xl", color: "success", children: "\u0395\u03C0\u03B9\u03C4\u03C5\u03C7\u03AE\u03C2 \u039F\u03BB\u03BF\u03BA\u03BB\u03AE\u03C1\u03C9\u03C3\u03B7!" }),
       /* @__PURE__ */ jsx11(Text10, { size: "lg", color: "secondary", children: getSuccessMessage() })
     ] }) }),
@@ -2785,7 +3073,7 @@ var UnifiedPipelineModal = ({
     if (state.availability) completedSteps.push("availability");
     if (state.availabilityDetails) completedSteps.push("availabilityDetails");
     return updateStepCompletion(baseSteps, completedSteps);
-  }, [state.category, state.intent, state.transactionType, state.employmentType, state.availability, state.availabilityDetails]);
+  }, [state.category, state.intent, state.transactionType, state.employmentType, state.availability, state.availabilityDetails, t]);
   const currentStepIndex = getStepIndex(state.step, stepperSteps);
   const finalContainer = container !== void 0 ? container : containerFn;
   return /* @__PURE__ */ jsx12(

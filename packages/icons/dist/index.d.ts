@@ -63,6 +63,7 @@ declare const CrosshairsIcon: React$1.FC<Omit<IconProps, 'name' | 'children'>>;
 declare const GlobeIcon: React$1.FC<Omit<IconProps, 'name' | 'children'>>;
 declare const AlertTriangleIcon: React$1.FC<Omit<IconProps, 'name' | 'children'>>;
 declare const SatelliteIcon: React$1.FC<Omit<IconProps, 'name' | 'children'>>;
+declare const RulerIcon: React$1.FC<Omit<IconProps, 'name' | 'children'>>;
 
 declare const PhoneIcon: React$1.FC<Omit<IconProps, 'name' | 'children'>>;
 declare const TabletIcon: React$1.FC<Omit<IconProps, 'name' | 'children'>>;
@@ -98,4 +99,4 @@ declare const StoreIcon: React$1.FC<Omit<IconProps, 'name' | 'children'>>;
 declare const RestaurantIcon: React$1.FC<Omit<IconProps, 'name' | 'children'>>;
 declare const HospitalIcon: React$1.FC<Omit<IconProps, 'name' | 'children'>>;
 
-export { AlertTriangleIcon, ArrowLeftIcon, ArrowRightIcon, type BaseIconProps, BriefcaseIcon, BuildingIcon, CheckIcon, CloseIcon, CommercialIcon, CompassIcon, CopyIcon, CrosshairsIcon, DeleteIcon, DownloadIcon, EditIcon, GlobeIcon, HomeIcon, HospitalIcon, Icon, type IconCategory, type IconDefinition, type IconSize, type IconTheme, type IconVariant, IndustrialIcon, LaptopIcon, LayersIcon, LocationIcon, MapIcon, MenuIcon, MonitorIcon, MoreIcon, PhoneIcon, PlusIcon, PrintIcon, RedoIcon, RefreshIcon, RestaurantIcon, RotateIcon, RouteIcon, SatelliteIcon, SaveIcon, SearchIcon, SettingsIcon, ShareIcon, SmartphoneIcon, StoreIcon, TabletIcon, ToolIcon, TruckIcon, TvIcon, UndoIcon, UploadIcon, VillaIcon, WatchIcon, WorkIcon, ZoomInIcon, ZoomOutIcon };
+export { AlertTriangleIcon, ArrowLeftIcon, ArrowRightIcon, type BaseIconProps, BriefcaseIcon, BuildingIcon, CheckIcon, CloseIcon, CommercialIcon, CompassIcon, CopyIcon, CrosshairsIcon, DeleteIcon, DownloadIcon, EditIcon, GlobeIcon, HomeIcon, HospitalIcon, Icon, type IconCategory, type IconDefinition, type IconSize, type IconTheme, type IconVariant, IndustrialIcon, LaptopIcon, LayersIcon, LocationIcon, MapIcon, MenuIcon, MonitorIcon, MoreIcon, PhoneIcon, PlusIcon, PrintIcon, RedoIcon, RefreshIcon, RestaurantIcon, RotateIcon, RouteIcon, RulerIcon, SatelliteIcon, SaveIcon, SearchIcon, SettingsIcon, ShareIcon, SmartphoneIcon, StoreIcon, TabletIcon, ToolIcon, TruckIcon, TvIcon, UndoIcon, UploadIcon, VillaIcon, WatchIcon, WorkIcon, ZoomInIcon, ZoomOutIcon };

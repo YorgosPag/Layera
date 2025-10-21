@@ -35,6 +35,8 @@ export function AddressBreakdownCard({
   geocodeResult,
   config = {},
   title,
+  onClick,
+  style,
   isLoading = false,
   error = null
 }: AddressBreakdownCardProps) {
@@ -172,7 +174,7 @@ export function AddressBreakdownCard({
       );
     }
 
-    // List layout
+    // List layout - ΙΕΡΑΡΧΙΚΗ ΕΜΦΑΝΙΣΗ
     return (
       <div
         key={component.id}
@@ -186,6 +188,7 @@ export function AddressBreakdownCard({
           border: '1px solid #E5E7EB',
           transition: 'all 0.2s ease-in-out',
           backgroundColor: isClickable ? '#FFFFFF' : '#F9FAFB',
+          textAlign: 'left', // Ευθυγράμμιση προς τα αριστερά
           ...(isClickable && {
             ':hover': {
               backgroundColor: '#F3F4F6',
@@ -215,7 +218,9 @@ export function AddressBreakdownCard({
         <div className="list-item-content" style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '0.5rem'
+          justifyContent: 'flex-start', // Ευθυγράμμιση προς τα αριστερά
+          gap: '0.5rem',
+          width: '100%'
         }}>
           {isLoading ? (
             <Spinner size="sm" variant="default" />
@@ -236,7 +241,11 @@ export function AddressBreakdownCard({
             flex: 1,
             fontSize: '0.875rem',
             color: isClickable ? '#1F2937' : '#6B7280',
-            fontWeight: isClickable ? '500' : '400'
+            fontWeight: isClickable ? '500' : '400',
+            textAlign: 'left', // Ευθυγράμμιση κειμένου προς τα αριστερά
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis'
           }}>
             {component.label}
           </span>
@@ -290,6 +299,8 @@ export function AddressBreakdownCard({
       title={title || t('addressDetails')}
       actions={cardActions}
       className={`address-breakdown-card ${finalConfig.className || ''}`}
+      onClick={onClick}
+      style={style}
     >
       {error && (
         <div className="error-message">

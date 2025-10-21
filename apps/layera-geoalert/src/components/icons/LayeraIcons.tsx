@@ -584,3 +584,68 @@ export const PartyIcon: React.FC<IconProps> = ({
     </svg>
   );
 };
+
+// Ruler Icon - Χάρακας για μετρήσεις
+export const RulerIcon: React.FC<IconProps> = ({
+  size = 'md',
+  theme = 'neutral',
+  className = '',
+  style = {},
+  onClick
+}) => {
+  const iconSize = typeof size === 'number' ? size : ICON_SIZES[size];
+  const color = THEME_COLORS[theme];
+
+  return (
+    <svg
+      width={iconSize}
+      height={iconSize}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`layera-icon ${className}`}
+      style={style}
+      onClick={onClick}
+      role={onClick ? 'button' : 'img'}
+      tabIndex={onClick ? 0 : undefined}
+    >
+      <path d="M21 10V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5M7 10h4M15 10h2M7 14h2m4 0h4" />
+    </svg>
+  );
+};
+
+// Plus Icon - Κουμπί προσθήκης
+export const PlusIcon: React.FC<IconProps> = ({
+  size = 'md',
+  theme = 'neutral',
+  className = '',
+  style = {},
+  onClick
+}) => {
+  const iconSize = typeof size === 'number' ? size : ICON_SIZES[size];
+  const color = THEME_COLORS[theme];
+
+  return (
+    <svg
+      width={iconSize}
+      height={iconSize}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`layera-icon ${className}`}
+      style={style}
+      onClick={onClick}
+      role={onClick ? 'button' : 'img'}
+      tabIndex={onClick ? 0 : undefined}
+    >
+      <line x1="12" y1="5" x2="12" y2="19" />
+      <line x1="5" y1="12" x2="19" y2="12" />
+    </svg>
+  );
+};

@@ -206,6 +206,7 @@ var SatelliteIcon = (props) => /* @__PURE__ */ jsxs3(Icon, { name: "satellite", 
   /* @__PURE__ */ jsx3("path", { d: "M19 13l-4-4 4-4" }),
   /* @__PURE__ */ jsx3("circle", { cx: "12", cy: "12", r: "2" })
 ] });
+var RulerIcon = (props) => /* @__PURE__ */ jsx3(Icon, { name: "ruler", ...props, children: /* @__PURE__ */ jsx3("path", { d: "M21 10V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5M7 10h4M15 10h2M7 14h2m4 0h4" }) });
 
 // src/icons/DeviceIcons.tsx
 import { jsx as jsx4, jsxs as jsxs4 } from "react/jsx-runtime";
@@ -419,6 +420,7 @@ export {
   RestaurantIcon,
   RotateIcon,
   RouteIcon,
+  RulerIcon,
   SatelliteIcon,
   SaveIcon,
   SearchIcon,

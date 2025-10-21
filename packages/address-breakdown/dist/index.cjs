@@ -195,7 +195,7 @@ __export(index_exports, {
 module.exports = __toCommonJS(index_exports);
 
 // src/components/AddressBreakdownCard.tsx
-var import_react2 = require("react");
+var import_react5 = require("react");
 var import_cards = require("@layera/cards");
 var import_buttons = require("@layera/buttons");
 var import_icons = require("@layera/icons");
@@ -270,8 +270,61 @@ var Spinner = ({ size = "md", variant = "default", color, speed = "normal", clas
   return renderSpinner();
 };
 
-// src/components/AddressBreakdownCard.tsx
-var import_i18n = require("@layera/i18n");
+// ../tolgee/dist/index.mjs
+var import_react2 = __toESM(require("react"), 1);
+var import_jsx_runtime = require("react/jsx-runtime");
+var import_react3 = require("react");
+var import_jsx_runtime2 = require("react/jsx-runtime");
+var import_react4 = require("react");
+var MinimalTolgeeContext = (0, import_react2.createContext)(null);
+var useMinimalTolgee = () => {
+  const context = (0, import_react2.useContext)(MinimalTolgeeContext);
+  if (!context) {
+    throw new Error("useMinimalTolgee must be used within MinimalTolgeeProvider");
+  }
+  return context;
+};
+var TOLGEE_CONFIG = {
+  // API Configuration
+  apiUrl: typeof process !== "undefined" && process.env?.TOLGEE_API_URL || "https://app.tolgee.io",
+  apiKey: typeof process !== "undefined" && process.env?.TOLGEE_API_KEY || "",
+  // Project Settings
+  projectId: typeof process !== "undefined" && process.env?.TOLGEE_PROJECT_ID || "",
+  // Language Settings
+  defaultLanguage: "el",
+  // Greek as default
+  fallbackLanguage: "en",
+  supportedLanguages: ["el", "en"],
+  // Development Settings
+  isDevelopment: typeof process !== "undefined" && process.env?.NODE_ENV === "development",
+  inContextEditing: typeof process !== "undefined" && process.env?.NODE_ENV === "development",
+  // Cache Settings
+  cacheEnabled: true,
+  cacheExpirationMs: 24 * 60 * 60 * 1e3,
+  // 24 hours
+  // Features
+  features: {
+    autoTranslate: true,
+    machineTranslation: true,
+    inContextEditing: true,
+    screenshots: true,
+    comments: true
+  }
+};
+function useLayeraTranslation() {
+  const { t, language, changeLanguage } = useMinimalTolgee();
+  return {
+    t,
+    i18n: {
+      language,
+      changeLanguage,
+      languages: {
+        el: "\u0395\u03BB\u03BB\u03B7\u03BD\u03B9\u03BA\u03AC",
+        en: "English"
+      }
+    }
+  };
+}
 
 // ../geo-mapping/src/services/osmService.ts
 var fetchBoundaryByAddressComponent = async (addressComponent) => {
@@ -516,19 +569,21 @@ function parseFullAddress(result) {
 }
 
 // src/components/AddressBreakdownCard.tsx
-var import_jsx_runtime = require("react/jsx-runtime");
+var import_jsx_runtime3 = require("react/jsx-runtime");
 function AddressBreakdownCard({
   geocodeResult,
   config = {},
   title,
+  onClick,
+  style,
   isLoading = false,
   error = null
 }) {
-  const { t } = (0, import_i18n.useLayeraTranslation)();
-  const [boundaryLoading, setBoundaryLoading] = (0, import_react2.useState)(null);
-  const [boundaryError, setBoundaryError] = (0, import_react2.useState)(null);
-  const [loadingTimer, setLoadingTimer] = (0, import_react2.useState)(0);
-  (0, import_react2.useEffect)(() => {
+  const { t } = useLayeraTranslation();
+  const [boundaryLoading, setBoundaryLoading] = (0, import_react5.useState)(null);
+  const [boundaryError, setBoundaryError] = (0, import_react5.useState)(null);
+  const [loadingTimer, setLoadingTimer] = (0, import_react5.useState)(0);
+  (0, import_react5.useEffect)(() => {
     let interval;
     if (boundaryLoading) {
       setLoadingTimer(0);
@@ -552,7 +607,7 @@ function AddressBreakdownCard({
   };
   const components = parseFullAddress(geocodeResult);
   const visibleComponents = finalConfig.maxComponents ? components.slice(0, finalConfig.maxComponents) : components;
-  const handleComponentClick = (0, import_react2.useCallback)(async (component) => {
+  const handleComponentClick = (0, import_react5.useCallback)(async (component) => {
     if (!component.clickable || !finalConfig.enableBoundarySearch) {
       return;
     }
@@ -605,17 +660,17 @@ function AddressBreakdownCard({
       }
     };
     if (finalConfig.layout === "tags") {
-      return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+      return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
         import_buttons.Button,
         {
           ...componentProps,
           variant: isClickable ? "outline" : "ghost",
           size: "sm",
-          startIcon: isClickable ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_icons.MapIcon, {}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_icons.LocationIcon, {}),
+          startIcon: isClickable ? /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(import_icons.MapIcon, {}) : /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(import_icons.LocationIcon, {}),
           loading: isLoading2,
           children: [
             component.label,
-            isLoading2 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { style: {
+            isLoading2 && /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("span", { style: {
               marginLeft: "0.5rem",
               fontSize: "0.75rem",
               color: "#6B7280"
@@ -629,7 +684,7 @@ function AddressBreakdownCard({
         component.id
       );
     }
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+    return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
       "div",
       {
         ...componentProps,
@@ -668,28 +723,28 @@ function AddressBreakdownCard({
           }
         },
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "list-item-content", style: {
+          /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "list-item-content", style: {
             display: "flex",
             alignItems: "center",
             gap: "0.5rem"
           }, children: [
-            isLoading2 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Spinner, { size: "sm", variant: "default" }) : isClickable ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_icons.MapIcon, { className: "list-icon", style: {
+            isLoading2 ? /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(Spinner, { size: "sm", variant: "default" }) : isClickable ? /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(import_icons.MapIcon, { className: "list-icon", style: {
               width: "1rem",
               height: "1rem",
               color: "#3B82F6"
-            } }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_icons.LocationIcon, { className: "list-icon", style: {
+            } }) : /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(import_icons.LocationIcon, { className: "list-icon", style: {
               width: "1rem",
               height: "1rem",
               color: "#6B7280"
             } }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "list-label", style: {
+            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { className: "list-label", style: {
               flex: 1,
               fontSize: "0.875rem",
               color: isClickable ? "#1F2937" : "#6B7280",
               fontWeight: isClickable ? "500" : "400"
             }, children: component.label })
           ] }),
-          isLoading2 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "loading-indicator", style: {
+          isLoading2 && /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "loading-indicator", style: {
             marginTop: "0.25rem",
             fontSize: "0.75rem",
             color: "#6B7280",
@@ -697,8 +752,8 @@ function AddressBreakdownCard({
             alignItems: "center",
             gap: "0.5rem"
           }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\u0391\u03BD\u03B1\u03B6\u03AE\u03C4\u03B7\u03C3\u03B7 \u03C0\u03B5\u03C1\u03B9\u03B3\u03C1\u03AC\u03BC\u03BC\u03B1\u03C4\u03BF\u03C2..." }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { style: {
+            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { children: "\u0391\u03BD\u03B1\u03B6\u03AE\u03C4\u03B7\u03C3\u03B7 \u03C0\u03B5\u03C1\u03B9\u03B3\u03C1\u03AC\u03BC\u03BC\u03B1\u03C4\u03BF\u03C2..." }),
+            /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("span", { style: {
               fontWeight: "500",
               color: "#3B82F6",
               minWidth: "2rem"
@@ -712,7 +767,7 @@ function AddressBreakdownCard({
       component.id
     );
   };
-  const cardActions = /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+  const cardActions = /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
     import_buttons.Button,
     {
       variant: "ghost",
@@ -731,23 +786,25 @@ function AddressBreakdownCard({
       children: t("showOnMap")
     }
   );
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
     import_cards.BaseCard,
     {
       title: title || t("addressDetails"),
       actions: cardActions,
       className: `address-breakdown-card ${finalConfig.className || ""}`,
+      onClick,
+      style,
       children: [
-        error && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "error-message", children: error }),
-        boundaryError && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "boundary-error", children: boundaryError }),
-        !isLoading && visibleComponents.some((c) => c.clickable) && finalConfig.enableBoundarySearch && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: {
+        error && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "error-message", children: error }),
+        boundaryError && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "boundary-error", children: boundaryError }),
+        !isLoading && visibleComponents.some((c) => c.clickable) && finalConfig.enableBoundarySearch && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { style: {
           fontSize: "0.875rem",
           color: "#6B7280",
           marginBottom: "0.75rem",
           fontStyle: "italic"
         }, children: t("clickToShowBoundary") }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: `address-components layout-${finalConfig.layout}`, children: isLoading ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "loading-state", children: "Loading..." }) : visibleComponents.map(renderComponent) }),
-        components.length > visibleComponents.length && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "components-overflow", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: `address-components layout-${finalConfig.layout}`, children: isLoading ? /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "loading-state", children: "Loading..." }) : visibleComponents.map(renderComponent) }),
+        components.length > visibleComponents.length && /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "components-overflow", children: [
           "+",
           components.length - visibleComponents.length,
           " more components"

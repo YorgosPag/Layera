@@ -1,17 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import L from 'leaflet';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Button } from '@layera/buttons';
-import LatitudeRuler from './rulers/LatitudeRuler';
-import LongitudeRuler from './rulers/LongitudeRuler';
 import {
   ViewportDebugger,
   useViewportWithOverride,
   MobileOnly,
   TabletOnly,
-  DesktopOnly,
-  DeviceSwitcher
+  DesktopOnly
 } from '@layera/viewport';
-import { HomeIcon, BriefcaseIcon, MarkerIcon, PolygonIcon, CheckIcon, TrashIcon } from './icons/LayeraIcons';
+import { HomeIcon, BriefcaseIcon, MarkerIcon, PolygonIcon, CheckIcon, TrashIcon, RulerIcon, PlusIcon } from './icons/LayeraIcons';
+import LatitudeRuler from './rulers/LatitudeRuler';
+import LongitudeRuler from './rulers/LongitudeRuler';
+import { RULER_SIZE, RULER_BG } from './utils/rulerUtils';
 
 interface LatLngBounds {
   getSouth(): number;
@@ -29,6 +31,14 @@ interface LeafletMap {
   remove(): void;
   eachLayer(callback: (layer: LeafletLayer) => void): void;
   removeLayer(layer: LeafletLayer): void;
+  setView(center: [number, number], zoom: number): void;
+  getCenter(): { lat: number; lng: number };
+  getZoom(): number;
+  fitBounds(bounds: [[number, number], [number, number]]): void;
+  addLayer(layer: LeafletLayer): void;
+  closePopup(): void;
+  addControl(control: unknown): void;
+  removeControl(control: unknown): void;
 }
 
 interface LeafletEvent {
@@ -78,14 +88,117 @@ interface DrawnArea {
 
 interface GeoMapProps {
   onAreaCreated?: (area: DrawnArea) => void;
+  onNewEntryClick?: () => void;
 }
 
-const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
+/**
+ * ΣΩΣΤΗ Address type για hierarchical popup formatting (από diavase_2.md)
+ */
+type Addr = {
+  street?: string; houseNumber?: string; postalCode?: string;
+  suburb?: string; neighbourhood?: string; quarter?: string; hamlet?: string;
+  village?: string; town?: string; city?: string; municipality?: string;
+  county?: string; state?: string; region?: string; state_district?: string;
+  country?: string;
+};
+
+/**
+ * ΔΙΟΡΘΩΜΕΝΟ normalizeAddr - Χρησιμοποιεί σωστά κλειδιά από Nominatim
+ */
+const normalizeAddr = (r: any): Addr => {
+  const a = r?.address ?? {};
+  return {
+    street: a.street || a.road,
+    houseNumber: a.houseNumber || a.house_number,
+    postalCode: a.postalCode || a.postcode,
+    suburb: a.suburb, neighbourhood: a.neighbourhood, quarter: a.quarter, hamlet: a.hamlet,
+    village: a.village, town: a.town,
+    city: a.city, municipality: a.municipality,
+    county: a.county,
+    state: a.state,                // Περιφέρεια
+    region: a.region,              // Αποκεντρωμένη (ή fallback παρακάτω)
+    state_district: a.state_district,
+    country: a.country
+  };
+};
+
+/**
+ * ΔΙΟΡΘΩΜΕΝΟ dedup με ισότητα μόνο (όχι substring)
+ */
+const dedupExact = (xs: (string|undefined)[]) => {
+  const out: string[] = [];
+  for (const v of xs) {
+    if (!v) continue;
+    const k = v.trim().toLowerCase();
+    if (!out.some(y => y.trim().toLowerCase() === k)) out.push(v);
+  }
+  return out;
+};
+
+/**
+ * ΔΙΟΡΘΩΜΕΝΟ labels με έλεγχο διπλής ετικέτας
+ */
+const label = (title: string, v?: string) =>
+  v ? (/^\s*[^:]*\s/.test(v) && v.includes(title) ? v : `${title} ${v}`) : undefined;
+
+/**
+ * ΔΙΟΡΘΩΜΕΝΟ formatHierarchyGR αντί formatPopup
+ */
+const formatHierarchyGR = (a: Addr) => {
+  const first = [a.street && a.houseNumber ? `${a.street} ${a.houseNumber}` : a.street, a.postalCode]
+    .filter(Boolean).join(', ');
+
+  const community = a.suburb || a.neighbourhood || a.quarter || a.hamlet;
+  const muniUnit  = a.village || a.town;
+  const municipality = a.city || a.municipality;
+  const regionPerifereia = a.state; // Περιφέρεια
+  const decentralized = a.region || a.state_district; // Αποκεντρωμένη
+
+  const lines = dedupExact([
+    first,
+    label('Κοινότητα', community),
+    label('Δημοτική Ενότητα', muniUnit),
+    label('Δήμος', municipality),
+    label('Μητροπολιτική Ενότητα', a.county),
+    label('Περιφέρεια', regionPerifereia),
+    label('Αποκεντρωμένη Διοίκηση', decentralized),
+    a.country
+  ]);
+
+  const body = lines.map(l => `<div style="margin:2px 0">${l}</div>`).join('');
+  return `<div style="text-align:left;padding:12px;color:#059669">
+           <div style="margin-bottom:8px"><small style="color:#6b7280">Διοικητική Ιεραρχία</small></div>
+           ${body}
+         </div>`;
+};
+
+/**
+ * ΔΙΟΡΘΩΜΕΝΟ formatBoundary για admin boundaries
+ */
+const formatBoundary = (p: any) => {
+  const name = p?.name;
+  const lvl = String(p?.admin_level || '');
+  const title =
+    lvl==='2' ? 'Χώρα' :
+    lvl==='3' ? 'Αποκεντρωμένη Διοίκηση' :
+    lvl==='4' ? 'Περιφέρεια' :
+    (lvl==='5'||lvl==='6') ? 'Μητροπολιτική Ενότητα' :
+    (lvl==='7'||lvl==='9'||lvl==='10') ? 'Δημοτική Ενότητα' :
+    lvl==='8' ? 'Δήμος' : 'Διοικητικό';
+  return `<div style="text-align:left;padding:12px;color:#059669">
+            <div style="margin-bottom:8px"><small style="color:#6b7280">${title}</small></div>
+            <div>${name ?? ''}</div>
+          </div>`;
+};
+
+
+const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated, onNewEntryClick }) => {
   const { t } = useLayeraTranslation();
   const { deviceType, isMobile, isTablet, isDesktop } = useViewportWithOverride();
   const mapInitialized = useRef(false);
   const mapRef = useRef<LeafletMap | null>(null);
-  const leafletRef = useRef<typeof import('leaflet').default | null>(null); // Store Leaflet reference
+  const leafletRef = useRef<typeof import('leaflet') | null>(null); // Store Leaflet reference
+  const isComponentMounted = useRef(true); // Ref για να το βλέπουν οι event handlers
   const drawingMode = useRef<'none' | 'polygon' | 'marker'>('none');
   const currentPolygon = useRef<LeafletLayer | null>(null);
   const polygonPoints = useRef<number[][]>([]);
@@ -100,6 +213,14 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
   const [mapBounds, setMapBounds] = useState<LatLngBounds | null>(null);
   const [mapSize, setMapSize] = useState({ width: 0, height: 0 });
   const [isLoading, setIsLoading] = useState(true);
+  const [showRulers, setShowRulers] = useState(true);
+  // ViewportFrame FAB logic από diavase_3.md
+  const frameRef = useRef<HTMLDivElement | null>(null);
+  const [fabPos, setFabPos] = useState({ x: 15, y: 15 }); // left/top
+  const startRef = useRef<{x:number;y:number;px:number;py:number} | null>(null);
+
+  const BTN_SIZE = 56;
+  const MARGIN = 15;
 
   // Helper function to generate dynamic area names
   const getAreaName = (area: DrawnArea): string => {
@@ -112,10 +233,88 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
     return area.name; // Fallback to original name
   };
 
+  // re-clamp on viewport changes (iOS bars, keyboard) - από diavase_3.md
   useEffect(() => {
-    if (mapInitialized.current) return;
+    const clamp = () => {
+      // Αναζήτηση του ViewportFrame
+      const frame = document.getElementById('geo-viewport') || document.querySelector('[data-viewport-frame]');
+      if (!frame) return;
 
-    let isComponentMounted = true;
+      frameRef.current = frame as HTMLDivElement;
+      const rect = frame.getBoundingClientRect();
+
+      // Σιγουρεύουμε ότι τα όρια είναι σωστά
+      const maxX = Math.max(0, rect.width - BTN_SIZE - MARGIN);
+      const maxY = Math.max(0, rect.height - BTN_SIZE - MARGIN);
+
+      const x = Math.max(MARGIN, Math.min(maxX, fabPos.x));
+      const y = Math.max(MARGIN, Math.min(maxY, fabPos.y));
+
+      if (x !== fabPos.x || y !== fabPos.y) {
+        setFabPos({ x, y });
+      }
+    };
+
+    const visualViewport = (window as any).visualViewport;
+    window.addEventListener('resize', clamp);
+    visualViewport?.addEventListener('resize', clamp);
+    visualViewport?.addEventListener('scroll', clamp);
+
+    // Αρχική κλήση clamp με κάποια καθυστέρηση
+    setTimeout(clamp, 100);
+
+    return () => {
+      window.removeEventListener('resize', clamp);
+      visualViewport?.removeEventListener('resize', clamp);
+      visualViewport?.removeEventListener('scroll', clamp);
+    };
+  }, [fabPos.x, fabPos.y]);
+
+  // Νέος FAB drag handler από diavase_3.md
+  const handleFabPointerDown = (e: React.PointerEvent) => {
+    // Αναζήτηση του ViewportFrame
+    const frame = document.getElementById('geo-viewport') || document.querySelector('[data-viewport-frame]');
+    if (!frame) return;
+
+    frameRef.current = frame as HTMLDivElement;
+    const rect = frame.getBoundingClientRect();
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+    startRef.current = { x: e.clientX, y: e.clientY, px: fabPos.x, py: fabPos.y };
+
+    const onMove = (ev: PointerEvent) => {
+      if (!startRef.current || !rect) return;
+      const dx = ev.clientX - startRef.current.x;
+      const dy = ev.clientY - startRef.current.y;
+
+      // Σιγουρεύουμε ότι τα όρια είναι σωστά
+      const maxX = Math.max(0, rect.width - BTN_SIZE - MARGIN);
+      const maxY = Math.max(0, rect.height - BTN_SIZE - MARGIN);
+
+      const nx = Math.max(MARGIN, Math.min(maxX, startRef.current.px + dx));
+      const ny = Math.max(MARGIN, Math.min(maxY, startRef.current.py + dy));
+
+      setFabPos({ x: nx, y: ny });
+    };
+
+    const onUp = () => {
+      startRef.current = null;
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+    };
+
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+  };
+
+
+
+
+  useEffect(() => {
+    if (mapInitialized.current && mapRef.current) return;
+
+    isComponentMounted.current = true;
+
+    // Έχουμε το isComponentMounted ως ref τώρα
 
     const loadLeafletCSS = () => {
       return new Promise<void>((resolve) => {
@@ -138,7 +337,7 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
     const handleCenterMapToLocation = (event: CustomEvent) => {
       console.log('🎯 GeoMap: Received centerMapToLocation event', event.detail);
 
-      if (isComponentMounted && mapRef.current) {
+      if (isComponentMounted.current && mapRef.current) {
         const { latitude, longitude, zoom = 16 } = event.detail;
         console.log('🗺️ GeoMap: Setting view to:', { latitude, longitude, zoom });
 
@@ -209,9 +408,9 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
     const handleShowSearchResult = (event: CustomEvent) => {
       console.log('🔍 GeoMap: Received showSearchResult event', event.detail);
 
-      if (isComponentMounted && mapRef.current) {
-        const { latitude, longitude, zoom = 16, displayName } = event.detail;
-        console.log('🗺️ GeoMap: Showing search result:', { latitude, longitude, displayName });
+      if (isComponentMounted.current && mapRef.current) {
+        const { latitude, longitude, zoom = 16, displayName, result } = event.detail;
+        console.log('🗺️ GeoMap: Showing search result:', { latitude, longitude, displayName, result });
 
         // Αφαιρούμε το παλιό search result marker αν υπάρχει
         if (searchResultMarker.current && mapRef.current) {
@@ -264,10 +463,16 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
             iconAnchor: [19, 19]
           });
 
+          // ΩΜΟ μήνυμα από OpenStreetMap όπως το δίνει η Nominatim
+          const hierarchicalPopup = `<div style="text-align:left;padding:12px;color:#059669">
+           <div style="margin-bottom:8px"><small style="color:#6b7280">Τοποθεσία</small></div>
+           <div>${displayName}</div>
+         </div>`;
+
           // Προσθέτουμε το νέο search result marker
           searchResultMarker.current = L.marker([latitude, longitude], { icon: searchResultIcon })
             .addTo(mapRef.current)
-            .bindPopup(`<div style="text-align: center; font-weight: 600; color: #10b981; max-width: 200px;">🔍 ${displayName}</div>`)
+            .bindPopup(hierarchicalPopup)
             .openPopup();
 
           console.log('✨ GeoMap: Search result marker created and added successfully!');
@@ -283,7 +488,7 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
     const handleShowAdministrativeBoundary = (event: CustomEvent) => {
       console.log('🏛️ GeoMap: Received showAdministrativeBoundary event', event.detail);
 
-      if (isComponentMounted && mapRef.current && leafletRef.current) {
+      if (isComponentMounted.current && mapRef.current && leafletRef.current) {
         const { boundary, component } = event.detail;
         const L = leafletRef.current;
 
@@ -306,12 +511,19 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
                 fillColor: '#8b5cf6',
                 fillOpacity: 0.1
               }
-            }).bindPopup(`
-              <div style="text-align: center; font-weight: 600; color: #8b5cf6; max-width: 200px;">
-                🏛️ ${component.label}
-                <br><small style="color: #6b7280;">Διοικητικό όριο</small>
-              </div>
-            `);
+            });
+
+            // ΣΩΣΤΗ χρήση και για boundary (από diavase_2.md)
+            const rawContent = boundary.features[0]?.properties?.name || component.label;
+            console.log('📋 GeoMap: Raw content from OSM:', rawContent);
+
+            // ΩΜΟ μήνυμα από OpenStreetMap όπως το δίνει η Nominatim
+            const hierarchicalPopup = `<div style="text-align:left;padding:12px;color:#059669">
+           <div style="margin-bottom:8px"><small style="color:#6b7280">Περιοχή</small></div>
+           <div>${rawContent || 'Άγνωστη περιοχή'}</div>
+         </div>`;
+
+            geoJsonLayer.bindPopup(hierarchicalPopup);
 
             // Add to map and store reference
             geoJsonLayer.addTo(mapRef.current);
@@ -335,29 +547,212 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
       }
     };
 
+    // Handler για floor plan εμφάνιση στον χάρτη
+    const handleShowFloorPlan = (event: CustomEvent) => {
+      console.log('🏗️ GeoMap: Received showFloorPlan event', event.detail);
+      console.log('🏗️ GeoMap: isComponentMounted:', isComponentMounted.current);
+      console.log('🏗️ GeoMap: mapRef.current:', !!mapRef.current);
+      console.log('🏗️ GeoMap: leafletRef.current:', !!leafletRef.current);
+
+      if (!event.detail) {
+        console.error('🏗️ GeoMap: No event detail found');
+        return;
+      }
+
+      if (isComponentMounted.current && mapRef.current && leafletRef.current) {
+        const { fileUrl, fileName, fileType } = event.detail;
+        const L = leafletRef.current;
+
+        try {
+          // Αφαίρεση υπάρχοντων floor plan layers
+          if (mapRef.current) {
+            mapRef.current.eachLayer((layer: unknown) => {
+              const leafletLayer = layer as { options?: { className?: string } };
+              if (leafletLayer.options?.className === 'floor-plan-overlay') {
+                mapRef.current?.removeLayer(layer as never);
+              }
+            });
+          }
+
+          // Προσθήκη νέου floor plan overlay
+          if (fileType === 'image' && fileUrl) {
+            // Δημιουργία temporary image για να πάρουμε τις διαστάσεις
+            const img = new Image();
+            img.onload = () => {
+              const imageAspectRatio = img.width / img.height;
+
+              // Παίρνουμε το κέντρο του χάρτη
+              const center = mapRef.current!.getCenter();
+              const zoom = mapRef.current!.getZoom();
+
+              // Υπολογίζουμε κατάλληλο μέγεθος που να διατηρεί το aspect ratio
+              // Βασιζόμαστε σε ένα σταθερό μέγεθος σε μέτρα
+              const baseWidthMeters = 100; // 100 μέτρα βάση
+              const heightMeters = baseWidthMeters / imageAspectRatio;
+
+              // Μετατροπή μέτρων σε degrees (προσεγγιστική για μικρές περιοχές)
+              const metersPerDegree = 111000; // περίπου
+              const latOffset = heightMeters / metersPerDegree / 2;
+              const lngOffset = baseWidthMeters / metersPerDegree / Math.cos(center.lat * Math.PI / 180) / 2;
+
+              // Δημιουργία bounds που διατηρούν το aspect ratio
+              const bounds: [[number, number], [number, number]] = [
+                [center.lat - latOffset, center.lng - lngOffset], // southwest
+                [center.lat + latOffset, center.lng + lngOffset]  // northeast
+              ];
+
+              console.log('🎯 GeoMap: Creating image overlay with bounds:', bounds);
+              console.log('🎯 GeoMap: Image dimensions:', `${img.width}x${img.height}`, 'aspect ratio:', imageAspectRatio);
+
+              const imageOverlay = L.imageOverlay(fileUrl, bounds, {
+                opacity: 1.0, // Πλήρης αδιαφάνεια
+                className: 'floor-plan-overlay',
+                alt: fileName
+              });
+
+              console.log('🎯 GeoMap: Adding image overlay to map...');
+              imageOverlay.addTo(mapRef.current!);
+              console.log('🖼️ GeoMap: Floor plan image added to map with correct aspect ratio:', fileName, `${img.width}x${img.height}`);
+
+              // Φέρε την κάτοψη σε πρώτο πλάνο με fitBounds
+              console.log('🔍 GeoMap: Zooming to floor plan bounds for close-up view on initial load');
+              mapRef.current!.fitBounds(bounds, {
+                padding: [20, 20], // λίγο padding γύρω από την εικόνα
+                maxZoom: 18 // μέγιστο zoom για καλή ανάλυση
+              });
+            };
+            img.src = fileUrl;
+          } else {
+            // Για άλλους τύπους αρχείων (PDF, DXF, DWG) - placeholder
+            console.log('📄 GeoMap: Non-image floor plan uploaded:', fileName, fileType);
+            // TODO: Εδώ θα προσθέσουμε support για PDF και CAD αρχεία
+          }
+        } catch (error) {
+          console.error('❌ GeoMap: Error adding floor plan:', error);
+        }
+      } else {
+        console.warn('⚠️ GeoMap: Cannot handle floor plan - component not mounted or map not ready');
+        console.warn('⚠️ GeoMap: isComponentMounted:', isComponentMounted.current);
+        console.warn('⚠️ GeoMap: mapRef.current:', !!mapRef.current);
+        console.warn('⚠️ GeoMap: leafletRef.current:', !!leafletRef.current);
+      }
+    };
+
+    // Handler για μετακίνηση floor plan σε νέα τοποθεσία
+    const handleMoveFloorPlanToLocation = (event: CustomEvent) => {
+      console.log('🎯 GeoMap: Received moveFloorPlanToLocation event', event.detail);
+
+      if (!event.detail) {
+        console.error('🎯 GeoMap: No event detail found for moveFloorPlanToLocation');
+        return;
+      }
+
+      if (isComponentMounted.current && mapRef.current && leafletRef.current) {
+        const { latitude, longitude, reason, displayName } = event.detail;
+        const L = leafletRef.current;
+
+        try {
+          // Βρες το floor plan overlay
+          let floorPlanLayer: unknown = null;
+          mapRef.current.eachLayer((layer: unknown) => {
+            const leafletLayer = layer as { options?: { className?: string } };
+            if (leafletLayer.options?.className === 'floor-plan-overlay') {
+              floorPlanLayer = layer;
+            }
+          });
+
+          if (floorPlanLayer) {
+            // Αφαίρεση του παλιού layer
+            mapRef.current.removeLayer(floorPlanLayer as never);
+
+            // Αν είναι image overlay, ξαναδημιούργησέ το στη νέα θέση
+            const imageLayer = floorPlanLayer as { _url?: string, options?: { alt?: string, opacity?: number } };
+            if (imageLayer._url) {
+              // Δημιουργία temporary image για να πάρουμε τις διαστάσεις
+              const img = new Image();
+              img.onload = () => {
+                const imageAspectRatio = img.width / img.height;
+
+                // Υπολογίζουμε κατάλληλο μέγεθος που να διατηρεί το aspect ratio
+                const baseWidthMeters = 100; // 100 μέτρα βάση
+                const heightMeters = baseWidthMeters / imageAspectRatio;
+
+                // Μετατροπή μέτρων σε degrees (προσεγγιστική για μικρές περιοχές)
+                const metersPerDegree = 111000; // περίπου
+                const latOffset = heightMeters / metersPerDegree / 2;
+                const lngOffset = baseWidthMeters / metersPerDegree / Math.cos(latitude * Math.PI / 180) / 2;
+
+                // Δημιουργία bounds που διατηρούν το aspect ratio στη νέα θέση
+                const bounds: [[number, number], [number, number]] = [
+                  [latitude - latOffset, longitude - lngOffset], // southwest
+                  [latitude + latOffset, longitude + lngOffset]  // northeast
+                ];
+
+                console.log('🎯 GeoMap: Moving floor plan to new location:', { latitude, longitude, reason });
+                console.log('🎯 GeoMap: New bounds:', bounds);
+
+                const imageOverlay = L.imageOverlay(imageLayer._url, bounds, {
+                  opacity: imageLayer.options?.opacity || 1.0,
+                  className: 'floor-plan-overlay',
+                  alt: imageLayer.options?.alt || 'Floor Plan'
+                });
+
+                imageOverlay.addTo(mapRef.current!);
+                console.log('✅ GeoMap: Floor plan moved to new location:', displayName || `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`);
+
+                // Φέρε την κάτοψη σε πρώτο πλάνο με fitBounds
+                console.log('🔍 GeoMap: Zooming to floor plan bounds for close-up view');
+                mapRef.current!.fitBounds(bounds, {
+                  padding: [20, 20], // λίγο padding γύρω από την εικόνα
+                  maxZoom: 18 // μέγιστο zoom για καλή ανάλυση
+                });
+              };
+              img.src = imageLayer._url;
+            }
+          } else {
+            console.log('⚠️ GeoMap: No floor plan found to move');
+          }
+        } catch (error) {
+          console.error('❌ GeoMap: Error moving floor plan:', error);
+        }
+      } else {
+        console.warn('⚠️ GeoMap: Cannot move floor plan - component not mounted or map not ready');
+      }
+    };
+
     const initMap = async () => {
       try {
-        if (!isComponentMounted) return;
+        if (!isComponentMounted.current) return;
 
         console.log('Starting map initialization...');
 
         // Wait for CSS to load first
         await loadLeafletCSS();
-        if (!isComponentMounted) return;
+        if (!isComponentMounted.current) return;
 
         console.log('Leaflet CSS loaded');
 
         // Then load Leaflet library
         const L = await import('leaflet');
-        if (!isComponentMounted) return;
+        if (!isComponentMounted.current) return;
 
         console.log('Leaflet library loaded');
-        leafletRef.current = L.default; // Store Leaflet reference
+        leafletRef.current = L; // Store Leaflet reference
 
-        const mapContainer = document.getElementById('geo-map');
+        const mapContainer = document.getElementById('geo-map') as HTMLElement | null;
         console.log('Map container found:', !!mapContainer);
 
-        if (mapContainer && L.default && !mapInitialized.current && isComponentMounted) {
+        if (!mapContainer) {
+          console.error('no #geo-map element');
+          return;
+        }
+
+        if (mapContainer.offsetHeight === 0) {
+          console.warn('#geo-map has zero height');
+          mapContainer.style.minHeight = '400px';
+        }
+
+        if (mapContainer && L && !mapInitialized.current && isComponentMounted.current) {
           // Prevent double initialization
           mapInitialized.current = true;
 
@@ -369,31 +764,73 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
           }
 
           // Fix Leaflet icon paths
-          delete (L.default.Icon.Default.prototype as unknown as { _getIconUrl?: unknown })._getIconUrl;
-          L.default.Icon.Default.mergeOptions({
+          delete (L.Icon.Default.prototype as unknown as { _getIconUrl?: unknown })._getIconUrl;
+          L.Icon.Default.mergeOptions({
             iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
             iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
             shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
           });
 
-          const map = L.default.map('geo-map').setView([37.9755, 23.7348], 13);
+          const map = L.map('geo-map', {
+            zoomControl: false  // Απενεργοποιούμε τα default zoom controls
+          }).setView([37.9755, 23.7348], 13);
 
-          L.default.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          // Προσθέτουμε custom zoom control στην πάνω δεξιά γωνία
+          L.control.zoom({
+            position: 'topright'
+          }).addTo(map);
+
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
           }).addTo(map);
 
+          // OpenStreetMap standard: μόνο scale bar
+          L.control.scale({
+            position: 'bottomleft',
+            metric: true,
+            imperial: false,
+            maxWidth: 200
+          }).addTo(map);
+
+
           mapRef.current = map;
+
+          // Force resize after creation
+          setTimeout(() => map.invalidateSize(), 0);
+
+          // Add CSS for floor plan overlay z-index
+          const overlayStyles = document.createElement('style');
+          overlayStyles.textContent = `
+            .leaflet-overlay-pane { z-index: 400 !important; }
+            .floor-plan-overlay { outline: 2px dashed red; }
+          `;
+          if (!document.querySelector('style[data-geomap-overlay]')) {
+            overlayStyles.setAttribute('data-geomap-overlay', 'true');
+            document.head.appendChild(overlayStyles);
+          }
 
           // Event listeners για drawing
           map.on('click', (e: LeafletEvent) => {
-            if (isComponentMounted) {
-              handleMapClick(e, L.default);
+            if (isComponentMounted.current) {
+              handleMapClick(e, L);
             }
           });
 
-          // Event listeners για rulers
+          // Event listeners για rulers - ΕΠΑΝΑΦΟΡΑ στο main initialization
           map.on('moveend zoomend', () => {
-            if (isComponentMounted && mapRef.current) {
+            if (isComponentMounted.current && mapRef.current) {
+              console.log('📍 BASIC Map event triggered');
+              const bounds = mapRef.current.getBounds();
+              const size = mapRef.current.getSize();
+              setMapBounds(bounds);
+              setMapSize({ width: size.x, height: size.y });
+            }
+          });
+
+          // IMMEDIATE real-time updates
+          map.on('move', () => {
+            if (isComponentMounted.current && mapRef.current) {
+              console.log('🔄 MOVE event triggered');
               const bounds = mapRef.current.getBounds();
               const size = mapRef.current.getSize();
               setMapBounds(bounds);
@@ -405,6 +842,8 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
           window.addEventListener('centerMapToLocation', handleCenterMapToLocation as EventListener);
           window.addEventListener('showSearchResult', handleShowSearchResult as EventListener);
           window.addEventListener('showAdministrativeBoundary', handleShowAdministrativeBoundary as EventListener);
+          window.addEventListener('showFloorPlan', handleShowFloorPlan as EventListener);
+          window.addEventListener('moveFloorPlanToLocation', handleMoveFloorPlanToLocation as EventListener);
 
           // Initial bounds and size
           const bounds = map.getBounds();
@@ -415,7 +854,7 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
 
           // Force a resize to ensure proper rendering
           setTimeout(() => {
-            if (map && isComponentMounted) {
+            if (map && isComponentMounted.current) {
               map.invalidateSize();
               // Clear any leftover popups/tooltips that might cause visual issues
               try {
@@ -448,13 +887,20 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
     const initTimeout = setTimeout(initMap, 500);
 
     return () => {
-      isComponentMounted = false;
+      isComponentMounted.current = false;
+      mapInitialized.current = false;
+      if (mapRef.current) {
+        mapRef.current.remove();
+        mapRef.current = null;
+      }
       clearTimeout(initTimeout);
 
       // Cleanup των window event listeners
       window.removeEventListener('centerMapToLocation', handleCenterMapToLocation as EventListener);
       window.removeEventListener('showSearchResult', handleShowSearchResult as EventListener);
       window.removeEventListener('showAdministrativeBoundary', handleShowAdministrativeBoundary as EventListener);
+      window.removeEventListener('showFloorPlan', handleShowFloorPlan as EventListener);
+      window.removeEventListener('moveFloorPlanToLocation', handleMoveFloorPlanToLocation as EventListener);
 
       try {
         if (mapRef.current) {
@@ -495,7 +941,11 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
     };
   }, []);
 
-  const handleMapClick = async (e: LeafletEvent, L: typeof import('leaflet').default) => {
+
+  // ΑΠΛΟΠΟΙΗΜΕΝΟ - Events στο main initialization μόνο
+
+
+  const handleMapClick = async (e: LeafletEvent, L: typeof import('leaflet')) => {
     if (!mapRef.current || !e || !e.latlng) return;
 
     const { lat, lng } = e.latlng;
@@ -799,28 +1249,29 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
     );
   };
 
-  const RULER_SIZE = 40;
+
+
+  const mapOffset = showRulers ? (isMobile ? 0 : RULER_SIZE) : 0;
 
   return (
-    <div style={{ height: '100%', width: '100%', position: 'relative' }}>
-      {/* Rulers */}
-      {mapBounds && mapSize.width > 0 && mapSize.height > 0 && (
-        <>
-          <LatitudeRuler bounds={mapBounds} mapSize={mapSize} />
-          <LongitudeRuler bounds={mapBounds} mapSize={mapSize} />
-          {/* Corner square */}
-          <div style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
+    <div style={{ height: '100%', width: '100%', position: 'relative', overflow: 'hidden' }}>
+
+      {/* Canvas Rulers */}
+      {showRulers && mapBounds && mapSize && !isMobile && <LatitudeRuler bounds={mapBounds} mapSize={mapSize} />}
+      {showRulers && mapBounds && mapSize && <LongitudeRuler bounds={mapBounds} mapSize={mapSize} />}
+
+      {/* Ruler Corner */}
+      {showRulers && !isMobile && (
+        <div
+          className="absolute bottom-0 left-0 z-30"
+          style={{
             width: `${RULER_SIZE}px`,
             height: `${RULER_SIZE}px`,
-            backgroundColor: 'var(--layera-bg-secondary)',
-            borderTop: '1px solid var(--layera-border-primary)',
-            borderRight: '1px solid var(--layera-border-primary)',
-            zIndex: 30
-          }} />
-        </>
+            backgroundColor: RULER_BG,
+            borderTop: `1px solid #E2E8F0`,
+            borderRight: `1px solid #E2E8F0`,
+          }}
+        />
       )}
 
       {/* Category Tabs */}
@@ -857,7 +1308,7 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
       {/* Drawing Toolbar - Responsive για κάθε device */}
       <div style={{
         position: 'absolute',
-        top: isMobile ? '60px' : '10px',
+        top: isMobile ? '10px' : '10px',
         left: '10px',
         zIndex: 1000,
         display: 'flex',
@@ -904,7 +1355,17 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
         >
           {t('clear')}
         </Button>
+
+        <Button
+          onClick={() => setShowRulers(!showRulers)}
+          variant={showRulers ? 'primary' : 'secondary'}
+          size={isMobile ? 'xs' : 'sm'}
+          icon={<RulerIcon size="sm" theme="neutral" />}
+        >
+          {t('rulers')}
+        </Button>
       </div>
+
 
       {/* Status Info */}
       {activeDrawingMode !== 'none' && (
@@ -936,8 +1397,8 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
         style={{
           position: 'absolute',
           top: 0,
-          left: `${RULER_SIZE}px`,
-          bottom: `${RULER_SIZE}px`,
+          left: `${mapOffset}px`,
+          bottom: `${showRulers ? RULER_SIZE : 0}px`,
           right: 0,
           backgroundColor: 'var(--layera-bg-tertiary)',
           overflow: 'hidden',
@@ -945,6 +1406,36 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
         }}
       >
       </div>
+
+      {/* ViewportFrame Draggable FAB - από diavase_3.md */}
+      {onNewEntryClick && (
+        <div
+          onPointerDown={handleFabPointerDown}
+          onClick={onNewEntryClick}
+          aria-label="Νέα Καταχώρηση"
+          title="Νέα Καταχώρηση"
+          style={{
+            position: 'absolute',
+            left: `${fabPos.x}px`,
+            top: `${fabPos.y}px`,
+            width: BTN_SIZE,
+            height: BTN_SIZE,
+            borderRadius: '50%',
+            background: 'var(--layera-bg-success,#22C55E)',
+            border: '2px solid #fff',
+            boxShadow: '0 8px 24px rgba(0,0,0,.25)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'grab',
+            touchAction: 'none',
+            userSelect: 'none',
+            zIndex: 1000
+          }}
+        >
+          <PlusIcon size="md" theme="neutral" />
+        </div>
+      )}
 
       {/* Areas List */}
       {drawnAreas.length > 0 && (
@@ -1004,18 +1495,9 @@ const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated }) => {
       {/* Category Form Modal */}
       {showCategoryForm && tempAreaData && <CategoryForm />}
 
-      {/* Device Controls - Εμφανίζονται στην επικεφαλίδα για testing */}
-      <DeviceSwitcher
-        position="top-center"
-        labels={{
-          auto: t('auto'),
-          mobile: t('mobile'),
-          tablet: t('tablet'),
-          desktop: t('desktop'),
-          overrideActive: t('overrideActive')
-        }}
-      />
+      {/* Device Controls - Τώρα θα είναι εκτός των viewport containers */}
       <ViewportDebugger position="top-right" compact={isMobile} />
+
     </div>
   );
 };

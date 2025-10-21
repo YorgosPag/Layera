@@ -1640,11 +1640,60 @@ async function searchNominatim(request) {
       }
     }
     const results = data.map(parseNominatimResult);
+    const sortedResults = results.sort((a, b) => {
+      const aHasStreetAndNumber = a.address.street && a.address.houseNumber;
+      const bHasStreetAndNumber = b.address.street && b.address.houseNumber;
+      if (aHasStreetAndNumber && !bHasStreetAndNumber) return -1;
+      if (!aHasStreetAndNumber && bHasStreetAndNumber) return 1;
+      const aHasStreet = a.address.street && !a.address.houseNumber;
+      const bHasStreet = b.address.street && !b.address.houseNumber;
+      if (aHasStreet && !bHasStreet) return -1;
+      if (!aHasStreet && bHasStreet) return 1;
+      const getAdministrativeLevel = (result) => {
+        const address = result.address;
+        if (address.street) return 1;
+        if (address.suburb || address.village) return 2;
+        if (address.town) return 3;
+        if (address.city) return 4;
+        if (address.county) return 5;
+        if (address.region) return 6;
+        if (address.country) return 7;
+        return 8;
+      };
+      const aLevel = getAdministrativeLevel(a);
+      const bLevel = getAdministrativeLevel(b);
+      if (aLevel !== bLevel) return aLevel - bLevel;
+      const queryLower = request.query.toLowerCase();
+      const aDisplayLower = a.displayName.toLowerCase();
+      const bDisplayLower = b.displayName.toLowerCase();
+      const aStartsWithQuery = aDisplayLower.startsWith(queryLower);
+      const bStartsWithQuery = bDisplayLower.startsWith(queryLower);
+      if (aStartsWithQuery && !bStartsWithQuery) return -1;
+      if (!aStartsWithQuery && bStartsWithQuery) return 1;
+      const aIncludesQuery = aDisplayLower.includes(queryLower);
+      const bIncludesQuery = bDisplayLower.includes(queryLower);
+      if (aIncludesQuery && !bIncludesQuery) return -1;
+      if (!aIncludesQuery && bIncludesQuery) return 1;
+      const accuracyOrder = {
+        "exact": 1,
+        "interpolated": 2,
+        "street": 3,
+        "city": 4,
+        "region": 5
+      };
+      const aAccuracy = accuracyOrder[a.accuracy] || 6;
+      const bAccuracy = accuracyOrder[b.accuracy] || 6;
+      if (aAccuracy !== bAccuracy) return aAccuracy - bAccuracy;
+      const aConfidence = a.metadata?.confidence || 0;
+      const bConfidence = b.metadata?.confidence || 0;
+      return bConfidence - aConfidence;
+    });
+    console.log("\u{1F4CD} NominatimProvider: Results sorted with street priority");
     return {
-      results,
-      total: results.length,
+      results: sortedResults,
+      total: sortedResults.length,
       query: request.query,
-      status: results.length > 0 ? "success" : "no_results"
+      status: sortedResults.length > 0 ? "success" : "no_results"
     };
   } catch (error) {
     console.error("\u274C NominatimProvider: Search error:", error);

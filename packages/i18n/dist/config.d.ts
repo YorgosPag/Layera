@@ -634,6 +634,13 @@ export declare const resources: {
                                 mToM: string;
                             };
                         };
+                        floorPlan: {
+                            title: string;
+                            description: string;
+                            selectFile: string;
+                            uploaded: string;
+                            supportedTypes: string;
+                        };
                         actions: {
                             back: string;
                             saveLocation: string;
@@ -1401,6 +1408,13 @@ export declare const resources: {
                                 mmToM: string;
                                 mToM: string;
                             };
+                        };
+                        floorPlan: {
+                            title: string;
+                            description: string;
+                            selectFile: string;
+                            uploaded: string;
+                            supportedTypes: string;
                         };
                         actions: {
                             back: string;
@@ -2196,6 +2210,13 @@ export declare const i18nConfig: {
                                     mToM: string;
                                 };
                             };
+                            floorPlan: {
+                                title: string;
+                                description: string;
+                                selectFile: string;
+                                uploaded: string;
+                                supportedTypes: string;
+                            };
                             actions: {
                                 back: string;
                                 saveLocation: string;
@@ -2963,6 +2984,13 @@ export declare const i18nConfig: {
                                     mmToM: string;
                                     mToM: string;
                                 };
+                            };
+                            floorPlan: {
+                                title: string;
+                                description: string;
+                                selectFile: string;
+                                uploaded: string;
+                                supportedTypes: string;
                             };
                             actions: {
                                 back: string;

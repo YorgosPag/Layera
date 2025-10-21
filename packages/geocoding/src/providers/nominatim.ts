@@ -273,11 +273,88 @@ async function searchNominatim(request: GeocodeRequest): Promise<GeocodeResponse
 
     const results = data.map(parseNominatimResult);
 
+    // Ταξινόμηση αποτελεσμάτων με προτεραιότητα στις οδούς και διοικητική ιεραρχία
+    const sortedResults = results.sort((a, b) => {
+      // 1. Προτεραιότητα σε αποτελέσματα με οδό και αριθμό
+      const aHasStreetAndNumber = a.address.street && a.address.houseNumber;
+      const bHasStreetAndNumber = b.address.street && b.address.houseNumber;
+
+      if (aHasStreetAndNumber && !bHasStreetAndNumber) return -1;
+      if (!aHasStreetAndNumber && bHasStreetAndNumber) return 1;
+
+      // 2. Προτεραιότητα σε αποτελέσματα με οδό (χωρίς αριθμό)
+      const aHasStreet = a.address.street && !a.address.houseNumber;
+      const bHasStreet = b.address.street && !b.address.houseNumber;
+
+      if (aHasStreet && !bHasStreet) return -1;
+      if (!aHasStreet && bHasStreet) return 1;
+
+      // 3. Διοικητική ιεραρχία Ελλάδας (από μικρότερη προς μεγαλύτερη)
+      const getAdministrativeLevel = (result: GeocodeResult): number => {
+        const address = result.address;
+
+        // Μικρότερες ενότητες προς μεγαλύτερες
+        if (address.street) return 1; // Οδός
+        if (address.suburb || address.village) return 2; // Συνοικία/Χωριό
+        if (address.town) return 3; // Κωμόπολη/Πόλη
+        if (address.city) return 4; // Πόλη/Δήμος
+        if (address.county) return 5; // Νομός
+        if (address.region) return 6; // Περιφέρεια
+        if (address.country) return 7; // Χώρα
+
+        return 8; // Άγνωστο
+      };
+
+      const aLevel = getAdministrativeLevel(a);
+      const bLevel = getAdministrativeLevel(b);
+
+      if (aLevel !== bLevel) return aLevel - bLevel;
+
+      // 4. Similarity με το original query (πρώτη προσέγγιση)
+      const queryLower = request.query.toLowerCase();
+      const aDisplayLower = a.displayName.toLowerCase();
+      const bDisplayLower = b.displayName.toLowerCase();
+
+      const aStartsWithQuery = aDisplayLower.startsWith(queryLower);
+      const bStartsWithQuery = bDisplayLower.startsWith(queryLower);
+
+      if (aStartsWithQuery && !bStartsWithQuery) return -1;
+      if (!aStartsWithQuery && bStartsWithQuery) return 1;
+
+      const aIncludesQuery = aDisplayLower.includes(queryLower);
+      const bIncludesQuery = bDisplayLower.includes(queryLower);
+
+      if (aIncludesQuery && !bIncludesQuery) return -1;
+      if (!aIncludesQuery && bIncludesQuery) return 1;
+
+      // 5. Βασικά accuracy levels
+      const accuracyOrder: Record<string, number> = {
+        'exact': 1,
+        'interpolated': 2,
+        'street': 3,
+        'city': 4,
+        'region': 5
+      };
+
+      const aAccuracy = accuracyOrder[a.accuracy] || 6;
+      const bAccuracy = accuracyOrder[b.accuracy] || 6;
+
+      if (aAccuracy !== bAccuracy) return aAccuracy - bAccuracy;
+
+      // 6. Τελικά με confidence score
+      const aConfidence = a.metadata?.confidence || 0;
+      const bConfidence = b.metadata?.confidence || 0;
+
+      return bConfidence - aConfidence;
+    });
+
+    console.log('📍 NominatimProvider: Results sorted with street priority');
+
     return {
-      results,
-      total: results.length,
+      results: sortedResults,
+      total: sortedResults.length,
       query: request.query,
-      status: results.length > 0 ? 'success' : 'no_results'
+      status: sortedResults.length > 0 ? 'success' : 'no_results'
     };
 
   } catch (error) {

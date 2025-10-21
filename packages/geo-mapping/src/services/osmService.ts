@@ -1,4 +1,5 @@
 import { OSMAdminCollection } from '../types';
+import { processDisplayNameByCountry } from '../utils/administrativeHierarchy';
 
 /**
  * Fetch administrative boundary for address component using Enterprise BoundaryService
@@ -38,7 +39,7 @@ export const fetchBoundaryByAddressComponent = async (
           features: [{
             type: 'Feature',
             properties: {
-              name: result.display_name || addressComponent.label,
+              name: result.display_name ? processDisplayNameByCountry(result.display_name) : addressComponent.label,
               admin_level: '8',
               boundary: 'administrative',
               osm_id: result.osm_id || 0,
@@ -65,7 +66,7 @@ export const fetchBoundaryByAddressComponent = async (
           features: [{
             type: 'Feature',
             properties: {
-              name: result.display_name || addressComponent.label,
+              name: result.display_name ? processDisplayNameByCountry(result.display_name) : addressComponent.label,
               admin_level: '8',
               boundary: 'administrative',
               osm_id: result.osm_id || 0,

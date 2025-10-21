@@ -37,7 +37,8 @@ export {
   CrosshairsIcon,
   GlobeIcon,
   AlertTriangleIcon,
-  SatelliteIcon
+  SatelliteIcon,
+  RulerIcon
 } from './icons/MapIcons';
 
 // Device Icons

@@ -2,6 +2,8 @@
  * @layera/address-breakdown - Types για interactive address breakdown
  */
 
+import type React from 'react';
+
 // Temporarily inline GeocodeResult to avoid build dependency issues
 interface Coordinates {
   latitude: number;
@@ -67,8 +69,12 @@ export interface AddressBreakdownCardProps {
   geocodeResult: GeocodeResult;
   /** Configuration options */
   config?: Partial<AddressBreakdownConfig>;
-  /** Custom title για την κάρτα */
-  title?: string;
+  /** Custom title για την κάρτα - δέχεται JSX */
+  title?: React.ReactNode;
+  /** Click handler για ολόκληρη την κάρτα */
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  /** Custom styling για την κάρτα */
+  style?: React.CSSProperties;
   /** Loading state */
   isLoading?: boolean;
   /** Error state */

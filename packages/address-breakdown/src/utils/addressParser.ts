@@ -165,21 +165,49 @@ export function parseDisplayNameToAdditionalComponents(
 }
 
 /**
+ * Ιεραρχική ταξινόμηση administrative διαιρέσεων - από μικρό προς μεγάλο
+ */
+function getAdministrativeHierarchy(label: string): number {
+  const lowerLabel = label.toLowerCase();
+
+  // Αναγνώριση τύπου διοικητικής διαίρεσης με pattern matching
+  if (lowerLabel.includes('οδός') || lowerLabel.includes('οδό') || lowerLabel.includes('λεωφόρος')) return 1;
+  if (lowerLabel.includes('συνοικία') || lowerLabel.includes('γειτονιά')) return 2;
+  if (lowerLabel.includes('χωριό') || lowerLabel.includes('κωμόπολη')) return 3;
+  if (lowerLabel.includes('πόλη') || lowerLabel.includes('δήμος') || lowerLabel.includes('δημότητα')) return 4;
+  if (lowerLabel.includes('νομός') || lowerLabel.includes('επαρχία')) return 5;
+  if (lowerLabel.includes('περιφέρεια') || lowerLabel.includes('μακεδονία') || lowerLabel.includes('θράκη') || lowerLabel.includes('θεσσαλονίκη')) return 6;
+  if (lowerLabel.includes('ελλάδα') || lowerLabel.includes('greece')) return 7;
+
+  // Default για άγνωστους τύπους - στη μέση
+  return 5;
+}
+
+/**
  * Combine parsed address components με additional components από το displayName
+ * ΙΕΡΑΡΧΙΚΗ ΤΑΞΙΝΟΜΗΣΗ: Από μικρότερο προς μεγαλύτερο
  */
 export function parseFullAddress(result: GeocodeResult): AddressComponent[] {
   const baseComponents = parseGeocodeToComponents(result);
   const additionalComponents = parseDisplayNameToAdditionalComponents(result, baseComponents);
 
-  // Combine και sort - βάζουμε τα administrative components πρώτα
+  // Combine όλα τα components
   const allComponents = [...baseComponents, ...additionalComponents];
 
+  // ΙΕΡΑΡΧΙΚΗ ΤΑΞΙΝΟΜΗΣΗ - μικρό προς μεγάλο
   return allComponents.sort((a, b) => {
-    // Administrative components πρώτα
-    if (a.clickable && !b.clickable) return -1;
-    if (!a.clickable && b.clickable) return 1;
+    // Πρώτα non-clickable (οδοί, postal codes)
+    if (!a.clickable && b.clickable) return -1;
+    if (a.clickable && !b.clickable) return 1;
 
-    // Μετά sort by type priority
+    // Μετά ιεραρχική ταξινόμηση για clickable components
+    if (a.clickable && b.clickable) {
+      const hierarchyA = getAdministrativeHierarchy(a.label);
+      const hierarchyB = getAdministrativeHierarchy(b.label);
+      return hierarchyA - hierarchyB; // Από μικρό προς μεγάλο
+    }
+
+    // Fallback - type priority για non-clickable
     const typePriority = {
       'street': 1,
       'houseNumber': 2,
