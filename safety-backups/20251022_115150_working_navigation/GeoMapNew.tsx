@@ -7,7 +7,6 @@
 
 import React, { useState } from 'react';
 import { useViewportWithOverride } from '@layera/viewport';
-import { useNavigation } from '../services/navigation/hooks/useNavigation';
 import { MapContainer } from './map/MapContainer';
 import { PlusIcon } from './icons/LayeraIcons';
 import {
@@ -125,54 +124,108 @@ export const GeoMap: React.FC<GeoMapProps> = (props) => {
   // const isIPhone14ProMaxDetected = detectiPhone14ProMax();
   console.log('📱 iPhone 14 Pro Max Detection Result (from App.tsx prop):', isIPhone14ProMaxDevice);
 
-  // 🚀 ENTERPRISE NAVIGATION: Rock-solid service που δεν σπάει ποτέ
-  const navigation = useNavigation();
+  // iPhone 14 Pro Max pipeline step management
+  const [currentStepIndex, setCurrentStepIndex] = useState(0);
+  const [currentStepId, setCurrentStepId] = useState('category');
   const [showCategoryElements, setShowCategoryElements] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<'property' | 'job' | null>(null);
 
-  // FAB Draggable State
-  const [fabPosition, setFabPosition] = useState({ right: 15, bottom: 15 });
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  // Steps definition - dynamic based on category
+  const getSteps = () => {
+    // Αν δεν έχει επιλεγεί κατηγορία, μόνο το category step
+    if (!selectedCategory) {
+      return [
+        { id: 'category', title: 'Κατηγορία' }
+      ];
+    }
 
-  console.log('🚀 Enterprise Navigation State:', {
-    currentStep: navigation.currentStep,
-    stepIndex: navigation.stepIndex,
-    selectedCategory: navigation.selectedCategory,
-    canGoBack: navigation.canGoBack,
-    canGoNext: navigation.canGoNext,
-    totalSteps: navigation.totalSteps
-  });
+    if (selectedCategory === 'property') {
+      return [
+        { id: 'category', title: 'Κατηγορία' },
+        { id: 'intent', title: 'Σκοπός' },
+        { id: 'transactionType', title: 'Συναλλαγή' },
+        { id: 'location', title: 'Τοποθεσία' },
+        { id: 'layout', title: 'Κάτοψη' },
+        { id: 'details', title: 'Στοιχεία' },
+        { id: 'complete', title: 'Τέλος' }
+      ];
+    }
 
-  // 🚀 ENTERPRISE NAVIGATION HANDLERS: Rock-solid, never fail
-  const handleStepNext = async () => {
-    try {
-      await navigation.goNext();
-      console.log('✅ Enterprise navigation: next step successful');
-    } catch (error) {
-      console.error('❌ Navigation next failed (but app won\'t crash):', error);
+    if (selectedCategory === 'job') {
+      return [
+        { id: 'category', title: 'Κατηγορία' },
+        { id: 'intent', title: 'Σκοπός' },
+        { id: 'employmentType', title: 'Εργασία' },
+        { id: 'availability', title: 'Διαθεσιμότητα' },
+        { id: 'availabilityDetails', title: 'Λεπτομέρειες' },
+        { id: 'location', title: 'Τοποθεσία' },
+        { id: 'details', title: 'Στοιχεία' },
+        { id: 'complete', title: 'Τέλος' }
+      ];
+    }
+
+    return [{ id: 'category', title: 'Κατηγορία' }];
+  };
+
+  const steps = getSteps();
+
+  // Effect για αυτόματο next step όταν επιλέγεται κατηγορία
+  React.useEffect(() => {
+    if (selectedCategory && currentStepIndex === 0) {
+      console.log('🔄 Selected category changed to:', selectedCategory, 'Auto-advancing to next step...');
+      // Αντί να καλώ handleStepNext, θα κάνω το update απευθείας
+      setCurrentStepIndex(1);
+      setCurrentStepId('intent');
+      console.log('🔄 Advanced to step 1 (intent) automatically');
+    }
+  }, [selectedCategory, currentStepIndex]);
+
+  // Navigation handlers
+  const handleStepNext = () => {
+    console.log('🔄 handleStepNext called! currentStepIndex:', currentStepIndex, 'steps.length:', steps.length);
+    console.log('🔄 Current steps:', steps.map(s => s.id));
+    if (currentStepIndex < steps.length - 1) {
+      const nextIndex = currentStepIndex + 1;
+      console.log('🔄 Moving to nextIndex:', nextIndex, 'stepId:', steps[nextIndex].id);
+      setCurrentStepIndex(nextIndex);
+      setCurrentStepId(steps[nextIndex].id);
+      console.log('🔄 Step next:', steps[nextIndex]);
+    } else {
+      console.log('🔄 Cannot go next - at last step');
     }
   };
 
-  const handleStepPrevious = async () => {
-    try {
-      await navigation.goBack();
-      console.log('✅ Enterprise navigation: back step successful');
-    } catch (error) {
-      console.error('❌ Navigation back failed (but app won\'t crash):', error);
+  const handleStepPrevious = () => {
+    console.log('🔄 handleStepPrevious called! currentStepIndex:', currentStepIndex, 'steps.length:', steps.length);
+    if (currentStepIndex > 0) {
+      const prevIndex = currentStepIndex - 1;
+      console.log('🔄 Going to prevIndex:', prevIndex);
+      setCurrentStepIndex(prevIndex);
+      setCurrentStepId(steps[prevIndex].id);
+
+      // Αν επιστρέφουμε στο category step, μηδένισε την επιλεγμένη κατηγορία
+      if (steps[prevIndex].id === 'category') {
+        setSelectedCategory(null);
+        console.log('🔄 Returned to category step - cleared selected category');
+      }
+
+      console.log('🔄 Step previous:', steps[prevIndex]);
+    } else {
+      console.log('🔄 Cannot go previous - currentStepIndex is 0');
     }
   };
 
   const handleStepReset = () => {
-    navigation.reset();
-    setShowCategoryElements(false);
-    onCategoryElementsChange?.(false);
-    console.log('✅ Enterprise navigation: reset successful');
+    setCurrentStepIndex(0);
+    setCurrentStepId('category');
+    setShowCategoryElements(false); // Κρύψε τις κάρτες κατηγορίας
+    setSelectedCategory(null); // Μηδένισε την επιλεγμένη κατηγορία
+    onCategoryElementsChange?.(false); // Ενημέρωσε το parent component
+    console.log('🔄 Step reset to beginning - FAB should reappear');
   };
 
   // Handler για το FAB button
   const handleNewEntryClick = () => {
-    if (isDragging) return; // Δεν κάνουμε click αν κάνουμε drag
-
     if (isIPhone14ProMaxDevice) {
       // Για iPhone: εμφάνιση των category elements
       const newState = !showCategoryElements;
@@ -181,64 +234,6 @@ export const GeoMap: React.FC<GeoMapProps> = (props) => {
     } else {
       // Για άλλες συσκευές: κανονική συμπεριφορά
       onNewEntryClick?.();
-    }
-  };
-
-  // FAB Draggable Handlers
-  const handleMouseDown = (e: React.MouseEvent) => {
-    setIsDragging(false);
-    setDragStart({ x: e.clientX, y: e.clientY });
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (e.buttons === 1) { // Αν πατημένο το αριστερό κουμπί
-      const deltaX = e.clientX - dragStart.x;
-      const deltaY = e.clientY - dragStart.y;
-
-      if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
-        setIsDragging(true);
-
-        const containerRect = e.currentTarget.parentElement?.getBoundingClientRect();
-        if (containerRect) {
-          const newRight = Math.max(10, Math.min(containerRect.width - 66, fabPosition.right - deltaX));
-          const newBottom = Math.max(10, Math.min(containerRect.height - 66, fabPosition.bottom - deltaY));
-
-          setFabPosition({ right: newRight, bottom: newBottom });
-          setDragStart({ x: e.clientX, y: e.clientY });
-        }
-      }
-    }
-  };
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (e.touches.length === 1) {
-      setIsDragging(false);
-      setDragStart({
-        x: e.touches[0].clientX,
-        y: e.touches[0].clientY
-      });
-    }
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (e.touches.length === 1) {
-      const touch = e.touches[0];
-      const deltaX = touch.clientX - dragStart.x;
-      const deltaY = touch.clientY - dragStart.y;
-
-      if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
-        setIsDragging(true);
-        e.preventDefault(); // Prevent scrolling
-
-        const containerRect = e.currentTarget.parentElement?.getBoundingClientRect();
-        if (containerRect) {
-          const newRight = Math.max(10, Math.min(containerRect.width - 66, fabPosition.right - deltaX));
-          const newBottom = Math.max(10, Math.min(containerRect.height - 66, fabPosition.bottom - deltaY));
-
-          setFabPosition({ right: newRight, bottom: newBottom });
-          setDragStart({ x: touch.clientX, y: touch.clientY });
-        }
-      }
     }
   };
 
@@ -254,39 +249,35 @@ export const GeoMap: React.FC<GeoMapProps> = (props) => {
         })}
         {/* FloatingStepper - εμφανίζεται μόνο όταν showCategoryElements = true */}
         {showCategoryElements && (() => {
-          console.log('🎯 GeoMapNew: Rendering FloatingStepper with ENTERPRISE navigation state:', {
-            currentStep: navigation.currentStep,
-            totalSteps: navigation.totalSteps,
-            stepIndex: navigation.stepIndex,
-            selectedCategory: navigation.selectedCategory,
-            canGoNext: navigation.canGoNext,
-            canGoPrevious: navigation.canGoBack
+          console.log('🎯 GeoMapNew: Rendering FloatingStepper with props:', {
+            currentStep: currentStepId,
+            totalSteps: steps.length,
+            stepIndex: currentStepIndex,
+            selectedCategory: selectedCategory,
+            canGoNext: currentStepIndex < steps.length - 1,
+            canGoPrevious: currentStepIndex > 0
           });
           return React.createElement(iPhone14ProMaxFloatingStepper, {
-            currentStep: navigation.currentStep,
-            totalSteps: navigation.totalSteps,
-            stepIndex: navigation.stepIndex,
-            selectedCategory: navigation.selectedCategory,
+            currentStep: currentStepId,
+            totalSteps: steps.length,
+            stepIndex: currentStepIndex,
+            selectedCategory: selectedCategory, // Περνάω την επιλεγμένη κατηγορία
             onNext: handleStepNext,
             onPrevious: handleStepPrevious,
             onReset: handleStepReset,
-            canGoNext: navigation.canGoNext,
-            canGoPrevious: navigation.canGoBack
+            canGoNext: currentStepIndex < steps.length - 1,
+            canGoPrevious: currentStepIndex > 0
           });
         })()}
 
         {/* CategoryStep - εμφανίζεται μόνο όταν showCategoryElements = true */}
         {showCategoryElements && React.createElement(iPhone14ProMaxCategoryStep, {
           isVisible: showCategoryElements,
-          currentStepId: navigation.currentStep,
-          onNext: async (category: any) => {
-            console.log('🚀 ENTERPRISE: Category selected via NavigationService:', category);
-            try {
-              await navigation.selectCategory(category);
-              console.log('✅ Enterprise category selection successful');
-            } catch (error) {
-              console.error('❌ Category selection failed (but app won\'t crash):', error);
-            }
+          currentStepId: currentStepId, // Περνάω το current step ID
+          onNext: (category: any) => {
+            console.log('Category selected:', category);
+            setSelectedCategory(category); // Αποθηκεύω την επιλεγμένη κατηγορία
+            // Το handleStepNext θα καλεστεί αυτόματα από το useEffect
           }
         })}
 
@@ -310,9 +301,9 @@ export const GeoMap: React.FC<GeoMapProps> = (props) => {
               width: '80px',
               height: '80px',
               borderRadius: '50%',
-              background: 'rgb(16, 185, 129)',
-              border: '4px solid #FFFFFF',
-              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
+              background: '#22C55E',
+              border: '4px solid #FFFF00',
+              boxShadow: '0 8px 24px rgba(255,0,0,.8)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -362,9 +353,9 @@ export const GeoMap: React.FC<GeoMapProps> = (props) => {
               width: '80px',
               height: '80px',
               borderRadius: '50%',
-              background: 'rgb(16, 185, 129)',
-              border: '4px solid #FFFFFF',
-              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
+              background: '#22C55E',
+              border: '4px solid #FFFF00',
+              boxShadow: '0 8px 24px rgba(255,0,0,.8)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -405,9 +396,9 @@ export const GeoMap: React.FC<GeoMapProps> = (props) => {
               width: '80px',
               height: '80px',
               borderRadius: '50%',
-              background: 'rgb(16, 185, 129)',
-              border: '4px solid #FFFFFF',
-              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
+              background: '#22C55E',
+              border: '4px solid #FFFF00',
+              boxShadow: '0 8px 24px rgba(255,0,0,.8)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -435,33 +426,25 @@ export const GeoMap: React.FC<GeoMapProps> = (props) => {
         hideDrawingControls={isIPhone14ProMaxDevice}
       />
 
-      {/* FAB για Mobile - Draggable */}
+      {/* FAB για Mobile */}
       {(onNewEntryClick || isIPhone14ProMaxDevice) && !showCategoryElements && (
         <div
           onClick={handleNewEntryClick}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
           style={{
             position: 'absolute',
-            right: fabPosition.right,
-            bottom: fabPosition.bottom,
+            right: 15,
+            bottom: 15,
             width: 56,
             height: 56,
             borderRadius: '50%',
-            background: 'rgb(16, 185, 129)',
+            background: '#22C55E',
             border: '2px solid #fff',
-            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
+            boxShadow: '0 8px 24px rgba(0,0,0,.25)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            cursor: isDragging ? 'grabbing' : 'grab',
-            zIndex: 2000,
-            transition: isDragging ? 'none' : 'all 0.2s ease',
-            userSelect: 'none',
-            WebkitUserSelect: 'none',
-            WebkitTouchCallout: 'none'
+            cursor: 'pointer',
+            zIndex: 2000
           }}
         >
           <PlusIcon size="md" theme="neutral" />

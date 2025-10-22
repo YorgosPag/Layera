@@ -10,7 +10,8 @@
  * - Σύνδεση με υπάρχουσα UnifiedPipeline state machine
  */
 
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 export interface FloatingStepperProps {
   // Props που θα συνδεθούν με την υπάρχουσα UnifiedPipeline
@@ -43,7 +44,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   canGoNext = true,
   canGoPrevious = false
 }) => {
-  // Πλήρως stateless component - δεν χρειάζονται state variables
+  const [isVisible] = useState(true);
 
   // Step definitions από την enterprise pipeline configuration
   const getSteps = () => {
@@ -89,10 +90,10 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   // Function για να επιστρέφει τα σωστά χρώματα ανάλογα με την κατηγορία
   const getStepperColors = () => {
     if (selectedCategory === 'property') {
-      // Πράσινο για ακίνητα (ήπιο emerald για καλύτερη αναγνωσιμότητα)
+      // Πράσινο για ακίνητα (όπως στο info panel)
       return {
-        backgroundColor: 'rgba(16, 185, 129, 0.95)', // emerald-500
-        borderColor: 'rgba(16, 185, 129, 0.3)'
+        backgroundColor: 'rgba(34, 197, 94, 0.95)', // green-500
+        borderColor: 'rgba(34, 197, 94, 0.3)'
       };
     } else if (selectedCategory === 'job') {
       // Γαλάζιο για εργασία (όπως στο info panel)
@@ -162,7 +163,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     padding: '0 16px',
     gap: '12px',
     transition: 'all 0.3s ease',
-    transform: 'translateY(0)', // Πάντα visible - stateless
+    transform: isVisible ? 'translateY(0)' : 'translateY(-60px)',
     userSelect: 'none',
     WebkitTapHighlightColor: 'transparent'
   };

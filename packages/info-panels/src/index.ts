@@ -88,11 +88,11 @@ export const createInfoPanelTheme = (
   };
 };
 
-// Common Themes
+// Common Themes - Χρήση του ήπιου emerald για καλύτερη αναγνωσιμότητα
 export const INFO_PANEL_THEMES = {
-  property: createInfoPanelTheme('16, 185, 129'), // Πράσινο emerald
-  job: createInfoPanelTheme('59, 130, 246'),     // Γαλάζιο blue
-  success: createInfoPanelTheme('34, 197, 94'),  // Πράσινο success
+  property: createInfoPanelTheme('16, 185, 129'), // Ήπιο emerald για ευχάριστη ανάγνωση
+  job: createInfoPanelTheme('59, 130, 246'),      // Ίδιο με stepper blue-500
+  success: createInfoPanelTheme('16, 185, 129'),  // Ήπιο πράσινο success
   warning: createInfoPanelTheme('245, 158, 11'), // Πορτοκαλί warning
   error: createInfoPanelTheme('239, 68, 68'),    // Κόκκινο error
   info: createInfoPanelTheme('99, 102, 241')     // Μοβ info

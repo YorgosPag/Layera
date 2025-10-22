@@ -10,14 +10,14 @@ import React from 'react';
 // Card variants - theme configuration
 export const cardThemes = {
   property: {
-    backgroundColor: 'rgba(16, 185, 129, 0.05)',
-    borderColor: '#10b981',
+    backgroundColor: 'rgba(16, 185, 129, 0.05)', // Επιστροφή στο ήπιο emerald
+    borderColor: 'rgb(16, 185, 129)', // Επιστροφή στο ήπιο emerald
     titleBackground: 'rgba(16, 185, 129, 0.1)',
     titleShadow: '0 0 25px rgba(16, 185, 129, 0.2)'
   },
   job: {
-    backgroundColor: 'rgba(59, 130, 246, 0.05)',
-    borderColor: '#3b82f6',
+    backgroundColor: 'rgba(59, 130, 246, 0.05)', // Ίδιο με stepper
+    borderColor: 'rgb(59, 130, 246)', // Ίδιο με stepper
     titleBackground: 'rgba(59, 130, 246, 0.1)',
     titleShadow: '0 0 25px rgba(59, 130, 246, 0.2)'
   }
