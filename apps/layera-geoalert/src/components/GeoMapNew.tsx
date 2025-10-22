@@ -5,12 +5,11 @@
  * Χρησιμοποιεί @layera/map-core και @layera/map-drawing packages.
  */
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useViewportWithOverride } from '@layera/viewport';
 import { useNavigation } from '../services/navigation/hooks/useNavigation';
 import { MapContainer } from './map/MapContainer';
 import { PlusIcon } from './icons/LayeraIcons';
-import { DraggableFAB } from '@layera/draggable';
 import {
   GeoMap as iPhone14ProMaxGeoMap,
   FloatingStepper as iPhone14ProMaxFloatingStepper,
@@ -108,6 +107,14 @@ export const GeoMap: React.FC<GeoMapProps> = ({
   const navigation = useNavigation();
   const [showCategoryElements, setShowCategoryElements] = useState(false);
 
+  // 🎯 DRAGGABLE FAB STATE - από OLD_GeoMap.tsx
+  const frameRef = useRef<HTMLDivElement | null>(null);
+  const [fabPos, setFabPos] = useState({ x: 15, y: 15 }); // left/top
+  const startRef = useRef<{x:number;y:number;px:number;py:number} | null>(null);
+
+  const BTN_SIZE = 56;
+  const MARGIN = 15;
+
   // Enterprise Navigation State debug removed
 
   // 🚀 ENTERPRISE NAVIGATION HANDLERS: Rock-solid, never fail
@@ -131,6 +138,75 @@ export const GeoMap: React.FC<GeoMapProps> = ({
     navigation.reset();
     setShowCategoryElements(false);
     onCategoryElementsChange?.(false);
+  };
+
+  // 🎯 DRAGGABLE FAB HANDLERS - από OLD_GeoMap.tsx
+  useEffect(() => {
+    const clamp = () => {
+      const frame = document.getElementById('geo-viewport') || document.querySelector('[data-viewport-frame]');
+      if (!frame) return;
+
+      const rect = frame.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+
+      // Σιγουρεύουμε ότι τα όρια είναι σωστά
+      const maxX = Math.max(0, rect.width - BTN_SIZE - MARGIN);
+      const maxY = Math.max(0, rect.height - BTN_SIZE - MARGIN);
+
+      const x = Math.max(MARGIN, Math.min(maxX, fabPos.x));
+      const y = Math.max(MARGIN, Math.min(maxY, fabPos.y));
+
+      if (x !== fabPos.x || y !== fabPos.y) {
+        setFabPos({ x, y });
+      }
+    };
+
+    clamp();
+    window.addEventListener('resize', clamp);
+    const visualViewport = window.visualViewport;
+    visualViewport?.addEventListener('resize', clamp);
+    visualViewport?.addEventListener('scroll', clamp);
+
+    return () => {
+      window.removeEventListener('resize', clamp);
+      visualViewport?.removeEventListener('resize', clamp);
+      visualViewport?.removeEventListener('scroll', clamp);
+    };
+  }, [fabPos.x, fabPos.y]);
+
+  const handleFabPointerDown = (e: React.PointerEvent) => {
+    // Αναζήτηση του ViewportFrame
+    const frame = document.getElementById('geo-viewport') || document.querySelector('[data-viewport-frame]');
+    if (!frame) return;
+
+    frameRef.current = frame as HTMLDivElement;
+    const rect = frame.getBoundingClientRect();
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+    startRef.current = { x: e.clientX, y: e.clientY, px: fabPos.x, py: fabPos.y };
+
+    const onMove = (ev: PointerEvent) => {
+      if (!startRef.current || !rect) return;
+      const dx = ev.clientX - startRef.current.x;
+      const dy = ev.clientY - startRef.current.y;
+
+      // Σιγουρεύουμε ότι τα όρια είναι σωστά
+      const maxX = Math.max(0, rect.width - BTN_SIZE - MARGIN);
+      const maxY = Math.max(0, rect.height - BTN_SIZE - MARGIN);
+
+      const nx = Math.max(MARGIN, Math.min(maxX, startRef.current.px + dx));
+      const ny = Math.max(MARGIN, Math.min(maxY, startRef.current.py + dy));
+
+      setFabPos({ x: nx, y: ny });
+    };
+
+    const onUp = () => {
+      startRef.current = null;
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+    };
+
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
   };
 
   // Handler για το FAB button - simplified without drag logic
@@ -201,17 +277,35 @@ export const GeoMap: React.FC<GeoMapProps> = ({
           }
         })}
 
-        {/* Enterprise DraggableFAB για iPhone 14 Pro Max */}
+        {/* Enterprise Draggable FAB για iPhone 14 Pro Max - από OLD_GeoMap.tsx */}
         {!showCategoryElements && (
-          <DraggableFAB
-            icon={<PlusIcon size="md" theme="neutral" />}
+          <div
+            onPointerDown={handleFabPointerDown}
             onClick={handleNewEntryClick}
-            initialPosition={{ right: frameWidth / 2 - 32, bottom: frameHeight / 2 - 32 }}
-            size="lg"
-            variant="success"
-            constrainRef={screenRef}
+            aria-label="Νέα Καταχώρηση"
+            title="Νέα Καταχώρηση"
             data-testid="iphone-draggable-fab"
-          />
+            style={{
+              position: 'absolute',
+              left: `${fabPos.x}px`,
+              top: `${fabPos.y}px`,
+              width: BTN_SIZE,
+              height: BTN_SIZE,
+              borderRadius: '50%',
+              background: 'var(--layera-bg-success,#22C55E)',
+              border: '2px solid white',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'grab',
+              zIndex: 9999,
+              userSelect: 'none',
+              touchAction: 'none'
+            }}
+          >
+            <PlusIcon size="md" theme="neutral" />
+          </div>
         )}
 
 
@@ -231,20 +325,39 @@ export const GeoMap: React.FC<GeoMapProps> = ({
           hideDrawingControls={isIPhone14ProMaxDevice}
         />
 
-        {/* Enterprise DraggableFAB για Desktop */}
+        {/* Enterprise Draggable FAB για Desktop - από OLD_GeoMap.tsx */}
         {(() => {
           const shouldShowFAB = !showCategoryElements;
           // Desktop Mode FAB debug removed
           return shouldShowFAB;
         })() && (
-          <DraggableFAB
-            icon={<PlusIcon size="md" theme="neutral" />}
+          <div
+            onPointerDown={handleFabPointerDown}
             onClick={handleNewEntryClick}
-            initialPosition={{ right: 20, bottom: 20 }}
-            size="lg"
-            variant="success"
+            aria-label="Νέα Καταχώρηση"
+            title="Νέα Καταχώρηση"
             data-testid="desktop-draggable-fab"
-          />
+            style={{
+              position: 'absolute',
+              right: '20px',
+              bottom: '20px',
+              width: BTN_SIZE,
+              height: BTN_SIZE,
+              borderRadius: '50%',
+              background: 'var(--layera-bg-success,#22C55E)',
+              border: '2px solid white',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'grab',
+              zIndex: 9999,
+              userSelect: 'none',
+              touchAction: 'none'
+            }}
+          >
+            <PlusIcon size="md" theme="neutral" />
+          </div>
         )}
       </div>
     );
@@ -262,16 +375,35 @@ export const GeoMap: React.FC<GeoMapProps> = ({
           hideDrawingControls={isIPhone14ProMaxDevice}
         />
 
-        {/* Enterprise DraggableFAB για Tablet */}
+        {/* Enterprise Draggable FAB για Tablet - από OLD_GeoMap.tsx */}
         {!showCategoryElements && (
-          <DraggableFAB
-            icon={<PlusIcon size="md" theme="neutral" />}
+          <div
+            onPointerDown={handleFabPointerDown}
             onClick={handleNewEntryClick}
-            initialPosition={{ right: 20, bottom: 20 }}
-            size="lg"
-            variant="success"
+            aria-label="Νέα Καταχώρηση"
+            title="Νέα Καταχώρηση"
             data-testid="tablet-draggable-fab"
-          />
+            style={{
+              position: 'absolute',
+              right: '20px',
+              bottom: '20px',
+              width: BTN_SIZE,
+              height: BTN_SIZE,
+              borderRadius: '50%',
+              background: 'var(--layera-bg-success,#22C55E)',
+              border: '2px solid white',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'grab',
+              zIndex: 9999,
+              userSelect: 'none',
+              touchAction: 'none'
+            }}
+          >
+            <PlusIcon size="md" theme="neutral" />
+          </div>
         )}
       </div>
     );
@@ -287,16 +419,35 @@ export const GeoMap: React.FC<GeoMapProps> = ({
         hideDrawingControls={isIPhone14ProMaxDevice}
       />
 
-      {/* Enterprise DraggableFAB για Mobile */}
+      {/* Enterprise Draggable FAB για Mobile - από OLD_GeoMap.tsx */}
       {!showCategoryElements && (
-        <DraggableFAB
-          icon={<PlusIcon size="md" theme="neutral" />}
+        <div
+          onPointerDown={handleFabPointerDown}
           onClick={handleNewEntryClick}
-          initialPosition={{ right: 15, bottom: 15 }}
-          size="md"
-          variant="success"
+          aria-label="Νέα Καταχώρηση"
+          title="Νέα Καταχώρηση"
           data-testid="mobile-draggable-fab"
-        />
+          style={{
+            position: 'absolute',
+            right: '15px',
+            bottom: '15px',
+            width: 48, // smaller for mobile
+            height: 48,
+            borderRadius: '50%',
+            background: 'var(--layera-bg-success,#22C55E)',
+            border: '2px solid white',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'grab',
+            zIndex: 9999,
+            userSelect: 'none',
+            touchAction: 'none'
+          }}
+        >
+          <PlusIcon size="md" theme="neutral" />
+        </div>
       )}
     </div>
   );
