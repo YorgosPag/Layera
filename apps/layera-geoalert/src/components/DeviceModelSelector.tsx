@@ -54,7 +54,7 @@ const deviceSpecs: Record<DeviceModel, DeviceSpecs> = {
   'iPad Pro 12.9"': { width: 1024, height: 1366, scale: 0.6, hasNotch: false, hasHomeBar: false, borderRadius: 20, frameColor: '#1c1c1e' },
   'Surface Pro 7': { width: 912, height: 1368, scale: 0.6, hasNotch: false, hasHomeBar: false, borderRadius: 0, frameColor: '#000000' },
   'MacBook Pro 13"': { width: 1440, height: 900, scale: 0.5, hasNotch: false, hasHomeBar: false, borderRadius: 10, frameColor: '#e5e5e7' },
-  'iMac 24"': { width: 1920, height: 1080, scale: 0.4, hasNotch: false, hasHomeBar: false, borderRadius: 15, frameColor: '#f0f0f0' }
+  'iMac 24"': { width: 1920, height: 1080, scale: 0.7, hasNotch: false, hasHomeBar: false, borderRadius: 15, frameColor: '#f0f0f0' }
 };
 
 interface DeviceModelSelectorProps {

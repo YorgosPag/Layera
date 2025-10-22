@@ -308,12 +308,17 @@ function App() {
               `}
             </style>
 
-            {/* Force dark theme for layout content - Override για tablets/iMac */}
+            {/* ΤΕΛΙΚΗ ΛΥΣΗ: Viewport element transparent για σωστό dark mode */}
             <style>{`
-              .layera-layout-content {
+              /* Διόρθωση viewport element που προκαλούσε λευκή περιοχή σε dark mode */
+              [id*="viewport"] {
                 background-color: transparent !important;
               }
-              .layera-app-shell {
+
+              /* Map containers transparent για consistency */
+              .tablet-map-container,
+              .mobile-map-container,
+              .desktop-map-container {
                 background-color: transparent !important;
               }
             `}</style>

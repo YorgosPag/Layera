@@ -253,7 +253,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
   // Tablet specific rendering
   if (isTablet) {
     return (
-      <div style={{ width: '100%', height: '100vh', position: 'relative' }}>
+      <div className="tablet-map-container" style={{ width: '100%', height: '100vh', position: 'relative' }}>
         <TabletGeoMap />
         <MapContainer
           onAreaCreated={onAreaCreated}
@@ -279,7 +279,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
 
   // Default mobile rendering
   return (
-    <div style={{ width: '100%', height: '100vh', position: 'relative' }}>
+    <div className="mobile-map-container" style={{ width: '100%', height: '100vh', position: 'relative' }}>
       <MapContainer
         onAreaCreated={onAreaCreated}
         onNewEntryClick={onNewEntryClick}
