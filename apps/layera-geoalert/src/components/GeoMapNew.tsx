@@ -10,7 +10,7 @@ import { useViewportWithOverride } from '@layera/viewport';
 import { useNavigation } from '../services/navigation/hooks/useNavigation';
 import { MapContainer } from './map/MapContainer';
 import { PlusIcon } from './icons/LayeraIcons';
-// import { DraggableFAB } from '@layera/draggable-fab'; // Temporarily disabled due to module resolution
+import { DraggableFAB } from '@layera/draggable-fab';
 import {
   GeoMap as iPhone14ProMaxGeoMap,
   FloatingStepper as iPhone14ProMaxFloatingStepper,
@@ -202,35 +202,20 @@ export const GeoMap: React.FC<GeoMapProps> = ({
           }
         })}
 
-        {/* Temporary FAB until @layera/draggable-fab module resolution is fixed */}
+        {/* Enterprise DraggableFAB για iPhone 14 Pro Max - LEGO @layera/draggable-fab */}
         {!showCategoryElements && (
-          <div
+          <DraggableFAB
             onClick={handleNewEntryClick}
+            size="lg"
+            position="viewport-relative"
+            constrainToViewport={true}
+            viewportSelector="#geo-viewport, [data-viewport-frame]"
+            data-testid="iphone-draggable-fab"
             aria-label="Νέα Καταχώρηση"
             title="Νέα Καταχώρηση"
-            data-testid="iphone-draggable-fab"
-            style={{
-              position: 'absolute',
-              right: '20px',
-              bottom: '100px', // Αυξάνω το bottom για να φαίνεται καλύτερα
-              width: 60, // Λίγο μεγαλύτερο για iPhone
-              height: 60,
-              borderRadius: '50%',
-              background: '#22C55E', // Hardcoded χρώμα για επιβεβαίωση
-              border: '3px solid white',
-              boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              zIndex: 99999, // Πολύ υψηλό z-index
-              userSelect: 'none',
-              transform: 'scale(1)', // Εξασφαλίζω ότι δεν έχει transform scaling
-              opacity: 1 // Εξασφαλίζω ότι είναι ορατό
-            }}
           >
             <PlusIcon size="md" theme="neutral" />
-          </div>
+          </DraggableFAB>
         )}
 
 
