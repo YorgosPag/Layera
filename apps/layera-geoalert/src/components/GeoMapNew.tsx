@@ -9,6 +9,7 @@ import React, { useState, useRef } from 'react';
 import { useViewportWithOverride } from '@layera/viewport';
 import { useNavigation } from '../services/navigation/hooks/useNavigation';
 import { useIPhone14ProMaxDetection } from '@layera/device-detection';
+import { useNavigationHandlers } from '@layera/navigation-handlers';
 import { MapContainer } from './map/MapContainer';
 import { PlusIcon } from './icons/LayeraIcons';
 import { DraggableFAB } from '@layera/draggable-fab';
@@ -79,47 +80,23 @@ export const GeoMap: React.FC<GeoMapProps> = ({
 
   // 🚀 ENTERPRISE NAVIGATION: Rock-solid service που δεν σπάει ποτέ
   const navigation = useNavigation();
-  const [showCategoryElements, setShowCategoryElements] = useState(false);
 
-  // Enterprise Navigation State debug removed
+  // 🚀 ENTERPRISE NAVIGATION HANDLERS: @layera/navigation-handlers LEGO package
+  const {
+    handleStepNext,
+    handleStepPrevious,
+    handleStepReset,
+    handleNewEntryClick,
+    state: navigationState
+  } = useNavigationHandlers({
+    navigation,
+    isSpecialDevice: finalIPhone14ProMaxDecision,
+    onCategoryElementsChange,
+    onNewEntryClick
+  });
 
-  // 🚀 ENTERPRISE NAVIGATION HANDLERS: Rock-solid, never fail
-  const handleStepNext = async () => {
-    try {
-      await navigation.goNext();
-    } catch (error) {
-      // Navigation next failed but app continues
-    }
-  };
-
-  const handleStepPrevious = async () => {
-    try {
-      await navigation.goBack();
-    } catch (error) {
-      // Navigation back failed but app continues
-    }
-  };
-
-  const handleStepReset = () => {
-    navigation.reset();
-    setShowCategoryElements(false);
-    onCategoryElementsChange?.(false);
-  };
-
-
-  // Handler για το FAB button - simplified without drag logic
-  const handleNewEntryClick = () => {
-    // FAB Click Handler debug removed
-    if (finalIPhone14ProMaxDecision) {
-      // Για iPhone: εμφάνιση των category elements
-      const newState = !showCategoryElements;
-      setShowCategoryElements(newState);
-      onCategoryElementsChange?.(newState);
-    } else {
-      // Για άλλες συσκευές: κανονική συμπεριφορά
-      onNewEntryClick?.();
-    }
-  };
+  // Enterprise state από LEGO package
+  const showCategoryElements = navigationState.showCategoryElements;
 
   // iPhone 14 Pro Max specific rendering (χρησιμοποιώ υβριδική απόφαση)
   if (finalIPhone14ProMaxDecision) {
