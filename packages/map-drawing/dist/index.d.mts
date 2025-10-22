@@ -54,6 +54,7 @@ interface UseDrawingOptions {
     onAreaCreated?: (area: DrawnArea) => void;
     onAreaDeleted?: (areaId: string) => void;
     onModeChanged?: (mode: DrawingMode) => void;
+    map?: LeafletMap;
 }
 interface UseDrawingReturn {
     drawingService: DrawingService | null;

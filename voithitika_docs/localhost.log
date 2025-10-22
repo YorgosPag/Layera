@@ -1,0 +1,144 @@
+03:18:51.794 CategoryStep.tsx?t=1761092318767:128 Uncaught ReferenceError: onNext is not defined
+    at handleCardClick (CategoryStep.tsx?t=1761092318767:128:5)
+    at onClick (CategoryStep.tsx?t=1761092318767:140:26)
+    at executeDispatch (react-dom_client.js?v=5596c2da:13821:11)
+    at runWithFiberInDEV (react-dom_client.js?v=5596c2da:1027:72)
+    at processDispatchQueue (react-dom_client.js?v=5596c2da:13857:37)
+    at react-dom_client.js?v=5596c2da:14280:11
+    at batchedUpdates$1 (react-dom_client.js?v=5596c2da:2686:42)
+    at dispatchEventForPluginEventSystem (react-dom_client.js?v=5596c2da:13966:9)
+    at dispatchEvent (react-dom_client.js?v=5596c2da:17026:13)
+    at dispatchDiscreteEvent (react-dom_client.js?v=5596c2da:17007:62)
+handleCardClick @ CategoryStep.tsx?t=1761092318767:128
+onClick @ CategoryStep.tsx?t=1761092318767:140
+executeDispatch @ react-dom_client.js?v=5596c2da:13821
+runWithFiberInDEV @ react-dom_client.js?v=5596c2da:1027
+processDispatchQueue @ react-dom_client.js?v=5596c2da:13857
+(anonymous) @ react-dom_client.js?v=5596c2da:14280
+batchedUpdates$1 @ react-dom_client.js?v=5596c2da:2686
+dispatchEventForPluginEventSystem @ react-dom_client.js?v=5596c2da:13966
+dispatchEvent @ react-dom_client.js?v=5596c2da:17026
+dispatchDiscreteEvent @ react-dom_client.js?v=5596c2da:17007
+03:18:51.795 CategoryStep.tsx?t=1761092318767:26 🎯 CategoryStep Debug: {isVisible: true, componentRendering: true}
+03:18:51.797 CategoryStep.tsx?t=1761092318767:26 🎯 CategoryStep Debug: {isVisible: true, componentRendering: true}
+03:18:53.157 CategoryStep.tsx:31 🎯 CategoryStep Debug: {isVisible: true, componentRendering: true}
+03:18:53.158 CategoryStep.tsx:31 🎯 CategoryStep Debug: {isVisible: true, componentRendering: true}
+03:18:53.266 CategoryStep.tsx:324 Rent clicked
+03:19:00.494 GeoMapNew.tsx:66 🔧 Viewport Detection: {isDesktop: true, isTablet: false, isMobile: false}
+03:19:00.494 GeoMapNew.tsx:67 🎯 iPhone 14 Pro Max prop from App.tsx: true
+03:19:00.494 GeoMapNew.tsx:68 🔍 Render Decision: {isIPhone14ProMaxDevice: true, isDesktop: true, isTablet: false, isMobile: false, willRenderIPhoneMode: true, …}
+03:19:00.494 GeoMapNew.tsx:125 📱 iPhone 14 Pro Max Detection Result (from App.tsx prop): true
+03:19:00.495 GeoMapNew.tsx:185 🎯 Rendering iPhone 14 Pro Max with hidden drawing controls (via App.tsx prop)
+03:19:00.495 GeoMapNew.tsx:214 🎯 iPhone Mode FAB Debug: {onNewEntryClick: true, isIPhone14ProMaxDevice: true, showCategoryElements: true, shouldShowFAB: false}
+03:19:00.495 GeoMapNew.tsx:66 🔧 Viewport Detection: {isDesktop: true, isTablet: false, isMobile: false}
+03:19:00.496 GeoMapNew.tsx:67 🎯 iPhone 14 Pro Max prop from App.tsx: true
+03:19:00.496 GeoMapNew.tsx:68 🔍 Render Decision: {isIPhone14ProMaxDevice: true, isDesktop: true, isTablet: false, isMobile: false, willRenderIPhoneMode: true, …}
+03:19:00.496 GeoMapNew.tsx:125 📱 iPhone 14 Pro Max Detection Result (from App.tsx prop): true
+03:19:00.496 GeoMapNew.tsx:185 🎯 Rendering iPhone 14 Pro Max with hidden drawing controls (via App.tsx prop)
+03:19:00.497 GeoMapNew.tsx:214 🎯 iPhone Mode FAB Debug: {onNewEntryClick: true, isIPhone14ProMaxDevice: true, showCategoryElements: true, shouldShowFAB: false}
+03:19:00.497 GeoMap.tsx:50 🎯 iPhone 14 Pro Max GeoMap: Component rendered!
+03:19:00.497 GeoMap.tsx:51 🎯 Device Info: {userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWeb…KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36', screenWidth: 1920, screenHeight: 1080, innerWidth: 1457, innerHeight: 953, …}
+03:19:00.498 GeoMap.tsx:50 🎯 iPhone 14 Pro Max GeoMap: Component rendered!
+03:19:00.498 GeoMap.tsx:51 🎯 Device Info: {userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWeb…KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36', screenWidth: 1920, screenHeight: 1080, innerWidth: 1457, innerHeight: 953, …}
+03:19:00.499 MapContainer.tsx:66 🗺️ MapContainer - isMobile: false hideDrawingControls: true
+03:19:00.500 MapContainer.tsx:66 🗺️ MapContainer - isMobile: false hideDrawingControls: true
+03:19:00.505 CategoryStep.tsx:31 🎯 CategoryStep Debug: {isVisible: true, componentRendering: true}
+03:19:00.507 CategoryStep.tsx:31 🎯 CategoryStep Debug: {isVisible: true, componentRendering: true}
+03:19:00.518 MapContainer.tsx:66 🗺️ MapContainer - isMobile: false hideDrawingControls: true
+03:19:00.519 MapContainer.tsx:66 🗺️ MapContainer - isMobile: false hideDrawingControls: true
+03:19:02.382 GeoMapNew.tsx:167 🔄 Step reset to beginning - FAB should reappear
+03:19:02.395 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = true
+03:19:02.395 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
+03:19:02.395 GeoHeader.tsx:37 🎯 GeoHeader: current theme = system
+03:19:02.395 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
+03:19:02.395 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
+03:19:02.396 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
+03:19:02.396 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
+03:19:02.397 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = true
+03:19:02.397 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
+03:19:02.398 GeoHeader.tsx:37 🎯 GeoHeader: current theme = system
+03:19:02.398 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
+03:19:02.398 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
+03:19:02.398 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
+03:19:02.398 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
+03:19:02.404 GeoMapNew.tsx:66 🔧 Viewport Detection: {isDesktop: true, isTablet: false, isMobile: false}
+03:19:02.404 GeoMapNew.tsx:67 🎯 iPhone 14 Pro Max prop from App.tsx: true
+03:19:02.405 GeoMapNew.tsx:68 🔍 Render Decision: {isIPhone14ProMaxDevice: true, isDesktop: true, isTablet: false, isMobile: false, willRenderIPhoneMode: true, …}
+03:19:02.405 GeoMapNew.tsx:125 📱 iPhone 14 Pro Max Detection Result (from App.tsx prop): true
+03:19:02.405 GeoMapNew.tsx:185 🎯 Rendering iPhone 14 Pro Max with hidden drawing controls (via App.tsx prop)
+03:19:02.405 GeoMapNew.tsx:214 🎯 iPhone Mode FAB Debug: {onNewEntryClick: true, isIPhone14ProMaxDevice: true, showCategoryElements: false, shouldShowFAB: true}
+03:19:02.406 GeoMapNew.tsx:66 🔧 Viewport Detection: {isDesktop: true, isTablet: false, isMobile: false}
+03:19:02.406 GeoMapNew.tsx:67 🎯 iPhone 14 Pro Max prop from App.tsx: true
+03:19:02.406 GeoMapNew.tsx:68 🔍 Render Decision: {isIPhone14ProMaxDevice: true, isDesktop: true, isTablet: false, isMobile: false, willRenderIPhoneMode: true, …}
+03:19:02.407 GeoMapNew.tsx:125 📱 iPhone 14 Pro Max Detection Result (from App.tsx prop): true
+03:19:02.407 GeoMapNew.tsx:185 🎯 Rendering iPhone 14 Pro Max with hidden drawing controls (via App.tsx prop)
+03:19:02.407 GeoMapNew.tsx:214 🎯 iPhone Mode FAB Debug: {onNewEntryClick: true, isIPhone14ProMaxDevice: true, showCategoryElements: false, shouldShowFAB: true}
+03:19:02.408 GeoMap.tsx:50 🎯 iPhone 14 Pro Max GeoMap: Component rendered!
+03:19:02.408 GeoMap.tsx:51 🎯 Device Info: {userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWeb…KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36', screenWidth: 1920, screenHeight: 1080, innerWidth: 1457, innerHeight: 953, …}
+03:19:02.408 GeoMap.tsx:50 🎯 iPhone 14 Pro Max GeoMap: Component rendered!
+03:19:02.408 GeoMap.tsx:51 🎯 Device Info: {userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWeb…KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36', screenWidth: 1920, screenHeight: 1080, innerWidth: 1457, innerHeight: 953, …}
+03:19:02.409 MapContainer.tsx:66 🗺️ MapContainer - isMobile: false hideDrawingControls: true
+03:19:02.410 MapContainer.tsx:66 🗺️ MapContainer - isMobile: false hideDrawingControls: true
+03:19:02.415 CategoryStep.tsx:31 🎯 CategoryStep Debug: {isVisible: true, componentRendering: true}
+03:19:02.417 CategoryStep.tsx:31 🎯 CategoryStep Debug: {isVisible: true, componentRendering: true}
+03:19:02.430 MapContainer.tsx:66 🗺️ MapContainer - isMobile: false hideDrawingControls: true
+03:19:02.431 MapContainer.tsx:66 🗺️ MapContainer - isMobile: false hideDrawingControls: true
+03:19:08.570 GeoMapNew.tsx:66 🔧 Viewport Detection: {isDesktop: true, isTablet: false, isMobile: false}
+03:19:08.571 GeoMapNew.tsx:67 🎯 iPhone 14 Pro Max prop from App.tsx: true
+03:19:08.571 GeoMapNew.tsx:68 🔍 Render Decision: {isIPhone14ProMaxDevice: true, isDesktop: true, isTablet: false, isMobile: false, willRenderIPhoneMode: true, …}
+03:19:08.571 GeoMapNew.tsx:125 📱 iPhone 14 Pro Max Detection Result (from App.tsx prop): true
+03:19:08.571 GeoMapNew.tsx:185 🎯 Rendering iPhone 14 Pro Max with hidden drawing controls (via App.tsx prop)
+03:19:08.572 GeoMapNew.tsx:214 🎯 iPhone Mode FAB Debug: {onNewEntryClick: true, isIPhone14ProMaxDevice: true, showCategoryElements: true, shouldShowFAB: false}
+03:19:08.572 GeoMapNew.tsx:66 🔧 Viewport Detection: {isDesktop: true, isTablet: false, isMobile: false}
+03:19:08.572 GeoMapNew.tsx:67 🎯 iPhone 14 Pro Max prop from App.tsx: true
+03:19:08.572 GeoMapNew.tsx:68 🔍 Render Decision: {isIPhone14ProMaxDevice: true, isDesktop: true, isTablet: false, isMobile: false, willRenderIPhoneMode: true, …}
+03:19:08.573 GeoMapNew.tsx:125 📱 iPhone 14 Pro Max Detection Result (from App.tsx prop): true
+03:19:08.573 GeoMapNew.tsx:185 🎯 Rendering iPhone 14 Pro Max with hidden drawing controls (via App.tsx prop)
+03:19:08.573 GeoMapNew.tsx:214 🎯 iPhone Mode FAB Debug: {onNewEntryClick: true, isIPhone14ProMaxDevice: true, showCategoryElements: true, shouldShowFAB: false}
+03:19:08.573 GeoMap.tsx:50 🎯 iPhone 14 Pro Max GeoMap: Component rendered!
+03:19:08.574 GeoMap.tsx:51 🎯 Device Info: {userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWeb…KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36', screenWidth: 1920, screenHeight: 1080, innerWidth: 1457, innerHeight: 953, …}
+03:19:08.574 GeoMap.tsx:50 🎯 iPhone 14 Pro Max GeoMap: Component rendered!
+03:19:08.574 GeoMap.tsx:51 🎯 Device Info: {userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWeb…KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36', screenWidth: 1920, screenHeight: 1080, innerWidth: 1457, innerHeight: 953, …}
+03:19:08.575 MapContainer.tsx:66 🗺️ MapContainer - isMobile: false hideDrawingControls: true
+03:19:08.576 MapContainer.tsx:66 🗺️ MapContainer - isMobile: false hideDrawingControls: true
+03:19:08.581 CategoryStep.tsx:31 🎯 CategoryStep Debug: {isVisible: true, componentRendering: true}
+03:19:08.582 CategoryStep.tsx:31 🎯 CategoryStep Debug: {isVisible: true, componentRendering: true}
+03:19:08.593 MapContainer.tsx:66 🗺️ MapContainer - isMobile: false hideDrawingControls: true
+03:19:08.594 MapContainer.tsx:66 🗺️ MapContainer - isMobile: false hideDrawingControls: true
+03:19:10.459 GeoMapNew.tsx:167 🔄 Step reset to beginning - FAB should reappear
+03:19:10.471 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = true
+03:19:10.472 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
+03:19:10.472 GeoHeader.tsx:37 🎯 GeoHeader: current theme = system
+03:19:10.472 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
+03:19:10.472 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
+03:19:10.472 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
+03:19:10.473 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
+03:19:10.473 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = true
+03:19:10.474 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
+03:19:10.474 GeoHeader.tsx:37 🎯 GeoHeader: current theme = system
+03:19:10.474 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
+03:19:10.474 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
+03:19:10.474 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
+03:19:10.474 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
+03:19:10.482 GeoMapNew.tsx:66 🔧 Viewport Detection: {isDesktop: true, isTablet: false, isMobile: false}
+03:19:10.482 GeoMapNew.tsx:67 🎯 iPhone 14 Pro Max prop from App.tsx: true
+03:19:10.482 GeoMapNew.tsx:68 🔍 Render Decision: {isIPhone14ProMaxDevice: true, isDesktop: true, isTablet: false, isMobile: false, willRenderIPhoneMode: true, …}
+03:19:10.482 GeoMapNew.tsx:125 📱 iPhone 14 Pro Max Detection Result (from App.tsx prop): true
+03:19:10.483 GeoMapNew.tsx:185 🎯 Rendering iPhone 14 Pro Max with hidden drawing controls (via App.tsx prop)
+03:19:10.483 GeoMapNew.tsx:214 🎯 iPhone Mode FAB Debug: {onNewEntryClick: true, isIPhone14ProMaxDevice: true, showCategoryElements: false, shouldShowFAB: true}
+03:19:10.484 GeoMapNew.tsx:66 🔧 Viewport Detection: {isDesktop: true, isTablet: false, isMobile: false}
+03:19:10.484 GeoMapNew.tsx:67 🎯 iPhone 14 Pro Max prop from App.tsx: true
+03:19:10.484 GeoMapNew.tsx:68 🔍 Render Decision: {isIPhone14ProMaxDevice: true, isDesktop: true, isTablet: false, isMobile: false, willRenderIPhoneMode: true, …}
+03:19:10.484 GeoMapNew.tsx:125 📱 iPhone 14 Pro Max Detection Result (from App.tsx prop): true
+03:19:10.485 GeoMapNew.tsx:185 🎯 Rendering iPhone 14 Pro Max with hidden drawing controls (via App.tsx prop)
+03:19:10.485 GeoMapNew.tsx:214 🎯 iPhone Mode FAB Debug: {onNewEntryClick: true, isIPhone14ProMaxDevice: true, showCategoryElements: false, shouldShowFAB: true}
+03:19:10.485 GeoMap.tsx:50 🎯 iPhone 14 Pro Max GeoMap: Component rendered!
+03:19:10.486 GeoMap.tsx:51 🎯 Device Info: {userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWeb…KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36', screenWidth: 1920, screenHeight: 1080, innerWidth: 1457, innerHeight: 953, …}
+03:19:10.486 GeoMap.tsx:50 🎯 iPhone 14 Pro Max GeoMap: Component rendered!
+03:19:10.486 GeoMap.tsx:51 🎯 Device Info: {userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWeb…KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36', screenWidth: 1920, screenHeight: 1080, innerWidth: 1457, innerHeight: 953, …}
+03:19:10.487 MapContainer.tsx:66 🗺️ MapContainer - isMobile: false hideDrawingControls: true
+03:19:10.488 MapContainer.tsx:66 🗺️ MapContainer - isMobile: false hideDrawingControls: true
+03:19:10.494 CategoryStep.tsx:31 🎯 CategoryStep Debug: {isVisible: true, componentRendering: true}
+03:19:10.495 CategoryStep.tsx:31 🎯 CategoryStep Debug: {isVisible: true, componentRendering: true}
+03:19:10.508 MapContainer.tsx:66 🗺️ MapContainer - isMobile: false hideDrawingControls: true
+03:19:10.509 MapContainer.tsx:66 🗺️ MapContainer - isMobile: false hideDrawingControls: true

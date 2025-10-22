@@ -117,7 +117,11 @@
       "Bash(timeout:*)",
       "Bash(git tag:*)",
       "Bash(git checkout:*)",
-      "Bash(pnpm typecheck:*)"
+      "Bash(pnpm typecheck:*)",
+      "Bash(git config:*)",
+      "Bash(gh auth:*)",
+      "Bash(gh repo list:*)",
+      "Bash(gh:*)"
     ],
     "deny": [],
     "ask": []

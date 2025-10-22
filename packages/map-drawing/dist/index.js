@@ -209,13 +209,13 @@ var DrawingService = class {
 
 // src/hooks/useDrawing.ts
 var import_react = require("react");
-var import_map_core = require("@layera/map-core");
 var useDrawing = (options = {}) => {
-  const { map, isLoading } = (0, import_map_core.useMap)();
   const drawingServiceRef = (0, import_react.useRef)(null);
   const [currentMode, setCurrentMode] = (0, import_react.useState)("none");
   const [drawnAreas, setDrawnAreas] = (0, import_react.useState)([]);
   const [isReady, setIsReady] = (0, import_react.useState)(false);
+  const map = options.map || null;
+  const isLoading = !map;
   (0, import_react.useEffect)(() => {
     if (!map || isLoading) {
       setIsReady(false);

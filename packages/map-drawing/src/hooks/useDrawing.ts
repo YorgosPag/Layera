@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
-import { useMap } from '@layera/map-core';
+import { LeafletMap } from '@layera/map-core';
 import { DrawingService } from '../services/DrawingService';
 import { DrawingMode, DrawnArea, DrawingEventHandlers, DrawingServiceConfig } from '../types';
 
@@ -8,6 +8,7 @@ export interface UseDrawingOptions {
   onAreaCreated?: (area: DrawnArea) => void;
   onAreaDeleted?: (areaId: string) => void;
   onModeChanged?: (mode: DrawingMode) => void;
+  map?: LeafletMap; // Optional map instance
 }
 
 export interface UseDrawingReturn {
@@ -21,11 +22,14 @@ export interface UseDrawingReturn {
 }
 
 export const useDrawing = (options: UseDrawingOptions = {}): UseDrawingReturn => {
-  const { map, isLoading } = useMap();
   const drawingServiceRef = useRef<DrawingService | null>(null);
   const [currentMode, setCurrentMode] = useState<DrawingMode>('none');
   const [drawnAreas, setDrawnAreas] = useState<DrawnArea[]>([]);
   const [isReady, setIsReady] = useState(false);
+
+  // Use only provided map - no context dependency
+  const map = options.map || null;
+  const isLoading = !map;
 
   // Initialize drawing service when map is ready
   useEffect(() => {

@@ -199,7 +199,9 @@ function App() {
           deviceFrameElement: !!deviceFrameElement,
           frameWidth,
           frameHeight,
-          isIPhone14ProMax
+          isIPhone14ProMax,
+          windowWidth: window.innerWidth,
+          windowHeight: window.innerHeight
         });
 
         setDeviceDetected(isIPhone14ProMax);

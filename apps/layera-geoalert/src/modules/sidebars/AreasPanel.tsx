@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
-import { DrawnArea } from '../../components/GeoMap';
+import { DrawnArea } from '@layera/map-drawing';
 import { SearchIcon, EyeIcon, EyeOffIcon, TrashIcon } from '../../components/icons/LayeraIcons';
 
 interface AreasPanelProps {

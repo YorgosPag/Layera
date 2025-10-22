@@ -174,13 +174,13 @@ var DrawingService = class {
 
 // src/hooks/useDrawing.ts
 import { useEffect, useRef, useState, useCallback } from "react";
-import { useMap } from "@layera/map-core";
 var useDrawing = (options = {}) => {
-  const { map, isLoading } = useMap();
   const drawingServiceRef = useRef(null);
   const [currentMode, setCurrentMode] = useState("none");
   const [drawnAreas, setDrawnAreas] = useState([]);
   const [isReady, setIsReady] = useState(false);
+  const map = options.map || null;
+  const isLoading = !map;
   useEffect(() => {
     if (!map || isLoading) {
       setIsReady(false);

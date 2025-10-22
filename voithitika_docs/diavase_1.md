@@ -1,91 +1,58 @@
-Αιτία: το header χάνεται γιατί:
+Ναι, γίνεται να πάνε «έξω από το simulation». Μην τα ρεντάρεις μέσα στο MapContainer· βάλε τα σε fixed pane έξω από το .device-frame-wrapper στο App.tsx.
 
-iOS Safari κρύβει τα browser bars όταν υπάρχει κατακόρυφο scroll στο root.
+Τι φταίει τώρα:
 
-position: fixed χαλάει σε iOS αν οποιοσδήποτε πρόγονος έχει transform/filter/perspective ή αν το header είναι μέσα σε container με overflow.
+Το prop δεν καταλήγει στο MapContainer.
+Στο split σταμάτησε να περνά παντού το isIPhone14ProMaxDevice, άρα το MapContainer νομίζει ότι δεν είναι iPhone και δείχνει τα 3 πλήκτρα.
 
-100vh μεταβάλλεται σε iOS· το layout πηδάει και το header βγαίνει εκτός ορατού.
+Η συνθήκη απόκρυψης στο MapContainer είναι λάθος προτεραιότητας.
+Ελέγχει μόνο !isIPhone14ProMaxDevice ή αγνοεί hideDrawingControls, οπότε τα controls εμφανίζονται στο mobile.
 
-Λύση αρχιτεκτονικά: μηδενικό scroll στο root, header έξω από το “device frame”/map containers, χρήση 100dvh, και render του header με Portal στο document.body.
+Το πράσινο FAB μεταφέρθηκε και «χάθηκε».
+Στο OLD_GeoMap το FAB ρενταριζόταν στον κύριο γεω-χάρτη με υψηλό z-index και εμφανιζόταν όταν isIPhone14ProMaxDevice && !showCategoryElements. Αυτό δούλευε γιατί το κρύψιμο των 3 πλήκτρων γινόταν στο ίδιο component με το FAB. Μετά το split, το FAB και τα controls βρίσκονται σε διαφορετικά components, οπότε το FAB κρύβεται ή μπαίνει πίσω από άλλα layers. 
 
-Εφάρμοσε αυτά τα 5 βήματα:
+OLD_GeoMap
 
-Global CSS
+Η μαύρη λωρίδα στο κάτω μέρος είναι layout υπόλοιπο του “mobile toolbar”/footer.
+Το MapContainer κρατά χώρο (bottom panel) για τα mobile controls. Όταν αυτά δεν πρέπει να φανούν, ο χώρος μένει μαύρος.
 
-html, body { height: 100%; overflow: hidden; }
-#root, #app { height: 100dvh; position: relative; }
-:root { --safe-top: env(safe-area-inset-top, 0px); --header-h: 56px; }
+Ελάχιστες διορθώσεις:
 
+A) Πέρνα πάντα τα props προς MapContainer
+Σε ΟΛΑ τα render paths:
 
-Αντικατάστησε παντού 100vh με 100dvh. Αν χρειάζεται fallback:
-
-useEffect(() => {
-  const setVH = () => document.documentElement.style
-    .setProperty('--vh', `${window.innerHeight * 0.01}px`);
-  setVH(); window.addEventListener('resize', setVH);
-  return () => window.removeEventListener('resize', setVH);
-}, []);
-/* και CSS εναλλακτικά: height: calc(var(--vh, 1vh) * 100); */
-
-
-Κάνε τον header Portal ώστε να μην έχει προγόνους με transform/overflow:
-
-import { createPortal } from 'react-dom';
-function FixedTopChrome({ children }: { children: React.ReactNode }) {
-  const ref = React.useRef<HTMLDivElement | null>(null);
-  if (!ref.current) ref.current = document.createElement('div');
-  React.useEffect(() => {
-    const el = ref.current!;
-    Object.assign(el.style, {
-      position: 'fixed', top: '0', left: '0', right: '0',
-      zIndex: '2147483647', paddingTop: 'var(--safe-top)',
-    });
-    document.body.appendChild(el);
-    return () => { document.body.removeChild(el); };
-  }, []);
-  return createPortal(children, ref.current);
-}
+<MapContainer
+  onAreaCreated={onAreaCreated}
+  onNewEntryClick={onNewEntryClick}
+  isIPhone14ProMaxDevice={isIPhone14ProMaxDevice}
+  hideDrawingControls={isIPhone14ProMaxDevice}
+/>
 
 
-Χρήση στο iPhone layout:
+B) Διόρθωσε τη συνθήκη απόκρυψης στο MapContainer
+Αντικατάστησε το block των mobile controls με:
 
-{isIPhone14ProMaxDevice && (
-  <FixedTopChrome>
-    <AppHeader /* back, τίτλος, γλώσσα */ />
-  </FixedTopChrome>
+{!(hideDrawingControls || isIPhone14ProMaxDevice) && (
+  <div className="mobile-drawing-toolbar">…</div>
 )}
 
 
-Το map να μην προκαλεί page scroll και να ξεκινά κάτω από τον header:
+C) Επανέφερε το FAB όπως στο OLD_GeoMap
+Ρεντάρισέ το στο ίδιο component που αποφασίζει για το iPhone mode και δώσε z-index > 1200. Η απλή μορφή:
 
-<div
-  id="map-wrap"
-  style={{
-    position: 'absolute',
-    top: `calc(var(--header-h) + var(--safe-top))`,
-    left: 0, right: 0, bottom: 0,
-    overflow: 'hidden',
-    touchAction: 'pan-x pan-y',
-  }}
->
-  {/* leaflet map container εδώ */}
-</div>
+{(onNewEntryClick || isIPhone14ProMaxDevice) && !showCategoryElements && (
+  <div style={{position:'absolute', right:15, bottom:15, zIndex:2000}}>…</div>
+)}
 
 
-Καθάρισε hacks που μπλέκουν:
+D) Εξάλειψε τη μαύρη λωρίδα
+Μην αφήνεις reserved ύψος για toolbar όταν είναι κρυφό. Ο χάρτης να γεμίζει όλο τον χώρο:
 
-Βγάλε transform από wrappers του “device frame” που περιέχουν τον header. Αν το frame χρειάζεται transform, άφησέ το μόνο γύρω από τον χάρτη, όχι γύρω από τον header.
+<div id="geo-map" style={{ position:'absolute', inset:0 }} />
 
-Αφαίρεσε τα meta/JS που τροποποιούν viewport ή body σε runtime. Δεν χρειάζονται με το παραπάνω layout.
 
-Ξαναενεργοποίησε τα Leaflet interactions στο iPhone. Δεν θα κρύβεται η μπάρα αφού δεν υπάρχει root scroll.
+Πηγή για το «σωστό» παλιό behavior (κρύψιμο controls με !isIPhone14ProMaxDevice και FAB): OLD_GeoMap.tsx, ενότητα Drawing Toolbar και FAB. 
 
-Έλεγχοι-κλειδιά:
+OLD_GeoMap
 
-Ο header πρέπει να είναι sibling του map container και να γίνεται render σε document.body μέσω Portal.
-
-Κανένας πρόγονος του header με transform, filter, perspective, backdrop-filter, will-change, ή overflow.
-
-Καμία χρήση 100vh. Μόνο 100dvh ή το --vh hack.
-
-Με αυτά ο back button και ο τίτλος μένουν σταθερά ορατά ενώ μετακινείς τον χάρτη.
+Αποτέλεσμα: εμφανίζεται το πράσινο κουμπί, τα 3 πλήκτρα δεν μπαίνουν μέσα στο κινητό, και η μαύρη λωρίδα εξαφανίζεται.
