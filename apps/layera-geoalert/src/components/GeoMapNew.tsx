@@ -128,34 +128,90 @@ export const GeoMap: React.FC<GeoMapProps> = (props) => {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [currentStepId, setCurrentStepId] = useState('category');
   const [showCategoryElements, setShowCategoryElements] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<'property' | 'job' | null>(null);
 
-  // Steps definition
-  const steps = [
-    { id: 'category', title: 'Κατηγορία' },
-    { id: 'transactionType', title: 'Τύπος Συναλλαγής' },
-    { id: 'location', title: 'Τοποθεσία' },
-    { id: 'details', title: 'Λεπτομέρειες' },
-    { id: 'availability', title: 'Διαθεσιμότητα' },
-    { id: 'layout', title: 'Κάτοψη' },
-    { id: 'complete', title: 'Ολοκλήρωση' }
-  ];
+  // Steps definition - dynamic based on category
+  const getSteps = () => {
+    // Αν δεν έχει επιλεγεί κατηγορία, μόνο το category step
+    if (!selectedCategory) {
+      return [
+        { id: 'category', title: 'Κατηγορία' }
+      ];
+    }
+
+    if (selectedCategory === 'property') {
+      return [
+        { id: 'category', title: 'Κατηγορία' },
+        { id: 'intent', title: 'Σκοπός' },
+        { id: 'transactionType', title: 'Συναλλαγή' },
+        { id: 'location', title: 'Τοποθεσία' },
+        { id: 'layout', title: 'Κάτοψη' },
+        { id: 'details', title: 'Στοιχεία' },
+        { id: 'complete', title: 'Τέλος' }
+      ];
+    }
+
+    if (selectedCategory === 'job') {
+      return [
+        { id: 'category', title: 'Κατηγορία' },
+        { id: 'intent', title: 'Σκοπός' },
+        { id: 'employmentType', title: 'Εργασία' },
+        { id: 'availability', title: 'Διαθεσιμότητα' },
+        { id: 'availabilityDetails', title: 'Λεπτομέρειες' },
+        { id: 'location', title: 'Τοποθεσία' },
+        { id: 'details', title: 'Στοιχεία' },
+        { id: 'complete', title: 'Τέλος' }
+      ];
+    }
+
+    return [{ id: 'category', title: 'Κατηγορία' }];
+  };
+
+  const steps = getSteps();
+
+  // Effect για αυτόματο next step όταν επιλέγεται κατηγορία
+  React.useEffect(() => {
+    if (selectedCategory && currentStepIndex === 0) {
+      console.log('🔄 Selected category changed to:', selectedCategory, 'Auto-advancing to next step...');
+      // Αντί να καλώ handleStepNext, θα κάνω το update απευθείας
+      setCurrentStepIndex(1);
+      setCurrentStepId('intent');
+      console.log('🔄 Advanced to step 1 (intent) automatically');
+    }
+  }, [selectedCategory, currentStepIndex]);
 
   // Navigation handlers
   const handleStepNext = () => {
+    console.log('🔄 handleStepNext called! currentStepIndex:', currentStepIndex, 'steps.length:', steps.length);
+    console.log('🔄 Current steps:', steps.map(s => s.id));
     if (currentStepIndex < steps.length - 1) {
       const nextIndex = currentStepIndex + 1;
+      console.log('🔄 Moving to nextIndex:', nextIndex, 'stepId:', steps[nextIndex].id);
       setCurrentStepIndex(nextIndex);
       setCurrentStepId(steps[nextIndex].id);
       console.log('🔄 Step next:', steps[nextIndex]);
+    } else {
+      console.log('🔄 Cannot go next - at last step');
     }
   };
 
   const handleStepPrevious = () => {
+    console.log('🔄 handleStepPrevious called! currentStepIndex:', currentStepIndex, 'steps.length:', steps.length);
     if (currentStepIndex > 0) {
       const prevIndex = currentStepIndex - 1;
+      console.log('🔄 Going to prevIndex:', prevIndex);
       setCurrentStepIndex(prevIndex);
       setCurrentStepId(steps[prevIndex].id);
+
+      // Αν επιστρέφουμε στο category step, μηδένισε την επιλεγμένη κατηγορία
+      if (steps[prevIndex].id === 'category') {
+        setSelectedCategory(null);
+        console.log('🔄 Returned to category step - cleared selected category');
+      }
+
       console.log('🔄 Step previous:', steps[prevIndex]);
+    } else {
+      console.log('🔄 Cannot go previous - currentStepIndex is 0');
     }
   };
 
@@ -163,6 +219,7 @@ export const GeoMap: React.FC<GeoMapProps> = (props) => {
     setCurrentStepIndex(0);
     setCurrentStepId('category');
     setShowCategoryElements(false); // Κρύψε τις κάρτες κατηγορίας
+    setSelectedCategory(null); // Μηδένισε την επιλεγμένη κατηγορία
     onCategoryElementsChange?.(false); // Ενημέρωσε το parent component
     console.log('🔄 Step reset to beginning - FAB should reappear');
   };
@@ -191,16 +248,27 @@ export const GeoMap: React.FC<GeoMapProps> = (props) => {
           isIPhone14ProMaxDevice
         })}
         {/* FloatingStepper - εμφανίζεται μόνο όταν showCategoryElements = true */}
-        {showCategoryElements && React.createElement(iPhone14ProMaxFloatingStepper, {
-          currentStep: currentStepId,
-          totalSteps: steps.length,
-          stepIndex: currentStepIndex,
-          onNext: handleStepNext,
-          onPrevious: handleStepPrevious,
-          onReset: handleStepReset,
-          canGoNext: currentStepIndex < steps.length - 1,
-          canGoPrevious: currentStepIndex > 0
-        })}
+        {showCategoryElements && (() => {
+          console.log('🎯 GeoMapNew: Rendering FloatingStepper with props:', {
+            currentStep: currentStepId,
+            totalSteps: steps.length,
+            stepIndex: currentStepIndex,
+            selectedCategory: selectedCategory,
+            canGoNext: currentStepIndex < steps.length - 1,
+            canGoPrevious: currentStepIndex > 0
+          });
+          return React.createElement(iPhone14ProMaxFloatingStepper, {
+            currentStep: currentStepId,
+            totalSteps: steps.length,
+            stepIndex: currentStepIndex,
+            selectedCategory: selectedCategory, // Περνάω την επιλεγμένη κατηγορία
+            onNext: handleStepNext,
+            onPrevious: handleStepPrevious,
+            onReset: handleStepReset,
+            canGoNext: currentStepIndex < steps.length - 1,
+            canGoPrevious: currentStepIndex > 0
+          });
+        })()}
 
         {/* CategoryStep - εμφανίζεται μόνο όταν showCategoryElements = true */}
         {showCategoryElements && React.createElement(iPhone14ProMaxCategoryStep, {
@@ -208,7 +276,8 @@ export const GeoMap: React.FC<GeoMapProps> = (props) => {
           currentStepId: currentStepId, // Περνάω το current step ID
           onNext: (category: any) => {
             console.log('Category selected:', category);
-            handleStepNext(); // Πάμε στο επόμενο step όταν επιλεγεί κατηγορία
+            setSelectedCategory(category); // Αποθηκεύω την επιλεγμένη κατηγορία
+            // Το handleStepNext θα καλεστεί αυτόματα από το useEffect
           }
         })}
 

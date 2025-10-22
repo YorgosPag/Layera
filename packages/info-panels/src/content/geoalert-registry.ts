@@ -30,49 +30,49 @@ export const GEOALERT_INFO_CONTENT: StaticContentConfig = {
     category: 'job'
   },
 
-  // Property Sub-Level Cards
-  sale: {
-    title: '💰 ΠΩΛΗΣΗ: Μεγιστοποίηση Αξίας Ακινήτου',
-    content: `📈 <strong>Ανάλυση τιμών αγοράς</strong> σε γειτονικές περιοχές<br/>
-🏡 <strong>Σύγκριση χαρακτηριστικών</strong> παρόμοιων ακινήτων<br/>
-⏰ <strong>Βέλτιστος χρόνος πώλησης</strong> βάσει στατιστικών<br/>
-🎯 <strong>Στρατηγική τιμολόγηση</strong> για γρήγορη πώληση<br/>
-📊 <strong>Πρόβλεψη απόδοσης</strong> επένδυσης ανά περιοχή<br/><br/>
-✨ <em><strong>Πωλητές μας κερδίζουν κατά μέσο όρο 12% περισσότερα</strong> χάρη στην έξυπνη ανάλυση!</em>`,
+  // Property Intent Cards
+  'property-offer': {
+    title: '🏡 ΠΡΟΣΦΕΡΩ ΑΚΙΝΗΤΟ: Μεγιστοποίηση Αξίας',
+    content: `💰 <strong>Βέλτιστη τιμολόγηση</strong> με ανάλυση αγοράς<br/>
+📈 <strong>Στρατηγική πώλησης/ενοικίασης</strong> για γρήγορα αποτελέσματα<br/>
+📱 <strong>Προβολή σε χιλιάδες ενδιαφερόμενους</strong> άμεσα<br/>
+🎯 <strong>Εστιασμένο marketing</strong> στην ιδανική γειτονιά<br/>
+📊 <strong>Πραγματικός χρόνος ενδιαφέροντος</strong> και προσφορών<br/><br/>
+✨ <em><strong>Πωλητές μας πετυχαίνουν 23% υψηλότερες τιμές</strong> χάρη στην έξυπνη προβολή!</em>`,
     category: 'property'
   },
 
-  rent: {
-    title: '🏠 ΕΝΟΙΚΙΑΣΗ: Το Τέλειο Σπίτι στη Σωστή Τιμή',
-    content: `💸 <strong>Ανάλυση ενοικίων</strong> ανά m² και περιοχή<br/>
-🚇 <strong>Απόσταση από ΜΜΜ</strong> και κέντρα ενδιαφέροντος<br/>
-🏪 <strong>Υπηρεσίες γειτονιάς</strong> - σούπερ μάρκετ, φαρμακεία<br/>
-📱 <strong>Real-time διαθεσιμότητα</strong> και άμεση επικοινωνία<br/>
-🔒 <strong>Ασφαλής αξιολόγηση</strong> ιδιοκτητών και ακινήτων<br/><br/>
-🌟 <em><strong>Βρες το ιδανικό σπίτι 3x πιο γρήγορα</strong> με προηγμένη γεωφιλτράρση!</em>`,
+  'property-search': {
+    title: '🔍 ΑΝΑΖΗΤΩ ΑΚΙΝΗΤΟ: Έξυπνη Εύρεση',
+    content: `🎯 <strong>Προσωποποιημένη αναζήτηση</strong> βάσει των αναγκών σου<br/>
+🗺️ <strong>Γεωγραφική εξερεύνηση</strong> με real-time προτάσεις<br/>
+⚡ <strong>Ειδοποιήσεις νέων ακινήτων</strong> στις περιοχές σου<br/>
+💸 <strong>Σύγκριση τιμών</strong> και ανάλυση αξίας<br/>
+🔒 <strong>Ασφαλής επικοινωνία</strong> με ιδιοκτήτες<br/><br/>
+🌟 <em><strong>Βρες το ιδανικό σπίτι 4x πιο γρήγορα</strong> με προηγμένη AI αναζήτηση!</em>`,
     category: 'property'
   },
 
-  // Job Sub-Level Cards
-  fulltime: {
-    title: '💼 ΠΛΗΡΗΣ: Σταθερότητα και Εξέλιξη',
-    content: `🎯 <strong>Υψηλόμισθες θέσεις</strong> με εξελικτικές προοπτικές<br/>
-📈 <strong>Ανάλυση αύξησης μισθού</strong> ανά εταιρεία και κλάδο<br/>
-🏢 <strong>Εταιρικά benefits</strong> - ασφάλιση, γυμναστήριο, bonus<br/>
-⚖️ <strong>Work-life balance</strong> βάσει αξιολογήσεων<br/>
-🚗 <strong>Χρόνος μετακίνησης</strong> και κόστος από το σπίτι σου<br/><br/>
-🏆 <em><strong>94% επιτυχία</strong> σε τοποθετήσεις πλήρους απασχόλησης!</em>`,
+  // Job Intent Cards
+  'job-offer': {
+    title: '💼 ΠΡΟΣΦΕΡΩ ΘΕΣΗ: Βρες την Ιδανική Στελέχωση',
+    content: `🎯 <strong>Εστιασμένη προβολή</strong> σε εξειδικευμένους επαγγελματίες<br/>
+📊 <strong>Ανάλυση μισθών αγοράς</strong> για competitive προσφορές<br/>
+⚡ <strong>Γρήγορη στελέχωση</strong> με προ-φιλτραρισμένους υποψήφιους<br/>
+🏢 <strong>Company branding</strong> και προβολή εταιρικής κουλτούρας<br/>
+🎖️ <strong>Quality matching</strong> βάσει skills και γεωγραφίας<br/><br/>
+🚀 <em><strong>Εταιρείες μας βρίσκουν 67% πιο γρήγορα</strong> το ιδανικό talent!</em>`,
     category: 'job'
   },
 
-  parttime: {
-    title: '⏰ ΜΕΡΙΚΗ: Ευελιξία και Ισορροπία',
-    content: `🕐 <strong>Ευέλικτα ωράρια</strong> που ταιριάζουν στη ζωή σου<br/>
-💰 <strong>Ωριαίες αμοιβές</strong> ανά ειδικότητα και περιοχή<br/>
-🎓 <strong>Συμπληρωματικό εισόδημα</strong> για φοιτητές<br/>
-🏡 <strong>Remote & Hybrid θέσεις</strong> για περισσότερη ελευθερία<br/>
-📊 <strong>Γρήγορες τοποθετήσεις</strong> - άμεση εκκίνηση<br/><br/>
-🎯 <em><strong>Πάνω από 500 μερικές θέσεις</strong> διαθέσιμες κάθε εβδομάδα!</em>`,
+  'job-search': {
+    title: '🔍 ΑΝΑΖΗΤΩ ΕΡΓΑΣΙΑ: Το Επόμενο Βήμα Καριέρας',
+    content: `🎯 <strong>Προσωποποιημένες προτάσεις</strong> βάσει δεξιοτήτων<br/>
+📍 <strong>Εργασίες κοντά στο σπίτι</strong> με υπολογισμό χρόνου μετακίνησης<br/>
+💰 <strong>Διαφάνεια αμοιβών</strong> και σύγκριση προσφορών<br/>
+📈 <strong>Career path προτάσεις</strong> για εξέλιξη<br/>
+🔔 <strong>Instant alerts</strong> για ιδανικές ευκαιρίες<br/><br/>
+🏆 <em><strong>92% των χρηστών μας</strong> βρίσκουν καλύτερη δουλειά σε <30 ημέρες!</em>`,
     category: 'job'
   }
 };

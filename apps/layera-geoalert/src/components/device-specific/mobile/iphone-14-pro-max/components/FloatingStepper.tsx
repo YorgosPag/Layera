@@ -18,6 +18,7 @@ export interface FloatingStepperProps {
   currentStep?: string;
   totalSteps?: number;
   stepIndex?: number;
+  selectedCategory?: 'property' | 'job' | null; // Νέο prop για την επιλεγμένη κατηγορία
   onNext?: () => void;
   onPrevious?: () => void;
   onReset?: () => void; // Νέο prop για reset functionality
@@ -35,6 +36,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   currentStep = 'category',
   totalSteps = 7,
   stepIndex = 0,
+  selectedCategory = null,
   onNext,
   onPrevious,
   onReset,
@@ -44,29 +46,104 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
 }) => {
   const [isVisible] = useState(true);
 
+  // Step definitions από την enterprise pipeline configuration
+  const getSteps = () => {
+    // Αν δεν έχει επιλεγεί κατηγορία, μόνο το category step
+    if (!selectedCategory) {
+      return [
+        { id: 'category', title: 'Κατηγορία', shortTitle: 'Κατηγορία' }
+      ];
+    }
+
+    if (selectedCategory === 'property') {
+      return [
+        { id: 'category', title: 'Κατηγορία', shortTitle: 'Κατηγορία' },
+        { id: 'intent', title: 'Σκοπός', shortTitle: 'Σκοπός' },
+        { id: 'transactionType', title: 'Συναλλαγή', shortTitle: 'Τύπος' },
+        { id: 'location', title: 'Τοποθεσία', shortTitle: 'Χάρτης' },
+        { id: 'layout', title: 'Κάτοψη', shortTitle: 'Διάταξη' },
+        { id: 'details', title: 'Στοιχεία', shortTitle: 'Περιγραφή' },
+        { id: 'complete', title: 'Τέλος', shortTitle: 'Επιβεβαίωση' }
+      ];
+    }
+
+    if (selectedCategory === 'job') {
+      return [
+        { id: 'category', title: 'Κατηγορία', shortTitle: 'Κατηγορία' },
+        { id: 'intent', title: 'Σκοπός', shortTitle: 'Σκοπός' },
+        { id: 'employmentType', title: 'Εργασία', shortTitle: 'Τύπος' },
+        { id: 'availability', title: 'Διαθεσιμότητα', shortTitle: 'Πότε' },
+        { id: 'availabilityDetails', title: 'Λεπτομέρειες', shortTitle: 'Ημερομηνίες' },
+        { id: 'location', title: 'Τοποθεσία', shortTitle: 'Περιοχή' },
+        { id: 'details', title: 'Στοιχεία', shortTitle: 'Περιγραφή' },
+        { id: 'complete', title: 'Τέλος', shortTitle: 'Επιβεβαίωση' }
+      ];
+    }
+
+    return [{ id: 'category', title: 'Κατηγορία', shortTitle: 'Κατηγορία' }];
+  };
+
+  const steps = getSteps();
+
+  const currentStepData = steps[stepIndex] || steps[0];
+
+  // Function για να επιστρέφει τα σωστά χρώματα ανάλογα με την κατηγορία
+  const getStepperColors = () => {
+    if (selectedCategory === 'property') {
+      // Πράσινο για ακίνητα (όπως στο info panel)
+      return {
+        backgroundColor: 'rgba(34, 197, 94, 0.95)', // green-500
+        borderColor: 'rgba(34, 197, 94, 0.3)'
+      };
+    } else if (selectedCategory === 'job') {
+      // Γαλάζιο για εργασία (όπως στο info panel)
+      return {
+        backgroundColor: 'rgba(59, 130, 246, 0.95)', // blue-500
+        borderColor: 'rgba(59, 130, 246, 0.3)'
+      };
+    } else {
+      // Πορτοκαλί για αρχική κατάσταση (category step)
+      return {
+        backgroundColor: 'rgba(249, 115, 22, 0.95)', // orange-500
+        borderColor: 'rgba(249, 115, 22, 0.3)'
+      };
+    }
+  };
+
   // Debug info για iPhone 14 Pro Max detection
   useEffect(() => {
     console.log('🎯 FloatingStepper: Component mounted!');
     console.log('🎯 Current step:', currentStep, 'Index:', stepIndex, 'Total:', totalSteps);
+    console.log('🎨 Selected category:', selectedCategory, 'Color:', getStepperColors());
+    console.log('🔙 canGoPrevious:', canGoPrevious, 'stepIndex > 0:', stepIndex > 0);
     console.log('🎯 Screen dimensions:', {
       width: window.innerWidth,
       height: window.innerHeight,
       devicePixelRatio: window.devicePixelRatio
     });
-  }, [currentStep, stepIndex, totalSteps]);
+  }, [currentStep, stepIndex, totalSteps, selectedCategory, canGoPrevious]);
 
-  // Step definitions για το pipeline
-  const steps = [
-    { id: 'category', title: 'Κατηγορία', shortTitle: 'Κατηγορία' },
-    { id: 'transactionType', title: 'Τύπος Συναλλαγής', shortTitle: 'Τύπος' },
-    { id: 'location', title: 'Τοποθεσία', shortTitle: 'Τοποθεσία' },
-    { id: 'details', title: 'Λεπτομέρειες', shortTitle: 'Λεπτομέρειες' },
-    { id: 'availability', title: 'Διαθεσιμότητα', shortTitle: 'Διαθεσιμότητα' },
-    { id: 'layout', title: 'Κάτοψη', shortTitle: 'Κάτοψη' },
-    { id: 'complete', title: 'Ολοκλήρωση', shortTitle: 'Τέλος' }
-  ];
+  const stepperColors = getStepperColors();
 
-  const currentStepData = steps[stepIndex] || steps[0];
+  // Function για να επιστρέφει τον τίτλο με prefix κατηγορίας
+  const getStepTitle = () => {
+    const baseTitle = currentStepData.shortTitle;
+
+    // Αν είμαστε στο category step, δεν χρειάζεται prefix
+    if (currentStep === 'category') {
+      return baseTitle;
+    }
+
+    // Αν έχει επιλεγεί κατηγορία, προσθέτω prefix
+    if (selectedCategory === 'property') {
+      return `Ακίνητα : ${baseTitle}`;
+    } else if (selectedCategory === 'job') {
+      return `Εργασία : ${baseTitle}`;
+    }
+
+    // Fallback χωρίς prefix
+    return baseTitle;
+  };
 
   // Floating bar styles - optimized για iPhone 14 Pro Max (430px width)
   const floatingBarStyles: React.CSSProperties = {
@@ -75,10 +152,10 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     left: '8px',
     right: '8px',
     height: '40px',
-    backgroundColor: 'rgba(59, 130, 246, 0.95)', // Γαλάζιο φόντο (blue-500)
+    backgroundColor: stepperColors.backgroundColor, // Dynamic χρώμα ανάλογα με κατηγορία
     backdropFilter: 'blur(12px)',
     borderRadius: '20px',
-    border: '1px solid rgba(59, 130, 246, 0.3)', // Γαλάζιο border
+    border: `1px solid ${stepperColors.borderColor}`, // Dynamic border ανάλογα με κατηγορία
     boxShadow: '0 2px 12px rgba(0, 0, 0, 0.12)',
     zIndex: 9999, // Πάνω από όλα
     display: 'flex',
@@ -136,7 +213,8 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     ...buttonStyles,
     backgroundColor: canGoPrevious ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.1)',
     color: canGoPrevious ? '#ffffff' : 'rgba(255, 255, 255, 0.5)',
-    opacity: canGoPrevious ? 1 : 0.5
+    opacity: canGoPrevious ? 1 : 0.5,
+    pointerEvents: 'auto' // Εξασφαλίζω ότι το button δέχεται clicks
   };
 
   const resetButtonStyles: React.CSSProperties = {
@@ -158,11 +236,22 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
 
   // Handle previous button
   const handlePrevious = () => {
-    if (canGoPrevious && onPrevious) {
+    console.log('🔙 Previous button clicked! canGoPrevious:', canGoPrevious, 'onPrevious:', !!onPrevious);
+    console.log('🔙 stepIndex:', stepIndex, 'steps.length:', steps.length);
+    console.log('🔙 Current steps:', steps.map(s => s.id));
+
+    // Έλεγχος εναλλακτικός για navigation
+    const canActuallyGoPrevious = stepIndex > 0 && stepIndex < steps.length;
+    console.log('🔙 canActuallyGoPrevious (internal check):', canActuallyGoPrevious);
+
+    if ((canGoPrevious || canActuallyGoPrevious) && onPrevious) {
+      console.log('🔙 Calling onPrevious...');
       if ('vibrate' in navigator) {
         navigator.vibrate(50);
       }
       onPrevious();
+    } else {
+      console.log('🔙 Previous button disabled or no onPrevious function');
     }
   };
 
@@ -196,20 +285,21 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
 
         {/* Current Step Title */}
         <div style={stepTitleStyles}>
-          {currentStepData.shortTitle}
+          {getStepTitle()}
         </div>
 
         {/* Navigation Buttons */}
         <button
           style={previousButtonStyles}
           onClick={handlePrevious}
-          disabled={!canGoPrevious}
           onTouchStart={(e) => {
+            console.log('🔙 Touch start on previous button');
             if (canGoPrevious) {
               e.currentTarget.style.transform = 'scale(0.95)';
             }
           }}
           onTouchEnd={(e) => {
+            console.log('🔙 Touch end on previous button');
             e.currentTarget.style.transform = 'scale(1)';
           }}
         >

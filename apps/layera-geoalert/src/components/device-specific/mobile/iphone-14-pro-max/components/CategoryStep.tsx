@@ -127,7 +127,23 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
   // Enterprise LEGO Info Content - Data-driven approach
   const getInfoContent = async (cardId: CardId): Promise<{ title: string; content: string }> => {
     try {
-      const content = await infoContentProvider.getContent(cardId);
+      // Determine the correct content key based on card context
+      let contentKey = cardId;
+
+      // For offer/search cards, we need to check which category they belong to
+      const cardConfig = cardData.category.find(c => c.id === cardId) ||
+                        cardData.property.find(c => c.id === cardId) ||
+                        cardData.job.find(c => c.id === cardId);
+
+      if (cardId === 'offer' || cardId === 'search') {
+        if (cardConfig?.category === 'property') {
+          contentKey = `property-${cardId}`;
+        } else if (cardConfig?.category === 'job') {
+          contentKey = `job-${cardId}`;
+        }
+      }
+
+      const content = await infoContentProvider.getContent(contentKey);
       return {
         title: content.title,
         content: content.content
@@ -198,7 +214,8 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
                       cardData.property.find(c => c.id === cardId) ||
                       cardData.job.find(c => c.id === cardId);
 
-    const isPropertyCard = cardConfig?.category === 'property' || cardId === 'property' || cardId === 'sale' || cardId === 'rent';
+    const isPropertyCard = cardConfig?.category === 'property' || cardId === 'property' ||
+                          (cardConfig?.category === 'property' && (cardId === 'offer' || cardId === 'search'));
     const theme = isPropertyCard ? INFO_PANEL_THEMES.property : INFO_PANEL_THEMES.job;
     const mobileStyles = DEFAULT_INFO_PANEL_STYLES.mobile;
 

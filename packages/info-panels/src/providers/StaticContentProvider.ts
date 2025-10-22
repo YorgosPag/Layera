@@ -34,7 +34,7 @@ export class StaticContentProvider implements InfoPanelContentProvider {
       id,
       title: contentData.title,
       content: contentData.content,
-      category: contentData.category,
+      category: contentData.category || 'general',
       metadata: {
         ...contentData.metadata,
         locale,
@@ -73,8 +73,8 @@ export class StaticContentProvider implements InfoPanelContentProvider {
         id,
         title: data.title,
         content: data.content,
-        category: data.category,
-        metadata: data.metadata
+        category: data.category || 'general',
+        metadata: data.metadata || {}
       }));
   }
 }

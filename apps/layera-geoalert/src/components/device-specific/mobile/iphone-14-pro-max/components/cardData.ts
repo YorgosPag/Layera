@@ -10,8 +10,7 @@ import type { CardVariant } from './BaseCard';
 
 export type CardId =
   | 'property' | 'job'           // Category level
-  | 'sale' | 'rent'              // Property level
-  | 'fulltime' | 'parttime';     // Job level
+  | 'offer' | 'search';          // Intent level (both property & job)
 
 export interface CardConfig {
   id: CardId;
@@ -42,43 +41,43 @@ export const cardData = {
     }
   ],
 
-  // Step 2: Property transaction types
+  // Step 2: Property intent (προσφορά vs αναζήτηση)
   property: [
     {
-      id: 'sale' as CardId,
-      title: 'Πώληση',
+      id: 'offer' as CardId,
+      title: 'Θέλω να προσφέρω',
       icon: CommercialIcon,
       variant: 'property' as CardVariant,
       category: 'property' as const,
-      step: 'transactionType'
+      step: 'intent'
     },
     {
-      id: 'rent' as CardId,
-      title: 'Ενοικίαση',
+      id: 'search' as CardId,
+      title: 'Θέλω να αναζητήσω',
       icon: HomeIcon,
       variant: 'property' as CardVariant,
       category: 'property' as const,
-      step: 'transactionType'
+      step: 'intent'
     }
   ],
 
-  // Step 2: Job employment types
+  // Step 2: Job intent (προσφορά θέσης vs αναζήτηση εργασίας)
   job: [
     {
-      id: 'fulltime' as CardId,
-      title: 'Πλήρης Απασχόληση',
+      id: 'offer' as CardId,
+      title: 'Θέλω να προσφέρω',
       icon: WorkIcon,
       variant: 'job' as CardVariant,
       category: 'job' as const,
-      step: 'transactionType'
+      step: 'intent'
     },
     {
-      id: 'parttime' as CardId,
-      title: 'Μερική Απασχόληση',
+      id: 'search' as CardId,
+      title: 'Αναζητώ εργασία',
       icon: ToolIcon,
       variant: 'job' as CardVariant,
       category: 'job' as const,
-      step: 'transactionType'
+      step: 'intent'
     }
   ]
 } as const;
