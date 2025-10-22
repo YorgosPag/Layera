@@ -38,6 +38,9 @@ importers:
       '@layera/draggable-fab':
         specifier: file:../../packages/draggable-fab
         version: file:packages/draggable-fab(react@19.2.0)
+      '@layera/floating-action-buttons':
+        specifier: workspace:^
+        version: link:../../packages/floating-action-buttons
       '@layera/forms':
         specifier: file:../../packages/forms
         version: file:packages/forms(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -850,6 +853,19 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.0
         version: 18.3.7(@types/react@18.3.26)
+      tsup:
+        specifier: ^8.0.0
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  packages/floating-action-buttons:
+    dependencies:
+      react:
+        specifier: ^18.0.0
+        version: 18.3.1
+    devDependencies:
       tsup:
         specifier: ^8.0.0
         version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)

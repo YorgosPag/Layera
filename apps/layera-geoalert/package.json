@@ -18,6 +18,7 @@
     "@layera/device-detection": "workspace:^",
     "@layera/draggable": "file:../../packages/draggable",
     "@layera/draggable-fab": "file:../../packages/draggable-fab",
+    "@layera/floating-action-buttons": "workspace:^",
     "@layera/forms": "file:../../packages/forms",
     "@layera/geo-drawing": "file:../../packages/geo-drawing",
     "@layera/geocoding": "file:../../packages/geocoding",

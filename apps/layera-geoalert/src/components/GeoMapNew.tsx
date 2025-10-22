@@ -13,6 +13,7 @@ import { useNavigationHandlers } from '@layera/navigation-handlers';
 import { MapContainer } from './map/MapContainer';
 import { PlusIcon } from './icons/LayeraIcons';
 import { DraggableFAB } from '@layera/draggable-fab';
+import { UnifiedFAB } from '@layera/floating-action-buttons';
 import {
   GeoMap as iPhone14ProMaxGeoMap,
   FloatingStepper as iPhone14ProMaxFloatingStepper,
@@ -185,34 +186,17 @@ export const GeoMap: React.FC<GeoMapProps> = ({
           hideDrawingControls={finalIPhone14ProMaxDecision}
         />
 
-        {/* Enterprise Draggable FAB για Desktop - από OLD_GeoMap.tsx */}
-        {!showCategoryElements && (
-          <div
-            onClick={handleNewEntryClick}
-            aria-label="Νέα Καταχώρηση"
-            title="Νέα Καταχώρηση"
-            data-testid="desktop-draggable-fab"
-            style={{
-              position: 'absolute',
-              right: '20px',
-              bottom: '20px',
-              width: 56,
-              height: 56,
-              borderRadius: '50%',
-              background: 'var(--layera-bg-success,#22C55E)',
-              border: '2px solid white',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              zIndex: 9999,
-              userSelect: 'none'
-            }}
-          >
-            <PlusIcon size="md" theme="neutral" />
-          </div>
-        )}
+        {/* Enterprise Unified FAB για Desktop - LEGO @layera/floating-action-buttons */}
+        <UnifiedFAB
+          onClick={handleNewEntryClick}
+          icon={<PlusIcon size="md" theme="neutral" />}
+          deviceType="desktop"
+          variant="success"
+          hidden={showCategoryElements}
+          aria-label="Νέα Καταχώρηση"
+          title="Νέα Καταχώρηση"
+          data-testid="desktop-unified-fab"
+        />
       </div>
     );
   }
@@ -229,34 +213,17 @@ export const GeoMap: React.FC<GeoMapProps> = ({
           hideDrawingControls={finalIPhone14ProMaxDecision}
         />
 
-        {/* Enterprise Draggable FAB για Tablet - από OLD_GeoMap.tsx */}
-        {!showCategoryElements && (
-          <div
-            onClick={handleNewEntryClick}
-            aria-label="Νέα Καταχώρηση"
-            title="Νέα Καταχώρηση"
-            data-testid="tablet-draggable-fab"
-            style={{
-              position: 'absolute',
-              right: '20px',
-              bottom: '20px',
-              width: 56,
-              height: 56,
-              borderRadius: '50%',
-              background: 'var(--layera-bg-success,#22C55E)',
-              border: '2px solid white',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              zIndex: 9999,
-              userSelect: 'none'
-            }}
-          >
-            <PlusIcon size="md" theme="neutral" />
-          </div>
-        )}
+        {/* Enterprise Unified FAB για Tablet - LEGO @layera/floating-action-buttons */}
+        <UnifiedFAB
+          onClick={handleNewEntryClick}
+          icon={<PlusIcon size="md" theme="neutral" />}
+          deviceType="tablet"
+          variant="success"
+          hidden={showCategoryElements}
+          aria-label="Νέα Καταχώρηση"
+          title="Νέα Καταχώρηση"
+          data-testid="tablet-unified-fab"
+        />
       </div>
     );
   }
@@ -271,34 +238,17 @@ export const GeoMap: React.FC<GeoMapProps> = ({
         hideDrawingControls={finalIPhone14ProMaxDecision}
       />
 
-      {/* Enterprise Draggable FAB για Mobile - από OLD_GeoMap.tsx */}
-      {!showCategoryElements && (
-        <div
-          onClick={handleNewEntryClick}
-          aria-label="Νέα Καταχώρηση"
-          title="Νέα Καταχώρηση"
-          data-testid="mobile-draggable-fab"
-          style={{
-            position: 'absolute',
-            right: '15px',
-            bottom: '15px',
-            width: 48, // smaller for mobile
-            height: 48,
-            borderRadius: '50%',
-            background: 'var(--layera-bg-success,#22C55E)',
-            border: '2px solid white',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            zIndex: 9999,
-            userSelect: 'none'
-          }}
-        >
-          <PlusIcon size="md" theme="neutral" />
-        </div>
-      )}
+      {/* Enterprise Unified FAB για Mobile - LEGO @layera/floating-action-buttons */}
+      <UnifiedFAB
+        onClick={handleNewEntryClick}
+        icon={<PlusIcon size="md" theme="neutral" />}
+        deviceType="mobile"
+        variant="success"
+        hidden={showCategoryElements}
+        aria-label="Νέα Καταχώρηση"
+        title="Νέα Καταχώρηση"
+        data-testid="mobile-unified-fab"
+      />
     </div>
   );
 };
