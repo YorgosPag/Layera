@@ -16,6 +16,7 @@ export interface LayoutStepCardProps {
   onLocationSearch?: (query: string) => void;
   onRotationChange?: (rotation: number) => void;
   onScaleChange?: (scale: { width: number; height: number; depth: number }) => void;
+  onComplete?: () => void;
 }
 
 /**
@@ -26,7 +27,8 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
   onLocationFound,
   onLocationSearch,
   onRotationChange,
-  onScaleChange
+  onScaleChange,
+  onComplete
 }) => {
   const [rotation, setRotation] = useState<number>(0);
   const [scaleWidth, setScaleWidth] = useState<number>(1);
@@ -308,6 +310,25 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
           ✅ Κάτοψη έτοιμη για τοποθέτηση
         </Text>
       </div>
+
+      {/* Complete Button */}
+      {onComplete && (
+        <Button
+          variant="primary"
+          size="md"
+          onClick={onComplete}
+          style={{
+            width: '100%',
+            backgroundColor: '#16a34a',
+            fontSize: '14px',
+            fontWeight: 'bold',
+            padding: '12px 16px',
+            marginTop: '8px'
+          }}
+        >
+          Συνέχεια στα Στοιχεία Ακινήτου →
+        </Button>
+      )}
     </Stack>
   );
 };

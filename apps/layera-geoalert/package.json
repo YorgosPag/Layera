@@ -16,6 +16,7 @@
     "@layera/cards": "file:../../packages/cards",
     "@layera/database-core": "file:../../packages/database-core",
     "@layera/draggable": "file:../../packages/draggable",
+    "@layera/forms": "file:../../packages/forms",
     "@layera/geo-drawing": "file:../../packages/geo-drawing",
     "@layera/geocoding": "file:../../packages/geocoding",
     "@layera/i18n": "file:../../packages/i18n",

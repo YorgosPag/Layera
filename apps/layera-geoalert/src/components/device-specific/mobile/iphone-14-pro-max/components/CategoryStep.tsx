@@ -17,6 +17,7 @@ import { BaseCard } from './BaseCard';
 import { cardData, getCardsForStep, type CardConfig, type CardId } from './cardData';
 import { InfoPanel } from './InfoPanel';
 import { LayoutStepCard } from './LayoutStepCard';
+import { PropertyDetailsForm, type PropertyDetailsData } from './PropertyDetailsForm';
 
 export type Category = 'property' | 'job';
 
@@ -49,6 +50,10 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
   const [showUploadStep, setShowUploadStep] = useState(false);
   const [showLayoutStep, setShowLayoutStep] = useState(false);
   const [showPropertyTypeStep, setShowPropertyTypeStep] = useState(false);
+  const [showPropertyDetailsStep, setShowPropertyDetailsStep] = useState(false);
+  const [showAreaMethodStep, setShowAreaMethodStep] = useState(false);
+  const [propertyDetailsData, setPropertyDetailsData] = useState<PropertyDetailsData | null>(null);
+  const [selectedAreaMethod, setSelectedAreaMethod] = useState<'manual-input' | 'map-drawing' | 'floor-plan-upload' | 'auto-calculate' | null>(null);
   const [infoStates, setInfoStates] = useState<Record<CardId, boolean>>({
     property: false,
     job: false,
@@ -65,7 +70,12 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
     factory: false,
     land: false,
     building: false,
-    store: false
+    store: false,
+    'property-details': false,
+    'manual-input': false,
+    'map-drawing': false,
+    'floor-plan-upload': false,
+    'auto-calculate': false
   });
 
   // LEGO Info Panels setup
@@ -160,7 +170,12 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
         factory: false,
         land: false,
         building: false,
-        store: false
+        store: false,
+        'property-details': false,
+        'manual-input': false,
+        'map-drawing': false,
+        'floor-plan-upload': false,
+        'auto-calculate': false
       });
     }
   }, [currentStepId]);
@@ -420,8 +435,31 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
       // 🚀 ENTERPRISE: Ενεργοποιημένο - pipeline integration
       pipelineDiscovery.markStepCompleted('propertyType');
 
-      // Property Type είναι το τελευταίο step προς το παρόν
-      console.log('Property Type selection completed. Workflow finished.');
+      // Show Property Details step after Property Type selection
+      setTimeout(() => {
+        setShowPropertyDetailsStep(true);
+        setShowPropertyTypeStep(false); // Hide property type step
+        console.log('Property Details step activated');
+      }, 1000);
+    } else if (cardConfig.step === 'property-details') {
+      // Property Details card clicked - this opens the form
+      console.log('Property Details card clicked - form should be visible');
+    } else if (cardConfig.step === 'area-method') {
+      // Area Method selection logic
+      setSelectedAreaMethod(cardConfig.id as 'manual-input' | 'map-drawing' | 'floor-plan-upload' | 'auto-calculate');
+      console.log('Area Method selected:', cardConfig.id);
+
+      // 🚀 ENTERPRISE: Ενεργοποιημένο - pipeline integration
+      pipelineDiscovery.markStepCompleted('areaMethod');
+
+      // Show completion message and next steps based on selection
+      setTimeout(() => {
+        setShowAreaMethodStep(false);
+        console.log(`Area Method "${cardConfig.id}" completed. Showing success confirmation.`);
+
+        // For MVP, show a completion modal/message
+        alert(`✅ Επιλέχθηκε: ${cardConfig.title}\n\nΤο Enterprise Auto-Discovery Pipeline ολοκληρώθηκε επιτυχώς!\n\nΕπόμενα βήματα:\n- Υπολογισμός εμβαδού\n- Αποθήκευση στη βάση δεδομένων\n- Έκδοση αναφοράς`);
+      }, 1000);
     }
   };
 
@@ -448,7 +486,18 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
           now: false,
           future: false,
           upload: false,
-          layout: false
+          layout: false,
+          apartment: false,
+          office: false,
+          factory: false,
+          land: false,
+          building: false,
+          store: false,
+          'property-details': false,
+          'manual-input': false,
+          'map-drawing': false,
+          'floor-plan-upload': false,
+          'auto-calculate': false
         };
 
         return {
@@ -457,6 +506,33 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
         };
       }
     });
+  };
+
+  // Property Details Form handlers
+  const handlePropertyDetailsSubmit = (data: PropertyDetailsData) => {
+    console.log('🏗️ PropertyDetailsForm: Data submitted:', data);
+    setPropertyDetailsData(data);
+
+    // Mark step as completed
+    const pipelineDiscovery = PipelineDiscovery.getInstance();
+    pipelineDiscovery.markStepCompleted('propertyDetails');
+
+    console.log('Property Details step completed. Moving to Area Method Selection...');
+
+    // Navigate to Area Method Selection step
+    setTimeout(() => {
+      setShowPropertyDetailsStep(false);
+      setShowAreaMethodStep(true);
+      console.log('Area Method Selection step activated');
+    }, 500);
+  };
+
+  const handlePropertyDetailsCancel = () => {
+    console.log('🏗️ PropertyDetailsForm: Cancelled');
+    // Go back to property type selection
+    setShowPropertyDetailsStep(false);
+    setShowPropertyTypeStep(true);
+    setSelectedPropertyType(null);
   };
 
   // Enterprise LEGO Info Content - Data-driven approach με memoization
@@ -556,7 +632,6 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
           key={cardConfig.id}
           variant={cardConfig.variant}
           title={cardConfig.title}
-          subtitle="JPG, PNG, PDF, DXF, DWG files"
           icon={<IconComponent size="lg" theme="primary" />}
           onClick={() => handleCardClick(cardConfig)}
           onInfoClick={() => handleInfoClick(cardConfig.id)}
@@ -627,6 +702,20 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
             onScaleChange={(scale) => {
               console.log('📏 Layout: Scale changed:', scale);
             }}
+            onComplete={() => {
+              console.log('🏁 Layout: Step completed - moving to Property Type');
+
+              // Mark layout step as completed
+              const pipelineDiscovery = PipelineDiscovery.getInstance();
+              pipelineDiscovery.markStepCompleted('layout');
+
+              // Move to Property Type step
+              setTimeout(() => {
+                setShowLayoutStep(false);
+                setShowPropertyTypeStep(true);
+                console.log('Property Type step activated');
+              }, 500);
+            }}
           />
         </div>
       )}
@@ -635,6 +724,48 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
       {showPropertyTypeStep && selectedCategory === 'property' && selectedIntent === 'offer' && selectedAvailability === 'now' && (
         <div style={propertyTypeStepContainerStyles}>
           {renderCards(currentCards)}
+        </div>
+      )}
+
+      {/* Property Details Step - MVP Form with core fields */}
+      {showPropertyDetailsStep && selectedPropertyType && selectedCategory === 'property' && selectedIntent === 'offer' && selectedAvailability === 'now' && (
+        <div style={{
+          position: 'fixed',
+          top: '161px',
+          left: '8px',
+          right: '8px',
+          zIndex: 10002,
+          backgroundColor: '#ffffff',
+          borderRadius: '12px',
+          boxShadow: '0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+          maxHeight: 'calc(100vh - 180px)',
+          overflowY: 'auto'
+        }}>
+          <PropertyDetailsForm
+            propertyType={selectedPropertyType}
+            onSubmit={handlePropertyDetailsSubmit}
+            onCancel={handlePropertyDetailsCancel}
+          />
+        </div>
+      )}
+
+      {/* Area Method Selection Step - Choose how to input area */}
+      {showAreaMethodStep && selectedPropertyType && propertyDetailsData && selectedCategory === 'property' && selectedIntent === 'offer' && selectedAvailability === 'now' && (
+        <div style={{
+          position: 'fixed',
+          top: '161px',
+          left: '8px',
+          right: '8px',
+          zIndex: 10002,
+          display: 'flex',
+          flexDirection: 'row',
+          gap: '8px',
+          padding: '0',
+          overflowX: 'hidden',
+          WebkitOverflowScrolling: 'touch',
+          flexWrap: 'wrap'
+        }}>
+          {renderCards(getCardsForStep('area-method'))}
         </div>
       )}
 

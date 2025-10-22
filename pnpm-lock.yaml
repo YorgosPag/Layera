@@ -32,6 +32,9 @@ importers:
       '@layera/draggable':
         specifier: file:../../packages/draggable
         version: link:../../packages/draggable
+      '@layera/forms':
+        specifier: file:../../packages/forms
+        version: file:packages/forms(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@layera/geo-drawing':
         specifier: file:../../packages/geo-drawing
         version: file:packages/geo-drawing(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -3175,6 +3178,12 @@ packages:
     peerDependenciesMeta:
       react:
         optional: true
+
+  '@layera/forms@file:packages/forms':
+    resolution: {directory: packages/forms, type: directory}
+    peerDependencies:
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
 
   '@layera/geo-drawing@file:packages/geo-drawing':
     resolution: {directory: packages/geo-drawing, type: directory}
@@ -9306,6 +9315,13 @@ snapshots:
       react: 19.2.0
     transitivePeerDependencies:
       - '@react-native-async-storage/async-storage'
+
+  '@layera/forms@file:packages/forms(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+    dependencies:
+      '@layera/constants': link:packages/constants
+      '@layera/i18n': link:packages/i18n
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
 
   '@layera/geo-drawing@file:packages/geo-drawing(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:

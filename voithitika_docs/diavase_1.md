@@ -1,18 +1,58 @@
-[plugin:vite:import-analysis] Failed to resolve entry for package "@layera/pipelines". The package may have incorrect main/module/exports specified in its package.json.
-C:/layera/apps/layera-geoalert/src/components/device-specific/mobile/iphone-14-pro-max/components/FloatingStepper.tsx
-    at packageEntryFailure (file:///C:/layera/node_modules/.pnpm/vite@4.5.14_@types+node@22.18.11/node_modules/vite/dist/node/chunks/dep-827b23df.js:28726:11)
-    at resolvePackageEntry (file:///C:/layera/node_modules/.pnpm/vite@4.5.14_@types+node@22.18.11/node_modules/vite/dist/node/chunks/dep-827b23df.js:28723:5)
-    at tryNodeResolve (file:///C:/layera/node_modules/.pnpm/vite@4.5.14_@types+node@22.18.11/node_modules/vite/dist/node/chunks/dep-827b23df.js:28454:20)
-    at Context.resolveId (file:///C:/layera/node_modules/.pnpm/vite@4.5.14_@types+node@22.18.11/node_modules/vite/dist/node/chunks/dep-827b23df.js:28213:28)
-    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-    at async Object.resolveId (file:///C:/layera/node_modules/.pnpm/vite@4.5.14_@types+node@22.18.11/node_modules/vite/dist/node/chunks/dep-827b23df.js:44280:32)
-    at async TransformContext.resolve (file:///C:/layera/node_modules/.pnpm/vite@4.5.14_@types+node@22.18.11/node_modules/vite/dist/node/chunks/dep-827b23df.js:43996:23)
-    at async normalizeUrl (file:///C:/layera/node_modules/.pnpm/vite@4.5.14_@types+node@22.18.11/node_modules/vite/dist/node/chunks/dep-827b23df.js:41837:34)
-    at async file:///C:/layera/node_modules/.pnpm/vite@4.5.14_@types+node@22.18.11/node_modules/vite/dist/node/chunks/dep-827b23df.js:41999:47
-    at async Promise.all (index 5)
-    at async TransformContext.transform (file:///C:/layera/node_modules/.pnpm/vite@4.5.14_@types+node@22.18.11/node_modules/vite/dist/node/chunks/dep-827b23df.js:41915:13)
-    at async Object.transform (file:///C:/layera/node_modules/.pnpm/vite@4.5.14_@types+node@22.18.11/node_modules/vite/dist/node/chunks/dep-827b23df.js:44356:30)
-    at async loadAndTransform (file:///C:/layera/node_modules/.pnpm/vite@4.5.14_@types+node@22.18.11/node_modules/vite/dist/node/chunks/dep-827b23df.js:55088:29)
-    at async viteTransformMiddleware (file:///C:/layera/node_modules/.pnpm/vite@4.5.14_@types+node@22.18.11/node_modules/vite/dist/node/chunks/dep-827b23df.js:64699:32
-Click outside, press Esc key, or fix the code to dismiss.
-You can also disable this overlay by setting server.hmr.overlay to false in vite.config.js.
+NumericInput.tsx:289 NumericInput contains an input of type text with both value and defaultValue props. Input elements must be either controlled or uncontrolled (specify either the value prop, or the defaultValue prop, but not both). Decide between using a controlled or uncontrolled input element and remove one of these props. More info: https://react.dev/link/controlled-components
+validateInputProps @ react-dom_client.js?v=b44edfc2:1627
+setInitialProperties @ react-dom_client.js?v=b44edfc2:14842
+completeWork @ react-dom_client.js?v=b44edfc2:9223
+runWithFiberInDEV @ react-dom_client.js?v=b44edfc2:1027
+completeUnitOfWork @ react-dom_client.js?v=b44edfc2:12859
+performUnitOfWork @ react-dom_client.js?v=b44edfc2:12762
+workLoopSync @ react-dom_client.js?v=b44edfc2:12607
+renderRootSync @ react-dom_client.js?v=b44edfc2:12590
+performWorkOnRoot @ react-dom_client.js?v=b44edfc2:11940
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=b44edfc2:13702
+performWorkUntilDeadline @ react-dom_client.js?v=b44edfc2:36
+<input>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=011e69f5:253
+NumericInput @ NumericInput.tsx:289
+react_stack_bottom_frame @ react-dom_client.js?v=b44edfc2:18763
+renderWithHooksAgain @ react-dom_client.js?v=b44edfc2:5844
+renderWithHooks @ react-dom_client.js?v=b44edfc2:5780
+updateForwardRef @ react-dom_client.js?v=b44edfc2:7326
+beginWork @ react-dom_client.js?v=b44edfc2:8874
+runWithFiberInDEV @ react-dom_client.js?v=b44edfc2:1027
+performUnitOfWork @ react-dom_client.js?v=b44edfc2:12748
+workLoopSync @ react-dom_client.js?v=b44edfc2:12607
+renderRootSync @ react-dom_client.js?v=b44edfc2:12590
+performWorkOnRoot @ react-dom_client.js?v=b44edfc2:11940
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=b44edfc2:13702
+performWorkUntilDeadline @ react-dom_client.js?v=b44edfc2:36
+<NumericInput>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=011e69f5:253
+PropertyDetailsForm @ PropertyDetailsForm.tsx:180
+react_stack_bottom_frame @ react-dom_client.js?v=b44edfc2:18763
+renderWithHooksAgain @ react-dom_client.js?v=b44edfc2:5844
+renderWithHooks @ react-dom_client.js?v=b44edfc2:5780
+updateFunctionComponent @ react-dom_client.js?v=b44edfc2:7604
+beginWork @ react-dom_client.js?v=b44edfc2:8664
+runWithFiberInDEV @ react-dom_client.js?v=b44edfc2:1027
+performUnitOfWork @ react-dom_client.js?v=b44edfc2:12748
+workLoopSync @ react-dom_client.js?v=b44edfc2:12607
+renderRootSync @ react-dom_client.js?v=b44edfc2:12590
+performWorkOnRoot @ react-dom_client.js?v=b44edfc2:11940
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=b44edfc2:13702
+performWorkUntilDeadline @ react-dom_client.js?v=b44edfc2:36
+<PropertyDetailsForm>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=011e69f5:253
+CategoryStep @ CategoryStep.tsx:744
+react_stack_bottom_frame @ react-dom_client.js?v=b44edfc2:18763
+renderWithHooksAgain @ react-dom_client.js?v=b44edfc2:5844
+renderWithHooks @ react-dom_client.js?v=b44edfc2:5780
+updateFunctionComponent @ react-dom_client.js?v=b44edfc2:7604
+beginWork @ react-dom_client.js?v=b44edfc2:8664
+runWithFiberInDEV @ react-dom_client.js?v=b44edfc2:1027
+performUnitOfWork @ react-dom_client.js?v=b44edfc2:12748
+workLoopSync @ react-dom_client.js?v=b44edfc2:12607
+renderRootSync @ react-dom_client.js?v=b44edfc2:12590
+performWorkOnRoot @ react-dom_client.js?v=b44edfc2:11940
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=b44edfc2:13702
+performWorkUntilDeadline @ react-dom_client.js?v=b44edfc2:36Understand this error
+21:16:41.372 NumericInput.tsx:289 React does not recognize the `thousandSeparator` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `thousandseparator` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
