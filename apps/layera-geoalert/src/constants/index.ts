@@ -37,13 +37,70 @@ export const DEVICE_CONFIG = {
   }
 } as const;
 
-// UI Configuration
+// UI Block Configuration - Unified positioning system
+// Μοναδική πηγή αλήθειας για το positioning του stepper + κάρτες block
+const UI_BLOCK_BASE = {
+  // ΜΟΝΗ HARDCODED ΤΙΜΗ - αλλάζεις αυτό και όλα μετακινούνται μαζί!
+  baseTop: 20, // Αλλαγή: 15 → 20 = όλα μετακινούνται +5px προς τα κάτω
+
+  // Κοινές τιμές για όλα τα components
+  horizontalPadding: { left: 8, right: 8 },
+  mapHorizontalPadding: { left: 10, right: 10 }
+} as const;
+
+// Αυτόματος υπολογισμός όλων των θέσεων από το base
+const calculateUIPositions = () => {
+  const stepperHeight = 40;
+  const stepperMargin = 8;
+  const cardsHeight = 45; // Εκτίμηση ύψους καρτών
+  const cardsMargin = 42;
+
+  return {
+    stepper: {
+      top: UI_BLOCK_BASE.baseTop,
+      height: stepperHeight
+    },
+    cards: {
+      top: UI_BLOCK_BASE.baseTop + stepperHeight + stepperMargin,
+      estimatedHeight: cardsHeight
+    },
+    mapControls: {
+      top: UI_BLOCK_BASE.baseTop + stepperHeight + stepperMargin + cardsHeight + cardsMargin
+    }
+  };
+};
+
+// Exported calculated positions
+const UI_POSITIONS = calculateUIPositions();
+
+// Utility functions για block manipulation
+export const UI_BLOCK_UTILS = {
+  // Μετακίνηση ολόκληρου του block σε νέα θέση
+  moveBlockTo: (newTopPosition: number) => {
+    const originalBase = UI_BLOCK_BASE.baseTop;
+    const offset = newTopPosition - originalBase;
+
+    return {
+      stepper: { top: UI_POSITIONS.stepper.top + offset },
+      cards: { top: UI_POSITIONS.cards.top + offset },
+      mapControls: { top: UI_POSITIONS.mapControls.top + offset }
+    };
+  },
+
+  // Επιστροφή των τρεχουσών θέσεων
+  getCurrentPositions: () => UI_POSITIONS,
+
+  // Επιστροφή της base θέσης
+  getBasePosition: () => UI_BLOCK_BASE.baseTop
+} as const;
+
+// UI Configuration με calculated positions
 export const UI_CONFIG = {
+  // BLOCK SYSTEM: Stepper
   floatingStepper: {
     position: {
-      top: 15, // Πιο ψηλά στην κορυφή του κινητού
-      left: 8,
-      right: 8
+      top: UI_POSITIONS.stepper.top,
+      ...UI_BLOCK_BASE.horizontalPadding
     },
     dimensions: {
       height: 40,
@@ -53,29 +110,32 @@ export const UI_CONFIG = {
     gap: 12,
     padding: 16
   },
+
+  // BLOCK SYSTEM: Κάρτες (πρώτου βήματος)
   categoryStep: {
     position: {
-      top: 63, // Κοντά στο stepper (15 + 40 + 8 margin)
-      left: 8,
-      right: 8
+      top: UI_POSITIONS.cards.top,
+      ...UI_BLOCK_BASE.horizontalPadding
     },
     zIndex: 9998,
     gap: 8
   },
+
+  // BLOCK SYSTEM: Κάρτες (όλων των άλλων βημάτων)
   categoryStepContainers: {
     position: {
-      top: 63, // ΙΔΙΑ θέση με το categoryStep - όλες οι κάρτες στο ίδιο ύψος
-      left: 8,
-      right: 8
+      top: UI_POSITIONS.cards.top, // Ίδια θέση με categoryStep
+      ...UI_BLOCK_BASE.horizontalPadding
     },
     zIndex: 9998,
     gap: 8
   },
+
+  // BLOCK SYSTEM: Map Controls
   mobileGeoMap: {
     position: {
-      top: 150, // Κάτω από όλες τις κάρτες (105 + περίπου 45px για containers)
-      left: 10,
-      right: 10
+      top: UI_POSITIONS.mapControls.top,
+      ...UI_BLOCK_BASE.mapHorizontalPadding
     },
     button: {
       minHeight: 45,
