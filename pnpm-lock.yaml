@@ -29,6 +29,9 @@ importers:
       '@layera/database-core':
         specifier: file:../../packages/database-core
         version: link:../../packages/database-core
+      '@layera/device-detection':
+        specifier: workspace:^
+        version: link:../../packages/device-detection
       '@layera/draggable':
         specifier: file:../../packages/draggable
         version: link:../../packages/draggable
@@ -520,6 +523,22 @@ importers:
       eslint:
         specifier: ^8.0.0
         version: 8.57.1
+      tsup:
+        specifier: ^8.0.0
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  packages/device-detection:
+    dependencies:
+      react:
+        specifier: ^18.2.0
+        version: 18.3.1
+    devDependencies:
+      '@types/react':
+        specifier: ^18.2.0
+        version: 18.3.26
       tsup:
         specifier: ^8.0.0
         version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)

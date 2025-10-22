@@ -8,6 +8,7 @@
 import React, { useState, useRef } from 'react';
 import { useViewportWithOverride } from '@layera/viewport';
 import { useNavigation } from '../services/navigation/hooks/useNavigation';
+import { useIPhone14ProMaxDetection } from '@layera/device-detection';
 import { MapContainer } from './map/MapContainer';
 import { PlusIcon } from './icons/LayeraIcons';
 import { DraggableFAB } from '@layera/draggable-fab';
@@ -66,43 +67,15 @@ export const GeoMap: React.FC<GeoMapProps> = ({
   // Move useRef to top to avoid conditional hooks
   const screenRef = useRef<HTMLDivElement>(null);
 
-  // Debug viewport detection - removed logs to prevent circular reference
+  // 🚀 ENTERPRISE DEVICE DETECTION: @layera/device-detection LEGO package
+  const isDetectedIPhone14ProMax = useIPhone14ProMaxDetection({
+    frameSelector: '.device-frame-wrapper',
+    enableWindowFallback: true,
+    enableUserAgentFallback: true
+  });
 
-  // Device detection για iPhone 14 Pro Max - SYNC με App.tsx διαστάσεις
-  const detectiPhone14ProMax = (): boolean => {
-    // Έλεγχος για device frame (κύριος τρόπος)
-    const deviceFrameElement = document.querySelector('.device-frame-wrapper');
-    const isInDeviceFrame = !!deviceFrameElement;
-
-    let frameWidth = 0;
-    let frameHeight = 0;
-
-    if (isInDeviceFrame && deviceFrameElement) {
-      const rect = deviceFrameElement.getBoundingClientRect();
-      frameWidth = rect.width;
-      frameHeight = rect.height;
-    }
-
-    // Εναλλακτικός έλεγχος με window dimensions
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-
-    // Device detection debug removed
-
-    // Χρησιμοποιώ την ίδια λογική με το App.tsx
-    const isFrameBasedDetection = isInDeviceFrame &&
-      ((frameWidth === 414 && frameHeight === 916) ||
-       (frameWidth >= 412 && frameWidth <= 416 && frameHeight >= 914 && frameHeight <= 920));
-
-    // Fallback για περιπτώσεις χωρίς device frame
-    const isWindowBasedDetection = (width === 430 && height === 932) ||
-           (width === 932 && height === 430) ||
-           /iPhone.*14.*Pro.*Max/i.test(navigator.userAgent);
-
-    return isFrameBasedDetection || (!isInDeviceFrame && isWindowBasedDetection);
-  };
-
-  // Χρησιμοποιώ το prop από App.tsx αντί για το δικό μου detection
+  // Hybrid approach: χρησιμοποιώ το prop από App.tsx αλλά με fallback το LEGO detection
+  const finalIPhone14ProMaxDecision = isIPhone14ProMaxDevice || isDetectedIPhone14ProMax;
 
   // 🚀 ENTERPRISE NAVIGATION: Rock-solid service που δεν σπάει ποτέ
   const navigation = useNavigation();
@@ -137,7 +110,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
   // Handler για το FAB button - simplified without drag logic
   const handleNewEntryClick = () => {
     // FAB Click Handler debug removed
-    if (isIPhone14ProMaxDevice) {
+    if (finalIPhone14ProMaxDecision) {
       // Για iPhone: εμφάνιση των category elements
       const newState = !showCategoryElements;
       setShowCategoryElements(newState);
@@ -148,8 +121,8 @@ export const GeoMap: React.FC<GeoMapProps> = ({
     }
   };
 
-  // iPhone 14 Pro Max specific rendering (χρησιμοποιώ το prop από App.tsx)
-  if (isIPhone14ProMaxDevice) {
+  // iPhone 14 Pro Max specific rendering (χρησιμοποιώ υβριδική απόφαση)
+  if (finalIPhone14ProMaxDecision) {
     // Rendering iPhone 14 Pro Max mode
     // screenRef already declared at top of component
 
@@ -170,7 +143,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
         {React.createElement(iPhone14ProMaxGeoMap, {
           onAreaCreated,
           onNewEntryClick,
-          isIPhone14ProMaxDevice
+          isIPhone14ProMaxDevice: finalIPhone14ProMaxDecision
         })}
         {/* FloatingStepper - εμφανίζεται μόνο όταν showCategoryElements = true */}
         {showCategoryElements && (() => {
@@ -231,8 +204,8 @@ export const GeoMap: React.FC<GeoMapProps> = ({
         <MapContainer
           onAreaCreated={onAreaCreated}
           onNewEntryClick={onNewEntryClick}
-          isIPhone14ProMaxDevice={isIPhone14ProMaxDevice}
-          hideDrawingControls={isIPhone14ProMaxDevice}
+          isIPhone14ProMaxDevice={finalIPhone14ProMaxDecision}
+          hideDrawingControls={finalIPhone14ProMaxDecision}
         />
 
         {/* Enterprise Draggable FAB για Desktop - από OLD_GeoMap.tsx */}
@@ -275,8 +248,8 @@ export const GeoMap: React.FC<GeoMapProps> = ({
         <MapContainer
           onAreaCreated={onAreaCreated}
           onNewEntryClick={onNewEntryClick}
-          isIPhone14ProMaxDevice={isIPhone14ProMaxDevice}
-          hideDrawingControls={isIPhone14ProMaxDevice}
+          isIPhone14ProMaxDevice={finalIPhone14ProMaxDecision}
+          hideDrawingControls={finalIPhone14ProMaxDecision}
         />
 
         {/* Enterprise Draggable FAB για Tablet - από OLD_GeoMap.tsx */}
@@ -317,8 +290,8 @@ export const GeoMap: React.FC<GeoMapProps> = ({
       <MapContainer
         onAreaCreated={onAreaCreated}
         onNewEntryClick={onNewEntryClick}
-        isIPhone14ProMaxDevice={isIPhone14ProMaxDevice}
-        hideDrawingControls={isIPhone14ProMaxDevice}
+        isIPhone14ProMaxDevice={finalIPhone14ProMaxDecision}
+        hideDrawingControls={finalIPhone14ProMaxDecision}
       />
 
       {/* Enterprise Draggable FAB για Mobile - από OLD_GeoMap.tsx */}
