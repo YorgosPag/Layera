@@ -42,11 +42,13 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
   const [selectedIntent, setSelectedIntent] = useState<'offer' | 'search' | null>(null);
   const [selectedTransaction, setSelectedTransaction] = useState<'sale' | 'rent' | null>(null);
   const [selectedAvailability, setSelectedAvailability] = useState<'now' | 'future' | null>(null);
+  const [selectedPropertyType, setSelectedPropertyType] = useState<'apartment' | 'office' | 'factory' | 'land' | 'building' | 'store' | null>(null);
   const [showNextSteps, setShowNextSteps] = useState(false);
   const [showTransactionStep, setShowTransactionStep] = useState(false);
   const [showAvailabilityStep, setShowAvailabilityStep] = useState(false);
   const [showUploadStep, setShowUploadStep] = useState(false);
   const [showLayoutStep, setShowLayoutStep] = useState(false);
+  const [showPropertyTypeStep, setShowPropertyTypeStep] = useState(false);
   const [infoStates, setInfoStates] = useState<Record<CardId, boolean>>({
     property: false,
     job: false,
@@ -57,7 +59,13 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
     now: false,
     future: false,
     upload: false,
-    layout: false
+    layout: false,
+    apartment: false,
+    office: false,
+    factory: false,
+    land: false,
+    building: false,
+    store: false
   });
 
   // LEGO Info Panels setup
@@ -94,7 +102,12 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
     }
 
     if (currentStep === 'layout') {
-      // Μετά το layout, δεν έχουμε ακόμα άλλα steps
+      // Μετά το layout, έχουμε property-type step
+      return true;
+    }
+
+    if (currentStep === 'property-type') {
+      // Μετά το property-type, δεν έχουμε ακόμα άλλα steps (θα προστεθούν στις επόμενες φάσεις)
       return false;
     }
 
@@ -123,10 +136,12 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
       setShowAvailabilityStep(false);
       setShowUploadStep(false);
       setShowLayoutStep(false);
+      setShowPropertyTypeStep(false);
       setSelectedCategory(null);
       setSelectedIntent(null);
       setSelectedTransaction(null);
       setSelectedAvailability(null);
+      setSelectedPropertyType(null);
 
       // Κλείνω όλα τα info panels όταν αλλάζει το step
       setInfoStates({
@@ -139,7 +154,13 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
         now: false,
         future: false,
         upload: false,
-        layout: false
+        layout: false,
+        apartment: false,
+        office: false,
+        factory: false,
+        land: false,
+        building: false,
+        store: false
       });
     }
   }, [currentStepId]);
@@ -150,7 +171,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
     top: `${UI_CONFIG.categoryStep.position.top}px`,
     left: `${UI_CONFIG.categoryStep.position.left}px`,
     right: `${UI_CONFIG.categoryStep.position.right}px`,
-    display: (isVisible && !showNextSteps && !showTransactionStep && !showAvailabilityStep && !showUploadStep && !showLayoutStep) ? 'flex' : 'none',
+    display: (isVisible && !showNextSteps && !showTransactionStep && !showAvailabilityStep && !showUploadStep && !showLayoutStep && !showPropertyTypeStep) ? 'flex' : 'none',
     flexDirection: 'row',
     gap: `${UI_CONFIG.categoryStep.gap}px`,
     padding: '0',
@@ -165,7 +186,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
     top: '93px',
     left: '8px',
     right: '8px',
-    display: (showNextSteps && !showTransactionStep && !showAvailabilityStep && !showUploadStep && !showLayoutStep) ? 'flex' : 'none',
+    display: (showNextSteps && !showTransactionStep && !showAvailabilityStep && !showUploadStep && !showLayoutStep && !showPropertyTypeStep) ? 'flex' : 'none',
     flexDirection: 'row',
     gap: '8px',
     padding: '0',
@@ -180,7 +201,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
     top: '93px',
     left: '8px',
     right: '8px',
-    display: (showTransactionStep && !showAvailabilityStep && !showUploadStep && !showLayoutStep) ? 'flex' : 'none',
+    display: (showTransactionStep && !showAvailabilityStep && !showUploadStep && !showLayoutStep && !showPropertyTypeStep) ? 'flex' : 'none',
     flexDirection: 'row',
     gap: '8px',
     padding: '0',
@@ -195,7 +216,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
     top: '93px',
     left: '8px',
     right: '8px',
-    display: (showAvailabilityStep && !showUploadStep && !showLayoutStep) ? 'flex' : 'none',
+    display: (showAvailabilityStep && !showUploadStep && !showLayoutStep && !showPropertyTypeStep) ? 'flex' : 'none',
     flexDirection: 'row',
     gap: '8px',
     padding: '0',
@@ -210,7 +231,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
     top: '93px',
     left: '8px',
     right: '8px',
-    display: (showUploadStep && !showLayoutStep) ? 'flex' : 'none',
+    display: (showUploadStep && !showLayoutStep && !showPropertyTypeStep) ? 'flex' : 'none',
     flexDirection: 'row',
     gap: '8px',
     padding: '0',
@@ -225,7 +246,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
     top: '93px',
     left: '8px',
     right: '8px',
-    display: showLayoutStep ? 'flex' : 'none',
+    display: (showLayoutStep && !showPropertyTypeStep) ? 'flex' : 'none',
     flexDirection: 'column',
     gap: '8px',
     padding: '0',
@@ -233,6 +254,22 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
     overflowY: 'auto',
     maxHeight: 'calc(100vh - 200px)',
     WebkitOverflowScrolling: 'touch'
+  };
+
+  // Property Type step container styles - Επιλογή τύπου ακινήτου
+  const propertyTypeStepContainerStyles: React.CSSProperties = {
+    position: 'fixed',
+    top: '93px',
+    left: '8px',
+    right: '8px',
+    display: showPropertyTypeStep ? 'flex' : 'none',
+    flexDirection: 'row',
+    gap: '8px',
+    padding: '0',
+    zIndex: 9998,
+    overflowX: 'hidden',
+    WebkitOverflowScrolling: 'touch',
+    flexWrap: 'wrap'
   };
 
   // 🚀 ENTERPRISE CARD HANDLER: Συνδεδεμένο με Pipeline Discovery
@@ -363,7 +400,28 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
       // 🚀 ENTERPRISE: Ενεργοποιημένο - pipeline integration
       pipelineDiscovery.markStepCompleted('layout');
 
+      // Μετάβαση στο Property Type step
+      setTimeout(() => {
+        if (hasCardsForNextStep('layout', selectedCategory, selectedIntent)) {
+          setShowPropertyTypeStep(true);
+          setShowLayoutStep(false);
+          pipelineDiscovery.goToNextStep();
+        } else {
+          console.log('Layout completed. Property Type step not ready yet.');
+        }
+      }, 1000); // Δίνω χρόνο στον χρήστη να δει ότι το layout ολοκληρώθηκε
+
       console.log('Layout step activated. Controls visible.');
+    } else if (cardConfig.step === 'property-type') {
+      // Property Type selection logic
+      setSelectedPropertyType(cardConfig.id as 'apartment' | 'office' | 'factory' | 'land' | 'building' | 'store');
+      console.log('Property Type selected:', cardConfig.id);
+
+      // 🚀 ENTERPRISE: Ενεργοποιημένο - pipeline integration
+      pipelineDiscovery.markStepCompleted('propertyType');
+
+      // Property Type είναι το τελευταίο step προς το παρόν
+      console.log('Property Type selection completed. Workflow finished.');
     }
   };
 
@@ -432,6 +490,10 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
 
   // Get current cards to display
   const getCurrentCards = (): readonly CardConfig[] => {
+    if (showPropertyTypeStep) {
+      return getCardsForStep('property-type');
+    }
+
     if (showLayoutStep) {
       return getCardsForStep('layout');
     }
@@ -566,6 +628,13 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
               console.log('📏 Layout: Scale changed:', scale);
             }}
           />
+        </div>
+      )}
+
+      {/* Property Type Step - Property type selection */}
+      {showPropertyTypeStep && selectedCategory === 'property' && selectedIntent === 'offer' && selectedAvailability === 'now' && (
+        <div style={propertyTypeStepContainerStyles}>
+          {renderCards(currentCards)}
         </div>
       )}
 

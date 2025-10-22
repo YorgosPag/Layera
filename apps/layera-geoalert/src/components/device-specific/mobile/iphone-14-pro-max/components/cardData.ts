@@ -14,7 +14,8 @@ export type CardId =
   | 'sale' | 'rent'              // Transaction level (property only)
   | 'now' | 'future'             // Availability level (after transaction)
   | 'upload'                     // Upload level (after availability)
-  | 'layout';                    // Layout level (after upload)
+  | 'layout'                     // Layout level (after upload)
+  | 'apartment' | 'office' | 'factory' | 'land' | 'building' | 'store'; // Property type level (after layout)
 
 export interface CardConfig {
   id: CardId;
@@ -147,11 +148,63 @@ export const cardData = {
       category: 'property' as const,
       step: 'layout'
     }
+  ],
+
+  // Step 7: Property Type (after layout) - ΠΡΟΣΩΡΙΝΑ εδώ, θα μετακινηθεί στη σωστή θέση αργότερα
+  'property-type': [
+    {
+      id: 'apartment' as CardId,
+      title: 'Διαμέρισμα',
+      icon: HomeIcon,
+      variant: 'property' as CardVariant,
+      category: 'property' as const,
+      step: 'property-type'
+    },
+    {
+      id: 'office' as CardId,
+      title: 'Γραφείο',
+      icon: BriefcaseIcon,
+      variant: 'property' as CardVariant,
+      category: 'property' as const,
+      step: 'property-type'
+    },
+    {
+      id: 'factory' as CardId,
+      title: 'Εργοστάσιο',
+      icon: ToolIcon,
+      variant: 'property' as CardVariant,
+      category: 'property' as const,
+      step: 'property-type'
+    },
+    {
+      id: 'land' as CardId,
+      title: 'Οικόπεδο',
+      icon: VillaIcon,
+      variant: 'property' as CardVariant,
+      category: 'property' as const,
+      step: 'property-type'
+    },
+    {
+      id: 'building' as CardId,
+      title: 'Κτίριο',
+      icon: BuildingIcon,
+      variant: 'property' as CardVariant,
+      category: 'property' as const,
+      step: 'property-type'
+    },
+    {
+      id: 'store' as CardId,
+      title: 'Κατάστημα',
+      icon: CommercialIcon,
+      variant: 'property' as CardVariant,
+      category: 'property' as const,
+      step: 'property-type'
+    }
   ]
 } as const;
 
 // Helper functions για type-safe data access
-export const getCardsForStep = (step: 'category' | 'property' | 'job' | 'transaction' | 'availability' | 'upload' | 'layout'): readonly CardConfig[] => {
+export const getCardsForStep = (step: 'category' | 'property' | 'job' | 'transaction' | 'availability' | 'upload' | 'layout' | 'property-type'): readonly CardConfig[] => {
   return cardData[step];
 };
 
