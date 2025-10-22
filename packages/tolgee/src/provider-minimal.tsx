@@ -42,9 +42,6 @@ export const MinimalTolgeeProvider: React.FC<MinimalTolgeeProviderProps> = ({
     const lang = currentLang as keyof typeof translations;
     const translation = translations[lang];
 
-    // Debug logging για να δούμε τι συμβαίνει
-    console.log('🔍 Translation request:', { key, lang, hasTranslation: !!translation });
-
     // Navigate through nested keys
     const keys = key.split('.');
     let value: unknown = translation;
@@ -53,13 +50,11 @@ export const MinimalTolgeeProvider: React.FC<MinimalTolgeeProviderProps> = ({
       if (value && typeof value === 'object' && k in value) {
         value = (value as Record<string, unknown>)[k];
       } else {
-        console.log('❌ Translation not found at key:', k, 'in', keys, 'Available keys:', Object.keys(value || {}));
         return key; // Return key if translation not found
       }
     }
 
     if (typeof value === 'string') {
-      console.log('✅ Found translation for', key, ':', value);
       // Simple parameter substitution
       if (params) {
         return value.replace(/\{\{(\w+)\}\}/g, (match, paramKey) => {
@@ -69,7 +64,6 @@ export const MinimalTolgeeProvider: React.FC<MinimalTolgeeProviderProps> = ({
       return value;
     }
 
-    console.log('❌ Translation value is not string:', typeof value, value);
     return key; // Return key if not a string
   }, [currentLang]);
 

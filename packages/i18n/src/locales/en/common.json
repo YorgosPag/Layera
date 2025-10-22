@@ -739,5 +739,71 @@
   "rulers": {
     "showRulers": "Show Rulers",
     "hideRulers": "Hide Rulers"
+  },
+  "pipeline": {
+    "categories": {
+      "property": {
+        "title": "Property"
+      },
+      "job": {
+        "title": "Jobs"
+      }
+    },
+    "steps": {
+      "category": {
+        "title": "Category",
+        "short": "Category"
+      },
+      "intent": {
+        "title": "Intent",
+        "short": "Action"
+      },
+      "transactionType": {
+        "title": "Transaction",
+        "short": "Type"
+      },
+      "employmentType": {
+        "title": "Employment",
+        "short": "Type"
+      },
+      "availability": {
+        "title": "Availability",
+        "short": "When"
+      },
+      "availabilityDetails": {
+        "title": "Details",
+        "short": "Dates"
+      },
+      "location": {
+        "title": "Location",
+        "short": "Map",
+        "job": {
+          "short": "Area"
+        }
+      },
+      "layout": {
+        "title": "Layout",
+        "short": "Floorplan"
+      },
+      "details": {
+        "title": "Details",
+        "short": "Description"
+      },
+      "complete": {
+        "title": "Complete",
+        "short": "Confirmation"
+      }
+    },
+    "actions": {
+      "reset": {
+        "tooltip": "Reset - Show add button"
+      }
+    },
+    "forms": {
+      "details": {
+        "title": "Details Form",
+        "placeholder": "Form content will be added here..."
+      }
+    }
   }
 }
