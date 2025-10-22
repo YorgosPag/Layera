@@ -307,10 +307,19 @@ function App() {
                 }
               `}
             </style>
+
+            {/* Force dark theme for layout content - Override για tablets/iMac */}
+            <style>{`
+              .layera-layout-content {
+                background-color: transparent !important;
+              }
+              .layera-app-shell {
+                background-color: transparent !important;
+              }
+            `}</style>
             <div style={{
               display: 'flex',
-              height: '100vh',
-              backgroundColor: '#f0f0f0'
+              height: '100vh'
             }}>
 
               {/* Device Frame - Left Side */}
