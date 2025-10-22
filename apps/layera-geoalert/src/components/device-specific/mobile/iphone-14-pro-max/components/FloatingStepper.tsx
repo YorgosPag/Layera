@@ -11,6 +11,8 @@
  */
 
 import React, { useEffect } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+import { UI_CONFIG, COLORS, ANIMATION_CONFIG, STEP_CONFIG } from '../../../../../constants';
 
 export interface FloatingStepperProps {
   // Props που θα συνδεθούν με την υπάρχουσα UnifiedPipeline
@@ -32,8 +34,8 @@ export interface FloatingStepperProps {
  * Μinimi design που καταναλώνει ελάχιστο χώρο οθόνης
  */
 export const FloatingStepper: React.FC<FloatingStepperProps> = ({
-  currentStep = 'category',
-  totalSteps = 7,
+  currentStep = STEP_CONFIG.stepIds.category,
+  totalSteps = STEP_CONFIG.totalSteps.property,
   stepIndex = 0,
   selectedCategory = null,
   onNext,
@@ -43,6 +45,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   canGoNext = true,
   canGoPrevious = false
 }) => {
+  const { t } = useLayeraTranslation();
   // Πλήρως stateless component - δεν χρειάζονται state variables
 
   // Step definitions από την enterprise pipeline configuration
@@ -50,36 +53,104 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     // Αν δεν έχει επιλεγεί κατηγορία, μόνο το category step
     if (!selectedCategory) {
       return [
-        { id: 'category', title: 'Κατηγορία', shortTitle: 'Κατηγορία' }
+        {
+          id: 'category',
+          title: t('progress.stepper.labels.category', 'Κατηγορία'),
+          shortTitle: t('progress.stepper.descriptions.category', 'Τύπος')
+        }
       ];
     }
 
     if (selectedCategory === 'property') {
       return [
-        { id: 'category', title: 'Κατηγορία', shortTitle: 'Κατηγορία' },
-        { id: 'intent', title: 'Σκοπός', shortTitle: 'Σκοπός' },
-        { id: 'transactionType', title: 'Συναλλαγή', shortTitle: 'Τύπος' },
-        { id: 'location', title: 'Τοποθεσία', shortTitle: 'Χάρτης' },
-        { id: 'layout', title: 'Κάτοψη', shortTitle: 'Διάταξη' },
-        { id: 'details', title: 'Στοιχεία', shortTitle: 'Περιγραφή' },
-        { id: 'complete', title: 'Τέλος', shortTitle: 'Επιβεβαίωση' }
+        {
+          id: 'category',
+          title: t('progress.stepper.labels.category', 'Κατηγορία'),
+          shortTitle: t('progress.stepper.descriptions.category', 'Τύπος')
+        },
+        {
+          id: 'intent',
+          title: t('progress.stepper.labels.intent', 'Σκοπός'),
+          shortTitle: t('progress.stepper.descriptions.intent', 'Δράση')
+        },
+        {
+          id: 'transactionType',
+          title: t('pipeline.steps.transactionType.title', 'Συναλλαγή'),
+          shortTitle: t('pipeline.steps.transactionType.short', 'Τύπος')
+        },
+        {
+          id: 'location',
+          title: t('pipeline.steps.location.title', 'Τοποθεσία'),
+          shortTitle: t('pipeline.steps.location.short', 'Χάρτης')
+        },
+        {
+          id: 'layout',
+          title: t('pipeline.steps.layout.title', 'Κάτοψη'),
+          shortTitle: t('pipeline.steps.layout.short', 'Διάταξη')
+        },
+        {
+          id: 'details',
+          title: t('pipeline.steps.details.title', 'Στοιχεία'),
+          shortTitle: t('pipeline.steps.details.short', 'Περιγραφή')
+        },
+        {
+          id: 'complete',
+          title: t('pipeline.steps.complete.title', 'Τέλος'),
+          shortTitle: t('pipeline.steps.complete.short', 'Επιβεβαίωση')
+        }
       ];
     }
 
     if (selectedCategory === 'job') {
       return [
-        { id: 'category', title: 'Κατηγορία', shortTitle: 'Κατηγορία' },
-        { id: 'intent', title: 'Σκοπός', shortTitle: 'Σκοπός' },
-        { id: 'employmentType', title: 'Εργασία', shortTitle: 'Τύπος' },
-        { id: 'availability', title: 'Διαθεσιμότητα', shortTitle: 'Πότε' },
-        { id: 'availabilityDetails', title: 'Λεπτομέρειες', shortTitle: 'Ημερομηνίες' },
-        { id: 'location', title: 'Τοποθεσία', shortTitle: 'Περιοχή' },
-        { id: 'details', title: 'Στοιχεία', shortTitle: 'Περιγραφή' },
-        { id: 'complete', title: 'Τέλος', shortTitle: 'Επιβεβαίωση' }
+        {
+          id: 'category',
+          title: t('progress.stepper.labels.category', 'Κατηγορία'),
+          shortTitle: t('progress.stepper.descriptions.category', 'Τύπος')
+        },
+        {
+          id: 'intent',
+          title: t('progress.stepper.labels.intent', 'Σκοπός'),
+          shortTitle: t('progress.stepper.descriptions.intent', 'Δράση')
+        },
+        {
+          id: 'employmentType',
+          title: t('pipeline.steps.employmentType.title', 'Εργασία'),
+          shortTitle: t('pipeline.steps.employmentType.short', 'Τύπος')
+        },
+        {
+          id: 'availability',
+          title: t('pipeline.steps.availability.title', 'Διαθεσιμότητα'),
+          shortTitle: t('pipeline.steps.availability.short', 'Πότε')
+        },
+        {
+          id: 'availabilityDetails',
+          title: t('pipeline.steps.availabilityDetails.title', 'Λεπτομέρειες'),
+          shortTitle: t('pipeline.steps.availabilityDetails.short', 'Ημερομηνίες')
+        },
+        {
+          id: 'location',
+          title: t('pipeline.steps.location.title', 'Τοποθεσία'),
+          shortTitle: t('pipeline.steps.location.job.short', 'Περιοχή')
+        },
+        {
+          id: 'details',
+          title: t('pipeline.steps.details.title', 'Στοιχεία'),
+          shortTitle: t('pipeline.steps.details.short', 'Περιγραφή')
+        },
+        {
+          id: 'complete',
+          title: t('pipeline.steps.complete.title', 'Τέλος'),
+          shortTitle: t('pipeline.steps.complete.short', 'Επιβεβαίωση')
+        }
       ];
     }
 
-    return [{ id: 'category', title: 'Κατηγορία', shortTitle: 'Κατηγορία' }];
+    return [{
+      id: 'category',
+      title: t('pipeline.steps.category.title', 'Κατηγορία'),
+      shortTitle: t('pipeline.steps.category.short', 'Κατηγορία')
+    }];
   };
 
   const steps = getSteps();
@@ -89,37 +160,26 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   // Function για να επιστρέφει τα σωστά χρώματα ανάλογα με την κατηγορία
   const getStepperColors = () => {
     if (selectedCategory === 'property') {
-      // Πράσινο για ακίνητα (ήπιο emerald για καλύτερη αναγνωσιμότητα)
       return {
-        backgroundColor: 'rgba(16, 185, 129, 0.95)', // emerald-500
-        borderColor: 'rgba(16, 185, 129, 0.3)'
+        backgroundColor: COLORS.categories.property.primary,
+        borderColor: COLORS.categories.property.border
       };
     } else if (selectedCategory === 'job') {
-      // Γαλάζιο για εργασία (όπως στο info panel)
       return {
-        backgroundColor: 'rgba(59, 130, 246, 0.95)', // blue-500
-        borderColor: 'rgba(59, 130, 246, 0.3)'
+        backgroundColor: COLORS.categories.job.primary,
+        borderColor: COLORS.categories.job.border
       };
     } else {
-      // Πορτοκαλί για αρχική κατάσταση (category step)
       return {
-        backgroundColor: 'rgba(249, 115, 22, 0.95)', // orange-500
-        borderColor: 'rgba(249, 115, 22, 0.3)'
+        backgroundColor: COLORS.categories.initial.primary,
+        borderColor: COLORS.categories.initial.border
       };
     }
   };
 
-  // Debug info για iPhone 14 Pro Max detection
+  // Component initialization
   useEffect(() => {
-    console.log('🎯 FloatingStepper: Component mounted!');
-    console.log('🎯 Current step:', currentStep, 'Index:', stepIndex, 'Total:', totalSteps);
-    console.log('🎨 Selected category:', selectedCategory, 'Color:', getStepperColors());
-    console.log('🔙 canGoPrevious:', canGoPrevious, 'stepIndex > 0:', stepIndex > 0);
-    console.log('🎯 Screen dimensions:', {
-      width: window.innerWidth,
-      height: window.innerHeight,
-      devicePixelRatio: window.devicePixelRatio
-    });
+    // Component setup logic can go here if needed
   }, [currentStep, stepIndex, totalSteps, selectedCategory, canGoPrevious]);
 
   const stepperColors = getStepperColors();
@@ -135,9 +195,9 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
 
     // Αν έχει επιλεγεί κατηγορία, προσθέτω prefix
     if (selectedCategory === 'property') {
-      return `Ακίνητα : ${baseTitle}`;
+      return `${t('pipeline.categories.property.title', 'Ακίνητα')} : ${baseTitle}`;
     } else if (selectedCategory === 'job') {
-      return `Εργασία : ${baseTitle}`;
+      return `${t('pipeline.categories.job.title', 'Εργασία')} : ${baseTitle}`;
     }
 
     // Fallback χωρίς prefix
@@ -147,22 +207,22 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   // Floating bar styles - optimized για iPhone 14 Pro Max (430px width)
   const floatingBarStyles: React.CSSProperties = {
     position: 'fixed',
-    top: '45px', // Πιο κοντά στο Dynamic Island (ήταν 65px)
-    left: '8px',
-    right: '8px',
-    height: '40px',
-    backgroundColor: stepperColors.backgroundColor, // Dynamic χρώμα ανάλογα με κατηγορία
+    top: `${UI_CONFIG.floatingStepper.position.top}px`,
+    left: `${UI_CONFIG.floatingStepper.position.left}px`,
+    right: `${UI_CONFIG.floatingStepper.position.right}px`,
+    height: `${UI_CONFIG.floatingStepper.dimensions.height}px`,
+    backgroundColor: stepperColors.backgroundColor,
     backdropFilter: 'blur(12px)',
-    borderRadius: '20px',
-    border: `1px solid ${stepperColors.borderColor}`, // Dynamic border ανάλογα με κατηγορία
-    boxShadow: '0 2px 12px rgba(0, 0, 0, 0.12)',
-    zIndex: 9999, // Πάνω από όλα
+    borderRadius: `${UI_CONFIG.floatingStepper.dimensions.borderRadius}px`,
+    border: `1px solid ${stepperColors.borderColor}`,
+    boxShadow: `0 2px 12px ${COLORS.common.backdrop}`,
+    zIndex: UI_CONFIG.floatingStepper.zIndex,
     display: 'flex',
     alignItems: 'center',
-    padding: '0 16px',
-    gap: '12px',
-    transition: 'all 0.3s ease',
-    transform: 'translateY(0)', // Πάντα visible - stateless
+    padding: `0 ${UI_CONFIG.floatingStepper.padding}px`,
+    gap: `${UI_CONFIG.floatingStepper.gap}px`,
+    transition: ANIMATION_CONFIG.transitions.ease,
+    transform: 'translateY(0)',
     userSelect: 'none',
     WebkitTapHighlightColor: 'transparent'
   };
@@ -178,8 +238,8 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     width: index <= stepIndex ? '8px' : '6px',
     height: index <= stepIndex ? '8px' : '6px',
     borderRadius: '50%',
-    backgroundColor: index <= stepIndex ? '#ffffff' : 'rgba(255, 255, 255, 0.4)', // Λευκό για completed, ημιδιαφανές για pending
-    transition: 'all 0.2s ease',
+    backgroundColor: index <= stepIndex ? COLORS.common.white : 'rgba(255, 255, 255, 0.4)',
+    transition: ANIMATION_CONFIG.transitions.easeOut,
     cursor: onStepClick ? 'pointer' : 'default'
   });
 
@@ -187,7 +247,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   const stepTitleStyles: React.CSSProperties = {
     fontSize: '14px',
     fontWeight: '600',
-    color: '#ffffff', // Λευκό κείμενο για καλή αντίθεση με γαλάζιο φόντο
+    color: COLORS.common.white,
     flex: 1,
     textAlign: 'left',
     whiteSpace: 'nowrap',
@@ -211,7 +271,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   const previousButtonStyles: React.CSSProperties = {
     ...buttonStyles,
     backgroundColor: canGoPrevious ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.1)',
-    color: canGoPrevious ? '#ffffff' : 'rgba(255, 255, 255, 0.5)',
+    color: canGoPrevious ? COLORS.common.white : 'rgba(255, 255, 255, 0.5)',
     opacity: canGoPrevious ? 1 : 0.5,
     pointerEvents: 'auto' // Εξασφαλίζω ότι το button δέχεται clicks
   };
@@ -317,7 +377,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
           onTouchEnd={(e) => {
             e.currentTarget.style.transform = 'scale(1)';
           }}
-          title="Επαναφορά - Εμφάνιση πλήκτρου προσθήκης"
+          title={t('pipeline.actions.reset.tooltip', 'Επαναφορά - Εμφάνιση πλήκτρου προσθήκης')}
         >
           ×
         </button>
@@ -353,7 +413,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
             textAlign: 'center',
             color: '#1f2937'
           }}>
-            Φόρμα Λεπτομερειών
+            {t('pipeline.forms.details.title', 'Φόρμα Λεπτομερειών')}
           </div>
           <div style={{
             marginTop: '12px',
@@ -361,7 +421,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
             color: '#6b7280',
             textAlign: 'center'
           }}>
-            Θα προστεθεί το form περιεχόμενο εδώ...
+            {t('pipeline.forms.details.placeholder', 'Θα προστεθεί το form περιεχόμενο εδώ...')}
           </div>
         </div>
       )}

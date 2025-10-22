@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { DEVICE_CONFIG, ANIMATION_CONFIG } from './constants';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { useViewportWithOverride, DeviceOverrideProvider } from '@layera/viewport';
 import { Text, Heading } from '@layera/typography';
@@ -164,7 +165,7 @@ function App() {
   const [showCategoryElements, setShowCategoryElements] = useState(false);
 
   // iPhone 14 Pro Max detection - immediate check
-  const deviceFrameElement = document.getElementById('layera-device-simulator-viewport');
+  const deviceFrameElement = document.getElementById(DEVICE_CONFIG.iPhone14ProMax.viewport.id);
   const isInDeviceFrame = !!deviceFrameElement;
   let frameWidth = 0;
   let frameHeight = 0;
@@ -176,19 +177,27 @@ function App() {
   }
 
   const isIPhone14ProMaxDevice = isInDeviceFrame &&
-    ((frameWidth === 414 && frameHeight === 916) ||
-     (frameWidth >= 412 && frameWidth <= 416 && frameHeight >= 914 && frameHeight <= 920));
+    ((frameWidth === DEVICE_CONFIG.iPhone14ProMax.width && frameHeight === DEVICE_CONFIG.iPhone14ProMax.height) ||
+     (frameWidth >= DEVICE_CONFIG.iPhone14ProMax.tolerance.widthMin &&
+      frameWidth <= DEVICE_CONFIG.iPhone14ProMax.tolerance.widthMax &&
+      frameHeight >= DEVICE_CONFIG.iPhone14ProMax.tolerance.heightMin &&
+      frameHeight <= DEVICE_CONFIG.iPhone14ProMax.tolerance.heightMax));
 
 
   // State για re-render αν αλλάξει
   const [deviceDetected, setDeviceDetected] = useState(isIPhone14ProMaxDevice);
+  const [savedAreas, setSavedAreas] = useState<DrawnArea[]>([]);
+  const [activeView, setActiveView] = useState<'dashboard' | 'map'>('dashboard');
+  const [isAreasPanelOpen, setIsAreasPanelOpen] = useState(false);
+  const [editingAreaId, setEditingAreaId] = useState<string | null>(null);
+  const [showUnifiedPipeline, setShowUnifiedPipeline] = useState(false);
 
   // Use detected iPhone mode
   const finalIsIPhone = deviceDetected || isIPhone14ProMaxDevice;
 
   useEffect(() => {
     const checkDevice = () => {
-      const deviceFrameElement = document.getElementById('layera-device-simulator-viewport');
+      const deviceFrameElement = document.getElementById(DEVICE_CONFIG.iPhone14ProMax.viewport.id);
       const isInDeviceFrame = !!deviceFrameElement;
 
       if (isInDeviceFrame && deviceFrameElement) {
@@ -196,8 +205,11 @@ function App() {
         const frameWidth = rect.width;
         const frameHeight = rect.height;
 
-        const isIPhone14ProMax = ((frameWidth === 414 && frameHeight === 916) ||
-                                 (frameWidth >= 412 && frameWidth <= 416 && frameHeight >= 914 && frameHeight <= 920));
+        const isIPhone14ProMax = ((frameWidth === DEVICE_CONFIG.iPhone14ProMax.width && frameHeight === DEVICE_CONFIG.iPhone14ProMax.height) ||
+                                 (frameWidth >= DEVICE_CONFIG.iPhone14ProMax.tolerance.widthMin &&
+                                  frameWidth <= DEVICE_CONFIG.iPhone14ProMax.tolerance.widthMax &&
+                                  frameHeight >= DEVICE_CONFIG.iPhone14ProMax.tolerance.heightMin &&
+                                  frameHeight <= DEVICE_CONFIG.iPhone14ProMax.tolerance.heightMax));
 
         console.log('🎯 App.tsx Device Detection Update:', {
           deviceFrameElement: !!deviceFrameElement,
@@ -213,15 +225,10 @@ function App() {
     };
 
     // Έλεγχος μετά από λίγο για DOM updates
-    const timer = setTimeout(checkDevice, 100);
+    const timer = setTimeout(checkDevice, ANIMATION_CONFIG.delays.deviceCheck);
 
     return () => clearTimeout(timer);
   }, []);
-  const [savedAreas, setSavedAreas] = useState<DrawnArea[]>([]);
-  const [activeView, setActiveView] = useState<'dashboard' | 'map'>('dashboard');
-  const [isAreasPanelOpen, setIsAreasPanelOpen] = useState(false);
-  const [editingAreaId, setEditingAreaId] = useState<string | null>(null);
-  const [showUnifiedPipeline, setShowUnifiedPipeline] = useState(false);
 
   const handleAreaCreated = (area: DrawnArea) => {
     setSavedAreas(prev => [...prev, area]);

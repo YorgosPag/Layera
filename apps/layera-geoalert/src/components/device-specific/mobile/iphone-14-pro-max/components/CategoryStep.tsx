@@ -7,6 +7,7 @@
 
 import React, { useState } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { UI_CONFIG } from '../../../../../constants';
 import {
   GEOALERT_INFO_CONTENT,
   StaticContentProvider,
@@ -64,14 +65,14 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
   // Container styles - Unified για όλες τις κάρτες
   const containerStyles: React.CSSProperties = {
     position: 'fixed',
-    top: '93px',
-    left: '8px',
-    right: '8px',
+    top: `${UI_CONFIG.categoryStep.position.top}px`,
+    left: `${UI_CONFIG.categoryStep.position.left}px`,
+    right: `${UI_CONFIG.categoryStep.position.right}px`,
     display: (isVisible && !showNextSteps) ? 'flex' : 'none',
     flexDirection: 'row',
-    gap: '8px',
+    gap: `${UI_CONFIG.categoryStep.gap}px`,
     padding: '0',
-    zIndex: 9998,
+    zIndex: UI_CONFIG.categoryStep.zIndex,
     overflowX: 'hidden',
     WebkitOverflowScrolling: 'touch'
   };

@@ -4,6 +4,8 @@
  */
 
 import React from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+import { UI_CONFIG, COLORS } from '../../../constants';
 
 export interface MobileGeoMapProps {
   // Props που χρειάζονται για το mobile UI
@@ -14,42 +16,44 @@ export interface MobileGeoMapProps {
  * Περιλαμβάνει: πλήκτρα, κάρτες, mobile navigation κλπ
  */
 export const MobileGeoMap: React.FC<MobileGeoMapProps> = () => {
+  const { t } = useLayeraTranslation();
+
   return (
     <>
       {/* Permanent Category Buttons - MOBILE ONLY */}
       <div style={{
         position: 'absolute',
-        top: '70px',
-        left: '10px',
-        right: '10px',
-        zIndex: 1000,
+        top: `${UI_CONFIG.mobileGeoMap.position.top}px`,
+        left: `${UI_CONFIG.mobileGeoMap.position.left}px`,
+        right: `${UI_CONFIG.mobileGeoMap.position.right}px`,
+        zIndex: UI_CONFIG.mobileGeoMap.zIndex,
         display: 'flex',
-        gap: '8px',
+        gap: `${UI_CONFIG.mobileGeoMap.gap}px`,
         padding: '0 4px'
       }}>
         {/* Ακίνητα Button - Green */}
         <button style={{
           flex: 1,
-          backgroundColor: '#22c55e',
-          border: '1px solid #16a34a',
-          borderRadius: '8px',
-          padding: '10px',
+          backgroundColor: COLORS.categories.property.light,
+          border: `1px solid ${COLORS.categories.property.dark}`,
+          borderRadius: `${UI_CONFIG.mobileGeoMap.button.borderRadius}px`,
+          padding: `${UI_CONFIG.mobileGeoMap.button.padding}px`,
           cursor: 'pointer',
           transition: 'all 0.2s ease',
           boxShadow: '0 2px 4px rgba(34, 197, 94, 0.2)',
-          minHeight: '45px',
+          minHeight: `${UI_CONFIG.mobileGeoMap.button.minHeight}px`,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
         }}
         onClick={() => {
-          console.log('Mobile: Ακίνητα selected');
+          console.log('Mobile: Property selected');
         }}
         onMouseOver={(e) => {
-          e.currentTarget.style.backgroundColor = '#16a34a';
+          e.currentTarget.style.backgroundColor = COLORS.categories.property.dark;
         }}
         onMouseOut={(e) => {
-          e.currentTarget.style.backgroundColor = '#22c55e';
+          e.currentTarget.style.backgroundColor = COLORS.categories.property.light;
         }}
         >
           <span style={{
@@ -58,7 +62,7 @@ export const MobileGeoMap: React.FC<MobileGeoMapProps> = () => {
             color: 'white',
             textAlign: 'center'
           }}>
-            Ακίνητα
+            {t('pipeline.categories.property.title', 'Ακίνητα')}
           </span>
         </button>
 
@@ -78,13 +82,13 @@ export const MobileGeoMap: React.FC<MobileGeoMapProps> = () => {
           justifyContent: 'center'
         }}
         onClick={() => {
-          console.log('Mobile: Εργασία selected');
+          console.log('Mobile: Job selected');
         }}
         onMouseOver={(e) => {
-          e.currentTarget.style.backgroundColor = '#2563eb';
+          e.currentTarget.style.backgroundColor = COLORS.categories.job.dark;
         }}
         onMouseOut={(e) => {
-          e.currentTarget.style.backgroundColor = '#3b82f6';
+          e.currentTarget.style.backgroundColor = COLORS.categories.job.light;
         }}
         >
           <span style={{
@@ -93,7 +97,7 @@ export const MobileGeoMap: React.FC<MobileGeoMapProps> = () => {
             color: 'white',
             textAlign: 'center'
           }}>
-            Εργασία
+            {t('pipeline.categories.job.title', 'Εργασία')}
           </span>
         </button>
       </div>
