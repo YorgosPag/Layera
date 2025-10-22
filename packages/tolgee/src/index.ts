@@ -34,7 +34,7 @@ export const LANGUAGES = {
 } as const;
 
 // Default export για backward compatibility
-import { useLayeraTranslation as useTranslation } from './hooks';
+import { useLayeraTranslation as useTranslation } from './hooks-minimal';
 export default {
   useLayeraTranslation: useTranslation
 };

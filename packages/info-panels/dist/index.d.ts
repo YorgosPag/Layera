@@ -90,6 +90,29 @@ declare const InfoPanelProvider: React$1.FC<InfoPanelProviderProps>;
 declare const useInfoPanel: () => UseInfoPanelReturn;
 
 /**
+ * useCategoryTheming.ts - Enterprise Theme-Aware Hook για Info Panels
+ *
+ * Αυτόματη σύνδεση category colors με info panel theming.
+ * Εξαλείφει την ανάγκη manual χρωματισμού σε κάθε component.
+ */
+type CategoryType = 'property' | 'job' | 'initial' | null;
+interface CategoryTheme {
+    backgroundColor: string;
+    borderColor: string;
+    textColor: string;
+    accentColor: string;
+    isDark?: boolean;
+}
+/**
+ * Hook που επιστρέφει το σωστό theme ανάλογα με την επιλεγμένη κατηγορία
+ */
+declare const useCategoryTheming: (selectedCategory: CategoryType) => CategoryTheme;
+/**
+ * Helper function για χρήση εκτός React components
+ */
+declare const getCategoryTheme: (selectedCategory: CategoryType) => CategoryTheme;
+
+/**
  * StaticContentProvider - Default implementation για static content
  *
  * Αυτό είναι το fallback provider που χρησιμοποιεί hardcoded content.
@@ -173,4 +196,4 @@ declare const DEFAULT_INFO_PANEL_STYLES: {
     };
 };
 
-export { DEFAULT_INFO_PANEL_STYLES, GEOALERT_INFO_CONTENT, INFO_PANEL_THEMES, type InfoPanelConfig, type InfoPanelContent, type InfoPanelContentProvider, type InfoPanelEventHandlers, type InfoPanelId, InfoPanelProvider, type InfoPanelProviderProps, type InfoPanelRegistry, type InfoPanelState, type InfoPanelStyleConfig, type InfoPanelTheme, type StaticContentConfig, StaticContentProvider, type UseInfoPanelReturn, createGeoAlertContentProvider, createInfoPanelConfig, createInfoPanelTheme, useInfoPanel };
+export { type CategoryTheme, type CategoryType, DEFAULT_INFO_PANEL_STYLES, GEOALERT_INFO_CONTENT, INFO_PANEL_THEMES, type InfoPanelConfig, type InfoPanelContent, type InfoPanelContentProvider, type InfoPanelEventHandlers, type InfoPanelId, InfoPanelProvider, type InfoPanelProviderProps, type InfoPanelRegistry, type InfoPanelState, type InfoPanelStyleConfig, type InfoPanelTheme, type StaticContentConfig, StaticContentProvider, type UseInfoPanelReturn, createGeoAlertContentProvider, createInfoPanelConfig, createInfoPanelTheme, getCategoryTheme, useCategoryTheming, useInfoPanel };

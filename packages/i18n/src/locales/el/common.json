@@ -543,6 +543,62 @@
         "description": "Η καταχώρισή σας είναι έτοιμη"
       },
       "continue": "Συνέχεια"
+    },
+    "steps": {
+      "category": {
+        "title": "Κατηγορία",
+        "short": "Κατηγορία"
+      },
+      "intent": {
+        "title": "Σκοπός",
+        "short": "Δράση"
+      },
+      "transactionType": {
+        "title": "Συναλλαγή",
+        "short": "Τύπος"
+      },
+      "employmentType": {
+        "title": "Εργασία",
+        "short": "Τύπος"
+      },
+      "availability": {
+        "title": "Διαθεσιμότητα",
+        "short": "Πότε"
+      },
+      "availabilityDetails": {
+        "title": "Λεπτομέρειες",
+        "short": "Ημερομηνίες"
+      },
+      "location": {
+        "title": "Τοποθεσία",
+        "short": "Χάρτης",
+        "job": {
+          "short": "Περιοχή"
+        }
+      },
+      "layout": {
+        "title": "Κάτοψη",
+        "short": "Διάταξη"
+      },
+      "details": {
+        "title": "Στοιχεία",
+        "short": "Περιγραφή"
+      },
+      "complete": {
+        "title": "Τέλος",
+        "short": "Επιβεβαίωση"
+      }
+    },
+    "actions": {
+      "reset": {
+        "tooltip": "Επαναφορά - Εμφάνιση πλήκτρου προσθήκης"
+      }
+    },
+    "forms": {
+      "details": {
+        "title": "Φόρμα Λεπτομερειών",
+        "placeholder": "Θα προστεθεί το form περιεχόμενο εδώ..."
+      }
     }
   },
   "dashboard": {
@@ -734,71 +790,5 @@
   "rulers": {
     "showRulers": "Εμφάνιση Χαρακών",
     "hideRulers": "Απόκρυψη Χαρακών"
-  },
-  "pipeline": {
-    "categories": {
-      "property": {
-        "title": "Ακίνητα"
-      },
-      "job": {
-        "title": "Εργασία"
-      }
-    },
-    "steps": {
-      "category": {
-        "title": "Κατηγορία",
-        "short": "Κατηγορία"
-      },
-      "intent": {
-        "title": "Σκοπός",
-        "short": "Δράση"
-      },
-      "transactionType": {
-        "title": "Συναλλαγή",
-        "short": "Τύπος"
-      },
-      "employmentType": {
-        "title": "Εργασία",
-        "short": "Τύπος"
-      },
-      "availability": {
-        "title": "Διαθεσιμότητα",
-        "short": "Πότε"
-      },
-      "availabilityDetails": {
-        "title": "Λεπτομέρειες",
-        "short": "Ημερομηνίες"
-      },
-      "location": {
-        "title": "Τοποθεσία",
-        "short": "Χάρτης",
-        "job": {
-          "short": "Περιοχή"
-        }
-      },
-      "layout": {
-        "title": "Κάτοψη",
-        "short": "Διάταξη"
-      },
-      "details": {
-        "title": "Στοιχεία",
-        "short": "Περιγραφή"
-      },
-      "complete": {
-        "title": "Τέλος",
-        "short": "Επιβεβαίωση"
-      }
-    },
-    "actions": {
-      "reset": {
-        "tooltip": "Επαναφορά - Εμφάνιση πλήκτρου προσθήκης"
-      }
-    },
-    "forms": {
-      "details": {
-        "title": "Φόρμα Λεπτομερειών",
-        "placeholder": "Θα προστεθεί το form περιεχόμενο εδώ..."
-      }
-    }
   }
 }

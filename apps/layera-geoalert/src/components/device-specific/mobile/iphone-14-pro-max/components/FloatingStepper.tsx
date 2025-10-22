@@ -12,6 +12,7 @@
 
 import React, { useEffect } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { PipelineDiscovery } from '@layera/pipelines';
 import { UI_CONFIG, COLORS, ANIMATION_CONFIG, STEP_CONFIG } from '../../../../../constants';
 
 export interface FloatingStepperProps {
@@ -20,6 +21,8 @@ export interface FloatingStepperProps {
   totalSteps?: number;
   stepIndex?: number;
   selectedCategory?: 'property' | 'job' | null; // Νέο prop για την επιλεγμένη κατηγορία
+  selectedIntent?: 'offer' | 'search' | null; // Νέο prop για intent tracking
+  showTransactionStep?: boolean; // Νέο prop για transaction step visibility
   onNext?: () => void;
   onPrevious?: () => void;
   onReset?: () => void; // Νέο prop για reset functionality
@@ -38,6 +41,8 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   totalSteps = STEP_CONFIG.totalSteps.property,
   stepIndex = 0,
   selectedCategory = null,
+  selectedIntent = null,
+  showTransactionStep = false,
   onNext,
   onPrevious,
   onReset,
@@ -46,116 +51,35 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   canGoPrevious = false
 }) => {
   const { t } = useLayeraTranslation();
-  // Πλήρως stateless component - δεν χρειάζονται state variables
 
-  // Step definitions από την enterprise pipeline configuration
-  const getSteps = () => {
-    // Αν δεν έχει επιλεγεί κατηγορία, μόνο το category step
-    if (!selectedCategory) {
-      return [
-        {
-          id: 'category',
-          title: t('progress.stepper.labels.category', 'Κατηγορία'),
-          shortTitle: t('progress.stepper.descriptions.category', 'Τύπος')
-        }
-      ];
-    }
+  // 🚀 ENTERPRISE AUTO-DISCOVERY: Ενεργοποιημένο!
+  const pipelineDiscovery = React.useMemo(() => PipelineDiscovery.getInstance(), []);
 
-    if (selectedCategory === 'property') {
-      return [
-        {
-          id: 'category',
-          title: t('progress.stepper.labels.category', 'Κατηγορία'),
-          shortTitle: t('progress.stepper.descriptions.category', 'Τύπος')
-        },
-        {
-          id: 'intent',
-          title: t('progress.stepper.labels.intent', 'Σκοπός'),
-          shortTitle: t('progress.stepper.descriptions.intent', 'Δράση')
-        },
-        {
-          id: 'transactionType',
-          title: t('pipeline.steps.transactionType.title', 'Συναλλαγή'),
-          shortTitle: t('pipeline.steps.transactionType.short', 'Τύπος')
-        },
-        {
-          id: 'location',
-          title: t('pipeline.steps.location.title', 'Τοποθεσία'),
-          shortTitle: t('pipeline.steps.location.short', 'Χάρτης')
-        },
-        {
-          id: 'layout',
-          title: t('pipeline.steps.layout.title', 'Κάτοψη'),
-          shortTitle: t('pipeline.steps.layout.short', 'Διάταξη')
-        },
-        {
-          id: 'details',
-          title: t('pipeline.steps.details.title', 'Στοιχεία'),
-          shortTitle: t('pipeline.steps.details.short', 'Περιγραφή')
-        },
-        {
-          id: 'complete',
-          title: t('pipeline.steps.complete.title', 'Τέλος'),
-          shortTitle: t('pipeline.steps.complete.short', 'Επιβεβαίωση')
-        }
-      ];
-    }
+  // 🚀 ENTERPRISE AUTO-DISCOVERY: Χρήση του PipelineDiscovery για αυτόματη ανακάλυψη steps
+  React.useEffect(() => {
+    // Συγχρονισμός με το CategoryStep state
+    pipelineDiscovery.syncWithCategoryStep({
+      selectedCategory,
+      selectedIntent,
+      showTransactionStep,
+      currentStep
+    });
+  }, [selectedCategory, selectedIntent, showTransactionStep, currentStep, pipelineDiscovery]);
 
-    if (selectedCategory === 'job') {
-      return [
-        {
-          id: 'category',
-          title: t('progress.stepper.labels.category', 'Κατηγορία'),
-          shortTitle: t('progress.stepper.descriptions.category', 'Τύπος')
-        },
-        {
-          id: 'intent',
-          title: t('progress.stepper.labels.intent', 'Σκοπός'),
-          shortTitle: t('progress.stepper.descriptions.intent', 'Δράση')
-        },
-        {
-          id: 'employmentType',
-          title: t('pipeline.steps.employmentType.title', 'Εργασία'),
-          shortTitle: t('pipeline.steps.employmentType.short', 'Τύπος')
-        },
-        {
-          id: 'availability',
-          title: t('pipeline.steps.availability.title', 'Διαθεσιμότητα'),
-          shortTitle: t('pipeline.steps.availability.short', 'Πότε')
-        },
-        {
-          id: 'availabilityDetails',
-          title: t('pipeline.steps.availabilityDetails.title', 'Λεπτομέρειες'),
-          shortTitle: t('pipeline.steps.availabilityDetails.short', 'Ημερομηνίες')
-        },
-        {
-          id: 'location',
-          title: t('pipeline.steps.location.title', 'Τοποθεσία'),
-          shortTitle: t('pipeline.steps.location.job.short', 'Περιοχή')
-        },
-        {
-          id: 'details',
-          title: t('pipeline.steps.details.title', 'Στοιχεία'),
-          shortTitle: t('pipeline.steps.details.short', 'Περιγραφή')
-        },
-        {
-          id: 'complete',
-          title: t('pipeline.steps.complete.title', 'Τέλος'),
-          shortTitle: t('pipeline.steps.complete.short', 'Επιβεβαίωση')
-        }
-      ];
-    }
+  // Χρήση του auto-discovered steps από το PipelineDiscovery
+  const discoveredSteps = pipelineDiscovery.getAvailableStepsForUI();
 
-    return [{
-      id: 'category',
-      title: t('pipeline.steps.category.title', 'Κατηγορία'),
-      shortTitle: t('pipeline.steps.category.short', 'Κατηγορία')
-    }];
-  };
+  // Mapping των discovered steps σε UI format με i18n
+  const steps = discoveredSteps.map(step => ({
+    id: step.id,
+    title: t(`pipeline.steps.${step.id}.title`, step.title),
+    shortTitle: t(`pipeline.steps.${step.id}.short`, step.shortTitle)
+  }));
 
-  const steps = getSteps();
-
-  const currentStepData = steps[stepIndex] || steps[0];
+  // 🚀 ENTERPRISE AUTO-DISCOVERY: Χρήση του PipelineDiscovery για step index
+  const pipelineState = pipelineDiscovery.getCurrentState();
+  const effectiveStepIndex = pipelineState.currentStepIndex;
+  const currentStepData = steps[effectiveStepIndex] || steps[0];
 
   // Function για να επιστρέφει τα σωστά χρώματα ανάλογα με την κατηγορία
   const getStepperColors = () => {
@@ -195,9 +119,9 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
 
     // Αν έχει επιλεγεί κατηγορία, προσθέτω prefix
     if (selectedCategory === 'property') {
-      return `${t('pipeline.categories.property.title', 'Ακίνητα')} : ${baseTitle}`;
+      return `${t('pipeline.category.property.title', 'Ακίνητα')} : ${baseTitle}`;
     } else if (selectedCategory === 'job') {
-      return `${t('pipeline.categories.job.title', 'Εργασία')} : ${baseTitle}`;
+      return `${t('pipeline.category.job.title', 'Εργασία')} : ${baseTitle}`;
     }
 
     // Fallback χωρίς prefix
@@ -234,14 +158,29 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     alignItems: 'center'
   };
 
-  const getProgressDotStyle = (index: number): React.CSSProperties => ({
-    width: index <= stepIndex ? '8px' : '6px',
-    height: index <= stepIndex ? '8px' : '6px',
-    borderRadius: '50%',
-    backgroundColor: index <= stepIndex ? COLORS.common.white : 'rgba(255, 255, 255, 0.4)',
-    transition: ANIMATION_CONFIG.transitions.easeOut,
-    cursor: onStepClick ? 'pointer' : 'default'
-  });
+  const getProgressDotStyle = (index: number): React.CSSProperties => {
+    // 🚀 ENTERPRISE: Χρήση του PipelineDiscovery για step completion status
+    const stepId = steps[index]?.id;
+    const isCompleted = stepId ? pipelineDiscovery.isStepCompleted(stepId) : false;
+    const isActive = index === effectiveStepIndex;
+    const isVisited = index <= effectiveStepIndex;
+
+    return {
+      width: isActive ? '8px' : (isCompleted || isVisited ? '7px' : '6px'),
+      height: isActive ? '8px' : (isCompleted || isVisited ? '7px' : '6px'),
+      borderRadius: '50%',
+      backgroundColor: isCompleted
+        ? '#22c55e' // Πράσινο για completed
+        : isActive
+          ? COLORS.common.white // Λευκό για active
+          : isVisited
+            ? 'rgba(255, 255, 255, 0.7)' // Ημι-διαφανές για visited
+            : 'rgba(255, 255, 255, 0.4)', // Ακόμα πιο διαφανές για unvisited
+      transition: ANIMATION_CONFIG.transitions.easeOut,
+      cursor: isVisited ? 'pointer' : 'default',
+      border: isActive ? '1px solid rgba(255, 255, 255, 0.8)' : 'none'
+    };
+  };
 
   // Step title styles
   const stepTitleStyles: React.CSSProperties = {
@@ -268,11 +207,14 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     WebkitTapHighlightColor: 'transparent'
   };
 
+  // 🚀 ENTERPRISE: Χρήση του PipelineDiscovery για button states
+  const canActuallyGoPrevious = pipelineDiscovery.canGoToPrevious() || canGoPrevious;
+
   const previousButtonStyles: React.CSSProperties = {
     ...buttonStyles,
-    backgroundColor: canGoPrevious ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.1)',
-    color: canGoPrevious ? COLORS.common.white : 'rgba(255, 255, 255, 0.5)',
-    opacity: canGoPrevious ? 1 : 0.5,
+    backgroundColor: canActuallyGoPrevious ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.1)',
+    color: canActuallyGoPrevious ? COLORS.common.white : 'rgba(255, 255, 255, 0.5)',
+    opacity: canActuallyGoPrevious ? 1 : 0.5,
     pointerEvents: 'auto' // Εξασφαλίζω ότι το button δέχεται clicks
   };
 
@@ -283,44 +225,51 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     opacity: onReset ? 1 : 0.5
   };
 
-  // Handle step dot click
+  // Handle step dot click - Enterprise Auto-Navigation
   const handleStepDotClick = (index: number) => {
-    if (onStepClick && index <= stepIndex) {
+    const isVisited = index <= effectiveStepIndex;
+    if (isVisited && steps[index]) {
       if ('vibrate' in navigator) {
         navigator.vibrate(30); // Subtle haptic feedback
       }
-      onStepClick(index);
+      // 🚀 ENTERPRISE: Χρήση του PipelineDiscovery για έξυπνη πλοήγηση
+      const targetStepId = steps[index].id;
+      pipelineDiscovery.navigateToStep(targetStepId);
+
+      // Fallback στο παλιό API αν υπάρχει
+      if (onStepClick) {
+        onStepClick(index);
+      }
     }
   };
 
-  // Handle previous button
+  // Handle previous button - Enterprise Auto-Navigation
   const handlePrevious = () => {
-    console.log('🔙 Previous button clicked! canGoPrevious:', canGoPrevious, 'onPrevious:', !!onPrevious);
-    console.log('🔙 stepIndex:', stepIndex, 'steps.length:', steps.length);
-    console.log('🔙 Current steps:', steps.map(s => s.id));
+    if ('vibrate' in navigator) {
+      navigator.vibrate(50);
+    }
 
-    // Έλεγχος εναλλακτικός για navigation
-    const canActuallyGoPrevious = stepIndex > 0 && stepIndex < steps.length;
-    console.log('🔙 canActuallyGoPrevious (internal check):', canActuallyGoPrevious);
+    // 🚀 ENTERPRISE: Χρήση του PipelineDiscovery για σωστή πλοήγηση ένα βήμα πίσω
+    const success = pipelineDiscovery.goToPreviousStep();
 
-    if ((canGoPrevious || canActuallyGoPrevious) && onPrevious) {
-      console.log('🔙 Calling onPrevious...');
-      if ('vibrate' in navigator) {
-        navigator.vibrate(50);
-      }
+    // Fallback στο παλιό API αν το PipelineDiscovery αποτύχει
+    if (!success && onPrevious && canGoPrevious) {
       onPrevious();
-    } else {
-      console.log('🔙 Previous button disabled or no onPrevious function');
     }
   };
 
 
-  // Handle reset button - επαναφορά στην αρχική κατάσταση
+  // Handle reset button - Enterprise Reset
   const handleReset = () => {
+    if ('vibrate' in navigator) {
+      navigator.vibrate(50);
+    }
+
+    // 🚀 ENTERPRISE: Χρήση του PipelineDiscovery για reset
+    pipelineDiscovery.reset();
+
+    // Fallback στο παλιό API
     if (onReset) {
-      if ('vibrate' in navigator) {
-        navigator.vibrate(50);
-      }
       onReset();
     }
   };
@@ -352,13 +301,11 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
           style={previousButtonStyles}
           onClick={handlePrevious}
           onTouchStart={(e) => {
-            console.log('🔙 Touch start on previous button');
-            if (canGoPrevious) {
+            if (canActuallyGoPrevious) {
               e.currentTarget.style.transform = 'scale(0.95)';
             }
           }}
           onTouchEnd={(e) => {
-            console.log('🔙 Touch end on previous button');
             e.currentTarget.style.transform = 'scale(1)';
           }}
         >

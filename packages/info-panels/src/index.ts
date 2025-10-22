@@ -23,6 +23,10 @@ export type {
 // React Context & Hook
 export { InfoPanelProvider, useInfoPanel } from './InfoPanelContext';
 
+// Theme-aware Hooks
+export { useCategoryTheming, getCategoryTheme } from './hooks/useCategoryTheming';
+export type { CategoryType, CategoryTheme } from './hooks/useCategoryTheming';
+
 // Content Providers
 export { StaticContentProvider } from './providers/StaticContentProvider';
 export type { StaticContentConfig } from './providers/StaticContentProvider';

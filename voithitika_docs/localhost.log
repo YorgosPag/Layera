@@ -1,1 +1,77 @@
+18:34:45.139 react-dom_client.js?v=5f02dcc5:20359 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+18:34:45.445 i18next.js?v=5f02dcc5:215 i18next: languageChanged el
+18:34:45.445 i18next.js?v=5f02dcc5:215 i18next: initialized Object
+18:34:47.156 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = false
+18:34:47.156 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
+18:34:47.156 GeoHeader.tsx:37 🎯 GeoHeader: current theme = dark
+18:34:47.156 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
+18:34:47.156 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
+18:34:47.156 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
+18:34:47.156 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
+18:34:47.157 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = false
+18:34:47.157 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
+18:34:47.157 GeoHeader.tsx:37 🎯 GeoHeader: current theme = dark
+18:34:47.157 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
+18:34:47.157 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
+18:34:47.157 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
+18:34:47.157 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
+18:34:48.394 App.tsx:279 Opening Unified Pipeline...
+18:34:48.395 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = false
+18:34:48.395 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
+18:34:48.395 GeoHeader.tsx:37 🎯 GeoHeader: current theme = dark
+18:34:48.395 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
+18:34:48.395 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
+18:34:48.395 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
+18:34:48.395 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
+18:34:48.396 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = false
+18:34:48.396 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
+18:34:48.396 GeoHeader.tsx:37 🎯 GeoHeader: current theme = dark
+18:34:48.396 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
+18:34:48.396 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
+18:34:48.396 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
+18:34:48.396 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
+18:34:52.830 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = false
+18:34:52.830 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
+18:34:52.830 GeoHeader.tsx:37 🎯 GeoHeader: current theme = dark
+18:34:52.830 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
+18:34:52.830 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
+18:34:52.830 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
+18:34:52.831 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
+18:34:52.831 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = false
+18:34:52.831 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
+18:34:52.831 GeoHeader.tsx:37 🎯 GeoHeader: current theme = dark
+18:34:52.831 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
+18:34:52.831 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
+18:34:52.831 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
+18:34:52.831 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
+18:34:54.923 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = true
+18:34:54.923 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
+18:34:54.923 GeoHeader.tsx:37 🎯 GeoHeader: current theme = dark
+18:34:54.923 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
+18:34:54.923 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
+18:34:54.923 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
+18:34:54.923 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
+18:34:54.923 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = true
+18:34:54.923 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
+18:34:54.923 GeoHeader.tsx:37 🎯 GeoHeader: current theme = dark
+18:34:54.923 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
+18:34:54.923 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
+18:34:54.923 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
+18:34:54.923 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
+18:34:57.207 FloatingStepper.tsx:56 Uncaught ReferenceError: PipelineDiscovery is not defined
+    at FloatingStepper.tsx:56:67
+    at updateMemo (react-dom_client.js?v=5f02dcc5:6668:21)
+    at Object.useMemo (react-dom_client.js?v=5f02dcc5:19223:20)
+    at exports.useMemo (chunk-TOILK6HY.js?v=5f02dcc5:960:36)
+    at FloatingStepper (FloatingStepper.tsx:56:35)
+    at Object.react_stack_bottom_frame (react-dom_client.js?v=5f02dcc5:18763:20)
+    at renderWithHooks (react-dom_client.js?v=5f02dcc5:5769:24)
+    at updateFunctionComponent (react-dom_client.js?v=5f02dcc5:7604:21)
+    at beginWork (react-dom_client.js?v=5f02dcc5:8664:20)
+    at runWithFiberInDEV (react-dom_client.js?v=5f02dcc5:1027:72)
+18:34:57.207 react-dom_client.js?v=5f02dcc5:7092 An error occurred in the <FloatingStepper> component.
 
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
+defaultOnUncaughtError @ react-dom_client.js?v=5f02dcc5:7092

@@ -74,6 +74,78 @@ export const GEOALERT_INFO_CONTENT: StaticContentConfig = {
 🔔 <strong>Instant alerts</strong> για ιδανικές ευκαιρίες<br/><br/>
 🏆 <em><strong>92% των χρηστών μας</strong> βρίσκουν καλύτερη δουλειά σε <30 ημέρες!</em>`,
     category: 'job'
+  },
+
+  // Transaction Type Cards (Property)
+  sale: {
+    title: '💰 ΠΩΛΗΣΗ ΑΚΙΝΗΤΟΥ: Μεγιστοποίηση Αξίας',
+    content: `🏠 <strong>Βέλτιστη τιμολόγηση</strong> με ανάλυση αγοράς και τάσεων<br/>
+📊 <strong>Market intelligence</strong> - σύγκριση με παρόμοια ακίνητα<br/>
+📸 <strong>Professional φωτογράφιση</strong> και virtual tours<br/>
+🎯 <strong>Εστιασμένο marketing</strong> σε qualified αγοραστές<br/>
+⚡ <strong>Γρήγορη πώληση</strong> με προηγμένα εργαλεία προβολής<br/><br/>
+✨ <em><strong>Πωλητές μας πετυχαίνουν 18% υψηλότερες τιμές</strong> και πουλάνε 3x πιο γρήγορα!</em>`,
+    category: 'property'
+  },
+
+  rent: {
+    title: '🏡 ΕΝΟΙΚΙΑΣΗ ΑΚΙΝΗΤΟΥ: Σταθερό Εισόδημα',
+    content: `💵 <strong>Competitive τιμολόγηση</strong> για μέγιστη πληρότητα<br/>
+👥 <strong>Προ-φιλτραρισμένοι ενοικιαστές</strong> με επαληθευμένα στοιχεία<br/>
+📋 <strong>Έξυπνα συμβόλαια</strong> και νομική υποστήριξη<br/>
+🔒 <strong>Ασφαλής διαχείριση</strong> πληρωμών και επικοινωνίας<br/>
+📈 <strong>Απόδοση επένδυσης</strong> με ανάλυση αγοράς<br/><br/>
+🎖️ <em><strong>Ιδιοκτήτες μας έχουν 89% πληρότητα</strong> και βρίσκουν ενοικιαστές σε <7 ημέρες!</em>`,
+    category: 'property'
+  },
+
+  // Availability Cards (After Transaction)
+  now: {
+    title: '⚡ ΔΙΑΘΕΣΙΜΟ ΑΜΕΣΑ: Άμεση Επιχειρηματική Δράση',
+    content: `🚀 <strong>Άμεση προβολή</strong> στη μεγαλύτερη πλατφόρμα ακινήτων<br/>
+📱 <strong>Instant ειδοποιήσεις</strong> σε χιλιάδες ενδιαφερόμενους<br/>
+💼 <strong>Προτεραιότητα στα αποτελέσματα</strong> αναζήτησης<br/>
+⚡ <strong>24/7 υποστήριξη</strong> για γρήγορη διεκπεραίωση<br/>
+🎯 <strong>Express διαδικασίες</strong> για άμεσα αποτελέσματα<br/><br/>
+✨ <em><strong>Ακίνητα "διαθέσιμα άμεσα" έχουν 340% περισσότερη δραστηριότητα</strong> την πρώτη εβδομάδα!</em>`,
+    category: 'property'
+  },
+
+  future: {
+    title: '📅 ΔΙΑΘΕΣΙΜΟ ΣΤΟ ΜΕΛΛΟΝ: Στρατηγικός Σχεδιασμός',
+    content: `📆 <strong>Προγραμματισμένη προβολή</strong> τη βέλτιστη στιγμή<br/>
+📧 <strong>Προ-καταχώρηση ενδιαφέροντος</strong> από σοβαρούς αγοραστές<br/>
+📊 <strong>Ανάλυση αγοράς</strong> μέχρι την ημερομηνία διαθεσιμότητας<br/>
+🎯 <strong>Στρατηγική τιμολόγηση</strong> βάσει προβλέψεων<br/>
+🔔 <strong>Αυτόματες ειδοποιήσεις</strong> πριν την επίσημη διάθεση<br/><br/>
+🏆 <em><strong>Σχεδιασμένες πωλήσεις πετυχαίνουν 28% καλύτερες τιμές</strong> λόγω καλύτερης προετοιμασίας!</em>`,
+    category: 'property'
+  },
+
+  // Upload Card (After Availability = Now)
+  upload: {
+    title: '📁 ΑΝΑΒΑΣΜΑ ΑΡΧΕΙΩΝ: Έξυπνη Οπτικοποίηση Ακινήτου',
+    content: `🖼️ <strong>Εικόνες:</strong> JPG, PNG, GIF, WEBP - Άμεση προβολή<br/>
+📄 <strong>Έγγραφα:</strong> PDF - Αυτόματη ανάλυση περιεχομένου<br/>
+🏗️ <strong>Τεχνικά Σχέδια:</strong> DXF, DWG - CAD integration<br/>
+🗺️ <strong>Έξυπνη επικάλυψη</strong> στον διαδραστικό χάρτη<br/>
+📐 <strong>Αυτόματος υπολογισμός</strong> μετρήσεων και επιφανειών<br/>
+🎯 <strong>Ακριβής τοποθέτηση</strong> με drag & drop<br/><br/>
+✨ <em><strong>Ακίνητα με κατόψεις πετυχαίνουν 87% περισσότερες προβολές</strong> και πωλούνται 3x πιο γρήγορα!</em>`,
+    category: 'property'
+  },
+
+  // Layout Card (After Upload)
+  layout: {
+    title: '🗺️ ΤΟΠΟΘΕΤΗΣΗ & ΚΛΙΜΑΚΑ: Ακριβής Γεωεντοπισμός',
+    content: `📍 <strong>GPS Τοποθέτηση:</strong> Αυτόματος εντοπισμός της θέσης σου<br/>
+🔍 <strong>Αναζήτηση Διεύθυνσης:</strong> Εύρεση συγκεκριμένης τοποθεσίας<br/>
+🔄 <strong>Περιστροφή Κάτοψης:</strong> Προσαρμογή στον προσανατολισμό του κτιρίου<br/>
+📏 <strong>Κλίμακα Μετρήσεων:</strong> Ακριβής μετατροπή cm→m, mm→m<br/>
+🎯 <strong>Επικάλυψη Χάρτη:</strong> Real-time προβολή στη σωστή τοποθεσία<br/>
+📐 <strong>Διαστάσεις Χώρου:</strong> Αυτόματος υπολογισμός επιφανειών<br/><br/>
+🏆 <em><strong>Ακριβής γεωεντοπισμός αυξάνει το ενδιαφέρον 76%</strong> και επιταχύνει τις αποφάσεις αγοράς!</em>`,
+    category: 'property'
   }
 };
 

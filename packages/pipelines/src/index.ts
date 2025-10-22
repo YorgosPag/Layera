@@ -1,27 +1,19 @@
 /**
- * @layera/pipelines
- * Enterprise pipeline components and workflows for the Layera platform
+ * @layera/pipelines - Enterprise Pipeline Discovery & Management System
+ *
+ * Αυτόματη ανακάλυψη και συγχρονισμός pipeline steps χωρίς manual configuration.
+ * Enterprise-grade pipeline state management για scalable εφαρμογές.
  */
 
-// Unified Pipeline System
-export * from '../unified/UnifiedPipelineModal';
-export * from '../unified/UnifiedPipelineContent';
-export * from '../unified/hooks/useUnifiedPipeline';
-export * from '../unified/hooks/useModalContainer';
-export * from '../unified/hooks/useMediaQuery';
-export * from '../unified/utils/stepperConfig';
-
-// Steps
-export * from '../unified/steps/CategoryStep';
-export * from '../unified/steps/DetailsStep';
-export * from '../unified/steps/AvailabilityStep';
-export * from '../unified/steps/AvailabilityDetailsStep';
-export * from '../unified/steps/LocationStep';
-export * from '../unified/steps/LayoutStep';
-export * from '../unified/steps/CompleteStep';
-export * from '../unified/steps/EmploymentTypeStep';
-export * from '../unified/steps/IntentStep';
-export * from '../unified/steps/TransactionTypeStep';
+// Enterprise Auto-Discovery Pipeline System
+export { PipelineDiscovery } from './context/PipelineDiscovery';
+export type {
+  CategoryType,
+  IntentType,
+  PipelineStepId,
+  PipelineStep,
+  PipelineState
+} from './context/PipelineDiscovery';
 
 // Version
 export const LAYERA_PIPELINES_VERSION = '1.0.0';

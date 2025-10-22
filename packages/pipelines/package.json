@@ -3,8 +3,15 @@
   "version": "1.0.0",
   "description": "Enterprise pipeline components and workflows for the Layera platform",
   "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -22,17 +29,6 @@
   "author": "Layera Team",
   "license": "ISC",
   "dependencies": {
-    "@layera/buttons": "*",
-    "@layera/cards": "*",
-    "@layera/constants": "*",
-    "@layera/forms": "*",
-    "@layera/geocoding": "*",
-    "@layera/icons": "*",
-    "@layera/layout": "*",
-    "@layera/modals": "*",
-    "@layera/progress-stepper": "*",
-    "@layera/tolgee": "*",
-    "@layera/typography": "*",
     "react": "^18.0.0"
   },
   "devDependencies": {

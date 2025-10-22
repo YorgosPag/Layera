@@ -741,6 +741,47 @@
     "hideRulers": "Hide Rulers"
   },
   "pipeline": {
+    "newEntry": {
+      "title": "New Entry"
+    },
+    "category": {
+      "selection": {
+        "title": "Category Selection"
+      },
+      "property": {
+        "title": "Property",
+        "description": "List a property for sale, rent or create a search alert."
+      },
+      "job": {
+        "title": "Jobs",
+        "description": "Offer a job position or declare your availability in a specific area."
+      }
+    },
+    "intent": {
+      "selection": {
+        "title": "{{category}} - Listing Type"
+      },
+      "offer": {
+        "property": {
+          "title": "I Want to Offer",
+          "description": "List a property for sale or rent."
+        },
+        "job": {
+          "title": "I Want to Offer Position",
+          "description": "Post a job listing for an available position."
+        }
+      },
+      "search": {
+        "property": {
+          "title": "I Want to Search (Geo-Alert)",
+          "description": "Create an alert for future properties in an area."
+        },
+        "job": {
+          "title": "Looking for Job",
+          "description": "Declare your availability and skills in an area."
+        }
+      }
+    },
     "categories": {
       "property": {
         "title": "Property"
