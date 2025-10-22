@@ -17,6 +17,7 @@ export type Category = 'property' | 'job';
 export interface CategoryStepProps {
   onNext: (category: Category) => void;
   isVisible?: boolean;
+  currentStepId?: string; // Νέο prop για να ξέρει σε ποιο step είμαστε
 }
 
 /**
@@ -24,9 +25,26 @@ export interface CategoryStepProps {
  * Διασφαλίζει ότι οι κάρτες χωράνε τέλεια στην οθόνη χωρίς overflow
  */
 export const CategoryStep: React.FC<CategoryStepProps> = ({
-  isVisible = true
+  onNext,
+  isVisible = true,
+  currentStepId = 'category'
 }) => {
   const { t } = useLayeraTranslation();
+
+  console.log('🎯 CategoryStep Debug:', {
+    isVisible,
+    currentStepId,
+    componentRendering: true
+  });
+
+  // Reset state όταν επιστρέφουμε στο "category" step
+  React.useEffect(() => {
+    if (currentStepId === 'category') {
+      setShowNextSteps(false);
+      setSelectedCategory(null);
+      console.log('🔄 Reset to category step - showing initial cards');
+    }
+  }, [currentStepId]);
   const [showPropertyInfo, setShowPropertyInfo] = useState(false);
   const [showJobInfo, setShowJobInfo] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
@@ -44,11 +62,11 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
     top: '93px', // Κάτω από το floating stepper (45px + 40px + 8px spacing)
     left: '8px',
     right: '8px',
-    display: (isVisible && !showNextSteps) ? 'flex' : 'none', // Κρύβω όταν εμφανίζονται νέες κάρτες
-    flexDirection: 'row', // Αλλαγή σε row για δίπλα-δίπλα τοποθέτηση
+    display: (isVisible && !showNextSteps) ? 'flex' : 'none', // Κρύψε όταν εμφανίζονται οι επόμενες κάρτες
+    flexDirection: 'row', // Δίπλα-δίπλα τοποθέτηση
     gap: '8px',
     padding: '0',
-    zIndex: 100, // Κάτω από το floating stepper (9999)
+    zIndex: 9998, // Λίγο κάτω από το floating stepper (9999) αλλά πάνω από όλα τα άλλα
     overflowX: 'hidden',
     WebkitOverflowScrolling: 'touch'
   };
@@ -71,18 +89,18 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
     position: 'relative'
   };
 
-  // Property card με πράσινο περίγραμμα και εντελώς διαφανές φόντο σαν τζάμι
+  // Property card με πράσινο περίγραμμα και διαφανές φόντο σαν τζάμι
   const propertyCardStyles: React.CSSProperties = {
     ...baseCardStyles,
-    backgroundColor: 'rgba(255, 255, 255, 0)', // Πλήρως διαφανές
+    backgroundColor: 'rgba(16, 185, 129, 0.05)', // Ελάχιστα ορατό πράσινο φόντο
     border: '2px solid #10b981', // Πράσινο περίγραμμα
     backdropFilter: 'none' // Καθόλου blur - σαν τζάμι
   };
 
-  // Job card με γαλάζιο περίγραμμα και εντελώς διαφανές φόντο σαν τζάμι
+  // Job card με γαλάζιο περίγραμμα και διαφανές φόντο σαν τζάμι
   const jobCardStyles: React.CSSProperties = {
     ...baseCardStyles,
-    backgroundColor: 'rgba(255, 255, 255, 0)', // Πλήρως διαφανές
+    backgroundColor: 'rgba(59, 130, 246, 0.05)', // Ελάχιστα ορατό γαλάζιο φόντο
     border: '2px solid #3b82f6', // Γαλάζιο περίγραμμα
     backdropFilter: 'none' // Καθόλου blur - σαν τζάμι
   };
@@ -127,9 +145,16 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
     if ('vibrate' in navigator) {
       navigator.vibrate(30);
     }
-    // Αντί να καλέσουμε onNext, εμφανίζουμε τις επόμενες κάρτες
+    // Επιλογή κατηγορίας και προχώρηση στο επόμενο step
     setSelectedCategory(category);
     setShowNextSteps(true);
+
+    // Καλούμε το onNext για να προχωρήσει το stepper στο επόμενο step
+    if (onNext) {
+      setTimeout(() => {
+        onNext(category);
+      }, 100); // Μικρή καθυστέρηση για smooth transition
+    }
   };
 
   return (
@@ -240,21 +265,19 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
         display: 'flex',
         flexDirection: 'row',
         gap: '8px',
-        zIndex: 150 // Πάνω από τις αρχικές κάρτες
+        padding: '0',
+        zIndex: 9998, // Ίδιο z-index με τις αρχικές κάρτες
+        overflowX: 'hidden',
+        WebkitOverflowScrolling: 'touch'
       }}>
         {selectedCategory === 'property' ? (
           <>
             {/* Πώληση Card */}
             <div style={{
-              flex: 1,
-              backgroundColor: 'rgba(255, 255, 255, 0)',
-              border: '2px solid #10b981',
-              borderRadius: '12px',
-              padding: '16px',
-              cursor: 'pointer',
-              textAlign: 'center',
-              transition: 'all 0.2s ease',
-              position: 'relative'
+              ...baseCardStyles,
+              backgroundColor: 'rgba(16, 185, 129, 0.05)', // Ελάχιστα ορατό πράσινο φόντο
+              border: '2px solid #10b981', // Πράσινο περίγραμμα
+              backdropFilter: 'none' // Καθόλου blur - σαν τζάμι
             }} onClick={() => console.log('Sale clicked')}>
               <div style={{
                 display: 'flex',
@@ -300,15 +323,10 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
 
             {/* Ενοικίαση Card */}
             <div style={{
-              flex: 1,
-              backgroundColor: 'rgba(255, 255, 255, 0)',
-              border: '2px solid #10b981',
-              borderRadius: '12px',
-              padding: '16px',
-              cursor: 'pointer',
-              textAlign: 'center',
-              transition: 'all 0.2s ease',
-              position: 'relative'
+              ...baseCardStyles,
+              backgroundColor: 'rgba(16, 185, 129, 0.05)', // Ελάχιστα ορατό πράσινο φόντο
+              border: '2px solid #10b981', // Πράσινο περίγραμμα
+              backdropFilter: 'none' // Καθόλου blur - σαν τζάμι
             }} onClick={() => console.log('Rent clicked')}>
               <div style={{
                 display: 'flex',
@@ -356,15 +374,10 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
           <>
             {/* Full-time Card */}
             <div style={{
-              flex: 1,
-              backgroundColor: 'rgba(255, 255, 255, 0)',
-              border: '2px solid #3b82f6',
-              borderRadius: '12px',
-              padding: '16px',
-              cursor: 'pointer',
-              textAlign: 'center',
-              transition: 'all 0.2s ease',
-              position: 'relative'
+              ...baseCardStyles,
+              backgroundColor: 'rgba(59, 130, 246, 0.05)', // Ελάχιστα ορατό γαλάζιο φόντο
+              border: '2px solid #3b82f6', // Γαλάζιο περίγραμμα
+              backdropFilter: 'none' // Καθόλου blur - σαν τζάμι
             }} onClick={() => console.log('Full-time clicked')}>
               <div style={{
                 display: 'flex',
@@ -410,15 +423,10 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
 
             {/* Part-time Card */}
             <div style={{
-              flex: 1,
-              backgroundColor: 'rgba(255, 255, 255, 0)',
-              border: '2px solid #3b82f6',
-              borderRadius: '12px',
-              padding: '16px',
-              cursor: 'pointer',
-              textAlign: 'center',
-              transition: 'all 0.2s ease',
-              position: 'relative'
+              ...baseCardStyles,
+              backgroundColor: 'rgba(59, 130, 246, 0.05)', // Ελάχιστα ορατό γαλάζιο φόντο
+              border: '2px solid #3b82f6', // Γαλάζιο περίγραμμα
+              backdropFilter: 'none' // Καθόλου blur - σαν τζάμι
             }} onClick={() => console.log('Part-time clicked')}>
               <div style={{
                 display: 'flex',

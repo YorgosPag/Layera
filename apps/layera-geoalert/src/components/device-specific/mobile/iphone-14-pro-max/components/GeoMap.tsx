@@ -10,18 +10,44 @@
  */
 
 import React, { useEffect } from 'react';
+import { MapContainer } from '../../../../map/MapContainer';
+
+interface DrawnArea {
+  id: string;
+  type: 'polygon' | 'marker';
+  coordinates: number[][];
+  name: string;
+  nameTemplate?: string;
+  nameNumber?: number;
+  area?: number;
+  category: 'real_estate' | 'jobs';
+  isVisible?: boolean;
+  opacity?: number;
+  metadata?: {
+    price?: number;
+    squareMeters?: number;
+    rooms?: number;
+    propertyType?: string;
+    salary?: number;
+    workingHours?: string;
+    company?: string;
+    jobType?: string;
+  };
+}
 
 export interface GeoMapProps {
-  // Props ειδικά για iPhone 14 Pro Max
+  onAreaCreated?: (area: DrawnArea) => void;
+  onNewEntryClick?: () => void;
+  isIPhone14ProMaxDevice?: boolean;
 }
 
 /**
  * iPhone 14 Pro Max-specific UI elements για το GeoMap
  * Βελτιστοποιημένο για την ειδική οθόνη και χαρακτηριστικά του iPhone 14 Pro Max
  */
-export const GeoMap: React.FC<GeoMapProps> = () => {
+export const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated, onNewEntryClick, isIPhone14ProMaxDevice = true }) => {
   // Debug info for device detection
-  console.log('🎯 GeoMap: Component rendered!');
+  console.log('🎯 iPhone 14 Pro Max GeoMap: Component rendered!');
   console.log('🎯 Device Info:', {
     userAgent: navigator.userAgent,
     screenWidth: window.screen.width,
@@ -33,13 +59,21 @@ export const GeoMap: React.FC<GeoMapProps> = () => {
 
   // Minimal setup - καμία global CSS modification
   useEffect(() => {
-    console.log('🎯 GeoMap: Setup complete - no global CSS changes needed');
+    console.log('🎯 iPhone 14 Pro Max GeoMap: Setup complete - using MapContainer');
   }, []);
 
   return (
-    <>
-      {/* iPhone 14 Pro Max specific features θα προστεθούν εδώ */}
-      {/* π.χ. Dynamic Island interactions, optimized touch targets, κλπ */}
-    </>
+    <div style={{
+      width: '100%',
+      height: '100vh',
+      position: 'relative'
+    }}>
+      <MapContainer
+        onAreaCreated={onAreaCreated}
+        onNewEntryClick={onNewEntryClick}
+        hideDrawingControls={true}
+        isIPhone14ProMaxDevice={isIPhone14ProMaxDevice}
+      />
+    </div>
   );
 };
