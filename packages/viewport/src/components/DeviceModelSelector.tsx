@@ -13,6 +13,7 @@ export type DeviceModel =
   | 'Samsung Galaxy S23 Ultra'
   | 'Samsung Galaxy S24'
   | 'Samsung Galaxy S24 Ultra'
+  | 'Samsung Galaxy A35'
   | 'Samsung Galaxy Z Fold 5'
   | 'Samsung Galaxy Z Flip 5'
   | 'Google Pixel 5'
@@ -46,6 +47,7 @@ const deviceSpecs: Record<DeviceModel, DeviceSpecs> = {
   'Samsung Galaxy S23 Ultra': { width: 412, height: 908, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: '#000000' },
   'Samsung Galaxy S24': { width: 393, height: 851, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: '#1c1c1e' },
   'Samsung Galaxy S24 Ultra': { width: 412, height: 926, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: '#000000' },
+  'Samsung Galaxy A35': { width: 390, height: 844, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 30, frameColor: '#1c1c1e' },
   'Samsung Galaxy Z Fold 5': { width: 904, height: 905, scale: 0.8, hasNotch: false, hasHomeBar: false, borderRadius: 30, frameColor: '#000000' },
   'Samsung Galaxy Z Flip 5': { width: 390, height: 876, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: '#1c1c1e' },
   'Google Pixel 5': { width: 393, height: 851, scale: 1, hasNotch: false, hasHomeBar: true, borderRadius: 30, frameColor: '#202124' },
@@ -70,6 +72,10 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
   const [position, setPosition] = useState({ x: 50, y: 60 }); // Position as percentage for x, pixels for y
   const [isDragging, setIsDragging] = useState(false);
 
+  React.useEffect(() => {
+    console.log('🎯 DeviceModelSelector mounted! Samsung Galaxy A35 should be available.');
+  }, []);
+
   const deviceCategories = {
     'iPhones': ['iPhone X', 'iPhone 8', 'iPhone 8 Plus', 'iPhone 12 Pro', 'iPhone 14 Pro Max'] as DeviceModel[],
     'Samsung': [
@@ -80,6 +86,7 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
       'Samsung Galaxy S22 Ultra',
       'Samsung Galaxy S22',
       'Samsung Galaxy S21',
+      'Samsung Galaxy A35',
       'Samsung Galaxy Z Fold 5',
       'Samsung Galaxy Z Flip 5'
     ] as DeviceModel[],

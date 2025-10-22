@@ -41,7 +41,7 @@ export const DEVICE_CONFIG = {
 export const UI_CONFIG = {
   floatingStepper: {
     position: {
-      top: 45, // Κοντά στο Dynamic Island
+      top: 15, // Πιο ψηλά στην κορυφή του κινητού
       left: 8,
       right: 8
     },
@@ -55,7 +55,16 @@ export const UI_CONFIG = {
   },
   categoryStep: {
     position: {
-      top: 93,
+      top: 63, // Κοντά στο stepper (15 + 40 + 8 margin)
+      left: 8,
+      right: 8
+    },
+    zIndex: 9998,
+    gap: 8
+  },
+  categoryStepContainers: {
+    position: {
+      top: 63, // ΙΔΙΑ θέση με το categoryStep - όλες οι κάρτες στο ίδιο ύψος
       left: 8,
       right: 8
     },
@@ -64,7 +73,7 @@ export const UI_CONFIG = {
   },
   mobileGeoMap: {
     position: {
-      top: 70,
+      top: 150, // Κάτω από όλες τις κάρτες (105 + περίπου 45px για containers)
       left: 10,
       right: 10
     },

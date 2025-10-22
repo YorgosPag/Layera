@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { RoleGuard, useAuthContext } from '@layera/auth-bridge'
 import { ThemeProvider } from '@layera/theme-switcher'
-import { DeviceOverrideProvider, DeviceSimulator, DeviceSwitcher } from '@layera/viewport'
+import { DeviceOverrideProvider, DeviceSimulator } from '@layera/viewport'
 import { TolgeeProvider } from '@layera/tolgee'
 // Enterprise LEGO Styles - Central Import
 import '@layera/styles'
@@ -16,6 +16,7 @@ import Settings from './pages/Settings'
 import Data from './pages/Data'
 import AdminRoles from './pages/AdminRoles'
 import Support from './components/Support'
+import { DeviceFrameWrapper } from './components/DeviceFrameWrapper'
 import './App.css'
 
 // Protected Route wrapper που χρησιμοποιεί το νέο RoleGuard
@@ -56,7 +57,8 @@ function App() {
       <ThemeProvider defaultTheme="system" storageKey="layera-id-theme">
         <DeviceOverrideProvider>
           <DeviceSimulator>
-          <Router>
+          <DeviceFrameWrapper enabled={true}>
+            <Router>
             <Routes>
             <Route path="/" element={<Navigate to="/dashboard" />} />
             <Route path="/login" element={<Login />} />
@@ -115,17 +117,7 @@ function App() {
             </Routes>
           </Router>
 
-          {/* Device Controls - Εμφανίζονται στην επικεφαλίδα για testing */}
-          <DeviceSwitcher
-            position="top-center"
-            labels={{
-              auto: 'Auto',
-              mobile: 'Mobile',
-              tablet: 'Tablet',
-              desktop: 'Desktop',
-              overrideActive: 'Override Active'
-            }}
-          />
+          </DeviceFrameWrapper>
         </DeviceSimulator>
       </DeviceOverrideProvider>
     </ThemeProvider>

@@ -106,21 +106,6 @@ declare const DeviceOverrideProvider: React.FC<{
  * Enhanced useViewport hook που υποστηρίζει manual override
  */
 declare const useViewportWithOverride: () => ViewportInfo;
-interface DeviceSwitcherProps {
-    position?: 'top-left' | 'top-center' | 'top-right';
-    showInProduction?: boolean;
-    labels?: {
-        auto?: string;
-        mobile?: string;
-        tablet?: string;
-        desktop?: string;
-        overrideActive?: string;
-    };
-}
-/**
- * Device Switcher Button για manual testing
- */
-declare const DeviceSwitcher: React.FC<DeviceSwitcherProps>;
 
 /**
  * DeviceSimulator Component
@@ -137,4 +122,21 @@ interface DeviceSimulatorProps {
  */
 declare const DeviceSimulator: React.FC<DeviceSimulatorProps>;
 
-export { DesktopOnly, DeviceOverrideProvider, DeviceSimulator, DeviceSwitcher, type DeviceType, MobileAndTablet, MobileOnly, type Orientation, type ResponsiveConfig, ResponsiveContainer, TabletAndDesktop, TabletOnly, type ViewportBreakpoints, ViewportDebugger, type ViewportInfo, useIsDesktop, useIsMobile, useIsTablet, useOrientation, useViewport, useViewportWithOverride };
+type DeviceModel = 'iPhone X' | 'iPhone 8' | 'iPhone 8 Plus' | 'iPhone 12 Pro' | 'iPhone 14 Pro Max' | 'Samsung Galaxy S21' | 'Samsung Galaxy S22' | 'Samsung Galaxy S22 Ultra' | 'Samsung Galaxy S23' | 'Samsung Galaxy S23 Ultra' | 'Samsung Galaxy S24' | 'Samsung Galaxy S24 Ultra' | 'Samsung Galaxy A35' | 'Samsung Galaxy Z Fold 5' | 'Samsung Galaxy Z Flip 5' | 'Google Pixel 5' | 'iPad Air' | 'iPad Pro 11"' | 'iPad Pro 12.9"' | 'Surface Pro 7' | 'MacBook Pro 13"' | 'iMac 24"';
+interface DeviceSpecs {
+    width: number;
+    height: number;
+    scale: number;
+    hasNotch: boolean;
+    hasHomeBar: boolean;
+    borderRadius: number;
+    frameColor: string;
+}
+interface DeviceModelSelectorProps {
+    onModelSelect: (model: DeviceModel | null) => void;
+    currentModel: DeviceModel | null;
+}
+declare const DeviceModelSelector: React.FC<DeviceModelSelectorProps>;
+declare const getDeviceSpecs: (model: DeviceModel) => DeviceSpecs;
+
+export { DesktopOnly, type DeviceModel, DeviceModelSelector, DeviceOverrideProvider, DeviceSimulator, type DeviceType, MobileAndTablet, MobileOnly, type Orientation, type ResponsiveConfig, ResponsiveContainer, TabletAndDesktop, TabletOnly, type ViewportBreakpoints, ViewportDebugger, type ViewportInfo, getDeviceSpecs, useIsDesktop, useIsMobile, useIsTablet, useOrientation, useViewport, useViewportWithOverride };

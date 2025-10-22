@@ -32,9 +32,14 @@ export {
 export { ViewportDebugger } from './components/ViewportDebugger';
 
 export {
-  DeviceSwitcher,
   DeviceOverrideProvider,
   useViewportWithOverride
-} from './components/DeviceSwitcher';
+} from './components/DeviceOverrideProvider';
 
 export { DeviceSimulator } from './components/DeviceSimulator';
+
+export {
+  DeviceModelSelector,
+  getDeviceSpecs,
+  type DeviceModel
+} from './components/DeviceModelSelector';

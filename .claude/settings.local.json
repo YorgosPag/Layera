@@ -122,7 +122,8 @@
       "Bash(gh auth:*)",
       "Bash(gh repo list:*)",
       "Bash(gh:*)",
-      "Read(//c//**)"
+      "Read(//c//**)",
+      "Bash(__NEW_LINE__ ✅ Κατάσταση: Desktop/mobile/MacBook Pro 13\" λειτουργούν τέλεια\n⚠️ Εκκρεμεί: Tablets/iMac white space debugging\n\n📍 Επόμενο: CSS debugging με colored backgrounds για ακριβή εντοπισμό\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
     ],
     "deny": [],
     "ask": []

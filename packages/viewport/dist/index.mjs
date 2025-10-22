@@ -224,40 +224,6 @@ var THEME_COLORS = {
   info: "var(--layera-bg-info)",
   neutral: "var(--layera-text-secondary)"
 };
-var RefreshIcon = ({
-  size = "md",
-  theme = "neutral",
-  className = "",
-  style = {},
-  onClick
-}) => {
-  const iconSize = typeof size === "number" ? size : ICON_SIZES[size];
-  const color = THEME_COLORS[theme];
-  return /* @__PURE__ */ jsxs(
-    "svg",
-    {
-      width: iconSize,
-      height: iconSize,
-      viewBox: "0 0 24 24",
-      fill: "none",
-      stroke: color,
-      strokeWidth: 2,
-      strokeLinecap: "round",
-      strokeLinejoin: "round",
-      className: `viewport-icon ${className}`,
-      style,
-      onClick,
-      role: onClick ? "button" : "img",
-      tabIndex: onClick ? 0 : void 0,
-      children: [
-        /* @__PURE__ */ jsx2("path", { d: "M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" }),
-        /* @__PURE__ */ jsx2("path", { d: "M21 3v5h-5" }),
-        /* @__PURE__ */ jsx2("path", { d: "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" }),
-        /* @__PURE__ */ jsx2("path", { d: "M8 16H3v5" })
-      ]
-    }
-  );
-};
 var MobileIcon = ({
   size = "md",
   theme = "neutral",
@@ -515,9 +481,9 @@ var ViewportDebugger = ({
   ] });
 };
 
-// src/components/DeviceSwitcher.tsx
+// src/components/DeviceOverrideProvider.tsx
 import { useState as useState3, createContext, useContext } from "react";
-import { jsx as jsx4, jsxs as jsxs3 } from "react/jsx-runtime";
+import { jsx as jsx4 } from "react/jsx-runtime";
 var DeviceOverrideContext = createContext({
   overrideDevice: null,
   setOverrideDevice: () => {
@@ -541,93 +507,6 @@ var useViewportWithOverride = () => {
     isDesktop: overrideDevice === "desktop"
   };
 };
-var DeviceSwitcher = ({
-  position = "top-center",
-  showInProduction = false,
-  labels = {}
-}) => {
-  const { overrideDevice, setOverrideDevice } = useContext(DeviceOverrideContext);
-  const originalViewport = useViewport();
-  if (process.env.NODE_ENV === "production" && !showInProduction) {
-    return null;
-  }
-  const getPositionStyles = () => {
-    const baseStyles = {
-      position: "fixed",
-      zIndex: 9998,
-      // Below debugger
-      backdropFilter: "blur(8px)",
-      borderRadius: "8px",
-      border: "1px solid color-mix(in srgb, var(--layera-border-primary) 60%, transparent 40%)",
-      padding: "0.5rem"
-    };
-    switch (position) {
-      case "top-left":
-        return { ...baseStyles, top: "1rem", left: "1rem" };
-      case "top-center":
-        return {
-          ...baseStyles,
-          top: "1rem",
-          left: "50%",
-          transform: "translateX(-50%)"
-        };
-      case "top-right":
-        return { ...baseStyles, top: "1rem", right: "1rem" };
-      default:
-        return { ...baseStyles, top: "1rem", right: "1rem" };
-    }
-  };
-  const devices = [
-    { type: null, icon: /* @__PURE__ */ jsx4(RefreshIcon, { size: "sm", theme: "neutral" }), label: labels.auto || "Auto" },
-    { type: "mobile", icon: /* @__PURE__ */ jsx4(MobileIcon, { size: "sm", theme: "neutral" }), label: labels.mobile || "Mobile" },
-    { type: "tablet", icon: /* @__PURE__ */ jsx4(TabletIcon, { size: "sm", theme: "neutral" }), label: labels.tablet || "Tablet" },
-    { type: "desktop", icon: /* @__PURE__ */ jsx4(DesktopIcon, { size: "sm", theme: "neutral" }), label: labels.desktop || "Desktop" }
-  ];
-  const currentDevice = overrideDevice || originalViewport.deviceType;
-  return /* @__PURE__ */ jsxs3("div", { style: getPositionStyles(), children: [
-    /* @__PURE__ */ jsx4("div", { style: {
-      display: "flex",
-      gap: "0.25rem",
-      backgroundColor: "color-mix(in srgb, var(--layera-bg-secondary) 80%, transparent 20%)",
-      borderRadius: "6px",
-      padding: "0.25rem"
-    }, children: devices.map(({ type, icon, label }) => /* @__PURE__ */ jsxs3(
-      "button",
-      {
-        onClick: () => setOverrideDevice(type),
-        style: {
-          background: (type || "auto") === (overrideDevice || "auto") ? "color-mix(in srgb, var(--layera-bg-info) 80%, transparent 20%)" : "color-mix(in srgb, var(--layera-bg-tertiary) 80%, transparent 20%)",
-          border: "none",
-          borderRadius: "4px",
-          color: "var(--layera-text-primary)",
-          padding: "0.5rem 0.75rem",
-          fontSize: "0.75rem",
-          cursor: "pointer",
-          display: "flex",
-          alignItems: "center",
-          gap: "0.25rem",
-          transition: "all 0.2s ease",
-          fontWeight: (type || "auto") === (overrideDevice || "auto") ? "bold" : "normal"
-        },
-        title: `Switch to ${label} mode`,
-        children: [
-          /* @__PURE__ */ jsx4("span", { children: icon }),
-          /* @__PURE__ */ jsx4("span", { children: label })
-        ]
-      },
-      type || "auto"
-    )) }),
-    overrideDevice && /* @__PURE__ */ jsx4("div", { style: {
-      marginTop: "0.5rem",
-      fontSize: "0.75rem",
-      color: "var(--layera-text-on-warning)",
-      textAlign: "center",
-      backgroundColor: "color-mix(in srgb, var(--layera-bg-warning) 80%, transparent 20%)",
-      padding: "0.25rem 0.5rem",
-      borderRadius: "4px"
-    }, children: labels.overrideActive || "Override Active" })
-  ] });
-};
 
 // src/components/DeviceSimulator.tsx
 import { jsx as jsx5 } from "react/jsx-runtime";
@@ -637,17 +516,240 @@ var DeviceSimulator = ({
 }) => {
   return /* @__PURE__ */ jsx5("div", { className: `layera-device-simulator ${className}`, children });
 };
+
+// src/components/DeviceModelSelector.tsx
+import React3, { useState as useState4 } from "react";
+import { jsx as jsx6, jsxs as jsxs3 } from "react/jsx-runtime";
+var deviceSpecs = {
+  "iPhone X": { width: 375, height: 812, scale: 1, hasNotch: true, hasHomeBar: true, borderRadius: 40, frameColor: "#1c1c1e" },
+  "iPhone 8": { width: 375, height: 667, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 25, frameColor: "#f0f0f0" },
+  "iPhone 8 Plus": { width: 414, height: 736, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 25, frameColor: "#f0f0f0" },
+  "iPhone 12 Pro": { width: 390, height: 844, scale: 1, hasNotch: true, hasHomeBar: true, borderRadius: 45, frameColor: "#1c1c1e" },
+  "iPhone 14 Pro Max": { width: 430, height: 932, scale: 1, hasNotch: true, hasHomeBar: true, borderRadius: 50, frameColor: "#1c1c1e" },
+  "Samsung Galaxy S21": { width: 384, height: 854, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: "#000000" },
+  "Samsung Galaxy S22": { width: 390, height: 844, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: "#1c1c1e" },
+  "Samsung Galaxy S22 Ultra": { width: 412, height: 908, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: "#000000" },
+  "Samsung Galaxy S23": { width: 390, height: 844, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: "#1c1c1e" },
+  "Samsung Galaxy S23 Ultra": { width: 412, height: 908, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: "#000000" },
+  "Samsung Galaxy S24": { width: 393, height: 851, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: "#1c1c1e" },
+  "Samsung Galaxy S24 Ultra": { width: 412, height: 926, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: "#000000" },
+  "Samsung Galaxy A35": { width: 390, height: 844, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 30, frameColor: "#1c1c1e" },
+  "Samsung Galaxy Z Fold 5": { width: 904, height: 905, scale: 0.8, hasNotch: false, hasHomeBar: false, borderRadius: 30, frameColor: "#000000" },
+  "Samsung Galaxy Z Flip 5": { width: 390, height: 876, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: "#1c1c1e" },
+  "Google Pixel 5": { width: 393, height: 851, scale: 1, hasNotch: false, hasHomeBar: true, borderRadius: 30, frameColor: "#202124" },
+  "iPad Air": { width: 820, height: 1180, scale: 0.7, hasNotch: false, hasHomeBar: false, borderRadius: 20, frameColor: "#e5e5e7" },
+  'iPad Pro 11"': { width: 834, height: 1194, scale: 0.7, hasNotch: false, hasHomeBar: false, borderRadius: 20, frameColor: "#1c1c1e" },
+  'iPad Pro 12.9"': { width: 1024, height: 1366, scale: 0.6, hasNotch: false, hasHomeBar: false, borderRadius: 20, frameColor: "#1c1c1e" },
+  "Surface Pro 7": { width: 912, height: 1368, scale: 0.6, hasNotch: false, hasHomeBar: false, borderRadius: 0, frameColor: "#000000" },
+  'MacBook Pro 13"': { width: 1440, height: 900, scale: 0.5, hasNotch: false, hasHomeBar: false, borderRadius: 10, frameColor: "#e5e5e7" },
+  'iMac 24"': { width: 1920, height: 1080, scale: 0.7, hasNotch: false, hasHomeBar: false, borderRadius: 15, frameColor: "#f0f0f0" }
+};
+var DeviceModelSelector = ({
+  onModelSelect,
+  currentModel
+}) => {
+  const [isOpen, setIsOpen] = useState4(false);
+  const [position, setPosition] = useState4({ x: 50, y: 60 });
+  const [isDragging, setIsDragging] = useState4(false);
+  React3.useEffect(() => {
+    console.log("\u{1F3AF} DeviceModelSelector mounted! Samsung Galaxy A35 should be available.");
+  }, []);
+  const deviceCategories = {
+    "iPhones": ["iPhone X", "iPhone 8", "iPhone 8 Plus", "iPhone 12 Pro", "iPhone 14 Pro Max"],
+    "Samsung": [
+      "Samsung Galaxy S24 Ultra",
+      "Samsung Galaxy S24",
+      "Samsung Galaxy S23 Ultra",
+      "Samsung Galaxy S23",
+      "Samsung Galaxy S22 Ultra",
+      "Samsung Galaxy S22",
+      "Samsung Galaxy S21",
+      "Samsung Galaxy A35",
+      "Samsung Galaxy Z Fold 5",
+      "Samsung Galaxy Z Flip 5"
+    ],
+    "Other Android": ["Google Pixel 5"],
+    "Tablets": ["iPad Air", 'iPad Pro 11"', 'iPad Pro 12.9"', "Surface Pro 7"],
+    "Desktop": ['MacBook Pro 13"', 'iMac 24"']
+  };
+  const handleMouseDown = (e) => {
+    if (e.target.closest("button") && !isOpen) {
+      e.preventDefault();
+      setIsDragging(true);
+      const startX = e.clientX;
+      const startY = e.clientY;
+      const startPos = { ...position };
+      const handleMouseMove = (e2) => {
+        const deltaX = e2.clientX - startX;
+        const deltaY = e2.clientY - startY;
+        const newX = Math.max(5, Math.min(95, startPos.x + deltaX / window.innerWidth * 100));
+        const newY = Math.max(10, Math.min(window.innerHeight - 100, startPos.y + deltaY));
+        setPosition({ x: newX, y: newY });
+      };
+      const handleMouseUp = () => {
+        setIsDragging(false);
+        document.removeEventListener("mousemove", handleMouseMove);
+        document.removeEventListener("mouseup", handleMouseUp);
+      };
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", handleMouseUp);
+    }
+  };
+  return /* @__PURE__ */ jsxs3(
+    "div",
+    {
+      onMouseDown: handleMouseDown,
+      style: {
+        position: "fixed",
+        top: `${position.y}px`,
+        left: `${position.x}%`,
+        transform: "translateX(-50%)",
+        zIndex: 9999,
+        backgroundColor: isDragging ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0.95)",
+        backdropFilter: "blur(10px)",
+        borderRadius: "12px",
+        boxShadow: isDragging ? "0 8px 30px rgba(0,0,0,0.2)" : "0 4px 20px rgba(0,0,0,0.1)",
+        padding: "8px",
+        cursor: isDragging ? "grabbing" : "grab",
+        userSelect: "none",
+        transition: isDragging ? "none" : "all 0.2s ease"
+      },
+      children: [
+        /* @__PURE__ */ jsxs3(
+          "button",
+          {
+            onClick: () => !isDragging && setIsOpen(!isOpen),
+            style: {
+              background: currentModel ? "#4F46E5" : "#6B7280",
+              color: "white",
+              border: "none",
+              borderRadius: "8px",
+              padding: "8px 16px",
+              fontSize: "14px",
+              fontWeight: "600",
+              cursor: "inherit",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              minWidth: "200px",
+              justifyContent: "space-between"
+            },
+            children: [
+              /* @__PURE__ */ jsx6("span", { children: currentModel || "Select Device Model" }),
+              /* @__PURE__ */ jsx6("span", { style: { fontSize: "12px" }, children: isOpen ? "\u25B2" : "\u25BC" })
+            ]
+          }
+        ),
+        isOpen && /* @__PURE__ */ jsxs3("div", { style: {
+          position: "absolute",
+          top: "100%",
+          left: "0",
+          right: "0",
+          marginTop: "8px",
+          backgroundColor: "white",
+          borderRadius: "12px",
+          boxShadow: "0 8px 30px rgba(0,0,0,0.15)",
+          overflow: "hidden",
+          maxHeight: "400px",
+          overflowY: "auto"
+        }, children: [
+          /* @__PURE__ */ jsx6(
+            "button",
+            {
+              onClick: () => {
+                onModelSelect(null);
+                setIsOpen(false);
+              },
+              style: {
+                width: "100%",
+                padding: "10px 16px",
+                border: "none",
+                background: !currentModel ? "#EBF5FF" : "white",
+                cursor: "pointer",
+                textAlign: "left",
+                fontSize: "14px",
+                fontWeight: !currentModel ? "600" : "400",
+                borderBottom: "1px solid #E5E7EB"
+              },
+              children: "\u{1F5A5}\uFE0F Responsive View (No Frame)"
+            }
+          ),
+          Object.entries(deviceCategories).map(([category, devices]) => /* @__PURE__ */ jsxs3("div", { children: [
+            /* @__PURE__ */ jsx6("div", { style: {
+              padding: "8px 16px",
+              fontSize: "12px",
+              fontWeight: "600",
+              color: "#6B7280",
+              backgroundColor: "#F9FAFB",
+              borderTop: "1px solid #E5E7EB",
+              borderBottom: "1px solid #E5E7EB"
+            }, children: category }),
+            devices.map((device) => /* @__PURE__ */ jsxs3(
+              "button",
+              {
+                onClick: () => {
+                  onModelSelect(device);
+                  setIsOpen(false);
+                },
+                style: {
+                  width: "100%",
+                  padding: "10px 16px 10px 32px",
+                  border: "none",
+                  background: currentModel === device ? "#EBF5FF" : "white",
+                  cursor: "pointer",
+                  textAlign: "left",
+                  fontSize: "14px",
+                  fontWeight: currentModel === device ? "600" : "400",
+                  transition: "background 0.2s"
+                },
+                onMouseOver: (e) => {
+                  if (currentModel !== device) {
+                    e.currentTarget.style.background = "#F3F4F6";
+                  }
+                },
+                onMouseOut: (e) => {
+                  if (currentModel !== device) {
+                    e.currentTarget.style.background = "white";
+                  }
+                },
+                children: [
+                  device,
+                  /* @__PURE__ */ jsxs3("span", { style: {
+                    fontSize: "12px",
+                    color: "#9CA3AF",
+                    marginLeft: "8px"
+                  }, children: [
+                    "(",
+                    deviceSpecs[device].width,
+                    "x",
+                    deviceSpecs[device].height,
+                    ")"
+                  ] })
+                ]
+              },
+              device
+            ))
+          ] }, category))
+        ] })
+      ]
+    }
+  );
+};
+var getDeviceSpecs = (model) => {
+  return deviceSpecs[model];
+};
 export {
   DesktopOnly,
+  DeviceModelSelector,
   DeviceOverrideProvider,
   DeviceSimulator,
-  DeviceSwitcher,
   MobileAndTablet,
   MobileOnly,
   ResponsiveContainer,
   TabletAndDesktop,
   TabletOnly,
   ViewportDebugger,
+  getDeviceSpecs,
   useIsDesktop,
   useIsMobile,
   useIsTablet,

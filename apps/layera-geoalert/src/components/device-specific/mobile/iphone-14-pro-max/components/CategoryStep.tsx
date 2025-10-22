@@ -198,7 +198,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
   // Next step container styles
   const nextStepContainerStyles: React.CSSProperties = {
     position: 'fixed',
-    top: '93px',
+    top: `${UI_CONFIG.categoryStepContainers.position.top}px`,
     left: '8px',
     right: '8px',
     display: (showNextSteps && !showTransactionStep && !showAvailabilityStep && !showUploadStep && !showLayoutStep && !showPropertyTypeStep) ? 'flex' : 'none',
@@ -213,7 +213,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
   // Transaction step container styles
   const transactionStepContainerStyles: React.CSSProperties = {
     position: 'fixed',
-    top: '93px',
+    top: `${UI_CONFIG.categoryStepContainers.position.top}px`,
     left: '8px',
     right: '8px',
     display: (showTransactionStep && !showAvailabilityStep && !showUploadStep && !showLayoutStep && !showPropertyTypeStep) ? 'flex' : 'none',
@@ -228,7 +228,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
   // Availability step container styles
   const availabilityStepContainerStyles: React.CSSProperties = {
     position: 'fixed',
-    top: '93px',
+    top: `${UI_CONFIG.categoryStepContainers.position.top}px`,
     left: '8px',
     right: '8px',
     display: (showAvailabilityStep && !showUploadStep && !showLayoutStep && !showPropertyTypeStep) ? 'flex' : 'none',
@@ -243,7 +243,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
   // Upload step container styles - Μεγάλη κάρτα στο μέγεθος δύο καρτών
   const uploadStepContainerStyles: React.CSSProperties = {
     position: 'fixed',
-    top: '93px',
+    top: `${UI_CONFIG.categoryStepContainers.position.top}px`,
     left: '8px',
     right: '8px',
     display: (showUploadStep && !showLayoutStep && !showPropertyTypeStep) ? 'flex' : 'none',
@@ -258,7 +258,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
   // Layout step container styles - Εργαλεία τοποθέτησης και κλίμακας
   const layoutStepContainerStyles: React.CSSProperties = {
     position: 'fixed',
-    top: '93px',
+    top: `${UI_CONFIG.categoryStepContainers.position.top}px`,
     left: '8px',
     right: '8px',
     display: (showLayoutStep && !showPropertyTypeStep) ? 'flex' : 'none',
@@ -274,7 +274,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
   // Property Type step container styles - Επιλογή τύπου ακινήτου
   const propertyTypeStepContainerStyles: React.CSSProperties = {
     position: 'fixed',
-    top: '93px',
+    top: `${UI_CONFIG.categoryStepContainers.position.top}px`,
     left: '8px',
     right: '8px',
     display: showPropertyTypeStep ? 'flex' : 'none',
