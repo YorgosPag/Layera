@@ -5,11 +5,11 @@
  */
 
 import { useState, useEffect, useMemo } from 'react';
-import { iPhone14ProMaxAdapter } from './iPhone14ProMaxAdapter';
+import { iPhone14ProMaxAdapter } from '../adapters/mobile/ios/iPhone14ProMaxAdapter';
 import {
   DeviceDetectionResult,
   DeviceDetectionOptions
-} from './types';
+} from '../types';
 
 export interface UseDeviceDetectionResult extends DeviceDetectionResult {
   refresh: () => void;

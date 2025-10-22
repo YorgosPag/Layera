@@ -11,7 +11,7 @@ import {
   DeviceDetectionOptions,
   DeviceFrame,
   DeviceSpecs
-} from './types';
+} from '../../../types';
 
 export class iPhone14ProMaxAdapter implements DeviceDetectionPort {
   private readonly DEFAULT_FRAME_SELECTOR = '.device-frame-wrapper';

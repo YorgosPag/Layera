@@ -30,7 +30,7 @@ __export(index_exports, {
 });
 module.exports = __toCommonJS(index_exports);
 
-// src/iPhone14ProMaxAdapter.ts
+// src/adapters/mobile/ios/iPhone14ProMaxAdapter.ts
 var iPhone14ProMaxAdapter = class {
   constructor() {
     __publicField(this, "DEFAULT_FRAME_SELECTOR", ".device-frame-wrapper");
@@ -128,7 +128,7 @@ var iPhone14ProMaxAdapter = class {
   }
 };
 
-// src/useDeviceDetection.ts
+// src/hooks/useDeviceDetection.ts
 var import_react = require("react");
 function useDeviceDetection(options = {}) {
   const adapter = (0, import_react.useMemo)(() => new iPhone14ProMaxAdapter(), []);

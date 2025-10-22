@@ -2,7 +2,7 @@ var __defProp = Object.defineProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 
-// src/iPhone14ProMaxAdapter.ts
+// src/adapters/mobile/ios/iPhone14ProMaxAdapter.ts
 var iPhone14ProMaxAdapter = class {
   constructor() {
     __publicField(this, "DEFAULT_FRAME_SELECTOR", ".device-frame-wrapper");
@@ -100,7 +100,7 @@ var iPhone14ProMaxAdapter = class {
   }
 };
 
-// src/useDeviceDetection.ts
+// src/hooks/useDeviceDetection.ts
 import { useState, useEffect, useMemo } from "react";
 function useDeviceDetection(options = {}) {
   const adapter = useMemo(() => new iPhone14ProMaxAdapter(), []);
