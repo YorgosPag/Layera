@@ -8,7 +8,6 @@ import { Button } from '@layera/buttons';
 
 // Micro-modules imports
 import MapCore from '../map/core/MapCore';
-import DrawingTools from '../map/drawing/DrawingTools';
 import { loadLeafletCSS } from '../utils/leaflet/css-loader';
 import { configureGlobalIcons } from '../utils/leaflet/icon-factory';
 import { getCurrentLocation } from '../utils/location/user-location';
@@ -139,11 +138,7 @@ const MapCanvas: React.FC<MapCanvasProps> = ({
     <div className={`relative w-full h-full ${className}`}>
       {/* Main Map */}
       <MapCore onMapReady={handleMapReady}>
-        {/* Drawing Tools Overlay */}
-        <DrawingTools
-          onAreaCreated={handleAreaCreated}
-          isGuest={isGuest}
-        />
+        {/* Drawing Tools migrated to @layera/geo-drawing */}
       </MapCore>
 
       {/* Location Button */}

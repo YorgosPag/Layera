@@ -51,10 +51,7 @@ export interface MapCoreProps {
   children?: React.ReactNode;
 }
 
-export interface DrawingToolsProps {
-  onAreaCreated: (area: Omit<GeoAlertArea, 'id' | 'createdAt' | 'userId'>) => void;
-  isGuest?: boolean; // guest mode δεν μπορεί να save
-}
+// DrawingToolsProps removed - migrated to @layera/geo-drawing
 
 // Event Types
 export interface MapEvents {

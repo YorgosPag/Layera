@@ -7,7 +7,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { MapProvider, useMap } from '@layera/map-core';
-import { useDrawing, DrawingMode } from '@layera/map-drawing';
+import { useDrawing, DrawingMode } from '@layera/geo-drawing';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { useViewportWithOverride } from '@layera/viewport';
 import { Button } from '@layera/buttons';

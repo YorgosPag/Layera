@@ -61,6 +61,7 @@ __export(index_exports, {
   measurementToMapLabel: () => measurementToMapLabel,
   prefetchBuildingOutlines: () => import_geo_mapping.prefetchBuildingOutlines,
   suggestMeasurementMode: () => suggestMeasurementMode,
+  useDrawing: () => useDrawing,
   useGeometrySnap: () => useGeometrySnap,
   useMeasurement: () => useMeasurement,
   useMeasurementFormatter: () => useMeasurementFormatter
@@ -69,7 +70,7 @@ module.exports = __toCommonJS(index_exports);
 
 // src/hooks/useMeasurement.ts
 var import_react = require("react");
-var import_i18n2 = require("@layera/i18n");
+var import_tolgee2 = require("@layera/tolgee");
 
 // src/utils/calculations.ts
 var L = __toESM(require("leaflet"));
@@ -204,7 +205,7 @@ var detectCircleFromThreePoints = (point1, point2, point3) => {
 };
 
 // src/utils/formatters.ts
-var import_i18n = require("@layera/i18n");
+var import_tolgee = require("@layera/tolgee");
 var formatDistance = (meters, decimals = 2) => {
   if (meters === 0) return "0 m";
   if (meters >= 1e3) {
@@ -223,7 +224,7 @@ var formatArea = (sqMeters) => {
   return `${sqMeters.toFixed(2)} m\xB2`;
 };
 var useMeasurementFormatter = () => {
-  const { t } = (0, import_i18n.useLayeraTranslation)();
+  const { t } = (0, import_tolgee.useLayeraTranslation)();
   const formatDistanceWithLabels = (meters, decimals = 2) => {
     if (meters === 0) return `0 ${t("geo-drawing.units.meters")}`;
     if (meters >= 1e3) {
@@ -278,7 +279,7 @@ var formatBearing = (bearing) => {
 // src/hooks/useMeasurement.ts
 var import_notifications = require("@layera/notifications");
 var useMeasurement = () => {
-  const { t } = (0, import_i18n2.useLayeraTranslation)();
+  const { t } = (0, import_tolgee2.useLayeraTranslation)();
   const { addNotification } = (0, import_notifications.useNotifications)();
   const { formatDistanceWithLabels, formatAreaWithLabels } = useMeasurementFormatter();
   const [mode, setMode] = (0, import_react.useState)("distance");
@@ -511,6 +512,49 @@ var useGeometrySnap = (isEnabled = true) => {
     performanceMetrics: null
   };
 };
+
+// src/hooks/useDrawing.ts
+var import_react3 = require("react");
+function useDrawing(options = {}) {
+  const {
+    initialMode = "none",
+    onAreaCreated,
+    onAreaDeleted,
+    onModeChanged
+  } = options;
+  const [drawingMode, setDrawingModeState] = (0, import_react3.useState)(initialMode);
+  const [drawnAreas, setDrawnAreas] = (0, import_react3.useState)([]);
+  const [isDrawing, setIsDrawing] = (0, import_react3.useState)(false);
+  const setDrawingMode = (0, import_react3.useCallback)((mode) => {
+    setDrawingModeState(mode);
+    setIsDrawing(mode !== "none");
+    onModeChanged?.(mode);
+  }, [onModeChanged]);
+  const addArea = (0, import_react3.useCallback)((area) => {
+    setDrawnAreas((prev) => [...prev, area]);
+    onAreaCreated?.(area);
+  }, [onAreaCreated]);
+  const removeArea = (0, import_react3.useCallback)((areaId) => {
+    setDrawnAreas((prev) => prev.filter((area) => area.id !== areaId));
+    onAreaDeleted?.(areaId);
+  }, [onAreaDeleted]);
+  const clearAreas = (0, import_react3.useCallback)(() => {
+    setDrawnAreas([]);
+  }, []);
+  const toggleDrawing = (0, import_react3.useCallback)(() => {
+    setDrawingMode(drawingMode === "none" ? "polygon" : "none");
+  }, [drawingMode, setDrawingMode]);
+  return {
+    drawingMode,
+    setDrawingMode,
+    drawnAreas,
+    addArea,
+    removeArea,
+    clearAreas,
+    isDrawing,
+    toggleDrawing
+  };
+}
 
 // src/utils/geometryDetection.ts
 var DETECTION_THRESHOLDS = {
@@ -1143,6 +1187,7 @@ var GEO_DRAWING_CONSTANTS = {
   measurementToMapLabel,
   prefetchBuildingOutlines,
   suggestMeasurementMode,
+  useDrawing,
   useGeometrySnap,
   useMeasurement,
   useMeasurementFormatter

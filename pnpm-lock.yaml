@@ -48,7 +48,7 @@ importers:
         specifier: file:../../packages/forms
         version: file:packages/forms(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@layera/geo-drawing':
-        specifier: file:../../packages/geo-drawing
+        specifier: file:..\..\packages\geo-drawing
         version: file:packages/geo-drawing(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@layera/geocoding':
         specifier: file:../../packages/geocoding

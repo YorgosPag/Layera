@@ -2,7 +2,7 @@
  * GeoMapNew.tsx - Enterprise Refactored Map Component
  *
  * Αντικαθιστά το monolithic GeoMap.tsx με modular architecture.
- * Χρησιμοποιεί @layera/map-core και @layera/map-drawing packages.
+ * Χρησιμοποιεί @layera/map-core και @layera/geo-drawing packages.
  */
 
 import React, { useState } from 'react';

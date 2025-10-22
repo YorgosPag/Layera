@@ -1,6 +1,6 @@
 // src/hooks/useMeasurement.ts
 import { useState, useCallback, useRef } from "react";
-import { useLayeraTranslation as useLayeraTranslation2 } from "@layera/i18n";
+import { useLayeraTranslation as useLayeraTranslation2 } from "@layera/tolgee";
 
 // src/utils/calculations.ts
 import * as L from "leaflet";
@@ -135,7 +135,7 @@ var detectCircleFromThreePoints = (point1, point2, point3) => {
 };
 
 // src/utils/formatters.ts
-import { useLayeraTranslation } from "@layera/i18n";
+import { useLayeraTranslation } from "@layera/tolgee";
 var formatDistance = (meters, decimals = 2) => {
   if (meters === 0) return "0 m";
   if (meters >= 1e3) {
@@ -450,6 +450,49 @@ var useGeometrySnap = (isEnabled = true) => {
     performanceMetrics: null
   };
 };
+
+// src/hooks/useDrawing.ts
+import { useState as useState3, useCallback as useCallback3 } from "react";
+function useDrawing(options = {}) {
+  const {
+    initialMode = "none",
+    onAreaCreated,
+    onAreaDeleted,
+    onModeChanged
+  } = options;
+  const [drawingMode, setDrawingModeState] = useState3(initialMode);
+  const [drawnAreas, setDrawnAreas] = useState3([]);
+  const [isDrawing, setIsDrawing] = useState3(false);
+  const setDrawingMode = useCallback3((mode) => {
+    setDrawingModeState(mode);
+    setIsDrawing(mode !== "none");
+    onModeChanged?.(mode);
+  }, [onModeChanged]);
+  const addArea = useCallback3((area) => {
+    setDrawnAreas((prev) => [...prev, area]);
+    onAreaCreated?.(area);
+  }, [onAreaCreated]);
+  const removeArea = useCallback3((areaId) => {
+    setDrawnAreas((prev) => prev.filter((area) => area.id !== areaId));
+    onAreaDeleted?.(areaId);
+  }, [onAreaDeleted]);
+  const clearAreas = useCallback3(() => {
+    setDrawnAreas([]);
+  }, []);
+  const toggleDrawing = useCallback3(() => {
+    setDrawingMode(drawingMode === "none" ? "polygon" : "none");
+  }, [drawingMode, setDrawingMode]);
+  return {
+    drawingMode,
+    setDrawingMode,
+    drawnAreas,
+    addArea,
+    removeArea,
+    clearAreas,
+    isDrawing,
+    toggleDrawing
+  };
+}
 
 // src/utils/geometryDetection.ts
 var DETECTION_THRESHOLDS = {
@@ -1081,6 +1124,7 @@ export {
   measurementToMapLabel,
   prefetchBuildingOutlines,
   suggestMeasurementMode,
+  useDrawing,
   useGeometrySnap,
   useMeasurement,
   useMeasurementFormatter

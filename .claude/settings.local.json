@@ -21,7 +21,9 @@
       "Bash(npx tsc:*)",
       "Bash(timeout 5 tail -20 voithitika_docs/localhost.log)",
       "Bash(timeout:*)",
-      "Bash(start http://localhost:3002)"
+      "Bash(start http://localhost:3002)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm -w add @layera/geo-drawing --filter=@layera/geoalert)"
     ],
     "deny": [],
     "ask": []

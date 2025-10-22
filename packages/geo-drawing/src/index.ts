@@ -27,9 +27,24 @@ export type {
   CanvasInteractionEvent
 } from './types';
 
+// Compatibility layer για @layera/map-drawing migration
+export type { DrawnArea } from '@layera/map-core';
+export type DrawingMode = 'none' | 'polygon' | 'marker' | 'circle';
+
+// Legacy drawing interface για backward compatibility
+export interface LegacyDrawingState {
+  activeMode: DrawingMode;
+  drawnAreas: import('@layera/map-core').DrawnArea[];
+}
+
+
 // Core Hooks
 export { useMeasurement } from './hooks/useMeasurement';
 export { useGeometrySnap } from './hooks/useGeometrySnap';
+
+// Legacy compatibility hooks
+export { useDrawing } from './hooks/useDrawing';
+export type { UseDrawingOptions, UseDrawingReturn } from './hooks/useDrawing';
 
 // Components - Temporarily disabled during migration
 // export { MeasurementControls } from './components/MeasurementControls';
