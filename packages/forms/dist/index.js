@@ -54,10 +54,72 @@ __export(index_exports, {
 module.exports = __toCommonJS(index_exports);
 
 // src/components/FormField/FormField.tsx
-var import_react = __toESM(require("react"));
+var import_react3 = __toESM(require("react"));
 var import_constants = require("@layera/constants");
-var import_i18n = require("@layera/i18n");
+
+// ../tolgee/src/provider-minimal.tsx
+var import_react = __toESM(require("react"));
 var import_jsx_runtime = require("react/jsx-runtime");
+var MinimalTolgeeContext = (0, import_react.createContext)(null);
+var useMinimalTolgee = () => {
+  const context = (0, import_react.useContext)(MinimalTolgeeContext);
+  if (!context) {
+    throw new Error("useMinimalTolgee must be used within MinimalTolgeeProvider");
+  }
+  return context;
+};
+
+// ../tolgee/src/config.ts
+var TOLGEE_CONFIG = {
+  // API Configuration
+  apiUrl: typeof process !== "undefined" && process.env?.TOLGEE_API_URL || "https://app.tolgee.io",
+  apiKey: typeof process !== "undefined" && process.env?.TOLGEE_API_KEY || "",
+  // Project Settings
+  projectId: typeof process !== "undefined" && process.env?.TOLGEE_PROJECT_ID || "",
+  // Language Settings
+  defaultLanguage: "el",
+  // Greek as default
+  fallbackLanguage: "en",
+  supportedLanguages: ["el", "en"],
+  // Development Settings
+  isDevelopment: typeof process !== "undefined" && process.env?.NODE_ENV === "development",
+  inContextEditing: typeof process !== "undefined" && process.env?.NODE_ENV === "development",
+  // Cache Settings
+  cacheEnabled: true,
+  cacheExpirationMs: 24 * 60 * 60 * 1e3,
+  // 24 hours
+  // Features
+  features: {
+    autoTranslate: true,
+    machineTranslation: true,
+    inContextEditing: true,
+    screenshots: true,
+    comments: true
+  }
+};
+
+// ../tolgee/src/hooks-minimal.ts
+var import_react2 = require("react");
+function useLayeraTranslation() {
+  const { t, language, changeLanguage } = useMinimalTolgee();
+  return {
+    t,
+    i18n: {
+      language,
+      changeLanguage,
+      languages: {
+        el: "\u0395\u03BB\u03BB\u03B7\u03BD\u03B9\u03BA\u03AC",
+        en: "English"
+      }
+    }
+  };
+}
+
+// ../tolgee/src/components/LanguageSwitcher.tsx
+var import_jsx_runtime2 = require("react/jsx-runtime");
+
+// src/components/FormField/FormField.tsx
+var import_jsx_runtime3 = require("react/jsx-runtime");
 var FormField = ({
   children,
   label,
@@ -74,8 +136,8 @@ var FormField = ({
   className = "",
   id
 }) => {
-  const { t } = (0, import_i18n.useLayeraTranslation)();
-  const fieldId = id || import_react.default.useId();
+  const { t } = useLayeraTranslation();
+  const fieldId = id || import_react3.default.useId();
   const errorId = `${fieldId}-error`;
   const hintId = `${fieldId}-hint`;
   const resolvedLabel = labelKey ? t(labelKey) : label;
@@ -89,20 +151,20 @@ var FormField = ({
     disabled && "layera-form-field--disabled",
     className
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: fieldClasses, children: [
-    resolvedLabel && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: fieldClasses, children: [
+    resolvedLabel && /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
       "label",
       {
         htmlFor: fieldId,
         className: "layera-form-field__label",
         children: [
           resolvedLabel,
-          required && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "layera-form-field__required", "aria-label": t("forms.validation.required"), children: "*" })
+          required && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { className: "layera-form-field__required", "aria-label": t("forms.validation.required"), children: "*" })
         ]
       }
     ),
-    resolvedDescription && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "layera-form-field__description", children: resolvedDescription }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "layera-form-field__control", children: import_react.default.isValidElement(children) ? import_react.default.cloneElement(children, {
+    resolvedDescription && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "layera-form-field__description", children: resolvedDescription }),
+    /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "layera-form-field__control", children: import_react3.default.isValidElement(children) ? import_react3.default.cloneElement(children, {
       id: fieldId,
       "aria-describedby": [
         resolvedError ? errorId : "",
@@ -111,7 +173,7 @@ var FormField = ({
       "aria-invalid": fieldState === import_constants.FORM_STATES.ERROR ? "true" : void 0,
       disabled
     }) : children }),
-    resolvedError && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+    resolvedError && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
       "div",
       {
         id: errorId,
@@ -121,7 +183,7 @@ var FormField = ({
         children: resolvedError
       }
     ),
-    resolvedHint && !resolvedError && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+    resolvedHint && !resolvedError && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
       "div",
       {
         id: hintId,
@@ -133,10 +195,10 @@ var FormField = ({
 };
 
 // src/components/Input/Input.tsx
-var import_react2 = require("react");
+var import_react4 = require("react");
 var import_constants2 = require("@layera/constants");
-var import_jsx_runtime2 = require("react/jsx-runtime");
-var Input = (0, import_react2.forwardRef)(({
+var import_jsx_runtime4 = require("react/jsx-runtime");
+var Input = (0, import_react4.forwardRef)(({
   type = import_constants2.FORM_TYPES.TEXT,
   size = import_constants2.FORM_SIZES.MEDIUM,
   variant = import_constants2.INPUT_VARIANTS.DEFAULT,
@@ -170,9 +232,9 @@ var Input = (0, import_react2.forwardRef)(({
     fullWidth && "layera-input-wrapper--full-width",
     disabled && "layera-input-wrapper--disabled"
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: wrapperClasses, children: [
-    startIcon && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "layera-input__start-icon", children: startIcon }),
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { className: wrapperClasses, children: [
+    startIcon && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "layera-input__start-icon", children: startIcon }),
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
       "input",
       {
         ref,
@@ -183,18 +245,17 @@ var Input = (0, import_react2.forwardRef)(({
         ...props
       }
     ),
-    loading && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "layera-input__loading", children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "layera-input__spinner" }) }),
-    endIcon && !loading && /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { className: "layera-input__end-icon", children: endIcon })
+    loading && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "layera-input__loading", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "layera-input__spinner" }) }),
+    endIcon && !loading && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "layera-input__end-icon", children: endIcon })
   ] });
 });
 Input.displayName = "Input";
 
 // src/components/Select/Select.tsx
-var import_react3 = require("react");
+var import_react5 = require("react");
 var import_constants3 = require("@layera/constants");
-var import_i18n2 = require("@layera/i18n");
-var import_jsx_runtime3 = require("react/jsx-runtime");
-var Select = (0, import_react3.forwardRef)(({
+var import_jsx_runtime5 = require("react/jsx-runtime");
+var Select = (0, import_react5.forwardRef)(({
   options,
   value,
   onChange,
@@ -214,12 +275,12 @@ var Select = (0, import_react3.forwardRef)(({
   className = "",
   ...props
 }, ref) => {
-  const { t } = (0, import_i18n2.useLayeraTranslation)();
-  const [isOpen, setIsOpen] = (0, import_react3.useState)(false);
-  const [searchTerm, setSearchTerm] = (0, import_react3.useState)("");
-  const [highlightedIndex, setHighlightedIndex] = (0, import_react3.useState)(-1);
-  const selectRef = (0, import_react3.useRef)(null);
-  const inputRef = (0, import_react3.useRef)(null);
+  const { t } = useLayeraTranslation();
+  const [isOpen, setIsOpen] = (0, import_react5.useState)(false);
+  const [searchTerm, setSearchTerm] = (0, import_react5.useState)("");
+  const [highlightedIndex, setHighlightedIndex] = (0, import_react5.useState)(-1);
+  const selectRef = (0, import_react5.useRef)(null);
+  const inputRef = (0, import_react5.useRef)(null);
   const resolvedPlaceholder = placeholderKey ? t(placeholderKey) : placeholder;
   const resolvedEmptyMessage = emptyMessageKey ? t(emptyMessageKey) : emptyMessage || t("forms.select.noOptions");
   const filteredOptions = searchable ? options.filter(
@@ -294,7 +355,7 @@ var Select = (0, import_react3.forwardRef)(({
         break;
     }
   };
-  (0, import_react3.useEffect)(() => {
+  (0, import_react5.useEffect)(() => {
     const handleClickOutside = (event) => {
       if (selectRef.current && !selectRef.current.contains(event.target)) {
         setIsOpen(false);
@@ -303,12 +364,12 @@ var Select = (0, import_react3.forwardRef)(({
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-  (0, import_react3.useEffect)(() => {
+  (0, import_react5.useEffect)(() => {
     if (isOpen && searchable && inputRef.current) {
       inputRef.current.focus();
     }
   }, [isOpen, searchable]);
-  return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)(
     "div",
     {
       ref: selectRef,
@@ -321,9 +382,9 @@ var Select = (0, import_react3.forwardRef)(({
       "aria-haspopup": "listbox",
       "aria-disabled": disabled,
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "layera-select__control", children: [
-          startIcon && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "layera-select__start-icon", children: startIcon }),
-          /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "layera-select__value", children: searchable && isOpen ? /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { className: "layera-select__control", children: [
+          startIcon && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: "layera-select__start-icon", children: startIcon }),
+          /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: "layera-select__value", children: searchable && isOpen ? /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
             "input",
             {
               ref: inputRef,
@@ -334,10 +395,10 @@ var Select = (0, import_react3.forwardRef)(({
               placeholder: selectedOption?.label || resolvedPlaceholder,
               onClick: (e) => e.stopPropagation()
             }
-          ) : /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { className: selectedOption ? "" : "layera-select__placeholder", children: selectedOption?.label || resolvedPlaceholder }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "layera-select__indicators", children: [
-            loading && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "layera-select__loading", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "layera-select__spinner" }) }),
-            clearable && value && !loading && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+          ) : /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("span", { className: selectedOption ? "" : "layera-select__placeholder", children: selectedOption?.label || resolvedPlaceholder }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { className: "layera-select__indicators", children: [
+            loading && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: "layera-select__loading", children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: "layera-select__spinner" }) }),
+            clearable && value && !loading && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
               "button",
               {
                 className: "layera-select__clear",
@@ -347,7 +408,7 @@ var Select = (0, import_react3.forwardRef)(({
                 children: "\xD7"
               }
             ),
-            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "layera-select__arrow", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("svg", { width: "12", height: "12", viewBox: "0 0 12 12", fill: "none", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+            /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: "layera-select__arrow", children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("svg", { width: "12", height: "12", viewBox: "0 0 12 12", fill: "none", children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
               "path",
               {
                 d: "M3 4.5L6 7.5L9 4.5",
@@ -359,7 +420,7 @@ var Select = (0, import_react3.forwardRef)(({
             ) }) })
           ] })
         ] }),
-        isOpen && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "layera-select__dropdown", role: "listbox", children: filteredOptions.length > 0 ? filteredOptions.map((option, index) => /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+        isOpen && /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: "layera-select__dropdown", role: "listbox", children: filteredOptions.length > 0 ? filteredOptions.map((option, index) => /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(
           "div",
           {
             className: [
@@ -375,7 +436,7 @@ var Select = (0, import_react3.forwardRef)(({
             children: option.label
           },
           option.value
-        )) : /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "layera-select__empty", children: resolvedEmptyMessage }) })
+        )) : /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: "layera-select__empty", children: resolvedEmptyMessage }) })
       ]
     }
   );
@@ -383,9 +444,8 @@ var Select = (0, import_react3.forwardRef)(({
 Select.displayName = "Select";
 
 // src/components/FormSection/FormSection.tsx
-var import_react4 = __toESM(require("react"));
-var import_i18n3 = require("@layera/i18n");
-var import_jsx_runtime4 = require("react/jsx-runtime");
+var import_react6 = __toESM(require("react"));
+var import_jsx_runtime6 = require("react/jsx-runtime");
 var FormSection = ({
   children,
   title,
@@ -397,8 +457,8 @@ var FormSection = ({
   collapsible = false,
   defaultCollapsed = false
 }) => {
-  const { t } = (0, import_i18n3.useLayeraTranslation)();
-  const [isCollapsed, setIsCollapsed] = import_react4.default.useState(defaultCollapsed);
+  const { t } = useLayeraTranslation();
+  const [isCollapsed, setIsCollapsed] = import_react6.default.useState(defaultCollapsed);
   const resolvedTitle = titleKey ? t(titleKey) : title;
   const resolvedDescription = descriptionKey ? t(descriptionKey) : description;
   const sectionClasses = [
@@ -412,8 +472,8 @@ var FormSection = ({
       setIsCollapsed(!isCollapsed);
     }
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { className: sectionClasses, children: [
-    (resolvedTitle || icon) && /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: sectionClasses, children: [
+    (resolvedTitle || icon) && /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
       "div",
       {
         className: "layera-form-section__header",
@@ -422,12 +482,12 @@ var FormSection = ({
         tabIndex: collapsible ? 0 : void 0,
         "aria-expanded": collapsible ? !isCollapsed : void 0,
         children: [
-          icon && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "layera-form-section__icon", children: icon }),
-          /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { className: "layera-form-section__header-content", children: [
-            resolvedTitle && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h3", { className: "layera-form-section__title", children: resolvedTitle }),
-            resolvedDescription && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("p", { className: "layera-form-section__description", children: resolvedDescription })
+          icon && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "layera-form-section__icon", children: icon }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { className: "layera-form-section__header-content", children: [
+            resolvedTitle && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("h3", { className: "layera-form-section__title", children: resolvedTitle }),
+            resolvedDescription && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("p", { className: "layera-form-section__description", children: resolvedDescription })
           ] }),
-          collapsible && /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "layera-form-section__toggle", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+          collapsible && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "layera-form-section__toggle", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
             "svg",
             {
               width: "16",
@@ -435,7 +495,7 @@ var FormSection = ({
               viewBox: "0 0 16 16",
               fill: "none",
               className: "layera-form-section__chevron",
-              children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+              children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
                 "path",
                 {
                   d: "M4 6L8 10L12 6",
@@ -450,12 +510,12 @@ var FormSection = ({
         ]
       }
     ),
-    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "layera-form-section__content", children })
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: "layera-form-section__content", children })
   ] });
 };
 
 // src/components/FormActions/FormActions.tsx
-var import_jsx_runtime5 = require("react/jsx-runtime");
+var import_jsx_runtime7 = require("react/jsx-runtime");
 var FormActions = ({
   children,
   align = "right",
@@ -468,14 +528,14 @@ var FormActions = ({
     sticky && "layera-form-actions--sticky",
     className
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: actionsClasses, children: /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: "layera-form-actions__content", children }) });
+  return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: actionsClasses, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "layera-form-actions__content", children }) });
 };
 
 // src/components/TextArea/TextArea.tsx
-var import_react5 = require("react");
+var import_react7 = require("react");
 var import_constants4 = require("@layera/constants");
-var import_jsx_runtime6 = require("react/jsx-runtime");
-var TextArea = (0, import_react5.forwardRef)(({
+var import_jsx_runtime8 = require("react/jsx-runtime");
+var TextArea = (0, import_react7.forwardRef)(({
   size = import_constants4.FORM_SIZES.MEDIUM,
   variant = import_constants4.INPUT_VARIANTS.DEFAULT,
   state = import_constants4.FORM_STATES.DEFAULT,
@@ -524,7 +584,7 @@ var TextArea = (0, import_react5.forwardRef)(({
     maxHeight: maxRows ? `${getMaxHeight()}px` : void 0,
     ...style
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("div", { className: wrapperClasses, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("div", { className: wrapperClasses, children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
     "textarea",
     {
       ref,
@@ -538,10 +598,10 @@ var TextArea = (0, import_react5.forwardRef)(({
 TextArea.displayName = "TextArea";
 
 // src/components/Checkbox/Checkbox.tsx
-var import_react6 = __toESM(require("react"));
+var import_react8 = __toESM(require("react"));
 var import_constants5 = require("@layera/constants");
-var import_jsx_runtime7 = require("react/jsx-runtime");
-var Checkbox = (0, import_react6.forwardRef)(({
+var import_jsx_runtime9 = require("react/jsx-runtime");
+var Checkbox = (0, import_react8.forwardRef)(({
   size = import_constants5.FORM_SIZES.MEDIUM,
   state = import_constants5.FORM_STATES.DEFAULT,
   label,
@@ -588,13 +648,13 @@ var Checkbox = (0, import_react6.forwardRef)(({
     indeterminate && "layera-checkbox__box--indeterminate",
     disabled && "layera-checkbox__box--disabled"
   ].filter(Boolean).join(" ");
-  const inputRef = import_react6.default.useRef(null);
-  import_react6.default.useEffect(() => {
+  const inputRef = import_react8.default.useRef(null);
+  import_react8.default.useEffect(() => {
     if (inputRef.current) {
       inputRef.current.indeterminate = indeterminate;
     }
   }, [indeterminate]);
-  const combinedRef = import_react6.default.useCallback((node) => {
+  const combinedRef = import_react8.default.useCallback((node) => {
     inputRef.current = node;
     if (typeof ref === "function") {
       ref(node);
@@ -604,19 +664,19 @@ var Checkbox = (0, import_react6.forwardRef)(({
   }, [ref]);
   const renderIcon = () => {
     if (loading) {
-      return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "layera-checkbox__spinner" });
+      return /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { className: "layera-checkbox__spinner" });
     }
     if (indeterminate) {
-      return indeterminateIcon || /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "layera-checkbox__minus" });
+      return indeterminateIcon || /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { className: "layera-checkbox__minus" });
     }
     if (checked) {
-      return checkedIcon || /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("svg", { className: "layera-checkbox__check", viewBox: "0 0 24 24", fill: "none", children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("polyline", { points: "20,6 9,17 4,12", stroke: "currentColor", strokeWidth: "2" }) });
+      return checkedIcon || /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("svg", { className: "layera-checkbox__check", viewBox: "0 0 24 24", fill: "none", children: /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("polyline", { points: "20,6 9,17 4,12", stroke: "currentColor", strokeWidth: "2" }) });
     }
     return null;
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: wrapperClasses, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: "layera-checkbox__control", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: wrapperClasses, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "layera-checkbox__control", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
         "input",
         {
           ref: combinedRef,
@@ -628,17 +688,17 @@ var Checkbox = (0, import_react6.forwardRef)(({
           ...props
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: boxClasses, children: renderIcon() })
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { className: boxClasses, children: renderIcon() })
     ] }),
-    (label || description || error) && /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: "layera-checkbox__content", children: [
-      label && /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(
+    (label || description || error) && /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "layera-checkbox__content", children: [
+      label && /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(
         "label",
         {
           htmlFor: checkboxId,
           className: "layera-checkbox__label",
           children: [
             label,
-            props.required && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+            props.required && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
               "span",
               {
                 className: "layera-checkbox__required",
@@ -649,8 +709,8 @@ var Checkbox = (0, import_react6.forwardRef)(({
           ]
         }
       ),
-      description && !error && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "layera-checkbox__description", children: description }),
-      error && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+      description && !error && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { className: "layera-checkbox__description", children: description }),
+      error && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
         "div",
         {
           className: "layera-checkbox__error",
@@ -665,10 +725,10 @@ var Checkbox = (0, import_react6.forwardRef)(({
 Checkbox.displayName = "Checkbox";
 
 // src/components/NumericInput/NumericInput.tsx
-var import_react7 = require("react");
+var import_react9 = require("react");
 var import_constants6 = require("@layera/constants");
-var import_jsx_runtime8 = require("react/jsx-runtime");
-var NumericInput = (0, import_react7.forwardRef)(({
+var import_jsx_runtime10 = require("react/jsx-runtime");
+var NumericInput = (0, import_react9.forwardRef)(({
   size = import_constants6.FORM_SIZES.MEDIUM,
   state = import_constants6.FORM_STATES.DEFAULT,
   value,
@@ -704,12 +764,12 @@ var NumericInput = (0, import_react7.forwardRef)(({
     return translations[key] || key;
   };
   const inputId = id || `numeric-input-${Math.random().toString(36).substr(2, 9)}`;
-  const incrementRef = (0, import_react7.useRef)(null);
-  const decrementRef = (0, import_react7.useRef)(null);
-  const longPressTimerRef = (0, import_react7.useRef)(null);
-  const longPressIntervalRef = (0, import_react7.useRef)(null);
+  const incrementRef = (0, import_react9.useRef)(null);
+  const decrementRef = (0, import_react9.useRef)(null);
+  const longPressTimerRef = (0, import_react9.useRef)(null);
+  const longPressIntervalRef = (0, import_react9.useRef)(null);
   const actualState = error ? import_constants6.FORM_STATES.ERROR : state;
-  const formatDisplayValue = (0, import_react7.useCallback)((val) => {
+  const formatDisplayValue = (0, import_react9.useCallback)((val) => {
     if (val === void 0 || val === null || isNaN(val)) return "";
     if (formatValue) {
       return formatValue(val);
@@ -717,7 +777,7 @@ var NumericInput = (0, import_react7.forwardRef)(({
     const formatted = precision > 0 ? val.toFixed(precision) : val.toString();
     return `${prefix || ""}${formatted}${suffix || ""}`;
   }, [formatValue, precision, prefix, suffix]);
-  const parseInputValue = (0, import_react7.useCallback)((inputVal) => {
+  const parseInputValue = (0, import_react9.useCallback)((inputVal) => {
     if (!inputVal.trim()) return void 0;
     let cleanValue = inputVal;
     if (prefix) cleanValue = cleanValue.replace(prefix, "");
@@ -728,7 +788,7 @@ var NumericInput = (0, import_react7.forwardRef)(({
     const parsed = parseFloat(cleanValue);
     return isNaN(parsed) ? void 0 : parsed;
   }, [parseValue, prefix, suffix]);
-  const validateValue = (0, import_react7.useCallback)((val) => {
+  const validateValue = (0, import_react9.useCallback)((val) => {
     if (val === void 0) return void 0;
     let constrainedValue = val;
     if (min !== void 0 && constrainedValue < min) constrainedValue = min;
@@ -738,7 +798,7 @@ var NumericInput = (0, import_react7.forwardRef)(({
     }
     return constrainedValue;
   }, [min, max, precision]);
-  const incrementValue = (0, import_react7.useCallback)(() => {
+  const incrementValue = (0, import_react9.useCallback)(() => {
     const currentValue = value || 0;
     const newValue = currentValue + step;
     const validatedValue = validateValue(newValue);
@@ -746,7 +806,7 @@ var NumericInput = (0, import_react7.forwardRef)(({
       onChange(validatedValue);
     }
   }, [value, step, validateValue, onChange]);
-  const decrementValue = (0, import_react7.useCallback)(() => {
+  const decrementValue = (0, import_react9.useCallback)(() => {
     const currentValue = value || 0;
     const newValue = currentValue - step;
     const validatedValue = validateValue(newValue);
@@ -754,7 +814,7 @@ var NumericInput = (0, import_react7.forwardRef)(({
       onChange(validatedValue);
     }
   }, [value, step, validateValue, onChange]);
-  const handleInputChange = (0, import_react7.useCallback)((event) => {
+  const handleInputChange = (0, import_react9.useCallback)((event) => {
     const inputValue = event.target.value;
     const parsedValue = parseInputValue(inputValue);
     const validatedValue = validateValue(parsedValue);
@@ -762,7 +822,7 @@ var NumericInput = (0, import_react7.forwardRef)(({
       onChange(validatedValue);
     }
   }, [parseInputValue, validateValue, onChange]);
-  const handleWheel = (0, import_react7.useCallback)((event) => {
+  const handleWheel = (0, import_react9.useCallback)((event) => {
     if (!enableWheel || disabled || loading) return;
     event.preventDefault();
     const delta = event.deltaY;
@@ -772,7 +832,7 @@ var NumericInput = (0, import_react7.forwardRef)(({
       decrementValue();
     }
   }, [enableWheel, disabled, loading, incrementValue, decrementValue]);
-  const startLongPress = (0, import_react7.useCallback)((action) => {
+  const startLongPress = (0, import_react9.useCallback)((action) => {
     if (!enableLongPress) return;
     if (longPressTimerRef.current) clearTimeout(longPressTimerRef.current);
     if (longPressIntervalRef.current) clearInterval(longPressIntervalRef.current);
@@ -780,7 +840,7 @@ var NumericInput = (0, import_react7.forwardRef)(({
       longPressIntervalRef.current = setInterval(action, 100);
     }, 500);
   }, [enableLongPress]);
-  const stopLongPress = (0, import_react7.useCallback)(() => {
+  const stopLongPress = (0, import_react9.useCallback)(() => {
     if (longPressTimerRef.current) {
       clearTimeout(longPressTimerRef.current);
       longPressTimerRef.current = null;
@@ -790,7 +850,7 @@ var NumericInput = (0, import_react7.forwardRef)(({
       longPressIntervalRef.current = null;
     }
   }, []);
-  (0, import_react7.useEffect)(() => {
+  (0, import_react9.useEffect)(() => {
     return () => {
       stopLongPress();
     };
@@ -813,10 +873,10 @@ var NumericInput = (0, import_react7.forwardRef)(({
   ].filter(Boolean).join(" ");
   const canIncrement = !disabled && !loading && (max === void 0 || (value || 0) < max);
   const canDecrement = !disabled && !loading && (min === void 0 || (value || 0) > min);
-  return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: wrapperClasses, children: [
-    label && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("label", { htmlFor: inputId, className: "layera-numeric-input__label", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: wrapperClasses, children: [
+    label && /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("label", { htmlFor: inputId, className: "layera-numeric-input__label", children: [
       label,
-      props.required && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+      props.required && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
         "span",
         {
           className: "layera-numeric-input__required",
@@ -825,8 +885,8 @@ var NumericInput = (0, import_react7.forwardRef)(({
         }
       )
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "layera-numeric-input__control", children: [
-      stepperPosition === "separate" && showSteppers && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+    /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "layera-numeric-input__control", children: [
+      stepperPosition === "separate" && showSteppers && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
         "button",
         {
           ref: decrementRef,
@@ -838,12 +898,12 @@ var NumericInput = (0, import_react7.forwardRef)(({
           onMouseUp: stopLongPress,
           onMouseLeave: stopLongPress,
           "aria-label": t("forms.decrement"),
-          children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("svg", { viewBox: "0 0 24 24", fill: "none", className: "layera-numeric-input__stepper-icon", children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("line", { x1: "5", y1: "12", x2: "19", y2: "12", stroke: "currentColor", strokeWidth: "2" }) })
+          children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("svg", { viewBox: "0 0 24 24", fill: "none", className: "layera-numeric-input__stepper-icon", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("line", { x1: "5", y1: "12", x2: "19", y2: "12", stroke: "currentColor", strokeWidth: "2" }) })
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "layera-numeric-input__input-wrapper", children: [
-        prefix && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { className: "layera-numeric-input__prefix", children: prefix }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "layera-numeric-input__input-wrapper", children: [
+        prefix && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("span", { className: "layera-numeric-input__prefix", children: prefix }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
           "input",
           {
             ref,
@@ -857,10 +917,10 @@ var NumericInput = (0, import_react7.forwardRef)(({
             ...props
           }
         ),
-        suffix && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { className: "layera-numeric-input__suffix", children: suffix }),
-        loading && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("div", { className: "layera-numeric-input__loading", children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("div", { className: "layera-numeric-input__spinner" }) }),
-        stepperPosition === "inline" && showSteppers && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "layera-numeric-input__steppers-inline", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+        suffix && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("span", { className: "layera-numeric-input__suffix", children: suffix }),
+        loading && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "layera-numeric-input__loading", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "layera-numeric-input__spinner" }) }),
+        stepperPosition === "inline" && showSteppers && /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "layera-numeric-input__steppers-inline", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
             "button",
             {
               type: "button",
@@ -871,10 +931,10 @@ var NumericInput = (0, import_react7.forwardRef)(({
               onMouseUp: stopLongPress,
               onMouseLeave: stopLongPress,
               "aria-label": t("forms.decrement"),
-              children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("svg", { viewBox: "0 0 24 24", fill: "none", className: "layera-numeric-input__stepper-icon", children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("line", { x1: "5", y1: "12", x2: "19", y2: "12", stroke: "currentColor", strokeWidth: "2" }) })
+              children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("svg", { viewBox: "0 0 24 24", fill: "none", className: "layera-numeric-input__stepper-icon", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("line", { x1: "5", y1: "12", x2: "19", y2: "12", stroke: "currentColor", strokeWidth: "2" }) })
             }
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
             "button",
             {
               type: "button",
@@ -885,16 +945,16 @@ var NumericInput = (0, import_react7.forwardRef)(({
               onMouseUp: stopLongPress,
               onMouseLeave: stopLongPress,
               "aria-label": t("forms.increment"),
-              children: /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("svg", { viewBox: "0 0 24 24", fill: "none", className: "layera-numeric-input__stepper-icon", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("line", { x1: "12", y1: "5", x2: "12", y2: "19", stroke: "currentColor", strokeWidth: "2" }),
-                /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("line", { x1: "5", y1: "12", x2: "19", y2: "12", stroke: "currentColor", strokeWidth: "2" })
+              children: /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("svg", { viewBox: "0 0 24 24", fill: "none", className: "layera-numeric-input__stepper-icon", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("line", { x1: "12", y1: "5", x2: "12", y2: "19", stroke: "currentColor", strokeWidth: "2" }),
+                /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("line", { x1: "5", y1: "12", x2: "19", y2: "12", stroke: "currentColor", strokeWidth: "2" })
               ] })
             }
           )
         ] })
       ] }),
-      stepperPosition === "right" && showSteppers && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "layera-numeric-input__steppers-right", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+      stepperPosition === "right" && showSteppers && /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "layera-numeric-input__steppers-right", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
           "button",
           {
             ref: incrementRef,
@@ -906,10 +966,10 @@ var NumericInput = (0, import_react7.forwardRef)(({
             onMouseUp: stopLongPress,
             onMouseLeave: stopLongPress,
             "aria-label": t("forms.increment"),
-            children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("svg", { viewBox: "0 0 24 24", fill: "none", className: "layera-numeric-input__stepper-icon", children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("polyline", { points: "18,15 12,9 6,15", stroke: "currentColor", strokeWidth: "2" }) })
+            children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("svg", { viewBox: "0 0 24 24", fill: "none", className: "layera-numeric-input__stepper-icon", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("polyline", { points: "18,15 12,9 6,15", stroke: "currentColor", strokeWidth: "2" }) })
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
           "button",
           {
             ref: decrementRef,
@@ -921,11 +981,11 @@ var NumericInput = (0, import_react7.forwardRef)(({
             onMouseUp: stopLongPress,
             onMouseLeave: stopLongPress,
             "aria-label": t("forms.decrement"),
-            children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("svg", { viewBox: "0 0 24 24", fill: "none", className: "layera-numeric-input__stepper-icon", children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("polyline", { points: "6,9 12,15 18,9", stroke: "currentColor", strokeWidth: "2" }) })
+            children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("svg", { viewBox: "0 0 24 24", fill: "none", className: "layera-numeric-input__stepper-icon", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("polyline", { points: "6,9 12,15 18,9", stroke: "currentColor", strokeWidth: "2" }) })
           }
         )
       ] }),
-      stepperPosition === "separate" && showSteppers && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+      stepperPosition === "separate" && showSteppers && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
         "button",
         {
           ref: incrementRef,
@@ -937,16 +997,16 @@ var NumericInput = (0, import_react7.forwardRef)(({
           onMouseUp: stopLongPress,
           onMouseLeave: stopLongPress,
           "aria-label": t("forms.increment"),
-          children: /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("svg", { viewBox: "0 0 24 24", fill: "none", className: "layera-numeric-input__stepper-icon", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("line", { x1: "12", y1: "5", x2: "12", y2: "19", stroke: "currentColor", strokeWidth: "2" }),
-            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("line", { x1: "5", y1: "12", x2: "19", y2: "12", stroke: "currentColor", strokeWidth: "2" })
+          children: /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("svg", { viewBox: "0 0 24 24", fill: "none", className: "layera-numeric-input__stepper-icon", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("line", { x1: "12", y1: "5", x2: "12", y2: "19", stroke: "currentColor", strokeWidth: "2" }),
+            /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("line", { x1: "5", y1: "12", x2: "19", y2: "12", stroke: "currentColor", strokeWidth: "2" })
           ] })
         }
       )
     ] }),
-    (description || error) && /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "layera-numeric-input__footer", children: [
-      description && !error && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("div", { className: "layera-numeric-input__description", children: description }),
-      error && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+    (description || error) && /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "layera-numeric-input__footer", children: [
+      description && !error && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "layera-numeric-input__description", children: description }),
+      error && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
         "div",
         {
           className: "layera-numeric-input__error",
@@ -961,10 +1021,10 @@ var NumericInput = (0, import_react7.forwardRef)(({
 NumericInput.displayName = "NumericInput";
 
 // src/components/Slider/Slider.tsx
-var import_react8 = require("react");
+var import_react10 = require("react");
 var import_constants7 = require("@layera/constants");
-var import_jsx_runtime9 = require("react/jsx-runtime");
-var Slider = (0, import_react8.forwardRef)(({
+var import_jsx_runtime11 = require("react/jsx-runtime");
+var Slider = (0, import_react10.forwardRef)(({
   size = import_constants7.FORM_SIZES.MEDIUM,
   state = import_constants7.FORM_STATES.DEFAULT,
   value,
@@ -1000,20 +1060,20 @@ var Slider = (0, import_react8.forwardRef)(({
     return translations[key] || key;
   };
   const sliderId = id || `slider-${Math.random().toString(36).substr(2, 9)}`;
-  const trackRef = (0, import_react8.useRef)(null);
-  const [isDragging, setIsDragging] = (0, import_react8.useState)(null);
-  const [showTooltips, setShowTooltips] = (0, import_react8.useState)([false, false]);
+  const trackRef = (0, import_react10.useRef)(null);
+  const [isDragging, setIsDragging] = (0, import_react10.useState)(null);
+  const [showTooltips, setShowTooltips] = (0, import_react10.useState)([false, false]);
   const actualState = error ? import_constants7.FORM_STATES.ERROR : state;
   const currentValues = range && values ? values : [value || min, max];
   const minValue = currentValues[0];
   const maxValue = range ? currentValues[1] : currentValues[0];
-  const formatDisplayValue = (0, import_react8.useCallback)((val) => {
+  const formatDisplayValue = (0, import_react10.useCallback)((val) => {
     if (formatValue) {
       return formatValue(val);
     }
     return val.toString();
   }, [formatValue]);
-  const getValueFromPosition = (0, import_react8.useCallback)((clientX, clientY) => {
+  const getValueFromPosition = (0, import_react10.useCallback)((clientX, clientY) => {
     if (!trackRef.current) return min;
     const rect = trackRef.current.getBoundingClientRect();
     let percentage;
@@ -1029,11 +1089,11 @@ var Slider = (0, import_react8.forwardRef)(({
     const steppedValue = Math.round(rawValue / step) * step;
     return Math.max(min, Math.min(max, steppedValue));
   }, [min, max, step, orientation, reverse]);
-  const getPercentageFromValue = (0, import_react8.useCallback)((val) => {
+  const getPercentageFromValue = (0, import_react10.useCallback)((val) => {
     const percentage = (val - min) / (max - min);
     return reverse ? 100 - percentage * 100 : percentage * 100;
   }, [min, max, reverse]);
-  const handlePointerStart = (0, import_react8.useCallback)((event, thumbIndex) => {
+  const handlePointerStart = (0, import_react10.useCallback)((event, thumbIndex) => {
     if (disabled || loading) return;
     event.preventDefault();
     setIsDragging(thumbIndex);
@@ -1044,7 +1104,7 @@ var Slider = (0, import_react8.forwardRef)(({
     }
     event.target.setPointerCapture(event.pointerId);
   }, [disabled, loading, showTooltip]);
-  const handlePointerMove = (0, import_react8.useCallback)((event) => {
+  const handlePointerMove = (0, import_react10.useCallback)((event) => {
     if (isDragging === null || disabled || loading) return;
     event.preventDefault();
     const newValue = getValueFromPosition(event.clientX, event.clientY);
@@ -1060,13 +1120,13 @@ var Slider = (0, import_react8.forwardRef)(({
       onChange(newValue);
     }
   }, [isDragging, disabled, loading, getValueFromPosition, range, values, onRangeChange, onChange]);
-  const handlePointerEnd = (0, import_react8.useCallback)((event) => {
+  const handlePointerEnd = (0, import_react10.useCallback)((event) => {
     if (isDragging === null) return;
     setIsDragging(null);
     setShowTooltips([false, false]);
     event.target.releasePointerCapture(event.pointerId);
   }, [isDragging]);
-  const handleTrackClick = (0, import_react8.useCallback)((event) => {
+  const handleTrackClick = (0, import_react10.useCallback)((event) => {
     if (disabled || loading || isDragging !== null) return;
     const newValue = getValueFromPosition(event.clientX, event.clientY);
     if (range && values && onRangeChange) {
@@ -1083,7 +1143,7 @@ var Slider = (0, import_react8.forwardRef)(({
       onChange(newValue);
     }
   }, [disabled, loading, isDragging, getValueFromPosition, range, values, onRangeChange, onChange]);
-  const generateMarks = (0, import_react8.useCallback)(() => {
+  const generateMarks = (0, import_react10.useCallback)(() => {
     if (!marks) return [];
     if (Array.isArray(marks)) {
       return marks;
@@ -1154,10 +1214,10 @@ var Slider = (0, import_react8.forwardRef)(({
       return { bottom: `${percent}%` };
     }
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: wrapperClasses, ...props, ref, children: [
-    label && /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("label", { htmlFor: sliderId, className: "layera-slider__label", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: wrapperClasses, ...props, ref, children: [
+    label && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("label", { htmlFor: sliderId, className: "layera-slider__label", children: [
       label,
-      props.required && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+      props.required && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
         "span",
         {
           className: "layera-slider__required",
@@ -1166,41 +1226,41 @@ var Slider = (0, import_react8.forwardRef)(({
         }
       )
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "layera-slider__container", children: [
-      showValue && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { className: "layera-slider__values", children: range ? /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(import_jsx_runtime9.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("span", { className: "layera-slider__value", children: formatDisplayValue(minValue) }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("span", { className: "layera-slider__value-separator", children: "-" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("span", { className: "layera-slider__value", children: formatDisplayValue(maxValue) })
-      ] }) : /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("span", { className: "layera-slider__value", children: formatDisplayValue(maxValue) }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "layera-slider__track-container", children: [
-        sliderMarks.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { className: "layera-slider__marks", children: sliderMarks.map((mark, index) => /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(
+    /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "layera-slider__container", children: [
+      showValue && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "layera-slider__values", children: range ? /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(import_jsx_runtime11.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", { className: "layera-slider__value", children: formatDisplayValue(minValue) }),
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", { className: "layera-slider__value-separator", children: "-" }),
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", { className: "layera-slider__value", children: formatDisplayValue(maxValue) })
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", { className: "layera-slider__value", children: formatDisplayValue(maxValue) }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "layera-slider__track-container", children: [
+        sliderMarks.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "layera-slider__marks", children: sliderMarks.map((mark, index) => /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
           "div",
           {
             className: "layera-slider__mark",
             style: getThumbStyle(mark.value),
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { className: "layera-slider__mark-dot" }),
-              mark.label && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { className: "layera-slider__mark-label", children: mark.label })
+              /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "layera-slider__mark-dot" }),
+              mark.label && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "layera-slider__mark-label", children: mark.label })
             ]
           },
           index
         )) }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
           "div",
           {
             ref: trackRef,
             className: trackClasses,
             onClick: handleTrackClick,
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { className: "layera-slider__track-background" }),
-              /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "layera-slider__track-background" }),
+              /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
                 "div",
                 {
                   className: "layera-slider__track-fill",
                   style: getTrackFillStyle()
                 }
               ),
-              !range && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+              !range && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
                 "div",
                 {
                   className: "layera-slider__thumb",
@@ -1215,11 +1275,11 @@ var Slider = (0, import_react8.forwardRef)(({
                   "aria-valuenow": maxValue,
                   "aria-valuetext": formatDisplayValue(maxValue),
                   tabIndex: disabled ? -1 : 0,
-                  children: showTooltip && showTooltips[0] && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { className: "layera-slider__tooltip", children: formatDisplayValue(maxValue) })
+                  children: showTooltip && showTooltips[0] && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "layera-slider__tooltip", children: formatDisplayValue(maxValue) })
                 }
               ),
-              range && /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(import_jsx_runtime9.Fragment, { children: [
-                /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+              range && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(import_jsx_runtime11.Fragment, { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
                   "div",
                   {
                     className: "layera-slider__thumb layera-slider__thumb--min",
@@ -1234,10 +1294,10 @@ var Slider = (0, import_react8.forwardRef)(({
                     "aria-valuenow": minValue,
                     "aria-valuetext": formatDisplayValue(minValue),
                     tabIndex: disabled ? -1 : 0,
-                    children: showTooltip && showTooltips[0] && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { className: "layera-slider__tooltip", children: formatDisplayValue(minValue) })
+                    children: showTooltip && showTooltips[0] && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "layera-slider__tooltip", children: formatDisplayValue(minValue) })
                   }
                 ),
-                /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+                /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
                   "div",
                   {
                     className: "layera-slider__thumb layera-slider__thumb--max",
@@ -1252,7 +1312,7 @@ var Slider = (0, import_react8.forwardRef)(({
                     "aria-valuenow": maxValue,
                     "aria-valuetext": formatDisplayValue(maxValue),
                     tabIndex: disabled ? -1 : 0,
-                    children: showTooltip && showTooltips[1] && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { className: "layera-slider__tooltip", children: formatDisplayValue(maxValue) })
+                    children: showTooltip && showTooltips[1] && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "layera-slider__tooltip", children: formatDisplayValue(maxValue) })
                   }
                 )
               ] })
@@ -1260,11 +1320,11 @@ var Slider = (0, import_react8.forwardRef)(({
           }
         )
       ] }),
-      loading && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { className: "layera-slider__loading", children: /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { className: "layera-slider__spinner" }) })
+      loading && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "layera-slider__loading", children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "layera-slider__spinner" }) })
     ] }),
-    (description || error) && /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "layera-slider__footer", children: [
-      description && !error && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { className: "layera-slider__description", children: description }),
-      error && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+    (description || error) && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "layera-slider__footer", children: [
+      description && !error && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "layera-slider__description", children: description }),
+      error && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
         "div",
         {
           className: "layera-slider__error",
@@ -1279,9 +1339,9 @@ var Slider = (0, import_react8.forwardRef)(({
 Slider.displayName = "Slider";
 
 // src/components/DatePicker/DatePicker.tsx
-var import_react9 = require("react");
+var import_react11 = require("react");
 var import_constants8 = require("@layera/constants");
-var import_jsx_runtime10 = require("react/jsx-runtime");
+var import_jsx_runtime12 = require("react/jsx-runtime");
 var MONTHS = [
   "January",
   "February",
@@ -1297,7 +1357,7 @@ var MONTHS = [
   "December"
 ];
 var WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-var DatePicker = (0, import_react9.forwardRef)(({
+var DatePicker = (0, import_react11.forwardRef)(({
   size = import_constants8.FORM_SIZES.MEDIUM,
   state = import_constants8.FORM_STATES.DEFAULT,
   value,
@@ -1340,13 +1400,13 @@ var DatePicker = (0, import_react9.forwardRef)(({
     return translations[key] || key;
   };
   const datePickerId = id || `datepicker-${Math.random().toString(36).substr(2, 9)}`;
-  const [isOpen, setIsOpen] = (0, import_react9.useState)(false);
-  const [displayDate, setDisplayDate] = (0, import_react9.useState)(() => value || /* @__PURE__ */ new Date());
-  const [inputValue, setInputValue] = (0, import_react9.useState)("");
-  const containerRef = (0, import_react9.useRef)(null);
-  const inputRef = (0, import_react9.useRef)(null);
+  const [isOpen, setIsOpen] = (0, import_react11.useState)(false);
+  const [displayDate, setDisplayDate] = (0, import_react11.useState)(() => value || /* @__PURE__ */ new Date());
+  const [inputValue, setInputValue] = (0, import_react11.useState)("");
+  const containerRef = (0, import_react11.useRef)(null);
+  const inputRef = (0, import_react11.useRef)(null);
   const actualState = error ? import_constants8.FORM_STATES.ERROR : state;
-  const formatDate = (0, import_react9.useCallback)((date) => {
+  const formatDate = (0, import_react11.useCallback)((date) => {
     if (!date) return "";
     try {
       const year = date.getFullYear();
@@ -1362,7 +1422,7 @@ var DatePicker = (0, import_react9.forwardRef)(({
       return "";
     }
   }, [showTime]);
-  const parseDate = (0, import_react9.useCallback)((dateString) => {
+  const parseDate = (0, import_react11.useCallback)((dateString) => {
     if (!dateString.trim()) return void 0;
     try {
       const date = new Date(dateString);
@@ -1371,16 +1431,16 @@ var DatePicker = (0, import_react9.forwardRef)(({
       return void 0;
     }
   }, []);
-  (0, import_react9.useEffect)(() => {
+  (0, import_react11.useEffect)(() => {
     setInputValue(formatDate(value));
   }, [value, formatDate]);
-  const isDisabled = (0, import_react9.useCallback)((date) => {
+  const isDisabled = (0, import_react11.useCallback)((date) => {
     if (isDateDisabled && isDateDisabled(date)) return true;
     if (minDate && date < minDate) return true;
     if (maxDate && date > maxDate) return true;
     return false;
   }, [isDateDisabled, minDate, maxDate]);
-  const isSelected = (0, import_react9.useCallback)((date) => {
+  const isSelected = (0, import_react11.useCallback)((date) => {
     if (multiple) {
       return multipleValue.some(
         (d) => d.getDate() === date.getDate() && d.getMonth() === date.getMonth() && d.getFullYear() === date.getFullYear()
@@ -1401,7 +1461,7 @@ var DatePicker = (0, import_react9.forwardRef)(({
     }
     return false;
   }, [value, multiple, multipleValue, range, rangeValue]);
-  const handleInputChange = (0, import_react9.useCallback)((event) => {
+  const handleInputChange = (0, import_react11.useCallback)((event) => {
     const newValue = event.target.value;
     setInputValue(newValue);
     const parsedDate = parseDate(newValue);
@@ -1412,7 +1472,7 @@ var DatePicker = (0, import_react9.forwardRef)(({
       setDisplayDate(parsedDate);
     }
   }, [parseDate, isDisabled, onChange]);
-  const handleDateSelect = (0, import_react9.useCallback)((date) => {
+  const handleDateSelect = (0, import_react11.useCallback)((date) => {
     if (isDisabled(date)) return;
     if (multiple) {
       const newValues = isSelected(date) ? multipleValue.filter((d) => d.getTime() !== date.getTime()) : [...multipleValue, date];
@@ -1437,11 +1497,11 @@ var DatePicker = (0, import_react9.forwardRef)(({
       setIsOpen(false);
     }
   }, [isDisabled, isSelected, multiple, multipleValue, onMultipleChange, range, rangeValue, onRangeChange, onChange]);
-  const handleToday = (0, import_react9.useCallback)(() => {
+  const handleToday = (0, import_react11.useCallback)(() => {
     const today = /* @__PURE__ */ new Date();
     handleDateSelect(today);
   }, [handleDateSelect]);
-  const handleClear = (0, import_react9.useCallback)(() => {
+  const handleClear = (0, import_react11.useCallback)(() => {
     if (onChange) {
       onChange(void 0);
     }
@@ -1454,7 +1514,7 @@ var DatePicker = (0, import_react9.forwardRef)(({
     setInputValue("");
     setIsOpen(false);
   }, [onChange, onRangeChange, onMultipleChange]);
-  const navigateMonth = (0, import_react9.useCallback)((direction) => {
+  const navigateMonth = (0, import_react11.useCallback)((direction) => {
     setDisplayDate((prev) => {
       const newDate = new Date(prev);
       if (direction === "prev") {
@@ -1465,7 +1525,7 @@ var DatePicker = (0, import_react9.forwardRef)(({
       return newDate;
     });
   }, []);
-  const generateCalendarDays = (0, import_react9.useCallback)((baseDate) => {
+  const generateCalendarDays = (0, import_react11.useCallback)((baseDate) => {
     const year = baseDate.getFullYear();
     const month = baseDate.getMonth();
     const firstDay = new Date(year, month, 1);
@@ -1480,7 +1540,7 @@ var DatePicker = (0, import_react9.forwardRef)(({
     }
     return days;
   }, []);
-  (0, import_react9.useEffect)(() => {
+  (0, import_react11.useEffect)(() => {
     const handleClickOutside = (event) => {
       if (containerRef.current && !containerRef.current.contains(event.target)) {
         setIsOpen(false);
@@ -1507,10 +1567,10 @@ var DatePicker = (0, import_react9.forwardRef)(({
     `layera-datepicker__input--${actualState}`
   ].filter(Boolean).join(" ");
   const calendarDays = generateCalendarDays(displayDate);
-  return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: wrapperClasses, ref: containerRef, children: [
-    label && /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("label", { htmlFor: datePickerId, className: "layera-datepicker__label", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: wrapperClasses, ref: containerRef, children: [
+    label && /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("label", { htmlFor: datePickerId, className: "layera-datepicker__label", children: [
       label,
-      props.required && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+      props.required && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
         "span",
         {
           className: "layera-datepicker__required",
@@ -1519,8 +1579,8 @@ var DatePicker = (0, import_react9.forwardRef)(({
         }
       )
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "layera-datepicker__input-wrapper", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+    /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "layera-datepicker__input-wrapper", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
         "input",
         {
           ref: ref || inputRef,
@@ -1535,7 +1595,7 @@ var DatePicker = (0, import_react9.forwardRef)(({
           ...props
         }
       ),
-      showCalendar && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+      showCalendar && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
         "button",
         {
           type: "button",
@@ -1543,46 +1603,46 @@ var DatePicker = (0, import_react9.forwardRef)(({
           onClick: () => setIsOpen(!isOpen),
           disabled: disabled || loading,
           "aria-label": t("datepicker.selectDate"),
-          children: /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("svg", { viewBox: "0 0 24 24", fill: "none", className: "layera-datepicker__calendar-icon", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("rect", { x: "3", y: "4", width: "18", height: "18", rx: "2", ry: "2", stroke: "currentColor", strokeWidth: "2" }),
-            /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("line", { x1: "16", y1: "2", x2: "16", y2: "6", stroke: "currentColor", strokeWidth: "2" }),
-            /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("line", { x1: "8", y1: "2", x2: "8", y2: "6", stroke: "currentColor", strokeWidth: "2" }),
-            /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("line", { x1: "3", y1: "10", x2: "21", y2: "10", stroke: "currentColor", strokeWidth: "2" })
+          children: /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("svg", { viewBox: "0 0 24 24", fill: "none", className: "layera-datepicker__calendar-icon", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("rect", { x: "3", y: "4", width: "18", height: "18", rx: "2", ry: "2", stroke: "currentColor", strokeWidth: "2" }),
+            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("line", { x1: "16", y1: "2", x2: "16", y2: "6", stroke: "currentColor", strokeWidth: "2" }),
+            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("line", { x1: "8", y1: "2", x2: "8", y2: "6", stroke: "currentColor", strokeWidth: "2" }),
+            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("line", { x1: "3", y1: "10", x2: "21", y2: "10", stroke: "currentColor", strokeWidth: "2" })
           ] })
         }
       ),
-      loading && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "layera-datepicker__loading", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "layera-datepicker__spinner" }) })
+      loading && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "layera-datepicker__loading", children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "layera-datepicker__spinner" }) })
     ] }),
-    isOpen && showCalendar && /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "layera-datepicker__calendar", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "layera-datepicker__header", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+    isOpen && showCalendar && /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "layera-datepicker__calendar", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "layera-datepicker__header", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
           "button",
           {
             type: "button",
             className: "layera-datepicker__nav",
             onClick: () => navigateMonth("prev"),
             "aria-label": t("datepicker.previous"),
-            children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("svg", { viewBox: "0 0 24 24", fill: "none", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("polyline", { points: "15,18 9,12 15,6", stroke: "currentColor", strokeWidth: "2" }) })
+            children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("svg", { viewBox: "0 0 24 24", fill: "none", children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("polyline", { points: "15,18 9,12 15,6", stroke: "currentColor", strokeWidth: "2" }) })
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "layera-datepicker__month-year", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "layera-datepicker__month-year", children: [
           MONTHS[displayDate.getMonth()],
           " ",
           displayDate.getFullYear()
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
           "button",
           {
             type: "button",
             className: "layera-datepicker__nav",
             onClick: () => navigateMonth("next"),
             "aria-label": t("datepicker.next"),
-            children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("svg", { viewBox: "0 0 24 24", fill: "none", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("polyline", { points: "9,18 15,12 9,6", stroke: "currentColor", strokeWidth: "2" }) })
+            children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("svg", { viewBox: "0 0 24 24", fill: "none", children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("polyline", { points: "9,18 15,12 9,6", stroke: "currentColor", strokeWidth: "2" }) })
           }
         )
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "layera-datepicker__weekdays", children: WEEKDAYS.map((day) => /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "layera-datepicker__weekday", children: day }, day)) }),
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "layera-datepicker__days", children: calendarDays.map((date, index) => {
+      /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "layera-datepicker__weekdays", children: WEEKDAYS.map((day) => /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "layera-datepicker__weekday", children: day }, day)) }),
+      /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "layera-datepicker__days", children: calendarDays.map((date, index) => {
         const isCurrentMonth = date.getMonth() === displayDate.getMonth();
         const isToday = date.getDate() === (/* @__PURE__ */ new Date()).getDate() && date.getMonth() === (/* @__PURE__ */ new Date()).getMonth() && date.getFullYear() === (/* @__PURE__ */ new Date()).getFullYear();
         const dayClasses = [
@@ -1592,7 +1652,7 @@ var DatePicker = (0, import_react9.forwardRef)(({
           isSelected(date) && "layera-datepicker__day--selected",
           isDisabled(date) && "layera-datepicker__day--disabled"
         ].filter(Boolean).join(" ");
-        return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+        return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
           "button",
           {
             type: "button",
@@ -1604,8 +1664,8 @@ var DatePicker = (0, import_react9.forwardRef)(({
           index
         );
       }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "layera-datepicker__footer", children: [
-        showToday && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "layera-datepicker__footer", children: [
+        showToday && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
           "button",
           {
             type: "button",
@@ -1614,7 +1674,7 @@ var DatePicker = (0, import_react9.forwardRef)(({
             children: t("datepicker.today")
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
           "button",
           {
             type: "button",
@@ -1625,9 +1685,9 @@ var DatePicker = (0, import_react9.forwardRef)(({
         )
       ] })
     ] }),
-    (description || error) && /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "layera-datepicker__footer-text", children: [
-      description && !error && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "layera-datepicker__description", children: description }),
-      error && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+    (description || error) && /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "layera-datepicker__footer-text", children: [
+      description && !error && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "layera-datepicker__description", children: description }),
+      error && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
         "div",
         {
           className: "layera-datepicker__error",
@@ -1642,11 +1702,11 @@ var DatePicker = (0, import_react9.forwardRef)(({
 DatePicker.displayName = "DatePicker";
 
 // src/components/InputGroup/InputGroup.tsx
-var import_react10 = __toESM(require("react"));
+var import_react12 = __toESM(require("react"));
 var import_constants9 = require("@layera/constants");
-var import_jsx_runtime11 = require("react/jsx-runtime");
-var InputGroupContext = import_react10.default.createContext(void 0);
-var InputGroupItem = (0, import_react10.forwardRef)(({
+var import_jsx_runtime13 = require("react/jsx-runtime");
+var InputGroupContext = import_react12.default.createContext(void 0);
+var InputGroupItem = (0, import_react12.forwardRef)(({
   name,
   flex,
   minWidth,
@@ -1657,7 +1717,7 @@ var InputGroupItem = (0, import_react10.forwardRef)(({
   children,
   ...props
 }, ref) => {
-  const context = import_react10.default.useContext(InputGroupContext);
+  const context = import_react12.default.useContext(InputGroupContext);
   if (!context) {
     throw new Error("InputGroup.Item must be used within an InputGroup");
   }
@@ -1677,8 +1737,8 @@ var InputGroupItem = (0, import_react10.forwardRef)(({
     grow && "layera-input-group__item--grow",
     className
   ].filter(Boolean).join(" ");
-  const enhancedChildren = import_react10.default.Children.map(children, (child) => {
-    if (import_react10.default.isValidElement(child)) {
+  const enhancedChildren = import_react12.default.Children.map(children, (child) => {
+    if (import_react12.default.isValidElement(child)) {
       const commonProps = {
         size: context.size,
         state: context.state,
@@ -1692,11 +1752,11 @@ var InputGroupItem = (0, import_react10.forwardRef)(({
           context.onItemChange(name, value);
         };
       }
-      return import_react10.default.cloneElement(child, commonProps);
+      return import_react12.default.cloneElement(child, commonProps);
     }
     return child;
   });
-  return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
     "div",
     {
       ref,
@@ -1709,7 +1769,7 @@ var InputGroupItem = (0, import_react10.forwardRef)(({
   );
 });
 InputGroupItem.displayName = "InputGroup.Item";
-var InputGroup = (0, import_react10.forwardRef)(({
+var InputGroup = (0, import_react12.forwardRef)(({
   size = import_constants9.FORM_SIZES.MEDIUM,
   state = import_constants9.FORM_STATES.DEFAULT,
   variant = "connected",
@@ -1737,9 +1797,9 @@ var InputGroup = (0, import_react10.forwardRef)(({
     return translations[key] || key;
   };
   const groupId = id || `input-group-${Math.random().toString(36).substr(2, 9)}`;
-  const [values, setValues] = import_react10.default.useState({});
+  const [values, setValues] = import_react12.default.useState({});
   const actualState = error ? import_constants9.FORM_STATES.ERROR : state;
-  const handleItemChange = (0, import_react10.useCallback)((name, value) => {
+  const handleItemChange = (0, import_react12.useCallback)((name, value) => {
     setValues((prev) => {
       const newValues = { ...prev, [name]: value };
       let validationError;
@@ -1752,7 +1812,7 @@ var InputGroup = (0, import_react10.forwardRef)(({
       return newValues;
     });
   }, [validate, onGroupChange]);
-  const contextValue = (0, import_react10.useMemo)(() => ({
+  const contextValue = (0, import_react12.useMemo)(() => ({
     size,
     state: actualState,
     variant,
@@ -1783,10 +1843,10 @@ var InputGroup = (0, import_react10.forwardRef)(({
     gap: variant === "separate" ? gap : void 0,
     ...props.style
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: wrapperClasses, ref, children: [
-    label && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("label", { htmlFor: groupId, className: "layera-input-group__label", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: wrapperClasses, ref, children: [
+    label && /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("label", { htmlFor: groupId, className: "layera-input-group__label", children: [
       label,
-      required && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+      required && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
         "span",
         {
           className: "layera-input-group__required",
@@ -1795,7 +1855,7 @@ var InputGroup = (0, import_react10.forwardRef)(({
         }
       )
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(InputGroupContext.Provider, { value: contextValue, children: /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
+    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(InputGroupContext.Provider, { value: contextValue, children: /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(
       "div",
       {
         id: groupId,
@@ -1806,13 +1866,13 @@ var InputGroup = (0, import_react10.forwardRef)(({
         ...props,
         children: [
           children,
-          loading && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "layera-input-group__loading", children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "layera-input-group__spinner" }) })
+          loading && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { className: "layera-input-group__loading", children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { className: "layera-input-group__spinner" }) })
         ]
       }
     ) }),
-    (description || error) && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "layera-input-group__footer", children: [
-      description && !error && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "layera-input-group__description", children: description }),
-      error && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+    (description || error) && /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "layera-input-group__footer", children: [
+      description && !error && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { className: "layera-input-group__description", children: description }),
+      error && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
         "div",
         {
           className: "layera-input-group__error",
@@ -1827,7 +1887,7 @@ var InputGroup = (0, import_react10.forwardRef)(({
 InputGroup.Item = InputGroupItem;
 InputGroup.displayName = "InputGroup";
 var useInputGroup = () => {
-  const context = import_react10.default.useContext(InputGroupContext);
+  const context = import_react12.default.useContext(InputGroupContext);
   if (!context) {
     throw new Error("useInputGroup must be used within an InputGroup");
   }

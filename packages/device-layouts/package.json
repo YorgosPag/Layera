@@ -1,0 +1,28 @@
+{
+  "name": "@layera/device-layouts",
+  "version": "1.0.0",
+  "description": "Enterprise device layout orchestrator - Single source of truth για device-specific rendering στο Layera ecosystem",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rimraf dist"
+  },
+  "keywords": ["layera", "device-layouts", "responsive", "orchestrator", "enterprise"],
+  "peerDependencies": {
+    "react": "^18.0.0"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  }
+}

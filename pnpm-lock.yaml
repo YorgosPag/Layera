@@ -32,6 +32,9 @@ importers:
       '@layera/device-detection':
         specifier: workspace:^
         version: link:../../packages/device-detection
+      '@layera/device-layouts':
+        specifier: workspace:^
+        version: link:../../packages/device-layouts
       '@layera/draggable':
         specifier: file:../../packages/draggable
         version: link:../../packages/draggable
@@ -572,6 +575,19 @@ importers:
         version: 7.3.0(postcss@8.5.6)(typescript@5.9.3)
       typescript:
         specifier: ^5.9.3
+        version: 5.9.3
+
+  packages/device-layouts:
+    dependencies:
+      react:
+        specifier: ^18.0.0
+        version: 18.3.1
+    devDependencies:
+      tsup:
+        specifier: ^8.0.0
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)
+      typescript:
+        specifier: ^5.0.0
         version: 5.9.3
 
   packages/draggable:

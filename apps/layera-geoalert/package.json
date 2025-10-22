@@ -16,6 +16,7 @@
     "@layera/cards": "file:../../packages/cards",
     "@layera/database-core": "file:../../packages/database-core",
     "@layera/device-detection": "workspace:^",
+    "@layera/device-layouts": "workspace:^",
     "@layera/draggable": "file:../../packages/draggable",
     "@layera/draggable-fab": "file:../../packages/draggable-fab",
     "@layera/floating-action-buttons": "workspace:^",

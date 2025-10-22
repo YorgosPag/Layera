@@ -1,355 +1,479 @@
-20:59:34.099 App.tsx:279 Opening Unified Pipeline...
-20:59:34.104 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = false
-20:59:34.105 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
-20:59:34.105 GeoHeader.tsx:37 🎯 GeoHeader: current theme = dark
-20:59:34.105 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
-20:59:34.105 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
-20:59:34.105 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
-20:59:34.105 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
-20:59:34.106 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = false
-20:59:34.107 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
-20:59:34.107 GeoHeader.tsx:37 🎯 GeoHeader: current theme = dark
-20:59:34.107 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
-20:59:34.107 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
-20:59:34.107 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
-20:59:34.107 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
-20:59:37.199 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = false
-20:59:37.199 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
-20:59:37.199 GeoHeader.tsx:37 🎯 GeoHeader: current theme = dark
-20:59:37.200 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
-20:59:37.200 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
-20:59:37.200 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
-20:59:37.200 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
-20:59:37.201 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = false
-20:59:37.201 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
-20:59:37.201 GeoHeader.tsx:37 🎯 GeoHeader: current theme = dark
-20:59:37.201 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
-20:59:37.201 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
-20:59:37.202 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
-20:59:37.202 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
-20:59:39.228 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = true
-20:59:39.228 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
-20:59:39.228 GeoHeader.tsx:37 🎯 GeoHeader: current theme = dark
-20:59:39.229 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
-20:59:39.229 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
-20:59:39.229 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
-20:59:39.229 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
-20:59:39.230 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = true
-20:59:39.230 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
-20:59:39.231 GeoHeader.tsx:37 🎯 GeoHeader: current theme = dark
-20:59:39.231 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
-20:59:39.231 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
-20:59:39.231 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
-20:59:39.231 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
-20:59:42.005 Logger.ts:80 [2025-10-22T17:59:42.005Z] [NavigationService] [INFO] Selecting category: property undefined
-20:59:42.005 Logger.ts:86 [2025-10-22T17:59:42.005Z] [NavigationService] [ERROR] Category selection failed NavigationError: Can only select category from first step
-    at NavigationService.selectCategory (NavigationService.ts:61:15)
-    at Object.selectCategory (useNavigation.ts:66:31)
-    at onNext (GeoMapNew.tsx:197:32)
-    at CategoryStep.tsx:312:9
-logToConsole @ Logger.ts:86
-log @ Logger.ts:64
-error @ Logger.ts:45
-selectCategory @ NavigationService.ts:70
-(anonymous) @ useNavigation.ts:66
-onNext @ GeoMapNew.tsx:197
-(anonymous) @ CategoryStep.tsx:312
+02:15:23.757 react-dom_client.js?v=f83853d1:20359 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+02:15:28.490 config.ts:74 i18next: languageChanged el
+02:15:28.495 config.ts:74 i18next: initialized {debug: true, initImmediate: true, ns: Array(2), defaultNS: 'common', fallbackLng: Array(1), …}
+02:15:30.066 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = false
+02:15:30.066 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
+02:15:30.066 GeoHeader.tsx:37 🎯 GeoHeader: current theme = dark
+02:15:30.066 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
+02:15:30.067 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
+02:15:30.067 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
+02:15:30.067 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
+02:15:30.068 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = false
+02:15:30.068 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
+02:15:30.068 GeoHeader.tsx:37 🎯 GeoHeader: current theme = dark
+02:15:30.068 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
+02:15:30.068 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
+02:15:30.068 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
+02:15:30.068 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
+02:15:30.085 DeviceModelSelector.tsx:76 🎯 DeviceModelSelector mounted! Samsung Galaxy A35 should be available.
+02:15:30.126 DeviceModelSelector.tsx:76 🎯 DeviceModelSelector mounted! Samsung Galaxy A35 should be available.
+02:15:33.672 App.tsx:279 Opening Unified Pipeline...
+02:15:33.676 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = false
+02:15:33.676 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
+02:15:33.677 GeoHeader.tsx:37 🎯 GeoHeader: current theme = dark
+02:15:33.677 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
+02:15:33.677 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
+02:15:33.677 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
+02:15:33.677 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
+02:15:33.678 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = false
+02:15:33.678 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
+02:15:33.678 GeoHeader.tsx:37 🎯 GeoHeader: current theme = dark
+02:15:33.678 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
+02:15:33.678 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
+02:15:33.679 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
+02:15:33.679 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
+02:15:35.601 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = false
+02:15:35.601 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
+02:15:35.601 GeoHeader.tsx:37 🎯 GeoHeader: current theme = dark
+02:15:35.601 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
+02:15:35.601 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
+02:15:35.601 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
+02:15:35.602 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
+02:15:35.602 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = false
+02:15:35.602 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
+02:15:35.603 GeoHeader.tsx:37 🎯 GeoHeader: current theme = dark
+02:15:35.603 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
+02:15:35.603 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
+02:15:35.603 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
+02:15:35.603 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
+02:15:35.655 chunk-SB46UB5M.js?v=8ca772a5:1570 Uncaught TypeError: Cannot read properties of undefined (reading '_leaflet_pos')
+    at getPosition (chunk-SB46UB5M.js?v=8ca772a5:1570:19)
+    at NewClass._getMapPanePos (chunk-SB46UB5M.js?v=8ca772a5:2989:18)
+    at NewClass._rawPanBy (chunk-SB46UB5M.js?v=8ca772a5:2831:43)
+    at NewClass.invalidateSize (chunk-SB46UB5M.js?v=8ca772a5:2343:20)
+    at @layera_map-core.js?v=9dcebb69:80:26
+getPosition @ chunk-SB46UB5M.js?v=8ca772a5:1570
+_getMapPanePos @ chunk-SB46UB5M.js?v=8ca772a5:2989
+_rawPanBy @ chunk-SB46UB5M.js?v=8ca772a5:2831
+invalidateSize @ chunk-SB46UB5M.js?v=8ca772a5:2343
+(anonymous) @ @layera_map-core.js?v=9dcebb69:80
 setTimeout
-handleCardClick @ CategoryStep.tsx:311
-onClick @ CategoryStep.tsx:611
-executeDispatch @ react-dom_client.js?v=a19e854c:13821
-runWithFiberInDEV @ react-dom_client.js?v=a19e854c:1027
-processDispatchQueue @ react-dom_client.js?v=a19e854c:13857
-(anonymous) @ react-dom_client.js?v=a19e854c:14280
-batchedUpdates$1 @ react-dom_client.js?v=a19e854c:2686
-dispatchEventForPluginEventSystem @ react-dom_client.js?v=a19e854c:13966
-dispatchEvent @ react-dom_client.js?v=a19e854c:17026
-dispatchDiscreteEvent @ react-dom_client.js?v=a19e854c:17007
-<div>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=a19e854c:253
-BaseCard @ BaseCard.tsx:142
-react_stack_bottom_frame @ react-dom_client.js?v=a19e854c:18763
-renderWithHooksAgain @ react-dom_client.js?v=a19e854c:5844
-renderWithHooks @ react-dom_client.js?v=a19e854c:5780
-updateFunctionComponent @ react-dom_client.js?v=a19e854c:7604
-beginWork @ react-dom_client.js?v=a19e854c:8664
-runWithFiberInDEV @ react-dom_client.js?v=a19e854c:1027
-performUnitOfWork @ react-dom_client.js?v=a19e854c:12748
-workLoopSync @ react-dom_client.js?v=a19e854c:12607
-renderRootSync @ react-dom_client.js?v=a19e854c:12590
-performWorkOnRoot @ react-dom_client.js?v=a19e854c:11940
-performSyncWorkOnRoot @ react-dom_client.js?v=a19e854c:13715
-flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=a19e854c:13608
-processRootScheduleInMicrotask @ react-dom_client.js?v=a19e854c:13631
-(anonymous) @ react-dom_client.js?v=a19e854c:13729
-<BaseCard>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=a19e854c:253
-(anonymous) @ CategoryStep.tsx:606
-renderCards @ CategoryStep.tsx:602
-CategoryStep @ CategoryStep.tsx:652
-react_stack_bottom_frame @ react-dom_client.js?v=a19e854c:18763
-renderWithHooksAgain @ react-dom_client.js?v=a19e854c:5844
-renderWithHooks @ react-dom_client.js?v=a19e854c:5780
-updateFunctionComponent @ react-dom_client.js?v=a19e854c:7604
-beginWork @ react-dom_client.js?v=a19e854c:8664
-runWithFiberInDEV @ react-dom_client.js?v=a19e854c:1027
-performUnitOfWork @ react-dom_client.js?v=a19e854c:12748
-workLoopSync @ react-dom_client.js?v=a19e854c:12607
-renderRootSync @ react-dom_client.js?v=a19e854c:12590
-performWorkOnRoot @ react-dom_client.js?v=a19e854c:11940
-performSyncWorkOnRoot @ react-dom_client.js?v=a19e854c:13715
-flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=a19e854c:13608
-processRootScheduleInMicrotask @ react-dom_client.js?v=a19e854c:13631
-(anonymous) @ react-dom_client.js?v=a19e854c:13729
-<CategoryStep>
-exports.createElement @ chunk-TOILK6HY.js?v=a19e854c:806
-GeoMap @ GeoMapNew.tsx:191
-react_stack_bottom_frame @ react-dom_client.js?v=a19e854c:18763
-renderWithHooksAgain @ react-dom_client.js?v=a19e854c:5844
-renderWithHooks @ react-dom_client.js?v=a19e854c:5780
-updateFunctionComponent @ react-dom_client.js?v=a19e854c:7604
-beginWork @ react-dom_client.js?v=a19e854c:8664
-runWithFiberInDEV @ react-dom_client.js?v=a19e854c:1027
-performUnitOfWork @ react-dom_client.js?v=a19e854c:12748
-workLoopSync @ react-dom_client.js?v=a19e854c:12607
-renderRootSync @ react-dom_client.js?v=a19e854c:12590
-performWorkOnRoot @ react-dom_client.js?v=a19e854c:11940
-performSyncWorkOnRoot @ react-dom_client.js?v=a19e854c:13715
-flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=a19e854c:13608
-processRootScheduleInMicrotask @ react-dom_client.js?v=a19e854c:13631
-(anonymous) @ react-dom_client.js?v=a19e854c:13729
-20:59:42.006 Logger.ts:86 [2025-10-22T17:59:42.006Z] [NavigationService] [ERROR] Handling navigation error NavigationError: Can only select category from first step
-    at NavigationService.selectCategory (NavigationService.ts:61:15)
-    at Object.selectCategory (useNavigation.ts:66:31)
-    at onNext (GeoMapNew.tsx:197:32)
-    at CategoryStep.tsx:312:9
-logToConsole @ Logger.ts:86
-log @ Logger.ts:64
-error @ Logger.ts:45
-handleError @ NavigationService.ts:199
-selectCategory @ NavigationService.ts:71
-(anonymous) @ useNavigation.ts:66
-onNext @ GeoMapNew.tsx:197
-(anonymous) @ CategoryStep.tsx:312
+initializeMap @ @layera_map-core.js?v=9dcebb69:80
+initializeMap @ @layera_map-core.js?v=9dcebb69:142
+(anonymous) @ MapContainer.tsx:34
+react_stack_bottom_frame @ react-dom_client.js?v=f83853d1:18821
+runWithFiberInDEV @ react-dom_client.js?v=f83853d1:1027
+commitHookEffectListMount @ react-dom_client.js?v=f83853d1:9559
+commitHookPassiveMountEffects @ react-dom_client.js?v=f83853d1:9613
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11211
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11372
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11204
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11204
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11204
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11372
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11204
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11204
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11372
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11204
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11372
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11204
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11372
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11372
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11204
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11204
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11372
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11372
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11372
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11204
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11204
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11372
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11204
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11204
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11372
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11204
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11204
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11372
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11204
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11372
+recursivelyTraversePassiveMountEffects @ react-dom_client.js?v=f83853d1:11181
+commitPassiveMountOnFiber @ react-dom_client.js?v=f83853d1:11237
+flushPassiveEffects @ react-dom_client.js?v=f83853d1:13341
+flushPendingEffects @ react-dom_client.js?v=f83853d1:13278
+flushSpawnedWork @ react-dom_client.js?v=f83853d1:13252
+commitRoot @ react-dom_client.js?v=f83853d1:12994
+commitRootWhenReady @ react-dom_client.js?v=f83853d1:12194
+performWorkOnRoot @ react-dom_client.js?v=f83853d1:12128
+performSyncWorkOnRoot @ react-dom_client.js?v=f83853d1:13715
+flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=f83853d1:13608
+flushSyncWork$1 @ react-dom_client.js?v=f83853d1:12257
+scheduleRefresh @ react-dom_client.js?v=f83853d1:382
+(anonymous) @ @react-refresh:228
+performReactRefresh @ @react-refresh:217
+(anonymous) @ @react-refresh:608
+<MapContent>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=896ba03e:253
+MapContainer @ MapContainer.tsx:231
+react_stack_bottom_frame @ react-dom_client.js?v=f83853d1:18763
+renderWithHooksAgain @ react-dom_client.js?v=f83853d1:5844
+renderWithHooks @ react-dom_client.js?v=f83853d1:5780
+updateFunctionComponent @ react-dom_client.js?v=f83853d1:7604
+beginWork @ react-dom_client.js?v=f83853d1:8664
+runWithFiberInDEV @ react-dom_client.js?v=f83853d1:1027
+performUnitOfWork @ react-dom_client.js?v=f83853d1:12748
+workLoopSync @ react-dom_client.js?v=f83853d1:12607
+renderRootSync @ react-dom_client.js?v=f83853d1:12590
+performWorkOnRoot @ react-dom_client.js?v=f83853d1:11940
+performSyncWorkOnRoot @ react-dom_client.js?v=f83853d1:13715
+flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=f83853d1:13608
+flushSyncWork$1 @ react-dom_client.js?v=f83853d1:12257
+scheduleRefresh @ react-dom_client.js?v=f83853d1:382
+(anonymous) @ @react-refresh:228
+performReactRefresh @ @react-refresh:217
+(anonymous) @ @react-refresh:608
+<MapContainer>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=896ba03e:253
+(anonymous) @ GeoMapNew.tsx:115
+react_stack_bottom_frame @ react-dom_client.js?v=f83853d1:18763
+renderWithHooksAgain @ react-dom_client.js?v=f83853d1:5844
+renderWithHooks @ react-dom_client.js?v=f83853d1:5780
+updateFunctionComponent @ react-dom_client.js?v=f83853d1:7604
+beginWork @ react-dom_client.js?v=f83853d1:8664
+runWithFiberInDEV @ react-dom_client.js?v=f83853d1:1027
+performUnitOfWork @ react-dom_client.js?v=f83853d1:12748
+workLoopSync @ react-dom_client.js?v=f83853d1:12607
+renderRootSync @ react-dom_client.js?v=f83853d1:12590
+performWorkOnRoot @ react-dom_client.js?v=f83853d1:11940
+performSyncWorkOnRoot @ react-dom_client.js?v=f83853d1:13715
+flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=f83853d1:13608
+flushSyncWork$1 @ react-dom_client.js?v=f83853d1:12257
+scheduleRefresh @ react-dom_client.js?v=f83853d1:382
+(anonymous) @ @react-refresh:228
+performReactRefresh @ @react-refresh:217
+(anonymous) @ @react-refresh:608
+<...>
+exports.createElement @ chunk-TOILK6HY.js?v=8ca772a5:806
+DeviceLayoutRenderer @ DeviceLayoutRenderer.tsx:154
+react_stack_bottom_frame @ react-dom_client.js?v=f83853d1:18763
+renderWithHooksAgain @ react-dom_client.js?v=f83853d1:5844
+renderWithHooks @ react-dom_client.js?v=f83853d1:5780
+updateFunctionComponent @ react-dom_client.js?v=f83853d1:7604
+beginWork @ react-dom_client.js?v=f83853d1:8664
+runWithFiberInDEV @ react-dom_client.js?v=f83853d1:1027
+performUnitOfWork @ react-dom_client.js?v=f83853d1:12748
+workLoopSync @ react-dom_client.js?v=f83853d1:12607
+renderRootSync @ react-dom_client.js?v=f83853d1:12590
+performWorkOnRoot @ react-dom_client.js?v=f83853d1:11940
+performSyncWorkOnRoot @ react-dom_client.js?v=f83853d1:13715
+flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=f83853d1:13608
+flushSyncWork$1 @ react-dom_client.js?v=f83853d1:12257
+scheduleRefresh @ react-dom_client.js?v=f83853d1:382
+(anonymous) @ @react-refresh:228
+performReactRefresh @ @react-refresh:217
+(anonymous) @ @react-refresh:608
+<DeviceLayoutRenderer>
+exports.jsx @ chunk-6AUVC4ZU.js?v=8ca772a5:253
+ResponsiveMapLayout @ ResponsiveMapLayout.tsx:105
+react_stack_bottom_frame @ react-dom_client.js?v=f83853d1:18763
+renderWithHooksAgain @ react-dom_client.js?v=f83853d1:5844
+renderWithHooks @ react-dom_client.js?v=f83853d1:5780
+updateFunctionComponent @ react-dom_client.js?v=f83853d1:7604
+beginWork @ react-dom_client.js?v=f83853d1:8664
+runWithFiberInDEV @ react-dom_client.js?v=f83853d1:1027
+performUnitOfWork @ react-dom_client.js?v=f83853d1:12748
+workLoopSync @ react-dom_client.js?v=f83853d1:12607
+renderRootSync @ react-dom_client.js?v=f83853d1:12590
+performWorkOnRoot @ react-dom_client.js?v=f83853d1:11940
+performSyncWorkOnRoot @ react-dom_client.js?v=f83853d1:13715
+flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=f83853d1:13608
+flushSyncWork$1 @ react-dom_client.js?v=f83853d1:12257
+scheduleRefresh @ react-dom_client.js?v=f83853d1:382
+(anonymous) @ @react-refresh:228
+performReactRefresh @ @react-refresh:217
+(anonymous) @ @react-refresh:608
+<ResponsiveMapLayout>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=896ba03e:253
+GeoMap @ GeoMapNew.tsx:161
+react_stack_bottom_frame @ react-dom_client.js?v=f83853d1:18763
+renderWithHooksAgain @ react-dom_client.js?v=f83853d1:5844
+renderWithHooks @ react-dom_client.js?v=f83853d1:5780
+updateFunctionComponent @ react-dom_client.js?v=f83853d1:7604
+beginWork @ react-dom_client.js?v=f83853d1:8664
+runWithFiberInDEV @ react-dom_client.js?v=f83853d1:1027
+performUnitOfWork @ react-dom_client.js?v=f83853d1:12748
+workLoopSync @ react-dom_client.js?v=f83853d1:12607
+renderRootSync @ react-dom_client.js?v=f83853d1:12590
+performWorkOnRoot @ react-dom_client.js?v=f83853d1:11940
+performSyncWorkOnRoot @ react-dom_client.js?v=f83853d1:13715
+flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=f83853d1:13608
+flushSyncWork$1 @ react-dom_client.js?v=f83853d1:12257
+scheduleRefresh @ react-dom_client.js?v=f83853d1:382
+(anonymous) @ @react-refresh:228
+performReactRefresh @ @react-refresh:217
+(anonymous) @ @react-refresh:608
+<GeoMap>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=896ba03e:253
+App @ App.tsx:341
+react_stack_bottom_frame @ react-dom_client.js?v=f83853d1:18763
+renderWithHooksAgain @ react-dom_client.js?v=f83853d1:5844
+renderWithHooks @ react-dom_client.js?v=f83853d1:5780
+updateFunctionComponent @ react-dom_client.js?v=f83853d1:7604
+beginWork @ react-dom_client.js?v=f83853d1:8664
+runWithFiberInDEV @ react-dom_client.js?v=f83853d1:1027
+performUnitOfWork @ react-dom_client.js?v=f83853d1:12748
+workLoopSync @ react-dom_client.js?v=f83853d1:12607
+renderRootSync @ react-dom_client.js?v=f83853d1:12590
+performWorkOnRoot @ react-dom_client.js?v=f83853d1:11940
+performSyncWorkOnRoot @ react-dom_client.js?v=f83853d1:13715
+flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=f83853d1:13608
+processRootScheduleInMicrotask @ react-dom_client.js?v=f83853d1:13631
+(anonymous) @ react-dom_client.js?v=f83853d1:13729
+02:15:35.656 chunk-SB46UB5M.js?v=8ca772a5:1570 Uncaught TypeError: Cannot read properties of undefined (reading '_leaflet_pos')
+    at getPosition (chunk-SB46UB5M.js?v=8ca772a5:1570:19)
+    at NewClass._getMapPanePos (chunk-SB46UB5M.js?v=8ca772a5:2989:18)
+    at NewClass._rawPanBy (chunk-SB46UB5M.js?v=8ca772a5:2831:43)
+    at NewClass.invalidateSize (chunk-SB46UB5M.js?v=8ca772a5:2343:20)
+    at @layera_map-core.js?v=9dcebb69:80:26
+getPosition @ chunk-SB46UB5M.js?v=8ca772a5:1570
+_getMapPanePos @ chunk-SB46UB5M.js?v=8ca772a5:2989
+_rawPanBy @ chunk-SB46UB5M.js?v=8ca772a5:2831
+invalidateSize @ chunk-SB46UB5M.js?v=8ca772a5:2343
+(anonymous) @ @layera_map-core.js?v=9dcebb69:80
 setTimeout
-handleCardClick @ CategoryStep.tsx:311
-onClick @ CategoryStep.tsx:611
-executeDispatch @ react-dom_client.js?v=a19e854c:13821
-runWithFiberInDEV @ react-dom_client.js?v=a19e854c:1027
-processDispatchQueue @ react-dom_client.js?v=a19e854c:13857
-(anonymous) @ react-dom_client.js?v=a19e854c:14280
-batchedUpdates$1 @ react-dom_client.js?v=a19e854c:2686
-dispatchEventForPluginEventSystem @ react-dom_client.js?v=a19e854c:13966
-dispatchEvent @ react-dom_client.js?v=a19e854c:17026
-dispatchDiscreteEvent @ react-dom_client.js?v=a19e854c:17007
-<div>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=a19e854c:253
-BaseCard @ BaseCard.tsx:142
-react_stack_bottom_frame @ react-dom_client.js?v=a19e854c:18763
-renderWithHooksAgain @ react-dom_client.js?v=a19e854c:5844
-renderWithHooks @ react-dom_client.js?v=a19e854c:5780
-updateFunctionComponent @ react-dom_client.js?v=a19e854c:7604
-beginWork @ react-dom_client.js?v=a19e854c:8664
-runWithFiberInDEV @ react-dom_client.js?v=a19e854c:1027
-performUnitOfWork @ react-dom_client.js?v=a19e854c:12748
-workLoopSync @ react-dom_client.js?v=a19e854c:12607
-renderRootSync @ react-dom_client.js?v=a19e854c:12590
-performWorkOnRoot @ react-dom_client.js?v=a19e854c:11940
-performSyncWorkOnRoot @ react-dom_client.js?v=a19e854c:13715
-flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=a19e854c:13608
-processRootScheduleInMicrotask @ react-dom_client.js?v=a19e854c:13631
-(anonymous) @ react-dom_client.js?v=a19e854c:13729
-<BaseCard>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=a19e854c:253
-(anonymous) @ CategoryStep.tsx:606
-renderCards @ CategoryStep.tsx:602
-CategoryStep @ CategoryStep.tsx:652
-react_stack_bottom_frame @ react-dom_client.js?v=a19e854c:18763
-renderWithHooksAgain @ react-dom_client.js?v=a19e854c:5844
-renderWithHooks @ react-dom_client.js?v=a19e854c:5780
-updateFunctionComponent @ react-dom_client.js?v=a19e854c:7604
-beginWork @ react-dom_client.js?v=a19e854c:8664
-runWithFiberInDEV @ react-dom_client.js?v=a19e854c:1027
-performUnitOfWork @ react-dom_client.js?v=a19e854c:12748
-workLoopSync @ react-dom_client.js?v=a19e854c:12607
-renderRootSync @ react-dom_client.js?v=a19e854c:12590
-performWorkOnRoot @ react-dom_client.js?v=a19e854c:11940
-performSyncWorkOnRoot @ react-dom_client.js?v=a19e854c:13715
-flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=a19e854c:13608
-processRootScheduleInMicrotask @ react-dom_client.js?v=a19e854c:13631
-(anonymous) @ react-dom_client.js?v=a19e854c:13729
-<CategoryStep>
-exports.createElement @ chunk-TOILK6HY.js?v=a19e854c:806
-GeoMap @ GeoMapNew.tsx:191
-react_stack_bottom_frame @ react-dom_client.js?v=a19e854c:18763
-renderWithHooksAgain @ react-dom_client.js?v=a19e854c:5844
-renderWithHooks @ react-dom_client.js?v=a19e854c:5780
-updateFunctionComponent @ react-dom_client.js?v=a19e854c:7604
-beginWork @ react-dom_client.js?v=a19e854c:8664
-runWithFiberInDEV @ react-dom_client.js?v=a19e854c:1027
-performUnitOfWork @ react-dom_client.js?v=a19e854c:12748
-workLoopSync @ react-dom_client.js?v=a19e854c:12607
-renderRootSync @ react-dom_client.js?v=a19e854c:12590
-performWorkOnRoot @ react-dom_client.js?v=a19e854c:11940
-performSyncWorkOnRoot @ react-dom_client.js?v=a19e854c:13715
-flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=a19e854c:13608
-processRootScheduleInMicrotask @ react-dom_client.js?v=a19e854c:13631
-(anonymous) @ react-dom_client.js?v=a19e854c:13729
-20:59:42.006 Logger.ts:80 [2025-10-22T17:59:42.006Z] [NavigationService] [INFO] Recovered from last known good state undefined
-20:59:42.006 useNavigation.ts:69 Category selection failed: NavigationError: Can only select category from first step
-    at NavigationService.selectCategory (NavigationService.ts:61:15)
-    at Object.selectCategory (useNavigation.ts:66:31)
-    at onNext (GeoMapNew.tsx:197:32)
-    at CategoryStep.tsx:312:9
-(anonymous) @ useNavigation.ts:69
-await in (anonymous)
-onNext @ GeoMapNew.tsx:197
-(anonymous) @ CategoryStep.tsx:312
-setTimeout
-handleCardClick @ CategoryStep.tsx:311
-onClick @ CategoryStep.tsx:611
-executeDispatch @ react-dom_client.js?v=a19e854c:13821
-runWithFiberInDEV @ react-dom_client.js?v=a19e854c:1027
-processDispatchQueue @ react-dom_client.js?v=a19e854c:13857
-(anonymous) @ react-dom_client.js?v=a19e854c:14280
-batchedUpdates$1 @ react-dom_client.js?v=a19e854c:2686
-dispatchEventForPluginEventSystem @ react-dom_client.js?v=a19e854c:13966
-dispatchEvent @ react-dom_client.js?v=a19e854c:17026
-dispatchDiscreteEvent @ react-dom_client.js?v=a19e854c:17007
-<div>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=a19e854c:253
-BaseCard @ BaseCard.tsx:142
-react_stack_bottom_frame @ react-dom_client.js?v=a19e854c:18763
-renderWithHooksAgain @ react-dom_client.js?v=a19e854c:5844
-renderWithHooks @ react-dom_client.js?v=a19e854c:5780
-updateFunctionComponent @ react-dom_client.js?v=a19e854c:7604
-beginWork @ react-dom_client.js?v=a19e854c:8664
-runWithFiberInDEV @ react-dom_client.js?v=a19e854c:1027
-performUnitOfWork @ react-dom_client.js?v=a19e854c:12748
-workLoopSync @ react-dom_client.js?v=a19e854c:12607
-renderRootSync @ react-dom_client.js?v=a19e854c:12590
-performWorkOnRoot @ react-dom_client.js?v=a19e854c:11940
-performSyncWorkOnRoot @ react-dom_client.js?v=a19e854c:13715
-flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=a19e854c:13608
-processRootScheduleInMicrotask @ react-dom_client.js?v=a19e854c:13631
-(anonymous) @ react-dom_client.js?v=a19e854c:13729
-<BaseCard>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=a19e854c:253
-(anonymous) @ CategoryStep.tsx:606
-renderCards @ CategoryStep.tsx:602
-CategoryStep @ CategoryStep.tsx:652
-react_stack_bottom_frame @ react-dom_client.js?v=a19e854c:18763
-renderWithHooksAgain @ react-dom_client.js?v=a19e854c:5844
-renderWithHooks @ react-dom_client.js?v=a19e854c:5780
-updateFunctionComponent @ react-dom_client.js?v=a19e854c:7604
-beginWork @ react-dom_client.js?v=a19e854c:8664
-runWithFiberInDEV @ react-dom_client.js?v=a19e854c:1027
-performUnitOfWork @ react-dom_client.js?v=a19e854c:12748
-workLoopSync @ react-dom_client.js?v=a19e854c:12607
-renderRootSync @ react-dom_client.js?v=a19e854c:12590
-performWorkOnRoot @ react-dom_client.js?v=a19e854c:11940
-performSyncWorkOnRoot @ react-dom_client.js?v=a19e854c:13715
-flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=a19e854c:13608
-processRootScheduleInMicrotask @ react-dom_client.js?v=a19e854c:13631
-(anonymous) @ react-dom_client.js?v=a19e854c:13729
-<CategoryStep>
-exports.createElement @ chunk-TOILK6HY.js?v=a19e854c:806
-GeoMap @ GeoMapNew.tsx:191
-react_stack_bottom_frame @ react-dom_client.js?v=a19e854c:18763
-renderWithHooksAgain @ react-dom_client.js?v=a19e854c:5844
-renderWithHooks @ react-dom_client.js?v=a19e854c:5780
-updateFunctionComponent @ react-dom_client.js?v=a19e854c:7604
-beginWork @ react-dom_client.js?v=a19e854c:8664
-runWithFiberInDEV @ react-dom_client.js?v=a19e854c:1027
-performUnitOfWork @ react-dom_client.js?v=a19e854c:12748
-workLoopSync @ react-dom_client.js?v=a19e854c:12607
-renderRootSync @ react-dom_client.js?v=a19e854c:12590
-performWorkOnRoot @ react-dom_client.js?v=a19e854c:11940
-performSyncWorkOnRoot @ react-dom_client.js?v=a19e854c:13715
-flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=a19e854c:13608
-processRootScheduleInMicrotask @ react-dom_client.js?v=a19e854c:13631
-(anonymous) @ react-dom_client.js?v=a19e854c:13729
-20:59:42.695 Logger.ts:80 [2025-10-22T17:59:42.695Z] [NavigationService] [INFO] Selecting category: property undefined
-20:59:42.696 Logger.ts:80 [2025-10-22T17:59:42.696Z] [NavigationService] [INFO] Category selected successfully: property undefined
-20:59:44.019 CategoryStep.tsx:336 Transaction selected: sale
-20:59:44.571 CategoryStep.tsx:354 Availability selected: now
-20:59:45.091 CategoryStep.tsx:373 Upload card clicked - triggering file upload...
-20:59:47.212 CategoryStep.tsx:385 📁 File selected: Στιγμιότυπο οθόνης 2025-10-22 002651.jpg Type: image/jpeg Size: 0.11 MB
-20:59:47.212 CategoryStep.tsx:391 🗺️ Sending file to map...
-20:59:48.867 CategoryStep.tsx:700 🏁 Layout: Step completed - moving to Property Type
-20:59:49.374 CategoryStep.tsx:710 Property Type step activated
-20:59:50.903 CategoryStep.tsx:433 Property Type selected: apartment
-20:59:51.915 CategoryStep.tsx:442 Property Details step activated
-20:59:51.932 NumericInput.tsx:289 React does not recognize the `thousandSeparator` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `thousandseparator` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
-validateProperty @ react-dom_client.js?v=a19e854c:2460
-warnUnknownProperties @ react-dom_client.js?v=a19e854c:2598
-validatePropertiesInDevelopment @ react-dom_client.js?v=a19e854c:14341
-setInitialProperties @ react-dom_client.js?v=a19e854c:14766
-completeWork @ react-dom_client.js?v=a19e854c:9223
-runWithFiberInDEV @ react-dom_client.js?v=a19e854c:1027
-completeUnitOfWork @ react-dom_client.js?v=a19e854c:12859
-performUnitOfWork @ react-dom_client.js?v=a19e854c:12762
-workLoopSync @ react-dom_client.js?v=a19e854c:12607
-renderRootSync @ react-dom_client.js?v=a19e854c:12590
-performWorkOnRoot @ react-dom_client.js?v=a19e854c:11940
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=a19e854c:13702
-performWorkUntilDeadline @ react-dom_client.js?v=a19e854c:36
-<input>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=a19e854c:253
-NumericInput @ NumericInput.tsx:289
-react_stack_bottom_frame @ react-dom_client.js?v=a19e854c:18763
-renderWithHooksAgain @ react-dom_client.js?v=a19e854c:5844
-renderWithHooks @ react-dom_client.js?v=a19e854c:5780
-updateForwardRef @ react-dom_client.js?v=a19e854c:7326
-beginWork @ react-dom_client.js?v=a19e854c:8874
-runWithFiberInDEV @ react-dom_client.js?v=a19e854c:1027
-performUnitOfWork @ react-dom_client.js?v=a19e854c:12748
-workLoopSync @ react-dom_client.js?v=a19e854c:12607
-renderRootSync @ react-dom_client.js?v=a19e854c:12590
-performWorkOnRoot @ react-dom_client.js?v=a19e854c:11940
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=a19e854c:13702
-performWorkUntilDeadline @ react-dom_client.js?v=a19e854c:36
-<NumericInput>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=a19e854c:253
-PropertyDetailsForm @ PropertyDetailsForm.tsx:195
-react_stack_bottom_frame @ react-dom_client.js?v=a19e854c:18763
-renderWithHooksAgain @ react-dom_client.js?v=a19e854c:5844
-renderWithHooks @ react-dom_client.js?v=a19e854c:5780
-updateFunctionComponent @ react-dom_client.js?v=a19e854c:7604
-beginWork @ react-dom_client.js?v=a19e854c:8664
-runWithFiberInDEV @ react-dom_client.js?v=a19e854c:1027
-performUnitOfWork @ react-dom_client.js?v=a19e854c:12748
-workLoopSync @ react-dom_client.js?v=a19e854c:12607
-renderRootSync @ react-dom_client.js?v=a19e854c:12590
-performWorkOnRoot @ react-dom_client.js?v=a19e854c:11940
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=a19e854c:13702
-performWorkUntilDeadline @ react-dom_client.js?v=a19e854c:36
-<PropertyDetailsForm>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=a19e854c:253
-CategoryStep @ CategoryStep.tsx:738
-react_stack_bottom_frame @ react-dom_client.js?v=a19e854c:18763
-renderWithHooksAgain @ react-dom_client.js?v=a19e854c:5844
-renderWithHooks @ react-dom_client.js?v=a19e854c:5780
-updateFunctionComponent @ react-dom_client.js?v=a19e854c:7604
-beginWork @ react-dom_client.js?v=a19e854c:8664
-runWithFiberInDEV @ react-dom_client.js?v=a19e854c:1027
-performUnitOfWork @ react-dom_client.js?v=a19e854c:12748
-workLoopSync @ react-dom_client.js?v=a19e854c:12607
-renderRootSync @ react-dom_client.js?v=a19e854c:12590
-performWorkOnRoot @ react-dom_client.js?v=a19e854c:11940
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=a19e854c:13702
-performWorkUntilDeadline @ react-dom_client.js?v=a19e854c:36
-20:59:54.539 PropertyDetailsForm.tsx:123 🔧 PropertyDetailsForm: Submit clicked {propertyType: 'apartment', formData: {…}}
-20:59:54.540 PropertyDetailsForm.tsx:126 🔧 PropertyDetailsForm: Validation result: true
-20:59:54.540 PropertyDetailsForm.tsx:129 ✅ PropertyDetailsForm: Validation passed - calling onSubmit
-20:59:54.540 CategoryStep.tsx:507 🏗️ PropertyDetailsForm: Data submitted: {title: 'Διαμέρισμα στο κέντρο', squareMeters: 85, price: 150000, floor: 2, rooms: 3}
-20:59:54.541 CategoryStep.tsx:514 Property Details step completed. Moving to Area Method Selection...
-20:59:55.044 CategoryStep.tsx:520 Area Method Selection step activated
-21:00:02.567 CategoryStep.tsx:450 Area Method selected: manual-input
-21:00:02.567 CategoryStep.tsx:456 Area Method selection completed. Workflow finished.
-21:00:10.859 CategoryStep.tsx:450 Area Method selected: map-drawing
-21:00:10.859 CategoryStep.tsx:456 Area Method selection completed. Workflow finished.
-21:00:12.471 CategoryStep.tsx:450 Area Method selected: floor-plan-upload
-21:00:12.471 CategoryStep.tsx:456 Area Method selection completed. Workflow finished.
-21:00:13.567 CategoryStep.tsx:450 Area Method selected: auto-calculate
-21:00:13.567 CategoryStep.tsx:456 Area Method selection completed. Workflow finished.
+initializeMap @ @layera_map-core.js?v=9dcebb69:80
+initializeMap @ @layera_map-core.js?v=9dcebb69:142
+(anonymous) @ MapContainer.tsx:34
+react_stack_bottom_frame @ react-dom_client.js?v=f83853d1:18821
+runWithFiberInDEV @ react-dom_client.js?v=f83853d1:1027
+commitHookEffectListMount @ react-dom_client.js?v=f83853d1:9559
+commitHookPassiveMountEffects @ react-dom_client.js?v=f83853d1:9613
+reconnectPassiveEffects @ react-dom_client.js?v=f83853d1:11444
+recursivelyTraverseReconnectPassiveEffects @ react-dom_client.js?v=f83853d1:11411
+reconnectPassiveEffects @ react-dom_client.js?v=f83853d1:11488
+recursivelyTraverseReconnectPassiveEffects @ react-dom_client.js?v=f83853d1:11411
+reconnectPassiveEffects @ react-dom_client.js?v=f83853d1:11436
+recursivelyTraverseReconnectPassiveEffects @ react-dom_client.js?v=f83853d1:11411
+reconnectPassiveEffects @ react-dom_client.js?v=f83853d1:11436
+recursivelyTraverseReconnectPassiveEffects @ react-dom_client.js?v=f83853d1:11411
+reconnectPassiveEffects @ react-dom_client.js?v=f83853d1:11436
+recursivelyTraverseReconnectPassiveEffects @ react-dom_client.js?v=f83853d1:11411
+reconnectPassiveEffects @ react-dom_client.js?v=f83853d1:11488
+recursivelyTraverseReconnectPassiveEffects @ react-dom_client.js?v=f83853d1:11411
+reconnectPassiveEffects @ react-dom_client.js?v=f83853d1:11436
+recursivelyTraverseReconnectPassiveEffects @ react-dom_client.js?v=f83853d1:11411
+reconnectPassiveEffects @ react-dom_client.js?v=f83853d1:11436
+doubleInvokeEffectsOnFiber @ react-dom_client.js?v=f83853d1:13530
+runWithFiberInDEV @ react-dom_client.js?v=f83853d1:1027
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13503
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13508
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13508
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13508
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13508
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13508
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13508
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13508
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13508
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13508
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13508
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13508
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13508
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13508
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13508
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13508
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13508
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13508
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13508
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13508
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13508
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13508
+recursivelyTraverseAndDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13508
+commitDoubleInvokeEffectsInDEV @ react-dom_client.js?v=f83853d1:13538
+flushPassiveEffects @ react-dom_client.js?v=f83853d1:13348
+flushPendingEffects @ react-dom_client.js?v=f83853d1:13278
+flushSpawnedWork @ react-dom_client.js?v=f83853d1:13252
+commitRoot @ react-dom_client.js?v=f83853d1:12994
+commitRootWhenReady @ react-dom_client.js?v=f83853d1:12194
+performWorkOnRoot @ react-dom_client.js?v=f83853d1:12128
+performSyncWorkOnRoot @ react-dom_client.js?v=f83853d1:13715
+flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=f83853d1:13608
+flushSyncWork$1 @ react-dom_client.js?v=f83853d1:12257
+scheduleRefresh @ react-dom_client.js?v=f83853d1:382
+(anonymous) @ @react-refresh:228
+performReactRefresh @ @react-refresh:217
+(anonymous) @ @react-refresh:608
+<MapContent>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=896ba03e:253
+MapContainer @ MapContainer.tsx:231
+react_stack_bottom_frame @ react-dom_client.js?v=f83853d1:18763
+renderWithHooksAgain @ react-dom_client.js?v=f83853d1:5844
+renderWithHooks @ react-dom_client.js?v=f83853d1:5780
+updateFunctionComponent @ react-dom_client.js?v=f83853d1:7604
+beginWork @ react-dom_client.js?v=f83853d1:8664
+runWithFiberInDEV @ react-dom_client.js?v=f83853d1:1027
+performUnitOfWork @ react-dom_client.js?v=f83853d1:12748
+workLoopSync @ react-dom_client.js?v=f83853d1:12607
+renderRootSync @ react-dom_client.js?v=f83853d1:12590
+performWorkOnRoot @ react-dom_client.js?v=f83853d1:11940
+performSyncWorkOnRoot @ react-dom_client.js?v=f83853d1:13715
+flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=f83853d1:13608
+flushSyncWork$1 @ react-dom_client.js?v=f83853d1:12257
+scheduleRefresh @ react-dom_client.js?v=f83853d1:382
+(anonymous) @ @react-refresh:228
+performReactRefresh @ @react-refresh:217
+(anonymous) @ @react-refresh:608
+<MapContainer>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=896ba03e:253
+(anonymous) @ GeoMapNew.tsx:115
+react_stack_bottom_frame @ react-dom_client.js?v=f83853d1:18763
+renderWithHooksAgain @ react-dom_client.js?v=f83853d1:5844
+renderWithHooks @ react-dom_client.js?v=f83853d1:5780
+updateFunctionComponent @ react-dom_client.js?v=f83853d1:7604
+beginWork @ react-dom_client.js?v=f83853d1:8664
+runWithFiberInDEV @ react-dom_client.js?v=f83853d1:1027
+performUnitOfWork @ react-dom_client.js?v=f83853d1:12748
+workLoopSync @ react-dom_client.js?v=f83853d1:12607
+renderRootSync @ react-dom_client.js?v=f83853d1:12590
+performWorkOnRoot @ react-dom_client.js?v=f83853d1:11940
+performSyncWorkOnRoot @ react-dom_client.js?v=f83853d1:13715
+flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=f83853d1:13608
+flushSyncWork$1 @ react-dom_client.js?v=f83853d1:12257
+scheduleRefresh @ react-dom_client.js?v=f83853d1:382
+(anonymous) @ @react-refresh:228
+performReactRefresh @ @react-refresh:217
+(anonymous) @ @react-refresh:608
+<...>
+exports.createElement @ chunk-TOILK6HY.js?v=8ca772a5:806
+DeviceLayoutRenderer @ DeviceLayoutRenderer.tsx:154
+react_stack_bottom_frame @ react-dom_client.js?v=f83853d1:18763
+renderWithHooksAgain @ react-dom_client.js?v=f83853d1:5844
+renderWithHooks @ react-dom_client.js?v=f83853d1:5780
+updateFunctionComponent @ react-dom_client.js?v=f83853d1:7604
+beginWork @ react-dom_client.js?v=f83853d1:8664
+runWithFiberInDEV @ react-dom_client.js?v=f83853d1:1027
+performUnitOfWork @ react-dom_client.js?v=f83853d1:12748
+workLoopSync @ react-dom_client.js?v=f83853d1:12607
+renderRootSync @ react-dom_client.js?v=f83853d1:12590
+performWorkOnRoot @ react-dom_client.js?v=f83853d1:11940
+performSyncWorkOnRoot @ react-dom_client.js?v=f83853d1:13715
+flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=f83853d1:13608
+flushSyncWork$1 @ react-dom_client.js?v=f83853d1:12257
+scheduleRefresh @ react-dom_client.js?v=f83853d1:382
+(anonymous) @ @react-refresh:228
+performReactRefresh @ @react-refresh:217
+(anonymous) @ @react-refresh:608
+<DeviceLayoutRenderer>
+exports.jsx @ chunk-6AUVC4ZU.js?v=8ca772a5:253
+ResponsiveMapLayout @ ResponsiveMapLayout.tsx:105
+react_stack_bottom_frame @ react-dom_client.js?v=f83853d1:18763
+renderWithHooksAgain @ react-dom_client.js?v=f83853d1:5844
+renderWithHooks @ react-dom_client.js?v=f83853d1:5780
+updateFunctionComponent @ react-dom_client.js?v=f83853d1:7604
+beginWork @ react-dom_client.js?v=f83853d1:8664
+runWithFiberInDEV @ react-dom_client.js?v=f83853d1:1027
+performUnitOfWork @ react-dom_client.js?v=f83853d1:12748
+workLoopSync @ react-dom_client.js?v=f83853d1:12607
+renderRootSync @ react-dom_client.js?v=f83853d1:12590
+performWorkOnRoot @ react-dom_client.js?v=f83853d1:11940
+performSyncWorkOnRoot @ react-dom_client.js?v=f83853d1:13715
+flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=f83853d1:13608
+flushSyncWork$1 @ react-dom_client.js?v=f83853d1:12257
+scheduleRefresh @ react-dom_client.js?v=f83853d1:382
+(anonymous) @ @react-refresh:228
+performReactRefresh @ @react-refresh:217
+(anonymous) @ @react-refresh:608
+<ResponsiveMapLayout>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=896ba03e:253
+GeoMap @ GeoMapNew.tsx:161
+react_stack_bottom_frame @ react-dom_client.js?v=f83853d1:18763
+renderWithHooksAgain @ react-dom_client.js?v=f83853d1:5844
+renderWithHooks @ react-dom_client.js?v=f83853d1:5780
+updateFunctionComponent @ react-dom_client.js?v=f83853d1:7604
+beginWork @ react-dom_client.js?v=f83853d1:8664
+runWithFiberInDEV @ react-dom_client.js?v=f83853d1:1027
+performUnitOfWork @ react-dom_client.js?v=f83853d1:12748
+workLoopSync @ react-dom_client.js?v=f83853d1:12607
+renderRootSync @ react-dom_client.js?v=f83853d1:12590
+performWorkOnRoot @ react-dom_client.js?v=f83853d1:11940
+performSyncWorkOnRoot @ react-dom_client.js?v=f83853d1:13715
+flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=f83853d1:13608
+flushSyncWork$1 @ react-dom_client.js?v=f83853d1:12257
+scheduleRefresh @ react-dom_client.js?v=f83853d1:382
+(anonymous) @ @react-refresh:228
+performReactRefresh @ @react-refresh:217
+(anonymous) @ @react-refresh:608
+<GeoMap>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=896ba03e:253
+App @ App.tsx:341
+react_stack_bottom_frame @ react-dom_client.js?v=f83853d1:18763
+renderWithHooksAgain @ react-dom_client.js?v=f83853d1:5844
+renderWithHooks @ react-dom_client.js?v=f83853d1:5780
+updateFunctionComponent @ react-dom_client.js?v=f83853d1:7604
+beginWork @ react-dom_client.js?v=f83853d1:8664
+runWithFiberInDEV @ react-dom_client.js?v=f83853d1:1027
+performUnitOfWork @ react-dom_client.js?v=f83853d1:12748
+workLoopSync @ react-dom_client.js?v=f83853d1:12607
+renderRootSync @ react-dom_client.js?v=f83853d1:12590
+performWorkOnRoot @ react-dom_client.js?v=f83853d1:11940
+performSyncWorkOnRoot @ react-dom_client.js?v=f83853d1:13715
+flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=f83853d1:13608
+processRootScheduleInMicrotask @ react-dom_client.js?v=f83853d1:13631
+(anonymous) @ react-dom_client.js?v=f83853d1:13729
+02:15:37.229 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = true
+02:15:37.229 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
+02:15:37.229 GeoHeader.tsx:37 🎯 GeoHeader: current theme = dark
+02:15:37.229 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
+02:15:37.230 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
+02:15:37.230 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
+02:15:37.230 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
+02:15:37.231 GeoHeader.tsx:35 🎯 GeoHeader: isIPhone14ProMax = true
+02:15:37.231 GeoHeader.tsx:36 🎯 GeoHeader: t("title") = title
+02:15:37.231 GeoHeader.tsx:37 🎯 GeoHeader: current theme = dark
+02:15:37.231 GeoHeader.tsx:38 🎯 GeoHeader: Rendering with icons...
+02:15:37.232 GeoHeader.tsx:39 🎯 GeoHeader: GlobeIcon = function
+02:15:37.232 GeoHeader.tsx:40 🎯 GeoHeader: SettingsIcon = function
+02:15:37.232 GeoHeader.tsx:41 🎯 GeoHeader: Button = object
+02:15:41.992 CategoryStep.tsx:336 Transaction selected: sale
+02:15:42.396 CategoryStep.tsx:354 Availability selected: now
+02:15:42.864 CategoryStep.tsx:373 Upload card clicked - triggering file upload...
+02:15:44.573 CategoryStep.tsx:385 📁 File selected: Στιγμιότυπο οθόνης 2025-10-22 230046.jpg Type: image/jpeg Size: 0.27 MB
+02:15:44.573 CategoryStep.tsx:391 🗺️ Sending file to map...
+02:15:46.240 CategoryStep.tsx:706 🏁 Layout: Step completed - moving to Property Type
+02:15:46.744 CategoryStep.tsx:716 Property Type step activated
+02:15:48.104 CategoryStep.tsx:433 Property Type selected: factory
+02:15:49.118 CategoryStep.tsx:442 Property Details step activated
+02:15:50.869 PropertyDetailsForm.tsx:95 🔧 PropertyDetailsForm: Submit clicked {propertyType: 'factory', formData: {…}}
+02:15:50.869 PropertyDetailsForm.tsx:98 🔧 PropertyDetailsForm: Validation result: true
+02:15:50.869 PropertyDetailsForm.tsx:101 ✅ PropertyDetailsForm: Validation passed - calling onSubmit
+02:15:50.870 CategoryStep.tsx:513 🏗️ PropertyDetailsForm: Data submitted: {title: 'Εργοστάσιο στο κέντρο', squareMeters: 85, price: 150000, floor: undefined, rooms: undefined}
+02:15:50.870 CategoryStep.tsx:520 Property Details step completed. Moving to Area Method Selection...
+02:15:51.384 CategoryStep.tsx:526 Area Method Selection step activated
+02:15:52.488 CategoryStep.tsx:450 Area Method selected: manual-input
+02:15:53.501 CategoryStep.tsx:458 Area Method "manual-input" completed. Showing success confirmation.

@@ -5,11 +5,12 @@
  * Χρησιμοποιεί @layera/map-core και @layera/map-drawing packages.
  */
 
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { useViewportWithOverride } from '@layera/viewport';
 import { useNavigation } from '../services/navigation/hooks/useNavigation';
 import { useIPhone14ProMaxDetection } from '@layera/device-detection';
 import { useNavigationHandlers } from '@layera/navigation-handlers';
+import { ResponsiveMapLayout, MapComponentProps } from '@layera/device-layouts';
 import { MapContainer } from './map/MapContainer';
 import { PlusIcon } from './icons/LayeraIcons';
 import { DraggableFAB } from '@layera/draggable-fab';
@@ -66,9 +67,6 @@ export const GeoMap: React.FC<GeoMapProps> = ({
 }) => {
   const { isDesktop, isTablet, isMobile } = useViewportWithOverride();
 
-  // Move useRef to top to avoid conditional hooks
-  const screenRef = useRef<HTMLDivElement>(null);
-
   // 🚀 ENTERPRISE DEVICE DETECTION: @layera/device-detection LEGO package
   const isDetectedIPhone14ProMax = useIPhone14ProMaxDetection({
     frameSelector: '.device-frame-wrapper',
@@ -99,62 +97,88 @@ export const GeoMap: React.FC<GeoMapProps> = ({
   // Enterprise state από LEGO package
   const showCategoryElements = navigationState.showCategoryElements;
 
-  // iPhone 14 Pro Max specific rendering (χρησιμοποιώ υβριδική απόφαση)
-  if (finalIPhone14ProMaxDecision) {
-    // Rendering iPhone 14 Pro Max mode
-    // screenRef already declared at top of component
+  // 🚀 ΦΑΣΗ 6: Enterprise Device Layout LEGO Package - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
+  // CRITICAL FIX: Removing all useMemo to stop infinite loops
+  const deviceType = finalIPhone14ProMaxDecision ? 'iphone' : (isDesktop ? 'desktop' : (isTablet ? 'tablet' : 'mobile'));
 
-    // Παίρνω τις διαστάσεις από το device frame
-    const frameWidth = 430;  // iPhone 14 Pro Max width
-    const frameHeight = 932; // iPhone 14 Pro Max height
+  const mapProps = {
+    onAreaCreated,
+    onNewEntryClick,
+    isIPhone14ProMaxDevice: finalIPhone14ProMaxDecision,
+    hideDrawingControls: finalIPhone14ProMaxDecision
+  };
 
-    return (
-      <div
-        ref={screenRef}
-        style={{
-          width: frameWidth,
-          height: frameHeight,
-          position: 'relative',
-          overflow: 'hidden'
-        }}
-      >
-        {React.createElement(iPhone14ProMaxGeoMap, {
-          onAreaCreated,
-          onNewEntryClick,
-          isIPhone14ProMaxDevice: finalIPhone14ProMaxDecision
-        })}
-        {/* FloatingStepper - εμφανίζεται μόνο όταν showCategoryElements = true */}
-        {showCategoryElements && (() => {
-          // FloatingStepper rendering with enterprise navigation
-          return React.createElement(iPhone14ProMaxFloatingStepper, {
-            currentStep: navigation.currentStep,
-            totalSteps: navigation.totalSteps,
-            stepIndex: navigation.stepIndex,
-            selectedCategory: navigation.selectedCategory,
-            onNext: handleStepNext,
-            onPrevious: handleStepPrevious,
-            onReset: handleStepReset,
-            canGoNext: navigation.canGoNext,
-            canGoPrevious: navigation.canGoBack
-          });
-        })()}
+  // ΣΤΑΘΕΡΑ Components για αποφυγή re-render loops
+  const DesktopMapComponent = React.useCallback((props: MapComponentProps) => (
+    <>
+      <DesktopGeoMap />
+      <MapContainer {...props} />
+    </>
+  ), []);
 
-        {/* CategoryStep - εμφανίζεται μόνο όταν showCategoryElements = true */}
-        {showCategoryElements && React.createElement(iPhone14ProMaxCategoryStep, {
-          isVisible: showCategoryElements,
-          currentStepId: navigation.currentStep,
-          onNext: async (category: any) => {
-            // Category selected via NavigationService
-            try {
-              await navigation.selectCategory(category);
-            } catch (error) {
-              // Category selection failed but app continues
-            }
-          }
-        })}
+  const TabletMapComponent = React.useCallback((props: MapComponentProps) => (
+    <>
+      <TabletGeoMap />
+      <MapContainer {...props} />
+    </>
+  ), []);
 
-        {/* Enterprise DraggableFAB για iPhone 14 Pro Max - LEGO @layera/draggable-fab */}
-        {!showCategoryElements && (
+  const MobileMapComponent = React.useCallback((props: MapComponentProps) => (
+    <MapContainer {...props} />
+  ), []);
+
+  const mapComponents = {
+    iPhone: iPhone14ProMaxGeoMap,
+    desktop: DesktopMapComponent,
+    tablet: TabletMapComponent,
+    mobile: MobileMapComponent
+  };
+
+  const iPhoneComponents = {
+    stepper: iPhone14ProMaxFloatingStepper,
+    category: iPhone14ProMaxCategoryStep
+  };
+
+  const navigationProps = {
+    currentStep: navigation.currentStep,
+    totalSteps: navigation.totalSteps,
+    stepIndex: navigation.stepIndex,
+    selectedCategory: navigation.selectedCategory,
+    canGoNext: navigation.canGoNext,
+    canGoBack: navigation.canGoBack
+  };
+
+  const navigationHandlersProps = {
+    onNext: handleStepNext,
+    onPrevious: handleStepPrevious,
+    onReset: handleStepReset,
+    onNewEntryClick: handleNewEntryClick
+  };
+
+
+  return (
+    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+      <ResponsiveMapLayout
+        deviceType={deviceType}
+        map={mapProps}
+        mapComponents={mapComponents}
+        iPhoneComponents={iPhoneComponents}
+        navigation={navigationProps}
+        navigationHandlers={navigationHandlersProps}
+        showCategoryElements={showCategoryElements}
+      />
+
+      {/*
+        ΚΡΙΣΙΜΗ ΛΥΣΗ ΓΙΑ FAB VISIBILITY ISSUE:
+        Το FAB renderάρεται ΕΞΩ από το ResponsiveMapLayout για αποφυγή
+        infinite re-rendering cycles που προκαλούσαν εξαφάνιση του FAB
+        στο iPhone 14 Pro Max. Αυτή η αρχιτεκτονική λύνει το πρόβλημα
+        με τη χωριστή απόδοση ευθυνών:
+        - ResponsiveMapLayout: Device layout orchestration
+        - Parent component: FAB rendering και positioning
+      */}
+      {!showCategoryElements && (
+        deviceType === 'iphone' ? (
           <DraggableFAB
             onClick={handleNewEntryClick}
             size="lg"
@@ -167,88 +191,19 @@ export const GeoMap: React.FC<GeoMapProps> = ({
           >
             <PlusIcon size="md" theme="neutral" />
           </DraggableFAB>
-        )}
-
-
-      </div>
-    );
-  }
-
-  // Desktop specific rendering
-  if (isDesktop) {
-    return (
-      <div style={{ width: '100%', height: '100vh', position: 'relative' }}>
-        <DesktopGeoMap />
-        <MapContainer
-          onAreaCreated={onAreaCreated}
-          onNewEntryClick={onNewEntryClick}
-          isIPhone14ProMaxDevice={finalIPhone14ProMaxDecision}
-          hideDrawingControls={finalIPhone14ProMaxDecision}
-        />
-
-        {/* Enterprise Unified FAB για Desktop - LEGO @layera/floating-action-buttons */}
-        <UnifiedFAB
-          onClick={handleNewEntryClick}
-          icon={<PlusIcon size="md" theme="neutral" />}
-          deviceType="desktop"
-          variant="success"
-          hidden={showCategoryElements}
-          aria-label="Νέα Καταχώρηση"
-          title="Νέα Καταχώρηση"
-          data-testid="desktop-unified-fab"
-        />
-      </div>
-    );
-  }
-
-  // Tablet specific rendering
-  if (isTablet) {
-    return (
-      <div className="tablet-map-container" style={{ width: '100%', height: '100vh', position: 'relative' }}>
-        <TabletGeoMap />
-        <MapContainer
-          onAreaCreated={onAreaCreated}
-          onNewEntryClick={onNewEntryClick}
-          isIPhone14ProMaxDevice={finalIPhone14ProMaxDecision}
-          hideDrawingControls={finalIPhone14ProMaxDecision}
-        />
-
-        {/* Enterprise Unified FAB για Tablet - LEGO @layera/floating-action-buttons */}
-        <UnifiedFAB
-          onClick={handleNewEntryClick}
-          icon={<PlusIcon size="md" theme="neutral" />}
-          deviceType="tablet"
-          variant="success"
-          hidden={showCategoryElements}
-          aria-label="Νέα Καταχώρηση"
-          title="Νέα Καταχώρηση"
-          data-testid="tablet-unified-fab"
-        />
-      </div>
-    );
-  }
-
-  // Default mobile rendering
-  return (
-    <div className="mobile-map-container" style={{ width: '100%', height: '100vh', position: 'relative' }}>
-      <MapContainer
-        onAreaCreated={onAreaCreated}
-        onNewEntryClick={onNewEntryClick}
-        isIPhone14ProMaxDevice={finalIPhone14ProMaxDecision}
-        hideDrawingControls={finalIPhone14ProMaxDecision}
-      />
-
-      {/* Enterprise Unified FAB για Mobile - LEGO @layera/floating-action-buttons */}
-      <UnifiedFAB
-        onClick={handleNewEntryClick}
-        icon={<PlusIcon size="md" theme="neutral" />}
-        deviceType="mobile"
-        variant="success"
-        hidden={showCategoryElements}
-        aria-label="Νέα Καταχώρηση"
-        title="Νέα Καταχώρηση"
-        data-testid="mobile-unified-fab"
-      />
+        ) : (
+          <UnifiedFAB
+            onClick={handleNewEntryClick}
+            icon={<PlusIcon size="md" theme="neutral" />}
+            deviceType={deviceType}
+            variant="success"
+            hidden={false}
+            aria-label="Νέα Καταχώρηση"
+            title="Νέα Καταχώρηση"
+            data-testid={`${deviceType}-unified-fab`}
+          />
+        )
+      )}
     </div>
   );
 };
