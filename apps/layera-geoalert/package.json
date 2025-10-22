@@ -19,6 +19,7 @@
     "@layera/geocoding": "file:../../packages/geocoding",
     "@layera/i18n": "file:../../packages/i18n",
     "@layera/icons": "file:../../packages/icons",
+    "@layera/info-panels": "file:../../packages/info-panels",
     "@layera/layout": "file:../../packages/layout",
     "@layera/map-core": "file:../../packages/map-core",
     "@layera/map-drawing": "file:../../packages/map-drawing",
