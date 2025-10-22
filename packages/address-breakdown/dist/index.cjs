@@ -195,7 +195,7 @@ __export(index_exports, {
 module.exports = __toCommonJS(index_exports);
 
 // src/components/AddressBreakdownCard.tsx
-var import_react5 = require("react");
+var import_react2 = require("react");
 var import_cards = require("@layera/cards");
 var import_buttons = require("@layera/buttons");
 var import_icons = require("@layera/icons");
@@ -270,60 +270,179 @@ var Spinner = ({ size = "md", variant = "default", color, speed = "normal", clas
   return renderSpinner();
 };
 
-// ../tolgee/dist/index.mjs
-var import_react2 = __toESM(require("react"), 1);
-var import_jsx_runtime = require("react/jsx-runtime");
-var import_react3 = require("react");
-var import_jsx_runtime2 = require("react/jsx-runtime");
-var import_react4 = require("react");
-var MinimalTolgeeContext = (0, import_react2.createContext)(null);
-var useMinimalTolgee = () => {
-  const context = (0, import_react2.useContext)(MinimalTolgeeContext);
-  if (!context) {
-    throw new Error("useMinimalTolgee must be used within MinimalTolgeeProvider");
-  }
-  return context;
+// src/components/AddressBreakdownCard.tsx
+var import_i18n = require("@layera/i18n");
+
+// ../geo-mapping/src/utils/administrativeHierarchy.ts
+var GREEK_PATTERNS = {
+  [1 /* STREET */]: [
+    /^.*?\s*\d+/,
+    // Οδός με αριθμό
+    /οδός|λεωφόρος|πλατεία|αγίου|αγίας/i
+  ],
+  [2 /* COMMUNITY */]: [
+    /κοινότητα|community/i
+  ],
+  [3 /* NEIGHBORHOOD */]: [
+    /συνοικία|γειτονιά|περιοχή/i
+  ],
+  [4 /* VILLAGE */]: [
+    /χωριό|κωμόπολη|οικισμός/i
+  ],
+  [5 /* MUNICIPAL_UNIT */]: [
+    /δημοτική\s+ενότητα|municipal\s+unit/i
+  ],
+  [6 /* MUNICIPALITY */]: [
+    /^δήμος\s+|municipality\s+of/i
+  ],
+  [7 /* METROPOLITAN */]: [
+    /μητροπολιτική\s+ενότητα|metropolitan/i
+  ],
+  [8 /* PREFECTURE */]: [
+    /νομός|νομαρχία|prefecture/i
+  ],
+  [9 /* REGION */]: [
+    /περιφέρεια|region/i
+  ],
+  [10 /* DECENTRALIZED */]: [
+    /αποκεντρωμένη\s+διοίκηση|decentralized/i
+  ],
+  [11 /* COUNTRY */]: [
+    /ελλάδα|greece/i
+  ]
 };
-var TOLGEE_CONFIG = {
-  // API Configuration
-  apiUrl: typeof process !== "undefined" && process.env?.TOLGEE_API_URL || "https://app.tolgee.io",
-  apiKey: typeof process !== "undefined" && process.env?.TOLGEE_API_KEY || "",
-  // Project Settings
-  projectId: typeof process !== "undefined" && process.env?.TOLGEE_PROJECT_ID || "",
-  // Language Settings
-  defaultLanguage: "el",
-  // Greek as default
-  fallbackLanguage: "en",
-  supportedLanguages: ["el", "en"],
-  // Development Settings
-  isDevelopment: typeof process !== "undefined" && process.env?.NODE_ENV === "development",
-  inContextEditing: typeof process !== "undefined" && process.env?.NODE_ENV === "development",
-  // Cache Settings
-  cacheEnabled: true,
-  cacheExpirationMs: 24 * 60 * 60 * 1e3,
-  // 24 hours
-  // Features
-  features: {
-    autoTranslate: true,
-    machineTranslation: true,
-    inContextEditing: true,
-    screenshots: true,
-    comments: true
-  }
-};
-function useLayeraTranslation() {
-  const { t, language, changeLanguage } = useMinimalTolgee();
-  return {
-    t,
-    i18n: {
-      language,
-      changeLanguage,
-      languages: {
-        el: "\u0395\u03BB\u03BB\u03B7\u03BD\u03B9\u03BA\u03AC",
-        en: "English"
+function getAdministrativeLevel(text) {
+  const cleanText = text.trim();
+  for (const [level, patterns] of Object.entries(GREEK_PATTERNS)) {
+    for (const pattern of patterns) {
+      if (pattern.test(cleanText)) {
+        return parseInt(level);
       }
     }
-  };
+  }
+  return 3 /* NEIGHBORHOOD */;
+}
+function removeDuplicates(items) {
+  const cleaned = [];
+  const seen = /* @__PURE__ */ new Set();
+  for (const item of items) {
+    const normalized = normalizeText(item);
+    if (seen.has(normalized)) {
+      continue;
+    }
+    const isDuplicate = Array.from(seen).some((existing) => {
+      return areTextsSimilar(normalized, existing);
+    });
+    if (!isDuplicate) {
+      seen.add(normalized);
+      cleaned.push(item);
+    }
+  }
+  return cleaned;
+}
+function normalizeText(text) {
+  return text.toLowerCase().replace(/^(δήμος|δημοτική\s+ενότητα|περιφέρεια|νομός)\s+/i, "").replace(/\s*-\s*/g, "-").replace(/\s+/g, " ").trim();
+}
+function areTextsSimilar(text1, text2) {
+  if (text1 === text2) return true;
+  if (text1.includes(text2)) {
+    const ratio = text2.length / text1.length;
+    if (ratio < 0.6) return true;
+  }
+  if (text2.includes(text1)) {
+    const ratio = text1.length / text2.length;
+    if (ratio < 0.6) return true;
+  }
+  const similarity = calculateSimilarity(text1, text2);
+  return similarity > 0.85;
+}
+function calculateSimilarity(str1, str2) {
+  const longer = str1.length > str2.length ? str1 : str2;
+  const shorter = str1.length > str2.length ? str2 : str1;
+  if (longer.length === 0) return 1;
+  const distance = levenshteinDistance(longer, shorter);
+  return (longer.length - distance) / longer.length;
+}
+function levenshteinDistance(str1, str2) {
+  const matrix = Array(str2.length + 1).fill(null).map(() => Array(str1.length + 1).fill(null));
+  for (let i = 0; i <= str1.length; i++) matrix[0][i] = i;
+  for (let j = 0; j <= str2.length; j++) matrix[j][0] = j;
+  for (let j = 1; j <= str2.length; j++) {
+    for (let i = 1; i <= str1.length; i++) {
+      const cost = str1[i - 1] === str2[j - 1] ? 0 : 1;
+      matrix[j][i] = Math.min(
+        matrix[j][i - 1] + 1,
+        // deletion
+        matrix[j - 1][i] + 1,
+        // insertion
+        matrix[j - 1][i - 1] + cost
+        // substitution
+      );
+    }
+  }
+  return matrix[str2.length][str1.length];
+}
+function processDisplayNameToHierarchy(displayName) {
+  console.log("\u{1F504} Processing display name for hierarchy:", displayName);
+  const parts = displayName.split(",").map((part) => part.trim()).filter((part) => part.length > 0);
+  console.log("\u{1F4DD} Initial parts:", parts);
+  let streetWithNumberAndPostal = "";
+  const nonStreetParts = [];
+  let postalCode = "";
+  const postalIndex = parts.findIndex((part) => /^\d{3,5}(-\d{4})?$/.test(part));
+  if (postalIndex !== -1) {
+    postalCode = parts[postalIndex];
+  }
+  const streetIndex = parts.findIndex((part) => /^.*?\s*\d+/.test(part));
+  if (streetIndex !== -1) {
+    streetWithNumberAndPostal = postalCode ? `${parts[streetIndex]}, ${postalCode}` : parts[streetIndex];
+  }
+  for (let i = 0; i < parts.length; i++) {
+    const part = parts[i];
+    if (/^\d{3,5}(-\d{4})?$/.test(part)) continue;
+    if (/^\d+$/.test(part)) continue;
+    if (i === streetIndex) continue;
+    nonStreetParts.push(part);
+  }
+  console.log("\u{1F6E3}\uFE0F Street with number and postal:", streetWithNumberAndPostal);
+  console.log("\u{1F9F9} Non-street parts:", nonStreetParts);
+  const uniqueNonStreetParts = removeDuplicates(nonStreetParts);
+  console.log("\u2728 Unique non-street parts:", uniqueNonStreetParts);
+  const hierarchicalParts = uniqueNonStreetParts.map((part) => ({
+    text: part,
+    level: getAdministrativeLevel(part)
+  })).sort((a, b) => a.level - b.level).map((item) => item.text);
+  console.log("\u{1F3DB}\uFE0F Hierarchically sorted non-street parts:", hierarchicalParts);
+  const finalParts = [];
+  if (streetWithNumberAndPostal) {
+    finalParts.push(streetWithNumberAndPostal);
+  }
+  finalParts.push(...hierarchicalParts);
+  const formattedHierarchy = finalParts.join("\n");
+  console.log("\u{1F4CB} Final formatted hierarchy:", formattedHierarchy);
+  return formattedHierarchy;
+}
+function getCountryFromDisplayName(displayName) {
+  const lowerName = displayName.toLowerCase();
+  if (lowerName.includes("\u03B5\u03BB\u03BB\u03AC\u03B4\u03B1") || lowerName.includes("greece")) {
+    return "greece";
+  }
+  if (lowerName.includes("bulgaria") || lowerName.includes("\u03B2\u03BF\u03C5\u03BB\u03B3\u03B1\u03C1\u03AF\u03B1")) {
+    return "bulgaria";
+  }
+  return "unknown";
+}
+function processDisplayNameByCountry(displayName) {
+  const country = getCountryFromDisplayName(displayName);
+  switch (country) {
+    case "greece":
+      return processDisplayNameToHierarchy(displayName);
+    case "bulgaria":
+      return displayName;
+    // Fallback προς το παρόν
+    default:
+      return processDisplayNameToHierarchy(displayName);
+  }
 }
 
 // ../geo-mapping/src/services/osmService.ts
@@ -349,7 +468,7 @@ var fetchBoundaryByAddressComponent = async (addressComponent) => {
           features: [{
             type: "Feature",
             properties: {
-              name: result.display_name || addressComponent.label,
+              name: result.display_name ? processDisplayNameByCountry(result.display_name) : addressComponent.label,
               admin_level: "8",
               boundary: "administrative",
               osm_id: result.osm_id || 0,
@@ -370,7 +489,7 @@ var fetchBoundaryByAddressComponent = async (addressComponent) => {
           features: [{
             type: "Feature",
             properties: {
-              name: result.display_name || addressComponent.label,
+              name: result.display_name ? processDisplayNameByCountry(result.display_name) : addressComponent.label,
               admin_level: "8",
               boundary: "administrative",
               osm_id: result.osm_id || 0,
@@ -548,13 +667,29 @@ function parseDisplayNameToAdditionalComponents(result, existingComponents) {
   }
   return additionalComponents;
 }
+function getAdministrativeHierarchy(label) {
+  const lowerLabel = label.toLowerCase();
+  if (lowerLabel.includes("\u03BF\u03B4\u03CC\u03C2") || lowerLabel.includes("\u03BF\u03B4\u03CC") || lowerLabel.includes("\u03BB\u03B5\u03C9\u03C6\u03CC\u03C1\u03BF\u03C2")) return 1;
+  if (lowerLabel.includes("\u03C3\u03C5\u03BD\u03BF\u03B9\u03BA\u03AF\u03B1") || lowerLabel.includes("\u03B3\u03B5\u03B9\u03C4\u03BF\u03BD\u03B9\u03AC")) return 2;
+  if (lowerLabel.includes("\u03C7\u03C9\u03C1\u03B9\u03CC") || lowerLabel.includes("\u03BA\u03C9\u03BC\u03CC\u03C0\u03BF\u03BB\u03B7")) return 3;
+  if (lowerLabel.includes("\u03C0\u03CC\u03BB\u03B7") || lowerLabel.includes("\u03B4\u03AE\u03BC\u03BF\u03C2") || lowerLabel.includes("\u03B4\u03B7\u03BC\u03CC\u03C4\u03B7\u03C4\u03B1")) return 4;
+  if (lowerLabel.includes("\u03BD\u03BF\u03BC\u03CC\u03C2") || lowerLabel.includes("\u03B5\u03C0\u03B1\u03C1\u03C7\u03AF\u03B1")) return 5;
+  if (lowerLabel.includes("\u03C0\u03B5\u03C1\u03B9\u03C6\u03AD\u03C1\u03B5\u03B9\u03B1") || lowerLabel.includes("\u03BC\u03B1\u03BA\u03B5\u03B4\u03BF\u03BD\u03AF\u03B1") || lowerLabel.includes("\u03B8\u03C1\u03AC\u03BA\u03B7") || lowerLabel.includes("\u03B8\u03B5\u03C3\u03C3\u03B1\u03BB\u03BF\u03BD\u03AF\u03BA\u03B7")) return 6;
+  if (lowerLabel.includes("\u03B5\u03BB\u03BB\u03AC\u03B4\u03B1") || lowerLabel.includes("greece")) return 7;
+  return 5;
+}
 function parseFullAddress(result) {
   const baseComponents = parseGeocodeToComponents(result);
   const additionalComponents = parseDisplayNameToAdditionalComponents(result, baseComponents);
   const allComponents = [...baseComponents, ...additionalComponents];
   return allComponents.sort((a, b) => {
-    if (a.clickable && !b.clickable) return -1;
-    if (!a.clickable && b.clickable) return 1;
+    if (!a.clickable && b.clickable) return -1;
+    if (a.clickable && !b.clickable) return 1;
+    if (a.clickable && b.clickable) {
+      const hierarchyA = getAdministrativeHierarchy(a.label);
+      const hierarchyB = getAdministrativeHierarchy(b.label);
+      return hierarchyA - hierarchyB;
+    }
     const typePriority = {
       "street": 1,
       "houseNumber": 2,
@@ -569,7 +704,7 @@ function parseFullAddress(result) {
 }
 
 // src/components/AddressBreakdownCard.tsx
-var import_jsx_runtime3 = require("react/jsx-runtime");
+var import_jsx_runtime = require("react/jsx-runtime");
 function AddressBreakdownCard({
   geocodeResult,
   config = {},
@@ -579,11 +714,11 @@ function AddressBreakdownCard({
   isLoading = false,
   error = null
 }) {
-  const { t } = useLayeraTranslation();
-  const [boundaryLoading, setBoundaryLoading] = (0, import_react5.useState)(null);
-  const [boundaryError, setBoundaryError] = (0, import_react5.useState)(null);
-  const [loadingTimer, setLoadingTimer] = (0, import_react5.useState)(0);
-  (0, import_react5.useEffect)(() => {
+  const { t } = (0, import_i18n.useLayeraTranslation)();
+  const [boundaryLoading, setBoundaryLoading] = (0, import_react2.useState)(null);
+  const [boundaryError, setBoundaryError] = (0, import_react2.useState)(null);
+  const [loadingTimer, setLoadingTimer] = (0, import_react2.useState)(0);
+  (0, import_react2.useEffect)(() => {
     let interval;
     if (boundaryLoading) {
       setLoadingTimer(0);
@@ -607,7 +742,7 @@ function AddressBreakdownCard({
   };
   const components = parseFullAddress(geocodeResult);
   const visibleComponents = finalConfig.maxComponents ? components.slice(0, finalConfig.maxComponents) : components;
-  const handleComponentClick = (0, import_react5.useCallback)(async (component) => {
+  const handleComponentClick = (0, import_react2.useCallback)(async (component) => {
     if (!component.clickable || !finalConfig.enableBoundarySearch) {
       return;
     }
@@ -660,17 +795,17 @@ function AddressBreakdownCard({
       }
     };
     if (finalConfig.layout === "tags") {
-      return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
+      return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
         import_buttons.Button,
         {
           ...componentProps,
           variant: isClickable ? "outline" : "ghost",
           size: "sm",
-          startIcon: isClickable ? /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(import_icons.MapIcon, {}) : /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(import_icons.LocationIcon, {}),
+          startIcon: isClickable ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_icons.MapIcon, {}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_icons.LocationIcon, {}),
           loading: isLoading2,
           children: [
             component.label,
-            isLoading2 && /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("span", { style: {
+            isLoading2 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { style: {
               marginLeft: "0.5rem",
               fontSize: "0.75rem",
               color: "#6B7280"
@@ -684,7 +819,7 @@ function AddressBreakdownCard({
         component.id
       );
     }
-    return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
       "div",
       {
         ...componentProps,
@@ -697,6 +832,8 @@ function AddressBreakdownCard({
           border: "1px solid #E5E7EB",
           transition: "all 0.2s ease-in-out",
           backgroundColor: isClickable ? "#FFFFFF" : "#F9FAFB",
+          textAlign: "left",
+          // Ευθυγράμμιση προς τα αριστερά
           ...isClickable && {
             ":hover": {
               backgroundColor: "#F3F4F6",
@@ -723,28 +860,36 @@ function AddressBreakdownCard({
           }
         },
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "list-item-content", style: {
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "list-item-content", style: {
             display: "flex",
             alignItems: "center",
-            gap: "0.5rem"
+            justifyContent: "flex-start",
+            // Ευθυγράμμιση προς τα αριστερά
+            gap: "0.5rem",
+            width: "100%"
           }, children: [
-            isLoading2 ? /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(Spinner, { size: "sm", variant: "default" }) : isClickable ? /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(import_icons.MapIcon, { className: "list-icon", style: {
+            isLoading2 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Spinner, { size: "sm", variant: "default" }) : isClickable ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_icons.MapIcon, { className: "list-icon", style: {
               width: "1rem",
               height: "1rem",
               color: "#3B82F6"
-            } }) : /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(import_icons.LocationIcon, { className: "list-icon", style: {
+            } }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_icons.LocationIcon, { className: "list-icon", style: {
               width: "1rem",
               height: "1rem",
               color: "#6B7280"
             } }),
-            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { className: "list-label", style: {
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "list-label", style: {
               flex: 1,
               fontSize: "0.875rem",
               color: isClickable ? "#1F2937" : "#6B7280",
-              fontWeight: isClickable ? "500" : "400"
+              fontWeight: isClickable ? "500" : "400",
+              textAlign: "left",
+              // Ευθυγράμμιση κειμένου προς τα αριστερά
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis"
             }, children: component.label })
           ] }),
-          isLoading2 && /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "loading-indicator", style: {
+          isLoading2 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "loading-indicator", style: {
             marginTop: "0.25rem",
             fontSize: "0.75rem",
             color: "#6B7280",
@@ -752,8 +897,8 @@ function AddressBreakdownCard({
             alignItems: "center",
             gap: "0.5rem"
           }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("span", { children: "\u0391\u03BD\u03B1\u03B6\u03AE\u03C4\u03B7\u03C3\u03B7 \u03C0\u03B5\u03C1\u03B9\u03B3\u03C1\u03AC\u03BC\u03BC\u03B1\u03C4\u03BF\u03C2..." }),
-            /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("span", { style: {
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: "\u0391\u03BD\u03B1\u03B6\u03AE\u03C4\u03B7\u03C3\u03B7 \u03C0\u03B5\u03C1\u03B9\u03B3\u03C1\u03AC\u03BC\u03BC\u03B1\u03C4\u03BF\u03C2..." }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { style: {
               fontWeight: "500",
               color: "#3B82F6",
               minWidth: "2rem"
@@ -767,7 +912,7 @@ function AddressBreakdownCard({
       component.id
     );
   };
-  const cardActions = /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
+  const cardActions = /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
     import_buttons.Button,
     {
       variant: "ghost",
@@ -786,7 +931,7 @@ function AddressBreakdownCard({
       children: t("showOnMap")
     }
   );
-  return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
     import_cards.BaseCard,
     {
       title: title || t("addressDetails"),
@@ -795,16 +940,16 @@ function AddressBreakdownCard({
       onClick,
       style,
       children: [
-        error && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "error-message", children: error }),
-        boundaryError && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "boundary-error", children: boundaryError }),
-        !isLoading && visibleComponents.some((c) => c.clickable) && finalConfig.enableBoundarySearch && /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { style: {
+        error && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "error-message", children: error }),
+        boundaryError && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "boundary-error", children: boundaryError }),
+        !isLoading && visibleComponents.some((c) => c.clickable) && finalConfig.enableBoundarySearch && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: {
           fontSize: "0.875rem",
           color: "#6B7280",
           marginBottom: "0.75rem",
           fontStyle: "italic"
         }, children: t("clickToShowBoundary") }),
-        /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: `address-components layout-${finalConfig.layout}`, children: isLoading ? /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "loading-state", children: "Loading..." }) : visibleComponents.map(renderComponent) }),
-        components.length > visibleComponents.length && /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { className: "components-overflow", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: `address-components layout-${finalConfig.layout}`, children: isLoading ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "loading-state", children: "Loading..." }) : visibleComponents.map(renderComponent) }),
+        components.length > visibleComponents.length && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "components-overflow", children: [
           "+",
           components.length - visibleComponents.length,
           " more components"

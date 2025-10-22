@@ -22,6 +22,7 @@ var src_exports = {};
 __export(src_exports, {
   DesktopOnly: () => DesktopOnly,
   DeviceOverrideProvider: () => DeviceOverrideProvider,
+  DeviceSimulator: () => DeviceSimulator,
   DeviceSwitcher: () => DeviceSwitcher,
   MobileAndTablet: () => MobileAndTablet,
   MobileOnly: () => MobileOnly,
@@ -668,10 +669,20 @@ var DeviceSwitcher = ({
     }, children: labels.overrideActive || "Override Active" })
   ] });
 };
+
+// src/components/DeviceSimulator.tsx
+var import_jsx_runtime5 = require("react/jsx-runtime");
+var DeviceSimulator = ({
+  children,
+  className = ""
+}) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime5.jsx)("div", { className: `layera-device-simulator ${className}`, children });
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   DesktopOnly,
   DeviceOverrideProvider,
+  DeviceSimulator,
   DeviceSwitcher,
   MobileAndTablet,
   MobileOnly,

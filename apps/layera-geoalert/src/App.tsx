@@ -179,8 +179,12 @@ function App() {
     ((frameWidth === 414 && frameHeight === 916) ||
      (frameWidth >= 412 && frameWidth <= 416 && frameHeight >= 914 && frameHeight <= 920));
 
+
   // State για re-render αν αλλάξει
   const [deviceDetected, setDeviceDetected] = useState(isIPhone14ProMaxDevice);
+
+  // Use detected iPhone mode
+  const finalIsIPhone = deviceDetected || isIPhone14ProMaxDevice;
 
   useEffect(() => {
     const checkDevice = () => {
@@ -307,10 +311,10 @@ function App() {
                 <DeviceFrameWrapper enabled={true}>
                   <AppShell
                     layout="fullscreen"
-                    header={(!showCategoryElements || !(deviceDetected || isIPhone14ProMaxDevice)) ?
-                      <GeoHeader onBackClick={() => setIsMapMode(false)} isIPhone14ProMax={deviceDetected || isIPhone14ProMaxDevice} /> :
+                    header={(!showCategoryElements || !finalIsIPhone) ?
+                      <GeoHeader onBackClick={() => setIsMapMode(false)} isIPhone14ProMax={finalIsIPhone} /> :
                       null}
-                    className={`geo-map-shell ${showCategoryElements && (deviceDetected || isIPhone14ProMaxDevice) ? 'hide-header' : ''}`}
+                    className={`geo-map-shell ${showCategoryElements && finalIsIPhone ? 'hide-header' : ''}`}
                   >
                     <ViewportFrame id="layera-device-simulator-viewport">
                       <GeoMap
@@ -319,7 +323,7 @@ function App() {
                         showUnifiedPipeline={showUnifiedPipeline}
                         onCloseUnifiedPipeline={() => setShowUnifiedPipeline(false)}
                         onSubmitUnifiedPipeline={handleUnifiedPipelineSubmit}
-                        isIPhone14ProMaxDevice={deviceDetected || isIPhone14ProMaxDevice}
+                        isIPhone14ProMaxDevice={finalIsIPhone}
                         onCategoryElementsChange={setShowCategoryElements}
                       />
                     </ViewportFrame>

@@ -46,20 +46,11 @@ export interface GeoMapProps {
  * Βελτιστοποιημένο για την ειδική οθόνη και χαρακτηριστικά του iPhone 14 Pro Max
  */
 export const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated, onNewEntryClick, isIPhone14ProMaxDevice = true }) => {
-  // Debug info for device detection
-  console.log('🎯 iPhone 14 Pro Max GeoMap: Component rendered!');
-  console.log('🎯 Device Info:', {
-    userAgent: navigator.userAgent,
-    screenWidth: window.screen.width,
-    screenHeight: window.screen.height,
-    innerWidth: window.innerWidth,
-    innerHeight: window.innerHeight,
-    devicePixelRatio: window.devicePixelRatio
-  });
+  // Debug info removed to prevent console flooding
 
   // Minimal setup - καμία global CSS modification
   useEffect(() => {
-    console.log('🎯 iPhone 14 Pro Max GeoMap: Setup complete - using MapContainer');
+    // Setup complete - using MapContainer
   }, []);
 
   return (

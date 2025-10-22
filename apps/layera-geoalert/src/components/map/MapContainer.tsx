@@ -63,7 +63,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
   };
 
   // Render device-specific UI
-  console.log('🗺️ MapContainer - isMobile:', isMobile, 'hideDrawingControls:', hideDrawingControls);
+  // Debug log removed to prevent console flooding
 
   if (isMobile) {
     return (

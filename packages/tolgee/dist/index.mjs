@@ -633,9 +633,19 @@ var common_default = {
             mToM: "m - m"
           }
         },
+        floorPlan: {
+          title: "\u03A6\u03BF\u03C1\u03C4\u03CE\u03C3\u03C4\u03B5 \u03C4\u03BF \u03B1\u03C1\u03C7\u03B5\u03AF\u03BF \u03BC\u03B5 \u03C4\u03B7\u03BD \u03BA\u03AC\u03C4\u03BF\u03C8\u03B7 \u03C4\u03BF\u03C5 \u03B1\u03BA\u03B9\u03BD\u03AE\u03C4\u03BF\u03C5",
+          description: "\u039A\u03AC\u03BD\u03C4\u03B5 \u03BA\u03BB\u03B9\u03BA \u03B3\u03B9\u03B1 \u03BD\u03B1 \u03B1\u03BD\u03B5\u03B2\u03AC\u03C3\u03B5\u03C4\u03B5 \u03C4\u03B7\u03BD \u03BA\u03AC\u03C4\u03BF\u03C8\u03B7",
+          selectFile: "\u0395\u03C0\u03B9\u03BB\u03BF\u03B3\u03AE \u0391\u03C1\u03C7\u03B5\u03AF\u03BF\u03C5",
+          uploaded: "\u039A\u03AC\u03C4\u03BF\u03C8\u03B7 \u03C6\u03BF\u03C1\u03C4\u03CE\u03B8\u03B7\u03BA\u03B5",
+          supportedTypes: "\u03A5\u03C0\u03BF\u03C3\u03C4\u03B7\u03C1\u03AF\u03B6\u03BF\u03BD\u03C4\u03B1\u03B9: \u0395\u03B9\u03BA\u03CC\u03BD\u03B5\u03C2 (JPG, PNG, GIF), PDF, CAD (DXF, DWG)"
+        },
         actions: {
           back: "\u03A0\u03AF\u03C3\u03C9",
           saveLocation: "\u0391\u03C0\u03BF\u03B8\u03AE\u03BA\u03B5\u03C5\u03C3\u03B7 \u03A4\u03BF\u03C0\u03BF\u03B8\u03B5\u03C3\u03AF\u03B1\u03C2 & \u03A3\u03C5\u03BD\u03AD\u03C7\u03B5\u03B9\u03B1"
+        },
+        addressBreakdown: {
+          title: "\u0391\u03BD\u03AC\u03BB\u03C5\u03C3\u03B7 \u0394\u03B9\u03B5\u03CD\u03B8\u03C5\u03BD\u03C3\u03B7\u03C2"
         }
       },
       employmentType: {
@@ -695,6 +705,39 @@ var common_default = {
       save: "\u0391\u03C0\u03BF\u03B8\u03AE\u03BA\u03B5\u03C5\u03C3\u03B7",
       cancel: "\u0391\u03BA\u03CD\u03C1\u03C9\u03C3\u03B7"
     }
+  },
+  progress: {
+    stepper: {
+      optional: "\u03A0\u03C1\u03BF\u03B1\u03B9\u03C1\u03B5\u03C4\u03B9\u03BA\u03CC",
+      labels: {
+        category: "\u039A\u03B1\u03C4\u03B7\u03B3\u03BF\u03C1\u03AF\u03B1",
+        intent: "\u03A3\u03BA\u03BF\u03C0\u03CC\u03C2",
+        transactionType: "\u03A3\u03C5\u03BD\u03B1\u03BB\u03BB\u03B1\u03B3\u03AE",
+        employmentType: "\u0395\u03C1\u03B3\u03B1\u03C3\u03AF\u03B1",
+        availability: "\u0394\u03B9\u03B1\u03B8\u03B5\u03C3\u03B9\u03BC\u03CC\u03C4\u03B7\u03C4\u03B1",
+        availabilityDetails: "\u039B\u03B5\u03C0\u03C4\u03BF\u03BC\u03AD\u03C1\u03B5\u03B9\u03B5\u03C2",
+        location: "\u03A4\u03BF\u03C0\u03BF\u03B8\u03B5\u03C3\u03AF\u03B1",
+        layout: "\u039A\u03AC\u03C4\u03BF\u03C8\u03B7",
+        details: "\u03A3\u03C4\u03BF\u03B9\u03C7\u03B5\u03AF\u03B1",
+        complete: "\u03A4\u03AD\u03BB\u03BF\u03C2"
+      },
+      descriptions: {
+        category: "\u03A4\u03CD\u03C0\u03BF\u03C2",
+        intent: "\u0394\u03C1\u03AC\u03C3\u03B7",
+        transactionType: "\u03A4\u03CD\u03C0\u03BF\u03C2",
+        employmentType: "\u03A4\u03CD\u03C0\u03BF\u03C2",
+        availability: "\u03A0\u03CC\u03C4\u03B5",
+        availabilityDetails: "\u0397\u03BC\u03B5\u03C1\u03BF\u03BC\u03B7\u03BD\u03AF\u03B5\u03C2",
+        location: "\u03A7\u03AC\u03C1\u03C4\u03B7\u03C2",
+        layout: "\u0394\u03B9\u03AC\u03C4\u03B1\u03BE\u03B7",
+        details: "\u03A0\u03B5\u03C1\u03B9\u03B3\u03C1\u03B1\u03C6\u03AE",
+        complete: "\u0395\u03C0\u03B9\u03B2\u03B5\u03B2\u03B1\u03AF\u03C9\u03C3\u03B7"
+      }
+    }
+  },
+  rulers: {
+    showRulers: "\u0395\u03BC\u03C6\u03AC\u03BD\u03B9\u03C3\u03B7 \u03A7\u03B1\u03C1\u03B1\u03BA\u03CE\u03BD",
+    hideRulers: "\u0391\u03C0\u03CC\u03BA\u03C1\u03C5\u03C8\u03B7 \u03A7\u03B1\u03C1\u03B1\u03BA\u03CE\u03BD"
   }
 };
 
@@ -1325,9 +1368,19 @@ var common_default2 = {
             mToM: "m - m"
           }
         },
+        floorPlan: {
+          title: "Upload the floor plan file",
+          description: "Click to upload the floor plan",
+          selectFile: "Select File",
+          uploaded: "Floor plan uploaded",
+          supportedTypes: "Supported: Images (JPG, PNG, GIF), PDF, CAD (DXF, DWG)"
+        },
         actions: {
           back: "Back",
           saveLocation: "Save Location & Continue"
+        },
+        addressBreakdown: {
+          title: "Address Breakdown"
         }
       },
       transaction: {
@@ -1397,6 +1450,39 @@ var common_default2 = {
       continue: "Continue",
       save: "Save"
     }
+  },
+  progress: {
+    stepper: {
+      optional: "Optional",
+      labels: {
+        category: "Category",
+        intent: "Purpose",
+        transactionType: "Transaction",
+        employmentType: "Employment",
+        availability: "Availability",
+        availabilityDetails: "Details",
+        location: "Location",
+        layout: "Floorplan",
+        details: "Details",
+        complete: "Complete"
+      },
+      descriptions: {
+        category: "Type",
+        intent: "Action",
+        transactionType: "Type",
+        employmentType: "Type",
+        availability: "When",
+        availabilityDetails: "Dates",
+        location: "Map",
+        layout: "Layout",
+        details: "Description",
+        complete: "Confirmation"
+      }
+    }
+  },
+  rulers: {
+    showRulers: "Show Rulers",
+    hideRulers: "Hide Rulers"
   }
 };
 

@@ -628,9 +628,19 @@ var DeviceSwitcher = ({
     }, children: labels.overrideActive || "Override Active" })
   ] });
 };
+
+// src/components/DeviceSimulator.tsx
+import { jsx as jsx5 } from "react/jsx-runtime";
+var DeviceSimulator = ({
+  children,
+  className = ""
+}) => {
+  return /* @__PURE__ */ jsx5("div", { className: `layera-device-simulator ${className}`, children });
+};
 export {
   DesktopOnly,
   DeviceOverrideProvider,
+  DeviceSimulator,
   DeviceSwitcher,
   MobileAndTablet,
   MobileOnly,

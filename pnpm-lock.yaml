@@ -29,6 +29,9 @@ importers:
       '@layera/database-core':
         specifier: file:../../packages/database-core
         version: link:../../packages/database-core
+      '@layera/draggable':
+        specifier: file:../../packages/draggable
+        version: link:../../packages/draggable
       '@layera/geo-drawing':
         specifier: file:../../packages/geo-drawing
         version: file:packages/geo-drawing(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -533,6 +536,31 @@ importers:
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
+
+  packages/draggable:
+    dependencies:
+      react:
+        specifier: '>=18.0.0'
+        version: 19.2.0
+      react-dom:
+        specifier: '>=18.0.0'
+        version: 19.2.0(react@19.2.0)
+    devDependencies:
+      '@types/react':
+        specifier: ^18.2.0
+        version: 18.3.26
+      '@types/react-dom':
+        specifier: ^18.2.0
+        version: 18.3.7(@types/react@18.3.26)
+      tsup:
+        specifier: ^8.0.0
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+      vitest:
+        specifier: ^1.0.0
+        version: 1.6.1(@types/node@22.18.11)(@vitest/ui@1.6.1)(jsdom@27.0.1(postcss@8.5.6))
 
   packages/error-boundary:
     dependencies:

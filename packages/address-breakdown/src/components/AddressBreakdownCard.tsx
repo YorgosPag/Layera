@@ -14,7 +14,7 @@ import { BaseCard } from '@layera/cards';
 import { Button } from '@layera/buttons';
 import { LocationIcon, MapIcon } from '@layera/icons';
 import { Spinner } from '@layera/loading';
-import { useLayeraTranslation } from '@layera/tolgee';
+import { useLayeraTranslation } from '@layera/i18n';
 // Fixed import - χρησιμοποιούμε το νέο working osmService από geo-mapping
 import { fetchBoundaryByAddressComponent } from '../../../geo-mapping/src/services/osmService';
 

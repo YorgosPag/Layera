@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { RoleGuard, useAuthContext } from '@layera/auth-bridge'
 import { ThemeProvider } from '@layera/theme-switcher'
 import { DeviceOverrideProvider, DeviceSimulator, DeviceSwitcher } from '@layera/viewport'
+import { TolgeeProvider } from '@layera/tolgee'
 // Enterprise LEGO Styles - Central Import
 import '@layera/styles'
 import Login from './components/Login'
@@ -51,9 +52,10 @@ function ProtectedRoute({ children, requiredRole, allowedRoles }) {
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="system" storageKey="layera-id-theme">
-      <DeviceOverrideProvider>
-        <DeviceSimulator>
+    <TolgeeProvider language="el">
+      <ThemeProvider defaultTheme="system" storageKey="layera-id-theme">
+        <DeviceOverrideProvider>
+          <DeviceSimulator>
           <Router>
             <Routes>
             <Route path="/" element={<Navigate to="/dashboard" />} />
@@ -127,6 +129,7 @@ function App() {
         </DeviceSimulator>
       </DeviceOverrideProvider>
     </ThemeProvider>
+    </TolgeeProvider>
   )
 }
 

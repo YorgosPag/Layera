@@ -122,4 +122,19 @@ interface DeviceSwitcherProps {
  */
 declare const DeviceSwitcher: React.FC<DeviceSwitcherProps>;
 
-export { DesktopOnly, DeviceOverrideProvider, DeviceSwitcher, type DeviceType, MobileAndTablet, MobileOnly, type Orientation, type ResponsiveConfig, ResponsiveContainer, TabletAndDesktop, TabletOnly, type ViewportBreakpoints, ViewportDebugger, type ViewportInfo, useIsDesktop, useIsMobile, useIsTablet, useOrientation, useViewport, useViewportWithOverride };
+/**
+ * DeviceSimulator Component
+ * Εξομοιώνει διαφορετικές συσκευές για testing και development
+ */
+
+interface DeviceSimulatorProps {
+    children: React.ReactNode;
+    className?: string;
+}
+/**
+ * DeviceSimulator - Wrapper component για device simulation
+ * Χρησιμοποιείται σε conjunction με DeviceOverrideProvider
+ */
+declare const DeviceSimulator: React.FC<DeviceSimulatorProps>;
+
+export { DesktopOnly, DeviceOverrideProvider, DeviceSimulator, DeviceSwitcher, type DeviceType, MobileAndTablet, MobileOnly, type Orientation, type ResponsiveConfig, ResponsiveContainer, TabletAndDesktop, TabletOnly, type ViewportBreakpoints, ViewportDebugger, type ViewportInfo, useIsDesktop, useIsMobile, useIsTablet, useOrientation, useViewport, useViewportWithOverride };

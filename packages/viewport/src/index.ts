@@ -36,3 +36,5 @@ export {
   DeviceOverrideProvider,
   useViewportWithOverride
 } from './components/DeviceSwitcher';
+
+export { DeviceSimulator } from './components/DeviceSimulator';
