@@ -222,7 +222,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
   // Desktop specific rendering
   if (isDesktop) {
     return (
-      <div style={{ width: '100%', height: '600px', position: 'relative' }}>
+      <div style={{ width: '100%', height: '100vh', position: 'relative' }}>
         <DesktopGeoMap />
         <MapContainer
           onAreaCreated={onAreaCreated}
@@ -253,7 +253,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
   // Tablet specific rendering
   if (isTablet) {
     return (
-      <div style={{ width: '100%', height: '500px', position: 'relative' }}>
+      <div style={{ width: '100%', height: '100vh', position: 'relative' }}>
         <TabletGeoMap />
         <MapContainer
           onAreaCreated={onAreaCreated}

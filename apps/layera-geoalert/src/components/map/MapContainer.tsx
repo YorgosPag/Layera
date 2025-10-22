@@ -111,47 +111,6 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
           </div>
         )}
 
-        {/* Mobile Drawing Controls - ΚΡΥΜΜΕΝΑ για iPhone 14 Pro Max (όπως στο OLD_GeoMap.tsx) */}
-        {!(hideDrawingControls || isIPhone14ProMaxDevice) && (
-          <div style={{
-            position: 'absolute',
-            bottom: '80px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            display: 'flex',
-            gap: '8px',
-            padding: '8px',
-            backgroundColor: 'rgba(255, 255, 255, 0.9)',
-            borderRadius: '8px',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-            zIndex: 1000
-          }}>
-            <Button
-              onClick={() => handleDrawingModeChange('marker')}
-              variant={currentMode === 'marker' ? 'success' : 'secondary'}
-              size="xs"
-              icon={<MarkerIcon size="sm" theme="neutral" />}
-            >
-              {t('marker')}
-            </Button>
-            <Button
-              onClick={() => handleDrawingModeChange('polygon')}
-              variant={currentMode === 'polygon' ? 'primary' : 'secondary'}
-              size="xs"
-              icon={<PolygonIcon size="sm" theme="neutral" />}
-            >
-              {t('polygon')}
-            </Button>
-            <Button
-              onClick={handleClearAll}
-              variant="danger"
-              size="xs"
-              icon={<TrashIcon size="sm" theme="neutral" />}
-            >
-              {t('clearAll')}
-            </Button>
-          </div>
-        )}
 
         {/* Floating Action Button for New Entry */}
         {onNewEntryClick && (
@@ -191,55 +150,24 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
 
   // Desktop/Tablet layout
   return (
-    <div className="desktop-map-container">
+    <div className="desktop-map-container" style={{
+      position: 'absolute',
+      inset: 0,
+      width: '100%',
+      height: '100vh'
+    }}>
       <div
         ref={mapContainerRef}
         id="geo-map"
         style={{
-          width: '100%',
-          height: '600px',
-          position: 'relative'
+          position: 'absolute',
+          inset: 0
         }}
       />
 
-      {/* Desktop Drawing Controls */}
-      <div style={{
-        display: 'flex',
-        gap: '8px',
-        padding: '16px',
-        backgroundColor: '#f8f9fa',
-        borderRadius: '8px',
-        marginTop: '16px',
-        boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-      }}>
-        <Button
-          onClick={() => handleDrawingModeChange('marker')}
-          variant={currentMode === 'marker' ? 'success' : 'secondary'}
-          size="sm"
-          icon={<MarkerIcon size="sm" theme="neutral" />}
-        >
-          {t('marker')}
-        </Button>
-        <Button
-          onClick={() => handleDrawingModeChange('polygon')}
-          variant={currentMode === 'polygon' ? 'primary' : 'secondary'}
-          size="sm"
-          icon={<PolygonIcon size="sm" theme="neutral" />}
-        >
-          {t('polygon')}
-        </Button>
-        <Button
-          onClick={handleClearAll}
-          variant="danger"
-          size="sm"
-          icon={<TrashIcon size="sm" theme="neutral" />}
-        >
-          {t('clearAll')}
-        </Button>
-      </div>
 
-      {/* Areas List */}
-      {drawnAreas.length > 0 && (
+      {/* Areas List - ΑΦΑΙΡΕΘΗΚΕ για dark mode compatibility */}
+      {false && drawnAreas.length > 0 && (
         <div style={{
           marginTop: '16px',
           padding: '16px',
