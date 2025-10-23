@@ -26,7 +26,8 @@
       "Bash(pnpm -w add @layera/geo-drawing --filter=@layera/geoalert)",
       "Read(//c/Users/user/Downloads/**)",
       "Bash(start http://localhost:3004)",
-      "Bash(git tag:*)"
+      "Bash(git tag:*)",
+      "Bash(start http://localhost:3005)"
     ],
     "deny": [],
     "ask": []
