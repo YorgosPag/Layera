@@ -21,7 +21,6 @@ export * from './location';
 export * from './details';
 export * from './pricing';
 export * from './review';
-export * from './transaction';
 
 // 🎮 CONVENIENCE FUNCTIONS
 import { stepRegistry } from './StepRegistry';

@@ -87,8 +87,7 @@ export const ENHANCED_PROPERTY_FLOW: StepFlowConfig = {
     { stepId: 'intent', order: 3 },
     { stepId: 'location', order: 4 },
     { stepId: 'details', order: 5 },
-    { stepId: 'transaction', order: 6 }, // Με transaction step
-    { stepId: 'review', order: 7 }
+    { stepId: 'review', order: 6 }
   ],
   conditions: [
     { type: 'category', value: 'property' },

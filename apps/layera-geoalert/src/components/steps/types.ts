@@ -12,8 +12,7 @@ export type StepId =
   | 'location'
   | 'details'
   | 'pricing'
-  | 'review'
-  | 'transaction';
+  | 'review';
 
 export type CategoryType = 'property' | 'job' | null;
 export type IntentType = 'offer' | 'search' | null;
