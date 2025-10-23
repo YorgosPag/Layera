@@ -88,9 +88,11 @@ export const DeviceLayoutRenderer: React.FC<DeviceLayoutRendererProps> = ({
   // iPhone rendering
   // ΣΗΜΑΝΤΙΚΟ: Αφαιρέθηκαν τα console.log για αποφυγή infinite render loops
   // που προκαλούσαν εξαφάνιση του FAB στο iPhone 14 Pro Max
+
   if (detectedDeviceType === 'iphone') {
     const config = finalConfig.iphone;
     const iPhoneComponents = components?.iphone || {};
+
 
     return (
       <div
@@ -125,16 +127,15 @@ export const DeviceLayoutRenderer: React.FC<DeviceLayoutRendererProps> = ({
         {/* Conditional category rendering */}
         {showCategoryElements && iPhoneComponents.category && navigation && (
           React.createElement(iPhoneComponents.category, {
-            isVisible: showCategoryElements,
+            isVisible: true,
             currentStepId: navigation.currentStep,
             onNext: async (_category: unknown) => {
-              // This logic θα μπορούσε να περάσει σαν prop
-              // Αφαιρέθηκαν console.log/error για αποφυγή render loops
               try {
-                // await navigation.selectCategory(_category);
-                // Category selection logic εδώ
+                if (navigationHandlers?.onNext) {
+                  navigationHandlers.onNext();
+                }
               } catch (error) {
-                // Error handling χωρίς console output
+                // Error handling
               }
             }
           })

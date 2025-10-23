@@ -346,6 +346,7 @@ function App() {
                         onSubmitUnifiedPipeline={handleUnifiedPipelineSubmit}
                         isIPhone14ProMaxDevice={finalIsIPhone}
                         onCategoryElementsChange={setShowCategoryElements}
+                        showCategoryElements={showCategoryElements}
                       />
                     </ViewportFrame>
                   </AppShell>

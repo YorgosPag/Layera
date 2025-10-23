@@ -17,9 +17,9 @@ import { DraggableFAB } from '@layera/draggable-fab';
 import { UnifiedFAB } from '@layera/floating-action-buttons';
 import {
   GeoMap as iPhone14ProMaxGeoMap,
-  FloatingStepper as iPhone14ProMaxFloatingStepper,
-  CategoryStep as iPhone14ProMaxCategoryStep
+  FloatingStepper as iPhone14ProMaxFloatingStepper
 } from './device-specific/mobile/iphone-14-pro-max';
+import { CategoryStep as EnterpriseCategoryStep } from './steps/category/CategoryStep';
 import { DesktopGeoMap } from './device-specific/DesktopGeoMap';
 import { TabletGeoMap } from './device-specific/TabletGeoMap';
 
@@ -54,6 +54,7 @@ interface GeoMapProps {
   onSubmitUnifiedPipeline?: (data: any) => void;
   isIPhone14ProMaxDevice?: boolean;
   onCategoryElementsChange?: (show: boolean) => void;
+  showCategoryElements?: boolean;
 }
 
 export const GeoMap: React.FC<GeoMapProps> = ({
@@ -63,7 +64,8 @@ export const GeoMap: React.FC<GeoMapProps> = ({
   onCloseUnifiedPipeline,
   onSubmitUnifiedPipeline,
   isIPhone14ProMaxDevice = false,
-  onCategoryElementsChange
+  onCategoryElementsChange,
+  showCategoryElements: propShowCategoryElements = false
 }) => {
   const { isDesktop, isTablet, isMobile } = useViewportWithOverride();
 
@@ -76,6 +78,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
 
   // Hybrid approach: χρησιμοποιώ το prop από App.tsx αλλά με fallback το LEGO detection
   const finalIPhone14ProMaxDecision = isIPhone14ProMaxDevice || isDetectedIPhone14ProMax;
+
 
   // 🚀 ENTERPRISE NAVIGATION: Rock-solid service που δεν σπάει ποτέ
   const navigation = useNavigation();
@@ -94,8 +97,8 @@ export const GeoMap: React.FC<GeoMapProps> = ({
     onNewEntryClick
   });
 
-  // Enterprise state από LEGO package
-  const showCategoryElements = navigationState.showCategoryElements;
+  // Enterprise state - χρησιμοποιώ το App.tsx state για συγχρονισμό
+  const showCategoryElements = propShowCategoryElements;
 
   // 🚀 ΦΑΣΗ 6: Enterprise Device Layout LEGO Package - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
   // CRITICAL FIX: Removing all useMemo to stop infinite loops
@@ -136,7 +139,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
 
   const iPhoneComponents = {
     stepper: iPhone14ProMaxFloatingStepper,
-    category: iPhone14ProMaxCategoryStep
+    category: EnterpriseCategoryStep
   };
 
   const navigationProps = {
@@ -166,6 +169,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
     onStepClick: handleStepClick,
     onNewEntryClick: handleNewEntryClick
   };
+
 
 
   return (

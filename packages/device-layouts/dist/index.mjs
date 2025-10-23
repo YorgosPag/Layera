@@ -68,9 +68,15 @@ var DeviceLayoutRenderer = ({
     ...DEFAULT_LAYOUT_CONFIG,
     ...layoutConfig
   };
+  console.log("\u{1F50D} Debug DeviceLayoutRenderer:", { detectedDeviceType, showCategoryElements });
   if (detectedDeviceType === "iphone") {
     const config2 = finalConfig.iphone;
     const iPhoneComponents = components?.iphone || {};
+    console.log("\u{1F50D} Debug iPhone components:", {
+      hasStepper: !!iPhoneComponents.stepper,
+      hasCategory: !!iPhoneComponents.category,
+      showCategoryElements
+    });
     return /* @__PURE__ */ jsxs(
       "div",
       {
@@ -96,15 +102,30 @@ var DeviceLayoutRenderer = ({
             canGoNext: navigation.canGoNext,
             canGoPrevious: navigation.canGoBack
           }),
-          showCategoryElements && iPhoneComponents.category && navigation && React.createElement(iPhoneComponents.category, {
-            isVisible: showCategoryElements,
-            currentStepId: navigation.currentStep,
-            onNext: async (_category) => {
-              try {
-              } catch (error) {
-              }
+          showCategoryElements && (() => {
+            console.log("\u{1F50D} Debug CategoryStep rendering:", {
+              showCategoryElements,
+              hasCategory: !!iPhoneComponents.category,
+              hasNavigation: !!navigation,
+              currentStep: navigation?.currentStep
+            });
+            if (iPhoneComponents.category && navigation) {
+              return React.createElement(iPhoneComponents.category, {
+                isVisible: true,
+                // Force visible for debugging
+                currentStepId: navigation.currentStep,
+                onNext: async (_category) => {
+                  try {
+                    if (navigationHandlers?.onNext) {
+                      navigationHandlers.onNext();
+                    }
+                  } catch (error) {
+                  }
+                }
+              });
             }
-          })
+            return null;
+          })()
         ]
       }
     );
@@ -159,6 +180,13 @@ var ResponsiveMapLayout = ({
   showCategoryElements = false,
   fab
 }) => {
+  console.log("\u{1F50D} Debug ResponsiveMapLayout:", {
+    deviceType,
+    forceDeviceType,
+    showCategoryElements,
+    hasIPhoneComponents: !!iPhoneComponents,
+    iPhoneComponentKeys: Object.keys(iPhoneComponents)
+  });
   const fabComponent = fab && !fab.hidden ? /* @__PURE__ */ jsx2(
     "div",
     {
