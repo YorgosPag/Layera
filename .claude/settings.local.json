@@ -27,7 +27,8 @@
       "Read(//c/Users/user/Downloads/**)",
       "Bash(start http://localhost:3004)",
       "Bash(git tag:*)",
-      "Bash(start http://localhost:3005)"
+      "Bash(start http://localhost:3005)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []

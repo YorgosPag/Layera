@@ -895,3 +895,95 @@ export const HandshakeIcon: React.FC<IconProps> = ({
     </svg>
   );
 };
+
+// EyeIcon - Προεπισκόπηση/Preview για review
+export const EyeIcon: React.FC<IconProps> = ({
+  size = 'md',
+  theme = 'neutral',
+  className = '',
+  style = {},
+  onClick
+}) => {
+  const iconSize = typeof size === 'number' ? size : ICON_SIZES[size];
+  const color = THEME_COLORS[theme];
+
+  return (
+    <svg
+      width={iconSize}
+      height={iconSize}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`layera-icon eye-icon ${className}`}
+      style={{ cursor: onClick ? 'pointer' : 'default', ...style }}
+      onClick={onClick}
+    >
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  );
+};
+
+// EditIcon - Επεξεργασία για review mode
+export const EditIcon: React.FC<IconProps> = ({
+  size = 'md',
+  theme = 'neutral',
+  className = '',
+  style = {},
+  onClick
+}) => {
+  const iconSize = typeof size === 'number' ? size : ICON_SIZES[size];
+  const color = THEME_COLORS[theme];
+
+  return (
+    <svg
+      width={iconSize}
+      height={iconSize}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`layera-icon edit-icon ${className}`}
+      style={{ cursor: onClick ? 'pointer' : 'default', ...style }}
+      onClick={onClick}
+    >
+      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+    </svg>
+  );
+};
+
+// CheckIcon - Επιβεβαίωση/Confirm για review completion
+export const CheckIcon: React.FC<IconProps> = ({
+  size = 'md',
+  theme = 'neutral',
+  className = '',
+  style = {},
+  onClick
+}) => {
+  const iconSize = typeof size === 'number' ? size : ICON_SIZES[size];
+  const color = THEME_COLORS[theme];
+
+  return (
+    <svg
+      width={iconSize}
+      height={iconSize}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`layera-icon check-icon ${className}`}
+      style={{ cursor: onClick ? 'pointer' : 'default', ...style }}
+      onClick={onClick}
+    >
+      <polyline points="20,6 9,17 4,12" />
+    </svg>
+  );
+};

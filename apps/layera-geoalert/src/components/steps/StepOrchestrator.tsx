@@ -16,7 +16,8 @@ import {
   IntentType,
   LocationType,
   DetailsType,
-  PricingType
+  PricingType,
+  ReviewType
 } from './types';
 
 export interface StepOrchestratorProps {
@@ -27,6 +28,7 @@ export interface StepOrchestratorProps {
   selectedLocation?: LocationType;
   selectedDetails?: DetailsType;
   selectedPricing?: PricingType;
+  selectedReview?: ReviewType;
   completedSteps?: Set<StepId>;
   featureFlags?: Record<string, boolean>;
 
@@ -59,6 +61,7 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
   selectedLocation,
   selectedDetails,
   selectedPricing,
+  selectedReview,
   completedSteps = new Set(),
   featureFlags = {},
   onStepChange,
@@ -85,10 +88,11 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
     selectedLocation: selectedLocation || null,
     selectedDetails: selectedDetails || null,
     selectedPricing: selectedPricing || null,
+    selectedReview: selectedReview || null,
     completedSteps,
     featureFlags,
     customData: {}
-  }), [currentStepId, selectedCategory, selectedIntent, selectedLocation, selectedDetails, selectedPricing, completedSteps, featureFlags]);
+  }), [currentStepId, selectedCategory, selectedIntent, selectedLocation, selectedDetails, selectedPricing, selectedReview, completedSteps, featureFlags]);
 
   // 📋 Get available steps για current context
   const availableSteps = useMemo(() => {
