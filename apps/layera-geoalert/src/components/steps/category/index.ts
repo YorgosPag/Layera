@@ -5,5 +5,59 @@
  * Dynamic ordering μέσω StepRegistry
  */
 
-// Placeholder - θα υλοποιηθεί στη ΦΑΣΗ 2
-export const CategoryStepPlaceholder = () => null;
+import React from 'react';
+import { stepRegistry } from '../StepRegistry';
+import { CategoryStep } from './CategoryStep';
+import { CategoryCard } from './CategoryCard';
+import { HomeIcon, WorkIcon } from '../../../icons/LayeraIcons';
+
+// 🚀 AUTO-REGISTRATION: Register this step in the registry
+stepRegistry.register({
+  id: 'category',
+  name: 'Κατηγορία',
+  shortName: 'Τύπος',
+  component: CategoryStep,
+  order: 1,
+  isVisible: true,
+  dependencies: [], // First step, no dependencies
+  conditions: [], // Always available
+  cards: [
+    {
+      id: 'property-category-card',
+      component: (props) => React.createElement(CategoryCard, {
+        ...props,
+        categoryType: 'property',
+        title: 'Ακίνητα',
+        icon: React.createElement(HomeIcon, { size: 'md', theme: 'neutral' }),
+        onCategorySelect: (category) => {
+          console.log('Property category selected:', category);
+        }
+      }),
+      order: 1
+    },
+    {
+      id: 'job-category-card',
+      component: (props) => React.createElement(CategoryCard, {
+        ...props,
+        categoryType: 'job',
+        title: 'Εργασία',
+        icon: React.createElement(WorkIcon, { size: 'md', theme: 'neutral' }),
+        onCategorySelect: (category) => {
+          console.log('Job category selected:', category);
+        }
+      }),
+      order: 2
+    }
+  ],
+  metadata: {
+    isOptional: false,
+    estimatedTime: 5 // 5 seconds average
+  }
+});
+
+console.log('✅ Category Step registered in StepRegistry');
+
+// 🎯 CLEAN EXPORTS
+export { CategoryStep } from './CategoryStep';
+export { CategoryCard } from './CategoryCard';
+export * from './types';
