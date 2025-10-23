@@ -13,6 +13,16 @@ export interface CategoryStepProps {
 
 /**
  * CategoryStep - Enterprise LEGO Component
+ *
+ * ⚠️ LEGACY/DEPRECATED: ΘΑ ΔΙΑΓΡΑΦΕΙ ΣΤΟ ΜΕΛΛΟΝ! ⚠️
+ *
+ * Αυτό το component είναι μέρος του ΠΑΛΙΟΥ UnifiedPipelineModal system.
+ * Όταν ολοκληρωθεί 100% το ΝΕΟ Enterprise Step System
+ * (apps/layera-geoalert/src/components/steps/), αυτό το αρχείο θα διαγραφεί
+ * μαζί με όλο το packages/pipelines/unified/ directory.
+ *
+ * Χρησιμοποιείται προσωρινά ως αναφορά/πυρήνας για migration.
+ *
  * Purpose: Category selection (Property vs Job) - EXACT from original UnifiedPipeline.tsx
  * Complexity: Low (< 15)
  * Lines: < 100 (Enterprise Standard)

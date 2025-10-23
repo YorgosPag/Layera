@@ -1,4 +1,11 @@
 // Enterprise LEGO Step Components
+//
+// ⚠️ DEPRECATED: LEGACY PIPELINE SYSTEM - ΘΑ ΔΙΑΓΡΑΦΕΙ! ⚠️
+//
+// Αυτό το directory περιέχει το ΠΑΛΙΟ step system που χρησιμοποιείται
+// ως αναφορά για migration. Όταν ολοκληρωθεί το ΝΕΟ Enterprise Step System
+// (apps/layera-geoalert/src/components/steps/), όλο αυτό θα διαγραφεί.
+//
 // All components follow enterprise standards: <100 LOC, complexity <15
 // Only @layera LEGO systems used - no custom implementations
 

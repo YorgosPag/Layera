@@ -1,5 +1,15 @@
 /**
  * @layera/pipelines - Enterprise UnifiedPipelineModal (Clean Architecture)
+ *
+ * 🚨 LEGACY/DEPRECATED SYSTEM - ΘΑ ΔΙΑΓΡΑΦΕΙ! 🚨
+ *
+ * Αυτό είναι το ΠΑΛΙΟ pipeline system που χρησιμοποιείται ως αναφορά.
+ * Όταν ολοκληρωθεί 100% το ΝΕΟ Enterprise Step System με StepRegistry
+ * (apps/layera-geoalert/src/components/steps/), ολόκληρο το
+ * packages/pipelines/unified/ directory θα διαγραφεί.
+ *
+ * Προσωρινή χρήση: Modal container με κάρτες για migration reference.
+ *
  * Purpose: Λεπτό shell που συνθέτει βήματα - ΚΑΜΙΑ επιχειρησιακή λογική εδώ
  * Architecture: Clean separation of concerns - ΟΧΙ inline CSS, ΟΧΙ state management
  */
