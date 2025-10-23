@@ -30,6 +30,7 @@ export interface FloatingStepperProps {
   stepTitle?: string;
   canGoNext?: boolean;
   canGoPrevious?: boolean;
+  onCardsOpacityToggle?: (isOpaque: boolean) => void; // Νέο prop για opacity toggle
 }
 
 /**
@@ -48,8 +49,12 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   onReset,
   onStepClick,
   canGoNext = true,
-  canGoPrevious = false
+  canGoPrevious = false,
+  onCardsOpacityToggle
 }) => {
+  // Opacity modes - τρεις καταστάσεις
+  type OpacityMode = 'transparent' | 'semi-transparent' | 'opaque';
+  const [opacityMode, setOpacityMode] = React.useState<OpacityMode>('transparent');
   const { t } = useLayeraTranslation();
 
   // 🚀 ENTERPRISE AUTO-DISCOVERY: Ενεργοποιημένο!
@@ -225,6 +230,37 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     opacity: onReset ? 1 : 0.5
   };
 
+  // Toggle button styles για opacity control με 3 modes
+  const getToggleButtonStyles = (): React.CSSProperties => {
+    const baseStyles = {
+      ...buttonStyles,
+      fontSize: '10px',
+      padding: '4px 8px',
+      minWidth: '24px'
+    };
+
+    switch (opacityMode) {
+      case 'transparent':
+        return {
+          ...baseStyles,
+          backgroundColor: 'rgba(255, 255, 255, 0.2)',
+          color: 'white'
+        };
+      case 'semi-transparent':
+        return {
+          ...baseStyles,
+          backgroundColor: '#fbbf24', // Κίτρινο για ημιδιαφανές
+          color: '#000'
+        };
+      case 'opaque':
+        return {
+          ...baseStyles,
+          backgroundColor: '#ef4444', // Κόκκινο για συμπαγές
+          color: 'white'
+        };
+    }
+  };
+
   // Handle step dot click - Enterprise Auto-Navigation
   const handleStepDotClick = (index: number) => {
     const isVisited = index <= effectiveStepIndex;
@@ -252,6 +288,12 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     // 🚀 ENTERPRISE: Χρήση του PipelineDiscovery για σωστή πλοήγηση ένα βήμα πίσω
     const success = pipelineDiscovery.goToPreviousStep();
 
+    // 🚀 ENTERPRISE: Ειδοποίηση του parent component για την αλλαγή βήματος
+    if (success && onStepClick) {
+      const newState = pipelineDiscovery.getCurrentState();
+      onStepClick(newState.currentStepIndex);
+    }
+
     // Fallback στο παλιό API αν το PipelineDiscovery αποτύχει
     if (!success && onPrevious && canGoPrevious) {
       onPrevious();
@@ -271,6 +313,33 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     // Fallback στο παλιό API
     if (onReset) {
       onReset();
+    }
+  };
+
+  // Handle opacity toggle - Cards transparency control με 3 modes
+  const handleOpacityToggle = () => {
+    if ('vibrate' in navigator) {
+      navigator.vibrate(30);
+    }
+
+    // Cycle through τις 3 καταστάσεις: transparent -> semi-transparent -> opaque -> transparent
+    const nextMode: OpacityMode = opacityMode === 'transparent'
+      ? 'semi-transparent'
+      : opacityMode === 'semi-transparent'
+        ? 'opaque'
+        : 'transparent';
+
+    setOpacityMode(nextMode);
+
+    // Στείλε event για αλλαγή opacity σε όλες τις κάρτες
+    const opacityEvent = new CustomEvent('toggleCardsOpacity', {
+      detail: { opacityMode: nextMode }
+    });
+    window.dispatchEvent(opacityEvent);
+
+    // Callback στο parent component αν υπάρχει (legacy compatibility)
+    if (onCardsOpacityToggle) {
+      onCardsOpacityToggle(nextMode !== 'transparent');
     }
   };
 
@@ -310,6 +379,26 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
           }}
         >
           ←
+        </button>
+
+        <button
+          style={getToggleButtonStyles()}
+          onClick={handleOpacityToggle}
+          onTouchStart={(e) => {
+            e.currentTarget.style.transform = 'scale(0.95)';
+          }}
+          onTouchEnd={(e) => {
+            e.currentTarget.style.transform = 'scale(1)';
+          }}
+          title={
+            opacityMode === 'transparent'
+              ? t('pipeline.actions.opacity.makesSemiTransparent', 'Κάνε τις κάρτες ημιδιαφανείς')
+              : opacityMode === 'semi-transparent'
+                ? t('pipeline.actions.opacity.makeOpaque', 'Κάνε τις κάρτες συμπαγείς')
+                : t('pipeline.actions.opacity.makeTransparent', 'Κάνε τις κάρτες διαφανείς (καθρέφτης)')
+          }
+        >
+          {opacityMode === 'transparent' ? '○' : opacityMode === 'semi-transparent' ? '◐' : '●'}
         </button>
 
         <button

@@ -42,6 +42,7 @@ interface StepperComponentProps {
     onNext?: (() => void) | undefined;
     onPrevious?: (() => void) | undefined;
     onReset?: (() => void) | undefined;
+    onStepClick?: ((stepIndex: number) => void) | undefined;
     canGoNext?: boolean | undefined;
     canGoPrevious?: boolean | undefined;
 }
@@ -71,6 +72,7 @@ interface DeviceLayoutProps {
         onNext?: () => void;
         onPrevious?: () => void;
         onReset?: () => void;
+        onStepClick?: (stepIndex: number) => void;
         onNewEntryClick?: () => void;
     };
     /** Show/hide stepper και category elements */
@@ -197,6 +199,7 @@ interface ResponsiveMapLayoutProps {
         onNext?: () => void;
         onPrevious?: () => void;
         onReset?: () => void;
+        onStepClick?: (stepIndex: number) => void;
         onNewEntryClick?: () => void;
     };
     /** Show category elements (για iPhone stepper) */

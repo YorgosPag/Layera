@@ -48,6 +48,7 @@ export interface ResponsiveMapLayoutProps {
     onNext?: () => void;
     onPrevious?: () => void;
     onReset?: () => void;
+    onStepClick?: (stepIndex: number) => void;
     onNewEntryClick?: () => void;
   };
 

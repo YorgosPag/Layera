@@ -45,6 +45,7 @@ export interface StepperComponentProps {
   onNext?: (() => void) | undefined;
   onPrevious?: (() => void) | undefined;
   onReset?: (() => void) | undefined;
+  onStepClick?: ((stepIndex: number) => void) | undefined;
   canGoNext?: boolean | undefined;
   canGoPrevious?: boolean | undefined;
 }
@@ -80,6 +81,7 @@ export interface DeviceLayoutProps {
     onNext?: () => void;
     onPrevious?: () => void;
     onReset?: () => void;
+    onStepClick?: (stepIndex: number) => void;
     onNewEntryClick?: () => void;
   };
 

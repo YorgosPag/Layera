@@ -23,7 +23,9 @@
       "Bash(timeout:*)",
       "Bash(start http://localhost:3002)",
       "Bash(pnpm add:*)",
-      "Bash(pnpm -w add @layera/geo-drawing --filter=@layera/geoalert)"
+      "Bash(pnpm -w add @layera/geo-drawing --filter=@layera/geoalert)",
+      "Read(//c/Users/user/Downloads/**)",
+      "Bash(start http://localhost:3004)"
     ],
     "deny": [],
     "ask": []

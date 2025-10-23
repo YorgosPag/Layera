@@ -116,6 +116,7 @@ export const DeviceLayoutRenderer: React.FC<DeviceLayoutRendererProps> = ({
             onNext: navigationHandlers?.onNext,
             onPrevious: navigationHandlers?.onPrevious,
             onReset: navigationHandlers?.onReset,
+            onStepClick: navigationHandlers?.onStepClick,
             canGoNext: navigation.canGoNext,
             canGoPrevious: navigation.canGoBack
           })

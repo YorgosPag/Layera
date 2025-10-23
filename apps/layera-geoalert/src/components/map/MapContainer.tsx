@@ -5,13 +5,14 @@
  * Αντικαθιστά το monolithic GeoMap.tsx με modular approach.
  */
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { MapProvider, useMap } from '@layera/map-core';
 import { useDrawing, DrawingMode } from '@layera/geo-drawing';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { useViewportWithOverride } from '@layera/viewport';
 import { Button } from '@layera/buttons';
-import { MarkerIcon, PolygonIcon, TrashIcon, PlusIcon } from '../icons/LayeraIcons';
+import { MarkerIcon, PolygonIcon, TrashIcon, PlusIcon, LocationIcon } from '../icons/LayeraIcons';
+import L from 'leaflet';
 
 interface MapContainerProps {
   onAreaCreated?: (area: any) => void;
@@ -28,6 +29,104 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
   // Map initialization
   const { map, initializeMap, isLoading } = useMap();
 
+  // User location marker state
+  const userLocationMarkerRef = useRef<L.Marker | null>(null);
+
+  // Create custom user location icon
+  const createUserLocationIcon = () => {
+    // Create a div element with just the LocationIcon
+    const iconDiv = document.createElement('div');
+    iconDiv.style.cssText = `
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      animation: pulse-location 2s infinite;
+      transform-origin: center bottom;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    `;
+
+    // Add the LocationIcon SVG with proper styling
+    iconDiv.innerHTML = `
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#10b981" stroke="#ffffff" stroke-width="1"/>
+      </svg>
+    `;
+
+    // Add CSS animation to the document if not already added
+    if (!document.querySelector('style[data-user-location-animation]')) {
+      const animationStyles = document.createElement('style');
+      animationStyles.setAttribute('data-user-location-animation', 'true');
+      animationStyles.textContent = `
+        @keyframes pulse-location {
+          0% {
+            transform: scale(1);
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+          }
+          50% {
+            transform: scale(1.15);
+            filter: drop-shadow(0 4px 8px rgba(16, 185, 129, 0.4));
+          }
+          100% {
+            transform: scale(1);
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+          }
+        }
+
+        @keyframes bounce-in {
+          0% {
+            transform: scale(0) translateY(10px);
+            opacity: 0;
+          }
+          50% {
+            transform: scale(1.2) translateY(-5px);
+            opacity: 0.8;
+          }
+          100% {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+          }
+        }
+      `;
+      document.head.appendChild(animationStyles);
+    }
+
+    return L.divIcon({
+      html: iconDiv.outerHTML,
+      className: 'user-location-marker',
+      iconSize: [32, 32],
+      iconAnchor: [16, 32] // Η μύτη του marker να είναι στο σημείο της θέσης
+    });
+  };
+
+  // Add or update user location marker
+  const addUserLocationMarker = (latitude: number, longitude: number) => {
+    if (!map) return;
+
+    // Remove existing marker if it exists
+    if (userLocationMarkerRef.current) {
+      map.removeLayer(userLocationMarkerRef.current);
+    }
+
+    // Create new marker with custom icon
+    const marker = L.marker([latitude, longitude], {
+      icon: createUserLocationIcon()
+    }).addTo(map);
+
+    // Add bounce-in animation
+    const markerElement = marker.getElement();
+    if (markerElement) {
+      markerElement.style.animation = 'bounce-in 0.6s ease-out';
+    }
+
+    // Store marker reference
+    userLocationMarkerRef.current = marker;
+
+    console.log('✅ MapContainer: User location marker added with animation');
+  };
+
   // Initialize map when component mounts
   useEffect(() => {
     if (mapContainerRef.current && !map) {
@@ -37,6 +136,75 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
       });
     }
   }, [map, initializeMap]);
+
+  // Event listeners για location centering
+  useEffect(() => {
+    const handleCenterMapToLocation = (event: CustomEvent) => {
+      if (!map) {
+        console.warn('🗺️ MapContainer: Map not initialized yet, cannot center to location');
+        return;
+      }
+
+      const { latitude, longitude, zoom = 16, animate = true } = event.detail;
+
+      console.log('🎯 MapContainer: Centering map to location:', { latitude, longitude, zoom });
+
+      try {
+        if (animate) {
+          // Smooth animation to location
+          map.flyTo([latitude, longitude], zoom, {
+            animate: true,
+            duration: 1.5 // 1.5 seconds animation
+          });
+        } else {
+          // Instant move
+          map.setView([latitude, longitude], zoom);
+        }
+
+        // Add user location marker with animation
+        addUserLocationMarker(latitude, longitude);
+
+        console.log('✅ MapContainer: Map centered successfully');
+      } catch (error) {
+        console.error('❌ MapContainer: Error centering map:', error);
+      }
+    };
+
+    const handleFocusMapOnLocation = (event: CustomEvent) => {
+      if (!map) {
+        console.warn('🗺️ MapContainer: Map not initialized yet, cannot focus on location');
+        return;
+      }
+
+      const { latitude, longitude } = event.detail;
+
+      console.log('🔍 MapContainer: Focusing map on location:', { latitude, longitude });
+
+      try {
+        // Additional focus logic - could add marker or highlight
+        map.panTo([latitude, longitude]);
+        console.log('✅ MapContainer: Map focused successfully');
+      } catch (error) {
+        console.error('❌ MapContainer: Error focusing map:', error);
+      }
+    };
+
+    // Add event listeners
+    window.addEventListener('centerMapToLocation', handleCenterMapToLocation as EventListener);
+    window.addEventListener('focusMapOnLocation', handleFocusMapOnLocation as EventListener);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('centerMapToLocation', handleCenterMapToLocation as EventListener);
+      window.removeEventListener('focusMapOnLocation', handleFocusMapOnLocation as EventListener);
+
+      // Clean up user location marker
+      if (userLocationMarkerRef.current && map) {
+        map.removeLayer(userLocationMarkerRef.current);
+        userLocationMarkerRef.current = null;
+      }
+    };
+  }, [map]);
 
   // Drawing functionality - pass map instance directly
   const {

@@ -148,10 +148,22 @@ export const GeoMap: React.FC<GeoMapProps> = ({
     canGoBack: navigation.canGoBack
   };
 
+  // 🚀 ENTERPRISE STEP CLICK HANDLER: Back button synchronization με κάρτες
+  const handleStepClick = (stepIndex: number) => {
+    console.log('🔄 Step click navigation:', { stepIndex, currentStep: navigation.currentStep });
+
+    // Το PipelineDiscovery έχει ήδη ενημερωθεί από το FloatingStepper
+    // Εδώ μπορούμε να προσθέσουμε επιπλέον logic αν χρειάζεται
+
+    // TODO: Μελλοντικά μπορεί να χρειαστεί συγχρονισμός με cards state
+    // Για τώρα το PipelineDiscovery αναλαμβάνει τον συγχρονισμό
+  };
+
   const navigationHandlersProps = {
     onNext: handleStepNext,
     onPrevious: handleStepPrevious,
     onReset: handleStepReset,
+    onStepClick: handleStepClick,
     onNewEntryClick: handleNewEntryClick
   };
 
