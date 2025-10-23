@@ -1,32 +1,28 @@
 /**
- * types.ts - Location Step Domain Types
+ * location/types.ts - Enterprise Location Step Types
  *
- * Location-specific types και interfaces
+ * 🏗️ EXTENDED για LEGO Geocoding Integration
  */
 
-import type { LocationType } from '../types';
+import type { GeocodeResult } from '@layera/geocoding';
+
+export type LocationMethodType = 'upload' | 'drawing' | 'search';
+
+export interface LocationDetails {
+  method: LocationMethodType;
+  uploadedFile?: File;
+  fileType?: 'image' | 'pdf' | 'cad' | 'unknown';
+  drawingData?: unknown;
+  // LEGO Geocoding Integration
+  searchResult?: GeocodeResult;
+  coordinates?: {
+    latitude: number;
+    longitude: number;
+  };
+  address?: string;
+}
 
 export interface LocationStepData {
-  selectedLocation: LocationType;
-  selectedCategory: string;
-  selectedIntent: string;
-  timestamp: number;
+  locationDetails: LocationDetails;
+  isComplete: boolean;
 }
-
-export interface LocationCardData {
-  id: string;
-  locationType: LocationType;
-  title: string;
-  description?: string;
-  categoryContext?: string;
-  intentContext?: string;
-  isRecommended?: boolean;
-}
-
-export type LocationSelectionEvent = {
-  location: LocationType;
-  category: string;
-  intent: string;
-  timestamp: number;
-  source: 'user_click' | 'auto_selection' | 'navigation';
-};

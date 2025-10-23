@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESCO API Demo - Layera Employment Taxonomy Test</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .search-section {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .search-box {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 14px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .search-btn {
+            padding: 14px 24px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .search-btn:hover {
+            background: #2563eb;
+        }
+
+        .search-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .filters {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            background: white;
+        }
+
+        .stats {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 16px;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #3b82f6;
+        }
+
+        .stat-label {
+            color: #64748b;
+            margin-top: 4px;
+        }
+
+        .results-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #64748b;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e2e8f0;
+            border-top: 4px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .occupation-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .occupation-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+        }
+
+        .occupation-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .occupation-meta {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .meta-tag {
+            background: #eff6ff;
+            color: #1d4ed8;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .occupation-description {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .skills-section {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .skills-grid {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .skill-tag {
+            background: #f0fdf4;
+            color: #166534;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+
+        .error {
+            background: #fef2f2;
+            color: #dc2626;
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid #fecaca;
+        }
+
+        .api-info {
+            background: #fefce8;
+            color: #a16207;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            margin-bottom: 16px;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .page-btn {
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .page-btn.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        @media (max-width: 768px) {
+            .search-box {
+                flex-direction: column;
+            }
+
+            .filters {
+                flex-direction: column;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏗️ ESCO API Demo</h1>
+            <p>Enterprise Employment Taxonomy Testing για @layera/employment-taxonomy</p>
+        </div>
+
+        <div class="search-section">
+            <div class="api-info">
+                <strong>⚠️ DEMO MODE:</strong> Το ESCO δεν παρέχει δημόσιο REST API με CORS support. Αυτό το demo χρησιμοποιεί mock data για να δείξει πώς θα λειτουργούσε το @layera/employment-taxonomy. |
+                <strong>ESCO Version:</strong> v1.2 |
+                <strong>Total Occupations:</strong> 2,942 |
+                <strong>Total Skills:</strong> 13,890
+            </div>
+
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="searchInput"
+                    class="search-input"
+                    placeholder="Αναζήτηση επαγγέλματος... (π.χ. προγραμματιστής, γιατρός, δικηγόρος)"
+                    value=""
+                >
+                <button id="searchBtn" class="search-btn">🔍 Αναζήτηση</button>
+            </div>
+
+            <div class="filters">
+                <select id="languageFilter" class="filter-select">
+                    <option value="el">🇬🇷 Ελληνικά</option>
+                    <option value="en">🇺🇸 English</option>
+                    <option value="de">🇩🇪 Deutsch</option>
+                    <option value="fr">🇫🇷 Français</option>
+                </select>
+
+                <select id="limitFilter" class="filter-select">
+                    <option value="10">10 αποτελέσματα</option>
+                    <option value="20" selected>20 αποτελέσματα</option>
+                    <option value="50">50 αποτελέσματα</option>
+                </select>
+
+                <select id="typeFilter" class="filter-select">
+                    <option value="occupation" selected>Επαγγέλματα</option>
+                    <option value="skill">Δεξιότητες</option>
+                    <option value="all">Όλα</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="stats" id="statsSection" style="display: none;">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalResults">0</div>
+                    <div class="stat-label">Συνολικά Αποτελέσματα</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="responseTime">0ms</div>
+                    <div class="stat-label">Χρόνος Απόκρισης</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="currentPage">1</div>
+                    <div class="stat-label">Σελίδα</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="apiVersion">v1.2</div>
+                    <div class="stat-label">ESCO Version</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="results-section">
+            <div id="loadingSection" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Αναζήτηση στο ESCO API...</p>
+            </div>
+
+            <div id="errorSection" style="display: none;"></div>
+
+            <div id="resultsSection">
+                <p style="text-align: center; color: #64748b; padding: 40px;">
+                    Εισάγετε όρο αναζήτησης για να δείτε επαγγέλματα από το ESCO API
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ESCO API Configuration
+        const ESCO_API_BASE = 'https://esco.ec.europa.eu/api';
+        let currentSearchData = null;
+
+        // DOM Elements
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const languageFilter = document.getElementById('languageFilter');
+        const limitFilter = document.getElementById('limitFilter');
+        const typeFilter = document.getElementById('typeFilter');
+        const loadingSection = document.getElementById('loadingSection');
+        const errorSection = document.getElementById('errorSection');
+        const resultsSection = document.getElementById('resultsSection');
+        const statsSection = document.getElementById('statsSection');
+
+        // Event Listeners
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') performSearch();
+        });
+
+        // Auto-search με debounce
+        let searchTimeout;
+        searchInput.addEventListener('input', () => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                if (searchInput.value.trim().length > 2) {
+                    performSearch();
+                }
+            }, 500);
+        });
+
+        async function performSearch() {
+            const query = searchInput.value.trim();
+            if (!query) return;
+
+            const language = languageFilter.value;
+            const limit = parseInt(limitFilter.value);
+            const type = typeFilter.value;
+
+            showLoading();
+
+            try {
+                const startTime = Date.now();
+
+                // Since ESCO doesn't have public CORS-enabled API, we simulate the response
+                console.log('🔍 ESCO API Request (Simulated):', query, language, type, limit);
+
+                // Simulate API delay
+                await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 500));
+
+                const responseTime = Date.now() - startTime;
+
+                // Mock ESCO data based on search query
+                const mockData = generateMockESCOData(query, language, type, limit);
+
+                console.log('✅ ESCO API Response (Mock):', mockData);
+
+                currentSearchData = {
+                    ...mockData,
+                    responseTime,
+                    language,
+                    query
+                };
+
+                displayResults(mockData, responseTime);
+
+            } catch (error) {
+                console.error('❌ ESCO API Error:', error);
+                showError(error.message);
+            }
+        }
+
+        function generateMockESCOData(query, language, type, limit) {
+            // Mock occupations database
+            const mockOccupations = [
+                {
+                    uri: 'http://data.europa.eu/esco/occupation/c40b53eb-7e99-4768-b0a1-71fef2b97a42',
+                    preferredLabel: language === 'el' ? 'Προγραμματιστής Λογισμικού' : 'Software Developer',
+                    alternativeLabel: language === 'el' ? ['Προγραμματιστής', 'Developer', 'Κωδικοποιός'] : ['Programmer', 'Coder', 'Software Engineer'],
+                    description: language === 'el' ?
+                        'Αναπτύσσει, συντηρεί και τεκμηριώνει λογισμικό για διάφορες εφαρμογές. Συνεργάζεται με ομάδες ανάπτυξης για τη δημιουργία αποτελεσματικών λύσεων.' :
+                        'Develops, maintains, and documents software for various applications. Collaborates with development teams to create effective solutions.',
+                    iscoGroup: '2512',
+                    _type: 'Occupation',
+                    hasSkill: [
+                        { preferredLabel: language === 'el' ? 'JavaScript' : 'JavaScript' },
+                        { preferredLabel: language === 'el' ? 'Python' : 'Python' },
+                        { preferredLabel: language === 'el' ? 'Βάσεις Δεδομένων' : 'Database Management' },
+                        { preferredLabel: language === 'el' ? 'Git' : 'Git Version Control' },
+                        { preferredLabel: language === 'el' ? 'Αλγόριθμοι' : 'Algorithms' }
+                    ]
+                },
+                {
+                    uri: 'http://data.europa.eu/esco/occupation/c8a43bd8-4ab7-4f30-a1e3-6e5c2aff7a23',
+                    preferredLabel: language === 'el' ? 'Γιατρός Παθολόγος' : 'Internal Medicine Physician',
+                    alternativeLabel: language === 'el' ? ['Παθολόγος', 'Ιατρός'] : ['Doctor', 'Physician'],
+                    description: language === 'el' ?
+                        'Διαγιγνώσκει και θεραπεύει ασθένειες του εσωτερικού ιατρικού συστήματος ενηλίκων.' :
+                        'Diagnoses and treats diseases of the internal medical system of adults.',
+                    iscoGroup: '2211',
+                    _type: 'Occupation',
+                    hasSkill: [
+                        { preferredLabel: language === 'el' ? 'Διάγνωση' : 'Medical Diagnosis' },
+                        { preferredLabel: language === 'el' ? 'Φαρμακολογία' : 'Pharmacology' },
+                        { preferredLabel: language === 'el' ? 'Επικοινωνία με Ασθενείς' : 'Patient Communication' }
+                    ]
+                },
+                {
+                    uri: 'http://data.europa.eu/esco/occupation/d1f23e45-8b67-4f30-b1e3-7e6c3aff8b34',
+                    preferredLabel: language === 'el' ? 'Δικηγόρος' : 'Lawyer',
+                    alternativeLabel: language === 'el' ? ['Νομικός', 'Συνήγορος'] : ['Attorney', 'Legal Counsel'],
+                    description: language === 'el' ?
+                        'Παρέχει νομικές συμβουλές και εκπροσωπεί πελάτες σε δικαστικές διαδικασίες.' :
+                        'Provides legal advice and represents clients in legal proceedings.',
+                    iscoGroup: '2611',
+                    _type: 'Occupation',
+                    hasSkill: [
+                        { preferredLabel: language === 'el' ? 'Νομική Ανάλυση' : 'Legal Analysis' },
+                        { preferredLabel: language === 'el' ? 'Συνήγορος' : 'Advocacy' },
+                        { preferredLabel: language === 'el' ? 'Σύνταξη Εγγράφων' : 'Document Drafting' }
+                    ]
+                },
+                {
+                    uri: 'http://data.europa.eu/esco/occupation/e2f34f56-9c78-4f41-c2f4-8f7d4bgg9c45',
+                    preferredLabel: language === 'el' ? 'Μηχανικός Λογισμικού' : 'Software Engineer',
+                    alternativeLabel: language === 'el' ? ['Software Engineer', 'Μηχανικός'] : ['Systems Engineer', 'Technical Lead'],
+                    description: language === 'el' ?
+                        'Σχεδιάζει και αναπτύσσει πολύπλοκα συστήματα λογισμικού με έμφαση στην αρχιτεκτονική και την απόδοση.' :
+                        'Designs and develops complex software systems with emphasis on architecture and performance.',
+                    iscoGroup: '2512',
+                    _type: 'Occupation',
+                    hasSkill: [
+                        { preferredLabel: language === 'el' ? 'Αρχιτεκτονική Λογισμικού' : 'Software Architecture' },
+                        { preferredLabel: language === 'el' ? 'Σχεδιαστικά Πρότυπα' : 'Design Patterns' },
+                        { preferredLabel: language === 'el' ? 'Επίδοση Συστημάτων' : 'System Performance' },
+                        { preferredLabel: language === 'el' ? 'DevOps' : 'DevOps' },
+                        { preferredLabel: language === 'el' ? 'Μικροσυστήματα' : 'Microservices' }
+                    ]
+                },
+                {
+                    uri: 'http://data.europa.eu/esco/occupation/f3g45h67-0d89-4g52-d3g5-9h8e5dii0d56',
+                    preferredLabel: language === 'el' ? 'Εκπαιδευτικός Πρωτοβάθμιας Εκπαίδευσης' : 'Primary School Teacher',
+                    alternativeLabel: language === 'el' ? ['Δάσκαλος', 'Παιδαγωγός'] : ['Elementary Teacher', 'Primary Educator'],
+                    description: language === 'el' ?
+                        'Διδάσκει μαθητές πρωτοβάθμιας εκπαίδευσης σε όλα τα βασικά μαθήματα και αναπτύσσει τις κοινωνικές τους δεξιότητες.' :
+                        'Teaches primary school students in all basic subjects and develops their social skills.',
+                    iscoGroup: '2341',
+                    _type: 'Occupation',
+                    hasSkill: [
+                        { preferredLabel: language === 'el' ? 'Παιδαγωγική' : 'Pedagogy' },
+                        { preferredLabel: language === 'el' ? 'Διαχείριση Τάξης' : 'Classroom Management' },
+                        { preferredLabel: language === 'el' ? 'Αξιολόγηση Μαθητών' : 'Student Assessment' },
+                        { preferredLabel: language === 'el' ? 'Επικοινωνία με Γονείς' : 'Parent Communication' }
+                    ]
+                },
+                {
+                    uri: 'http://data.europa.eu/esco/occupation/g4h56i78-1e90-5h63-e4h6-0i9f6ejj1e67',
+                    preferredLabel: language === 'el' ? 'Σεφ Κουζίνας' : 'Chef',
+                    alternativeLabel: language === 'el' ? ['Αρχιμάγειρας', 'Κουζινιέρης'] : ['Head Chef', 'Cook'],
+                    description: language === 'el' ?
+                        'Προετοιμάζει και μαγειρεύει φαγητά σε εστιατόρια, ξενοδοχεία και άλλους χώρους εστίασης. Επιβλέπει την κουζίνα και το προσωπικό.' :
+                        'Prepares and cooks food in restaurants, hotels and other catering establishments. Supervises kitchen and staff.',
+                    iscoGroup: '5120',
+                    _type: 'Occupation',
+                    hasSkill: [
+                        { preferredLabel: language === 'el' ? 'Μαγειρική' : 'Culinary Skills' },
+                        { preferredLabel: language === 'el' ? 'Διαχείριση Κουζίνας' : 'Kitchen Management' },
+                        { preferredLabel: language === 'el' ? 'Δημιουργικότητα' : 'Creativity' },
+                        { preferredLabel: language === 'el' ? 'Υγιεινή Τροφίμων' : 'Food Safety' }
+                    ]
+                },
+                {
+                    uri: 'http://data.europa.eu/esco/occupation/h5i67j89-2f01-6i74-f5i7-1j0g7fkk2f78',
+                    preferredLabel: language === 'el' ? 'Λογιστής' : 'Accountant',
+                    alternativeLabel: language === 'el' ? ['Οικονομολόγος', 'Χρηματοοικονομικός'] : ['Financial Analyst', 'Bookkeeper'],
+                    description: language === 'el' ?
+                        'Τηρεί λογιστικά βιβλία, προετοιμάζει οικονομικές καταστάσεις και παρέχει οικονομικές συμβουλές σε επιχειρήσεις.' :
+                        'Maintains accounting records, prepares financial statements and provides financial advice to businesses.',
+                    iscoGroup: '2411',
+                    _type: 'Occupation',
+                    hasSkill: [
+                        { preferredLabel: language === 'el' ? 'Λογιστική' : 'Accounting' },
+                        { preferredLabel: language === 'el' ? 'Φορολογία' : 'Taxation' },
+                        { preferredLabel: language === 'el' ? 'Οικονομική Ανάλυση' : 'Financial Analysis' },
+                        { preferredLabel: language === 'el' ? 'Excel' : 'Excel' }
+                    ]
+                }
+            ];
+
+            // Filter based on search query
+            const searchTerm = query.toLowerCase();
+            const filteredOccupations = mockOccupations.filter(occ =>
+                occ.preferredLabel.toLowerCase().includes(searchTerm) ||
+                occ.alternativeLabel.some(alt => alt.toLowerCase().includes(searchTerm)) ||
+                occ.description.toLowerCase().includes(searchTerm)
+            );
+
+            // Apply limit
+            const results = filteredOccupations.slice(0, limit);
+
+            return {
+                total: filteredOccupations.length,
+                results: results,
+                _embedded: { results: results },
+                meta: {
+                    language: language,
+                    type: type,
+                    limit: limit
+                }
+            };
+        }
+
+        function showLoading() {
+            loadingSection.style.display = 'block';
+            errorSection.style.display = 'none';
+            resultsSection.innerHTML = '';
+            statsSection.style.display = 'none';
+            searchBtn.disabled = true;
+        }
+
+        function showError(message) {
+            loadingSection.style.display = 'none';
+            errorSection.style.display = 'block';
+            errorSection.innerHTML = `
+                <div class="error">
+                    <strong>Σφάλμα ESCO API:</strong> ${message}
+                    <br><br>
+                    <small>Ελέγξτε τη σύνδεση διαδικτύου και δοκιμάστε ξανά.</small>
+                </div>
+            `;
+            searchBtn.disabled = false;
+        }
+
+        function displayResults(data, responseTime) {
+            loadingSection.style.display = 'none';
+            errorSection.style.display = 'none';
+            searchBtn.disabled = false;
+
+            // Update stats
+            updateStats(data, responseTime);
+
+            // Get results από ESCO response
+            const results = data._embedded?.results || data.results || [];
+
+            if (results.length === 0) {
+                resultsSection.innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: #64748b;">
+                        <h3>Δεν βρέθηκαν αποτελέσματα</h3>
+                        <p>Δοκιμάστε διαφορετικούς όρους αναζήτησης ή αλλάξτε τη γλώσσα.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Display results
+            resultsSection.innerHTML = results.map(result => renderResult(result)).join('');
+        }
+
+        function updateStats(data, responseTime) {
+            document.getElementById('totalResults').textContent = data.total || data._embedded?.results?.length || 0;
+            document.getElementById('responseTime').textContent = `${responseTime}ms`;
+            document.getElementById('currentPage').textContent = '1';
+            document.getElementById('apiVersion').textContent = 'v1.2';
+            statsSection.style.display = 'block';
+        }
+
+        function renderResult(result) {
+            const isOccupation = result._type === 'Occupation' || result.type === 'occupation';
+            const title = result.preferredLabel || result.title || result.prefLabel || 'Unknown';
+            const description = result.description || 'Δεν υπάρχει περιγραφή';
+            const iscoCode = result.iscoGroup || result.code || '';
+            const skills = result.hasSkill || result.skills || [];
+            const alternativeLabels = result.alternativeLabel || [];
+
+            return `
+                <div class="occupation-card" onclick="showDetails('${result.uri || result.id}')">
+                    <div class="occupation-title">
+                        ${isOccupation ? '👔' : '🔧'} ${title}
+                    </div>
+
+                    <div class="occupation-meta">
+                        ${isOccupation ? `<span class="meta-tag">💼 Επάγγελμα</span>` : `<span class="meta-tag">⚡ Δεξιότητα</span>`}
+                        ${iscoCode ? `<span class="meta-tag">📊 ISCO: ${iscoCode}</span>` : ''}
+                        <span class="meta-tag">🌍 ${currentSearchData?.language?.toUpperCase() || 'EL'}</span>
+                    </div>
+
+                    ${alternativeLabels.length > 0 ? `
+                        <div style="margin-bottom: 8px;">
+                            <small style="color: #64748b;">Επίσης γνωστό ως: ${alternativeLabels.slice(0, 3).join(', ')}</small>
+                        </div>
+                    ` : ''}
+
+                    <div class="occupation-description">
+                        ${description.length > 200 ? description.substring(0, 200) + '...' : description}
+                    </div>
+
+                    ${skills.length > 0 ? `
+                        <div class="skills-section">
+                            <div style="font-weight: 600; margin-bottom: 8px; font-size: 0.875rem;">Σχετικές Δεξιότητες:</div>
+                            <div class="skills-grid">
+                                ${skills.slice(0, 8).map(skill => `
+                                    <span class="skill-tag">${skill.preferredLabel || skill.title || skill}</span>
+                                `).join('')}
+                                ${skills.length > 8 ? `<span class="skill-tag">+${skills.length - 8} ακόμα</span>` : ''}
+                            </div>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        }
+
+        function showDetails(uri) {
+            if (!uri) return;
+
+            console.log('📋 Selected ESCO Item:', uri);
+            alert(`ESCO URI: ${uri}\n\nΑυτό θα ανοίξει detailed view στην πραγματική εφαρμογή.`);
+        }
+
+        // Initialize με sample search
+        window.addEventListener('load', () => {
+            console.log('🚀 ESCO API Demo Loaded');
+            console.log('📡 API Base URL:', ESCO_API_BASE);
+
+            // Auto-search για demo
+            setTimeout(() => {
+                searchInput.value = 'προγραμματιστής';
+                performSearch();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

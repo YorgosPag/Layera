@@ -47,6 +47,9 @@ importers:
       '@layera/forms':
         specifier: file:../../packages/forms
         version: file:packages/forms(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@layera/geo-core':
+        specifier: workspace:^
+        version: link:../../packages/geo-core
       '@layera/geo-drawing':
         specifier: file:..\..\packages\geo-drawing
         version: file:packages/geo-drawing(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -71,9 +74,6 @@ importers:
       '@layera/map-core':
         specifier: file:../../packages/map-core
         version: file:packages/map-core(react@19.2.0)
-      '@layera/map-drawing':
-        specifier: file:../../packages/map-drawing
-        version: file:packages/map-drawing(react@19.2.0)
       '@layera/navigation-handlers':
         specifier: workspace:^
         version: link:../../packages/navigation-handlers
@@ -83,6 +83,12 @@ importers:
       '@layera/pipelines':
         specifier: file:../../packages/pipelines
         version: file:packages/pipelines(react@19.2.0)
+      '@layera/snap-engine':
+        specifier: workspace:^
+        version: link:../../packages/snap-engine
+      '@layera/snap-interactions':
+        specifier: workspace:^
+        version: link:../../packages/snap-interactions
       '@layera/theme-switcher':
         specifier: file:../../packages/theme-switcher
         version: link:../../packages/theme-switcher
@@ -3287,11 +3293,6 @@ packages:
 
   '@layera/map-core@file:packages/map-core':
     resolution: {directory: packages/map-core, type: directory}
-    peerDependencies:
-      react: '>=16.8.0'
-
-  '@layera/map-drawing@file:packages/map-drawing':
-    resolution: {directory: packages/map-drawing, type: directory}
     peerDependencies:
       react: '>=16.8.0'
 
@@ -9446,12 +9447,6 @@ snapshots:
 
   '@layera/map-core@file:packages/map-core(react@19.2.0)':
     dependencies:
-      leaflet: 1.9.4
-      react: 19.2.0
-
-  '@layera/map-drawing@file:packages/map-drawing(react@19.2.0)':
-    dependencies:
-      '@layera/map-core': link:packages/map-core
       leaflet: 1.9.4
       react: 19.2.0
 

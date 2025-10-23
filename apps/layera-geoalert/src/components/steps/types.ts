@@ -9,6 +9,7 @@
 export type StepId =
   | 'category'
   | 'intent'
+  | 'transactionType'
   | 'location'
   | 'details'
   | 'pricing'
@@ -16,6 +17,7 @@ export type StepId =
 
 export type CategoryType = 'property' | 'job' | null;
 export type IntentType = 'offer' | 'search' | null;
+export type TransactionType = 'rent' | 'sale' | 'full_time' | 'part_time' | 'freelance' | 'internship' | null;
 export type LocationType = 'map' | 'area' | 'address' | null;
 export type DetailsType = 'form' | 'quick' | 'advanced' | null;
 export type PricingType = 'free' | 'budget' | 'premium' | 'negotiable' | null;
@@ -100,6 +102,7 @@ export interface StepContext {
   /** User selections */
   selectedCategory: CategoryType;
   selectedIntent: IntentType;
+  selectedTransactionType: TransactionType;
   selectedLocation: LocationType;
   selectedDetails: DetailsType;
   selectedPricing: PricingType;

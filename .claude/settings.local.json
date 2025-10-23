@@ -28,7 +28,20 @@
       "Bash(start http://localhost:3004)",
       "Bash(git tag:*)",
       "Bash(start http://localhost:3005)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(npm run typecheck:*)",
+      "Bash(start http://localhost:3007)",
+      "Bash(pnpm -w --filter @layera/device-layouts build)",
+      "Bash(start http://localhost:3000)",
+      "Bash(dir:*)",
+      "Bash(del \"C:\\layera\\apps\\layera-geoalert\\src\\components\\steps\\category\\CategoryStep.tsx\")",
+      "Bash(for:*)",
+      "Bash(do echo \"Processing $file\")",
+      "Bash(done)",
+      "Bash(find:*)",
+      "Bash(del \"C:\\layera\\apps\\layera-geoalert\\src\\utils\\formatting\\area-formatter.ts\")",
+      "WebFetch(domain:esco.ec.europa.eu)",
+      "Bash(start voithitika_docs/esco-api-demo.html)"
     ],
     "deny": [],
     "ask": []

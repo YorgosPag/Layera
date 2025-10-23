@@ -27,10 +27,11 @@ export interface ResponsiveMapLayoutProps {
     mobile?: React.ComponentType<MapComponentProps>;
   };
 
-  /** iPhone-specific components (stepper, category) */
+  /** iPhone-specific components (stepper, category, orchestrator) */
   iPhoneComponents?: {
     stepper?: React.ComponentType<StepperComponentProps>;
     category?: React.ComponentType<CategoryComponentProps>;
+    orchestrator?: React.ComponentType<any>;
   };
 
   /** Navigation state */
@@ -76,6 +77,7 @@ export const ResponsiveMapLayout: React.FC<ResponsiveMapLayoutProps> = ({
   showCategoryElements = false,
   fab
 }) => {
+
   // Prepare FAB component αν υπάρχει
   const fabComponent = fab && !fab.hidden ? (
     <div
@@ -111,7 +113,8 @@ export const ResponsiveMapLayout: React.FC<ResponsiveMapLayoutProps> = ({
         iphone: {
           map: mapComponents.iPhone,
           stepper: iPhoneComponents.stepper,
-          category: iPhoneComponents.category
+          category: iPhoneComponents.category,
+          orchestrator: iPhoneComponents.orchestrator
         },
         tablet: {
           map: mapComponents.tablet

@@ -9,7 +9,6 @@ import React from 'react';
 import { stepRegistry } from '../StepRegistry';
 import { IntentStep } from './IntentStep';
 import { IntentCard } from './IntentCard';
-import { SearchIcon, OfferIcon } from '../../../icons/LayeraIcons';
 
 // 🚀 AUTO-REGISTRATION: Register this step in the registry
 stepRegistry.register({
@@ -34,7 +33,7 @@ stepRegistry.register({
         intentType: 'offer',
         category: props.context.selectedCategory || 'property',
         title: 'Προσφορά',
-        icon: React.createElement(OfferIcon, { size: 'md', theme: 'neutral' }),
+        icon: null, // React.createElement(OfferIcon, { size: 'md', theme: 'neutral' }),
         onIntentSelect: (intent) => {
           console.log('Offer intent selected:', intent);
         }
@@ -48,7 +47,7 @@ stepRegistry.register({
         intentType: 'search',
         category: props.context.selectedCategory || 'property',
         title: 'Αναζήτηση',
-        icon: React.createElement(SearchIcon, { size: 'md', theme: 'neutral' }),
+        icon: null, // React.createElement(SearchIcon, { size: 'md', theme: 'neutral' }),
         onIntentSelect: (intent) => {
           console.log('Search intent selected:', intent);
         }

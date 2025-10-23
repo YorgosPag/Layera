@@ -147,6 +147,19 @@ export interface DeviceLayoutRendererProps {
       map?: React.ComponentType<MapComponentProps> | undefined;
       stepper?: React.ComponentType<StepperComponentProps> | undefined;
       category?: React.ComponentType<CategoryComponentProps> | undefined;
+      orchestrator?: React.ComponentType<{
+        currentStepId: string;
+        selectedCategory: string;
+        selectedIntent?: string;
+        onStepChange?: ((stepId: string) => void) | undefined;
+        onStepComplete?: ((stepId: string, data?: unknown) => void) | undefined;
+        onNext?: (() => void) | undefined;
+        onPrevious?: (() => void) | undefined;
+        deviceProps?: {
+          isIPhone14ProMaxDevice?: boolean;
+          isMobile?: boolean;
+        };
+      }> | undefined;
     };
     tablet?: {
       map?: React.ComponentType<MapComponentProps> | undefined;

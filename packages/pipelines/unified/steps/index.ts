@@ -1,13 +1,21 @@
-// Enterprise LEGO Step Components
-//
-// ⚠️ DEPRECATED: LEGACY PIPELINE SYSTEM - ΘΑ ΔΙΑΓΡΑΦΕΙ! ⚠️
-//
-// Αυτό το directory περιέχει το ΠΑΛΙΟ step system που χρησιμοποιείται
-// ως αναφορά για migration. Όταν ολοκληρωθεί το ΝΕΟ Enterprise Step System
-// (apps/layera-geoalert/src/components/steps/), όλο αυτό θα διαγραφεί.
-//
-// All components follow enterprise standards: <100 LOC, complexity <15
-// Only @layera LEGO systems used - no custom implementations
+/**
+ * Enterprise LEGO Step Components - LEGACY Index
+ *
+ * 🚨 LEGACY/DEPRECATED - ΜΟΝΟ ΓΙΑ ΑΝΑΦΟΡΑ! 🚨
+ *
+ * ⚠️ ΑΠΑΓΟΡΕΥΕΤΑΙ η τροποποίηση αυτού του directory! ⚠️
+ * ⚠️ ΑΠΑΓΟΡΕΥΕΤΑΙ η χρήση κώδικα από εδώ στο modular system! ⚠️
+ *
+ * Αυτό το directory περιέχει το ΠΑΛΙΟ unified pipeline step system
+ * που χρησιμοποιείται ως ΑΝΑΦΟΡΑ για migration. Όλα τα components
+ * θα ΔΙΑΓΡΑΦΟΥΝ μόλις ολοκληρωθεί το νέο modular step system.
+ *
+ * ⛔ ΜΗ ΧΡΗΣΙΜΟΠΟΙΕΙΤΕ ΚΩΔΙΚΑ ΑΠΟ ΕΔΩ ΣΤΟ MODULAR SYSTEM!
+ * ✅ Για modular steps: apps/layera-geoalert/src/components/steps/
+ *
+ * All components follow enterprise standards: <100 LOC, complexity <15
+ * Only @layera LEGO systems used - no custom implementations
+ */
 
 export { CategoryStep } from './CategoryStep';
 export type { CategoryStepProps, Category } from './CategoryStep';

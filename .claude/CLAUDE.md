@@ -499,3 +499,13 @@ npm run typecheck
 +> 2) Κάνε βαθιά αναζήτηση για **δωρεάν** APIs που ταιριάζουν στο feature. Παράδωσε συγκριτικό πίνακα και αιτιολόγηση επιλογής.  
 +> 3) Υλοποίησε adapter package `packages/api-<provider>` που εκθέτει μόνο domain ports. Όχι any. Τήρησε TypeScript strict, i18n/CONFIG κανόνες, LEGO εξαρτήσεις.  
 +> 4) Παράδωσε unified diff με τις ελάχιστες αλλαγές και tests. Δήλωσε `duplicates: 0`.
+
+Το σωστό είναι να βάζω logs μόνο σε:
+  - Event handlers (onClick, onSubmit, κ.λπ.)
+  - useEffect callbacks
+  - Async functions
+
+  ΠΟΤΕ σε render functions ή άμεσα στο component body!
+  Ποτέ console.log σε JSX ή στο σώμα του component. Μόνο σε handlers και useEffect.
+
+useEffect με σωστά deps, όχι ανώνυμες IIFE μέσα στο render.

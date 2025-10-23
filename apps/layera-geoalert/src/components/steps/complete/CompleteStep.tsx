@@ -1,0 +1,194 @@
+/**
+ * CompleteStep.tsx - Enterprise Modular Complete Step
+ *
+ * Τελικό βήμα επιβεβαίωσης και ολοκλήρωσης με διαφορετικά μηνύματα ανάλογα με category/intent
+ */
+
+import React, { useCallback, useMemo } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
+import { CheckIcon, AlertTriangleIcon, HomeIcon } from '@layera/icons';
+import type { StepProps } from '../types';
+import type { CompleteStepData, CompletionSummary } from './types';
+
+export interface CompleteStepProps extends StepProps {
+  /** Completion callback */
+  onComplete?: () => void;
+}
+
+/**
+ * Enterprise Complete Step - Καθαρό modular component για τελική επιβεβαίωση
+ */
+export const CompleteStep: React.FC<CompleteStepProps> = ({
+  context,
+  onNext,
+  onStepComplete,
+  onComplete,
+  isVisible = true,
+  deviceProps = {}
+}) => {
+  const { t } = useLayeraTranslation();
+
+  const completionSummary: CompletionSummary = useMemo(() => {
+    const isProperty = context?.selectedCategory === 'property';
+    const isOffer = context?.selectedIntent === 'offer';
+
+    let successMessage = 'Η καταχώρησή σας ολοκληρώθηκε επιτυχώς!';
+    let nextSteps: string[] = [
+      'Η καταχώρησή σας είναι πλέον ενεργή',
+      'Μπορείτε να διαχειριστείτε την καταχώρηση από το προφίλ σας'
+    ];
+
+    if (isProperty && isOffer) {
+      successMessage = 'Η προσφορά ακινήτου σας καταχωρήθηκε επιτυχώς!';
+      nextSteps = [
+        'Η προσφορά σας είναι πλέον ενεργή',
+        'Οι ενδιαφερόμενοι θα μπορούν να σας επικοινωνήσουν',
+        'Μπορείτε να διαχειριστείτε την προσφορά από το προφίλ σας'
+      ];
+    } else if (isProperty && !isOffer) {
+      successMessage = 'Το Geo-Alert σας δημιουργήθηκε επιτυχώς!';
+      nextSteps = [
+        'Θα λαμβάνετε ειδοποιήσεις όταν βρεθούν νέα ακίνητα',
+        'Μπορείτε να διαχειριστείτε τα alerts σας από το προφίλ',
+        'Οι ειδοποιήσεις θα σταλούν στο email σας'
+      ];
+    } else if (!isProperty && isOffer) {
+      successMessage = 'Η αγγελία εργασίας σας καταχωρήθηκε επιτυχώς!';
+      nextSteps = [
+        'Η αγγελία σας είναι πλέον ενεργή',
+        'Οι υποψήφιοι θα μπορούν να δουν την αγγελία',
+        'Μπορείτε να διαχειριστείτε την αγγελία από το προφίλ σας'
+      ];
+    } else if (!isProperty && !isOffer) {
+      successMessage = 'Η αίτηση εργασίας σας καταχωρήθηκε επιτυχώς!';
+      nextSteps = [
+        'Οι εργοδότες θα μπορούν να δουν το προφίλ σας',
+        'Θα λαμβάνετε ειδοποιήσεις για κατάλληλες θέσεις',
+        'Μπορείτε να επεξεργαστείτε το προφίλ σας ανά πάσα στιγμή'
+      ];
+    }
+
+    return {
+      category: context?.selectedCategory || 'property',
+      intent: context?.selectedIntent || 'offer',
+      successMessage,
+      nextSteps
+    };
+  }, [context?.selectedCategory, context?.selectedIntent]);
+
+  const handleComplete = useCallback(async () => {
+    console.log('🎯 COMPLETE UI: Completing process');
+
+    try {
+      // Ενημερώνουμε το StepOrchestrator
+      if (onStepComplete) {
+        const stepData: CompleteStepData = {
+          isComplete: true,
+          completedAt: new Date(),
+          category: completionSummary.category,
+          intent: completionSummary.intent
+        };
+        onStepComplete('complete', stepData);
+      }
+
+      // Complete callback
+      onComplete?.();
+
+      // Final completion
+      setTimeout(() => {
+        console.log('✅ Process completed successfully');
+        // Reset ή navigate away
+      }, 500);
+
+    } catch (error) {
+      console.error('Completion failed:', error);
+    }
+  }, [onStepComplete, onComplete, completionSummary]);
+
+  const handleGoBack = useCallback(() => {
+    console.log('🎯 COMPLETE UI: Going back for changes');
+    // Go back logic - μπορεί να χρησιμοποιήσει navigation service
+  }, []);
+
+  if (!isVisible) {
+    return null;
+  }
+
+  const containerStyles: React.CSSProperties = {
+    position: 'fixed',
+    top: '161px',
+    left: '8px',
+    right: '8px',
+    zIndex: 10002,
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '12px',
+    padding: '0'
+  };
+
+  return (
+    <div style={containerStyles}>
+      {/* Success Card */}
+      <BaseCard
+        variant="success"
+        title="Επιτυχής Ολοκλήρωση!"
+        description={completionSummary.successMessage}
+        icon={<CheckIcon size="sm" theme="neutral" />}
+        data-testid="complete-success-card"
+      />
+
+      {/* Next Steps Card */}
+      <div style={{
+        padding: '16px',
+        background: 'rgba(0, 123, 255, 0.1)',
+        borderRadius: '12px',
+        border: '1px solid rgba(0, 123, 255, 0.2)'
+      }}>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          marginBottom: '12px'
+        }}>
+          <AlertTriangleIcon size="sm" theme="primary" />
+          <span style={{
+            fontSize: '16px',
+            fontWeight: 'bold',
+            color: '#0066cc'
+          }}>
+            Επόμενα Βήματα
+          </span>
+        </div>
+        {completionSummary.nextSteps.map((step, index) => (
+          <div key={index} style={{
+            fontSize: '14px',
+            color: '#666',
+            marginBottom: '6px'
+          }}>
+            • {step}
+          </div>
+        ))}
+      </div>
+
+      {/* Complete Button */}
+      <BaseCard
+        variant="primary"
+        title="Τέλος"
+        description="Ολοκλήρωση διαδικασίας"
+        icon={<HomeIcon size="sm" theme="neutral" />}
+        onClick={handleComplete}
+        data-testid="complete-finish-card"
+      />
+
+      {/* Back Button */}
+      <BaseCard
+        variant="neutral"
+        title="Πίσω για Αλλαγές"
+        description="Επιστροφή για τροποποιήσεις"
+        onClick={handleGoBack}
+        data-testid="complete-back-card"
+      />
+    </div>
+  );
+};

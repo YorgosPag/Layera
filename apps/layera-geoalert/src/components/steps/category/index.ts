@@ -9,7 +9,7 @@ import React from 'react';
 import { stepRegistry } from '../StepRegistry';
 import { CategoryStep } from './CategoryStep';
 import { CategoryCard } from './CategoryCard';
-import { HomeIcon, WorkIcon } from '../../../icons/LayeraIcons';
+import { VillaIcon, BriefcaseIcon } from '@layera/icons';
 
 // 🚀 AUTO-REGISTRATION: Register this step in the registry
 stepRegistry.register({
@@ -28,7 +28,7 @@ stepRegistry.register({
         ...props,
         categoryType: 'property',
         title: 'Ακίνητα',
-        icon: React.createElement(HomeIcon, { size: 'md', theme: 'neutral' }),
+        icon: React.createElement(VillaIcon, { size: 'md', theme: 'neutral' }),
         onCategorySelect: (category) => {
           console.log('Property category selected:', category);
         }
@@ -41,7 +41,7 @@ stepRegistry.register({
         ...props,
         categoryType: 'job',
         title: 'Εργασία',
-        icon: React.createElement(WorkIcon, { size: 'md', theme: 'neutral' }),
+        icon: React.createElement(BriefcaseIcon, { size: 'md', theme: 'neutral' }),
         onCategorySelect: (category) => {
           console.log('Job category selected:', category);
         }

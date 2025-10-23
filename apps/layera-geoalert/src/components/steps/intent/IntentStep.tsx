@@ -75,8 +75,9 @@ export const IntentStep: React.FC<IntentStepProps> = ({
     // Legacy callback για backwards compatibility
     onIntentSelected?.(intent);
 
-    // Auto-advance to next step
-    onNext?.();
+    // REMOVED: Auto-advance to next step
+    // Auto-advance μόνο με explicit user action, ΟΧΙ αυτόματα
+    // onNext?.();
 
     console.log(`✅ Intent selected: ${intent} for category: ${context.selectedCategory}`);
   }, [context.selectedCategory, onNext, onStepComplete, onIntentSelected, pipelineDiscovery]);

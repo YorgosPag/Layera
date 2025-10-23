@@ -124,20 +124,34 @@ export const DeviceLayoutRenderer: React.FC<DeviceLayoutRendererProps> = ({
           })
         )}
 
-        {/* Conditional category rendering */}
-        {showCategoryElements && iPhoneComponents.category && navigation && (
-          React.createElement(iPhoneComponents.category, {
-            isVisible: true,
-            currentStepId: navigation.currentStep,
-            onNext: async (_category: unknown) => {
-              try {
-                if (navigationHandlers?.onNext) {
-                  navigationHandlers.onNext();
-                }
-              } catch (error) {
-                // Error handling
+        {/* 🚀 UNIFIED STEP ORCHESTRATOR: Handles ALL steps including category */}
+        {showCategoryElements && iPhoneComponents.orchestrator && navigation && (
+          React.createElement(iPhoneComponents.orchestrator, {
+            currentStepId: navigation.currentStep!,
+            selectedCategory: navigation.selectedCategory ?? 'property',
+            // πέρασε μόνο όσα handlers υπάρχουν
+            ...(navigationHandlers?.onNext ? { onNext: navigationHandlers.onNext } : {}),
+            ...(navigationHandlers?.onPrevious ? { onPrevious: navigationHandlers.onPrevious } : {}),
+            onStepChange: (stepId) => {
+              console.log(`🎯 DEVICE LAYOUT: Step change to ${stepId}`);
+              // Bridge: StepOrchestrator calls onStepChange(stepId)
+              // but NavigationService only has goNext()
+              // For now, we use goNext() as the bridge
+              if (navigationHandlers?.onNext) {
+                navigationHandlers.onNext();
               }
-            }
+            },
+            onStepComplete: async (stepId, data) => {
+              console.log(`🎯 DEVICE LAYOUT: Step ${stepId} completed`, data);
+
+              // Ειδική λογική για category step - χρειάζεται selectCategory πρώτα
+              if (stepId === 'category' && data?.selectedCategory) {
+                console.log(`🎯 DEVICE LAYOUT: Category selected: ${data.selectedCategory}`);
+                // Εδώ θα χρειαστούμε access στο navigation service
+                // Προς το παρόν, η auto-advance θα γίνει από το StepOrchestrator
+              }
+            },
+            deviceProps: { isIPhone14ProMaxDevice: true, isMobile: true },
           })
         )}
 

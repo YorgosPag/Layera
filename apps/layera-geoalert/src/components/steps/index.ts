@@ -17,6 +17,7 @@ export { STEP_FLOWS } from './flows/stepFlows';
 // Individual steps θα κάνουν auto-register όταν import-αρονται
 export * from './category';
 export * from './intent';
+export * from './transactionType';
 export * from './location';
 export * from './details';
 export * from './pricing';

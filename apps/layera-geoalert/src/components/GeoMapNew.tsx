@@ -19,7 +19,22 @@ import {
   GeoMap as iPhone14ProMaxGeoMap,
   FloatingStepper as iPhone14ProMaxFloatingStepper
 } from './device-specific/mobile/iphone-14-pro-max';
-import { CategoryStep as EnterpriseCategoryStep } from './steps/category/CategoryStep';
+import { CategoryStep } from './steps/category/CategoryStep';
+import { StepOrchestrator } from './steps/StepOrchestrator';
+// Import για auto-registration των modular steps
+import './steps/category';
+import './steps/intent';
+import './steps/transactionType';
+import './steps/availability';
+import './steps/upload';
+import './steps/layout';
+import './steps/propertyType';
+import './steps/propertyDetails';
+import './steps/areaMethod';
+import './steps/location';
+import './steps/employmentType';
+import './steps/availabilityDetails';
+import './steps/complete';
 import { DesktopGeoMap } from './device-specific/DesktopGeoMap';
 import { TabletGeoMap } from './device-specific/TabletGeoMap';
 
@@ -83,6 +98,21 @@ export const GeoMap: React.FC<GeoMapProps> = ({
   // 🚀 ENTERPRISE NAVIGATION: Rock-solid service που δεν σπάει ποτέ
   const navigation = useNavigation();
 
+  // 🔧 AUTO-RESET μόνο για unregistered steps, όχι για valid steps
+  React.useEffect(() => {
+    // Reset μόνο αν είμαστε σε step που δεν υπάρχει στο StepOrchestrator
+    if (navigation.currentStep &&
+        !['category', 'intent', 'transactionType', 'availability', 'upload', 'layout', 'propertyType', 'propertyDetails', 'areaMethod', 'location', 'employmentType', 'availabilityDetails', 'complete', 'details', 'pricing', 'review'].includes(navigation.currentStep) &&
+        navigation.selectedCategory) {
+      // Event-based reset - ΟΧΙ render-time console.log!
+      setTimeout(() => {
+        console.log(`🔄 AUTO-RESET: Step '${navigation.currentStep}' not implemented yet, resetting to category`);
+        navigation.reset();
+      }, 100);
+    }
+  }, [navigation.currentStep, navigation.selectedCategory, navigation.reset]);
+
+
   // 🚀 ENTERPRISE NAVIGATION HANDLERS: @layera/navigation-handlers LEGO package
   const {
     handleStepNext,
@@ -102,7 +132,8 @@ export const GeoMap: React.FC<GeoMapProps> = ({
 
   // 🚀 ΦΑΣΗ 6: Enterprise Device Layout LEGO Package - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
   // CRITICAL FIX: Removing all useMemo to stop infinite loops
-  const deviceType = finalIPhone14ProMaxDecision ? 'iphone' : (isDesktop ? 'desktop' : (isTablet ? 'tablet' : 'mobile'));
+  // 🔧 TEMPORARY: Force iPhone mode για testing IntentStep migration
+  const deviceType = 'iphone'; // finalIPhone14ProMaxDecision ? 'iphone' : (isDesktop ? 'desktop' : (isTablet ? 'tablet' : 'mobile'));
 
   const mapProps = {
     onAreaCreated,
@@ -139,7 +170,8 @@ export const GeoMap: React.FC<GeoMapProps> = ({
 
   const iPhoneComponents = {
     stepper: iPhone14ProMaxFloatingStepper,
-    category: EnterpriseCategoryStep
+    category: CategoryStep, // ENABLED: Καθαρό enterprise CategoryStep
+    orchestrator: StepOrchestrator
   };
 
   const navigationProps = {
@@ -150,6 +182,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
     canGoNext: navigation.canGoNext,
     canGoBack: navigation.canGoBack
   };
+
 
   // 🚀 ENTERPRISE STEP CLICK HANDLER: Back button synchronization με κάρτες
   const handleStepClick = (stepIndex: number) => {
@@ -174,6 +207,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+
       <ResponsiveMapLayout
         deviceType={deviceType}
         map={mapProps}

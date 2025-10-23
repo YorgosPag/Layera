@@ -11,7 +11,7 @@ import MapCore from '../map/core/MapCore';
 import { loadLeafletCSS } from '../utils/leaflet/css-loader';
 import { configureGlobalIcons } from '../utils/leaflet/icon-factory';
 import { getCurrentLocation } from '../utils/location/user-location';
-import { formatArea, formatDistance } from '../utils/formatting/area-formatter';
+import { formatArea, formatDistance } from '@layera/geo-drawing';
 import eventBus, { mapEvents } from '../utils/events/event-bus';
 
 // Types

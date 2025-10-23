@@ -126,6 +126,19 @@ interface DeviceLayoutRendererProps {
             map?: React.ComponentType<MapComponentProps> | undefined;
             stepper?: React.ComponentType<StepperComponentProps> | undefined;
             category?: React.ComponentType<CategoryComponentProps> | undefined;
+            orchestrator?: React.ComponentType<{
+                currentStepId: string;
+                selectedCategory: string;
+                selectedIntent?: string;
+                onStepChange?: ((stepId: string) => void) | undefined;
+                onStepComplete?: ((stepId: string, data?: unknown) => void) | undefined;
+                onNext?: (() => void) | undefined;
+                onPrevious?: (() => void) | undefined;
+                deviceProps?: {
+                    isIPhone14ProMaxDevice?: boolean;
+                    isMobile?: boolean;
+                };
+            }> | undefined;
         };
         tablet?: {
             map?: React.ComponentType<MapComponentProps> | undefined;
@@ -180,10 +193,11 @@ interface ResponsiveMapLayoutProps {
         desktop?: React$1.ComponentType<MapComponentProps>;
         mobile?: React$1.ComponentType<MapComponentProps>;
     };
-    /** iPhone-specific components (stepper, category) */
+    /** iPhone-specific components (stepper, category, orchestrator) */
     iPhoneComponents?: {
         stepper?: React$1.ComponentType<StepperComponentProps>;
         category?: React$1.ComponentType<CategoryComponentProps>;
+        orchestrator?: React$1.ComponentType<any>;
     };
     /** Navigation state */
     navigation?: {

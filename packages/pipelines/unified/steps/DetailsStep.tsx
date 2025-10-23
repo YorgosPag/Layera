@@ -22,7 +22,20 @@ export interface DetailsStepProps {
 
 /**
  * DetailsStep - Enterprise LEGO Component
- * Purpose: Additional details form
+ *
+ * 🚨 LEGACY/DEPRECATED - ΜΟΝΟ ΓΙΑ ΑΝΑΦΟΡΑ! 🚨
+ *
+ * ⚠️ ΑΠΑΓΟΡΕΥΕΤΑΙ η τροποποίηση αυτού του αρχείου! ⚠️
+ * ⚠️ ΑΠΑΓΟΡΕΥΕΤΑΙ η χρήση κώδικα από εδώ στο modular system! ⚠️
+ *
+ * Αυτό το component είναι ΜΟΝΟ για το unified pipeline modal (λευκές κάρτες).
+ * Χρησιμοποιείται ως ΑΝΑΦΟΡΑ για το migration και θα ΔΙΑΓΡΑΦΕΙ μόλις
+ * ολοκληρωθεί το νέο modular step system με τις διαφανείς κάρτες.
+ *
+ * ⛔ ΜΗ ΧΡΗΣΙΜΟΠΟΙΕΙΤΕ ΚΩΔΙΚΑ ΑΠΟ ΕΔΩ ΣΤΟ MODULAR SYSTEM!
+ * ✅ Για modular steps: apps/layera-geoalert/src/components/steps/
+ *
+ * Original Purpose: Additional details form
  * Complexity: Low (< 15)
  * Lines: < 100 (Enterprise Standard)
  * Dependencies: ONLY @layera LEGO systems

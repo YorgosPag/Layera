@@ -73,6 +73,13 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
   renderStepContainer,
   renderCardsContainer
 }) => {
+  // 🎯 ONE-TIME LOG: StepOrchestrator mounted για συγκεκριμένο step
+  React.useEffect(() => {
+    if (currentStepId === 'intent') {
+      console.log('🎯 ORCHESTRATOR: Intent Step mounted με category:', selectedCategory);
+    }
+  }, [currentStepId]); // Τρέχει μόνο όταν αλλάζει το step, όχι το category
+
   // 🎮 Apply flow configuration if provided
   React.useEffect(() => {
     if (flowConfig) {
@@ -128,6 +135,8 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
   }, [availableSteps, currentStepId, onStepChange, onPrevious]);
 
   const handleStepComplete = useCallback((stepId: StepId, data?: unknown) => {
+    console.log(`🎼 ORCHESTRATOR: Step ${stepId} completed with data:`, data);
+
     onStepComplete?.(stepId, data);
 
     // Auto-advance to next step αν δεν είναι το τελευταίο
@@ -135,9 +144,12 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
     const nextStep = availableSteps[currentIndex + 1];
 
     if (nextStep) {
+      console.log(`🎼 ORCHESTRATOR: Auto-advancing to ${nextStep.id}`);
       setTimeout(() => {
         onStepChange?.(nextStep.id);
       }, 500); // Small delay για UX
+    } else {
+      console.log(`🎼 ORCHESTRATOR: No next step, flow completed`);
     }
   }, [availableSteps, onStepChange, onStepComplete]);
 
@@ -186,7 +198,7 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
 
   // 🚫 Early return αν δεν υπάρχει current step
   if (!currentStep) {
-    console.warn(`⚠️ Step '${currentStepId}' not found or not available`);
+    // Σιωπηλό fallback χωρίς console logs για αποφυγή loops
     return (
       <div style={{ padding: '20px', textAlign: 'center' }}>
         <p>Step '{currentStepId}' δεν είναι διαθέσιμο αυτή τη στιγμή.</p>

@@ -25,7 +25,20 @@ export interface LayoutStepProps {
 
 /**
  * LayoutStep - Enterprise LEGO Component
- * Purpose: Layout & Positioning tools - EXACT from original UnifiedPipeline.tsx
+ *
+ * 🚨 LEGACY/DEPRECATED - ΜΟΝΟ ΓΙΑ ΑΝΑΦΟΡΑ! 🚨
+ *
+ * ⚠️ ΑΠΑΓΟΡΕΥΕΤΑΙ η τροποποίηση αυτού του αρχείου! ⚠️
+ * ⚠️ ΑΠΑΓΟΡΕΥΕΤΑΙ η χρήση κώδικα από εδώ στο modular system! ⚠️
+ *
+ * Αυτό το component είναι ΜΟΝΟ για το unified pipeline modal (λευκές κάρτες).
+ * Χρησιμοποιείται ως ΑΝΑΦΟΡΑ για το migration και θα ΔΙΑΓΡΑΦΕΙ μόλις
+ * ολοκληρωθεί το νέο modular step system με τις διαφανείς κάρτες.
+ *
+ * ⛔ ΜΗ ΧΡΗΣΙΜΟΠΟΙΕΙΤΕ ΚΩΔΙΚΑ ΑΠΟ ΕΔΩ ΣΤΟ MODULAR SYSTEM!
+ * ✅ Για modular steps: apps/layera-geoalert/src/components/steps/
+ *
+ * Original Purpose: Layout & Positioning tools - EXACT from original UnifiedPipeline.tsx
  * Property + Offer + Now ONLY - Complex positioning controls
  * Complexity: High (matching original)
  * Dependencies: ONLY @layera LEGO systems

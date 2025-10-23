@@ -14,7 +14,20 @@ export interface CompleteStepProps {
 
 /**
  * CompleteStep - Enterprise LEGO Component
- * Purpose: Final confirmation and completion
+ *
+ * 🚨 LEGACY/DEPRECATED - ΜΟΝΟ ΓΙΑ ΑΝΑΦΟΡΑ! 🚨
+ *
+ * ⚠️ ΑΠΑΓΟΡΕΥΕΤΑΙ η τροποποίηση αυτού του αρχείου! ⚠️
+ * ⚠️ ΑΠΑΓΟΡΕΥΕΤΑΙ η χρήση κώδικα από εδώ στο modular system! ⚠️
+ *
+ * Αυτό το component είναι ΜΟΝΟ για το unified pipeline modal (λευκές κάρτες).
+ * Χρησιμοποιείται ως ΑΝΑΦΟΡΑ για το migration και θα ΔΙΑΓΡΑΦΕΙ μόλις
+ * ολοκληρωθεί το νέο modular step system με τις διαφανείς κάρτες.
+ *
+ * ⛔ ΜΗ ΧΡΗΣΙΜΟΠΟΙΕΙΤΕ ΚΩΔΙΚΑ ΑΠΟ ΕΔΩ ΣΤΟ MODULAR SYSTEM!
+ * ✅ Για modular steps: apps/layera-geoalert/src/components/steps/
+ *
+ * Original Purpose: Final confirmation and completion
  * Complexity: Low (< 15)
  * Lines: < 100 (Enterprise Standard)
  * Dependencies: ONLY @layera LEGO systems

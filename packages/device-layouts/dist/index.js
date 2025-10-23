@@ -107,15 +107,9 @@ var DeviceLayoutRenderer = ({
     ...DEFAULT_LAYOUT_CONFIG,
     ...layoutConfig
   };
-  console.log("\u{1F50D} Debug DeviceLayoutRenderer:", { detectedDeviceType, showCategoryElements });
   if (detectedDeviceType === "iphone") {
     const config2 = finalConfig.iphone;
     const iPhoneComponents = components?.iphone || {};
-    console.log("\u{1F50D} Debug iPhone components:", {
-      hasStepper: !!iPhoneComponents.stepper,
-      hasCategory: !!iPhoneComponents.category,
-      showCategoryElements
-    });
     return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
       "div",
       {
@@ -141,30 +135,30 @@ var DeviceLayoutRenderer = ({
             canGoNext: navigation.canGoNext,
             canGoPrevious: navigation.canGoBack
           }),
-          showCategoryElements && (() => {
-            console.log("\u{1F50D} Debug CategoryStep rendering:", {
-              showCategoryElements,
-              hasCategory: !!iPhoneComponents.category,
-              hasNavigation: !!navigation,
-              currentStep: navigation?.currentStep
-            });
-            if (iPhoneComponents.category && navigation) {
-              return import_react.default.createElement(iPhoneComponents.category, {
-                isVisible: true,
-                // Force visible for debugging
-                currentStepId: navigation.currentStep,
-                onNext: async (_category) => {
-                  try {
-                    if (navigationHandlers?.onNext) {
-                      navigationHandlers.onNext();
-                    }
-                  } catch (error) {
-                  }
+          showCategoryElements && iPhoneComponents.category && navigation && navigation.currentStep === "category" && import_react.default.createElement(iPhoneComponents.category, {
+            isVisible: true,
+            currentStepId: navigation.currentStep,
+            onNext: async (_category) => {
+              try {
+                if (navigationHandlers?.onNext) {
+                  navigationHandlers.onNext();
                 }
-              });
+              } catch (error) {
+              }
             }
-            return null;
-          })()
+          }),
+          navigation?.currentStep !== "category" && iPhoneComponents.orchestrator && navigation && import_react.default.createElement(iPhoneComponents.orchestrator, {
+            currentStepId: navigation.currentStep,
+            selectedCategory: navigation.selectedCategory ?? "property",
+            // πέρασε μόνο όσα handlers υπάρχουν
+            ...navigationHandlers?.onNext ? { onNext: navigationHandlers.onNext } : {},
+            ...navigationHandlers?.onPrevious ? { onPrevious: navigationHandlers.onPrevious } : {},
+            onStepChange: () => {
+            },
+            onStepComplete: () => {
+            },
+            deviceProps: { isIPhone14ProMaxDevice: true, isMobile: true }
+          })
         ]
       }
     );
@@ -219,13 +213,6 @@ var ResponsiveMapLayout = ({
   showCategoryElements = false,
   fab
 }) => {
-  console.log("\u{1F50D} Debug ResponsiveMapLayout:", {
-    deviceType,
-    forceDeviceType,
-    showCategoryElements,
-    hasIPhoneComponents: !!iPhoneComponents,
-    iPhoneComponentKeys: Object.keys(iPhoneComponents)
-  });
   const fabComponent = fab && !fab.hidden ? /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
     "div",
     {
@@ -260,7 +247,8 @@ var ResponsiveMapLayout = ({
         iphone: {
           map: mapComponents.iPhone,
           stepper: iPhoneComponents.stepper,
-          category: iPhoneComponents.category
+          category: iPhoneComponents.category,
+          orchestrator: iPhoneComponents.orchestrator
         },
         tablet: {
           map: mapComponents.tablet
