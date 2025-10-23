@@ -796,3 +796,102 @@ export const AdvancedIcon: React.FC<IconProps> = ({
 
 // Quick Icon - Alias για ZapIcon (γρήγορο)
 export const QuickIcon = ZapIcon;
+
+// EuroIcon - Νόμισμα Euro για τιμολόγηση
+export const EuroIcon: React.FC<IconProps> = ({
+  size = 'md',
+  theme = 'neutral',
+  className = '',
+  style = {},
+  onClick
+}) => {
+  const iconSize = typeof size === 'number' ? size : ICON_SIZES[size];
+  const color = THEME_COLORS[theme];
+
+  return (
+    <svg
+      width={iconSize}
+      height={iconSize}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`layera-icon euro-icon ${className}`}
+      style={{ cursor: onClick ? 'pointer' : 'default', ...style }}
+      onClick={onClick}
+    >
+      <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zM8.1 15.9l1.9.5v-2.9h3v-1.1h-3V9.5h3v-1.1h-3V5.5l-1.9.5v2.4H6v1.1h2.1v2.9H6v1.1h2.1v2.9z" />
+      <path d="M7 9h5" />
+      <path d="M7 13h5" />
+    </svg>
+  );
+};
+
+// TagIcon - Ετικέτα/Tag για κατηγοριοποίηση τιμών
+export const TagIcon: React.FC<IconProps> = ({
+  size = 'md',
+  theme = 'neutral',
+  className = '',
+  style = {},
+  onClick
+}) => {
+  const iconSize = typeof size === 'number' ? size : ICON_SIZES[size];
+  const color = THEME_COLORS[theme];
+
+  return (
+    <svg
+      width={iconSize}
+      height={iconSize}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`layera-icon tag-icon ${className}`}
+      style={{ cursor: onClick ? 'pointer' : 'default', ...style }}
+      onClick={onClick}
+    >
+      <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
+      <line x1="7" y1="7" x2="7.01" y2="7" />
+    </svg>
+  );
+};
+
+// HandshakeIcon - Διαπραγματεύσιμη τιμή/Συμφωνία
+export const HandshakeIcon: React.FC<IconProps> = ({
+  size = 'md',
+  theme = 'neutral',
+  className = '',
+  style = {},
+  onClick
+}) => {
+  const iconSize = typeof size === 'number' ? size : ICON_SIZES[size];
+  const color = THEME_COLORS[theme];
+
+  return (
+    <svg
+      width={iconSize}
+      height={iconSize}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`layera-icon handshake-icon ${className}`}
+      style={{ cursor: onClick ? 'pointer' : 'default', ...style }}
+      onClick={onClick}
+    >
+      <path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17" />
+      <path d="M7 14a2 2 0 0 1-2-2c0-.6.4-1 1-1h3.5" />
+      <path d="M2 12a2 2 0 0 1 2-2c.6 0 1 .4 1 1v3" />
+      <path d="M21 17v-3a2 2 0 0 0-2-2h-1" />
+      <path d="M19 15v2a2 2 0 0 1-2 2h-1" />
+      <path d="M13 7l3-3 3 3-3 3z" />
+      <path d="M12 18l-3-3 3-3 3 3z" />
+    </svg>
+  );
+};

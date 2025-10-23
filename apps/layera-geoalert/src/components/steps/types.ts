@@ -19,6 +19,7 @@ export type CategoryType = 'property' | 'job' | null;
 export type IntentType = 'offer' | 'search' | null;
 export type LocationType = 'map' | 'area' | 'address' | null;
 export type DetailsType = 'form' | 'quick' | 'advanced' | null;
+export type PricingType = 'free' | 'budget' | 'premium' | 'negotiable' | null;
 
 // 🎯 STEP DEFINITION INTERFACE
 export interface StepDefinition {
@@ -101,6 +102,7 @@ export interface StepContext {
   selectedIntent: IntentType;
   selectedLocation: LocationType;
   selectedDetails: DetailsType;
+  selectedPricing: PricingType;
 
   /** Step completion status */
   completedSteps: Set<StepId>;
