@@ -14,7 +14,8 @@ import {
   StepFlowConfig,
   CategoryType,
   IntentType,
-  LocationType
+  LocationType,
+  DetailsType
 } from './types';
 
 export interface StepOrchestratorProps {
@@ -23,6 +24,7 @@ export interface StepOrchestratorProps {
   selectedCategory: CategoryType;
   selectedIntent: IntentType;
   selectedLocation?: LocationType;
+  selectedDetails?: DetailsType;
   completedSteps?: Set<StepId>;
   featureFlags?: Record<string, boolean>;
 
@@ -76,10 +78,11 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
     selectedCategory,
     selectedIntent,
     selectedLocation: selectedLocation || null,
+    selectedDetails: selectedDetails || null,
     completedSteps,
     featureFlags,
     customData: {}
-  }), [currentStepId, selectedCategory, selectedIntent, selectedLocation, completedSteps, featureFlags]);
+  }), [currentStepId, selectedCategory, selectedIntent, selectedLocation, selectedDetails, completedSteps, featureFlags]);
 
   // 📋 Get available steps για current context
   const availableSteps = useMemo(() => {
