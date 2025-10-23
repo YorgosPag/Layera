@@ -17,6 +17,7 @@ export type StepId =
 
 export type CategoryType = 'property' | 'job' | null;
 export type IntentType = 'offer' | 'search' | null;
+export type LocationType = 'map' | 'area' | 'address' | null;
 
 // 🎯 STEP DEFINITION INTERFACE
 export interface StepDefinition {
@@ -97,6 +98,7 @@ export interface StepContext {
   /** User selections */
   selectedCategory: CategoryType;
   selectedIntent: IntentType;
+  selectedLocation: LocationType;
 
   /** Step completion status */
   completedSteps: Set<StepId>;

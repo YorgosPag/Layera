@@ -14,6 +14,7 @@ export const StepRegistryTest: React.FC = () => {
     currentStepId: 'category',
     selectedCategory: null,
     selectedIntent: null,
+    selectedLocation: null,
     completedSteps: new Set(),
     featureFlags: {}
   });
@@ -46,6 +47,7 @@ export const StepRegistryTest: React.FC = () => {
           currentStepId={context.currentStepId}
           selectedCategory={context.selectedCategory}
           selectedIntent={context.selectedIntent}
+          selectedLocation={context.selectedLocation}
           completedSteps={context.completedSteps}
           featureFlags={context.featureFlags}
           onStepChange={(stepId) => {

@@ -687,3 +687,40 @@ export const OfferIcon: React.FC<IconProps> = ({
 
 // Work Icon - Alias για BriefcaseIcon
 export const WorkIcon = BriefcaseIcon;
+
+// Address Icon - Διεύθυνση/Σπίτι με αριθμό
+export const AddressIcon: React.FC<IconProps> = ({
+  size = 'md',
+  theme = 'neutral',
+  className = '',
+  style = {},
+  onClick
+}) => {
+  const iconSize = typeof size === 'number' ? size : ICON_SIZES[size];
+  const color = THEME_COLORS[theme];
+
+  return (
+    <svg
+      width={iconSize}
+      height={iconSize}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`layera-icon ${className}`}
+      style={style}
+      onClick={onClick}
+      role={onClick ? 'button' : 'img'}
+      tabIndex={onClick ? 0 : undefined}
+    >
+      <path d="M9 21V7a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v14" />
+      <path d="M5 21h14" />
+      <path d="M11 11h2" />
+      <path d="M11 15h2" />
+      <path d="M12 3V2" />
+      <path d="M8 7h8" />
+    </svg>
+  );
+};
