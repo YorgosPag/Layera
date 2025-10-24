@@ -2,20 +2,26 @@
  * availabilityDetails/index.ts - Enterprise Availability Details Step Auto-Registration
  */
 
-import { StepRegistry } from '../StepRegistry';
+import { stepRegistry } from '../StepRegistry';
 import { AvailabilityDetailsStep } from './AvailabilityDetailsStep';
 
 // 🚀 AUTO-REGISTRATION: Καταχώρηση του availabilityDetails step στο StepRegistry
-StepRegistry.register('availabilityDetails', {
+stepRegistry.register({
+  id: 'availabilityDetails',
+  name: 'Λεπτομέρειες Διαθεσιμότητας',
   component: AvailabilityDetailsStep,
-  title: 'Λεπτομέρειες Διαθεσιμότητας',
-  description: 'Καθορισμός λεπτομερειών μελλοντικής διαθεσιμότητας',
-  isValid: (context) => {
-    return Boolean(
-      context?.selectedCategory === 'job' &&
-      context?.selectedIntent &&
-      context?.selectedAvailability === 'future'
-    );
+  order: 12,
+  isVisible: true,
+  cards: [],
+  conditions: [{
+    type: 'category',
+    value: 'job',
+    operator: 'equals'
+  }],
+  dependencies: ['availability'],
+  metadata: {
+    category: 'job',
+    isOptional: false
   }
 });
 

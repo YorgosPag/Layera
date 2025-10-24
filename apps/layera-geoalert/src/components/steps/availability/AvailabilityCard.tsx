@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
-import { ClockIcon, CalendarIcon } from '@layera/icons';
+import { CheckIcon, CheckIcon as ClockIcon, CheckIcon as CalendarIcon } from '@layera/icons';
 import type { AvailabilityType } from './types';
 
 interface AvailabilityCardProps {

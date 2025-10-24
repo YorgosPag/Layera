@@ -2,16 +2,25 @@
  * propertyType/index.ts - Enterprise Property Type Step Auto-Registration
  */
 
-import { StepRegistry } from '../StepRegistry';
+import { stepRegistry } from '../StepRegistry';
 import { PropertyTypeStep } from './PropertyTypeStep';
 
 // 🚀 AUTO-REGISTRATION: Καταχώρηση του propertyType step στο StepRegistry
-StepRegistry.register('propertyType', {
+stepRegistry.register({
+  id: 'propertyType',
+  name: 'Τύπος Ακινήτου',
   component: PropertyTypeStep,
-  title: 'Τύπος Ακινήτου',
-  description: 'Επιλογή τύπου ακινήτου',
-  isValid: (context) => {
-    return Boolean(context?.selectedCategory === 'property' && context?.selectedIntent);
+  order: 16,
+  isVisible: true,
+  cards: [],
+  conditions: [{
+    type: 'category',
+    value: 'property',
+    operator: 'equals'
+  }],
+  metadata: {
+    category: 'property',
+    isOptional: false
   }
 });
 

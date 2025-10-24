@@ -2,16 +2,19 @@
  * complete/index.ts - Enterprise Complete Step Auto-Registration
  */
 
-import { StepRegistry } from '../StepRegistry';
+import { stepRegistry } from '../StepRegistry';
 import { CompleteStep } from './CompleteStep';
 
 // 🚀 AUTO-REGISTRATION: Καταχώρηση του complete step στο StepRegistry
-StepRegistry.register('complete', {
+stepRegistry.register({
+  id: 'complete',
+  name: 'Ολοκλήρωση',
   component: CompleteStep,
-  title: 'Ολοκλήρωση',
-  description: 'Τελική επιβεβαίωση και ολοκλήρωση',
-  isValid: (context) => {
-    return Boolean(context?.selectedCategory && context?.selectedIntent);
+  order: 100,
+  isVisible: true,
+  cards: [],
+  metadata: {
+    isOptional: false
   }
 });
 

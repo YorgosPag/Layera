@@ -2,16 +2,25 @@
  * availability/index.ts - Enterprise Availability Step Auto-Registration
  */
 
-import { StepRegistry } from '../StepRegistry';
+import { stepRegistry } from '../StepRegistry';
 import { AvailabilityStep } from './AvailabilityStep';
 
 // 🚀 AUTO-REGISTRATION: Καταχώρηση του availability step στο StepRegistry
-StepRegistry.register('availability', {
+stepRegistry.register({
+  id: 'availability',
+  name: 'Διαθεσιμότητα',
   component: AvailabilityStep,
-  title: 'Διαθεσιμότητα',
-  description: 'Επιλογή διαθεσιμότητας',
-  isValid: (context) => {
-    return Boolean(context?.selectedCategory && context?.selectedIntent);
+  order: 11,
+  isVisible: true,
+  cards: [],
+  conditions: [{
+    type: 'category',
+    value: 'job',
+    operator: 'equals'
+  }],
+  metadata: {
+    category: 'job',
+    isOptional: false
   }
 });
 

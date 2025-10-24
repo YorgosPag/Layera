@@ -2,16 +2,25 @@
  * areaMethod/index.ts - Enterprise Area Method Step Auto-Registration
  */
 
-import { StepRegistry } from '../StepRegistry';
+import { stepRegistry } from '../StepRegistry';
 import { AreaMethodStep } from './AreaMethodStep';
 
 // 🚀 AUTO-REGISTRATION: Καταχώρηση του areaMethod step στο StepRegistry
-StepRegistry.register('areaMethod', {
+stepRegistry.register({
+  id: 'areaMethod',
+  name: 'Μέθοδος Εμβαδού',
   component: AreaMethodStep,
-  title: 'Μέθοδος Εμβαδού',
-  description: 'Επιλογή μεθόδου υπολογισμού εμβαδού',
-  isValid: (context) => {
-    return Boolean(context?.selectedCategory === 'property' && context?.selectedIntent);
+  order: 10,
+  isVisible: true,
+  cards: [],
+  conditions: [{
+    type: 'category',
+    value: 'property',
+    operator: 'equals'
+  }],
+  metadata: {
+    category: 'property',
+    isOptional: false
   }
 });
 

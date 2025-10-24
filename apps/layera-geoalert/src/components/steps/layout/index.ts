@@ -2,16 +2,19 @@
  * layout/index.ts - Enterprise Layout Step Auto-Registration
  */
 
-import { StepRegistry } from '../StepRegistry';
+import { stepRegistry } from '../StepRegistry';
 import { LayoutStep } from './LayoutStep';
 
 // 🚀 AUTO-REGISTRATION: Καταχώρηση του layout step στο StepRegistry
-StepRegistry.register('layout', {
+stepRegistry.register({
+  id: 'layout',
+  name: 'Κάτοψη',
   component: LayoutStep,
-  title: 'Κάτοψη',
-  description: 'Ρύθμιση κάτοψης και εργαλείων',
-  isValid: (context) => {
-    return Boolean(context?.selectedCategory && context?.selectedIntent);
+  order: 13,
+  isVisible: true,
+  cards: [],
+  metadata: {
+    isOptional: false
   }
 });
 

@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
-import { VillaIcon, BuildingIcon, FactoryIcon, WarehouseIcon, StoreIcon, LandIcon } from '@layera/icons';
+import { VillaIcon, BuildingIcon, IndustrialIcon as FactoryIcon, IndustrialIcon as WarehouseIcon, StoreIcon, BuildingIcon as LandIcon } from '@layera/icons';
 import type { PropertyType } from './types';
 
 interface PropertyTypeCardProps {

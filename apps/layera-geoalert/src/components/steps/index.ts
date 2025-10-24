@@ -18,7 +18,8 @@ export { STEP_FLOWS } from './flows/stepFlows';
 export * from './category';
 export * from './intent';
 export * from './transactionType';
-export * from './location';
+export * from './occupation';
+// export * from './location'; // Temporarily disabled due to geocoding package issues
 export * from './details';
 export * from './pricing';
 export * from './review';

@@ -2,16 +2,25 @@
  * propertyDetails/index.ts - Enterprise Property Details Step Auto-Registration
  */
 
-import { StepRegistry } from '../StepRegistry';
+import { stepRegistry } from '../StepRegistry';
 import { PropertyDetailsStep } from './PropertyDetailsStep';
 
 // 🚀 AUTO-REGISTRATION: Καταχώρηση του propertyDetails step στο StepRegistry
-StepRegistry.register('propertyDetails', {
+stepRegistry.register({
+  id: 'propertyDetails',
+  name: 'Στοιχεία',
   component: PropertyDetailsStep,
-  title: 'Στοιχεία',
-  description: 'Στοιχεία ακινήτου',
-  isValid: (context) => {
-    return Boolean(context?.selectedCategory === 'property' && context?.selectedIntent);
+  order: 15,
+  isVisible: true,
+  cards: [],
+  conditions: [{
+    type: 'category',
+    value: 'property',
+    operator: 'equals'
+  }],
+  metadata: {
+    category: 'property',
+    isOptional: false
   }
 });
 

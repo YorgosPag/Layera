@@ -1,0 +1,25 @@
+ORIGINURI,ID,UUIDHISTORY,SKILLTYPE,REUSELEVEL,PREFERREDLABEL,ALTLABELS,DESCRIPTION,DEFINITION,SCOPENOTE
+http://data.europa.eu/esco/skill/key_1260,key_1260,skill_uuid_1260,skill/competence,cross-sector,JavaScript Programming,"JS Development
+JavaScript Coding
+ECMAScript Programming","Programming in JavaScript language for web applications, both client-side and server-side development. Includes modern ES6+ features, frameworks and libraries.","Ability to write, execute and debug JavaScript code for creating interactive web applications and server-side solutions.","Covers vanilla JavaScript, React, Angular, Vue.js, Node.js and modern development practices including async/await, promises and modules."
+http://data.europa.eu/esco/skill/key_2471,key_2471,skill_uuid_2471,skill/competence,cross-sector,Data Analysis,"Statistical Analysis
+Data Mining
+Business Intelligence","Analyzing datasets to identify patterns, trends and insights that inform business decisions. Using statistical methods and analytical tools to process information.","Capability to examine, interpret and draw conclusions from data using various analytical techniques and software tools.","Includes descriptive analytics, predictive modeling, data visualization and reporting. Covers tools like Excel, R, Python, SQL and Tableau."
+http://data.europa.eu/esco/skill/key_3682,key_3682,skill_uuid_3682,skill/competence,cross-sector,User Interface Design,"UI Design
+Interface Design
+Visual Design","Creating visually appealing and functional interfaces for digital products. Designing layouts, typography, color schemes and interactive elements.","Ability to design user interfaces that are both aesthetically pleasing and functionally effective for optimal user experience.","Encompasses wireframing, prototyping, design systems and visual hierarchy. Includes proficiency with design tools like Figma, Adobe XD and Sketch."
+http://data.europa.eu/esco/skill/key_4893,key_4893,skill_uuid_4893,skill/competence,cross-sector,Project Coordination,"Team Coordination
+Task Management
+Resource Planning","Coordinating project activities, resources and team members to ensure successful project delivery within scope, time and budget constraints.","Ability to organize, plan and oversee project elements while facilitating communication and collaboration among stakeholders.","Includes project planning, risk management, stakeholder communication and progress tracking. Covers methodologies like Agile, Scrum, Kanban and traditional project management."
+http://data.europa.eu/esco/skill/key_5104,key_5104,skill_uuid_5104,skill/competence,cross-sector,Cloud Computing,"Cloud Infrastructure
+Cloud Services
+Cloud Architecture","Working with cloud-based computing services and infrastructure to deploy, scale and manage applications and data storage solutions.","Knowledge of cloud platforms, services and best practices for designing and implementing cloud-based solutions.","Encompasses Infrastructure as a Service, Platform as a Service and Software as a Service. Includes AWS, Azure, Google Cloud, containerization and serverless computing."
+http://data.europa.eu/esco/skill/key_6315,key_6315,skill_uuid_6315,knowledge,sector-specific,Machine Learning,"ML
+Artificial Intelligence
+Deep Learning","Understanding and applying machine learning algorithms and techniques to create predictive models and intelligent systems.","Theoretical and practical knowledge of machine learning concepts, algorithms and their implementation for solving complex problems.","Includes supervised and unsupervised learning, neural networks, natural language processing, computer vision and model evaluation techniques."
+http://data.europa.eu/esco/skill/key_7526,key_7526,skill_uuid_7526,skill/competence,cross-sector,Database Management,"SQL
+Database Administration
+Data Storage","Managing database systems including design, implementation, maintenance and optimization of data storage and retrieval processes.","Ability to work with relational and non-relational databases ensuring data integrity, security and optimal performance.","Covers SQL, NoSQL, database design, normalization, indexing, backup procedures and database security. Includes MySQL, PostgreSQL, MongoDB and Redis."
+http://data.europa.eu/esco/skill/key_8737,key_8737,skill_uuid_8737,skill/competence,cross-sector,Version Control,"Git
+Source Control
+Code Management","Using version control systems to track changes in code, collaborate with team members and manage software development workflows.","Proficiency in using version control tools to maintain code history, enable collaboration and manage software releases.","Encompasses Git workflows, branching strategies, merge conflict resolution and collaborative development practices. Includes platforms like GitHub, GitLab and Bitbucket."

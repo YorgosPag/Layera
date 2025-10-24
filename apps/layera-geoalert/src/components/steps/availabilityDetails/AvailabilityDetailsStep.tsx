@@ -8,7 +8,7 @@ import React, { useCallback, useState } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { AvailabilityDetailsForm } from './AvailabilityDetailsForm';
 import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
-import { CheckIcon, FormIcon, CalendarIcon } from '@layera/icons';
+import { CheckIcon, CheckIcon as FormIcon, CheckIcon as CalendarIcon } from '@layera/icons';
 import type { StepProps } from '../types';
 import type { AvailabilityDetails, AvailabilityDetailsStepData } from './types';
 

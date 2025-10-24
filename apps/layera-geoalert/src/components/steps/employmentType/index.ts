@@ -2,16 +2,29 @@
  * employmentType/index.ts - Enterprise Employment Type Step Auto-Registration
  */
 
-import { StepRegistry } from '../StepRegistry';
+import { stepRegistry } from '../StepRegistry';
 import { EmploymentTypeStep } from './EmploymentTypeStep';
 
 // 🚀 AUTO-REGISTRATION: Καταχώρηση του employmentType step στο StepRegistry
-StepRegistry.register('employmentType', {
+stepRegistry.register({
+  id: 'employmentType',
+  name: 'Τύπος Απασχόλησης',
+  shortName: 'Απασχόληση',
   component: EmploymentTypeStep,
-  title: 'Τύπος Απασχόλησης',
-  description: 'Επιλογή τύπου απασχόλησης',
-  isValid: (context) => {
-    return Boolean(context?.selectedCategory === 'job' && context?.selectedIntent);
+  order: 5, // After intent step (order 4)
+  isVisible: true,
+  dependencies: ['intent'], // Depends on intent selection
+  conditions: [
+    {
+      type: 'isJobCategory',
+      check: (context) => context.selectedCategory === 'job'
+    }
+  ],
+  metadata: {
+    category: 'job',
+    isOptional: false,
+    estimatedTime: 10, // 10 seconds average για employment type selection
+    description: 'Επιλογή τύπου απασχόλησης'
   }
 });
 

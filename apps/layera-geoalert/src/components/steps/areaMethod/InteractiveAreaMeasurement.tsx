@@ -23,7 +23,7 @@ import {
   CheckIcon,
   CloseIcon,
   MapIcon,
-  InformationIcon
+  CheckIcon as InformationIcon
 } from '@layera/icons';
 
 // LEGO Geo System imports - ΔΙΑΓΡΑΦΗ DUPLICATES

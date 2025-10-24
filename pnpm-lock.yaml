@@ -101,6 +101,9 @@ importers:
       '@layera/viewport':
         specifier: file:../../packages/viewport
         version: link:../../packages/viewport
+      firebase:
+        specifier: ^12.4.0
+        version: 12.4.0
       leaflet:
         specifier: ^1.9.4
         version: 1.9.4
@@ -633,6 +636,46 @@ importers:
       tsup:
         specifier: ^8.0.0
         version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  packages/employment-taxonomy:
+    dependencies:
+      '@layera/buttons':
+        specifier: workspace:*
+        version: link:../buttons
+      '@layera/cards':
+        specifier: workspace:*
+        version: link:../cards
+      '@layera/icons':
+        specifier: workspace:*
+        version: link:../icons
+      '@layera/layout':
+        specifier: workspace:*
+        version: link:../layout
+      '@layera/loading':
+        specifier: workspace:*
+        version: link:../loading
+      '@layera/tolgee':
+        specifier: workspace:*
+        version: link:../tolgee
+      '@layera/typography':
+        specifier: workspace:*
+        version: link:../typography
+      react:
+        specifier: ^18.2.0
+        version: 18.3.1
+    devDependencies:
+      '@types/react':
+        specifier: ^18.2.0
+        version: 18.3.26
+      eslint:
+        specifier: ^8.0.0
+        version: 8.57.1
+      tsup:
+        specifier: ^7.0.0
+        version: 7.3.0(postcss@8.5.6)(typescript@5.9.3)
       typescript:
         specifier: ^5.0.0
         version: 5.9.3

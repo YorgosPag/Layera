@@ -39,6 +39,7 @@
     "@layera/tolgee": "file:../../packages/tolgee",
     "@layera/typography": "file:../../packages/typography",
     "@layera/viewport": "file:../../packages/viewport",
+    "firebase": "^12.4.0",
     "leaflet": "^1.9.4",
     "leaflet-auto-graticule": "^2.0.0",
     "leaflet-ruler": "^1.0.0",

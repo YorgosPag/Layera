@@ -2,16 +2,19 @@
  * location/index.ts - Enterprise Location Step Auto-Registration
  */
 
-import { StepRegistry } from '../StepRegistry';
+import { stepRegistry } from '../StepRegistry';
 import { LocationStep } from './LocationStep';
 
 // 🚀 AUTO-REGISTRATION: Καταχώρηση του location step στο StepRegistry
-StepRegistry.register('location', {
+stepRegistry.register({
+  id: 'location',
+  name: 'Τοποθεσία',
   component: LocationStep,
-  title: 'Τοποθεσία',
-  description: 'Ορισμός τοποθεσίας με upload ή σχεδίαση',
-  isValid: (context) => {
-    return Boolean(context?.selectedCategory && context?.selectedIntent);
+  order: 14,
+  isVisible: true,
+  cards: [],
+  metadata: {
+    isOptional: false
   }
 });
 

@@ -10,18 +10,37 @@ export type StepId =
   | 'category'
   | 'intent'
   | 'transactionType'
+  | 'employmentType'
+  | 'occupation'
   | 'location'
   | 'details'
   | 'pricing'
-  | 'review';
+  | 'review'
+  | 'areaMethod'
+  | 'availability'
+  | 'availabilityDetails'
+  | 'complete'
+  | 'layout'
+  | 'propertyDetails'
+  | 'propertyType'
+  | 'upload';
 
 export type CategoryType = 'property' | 'job' | null;
 export type IntentType = 'offer' | 'search' | null;
 export type TransactionType = 'rent' | 'sale' | 'full_time' | 'part_time' | 'freelance' | 'internship' | null;
+export type EmploymentType = 'full_time' | 'part_time' | 'freelance' | 'internship' | 'contract' | null;
 export type LocationType = 'map' | 'area' | 'address' | null;
 export type DetailsType = 'form' | 'quick' | 'advanced' | null;
 export type PricingType = 'free' | 'budget' | 'premium' | 'negotiable' | null;
 export type ReviewType = 'preview' | 'edit' | 'confirm' | null;
+
+// 🎯 ESCO OCCUPATION TYPE (placeholder for future ESCO integration)
+export interface ESCOOccupation {
+  id: string;
+  title: string;
+  code?: string;
+  level?: number;
+}
 
 // 🎯 STEP DEFINITION INTERFACE
 export interface StepDefinition {
@@ -50,7 +69,7 @@ export interface StepDefinition {
   conditions?: StepCondition[];
 
   /** Cards που ανήκουν σε αυτό το step */
-  cards: StepCardDefinition[];
+  cards?: StepCardDefinition[];
 
   /** Metadata για advanced filtering */
   metadata?: {
@@ -85,13 +104,16 @@ export interface StepCardDefinition {
 // 🎯 STEP CONDITIONS
 export interface StepCondition {
   /** Condition type */
-  type: 'category' | 'intent' | 'feature_flag' | 'custom';
+  type: 'category' | 'intent' | 'feature_flag' | 'custom' | 'hasSelectedEmploymentType' | 'isJobCategory';
 
-  /** Expected value */
-  value: unknown;
+  /** Expected value - optional για custom check functions */
+  value?: unknown;
 
   /** Comparison operator */
   operator?: 'equals' | 'not_equals' | 'in' | 'not_in';
+
+  /** Custom check function για advanced conditions */
+  check?: (context: StepContext) => boolean;
 }
 
 // 🎯 STEP CONTEXT
@@ -103,6 +125,8 @@ export interface StepContext {
   selectedCategory: CategoryType;
   selectedIntent: IntentType;
   selectedTransactionType: TransactionType;
+  selectedEmploymentType: EmploymentType;
+  selectedOccupation: ESCOOccupation;
   selectedLocation: LocationType;
   selectedDetails: DetailsType;
   selectedPricing: PricingType;

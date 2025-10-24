@@ -12,13 +12,13 @@
 
 import React, { useCallback, useState, useEffect } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
-import { useGeocode } from '@layera/geocoding';
-import { AddressBreakdownCard } from '@layera/address-breakdown';
+// import { useGeocode } from '@layera/geocoding';
+// import { AddressBreakdownCard } from '@layera/address-breakdown';
 import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
 import { UploadIcon, MapIcon, CheckIcon, SearchIcon, LocationIcon } from '@layera/icons';
 import type { StepProps } from '../types';
 import type { LocationMethodType, LocationDetails, LocationStepData } from './types';
-import type { GeocodeResult } from '@layera/geocoding';
+// import type { GeocodeResult } from '@layera/geocoding';
 
 export interface LocationStepProps extends StepProps {
   /** Location configuration callback */

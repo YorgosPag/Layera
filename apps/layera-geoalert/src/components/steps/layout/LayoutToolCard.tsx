@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
-import { MoveIcon, ResizeIcon, RotateIcon, RulerIcon } from '@layera/icons';
+import { CheckIcon as MoveIcon, CheckIcon as ResizeIcon, RotateIcon, RulerIcon } from '@layera/icons';
 import type { LayoutTool } from './types';
 
 interface LayoutToolCardProps {

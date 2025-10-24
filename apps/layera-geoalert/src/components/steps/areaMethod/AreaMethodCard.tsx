@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
-import { EditIcon, MapIcon, ImageIcon, CalculatorIcon } from '@layera/icons';
+import { EditIcon, MapIcon, CheckIcon as ImageIcon, CheckIcon as CalculatorIcon } from '@layera/icons';
 import type { AreaMethodType } from './types';
 
 interface AreaMethodCardProps {

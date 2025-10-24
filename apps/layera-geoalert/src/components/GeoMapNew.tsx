@@ -33,6 +33,7 @@ import './steps/propertyDetails';
 import './steps/areaMethod';
 import './steps/location';
 import './steps/employmentType';
+import './steps/occupation';
 import './steps/availabilityDetails';
 import './steps/complete';
 import { DesktopGeoMap } from './device-specific/DesktopGeoMap';

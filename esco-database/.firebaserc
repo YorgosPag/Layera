@@ -1,0 +1,10 @@
+{
+  "projects": {
+    "default": "layera-dev",
+    "production": "layera-dev",
+    "staging": "layera-dev",
+    "development": "layera-dev"
+  },
+  "targets": {},
+  "etags": {}
+}
