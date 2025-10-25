@@ -1,0 +1,251 @@
+/**
+ * GeoAlert Info Panel Content Registry
+ *
+ * Περιεχόμενα από το CategoryStepOld.tsx για χρήση στο LEGO system.
+ * Αυτό το registry μπορεί να χρησιμοποιηθεί από όλες τις Layera εφαρμογές.
+ */
+
+import type { StaticContentConfig } from '../providers/StaticContentProvider';
+
+export const GEOALERT_INFO_CONTENT: StaticContentConfig = {
+  // Category Level Cards
+  property: {
+    title: '🎯 ΑΚΙΝΗΤΑ: Η Έξυπνη Γεωγραφική Αναζήτηση',
+    content: `✨ <strong>Βρες το τέλειο σπίτι</strong> στην ιδανική γειτονιά<br/>
+🔍 <strong>Ανάλυση απόστασης</strong> από σχολεία, μετρό, εργασία<br/>
+📍 <strong>Προβλέψεις τιμών</strong> ανά περιοχή & μελλοντική αξία<br/>
+🎨 <strong>Εξερεύνηση με χρώματα</strong> - από φθηνότερα (πράσινα) σε ακριβότερα (κόκκινα)<br/><br/>
+💡 <em>Η τεχνολογία που βοηθά <strong>95% των χρηστών</strong> να βρουν καλύτερο σπίτι σε λιγότερο χρόνο!</em>`,
+    category: 'property'
+  },
+
+  job: {
+    title: '🚀 ΕΡΓΑΣΙΑ: Το Μυστικό Όπλο της Καριέρας',
+    content: `⚡ <strong>Υπολογισμός χρόνου μετακίνησης</strong> από το σπίτι σου<br/>
+🎯 <strong>Εργασίες στην ιδανική απόσταση</strong> - όχι άγχος, όχι κόστος<br/>
+📊 <strong>Ανάλυση μισθών</strong> ανά περιοχή & κλάδο<br/>
+🗺️ <strong>Οπτικοποίηση:</strong> πράσινες περιοχές = καλύτερες ευκαιρίες<br/>
+💰 <strong>Βελτιστοποίηση</strong> κόστος μεταφοράς vs μισθός<br/><br/>
+🎖️ <em><strong>89% των χρηστών</strong> βρήκαν καλύτερη δουλειά χρησιμοποιώντας την γεωχωρική αναζήτηση!</em>`,
+    category: 'job'
+  },
+
+  // Property Intent Cards
+  'property-offer': {
+    title: '🏡 ΠΡΟΣΦΕΡΩ ΑΚΙΝΗΤΟ: Μεγιστοποίηση Αξίας',
+    content: `💰 <strong>Βέλτιστη τιμολόγηση</strong> με ανάλυση αγοράς<br/>
+📈 <strong>Στρατηγική πώλησης/ενοικίασης</strong> για γρήγορα αποτελέσματα<br/>
+📱 <strong>Προβολή σε χιλιάδες ενδιαφερόμενους</strong> άμεσα<br/>
+🎯 <strong>Εστιασμένο marketing</strong> στην ιδανική γειτονιά<br/>
+📊 <strong>Πραγματικός χρόνος ενδιαφέροντος</strong> και προσφορών<br/><br/>
+✨ <em><strong>Πωλητές μας πετυχαίνουν 23% υψηλότερες τιμές</strong> χάρη στην έξυπνη προβολή!</em>`,
+    category: 'property'
+  },
+
+  'property-search': {
+    title: '🔍 ΑΝΑΖΗΤΩ ΑΚΙΝΗΤΟ: Έξυπνη Εύρεση',
+    content: `🎯 <strong>Προσωποποιημένη αναζήτηση</strong> βάσει των αναγκών σου<br/>
+🗺️ <strong>Γεωγραφική εξερεύνηση</strong> με real-time προτάσεις<br/>
+⚡ <strong>Ειδοποιήσεις νέων ακινήτων</strong> στις περιοχές σου<br/>
+💸 <strong>Σύγκριση τιμών</strong> και ανάλυση αξίας<br/>
+🔒 <strong>Ασφαλής επικοινωνία</strong> με ιδιοκτήτες<br/><br/>
+🌟 <em><strong>Βρες το ιδανικό σπίτι 4x πιο γρήγορα</strong> με προηγμένη AI αναζήτηση!</em>`,
+    category: 'property'
+  },
+
+  // Job Intent Cards
+  'job-offer': {
+    title: '💼 ΠΡΟΣΦΕΡΩ ΘΕΣΗ: Βρες την Ιδανική Στελέχωση',
+    content: `🎯 <strong>Εστιασμένη προβολή</strong> σε εξειδικευμένους επαγγελματίες<br/>
+📊 <strong>Ανάλυση μισθών αγοράς</strong> για competitive προσφορές<br/>
+⚡ <strong>Γρήγορη στελέχωση</strong> με προ-φιλτραρισμένους υποψήφιους<br/>
+🏢 <strong>Company branding</strong> και προβολή εταιρικής κουλτούρας<br/>
+🎖️ <strong>Quality matching</strong> βάσει skills και γεωγραφίας<br/><br/>
+🚀 <em><strong>Εταιρείες μας βρίσκουν 67% πιο γρήγορα</strong> το ιδανικό talent!</em>`,
+    category: 'job'
+  },
+
+  'job-search': {
+    title: '🔍 ΑΝΑΖΗΤΩ ΕΡΓΑΣΙΑ: Το Επόμενο Βήμα Καριέρας',
+    content: `🎯 <strong>Προσωποποιημένες προτάσεις</strong> βάσει δεξιοτήτων<br/>
+📍 <strong>Εργασίες κοντά στο σπίτι</strong> με υπολογισμό χρόνου μετακίνησης<br/>
+💰 <strong>Διαφάνεια αμοιβών</strong> και σύγκριση προσφορών<br/>
+📈 <strong>Career path προτάσεις</strong> για εξέλιξη<br/>
+🔔 <strong>Instant alerts</strong> για ιδανικές ευκαιρίες<br/><br/>
+🏆 <em><strong>92% των χρηστών μας</strong> βρίσκουν καλύτερη δουλειά σε <30 ημέρες!</em>`,
+    category: 'job'
+  },
+
+  // Transaction Type Cards (Property)
+  sale: {
+    title: '💰 ΠΩΛΗΣΗ ΑΚΙΝΗΤΟΥ: Μεγιστοποίηση Αξίας',
+    content: `🏠 <strong>Βέλτιστη τιμολόγηση</strong> με ανάλυση αγοράς και τάσεων<br/>
+📊 <strong>Market intelligence</strong> - σύγκριση με παρόμοια ακίνητα<br/>
+📸 <strong>Professional φωτογράφιση</strong> και virtual tours<br/>
+🎯 <strong>Εστιασμένο marketing</strong> σε qualified αγοραστές<br/>
+⚡ <strong>Γρήγορη πώληση</strong> με προηγμένα εργαλεία προβολής<br/><br/>
+✨ <em><strong>Πωλητές μας πετυχαίνουν 18% υψηλότερες τιμές</strong> και πουλάνε 3x πιο γρήγορα!</em>`,
+    category: 'property'
+  },
+
+  rent: {
+    title: '🏡 ΕΝΟΙΚΙΑΣΗ ΑΚΙΝΗΤΟΥ: Σταθερό Εισόδημα',
+    content: `💵 <strong>Competitive τιμολόγηση</strong> για μέγιστη πληρότητα<br/>
+👥 <strong>Προ-φιλτραρισμένοι ενοικιαστές</strong> με επαληθευμένα στοιχεία<br/>
+📋 <strong>Έξυπνα συμβόλαια</strong> και νομική υποστήριξη<br/>
+🔒 <strong>Ασφαλής διαχείριση</strong> πληρωμών και επικοινωνίας<br/>
+📈 <strong>Απόδοση επένδυσης</strong> με ανάλυση αγοράς<br/><br/>
+🎖️ <em><strong>Ιδιοκτήτες μας έχουν 89% πληρότητα</strong> και βρίσκουν ενοικιαστές σε <7 ημέρες!</em>`,
+    category: 'property'
+  },
+
+  // Availability Cards (After Transaction)
+  now: {
+    title: '⚡ ΔΙΑΘΕΣΙΜΟ ΑΜΕΣΑ: Άμεση Επιχειρηματική Δράση',
+    content: `🚀 <strong>Άμεση προβολή</strong> στη μεγαλύτερη πλατφόρμα ακινήτων<br/>
+📱 <strong>Instant ειδοποιήσεις</strong> σε χιλιάδες ενδιαφερόμενους<br/>
+💼 <strong>Προτεραιότητα στα αποτελέσματα</strong> αναζήτησης<br/>
+⚡ <strong>24/7 υποστήριξη</strong> για γρήγορη διεκπεραίωση<br/>
+🎯 <strong>Express διαδικασίες</strong> για άμεσα αποτελέσματα<br/><br/>
+✨ <em><strong>Ακίνητα "διαθέσιμα άμεσα" έχουν 340% περισσότερη δραστηριότητα</strong> την πρώτη εβδομάδα!</em>`,
+    category: 'property'
+  },
+
+  future: {
+    title: '📅 ΔΙΑΘΕΣΙΜΟ ΣΤΟ ΜΕΛΛΟΝ: Στρατηγικός Σχεδιασμός',
+    content: `📆 <strong>Προγραμματισμένη προβολή</strong> τη βέλτιστη στιγμή<br/>
+📧 <strong>Προ-καταχώρηση ενδιαφέροντος</strong> από σοβαρούς αγοραστές<br/>
+📊 <strong>Ανάλυση αγοράς</strong> μέχρι την ημερομηνία διαθεσιμότητας<br/>
+🎯 <strong>Στρατηγική τιμολόγηση</strong> βάσει προβλέψεων<br/>
+🔔 <strong>Αυτόματες ειδοποιήσεις</strong> πριν την επίσημη διάθεση<br/><br/>
+🏆 <em><strong>Σχεδιασμένες πωλήσεις πετυχαίνουν 28% καλύτερες τιμές</strong> λόγω καλύτερης προετοιμασίας!</em>`,
+    category: 'property'
+  },
+
+  // Upload Card (After Availability = Now)
+  upload: {
+    title: '📁 ΑΝΑΒΑΣΜΑ ΑΡΧΕΙΩΝ: Έξυπνη Οπτικοποίηση Ακινήτου',
+    content: `🖼️ <strong>Εικόνες:</strong> JPG, PNG, GIF, WEBP - Άμεση προβολή<br/>
+📄 <strong>Έγγραφα:</strong> PDF - Αυτόματη ανάλυση περιεχομένου<br/>
+🏗️ <strong>Τεχνικά Σχέδια:</strong> DXF, DWG - CAD integration<br/>
+🗺️ <strong>Έξυπνη επικάλυψη</strong> στον διαδραστικό χάρτη<br/>
+📐 <strong>Αυτόματος υπολογισμός</strong> μετρήσεων και επιφανειών<br/>
+🎯 <strong>Ακριβής τοποθέτηση</strong> με drag & drop<br/><br/>
+✨ <em><strong>Ακίνητα με κατόψεις πετυχαίνουν 87% περισσότερες προβολές</strong> και πωλούνται 3x πιο γρήγορα!</em>`,
+    category: 'property'
+  },
+
+  // Layout Card (After Upload)
+  layout: {
+    title: '🗺️ ΤΟΠΟΘΕΤΗΣΗ & ΚΛΙΜΑΚΑ: Ακριβής Γεωεντοπισμός',
+    content: `📍 <strong>GPS Τοποθέτηση:</strong> Αυτόματος εντοπισμός της θέσης σου<br/>
+🔍 <strong>Αναζήτηση Διεύθυνσης:</strong> Εύρεση συγκεκριμένης τοποθεσίας<br/>
+🔄 <strong>Περιστροφή Κάτοψης:</strong> Προσαρμογή στον προσανατολισμό του κτιρίου<br/>
+📏 <strong>Κλίμακα Μετρήσεων:</strong> Ακριβής μετατροπή cm→m, mm→m<br/>
+🎯 <strong>Επικάλυψη Χάρτη:</strong> Real-time προβολή στη σωστή τοποθεσία<br/>
+📐 <strong>Διαστάσεις Χώρου:</strong> Αυτόματος υπολογισμός επιφανειών<br/><br/>
+🏆 <em><strong>Ακριβής γεωεντοπισμός αυξάνει το ενδιαφέρον 76%</strong> και επιταχύνει τις αποφάσεις αγοράς!</em>`,
+    category: 'property'
+  },
+
+  // Location Method Cards
+  'location-search': {
+    title: '🔍 ΑΝΑΖΗΤΗΣΗ ΤΟΠΟΘΕΣΙΑΣ: Έξυπνη Εύρεση Διεύθυνσης',
+    content: `📍 <strong>Γεωκωδικοποίηση:</strong> Μετατροπή διεύθυνσης σε GPS συντεταγμένες<br/>
+🗺️ <strong>Αυτόματες Προτάσεις:</strong> Real-time αναζήτηση καθώς πληκτρολογείς<br/>
+🏢 <strong>Λεπτομερή Στοιχεία:</strong> Οδός, αριθμός, περιοχή, ταχυδρομικός κώδικας<br/>
+📊 <strong>Επαληθευμένες Διευθύνσεις:</strong> Συγχρονισμός με επίσημα μητρώα<br/>
+🎯 <strong>Ακριβής Τοποθέτηση:</strong> Μηδενικό περιθώριο λάθους<br/>
+⚡ <strong>Γρήγορη Εύρεση:</strong> Αποτελέσματα σε <0.5 δευτερόλεπτα<br/><br/>
+✨ <em><strong>97% των χρηστών</strong> βρίσκουν την ακριβή τοποθεσία τους από την πρώτη αναζήτηση!</em>`,
+    category: 'location'
+  },
+
+  'location-upload': {
+    title: '📁 ΑΝΑΒΑΣΜΑ ΚΑΤΟΨΗΣ: Μετατροπή Σχεδίου σε Διαδραστικό Χάρτη',
+    content: `🖼️ <strong>Υποστηριζόμενα Formats:</strong> JPG, PNG, PDF, DXF, DWG<br/>
+📐 <strong>Αυτόματη Αναγνώριση:</strong> Αίθουσες, πόρτες, παράθυρα, διαστάσεις<br/>
+🗺️ <strong>Επικάλυψη Χάρτη:</strong> Τοποθέτηση κάτοψης στη σωστή θέση<br/>
+📏 <strong>Κλίμακα Μετρήσεων:</strong> Αυτόματη μετατροπή σε πραγματικές διαστάσεις<br/>
+🔄 <strong>Περιστροφή & Ευθυγράμμιση:</strong> Προσαρμογή στον προσανατολισμό<br/>
+💾 <strong>Αποθήκευση στο Cloud:</strong> Άμεση πρόσβαση από οπουδήποτε<br/><br/>
+🏆 <em><strong>Ακίνητα με κάτοψη έχουν 5x περισσότερες προβολές</strong> και πωλούνται 60% πιο γρήγορα!</em>`,
+    category: 'location'
+  },
+
+  'location-drawing': {
+    title: '✏️ ΕΡΓΑΛΕΙΟ ΣΧΕΔΙΑΣΗΣ: Δημιουργία Ζωνών στον Χάρτη',
+    content: `🖱️ <strong>Drag & Drop:</strong> Εύκολη δημιουργία πολυγώνων με κλικ<br/>
+📍 <strong>Πολλαπλά Σημεία:</strong> Ακριβής οριοθέτηση περιοχών<br/>
+📏 <strong>Αυτόματες Μετρήσεις:</strong> Εμβαδόν, περίμετρος, διαστάσεις<br/>
+🎨 <strong>Οπτικό Feedback:</strong> Real-time προβολή της ζώνης ενδιαφέροντος<br/>
+💾 <strong>Αποθήκευση Σχημάτων:</strong> Επαναχρησιμοποίηση σχεδιασμένων περιοχών<br/>
+⚡ <strong>Γρήγορη Επεξεργασία:</strong> Μετακίνηση, αλλαγή μεγέθους, διαγραφή<br/><br/>
+🎯 <em><strong>Σχεδιασμένες ζώνες αναζήτησης</strong> φέρνουν 3x πιο στοχευμένα αποτελέσματα!</em>`,
+    category: 'location'
+  },
+
+  // Property Details Card (after property type selection)
+  'property-details': {
+    title: '📝 ΣΤΟΙΧΕΙΑ ΑΚΙΝΗΤΟΥ: Έξυπνη Καταχώρηση',
+    content: `🏠 <strong>Βασικά Στοιχεία:</strong> Τίτλος, τετραγωνικά, τιμή - το minimum για ξεκίνημα<br/>
+🎯 <strong>Έξυπνη Προσαρμογή:</strong> Τα πεδία αλλάζουν ανάλογα με τον τύπο ακινήτου<br/>
+📊 <strong>Διαμέρισμα:</strong> + Όροφος & Δωμάτια για ακριβή περιγραφή<br/>
+🏢 <strong>Γραφείο:</strong> + Όροφος για επαγγελματική προβολή<br/>
+🏭 <strong>Εργοστάσιο/Οικόπεδο:</strong> Μόνο τα βασικά για γρήγορη καταχώρηση<br/>
+⚡ <strong>Επικύρωση Πραγματικού Χρόνου:</strong> Άμεσος έλεγχος για σφάλματα<br/><br/>
+✨ <em><strong>MVP προσέγγιση</strong> - ξεκινάμε απλά και προσθέτουμε χαρακτηριστικά σταδιακά!</em>`,
+    category: 'property'
+  },
+
+  // Area Method Selection Cards (after property details)
+  'manual-input': {
+    title: '✏️ ΧΕΙΡΟΚΙΝΗΤΗ ΕΙΣΑΓΩΓΗ: Γρήγορη & Ακριβής',
+    content: `⚡ <strong>Άμεση Εισαγωγή:</strong> Γράψε τα τετραγωνικά που γνωρίζεις<br/>
+📏 <strong>Επιλογή Μονάδων:</strong> τ.μ., στρέμματα, acres - η μονάδα που προτιμάς<br/>
+🎯 <strong>Ιδανικό για:</strong> Ακίνητα με γνωστά μεγέθη από τίτλους ιδιοκτησίας<br/>
+⚡ <strong>Επικύρωση:</strong> Αυτόματος έλεγχος για εύλογες τιμές<br/>
+🏢 <strong>Ταχύτητα:</strong> Η πιο γρήγορη μέθοδος για γνωστά μεγέθη<br/><br/>
+✨ <em><strong>Επιλογή 1ης προτεραιότητας</strong> όταν γνωρίζεις τα ακριβή τετραγωνικά!</em>`,
+    category: 'property'
+  },
+
+  'map-drawing': {
+    title: '🗺️ ΣΧΕΔΙΑΣΗ ΣΤΟΝ ΧΑΡΤΗ: Οπτική Ακρίβεια',
+    content: `🎨 <strong>Διαδραστικό Σχεδίαση:</strong> Σχεδίασε το ακίνητο απευθείας στον χάρτη<br/>
+📐 <strong>Αυτόματος Υπολογισμός:</strong> Real-time υπολογισμός εμβαδού κατά τη σχεδίαση<br/>
+🛰️ <strong>Δορυφορικές Εικόνες:</strong> Υψηλή ανάλυση για ακριβή σχεδίαση<br/>
+🔧 <strong>Εργαλεία Σχεδίασης:</strong> Πολύγωνα, ορθογώνια, κύκλοι<br/>
+📏 <strong>Διορθώσεις:</strong> Εύκολη επεξεργασία κορυφών και σχημάτων<br/><br/>
+🎯 <em><strong>Ιδανικό για οικόπεδα και ακανόνιστα σχήματα</strong> που φαίνονται καθαρά στον χάρτη!</em>`,
+    category: 'property'
+  },
+
+  'floor-plan-upload': {
+    title: '📄 ΑΠΟ ΚΑΤΟΨΗ: Έξυπνη Ανάλυση',
+    content: `🔍 <strong>Αυτόματη Ανάλυση:</strong> AI ανάγνωση διαστάσεων από την κάτοψη<br/>
+📐 <strong>Κλίμακα Αναγνώρισης:</strong> Αυτόματος εντοπισμός κλίμακας και μονάδων<br/>
+🏗️ <strong>Υποστηριζόμενα Αρχεία:</strong> PDF, DWG, DXF, JPG, PNG<br/>
+⚙️ <strong>Επεξεργασία:</strong> Διόρθωση διαστάσεων αν χρειάζεται<br/>
+🎯 <strong>Ακρίβεια:</strong> Χρήση επαγγελματικών κατόψεων αρχιτεκτόνων<br/><br/>
+🏆 <em><strong>Η πιο ακριβής μέθοδος</strong> όταν έχεις επαγγελματική κάτοψη!</em>`,
+    category: 'property'
+  },
+
+  'auto-calculate': {
+    title: '🤖 ΑΥΤΟΜΑΤΟΣ ΥΠΟΛΟΓΙΣΜΟΣ: AI Εκτίμηση',
+    content: `🧠 <strong>Έξυπνη Εκτίμηση:</strong> AI ανάλυση βάσει τύπου και περιοχής<br/>
+📊 <strong>Στατιστικά Δεδομένα:</strong> Σύγκριση με παρόμοια ακίνητα στην περιοχή<br/>
+🏘️ <strong>Περιοχή-Specific:</strong> Τυπικά μεγέθη ανά γειτονιά και τύπο<br/>
+⚡ <strong>Άμεσο Αποτέλεσμα:</strong> Εκτίμηση σε δευτερόλεπτα<br/>
+🔄 <strong>Προαιρετικό:</strong> Δυνατότητα διόρθωσης του αποτελέσματος<br/><br/>
+💡 <em><strong>Γρήγορη εκκίνηση</strong> όταν θέλεις ακριβή εκτίμηση χωρίς μετρήσεις!</em>`,
+    category: 'property'
+  }
+};
+
+// Helper function για easy access
+export const createGeoAlertContentProvider = () => {
+  const { StaticContentProvider } = require('../providers/StaticContentProvider');
+  return new StaticContentProvider(GEOALERT_INFO_CONTENT);
+};

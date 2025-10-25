@@ -86,7 +86,10 @@
       "Bash(awk:*)",
       "Bash(pnpm --filter @layera/info-panels build)",
       "Bash(pnpm store prune:*)",
-      "Bash(start http://localhost:3008)"
+      "Bash(start http://localhost:3008)",
+      "Bash(start voithitika_docs/test-property-flow.html)",
+      "Bash(start C:layeravoithitika_docslegacy-pipeline-exploration.html)",
+      "Bash(start \"C:\\layera\\voithitika_docs\\legacy-pipeline-exploration.html\")"
     ],
     "deny": [],
     "ask": []
