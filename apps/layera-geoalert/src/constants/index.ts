@@ -249,7 +249,7 @@ export const NOTIFICATION_CONFIG = {
   }
 } as const;
 
-// Step Configuration για UnifiedPipeline
+// Step Configuration για Modular Step System
 export const STEP_CONFIG = {
   totalSteps: {
     property: 7,

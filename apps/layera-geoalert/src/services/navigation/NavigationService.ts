@@ -3,12 +3,12 @@
  *
  * ⚠️  DEPRECATED: Αυτό το service θα διαγραφεί μόλις ολοκληρωθεί το modular StepOrchestrator system
  *
- * Προς το παρόν χρησιμοποιείται από:
- * - FloatingStepper (λευκές κάρτες pipeline)
- * - UnifiedPipeline (modal/control panel)
+ * ⚠️ LEGACY SERVICE - Σταδιακά αντικαθίσταται από StepOrchestrator
  *
- * Μελλοντικά θα αντικατασταθεί εντελώς από το StepOrchestrator
- * που διαχειρίζεται τις διαφανείς κάρτες και τη modular step navigation.
+ * Χρησιμοποιείται από:
+ * - FloatingStepper (floating stepper navigation)
+ *
+ * Legacy UnifiedPipeline διαγράφηκε - μόνο modular step system τώρα.
  *
  * Αυτό το service εξασφαλίζει 100% αξιόπιστο navigation
  * με automatic error recovery και state consistency.

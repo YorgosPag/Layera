@@ -3,9 +3,8 @@
  *
  * Καθαρό modular category step που δείχνει τις 2 κάρτες (Ακίνητα/Εργασία)
  *
- * ⚠️  TEMPORARY BRIDGE: Προς το παρόν ενημερώνει ΚΑΙ το NavigationService (deprecated)
- * ΚΑΙ το StepOrchestrator (νέο system) για compatibility με FloatingStepper/UnifiedPipeline.
- * Μόλις ολοκληρωθεί η migration, θα αφαιρεθεί το NavigationService dependency.
+ * ✅ CLEAN MODULAR SYSTEM: Χρησιμοποιεί μόνο το StepOrchestrator για navigation.
+ * Legacy pipeline πλήρως αφαιρέθηκε - pure modular step system.
  */
 
 import React, { useCallback, useState } from 'react';

@@ -7,7 +7,7 @@
  * - 95% χάρτης visibility preserved
  * - Enterprise UX patterns (Apple/Google-style)
  * - Touch-optimized για 430x932 screen
- * - Σύνδεση με υπάρχουσα UnifiedPipeline state machine
+ * - Σύνδεση με modular StepOrchestrator system
  */
 
 import React, { useEffect } from 'react';

@@ -65,9 +65,7 @@ interface DrawnArea {
 interface GeoMapProps {
   onAreaCreated?: (area: DrawnArea) => void;
   onNewEntryClick?: () => void;
-  showUnifiedPipeline?: boolean;
-  onCloseUnifiedPipeline?: () => void;
-  onSubmitUnifiedPipeline?: (data: any) => void;
+  // REMOVED: Legacy unified pipeline props
   isIPhone14ProMaxDevice?: boolean;
   onCategoryElementsChange?: (show: boolean) => void;
   showCategoryElements?: boolean;
@@ -76,9 +74,7 @@ interface GeoMapProps {
 export const GeoMap: React.FC<GeoMapProps> = ({
   onAreaCreated,
   onNewEntryClick,
-  showUnifiedPipeline,
-  onCloseUnifiedPipeline,
-  onSubmitUnifiedPipeline,
+  // REMOVED: Legacy unified pipeline destructuring
   isIPhone14ProMaxDevice = false,
   onCategoryElementsChange,
   showCategoryElements: propShowCategoryElements = false
