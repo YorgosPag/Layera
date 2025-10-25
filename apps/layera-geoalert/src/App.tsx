@@ -21,7 +21,7 @@ import { APP_CONFIG, DEVICE_CONFIG, ANIMATION_CONFIG } from './constants';
 import { GeoHeader } from './components/GeoHeader';
 import { GeoMap } from './components/GeoMapNew';
 import { DeviceFrameWrapper } from './components/DeviceFrameWrapper';
-import { UnifiedPipelineModal } from '../../../packages/pipelines/unified/UnifiedPipelineModal';
+// REMOVED: Legacy UnifiedPipelineModal - replaced by modular step system
 import { ViewportFrame } from './components/ViewportFrame';
 
 /**
@@ -195,7 +195,7 @@ function App() {
   // State για re-render αν αλλάξει
   const [deviceDetected, setDeviceDetected] = useState(isIPhone14ProMaxDevice);
   const [, setSavedAreas] = useState<DrawnArea[]>([]);
-  const [showUnifiedPipeline, setShowUnifiedPipeline] = useState(false);
+  // REMOVED: Legacy unified pipeline state - replaced by modular step system
 
   // Use detected iPhone mode
   const finalIsIPhone = deviceDetected || isIPhone14ProMaxDevice;
@@ -247,19 +247,12 @@ function App() {
 
   const handleNewEntryClick = () => {
     if (process.env.NODE_ENV === 'development') {
-      console.log('Opening Unified Pipeline...');
+      console.log('Using modular step system...');
     }
-    setShowUnifiedPipeline(true);
+    // TODO: Trigger modular step system instead of legacy pipeline
   };
 
-  const handleUnifiedPipelineSubmit = async (data: any) => {
-    if (process.env.NODE_ENV === 'development') {
-      console.log('Unified Pipeline submitted with data:', data);
-    }
-    // TODO: Implement API submission logic
-    // For now, just close the modal after submission
-    setShowUnifiedPipeline(false);
-  };
+  // REMOVED: Legacy unified pipeline submit handler
 
   if (isMapMode) {
     return (
@@ -316,9 +309,6 @@ function App() {
                       <GeoMap
                         onAreaCreated={handleAreaCreated}
                         onNewEntryClick={handleNewEntryClick}
-                        showUnifiedPipeline={showUnifiedPipeline}
-                        onCloseUnifiedPipeline={() => setShowUnifiedPipeline(false)}
-                        onSubmitUnifiedPipeline={handleUnifiedPipelineSubmit}
                         isIPhone14ProMaxDevice={finalIsIPhone}
                         onCategoryElementsChange={setShowCategoryElements}
                         showCategoryElements={showCategoryElements}
@@ -328,31 +318,7 @@ function App() {
                 </DeviceFrameWrapper>
               </div>
 
-              {/* Pipeline Control Panel - Right Side */}
-              {showUnifiedPipeline && (
-                <div style={{
-                  width: `${TABLE_COLUMN_WIDTHS.EXTRA_WIDE}px`, // Container width for control panel
-                  backgroundColor: 'var(--layera-bg-secondary)',
-                  border: '1px solid var(--layera-border-primary)',
-                  padding: `${SPACING_SCALE.LG + SPACING_SCALE.XS}px`,
-                  overflow: 'auto'
-                }}>
-                  <div style={{
-                    margin: `0 0 ${SPACING_SCALE.MD}px 0`
-                  }}>
-                    <Heading as="h3" size="lg" weight="bold">
-                      🎯 Pipeline Control Panel
-                    </Heading>
-                  </div>
-
-                  <UnifiedPipelineModal
-                    isOpen={true}
-                    onClose={() => setShowUnifiedPipeline(false)}
-                    onSubmit={handleUnifiedPipelineSubmit}
-                    container={null}
-                  />
-                </div>
-              )}
+              {/* Legacy pipeline control panel removed - using integrated floating stepper */}
 
             </div>
           </DeviceOverrideProvider>
