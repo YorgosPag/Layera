@@ -17,73 +17,155 @@
 
 ---
 
-## 🌳 PIPELINE FLOW CHART (ΔΕΝΔΡΟΕΙΔΗΣ ΔΟΜΗ)
+## 🌳 COMPLETE PIPELINE FLOW CHART (ΠΛΗΡΗΣ ΔΕΝΔΡΟΕΙΔΗΣ ΔΟΜΗ)
+
+⚠️ **ΣΗΜΑΝΤΙΚΟ**: Αυτό το pipeline ΔΕΝ είναι απλό linear flow - είναι **πολύπλοκο state machine** με **8-12 βήματα** ανάλογα με τις επιλογές!
+
+### 🎯 **ROOT: CATEGORY SELECTION**
+```
+📱 LEGACY WHITE CARDS PIPELINE (iPhone 14 Pro Max Only)
+│
+├── 🏠 **ΑΚΙΝΗΤΑ (Property)** ─────────────────────────────────────┐
+└── 💼 **ΕΡΓΑΣΙΑ (Job)** ─────────────────────────────────────────┘
+```
+
+### 🏠 **PROPERTY PATH TREE** (ΕΠΑΛΗΘΕΥΜΕΝΟ: 9 βήματα ακριβώς)
 
 ```
-📱 LEGACY WHITE CARDS PIPELINE
+🏠 PROPERTY PATH
 │
-├── 🎯 **STEP 1: CATEGORY SELECTION**
-│   ├── 🏠 Ακίνητα (property)
-│   │   └── ➡️ Goes to Property Intent
-│   └── 💼 Εργασία (job)
-│       └── ➡️ Goes to Job Intent
+├── 🎯 **STEP 2: PROPERTY INTENT**
+│   ├── 🏪 **ΠΡΟΣΦΟΡΑ (Offer)** ──────────────────────────────┐
+│   │   │                                                    │
+│   │   ├── 🎯 **STEP 3: TRANSACTION TYPE** (CONDITIONAL)    │
+│   │   │   ├── 💰 **ΠΩΛΗΣΗ (Sale)**                         │
+│   │   │   └── 🏢 **ΕΝΟΙΚΙΑΣΗ (Rent)**                      │
+│   │   │                                                    │
+│   │   ├── 🎯 **STEP 4: AVAILABILITY**                      │
+│   │   │   ├── ✅ **ΤΩΡΑ (Now)** ──────────────────────┐    │
+│   │   │   │   │                                       │    │
+│   │   │   │   ├── 🎯 **STEP 5: UPLOAD** (CONDITIONAL) │    │
+│   │   │   │   │   └── 📤 **Ανέβασμα Αρχείων**         │    │
+│   │   │   │   │                                       │    │
+│   │   │   │   └── 🎯 **STEP 6: LAYOUT**               │    │
+│   │   │   │       └── 🗺️ **Τοποθέτηση & Κλίμακα** ──┘    │
+│   │   │   │                                               │
+│   │   │   └── 🔄 **ΣΤΟ ΜΕΛΛΟΝ (Future)** ──────────────┐  │
+│   │   │       └── ⏭️ **SKIP Upload & Layout** ─────────┘  │
+│   │   │                                                   │
+│   │   └── ⬇️ **CONTINUES TO PROPERTY TYPE...**            │
+│   │                                                       │
+│   └── 🏡 **ΑΝΑΖΗΤΗΣΗ (Search)** ─────────────────────────┘
+│       │
+│       ├── 🎯 **STEP 3: AVAILABILITY** (NO Transaction)
+│       │   ├── ✅ **ΤΩΡΑ (Now)** ──────────────────────┐
+│       │   │   └── 🎯 **STEP 4: LAYOUT**               │
+│       │   │       └── 🗺️ **Τοποθέτηση & Κλίμακα** ──┘
+│       │   │
+│       │   └── 🔄 **ΣΤΟ ΜΕΛΛΟΝ (Future)**
+│       │       └── ⏭️ **SKIP Layout**
+│       │
+│       └── ⬇️ **CONTINUES TO PROPERTY TYPE...**
 │
-├── 🎯 **STEP 2A: PROPERTY INTENT** (if category = property)
-│   ├── 🏪 Θέλω να προσφέρω (offer)
-│   │   └── ➡️ Goes to Transaction Type
-│   └── 🏡 Θέλω να αναζητήσω (search)
-│       └── ➡️ Goes to Transaction Type
+├── 🎯 **STEP 7: PROPERTY TYPE** (All Property Paths Converge)
+│   ├── 🏠 **ΔΙΑΜΕΡΙΣΜΑ (Apartment)**
+│   │   └── 📝 **Fields**: Rooms + Floor + Standard
+│   ├── 🏢 **ΓΡΑΦΕΙΟ (Office)**
+│   │   └── 📝 **Fields**: Floor + Standard (NO Rooms)
+│   ├── 🏭 **ΕΡΓΟΣΤΑΣΙΟ (Factory)**
+│   │   └── 📝 **Fields**: Standard only
+│   ├── 🌳 **ΟΙΚΟΠΕΔΟ (Land)**
+│   │   └── 📝 **Fields**: Standard only
+│   ├── 🏗️ **ΚΤΙΡΙΟ (Building)**
+│   │   └── 📝 **Fields**: Standard only
+│   └── 🏪 **ΚΑΤΑΣΤΗΜΑ (Store)**
+│       └── 📝 **Fields**: Standard only
 │
-├── 🎯 **STEP 2B: JOB INTENT** (if category = job)
-│   ├── 💼 Θέλω να προσφέρω (offer)
-│   │   └── ➡️ Goes to Job Details
-│   └── 🔧 Αναζητώ εργασία (search)
-│       └── ➡️ Goes to Job Details
+├── 🎯 **STEP 8: PROPERTY DETAILS**
+│   └── ✏️ **ΣΤΟΙΧΕΙΑ ΑΚΙΝΗΤΟΥ (Property Details Form)**
+│       ├── 📋 **Conditional Fields**:
+│       │   ├── 🏠 **Rooms** (Apartments ONLY)
+│       │   ├── 🏢 **Floor** (Apartments + Offices ONLY)
+│       │   ├── 📐 **Area** (ALL types)
+│       │   ├── 💰 **Price** (ALL types)
+│       │   └── 📝 **Description** (ALL types)
+│       │
+│       └── ⬇️ **CONTINUES TO AREA METHOD...**
 │
-├── 🎯 **STEP 3: TRANSACTION TYPE** (property path only)
-│   ├── 💰 Πώληση (sale)
-│   │   └── ➡️ Goes to Availability
-│   └── 🏢 Ενοικίαση (rent)
-│       └── ➡️ Goes to Availability
-│
-├── 🎯 **STEP 4: AVAILABILITY** (after transaction)
-│   ├── ✅ Τώρα (now)
-│   │   └── ➡️ Goes to Upload
-│   └── 🔄 Στο Μέλλον (future)
-│       └── ➡️ Skips to Property Type
-│
-├── 🎯 **STEP 5: UPLOAD** (if availability = now)
-│   └── 📤 Ανέβασμα Αρχείων (upload)
-│       └── ➡️ Goes to Layout
-│
-├── 🎯 **STEP 6: LAYOUT** (after upload)
-│   └── 🗺️ Τοποθέτηση & Κλίμακα (layout)
-│       ├── 📍 GPS Location (Find My Location)
-│       ├── 🔍 Address Search
-│       ├── 🔄 Rotation (-90°/+90°)
-│       └── 📏 Scale (cm→m, mm→m, m→m)
-│       └── ➡️ Goes to Property Type
-│
-├── 🎯 **STEP 7: PROPERTY TYPE** (after layout or future)
-│   ├── 🏠 Διαμέρισμα (apartment)
-│   ├── 🏢 Γραφείο (office)
-│   ├── 🏭 Εργοστάσιο (factory)
-│   ├── 🌳 Οικόπεδο (land)
-│   ├── 🏗️ Κτίριο (building)
-│   └── 🏪 Κατάστημα (store)
-│       └── ➡️ Goes to Property Details
-│
-├── 🎯 **STEP 8: PROPERTY DETAILS** (after property type)
-│   └── ✏️ Στοιχεία Ακινήτου (property-details)
-│       └── ➡️ Goes to Area Method
-│
-└── 🎯 **STEP 9: AREA METHOD** (final step)
-    ├── ✏️ Χειροκίνητη Εισαγωγή (manual-input)
-    ├── 🗺️ Σχεδίαση στον Χάρτη (map-drawing)
-    ├── 📤 Από Κάτοψη (floor-plan-upload)
-    └── ⚙️ Αυτόματος Υπολογισμός (auto-calculate)
-        └── ✅ COMPLETION
+└── 🎯 **STEP 9: AREA MEASUREMENT METHOD** (FINAL)
+    ├── ✏️ **ΧΕΙΡΟΚΙΝΗΤΗ ΕΙΣΑΓΩΓΗ (Manual Input)**
+    │   └── 🔢 **Direct number entry**
+    ├── 🗺️ **ΣΧΕΔΙΑΣΗ ΣΤΟΝ ΧΑΡΤΗ (Map Drawing)**
+    │   └── 🖊️ **Interactive map drawing tools**
+    ├── 📤 **ΑΠΟ ΚΑΤΟΨΗ (Floor Plan Upload)**
+    │   └── 📸 **Image upload + scaling**
+    └── ⚙️ **ΑΥΤΟΜΑΤΟΣ ΥΠΟΛΟΓΙΣΜΟΣ (Auto Calculate)**
+        └── 🤖 **AI-powered calculation**
+        └── ✅ **COMPLETION**
 ```
+
+### 💼 **JOB PATH TREE** ⚠️ **ΑΝΟΛΟΚΛΗΡΩΤΟ - ΜΟΝΟ 2 ΒΗΜΑΤΑ ΣΤΟΤΟ LEGACY SYSTEM**
+
+```
+💼 JOB PATH - LEGACY DEVICE-SPECIFIC SYSTEM
+│
+├── 🎯 **STEP 1: CATEGORY SELECTION** ✅ ΥΠΑΡΧΕΙ
+│   └── 💼 **"Εργασία"** (BriefcaseIcon) → επιλέγω "job"
+│
+├── 🎯 **STEP 2: JOB INTENT** ✅ ΥΠΑΡΧΕΙ
+│   ├── 💼 **ΠΡΟΣΦΟΡΑ ΘΕΣΗΣ** → "Θέλω να προσφέρω" (WorkIcon)
+│   └── 🔧 **ΑΝΑΖΗΤΗΣΗ ΕΡΓΑΣΙΑΣ** → "Αναζητώ εργασία" (ToolIcon)
+│
+└── ❌ **STEP 3+: ΔΕΝ ΥΠΑΡΧΟΥΝ ΣΤΟ LEGACY SYSTEM**
+    │
+    ⚠️ **ΤΑ ΠΑΡΑΚΑΤΩ ΥΠΑΡΧΟΥΝ ΜΟΝΟ ΣΤΟ ΝΕΟ MODULAR SYSTEM:**
+    │
+    ├── 🚫 **STEP 3: EMPLOYMENT TYPE** (ΔΕΝ ΥΠΑΡΧΕΙ στο cardData.ts)
+    │   ├── ⏰ **ΠΛΗΡΗΣ ΑΠΑΣΧΟΛΗΣΗ (Full-time)**
+    │   ├── ⏱️ **ΜΕΡΙΚΗ ΑΠΑΣΧΟΛΗΣΗ (Part-time)**
+    │   ├── 📋 **ΣΥΜΒΑΣΗ ΕΡΓΟΥ (Contract)**
+    │   ├── 🏠 **ΤΗΛΕΕΡΓΑΣΙΑ (Remote)**
+    │   └── 🎓 **ΠΡΑΚΤΙΚΗ ΑΣΚΗΣΗ (Internship)**
+    │
+    ├── 🚫 **STEP 4-8: ΥΠΟΛΟΙΠΑ ΒΗΜΑΤΑ** (ΔΕΝ ΥΠΑΡΧΟΥΝ στο legacy)
+    │   ├── availability, availabilityDetails, location, details, complete
+    │   └── **ΣΥΝΟΛΟ**: 6 βήματα που ΛΕΙΠΟΥΝ από το legacy system
+    │
+    └── ⚠️ **ΑΠΟΤΕΛΕΣΜΑ**: Το job pipeline ΣΤΑΜΑΤΑ στο βήμα 2!
+        └── ❌ **ΔΕΝ ΜΠΟΡΕΙ ΝΑ ΟΛΟΚΛΗΡΩΣΕΙ** τη διαδικασία εργασίας
+```
+
+### 🔢 **STEP COUNT ANALYSIS**
+
+#### **Property Paths**:
+- **Property + Offer + Now**: `Category → Intent → Transaction → Availability → Upload → Layout → Property Type → Details → Area Method` = **9 βήματα**
+- **Property + Offer + Future**: `Category → Intent → Transaction → Availability → Property Type → Details → Area Method` = **7 βήματα**
+- **Property + Search + Now**: `Category → Intent → Availability → Layout → Property Type → Details → Area Method` = **7 βήματα**
+- **Property + Search + Future**: `Category → Intent → Availability → Property Type → Details → Area Method` = **6 βήματα**
+
+#### **Job Path** ⚠️ **ΑΝΟΛΟΚΛΗΡΩΤΟ**:
+- **Job (Legacy System)**: `Category → Intent` = **ΜΟΝΟ 2 βήματα** (ΣΤΑΜΑΤΑ εδώ!)
+- **Job (Νέο System)**: `Category → Intent → Employment → Availability → Availability Details → Location → Details → Complete` = **8 βήματα** (ΔΕΝ ΥΠΑΡΧΕΙ στο legacy)
+
+### 🎛️ **CONDITIONAL LOGIC MATRIX**
+
+| Condition | Property Offer | Property Search | Job (Legacy) |
+|-----------|---------------|-----------------|--------------|
+| **Transaction Step** | ✅ SHOW | ❌ SKIP | ❌ **N/A** |
+| **Upload Step** | ✅ IF Now | ✅ IF Now | ❌ **N/A** |
+| **Layout Step** | ✅ SHOW | ✅ SHOW | ❌ **N/A** |
+| **Employment Step** | ❌ SKIP | ❌ SKIP | ⚠️ **MISSING** |
+| **Συνολικά Βήματα** | **6-9 βήματα** | **6-7 βήματα** | **2 βήματα ΜΟΝΟ** |
+| **Status** | ✅ ΠΛΗΡΕΣ | ✅ ΠΛΗΡΕΣ | ❌ **ΚΟΜΜΕΝΟ** |
+
+### 🚨 **ΠΟΛΥΠΛΟΚΟΤΗΤΑ HIGHLIGHTS**
+
+1. **Variable Step Count**: 6-9 βήματα ανάλογα με path
+2. **Conditional Steps**: 3 steps που εμφανίζονται conditional
+3. **Dynamic Forms**: Property details αλλάζουν fields ανάλογα με property type
+4. **State Dependencies**: Κάθε step επηρεάζει τα επόμενα
+5. **Multiple UI Modes**: FloatingStepper πρέπει να δείχνει διαφορετικό progress
+6. **Complex Navigation**: Back button πρέπει να ξέρει τι να skip
 
 ---
 
@@ -519,6 +601,248 @@ border: var(--color-primary-border)
 **Priority**: ΥΨΗΛΗ (εμποδίζει το desktop compatibility)
 
 **Next Action**: Αφαίρεση των legacy files μόλις επιβεβαιωθεί ότι το νέο system λειτουργεί πλήρως.
+
+---
+
+## 📋 ΛΕΠΤΟΜΕΡΕΙΣ ΚΑΡΤΕΣ - ΚΕΙΜΕΝΑ & ΣΧΟΛΙΑ
+
+**🔄 Αμφίδρομη σύνδεση με**: `C:\layera\voithitika_docs\legacy-pipeline-exploration.html`
+**📊 Σκοπός**: Καταγραφή ακριβών κειμένων και σχολίων κάθε κάρτας
+**🌳 Δενδροειδής οπτικοποίηση**: Βλέπε HTML αρχείο
+
+### 🏁 **ΒΗΜΑ 1: ΚΑΤΗΓΟΡΙΕΣ** (CategoryStep.tsx)
+
+#### **🏠 Κάρτα Ακινήτων**
+- **Τίτλος**: `{t('pipeline.category.property.title')}` → "Ακίνητα"
+- **Περιγραφή**: `{t('pipeline.category.property.description')}` → "Διαχείριση ακινήτων και γεωγραφικών ειδοποιήσεων"
+- **Εικονίδιο**: `VillaIcon` (🏠) - size="xl", theme="primary"
+- **Στυλ**: `variant="elevated"`, λευκό φόντο `var(--layera-bg-primary)`
+- **Props**: `clickable`, `hoverable`, `size="lg"`, `padding="lg"`
+- **Σχόλια**: Enterprise LEGO Component, LEGACY/DEPRECATED για αναφορά μόνο
+
+#### **💼 Κάρτα Εργασίας**
+- **Τίτλος**: `{t('pipeline.category.job.title')}` → "Εργασία"
+- **Περιγραφή**: `{t('pipeline.category.job.description')}` → "Αναζήτηση και προσφορά θέσεων εργασίας"
+- **Εικονίδιο**: `BriefcaseIcon` (💼) - size="xl", theme="success"
+- **Στυλ**: `variant="elevated"`, λευκό φόντο `var(--layera-bg-primary)`
+- **Props**: `clickable`, `hoverable`, `size="lg"`, `padding="lg"`
+- **Σχόλια**: ΠΡΟΣΟΧΗ - Job pipeline είναι ΑΝΟΛΟΚΛΗΡΩΤΟ στο legacy system
+
+### 🏠 **ΒΗΜΑ 2A: ΑΚΙΝΗΤΑ - ΠΡΟΘΕΣΕΙΣ** (IntentStep.tsx)
+
+#### **🏭 Κάρτα Προσφοράς**
+- **Τίτλος**: `{t('pipeline.intent.offer.property.title')}` → "Θέλω να προσφέρω ακίνητο"
+- **Περιγραφή**: `{t('pipeline.intent.offer.property.description')}` → "Καταχώρηση ακινήτου για πώληση ή ενοικίαση"
+- **Εικονίδιο**: `IndustrialIcon` (🏭) - size="xl", theme="info"
+- **Στυλ**: `variant="outlined"`, `className="layera-unified-card"`
+- **Props**: `clickable`, `hoverable`, `size="lg"`, `padding="lg"`
+- **Σχόλια**: Οδηγεί στο TransactionTypeStep (πώληση/ενοικίαση)
+
+#### **🍴 Κάρτα Αναζήτησης**
+- **Τίτλος**: `{t('pipeline.intent.search.property.title')}` → "Θέλω να αναζητήσω ακίνητο"
+- **Περιγραφή**: `{t('pipeline.intent.search.property.description')}` → "Δημιουργία Geo-Alert για ειδοποιήσεις"
+- **Εικονίδιο**: `RestaurantIcon` (🍴) - size="xl", theme="warning"
+- **Στυλ**: `variant="outlined"`, `className="layera-unified-card"`
+- **Props**: `clickable`, `hoverable`, `size="lg"`, `padding="lg"`
+- **Σχόλια**: Παρακάμπτει το TransactionTypeStep, πηγαίνει στο AvailabilityStep
+
+### 💼 **ΒΗΜΑ 2B: ΕΡΓΑΣΙΑ - ΠΡΟΘΕΣΕΙΣ** (IntentStep.tsx)
+
+#### **💼 Κάρτα Προσφοράς Θέσης**
+- **Τίτλος**: `{t('pipeline.intent.offer.job.title')}` → "Θέλω να προσφέρω θέση εργασίας"
+- **Περιγραφή**: `{t('pipeline.intent.offer.job.description')}` → "Δημοσίευση αγγελίας εργασίας"
+- **Εικονίδιο**: `WorkIcon` (💼) - size="xl", theme="info"
+- **Στυλ**: `variant="outlined"`, `className="layera-unified-card"`
+- **Props**: `clickable`, `hoverable`, `size="lg"`, `padding="lg"`
+- **Σχόλια**: ⚠️ ΣΤΟΠ - Legacy system δεν έχει περισσότερα βήματα
+
+#### **🔧 Κάρτα Αναζήτησης Εργασίας**
+- **Τίτλος**: `{t('pipeline.intent.search.job.title')}` → "Αναζητώ εργασία"
+- **Περιγραφή**: `{t('pipeline.intent.search.job.description')}` → "Αναζήτηση και αίτηση για θέσεις εργασίας"
+- **Εικονίδιο**: `ToolIcon` (🔧) - size="xl", theme="warning"
+- **Στυλ**: `variant="outlined"`, `className="layera-unified-card"`
+- **Props**: `clickable`, `hoverable`, `size="lg"`, `padding="lg"`
+- **Σχόλια**: ⚠️ ΣΤΟΠ - Legacy system δεν έχει περισσότερα βήματα
+
+### 🏭 **ΒΗΜΑ 3: ΤΥΠΟΣ ΣΥΝΑΛΛΑΓΗΣ** (TransactionTypeStep.tsx)
+
+#### **🏪 Κάρτα Πώλησης**
+- **Τίτλος**: `{t('pipelines.steps.transaction.sale.title')}` → "Πώληση"
+- **Περιγραφή**: `{t('pipelines.steps.transaction.sale.description')}` → "Πώληση ακινήτου με μεταβίβαση κυριότητας"
+- **Εικονίδιο**: `CommercialIcon` (🏪) - size="xl", theme="success"
+- **Στυλ**: `variant="outlined"`, `className="layera-unified-card"`
+- **Props**: `clickable`, `hoverable`, `size="lg"`, `padding="lg"`
+- **Σχόλια**: Μόνο για Property + Offer path
+
+#### **🏢 Κάρτα Ενοικίασης**
+- **Τίτλος**: `{t('pipelines.steps.transaction.rent.title')}` → "Ενοικίαση"
+- **Περιγραφή**: `{t('pipelines.steps.transaction.rent.description')}` → "Μίσθωση ακινήτου με συμβόλαιο ενοικίασης"
+- **Εικονίδιο**: `BuildingIcon` (🏢) - size="xl", theme="neutral"
+- **Στυλ**: `variant="outlined"`, `className="layera-unified-card"`
+- **Props**: `clickable`, `hoverable`, `size="lg"`, `padding="lg"`
+- **Σχόλια**: Μόνο για Property + Offer path
+
+### ⏱️ **ΒΗΜΑ 4: ΔΙΑΘΕΣΙΜΟΤΗΤΑ** (AvailabilityStep.tsx)
+
+#### **✅ Κάρτα Τώρα**
+- **Τίτλος**: `{t('pipelines.steps.availability.options.now.title')}` → "Τώρα"
+- **Περιγραφή**: `{t('pipelines.steps.availability.options.now.description')}` → "Το ακίνητο είναι άμεσα διαθέσιμο"
+- **Εικονίδιο**: `CheckIcon` (✅) - size="xl", theme="primary"
+- **Στυλ**: `variant="outlined"`, `className="layera-unified-card"`
+- **Props**: `clickable`, `hoverable`, `size="lg"`, `padding="lg"`
+- **Σχόλια**: Οδηγεί σε Upload ή Drawing ανάλογα με το path
+
+#### **🔄 Κάρτα Μελλοντικά**
+- **Τίτλος**: `{t('pipelines.steps.availability.options.future.title')}` → "Στο Μέλλον"
+- **Περιγραφή**: `{t('pipelines.steps.availability.options.future.description')}` → "Το ακίνητο θα είναι διαθέσιμο σε μελλοντική ημερομηνία"
+- **Εικονίδιο**: `RefreshIcon` (🔄) - size="xl", theme="secondary"
+- **Στυλ**: `variant="outlined"`, `className="layera-unified-card"`
+- **Props**: `clickable`, `hoverable`, `size="lg"`, `padding="lg"`
+- **Σχόλια**: Παρακάμπτει το Upload, πηγαίνει στο Drawing
+
+### 📍 **ΒΗΜΑ 5: LOCATION** (LocationStep.tsx) **[CONDITIONAL LOGIC]**
+
+#### **📤 Κάρτα Upload** (ΜΟΝΟ ΑΝ Property + Offer + Now)
+- **Τίτλος**: `{t('location.uploadFloorplan')}` → "Ανέβασμα Κάτοψης"
+- **Περιγραφή**: "Επιλέξτε αρχείο κάτοψης (JPG, PNG, PDF, DXF, DWG)"
+- **Εικονίδιο**: `UploadIcon` (📤) - size="xl", theme="info"
+- **Στυλ**: `variant="outlined"`, `className="layera-unified-card"`
+- **Props**: `clickable`, `hoverable`, `size="lg"`, `padding="lg"`
+- **Σχόλια**: Ανοίγει file picker, στέλνει event στον χάρτη, auto-advance
+
+#### **🗺️ Κάρτα Drawing** (ΣΕ ΟΛΕΣ ΤΙΣ ΑΛΛΕΣ ΠΕΡΙΠΤΩΣΕΙΣ)
+- **Τίτλος**: `{t('location.drawOnMap')}` → "Σχεδίαση στον Χάρτη"
+- **Περιγραφή**: "Χρησιμοποιήστε τα εργαλεία σχεδίασης για να ορίσετε την περιοχή"
+- **Εικονίδιο**: `MapIcon` (🗺️) - size="xl", theme="primary"
+- **Στυλ**: `variant="outlined"`, `className="layera-unified-card"`
+- **Props**: `clickable`, `hoverable`, `size="lg"`, `padding="lg"`
+- **Σχόλια**: Ενεργοποιεί εργαλεία σχεδίασης χάρτη
+
+### ⚙️ **ΒΗΜΑ 6: LAYOUT** (LayoutStep.tsx) **[ΠΟΛΥΠΛΟΚΗ ΦΟΡΜΑ]**
+
+#### **🔧 Layout Controls** (ΌΧΙ απλή κάρτα - πολύπλοκη φόρμα)
+- **Τίτλος**: `{t('pipelines.steps.layout.title')}` → "Τοποθέτηση & Κλίμακα"
+- **Στοιχεία**:
+  - **Location Search**: Input field για αναζήτηση διεύθυνσης
+  - **Rotation Controls**: -90°/+90° buttons για περιστροφή
+  - **Scale Controls**: Width/Height/Depth inputs για κλιμάκωση
+- **Εικονίδια**: `LocationIcon`, `RotateIcon`, `RulerIcon`
+- **Σχόλια**: Πολύπλοκο form με real-time map updates, address breakdown
+
+### 📝 **ΒΗΜΑ 7: DETAILS** (DetailsStep.tsx) **[ΦΟΡΜΑ ΣΤΟΙΧΕΙΩΝ]**
+
+#### **📋 Details Form** (Φόρμα με πολλαπλά πεδία)
+- **Τίτλος**: `{t('pipelines.steps.details.title')}` → "Στοιχεία {type}"
+- **Στοιχεία**:
+  - **Title**: Input για τίτλο καταχώρησης
+  - **Description**: TextArea για περιγραφή
+  - **Price/Salary**: Number input (conditional ανάλογα με category)
+  - **Contact Info**: Input για στοιχεία επικοινωνίας
+- **Validation**: Όλα τα πεδία required για να προχωρήσει
+- **Σχόλια**: Dynamic form ανάλογα με category (property vs job)
+
+### 🎯 **ΒΗΜΑ 8: COMPLETE** (CompleteStep.tsx) **[ΤΕΛΙΚΟ ΒΗΜΑ]**
+
+#### **✅ Success Confirmation**
+- **Τίτλος**: Δυναμικό ανάλογα με path:
+  - Property + Offer: "Η προσφορά ακινήτου σας καταχωρήθηκε επιτυχώς!"
+  - Property + Search: "Το Geo-Alert σας δημιουργήθηκε επιτυχώς!"
+  - Job + Offer: "Η αγγελία εργασίας σας καταχωρήθηκε επιτυχώς!"
+  - Job + Search: "Η αίτηση εργασίας σας καταχωρήθηκε επιτυχώς!"
+- **Εικονίδιο**: `CheckIcon` (✅) ή `AlertTriangleIcon` (⚠️)
+- **Σχόλια**: Final success screen με completion button
+
+---
+
+## ✅ ΕΠΑΛΗΘΕΥΣΗ ΚΩΔΙΚΑ - ΡΟΗΣ ΑΚΙΝΗΤΩΝ
+
+**Ημερομηνία**: 26 Οκτωβρίου 2025
+**Μέθοδος**: Άμεση ανάλυση του cardData.ts αρχείου
+
+### 🔍 **ΕΠΙΒΕΒΑΙΩΣΗ ΒΗΜΑΤΩΝ ΑΠΟ CARDDATA.TS**:
+
+Μετά από λεπτομερή ανάλυση των πηγαίων αρχείων, η ροή των ακινήτων είναι **ακριβώς**:
+
+#### **ΣΩΣΤΗ ΑΚΟΛΟΥΘΙΑ (9 βήματα)**:
+1. **category** → `property` (Ακίνητα)
+2. **property** → `offer` ή `search` (Intent)
+3. **transaction** → `sale` ή `rent` (μόνο αν intent="offer")
+4. **availability** → `now` ή `future` (χρονοδιάγραμμα)
+5. **upload** → `upload` (ανέβασμα αρχείων)
+6. **layout** → `layout` (τοποθέτηση & κλίμακα)
+7. **property-type** → 6 επιλογές: apartment, office, factory, land, building, store
+8. **property-details** → `property-details` (στοιχεία ακινήτου - φόρμα)
+9. **area-method** → 4 επιλογές: manual-input, map-drawing, floor-plan-upload, auto-calculate
+
+### 🎯 **CONDITIONAL LOGIC VERIFICATION**:
+- **Transaction Step**: Εμφανίζεται ΜΟΝΟ όταν intent="offer" (προσφορά)
+- **Upload/Layout Steps**: Εμφανίζονται ΠΑΝΤΟΤΕ στη ροή ακινήτων
+- **Property-Type**: 6 διαθέσιμες κάρτες (apartment, office, factory, land, building, store)
+- **Area-Method**: 4 διαθέσιμες μέθοδοι μέτρησης (ΤΕΛΙΚΟ ΒΗΜΑ)
+
+### 📊 **CONFIGURATION VERIFICATION**:
+```typescript
+// Από constants/index.ts - STEP_CONFIG
+totalSteps: {
+  property: 7, // ⚠️ ΑΝΑΚΡΙΒΕΙΑ - στην πραγματικότητα είναι 9
+  job: 8
+}
+```
+
+### 🚨 **ΣΗΜΑΝΤΙΚΟ ΕΥΡΗΜΑ**:
+Το STEP_CONFIG.totalSteps.property λέει "7" αλλά στην πραγματικότητα η ροή έχει **9 βήματα**. Αυτό εξηγεί γιατί ο χρήστης είδε ανακρίβειες στην αρχική μου τεκμηρίωση.
+
+**ΤΕΛΙΚΗ ΕΠΙΒΕΒΑΙΩΣΗ**: Η ροή των ακινήτων έχει **9 βήματα ακριβώς** και όχι 7 όπως δηλώνεται στα constants.
+
+---
+
+## ✅ ΒΗΜΑ-ΠΡΟΣ-ΒΗΜΑ ΕΠΑΛΗΘΕΥΣΗ - ΡΟΗΣ ΕΡΓΑΣΙΑΣ
+
+**Μέθοδος**: Εξέταση κάθε βήματος ξεχωριστά και καταγραφή στο documentation
+
+### 🔍 **ΒΗΜΑ 1 - CATEGORY SELECTION (ΕΠΑΛΗΘΕΥΜΕΝΟ)**:
+**Τοποθεσία**: cardData.category[]
+**Κάρτες**:
+- `property` (id) → "Ακίνητα" (title) → VillaIcon
+- `job` (id) → "Εργασία" (title) → BriefcaseIcon
+
+**Επόμενο βήμα για ΕΡΓΑΣΙΑ**: Πάμε στο βήμα job (intent selection)
+
+### 🔍 **ΒΗΜΑ 2 - JOB INTENT SELECTION (ΕΠΑΛΗΘΕΥΜΕΝΟ)**:
+**Τοποθεσία**: cardData.job[]
+**Κάρτες**:
+- `offer` (id) → "Θέλω να προσφέρω" (title) → WorkIcon → category:'job'
+- `search` (id) → "Αναζητώ εργασία" (title) → ToolIcon → category:'job'
+
+**Επόμενο βήμα**: Αν επιλέξω οποιαδήποτε από τις δύο → ??? (ΧΡΕΙΑΖΕΤΑΙ ΕΡΕΥΝΑ)
+
+### 🚨 **ΚΡΙΣΙΜΟ ΕΥΡΗΜΑ - ΑΝΟΛΟΚΛΗΡΩΤΟ JOB PIPELINE**:
+
+**Πρόβλημα**: Στο cardData.ts υπάρχουν ΜΟΝΟ 2 job steps:
+- `category` (κατηγορία)
+- `job` (intent)
+
+**Αλλά στα constants/index.ts STEP_CONFIG δηλώνεται**:
+- `totalSteps.job: 8` (8 βήματα)
+- `stepIds.employmentType: 'employmentType'` (ΔΕΝ ΥΠΑΡΧΕΙ στο cardData)
+- `stepIds.availabilityDetails: 'availabilityDetails'` (ΔΕΝ ΥΠΑΡΧΕΙ στο cardData)
+
+**Συμπέρασμα**: Το legacy job pipeline είναι **ΑΝΟΛΟΚΛΗΡΩΤΟ** - έχει μόνο 2 από τα 8 δηλωμένα βήματα!
+
+### 🔍 **ΕΠΙΠΛΕΟΝ ΕΡΕΥΝΑ - ΕΝΤΟΠΙΣΜΟΣ ΥΠΟΛΟΙΠΩΝ STEPS**:
+
+**Εντοπίστηκαν τα υπόλοιπα job steps στο ΝΕΟ MODULAR SYSTEM**:
+- `/components/steps/availabilityDetails/AvailabilityDetailsStep.tsx` ✅ (ΝΕΟ SYSTEM)
+- Αλλά ΔΕΝ υπάρχουν στο legacy device-specific pipeline!
+
+**ΤΕΛΙΚΗ ΔΙΑΠΙΣΤΩΣΗ**:
+Το **legacy device-specific system** για εργασία υλοποιεί **ΜΟΝΟ 2 βήματα**:
+1. **category** → επιλογή "Εργασία"
+2. **job** → επιλογή intent (offer/search)
+
+**Μετά από αυτό το σύστημα ΣΤΑΜΑΤΑ - δεν έχει υπόλοιπα βήματα!**
+
+Τα υπόλοιπα 6 βήματα (employmentType, availability, availabilityDetails, location, details, complete) υπάρχουν ΜΟΝΟ στο νέο modular system και ΟΧΙ στο legacy.
 
 ---
 
