@@ -5,6 +5,8 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Button } from '@layera/buttons';
+import { SPACING_SCALE } from '@layera/constants';
+import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 
 // Micro-modules imports
 import MapCore from '../map/core/MapCore';
@@ -151,8 +153,8 @@ const MapCanvas: React.FC<MapCanvasProps> = ({
           title={t('findMyLocation')}
           style={{
             background: 'white',
-            boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-            padding: '12px'
+            boxShadow: BOX_SHADOW_SCALE.elevation4,
+            padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`
           }}
         >
           {isLoadingLocation ? (

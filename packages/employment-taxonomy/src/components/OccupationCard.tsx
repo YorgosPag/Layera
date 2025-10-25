@@ -9,6 +9,7 @@ import { BaseCard } from '@layera/cards';
 import { BriefcaseIcon, TagIcon, LevelIcon } from '@layera/icons';
 import { Text, Heading } from '@layera/typography';
 import { Stack, Flex } from '@layera/layout';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import type { Occupation } from '../types/occupation';
 
 export interface OccupationCardProps {
@@ -152,8 +153,8 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
             {occupation.category && (
               <div style={{
                 backgroundColor: '#F3F4F6',
-                padding: '4px 8px',
-                borderRadius: '4px',
+                padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
+                borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
                 fontSize: '12px',
                 color: '#374151'
               }}>
@@ -165,8 +166,8 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
             <div style={{
               backgroundColor: getExperienceLevelColor(occupation.experienceLevel),
               color: 'white',
-              padding: '4px 8px',
-              borderRadius: '4px',
+              padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
+              borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
               fontSize: '12px',
               fontWeight: '500'
             }}>
@@ -228,7 +229,7 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
         {/* Employment Types */}
         {showEmploymentTypes && occupation.employmentTypes.length > 0 && (
           <div>
-            <Text size="sm" weight="medium" style={{ marginBottom: '8px' }}>
+            <Text size="sm" weight="medium" style={{ marginBottom: `${SPACING_SCALE.XS}px` }}>
               {t('employment.card.employmentTypes', 'Τύποι Απασχόλησης')}:
             </Text>
             <Flex gap="xs" wrap="wrap">
@@ -238,8 +239,8 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
                   style={{
                     backgroundColor: '#EFF6FF',
                     color: '#1D4ED8',
-                    padding: '4px 8px',
-                    borderRadius: '4px',
+                    padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
+                    borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
                     fontSize: '12px',
                     fontWeight: '500'
                   }}
@@ -254,7 +255,7 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
         {/* Skills */}
         {showSkills && occupation.skills.length > 0 && (
           <div>
-            <Text size="sm" weight="medium" style={{ marginBottom: '8px' }}>
+            <Text size="sm" weight="medium" style={{ marginBottom: `${SPACING_SCALE.XS}px` }}>
               {t('employment.card.skills', 'Δεξιότητες')}:
             </Text>
             <Flex gap="xs" wrap="wrap">
@@ -264,8 +265,8 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
                   style={{
                     backgroundColor: '#F0FDF4',
                     color: '#166534',
-                    padding: '4px 8px',
-                    borderRadius: '4px',
+                    padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
+                    borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
                     fontSize: '12px'
                   }}
                 >

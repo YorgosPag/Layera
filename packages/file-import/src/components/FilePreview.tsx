@@ -5,6 +5,7 @@ import { Text, Heading } from '@layera/typography';
 import { LoadingSpinner } from '@layera/loading';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { ImportedFile } from '../types';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 
 export interface FilePreviewProps {
   file: ImportedFile;
@@ -97,7 +98,7 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          borderRadius: '8px',
+          borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
           border: '1px solid #e0e0e0'
         }}>
           <Text color="secondary">{t('file.preview.no.image')}</Text>
@@ -108,9 +109,9 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
     return (
       <div style={{
         textAlign: 'center',
-        padding: '16px',
+        padding: `${SPACING_SCALE.MD}px`,
         backgroundColor: '#f9f9f9',
-        borderRadius: '8px',
+        borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
         border: '1px solid #e0e0e0'
       }}>
         <img
@@ -120,14 +121,14 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
             maxWidth: '100%',
             maxHeight: '400px',
             objectFit: 'contain',
-            borderRadius: '4px',
+            borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
             boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
           }}
           onError={() => setPreviewError(t('file.preview.image.error'))}
         />
 
         {file.metadata.dimensions && (
-          <Text variant="caption" color="secondary" style={{ marginTop: '8px', display: 'block' }}>
+          <Text variant="caption" color="secondary" style={{ marginTop: `${SPACING_SCALE.SM}px`, display: 'block' }}>
             {t('file.dimensions', {
               width: file.metadata.dimensions.width,
               height: file.metadata.dimensions.height
@@ -147,7 +148,7 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: '8px',
+        borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
         border: '1px solid #e0e0e0',
         gap: '16px'
       }}>
@@ -174,7 +175,7 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: '8px',
+        borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
         border: '1px solid #e0e0e0',
         gap: '16px'
       }}>
@@ -209,7 +210,7 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: '8px',
+        borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
         border: '1px solid #e0e0e0',
         gap: '16px'
       }}>
@@ -309,7 +310,7 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            borderRadius: '8px',
+            borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
             border: '1px solid #e0e0e0',
             gap: '16px'
           }}>
@@ -349,7 +350,7 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               whiteSpace: 'nowrap',
-              marginBottom: '4px'
+              marginBottom: `${SPACING_SCALE.XS - 4}px`
             }}>
               {file.metadata.name}
             </Heading>
@@ -373,8 +374,8 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
         {renderPreviewContent()}
 
         {showMetadata && file.status === 'completed' && (
-          <div style={{ marginTop: '24px' }}>
-            <Heading level={5} style={{ marginBottom: '12px' }}>
+          <div style={{ marginTop: `${SPACING_SCALE.XL}px` }}>
+            <Heading level={5} style={{ marginBottom: `${SPACING_SCALE.SM}px` }}>
               {t('file.metadata.title')}
             </Heading>
 
@@ -422,7 +423,7 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
         )}
 
         {showActions && file.status === 'completed' && (
-          <div style={{ marginTop: '24px', display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
+          <div style={{ marginTop: `${SPACING_SCALE.XL}px`, display: 'flex', gap: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`, justifyContent: 'flex-end' }}>
             <Button variant="secondary" onClick={handleDownload}>
               {t('file.action.download')}
             </Button>

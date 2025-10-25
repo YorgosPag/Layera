@@ -6,6 +6,8 @@
  */
 
 import React from 'react';
+import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
+import { BORDER_RADIUS_SCALE } from '@layera/constants';
 import { DeviceLayoutRenderer } from './DeviceLayoutRenderer';
 import { DeviceType, MapComponentProps, StepperComponentProps, CategoryComponentProps } from './types';
 
@@ -88,10 +90,10 @@ export const ResponsiveMapLayout: React.FC<ResponsiveMapLayoutProps> = ({
         bottom: '20px',
         width: 56,
         height: 56,
-        borderRadius: '50%',
+        borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
         background: 'var(--layera-bg-success, #22C55E)',
         border: '2px solid white',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+        boxShadow: BOX_SHADOW_SCALE.cardDefault,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

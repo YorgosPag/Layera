@@ -8,6 +8,7 @@ import { LocationIcon } from '@layera/icons';
 import { useGeocode } from '../../../geocoding/src/index';
 import { useLayeraTranslation } from '@layera/i18n';
 import { AddressBreakdownCard } from '../../../address-breakdown/src/components/AddressBreakdownCard';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 
 export interface LayoutState {
   layoutLocation: string | null;
@@ -157,7 +158,7 @@ function renderSearchResultItem(result: any, layoutLocation: string, index: numb
           <div style={{
             fontSize: '11px',
             color: '#9ca3af',
-            marginTop: '2px'
+            marginTop: `${SPACING_SCALE.XS}px`
           }}>
             {subtitle}
           </div>
@@ -166,8 +167,8 @@ function renderSearchResultItem(result: any, layoutLocation: string, index: numb
       <div style={{
         backgroundColor: getBadgeStyle(badgeText).bg,
         color: getBadgeStyle(badgeText).text,
-        padding: '2px 6px',
-        borderRadius: '4px',
+        padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.XS + SPACING_SCALE.XS}px`,
+        borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
         fontSize: '9px',
         fontWeight: 'bold',
         textTransform: 'uppercase',
@@ -330,13 +331,13 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
           backgroundColor: '#60a5fa',
           border: 'none',
           color: 'white',
-          borderRadius: '8px',
-          padding: '12px',
-          marginBottom: '2px',
+          borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
+          padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+          marginBottom: `${SPACING_SCALE.XS}px`,
           fontWeight: 'bold'
         }}
       >
-        <LocationIcon size="sm" theme="neutral" style={{ marginRight: '4px' }} />
+        <LocationIcon size="sm" theme="neutral" style={{ marginRight: `${SPACING_SCALE.XS}px` }} />
         {t('pipelines.steps.layout.findMyLocation')}
       </Button>
 
@@ -344,7 +345,7 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
       <div style={{
         display: 'flex',
         alignItems: 'center',
-        margin: '1px 0',
+        margin: `${SPACING_SCALE.XS}px 0`,
         gap: '2px'
       }}>
         <div style={{
@@ -361,7 +362,7 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
       </div>
 
       {/* Αναζήτηση Τοποθεσίας */}
-      <div style={{ marginBottom: '2px' }}>
+      <div style={{ marginBottom: `${SPACING_SCALE.XS}px` }}>
         <Text size="base" weight="bold">
           {t('pipelines.steps.layout.searchLocation')}
         </Text>
@@ -376,8 +377,8 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
             variant="outline"
             className="layera-form-input"
             style={{
-              borderRadius: '8px',
-              padding: '12px 16px',
+              borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
+              padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px`,
               fontSize: '16px',
               width: 'calc(100% - 50px)',
               border: '1px solid #dee2e6'
@@ -392,8 +393,8 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
               backgroundColor: isLoading ? '#9ca3af' : '#60a5fa',
               color: 'white',
               border: 'none',
-              borderRadius: '8px',
-              padding: '12px 20px',
+              borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
+              padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.MD + SPACING_SCALE.XS}px`,
               fontWeight: 'bold',
               width: '60px',
               position: 'absolute',
@@ -406,8 +407,8 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
 
         {/* Αποτελέσματα αναζήτησης με χρωματιστά badges */}
         {results.length > 0 && (
-          <div style={{ marginTop: '8px' }}>
-            <Text size="sm" weight="bold" style={{ marginBottom: '8px' }}>
+          <div style={{ marginTop: `${SPACING_SCALE.SM}px` }}>
+            <Text size="sm" weight="bold" style={{ marginBottom: `${SPACING_SCALE.SM}px` }}>
               {t('pipelines.steps.layout.results', { count: results.length })}
             </Text>
             {results.map((result, index) => (
@@ -421,9 +422,9 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
                   cursor: 'pointer',
                   border: index === 0 ? '2px solid #3b82f6' : '1px solid #e5e7eb',
                   backgroundColor: index === 0 ? '#f0f9ff' : 'white',
-                  borderRadius: '8px',
-                  padding: '12px',
-                  marginBottom: '8px',
+                  borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
+                  padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+                  marginBottom: `${SPACING_SCALE.SM}px`,
                   transition: 'all 0.2s ease'
                 }}
                 onMouseEnter={(e) => {
@@ -448,10 +449,10 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
           style={{
             backgroundColor: '#ffffff',
             border: '2px solid #60a5fa',
-            borderRadius: '12px',
-            padding: '20px',
-            marginTop: '16px',
-            marginBottom: '16px'
+            borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
+            padding: `${SPACING_SCALE.MD + SPACING_SCALE.XS}px`,
+            marginTop: `${SPACING_SCALE.MD}px`,
+            marginBottom: `${SPACING_SCALE.MD}px`
           }}
         >
           <AddressBreakdownCard
@@ -475,9 +476,9 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
         style={{
           backgroundColor: '#ffffff',
           border: '2px solid #60a5fa',
-          borderRadius: '12px',
-          padding: '20px',
-          marginBottom: '16px'
+          borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
+          padding: `${SPACING_SCALE.MD + SPACING_SCALE.XS}px`,
+          marginBottom: `${SPACING_SCALE.MD}px`
         }}
       >
         <Text size="base" weight="bold" color="primary">
@@ -489,7 +490,7 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
         </Text>
 
         {/* Περιστροφή */}
-        <div style={{ marginBottom: '16px' }}>
+        <div style={{ marginBottom: `${SPACING_SCALE.MD}px` }}>
           <Text size="sm" weight="bold">
             {t('pipelines.steps.layout.placementTools.rotation')}
           </Text>
@@ -502,8 +503,8 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
                 backgroundColor: '#d0d7de',
                 border: '1px solid #8c959f',
                 color: '#495057',
-                borderRadius: '6px',
-                padding: '8px 12px'
+                borderRadius: `${BORDER_RADIUS_SCALE.INPUT}px`,
+                padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`
               }}
             >
               -90°
@@ -519,8 +520,8 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
                 backgroundColor: '#d0d7de',
                 border: '1px solid #8c959f',
                 color: '#495057',
-                borderRadius: '6px',
-                padding: '8px 12px'
+                borderRadius: `${BORDER_RADIUS_SCALE.INPUT}px`,
+                padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`
               }}
             >
               +90°
@@ -532,9 +533,9 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
         <div style={{
           backgroundColor: '#f8f9fa',
           border: '1px solid #dee2e6',
-          borderRadius: '8px',
-          padding: '8px',
-          margin: '8px 0'
+          borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
+          padding: `${SPACING_SCALE.SM}px`,
+          margin: `${SPACING_SCALE.SM}px 0`
         }}>
           <Text size="sm" weight="bold">
             {t('pipelines.steps.layout.placementTools.scale')}
@@ -563,8 +564,8 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
                 variant="outline"
                 className="layera-form-input"
                 style={{
-                  borderRadius: '4px',
-                  padding: '4px 6px',
+                  borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
+                  padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.XS + SPACING_SCALE.XS}px`,
                   backgroundColor: activeScaleField === 'width' ? '#ffffff' : '#f8f9fa',
                   border: '1px solid #dee2e6',
                   flex: 1,
@@ -582,8 +583,8 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
                   backgroundColor: activeScaleField === 'width' ? '#60a5fa' : '#e9ecef',
                   border: `1px solid ${activeScaleField === 'width' ? '#60a5fa' : '#ced4da'}`,
                   color: activeScaleField === 'width' ? 'white' : '#6c757d',
-                  borderRadius: '4px',
-                  padding: '6px',
+                  borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
+                  padding: `${SPACING_SCALE.XS + SPACING_SCALE.XS}px`,
                   fontSize: '10px',
                   minWidth: '24px',
                   maxWidth: '24px',
@@ -616,8 +617,8 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
                 variant="outline"
                 className="layera-form-input"
                 style={{
-                  borderRadius: '4px',
-                  padding: '4px 6px',
+                  borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
+                  padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.XS + SPACING_SCALE.XS}px`,
                   backgroundColor: activeScaleField === 'height' ? '#ffffff' : '#f8f9fa',
                   border: '1px solid #dee2e6',
                   flex: 1,
@@ -635,8 +636,8 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
                   backgroundColor: activeScaleField === 'height' ? '#60a5fa' : '#e9ecef',
                   border: `1px solid ${activeScaleField === 'height' ? '#60a5fa' : '#ced4da'}`,
                   color: activeScaleField === 'height' ? 'white' : '#6c757d',
-                  borderRadius: '4px',
-                  padding: '6px',
+                  borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
+                  padding: `${SPACING_SCALE.XS + SPACING_SCALE.XS}px`,
                   fontSize: '10px',
                   minWidth: '24px',
                   maxWidth: '24px',
@@ -669,8 +670,8 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
                 variant="outline"
                 className="layera-form-input"
                 style={{
-                  borderRadius: '4px',
-                  padding: '4px 6px',
+                  borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
+                  padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.XS + SPACING_SCALE.XS}px`,
                   backgroundColor: activeScaleField === 'depth' ? '#ffffff' : '#f8f9fa',
                   border: '1px solid #dee2e6',
                   flex: 1,
@@ -688,8 +689,8 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({ onNext, onBack }) => {
                   backgroundColor: activeScaleField === 'depth' ? '#60a5fa' : '#e9ecef',
                   border: `1px solid ${activeScaleField === 'depth' ? '#60a5fa' : '#ced4da'}`,
                   color: activeScaleField === 'depth' ? 'white' : '#6c757d',
-                  borderRadius: '4px',
-                  padding: '6px',
+                  borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
+                  padding: `${SPACING_SCALE.XS + SPACING_SCALE.XS}px`,
                   fontSize: '10px',
                   minWidth: '24px',
                   maxWidth: '24px',

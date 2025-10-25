@@ -6,6 +6,7 @@
  */
 
 import React, { useState, useRef, useEffect } from 'react';
+import { BORDER_RADIUS_SCALE } from '@layera/constants';
 
 export interface DraggableFABProps {
   children: React.ReactNode;
@@ -169,7 +170,7 @@ export const DraggableFAB: React.FC<DraggableFABProps> = ({
     }),
     width: BTN_SIZE,
     height: BTN_SIZE,
-    borderRadius: '50%',
+    borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
     background: 'var(--layera-bg-success, #22C55E)',
     border: '2px solid white',
     boxShadow: '0 2px 8px rgba(0,0,0,0.2)',

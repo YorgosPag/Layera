@@ -1,4 +1,6 @@
 import React from 'react';
+import { SPACING_SCALE } from '@layera/constants';
+import { FLEX_SCALE, type FlexDirection, type FlexAlign, type FlexJustify, type FlexWrap, type FlexGap } from '../flex';
 
 export interface FlexProps {
   children: React.ReactNode;
@@ -6,17 +8,21 @@ export interface FlexProps {
   align?: 'start' | 'center' | 'end' | 'stretch' | 'baseline';
   justify?: 'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'space-evenly';
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
-  gap?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  gap?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl';
   className?: string;
   style?: React.CSSProperties;
 }
 
+// Enterprise gap values aligned με @layera/constants SPACING_SCALE
 const GAP_VALUES = {
-  xs: '0.25rem',
-  sm: '0.5rem',
-  md: '1rem',
-  lg: '1.5rem',
-  xl: '2rem'
+  xxs: `${SPACING_SCALE.XXS}px`,  // 2px
+  xs: `${SPACING_SCALE.XS}px`,    // 4px
+  sm: `${SPACING_SCALE.SM}px`,    // 8px
+  md: `${SPACING_SCALE.MD}px`,    // 16px
+  lg: `${SPACING_SCALE.LG}px`,    // 24px
+  xl: `${SPACING_SCALE.XL}px`,    // 32px
+  xxl: `${SPACING_SCALE.XXL}px`,  // 48px
+  xxxl: `${SPACING_SCALE.XXXL}px` // 64px
 } as const;
 
 export const Flex: React.FC<FlexProps> = ({

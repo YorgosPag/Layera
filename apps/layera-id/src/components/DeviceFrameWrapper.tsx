@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useViewportWithOverride } from '@layera/viewport';
 import { DeviceModelSelector, DeviceModel, getDeviceSpecs } from '@layera/viewport';
+import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 
 interface DeviceFrameWrapperProps {
   children: React.ReactNode;
@@ -39,8 +41,8 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
       margin: '0 auto',
       backgroundColor: specs.frameColor,
       borderRadius: `${specs.borderRadius}px`,
-      padding: '8px',
-      boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
+      padding: `${SPACING_SCALE.SM}px`,
+      boxShadow: BOX_SHADOW_SCALE.elevation6,
       width: `${specs.width}px`,
       height: `${specs.height}px`,
       transform: `scale(${specs.scale})`,
@@ -93,7 +95,7 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
       width: '134px',
       height: '5px',
       backgroundColor: '#000',
-      borderRadius: '100px',
+      borderRadius: `${BORDER_RADIUS_SCALE.PILL}px`,
       zIndex: 10
     };
   };
@@ -110,7 +112,7 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
         alignItems: 'flex-start',
         minHeight: '100vh',
         backgroundColor: '#f0f0f0',
-        padding: '100px 20px 20px 20px',
+        padding: `100px ${SPACING_SCALE.LG}px ${SPACING_SCALE.LG}px ${SPACING_SCALE.LG}px`,
         overflow: 'auto'
       }}>
         <div style={getFrameStyles()}>

@@ -58,15 +58,15 @@ export const TransactionStep: React.FC<TransactionStepProps> = ({
   }> => {
     if (category === 'property') {
       return [
-        { type: 'rent', title: t('transaction.rent.title'), description: t('transaction.rent.description') },
-        { type: 'sale', title: t('transaction.sale.title'), description: t('transaction.sale.description') }
+        { type: 'rent', title: t('transaction.rent.title', 'Ενοικίαση'), description: t('transaction.rent.description', 'Αναζήτηση ακινήτου προς ενοικίαση') },
+        { type: 'sale', title: t('transaction.sale.title', 'Πώληση'), description: t('transaction.sale.description', 'Αναζήτηση ακινήτου προς πώληση') }
       ];
     } else if (category === 'jobs') {
       return [
-        { type: 'full_time', title: t('transaction.fullTime.title'), description: t('transaction.fullTime.description') },
-        { type: 'part_time', title: t('transaction.partTime.title'), description: t('transaction.partTime.description') },
-        { type: 'freelance', title: t('transaction.freelance.title'), description: t('transaction.freelance.description') },
-        { type: 'internship', title: t('transaction.internship.title'), description: t('transaction.internship.description') }
+        { type: 'full_time', title: t('transaction.fullTime.title', 'Πλήρης Απασχόληση'), description: t('transaction.fullTime.description', 'Εργασία πλήρους απασχόλησης') },
+        { type: 'part_time', title: t('transaction.partTime.title', 'Μερική Απασχόληση'), description: t('transaction.partTime.description', 'Εργασία μερικής απασχόλησης') },
+        { type: 'freelance', title: t('transaction.freelance.title', 'Ελεύθερος Επαγγελματίας'), description: t('transaction.freelance.description', 'Ανεξάρτητη εργασία') },
+        { type: 'internship', title: t('transaction.internship.title', 'Πρακτική Άσκηση'), description: t('transaction.internship.description', 'Θέση πρακτικής άσκησης') }
       ];
     }
     return [];

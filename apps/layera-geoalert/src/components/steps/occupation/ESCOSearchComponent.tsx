@@ -5,26 +5,31 @@
  */
 
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
-import { useLayeraTranslation } from '@layera/tolgee';
-import { initializeApp } from 'firebase/app';
-import {
-  getFirestore,
-  collection,
-  query,
-  where,
-  limit,
-  getDocs
-} from 'firebase/firestore';
+import { Input } from '@layera/forms';
+import { Text } from '@layera/typography';
+import { Stack } from '@layera/layout';
+import { SPACING_SCALE, TABLE_COLUMN_WIDTHS } from '@layera/constants';
+import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
+// Firebase imports temporarily disabled
+// import { initializeApp } from 'firebase/app';
+// import {
+//   getFirestore,
+//   collection,
+//   query,
+//   where,
+//   limit,
+//   getDocs
+// } from 'firebase/firestore';
 import type { ESCOOccupation, ESCOSearchProps, OccupationSearchState } from './types';
 
-// Firebase Configuration - Same as HTML demo
+// Firebase Configuration με environment variables
 const firebaseConfig = {
-  apiKey: "AIzaSyCFOPrm-YaHRbsZ38F7y0jYtGI6iCxzXJQ",
-  authDomain: "layera-dev.firebaseapp.com",
-  projectId: "layera-dev",
-  storageBucket: "layera-dev.firebasestorage.app",
-  messagingSenderId: "318578122017",
-  appId: "1:318578122017:web:9dbe031370ed79339db260"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyCFOPrm-YaHRbsZ38F7y0jYtGI6iCxzXJQ",
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "layera-dev.firebaseapp.com",
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "layera-dev",
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "layera-dev.firebasestorage.app",
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "318578122017",
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:318578122017:web:9dbe031370ed79339db260"
 };
 
 /**
@@ -33,10 +38,8 @@ const firebaseConfig = {
 export const ESCOSearchComponent: React.FC<ESCOSearchProps> = ({
   onOccupationSelected,
   placeholder = "Αναζήτηση επαγγέλματος... (π.χ. γιατρός, μηχανικός, δικηγόρος)",
-  maxResults = 20,
-  variant = 'default'
+  maxResults = 20
 }) => {
-  const { t } = useLayeraTranslation();
 
   // Search State
   const [searchState, setSearchState] = useState<OccupationSearchState>({
@@ -162,24 +165,12 @@ export const ESCOSearchComponent: React.FC<ESCOSearchProps> = ({
   // Connection Status
   const isConnected = !!db;
 
-  // Styles
+  // Styles για non-LEGO elements
   const containerStyles: React.CSSProperties = {
     position: 'relative',
     width: '100%',
-    maxWidth: '400px',
+    maxWidth: `${TABLE_COLUMN_WIDTHS.EXTRA_WIDE}px`,
     margin: '0 auto'
-  };
-
-  const searchInputStyles: React.CSSProperties = {
-    width: '100%',
-    padding: '12px 16px',
-    border: '2px solid #e1e5e9',
-    borderRadius: '8px',
-    fontSize: '16px',
-    backgroundColor: isConnected ? '#ffffff' : '#f8f9fa',
-    outline: 'none',
-    transition: 'border-color 0.2s ease',
-    boxSizing: 'border-box'
   };
 
   const resultsContainerStyles: React.CSSProperties = {
@@ -187,27 +178,25 @@ export const ESCOSearchComponent: React.FC<ESCOSearchProps> = ({
     top: '100%',
     left: 0,
     right: 0,
-    backgroundColor: '#ffffff',
+    backgroundColor: 'var(--color-bg-canvas)',
     border: '1px solid #e1e5e9',
-    borderRadius: '8px',
-    maxHeight: '300px',
+    borderRadius: `${SPACING_SCALE.SM}px`,
+    maxHeight: `${TABLE_COLUMN_WIDTHS.WIDE}px`,
     overflowY: 'auto',
     zIndex: 1000,
-    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+    boxShadow: BOX_SHADOW_SCALE.cardDefault
   };
 
   const resultItemStyles: React.CSSProperties = {
-    padding: '12px 16px',
+    padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
     borderBottom: '1px solid #f1f3f4',
     cursor: 'pointer',
-    transition: 'background-color 0.2s ease'
+    transition: 'var(--layera-transition-fast)'
   };
 
   const loadingStyles: React.CSSProperties = {
-    padding: '12px 16px',
-    textAlign: 'center',
-    color: '#666',
-    fontStyle: 'italic'
+    padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
+    textAlign: 'center'
   };
 
   return (
@@ -215,26 +204,23 @@ export const ESCOSearchComponent: React.FC<ESCOSearchProps> = ({
       {/* Connection Status */}
       {!isConnected && (
         <div style={{
-          padding: '8px',
-          backgroundColor: '#fff3cd',
-          color: '#856404',
-          borderRadius: '4px',
-          marginBottom: '8px',
-          fontSize: '14px'
+          padding: `${SPACING_SCALE.SM}px`,
+          backgroundColor: 'var(--color-semantic-warning-bg)',
+          borderRadius: `${SPACING_SCALE.XS}px`,
+          marginBottom: `${SPACING_SCALE.SM}px`
         }}>
-          ⚠️ Προσπάθεια σύνδεσης με ESCO database...
+          <Text size="sm" color="warning">
+            ⚠️ Προσπάθεια σύνδεσης με ESCO database...
+          </Text>
         </div>
       )}
 
-      {/* Search Input */}
-      <input
-        type="text"
+      {/* Search Input - LEGO Component */}
+      <Input
         value={searchState.query}
         onChange={handleSearchChange}
         placeholder={placeholder}
-        style={searchInputStyles}
         disabled={!isConnected}
-        data-testid="esco-search-input"
       />
 
       {/* Results */}
@@ -243,14 +229,18 @@ export const ESCOSearchComponent: React.FC<ESCOSearchProps> = ({
           {/* Loading */}
           {searchState.isLoading && (
             <div style={loadingStyles}>
-              🔍 Αναζήτηση...
+              <Text size="sm" color="secondary" align="center" style={{ fontStyle: 'italic' }}>
+                🔍 Αναζήτηση...
+              </Text>
             </div>
           )}
 
           {/* Error */}
           {searchState.error && (
-            <div style={{ ...loadingStyles, color: '#dc3545' }}>
-              ❌ {searchState.error}
+            <div style={loadingStyles}>
+              <Text size="sm" color="error" align="center">
+                ❌ {searchState.error}
+              </Text>
             </div>
           )}
 
@@ -261,27 +251,29 @@ export const ESCOSearchComponent: React.FC<ESCOSearchProps> = ({
               style={resultItemStyles}
               onClick={() => handleOccupationSelect(occupation)}
               onMouseEnter={(e) => {
-                (e.target as HTMLElement).style.backgroundColor = '#f8f9fa';
+                (e.target as HTMLElement).style.backgroundColor = 'var(--color-bg-surface-hover)';
               }}
               onMouseLeave={(e) => {
                 (e.target as HTMLElement).style.backgroundColor = 'transparent';
               }}
               data-testid={`esco-result-${occupation.id}`}
             >
-              <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>
-                {occupation.preferredLabel}
-              </div>
-              {occupation.description && (
-                <div style={{ fontSize: '14px', color: '#666', lineHeight: '1.4' }}>
-                  {occupation.description.slice(0, 100)}
-                  {occupation.description.length > 100 ? '...' : ''}
-                </div>
-              )}
-              {occupation.skillsCount > 0 && (
-                <div style={{ fontSize: '12px', color: '#28a745', marginTop: '4px' }}>
-                  💼 {occupation.skillsCount} skills
-                </div>
-              )}
+              <Stack spacing="xs">
+                <Text weight="bold">
+                  {occupation.preferredLabel}
+                </Text>
+                {occupation.description && (
+                  <Text size="sm" color="secondary" style={{ lineHeight: '1.4' }}>
+                    {occupation.description.slice(0, 100)}
+                    {occupation.description.length > 100 ? '...' : ''}
+                  </Text>
+                )}
+                {occupation.skillsCount > 0 && (
+                  <Text size="xs" color="success">
+                    💼 {occupation.skillsCount} skills
+                  </Text>
+                )}
+              </Stack>
             </div>
           ))}
 

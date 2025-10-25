@@ -211,6 +211,75 @@
   left: var(--layera-space-md);
 }
 
+/* ============ GEOALERT STEP LAYOUT SYSTEM ============ */
+
+/* Enterprise LEGO Card Layout System */
+.layera-geoalert-card-container {
+  position: fixed;
+  top: var(--layera-cards-top);
+  left: var(--layera-side-margins);
+  right: var(--layera-side-margins);
+  z-index: var(--layera-z-fixed);
+  padding: 0;
+  display: flex;
+  gap: var(--layera-cards-gap);
+  transition: all var(--layera-transition-normal);
+}
+
+/* Horizontal layout for card pairs */
+.layera-geoalert-card-container--horizontal {
+  flex-direction: row;
+}
+
+/* Vertical layout (fallback) */
+.layera-geoalert-card-container--vertical {
+  flex-direction: column;
+}
+
+/* Smart layout for 3 cards: 2+1 arrangement */
+.layera-geoalert-card-container--smart-triple {
+  flex-direction: column;
+  gap: var(--layera-cards-gap);
+}
+
+.layera-geoalert-card-container--smart-triple .layera-card-row {
+  display: flex;
+  gap: var(--layera-cards-gap);
+}
+
+.layera-geoalert-card-container--smart-triple .layera-card-row:first-child {
+  /* Top row with 2 cards */
+}
+
+.layera-geoalert-card-container--smart-triple .layera-card-row:last-child {
+  /* Bottom row with 1 card */
+  justify-content: center;
+}
+
+/* InfoPanel positioning using CSS variables */
+.layera-geoalert-info-panel {
+  position: fixed;
+  top: var(--layera-info-panel-top);
+  left: var(--layera-side-margins);
+  right: var(--layera-side-margins);
+  z-index: var(--layera-z-popover);
+  max-height: 60vh;
+  overflow: auto;
+  transition: all var(--layera-transition-normal);
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .layera-geoalert-info-panel {
+    position: fixed;
+    top: var(--layera-space-6); /* 24px */
+    right: var(--layera-space-6); /* 24px */
+    left: auto;
+    width: 320px;
+    max-height: 400px;
+  }
+}
+
 /* ============ PRINT STYLES ============ */
 
 @media print {
@@ -223,5 +292,11 @@
     grid-template-areas: "content" !important;
     grid-template-rows: 1fr !important;
     grid-template-columns: 1fr !important;
+  }
+
+  .layera-geoalert-card-container,
+  .layera-geoalert-info-panel {
+    position: static !important;
+    display: block !important;
   }
 }

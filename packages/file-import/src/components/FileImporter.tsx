@@ -5,6 +5,7 @@ import { LoadingSpinner } from '@layera/loading';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { ErrorBoundary } from '@layera/error-boundary';
 import { Heading, Text } from '@layera/typography';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 
 // Enterprise-safe wrapper functions για React 19 compatibility
 interface SafeErrorBoundaryProps {
@@ -169,7 +170,7 @@ export const FileImporter: React.FC<FileImporterProps> = ({
             </label>
 
             {showProgress && isProcessing && (
-              <div style={{ marginTop: '8px', fontSize: '12px', color: '#666' }}>
+              <div style={{ marginTop: `${SPACING_SCALE.SM}px`, fontSize: '12px', color: '#666' }}>
                 {t('file.import.progress')}: {Math.round(progress)}%
               </div>
             )}
@@ -182,7 +183,7 @@ export const FileImporter: React.FC<FileImporterProps> = ({
   return (
     <SafeErrorBoundary fallback={<div>{t('file.import.error.boundary')}</div>}>
       <BaseCard className="file-importer">
-        <div style={{ padding: '16px', borderBottom: '1px solid #eee' }}>
+        <div style={{ padding: `${SPACING_SCALE.MD}px`, borderBottom: '1px solid #eee' }}>
           <Heading as="h3">
             {title || t('file.import.title')}
           </Heading>
@@ -195,7 +196,7 @@ export const FileImporter: React.FC<FileImporterProps> = ({
           </Text>
         </div>
 
-        <div style={{ padding: '16px' }}>
+        <div style={{ padding: `${SPACING_SCALE.MD}px` }}>
           {/* Drop zone */}
           <DragDropZone
             onFilesDrop={handleFilesDrop}
@@ -234,17 +235,17 @@ export const FileImporter: React.FC<FileImporterProps> = ({
 
           {/* Progress display */}
           {showProgress && isProcessing && (
-            <div style={{ marginTop: '16px', padding: '12px', backgroundColor: '#f5f5f5', borderRadius: '4px' }}>
-              <div style={{ fontSize: '14px', marginBottom: '4px' }}>
+            <div style={{ marginTop: `${SPACING_SCALE.MD}px`, padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`, backgroundColor: '#f5f5f5', borderRadius: `${BORDER_RADIUS_SCALE.XS}px` }}>
+              <div style={{ fontSize: '14px', marginBottom: `${SPACING_SCALE.XS - 4}px` }}>
                 {t('file.import.progress')}: {Math.round(progress)}%
               </div>
-              <div style={{ width: '100%', height: '4px', backgroundColor: '#e0e0e0', borderRadius: '2px' }}>
+              <div style={{ width: '100%', height: '4px', backgroundColor: '#e0e0e0', borderRadius: `${BORDER_RADIUS_SCALE.XXS}px` }}>
                 <div
                   style={{
                     width: `${progress}%`,
                     height: '100%',
                     backgroundColor: '#007bff',
-                    borderRadius: '2px',
+                    borderRadius: `${BORDER_RADIUS_SCALE.XXS}px`,
                     transition: 'width 0.3s ease'
                   }}
                 />
@@ -254,15 +255,15 @@ export const FileImporter: React.FC<FileImporterProps> = ({
 
           {/* Error display */}
           {error && (
-            <div style={{ marginTop: '16px' }}>
+            <div style={{ marginTop: `${SPACING_SCALE.MD}px` }}>
               <Text color="danger">{error}</Text>
             </div>
           )}
 
           {/* File list */}
           {files.length > 0 && (
-            <div style={{ marginTop: '16px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+            <div style={{ marginTop: `${SPACING_SCALE.MD}px` }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: `${SPACING_SCALE.XS}px` }}>
                 <Text size="base" weight="medium">
                   {t('file.import.files.selected', { count: files.length })}
                 </Text>
@@ -289,7 +290,7 @@ export const FileImporter: React.FC<FileImporterProps> = ({
 
           {/* File preview */}
           {showPreview && selectedFile && (
-            <div style={{ marginTop: '16px' }}>
+            <div style={{ marginTop: `${SPACING_SCALE.MD}px` }}>
               <FilePreview
                 file={selectedFile}
                 onClose={() => setSelectedFile(null)}

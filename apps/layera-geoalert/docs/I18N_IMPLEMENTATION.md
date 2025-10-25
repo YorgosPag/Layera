@@ -88,13 +88,13 @@ function App() {
 
   return (
     <div style={{ padding: '2rem', textAlign: 'center', fontFamily: 'Arial, sans-serif' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-        <h1 style={{ color: '#2563eb', marginBottom: '0.5rem', margin: 0 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--layera-space-md)' }}>
+        <h1 style={{ color: '#2563eb', marginBottom: 'var(--layera-space-sm)', margin: 0 }}>
           🗺️ {t('title')}
         </h1>
         <LanguageSwitcher />
       </div>
-      <p style={{ color: '#6b7280', marginBottom: '2rem' }}>
+      <p style={{ color: '#6b7280', marginBottom: 'var(--layera-space-xl)' }}>
         {t('subtitle')}
       </p>
       {/* More translated content... */}

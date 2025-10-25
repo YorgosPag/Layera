@@ -5,6 +5,8 @@
  * Μπορεί να χρησιμοποιηθεί σε οποιοδήποτε React project χωρίς dependencies.
  */
 
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+
 // Core Types
 export type {
   InfoPanelId,
@@ -86,9 +88,9 @@ export const createInfoPanelTheme = (
     color: 'white',
     borderColor: `rgba(${baseColor}, ${borderOpacity})`,
     boxShadow: `0 4px 12px rgba(${baseColor}, ${shadowOpacity})`,
-    borderRadius: '12px',
+    borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
     fontSize: '12px',
-    padding: '16px'
+    padding: `${SPACING_SCALE.MD}px`
   };
 };
 
@@ -102,13 +104,13 @@ export const INFO_PANEL_THEMES = {
   info: createInfoPanelTheme('99, 102, 241')     // Μοβ info
 } as const;
 
-// Default Style Configurations
+// Enterprise LEGO Layout Integration - CSS Variables
 export const DEFAULT_INFO_PANEL_STYLES = {
   mobile: {
     position: {
-      top: '161px',
-      left: '8px',
-      right: '8px'
+      top: 'var(--layera-info-panel-top)', // Calculated από CSS variables
+      left: 'var(--layera-side-margins)',
+      right: 'var(--layera-side-margins)'
     },
     zIndex: 10000,
     maxHeight: '60vh',
@@ -116,11 +118,25 @@ export const DEFAULT_INFO_PANEL_STYLES = {
   },
   desktop: {
     position: {
-      top: '20px',
-      right: '20px'
+      top: 'var(--layera-space-6)', // 24px από design tokens
+      right: 'var(--layera-space-6)' // 24px από design tokens
     },
     zIndex: 10000,
     maxHeight: '400px',
     overflow: 'auto'
   }
 } as const;
+
+// Enterprise Layout Utility Functions
+export const createInfoPanelStyles = (isMobile: boolean = true): React.CSSProperties => {
+  const baseStyles = isMobile ? DEFAULT_INFO_PANEL_STYLES.mobile : DEFAULT_INFO_PANEL_STYLES.desktop;
+
+  return {
+    position: 'fixed',
+    ...baseStyles.position,
+    zIndex: baseStyles.zIndex,
+    maxHeight: baseStyles.maxHeight,
+    overflow: baseStyles.overflow as 'auto',
+    transition: 'all var(--layera-transition-normal)'
+  };
+};

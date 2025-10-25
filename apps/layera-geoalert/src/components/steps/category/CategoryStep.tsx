@@ -8,11 +8,17 @@
  * Μόλις ολοκληρωθεί η migration, θα αφαιρεθεί το NavigationService dependency.
  */
 
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
 import { VillaIcon, BriefcaseIcon } from '@layera/icons';
 import { useNavigation } from '../../../services/navigation/hooks/useNavigation';
+import { InfoPanel } from '../../device-specific/mobile/iphone-14-pro-max/components/InfoPanel';
+import {
+  GEOALERT_INFO_CONTENT,
+  StaticContentProvider
+} from '@layera/info-panels';
+import { useGeoAlertLayout } from '@layera/layout';
 import type { StepProps, CategoryType } from '../types';
 
 export interface CategoryStepProps extends StepProps {
@@ -34,6 +40,47 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
   const { t } = useLayeraTranslation();
   const navigation = useNavigation(); // TEMPORARY bridge until NavigationService removal
 
+  // Enterprise LEGO Layout System
+  const { utils } = useGeoAlertLayout();
+
+  // Info Panel state
+  const [showInfoPanel, setShowInfoPanel] = useState(false);
+  const [currentInfoCard, setCurrentInfoCard] = useState<'property' | 'job' | null>(null);
+
+  // Info content provider
+  const infoContentProvider = React.useMemo(() =>
+    new StaticContentProvider(GEOALERT_INFO_CONTENT),
+    []
+  );
+
+  // Handle info button clicks
+  const handleInfoClick = useCallback((categoryId: 'property' | 'job') => {
+    console.log(`🔍 CategoryStep: Info clicked for ${categoryId}`);
+    setCurrentInfoCard(categoryId);
+    setShowInfoPanel(true);
+
+    if ('vibrate' in navigator) {
+      navigator.vibrate(20);
+    }
+  }, []);
+
+  // Get info content για specific card
+  const getInfoContent = useCallback((cardId: 'property' | 'job') => {
+    console.log(`🔍 CategoryStep: Getting content for ${cardId}`);
+    try {
+      const content = infoContentProvider.getContent(cardId);
+      console.log(`✅ CategoryStep: Content found for ${cardId}:`, content);
+      return content;
+    } catch (error) {
+      console.warn(`❌ CategoryStep: Info content not found for card: ${cardId}`, error);
+      return {
+        title: 'Πληροφορίες',
+        content: 'Δεν υπάρχουν διαθέσιμες πληροφορίες για αυτή την επιλογή.',
+        type: 'info' as const
+      };
+    }
+  }, [infoContentProvider]);
+
   // TEMPORARY bridge handler - ενημερώνει ΚΑΙ StepOrchestrator ΚΑΙ NavigationService
   const handleCategorySelection = useCallback(async (category: CategoryType) => {
     console.log(`🎯 CATEGORY UI: Selected category: ${category}`);
@@ -52,14 +99,9 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
       // 3. Legacy callback
       onCategorySelected?.(category);
 
-      // 4. TEMPORARY: Auto-advance μέσω NavigationService
-      setTimeout(async () => {
-        try {
-          await navigation.goNext();
-        } catch (error) {
-          console.error('Navigation failed, StepOrchestrator will handle:', error);
-        }
-      }, 300);
+      // 4. ΔΙΟΡΘΩΣΗ: Αφαιρώ το auto-advance NavigationService
+      // Το StepOrchestrator θα αναλάβει την navigation μέσω onStepComplete
+      // setTimeout με navigation.goNext() προκαλούσε race condition και εξαφάνιση των intent cards
 
     } catch (error) {
       console.error('Category selection failed:', error);
@@ -70,26 +112,20 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
     return null;
   }
 
-  const containerStyles: React.CSSProperties = {
-    position: 'fixed',
-    top: '161px',
-    left: '8px',
-    right: '8px',
-    zIndex: 10002,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '8px',
-    padding: '0'
-  };
+  // Enterprise LEGO Layout με CSS variables
+  const containerStyles = utils.getCardStyles('horizontal');
+  const containerClass = utils.getCardContainerClass('horizontal');
 
   return (
-    <div style={containerStyles}>
+    <>
+    <div style={containerStyles} className={containerClass}>
       {/* Ακίνητα Card */}
       <BaseCard
         variant="property"
         title="Ακίνητα"
         icon={<VillaIcon size="sm" theme="neutral" />}
         onClick={() => handleCategorySelection('property')}
+        onInfoClick={() => handleInfoClick('property')}
         data-testid="category-card-property"
       />
 
@@ -99,8 +135,26 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
         title="Εργασία"
         icon={<BriefcaseIcon size="sm" theme="neutral" />}
         onClick={() => handleCategorySelection('job')}
+        onInfoClick={() => handleInfoClick('job')}
         data-testid="category-card-job"
       />
     </div>
+
+    {/* Info Panel */}
+    {showInfoPanel && currentInfoCard && (
+      <InfoPanel
+        isOpen={showInfoPanel}
+        onClose={() => {
+          setShowInfoPanel(false);
+          setCurrentInfoCard(null);
+        }}
+        title={getInfoContent(currentInfoCard).title}
+        content={getInfoContent(currentInfoCard).content}
+        variant={getInfoContent(currentInfoCard).type}
+        getInfoContent={getInfoContent}
+        selectedCategory={currentInfoCard}
+      />
+    )}
+  </>
   );
 };

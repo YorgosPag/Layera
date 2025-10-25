@@ -11,6 +11,7 @@
 
 import React, { useEffect } from 'react';
 import { MapContainer } from '../../../../map/MapContainer';
+import { SIZING_SCALE } from '@layera/layout';
 
 interface DrawnArea {
   id: string;
@@ -55,8 +56,8 @@ export const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated, onNewEntryClick, 
 
   return (
     <div style={{
-      width: '100%',
-      height: '100vh',
+      width: SIZING_SCALE.FULL,
+      height: SIZING_SCALE.VIEWPORT_HEIGHT,
       position: 'relative'
     }}>
       <MapContainer

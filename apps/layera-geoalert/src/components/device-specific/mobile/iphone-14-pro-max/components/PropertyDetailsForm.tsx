@@ -9,6 +9,8 @@ import React, { useState } from 'react';
 import { Stack } from '@layera/layout';
 import { Button } from '@layera/buttons';
 import { Text } from '@layera/typography';
+import { SPACING_SCALE } from '@layera/constants';
+import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 
 export interface PropertyDetailsData {
   title: string;
@@ -113,28 +115,28 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
 
   return (
     <div style={{
-      padding: '16px',
-      backgroundColor: '#ffffff',
-      borderRadius: '12px',
-      border: '1px solid #e2e8f0',
-      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+      padding: `${SPACING_SCALE.MD}px`,
+      backgroundColor: 'var(--color-bg-canvas)',
+      borderRadius: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+      border: '1px solid var(--color-border-default)',
+      boxShadow: BOX_SHADOW_SCALE.cardDefault
     }}>
       <Stack spacing="md">
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '12px' }}>
-          <Text size="lg" weight="bold" style={{ color: '#1e293b' }}>
+        <div style={{ textAlign: 'center', marginBottom: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px` }}>
+          <Text size="lg" weight="bold" style={{ color: 'var(--color-text-primary)' }}>
             Στοιχεία {propertyTypeLabels[propertyType]}
           </Text>
-          <Text size="sm" style={{ color: '#64748b', marginTop: '4px' }}>
+          <Text size="sm" style={{ color: 'var(--color-text-secondary)', marginTop: `${SPACING_SCALE.XS}px` }}>
             Συμπληρώστε τα βασικά στοιχεία του ακινήτου
           </Text>
         </div>
 
         {/* Universal Fields - Simplified Native HTML inputs για debugging */}
-        <div style={{ marginBottom: '16px' }}>
-          <label style={{ display: 'block', marginBottom: '4px', fontSize: '14px', fontWeight: 'bold' }}>
+        <div style={{ marginBottom: `${SPACING_SCALE.MD}px` }}>
+          <Text as="label" size="sm" weight="bold" style={{ display: 'block', marginBottom: `${SPACING_SCALE.XS}px` }}>
             Τίτλος Ακινήτου *
-          </label>
+          </Text>
           <input
             type="text"
             value={formData.title}
@@ -142,24 +144,23 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
             placeholder="π.χ. Διαμέρισμα 85τμ στο κέντρο"
             style={{
               width: '100%',
-              padding: '8px 12px',
-              fontSize: '14px',
-              border: '1px solid #d1d5db',
-              borderRadius: '6px',
-              backgroundColor: 'white'
+              padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+              border: '1px solid var(--color-border-input)',
+              borderRadius: `${SPACING_SCALE.XS + 2}px`,
+              backgroundColor: 'var(--color-bg-surface)'
             }}
           />
           {errors.title && (
-            <div style={{ color: '#dc2626', fontSize: '12px', marginTop: '4px' }}>
+            <Text as="div" size="xs" style={{ color: 'var(--color-semantic-error)', marginTop: `${SPACING_SCALE.XS}px` }}>
               {errors.title}
-            </div>
+            </Text>
           )}
         </div>
 
-        <div style={{ marginBottom: '16px' }}>
-          <label style={{ display: 'block', marginBottom: '4px', fontSize: '14px', fontWeight: 'bold' }}>
+        <div style={{ marginBottom: `${SPACING_SCALE.MD}px` }}>
+          <Text as="label" size="sm" weight="bold" style={{ display: 'block', marginBottom: `${SPACING_SCALE.XS}px` }}>
             Τετραγωνικά Μέτρα *
-          </label>
+          </Text>
           <input
             type="number"
             value={formData.squareMeters}
@@ -167,24 +168,23 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
             placeholder="85"
             style={{
               width: '100%',
-              padding: '8px 12px',
-              fontSize: '14px',
-              border: '1px solid #d1d5db',
-              borderRadius: '6px',
-              backgroundColor: 'white'
+              padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+              border: '1px solid var(--color-border-input)',
+              borderRadius: `${SPACING_SCALE.XS + 2}px`,
+              backgroundColor: 'var(--color-bg-surface)'
             }}
           />
           {errors.squareMeters && (
-            <div style={{ color: '#dc2626', fontSize: '12px', marginTop: '4px' }}>
+            <Text as="div" size="xs" style={{ color: 'var(--color-semantic-error)', marginTop: `${SPACING_SCALE.XS}px` }}>
               {errors.squareMeters}
-            </div>
+            </Text>
           )}
         </div>
 
-        <div style={{ marginBottom: '16px' }}>
-          <label style={{ display: 'block', marginBottom: '4px', fontSize: '14px', fontWeight: 'bold' }}>
+        <div style={{ marginBottom: `${SPACING_SCALE.MD}px` }}>
+          <Text as="label" size="sm" weight="bold" style={{ display: 'block', marginBottom: `${SPACING_SCALE.XS}px` }}>
             Τιμή (€) *
-          </label>
+          </Text>
           <input
             type="number"
             value={formData.price}
@@ -192,36 +192,34 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
             placeholder="150000"
             style={{
               width: '100%',
-              padding: '8px 12px',
-              fontSize: '14px',
-              border: '1px solid #d1d5db',
-              borderRadius: '6px',
-              backgroundColor: 'white'
+              padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+              border: '1px solid var(--color-border-input)',
+              borderRadius: `${SPACING_SCALE.XS + 2}px`,
+              backgroundColor: 'var(--color-bg-surface)'
             }}
           />
           {errors.price && (
-            <div style={{ color: '#dc2626', fontSize: '12px', marginTop: '4px' }}>
+            <Text as="div" size="xs" style={{ color: 'var(--color-semantic-error)', marginTop: `${SPACING_SCALE.XS}px` }}>
               {errors.price}
-            </div>
+            </Text>
           )}
         </div>
 
         {/* Conditional Fields - Simplified για debugging */}
         {showFloorField && (
-          <div style={{ marginBottom: '16px' }}>
-            <label style={{ display: 'block', marginBottom: '4px', fontSize: '14px', fontWeight: 'bold' }}>
+          <div style={{ marginBottom: `${SPACING_SCALE.MD}px` }}>
+            <Text as="label" size="sm" weight="bold" style={{ display: 'block', marginBottom: `${SPACING_SCALE.XS}px` }}>
               Όροφος
-            </label>
+            </Text>
             <select
               value={formData.floor || ''}
               onChange={(e) => handleInputChange('floor', parseInt(e.target.value))}
               style={{
                 width: '100%',
-                padding: '8px 12px',
-                fontSize: '14px',
-                border: '1px solid #d1d5db',
-                borderRadius: '6px',
-                backgroundColor: 'white'
+                padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+                  border: '1px solid var(--color-border-input)',
+                borderRadius: `${SPACING_SCALE.XS + 2}px`,
+                backgroundColor: 'var(--color-bg-surface)'
               }}
             >
               <option value="">Επιλέξτε όροφο</option>
@@ -234,20 +232,19 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
         )}
 
         {showRoomsField && (
-          <div style={{ marginBottom: '16px' }}>
-            <label style={{ display: 'block', marginBottom: '4px', fontSize: '14px', fontWeight: 'bold' }}>
+          <div style={{ marginBottom: `${SPACING_SCALE.MD}px` }}>
+            <Text as="label" size="sm" weight="bold" style={{ display: 'block', marginBottom: `${SPACING_SCALE.XS}px` }}>
               Αριθμός Δωματίων
-            </label>
+            </Text>
             <select
               value={formData.rooms || ''}
               onChange={(e) => handleInputChange('rooms', parseInt(e.target.value))}
               style={{
                 width: '100%',
-                padding: '8px 12px',
-                fontSize: '14px',
-                border: '1px solid #d1d5db',
-                borderRadius: '6px',
-                backgroundColor: 'white'
+                padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+                  border: '1px solid var(--color-border-input)',
+                borderRadius: `${SPACING_SCALE.XS + 2}px`,
+                backgroundColor: 'var(--color-bg-surface)'
               }}
             >
               <option value="">Επιλέξτε αριθμό δωματίων</option>
@@ -263,8 +260,8 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
         {/* Actions */}
         <div style={{
           display: 'flex',
-          gap: '8px',
-          marginTop: '16px'
+          gap: `${SPACING_SCALE.SM}px`,
+          marginTop: `${SPACING_SCALE.MD}px`
         }}>
           {onCancel && (
             <Button
@@ -273,8 +270,7 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
               onClick={onCancel}
               style={{
                 flex: 1,
-                fontSize: '14px',
-                padding: '8px 16px'
+                  padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`
               }}
             >
               Ακύρωση
@@ -287,9 +283,8 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
             onClick={handleSubmit}
             style={{
               flex: 2,
-              fontSize: '14px',
-              padding: '8px 16px',
-              backgroundColor: '#3b82f6'
+              padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
+              backgroundColor: 'var(--color-primary-500)'
             }}
           >
             Αποθήκευση Στοιχείων
@@ -298,19 +293,18 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
 
         {/* Validation Status */}
         <div style={{
-          marginTop: '8px',
-          padding: '8px',
-          backgroundColor: Object.keys(errors).length === 0 ? '#dcfce7' : '#fef2f2',
-          border: Object.keys(errors).length === 0 ? '1px solid #16a34a' : '1px solid #dc2626',
-          borderRadius: '6px',
-          fontSize: '12px',
-          color: Object.keys(errors).length === 0 ? '#15803d' : '#dc2626'
+          marginTop: `${SPACING_SCALE.SM}px`,
+          padding: `${SPACING_SCALE.SM}px`,
+          backgroundColor: Object.keys(errors).length === 0 ? 'var(--color-semantic-success-bg)' : 'var(--color-semantic-error-bg)',
+          border: Object.keys(errors).length === 0 ? '1px solid var(--color-semantic-success-border)' : '1px solid var(--color-semantic-error-border)',
+          borderRadius: `${SPACING_SCALE.XS + 2}px`,
+          color: Object.keys(errors).length === 0 ? 'var(--color-semantic-success)' : 'var(--color-semantic-error)'
         }}>
           <strong>
             {Object.keys(errors).length === 0 ? '✅ Φόρμα έτοιμη για αποθήκευση' : '❌ Υπάρχουν σφάλματα'}
           </strong>
           {Object.keys(errors).length > 0 && (
-            <div style={{ marginTop: '4px' }}>
+            <div style={{ marginTop: `${SPACING_SCALE.XS}px` }}>
               {Object.entries(errors).map(([field, error]) => (
                 <div key={field}>• {error}</div>
               ))}
@@ -320,12 +314,11 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
 
         {/* Debug Info */}
         <div style={{
-          marginTop: '8px',
-          padding: '8px',
-          backgroundColor: '#f1f5f9',
-          borderRadius: '6px',
-          fontSize: '12px',
-          color: '#475569'
+          marginTop: `${SPACING_SCALE.SM}px`,
+          padding: `${SPACING_SCALE.SM}px`,
+          backgroundColor: 'var(--color-neutral-100)',
+          borderRadius: `${SPACING_SCALE.XS + 2}px`,
+          color: 'var(--color-neutral-600)'
         }}>
           <Text size="xs" weight="bold">MVP Property Details Form</Text>
           <div>Type: {propertyTypeLabels[propertyType]}</div>

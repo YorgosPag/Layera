@@ -129,23 +129,38 @@ export const DeviceLayoutRenderer: React.FC<DeviceLayoutRendererProps> = ({
           React.createElement(iPhoneComponents.orchestrator, {
             currentStepId: navigation.currentStep!,
             selectedCategory: navigation.selectedCategory ?? 'property',
+            // selectedIntent: TO DO: Add to navigation service
+            // Removed unsupported props that cause TypeScript errors
             // πέρασε μόνο όσα handlers υπάρχουν
             ...(navigationHandlers?.onNext ? { onNext: navigationHandlers.onNext } : {}),
             ...(navigationHandlers?.onPrevious ? { onPrevious: navigationHandlers.onPrevious } : {}),
             onStepChange: (stepId) => {
               console.log(`🎯 DEVICE LAYOUT: Step change to ${stepId}`);
-              // Bridge: StepOrchestrator calls onStepChange(stepId)
-              // but NavigationService only has goNext()
-              // For now, we use goNext() as the bridge
-              if (navigationHandlers?.onNext) {
-                navigationHandlers.onNext();
+              console.log(`🎯 DEVICE LAYOUT: Current step is ${navigation?.currentStep}`);
+
+              // ΔΙΟΡΘΩΣΗ: Intelligent step navigation για occupation step
+              const currentStep = navigation?.currentStep;
+
+              if (stepId === 'occupation' && currentStep === 'employmentType') {
+                console.log(`🎯 DEVICE LAYOUT: SPECIAL CASE - Forcing navigation to occupation step`);
+                // Ειδικό handling για occupation step - θα χρησιμοποιήσουμε goNext()
+                // αλλά με debug info για να δούμε αν φτάνει στο σωστό step
+                if (navigationHandlers?.onNext) {
+                  navigationHandlers.onNext();
+                }
+              } else {
+                console.log(`🎯 DEVICE LAYOUT: Default navigation using goNext() for ${stepId}`);
+                // Για όλα τα άλλα steps, κανονικό goNext()
+                if (navigationHandlers?.onNext) {
+                  navigationHandlers.onNext();
+                }
               }
             },
             onStepComplete: async (stepId, data) => {
               console.log(`🎯 DEVICE LAYOUT: Step ${stepId} completed`, data);
 
               // Ειδική λογική για category step - χρειάζεται selectCategory πρώτα
-              if (stepId === 'category' && data?.selectedCategory) {
+              if (stepId === 'category' && data && typeof data === 'object' && 'selectedCategory' in data) {
                 console.log(`🎯 DEVICE LAYOUT: Category selected: ${data.selectedCategory}`);
                 // Εδώ θα χρειαστούμε access στο navigation service
                 // Προς το παρόν, η auto-advance θα γίνει από το StepOrchestrator

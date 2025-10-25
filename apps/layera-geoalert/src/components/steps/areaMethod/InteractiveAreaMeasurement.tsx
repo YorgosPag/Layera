@@ -168,7 +168,7 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
         variant="outlined"
         size="lg"
         padding="lg"
-        style={{ backgroundColor: 'rgba(255, 255, 255, 0.95)' }}
+        style={{ backgroundColor: 'var(--color-bg-surface-strong)' }}
       >
         <Stack spacing="md">
           {/* Header */}

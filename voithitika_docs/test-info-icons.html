@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Info Icons - Layera GeoAlert</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f0f0f0;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .instructions {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .test-link {
+            display: inline-block;
+            background: #1976d2;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        .test-link:hover {
+            background: #1565c0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Test Info Icons - Layera GeoAlert (Updated Layout & Styling)</h1>
+
+    <div class="instructions">
+        <h3>📋 Test Instructions - HORIZONTAL LAYOUT:</h3>
+        <ol>
+            <li>Κάντε κλικ στο παρακάτω link για να ανοίξει η εφαρμογή</li>
+            <li>Βεβαιωθείτε ότι βλέπετε τις κάρτες "Ακίνητα" και "Εργασία" <strong>σε μία σειρά (οριζόντια)</strong></li>
+            <li>Ελέγξτε αν οι κάρτες απέχουν μεταξύ τους 8px (όσο απείχαν κάθετα πριν)</li>
+            <li>Ελέγξτε αν υπάρχει ένα μικρό γκρι κουμπί "i" στην <strong>κάτω δεξιά γωνία</strong> κάθε κάρτας</li>
+            <li>Κάντε κλικ στο "i" button για να ανοίξει το InfoPanel</li>
+            <li>Επιβεβαιώστε ότι το InfoPanel εμφανίζεται <strong>κάτω από τις κάρτες</strong> με την ίδια απόσταση (8px)</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h3>🚀 Launch Test</h3>
+        <a href="http://localhost:3003" target="_blank" class="test-link">
+            Άνοιγμα Layera GeoAlert →
+        </a>
+
+        <h4>Τι να ελέγξετε - HORIZONTAL LAYOUT:</h4>
+        <ul>
+            <li>🔄 <strong>Layout:</strong> Κάρτες Ακίνητα/Εργασία σε μία σειρά (δυάδα)</li>
+            <li>📏 <strong>Spacing:</strong> 8px απόσταση μεταξύ καρτών (horizontal gap)</li>
+            <li>📍 <strong>Position:</strong> Top 161px από stepper (ίδια με πριν)</li>
+            <li>📍 <strong>Info Icon Position:</strong> Κάτω δεξιά γωνία κάθε κάρτας</li>
+            <li>🎨 <strong>Info Icon Style:</strong> Γκρι χρώμα (#6b7280) χωρίς φόντο</li>
+            <li>🖥️ <strong>Desktop Hover:</strong> Σκούρο γκρι + scale 1.1x (μόνο με ποντίκι)</li>
+            <li>📱 <strong>Mobile Touch:</strong> Σκούρο γκρι + scale 1.1x + δόνηση (με άγγιγμα)</li>
+            <li>✅ Info button "i" visible στις κάρτες</li>
+            <li>✅ Info button clickable (cursor changes to pointer)</li>
+            <li>✅ InfoPanel ανοίγει με το κλικ</li>
+            <li>🎯 <strong>InfoPanel Position:</strong> Top 229px (κάτω από κάρτες με 8px gap)</li>
+            <li>✅ Περιεχόμενο εμφανίζεται σωστά</li>
+            <li>✅ Close button λειτουργεί</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h3>🛠️ Developer Console</h3>
+        <p>Ανοίξτε το Developer Console (F12) για να δείτε debug messages:</p>
+        <ul>
+            <li><code>🔍 CategoryStep: Info clicked for property/job</code></li>
+            <li><code>🔍 CategoryStep: Getting content for property/job</code></li>
+            <li><code>✅ CategoryStep: Content found for property/job</code></li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h3>📱 Responsive Testing</h3>
+        <p><strong>Desktop Test:</strong></p>
+        <ul>
+            <li>Περάστε το ποντίκι πάνω από το "i" → Πρέπει να σκουρύνει + μεγέθυνση</li>
+            <li>Βγάλτε το ποντίκι → Πρέπει να επιστρέψει στο κανονικό</li>
+        </ul>
+
+        <p><strong>Mobile Test (F12 → Toggle Device):</strong></p>
+        <ul>
+            <li>Αγγίξτε το "i" → Σκούρο χρώμα + μεγέθυνση + δόνηση</li>
+            <li>Σηκώστε το δάχτυλο → Επιστροφή στο κανονικό</li>
+        </ul>
+    </div>
+
+    <script>
+        // Auto-refresh this page every 30 seconds
+        setTimeout(() => {
+            location.reload();
+        }, 30000);
+
+        console.log('📋 Test page loaded - Ready to test Info Icons!');
+    </script>
+</body>
+</html>

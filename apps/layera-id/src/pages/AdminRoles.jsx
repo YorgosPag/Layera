@@ -62,7 +62,7 @@ export default function AdminRoles() {
                   variant="primary"
                   size="md"
                   onClick={() => navigate('/dashboard')}
-                  style={{ marginTop: '1rem' }}
+                  style={{ marginTop: `${SPACING_SCALE.MD}px` }}
                 >
                   ← {t('navigation.backToDashboard')}
                 </Button>
@@ -254,7 +254,7 @@ export default function AdminRoles() {
             icon={<span>ℹ️</span>}
           >
             <DashboardCard variant="info">
-              <ul style={{ margin: 0, paddingLeft: '1.5rem' }}>
+              <ul style={{ margin: 0, paddingLeft: `${SPACING_SCALE.XL}px` }}>
                 <li>{t('admin.roleManagement.info.adminOnly')}</li>
                 <li>{t('admin.roleManagement.info.clientRestrictions')}</li>
                 <li>{t('admin.roleManagement.info.mfaRefresh')}</li>

@@ -6,6 +6,9 @@
 
 import React, { useCallback, useMemo } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { Text } from '@layera/typography';
+import { Stack } from '@layera/layout';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
 import { CheckIcon, AlertTriangleIcon, HomeIcon } from '@layera/icons';
 import type { StepProps } from '../types';
@@ -117,13 +120,13 @@ export const CompleteStep: React.FC<CompleteStepProps> = ({
 
   const containerStyles: React.CSSProperties = {
     position: 'fixed',
-    top: '161px',
-    left: '8px',
-    right: '8px',
+    top: 'var(--layera-cards-top)',
+    left: 'var(--layera-side-margins)',
+    right: 'var(--layera-side-margins)',
     zIndex: 10002,
     display: 'flex',
     flexDirection: 'column',
-    gap: '12px',
+    gap: `${SPACING_SCALE.SM}px`,
     padding: '0'
   };
 
@@ -131,8 +134,8 @@ export const CompleteStep: React.FC<CompleteStepProps> = ({
     <div style={containerStyles}>
       {/* Success Card */}
       <BaseCard
-        variant="success"
-        title="Επιτυχής Ολοκλήρωση!"
+        variant="job"
+        title={t('complete.success.title', 'Επιτυχής Ολοκλήρωση!')}
         description={completionSummary.successMessage}
         icon={<CheckIcon size="sm" theme="neutral" />}
         data-testid="complete-success-card"
@@ -140,42 +143,36 @@ export const CompleteStep: React.FC<CompleteStepProps> = ({
 
       {/* Next Steps Card */}
       <div style={{
-        padding: '16px',
+        padding: `${SPACING_SCALE.MD}px`,
         background: 'rgba(0, 123, 255, 0.1)',
-        borderRadius: '12px',
+        borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
         border: '1px solid rgba(0, 123, 255, 0.2)'
       }}>
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '8px',
-          marginBottom: '12px'
+          gap: 'var(--layera-cards-gap)',
+          marginBottom: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`
         }}>
           <AlertTriangleIcon size="sm" theme="primary" />
-          <span style={{
-            fontSize: '16px',
-            fontWeight: 'bold',
-            color: '#0066cc'
-          }}>
-            Επόμενα Βήματα
-          </span>
+          <Text size="md" weight="bold" color="primary">
+            {t('complete.nextSteps.title', 'Επόμενα Βήματα')}
+          </Text>
         </div>
-        {completionSummary.nextSteps.map((step, index) => (
-          <div key={index} style={{
-            fontSize: '14px',
-            color: '#666',
-            marginBottom: '6px'
-          }}>
-            • {step}
-          </div>
-        ))}
+        <Stack spacing="xs">
+          {completionSummary.nextSteps.map((step, index) => (
+            <Text key={index} size="sm" color="secondary">
+              • {step}
+            </Text>
+          ))}
+        </Stack>
       </div>
 
       {/* Complete Button */}
       <BaseCard
-        variant="primary"
-        title="Τέλος"
-        description="Ολοκλήρωση διαδικασίας"
+        variant="job"
+        title={t('complete.finish.title', 'Τέλος')}
+        description={t('complete.finish.description', 'Ολοκλήρωση διαδικασίας')}
         icon={<HomeIcon size="sm" theme="neutral" />}
         onClick={handleComplete}
         data-testid="complete-finish-card"
@@ -183,9 +180,9 @@ export const CompleteStep: React.FC<CompleteStepProps> = ({
 
       {/* Back Button */}
       <BaseCard
-        variant="neutral"
-        title="Πίσω για Αλλαγές"
-        description="Επιστροφή για τροποποιήσεις"
+        variant="job"
+        title={t('complete.back.title', 'Πίσω για Αλλαγές')}
+        description={t('complete.back.description', 'Επιστροφή για τροποποιήσεις')}
         onClick={handleGoBack}
         data-testid="complete-back-card"
       />

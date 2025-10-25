@@ -1,0 +1,38 @@
+{
+  "name": "@layera/box-model",
+  "version": "1.0.0",
+  "description": "🔲 Enterprise box model system για το Layera Design System",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "layera",
+    "box-model",
+    "box-sizing",
+    "design-system",
+    "css",
+    "enterprise",
+    "lego"
+  ],
+  "author": "Layera Team",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "tsup": "^7.2.0",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  }
+}

@@ -7,6 +7,7 @@
 
 import React, { useState, useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { SIZING_SCALE } from '@layera/layout';
 import { PipelineDiscovery } from '@layera/pipelines';
 import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
 import { cardData, getCardsForStep, type CardConfig, type CardId } from '../../device-specific/mobile/iphone-14-pro-max/components/cardData';
@@ -15,6 +16,7 @@ import {
   GEOALERT_INFO_CONTENT,
   StaticContentProvider
 } from '@layera/info-panels';
+import { SPACING_SCALE } from '@layera/constants';
 import type { StepProps, DetailsType } from '../types';
 
 export interface DetailsStepProps extends StepProps {
@@ -164,22 +166,22 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
   // Container styles
   const containerStyles: React.CSSProperties = {
     position: 'fixed',
-    top: '161px',
+    top: 'var(--layera-cards-top)',
     left: '50%',
     transform: 'translateX(-50%)',
-    width: '350px',
+    width: `${SIZING_SCALE.LAYOUT_XXXL}px`,
     display: 'flex',
     flexDirection: 'column',
-    gap: '16px',
+    gap: `${SPACING_SCALE.MD}px`,
     zIndex: 1000,
-    padding: '0 20px',
+    padding: `0 ${SPACING_SCALE.LG}px`,
     boxSizing: 'border-box'
   };
 
   const cardsContainerStyles: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
-    gap: '12px'
+    gap: `${SPACING_SCALE.SM}px`
   };
 
   // Early return αν δεν είναι visible ή δεν έχει τα απαραίτητα context

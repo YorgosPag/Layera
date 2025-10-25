@@ -8,6 +8,7 @@ import { ThemeSwitcher } from '@layera/theme-switcher';
 import { Button } from '@layera/buttons';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
+import { SPACING_SCALE } from '@layera/constants';
 import { LockIcon, ShieldIcon, RocketIcon, SmartphoneIcon, CheckIcon } from './icons/LayeraIcons';
 import QuickActions from './QuickActions';
 import './MfaEnroll.css';
@@ -122,17 +123,17 @@ export default function MfaEnroll() {
               title={t('mfa.whyNeeded.description')}
               variant="info"
             >
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                  <CheckIcon size="sm" theme="success" style={{ marginTop: '0.125rem' }} />
+              <div style={{ display: 'flex', flexDirection: 'column', gap: `${SPACING_SCALE.MD}px` }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: `${SPACING_SCALE.SM}px` }}>
+                  <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
                   <span>{t('mfa.whyNeeded.benefits.passwordProtection')}</span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                  <CheckIcon size="sm" theme="success" style={{ marginTop: '0.125rem' }} />
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: `${SPACING_SCALE.SM}px` }}>
+                  <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
                   <span>{t('mfa.whyNeeded.benefits.secureAccess')}</span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                  <CheckIcon size="sm" theme="success" style={{ marginTop: '0.125rem' }} />
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: `${SPACING_SCALE.SM}px` }}>
+                  <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
                   <span>{t('mfa.whyNeeded.benefits.unauthorizedAlert')}</span>
                 </div>
               </div>
@@ -151,8 +152,8 @@ export default function MfaEnroll() {
               variant="actions"
             >
               <form onSubmit={(e) => { e.preventDefault(); start(); }} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  <label htmlFor="phone" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: '600' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: `${SPACING_SCALE.SM}px` }}>
+                  <label htmlFor="phone" style={{ display: 'flex', alignItems: 'center', gap: `${SPACING_SCALE.SM}px`, fontWeight: '600' }}>
                     <SmartphoneIcon size="sm" theme="neutral" /> {t('mfa.form.phoneLabel')}
                   </label>
                   <input
@@ -161,7 +162,7 @@ export default function MfaEnroll() {
                     value={phone}
                     onChange={e => setPhone(e.target.value)}
                     style={{
-                      padding: '0.75rem',
+                      padding: `${SPACING_SCALE.MD}px`,
                       border: '1px solid var(--layera-layout-border)',
                       borderRadius: 'var(--layera-radius-md)',
                       fontSize: '1rem',
@@ -177,7 +178,7 @@ export default function MfaEnroll() {
                   </small>
                 </div>
 
-                <div id="recaptcha" style={{ margin: '1rem 0' }}></div>
+                <div id="recaptcha" style={{ margin: `${SPACING_SCALE.MD}px 0` }}></div>
 
                 <Button
                   type="submit"

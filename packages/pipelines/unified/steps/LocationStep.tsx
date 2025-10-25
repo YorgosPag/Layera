@@ -6,6 +6,7 @@ import { Button } from '@layera/buttons';
 import { FormActions } from '@layera/forms';
 import { UploadIcon, MapIcon, CheckIcon } from '@layera/icons';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 
 export interface LocationDetails {
   type: 'upload' | 'drawing';
@@ -150,10 +151,10 @@ export const LocationStep: React.FC<LocationStepProps> = ({
 
                   <div style={{
                     wordBreak: 'break-all',
-                    padding: '12px',
+                    padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
                     backgroundColor: '#f0fdf4',
                     border: '1px solid #10b981',
-                    borderRadius: '8px',
+                    borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
                     maxWidth: '300px',
                     textAlign: 'center'
                   }}>
@@ -184,7 +185,7 @@ export const LocationStep: React.FC<LocationStepProps> = ({
                     <Text size="base" color="secondary" className="card-text">
                       {t('pipelines.steps.layout.floorPlan.description')}
                     </Text>
-                    <Text size="sm" color="secondary" style={{ marginTop: '8px' }}>
+                    <Text size="sm" color="secondary" style={{ marginTop: `${SPACING_SCALE.SM}px` }}>
                       {t('pipelines.steps.layout.floorPlan.supportedTypes')}
                     </Text>
                   </Stack>

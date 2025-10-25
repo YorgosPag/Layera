@@ -4,7 +4,7 @@
   "description": "Layera GeoAlert V1 - Property search with geo mapping",
   "type": "module",
   "scripts": {
-    "dev": "vite --port 3002",
+    "dev": "vite --port 3001",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
@@ -12,13 +12,16 @@
   "dependencies": {
     "@layera/address-breakdown": "file:../../packages/address-breakdown",
     "@layera/boundary-service": "file:../../packages/boundary-service",
+    "@layera/box-shadows": "file:../../packages/box-shadows",
     "@layera/buttons": "file:../../packages/buttons",
     "@layera/cards": "file:../../packages/cards",
+    "@layera/cursors": "workspace:^",
     "@layera/database-core": "file:../../packages/database-core",
     "@layera/device-detection": "workspace:^",
     "@layera/device-layouts": "workspace:^",
     "@layera/draggable": "file:../../packages/draggable",
     "@layera/draggable-fab": "file:../../packages/draggable-fab",
+    "@layera/error-boundary": "file:..\\..\\packages\\error-boundary",
     "@layera/floating-action-buttons": "workspace:^",
     "@layera/forms": "file:../../packages/forms",
     "@layera/geo-core": "workspace:^",

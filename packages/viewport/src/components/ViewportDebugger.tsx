@@ -5,6 +5,7 @@
 import React, { useState } from 'react';
 import { useViewport } from '../hooks/useViewport';
 import { MobileIcon, TabletIcon, DesktopIcon, TabletLandscapeIcon } from './icons/ViewportIcons';
+import { Z_INDEX, SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 
 interface ViewportDebuggerProps {
   position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
@@ -33,28 +34,28 @@ export const ViewportDebugger: React.FC<ViewportDebuggerProps> = ({
   const getPositionStyles = () => {
     const baseStyles: React.CSSProperties = {
       position: 'fixed',
-      zIndex: 9999,
+      zIndex: Z_INDEX.modal,
       backgroundColor: 'color-mix(in srgb, var(--layera-bg-secondary) 90%, transparent 10%)',
       color: 'var(--layera-text-primary)',
-      padding: compact ? '0.5rem' : '1rem',
-      borderRadius: '6px',
+      padding: compact ? `${SPACING_SCALE.SM}px` : `${SPACING_SCALE.MD}px`,
+      borderRadius: `${BORDER_RADIUS_SCALE.INPUT}px`,
       fontSize: compact ? '0.75rem' : '0.875rem',
       fontFamily: 'monospace',
-      border: '1px solid rgba(255, 255, 255, 0.2)',
+      border: '1px solid var(--color-border-subtle)',
       backdropFilter: 'blur(4px)'
     };
 
     switch (position) {
       case 'top-left':
-        return { ...baseStyles, top: '1rem', left: '1rem' };
+        return { ...baseStyles, top: `${SPACING_SCALE.MD}px`, left: `${SPACING_SCALE.MD}px` };
       case 'top-right':
-        return { ...baseStyles, top: '1rem', right: '1rem' };
+        return { ...baseStyles, top: `${SPACING_SCALE.MD}px`, right: `${SPACING_SCALE.MD}px` };
       case 'bottom-left':
-        return { ...baseStyles, bottom: '1rem', left: '1rem' };
+        return { ...baseStyles, bottom: `${SPACING_SCALE.MD}px`, left: `${SPACING_SCALE.MD}px` };
       case 'bottom-right':
-        return { ...baseStyles, bottom: '1rem', right: '1rem' };
+        return { ...baseStyles, bottom: `${SPACING_SCALE.MD}px`, right: `${SPACING_SCALE.MD}px` };
       default:
-        return { ...baseStyles, top: '1rem', right: '1rem' };
+        return { ...baseStyles, top: `${SPACING_SCALE.MD}px`, right: `${SPACING_SCALE.MD}px` };
     }
   };
 
@@ -81,7 +82,7 @@ export const ViewportDebugger: React.FC<ViewportDebuggerProps> = ({
         onClick={() => setIsVisible(true)}
         style={{
           ...getPositionStyles(),
-          padding: '0.5rem',
+          padding: `${SPACING_SCALE.SM}px`,
           cursor: 'pointer',
           border: 'none',
           backgroundColor: 'rgba(0, 0, 0, 0.6)'
@@ -100,8 +101,8 @@ export const ViewportDebugger: React.FC<ViewportDebuggerProps> = ({
           onClick={() => setIsVisible(false)}
           style={{
             position: 'absolute',
-            top: '0.25rem',
-            right: '0.25rem',
+            top: `${SPACING_SCALE.XS}px`,
+            right: `${SPACING_SCALE.XS}px`,
             background: 'none',
             border: 'none',
             color: 'var(--layera-text-primary)',
@@ -114,12 +115,12 @@ export const ViewportDebugger: React.FC<ViewportDebuggerProps> = ({
         </button>
       )}
 
-      <div style={{ marginTop: !showAlways ? '1rem' : '0' }}>
+      <div style={{ marginTop: !showAlways ? `${SPACING_SCALE.MD}px` : '0' }}>
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '0.5rem',
-          marginBottom: compact ? '0.25rem' : '0.5rem'
+          gap: `${SPACING_SCALE.SM}px`,
+          marginBottom: compact ? `${SPACING_SCALE.XS}px` : `${SPACING_SCALE.SM}px`
         }}>
           <span>{getDeviceIcon()}</span>
           <strong>{viewport.deviceType.toUpperCase()}</strong>
@@ -130,7 +131,7 @@ export const ViewportDebugger: React.FC<ViewportDebuggerProps> = ({
         {!compact && (
           <>
             <div>📐 {viewport.width} × {viewport.height}px</div>
-            <div style={{ marginTop: '0.5rem', fontSize: '0.75rem', opacity: 0.8 }}>
+            <div style={{ marginTop: `${SPACING_SCALE.SM}px`, fontSize: '0.75rem', opacity: 0.8 }}>
               Mobile: {viewport.isMobile ? '✅' : '❌'} |
               Tablet: {viewport.isTablet ? '✅' : '❌'} |
               Desktop: {viewport.isDesktop ? '✅' : '❌'}

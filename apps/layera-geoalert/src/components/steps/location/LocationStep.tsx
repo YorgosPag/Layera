@@ -12,13 +12,141 @@
 
 import React, { useCallback, useState, useEffect } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { Text } from '@layera/typography';
+import { Stack } from '@layera/layout';
+import { SPACING_SCALE } from '@layera/constants';
 // import { useGeocode } from '@layera/geocoding';
-// import { AddressBreakdownCard } from '@layera/address-breakdown';
+import { Input } from '@layera/forms';
 import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
 import { UploadIcon, MapIcon, CheckIcon, SearchIcon, LocationIcon } from '@layera/icons';
+import { InfoPanel } from '../../device-specific/mobile/iphone-14-pro-max/components/InfoPanel';
+import {
+  GEOALERT_INFO_CONTENT,
+  StaticContentProvider
+} from '@layera/info-panels';
+import { useGeoAlertLayout } from '@layera/layout';
 import type { StepProps } from '../types';
 import type { LocationMethodType, LocationDetails, LocationStepData } from './types';
 // import type { GeocodeResult } from '@layera/geocoding';
+
+// Smart SearchInputCard component που ανταποκρίνεται στο opacity toggle
+const SearchInputCard: React.FC<{
+  searchInput: string;
+  onSearchInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  isLoading: boolean;
+  error: string | null;
+}> = ({ searchInput, onSearchInputChange, isLoading, error }) => {
+  const [opacityMode, setOpacityMode] = React.useState<'transparent' | 'semi-transparent' | 'opaque'>('transparent');
+
+  // Event listener για opacity toggle από το stepper
+  React.useEffect(() => {
+    const handleOpacityToggle = (event: CustomEvent) => {
+      const { opacityMode: newOpacityMode } = event.detail;
+      setOpacityMode(newOpacityMode);
+    };
+
+    window.addEventListener('toggleCardsOpacity', handleOpacityToggle as EventListener);
+
+    return () => {
+      window.removeEventListener('toggleCardsOpacity', handleOpacityToggle as EventListener);
+    };
+  }, []);
+
+  // Dynamic styles ανάλογα με το opacity mode
+  const getInputStyles = () => {
+    switch (opacityMode) {
+      case 'transparent':
+        return {
+          backgroundColor: 'var(--color-bg-surface-overlay-light)',
+          border: '1px solid var(--color-border-subtle)',
+          color: '#000000',
+          '::placeholder': { color: 'var(--color-text-placeholder)' }
+        };
+      case 'semi-transparent':
+        return {
+          backgroundColor: 'var(--color-bg-surface-overlay-medium)',
+          border: '1px solid var(--color-border-default)',
+          color: '#000000',
+          '::placeholder': { color: 'var(--color-text-secondary)' }
+        };
+      case 'opaque':
+        return {
+          backgroundColor: 'var(--color-bg-surface-overlay-strong)',
+          border: '1px solid var(--color-border-primary-overlay)',
+          color: '#000000',
+          '::placeholder': { color: 'var(--color-text-primary)' }
+        };
+    }
+  };
+
+  const inputStyles = getInputStyles();
+
+  const getLabelColor = () => {
+    switch (opacityMode) {
+      case 'transparent':
+        return '#000000';
+      case 'semi-transparent':
+        return '#000000';
+      case 'opaque':
+        return '#ffffff';
+    }
+  };
+
+  const getMessageColor = () => {
+    switch (opacityMode) {
+      case 'transparent':
+        return 'var(--color-text-secondary)';
+      case 'semi-transparent':
+        return 'var(--color-text-primary)';
+      case 'opaque':
+        return 'var(--color-bg-surface-strong)';
+    }
+  };
+
+  return (
+    <BaseCard
+      variant="job"
+      title={
+        <div style={{ width: '100%' }}>
+          <Text size="xs" weight="medium" style={{ color: getLabelColor() }}>
+            Αναζήτηση διεύθυνσης
+          </Text>
+          <Input
+            type="text"
+            value={searchInput}
+            onChange={onSearchInputChange}
+            placeholder="π.χ. Πλατεία Συντάγματος, Αθήνα"
+            variant="default"
+            size="medium"
+            fullWidth
+            startIcon={<SearchIcon size="sm" />}
+          />
+          {/* Loading/Error messages */}
+          {isLoading && (
+            <Text size="xs" align="center" style={{ color: getMessageColor(), marginTop: `${SPACING_SCALE.XS}px` }}>
+              Αναζήτηση...
+            </Text>
+          )}
+          {error && (
+            <Text
+              size="xs"
+              align="center"
+              style={{
+                color: opacityMode === 'opaque' ? 'rgba(255, 100, 100, 0.9)' : '#dc2626',
+                marginTop: `${SPACING_SCALE.XS}px`
+              }}
+            >
+              {error}
+            </Text>
+          )}
+        </div>
+      }
+      icon={<SearchIcon size="sm" theme="neutral" />}
+      onClick={() => {}} // Empty click handler
+      data-testid="location-search-input-card"
+    />
+  );
+};
 
 export interface LocationStepProps extends StepProps {
   /** Location configuration callback */
@@ -37,27 +165,36 @@ export const LocationStep: React.FC<LocationStepProps> = ({
   deviceProps = {}
 }) => {
   const { t } = useLayeraTranslation();
+
+  // Enterprise LEGO Layout System
+  const { utils } = useGeoAlertLayout();
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [showLocationSearch, setShowLocationSearch] = useState(false);
-  const [selectedLocation, setSelectedLocation] = useState<GeocodeResult | null>(null);
+  const [selectedLocation, setSelectedLocation] = useState<unknown | null>(null);
   const [searchInput, setSearchInput] = useState<string>('');
 
-  // Enterprise LEGO Geocoding Hook
-  const {
-    query,
-    results,
-    isLoading,
-    error,
-    selectedResult,
-    actions
-  } = useGeocode({
-    autoSearch: true,
-    debounceMs: 300,
-    onSelect: (result) => {
-      console.log(`🎯 ENTERPRISE LOCATION: Selected location: ${result.displayName}`);
-      setSelectedLocation(result);
+  // Info Panel state
+  const [showInfoPanel, setShowInfoPanel] = useState(false);
+  const [currentInfoCard, setCurrentInfoCard] = useState<'search' | 'upload' | 'drawing' | null>(null);
+
+  // Info content provider
+  const infoContentProvider = React.useMemo(() =>
+    new StaticContentProvider(GEOALERT_INFO_CONTENT),
+    []
+  );
+
+  // Temporary: Disabled geocoding for now due to React multiple copies issue
+  const results: unknown[] = [];
+  const isLoading = false;
+  const error = null;
+  const actions = {
+    setQuery: (query: string) => {
+      console.log('Geocoding disabled temporarily:', query);
+    },
+    clear: () => {
+      console.log('Geocoding cleared');
     }
-  });
+  };
 
   // Business Logic: Property + Offer + Now = Upload, όλα τα άλλα = Drawing
   const shouldShowUpload = context?.selectedCategory === 'property' &&
@@ -131,10 +268,10 @@ export const LocationStep: React.FC<LocationStepProps> = ({
 
         onLocationConfigured?.(locationDetails);
 
-        // Auto-advance
-        setTimeout(() => {
-          onNext?.();
-        }, 500);
+        // Auto-advance handled by StepOrchestrator
+        // setTimeout(() => {
+        //   onNext?.();
+        // }, 500);
       }
     };
 
@@ -153,17 +290,17 @@ export const LocationStep: React.FC<LocationStepProps> = ({
     actions.setQuery(value);
   }, [actions]);
 
-  const handleLocationSelected = useCallback((result: GeocodeResult) => {
-    console.log(`🎯 ENTERPRISE LOCATION: Location selected: ${result.displayName}`);
+  const handleLocationSelected = useCallback((result: unknown) => {
+    console.log(`🎯 ENTERPRISE LOCATION: Location selected (temporarily disabled):`, result);
 
     const locationDetails: LocationDetails = {
       method: 'search',
       searchResult: result,
       coordinates: {
-        latitude: result.coordinates.latitude,
-        longitude: result.coordinates.longitude
+        latitude: 0,
+        longitude: 0
       },
-      address: result.displayName
+      address: 'Temporary placeholder address'
     };
 
     if (onStepComplete) {
@@ -176,10 +313,10 @@ export const LocationStep: React.FC<LocationStepProps> = ({
 
     onLocationConfigured?.(locationDetails);
 
-    // Auto-advance
-    setTimeout(() => {
-      onNext?.();
-    }, 500);
+    // Auto-advance handled by StepOrchestrator
+    // setTimeout(() => {
+    //   onNext?.();
+    // }, 500);
   }, [onStepComplete, onLocationConfigured, onNext]);
 
   const handleDrawingTool = useCallback(() => {
@@ -199,142 +336,143 @@ export const LocationStep: React.FC<LocationStepProps> = ({
 
     onLocationConfigured?.(locationDetails);
 
-    // Auto-advance
-    setTimeout(() => {
-      onNext?.();
-    }, 300);
+    // Auto-advance handled by StepOrchestrator, no need for manual onNext
+    // setTimeout(() => {
+    //   onNext?.();
+    // }, 300);
   }, [onStepComplete, onLocationConfigured, onNext]);
+
+  // Handle info button clicks
+  const handleInfoClick = useCallback((cardId: 'search' | 'upload' | 'drawing') => {
+    setCurrentInfoCard(cardId);
+    setShowInfoPanel(true);
+
+    if ('vibrate' in navigator) {
+      navigator.vibrate(20);
+    }
+  }, []);
+
+  // Get info content για specific card
+  const getInfoContent = useCallback((cardId: 'search' | 'upload' | 'drawing') => {
+    try {
+      // Map location-specific cards to content keys
+      const contentKey = cardId === 'search' ? 'location-search' :
+                        cardId === 'upload' ? 'location-upload' :
+                        'location-drawing';
+
+      return infoContentProvider.getContent(contentKey);
+    } catch (error) {
+      console.warn(`Info content not found for card: ${cardId}`);
+      return {
+        title: 'Πληροφορίες',
+        content: 'Δεν υπάρχουν διαθέσιμες πληροφορίες για αυτή την επιλογή.',
+        type: 'info' as const
+      };
+    }
+  }, [infoContentProvider]);
 
   if (!isVisible) {
     return null;
   }
 
-  const containerStyles: React.CSSProperties = {
-    position: 'fixed',
-    top: '161px',
-    left: '8px',
-    right: '8px',
-    zIndex: 10002,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '8px',
-    padding: '0'
-  };
+  // Υπολογίζω πόσες κάρτες θα εμφανιστούν
+  const cardCount = shouldShowUpload ? 3 : 2;
+
+  // Enterprise LEGO Layout - Smart arrangement for 3 cards (2+1)
+  const containerStyles = utils.getCardStyles('smart-triple');
+  const containerClass = utils.getCardContainerClass('smart-triple');
+
 
   return (
-    <div style={containerStyles}>
+    <>
+    <div style={containerStyles} className={containerClass}>
       {!showLocationSearch ? (
-        // Menu Cards
+        // Menu Cards - Enterprise LEGO Layout με CSS variables
         <>
-          {/* Location Search Card */}
-          <BaseCard
-            variant="primary"
-            title={t('location.searchTitle', 'Αναζήτηση Τοποθεσίας')}
-            description={t('location.searchDescription', 'Βρείτε διεύθυνση ή περιοχή')}
-            icon={<SearchIcon size="sm" theme="neutral" />}
-            onClick={handleLocationSearch}
-            data-testid="location-search-card"
-          />
-
-          {shouldShowUpload && (
-            // Property + Offer + Now = File Upload option
+          {/* Πρώτη σειρά */}
+          <div className="layera-card-row">
+            {/* Location Search Card */}
             <BaseCard
-              variant="info"
-              title={t('location.uploadTitle', 'Ανέβασμα Κάτοψης')}
-              description={t('location.uploadDescription', 'Επιλέξτε αρχείο κάτοψης')}
-              icon={<UploadIcon size="sm" theme="neutral" />}
-              onClick={handleFileUpload}
-              data-testid="location-upload-card"
+              variant="job"
+              title="Αναζήτηση Τοποθεσίας"
+              description="Βρείτε διεύθυνση ή περιοχή"
+              icon={<SearchIcon size="sm" theme="neutral" />}
+              onClick={handleLocationSearch}
+              onInfoClick={() => handleInfoClick('search')}
+              data-testid="location-search-card"
             />
-          )}
 
-          {/* Drawing Tool Card */}
-          <BaseCard
-            variant="secondary"
-            title={t('location.drawingTitle', 'Εργαλείο Σχεδίασης')}
-            description={t('location.drawingDescription', 'Σχεδιάστε περιοχή στον χάρτη')}
-            icon={<MapIcon size="sm" theme="neutral" />}
-            onClick={handleDrawingTool}
-            data-testid="location-drawing-card"
-          />
+            {shouldShowUpload ? (
+              // Αν έχουμε 3 κάρτες: Upload στην πρώτη σειρά
+              <BaseCard
+                variant="job"
+                title="Ανέβασμα Κάτοψης"
+                description="Επιλέξτε αρχείο κάτοψης"
+                icon={<UploadIcon size="sm" theme="neutral" />}
+                onClick={handleFileUpload}
+                onInfoClick={() => handleInfoClick('upload')}
+                data-testid="location-upload-card"
+              />
+            ) : (
+              // Αν έχουμε 2 κάρτες: Drawing στην πρώτη σειρά
+              <BaseCard
+                variant="job"
+                title="Εργαλείο Σχεδίασης"
+                description="Σχεδιάστε περιοχή στον χάρτη"
+                icon={<MapIcon size="sm" theme="neutral" />}
+                onClick={handleDrawingTool}
+                onInfoClick={() => handleInfoClick('drawing')}
+                data-testid="location-drawing-card"
+              />
+            )}
+          </div>
+
+          {/* Δεύτερη σειρά - μόνο αν έχουμε 3 κάρτες */}
+          {shouldShowUpload && (
+            <div className="layera-card-row">
+              <BaseCard
+                variant="job"
+                title="Εργαλείο Σχεδίασης"
+                description="Σχεδιάστε περιοχή στον χάρτη"
+                icon={<MapIcon size="sm" theme="neutral" />}
+                onClick={handleDrawingTool}
+                onInfoClick={() => handleInfoClick('drawing')}
+                data-testid="location-drawing-card"
+              />
+            </div>
+          )}
 
           {uploadedFile && (
             <div style={{
-              padding: '12px',
+              padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
               background: 'rgba(0, 255, 0, 0.1)',
-              borderRadius: '8px',
-              fontSize: '14px',
-              color: '#008000',
-              textAlign: 'center'
+              borderRadius: `${SPACING_SCALE.SM}px`
             }}>
-              <CheckIcon size="sm" theme="success" style={{ marginRight: '8px' }} />
-              {uploadedFile.name} ({getFileType(uploadedFile).toUpperCase()})
-              <br />
-              <small style={{ fontSize: '12px' }}>
-                {t('location.fileUploaded', 'Η κάτοψη εμφανίστηκε στον χάρτη')}
-              </small>
+              <Stack spacing="xs" align="center">
+                <Text size="sm" color="success" align="center">
+                  <CheckIcon size="sm" theme="success" style={{ marginRight: `${SPACING_SCALE.SM}px` }} />
+                  {uploadedFile.name} ({getFileType(uploadedFile).toUpperCase()})
+                </Text>
+                <Text size="xs" color="success" align="center">
+                  Η κάτοψη εμφανίστηκε στον χάρτη
+                </Text>
+              </Stack>
             </div>
           )}
         </>
       ) : (
-        // Enterprise Location Search Interface
+        // Enterprise Location Search Interface με BaseCard
         <>
-          {/* Search Input */}
+          {/* Search Input σε BaseCard container */}
           <div style={{
-            background: 'rgba(255, 255, 255, 0.95)',
-            borderRadius: '12px',
-            padding: '16px',
-            marginBottom: '8px'
+            marginBottom: `${SPACING_SCALE.SM}px`
           }}>
-            <div style={{ marginBottom: '12px' }}>
-              <label style={{
-                fontSize: '14px',
-                fontWeight: '500',
-                color: '#333',
-                marginBottom: '6px',
-                display: 'block'
-              }}>
-                {t('location.searchPlaceholder', 'Αναζήτηση διεύθυνσης...')}
-              </label>
-              <input
-                type="text"
-                value={searchInput}
-                onChange={handleSearchInputChange}
-                placeholder={t('location.searchExample', 'π.χ. Πλατεία Συντάγματος, Αθήνα')}
-                style={{
-                  width: '100%',
-                  padding: '12px',
-                  border: '1px solid #ddd',
-                  borderRadius: '8px',
-                  fontSize: '16px',
-                  backgroundColor: '#fff'
-                }}
-              />
-            </div>
-
-            {/* Loading indicator */}
-            {isLoading && (
-              <div style={{
-                padding: '8px',
-                fontSize: '14px',
-                color: '#666',
-                textAlign: 'center'
-              }}>
-                {t('location.searching', 'Αναζήτηση...')}
-              </div>
-            )}
-
-            {/* Error message */}
-            {error && (
-              <div style={{
-                padding: '8px',
-                fontSize: '14px',
-                color: '#dc2626',
-                textAlign: 'center'
-              }}>
-                {error}
-              </div>
-            )}
+            <SearchInputCard
+              searchInput={searchInput}
+              onSearchInputChange={handleSearchInputChange}
+              isLoading={isLoading}
+              error={error}
+            />
           </div>
 
           {/* Search Results */}
@@ -342,20 +480,17 @@ export const LocationStep: React.FC<LocationStepProps> = ({
             <div style={{
               maxHeight: 'calc(100vh - 400px)',
               overflowY: 'auto',
-              marginBottom: '8px'
+              marginBottom: `${SPACING_SCALE.SM}px`
             }}>
               {results.map((result) => (
-                <AddressBreakdownCard
+                <BaseCard
                   key={result.id}
-                  geocodeResult={result}
+                  variant="job"
                   title={result.displayName}
+                  description={result.address?.country ? `${result.address.country}` : ''}
+                  icon={<LocationIcon size="sm" theme="neutral" />}
                   onClick={() => handleLocationSelected(result)}
-                  config={{
-                    layout: 'list',
-                    enableBoundarySearch: true,
-                    maxComponents: 5
-                  }}
-                  style={{ marginBottom: '8px' }}
+                  style={{ marginBottom: `${SPACING_SCALE.SM}px` }}
                 />
               ))}
             </div>
@@ -364,23 +499,23 @@ export const LocationStep: React.FC<LocationStepProps> = ({
           {/* Selected Location Display */}
           {selectedLocation && (
             <div style={{
-              padding: '12px',
+              padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
               background: 'rgba(0, 200, 0, 0.1)',
-              borderRadius: '8px',
-              fontSize: '14px',
-              color: '#008000',
-              marginBottom: '8px'
+              borderRadius: `${SPACING_SCALE.SM}px`,
+              marginBottom: `${SPACING_SCALE.SM}px`
             }}>
-              <LocationIcon size="sm" theme="success" style={{ marginRight: '8px' }} />
-              {t('location.selected', 'Επιλεγμένη τοποθεσία')}: {selectedLocation.displayName}
+              <Text size="sm" color="success">
+                <LocationIcon size="sm" theme="success" style={{ marginRight: `${SPACING_SCALE.SM}px` }} />
+                Επιλεγμένη τοποθεσία: Placeholder location
+              </Text>
             </div>
           )}
 
           {/* Back Button */}
           <BaseCard
-            variant="neutral"
-            title={t('common.back', 'Πίσω')}
-            description={t('location.backToMenu', 'Επιστροφή στο μενού')}
+            variant="job"
+            title="Πίσω"
+            description="Επιστροφή στο μενού"
             onClick={() => {
               setShowLocationSearch(false);
               actions.clear();
@@ -392,5 +527,22 @@ export const LocationStep: React.FC<LocationStepProps> = ({
         </>
       )}
     </div>
+
+    {/* Info Panel */}
+    {showInfoPanel && currentInfoCard && (
+      <InfoPanel
+        isOpen={showInfoPanel}
+        onClose={() => {
+          setShowInfoPanel(false);
+          setCurrentInfoCard(null);
+        }}
+        title={getInfoContent(currentInfoCard).title}
+        content={getInfoContent(currentInfoCard).content}
+        variant={getInfoContent(currentInfoCard).type}
+        getInfoContent={getInfoContent}
+        selectedCategory={context?.selectedCategory || 'property'}
+      />
+    )}
+  </>
   );
 };

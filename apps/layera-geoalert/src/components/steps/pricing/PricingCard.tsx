@@ -6,9 +6,11 @@
  */
 
 import React from 'react';
-import { Stack } from '@layera/layout';
+import { Stack, SIZING_SCALE } from '@layera/layout';
 import { Text, Heading } from '@layera/typography';
 import { BaseCard } from '@layera/cards';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+import { useCursor } from '@layera/cursors';
 import type { StepCardProps, PricingType } from '../types';
 
 export interface PricingCardProps extends StepCardProps {
@@ -116,10 +118,13 @@ export const PricingCard: React.FC<PricingCardProps> = ({
     onPricingSelect?.(pricingType);
   };
 
+  // 🚀 Enterprise LEGO Systems Integration
+  const cursor = useCursor('pointer');
+
   // 🎨 Style based on selection state
   const cardStyle: React.CSSProperties = {
-    cursor: 'pointer',
-    transition: 'all 0.2s ease',
+    ...cursor.css,  // Enterprise cursor system
+    transition: 'var(--layera-transition-fast)',
     borderColor: isSelected ? 'var(--color-primary-500)' : undefined,
     backgroundColor: isSelected ? 'var(--color-primary-50)' : undefined,
     opacity: opacity === 'transparent' ? 0.6 : opacity === 'semi-transparent' ? 0.8 : 1
@@ -140,7 +145,7 @@ export const PricingCard: React.FC<PricingCardProps> = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            marginBottom: '8px'
+            marginBottom: `${SPACING_SCALE.SM}px`
           }}>
             {icon}
           </div>
@@ -154,9 +159,9 @@ export const PricingCard: React.FC<PricingCardProps> = ({
         {/* 🎯 Context-Aware Extra Info */}
         {context.selectedCategory && context.selectedIntent && (
           <div style={{
-            padding: '8px',
+            padding: `${SPACING_SCALE.SM}px`,
             backgroundColor: 'var(--color-neutral-100)',
-            borderRadius: '4px',
+            borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
             width: '100%'
           }}>
             <Text size="xs" color="neutral-500" align="center">
@@ -168,9 +173,9 @@ export const PricingCard: React.FC<PricingCardProps> = ({
         {/* ✅ Selected Indicator */}
         {isSelected && (
           <div style={{
-            width: '20px',
-            height: '20px',
-            borderRadius: '50%',
+            width: `${SIZING_SCALE.LG}px`,
+            height: `${SIZING_SCALE.LG}px`,
+            borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
             backgroundColor: 'var(--color-primary-500)',
             display: 'flex',
             alignItems: 'center',

@@ -5,6 +5,7 @@
 import React from 'react';
 import { useViewport } from '../hooks/useViewport';
 import { ResponsiveConfig } from '../types';
+import { SPACING_SCALE } from '@layera/constants';
 
 interface ResponsiveContainerProps {
   children: React.ReactNode;
@@ -20,19 +21,19 @@ const DEFAULT_CONFIG: ResponsiveConfig = {
   mobile: {
     breakpoint: 768,
     maxWidth: '100%',
-    padding: '1rem',
+    padding: `${SPACING_SCALE.MD}px`,
     gridColumns: 1
   },
   tablet: {
     breakpoint: 1024,
     maxWidth: '100%',
-    padding: '2rem',
+    padding: `${SPACING_SCALE.XL}px`,
     gridColumns: 2
   },
   desktop: {
     breakpoint: 1025,
     maxWidth: '1200px',
-    padding: '3rem',
+    padding: `${SPACING_SCALE.XXL}px`,
     gridColumns: 3
   }
 };
@@ -74,7 +75,7 @@ export const ResponsiveContainer: React.FC<ResponsiveContainerProps> = ({
     '--layera-device-type': deviceType,
     '--layera-viewport-width': `${width}px`,
     '--layera-grid-columns': currentConfig.gridColumns?.toString() || '1',
-    '--layera-container-padding': currentConfig.padding || '1rem',
+    '--layera-container-padding': currentConfig.padding || `${SPACING_SCALE.MD}px`,
     '--layera-container-max-width': currentConfig.maxWidth || '100%'
   } as React.CSSProperties;
 

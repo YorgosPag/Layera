@@ -6,6 +6,8 @@
  */
 
 import React from 'react';
+import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import type { DraggableFABProps, DraggableThemeSystem } from '../types';
 import { useDraggableRightBottom } from '../hooks/useDraggable';
 
@@ -18,36 +20,36 @@ const DRAGGABLE_FAB_THEME: DraggableThemeSystem = {
     primary: {
       backgroundColor: 'rgb(16, 185, 129)', // Layera emerald
       borderColor: '#FFFFFF',
-      boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
-      borderRadius: '50%',
+      boxShadow: BOX_SHADOW_SCALE.elevation5,
+      borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
       transition: 'all 0.2s ease'
     },
     secondary: {
       backgroundColor: 'rgb(107, 114, 128)',
       borderColor: '#FFFFFF',
-      boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)',
-      borderRadius: '50%',
+      boxShadow: BOX_SHADOW_SCALE.elevation4,
+      borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
       transition: 'all 0.2s ease'
     },
     success: {
       backgroundColor: 'rgb(16, 185, 129)',
       borderColor: '#FFFFFF',
-      boxShadow: '0 8px 24px rgba(16, 185, 129, 0.4)',
-      borderRadius: '50%',
+      boxShadow: BOX_SHADOW_SCALE.shadowSuccess,
+      borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
       transition: 'all 0.2s ease'
     },
     warning: {
       backgroundColor: 'rgb(245, 158, 11)',
       borderColor: '#FFFFFF',
-      boxShadow: '0 8px 24px rgba(245, 158, 11, 0.4)',
-      borderRadius: '50%',
+      boxShadow: BOX_SHADOW_SCALE.shadowWarning,
+      borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
       transition: 'all 0.2s ease'
     },
     error: {
       backgroundColor: 'rgb(239, 68, 68)',
       borderColor: '#FFFFFF',
-      boxShadow: '0 8px 24px rgba(239, 68, 68, 0.4)',
-      borderRadius: '50%',
+      boxShadow: BOX_SHADOW_SCALE.shadowError,
+      borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
       transition: 'all 0.2s ease'
     }
   },
@@ -56,19 +58,19 @@ const DRAGGABLE_FAB_THEME: DraggableThemeSystem = {
       width: 48,
       height: 48,
       fontSize: '16px',
-      padding: '12px'
+      padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`
     },
     md: {
       width: 56,
       height: 56,
       fontSize: '18px',
-      padding: '14px'
+      padding: `${SPACING_SCALE.MD - SPACING_SCALE.XS / 2}px`
     },
     lg: {
       width: 64,
       height: 64,
       fontSize: '20px',
-      padding: '16px'
+      padding: `${SPACING_SCALE.MD}px`
     }
   },
   cursors: {

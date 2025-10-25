@@ -20,12 +20,18 @@ importers:
       '@layera/boundary-service':
         specifier: file:../../packages/boundary-service
         version: file:packages/boundary-service(react@19.2.0)
+      '@layera/box-shadows':
+        specifier: file:../../packages/box-shadows
+        version: file:packages/box-shadows(react@19.2.0)
       '@layera/buttons':
         specifier: file:../../packages/buttons
         version: link:../../packages/buttons
       '@layera/cards':
         specifier: file:../../packages/cards
         version: link:../../packages/cards
+      '@layera/cursors':
+        specifier: workspace:^
+        version: link:../../packages/cursors
       '@layera/database-core':
         specifier: file:../../packages/database-core
         version: link:../../packages/database-core
@@ -41,6 +47,9 @@ importers:
       '@layera/draggable-fab':
         specifier: file:../../packages/draggable-fab
         version: file:packages/draggable-fab(react@19.2.0)
+      '@layera/error-boundary':
+        specifier: file:..\..\packages\error-boundary
+        version: link:../../packages/error-boundary
       '@layera/floating-action-buttons':
         specifier: workspace:^
         version: link:../../packages/floating-action-buttons
@@ -381,6 +390,37 @@ importers:
         specifier: ^5.0.0
         version: 5.9.3
 
+  packages/box-model:
+    dependencies:
+      react:
+        specifier: ^18.2.0
+        version: 18.3.1
+    devDependencies:
+      '@types/react':
+        specifier: ^18.2.0
+        version: 18.3.26
+      tsup:
+        specifier: ^7.2.0
+        version: 7.3.0(postcss@8.5.6)(typescript@5.9.3)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  packages/box-shadows:
+    devDependencies:
+      '@types/react':
+        specifier: ^18.0.0
+        version: 18.3.26
+      react:
+        specifier: ^18.0.0
+        version: 18.3.1
+      tsup:
+        specifier: ^8.0.0
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
   packages/buttons:
     dependencies:
       react:
@@ -519,6 +559,22 @@ importers:
       tsup:
         specifier: ^8.0.0
         version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  packages/cursors:
+    dependencies:
+      react:
+        specifier: ^18.2.0
+        version: 18.3.1
+    devDependencies:
+      '@types/react':
+        specifier: ^18.2.0
+        version: 18.3.26
+      tsup:
+        specifier: ^7.2.0
+        version: 7.3.0(postcss@8.5.6)(typescript@5.9.3)
       typescript:
         specifier: ^5.0.0
         version: 5.9.3
@@ -943,9 +999,9 @@ importers:
       '@layera/constants':
         specifier: workspace:*
         version: link:../constants
-      '@layera/i18n':
+      '@layera/tolgee':
         specifier: workspace:*
-        version: link:../i18n
+        version: link:../tolgee
     devDependencies:
       '@types/react':
         specifier: ^18.0.0
@@ -1267,31 +1323,6 @@ importers:
 
   packages/map-core:
     dependencies:
-      leaflet:
-        specifier: ^1.9.4
-        version: 1.9.4
-      react:
-        specifier: ^18.2.0
-        version: 18.3.1
-    devDependencies:
-      '@types/leaflet':
-        specifier: ^1.9.8
-        version: 1.9.21
-      '@types/react':
-        specifier: ^18.2.45
-        version: 18.3.26
-      tsup:
-        specifier: ^8.0.1
-        version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)
-      typescript:
-        specifier: ^5.3.3
-        version: 5.9.3
-
-  packages/map-drawing:
-    dependencies:
-      '@layera/map-core':
-        specifier: workspace:*
-        version: link:../map-core
       leaflet:
         specifier: ^1.9.4
         version: 1.9.4
@@ -3316,6 +3347,11 @@ packages:
     peerDependenciesMeta:
       react:
         optional: true
+
+  '@layera/box-shadows@file:packages/box-shadows':
+    resolution: {directory: packages/box-shadows, type: directory}
+    peerDependencies:
+      react: '>=18.0.0'
 
   '@layera/draggable-fab@file:packages/draggable-fab':
     resolution: {directory: packages/draggable-fab, type: directory}
@@ -9454,6 +9490,10 @@ snapshots:
     transitivePeerDependencies:
       - '@react-native-async-storage/async-storage'
 
+  '@layera/box-shadows@file:packages/box-shadows(react@19.2.0)':
+    dependencies:
+      react: 19.2.0
+
   '@layera/draggable-fab@file:packages/draggable-fab(react@19.2.0)':
     dependencies:
       react: 19.2.0
@@ -9461,7 +9501,7 @@ snapshots:
   '@layera/forms@file:packages/forms(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
       '@layera/constants': link:packages/constants
-      '@layera/i18n': link:packages/i18n
+      '@layera/tolgee': link:packages/tolgee
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
 

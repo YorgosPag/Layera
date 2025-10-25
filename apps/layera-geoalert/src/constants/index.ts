@@ -5,6 +5,8 @@
  * Usage: import { APP_CONFIG, DEVICE_CONFIG, UI_CONFIG } from '@/constants';
  */
 
+import { BORDER_RADIUS_SCALE, Z_INDEX, SPACING_SCALE } from '@layera/constants';
+
 // Application Configuration
 export const APP_CONFIG = {
   name: 'Layera GeoAlert',
@@ -14,9 +16,9 @@ export const APP_CONFIG = {
     fallback: 3002
   },
   urls: {
-    id: 'http://localhost:3000',
-    geoalert: 'http://localhost:3001',
-    geoalertFallback: 'http://localhost:3002'
+    id: import.meta.env.VITE_ID_SERVICE_URL || 'http://localhost:3000',
+    geoalert: import.meta.env.VITE_GEOALERT_URL || 'http://localhost:3001',
+    geoalertFallback: import.meta.env.VITE_GEOALERT_FALLBACK_URL || 'http://localhost:3002'
   }
 } as const;
 
@@ -104,9 +106,9 @@ export const UI_CONFIG = {
     },
     dimensions: {
       height: 40,
-      borderRadius: 20
+      borderRadius: BORDER_RADIUS_SCALE.LG
     },
-    zIndex: 9999,
+    zIndex: Z_INDEX.modal,
     gap: 12,
     padding: 16
   },
@@ -117,7 +119,7 @@ export const UI_CONFIG = {
       top: UI_POSITIONS.cards.top,
       ...UI_BLOCK_BASE.horizontalPadding
     },
-    zIndex: 9998,
+    zIndex: Z_INDEX.overlay,
     gap: 8
   },
 
@@ -127,7 +129,7 @@ export const UI_CONFIG = {
       top: UI_POSITIONS.cards.top, // Ίδια θέση με categoryStep
       ...UI_BLOCK_BASE.horizontalPadding
     },
-    zIndex: 9998,
+    zIndex: Z_INDEX.overlay,
     gap: 8
   },
 
@@ -139,16 +141,16 @@ export const UI_CONFIG = {
     },
     button: {
       minHeight: 45,
-      borderRadius: 8,
+      borderRadius: BORDER_RADIUS_SCALE.SM,
       padding: 10
     },
-    zIndex: 1000,
+    zIndex: Z_INDEX.dropdown,
     gap: 8
   },
   infoPanels: {
     mobile: {
       maxHeight: '40vh',
-      zIndex: 1500
+      zIndex: Z_INDEX.tooltip
     }
   }
 } as const;
@@ -192,10 +194,6 @@ export const ANIMATION_CONFIG = {
     short: 200,
     medium: 300,
     long: 500
-  },
-  transitions: {
-    ease: 'all 0.3s ease',
-    easeOut: 'all 0.2s ease-out'
   },
   delays: {
     deviceCheck: 100,
@@ -246,8 +244,8 @@ export const NOTIFICATION_CONFIG = {
     long: 8000
   },
   position: {
-    top: '20px',
-    right: '20px'
+    top: `${SPACING_SCALE.MD}px`,
+    right: `${SPACING_SCALE.MD}px`
   }
 } as const;
 

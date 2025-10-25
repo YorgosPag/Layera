@@ -8,6 +8,8 @@
 
 import React, { useCallback, useState } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { Text } from '@layera/typography';
+import { SPACING_SCALE } from '@layera/constants';
 import { FileUploader, DEFAULT_UPLOAD_CONFIG } from '@layera/file-upload';
 import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
 import { CheckIcon, ArrowRightIcon } from '@layera/icons';
@@ -136,13 +138,13 @@ export const UploadStep: React.FC<UploadStepProps> = ({
 
   const containerStyles: React.CSSProperties = {
     position: 'fixed',
-    top: '161px',
-    left: '8px',
-    right: '8px',
+    top: 'var(--layera-cards-top)',
+    left: 'var(--layera-side-margins)',
+    right: 'var(--layera-side-margins)',
     zIndex: 10002,
     display: 'flex',
     flexDirection: 'column',
-    gap: '8px',
+    gap: 'var(--layera-cards-gap)',
     padding: '0'
   };
 
@@ -174,10 +176,10 @@ export const UploadStep: React.FC<UploadStepProps> = ({
         <>
           {/* Enterprise LEGO FileUploader */}
           <div style={{
-            background: 'rgba(255, 255, 255, 0.95)',
-            borderRadius: '12px',
-            padding: '16px',
-            marginBottom: '8px'
+            background: 'var(--color-bg-surface-strong)',
+            borderRadius: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+            padding: `${SPACING_SCALE.MD}px`,
+            marginBottom: `${SPACING_SCALE.SM}px`
           }}>
             <FileUploader
               config={uploadConfig}
@@ -193,14 +195,14 @@ export const UploadStep: React.FC<UploadStepProps> = ({
           {/* Files Counter */}
           {uploadedFiles.length > 0 && (
             <div style={{
-              padding: '12px 16px',
+              padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
               background: 'rgba(0, 200, 0, 0.1)',
-              borderRadius: '8px',
-              fontSize: '14px',
-              color: '#008000',
-              marginBottom: '8px'
+              borderRadius: `${SPACING_SCALE.SM}px`,
+              marginBottom: `${SPACING_SCALE.SM}px`
             }}>
-              ✅ {uploadedFiles.length} {t('upload.filesCompleted', 'αρχεία ολοκληρώθηκαν')}
+              <Text size="sm" color="success">
+                ✅ {uploadedFiles.length} {t('upload.filesCompleted', 'αρχεία ολοκληρώθηκαν')}
+              </Text>
             </div>
           )}
 
@@ -229,8 +231,8 @@ export const UploadStep: React.FC<UploadStepProps> = ({
           {/* Back Card */}
           <BaseCard
             variant="neutral"
-            title={t('common.back', 'Πίσω')}
-            description={t('upload.backToMenu', 'Επιστροφή στο μενού')}
+            title="Πίσω"
+            description="Επιστροφή στο μενού"
             onClick={() => setShowFileUploader(false)}
             data-testid="upload-back-card"
           />

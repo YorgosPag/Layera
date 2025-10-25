@@ -79,13 +79,13 @@ export const AvailabilityDetailsStep: React.FC<AvailabilityDetailsStepProps> = (
 
   const containerStyles: React.CSSProperties = {
     position: 'fixed',
-    top: '161px',
-    left: '8px',
-    right: '8px',
+    top: 'var(--layera-cards-top)',
+    left: 'var(--layera-side-margins)',
+    right: 'var(--layera-side-margins)',
     zIndex: 10002,
     display: 'flex',
     flexDirection: 'column',
-    gap: '8px',
+    gap: 'var(--layera-cards-gap)',
     padding: '0',
     maxHeight: 'calc(100vh - 200px)',
     overflowY: 'auto'
@@ -99,8 +99,8 @@ export const AvailabilityDetailsStep: React.FC<AvailabilityDetailsStepProps> = (
         <>
           {/* Show Form Card */}
           <BaseCard
-            variant="info"
-            title={t('availabilityDetails.title', 'Λεπτομέρειες Διαθεσιμότητας')}
+            variant="job"
+            title={t('pipeline.steps.availabilityDetails.title', 'Λεπτομέρειες')}
             description={t('availabilityDetails.description', 'Καθορίστε πότε θα είστε διαθέσιμοι')}
             icon={<CalendarIcon size="sm" theme="neutral" />}
             onClick={handleShowForm}
@@ -117,7 +117,7 @@ export const AvailabilityDetailsStep: React.FC<AvailabilityDetailsStepProps> = (
 
           {/* Submit Card */}
           <BaseCard
-            variant={hasRequiredFields ? "success" : "warning"}
+            variant="job"
             title={t('availabilityDetails.save', 'Αποθήκευση')}
             description={hasRequiredFields ? t('availabilityDetails.saveDetails', 'Αποθήκευση λεπτομερειών') : t('availabilityDetails.fillAllFields', 'Συμπληρώστε όλα τα πεδία')}
             icon={<CheckIcon size="sm" theme="neutral" />}
@@ -127,9 +127,9 @@ export const AvailabilityDetailsStep: React.FC<AvailabilityDetailsStepProps> = (
 
           {/* Back to Menu */}
           <BaseCard
-            variant="neutral"
-            title={t('common.back', 'Πίσω')}
-            description={t('availabilityDetails.backToMenu', 'Επιστροφή στο μενού')}
+            variant="job"
+            title="Πίσω"
+            description="Επιστροφή στο μενού"
             onClick={() => setShowForm(false)}
             data-testid="availability-details-back"
           />

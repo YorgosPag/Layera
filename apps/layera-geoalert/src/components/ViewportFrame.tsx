@@ -1,4 +1,6 @@
 import React from 'react';
+import { SIZING_SCALE } from '@layera/layout';
+import { CSS_DESIGN_TOKENS } from '@layera/constants';
 
 interface ViewportFrameProps {
   children: React.ReactNode;
@@ -14,11 +16,12 @@ export function ViewportFrame({ children, id }: ViewportFrameProps) {
     <div
       id={id}
       style={{
-        position: 'relative',
-        width: '100%',
-        height: '100%',                 // Χρησιμοποιεί το ύψος από το parent (AppShell)
-        overflow: 'clip',               // Κόβει κάθε διαρροή - καλύτερο από hidden
-        boxSizing: 'border-box'         // Σιγουρεύει σωστούς υπολογισμούς
+        // ✅ Enterprise design tokens από @layera/constants
+        boxSizing: CSS_DESIGN_TOKENS.positioning['box-sizing-border'],
+        position: CSS_DESIGN_TOKENS.positioning['position-relative'],
+        overflow: CSS_DESIGN_TOKENS.positioning['overflow-clip'],
+        width: SIZING_SCALE.FULL,     // ✅ Enterprise sizing system
+        height: SIZING_SCALE.FULL     // ✅ Enterprise sizing system
       }}
       data-viewport-frame
     >

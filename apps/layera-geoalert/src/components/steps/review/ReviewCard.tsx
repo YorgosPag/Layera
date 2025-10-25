@@ -6,8 +6,9 @@
  */
 
 import React from 'react';
-import { Stack } from '@layera/layout';
+import { Stack, SIZING_SCALE } from '@layera/layout';
 import { Text, Heading } from '@layera/typography';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import { Button } from '@layera/buttons';
 import { BaseCard } from '@layera/cards';
 import type { StepCardProps, ReviewType } from '../types';
@@ -106,7 +107,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({
   const getCardStyle = (): React.CSSProperties => {
     const baseStyle: React.CSSProperties = {
       cursor: reviewType === 'edit' ? 'pointer' : 'default',
-      transition: 'all 0.2s ease',
+      transition: 'var(--layera-transition-fast)',
       opacity: opacity === 'transparent' ? 0.6 : opacity === 'semi-transparent' ? 0.8 : 1
     };
 
@@ -192,7 +193,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            marginBottom: '8px'
+            marginBottom: `${SPACING_SCALE.SM}px`
           }}>
             {icon}
           </div>
@@ -209,9 +210,9 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({
 
         {/* 🎯 Context-Aware Extra Info */}
         <div style={{
-          padding: '8px',
+          padding: `${SPACING_SCALE.SM}px`,
           backgroundColor: 'var(--color-neutral-100)',
-          borderRadius: '4px',
+          borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
           width: '100%'
         }}>
           <Text size="xs" color="neutral-500" align="center">
@@ -224,7 +225,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({
           <div style={{
             display: 'flex',
             justifyContent: 'center',
-            marginTop: '8px'
+            marginTop: `${SPACING_SCALE.SM}px`
           }}>
             {getActionButton()}
           </div>
@@ -235,13 +236,13 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          marginTop: '8px'
+          marginTop: `${SPACING_SCALE.SM}px`
         }}>
           {reviewData.isValid ? (
             <div style={{
-              width: '16px',
-              height: '16px',
-              borderRadius: '50%',
+              width: `${SIZING_SCALE.MD}px`,
+              height: `${SIZING_SCALE.MD}px`,
+              borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
               backgroundColor: 'var(--color-success-500)',
               display: 'flex',
               alignItems: 'center',
@@ -251,9 +252,9 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({
             </div>
           ) : (
             <div style={{
-              width: '16px',
-              height: '16px',
-              borderRadius: '50%',
+              width: `${SIZING_SCALE.MD}px`,
+              height: `${SIZING_SCALE.MD}px`,
+              borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
               backgroundColor: 'var(--color-danger-500)',
               display: 'flex',
               alignItems: 'center',

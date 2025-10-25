@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import { DEVICE_CONFIG, ANIMATION_CONFIG } from './constants';
+import { APP_CONFIG, DEVICE_CONFIG, ANIMATION_CONFIG } from './constants';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { SPACING_SCALE, BORDER_RADIUS, TABLE_COLUMN_WIDTHS } from '@layera/constants';
+// SIZING_SCALE import removed - not available in @layera/layout
 import { useViewportWithOverride, DeviceOverrideProvider } from '@layera/viewport';
 import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
@@ -8,10 +10,12 @@ import { ThemeProvider, ThemeSwitcher } from '@layera/theme-switcher';
 import { AppShell } from '@layera/layout';
 import { NotificationProvider, useNotifications } from '@layera/notifications';
 import { LoadingSpinner } from '@layera/loading';
+import { ErrorBoundary } from '@layera/error-boundary';
 // Enterprise LEGO Styles - Central Import
 import '@layera/styles';
 import { ArrowLeftIcon, MapIcon, PlusIcon, ShareIcon, LayersIcon, AlertTriangleIcon, CheckIcon, MoreIcon } from '@layera/icons';
 import { LanguageSwitcher } from '@layera/tolgee';
+import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { GeoHeader } from './components/GeoHeader';
 import { SimpleNavigationRail } from './components/SimpleNavigationRail';
 import { UnifiedPipelineModal } from '../../../packages/pipelines/unified/UnifiedPipelineModal';
@@ -79,9 +83,9 @@ function TestNotificationsComponent() {
   return (
     <div style={{
       backgroundColor: 'var(--layera-bg-secondary)',
-      padding: '1.5rem',
-      borderRadius: '8px',
-      margin: '1rem 0',
+      padding: `${SPACING_SCALE.LG}px`,
+      borderRadius: `${BORDER_RADIUS.SM}px`,
+      margin: `${SPACING_SCALE.MD}px 0`,
       border: '2px solid var(--layera-border-success)'
     }}>
       <Heading as="h3" size="lg" color="primary" className="layera-mb-4">
@@ -91,8 +95,8 @@ function TestNotificationsComponent() {
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-        gap: '1rem',
-        marginBottom: '1rem'
+        gap: `${SPACING_SCALE.MD}px`,
+        marginBottom: `${SPACING_SCALE.MD}px`
       }}>
         <Button
           variant="primary"
@@ -136,10 +140,10 @@ function TestNotificationsComponent() {
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '0.5rem',
-          padding: '1rem',
+          gap: `${SPACING_SCALE.SM}px`,
+          padding: `${SPACING_SCALE.MD}px`,
           backgroundColor: 'var(--layera-bg-warning)',
-          borderRadius: '4px',
+          borderRadius: `${BORDER_RADIUS.XS}px`,
           color: 'var(--layera-text-on-warning)'
         }}>
           <LoadingSpinner size="md" />
@@ -149,11 +153,13 @@ function TestNotificationsComponent() {
         </div>
       )}
 
-      <Text size="sm" color="secondary" style={{ marginTop: '1rem' }}>
-        ✅ @layera/notifications: Παρέχει enterprise-grade notification system<br/>
-        ✅ @layera/loading: Provides consistent loading states<br/>
-        ✅ Integration Testing: Όλα τα LEGO components λειτουργούν μαζί!
-      </Text>
+      <div style={{ marginTop: `${SPACING_SCALE.MD}px` }}>
+        <Text size="sm" color="secondary">
+          ✅ @layera/notifications: Παρέχει enterprise-grade notification system<br/>
+          ✅ @layera/loading: Provides consistent loading states<br/>
+          ✅ Integration Testing: Όλα τα LEGO components λειτουργούν μαζί!
+        </Text>
+      </div>
     </div>
   );
 }
@@ -289,7 +295,8 @@ function App() {
 
   if (isMapMode) {
     return (
-      <ThemeProvider defaultTheme="system" storageKey="layera-geoalert-theme">
+      <ErrorBoundary level="page" onError={(error, errorInfo) => console.error('🛡️ GeoAlert Map Error:', error, errorInfo)}>
+        <ThemeProvider defaultTheme="system" storageKey="layera-geoalert-theme">
         <NotificationProvider>
           <DeviceOverrideProvider>
             {/* CSS για κρύψιμο header όταν stepper είναι ενεργό */}
@@ -356,20 +363,19 @@ function App() {
               {/* Pipeline Control Panel - Right Side */}
               {showUnifiedPipeline && (
                 <div style={{
-                  width: '400px',
+                  width: `${TABLE_COLUMN_WIDTHS.EXTRA_WIDE}px`, // Container width for control panel
                   backgroundColor: 'var(--layera-bg-secondary)',
                   border: '1px solid var(--layera-border-primary)',
-                  padding: '20px',
+                  padding: `${SPACING_SCALE.LG + SPACING_SCALE.XS}px`,
                   overflow: 'auto'
                 }}>
-                  <h3 style={{
-                    margin: '0 0 16px 0',
-                    color: 'var(--layera-text-primary)',
-                    fontSize: '18px',
-                    fontWeight: 'bold'
+                  <div style={{
+                    margin: `0 0 ${SPACING_SCALE.MD}px 0`
                   }}>
-                    🎯 Pipeline Control Panel
-                  </h3>
+                    <Heading as="h3" size="lg" weight="bold">
+                      🎯 Pipeline Control Panel
+                    </Heading>
+                  </div>
 
                   <UnifiedPipelineModal
                     isOpen={true}
@@ -383,27 +389,29 @@ function App() {
             </div>
           </DeviceOverrideProvider>
         </NotificationProvider>
-      </ThemeProvider>
+        </ThemeProvider>
+      </ErrorBoundary>
     );
   }
 
   return (
-    <ThemeProvider defaultTheme="system" storageKey="layera-geoalert-theme">
+    <ErrorBoundary level="page" onError={(error, errorInfo) => console.error('🛡️ GeoAlert Main Error:', error, errorInfo)}>
+      <ThemeProvider defaultTheme="system" storageKey="layera-geoalert-theme">
       <NotificationProvider>
         <DeviceOverrideProvider>
           <div style={{
-              padding: '2rem',
+              padding: `${SPACING_SCALE.XL}px`,
               textAlign: 'center',
               backgroundColor: 'var(--layera-bg-primary)',
               color: 'var(--layera-text-primary)',
               minHeight: '100vh'
             }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: `${SPACING_SCALE.MD}px` }}>
                 <Heading as="h1" size="2xl" color="primary" className="layera-flex layera-items-center layera-gap-2">
                   <MapIcon size="md" theme="primary" />
                   {t('geoalert.title')}
                 </Heading>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: `${SPACING_SCALE.SM}px` }}>
                   <ThemeSwitcher variant="icon" size="md" />
                   <LanguageSwitcher />
                 </div>
@@ -411,13 +419,13 @@ function App() {
 
               <Text size="lg" color="secondary" className="layera-mb-8">{t('geoalert.subtitle')}</Text>
 
-              <div style={{ margin: '2rem 0' }}>
+              <div style={{ margin: `${SPACING_SCALE.XL}px 0` }}>
                 <div style={{
                   backgroundColor: 'var(--layera-bg-success)',
                   color: 'var(--layera-text-on-success)',
-                  padding: '1.5rem',
-                  borderRadius: '8px',
-                  marginBottom: '2rem'
+                  padding: `${SPACING_SCALE.LG}px`,
+                  borderRadius: `${BORDER_RADIUS.SM}px`,
+                  marginBottom: `${SPACING_SCALE.XL}px`
                 }}>
                   <Heading as="h3" size="lg" color="neutral" className="layera-mb-4 layera-flex layera-items-center layera-gap-2">
                     <MoreIcon size="sm" theme="success" /> {t('geoalert.geoCanvasReady')}
@@ -431,7 +439,7 @@ function App() {
                   onClick={() => setIsMapMode(true)}
                   icon={<MapIcon size="lg" theme="neutral" />}
                   className="layera-mb-8"
-                  style={{ margin: '0 auto 2rem auto', boxShadow: '0 4px 6px color-mix(in srgb, var(--layera-bg-secondary) 10%, transparent 90%)' }}
+                  style={{ margin: `0 auto ${SPACING_SCALE.XL}px auto`, boxShadow: BOX_SHADOW_SCALE.cardDefault }}
                 >
                   {t('geoalert.enterGeoCanvas')}
                 </Button>
@@ -441,10 +449,10 @@ function App() {
                 <div style={{
                   backgroundColor: 'var(--layera-bg-secondary)',
                   border: '1px solid var(--layera-border-primary)',
-                  borderRadius: '8px',
-                  padding: '1.5rem',
-                  margin: '2rem 0',
-                  maxWidth: '500px',
+                  borderRadius: `${BORDER_RADIUS.SM}px`,
+                  padding: `${SPACING_SCALE.LG}px`,
+                  margin: `${SPACING_SCALE.XL}px 0`,
+                  maxWidth: `${SPACING_SCALE.XXXL * 8}px`,
                   marginLeft: 'auto',
                   marginRight: 'auto'
                 }}>
@@ -480,14 +488,14 @@ function App() {
                 </div>
 
                 <a
-                  href="http://localhost:3000"
+                  href={APP_CONFIG.urls.id}
                   target="_blank"
                   style={{
                     color: 'var(--layera-bg-info)',
                     textDecoration: 'none',
-                    padding: '0.75rem 1.5rem',
+                    padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.LG}px`,
                     border: '2px solid var(--layera-bg-info)',
-                    borderRadius: '6px',
+                    borderRadius: `${BORDER_RADIUS.MD}px`,
                     display: 'inline-block',
                     fontWeight: 'bold',
                     transition: 'all 0.2s'
@@ -505,7 +513,7 @@ function App() {
                 </a>
               </div>
 
-              <div style={{ marginTop: '2rem' }}>
+              <div style={{ marginTop: `${SPACING_SCALE.XL}px` }}>
                 <Text size="sm" color="secondary" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
                   <LayersIcon size="sm" theme="info" /> {t('geoalert.modularMicroservice')}
                 </Text>
@@ -522,7 +530,8 @@ function App() {
           </div>
         </DeviceOverrideProvider>
       </NotificationProvider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 }
 

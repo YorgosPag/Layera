@@ -8,9 +8,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { MapProvider, useMap } from '@layera/map-core';
 import { useDrawing, DrawingMode } from '@layera/geo-drawing';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+import { SIZING_SCALE } from '@layera/layout';
+import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { useViewportWithOverride } from '@layera/viewport';
 import { Button } from '@layera/buttons';
+import { Text } from '@layera/typography';
 import { MarkerIcon, PolygonIcon, TrashIcon, PlusIcon, LocationIcon } from '../icons/LayeraIcons';
 import L from 'leaflet';
 
@@ -45,13 +49,13 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
       position: relative;
       animation: pulse-location 2s infinite;
       transform-origin: center bottom;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+      filter: drop-shadow(0 2px 4px var(--color-shadow-default));
     `;
 
     // Add the LocationIcon SVG with proper styling
     iconDiv.innerHTML = `
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#10b981" stroke="#ffffff" stroke-width="1"/>
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="var(--color-semantic-success-border)" stroke="var(--color-text-on-primary)" stroke-width="1"/>
       </svg>
     `;
 
@@ -63,15 +67,15 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
         @keyframes pulse-location {
           0% {
             transform: scale(1);
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+            filter: drop-shadow(0 2px 4px var(--color-shadow-default));
           }
           50% {
             transform: scale(1.15);
-            filter: drop-shadow(0 4px 8px rgba(16, 185, 129, 0.4));
+            filter: drop-shadow(0 4px 8px var(--color-semantic-success-shadow));
           }
           100% {
             transform: scale(1);
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+            filter: drop-shadow(0 2px 4px var(--color-shadow-default));
           }
         }
 
@@ -249,17 +253,17 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
         {currentMode !== 'none' && (
           <div style={{
             position: 'absolute',
-            bottom: '140px',
+            bottom: `${SPACING_SCALE.XXXL * 3 + SPACING_SCALE.LG}px`, // 140px equivalent
             left: '50%',
             transform: 'translateX(-50%)',
-            padding: '8px 12px',
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM}px`,
+            backgroundColor: 'var(--color-overlay-dark)',
             color: 'white',
-            borderRadius: '16px',
-            fontSize: '12px',
+            borderRadius: `${BORDER_RADIUS_SCALE.MD}px`,
+            // fontSize handled by Text component
             display: 'flex',
             alignItems: 'center',
-            gap: '6px',
+            gap: `${SPACING_SCALE.XS + 2}px`,
             zIndex: 1000,
             maxWidth: '80%',
             textAlign: 'center'
@@ -267,13 +271,17 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
             {currentMode === 'marker' && (
               <>
                 <MarkerIcon size="sm" theme="neutral" />
-                {t('clickOnMap')}
+                <Text size="xs" style={{ color: 'white' }}>
+                  Κάντε κλικ στον χάρτη
+                </Text>
               </>
             )}
             {currentMode === 'polygon' && (
               <>
                 <PolygonIcon size="sm" theme="neutral" />
-                {t('clickToAddPoints')}
+                <Text size="xs" style={{ color: 'white' }}>
+                  Κάντε κλικ για προσθήκη σημείων
+                </Text>
               </>
             )}
           </div>
@@ -286,27 +294,27 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
             onClick={onNewEntryClick}
             style={{
               position: 'absolute',
-              bottom: '20px',
-              right: '20px',
-              width: '56px',
-              height: '56px',
-              backgroundColor: '#22c55e',
-              borderRadius: '50%',
+              bottom: `${SPACING_SCALE.LG}px`,
+              right: `${SPACING_SCALE.LG}px`,
+              width: `${SIZING_SCALE.XXXL}px`,
+              height: `${SIZING_SCALE.XXXL}px`,
+              backgroundColor: 'var(--color-semantic-success-bg)',
+              borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              boxShadow: '0 4px 12px rgba(34, 197, 94, 0.3)',
+              boxShadow: BOX_SHADOW_SCALE.shadowSuccess,
               cursor: 'pointer',
               zIndex: 10001,
-              transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+              transition: 'var(--layera-transition-fast)'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'scale(1.1)';
-              e.currentTarget.style.boxShadow = '0 6px 16px rgba(34, 197, 94, 0.4)';
+              e.currentTarget.style.boxShadow = BOX_SHADOW_SCALE.shadowSuccess;
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'scale(1)';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(34, 197, 94, 0.3)';
+              e.currentTarget.style.boxShadow = BOX_SHADOW_SCALE.shadowSuccess;
             }}
           >
             <PlusIcon size="md" theme="neutral" />
@@ -321,7 +329,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
     <div className="desktop-map-container" style={{
       position: 'absolute',
       inset: 0,
-      width: '100%',
+      width: SIZING_SCALE.FULL,
       height: '100vh'
     }}>
       <div
@@ -337,52 +345,51 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
       {/* Areas List - ΑΦΑΙΡΕΘΗΚΕ για dark mode compatibility */}
       {false && drawnAreas.length > 0 && (
         <div style={{
-          marginTop: '16px',
-          padding: '16px',
-          backgroundColor: '#f8f9fa',
-          borderRadius: '8px',
-          boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+          marginTop: `${SPACING_SCALE.MD}px`,
+          padding: `${SPACING_SCALE.MD}px`,
+          backgroundColor: 'var(--color-bg-surface)',
+          borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
+          boxShadow: BOX_SHADOW_SCALE.cardSubtle
         }}>
-          <h4 style={{
-            margin: '0 0 12px 0',
-            fontSize: '14px',
-            fontWeight: '600',
-            color: '#374151'
+          <Text size="sm" weight="bold" style={{
+            margin: `0 0 ${SPACING_SCALE.SM}px 0`,
+            color: 'var(--color-text-primary)',
+            display: 'block'
           }}>
-            {t('drawnAreas')} ({drawnAreas.length})
-          </h4>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            Σχεδιασμένες Περιοχές ({drawnAreas.length})
+          </Text>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: `${SPACING_SCALE.SM}px` }}>
             {drawnAreas.map(area => (
               <div
                 key={area.id}
                 style={{
-                  padding: '8px 12px',
+                  padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM}px`,
                   backgroundColor: 'white',
-                  borderRadius: '6px',
-                  border: '1px solid #e5e7eb',
-                  fontSize: '12px',
+                  borderRadius: `${BORDER_RADIUS_SCALE.INPUT}px`,
+                  border: '1px solid var(--color-border-default)',
+                  // fontSize handled by Text component
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center'
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: `${SPACING_SCALE.XS + 2}px` }}>
                   {area.type === 'marker' ?
                     <MarkerIcon size="sm" theme="neutral" /> :
                     <PolygonIcon size="sm" theme="neutral" />
                   }
-                  <span style={{ fontWeight: '500' }}>{area.name}</span>
+                  <Text size="xs" weight="medium">{area.name}</Text>
                 </div>
                 {area.area && (
-                  <span style={{
-                    color: '#6b7280',
-                    backgroundColor: '#f3f4f6',
-                    padding: '2px 6px',
-                    borderRadius: '4px',
-                    fontSize: '11px'
+                  <Text size="xs" style={{
+                    color: 'var(--color-text-secondary)',
+                    backgroundColor: 'var(--color-bg-surface)',
+                    padding: `${SPACING_SCALE.XS - 2}px ${SPACING_SCALE.XS + 2}px`,
+                    borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
+                    display: 'inline-block'
                   }}>
                     {Math.round(area.area)} m²
-                  </span>
+                  </Text>
                 )}
               </div>
             ))}

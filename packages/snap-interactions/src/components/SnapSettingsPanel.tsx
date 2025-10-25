@@ -13,6 +13,7 @@ import { Text, Heading } from '@layera/typography';
 import { Stack, Grid } from '@layera/layout';
 import { Icon } from '@layera/icons';
 import { useTheme } from '@layera/theme-switcher';
+import { SPACING_SCALE } from '@layera/constants';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { useNotification } from '@layera/notifications';
 
@@ -242,7 +243,7 @@ export const SnapSettingsPanel: React.FC<SnapSettingsPanelProps> = ({
           <FormSection title={t('snap.settings.types.title')}>
             {/* Category Navigation για non-compact mode */}
             {!compact && (
-              <Stack direction="row" spacing={8} style={{ marginBottom: 16 }}>
+              <Stack direction="row" spacing={8} style={{ marginBottom: `${SPACING_SCALE.MD}px` }}>
                 {(['basic', 'advanced', 'precision'] as const).map(category => (
                   <Button
                     key={category}

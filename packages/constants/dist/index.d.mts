@@ -1,3 +1,5 @@
+import React from 'react';
+
 /**
  * Size constants for consistent component sizing
  */
@@ -323,18 +325,66 @@ declare const ELEVATION_LEVELS: {
     readonly XL: 5;
     readonly XXL: 6;
 };
+/**
+ * Enterprise Border Radius Scale
+ * 🌟 World-class border radius system που ξεπερνά Material Design 3, Fluent, και Apple HIG
+ *
+ * Features:
+ * - CSS Custom Properties με theme awareness
+ * - Type-safe border radius tokens με semantic naming
+ * - Enterprise-grade flexibility για complex layouts
+ * - Performance-optimized με design token integration
+ * - Aligned με SPACING_SCALE για consistency
+ */
+declare const BORDER_RADIUS_SCALE: {
+    readonly NONE: 0;
+    readonly XXS: 2;
+    readonly XS: 4;
+    readonly SM: 8;
+    readonly MD: 12;
+    readonly LG: 16;
+    readonly XL: 24;
+    readonly XXL: 32;
+    readonly XXXL: 48;
+    readonly PILL: 9999;
+    readonly CIRCLE: "50%";
+    readonly BUTTON: 8;
+    readonly CARD: 12;
+    readonly INPUT: 6;
+    readonly BADGE: 9999;
+    readonly MODAL: 16;
+    readonly TOOLTIP: 4;
+    readonly LAYOUT_SM: 20;
+    readonly LAYOUT_MD: 28;
+    readonly LAYOUT_LG: 36;
+    readonly LAYOUT_XL: 44;
+};
 declare const BORDER_RADIUS: {
     readonly NONE: 0;
-    readonly XS: 2;
-    readonly SM: 4;
-    readonly MD: 6;
-    readonly LG: 8;
-    readonly XL: 12;
-    readonly XXL: 16;
-    readonly FULL: 9999;
+    readonly XXS: 2;
+    readonly XS: 4;
+    readonly SM: 8;
+    readonly MD: 12;
+    readonly LG: 16;
+    readonly XL: 24;
+    readonly XXL: 32;
+    readonly XXXL: 48;
+    readonly PILL: 9999;
+    readonly CIRCLE: "50%";
+    readonly BUTTON: 8;
+    readonly CARD: 12;
+    readonly INPUT: 6;
+    readonly BADGE: 9999;
+    readonly MODAL: 16;
+    readonly TOOLTIP: 4;
+    readonly LAYOUT_SM: 20;
+    readonly LAYOUT_MD: 28;
+    readonly LAYOUT_LG: 36;
+    readonly LAYOUT_XL: 44;
 };
 declare const SPACING_SCALE: {
     readonly NONE: 0;
+    readonly XXS: 2;
     readonly XS: 4;
     readonly SM: 8;
     readonly MD: 16;
@@ -355,11 +405,127 @@ declare const Z_INDEX: {
     readonly MAP_OVERLAY: 10000;
     readonly MAP_MODAL: 10050;
 };
+/**
+ * Enterprise CSS custom properties για border radius system
+ * Συνδέονται με το @layera/constants theme system
+ */
+declare const BORDER_RADIUS_CSS_VARS: {
+    readonly 'border-radius-none': "0px";
+    readonly 'border-radius-xxs': "2px";
+    readonly 'border-radius-xs': "4px";
+    readonly 'border-radius-sm': "8px";
+    readonly 'border-radius-md': "12px";
+    readonly 'border-radius-lg': "16px";
+    readonly 'border-radius-xl': "24px";
+    readonly 'border-radius-xxl': "32px";
+    readonly 'border-radius-xxxl': "48px";
+    readonly 'border-radius-pill': "9999px";
+    readonly 'border-radius-circle': "50%";
+    readonly 'border-radius-button': "8px";
+    readonly 'border-radius-card': "12px";
+    readonly 'border-radius-input': "6px";
+    readonly 'border-radius-badge': "9999px";
+    readonly 'border-radius-modal': "16px";
+    readonly 'border-radius-tooltip': "4px";
+    readonly 'border-radius-layout-sm': "20px";
+    readonly 'border-radius-layout-md': "28px";
+    readonly 'border-radius-layout-lg': "36px";
+    readonly 'border-radius-layout-xl': "44px";
+};
+/**
+ * Type-safe border radius tokens για backward compatibility
+ * Primary BorderRadiusToken τώρα είναι στο design-tokens.ts
+ */
+type BorderRadiusScaleToken = keyof typeof BORDER_RADIUS_SCALE;
+/**
+ * Semantic border radius categories για different use cases
+ */
+type BorderRadiusCategory = 'micro' | 'standard' | 'special' | 'component' | 'layout';
+/**
+ * Utility function για CSS custom property access
+ */
+declare const getBorderRadiusVar: (token: string) => string;
+/**
+ * Utility function για border radius value lookup
+ */
+declare const getBorderRadiusValue: (token: BorderRadiusScaleToken) => string | number;
+/**
+ * Enterprise border radius utilities για common patterns
+ */
+declare const BORDER_RADIUS_UTILITIES: {
+    readonly components: {
+        readonly button: {
+            readonly default: string;
+            readonly rounded: string;
+            readonly square: string;
+        };
+        readonly card: {
+            readonly default: string;
+            readonly compact: string;
+            readonly elevated: string;
+            readonly hero: string;
+        };
+        readonly input: {
+            readonly default: string;
+            readonly rounded: string;
+            readonly pill: string;
+        };
+        readonly modal: {
+            readonly default: string;
+            readonly compact: string;
+            readonly large: string;
+        };
+        readonly badge: {
+            readonly default: string;
+            readonly rectangular: string;
+            readonly rounded: string;
+        };
+    };
+    readonly layouts: {
+        readonly section: {
+            readonly subtle: string;
+            readonly standard: string;
+            readonly prominent: string;
+            readonly hero: string;
+        };
+        readonly panel: {
+            readonly compact: string;
+            readonly standard: string;
+            readonly spacious: string;
+        };
+    };
+    readonly interactions: {
+        readonly hover: {
+            readonly fromSm: string;
+            readonly fromMd: string;
+            readonly fromLg: string;
+        };
+        readonly focus: {
+            readonly default: string;
+            readonly input: string;
+            readonly button: string;
+        };
+    };
+    readonly application: {
+        readonly geoAlert: {
+            readonly mapTooltip: string;
+            readonly alertCard: string;
+            readonly stepCard: string;
+            readonly modalDialog: string;
+        };
+        readonly design: {
+            readonly canvas: string;
+            readonly toolbar: string;
+            readonly preview: string;
+        };
+    };
+};
 type ThemeMode = typeof THEME_MODES[keyof typeof THEME_MODES];
 type ColorScheme = typeof COLOR_SCHEMES[keyof typeof COLOR_SCHEMES];
 type ComponentVariant = typeof COMPONENT_VARIANTS[keyof typeof COMPONENT_VARIANTS];
 type ElevationLevel = typeof ELEVATION_LEVELS[keyof typeof ELEVATION_LEVELS];
 type BorderRadius = typeof BORDER_RADIUS[keyof typeof BORDER_RADIUS];
+type BorderRadiusScale = typeof BORDER_RADIUS_SCALE[keyof typeof BORDER_RADIUS_SCALE];
 type SpacingScale = typeof SPACING_SCALE[keyof typeof SPACING_SCALE];
 type ZIndex = typeof Z_INDEX[keyof typeof Z_INDEX];
 
@@ -689,10 +855,670 @@ declare const CONFIG: {
 };
 
 /**
+ * @layera/constants - World-Class Design Token System
+ *
+ * 🌟 Enterprise-grade design tokens inspired by:
+ * - Adobe Spectrum Design System
+ * - Microsoft Fluent Design
+ * - Google Material Design 3
+ * - Shopify Polaris
+ * - Salesforce Lightning Design System
+ *
+ * 🚀 Features:
+ * - CSS Custom Properties με semantic naming
+ * - Theme-aware με automatic light/dark/system detection
+ * - Responsive scaling με breakpoint awareness
+ * - Accessibility compliance (WCAG 2.1 AAA)
+ * - Performance-optimized για mobile devices
+ * - TypeScript strict safety
+ * - Hot-swappable themes
+ * - Component-specific design tokens
+ * - Motion design με reduced-motion respect
+ */
+/**
+ * Base scale system - πυρήνας όλων των measurements
+ * Inspired by 8px grid system αλλά advanced με mathematical precision
+ */
+declare const DESIGN_TOKEN_SCALE: {
+    readonly BASE_UNIT: 4;
+    readonly SCALE_FACTORS: {
+        readonly XXS: 0.5;
+        readonly XS: 1;
+        readonly SM: 2;
+        readonly MD: 4;
+        readonly LG: 6;
+        readonly XL: 8;
+        readonly XXL: 12;
+        readonly XXXL: 16;
+        readonly XXXXL: 24;
+    };
+};
+/**
+ * CSS Custom Properties Registry
+ * Αυτά τα CSS variables θα γίνουν inject στο :root
+ */
+declare const CSS_DESIGN_TOKENS: {
+    readonly spacing: {
+        readonly 'spacing-0': "0";
+        readonly 'spacing-xxs': `${number}px`;
+        readonly 'spacing-xs': `${number}px`;
+        readonly 'spacing-sm': `${number}px`;
+        readonly 'spacing-md': `${number}px`;
+        readonly 'spacing-lg': `${number}px`;
+        readonly 'spacing-xl': `${number}px`;
+        readonly 'spacing-xxl': `${number}px`;
+        readonly 'spacing-xxxl': `${number}px`;
+    };
+    readonly colors: {
+        readonly 'color-bg-canvas': "light-dark(#ffffff, #0f0f0f)";
+        readonly 'color-bg-surface': "light-dark(#fafafa, #1a1a1a)";
+        readonly 'color-bg-surface-raised': "light-dark(#ffffff, #262626)";
+        readonly 'color-bg-surface-overlay': "light-dark(rgba(255,255,255,0.95), rgba(15,15,15,0.95))";
+        readonly 'color-text-primary': "light-dark(#0f0f0f, #f0f0f0)";
+        readonly 'color-text-secondary': "light-dark(#6b7280, #a1a1aa)";
+        readonly 'color-text-tertiary': "light-dark(#9ca3af, #71717a)";
+        readonly 'color-text-inverse': "light-dark(#ffffff, #0f0f0f)";
+        readonly 'color-semantic-info-bg': "light-dark(#eff6ff, #1e3a8a)";
+        readonly 'color-semantic-info-border': "light-dark(#3b82f6, #60a5fa)";
+        readonly 'color-semantic-info-text': "light-dark(#1e40af, #bfdbfe)";
+        readonly 'color-semantic-success-bg': "light-dark(#f0fdf4, #14532d)";
+        readonly 'color-semantic-success-border': "light-dark(#22c55e, #4ade80)";
+        readonly 'color-semantic-success-text': "light-dark(#166534, #bbf7d0)";
+        readonly 'color-semantic-warning-bg': "light-dark(#fffbeb, #92400e)";
+        readonly 'color-semantic-warning-border': "light-dark(#f59e0b, #fbbf24)";
+        readonly 'color-semantic-warning-text': "light-dark(#d97706, #fef3c7)";
+        readonly 'color-semantic-error-bg': "light-dark(#fef2f2, #7f1d1d)";
+        readonly 'color-semantic-error-border': "light-dark(#ef4444, #f87171)";
+        readonly 'color-semantic-error-text': "light-dark(#dc2626, #fecaca)";
+        readonly 'color-interactive-primary': "light-dark(#3b82f6, #60a5fa)";
+        readonly 'color-interactive-primary-hover': "light-dark(#2563eb, #3b82f6)";
+        readonly 'color-interactive-primary-active': "light-dark(#1d4ed8, #2563eb)";
+        readonly 'color-border-default': "light-dark(#e5e7eb, #374151)";
+        readonly 'color-border-subtle': "light-dark(#f3f4f6, #1f2937)";
+        readonly 'color-border-strong': "light-dark(#d1d5db, #4b5563)";
+    };
+    readonly elevation: {
+        readonly 'elevation-none': "none";
+        readonly 'elevation-xs': "light-dark(0 1px 2px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.3))";
+        readonly 'elevation-sm': "light-dark(0 1px 3px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.4))";
+        readonly 'elevation-md': "light-dark(0 4px 6px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.4))";
+        readonly 'elevation-lg': "light-dark(0 10px 15px rgba(0,0,0,0.1), 0 10px 15px rgba(0,0,0,0.4))";
+        readonly 'elevation-xl': "light-dark(0 20px 25px rgba(0,0,0,0.1), 0 20px 25px rgba(0,0,0,0.4))";
+        readonly 'elevation-xxl': "light-dark(0 25px 50px rgba(0,0,0,0.25), 0 25px 50px rgba(0,0,0,0.6))";
+    };
+    readonly motion: {
+        readonly 'motion-duration-instant': "0ms";
+        readonly 'motion-duration-fast': "150ms";
+        readonly 'motion-duration-normal': "250ms";
+        readonly 'motion-duration-slow': "400ms";
+        readonly 'motion-duration-slower': "600ms";
+        readonly 'motion-ease-linear': "linear";
+        readonly 'motion-ease-ease': "ease";
+        readonly 'motion-ease-ease-in': "ease-in";
+        readonly 'motion-ease-ease-out': "ease-out";
+        readonly 'motion-ease-ease-in-out': "ease-in-out";
+        readonly 'motion-ease-smooth': "cubic-bezier(0.4, 0.0, 0.2, 1)";
+        readonly 'motion-ease-sharp': "cubic-bezier(0.4, 0.0, 0.6, 1)";
+        readonly 'motion-ease-bounce': "cubic-bezier(0.68, -0.55, 0.265, 1.55)";
+        readonly 'motion-transition-fast': "var(--motion-duration-fast) var(--motion-ease-smooth)";
+        readonly 'motion-transition-normal': "var(--motion-duration-normal) var(--motion-ease-smooth)";
+        readonly 'motion-transition-slow': "var(--motion-duration-slow) var(--motion-ease-smooth)";
+    };
+    readonly typography: {
+        readonly 'font-family-sans': "system-ui, -apple-system, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif";
+        readonly 'font-family-mono': "\"Fira Code\", \"JetBrains Mono\", Consolas, \"Courier New\", monospace";
+        readonly 'font-size-xs': "0.75rem";
+        readonly 'font-size-sm': "0.875rem";
+        readonly 'font-size-md': "1rem";
+        readonly 'font-size-lg': "1.125rem";
+        readonly 'font-size-xl': "1.25rem";
+        readonly 'font-size-xxl': "1.5rem";
+        readonly 'font-size-xxxl': "2rem";
+        readonly 'line-height-tight': "1.25";
+        readonly 'line-height-normal': "1.5";
+        readonly 'line-height-relaxed': "1.75";
+        readonly 'font-weight-regular': "400";
+        readonly 'font-weight-medium': "500";
+        readonly 'font-weight-semibold': "600";
+        readonly 'font-weight-bold': "700";
+    };
+    readonly borderRadius: {
+        readonly 'border-radius-none': "0";
+        readonly 'border-radius-xs': "2px";
+        readonly 'border-radius-sm': "4px";
+        readonly 'border-radius-md': "6px";
+        readonly 'border-radius-lg': "8px";
+        readonly 'border-radius-xl': "12px";
+        readonly 'border-radius-xxl': "16px";
+        readonly 'border-radius-full': "9999px";
+    };
+    readonly zIndex: {
+        readonly 'z-index-base': "0";
+        readonly 'z-index-elevated': "100";
+        readonly 'z-index-sticky': "200";
+        readonly 'z-index-overlay': "300";
+        readonly 'z-index-modal': "400";
+        readonly 'z-index-popover': "500";
+        readonly 'z-index-tooltip': "600";
+        readonly 'z-index-toast': "700";
+        readonly 'z-index-map-overlay': "10000";
+        readonly 'z-index-map-modal': "10100";
+    };
+    readonly positioning: {
+        readonly 'box-sizing-content': "content-box";
+        readonly 'box-sizing-border': "border-box";
+        readonly 'position-static': "static";
+        readonly 'position-relative': "relative";
+        readonly 'position-absolute': "absolute";
+        readonly 'position-fixed': "fixed";
+        readonly 'position-sticky': "sticky";
+        readonly 'overflow-visible': "visible";
+        readonly 'overflow-hidden': "hidden";
+        readonly 'overflow-clip': "clip";
+        readonly 'overflow-scroll': "scroll";
+        readonly 'overflow-auto': "auto";
+    };
+};
+/**
+ * Component-specific design tokens
+ * Κάθε component μπορεί να έχει τα δικά του semantic tokens
+ */
+declare const COMPONENT_DESIGN_TOKENS: {
+    readonly button: {
+        readonly 'button-height-sm': "var(--spacing-xl)";
+        readonly 'button-height-md': "var(--spacing-xxl)";
+        readonly 'button-height-lg': "var(--spacing-xxxl)";
+        readonly 'button-padding-x-sm': "var(--spacing-md)";
+        readonly 'button-padding-x-md': "var(--spacing-lg)";
+        readonly 'button-padding-x-lg': "var(--spacing-xl)";
+        readonly 'button-border-radius': "var(--border-radius-md)";
+        readonly 'button-transition': "all var(--motion-transition-fast)";
+    };
+    readonly card: {
+        readonly 'card-padding': "var(--spacing-lg)";
+        readonly 'card-border-radius': "var(--border-radius-lg)";
+        readonly 'card-background': "var(--color-bg-surface-raised)";
+        readonly 'card-border': "1px solid var(--color-border-subtle)";
+        readonly 'card-elevation': "var(--elevation-sm)";
+        readonly 'card-elevation-hover': "var(--elevation-md)";
+        readonly 'card-transition': "all var(--motion-transition-normal)";
+    };
+    readonly modal: {
+        readonly 'modal-backdrop': "rgba(0, 0, 0, 0.6)";
+        readonly 'modal-elevation': "var(--elevation-xxl)";
+        readonly 'modal-border-radius': "var(--border-radius-xl)";
+        readonly 'modal-padding': "var(--spacing-xxl)";
+        readonly 'modal-animation-enter': "var(--motion-transition-slow)";
+        readonly 'modal-animation-exit': "var(--motion-transition-normal)";
+    };
+};
+/**
+ * Responsive design tokens
+ * Τα tokens προσαρμόζονται ανάλογα με το breakpoint
+ */
+declare const RESPONSIVE_DESIGN_TOKENS: {
+    readonly mobile: {
+        readonly 'spacing-scale-factor': "0.75";
+        readonly 'font-scale-factor': "0.875";
+        readonly 'border-radius-scale-factor': "0.75";
+    };
+    readonly tablet: {
+        readonly 'spacing-scale-factor': "0.875";
+        readonly 'font-scale-factor': "0.9375";
+        readonly 'border-radius-scale-factor': "0.875";
+    };
+    readonly desktop: {
+        readonly 'spacing-scale-factor': "1";
+        readonly 'font-scale-factor': "1";
+        readonly 'border-radius-scale-factor': "1";
+    };
+    readonly desktopLarge: {
+        readonly 'spacing-scale-factor': "1.125";
+        readonly 'font-scale-factor': "1.0625";
+        readonly 'border-radius-scale-factor': "1.125";
+    };
+};
+type DesignTokenCategory = keyof typeof CSS_DESIGN_TOKENS;
+type SpacingToken = keyof typeof CSS_DESIGN_TOKENS.spacing;
+type ColorToken = keyof typeof CSS_DESIGN_TOKENS.colors;
+type ElevationToken = keyof typeof CSS_DESIGN_TOKENS.elevation;
+type MotionToken = keyof typeof CSS_DESIGN_TOKENS.motion;
+type TypographyToken = keyof typeof CSS_DESIGN_TOKENS.typography;
+type BorderRadiusToken = keyof typeof CSS_DESIGN_TOKENS.borderRadius;
+type ZIndexToken = keyof typeof CSS_DESIGN_TOKENS.zIndex;
+type PositioningToken = keyof typeof CSS_DESIGN_TOKENS.positioning;
+type ComponentToken = keyof typeof COMPONENT_DESIGN_TOKENS;
+type ResponsiveToken = keyof typeof RESPONSIVE_DESIGN_TOKENS;
+
+/**
+ * @layera/constants - Advanced Theme Engine
+ *
+ * 🌟 World-class theming system που ξεπερνά Material Design 3 και Fluent
+ *
+ * Features:
+ * - Runtime theme switching χωρίς page reload
+ * - CSS Custom Properties injection με batch updates
+ * - Automatic light/dark/system detection
+ * - Color contrast validation (WCAG 2.1 AAA)
+ * - Performance-optimized με RAF batching
+ * - Memory leak prevention
+ * - SSR/SSG compatibility
+ * - Accessibility respect (reduced-motion, high-contrast)
+ * - Hot theme reloading για development
+ */
+/**
+ * Theme Engine Configuration
+ */
+interface ThemeEngineConfig {
+    /** CSS selector για injection (default: ':root') */
+    rootSelector?: string;
+    /** Enable automatic system theme detection */
+    enableSystemDetection?: boolean;
+    /** Enable reduced motion respect */
+    enableReducedMotion?: boolean;
+    /** Enable high contrast mode detection */
+    enableHighContrast?: boolean;
+    /** Enable performance monitoring */
+    enablePerformanceMonitoring?: boolean;
+    /** Custom theme storage key */
+    storageKey?: string;
+}
+/**
+ * Theme State Management
+ */
+interface ThemeState {
+    /** Current active theme */
+    activeTheme: 'light' | 'dark' | 'system';
+    /** Resolved theme (light or dark) */
+    resolvedTheme: 'light' | 'dark';
+    /** System preference */
+    systemPreference: 'light' | 'dark';
+    /** Reduced motion preference */
+    prefersReducedMotion: boolean;
+    /** High contrast preference */
+    prefersHighContrast: boolean;
+    /** Theme loading state */
+    isLoading: boolean;
+    /** Last update timestamp */
+    lastUpdated: number;
+}
+/**
+ * Advanced Theme Engine Class
+ */
+declare class LayeraThemeEngine {
+    private config;
+    private state;
+    private mediaQueries;
+    private rafId;
+    private updateQueue;
+    private observers;
+    constructor(config?: ThemeEngineConfig);
+    /**
+     * Initialize theme engine
+     */
+    private initialize;
+    /**
+     * Detect system preferences
+     */
+    private detectSystemPreferences;
+    /**
+     * Setup media query listeners για dynamic updates
+     */
+    private setupMediaQueryListeners;
+    /**
+     * Load persisted theme state από localStorage
+     */
+    private loadPersistedState;
+    /**
+     * Persist theme state στο localStorage
+     */
+    private persistState;
+    /**
+     * Update resolved theme based on active theme and system preference
+     */
+    private updateResolvedTheme;
+    /**
+     * Schedule update using RequestAnimationFrame για performance
+     */
+    private scheduleUpdate;
+    /**
+     * Flush all queued updates
+     */
+    private flushUpdates;
+    /**
+     * Inject όλα τα CSS design tokens στο DOM
+     */
+    private injectCSSTokens;
+    /**
+     * Inject spacing tokens
+     */
+    private injectSpacingTokens;
+    /**
+     * Inject color tokens με theme awareness
+     */
+    private injectColorTokens;
+    /**
+     * Adjust colors για high contrast mode
+     */
+    private adjustForHighContrast;
+    /**
+     * Inject elevation tokens
+     */
+    private injectElevationTokens;
+    /**
+     * Inject motion tokens με reduced motion respect
+     */
+    private injectMotionTokens;
+    /**
+     * Inject typography tokens
+     */
+    private injectTypographyTokens;
+    /**
+     * Inject border radius tokens
+     */
+    private injectBorderRadiusTokens;
+    /**
+     * Inject z-index tokens
+     */
+    private injectZIndexTokens;
+    /**
+     * Inject component-specific tokens
+     */
+    private injectComponentTokens;
+    /**
+     * Inject responsive tokens based on current breakpoint
+     */
+    private injectResponsiveTokens;
+    /**
+     * Public API - Set theme
+     */
+    setTheme(theme: 'light' | 'dark' | 'system'): void;
+    /**
+     * Public API - Get current state
+     */
+    getState(): Readonly<ThemeState>;
+    /**
+     * Public API - Subscribe to state changes
+     */
+    subscribe(observer: (state: ThemeState) => void): () => void;
+    /**
+     * Notify observers of state changes
+     */
+    private notifyObservers;
+    /**
+     * Cleanup - remove event listeners and clear RAF
+     */
+    destroy(): void;
+}
+/**
+ * Get or create global theme engine instance
+ */
+declare const getThemeEngine: (config?: ThemeEngineConfig) => LayeraThemeEngine;
+/**
+ * Utility function για CSS-in-JS integration (basic version - για πλήρη React integration χρήσε τα React hooks)
+ */
+declare const getDesignTokenVar: (tokenName: string) => string;
+/**
+ * Utility function για multiple design tokens (basic version - για πλήρη React integration χρήσε τα React hooks)
+ */
+declare const getDesignTokenVars: (tokenNames: string[]) => Record<string, string>;
+
+/**
+ * @layera/constants - Enterprise React Hooks για Design Token System
+ *
+ * 🚀 World-class React integration που ξεπερνά Material-UI, Chakra, και Ant Design
+ *
+ * Features:
+ * - Type-safe design token consumption
+ * - Runtime theme reactivity
+ * - Performance-optimized με memoization
+ * - SSR/SSG compatibility
+ * - Automatic CSS custom property injection
+ * - Theme state management με context
+ * - Hot reloading support
+ * - TypeScript strict compliance
+ */
+
+/**
+ * Theme Context για React integration
+ */
+interface LayeraThemeContext {
+    engine: LayeraThemeEngine | null;
+    state: ThemeState | null;
+    setTheme: (theme: 'light' | 'dark' | 'system') => void;
+    isReady: boolean;
+}
+/**
+ * Theme Provider Component - Enterprise-grade setup
+ */
+interface LayeraThemeProviderProps {
+    children: React.ReactNode;
+    config?: ThemeEngineConfig;
+}
+declare const LayeraThemeProvider: React.FC<LayeraThemeProviderProps>;
+/**
+ * Core hook για theme access
+ */
+declare const useLayeraTheme: () => LayeraThemeContext;
+/**
+ * Hook για single design token με type safety
+ */
+declare const useDesignToken: <T extends string>(tokenName: T) => string;
+/**
+ * Hook για multiple design tokens με optimized performance
+ */
+declare const useDesignTokens: <T extends readonly string[]>(tokenNames: T) => Record<string, string>;
+/**
+ * Type-safe spacing hook
+ */
+declare const useSpacing: (token: SpacingToken) => string;
+/**
+ * Type-safe color hook με semantic naming
+ */
+declare const useColor: (token: ColorToken) => string;
+/**
+ * Type-safe elevation hook
+ */
+declare const useElevation: (token: ElevationToken) => string;
+/**
+ * Type-safe motion hook
+ */
+declare const useMotion: (token: MotionToken) => string;
+/**
+ * Type-safe typography hook
+ */
+declare const useTypography: (token: TypographyToken) => string;
+/**
+ * Type-safe border radius hook
+ */
+declare const useBorderRadius: (token: BorderRadiusToken) => string;
+/**
+ * Type-safe z-index hook
+ */
+declare const useZIndex: (token: ZIndexToken) => string;
+/**
+ * Component-specific design tokens hook
+ */
+declare const useComponentTokens: (componentName: ComponentToken) => Record<string, string>;
+/**
+ * Advanced hook που επιστρέφει CSS-in-JS object με όλα τα tokens
+ */
+declare const useLayeraDesignSystem: () => {
+    spacing: {
+        xxs: string;
+        xs: string;
+        sm: string;
+        md: string;
+        lg: string;
+        xl: string;
+        xxl: string;
+        xxxl: string;
+    };
+    colors: {
+        bg: {
+            canvas: string;
+            surface: string;
+            surfaceRaised: string;
+            surfaceOverlay: string;
+        };
+        text: {
+            primary: string;
+            secondary: string;
+            tertiary: string;
+            inverse: string;
+        };
+        semantic: {
+            info: {
+                bg: string;
+                border: string;
+                text: string;
+            };
+            success: {
+                bg: string;
+                border: string;
+                text: string;
+            };
+            warning: {
+                bg: string;
+                border: string;
+                text: string;
+            };
+            error: {
+                bg: string;
+                border: string;
+                text: string;
+            };
+        };
+        interactive: {
+            primary: string;
+            primaryHover: string;
+            primaryActive: string;
+        };
+        border: {
+            default: string;
+            subtle: string;
+            strong: string;
+        };
+    };
+    elevation: {
+        none: string;
+        xs: string;
+        sm: string;
+        md: string;
+        lg: string;
+        xl: string;
+        xxl: string;
+    };
+    motion: {
+        duration: {
+            instant: string;
+            fast: string;
+            normal: string;
+            slow: string;
+            slower: string;
+        };
+        ease: {
+            linear: string;
+            ease: string;
+            easeIn: string;
+            easeOut: string;
+            easeInOut: string;
+            smooth: string;
+            sharp: string;
+            bounce: string;
+        };
+        transition: {
+            fast: string;
+            normal: string;
+            slow: string;
+        };
+    };
+    typography: {
+        fontFamily: {
+            sans: string;
+            mono: string;
+        };
+        fontSize: {
+            xs: string;
+            sm: string;
+            md: string;
+            lg: string;
+            xl: string;
+            xxl: string;
+            xxxl: string;
+        };
+        lineHeight: {
+            tight: string;
+            normal: string;
+            relaxed: string;
+        };
+        fontWeight: {
+            regular: string;
+            medium: string;
+            semibold: string;
+            bold: string;
+        };
+    };
+    borderRadius: {
+        none: string;
+        xs: string;
+        sm: string;
+        md: string;
+        lg: string;
+        xl: string;
+        xxl: string;
+        full: string;
+    };
+    zIndex: {
+        base: string;
+        elevated: string;
+        sticky: string;
+        overlay: string;
+        modal: string;
+        popover: string;
+        tooltip: string;
+        toast: string;
+        mapOverlay: string;
+        mapModal: string;
+    };
+    theme: {
+        current: "light" | "dark";
+        isLoading: boolean;
+        systemPreference: "light" | "dark";
+        prefersReducedMotion: boolean;
+        prefersHighContrast: boolean;
+    };
+};
+/**
+ * Hook για responsive design tokens (θα επεκταθεί μελλοντικά)
+ */
+declare const useResponsiveDesignTokens: () => {
+    getSpacing: (token: SpacingToken, _scale?: "mobile" | "tablet" | "desktop" | "desktopLarge") => string;
+};
+/**
+ * Development-only hook για debugging design tokens
+ */
+declare const useDesignTokenDebugger: () => {
+    themeState: ThemeState | null;
+    availableTokens: {
+        spacing: string[];
+        colors: string[];
+        elevation: string[];
+        motion: string[];
+        typography: string[];
+        borderRadius: string[];
+        zIndex: string[];
+        components: string[];
+    };
+    logAllTokens: () => void;
+    getPerformanceMetrics: () => Readonly<ThemeState> | undefined;
+} | null;
+
+/**
  * @layera/constants
  * Centralized constants and configuration values for the Layera design system
  */
 
 declare const LAYERA_CONSTANTS_VERSION = "1.0.0";
 
-export { AUTOCOMPLETE_VALUES, type AutocompleteValue, BORDER_RADIUS, BULK_ACTIONS, BUTTON_SIZES, BUTTON_STATES, type BorderRadius, type BulkAction, type ButtonSize, type ButtonState, CARD_STATES, COLOR_SCHEMES, COLUMN_TYPES, COMPONENT_SIZES, COMPONENT_VARIANTS, CONFIG, type CardState, type ColorScheme, type ColumnType, type ComponentSize, type ComponentVariant, DATA_STATES, type DataState, ELEVATION_LEVELS, EXPORT_FORMATS, type ElevationLevel, type ExportFormat, FIELD_SIZES, FILTER_TYPES, FORM_SIZES, FORM_STATES, FORM_TYPES, type FieldSize, type FilterType, type FormSize, type FormState, type FormType, GEO_DRAWING_ERRORS, GEO_DRAWING_INTERACTION, GEO_DRAWING_MEASUREMENT, GEO_DRAWING_OSM, GEO_DRAWING_SNAP, GEO_DRAWING_STYLES, GEO_DRAWING_SUCCESS, ICON_SIZES, INPUT_VARIANTS, type IconSize, type InputVariant, LAYERA_CONSTANTS_VERSION, LINK_TARGETS, type LinkTarget, MENU_POSITIONS, type MenuPosition, NAVIGATION_TYPES, type NavigationType, PAGE_LAYOUTS, PAGINATION_SIZES, PERMISSIONS, type PageLayout, type PaginationSize, type Permission, ROLE_HIERARCHY, ROLE_PERMISSIONS, ROUTE_PATTERNS, type RoleHierarchy, type RoutePattern, SNAP_CONSTANTS, SNAP_DEVICE_DEFAULTS, SNAP_TYPE_GROUPS, SNAP_VISUAL, SORT_DIRECTIONS, SPACING_SCALE, type SortDirection, type SpacingScale, TABLE_COLUMN_WIDTHS, TABLE_DENSITIES, TABLE_VARIANTS, THEME_MODES, type TableColumnWidth, type TableDensity, type TableVariant, type ThemeMode, USER_ROLES, USER_STATUS, type UserRole, type UserStatus, VALIDATION_RULES, type ValidationRule, type ZIndex, Z_INDEX };
+export { AUTOCOMPLETE_VALUES, type AutocompleteValue, BORDER_RADIUS, BORDER_RADIUS_CSS_VARS, BORDER_RADIUS_SCALE, BORDER_RADIUS_UTILITIES, BULK_ACTIONS, BUTTON_SIZES, BUTTON_STATES, type BorderRadius, type BorderRadiusCategory, type BorderRadiusScale, type BorderRadiusScaleToken, type BorderRadiusToken, type BulkAction, type ButtonSize, type ButtonState, CARD_STATES, COLOR_SCHEMES, COLUMN_TYPES, COMPONENT_DESIGN_TOKENS, COMPONENT_SIZES, COMPONENT_VARIANTS, CONFIG, CSS_DESIGN_TOKENS, type CardState, type ColorScheme, type ColorToken, type ColumnType, type ComponentSize, type ComponentToken, type ComponentVariant, DATA_STATES, DESIGN_TOKEN_SCALE, type DataState, type DesignTokenCategory, ELEVATION_LEVELS, EXPORT_FORMATS, type ElevationLevel, type ElevationToken, type ExportFormat, FIELD_SIZES, FILTER_TYPES, FORM_SIZES, FORM_STATES, FORM_TYPES, type FieldSize, type FilterType, type FormSize, type FormState, type FormType, GEO_DRAWING_ERRORS, GEO_DRAWING_INTERACTION, GEO_DRAWING_MEASUREMENT, GEO_DRAWING_OSM, GEO_DRAWING_SNAP, GEO_DRAWING_STYLES, GEO_DRAWING_SUCCESS, ICON_SIZES, INPUT_VARIANTS, type IconSize, type InputVariant, LAYERA_CONSTANTS_VERSION, LINK_TARGETS, LayeraThemeEngine, LayeraThemeProvider, type LinkTarget, MENU_POSITIONS, type MenuPosition, type MotionToken, NAVIGATION_TYPES, type NavigationType, PAGE_LAYOUTS, PAGINATION_SIZES, PERMISSIONS, type PageLayout, type PaginationSize, type Permission, type PositioningToken, RESPONSIVE_DESIGN_TOKENS, ROLE_HIERARCHY, ROLE_PERMISSIONS, ROUTE_PATTERNS, type ResponsiveToken, type RoleHierarchy, type RoutePattern, SNAP_CONSTANTS, SNAP_DEVICE_DEFAULTS, SNAP_TYPE_GROUPS, SNAP_VISUAL, SORT_DIRECTIONS, SPACING_SCALE, type SortDirection, type SpacingScale, type SpacingToken, TABLE_COLUMN_WIDTHS, TABLE_DENSITIES, TABLE_VARIANTS, THEME_MODES, type TableColumnWidth, type TableDensity, type TableVariant, type ThemeEngineConfig, type ThemeMode, type ThemeState, type TypographyToken, USER_ROLES, USER_STATUS, type UserRole, type UserStatus, VALIDATION_RULES, type ValidationRule, type ZIndex, type ZIndexToken, Z_INDEX, getBorderRadiusValue, getBorderRadiusVar, getDesignTokenVar, getDesignTokenVars, getThemeEngine, useBorderRadius, useColor, useComponentTokens, useDesignToken, useDesignTokenDebugger, useDesignTokens, useElevation, useLayeraDesignSystem, useLayeraTheme, useMotion, useResponsiveDesignTokens, useSpacing, useTypography, useZIndex };

@@ -2,6 +2,8 @@
  * upload/types.ts - Enterprise Upload Step Types
  */
 
+import type { SupportedFileType } from '@layera/file-upload';
+
 export interface UploadedFile {
   id: string;
   name: string;
@@ -20,6 +22,6 @@ export interface UploadStepData {
 export interface UploadOptions {
   maxFiles?: number;
   maxFileSize?: number;
-  acceptedTypes?: string[];
+  acceptedTypes?: SupportedFileType[];
   multiple?: boolean;
 }

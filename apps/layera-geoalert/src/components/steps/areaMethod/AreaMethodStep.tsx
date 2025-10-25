@@ -129,13 +129,13 @@ export const AreaMethodStep: React.FC<AreaMethodStepProps> = ({
 
   const containerStyles: React.CSSProperties = {
     position: 'fixed',
-    top: '161px',
-    left: '8px',
-    right: '8px',
+    top: 'var(--layera-cards-top)',
+    left: 'var(--layera-side-margins)',
+    right: 'var(--layera-side-margins)',
     zIndex: 10002,
     display: 'flex',
     flexDirection: 'column',
-    gap: '8px',
+    gap: 'var(--layera-cards-gap)',
     padding: '0'
   };
 

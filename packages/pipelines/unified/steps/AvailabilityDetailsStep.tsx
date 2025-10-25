@@ -4,6 +4,7 @@ import { Stack } from '@layera/layout';
 import { FormField, Input, FormActions } from '@layera/forms';
 import { Button } from '@layera/buttons';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 
 export interface AvailabilityDetails {
   date: string;
@@ -86,7 +87,7 @@ export const AvailabilityDetailsStep: React.FC<AvailabilityDetailsStepProps> = (
           <select
             value={unit}
             onChange={(e) => setUnit(e.target.value as 'months' | 'years')}
-            style={{ padding: '12px', fontSize: '16px', borderRadius: '4px' }}
+            style={{ padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`, fontSize: '16px', borderRadius: `${BORDER_RADIUS_SCALE.XS}px` }}
           >
             <option value="months">{t('pipelines.steps.availability.units.months')}</option>
             <option value="years">{t('pipelines.steps.availability.units.years')}</option>

@@ -102,13 +102,13 @@ export const PropertyTypeStep: React.FC<PropertyTypeStepProps> = ({
 
   const containerStyles: React.CSSProperties = {
     position: 'fixed',
-    top: '161px',
-    left: '8px',
-    right: '8px',
+    top: 'var(--layera-cards-top)',
+    left: 'var(--layera-side-margins)',
+    right: 'var(--layera-side-margins)',
     zIndex: 10002,
     display: 'flex',
     flexDirection: 'column',
-    gap: '6px',
+    gap: `${SPACING_SCALE.XS + 2}px`,
     padding: '0',
     maxHeight: 'calc(100vh - 200px)',
     overflowY: 'auto'

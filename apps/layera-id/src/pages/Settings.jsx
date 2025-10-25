@@ -6,6 +6,7 @@ import { ThemeSwitcher } from '@layera/theme-switcher';
 import { Button } from '@layera/buttons';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
+import { SPACING_SCALE } from '@layera/constants';
 import { SettingsIcon, ShieldIcon, BellIcon, PaletteIcon, WarningIcon, ChartIcon, UserIcon, FolderIcon } from '../components/icons/LayeraIcons';
 import QuickActions from '../components/QuickActions';
 
@@ -84,7 +85,7 @@ export default function Settings() {
               title={t('settings.items.changePassword.title')}
               variant="actions"
             >
-              <p style={{ marginBottom: '1rem', color: 'var(--color-text-secondary)' }}>
+              <p style={{ marginBottom: `${SPACING_SCALE.MD}px`, color: 'var(--color-text-secondary)' }}>
                 {t('settings.items.changePassword.description')}
               </p>
               <Button variant="secondary" size="sm">
@@ -96,7 +97,7 @@ export default function Settings() {
               title={t('settings.items.twoFactor.title')}
               variant="actions"
             >
-              <p style={{ marginBottom: '1rem', color: 'var(--color-text-secondary)' }}>
+              <p style={{ marginBottom: `${SPACING_SCALE.MD}px`, color: 'var(--color-text-secondary)' }}>
                 {t('settings.items.twoFactor.description', {
                   status: user.layeraClaims?.mfa_verified ? t('settings.items.twoFactor.statusActive') : t('settings.items.twoFactor.statusInactive')
                 })}
@@ -116,7 +117,7 @@ export default function Settings() {
               title={t('settings.items.emailVerification.title')}
               variant="info"
             >
-              <p style={{ marginBottom: '1rem', color: 'var(--color-text-secondary)' }}>
+              <p style={{ marginBottom: `${SPACING_SCALE.MD}px`, color: 'var(--color-text-secondary)' }}>
                 {t('settings.items.emailVerification.description', {
                   status: user.emailVerified ? t('settings.items.emailVerification.statusVerified') : t('settings.items.emailVerification.statusUnverified')
                 })}
@@ -142,7 +143,7 @@ export default function Settings() {
               title={t('settings.items.emailNotifications.title')}
               variant="actions"
             >
-              <p style={{ marginBottom: '1rem', color: 'var(--color-text-secondary)' }}>
+              <p style={{ marginBottom: `${SPACING_SCALE.MD}px`, color: 'var(--color-text-secondary)' }}>
                 {t('settings.items.emailNotifications.description')}
               </p>
               <Button variant="secondary" size="sm">
@@ -154,7 +155,7 @@ export default function Settings() {
               title={t('settings.items.smsNotifications.title')}
               variant="actions"
             >
-              <p style={{ marginBottom: '1rem', color: 'var(--color-text-secondary)' }}>
+              <p style={{ marginBottom: `${SPACING_SCALE.MD}px`, color: 'var(--color-text-secondary)' }}>
                 {t('settings.items.smsNotifications.description')}
               </p>
               <Button variant="secondary" size="sm">
@@ -177,7 +178,7 @@ export default function Settings() {
               variant="actions"
               className="layera-card--dropdown-container"
             >
-              <p style={{ marginBottom: '1rem', color: 'var(--color-text-secondary)' }}>
+              <p style={{ marginBottom: `${SPACING_SCALE.MD}px`, color: 'var(--color-text-secondary)' }}>
                 {t('settings.items.theme.description')}
               </p>
               <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
@@ -199,7 +200,7 @@ export default function Settings() {
               variant="actions"
               className="layera-card--dropdown-container"
             >
-              <p style={{ marginBottom: '1rem', color: 'var(--color-text-secondary)' }}>
+              <p style={{ marginBottom: `${SPACING_SCALE.MD}px`, color: 'var(--color-text-secondary)' }}>
                 {t('settings.items.language.description')}
               </p>
               <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>

@@ -28,15 +28,12 @@ if (stepRegistry && typeof stepRegistry.register === 'function') {
   component: OccupationStep,
   order: 6, // After employment type step (order 5)
   isVisible: true,
-  dependencies: ['employmentType'], // Depends on employment type selection
+  // Αφαιρώ dependencies για να εμφανίζεται αμέσως μετά το employmentType
   conditions: [
     {
-      type: 'hasSelectedEmploymentType',
-      check: (context) => !!context.selectedEmploymentType
-    },
-    {
-      type: 'isJobCategory',
-      check: (context) => context.selectedCategory === 'job'
+      type: 'category',
+      value: 'job',
+      operator: 'equals' // Εμφανίζεται μόνο για job category
     }
   ],
   metadata: {

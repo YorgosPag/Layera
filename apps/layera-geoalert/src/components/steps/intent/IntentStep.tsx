@@ -15,6 +15,7 @@ import {
   GEOALERT_INFO_CONTENT,
   StaticContentProvider
 } from '@layera/info-panels';
+import { useGeoAlertLayout } from '@layera/layout';
 import type { StepProps, IntentType } from '../types';
 
 export interface IntentStepProps extends StepProps {
@@ -35,6 +36,9 @@ export const IntentStep: React.FC<IntentStepProps> = ({
   deviceProps = {}
 }) => {
   const { t } = useLayeraTranslation();
+
+  // Enterprise LEGO Layout System
+  const { utils } = useGeoAlertLayout();
 
   // Local state για intent selection
   const [selectedIntent, setSelectedIntent] = useState<IntentType>(
@@ -75,9 +79,9 @@ export const IntentStep: React.FC<IntentStepProps> = ({
     // Legacy callback για backwards compatibility
     onIntentSelected?.(intent);
 
-    // REMOVED: Auto-advance to next step
-    // Auto-advance μόνο με explicit user action, ΟΧΙ αυτόματα
-    // onNext?.();
+    // ΔΙΟΡΘΩΣΗ: Επαναφέρω το auto-advance για navigation
+    // Το StepOrchestrator χρειάζεται το onNext() για να προχωρήσει στο επόμενο step
+    onNext?.();
 
     console.log(`✅ Intent selected: ${intent} for category: ${context.selectedCategory}`);
   }, [context.selectedCategory, onNext, onStepComplete, onIntentSelected, pipelineDiscovery]);
@@ -128,26 +132,9 @@ export const IntentStep: React.FC<IntentStepProps> = ({
 
   const intentCards = getIntentCards();
 
-  // Container styles
-  const containerStyles: React.CSSProperties = {
-    position: 'fixed',
-    top: '161px',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    width: '350px',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '16px',
-    zIndex: 1000,
-    padding: '0 20px',
-    boxSizing: 'border-box'
-  };
-
-  const cardsContainerStyles: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '12px'
-  };
+  // Enterprise LEGO Layout - CSS Variables
+  const containerStyles = utils.getCardStyles('vertical'); // Vertical για intent cards
+  const containerClass = utils.getCardContainerClass('vertical');
 
   // Early return αν δεν είναι visible ή δεν έχει category
   if (!isVisible || !context.selectedCategory) {
@@ -156,20 +143,18 @@ export const IntentStep: React.FC<IntentStepProps> = ({
 
   return (
     <>
-      <div style={containerStyles}>
-        <div style={cardsContainerStyles}>
-          {intentCards.map((cardConfig) => (
-            <BaseCard
-              key={cardConfig.id}
-              variant={context.selectedCategory || 'property'}
-              title={cardConfig.title}
-              icon={cardConfig.icon}
-              onClick={() => handleIntentClick(cardConfig)}
-              onInfoClick={() => handleInfoClick(cardConfig.id)}
-              data-testid={`intent-card-${cardConfig.id}`}
-            />
-          ))}
-        </div>
+      <div style={containerStyles} className={containerClass}>
+        {intentCards.map((cardConfig) => (
+          <BaseCard
+            key={cardConfig.id}
+            variant={context.selectedCategory || 'property'}
+            title={cardConfig.title}
+            icon={React.createElement(cardConfig.icon, { size: 'sm', theme: 'neutral' })}
+            onClick={() => handleIntentClick(cardConfig)}
+            onInfoClick={() => handleInfoClick(cardConfig.id)}
+            data-testid={`intent-card-${cardConfig.id}`}
+          />
+        ))}
       </div>
 
       {/* Info Panel */}

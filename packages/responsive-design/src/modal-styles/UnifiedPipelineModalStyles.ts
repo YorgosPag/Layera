@@ -5,6 +5,7 @@
  */
 
 import { LAYERA_DEVICE_QUERIES } from '../breakpoints';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 
 export const UNIFIED_PIPELINE_MODAL_STYLES = {
   // Base styles - Shared across all devices
@@ -21,7 +22,7 @@ export const UNIFIED_PIPELINE_MODAL_STYLES = {
       left: '50%',
       transform: 'translate(-50%, -50%)',
       backgroundColor: 'var(--layera-bg-primary, #ffffff)',
-      borderRadius: '12px',
+      borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
       boxSizing: 'border-box',
       boxShadow: '0 10px 40px rgba(0, 0, 0, 0.3)',
       overflowY: 'auto',
@@ -29,7 +30,7 @@ export const UNIFIED_PIPELINE_MODAL_STYLES = {
     },
     card: {
       border: '2px solid hsl(210 100% 50%)',
-      borderRadius: '8px',
+      borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
       backgroundColor: 'var(--layera-bg-primary, #ffffff)',
       transition: 'background-color 0.2s ease, border-color 0.2s ease',
       cursor: 'pointer',
@@ -48,18 +49,18 @@ export const UNIFIED_PIPELINE_MODAL_STYLES = {
       width: '100%',
       maxWidth: '320px',
       fontSize: '0.75rem',
-      padding: '0.75rem',
+      padding: `${SPACING_SCALE.MD}px`,
       maxHeight: 'calc(100vh - 2rem)'
     },
     card: {
-      margin: '0.4rem 0',
-      padding: '0.6rem',
+      margin: `${SPACING_SCALE.XS + SPACING_SCALE.XS}px 0`,
+      padding: `${SPACING_SCALE.SM}px`,
       minHeight: '80px'
     },
     title: {
       fontSize: '0.85rem',
       lineHeight: '1.3',
-      marginBottom: '0.3rem'
+      marginBottom: `${SPACING_SCALE.XS}px`
     },
     text: {
       fontSize: '0.65rem',
@@ -78,18 +79,18 @@ export const UNIFIED_PIPELINE_MODAL_STYLES = {
       width: '100%',
       maxWidth: '320px',
       fontSize: '0.75rem',
-      padding: '0.75rem',
+      padding: `${SPACING_SCALE.MD}px`,
       maxHeight: 'calc(100vh - 2rem)'
     },
     card: {
-      margin: '0.4rem 0',
-      padding: '0.6rem',
+      margin: `${SPACING_SCALE.XS + SPACING_SCALE.XS}px 0`,
+      padding: `${SPACING_SCALE.SM}px`,
       minHeight: '80px'
     },
     title: {
       fontSize: '0.85rem',
       lineHeight: '1.3',
-      marginBottom: '0.3rem'
+      marginBottom: `${SPACING_SCALE.XS}px`
     },
     text: {
       fontSize: '0.65rem',
@@ -108,18 +109,18 @@ export const UNIFIED_PIPELINE_MODAL_STYLES = {
       width: '100%',
       maxWidth: '280px', // Smaller για desktop
       fontSize: '0.7rem',  // Smaller font
-      padding: '0.6rem',   // Less padding
+      padding: `${SPACING_SCALE.SM}px`,   // Less padding
       maxHeight: 'calc(100vh - 2rem)'
     },
     card: {
-      margin: '0.3rem 0',  // Less margin
-      padding: '0.5rem',   // Less padding
+      margin: `${SPACING_SCALE.XS}px 0`,  // Less margin
+      padding: `${SPACING_SCALE.SM}px`,   // Less padding
       minHeight: '70px'    // Shorter cards
     },
     title: {
       fontSize: '0.8rem',  // Smaller title
       lineHeight: '1.3',
-      marginBottom: '0.25rem'
+      marginBottom: `${SPACING_SCALE.XS}px`
     },
     text: {
       fontSize: '0.6rem',  // Smaller text
@@ -138,18 +139,18 @@ export const UNIFIED_PIPELINE_MODAL_STYLES = {
       width: '100%',
       maxWidth: '260px', // Even smaller για large screens
       fontSize: '0.65rem',
-      padding: '0.5rem',
+      padding: `${SPACING_SCALE.SM}px`,
       maxHeight: 'calc(100vh - 2rem)'
     },
     card: {
-      margin: '0.25rem 0',
-      padding: '0.45rem',
+      margin: `${SPACING_SCALE.XS}px 0`,
+      padding: `${SPACING_SCALE.XS + SPACING_SCALE.XS + SPACING_SCALE.XS}px`,
       minHeight: '65px'
     },
     title: {
       fontSize: '0.75rem',
       lineHeight: '1.3',
-      marginBottom: '0.2rem'
+      marginBottom: `${SPACING_SCALE.XS}px`
     },
     text: {
       fontSize: '0.55rem',

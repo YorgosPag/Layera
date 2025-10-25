@@ -22,6 +22,7 @@ import { FormActions } from '@layera/forms';
 import { Heading } from '@layera/typography';
 import { LayeraProgressStepper } from '@layera/progress-stepper';
 import { useModalContainer } from './hooks/useModalContainer';
+import { SPACING_SCALE } from '@layera/constants';
 import { useUnifiedPipeline } from './hooks/useUnifiedPipeline';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { useMediaQuery } from './hooks/useMediaQuery';
@@ -101,8 +102,8 @@ export const UnifiedPipelineModal: React.FC<UnifiedPipelineModalProps> = ({
       showCloseButton={true}
       overlayClassName="unified-pipeline-modal-overlay"
       className="unified-pipeline-modal"
-      panelPadding="2px"
-      overlayPadding="2px"
+      panelPadding={`${SPACING_SCALE.XS}px`}
+      overlayPadding={`${SPACING_SCALE.XS}px`}
       container={finalContainer}
     >
       <Stack
@@ -148,8 +149,8 @@ export const UnifiedPipelineModal: React.FC<UnifiedPipelineModalProps> = ({
             overflowX: 'auto',
             overflowY: 'hidden',
             width: '100%',
-            paddingBottom: '8px',
-            marginBottom: '8px'
+            paddingBottom: `${SPACING_SCALE.SM}px`,
+            marginBottom: `${SPACING_SCALE.SM}px`
           }}>
             <LayeraProgressStepper
               steps={stepperSteps}
@@ -159,7 +160,7 @@ export const UnifiedPipelineModal: React.FC<UnifiedPipelineModalProps> = ({
               sx={{
                 minWidth: 'max-content',
                 width: 'max-content',
-                paddingX: '8px',
+                paddingX: `${SPACING_SCALE.SM}px`,
                 '& .MuiStepLabel-label': {
                   fontSize: '0.75rem',
                   fontWeight: '500',
@@ -167,14 +168,14 @@ export const UnifiedPipelineModal: React.FC<UnifiedPipelineModalProps> = ({
                   whiteSpace: 'nowrap',
                 },
                 '& .MuiStepLabel-iconContainer': {
-                  paddingRight: '8px',
+                  paddingRight: `${SPACING_SCALE.SM}px`,
                 },
                 '& .MuiStepConnector-root': {
                   top: '16px',
                 },
                 '& .MuiStep-root': {
                   paddingLeft: 0,
-                  paddingRight: '12px',
+                  paddingRight: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
                   minWidth: '100px',
                 },
                 '& .MuiStepLabel-root': {

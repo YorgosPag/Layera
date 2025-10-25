@@ -4,6 +4,7 @@ import { Text, Heading } from '@layera/typography';
 import { Stack, Flex } from '@layera/layout';
 import { VillaIcon, BriefcaseIcon } from '@layera/icons';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { BORDER_RADIUS_SCALE } from '@layera/constants';
 
 export type Category = 'property' | 'job';
 
@@ -49,7 +50,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({ onNext }) => {
           style={{
             backgroundColor: 'var(--layera-bg-primary)',
             border: '1px solid var(--layera-border-primary)',
-            borderRadius: '12px',
+            borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
             boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
           }}
         >
@@ -78,7 +79,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({ onNext }) => {
           style={{
             backgroundColor: 'var(--layera-bg-primary)',
             border: '1px solid var(--layera-border-primary)',
-            borderRadius: '12px',
+            borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
             boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
           }}
         >

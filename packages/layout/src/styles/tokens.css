@@ -45,6 +45,17 @@
   --layera-header-padding-x: var(--layera-space-lg);
   --layera-header-padding-y: var(--layera-space-md);
 
+  /* GeoAlert Stepper System */
+  --layera-stepper-height: 120px;
+  --layera-stepper-to-cards-gap: var(--layera-space-2); /* 8px */
+  --layera-cards-gap: var(--layera-space-2); /* 8px */
+  --layera-cards-height: 60px;
+  --layera-side-margins: var(--layera-space-2); /* 8px */
+
+  /* Calculated GeoAlert Positions */
+  --layera-cards-top: calc(var(--layera-stepper-height) + var(--layera-stepper-to-cards-gap));
+  --layera-info-panel-top: calc(var(--layera-cards-top) + var(--layera-cards-height) + var(--layera-cards-gap));
+
   /* Sidebar dimensions */
   --layera-sidebar-width: 280px;
   --layera-sidebar-width-collapsed: 64px;

@@ -7,6 +7,7 @@
 import React from 'react';
 import { stepRegistry } from '../StepRegistry';
 import { StepOrchestrator } from '../StepOrchestrator';
+import { SPACING_SCALE } from '@layera/constants';
 import type { StepContext } from '../types';
 
 export const StepRegistryTest: React.FC = () => {
@@ -26,15 +27,15 @@ export const StepRegistryTest: React.FC = () => {
   const registryStatus = stepRegistry.getRegistryStatus();
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'monospace' }}>
+    <div style={{ padding: `${SPACING_SCALE.LG}px`, fontFamily: 'monospace' }}>
       <h2>🧪 Step Registry Test</h2>
 
-      <div style={{ marginBottom: '20px' }}>
+      <div style={{ marginBottom: `${SPACING_SCALE.LG}px` }}>
         <h3>Registry Status:</h3>
         <pre>{JSON.stringify(registryStatus, null, 2)}</pre>
       </div>
 
-      <div style={{ marginBottom: '20px' }}>
+      <div style={{ marginBottom: `${SPACING_SCALE.LG}px` }}>
         <h3>Current Context:</h3>
         <pre>{JSON.stringify(context, (key, value) => {
           if (value instanceof Set) {

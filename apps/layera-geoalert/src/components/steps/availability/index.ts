@@ -10,9 +10,10 @@ stepRegistry.register({
   id: 'availability',
   name: 'Διαθεσιμότητα',
   component: AvailabilityStep,
-  order: 11,
+  order: 7, // Αμέσως μετά το occupation step (order 6)
   isVisible: true,
   cards: [],
+  dependencies: ['occupation'], // Εμφανίζεται μετά την επιλογή επαγγέλματος
   conditions: [{
     type: 'category',
     value: 'job',

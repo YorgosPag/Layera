@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLayeraTranslation } from '@layera/tolgee';
+import { useLayeraTranslation } from '@layera/i18n';
 import './FormSection.css';
 
 export interface FormSectionProps {

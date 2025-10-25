@@ -6,6 +6,7 @@ import { ThemeSwitcher } from '@layera/theme-switcher';
 import { Button } from '@layera/buttons';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
+import { SPACING_SCALE } from '@layera/constants';
 import { ChartIcon, UserIcon, ShieldIcon, SmartphoneIcon, FolderIcon, FileIcon, CheckIcon, XIcon, LockIcon, SettingsIcon } from '../components/icons/LayeraIcons';
 import QuickActions from '../components/QuickActions';
 
@@ -84,7 +85,7 @@ export default function Data() {
               <div style={{ fontSize: '1.125rem', fontWeight: '600', color: 'var(--color-text-primary)' }}>
                 {user.email}
               </div>
-              <div style={{ marginTop: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <div style={{ marginTop: `${SPACING_SCALE.SM}px`, display: 'flex', alignItems: 'center', gap: `${SPACING_SCALE.SM}px` }}>
                 {user.emailVerified ? (
                   <>
                     <CheckIcon size="sm" theme="success" />
@@ -106,7 +107,7 @@ export default function Data() {
               <div style={{ fontSize: '1.125rem', fontWeight: '600', color: 'var(--color-text-primary)' }}>
                 {user.displayName || t('data.fields.notAvailable')}
               </div>
-              <div style={{ marginTop: '0.5rem', fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
+              <div style={{ marginTop: `${SPACING_SCALE.SM}px`, fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
                 {user.displayName ? 'Διαθέσιμο' : 'Μη διαθέσιμο'}
               </div>
             </DashboardCard>
@@ -118,7 +119,7 @@ export default function Data() {
               <div style={{ fontSize: '0.875rem', fontFamily: 'monospace', color: 'var(--color-text-secondary)', wordBreak: 'break-all' }}>
                 {user.uid}
               </div>
-              <div style={{ marginTop: '0.5rem', fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
+              <div style={{ marginTop: `${SPACING_SCALE.SM}px`, fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
                 Μοναδικό αναγνωριστικό
               </div>
             </DashboardCard>
@@ -130,7 +131,7 @@ export default function Data() {
               <div style={{ fontSize: '1.125rem', fontWeight: '600', color: 'var(--color-text-primary)' }}>
                 {t(`roles.${user.layeraClaims?.role || 'private'}`)}
               </div>
-              <div style={{ marginTop: '0.5rem', fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
+              <div style={{ marginTop: `${SPACING_SCALE.SM}px`, fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
                 Τύπος λογαριασμού
               </div>
             </DashboardCard>
@@ -149,7 +150,7 @@ export default function Data() {
               title={t('data.fields.mfaEnabled')}
               variant="status"
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: `${SPACING_SCALE.MD}px` }}>
                 {user.layeraClaims?.mfa_verified ? (
                   <>
                     <LockIcon size="lg" theme="success" />
@@ -180,7 +181,7 @@ export default function Data() {
                 <Button
                   variant="primary"
                   size="sm"
-                  style={{ marginTop: '1rem' }}
+                  style={{ marginTop: `${SPACING_SCALE.MD}px` }}
                   onClick={() => navigate('/mfa-enroll')}
                 >
                   {t('account.actions.enable2fa')}
@@ -205,7 +206,7 @@ export default function Data() {
               <div style={{ fontSize: '1rem', color: 'var(--color-text-primary)' }}>
                 {formatDate(user.metadata?.creationTime)}
               </div>
-              <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', marginTop: '0.25rem' }}>
+              <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', marginTop: `${SPACING_SCALE.XS}px` }}>
                 Ημερομηνία δημιουργίας
               </div>
             </DashboardCard>
@@ -217,7 +218,7 @@ export default function Data() {
               <div style={{ fontSize: '1rem', color: 'var(--color-text-primary)' }}>
                 {formatDate(user.metadata?.lastSignInTime)}
               </div>
-              <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', marginTop: '0.25rem' }}>
+              <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', marginTop: `${SPACING_SCALE.XS}px` }}>
                 Τελευταία σύνδεση
               </div>
             </DashboardCard>
@@ -265,21 +266,21 @@ export default function Data() {
             title={t('data.privacyPoints.title')}
             variant="info"
           >
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                <CheckIcon size="sm" theme="success" style={{ marginTop: '0.125rem' }} />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: `${SPACING_SCALE.MD}px` }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: `${SPACING_SCALE.SM}px` }}>
+                <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
                 <span>{t('data.privacyPoints.encryption')}</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                <CheckIcon size="sm" theme="success" style={{ marginTop: '0.125rem' }} />
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: `${SPACING_SCALE.SM}px` }}>
+                <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
                 <span>{t('data.privacyPoints.noSharing')}</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                <CheckIcon size="sm" theme="success" style={{ marginTop: '0.125rem' }} />
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: `${SPACING_SCALE.SM}px` }}>
+                <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
                 <span>{t('data.privacyPoints.deleteAnytime')}</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                <CheckIcon size="sm" theme="success" style={{ marginTop: '0.125rem' }} />
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: `${SPACING_SCALE.SM}px` }}>
+                <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
                 <span>{t('data.privacyPoints.compliance')}</span>
               </div>
             </div>

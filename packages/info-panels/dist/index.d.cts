@@ -177,7 +177,7 @@ declare const INFO_PANEL_THEMES: {
 declare const DEFAULT_INFO_PANEL_STYLES: {
     readonly mobile: {
         readonly position: {
-            readonly top: "161px";
+            readonly top: "196px";
             readonly left: "8px";
             readonly right: "8px";
         };

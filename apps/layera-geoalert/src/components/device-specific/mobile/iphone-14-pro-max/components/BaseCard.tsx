@@ -6,6 +6,11 @@
  */
 
 import React from 'react';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+import { SIZING_SCALE } from '@layera/layout';
+import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
+import { Text } from '@layera/typography';
+import { getCursorVar } from '@layera/cursors';
 
 // Card variants - theme configuration functions με 3 opacity modes
 type OpacityMode = 'transparent' | 'semi-transparent' | 'opaque';
@@ -13,14 +18,14 @@ type OpacityMode = 'transparent' | 'semi-transparent' | 'opaque';
 export const getCardTheme = (variant: 'property' | 'job', opacityMode: OpacityMode) => {
   const baseColors = {
     property: {
-      baseColor: '16, 185, 129', // emerald
-      borderColor: 'rgb(16, 185, 129)',
-      titleShadow: '0 0 25px rgba(16, 185, 129, 0.2)'
+      baseColor: 'var(--color-semantic-success-rgb)', // emerald από design tokens
+      borderColor: 'var(--color-semantic-success-border)',
+      titleShadow: '0 0 25px var(--color-semantic-success-shadow)'
     },
     job: {
-      baseColor: '59, 130, 246', // blue
-      borderColor: 'rgb(59, 130, 246)',
-      titleShadow: '0 0 25px rgba(59, 130, 246, 0.2)'
+      baseColor: 'var(--color-interactive-primary-rgb)', // blue από design tokens
+      borderColor: 'var(--color-interactive-primary)',
+      titleShadow: '0 0 25px var(--color-interactive-primary-shadow)'
     }
   };
 
@@ -118,12 +123,12 @@ export const BaseCard: React.FC<BaseCardProps> = ({
   // Base card styles - consistent across all variants
   const baseCardStyles: React.CSSProperties = {
     flex: 1,
-    height: '60px',
-    borderRadius: '12px',
-    boxShadow: 'none',
-    padding: '12px',
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
+    height: `${SPACING_SCALE.LG + SPACING_SCALE.SM}px`,
+    borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
+    boxShadow: BOX_SHADOW_SCALE.none,
+    padding: `${SPACING_SCALE.SM}px`,
+    cursor: getCursorVar('pointer'), // Cursor system token για interactive elements
+    transition: 'var(--layera-transition-normal)',
     userSelect: 'none',
     WebkitTapHighlightColor: 'transparent',
     display: 'flex',
@@ -143,12 +148,12 @@ export const BaseCard: React.FC<BaseCardProps> = ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: '6px',
-    padding: '6px 12px',
-    borderRadius: '8px',
-    fontSize: '14px',
-    fontWeight: '600',
-    color: opacityMode === 'opaque' ? '#ffffff' : '#000000', // Κείμενα παραμένουν πλήρως ορατά
+    gap: `${SPACING_SCALE.XS + 2}px`,
+    padding: `${SPACING_SCALE.XS + 2}px ${SPACING_SCALE.SM}px`,
+    borderRadius: `${SPACING_SCALE.XS + 2}px`,
+    // fontSize handled by Text component
+    fontWeight: 'var(--layera-font-semibold)', // Typography system token για 600
+    color: opacityMode === 'opaque' ? 'var(--color-text-on-primary)' : 'var(--color-text-primary)', // Κείμενα παραμένουν πλήρως ορατά
     textAlign: 'center',
     lineHeight: '1.2',
     // Theme-specific styles
@@ -158,24 +163,29 @@ export const BaseCard: React.FC<BaseCardProps> = ({
     zIndex: 2 // Τίτλος και εικονίδια μπροστά από το background
   };
 
-  // Info button styles
+  // Info button styles - responsive για desktop και mobile
   const infoButtonStyles: React.CSSProperties = {
     position: 'absolute',
-    bottom: '8px',
-    right: '8px',
-    width: '20px',
-    height: '20px',
-    borderRadius: '50%',
-    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    bottom: `${SIZING_SCALE.SM}px`,
+    right: `${SIZING_SCALE.SM}px`,
+    width: `${SIZING_SCALE.LG}px`,
+    height: `${SIZING_SCALE.LG}px`,
+    borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
+    backgroundColor: 'transparent',
+    border: 'none',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: '12px',
-    fontWeight: 'bold',
-    color: '#6b7280',
-    cursor: 'pointer',
-    transition: 'all 0.2s ease',
-    zIndex: 3 // Info button μπροστά από όλα τα άλλα στοιχεία
+    // fontSize handled by Text component
+    fontWeight: 'var(--layera-font-bold)', // Typography system token για bold
+    color: 'var(--color-text-secondary)', // Neutral theme color από design tokens
+    cursor: getCursorVar('pointer'), // Cursor system token για interactive elements
+    transition: 'var(--layera-transition-fast)',
+    zIndex: 10000,
+    boxShadow: BOX_SHADOW_SCALE.none,
+    // Touch-friendly για mobile
+    WebkitTapHighlightColor: 'transparent',
+    touchAction: 'manipulation'
   };
 
   // Default touch handlers
@@ -200,6 +210,24 @@ export const BaseCard: React.FC<BaseCardProps> = ({
     onInfoClick?.();
   };
 
+  // Touch handlers για το info button (mobile feedback)
+  const handleInfoTouchStart = (e: React.TouchEvent) => {
+    e.stopPropagation();
+    const target = e.currentTarget as HTMLElement;
+    target.style.color = 'var(--color-text-primary)'; // Πιο σκούρο γκρι στο touch
+    target.style.transform = 'scale(1.1)';
+    if ('vibrate' in navigator) {
+      navigator.vibrate(10); // Μικρή δόνηση για feedback
+    }
+  };
+
+  const handleInfoTouchEnd = (e: React.TouchEvent) => {
+    e.stopPropagation();
+    const target = e.currentTarget as HTMLElement;
+    target.style.color = 'var(--color-text-secondary)'; // Επιστροφή στο κανονικό χρώμα
+    target.style.transform = 'scale(1)';
+  };
+
   return (
     <div
       style={baseCardStyles}
@@ -215,11 +243,28 @@ export const BaseCard: React.FC<BaseCardProps> = ({
         {title}
       </div>
 
-      {/* Info Button */}
+      {/* Info Button - Responsive για desktop hover και mobile touch */}
       {onInfoClick && (
         <div
           onClick={handleInfoClick}
           style={infoButtonStyles}
+          // Desktop hover effects
+          onMouseEnter={(e) => {
+            // Ελέγχω αν είναι desktop (έχει ποντίκι)
+            if (window.matchMedia('(hover: hover)').matches) {
+              e.currentTarget.style.color = 'var(--color-text-primary)';
+              e.currentTarget.style.transform = 'scale(1.1)';
+            }
+          }}
+          onMouseLeave={(e) => {
+            if (window.matchMedia('(hover: hover)').matches) {
+              e.currentTarget.style.color = 'var(--color-text-secondary)';
+              e.currentTarget.style.transform = 'scale(1)';
+            }
+          }}
+          // Mobile touch effects
+          onTouchStart={handleInfoTouchStart}
+          onTouchEnd={handleInfoTouchEnd}
           data-testid={`${testId || 'card'}-info-button`}
         >
           i

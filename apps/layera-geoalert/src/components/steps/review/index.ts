@@ -17,7 +17,7 @@ stepRegistry.register({
   name: 'Επιθεώρηση',
   shortName: 'Review',
   component: ReviewStep,
-  order: 6,
+  order: 8, // Μετά το availability step (order 7)
   isVisible: true,
   dependencies: ['category', 'intent', 'location', 'details', 'pricing'], // Depends on all previous steps
   conditions: [

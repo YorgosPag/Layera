@@ -6,6 +6,10 @@
 import React from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { UI_CONFIG, COLORS } from '../../../constants';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+import { Text } from '@layera/typography';
+import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
+import { getCursorVar } from '@layera/cursors';
 
 export interface MobileGeoMapProps {
   // Props που χρειάζονται για το mobile UI
@@ -29,18 +33,18 @@ export const MobileGeoMap: React.FC<MobileGeoMapProps> = () => {
         zIndex: UI_CONFIG.mobileGeoMap.zIndex,
         display: 'flex',
         gap: `${UI_CONFIG.mobileGeoMap.gap}px`,
-        padding: '0 4px'
+        padding: `0 ${SPACING_SCALE.XS}px`
       }}>
         {/* Ακίνητα Button - Green */}
         <button style={{
           flex: 1,
           backgroundColor: COLORS.categories.property.light,
           border: `1px solid ${COLORS.categories.property.dark}`,
-          borderRadius: `${UI_CONFIG.mobileGeoMap.button.borderRadius}px`,
+          borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
           padding: `${UI_CONFIG.mobileGeoMap.button.padding}px`,
-          cursor: 'pointer',
-          transition: 'all 0.2s ease',
-          boxShadow: '0 2px 4px rgba(34, 197, 94, 0.2)',
+          cursor: getCursorVar('pointer'), // Cursor system token για interactive elements
+          transition: 'var(--layera-transition-fast)',
+          boxShadow: BOX_SHADOW_SCALE.shadowSuccess,
           minHeight: `${UI_CONFIG.mobileGeoMap.button.minHeight}px`,
           display: 'flex',
           alignItems: 'center',
@@ -56,27 +60,25 @@ export const MobileGeoMap: React.FC<MobileGeoMapProps> = () => {
           e.currentTarget.style.backgroundColor = COLORS.categories.property.light;
         }}
         >
-          <span style={{
-            fontSize: '0.8rem',
-            fontWeight: 'bold',
+          <Text size="xs" weight="bold" style={{
             color: 'white',
             textAlign: 'center'
           }}>
-            {t('pipeline.categories.property.title', 'Ακίνητα')}
-          </span>
+            Ακίνητα
+          </Text>
         </button>
 
         {/* Εργασία Button - Blue */}
         <button style={{
           flex: 1,
-          backgroundColor: '#3b82f6',
-          border: '1px solid #2563eb',
-          borderRadius: '8px',
-          padding: '10px',
-          cursor: 'pointer',
-          transition: 'all 0.2s ease',
-          boxShadow: '0 2px 4px rgba(59, 130, 246, 0.2)',
-          minHeight: '45px',
+          backgroundColor: 'var(--color-interactive-primary)',
+          border: '1px solid var(--color-interactive-primary)',
+          borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
+          padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+          cursor: getCursorVar('pointer'), // Cursor system token για interactive elements
+          transition: 'var(--layera-transition-fast)',
+          boxShadow: BOX_SHADOW_SCALE.shadowInfo,
+          minHeight: `${UI_CONFIG.mobileGeoMap.button.minHeight}px`,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
@@ -91,14 +93,12 @@ export const MobileGeoMap: React.FC<MobileGeoMapProps> = () => {
           e.currentTarget.style.backgroundColor = COLORS.categories.job.light;
         }}
         >
-          <span style={{
-            fontSize: '0.8rem',
-            fontWeight: 'bold',
+          <Text size="xs" weight="bold" style={{
             color: 'white',
             textAlign: 'center'
           }}>
-            {t('pipeline.categories.job.title', 'Εργασία')}
-          </span>
+            Εργασία
+          </Text>
         </button>
       </div>
 

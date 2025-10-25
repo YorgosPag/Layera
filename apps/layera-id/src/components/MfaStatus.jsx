@@ -1,7 +1,9 @@
+import { SPACING_SCALE } from '@layera/constants';
+
 export default function MfaStatus({ mfa }) {
   return (
     <span style={{
-      padding: "4px 8px",
+      padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
       border: "1px solid var(--layera-border-primary)",
       borderRadius: 8,
       fontSize: "12px",

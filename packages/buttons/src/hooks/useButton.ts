@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { ButtonSize, ButtonVariant, ButtonTokens } from '../types';
+import { SPACING_SCALE } from '@layera/constants';
 
 /**
  * useButton Hook - Παρέχει πρόσβαση στο Layera Button Design System
@@ -12,35 +13,35 @@ export const useButton = () => {
     sizes: {
       xs: {
         height: '2rem',
-        padding: '0.5rem 0.75rem',
+        padding: `${SPACING_SCALE.SM}px 0.75rem`,
         fontSize: '0.75rem',
         iconSize: '0.875rem',
         gap: '0.375rem'
       },
       sm: {
         height: '2.25rem',
-        padding: '0.5rem 1rem',
+        padding: `${SPACING_SCALE.SM}px 1rem`,
         fontSize: '0.875rem',
         iconSize: '1rem',
-        gap: '0.5rem'
+        gap: `${SPACING_SCALE.SM}px`
       },
       md: {
         height: '2.75rem',
-        padding: '0.75rem 1.25rem',
+        padding: `${SPACING_SCALE.MD}px 1.25rem`,
         fontSize: '1rem',
         iconSize: '1.125rem',
-        gap: '0.5rem'
+        gap: `${SPACING_SCALE.SM}px`
       },
       lg: {
         height: '3rem',
-        padding: '0.875rem 1.5rem',
+        padding: `${SPACING_SCALE.MD - SPACING_SCALE.XS / 2}px ${SPACING_SCALE.XL - SPACING_SCALE.SM}px`,
         fontSize: '1.125rem',
         iconSize: '1.25rem',
-        gap: '0.625rem'
+        gap: `${SPACING_SCALE.SM}px`
       },
       xl: {
         height: '3.5rem',
-        padding: '1rem 2rem',
+        padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XXL}px`,
         fontSize: '1.25rem',
         iconSize: '1.5rem',
         gap: '0.75rem'
@@ -249,7 +250,7 @@ export const useButton = () => {
       none: '0',
       sm: '0.25rem',
       md: '0.375rem',
-      lg: '0.5rem',
+      lg: `${SPACING_SCALE.SM}px`,
       full: '9999px'
     }
   }), []);

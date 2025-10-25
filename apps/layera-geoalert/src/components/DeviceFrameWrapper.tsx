@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useViewportWithOverride } from '@layera/viewport';
 import { DeviceModelSelector, DeviceModel, getDeviceSpecs } from '@layera/viewport';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+import { SIZING_SCALE } from '@layera/layout';
+import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 
 interface DeviceFrameWrapperProps {
   children: React.ReactNode;
@@ -36,11 +39,11 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
   const getFrameStyles = (): React.CSSProperties => {
     const baseStyles: React.CSSProperties = {
       position: 'relative',
-      margin: '0 auto',
+      margin: `0 auto`,
       backgroundColor: specs.frameColor,
-      borderRadius: `${specs.borderRadius}px`,
-      padding: '8px',
-      boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
+      borderRadius: `${BORDER_RADIUS_SCALE.LG}px`,
+      padding: `${SPACING_SCALE.SM}px`,
+      boxShadow: BOX_SHADOW_SCALE.elevation6,
       width: `${specs.width}px`,
       height: `${specs.height}px`,
       transform: `scale(${specs.scale})`,
@@ -56,10 +59,10 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
 
   const getScreenStyles = (): React.CSSProperties => {
     return {
-      width: '100%',
-      height: '100%',
-      backgroundColor: '#fff',
-      borderRadius: `${specs.borderRadius - 8}px`,
+      width: SIZING_SCALE.FULL,
+      height: SIZING_SCALE.FULL,
+      backgroundColor: 'var(--color-bg-canvas)',
+      borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
       overflow: 'hidden',
       position: 'relative'
     };
@@ -73,11 +76,11 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
       top: '0',
       left: '50%',
       transform: 'translateX(-50%)',
-      width: '209px',
-      height: '30px',
-      backgroundColor: '#000',
-      borderBottomLeftRadius: '20px',
-      borderBottomRightRadius: '20px',
+      width: `${SIZING_SCALE.LAYOUT_XL}px`,
+      height: `${SIZING_SCALE.XL}px`,
+      backgroundColor: 'var(--color-text-primary)',
+      borderBottomLeftRadius: `${SIZING_SCALE.LG}px`,
+      borderBottomRightRadius: `${SIZING_SCALE.LG}px`,
       zIndex: 10
     };
   };
@@ -87,13 +90,13 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
 
     return {
       position: 'absolute',
-      bottom: '8px',
+      bottom: `${SIZING_SCALE.SM}px`,
       left: '50%',
       transform: 'translateX(-50%)',
-      width: '134px',
-      height: '5px',
-      backgroundColor: '#000',
-      borderRadius: '100px',
+      width: `${SIZING_SCALE.LAYOUT_MD}px`,
+      height: `${SIZING_SCALE.XS}px`,
+      backgroundColor: 'var(--color-text-primary)',
+      borderRadius: `${BORDER_RADIUS_SCALE.PILL}px`,
       zIndex: 10
     };
   };
@@ -109,8 +112,8 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
         justifyContent: 'center',
         alignItems: 'flex-start',
         minHeight: '100vh',
-        backgroundColor: '#f0f0f0',
-        padding: '100px 20px 20px 20px',
+        backgroundColor: 'var(--color-bg-surface)',
+        padding: `${SPACING_SCALE.XL + SPACING_SCALE.LG}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px`,
         overflow: 'auto'
       }}>
         <div style={getFrameStyles()}>

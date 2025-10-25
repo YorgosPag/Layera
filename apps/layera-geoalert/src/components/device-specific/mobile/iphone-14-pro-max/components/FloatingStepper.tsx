@@ -12,8 +12,13 @@
 
 import React, { useEffect } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { PipelineDiscovery } from '@layera/pipelines';
-import { UI_CONFIG, COLORS, ANIMATION_CONFIG, STEP_CONFIG } from '../../../../../constants';
+import { SIZING_SCALE } from '@layera/layout';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+import { Text } from '@layera/typography';
+import { getCursorVar } from '@layera/cursors';
+import { UI_CONFIG, COLORS, STEP_CONFIG } from '../../../../../constants';
 
 export interface FloatingStepperProps {
   // Props που θα συνδεθούν με την υπάρχουσα UnifiedPipeline
@@ -124,9 +129,9 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
 
     // Αν έχει επιλεγεί κατηγορία, προσθέτω prefix
     if (selectedCategory === 'property') {
-      return `${t('pipeline.category.property.title', 'Ακίνητα')} : ${baseTitle}`;
+      return `Ακίνητα : ${baseTitle}`;
     } else if (selectedCategory === 'job') {
-      return `${t('pipeline.category.job.title', 'Εργασία')} : ${baseTitle}`;
+      return `Εργασία : ${baseTitle}`;
     }
 
     // Fallback χωρίς prefix
@@ -142,15 +147,15 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     height: `${UI_CONFIG.floatingStepper.dimensions.height}px`,
     backgroundColor: stepperColors.backgroundColor,
     backdropFilter: 'blur(12px)',
-    borderRadius: `${UI_CONFIG.floatingStepper.dimensions.borderRadius}px`,
+    borderRadius: `${BORDER_RADIUS_SCALE.MD}px`,
     border: `1px solid ${stepperColors.borderColor}`,
-    boxShadow: `0 2px 12px ${COLORS.common.backdrop}`,
+    boxShadow: BOX_SHADOW_SCALE.cardDefault,
     zIndex: UI_CONFIG.floatingStepper.zIndex,
     display: 'flex',
     alignItems: 'center',
     padding: `0 ${UI_CONFIG.floatingStepper.padding}px`,
     gap: `${UI_CONFIG.floatingStepper.gap}px`,
-    transition: ANIMATION_CONFIG.transitions.ease,
+    transition: 'var(--layera-transition-normal)',
     transform: 'translateY(0)',
     userSelect: 'none',
     WebkitTapHighlightColor: 'transparent'
@@ -159,7 +164,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   // Progress dots styles
   const progressDotsContainer: React.CSSProperties = {
     display: 'flex',
-    gap: '4px',
+    gap: `${SPACING_SCALE.XS}px`,
     alignItems: 'center'
   };
 
@@ -171,26 +176,26 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     const isVisited = index <= effectiveStepIndex;
 
     return {
-      width: isActive ? '8px' : (isCompleted || isVisited ? '7px' : '6px'),
-      height: isActive ? '8px' : (isCompleted || isVisited ? '7px' : '6px'),
-      borderRadius: '50%',
+      width: isActive ? `${SPACING_SCALE.XS}px` : (isCompleted || isVisited ? `${SPACING_SCALE.XS - 1}px` : `${SPACING_SCALE.XS - 2}px`),
+      height: isActive ? `${SPACING_SCALE.XS}px` : (isCompleted || isVisited ? `${SPACING_SCALE.XS - 1}px` : `${SPACING_SCALE.XS - 2}px`),
+      borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
       backgroundColor: isCompleted
-        ? '#22c55e' // Πράσινο για completed
+        ? 'var(--color-semantic-success-border)' // Πράσινο για completed
         : isActive
           ? COLORS.common.white // Λευκό για active
           : isVisited
-            ? 'rgba(255, 255, 255, 0.7)' // Ημι-διαφανές για visited
-            : 'rgba(255, 255, 255, 0.4)', // Ακόμα πιο διαφανές για unvisited
-      transition: ANIMATION_CONFIG.transitions.easeOut,
-      cursor: isVisited ? 'pointer' : 'default',
-      border: isActive ? '1px solid rgba(255, 255, 255, 0.8)' : 'none'
+            ? 'var(--color-text-primary-overlay-medium)' // Ημι-διαφανές για visited
+            : 'var(--color-text-primary-overlay-light)', // Ακόμα πιο διαφανές για unvisited
+      transition: 'var(--layera-transition-fast)',
+      cursor: isVisited ? getCursorVar('pointer') : getCursorVar('default'), // Conditional cursor από cursor system
+      border: isActive ? '1px solid var(--color-border-primary-overlay)' : 'none'
     };
   };
 
   // Step title styles
   const stepTitleStyles: React.CSSProperties = {
-    fontSize: '14px',
-    fontWeight: '600',
+    // fontSize handled by Text component
+    fontWeight: 'var(--layera-font-semibold)', // Typography system token για 600
     color: COLORS.common.white,
     flex: 1,
     textAlign: 'left',
@@ -201,13 +206,12 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
 
   // Button styles - compact για mobile
   const buttonStyles: React.CSSProperties = {
-    padding: '6px 12px',
-    fontSize: '12px',
-    fontWeight: '600',
-    borderRadius: '8px',
+    padding: `${SPACING_SCALE.XS + 2}px ${SPACING_SCALE.SM}px`,
+    fontWeight: 'var(--layera-font-semibold)', // Typography system token για 600
+    borderRadius: `${SPACING_SCALE.XS + 2}px`,
     border: 'none',
-    cursor: 'pointer',
-    transition: 'all 0.2s ease',
+    cursor: getCursorVar('pointer'), // Cursor system token για interactive elements
+    transition: 'var(--layera-transition-fast)',
     userSelect: 'none',
     WebkitTapHighlightColor: 'transparent'
   };
@@ -217,15 +221,15 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
 
   const previousButtonStyles: React.CSSProperties = {
     ...buttonStyles,
-    backgroundColor: canActuallyGoPrevious ? 'rgba(255, 255, 255, 0.2)' : 'rgba(255, 255, 255, 0.1)',
-    color: canActuallyGoPrevious ? COLORS.common.white : 'rgba(255, 255, 255, 0.5)',
+    backgroundColor: canActuallyGoPrevious ? 'var(--color-bg-surface-overlay)' : 'var(--color-bg-surface)',
+    color: canActuallyGoPrevious ? COLORS.common.white : 'var(--color-text-primary-overlay-light)',
     opacity: canActuallyGoPrevious ? 1 : 0.5,
     pointerEvents: 'auto' // Εξασφαλίζω ότι το button δέχεται clicks
   };
 
   const resetButtonStyles: React.CSSProperties = {
     ...buttonStyles,
-    backgroundColor: onReset ? '#ef4444' : '#d1d5db', // Κόκκινο χρώμα για reset
+    backgroundColor: onReset ? 'var(--color-semantic-error-bg)' : 'var(--color-border-default)', // Κόκκινο χρώμα για reset
     color: onReset ? 'white' : '#6b7280',
     opacity: onReset ? 1 : 0.5
   };
@@ -234,28 +238,27 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   const getToggleButtonStyles = (): React.CSSProperties => {
     const baseStyles = {
       ...buttonStyles,
-      fontSize: '10px',
-      padding: '4px 8px',
-      minWidth: '24px'
+      padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.XS + 2}px`,
+      minWidth: `${SPACING_SCALE.LG}px`
     };
 
     switch (opacityMode) {
       case 'transparent':
         return {
           ...baseStyles,
-          backgroundColor: 'rgba(255, 255, 255, 0.2)',
+          backgroundColor: 'var(--color-bg-surface-overlay)',
           color: 'white'
         };
       case 'semi-transparent':
         return {
           ...baseStyles,
-          backgroundColor: '#fbbf24', // Κίτρινο για ημιδιαφανές
+          backgroundColor: 'var(--color-semantic-warning-border)', // Κίτρινο για ημιδιαφανές
           color: '#000'
         };
       case 'opaque':
         return {
           ...baseStyles,
-          backgroundColor: '#ef4444', // Κόκκινο για συμπαγές
+          backgroundColor: 'var(--color-semantic-error-border)', // Κόκκινο για συμπαγές
           color: 'white'
         };
     }
@@ -392,10 +395,10 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
           }}
           title={
             opacityMode === 'transparent'
-              ? t('pipeline.actions.opacity.makesSemiTransparent', 'Κάνε τις κάρτες ημιδιαφανείς')
+              ? 'Κάνε τις κάρτες ημιδιαφανείς'
               : opacityMode === 'semi-transparent'
-                ? t('pipeline.actions.opacity.makeOpaque', 'Κάνε τις κάρτες συμπαγείς')
-                : t('pipeline.actions.opacity.makeTransparent', 'Κάνε τις κάρτες διαφανείς (καθρέφτης)')
+                ? 'Κάνε τις κάρτες συμπαγείς'
+                : 'Κάνε τις κάρτες διαφανείς (καθρέφτης)'
           }
         >
           {opacityMode === 'transparent' ? '○' : opacityMode === 'semi-transparent' ? '◐' : '●'}
@@ -413,7 +416,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
           onTouchEnd={(e) => {
             e.currentTarget.style.transform = 'scale(1)';
           }}
-          title={t('pipeline.actions.reset.tooltip', 'Επαναφορά - Εμφάνιση πλήκτρου προσθήκης')}
+          title="Επαναφορά - Εμφάνιση πλήκτρου προσθήκης"
         >
           ×
         </button>
@@ -426,39 +429,38 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
           bottom: '0',
           left: '0',
           right: '0',
-          backgroundColor: 'white',
-          borderTopLeftRadius: '16px',
-          borderTopRightRadius: '16px',
-          boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.15)',
+          backgroundColor: 'var(--color-bg-canvas)',
+          borderTopLeftRadius: `${BORDER_RADIUS_SCALE.LG}px`,
+          borderTopRightRadius: `${BORDER_RADIUS_SCALE.LG}px`,
+          boxShadow: BOX_SHADOW_SCALE.elevation5,
           zIndex: 1500,
-          padding: '16px',
+          padding: `${SPACING_SCALE.MD}px`,
           maxHeight: '40vh',
           overflow: 'auto'
         }}>
           <div style={{
-            width: '40px',
-            height: '4px',
-            backgroundColor: '#d1d5db',
-            borderRadius: '2px',
-            margin: '0 auto 16px',
-            cursor: 'grab'
+            width: `${SIZING_SCALE.XXL}px`,
+            height: `${SIZING_SCALE.XS}px`,
+            backgroundColor: 'var(--color-border-default)',
+            borderRadius: `${BORDER_RADIUS_SCALE.XXS}px`,
+            margin: `0 auto ${SPACING_SCALE.MD}px`,
+            cursor: getCursorVar('grab') // Cursor system token για draggable elements
           }} />
-          <div style={{
-            fontSize: '16px',
-            fontWeight: '600',
+          <Text size="base" weight="bold" style={{
             textAlign: 'center',
-            color: '#1f2937'
+            color: '#1f2937',
+            display: 'block'
           }}>
-            {t('pipeline.forms.details.title', 'Φόρμα Λεπτομερειών')}
-          </div>
-          <div style={{
-            marginTop: '12px',
-            fontSize: '14px',
+            Φόρμα Λεπτομερειών
+          </Text>
+          <Text size="sm" style={{
+            marginTop: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
             color: '#6b7280',
-            textAlign: 'center'
+            textAlign: 'center',
+            display: 'block'
           }}>
-            {t('pipeline.forms.details.placeholder', 'Θα προστεθεί το form περιεχόμενο εδώ...')}
-          </div>
+            Θα προστεθεί το form περιεχόμενο εδώ...
+          </Text>
         </div>
       )}
     </>

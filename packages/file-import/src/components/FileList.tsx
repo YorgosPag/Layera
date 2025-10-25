@@ -5,6 +5,7 @@ import { ProgressBar, LoadingSpinner } from '@layera/loading';
 import { Text, Heading } from '@layera/typography';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { ImportedFile } from '../types';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 
 export interface FileListProps {
   files: ImportedFile[];
@@ -105,7 +106,7 @@ export const FileList: React.FC<FileListProps> = ({
             width: compact ? '32px' : '48px',
             height: compact ? '32px' : '48px',
             objectFit: 'cover',
-            borderRadius: '4px',
+            borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
             border: '1px solid #e0e0e0'
           }}
         />
@@ -118,7 +119,7 @@ export const FileList: React.FC<FileListProps> = ({
           width: compact ? '32px' : '48px',
           height: compact ? '32px' : '48px',
           backgroundColor: '#f5f5f5',
-          borderRadius: '4px',
+          borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -180,9 +181,9 @@ export const FileList: React.FC<FileListProps> = ({
             display: 'flex',
             alignItems: 'center',
             gap: '12px',
-            padding: '8px 12px',
+            padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
             border: `1px solid ${isSelected ? '#2196f3' : '#e0e0e0'}`,
-            borderRadius: '6px',
+            borderRadius: `${BORDER_RADIUS_SCALE.INPUT}px`,
             backgroundColor: isSelected ? '#f3f9ff' : '#ffffff',
             cursor: 'pointer',
             transition: 'all 0.2s ease'
@@ -236,18 +237,18 @@ export const FileList: React.FC<FileListProps> = ({
         }}
         onClick={() => !disabled && onFileSelect(file)}
       >
-        <CardContent style={{ padding: '16px' }}>
+        <CardContent style={{ padding: `${SPACING_SCALE.MD}px` }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
             {renderFileThumbnail(file)}
 
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: `${SPACING_SCALE.XS}px` }}>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <Text variant="body" weight="medium" style={{
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     whiteSpace: 'nowrap',
-                    marginBottom: '4px'
+                    marginBottom: `${SPACING_SCALE.XS - 4}px`
                   }}>
                     {file.metadata.name}
                   </Text>
@@ -261,7 +262,7 @@ export const FileList: React.FC<FileListProps> = ({
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <div style={{ flex: 1 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: `${SPACING_SCALE.XS - 4}px` }}>
                     <Text
                       variant="caption"
                       color={getStatusColor(file.status) as 'primary'}
@@ -291,7 +292,7 @@ export const FileList: React.FC<FileListProps> = ({
               </div>
 
               {file.metadata.dimensions && (
-                <Text variant="caption" color="secondary" style={{ marginTop: '8px' }}>
+                <Text variant="caption" color="secondary" style={{ marginTop: `${SPACING_SCALE.SM}px` }}>
                   {t('file.dimensions', {
                     width: file.metadata.dimensions.width,
                     height: file.metadata.dimensions.height

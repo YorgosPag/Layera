@@ -8,6 +8,7 @@ import React from 'react';
 // Import από existing LEGO systems - ΜΗΝ αναδημιουργήσεις
 import { useTheme } from '@layera/theme-switcher';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import { Icon } from '@layera/icons';
 
 // Import από snap engine
@@ -108,7 +109,7 @@ export const SnapIndicator: React.FC<SnapIndicatorProps> = ({
     height: size,
     pointerEvents: 'none',
     zIndex: 10000,
-    borderRadius: '50%',
+    borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
     backgroundColor: color,
     border: `2px solid ${theme === 'dark' ? '#ffffff' : '#000000'}`,
     boxShadow: `0 0 8px ${color}`,
@@ -125,12 +126,12 @@ export const SnapIndicator: React.FC<SnapIndicatorProps> = ({
     bottom: '100%',
     left: '50%',
     transform: 'translateX(-50%)',
-    marginBottom: '8px',
-    padding: '4px 8px',
+    marginBottom: `${SPACING_SCALE.XS}px`,
+    padding: `${SPACING_SCALE.XS - 4}px ${SPACING_SCALE.XS}px`,
     backgroundColor: theme === 'dark' ? '#2c3e50' : '#ecf0f1',
     color: theme === 'dark' ? '#ecf0f1' : '#2c3e50',
     border: `1px solid ${theme === 'dark' ? '#34495e' : '#bdc3c7'}`,
-    borderRadius: '4px',
+    borderRadius: `${SPACING_SCALE.XS - 4}px`,
     fontSize: '12px',
     fontWeight: 500,
     whiteSpace: 'nowrap',
@@ -223,7 +224,7 @@ export const SnapCursor: React.FC<SnapCursorProps> = ({
     pointerEvents: 'none',
     zIndex: 9999,
     border: `2px solid ${isSnapped ? '#e74c3c' : theme === 'dark' ? '#ecf0f1' : '#2c3e50'}`,
-    borderRadius: '50%',
+    borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
     backgroundColor: isSnapped ? 'rgba(231, 76, 60, 0.2)' : 'transparent',
     transition: 'all 0.1s ease-out',
     transform: isSnapped ? 'scale(1.2)' : 'scale(1)'
@@ -287,11 +288,11 @@ export const SnapGuidelines: React.FC<SnapGuidelinesProps> = ({
     left: midPointX,
     top: midPointY - 20,
     transform: 'translateX(-50%)',
-    padding: '2px 6px',
+    padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.XS + SPACING_SCALE.XS}px`,
     backgroundColor: theme === 'dark' ? '#2c3e50' : '#ecf0f1',
     color: theme === 'dark' ? '#ecf0f1' : '#2c3e50',
     border: `1px solid ${theme === 'dark' ? '#34495e' : '#bdc3c7'}`,
-    borderRadius: '3px',
+    borderRadius: `${BORDER_RADIUS_SCALE.XXS}px`,
     fontSize: '11px',
     fontWeight: 500,
     pointerEvents: 'none',

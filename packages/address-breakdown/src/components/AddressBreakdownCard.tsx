@@ -15,6 +15,8 @@ import { Button } from '@layera/buttons';
 import { LocationIcon, MapIcon } from '@layera/icons';
 import { Spinner } from '@layera/loading';
 import { useLayeraTranslation } from '@layera/i18n';
+import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 // Fixed import - χρησιμοποιούμε το νέο working osmService από geo-mapping
 import { fetchBoundaryByAddressComponent } from '../../../geo-mapping/src/services/osmService';
 
@@ -163,7 +165,7 @@ export function AddressBreakdownCard({
           {component.label}
           {isLoading && (
             <span style={{
-              marginLeft: '0.5rem',
+              marginLeft: `${SPACING_SCALE.SM}px`,
               fontSize: '0.75rem',
               color: '#6B7280'
             }}>
@@ -182,9 +184,9 @@ export function AddressBreakdownCard({
         className={`list-item ${componentProps.className}`}
         style={{
           ...componentProps.style,
-          padding: '0.75rem',
-          borderRadius: '0.375rem',
-          marginBottom: '0.5rem',
+          padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+          borderRadius: `${BORDER_RADIUS_SCALE.INPUT}px`,
+          marginBottom: `${SPACING_SCALE.SM}px`,
           border: '1px solid #E5E7EB',
           transition: 'all 0.2s ease-in-out',
           backgroundColor: isClickable ? '#FFFFFF' : '#F9FAFB',
@@ -194,7 +196,7 @@ export function AddressBreakdownCard({
               backgroundColor: '#F3F4F6',
               borderColor: '#D1D5DB',
               transform: 'translateY(-1px)',
-              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+              boxShadow: BOX_SHADOW_SCALE.cardHover
             }
           })
         }}
@@ -203,7 +205,7 @@ export function AddressBreakdownCard({
             e.currentTarget.style.backgroundColor = '#F3F4F6';
             e.currentTarget.style.borderColor = '#D1D5DB';
             e.currentTarget.style.transform = 'translateY(-1px)';
-            e.currentTarget.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
+            e.currentTarget.style.boxShadow = BOX_SHADOW_SCALE.cardHover;
           }
         }}
         onMouseLeave={(e) => {
@@ -211,7 +213,7 @@ export function AddressBreakdownCard({
             e.currentTarget.style.backgroundColor = '#FFFFFF';
             e.currentTarget.style.borderColor = '#E5E7EB';
             e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = 'none';
+            e.currentTarget.style.boxShadow = BOX_SHADOW_SCALE.none;
           }
         }}
       >
@@ -219,7 +221,7 @@ export function AddressBreakdownCard({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'flex-start', // Ευθυγράμμιση προς τα αριστερά
-          gap: '0.5rem',
+          gap: `${SPACING_SCALE.SM}px`,
           width: '100%'
         }}>
           {isLoading ? (
@@ -252,12 +254,12 @@ export function AddressBreakdownCard({
         </div>
         {isLoading && (
           <div className="loading-indicator" style={{
-            marginTop: '0.25rem',
+            marginTop: `${SPACING_SCALE.XS}px`,
             fontSize: '0.75rem',
             color: '#6B7280',
             display: 'flex',
             alignItems: 'center',
-            gap: '0.5rem'
+            gap: `${SPACING_SCALE.SM}px`
           }}>
             <span>Αναζήτηση περιγράμματος...</span>
             <span style={{
@@ -319,7 +321,7 @@ export function AddressBreakdownCard({
         <div style={{
           fontSize: '0.875rem',
           color: '#6B7280',
-          marginBottom: '0.75rem',
+          marginBottom: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
           fontStyle: 'italic'
         }}>
           {t('clickToShowBoundary')}

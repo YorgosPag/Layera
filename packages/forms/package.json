@@ -14,8 +14,8 @@
     "./styles": "./dist/index.css"
   },
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
-    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "build": "tsup src/index.ts --format cjs,esm && tsc --emitDeclarationOnly --outDir dist",
+    "dev": "tsup src/index.ts --format cjs,esm --watch",
     "typecheck": "tsc --noEmit"
   },
   "files": [
@@ -34,7 +34,7 @@
   "license": "ISC",
   "dependencies": {
     "@layera/constants": "workspace:*",
-    "@layera/i18n": "workspace:*"
+    "@layera/tolgee": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

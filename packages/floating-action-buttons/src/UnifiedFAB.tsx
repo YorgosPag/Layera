@@ -6,6 +6,7 @@
  */
 
 import React from 'react';
+import { BORDER_RADIUS_SCALE } from '@layera/constants';
 import { FABProps, ResponsiveFABConfig, DeviceType, FABVariant } from './types';
 
 const DEFAULT_CONFIG: ResponsiveFABConfig = {
@@ -63,7 +64,7 @@ export const UnifiedFAB: React.FC<FABProps> = ({
     bottom: finalSpacing.bottom,
     width: config.size,
     height: config.size,
-    borderRadius: '50%',
+    borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
     background: VARIANT_COLORS[variant],
     border: '2px solid white',
     boxShadow: '0 2px 8px rgba(0,0,0,0.2)',

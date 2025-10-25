@@ -59,13 +59,13 @@ export const AvailabilityStep: React.FC<AvailabilityStepProps> = ({
 
   const containerStyles: React.CSSProperties = {
     position: 'fixed',
-    top: '161px',
-    left: '8px',
-    right: '8px',
+    top: 'var(--layera-cards-top)',
+    left: 'var(--layera-side-margins)',
+    right: 'var(--layera-side-margins)',
     zIndex: 10002,
     display: 'flex',
     flexDirection: 'column',
-    gap: '8px',
+    gap: 'var(--layera-cards-gap)',
     padding: '0'
   };
 
@@ -74,8 +74,8 @@ export const AvailabilityStep: React.FC<AvailabilityStepProps> = ({
       {/* Τώρα Card */}
       <AvailabilityCard
         availability="now"
-        title="Τώρα"
-        description="Άμεσα διαθέσιμο"
+        title={t('availability.now.title', 'Τώρα')}
+        description={t('availability.now.description', 'Άμεσα διαθέσιμο')}
         onClick={() => handleAvailabilitySelection('now')}
         data-testid="availability-card-now"
       />
@@ -83,8 +83,8 @@ export const AvailabilityStep: React.FC<AvailabilityStepProps> = ({
       {/* Μελλοντικά Card */}
       <AvailabilityCard
         availability="future"
-        title="Μελλοντικά"
-        description="Διαθέσιμο στο μέλλον"
+        title={t('availability.future.title', 'Μελλοντικά')}
+        description={t('availability.future.description', 'Διαθέσιμο στο μέλλον')}
         onClick={() => handleAvailabilitySelection('future')}
         data-testid="availability-card-future"
       />

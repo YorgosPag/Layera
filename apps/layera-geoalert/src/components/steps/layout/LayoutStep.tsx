@@ -9,6 +9,8 @@ import { useLayeraTranslation } from '@layera/tolgee';
 import { LayoutToolCard } from './LayoutToolCard';
 import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
 import { CheckIcon } from '@layera/icons';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+import { Text } from '@layera/typography';
 import type { StepProps } from '../types';
 import type { LayoutTool, LayoutStepData, LayoutToolOption } from './types';
 
@@ -106,13 +108,13 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({
 
   const containerStyles: React.CSSProperties = {
     position: 'fixed',
-    top: '161px',
-    left: '8px',
-    right: '8px',
+    top: 'var(--layera-cards-top)',
+    left: 'var(--layera-side-margins)',
+    right: 'var(--layera-side-margins)',
     zIndex: 10002,
     display: 'flex',
     flexDirection: 'column',
-    gap: '8px',
+    gap: 'var(--layera-cards-gap)',
     padding: '0'
   };
 
@@ -134,13 +136,15 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({
       {/* Selected Tools Counter */}
       {selectedTools.length > 0 && (
         <div style={{
-          padding: '8px 16px',
+          padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
           background: 'rgba(0, 255, 0, 0.1)',
-          borderRadius: '8px',
-          fontSize: '14px',
+          borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
+          // fontSize handled by Text component
           color: '#008000'
         }}>
-          {selectedTools.length} εργαλεία επιλέχθηκαν
+          <Text size="sm" style={{ color: 'inherit' }}>
+            {selectedTools.length} εργαλεία επιλέχθηκαν
+          </Text>
         </div>
       )}
 

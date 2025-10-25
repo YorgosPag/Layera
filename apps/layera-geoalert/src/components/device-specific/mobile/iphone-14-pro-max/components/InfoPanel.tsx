@@ -10,6 +10,9 @@ import {
   DEFAULT_INFO_PANEL_STYLES,
   getCategoryTheme
 } from '@layera/info-panels';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
+import { Text } from '@layera/typography';
 import type { CategoryType } from '@layera/info-panels';
 import { installCursorDebug, installLiveStackDebug } from '../../../../../debug/cursorDebug';
 import type { CardId, Category } from './cardData';
@@ -188,9 +191,9 @@ export const InfoPanel = React.memo<InfoPanelProps>(({
         ...mobileStyles.position,
         backgroundColor: categoryTheme.backgroundColor,
         border: `1px solid ${categoryTheme.borderColor}`,
-        boxShadow: `0 4px 12px rgba(0, 0, 0, 0.15)`,
-        borderRadius: 12,
-        padding: '16px 40px 16px 16px',
+        boxShadow: BOX_SHADOW_SCALE.cardDefault,
+        borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
+        padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XL + SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.MD}px`,
         minHeight: 'auto',
         maxHeight: mobileStyles.maxHeight,
         overflow: mobileStyles.overflow,
@@ -204,16 +207,16 @@ export const InfoPanel = React.memo<InfoPanelProps>(({
         aria-label="Close"
         style={{
           position: 'absolute',
-          top: 8,
-          right: 8,
-          width: 24,
-          height: 24,
+          top: `${SPACING_SCALE.XS}px`,
+          right: `${SPACING_SCALE.XS}px`,
+          width: `${SPACING_SCALE.LG}px`,
+          height: `${SPACING_SCALE.LG}px`,
           border: 'none',
-          borderRadius: '50%',
-          backgroundColor: 'rgba(255, 255, 255, 0.3)',
+          borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
+          backgroundColor: 'var(--color-bg-surface-overlay)',
           color: '#fff',
-          fontSize: '16px',
-          fontWeight: 'bold',
+          // fontSize handled by Text component
+          fontWeight: 'var(--layera-font-bold)', // Typography system token για bold
           lineHeight: '1',
           zIndex: mobileStyles.zIndex + 1
         }}
@@ -223,12 +226,20 @@ export const InfoPanel = React.memo<InfoPanelProps>(({
       </button>
 
       {/* Content */}
-      <div style={{ color: categoryTheme.textColor, fontWeight: 'bold', fontSize: 14, marginBottom: 8 }}>
+      <Text size="sm" weight="bold" style={{
+        color: categoryTheme.textColor,
+        marginBottom: `${SPACING_SCALE.SM}px`,
+        display: 'block'
+      }}>
         {infoData.title}
-      </div>
+      </Text>
       <div
         className="content-text"
-        style={{ color: categoryTheme.textColor, fontSize: 12, lineHeight: '1.4' }}
+        style={{
+          color: categoryTheme.textColor,
+          fontSize: 'var(--layera-text-sm)', // Typography system for dangerouslySetInnerHTML content
+          lineHeight: '1.4'
+        }}
         dangerouslySetInnerHTML={{ __html: infoData.content }}
       />
     </div>

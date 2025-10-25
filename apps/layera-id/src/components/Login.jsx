@@ -7,7 +7,7 @@ import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer } from '@layera/layout';
 import { DashboardCard } from '@layera/cards';
-import { FORM_TYPES, FORM_SIZES } from '@layera/constants';
+import { FORM_TYPES, FORM_SIZES, SPACING_SCALE } from '@layera/constants';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -84,9 +84,9 @@ const Login = () => {
             <div style={{
               background: 'color-mix(in srgb, var(--layera-bg-danger) 10%, transparent)',
               color: 'var(--layera-bg-danger)',
-              padding: '12px',
-              borderRadius: '6px',
-              marginBottom: '20px',
+              padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+              borderRadius: `${BORDER_RADIUS_SCALE.INPUT}px`,
+              marginBottom: `${SPACING_SCALE.MD}px`,
               fontSize: '14px',
               border: '1px solid color-mix(in srgb, var(--layera-bg-danger) 30%, transparent)'
             }}>
@@ -145,7 +145,7 @@ const Login = () => {
           </form>
 
           <div style={{
-            margin: '25px 0',
+            margin: `${SPACING_SCALE.XL}px 0`,
             textAlign: 'center',
             position: 'relative',
             color: 'var(--layera-text-secondary)',
@@ -162,7 +162,7 @@ const Login = () => {
             }}></div>
             <span style={{
               background: 'var(--layera-bg-primary)',
-              padding: '0 15px',
+              padding: `0 ${SPACING_SCALE.MD - SPACING_SCALE.XS}px`,
               position: 'relative',
               zIndex: '2'
             }}>
@@ -179,11 +179,11 @@ const Login = () => {
               console.error('Google sign-in error:', error);
               setError(error);
             }}
-            style={{ marginBottom: '20px', width: '100%' }}
+            style={{ marginBottom: `${SPACING_SCALE.MD}px`, width: '100%' }}
           />
 
           <div style={{
-            marginTop: '25px',
+            marginTop: `${SPACING_SCALE.XL}px`,
             textAlign: 'center',
             fontSize: '14px'
           }}>
@@ -198,7 +198,7 @@ const Login = () => {
               {t('auth.forgotPassword')}
             </Link>
             <p style={{
-              margin: '10px 0',
+              margin: `${SPACING_SCALE.SM}px 0`,
               color: 'var(--layera-text-secondary)'
             }}>
               {t('auth.noAccount')} {' '}

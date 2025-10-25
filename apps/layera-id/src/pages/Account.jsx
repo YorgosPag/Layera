@@ -74,7 +74,7 @@ export default function Account() {
               title={t('data.personalInfo')}
               variant="info"
             >
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: `${SPACING_SCALE.MD}px` }}>
                 <div>
                   <strong>{t('data.fields.email')}:</strong> {user.email}
                 </div>

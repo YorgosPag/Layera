@@ -1,3 +1,5 @@
+import { SPACING_SCALE } from '@layera/constants';
+
 const LABELS = {
   admin: "Διαχειριστής",
   broker: "Μεσίτης",
@@ -8,7 +10,7 @@ const LABELS = {
 export default function RoleBadge({ role = "private" }) {
   return (
     <span style={{
-      padding: "4px 8px",
+      padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
       border: "1px solid var(--layera-border-primary)",
       borderRadius: 8,
       fontSize: "12px",

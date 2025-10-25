@@ -2,8 +2,6 @@ import { ReactNode } from 'react';
 import {
   LayoutVariant,
   HeaderVariant,
-  SidebarVariant,
-  SidebarPosition,
   ContainerMaxWidth,
   SpacingSize
 } from './layout.types';
@@ -34,36 +32,8 @@ export interface LayeraHeaderProps {
   className?: string;
 }
 
-export interface NavigationSidebarProps {
-  children: ReactNode;
-  collapsed?: boolean;
-  collapsible?: boolean;
-  width?: string | number;
-  position?: SidebarPosition;
-  variant?: SidebarVariant;
-  className?: string;
-}
 
-export interface NavItemProps {
-  icon?: ReactNode;
-  label: string;
-  to?: string;
-  href?: string;
-  onClick?: () => void;
-  active?: boolean;
-  disabled?: boolean;
-  badge?: ReactNode;
-  permission?: string;
-  className?: string;
-}
 
-export interface NavSectionProps {
-  title?: string;
-  children: ReactNode;
-  collapsible?: boolean;
-  defaultCollapsed?: boolean;
-  className?: string;
-}
 
 export interface PageContainerProps {
   children: ReactNode;

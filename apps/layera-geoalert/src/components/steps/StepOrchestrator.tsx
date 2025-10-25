@@ -6,6 +6,7 @@
  */
 
 import React, { useMemo, useCallback } from 'react';
+import { SPACING_SCALE } from '@layera/constants';
 import { stepRegistry } from './StepRegistry';
 import {
   StepContext,
@@ -14,6 +15,9 @@ import {
   StepFlowConfig,
   CategoryType,
   IntentType,
+  TransactionType,
+  EmploymentType,
+  ESCOOccupation,
   LocationType,
   DetailsType,
   PricingType,
@@ -25,6 +29,9 @@ export interface StepOrchestratorProps {
   currentStepId: StepId;
   selectedCategory: CategoryType;
   selectedIntent: IntentType;
+  selectedTransactionType?: TransactionType;
+  selectedEmploymentType?: EmploymentType;
+  selectedOccupation?: ESCOOccupation;
   selectedLocation?: LocationType;
   selectedDetails?: DetailsType;
   selectedPricing?: PricingType;
@@ -58,6 +65,9 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
   currentStepId,
   selectedCategory,
   selectedIntent,
+  selectedTransactionType,
+  selectedEmploymentType,
+  selectedOccupation,
   selectedLocation,
   selectedDetails,
   selectedPricing,
@@ -73,6 +83,18 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
   renderStepContainer,
   renderCardsContainer
 }) => {
+  // Debug log για occupation step tracking
+  React.useEffect(() => {
+    if (currentStepId === 'occupation') {
+      console.log('🎯 ORCHESTRATOR: currentStepId changed to OCCUPATION');
+      console.log('🎯 ORCHESTRATOR: Props at occupation render:', {
+        currentStepId,
+        selectedCategory,
+        selectedEmploymentType,
+        selectedOccupation
+      });
+    }
+  }, [currentStepId]);
   // 🎯 ONE-TIME LOG: StepOrchestrator mounted για συγκεκριμένο step
   React.useEffect(() => {
     if (currentStepId === 'intent') {
@@ -92,6 +114,9 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
     currentStepId,
     selectedCategory,
     selectedIntent,
+    selectedTransactionType: selectedTransactionType || null,
+    selectedEmploymentType: selectedEmploymentType || null,
+    selectedOccupation: selectedOccupation || { id: '', title: '' },
     selectedLocation: selectedLocation || null,
     selectedDetails: selectedDetails || null,
     selectedPricing: selectedPricing || null,
@@ -99,7 +124,7 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
     completedSteps,
     featureFlags,
     customData: {}
-  }), [currentStepId, selectedCategory, selectedIntent, selectedLocation, selectedDetails, selectedPricing, selectedReview, completedSteps, featureFlags]);
+  }), [currentStepId, selectedCategory, selectedIntent, selectedTransactionType, selectedEmploymentType, selectedOccupation, selectedLocation, selectedDetails, selectedPricing, selectedReview, completedSteps, featureFlags]);
 
   // 📋 Get available steps για current context
   const availableSteps = useMemo(() => {
@@ -108,7 +133,9 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
 
   // 🎯 Find current step definition
   const currentStep = useMemo(() => {
-    return availableSteps.find(step => step.id === currentStepId);
+    const found = availableSteps.find(step => step.id === currentStepId);
+    // Αφαίρεσα το επαναλαμβανόμενο log για μείωση θορύβου
+    return found;
   }, [availableSteps, currentStepId]);
 
   // 🎮 Navigation helpers
@@ -143,10 +170,26 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
     const currentIndex = availableSteps.findIndex(step => step.id === stepId);
     const nextStep = availableSteps[currentIndex + 1];
 
+    console.log(`🔍 ORCHESTRATOR DEBUG: currentIndex=${currentIndex}, nextStep=${nextStep?.id}, allSteps=[${availableSteps.map(s => s.id).join(', ')}]`);
+
     if (nextStep) {
       console.log(`🎼 ORCHESTRATOR: Auto-advancing to ${nextStep.id}`);
+
+      // Special debug για occupation step
+      if (nextStep.id === 'occupation') {
+        console.log('🔍 ORCHESTRATOR: Next step is OCCUPATION - this should render the component');
+      }
+
       setTimeout(() => {
-        onStepChange?.(nextStep.id);
+        console.log(`🎼 ORCHESTRATOR: Executing onStepChange to ${nextStep.id}`);
+        console.log(`🎼 ORCHESTRATOR: onStepChange function:`, typeof onStepChange, onStepChange?.toString().substring(0, 100));
+        if (onStepChange) {
+          console.log(`🎼 ORCHESTRATOR: Calling onStepChange('${nextStep.id}')`);
+          onStepChange(nextStep.id);
+          console.log(`🎼 ORCHESTRATOR: onStepChange('${nextStep.id}') completed`);
+        } else {
+          console.warn(`🎼 ORCHESTRATOR: onStepChange is not defined!`);
+        }
       }, 500); // Small delay για UX
     } else {
       console.log(`🎼 ORCHESTRATOR: No next step, flow completed`);
@@ -155,6 +198,11 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
 
   // 🎨 Render step cards
   const renderStepCards = useCallback((step: StepDefinition) => {
+    // Safety check: εάν δεν υπάρχουν cards, επιστρέφουμε άδειο array
+    if (!step.cards || !Array.isArray(step.cards)) {
+      return null;
+    }
+
     const visibleCards = step.cards
       .filter(card => {
         // Evaluate card conditions
@@ -200,7 +248,7 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
   if (!currentStep) {
     // Σιωπηλό fallback χωρίς console logs για αποφυγή loops
     return (
-      <div style={{ padding: '20px', textAlign: 'center' }}>
+      <div style={{ padding: `${SPACING_SCALE.LG}px`, textAlign: 'center' }}>
         <p>Step '{currentStepId}' δεν είναι διαθέσιμο αυτή τη στιγμή.</p>
       </div>
     );
@@ -208,6 +256,14 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
 
   // 🎯 Render current step
   const StepComponent = currentStep.component;
+
+  // Debug log για occupation step specifically
+  if (currentStepId === 'occupation') {
+    console.log('🔍 ORCHESTRATOR: About to render OCCUPATION step');
+    console.log('🔍 ORCHESTRATOR: StepComponent:', StepComponent);
+    console.log('🔍 ORCHESTRATOR: stepContext:', stepContext);
+  }
+
   const stepElement = (
     <StepComponent
       context={stepContext}

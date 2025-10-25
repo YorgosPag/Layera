@@ -18,11 +18,12 @@ stepRegistry.register({
   component: IntentStep,
   order: 2,
   isVisible: true,
-  dependencies: ['category'], // Depends on category selection
+  // ΔΙΟΡΘΩΣΗ: Χρησιμοποιώ conditions μόνο, όχι dependencies για να αποφύγω το completedSteps issue
   conditions: [
     {
-      type: 'hasSelectedCategory',
-      check: (context) => !!context.selectedCategory
+      type: 'category',
+      value: null,
+      operator: 'not_equals' // Απαιτεί selectedCategory να μην είναι null
     }
   ],
   cards: [

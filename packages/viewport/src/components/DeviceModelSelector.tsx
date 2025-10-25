@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 
 export type DeviceModel =
   | 'iPhone X'
@@ -136,13 +138,13 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
         left: `${position.x}%`,
         transform: 'translateX(-50%)',
         zIndex: 9999,
-        backgroundColor: isDragging ? 'rgba(255, 255, 255, 1)' : 'rgba(255, 255, 255, 0.95)',
+        backgroundColor: isDragging ? 'var(--color-bg-surface-solid)' : 'var(--color-bg-surface-strong)',
         backdropFilter: 'blur(10px)',
-        borderRadius: '12px',
+        borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
         boxShadow: isDragging
-          ? '0 8px 30px rgba(0,0,0,0.2)'
-          : '0 4px 20px rgba(0,0,0,0.1)',
-        padding: '8px',
+          ? BOX_SHADOW_SCALE.elevation5
+          : BOX_SHADOW_SCALE.elevation3,
+        padding: `${SPACING_SCALE.SM}px`,
         cursor: isDragging ? 'grabbing' : 'grab',
         userSelect: 'none',
         transition: isDragging ? 'none' : 'all 0.2s ease'
@@ -153,8 +155,8 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
           background: currentModel ? '#4F46E5' : '#6B7280',
           color: 'white',
           border: 'none',
-          borderRadius: '8px',
-          padding: '8px 16px',
+          borderRadius: `${BORDER_RADIUS_SCALE.BUTTON}px`,
+          padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
           fontSize: '14px',
           fontWeight: '600',
           cursor: 'inherit',
@@ -175,10 +177,10 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
           top: '100%',
           left: '0',
           right: '0',
-          marginTop: '8px',
+          marginTop: `${SPACING_SCALE.SM}px`,
           backgroundColor: 'white',
-          borderRadius: '12px',
-          boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
+          borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
+          boxShadow: BOX_SHADOW_SCALE.modalDefault,
           overflow: 'hidden',
           maxHeight: '400px',
           overflowY: 'auto'
@@ -190,7 +192,7 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
             }}
             style={{
               width: '100%',
-              padding: '10px 16px',
+              padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px`,
               border: 'none',
               background: !currentModel ? '#EBF5FF' : 'white',
               cursor: 'pointer',
@@ -206,7 +208,7 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
           {Object.entries(deviceCategories).map(([category, devices]) => (
             <div key={category}>
               <div style={{
-                padding: '8px 16px',
+                padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
                 fontSize: '12px',
                 fontWeight: '600',
                 color: '#6B7280',
@@ -225,7 +227,7 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
                   }}
                   style={{
                     width: '100%',
-                    padding: '10px 16px 10px 32px',
+                    padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.SM}px`,
                     border: 'none',
                     background: currentModel === device ? '#EBF5FF' : 'white',
                     cursor: 'pointer',
@@ -249,7 +251,7 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
                   <span style={{
                     fontSize: '12px',
                     color: '#9CA3AF',
-                    marginLeft: '8px'
+                    marginLeft: `${SPACING_SCALE.SM}px`
                   }}>
                     ({deviceSpecs[device].width}x{deviceSpecs[device].height})
                   </span>

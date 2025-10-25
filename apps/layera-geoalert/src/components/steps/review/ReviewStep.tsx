@@ -10,6 +10,18 @@ import { Stack } from '@layera/layout';
 import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { BaseCard } from '@layera/cards';
+import {
+  SPACING_SCALE,
+  useLayeraDesignSystem,
+  LayeraThemeProvider
+} from '@layera/constants';
+import {
+  Box,
+  SIZING_SCALE,
+  useFlex,
+  useFlexPatterns,
+  useSizingStyles
+} from '@layera/layout';
 import type { StepProps, ReviewType } from '../types';
 import { getCardsForStep, type CardConfig } from '../../../pipeline/PipelineDiscovery';
 
@@ -39,6 +51,29 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
 }) => {
   const [reviewMode, setReviewMode] = useState<ReviewType>('preview');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // 🎨 Enterprise Design System Integration
+  const designSystem = useLayeraDesignSystem();
+
+  // 🚀 NEW: Enterprise Layout System Integration
+  const flexPatterns = useFlexPatterns();
+  const sizingStyles = useSizingStyles();
+  const headerFlex = useFlex({
+    direction: 'row',
+    justify: 'space-between',
+    align: 'center',
+    gap: 'lg'
+  });
+  const itemRowFlex = useFlex({
+    direction: 'row',
+    justify: 'space-between',
+    align: 'center'
+  });
+  const actionsFlex = useFlex({
+    direction: 'row',
+    align: 'center',
+    gap: 'sm'
+  });
 
   // 🚫 Early return αν δεν είναι visible ή δεν έχει όλα τα απαραίτητα context
   if (!isVisible || !context.selectedCategory || !context.selectedIntent ||
@@ -153,7 +188,8 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
   const cards = getReviewCards();
 
   return (
-    <Stack spacing="lg" style={{ width: '100%' }}>
+    <LayeraThemeProvider>
+      <Stack spacing="lg" style={{ width: '100%' }}>
       {/* 📝 Step Header */}
       <Stack spacing="sm">
         <Heading level={2} size="lg">
@@ -165,7 +201,11 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
       </Stack>
 
       {/* 🎮 Review Mode Selector */}
-      <div style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
+      <div style={{
+        display: 'flex',
+        gap: designSystem.spacing.md,
+        marginBottom: designSystem.spacing.md
+      }}>
         <Button
           variant={reviewMode === 'preview' ? 'primary' : 'outline'}
           size="sm"
@@ -196,15 +236,13 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
             <div
               key={key}
               style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                padding: '8px 0',
-                borderBottom: '1px solid var(--color-neutral-200)'
+                ...itemRowFlex,  // Enterprise flex system
+                padding: `${designSystem.spacing.sm} 0`,
+                borderBottom: `1px solid ${designSystem.colors.border.subtle}`
               }}
             >
               <Text size="sm" weight="medium">{item.label}:</Text>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={actionsFlex}>  {/* Enterprise flex system */}
                 <Text size="sm">{item.value}</Text>
                 {reviewMode === 'edit' && (
                   <Button
@@ -227,7 +265,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
           style={{
             display: 'grid',
             gridTemplateColumns: deviceProps?.isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '16px'
+            gap: designSystem.spacing.md
           }}
         >
           {cards.map((card) => (
@@ -249,7 +287,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
       )}
 
       {/* 🎮 Action Buttons */}
-      <Stack direction="row" justify="space-between" style={{ marginTop: '24px' }}>
+      <Stack direction="row" justify="space-between" style={{ marginTop: designSystem.spacing.lg }}>
         <Button
           variant="outline"
           onClick={() => window.history.back()}
@@ -258,7 +296,10 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
           Πίσω
         </Button>
 
-        <div style={{ display: 'flex', gap: '12px' }}>
+        <div style={{
+          display: 'flex',
+          gap: designSystem.spacing.sm
+        }}>
           {reviewMode !== 'confirm' ? (
             <Button
               variant="primary"
@@ -272,7 +313,10 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
               variant="success"
               onClick={handleSubmit}
               disabled={isSubmitting}
-              style={{ minWidth: '120px' }}
+              style={{
+                minWidth: `${SIZING_SCALE.XXXXXL}px`,
+                transition: designSystem.motion.transition.normal
+              }}
             >
               {isSubmitting ? 'Υποβολή...' : 'Υποβολή 🚀'}
             </Button>
@@ -281,11 +325,16 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
       </Stack>
 
       {/* 📊 Step Progress Indicator */}
-      <div style={{ textAlign: 'center', marginTop: '16px' }}>
+      <div style={{
+        textAlign: 'center',
+        marginTop: designSystem.spacing.md,
+        color: designSystem.colors.text.tertiary
+      }}>
         <Text size="sm" color="neutral-500">
           Βήμα 6 από 7 • Επιθεώρηση
         </Text>
       </div>
-    </Stack>
+      </Stack>
+    </LayeraThemeProvider>
   );
 };

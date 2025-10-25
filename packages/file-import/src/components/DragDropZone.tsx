@@ -3,6 +3,7 @@ import { Card, CardContent } from '@layera/cards';
 import { Text } from '@layera/typography';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { SupportedFormat, DragDropState } from '../types';
+import { SPACING_SCALE } from '@layera/constants';
 
 export interface DragDropZoneProps {
   children?: ReactNode;
@@ -203,7 +204,7 @@ export const DragDropZone: React.FC<DragDropZoneProps> = ({
 
           {showHelper && !children && (
             <div className="drag-drop-helper">
-              <div className="upload-icon" style={{ marginBottom: '16px' }}>
+              <div className="upload-icon" style={{ marginBottom: `${SPACING_SCALE.MD}px` }}>
                 <svg
                   width="48"
                   height="48"
@@ -258,7 +259,7 @@ export const DragDropZone: React.FC<DragDropZoneProps> = ({
                 }
               </Text>
 
-              <Text variant="caption" color="secondary" style={{ marginTop: '8px' }}>
+              <Text variant="caption" color="secondary" style={{ marginTop: `${SPACING_SCALE.SM}px` }}>
                 {t('file.drop.zone.accepted.formats', {
                   formats: formatAcceptedTypes(),
                   maxFiles

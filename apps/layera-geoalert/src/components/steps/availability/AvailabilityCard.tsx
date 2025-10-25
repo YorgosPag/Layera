@@ -34,14 +34,9 @@ export const AvailabilityCard: React.FC<AvailabilityCardProps> = ({
   };
 
   const getVariant = () => {
-    switch (availability) {
-      case 'now':
-        return 'success' as const;
-      case 'future':
-        return 'info' as const;
-      default:
-        return 'neutral' as const;
-    }
+    // BaseCard υποστηρίζει μόνο 'property' και 'job' variants
+    // Για availability, χρησιμοποιούμε 'job' που είναι το κατάλληλο για job flow
+    return 'job' as const;
   };
 
   return (

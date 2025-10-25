@@ -8,6 +8,7 @@ import { ThemeSwitcher } from '@layera/theme-switcher';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
 import { CheckIcon, XIcon, UserIcon, SettingsIcon, FolderIcon, LockIcon, ShieldIcon, ChartIcon } from './icons/LayeraIcons';
+import { SPACING_SCALE } from '@layera/constants';
 import QuickActions from './QuickActions';
 
 /**
@@ -84,7 +85,7 @@ const NewDashboard: React.FC = () => {
                     label: t('dashboard.emailStatus')
                   }}
                 >
-                  <div style={{ textAlign: 'center', padding: '1rem' }}>
+                  <div style={{ textAlign: 'center', padding: `${SPACING_SCALE.MD}px` }}>
                     {user.emailVerified ? (
                       <CheckIcon size="lg" theme="success" />
                     ) : (
@@ -101,7 +102,7 @@ const NewDashboard: React.FC = () => {
                     label: t('dashboard.mfaStatus')
                   }}
                 >
-                  <div style={{ textAlign: 'center', padding: '1rem' }}>
+                  <div style={{ textAlign: 'center', padding: `${SPACING_SCALE.MD}px` }}>
                     {user.layeraClaims?.mfa_verified ? (
                       <CheckIcon size="lg" theme="success" />
                     ) : (
@@ -142,7 +143,7 @@ const NewDashboard: React.FC = () => {
                   variant="info"
                   className="layera-dashboard-card--span-2"
                 >
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: `${SPACING_SCALE.MD}px` }}>
                     <div>
                       <strong>{t('data.fields.email')}:</strong> {user.email}
                     </div>

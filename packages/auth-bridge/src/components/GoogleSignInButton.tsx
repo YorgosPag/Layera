@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../hooks/useAuth.js';
+import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import type { AuthResult, LayeraUser } from '../types/auth.js';
 
 export interface GoogleSignInButtonProps {
@@ -67,9 +69,9 @@ export function GoogleSignInButton({
     alignItems: 'center',
     justifyContent: 'center',
     gap: '8px',
-    padding: '10px 16px',
+    padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS / 2}px ${SPACING_SCALE.MD}px`,
     border: '1px solid #dadce0',
-    borderRadius: '4px',
+    borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
     backgroundColor: 'var(--layera-bg-primary)',
     color: 'var(--layera-text-primary)',
     fontFamily: 'Google Sans, Roboto, sans-serif',
@@ -82,7 +84,7 @@ export function GoogleSignInButton({
   };
 
   const hoverStyle = {
-    boxShadow: '0 1px 2px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.15)'
+    boxShadow: BOX_SHADOW_SCALE.buttonHover
   };
 
   return (
@@ -99,7 +101,7 @@ export function GoogleSignInButton({
       }}
       onMouseLeave={(e) => {
         if (!loading && !externalDisabled) {
-          e.currentTarget.style.boxShadow = 'none';
+          e.currentTarget.style.boxShadow = BOX_SHADOW_SCALE.none;
         }
       }}
     >
@@ -110,7 +112,7 @@ export function GoogleSignInButton({
             height: '18px',
             border: '2px solid #f3f3f3',
             borderTop: '2px solid #4285f4',
-            borderRadius: '50%'
+            borderRadius: BORDER_RADIUS_SCALE.CIRCLE
           }} />
           <span>Σύνδεση...</span>
         </>

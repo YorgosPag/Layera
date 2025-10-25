@@ -5,6 +5,7 @@ import { ThemeSwitcher, useTheme } from '@layera/theme-switcher';
 import { LanguageSwitcher } from '@layera/tolgee';
 import { Button } from '@layera/buttons';
 import { ArrowLeftIcon, GlobeIcon, SettingsIcon } from '@layera/icons';
+import { SPACING_SCALE } from '@layera/constants';
 
 interface GeoHeaderProps {
   onBackClick?: () => void;
@@ -33,7 +34,7 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, isIPhone14Pro
 
   // Debug για iPhone detection και εικονίδια
   console.log('🎯 GeoHeader: isIPhone14ProMax =', isIPhone14ProMax);
-  console.log('🎯 GeoHeader: t(\"title\") =', t('title'));
+  console.log('🎯 GeoHeader: t(\"geoalert.title\") =', t('geoalert.title'));
   console.log('🎯 GeoHeader: current theme =', theme);
   console.log('🎯 GeoHeader: Rendering with icons...');
   console.log('🎯 GeoHeader: GlobeIcon =', typeof GlobeIcon);
@@ -41,7 +42,7 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, isIPhone14Pro
   console.log('🎯 GeoHeader: Button =', typeof Button);
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: `${SPACING_SCALE.SM}px` }}>
       {/* Back button εμφανίζεται για όλες τις συσκευές */}
       {onBackClick && (
         <Button
@@ -55,7 +56,7 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, isIPhone14Pro
       )}
       <LayeraHeader
         title="Layera GeoAlert"
-        subtitle={showIcons ? "" : t('subtitle')}
+        subtitle={showIcons ? "" : t('geoalert.subtitle')}
         variant="minimal"
         actions={
           showIcons ? (
@@ -74,11 +75,10 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, isIPhone14Pro
                 console.log('🌐 Language switch:', currentLang, '->', newLang);
               }}
               style={{
-                padding: '8px',
-                borderRadius: '6px',
-                transition: 'all 0.2s ease',
-                backgroundColor: 'rgba(255,255,255,0.1)',  // Φόντο για debug
-                border: '1px solid red' // Border για debug
+                padding: `${SPACING_SCALE.SM}px`,
+                borderRadius: `${SPACING_SCALE.XS + 2}px`,
+                transition: 'var(--layera-transition-fast)',
+                backgroundColor: 'var(--color-bg-surface-overlay)'
               }}
             />
 
@@ -95,11 +95,10 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, isIPhone14Pro
                 toggleTheme();
               }}
               style={{
-                padding: '8px',
-                borderRadius: '6px',
-                transition: 'all 0.2s ease',
-                backgroundColor: 'rgba(255,255,255,0.1)',  // Φόντο για debug
-                border: '1px solid blue' // Border για debug
+                padding: `${SPACING_SCALE.SM}px`,
+                borderRadius: `${SPACING_SCALE.XS + 2}px`,
+                transition: 'var(--layera-transition-fast)',
+                backgroundColor: 'var(--color-bg-surface-overlay)'
               }}
             />
           </HeaderActionsGroup>

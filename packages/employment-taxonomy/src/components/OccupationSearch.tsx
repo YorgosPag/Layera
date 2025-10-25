@@ -13,6 +13,7 @@ import { Stack, Flex } from '@layera/layout';
 import { Spinner } from '@layera/loading';
 import { useOccupationSearch } from '../hooks/useOccupationSearch';
 import { OccupationCard } from './OccupationCard';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import type { Occupation } from '../types/occupation';
 
 export interface OccupationSearchProps {
@@ -109,9 +110,9 @@ export const OccupationSearch: React.FC<OccupationSearchProps> = ({
 
         {/* Search Input */}
         <div style={{
-          background: 'rgba(255, 255, 255, 0.95)',
-          borderRadius: '12px',
-          padding: '16px'
+          background: 'var(--color-bg-surface-strong)',
+          borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
+          padding: `${SPACING_SCALE.MD}px`
         }}>
           <Stack spacing="sm">
             <div style={{ position: 'relative' }}>
@@ -122,9 +123,9 @@ export const OccupationSearch: React.FC<OccupationSearchProps> = ({
                 placeholder={placeholder || t('employment.search.placeholder', 'π.χ. Προγραμματιστής, Δικηγόρος, Γιατρός...')}
                 style={{
                   width: '100%',
-                  padding: '12px 40px 12px 12px',
+                  padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.XXL + SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
                   border: '1px solid #ddd',
-                  borderRadius: '8px',
+                  borderRadius: `${BORDER_RADIUS_SCALE.INPUT}px`,
                   fontSize: '16px',
                   backgroundColor: '#fff'
                 }}
@@ -163,9 +164,9 @@ export const OccupationSearch: React.FC<OccupationSearchProps> = ({
 
         {/* Loading State */}
         {isLoading && (
-          <Flex align="center" justify="center" style={{ padding: '20px' }}>
+          <Flex align="center" justify="center" style={{ padding: `${SPACING_SCALE.LG}px` }}>
             <Spinner size="lg" variant="primary" />
-            <Text style={{ marginLeft: '12px' }}>
+            <Text style={{ marginLeft: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px` }}>
               {t('employment.search.loading', 'Αναζήτηση επαγγελμάτων...')}
             </Text>
           </Flex>

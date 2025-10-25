@@ -8,6 +8,7 @@ import { useLayeraTranslation } from '@layera/tolgee';
 import { LayeraHeader, HeaderActionsGroup } from '@layera/layout';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { LanguageSwitcher } from '@layera/tolgee';
+import { SPACING_SCALE } from '@layera/constants';
 
 interface GeoHeaderProps {
   // Χωρίς onBackClick - δεν θέλουμε back button
@@ -19,7 +20,7 @@ interface GeoHeaderProps {
  */
 export const GeoHeader: React.FC<GeoHeaderProps> = () => {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: `${SPACING_SCALE.SM}px` }}>
       <LayeraHeader
         title="Layera GeoAlert"  // Hardcoded αντί για t('title')
         subtitle=""              // Χωρίς subtitle για compact design

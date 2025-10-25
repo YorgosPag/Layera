@@ -1,4 +1,5 @@
 import React from 'react';
+import { SPACING_SCALE } from '@layera/constants';
 
 export interface StackProps {
   children: React.ReactNode;
@@ -10,11 +11,11 @@ export interface StackProps {
 }
 
 const SPACING_VALUES = {
-  xs: '0.25rem',
-  sm: '0.5rem',
-  md: '1rem',
-  lg: '1.5rem',
-  xl: '2rem'
+  xs: `${SPACING_SCALE.XS}px`,
+  sm: `${SPACING_SCALE.SM}px`,
+  md: `${SPACING_SCALE.MD}px`,
+  lg: `${SPACING_SCALE.LG}px`,
+  xl: `${SPACING_SCALE.XL}px`
 } as const;
 
 export const Stack: React.FC<StackProps> = ({

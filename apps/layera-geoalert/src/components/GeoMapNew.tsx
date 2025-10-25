@@ -103,7 +103,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
   React.useEffect(() => {
     // Reset μόνο αν είμαστε σε step που δεν υπάρχει στο StepOrchestrator
     if (navigation.currentStep &&
-        !['category', 'intent', 'transactionType', 'availability', 'upload', 'layout', 'propertyType', 'propertyDetails', 'areaMethod', 'location', 'employmentType', 'availabilityDetails', 'complete', 'details', 'pricing', 'review'].includes(navigation.currentStep) &&
+        !['category', 'intent', 'transactionType', 'employmentType', 'occupation', 'availability', 'upload', 'layout', 'propertyType', 'propertyDetails', 'areaMethod', 'location', 'availabilityDetails', 'complete', 'details', 'pricing', 'review'].includes(navigation.currentStep) &&
         navigation.selectedCategory) {
       // Event-based reset - ΟΧΙ render-time console.log!
       setTimeout(() => {

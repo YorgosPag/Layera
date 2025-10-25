@@ -38,18 +38,9 @@ export const EmploymentTypeCard: React.FC<EmploymentTypeCardProps> = ({
   };
 
   const getVariant = () => {
-    switch (employmentType) {
-      case 'full_time':
-        return 'primary' as const;
-      case 'part_time':
-        return 'info' as const;
-      case 'freelance':
-        return 'success' as const;
-      case 'seasonal':
-        return 'warning' as const;
-      default:
-        return 'neutral' as const;
-    }
+    // BaseCard υποστηρίζει μόνο 'property' και 'job' variants
+    // Για employment type, χρησιμοποιούμε 'job' που είναι το κατάλληλο
+    return 'job' as const;
   };
 
   return (

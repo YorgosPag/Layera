@@ -7,6 +7,7 @@
 
 import React, { useState } from 'react';
 import { Stack } from '@layera/layout';
+import { SPACING_SCALE } from '@layera/constants';
 import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { BaseCard } from '@layera/cards';
@@ -126,7 +127,7 @@ export const PricingStep: React.FC<PricingStepProps> = ({
         style={{
           display: 'grid',
           gridTemplateColumns: deviceProps?.isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '16px'
+          gap: `${SPACING_SCALE.MD}px`
         }}
       >
         {cards.map((card) => (
@@ -137,7 +138,7 @@ export const PricingStep: React.FC<PricingStepProps> = ({
             onClick={() => handlePricingSelect(card.value as PricingType)}
             style={{
               cursor: 'pointer',
-              transition: 'all 0.2s ease',
+              transition: 'var(--layera-transition-fast)',
               borderColor: selectedPricing === card.value ? 'var(--color-primary-500)' : undefined
             }}
           >
@@ -152,7 +153,7 @@ export const PricingStep: React.FC<PricingStepProps> = ({
       </div>
 
       {/* 🎮 Navigation Controls */}
-      <Stack direction="row" justify="space-between" style={{ marginTop: '24px' }}>
+      <Stack direction="row" justify="space-between" style={{ marginTop: `${SPACING_SCALE.LG}px` }}>
         <Button
           variant="outline"
           onClick={() => window.history.back()}
@@ -170,7 +171,7 @@ export const PricingStep: React.FC<PricingStepProps> = ({
       </Stack>
 
       {/* 📊 Step Progress Indicator */}
-      <div style={{ textAlign: 'center', marginTop: '16px' }}>
+      <div style={{ textAlign: 'center', marginTop: `${SPACING_SCALE.MD}px` }}>
         <Text size="sm" color="neutral-500">
           Βήμα 5 από 7 • Τιμολόγηση
         </Text>

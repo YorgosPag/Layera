@@ -5,6 +5,9 @@
 
 import React from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { SPACING_SCALE } from '@layera/constants';
+import { Text } from '@layera/typography';
+import { getCursorVar } from '@layera/cursors';
 
 interface AppHeaderProps {
   title?: string;
@@ -25,49 +28,38 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
 
   const headerStyles: React.CSSProperties = {
     height: 'var(--header-h)',
-    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    backgroundColor: 'var(--color-bg-surface-overlay)',
     backdropFilter: 'blur(20px)',
     WebkitBackdropFilter: 'blur(20px)',
-    borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+    borderBottom: '1px solid var(--color-border-subtle)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: '0 16px',
+    padding: `0 ${SPACING_SCALE.MD}px`,
     position: 'relative'
   };
 
   const backButtonStyles: React.CSSProperties = {
     background: 'none',
     border: 'none',
-    fontSize: '18px',
-    color: '#007AFF',
-    cursor: 'pointer',
-    padding: '8px',
+    // fontSize handled by Text component
+    color: 'var(--color-interactive-primary)', // Design system primary color instead of hardcoded #007AFF
+    cursor: getCursorVar('pointer'), // Cursor system token για interactive elements
+    padding: `${SPACING_SCALE.SM}px`,
     display: 'flex',
     alignItems: 'center',
-    gap: '4px'
+    gap: `${SPACING_SCALE.XS}px`
   };
 
-  const titleStyles: React.CSSProperties = {
-    fontSize: '17px',
-    fontWeight: '600',
-    color: '#000',
-    position: 'absolute',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    maxWidth: '200px',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap'
-  };
+  // titleStyles moved inline
 
   const languageStyles: React.CSSProperties = {
-    fontSize: '16px',
-    color: '#007AFF',
+    // fontSize handled by Text component
+    color: 'var(--color-interactive-primary)', // Design system primary color instead of hardcoded #007AFF
     background: 'none',
     border: 'none',
-    cursor: 'pointer',
-    padding: '8px'
+    cursor: getCursorVar('pointer'), // Cursor system token για interactive elements
+    padding: `${SPACING_SCALE.SM}px`
   };
 
   return (
@@ -83,9 +75,22 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
       )}
 
       {/* Center: Title */}
-      <div style={titleStyles}>
+      <Text
+        size="base"
+        weight="bold"
+        style={{
+          color: '#000',
+          position: 'absolute',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          maxWidth: `${SPACING_SCALE.XXXL * 3}px`,
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap'
+        }}
+      >
         {title}
-      </div>
+      </Text>
 
       {/* Right: Language Switcher */}
       <button style={languageStyles}>

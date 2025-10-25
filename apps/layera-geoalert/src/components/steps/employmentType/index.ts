@@ -13,11 +13,12 @@ stepRegistry.register({
   component: EmploymentTypeStep,
   order: 5, // After intent step (order 4)
   isVisible: true,
-  dependencies: ['intent'], // Depends on intent selection
+  // Αφαιρώ dependencies για να εμφανίζεται αμέσως μετά το intent
   conditions: [
     {
-      type: 'isJobCategory',
-      check: (context) => context.selectedCategory === 'job'
+      type: 'category',
+      value: 'job',
+      operator: 'equals' // Εμφανίζεται μόνο για job category
     }
   ],
   metadata: {

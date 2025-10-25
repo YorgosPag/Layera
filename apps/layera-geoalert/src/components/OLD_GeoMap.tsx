@@ -4,6 +4,8 @@ import { createRoot } from 'react-dom/client';
 import L from 'leaflet';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Button } from '@layera/buttons';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import {
   ViewportDebugger,
   useViewportWithOverride,
@@ -1265,7 +1267,7 @@ const GeoMap: React.FC<GeoMapProps> = ({
         <div style={{
           backgroundColor: 'var(--layera-bg-primary)',
           padding: '2rem',
-          borderRadius: '8px',
+          borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
           maxWidth: '400px',
           width: '90%'
         }}>
@@ -1273,7 +1275,7 @@ const GeoMap: React.FC<GeoMapProps> = ({
 
           {tempAreaData.category === 'real_estate' ? (
             <>
-              <div style={{ marginBottom: '1rem' }}>
+              <div style={{ marginBottom: `${SPACING_SCALE.MD}px` }}>
                 <label>{t('price')}</label>
                 <input
                   type="number"
@@ -1282,7 +1284,7 @@ const GeoMap: React.FC<GeoMapProps> = ({
                   style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
                 />
               </div>
-              <div style={{ marginBottom: '1rem' }}>
+              <div style={{ marginBottom: `${SPACING_SCALE.MD}px` }}>
                 <label>{t('squareMeters')}</label>
                 <input
                   type="number"
@@ -1291,7 +1293,7 @@ const GeoMap: React.FC<GeoMapProps> = ({
                   style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
                 />
               </div>
-              <div style={{ marginBottom: '1rem' }}>
+              <div style={{ marginBottom: `${SPACING_SCALE.MD}px` }}>
                 <label>{t('rooms')}</label>
                 <input
                   type="number"
@@ -1303,7 +1305,7 @@ const GeoMap: React.FC<GeoMapProps> = ({
             </>
           ) : (
             <>
-              <div style={{ marginBottom: '1rem' }}>
+              <div style={{ marginBottom: `${SPACING_SCALE.MD}px` }}>
                 <label>Μισθός (€):</label>
                 <input
                   type="number"
@@ -1312,7 +1314,7 @@ const GeoMap: React.FC<GeoMapProps> = ({
                   style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
                 />
               </div>
-              <div style={{ marginBottom: '1rem' }}>
+              <div style={{ marginBottom: `${SPACING_SCALE.MD}px` }}>
                 <label>Ωράριο:</label>
                 <input
                   type="text"
@@ -1321,7 +1323,7 @@ const GeoMap: React.FC<GeoMapProps> = ({
                   style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
                 />
               </div>
-              <div style={{ marginBottom: '1rem' }}>
+              <div style={{ marginBottom: `${SPACING_SCALE.MD}px` }}>
                 <label>Εταιρεία:</label>
                 <input
                   type="text"
@@ -1390,7 +1392,7 @@ const GeoMap: React.FC<GeoMapProps> = ({
         zIndex: 1000,
         display: 'flex',
         backgroundColor: 'var(--layera-bg-primary)',
-        borderRadius: '8px',
+        borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
         border: '1px solid var(--layera-border-primary)',
         overflow: 'hidden'
       }}>
@@ -1488,12 +1490,12 @@ const GeoMap: React.FC<GeoMapProps> = ({
               backgroundColor: '#10b981',  // Πράσινο
               color: 'white',
               padding: '6px 10px',
-              borderRadius: '6px',
+              borderRadius: `${BORDER_RADIUS_SCALE.INPUT}px`,
               fontSize: '11px',
               fontWeight: 'bold',
               zIndex: 9998,
               opacity: 0.9,
-              boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
+              boxShadow: BOX_SHADOW_SCALE.shadowInfo
             }}>
               📱 iPhone14ProMax Mode
             </div>
@@ -1543,7 +1545,7 @@ const GeoMap: React.FC<GeoMapProps> = ({
           backgroundColor: 'color-mix(in srgb, var(--layera-bg-secondary) 90%, transparent 10%)',
           color: 'var(--layera-text-primary)',
           padding: '0.5rem 1rem',
-          borderRadius: '6px',
+          borderRadius: `${BORDER_RADIUS_SCALE.INPUT}px`,
           fontSize: '0.875rem'
         }}>
           {activeDrawingMode === 'marker' && (<><MarkerIcon size="sm" theme="neutral" /> {t('clickOnMap')}</>)}
@@ -1590,10 +1592,10 @@ const GeoMap: React.FC<GeoMapProps> = ({
             top: `${fabPos.y}px`,
             width: BTN_SIZE,
             height: BTN_SIZE,
-            borderRadius: '50%',
+            borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
             background: 'var(--layera-bg-success,#22C55E)',
             border: '2px solid #fff',
-            boxShadow: '0 8px 24px rgba(0,0,0,.25)',
+            boxShadow: BOX_SHADOW_SCALE.modalDefault,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -1616,7 +1618,7 @@ const GeoMap: React.FC<GeoMapProps> = ({
           zIndex: 1000,
           backgroundColor: 'color-mix(in srgb, var(--layera-bg-primary) 95%, transparent 5%)',
           padding: '1rem',
-          borderRadius: '8px',
+          borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
           border: '1px solid var(--layera-border-secondary)',
           maxWidth: '300px',
           maxHeight: '200px',
@@ -1626,13 +1628,13 @@ const GeoMap: React.FC<GeoMapProps> = ({
           {drawnAreas.map(area => (
             <div key={area.id} style={{
               fontSize: '0.75rem',
-              marginBottom: '0.5rem',
+              marginBottom: `${SPACING_SCALE.SM}px`,
               padding: '0.5rem',
               backgroundColor: area.category === 'real_estate' ? 'var(--layera-bg-warning)' : 'var(--layera-bg-info)',
-              borderRadius: '4px',
+              borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
               border: `1px solid ${area.category === 'real_estate' ? 'var(--layera-bg-warning)' : 'var(--layera-bg-info)'}`
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: `${SPACING_SCALE.SM}px`, marginBottom: `${SPACING_SCALE.XS}px` }}>
                 <span>{area.category === 'real_estate' ? <HomeIcon size="xs" theme="neutral" /> : <BriefcaseIcon size="xs" theme="neutral" />}</span>
                 <strong>{getAreaName(area)}</strong>
                 <span style={{ color: 'var(--layera-text-secondary)' }}>({area.type})</span>
@@ -1679,7 +1681,7 @@ const GeoMap: React.FC<GeoMapProps> = ({
           bottom: 0,
           backgroundColor: 'rgba(0, 0, 0, 0.3)',
           zIndex: 2000,
-          padding: '8px',
+          padding: `${SPACING_SCALE.SM}px`,
           overflow: 'hidden'
         }}>
           <UnifiedPipelineContent

@@ -19,9 +19,9 @@
 }
 
 .language-switcher-nav {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--color-bg-surface-overlay-light);
   color: white;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--color-border-primary-overlay);
   padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
@@ -34,7 +34,7 @@
 }
 
 .language-switcher-nav:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--color-bg-surface-overlay-medium);
 }
 
 .nav-brand h1 {

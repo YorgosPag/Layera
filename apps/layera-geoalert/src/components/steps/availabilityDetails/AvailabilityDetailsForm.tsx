@@ -6,7 +6,8 @@
  */
 
 import React from 'react';
-import { DatePicker } from '@layera/forms';
+import { DatePicker, NumericInput, Select, FormField } from '@layera/forms';
+import { Stack } from '@layera/layout';
 import { useLayeraTranslation } from '@layera/tolgee';
 import type { AvailabilityDetails } from './types';
 
@@ -20,79 +21,59 @@ export const AvailabilityDetailsForm: React.FC<AvailabilityDetailsFormProps> = (
   onChange
 }) => {
   const { t } = useLayeraTranslation();
-  const baseStyle: React.CSSProperties = {
-    width: '100%',
-    padding: '12px',
-    border: '1px solid #ddd',
-    borderRadius: '8px',
-    fontSize: '16px',
-    backgroundColor: '#fff'
-  };
-
-  const labelStyle: React.CSSProperties = {
-    fontSize: '14px',
-    fontWeight: '500',
-    color: '#333',
-    marginBottom: '6px'
-  };
 
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '16px',
-      padding: '16px',
-      backgroundColor: '#f9f9f9',
-      borderRadius: '12px'
-    }}>
-      {/* Ημερομηνία Έναρξης - LEGO DatePicker */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-        <label style={labelStyle}>
-          {t('availabilityDetails.startDate', 'Ημερομηνία Έναρξης')} <span style={{ color: '#f00' }}> *</span>
-        </label>
+    <Stack spacing="lg" className="availability-details-form">
+      {/* Ημερομηνία Έναρξης - LEGO FormField + DatePicker */}
+      <FormField
+        label={t('availabilityDetails.startDate', 'Ημερομηνία Έναρξης')}
+        required
+      >
         <DatePicker
           value={details.date || ''}
-          onChange={(date) => onChange('date', date)}
+          onChange={(e) => onChange('date', e.target.value)}
           placeholder={t('availabilityDetails.selectStartDate', 'Επιλέξτε ημερομηνία έναρξης')}
-          locale="el"
-          format="DD/MM/YYYY"
-          minDate={new Date()}
-          disabled={false}
-          size="lg"
-          style={baseStyle}
+          minDate={new Date().toISOString().split('T')[0]}
+          size="md"
+          variant="outline"
+          fullWidth
         />
-      </div>
+      </FormField>
 
-      {/* Διάρκεια */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-        <label style={labelStyle}>
-          {t('availabilityDetails.duration', 'Διάρκεια')} <span style={{ color: '#f00' }}> *</span>
-        </label>
-        <input
-          type="number"
-          value={details.duration || ''}
+      {/* Διάρκεια - LEGO FormField + NumericInput */}
+      <FormField
+        label={t('availabilityDetails.duration', 'Διάρκεια')}
+        required
+      >
+        <NumericInput
+          value={details.duration || 0}
           onChange={(e) => onChange('duration', e.target.value ? Number(e.target.value) : 0)}
           placeholder={t('availabilityDetails.durationPlaceholder', 'π.χ. 12')}
           min={1}
           max={120}
-          style={baseStyle}
+          size="md"
+          variant="outline"
+          fullWidth
         />
-      </div>
+      </FormField>
 
-      {/* Μονάδα */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-        <label style={labelStyle}>
-          {t('availabilityDetails.unit', 'Μονάδα')} <span style={{ color: '#f00' }}> *</span>
-        </label>
-        <select
+      {/* Μονάδα - LEGO FormField + Select */}
+      <FormField
+        label={t('availabilityDetails.unit', 'Μονάδα')}
+        required
+      >
+        <Select
           value={details.unit || 'months'}
           onChange={(e) => onChange('unit', e.target.value as 'months' | 'years')}
-          style={baseStyle}
-        >
-          <option value="months">{t('availabilityDetails.months', 'Μήνες')}</option>
-          <option value="years">{t('availabilityDetails.years', 'Χρόνια')}</option>
-        </select>
-      </div>
-    </div>
+          options={[
+            { value: 'months', label: t('availabilityDetails.months', 'Μήνες') },
+            { value: 'years', label: t('availabilityDetails.years', 'Χρόνια') }
+          ]}
+          size="md"
+          variant="outline"
+          fullWidth
+        />
+      </FormField>
+    </Stack>
   );
 };

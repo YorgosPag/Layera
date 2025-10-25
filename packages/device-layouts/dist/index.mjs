@@ -96,27 +96,35 @@ var DeviceLayoutRenderer = ({
             canGoNext: navigation.canGoNext,
             canGoPrevious: navigation.canGoBack
           }),
-          showCategoryElements && iPhoneComponents.category && navigation && navigation.currentStep === "category" && React.createElement(iPhoneComponents.category, {
-            isVisible: true,
-            currentStepId: navigation.currentStep,
-            onNext: async (_category) => {
-              try {
-                if (navigationHandlers?.onNext) {
-                  navigationHandlers.onNext();
-                }
-              } catch (error) {
-              }
-            }
-          }),
-          navigation?.currentStep !== "category" && iPhoneComponents.orchestrator && navigation && React.createElement(iPhoneComponents.orchestrator, {
+          showCategoryElements && iPhoneComponents.orchestrator && navigation && React.createElement(iPhoneComponents.orchestrator, {
             currentStepId: navigation.currentStep,
             selectedCategory: navigation.selectedCategory ?? "property",
+            // selectedIntent: TO DO: Add to navigation service
+            // Removed unsupported props that cause TypeScript errors
             // πέρασε μόνο όσα handlers υπάρχουν
             ...navigationHandlers?.onNext ? { onNext: navigationHandlers.onNext } : {},
             ...navigationHandlers?.onPrevious ? { onPrevious: navigationHandlers.onPrevious } : {},
-            onStepChange: () => {
+            onStepChange: (stepId) => {
+              console.log(`\u{1F3AF} DEVICE LAYOUT: Step change to ${stepId}`);
+              console.log(`\u{1F3AF} DEVICE LAYOUT: Current step is ${navigation?.currentStep}`);
+              const currentStep = navigation?.currentStep;
+              if (stepId === "occupation" && currentStep === "employmentType") {
+                console.log(`\u{1F3AF} DEVICE LAYOUT: SPECIAL CASE - Forcing navigation to occupation step`);
+                if (navigationHandlers?.onNext) {
+                  navigationHandlers.onNext();
+                }
+              } else {
+                console.log(`\u{1F3AF} DEVICE LAYOUT: Default navigation using goNext() for ${stepId}`);
+                if (navigationHandlers?.onNext) {
+                  navigationHandlers.onNext();
+                }
+              }
             },
-            onStepComplete: () => {
+            onStepComplete: async (stepId, data) => {
+              console.log(`\u{1F3AF} DEVICE LAYOUT: Step ${stepId} completed`, data);
+              if (stepId === "category" && data && typeof data === "object" && "selectedCategory" in data) {
+                console.log(`\u{1F3AF} DEVICE LAYOUT: Category selected: ${data.selectedCategory}`);
+              }
             },
             deviceProps: { isIPhone14ProMaxDevice: true, isMobile: true }
           })
