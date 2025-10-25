@@ -8,12 +8,10 @@ export { FloatingStepper } from './FloatingStepper';
 export { GeoHeader } from './GeoHeader';
 export { GeoMap } from './GeoMap';
 
-// Enterprise card system
-export { BaseCard } from './BaseCard';
+// Enterprise card data (BaseCard now από @layera/cards)
 export { cardData, getCardsForStep, getCardById } from './cardData';
 
 // Types
 export type { FloatingStepperProps } from './FloatingStepper';
 export type { GeoMapProps } from './GeoMap';
-export type { BaseCardProps, CardVariant } from './BaseCard';
 export type { CardConfig, CardId } from './cardData';

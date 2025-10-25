@@ -22,6 +22,10 @@ export type {
   InfoPanelProviderProps
 } from './types';
 
+// React Components
+export { InfoPanel } from './components/InfoPanel';
+export type { InfoPanelProps } from './components/InfoPanel';
+
 // React Context & Hook
 export { InfoPanelProvider, useInfoPanel } from './InfoPanelContext';
 

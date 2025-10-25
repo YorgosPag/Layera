@@ -1,4 +1,5 @@
 // Typography Types για το Layera Design System
+import React from 'react';
 
 export type FontSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
 
@@ -33,7 +34,7 @@ export interface HeadingProps extends TypographyProps {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
 
-export interface TextProps extends TypographyProps {
+export interface TextProps extends TypographyProps, React.HTMLAttributes<HTMLElement> {
   as?: 'p' | 'span' | 'div' | 'label';
 }
 

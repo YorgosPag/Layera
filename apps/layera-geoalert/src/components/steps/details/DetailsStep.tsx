@@ -7,11 +7,11 @@
 
 import React, { useState, useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
-import { SIZING_SCALE } from '@layera/layout';
+import { SIZING_SCALE, Flex } from '@layera/layout';
 import { PipelineDiscovery } from '@layera/pipelines';
-import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
+import { BaseCard } from '@layera/cards';
 import { cardData, getCardsForStep, type CardConfig, type CardId } from '../../device-specific/mobile/iphone-14-pro-max/components/cardData';
-import { InfoPanel } from '../../device-specific/mobile/iphone-14-pro-max/components/InfoPanel';
+import { InfoPanel } from '@layera/info-panels';
 import {
   GEOALERT_INFO_CONTENT,
   StaticContentProvider
@@ -163,26 +163,6 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
 
   const detailsCards = getDetailsCards();
 
-  // Container styles
-  const containerStyles: React.CSSProperties = {
-    position: 'fixed',
-    top: 'var(--layera-cards-top)',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    width: `${SIZING_SCALE.LAYOUT_XXXL}px`,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: `${SPACING_SCALE.MD}px`,
-    zIndex: 1000,
-    padding: `0 ${SPACING_SCALE.LG}px`,
-    boxSizing: 'border-box'
-  };
-
-  const cardsContainerStyles: React.CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: `${SPACING_SCALE.SM}px`
-  };
 
   // Early return αν δεν είναι visible ή δεν έχει τα απαραίτητα context
   if (!isVisible || !context.selectedCategory || !context.selectedIntent || !context.selectedLocation) {
@@ -191,8 +171,24 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
 
   return (
     <>
-      <div style={containerStyles}>
-        <div style={cardsContainerStyles}>
+      <Flex
+        direction="column"
+        style={{
+          position: 'fixed',
+          top: 'var(--layera-cards-top)',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: `${SIZING_SCALE.LAYOUT_XXXL}px`,
+          gap: `${SPACING_SCALE.MD}px`,
+          zIndex: 1000,
+          padding: `0 ${SPACING_SCALE.LG}px`,
+          boxSizing: 'border-box'
+        }}>
+        <Flex
+          direction="column"
+          style={{
+            gap: `${SPACING_SCALE.SM}px`
+          }}>
           {detailsCards.map((cardConfig) => (
             <BaseCard
               key={cardConfig.id}
@@ -204,8 +200,8 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
               data-testid={`details-card-${cardConfig.id}`}
             />
           ))}
-        </div>
-      </div>
+        </Flex>
+      </Flex>
 
       {/* Info Panel */}
       {showInfoPanel && currentInfoCard && (

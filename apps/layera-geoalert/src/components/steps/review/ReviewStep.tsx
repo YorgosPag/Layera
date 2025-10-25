@@ -6,7 +6,7 @@
  */
 
 import React, { useState, useMemo } from 'react';
-import { Stack } from '@layera/layout';
+import { Stack, Flex } from '@layera/layout';
 import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { BaseCard } from '@layera/cards';
@@ -201,8 +201,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
       </Stack>
 
       {/* 🎮 Review Mode Selector */}
-      <div style={{
-        display: 'flex',
+      <Flex style={{
         gap: designSystem.spacing.md,
         marginBottom: designSystem.spacing.md
       }}>
@@ -227,7 +226,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
         >
           Επιβεβαίωση
         </Button>
-      </div>
+      </Flex>
 
       {/* 📊 Review Summary */}
       <BaseCard title="📋 Σύνοψη Επιλογών" variant="outline">
@@ -296,8 +295,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
           Πίσω
         </Button>
 
-        <div style={{
-          display: 'flex',
+        <Flex style={{
           gap: designSystem.spacing.sm
         }}>
           {reviewMode !== 'confirm' ? (
@@ -321,7 +319,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
               {isSubmitting ? 'Υποβολή...' : 'Υποβολή 🚀'}
             </Button>
           )}
-        </div>
+        </Flex>
       </Stack>
 
       {/* 📊 Step Progress Indicator */}

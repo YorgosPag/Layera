@@ -1,9 +1,12 @@
 /**
  * AreaMethodCard.tsx - Reusable Area Method Option Card
+ *
+ * Unified Card implementation για area method selection
+ * Migrated από BaseCard wrapper στο νέο UnifiedCard system
  */
 
 import React from 'react';
-import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
+import { UnifiedCard, createSelectionCard } from '@layera/cards';
 import { EditIcon, MapIcon, CheckIcon as ImageIcon, CheckIcon as CalculatorIcon } from '@layera/icons';
 import type { AreaMethodType } from './types';
 
@@ -16,6 +19,10 @@ interface AreaMethodCardProps {
   'data-testid'?: string;
 }
 
+/**
+ * Area Method Selection Card
+ * Powered by UnifiedCard configuration system
+ */
 export const AreaMethodCard: React.FC<AreaMethodCardProps> = ({
   method,
   title,
@@ -24,6 +31,11 @@ export const AreaMethodCard: React.FC<AreaMethodCardProps> = ({
   onClick,
   'data-testid': testId
 }) => {
+  // Skip rendering for invalid method
+  if (!method) {
+    return null;
+  }
+
   const getIcon = () => {
     switch (method) {
       case 'manual':
@@ -39,36 +51,41 @@ export const AreaMethodCard: React.FC<AreaMethodCardProps> = ({
     }
   };
 
-  const getVariant = () => {
-    if (isRecommended) {
-      return 'success' as const;
-    }
-    switch (method) {
-      case 'manual':
-        return 'info' as const;
-      case 'map':
-        return 'primary' as const;
-      case 'floorplan':
-        return 'warning' as const;
-      case 'auto':
-        return 'secondary' as const;
-      default:
-        return 'neutral' as const;
-    }
-  };
-
   const enhancedDescription = isRecommended && description
     ? `${description} (Προτεινόμενο)`
     : description;
 
+  const handleMethodSelect = React.useCallback((areaMethod: unknown) => {
+    if ('vibrate' in navigator) {
+      navigator.vibrate(20);
+    }
+    onClick();
+  }, [onClick]);
+
+  // Create unified card configuration
+  const cardConfig = createSelectionCard({
+    id: `area-method-${method}`,
+    title,
+    description: enhancedDescription,
+    icon: getIcon(),
+    selectionValue: method,
+    category: 'property',
+    theme: 'property',
+    onClick: () => handleMethodSelect(method),
+    testId: testId || `area-method-${method}-card`
+  });
+
+  // Create card context
+  const cardContext = {
+    currentStep: 'areaMethod',
+    category: 'property' as const,
+    viewMode: 'mobile' as const
+  };
+
   return (
-    <BaseCard
-      variant={getVariant()}
-      title={title}
-      description={enhancedDescription}
-      icon={getIcon()}
-      onClick={onClick}
-      data-testid={testId}
+    <UnifiedCard
+      config={cardConfig}
+      context={cardContext}
     />
   );
 };

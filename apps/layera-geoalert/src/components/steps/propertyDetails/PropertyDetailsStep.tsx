@@ -7,7 +7,7 @@
 import React, { useCallback, useState } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { PropertyDetailsForm } from './PropertyDetailsForm';
-import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
+import { BaseCard } from '@layera/cards';
 import { CheckIcon, CheckIcon as FormIcon } from '@layera/icons';
 import type { StepProps } from '../types';
 import type { PropertyDetails, PropertyDetailsStepData, PropertyDetailsFormField } from './types';

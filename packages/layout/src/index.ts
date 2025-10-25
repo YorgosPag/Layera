@@ -20,6 +20,17 @@ export { Stack } from './components/Stack';
 export { Flex } from './components/Flex';
 export { Box } from './components/Box';
 
+// Layout Shortcuts (Φάση 2.2 - Αντικαθιστά hardcoded patterns)
+export {
+  FlexCenter,
+  FlexBetween,
+  FlexColumn,
+  FlexRow,
+  FlexWrap,
+  LAYOUT_SHORTCUTS_MAP,
+  SHORTCUT_USAGE_STATS
+} from './utils/shortcuts';
+
 // Container Components
 export { PageContainer, PageHeader } from './components/Container';
 

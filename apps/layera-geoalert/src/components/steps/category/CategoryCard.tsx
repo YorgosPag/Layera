@@ -1,12 +1,12 @@
 /**
  * CategoryCard.tsx - Category Selection Card Component
  *
- * Reusable card component για category selection
- * Extracted από monolithic CategoryStep για better modularity
+ * Unified Card implementation για category selection
+ * Migrated από BaseCard wrapper στο νέο UnifiedCard system
  */
 
 import React from 'react';
-import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
+import { UnifiedCard, createCategoryCard } from '@layera/cards';
 import type { StepCardProps, CategoryType } from '../types';
 
 export interface CategoryCardProps extends StepCardProps {
@@ -28,7 +28,7 @@ export interface CategoryCardProps extends StepCardProps {
 
 /**
  * Category Selection Card
- * Wraps BaseCard με category-specific logic
+ * Powered by UnifiedCard configuration system
  */
 export const CategoryCard: React.FC<CategoryCardProps> = ({
   context,
@@ -40,29 +40,52 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
   variant,
   opacity = 'transparent'
 }) => {
-  const handleClick = () => {
-    onCategorySelect?.(categoryType);
-  };
+  // Skip rendering for null categoryType
+  if (!categoryType) {
+    return null;
+  }
 
-  const handleInfoClick = () => {
+  const handleCategorySelect = React.useCallback((category: 'property' | 'job') => {
+    if ('vibrate' in navigator) {
+      navigator.vibrate(20);
+    }
+    onCategorySelect?.(category);
+  }, [onCategorySelect]);
+
+  const handleInfoClick = React.useCallback(() => {
     if ('vibrate' in navigator) {
       navigator.vibrate(20);
     }
     onInfoClick?.();
+  }, [onInfoClick]);
+
+  // Create unified card configuration
+  const cardConfig = createCategoryCard({
+    categoryType,
+    title,
+    icon,
+    onCategorySelect: handleCategorySelect,
+    onInfoClick: handleInfoClick
+  });
+
+  // Enhance config with step context
+  const enhancedConfig = {
+    ...cardConfig,
+    selected: context.selectedCategory === categoryType,
+    className: context.selectedCategory === categoryType ? 'selected' : ''
   };
 
-  // Determine if this card is selected
-  const isSelected = context.selectedCategory === categoryType;
+  // Create card context
+  const cardContext = {
+    currentStep: 'category',
+    category: categoryType,
+    viewMode: 'mobile' as const
+  };
 
   return (
-    <BaseCard
-      variant={categoryType}
-      title={title}
-      icon={icon}
-      onClick={handleClick}
-      onInfoClick={handleInfoClick}
-      data-testid={`category-card-${categoryType}`}
-      className={isSelected ? 'selected' : ''}
+    <UnifiedCard
+      config={enhancedConfig}
+      context={cardContext}
     />
   );
 };

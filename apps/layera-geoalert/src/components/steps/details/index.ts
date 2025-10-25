@@ -9,7 +9,7 @@ import React from 'react';
 import { stepRegistry } from '../StepRegistry';
 import { DetailsStep } from './DetailsStep';
 import { DetailsCard } from './DetailsCard';
-import { FormIcon, QuickIcon, AdvancedIcon } from '../../../icons/LayeraIcons';
+import { FormIcon, QuickIcon, AdvancedIcon } from '@layera/icons';
 
 // 🚀 AUTO-REGISTRATION: Register this step in the registry
 stepRegistry.register({

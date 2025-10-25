@@ -6,7 +6,7 @@
  */
 
 import React, { useState } from 'react';
-import { Stack } from '@layera/layout';
+import { Stack, Flex } from '@layera/layout';
 import { Button } from '@layera/buttons';
 import { Text } from '@layera/typography';
 import { SPACING_SCALE } from '@layera/constants';
@@ -258,8 +258,7 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
         )}
 
         {/* Actions */}
-        <div style={{
-          display: 'flex',
+        <Flex style={{
           gap: `${SPACING_SCALE.SM}px`,
           marginTop: `${SPACING_SCALE.MD}px`
         }}>
@@ -289,7 +288,7 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
           >
             Αποθήκευση Στοιχείων
           </Button>
-        </div>
+        </Flex>
 
         {/* Validation Status */}
         <div style={{

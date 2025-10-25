@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { Button } from '@layera/buttons';
-import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader } from '@layera/layout';
+import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, FlexCenter } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
 import { SPACING_SCALE } from '@layera/constants';
-import { SettingsIcon, ShieldIcon, BellIcon, PaletteIcon, WarningIcon, ChartIcon, UserIcon, FolderIcon } from '../components/icons/LayeraIcons';
+import { SettingsIcon, UserIcon, ShieldIcon, ChartIcon, FolderIcon, BellIcon, PaletteIcon, WarningIcon } from '@layera/icons';
 import QuickActions from '../components/QuickActions';
 
 export default function Settings() {
@@ -181,7 +181,7 @@ export default function Settings() {
               <p style={{ marginBottom: `${SPACING_SCALE.MD}px`, color: 'var(--color-text-secondary)' }}>
                 {t('settings.items.theme.description')}
               </p>
-              <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
+              <FlexCenter style={{ width: '100%' }}>
                 <ThemeSwitcher
                   variant="dropdown"
                   size="md"
@@ -192,7 +192,7 @@ export default function Settings() {
                     system: currentLanguage === 'el' ? 'Σύστημα' : 'System'
                   }}
                 />
-              </div>
+              </FlexCenter>
             </DashboardCard>
 
             <DashboardCard
@@ -203,9 +203,9 @@ export default function Settings() {
               <p style={{ marginBottom: `${SPACING_SCALE.MD}px`, color: 'var(--color-text-secondary)' }}>
                 {t('settings.items.language.description')}
               </p>
-              <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
+              <FlexCenter style={{ width: '100%' }}>
                 <LanguageSwitcher variant="dropdown" showFlags={true} align="center" />
-              </div>
+              </FlexCenter>
             </DashboardCard>
           </DashboardGrid>
           </DashboardSection>

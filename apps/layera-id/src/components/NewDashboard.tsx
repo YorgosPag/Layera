@@ -5,9 +5,9 @@ import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { ThemeSwitcher } from '@layera/theme-switcher';
-import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader } from '@layera/layout';
+import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, FlexColumn } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
-import { CheckIcon, XIcon, UserIcon, SettingsIcon, FolderIcon, LockIcon, ShieldIcon, ChartIcon } from './icons/LayeraIcons';
+import { CheckIcon, SettingsIcon, FolderIcon, LockIcon, ShieldIcon, ChartIcon, XIcon, UserIcon } from '@layera/icons';
 import { SPACING_SCALE } from '@layera/constants';
 import QuickActions from './QuickActions';
 
@@ -143,7 +143,7 @@ const NewDashboard: React.FC = () => {
                   variant="info"
                   className="layera-dashboard-card--span-2"
                 >
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: `${SPACING_SCALE.MD}px` }}>
+                  <FlexColumn style={{ gap: `${SPACING_SCALE.MD}px` }}>
                     <div>
                       <strong>{t('data.fields.email')}:</strong> {user.email}
                     </div>
@@ -164,7 +164,7 @@ const NewDashboard: React.FC = () => {
                     <div>
                       <strong>{t('data.fields.lastSignIn')}:</strong> {user.metadata?.lastSignInTime ? new Date(user.metadata.lastSignInTime).toLocaleString('el-GR') : t('data.fields.notAvailable')}
                     </div>
-                  </div>
+                  </FlexColumn>
                 </DashboardCard>
               </DashboardGrid>
               </DashboardSection>

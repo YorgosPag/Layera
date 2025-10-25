@@ -1,9 +1,12 @@
 /**
  * PropertyTypeCard.tsx - Reusable Property Type Option Card
+ *
+ * Unified Card implementation για property type selection
+ * Migrated από BaseCard wrapper στο νέο UnifiedCard system
  */
 
 import React from 'react';
-import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
+import { UnifiedCard, createSelectionCard } from '@layera/cards';
 import { VillaIcon, BuildingIcon, IndustrialIcon as FactoryIcon, IndustrialIcon as WarehouseIcon, StoreIcon, BuildingIcon as LandIcon } from '@layera/icons';
 import type { PropertyType } from './types';
 
@@ -15,6 +18,10 @@ interface PropertyTypeCardProps {
   'data-testid'?: string;
 }
 
+/**
+ * Property Type Selection Card
+ * Powered by UnifiedCard configuration system
+ */
 export const PropertyTypeCard: React.FC<PropertyTypeCardProps> = ({
   propertyType,
   title,
@@ -22,6 +29,11 @@ export const PropertyTypeCard: React.FC<PropertyTypeCardProps> = ({
   onClick,
   'data-testid': testId
 }) => {
+  // Skip rendering for invalid propertyType
+  if (!propertyType) {
+    return null;
+  }
+
   const getIcon = () => {
     switch (propertyType) {
       case 'apartment':
@@ -45,34 +57,37 @@ export const PropertyTypeCard: React.FC<PropertyTypeCardProps> = ({
     }
   };
 
-  const getVariant = () => {
-    switch (propertyType) {
-      case 'apartment':
-      case 'house':
-        return 'primary' as const;
-      case 'office':
-      case 'studio':
-        return 'info' as const;
-      case 'factory':
-      case 'warehouse':
-        return 'warning' as const;
-      case 'store':
-        return 'success' as const;
-      case 'land':
-        return 'secondary' as const;
-      default:
-        return 'neutral' as const;
+  const handlePropertySelect = React.useCallback((property: unknown) => {
+    if ('vibrate' in navigator) {
+      navigator.vibrate(20);
     }
+    onClick();
+  }, [onClick]);
+
+  // Create unified card configuration
+  const cardConfig = createSelectionCard({
+    id: `property-type-${propertyType}`,
+    title,
+    description,
+    icon: getIcon(),
+    selectionValue: propertyType,
+    category: 'property',
+    theme: 'property',
+    onClick: () => handlePropertySelect(propertyType),
+    testId: testId || `property-type-${propertyType}-card`
+  });
+
+  // Create card context
+  const cardContext = {
+    currentStep: 'propertyType',
+    category: 'property' as const,
+    viewMode: 'mobile' as const
   };
 
   return (
-    <BaseCard
-      variant={getVariant()}
-      title={title}
-      description={description}
-      icon={getIcon()}
-      onClick={onClick}
-      data-testid={testId}
+    <UnifiedCard
+      config={cardConfig}
+      context={cardContext}
     />
   );
 };

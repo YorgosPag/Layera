@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useViewportWithOverride } from '@layera/viewport';
 import { DeviceModelSelector, DeviceModel, getDeviceSpecs } from '@layera/viewport';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
-import { SIZING_SCALE } from '@layera/layout';
+import { SIZING_SCALE, Flex } from '@layera/layout';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 
 interface DeviceFrameWrapperProps {
@@ -107,15 +107,15 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
         currentModel={selectedModel}
         onModelSelect={setSelectedModel}
       />
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        minHeight: '100vh',
-        backgroundColor: 'var(--color-bg-surface)',
-        padding: `${SPACING_SCALE.XL + SPACING_SCALE.LG}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px`,
-        overflow: 'auto'
-      }}>
+      <Flex
+        justify="center"
+        align="flex-start"
+        style={{
+          minHeight: '100vh',
+          backgroundColor: 'var(--color-bg-surface)',
+          padding: `${SPACING_SCALE.XL + SPACING_SCALE.LG}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px`,
+          overflow: 'auto'
+        }}>
         <div style={getFrameStyles()}>
           <div id="layera-device-simulator-viewport" style={getScreenStyles()}>
             <div style={getNotchStyles()} />
@@ -123,7 +123,7 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
             <div style={getHomeIndicatorStyles()} />
           </div>
         </div>
-      </div>
+      </Flex>
     </>
   );
 };

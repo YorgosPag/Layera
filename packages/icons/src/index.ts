@@ -38,7 +38,9 @@ export {
   GlobeIcon,
   AlertTriangleIcon,
   SatelliteIcon,
-  RulerIcon
+  RulerIcon,
+  MarkerIcon,
+  PolygonIcon
 } from './icons/MapIcons';
 
 // Device Icons
@@ -67,7 +69,29 @@ export {
   UndoIcon,
   RedoIcon,
   CheckIcon,
-  WorkIcon
+  WorkIcon,
+  TrashIcon,
+  ChartIcon,
+  FolderIcon,
+  LockIcon,
+  ShieldIcon,
+  UserIcon,
+  FileIcon,
+  BellIcon,
+  PaletteIcon,
+  UnlockIcon,
+  RocketIcon,
+  XIcon,
+  WarningIcon,
+  // PHASE 10 COMPLETE ICON PERFECTION
+  EyeIcon,
+  EyeOffIcon,
+  EuroIcon,
+  TagIcon,
+  HandshakeIcon,
+  FormIcon,
+  QuickIcon,
+  AdvancedIcon
 } from './icons/ActionIcons';
 
 // Property & Real Estate Icons

@@ -9,7 +9,7 @@ import { Button } from '@layera/buttons';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
 import { SPACING_SCALE } from '@layera/constants';
-import { LockIcon, ShieldIcon, RocketIcon, SmartphoneIcon, CheckIcon } from './icons/LayeraIcons';
+import { SmartphoneIcon, CheckIcon, LockIcon, ShieldIcon, RocketIcon } from '@layera/icons';
 import QuickActions from './QuickActions';
 import './MfaEnroll.css';
 

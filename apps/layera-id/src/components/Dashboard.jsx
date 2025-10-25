@@ -7,7 +7,7 @@ import { Button } from '@layera/buttons';
 import { BaseCard } from '@layera/cards';
 import { Stack } from '@layera/layout';
 import { ThemeSwitcher } from '@layera/theme-switcher';
-import { CheckIcon, XIcon } from './icons/LayeraIcons';
+import { CheckIcon, XIcon } from '@layera/icons';
 import './Dashboard.css';
 import '../styles/typography.css';
 

@@ -108,29 +108,11 @@ export class NavigationService {
   }
 
   async goNext(): Promise<void> {
-    this.logger.info('Attempting to go next');
+    this.logger.info('NavigationService.goNext() - DEPRECATED: StepOrchestrator handles navigation now');
 
-    try {
-      // Validation
-      if (!this.state.canGoNext) {
-        throw new NavigationError('Cannot go to next step');
-      }
-
-      const steps = this.getStepsForCategory(this.state.selectedCategory);
-      if (this.state.stepIndex >= steps.length - 1) {
-        throw new NavigationError('Already at last step');
-      }
-
-      // Atomic state update
-      const newState = this.calculateStateAfterGoingNext();
-      await this.updateState(newState);
-
-      this.logger.info('Went next successfully');
-    } catch (error) {
-      this.logger.error('Go next failed', error);
-      await this.handleError(error as Error);
-      throw error;
-    }
+    // ENTERPRISE BRIDGE: No-op για compatibility με LEGO packages
+    // Το StepOrchestrator αναλαμβάνει όλη τη navigation logic
+    return Promise.resolve();
   }
 
   reset(): void {

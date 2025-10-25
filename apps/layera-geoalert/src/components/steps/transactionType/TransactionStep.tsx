@@ -8,9 +8,9 @@
 import React, { useState, useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { PipelineDiscovery } from '@layera/pipelines';
-import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
+import { BaseCard } from '@layera/cards';
 import { cardData, getCardsForStep, type CardConfig, type CardId } from '../../device-specific/mobile/iphone-14-pro-max/components/cardData';
-import { InfoPanel } from '../../device-specific/mobile/iphone-14-pro-max/components/InfoPanel';
+import { InfoPanel } from '@layera/info-panels';
 import {
   GEOALERT_INFO_CONTENT,
   StaticContentProvider

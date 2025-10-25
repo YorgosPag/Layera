@@ -6,13 +6,19 @@
  * Drag & Drop, chunked upload, progress tracking, validation, retry
  */
 
+// React imports
 import React, { useCallback, useState } from 'react';
-import { useLayeraTranslation } from '@layera/tolgee';
-import { Text } from '@layera/typography';
+
+// Enterprise LEGO Design System imports
 import { SPACING_SCALE } from '@layera/constants';
 import { FileUploader, DEFAULT_UPLOAD_CONFIG } from '@layera/file-upload';
-import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
 import { CheckIcon, ArrowRightIcon } from '@layera/icons';
+import { Flex } from '@layera/layout';
+import { useLayeraTranslation } from '@layera/tolgee';
+import { Text } from '@layera/typography';
+
+// Enhanced LEGO BaseCard με unified features
+import { BaseCard } from '@layera/cards';
 import type { StepProps } from '../types';
 import type { UploadedFile, UploadStepData } from './types';
 import type { FileUploadItem, FileUploadConfig } from '@layera/file-upload';
@@ -25,7 +31,7 @@ export interface UploadStepProps extends StepProps {
 /**
  * Enterprise Upload Step - Καθαρό modular component για File Upload
  */
-export const UploadStep: React.FC<UploadStepProps> = ({
+export const UploadStep: React.FC<UploadStepProps> = React.memo(({
   context,
   onNext,
   onStepComplete,
@@ -136,20 +142,18 @@ export const UploadStep: React.FC<UploadStepProps> = ({
     return null;
   }
 
-  const containerStyles: React.CSSProperties = {
-    position: 'fixed',
-    top: 'var(--layera-cards-top)',
-    left: 'var(--layera-side-margins)',
-    right: 'var(--layera-side-margins)',
-    zIndex: 10002,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 'var(--layera-cards-gap)',
-    padding: '0'
-  };
-
   return (
-    <div style={containerStyles}>
+    <Flex
+      direction="column"
+      style={{
+        position: 'fixed',
+        top: 'var(--layera-cards-top)',
+        left: 'var(--layera-side-margins)',
+        right: 'var(--layera-side-margins)',
+        zIndex: 10002,
+        gap: 'var(--layera-cards-gap)',
+        padding: '0'
+      }}>
       {!showFileUploader ? (
         <>
           {/* Show Upload Card */}
@@ -238,6 +242,6 @@ export const UploadStep: React.FC<UploadStepProps> = ({
           />
         </>
       )}
-    </div>
+    </Flex>
   );
-};
+})

@@ -1,4 +1,16 @@
-// RESTORED - ORIGINAL MONOLITHIC GEOMAP WITH ALL UI ELEMENTS
+/**
+ * 🚨 DEPRECATED - LEGACY CODE - FOR DELETION 🚨
+ *
+ * ⚠️  WARNING: ΜΗΝ ΠΕΙΡΑΖΕΙΣ ΤΙΠΟΤΑ ΕΔΩ ΜΕΣΑ ⚠️
+ *
+ * Αυτό το αρχείο είναι legacy code και θα διαγραφεί μόλις
+ * ολοκληρωθεί η εφαρμογή. Κάθε αλλαγή εδώ είναι άσκοπη.
+ *
+ * Status: SCHEDULED FOR DELETION
+ * Replacement: Νέα modular map architecture
+ *
+ * 🚫 DO NOT TOUCH - LEGACY MONOLITHIC GEOMAP 🚫
+ */
 import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import L from 'leaflet';
@@ -6,6 +18,7 @@ import { useLayeraTranslation } from '@layera/tolgee';
 import { Button } from '@layera/buttons';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
+import { Flex } from '@layera/layout';
 import {
   ViewportDebugger,
   useViewportWithOverride,
@@ -13,7 +26,7 @@ import {
   TabletOnly,
   DesktopOnly
 } from '@layera/viewport';
-import { HomeIcon, BriefcaseIcon, MarkerIcon, PolygonIcon, CheckIcon, TrashIcon, RulerIcon, PlusIcon } from './icons/LayeraIcons';
+import { HomeIcon, BriefcaseIcon, MarkerIcon, PolygonIcon, CheckIcon, TrashIcon, RulerIcon, PlusIcon } from '@layera/icons';
 import LatitudeRuler from './rulers/LatitudeRuler';
 import LongitudeRuler from './rulers/LongitudeRuler';
 import { RULER_SIZE, RULER_BG } from './utils/rulerUtils';
@@ -1252,18 +1265,18 @@ const GeoMap: React.FC<GeoMapProps> = ({
 
 
     return (
-      <div style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        backgroundColor: 'color-mix(in srgb, var(--layera-bg-primary) 50%, transparent 50%)',
-        zIndex: 2000,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}>
+      <Flex
+        align="center"
+        justify="center"
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'color-mix(in srgb, var(--layera-bg-primary) 50%, transparent 50%)',
+          zIndex: 2000
+        }}>
         <div style={{
           backgroundColor: 'var(--layera-bg-primary)',
           padding: '2rem',
@@ -1335,7 +1348,7 @@ const GeoMap: React.FC<GeoMapProps> = ({
             </>
           )}
 
-          <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
+          <Flex style={{ gap: '1rem', marginTop: '1.5rem' }}>
             <Button
               onClick={handleSubmit}
               variant="success"
@@ -1352,9 +1365,9 @@ const GeoMap: React.FC<GeoMapProps> = ({
             >
               {t('cancel')}
             </Button>
-          </div>
+          </Flex>
         </div>
-      </div>
+      </Flex>
     );
   };
 
@@ -1384,13 +1397,12 @@ const GeoMap: React.FC<GeoMapProps> = ({
       )}
 
       {/* Category Tabs - Κρυμμένα για iPhone 14 Pro Max */}
-      {!isIPhone14ProMaxDevice && <div style={{
+      {!isIPhone14ProMaxDevice && <Flex style={{
         position: 'absolute',
         top: '10px',
         left: '50%',
         transform: 'translateX(-50%)',
         zIndex: 1000,
-        display: 'flex',
         backgroundColor: 'var(--layera-bg-primary)',
         borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
         border: '1px solid var(--layera-border-primary)',
@@ -1412,15 +1424,14 @@ const GeoMap: React.FC<GeoMapProps> = ({
         >
           {t('job')}
         </Button>
-      </div>}
+      </Flex>}
 
       {/* Drawing Toolbar - Κρυμμένο για iPhone 14 Pro Max */}
-      {!isIPhone14ProMaxDevice && <div style={{
+      {!isIPhone14ProMaxDevice && <Flex style={{
         position: 'absolute',
         top: isMobile ? '10px' : '10px',
         left: '10px',
         zIndex: 1000,
-        display: 'flex',
         gap: isMobile ? '0.25rem' : '0.5rem',
         flexWrap: 'wrap',
         maxWidth: isMobile ? '90vw' : 'auto'
@@ -1476,7 +1487,7 @@ const GeoMap: React.FC<GeoMapProps> = ({
             {t('rulers')}
           </Button>
         )}
-      </div>}
+      </Flex>}
 
       {/* Device-Specific UI Components */}
 
@@ -1581,7 +1592,9 @@ const GeoMap: React.FC<GeoMapProps> = ({
 
       {/* ViewportFrame Draggable FAB - από diavase_3.md */}
       {(onNewEntryClick || isIPhone14ProMaxDevice) && !showCategoryElements && (
-        <div
+        <Flex
+          align="center"
+          justify="center"
           onPointerDown={handleFabPointerDown}
           onClick={handleNewEntryClick}
           aria-label="Νέα Καταχώρηση"
@@ -1596,9 +1609,6 @@ const GeoMap: React.FC<GeoMapProps> = ({
             background: 'var(--layera-bg-success,#22C55E)',
             border: '2px solid #fff',
             boxShadow: BOX_SHADOW_SCALE.modalDefault,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
             cursor: 'grab',
             touchAction: 'none',
             userSelect: 'none',
@@ -1606,7 +1616,7 @@ const GeoMap: React.FC<GeoMapProps> = ({
           }}
         >
           <PlusIcon size="md" theme="neutral" />
-        </div>
+        </Flex>
       )}
 
       {/* Areas List - Κρυμμένο για iPhone 14 Pro Max */}
@@ -1634,11 +1644,11 @@ const GeoMap: React.FC<GeoMapProps> = ({
               borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
               border: `1px solid ${area.category === 'real_estate' ? 'var(--layera-bg-warning)' : 'var(--layera-bg-info)'}`
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: `${SPACING_SCALE.SM}px`, marginBottom: `${SPACING_SCALE.XS}px` }}>
+              <Flex align="center" style={{ gap: `${SPACING_SCALE.SM}px`, marginBottom: `${SPACING_SCALE.XS}px` }}>
                 <span>{area.category === 'real_estate' ? <HomeIcon size="xs" theme="neutral" /> : <BriefcaseIcon size="xs" theme="neutral" />}</span>
                 <strong>{getAreaName(area)}</strong>
                 <span style={{ color: 'var(--layera-text-secondary)' }}>({area.type})</span>
-              </div>
+              </Flex>
 
               {area.area && <div>{t('area')}: {Math.round(area.area).toLocaleString()} m²</div>}
 

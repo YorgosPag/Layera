@@ -7,6 +7,7 @@
 import React, { useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { PropertyTypeCard } from './PropertyTypeCard';
+import { Flex } from '@layera/layout';
 import type { StepProps } from '../types';
 import type { PropertyType, PropertyTypeStepData, PropertyTypeOption } from './types';
 
@@ -100,22 +101,20 @@ export const PropertyTypeStep: React.FC<PropertyTypeStepProps> = ({
     return null;
   }
 
-  const containerStyles: React.CSSProperties = {
-    position: 'fixed',
-    top: 'var(--layera-cards-top)',
-    left: 'var(--layera-side-margins)',
-    right: 'var(--layera-side-margins)',
-    zIndex: 10002,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: `${SPACING_SCALE.XS + 2}px`,
-    padding: '0',
-    maxHeight: 'calc(100vh - 200px)',
-    overflowY: 'auto'
-  };
-
   return (
-    <div style={containerStyles}>
+    <Flex
+      direction="column"
+      style={{
+        position: 'fixed',
+        top: 'var(--layera-cards-top)',
+        left: 'var(--layera-side-margins)',
+        right: 'var(--layera-side-margins)',
+        zIndex: 10002,
+        gap: `${SPACING_SCALE.XS + 2}px`,
+        padding: '0',
+        maxHeight: 'calc(100vh - 200px)',
+        overflowY: 'auto'
+      }}>
       {propertyTypes.map((type) => (
         <PropertyTypeCard
           key={type.id}
@@ -126,6 +125,6 @@ export const PropertyTypeStep: React.FC<PropertyTypeStepProps> = ({
           data-testid={`property-type-card-${type.id}`}
         />
       ))}
-    </div>
+    </Flex>
   );
 };

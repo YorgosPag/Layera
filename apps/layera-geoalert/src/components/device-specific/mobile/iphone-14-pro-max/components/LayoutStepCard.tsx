@@ -7,7 +7,7 @@
 
 import React, { useState } from 'react';
 import { Text } from '@layera/typography';
-import { Stack, Flex, SIZING_SCALE } from '@layera/layout';
+import { Flex, SIZING_SCALE } from '@layera/layout';
 import { Button } from '@layera/buttons';
 import { LocationIcon, RotateIcon, RulerIcon } from '@layera/icons';
 import { SPACING_SCALE } from '@layera/constants';
@@ -239,10 +239,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
     transition: 'var(--layera-transition-normal)',
     userSelect: 'none',
     WebkitTapHighlightColor: 'transparent',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
+    // Layout handled by Flex wrapper
     position: 'relative',
     backgroundColor: propertyTheme.backgroundColor,
     border: `2px solid ${propertyTheme.borderColor}`,
@@ -251,10 +248,8 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
   };
 
   const titleStyles: React.CSSProperties = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: `${SPACING_SCALE.XS + 2}px`,
+    // Layout handled by Flex wrapper
+    // gap handled by Flex component
     padding: `${SPACING_SCALE.XS + 2}px ${SPACING_SCALE.SM}px`,
     borderRadius: `${SPACING_SCALE.SM}px`,
     // fontSize handled by Text component
@@ -344,20 +339,25 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
   return (
     <div style={{ width: SIZING_SCALE.FULL, padding: `${SPACING_SCALE.SM}px` }}>
       {/* Πρώτη σειρά: Μεγάλη κάρτα για Τοποθεσία (σαν δύο κάρτες ενωμένες) */}
-      <div style={{
-        ...cardBaseStyles,
-        width: SIZING_SCALE.FULL,
-        height: 'auto',
-        minHeight: `${SIZING_SCALE.LAYOUT_MD}px`,
-        marginBottom: `${SPACING_SCALE.SM}px`
-      }}>
+      <Flex
+        direction="column"
+        align="center"
+        justify="start"
+        style={{
+          ...cardBaseStyles,
+          width: SIZING_SCALE.FULL,
+          height: 'auto',
+          minHeight: `${SIZING_SCALE.LAYOUT_MD}px`,
+          marginBottom: `${SPACING_SCALE.SM}px`
+        }}
+      >
         {/* Title με Icon */}
-        <div style={titleStyles}>
+        <Flex align="center" justify="center" gap="xs" style={titleStyles}>
           <LocationIcon size="sm" theme="neutral" />
           <Text size="sm" weight="bold" style={{ color: 'inherit' }}>
             Τοποθεσία
           </Text>
-        </div>
+        </Flex>
 
         {/* Content */}
         <div style={{ width: SIZING_SCALE.FULL, position: 'relative', zIndex: 2 }}>
@@ -407,11 +407,10 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
             }}
           />
         </div>
-      </div>
+      </Flex>
 
       {/* Δεύτερη σειρά: Δύο μικρές κάρτες δίπλα-δίπλα */}
-      <div style={{
-        display: 'flex',
+      <Flex style={{
         gap: `${SIZING_SCALE.SM}px`,
         marginBottom: `${SPACING_SCALE.SM}px`
       }}>
@@ -588,7 +587,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
             </div>
           </div>
         </div>
-      </div>
+      </Flex>
 
       {/* Status */}
       <div style={{

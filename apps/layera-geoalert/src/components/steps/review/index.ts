@@ -9,7 +9,7 @@ import React from 'react';
 import { stepRegistry } from '../StepRegistry';
 import { ReviewStep } from './ReviewStep';
 import { ReviewCard } from './ReviewCard';
-import { EyeIcon, EditIcon, CheckIcon } from '../../../icons/LayeraIcons';
+import { EyeIcon, EditIcon, CheckIcon } from '@layera/icons';
 
 // 🚀 AUTO-REGISTRATION: Register this step in the registry
 stepRegistry.register({

@@ -3,7 +3,7 @@ import { useLayeraTranslation } from '@layera/tolgee';
 import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { DrawnArea } from '@layera/geo-drawing';
-import { SearchIcon, EyeIcon, EyeOffIcon, TrashIcon } from '../../components/icons/LayeraIcons';
+import { SearchIcon, TrashIcon, EyeIcon, EyeOffIcon } from '@layera/icons';
 
 interface AreasPanelProps {
   isOpen: boolean;

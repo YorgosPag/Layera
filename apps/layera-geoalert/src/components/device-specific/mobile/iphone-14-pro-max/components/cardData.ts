@@ -5,8 +5,8 @@
  * Αντί για hardcoded JSX, χρησιμοποιούμε configuration objects.
  */
 
-import { VillaIcon, BriefcaseIcon, CommercialIcon, HomeIcon, WorkIcon, ToolIcon, BuildingIcon, CheckIcon, RefreshIcon, UploadIcon, MapIcon, EditIcon, RulerIcon, SettingsIcon } from '@layera/icons';
-import type { CardVariant } from './BaseCard';
+import { VillaIcon, BriefcaseIcon, CommercialIcon, HomeIcon, WorkIcon, ToolIcon, BuildingIcon, CheckIcon, RefreshIcon, UploadIcon, MapIcon, EditIcon, SettingsIcon } from '@layera/icons';
+import type { CardVariant } from '@layera/cards';
 
 export type CardId =
   | 'property' | 'job'           // Category level

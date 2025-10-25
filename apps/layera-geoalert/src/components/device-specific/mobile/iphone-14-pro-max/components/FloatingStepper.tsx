@@ -13,6 +13,7 @@
 import React, { useEffect } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
+import { Flex } from '@layera/layout';
 import { PipelineDiscovery } from '@layera/pipelines';
 import { SIZING_SCALE } from '@layera/layout';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
@@ -49,11 +50,11 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   selectedCategory = null,
   selectedIntent = null,
   showTransactionStep = false,
-  onNext,
+  onNext: _onNext,
   onPrevious,
   onReset,
   onStepClick,
-  canGoNext = true,
+  canGoNext: _canGoNext = true,
   canGoPrevious = false,
   onCardsOpacityToggle
 }) => {
@@ -151,8 +152,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     border: `1px solid ${stepperColors.borderColor}`,
     boxShadow: BOX_SHADOW_SCALE.cardDefault,
     zIndex: UI_CONFIG.floatingStepper.zIndex,
-    display: 'flex',
-    alignItems: 'center',
+    // Layout handled by Flex wrapper
     padding: `0 ${UI_CONFIG.floatingStepper.padding}px`,
     gap: `${UI_CONFIG.floatingStepper.gap}px`,
     transition: 'var(--layera-transition-normal)',
@@ -163,9 +163,8 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
 
   // Progress dots styles
   const progressDotsContainer: React.CSSProperties = {
-    display: 'flex',
-    gap: `${SPACING_SCALE.XS}px`,
-    alignItems: 'center'
+    // Layout handled by Flex wrapper
+    gap: `${SPACING_SCALE.XS}px`
   };
 
   const getProgressDotStyle = (index: number): React.CSSProperties => {
@@ -350,9 +349,9 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     <>
 
       {/* Main Floating Stepper Bar */}
-      <div style={floatingBarStyles}>
+      <Flex align="center" style={floatingBarStyles}>
         {/* Progress Dots */}
-        <div style={progressDotsContainer}>
+        <Flex align="center" gap="xs" style={progressDotsContainer}>
           {steps.map((step, index) => (
             <div
               key={step.id}
@@ -361,7 +360,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
               title={step.title}
             />
           ))}
-        </div>
+        </Flex>
 
         {/* Current Step Title */}
         <div style={stepTitleStyles}>
@@ -420,7 +419,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
         >
           ×
         </button>
-      </div>
+      </Flex>
 
       {/* Bottom Sheet για Forms - θα προστεθεί αργότερα αν χρειαστεί */}
       {currentStep === 'details' && (

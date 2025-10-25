@@ -7,7 +7,7 @@
 import React, { useCallback, useState } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { LayoutToolCard } from './LayoutToolCard';
-import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
+import { BaseCard } from '@layera/cards';
 import { CheckIcon } from '@layera/icons';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import { Text } from '@layera/typography';

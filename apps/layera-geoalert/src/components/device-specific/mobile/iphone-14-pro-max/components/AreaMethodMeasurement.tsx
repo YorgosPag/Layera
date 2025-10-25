@@ -9,7 +9,7 @@
  */
 
 import React, { useState, useCallback } from 'react';
-import { Stack, SIZING_SCALE } from '@layera/layout';
+import { Stack } from '@layera/layout';
 import { Button } from '@layera/buttons';
 import { Text } from '@layera/typography';
 import { SPACING_SCALE } from '@layera/constants';
@@ -59,11 +59,9 @@ export const AreaMethodMeasurement: React.FC<AreaMethodMeasurementProps> = ({
 
   // Enterprise Drawing Hook Integration
   const {
-    mode,
     state,
     points,
     currentResult,
-    addPoint,
     finishMeasurement,
     cancelMeasurement,
     changeMeasurementMode,
@@ -182,7 +180,7 @@ export const AreaMethodMeasurement: React.FC<AreaMethodMeasurementProps> = ({
               onChange={(e) => setManualArea(parseFloat(e.target.value) || 0)}
               placeholder="π.χ. 85"
               style={{
-                width: SIZING_SCALE.FULL,
+                width: '100%',
                 padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM}px`,
                 fontSize: 'var(--layera-text-lg)', // Typography system for input element
                 border: '1px solid var(--color-border-input)',
@@ -194,7 +192,7 @@ export const AreaMethodMeasurement: React.FC<AreaMethodMeasurementProps> = ({
               variant="primary"
               size="md"
               onClick={handleManualInputSubmit}
-              style={{ width: SIZING_SCALE.FULL }}
+              style={{ width: '100%' }}
             >
               Αποθήκευση Εμβαδού
             </Button>
@@ -277,7 +275,7 @@ export const AreaMethodMeasurement: React.FC<AreaMethodMeasurementProps> = ({
               size="md"
               onClick={handleFloorPlanUpload}
               disabled={isProcessing}
-              style={{ width: SIZING_SCALE.FULL }}
+              style={{ width: '100%' }}
             >
               {isProcessing ? 'Επεξεργασία...' : 'Φόρτωση Κάτοψης'}
             </Button>
@@ -303,7 +301,7 @@ export const AreaMethodMeasurement: React.FC<AreaMethodMeasurementProps> = ({
               size="md"
               onClick={handleAutoCalculate}
               disabled={isProcessing}
-              style={{ width: SIZING_SCALE.FULL }}
+              style={{ width: '100%' }}
             >
               {isProcessing ? 'Υπολογισμός...' : 'Αυτόματος Υπολογισμός'}
             </Button>
@@ -329,7 +327,7 @@ export const AreaMethodMeasurement: React.FC<AreaMethodMeasurementProps> = ({
           <Text size="lg" weight="bold" style={{ color: 'var(--color-text-primary)' }}>
             Μέτρηση Εμβαδού
           </Text>
-          <Text size="sm" style={{ color: 'var(--color-text-secondary)', marginTop: `${SIZING_SCALE.XS}px` }}>
+          <Text size="sm" style={{ color: 'var(--color-text-secondary)', marginTop: `${SPACING_SCALE.XS}px` }}>
             Μέθοδος: {selectedMethod === 'manual-input' ? 'Χειροκίνητη Εισαγωγή' :
                       selectedMethod === 'map-drawing' ? 'Σχεδίαση στον Χάρτη' :
                       selectedMethod === 'floor-plan-upload' ? 'Φόρτωση Κάτοψης' :
@@ -349,7 +347,7 @@ export const AreaMethodMeasurement: React.FC<AreaMethodMeasurementProps> = ({
             style={{
               /* fontSize handled by Button size prop */
               padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
-              marginTop: `${SIZING_SCALE.SM}px`
+              marginTop: `${SPACING_SCALE.SM}px`
             }}
           >
             Επιστροφή στις Μεθόδους
@@ -358,7 +356,7 @@ export const AreaMethodMeasurement: React.FC<AreaMethodMeasurementProps> = ({
 
         {/* Debug Info */}
         <div style={{
-          marginTop: `${SIZING_SCALE.SM}px`,
+          marginTop: `${SPACING_SCALE.SM}px`,
           padding: `${SPACING_SCALE.SM}px`,
           backgroundColor: 'var(--color-bg-surface)',
           borderRadius: `${SPACING_SCALE.XS + 2}px`,

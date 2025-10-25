@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { Button } from '@layera/buttons';
-import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader } from '@layera/layout';
+import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, Flex, FlexColumn, Box } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
 import { SPACING_SCALE } from '@layera/constants';
-import { ChartIcon, UserIcon, ShieldIcon, SmartphoneIcon, FolderIcon, FileIcon, CheckIcon, XIcon, LockIcon, SettingsIcon } from '../components/icons/LayeraIcons';
+import { SmartphoneIcon, CheckIcon, SettingsIcon, ChartIcon, ShieldIcon, FolderIcon, LockIcon, UserIcon, FileIcon, XIcon } from '@layera/icons';
 import QuickActions from '../components/QuickActions';
 
 export default function Data() {
@@ -85,7 +85,7 @@ export default function Data() {
               <div style={{ fontSize: '1.125rem', fontWeight: '600', color: 'var(--color-text-primary)' }}>
                 {user.email}
               </div>
-              <div style={{ marginTop: `${SPACING_SCALE.SM}px`, display: 'flex', alignItems: 'center', gap: `${SPACING_SCALE.SM}px` }}>
+              <Flex align="center" style={{ marginTop: `${SPACING_SCALE.SM}px`, gap: `${SPACING_SCALE.SM}px` }}>
                 {user.emailVerified ? (
                   <>
                     <CheckIcon size="sm" theme="success" />
@@ -97,7 +97,7 @@ export default function Data() {
                     <span style={{ color: 'var(--color-error)' }}>{t('status.unverified')}</span>
                   </>
                 )}
-              </div>
+              </FlexColumn>
             </DashboardCard>
 
             <DashboardCard
@@ -116,9 +116,9 @@ export default function Data() {
               title={t('data.fields.userId')}
               variant="info"
             >
-              <div style={{ fontSize: '0.875rem', fontFamily: 'monospace', color: 'var(--color-text-secondary)', wordBreak: 'break-all' }}>
+              <Box style={{ fontSize: '0.875rem', fontFamily: 'monospace', color: 'var(--color-text-secondary)', wordBreak: 'break-all' }}>
                 {user.uid}
-              </div>
+              </Box>
               <div style={{ marginTop: `${SPACING_SCALE.SM}px`, fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
                 Μοναδικό αναγνωριστικό
               </div>
@@ -150,7 +150,7 @@ export default function Data() {
               title={t('data.fields.mfaEnabled')}
               variant="status"
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: `${SPACING_SCALE.MD}px` }}>
+              <Flex align="center" style={{ gap: `${SPACING_SCALE.MD}px` }}>
                 {user.layeraClaims?.mfa_verified ? (
                   <>
                     <LockIcon size="lg" theme="success" />
@@ -176,7 +176,7 @@ export default function Data() {
                     </div>
                   </>
                 )}
-              </div>
+              </FlexColumn>
               {!user.layeraClaims?.mfa_verified && (
                 <Button
                   variant="primary"
@@ -236,8 +236,8 @@ export default function Data() {
             title={t('data.exportDescription')}
             variant="actions"
           >
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            <Flex direction="column" style={{ gap: '1rem' }}>
+              <Flex style={{ gap: '1rem', flexWrap: 'wrap' }}>
                 <Button variant="secondary" size="sm">
                   <FileIcon size="sm" theme="neutral" />
                   {t('data.exportFormats.pdf')}
@@ -250,8 +250,8 @@ export default function Data() {
                   <FileIcon size="sm" theme="neutral" />
                   {t('data.exportFormats.csv')}
                 </Button>
-              </div>
-            </div>
+              </FlexColumn>
+            </FlexColumn>
           </DashboardCard>
           </DashboardSection>
         </div>
@@ -266,24 +266,24 @@ export default function Data() {
             title={t('data.privacyPoints.title')}
             variant="info"
           >
-            <div style={{ display: 'flex', flexDirection: 'column', gap: `${SPACING_SCALE.MD}px` }}>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: `${SPACING_SCALE.SM}px` }}>
+            <FlexColumn style={{ gap: `${SPACING_SCALE.MD}px` }}>
+              <Flex align="flex-start" style={{ gap: `${SPACING_SCALE.SM}px` }}>
                 <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
                 <span>{t('data.privacyPoints.encryption')}</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: `${SPACING_SCALE.SM}px` }}>
+              </FlexColumn>
+              <Flex align="flex-start" style={{ gap: `${SPACING_SCALE.SM}px` }}>
                 <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
                 <span>{t('data.privacyPoints.noSharing')}</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: `${SPACING_SCALE.SM}px` }}>
+              </FlexColumn>
+              <Flex align="flex-start" style={{ gap: `${SPACING_SCALE.SM}px` }}>
                 <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
                 <span>{t('data.privacyPoints.deleteAnytime')}</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: `${SPACING_SCALE.SM}px` }}>
+              </FlexColumn>
+              <Flex align="flex-start" style={{ gap: `${SPACING_SCALE.SM}px` }}>
                 <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
                 <span>{t('data.privacyPoints.compliance')}</span>
-              </div>
-            </div>
+              </FlexColumn>
+            </FlexColumn>
           </DashboardCard>
           </DashboardSection>
         </div>

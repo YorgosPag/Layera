@@ -17,9 +17,9 @@ import { Stack } from '@layera/layout';
 import { SPACING_SCALE } from '@layera/constants';
 // import { useGeocode } from '@layera/geocoding';
 import { Input } from '@layera/forms';
-import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
+import { BaseCard } from '@layera/cards';
 import { UploadIcon, MapIcon, CheckIcon, SearchIcon, LocationIcon } from '@layera/icons';
-import { InfoPanel } from '../../device-specific/mobile/iphone-14-pro-max/components/InfoPanel';
+import { InfoPanel } from '@layera/info-panels';
 import {
   GEOALERT_INFO_CONTENT,
   StaticContentProvider

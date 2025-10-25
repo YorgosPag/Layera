@@ -1,12 +1,12 @@
 /**
  * IntentCard.tsx - Intent Selection Card Component
  *
- * Reusable card component για intent selection (offer/search)
- * Context-aware based on selected category
+ * Unified Card implementation για intent selection (offer/search)
+ * Migrated από BaseCard wrapper στο νέο UnifiedCard system
  */
 
 import React from 'react';
-import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
+import { UnifiedCard, createIntentCard } from '@layera/cards';
 import type { StepCardProps, IntentType, CategoryType } from '../types';
 
 export interface IntentCardProps extends StepCardProps {
@@ -31,7 +31,7 @@ export interface IntentCardProps extends StepCardProps {
 
 /**
  * Intent Selection Card
- * Adapts styling based on category context
+ * Powered by UnifiedCard configuration system
  */
 export const IntentCard: React.FC<IntentCardProps> = ({
   context,
@@ -43,32 +43,54 @@ export const IntentCard: React.FC<IntentCardProps> = ({
   onInfoClick,
   opacity = 'transparent'
 }) => {
-  const handleClick = () => {
-    onIntentSelect?.(intentType);
-  };
+  // Skip rendering for null intentType
+  if (!intentType || !category) {
+    return null;
+  }
 
-  const handleInfoClick = () => {
+  const handleIntentSelect = React.useCallback((intent: 'offer' | 'search') => {
+    if ('vibrate' in navigator) {
+      navigator.vibrate(20);
+    }
+    onIntentSelect?.(intent);
+  }, [onIntentSelect]);
+
+  const handleInfoClick = React.useCallback(() => {
     if ('vibrate' in navigator) {
       navigator.vibrate(20);
     }
     onInfoClick?.();
+  }, [onInfoClick]);
+
+  // Create unified card configuration
+  const cardConfig = createIntentCard({
+    intentType,
+    title,
+    icon,
+    category,
+    onIntentSelect: handleIntentSelect,
+    onInfoClick: handleInfoClick
+  });
+
+  // Enhance config with step context
+  const enhancedConfig = {
+    ...cardConfig,
+    selected: context.selectedIntent === intentType,
+    className: context.selectedIntent === intentType ? 'selected' : ''
   };
 
-  // Determine if this card is selected
-  const isSelected = context.selectedIntent === intentType;
-
-  // Use category για variant styling
-  const cardVariant = category || 'property';
+  // Create card context
+  const cardContext = {
+    currentStep: 'intent',
+    category,
+    intent: intentType,
+    viewMode: 'mobile' as const
+  };
 
   return (
-    <BaseCard
-      variant={cardVariant}
-      title={title}
-      icon={icon}
-      onClick={handleClick}
-      onInfoClick={handleInfoClick}
-      data-testid={`intent-card-${intentType}-${category}`}
-      className={isSelected ? 'selected' : ''}
+    <UnifiedCard
+      config={enhancedConfig}
+      context={cardContext}
     />
   );
 };

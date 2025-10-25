@@ -111,3 +111,20 @@ export const RulerIcon: React.FC<Omit<IconProps, 'name' | 'children'>> = (props)
     <path d="M21 10V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5M7 10h4M15 10h2M7 14h2m4 0h4" />
   </Icon>
 );
+
+// ENTERPRISE ADDITIONS - Missing icons από LayeraIcons migration
+
+// Marker - Map marker για χάρτη
+export const MarkerIcon: React.FC<Omit<IconProps, 'name' | 'children'>> = (props) => (
+  <Icon name="marker" {...props}>
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+    <circle cx="12" cy="10" r="3" />
+  </Icon>
+);
+
+// Polygon - Πολύγωνο για χρεσιματοδότηση
+export const PolygonIcon: React.FC<Omit<IconProps, 'name' | 'children'>> = (props) => (
+  <Icon name="polygon" {...props}>
+    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.77 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z" />
+  </Icon>
+);

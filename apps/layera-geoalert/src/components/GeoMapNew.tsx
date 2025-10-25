@@ -12,7 +12,7 @@ import { useIPhone14ProMaxDetection } from '@layera/device-detection';
 import { useNavigationHandlers } from '@layera/navigation-handlers';
 import { ResponsiveMapLayout, MapComponentProps } from '@layera/device-layouts';
 import { MapContainer } from './map/MapContainer';
-import { PlusIcon } from './icons/LayeraIcons';
+import { PlusIcon } from '@layera/icons';
 import { DraggableFAB } from '@layera/draggable-fab';
 import { UnifiedFAB } from '@layera/floating-action-buttons';
 import {
@@ -105,9 +105,11 @@ export const GeoMap: React.FC<GeoMapProps> = ({
     if (navigation.currentStep &&
         !['category', 'intent', 'transactionType', 'employmentType', 'occupation', 'availability', 'upload', 'layout', 'propertyType', 'propertyDetails', 'areaMethod', 'location', 'availabilityDetails', 'complete', 'details', 'pricing', 'review'].includes(navigation.currentStep) &&
         navigation.selectedCategory) {
-      // Event-based reset - ΟΧΙ render-time console.log!
+      // Event-based reset - Production-safe logging
       setTimeout(() => {
-        console.log(`🔄 AUTO-RESET: Step '${navigation.currentStep}' not implemented yet, resetting to category`);
+        if (process.env.NODE_ENV === 'development') {
+          console.log(`🔄 AUTO-RESET: Step '${navigation.currentStep}' not implemented yet, resetting to category`);
+        }
         navigation.reset();
       }, 100);
     }
@@ -187,7 +189,9 @@ export const GeoMap: React.FC<GeoMapProps> = ({
 
   // 🚀 ENTERPRISE STEP CLICK HANDLER: Back button synchronization με κάρτες
   const handleStepClick = (stepIndex: number) => {
-    console.log('🔄 Step click navigation:', { stepIndex, currentStep: navigation.currentStep });
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🔄 Step click navigation:', { stepIndex, currentStep: navigation.currentStep });
+    }
 
     // Το PipelineDiscovery έχει ήδη ενημερωθεί από το FloatingStepper
     // Εδώ μπορούμε να προσθέσουμε επιπλέον logic αν χρειάζεται

@@ -1,9 +1,12 @@
 /**
  * LayoutToolCard.tsx - Reusable Layout Tool Card
+ *
+ * Unified Card implementation για layout tool selection
+ * Migrated από BaseCard wrapper στο νέο UnifiedCard system
  */
 
 import React from 'react';
-import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
+import { UnifiedCard, createLayoutToolCard } from '@layera/cards';
 import { CheckIcon as MoveIcon, CheckIcon as ResizeIcon, RotateIcon, RulerIcon } from '@layera/icons';
 import type { LayoutTool } from './types';
 
@@ -16,6 +19,10 @@ interface LayoutToolCardProps {
   'data-testid'?: string;
 }
 
+/**
+ * Layout Tool Card
+ * Powered by UnifiedCard configuration system
+ */
 export const LayoutToolCard: React.FC<LayoutToolCardProps> = ({
   tool,
   title,
@@ -24,6 +31,11 @@ export const LayoutToolCard: React.FC<LayoutToolCardProps> = ({
   onClick,
   'data-testid': testId
 }) => {
+  // Skip rendering for invalid tool
+  if (!tool) {
+    return null;
+  }
+
   const getIcon = () => {
     switch (tool) {
       case 'positioning':
@@ -39,32 +51,39 @@ export const LayoutToolCard: React.FC<LayoutToolCardProps> = ({
     }
   };
 
-  const getVariant = () => {
-    if (isActive) {
-      return 'success' as const;
+  const handleToolSelect = React.useCallback((toolValue: string) => {
+    if ('vibrate' in navigator) {
+      navigator.vibrate(20);
     }
-    switch (tool) {
-      case 'positioning':
-        return 'info' as const;
-      case 'scale':
-        return 'warning' as const;
-      case 'rotation':
-        return 'secondary' as const;
-      case 'dimensions':
-        return 'neutral' as const;
-      default:
-        return 'neutral' as const;
-    }
+    onClick();
+  }, [onClick]);
+
+  // Create unified card configuration
+  const cardConfig = createLayoutToolCard({
+    toolType: tool,
+    title,
+    description,
+    icon: getIcon(),
+    isSelected: isActive,
+    onToolSelect: handleToolSelect
+  });
+
+  // Override testId if provided
+  const enhancedConfig = {
+    ...cardConfig,
+    ...(testId && { testId })
+  };
+
+  // Create card context
+  const cardContext = {
+    currentStep: 'layout',
+    viewMode: 'mobile' as const
   };
 
   return (
-    <BaseCard
-      variant={getVariant()}
-      title={title}
-      description={description}
-      icon={getIcon()}
-      onClick={onClick}
-      data-testid={testId}
+    <UnifiedCard
+      config={enhancedConfig}
+      context={cardContext}
     />
   );
 };

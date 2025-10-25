@@ -1,12 +1,12 @@
 /**
  * TransactionCard.tsx - Transaction Type Selection Card Component
  *
- * Reusable card component για transaction type selection (rent/sale για ακίνητα, full_time/part_time κλπ για εργασία)
- * Context-aware based on selected category
+ * Unified Card implementation για transaction type selection
+ * Migrated από BaseCard wrapper στο νέο UnifiedCard system
  */
 
 import React from 'react';
-import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
+import { UnifiedCard, createSelectionCard } from '@layera/cards';
 import type { StepCardProps, CategoryType } from '../types';
 import type { TransactionType } from './types';
 
@@ -32,7 +32,7 @@ export interface TransactionCardProps extends StepCardProps {
 
 /**
  * Transaction Type Selection Card
- * Adapts styling based on category context
+ * Powered by UnifiedCard configuration system
  */
 export const TransactionCard: React.FC<TransactionCardProps> = ({
   context,
@@ -44,32 +44,56 @@ export const TransactionCard: React.FC<TransactionCardProps> = ({
   onInfoClick,
   opacity = 'transparent'
 }) => {
-  const handleClick = () => {
-    onTransactionSelect?.(transactionType);
-  };
+  // Skip rendering for null values
+  if (!transactionType || !category) {
+    return null;
+  }
 
-  const handleInfoClick = () => {
+  const handleTransactionSelect = React.useCallback((transaction: unknown) => {
+    if ('vibrate' in navigator) {
+      navigator.vibrate(20);
+    }
+    onTransactionSelect?.(transaction as TransactionType);
+  }, [onTransactionSelect]);
+
+  const handleInfoClick = React.useCallback(() => {
     if ('vibrate' in navigator) {
       navigator.vibrate(20);
     }
     onInfoClick?.();
+  }, [onInfoClick]);
+
+  // Create unified card configuration
+  const cardConfig = createSelectionCard({
+    id: `transaction-${transactionType}`,
+    title,
+    icon,
+    selectionValue: transactionType,
+    category,
+    theme: category,
+    onClick: () => handleTransactionSelect(transactionType),
+    onInfoClick: handleInfoClick,
+    testId: `transaction-card-${transactionType}-${category}`
+  });
+
+  // Enhance config with step context
+  const enhancedConfig = {
+    ...cardConfig,
+    selected: context.selectedTransactionType === transactionType,
+    className: context.selectedTransactionType === transactionType ? 'selected' : ''
   };
 
-  // Determine if this card is selected
-  const isSelected = context.selectedTransactionType === transactionType;
-
-  // Use category για variant styling
-  const cardVariant = category || 'property';
+  // Create card context
+  const cardContext = {
+    currentStep: 'transactionType',
+    category,
+    viewMode: 'mobile' as const
+  };
 
   return (
-    <BaseCard
-      variant={cardVariant}
-      title={title}
-      icon={icon}
-      onClick={handleClick}
-      onInfoClick={handleInfoClick}
-      data-testid={`transaction-card-${transactionType}-${category}`}
-      className={isSelected ? 'selected' : ''}
+    <UnifiedCard
+      config={enhancedConfig}
+      context={cardContext}
     />
   );
 };

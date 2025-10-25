@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
-import { LayeraHeader, HeaderActionsGroup } from '@layera/layout';
+import { LayeraHeader, HeaderActionsGroup, Flex } from '@layera/layout';
 import { ThemeSwitcher, useTheme } from '@layera/theme-switcher';
 import { LanguageSwitcher } from '@layera/tolgee';
 import { Button } from '@layera/buttons';
@@ -22,27 +22,22 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, isIPhone14Pro
 
   // Safe theme hook usage με fallback
   let theme = 'light';
-  let toggleTheme = () => console.log('Theme toggle clicked');
+  let toggleTheme = () => {};
 
   try {
     const themeHook = useTheme();
     theme = themeHook.theme;
     toggleTheme = themeHook.toggleTheme;
   } catch (error) {
-    console.log('🎯 GeoHeader: Theme hook not available, using fallback');
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🎯 GeoHeader: Theme hook not available, using fallback');
+    }
   }
 
-  // Debug για iPhone detection και εικονίδια
-  console.log('🎯 GeoHeader: isIPhone14ProMax =', isIPhone14ProMax);
-  console.log('🎯 GeoHeader: t(\"geoalert.title\") =', t('geoalert.title'));
-  console.log('🎯 GeoHeader: current theme =', theme);
-  console.log('🎯 GeoHeader: Rendering with icons...');
-  console.log('🎯 GeoHeader: GlobeIcon =', typeof GlobeIcon);
-  console.log('🎯 GeoHeader: SettingsIcon =', typeof SettingsIcon);
-  console.log('🎯 GeoHeader: Button =', typeof Button);
+  // Debug logs removed for production optimization
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: `${SPACING_SCALE.SM}px` }}>
+    <Flex align="center" style={{ gap: `${SPACING_SCALE.SM}px` }}>
       {/* Back button εμφανίζεται για όλες τις συσκευές */}
       {onBackClick && (
         <Button
@@ -110,6 +105,6 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, isIPhone14Pro
           )
         }
       />
-    </div>
+    </Flex>
   );
 };

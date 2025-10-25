@@ -9,13 +9,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { MapProvider, useMap } from '@layera/map-core';
 import { useDrawing, DrawingMode } from '@layera/geo-drawing';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
-import { SIZING_SCALE } from '@layera/layout';
+import { Flex, FlexCenter, Box, SIZING_SCALE } from '@layera/layout';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { useViewportWithOverride } from '@layera/viewport';
 import { Button } from '@layera/buttons';
 import { Text } from '@layera/typography';
-import { MarkerIcon, PolygonIcon, TrashIcon, PlusIcon, LocationIcon } from '../icons/LayeraIcons';
+import { MarkerIcon, PolygonIcon, TrashIcon, PlusIcon, LocationIcon } from '@layera/icons';
 import L from 'leaflet';
 
 interface MapContainerProps {
@@ -128,7 +128,9 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
     // Store marker reference
     userLocationMarkerRef.current = marker;
 
-    console.log('✅ MapContainer: User location marker added with animation');
+    if (process.env.NODE_ENV === 'development') {
+      console.log('✅ MapContainer: User location marker added with animation');
+    }
   };
 
   // Initialize map when component mounts
@@ -145,13 +147,17 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
   useEffect(() => {
     const handleCenterMapToLocation = (event: CustomEvent) => {
       if (!map) {
-        console.warn('🗺️ MapContainer: Map not initialized yet, cannot center to location');
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('🗺️ MapContainer: Map not initialized yet, cannot center to location');
+        }
         return;
       }
 
       const { latitude, longitude, zoom = 16, animate = true } = event.detail;
 
-      console.log('🎯 MapContainer: Centering map to location:', { latitude, longitude, zoom });
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🎯 MapContainer: Centering map to location:', { latitude, longitude, zoom });
+      }
 
       try {
         if (animate) {
@@ -168,7 +174,9 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
         // Add user location marker with animation
         addUserLocationMarker(latitude, longitude);
 
-        console.log('✅ MapContainer: Map centered successfully');
+        if (process.env.NODE_ENV === 'development') {
+          console.log('✅ MapContainer: Map centered successfully');
+        }
       } catch (error) {
         console.error('❌ MapContainer: Error centering map:', error);
       }
@@ -176,18 +184,24 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
 
     const handleFocusMapOnLocation = (event: CustomEvent) => {
       if (!map) {
-        console.warn('🗺️ MapContainer: Map not initialized yet, cannot focus on location');
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('🗺️ MapContainer: Map not initialized yet, cannot focus on location');
+        }
         return;
       }
 
       const { latitude, longitude } = event.detail;
 
-      console.log('🔍 MapContainer: Focusing map on location:', { latitude, longitude });
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🔍 MapContainer: Focusing map on location:', { latitude, longitude });
+      }
 
       try {
         // Additional focus logic - could add marker or highlight
         map.panTo([latitude, longitude]);
-        console.log('✅ MapContainer: Map focused successfully');
+        if (process.env.NODE_ENV === 'development') {
+          console.log('✅ MapContainer: Map focused successfully');
+        }
       } catch (error) {
         console.error('❌ MapContainer: Error focusing map:', error);
       }
@@ -240,34 +254,29 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
   if (isMobile) {
     return (
       <div className="mobile-map-container">
-        <div
+        <Box
           ref={mapContainerRef}
           id="geo-map"
-          style={{
-            position: 'absolute',
-            inset: 0
-          }}
+          style={{ position: 'absolute', inset: 0 }}
         />
 
         {/* Drawing Status Indicator */}
         {currentMode !== 'none' && (
-          <div style={{
-            position: 'absolute',
-            bottom: `${SPACING_SCALE.XXXL * 3 + SPACING_SCALE.LG}px`, // 140px equivalent
-            left: '50%',
-            transform: 'translateX(-50%)',
-            padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM}px`,
-            backgroundColor: 'var(--color-overlay-dark)',
-            color: 'white',
-            borderRadius: `${BORDER_RADIUS_SCALE.MD}px`,
-            // fontSize handled by Text component
-            display: 'flex',
-            alignItems: 'center',
-            gap: `${SPACING_SCALE.XS + 2}px`,
-            zIndex: 1000,
-            maxWidth: '80%',
-            textAlign: 'center'
-          }}>
+          <FlexCenter
+            style={{
+              position: 'absolute',
+              bottom: `${SPACING_SCALE.XXXL * 3 + SPACING_SCALE.LG}px`, // 140px equivalent
+              left: '50%',
+              transform: 'translateX(-50%)',
+              padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM}px`,
+              backgroundColor: 'var(--color-overlay-dark)',
+              color: 'white',
+              borderRadius: `${BORDER_RADIUS_SCALE.MD}px`,
+              gap: `${SPACING_SCALE.XS + 2}px`,
+              zIndex: 1000,
+              maxWidth: '80%',
+              textAlign: 'center'
+            }}>
             {currentMode === 'marker' && (
               <>
                 <MarkerIcon size="sm" theme="neutral" />
@@ -284,13 +293,13 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
                 </Text>
               </>
             )}
-          </div>
+          </FlexCenter>
         )}
 
 
         {/* Floating Action Button for New Entry */}
         {onNewEntryClick && (
-          <div
+          <FlexCenter
             onClick={onNewEntryClick}
             style={{
               position: 'absolute',
@@ -300,9 +309,6 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
               height: `${SIZING_SCALE.XXXL}px`,
               backgroundColor: 'var(--color-semantic-success-bg)',
               borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
               boxShadow: BOX_SHADOW_SCALE.shadowSuccess,
               cursor: 'pointer',
               zIndex: 10001,
@@ -318,7 +324,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
             }}
           >
             <PlusIcon size="md" theme="neutral" />
-          </div>
+          </FlexCenter>
         )}
       </div>
     );
@@ -326,19 +332,18 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
 
   // Desktop/Tablet layout
   return (
-    <div className="desktop-map-container" style={{
-      position: 'absolute',
-      inset: 0,
-      width: SIZING_SCALE.FULL,
-      height: '100vh'
-    }}>
-      <div
+    <Box
+      className="desktop-map-container"
+      style={{
+        position: 'absolute',
+        inset: 0,
+        width: SIZING_SCALE.FULL,
+        height: '100vh'
+      }}>
+      <Box
         ref={mapContainerRef}
         id="geo-map"
-        style={{
-          position: 'absolute',
-          inset: 0
-        }}
+        style={{ position: 'absolute', inset: 0 }}
       />
 
 
@@ -358,28 +363,27 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
           }}>
             Σχεδιασμένες Περιοχές ({drawnAreas.length})
           </Text>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: `${SPACING_SCALE.SM}px` }}>
+          <Flex direction="column" style={{ gap: `${SPACING_SCALE.SM}px` }}>
             {drawnAreas.map(area => (
-              <div
+              <Flex
                 key={area.id}
+                justify="space-between"
+                align="center"
                 style={{
                   padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM}px`,
                   backgroundColor: 'white',
                   borderRadius: `${BORDER_RADIUS_SCALE.INPUT}px`,
                   border: '1px solid var(--color-border-default)',
                   // fontSize handled by Text component
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center'
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: `${SPACING_SCALE.XS + 2}px` }}>
+                <Flex align="center" gap="xs">
                   {area.type === 'marker' ?
                     <MarkerIcon size="sm" theme="neutral" /> :
                     <PolygonIcon size="sm" theme="neutral" />
                   }
                   <Text size="xs" weight="medium">{area.name}</Text>
-                </div>
+                </Flex>
                 {area.area && (
                   <Text size="xs" style={{
                     color: 'var(--color-text-secondary)',
@@ -391,12 +395,12 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
                     {Math.round(area.area)} m²
                   </Text>
                 )}
-              </div>
+              </Flex>
             ))}
-          </div>
+          </Flex>
         </div>
       )}
-    </div>
+    </Box>
   );
 };
 

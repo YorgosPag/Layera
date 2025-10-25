@@ -9,7 +9,7 @@ import React from 'react';
 import { stepRegistry } from '../StepRegistry';
 import { PricingStep } from './PricingStep';
 import { PricingCard } from './PricingCard';
-import { EuroIcon, TagIcon, HandshakeIcon } from '../../../icons/LayeraIcons';
+import { EuroIcon, TagIcon, HandshakeIcon } from '@layera/icons';
 
 // 🚀 AUTO-REGISTRATION: Register this step in the registry
 stepRegistry.register({

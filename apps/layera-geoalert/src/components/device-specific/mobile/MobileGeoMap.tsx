@@ -10,6 +10,7 @@ import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import { Text } from '@layera/typography';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { getCursorVar } from '@layera/cursors';
+import { Flex } from '@layera/layout';
 
 export interface MobileGeoMapProps {
   // Props που χρειάζονται για το mobile UI
@@ -25,14 +26,12 @@ export const MobileGeoMap: React.FC<MobileGeoMapProps> = () => {
   return (
     <>
       {/* Permanent Category Buttons - MOBILE ONLY */}
-      <div style={{
+      <Flex gap="sm" style={{
         position: 'absolute',
         top: `${UI_CONFIG.mobileGeoMap.position.top}px`,
         left: `${UI_CONFIG.mobileGeoMap.position.left}px`,
         right: `${UI_CONFIG.mobileGeoMap.position.right}px`,
         zIndex: UI_CONFIG.mobileGeoMap.zIndex,
-        display: 'flex',
-        gap: `${UI_CONFIG.mobileGeoMap.gap}px`,
         padding: `0 ${SPACING_SCALE.XS}px`
       }}>
         {/* Ακίνητα Button - Green */}
@@ -46,9 +45,7 @@ export const MobileGeoMap: React.FC<MobileGeoMapProps> = () => {
           transition: 'var(--layera-transition-fast)',
           boxShadow: BOX_SHADOW_SCALE.shadowSuccess,
           minHeight: `${UI_CONFIG.mobileGeoMap.button.minHeight}px`,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
+          // Layout handled by Flex wrapper
         }}
         onClick={() => {
           console.log('Mobile: Property selected');
@@ -64,7 +61,7 @@ export const MobileGeoMap: React.FC<MobileGeoMapProps> = () => {
             color: 'white',
             textAlign: 'center'
           }}>
-            Ακίνητα
+            {t('categories.property', 'Ακίνητα')}
           </Text>
         </button>
 
@@ -79,9 +76,7 @@ export const MobileGeoMap: React.FC<MobileGeoMapProps> = () => {
           transition: 'var(--layera-transition-fast)',
           boxShadow: BOX_SHADOW_SCALE.shadowInfo,
           minHeight: `${UI_CONFIG.mobileGeoMap.button.minHeight}px`,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
+          // Layout handled by Flex wrapper
         }}
         onClick={() => {
           console.log('Mobile: Job selected');
@@ -97,10 +92,10 @@ export const MobileGeoMap: React.FC<MobileGeoMapProps> = () => {
             color: 'white',
             textAlign: 'center'
           }}>
-            Εργασία
+            {t('categories.job', 'Εργασία')}
           </Text>
         </button>
-      </div>
+      </Flex>
 
       {/* Εδώ θα προσθέτουμε περισσότερα mobile-specific UI elements */}
     </>

@@ -3,11 +3,15 @@
  * Render μέσω FixedTopChrome για σταθερή εμφάνιση στο iOS
  */
 
+// React imports
 import React from 'react';
-import { useLayeraTranslation } from '@layera/tolgee';
+
+// Enterprise LEGO Design System imports
 import { SPACING_SCALE } from '@layera/constants';
-import { Text } from '@layera/typography';
 import { getCursorVar } from '@layera/cursors';
+import { Flex } from '@layera/layout';
+import { useLayeraTranslation } from '@layera/tolgee';
+import { Text } from '@layera/typography';
 
 interface AppHeaderProps {
   title?: string;
@@ -32,9 +36,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
     backdropFilter: 'blur(20px)',
     WebkitBackdropFilter: 'blur(20px)',
     borderBottom: '1px solid var(--color-border-subtle)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    // Layout handled by Flex wrapper
     padding: `0 ${SPACING_SCALE.MD}px`,
     position: 'relative'
   };
@@ -46,9 +48,8 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
     color: 'var(--color-interactive-primary)', // Design system primary color instead of hardcoded #007AFF
     cursor: getCursorVar('pointer'), // Cursor system token για interactive elements
     padding: `${SPACING_SCALE.SM}px`,
-    display: 'flex',
-    alignItems: 'center',
-    gap: `${SPACING_SCALE.XS}px`
+    // Layout handled by Flex wrapper
+    // gap handled by Flex component
   };
 
   // titleStyles moved inline
@@ -63,11 +64,16 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
   };
 
   return (
-    <div style={headerStyles}>
+    <Flex align="center" justify="space-between" style={headerStyles}>
       {/* Left: Back Button */}
       {showBack && (
         <button
-          style={backButtonStyles}
+          style={{
+            ...backButtonStyles,
+            display: 'flex',
+            alignItems: 'center',
+            gap: `${SPACING_SCALE.XS}px`
+          }}
           onClick={onBack || (() => window.history.back())}
         >
           ← {t('back', 'Πίσω')}
@@ -96,6 +102,6 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
       <button style={languageStyles}>
         ΕΛ
       </button>
-    </div>
+    </Flex>
   );
 };

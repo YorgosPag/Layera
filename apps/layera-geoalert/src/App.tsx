@@ -1,27 +1,34 @@
+// React imports
 import { useState, useEffect } from 'react';
-import { APP_CONFIG, DEVICE_CONFIG, ANIMATION_CONFIG } from './constants';
-import { useLayeraTranslation } from '@layera/tolgee';
-import { SPACING_SCALE, BORDER_RADIUS, TABLE_COLUMN_WIDTHS } from '@layera/constants';
-// SIZING_SCALE import removed - not available in @layera/layout
-import { useViewportWithOverride, DeviceOverrideProvider } from '@layera/viewport';
-import { Text, Heading } from '@layera/typography';
-import { Button } from '@layera/buttons';
-import { ThemeProvider, ThemeSwitcher } from '@layera/theme-switcher';
-import { AppShell } from '@layera/layout';
-import { NotificationProvider, useNotifications } from '@layera/notifications';
-import { LoadingSpinner } from '@layera/loading';
-import { ErrorBoundary } from '@layera/error-boundary';
-// Enterprise LEGO Styles - Central Import
-import '@layera/styles';
-import { ArrowLeftIcon, MapIcon, PlusIcon, ShareIcon, LayersIcon, AlertTriangleIcon, CheckIcon, MoreIcon } from '@layera/icons';
-import { LanguageSwitcher } from '@layera/tolgee';
-import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
-import { GeoHeader } from './components/GeoHeader';
-import { SimpleNavigationRail } from './components/SimpleNavigationRail';
-import { UnifiedPipelineModal } from '../../../packages/pipelines/unified/UnifiedPipelineModal';
-import { GeoMap } from './components/GeoMapNew';
 
-// Import DrawnArea type from the new map-core package
+// Enterprise LEGO Design System imports
+import '@layera/styles';
+import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
+import { Button } from '@layera/buttons';
+import { SPACING_SCALE, BORDER_RADIUS, TABLE_COLUMN_WIDTHS } from '@layera/constants';
+import { ErrorBoundary } from '@layera/error-boundary';
+import { MapIcon, ShareIcon, LayersIcon, AlertTriangleIcon, CheckIcon, MoreIcon } from '@layera/icons';
+import { AppShell, Flex } from '@layera/layout';
+import { LoadingSpinner } from '@layera/loading';
+import { NotificationProvider, useNotifications } from '@layera/notifications';
+import { ThemeProvider, ThemeSwitcher } from '@layera/theme-switcher';
+import { useLayeraTranslation, LanguageSwitcher } from '@layera/tolgee';
+import { Text, Heading } from '@layera/typography';
+import { useViewportWithOverride, DeviceOverrideProvider } from '@layera/viewport';
+
+// Local application imports
+import { APP_CONFIG, DEVICE_CONFIG, ANIMATION_CONFIG } from './constants';
+import { GeoHeader } from './components/GeoHeader';
+import { GeoMap } from './components/GeoMapNew';
+import { DeviceFrameWrapper } from './components/DeviceFrameWrapper';
+import { UnifiedPipelineModal } from '../../../packages/pipelines/unified/UnifiedPipelineModal';
+import { ViewportFrame } from './components/ViewportFrame';
+
+/**
+ * DrawnArea Interface - Map-core package integration
+ *
+ * Defines structure for drawn areas on the map
+ */
 interface DrawnArea {
   id: string;
   type: 'polygon' | 'marker';
@@ -35,9 +42,6 @@ interface DrawnArea {
   opacity?: number;
   metadata?: any;
 }
-import { ViewportFrame } from './components/ViewportFrame';
-import { DeviceFrameWrapper } from './components/DeviceFrameWrapper';
-// Device frames temporarily disabled for debugging
 
 function TestNotificationsComponent() {
   const { addNotification } = useNotifications();
@@ -137,9 +141,7 @@ function TestNotificationsComponent() {
       </div>
 
       {isLoading && (
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
+        <Flex align="center" justify="center" style={{
           gap: `${SPACING_SCALE.SM}px`,
           padding: `${SPACING_SCALE.MD}px`,
           backgroundColor: 'var(--layera-bg-warning)',
@@ -150,7 +152,7 @@ function TestNotificationsComponent() {
           <Text size="base" color="neutral">
             Testing @layera/loading spinner integration...
           </Text>
-        </div>
+        </Flex>
       )}
 
       <div style={{ marginTop: `${SPACING_SCALE.MD}px` }}>
@@ -166,7 +168,7 @@ function TestNotificationsComponent() {
 
 function App() {
   const { t } = useLayeraTranslation();
-  const { isMobile } = useViewportWithOverride();
+  const { } = useViewportWithOverride(); // Keep hook call for side effects
   const [isMapMode, setIsMapMode] = useState(false);
   const [showCategoryElements, setShowCategoryElements] = useState(false);
 
@@ -192,10 +194,7 @@ function App() {
 
   // State για re-render αν αλλάξει
   const [deviceDetected, setDeviceDetected] = useState(isIPhone14ProMaxDevice);
-  const [savedAreas, setSavedAreas] = useState<DrawnArea[]>([]);
-  const [activeView, setActiveView] = useState<'dashboard' | 'map'>('dashboard');
-  const [isAreasPanelOpen, setIsAreasPanelOpen] = useState(false);
-  const [editingAreaId, setEditingAreaId] = useState<string | null>(null);
+  const [, setSavedAreas] = useState<DrawnArea[]>([]);
   const [showUnifiedPipeline, setShowUnifiedPipeline] = useState(false);
 
   // Use detected iPhone mode
@@ -217,14 +216,16 @@ function App() {
                                   frameHeight >= DEVICE_CONFIG.iPhone14ProMax.tolerance.heightMin &&
                                   frameHeight <= DEVICE_CONFIG.iPhone14ProMax.tolerance.heightMax));
 
-        console.log('🎯 App.tsx Device Detection Update:', {
-          deviceFrameElement: !!deviceFrameElement,
-          frameWidth,
-          frameHeight,
-          isIPhone14ProMax,
-          windowWidth: window.innerWidth,
-          windowHeight: window.innerHeight
-        });
+        if (process.env.NODE_ENV === 'development') {
+          console.log('🎯 App.tsx Device Detection Update:', {
+            deviceFrameElement: !!deviceFrameElement,
+            frameWidth,
+            frameHeight,
+            isIPhone14ProMax,
+            windowWidth: window.innerWidth,
+            windowHeight: window.innerHeight
+          });
+        }
 
         setDeviceDetected(isIPhone14ProMax);
       }
@@ -238,56 +239,23 @@ function App() {
 
   const handleAreaCreated = (area: DrawnArea) => {
     setSavedAreas(prev => [...prev, area]);
-    console.log('New area created:', area);
-  };
-
-  const handleEditArea = (area: DrawnArea) => {
-    setEditingAreaId(area.id);
-  };
-
-  const handleZoomToArea = (areaId: string) => {
-    console.log('Zoom to area:', areaId);
-  };
-
-  const handleToggleAreaVisibility = (areaId: string) => {
-    setSavedAreas(prev => prev.map(area =>
-      area.id === areaId ? { ...area, isVisible: !area.isVisible } : area
-    ));
-  };
-
-  const handleRemoveArea = (areaId: string) => {
-    setSavedAreas(prev => prev.filter(area => area.id !== areaId));
-    if (editingAreaId === areaId) {
-      setEditingAreaId(null);
+    if (process.env.NODE_ENV === 'development') {
+      console.log('New area created:', area);
     }
   };
 
-  const handleUpdateAreaOpacity = (areaId: string, opacity: number) => {
-    setSavedAreas(prev => prev.map(area =>
-      area.id === areaId ? { ...area, opacity } : area
-    ));
-  };
-
-  const handleReorderAreas = (newAreas: DrawnArea[]) => {
-    setSavedAreas(newAreas);
-  };
-
-  const handleNewAlert = () => {
-    setActiveView('map');
-    setIsMapMode(true);
-  };
-
-  const handleFlyToUserLocation = () => {
-    console.log('Flying to user location');
-  };
 
   const handleNewEntryClick = () => {
-    console.log('Opening Unified Pipeline...');
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Opening Unified Pipeline...');
+    }
     setShowUnifiedPipeline(true);
   };
 
   const handleUnifiedPipelineSubmit = async (data: any) => {
-    console.log('Unified Pipeline submitted with data:', data);
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Unified Pipeline submitted with data:', data);
+    }
     // TODO: Implement API submission logic
     // For now, just close the modal after submission
     setShowUnifiedPipeline(false);
@@ -406,16 +374,16 @@ function App() {
               color: 'var(--layera-text-primary)',
               minHeight: '100vh'
             }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: `${SPACING_SCALE.MD}px` }}>
+              <Flex justify="space-between" align="center" style={{ marginBottom: `${SPACING_SCALE.MD}px` }}>
                 <Heading as="h1" size="2xl" color="primary" className="layera-flex layera-items-center layera-gap-2">
                   <MapIcon size="md" theme="primary" />
                   {t('geoalert.title')}
                 </Heading>
-                <div style={{ display: 'flex', alignItems: 'center', gap: `${SPACING_SCALE.SM}px` }}>
+                <Flex align="center" justify="center" style={{ gap: `${SPACING_SCALE.SM}px` }}>
                   <ThemeSwitcher variant="icon" size="md" />
                   <LanguageSwitcher />
-                </div>
-              </div>
+                </Flex>
+              </Flex>
 
               <Text size="lg" color="secondary" className="layera-mb-8">{t('geoalert.subtitle')}</Text>
 

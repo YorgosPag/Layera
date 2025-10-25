@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@rollup/rollup-win32-x64-msvc':
+        specifier: ^4.52.5
+        version: 4.52.5
     devDependencies:
       rimraf:
         specifier: ^6.0.1
@@ -9789,8 +9793,7 @@ snapshots:
   '@rollup/rollup-win32-x64-gnu@4.52.5':
     optional: true
 
-  '@rollup/rollup-win32-x64-msvc@4.52.5':
-    optional: true
+  '@rollup/rollup-win32-x64-msvc@4.52.5': {}
 
   '@sinclair/typebox@0.27.8': {}
 

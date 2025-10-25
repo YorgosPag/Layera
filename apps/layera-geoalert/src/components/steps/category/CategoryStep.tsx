@@ -10,10 +10,10 @@
 
 import React, { useCallback, useState } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
-import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
+import { BaseCard } from '@layera/cards';
 import { VillaIcon, BriefcaseIcon } from '@layera/icons';
-import { useNavigation } from '../../../services/navigation/hooks/useNavigation';
-import { InfoPanel } from '../../device-specific/mobile/iphone-14-pro-max/components/InfoPanel';
+// REMOVED: useNavigation - Replaced με StepOrchestrator για clean enterprise architecture
+import { InfoPanel } from '@layera/info-panels';
 import {
   GEOALERT_INFO_CONTENT,
   StaticContentProvider
@@ -38,7 +38,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
   deviceProps = {}
 }) => {
   const { t } = useLayeraTranslation();
-  const navigation = useNavigation(); // TEMPORARY bridge until NavigationService removal
+  // REMOVED: useNavigation hook - Clean enterprise architecture με μόνο StepOrchestrator
 
   // Enterprise LEGO Layout System
   const { utils } = useGeoAlertLayout();
@@ -83,25 +83,23 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
 
   // TEMPORARY bridge handler - ενημερώνει ΚΑΙ StepOrchestrator ΚΑΙ NavigationService
   const handleCategorySelection = useCallback(async (category: CategoryType) => {
-    console.log(`🎯 CATEGORY UI: Selected category: ${category}`);
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`🎯 CATEGORY UI: Selected category: ${category}`);
+    }
 
     try {
-      // 1. TEMPORARY: Ενημερώνουμε το deprecated NavigationService για compatibility
-      await navigation.selectCategory(category);
-
-      // 2. Ενημερώνουμε το StepOrchestrator (το νέο system)
+      // 1. ENTERPRISE CLEAN: Μόνο StepOrchestrator για clean architecture
       if (onStepComplete) {
         onStepComplete('category', {
           selectedCategory: category
         });
       }
 
-      // 3. Legacy callback
+      // 2. Legacy callback
       onCategorySelected?.(category);
 
-      // 4. ΔΙΟΡΘΩΣΗ: Αφαιρώ το auto-advance NavigationService
-      // Το StepOrchestrator θα αναλάβει την navigation μέσω onStepComplete
-      // setTimeout με navigation.goNext() προκαλούσε race condition και εξαφάνιση των intent cards
+      // 3. CLEAN ENTERPRISE NAVIGATION: Μόνο StepOrchestrator
+      onNext?.();
 
     } catch (error) {
       console.error('Category selection failed:', error);

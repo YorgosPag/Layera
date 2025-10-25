@@ -38,5 +38,8 @@
     "enterprise"
   ],
   "author": "Layera Team",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@rollup/rollup-win32-x64-msvc": "^4.52.5"
+  }
 }

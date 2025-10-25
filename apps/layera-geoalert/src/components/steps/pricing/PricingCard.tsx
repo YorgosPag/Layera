@@ -1,16 +1,12 @@
 /**
  * PricingCard.tsx - Reusable Pricing Card Component
  *
- * Smart card για τιμολογιακές επιλογές με conditional logic
- * Integrates με το enterprise step system
+ * Unified Card implementation για pricing selection
+ * Migrated από BaseCard wrapper στο νέο UnifiedCard system
  */
 
 import React from 'react';
-import { Stack, SIZING_SCALE } from '@layera/layout';
-import { Text, Heading } from '@layera/typography';
-import { BaseCard } from '@layera/cards';
-import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
-import { useCursor } from '@layera/cursors';
+import { UnifiedCard, createPricingCard } from '@layera/cards';
 import type { StepCardProps, PricingType } from '../types';
 
 export interface PricingCardProps extends StepCardProps {
@@ -18,13 +14,13 @@ export interface PricingCardProps extends StepCardProps {
   pricingType: PricingType;
 
   /** Category context for conditional rendering */
-  category?: 'property' | 'job';
+  category: 'property' | 'job';
 
   /** Custom title override */
-  title?: string;
+  title: string;
 
   /** Custom icon */
-  icon?: React.ReactNode;
+  icon: React.ReactNode;
 
   /** Selection handler */
   onPricingSelect?: (pricing: PricingType) => void;
@@ -41,150 +37,48 @@ export const PricingCard: React.FC<PricingCardProps> = ({
   icon,
   onPricingSelect,
   isSelected = false,
-  variant = 'property',
-  theme = 'light',
-  opacity = 'opaque'
+  opacity = 'transparent'
 }) => {
-  // 🎯 Smart title generation based on context
-  const getCardTitle = (): string => {
-    if (title) return title;
+  // Skip rendering for null values
+  if (!pricingType || !category) {
+    return null;
+  }
 
-    switch (pricingType) {
-      case 'free':
-        return category === 'job' ? 'Δωρεάν Θέση' : 'Δωρεάν Καταχώρηση';
-      case 'budget':
-        return category === 'job' ? 'Οικονομική Θέση' : 'Προϋπολογισμός';
-      case 'premium':
-        return category === 'job' ? 'Premium Θέση' : 'Premium Καταχώρηση';
-      case 'negotiable':
-        return category === 'job' ? 'Διαπραγματεύσιμος Μισθός' : 'Διαπραγματεύσιμη Τιμή';
-      default:
-        return 'Τιμολόγηση';
+  const handlePricingSelect = React.useCallback((pricing: unknown) => {
+    if ('vibrate' in navigator) {
+      navigator.vibrate(20);
     }
+    onPricingSelect?.(pricing as PricingType);
+  }, [onPricingSelect]);
+
+  // Create unified card configuration
+  const cardConfig = createPricingCard({
+    pricingType,
+    title,
+    icon,
+    category,
+    onPricingSelect: () => handlePricingSelect(pricingType),
+    isSelected
+  });
+
+  // Enhance config with step context
+  const enhancedConfig = {
+    ...cardConfig,
+    selected: context.selectedPricing === pricingType || isSelected,
+    className: (context.selectedPricing === pricingType || isSelected) ? 'selected' : ''
   };
 
-  // 🎯 Smart description based on context
-  const getCardDescription = (): string => {
-    const isProperty = category === 'property';
-    const isJob = category === 'job';
-
-    switch (pricingType) {
-      case 'free':
-        if (isProperty) {
-          if (context.selectedIntent === 'offer') {
-            return 'Δωρεάν καταχώρηση ακινήτου για περιορισμένο χρόνο';
-          }
-          return 'Δωρεάν αναζήτηση ακινήτων';
-        }
-        if (isJob) {
-          return 'Δωρεάν δημοσίευση θέσης εργασίας';
-        }
-        return 'Δωρεάν επιλογή';
-
-      case 'budget':
-        if (isProperty) {
-          return 'Οικονομική λύση με βασικά χαρακτηριστικά';
-        }
-        if (isJob) {
-          return 'Βασικό πακέτο δημοσίευσης θέσης';
-        }
-        return 'Οικονομική επιλογή';
-
-      case 'premium':
-        if (isProperty) {
-          return 'Προωθημένη καταχώρηση με πολλαπλές δυνατότητες';
-        }
-        if (isJob) {
-          return 'Premium πακέτο με μέγιστη προβολή';
-        }
-        return 'Premium επιλογή';
-
-      case 'negotiable':
-        if (isProperty) {
-          return 'Διαπραγματεύσιμη τιμή ανάλογα με τις ανάγκες';
-        }
-        if (isJob) {
-          return 'Διαπραγματεύσιμος μισθός με τον εργοδότη';
-        }
-        return 'Διαπραγματεύσιμη τιμή';
-
-      default:
-        return 'Επιλέξτε αυτή την κατηγορία τιμολόγησης';
-    }
-  };
-
-  // 🎮 Handle card click
-  const handleClick = () => {
-    onPricingSelect?.(pricingType);
-  };
-
-  // 🚀 Enterprise LEGO Systems Integration
-  const cursor = useCursor('pointer');
-
-  // 🎨 Style based on selection state
-  const cardStyle: React.CSSProperties = {
-    ...cursor.css,  // Enterprise cursor system
-    transition: 'var(--layera-transition-fast)',
-    borderColor: isSelected ? 'var(--color-primary-500)' : undefined,
-    backgroundColor: isSelected ? 'var(--color-primary-50)' : undefined,
-    opacity: opacity === 'transparent' ? 0.6 : opacity === 'semi-transparent' ? 0.8 : 1
+  // Create card context
+  const cardContext = {
+    currentStep: 'pricing',
+    category,
+    viewMode: 'mobile' as const
   };
 
   return (
-    <BaseCard
-      title={getCardTitle()}
-      variant={isSelected ? 'filled' : 'outline'}
-      onClick={handleClick}
-      style={cardStyle}
-      data-testid={`pricing-card-${pricingType}`}
-    >
-      <Stack spacing="md" align="center">
-        {/* 🎯 Icon Display */}
-        {icon && (
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: `${SPACING_SCALE.SM}px`
-          }}>
-            {icon}
-          </div>
-        )}
-
-        {/* 📝 Description */}
-        <Text size="sm" color="neutral-600" align="center">
-          {getCardDescription()}
-        </Text>
-
-        {/* 🎯 Context-Aware Extra Info */}
-        {context.selectedCategory && context.selectedIntent && (
-          <div style={{
-            padding: `${SPACING_SCALE.SM}px`,
-            backgroundColor: 'var(--color-neutral-100)',
-            borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
-            width: '100%'
-          }}>
-            <Text size="xs" color="neutral-500" align="center">
-              {context.selectedCategory} • {context.selectedIntent}
-            </Text>
-          </div>
-        )}
-
-        {/* ✅ Selected Indicator */}
-        {isSelected && (
-          <div style={{
-            width: `${SIZING_SCALE.LG}px`,
-            height: `${SIZING_SCALE.LG}px`,
-            borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
-            backgroundColor: 'var(--color-primary-500)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-            <Text size="xs" color="white">✓</Text>
-          </div>
-        )}
-      </Stack>
-    </BaseCard>
+    <UnifiedCard
+      config={enhancedConfig}
+      context={cardContext}
+    />
   );
 };

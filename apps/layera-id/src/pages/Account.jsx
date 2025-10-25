@@ -8,7 +8,8 @@ import { ThemeSwitcher } from '@layera/theme-switcher';
 import { Button } from '@layera/buttons';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
-import { UserIcon, LockIcon, UnlockIcon, WarningIcon, SettingsIcon, ChartIcon } from '../components/icons/LayeraIcons';
+import { SPACING_SCALE } from '@layera/constants';
+import { UserIcon, SettingsIcon, LockIcon, ChartIcon, UnlockIcon, WarningIcon } from '@layera/icons';
 import './Account.css';
 
 export default function Account() {

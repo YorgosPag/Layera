@@ -7,9 +7,9 @@
 import React, { useCallback, useMemo } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Text } from '@layera/typography';
-import { Stack } from '@layera/layout';
+import { Stack, Flex } from '@layera/layout';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
-import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
+import { BaseCard } from '@layera/cards';
 import { CheckIcon, AlertTriangleIcon, HomeIcon } from '@layera/icons';
 import type { StepProps } from '../types';
 import type { CompleteStepData, CompletionSummary } from './types';

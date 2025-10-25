@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useLayeraTranslation } from '@layera/i18n';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
-import { UserIcon, SettingsIcon, FolderIcon, ChartIcon } from './icons/LayeraIcons';
+import { UserIcon, SettingsIcon, FolderIcon, ChartIcon } from '@layera/icons';
 
 /**
  * QuickActions - Κοινό component για γρήγορες ενέργειες navigation

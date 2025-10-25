@@ -80,7 +80,13 @@
       "Bash(cmd /c \"taskkill /F /PID 9456\")",
       "Bash(cmd /c:*)",
       "Bash(powershell:*)",
-      "Bash(del \"C:\\layera\\voithitika_docs\\auto-search-update.js\")"
+      "Bash(del \"C:\\layera\\voithitika_docs\\auto-search-update.js\")",
+      "Bash(pnpm --filter @layera/layout build)",
+      "Bash(sort:*)",
+      "Bash(awk:*)",
+      "Bash(pnpm --filter @layera/info-panels build)",
+      "Bash(pnpm store prune:*)",
+      "Bash(start http://localhost:3008)"
     ],
     "deny": [],
     "ask": []

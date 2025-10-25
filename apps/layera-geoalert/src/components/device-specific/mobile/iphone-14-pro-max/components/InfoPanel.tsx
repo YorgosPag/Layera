@@ -6,7 +6,6 @@
 
 import React from 'react';
 import {
-  INFO_PANEL_THEMES,
   DEFAULT_INFO_PANEL_STYLES,
   getCategoryTheme
 } from '@layera/info-panels';

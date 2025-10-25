@@ -2,7 +2,7 @@ import React from 'react';
 import { SPACING_SCALE } from '@layera/constants';
 import { FLEX_SCALE, type FlexDirection, type FlexAlign, type FlexJustify, type FlexWrap, type FlexGap } from '../flex';
 
-export interface FlexProps {
+export interface FlexProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   direction?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
   align?: 'start' | 'center' | 'end' | 'stretch' | 'baseline';
@@ -11,6 +11,7 @@ export interface FlexProps {
   gap?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl';
   className?: string;
   style?: React.CSSProperties;
+  as?: 'div' | 'button' | 'span' | 'section' | 'article' | 'header' | 'footer' | 'nav';
 }
 
 // Enterprise gap values aligned με @layera/constants SPACING_SCALE
@@ -33,7 +34,9 @@ export const Flex: React.FC<FlexProps> = ({
   wrap = 'nowrap',
   gap,
   className,
-  style
+  style,
+  as = 'div',
+  ...restProps
 }) => {
   const flexStyles: React.CSSProperties = {
     display: 'flex',
@@ -45,9 +48,11 @@ export const Flex: React.FC<FlexProps> = ({
     ...style
   };
 
+  const Component = as;
+
   return (
-    <div className={className} style={flexStyles}>
+    <Component className={className} style={flexStyles} {...restProps}>
       {children}
-    </div>
+    </Component>
   );
 };
