@@ -19,6 +19,7 @@ import { Text } from '@layera/typography';
 
 // Enhanced LEGO BaseCard με unified features
 import { BaseCard } from '@layera/cards';
+import { Box } from '@layera/layout';
 import type { StepProps } from '../types';
 import type { UploadedFile, UploadStepData } from './types';
 import type { FileUploadItem, FileUploadConfig } from '@layera/file-upload';
@@ -145,15 +146,14 @@ export const UploadStep: React.FC<UploadStepProps> = React.memo(({
   return (
     <Flex
       direction="column"
-      style={{
-        position: 'fixed',
-        top: 'var(--layera-cards-top)',
-        left: 'var(--layera-side-margins)',
-        right: 'var(--layera-side-margins)',
-        zIndex: 10002,
-        gap: 'var(--layera-cards-gap)',
-        padding: '0'
-      }}>
+      position="fixed"
+      top="var(--layera-cards-top)"
+      left="var(--layera-side-margins)"
+      right="var(--layera-side-margins)"
+      zIndex={10002}
+      gap="var(--layera-cards-gap)"
+      padding="none"
+    >
       {!showFileUploader ? (
         <>
           {/* Show Upload Card */}
@@ -179,12 +179,12 @@ export const UploadStep: React.FC<UploadStepProps> = React.memo(({
       ) : (
         <>
           {/* Enterprise LEGO FileUploader */}
-          <div style={{
-            background: 'var(--color-bg-surface-strong)',
-            borderRadius: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
-            padding: `${SPACING_SCALE.MD}px`,
-            marginBottom: `${SPACING_SCALE.SM}px`
-          }}>
+          <Box
+            background="var(--color-bg-surface-strong)"
+            borderRadius={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px`}
+            padding="md"
+            marginBottom="sm"
+          >
             <FileUploader
               config={uploadConfig}
               onUploadComplete={handleUploadComplete}
@@ -194,20 +194,19 @@ export const UploadStep: React.FC<UploadStepProps> = React.memo(({
               }}
               className="layera-upload-step"
             />
-          </div>
+          </Box>
 
           {/* Files Counter */}
           {uploadedFiles.length > 0 && (
-            <div style={{
-              padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
-              background: 'rgba(0, 200, 0, 0.1)',
-              borderRadius: `${SPACING_SCALE.SM}px`,
-              marginBottom: `${SPACING_SCALE.SM}px`
-            }}>
+            <BaseCard
+              variant="success"
+              padding="sm"
+              marginBottom="sm"
+            >
               <Text size="sm" color="success">
                 ✅ {uploadedFiles.length} {t('upload.filesCompleted', 'αρχεία ολοκληρώθηκαν')}
               </Text>
-            </div>
+            </BaseCard>
           )}
 
           {/* Continue Card */}

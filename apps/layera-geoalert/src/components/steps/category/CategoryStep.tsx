@@ -103,7 +103,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
     } catch (error) {
       console.error('Category selection failed:', error);
     }
-  }, [navigation, onStepComplete, onCategorySelected]);
+  }, [onStepComplete, onCategorySelected]);
 
   if (!isVisible) {
     return null;

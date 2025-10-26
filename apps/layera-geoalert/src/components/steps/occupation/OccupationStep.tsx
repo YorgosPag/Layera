@@ -7,7 +7,7 @@
 import React, { useState, useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Heading, Text } from '@layera/typography';
-import { Stack, SIZING_SCALE } from '@layera/layout';
+import { Stack } from '@layera/layout';
 import { SPACING_SCALE } from '@layera/constants';
 import { ESCOSearchComponent } from './ESCOSearchComponent';
 import type { StepProps } from '../types';
@@ -91,7 +91,7 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
     top: 'var(--layera-cards-top)',
     left: '50%',
     transform: 'translateX(-50%)',
-    width: `${SIZING_SCALE.LAYOUT_XXXL}px`,
+    width: `${SPACING_SCALE.XXXL * 2}px`,
     zIndex: 10003,
     padding: `0 ${SPACING_SCALE.LG + SPACING_SCALE.XS}px`,
     boxSizing: 'border-box'

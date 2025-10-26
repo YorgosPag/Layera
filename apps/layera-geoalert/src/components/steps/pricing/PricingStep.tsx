@@ -101,7 +101,7 @@ export const PricingStep: React.FC<PricingStepProps> = ({
   const cards = getPricingCards();
 
   return (
-    <Stack spacing="lg" style={{ width: '100%' }}>
+    <Stack spacing="lg" width="full">
       {/* 📝 Step Header */}
       <Stack spacing="sm">
         <Heading level={2} size="lg">
@@ -123,10 +123,9 @@ export const PricingStep: React.FC<PricingStepProps> = ({
       )}
 
       {/* 📋 Cards Grid */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: deviceProps?.isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))',
+      <Box
+        display="grid"
+        gridTemplateColumns={deviceProps?.isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))'}
           gap: `${SPACING_SCALE.MD}px`
         }}
       >
@@ -150,10 +149,10 @@ export const PricingStep: React.FC<PricingStepProps> = ({
             </Stack>
           </BaseCard>
         ))}
-      </div>
+      </Box>
 
       {/* 🎮 Navigation Controls */}
-      <Stack direction="row" justify="space-between" style={{ marginTop: `${SPACING_SCALE.LG}px` }}>
+      <Stack direction="row" justify="space-between" marginTop="lg">
         <Button
           variant="outline"
           onClick={() => window.history.back()}
@@ -171,11 +170,11 @@ export const PricingStep: React.FC<PricingStepProps> = ({
       </Stack>
 
       {/* 📊 Step Progress Indicator */}
-      <div style={{ textAlign: 'center', marginTop: `${SPACING_SCALE.MD}px` }}>
+      <Box textAlign="center" marginTop="md">
         <Text size="sm" color="neutral-500">
           Βήμα 5 από 7 • Τιμολόγηση
         </Text>
-      </div>
+      </Box>
     </Stack>
   );
 };

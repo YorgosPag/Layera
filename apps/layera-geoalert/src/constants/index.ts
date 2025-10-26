@@ -17,7 +17,7 @@ export const APP_CONFIG = {
   },
   urls: {
     id: import.meta.env.VITE_ID_SERVICE_URL || 'http://localhost:3000',
-    geoalert: import.meta.env.VITE_GEOALERT_URL || 'http://localhost:3001',
+    geoalert: import.meta.env.VITE_GEOALERT_URL || 'http://localhost:3004',
     geoalertFallback: import.meta.env.VITE_GEOALERT_FALLBACK_URL || 'http://localhost:3002'
   }
 } as const;
@@ -285,6 +285,9 @@ export const DEBUG_CONFIG = {
   enableDeviceSimulator: true,
   enableHapticFeedback: true
 } as const;
+
+// Re-export LEGO constants for convenience
+export { BORDER_RADIUS_SCALE, Z_INDEX, SPACING_SCALE };
 
 // Export all as default for convenience
 export default {

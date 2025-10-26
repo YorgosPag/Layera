@@ -215,7 +215,7 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
                 variant="primary"
                 size="lg"
                 onClick={startDrawing}
-                style={{ width: '100%' }}
+                fullWidth
               >
                 <MapIcon size="sm" />
                 Ξεκίνα Μέτρηση
@@ -227,7 +227,7 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
                 variant="success"
                 size="lg"
                 onClick={finishMeasurement}
-                style={{ width: '100%' }}
+                fullWidth
               >
                 <CheckIcon size="sm" />
                 Ολοκλήρωση Μέτρησης
@@ -239,7 +239,7 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
                 variant="success"
                 size="lg"
                 onClick={handleComplete}
-                style={{ width: '100%' }}
+                fullWidth
               >
                 <CheckIcon size="sm" />
                 Επιβεβαίωση ({currentArea} τ.μ.)

@@ -97,7 +97,7 @@ export default function Data() {
                     <span style={{ color: 'var(--color-error)' }}>{t('status.unverified')}</span>
                   </>
                 )}
-              </FlexColumn>
+              </Flex>
             </DashboardCard>
 
             <DashboardCard
@@ -176,7 +176,7 @@ export default function Data() {
                     </div>
                   </>
                 )}
-              </FlexColumn>
+              </Flex>
               {!user.layeraClaims?.mfa_verified && (
                 <Button
                   variant="primary"
@@ -250,8 +250,8 @@ export default function Data() {
                   <FileIcon size="sm" theme="neutral" />
                   {t('data.exportFormats.csv')}
                 </Button>
-              </FlexColumn>
-            </FlexColumn>
+              </Flex>
+            </Flex>
           </DashboardCard>
           </DashboardSection>
         </div>
@@ -266,24 +266,24 @@ export default function Data() {
             title={t('data.privacyPoints.title')}
             variant="info"
           >
-            <FlexColumn style={{ gap: `${SPACING_SCALE.MD}px` }}>
+            <Flex direction="column" style={{ gap: `${SPACING_SCALE.MD}px` }}>
               <Flex align="flex-start" style={{ gap: `${SPACING_SCALE.SM}px` }}>
                 <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
                 <span>{t('data.privacyPoints.encryption')}</span>
-              </FlexColumn>
+              </Flex>
               <Flex align="flex-start" style={{ gap: `${SPACING_SCALE.SM}px` }}>
                 <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
                 <span>{t('data.privacyPoints.noSharing')}</span>
-              </FlexColumn>
+              </Flex>
               <Flex align="flex-start" style={{ gap: `${SPACING_SCALE.SM}px` }}>
                 <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
                 <span>{t('data.privacyPoints.deleteAnytime')}</span>
-              </FlexColumn>
+              </Flex>
               <Flex align="flex-start" style={{ gap: `${SPACING_SCALE.SM}px` }}>
                 <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
                 <span>{t('data.privacyPoints.compliance')}</span>
-              </FlexColumn>
-            </FlexColumn>
+              </Flex>
+            </Flex>
           </DashboardCard>
           </DashboardSection>
         </div>

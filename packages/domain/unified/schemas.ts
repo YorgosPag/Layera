@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 /**
- * Enterprise Zod Schemas - UnifiedPipeline
+ * Enterprise Zod Schemas - Form Data
  * Purpose: Runtime type validation with discriminated unions
  * Complexity: Low (< 15)
  * Lines: < 100 (Enterprise Standard)
@@ -96,7 +96,7 @@ export const PipelineSchema = z.discriminatedUnion('category', [
 ]);
 
 // API DTO Schema
-export const UnifiedPipelineDTOSchema = z.object({
+export const FormDataDTOSchema = z.object({
   category: CategorySchema,
   intent: IntentSchema,
   transactionType: TransactionTypeSchema.optional(),

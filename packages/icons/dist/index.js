@@ -438,5 +438,63 @@ export {
   WatchIcon,
   WorkIcon,
   ZoomInIcon,
-  ZoomOutIcon
+  ZoomOutIcon,
+  XIcon,
+  ChartIcon,
+  FolderIcon,
+  LockIcon,
+  ShieldIcon,
+  UserIcon,
+  RocketIcon,
+  UnlockIcon,
+  WarningIcon,
+  FileIcon,
+  BellIcon,
+  PaletteIcon
 };
+
+// Missing Icons - Added for compatibility
+var XIcon = CloseIcon;
+var ChartIcon = (props) => /* @__PURE__ */ jsxs3(Icon, { name: "chart", ...props, children: [
+  /* @__PURE__ */ jsx3("path", { d: "M3 3v18h18" }),
+  /* @__PURE__ */ jsx3("path", { d: "M18.7 8l-5-5-6 6-2.3-2.3" })
+] });
+var FolderIcon = (props) => /* @__PURE__ */ jsx3(Icon, { name: "folder", ...props, children: /* @__PURE__ */ jsx3("path", { d: "M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" }) });
+var LockIcon = (props) => /* @__PURE__ */ jsxs3(Icon, { name: "lock", ...props, children: [
+  /* @__PURE__ */ jsx3("rect", { x: "3", y: "11", width: "18", height: "11", rx: "2", ry: "2" }),
+  /* @__PURE__ */ jsx3("circle", { cx: "12", cy: "7", r: "4" }),
+  /* @__PURE__ */ jsx3("path", { d: "M7 11V7a5 5 0 0 1 10 0v4" })
+] });
+var ShieldIcon = (props) => /* @__PURE__ */ jsx3(Icon, { name: "shield", ...props, children: /* @__PURE__ */ jsx3("path", { d: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" }) });
+var UserIcon = (props) => /* @__PURE__ */ jsxs3(Icon, { name: "user", ...props, children: [
+  /* @__PURE__ */ jsx3("path", { d: "M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" }),
+  /* @__PURE__ */ jsx3("circle", { cx: "12", cy: "7", r: "4" })
+] });
+var RocketIcon = (props) => /* @__PURE__ */ jsxs3(Icon, { name: "rocket", ...props, children: [
+  /* @__PURE__ */ jsx3("path", { d: "M4.5 16.5c-1.5 1.5-1.5 3.5 0 5l.5.5 9.5-9.5c2-2 2-5 0-7s-5-2-7 0L4.5 8.5" }),
+  /* @__PURE__ */ jsx3("path", { d: "M12 15L9 12" }),
+  /* @__PURE__ */ jsx3("path", { d: "M21 3L9 15" })
+] });
+var UnlockIcon = (props) => /* @__PURE__ */ jsxs3(Icon, { name: "unlock", ...props, children: [
+  /* @__PURE__ */ jsx3("rect", { x: "3", y: "11", width: "18", height: "11", rx: "2", ry: "2" }),
+  /* @__PURE__ */ jsx3("path", { d: "M7 11V7a5 5 0 0 1 8.9-2.8" })
+] });
+var WarningIcon = (props) => /* @__PURE__ */ jsxs3(Icon, { name: "warning", ...props, children: [
+  /* @__PURE__ */ jsx3("path", { d: "M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" }),
+  /* @__PURE__ */ jsx3("line", { x1: "12", y1: "9", x2: "12", y2: "13" }),
+  /* @__PURE__ */ jsx3("line", { x1: "12", y1: "17", x2: "12.01", y2: "17" })
+] });
+var FileIcon = (props) => /* @__PURE__ */ jsxs3(Icon, { name: "file", ...props, children: [
+  /* @__PURE__ */ jsx3("path", { d: "M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" }),
+  /* @__PURE__ */ jsx3("polyline", { points: "14,2 14,8 20,8" })
+] });
+var BellIcon = (props) => /* @__PURE__ */ jsx3(Icon, { name: "bell", ...props, children: /* @__PURE__ */ jsx3("path", { d: "M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" }) });
+var PaletteIcon = (props) => /* @__PURE__ */ jsxs3(Icon, { name: "palette", ...props, children: [
+  /* @__PURE__ */ jsx3("circle", { cx: "13.5", cy: "6.5", r: ".5" }),
+  /* @__PURE__ */ jsx3("circle", { cx: "17.5", cy: "10.5", r: ".5" }),
+  /* @__PURE__ */ jsx3("circle", { cx: "8.5", cy: "7.5", r: ".5" }),
+  /* @__PURE__ */ jsx3("circle", { cx: "6.5", cy: "12.5", r: ".5" }),
+  /* @__PURE__ */ jsx3("path", { d: "M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" })
+] });
+
+// All missing icons now properly exported through ES6 export statement above

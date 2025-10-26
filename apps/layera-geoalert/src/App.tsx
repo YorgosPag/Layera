@@ -5,10 +5,11 @@ import { useState, useEffect } from 'react';
 import '@layera/styles';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { Button } from '@layera/buttons';
+import { BaseCard } from '@layera/cards';
 import { SPACING_SCALE, BORDER_RADIUS, TABLE_COLUMN_WIDTHS } from '@layera/constants';
 import { ErrorBoundary } from '@layera/error-boundary';
 import { MapIcon, ShareIcon, LayersIcon, AlertTriangleIcon, CheckIcon, MoreIcon } from '@layera/icons';
-import { AppShell, Flex } from '@layera/layout';
+import { AppShell, Flex, Box } from '@layera/layout';
 import { LoadingSpinner } from '@layera/loading';
 import { NotificationProvider, useNotifications } from '@layera/notifications';
 import { ThemeProvider, ThemeSwitcher } from '@layera/theme-switcher';
@@ -21,7 +22,6 @@ import { APP_CONFIG, DEVICE_CONFIG, ANIMATION_CONFIG } from './constants';
 import { GeoHeader } from './components/GeoHeader';
 import { GeoMap } from './components/GeoMapNew';
 import { DeviceFrameWrapper } from './components/DeviceFrameWrapper';
-// REMOVED: Legacy UnifiedPipelineModal - replaced by modular step system
 import { ViewportFrame } from './components/ViewportFrame';
 
 /**
@@ -85,84 +85,76 @@ function TestNotificationsComponent() {
   };
 
   return (
-    <div style={{
-      backgroundColor: 'var(--layera-bg-secondary)',
-      padding: `${SPACING_SCALE.LG}px`,
-      borderRadius: `${BORDER_RADIUS.SM}px`,
-      margin: `${SPACING_SCALE.MD}px 0`,
-      border: '2px solid var(--layera-border-success)'
-    }}>
+    <BaseCard
+      variant="secondary"
+      padding="lg"
+      margin="md"
+      style={{
+        border: '2px solid var(--layera-border-success)'
+      }}>
       <Heading as="h3" size="lg" color="primary" className="layera-mb-4">
         🧪 LEGO Systems Test Panel
       </Heading>
 
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-        gap: `${SPACING_SCALE.MD}px`,
-        marginBottom: `${SPACING_SCALE.MD}px`
-      }}>
+      <Box
+        display="grid"
+        gridTemplateColumns="repeat(auto-fit, minmax(200px, 1fr))"
+        gap="md"
+        marginBottom="md"
+      >
         <Button
-          variant="primary"
+          variant="success"
           size="md"
           onClick={testSuccessNotification}
-          style={{ backgroundColor: 'var(--layera-bg-success)' }}
         >
           Test Success 🎉
         </Button>
 
         <Button
-          variant="secondary"
+          variant="error"
           size="md"
           onClick={testErrorNotification}
-          style={{ backgroundColor: 'var(--layera-bg-error)' }}
         >
           Test Error ⚠️
         </Button>
 
         <Button
-          variant="outline"
+          variant="info"
           size="md"
           onClick={testInfoNotification}
-          style={{ borderColor: 'var(--layera-bg-info)', color: 'var(--layera-bg-info)' }}
         >
           Test Info 📦
         </Button>
 
         <Button
-          variant="primary"
+          variant="warning"
           size="md"
           onClick={testLoadingSpinner}
           disabled={isLoading}
-          style={{ backgroundColor: 'var(--layera-bg-warning)' }}
         >
           {isLoading ? <LoadingSpinner size="sm" /> : 'Test Loading 🔄'}
         </Button>
-      </div>
+      </Box>
 
       {isLoading && (
-        <Flex align="center" justify="center" style={{
-          gap: `${SPACING_SCALE.SM}px`,
-          padding: `${SPACING_SCALE.MD}px`,
-          backgroundColor: 'var(--layera-bg-warning)',
-          borderRadius: `${BORDER_RADIUS.XS}px`,
-          color: 'var(--layera-text-on-warning)'
-        }}>
-          <LoadingSpinner size="md" />
-          <Text size="base" color="neutral">
-            Testing @layera/loading spinner integration...
-          </Text>
-        </Flex>
+        <BaseCard variant="warning" padding="md">
+          <Flex align="center" justify="center" gap="sm">
+            <LoadingSpinner size="md" />
+            <Text size="base" color="neutral">
+              Testing @layera/loading spinner integration...
+            </Text>
+          </Flex>
+        </BaseCard>
       )}
 
-      <div style={{ marginTop: `${SPACING_SCALE.MD}px` }}>
+      <Box marginTop="md">
         <Text size="sm" color="secondary">
           ✅ @layera/notifications: Παρέχει enterprise-grade notification system<br/>
           ✅ @layera/loading: Provides consistent loading states<br/>
           ✅ Integration Testing: Όλα τα LEGO components λειτουργούν μαζί!
         </Text>
-      </div>
-    </div>
+      </Box>
+    </BaseCard>
   );
 }
 
@@ -247,9 +239,10 @@ function App() {
 
   const handleNewEntryClick = () => {
     if (process.env.NODE_ENV === 'development') {
-      console.log('Using modular step system...');
+      console.log('🚀 Opening modular step system (CategoryStep)...');
     }
-    // TODO: Trigger modular step system instead of legacy pipeline
+    // Ενεργοποίηση του modular step system (CategoryStep)
+    setShowCategoryElements(true);
   };
 
   // REMOVED: Legacy unified pipeline submit handler
@@ -290,13 +283,10 @@ function App() {
                 background-color: transparent !important;
               }
             `}</style>
-            <div style={{
-              display: 'flex',
-              height: '100vh'
-            }}>
+            <Flex direction="row" height="100vh">
 
               {/* Device Frame - Left Side */}
-              <div style={{ flex: 1 }}>
+              <Box flex="1">
                 <DeviceFrameWrapper enabled={true}>
                   <AppShell
                     layout="fullscreen"
@@ -316,11 +306,11 @@ function App() {
                     </ViewportFrame>
                   </AppShell>
                 </DeviceFrameWrapper>
-              </div>
+              </Box>
 
               {/* Legacy pipeline control panel removed - using integrated floating stepper */}
 
-            </div>
+            </Flex>
           </DeviceOverrideProvider>
         </NotificationProvider>
         </ThemeProvider>
@@ -333,19 +323,18 @@ function App() {
       <ThemeProvider defaultTheme="system" storageKey="layera-geoalert-theme">
       <NotificationProvider>
         <DeviceOverrideProvider>
-          <div style={{
-              padding: `${SPACING_SCALE.XL}px`,
-              textAlign: 'center',
-              backgroundColor: 'var(--layera-bg-primary)',
-              color: 'var(--layera-text-primary)',
-              minHeight: '100vh'
-            }}>
-              <Flex justify="space-between" align="center" style={{ marginBottom: `${SPACING_SCALE.MD}px` }}>
+          <Box
+            padding="xl"
+            textAlign="center"
+            backgroundColor="var(--layera-bg-primary)"
+            color="var(--layera-text-primary)"
+            minHeight="100vh">
+              <Flex justify="space-between" align="center" marginBottom="md">
                 <Heading as="h1" size="2xl" color="primary" className="layera-flex layera-items-center layera-gap-2">
                   <MapIcon size="md" theme="primary" />
                   {t('geoalert.title')}
                 </Heading>
-                <Flex align="center" justify="center" style={{ gap: `${SPACING_SCALE.SM}px` }}>
+                <Flex align="center" justify="center" gap="sm">
                   <ThemeSwitcher variant="icon" size="md" />
                   <LanguageSwitcher />
                 </Flex>
@@ -353,19 +342,17 @@ function App() {
 
               <Text size="lg" color="secondary" className="layera-mb-8">{t('geoalert.subtitle')}</Text>
 
-              <div style={{ margin: `${SPACING_SCALE.XL}px 0` }}>
-                <div style={{
-                  backgroundColor: 'var(--layera-bg-success)',
-                  color: 'var(--layera-text-on-success)',
-                  padding: `${SPACING_SCALE.LG}px`,
-                  borderRadius: `${BORDER_RADIUS.SM}px`,
-                  marginBottom: `${SPACING_SCALE.XL}px`
-                }}>
-                  <Heading as="h3" size="lg" color="neutral" className="layera-mb-4 layera-flex layera-items-center layera-gap-2">
-                    <MoreIcon size="sm" theme="success" /> {t('geoalert.geoCanvasReady')}
-                  </Heading>
-                  <Text size="base" color="neutral">{t('geoalert.professionalArchitecture')}</Text>
-                </div>
+              <Box margin="xl 0">
+                <Box marginBottom="xl">
+                  <BaseCard
+                    variant="success"
+                    padding="lg"
+                    title={t('geoalert.geoCanvasReady')}
+                    icon={<MoreIcon size="sm" theme="success" />}
+                  >
+                    <Text size="base" color="neutral">{t('geoalert.professionalArchitecture')}</Text>
+                  </BaseCard>
+                </Box>
 
                 <Button
                   variant="primary"
@@ -373,27 +360,26 @@ function App() {
                   onClick={() => setIsMapMode(true)}
                   icon={<MapIcon size="lg" theme="neutral" />}
                   className="layera-mb-8"
-                  style={{ margin: `0 auto ${SPACING_SCALE.XL}px auto`, boxShadow: BOX_SHADOW_SCALE.cardDefault }}
+                  style={{ margin: `0 auto ${SPACING_SCALE.XL}px auto` }}
+                  boxShadow={BOX_SHADOW_SCALE.cardDefault}
                 >
                   {t('geoalert.enterGeoCanvas')}
                 </Button>
 
                 <TestNotificationsComponent />
 
-                <div style={{
-                  backgroundColor: 'var(--layera-bg-secondary)',
-                  border: '1px solid var(--layera-border-primary)',
-                  borderRadius: `${BORDER_RADIUS.SM}px`,
-                  padding: `${SPACING_SCALE.LG}px`,
-                  margin: `${SPACING_SCALE.XL}px 0`,
-                  maxWidth: `${SPACING_SCALE.XXXL * 8}px`,
-                  marginLeft: 'auto',
-                  marginRight: 'auto'
-                }}>
+                <BaseCard
+                  variant="secondary"
+                  padding="lg"
+                  marginY="xl"
+                  maxWidth={`${SPACING_SCALE.XXXL * 8}px`}
+                  marginLeft="auto"
+                  marginRight="auto"
+                >
                   <Heading as="h3" size="lg" color="primary" className="layera-mb-4 layera-flex layera-items-center layera-gap-2">
                     <CheckIcon size="xs" theme="success" /> {t('geoalert.statusCheck')}
                   </Heading>
-                  <div style={{ textAlign: 'left' }}>
+                  <Box>
                     <Text size="base" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
                       <CheckIcon size="xs" theme="success" /> {t('geoalert.port')}: 3003
                     </Text>
@@ -418,36 +404,33 @@ function App() {
                     <Text size="base" className="layera-flex layera-items-center layera-gap-2">
                       <CheckIcon size="xs" theme="success" /> Unified Layout System με fullscreen-map layout
                     </Text>
-                  </div>
-                </div>
+                  </Box>
+                </BaseCard>
 
-                <a
-                  href={APP_CONFIG.urls.id}
-                  target="_blank"
-                  style={{
-                    color: 'var(--layera-bg-info)',
-                    textDecoration: 'none',
-                    padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.LG}px`,
-                    border: '2px solid var(--layera-bg-info)',
-                    borderRadius: `${BORDER_RADIUS.MD}px`,
-                    display: 'inline-block',
-                    fontWeight: 'bold',
-                    transition: 'all 0.2s'
+                <Button
+                  onClick={() => {
+                    console.log('🔗 Μετάβαση σε Layera ID - Προσπάθεια άνοιγμα...');
+                    try {
+                      window.open(APP_CONFIG.urls.id, '_blank');
+                    } catch (error) {
+                      console.error('❌ Αποτυχία ανοίγματος Layera ID:', error);
+                      alert('Layera ID δεν είναι διαθέσιμο αυτή τη στιγμή. Παρακαλώ ξεκινήστε την εφαρμογή στο port 3000.');
+                    }
                   }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.backgroundColor = 'var(--layera-bg-info)';
-                    e.currentTarget.style.color = 'var(--layera-text-on-info)';
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.backgroundColor = 'transparent';
-                    e.currentTarget.style.color = 'var(--layera-bg-info)';
-                  }}
+                  variant="outline"
+                  size="md"
+                  color="info"
+                  padding={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.LG}px`}
+                  border="2px solid var(--layera-bg-info)"
+                  borderRadius={`${BORDER_RADIUS.MD}px`}
+                  fontWeight="bold"
+                  transition="all 0.2s"
                 >
                   {t('geoalert.navigateToLayeraId')}
-                </a>
-              </div>
+                </Button>
+              </Box>
 
-              <div style={{ marginTop: `${SPACING_SCALE.XL}px` }}>
+              <Box marginTop="xl">
                 <Text size="sm" color="secondary" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
                   <LayersIcon size="sm" theme="info" /> {t('geoalert.modularMicroservice')}
                 </Text>
@@ -460,8 +443,8 @@ function App() {
                 <Text size="sm" color="secondary" className="layera-flex layera-items-center layera-gap-2">
                   <AlertTriangleIcon size="sm" theme="warning" /> {t('geoalert.readyForImplementation')}
                 </Text>
-              </div>
-          </div>
+              </Box>
+          </Box>
         </DeviceOverrideProvider>
       </NotificationProvider>
       </ThemeProvider>

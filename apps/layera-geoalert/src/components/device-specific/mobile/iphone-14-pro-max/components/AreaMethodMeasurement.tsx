@@ -9,11 +9,13 @@
  */
 
 import React, { useState, useCallback } from 'react';
-import { Stack } from '@layera/layout';
+import { Stack, Box } from '@layera/layout';
 import { Button } from '@layera/buttons';
 import { Text } from '@layera/typography';
 import { SPACING_SCALE } from '@layera/constants';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
+import { BaseCard } from '@layera/cards';
+import { Input } from '@layera/forms';
 import { useMeasurement, type MeasurementResult } from '@layera/geo-drawing';
 
 export type AreaMethodType = 'manual-input' | 'map-drawing' | 'floor-plan-upload' | 'auto-calculate';
@@ -165,13 +167,8 @@ export const AreaMethodMeasurement: React.FC<AreaMethodMeasurementProps> = ({
     switch (selectedMethod) {
       case 'manual-input':
         return (
-          <div style={{
-            padding: `${SPACING_SCALE.MD}px`,
-            backgroundColor: 'var(--color-bg-surface)',
-            borderRadius: `${SPACING_SCALE.SM}px`,
-            border: '1px solid var(--color-border-default)'
-          }}>
-            <Text size="sm" weight="bold" style={{ marginBottom: `${SPACING_SCALE.SM}px` }}>
+          <BaseCard variant="neutral" padding="md">
+            <Text size="sm" weight="bold" marginBottom="sm">
               Εισαγωγή Εμβαδού (τ.μ.)
             </Text>
             <input
@@ -182,7 +179,7 @@ export const AreaMethodMeasurement: React.FC<AreaMethodMeasurementProps> = ({
               style={{
                 width: '100%',
                 padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM}px`,
-                fontSize: 'var(--layera-text-lg)', // Typography system for input element
+                fontSize: 'var(--layera-text-lg)',
                 border: '1px solid var(--color-border-input)',
                 borderRadius: `${SPACING_SCALE.XS + 2}px`,
                 marginBottom: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`
@@ -196,38 +193,32 @@ export const AreaMethodMeasurement: React.FC<AreaMethodMeasurementProps> = ({
             >
               Αποθήκευση Εμβαδού
             </Button>
-          </div>
+          </BaseCard>
         );
 
       case 'map-drawing':
         return (
-          <div style={{
-            padding: `${SPACING_SCALE.MD}px`,
-            backgroundColor: 'var(--color-semantic-info-bg)',
-            borderRadius: `${SPACING_SCALE.SM}px`,
-            border: '1px solid var(--color-semantic-info-border)'
-          }}>
-            <Text size="sm" weight="bold" style={{ marginBottom: `${SPACING_SCALE.SM}px` }}>
+          <BaseCard variant="info" padding="md">
+            <Text size="sm" weight="bold" marginBottom="sm">
               Σχεδίαση στον Χάρτη
             </Text>
-            <Text size="xs" style={{ marginBottom: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`, color: 'var(--color-text-secondary)' }}>
+            <Text size="xs" marginBottom="sm" color="secondary">
               Κάντε κλικ στον χάρτη για να ξεκινήσετε τη σχεδίαση του πολυγώνου
             </Text>
 
             {/* Measurement Status */}
-            <div style={{
-              padding: `${SPACING_SCALE.SM}px`,
-              backgroundColor: isDrawing ? 'var(--color-semantic-warning-bg)' : 'var(--color-semantic-success-bg)',
-              borderRadius: `${SPACING_SCALE.XS}px`,
-              marginBottom: `${SPACING_SCALE.SM}px`
-            }}>
+            <BaseCard
+              variant={isDrawing ? "warning" : "success"}
+              padding="sm"
+              marginBottom="sm"
+            >
               <Text size="xs">
                 {isDrawing ?
                   `Σχεδίαση... (${points.length} σημεία${getCurrentArea() > 0 ? `, ${getCurrentArea().toFixed(1)} τ.μ.` : ''})` :
                   'Κάντε κλικ στον χάρτη για να ξεκινήσετε'
                 }
               </Text>
-            </div>
+            </BaseCard>
 
             {/* Drawing Controls */}
             <Stack spacing="sm">
@@ -236,7 +227,6 @@ export const AreaMethodMeasurement: React.FC<AreaMethodMeasurementProps> = ({
                   variant="outline"
                   size="sm"
                   onClick={cancelMeasurement}
-                  style={{ /* fontSize handled by Button size prop */ }}
                 >
                   Ακύρωση Σχεδίασης
                 </Button>
@@ -247,27 +237,21 @@ export const AreaMethodMeasurement: React.FC<AreaMethodMeasurementProps> = ({
                   variant="primary"
                   size="sm"
                   onClick={finishMeasurement}
-                  style={{ /* fontSize handled by Button size prop */ }}
                 >
                   Ολοκλήρωση Σχεδίασης
                 </Button>
               )}
             </Stack>
-          </div>
+          </BaseCard>
         );
 
       case 'floor-plan-upload':
         return (
-          <div style={{
-            padding: `${SPACING_SCALE.MD}px`,
-            backgroundColor: 'var(--color-semantic-warning-bg)',
-            borderRadius: `${SPACING_SCALE.SM}px`,
-            border: '1px solid var(--color-semantic-warning-border)'
-          }}>
-            <Text size="sm" weight="bold" style={{ marginBottom: `${SPACING_SCALE.SM}px` }}>
+          <BaseCard variant="warning" padding="md">
+            <Text size="sm" weight="bold" marginBottom="sm">
               Φόρτωση Κάτοψης
             </Text>
-            <Text size="xs" style={{ marginBottom: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`, color: 'var(--color-text-secondary)' }}>
+            <Text size="xs" marginBottom="sm" color="secondary">
               Φορτώστε την κάτοψη και θα υπολογίσουμε αυτόματα το εμβαδόν
             </Text>
             <Button
@@ -279,21 +263,16 @@ export const AreaMethodMeasurement: React.FC<AreaMethodMeasurementProps> = ({
             >
               {isProcessing ? 'Επεξεργασία...' : 'Φόρτωση Κάτοψης'}
             </Button>
-          </div>
+          </BaseCard>
         );
 
       case 'auto-calculate':
         return (
-          <div style={{
-            padding: `${SPACING_SCALE.MD}px`,
-            backgroundColor: 'var(--color-semantic-info-bg)',
-            borderRadius: `${SPACING_SCALE.SM}px`,
-            border: '1px solid var(--color-semantic-info-border)'
-          }}>
-            <Text size="sm" weight="bold" style={{ marginBottom: `${SPACING_SCALE.SM}px` }}>
+          <BaseCard variant="info" padding="md">
+            <Text size="sm" weight="bold" marginBottom="sm">
               Αυτόματος Υπολογισμός
             </Text>
-            <Text size="xs" style={{ marginBottom: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`, color: 'var(--color-text-secondary)' }}>
+            <Text size="xs" marginBottom="sm" color="secondary">
               Χρήση OpenStreetMap δεδομένων για αυτόματο υπολογισμό εμβαδού
             </Text>
             <Button
@@ -305,7 +284,7 @@ export const AreaMethodMeasurement: React.FC<AreaMethodMeasurementProps> = ({
             >
               {isProcessing ? 'Υπολογισμός...' : 'Αυτόματος Υπολογισμός'}
             </Button>
-          </div>
+          </BaseCard>
         );
 
       default:
@@ -323,17 +302,17 @@ export const AreaMethodMeasurement: React.FC<AreaMethodMeasurementProps> = ({
     }}>
       <Stack spacing="md">
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px` }}>
-          <Text size="lg" weight="bold" style={{ color: 'var(--color-text-primary)' }}>
+        <BaseCard variant="neutral" padding="sm" style={{ textAlign: 'center' }}>
+          <Text size="lg" weight="bold" color="primary">
             Μέτρηση Εμβαδού
           </Text>
-          <Text size="sm" style={{ color: 'var(--color-text-secondary)', marginTop: `${SPACING_SCALE.XS}px` }}>
+          <Text size="sm" color="secondary" marginTop="xs">
             Μέθοδος: {selectedMethod === 'manual-input' ? 'Χειροκίνητη Εισαγωγή' :
                       selectedMethod === 'map-drawing' ? 'Σχεδίαση στον Χάρτη' :
                       selectedMethod === 'floor-plan-upload' ? 'Φόρτωση Κάτοψης' :
                       'Αυτόματος Υπολογισμός'}
           </Text>
-        </div>
+        </BaseCard>
 
         {/* Method Interface */}
         {renderMethodInterface()}
@@ -344,36 +323,25 @@ export const AreaMethodMeasurement: React.FC<AreaMethodMeasurementProps> = ({
             variant="outline"
             size="md"
             onClick={onCancel}
-            style={{
-              /* fontSize handled by Button size prop */
-              padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
-              marginTop: `${SPACING_SCALE.SM}px`
-            }}
+            marginTop="sm"
           >
             Επιστροφή στις Μεθόδους
           </Button>
         )}
 
         {/* Debug Info */}
-        <div style={{
-          marginTop: `${SPACING_SCALE.SM}px`,
-          padding: `${SPACING_SCALE.SM}px`,
-          backgroundColor: 'var(--color-bg-surface)',
-          borderRadius: `${SPACING_SCALE.XS + 2}px`,
-          /* fontSize handled by Text component */
-          color: 'var(--color-text-secondary)'
-        }}>
+        <BaseCard variant="neutral" padding="sm" marginTop="sm">
           <Text size="xs" weight="bold">Enterprise Area Measurement</Text>
-          <div>Selected Method: {selectedMethod}</div>
-          <div>Property Type: {propertyType}</div>
+          <Text size="xs" color="secondary">Selected Method: {selectedMethod}</Text>
+          <Text size="xs" color="secondary">Property Type: {propertyType}</Text>
           {selectedMethod === 'map-drawing' && (
             <>
-              <div>Drawing State: {state}</div>
-              <div>Points: {points.length}</div>
-              <div>Current Area: {getCurrentArea().toFixed(2)} τ.μ.</div>
+              <Text size="xs" color="secondary">Drawing State: {state}</Text>
+              <Text size="xs" color="secondary">Points: {points.length}</Text>
+              <Text size="xs" color="secondary">Current Area: {getCurrentArea().toFixed(2)} τ.μ.</Text>
             </>
           )}
-        </div>
+        </BaseCard>
       </Stack>
     </div>
   );

@@ -3,19 +3,25 @@
  *
  * Ενορχηστρώνει όλα τα map services και components χρησιμοποιώντας LEGO architecture.
  * Αντικαθιστά το monolithic GeoMap.tsx με modular approach.
+ *
+ * ⚠️ ΚΡΙΣΙΜΗ ΠΡΟΕΙΔΟΠΟΙΗΣΗ: LEGO COMPATIBILITY
+ * - ✅ BaseCard: Συμβατό με maps - μπορεί να χρησιμοποιηθεί για UI overlays
+ * - ❌ Box component: ΑΣΥΜΒΑΤΟ με maps - προκαλεί εξαφάνιση χάρτη
+ * - 📋 Map containers ΠΑΝΤΟΤΕ πρέπει να είναι native <div> elements με refs
  */
 
 import React, { useEffect, useRef, useState } from 'react';
 import { MapProvider, useMap } from '@layera/map-core';
 import { useDrawing, DrawingMode } from '@layera/geo-drawing';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
-import { Flex, FlexCenter, Box, SIZING_SCALE } from '@layera/layout';
+import { Flex, FlexCenter } from '@layera/layout';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { useViewportWithOverride } from '@layera/viewport';
 import { Button } from '@layera/buttons';
 import { Text } from '@layera/typography';
 import { MarkerIcon, PolygonIcon, TrashIcon, PlusIcon, LocationIcon } from '@layera/icons';
+import { BaseCard } from '@layera/cards';
 import L from 'leaflet';
 
 interface MapContainerProps {
@@ -254,33 +260,40 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
   if (isMobile) {
     return (
       <div className="mobile-map-container">
-        <Box
+        {/*
+          ΚΡΙΣΙΜΗ ΣΗΜΕΙΩΣΗ: ΜΗΝ ΑΛΛΑΞΕΙΣ ΣΕ BOX COMPONENT!
+          Το Leaflet map engine χρειάζεται native DOM elements με refs.
+          Το @layera/layout Box component δεν είναι συμβατό με maps.
+          Αποτέλεσμα: Ο χάρτης εξαφανίζεται αν χρησιμοποιηθεί Box.
+          ΠΑΝΤΟΤΕ χρησιμοποίησε <div> για map containers!
+        */}
+        <div
           ref={mapContainerRef}
           id="geo-map"
-          style={{ position: 'absolute', inset: 0 }}
+          style={{
+            position: 'absolute',
+            inset: 0
+          }}
         />
 
         {/* Drawing Status Indicator */}
         {currentMode !== 'none' && (
-          <FlexCenter
+          <BaseCard
+            variant="overlay"
+            padding="sm"
             style={{
               position: 'absolute',
-              bottom: `${SPACING_SCALE.XXXL * 3 + SPACING_SCALE.LG}px`, // 140px equivalent
+              bottom: `${SPACING_SCALE.XXXL * 3 + SPACING_SCALE.LG}px`,
               left: '50%',
               transform: 'translateX(-50%)',
-              padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM}px`,
-              backgroundColor: 'var(--color-overlay-dark)',
-              color: 'white',
-              borderRadius: `${BORDER_RADIUS_SCALE.MD}px`,
-              gap: `${SPACING_SCALE.XS + 2}px`,
               zIndex: 1000,
-              maxWidth: '80%',
-              textAlign: 'center'
+              maxWidth: '80%'
             }}>
+            <FlexCenter gap="xs">
             {currentMode === 'marker' && (
               <>
                 <MarkerIcon size="sm" theme="neutral" />
-                <Text size="xs" style={{ color: 'white' }}>
+                <Text size="xs" color="white">
                   Κάντε κλικ στον χάρτη
                 </Text>
               </>
@@ -288,12 +301,13 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
             {currentMode === 'polygon' && (
               <>
                 <PolygonIcon size="sm" theme="neutral" />
-                <Text size="xs" style={{ color: 'white' }}>
+                <Text size="xs" color="white">
                   Κάντε κλικ για προσθήκη σημείων
                 </Text>
               </>
             )}
-          </FlexCenter>
+            </FlexCenter>
+          </BaseCard>
         )}
 
 
@@ -305,22 +319,13 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
               position: 'absolute',
               bottom: `${SPACING_SCALE.LG}px`,
               right: `${SPACING_SCALE.LG}px`,
-              width: `${SIZING_SCALE.XXXL}px`,
-              height: `${SIZING_SCALE.XXXL}px`,
+              width: `${SPACING_SCALE.XXXL}px`,
+              height: `${SPACING_SCALE.XXXL}px`,
               backgroundColor: 'var(--color-semantic-success-bg)',
               borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
               boxShadow: BOX_SHADOW_SCALE.shadowSuccess,
               cursor: 'pointer',
               zIndex: 10001,
-              transition: 'var(--layera-transition-fast)'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'scale(1.1)';
-              e.currentTarget.style.boxShadow = BOX_SHADOW_SCALE.shadowSuccess;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'scale(1)';
-              e.currentTarget.style.boxShadow = BOX_SHADOW_SCALE.shadowSuccess;
             }}
           >
             <PlusIcon size="md" theme="neutral" />
@@ -332,18 +337,34 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
 
   // Desktop/Tablet layout
   return (
-    <Box
+    <div
       className="desktop-map-container"
       style={{
         position: 'absolute',
-        inset: 0,
-        width: SIZING_SCALE.FULL,
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        width: '100%',
         height: '100vh'
       }}>
-      <Box
+      {/*
+        ΚΡΙΣΙΜΗ ΣΗΜΕΙΩΣΗ: ΜΗΝ ΑΛΛΑΞΕΙΣ ΣΕ BOX COMPONENT!
+        Το Leaflet map engine χρειάζεται native DOM elements με refs.
+        Το @layera/layout Box component δεν είναι συμβατό με maps.
+        Αποτέλεσμα: Ο χάρτης εξαφανίζεται αν χρησιμοποιηθεί Box.
+        ΠΑΝΤΟΤΕ χρησιμοποίησε <div> για map containers!
+      */}
+      <div
         ref={mapContainerRef}
         id="geo-map"
-        style={{ position: 'absolute', inset: 0 }}
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0
+        }}
       />
 
 
@@ -400,7 +421,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
           </Flex>
         </div>
       )}
-    </Box>
+    </div>
   );
 };
 

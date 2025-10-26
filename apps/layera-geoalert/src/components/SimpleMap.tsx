@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { SIZING_SCALE } from '@layera/layout';
+import { SPACING_SCALE } from '@layera/constants';
 import { BORDER_RADIUS_SCALE } from '@layera/constants';
 
 const SimpleMap: React.FC = () => {
@@ -61,12 +61,12 @@ const SimpleMap: React.FC = () => {
   }, []);
 
   return (
-    <div style={{ height: SIZING_SCALE.FULL, width: SIZING_SCALE.FULL }}>
+    <div style={{ height: SPACING_SCALE.FULL, width: SPACING_SCALE.FULL }}>
       <div
         id="simple-map"
         style={{
-          height: `${SIZING_SCALE.CONTAINER_SM}px`,
-          width: SIZING_SCALE.FULL,
+          height: `${SPACING_SCALE.CONTAINER_SM}px`,
+          width: SPACING_SCALE.FULL,
           backgroundColor: 'var(--layera-bg-secondary)',
           border: '1px solid var(--layera-border-primary)',
           borderRadius: `${BORDER_RADIUS_SCALE.SM}px`
@@ -76,7 +76,7 @@ const SimpleMap: React.FC = () => {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          height: SIZING_SCALE.FULL,
+          height: SPACING_SCALE.FULL,
           color: 'var(--layera-text-secondary)'
         }}>
           🗺️ Loading Map...

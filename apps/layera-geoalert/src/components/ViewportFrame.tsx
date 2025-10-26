@@ -1,5 +1,4 @@
 import React from 'react';
-import { SIZING_SCALE } from '@layera/layout';
 import { CSS_DESIGN_TOKENS } from '@layera/constants';
 
 interface ViewportFrameProps {
@@ -20,8 +19,8 @@ export function ViewportFrame({ children, id }: ViewportFrameProps) {
         boxSizing: CSS_DESIGN_TOKENS.positioning['box-sizing-border'],
         position: CSS_DESIGN_TOKENS.positioning['position-relative'],
         overflow: CSS_DESIGN_TOKENS.positioning['overflow-clip'],
-        width: SIZING_SCALE.FULL,     // ✅ Enterprise sizing system
-        height: SIZING_SCALE.FULL     // ✅ Enterprise sizing system
+        width: '100%',     // ✅ Enterprise sizing system
+        height: '100%'     // ✅ Enterprise sizing system
       }}
       data-viewport-frame
     >

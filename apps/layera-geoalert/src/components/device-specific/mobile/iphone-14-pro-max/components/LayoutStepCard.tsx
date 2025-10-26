@@ -7,13 +7,14 @@
 
 import React, { useState } from 'react';
 import { Text } from '@layera/typography';
-import { Flex, SIZING_SCALE } from '@layera/layout';
+import { Flex, Box } from '@layera/layout';
 import { Button } from '@layera/buttons';
 import { LocationIcon, RotateIcon, RulerIcon } from '@layera/icons';
 import { SPACING_SCALE } from '@layera/constants';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { getCursorVar } from '@layera/cursors';
-import { BaseCard } from './BaseCard';
+import { BaseCard } from '@layera/cards';
+import { Input } from '@layera/forms';
 
 export interface LayoutStepCardProps {
   onLocationFound?: (lat: number, lon: number) => void;
@@ -337,66 +338,51 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
   };
 
   return (
-    <div style={{ width: SIZING_SCALE.FULL, padding: `${SPACING_SCALE.SM}px` }}>
+    <Box width="full" padding="sm">
       {/* Πρώτη σειρά: Μεγάλη κάρτα για Τοποθεσία (σαν δύο κάρτες ενωμένες) */}
-      <Flex
-        direction="column"
-        align="center"
-        justify="start"
-        style={{
-          ...cardBaseStyles,
-          width: SIZING_SCALE.FULL,
-          height: 'auto',
-          minHeight: `${SIZING_SCALE.LAYOUT_MD}px`,
-          marginBottom: `${SPACING_SCALE.SM}px`
-        }}
+      <BaseCard
+        variant="default"
+        padding="md"
+        marginBottom="sm"
+        minHeight={`${SPACING_SCALE.XL}px`}
       >
         {/* Title με Icon */}
-        <Flex align="center" justify="center" gap="xs" style={titleStyles}>
+        <Flex align="center" justify="center" gap="xs" marginBottom="sm">
           <LocationIcon size="sm" theme="neutral" />
-          <Text size="sm" weight="bold" style={{ color: 'inherit' }}>
+          <Text size="sm" weight="bold" color="primary">
             Τοποθεσία
           </Text>
         </Flex>
 
         {/* Content */}
-        <div style={{ width: SIZING_SCALE.FULL, position: 'relative', zIndex: 2 }}>
-          <Flex gap="xs" align="center" style={{ marginBottom: `${SPACING_SCALE.SM}px` }}>
+        <Box width="full" position="relative" zIndex={2}>
+          <Flex gap="xs" align="center" marginBottom="sm">
             <Button
               variant="primary"
               size="sm"
               onClick={handleFindMyLocation}
-              style={{
-                // fontSize handled by Text component
-                padding: `${SPACING_SCALE.XS + 1}px ${SPACING_SCALE.XS + 2}px`,
-                minWidth: `${SIZING_SCALE.LAYOUT_MD}px`,
-                flex: '0 0 auto',
-                position: 'relative',
-                zIndex: 3,
-                ...getPrimaryButtonStyles() // Dynamic styling ανάλογα με opacity mode
-              }}
+              minWidth={`${SPACING_SCALE.XL}px`}
+              flex="none"
+              position="relative"
+              zIndex={3}
             >
-              <LocationIcon size="xs" theme="neutral" style={{ marginRight: `${SPACING_SCALE.XS - 1}px` }} />
-              <Text size="xs" style={{ color: 'inherit' }}>
+              <LocationIcon size="xs" theme="neutral" marginRight="xs" />
+              <Text size="xs" color="inherit">
                 Βρες τη θέση μου
               </Text>
             </Button>
           </Flex>
 
-          <input
+          <Input
             type="text"
             value={locationQuery}
             onChange={(e) => setLocationQuery(e.target.value)}
             placeholder="Αναζήτηση διεύθυνσης..."
-            style={{
-              width: SIZING_SCALE.FULL,
-              padding: `${SPACING_SCALE.XS + 2}px ${SPACING_SCALE.XS + 4}px`,
-              borderRadius: `${SPACING_SCALE.SM}px`,
-              outline: 'none',
-              position: 'relative',
-              zIndex: 3,
-              ...getInputStyles() // Dynamic styling ανάλογα με opacity mode
-            }}
+            variant="outline"
+            size="sm"
+            fullWidth
+            position="relative"
+            zIndex={3}
             onKeyPress={(e) => {
               if (e.key === 'Enter' && locationQuery.trim()) {
                 console.log('🔍 LayoutStepCard: Search for:', locationQuery);
@@ -406,55 +392,48 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
               }
             }}
           />
-        </div>
-      </Flex>
+        </Box>
+      </BaseCard>
 
       {/* Δεύτερη σειρά: Δύο μικρές κάρτες δίπλα-δίπλα */}
-      <Flex style={{
-        gap: `${SIZING_SCALE.SM}px`,
-        marginBottom: `${SPACING_SCALE.SM}px`
-      }}>
+      <Flex gap="sm" marginBottom="sm">
         {/* Κάρτα Περιστροφής */}
-        <div style={{
-          ...cardBaseStyles,
-          flex: 1,
-          height: 'auto',
-          minHeight: `${SIZING_SCALE.LAYOUT_SM}px`
-        }}>
+        <BaseCard
+          variant="success"
+          padding="sm"
+          flex="1"
+          minHeight={`${SPACING_SCALE.LG}px`}
+        >
           {/* Title με Icon */}
-          <div style={titleStyles}>
+          <Flex align="center" justify="center" gap="xs" marginBottom="sm">
             <RotateIcon size="sm" theme="neutral" />
-            <Text size="sm" weight="bold" style={{ color: 'inherit' }}>
+            <Text size="sm" weight="bold" color="primary">
               Περιστροφή
             </Text>
-          </div>
+          </Flex>
 
           {/* Content */}
-          <div style={{ width: SIZING_SCALE.FULL, position: 'relative', zIndex: 2 }}>
-            <Flex gap="xs" align="center" justify="center" style={{ marginBottom: `${SPACING_SCALE.XS}px` }}>
+          <Box width="full" position="relative" zIndex={2}>
+            <Flex gap="xs" align="center" justify="center" marginBottom="xs">
               <Button
                 variant="outline"
                 size="sm"
                 onClick={() => handleRotationChange(rotation - 90)}
-                style={{
-                  // fontSize handled by Text component
-                  padding: `${SPACING_SCALE.XS - 1}px ${SPACING_SCALE.XS + 2}px`,
-                  position: 'relative',
-                  zIndex: 3,
-                  ...getButtonStyles() // Dynamic styling ανάλογα με opacity mode
-                }}
+                padding="xs"
+                position="relative"
+                zIndex={3}
               >
-                <Text size="xs" style={{ color: 'inherit' }}>-90°</Text>
+                <Text size="xs" color="inherit">-90°</Text>
               </Button>
 
-              <Text size="xs" style={{
-                minWidth: `${SIZING_SCALE.XL}px`,
-                textAlign: 'center',
-                fontWeight: 'var(--layera-font-bold)', // Typography system token για bold
-                position: 'relative',
-                zIndex: 3,
-                color: opacityMode === 'opaque' ? 'var(--color-text-on-primary)' : 'var(--color-text-primary)' // Dynamic color
-              }}>
+              <Text
+                size="xs"
+                weight="bold"
+                color={opacityMode === 'opaque' ? 'on-primary' : 'primary'}
+                minWidth={`${SPACING_SCALE.XXL}px`}
+                textAlign="center"
+                position="relative"
+                zIndex={3}>
                 {rotation}°
               </Text>
 
@@ -462,51 +441,48 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
                 variant="outline"
                 size="sm"
                 onClick={() => handleRotationChange(rotation + 90)}
-                style={{
-                  // fontSize handled by Text component
-                  padding: `${SPACING_SCALE.XS - 1}px ${SPACING_SCALE.XS + 2}px`,
-                  position: 'relative',
-                  zIndex: 3,
-                  ...getButtonStyles() // Dynamic styling ανάλογα με opacity mode
-                }}
+                padding="xs"
+                position="relative"
+                zIndex={3}
               >
-                <Text size="xs" style={{ color: 'inherit' }}>+90°</Text>
+                <Text size="xs" color="inherit">+90°</Text>
               </Button>
             </Flex>
-          </div>
-        </div>
+          </Box>
+        </BaseCard>
 
         {/* Κάρτα Κλίμακας */}
-        <div style={{
-          ...cardBaseStyles,
-          flex: 1,
-          height: 'auto',
-          minHeight: `${SIZING_SCALE.LAYOUT_SM}px`
-        }}>
+        <BaseCard
+          variant="success"
+          padding="sm"
+          flex="1"
+          minHeight={`${SPACING_SCALE.LG}px`}
+        >
           {/* Title με Icon */}
-          <div style={titleStyles}>
+          <Flex align="center" justify="center" gap="xs" marginBottom="sm">
             <RulerIcon size="sm" theme="neutral" />
-            <Text size="sm" weight="bold" style={{ color: 'inherit' }}>
+            <Text size="sm" weight="bold" color="primary">
               Κλίμακα
             </Text>
-          </div>
+          </Flex>
 
           {/* Content */}
-          <div style={{ width: SIZING_SCALE.FULL, position: 'relative', zIndex: 2 }}>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr 1fr',
-              gap: `${SIZING_SCALE.XXS + 1}px`
-            }}>
+          <Box width="full" position="relative" zIndex={2}>
+            <Box
+              display="grid"
+              gridTemplateColumns="1fr 1fr 1fr"
+              gap="xs"
+            >
               {/* Width */}
               <div>
-                <Text size="xs" weight="bold" style={{
-                  marginBottom: `${SPACING_SCALE.XS - 2}px`,
-                  textAlign: 'center',
-                  position: 'relative',
-                  zIndex: 3,
-                  color: opacityMode === 'opaque' ? 'var(--color-text-on-primary)' : 'var(--color-text-primary)' // Dynamic color
-                }}>
+                <Text
+                  size="xs"
+                  weight="bold"
+                  color={opacityMode === 'opaque' ? 'on-primary' : 'primary'}
+                  marginBottom="xs"
+                  textAlign="center"
+                  position="relative"
+                  zIndex={3}>
                   cm→m
                 </Text>
                 <input
@@ -514,7 +490,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
                   value={scaleWidth}
                   onChange={(e) => handleScaleChange('width', parseFloat(e.target.value) || 1)}
                   style={{
-                    width: SIZING_SCALE.FULL,
+                    width: '100%',
                     padding: `${SPACING_SCALE.XS - 2}px ${SPACING_SCALE.XS - 1}px`,
                     // Keep original fontSize for input elements
                     borderRadius: `${SPACING_SCALE.XS}px`,
@@ -529,13 +505,14 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
 
               {/* Height */}
               <div>
-                <Text size="xs" weight="bold" style={{
-                  marginBottom: `${SPACING_SCALE.XS - 2}px`,
-                  textAlign: 'center',
-                  position: 'relative',
-                  zIndex: 3,
-                  color: opacityMode === 'opaque' ? 'var(--color-text-on-primary)' : 'var(--color-text-primary)' // Dynamic color
-                }}>
+                <Text
+                  size="xs"
+                  weight="bold"
+                  color={opacityMode === 'opaque' ? 'on-primary' : 'primary'}
+                  marginBottom="xs"
+                  textAlign="center"
+                  position="relative"
+                  zIndex={3}>
                   mm→m
                 </Text>
                 <input
@@ -543,7 +520,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
                   value={scaleHeight}
                   onChange={(e) => handleScaleChange('height', parseFloat(e.target.value) || 1)}
                   style={{
-                    width: SIZING_SCALE.FULL,
+                    width: '100%',
                     padding: `${SPACING_SCALE.XS - 2}px ${SPACING_SCALE.XS - 1}px`,
                     // Keep original fontSize for input elements
                     borderRadius: `${SPACING_SCALE.XS}px`,
@@ -558,13 +535,14 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
 
               {/* Depth */}
               <div>
-                <Text size="xs" weight="bold" style={{
-                  marginBottom: `${SPACING_SCALE.XS - 2}px`,
-                  textAlign: 'center',
-                  position: 'relative',
-                  zIndex: 3,
-                  color: opacityMode === 'opaque' ? 'var(--color-text-on-primary)' : 'var(--color-text-primary)' // Dynamic color
-                }}>
+                <Text
+                  size="xs"
+                  weight="bold"
+                  color={opacityMode === 'opaque' ? 'on-primary' : 'primary'}
+                  marginBottom="xs"
+                  textAlign="center"
+                  position="relative"
+                  zIndex={3}>
                   m→m
                 </Text>
                 <input
@@ -572,7 +550,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
                   value={scaleDepth}
                   onChange={(e) => handleScaleChange('depth', parseFloat(e.target.value) || 1)}
                   style={{
-                    width: SIZING_SCALE.FULL,
+                    width: '100%',
                     padding: `${SPACING_SCALE.XS - 2}px ${SPACING_SCALE.XS - 1}px`,
                     // Keep original fontSize for input elements
                     borderRadius: `${SPACING_SCALE.XS}px`,
@@ -585,24 +563,21 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
                 />
               </div>
             </div>
-          </div>
-        </div>
+          </Box>
+        </BaseCard>
       </Flex>
 
       {/* Status */}
-      <div style={{
-        backgroundColor: 'var(--color-semantic-success-bg)',
-        border: '2px solid var(--color-semantic-success-border)',
-        borderRadius: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
-        padding: `${SPACING_SCALE.SM}px`,
-        textAlign: 'center',
-        marginBottom: `${SPACING_SCALE.SM}px`,
-        boxShadow: BOX_SHADOW_SCALE.glowDefault
-      }}>
+      <BaseCard
+        variant="success"
+        padding="sm"
+        marginBottom="sm"
+        textAlign="center"
+      >
         <Text size="xs" color="success" weight="bold">
           ✅ Κάτοψη έτοιμη για τοποθέτηση
         </Text>
-      </div>
+      </BaseCard>
 
       {/* Complete Button */}
       {onComplete && (
@@ -610,18 +585,15 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
           variant="primary"
           size="md"
           onClick={onComplete}
-          style={{
-            width: SIZING_SCALE.FULL,
-            backgroundColor: 'var(--color-semantic-success-border)',
-            // fontSize handled by Text component
-            fontWeight: 'var(--layera-font-bold)', // Typography system token για bold
-            padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
-            border: '2px solid var(--color-semantic-success-border)',
-            borderRadius: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
-            boxShadow: BOX_SHADOW_SCALE.glowDefault
-          }}
+          fullWidth
+          backgroundColor="var(--color-semantic-success-border)"
+          fontWeight="var(--layera-font-bold)"
+          padding={`${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`}
+          border="2px solid var(--color-semantic-success-border)"
+          borderRadius={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px`}
+          boxShadow={BOX_SHADOW_SCALE.glowDefault}
         >
-          <Text size="sm" weight="bold" style={{ color: 'inherit' }}>
+          <Text size="sm" weight="bold" color="inherit">
             Συνέχεια στα Στοιχεία Ακινήτου →
           </Text>
         </Button>

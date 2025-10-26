@@ -13,16 +13,15 @@
 import React, { useEffect } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
-import { Flex } from '@layera/layout';
+import { Flex, Box } from '@layera/layout';
 import { PipelineDiscovery } from '@layera/pipelines';
-import { SIZING_SCALE } from '@layera/layout';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import { Text } from '@layera/typography';
 import { getCursorVar } from '@layera/cursors';
 import { UI_CONFIG, COLORS, STEP_CONFIG } from '../../../../../constants';
 
 export interface FloatingStepperProps {
-  // Props που θα συνδεθούν με την υπάρχουσα UnifiedPipeline
+  // Props για το modular step system
   currentStep?: string;
   totalSteps?: number;
   stepIndex?: number;
@@ -423,44 +422,47 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
 
       {/* Bottom Sheet για Forms - θα προστεθεί αργότερα αν χρειαστεί */}
       {currentStep === 'details' && (
-        <div style={{
-          position: 'fixed',
-          bottom: '0',
-          left: '0',
-          right: '0',
-          backgroundColor: 'var(--color-bg-canvas)',
-          borderTopLeftRadius: `${BORDER_RADIUS_SCALE.LG}px`,
-          borderTopRightRadius: `${BORDER_RADIUS_SCALE.LG}px`,
-          boxShadow: BOX_SHADOW_SCALE.elevation5,
-          zIndex: 1500,
-          padding: `${SPACING_SCALE.MD}px`,
-          maxHeight: '40vh',
-          overflow: 'auto'
-        }}>
-          <div style={{
-            width: `${SIZING_SCALE.XXL}px`,
-            height: `${SIZING_SCALE.XS}px`,
-            backgroundColor: 'var(--color-border-default)',
-            borderRadius: `${BORDER_RADIUS_SCALE.XXS}px`,
-            margin: `0 auto ${SPACING_SCALE.MD}px`,
-            cursor: getCursorVar('grab') // Cursor system token για draggable elements
-          }} />
-          <Text size="base" weight="bold" style={{
-            textAlign: 'center',
-            color: '#1f2937',
-            display: 'block'
-          }}>
+        <Box
+          position="fixed"
+          bottom="0"
+          left="0"
+          right="0"
+          backgroundColor="var(--color-bg-canvas)"
+          borderTopLeftRadius={`${BORDER_RADIUS_SCALE.LG}px`}
+          borderTopRightRadius={`${BORDER_RADIUS_SCALE.LG}px`}
+          boxShadow={BOX_SHADOW_SCALE.elevation5}
+          zIndex={1500}
+          padding="md"
+          maxHeight="40vh"
+          overflow="auto"
+        >
+          <Box
+            width={`${SPACING_SCALE.XXL}px`}
+            height={`${SPACING_SCALE.XS}px`}
+            backgroundColor="var(--color-border-default)"
+            borderRadius={`${BORDER_RADIUS_SCALE.XXS}px`}
+            margin={`0 auto ${SPACING_SCALE.MD}px`}
+            cursor={getCursorVar('grab')}
+          />
+          <Text
+            size="base"
+            weight="bold"
+            textAlign="center"
+            color="#1f2937"
+            display="block"
+          >
             Φόρμα Λεπτομερειών
           </Text>
-          <Text size="sm" style={{
-            marginTop: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
-            color: '#6b7280',
-            textAlign: 'center',
-            display: 'block'
-          }}>
+          <Text
+            size="sm"
+            marginTop={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px`}
+            color="#6b7280"
+            textAlign="center"
+            display="block"
+          >
             Θα προστεθεί το form περιεχόμενο εδώ...
           </Text>
-        </div>
+        </Box>
       )}
     </>
   );

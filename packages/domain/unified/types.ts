@@ -1,5 +1,5 @@
 /**
- * Enterprise Domain Types - UnifiedPipeline
+ * Enterprise Domain Types - Form Data
  * Purpose: Type-safe discriminated unions for business logic
  * Complexity: Low (< 15)
  * Lines: < 100 (Enterprise Standard)
@@ -95,7 +95,7 @@ export interface JobSearch extends PipelineBase {
 export type Pipeline = PropertyOffer | PropertySearch | JobOffer | JobSearch;
 
 // API DTO Type
-export interface UnifiedPipelineDTO {
+export interface FormDataDTO {
   category: Category;
   intent: Intent;
   transactionType?: TransactionType;

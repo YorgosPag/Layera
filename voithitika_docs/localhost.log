@@ -1,1 +1,11 @@
-UnifiedPipeline
+Uncaught ReferenceError: navigation is not defined
+    CategoryStep CategoryStep.tsx:106
+    React 18
+    handleNewEntryClick App.tsx:245
+    enhancedHandleNewEntryClick useNavigationHandlers.ts:78
+    React 8
+CategoryStep.tsx:106:7
+An error occurred in the <CategoryStep> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.

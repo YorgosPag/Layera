@@ -17,7 +17,7 @@ import {
 } from '@layera/constants';
 import {
   Box,
-  SIZING_SCALE,
+  SPACING_SCALE,
   useFlex,
   useFlexPatterns,
   useSizingStyles
@@ -189,7 +189,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
 
   return (
     <LayeraThemeProvider>
-      <Stack spacing="lg" style={{ width: '100%' }}>
+      <Stack spacing="lg" width="full">
       {/* 📝 Step Header */}
       <Stack spacing="sm">
         <Heading level={2} size="lg">
@@ -201,10 +201,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
       </Stack>
 
       {/* 🎮 Review Mode Selector */}
-      <Flex style={{
-        gap: designSystem.spacing.md,
-        marginBottom: designSystem.spacing.md
-      }}>
+      <Flex gap="md" marginBottom="md">
         <Button
           variant={reviewMode === 'preview' ? 'primary' : 'outline'}
           size="sm"
@@ -260,12 +257,10 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
 
       {/* 📋 Review Cards */}
       {cards.length > 0 && (
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: deviceProps?.isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: designSystem.spacing.md
-          }}
+        <Box
+          display="grid"
+          gridTemplateColumns={deviceProps?.isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))'}
+          gap="md"
         >
           {cards.map((card) => (
             <BaseCard
@@ -282,11 +277,11 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
               </Stack>
             </BaseCard>
           ))}
-        </div>
+        </Box>
       )}
 
       {/* 🎮 Action Buttons */}
-      <Stack direction="row" justify="space-between" style={{ marginTop: designSystem.spacing.lg }}>
+      <Stack direction="row" justify="space-between" marginTop="lg">
         <Button
           variant="outline"
           onClick={() => window.history.back()}
@@ -295,9 +290,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
           Πίσω
         </Button>
 
-        <Flex style={{
-          gap: designSystem.spacing.sm
-        }}>
+        <Flex gap="sm">
           {reviewMode !== 'confirm' ? (
             <Button
               variant="primary"
@@ -312,7 +305,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
               onClick={handleSubmit}
               disabled={isSubmitting}
               style={{
-                minWidth: `${SIZING_SCALE.XXXXXL}px`,
+                minWidth: `${SPACING_SCALE.XXXXXL}px`,
                 transition: designSystem.motion.transition.normal
               }}
             >

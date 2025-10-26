@@ -2,6 +2,7 @@ import React from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Button } from '@layera/buttons';
 import { BUTTON_VARIANTS, BUTTON_SIZES } from '@layera/constants';
+import { HomeIcon, SearchIcon, SettingsIcon } from '@layera/icons';
 
 interface NavButtonProps {
   title: string;
@@ -18,10 +19,6 @@ const NavButton: React.FC<NavButtonProps> = ({ title, onClick, isActive, childre
     icon={children}
     iconPosition="only"
     className="w-12 h-12"
-    style={{
-      backgroundColor: isActive ? 'var(--layera-color-primary)' : 'transparent',
-      color: isActive ? 'white' : 'var(--layera-color-text-secondary)'
-    }}
     aria-label={title}
   />
 );
@@ -52,17 +49,9 @@ const NavigationRail: React.FC<NavigationRailProps> = ({
         variant={BUTTON_VARIANTS.PRIMARY}
         size={BUTTON_SIZES.MEDIUM}
         onClick={onNewAlert}
-        icon={
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-          </svg>
-        }
+        icon={<SearchIcon size="md" />}
         iconPosition="only"
         className="w-12 h-12 rounded-full shadow-lg"
-        style={{
-          backgroundColor: 'var(--layera-color-primary)',
-          color: 'white'
-        }}
         aria-label={t('newAlert')}
       />
 
@@ -72,9 +61,7 @@ const NavigationRail: React.FC<NavigationRailProps> = ({
           title={t('dashboard')}
           isActive={activeView === 'dashboard'}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-          </svg>
+          <HomeIcon size="md" />
         </NavButton>
 
         <NavButton
@@ -86,10 +73,7 @@ const NavigationRail: React.FC<NavigationRailProps> = ({
           title={t('myLocation')}
           isActive={activeView === 'map' && !isLayersPanelOpen}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
+          <SearchIcon size="md" />
         </NavButton>
 
         <NavButton
@@ -97,9 +81,7 @@ const NavigationRail: React.FC<NavigationRailProps> = ({
           title={t('areas')}
           isActive={isLayersPanelOpen}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h7" />
-          </svg>
+          <SettingsIcon size="md" />
         </NavButton>
       </div>
     </aside>

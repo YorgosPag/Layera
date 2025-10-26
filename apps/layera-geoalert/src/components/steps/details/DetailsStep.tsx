@@ -7,7 +7,8 @@
 
 import React, { useState, useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
-import { SIZING_SCALE, Flex } from '@layera/layout';
+import { Flex } from '@layera/layout';
+import { SPACING_SCALE } from '@layera/constants';
 import { PipelineDiscovery } from '@layera/pipelines';
 import { BaseCard } from '@layera/cards';
 import { cardData, getCardsForStep, type CardConfig, type CardId } from '../../device-specific/mobile/iphone-14-pro-max/components/cardData';
@@ -173,22 +174,20 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
     <>
       <Flex
         direction="column"
-        style={{
-          position: 'fixed',
-          top: 'var(--layera-cards-top)',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: `${SIZING_SCALE.LAYOUT_XXXL}px`,
-          gap: `${SPACING_SCALE.MD}px`,
-          zIndex: 1000,
-          padding: `0 ${SPACING_SCALE.LG}px`,
-          boxSizing: 'border-box'
-        }}>
+        position="fixed"
+        top="var(--layera-cards-top)"
+        left="50%"
+        transform="translateX(-50%)"
+        width={`${SPACING_SCALE.LAYOUT_XXXL}px`}
+        gap="md"
+        zIndex={1000}
+        padding={`0 ${SPACING_SCALE.LG}px`}
+        boxSizing="border-box"
+      >
         <Flex
           direction="column"
-          style={{
-            gap: `${SPACING_SCALE.SM}px`
-          }}>
+          gap="sm"
+        >
           {detailsCards.map((cardConfig) => (
             <BaseCard
               key={cardConfig.id}

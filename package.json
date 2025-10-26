@@ -23,6 +23,7 @@
     "fresh-install": "npm run clean && npm install"
   },
   "devDependencies": {
+    "@rollup/rollup-win32-x64-msvc": "^4.52.5",
     "rimraf": "^6.0.1"
   },
   "engines": {
@@ -38,8 +39,5 @@
     "enterprise"
   ],
   "author": "Layera Team",
-  "license": "ISC",
-  "dependencies": {
-    "@rollup/rollup-win32-x64-msvc": "^4.52.5"
-  }
+  "license": "ISC"
 }

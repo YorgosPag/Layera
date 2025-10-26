@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useLayeraTranslation } from '@layera/i18n';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
-import { UserIcon, SettingsIcon, FolderIcon, ChartIcon } from '@layera/icons';
+import { HomeIcon, SettingsIcon, SaveIcon, GlobeIcon } from '@layera/icons';
 
 /**
  * QuickActions - Κοινό component για γρήγορες ενέργειες navigation
@@ -19,13 +19,13 @@ export default function QuickActions() {
       key: 'dashboard',
       title: t('navigation.backToDashboard'),
       path: '/dashboard',
-      icon: <ChartIcon size="lg" theme="neutral" />
+      icon: <GlobeIcon size="lg" theme="neutral" />
     },
     {
       key: 'account',
       title: t('navigation.account'),
       path: '/account',
-      icon: <UserIcon size="lg" theme="neutral" />
+      icon: <HomeIcon size="lg" theme="neutral" />
     },
     {
       key: 'settings',
@@ -37,7 +37,7 @@ export default function QuickActions() {
       key: 'data',
       title: t('navigation.data'),
       path: '/data',
-      icon: <FolderIcon size="lg" theme="neutral" />
+      icon: <SaveIcon size="lg" theme="neutral" />
     }
   ];
 

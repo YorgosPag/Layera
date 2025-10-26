@@ -140,7 +140,7 @@ Export: <MapModule /> component που μπορεί να drop anywhere
 ```
 ΠΡΙΝ:
 src/components/GeoMap.tsx (μεγάλο component)
-src/components/UnifiedPipeline.tsx
+src/components/legacy-monolithic-pipeline/
 
 ΜΕΤΑ:
 src/App.tsx μόνο orchestration:

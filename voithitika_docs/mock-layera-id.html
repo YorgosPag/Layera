@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layera ID - Mock Service</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 20px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        h1 {
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+        }
+
+        .status {
+            background: #dcfce7;
+            color: #166534;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+        }
+
+        .info {
+            background: #f3f4f6;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            color: #374151;
+            line-height: 1.5;
+        }
+
+        .port {
+            font-weight: bold;
+            color: #10b981;
+        }
+
+        .error {
+            background: #fef2f2;
+            color: #dc2626;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">L</div>
+        <h1>Layera ID</h1>
+        <p class="subtitle">Enterprise Identity Service</p>
+
+        <div class="status">
+            ✅ Mock Service Running - Port <span class="port">3000</span>
+        </div>
+
+        <div class="info">
+            <strong>🔧 Development Status:</strong><br>
+            Αυτό είναι ένα mock service για το Layera ID.<br><br>
+
+            <strong>📍 Πραγματική εφαρμογή:</strong><br>
+            Το Layera ID δεν μπορεί να ξεκινήσει λόγω Node.js version conflict (χρειάζεται 20.19+ ή 22.12+).<br><br>
+
+            <strong>🎯 Σκοπός:</strong><br>
+            Επιβεβαίωση ότι το κουμπί Navigation στο GeoAlert λειτουργεί σωστά.
+        </div>
+
+        <div class="error">
+            ⚠️ Node.js 20.17.0 detected - Upgrade required for real Layera ID
+        </div>
+    </div>
+
+    <script>
+        console.log('🔗 Layera ID Mock Service Started');
+        console.log('📡 Port: 3000');
+        console.log('🎯 Ready to receive navigation from GeoAlert');
+    </script>
+</body>
+</html>

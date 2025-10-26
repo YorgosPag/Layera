@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useViewportWithOverride } from '@layera/viewport';
 import { DeviceModelSelector, DeviceModel, getDeviceSpecs } from '@layera/viewport';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
-import { SIZING_SCALE, Flex } from '@layera/layout';
+import { Flex } from '@layera/layout';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 
 interface DeviceFrameWrapperProps {
@@ -59,8 +59,8 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
 
   const getScreenStyles = (): React.CSSProperties => {
     return {
-      width: SIZING_SCALE.FULL,
-      height: SIZING_SCALE.FULL,
+      width: '100%',
+      height: '100%',
       backgroundColor: 'var(--color-bg-canvas)',
       borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
       overflow: 'hidden',
@@ -76,11 +76,11 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
       top: '0',
       left: '50%',
       transform: 'translateX(-50%)',
-      width: `${SIZING_SCALE.LAYOUT_XL}px`,
-      height: `${SIZING_SCALE.XL}px`,
+      width: `${SPACING_SCALE.XXXL}px`,
+      height: `${SPACING_SCALE.XXL}px`,
       backgroundColor: 'var(--color-text-primary)',
-      borderBottomLeftRadius: `${SIZING_SCALE.LG}px`,
-      borderBottomRightRadius: `${SIZING_SCALE.LG}px`,
+      borderBottomLeftRadius: `${SPACING_SCALE.LG}px`,
+      borderBottomRightRadius: `${SPACING_SCALE.LG}px`,
       zIndex: 10
     };
   };
@@ -90,11 +90,11 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
 
     return {
       position: 'absolute',
-      bottom: `${SIZING_SCALE.SM}px`,
+      bottom: `${SPACING_SCALE.SM}px`,
       left: '50%',
       transform: 'translateX(-50%)',
-      width: `${SIZING_SCALE.LAYOUT_MD}px`,
-      height: `${SIZING_SCALE.XS}px`,
+      width: `${SPACING_SCALE.XL}px`,
+      height: `${SPACING_SCALE.XS}px`,
       backgroundColor: 'var(--color-text-primary)',
       borderRadius: `${BORDER_RADIUS_SCALE.PILL}px`,
       zIndex: 10

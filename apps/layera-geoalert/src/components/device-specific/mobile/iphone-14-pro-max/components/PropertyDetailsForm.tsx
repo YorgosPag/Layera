@@ -6,11 +6,13 @@
  */
 
 import React, { useState } from 'react';
-import { Stack, Flex } from '@layera/layout';
+import { Stack, Flex, Box } from '@layera/layout';
 import { Button } from '@layera/buttons';
 import { Text } from '@layera/typography';
 import { SPACING_SCALE } from '@layera/constants';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
+import { BaseCard } from '@layera/cards';
+import { Input, Select } from '@layera/forms';
 
 export interface PropertyDetailsData {
   title: string;
@@ -114,163 +116,146 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
   const showRoomsField = propertyType === 'apartment';
 
   return (
-    <div style={{
-      padding: `${SPACING_SCALE.MD}px`,
-      backgroundColor: 'var(--color-bg-canvas)',
-      borderRadius: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
-      border: '1px solid var(--color-border-default)',
-      boxShadow: BOX_SHADOW_SCALE.cardDefault
-    }}>
+    <BaseCard
+      padding="md"
+      variant="default"
+      shadow="cardDefault"
+    >
       <Stack spacing="md">
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px` }}>
-          <Text size="lg" weight="bold" style={{ color: 'var(--color-text-primary)' }}>
+        <Box textAlign="center" marginBottom="lg">
+          <Text size="lg" weight="bold" color="primary">
             Στοιχεία {propertyTypeLabels[propertyType]}
           </Text>
-          <Text size="sm" style={{ color: 'var(--color-text-secondary)', marginTop: `${SPACING_SCALE.XS}px` }}>
-            Συμπληρώστε τα βασικά στοιχεία του ακινήτου
-          </Text>
-        </div>
+          <Box marginTop="xs">
+            <Text size="sm" color="secondary">
+              Συμπληρώστε τα βασικά στοιχεία του ακινήτου
+            </Text>
+          </Box>
+        </Box>
 
-        {/* Universal Fields - Simplified Native HTML inputs για debugging */}
-        <div style={{ marginBottom: `${SPACING_SCALE.MD}px` }}>
-          <Text as="label" size="sm" weight="bold" style={{ display: 'block', marginBottom: `${SPACING_SCALE.XS}px` }}>
+        {/* Universal Fields - LEGO Forms Components */}
+        <Box marginBottom="md">
+          <Text as="label" size="sm" weight="bold" display="block" marginBottom="xs">
             Τίτλος Ακινήτου *
           </Text>
-          <input
+          <Input
             type="text"
             value={formData.title}
             onChange={(e) => handleInputChange('title', e.target.value)}
             placeholder="π.χ. Διαμέρισμα 85τμ στο κέντρο"
-            style={{
-              width: '100%',
-              padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
-              border: '1px solid var(--color-border-input)',
-              borderRadius: `${SPACING_SCALE.XS + 2}px`,
-              backgroundColor: 'var(--color-bg-surface)'
-            }}
+            variant="outline"
+            size="md"
+            fullWidth
+            error={!!errors.title}
           />
           {errors.title && (
-            <Text as="div" size="xs" style={{ color: 'var(--color-semantic-error)', marginTop: `${SPACING_SCALE.XS}px` }}>
-              {errors.title}
-            </Text>
+            <Box marginTop="xs">
+              <Text size="xs" color="error">
+                {errors.title}
+              </Text>
+            </Box>
           )}
-        </div>
+        </Box>
 
-        <div style={{ marginBottom: `${SPACING_SCALE.MD}px` }}>
-          <Text as="label" size="sm" weight="bold" style={{ display: 'block', marginBottom: `${SPACING_SCALE.XS}px` }}>
+        <Box marginBottom="md">
+          <Text as="label" size="sm" weight="bold" display="block" marginBottom="xs">
             Τετραγωνικά Μέτρα *
           </Text>
-          <input
+          <Input
             type="number"
             value={formData.squareMeters}
             onChange={(e) => handleInputChange('squareMeters', parseFloat(e.target.value) || 0)}
             placeholder="85"
-            style={{
-              width: '100%',
-              padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
-              border: '1px solid var(--color-border-input)',
-              borderRadius: `${SPACING_SCALE.XS + 2}px`,
-              backgroundColor: 'var(--color-bg-surface)'
-            }}
+            variant="outline"
+            size="md"
+            fullWidth
+            error={!!errors.squareMeters}
           />
           {errors.squareMeters && (
-            <Text as="div" size="xs" style={{ color: 'var(--color-semantic-error)', marginTop: `${SPACING_SCALE.XS}px` }}>
-              {errors.squareMeters}
-            </Text>
+            <Box marginTop="xs">
+              <Text size="xs" color="error">
+                {errors.squareMeters}
+              </Text>
+            </Box>
           )}
-        </div>
+        </Box>
 
-        <div style={{ marginBottom: `${SPACING_SCALE.MD}px` }}>
-          <Text as="label" size="sm" weight="bold" style={{ display: 'block', marginBottom: `${SPACING_SCALE.XS}px` }}>
+        <Box marginBottom="md">
+          <Text as="label" size="sm" weight="bold" display="block" marginBottom="xs">
             Τιμή (€) *
           </Text>
-          <input
+          <Input
             type="number"
             value={formData.price}
             onChange={(e) => handleInputChange('price', parseFloat(e.target.value) || 0)}
             placeholder="150000"
-            style={{
-              width: '100%',
-              padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
-              border: '1px solid var(--color-border-input)',
-              borderRadius: `${SPACING_SCALE.XS + 2}px`,
-              backgroundColor: 'var(--color-bg-surface)'
-            }}
+            variant="outline"
+            size="md"
+            fullWidth
+            error={!!errors.price}
           />
           {errors.price && (
-            <Text as="div" size="xs" style={{ color: 'var(--color-semantic-error)', marginTop: `${SPACING_SCALE.XS}px` }}>
-              {errors.price}
-            </Text>
+            <Box marginTop="xs">
+              <Text size="xs" color="error">
+                {errors.price}
+              </Text>
+            </Box>
           )}
-        </div>
+        </Box>
 
         {/* Conditional Fields - Simplified για debugging */}
         {showFloorField && (
-          <div style={{ marginBottom: `${SPACING_SCALE.MD}px` }}>
-            <Text as="label" size="sm" weight="bold" style={{ display: 'block', marginBottom: `${SPACING_SCALE.XS}px` }}>
+          <Box marginBottom="md">
+            <Text as="label" size="sm" weight="bold" display="block" marginBottom="xs">
               Όροφος
             </Text>
-            <select
+            <Select
               value={formData.floor || ''}
               onChange={(e) => handleInputChange('floor', parseInt(e.target.value))}
-              style={{
-                width: '100%',
-                padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
-                  border: '1px solid var(--color-border-input)',
-                borderRadius: `${SPACING_SCALE.XS + 2}px`,
-                backgroundColor: 'var(--color-bg-surface)'
-              }}
+              variant="outline"
+              size="md"
+              fullWidth
+              placeholder="Επιλέξτε όροφο"
             >
-              <option value="">Επιλέξτε όροφο</option>
               <option value="2">2ος όροφος</option>
               <option value="1">1ος όροφος</option>
               <option value="0">Ισόγειο</option>
               <option value="-1">Υπόγειο</option>
-            </select>
-          </div>
+            </Select>
+          </Box>
         )}
 
         {showRoomsField && (
-          <div style={{ marginBottom: `${SPACING_SCALE.MD}px` }}>
-            <Text as="label" size="sm" weight="bold" style={{ display: 'block', marginBottom: `${SPACING_SCALE.XS}px` }}>
+          <Box marginBottom="md">
+            <Text as="label" size="sm" weight="bold" display="block" marginBottom="xs">
               Αριθμός Δωματίων
             </Text>
-            <select
+            <Select
               value={formData.rooms || ''}
               onChange={(e) => handleInputChange('rooms', parseInt(e.target.value))}
-              style={{
-                width: '100%',
-                padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
-                  border: '1px solid var(--color-border-input)',
-                borderRadius: `${SPACING_SCALE.XS + 2}px`,
-                backgroundColor: 'var(--color-bg-surface)'
-              }}
+              variant="outline"
+              size="md"
+              fullWidth
+              placeholder="Επιλέξτε αριθμό δωματίων"
             >
-              <option value="">Επιλέξτε αριθμό δωματίων</option>
               <option value="3">3 δωμάτια</option>
               <option value="2">2 δωμάτια</option>
               <option value="1">1 δωμάτιο (Studio)</option>
               <option value="4">4 δωμάτια</option>
               <option value="5">5+ δωμάτια</option>
-            </select>
-          </div>
+            </Select>
+          </Box>
         )}
 
         {/* Actions */}
-        <Flex style={{
-          gap: `${SPACING_SCALE.SM}px`,
-          marginTop: `${SPACING_SCALE.MD}px`
-        }}>
+        <Flex gap="sm" marginTop="md">
           {onCancel && (
             <Button
               variant="outline"
               size="md"
               onClick={onCancel}
-              style={{
-                flex: 1,
-                  padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`
-              }}
+              flex="1"
             >
               Ακύρωση
             </Button>
@@ -280,52 +265,43 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
             variant="primary"
             size="md"
             onClick={handleSubmit}
-            style={{
-              flex: 2,
-              padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
-              backgroundColor: 'var(--color-primary-500)'
-            }}
+            flex="2"
           >
             Αποθήκευση Στοιχείων
           </Button>
         </Flex>
 
         {/* Validation Status */}
-        <div style={{
-          marginTop: `${SPACING_SCALE.SM}px`,
-          padding: `${SPACING_SCALE.SM}px`,
-          backgroundColor: Object.keys(errors).length === 0 ? 'var(--color-semantic-success-bg)' : 'var(--color-semantic-error-bg)',
-          border: Object.keys(errors).length === 0 ? '1px solid var(--color-semantic-success-border)' : '1px solid var(--color-semantic-error-border)',
-          borderRadius: `${SPACING_SCALE.XS + 2}px`,
-          color: Object.keys(errors).length === 0 ? 'var(--color-semantic-success)' : 'var(--color-semantic-error)'
-        }}>
-          <strong>
+        <BaseCard
+          variant={Object.keys(errors).length === 0 ? "success" : "error"}
+          padding="sm"
+          marginTop="sm"
+        >
+          <Text weight="bold" color={Object.keys(errors).length === 0 ? "success" : "error"}>
             {Object.keys(errors).length === 0 ? '✅ Φόρμα έτοιμη για αποθήκευση' : '❌ Υπάρχουν σφάλματα'}
-          </strong>
+          </Text>
           {Object.keys(errors).length > 0 && (
-            <div style={{ marginTop: `${SPACING_SCALE.XS}px` }}>
+            <Box marginTop="xs">
               {Object.entries(errors).map(([field, error]) => (
-                <div key={field}>• {error}</div>
+                <Text key={field} size="sm">• {error}</Text>
               ))}
-            </div>
+            </Box>
           )}
-        </div>
+        </BaseCard>
 
         {/* Debug Info */}
-        <div style={{
-          marginTop: `${SPACING_SCALE.SM}px`,
-          padding: `${SPACING_SCALE.SM}px`,
-          backgroundColor: 'var(--color-neutral-100)',
-          borderRadius: `${SPACING_SCALE.XS + 2}px`,
-          color: 'var(--color-neutral-600)'
-        }}>
-          <Text size="xs" weight="bold">MVP Property Details Form</Text>
-          <div>Type: {propertyTypeLabels[propertyType]}</div>
-          <div>Universal: title, squareMeters, price</div>
-          {showFloorField && <div>+ floor (apartment/office)</div>}
-          {showRoomsField && <div>+ rooms (apartment only)</div>}
-        </div>
+        <BaseCard
+          variant="neutral"
+          padding="sm"
+          marginTop="sm"
+        >
+          <Text size="xs" weight="bold" color="neutral">MVP Property Details Form</Text>
+          <Text size="xs" color="neutral">Type: {propertyTypeLabels[propertyType]}</Text>
+          <Text size="xs" color="neutral">Universal: title, squareMeters, price</Text>
+          {showFloorField && <Text size="xs" color="neutral">+ floor (apartment/office)</Text>}
+          {showRoomsField && <Text size="xs" color="neutral">+ rooms (apartment only)</Text>}
+        </BaseCard>
       </Stack>
-    </div>
+    </BaseCard>
   );
 };

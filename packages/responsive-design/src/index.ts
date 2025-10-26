@@ -7,7 +7,6 @@
 export * from './breakpoints';
 
 // Modal Styles
-// REMOVED: UnifiedPipelineModalStyles - legacy pipeline removed
 
 // Future exports για όταν προσθέσουμε περισσότερα components
 // export * from './component-styles/ButtonStyles';

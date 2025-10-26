@@ -108,7 +108,7 @@ const SearchInputCard: React.FC<{
       variant="job"
       title={
         <div style={{ width: '100%' }}>
-          <Text size="xs" weight="medium" style={{ color: getLabelColor() }}>
+          <Text size="xs" weight="medium" color={getLabelColor()}>
             Αναζήτηση διεύθυνσης
           </Text>
           <Input
@@ -123,7 +123,7 @@ const SearchInputCard: React.FC<{
           />
           {/* Loading/Error messages */}
           {isLoading && (
-            <Text size="xs" align="center" style={{ color: getMessageColor(), marginTop: `${SPACING_SCALE.XS}px` }}>
+            <Text size="xs" align="center" color={getMessageColor()} marginTop="xs">
               Αναζήτηση...
             </Text>
           )}
@@ -131,10 +131,8 @@ const SearchInputCard: React.FC<{
             <Text
               size="xs"
               align="center"
-              style={{
-                color: opacityMode === 'opaque' ? 'rgba(255, 100, 100, 0.9)' : '#dc2626',
-                marginTop: `${SPACING_SCALE.XS}px`
-              }}
+              color={opacityMode === 'opaque' ? 'rgba(255, 100, 100, 0.9)' : '#dc2626'}
+              marginTop="xs"
             >
               {error}
             </Text>
@@ -443,30 +441,27 @@ export const LocationStep: React.FC<LocationStepProps> = ({
           )}
 
           {uploadedFile && (
-            <div style={{
-              padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
-              background: 'rgba(0, 255, 0, 0.1)',
-              borderRadius: `${SPACING_SCALE.SM}px`
-            }}>
+            <BaseCard
+              variant="success"
+              padding="sm"
+              marginBottom="sm">
               <Stack spacing="xs" align="center">
                 <Text size="sm" color="success" align="center">
-                  <CheckIcon size="sm" theme="success" style={{ marginRight: `${SPACING_SCALE.SM}px` }} />
+                  <CheckIcon size="sm" theme="success" marginRight="sm" />
                   {uploadedFile.name} ({getFileType(uploadedFile).toUpperCase()})
                 </Text>
                 <Text size="xs" color="success" align="center">
                   Η κάτοψη εμφανίστηκε στον χάρτη
                 </Text>
               </Stack>
-            </div>
+            </BaseCard>
           )}
         </>
       ) : (
         // Enterprise Location Search Interface με BaseCard
         <>
           {/* Search Input σε BaseCard container */}
-          <div style={{
-            marginBottom: `${SPACING_SCALE.SM}px`
-          }}>
+          <div>
             <SearchInputCard
               searchInput={searchInput}
               onSearchInputChange={handleSearchInputChange}
@@ -490,7 +485,7 @@ export const LocationStep: React.FC<LocationStepProps> = ({
                   description={result.address?.country ? `${result.address.country}` : ''}
                   icon={<LocationIcon size="sm" theme="neutral" />}
                   onClick={() => handleLocationSelected(result)}
-                  style={{ marginBottom: `${SPACING_SCALE.SM}px` }}
+                  marginBottom="sm"
                 />
               ))}
             </div>
@@ -498,17 +493,15 @@ export const LocationStep: React.FC<LocationStepProps> = ({
 
           {/* Selected Location Display */}
           {selectedLocation && (
-            <div style={{
-              padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
-              background: 'rgba(0, 200, 0, 0.1)',
-              borderRadius: `${SPACING_SCALE.SM}px`,
-              marginBottom: `${SPACING_SCALE.SM}px`
-            }}>
+            <BaseCard
+              variant="success"
+              padding="sm"
+              marginBottom="sm">
               <Text size="sm" color="success">
-                <LocationIcon size="sm" theme="success" style={{ marginRight: `${SPACING_SCALE.SM}px` }} />
+                <LocationIcon size="sm" theme="success" marginRight="sm" />
                 Επιλεγμένη τοποθεσία: Placeholder location
               </Text>
-            </div>
+            </BaseCard>
           )}
 
           {/* Back Button */}

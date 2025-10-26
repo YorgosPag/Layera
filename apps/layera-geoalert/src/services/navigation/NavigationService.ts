@@ -8,7 +8,7 @@
  * Χρησιμοποιείται από:
  * - FloatingStepper (floating stepper navigation)
  *
- * Legacy UnifiedPipeline διαγράφηκε - μόνο modular step system τώρα.
+ * Το service υποστηρίζει το modular step system.
  *
  * Αυτό το service εξασφαλίζει 100% αξιόπιστο navigation
  * με automatic error recovery και state consistency.

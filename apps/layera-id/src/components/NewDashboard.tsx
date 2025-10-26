@@ -7,7 +7,7 @@ import { Button } from '@layera/buttons';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, FlexColumn } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
-import { CheckIcon, SettingsIcon, FolderIcon, LockIcon, ShieldIcon, ChartIcon, XIcon, UserIcon } from '@layera/icons';
+import { CheckIcon, SettingsIcon, SaveIcon, GlobeIcon, CloseIcon, BriefcaseIcon } from '@layera/icons';
 import { SPACING_SCALE } from '@layera/constants';
 import QuickActions from './QuickActions';
 
@@ -89,7 +89,7 @@ const NewDashboard: React.FC = () => {
                     {user.emailVerified ? (
                       <CheckIcon size="lg" theme="success" />
                     ) : (
-                      <XIcon size="lg" theme="danger" />
+                      <CloseIcon size="lg" theme="danger" />
                     )}
                   </div>
                 </DashboardCard>
@@ -106,7 +106,7 @@ const NewDashboard: React.FC = () => {
                     {user.layeraClaims?.mfa_verified ? (
                       <CheckIcon size="lg" theme="success" />
                     ) : (
-                      <XIcon size="lg" theme="danger" />
+                      <CloseIcon size="lg" theme="danger" />
                     )}
                   </div>
                 </DashboardCard>
@@ -181,7 +181,7 @@ const NewDashboard: React.FC = () => {
                     clickable
                     onClick={() => navigate('/mfa-enroll')}
                   >
-                    <LockIcon size="lg" theme="info" />
+                    <SettingsIcon size="lg" theme="info" />
                     <Text>{t('dashboard.actionDescriptions.enableMfa')}</Text>
                   </DashboardCard>
                 </DashboardGrid>
@@ -200,7 +200,7 @@ const NewDashboard: React.FC = () => {
                     clickable
                     onClick={() => navigate('/admin/roles')}
                   >
-                    <ShieldIcon size="lg" theme="info" />
+                    <SettingsIcon size="lg" theme="info" />
                     <Text>Manage user roles and permissions</Text>
                   </DashboardCard>
                 </DashboardGrid>

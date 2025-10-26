@@ -90,7 +90,12 @@
       "Bash(start voithitika_docs/test-property-flow.html)",
       "Bash(start C:layeravoithitika_docslegacy-pipeline-exploration.html)",
       "Bash(start \"C:\\layera\\voithitika_docs\\legacy-pipeline-exploration.html\")",
-      "Bash(del \"packages\\pipelines\\unified\\steps\\CategoryStep.tsx\")"
+      "Bash(del \"packages\\pipelines\\unified\\steps\\CategoryStep.tsx\")",
+      "Bash(bash:*)",
+      "Bash(while read file)",
+      "Bash(paste:*)",
+      "Bash(pnpm remove:*)",
+      "Bash(pnpm --filter @layera/icons build)"
     ],
     "deny": [],
     "ask": []
