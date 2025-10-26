@@ -95,7 +95,8 @@
       "Bash(while read file)",
       "Bash(paste:*)",
       "Bash(pnpm remove:*)",
-      "Bash(pnpm --filter @layera/icons build)"
+      "Bash(pnpm --filter @layera/icons build)",
+      "Bash(pnpm run:*)"
     ],
     "deny": [],
     "ask": []

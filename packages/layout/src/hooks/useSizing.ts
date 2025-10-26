@@ -11,7 +11,7 @@
  */
 
 import { useMemo } from 'react';
-import { SIZING_SCALE, getSizingVar, getSizingValue, type SizingToken } from '../sizing';
+import { SPACING_SCALE, getSizingVar, getSizingValue, type SizingToken } from '../sizing';
 
 /**
  * Hook για single sizing token usage
@@ -21,7 +21,7 @@ export const useSizing = (token: SizingToken) => {
     value: getSizingValue(token),
     cssVar: getSizingVar('width', token.toLowerCase().replace('_', '-')),
     token,
-    scale: SIZING_SCALE[token]
+    scale: SPACING_SCALE[token]
   }), [token]);
 };
 
@@ -50,7 +50,7 @@ export const useSizingTokens = <T extends readonly SizingToken[]>(tokens: T) => 
 export const useSizingSystem = () => {
   return useMemo(() => ({
     // Direct scale access
-    scale: SIZING_SCALE,
+    scale: SPACING_SCALE,
 
     // Utility functions
     getSizingVar,

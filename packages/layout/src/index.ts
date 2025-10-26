@@ -67,9 +67,9 @@ export {
   updateGeoAlertLayoutVariables
 } from './utils/geoalert-layout';
 
-// 🚀 NEW: Enterprise Sizing System
+// 🚀 NEW: Enterprise Sizing System - SPACING_SCALE ONLY
 export {
-  SIZING_SCALE,
+  SPACING_SCALE,
   SIZING_CSS_VARS,
   SIZING_UTILITIES,
   RESPONSIVE_SIZING,

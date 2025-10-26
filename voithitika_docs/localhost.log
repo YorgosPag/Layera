@@ -1,11 +1,681 @@
-Uncaught ReferenceError: navigation is not defined
-    CategoryStep CategoryStep.tsx:106
-    React 18
-    handleNewEntryClick App.tsx:245
-    enhancedHandleNewEntryClick useNavigationHandlers.ts:78
-    React 8
-CategoryStep.tsx:106:7
-An error occurred in the <CategoryStep> component.
+C:\layera\apps\layera-geoalert\src\components\device-specific\mobile\iphone-14-pro-max\components\AreaMethodMeasurement.tsx
+  15,10: import { SPACING_SCALE } from '@layera/constants';
+  181,29:                 padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM}px`,
+  181,51:                 padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM}px`,
+  184,34:                 borderRadius: `${SPACING_SCALE.XS + 2}px`,
+  185,34:                 marginBottom: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`
+  185,53:                 marginBottom: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`
+  297,19:       padding: `${SPACING_SCALE.MD}px`,
+  299,24:       borderRadius: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  299,43:       borderRadius: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
 
-Consider adding an error boundary to your tree to customize error handling behavior.
-Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+C:\layera\apps\layera-geoalert\src\components\device-specific\mobile\iphone-14-pro-max\components\FloatingStepper.tsx
+  18,10: import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  166,13:     gap: `${SPACING_SCALE.XS}px`
+  177,28:       width: isActive ? `${SPACING_SCALE.XS}px` : (isCompleted || isVisited ? `${SPACING_SCALE.XS - 1}px` : `${SPACING_SCALE.XS - 2}px`),
+  177,82:       width: isActive ? `${SPACING_SCALE.XS}px` : (isCompleted || isVisited ? `${SPACING_SCALE.XS - 1}px` : `${SPACING_SCALE.XS - 2}px`),
+  177,112:       width: isActive ? `${SPACING_SCALE.XS}px` : (isCompleted || isVisited ? `${SPACING_SCALE.XS - 1}px` : `${SPACING_SCALE.XS - 2}px`),
+  178,29:       height: isActive ? `${SPACING_SCALE.XS}px` : (isCompleted || isVisited ? `${SPACING_SCALE.XS - 1}px` : `${SPACING_SCALE.XS - 2}px`),
+  178,83:       height: isActive ? `${SPACING_SCALE.XS}px` : (isCompleted || isVisited ? `${SPACING_SCALE.XS - 1}px` : `${SPACING_SCALE.XS - 2}px`),
+  178,113:       height: isActive ? `${SPACING_SCALE.XS}px` : (isCompleted || isVisited ? `${SPACING_SCALE.XS - 1}px` : `${SPACING_SCALE.XS - 2}px`),
+  207,17:     padding: `${SPACING_SCALE.XS + 2}px ${SPACING_SCALE.SM}px`,
+  207,43:     padding: `${SPACING_SCALE.XS + 2}px ${SPACING_SCALE.SM}px`,
+  209,22:     borderRadius: `${SPACING_SCALE.XS + 2}px`,
+  239,19:       padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.XS + 2}px`,
+  239,41:       padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.XS + 2}px`,
+  240,20:       minWidth: `${SPACING_SCALE.LG}px`
+  440,23:             width={`${SPACING_SCALE.XXL}px`}
+  441,24:             height={`${SPACING_SCALE.XS}px`}
+  444,31:             margin={`0 auto ${SPACING_SCALE.MD}px`}
+  458,27:             marginTop={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px`}
+  458,46:             marginTop={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px`}
+
+C:\layera\apps\layera-geoalert\src\components\device-specific\mobile\iphone-14-pro-max\components\GeoMap.tsx
+  14,10: import { SPACING_SCALE } from '@layera/constants';
+  59,14:       width: SPACING_SCALE.FULL,
+  60,15:       height: SPACING_SCALE.VIEWPORT_HEIGHT,
+
+C:\layera\apps\layera-geoalert\src\components\device-specific\mobile\iphone-14-pro-max\components\InfoPanel.tsx
+  12,10: import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  195,21:         padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XL + SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.MD}px`,
+  195,43:         padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XL + SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.MD}px`,
+  195,62:         padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XL + SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.MD}px`,
+  195,84:         padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XL + SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.MD}px`,
+  195,106:         padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XL + SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.MD}px`,
+  209,19:           top: `${SPACING_SCALE.XS}px`,
+  210,21:           right: `${SPACING_SCALE.XS}px`,
+  211,21:           width: `${SPACING_SCALE.LG}px`,
+  212,22:           height: `${SPACING_SCALE.LG}px`,
+  230,26:         marginBottom: `${SPACING_SCALE.SM}px`,
+
+C:\layera\apps\layera-geoalert\src\components\device-specific\mobile\iphone-14-pro-max\components\LayoutStepCard.tsx
+  13,10: import { SPACING_SCALE } from '@layera/constants';
+  236,22:     borderRadius: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  236,41:     borderRadius: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  238,17:     padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  238,36:     padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  254,17:     padding: `${SPACING_SCALE.XS + 2}px ${SPACING_SCALE.SM}px`,
+  254,43:     padding: `${SPACING_SCALE.XS + 2}px ${SPACING_SCALE.SM}px`,
+  255,22:     borderRadius: `${SPACING_SCALE.SM}px`,
+  263,22:     marginBottom: `${SPACING_SCALE.SM}px`,
+  347,23:         minHeight={`${SPACING_SCALE.XL}px`}
+  364,28:               minWidth={`${SPACING_SCALE.XL}px`}
+  405,25:           minHeight={`${SPACING_SCALE.LG}px`}
+  433,30:                 minWidth={`${SPACING_SCALE.XXL}px`}
+  459,25:           minHeight={`${SPACING_SCALE.LG}px`}
+  494,33:                     padding: `${SPACING_SCALE.XS - 2}px ${SPACING_SCALE.XS - 1}px`,
+  494,59:                     padding: `${SPACING_SCALE.XS - 2}px ${SPACING_SCALE.XS - 1}px`,
+  496,38:                     borderRadius: `${SPACING_SCALE.XS}px`,
+  524,33:                     padding: `${SPACING_SCALE.XS - 2}px ${SPACING_SCALE.XS - 1}px`,
+  524,59:                     padding: `${SPACING_SCALE.XS - 2}px ${SPACING_SCALE.XS - 1}px`,
+  526,38:                     borderRadius: `${SPACING_SCALE.XS}px`,
+  554,33:                     padding: `${SPACING_SCALE.XS - 2}px ${SPACING_SCALE.XS - 1}px`,
+  554,59:                     padding: `${SPACING_SCALE.XS - 2}px ${SPACING_SCALE.XS - 1}px`,
+  556,38:                     borderRadius: `${SPACING_SCALE.XS}px`,
+  591,23:           padding={`${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`}
+  591,45:           padding={`${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`}
+  593,28:           borderRadius={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px`}
+  593,47:           borderRadius={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px`}
+
+C:\layera\apps\layera-geoalert\src\components\device-specific\mobile\iphone-14-pro-max\components\PropertyDetailsForm.tsx
+  12,10: import { SPACING_SCALE } from '@layera/constants';
+
+C:\layera\apps\layera-geoalert\src\components\device-specific\mobile\AppHeader.tsx
+  10,10: import { SPACING_SCALE } from '@layera/constants';
+  40,19:     padding: `0 ${SPACING_SCALE.MD}px`,
+  50,17:     padding: `${SPACING_SCALE.SM}px`,
+  63,17:     padding: `${SPACING_SCALE.SM}px`
+  75,21:             gap: `${SPACING_SCALE.XS}px`
+  92,24:           maxWidth: `${SPACING_SCALE.XXXL * 3}px`,
+
+C:\layera\apps\layera-geoalert\src\components\device-specific\mobile\MobileGeoMap.tsx
+  9,10: import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  35,23:         padding: `0 ${SPACING_SCALE.XS}px`
+  74,23:           padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  74,42:           padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+
+C:\layera\apps\layera-geoalert\src\components\map\MapContainer.tsx
+  16,10: import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  286,26:               bottom: `${SPACING_SCALE.XXXL * 3 + SPACING_SCALE.LG}px`,
+  286,51:               bottom: `${SPACING_SCALE.XXXL * 3 + SPACING_SCALE.LG}px`,
+  320,26:               bottom: `${SPACING_SCALE.LG}px`,
+  321,25:               right: `${SPACING_SCALE.LG}px`,
+  322,25:               width: `${SPACING_SCALE.XXXL}px`,
+  323,26:               height: `${SPACING_SCALE.XXXL}px`,
+  374,25:           marginTop: `${SPACING_SCALE.MD}px`,
+  375,23:           padding: `${SPACING_SCALE.MD}px`,
+  381,28:             margin: `0 0 ${SPACING_SCALE.SM}px 0`,
+  387,53:           <Flex direction="column" style={{ gap: `${SPACING_SCALE.SM}px` }}>
+  394,31:                   padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM}px`,
+  394,53:                   padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM}px`,
+  412,33:                     padding: `${SPACING_SCALE.XS - 2}px ${SPACING_SCALE.XS + 2}px`,
+  412,59:                     padding: `${SPACING_SCALE.XS - 2}px ${SPACING_SCALE.XS + 2}px`,
+
+C:\layera\apps\layera-geoalert\src\components\steps\complete\CompleteStep.tsx
+  11,10: import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  129,13:     gap: `${SPACING_SCALE.SM}px`,
+  146,21:         padding: `${SPACING_SCALE.MD}px`,
+  155,28:           marginBottom: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`
+  155,47:           marginBottom: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`
+
+C:\layera\apps\layera-geoalert\src\components\steps\details\DetailsStep.tsx
+  11,10: import { SPACING_SCALE } from '@layera/constants';
+  20,10: import { SPACING_SCALE } from '@layera/constants';
+  181,19:         width={`${SPACING_SCALE.LAYOUT_XXXL}px`}
+  184,23:         padding={`0 ${SPACING_SCALE.LG}px`}
+
+C:\layera\apps\layera-geoalert\src\components\steps\layout\LayoutStep.tsx
+  12,10: import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  139,23:           padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
+  139,45:           padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
+
+C:\layera\apps\layera-geoalert\src\components\steps\location\LocationStep.tsx
+  17,10: import { SPACING_SCALE } from '@layera/constants';
+  478,32:               marginBottom: `${SPACING_SCALE.SM}px`
+
+C:\layera\apps\layera-geoalert\src\components\steps\occupation\ESCOSearchComponent.tsx
+  11,10: import { SPACING_SCALE, TABLE_COLUMN_WIDTHS } from '@layera/constants';
+  183,22:     borderRadius: `${SPACING_SCALE.SM}px`,
+  191,17:     padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
+  191,39:     padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
+  198,17:     padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
+  198,39:     padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
+  207,23:           padding: `${SPACING_SCALE.SM}px`,
+  209,28:           borderRadius: `${SPACING_SCALE.XS}px`,
+  210,28:           marginBottom: `${SPACING_SCALE.SM}px`
+
+C:\layera\apps\layera-geoalert\src\components\steps\occupation\OccupationStep.tsx
+  11,10: import { SPACING_SCALE } from '@layera/constants';
+  94,15:     width: `${SPACING_SCALE.XXXL * 2}px`,
+  96,19:     padding: `0 ${SPACING_SCALE.LG + SPACING_SCALE.XS}px`,
+  96,38:     padding: `0 ${SPACING_SCALE.LG + SPACING_SCALE.XS}px`,
+  104,22:     borderRadius: `${SPACING_SCALE.SM}px`,
+  105,17:     padding: `${SPACING_SCALE.MD}px`,
+  106,19:     marginTop: `${SPACING_SCALE.MD}px`,
+  113,22:     borderRadius: `${SPACING_SCALE.SM}px`,
+  114,17:     padding: `${SPACING_SCALE.MD}px`,
+  115,19:     marginTop: `${SPACING_SCALE.MD}px`
+  179,25:           marginTop: `${SPACING_SCALE.LG}px`,
+  180,23:           padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  180,42:           padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  182,28:           borderRadius: `${SPACING_SCALE.XS + 2}px`
+
+C:\layera\apps\layera-geoalert\src\components\steps\pricing\PricingStep.tsx
+  10,10: import { SPACING_SCALE } from '@layera/constants';
+  129,19:           gap: `${SPACING_SCALE.MD}px`
+
+C:\layera\apps\layera-geoalert\src\components\steps\propertyType\PropertyTypeStep.tsx
+  113,17:         gap: `${SPACING_SCALE.XS + 2}px`,
+
+C:\layera\apps\layera-geoalert\src\components\steps\review\ReviewStep.tsx
+  14,3:   SPACING_SCALE,
+  20,3:   SPACING_SCALE,
+  308,30:                 minWidth: `${SPACING_SCALE.XXXXXL}px`,
+
+C:\layera\apps\layera-geoalert\src\components\steps\test\StepRegistryTest.tsx
+  10,10: import { SPACING_SCALE } from '@layera/constants';
+  30,31:     <div style={{ padding: `${SPACING_SCALE.LG}px`, fontFamily: 'monospace' }}>
+  33,38:       <div style={{ marginBottom: `${SPACING_SCALE.LG}px` }}>
+  38,38:       <div style={{ marginBottom: `${SPACING_SCALE.LG}px` }}>
+
+C:\layera\apps\layera-geoalert\src\components\steps\upload\UploadStep.tsx
+  13,10: import { SPACING_SCALE } from '@layera/constants';
+  184,30:             borderRadius={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px`}
+  184,49:             borderRadius={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px`}
+
+C:\layera\apps\layera-geoalert\src\components\steps\StepOrchestrator.tsx
+  9,10: import { SPACING_SCALE } from '@layera/constants';
+  251,33:       <div style={{ padding: `${SPACING_SCALE.LG}px`, textAlign: 'center' }}>
+
+C:\layera\apps\layera-geoalert\src\components\DeviceFrameWrapper.tsx
+  4,10: import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  45,19:       padding: `${SPACING_SCALE.SM}px`,
+  79,17:       width: `${SPACING_SCALE.XXXL}px`,
+  80,18:       height: `${SPACING_SCALE.XXL}px`,
+  82,34:       borderBottomLeftRadius: `${SPACING_SCALE.LG}px`,
+  83,35:       borderBottomRightRadius: `${SPACING_SCALE.LG}px`,
+  93,18:       bottom: `${SPACING_SCALE.SM}px`,
+  96,17:       width: `${SPACING_SCALE.XL}px`,
+  97,18:       height: `${SPACING_SCALE.XS}px`,
+  116,23:           padding: `${SPACING_SCALE.XL + SPACING_SCALE.LG}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px`,
+  116,42:           padding: `${SPACING_SCALE.XL + SPACING_SCALE.LG}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px`,
+  116,64:           padding: `${SPACING_SCALE.XL + SPACING_SCALE.LG}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px`,
+  116,83:           padding: `${SPACING_SCALE.XL + SPACING_SCALE.LG}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px`,
+  116,105:           padding: `${SPACING_SCALE.XL + SPACING_SCALE.LG}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px`,
+  116,124:           padding: `${SPACING_SCALE.XL + SPACING_SCALE.LG}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px`,
+  116,146:           padding: `${SPACING_SCALE.XL + SPACING_SCALE.LG}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px`,
+  116,165:           padding: `${SPACING_SCALE.XL + SPACING_SCALE.LG}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.XS}px`,
+
+C:\layera\apps\layera-geoalert\src\components\GeoHeader.tsx
+  8,10: import { SPACING_SCALE } from '@layera/constants';
+  40,43:     <Flex align="center" style={{ gap: `${SPACING_SCALE.SM}px` }}>
+  73,29:                 padding: `${SPACING_SCALE.SM}px`,
+  74,34:                 borderRadius: `${SPACING_SCALE.XS + 2}px`,
+  93,29:                 padding: `${SPACING_SCALE.SM}px`,
+  94,34:                 borderRadius: `${SPACING_SCALE.XS + 2}px`,
+
+C:\layera\apps\layera-geoalert\src\components\MapCanvas.tsx
+  8,10: import { SPACING_SCALE } from '@layera/constants';
+  157,25:             padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`
+  157,44:             padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`
+
+C:\layera\apps\layera-geoalert\src\components\SimpleMap.tsx
+  2,10: import { SPACING_SCALE } from '@layera/constants';
+  64,27:     <div style={{ height: SPACING_SCALE.FULL, width: SPACING_SCALE.FULL }}>
+  64,54:     <div style={{ height: SPACING_SCALE.FULL, width: SPACING_SCALE.FULL }}>
+  68,22:           height: `${SPACING_SCALE.CONTAINER_SM}px`,
+  69,18:           width: SPACING_SCALE.FULL,
+  79,19:           height: SPACING_SCALE.FULL,
+
+C:\layera\apps\layera-geoalert\src\constants\index.ts
+  8,40: import { BORDER_RADIUS_SCALE, Z_INDEX, SPACING_SCALE } from '@layera/constants';
+  247,13:     top: `${SPACING_SCALE.MD}px`,
+  248,15:     right: `${SPACING_SCALE.MD}px`
+  290,40: export { BORDER_RADIUS_SCALE, Z_INDEX, SPACING_SCALE };
+
+C:\layera\apps\layera-geoalert\src\App.tsx
+  9,10: import { SPACING_SCALE, BORDER_RADIUS, TABLE_COLUMN_WIDTHS } from '@layera/constants';
+  363,46:                   style={{ margin: `0 auto ${SPACING_SCALE.XL}px auto` }}
+  375,32:                   maxWidth={`${SPACING_SCALE.XXXL * 8}px`}
+  423,31:                   padding={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.LG}px`}
+  423,50:                   padding={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.LG}px`}
+  423,72:                   padding={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.LG}px`}
+
+C:\layera\apps\layera-id\src\components\DeviceFrameWrapper.tsx
+  5,10: import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  44,19:       padding: `${SPACING_SCALE.SM}px`,
+  115,27:         padding: `100px ${SPACING_SCALE.LG}px ${SPACING_SCALE.LG}px ${SPACING_SCALE.LG}px`,
+  115,49:         padding: `100px ${SPACING_SCALE.LG}px ${SPACING_SCALE.LG}px ${SPACING_SCALE.LG}px`,
+  115,71:         padding: `100px ${SPACING_SCALE.LG}px ${SPACING_SCALE.LG}px ${SPACING_SCALE.LG}px`,
+
+C:\layera\apps\layera-id\src\components\Login.jsx
+  10,34: import { FORM_TYPES, FORM_SIZES, SPACING_SCALE } from '@layera/constants';
+  87,27:               padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  87,46:               padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  89,32:               marginBottom: `${SPACING_SCALE.MD}px`,
+  148,24:             margin: `${SPACING_SCALE.XL}px 0`,
+  165,29:               padding: `0 ${SPACING_SCALE.MD - SPACING_SCALE.XS}px`,
+  165,48:               padding: `0 ${SPACING_SCALE.MD - SPACING_SCALE.XS}px`,
+  182,39:             style={{ marginBottom: `${SPACING_SCALE.MD}px`, width: '100%' }}
+  186,27:             marginTop: `${SPACING_SCALE.XL}px`,
+  201,26:               margin: `${SPACING_SCALE.SM}px 0`,
+
+C:\layera\apps\layera-id\src\components\MfaEnroll.jsx
+  11,10: import { SPACING_SCALE } from '@layera/constants';
+  126,79:               <div style={{ display: 'flex', flexDirection: 'column', gap: `${SPACING_SCALE.MD}px` }}>
+  127,82:                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: `${SPACING_SCALE.SM}px` }}>
+  128,79:                   <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
+  131,82:                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: `${SPACING_SCALE.SM}px` }}>
+  132,79:                   <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
+  135,82:                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: `${SPACING_SCALE.SM}px` }}>
+  136,79:                   <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
+  155,81:                 <div style={{ display: 'flex', flexDirection: 'column', gap: `${SPACING_SCALE.SM}px` }}>
+  156,98:                   <label htmlFor="phone" style={{ display: 'flex', alignItems: 'center', gap: `${SPACING_SCALE.SM}px`, fontWeight: '600' }}>
+  165,35:                       padding: `${SPACING_SCALE.MD}px`,
+  181,57:                 <div id="recaptcha" style={{ margin: `${SPACING_SCALE.MD}px 0` }}></div>
+
+C:\layera\apps\layera-id\src\components\MfaStatus.jsx
+  1,10: import { SPACING_SCALE } from '@layera/constants';
+  6,19:       padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
+  6,41:       padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
+
+C:\layera\apps\layera-id\src\components\NewDashboard.tsx
+  11,10: import { SPACING_SCALE } from '@layera/constants';
+  88,66:                   <div style={{ textAlign: 'center', padding: `${SPACING_SCALE.MD}px` }}>
+  105,66:                   <div style={{ textAlign: 'center', padding: `${SPACING_SCALE.MD}px` }}>
+  146,48:                   <FlexColumn style={{ gap: `${SPACING_SCALE.MD}px` }}>
+
+C:\layera\apps\layera-id\src\components\RoleBadge.jsx
+  1,10: import { SPACING_SCALE } from '@layera/constants';
+  13,19:       padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
+  13,41:       padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
+
+C:\layera\apps\layera-id\src\components\Verify.jsx
+  5,10: import { SPACING_SCALE } from '@layera/constants';
+  16,83:       <Button onClick={check} variant="primary" size="sm" style={{ marginLeft: `${SPACING_SCALE.SM}px` }}>{t('auth.verify.checkDone')}</Button>
+
+C:\layera\apps\layera-id\src\pages\Account.jsx
+  11,10: import { SPACING_SCALE } from '@layera/constants';
+  78,79:               <div style={{ display: 'flex', flexDirection: 'column', gap: `${SPACING_SCALE.MD}px` }}>
+
+C:\layera\apps\layera-id\src\pages\AdminRoles.jsx
+  65,42:                   style={{ marginTop: `${SPACING_SCALE.MD}px` }}
+  257,55:               <ul style={{ margin: 0, paddingLeft: `${SPACING_SCALE.XL}px` }}>
+
+C:\layera\apps\layera-id\src\pages\Data.jsx
+  9,10: import { SPACING_SCALE } from '@layera/constants';
+  88,59:               <Flex align="center" style={{ marginTop: `${SPACING_SCALE.SM}px`, gap: `${SPACING_SCALE.SM}px` }}>
+  88,89:               <Flex align="center" style={{ marginTop: `${SPACING_SCALE.SM}px`, gap: `${SPACING_SCALE.SM}px` }}>
+  110,43:               <div style={{ marginTop: `${SPACING_SCALE.SM}px`, fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
+  122,43:               <div style={{ marginTop: `${SPACING_SCALE.SM}px`, fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
+  134,43:               <div style={{ marginTop: `${SPACING_SCALE.SM}px`, fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
+  153,53:               <Flex align="center" style={{ gap: `${SPACING_SCALE.MD}px` }}>
+  184,42:                   style={{ marginTop: `${SPACING_SCALE.MD}px` }}
+  209,103:               <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', marginTop: `${SPACING_SCALE.XS}px` }}>
+  221,103:               <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', marginTop: `${SPACING_SCALE.XS}px` }}>
+  269,55:             <Flex direction="column" style={{ gap: `${SPACING_SCALE.MD}px` }}>
+  270,57:               <Flex align="flex-start" style={{ gap: `${SPACING_SCALE.SM}px` }}>
+  271,77:                 <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
+  274,57:               <Flex align="flex-start" style={{ gap: `${SPACING_SCALE.SM}px` }}>
+  275,77:                 <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
+  278,57:               <Flex align="flex-start" style={{ gap: `${SPACING_SCALE.SM}px` }}>
+  279,77:                 <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
+  282,57:               <Flex align="flex-start" style={{ gap: `${SPACING_SCALE.SM}px` }}>
+  283,77:                 <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
+
+C:\layera\apps\layera-id\src\pages\Settings.jsx
+  9,10: import { SPACING_SCALE } from '@layera/constants';
+  88,44:               <p style={{ marginBottom: `${SPACING_SCALE.MD}px`, color: 'var(--color-text-secondary)' }}>
+  100,44:               <p style={{ marginBottom: `${SPACING_SCALE.MD}px`, color: 'var(--color-text-secondary)' }}>
+  120,44:               <p style={{ marginBottom: `${SPACING_SCALE.MD}px`, color: 'var(--color-text-secondary)' }}>
+  146,44:               <p style={{ marginBottom: `${SPACING_SCALE.MD}px`, color: 'var(--color-text-secondary)' }}>
+  158,44:               <p style={{ marginBottom: `${SPACING_SCALE.MD}px`, color: 'var(--color-text-secondary)' }}>
+  181,44:               <p style={{ marginBottom: `${SPACING_SCALE.MD}px`, color: 'var(--color-text-secondary)' }}>
+  203,44:               <p style={{ marginBottom: `${SPACING_SCALE.MD}px`, color: 'var(--color-text-secondary)' }}>
+
+C:\layera\packages\address-breakdown\src\components\AddressBreakdownCard.tsx
+  19,10: import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  168,30:               marginLeft: `${SPACING_SCALE.SM}px`,
+  187,23:           padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  187,42:           padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  189,28:           marginBottom: `${SPACING_SCALE.SM}px`,
+  224,19:           gap: `${SPACING_SCALE.SM}px`,
+  257,27:             marginTop: `${SPACING_SCALE.XS}px`,
+  262,21:             gap: `${SPACING_SCALE.SM}px`
+  324,28:           marginBottom: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  324,47:           marginBottom: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+
+C:\layera\packages\auth-bridge\src\components\GoogleSignInButton.tsx
+  4,10: import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  72,17:     padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS / 2}px ${SPACING_SCALE.MD}px`,
+  72,36:     padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS / 2}px ${SPACING_SCALE.MD}px`,
+  72,62:     padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS / 2}px ${SPACING_SCALE.MD}px`,
+
+C:\layera\packages\buttons\src\hooks\useButton.ts
+  3,10: import { SPACING_SCALE } from '@layera/constants';
+  16,21:         padding: `${SPACING_SCALE.SM}px 0.75rem`,
+  23,21:         padding: `${SPACING_SCALE.SM}px 1rem`,
+  26,17:         gap: `${SPACING_SCALE.SM}px`
+  30,21:         padding: `${SPACING_SCALE.MD}px 1.25rem`,
+  33,17:         gap: `${SPACING_SCALE.SM}px`
+  37,21:         padding: `${SPACING_SCALE.MD - SPACING_SCALE.XS / 2}px ${SPACING_SCALE.XL - SPACING_SCALE.SM}px`,
+  37,40:         padding: `${SPACING_SCALE.MD - SPACING_SCALE.XS / 2}px ${SPACING_SCALE.XL - SPACING_SCALE.SM}px`,
+  37,66:         padding: `${SPACING_SCALE.MD - SPACING_SCALE.XS / 2}px ${SPACING_SCALE.XL - SPACING_SCALE.SM}px`,
+  37,85:         padding: `${SPACING_SCALE.MD - SPACING_SCALE.XS / 2}px ${SPACING_SCALE.XL - SPACING_SCALE.SM}px`,
+  40,17:         gap: `${SPACING_SCALE.SM}px`
+  44,21:         padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XXL}px`,
+  44,43:         padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XXL}px`,
+  253,14:       lg: `${SPACING_SCALE.SM}px`,
+
+C:\layera\packages\cards\src\components\BaseCard\BaseCard.tsx
+  6,10: import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  76,32:     height: size === 'sm' ? `${SPACING_SCALE.LG + SPACING_SCALE.SM}px` : undefined,
+  76,51:     height: size === 'sm' ? `${SPACING_SCALE.LG + SPACING_SCALE.SM}px` : undefined,
+  78,17:     padding: `${SPACING_SCALE[padding.toUpperCase() as keyof typeof SPACING_SCALE] || SPACING_SCALE.SM}px`,
+  78,69:     padding: `${SPACING_SCALE[padding.toUpperCase() as keyof typeof SPACING_SCALE] || SPACING_SCALE.SM}px`,
+  78,87:     padding: `${SPACING_SCALE[padding.toUpperCase() as keyof typeof SPACING_SCALE] || SPACING_SCALE.SM}px`,
+  102,17:     padding: `${SPACING_SCALE.XS + 2}px ${SPACING_SCALE.SM}px`,
+  102,43:     padding: `${SPACING_SCALE.XS + 2}px ${SPACING_SCALE.SM}px`,
+  103,22:     borderRadius: `${SPACING_SCALE.XS + 2}px`,
+  117,16:     bottom: `${SPACING_SCALE.SM}px`,
+  118,15:     right: `${SPACING_SCALE.SM}px`,
+  119,15:     width: `${SPACING_SCALE.LG}px`,
+  120,16:     height: `${SPACING_SCALE.LG}px`,
+  233,31:                 marginTop: `${SPACING_SCALE.XS}px`,
+  294,76:               <div className="layera-card__icon" style={{ marginBottom: `${SPACING_SCALE.XS}px` }}>
+
+C:\layera\packages\constants\src\themes.ts
+  54,17:  * - Aligned με SPACING_SCALE για consistency
+  101,14: export const SPACING_SCALE = {
+  337,35: export type SpacingScale = typeof SPACING_SCALE[keyof typeof SPACING_SCALE];
+  337,62: export type SpacingScale = typeof SPACING_SCALE[keyof typeof SPACING_SCALE];
+
+C:\layera\packages\draggable\src\components\DraggableFAB.tsx
+  10,10: import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  61,19:       padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`
+  61,38:       padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`
+  67,19:       padding: `${SPACING_SCALE.MD - SPACING_SCALE.XS / 2}px`
+  67,38:       padding: `${SPACING_SCALE.MD - SPACING_SCALE.XS / 2}px`
+  73,19:       padding: `${SPACING_SCALE.MD}px`
+
+C:\layera\packages\employment-taxonomy\src\components\OccupationCard.tsx
+  12,10: import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  156,29:                 padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
+  156,51:                 padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
+  169,27:               padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
+  169,49:               padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
+  232,71:             <Text size="sm" weight="medium" style={{ marginBottom: `${SPACING_SCALE.XS}px` }}>
+  242,33:                     padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
+  242,55:                     padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
+  258,71:             <Text size="sm" weight="medium" style={{ marginBottom: `${SPACING_SCALE.XS}px` }}>
+  268,33:                     padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
+  268,55:                     padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
+
+C:\layera\packages\employment-taxonomy\src\components\OccupationSearch.tsx
+  16,10: import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  115,23:           padding: `${SPACING_SCALE.MD}px`
+  126,31:                   padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.XXL + SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  126,50:                   padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.XXL + SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  126,72:                   padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.XXL + SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  126,92:                   padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.XXL + SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  126,114:                   padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.XXL + SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  126,133:                   padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.XXL + SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  126,155:                   padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.XXL + SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  126,174:                   padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.XXL + SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  167,70:           <Flex align="center" justify="center" style={{ padding: `${SPACING_SCALE.LG}px` }}>
+  169,43:             <Text style={{ marginLeft: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px` }}>
+  169,62:             <Text style={{ marginLeft: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px` }}>
+
+C:\layera\packages\file-import\src\components\DragDropZone.tsx
+  6,10: import { SPACING_SCALE } from '@layera/constants';
+  207,70:               <div className="upload-icon" style={{ marginBottom: `${SPACING_SCALE.MD}px` }}>
+  262,80:               <Text variant="caption" color="secondary" style={{ marginTop: `${SPACING_SCALE.SM}px` }}>
+
+C:\layera\packages\file-import\src\components\FileImporter.tsx
+  8,10: import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  173,43:               <div style={{ marginTop: `${SPACING_SCALE.SM}px`, fontSize: '12px', color: '#666' }}>
+  186,35:         <div style={{ padding: `${SPACING_SCALE.MD}px`, borderBottom: '1px solid #eee' }}>
+  199,35:         <div style={{ padding: `${SPACING_SCALE.MD}px` }}>
+  238,41:             <div style={{ marginTop: `${SPACING_SCALE.MD}px`, padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`, backgroundColor: '#f5f5f5', borderRadius: `${BORDER_RADIUS_SCALE.XS}px` }}>
+  238,75:             <div style={{ marginTop: `${SPACING_SCALE.MD}px`, padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`, backgroundColor: '#f5f5f5', borderRadius: `${BORDER_RADIUS_SCALE.XS}px` }}>
+  238,94:             <div style={{ marginTop: `${SPACING_SCALE.MD}px`, padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`, backgroundColor: '#f5f5f5', borderRadius: `${BORDER_RADIUS_SCALE.XS}px` }}>
+  239,64:               <div style={{ fontSize: '14px', marginBottom: `${SPACING_SCALE.XS - 4}px` }}>
+  258,41:             <div style={{ marginTop: `${SPACING_SCALE.MD}px` }}>
+  265,41:             <div style={{ marginTop: `${SPACING_SCALE.MD}px` }}>
+  266,118:               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: `${SPACING_SCALE.XS}px` }}>
+  293,41:             <div style={{ marginTop: `${SPACING_SCALE.MD}px` }}>
+
+C:\layera\packages\file-import\src\components\FileList.tsx
+  8,10: import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  184,25:             padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  184,47:             padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  184,66:             padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+  240,43:         <CardContent style={{ padding: `${SPACING_SCALE.MD}px` }}>
+  245,122:               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: `${SPACING_SCALE.XS}px` }}>
+  251,38:                     marginBottom: `${SPACING_SCALE.XS - 4}px`
+  265,122:                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: `${SPACING_SCALE.XS - 4}px` }}>
+  295,82:                 <Text variant="caption" color="secondary" style={{ marginTop: `${SPACING_SCALE.SM}px` }}>
+
+C:\layera\packages\file-import\src\components\FilePreview.tsx
+  8,10: import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  112,21:         padding: `${SPACING_SCALE.MD}px`,
+  131,76:           <Text variant="caption" color="secondary" style={{ marginTop: `${SPACING_SCALE.SM}px`, display: 'block' }}>
+  353,32:               marginBottom: `${SPACING_SCALE.XS - 4}px`
+  377,39:           <div style={{ marginTop: `${SPACING_SCALE.XL}px` }}>
+  378,58:             <Heading level={5} style={{ marginBottom: `${SPACING_SCALE.SM}px` }}>
+  426,39:           <div style={{ marginTop: `${SPACING_SCALE.XL}px`, display: 'flex', gap: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`, justifyContent: 'flex-end' }}>
+  426,86:           <div style={{ marginTop: `${SPACING_SCALE.XL}px`, display: 'flex', gap: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`, justifyContent: 'flex-end' }}>
+  426,105:           <div style={{ marginTop: `${SPACING_SCALE.XL}px`, display: 'flex', gap: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`, justifyContent: 'flex-end' }}>
+
+C:\layera\packages\info-panels\dist-manual\components\InfoPanel.tsx
+  12,10: import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  214,21:         padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XL + SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.MD}px`,
+  214,43:         padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XL + SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.MD}px`,
+  214,62:         padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XL + SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.MD}px`,
+  214,84:         padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XL + SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.MD}px`,
+  214,106:         padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XL + SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.MD}px`,
+  228,19:           top: `${SPACING_SCALE.XS}px`,
+  229,21:           right: `${SPACING_SCALE.XS}px`,
+  230,21:           width: `${SPACING_SCALE.LG}px`,
+  231,22:           height: `${SPACING_SCALE.LG}px`,
+  250,28:           marginBottom: `${SPACING_SCALE.SM}px`,
+
+C:\layera\packages\info-panels\dist-manual\index.ts
+  8,10: import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  97,17:     padding: `${SPACING_SCALE.MD}px`
+
+C:\layera\packages\info-panels\src\components\InfoPanel.tsx
+  12,10: import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  214,21:         padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XL + SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.MD}px`,
+  214,43:         padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XL + SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.MD}px`,
+  214,62:         padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XL + SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.MD}px`,
+  214,84:         padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XL + SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.MD}px`,
+  214,106:         padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XL + SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.MD}px`,
+  228,19:           top: `${SPACING_SCALE.XS}px`,
+  229,21:           right: `${SPACING_SCALE.XS}px`,
+  230,21:           width: `${SPACING_SCALE.LG}px`,
+  231,22:           height: `${SPACING_SCALE.LG}px`,
+  250,28:           marginBottom: `${SPACING_SCALE.SM}px`,
+
+C:\layera\packages\info-panels\src\index.ts
+  8,10: import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  97,17:     padding: `${SPACING_SCALE.MD}px`
+
+C:\layera\packages\layout\src\components\Container\PageContainer.tsx
+  2,10: import { SPACING_SCALE } from '@layera/constants';
+  38,43:     ...(padding === 'sm' && { padding: `${SPACING_SCALE.SM}px` }),
+  39,43:     ...(padding === 'md' && { padding: `${SPACING_SCALE.MD}px` }),
+  40,43:     ...(padding === 'lg' && { padding: `${SPACING_SCALE.LG}px` })
+
+C:\layera\packages\layout\src\components\Container\PageHeader.tsx
+  2,10: import { SPACING_SCALE } from '@layera/constants';
+  32,22:     marginBottom: `${SPACING_SCALE.XL}px`,
+  33,23:     paddingBottom: `${SPACING_SCALE.MD}px`,
+  45,16:     margin: `${SPACING_SCALE.XS}px 0 0 0`,
+  58,48:         <div style={{ display: 'flex', gap: `${SPACING_SCALE.SM}px`, alignItems: 'center' }}>
+
+C:\layera\packages\layout\src\components\Box.tsx
+  15,10: import { SPACING_SCALE, getSizingVar, getSizingValue, type SizingToken } from '../sizing';
+  55,45:   if (typeof value === 'string' && value in SPACING_SCALE) {
+
+C:\layera\packages\layout\src\components\Flex.tsx
+  2,10: import { SPACING_SCALE } from '@layera/constants';
+  17,55: // Enterprise gap values aligned με @layera/constants SPACING_SCALE
+  19,11:   xxs: `${SPACING_SCALE.XXS}px`,  // 2px
+  20,10:   xs: `${SPACING_SCALE.XS}px`,    // 4px
+  21,10:   sm: `${SPACING_SCALE.SM}px`,    // 8px
+  22,10:   md: `${SPACING_SCALE.MD}px`,    // 16px
+  23,10:   lg: `${SPACING_SCALE.LG}px`,    // 24px
+  24,10:   xl: `${SPACING_SCALE.XL}px`,    // 32px
+  25,11:   xxl: `${SPACING_SCALE.XXL}px`,  // 48px
+  26,12:   xxxl: `${SPACING_SCALE.XXXL}px` // 64px
+
+C:\layera\packages\layout\src\components\Stack.tsx
+  2,10: import { SPACING_SCALE } from '@layera/constants';
+  14,10:   xs: `${SPACING_SCALE.XS}px`,
+  15,10:   sm: `${SPACING_SCALE.SM}px`,
+  16,10:   md: `${SPACING_SCALE.MD}px`,
+  17,10:   lg: `${SPACING_SCALE.LG}px`,
+  18,10:   xl: `${SPACING_SCALE.XL}px`
+
+C:\layera\packages\layout\src\flex\index.ts
+  14,10: import { SPACING_SCALE } from '@layera/constants';
+  75,47:   // Gap values (aligned με @layera/constants SPACING_SCALE)
+  78,13:     XXS: `${SPACING_SCALE.XXS}px`,  // 2px
+  79,12:     XS: `${SPACING_SCALE.XS}px`,    // 4px
+  80,12:     SM: `${SPACING_SCALE.SM}px`,    // 8px
+  81,12:     MD: `${SPACING_SCALE.MD}px`,    // 16px
+  82,12:     LG: `${SPACING_SCALE.LG}px`,    // 24px
+  83,12:     XL: `${SPACING_SCALE.XL}px`,    // 32px
+  84,13:     XXL: `${SPACING_SCALE.XXL}px`,  // 48px
+  85,14:     XXXL: `${SPACING_SCALE.XXXL}px` // 64px
+
+C:\layera\packages\layout\src\hooks\useSizing.ts
+  14,10: import { SPACING_SCALE, getSizingVar, getSizingValue, type SizingToken } from '../sizing';
+  24,12:     scale: SPACING_SCALE[token]
+  53,12:     scale: SPACING_SCALE,
+
+C:\layera\packages\layout\src\sizing\index.ts
+  4,74:  * 🌟 Single Source of Truth για spacing/sizing - Uses @layera/constants SPACING_SCALE
+  7,28:  * - Re-exports enterprise SPACING_SCALE (31 tokens)
+  13,10: import { SPACING_SCALE } from '@layera/constants';
+  16,14:  * Re-export SPACING_SCALE για layout components
+  19,10: export { SPACING_SCALE } from '@layera/constants';
+  24,40: export type SizingToken = keyof typeof SPACING_SCALE;
+  45,28:     'sizing-width-xxs': `${SPACING_SCALE.XXS}px`,
+  46,27:     'sizing-width-xs': `${SPACING_SCALE.XS}px`,
+  47,27:     'sizing-width-sm': `${SPACING_SCALE.SM}px`,
+  48,27:     'sizing-width-md': `${SPACING_SCALE.MD}px`,
+  49,27:     'sizing-width-lg': `${SPACING_SCALE.LG}px`,
+  50,27:     'sizing-width-xl': `${SPACING_SCALE.XL}px`,
+  51,28:     'sizing-width-xxl': `${SPACING_SCALE.XXL}px`,
+  52,29:     'sizing-width-xxxl': `${SPACING_SCALE.XXXL}px`,
+  53,34:     'sizing-width-layout-sm': `${SPACING_SCALE.LAYOUT_SM}px`,
+  54,34:     'sizing-width-layout-md': `${SPACING_SCALE.LAYOUT_MD}px`,
+  55,34:     'sizing-width-layout-lg': `${SPACING_SCALE.LAYOUT_LG}px`,
+  56,34:     'sizing-width-layout-xl': `${SPACING_SCALE.LAYOUT_XL}px`,
+  57,35:     'sizing-width-layout-xxl': `${SPACING_SCALE.LAYOUT_XXL}px`,
+  58,36:     'sizing-width-layout-xxxl': `${SPACING_SCALE.LAYOUT_XXXL}px`,
+  59,37:     'sizing-width-container-sm': `${SPACING_SCALE.CONTAINER_SM}px`,
+  60,37:     'sizing-width-container-md': `${SPACING_SCALE.CONTAINER_MD}px`,
+  61,37:     'sizing-width-container-lg': `${SPACING_SCALE.CONTAINER_LG}px`,
+  62,37:     'sizing-width-container-xl': `${SPACING_SCALE.CONTAINER_XL}px`,
+  63,38:     'sizing-width-container-xxl': `${SPACING_SCALE.CONTAINER_XXL}px`,
+  64,26:     'sizing-width-full': SPACING_SCALE.FULL,
+  65,30:     'sizing-width-viewport': SPACING_SCALE.VIEWPORT_WIDTH,
+  66,33:     'sizing-width-min-content': SPACING_SCALE.MIN_CONTENT,
+  67,33:     'sizing-width-max-content': SPACING_SCALE.MAX_CONTENT,
+  68,33:     'sizing-width-fit-content': SPACING_SCALE.FIT_CONTENT
+  73,29:     'sizing-height-xxs': `${SPACING_SCALE.XXS}px`,
+  74,28:     'sizing-height-xs': `${SPACING_SCALE.XS}px`,
+  75,28:     'sizing-height-sm': `${SPACING_SCALE.SM}px`,
+  76,28:     'sizing-height-md': `${SPACING_SCALE.MD}px`,
+  77,28:     'sizing-height-lg': `${SPACING_SCALE.LG}px`,
+  78,28:     'sizing-height-xl': `${SPACING_SCALE.XL}px`,
+  79,29:     'sizing-height-xxl': `${SPACING_SCALE.XXL}px`,
+  80,30:     'sizing-height-xxxl': `${SPACING_SCALE.XXXL}px`,
+  81,35:     'sizing-height-layout-sm': `${SPACING_SCALE.LAYOUT_SM}px`,
+  82,35:     'sizing-height-layout-md': `${SPACING_SCALE.LAYOUT_MD}px`,
+  83,35:     'sizing-height-layout-lg': `${SPACING_SCALE.LAYOUT_LG}px`,
+  84,35:     'sizing-height-layout-xl': `${SPACING_SCALE.LAYOUT_XL}px`,
+  85,36:     'sizing-height-layout-xxl': `${SPACING_SCALE.LAYOUT_XXL}px`,
+  86,37:     'sizing-height-layout-xxxl': `${SPACING_SCALE.LAYOUT_XXXL}px`,
+  87,38:     'sizing-height-container-sm': `${SPACING_SCALE.CONTAINER_SM}px`,
+  88,38:     'sizing-height-container-md': `${SPACING_SCALE.CONTAINER_MD}px`,
+  89,38:     'sizing-height-container-lg': `${SPACING_SCALE.CONTAINER_LG}px`,
+  90,38:     'sizing-height-container-xl': `${SPACING_SCALE.CONTAINER_XL}px`,
+  91,39:     'sizing-height-container-xxl': `${SPACING_SCALE.CONTAINER_XXL}px`,
+  92,27:     'sizing-height-full': SPACING_SCALE.FULL,
+  93,31:     'sizing-height-viewport': SPACING_SCALE.VIEWPORT_HEIGHT,
+  94,34:     'sizing-height-min-content': SPACING_SCALE.MIN_CONTENT,
+  95,34:     'sizing-height-max-content': SPACING_SCALE.MAX_CONTENT,
+  96,34:     'sizing-height-fit-content': SPACING_SCALE.FIT_CONTENT
+  116,17:   const value = SPACING_SCALE[token];
+
+C:\layera\packages\layout\src\index.ts
+  70,39: // 🚀 NEW: Enterprise Sizing System - SPACING_SCALE ONLY
+  72,3:   SPACING_SCALE,
+
+C:\layera\packages\snap-interactions\src\components\SnapIndicator.tsx
+  11,10: import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  129,22:     marginBottom: `${SPACING_SCALE.XS}px`,
+  130,17:     padding: `${SPACING_SCALE.XS - 4}px ${SPACING_SCALE.XS}px`,
+  130,43:     padding: `${SPACING_SCALE.XS - 4}px ${SPACING_SCALE.XS}px`,
+  134,22:     borderRadius: `${SPACING_SCALE.XS - 4}px`,
+  291,17:     padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.XS + SPACING_SCALE.XS}px`,
+  291,39:     padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.XS + SPACING_SCALE.XS}px`,
+  291,58:     padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.XS + SPACING_SCALE.XS}px`,
+
+C:\layera\packages\snap-interactions\src\components\SnapSettingsPanel.tsx
+  16,10: import { SPACING_SCALE } from '@layera/constants';
+  246,76:               <Stack direction="row" spacing={8} style={{ marginBottom: `${SPACING_SCALE.MD}px` }}>
+
+C:\layera\packages\viewport\src\components\DeviceModelSelector.tsx
+  3,10: import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  147,21:         padding: `${SPACING_SCALE.SM}px`,
+  159,23:           padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
+  159,45:           padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
+  180,25:           marginTop: `${SPACING_SCALE.SM}px`,
+  195,27:               padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px`,
+  195,46:               padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px`,
+  195,68:               padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px`,
+  211,29:                 padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
+  211,51:                 padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
+  230,33:                     padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.SM}px`,
+  230,52:                     padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.SM}px`,
+  230,74:                     padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.SM}px`,
+  230,96:                     padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.SM}px`,
+  230,115:                     padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.SM}px`,
+  230,137:                     padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.SM}px`,
+  230,156:                     padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.SM}px`,
+  254,36:                     marginLeft: `${SPACING_SCALE.SM}px`
+
+C:\layera\packages\viewport\src\components\ResponsiveContainer.tsx
+  8,10: import { SPACING_SCALE } from '@layera/constants';
+  24,17:     padding: `${SPACING_SCALE.MD}px`,
+  30,17:     padding: `${SPACING_SCALE.XL}px`,
+  36,17:     padding: `${SPACING_SCALE.XXL}px`,
+  78,63:     '--layera-container-padding': currentConfig.padding || `${SPACING_SCALE.MD}px`,
+
+C:\layera\packages\viewport\src\components\ViewportDebugger.tsx
+  8,19: import { Z_INDEX, SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+  40,29:       padding: compact ? `${SPACING_SCALE.SM}px` : `${SPACING_SCALE.MD}px`,
+  40,55:       padding: compact ? `${SPACING_SCALE.SM}px` : `${SPACING_SCALE.MD}px`,
+  50,41:         return { ...baseStyles, top: `${SPACING_SCALE.MD}px`, left: `${SPACING_SCALE.MD}px` };
+  50,72:         return { ...baseStyles, top: `${SPACING_SCALE.MD}px`, left: `${SPACING_SCALE.MD}px` };
+  52,41:         return { ...baseStyles, top: `${SPACING_SCALE.MD}px`, right: `${SPACING_SCALE.MD}px` };
+  52,73:         return { ...baseStyles, top: `${SPACING_SCALE.MD}px`, right: `${SPACING_SCALE.MD}px` };
+  54,44:         return { ...baseStyles, bottom: `${SPACING_SCALE.MD}px`, left: `${SPACING_SCALE.MD}px` };
+  54,75:         return { ...baseStyles, bottom: `${SPACING_SCALE.MD}px`, left: `${SPACING_SCALE.MD}px` };
+  56,44:         return { ...baseStyles, bottom: `${SPACING_SCALE.MD}px`, right: `${SPACING_SCALE.MD}px` };
+  56,76:         return { ...baseStyles, bottom: `${SPACING_SCALE.MD}px`, right: `${SPACING_SCALE.MD}px` };
+  58,41:         return { ...baseStyles, top: `${SPACING_SCALE.MD}px`, right: `${SPACING_SCALE.MD}px` };
+  58,73:         return { ...baseStyles, top: `${SPACING_SCALE.MD}px`, right: `${SPACING_SCALE.MD}px` };
+  85,23:           padding: `${SPACING_SCALE.SM}px`,
+  104,21:             top: `${SPACING_SCALE.XS}px`,
+  105,23:             right: `${SPACING_SCALE.XS}px`,
+  118,49:       <div style={{ marginTop: !showAlways ? `${SPACING_SCALE.MD}px` : '0' }}>
+  122,19:           gap: `${SPACING_SCALE.SM}px`,
+  123,38:           marginBottom: compact ? `${SPACING_SCALE.XS}px` : `${SPACING_SCALE.SM}px`
+  123,64:           marginBottom: compact ? `${SPACING_SCALE.XS}px` : `${SPACING_SCALE.SM}px`
+  134,41:             <div style={{ marginTop: `${SPACING_SCALE.SM}px`, fontSize: '0.75rem', opacity: 0.8 }}>

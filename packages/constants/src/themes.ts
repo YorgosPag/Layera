@@ -91,16 +91,60 @@ export const BORDER_RADIUS_SCALE = {
 // Legacy BORDER_RADIUS για backward compatibility
 export const BORDER_RADIUS = BORDER_RADIUS_SCALE;
 
+/**
+ * Enterprise Spacing Scale - SINGLE SOURCE OF TRUTH
+ * 🌟 Complete spacing system για all use cases
+ *
+ * Consolidated από @layera/layout SIZING_SCALE για Single Source of Truth
+ * Covers: micro spacing, standard spacing, layout sizing, containers, viewport
+ */
 export const SPACING_SCALE = {
+  // Base spacing units (8px base unit system)
+  BASE_UNIT: 8,
+
+  // Micro spacing (για fine-tuning)
   NONE: 0,
-  XXS: 2,
-  XS: 4,
-  SM: 8,
-  MD: 16,
-  LG: 24,
-  XL: 32,
-  XXL: 48,
-  XXXL: 64
+  XXS: 2,   // 2px
+  XS: 4,    // 4px
+
+  // Standard spacing (core system)
+  SM: 8,    // 8px
+  MD: 16,   // 16px
+  LG: 24,   // 24px
+  XL: 32,   // 32px
+  XXL: 48,  // 48px
+  XXXL: 64, // 64px
+
+  // Layout spacing (για major components)
+  LAYOUT_SM: 80,   // 80px
+  LAYOUT_MD: 120,  // 120px
+  LAYOUT_LG: 160,  // 160px
+  LAYOUT_XL: 240,  // 240px
+  LAYOUT_XXL: 320, // 320px
+  LAYOUT_XXXL: 480, // 480px
+
+  // Container spacing (για content areas)
+  CONTAINER_SM: 600,   // 600px
+  CONTAINER_MD: 800,   // 800px
+  CONTAINER_LG: 1200,  // 1200px
+  CONTAINER_XL: 1400,  // 1400px
+  CONTAINER_XXL: 1600, // 1600px
+
+  // Full viewport dimensions
+  FULL: '100%',
+  VIEWPORT_WIDTH: '100vw',
+  VIEWPORT_HEIGHT: '100vh',
+
+  // Minimum content dimensions
+  MIN_CONTENT: 'min-content',
+  MAX_CONTENT: 'max-content',
+  FIT_CONTENT: 'fit-content',
+
+  // Common aspect ratios (για responsive design)
+  SQUARE: '1:1',
+  WIDESCREEN: '16:9',
+  GOLDEN: '1.618:1',
+  A4: '1.414:1'
 } as const;
 
 export const Z_INDEX = {

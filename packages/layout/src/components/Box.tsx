@@ -12,7 +12,7 @@
  */
 
 import React, { useMemo } from 'react';
-import { SIZING_SCALE, getSizingVar, getSizingValue, type SizingToken } from '../sizing';
+import { SPACING_SCALE, getSizingVar, getSizingValue, type SizingToken } from '../sizing';
 
 export interface BoxProps {
   children?: React.ReactNode;
@@ -52,7 +52,7 @@ const resolveSizingValue = (value: SizingToken | string | number | undefined): s
   if (value === undefined) return undefined;
 
   // If it's a SizingToken, get the value
-  if (typeof value === 'string' && value in SIZING_SCALE) {
+  if (typeof value === 'string' && value in SPACING_SCALE) {
     const result = getSizingValue(value as SizingToken);
     return typeof result === 'number' ? `${result}px` : result;
   }
