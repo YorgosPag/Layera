@@ -1,4 +1,5 @@
 import React from 'react';
+import { Box } from '@layera/layout';
 import type { SpinnerProps } from '../../types';
 import './Spinner.css';
 
@@ -26,48 +27,48 @@ export const Spinner: React.FC<SpinnerProps> = ({
     switch (variant) {
       case 'dots':
         return (
-          <div className={spinnerClasses} style={spinnerStyle}>
-            <div className="layera-spinner__dot" />
-            <div className="layera-spinner__dot" />
-            <div className="layera-spinner__dot" />
-          </div>
+          <Box className={spinnerClasses} style={spinnerStyle}>
+            <Box className="layera-spinner__dot" />
+            <Box className="layera-spinner__dot" />
+            <Box className="layera-spinner__dot" />
+          </Box>
         );
 
       case 'pulse':
         return (
-          <div className={spinnerClasses} style={spinnerStyle}>
-            <div className="layera-spinner__pulse" />
-          </div>
+          <Box className={spinnerClasses} style={spinnerStyle}>
+            <Box className="layera-spinner__pulse" />
+          </Box>
         );
 
       case 'ring':
         return (
-          <div className={spinnerClasses} style={spinnerStyle}>
-            <div className="layera-spinner__ring">
-              <div />
-              <div />
-              <div />
-              <div />
-            </div>
-          </div>
+          <Box className={spinnerClasses} style={spinnerStyle}>
+            <Box className="layera-spinner__ring">
+              <Box />
+              <Box />
+              <Box />
+              <Box />
+            </Box>
+          </Box>
         );
 
       case 'bars':
         return (
-          <div className={spinnerClasses} style={spinnerStyle}>
-            <div className="layera-spinner__bars">
-              <div />
-              <div />
-              <div />
-              <div />
-              <div />
-            </div>
-          </div>
+          <Box className={spinnerClasses} style={spinnerStyle}>
+            <Box className="layera-spinner__bars">
+              <Box />
+              <Box />
+              <Box />
+              <Box />
+              <Box />
+            </Box>
+          </Box>
         );
 
       default:
         return (
-          <div className={spinnerClasses} style={spinnerStyle}>
+          <Box className={spinnerClasses} style={spinnerStyle}>
             <svg
               className="layera-spinner__circle"
               viewBox="0 0 50 50"
@@ -96,7 +97,7 @@ export const Spinner: React.FC<SpinnerProps> = ({
                 strokeDashoffset="31.416"
               />
             </svg>
-          </div>
+          </Box>
         );
     }
   };

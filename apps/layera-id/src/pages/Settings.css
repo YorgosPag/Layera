@@ -5,11 +5,11 @@
 
 .settings-nav {
   background: linear-gradient(135deg, var(--layera-bg-info) 0%, color-mix(in srgb, var(--layera-bg-info) 80%, purple 20%) 100%);
-  padding: 15px 30px;
+  padding: var(--layera-space-4, 15px) var(--layera-space-8, 30px);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 10px color-mix(in srgb, black 10%, transparent 90%);
+  box-shadow: var(--layera-shadow-sm, 0 2px 10px color-mix(in srgb, black 10%, transparent 90%));
 }
 
 .nav-user {
@@ -22,8 +22,8 @@
   background: color-mix(in srgb, var(--layera-bg-primary) 20%, transparent 80%);
   color: var(--layera-bg-primary);
   border: 1px solid color-mix(in srgb, var(--layera-bg-primary) 30%, transparent 70%);
-  padding: 6px 12px;
-  border-radius: 6px;
+  padding: var(--layera-space-1-5, 6px) var(--layera-space-3, 12px);
+  border-radius: var(--layera-radius-sm, 6px);
   cursor: pointer;
   font-size: 12px;
   font-weight: 500;
@@ -45,23 +45,23 @@
 }
 
 .settings-content {
-  padding: 20px;
+  padding: var(--layera-space-5, 20px);
   max-width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - var(--layera-space-20, 80px));
 }
 
 .settings-card {
   background: var(--layera-bg-primary);
-  padding: 30px 20px;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px color-mix(in srgb, black 5%, transparent 95%);
+  padding: var(--layera-space-8, 30px) var(--layera-space-5, 20px);
+  border-radius: var(--layera-radius-lg, 12px);
+  box-shadow: var(--layera-shadow-sm, 0 2px 10px color-mix(in srgb, black 5%, transparent 95%));
   width: 100%;
-  max-width: 500px;
-  margin: 20px auto;
+  max-width: var(--layera-width-md, 500px);
+  margin: var(--layera-space-5, 20px) auto;
 }
 
 .settings-header {
@@ -70,9 +70,9 @@
 }
 
 .settings-icon {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+  width: var(--layera-size-20, 80px);
+  height: var(--layera-size-20, 80px);
+  border-radius: var(--layera-radius-full, 50%);
   background: linear-gradient(135deg, var(--layera-bg-info) 0%, color-mix(in srgb, var(--layera-bg-info) 80%, purple 20%) 100%);
   display: flex;
   align-items: center;
@@ -100,10 +100,10 @@
 }
 
 .settings-section {
-  margin-bottom: 40px;
-  padding: 25px;
+  margin-bottom: var(--layera-space-10, 40px);
+  padding: var(--layera-space-6, 25px);
   border: 1px solid var(--layera-border-primary);
-  border-radius: 8px;
+  border-radius: var(--layera-radius-md, 8px);
   background: var(--layera-bg-tertiary);
 }
 
@@ -114,9 +114,9 @@
 
 .settings-section h3 {
   color: var(--layera-text-primary);
-  margin: 0 0 20px 0;
-  font-size: 18px;
-  font-weight: 600;
+  margin: 0 0 var(--layera-space-5, 20px) 0;
+  font-size: var(--layera-font-size-lg, 18px);
+  font-weight: var(--layera-font-weight-semibold, 600);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -136,9 +136,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  padding: var(--layera-space-4, 15px);
   background: var(--layera-bg-primary);
-  border-radius: 6px;
+  border-radius: var(--layera-radius-sm, 6px);
   border: 1px solid var(--layera-border-primary);
 }
 
@@ -149,8 +149,8 @@
 .item-info strong {
   display: block;
   color: var(--layera-text-primary);
-  font-size: 14px;
-  margin-bottom: 4px;
+  font-size: var(--layera-font-size-sm, 14px);
+  margin-bottom: var(--layera-space-1, 4px);
 }
 
 .item-info small {

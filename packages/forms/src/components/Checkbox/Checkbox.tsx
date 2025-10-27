@@ -5,6 +5,7 @@ import {
   type FormSize,
   type FormState
 } from '@layera/constants';
+import { Box } from '@layera/layout';
 import './Checkbox.css';
 
 export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
@@ -108,11 +109,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
   // Render icon based on state
   const renderIcon = () => {
     if (loading) {
-      return <div className="layera-checkbox__spinner" />;
+      return <Box className="layera-checkbox__spinner" />;
     }
 
     if (indeterminate) {
-      return indeterminateIcon || <div className="layera-checkbox__minus" />;
+      return indeterminateIcon || <Box className="layera-checkbox__minus" />;
     }
 
     if (checked) {
@@ -127,8 +128,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
   };
 
   return (
-    <div className={wrapperClasses}>
-      <div className="layera-checkbox__control">
+    <Box className={wrapperClasses}>
+      <Box className="layera-checkbox__control">
         <input
           ref={combinedRef}
           type="checkbox"
@@ -138,13 +139,13 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
           className={inputClasses}
           {...props}
         />
-        <div className={boxClasses}>
+        <Box className={boxClasses}>
           {renderIcon()}
-        </div>
-      </div>
+        </Box>
+      </Box>
 
       {(label || description || error) && (
-        <div className="layera-checkbox__content">
+        <Box className="layera-checkbox__content">
           {label && (
             <label
               htmlFor={checkboxId}
@@ -163,23 +164,23 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
           )}
 
           {description && !error && (
-            <div className="layera-checkbox__description">
+            <Box className="layera-checkbox__description">
               {description}
-            </div>
+            </Box>
           )}
 
           {error && (
-            <div
+            <Box
               className="layera-checkbox__error"
               role="alert"
               aria-live="polite"
             >
               {error}
-            </div>
+            </Box>
           )}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 });
 

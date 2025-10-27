@@ -1,0 +1,53 @@
+name: policy
+on:
+  pull_request:
+  push: { branches: [ main ] }
+
+jobs:
+  guardrails:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: Enable corepack
+        run: corepack enable
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      # Design φρένα
+      - name: CSS lint
+        run: pnpm -w exec stylelint "**/*.{css,scss}"
+
+      - name: Policy grep (design literals)
+        run: |
+          ! git grep -nE '#[0-9a-fA-F]{3,8}|\brgb\(|\bhsl\(|\b\d+px\b' -- . ':!packages/tokens/**' ':!packages/styles/**' ':!**/*.svg' ':!**/dist/**'
+
+      - name: No direct token imports from apps
+        run: |
+          ! git grep -n "@layera/tokens" -- apps/**
+
+      - name: No custom --la-* outside tokens/styles
+        run: |
+          ! git grep -nE '(^|[;{[:space:]])--la-[a-z0-9-]+[[:space:]]*:' -- \
+            ':!packages/tokens/**' ':!packages/styles/**' -- 'apps/**' 'packages/**'
+
+      # Διπλότυπα
+      - name: Duplicate code check
+        run: pnpm -w exec jscpd --pattern "**/*.{ts,tsx,js,jsx,css,scss}" -t 0 --ignore "**/dist/**,**/node_modules/**,packages/tokens/**,packages/styles/**,**/*.svg"
+
+      # Import boundaries
+      - name: Import rules
+        run: pnpm -w imports:check
+
+      # ESLint (μαγικοί αριθμοί, ρόλοι κ.λπ.)
+      - name: ESLint
+        run: pnpm -w exec eslint "**/*.{ts,tsx,js,jsx}"
+
+      # API contracts
+      - name: API constants
+        run: pnpm -w --filter @layera/constants run api:check
+      - name: API ui
+        run: pnpm -w --filter @layera/ui run api:check
+      - name: API layout
+        run: pnpm -w --filter @layera/layout run api:check

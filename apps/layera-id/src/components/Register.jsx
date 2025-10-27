@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { FormField, FormSection, FormActions, Input } from '@layera/forms';
 import { Button } from '@layera/buttons';
 import { BaseCard } from '@layera/cards';
+import { Box } from '@layera/layout';
 import { useLayeraTranslation } from '@layera/i18n';
 import { FORM_TYPES, FORM_SIZES } from '@layera/constants';
 import './Auth.css';
@@ -75,13 +76,13 @@ const Register = () => {
   };
 
   return (
-    <div className="auth-container">
+    <Box className="auth-container">
       <BaseCard
         title={t('auth.register')}
         variant="auth"
         className="auth-card-replacement"
       >
-        {error && <div className="error-message">{error}</div>}
+        {error && <Box className="error-message">{error}</Box>}
 
         <form onSubmit={handleSubmit}>
           <FormSection>
@@ -166,22 +167,22 @@ const Register = () => {
           </FormSection>
         </form>
 
-        <div className="auth-divider">
+        <Box className="auth-divider">
           <span>ή</span>
-        </div>
+        </Box>
 
         <GoogleSignInButton
           onClick={handleGoogleSignIn}
           disabled={loading}
         />
 
-        <div className="auth-links">
+        <Box className="auth-links">
           <p>
             {t('auth.hasAccount')} <Link to="/login">{t('auth.login')}</Link>
           </p>
-        </div>
+        </Box>
       </BaseCard>
-    </div>
+    </Box>
   );
 };
 

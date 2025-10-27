@@ -89,9 +89,8 @@ function TestNotificationsComponent() {
       variant="secondary"
       padding="lg"
       margin="md"
-      style={{
-        border: '2px solid var(--layera-border-success)'
-      }}>
+      borderWidth="md"
+      borderColor="success">
       <Heading as="h3" size="lg" color="primary" className="layera-mb-4">
         🧪 LEGO Systems Test Panel
       </Heading>
@@ -187,6 +186,9 @@ function App() {
   // State για re-render αν αλλάξει
   const [deviceDetected, setDeviceDetected] = useState(isIPhone14ProMaxDevice);
   const [, setSavedAreas] = useState<DrawnArea[]>([]);
+
+  // State για responsive mode detection από DeviceFrameWrapper
+  const [isResponsiveMode, setIsResponsiveMode] = useState(true);
   // REMOVED: Legacy unified pipeline state - replaced by modular step system
 
   // Use detected iPhone mode
@@ -283,11 +285,40 @@ function App() {
                 background-color: transparent !important;
               }
             `}</style>
-            <Flex direction="row" height="100vh">
-
-              {/* Device Frame - Left Side */}
-              <Box flex="1">
-                <DeviceFrameWrapper enabled={true}>
+            {isResponsiveMode ? (
+              /* Responsive Mode - Fullscreen Layout */
+              <Box width="100%" height="100vh">
+                <DeviceFrameWrapper
+                  enabled={true}
+                  onResponsiveModeChange={setIsResponsiveMode}
+                >
+                  <AppShell
+                    layout="fullscreen"
+                    header={(!showCategoryElements || !finalIsIPhone) ?
+                      <GeoHeader onBackClick={() => setIsMapMode(false)} isIPhone14ProMax={finalIsIPhone} /> :
+                      null}
+                    className={`geo-map-shell ${showCategoryElements && finalIsIPhone ? 'hide-header' : ''}`}
+                  >
+                    <ViewportFrame id="layera-device-simulator-viewport">
+                      <GeoMap
+                        onAreaCreated={handleAreaCreated}
+                        onNewEntryClick={handleNewEntryClick}
+                        isIPhone14ProMaxDevice={finalIsIPhone}
+                        onCategoryElementsChange={setShowCategoryElements}
+                        showCategoryElements={showCategoryElements}
+                      />
+                    </ViewportFrame>
+                  </AppShell>
+                </DeviceFrameWrapper>
+              </Box>
+            ) : (
+              /* Device Mode - Constrained Layout */
+              <Flex direction="row" height="100vh">
+                <Box flex="1">
+                <DeviceFrameWrapper
+                  enabled={true}
+                  onResponsiveModeChange={setIsResponsiveMode}
+                >
                   <AppShell
                     layout="fullscreen"
                     header={(!showCategoryElements || !finalIsIPhone) ?
@@ -308,9 +339,10 @@ function App() {
                 </DeviceFrameWrapper>
               </Box>
 
-              {/* Legacy pipeline control panel removed - using integrated floating stepper */}
+                {/* Legacy pipeline control panel removed - using integrated floating stepper */}
 
-            </Flex>
+              </Flex>
+            )}
           </DeviceOverrideProvider>
         </NotificationProvider>
         </ThemeProvider>
@@ -360,7 +392,8 @@ function App() {
                   onClick={() => setIsMapMode(true)}
                   icon={<MapIcon size="lg" theme="neutral" />}
                   className="layera-mb-8"
-                  style={{ margin: `0 auto ${SPACING_SCALE.XL}px auto` }}
+                  margin="auto"
+                  marginBottom="xl"
                   boxShadow={BOX_SHADOW_SCALE.cardDefault}
                 >
                   {t('geoalert.enterGeoCanvas')}

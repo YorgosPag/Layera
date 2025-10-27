@@ -3,12 +3,13 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { BrowserRouter } from 'react-router-dom';
 import PrivateRoute from '../PrivateRoute';
 import { AuthProvider } from '@layera/auth-bridge';
+import { Box } from '@layera/layout';
 
 // Mock the auth bridge
 vi.mock('@layera/auth-bridge', () => ({
-  AuthProvider: ({ children }: { children: React.ReactNode }) => <div data-testid="auth-provider">{children}</div>,
+  AuthProvider: ({ children }: { children: React.ReactNode }) => <Box data-testid="auth-provider">{children}</Box>,
   useAuthContext: vi.fn(),
-  RoleGuard: ({ children }: { children: React.ReactNode }) => <div data-testid="role-guard">{children}</div>,
+  RoleGuard: ({ children }: { children: React.ReactNode }) => <Box data-testid="role-guard">{children}</Box>,
 }));
 
 const TestWrapper = ({ children }: { children: React.ReactNode }) => (
@@ -28,7 +29,7 @@ describe('PrivateRoute', () => {
     render(
       <TestWrapper>
         <PrivateRoute>
-          <div>Protected content</div>
+          <Box>Protected content</Box>
         </PrivateRoute>
       </TestWrapper>
     );
@@ -40,7 +41,7 @@ describe('PrivateRoute', () => {
     render(
       <TestWrapper>
         <PrivateRoute requiredRole="admin">
-          <div>Admin content</div>
+          <Box>Admin content</Box>
         </PrivateRoute>
       </TestWrapper>
     );

@@ -55,6 +55,9 @@ export const DEFAULT_UPLOAD_CONFIG = {
     'text/plain', 'text/csv',
     'application/vnd.ms-excel',
     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    'application/zip'
+    'application/zip',
+    // CAD file support (enhanced from file-import)
+    'application/dxf',
+    'application/dwg'
   ]
 };

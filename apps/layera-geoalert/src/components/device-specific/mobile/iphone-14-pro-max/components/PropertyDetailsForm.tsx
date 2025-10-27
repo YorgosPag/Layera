@@ -6,6 +6,7 @@
  */
 
 import React, { useState } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { Stack, Flex, Box } from '@layera/layout';
 import { Button } from '@layera/buttons';
 import { Text } from '@layera/typography';
@@ -45,6 +46,7 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
   onSubmit,
   onCancel
 }) => {
+  const { t } = useLayeraTranslation();
   // Property type labels - moved before useState to avoid reference error
   const propertyTypeLabels = {
     apartment: 'Διαμέρισμα',
@@ -143,7 +145,7 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
             type="text"
             value={formData.title}
             onChange={(e) => handleInputChange('title', e.target.value)}
-            placeholder="π.χ. Διαμέρισμα 85τμ στο κέντρο"
+            placeholder={t('property.form.title.placeholder')}
             variant="outline"
             size="md"
             fullWidth
@@ -216,7 +218,7 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
               variant="outline"
               size="md"
               fullWidth
-              placeholder="Επιλέξτε όροφο"
+              placeholder={t('property.form.floor.placeholder')}
             >
               <option value="2">2ος όροφος</option>
               <option value="1">1ος όροφος</option>
@@ -237,7 +239,7 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
               variant="outline"
               size="md"
               fullWidth
-              placeholder="Επιλέξτε αριθμό δωματίων"
+              placeholder={t('property.form.rooms.placeholder')}
             >
               <option value="3">3 δωμάτια</option>
               <option value="2">2 δωμάτια</option>

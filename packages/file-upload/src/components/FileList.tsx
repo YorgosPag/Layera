@@ -5,6 +5,7 @@ import { Text as Typography } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { UploadIcon, CloseIcon, RefreshIcon, DeleteIcon } from '@layera/icons';
 import { useTheme } from '@layera/theme-switcher';
+import { Box } from '@layera/layout';
 import type { FileListProps, FileUploadItem } from '../types';
 import { formatBytes } from '../utils/fileValidation';
 
@@ -35,7 +36,7 @@ export const FileList: React.FC<FileListProps> = ({
   }
 
   return (
-    <div className="space-y-3">
+    <Box className="space-y-3">
       {files.map((file) => (
         <FileListItem
           key={file.id}
@@ -47,7 +48,7 @@ export const FileList: React.FC<FileListProps> = ({
           onRetry={onRetry}
         />
       ))}
-    </div>
+    </Box>
   );
 };
 
@@ -136,24 +137,24 @@ const FileListItem: React.FC<FileListItemProps> = ({
 
   return (
     <Card className={`p-4 ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'}`}>
-      <div className="flex items-center justify-between">
+      <Box className="flex items-center justify-between">
         {/* File Info */}
-        <div className="flex items-center space-x-3 flex-1 min-w-0">
-          <div className="flex-shrink-0">
+        <Box className="flex items-center space-x-3 flex-1 min-w-0">
+          <Box className="flex-shrink-0">
             {getStatusIcon()}
-          </div>
+          </Box>
 
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center justify-between">
+          <Box className="flex-1 min-w-0">
+            <Box className="flex items-center justify-between">
               <Typography size="base" weight="medium" className="truncate">
                 {file.file.name}
               </Typography>
               <Typography size="sm" className="text-gray-500 ml-2">
                 {formatBytes(file.file.size)}
               </Typography>
-            </div>
+            </Box>
 
-            <div className="flex items-center space-x-4 mt-1">
+            <Box className="flex items-center space-x-4 mt-1">
               <Typography size="sm" className="text-gray-500">
                 {getStatusText()}
               </Typography>
@@ -170,23 +171,23 @@ const FileListItem: React.FC<FileListItemProps> = ({
                   )}
                 </>
               )}
-            </div>
+            </Box>
 
             {/* Progress Bar */}
             {showProgress && (
-              <div className={`w-full bg-gray-200 rounded-full h-2 mt-2 ${theme === 'dark' ? 'bg-gray-600' : 'bg-gray-200'}`}>
-                <div
+              <Box className={`w-full bg-gray-200 rounded-full h-2 mt-2 ${theme === 'dark' ? 'bg-gray-600' : 'bg-gray-200'}`}>
+                <Box
                   className={`h-2 rounded-full transition-all duration-300 ${getProgressBarColor()}`}
-                  style={{ width: `${Math.min(file.progress, 100)}%` }}
+                  width={`${Math.min(file.progress, 100)}%`}
                 />
-              </div>
+              </Box>
             )}
-          </div>
-        </div>
+          </Box>
+        </Box>
 
         {/* Actions */}
         {showActions && (
-          <div className="flex items-center space-x-2 ml-4">
+          <Box className="flex items-center space-x-2 ml-4">
             {file.status === 'uploading' && (
               <Button
                 variant="outline"
@@ -219,9 +220,9 @@ const FileListItem: React.FC<FileListItemProps> = ({
                 <DeleteIcon className="w-4 h-4" />
               </Button>
             )}
-          </div>
+          </Box>
         )}
-      </div>
+      </Box>
     </Card>
   );
 };

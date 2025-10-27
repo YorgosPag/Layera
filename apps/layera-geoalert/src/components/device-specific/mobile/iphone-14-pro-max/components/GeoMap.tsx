@@ -12,6 +12,8 @@
 import React, { useEffect } from 'react';
 import { MapContainer } from '../../../../map/MapContainer';
 import { SPACING_SCALE } from '@layera/constants';
+import { Box } from '@layera/layout';
+import { PlusIcon } from '@layera/icons';
 
 interface DrawnArea {
   id: string;
@@ -55,17 +57,17 @@ export const GeoMap: React.FC<GeoMapProps> = ({ onAreaCreated, onNewEntryClick, 
   }, []);
 
   return (
-    <div style={{
-      width: SPACING_SCALE.FULL,
-      height: SPACING_SCALE.VIEWPORT_HEIGHT,
-      position: 'relative'
-    }}>
+    <Box
+      width="full"
+      height="viewportHeight"
+      position="relative"
+    >
       <MapContainer
         onAreaCreated={onAreaCreated}
         onNewEntryClick={onNewEntryClick}
         hideDrawingControls={true}
         isIPhone14ProMaxDevice={isIPhone14ProMaxDevice}
       />
-    </div>
+    </Box>
   );
 };

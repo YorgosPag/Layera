@@ -139,21 +139,5 @@ export const GEO_DRAWING_SUCCESS = {
   MEASUREMENT_CLEARED: 'geo-drawing.success.measurement-cleared'
 } as const;
 
-/**
- * Combined configuration object
- */
-export const CONFIG = {
-  geoDrawing: {
-    snapTolerance: GEO_DRAWING_SNAP.DEFAULT_TOLERANCE,
-    minSnapZoom: GEO_DRAWING_SNAP.MIN_SNAP_ZOOM,
-    debounceMs: GEO_DRAWING_SNAP.DEBOUNCE_MS,
-    ...GEO_DRAWING_MEASUREMENT,
-    ...GEO_DRAWING_INTERACTION
-  },
-  osm: {
-    overpassApiUrl: GEO_DRAWING_OSM.OVERPASS_API_URL,
-    requestTimeout: GEO_DRAWING_OSM.REQUEST_TIMEOUT,
-    maxCacheEntries: GEO_DRAWING_OSM.MAX_CACHE_ENTRIES,
-    cacheTtl: GEO_DRAWING_OSM.CACHE_TTL
-  }
-} as const;
+// Geo-drawing configuration integrated into main CONFIG in config.ts
+// This eliminates duplication and follows Single Source of Truth principle

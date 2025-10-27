@@ -1,6 +1,7 @@
 import React from 'react';
 import { PAGINATION_SIZES, type PaginationSize } from '@layera/constants';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { Box } from '@layera/layout';
 
 interface TablePaginationProps {
   page: number;
@@ -72,8 +73,8 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
   if (total === 0) return null;
 
   return (
-    <div className="layera-table-pagination">
-      <div className="layera-table-pagination__info">
+    <Box className="layera-table-pagination">
+      <Box className="layera-table-pagination__info">
         <span className="layera-table-pagination__results">
           {t('tables.pagination.showing', {
             start: startIndex,
@@ -82,7 +83,7 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
           })}
         </span>
 
-        <div className="layera-table-pagination__page-size">
+        <Box className="layera-table-pagination__page-size">
           <label htmlFor="page-size" className="layera-table-pagination__page-size-label">
             {t('tables.pagination.itemsPerPage')}:
           </label>
@@ -98,10 +99,10 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
               </option>
             ))}
           </select>
-        </div>
-      </div>
+        </Box>
+      </Box>
 
-      <div className="layera-table-pagination__controls">
+      <Box className="layera-table-pagination__controls">
         <button
           onClick={handlePrevious}
           disabled={page <= 1}
@@ -119,7 +120,7 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
           </svg>
         </button>
 
-        <div className="layera-table-pagination__pages">
+        <Box className="layera-table-pagination__pages">
           {getPageNumbers().map((pageNum, index) => (
             <React.Fragment key={index}>
               {typeof pageNum === 'number' ? (
@@ -139,7 +140,7 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
               )}
             </React.Fragment>
           ))}
-        </div>
+        </Box>
 
         <button
           onClick={handleNext}
@@ -157,7 +158,7 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
             />
           </svg>
         </button>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };

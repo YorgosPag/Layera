@@ -9,6 +9,7 @@ import React, { useState, useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { PipelineDiscovery } from '@layera/pipelines';
 import { BaseCard } from '@layera/cards';
+import { Box } from '@layera/layout';
 import { cardData, getCardsForStep, type CardConfig, type CardId } from '../../device-specific/mobile/iphone-14-pro-max/components/cardData';
 import { InfoPanel } from '@layera/info-panels';
 import {
@@ -121,7 +122,7 @@ export const TransactionStep: React.FC<TransactionStepProps> = ({
   const stepCards = getCardsForStep('transactionType');
 
   return (
-    <div className="transaction-step">
+    <Box className="transaction-step">
       {transactionOptions.map((option) => (
         <BaseCard
           key={option.type}
@@ -145,6 +146,6 @@ export const TransactionStep: React.FC<TransactionStepProps> = ({
           cardId={currentInfoCard}
         />
       )}
-    </div>
+    </Box>
   );
 };

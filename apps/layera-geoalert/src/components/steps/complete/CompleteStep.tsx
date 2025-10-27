@@ -7,7 +7,7 @@
 import React, { useCallback, useMemo } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Text } from '@layera/typography';
-import { Stack, Flex } from '@layera/layout';
+import { Stack, Flex, Box } from '@layera/layout';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import { BaseCard } from '@layera/cards';
 import { CheckIcon, AlertTriangleIcon, HomeIcon } from '@layera/icons';
@@ -131,7 +131,7 @@ export const CompleteStep: React.FC<CompleteStepProps> = ({
   };
 
   return (
-    <div style={containerStyles}>
+    <Box style={containerStyles}>
       {/* Success Card */}
       <BaseCard
         variant="job"
@@ -142,23 +142,22 @@ export const CompleteStep: React.FC<CompleteStepProps> = ({
       />
 
       {/* Next Steps Card */}
-      <div style={{
-        padding: `${SPACING_SCALE.MD}px`,
-        background: 'rgba(0, 123, 255, 0.1)',
-        borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
-        border: '1px solid rgba(0, 123, 255, 0.2)'
-      }}>
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 'var(--layera-cards-gap)',
-          marginBottom: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`
-        }}>
+      <Box
+        padding="md"
+        background="var(--color-semantic-info-bg)"
+        borderRadius="card"
+        border="1px solid var(--color-semantic-info-border)"
+      >
+        <Flex
+          align="center"
+          gap="var(--layera-cards-gap)"
+          marginBottom="md"
+        >
           <AlertTriangleIcon size="sm" theme="primary" />
           <Text size="md" weight="bold" color="primary">
             {t('complete.nextSteps.title', 'Επόμενα Βήματα')}
           </Text>
-        </div>
+        </Flex>
         <Stack spacing="xs">
           {completionSummary.nextSteps.map((step, index) => (
             <Text key={index} size="sm" color="secondary">
@@ -166,7 +165,7 @@ export const CompleteStep: React.FC<CompleteStepProps> = ({
             </Text>
           ))}
         </Stack>
-      </div>
+      </Box>
 
       {/* Complete Button */}
       <BaseCard
@@ -186,6 +185,6 @@ export const CompleteStep: React.FC<CompleteStepProps> = ({
         onClick={handleGoBack}
         data-testid="complete-back-card"
       />
-    </div>
+    </Box>
   );
 };

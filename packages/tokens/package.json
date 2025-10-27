@@ -1,0 +1,9 @@
+{
+  "name": "@layera/tokens",
+  "version": "0.0.1",
+  "private": true,
+  "files": ["dist"],
+  "scripts": {
+    "build": "xcopy src\\tokens.css dist\\ /Y > nul || copy src\\tokens.css dist\\tokens.css"
+  }
+}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAuthContext } from './AuthProvider.js';
 import { useTotp } from '../hooks/useTotp.js';
 import type { TotpConfig } from '../utils/totp.js';
+import { Box } from '@layera/layout';
 
 /**
  * Props για TotpSetup component
@@ -83,29 +84,29 @@ export function TotpSetup({
 
   if (step === 'start') {
     return (
-      <div className={`totp-setup ${className}`}>
-        <div className="setup-header">
+      <Box className={`totp-setup ${className}`}>
+        <Box className="setup-header">
           <h2>Ενεργοποίηση 2FA (TOTP)</h2>
           <p>
             Η δίγραμμη επαλήθευση ταυτότητας προσθέτει ένα επιπλέον επίπεδο ασφάλειας στον λογαριασμό σας.
           </p>
-        </div>
+        </Box>
 
-        <div className="setup-steps">
+        <Box className="setup-steps">
           <h3>Τι θα χρειαστείτε:</h3>
           <ol>
             <li>Μία εφαρμογή authenticator (Google Authenticator, Authy, 1Password, κλπ)</li>
             <li>Το κινητό σας τηλέφωνο</li>
           </ol>
-        </div>
+        </Box>
 
         {error && (
-          <div className="error-message">
+          <Box className="error-message">
             {error}
-          </div>
+          </Box>
         )}
 
-        <div className="setup-actions">
+        <Box className="setup-actions">
           <button
             onClick={handleStartSetup}
             disabled={loading}
@@ -122,41 +123,41 @@ export function TotpSetup({
               Ακύρωση
             </button>
           )}
-        </div>
-      </div>
+        </Box>
+      </Box>
     );
   }
 
   if (step === 'verify' && setupData) {
     return (
-      <div className={`totp-setup ${className}`}>
-        <div className="setup-header">
+      <Box className={`totp-setup ${className}`}>
+        <Box className="setup-header">
           <h2>Ρύθμιση Authenticator</h2>
           <p>Ακολουθήστε τα παρακάτω βήματα για να ολοκληρώσετε το setup:</p>
-        </div>
+        </Box>
 
-        <div className="setup-content">
+        <Box className="setup-content">
           {/* QR Code Section */}
-          <div className="qr-section">
+          <Box className="qr-section">
             <h3>Βήμα 1: Σκάναρε το QR Code</h3>
-            <div className="qr-code-container">
+            <Box className="qr-code-container">
               <img
                 src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(setupData.qrCodeUrl)}`}
                 alt="TOTP QR Code"
                 className="qr-code"
               />
-            </div>
+            </Box>
             <p className="qr-instructions">
               Άνοιξε την εφαρμογή authenticator και σκάναρε αυτόν τον QR κωδικό.
             </p>
-          </div>
+          </Box>
 
           {/* Manual Entry Section */}
-          <div className="manual-section">
+          <Box className="manual-section">
             <h3>Εναλλακτικά: Χειροκίνητη εισαγωγή</h3>
-            <div className="manual-key">
+            <Box className="manual-key">
               <label>Secret Key:</label>
-              <div className="key-display">
+              <Box className="key-display">
                 <code>{setupData.manualEntryKey}</code>
                 <button
                   onClick={() => copyToClipboard(setupData.secret)}
@@ -165,18 +166,18 @@ export function TotpSetup({
                 >
                   📋
                 </button>
-              </div>
-            </div>
-          </div>
+              </Box>
+            </Box>
+          </Box>
 
           {/* Verification Section */}
-          <div className="verification-section">
+          <Box className="verification-section">
             <h3>Βήμα 2: Εισάγετε τον κωδικό επαλήθευσης</h3>
             <p>
               Εισάγετε τον 6-ψήφιο κωδικό που εμφανίζεται στην εφαρμογή authenticator:
             </p>
 
-            <div className="verification-input">
+            <Box className="verification-input">
               <input
                 type="text"
                 value={verificationCode}
@@ -186,39 +187,39 @@ export function TotpSetup({
                 maxLength={6}
                 autoComplete="off"
               />
-            </div>
+            </Box>
 
             {error && (
-              <div className="error-message">
+              <Box className="error-message">
                 {error}
-              </div>
+              </Box>
             )}
-          </div>
+          </Box>
 
           {/* Backup Codes Section */}
-          <div className="backup-codes-section">
+          <Box className="backup-codes-section">
             <h3>Backup Codes</h3>
             <p>
               Αποθηκεύστε αυτούς τους κωδικούς σε ασφαλές μέρος. Μπορείτε να τους χρησιμοποιήσετε
               αν χάσετε πρόσβαση στο authenticator:
             </p>
-            <div className="backup-codes">
+            <Box className="backup-codes">
               {setupData.backupCodes.map((code, index) => (
                 <code key={index} className="backup-code">
                   {code}
                 </code>
               ))}
-            </div>
+            </Box>
             <button
               onClick={() => copyToClipboard(setupData.backupCodes.join('\n'))}
               className="copy-backup-btn"
             >
               Αντιγραφή όλων των backup codes
             </button>
-          </div>
-        </div>
+          </Box>
+        </Box>
 
-        <div className="setup-actions">
+        <Box className="setup-actions">
           <button
             onClick={handleVerifyCode}
             disabled={loading || verificationCode.length !== 6}
@@ -242,8 +243,8 @@ export function TotpSetup({
               Ακύρωση
             </button>
           )}
-        </div>
-      </div>
+        </Box>
+      </Box>
     );
   }
 
@@ -292,17 +293,17 @@ export function TotpVerification({
   };
 
   return (
-    <div className={`totp-verification ${className}`}>
-      <div className="verification-header">
+    <Box className={`totp-verification ${className}`}>
+      <Box className="verification-header">
         <h2>Επαλήθευση Ταυτότητας</h2>
         <p>
           Εισάγετε τον 6-ψήφιο κωδικό από την εφαρμογή authenticator:
         </p>
-      </div>
+      </Box>
 
       {!showBackup ? (
         <form onSubmit={handleSubmit} className="verification-form">
-          <div className="totp-input-group">
+          <Box className="totp-input-group">
             <input
               type="text"
               value={code}
@@ -313,12 +314,12 @@ export function TotpVerification({
               autoComplete="one-time-code"
               autoFocus
             />
-          </div>
+          </Box>
 
           {error && (
-            <div className="error-message">
+            <Box className="error-message">
               {error}
-            </div>
+            </Box>
           )}
 
           <button
@@ -341,7 +342,7 @@ export function TotpVerification({
         </form>
       ) : (
         <form onSubmit={handleBackupSubmit} className="backup-form">
-          <div className="backup-input-group">
+          <Box className="backup-input-group">
             <label htmlFor="backup-code">Backup Code:</label>
             <input
               id="backup-code"
@@ -352,15 +353,15 @@ export function TotpVerification({
               className="backup-input"
               autoComplete="off"
             />
-          </div>
+          </Box>
 
           {error && (
-            <div className="error-message">
+            <Box className="error-message">
               {error}
-            </div>
+            </Box>
           )}
 
-          <div className="backup-actions">
+          <Box className="backup-actions">
             <button
               type="submit"
               disabled={loading || !backupCode.trim()}
@@ -376,9 +377,9 @@ export function TotpVerification({
             >
               Πίσω στον TOTP
             </button>
-          </div>
+          </Box>
         </form>
       )}
-    </div>
+    </Box>
   );
 }

@@ -8,6 +8,7 @@ import {
   type InputVariant
 } from '@layera/constants';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { Box } from '@layera/layout';
 import './Select.css';
 
 export interface SelectOption {
@@ -170,7 +171,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
   }, [isOpen, searchable]);
 
   return (
-    <div
+    <Box
       ref={selectRef}
       className={selectClasses}
       onClick={handleToggle}
@@ -181,14 +182,14 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
       aria-haspopup="listbox"
       aria-disabled={disabled}
     >
-      <div className="layera-select__control">
+      <Box className="layera-select__control">
         {startIcon && (
-          <div className="layera-select__start-icon">
+          <Box className="layera-select__start-icon">
             {startIcon}
-          </div>
+          </Box>
         )}
 
-        <div className="layera-select__value">
+        <Box className="layera-select__value">
           {searchable && isOpen ? (
             <input
               ref={inputRef}
@@ -204,13 +205,13 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
               {selectedOption?.label || resolvedPlaceholder}
             </span>
           )}
-        </div>
+        </Box>
 
-        <div className="layera-select__indicators">
+        <Box className="layera-select__indicators">
           {loading && (
-            <div className="layera-select__loading">
-              <div className="layera-select__spinner" />
-            </div>
+            <Box className="layera-select__loading">
+              <Box className="layera-select__spinner" />
+            </Box>
           )}
 
           {clearable && value && !loading && (
@@ -224,7 +225,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
             </button>
           )}
 
-          <div className="layera-select__arrow">
+          <Box className="layera-select__arrow">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
               <path
                 d="M3 4.5L6 7.5L9 4.5"
@@ -234,15 +235,15 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
                 strokeLinejoin="round"
               />
             </svg>
-          </div>
-        </div>
-      </div>
+          </Box>
+        </Box>
+      </Box>
 
       {isOpen && (
-        <div className="layera-select__dropdown" role="listbox">
+        <Box className="layera-select__dropdown" role="listbox">
           {filteredOptions.length > 0 ? (
             filteredOptions.map((option, index) => (
-              <div
+              <Box
                 key={option.value}
                 className={[
                   'layera-select__option',
@@ -256,16 +257,16 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
                 aria-disabled={option.disabled}
               >
                 {option.label}
-              </div>
+              </Box>
             ))
           ) : (
-            <div className="layera-select__empty">
+            <Box className="layera-select__empty">
               {resolvedEmptyMessage}
-            </div>
+            </Box>
           )}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 });
 

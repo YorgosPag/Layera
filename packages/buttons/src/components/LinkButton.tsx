@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import { Box } from '@layera/layout';
 import { LinkButtonProps } from '../types';
 
 /**
@@ -44,17 +45,17 @@ export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(({
     switch (loadingVariant) {
       case 'dots':
         return (
-          <div className="layera-btn__dots">
-            <div className="dot"></div>
-            <div className="dot"></div>
-            <div className="dot"></div>
-          </div>
+          <Box className="layera-btn__dots">
+            <Box className="dot"></Box>
+            <Box className="dot"></Box>
+            <Box className="dot"></Box>
+          </Box>
         );
       case 'pulse':
-        return <div className="layera-btn__pulse"></div>;
+        return <Box className="layera-btn__pulse"></Box>;
       case 'spinner':
       default:
-        return <div className="layera-btn__spinner"></div>;
+        return <Box className="layera-btn__spinner"></Box>;
     }
   };
 
@@ -102,13 +103,13 @@ export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(({
       {...props}
     >
       {loading && (
-        <div className="layera-btn__loading">
+        <Box className="layera-btn__loading">
           {renderLoadingContent()}
-        </div>
+        </Box>
       )}
-      <div className="layera-btn__content">
+      <Box className="layera-btn__content">
         {loading && loadingText ? loadingText : renderContent()}
-      </div>
+      </Box>
     </a>
   );
 });

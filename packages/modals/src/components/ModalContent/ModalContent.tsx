@@ -1,4 +1,5 @@
 import React from 'react';
+import { Box } from '@layera/layout';
 import type { ModalContentProps } from '../../types';
 import './ModalContent.css';
 
@@ -19,8 +20,8 @@ export const ModalContent: React.FC<ModalContentProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <div className={contentClasses} id="modal-content">
+    <Box className={contentClasses} id="modal-content">
       {children}
-    </div>
+    </Box>
   );
 };

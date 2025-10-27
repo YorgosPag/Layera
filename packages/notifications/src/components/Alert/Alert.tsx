@@ -1,4 +1,5 @@
 import React from 'react';
+import { Box } from '@layera/layout';
 import { NOTIFICATION_ICON_SIZES, NOTIFICATION_STROKE_WIDTH } from '../../constants';
 import type { AlertProps } from '../../types';
 import './Alert.css';
@@ -57,21 +58,21 @@ export const Alert: React.FC<AlertProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <div className={alertClasses} role="alert">
-      <div className="layera-alert__icon">
+    <Box className={alertClasses} role="alert">
+      <Box className="layera-alert__icon">
         {getTypeIcon()}
-      </div>
+      </Box>
 
-      <div className="layera-alert__content">
+      <Box className="layera-alert__content">
         {title && (
-          <div className="layera-alert__title">
+          <Box className="layera-alert__title">
             {title}
-          </div>
+          </Box>
         )}
-        <div className="layera-alert__message">
+        <Box className="layera-alert__message">
           {message}
-        </div>
-      </div>
+        </Box>
+      </Box>
 
       {action && (
         <button
@@ -96,6 +97,6 @@ export const Alert: React.FC<AlertProps> = ({
           </svg>
         </button>
       )}
-    </div>
+    </Box>
   );
 };

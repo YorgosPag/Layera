@@ -1,5 +1,6 @@
 import React from 'react';
 import { SPACING_SCALE } from '@layera/constants';
+import { Box } from '../Box';
 
 export interface PageContainerProps {
   children: React.ReactNode;
@@ -41,8 +42,8 @@ export const PageContainer: React.FC<PageContainerProps> = ({
   };
 
   return (
-    <div className={containerClasses} style={styles}>
+    <Box className={containerClasses} style={styles}>
       {children}
-    </div>
+    </Box>
   );
 };

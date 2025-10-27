@@ -1,4 +1,5 @@
 import React from 'react';
+import { Box } from '@layera/layout';
 
 /**
  * DashboardGrid - Responsive grid layout για dashboard cards
@@ -37,9 +38,9 @@ export const DashboardGrid: React.FC<DashboardGridProps> = ({
   } as React.CSSProperties;
 
   return (
-    <div className={gridClasses} style={gridStyle}>
+    <Box className={gridClasses} style={gridStyle}>
       {children}
-    </div>
+    </Box>
   );
 };
 
@@ -69,21 +70,21 @@ export const DashboardSection: React.FC<DashboardSectionProps> = ({
   return (
     <section className={sectionClasses}>
       {(title || subtitle || actions) && (
-        <div className="layera-dashboard-section__header">
-          <div className="layera-dashboard-section__header-content">
+        <Box className="layera-dashboard-section__header">
+          <Box className="layera-dashboard-section__header-content">
             {title && <h2 className="layera-dashboard-section__title">{title}</h2>}
             {subtitle && <p className="layera-dashboard-section__subtitle">{subtitle}</p>}
-          </div>
+          </Box>
           {actions && (
-            <div className="layera-dashboard-section__actions">
+            <Box className="layera-dashboard-section__actions">
               {actions}
-            </div>
+            </Box>
           )}
-        </div>
+        </Box>
       )}
-      <div className="layera-dashboard-section__content">
+      <Box className="layera-dashboard-section__content">
         {children}
-      </div>
+      </Box>
     </section>
   );
 };

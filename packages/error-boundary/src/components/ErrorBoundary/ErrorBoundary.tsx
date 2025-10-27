@@ -1,5 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import type { ErrorInfo } from 'react';
+import { Box } from '@layera/layout';
 import { ErrorFallback } from '../ErrorFallback';
 import { generateErrorId } from '../../utils';
 import type { ErrorBoundaryProps, ErrorBoundaryState } from '../../types';
@@ -124,9 +125,9 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     // Isolate children in error boundary
     if (isolate) {
       return (
-        <div className="layera-error-boundary-isolate">
+        <Box className="layera-error-boundary-isolate">
           {children}
-        </div>
+        </Box>
       );
     }
 

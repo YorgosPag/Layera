@@ -4,6 +4,7 @@
  */
 
 import React, { useRef, useEffect, useCallback, useState } from 'react';
+import { Box } from '@layera/layout';
 
 // Import από existing LEGO systems - ΜΗΝ αναδημιουργήσεις
 import { useTheme } from '@layera/theme-switcher';
@@ -143,7 +144,7 @@ export const SnapCanvas: React.FC<SnapCanvasProps> = ({
     ctx.clearRect(0, 0, width, height);
 
     // Background
-    ctx.fillStyle = backgroundColor || (theme === 'dark' ? '#2c3e50' : '#ecf0f1');
+    ctx.fillStyle = backgroundColor || (theme === 'dark' ? 'var(--layera-color-slate-700, #2c3e50)' : 'var(--layera-color-gray-100, #ecf0f1)');
     ctx.fillRect(0, 0, width, height);
 
     // Render geometries
@@ -159,11 +160,11 @@ export const SnapCanvas: React.FC<SnapCanvasProps> = ({
     const isSelected = canvasState.selectedGeometry?.id === geometry.id;
     const isHovered = canvasState.hoverGeometry?.id === geometry.id;
 
-    ctx.strokeStyle = isSelected ? '#e74c3c' : isHovered ? '#3498db' :
-                     theme === 'dark' ? '#ecf0f1' : '#2c3e50';
+    ctx.strokeStyle = isSelected ? 'var(--layera-color-red-600, #e74c3c)' : isHovered ? 'var(--layera-color-blue-600, #3498db)' :
+                     theme === 'dark' ? 'var(--layera-color-gray-100, #ecf0f1)' : 'var(--layera-color-slate-700, #2c3e50)';
     ctx.lineWidth = isSelected ? 3 : isHovered ? 2 : 1;
     ctx.fillStyle = geometry.layer === 'osm_buildings' ?
-                   'rgba(52, 152, 219, 0.2)' : 'transparent';
+                   'var(--layera-color-blue-600-alpha-20, rgba(52, 152, 219, 0.2))' : 'transparent';
 
     // Render based on geometry type
     switch (geometry.type) {
@@ -368,7 +369,7 @@ export const SnapCanvas: React.FC<SnapCanvasProps> = ({
 
   return (
     <ErrorBoundary>
-      <div
+      <Box
         ref={containerRef}
         className={`snap-canvas ${className}`}
         style={containerStyle}
@@ -387,20 +388,20 @@ export const SnapCanvas: React.FC<SnapCanvasProps> = ({
 
         {/* Loading Overlay - χρησιμοποιεί @layera/loading */}
         {isIndexing && (
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0,0,0,0.5)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 1000
-          }}>
+          <Box
+            position="absolute"
+            top={0}
+            left={0}
+            right={0}
+            bottom={0}
+            backgroundColor="var(--layera-overlay-backdrop, rgba(0,0,0,0.5))"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            zIndex={1000}
+          >
             <LoadingSpinner size="large" />
-          </div>
+          </Box>
         )}
 
         {/* Snap Visual Feedback */}
@@ -443,7 +444,7 @@ export const SnapCanvas: React.FC<SnapCanvasProps> = ({
             visible={true}
           />
         )}
-      </div>
+      </Box>
     </ErrorBoundary>
   );
 };

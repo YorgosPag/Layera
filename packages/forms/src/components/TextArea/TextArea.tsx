@@ -7,6 +7,7 @@ import {
   type FormState,
   type InputVariant
 } from '@layera/constants';
+import { Box } from '@layera/layout';
 import './TextArea.css';
 
 export interface TextAreaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> {
@@ -78,7 +79,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
   };
 
   return (
-    <div className={wrapperClasses}>
+    <Box className={wrapperClasses}>
       <textarea
         ref={ref}
         disabled={disabled}
@@ -86,7 +87,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
         style={textAreaStyle}
         {...props}
       />
-    </div>
+    </Box>
   );
 });
 

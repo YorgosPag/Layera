@@ -1,0 +1,5 @@
+packages/tokens/**
+packages/styles/**
+**/*.svg
+**/dist/**
+**/node_modules/**

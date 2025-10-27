@@ -9,6 +9,7 @@ import React, { useState, useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { PipelineDiscovery } from '@layera/pipelines';
 import { BaseCard } from '@layera/cards';
+import { Box } from '@layera/layout';
 import { cardData, getCardsForStep, type CardConfig, type CardId } from '../../device-specific/mobile/iphone-14-pro-max/components/cardData';
 import { InfoPanel } from '@layera/info-panels';
 import {
@@ -109,8 +110,8 @@ export const IntentStep: React.FC<IntentStepProps> = ({
     } catch (error) {
       console.warn(`Info content not found for card: ${cardId}`);
       return {
-        title: t('info.defaultTitle', 'Πληροφορίες'),
-        content: t('info.defaultContent', 'Δεν υπάρχουν διαθέσιμες πληροφορίες για αυτή την επιλογή.'),
+        title: t('info.title'),
+        content: t('info.content.notAvailable'),
         type: 'info' as const
       };
     }
@@ -143,19 +144,19 @@ export const IntentStep: React.FC<IntentStepProps> = ({
 
   return (
     <>
-      <div style={containerStyles} className={containerClass}>
+      <Box style={containerStyles} className={containerClass}>
         {intentCards.map((cardConfig) => (
           <BaseCard
             key={cardConfig.id}
             variant={context.selectedCategory || 'property'}
-            title={cardConfig.title}
+            title={t(cardConfig.titleKey)}
             icon={React.createElement(cardConfig.icon, { size: 'sm', theme: 'neutral' })}
             onClick={() => handleIntentClick(cardConfig)}
             onInfoClick={() => handleInfoClick(cardConfig.id)}
             data-testid={`intent-card-${cardConfig.id}`}
           />
         ))}
-      </div>
+      </Box>
 
       {/* Info Panel */}
       {showInfoPanel && currentInfoCard && (

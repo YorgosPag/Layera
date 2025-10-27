@@ -6,6 +6,7 @@
  */
 
 import React from 'react';
+import { Box } from '@layera/layout';
 import { BaseCard } from '../BaseCard/BaseCard';
 import type {
   UnifiedCardProps,
@@ -80,18 +81,18 @@ function renderCardContent(
   // Data cards με custom content
   if (config.type === 'data' && config.content) {
     return (
-      <div className="unified-card__content">
+      <Box className="unified-card__content">
         {config.content}
-      </div>
+      </Box>
     );
   }
 
   // Selection cards με selection indicators
   if (config.type === 'selection' && config.selected) {
     return (
-      <div className="unified-card__selection-indicator">
+      <Box className="unified-card__selection-indicator">
         ✓
-      </div>
+      </Box>
     );
   }
 
@@ -115,13 +116,13 @@ function renderToolContent(
   if (!('isSelected' in config)) return null;
 
   return (
-    <div className="unified-card__tool-status">
+    <Box className="unified-card__tool-status">
       {config.isSelected && (
-        <div className="unified-card__tool-selected">
+        <Box className="unified-card__tool-selected">
           Active
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 }
 
@@ -132,13 +133,13 @@ function renderActionContent(
   if (!('priority' in config)) return null;
 
   return (
-    <div className="unified-card__action-indicator">
+    <Box className="unified-card__action-indicator">
       {config.priority === 'primary' && (
-        <div className="unified-card__primary-action">
+        <Box className="unified-card__primary-action">
           Primary
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 }
 

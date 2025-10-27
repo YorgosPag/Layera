@@ -1,6 +1,7 @@
 import React from 'react';
 import { formatError } from '../../utils';
 import type { ErrorDetailsProps } from '../../types';
+import { Box } from '@layera/layout';
 import './ErrorDetails.css';
 
 /**
@@ -44,12 +45,12 @@ export const ErrorDetails: React.FC<ErrorDetailsProps> = ({
   };
 
   return (
-    <div className={detailsClasses}>
-      <div className="layera-error-details__header">
+    <Box className={detailsClasses}>
+      <Box className="layera-error-details__header">
         <h3 className="layera-error-details__title">
           Error Details
         </h3>
-        <div className="layera-error-details__actions">
+        <Box className="layera-error-details__actions">
           <button
             type="button"
             className="layera-error-details__copy"
@@ -76,72 +77,72 @@ export const ErrorDetails: React.FC<ErrorDetailsProps> = ({
                 stroke="currentColor"
                 strokeWidth="2"
                 style={{
-                  transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
-                  transition: 'transform 150ms ease'
+                  transform: expanded ? 'var(--layera-transform-rotate-180, rotate(180deg))' : 'var(--layera-transform-rotate-0, rotate(0deg))',
+                  transition: 'var(--layera-transition-transform, transform 150ms ease)'
                 }}
               >
                 <polyline points="6,9 12,15 18,9"/>
               </svg>
             </button>
           )}
-        </div>
-      </div>
+        </Box>
+      </Box>
 
       {expanded && (
-        <div className="layera-error-details__content">
-          <div className="layera-error-details__section">
+        <Box className="layera-error-details__content">
+          <Box className="layera-error-details__section">
             <h4 className="layera-error-details__section-title">Error Information</h4>
-            <div className="layera-error-details__field">
+            <Box className="layera-error-details__field">
               <span className="layera-error-details__label">ID:</span>
               <code className="layera-error-details__value">{errorId}</code>
-            </div>
-            <div className="layera-error-details__field">
+            </Box>
+            <Box className="layera-error-details__field">
               <span className="layera-error-details__label">Type:</span>
               <code className="layera-error-details__value">{error.name}</code>
-            </div>
-            <div className="layera-error-details__field">
+            </Box>
+            <Box className="layera-error-details__field">
               <span className="layera-error-details__label">Message:</span>
               <code className="layera-error-details__value">{error.message}</code>
-            </div>
-            <div className="layera-error-details__field">
+            </Box>
+            <Box className="layera-error-details__field">
               <span className="layera-error-details__label">Timestamp:</span>
               <code className="layera-error-details__value">
                 {new Date().toISOString()}
               </code>
-            </div>
-          </div>
+            </Box>
+          </Box>
 
           {error.stack && (
-            <div className="layera-error-details__section">
+            <Box className="layera-error-details__section">
               <h4 className="layera-error-details__section-title">Stack Trace</h4>
               <pre className="layera-error-details__stack">
                 <code>{error.stack}</code>
               </pre>
-            </div>
+            </Box>
           )}
 
           {errorInfo.componentStack && (
-            <div className="layera-error-details__section">
+            <Box className="layera-error-details__section">
               <h4 className="layera-error-details__section-title">Component Stack</h4>
               <pre className="layera-error-details__stack">
                 <code>{errorInfo.componentStack}</code>
               </pre>
-            </div>
+            </Box>
           )}
 
-          <div className="layera-error-details__section">
+          <Box className="layera-error-details__section">
             <h4 className="layera-error-details__section-title">Environment</h4>
-            <div className="layera-error-details__field">
+            <Box className="layera-error-details__field">
               <span className="layera-error-details__label">URL:</span>
               <code className="layera-error-details__value">{window.location.href}</code>
-            </div>
-            <div className="layera-error-details__field">
+            </Box>
+            <Box className="layera-error-details__field">
               <span className="layera-error-details__label">User Agent:</span>
               <code className="layera-error-details__value">{navigator.userAgent}</code>
-            </div>
-          </div>
-        </div>
+            </Box>
+          </Box>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 };

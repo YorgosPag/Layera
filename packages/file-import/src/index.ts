@@ -2,14 +2,8 @@
 export { FileImporter } from './components/FileImporter';
 export type { FileImporterProps } from './components/FileImporter';
 
-export { DragDropZone } from './components/DragDropZone';
-export type { DragDropZoneProps } from './components/DragDropZone';
-
-export { FileList } from './components/FileList';
-export type { FileListProps } from './components/FileList';
-
-export { FilePreview } from './components/FilePreview';
-export type { FilePreviewProps } from './components/FilePreview';
+// Note: DragDropZone, FileList, FilePreview have been consolidated into @layera/file-upload
+// Use @layera/file-upload for these components which provide enhanced enterprise features
 
 // Hooks
 export { useFileImport } from './hooks/useFileImport';

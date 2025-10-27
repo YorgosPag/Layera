@@ -1,18 +1,16 @@
-import React$1, { ReactNode } from 'react';
+import React$1 from 'react';
+import { ReactNode } from 'react';
 
 /**
- * Core layout types for the Layera Layout System
+ * AppShell - Core layout component που παρέχει unified structure
+ * για όλες τις Layera εφαρμογές
  */
-type LayoutVariant = 'dashboard' | 'fullscreen' | 'fullscreen-map' | 'minimal' | 'dual-sidebar';
-type HeaderVariant = 'minimal' | 'standard' | 'rich';
-type ContainerMaxWidth = 'sm' | 'md' | 'lg' | 'xl' | 'full' | number;
-type SpacingSize = 'none' | 'sm' | 'md' | 'lg';
-type BreakpointSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export declare const AppShell: React$1.FC<AppShellProps>;
 
 /**
  * Component prop interfaces for Layera Layout System
  */
-interface AppShellProps {
+export declare interface AppShellProps {
     children: ReactNode;
     header?: ReactNode;
     sidebar?: ReactNode;
@@ -22,62 +20,29 @@ interface AppShellProps {
     sidebarCollapsed?: boolean;
     onSidebarToggle?: (collapsed: boolean) => void;
 }
-interface LayeraHeaderProps {
-    title: string;
-    subtitle?: string;
-    logo?: ReactNode;
-    navigation?: ReactNode;
-    actions?: ReactNode;
-    variant?: HeaderVariant;
-    sticky?: boolean;
-    className?: string;
-}
-interface PageContainerProps$1 {
-    children: ReactNode;
-    maxWidth?: ContainerMaxWidth;
-    padding?: SpacingSize;
-    className?: string;
-}
-interface PageHeaderProps$1 {
-    title: string;
-    subtitle?: string;
-    actions?: ReactNode;
-    breadcrumbs?: ReactNode;
-    className?: string;
-}
-interface HeaderActionsGroupProps {
-    children: ReactNode;
-    className?: string;
-}
+
+export declare type BreakpointSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 /**
- * AppShell - Core layout component που παρέχει unified structure
- * για όλες τις Layera εφαρμογές
+ * Υπολογίζει τις θέσεις των στοιχείων βάσει configuration
  */
-declare const AppShell: React$1.FC<AppShellProps>;
+export declare function calculateGeoAlertPositions(config?: GeoAlertLayoutConfig): GeoAlertCalculatedPositions;
+
+export declare type ContainerMaxWidth = 'sm' | 'md' | 'lg' | 'xl' | 'full' | number;
 
 /**
- * LayeraHeader - Standardized header component με flexible variants
- * για διαφορετικούς τύπους εφαρμογών
+ * Δημιουργεί CSS styles για GeoAlert card container
  */
-declare const LayeraHeader: React$1.FC<LayeraHeaderProps>;
+export declare function createGeoAlertCardStyles(variant?: GeoAlertCardLayoutVariant, positions?: GeoAlertCalculatedPositions): React.CSSProperties;
 
 /**
- * HeaderActionsGroup - Container για header actions με proper spacing
+ * Δημιουργεί CSS styles για GeoAlert InfoPanel
  */
-declare const HeaderActionsGroup: React$1.FC<HeaderActionsGroupProps>;
+export declare function createGeoAlertInfoPanelStyles(isMobile?: boolean, positions?: GeoAlertCalculatedPositions): React.CSSProperties;
 
-interface StackProps {
-    children: React$1.ReactNode;
-    spacing?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-    direction?: 'vertical' | 'horizontal';
-    align?: 'start' | 'center' | 'end' | 'stretch';
-    className?: string;
-    style?: React$1.CSSProperties;
-}
-declare const Stack: React$1.FC<StackProps>;
+export declare const Flex: React$1.FC<FlexProps>;
 
-interface FlexProps {
+declare interface FlexProps {
     children: React$1.ReactNode;
     direction?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
     align?: 'start' | 'center' | 'end' | 'stretch' | 'baseline';
@@ -87,51 +52,11 @@ interface FlexProps {
     className?: string;
     style?: React$1.CSSProperties;
 }
-declare const Flex: React$1.FC<FlexProps>;
 
-interface PageContainerProps {
-    children: React$1.ReactNode;
-    className?: string;
-    maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
-    padding?: 'none' | 'sm' | 'md' | 'lg';
-}
-/**
- * PageContainer - Enterprise container για page content
- * Παρέχει consistent layout με responsive breakpoints
- */
-declare const PageContainer: React$1.FC<PageContainerProps>;
+/** Default GeoAlert Layout Configuration */
+export declare const GEOALERT_LAYOUT_CONFIG: GeoAlertLayoutConfig;
 
-interface PageHeaderProps {
-    title: string;
-    subtitle?: string;
-    children?: React$1.ReactNode;
-    className?: string;
-    actions?: React$1.ReactNode;
-}
-/**
- * PageHeader - Enterprise header για pages
- * Παρέχει consistent styling για page titles και actions
- */
-declare const PageHeader: React$1.FC<PageHeaderProps>;
-
-/**
- * GeoAlert Layout System Types
- * Enterprise layout types για GeoAlert step system
- */
-type GeoAlertCardLayoutVariant = 'horizontal' | 'vertical' | 'smart-triple';
-interface GeoAlertLayoutConfig {
-    /** Stepper height σε pixels */
-    stepperHeight: number;
-    /** Gap μεταξύ stepper και καρτών σε pixels */
-    stepperToCardsGap: number;
-    /** Gap μεταξύ καρτών σε pixels */
-    cardsGap: number;
-    /** Ύψος κάθε κάρτας σε pixels */
-    cardHeight: number;
-    /** Side margins σε pixels */
-    sideMargins: number;
-}
-interface GeoAlertCalculatedPositions {
+export declare interface GeoAlertCalculatedPositions {
     /** Top position για κάρτες */
     cardsTop: string;
     /** Top position για InfoPanel */
@@ -143,7 +68,8 @@ interface GeoAlertCalculatedPositions {
     /** Gap μεταξύ καρτών */
     gap: string;
 }
-interface GeoAlertCardContainerProps {
+
+export declare interface GeoAlertCardContainerProps {
     /** Layout variant */
     variant?: GeoAlertCardLayoutVariant;
     /** Custom CSS class */
@@ -151,7 +77,14 @@ interface GeoAlertCardContainerProps {
     /** Children (κάρτες) */
     children: React.ReactNode;
 }
-interface GeoAlertInfoPanelProps {
+
+/**
+ * GeoAlert Layout System Types
+ * Enterprise layout types για GeoAlert step system
+ */
+export declare type GeoAlertCardLayoutVariant = 'horizontal' | 'vertical' | 'smart-triple';
+
+export declare interface GeoAlertInfoPanelProps {
     /** Αν είναι mobile ή desktop */
     isMobile?: boolean;
     /** Custom CSS class */
@@ -160,12 +93,128 @@ interface GeoAlertInfoPanelProps {
     children: React.ReactNode;
 }
 
+export declare interface GeoAlertLayoutConfig {
+    /** Stepper height σε pixels */
+    stepperHeight: number;
+    /** Gap μεταξύ stepper και καρτών σε pixels */
+    stepperToCardsGap: number;
+    /** Gap μεταξύ καρτών σε pixels */
+    cardsGap: number;
+    /** Ύψος κάθε κάρτας σε pixels */
+    cardHeight: number;
+    /** Side margins σε pixels */
+    sideMargins: number;
+}
+
+/**
+ * HeaderActionsGroup - Container για header actions με proper spacing
+ */
+export declare const HeaderActionsGroup: React$1.FC<HeaderActionsGroupProps>;
+
+export declare interface HeaderActionsGroupProps {
+    children: ReactNode;
+    className?: string;
+}
+
+export declare type HeaderVariant = 'minimal' | 'standard' | 'rich';
+
+/**
+ * LayeraHeader - Standardized header component με flexible variants
+ * για διαφορετικούς τύπους εφαρμογών
+ */
+export declare const LayeraHeader: React$1.FC<LayeraHeaderProps>;
+
+export declare interface LayeraHeaderProps {
+    title: string;
+    subtitle?: string;
+    logo?: ReactNode;
+    navigation?: ReactNode;
+    actions?: ReactNode;
+    variant?: HeaderVariant;
+    sticky?: boolean;
+    className?: string;
+}
+
+/**
+ * Core layout types for the Layera Layout System
+ */
+export declare type LayoutVariant = 'dashboard' | 'fullscreen' | 'fullscreen-map' | 'minimal' | 'dual-sidebar';
+
+/**
+ * PageContainer - Enterprise container για page content
+ * Παρέχει consistent layout με responsive breakpoints
+ */
+export declare const PageContainer: React$1.FC<PageContainerProps_2>;
+
+export declare interface PageContainerProps {
+    children: ReactNode;
+    maxWidth?: ContainerMaxWidth;
+    padding?: SpacingSize;
+    className?: string;
+}
+
+declare interface PageContainerProps_2 {
+    children: React$1.ReactNode;
+    className?: string;
+    maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+    padding?: 'none' | 'sm' | 'md' | 'lg';
+}
+
+/**
+ * PageHeader - Enterprise header για pages
+ * Παρέχει consistent styling για page titles και actions
+ */
+export declare const PageHeader: React$1.FC<PageHeaderProps_2>;
+
+export declare interface PageHeaderProps {
+    title: string;
+    subtitle?: string;
+    actions?: ReactNode;
+    breadcrumbs?: ReactNode;
+    className?: string;
+}
+
+declare interface PageHeaderProps_2 {
+    title: string;
+    subtitle?: string;
+    children?: React$1.ReactNode;
+    className?: string;
+    actions?: React$1.ReactNode;
+}
+
+export declare type SpacingSize = 'none' | 'sm' | 'md' | 'lg';
+
+export declare const Stack: React$1.FC<StackProps>;
+
+declare interface StackProps {
+    children: React$1.ReactNode;
+    spacing?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+    direction?: 'vertical' | 'horizontal';
+    align?: 'start' | 'center' | 'end' | 'stretch';
+    className?: string;
+    style?: React$1.CSSProperties;
+}
+
+/**
+ * CSS Variables Updater - Enterprise approach
+ * Ενημερώνει CSS variables δυναμικά
+ */
+export declare function updateGeoAlertLayoutVariables(config: Partial<GeoAlertLayoutConfig>): void;
+
+/**
+ * Enterprise LEGO Hook για GeoAlert Layout Management
+ *
+ * Παρέχει ολοκληρωμένη λύση για το positioning των καρτών και info panels
+ * στο GeoAlert system με responsive support και dynamic configuration.
+ */
+export declare function useGeoAlertLayout(customConfig?: Partial<GeoAlertLayoutConfig>): UseGeoAlertLayoutReturn;
+
 /**
  * useGeoAlertLayout Hook
  * Enterprise hook για GeoAlert layout management
  */
 
-interface UseGeoAlertLayoutReturn {
+declare interface UseGeoAlertLayoutReturn {
     /** Current layout configuration */
     config: GeoAlertLayoutConfig;
     /** Calculated positions */
@@ -188,37 +237,5 @@ interface UseGeoAlertLayoutReturn {
         getCardContainerClass: (variant?: GeoAlertCardLayoutVariant) => string;
     };
 }
-/**
- * Enterprise LEGO Hook για GeoAlert Layout Management
- *
- * Παρέχει ολοκληρωμένη λύση για το positioning των καρτών και info panels
- * στο GeoAlert system με responsive support και dynamic configuration.
- */
-declare function useGeoAlertLayout(customConfig?: Partial<GeoAlertLayoutConfig>): UseGeoAlertLayoutReturn;
 
-/**
- * GeoAlert Layout Utilities
- * Enterprise utilities για positioning και styling
- */
-
-/** Default GeoAlert Layout Configuration */
-declare const GEOALERT_LAYOUT_CONFIG: GeoAlertLayoutConfig;
-/**
- * Υπολογίζει τις θέσεις των στοιχείων βάσει configuration
- */
-declare function calculateGeoAlertPositions(config?: GeoAlertLayoutConfig): GeoAlertCalculatedPositions;
-/**
- * Δημιουργεί CSS styles για GeoAlert card container
- */
-declare function createGeoAlertCardStyles(variant?: GeoAlertCardLayoutVariant, positions?: GeoAlertCalculatedPositions): React.CSSProperties;
-/**
- * Δημιουργεί CSS styles για GeoAlert InfoPanel
- */
-declare function createGeoAlertInfoPanelStyles(isMobile?: boolean, positions?: GeoAlertCalculatedPositions): React.CSSProperties;
-/**
- * CSS Variables Updater - Enterprise approach
- * Ενημερώνει CSS variables δυναμικά
- */
-declare function updateGeoAlertLayoutVariables(config: Partial<GeoAlertLayoutConfig>): void;
-
-export { AppShell, type AppShellProps, type BreakpointSize, type ContainerMaxWidth, Flex, GEOALERT_LAYOUT_CONFIG, type GeoAlertCalculatedPositions, type GeoAlertCardContainerProps, type GeoAlertCardLayoutVariant, type GeoAlertInfoPanelProps, type GeoAlertLayoutConfig, HeaderActionsGroup, type HeaderActionsGroupProps, type HeaderVariant, LayeraHeader, type LayeraHeaderProps, type LayoutVariant, PageContainer, type PageContainerProps$1 as PageContainerProps, PageHeader, type PageHeaderProps$1 as PageHeaderProps, type SpacingSize, Stack, calculateGeoAlertPositions, createGeoAlertCardStyles, createGeoAlertInfoPanelStyles, updateGeoAlertLayoutVariables, useGeoAlertLayout };
+export { }

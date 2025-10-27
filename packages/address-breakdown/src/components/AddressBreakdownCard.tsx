@@ -12,6 +12,8 @@
 import { useState, useCallback, useEffect } from 'react';
 import { BaseCard } from '@layera/cards';
 import { Button } from '@layera/buttons';
+import { Box } from '@layera/layout';
+import { Text } from '@layera/typography';
 import { LocationIcon, MapIcon } from '@layera/icons';
 import { Spinner } from '@layera/loading';
 import { useLayeraTranslation } from '@layera/i18n';
@@ -164,13 +166,14 @@ export function AddressBreakdownCard({
         >
           {component.label}
           {isLoading && (
-            <span style={{
-              marginLeft: `${SPACING_SCALE.SM}px`,
-              fontSize: '0.75rem',
-              color: '#6B7280'
-            }}>
+            <Text
+              as="span"
+              marginLeft={`${SPACING_SCALE.SM}px`}
+              fontSize="var(--layera-font-size-xs)"
+              color="var(--layera-text-secondary)"
+            >
               ({loadingTimer}s)
-            </span>
+            </Text>
           )}
         </Button>
       );
@@ -178,7 +181,7 @@ export function AddressBreakdownCard({
 
     // List layout - ΙΕΡΑΡΧΙΚΗ ΕΜΦΑΝΙΣΗ
     return (
-      <div
+      <Box
         key={component.id}
         {...componentProps}
         className={`list-item ${componentProps.className}`}
@@ -187,14 +190,14 @@ export function AddressBreakdownCard({
           padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
           borderRadius: `${BORDER_RADIUS_SCALE.INPUT}px`,
           marginBottom: `${SPACING_SCALE.SM}px`,
-          border: '1px solid #E5E7EB',
-          transition: 'all 0.2s ease-in-out',
-          backgroundColor: isClickable ? '#FFFFFF' : '#F9FAFB',
-          textAlign: 'left', // Ευθυγράμμιση προς τα αριστερά
+          border: 'var(--layera-border-default-style, 1px solid var(--layera-border-default))',
+          transition: 'var(--layera-transition-smooth, all 0.2s ease-in-out)',
+          backgroundColor: isClickable ? 'var(--layera-bg-primary)' : 'var(--layera-bg-secondary)',
+          textAlign: 'var(--layera-text-align-left, left)', // Ευθυγράμμιση προς τα αριστερά
           ...(isClickable && {
             ':hover': {
-              backgroundColor: '#F3F4F6',
-              borderColor: '#D1D5DB',
+              backgroundColor: 'var(--layera-bg-secondary)',
+              borderColor: 'var(--layera-border-hover)',
               transform: 'translateY(-1px)',
               boxShadow: BOX_SHADOW_SCALE.cardHover
             }
@@ -202,76 +205,77 @@ export function AddressBreakdownCard({
         }}
         onMouseEnter={(e) => {
           if (isClickable && !isLoading) {
-            e.currentTarget.style.backgroundColor = '#F3F4F6';
-            e.currentTarget.style.borderColor = '#D1D5DB';
+            e.currentTarget.style.backgroundColor = 'var(--layera-bg-hover)';
+            e.currentTarget.style.borderColor = 'var(--layera-border-hover)';
             e.currentTarget.style.transform = 'translateY(-1px)';
             e.currentTarget.style.boxShadow = BOX_SHADOW_SCALE.cardHover;
           }
         }}
         onMouseLeave={(e) => {
           if (isClickable && !isLoading) {
-            e.currentTarget.style.backgroundColor = '#FFFFFF';
-            e.currentTarget.style.borderColor = '#E5E7EB';
+            e.currentTarget.style.backgroundColor = 'var(--layera-bg-primary)';
+            e.currentTarget.style.borderColor = 'var(--layera-border-default)';
             e.currentTarget.style.transform = 'translateY(0)';
             e.currentTarget.style.boxShadow = BOX_SHADOW_SCALE.none;
           }
         }}
       >
-        <div className="list-item-content" style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'flex-start', // Ευθυγράμμιση προς τα αριστερά
+        <Box className="list-item-content" style={{
+          display: 'var(--layera-display-flex, flex)',
+          alignItems: 'var(--layera-align-center, center)',
+          justifyContent: 'var(--layera-justify-start, flex-start)', // Ευθυγράμμιση προς τα αριστερά
           gap: `${SPACING_SCALE.SM}px`,
-          width: '100%'
+          width: 'var(--layera-width-full, 100%)'
         }}>
           {isLoading ? (
             <Spinner size="sm" variant="default" />
           ) : isClickable ? (
             <MapIcon className="list-icon" style={{
-              width: '1rem',
-              height: '1rem',
-              color: '#3B82F6'
+              width: 'var(--layera-icon-size-md)',
+              height: 'var(--layera-icon-size-md)',
+              color: 'var(--layera-color-primary)'
             }} />
           ) : (
             <LocationIcon className="list-icon" style={{
-              width: '1rem',
-              height: '1rem',
-              color: '#6B7280'
+              width: 'var(--layera-icon-size-md)',
+              height: 'var(--layera-icon-size-md)',
+              color: 'var(--layera-text-secondary)'
             }} />
           )}
           <span className="list-label" style={{
-            flex: 1,
-            fontSize: '0.875rem',
-            color: isClickable ? '#1F2937' : '#6B7280',
-            fontWeight: isClickable ? '500' : '400',
-            textAlign: 'left', // Ευθυγράμμιση κειμένου προς τα αριστερά
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis'
+            flex: 'var(--layera-flex-1, 1)',
+            fontSize: 'var(--layera-font-size-sm)',
+            color: isClickable ? 'var(--layera-text-primary)' : 'var(--layera-text-secondary)',
+            fontWeight: isClickable ? 'var(--layera-font-weight-medium, 500)' : 'var(--layera-font-weight-normal, 400)',
+            textAlign: 'var(--layera-text-align-left, left)', // Ευθυγράμμιση κειμένου προς τα αριστερά
+            whiteSpace: 'var(--layera-white-space-nowrap, nowrap)',
+            overflow: 'var(--layera-overflow-hidden, hidden)',
+            textOverflow: 'var(--layera-text-overflow-ellipsis, ellipsis)'
           }}>
             {component.label}
           </span>
-        </div>
+        </Box>
         {isLoading && (
-          <div className="loading-indicator" style={{
+          <Box className="loading-indicator" style={{
             marginTop: `${SPACING_SCALE.XS}px`,
-            fontSize: '0.75rem',
-            color: '#6B7280',
-            display: 'flex',
-            alignItems: 'center',
+            fontSize: 'var(--layera-font-size-xs)',
+            color: 'var(--layera-text-secondary)',
+            display: 'var(--layera-display-flex, flex)',
+            alignItems: 'var(--layera-align-center, center)',
             gap: `${SPACING_SCALE.SM}px`
           }}>
             <span>Αναζήτηση περιγράμματος...</span>
-            <span style={{
-              fontWeight: '500',
-              color: '#3B82F6',
-              minWidth: '2rem'
+            <Text
+              as="span"
+              fontWeight="var(--layera-font-weight-medium, 500)"
+              color="var(--layera-color-primary)"
+              minWidth="var(--layera-width-min-2rem, 2rem)"
             }}>
               {loadingTimer}s
             </span>
-          </div>
+          </Box>
         )}
-      </div>
+      </Box>
     );
   };
 
@@ -305,43 +309,43 @@ export function AddressBreakdownCard({
       style={style}
     >
       {error && (
-        <div className="error-message">
+        <Box className="error-message">
           {error}
-        </div>
+        </Box>
       )}
 
       {boundaryError && (
-        <div className="boundary-error">
+        <Box className="boundary-error">
           {boundaryError}
-        </div>
+        </Box>
       )}
 
       {/* Instruction text μία φορά στην κορυφή */}
       {!isLoading && visibleComponents.some(c => c.clickable) && finalConfig.enableBoundarySearch && (
-        <div style={{
-          fontSize: '0.875rem',
-          color: '#6B7280',
+        <Box style={{
+          fontSize: 'var(--layera-font-size-sm)',
+          color: 'var(--layera-text-secondary)',
           marginBottom: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
-          fontStyle: 'italic'
+          fontStyle: 'var(--layera-font-style-italic, italic)'
         }}>
           {t('clickToShowBoundary')}
-        </div>
+        </Box>
       )}
 
-      <div className={`address-components layout-${finalConfig.layout}`}>
+      <Box className={`address-components layout-${finalConfig.layout}`}>
         {isLoading ? (
-          <div className="loading-state">
+          <Box className="loading-state">
             Loading...
-          </div>
+          </Box>
         ) : (
           visibleComponents.map(renderComponent)
         )}
-      </div>
+      </Box>
 
       {components.length > visibleComponents.length && (
-        <div className="components-overflow">
+        <Box className="components-overflow">
           +{components.length - visibleComponents.length} more components
-        </div>
+        </Box>
       )}
     </BaseCard>
   );

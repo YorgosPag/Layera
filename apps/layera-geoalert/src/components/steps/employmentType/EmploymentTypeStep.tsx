@@ -7,6 +7,7 @@
 import React, { useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { EmploymentTypeCard } from './EmploymentTypeCard';
+import { Box } from '@layera/layout';
 import type { StepProps } from '../types';
 import type { EmploymentType, EmploymentTypeStepData, EmploymentTypeOption } from './types';
 
@@ -93,7 +94,7 @@ export const EmploymentTypeStep: React.FC<EmploymentTypeStepProps> = ({
   };
 
   return (
-    <div style={containerStyles}>
+    <Box style={containerStyles}>
       {employmentTypes.map((type) => (
         <EmploymentTypeCard
           key={type.id}
@@ -104,6 +105,6 @@ export const EmploymentTypeStep: React.FC<EmploymentTypeStepProps> = ({
           data-testid={`employment-type-card-${type.id}`}
         />
       ))}
-    </div>
+    </Box>
   );
 };

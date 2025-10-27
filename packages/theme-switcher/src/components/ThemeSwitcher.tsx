@@ -1,6 +1,7 @@
 'use client';
 
 import React, { forwardRef } from 'react';
+import { Box } from '@layera/layout';
 import { useTheme } from '../hooks/useTheme';
 import type { ThemeSwitcherProps, Theme } from '../types';
 
@@ -212,7 +213,7 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
   if (variant === 'dropdown') {
 
     return (
-      <div className={`layera-theme-switcher--dropdown-container ${classes} ${isOpen ? 'layera-theme-switcher--open' : ''}`}>
+      <Box className={`layera-theme-switcher--dropdown-container ${classes} ${isOpen ? 'layera-theme-switcher--open' : ''}`}>
         <button
           ref={ref}
           type="button"
@@ -235,7 +236,7 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
         </button>
 
         {isOpen && (
-          <div className={`layera-theme-switcher__dropdown layera-theme-switcher__dropdown--${align}`}>
+          <Box className={`layera-theme-switcher__dropdown layera-theme-switcher__dropdown--${align}`}>
             <button
               type="button"
               className={`layera-theme-switcher__option ${theme === 'light' ? 'layera-theme-switcher__option--active' : ''}`}
@@ -277,9 +278,9 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
                 {labels.system}
               </span>
             </button>
-          </div>
+          </Box>
         )}
-      </div>
+      </Box>
     );
   }
 

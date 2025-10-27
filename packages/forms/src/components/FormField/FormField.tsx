@@ -1,6 +1,7 @@
 import React from 'react';
 import { FORM_STATES, type FormState } from '@layera/constants';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { Box } from '@layera/layout';
 import './FormField.css';
 
 export interface FormFieldProps {
@@ -57,7 +58,7 @@ export const FormField: React.FC<FormFieldProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <div className={fieldClasses}>
+    <Box className={fieldClasses}>
       {resolvedLabel && (
         <label
           htmlFor={fieldId}
@@ -73,12 +74,12 @@ export const FormField: React.FC<FormFieldProps> = ({
       )}
 
       {resolvedDescription && (
-        <div className="layera-form-field__description">
+        <Box className="layera-form-field__description">
           {resolvedDescription}
-        </div>
+        </Box>
       )}
 
-      <div className="layera-form-field__control">
+      <Box className="layera-form-field__control">
         {React.isValidElement(children)
           ? React.cloneElement(children as React.ReactElement, {
               id: fieldId,
@@ -91,27 +92,27 @@ export const FormField: React.FC<FormFieldProps> = ({
             })
           : children
         }
-      </div>
+      </Box>
 
       {resolvedError && (
-        <div
+        <Box
           id={errorId}
           className="layera-form-field__error"
           role="alert"
           aria-live="polite"
         >
           {resolvedError}
-        </div>
+        </Box>
       )}
 
       {resolvedHint && !resolvedError && (
-        <div
+        <Box
           id={hintId}
           className="layera-form-field__hint"
         >
           {resolvedHint}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 };

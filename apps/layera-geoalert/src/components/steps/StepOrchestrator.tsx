@@ -7,6 +7,7 @@
 
 import React, { useMemo, useCallback } from 'react';
 import { SPACING_SCALE } from '@layera/constants';
+import { Box, Flex } from '@layera/layout';
 import { stepRegistry } from './StepRegistry';
 import {
   StepContext,
@@ -248,9 +249,9 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
   if (!currentStep) {
     // Σιωπηλό fallback χωρίς console logs για αποφυγή loops
     return (
-      <div style={{ padding: `${SPACING_SCALE.LG}px`, textAlign: 'center' }}>
+      <Box padding={`${SPACING_SCALE.LG}px`} textAlign="center">
         <p>Step '{currentStepId}' δεν είναι διαθέσιμο αυτή τη στιγμή.</p>
-      </div>
+      </Box>
     );
   }
 
@@ -280,27 +281,27 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
   // 🎨 Render με custom container αν υπάρχει
   if (renderStepContainer) {
     return (
-      <div className="step-orchestrator">
+      <Box className="step-orchestrator">
         {renderStepContainer(currentStep, (
           <>
             {stepElement}
             {cardsElement}
           </>
         ))}
-      </div>
+      </Box>
     );
   }
 
   // 🎨 Default rendering
   return (
-    <div className="step-orchestrator">
-      <div className="step-content">
+    <Box className="step-orchestrator">
+      <Box className="step-content">
         {stepElement}
-      </div>
-      <div className="step-cards">
+      </Box>
+      <Box className="step-cards">
         {cardsElement}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

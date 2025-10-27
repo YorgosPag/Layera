@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { Tolgee, TolgeeProvider as BaseTolgeeProvider } from '@tolgee/react';
 import type { TolgeeInstance } from '@tolgee/react';
+import { Box } from '@layera/layout';
 
 // Import existing translations
 import elTranslations from '../../i18n/src/locales/el/common.json';
@@ -61,7 +62,7 @@ export const SimpleTolgeeProvider: React.FC<SimpleTolgeeProviderProps> = ({
   return (
     <BaseTolgeeProvider
       tolgee={tolgee}
-      fallback={<div>Loading...</div>}
+      fallback={<Box>Loading...</Box>}
     >
       {children}
     </BaseTolgeeProvider>

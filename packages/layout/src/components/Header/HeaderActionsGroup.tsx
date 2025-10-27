@@ -1,5 +1,6 @@
 import React from 'react';
 import { HeaderActionsGroupProps } from '../../types';
+import { Box } from '../Box';
 
 /**
  * HeaderActionsGroup - Container για header actions με proper spacing
@@ -14,8 +15,8 @@ export const HeaderActionsGroup: React.FC<HeaderActionsGroupProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <div className={classes}>
+    <Box className={classes}>
       {children}
-    </div>
+    </Box>
   );
 };

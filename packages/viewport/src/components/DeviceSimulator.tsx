@@ -4,6 +4,7 @@
  */
 
 import React from 'react';
+import { Box } from '@layera/layout';
 
 export interface DeviceSimulatorProps {
   children: React.ReactNode;
@@ -19,8 +20,8 @@ export const DeviceSimulator: React.FC<DeviceSimulatorProps> = ({
   className = ''
 }) => {
   return (
-    <div className={`layera-device-simulator ${className}`}>
+    <Box className={`layera-device-simulator ${className}`}>
       {children}
-    </div>
+    </Box>
   );
 };

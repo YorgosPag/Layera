@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { Button } from '@layera/buttons';
-import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, FlexCenter } from '@layera/layout';
+import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, FlexCenter, Box } from '@layera/layout';
+import { Text } from '@layera/typography';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
 import { SPACING_SCALE } from '@layera/constants';
 import { SettingsIcon, UserIcon, ShieldIcon, ChartIcon, FolderIcon, BellIcon, PaletteIcon, WarningIcon } from '@layera/icons';
@@ -67,15 +68,15 @@ export default function Settings() {
       }
     >
       <PageContainer maxWidth="full" padding="none">
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+        <Box padding="lg">
           <PageHeader
             title={t('settings.title')}
             subtitle={t('settings.subtitle')}
           />
-        </div>
+        </Box>
 
         {/* Security Section */}
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+        <Box padding="lg">
           <DashboardSection
           title={t('settings.sections.security')}
           icon={<ShieldIcon size="md" theme="neutral" />}
@@ -85,9 +86,9 @@ export default function Settings() {
               title={t('settings.items.changePassword.title')}
               variant="actions"
             >
-              <p style={{ marginBottom: `${SPACING_SCALE.MD}px`, color: 'var(--color-text-secondary)' }}>
+              <Text color="secondary" marginBottom="md">
                 {t('settings.items.changePassword.description')}
-              </p>
+              </Text>
               <Button variant="secondary" size="sm">
                 {t('actions.change')}
               </Button>
@@ -97,11 +98,11 @@ export default function Settings() {
               title={t('settings.items.twoFactor.title')}
               variant="actions"
             >
-              <p style={{ marginBottom: `${SPACING_SCALE.MD}px`, color: 'var(--color-text-secondary)' }}>
+              <Text color="secondary" marginBottom="md">
                 {t('settings.items.twoFactor.description', {
                   status: user.layeraClaims?.mfa_verified ? t('settings.items.twoFactor.statusActive') : t('settings.items.twoFactor.statusInactive')
                 })}
-              </p>
+              </Text>
               {!user.layeraClaims?.mfa_verified ? (
                 <Button variant="primary" size="sm" onClick={() => navigate('/mfa-enroll')}>
                   {t('actions.enable')}
@@ -117,11 +118,11 @@ export default function Settings() {
               title={t('settings.items.emailVerification.title')}
               variant="info"
             >
-              <p style={{ marginBottom: `${SPACING_SCALE.MD}px`, color: 'var(--color-text-secondary)' }}>
+              <Text color="secondary" marginBottom="md">
                 {t('settings.items.emailVerification.description', {
                   status: user.emailVerified ? t('settings.items.emailVerification.statusVerified') : t('settings.items.emailVerification.statusUnverified')
                 })}
-              </p>
+              </Text>
               {!user.emailVerified && (
                 <Button variant="primary" size="sm">
                   {t('actions.verify')}
@@ -130,10 +131,10 @@ export default function Settings() {
             </DashboardCard>
           </DashboardGrid>
           </DashboardSection>
-        </div>
+        </Box>
 
         {/* Notifications Section */}
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+        <Box padding="lg">
           <DashboardSection
           title={t('settings.sections.notifications')}
           icon={<BellIcon size="md" theme="neutral" />}
@@ -143,9 +144,9 @@ export default function Settings() {
               title={t('settings.items.emailNotifications.title')}
               variant="actions"
             >
-              <p style={{ marginBottom: `${SPACING_SCALE.MD}px`, color: 'var(--color-text-secondary)' }}>
+              <Text color="secondary" marginBottom="md">
                 {t('settings.items.emailNotifications.description')}
-              </p>
+              </Text>
               <Button variant="secondary" size="sm">
                 {t('actions.manage')}
               </Button>
@@ -155,19 +156,19 @@ export default function Settings() {
               title={t('settings.items.smsNotifications.title')}
               variant="actions"
             >
-              <p style={{ marginBottom: `${SPACING_SCALE.MD}px`, color: 'var(--color-text-secondary)' }}>
+              <Text color="secondary" marginBottom="md">
                 {t('settings.items.smsNotifications.description')}
-              </p>
+              </Text>
               <Button variant="secondary" size="sm">
                 {t('actions.manage')}
               </Button>
             </DashboardCard>
           </DashboardGrid>
           </DashboardSection>
-        </div>
+        </Box>
 
         {/* Appearance Section */}
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+        <Box padding="lg">
           <DashboardSection
           title={t('settings.sections.appearance')}
           icon={<PaletteIcon size="md" theme="neutral" />}
@@ -178,10 +179,10 @@ export default function Settings() {
               variant="actions"
               className="layera-card--dropdown-container"
             >
-              <p style={{ marginBottom: `${SPACING_SCALE.MD}px`, color: 'var(--color-text-secondary)' }}>
+              <Text color="secondary" marginBottom="md">
                 {t('settings.items.theme.description')}
-              </p>
-              <FlexCenter style={{ width: '100%' }}>
+              </Text>
+              <FlexCenter width="full">
                 <ThemeSwitcher
                   variant="dropdown"
                   size="md"
@@ -200,21 +201,21 @@ export default function Settings() {
               variant="actions"
               className="layera-card--dropdown-container"
             >
-              <p style={{ marginBottom: `${SPACING_SCALE.MD}px`, color: 'var(--color-text-secondary)' }}>
+              <Text color="secondary" marginBottom="md">
                 {t('settings.items.language.description')}
-              </p>
-              <FlexCenter style={{ width: '100%' }}>
+              </Text>
+              <FlexCenter width="full">
                 <LanguageSwitcher variant="dropdown" showFlags={true} align="center" />
               </FlexCenter>
             </DashboardCard>
           </DashboardGrid>
           </DashboardSection>
-        </div>
+        </Box>
 
         {/* Navigation */}
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+        <Box padding="lg">
           <QuickActions />
-        </div>
+        </Box>
       </PageContainer>
     </AppShell>
   );

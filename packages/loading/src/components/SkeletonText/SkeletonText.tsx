@@ -1,6 +1,7 @@
 import React from 'react';
 import { Skeleton } from '../Skeleton';
 import type { SkeletonTextProps } from '../../types';
+import { Box } from '@layera/layout';
 import './SkeletonText.css';
 
 /**
@@ -19,7 +20,7 @@ export const SkeletonText: React.FC<SkeletonTextProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <div className={containerClasses}>
+    <Box className={containerClasses}>
       {Array.from({ length: lines }, (_, index) => (
         <Skeleton
           key={index}
@@ -28,6 +29,6 @@ export const SkeletonText: React.FC<SkeletonTextProps> = ({
           animation="wave"
         />
       ))}
-    </div>
+    </Box>
   );
 };

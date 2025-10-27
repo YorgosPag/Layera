@@ -62,28 +62,28 @@ export const SNAP_VISUAL = {
   // Colors per snap type (theme-aware)
   COLORS: {
     light: {
-      endpoint: '#ff6b6b',
-      midpoint: '#4ecdc4',
-      center: '#45b7d1',
-      vertex: '#96ceb4',
-      intersection: '#ffeaa7',
-      perpendicular: '#dda0dd',
-      tangent: '#98d8c8',
-      nearest: '#f7dc6f',
-      grid: '#bb8fce',
-      edge: '#85c1e9'
+      endpoint: 'var(--layera-color-red-400, #ff6b6b)',
+      midpoint: 'var(--layera-color-teal-400, #4ecdc4)',
+      center: 'var(--layera-color-blue-400, #45b7d1)',
+      vertex: 'var(--layera-color-green-300, #96ceb4)',
+      intersection: 'var(--layera-color-yellow-200, #ffeaa7)',
+      perpendicular: 'var(--layera-color-purple-300, #dda0dd)',
+      tangent: 'var(--layera-color-teal-300, #98d8c8)',
+      nearest: 'var(--layera-color-yellow-300, #f7dc6f)',
+      grid: 'var(--layera-color-purple-400, #bb8fce)',
+      edge: 'var(--layera-color-blue-300, #85c1e9)'
     },
     dark: {
-      endpoint: '#e74c3c',
-      midpoint: '#1abc9c',
-      center: '#3498db',
-      vertex: '#2ecc71',
-      intersection: '#f39c12',
-      perpendicular: '#9b59b6',
-      tangent: '#16a085',
-      nearest: '#f1c40f',
-      grid: '#8e44ad',
-      edge: '#2980b9'
+      endpoint: 'var(--layera-color-red-600, #e74c3c)',
+      midpoint: 'var(--layera-color-teal-600, #1abc9c)',
+      center: 'var(--layera-color-blue-600, #3498db)',
+      vertex: 'var(--layera-color-green-600, #2ecc71)',
+      intersection: 'var(--layera-color-orange-600, #f39c12)',
+      perpendicular: 'var(--layera-color-purple-600, #9b59b6)',
+      tangent: 'var(--layera-color-teal-700, #16a085)',
+      nearest: 'var(--layera-color-yellow-600, #f1c40f)',
+      grid: 'var(--layera-color-purple-700, #8e44ad)',
+      edge: 'var(--layera-color-blue-700, #2980b9)'
     }
   },
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Box } from '@layera/layout';
 import './FormActions.css';
 
 export interface FormActionsProps {
@@ -22,10 +23,10 @@ export const FormActions: React.FC<FormActionsProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <div className={actionsClasses}>
-      <div className="layera-form-actions__content">
+    <Box className={actionsClasses}>
+      <Box className="layera-form-actions__content">
         {children}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };

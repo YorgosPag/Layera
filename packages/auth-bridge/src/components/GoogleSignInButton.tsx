@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../hooks/useAuth.js';
+import { Box } from '@layera/layout';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import type { AuthResult, LayeraUser } from '../types/auth.js';
@@ -65,21 +66,21 @@ export function GoogleSignInButton({
   };
 
   const defaultStyle: React.CSSProperties = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: '8px',
+    display: 'var(--layera-display-flex, flex)',
+    alignItems: 'var(--layera-align-center, center)',
+    justifyContent: 'var(--layera-justify-center, center)',
+    gap: 'var(--layera-gap-sm, 8px)',
     padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS / 2}px ${SPACING_SCALE.MD}px`,
-    border: '1px solid #dadce0',
+    border: '1px solid var(--layera-border-default, #dadce0)',
     borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
     backgroundColor: 'var(--layera-bg-primary)',
     color: 'var(--layera-text-primary)',
     fontFamily: 'Google Sans, Roboto, sans-serif',
-    fontSize: '14px',
-    fontWeight: 500,
-    cursor: loading || externalDisabled ? 'not-allowed' : 'pointer',
-    opacity: loading || externalDisabled ? 0.6 : 1,
-    transition: 'box-shadow 0.15s ease-in-out',
+    fontSize: 'var(--layera-font-size-sm, 14px)',
+    fontWeight: 'var(--layera-font-weight-medium, 500)',
+    cursor: loading || externalDisabled ? 'var(--layera-cursor-not-allowed, not-allowed)' : 'var(--layera-cursor-pointer, pointer)',
+    opacity: loading || externalDisabled ? 'var(--layera-opacity-disabled, 0.6)' : 'var(--layera-opacity-full, 1)',
+    transition: 'var(--layera-transition-box-shadow, box-shadow 0.15s ease-in-out)',
     ...style
   };
 
@@ -107,13 +108,13 @@ export function GoogleSignInButton({
     >
       {loading ? (
         <>
-          <div style={{
-            width: '18px',
-            height: '18px',
-            border: '2px solid #f3f3f3',
-            borderTop: '2px solid #4285f4',
-            borderRadius: BORDER_RADIUS_SCALE.CIRCLE
-          }} />
+          <Box
+            width="var(--layera-icon-size-md)"
+            height="var(--layera-icon-size-md)"
+            border="2px solid var(--layera-border-default)"
+            borderTop="2px solid var(--layera-color-primary)"
+            borderRadius={BORDER_RADIUS_SCALE.CIRCLE}
+          />
           <span>Σύνδεση...</span>
         </>
       ) : (

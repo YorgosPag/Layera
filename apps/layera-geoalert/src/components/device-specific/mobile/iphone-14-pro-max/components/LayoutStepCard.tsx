@@ -15,6 +15,7 @@ import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { getCursorVar } from '@layera/cursors';
 import { BaseCard } from '@layera/cards';
 import { Input } from '@layera/forms';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 export interface LayoutStepCardProps {
   onLocationFound?: (lat: number, lon: number) => void;
@@ -35,6 +36,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
   onScaleChange,
   onComplete
 }) => {
+  const { t } = useLayeraTranslation();
   const [rotation, setRotation] = useState<number>(0);
   const [scaleWidth, setScaleWidth] = useState<number>(1);
   const [scaleHeight, setScaleHeight] = useState<number>(1);
@@ -201,15 +203,15 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
     switch (opacityMode) {
       case 'transparent':
         return {
-          backgroundColor: 'rgba(var(--color-semantic-success-rgb), 0.01)', // Πλήρως διαφανές background ΜΟΝΟ
-          titleBackground: 'rgba(var(--color-semantic-success-rgb), 0.02)',
+          backgroundColor: 'var(--layera-bg-overlay-transparent, rgba(var(--color-semantic-success-rgb), 0.01))', // Πλήρως διαφανές background ΜΟΝΟ
+          titleBackground: 'var(--layera-bg-overlay-subtle, rgba(var(--color-semantic-success-rgb), 0.02))',
           backdropFilter: 'none', // ΚΑΜΙΑ θόλωση - όλα καθαρά
           opacity: 1, // ΠΑΡΑΜΕΝΕΙ 1 - μόνο το background είναι διαφανές
           titleShadow: 'none' // Χωρίς shadow στο transparent mode επίσης
         };
       case 'semi-transparent':
         return {
-          backgroundColor: 'rgba(var(--color-semantic-success-rgb), 0.65)', // Πιο έντονο πράσινο, λιγότερη διαφάνεια
+          backgroundColor: 'var(--layera-bg-overlay-semi, rgba(var(--color-semantic-success-rgb), 0.65))', // Πιο έντονο πράσινο, λιγότερη διαφάνεια
           titleBackground: 'transparent', // Χωρίς δεύτερο στρώμα στον τίτλο
           backdropFilter: 'none', // Χωρίς blur - κείμενα και εικονίδια καθαρά
           opacity: 0.8,
@@ -217,7 +219,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
         };
       case 'opaque':
         return {
-          backgroundColor: 'rgba(var(--color-semantic-success-rgb), 0.95)', // Συμπαγές
+          backgroundColor: 'var(--layera-bg-overlay-opaque, rgba(var(--color-semantic-success-rgb), 0.95))', // Συμπαγές
           titleBackground: 'transparent', // Χωρίς δεύτερο στρώμα στον τίτλο
           backdropFilter: 'none', // Χωρίς blur
           opacity: 0.95,
@@ -229,7 +231,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
   const propertyTheme = {
     ...getPropertyTheme(),
     borderColor: 'var(--color-semantic-success-border)',
-    titleShadow: '0 0 25px rgba(var(--color-semantic-success-rgb), 0.2)'
+    titleShadow: 'var(--layera-shadow-glow-success, 0 0 25px rgba(var(--color-semantic-success-rgb), 0.2))'
   };
 
   const cardBaseStyles: React.CSSProperties = {
@@ -270,20 +272,20 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
     switch (opacityMode) {
       case 'transparent':
         return {
-          backgroundColor: 'rgba(var(--color-semantic-success-rgb), 0.05)',
+          backgroundColor: 'var(--layera-bg-overlay-subtle-transparent, rgba(var(--color-semantic-success-rgb), 0.05))',
           border: '2px solid var(--color-semantic-success-border)',
           color: 'var(--color-text-primary)'
         };
       case 'semi-transparent':
         return {
           backgroundColor: 'var(--color-bg-surface-strong)', // Λευκό background για καλή ορατότητα
-          border: '2px solid #ffffff',
+          border: '2px solid var(--layera-color-white, var(--color-bg-canvas))',
           color: 'var(--color-text-primary)'
         };
       case 'opaque':
         return {
           backgroundColor: 'var(--color-bg-surface-solid)', // Πιο έντονο λευκό
-          border: '2px solid #ffffff',
+          border: '2px solid var(--layera-color-white, var(--color-bg-canvas))',
           color: 'var(--color-text-primary)'
         };
     }
@@ -294,20 +296,20 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
     switch (opacityMode) {
       case 'transparent':
         return {
-          backgroundColor: 'rgba(var(--color-semantic-success-rgb), 0.1)',
-          border: '1px solid #10b981',
+          backgroundColor: 'var(--layera-bg-overlay-light, rgba(var(--color-semantic-success-rgb), 0.1))',
+          border: '1px solid var(--layera-color-green-500, var(--color-semantic-success-border))',
           color: 'var(--color-semantic-success-text)'
         };
       case 'semi-transparent':
         return {
           backgroundColor: 'var(--color-bg-surface-strong)',
-          border: '2px solid #ffffff',
+          border: '2px solid var(--layera-color-white, var(--color-bg-canvas))',
           color: 'var(--color-semantic-success-text)'
         };
       case 'opaque':
         return {
           backgroundColor: 'var(--color-bg-surface-solid)',
-          border: '2px solid #ffffff',
+          border: '2px solid var(--layera-color-white, var(--color-bg-canvas))',
           color: 'var(--color-semantic-success-text)'
         };
     }
@@ -325,13 +327,13 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
       case 'semi-transparent':
         return {
           backgroundColor: 'var(--color-bg-surface-strong)', // Λευκό background για καλή ορατότητα
-          border: '2px solid #ffffff',
+          border: '2px solid var(--layera-color-white, var(--color-bg-canvas))',
           color: 'var(--color-semantic-success-border)' // Πράσινο κείμενο για contrast
         };
       case 'opaque':
         return {
           backgroundColor: 'var(--color-bg-surface-solid)', // Πιο έντονο λευκό
-          border: '2px solid #ffffff',
+          border: '2px solid var(--layera-color-white, var(--color-bg-canvas))',
           color: 'var(--color-semantic-success-border)' // Πράσινο κείμενο
         };
     }
@@ -377,7 +379,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
             type="text"
             value={locationQuery}
             onChange={(e) => setLocationQuery(e.target.value)}
-            placeholder="Αναζήτηση διεύθυνσης..."
+            placeholder={t('search.address-placeholder')}
             variant="outline"
             size="sm"
             fullWidth
@@ -474,7 +476,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
               gap="xs"
             >
               {/* Width */}
-              <div>
+              <Box>
                 <Text
                   size="xs"
                   weight="bold"
@@ -485,26 +487,21 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
                   zIndex={3}>
                   cm→m
                 </Text>
-                <input
+                <Input
                   type="number"
-                  value={scaleWidth}
+                  value={scaleWidth.toString()}
                   onChange={(e) => handleScaleChange('width', parseFloat(e.target.value) || 1)}
-                  style={{
-                    width: '100%',
-                    padding: `${SPACING_SCALE.XS - 2}px ${SPACING_SCALE.XS - 1}px`,
-                    // Keep original fontSize for input elements
-                    borderRadius: `${SPACING_SCALE.XS}px`,
-                    textAlign: 'center',
-                    outline: 'none',
-                    position: 'relative',
-                    zIndex: 3,
-                    ...getInputStyles() // Dynamic styling ανάλογα με opacity mode
-                  }}
+                  width="full"
+                  padding="xs"
+                  borderRadius="xs"
+                  textAlign="center"
+                  position="relative"
+                  zIndex={3}
                 />
-              </div>
+              </Box>
 
               {/* Height */}
-              <div>
+              <Box>
                 <Text
                   size="xs"
                   weight="bold"
@@ -515,26 +512,21 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
                   zIndex={3}>
                   mm→m
                 </Text>
-                <input
+                <Input
                   type="number"
-                  value={scaleHeight}
+                  value={scaleHeight.toString()}
                   onChange={(e) => handleScaleChange('height', parseFloat(e.target.value) || 1)}
-                  style={{
-                    width: '100%',
-                    padding: `${SPACING_SCALE.XS - 2}px ${SPACING_SCALE.XS - 1}px`,
-                    // Keep original fontSize for input elements
-                    borderRadius: `${SPACING_SCALE.XS}px`,
-                    textAlign: 'center',
-                    outline: 'none',
-                    position: 'relative',
-                    zIndex: 3,
-                    ...getInputStyles() // Dynamic styling ανάλογα με opacity mode
-                  }}
+                  width="full"
+                  padding="xs"
+                  borderRadius="xs"
+                  textAlign="center"
+                  position="relative"
+                  zIndex={3}
                 />
-              </div>
+              </Box>
 
               {/* Depth */}
-              <div>
+              <Box>
                 <Text
                   size="xs"
                   weight="bold"
@@ -545,24 +537,20 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
                   zIndex={3}>
                   m→m
                 </Text>
-                <input
+                <Input
                   type="number"
-                  value={scaleDepth}
+                  value={scaleDepth.toString()}
                   onChange={(e) => handleScaleChange('depth', parseFloat(e.target.value) || 1)}
-                  style={{
-                    width: '100%',
-                    padding: `${SPACING_SCALE.XS - 2}px ${SPACING_SCALE.XS - 1}px`,
-                    // Keep original fontSize for input elements
-                    borderRadius: `${SPACING_SCALE.XS}px`,
-                    textAlign: 'center',
-                    outline: 'none',
-                    position: 'relative',
-                    zIndex: 3,
-                    ...getInputStyles() // Dynamic styling ανάλογα με opacity mode
-                  }}
+                  width="full"
+                  padding="xs"
+                  borderRadius="xs"
+                  textAlign="center"
+                  position="relative"
+                  zIndex={3}
+                  style={getInputStyles()} // Dynamic styling ανάλογα με opacity mode
                 />
-              </div>
-            </div>
+              </Box>
+            </Box>
           </Box>
         </BaseCard>
       </Flex>
@@ -598,6 +586,6 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
           </Text>
         </Button>
       )}
-    </div>
+    </Box>
   );
 };

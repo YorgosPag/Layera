@@ -6,10 +6,10 @@ import { useAuthContext, UserAvatar } from '@layera/auth-bridge';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { Button } from '@layera/buttons';
-import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader } from '@layera/layout';
+import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, Box } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
 import { FormField, FormSection, FormActions, Input, Select } from '@layera/forms';
-import { USER_ROLES, FORM_TYPES, FORM_SIZES } from '@layera/constants';
+import { USER_ROLES, FORM_TYPES, FORM_SIZES, SPACING_SCALE } from '@layera/constants';
 import { Alert } from '@layera/notifications';
 import QuickActions from '../components/QuickActions';
 
@@ -48,7 +48,7 @@ export default function AdminRoles() {
         }
       >
         <PageContainer maxWidth="full" padding="none">
-          <div style={{ padding: 'var(--layera-space-lg)' }}>
+          <Box padding="lg">
             <DashboardSection
               title={t('errors.authError')}
               icon={<span>🚫</span>}
@@ -62,13 +62,13 @@ export default function AdminRoles() {
                   variant="primary"
                   size="md"
                   onClick={() => navigate('/dashboard')}
-                  style={{ marginTop: `${SPACING_SCALE.MD}px` }}
+                  marginTop="md"
                 >
                   ← {t('navigation.backToDashboard')}
                 </Button>
               </DashboardCard>
             </DashboardSection>
-          </div>
+          </Box>
         </PageContainer>
       </AppShell>
     );
@@ -160,15 +160,15 @@ export default function AdminRoles() {
       }
     >
       <PageContainer maxWidth="full" padding="none">
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+        <Box padding="lg">
           <PageHeader
             title={t('admin.roleManagement.title')}
             subtitle={t('admin.roleManagement.subtitle')}
           />
-        </div>
+        </Box>
 
         {/* Role Management Form */}
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+        <Box padding="lg">
           <DashboardSection
             title={t('admin.roleManagement.form.title')}
             icon={<span>👤</span>}
@@ -233,40 +233,40 @@ export default function AdminRoles() {
               </FormSection>
             </DashboardCard>
           </DashboardSection>
-        </div>
+        </Box>
 
         {/* Status Messages */}
         {msg && (
-          <div style={{ padding: 'var(--layera-space-lg)' }}>
+          <Box padding="lg">
             <Alert
               type={msgType === 'error' ? 'error' : msgType === 'success' ? 'success' : 'info'}
               message={msg}
               onClose={() => setMsg("")}
               closable
             />
-          </div>
+          </Box>
         )}
 
         {/* Information Section */}
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+        <Box padding="lg">
           <DashboardSection
             title={t('admin.roleManagement.info.title')}
             icon={<span>ℹ️</span>}
           >
             <DashboardCard variant="info">
-              <ul style={{ margin: 0, paddingLeft: `${SPACING_SCALE.XL}px` }}>
+              <Box as="ul" margin="0" paddingLeft="xl">
                 <li>{t('admin.roleManagement.info.adminOnly')}</li>
                 <li>{t('admin.roleManagement.info.clientRestrictions')}</li>
                 <li>{t('admin.roleManagement.info.mfaRefresh')}</li>
-              </ul>
+              </Box>
             </DashboardCard>
           </DashboardSection>
-        </div>
+        </Box>
 
         {/* Quick Actions */}
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+        <Box padding="lg">
           <QuickActions />
-        </div>
+        </Box>
       </PageContainer>
     </AppShell>
   );

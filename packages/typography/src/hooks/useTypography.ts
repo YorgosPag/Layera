@@ -10,16 +10,16 @@ import { FontSize, FontWeight, LineHeight, TypographyScale } from '../types';
 export const useTypography = () => {
   const typographyScale: TypographyScale = useMemo(() => ({
     fontSizes: {
-      xs: '0.75rem',      // 12px
-      sm: '0.875rem',     // 14px
-      base: '1rem',       // 16px
-      lg: '1.125rem',     // 18px
-      xl: '1.25rem',      // 20px
-      '2xl': '1.5rem',    // 24px
-      '3xl': '1.875rem',  // 30px
-      '4xl': '2.25rem',   // 36px
-      '5xl': '3rem',      // 48px
-      '6xl': '3.75rem'    // 60px
+      xs: 'var(--layera-font-size-xs, 0.75rem)',      // 12px
+      sm: 'var(--layera-font-size-sm, 0.875rem)',     // 14px
+      base: 'var(--layera-font-size-md, 1rem)',       // 16px
+      lg: 'var(--layera-font-size-lg, 1.125rem)',     // 18px
+      xl: 'var(--layera-font-size-xl, 1.25rem)',      // 20px
+      '2xl': 'var(--layera-font-size-xxl, 1.5rem)',    // 24px
+      '3xl': 'var(--layera-font-size-xxxl, 1.875rem)',  // 30px
+      '4xl': 'var(--layera-font-size-display-sm, 2.25rem)',   // 36px
+      '5xl': 'var(--layera-font-size-display-md, 3rem)',      // 48px
+      '6xl': 'var(--layera-font-size-display-lg, 3.75rem)'    // 60px
     },
     fontWeights: {
       light: 300,

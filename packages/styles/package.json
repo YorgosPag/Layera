@@ -1,32 +1,14 @@
 {
   "name": "@layera/styles",
-  "version": "1.0.0",
-  "description": "Enterprise LEGO Styles - Central style management for Layera ecosystem",
-  "main": "index.css",
-  "style": "index.css",
-  "files": [
-    "index.css"
-  ],
-  "keywords": [
-    "layera",
-    "styles",
-    "css",
-    "enterprise",
-    "lego-system"
-  ],
-  "author": "Layera Team",
-  "license": "MIT",
-  "peerDependencies": {
-    "@layera/buttons": "*",
-    "@layera/cards": "*",
-    "@layera/forms": "*",
-    "@layera/layout": "*",
-    "@layera/typography": "*",
-    "@layera/theme-switcher": "*",
-    "@layera/notifications": "*",
-    "@layera/modals": "*",
-    "@layera/loading": "*",
-    "@layera/i18n": "*",
-    "@layera/error-boundary": "*"
+  "version": "0.0.1",
+  "private": true,
+  "files": ["dist"],
+  "main": "dist/tokens.css",
+  "exports": {
+    ".": "./dist/tokens.css",
+    "./dist/tokens.css": "./dist/tokens.css"
+  },
+  "scripts": {
+    "build": "xcopy src\\tokens.css dist\\ /Y > nul || copy src\\tokens.css dist\\tokens.css"
   }
 }

@@ -5,6 +5,7 @@
 import React from 'react';
 import { FileUploader, DEFAULT_UPLOAD_CONFIG } from '@layera/file-upload';
 import type { FileUploadConfig, FileUploadItem } from '@layera/file-upload';
+import { Box } from '@layera/layout';
 import type { UploadOptions } from './types';
 
 interface UploadCardProps {
@@ -48,7 +49,7 @@ export const UploadCard: React.FC<UploadCardProps> = ({
   };
 
   return (
-    <div data-testid={testId} className="upload-card-container">
+    <Box data-testid={testId} className="upload-card-container">
       <FileUploader
         config={uploadConfig}
         onUploadComplete={handleUploadComplete}
@@ -56,6 +57,6 @@ export const UploadCard: React.FC<UploadCardProps> = ({
         className="layera-upload-card"
         disabled={false}
       />
-    </div>
+    </Box>
   );
 };

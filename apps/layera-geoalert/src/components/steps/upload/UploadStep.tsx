@@ -234,8 +234,8 @@ export const UploadStep: React.FC<UploadStepProps> = React.memo(({
           {/* Back Card */}
           <BaseCard
             variant="neutral"
-            title="Πίσω"
-            description="Επιστροφή στο μενού"
+            title={t('actions.back')}
+            description={t('actions.backToMenu')}
             onClick={() => setShowFileUploader(false)}
             data-testid="upload-back-card"
           />

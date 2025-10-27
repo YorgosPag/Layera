@@ -1,5 +1,6 @@
 import React from 'react';
 import { SPACING_SCALE } from '@layera/constants';
+import { Box } from '../Box';
 
 export interface PageHeaderProps {
   title: string;
@@ -31,33 +32,33 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
     alignItems: 'flex-start',
     marginBottom: `${SPACING_SCALE.XL}px`,
     paddingBottom: `${SPACING_SCALE.MD}px`,
-    borderBottom: '1px solid #e5e7eb'
+    borderBottom: '1px solid var(--color-border-default)'
   };
 
   const titleStyles: React.CSSProperties = {
     margin: 0,
     fontSize: '1.875rem',
     fontWeight: 'bold',
-    color: '#111827'
+    color: 'var(--layera-text-primary)'
   };
 
   const subtitleStyles: React.CSSProperties = {
     margin: `${SPACING_SCALE.XS}px 0 0 0`,
     fontSize: '1rem',
-    color: '#6b7280'
+    color: 'var(--layera-text-secondary)'
   };
 
   return (
     <header className={headerClasses} style={styles}>
-      <div>
+      <Box>
         <h1 style={titleStyles}>{title}</h1>
         {subtitle && <p style={subtitleStyles}>{subtitle}</p>}
         {children}
-      </div>
+      </Box>
       {actions && (
-        <div style={{ display: 'flex', gap: `${SPACING_SCALE.SM}px`, alignItems: 'center' }}>
+        <Box display="flex" gap={`${SPACING_SCALE.SM}px`} alignItems="center">
           {actions}
-        </div>
+        </Box>
       )}
     </header>
   );

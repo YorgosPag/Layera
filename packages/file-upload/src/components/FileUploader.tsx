@@ -4,6 +4,7 @@ import { useNotifications } from '@layera/notifications';
 import { ErrorBoundary } from '@layera/error-boundary';
 import { Text as Typography } from '@layera/typography';
 import { Button } from '@layera/buttons';
+import { Box } from '@layera/layout';
 import { UploadIcon, DeleteIcon } from '@layera/icons';
 import { useTheme } from '@layera/theme-switcher';
 import type { FileUploaderProps, FileUploadItem } from '../types';
@@ -237,12 +238,12 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
 
   return (
     <ErrorBoundary>
-      <div className={`layera-file-uploader ${className}`}>
+      <Box className={`layera-file-uploader ${className}`}>
         {/* Upload Controls */}
         {hasFiles && (
-          <div className={`mb-6 p-4 rounded-lg ${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-50'}`}>
-            <div className="flex items-center justify-between mb-4">
-              <div>
+          <Box className={`mb-6 p-4 rounded-lg ${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-50'}`}>
+            <Box className="flex items-center justify-between mb-4">
+              <Box>
                 <Typography variant="h6" className="mb-1">
                   {t('file-upload.upload-summary')}
                 </Typography>
@@ -254,11 +255,11 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
                     errors: summary.errors
                   })}
                 </Typography>
-              </div>
+              </Box>
 
-              <div className="flex items-center space-x-2">
+              <Box className="flex items-center space-x-2">
                 {/* View Mode Toggle */}
-                <div className="flex items-center space-x-1 mr-4">
+                <Box className="flex items-center space-x-1 mr-4">
                   <Button
                     variant={viewMode === 'list' ? 'primary' : 'outline'}
                     size="sm"
@@ -273,7 +274,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
                   >
                     <UploadIcon className="w-4 h-4" />
                   </Button>
-                </div>
+                </Box>
 
                 {/* Upload Controls */}
                 {canStartUpload && (
@@ -306,23 +307,23 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
                   <DeleteIcon className="w-4 h-4 mr-2" />
                   {t('file-upload.clear-all')}
                 </Button>
-              </div>
-            </div>
+              </Box>
+            </Box>
 
             {/* Overall Progress */}
             {isUploading && summary.total > 0 && (
-              <div className="w-full bg-gray-200 rounded-full h-2">
-                <div
+              <Box className="w-full bg-gray-200 rounded-full h-2">
+                <Box
                   className="bg-blue-500 h-2 rounded-full transition-all duration-300"
-                  style={{ width: `${(summary.completed / summary.total) * 100}%` }}
+                  width={`${(summary.completed / summary.total) * 100}%`}
                 />
-              </div>
+              </Box>
             )}
-          </div>
+          </Box>
         )}
 
         {/* Drop Zone */}
-        <div className="mb-6">
+        <Box className="mb-6">
           <DropZoneComponent
             enabled={!disabled && config.enableDragDrop}
             acceptedTypes={config.acceptedTypes}
@@ -330,11 +331,11 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
             onFilesDrop={handleFilesAdded}
             multiple={true}
           />
-        </div>
+        </Box>
 
         {/* File Display */}
         {hasFiles && (
-          <div className="mb-6">
+          <Box className="mb-6">
             {viewMode === 'list' ? (
               <FileListComponent
                 files={files}
@@ -345,7 +346,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
                 onRetry={handleRetryUpload}
               />
             ) : (
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+              <Box className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
                 {files.map(file => (
                   <FilePreview
                     key={file.id}
@@ -354,11 +355,11 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
                     onRemove={handleRemoveFile}
                   />
                 ))}
-              </div>
+              </Box>
             )}
-          </div>
+          </Box>
         )}
-      </div>
+      </Box>
     </ErrorBoundary>
   );
 };

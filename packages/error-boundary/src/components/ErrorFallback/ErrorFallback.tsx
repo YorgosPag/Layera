@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Box } from '@layera/layout';
 import { ErrorDetails } from '../ErrorDetails';
 import { getErrorSeverity, isNetworkError, isChunkError } from '../../utils';
 import { ERROR_MESSAGES, ERROR_ICON_SIZES } from '../../constants';
@@ -127,22 +128,22 @@ export const ErrorFallback: React.FC<ErrorFallbackProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <div className={fallbackClasses} role="alert">
-      <div className="layera-error-fallback__content">
-        <div className="layera-error-fallback__icon">
+    <Box className={fallbackClasses} role="alert">
+      <Box className="layera-error-fallback__content">
+        <Box className="layera-error-fallback__icon">
           {getErrorIcon()}
-        </div>
+        </Box>
 
-        <div className="layera-error-fallback__text">
+        <Box className="layera-error-fallback__text">
           <h2 className="layera-error-fallback__title">
             {getErrorTitle()}
           </h2>
           <p className="layera-error-fallback__message">
             {getErrorMessage()}
           </p>
-        </div>
+        </Box>
 
-        <div className="layera-error-fallback__actions">
+        <Box className="layera-error-fallback__actions">
           <button
             type="button"
             className="layera-error-fallback__retry"
@@ -160,7 +161,7 @@ export const ErrorFallback: React.FC<ErrorFallbackProps> = ({
               {showDetails ? ERROR_MESSAGES.HIDE_DETAILS : ERROR_MESSAGES.SHOW_DETAILS}
             </button>
           )}
-        </div>
+        </Box>
 
         {showDetails && (
           <ErrorDetails
@@ -170,7 +171,7 @@ export const ErrorFallback: React.FC<ErrorFallbackProps> = ({
             expanded={true}
           />
         )}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };

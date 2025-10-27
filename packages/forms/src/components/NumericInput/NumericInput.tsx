@@ -5,6 +5,7 @@ import {
   type FormSize,
   type FormState
 } from '@layera/constants';
+import { Box } from '@layera/layout';
 import './NumericInput.css';
 
 export interface NumericInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'type' | 'onChange'> {
@@ -247,7 +248,7 @@ export const NumericInput = forwardRef<HTMLInputElement, NumericInputProps>(({
   const canDecrement = !disabled && !loading && (min === undefined || (value || 0) > min);
 
   return (
-    <div className={wrapperClasses}>
+    <Box className={wrapperClasses}>
       {label && (
         <label htmlFor={inputId} className="layera-numeric-input__label">
           {label}
@@ -262,7 +263,7 @@ export const NumericInput = forwardRef<HTMLInputElement, NumericInputProps>(({
         </label>
       )}
 
-      <div className="layera-numeric-input__control">
+      <Box className="layera-numeric-input__control">
         {stepperPosition === 'separate' && showSteppers && (
           <button
             ref={decrementRef}
@@ -281,7 +282,7 @@ export const NumericInput = forwardRef<HTMLInputElement, NumericInputProps>(({
           </button>
         )}
 
-        <div className="layera-numeric-input__input-wrapper">
+        <Box className="layera-numeric-input__input-wrapper">
           {prefix && (
             <span className="layera-numeric-input__prefix">{prefix}</span>
           )}
@@ -303,13 +304,13 @@ export const NumericInput = forwardRef<HTMLInputElement, NumericInputProps>(({
           )}
 
           {loading && (
-            <div className="layera-numeric-input__loading">
-              <div className="layera-numeric-input__spinner" />
-            </div>
+            <Box className="layera-numeric-input__loading">
+              <Box className="layera-numeric-input__spinner" />
+            </Box>
           )}
 
           {stepperPosition === 'inline' && showSteppers && (
-            <div className="layera-numeric-input__steppers-inline">
+            <Box className="layera-numeric-input__steppers-inline">
               <button
                 type="button"
                 className="layera-numeric-input__stepper layera-numeric-input__stepper--decrement"
@@ -339,12 +340,12 @@ export const NumericInput = forwardRef<HTMLInputElement, NumericInputProps>(({
                   <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" strokeWidth="2" />
                 </svg>
               </button>
-            </div>
+            </Box>
           )}
-        </div>
+        </Box>
 
         {stepperPosition === 'right' && showSteppers && (
-          <div className="layera-numeric-input__steppers-right">
+          <Box className="layera-numeric-input__steppers-right">
             <button
               ref={incrementRef}
               type="button"
@@ -375,7 +376,7 @@ export const NumericInput = forwardRef<HTMLInputElement, NumericInputProps>(({
                 <polyline points="6,9 12,15 18,9" stroke="currentColor" strokeWidth="2" />
               </svg>
             </button>
-          </div>
+          </Box>
         )}
 
         {stepperPosition === 'separate' && showSteppers && (
@@ -396,28 +397,28 @@ export const NumericInput = forwardRef<HTMLInputElement, NumericInputProps>(({
             </svg>
           </button>
         )}
-      </div>
+      </Box>
 
       {(description || error) && (
-        <div className="layera-numeric-input__footer">
+        <Box className="layera-numeric-input__footer">
           {description && !error && (
-            <div className="layera-numeric-input__description">
+            <Box className="layera-numeric-input__description">
               {description}
-            </div>
+            </Box>
           )}
 
           {error && (
-            <div
+            <Box
               className="layera-numeric-input__error"
               role="alert"
               aria-live="polite"
             >
               {error}
-            </div>
+            </Box>
           )}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 });
 

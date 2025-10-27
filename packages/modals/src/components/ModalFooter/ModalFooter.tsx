@@ -1,4 +1,5 @@
 import React from 'react';
+import { Box } from '@layera/layout';
 import type { ModalFooterProps } from '../../types';
 import './ModalFooter.css';
 
@@ -19,13 +20,13 @@ export const ModalFooter: React.FC<ModalFooterProps> = ({
 
   return (
     <footer className={footerClasses}>
-      <div className="layera-modal-footer__content">
+      <Box className="layera-modal-footer__content">
         {children}
-      </div>
+      </Box>
       {actions && (
-        <div className="layera-modal-footer__actions">
+        <Box className="layera-modal-footer__actions">
           {actions}
-        </div>
+        </Box>
       )}
     </footer>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '@layera/buttons';
 import { ArrowLeftIcon, PlusIcon } from '@layera/icons';
+import { Flex } from '@layera/layout';
 
 interface SimpleNavigationRailProps {
   onBackClick: () => void;
@@ -15,17 +16,16 @@ export const SimpleNavigationRail: React.FC<SimpleNavigationRailProps> = ({
   onNewEntryClick
 }) => {
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      padding: 'var(--layera-space-md) 0',
-      height: '100%',
-      width: '100%'
-    }}>
+    <Flex
+      direction="column"
+      align="center"
+      padding="md 0"
+      height="full"
+      width="full"
+    >
 
 
       {/* Μπορούμε να προσθέσουμε περισσότερα navigation items εδώ */}
-    </div>
+    </Flex>
   );
 };

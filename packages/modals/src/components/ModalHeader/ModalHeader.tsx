@@ -1,4 +1,5 @@
 import React from 'react';
+import { Box } from '@layera/layout';
 import { CloseIcon } from '@layera/icons';
 import type { ModalHeaderProps } from '../../types';
 import './ModalHeader.css';
@@ -21,7 +22,7 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
 
   return (
     <header className={headerClasses}>
-      <div className="layera-modal-header__content">
+      <Box className="layera-modal-header__content">
         {title && (
           <h2 className="layera-modal-header__title" id="modal-title">
             {title}
@@ -33,7 +34,7 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
           </p>
         )}
         {children}
-      </div>
+      </Box>
 
       {showCloseButton && onClose && (
         <button

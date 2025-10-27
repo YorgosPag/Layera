@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Box } from '@layera/layout';
 import { NOTIFICATION_ICON_SIZES, NOTIFICATION_STROKE_WIDTH } from '../../constants';
 import type { ToastProps } from '../../types';
 import './Toast.css';
@@ -88,21 +89,21 @@ export const Toast: React.FC<ToastProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <div className={toastClasses} role="alert" aria-live="polite">
-      <div className="layera-toast__icon">
+    <Box className={toastClasses} role="alert" aria-live="polite">
+      <Box className="layera-toast__icon">
         {getTypeIcon()}
-      </div>
+      </Box>
 
-      <div className="layera-toast__content">
+      <Box className="layera-toast__content">
         {notification.title && (
-          <div className="layera-toast__title">
+          <Box className="layera-toast__title">
             {notification.title}
-          </div>
+          </Box>
         )}
-        <div className="layera-toast__message">
+        <Box className="layera-toast__message">
           {notification.message}
-        </div>
-      </div>
+        </Box>
+      </Box>
 
       {notification.action && (
         <button
@@ -129,13 +130,11 @@ export const Toast: React.FC<ToastProps> = ({
       )}
 
       {!notification.persistent && notification.duration > 0 && (
-        <div
+        <Box
           className="layera-toast__progress"
-          style={{
-            animationDuration: `${notification.duration}ms`
-          }}
+          animationDuration={`${notification.duration}ms`}
         />
       )}
-    </div>
+    </Box>
   );
 };

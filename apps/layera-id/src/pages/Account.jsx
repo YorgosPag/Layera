@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { Button } from '@layera/buttons';
-import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader } from '@layera/layout';
+import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, Box, FlexColumn } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
 import { SPACING_SCALE } from '@layera/constants';
 import { UserIcon, SettingsIcon, LockIcon, ChartIcon, UnlockIcon, WarningIcon } from '@layera/icons';
@@ -61,60 +61,60 @@ export default function Account() {
       }
     >
       <PageContainer maxWidth="full" padding="none">
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+        <Box padding="lg">
           <PageHeader
             title={t('account.title')}
             subtitle={t('account.info')}
           />
-        </div>
+        </Box>
 
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+        <Box padding="lg">
           <DashboardSection title={t('account.info')}>
           <DashboardGrid columns={{ xs: 1, sm: 1, md: 1, lg: 1 }}>
             <DashboardCard
               title={t('data.personalInfo')}
               variant="info"
             >
-              <div style={{ display: 'flex', flexDirection: 'column', gap: `${SPACING_SCALE.MD}px` }}>
-                <div>
+              <FlexColumn gap="md">
+                <Box>
                   <strong>{t('data.fields.email')}:</strong> {user.email}
-                </div>
-                <div>
+                </Box>
+                <Box>
                   <strong>{t('data.fields.role')}:</strong> {formatters.role(user.layeraClaims?.role || "private")}
-                </div>
-                <div>
+                </Box>
+                <Box>
                   <strong>{t('data.fields.emailVerified')}:</strong> {user.emailVerified ? t('status.verified') : t('status.unverified')}
-                </div>
-                <div>
+                </Box>
+                <Box>
                   <strong>{t('data.fields.mfaEnabled')}:</strong> {user.layeraClaims?.mfa_verified ? t('status.enabled') : t('status.disabled')}
-                </div>
-              </div>
+                </Box>
+              </FlexColumn>
             </DashboardCard>
 
             <DashboardCard
               title={t('account.actions.settings')}
               variant="info"
             >
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <FlexColumn gap="lg">
                 {!user.emailVerified && (
-                  <div className="warning-message" style={{ color: 'var(--color-warning)', fontSize: '0.875rem' }}>
+                  <Box className="warning-message" color="warning" fontSize="sm">
                     <WarningIcon size="sm" theme="warning" /> {t('account.messages.emailNotVerified')}
-                  </div>
+                  </Box>
                 )}
                 {!user.layeraClaims?.mfa_verified && (
-                  <div className="info-message" style={{ color: 'var(--color-info)', fontSize: '0.875rem' }}>
+                  <Box className="info-message" color="info" fontSize="sm">
                     <LockIcon size="sm" theme="info" /> {t('account.messages.mfaRecommendation')}
-                  </div>
+                  </Box>
                 )}
-              </div>
+              </FlexColumn>
             </DashboardCard>
           </DashboardGrid>
           </DashboardSection>
-        </div>
+        </Box>
 
         {/* MFA Ενέργεια αν χρειάζεται */}
         {!user.layeraClaims?.mfa_verified && (
-          <div style={{ padding: 'var(--layera-space-lg)' }}>
+          <Box padding="lg">
             <DashboardSection title={t('account.security')}>
               <DashboardGrid columns={{ xs: 1, sm: 1, md: 1, lg: 1 }}>
                 <DashboardCard
@@ -127,13 +127,13 @@ export default function Account() {
                 </DashboardCard>
               </DashboardGrid>
             </DashboardSection>
-          </div>
+          </Box>
         )}
 
         {/* Γρήγορες Ενέργειες */}
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+        <Box padding="lg">
           <QuickActions />
-        </div>
+        </Box>
       </PageContainer>
     </AppShell>
   );

@@ -6,6 +6,7 @@
  */
 
 import React from 'react';
+import { Box } from '@layera/layout';
 import { DeviceLayoutRendererProps, ResponsiveLayoutConfig, DeviceType } from './types';
 
 const DEFAULT_LAYOUT_CONFIG: ResponsiveLayoutConfig = {
@@ -95,7 +96,7 @@ export const DeviceLayoutRenderer: React.FC<DeviceLayoutRendererProps> = ({
 
 
     return (
-      <div
+      <Box
         style={{
           width: config.width,
           height: config.height,
@@ -170,7 +171,7 @@ export const DeviceLayoutRenderer: React.FC<DeviceLayoutRendererProps> = ({
           })
         )}
 
-      </div>
+      </Box>
     );
   }
 
@@ -180,18 +181,18 @@ export const DeviceLayoutRenderer: React.FC<DeviceLayoutRendererProps> = ({
     const desktopComponents = components?.desktop || {};
 
     return (
-      <div style={config.containerStyle}>
+      <Box style={config.containerStyle}>
         {/* Desktop-specific component */}
         {desktopComponents.map && React.createElement(desktopComponents.map, commonProps)}
 
         {/* Common MapContainer component */}
         {commonProps && (
-          <div>
+          <Box>
             {/* MapContainer θα rendered εδώ */}
-          </div>
+          </Box>
         )}
 
-      </div>
+      </Box>
     );
   }
 
@@ -201,7 +202,7 @@ export const DeviceLayoutRenderer: React.FC<DeviceLayoutRendererProps> = ({
     const tabletComponents = components?.tablet || {};
 
     return (
-      <div
+      <Box
         className={config.containerClassName}
         style={config.containerStyle}
       >
@@ -210,31 +211,31 @@ export const DeviceLayoutRenderer: React.FC<DeviceLayoutRendererProps> = ({
 
         {/* Common MapContainer component */}
         {commonProps && (
-          <div>
+          <Box>
             {/* MapContainer θα rendered εδώ */}
-          </div>
+          </Box>
         )}
 
-      </div>
+      </Box>
     );
   }
 
   // Mobile fallback rendering
   const config = finalConfig.mobile;
   return (
-    <div
+    <Box
       className={config.containerClassName}
       style={config.containerStyle}
     >
       {/* Common MapContainer component */}
       {commonProps && (
-        <div>
+        <Box>
           {/* MapContainer θα rendered εδώ */}
-        </div>
+        </Box>
       )}
 
       {/* FAB rendering */}
       {fab && !fab.hidden && fab.component}
-    </div>
+    </Box>
   );
 };

@@ -3,6 +3,7 @@ import { useAuthContext } from '@layera/auth-bridge';
 import { FormField, FormSection, FormActions, Select, TextArea } from '@layera/forms';
 import { Button } from '@layera/buttons';
 import { BaseCard } from '@layera/cards';
+import { Box } from '@layera/layout';
 import { useLayeraTranslation } from '@layera/i18n';
 import { FORM_SIZES } from '@layera/constants';
 import './Support.css';
@@ -51,23 +52,23 @@ ${message}
 
   if (submitted) {
     return (
-      <div className="support-container">
+      <Box className="support-container">
         <BaseCard
           title="✓ Αίτημα Στάλθηκε"
           variant="success"
           className="support-card-replacement"
         >
-          <div className="success-message">
+          <Box className="success-message">
             <p>Το πρόγραμμα email σας άνοιξε με το αίτημά σας.</p>
             <p>Θα επικοινωνήσουμε μαζί σας σύντομα στο <strong>{user?.email}</strong></p>
-          </div>
+          </Box>
         </BaseCard>
-      </div>
+      </Box>
     );
   }
 
   return (
-    <div className="support-container">
+    <Box className="support-container">
       <BaseCard
         title="Επικοινωνία"
         variant="support"
@@ -77,16 +78,16 @@ ${message}
           Χρειάζεστε βοήθεια; Στείλτε μας το αίτημά σας και θα επικοινωνήσουμε μαζί σας.
         </p>
 
-        <div className="support-info">
-          <div className="info-item">
+        <Box className="support-info">
+          <Box className="info-item">
             <strong>Email υποστήριξης:</strong> {supportEmail}
-          </div>
+          </Box>
           {user && (
-            <div className="info-item">
+            <Box className="info-item">
               <strong>Ο λογαριασμός σας:</strong> {user.email}
-            </div>
+            </Box>
           )}
-        </div>
+        </Box>
 
         <form onSubmit={handleSubmit} className="support-form">
           <FormSection>
@@ -140,14 +141,14 @@ ${message}
           </FormSection>
         </form>
 
-        <div className="support-footer">
+        <Box className="support-footer">
           <p>
             <strong>Σημείωση:</strong> Το αίτημά σας θα ανοίξει στο πρόγραμμα email σας.
             Μπορείτε να προσθέσετε επιπλέον πληροφορίες πριν την αποστολή.
           </p>
-        </div>
+        </Box>
       </BaseCard>
-    </div>
+    </Box>
   );
 };
 

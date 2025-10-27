@@ -18,13 +18,29 @@
     "test": "npm run test --workspaces --if-present",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
+    "lint:css": "stylelint \"**/*.{css,scss}\"",
+    "policy:check": "git grep -nE \"#[0-9a-fA-F]{3,8}|\\brgb\\(|\\bhsl\\(|\\b\\d+px\\b\" -- . ':!packages/tokens/**' ':!packages/styles/**' ':!**/*.svg' ':!**/dist/**' || true",
+    "dup:check": "jscpd --pattern \"**/*.{ts,tsx,js,jsx,css,scss}\" -t 0 --ignore \"**/dist/**,**/node_modules/**,packages/tokens/**,packages/styles/**,**/*.svg\"",
     "verify": "npm run typecheck && npm run lint",
     "clean": "npm run clean --workspaces --if-present && rimraf node_modules",
-    "fresh-install": "npm run clean && npm install"
+    "fresh-install": "npm run clean && npm install",
+    "prepare": "husky",
+    "imports:check": "pnpm -w exec depcruise --config .dependency-cruiser.cjs --include-only \"^(apps|packages)/\" ."
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.7",
+    "@microsoft/api-extractor": "^7.53.3",
     "@rollup/rollup-win32-x64-msvc": "^4.52.5",
-    "rimraf": "^6.0.1"
+    "dependency-cruiser": "^17.1.0",
+    "eslint-plugin-import": "^2.32.0",
+    "gitleaks": "^1.0.0",
+    "husky": "^9.1.7",
+    "jscpd": "^4.0.5",
+    "lint-staged": "^16.2.6",
+    "rimraf": "^6.0.1",
+    "stylelint": "^16.25.0",
+    "stylelint-config-standard": "^39.0.1",
+    "typescript": "^5.9.3"
   },
   "engines": {
     "node": ">=18.0.0",

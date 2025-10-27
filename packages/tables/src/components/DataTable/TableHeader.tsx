@@ -1,6 +1,7 @@
 import React from 'react';
 import { SORT_DIRECTIONS, type SortDirection } from '@layera/constants';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { Box } from '@layera/layout';
 import type { TableColumn } from './DataTable';
 
 interface TableHeaderProps<T = unknown> {
@@ -91,14 +92,12 @@ export const TableHeader = <T,>({
                 column.align && `layera-table-header__cell--${column.align}`,
                 column.fixed && `layera-table-header__cell--fixed-${column.fixed}`
               ].filter(Boolean).join(' ')}
-              style={{
-                width: column.width,
-                minWidth: column.minWidth,
-                maxWidth: column.maxWidth
-              }}
+              width={column.width}
+              minWidth={column.minWidth}
+              maxWidth={column.maxWidth}
               onClick={column.sortable ? () => onSort(column.key) : undefined}
             >
-              <div className="layera-table-header__content">
+              <Box className="layera-table-header__content">
                 {column.headerRender ? column.headerRender() : (
                   <>
                     <span className="layera-table-header__title">
@@ -107,7 +106,7 @@ export const TableHeader = <T,>({
                     {column.sortable && getSortIcon(column.key)}
                   </>
                 )}
-              </div>
+              </Box>
             </th>
           );
         })}

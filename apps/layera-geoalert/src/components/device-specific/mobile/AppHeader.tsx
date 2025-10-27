@@ -33,17 +33,17 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
   const headerStyles: React.CSSProperties = {
     height: 'var(--header-h)',
     backgroundColor: 'var(--color-bg-surface-overlay)',
-    backdropFilter: 'blur(20px)',
-    WebkitBackdropFilter: 'blur(20px)',
-    borderBottom: '1px solid var(--color-border-subtle)',
+    backdropFilter: 'var(--layera-backdrop-filter-blur-20, blur(20px))',
+    WebkitBackdropFilter: 'var(--layera-webkit-backdrop-filter-blur-20, blur(20px))',
+    borderBottom: 'var(--layera-border-bottom-subtle, 1px solid var(--color-border-subtle))',
     // Layout handled by Flex wrapper
     padding: `0 ${SPACING_SCALE.MD}px`,
-    position: 'relative'
+    position: 'var(--layera-position-relative, relative)'
   };
 
   const backButtonStyles: React.CSSProperties = {
-    background: 'none',
-    border: 'none',
+    background: 'var(--layera-background-none, none)',
+    border: 'var(--layera-border-none, none)',
     // fontSize handled by Text component
     color: 'var(--color-interactive-primary)', // Design system primary color instead of hardcoded #007AFF
     cursor: getCursorVar('pointer'), // Cursor system token για interactive elements
@@ -67,33 +67,33 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
     <Flex align="center" justify="space-between" style={headerStyles}>
       {/* Left: Back Button */}
       {showBack && (
-        <button
-          style={{
-            ...backButtonStyles,
-            display: 'flex',
-            alignItems: 'center',
-            gap: `${SPACING_SCALE.XS}px`
-          }}
+        <Flex
+          as="button"
+          align="center"
+          gap="xs"
+          background="none"
+          border="none"
+          color="primary"
+          cursor="pointer"
+          padding="sm"
           onClick={onBack || (() => window.history.back())}
         >
           ← {t('back', 'Πίσω')}
-        </button>
+        </Flex>
       )}
 
       {/* Center: Title */}
       <Text
         size="base"
         weight="bold"
-        style={{
-          color: '#000',
-          position: 'absolute',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          maxWidth: `${SPACING_SCALE.XXXL * 3}px`,
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap'
-        }}
+        color="primary"
+        position="absolute"
+        left="50%"
+        transform="translateX(-50%)"
+        maxWidth="xxxl"
+        overflow="hidden"
+        textOverflow="ellipsis"
+        whiteSpace="nowrap"
       >
         {title}
       </Text>

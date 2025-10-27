@@ -3,6 +3,7 @@ import { useViewportWithOverride } from '@layera/viewport';
 import { DeviceModelSelector, DeviceModel, getDeviceSpecs } from '@layera/viewport';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+import { Box } from '@layera/layout';
 
 interface DeviceFrameWrapperProps {
   children: React.ReactNode;
@@ -60,7 +61,7 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
     return {
       width: '100%',
       height: '100%',
-      backgroundColor: '#fff',
+      backgroundColor: 'var(--layera-bg-primary)',
       borderRadius: `${specs.borderRadius - 8}px`,
       overflow: 'hidden',
       position: 'relative'
@@ -75,11 +76,11 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
       top: '0',
       left: '50%',
       transform: 'translateX(-50%)',
-      width: '209px',
-      height: '30px',
-      backgroundColor: '#000',
-      borderBottomLeftRadius: '20px',
-      borderBottomRightRadius: '20px',
+      width: 'var(--layera-device-notch-width, 209px)',
+      height: 'var(--layera-device-notch-height, 30px)',
+      backgroundColor: 'var(--layera-device-notch-color, #000)',
+      borderBottomLeftRadius: `${BORDER_RADIUS_SCALE.LAYOUT_SM}px`,
+      borderBottomRightRadius: `${BORDER_RADIUS_SCALE.LAYOUT_SM}px`,
       zIndex: 10
     };
   };
@@ -89,12 +90,12 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
 
     return {
       position: 'absolute',
-      bottom: '8px',
+      bottom: `${SPACING_SCALE.SM}px`,
       left: '50%',
       transform: 'translateX(-50%)',
-      width: '134px',
-      height: '5px',
-      backgroundColor: '#000',
+      width: 'var(--layera-device-home-width, 134px)',
+      height: 'var(--layera-device-home-height, 5px)',
+      backgroundColor: 'var(--layera-device-notch-color, #000)',
       borderRadius: `${BORDER_RADIUS_SCALE.PILL}px`,
       zIndex: 10
     };
@@ -106,23 +107,22 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
         currentModel={selectedModel}
         onModelSelect={setSelectedModel}
       />
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        minHeight: '100vh',
-        backgroundColor: '#f0f0f0',
-        padding: `100px ${SPACING_SCALE.LG}px ${SPACING_SCALE.LG}px ${SPACING_SCALE.LG}px`,
-        overflow: 'auto'
-      }}>
-        <div style={getFrameStyles()}>
-          <div id="layera-device-simulator-viewport" style={getScreenStyles()}>
-            <div style={getNotchStyles()} />
+      <Flex
+        justify="center"
+        align="flex-start"
+        minHeight="100vh"
+        backgroundColor="var(--layera-color-neutral-100)"
+        padding={`100px ${SPACING_SCALE.LG}px ${SPACING_SCALE.LG}px ${SPACING_SCALE.LG}px`}
+        overflow="auto"
+      >
+        <Box style={getFrameStyles()}>
+          <Box id="layera-device-simulator-viewport" style={getScreenStyles()}>
+            <Box style={getNotchStyles()} />
             {children}
-            <div style={getHomeIndicatorStyles()} />
-          </div>
-        </div>
-      </div>
+            <Box style={getHomeIndicatorStyles()} />
+          </Box>
+        </Box>
+      </Box>
     </>
   );
 };

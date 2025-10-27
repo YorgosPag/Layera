@@ -6,6 +6,7 @@ import React from 'react';
 import { useViewport } from '../hooks/useViewport';
 import { ResponsiveConfig } from '../types';
 import { SPACING_SCALE } from '@layera/constants';
+import { Box } from '@layera/layout';
 
 interface ResponsiveContainerProps {
   children: React.ReactNode;
@@ -80,14 +81,14 @@ export const ResponsiveContainer: React.FC<ResponsiveContainerProps> = ({
   } as React.CSSProperties;
 
   return (
-    <div
+    <Box
       className={`layera-responsive-container ${className}`}
       style={{ ...containerStyle, ...cssVariables }}
       data-device-type={deviceType}
       data-viewport-width={width}
     >
       {children}
-    </div>
+    </Box>
   );
 };
 

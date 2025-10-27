@@ -1,4 +1,5 @@
 import React from 'react';
+import { Box } from '../Box';
 import { LayeraHeaderProps } from '../../types';
 
 /**
@@ -23,23 +24,23 @@ export const LayeraHeader: React.FC<LayeraHeaderProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <div className={headerClasses}>
-      <div className="layera-header__container">
+    <Box className={headerClasses}>
+      <Box className="layera-header__container">
         {/* Left section - Logo + Title */}
-        <div className="layera-header__left">
+        <Box className="layera-header__left">
           {logo && (
-            <div className="layera-header__logo">
+            <Box className="layera-header__logo">
               {logo}
-            </div>
+            </Box>
           )}
 
-          <div className="layera-header__title-section">
+          <Box className="layera-header__title-section">
             <h1 className="layera-header__title">{title}</h1>
             {subtitle && variant !== 'minimal' && (
               <p className="layera-header__subtitle">{subtitle}</p>
             )}
-          </div>
-        </div>
+          </Box>
+        </Box>
 
         {/* Center section - Navigation (για rich variant) */}
         {navigation && variant === 'rich' && (
@@ -50,11 +51,11 @@ export const LayeraHeader: React.FC<LayeraHeaderProps> = ({
 
         {/* Right section - Actions */}
         {actions && (
-          <div className="layera-header__actions">
+          <Box className="layera-header__actions">
             {actions}
-          </div>
+          </Box>
         )}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };

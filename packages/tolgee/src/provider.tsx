@@ -6,6 +6,7 @@
 import React from 'react';
 import { Tolgee, DevTools, TolgeeProvider as BaseTolgeeProvider, FormatSimple } from '@tolgee/react';
 import { FormatIcu } from '@tolgee/format-icu';
+import { Box } from '@layera/layout';
 import { TOLGEE_CONFIG } from './config';
 
 // Import existing translations (will be migrated)
@@ -80,7 +81,7 @@ export const TolgeeProvider: React.FC<TolgeeProviderProps> = ({
   return (
     <BaseTolgeeProvider
       tolgee={tolgee}
-      fallback={<div>Φόρτωση μεταφράσεων...</div>}
+      fallback={<Box>Φόρτωση μεταφράσεων...</Box>}
     >
       {children}
     </BaseTolgeeProvider>

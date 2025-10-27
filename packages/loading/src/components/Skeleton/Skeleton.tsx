@@ -1,4 +1,5 @@
 import React from 'react';
+import { Box } from '@layera/layout';
 import type { SkeletonProps } from '../../types';
 import './Skeleton.css';
 
@@ -25,7 +26,7 @@ export const Skeleton: React.FC<SkeletonProps> = ({
   };
 
   return (
-    <div
+    <Box
       className={skeletonClasses}
       style={skeletonStyle}
       aria-hidden="true"

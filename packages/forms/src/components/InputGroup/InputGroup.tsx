@@ -5,6 +5,7 @@ import {
   type FormSize,
   type FormState
 } from '@layera/constants';
+import { Box } from '@layera/layout';
 import './InputGroup.css';
 
 export interface InputGroupItemProps {
@@ -138,7 +139,7 @@ const InputGroupItem = forwardRef<HTMLDivElement, InputGroupItemProps>(({
   });
 
   return (
-    <div
+    <Box
       ref={ref}
       className={itemClasses}
       style={itemStyle}
@@ -146,7 +147,7 @@ const InputGroupItem = forwardRef<HTMLDivElement, InputGroupItemProps>(({
       {...props}
     >
       {enhancedChildren}
-    </div>
+    </Box>
   );
 });
 
@@ -250,7 +251,7 @@ export const InputGroup = forwardRef<HTMLDivElement, InputGroupProps>(({
   };
 
   return (
-    <div className={wrapperClasses} ref={ref}>
+    <Box className={wrapperClasses} ref={ref}>
       {label && (
         <label htmlFor={groupId} className="layera-input-group__label">
           {label}
@@ -266,7 +267,7 @@ export const InputGroup = forwardRef<HTMLDivElement, InputGroupProps>(({
       )}
 
       <InputGroupContext.Provider value={contextValue}>
-        <div
+        <Box
           id={groupId}
           className={containerClasses}
           style={containerStyle}
@@ -277,33 +278,33 @@ export const InputGroup = forwardRef<HTMLDivElement, InputGroupProps>(({
           {children}
 
           {loading && (
-            <div className="layera-input-group__loading">
-              <div className="layera-input-group__spinner" />
-            </div>
+            <Box className="layera-input-group__loading">
+              <Box className="layera-input-group__spinner" />
+            </Box>
           )}
-        </div>
+        </Box>
       </InputGroupContext.Provider>
 
       {(description || error) && (
-        <div className="layera-input-group__footer">
+        <Box className="layera-input-group__footer">
           {description && !error && (
-            <div className="layera-input-group__description">
+            <Box className="layera-input-group__description">
               {description}
-            </div>
+            </Box>
           )}
 
           {error && (
-            <div
+            <Box
               className="layera-input-group__error"
               role="alert"
               aria-live="polite"
             >
               {error}
-            </div>
+            </Box>
           )}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 }) as React.ForwardRefExoticComponent<InputGroupProps & React.RefAttributes<HTMLDivElement>> & {
   Item: typeof InputGroupItem;

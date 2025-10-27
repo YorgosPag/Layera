@@ -13,8 +13,10 @@ import { useNavigationHandlers } from '@layera/navigation-handlers';
 import { ResponsiveMapLayout, MapComponentProps } from '@layera/device-layouts';
 import { MapContainer } from './map/MapContainer';
 import { PlusIcon } from '@layera/icons';
-import { DraggableFAB } from '@layera/draggable-fab';
+import { Box } from '@layera/layout';
 import { UnifiedFAB } from '@layera/floating-action-buttons';
+import { CONFIG } from '@layera/constants';
+import { useLayeraTranslation } from '@layera/tolgee';
 import {
   GeoMap as iPhone14ProMaxGeoMap,
   FloatingStepper as iPhone14ProMaxFloatingStepper
@@ -80,6 +82,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
   showCategoryElements: propShowCategoryElements = false
 }) => {
   const { isDesktop, isTablet, isMobile } = useViewportWithOverride();
+  const { t } = useLayeraTranslation();
 
   // 🚀 ENTERPRISE DEVICE DETECTION: @layera/device-detection LEGO package
   const isDetectedIPhone14ProMax = useIPhone14ProMaxDetection({
@@ -207,7 +210,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
 
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+    <Box position="relative" width="full" height="full">
 
       <ResponsiveMapLayout
         deviceType={deviceType}
@@ -229,32 +232,15 @@ export const GeoMap: React.FC<GeoMapProps> = ({
         - Parent component: FAB rendering και positioning
       */}
       {!showCategoryElements && (
-        deviceType === 'iphone' ? (
-          <DraggableFAB
-            onClick={handleNewEntryClick}
-            size="lg"
-            position="viewport-relative"
-            constrainToViewport={true}
-            viewportSelector="#geo-viewport, [data-viewport-frame]"
-            data-testid="iphone-draggable-fab"
-            aria-label="Νέα Καταχώρηση"
-            title="Νέα Καταχώρηση"
-          >
-            <PlusIcon size="md" theme="neutral" />
-          </DraggableFAB>
-        ) : (
-          <UnifiedFAB
-            onClick={handleNewEntryClick}
-            icon={<PlusIcon size="md" theme="neutral" />}
-            deviceType={deviceType}
-            variant="success"
-            hidden={false}
-            aria-label="Νέα Καταχώρηση"
-            title="Νέα Καταχώρηση"
-            data-testid={`${deviceType}-unified-fab`}
-          />
-        )
+        <UnifiedFAB
+          onClick={handleNewEntryClick}
+          icon={<PlusIcon size="md" theme="neutral" />}
+          variant="success"
+          position={{ right: '50%', bottom: `${CONFIG.map.fabBottomOffset}px`, transform: `translateX(calc(50% - ${CONFIG.map.fabHalfWidth}px))` }}
+          ariaLabel={t('fab.new-entry')}
+          data-testid="simple-fab"
+        />
       )}
-    </div>
+    </Box>
   );
 };

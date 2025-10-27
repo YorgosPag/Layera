@@ -12,6 +12,21 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
+    "./minimal": {
+      "types": "./dist/index.minimal.d.ts",
+      "import": "./dist/index.minimal.js",
+      "require": "./dist/index.minimal.cjs"
+    },
+    "./sizing": {
+      "types": "./dist/exports/sizing.d.ts",
+      "import": "./dist/exports/sizing.js",
+      "require": "./dist/exports/sizing.cjs"
+    },
+    "./shortcuts": {
+      "types": "./dist/exports/shortcuts.d.ts",
+      "import": "./dist/exports/shortcuts.js",
+      "require": "./dist/exports/shortcuts.cjs"
+    },
     "./styles": "./dist/styles.css"
   },
   "files": [
@@ -22,6 +37,8 @@
     "build": "tsup src/index.ts --format cjs,esm --dts && npm run build:css",
     "build:css": "postcss src/styles/index.css -o dist/styles.css",
     "dev": "npm run build -- --watch",
+    "types:build": "tsc -p tsconfig.json",
+    "api:check": "api-extractor run --local",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"src/**/*.{ts,tsx}\" --max-warnings 0"
   },

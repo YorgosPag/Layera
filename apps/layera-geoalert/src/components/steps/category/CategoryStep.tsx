@@ -10,6 +10,7 @@
 import React, { useCallback, useState } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { BaseCard } from '@layera/cards';
+import { Box } from '@layera/layout';
 import { VillaIcon, BriefcaseIcon } from '@layera/icons';
 // REMOVED: useNavigation - Replaced με StepOrchestrator για clean enterprise architecture
 import { InfoPanel } from '@layera/info-panels';
@@ -73,8 +74,8 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
     } catch (error) {
       console.warn(`❌ CategoryStep: Info content not found for card: ${cardId}`, error);
       return {
-        title: 'Πληροφορίες',
-        content: 'Δεν υπάρχουν διαθέσιμες πληροφορίες για αυτή την επιλογή.',
+        title: t('info.title'),
+        content: t('info.content.notAvailable'),
         type: 'info' as const
       };
     }
@@ -115,11 +116,11 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
 
   return (
     <>
-    <div style={containerStyles} className={containerClass}>
+    <Box style={containerStyles} className={containerClass}>
       {/* Ακίνητα Card */}
       <BaseCard
         variant="property"
-        title="Ακίνητα"
+        title={t('category.property')}
         icon={<VillaIcon size="sm" theme="neutral" />}
         onClick={() => handleCategorySelection('property')}
         onInfoClick={() => handleInfoClick('property')}
@@ -129,13 +130,13 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
       {/* Εργασία Card */}
       <BaseCard
         variant="job"
-        title="Εργασία"
+        title={t('category.job')}
         icon={<BriefcaseIcon size="sm" theme="neutral" />}
         onClick={() => handleCategorySelection('job')}
         onInfoClick={() => handleInfoClick('job')}
         data-testid="category-card-job"
       />
-    </div>
+    </Box>
 
     {/* Info Panel */}
     {showInfoPanel && currentInfoCard && (

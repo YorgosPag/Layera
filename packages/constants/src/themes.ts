@@ -147,19 +147,8 @@ export const SPACING_SCALE = {
   A4: '1.414:1'
 } as const;
 
-export const Z_INDEX = {
-  DROPDOWN: 1000,
-  STICKY: 1020,
-  FIXED: 1030,
-  MODAL_BACKDROP: 1040,
-  MODAL: 1050,
-  POPOVER: 1060,
-  TOOLTIP: 1070,
-  TOAST: 1080,
-  // Υψηλά z-index για elements που πρέπει να εμφανίζονται πάνω από χάρτες
-  MAP_OVERLAY: 10000,
-  MAP_MODAL: 10050
-} as const;
+// ❌ DEPRECATED: Legacy Z_INDEX system removed in favor of useDesignTokens().zIndex
+// Use useDesignTokens().zIndex.mapModal, useDesignTokens().zIndex.modal, etc. instead
 
 /**
  * Enterprise CSS custom properties για border radius system
@@ -335,4 +324,4 @@ export type ElevationLevel = typeof ELEVATION_LEVELS[keyof typeof ELEVATION_LEVE
 export type BorderRadius = typeof BORDER_RADIUS[keyof typeof BORDER_RADIUS];
 export type BorderRadiusScale = typeof BORDER_RADIUS_SCALE[keyof typeof BORDER_RADIUS_SCALE];
 export type SpacingScale = typeof SPACING_SCALE[keyof typeof SPACING_SCALE];
-export type ZIndex = typeof Z_INDEX[keyof typeof Z_INDEX];
+// ❌ DEPRECATED: ZIndex type removed - use useDesignTokens().zIndex instead

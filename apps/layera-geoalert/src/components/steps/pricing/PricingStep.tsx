@@ -6,7 +6,7 @@
  */
 
 import React, { useState } from 'react';
-import { Stack } from '@layera/layout';
+import { Stack, Box } from '@layera/layout';
 import { SPACING_SCALE } from '@layera/constants';
 import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
@@ -126,8 +126,7 @@ export const PricingStep: React.FC<PricingStepProps> = ({
       <Box
         display="grid"
         gridTemplateColumns={deviceProps?.isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))'}
-          gap: `${SPACING_SCALE.MD}px`
-        }}
+        gap={`${SPACING_SCALE.MD}px`}
       >
         {cards.map((card) => (
           <BaseCard
@@ -135,14 +134,9 @@ export const PricingStep: React.FC<PricingStepProps> = ({
             title={card.title}
             variant={selectedPricing === card.value ? 'filled' : 'outline'}
             onClick={() => handlePricingSelect(card.value as PricingType)}
-            style={{
-              cursor: 'pointer',
-              transition: 'var(--layera-transition-fast)',
-              borderColor: selectedPricing === card.value ? 'var(--color-primary-500)' : undefined
-            }}
           >
             <Stack spacing="sm" align="center">
-              {card.icon && <div>{card.icon}</div>}
+              {card.icon && <Box>{card.icon}</Box>}
               <Text size="sm" color="neutral-600">
                 {card.description}
               </Text>

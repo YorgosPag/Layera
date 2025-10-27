@@ -27,33 +27,33 @@ export const BOX_SHADOW_SCALE = {
   // Elevation-based shadows (Material Design 3 inspired)
   // Level 0-5: Surface elevations
   elevation0: 'none', // Surface level
-  elevation1: '0 1px 2px 0 rgba(0, 0, 0, 0.05)', // Raised surface
-  elevation2: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)', // Card
-  elevation3: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)', // Dropdown
-  elevation4: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', // Modal
-  elevation5: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)', // Popover
+  elevation1: 'var(--layera-shadow-subtle, 0 1px 2px 0 rgba(0, 0, 0, 0.05))', // Raised surface
+  elevation2: 'var(--layera-shadow-card, 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06))', // Card
+  elevation3: 'var(--layera-shadow-dropdown, 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06))', // Dropdown
+  elevation4: 'var(--layera-shadow-modal, 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05))', // Modal
+  elevation5: 'var(--layera-shadow-popover, 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04))', // Popover
 
   // Extended elevations για complex interfaces
-  elevation6: '0 25px 50px -12px rgba(0, 0, 0, 0.25)', // Dialog/Sheet
-  elevation7: '0 35px 60px -12px rgba(0, 0, 0, 0.35)', // Full-screen overlay
+  elevation6: 'var(--layera-shadow-dialog, 0 25px 50px -12px rgba(0, 0, 0, 0.25))', // Dialog/Sheet
+  elevation7: 'var(--layera-shadow-overlay, 0 35px 60px -12px rgba(0, 0, 0, 0.35))', // Full-screen overlay
 
   // Semantic shadows (context-aware)
   // Interactive elements
-  buttonDefault: '0 1px 2px 0 rgba(0, 0, 0, 0.05)', // Button at rest
-  buttonHover: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)', // Button on hover
-  buttonActive: '0 1px 2px 0 rgba(0, 0, 0, 0.1)', // Button when pressed
-  buttonFocus: '0 0 0 3px rgba(59, 130, 246, 0.1)', // Focus ring shadow
+  buttonDefault: 'var(--layera-shadow-button, 0 1px 2px 0 rgba(0, 0, 0, 0.05))', // Button at rest
+  buttonHover: 'var(--layera-shadow-button-hover, 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06))', // Button on hover
+  buttonActive: 'var(--layera-shadow-button-active, 0 1px 2px 0 rgba(0, 0, 0, 0.1))', // Button when pressed
+  buttonFocus: 'var(--layera-shadow-focus, 0 0 0 3px rgba(59, 130, 246, 0.1))', // Focus ring shadow
 
   // Input elements
-  inputDefault: '0 1px 2px 0 rgba(0, 0, 0, 0.05)', // Input at rest
-  inputFocus: '0 0 0 3px rgba(59, 130, 246, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.05)', // Input focused
-  inputError: '0 0 0 3px rgba(239, 68, 68, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.05)', // Input with error
+  inputDefault: 'var(--layera-shadow-input, 0 1px 2px 0 rgba(0, 0, 0, 0.05))', // Input at rest
+  inputFocus: 'var(--layera-shadow-input-focus, 0 0 0 3px rgba(59, 130, 246, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.05))', // Input focused
+  inputError: 'var(--layera-shadow-input-error, 0 0 0 3px rgba(239, 68, 68, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.05))', // Input with error
 
   // Card variations
-  cardSubtle: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)', // Minimal card
-  cardDefault: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)', // Standard card
-  cardHover: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', // Card on hover
-  cardPressed: '0 1px 2px 0 rgba(0, 0, 0, 0.1)', // Card when pressed
+  cardSubtle: 'var(--layera-shadow-card-subtle, 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06))', // Minimal card
+  cardDefault: 'var(--layera-shadow-card-default, 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06))', // Standard card
+  cardHover: 'var(--layera-shadow-card-hover, 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05))', // Card on hover
+  cardPressed: 'var(--layera-shadow-card-pressed, 0 1px 2px 0 rgba(0, 0, 0, 0.1))', // Card when pressed
 
   // Navigation elements
   navbarDefault: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)', // Navigation bar

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Box } from '@layera/layout';
 import { useLayeraTranslation } from '@layera/tolgee';
 import type { TableColumn } from './DataTable';
 
@@ -48,8 +49,8 @@ export const TableBody = <T extends Record<string, unknown>>({
             className="layera-table-body__empty-cell"
           >
             {emptyState || (
-              <div className="layera-table-body__empty-state">
-                <div className="layera-table-body__empty-icon">
+              <Box className="layera-table-body__empty-state">
+                <Box className="layera-table-body__empty-icon">
                   <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
                     <path
                       d="M6 10C6 7.79086 7.79086 6 10 6H38C40.2091 6 42 7.79086 42 10V38C42 40.2091 40.2091 42 38 42H10C7.79086 42 6 40.2091 6 38V10Z"
@@ -63,14 +64,14 @@ export const TableBody = <T extends Record<string, unknown>>({
                       strokeLinecap="round"
                     />
                   </svg>
-                </div>
-                <p className="layera-table-body__empty-title">
+                </Box>
+                <Box className="layera-table-body__empty-title">
                   {t('tables.noData.title')}
-                </p>
-                <p className="layera-table-body__empty-description">
+                </Box>
+                <Box className="layera-table-body__empty-description">
                   {t('tables.noData.description')}
-                </p>
-              </div>
+                </Box>
+              </Box>
             )}
           </td>
         </tr>
@@ -120,15 +121,13 @@ export const TableBody = <T extends Record<string, unknown>>({
                     column.align && `layera-table-body__cell--${column.align}`,
                     column.fixed && `layera-table-body__cell--fixed-${column.fixed}`
                   ].filter(Boolean).join(' ')}
-                  style={{
-                    width: column.width,
-                    minWidth: column.minWidth,
-                    maxWidth: column.maxWidth
-                  }}
+                  width={column.width}
+                  minWidth={column.minWidth}
+                  maxWidth={column.maxWidth}
                 >
-                  <div className="layera-table-body__content">
+                  <Box className="layera-table-body__content">
                     {cellContent}
-                  </div>
+                  </Box>
                 </td>
               );
             })}

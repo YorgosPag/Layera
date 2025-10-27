@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { Box } from '@layera/layout';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
@@ -59,8 +60,8 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
 
   return (
     <aside className={`bg-white border-r border-gray-200 flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out z-20 overflow-hidden ${isOpen ? 'w-80' : 'w-0'}`}>
-      <div className="flex flex-col flex-grow min-w-0 w-80">
-        <div className="p-4 border-b border-gray-200 flex justify-between items-center">
+      <Box className="flex flex-col flex-grow min-w-0 w-80">
+        <Box className="p-4 border-b border-gray-200 flex justify-between items-center">
           <Heading as="h2" size="lg" weight="bold" color="primary">{t('areas')}</Heading>
           <Button
             onClick={onTogglePanel}
@@ -72,15 +73,15 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </Button>
-        </div>
+        </Box>
 
         {areas.length === 0 && (
-          <div className="flex-grow flex items-center justify-center p-4">
+          <Box className="flex-grow flex items-center justify-center p-4">
             <Text size="sm" color="secondary" align="center">
               {t('noAreas')} <br />
               {t('clickPlusCreate')}
             </Text>
-          </div>
+          </Box>
         )}
 
         <ul className="flex-grow overflow-y-auto">
@@ -94,11 +95,11 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
               onDragOver={(e) => e.preventDefault()}
               className={`p-2 border-b border-gray-200 cursor-move ${editingAreaId === area.id ? 'bg-blue-100 ring-2 ring-blue-500' : ''}`}
             >
-              <div className="flex items-center justify-between">
+              <Box className="flex items-center justify-between">
                 <Text size="sm" weight="semibold" className="truncate pr-2" title={area.name}>
                   {area.name}
                 </Text>
-                <div className="flex items-center space-x-2">
+                <Box className="flex items-center space-x-2">
                   <Button
                     onMouseDown={(e) => { e.preventDefault(); e.stopPropagation(); onEditArea(area); }}
                     title={t('editArea')}
@@ -138,8 +139,8 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
                     size="xs"
                     icon={<TrashIcon size="sm" theme="danger" />}
                   />
-                </div>
-              </div>
+                </Box>
+              </Box>
 
               <input
                 type="range"
@@ -153,7 +154,7 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
             </li>
           ))}
         </ul>
-      </div>
+      </Box>
     </aside>
   );
 };

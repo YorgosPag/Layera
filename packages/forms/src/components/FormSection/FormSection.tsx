@@ -1,4 +1,5 @@
 import React from 'react';
+import { Box } from '@layera/layout';
 import { useLayeraTranslation } from '@layera/i18n';
 import './FormSection.css';
 
@@ -45,9 +46,9 @@ export const FormSection: React.FC<FormSectionProps> = ({
   };
 
   return (
-    <div className={sectionClasses}>
+    <Box className={sectionClasses}>
       {(resolvedTitle || icon) && (
-        <div
+        <Box
           className="layera-form-section__header"
           onClick={handleToggle}
           role={collapsible ? 'button' : undefined}
@@ -55,12 +56,12 @@ export const FormSection: React.FC<FormSectionProps> = ({
           aria-expanded={collapsible ? !isCollapsed : undefined}
         >
           {icon && (
-            <div className="layera-form-section__icon">
+            <Box className="layera-form-section__icon">
               {icon}
-            </div>
+            </Box>
           )}
 
-          <div className="layera-form-section__header-content">
+          <Box className="layera-form-section__header-content">
             {resolvedTitle && (
               <h3 className="layera-form-section__title">
                 {resolvedTitle}
@@ -72,10 +73,10 @@ export const FormSection: React.FC<FormSectionProps> = ({
                 {resolvedDescription}
               </p>
             )}
-          </div>
+          </Box>
 
           {collapsible && (
-            <div className="layera-form-section__toggle">
+            <Box className="layera-form-section__toggle">
               <svg
                 width="16"
                 height="16"
@@ -91,14 +92,14 @@ export const FormSection: React.FC<FormSectionProps> = ({
                   strokeLinejoin="round"
                 />
               </svg>
-            </div>
+            </Box>
           )}
-        </div>
+        </Box>
       )}
 
-      <div className="layera-form-section__content">
+      <Box className="layera-form-section__content">
         {children}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };

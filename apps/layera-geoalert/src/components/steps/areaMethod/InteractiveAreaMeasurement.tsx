@@ -17,7 +17,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Button } from '@layera/buttons';
 import { Text, Heading } from '@layera/typography';
-import { Stack, Flex } from '@layera/layout';
+import { Stack, Flex, Box } from '@layera/layout';
 import { BaseCard } from '@layera/cards';
 import {
   CheckIcon,
@@ -146,42 +146,42 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
 
   const getInstructions = () => {
     if (!isDrawing && !measurementComplete) {
-      return 'Πατήστε "Ξεκίνα Μέτρηση" για να αρχίσετε να σχεδιάζετε την περιοχή στον χάρτη';
+      return t('areaMeasurement.instructions.start');
     }
 
     if (isDrawing) {
       if (drawingPoints.length === 0) {
-        return 'Κάντε κλικ στον χάρτη για να ξεκινήσετε το πολύγωνο';
+        return t('areaMeasurement.instructions.firstClick');
       }
       if (drawingPoints.length < 3) {
-        return `Προσθέστε ${3 - drawingPoints.length} ακόμα σημεία (διπλό κλικ για τέλος)`;
+        return t('areaMeasurement.instructions.morePoints', { count: 3 - drawingPoints.length });
       }
-      return 'Διπλό κλικ για να ολοκληρώσετε το πολύγωνο';
+      return t('areaMeasurement.instructions.doubleClick');
     }
 
-    return `Μέτρηση ολοκληρώθηκε: ${currentArea} τ.μ.`;
+    return t('areaMeasurement.instructions.completed', { area: currentArea });
   };
 
   return (
-    <div style={style}>
+    <Box style={style}>
       <BaseCard
         variant="outlined"
         size="lg"
         padding="lg"
-        style={{ backgroundColor: 'var(--color-bg-surface-strong)' }}
+        backgroundColor="surface-strong"
       >
         <Stack spacing="md">
           {/* Header */}
           <Flex align="center" gap="md">
             <MapIcon size="lg" theme="primary" />
-            <div>
+            <Box>
               <Heading as="h3" size="lg" color="primary">
-                Μέτρηση Εμβαδού από Χάρτη
+                {t('areaMeasurement.title')}
               </Heading>
               <Text size="sm" color="secondary">
-                Σχεδιάστε πολύγωνο στον χάρτη για υπολογισμό εμβαδού
+                {t('areaMeasurement.subtitle')}
               </Text>
-            </div>
+            </Box>
           </Flex>
 
           {/* Instructions */}
@@ -199,10 +199,10 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
             <BaseCard variant="success" size="md" padding="md">
               <Stack spacing="xs" align="center">
                 <Text size="lg" weight="bold" color="success">
-                  Εμβαδόν: {currentArea} τ.μ.
+                  {t('areaMeasurement.area.value', { area: currentArea })}
                 </Text>
                 <Text size="sm" color="secondary">
-                  {drawingPoints.length} σημεία πολυγώνου
+                  {t('areaMeasurement.area.points', { count: drawingPoints.length })}
                 </Text>
               </Stack>
             </BaseCard>
@@ -218,7 +218,7 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
                 fullWidth
               >
                 <MapIcon size="sm" />
-                Ξεκίνα Μέτρηση
+                {t('areaMeasurement.buttons.start')}
               </Button>
             )}
 
@@ -230,7 +230,7 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
                 fullWidth
               >
                 <CheckIcon size="sm" />
-                Ολοκλήρωση Μέτρησης
+                {t('areaMeasurement.buttons.finish')}
               </Button>
             )}
 
@@ -242,7 +242,7 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
                 fullWidth
               >
                 <CheckIcon size="sm" />
-                Επιβεβαίωση ({currentArea} τ.μ.)
+                {t('areaMeasurement.buttons.confirm', { area: currentArea })}
               </Button>
             )}
 
@@ -250,16 +250,16 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
               variant="outline"
               size="lg"
               onClick={handleCancel}
-              style={{ width: '100%' }}
+              width="full"
             >
               <CloseIcon size="sm" />
-              Ακύρωση
+              {t('areaMeasurement.buttons.cancel')}
             </Button>
           </Stack>
 
           {/* TODO: Snap Indicator με πραγματικό LEGO system */}
         </Stack>
       </BaseCard>
-    </div>
+    </Box>
   );
 };

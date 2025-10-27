@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CheckIcon, AlertTriangleIcon } from '@layera/icons';
+import { Box } from '@layera/layout';
 import { Modal } from '../Modal';
 import { ModalHeader } from '../ModalHeader';
 import { ModalContent } from '../ModalContent';
@@ -97,18 +98,18 @@ export const Dialog: React.FC<DialogProps> = ({
       </ModalHeader>
 
       <ModalContent padding="lg">
-        <div className={`layera-dialog layera-dialog--${type}`}>
-          <div className="layera-dialog__icon-container">
+        <Box className={`layera-dialog layera-dialog--${type}`}>
+          <Box className="layera-dialog__icon-container">
             {getTypeIcon()}
-          </div>
+          </Box>
           <p className="layera-dialog__message" id="dialog-description">
             {message}
           </p>
-        </div>
+        </Box>
       </ModalContent>
 
       <ModalFooter align="right">
-        <div className="layera-dialog__actions">
+        <Box className="layera-dialog__actions">
           {onCancel && (
             <button
               type="button"
@@ -135,7 +136,7 @@ export const Dialog: React.FC<DialogProps> = ({
             )}
             {confirmText}
           </button>
-        </div>
+        </Box>
       </ModalFooter>
     </Modal>
   );

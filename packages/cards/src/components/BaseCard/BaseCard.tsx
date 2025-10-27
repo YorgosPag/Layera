@@ -6,7 +6,7 @@ import { getEnhancedCardTheme, getCardTextColor } from '../../utils/cardThemes';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { getCursorVar } from '@layera/cursors';
-import { Flex } from '@layera/layout';
+import { Flex, Box } from '@layera/layout';
 
 /**
  * Enhanced BaseCard - Unified Enterprise Card Component
@@ -125,7 +125,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
     color: 'var(--color-text-secondary)',
     cursor: getCursorVar('pointer'),
     transition: 'var(--layera-transition-fast)',
-    zIndex: 10000,
+    zIndex: 'var(--layera-z-popover)', // Enterprise CSS Custom Property - Single Source of Truth
     boxShadow: BOX_SHADOW_SCALE.none,
     WebkitTapHighlightColor: 'transparent',
     touchAction: 'manipulation'
@@ -202,7 +202,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
   // Mode 1: Local BaseCard pattern (icon + title + optional description)
   if (icon && title && !children) {
     return (
-      <div
+      <Box
         style={baseCardStyles}
         onClick={(clickable || onClick) ? handleClick : undefined}
         onTouchStart={handleTouchStart}
@@ -216,7 +216,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
           align="center"
           justify="center"
           gap="xs"
-          style={{ width: '100%' }}
+          width="var(--layera-width-full, 100%)"
         >
           <Flex align="center" justify="center" gap="xs" style={titleStyles}>
             {icon}
@@ -225,17 +225,15 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
 
           {/* Description support για UploadStep pattern */}
           {description && (
-            <div
-              style={{
-                fontSize: 'var(--layera-font-size-sm)',
-                color: getCardTextColor(variant, opacityMode),
-                textAlign: 'center',
-                marginTop: `${SPACING_SCALE.XS}px`,
-                opacity: 0.8
-              }}
+            <Box
+              fontSize="var(--layera-font-size-sm)"
+              color={getCardTextColor(variant, opacityMode)}
+              textAlign="var(--layera-text-align-center, center)"
+              marginTop={`${SPACING_SCALE.XS}px`}
+              opacity="var(--layera-opacity-80, 0.8)"
             >
               {description}
-            </div>
+            </Box>
           )}
         </Flex>
 
@@ -245,20 +243,20 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
             onClick={handleInfoClick}
             style={{
               ...infoButtonStyles,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
+              display: 'var(--layera-display-flex, flex)',
+              alignItems: 'var(--layera-align-center, center)',
+              justifyContent: 'var(--layera-justify-center, center)'
             }}
             onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
               if (window.matchMedia('(hover: hover)').matches) {
                 e.currentTarget.style.color = 'var(--color-text-primary)';
-                e.currentTarget.style.transform = 'scale(1.1)';
+                e.currentTarget.style.transform = 'var(--layera-transform-scale-110, scale(1.1))';
               }
             }}
             onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
               if (window.matchMedia('(hover: hover)').matches) {
                 e.currentTarget.style.color = 'var(--color-text-secondary)';
-                e.currentTarget.style.transform = 'scale(1)';
+                e.currentTarget.style.transform = 'var(--layera-transform-scale-100, scale(1))';
               }
             }}
             onTouchStart={handleInfoTouchStart}
@@ -268,7 +266,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
             i
           </button>
         )}
-      </div>
+      </Box>
     );
   }
 
@@ -287,37 +285,37 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
     <CardElement className={cardClasses} style={baseCardStyles} {...extraProps} data-testid={testId}>
       {/* Header Section */}
       {(title || subtitle || actions || icon) && (
-        <div className="layera-card__header">
-          <div className="layera-card__header-content">
+        <Box className="layera-card__header">
+          <Box className="layera-card__header-content">
             {/* Icon support για LEGO mode */}
             {icon && (
-              <div className="layera-card__icon" style={{ marginBottom: `${SPACING_SCALE.XS}px` }}>
+              <Box className="layera-card__icon" marginBottom={`${SPACING_SCALE.XS}px`}>
                 {icon}
-              </div>
+              </Box>
             )}
             {title && <h3 className="layera-card__title" style={{ color: textColor }}>{title}</h3>}
             {subtitle && <p className="layera-card__subtitle" style={{ color: textColor }}>{subtitle}</p>}
-          </div>
+          </Box>
           {actions && (
-            <div className="layera-card__actions">
+            <Box className="layera-card__actions">
               {actions}
-            </div>
+            </Box>
           )}
-        </div>
+        </Box>
       )}
 
       {/* Content Section */}
       {children && (
-        <div className="layera-card__content" style={{ color: textColor }}>
+        <Box className="layera-card__content" color={textColor}>
           {children}
-        </div>
+        </Box>
       )}
 
       {/* Footer Section */}
       {footer && (
-        <div className="layera-card__footer" style={{ color: textColor }}>
+        <Box className="layera-card__footer" color={textColor}>
           {footer}
-        </div>
+        </Box>
       )}
 
       {/* Info Button για LEGO mode */}
@@ -326,14 +324,14 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
           onClick={handleInfoClick}
           style={{
             ...infoButtonStyles,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
+            display: 'var(--layera-display-flex, flex)',
+            alignItems: 'var(--layera-align-center, center)',
+            justifyContent: 'var(--layera-justify-center, center)'
           }}
           onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
             if (window.matchMedia('(hover: hover)').matches) {
               e.currentTarget.style.color = 'var(--color-text-primary)';
-              e.currentTarget.style.transform = 'scale(1.1)';
+              e.currentTarget.style.transform = 'var(--layera-transform-scale-110, scale(1.1))';
             }
           }}
           onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {

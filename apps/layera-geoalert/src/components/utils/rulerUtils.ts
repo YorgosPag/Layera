@@ -4,9 +4,9 @@ export type TickDensity = 'low' | 'medium' | 'high';
 
 // Constants for styling and behavior
 export const RULER_SIZE = 40; // in pixels
-export const TICK_COLOR = '#4A5568';
-export const RULER_BG = '#F7FAFC';
-export const GRID_COLOR = '#6B7280';
+export const TICK_COLOR = 'var(--layera-color-gray-600, var(--color-text-secondary))';
+export const RULER_BG = 'var(--layera-bg-surface, var(--color-bg-surface))';
+export const GRID_COLOR = 'var(--layera-text-secondary, var(--color-text-secondary))';
 export const DENSITY_FACTORS: Record<TickDensity, number> = {
     low: 1.5,
     medium: 1.0,

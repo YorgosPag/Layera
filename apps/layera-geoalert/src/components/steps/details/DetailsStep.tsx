@@ -192,7 +192,7 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
             <BaseCard
               key={cardConfig.id}
               variant={context.selectedCategory || 'property'}
-              title={cardConfig.title}
+              title={t(cardConfig.titleKey)}
               icon={cardConfig.icon}
               onClick={() => handleDetailsClick(cardConfig)}
               onInfoClick={() => handleInfoClick(cardConfig.id)}

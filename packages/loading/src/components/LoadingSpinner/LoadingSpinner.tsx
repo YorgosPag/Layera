@@ -1,6 +1,7 @@
 import React from 'react';
 import { Spinner } from '../Spinner';
 import type { LoadingSpinnerProps } from '../../types';
+import { Box } from '@layera/layout';
 import './LoadingSpinner.css';
 
 /**
@@ -24,8 +25,8 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <div className={containerClasses}>
-      <div className="layera-loading-spinner__content">
+    <Box className={containerClasses}>
+      <Box className="layera-loading-spinner__content">
         <Spinner
           size={size}
           variant={variant}
@@ -33,11 +34,11 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
           speed={speed}
         />
         {message && (
-          <div className="layera-loading-spinner__message">
+          <Box className="layera-loading-spinner__message">
             {message}
-          </div>
+          </Box>
         )}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };

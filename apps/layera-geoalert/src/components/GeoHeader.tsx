@@ -37,7 +37,7 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, isIPhone14Pro
   // Debug logs removed for production optimization
 
   return (
-    <Flex align="center" style={{ gap: `${SPACING_SCALE.SM}px` }}>
+    <Flex align="center" gap="sm">
       {/* Back button εμφανίζεται για όλες τις συσκευές */}
       {onBackClick && (
         <Button
@@ -46,7 +46,7 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, isIPhone14Pro
           onClick={onBackClick}
           icon={<ArrowLeftIcon size="sm" theme="neutral" />}
           iconPosition="only"
-          title="Πίσω στο Dashboard"
+          title={t('header.backButton.title')}
         />
       )}
       <LayeraHeader
@@ -62,19 +62,16 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, isIPhone14Pro
               size="sm"
               icon={<GlobeIcon size="sm" theme="neutral" />}
               iconPosition="only"
-              title="Αλλαγή Γλώσσας"
+              title={t('header.languageButton.title')}
               onClick={() => {
                 console.log('🌐 Language switch clicked!');
                 const currentLang = document.documentElement.lang || 'el';
                 const newLang = currentLang === 'el' ? 'en' : 'el';
                 console.log('🌐 Language switch:', currentLang, '->', newLang);
               }}
-              style={{
-                padding: `${SPACING_SCALE.SM}px`,
-                borderRadius: `${SPACING_SCALE.XS + 2}px`,
-                transition: 'var(--layera-transition-fast)',
-                backgroundColor: 'var(--color-bg-surface-overlay)'
-              }}
+              padding="sm"
+              borderRadius="md"
+              className="layera-transition-fast layera-bg-surface-overlay"
             />
 
             {/* Enterprise Theme Switch Button */}
@@ -83,18 +80,15 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, isIPhone14Pro
               size="sm"
               icon={<SettingsIcon size="sm" theme="neutral" />}
               iconPosition="only"
-              title="Αλλαγή Θέματος (Light/Dark)"
+              title={t('header.themeButton.title')}
               onClick={() => {
                 console.log('🎨 Theme switch clicked!');
                 console.log('🎨 Theme switch:', theme, '-> toggling');
                 toggleTheme();
               }}
-              style={{
-                padding: `${SPACING_SCALE.SM}px`,
-                borderRadius: `${SPACING_SCALE.XS + 2}px`,
-                transition: 'var(--layera-transition-fast)',
-                backgroundColor: 'var(--color-bg-surface-overlay)'
-              }}
+              padding="sm"
+              borderRadius="md"
+              className="layera-transition-fast layera-bg-surface-overlay"
             />
           </HeaderActionsGroup>
           ) : (

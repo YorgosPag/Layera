@@ -21,7 +21,7 @@ export type CardId =
 
 export interface CardConfig {
   id: CardId;
-  title: string;
+  titleKey: string; // Translation key instead of hardcoded title
   icon: React.ComponentType<any>;
   variant: CardVariant;
   category?: 'property' | 'job';
@@ -34,14 +34,14 @@ export const cardData = {
   category: [
     {
       id: 'property' as CardId,
-      title: 'Ακίνητα',
+      titleKey: 'category.property',
       icon: VillaIcon,
       variant: 'property' as CardVariant,
       step: 'category'
     },
     {
       id: 'job' as CardId,
-      title: 'Εργασία',
+      titleKey: 'category.job',
       icon: BriefcaseIcon,
       variant: 'job' as CardVariant,
       step: 'category'
@@ -52,7 +52,7 @@ export const cardData = {
   property: [
     {
       id: 'offer' as CardId,
-      title: 'Θέλω να προσφέρω',
+      titleKey: 'intent.property.offer',
       icon: CommercialIcon,
       variant: 'property' as CardVariant,
       category: 'property' as const,
@@ -60,7 +60,7 @@ export const cardData = {
     },
     {
       id: 'search' as CardId,
-      title: 'Θέλω να αναζητήσω',
+      titleKey: 'intent.property.search',
       icon: HomeIcon,
       variant: 'property' as CardVariant,
       category: 'property' as const,
@@ -72,7 +72,7 @@ export const cardData = {
   job: [
     {
       id: 'offer' as CardId,
-      title: 'Θέλω να προσφέρω',
+      titleKey: 'intent.job.offer',
       icon: WorkIcon,
       variant: 'job' as CardVariant,
       category: 'job' as const,
@@ -80,7 +80,7 @@ export const cardData = {
     },
     {
       id: 'search' as CardId,
-      title: 'Αναζητώ εργασία',
+      titleKey: 'intent.job.search',
       icon: ToolIcon,
       variant: 'job' as CardVariant,
       category: 'job' as const,
@@ -92,7 +92,7 @@ export const cardData = {
   transaction: [
     {
       id: 'sale' as CardId,
-      title: 'Πώληση',
+      titleKey: 'transaction.sale',
       icon: CommercialIcon,
       variant: 'property' as CardVariant,
       category: 'property' as const,
@@ -100,7 +100,7 @@ export const cardData = {
     },
     {
       id: 'rent' as CardId,
-      title: 'Ενοικίαση',
+      titleKey: 'transaction.rent',
       icon: BuildingIcon,
       variant: 'property' as CardVariant,
       category: 'property' as const,
@@ -112,7 +112,7 @@ export const cardData = {
   availability: [
     {
       id: 'now' as CardId,
-      title: 'Τώρα',
+      titleKey: 'availability.now',
       icon: CheckIcon,
       variant: 'property' as CardVariant,
       category: 'property' as const,
@@ -120,7 +120,7 @@ export const cardData = {
     },
     {
       id: 'future' as CardId,
-      title: 'Στο Μέλλον',
+      titleKey: 'availability.future',
       icon: RefreshIcon,
       variant: 'property' as CardVariant,
       category: 'property' as const,
@@ -132,7 +132,7 @@ export const cardData = {
   upload: [
     {
       id: 'upload' as CardId,
-      title: 'Ανέβασμα Αρχείων',
+      titleKey: 'upload.files',
       icon: UploadIcon,
       variant: 'property' as CardVariant,
       category: 'property' as const,
@@ -144,7 +144,7 @@ export const cardData = {
   layout: [
     {
       id: 'layout' as CardId,
-      title: 'Τοποθέτηση & Κλίμακα',
+      titleKey: 'layout.positioning',
       icon: MapIcon,
       variant: 'property' as CardVariant,
       category: 'property' as const,
@@ -156,7 +156,7 @@ export const cardData = {
   'property-type': [
     {
       id: 'apartment' as CardId,
-      title: 'Διαμέρισμα',
+      titleKey: 'propertyType.apartment',
       icon: HomeIcon,
       variant: 'property' as CardVariant,
       category: 'property' as const,
@@ -164,7 +164,7 @@ export const cardData = {
     },
     {
       id: 'office' as CardId,
-      title: 'Γραφείο',
+      titleKey: 'propertyType.office',
       icon: BriefcaseIcon,
       variant: 'property' as CardVariant,
       category: 'property' as const,
@@ -172,7 +172,7 @@ export const cardData = {
     },
     {
       id: 'factory' as CardId,
-      title: 'Εργοστάσιο',
+      titleKey: 'propertyType.factory',
       icon: ToolIcon,
       variant: 'property' as CardVariant,
       category: 'property' as const,
@@ -180,7 +180,7 @@ export const cardData = {
     },
     {
       id: 'land' as CardId,
-      title: 'Οικόπεδο',
+      titleKey: 'propertyType.land',
       icon: VillaIcon,
       variant: 'property' as CardVariant,
       category: 'property' as const,
@@ -188,7 +188,7 @@ export const cardData = {
     },
     {
       id: 'building' as CardId,
-      title: 'Κτίριο',
+      titleKey: 'propertyType.building',
       icon: BuildingIcon,
       variant: 'property' as CardVariant,
       category: 'property' as const,
@@ -196,7 +196,7 @@ export const cardData = {
     },
     {
       id: 'store' as CardId,
-      title: 'Κατάστημα',
+      titleKey: 'propertyType.store',
       icon: CommercialIcon,
       variant: 'property' as CardVariant,
       category: 'property' as const,
@@ -208,7 +208,7 @@ export const cardData = {
   'property-details': [
     {
       id: 'property-details' as CardId,
-      title: 'Στοιχεία Ακινήτου',
+      titleKey: 'propertyDetails.title',
       icon: EditIcon,
       variant: 'property' as CardVariant,
       category: 'property' as const,
@@ -220,7 +220,7 @@ export const cardData = {
   'area-method': [
     {
       id: 'manual-input' as CardId,
-      title: 'Χειροκίνητη Εισαγωγή',
+      titleKey: 'areaMethod.manual',
       icon: EditIcon,
       variant: 'property' as CardVariant,
       category: 'property' as const,
@@ -228,7 +228,7 @@ export const cardData = {
     },
     {
       id: 'map-drawing' as CardId,
-      title: 'Σχεδίαση στον Χάρτη',
+      titleKey: 'areaMethod.mapDrawing',
       icon: MapIcon,
       variant: 'property' as CardVariant,
       category: 'property' as const,
@@ -236,7 +236,7 @@ export const cardData = {
     },
     {
       id: 'floor-plan-upload' as CardId,
-      title: 'Από Κάτοψη',
+      titleKey: 'areaMethod.floorPlan',
       icon: UploadIcon,
       variant: 'property' as CardVariant,
       category: 'property' as const,
@@ -244,7 +244,7 @@ export const cardData = {
     },
     {
       id: 'auto-calculate' as CardId,
-      title: 'Αυτόματος Υπολογισμός',
+      titleKey: 'areaMethod.autoCalculate',
       icon: SettingsIcon,
       variant: 'property' as CardVariant,
       category: 'property' as const,

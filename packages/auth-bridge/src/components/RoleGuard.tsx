@@ -1,4 +1,5 @@
 import React, { type ReactNode } from 'react';
+import { Box } from '@layera/layout';
 import { useAuthContext } from './AuthProvider.js';
 import { useRoleGuard } from '../hooks/useRoleGuard.js';
 import type { UserRole } from '../types/auth.js';
@@ -30,33 +31,33 @@ interface RoleGuardProps {
  */
 const DefaultFallbacks = {
   SignInRequired: () => (
-    <div className="auth-guard-fallback">
+    <Box className="auth-guard-fallback">
       <h3>Σύνδεση Απαιτείται</h3>
       <p>Χρειάζεται να συνδεθείτε για να δείτε αυτό το περιεχόμενο.</p>
-    </div>
+    </Box>
   ),
   AccessDenied: () => (
-    <div className="auth-guard-fallback">
+    <Box className="auth-guard-fallback">
       <h3>Δεν Έχετε Δικαίωμα Πρόσβασης</h3>
       <p>Δεν έχετε τα απαραίτητα δικαιώματα για να δείτε αυτό το περιεχόμενο.</p>
-    </div>
+    </Box>
   ),
   EmailVerificationRequired: () => (
-    <div className="auth-guard-fallback">
+    <Box className="auth-guard-fallback">
       <h3>Επαλήθευση Email Απαιτείται</h3>
       <p>Παρακαλώ επαληθεύστε το email σας για να συνεχίσετε.</p>
-    </div>
+    </Box>
   ),
   MfaRequired: () => (
-    <div className="auth-guard-fallback">
+    <Box className="auth-guard-fallback">
       <h3>Δεύτερος Παράγοντας Απαιτείται</h3>
       <p>Παρακαλώ ολοκληρώστε την επαλήθευση MFA για να συνεχίσετε.</p>
-    </div>
+    </Box>
   ),
   Loading: () => (
-    <div className="auth-guard-loading">
+    <Box className="auth-guard-loading">
       <p>Φόρτωση...</p>
-    </div>
+    </Box>
   )
 };
 

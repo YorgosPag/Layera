@@ -1,4 +1,5 @@
 import React from 'react';
+import { Box } from '@layera/layout';
 
 export interface DeviceFrameProps {
   device: 'iPhone X' | 'iPhone 8' | 'iPhone 8 Plus' | 'Samsung Galaxy S8' | 'iPad' | 'MacBook Pro';
@@ -25,7 +26,7 @@ export const DeviceFrame: React.FC<DeviceFrameProps> = ({
   }, []);
 
   if (!DeviceFrameset) {
-    return <div className={className}>{children}</div>;
+    return <Box className={className}>{children}</Box>;
   }
 
   return React.createElement(DeviceFrameset, {

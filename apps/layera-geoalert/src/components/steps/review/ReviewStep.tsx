@@ -6,6 +6,7 @@
  */
 
 import React, { useState, useMemo } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { Stack, Flex } from '@layera/layout';
 import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
@@ -52,6 +53,9 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
   const [reviewMode, setReviewMode] = useState<ReviewType>('preview');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // 🌐 i18n Integration
+  const { t } = useLayeraTranslation();
+
   // 🎨 Enterprise Design System Integration
   const designSystem = useLayeraDesignSystem();
 
@@ -85,36 +89,36 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
   const reviewSummary = useMemo(() => {
     return {
       category: {
-        label: 'Κατηγορία',
-        value: context.selectedCategory === 'property' ? 'Ακίνητο' : 'Εργασία',
+        label: t('review.category.label'),
+        value: context.selectedCategory === 'property' ? t('review.category.property') : t('review.category.job'),
         stepId: 'category'
       },
       intent: {
-        label: 'Σκοπός',
-        value: context.selectedIntent === 'offer' ? 'Προσφορά' : 'Αναζήτηση',
+        label: t('review.intent.label'),
+        value: context.selectedIntent === 'offer' ? t('review.intent.offer') : t('review.intent.search'),
         stepId: 'intent'
       },
       location: {
-        label: 'Τοποθεσία',
-        value: context.selectedLocation === 'map' ? 'Χάρτης' :
-               context.selectedLocation === 'area' ? 'Περιοχή' : 'Διεύθυνση',
+        label: t('review.location.label'),
+        value: context.selectedLocation === 'map' ? t('review.location.map') :
+               context.selectedLocation === 'area' ? t('review.location.area') : t('review.location.address'),
         stepId: 'location'
       },
       details: {
-        label: 'Λεπτομέρειες',
-        value: context.selectedDetails === 'form' ? 'Φόρμα' :
-               context.selectedDetails === 'quick' ? 'Γρήγορα' : 'Προχωρημένα',
+        label: t('review.details.label'),
+        value: context.selectedDetails === 'form' ? t('review.details.form') :
+               context.selectedDetails === 'quick' ? t('review.details.quick') : t('review.details.advanced'),
         stepId: 'details'
       },
       pricing: {
-        label: 'Τιμολόγηση',
-        value: context.selectedPricing === 'free' ? 'Δωρεάν' :
-               context.selectedPricing === 'budget' ? 'Οικονομικό' :
-               context.selectedPricing === 'premium' ? 'Premium' : 'Διαπραγματεύσιμο',
+        label: t('review.pricing.label'),
+        value: context.selectedPricing === 'free' ? t('review.pricing.free') :
+               context.selectedPricing === 'budget' ? t('review.pricing.budget') :
+               context.selectedPricing === 'premium' ? t('review.pricing.premium') : t('review.pricing.negotiable'),
         stepId: 'pricing'
       }
     };
-  }, [context]);
+  }, [context, t]);
 
   // 🎯 Context-aware card selection
   const getReviewCards = (): readonly CardConfig[] => {
@@ -226,19 +230,18 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
       </Flex>
 
       {/* 📊 Review Summary */}
-      <BaseCard title="📋 Σύνοψη Επιλογών" variant="outline">
+      <BaseCard title={t('review.summary')} variant="outline">
         <Stack spacing="md">
           {Object.entries(reviewSummary).map(([key, item]) => (
-            <div
+            <Flex
               key={key}
-              style={{
-                ...itemRowFlex,  // Enterprise flex system
-                padding: `${designSystem.spacing.sm} 0`,
-                borderBottom: `1px solid ${designSystem.colors.border.subtle}`
-              }}
+              justify="space-between"
+              align="center"
+              paddingY="sm"
+              borderBottom="1px solid var(--la-color-border-subtle)"
             >
               <Text size="sm" weight="medium">{item.label}:</Text>
-              <div style={actionsFlex}>  {/* Enterprise flex system */}
+              <Flex align="center" gap="xs">  {/* Enterprise LEGO flex system */}
                 <Text size="sm">{item.value}</Text>
                 {reviewMode === 'edit' && (
                   <Button
@@ -249,8 +252,8 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
                     ✏️
                   </Button>
                 )}
-              </div>
-            </div>
+              </Flex>
+            </Flex>
           ))}
         </Stack>
       </BaseCard>
@@ -267,10 +270,10 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
               key={card.id}
               title={card.title}
               variant="outline"
-              style={{ opacity: reviewMode === 'confirm' ? 0.7 : 1 }}
+              opacity={reviewMode === 'confirm' ? 0.7 : 1}
             >
               <Stack spacing="sm" align="center">
-                {card.icon && <div>{card.icon}</div>}
+                {card.icon && <Box>{card.icon}</Box>}
                 <Text size="sm" color="neutral-600">
                   {card.description}
                 </Text>
@@ -304,10 +307,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
               variant="success"
               onClick={handleSubmit}
               disabled={isSubmitting}
-              style={{
-                minWidth: `${SPACING_SCALE.XXXXXL}px`,
-                transition: designSystem.motion.transition.normal
-              }}
+              minWidth={`${SPACING_SCALE.XXXXXL}px`}
             >
               {isSubmitting ? 'Υποβολή...' : 'Υποβολή 🚀'}
             </Button>
@@ -316,15 +316,11 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
       </Stack>
 
       {/* 📊 Step Progress Indicator */}
-      <div style={{
-        textAlign: 'center',
-        marginTop: designSystem.spacing.md,
-        color: designSystem.colors.text.tertiary
-      }}>
+      <Box textAlign="center" marginTop="md">
         <Text size="sm" color="neutral-500">
           Βήμα 6 από 7 • Επιθεώρηση
         </Text>
-      </div>
+      </Box>
       </Stack>
     </LayeraThemeProvider>
   );

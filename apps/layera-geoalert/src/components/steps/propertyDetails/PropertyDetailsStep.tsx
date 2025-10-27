@@ -5,6 +5,7 @@
  */
 
 import React, { useCallback, useState } from 'react';
+import { Box } from '@layera/layout';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { PropertyDetailsForm } from './PropertyDetailsForm';
 import { BaseCard } from '@layera/cards';
@@ -185,14 +186,14 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
   const hasRequiredFields = Boolean(details.price && details.squareMeters);
 
   return (
-    <div style={containerStyles}>
+    <Box style={containerStyles}>
       {!showForm ? (
         <>
           {/* Show Form Card */}
           <BaseCard
             variant="info"
-            title="Στοιχεία Ακινήτου"
-            description="Συμπληρώστε τα στοιχεία του ακινήτου"
+            title={t('propertyDetails.title')}
+            description={t('property-details.fill-details')}
             icon={<FormIcon size="sm" theme="neutral" />}
             onClick={handleShowForm}
             data-testid="property-details-show-form"
@@ -201,8 +202,8 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
           {/* Skip Card */}
           <BaseCard
             variant="neutral"
-            title="Παράλειψη"
-            description="Συνέχεια χωρίς στοιχεία"
+            title={t('actions.skip')}
+            description={t('property-details.continue-without-details')}
             icon={<CheckIcon size="sm" theme="neutral" />}
             onClick={handleSkip}
             data-testid="property-details-skip"
@@ -220,8 +221,8 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
           {/* Submit Card */}
           <BaseCard
             variant={hasRequiredFields ? "success" : "warning"}
-            title="Αποθήκευση"
-            description={hasRequiredFields ? "Αποθήκευση στοιχείων" : "Συμπληρώστε τιμή και τ.μ."}
+            title={t('actions.save')}
+            description={hasRequiredFields ? t('property-details.save-details') : t('property-details.fill-price-and-sqm')}
             icon={<CheckIcon size="sm" theme="neutral" />}
             onClick={handleSubmit}
             data-testid="property-details-submit"
@@ -230,13 +231,13 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
           {/* Back to Menu */}
           <BaseCard
             variant="neutral"
-            title="Πίσω"
-            description="Επιστροφή στο μενού"
+            title={t('actions.back')}
+            description={t('actions.back-to-menu')}
             onClick={() => setShowForm(false)}
             data-testid="property-details-back"
           />
         </>
       )}
-    </div>
+    </Box>
   );
 };

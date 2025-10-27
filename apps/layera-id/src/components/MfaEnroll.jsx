@@ -6,7 +6,8 @@ import { useAuthContext, UserAvatar } from '@layera/auth-bridge';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { Button } from '@layera/buttons';
-import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader } from '@layera/layout';
+import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, Flex, FlexColumn, Box } from '@layera/layout';
+import { Text, Heading } from '@layera/typography';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
 import { SPACING_SCALE } from '@layera/constants';
 import { SmartphoneIcon, CheckIcon, LockIcon, ShieldIcon, RocketIcon } from '@layera/icons';
@@ -105,16 +106,14 @@ export default function MfaEnroll() {
         />
       }
     >
-      <PageContainer maxWidth="full" padding="none">
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+      <PageContainer maxWidth="full" padding="lg">
           <PageHeader
             title={t('mfa.title')}
             subtitle={t('mfa.subtitle')}
           />
-        </div>
 
         {/* Security Information Section */}
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+        <Box padding="lg">
           <DashboardSection
             title={t('mfa.whyNeeded.title')}
             icon={<ShieldIcon size="md" theme="neutral" />}
@@ -123,26 +122,26 @@ export default function MfaEnroll() {
               title={t('mfa.whyNeeded.description')}
               variant="info"
             >
-              <div style={{ display: 'flex', flexDirection: 'column', gap: `${SPACING_SCALE.MD}px` }}>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: `${SPACING_SCALE.SM}px` }}>
-                  <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
-                  <span>{t('mfa.whyNeeded.benefits.passwordProtection')}</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: `${SPACING_SCALE.SM}px` }}>
-                  <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
-                  <span>{t('mfa.whyNeeded.benefits.secureAccess')}</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: `${SPACING_SCALE.SM}px` }}>
-                  <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
-                  <span>{t('mfa.whyNeeded.benefits.unauthorizedAlert')}</span>
-                </div>
-              </div>
+              <Flex direction="column" gap="md">
+                <Flex align="flex-start" gap="sm">
+                  <CheckIcon size="sm" theme="success" marginTop="xs" />
+                  <Text>{t('mfa.whyNeeded.benefits.passwordProtection')}</Text>
+                </Flex>
+                <Flex align="flex-start" gap="sm">
+                  <CheckIcon size="sm" theme="success" marginTop="xs" />
+                  <Text>{t('mfa.whyNeeded.benefits.secureAccess')}</Text>
+                </Flex>
+                <Flex align="flex-start" gap="sm">
+                  <CheckIcon size="sm" theme="success" marginTop="xs" />
+                  <Text>{t('mfa.whyNeeded.benefits.unauthorizedAlert')}</Text>
+                </Flex>
+              </Flex>
             </DashboardCard>
           </DashboardSection>
-        </div>
+        </Box>
 
         {/* MFA Setup Form */}
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+        <Box padding="lg">
           <DashboardSection
             title={t('mfa.form.enableButton')}
             icon={<LockIcon size="md" theme="neutral" />}
@@ -151,57 +150,53 @@ export default function MfaEnroll() {
               title={t('mfa.form.phoneLabel')}
               variant="actions"
             >
-              <form onSubmit={(e) => { e.preventDefault(); start(); }} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: `${SPACING_SCALE.SM}px` }}>
-                  <label htmlFor="phone" style={{ display: 'flex', alignItems: 'center', gap: `${SPACING_SCALE.SM}px`, fontWeight: '600' }}>
-                    <SmartphoneIcon size="sm" theme="neutral" /> {t('mfa.form.phoneLabel')}
-                  </label>
-                  <input
-                    id="phone"
-                    type="tel"
-                    value={phone}
-                    onChange={e => setPhone(e.target.value)}
-                    style={{
-                      padding: `${SPACING_SCALE.MD}px`,
-                      border: '1px solid var(--layera-layout-border)',
-                      borderRadius: 'var(--layera-radius-md)',
-                      fontSize: '1rem',
-                      width: '100%',
-                      boxSizing: 'border-box'
-                    }}
-                    placeholder="+30 6912345678"
-                    disabled={loading}
-                    required
-                  />
-                  <small style={{ color: 'var(--color-text-secondary)', fontSize: '0.875rem' }}>
-                    {t('mfa.form.phoneHint')}
-                  </small>
-                </div>
+              <form onSubmit={(e) => { e.preventDefault(); start(); }}>
+                <Flex direction="column" gap="lg">
+                  <Flex direction="column" gap="sm">
+                    <Flex align="center" gap="sm">
+                      <SmartphoneIcon size="sm" theme="neutral" />
+                      <Text weight="semibold">{t('mfa.form.phoneLabel')}</Text>
+                    </Flex>
+                    <input
+                      id="phone"
+                      type="tel"
+                      value={phone}
+                      onChange={e => setPhone(e.target.value)}
+                      className="layera-input"
+                      placeholder="+30 6912345678"
+                      disabled={loading}
+                      required
+                    />
+                    <Text size="sm" color="secondary">
+                      {t('mfa.form.phoneHint')}
+                    </Text>
+                  </Flex>
 
-                <div id="recaptcha" style={{ margin: `${SPACING_SCALE.MD}px 0` }}></div>
+                  <Box margin="md" id="recaptcha"></Box>
 
-                <Button
-                  type="submit"
-                  variant="primary"
-                  size="lg"
-                  disabled={loading || !phone.trim()}
-                  style={{ width: '100%' }}
-                >
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    size="lg"
+                    disabled={loading || !phone.trim()}
+                    width="full"
+                  >
                   {loading ? (
                     <>⏳ {t('common.processing')}</>
                   ) : (
                     <><RocketIcon size="sm" theme="neutral" /> {t('mfa.form.enableButton')}</>
                   )}
                 </Button>
+                </Flex>
               </form>
             </DashboardCard>
           </DashboardSection>
-        </div>
+        </Box>
 
         {/* Navigation */}
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+        <Box padding="lg">
           <QuickActions />
-        </div>
+        </Box>
       </PageContainer>
     </AppShell>
   );

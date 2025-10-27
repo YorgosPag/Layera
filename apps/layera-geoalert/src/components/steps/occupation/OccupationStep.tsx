@@ -7,8 +7,9 @@
 import React, { useState, useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Heading, Text } from '@layera/typography';
-import { Stack } from '@layera/layout';
+import { Stack, Box } from '@layera/layout';
 import { SPACING_SCALE } from '@layera/constants';
+import { BaseCard } from '@layera/cards';
 import { ESCOSearchComponent } from './ESCOSearchComponent';
 import type { StepProps } from '../types';
 import type { ESCOOccupation, OccupationStepData } from './types';
@@ -98,25 +99,10 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
   };
 
 
-  const confirmationStyles: React.CSSProperties = {
-    backgroundColor: 'var(--color-semantic-success-bg)',
-    border: '1px solid #c3e6cb',
-    borderRadius: `${SPACING_SCALE.SM}px`,
-    padding: `${SPACING_SCALE.MD}px`,
-    marginTop: `${SPACING_SCALE.MD}px`,
-    textAlign: 'center'
-  };
-
-  const selectedOccupationStyles: React.CSSProperties = {
-    backgroundColor: 'var(--color-semantic-info-bg)',
-    border: '2px solid #2196f3',
-    borderRadius: `${SPACING_SCALE.SM}px`,
-    padding: `${SPACING_SCALE.MD}px`,
-    marginTop: `${SPACING_SCALE.MD}px`
-  };
+  // All styles converted to LEGO BaseCard components
 
   return (
-    <div style={containerStyles}>
+    <Box style={containerStyles}>
       {/* Header */}
       <Stack spacing="sm" align="center" className="occupation-header">
         <Heading level={2} size="lg" color="primary" align="center">
@@ -137,7 +123,11 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
 
       {/* Selected Occupation Display */}
       {selectedOccupation && !isConfirming && (
-        <div style={selectedOccupationStyles}>
+        <BaseCard
+          backgroundColor="var(--color-semantic-info-bg)"
+          border="var(--layera-border-accent-primary, 2px solid var(--layera-color-primary))"
+          padding="md"
+          marginTop="md">
           <Stack spacing="xs">
             <Text weight="bold" color="primary">
               {t('occupation.selected.prefix', '✅ Επιλεγμένο')}: {selectedOccupation.preferredLabel}
@@ -153,12 +143,16 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
               </Text>
             )}
           </Stack>
-        </div>
+        </BaseCard>
       )}
 
       {/* Confirmation Message */}
       {isConfirming && selectedOccupation && (
-        <div style={confirmationStyles}>
+        <BaseCard
+          backgroundColor="var(--color-semantic-success-bg)"
+          border="var(--layera-border-success, 1px solid var(--layera-color-success))"
+          padding="md"
+          marginTop="md">
           <Stack spacing="xs" align="center">
             <Text size="md" weight="bold" color="success">
               {t('occupation.success.title', '🎉 Επιτυχία!')}
@@ -170,22 +164,20 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
               {t('occupation.success.nextStep', 'Μετάβαση στο επόμενο βήμα...')}
             </Text>
           </Stack>
-        </div>
+        </BaseCard>
       )}
 
       {/* Help Text */}
       {!selectedOccupation && (
-        <div style={{
-          marginTop: `${SPACING_SCALE.LG}px`,
-          padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
-          backgroundColor: 'var(--color-bg-surface)',
-          borderRadius: `${SPACING_SCALE.XS + 2}px`
-        }}>
+        <BaseCard
+          variant="info"
+          padding="md"
+          marginTop="lg">
           <Text size="sm" color="secondary" align="center">
             {t('occupation.help.tip', '💡 Συμβουλή: Χρησιμοποιήστε ελληνικούς ή αγγλικούς όρους για καλύτερα αποτελέσματα')}
           </Text>
-        </div>
+        </BaseCard>
       )}
-    </div>
+    </Box>
   );
 };

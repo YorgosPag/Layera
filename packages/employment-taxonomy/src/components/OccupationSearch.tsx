@@ -9,7 +9,7 @@ import { BaseCard } from '@layera/cards';
 import { Button } from '@layera/buttons';
 import { SearchIcon, BriefcaseIcon, CloseIcon } from '@layera/icons';
 import { Text, Heading } from '@layera/typography';
-import { Stack, Flex } from '@layera/layout';
+import { Stack, Flex, Box } from '@layera/layout';
 import { Spinner } from '@layera/loading';
 import { useOccupationSearch } from '../hooks/useOccupationSearch';
 import { OccupationCard } from './OccupationCard';
@@ -93,41 +93,41 @@ export const OccupationSearch: React.FC<OccupationSearchProps> = ({
   const hasQuery = searchInput.trim().length > 0;
 
   return (
-    <div className={`layera-occupation-search ${className}`} style={style}>
+    <Box className={`layera-occupation-search ${className}`} style={style}>
       <Stack spacing="md">
         {/* Search Header */}
         <Flex align="center" gap="sm">
           <BriefcaseIcon size="lg" theme="primary" />
-          <div>
+          <Box>
             <Heading as="h3" size="lg" color="primary">
               {t('employment.search.title', 'Αναζήτηση Επαγγέλματος')}
             </Heading>
             <Text size="sm" color="secondary">
               {t('employment.search.subtitle', 'Βρείτε το κατάλληλο επάγγελμα από τη βάση ESCO')}
             </Text>
-          </div>
+          </Box>
         </Flex>
 
         {/* Search Input */}
-        <div style={{
+        <Box style={{
           background: 'var(--color-bg-surface-strong)',
           borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
           padding: `${SPACING_SCALE.MD}px`
         }}>
           <Stack spacing="sm">
-            <div style={{ position: 'relative' }}>
+            <Box position="relative">
               <input
                 type="text"
                 value={searchInput}
                 onChange={handleSearchInputChange}
                 placeholder={placeholder || t('employment.search.placeholder', 'π.χ. Προγραμματιστής, Δικηγόρος, Γιατρός...')}
                 style={{
-                  width: '100%',
+                  width: 'var(--layera-width-full, 100%)',
                   padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.XXL + SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
-                  border: '1px solid #ddd',
+                  border: 'var(--layera-border-default-style, 1px solid var(--layera-border-default))',
                   borderRadius: `${BORDER_RADIUS_SCALE.INPUT}px`,
-                  fontSize: '16px',
-                  backgroundColor: '#fff'
+                  fontSize: 'var(--layera-font-size-base)',
+                  backgroundColor: 'var(--layera-bg-primary)'
                 }}
               />
 
@@ -138,35 +138,35 @@ export const OccupationSearch: React.FC<OccupationSearchProps> = ({
                   onClick={handleClear}
                   style={{
                     position: 'absolute',
-                    right: '8px',
-                    top: '50%',
-                    transform: 'translateY(-50%)'
+                    right: `${SPACING_SCALE.SM}px`,
+                    top: 'var(--layera-position-center-y, 50%)',
+                    transform: 'var(--layera-transform-center-y, translateY(-50%))'
                   }}
                 >
                   <CloseIcon size="sm" />
                 </Button>
               )}
-            </div>
+            </Box>
 
             {!autoSearch && (
               <Button
                 variant="primary"
                 onClick={handleManualSearch}
                 disabled={!hasQuery || isLoading}
-                style={{ width: '100%' }}
+                width="var(--layera-width-full, 100%)"
               >
                 <SearchIcon size="sm" />
                 {t('employment.search.button', 'Αναζήτηση')}
               </Button>
             )}
           </Stack>
-        </div>
+        </Box>
 
         {/* Loading State */}
         {isLoading && (
-          <Flex align="center" justify="center" style={{ padding: `${SPACING_SCALE.LG}px` }}>
+          <Flex align="center" justify="center" padding={`${SPACING_SCALE.LG}px`}>
             <Spinner size="lg" variant="primary" />
-            <Text style={{ marginLeft: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px` }}>
+            <Text marginLeft={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px`}>
               {t('employment.search.loading', 'Αναζήτηση επαγγελμάτων...')}
             </Text>
           </Flex>
@@ -211,7 +211,7 @@ export const OccupationSearch: React.FC<OccupationSearchProps> = ({
             variant="outline"
             onClick={meta.loadMore}
             disabled={isLoading}
-            style={{ width: '100%' }}
+            width="var(--layera-width-full, 100%)"
           >
             {t('employment.search.loadMore', 'Φόρτωση περισσότερων')}
           </Button>
@@ -233,11 +233,11 @@ export const OccupationSearch: React.FC<OccupationSearchProps> = ({
 
         {/* ESCO Attribution */}
         {hasResults && (
-          <Text size="xs" color="tertiary" style={{ textAlign: 'center', fontStyle: 'italic' }}>
+          <Text size="xs" color="tertiary" textAlign="center" fontStyle="italic">
             {t('employment.search.attribution', 'Δεδομένα από ESCO - European Commission')}
           </Text>
         )}
       </Stack>
-    </div>
+    </Box>
   );
 };

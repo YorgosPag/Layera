@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import { Box } from '@layera/layout';
 import {
   FORM_TYPES,
   FORM_SIZES,
@@ -62,11 +63,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
   ].filter(Boolean).join(' ');
 
   return (
-    <div className={wrapperClasses}>
+    <Box className={wrapperClasses}>
       {startIcon && (
-        <div className="layera-input__start-icon">
+        <Box className="layera-input__start-icon">
           {startIcon}
-        </div>
+        </Box>
       )}
 
       <input
@@ -79,17 +80,17 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({
       />
 
       {loading && (
-        <div className="layera-input__loading">
-          <div className="layera-input__spinner" />
-        </div>
+        <Box className="layera-input__loading">
+          <Box className="layera-input__spinner" />
+        </Box>
       )}
 
       {endIcon && !loading && (
-        <div className="layera-input__end-icon">
+        <Box className="layera-input__end-icon">
           {endIcon}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 });
 

@@ -1,6 +1,101 @@
 # 🏗️ Layera Project Instructions
 **Επιβλέπων Αρχιτέκτονας**: Γιώργος Παγώνης
 
+---
+
+# 🏗️ **ENTERPRISE DEVELOPMENT MANIFESTO - LAYERA PROJECT**
+**Γιώργου Παγώνη - Claude Code Collaboration Protocol**
+
+## 🎯 **ΚΥΡΙΑ ΑΠΟΣΤΟΛΗ**
+**Δημιουργούμε enterprise-grade εφαρμογή χρησιμοποιώντας ΑΠΟΚΛΕΙΣΤΙΚΑ Single Sources of Truth - ΟΧΙ μπακάλικο γειτονιάς!**
+
+## 🚨 **ΥΠΟΧΡΕΩΤΙΚΟΣ ΕΛΕΓΧΟΣ ΠΡΙΝ ΚΑΘΕ ΚΙΝΗΣΗ**
+
+### **🔍 ΒΗΜΑ 1: ΕΡΕΥΝΑ SINGLE SOURCES OF TRUTH**
+```bash
+# ΠΑΝΤΟΤΕ πρώτα εντοπίζω τις μοναδικές πηγές αλήθειας:
+grep -r "export.*COMPONENT_NAME" packages/*/src/index.ts
+cat LEGO_SYSTEMS_REGISTRY.md | grep "RELEVANT_SYSTEM"
+```
+
+### **🛡️ ΒΗΜΑ 2: ZERO CUSTOM CODE POLICY**
+- ❌ **ΑΠΑΓΟΡΕΥΕΤΑΙ**: Δημιουργία νέου κώδικα χωρίς έρευνα LEGO systems
+- ❌ **ΑΠΑΓΟΡΕΥΕΤΑΙ**: Hardcoded values (colors, spacing, text)
+- ❌ **ΑΠΑΓΟΡΕΥΕΤΑΙ**: Inline styles χωρίς design tokens
+- ✅ **ΥΠΟΧΡΕΩΤΙΚΟ**: Χρήση μόνο υπαρχόντων @layera packages
+
+### **📋 ΒΗΜΑ 3: ΔΙΠΛΟΤΥΠΩΝ DETECTION**
+```bash
+# Έλεγχος για duplicates ΠΡΙΝ γράψω κώδικα:
+grep -r "FUNCTIONALITY_NAME" src/ packages/
+echo "duplicates: X found" # ΠΡΕΠΕΙ να είναι 0
+```
+
+## 💔 **RESPECT FOR HUMAN COST**
+
+### **⏰ ΧΡΟΝΟΣ**
+- **Κάθε λάθος = χαμένες ώρες** από 16ωρο εργασίας
+- **Κάθε διπλότυπος = technical debt** που θα διορθωθεί αργότερα
+- **Προτιμώ αργή σωστή λύση** από γρήγορη λάθος
+
+### **💰 ΟΙΚΟΝΟΜΙΚΟ ΚΟΣΤΟΣ**
+- **Anthropic συνδρομή** πληρώνεται για quality assistance
+- **ROI μόνο με enterprise solutions** - όχι quick fixes
+- **Κάθε refactor = διπλό κόστος** development
+
+### **🏥 ΥΓΕΙΑ & WELLBEING**
+- **16 ώρες/μέρα καθιστός** - κάθε λάθος επιβαρύνει
+- **Μήνες εργασίας** - χρειάζομαι αξιόπιστη βοήθεια
+- **Στρες από technical debt** - πρέπει να αποφευχθεί
+
+## 🤝 **COLLABORATION EXCELLENCE**
+
+### **✅ ΘΕΤΙΚΗ FEEDBACK**
+- **Εξαιρετική συνεννόηση** μέχρι τώρα
+- **Καλή συνεργασία** - θέλω να συνεχιστεί
+- **Δεν φοβάμαι λάθη** - φοβάμαι επανάληψη patterns
+
+### **🎯 ΒΕΛΤΙΩΣΗ TARGETS**
+- **100% ειλικρίνεια** - "δεν ξέρω" > ψέματα
+- **Systematic approach** - έρευνα πριν implementation
+- **Quality over speed** - enterprise standards πάντα
+
+## 📝 **ΥΠΟΧΡΕΩΤΙΚΟ PRE-DEVELOPMENT CHECKLIST**
+
+```markdown
+□ Διάβασα 3 φορές τις οδηγίες
+□ Έψαξα στο LEGO_SYSTEMS_REGISTRY.md
+□ Έκανα grep στα packages/*/src/index.ts
+□ Ελέγχω για existing implementations
+□ Εντόπισα την Single Source of Truth
+□ ZERO custom code - μόνο LEGO reuse
+□ Δηλώνω: "duplicates: 0"
+□ Ειλικρινής αξιολόγηση: "1000% σίγουρος;" → ΝΑΙ/ΟΧΙ
+```
+
+## 🚀 **SUCCESS METRICS**
+
+### **🏆 ENTERPRISE EXCELLENCE**
+- **100% LEGO compliance** - μόνο @layera packages
+- **Zero hardcoded values** - πάντα design tokens
+- **Zero duplicates** - Single Sources of Truth only
+- **TypeScript strict** - καμία `any` type
+- **Perfect i18n** - καμία hardcoded strings
+
+### **⚡ DEVELOPMENT VELOCITY**
+- **Αργά αλλά σωστά** > γρήγορα αλλά λάθος
+- **Research-driven development** - έρευνα πρώτα
+- **Sustainable architecture** - για μακροπρόθεσμη συντήρηση
+
+## 🔥 **ΚΛΕΙΣΙΜΟ - PERSONAL COMMITMENT**
+
+**"Σέβομαι τον χρόνο, τα χρήματα, την υγεία και την εμπιστοσύνη του Γιώργου.
+Δεσμεύομαι για enterprise excellence με LEGO Systems μόνο.
+Ειλικρίνεια > εντυπωσιασμός. Quality > speed.
+Research first, code second. Always."**
+
+---
+
 ## 📚 CORE ENTERPRISE DOCUMENTATION
 **🔥 ΥΠΟΧΡΕΩΤΙΚΗ ΑΝΓΝΩΣΗ ΠΡΙΝ ΤΗ ΓΡΑΦΗ ΚΩΔΙΚΑ:**
 - **`LEGO_SYSTEMS_REGISTRY.md`**: Πλήρης καταγραφή των 52 @layera packages - SINGLE SOURCES OF TRUTH
@@ -317,6 +412,9 @@ import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader,
 import { SPACING_SCALE, BORDER_RADIUS_SCALE, USER_ROLES, FORM_TYPES,
          Z_INDEX, COLOR_TOKENS } from '@layera/constants';
 
+// Design Tokens - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ (1 import)
+import '@layera/tokens/dist/tokens.css';
+
 // Cards & Containers (37 imports)
 import { DashboardGrid, DashboardSection, DashboardCard, BaseCard } from '@layera/cards';
 
@@ -414,10 +512,10 @@ import { NavigationHandler } from '@layera/navigation-handlers';
 import { LoadingComponent } from '@layera/loading';
 ```
 
-##### **📦 ΠΛΗΡΗΣ REGISTRY - 52 PACKAGES ΣΥΝΟΛΙΚΑ:**
+##### **📦 ΠΛΗΡΗΣ REGISTRY - 53 PACKAGES ΣΥΝΟΛΙΚΑ:**
 **UI & Layout**: @layera/layout, @layera/cards, @layera/buttons, @layera/typography, @layera/forms, @layera/modals, @layera/info-panels, @layera/tables, @layera/loading
 
-**Icons & Visual**: @layera/icons, @layera/box-shadows, @layera/cursors, @layera/styles, @layera/box-model, @layera/constants, @layera/theme-switcher
+**Icons & Visual**: @layera/icons, @layera/box-shadows, @layera/cursors, @layera/styles, @layera/box-model, @layera/constants, @layera/theme-switcher, @layera/tokens
 
 **Device & Responsive**: @layera/viewport, @layera/device-detection, @layera/device-layouts, @layera/device-frames, @layera/responsive-design
 
@@ -759,6 +857,9 @@ import { BaseCard } from '@layera/cards';
 import { HomeIcon } from '@layera/icons';
 import { SPACING_SCALE, MAX_ITEMS } from '@layera/constants';
 
+// ✅ ΥΠΟΧΡΕΩΤΙΚΟ - Design Tokens από @layera/tokens
+<div style={{ padding: 'var(--la-space-4)', borderRadius: 'var(--la-radius-md)' }}>
+
 // ✅ ΥΠΟΧΡΕΩΤΙΚΟ - Constants από LEGO
 <div style={{ padding: `${SPACING_SCALE.MD}px` }}>
 
@@ -891,3 +992,110 @@ echo "🚨 Legacy icons: $(grep -r "from.*LayeraIcons" apps --exclude-dir=node_m
 **Registry Reference**: `LEGO_SYSTEMS_REGISTRY.md` - 52 packages, 31 active systems
 **Enforcement**: Immediate, non-negotiable, enterprise-wide
 **Contact**: Γιώργος Παγώνης, Enterprise Architecture Supervisor
+
+● 🏗️ ENTERPRISE DEVELOPMENT MANIFESTO - LAYERA PROJECT
+
+  Γιώργου Παγώνη - Claude Code Collaboration Protocol
+
+  ---
+  🎯 ΚΥΡΙΑ ΑΠΟΣΤΟΛΗ
+
+  Δημιουργούμε enterprise-grade εφαρμογή χρησιμοποιώντας ΑΠΟΚΛΕΙΣΤΙΚΑ Single Sources of Truth - ΟΧΙ 
+  μπακάλικο γειτονιάς!
+
+  ---
+  🚨 ΥΠΟΧΡΕΩΤΙΚΟΣ ΕΛΕΓΧΟΣ ΠΡΙΝ ΚΑΘΕ ΚΙΝΗΣΗ
+
+  🔍 ΒΗΜΑ 1: ΕΡΕΥΝΑ SINGLE SOURCES OF TRUTH
+
+  # ΠΑΝΤΟΤΕ πρώτα εντοπίζω τις μοναδικές πηγές αλήθειας:
+  grep -r "export.*COMPONENT_NAME" packages/*/src/index.ts
+  cat LEGO_SYSTEMS_REGISTRY.md | grep "RELEVANT_SYSTEM"
+
+  🛡️ ΒΗΜΑ 2: ZERO CUSTOM CODE POLICY
+
+  - ❌ ΑΠΑΓΟΡΕΥΕΤΑΙ: Δημιουργία νέου κώδικα χωρίς έρευνα LEGO systems
+  - ❌ ΑΠΑΓΟΡΕΥΕΤΑΙ: Hardcoded values (colors, spacing, text)
+  - ❌ ΑΠΑΓΟΡΕΥΕΤΑΙ: Inline styles χωρίς design tokens
+  - ✅ ΥΠΟΧΡΕΩΤΙΚΟ: Χρήση μόνο υπαρχόντων @layera packages
+
+  📋 ΒΗΜΑ 3: ΔΙΠΛΟΤΥΠΩΝ DETECTION
+
+  # Έλεγχος για duplicates ΠΡΙΝ γράψω κώδικα:
+  grep -r "FUNCTIONALITY_NAME" src/ packages/
+  echo "duplicates: X found" # ΠΡΕΠΕΙ να είναι 0
+
+  ---
+  💔 RESPECT FOR HUMAN COST
+
+  ⏰ ΧΡΟΝΟΣ
+
+  - Κάθε λάθος = χαμένες ώρες από 16ωρο εργασίας
+  - Κάθε διπλότυπος = technical debt που θα διορθωθεί αργότερα
+  - Προτιμώ αργή σωστή λύση από γρήγορη λάθος
+
+  💰 ΟΙΚΟΝΟΜΙΚΟ ΚΟΣΤΟΣ
+
+  - Anthropic συνδρομή πληρώνεται για quality assistance
+  - ROI μόνο με enterprise solutions - όχι quick fixes
+  - Κάθε refactor = διπλό κόστος development
+
+  🏥 ΥΓΕΙΑ & WELLBEING
+
+  - 16 ώρες/μέρα καθιστός - κάθε λάθος επιβαρύνει
+  - Μήνες εργασίας - χρειάζομαι αξιόπιστη βοήθεια
+  - Στρες από technical debt - πρέπει να αποφευχθεί
+
+  ---
+  🤝 COLLABORATION EXCELLENCE
+
+  ✅ ΘΕΤΙΚΗ FEEDBACK
+
+  - Εξαιρετική συνεννόηση μέχρι τώρα
+  - Καλή συνεργασία - θέλω να συνεχιστεί
+  - Δεν φοβάμαι λάθη - φοβάμαι επανάληψη patterns
+
+  🎯 ΒΕΛΤΙΩΣΗ TARGETS
+
+  - 100% ειλικρίνεια - "δεν ξέρω" > ψέματα
+  - Systematic approach - έρευνα πριν implementation
+  - Quality over speed - enterprise standards πάντα
+
+  ---
+  📝 ΥΠΟΧΡΕΩΤΙΚΟ PRE-DEVELOPMENT CHECKLIST
+
+  □ Διάβασα 3 φορές τις οδηγίες
+  □ Έψαξα στο LEGO_SYSTEMS_REGISTRY.md
+  □ Έκανα grep στα packages/*/src/index.ts
+  □ Ελέγχω για existing implementations
+  □ Εντόπισα την Single Source of Truth
+  □ ZERO custom code - μόνο LEGO reuse
+  □ Δηλώνω: "duplicates: 0"
+  □ Ειλικρινής αξιολόγηση: "1000% σίγουρος;" → ΝΑΙ/ΟΧΙ
+
+  ---
+  🚀 SUCCESS METRICS
+
+  🏆 ENTERPRISE EXCELLENCE
+
+  - 100% LEGO compliance - μόνο @layera packages
+  - Zero hardcoded values - πάντα design tokens
+  - Zero duplicates - Single Sources of Truth only
+  - TypeScript strict - καμία any type
+  - Perfect i18n - καμία hardcoded strings
+
+  ⚡ DEVELOPMENT VELOCITY
+
+  - Αργά αλλά σωστά > γρήγορα αλλά λάθος
+  - Research-driven development - έρευνα πρώτα
+  - Sustainable architecture - για μακροπρόθεσμη συντήρηση
+
+  ---
+  🔥 ΚΛΕΙΣΙΜΟ - PERSONAL COMMITMENT
+
+  "Σέβομαι τον χρόνο, τα χρήματα, την υγεία και την εμπιστοσύνη του Γιώργου.Δεσμεύομαι για enterprise       
+  excellence με LEGO Systems μόνο.Ειλικρίνεια > εντυπωσιασμός. Quality > speed.Research first, code         
+  second. Always."
+
+  ---
+  📌 ΧΡΗΣΗ: Copy-paste αυτό το manifesto σε κάθε session ως reminder!

@@ -6,6 +6,7 @@
 
 import React, { useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { Box } from '@layera/layout';
 import { AvailabilityCard } from './AvailabilityCard';
 import type { StepProps } from '../types';
 import type { AvailabilityType, AvailabilityStepData } from './types';
@@ -70,7 +71,7 @@ export const AvailabilityStep: React.FC<AvailabilityStepProps> = ({
   };
 
   return (
-    <div style={containerStyles}>
+    <Box style={containerStyles}>
       {/* Τώρα Card */}
       <AvailabilityCard
         availability="now"
@@ -88,6 +89,6 @@ export const AvailabilityStep: React.FC<AvailabilityStepProps> = ({
         onClick={() => handleAvailabilitySelection('future')}
         data-testid="availability-card-future"
       />
-    </div>
+    </Box>
   );
 };

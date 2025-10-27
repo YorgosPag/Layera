@@ -5,9 +5,10 @@ import { FormField, FormSection, FormActions, Input } from '@layera/forms';
 import { Button } from '@layera/buttons';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
 import { ThemeSwitcher } from '@layera/theme-switcher';
-import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer } from '@layera/layout';
+import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, FlexCenter, Box, Flex } from '@layera/layout';
 import { DashboardCard } from '@layera/cards';
-import { FORM_TYPES, FORM_SIZES, SPACING_SCALE } from '@layera/constants';
+import { FORM_TYPES, FORM_SIZES, SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+import { Text } from '@layera/typography';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -68,30 +69,31 @@ const Login = () => {
       }
     >
       <PageContainer maxWidth="full" padding="lg">
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          minHeight: 'calc(100vh - 200px)',
-          width: '100%'
-        }}>
+        <FlexCenter
+          minHeight="calc(100vh - 200px)"
+          width="full"
+        >
           <DashboardCard
             title={t('auth.login')}
             variant="form"
-            style={{ width: '100%', maxWidth: '450px' }}
+            width="full"
+            maxWidth="450px"
           >
           {error && (
-            <div style={{
-              background: 'color-mix(in srgb, var(--layera-bg-danger) 10%, transparent)',
-              color: 'var(--layera-bg-danger)',
-              padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
-              borderRadius: `${BORDER_RADIUS_SCALE.INPUT}px`,
-              marginBottom: `${SPACING_SCALE.MD}px`,
-              fontSize: '14px',
-              border: '1px solid color-mix(in srgb, var(--layera-bg-danger) 30%, transparent)'
-            }}>
-              {error}
-            </div>
+            <Box
+              backgroundColor="custom"
+              color="danger"
+              padding="custom"
+              borderRadius="input"
+              marginBottom="md"
+              fontSize="sm"
+              border="danger"
+              padding={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px`}
+              background="var(--layera-bg-danger-subtle, color-mix(in srgb, var(--layera-bg-danger) 10%, transparent))"
+              borderColor="var(--layera-border-danger-subtle, 1px solid color-mix(in srgb, var(--layera-bg-danger) 30%, transparent))"
+            >
+              <Text size="sm" color="danger">{error}</Text>
+            </Box>
           )}
 
           <form onSubmit={handleSubmit}>
@@ -144,31 +146,38 @@ const Login = () => {
             </FormSection>
           </form>
 
-          <div style={{
-            margin: `${SPACING_SCALE.XL}px 0`,
-            textAlign: 'center',
-            position: 'relative',
-            color: 'var(--layera-text-secondary)',
-            fontSize: '14px'
-          }}>
-            <div style={{
-              position: 'absolute',
-              top: '50%',
-              left: '0',
-              right: '0',
-              height: '1px',
-              background: 'var(--layera-border-primary)',
-              zIndex: '1'
-            }}></div>
-            <span style={{
-              background: 'var(--layera-bg-primary)',
-              padding: `0 ${SPACING_SCALE.MD - SPACING_SCALE.XS}px`,
-              position: 'relative',
-              zIndex: '2'
-            }}>
+          <Box
+            margin="custom"
+            textAlign="center"
+            position="relative"
+            color="secondary"
+            fontSize="sm"
+            margin={`${SPACING_SCALE.XL}px 0`}
+          >
+            <Box
+              position="absolute"
+              top="custom"
+              left="0"
+              right="0"
+              height="custom"
+              backgroundColor="border"
+              zIndex="1"
+              top="50%"
+              height="1px"
+              background="var(--layera-border-primary)"
+            />
+            <Text
+              as="span"
+              backgroundColor="primary"
+              padding="custom"
+              position="relative"
+              zIndex="2"
+              background="var(--layera-bg-primary)"
+              padding={`0 ${SPACING_SCALE.MD - SPACING_SCALE.XS}px`}
+            >
               ή
-            </span>
-          </div>
+            </Text>
+          </Box>
 
           <GoogleSignInButton
             onSuccess={(user) => {
@@ -179,43 +188,42 @@ const Login = () => {
               console.error('Google sign-in error:', error);
               setError(error);
             }}
-            style={{ marginBottom: `${SPACING_SCALE.MD}px`, width: '100%' }}
+            marginBottom="md"
+            width="full"
           />
 
-          <div style={{
-            marginTop: `${SPACING_SCALE.XL}px`,
-            textAlign: 'center',
-            fontSize: '14px'
-          }}>
+          <Box
+            marginTop="xl"
+            textAlign="center"
+            fontSize="sm"
+          >
             <Link
               to="/forgot-password"
-              style={{
-                color: 'var(--layera-bg-info)',
-                textDecoration: 'none',
-                fontWeight: '500'
-              }}
+              color="var(--layera-color-info, var(--layera-bg-info))"
+              textDecoration="var(--layera-text-decoration-none, none)"
+              fontWeight="var(--layera-font-weight-medium, 500)"
             >
               {t('auth.forgotPassword')}
             </Link>
-            <p style={{
-              margin: `${SPACING_SCALE.SM}px 0`,
-              color: 'var(--layera-text-secondary)'
-            }}>
+            <Text
+              as="p"
+              margin="custom"
+              color="secondary"
+              margin={`${SPACING_SCALE.SM}px 0`}
+            >
               {t('auth.noAccount')} {' '}
               <Link
                 to="/register"
-                style={{
-                  color: 'var(--layera-bg-info)',
-                  textDecoration: 'none',
-                  fontWeight: '500'
-                }}
+                color="var(--layera-color-info, var(--layera-bg-info))"
+                textDecoration="var(--layera-text-decoration-none, none)"
+                fontWeight="var(--layera-font-weight-medium, 500)"
               >
                 {t('auth.register')}
               </Link>
-            </p>
-          </div>
+            </Text>
+          </Box>
         </DashboardCard>
-        </div>
+        </FlexCenter>
       </PageContainer>
     </AppShell>
   );

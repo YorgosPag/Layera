@@ -8,6 +8,8 @@ import React from 'react';
 import { stepRegistry } from '../StepRegistry';
 import { StepOrchestrator } from '../StepOrchestrator';
 import { SPACING_SCALE } from '@layera/constants';
+import { Box } from '@layera/layout';
+import { Heading } from '@layera/typography';
 import type { StepContext } from '../types';
 
 export const StepRegistryTest: React.FC = () => {
@@ -27,26 +29,26 @@ export const StepRegistryTest: React.FC = () => {
   const registryStatus = stepRegistry.getRegistryStatus();
 
   return (
-    <div style={{ padding: `${SPACING_SCALE.LG}px`, fontFamily: 'monospace' }}>
-      <h2>🧪 Step Registry Test</h2>
+    <Box padding={`${SPACING_SCALE.LG}px`} fontFamily="var(--layera-font-family-mono)">
+      <Heading level={2}>🧪 Step Registry Test</Heading>
 
-      <div style={{ marginBottom: `${SPACING_SCALE.LG}px` }}>
-        <h3>Registry Status:</h3>
+      <Box marginBottom={`${SPACING_SCALE.LG}px`}>
+        <Heading level={3}>Registry Status:</Heading>
         <pre>{JSON.stringify(registryStatus, null, 2)}</pre>
-      </div>
+      </Box>
 
-      <div style={{ marginBottom: `${SPACING_SCALE.LG}px` }}>
-        <h3>Current Context:</h3>
+      <Box marginBottom={`${SPACING_SCALE.LG}px`}>
+        <Heading level={3}>Current Context:</Heading>
         <pre>{JSON.stringify(context, (key, value) => {
           if (value instanceof Set) {
             return Array.from(value);
           }
           return value;
         }, 2)}</pre>
-      </div>
+      </Box>
 
-      <div>
-        <h3>Step Orchestrator:</h3>
+      <Box>
+        <Heading level={3}>Step Orchestrator:</Heading>
         <StepOrchestrator
           currentStepId={context.currentStepId}
           selectedCategory={context.selectedCategory}
@@ -72,7 +74,7 @@ export const StepRegistryTest: React.FC = () => {
             }));
           }}
         />
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };

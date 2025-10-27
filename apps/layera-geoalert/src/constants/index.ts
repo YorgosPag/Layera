@@ -5,7 +5,7 @@
  * Usage: import { APP_CONFIG, DEVICE_CONFIG, UI_CONFIG } from '@/constants';
  */
 
-import { BORDER_RADIUS_SCALE, Z_INDEX, SPACING_SCALE } from '@layera/constants';
+import { BORDER_RADIUS_SCALE, SPACING_SCALE } from '@layera/constants';
 
 // Application Configuration
 export const APP_CONFIG = {
@@ -108,7 +108,7 @@ export const UI_CONFIG = {
       height: 40,
       borderRadius: BORDER_RADIUS_SCALE.LG
     },
-    zIndex: Z_INDEX.modal,
+    zIndex: 'var(--layera-z-index-map-modal, 10100)', // Enterprise: Design token implementation
     gap: 12,
     padding: 16
   },
@@ -119,7 +119,7 @@ export const UI_CONFIG = {
       top: UI_POSITIONS.cards.top,
       ...UI_BLOCK_BASE.horizontalPadding
     },
-    zIndex: Z_INDEX.overlay,
+    zIndex: 'var(--layera-z-index-overlay, 300)', // Enterprise: Design token implementation
     gap: 8
   },
 
@@ -129,7 +129,7 @@ export const UI_CONFIG = {
       top: UI_POSITIONS.cards.top, // Ίδια θέση με categoryStep
       ...UI_BLOCK_BASE.horizontalPadding
     },
-    zIndex: Z_INDEX.overlay,
+    zIndex: 'var(--layera-z-index-overlay, 300)', // Enterprise: Design token implementation
     gap: 8
   },
 
@@ -144,46 +144,46 @@ export const UI_CONFIG = {
       borderRadius: BORDER_RADIUS_SCALE.SM,
       padding: 10
     },
-    zIndex: Z_INDEX.dropdown,
+    zIndex: 1000, // Enterprise: Use CSS token var(--z-index-dropdown) in styles
     gap: 8
   },
   infoPanels: {
     mobile: {
       maxHeight: '40vh',
-      zIndex: Z_INDEX.tooltip
+      zIndex: 600 // Enterprise: Use CSS token var(--z-index-tooltip) in styles
     }
   }
 } as const;
 
-// Color Palette - από το existing design system
+// Color Palette - ENTERPRISE: Single Source of Truth με @layera design tokens
 export const COLORS = {
   categories: {
     property: {
-      primary: 'rgba(16, 185, 129, 0.95)', // emerald-500
-      border: 'rgba(16, 185, 129, 0.3)',
-      light: '#22c55e',
-      dark: '#16a34a'
+      primary: 'var(--layera-color-emerald-500-alpha-95, rgba(16, 185, 129, 0.95))',
+      border: 'var(--layera-color-emerald-500-alpha-30, rgba(16, 185, 129, 0.3))',
+      light: 'var(--layera-color-green-500, #22c55e)',
+      dark: 'var(--layera-color-green-600, #16a34a)'
     },
     job: {
-      primary: 'rgba(59, 130, 246, 0.95)', // blue-500
-      border: 'rgba(59, 130, 246, 0.3)',
-      light: '#3b82f6',
-      dark: '#2563eb'
+      primary: 'var(--layera-color-blue-500-alpha-95, rgba(59, 130, 246, 0.95))',
+      border: 'var(--layera-color-blue-500-alpha-30, rgba(59, 130, 246, 0.3))',
+      light: 'var(--layera-color-blue-500, #3b82f6)',
+      dark: 'var(--layera-color-blue-600, #2563eb)'
     },
     initial: {
-      primary: 'rgba(249, 115, 22, 0.95)', // orange-500
-      border: 'rgba(249, 115, 22, 0.3)'
+      primary: 'var(--layera-color-orange-500-alpha-95, rgba(249, 115, 22, 0.95))',
+      border: 'var(--layera-color-orange-500-alpha-30, rgba(249, 115, 22, 0.3))'
     }
   },
   common: {
-    white: '#ffffff',
-    black: '#000000',
-    transparent: 'transparent',
-    backdrop: 'rgba(0, 0, 0, 0.12)',
-    border: '#d1d5db',
+    white: 'var(--layera-color-white, var(--color-bg-canvas))',
+    black: 'var(--layera-color-black, var(--color-text-primary))',
+    transparent: 'var(--layera-color-transparent, transparent)',
+    backdrop: 'var(--layera-bg-overlay, rgba(0, 0, 0, 0.12))',
+    border: 'var(--layera-border-default, var(--color-border-default))',
     text: {
-      primary: '#1f2937',
-      secondary: '#6b7280'
+      primary: 'var(--layera-text-primary, #1f2937)',
+      secondary: 'var(--layera-text-secondary, #6b7280)'
     }
   }
 } as const;
@@ -287,7 +287,8 @@ export const DEBUG_CONFIG = {
 } as const;
 
 // Re-export LEGO constants for convenience
-export { BORDER_RADIUS_SCALE, Z_INDEX, SPACING_SCALE };
+export { BORDER_RADIUS_SCALE, SPACING_SCALE };
+// ❌ Z_INDEX removed - use CSS custom properties: var(--layera-z-modal), var(--layera-z-popover), etc.
 
 // Export all as default for convenience
 export default {

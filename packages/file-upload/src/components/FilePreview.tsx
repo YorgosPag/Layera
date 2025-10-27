@@ -4,6 +4,7 @@ import { BaseCard as Card } from '@layera/cards';
 import { Text as Typography } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { UploadIcon, CloseIcon } from '@layera/icons';
+import { Box } from '@layera/layout';
 import { useTheme } from '@layera/theme-switcher';
 import type { FilePreviewProps } from '../types';
 import { formatBytes, isImageFile, isPreviewSupported } from '../utils/fileValidation';
@@ -36,9 +37,42 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
     };
   }, [file.file, showPreview]);
 
+  const getFileCategory = () => {
+    const extension = file.file.name.split('.').pop()?.toLowerCase();
+    switch (extension) {
+      case 'dxf':
+      case 'dwg':
+        return 'cad';
+      case 'pdf':
+        return 'document';
+      case 'jpg':
+      case 'jpeg':
+      case 'png':
+      case 'webp':
+      case 'bmp':
+      case 'tiff':
+        return 'image';
+      case 'svg':
+        return 'vector';
+      default:
+        return 'unknown';
+    }
+  };
+
   const getFileIcon = () => {
-    // Use UploadIcon as a generic file icon for now
-    return <UploadIcon className="w-8 h-8" />;
+    const category = getFileCategory();
+    // Enhanced file type detection with CAD support
+    switch (category) {
+      case 'cad':
+        return <UploadIcon className="w-8 h-8 text-blue-600" />; // CAD files in blue
+      case 'document':
+        return <UploadIcon className="w-8 h-8 text-red-600" />; // Documents in red
+      case 'image':
+      case 'vector':
+        return <UploadIcon className="w-8 h-8 text-green-600" />; // Images in green
+      default:
+        return <UploadIcon className="w-8 h-8" />; // Generic icon
+    }
   };
 
   const getStatusColor = () => {
@@ -62,14 +96,14 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
     if (file.status !== 'uploading') return null;
 
     return (
-      <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-        <div className="text-center text-white">
+      <Box className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <Box className="text-center text-white">
           <UploadIcon className="w-6 h-6 mx-auto mb-2 animate-pulse" />
           <Typography variant="caption" className="text-white">
             {Math.round(file.progress)}%
           </Typography>
-        </div>
-      </div>
+        </Box>
+      </Box>
     );
   };
 
@@ -88,9 +122,9 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
     <Card className={`relative overflow-hidden transition-all duration-200 ${getStatusColor()} border-2 ${
       onClick ? 'cursor-pointer hover:shadow-lg' : ''
     }`}>
-      <div onClick={handleClick} className="relative">
+      <Box onClick={handleClick} className="relative">
         {/* Preview Area */}
-        <div className="aspect-square bg-gray-50 dark:bg-gray-800 flex items-center justify-center">
+        <Box className="aspect-square bg-gray-50 dark:bg-gray-800 flex items-center justify-center">
           {showPreview && previewUrl && !previewError ? (
             <img
               src={previewUrl}
@@ -99,35 +133,35 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
               onError={handleImageError}
             />
           ) : (
-            <div className={`text-gray-400 ${theme === 'dark' ? 'text-gray-500' : 'text-gray-400'}`}>
+            <Box className={`text-gray-400 ${theme === 'dark' ? 'text-gray-500' : 'text-gray-400'}`}>
               {getFileIcon()}
-            </div>
+            </Box>
           )}
 
           {/* Progress Overlay */}
           {getProgressOverlay()}
 
           {/* Status Badge */}
-          <div className="absolute top-2 left-2">
+          <Box className="absolute top-2 left-2">
             {file.status === 'completed' && (
-              <div className="bg-green-500 text-white rounded-full p-1">
+              <Box className="bg-green-500 text-white rounded-full p-1">
                 <UploadIcon className="w-3 h-3" />
-              </div>
+              </Box>
             )}
             {file.status === 'error' && (
-              <div className="bg-red-500 text-white rounded-full p-1">
+              <Box className="bg-red-500 text-white rounded-full p-1">
                 <CloseIcon className="w-3 h-3" />
-              </div>
+              </Box>
             )}
             {file.status === 'uploading' && (
-              <div className="bg-blue-500 text-white rounded-full p-1">
+              <Box className="bg-blue-500 text-white rounded-full p-1">
                 <UploadIcon className="w-3 h-3 animate-pulse" />
-              </div>
+              </Box>
             )}
-          </div>
+          </Box>
 
           {/* Remove Button */}
-          <div className="absolute top-2 right-2">
+          <Box className="absolute top-2 right-2">
             <Button
               variant="outline"
               size="sm"
@@ -139,11 +173,11 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
             >
               <CloseIcon className="w-3 h-3" />
             </Button>
-          </div>
-        </div>
+          </Box>
+        </Box>
 
         {/* File Info */}
-        <div className="p-3">
+        <Box className="p-3">
           <Typography
             variant="caption"
             className="font-medium truncate block mb-1"
@@ -152,7 +186,7 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
             {file.file.name}
           </Typography>
 
-          <div className="flex items-center justify-between">
+          <Box className="flex items-center justify-between">
             <Typography variant="caption" className="text-gray-500">
               {formatBytes(file.file.size)}
             </Typography>
@@ -168,10 +202,10 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
                 {t('file-upload.status.error')}
               </Typography>
             )}
-          </div>
+          </Box>
 
           {/* File Type Badge */}
-          <div className="mt-2">
+          <Box className="mt-2">
             <span className={`inline-block px-2 py-1 text-xs rounded ${
               theme === 'dark'
                 ? 'bg-gray-700 text-gray-300'
@@ -179,12 +213,12 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
             }`}>
               {file.file.type || t('file-upload.unknown-type')}
             </span>
-          </div>
+          </Box>
 
           {/* Upload Speed & ETA */}
           {file.status === 'uploading' && file.speed && (
-            <div className="mt-2 space-y-1">
-              <div className="flex items-center justify-between text-xs text-gray-500">
+            <Box className="mt-2 space-y-1">
+              <Box className="flex items-center justify-between text-xs text-gray-500">
                 <span>{formatBytes(file.speed)}/s</span>
                 {file.eta && (
                   <span>
@@ -194,11 +228,11 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
                     }
                   </span>
                 )}
-              </div>
-            </div>
+              </Box>
+            </Box>
           )}
-        </div>
-      </div>
+        </Box>
+      </Box>
     </Card>
   );
 };

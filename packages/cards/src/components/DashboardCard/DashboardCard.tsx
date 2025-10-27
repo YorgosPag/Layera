@@ -1,6 +1,7 @@
 import React from 'react';
 import { DashboardCardProps } from '../../types';
 import { BaseCard } from '../BaseCard';
+import { Box } from '@layera/layout';
 
 /**
  * DashboardCard - Specialized card για dashboard widgets με metrics και status
@@ -16,35 +17,35 @@ export const DashboardCard: React.FC<DashboardCardProps> = ({
   const renderContent = () => {
     if (loading) {
       return (
-        <div className="layera-dashboard-card__loading">
-          <div className="layera-dashboard-card__skeleton">
-            <div className="layera-skeleton layera-skeleton--text"></div>
-            <div className="layera-skeleton layera-skeleton--text layera-skeleton--sm"></div>
-          </div>
-        </div>
+        <Box className="layera-dashboard-card__loading">
+          <Box className="layera-dashboard-card__skeleton">
+            <Box className="layera-skeleton layera-skeleton--text"></Box>
+            <Box className="layera-skeleton layera-skeleton--text layera-skeleton--sm"></Box>
+          </Box>
+        </Box>
       );
     }
 
     if (error) {
       return (
-        <div className="layera-dashboard-card__error">
-          <div className="layera-dashboard-card__error-icon">⚠️</div>
+        <Box className="layera-dashboard-card__error">
+          <Box className="layera-dashboard-card__error-icon">⚠️</Box>
           <p className="layera-dashboard-card__error-message">{error}</p>
-        </div>
+        </Box>
       );
     }
 
     if (metric) {
       return (
-        <div className="layera-dashboard-card__metric">
-          <div className="layera-dashboard-card__metric-value">
+        <Box className="layera-dashboard-card__metric">
+          <Box className="layera-dashboard-card__metric-value">
             {metric.value}
-          </div>
-          <div className="layera-dashboard-card__metric-label">
+          </Box>
+          <Box className="layera-dashboard-card__metric-label">
             {metric.label}
-          </div>
+          </Box>
           {metric.change && (
-            <div className={`layera-dashboard-card__metric-change layera-dashboard-card__metric-change--${metric.change.direction}`}>
+            <Box className={`layera-dashboard-card__metric-change layera-dashboard-card__metric-change--${metric.change.direction}`}>
               <span className="layera-dashboard-card__metric-change-icon">
                 {metric.change.direction === 'up' ? '↗️' : metric.change.direction === 'down' ? '↘️' : '→'}
               </span>
@@ -56,9 +57,9 @@ export const DashboardCard: React.FC<DashboardCardProps> = ({
                   {metric.change.period}
                 </span>
               )}
-            </div>
+            </Box>
           )}
-        </div>
+        </Box>
       );
     }
 

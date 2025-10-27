@@ -11,7 +11,8 @@
  */
 
 import { useMemo } from 'react';
-import { SPACING_SCALE, getSizingVar, getSizingValue, type SizingToken } from '../sizing';
+import { SPACING_SCALE } from '@layera/constants';
+import { getSizingVar, getSizingValue, type SizingToken } from '../sizing';
 
 /**
  * Hook για single sizing token usage

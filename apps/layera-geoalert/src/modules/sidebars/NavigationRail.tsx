@@ -3,6 +3,7 @@ import { useLayeraTranslation } from '@layera/tolgee';
 import { Button } from '@layera/buttons';
 import { BUTTON_VARIANTS, BUTTON_SIZES } from '@layera/constants';
 import { HomeIcon, SearchIcon, SettingsIcon } from '@layera/icons';
+import { Box } from '@layera/layout';
 
 interface NavButtonProps {
   title: string;
@@ -55,7 +56,7 @@ const NavigationRail: React.FC<NavigationRailProps> = ({
         aria-label={t('newAlert')}
       />
 
-      <div className="flex-grow flex flex-col items-center space-y-4">
+      <Box className="flex-grow flex flex-col items-center space-y-4">
         <NavButton
           onClick={() => onViewChange('dashboard')}
           title={t('dashboard')}
@@ -83,7 +84,7 @@ const NavigationRail: React.FC<NavigationRailProps> = ({
         >
           <SettingsIcon size="md" />
         </NavButton>
-      </div>
+      </Box>
     </aside>
   );
 };

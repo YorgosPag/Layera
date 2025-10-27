@@ -5,6 +5,7 @@ import { LoadingSpinner } from '@layera/loading';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { ErrorBoundary } from '@layera/error-boundary';
 import { Heading, Text } from '@layera/typography';
+import { Box } from '@layera/layout';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 
 // Enterprise-safe wrapper functions για React 19 compatibility
@@ -30,9 +31,7 @@ import {
   FileImportProgress
 } from '../types';
 import { useFileImport } from '../hooks/useFileImport';
-import { DragDropZone } from './DragDropZone';
-import { FileList } from './FileList';
-import { FilePreview } from './FilePreview';
+import { DragDropZone, FileList, FilePreview } from '@layera/file-upload';
 
 export interface FileImporterProps {
   // Core functionality
@@ -135,8 +134,8 @@ export const FileImporter: React.FC<FileImporterProps> = ({
 
   if (compact) {
     return (
-      <SafeErrorBoundary fallback={<div>{t('file.import.error.boundary')}</div>}>
-        <div className="file-importer-compact">
+      <SafeErrorBoundary fallback={<Box>{t('file.import.error.boundary')}</Box>}>
+        <Box className="file-importer-compact">
           <DragDropZone
             onFilesDrop={handleFilesDrop}
             acceptedFormats={acceptedFormats}
@@ -149,14 +148,14 @@ export const FileImporter: React.FC<FileImporterProps> = ({
               accept={formatFileTypes()}
               onChange={handleFileInputChange}
               disabled={disabled || isProcessing}
-              style={{ display: 'none' }}
+              display="var(--layera-display-none, none)"
               id="file-input-compact"
             />
             <label htmlFor="file-input-compact">
               <Button
                 variant="primary"
                 disabled={disabled || isProcessing}
-                style={{ cursor: disabled || isProcessing ? 'not-allowed' : 'pointer' }}
+                cursor={disabled || isProcessing ? 'var(--layera-cursor-not-allowed, not-allowed)' : 'var(--layera-cursor-pointer, pointer)'}
               >
                 {isProcessing ? (
                   <>
@@ -170,20 +169,20 @@ export const FileImporter: React.FC<FileImporterProps> = ({
             </label>
 
             {showProgress && isProcessing && (
-              <div style={{ marginTop: `${SPACING_SCALE.SM}px`, fontSize: '12px', color: '#666' }}>
+              <Box marginTop={`${SPACING_SCALE.SM}px`} fontSize="var(--layera-font-size-xs)" color="var(--layera-text-secondary)">
                 {t('file.import.progress')}: {Math.round(progress)}%
-              </div>
+              </Box>
             )}
           </DragDropZone>
-        </div>
+        </Box>
       </SafeErrorBoundary>
     );
   }
 
   return (
-    <SafeErrorBoundary fallback={<div>{t('file.import.error.boundary')}</div>}>
+    <SafeErrorBoundary fallback={<Box>{t('file.import.error.boundary')}</Box>}>
       <BaseCard className="file-importer">
-        <div style={{ padding: `${SPACING_SCALE.MD}px`, borderBottom: '1px solid #eee' }}>
+        <Box padding={`${SPACING_SCALE.MD}px`} borderBottom="1px solid var(--layera-border-default)">
           <Heading as="h3">
             {title || t('file.import.title')}
           </Heading>
@@ -194,9 +193,9 @@ export const FileImporter: React.FC<FileImporterProps> = ({
               maxFiles
             })}
           </Text>
-        </div>
+        </Box>
 
-        <div style={{ padding: `${SPACING_SCALE.MD}px` }}>
+        <Box padding={`${SPACING_SCALE.MD}px`}>
           {/* Drop zone */}
           <DragDropZone
             onFilesDrop={handleFilesDrop}
@@ -211,7 +210,7 @@ export const FileImporter: React.FC<FileImporterProps> = ({
               accept={formatFileTypes()}
               onChange={handleFileInputChange}
               disabled={disabled || isProcessing}
-              style={{ display: 'none' }}
+              display="var(--layera-display-none, none)"
               id="file-input"
             />
             <label htmlFor="file-input">
@@ -219,7 +218,7 @@ export const FileImporter: React.FC<FileImporterProps> = ({
                 variant="primary"
                 size="lg"
                 disabled={disabled || isProcessing}
-                style={{ cursor: disabled || isProcessing ? 'not-allowed' : 'pointer' }}
+                cursor={disabled || isProcessing ? 'var(--layera-cursor-not-allowed, not-allowed)' : 'var(--layera-cursor-pointer, pointer)'}
               >
                 {isProcessing ? (
                   <>
@@ -235,35 +234,33 @@ export const FileImporter: React.FC<FileImporterProps> = ({
 
           {/* Progress display */}
           {showProgress && isProcessing && (
-            <div style={{ marginTop: `${SPACING_SCALE.MD}px`, padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`, backgroundColor: '#f5f5f5', borderRadius: `${BORDER_RADIUS_SCALE.XS}px` }}>
-              <div style={{ fontSize: '14px', marginBottom: `${SPACING_SCALE.XS - 4}px` }}>
+            <Box marginTop={`${SPACING_SCALE.MD}px`} padding={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px`} backgroundColor="var(--layera-bg-secondary)" borderRadius={`${BORDER_RADIUS_SCALE.XS}px`}>
+              <Box fontSize="var(--layera-font-size-sm)" marginBottom={`${SPACING_SCALE.XS - 4}px`}>
                 {t('file.import.progress')}: {Math.round(progress)}%
-              </div>
-              <div style={{ width: '100%', height: '4px', backgroundColor: '#e0e0e0', borderRadius: `${BORDER_RADIUS_SCALE.XXS}px` }}>
-                <div
-                  style={{
-                    width: `${progress}%`,
-                    height: '100%',
-                    backgroundColor: '#007bff',
-                    borderRadius: `${BORDER_RADIUS_SCALE.XXS}px`,
-                    transition: 'width 0.3s ease'
-                  }}
+              </Box>
+              <Box width="100%" height="var(--layera-spacing-xs)" backgroundColor="var(--layera-bg-tertiary)" borderRadius={`${BORDER_RADIUS_SCALE.XXS}px`}>
+                <Box
+                  width={`${progress}%`}
+                  height="var(--layera-height-full, 100%)"
+                  backgroundColor="var(--layera-color-primary)"
+                  borderRadius={`${BORDER_RADIUS_SCALE.XXS}px`}
+                  transition="var(--layera-transition-width, width 0.3s ease)"
                 />
-              </div>
-            </div>
+              </Box>
+            </Box>
           )}
 
           {/* Error display */}
           {error && (
-            <div style={{ marginTop: `${SPACING_SCALE.MD}px` }}>
+            <Box marginTop={`${SPACING_SCALE.MD}px`}>
               <Text color="danger">{error}</Text>
-            </div>
+            </Box>
           )}
 
           {/* File list */}
           {files.length > 0 && (
-            <div style={{ marginTop: `${SPACING_SCALE.MD}px` }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: `${SPACING_SCALE.XS}px` }}>
+            <Box marginTop={`${SPACING_SCALE.MD}px`}>
+              <Box display="flex" justifyContent="space-between" alignItems="center" marginBottom={`${SPACING_SCALE.XS}px`}>
                 <Text size="base" weight="medium">
                   {t('file.import.files.selected', { count: files.length })}
                 </Text>
@@ -275,7 +272,7 @@ export const FileImporter: React.FC<FileImporterProps> = ({
                 >
                   {t('file.import.clear.all')}
                 </Button>
-              </div>
+              </Box>
 
               <FileList
                 files={files}
@@ -285,19 +282,19 @@ export const FileImporter: React.FC<FileImporterProps> = ({
                 {...(selectedFile?.id && { selectedFileId: selectedFile.id })}
                 disabled={isProcessing}
               />
-            </div>
+            </Box>
           )}
 
           {/* File preview */}
           {showPreview && selectedFile && (
-            <div style={{ marginTop: `${SPACING_SCALE.MD}px` }}>
+            <Box marginTop={`${SPACING_SCALE.MD}px`}>
               <FilePreview
                 file={selectedFile}
                 onClose={() => setSelectedFile(null)}
               />
-            </div>
+            </Box>
           )}
-        </div>
+        </Box>
       </BaseCard>
     </SafeErrorBoundary>
   );

@@ -3,9 +3,16 @@
  *
  * Single source of truth για FAB components στο Layera ecosystem.
  * Αντικαθιστά όλα τα duplicate FAB implementations με unified API.
+ *
+ * ENTERPRISE FEATURES:
+ * - Simulation-aware positioning για device frames
+ * - Draggable functionality με viewport constraints
+ * - Responsive sizing per device type
+ * - Unified API για όλες τις FAB χρήσεις
  */
 
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Box } from '@layera/layout';
 import { BORDER_RADIUS_SCALE } from '@layera/constants';
 import { FABProps, ResponsiveFABConfig, DeviceType, FABVariant } from './types';
 
@@ -36,6 +43,19 @@ const VARIANT_COLORS: Record<FABVariant, string> = {
   warning: 'var(--layera-bg-warning, #F59E0B)'
 };
 
+// Enterprise draggable state interfaces
+interface FabPosition {
+  x: number;
+  y: number;
+}
+
+interface DragStart {
+  x: number;
+  y: number;
+  px: number;
+  py: number;
+}
+
 export const UnifiedFAB: React.FC<FABProps> = ({
   onClick,
   icon,
@@ -47,39 +67,149 @@ export const UnifiedFAB: React.FC<FABProps> = ({
   title = 'Νέα Καταχώρηση',
   'data-testid': testId,
   style,
-  zIndex = 9999
+  zIndex = 9999,
+  // ENTERPRISE: Draggable props
+  draggable = false,
+  initialPosition = { bottom: 20, right: 20 },
+  constrainToViewport = true,
+  viewportSelector = '[data-viewport-frame], #geo-viewport',
+  positionType = 'fixed'
 }) => {
+  // Get responsive configuration first
+  const config = DEFAULT_CONFIG[deviceType];
+  const finalSpacing = spacing || config.spacing;
+  const BTN_SIZE = config.size;
+  const MARGIN = 15;
+
+  // 🚀 ENTERPRISE: Draggable state management
+  const frameRef = useRef<HTMLDivElement | null>(null);
+  const [fabPos, setFabPos] = useState<FabPosition>(() => {
+    // Initialize position from props
+    if (initialPosition.right !== undefined || initialPosition.bottom !== undefined) {
+      // Convert right/bottom to x/y if provided
+      const x = initialPosition.right !== undefined ?
+        (typeof window !== 'undefined' ? window.innerWidth - initialPosition.right - BTN_SIZE : 20) :
+        initialPosition.x ?? 20;
+      const y = initialPosition.bottom !== undefined ?
+        (typeof window !== 'undefined' ? window.innerHeight - initialPosition.bottom - BTN_SIZE : 20) :
+        initialPosition.y ?? 20;
+      return { x, y };
+    }
+    return { x: initialPosition.x ?? 20, y: initialPosition.y ?? 20 };
+  });
+  const startRef = useRef<DragStart | null>(null);
+
   if (hidden) {
     return null;
   }
 
-  // Get responsive configuration
-  const config = DEFAULT_CONFIG[deviceType];
-  const finalSpacing = spacing || config.spacing;
+  // 🚀 ENTERPRISE: Viewport constraint logic for simulation systems
+  useEffect(() => {
+    if (!draggable || !constrainToViewport || positionType === 'fixed') return;
 
-  // Base styles που είναι κοινά σε όλα τα FAB
+    const clamp = () => {
+      const frame = document.querySelector(viewportSelector);
+      if (!frame) return;
+
+      const rect = frame.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+
+      // Ensure FAB stays within simulation frame bounds
+      const maxX = Math.max(0, rect.width - BTN_SIZE - MARGIN);
+      const maxY = Math.max(0, rect.height - BTN_SIZE - MARGIN);
+
+      const x = Math.max(MARGIN, Math.min(maxX, fabPos.x));
+      const y = Math.max(MARGIN, Math.min(maxY, fabPos.y));
+
+      if (x !== fabPos.x || y !== fabPos.y) {
+        setFabPos({ x, y });
+      }
+    };
+
+    clamp();
+    window.addEventListener('resize', clamp);
+    const visualViewport = window.visualViewport;
+    visualViewport?.addEventListener('resize', clamp);
+    visualViewport?.addEventListener('scroll', clamp);
+
+    return () => {
+      window.removeEventListener('resize', clamp);
+      visualViewport?.removeEventListener('resize', clamp);
+      visualViewport?.removeEventListener('scroll', clamp);
+    };
+  }, [fabPos.x, fabPos.y, draggable, constrainToViewport, positionType, viewportSelector, BTN_SIZE]);
+
+  // 🚀 ENTERPRISE: Drag handler for simulation systems
+  const handleFabPointerDown = (e: React.PointerEvent) => {
+    if (!draggable || positionType === 'fixed') return;
+
+    // Find the viewport frame for simulation systems
+    const frame = document.querySelector(viewportSelector);
+    if (!frame) return;
+
+    frameRef.current = frame as HTMLDivElement;
+    const rect = frame.getBoundingClientRect();
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+    startRef.current = { x: e.clientX, y: e.clientY, px: fabPos.x, py: fabPos.y };
+
+    const onMove = (ev: PointerEvent) => {
+      if (!startRef.current || !rect) return;
+      const dx = ev.clientX - startRef.current.x;
+      const dy = ev.clientY - startRef.current.y;
+
+      // Constrain to simulation frame bounds
+      const maxX = Math.max(0, rect.width - BTN_SIZE - MARGIN);
+      const maxY = Math.max(0, rect.height - BTN_SIZE - MARGIN);
+
+      const nx = Math.max(MARGIN, Math.min(maxX, startRef.current.px + dx));
+      const ny = Math.max(MARGIN, Math.min(maxY, startRef.current.py + dy));
+
+      setFabPos({ x: nx, y: ny });
+    };
+
+    const onUp = () => {
+      startRef.current = null;
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+    };
+
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+  };
+
+  // 🎯 ENTERPRISE: Smart style computation για simulation compatibility
   const baseStyles: React.CSSProperties = {
     position: 'absolute',
-    right: finalSpacing.right,
-    bottom: finalSpacing.bottom,
-    width: config.size,
-    height: config.size,
+    ...(positionType === 'fixed' || !draggable ? {
+      // Static positioning για non-draggable FABs
+      right: finalSpacing.right,
+      bottom: finalSpacing.bottom,
+    } : {
+      // Dynamic positioning για draggable FABs
+      left: `${fabPos.x}px`,
+      top: `${fabPos.y}px`,
+    }),
+    width: BTN_SIZE,
+    height: BTN_SIZE,
     borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
     background: VARIANT_COLORS[variant],
-    border: '2px solid white',
-    boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+    border: '2px solid var(--color-bg-canvas)',
+    boxShadow: 'var(--elevation-md)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    cursor: 'pointer',
+    cursor: draggable && positionType !== 'fixed' ? 'grab' : 'pointer',
     zIndex,
     userSelect: 'none',
+    touchAction: draggable ? 'none' : 'auto',
+    transition: positionType === 'fixed' ? 'all 0.2s ease' : 'none',
     // Merge custom styles
     ...style
   };
 
   return (
-    <div
+    <Box
+      onPointerDown={handleFabPointerDown}
       onClick={onClick}
       aria-label={ariaLabel}
       title={title}
@@ -87,7 +217,7 @@ export const UnifiedFAB: React.FC<FABProps> = ({
       style={baseStyles}
     >
       {icon}
-    </div>
+    </Box>
   );
 };
 

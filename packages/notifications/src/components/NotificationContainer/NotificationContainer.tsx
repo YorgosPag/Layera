@@ -1,5 +1,6 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
+import { Box } from '@layera/layout';
 import { Toast } from '../Toast';
 import type { Notification, NotificationPosition } from '../../types';
 import './NotificationContainer.css';
@@ -35,7 +36,7 @@ export const NotificationContainer: React.FC<NotificationContainerProps> = ({
   }
 
   const containerContent = (
-    <div className={containerClasses} role="region" aria-label="Notifications">
+    <Box className={containerClasses} role="region" aria-label="Notifications">
       {visibleNotifications.map((notification) => (
         <Toast
           key={notification.id}
@@ -44,7 +45,7 @@ export const NotificationContainer: React.FC<NotificationContainerProps> = ({
           position={position}
         />
       ))}
-    </div>
+    </Box>
   );
 
   return createPortal(containerContent, document.body);

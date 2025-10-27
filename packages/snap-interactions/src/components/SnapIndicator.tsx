@@ -8,8 +8,9 @@ import React from 'react';
 // Import από existing LEGO systems - ΜΗΝ αναδημιουργήσεις
 import { useTheme } from '@layera/theme-switcher';
 import { useLayeraTranslation } from '@layera/tolgee';
-import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE, SNAP_VISUAL } from '@layera/constants';
 import { Icon } from '@layera/icons';
+import { Box } from '@layera/layout';
 
 // Import από snap engine
 import type { SnapResult, SnapType } from '@layera/snap-engine';
@@ -44,32 +45,8 @@ const SNAP_ICONS: Record<SnapType, string> = {
   edge: 'line'
 };
 
-const SNAP_COLORS = {
-  light: {
-    endpoint: '#ff6b6b',
-    midpoint: '#4ecdc4',
-    center: '#45b7d1',
-    vertex: '#96ceb4',
-    intersection: '#ffeaa7',
-    perpendicular: '#dda0dd',
-    tangent: '#98d8c8',
-    nearest: '#f7dc6f',
-    grid: '#bb8fce',
-    edge: '#85c1e9'
-  },
-  dark: {
-    endpoint: '#e74c3c',
-    midpoint: '#1abc9c',
-    center: '#3498db',
-    vertex: '#2ecc71',
-    intersection: '#f39c12',
-    perpendicular: '#9b59b6',
-    tangent: '#16a085',
-    nearest: '#f1c40f',
-    grid: '#8e44ad',
-    edge: '#2980b9'
-  }
-};
+// Use existing SNAP_VISUAL from @layera/constants - Single Source of Truth
+const SNAP_COLORS = SNAP_VISUAL.COLORS;
 
 // ========================================
 // 🎯 SNAP INDICATOR COMPONENT
@@ -111,7 +88,7 @@ export const SnapIndicator: React.FC<SnapIndicatorProps> = ({
     zIndex: 10000,
     borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
     backgroundColor: color,
-    border: `2px solid ${theme === 'dark' ? '#ffffff' : '#000000'}`,
+    border: `2px solid ${theme === 'dark' ? 'var(--layera-color-white, #ffffff)' : 'var(--layera-color-black, #000000)'}`,
     boxShadow: `0 0 8px ${color}`,
     display: 'flex',
     alignItems: 'center',
@@ -128,14 +105,14 @@ export const SnapIndicator: React.FC<SnapIndicatorProps> = ({
     transform: 'translateX(-50%)',
     marginBottom: `${SPACING_SCALE.XS}px`,
     padding: `${SPACING_SCALE.XS - 4}px ${SPACING_SCALE.XS}px`,
-    backgroundColor: theme === 'dark' ? '#2c3e50' : '#ecf0f1',
-    color: theme === 'dark' ? '#ecf0f1' : '#2c3e50',
-    border: `1px solid ${theme === 'dark' ? '#34495e' : '#bdc3c7'}`,
+    backgroundColor: theme === 'dark' ? 'var(--layera-color-slate-700, #2c3e50)' : 'var(--layera-color-gray-100, #ecf0f1)',
+    color: theme === 'dark' ? 'var(--layera-color-gray-100, #ecf0f1)' : 'var(--layera-color-slate-700, #2c3e50)',
+    border: `1px solid ${theme === 'dark' ? 'var(--layera-color-slate-600, #34495e)' : 'var(--layera-color-gray-300, #bdc3c7)'}`,
     borderRadius: `${SPACING_SCALE.XS - 4}px`,
-    fontSize: '12px',
+    fontSize: 'var(--layera-font-size-xs)',
     fontWeight: 500,
     whiteSpace: 'nowrap',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+    boxShadow: 'var(--layera-shadow-sm, 0 2px 4px rgba(0,0,0,0.1))',
     zIndex: 10001
   };
 
@@ -144,14 +121,14 @@ export const SnapIndicator: React.FC<SnapIndicatorProps> = ({
   // ========================================
 
   const tooltipContent = showTooltip ? (
-    <div style={tooltipStyle}>
+    <Box style={tooltipStyle}>
       {t(`snap.types.${snapType}`, { defaultValue: snapType })}
       {target.metadata?.layer && (
-        <div style={{ fontSize: '10px', opacity: 0.8 }}>
+        <Box fontSize="var(--layera-font-size-xxs)" opacity={0.8}>
           {t('snap.layer')}: {target.metadata.layer}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   ) : null;
 
   // ========================================
@@ -159,12 +136,12 @@ export const SnapIndicator: React.FC<SnapIndicatorProps> = ({
   // ========================================
 
   return (
-    <div style={indicatorStyle} className={className}>
+    <Box style={indicatorStyle} className={className}>
       {/* Icon από @layera/icons - ΜΗΝ δημιουργήσεις custom icons */}
       <Icon
         name={iconName}
         size={size * 0.6}
-        color={theme === 'dark' ? '#ffffff' : '#000000'}
+        color={theme === 'dark' ? 'var(--layera-color-white, #ffffff)' : 'var(--layera-color-black, #000000)'}
       />
 
       {/* Tooltip */}
@@ -187,7 +164,7 @@ export const SnapIndicator: React.FC<SnapIndicatorProps> = ({
           }
         }
       `}</style>
-    </div>
+    </Box>
   );
 };
 
@@ -223,14 +200,14 @@ export const SnapCursor: React.FC<SnapCursorProps> = ({
     height: size,
     pointerEvents: 'none',
     zIndex: 9999,
-    border: `2px solid ${isSnapped ? '#e74c3c' : theme === 'dark' ? '#ecf0f1' : '#2c3e50'}`,
+    border: `2px solid ${isSnapped ? 'var(--layera-color-red-600, #e74c3c)' : theme === 'dark' ? 'var(--layera-color-gray-100, #ecf0f1)' : 'var(--layera-color-slate-700, #2c3e50)'}`,
     borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
-    backgroundColor: isSnapped ? 'rgba(231, 76, 60, 0.2)' : 'transparent',
+    backgroundColor: isSnapped ? 'var(--layera-color-red-600-alpha-20, rgba(231, 76, 60, 0.2))' : 'transparent',
     transition: 'all 0.1s ease-out',
     transform: isSnapped ? 'scale(1.2)' : 'scale(1)'
   };
 
-  return <div style={cursorStyle} />;
+  return <Box style={cursorStyle} />;
 };
 
 // ========================================
@@ -258,7 +235,7 @@ export const SnapGuidelines: React.FC<SnapGuidelinesProps> = ({
   }
 
   const { snapPoint } = snapResult;
-  const lineColor = theme === 'dark' ? '#ecf0f1' : '#2c3e50';
+  const lineColor = theme === 'dark' ? 'var(--layera-color-gray-100, #ecf0f1)' : 'var(--layera-color-slate-700, #2c3e50)';
 
   // Calculate line από cursor σε snap point
   const lineStyle: React.CSSProperties = {
@@ -289,9 +266,9 @@ export const SnapGuidelines: React.FC<SnapGuidelinesProps> = ({
     top: midPointY - 20,
     transform: 'translateX(-50%)',
     padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.XS + SPACING_SCALE.XS}px`,
-    backgroundColor: theme === 'dark' ? '#2c3e50' : '#ecf0f1',
-    color: theme === 'dark' ? '#ecf0f1' : '#2c3e50',
-    border: `1px solid ${theme === 'dark' ? '#34495e' : '#bdc3c7'}`,
+    backgroundColor: theme === 'dark' ? 'var(--layera-color-slate-700, #2c3e50)' : 'var(--layera-color-gray-100, #ecf0f1)',
+    color: theme === 'dark' ? 'var(--layera-color-gray-100, #ecf0f1)' : 'var(--layera-color-slate-700, #2c3e50)',
+    border: `1px solid ${theme === 'dark' ? 'var(--layera-color-slate-600, #34495e)' : 'var(--layera-color-gray-300, #bdc3c7)'}`,
     borderRadius: `${BORDER_RADIUS_SCALE.XXS}px`,
     fontSize: '11px',
     fontWeight: 500,
@@ -302,13 +279,13 @@ export const SnapGuidelines: React.FC<SnapGuidelinesProps> = ({
   return (
     <>
       {/* Guideline */}
-      <div style={lineStyle} />
+      <Box style={lineStyle} />
 
       {/* Distance label */}
       {showDistance && distance > 5 && (
-        <div style={distanceLabelStyle}>
+        <Box style={distanceLabelStyle}>
           {distance}px
-        </div>
+        </Box>
       )}
     </>
   );

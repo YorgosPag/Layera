@@ -1,4 +1,5 @@
 import React from 'react';
+import { Box } from '@layera/layout';
 import { useLayeraTranslation } from '@layera/tolgee';
 
 interface TableToolbarProps {
@@ -29,23 +30,23 @@ export const TableToolbar: React.FC<TableToolbarProps> = ({
   const hasSelection = selectedCount > 0;
 
   return (
-    <div className="layera-table-toolbar">
-      <div className="layera-table-toolbar__primary">
+    <Box className="layera-table-toolbar">
+      <Box className="layera-table-toolbar__primary">
         {hasSelection ? (
-          <div className="layera-table-toolbar__selection">
+          <Box className="layera-table-toolbar__selection">
             <span className="layera-table-toolbar__selection-text">
               {t('tables.selectedCount', { count: selectedCount, total: totalCount })}
             </span>
             {bulkActions && (
-              <div className="layera-table-toolbar__bulk-actions">
+              <Box className="layera-table-toolbar__bulk-actions">
                 {bulkActions}
-              </div>
+              </Box>
             )}
-          </div>
+          </Box>
         ) : (
           <>
             {searchable && (
-              <div className="layera-table-toolbar__search">
+              <Box className="layera-table-toolbar__search">
                 <input
                   type="text"
                   value={searchValue}
@@ -53,7 +54,7 @@ export const TableToolbar: React.FC<TableToolbarProps> = ({
                   placeholder={t('tables.search.placeholder')}
                   className="layera-table-toolbar__search-input"
                 />
-                <div className="layera-table-toolbar__search-icon">
+                <Box className="layera-table-toolbar__search-icon">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path
                       d="M7.33333 12.6667C10.2789 12.6667 12.6667 10.2789 12.6667 7.33333C12.6667 4.38781 10.2789 2 7.33333 2C4.38781 2 2 4.38781 2 7.33333C2 10.2789 4.38781 12.6667 7.33333 12.6667Z"
@@ -70,18 +71,18 @@ export const TableToolbar: React.FC<TableToolbarProps> = ({
                       strokeLinejoin="round"
                     />
                   </svg>
-                </div>
-              </div>
+                </Box>
+              </Box>
             )}
 
             {toolbar && (
-              <div className="layera-table-toolbar__actions">
+              <Box className="layera-table-toolbar__actions">
                 {toolbar}
-              </div>
+              </Box>
             )}
           </>
         )}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };

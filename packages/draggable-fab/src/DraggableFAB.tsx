@@ -7,6 +7,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { BORDER_RADIUS_SCALE } from '@layera/constants';
+import { Box } from '@layera/layout';
 
 export interface DraggableFABProps {
   children: React.ReactNode;
@@ -53,6 +54,16 @@ export const DraggableFAB: React.FC<DraggableFABProps> = ({
   'aria-label': ariaLabel = 'Floating Action Button',
   title
 }) => {
+  // 🎯 SIZE CONFIGURATION - moved before useState
+  const getSizePixels = (sizeStr: 'sm' | 'md' | 'lg'): number => {
+    switch (sizeStr) {
+      case 'sm': return 48;
+      case 'md': return 56;
+      case 'lg': return 64;
+      default: return 56;
+    }
+  };
+
   // 🎯 STATE MANAGEMENT από GeoMapNew.tsx
   const frameRef = useRef<HTMLDivElement | null>(null);
   const [fabPos, setFabPos] = useState<FabPosition>(() => {
@@ -70,16 +81,6 @@ export const DraggableFAB: React.FC<DraggableFABProps> = ({
     return { x: initialPosition.x ?? 15, y: initialPosition.y ?? 15 };
   });
   const startRef = useRef<DragStart | null>(null);
-
-  // 🎯 SIZE CONFIGURATION
-  const getSizePixels = (sizeStr: 'sm' | 'md' | 'lg'): number => {
-    switch (sizeStr) {
-      case 'sm': return 48;
-      case 'md': return 56;
-      case 'lg': return 64;
-      default: return 56;
-    }
-  };
 
   const BTN_SIZE = getSizePixels(size);
   const MARGIN = 15;
@@ -172,8 +173,8 @@ export const DraggableFAB: React.FC<DraggableFABProps> = ({
     height: BTN_SIZE,
     borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
     background: 'var(--layera-bg-success, #22C55E)',
-    border: '2px solid white',
-    boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+    border: '2px solid var(--color-bg-canvas)',
+    boxShadow: 'var(--elevation-md)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -186,7 +187,7 @@ export const DraggableFAB: React.FC<DraggableFABProps> = ({
   };
 
   return (
-    <div
+    <Box
       onPointerDown={handleFabPointerDown}
       onClick={onClick}
       aria-label={ariaLabel}
@@ -196,6 +197,6 @@ export const DraggableFAB: React.FC<DraggableFABProps> = ({
       style={computedStyle}
     >
       {children}
-    </div>
+    </Box>
   );
 };

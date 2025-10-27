@@ -5,6 +5,7 @@ import {
   type FormSize,
   type FormState
 } from '@layera/constants';
+import { Box } from '@layera/layout';
 import './DatePicker.css';
 
 export interface DatePickerProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'type' | 'onChange' | 'value'> {
@@ -69,37 +70,38 @@ const MONTHS = [
 
 const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
-  size = FORM_SIZES.MEDIUM,
-  state = FORM_STATES.DEFAULT,
-  value,
-  onChange,
-  minDate,
-  maxDate,
-  label,
-  description,
-  error,
-  fullWidth = false,
-  showCalendar = true,
-  showToday = true,
-  showTime = false,
-  range = false,
-  rangeValue,
-  onRangeChange,
-  multiple = false,
-  multipleValue = [],
-  onMultipleChange,
-  locale = 'en-US',
-  format = 'MM/dd/yyyy',
-  isDateDisabled,
-  disabled = false,
-  loading = false,
-  numberOfMonths = 1,
-  placeholder,
-  className = '',
-  id,
-  ...props
-}, ref) => {
+const DatePickerComponent = (props: DatePickerProps, ref: React.Ref<HTMLInputElement>) => {
+  const {
+    size = FORM_SIZES.MEDIUM,
+    state = FORM_STATES.DEFAULT,
+    value,
+    onChange,
+    minDate,
+    maxDate,
+    label,
+    description,
+    error,
+    fullWidth = false,
+    showCalendar = true,
+    showToday = true,
+    showTime = false,
+    range = false,
+    rangeValue,
+    onRangeChange,
+    multiple = false,
+    multipleValue = [],
+    onMultipleChange,
+    locale = 'en-US',
+    format = 'MM/dd/yyyy',
+    isDateDisabled,
+    disabled = false,
+    loading = false,
+    numberOfMonths = 1,
+    placeholder,
+    className = '',
+    id,
+    ...restProps
+  } = props;
   // Translation function - could be integrated with @layera/tolgee when ready
   const t = (key: string) => {
     const translations: Record<string, string> = {
@@ -346,11 +348,11 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
   const calendarDays = generateCalendarDays(displayDate);
 
   return (
-    <div className={wrapperClasses} ref={containerRef}>
+    <Box className={wrapperClasses} ref={containerRef}>
       {label && (
         <label htmlFor={datePickerId} className="layera-datepicker__label">
           {label}
-          {props.required && (
+          {restProps.required && (
             <span
               className="layera-datepicker__required"
               aria-label={t('forms.required')}
@@ -361,7 +363,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
         </label>
       )}
 
-      <div className="layera-datepicker__input-wrapper">
+      <Box className="layera-datepicker__input-wrapper">
         <input
           ref={ref || inputRef}
           type="text"
@@ -372,7 +374,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
           disabled={disabled || loading}
           placeholder={placeholder || t('datepicker.selectDate')}
           className={inputClasses}
-          {...props}
+          {...restProps}
         />
 
         {showCalendar && (
@@ -393,15 +395,15 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
         )}
 
         {loading && (
-          <div className="layera-datepicker__loading">
-            <div className="layera-datepicker__spinner" />
-          </div>
+          <Box className="layera-datepicker__loading">
+            <Box className="layera-datepicker__spinner" />
+          </Box>
         )}
-      </div>
+      </Box>
 
       {isOpen && showCalendar && (
-        <div className="layera-datepicker__calendar">
-          <div className="layera-datepicker__header">
+        <Box className="layera-datepicker__calendar">
+          <Box className="layera-datepicker__header">
             <button
               type="button"
               className="layera-datepicker__nav"
@@ -413,9 +415,9 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
               </svg>
             </button>
 
-            <div className="layera-datepicker__month-year">
+            <Box className="layera-datepicker__month-year">
               {MONTHS[displayDate.getMonth()]} {displayDate.getFullYear()}
-            </div>
+            </Box>
 
             <button
               type="button"
@@ -427,17 +429,17 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
                 <polyline points="9,18 15,12 9,6" stroke="currentColor" strokeWidth="2" />
               </svg>
             </button>
-          </div>
+          </Box>
 
-          <div className="layera-datepicker__weekdays">
+          <Box className="layera-datepicker__weekdays">
             {WEEKDAYS.map(day => (
-              <div key={day} className="layera-datepicker__weekday">
+              <Box key={day} className="layera-datepicker__weekday">
                 {day}
-              </div>
+              </Box>
             ))}
-          </div>
+          </Box>
 
-          <div className="layera-datepicker__days">
+          <Box className="layera-datepicker__days">
             {calendarDays.map((date, index) => {
               const isCurrentMonth = date.getMonth() === displayDate.getMonth();
               const isToday =
@@ -465,9 +467,9 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
                 </button>
               );
             })}
-          </div>
+          </Box>
 
-          <div className="layera-datepicker__footer">
+          <Box className="layera-datepicker__footer">
             {showToday && (
               <button
                 type="button"
@@ -485,31 +487,32 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(({
             >
               {t('datepicker.clear')}
             </button>
-          </div>
-        </div>
+          </Box>
+        </Box>
       )}
 
       {(description || error) && (
-        <div className="layera-datepicker__footer-text">
+        <Box className="layera-datepicker__footer-text">
           {description && !error && (
-            <div className="layera-datepicker__description">
+            <Box className="layera-datepicker__description">
               {description}
-            </div>
+            </Box>
           )}
 
           {error && (
-            <div
+            <Box
               className="layera-datepicker__error"
               role="alert"
               aria-live="polite"
             >
               {error}
-            </div>
+            </Box>
           )}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
-});
+};
 
+export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(DatePickerComponent);
 DatePicker.displayName = 'DatePicker';

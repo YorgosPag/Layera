@@ -102,19 +102,17 @@ export const PropertyTypeStep: React.FC<PropertyTypeStepProps> = ({
   }
 
   return (
-    <Flex
-      direction="column"
-      style={{
-        position: 'fixed',
-        top: 'var(--layera-cards-top)',
-        left: 'var(--layera-side-margins)',
-        right: 'var(--layera-side-margins)',
-        zIndex: 10002,
-        gap: `${SPACING_SCALE.XS + 2}px`,
-        padding: '0',
-        maxHeight: 'calc(100vh - 200px)',
-        overflowY: 'auto'
-      }}>
+    // LEGO:JUSTIFIED(reason=MOBILE_STEP_OVERLAY_FIXED; owner=@team-geo; expires=2026-01-31)
+    <Box
+      position="fixed"
+      top="var(--layera-overlay-top, var(--layera-cards-top, 64px))"
+      left="var(--layera-side-margins, 16px)"
+      right="var(--layera-side-margins, 16px)"
+      zIndex="var(--layera-z-overlay)"
+      maxHeight="var(--layera-height-calc-max, calc(100vh - var(--layera-overlay-vertical-offset, 200px)))"
+      overflow="var(--layera-overflow-auto, auto)"
+    >
+      <Flex direction="column" gap="xs" padding="none">
       {propertyTypes.map((type) => (
         <PropertyTypeCard
           key={type.id}
@@ -125,6 +123,7 @@ export const PropertyTypeStep: React.FC<PropertyTypeStepProps> = ({
           data-testid={`property-type-card-${type.id}`}
         />
       ))}
-    </Flex>
+      </Flex>
+    </Box>
   );
 };

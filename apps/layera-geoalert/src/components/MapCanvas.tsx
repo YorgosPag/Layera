@@ -5,6 +5,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Button } from '@layera/buttons';
+import { Box } from '@layera/layout';
 import { SPACING_SCALE } from '@layera/constants';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 
@@ -127,38 +128,36 @@ const MapCanvas: React.FC<MapCanvasProps> = ({
 
   if (!isMapReady) {
     return (
-      <div className={`flex items-center justify-center h-64 bg-gray-100 ${className}`}>
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-2"></div>
+      <Box className={`flex items-center justify-center h-64 bg-gray-100 ${className}`}>
+        <Box className="text-center">
+          <Box className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-2"></Box>
           <p className="text-sm text-gray-600">{t('loadingMap')}</p>
-        </div>
-      </div>
+        </Box>
+      </Box>
     );
   }
 
   return (
-    <div className={`relative w-full h-full ${className}`}>
+    <Box className={`relative w-full h-full ${className}`}>
       {/* Main Map */}
       <MapCore onMapReady={handleMapReady}>
         {/* Drawing Tools migrated to @layera/geo-drawing */}
       </MapCore>
 
       {/* Location Button */}
-      <div className="absolute top-20 left-4 z-[1000]">
+      <Box className="absolute top-20 left-4 z-[1000]">
         <Button
           onClick={handleFindLocation}
           disabled={!mapInstance || isLoadingLocation}
           variant="secondary"
           size="sm"
           title={t('findMyLocation')}
-          style={{
-            background: 'white',
-            boxShadow: BOX_SHADOW_SCALE.elevation4,
-            padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`
-          }}
+          backgroundColor="white"
+          boxShadow="elevation4"
+          padding="md"
         >
           {isLoadingLocation ? (
-            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
+            <Box className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></Box>
           ) : (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -174,13 +173,13 @@ const MapCanvas: React.FC<MapCanvasProps> = ({
             </svg>
           )}
         </Button>
-      </div>
+      </Box>
 
       {/* Guest Mode Overlay */}
       {isGuest && (
-        <div className="absolute bottom-4 left-4 right-4 z-[1000]">
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 shadow-lg">
-            <div className="flex items-center space-x-2">
+        <Box className="absolute bottom-4 left-4 right-4 z-[1000]">
+          <Box className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 shadow-lg">
+            <Box className="flex items-center space-x-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5 text-yellow-600"
@@ -196,11 +195,11 @@ const MapCanvas: React.FC<MapCanvasProps> = ({
               <p className="text-sm text-yellow-800 font-medium">
                 {t('guestModeNote')}
               </p>
-            </div>
-          </div>
-        </div>
+            </Box>
+          </Box>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 };
 

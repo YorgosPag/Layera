@@ -10,6 +10,7 @@ import {
   type PaginationSize
 } from '@layera/constants';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { Box } from '@layera/layout';
 import { TableHeader } from './TableHeader';
 import { TableBody } from './TableBody';
 import { TablePagination } from './TablePagination';
@@ -149,7 +150,7 @@ export const DataTable = <T extends Record<string, unknown>>({
   const someSelected = selectedRows.length > 0 && selectedRows.length < data.length;
 
   return (
-    <div className={tableClasses}>
+    <Box className={tableClasses}>
       {(searchable || toolbar || bulkActions) && (
         <TableToolbar
           searchable={searchable}
@@ -162,7 +163,7 @@ export const DataTable = <T extends Record<string, unknown>>({
         />
       )}
 
-      <div className="layera-data-table__container">
+      <Box className="layera-data-table__container">
         <table className="layera-data-table__table">
           <TableHeader
             columns={columns}
@@ -189,13 +190,13 @@ export const DataTable = <T extends Record<string, unknown>>({
         </table>
 
         {loading && (
-          <div className="layera-data-table__loading-overlay">
-            <div className="layera-data-table__loading-spinner">
-              <div className="layera-spinner" />
-            </div>
-          </div>
+          <Box className="layera-data-table__loading-overlay">
+            <Box className="layera-data-table__loading-spinner">
+              <Box className="layera-spinner" />
+            </Box>
+          </Box>
         )}
-      </div>
+      </Box>
 
       {pagination && (
         <TablePagination
@@ -206,6 +207,6 @@ export const DataTable = <T extends Record<string, unknown>>({
           onPageSizeChange={pagination.onPageSizeChange}
         />
       )}
-    </div>
+    </Box>
   );
 };

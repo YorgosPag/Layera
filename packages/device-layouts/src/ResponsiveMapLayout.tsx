@@ -8,6 +8,7 @@
 import React from 'react';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { BORDER_RADIUS_SCALE } from '@layera/constants';
+import { Box } from '@layera/layout';
 import { DeviceLayoutRenderer } from './DeviceLayoutRenderer';
 import { DeviceType, MapComponentProps, StepperComponentProps, CategoryComponentProps } from './types';
 
@@ -82,28 +83,26 @@ export const ResponsiveMapLayout: React.FC<ResponsiveMapLayoutProps> = ({
 
   // Prepare FAB component αν υπάρχει
   const fabComponent = fab && !fab.hidden ? (
-    <div
+    <Box
       onClick={fab.onClick}
-      style={{
-        position: 'absolute',
-        right: '20px',
-        bottom: '20px',
-        width: 56,
-        height: 56,
-        borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
-        background: 'var(--layera-bg-success, #22C55E)',
-        border: '2px solid white',
-        boxShadow: BOX_SHADOW_SCALE.cardDefault,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        cursor: 'pointer',
-        zIndex: 9999,
-        userSelect: 'none'
-      }}
+      position="absolute"
+      right={`${SPACING_SCALE.LG}px`}
+      bottom={`${SPACING_SCALE.LG}px`}
+      width="var(--layera-size-fab, 56px)"
+      height="var(--layera-size-fab, 56px)"
+      borderRadius={BORDER_RADIUS_SCALE.CIRCLE}
+      background="var(--layera-bg-success, #22C55E)"
+      border="var(--layera-border-fab, 2px solid white)"
+      boxShadow={BOX_SHADOW_SCALE.cardDefault}
+      display="var(--layera-display-flex, flex)"
+      alignItems="var(--layera-align-center, center)"
+      justifyContent="var(--layera-justify-center, center)"
+      cursor="var(--layera-cursor-pointer, pointer)"
+      zIndex="var(--layera-z-index-fab, 9999)"
+      userSelect="var(--layera-user-select-none, none)"
     >
       {fab.icon}
-    </div>
+    </Box>
   ) : null;
 
   return (

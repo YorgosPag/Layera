@@ -15,6 +15,7 @@
 
 import React, { useCallback, useState } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { Box } from '@layera/layout';
 import { AreaMethodCard } from './AreaMethodCard';
 import { InteractiveAreaMeasurement } from './InteractiveAreaMeasurement';
 import type { StepProps } from '../types';
@@ -151,7 +152,7 @@ export const AreaMethodStep: React.FC<AreaMethodStepProps> = ({
   }
 
   return (
-    <div style={containerStyles}>
+    <Box style={containerStyles}>
       {areaMethods.map((method) => (
         <AreaMethodCard
           key={method.id}
@@ -163,6 +164,6 @@ export const AreaMethodStep: React.FC<AreaMethodStepProps> = ({
           data-testid={`area-method-card-${method.id}`}
         />
       ))}
-    </div>
+    </Box>
   );
 };

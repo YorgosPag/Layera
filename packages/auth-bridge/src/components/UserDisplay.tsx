@@ -1,4 +1,5 @@
 import React from 'react';
+import { Box } from '@layera/layout';
 import type { LayeraUser, UserRole } from '../types/auth.js';
 
 /**
@@ -148,9 +149,9 @@ export function UserDisplay({
   );
 
   return (
-    <div className={`user-display ${sizeClasses[size]} ${className}`}>
+    <Box className={`user-display ${sizeClasses[size]} ${className}`}>
       {/* Display Name or Email */}
-      <div className="flex items-center space-x-2">
+      <Box className="flex items-center space-x-2">
         {user.displayName && (
           <span className="font-semibold">{user.displayName}</span>
         )}
@@ -159,31 +160,31 @@ export function UserDisplay({
             {user.email}
           </span>
         )}
-      </div>
+      </Box>
 
       {/* Role */}
       {showRole && (
-        <div className="flex items-center">
+        <Box className="flex items-center">
           <span className="text-gray-600 mr-2">Ρόλος:</span>
           {renderRole()}
-        </div>
+        </Box>
       )}
 
       {/* Email Verification Status */}
       {showEmailVerification && (
-        <div className="flex items-center space-x-2">
+        <Box className="flex items-center space-x-2">
           <span className="text-gray-600">Email:</span>
           {renderStatusBadge(
             user.emailVerified,
             'Επαληθευμένο',
             'Μη επαληθευμένο'
           )}
-        </div>
+        </Box>
       )}
 
       {/* MFA Status */}
       {showMfaStatus && (
-        <div className="flex items-center space-x-2">
+        <Box className="flex items-center space-x-2">
           <span className="text-gray-600">MFA:</span>
           {user.mfaStatus.required ? (
             renderStatusBadge(
@@ -200,9 +201,9 @@ export function UserDisplay({
               'bg-gray-100 text-gray-800'
             )
           )}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 }
 

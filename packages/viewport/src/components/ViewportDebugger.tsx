@@ -5,7 +5,9 @@
 import React, { useState } from 'react';
 import { useViewport } from '../hooks/useViewport';
 import { MobileIcon, TabletIcon, DesktopIcon, TabletLandscapeIcon } from './icons/ViewportIcons';
-import { Z_INDEX, SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+import { Box } from '@layera/layout';
+import { Button } from '@layera/buttons';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 
 interface ViewportDebuggerProps {
   position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
@@ -34,7 +36,7 @@ export const ViewportDebugger: React.FC<ViewportDebuggerProps> = ({
   const getPositionStyles = () => {
     const baseStyles: React.CSSProperties = {
       position: 'fixed',
-      zIndex: Z_INDEX.modal,
+      zIndex: 'var(--layera-z-modal)', // Enterprise CSS Custom Property - Single Source of Truth
       backgroundColor: 'color-mix(in srgb, var(--layera-bg-secondary) 90%, transparent 10%)',
       color: 'var(--layera-text-primary)',
       padding: compact ? `${SPACING_SCALE.SM}px` : `${SPACING_SCALE.MD}px`,
@@ -78,72 +80,67 @@ export const ViewportDebugger: React.FC<ViewportDebuggerProps> = ({
 
   if (!isVisible && !showAlways) {
     return (
-      <button
-        onClick={() => setIsVisible(true)}
-        style={{
-          ...getPositionStyles(),
-          padding: `${SPACING_SCALE.SM}px`,
-          cursor: 'pointer',
-          border: 'none',
-          backgroundColor: 'rgba(0, 0, 0, 0.6)'
-        }}
-        title="Show Viewport Debugger"
-      >
-        🔍
-      </button>
+      <Box style={getPositionStyles()}>
+        <Button
+          onClick={() => setIsVisible(true)}
+          variant="ghost"
+          size="sm"
+          padding={`${SPACING_SCALE.SM}px`}
+          title="Show Viewport Debugger"
+        >
+          🔍
+        </Button>
+      </Box>
     );
   }
 
   return (
-    <div style={getPositionStyles()}>
+    <Box style={getPositionStyles()}>
       {!showAlways && (
-        <button
+        <Button
           onClick={() => setIsVisible(false)}
-          style={{
-            position: 'absolute',
-            top: `${SPACING_SCALE.XS}px`,
-            right: `${SPACING_SCALE.XS}px`,
-            background: 'none',
-            border: 'none',
-            color: 'var(--layera-text-primary)',
-            cursor: 'pointer',
-            fontSize: '0.75rem'
-          }}
+          variant="ghost"
+          size="xs"
+          position="absolute"
+          top={`${SPACING_SCALE.XS}px`}
+          right={`${SPACING_SCALE.XS}px`}
+          color="var(--layera-text-primary)"
+          fontSize="var(--layera-font-size-xs)"
           title="Hide Debugger"
         >
           ✕
-        </button>
+        </Button>
       )}
 
-      <div style={{ marginTop: !showAlways ? `${SPACING_SCALE.MD}px` : '0' }}>
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: `${SPACING_SCALE.SM}px`,
-          marginBottom: compact ? `${SPACING_SCALE.XS}px` : `${SPACING_SCALE.SM}px`
-        }}>
+      <Box marginTop={!showAlways ? `${SPACING_SCALE.MD}px` : '0'}>
+        <Box
+          display="flex"
+          alignItems="center"
+          gap={`${SPACING_SCALE.SM}px`}
+          marginBottom={compact ? `${SPACING_SCALE.XS}px` : `${SPACING_SCALE.SM}px`}
+        >
           <span>{getDeviceIcon()}</span>
           <strong>{viewport.deviceType.toUpperCase()}</strong>
           <span>{getOrientationIcon()}</span>
           <span>{viewport.orientation}</span>
-        </div>
+        </Box>
 
         {!compact && (
           <>
-            <div>📐 {viewport.width} × {viewport.height}px</div>
-            <div style={{ marginTop: `${SPACING_SCALE.SM}px`, fontSize: '0.75rem', opacity: 0.8 }}>
+            <Box>📐 {viewport.width} × {viewport.height}px</Box>
+            <Box marginTop={`${SPACING_SCALE.SM}px`} fontSize="var(--layera-font-size-xs)" opacity={0.8}>
               Mobile: {viewport.isMobile ? '✅' : '❌'} |
               Tablet: {viewport.isTablet ? '✅' : '❌'} |
               Desktop: {viewport.isDesktop ? '✅' : '❌'}
-            </div>
+            </Box>
           </>
         )}
 
         {compact && (
-          <div>{viewport.width}×{viewport.height}</div>
+          <Box>{viewport.width}×{viewport.height}</Box>
         )}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

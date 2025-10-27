@@ -2,6 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { Polygon, Polyline, CircleMarker, useMapEvents } from 'react-leaflet';
 import L from 'leaflet';
 import { useTheme } from '@layera/theme-switcher';
+import { Box } from '@layera/layout';
 import { useMeasurement } from '../hooks/useMeasurement';
 import { useGeometrySnap } from '../hooks/useGeometrySnap';
 import type { MeasurementMode, CanvasInteractionEvent } from '../types';
@@ -105,10 +106,10 @@ export const MeasurementCanvas: React.FC<MeasurementCanvasProps> = ({
   const getColors = useCallback(() => {
     const isDark = theme === 'dark';
     return {
-      line: isDark ? '#60a5fa' : '#3b82f6',
-      fill: isDark ? 'rgba(96, 165, 250, 0.2)' : 'rgba(59, 130, 246, 0.2)',
-      point: isDark ? '#f59e0b' : '#d97706',
-      pointBorder: isDark ? '#1f2937' : '#ffffff'
+      line: isDark ? 'var(--layera-color-blue-400, #60a5fa)' : 'var(--layera-color-blue-600, #3b82f6)',
+      fill: isDark ? 'var(--layera-color-blue-400-alpha-20, rgba(96, 165, 250, 0.2))' : 'var(--layera-color-blue-600-alpha-20, rgba(59, 130, 246, 0.2))',
+      point: isDark ? 'var(--layera-color-amber-500, #f59e0b)' : 'var(--layera-color-amber-600, #d97706)',
+      pointBorder: isDark ? 'var(--layera-color-gray-800, #1f2937)' : 'var(--layera-color-white, #ffffff)'
     };
   }, [theme]);
 
@@ -167,8 +168,8 @@ export const MeasurementCanvas: React.FC<MeasurementCanvasProps> = ({
   };
 
   return (
-    <div className={className}>
+    <Box className={className}>
       {renderGeometry()}
-    </div>
+    </Box>
   );
 };

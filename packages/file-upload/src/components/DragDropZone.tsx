@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react';
+import { Box } from '@layera/layout';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { BaseCard as Card } from '@layera/cards';
 import { Text as Typography } from '@layera/typography';
@@ -138,7 +139,7 @@ export const DragDropZone: React.FC<DragDropZoneProps> = ({
 
   return (
     <Card className={`${getZoneClasses()} ${className}`}>
-      <div
+      <Box
         onDragEnter={handleDragEnter}
         onDragLeave={handleDragLeave}
         onDragOver={handleDragOver}
@@ -154,8 +155,8 @@ export const DragDropZone: React.FC<DragDropZoneProps> = ({
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed"
         />
 
-        <div className="flex flex-col items-center justify-center space-y-4">
-          <div className={`p-4 rounded-full ${
+        <Box className="flex flex-col items-center justify-center space-y-4">
+          <Box className={`p-4 rounded-full ${
             isDragOver
               ? 'bg-blue-100 text-blue-600'
               : theme === 'dark'
@@ -163,9 +164,9 @@ export const DragDropZone: React.FC<DragDropZoneProps> = ({
               : 'bg-gray-100 text-gray-500'
           }`}>
             <UploadIcon className="w-8 h-8" />
-          </div>
+          </Box>
 
-          <div className="space-y-2">
+          <Box className="space-y-2">
             <Typography size="lg" weight="medium" className="">
               {dropZoneText || (
                 isDragOver
@@ -189,18 +190,18 @@ export const DragDropZone: React.FC<DragDropZoneProps> = ({
               )}
               {t('file-upload.or-click-to-browse')}
             </Typography>
-          </div>
+          </Box>
 
           {isDragOver && (
-            <div className="flex items-center space-x-2 text-blue-600">
+            <Box className="flex items-center space-x-2 text-blue-600">
               <UploadIcon className="w-5 h-5" />
               <Typography size="base" weight="medium" className="">
                 {t('file-upload.release-to-upload')}
               </Typography>
-            </div>
+            </Box>
           )}
-        </div>
-      </div>
+        </Box>
+      </Box>
     </Card>
   );
 };

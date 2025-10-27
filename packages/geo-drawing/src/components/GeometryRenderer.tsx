@@ -3,6 +3,7 @@ import { Polygon, Polyline, CircleMarker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import { useTheme } from '@layera/theme-switcher';
 import { Typography } from '@layera/typography';
+import { Box } from '@layera/layout';
 import { useLayeraTranslation } from '@layera/tolgee';
 import type { MeasurementResult, OSMBuildingFeature } from '../types';
 import { extractOSMGeometry } from '../utils/geometry';
@@ -91,7 +92,7 @@ export const GeometryRenderer: React.FC<GeometryRendererProps> = ({
           >
             {feature.properties.name && (
               <Popup>
-                <div>
+                <Box>
                   <Typography variant="subtitle" className="font-semibold">
                     {feature.properties.name}
                   </Typography>
@@ -105,7 +106,7 @@ export const GeometryRenderer: React.FC<GeometryRendererProps> = ({
                       {feature.properties['addr:street']} {feature.properties['addr:housenumber']}
                     </Typography>
                   )}
-                </div>
+                </Box>
               </Popup>
             )}
           </Polygon>
@@ -141,14 +142,14 @@ export const GeometryRenderer: React.FC<GeometryRendererProps> = ({
               }}
             >
               <Popup>
-                <div>
+                <Box>
                   <Typography variant="subtitle" className="font-semibold">
                     {t('geo-drawing.point-info', { index: index + 1 })}
                   </Typography>
                   <Typography variant="caption">
                     {point.latlng.lat.toFixed(6)}, {point.latlng.lng.toFixed(6)}
                   </Typography>
-                </div>
+                </Box>
               </Popup>
             </CircleMarker>
           ))}
@@ -167,7 +168,7 @@ export const GeometryRenderer: React.FC<GeometryRendererProps> = ({
               }}
             >
               <Popup>
-                <div>
+                <Box>
                   <Typography variant="subtitle" className="font-semibold">
                     {t(`geo-drawing.modes.${measurement.type}`)}
                   </Typography>
@@ -177,7 +178,7 @@ export const GeometryRenderer: React.FC<GeometryRendererProps> = ({
                   <Typography variant="caption" className="text-gray-600">
                     {new Date(measurement.timestamp).toLocaleString()}
                   </Typography>
-                </div>
+                </Box>
               </Popup>
             </Polyline>
           )}
@@ -197,7 +198,7 @@ export const GeometryRenderer: React.FC<GeometryRendererProps> = ({
               }}
             >
               <Popup>
-                <div>
+                <Box>
                   <Typography variant="subtitle" className="font-semibold">
                     {t('geo-drawing.area-measurement')}
                   </Typography>
@@ -207,7 +208,7 @@ export const GeometryRenderer: React.FC<GeometryRendererProps> = ({
                   <Typography variant="caption" className="text-gray-600">
                     {t('geo-drawing.points-count', { count: measurement.points.length })}
                   </Typography>
-                </div>
+                </Box>
               </Popup>
             </Polygon>
           )}

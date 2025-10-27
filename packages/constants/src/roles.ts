@@ -10,7 +10,19 @@ export const USER_ROLES = {
   MODERATOR: 'moderator',
   USER: 'user',
   VIEWER: 'viewer',
-  GUEST: 'guest'
+  GUEST: 'guest',
+  // New roles for Layera ecosystem
+  PRIVATE: 'private',
+  BROKER: 'broker',
+  BUILDER: 'builder'
+} as const;
+
+// Alias for backward compatibility and policy compliance
+export const ROLE = {
+  PRIVATE: USER_ROLES.PRIVATE,
+  BROKER: USER_ROLES.BROKER,
+  BUILDER: USER_ROLES.BUILDER,
+  ADMIN: USER_ROLES.ADMIN
 } as const;
 
 export const ROLE_HIERARCHY = {

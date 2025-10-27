@@ -1,0 +1,25 @@
+name: changeset-gate
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: Detect changed files vs base
+        id: diff
+        run: |
+          BASE=${{ github.event.pull_request.base.sha || 'HEAD~1' }}
+          git diff --name-only $BASE...HEAD > files.txt
+          echo "changed=$(cat files.txt | tr '\n' ' ')" >> $GITHUB_OUTPUT
+      - name: Require a changeset for app/package changes
+        run: |
+          if grep -E '^(apps|packages)/' files.txt > /dev/null; then
+            if ! grep -E '^\.changeset/.*\.md$' files.txt > /dev/null && \
+               ! git ls-files ".changeset/*.md" | grep . > /dev/null; then
+              echo "Missing .changeset entry for modified apps/packages"; exit 1
+            fi
+          fi

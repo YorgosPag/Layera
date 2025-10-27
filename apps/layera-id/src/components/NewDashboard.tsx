@@ -5,7 +5,7 @@ import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { ThemeSwitcher } from '@layera/theme-switcher';
-import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, FlexColumn } from '@layera/layout';
+import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, FlexColumn, Box } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
 import { CheckIcon, SettingsIcon, SaveIcon, GlobeIcon, CloseIcon, BriefcaseIcon } from '@layera/icons';
 import { SPACING_SCALE } from '@layera/constants';
@@ -61,17 +61,17 @@ const NewDashboard: React.FC = () => {
       }
     >
       <PageContainer maxWidth="full" padding="none">
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+        <Box padding="lg">
           <PageHeader
             title={t('dashboard:welcome', { name: user?.displayName || user?.email })}
             subtitle={user ? t('dashboard:user.successfulLogin', { email: user.email }) : ''}
           />
-        </div>
+        </Box>
 
         {user && (
           <>
             {/* User Status Cards */}
-            <div style={{ padding: 'var(--layera-space-lg)' }}>
+            <Box padding="lg">
               <DashboardSection
                 title={t('dashboard:user.info')}
                 subtitle={t('dashboard.overview')}
@@ -85,13 +85,13 @@ const NewDashboard: React.FC = () => {
                     label: t('dashboard.emailStatus')
                   }}
                 >
-                  <div style={{ textAlign: 'center', padding: `${SPACING_SCALE.MD}px` }}>
+                  <Box textAlign="center" padding="md">
                     {user.emailVerified ? (
                       <CheckIcon size="lg" theme="success" />
                     ) : (
                       <CloseIcon size="lg" theme="danger" />
                     )}
-                  </div>
+                  </Box>
                 </DashboardCard>
 
                 <DashboardCard
@@ -102,13 +102,13 @@ const NewDashboard: React.FC = () => {
                     label: t('dashboard.mfaStatus')
                   }}
                 >
-                  <div style={{ textAlign: 'center', padding: `${SPACING_SCALE.MD}px` }}>
+                  <Box textAlign="center" padding="md">
                     {user.layeraClaims?.mfa_verified ? (
                       <CheckIcon size="lg" theme="success" />
                     ) : (
                       <CloseIcon size="lg" theme="danger" />
                     )}
-                  </div>
+                  </Box>
                 </DashboardCard>
 
                 <DashboardCard
@@ -132,10 +132,10 @@ const NewDashboard: React.FC = () => {
                 />
               </DashboardGrid>
               </DashboardSection>
-            </div>
+            </Box>
 
             {/* User Details Card */}
-            <div style={{ padding: 'var(--layera-space-lg)' }}>
+            <Box padding="lg">
               <DashboardSection title={t('dashboard.accountDetails')}>
                 <DashboardGrid columns={{ xs: 1, sm: 1, md: 1, lg: 2 }}>
                 <DashboardCard
@@ -143,36 +143,36 @@ const NewDashboard: React.FC = () => {
                   variant="info"
                   className="layera-dashboard-card--span-2"
                 >
-                  <FlexColumn style={{ gap: `${SPACING_SCALE.MD}px` }}>
-                    <div>
+                  <FlexColumn gap="md">
+                    <Box>
                       <strong>{t('data.fields.email')}:</strong> {user.email}
-                    </div>
+                    </Box>
                     {user.displayName && (
-                      <div>
+                      <Box>
                         <strong>{t('data.fields.displayName')}:</strong> {user.displayName}
-                      </div>
+                      </Box>
                     )}
-                    <div>
+                    <Box>
                       <strong>{t('data.fields.userId')}:</strong>
-                      <Text size="sm" color="secondary" style={{ fontFamily: 'monospace' }}>
+                      <Text size="sm" color="secondary" fontFamily="monospace">
                         {user.uid}
                       </Text>
-                    </div>
-                    <div>
+                    </Box>
+                    <Box>
                       <strong>{t('data.fields.accountCreated')}:</strong> {user.metadata?.creationTime ? new Date(user.metadata.creationTime).toLocaleString('el-GR') : t('data.fields.notAvailable')}
-                    </div>
-                    <div>
+                    </Box>
+                    <Box>
                       <strong>{t('data.fields.lastSignIn')}:</strong> {user.metadata?.lastSignInTime ? new Date(user.metadata.lastSignInTime).toLocaleString('el-GR') : t('data.fields.notAvailable')}
-                    </div>
+                    </Box>
                   </FlexColumn>
                 </DashboardCard>
               </DashboardGrid>
               </DashboardSection>
-            </div>
+            </Box>
 
             {/* MFA Action if needed */}
             {!user?.layeraClaims?.mfa_verified && (
-              <div style={{ padding: 'var(--layera-space-lg)' }}>
+              <Box padding="lg">
                 <DashboardSection title={t('account.security')}>
                   <DashboardGrid columns={{ xs: 1, sm: 1, md: 1, lg: 1 }}>
                   <DashboardCard
@@ -186,12 +186,12 @@ const NewDashboard: React.FC = () => {
                   </DashboardCard>
                 </DashboardGrid>
                 </DashboardSection>
-              </div>
+              </Box>
             )}
 
             {/* Admin Actions */}
             {user?.layeraClaims?.role === 'admin' && (
-              <div style={{ padding: 'var(--layera-space-lg)' }}>
+              <Box padding="lg">
                 <DashboardSection title={t('dashboard:admin.roleManagement')}>
                   <DashboardGrid columns={{ xs: 1, sm: 1, md: 1, lg: 1 }}>
                   <DashboardCard
@@ -205,13 +205,13 @@ const NewDashboard: React.FC = () => {
                   </DashboardCard>
                 </DashboardGrid>
                 </DashboardSection>
-              </div>
+              </Box>
             )}
 
             {/* Quick Actions */}
-            <div style={{ padding: 'var(--layera-space-lg)' }}>
+            <Box padding="lg">
               <QuickActions />
-            </div>
+            </Box>
           </>
         )}
       </PageContainer>

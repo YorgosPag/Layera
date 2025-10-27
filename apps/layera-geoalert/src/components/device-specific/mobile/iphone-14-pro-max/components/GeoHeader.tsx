@@ -6,7 +6,7 @@
 import React from 'react';
 import { LayeraHeader, HeaderActionsGroup, Flex } from '@layera/layout';
 import { ThemeSwitcher } from '@layera/theme-switcher';
-import { LanguageSwitcher } from '@layera/tolgee';
+import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 
 interface GeoHeaderProps {
   // Χωρίς onBackClick - δεν θέλουμε back button
@@ -17,10 +17,12 @@ interface GeoHeaderProps {
  * Χωρίς back button, με "Layera GeoAlert" τίτλο και language/theme switchers
  */
 export const GeoHeader: React.FC<GeoHeaderProps> = () => {
+  const { t } = useLayeraTranslation();
+
   return (
     <Flex align="center" gap="sm">
       <LayeraHeader
-        title="Layera GeoAlert"  // Hardcoded αντί για t('title')
+        title={t('app.title.geoalert')}
         subtitle=""              // Χωρίς subtitle για compact design
         variant="minimal"
         actions={

@@ -8,7 +8,7 @@ import { useLayeraTranslation } from '@layera/tolgee';
 import { BaseCard } from '@layera/cards';
 import { BriefcaseIcon, TagIcon, LevelIcon } from '@layera/icons';
 import { Text, Heading } from '@layera/typography';
-import { Stack, Flex } from '@layera/layout';
+import { Stack, Flex, Box } from '@layera/layout';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import type { Occupation } from '../types/occupation';
 
@@ -52,13 +52,13 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
 
   const getExperienceLevelColor = (level: string) => {
     switch (level) {
-      case 'entry': return '#10B981'; // Green
-      case 'junior': return '#3B82F6'; // Blue
-      case 'mid': return '#F59E0B'; // Yellow
-      case 'senior': return '#EF4444'; // Red
-      case 'expert': return '#8B5CF6'; // Purple
-      case 'executive': return '#374151'; // Gray
-      default: return '#6B7280';
+      case 'entry': return 'var(--layera-color-green-500, #10B981)'; // Green
+      case 'junior': return 'var(--layera-color-blue-500, #3B82F6)'; // Blue
+      case 'mid': return 'var(--layera-color-yellow-500, #F59E0B)'; // Yellow
+      case 'senior': return 'var(--layera-color-red-500, #EF4444)'; // Red
+      case 'expert': return 'var(--layera-color-purple-500, #8B5CF6)'; // Purple
+      case 'executive': return 'var(--layera-color-gray-700, #374151)'; // Gray
+      default: return 'var(--layera-color-gray-500, #6B7280)';
     }
   };
 
@@ -95,19 +95,19 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
       <BaseCard
         onClick={handleClick}
         style={{
-          cursor: onClick ? 'pointer' : 'default',
-          border: isSelected ? '2px solid #3B82F6' : '1px solid #E5E7EB',
+          cursor: onClick ? 'var(--layera-cursor-pointer, pointer)' : 'var(--layera-cursor-default, default)',
+          border: isSelected ? '2px solid var(--layera-color-primary)' : '1px solid var(--layera-border-default)',
           ...style
         }}
       >
         <Flex align="center" gap="sm">
           <BriefcaseIcon size="sm" theme="primary" />
-          <div style={{ flex: 1 }}>
+          <Box flex={1}>
             <Text weight="medium">{occupation.title}</Text>
             {occupation.category && (
               <Text size="xs" color="secondary">{occupation.category.name}</Text>
             )}
-          </div>
+          </Box>
         </Flex>
       </BaseCard>
     );
@@ -118,31 +118,31 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
       <BaseCard
         onClick={handleClick}
         style={{
-          cursor: onClick ? 'pointer' : 'default',
-          border: isSelected ? '2px solid #3B82F6' : '1px solid #E5E7EB',
-          backgroundColor: isSelected ? '#EFF6FF' : 'white',
+          cursor: onClick ? 'var(--layera-cursor-pointer, pointer)' : 'var(--layera-cursor-default, default)',
+          border: isSelected ? '2px solid var(--layera-color-primary)' : '1px solid var(--layera-border-default)',
+          backgroundColor: isSelected ? 'var(--layera-bg-primary-subtle)' : 'var(--layera-bg-primary)',
           ...style
         }}
       >
         <Stack spacing="sm">
           <Flex align="start" gap="sm">
             <BriefcaseIcon size="md" theme="primary" />
-            <div style={{ flex: 1 }}>
+            <Box flex={1}>
               <Heading as="h4" size="sm">{occupation.title}</Heading>
               {occupation.alternativeTitles && occupation.alternativeTitles.length > 0 && (
-                <Text size="xs" color="secondary" style={{ fontStyle: 'italic' }}>
+                <Text size="xs" color="secondary" fontStyle="italic">
                   {occupation.alternativeTitles.slice(0, 2).join(', ')}
                 </Text>
               )}
-            </div>
+            </Box>
           </Flex>
 
           {occupation.description && (
             <Text size="sm" color="secondary" style={{
-              display: '-webkit-box',
-              WebkitLineClamp: 2,
-              WebkitBoxOrient: 'vertical',
-              overflow: 'hidden'
+              display: 'var(--layera-display-webkit-box, -webkit-box)',
+              WebkitLineClamp: 'var(--layera-webkit-line-clamp-2, 2)',
+              WebkitBoxOrient: 'var(--layera-webkit-box-orient-vertical, vertical)',
+              overflow: 'var(--layera-overflow-hidden, hidden)'
             }}>
               {occupation.description}
             </Text>
@@ -151,28 +151,28 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
           <Flex align="center" gap="xs" wrap="wrap">
             {/* Category */}
             {occupation.category && (
-              <div style={{
-                backgroundColor: '#F3F4F6',
+              <Box style={{
+                backgroundColor: 'var(--layera-bg-secondary)',
                 padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
                 borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
-                fontSize: '12px',
-                color: '#374151'
+                fontSize: 'var(--layera-font-size-xs)',
+                color: 'var(--layera-text-primary)'
               }}>
                 {occupation.category.name}
-              </div>
+              </Box>
             )}
 
             {/* Experience Level */}
-            <div style={{
+            <Box style={{
               backgroundColor: getExperienceLevelColor(occupation.experienceLevel),
-              color: 'white',
+              color: 'var(--layera-color-white, white)',
               padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
               borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
-              fontSize: '12px',
-              fontWeight: '500'
+              fontSize: 'var(--layera-font-size-xs)',
+              fontWeight: 'var(--layera-font-weight-medium, 500)'
             }}>
               {getExperienceLevelLabel(occupation.experienceLevel)}
-            </div>
+            </Box>
           </Flex>
         </Stack>
       </BaseCard>
@@ -184,9 +184,9 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
     <BaseCard
       onClick={handleClick}
       style={{
-        cursor: onClick ? 'pointer' : 'default',
-        border: isSelected ? '2px solid #3B82F6' : '1px solid #E5E7EB',
-        backgroundColor: isSelected ? '#EFF6FF' : 'white',
+        cursor: onClick ? 'var(--layera-cursor-pointer, pointer)' : 'var(--layera-cursor-default, default)',
+        border: isSelected ? '2px solid var(--layera-color-primary)' : '1px solid var(--layera-border-default)',
+        backgroundColor: isSelected ? 'var(--layera-bg-primary-subtle)' : 'var(--layera-bg-primary)',
         ...style
       }}
     >
@@ -194,14 +194,14 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
         {/* Header */}
         <Flex align="start" gap="md">
           <BriefcaseIcon size="lg" theme="primary" />
-          <div style={{ flex: 1 }}>
+          <Box flex={1}>
             <Heading as="h3" size="lg">{occupation.title}</Heading>
             {occupation.alternativeTitles && occupation.alternativeTitles.length > 0 && (
-              <Text size="sm" color="secondary" style={{ fontStyle: 'italic' }}>
+              <Text size="sm" color="secondary" fontStyle="italic">
                 {t('employment.card.alsoKnownAs', 'Επίσης γνωστό ως')}: {occupation.alternativeTitles.join(', ')}
               </Text>
             )}
-          </div>
+          </Box>
         </Flex>
 
         {/* Description */}
@@ -228,50 +228,50 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
 
         {/* Employment Types */}
         {showEmploymentTypes && occupation.employmentTypes.length > 0 && (
-          <div>
-            <Text size="sm" weight="medium" style={{ marginBottom: `${SPACING_SCALE.XS}px` }}>
+          <Box>
+            <Text size="sm" weight="medium" marginBottom={`${SPACING_SCALE.XS}px`}>
               {t('employment.card.employmentTypes', 'Τύποι Απασχόλησης')}:
             </Text>
             <Flex gap="xs" wrap="wrap">
               {occupation.employmentTypes.map((type, index) => (
-                <div
+                <Box
                   key={index}
                   style={{
-                    backgroundColor: '#EFF6FF',
-                    color: '#1D4ED8',
+                    backgroundColor: 'var(--layera-bg-info-subtle)',
+                    color: 'var(--layera-color-info)',
                     padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
                     borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
-                    fontSize: '12px',
-                    fontWeight: '500'
+                    fontSize: 'var(--layera-font-size-xs)',
+                    fontWeight: 'var(--layera-font-weight-medium, 500)'
                   }}
                 >
                   {getEmploymentTypeLabel(type)}
-                </div>
+                </Box>
               ))}
             </Flex>
-          </div>
+          </Box>
         )}
 
         {/* Skills */}
         {showSkills && occupation.skills.length > 0 && (
-          <div>
-            <Text size="sm" weight="medium" style={{ marginBottom: `${SPACING_SCALE.XS}px` }}>
+          <Box>
+            <Text size="sm" weight="medium" marginBottom={`${SPACING_SCALE.XS}px`}>
               {t('employment.card.skills', 'Δεξιότητες')}:
             </Text>
             <Flex gap="xs" wrap="wrap">
               {occupation.skills.slice(0, 6).map((skill, index) => (
-                <div
+                <Box
                   key={index}
                   style={{
-                    backgroundColor: '#F0FDF4',
-                    color: '#166534',
+                    backgroundColor: 'var(--layera-bg-success-subtle)',
+                    color: 'var(--layera-color-success)',
                     padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
                     borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
-                    fontSize: '12px'
+                    fontSize: 'var(--layera-font-size-xs)'
                   }}
                 >
                   {skill.name}
-                </div>
+                </Box>
               ))}
               {occupation.skills.length > 6 && (
                 <Text size="xs" color="secondary">
@@ -279,12 +279,12 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
                 </Text>
               )}
             </Flex>
-          </div>
+          </Box>
         )}
 
         {/* ESCO Reference */}
         {occupation.escoUri && (
-          <Text size="xs" color="tertiary" style={{ fontStyle: 'italic' }}>
+          <Text size="xs" color="tertiary" fontStyle="italic">
             ESCO: {occupation.iscoCode || occupation.id}
           </Text>
         )}

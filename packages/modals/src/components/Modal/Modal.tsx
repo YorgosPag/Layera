@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import { Box } from '@layera/layout';
 import { CloseIcon } from '@layera/icons';
 import type { BaseModalProps } from '../../types';
 import './Modal.css';
@@ -98,7 +99,7 @@ export const Modal: React.FC<BaseModalProps> = ({
   ].filter(Boolean).join(' ');
 
   const modalContent = (
-    <div
+    <Box
       ref={overlayRef}
       className={overlayClasses}
       onClick={handleOverlayClick}
@@ -112,7 +113,7 @@ export const Modal: React.FC<BaseModalProps> = ({
         })
       }}
     >
-      <div
+      <Box
         ref={modalRef}
         className={modalClasses}
         role="document"
@@ -135,14 +136,14 @@ export const Modal: React.FC<BaseModalProps> = ({
             <CloseIcon size="md" theme="neutral" />
           </button>
         )}
-        <div
+        <Box
           className={`layera-modal-content ${contentClassName}`.trim()}
           style={contentStyle}
         >
           {children}
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 
   const portalContainer = (() => {

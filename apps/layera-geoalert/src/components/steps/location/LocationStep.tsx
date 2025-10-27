@@ -13,8 +13,8 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Text } from '@layera/typography';
-import { Stack } from '@layera/layout';
-import { SPACING_SCALE } from '@layera/constants';
+import { Stack, Box } from '@layera/layout';
+import { SPACING_SCALE, CSS_DESIGN_TOKENS } from '@layera/constants';
 // import { useGeocode } from '@layera/geocoding';
 import { Input } from '@layera/forms';
 import { BaseCard } from '@layera/cards';
@@ -59,21 +59,21 @@ const SearchInputCard: React.FC<{
         return {
           backgroundColor: 'var(--color-bg-surface-overlay-light)',
           border: '1px solid var(--color-border-subtle)',
-          color: '#000000',
+          color: 'var(--color-text-primary)',
           '::placeholder': { color: 'var(--color-text-placeholder)' }
         };
       case 'semi-transparent':
         return {
           backgroundColor: 'var(--color-bg-surface-overlay-medium)',
           border: '1px solid var(--color-border-default)',
-          color: '#000000',
+          color: 'var(--color-text-primary)',
           '::placeholder': { color: 'var(--color-text-secondary)' }
         };
       case 'opaque':
         return {
           backgroundColor: 'var(--color-bg-surface-overlay-strong)',
           border: '1px solid var(--color-border-primary-overlay)',
-          color: '#000000',
+          color: 'var(--color-text-primary)',
           '::placeholder': { color: 'var(--color-text-primary)' }
         };
     }
@@ -84,11 +84,11 @@ const SearchInputCard: React.FC<{
   const getLabelColor = () => {
     switch (opacityMode) {
       case 'transparent':
-        return '#000000';
+        return 'var(--color-text-primary)';
       case 'semi-transparent':
-        return '#000000';
+        return 'var(--color-text-primary)';
       case 'opaque':
-        return '#ffffff';
+        return 'var(--color-text-inverse)';
     }
   };
 
@@ -107,7 +107,7 @@ const SearchInputCard: React.FC<{
     <BaseCard
       variant="job"
       title={
-        <div style={{ width: '100%' }}>
+        <Box width="100%">
           <Text size="xs" weight="medium" color={getLabelColor()}>
             Αναζήτηση διεύθυνσης
           </Text>
@@ -115,7 +115,7 @@ const SearchInputCard: React.FC<{
             type="text"
             value={searchInput}
             onChange={onSearchInputChange}
-            placeholder="π.χ. Πλατεία Συντάγματος, Αθήνα"
+            placeholder={t('location.address-example')}
             variant="default"
             size="medium"
             fullWidth
@@ -131,13 +131,13 @@ const SearchInputCard: React.FC<{
             <Text
               size="xs"
               align="center"
-              color={opacityMode === 'opaque' ? 'rgba(255, 100, 100, 0.9)' : '#dc2626'}
+              color={opacityMode === 'opaque' ? 'var(--color-semantic-error-text)' : 'var(--color-semantic-error-border)'}
               marginTop="xs"
             >
               {error}
             </Text>
           )}
-        </div>
+        </Box>
       }
       icon={<SearchIcon size="sm" theme="neutral" />}
       onClick={() => {}} // Empty click handler
@@ -383,17 +383,17 @@ export const LocationStep: React.FC<LocationStepProps> = ({
 
   return (
     <>
-    <div style={containerStyles} className={containerClass}>
+    <Box className={containerClass}>
       {!showLocationSearch ? (
         // Menu Cards - Enterprise LEGO Layout με CSS variables
         <>
           {/* Πρώτη σειρά */}
-          <div className="layera-card-row">
+          <Flex gap="md" wrap="wrap">
             {/* Location Search Card */}
             <BaseCard
               variant="job"
-              title="Αναζήτηση Τοποθεσίας"
-              description="Βρείτε διεύθυνση ή περιοχή"
+              title={t('location.search-title')}
+              description={t('location.search-description')}
               icon={<SearchIcon size="sm" theme="neutral" />}
               onClick={handleLocationSearch}
               onInfoClick={() => handleInfoClick('search')}
@@ -404,8 +404,8 @@ export const LocationStep: React.FC<LocationStepProps> = ({
               // Αν έχουμε 3 κάρτες: Upload στην πρώτη σειρά
               <BaseCard
                 variant="job"
-                title="Ανέβασμα Κάτοψης"
-                description="Επιλέξτε αρχείο κάτοψης"
+                title={t('location.upload-floorplan')}
+                description={t('location.upload-floorplan-description')}
                 icon={<UploadIcon size="sm" theme="neutral" />}
                 onClick={handleFileUpload}
                 onInfoClick={() => handleInfoClick('upload')}
@@ -415,29 +415,29 @@ export const LocationStep: React.FC<LocationStepProps> = ({
               // Αν έχουμε 2 κάρτες: Drawing στην πρώτη σειρά
               <BaseCard
                 variant="job"
-                title="Εργαλείο Σχεδίασης"
-                description="Σχεδιάστε περιοχή στον χάρτη"
+                title={t('location.drawing.title')}
+                description={t('location.drawing.description')}
                 icon={<MapIcon size="sm" theme="neutral" />}
                 onClick={handleDrawingTool}
                 onInfoClick={() => handleInfoClick('drawing')}
                 data-testid="location-drawing-card"
               />
             )}
-          </div>
+          </Flex>
 
           {/* Δεύτερη σειρά - μόνο αν έχουμε 3 κάρτες */}
           {shouldShowUpload && (
-            <div className="layera-card-row">
+            <Flex gap="md" wrap="wrap">
               <BaseCard
                 variant="job"
-                title="Εργαλείο Σχεδίασης"
-                description="Σχεδιάστε περιοχή στον χάρτη"
+                title={t('location.drawing.title')}
+                description={t('location.drawing.description')}
                 icon={<MapIcon size="sm" theme="neutral" />}
                 onClick={handleDrawingTool}
                 onInfoClick={() => handleInfoClick('drawing')}
                 data-testid="location-drawing-card"
               />
-            </div>
+            </Flex>
           )}
 
           {uploadedFile && (
@@ -461,22 +461,22 @@ export const LocationStep: React.FC<LocationStepProps> = ({
         // Enterprise Location Search Interface με BaseCard
         <>
           {/* Search Input σε BaseCard container */}
-          <div>
+          <Box>
             <SearchInputCard
               searchInput={searchInput}
               onSearchInputChange={handleSearchInputChange}
               isLoading={isLoading}
               error={error}
             />
-          </div>
+          </Box>
 
           {/* Search Results */}
           {results.length > 0 && (
-            <div style={{
-              maxHeight: 'calc(100vh - 400px)',
-              overflowY: 'auto',
-              marginBottom: `${SPACING_SCALE.SM}px`
-            }}>
+            <Box
+              maxHeight="calc(100vh - 400px)"
+              overflow={CSS_DESIGN_TOKENS.positioning['overflow-auto']}
+              marginBottom="sm"
+            >
               {results.map((result) => (
                 <BaseCard
                   key={result.id}
@@ -488,7 +488,7 @@ export const LocationStep: React.FC<LocationStepProps> = ({
                   marginBottom="sm"
                 />
               ))}
-            </div>
+            </Box>
           )}
 
           {/* Selected Location Display */}
@@ -507,8 +507,8 @@ export const LocationStep: React.FC<LocationStepProps> = ({
           {/* Back Button */}
           <BaseCard
             variant="job"
-            title="Πίσω"
-            description="Επιστροφή στο μενού"
+            title={t('location.back.title')}
+            description={t('location.back.description')}
             onClick={() => {
               setShowLocationSearch(false);
               actions.clear();
@@ -519,7 +519,7 @@ export const LocationStep: React.FC<LocationStepProps> = ({
           />
         </>
       )}
-    </div>
+    </Box>
 
     {/* Info Panel */}
     {showInfoPanel && currentInfoCard && (

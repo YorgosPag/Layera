@@ -15,13 +15,13 @@ const ICON_SIZES = {
 
 // Χρώματα θεμάτων (Layera Brand Colors)
 const THEME_COLORS = {
-  primary: '#2563eb',    // Κύριο μπλε Layera
-  secondary: '#64748b',  // Γκρι
-  success: '#10b981',    // Πράσινο
-  warning: '#f59e0b',    // Πορτοκαλί
-  danger: '#ef4444',     // Κόκκινο
-  info: '#06b6d4',       // Ανοιχτό μπλε
-  neutral: '#6b7280'     // Ουδέτερο γκρι
+  primary: 'var(--layera-color-blue-600, #2563eb)',    // Κύριο μπλε Layera
+  secondary: 'var(--layera-color-slate-500, #64748b)',  // Γκρι
+  success: 'var(--layera-color-emerald-500, #10b981)',    // Πράσινο
+  warning: 'var(--layera-color-amber-500, #f59e0b)',    // Πορτοκαλί
+  danger: 'var(--layera-color-red-500, #ef4444)',     // Κόκκινο
+  info: 'var(--layera-color-cyan-500, #06b6d4)',       // Ανοιχτό μπλε
+  neutral: 'var(--layera-color-gray-500, #6b7280)'     // Ουδέτερο γκρι
 };
 
 // Στυλ για κάθε variant

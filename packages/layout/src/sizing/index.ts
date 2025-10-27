@@ -13,13 +13,14 @@
 import { SPACING_SCALE } from '@layera/constants';
 
 /**
- * Re-export SPACING_SCALE για layout components
+ * SPACING_SCALE reference για layout components
  * SINGLE SOURCE OF TRUTH: @layera/constants
+ * Note: Use 'import { SPACING_SCALE } from "@layera/constants"' directly for Single Source of Truth
  */
-export { SPACING_SCALE } from '@layera/constants';
 
 /**
  * Type-safe sizing tokens
+ * Note: Import SPACING_SCALE directly from '@layera/constants' for actual usage
  */
 export type SizingToken = keyof typeof SPACING_SCALE;
 

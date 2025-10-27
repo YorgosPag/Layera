@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
-import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE, DEVICE_FRAME_COLORS } from '@layera/constants';
 
 export type DeviceModel =
   | 'iPhone X'
@@ -37,28 +37,28 @@ interface DeviceSpecs {
 }
 
 const deviceSpecs: Record<DeviceModel, DeviceSpecs> = {
-  'iPhone X': { width: 375, height: 812, scale: 1, hasNotch: true, hasHomeBar: true, borderRadius: 40, frameColor: '#1c1c1e' },
-  'iPhone 8': { width: 375, height: 667, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 25, frameColor: '#f0f0f0' },
-  'iPhone 8 Plus': { width: 414, height: 736, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 25, frameColor: '#f0f0f0' },
-  'iPhone 12 Pro': { width: 390, height: 844, scale: 1, hasNotch: true, hasHomeBar: true, borderRadius: 45, frameColor: '#1c1c1e' },
-  'iPhone 14 Pro Max': { width: 430, height: 932, scale: 1, hasNotch: true, hasHomeBar: true, borderRadius: 50, frameColor: '#1c1c1e' },
-  'Samsung Galaxy S21': { width: 384, height: 854, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: '#000000' },
-  'Samsung Galaxy S22': { width: 390, height: 844, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: '#1c1c1e' },
-  'Samsung Galaxy S22 Ultra': { width: 412, height: 908, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: '#000000' },
-  'Samsung Galaxy S23': { width: 390, height: 844, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: '#1c1c1e' },
-  'Samsung Galaxy S23 Ultra': { width: 412, height: 908, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: '#000000' },
-  'Samsung Galaxy S24': { width: 393, height: 851, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: '#1c1c1e' },
-  'Samsung Galaxy S24 Ultra': { width: 412, height: 926, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: '#000000' },
-  'Samsung Galaxy A35': { width: 390, height: 844, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 30, frameColor: '#1c1c1e' },
-  'Samsung Galaxy Z Fold 5': { width: 904, height: 905, scale: 0.8, hasNotch: false, hasHomeBar: false, borderRadius: 30, frameColor: '#000000' },
-  'Samsung Galaxy Z Flip 5': { width: 390, height: 876, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: '#1c1c1e' },
-  'Google Pixel 5': { width: 393, height: 851, scale: 1, hasNotch: false, hasHomeBar: true, borderRadius: 30, frameColor: '#202124' },
-  'iPad Air': { width: 820, height: 1180, scale: 0.7, hasNotch: false, hasHomeBar: false, borderRadius: 20, frameColor: '#e5e5e7' },
-  'iPad Pro 11"': { width: 834, height: 1194, scale: 0.7, hasNotch: false, hasHomeBar: false, borderRadius: 20, frameColor: '#1c1c1e' },
-  'iPad Pro 12.9"': { width: 1024, height: 1366, scale: 0.6, hasNotch: false, hasHomeBar: false, borderRadius: 20, frameColor: '#1c1c1e' },
-  'Surface Pro 7': { width: 912, height: 1368, scale: 0.6, hasNotch: false, hasHomeBar: false, borderRadius: 0, frameColor: '#000000' },
-  'MacBook Pro 13"': { width: 1440, height: 900, scale: 0.5, hasNotch: false, hasHomeBar: false, borderRadius: 10, frameColor: '#e5e5e7' },
-  'iMac 24"': { width: 1920, height: 1080, scale: 0.7, hasNotch: false, hasHomeBar: false, borderRadius: 15, frameColor: '#f0f0f0' }
+  'iPhone X': { width: 375, height: 812, scale: 1, hasNotch: true, hasHomeBar: true, borderRadius: 40, frameColor: DEVICE_FRAME_COLORS.SPACE_GRAY },
+  'iPhone 8': { width: 375, height: 667, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 25, frameColor: DEVICE_FRAME_COLORS.SILVER },
+  'iPhone 8 Plus': { width: 414, height: 736, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 25, frameColor: DEVICE_FRAME_COLORS.SILVER },
+  'iPhone 12 Pro': { width: 390, height: 844, scale: 1, hasNotch: true, hasHomeBar: true, borderRadius: 45, frameColor: DEVICE_FRAME_COLORS.SPACE_GRAY },
+  'iPhone 14 Pro Max': { width: 430, height: 932, scale: 1, hasNotch: true, hasHomeBar: true, borderRadius: 50, frameColor: DEVICE_FRAME_COLORS.SPACE_GRAY },
+  'Samsung Galaxy S21': { width: 384, height: 854, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: DEVICE_FRAME_COLORS.BLACK },
+  'Samsung Galaxy S22': { width: 390, height: 844, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: DEVICE_FRAME_COLORS.SPACE_GRAY },
+  'Samsung Galaxy S22 Ultra': { width: 412, height: 908, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: DEVICE_FRAME_COLORS.BLACK },
+  'Samsung Galaxy S23': { width: 390, height: 844, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: DEVICE_FRAME_COLORS.SPACE_GRAY },
+  'Samsung Galaxy S23 Ultra': { width: 412, height: 908, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: DEVICE_FRAME_COLORS.BLACK },
+  'Samsung Galaxy S24': { width: 393, height: 851, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: DEVICE_FRAME_COLORS.SPACE_GRAY },
+  'Samsung Galaxy S24 Ultra': { width: 412, height: 926, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: DEVICE_FRAME_COLORS.BLACK },
+  'Samsung Galaxy A35': { width: 390, height: 844, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 30, frameColor: DEVICE_FRAME_COLORS.SPACE_GRAY },
+  'Samsung Galaxy Z Fold 5': { width: 904, height: 905, scale: 0.8, hasNotch: false, hasHomeBar: false, borderRadius: 30, frameColor: DEVICE_FRAME_COLORS.BLACK },
+  'Samsung Galaxy Z Flip 5': { width: 390, height: 876, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: DEVICE_FRAME_COLORS.SPACE_GRAY },
+  'Google Pixel 5': { width: 393, height: 851, scale: 1, hasNotch: false, hasHomeBar: true, borderRadius: 30, frameColor: DEVICE_FRAME_COLORS.GRAPHITE },
+  'iPad Air': { width: 820, height: 1180, scale: 0.7, hasNotch: false, hasHomeBar: false, borderRadius: 20, frameColor: DEVICE_FRAME_COLORS.WHITE },
+  'iPad Pro 11"': { width: 834, height: 1194, scale: 0.7, hasNotch: false, hasHomeBar: false, borderRadius: 20, frameColor: DEVICE_FRAME_COLORS.SPACE_GRAY },
+  'iPad Pro 12.9"': { width: 1024, height: 1366, scale: 0.6, hasNotch: false, hasHomeBar: false, borderRadius: 20, frameColor: DEVICE_FRAME_COLORS.SPACE_GRAY },
+  'Surface Pro 7': { width: 912, height: 1368, scale: 0.6, hasNotch: false, hasHomeBar: false, borderRadius: 0, frameColor: DEVICE_FRAME_COLORS.BLACK },
+  'MacBook Pro 13"': { width: 1440, height: 900, scale: 0.5, hasNotch: false, hasHomeBar: false, borderRadius: 10, frameColor: DEVICE_FRAME_COLORS.WHITE },
+  'iMac 24"': { width: 1920, height: 1080, scale: 0.7, hasNotch: false, hasHomeBar: false, borderRadius: 15, frameColor: DEVICE_FRAME_COLORS.SILVER }
 };
 
 interface DeviceModelSelectorProps {
@@ -152,23 +152,23 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
       <button
         onClick={() => !isDragging && setIsOpen(!isOpen)}
         style={{
-          background: currentModel ? '#4F46E5' : '#6B7280',
-          color: 'white',
+          background: currentModel ? 'var(--layera-color-primary, var(--color-semantic-info-border))' : 'var(--layera-color-neutral, var(--color-text-secondary))',
+          color: 'var(--layera-color-white, var(--color-text-on-primary))',
           border: 'none',
           borderRadius: `${BORDER_RADIUS_SCALE.BUTTON}px`,
           padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
-          fontSize: '14px',
-          fontWeight: '600',
+          fontSize: 'var(--layera-font-size-sm, var(--font-size-sm))',
+          fontWeight: 'var(--layera-font-weight-semibold, var(--font-weight-semibold))',
           cursor: 'inherit',
           display: 'flex',
           alignItems: 'center',
-          gap: '8px',
-          minWidth: '200px',
+          gap: `${SPACING_SCALE.SM}px`,
+          minWidth: 'var(--layera-width-min-200, var(--la-width-min-dropdown))',
           justifyContent: 'space-between'
         }}
       >
         <span>{currentModel || 'Select Device Model'}</span>
-        <span style={{ fontSize: '12px' }}>{isOpen ? '▲' : '▼'}</span>
+        <span style={{ fontSize: 'var(--layera-font-size-xs, 12px)' }}>{isOpen ? '▲' : '▼'}</span>
       </button>
 
       {isOpen && (
@@ -178,11 +178,11 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
           left: '0',
           right: '0',
           marginTop: `${SPACING_SCALE.SM}px`,
-          backgroundColor: 'white',
+          backgroundColor: 'var(--layera-bg-primary, var(--la-color-surface))',
           borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
           boxShadow: BOX_SHADOW_SCALE.modalDefault,
           overflow: 'hidden',
-          maxHeight: '400px',
+          maxHeight: 'var(--layera-height-max-dropdown, var(--la-height-max-dropdown))',
           overflowY: 'auto'
         }}>
           <button
@@ -194,12 +194,12 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
               width: '100%',
               padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px`,
               border: 'none',
-              background: !currentModel ? '#EBF5FF' : 'white',
+              background: !currentModel ? 'var(--layera-bg-info-subtle, var(--la-color-info-subtle))' : 'var(--layera-bg-primary, var(--la-color-surface))',
               cursor: 'pointer',
               textAlign: 'left',
-              fontSize: '14px',
-              fontWeight: !currentModel ? '600' : '400',
-              borderBottom: '1px solid #E5E7EB'
+              fontSize: 'var(--layera-font-size-sm, var(--la-font-size-sm))',
+              fontWeight: !currentModel ? 'var(--layera-font-weight-semibold, var(--la-font-weight-semibold))' : 'var(--layera-font-weight-normal, var(--la-font-weight-normal))',
+              borderBottom: 'var(--layera-border-default, var(--la-border-width-default) solid var(--la-color-border-default))'
             }}
           >
             🖥️ Responsive View (No Frame)
@@ -209,12 +209,12 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
             <div key={category}>
               <div style={{
                 padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
-                fontSize: '12px',
-                fontWeight: '600',
-                color: '#6B7280',
-                backgroundColor: '#F9FAFB',
-                borderTop: '1px solid #E5E7EB',
-                borderBottom: '1px solid #E5E7EB'
+                fontSize: 'var(--layera-font-size-xs, var(--la-font-size-xs))',
+                fontWeight: 'var(--layera-font-weight-semibold, var(--la-font-weight-semibold))',
+                color: 'var(--layera-text-secondary, var(--la-color-text-secondary))',
+                backgroundColor: 'var(--layera-bg-secondary, var(--la-color-surface-subtle))',
+                borderTop: 'var(--layera-border-default, var(--la-border-width-default) solid var(--la-color-border-default))',
+                borderBottom: 'var(--layera-border-default, var(--la-border-width-default) solid var(--la-color-border-default))'
               }}>
                 {category}
               </div>
@@ -229,28 +229,28 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
                     width: '100%',
                     padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.SM}px`,
                     border: 'none',
-                    background: currentModel === device ? '#EBF5FF' : 'white',
+                    background: currentModel === device ? 'var(--layera-bg-info-subtle, var(--la-color-info-subtle))' : 'var(--layera-bg-primary, var(--la-color-surface))',
                     cursor: 'pointer',
                     textAlign: 'left',
-                    fontSize: '14px',
-                    fontWeight: currentModel === device ? '600' : '400',
+                    fontSize: 'var(--layera-font-size-sm, var(--la-font-size-sm))',
+                    fontWeight: currentModel === device ? 'var(--layera-font-weight-semibold, var(--la-font-weight-semibold))' : 'var(--layera-font-weight-normal, var(--la-font-weight-normal))',
                     transition: 'background 0.2s'
                   }}
                   onMouseOver={(e) => {
                     if (currentModel !== device) {
-                      e.currentTarget.style.background = '#F3F4F6';
+                      e.currentTarget.style.background = 'var(--layera-bg-hover, var(--la-color-surface-hover))';
                     }
                   }}
                   onMouseOut={(e) => {
                     if (currentModel !== device) {
-                      e.currentTarget.style.background = 'white';
+                      e.currentTarget.style.background = 'var(--la-color-surface)';
                     }
                   }}
                 >
                   {device}
                   <span style={{
-                    fontSize: '12px',
-                    color: '#9CA3AF',
+                    fontSize: 'var(--layera-font-size-xs, var(--la-font-size-xs))',
+                    color: 'var(--layera-text-tertiary, var(--la-color-text-tertiary))',
                     marginLeft: `${SPACING_SCALE.SM}px`
                   }}>
                     ({deviceSpecs[device].width}x{deviceSpecs[device].height})

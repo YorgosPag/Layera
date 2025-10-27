@@ -6,6 +6,7 @@
 
 import React, { useCallback, useState } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { Box } from '@layera/layout';
 import { AvailabilityDetailsForm } from './AvailabilityDetailsForm';
 import { BaseCard } from '@layera/cards';
 import { CheckIcon, CheckIcon as FormIcon, CheckIcon as CalendarIcon } from '@layera/icons';
@@ -94,7 +95,7 @@ export const AvailabilityDetailsStep: React.FC<AvailabilityDetailsStepProps> = (
   const hasRequiredFields = Boolean(details.date && details.duration > 0);
 
   return (
-    <div style={containerStyles}>
+    <Box style={containerStyles}>
       {!showForm ? (
         <>
           {/* Show Form Card */}
@@ -128,13 +129,13 @@ export const AvailabilityDetailsStep: React.FC<AvailabilityDetailsStepProps> = (
           {/* Back to Menu */}
           <BaseCard
             variant="job"
-            title="Πίσω"
-            description="Επιστροφή στο μενού"
+            title={t('actions.back')}
+            description={t('actions.backToMenu')}
             onClick={() => setShowForm(false)}
             data-testid="availability-details-back"
           />
         </>
       )}
-    </div>
+    </Box>
   );
 };

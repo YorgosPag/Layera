@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { RULER_SIZE, TICK_COLOR, RULER_BG, DENSITY_FACTORS, getTicks } from '../utils/rulerUtils';
 import { formatCoord } from '../utils/formatters';
+import { Box } from '@layera/layout';
 import L from 'leaflet';
 
 interface RulerProps {
@@ -35,7 +36,7 @@ const LatitudeRuler: React.FC<RulerProps> = ({ bounds, mapSize, tickDensity = 'm
         ctx.fillRect(0, 0, w, h);
 
         // Draw right border
-        ctx.strokeStyle = '#E2E8F0';
+        ctx.strokeStyle = 'var(--layera-border-default, var(--color-border-subtle))';
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(RULER_SIZE - 0.5, 0);
@@ -73,19 +74,17 @@ const LatitudeRuler: React.FC<RulerProps> = ({ bounds, mapSize, tickDensity = 'm
     }, [bounds, mapSize, tickDensity]);
 
     return (
-        <div
-            style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                bottom: `${RULER_SIZE}px`,
-                width: `${RULER_SIZE}px`,
-                zIndex: 1000,
-                pointerEvents: 'none',
-            }}
+        <Box
+            position="absolute"
+            top={0}
+            left={0}
+            bottom={`${RULER_SIZE}px`}
+            width={`${RULER_SIZE}px`}
+            zIndex={1000}
+            pointerEvents="none"
         >
-            <canvas ref={canvasRef} style={{ width: '100%', height: '100%' }} />
-        </div>
+            <Box as="canvas" ref={canvasRef} width="full" height="full" />
+        </Box>
     );
 };
 

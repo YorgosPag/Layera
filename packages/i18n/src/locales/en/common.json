@@ -4,7 +4,11 @@
     "subtitle": "Enterprise Identity Management",
     "welcome": "Welcome to Layera!",
     "loading": "Loading...",
-    "languageSwitch": "Language"
+    "languageSwitch": "Language",
+    "title": {
+      "geoAlert": "Layera GeoAlert",
+      "layeraId": "Layera ID"
+    }
   },
   "navigation": {
     "dashboard": "Dashboard",
@@ -384,14 +388,7 @@
     "clickToUpload": "Click to upload the floor plan",
     "or": "or",
     "searchLocation": "Search Location",
-    "locationExample": "e.g. Ermou 10, Athens",
-    "placementTools": "Placement Tools",
-    "toolsDescription": "Place your design on the map to see exactly where it is in the real environment. The tools below allow you to resize the floor plan to match the actual dimensions of your property.",
-    "rotation": "Rotation",
-    "scale": "Scale",
-    "cmToM": "cm - m",
-    "mmToM": "mm - m",
-    "mToM": "m - m"
+    "locationExample": "e.g. Ermou 10, Athens"
   },
   "jobs": {
     "listingType": "Jobs - Listing Type",

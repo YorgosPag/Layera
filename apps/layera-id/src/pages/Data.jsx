@@ -6,6 +6,7 @@ import { ThemeSwitcher } from '@layera/theme-switcher';
 import { Button } from '@layera/buttons';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, Flex, FlexColumn, Box } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
+import { Text, Heading } from '@layera/typography';
 import { SPACING_SCALE } from '@layera/constants';
 import { SmartphoneIcon, CheckIcon, SettingsIcon, ChartIcon, ShieldIcon, FolderIcon, LockIcon, UserIcon, FileIcon, XIcon } from '@layera/icons';
 import QuickActions from '../components/QuickActions';
@@ -63,16 +64,14 @@ export default function Data() {
         />
       }
     >
-      <PageContainer maxWidth="full" padding="none">
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+      <PageContainer maxWidth="full" padding="lg">
           <PageHeader
             title={t('data.title')}
             subtitle={t('data.subtitle')}
           />
-        </div>
 
         {/* Personal Information Section */}
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+        <Box padding="lg">
           <DashboardSection
             title={t('data.personalInfo')}
             icon={<UserIcon size="md" theme="neutral" />}
@@ -82,19 +81,19 @@ export default function Data() {
               title={t('data.fields.email')}
               variant="info"
             >
-              <div style={{ fontSize: '1.125rem', fontWeight: '600', color: 'var(--color-text-primary)' }}>
+              <Heading level={4} color="primary">
                 {user.email}
-              </div>
-              <Flex align="center" style={{ marginTop: `${SPACING_SCALE.SM}px`, gap: `${SPACING_SCALE.SM}px` }}>
+              </Heading>
+              <Flex align="center" gap="sm" marginTop="sm">
                 {user.emailVerified ? (
                   <>
                     <CheckIcon size="sm" theme="success" />
-                    <span style={{ color: 'var(--color-success)' }}>{t('status.verified')}</span>
+                    <Text color="success">{t('status.verified')}</Text>
                   </>
                 ) : (
                   <>
                     <XIcon size="sm" theme="danger" />
-                    <span style={{ color: 'var(--color-error)' }}>{t('status.unverified')}</span>
+                    <Text color="error">{t('status.unverified')}</Text>
                   </>
                 )}
               </Flex>
@@ -104,43 +103,43 @@ export default function Data() {
               title={t('data.fields.displayName')}
               variant="info"
             >
-              <div style={{ fontSize: '1.125rem', fontWeight: '600', color: 'var(--color-text-primary)' }}>
+              <Heading level={4} color="primary">
                 {user.displayName || t('data.fields.notAvailable')}
-              </div>
-              <div style={{ marginTop: `${SPACING_SCALE.SM}px`, fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
+              </Heading>
+              <Text size="sm" color="secondary" marginTop="sm">
                 {user.displayName ? 'Διαθέσιμο' : 'Μη διαθέσιμο'}
-              </div>
+              </Text>
             </DashboardCard>
 
             <DashboardCard
               title={t('data.fields.userId')}
               variant="info"
             >
-              <Box style={{ fontSize: '0.875rem', fontFamily: 'monospace', color: 'var(--color-text-secondary)', wordBreak: 'break-all' }}>
+              <Text size="sm" font="mono" color="secondary" wordBreak="break-all">
                 {user.uid}
-              </Box>
-              <div style={{ marginTop: `${SPACING_SCALE.SM}px`, fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
+              </Text>
+              <Text size="sm" color="secondary" marginTop="sm">
                 Μοναδικό αναγνωριστικό
-              </div>
+              </Text>
             </DashboardCard>
 
             <DashboardCard
               title={t('data.fields.role')}
               variant="info"
             >
-              <div style={{ fontSize: '1.125rem', fontWeight: '600', color: 'var(--color-text-primary)' }}>
+              <Heading level={4} color="primary">
                 {t(`roles.${user.layeraClaims?.role || 'private'}`)}
-              </div>
-              <div style={{ marginTop: `${SPACING_SCALE.SM}px`, fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
+              </Heading>
+              <Text size="sm" color="secondary" marginTop="sm">
                 Τύπος λογαριασμού
-              </div>
+              </Text>
             </DashboardCard>
           </DashboardGrid>
           </DashboardSection>
-        </div>
+        </Box>
 
         {/* Security Section */}
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+        <Box padding="lg">
           <DashboardSection
           title={t('data.security')}
           icon={<ShieldIcon size="md" theme="neutral" />}
@@ -150,30 +149,30 @@ export default function Data() {
               title={t('data.fields.mfaEnabled')}
               variant="status"
             >
-              <Flex align="center" style={{ gap: `${SPACING_SCALE.MD}px` }}>
+              <Flex align="center" gap="md">
                 {user.layeraClaims?.mfa_verified ? (
                   <>
                     <LockIcon size="lg" theme="success" />
-                    <div>
-                      <div style={{ fontWeight: '600', color: 'var(--color-success)' }}>
+                    <Box>
+                      <Text weight="semibold" color="success">
                         {t('status.enabled')}
-                      </div>
-                      <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
+                      </Text>
+                      <Text size="sm" color="secondary">
                         {t('account.badges.mfaActive')}
-                      </div>
-                    </div>
+                      </Text>
+                    </Box>
                   </>
                 ) : (
                   <>
                     <XIcon size="lg" theme="warning" />
-                    <div>
-                      <div style={{ fontWeight: '600', color: 'var(--color-warning)' }}>
+                    <Box>
+                      <Text weight="semibold" color="warning">
                         {t('status.disabled')}
-                      </div>
-                      <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)' }}>
+                      </Text>
+                      <Text size="sm" color="secondary">
                         {t('account.badges.mfaInactive')}
-                      </div>
-                    </div>
+                      </Text>
+                    </Box>
                   </>
                 )}
               </Flex>
@@ -181,7 +180,7 @@ export default function Data() {
                 <Button
                   variant="primary"
                   size="sm"
-                  style={{ marginTop: `${SPACING_SCALE.MD}px` }}
+                  marginTop="md"
                   onClick={() => navigate('/mfa-enroll')}
                 >
                   {t('account.actions.enable2fa')}
@@ -190,10 +189,10 @@ export default function Data() {
             </DashboardCard>
           </DashboardGrid>
           </DashboardSection>
-        </div>
+        </Box>
 
         {/* Account Information Section */}
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+        <Box padding="lg">
           <DashboardSection
           title={t('dashboard.accountDetails')}
           icon={<UserIcon size="md" theme="neutral" />}
@@ -203,31 +202,31 @@ export default function Data() {
               title={t('data.fields.accountCreated')}
               variant="info"
             >
-              <div style={{ fontSize: '1rem', color: 'var(--color-text-primary)' }}>
+              <Text size="base" color="primary">
                 {formatDate(user.metadata?.creationTime)}
-              </div>
-              <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', marginTop: `${SPACING_SCALE.XS}px` }}>
+              </Text>
+              <Text size="sm" color="secondary" marginTop="xs">
                 Ημερομηνία δημιουργίας
-              </div>
+              </Text>
             </DashboardCard>
 
             <DashboardCard
               title={t('data.fields.lastSignIn')}
               variant="info"
             >
-              <div style={{ fontSize: '1rem', color: 'var(--color-text-primary)' }}>
+              <Text size="base" color="primary">
                 {formatDate(user.metadata?.lastSignInTime)}
-              </div>
-              <div style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', marginTop: `${SPACING_SCALE.XS}px` }}>
+              </Text>
+              <Text size="sm" color="secondary" marginTop="xs">
                 Τελευταία σύνδεση
-              </div>
+              </Text>
             </DashboardCard>
           </DashboardGrid>
           </DashboardSection>
-        </div>
+        </Box>
 
         {/* Data Export Section */}
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+        <Box padding="lg">
           <DashboardSection
           title={t('data.export')}
           icon={<FolderIcon size="md" theme="neutral" />}
@@ -236,8 +235,8 @@ export default function Data() {
             title={t('data.exportDescription')}
             variant="actions"
           >
-            <Flex direction="column" style={{ gap: '1rem' }}>
-              <Flex style={{ gap: '1rem', flexWrap: 'wrap' }}>
+            <Flex direction="column" gap="lg">
+              <Flex gap="lg" wrap={true}>
                 <Button variant="secondary" size="sm">
                   <FileIcon size="sm" theme="neutral" />
                   {t('data.exportFormats.pdf')}
@@ -254,10 +253,10 @@ export default function Data() {
             </Flex>
           </DashboardCard>
           </DashboardSection>
-        </div>
+        </Box>
 
         {/* Privacy Section */}
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+        <Box padding="lg">
           <DashboardSection
           title={t('data.privacy')}
           icon={<LockIcon size="md" theme="neutral" />}
@@ -266,32 +265,32 @@ export default function Data() {
             title={t('data.privacyPoints.title')}
             variant="info"
           >
-            <Flex direction="column" style={{ gap: `${SPACING_SCALE.MD}px` }}>
-              <Flex align="flex-start" style={{ gap: `${SPACING_SCALE.SM}px` }}>
-                <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
+            <Flex direction="column" gap="md">
+              <Flex align="flex-start" gap="sm">
+                <CheckIcon size="sm" theme="success" marginTop="xs" />
                 <span>{t('data.privacyPoints.encryption')}</span>
               </Flex>
-              <Flex align="flex-start" style={{ gap: `${SPACING_SCALE.SM}px` }}>
-                <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
+              <Flex align="flex-start" gap="sm">
+                <CheckIcon size="sm" theme="success" marginTop="xs" />
                 <span>{t('data.privacyPoints.noSharing')}</span>
               </Flex>
-              <Flex align="flex-start" style={{ gap: `${SPACING_SCALE.SM}px` }}>
-                <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
+              <Flex align="flex-start" gap="sm">
+                <CheckIcon size="sm" theme="success" marginTop="xs" />
                 <span>{t('data.privacyPoints.deleteAnytime')}</span>
               </Flex>
-              <Flex align="flex-start" style={{ gap: `${SPACING_SCALE.SM}px` }}>
-                <CheckIcon size="sm" theme="success" style={{ marginTop: `${SPACING_SCALE.XS}px` }} />
+              <Flex align="flex-start" gap="sm">
+                <CheckIcon size="sm" theme="success" marginTop="xs" />
                 <span>{t('data.privacyPoints.compliance')}</span>
               </Flex>
             </Flex>
           </DashboardCard>
           </DashboardSection>
-        </div>
+        </Box>
 
         {/* Navigation */}
-        <div style={{ padding: 'var(--layera-space-lg)' }}>
+        <Box padding="lg">
           <QuickActions />
-        </div>
+        </Box>
       </PageContainer>
     </AppShell>
   );

@@ -12,6 +12,9 @@ export * from './states';
 // Roles and permissions
 export * from './roles';
 
+// Pipeline steps
+export * from './pipeline-steps';
+
 // Forms
 export * from './forms';
 
@@ -20,6 +23,9 @@ export * from './tables';
 
 // Themes
 export * from './themes';
+
+// Configuration - SINGLE SOURCE OF TRUTH
+export * from './config';
 
 // Navigation
 export * from './navigation';

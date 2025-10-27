@@ -91,9 +91,9 @@ export const createInfoPanelTheme = (
     backgroundColor: `rgba(${baseColor}, ${opacity})`,
     color: 'white',
     borderColor: `rgba(${baseColor}, ${borderOpacity})`,
-    boxShadow: `0 4px 12px rgba(${baseColor}, ${shadowOpacity})`,
+    boxShadow: 'var(--layera-shadow-card-default)',
     borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
-    fontSize: '12px',
+    fontSize: 'var(--layera-font-size-xs)',
     padding: `${SPACING_SCALE.MD}px`
   };
 };

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AppShellProps } from '../../types';
+import { Box } from '../Box';
 
 /**
  * AppShell - Core layout component που παρέχει unified structure
@@ -72,7 +73,7 @@ export const AppShell: React.FC<AppShellProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <div className={shellClasses}>
+    <Box className={shellClasses}>
       {/* Skip to content link για accessibility */}
       <a href="#main-content" className="layera-skip-to-content">
         Skip to main content
@@ -94,7 +95,7 @@ export const AppShell: React.FC<AppShellProps> = ({
 
           {/* Mobile backdrop */}
           {isMobile && (
-            <div
+            <Box
               className={`layera-layout-sidebar-backdrop ${isSidebarOpen ? 'active' : ''}`}
               onClick={handleBackdropClick}
               aria-hidden="true"
@@ -114,6 +115,6 @@ export const AppShell: React.FC<AppShellProps> = ({
           {footer}
         </footer>
       )}
-    </div>
+    </Box>
   );
 };

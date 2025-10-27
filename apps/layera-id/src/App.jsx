@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import { Box } from '@layera/layout'
 import { RoleGuard, useAuthContext } from '@layera/auth-bridge'
 import { ThemeProvider } from '@layera/theme-switcher'
 import { DeviceOverrideProvider, DeviceSimulator } from '@layera/viewport'
@@ -25,12 +26,12 @@ function ProtectedRoute({ children, requiredRole, allowedRoles }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+      <Box className="min-h-screen flex items-center justify-center">
+        <Box className="text-center">
+          <Box className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></Box>
           <p className="mt-4 text-gray-600">Φόρτωση...</p>
-        </div>
-      </div>
+        </Box>
+      </Box>
     )
   }
 

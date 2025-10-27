@@ -11,6 +11,7 @@ import { BaseCard } from '@layera/cards';
 import { CheckIcon } from '@layera/icons';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import { Text } from '@layera/typography';
+import { Box } from '@layera/layout';
 import type { StepProps } from '../types';
 import type { LayoutTool, LayoutStepData, LayoutToolOption } from './types';
 
@@ -36,26 +37,26 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({
   const layoutTools: LayoutToolOption[] = [
     {
       id: 'positioning',
-      title: 'Τοποθέτηση',
-      description: 'Ρύθμιση θέσης',
+      title: t('placementTools.title'),
+      description: t('placementTools.description'),
       isActive: selectedTools.includes('positioning')
     },
     {
       id: 'scale',
-      title: 'Κλίμακα',
-      description: 'Ρύθμιση μεγέθους',
+      title: t('placementTools.scale'),
+      description: t('placementTools.scale'),
       isActive: selectedTools.includes('scale')
     },
     {
       id: 'rotation',
-      title: 'Περιστροφή',
-      description: 'Ρύθμιση γωνίας',
+      title: t('placementTools.rotation'),
+      description: t('placementTools.rotation'),
       isActive: selectedTools.includes('rotation')
     },
     {
       id: 'dimensions',
-      title: 'Διαστάσεις',
-      description: 'Ρύθμιση διαστάσεων',
+      title: t('placementTools.description'),
+      description: t('placementTools.description'),
       isActive: selectedTools.includes('dimensions')
     }
   ];
@@ -111,7 +112,7 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({
     top: 'var(--layera-cards-top)',
     left: 'var(--layera-side-margins)',
     right: 'var(--layera-side-margins)',
-    zIndex: 10002,
+    zIndex: 'var(--layera-z-popover)', // Enterprise CSS Custom Property - Single Source of Truth
     display: 'flex',
     flexDirection: 'column',
     gap: 'var(--layera-cards-gap)',
@@ -119,7 +120,7 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({
   };
 
   return (
-    <div style={containerStyles}>
+    <Box style={containerStyles}>
       {/* Layout Tools */}
       {layoutTools.map((tool) => (
         <LayoutToolCard
@@ -135,28 +136,27 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({
 
       {/* Selected Tools Counter */}
       {selectedTools.length > 0 && (
-        <div style={{
-          padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
-          background: 'rgba(0, 255, 0, 0.1)',
-          borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
-          // fontSize handled by Text component
-          color: '#008000'
-        }}>
-          <Text size="sm" style={{ color: 'inherit' }}>
-            {selectedTools.length} εργαλεία επιλέχθηκαν
+        <Box
+          padding="sm md"
+          background="var(--color-semantic-success-bg)"
+          borderRadius="sm"
+          color="var(--color-semantic-success-text)"
+        >
+          <Text size="sm" color="inherit">
+            {t('layout.selected.count', { count: selectedTools.length })}
           </Text>
-        </div>
+        </Box>
       )}
 
       {/* Complete Card */}
       <BaseCard
         variant={selectedTools.length > 0 ? "success" : "neutral"}
-        title="Ολοκλήρωση"
-        description={selectedTools.length > 0 ? "Συνέχεια με τα επιλεγμένα εργαλεία" : "Συνέχεια χωρίς εργαλεία"}
+        title={t('actions.complete')}
+        description={selectedTools.length > 0 ? t('layout.complete.withTools') : t('layout.complete.withoutTools')}
         icon={<CheckIcon size="sm" theme="neutral" />}
         onClick={handleComplete}
         data-testid="layout-complete-card"
       />
-    </div>
+    </Box>
   );
 };

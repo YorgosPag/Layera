@@ -5,7 +5,7 @@ import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
 import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { BaseCard } from '@layera/cards';
-import { Stack } from '@layera/layout';
+import { Stack, Box } from '@layera/layout';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { CheckIcon, XIcon } from '@layera/icons';
 import './Dashboard.css';
@@ -26,12 +26,12 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="dashboard-container">
+    <Box className="dashboard-container">
       <nav className="dashboard-nav">
-        <div className="nav-brand">
+        <Box className="nav-brand">
           <Heading as="h1" size="2xl" color="primary">Layera</Heading>
-        </div>
-        <div className="nav-user">
+        </Box>
+        <Box className="nav-user">
           {user && (
             <>
               <LanguageSwitcher
@@ -59,10 +59,10 @@ const Dashboard = () => {
               </Button>
             </>
           )}
-        </div>
+        </Box>
       </nav>
 
-      <div className="dashboard-content">
+      <Box className="dashboard-content">
         <BaseCard
           title={t('dashboard:welcome', { name: user?.displayName || user?.email })}
           variant="welcome"
@@ -76,41 +76,41 @@ const Dashboard = () => {
                 <p>{t('dashboard:user.usernameDisplay', { name: user.displayName })}</p>
               )}
 
-              <div className="user-info">
+              <Box className="user-info">
                 <h3>{t('dashboard:user.info')}</h3>
 
-                <div className="user-details">
-                  <div className="user-field">
+                <Box className="user-details">
+                  <Box className="user-field">
                     <strong>{t('data.fields.email')}:</strong> {user.email}
-                  </div>
-                  <div className="user-field">
+                  </Box>
+                  <Box className="user-field">
                     <strong>{t('data.fields.role')}:</strong> {t(`roles.${user.layeraClaims?.role || 'private'}`)}
-                  </div>
-                  <div className="user-field">
+                  </Box>
+                  <Box className="user-field">
                     <strong>{t('data.fields.emailVerified')}:</strong>
                     <span className={user.emailVerified ? 'status-verified' : 'status-unverified'}>
                       {user.emailVerified ? <> <CheckIcon size="xs" theme="success" /> {t('status.verified')}</> : <> <XIcon size="xs" theme="danger" /> {t('status.unverified')}</>}
                     </span>
-                  </div>
-                  <div className="user-field">
+                  </Box>
+                  <Box className="user-field">
                     <strong>{t('data.fields.mfaEnabled')}:</strong>
                     <span className={user.layeraClaims?.mfa_verified ? 'status-verified' : 'status-unverified'}>
                       {user.layeraClaims?.mfa_verified ? <> <CheckIcon size="xs" theme="success" /> {t('status.enabled')}</> : <> <XIcon size="xs" theme="danger" /> {t('status.disabled')}</>}
                     </span>
-                  </div>
-                  <div className="user-field">
+                  </Box>
+                  <Box className="user-field">
                     <strong>{t('data.fields.userId')}:</strong> {user.uid}
-                  </div>
-                  <div className="user-field">
+                  </Box>
+                  <Box className="user-field">
                     <strong>{t('data.fields.accountCreated')}:</strong> {user.metadata?.creationTime ? new Date(user.metadata.creationTime).toLocaleString('el-GR') : t('data.fields.notAvailable')}
-                  </div>
-                  <div className="user-field">
+                  </Box>
+                  <Box className="user-field">
                     <strong>{t('data.fields.lastSignIn')}:</strong> {user.metadata?.lastSignInTime ? new Date(user.metadata.lastSignInTime).toLocaleString('el-GR') : t('data.fields.notAvailable')}
-                  </div>
-                </div>
-              </div>
+                  </Box>
+                </Box>
+              </Box>
 
-          <div className="dashboard-actions">
+          <Box className="dashboard-actions">
             <h3>{t('dashboard:quickActions.title')}</h3>
             <Stack direction="vertical" spacing="sm" className="action-buttons-replacement">
               <Link to="/account">
@@ -143,12 +143,12 @@ const Dashboard = () => {
                 </Link>
               )}
             </Stack>
-          </div>
+          </Box>
             </>
           )}
         </BaseCard>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

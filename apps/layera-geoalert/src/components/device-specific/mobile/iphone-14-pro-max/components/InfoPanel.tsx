@@ -12,6 +12,7 @@ import {
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { Text } from '@layera/typography';
+import { Box, Button } from '@layera/layout';
 import type { CategoryType } from '@layera/info-panels';
 import { installCursorDebug, installLiveStackDebug } from '../../../../../debug/cursorDebug';
 import type { CardId, Category } from './cardData';
@@ -182,65 +183,60 @@ export const InfoPanel = React.memo<InfoPanelProps>(({
   const mobileStyles = DEFAULT_INFO_PANEL_STYLES.mobile;
 
   return (
-    <div
+    <Box
       ref={panelRef}
       className="info-panel-stable"
-      style={{
-        position: 'fixed',
-        ...mobileStyles.position,
-        backgroundColor: categoryTheme.backgroundColor,
-        border: `1px solid ${categoryTheme.borderColor}`,
-        boxShadow: BOX_SHADOW_SCALE.cardDefault,
-        borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
-        padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XL + SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.MD}px`,
-        minHeight: 'auto',
-        maxHeight: mobileStyles.maxHeight,
-        overflow: mobileStyles.overflow,
-        zIndex: mobileStyles.zIndex
-      }}
+      position="fixed"
+      backgroundColor={categoryTheme.backgroundColor}
+      border={`1px solid ${categoryTheme.borderColor}`}
+      boxShadow="cardDefault"
+      borderRadius="card"
+      padding="md"
+      minHeight="auto"
+      maxHeight={mobileStyles.maxHeight}
+      overflow={mobileStyles.overflow}
+      zIndex={mobileStyles.zIndex}
       onClick={(e) => e.stopPropagation()}
     >
       {/* Clean close button - χωρίς mouse handlers */}
-      <button
+      <Box
+        as="button"
         type="button"
         aria-label="Close"
-        style={{
-          position: 'absolute',
-          top: `${SPACING_SCALE.XS}px`,
-          right: `${SPACING_SCALE.XS}px`,
-          width: `${SPACING_SCALE.LG}px`,
-          height: `${SPACING_SCALE.LG}px`,
-          border: 'none',
-          borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
-          backgroundColor: 'var(--color-bg-surface-overlay)',
-          color: '#fff',
-          // fontSize handled by Text component
-          fontWeight: 'var(--layera-font-bold)', // Typography system token για bold
-          lineHeight: '1',
-          zIndex: mobileStyles.zIndex + 1
-        }}
+        position="absolute"
+        top="xs"
+        right="xs"
+        width="lg"
+        height="lg"
+        border="none"
+        borderRadius="circle"
+        backgroundColor="surface-overlay"
+        color="white"
+        fontWeight="bold"
+        lineHeight="1"
+        zIndex={mobileStyles.zIndex + 1}
         onClick={onClose}
       >
         ×
-      </button>
+      </Box>
 
       {/* Content */}
-      <Text size="sm" weight="bold" style={{
-        color: categoryTheme.textColor,
-        marginBottom: `${SPACING_SCALE.SM}px`,
-        display: 'block'
-      }}>
+      <Text
+        size="sm"
+        weight="bold"
+        color={categoryTheme.textColor}
+        marginBottom="sm"
+        display="block"
+      >
         {infoData.title}
       </Text>
-      <div
+      <Box
         className="content-text"
-        style={{
-          color: categoryTheme.textColor,
-          fontSize: 'var(--layera-text-sm)', // Typography system for dangerouslySetInnerHTML content
-          lineHeight: '1.4'
-        }}
+        color={categoryTheme.textColor}
+        fontSize="sm"
+        lineHeight="1.4"
         dangerouslySetInnerHTML={{ __html: infoData.content }}
       />
-    </div>
+    </Box>
   );
 });

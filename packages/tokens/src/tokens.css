@@ -1,0 +1,29 @@
+:root {
+  /* spacing */
+  --la-space-0: 0;
+  --la-space-1: 4px;
+  --la-space-2: 8px;
+  --la-space-3: 12px;
+  --la-space-4: 16px;
+  --la-space-6: 24px;
+  --la-space-8: 32px;
+
+  /* radius */
+  --la-radius-sm: 6px;
+  --la-radius-md: 10px;
+  --la-radius-lg: 16px;
+
+  /* colors (semantic) */
+  --la-color-bg-app: #f8fafc;
+  --la-color-surface: #ffffff;
+  --la-color-text-primary: #0f172a;
+  --la-color-text-muted: #475569;
+  --la-color-brand: #2563eb;
+  --la-color-brand-contrast: #ffffff;
+
+  /* typography */
+  --la-font-sans: Inter, system-ui, sans-serif;
+  --la-font-size-base: 14px;
+  --la-font-size-xl: 20px;
+  --la-line-height-normal: 1.5;
+}

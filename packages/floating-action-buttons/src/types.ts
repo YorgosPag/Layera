@@ -53,6 +53,26 @@ export interface FABProps {
 
   /** Z-index για stacking order */
   zIndex?: number;
+
+  /** ENTERPRISE: Enable draggable functionality */
+  draggable?: boolean;
+
+  /** ENTERPRISE: Initial position for draggable FAB */
+  initialPosition?: {
+    x?: number;
+    y?: number;
+    right?: number;
+    bottom?: number;
+  };
+
+  /** ENTERPRISE: Constrain dragging to viewport/container */
+  constrainToViewport?: boolean;
+
+  /** ENTERPRISE: Viewport selector for simulation systems */
+  viewportSelector?: string;
+
+  /** ENTERPRISE: Position type for simulation compatibility */
+  positionType?: 'fixed' | 'viewport-relative';
 }
 
 export interface ResponsiveFABConfig {

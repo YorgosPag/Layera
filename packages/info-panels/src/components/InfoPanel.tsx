@@ -12,6 +12,7 @@ import {
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { Text } from '@layera/typography';
+import { Box } from '@layera/layout';
 import type { CategoryType } from '../hooks/useCategoryTheming';
 
 export interface InfoPanelProps {
@@ -201,18 +202,18 @@ export const InfoPanel = React.memo<InfoPanelProps>(({
   const mobileStyles = DEFAULT_INFO_PANEL_STYLES.mobile;
 
   return (
-    <div
+    <Box
       ref={panelRef}
       className="info-panel-stable"
       style={{
         position: 'fixed',
         ...mobileStyles.position,
         backgroundColor: categoryTheme.backgroundColor,
-        border: `1px solid ${categoryTheme.borderColor}`,
+        border: `var(--layera-border-width-default, 1px) solid ${categoryTheme.borderColor}`,
         boxShadow: BOX_SHADOW_SCALE.cardDefault,
         borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
         padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XL + SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.MD}px`,
-        minHeight: 'auto',
+        minHeight: 'var(--layera-min-height-auto, auto)',
         maxHeight: mobileStyles.maxHeight,
         overflow: mobileStyles.overflow as 'auto',
         zIndex: mobileStyles.zIndex
@@ -229,14 +230,14 @@ export const InfoPanel = React.memo<InfoPanelProps>(({
           right: `${SPACING_SCALE.XS}px`,
           width: `${SPACING_SCALE.LG}px`,
           height: `${SPACING_SCALE.LG}px`,
-          border: 'none',
+          border: 'var(--layera-border-none, none)',
           borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
           backgroundColor: 'var(--color-bg-surface-overlay)',
-          color: '#fff',
+          color: 'var(--layera-color-white, #fff)',
           fontWeight: 'var(--layera-font-bold)',
-          lineHeight: '1',
+          lineHeight: 'var(--layera-line-height-none, 1)',
           zIndex: mobileStyles.zIndex + 1,
-          cursor: 'pointer'
+          cursor: 'var(--layera-cursor-pointer, pointer)'
         }}
         onClick={onClose}
       >
@@ -245,31 +246,31 @@ export const InfoPanel = React.memo<InfoPanelProps>(({
 
       {/* Content */}
       {displayContent.title && (
-        <Text size="sm" weight="bold" style={{
-          color: categoryTheme.textColor,
-          marginBottom: `${SPACING_SCALE.SM}px`,
-          display: 'block'
-        }}>
+        <Text
+          size="sm"
+          weight="bold"
+          color={categoryTheme.textColor}
+          marginBottom={`${SPACING_SCALE.SM}px`}
+          display="var(--layera-display-block, block)"
+        >
           {displayContent.title}
         </Text>
       )}
 
       {children ? (
-        <div style={{ color: categoryTheme.textColor }}>
+        <Box color={categoryTheme.textColor}>
           {children}
-        </div>
+        </Box>
       ) : (
-        <div
+        <Box
           className="content-text"
-          style={{
-            color: categoryTheme.textColor,
-            fontSize: 'var(--layera-text-sm)',
-            lineHeight: '1.4'
-          }}
+          color={categoryTheme.textColor}
+          fontSize="var(--layera-text-sm)"
+          lineHeight="1.4"
           dangerouslySetInnerHTML={{ __html: displayContent.content }}
         />
       )}
-    </div>
+    </Box>
   );
 });
 

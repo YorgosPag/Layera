@@ -47,8 +47,8 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
     // Create a div element with just the LocationIcon
     const iconDiv = document.createElement('div');
     iconDiv.style.cssText = `
-      width: 32px;
-      height: 32px;
+      width: ${SPACING_SCALE.XL}px;
+      height: ${SPACING_SCALE.XL}px;
       display: flex;
       align-items: center;
       justify-content: center;

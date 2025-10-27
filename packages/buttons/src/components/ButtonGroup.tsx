@@ -1,5 +1,6 @@
 import React from 'react';
 import { ButtonGroupProps } from '../types';
+import { Box } from '@layera/layout';
 
 /**
  * ButtonGroup Component - Ομαδοποιεί buttons για related actions
@@ -25,13 +26,13 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <div
+    <Box
       className={classes}
       role="group"
       data-spacing={spacing}
     >
       {children}
-    </div>
+    </Box>
   );
 };
 

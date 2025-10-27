@@ -424,10 +424,10 @@ function getSSRFallback(tokenName: string): string {
     'spacing-xxxl': '64px',
 
     // Color fallbacks (light theme defaults)
-    'color-bg-canvas': '#ffffff',
-    'color-bg-surface': '#fafafa',
-    'color-text-primary': '#0f0f0f',
-    'color-text-secondary': '#6b7280',
+    'color-bg-canvas': 'var(--layera-color-white, #ffffff)',
+    'color-bg-surface': 'var(--layera-color-gray-50, #fafafa)',
+    'color-text-primary': 'var(--layera-color-gray-900, #0f0f0f)',
+    'color-text-secondary': 'var(--layera-color-gray-500, #6b7280)',
 
     // Motion fallbacks
     'motion-duration-fast': '150ms',
@@ -443,7 +443,7 @@ function getSSRFallback(tokenName: string): string {
     'border-radius-lg': '8px',
 
     // Elevation fallbacks
-    'elevation-sm': '0 1px 3px rgba(0,0,0,0.1)',
+    'elevation-sm': 'var(--layera-shadow-sm, 0 1px 3px rgba(0,0,0,0.1))',
 
     // Z-index fallbacks
     'z-index-modal': '400',

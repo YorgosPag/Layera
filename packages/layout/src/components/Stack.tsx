@@ -1,5 +1,6 @@
 import React from 'react';
 import { SPACING_SCALE } from '@layera/constants';
+import { Box } from './Box';
 
 export interface StackProps {
   children: React.ReactNode;
@@ -35,8 +36,8 @@ export const Stack: React.FC<StackProps> = ({
   };
 
   return (
-    <div className={className} style={stackStyles}>
+    <Box className={className || ""} style={stackStyles}>
       {children}
-    </div>
+    </Box>
   );
 };

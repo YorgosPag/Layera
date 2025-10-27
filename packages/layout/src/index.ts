@@ -67,9 +67,9 @@ export {
   updateGeoAlertLayoutVariables
 } from './utils/geoalert-layout';
 
-// 🚀 NEW: Enterprise Sizing System - SPACING_SCALE ONLY
+// 🚀 NEW: Enterprise Sizing System - ADVANCED FEATURES ONLY
+// Note: For SPACING_SCALE, import directly from '@layera/constants' for Single Source of Truth
 export {
-  SPACING_SCALE,
   SIZING_CSS_VARS,
   SIZING_UTILITIES,
   RESPONSIVE_SIZING,
