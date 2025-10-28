@@ -1,98 +1,115 @@
-/* FormSection Styles */
+/**
+ * @layera/forms - FormSection Component Styles
+ *
+ * Enterprise CSS για form section system.
+ * Consistent με Layera design tokens.
+ */
+
+/* Base FormSection */
 .la-form-section {
-  margin-bottom: var(--la-space-lg);
+  margin-bottom: var(--la-space-6);
 }
 
-.la-form-section__header {
+.la-form-section-header {
   display: flex;
   align-items: flex-start;
-  gap: var(--la-space-sm);
-  margin-bottom: var(--la-space-md);
+  gap: var(--la-space-2);
+  margin-bottom: var(--la-space-4);
 }
 
-.la-form-section--collapsible .la-form-section__header {
-  cursor: var(--la-cursor-pointer);
-  padding: var(--la-space-sm);
+.la-form-section-collapsible .la-form-section-header {
+  cursor: pointer;
+  padding: var(--la-space-2);
   border-radius: var(--la-radius-md);
-  transition: background-color var(--la-transition-default);
+  transition: background-color 0.15s ease;
 }
 
-.la-form-section--collapsible .la-form-section__header:hover {
-  background: var(--la-color-background-hover);
+.la-form-section-collapsible .la-form-section-header:hover {
+  background: var(--la-color-surface-hover);
 }
 
-.la-form-section--collapsible .la-form-section__header:focus {
-  outline: var(--la-border-width-2) solid var(--la-color-primary-500);
+.la-form-section-collapsible .la-form-section-header:focus {
+  outline: var(--la-border-width-2) solid var(--la-color-brand);
   outline-offset: var(--la-border-width-2);
 }
 
-.la-form-section__icon {
+.la-form-section-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: var(--la-flex-shrink-0);
+  flex-shrink: 0;
   margin-top: var(--la-space-0-5);
-  color: var(--la-color-primary-600);
+  color: var(--la-color-brand);
 }
 
-.la-form-section__header-content {
-  flex: var(--la-flex-1);
+.la-form-section-header-content {
+  flex: 1;
   min-width: 0;
 }
 
-.la-form-section__title {
+.la-form-section-title {
   margin: 0;
-  font-size: var(--la-text-xl);
-  font-weight: var(--la-font-semibold);
+  font-size: var(--la-font-size-xl);
+  font-weight: 600;
   color: var(--la-color-text-primary);
-  line-height: var(--la-leading-relaxed);
+  line-height: var(--la-line-height-relaxed);
 }
 
-.la-form-section__description {
+.la-form-section-description {
   margin: var(--la-space-1) 0 0 0;
-  font-size: var(--la-text-sm);
+  font-size: var(--la-font-size-sm);
   color: var(--la-color-text-secondary);
-  line-height: var(--la-leading-relaxed);
+  line-height: var(--la-line-height-relaxed);
 }
 
-.la-form-section__toggle {
+.la-form-section-toggle {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: var(--la-flex-shrink-0);
+  flex-shrink: 0;
   color: var(--la-color-text-secondary);
-  transition: transform var(--la-transition-default);
+  transition: transform 0.15s ease;
 }
 
-.la-form-section__chevron {
-  transition: transform var(--la-transition-default);
+.la-form-section-chevron {
+  transition: transform 0.15s ease;
 }
 
-.la-form-section--collapsed .la-form-section__chevron {
+.la-form-section-collapsed .la-form-section-chevron {
   transform: rotate(-90deg);
 }
 
-.la-form-section__content {
-  transition: all var(--la-transition-default);
+.la-form-section-content {
+  transition: all 0.15s ease;
 }
 
-.la-form-section--collapsed .la-form-section__content {
+.la-form-section-collapsed .la-form-section-content {
   height: 0;
   overflow: hidden;
   opacity: 0;
 }
 
-/* Responsive adjustments */
+/* Responsive Design */
 @media (max-width: 48rem) {
   .la-form-section {
-    margin-bottom: var(--la-space-md);
+    margin-bottom: var(--la-space-4);
   }
 
-  .la-form-section__header {
-    margin-bottom: var(--la-space-sm);
+  .la-form-section-header {
+    margin-bottom: var(--la-space-2);
   }
 
-  .la-form-section__title {
-    font-size: var(--la-text-lg);
+  .la-form-section-title {
+    font-size: var(--la-font-size-lg);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .la-form-section-collapsible .la-form-section-header,
+  .la-form-section-toggle,
+  .la-form-section-chevron,
+  .la-form-section-content {
+    transition: none;
   }
 }

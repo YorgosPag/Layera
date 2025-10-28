@@ -11,30 +11,30 @@
   padding-bottom: var(--la-space-3);
   border-bottom: 0.0625rem solid var(--la-color-border-primary);
   background-color: var(--la-color-bg-primary);
-  border-radius: var(--la-radius-lg) var(--la-radius-lg) 0 0;
+  border-radius: var(--la-radius-top-lg);
 }
 
-.la-modal-header--content {
+.la-modal-header-content {
   flex: 1;
   min-width: 0;
 }
 
-.la-modal-header--title {
+.la-modal-header-title {
   margin: 0;
   font-size: var(--la-font-size-xl);
   font-weight: 600;
-  line-height: 1.5;
+  line-height: var(--la-line-height-normal);
   color: var(--la-color-text-primary);
 }
 
-.la-modal-header--subtitle {
-  margin: 0.25rem 0 0 0;
+.la-modal-header-subtitle {
+  margin: var(--la-space-1) 0 0 0;
   font-size: var(--la-font-size-sm);
-  line-height: 1.5;
+  line-height: var(--la-line-height-normal);
   color: var(--la-color-text-secondary);
 }
 
-.la-modal-header--close {
+.la-modal-header-close {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,19 +42,19 @@
   height: var(--la-space-8);
   border: none;
   border-radius: var(--la-radius-md);
-  background-color: transparent;
+  background-color: var(--la-color-transparent);
   color: var(--la-color-text-secondary);
   cursor: pointer;
   transition: all 0.15s ease;
   flex-shrink: 0;
 }
 
-.la-modal-header--close:hover {
+.la-modal-header-close:hover {
   background-color: var(--la-color-bg-app);
   color: var(--la-color-text-primary);
 }
 
-.la-modal-header--close:focus {
+.la-modal-header-close:focus {
   outline: 0.125rem solid var(--la-color-brand);
   outline-offset: 0.125rem;
 }

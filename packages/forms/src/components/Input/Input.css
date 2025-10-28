@@ -1,115 +1,122 @@
-/* Input Component Styles */
+/**
+ * @layera/forms - Input Component Styles
+ *
+ * Enterprise CSS για input form component.
+ * Consistent με Layera design tokens.
+ */
+
+/* Base Input */
 .la-input-wrapper {
   position: relative;
   display: inline-flex;
   align-items: center;
-  background: var(--la-color-background-primary);
+  background: var(--la-color-surface);
   border: var(--la-border-width-1) solid var(--la-color-border-primary);
   border-radius: var(--la-radius-md);
-  transition: all var(--la-transition-fast);
+  transition: all 0.15s ease;
 }
 
 .la-input {
-  flex: var(--la-flex-1);
-  border: none;
+  flex: 1;
+  border: 0;
   background: transparent;
-  outline: none;
+  outline: 0;
   font-family: inherit;
-  font-size: var(--la-text-base);
+  font-size: var(--la-font-size-base);
   color: var(--la-color-text-primary);
   padding: var(--la-space-3) var(--la-space-4);
-  transition: all var(--la-transition-fast);
+  transition: all 0.15s ease;
 }
 
 .la-input::placeholder {
   color: var(--la-color-text-placeholder);
 }
 
-/* Sizes */
-.la-input--sm,
-.la-input-wrapper--sm .la-input {
+/* Size Variants */
+.la-input-sm,
+.la-input-wrapper-sm .la-input {
   padding: var(--la-space-2) var(--la-space-3);
-  font-size: var(--la-text-sm);
+  font-size: var(--la-font-size-sm);
 }
 
-.la-input-wrapper--sm {
+.la-input-wrapper-sm {
   border-radius: var(--la-radius-sm);
 }
 
-.la-input--lg,
-.la-input-wrapper--lg .la-input {
+.la-input-lg,
+.la-input-wrapper-lg .la-input {
   padding: var(--la-space-4) var(--la-space-5);
-  font-size: var(--la-text-lg);
+  font-size: var(--la-font-size-lg);
 }
 
-.la-input-wrapper--lg {
+.la-input-wrapper-lg {
   border-radius: var(--la-radius-lg);
 }
 
-/* Variants */
-.la-input-wrapper--outline {
+/* Style Variants */
+.la-input-wrapper-outline {
   background: transparent;
   border: var(--la-border-width-2) solid var(--la-color-border-primary);
 }
 
-.la-input-wrapper--filled {
-  background: var(--la-color-background-secondary);
+.la-input-wrapper-filled {
+  background: var(--la-color-surface-secondary);
   border: var(--la-border-width-1) solid transparent;
 }
 
-.la-input-wrapper--ghost {
+.la-input-wrapper-ghost {
   background: transparent;
   border: var(--la-border-width-1) solid transparent;
 }
 
-.la-input-wrapper--underline {
+.la-input-wrapper-underline {
   background: transparent;
-  border: none;
+  border: 0;
   border-bottom: var(--la-border-width-2) solid var(--la-color-border-primary);
   border-radius: 0;
 }
 
 /* States */
 .la-input-wrapper:focus-within {
-  border-color: var(--la-color-primary-500);
-  box-shadow: 0 0 0 var(--la-border-width-3) var(--la-color-primary-100);
+  border-color: var(--la-color-brand);
+  box-shadow: var(--la-shadow-focus);
 }
 
-.la-input-wrapper--error {
-  border-color: var(--la-color-error-500);
+.la-input-wrapper-error {
+  border-color: var(--la-color-destructive);
 }
 
-.la-input-wrapper--error:focus-within {
-  border-color: var(--la-color-error-500);
-  box-shadow: 0 0 0 var(--la-border-width-3) var(--la-color-error-100);
+.la-input-wrapper-error:focus-within {
+  border-color: var(--la-color-destructive);
+  box-shadow: var(--la-shadow-focus-destructive);
 }
 
-.la-input-wrapper--success {
-  border-color: var(--la-color-success-500);
+.la-input-wrapper-success {
+  border-color: var(--la-color-success);
 }
 
-.la-input-wrapper--success:focus-within {
-  border-color: var(--la-color-success-500);
-  box-shadow: 0 0 0 var(--la-border-width-3) var(--la-color-success-100);
+.la-input-wrapper-success:focus-within {
+  border-color: var(--la-color-success);
+  box-shadow: var(--la-shadow-focus-success);
 }
 
-.la-input-wrapper--warning {
-  border-color: var(--la-color-warning-500);
+.la-input-wrapper-warning {
+  border-color: var(--la-color-warning);
 }
 
-.la-input-wrapper--warning:focus-within {
-  border-color: var(--la-color-warning-500);
-  box-shadow: 0 0 0 var(--la-border-width-3) var(--la-color-warning-100);
+.la-input-wrapper-warning:focus-within {
+  border-color: var(--la-color-warning);
+  box-shadow: var(--la-shadow-focus-warning);
 }
 
-.la-input-wrapper--disabled {
-  opacity: var(--la-opacity-60);
-  cursor: var(--la-cursor-not-allowed);
-  background: var(--la-color-background-disabled);
+.la-input-wrapper-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: var(--la-color-surface-disabled);
 }
 
-.la-input--disabled {
-  cursor: var(--la-cursor-not-allowed);
+.la-input-disabled {
+  cursor: not-allowed;
   color: var(--la-color-text-disabled);
 }
 
@@ -120,7 +127,7 @@
   align-items: center;
   justify-content: center;
   color: var(--la-color-text-secondary);
-  flex-shrink: var(--la-flex-shrink-0);
+  flex-shrink: 0;
 }
 
 .la-input-start-icon {
@@ -131,15 +138,15 @@
   padding-right: var(--la-space-4);
 }
 
-.la-input--has-start-icon {
+.la-input-has-start-icon {
   padding-left: var(--la-space-2);
 }
 
-.la-input--has-end-icon {
+.la-input-has-end-icon {
   padding-right: var(--la-space-2);
 }
 
-/* Loading */
+/* Loading State */
 .la-input-loading {
   position: absolute;
   right: var(--la-space-4);
@@ -149,11 +156,11 @@
 }
 
 .la-input-spinner {
-  width: var(--la-size-4);
-  height: var(--la-size-4);
+  width: var(--la-space-4);
+  height: var(--la-space-4);
   border: var(--la-border-width-2) solid var(--la-color-border-primary);
-  border-top: var(--la-border-width-2) solid var(--la-color-primary-500);
-  border-radius: 50%;
+  border-top: var(--la-border-width-2) solid var(--la-color-brand);
+  border-radius: var(--la-radius-full);
   animation: la-input-spin 1s linear infinite;
 }
 
@@ -162,26 +169,47 @@
   100% { transform: rotate(360deg); }
 }
 
-/* Full width */
-.la-input-wrapper--full-width {
+/* Full Width */
+.la-input-wrapper-full-width {
   width: 100%;
 }
 
-/* Dark mode adjustments */
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .la-input-wrapper,
+  .la-input,
+  .la-input-spinner {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Dark Theme Support */
 @media (prefers-color-scheme: dark) {
   .la-input-wrapper:focus-within {
-    box-shadow: 0 0 0 var(--la-border-width-3) var(--la-color-primary-800);
+    box-shadow: var(--la-shadow-focus);
   }
 
-  .la-input-wrapper--error:focus-within {
-    box-shadow: 0 0 0 var(--la-border-width-3) var(--la-color-error-800);
+  .la-input-wrapper-error:focus-within {
+    box-shadow: var(--la-shadow-focus-destructive);
   }
 
-  .la-input-wrapper--success:focus-within {
-    box-shadow: 0 0 0 var(--la-border-width-3) var(--la-color-success-800);
+  .la-input-wrapper-success:focus-within {
+    box-shadow: var(--la-shadow-focus-success);
   }
 
-  .la-input-wrapper--warning:focus-within {
-    box-shadow: 0 0 0 var(--la-border-width-3) var(--la-color-warning-800);
+  .la-input-wrapper-warning:focus-within {
+    box-shadow: var(--la-shadow-focus-warning);
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .la-input-wrapper {
+    border-width: var(--la-border-width-3);
+  }
+
+  .la-input-wrapper-outline {
+    border-width: var(--la-border-width-4);
   }
 }

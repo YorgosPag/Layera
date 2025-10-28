@@ -120,7 +120,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
       {/* Ακίνητα Card */}
       <BaseCard
         variant="property"
-        title={t('category.property')}
+        title={t('category.property.title')}
         icon={<VillaIcon size="sm" theme="neutral" />}
         onClick={() => handleCategorySelection('property')}
         onInfoClick={() => handleInfoClick('property')}
@@ -130,7 +130,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
       {/* Εργασία Card */}
       <BaseCard
         variant="job"
-        title={t('category.job')}
+        title={t('category.job.title')}
         icon={<BriefcaseIcon size="sm" theme="neutral" />}
         onClick={() => handleCategorySelection('job')}
         onInfoClick={() => handleInfoClick('job')}

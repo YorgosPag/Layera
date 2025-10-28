@@ -8,8 +8,8 @@
 /* Base MapLabel Styles */
 .la-map-label {
   position: absolute;
-  z-index: var(--la-z-index-overlay);
-  font-family: var(--la-font-family-base);
+  z-index: var(--layera-z-index-overlay);
+  font-family: var(--layera-font-family-base);
   pointer-events: auto;
   user-select: none;
   transition: all 0.15s ease;
@@ -39,27 +39,27 @@
 }
 
 .la-map-label-bg-semi {
-  background: var(--la-color-surface-alpha);
-  border: 0.0625rem solid var(--la-color-border-primary);
-  box-shadow: var(--la-shadow-sm);
+  background: var(--layera-color-surface-alpha);
+  border: 0.0625rem solid var(--layera-color-border-primary);
+  box-shadow: var(--layera-shadow-sm);
   backdrop-filter: blur(0.25rem);
 }
 
 .la-map-label-bg-solid {
-  background: var(--la-color-surface);
-  border: 0.0625rem solid var(--la-color-border-primary);
-  box-shadow: var(--la-shadow-sm);
+  background: var(--layera-color-surface);
+  border: 0.0625rem solid var(--layera-color-border-primary);
+  box-shadow: var(--layera-shadow-sm);
 }
 
 /* Label Variants */
 
 /* Title variant - για boundary names */
 .la-map-label-title {
-  font-size: var(--la-font-size-lg);
+  font-size: var(--layera-font-size-lg);
   font-weight: 600;
-  color: var(--la-color-text-primary);
-  padding: var(--la-space-2) var(--la-space-3);
-  border-radius: var(--la-radius-sm);
+  color: var(--layera-color-text-primary);
+  padding: var(--layera-space-2) var(--layera-space-3);
+  border-radius: var(--layera-radius-sm);
   line-height: var(--la-line-height-tight);
   text-align: center;
   white-space: nowrap;
@@ -69,9 +69,9 @@
 .la-map-label-subtitle {
   font-size: var(--la-font-size-base);
   font-weight: 500;
-  color: var(--la-color-text-primary);
+  color: var(--layera-color-text-primary);
   padding: var(--la-space-3) var(--la-space-5);
-  border-radius: var(--la-radius-sm);
+  border-radius: var(--layera-radius-sm);
   line-height: var(--la-line-height-normal);
   text-align: center;
 }
@@ -117,7 +117,7 @@
   font-weight: 500;
   color: var(--la-color-warning);
   padding: var(--la-space-1) var(--la-space-2);
-  border-radius: var(--la-radius-sm);
+  border-radius: var(--layera-radius-sm);
   line-height: var(--la-line-height-normal);
   text-align: center;
   background: var(--la-color-bg-warning);
@@ -130,7 +130,7 @@
   font-weight: 500;
   color: var(--la-color-success);
   padding: var(--la-space-1) var(--la-space-2);
-  border-radius: var(--la-radius-sm);
+  border-radius: var(--layera-radius-sm);
   line-height: var(--la-line-height-normal);
   text-align: center;
   background: var(--la-color-bg-success);
@@ -241,7 +241,7 @@
 }
 
 /* Responsive Design */
-@media (width <= 48rem) {
+@media (max-width: 48rem) {
   .la-map-label-title {
     font-size: var(--la-font-size-base);
     padding: var(--la-space-3) var(--la-space-5);
@@ -266,11 +266,11 @@
   }
 
   .la-map-label-bg-semi {
-    background: var(--la-color-surface);
+    background: var(--layera-color-surface);
   }
 
   .la-map-label-bg-solid {
-    background: var(--la-color-surface);
+    background: var(--layera-color-surface);
   }
 }
 
@@ -291,8 +291,8 @@
 
 /* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
-  .la-map-label-bg-transparent {
-    background: transparent;
+  .la-map-label-bg-var(--la-color-transparent) {
+    background: var(--la-color-transparent);
   }
 
   .la-map-label-bg-semi {

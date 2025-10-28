@@ -78,12 +78,12 @@
 .la-alert-title {
   font-weight: 600;
   margin-bottom: var(--la-space-1);
-  color: currentcolor;
+  color: var(--la-color-current);
 }
 
 .la-alert-message {
   opacity: 0.9;
-  color: currentcolor;
+  color: var(--la-color-current);
 }
 
 /* Alert Actions */
@@ -93,12 +93,12 @@
   justify-content: center;
   height: var(--la-space-6);
   padding: 0 var(--la-space-3);
-  border: var(--la-border-width-1) solid currentcolor;
+  border: var(--la-border-width-1) solid var(--la-color-current);
   border-radius: var(--la-radius-sm);
-  background-color: transparent;
+  background-color: var(--la-color-transparent);
   font-size: var(--la-font-size-sm);
   font-weight: 500;
-  color: currentcolor;
+  color: var(--la-color-current);
   cursor: pointer;
   transition: all 0.15s ease;
   flex-shrink: 0;
@@ -119,8 +119,8 @@
   height: var(--la-space-6);
   border: none;
   border-radius: var(--la-radius-xs);
-  background-color: transparent;
-  color: currentcolor;
+  background-color: var(--la-color-transparent);
+  color: var(--la-color-current);
   cursor: pointer;
   transition: all 0.15s ease;
   flex-shrink: 0;
