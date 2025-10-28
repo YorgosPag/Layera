@@ -26,7 +26,7 @@ Enterprise form components with validation, accessibility, and TypeScript suppor
 ## 🚀 Installation
 
 ```bash
-npm install @layera/forms @layera/constants @layera/i18n
+npm install @layera/forms @layera/constants @layera/tolgee
 ```
 
 ## 📦 Components
@@ -37,7 +37,7 @@ Wrapper component that provides consistent layout, validation, and accessibility
 ```tsx
 import { FormField, Input } from '@layera/forms';
 import { FORM_TYPES } from '@layera/constants';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 const { t } = useLayeraTranslation();
 
@@ -62,7 +62,7 @@ Text input component with multiple variants and states.
 ```tsx
 import { Input } from '@layera/forms';
 import { FORM_SIZES, FORM_STATES } from '@layera/constants';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 const { t } = useLayeraTranslation();
 
@@ -89,7 +89,7 @@ Dropdown selection component with search and multi-select support.
 ```tsx
 import { Select } from '@layera/forms';
 import { USER_ROLES } from '@layera/constants';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 const { t } = useLayeraTranslation();
 

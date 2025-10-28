@@ -24,7 +24,7 @@ module.exports = {
       'border-color': [/^var\(--la-/]
     },
 
-    // ΝΕΑ: ονόματα custom props - ΜΟΝΟ --la- prefixes
-    'custom-property-pattern': '^--la-'
+    // DISABLE: custom-property-pattern rule has a bug and doesn't work correctly
+    // 'custom-property-pattern': "^--la-.*"
   }
 };

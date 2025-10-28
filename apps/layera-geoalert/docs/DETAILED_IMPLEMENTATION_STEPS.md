@@ -41,14 +41,14 @@ resolve: {
   alias: {
     '@': resolve(__dirname, './src'),
     '@layera/auth-bridge': resolve(__dirname, '../../packages/auth-bridge/src/index.ts'),
-    '@layera/i18n': resolve(__dirname, '../../packages/i18n/src/index.ts'),
+    '@layera/tolgee': resolve(__dirname, '../../packages/tolgee/src/index.ts'),
   },
 }
 ```
 
 ### ✅ 0.3 i18n System Implementation (COMPLETED)
 **Πραγματοποιήθηκε:**
-- ✅ @layera/i18n LEGO system integration
+- ✅ @layera/tolgee LEGO system integration
 - ✅ Μεταφράσεις σε ελληνικά/αγγλικά
 - ✅ LanguageSwitcher component
 - ✅ Proper translation file structure
@@ -157,7 +157,7 @@ VITE_FIREBASE_STORAGE_BUCKET=layera-dev.appspot.com
 **Deliverable:** Complete type definitions
 
 ### 1.4 i18n Integration (CRITICAL)
-**Dependencies:** `@layera/i18n` (workspace:*)
+**Dependencies:** `@layera/tolgee` (workspace:*)
 **Αρχεία:**
 - `src/locales/el/geoalert.json`
 - `src/locales/en/geoalert.json`

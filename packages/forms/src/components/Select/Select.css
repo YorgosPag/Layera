@@ -209,7 +209,7 @@
   padding: 0.75rem 1rem;
   cursor: var(--la-cursor-pointer);
   transition: background-color 0.2s ease-in-out;
-  border-bottom: 1px solid var(--la-color-border-secondary);
+  border-bottom: 1px solid var(--la-color-border-primary);
 }
 
 .layera-select__option:last-child {

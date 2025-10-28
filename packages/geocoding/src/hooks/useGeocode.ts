@@ -62,7 +62,7 @@ export function useGeocode(options: UseGeocodeOptions = {}): UseGeocodeReturn {
 
     try {
       // Ανίχνευση γλώσσας από browser ή localStorage
-      // ΣΗΜΑΝΤΙΚΟ: Το i18nextLng μπορεί να είναι 'el' ή 'en', όχι 'el-GR' ή 'en-US'
+      // ΣΗΜΑΝΤΙΚΟ: Το i18nextLng (legacy key) μπορεί να είναι 'el' ή 'en', όχι 'el-GR' ή 'en-US'
       const storedLang = typeof window !== 'undefined' ? localStorage.getItem('i18nextLng') : null;
       const userLanguage = storedLang || (typeof navigator !== 'undefined' ? navigator.language.slice(0, 2) : 'el');
 

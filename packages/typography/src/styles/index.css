@@ -6,7 +6,7 @@
 :root {
   /* Primary Font Family */
   --la-font-family-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --la-font-family-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  --la-font-family-monospace: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
 
   /* Font Sizes - Enterprise Scale */
   --la-text-xs: 0.75rem;    /* 12px */
@@ -45,7 +45,7 @@
   /* Text Colors - Συνδεδεμένα με το Layera color system */
   --la-text-primary: var(--la-color-text-primary);
   --la-text-secondary: var(--la-color-text-secondary);
-  --la-text-muted: var(--la-color-text-muted);
+  --la-text-muted: var(--la-color-text-tertiary);
   --la-text-accent: var(--la-color-primary);
   --la-text-success: var(--la-color-success);
   --la-text-warning: var(--la-color-warning);

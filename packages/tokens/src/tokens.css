@@ -1,7 +1,7 @@
 :root {
   /* Spacing */
   --la-space-0: 0;
-  --la-space-0-5: 2px;
+  --la-space-1: 2px;
   --la-space-1: 4px;
   --la-space-1-5: 6px;
   --la-space-2: 8px;
@@ -15,7 +15,7 @@
   --la-space-12: 48px;
 
   /* Sizes */
-  --la-size-48: 12rem;
+  --la-space-48: 12rem;
   --la-size-64: 16rem;
   --la-size-96: 24rem;
 
@@ -46,9 +46,9 @@
   --la-color-text-primary: #0f172a;
   --la-color-text-secondary: #475569;
   --la-color-text-tertiary: #64748b;
-  --la-color-text-muted: #94a3b8;
+  --la-color-text-tertiary: #94a3b8;
   --la-color-text-disabled: #cbd5e1;
-  --la-color-text-inverse: #ffffff;
+  --la-color-text-on-dark: #ffffff;
 
   /* Colors - Brand */
   --la-color-brand: #2563eb;
@@ -56,11 +56,11 @@
   --la-color-brand-active: #1e40af;
   --la-color-brand-light: #dbeafe;
   --la-color-brand-background: #eff6ff;
-  --la-color-brand-foreground: #ffffff;
+  --la-color-text-on-brand: #ffffff;
 
   /* Colors - Borders */
   --la-color-border-primary: #e2e8f0;
-  --la-color-border-secondary: #cbd5e1;
+  --la-color-border-primary: #cbd5e1;
   --la-color-border-subtle: #f1f5f9;
   --la-color-border-strong: #475569;
 
@@ -76,14 +76,14 @@
   /* Colors - Background */
   --la-color-bg-app: #f8fafc;
   --la-color-bg-secondary: #f1f5f9;
-  --la-color-bg-tooltip: #374151;
+  --la-color-surface-tooltip: #374151;
   --la-color-bg-brand: #2563eb;
   --la-color-bg-warning: #fef3c7;
   --la-color-bg-success: #dcfce7;
 
   /* Typography */
   --la-font-family-base: Inter, system-ui, sans-serif;
-  --la-font-family-mono: 'JetBrains Mono', monospace;
+  --la-font-family-monospace: 'JetBrains Mono', monospace;
   --la-font-size-xs: 12px;
   --la-font-size-sm: 14px;
   --la-font-size-base: 16px;
@@ -120,7 +120,7 @@
   --la-shadow-warning: 0 0 0 3px rgba(234, 88, 12, 0.2);
 
   /* Blur */
-  --la-blur-sm: 4px;
+  --la-shadow-blur-sm: 4px;
 
   /* Gradients */
   --la-gradient-brand-horizontal: linear-gradient(90deg, #2563eb, #1d4ed8);

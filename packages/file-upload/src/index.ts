@@ -10,7 +10,7 @@
  * - File validation & security checks
  * - Preview support για images
  * - Error handling & retry functionality
- * - Full i18n support (Greek/English)
+ * - Full translation support via @layera/tolgee (Greek/English)
  * - Dark/Light theme support
  * - Enterprise-grade TypeScript typing
  */

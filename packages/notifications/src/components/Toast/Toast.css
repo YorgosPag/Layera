@@ -32,7 +32,7 @@
   flex-shrink: 0;
   width: var(--la-space-5);
   height: var(--la-space-5);
-  margin-top: var(--la-space-0-5);
+  margin-top: var(--la-space-1);
 }
 
 /* Type Variants */

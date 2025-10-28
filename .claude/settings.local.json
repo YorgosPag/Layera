@@ -36,7 +36,12 @@
       "Bash(awk:*)",
       "Bash(npx stylelint:*)",
       "Bash(tasklist)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(start http://localhost:3003)",
+      "Bash(npm install)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm --filter @layera/file-upload build)",
+      "Bash(pnpm add:*)"
     ],
     "deny": [],
     "ask": []

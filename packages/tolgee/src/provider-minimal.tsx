@@ -6,8 +6,8 @@
 import React, { createContext, useContext, ReactNode } from 'react';
 
 // Import existing translations
-import elTranslations from '../../i18n/src/locales/el/common.json';
-import enTranslations from '../../i18n/src/locales/en/common.json';
+import { elTranslations } from './locales/el/common';
+import { enTranslations } from './locales/en/common';
 
 interface MinimalTolgeeContextType {
   t: (key: string, params?: Record<string, unknown>) => string;

@@ -14,7 +14,7 @@ export default defineConfig({
       '@layera/layout': path.resolve(__dirname, '../../packages/layout/src'),
       '@layera/cards': path.resolve(__dirname, '../../packages/cards/src'),
       '@layera/buttons': path.resolve(__dirname, '../../packages/buttons/src'),
-      '@layera/i18n': path.resolve(__dirname, '../../packages/i18n/src'),
+      '@layera/tolgee': path.resolve(__dirname, '../../packages/tolgee/src'),
       '@layera/theme-switcher': path.resolve(__dirname, '../../packages/theme-switcher/src'),
       '@layera/auth-bridge': path.resolve(__dirname, '../../packages/auth-bridge/src'),
       '@layera/viewport': path.resolve(__dirname, '../../packages/viewport/src')

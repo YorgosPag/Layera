@@ -120,7 +120,7 @@ export const GEO_DRAWING_STYLES = {
 } as const;
 
 /**
- * Error messages keys για i18n
+ * Error messages keys για @layera/tolgee
  */
 export const GEO_DRAWING_ERRORS = {
   MINIMUM_POINTS_DISTANCE: 'geo-drawing.errors.minimum-points-distance',
@@ -131,7 +131,7 @@ export const GEO_DRAWING_ERRORS = {
 } as const;
 
 /**
- * Success messages keys για i18n
+ * Success messages keys για @layera/tolgee
  */
 export const GEO_DRAWING_SUCCESS = {
   MEASUREMENT_COMPLETED: 'geo-drawing.success.measurement-completed',

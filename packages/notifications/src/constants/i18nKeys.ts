@@ -1,5 +1,5 @@
 /**
- * i18n Keys για το Notification System
+ * Translation Keys για το Notification System
  */
 
 export const NOTIFICATION_I18N_KEYS = {

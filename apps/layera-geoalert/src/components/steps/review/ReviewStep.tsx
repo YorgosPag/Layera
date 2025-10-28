@@ -53,7 +53,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
   const [reviewMode, setReviewMode] = useState<ReviewType>('preview');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // 🌐 i18n Integration
+  // 🌐 @layera/tolgee Integration
   const { t } = useLayeraTranslation();
 
   // 🎨 Enterprise Design System Integration

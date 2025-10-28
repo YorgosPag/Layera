@@ -50,7 +50,7 @@
   flex-shrink: 0;
   width: var(--la-space-6);
   height: var(--la-space-6);
-  margin-top: var(--la-space-0-5);
+  margin-top: var(--la-space-1);
 }
 
 /* Icon Colors */
@@ -99,11 +99,11 @@
   border-radius: var(--la-radius-sm);
   background-color: var(--la-color-transparent);
   font-size: var(--la-font-size-sm);
-  line-height: var(--la-line-height-none);
+  line-height: var(--la-line-height-tight);
   color: currentcolor;
   cursor: pointer;
   transition: all 0.15s ease;
-  margin-top: var(--la-space-0-5);
+  margin-top: var(--la-space-1);
   flex-shrink: 0;
 }
 

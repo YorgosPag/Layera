@@ -38,7 +38,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  margin-top: var(--la-space-0-5);
+  margin-top: var(--la-space-1);
   color: var(--la-color-brand);
 }
 

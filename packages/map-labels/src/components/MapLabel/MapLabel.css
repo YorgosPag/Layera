@@ -42,7 +42,7 @@
   background: var(--la-color-surface-secondary);
   border: var(--la-border-width-1) solid var(--la-color-border-primary);
   box-shadow: var(--la-shadow-sm);
-  backdrop-filter: blur(var(--la-blur-sm));
+  backdrop-filter: blur(var(--la-shadow-blur-sm));
 }
 
 .la-map-label-bg-solid {

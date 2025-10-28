@@ -2,14 +2,14 @@
 
 **Δημιουργία:** 2025-10-17
 **Κατάσταση:** ✅ COMPLETED - PHASE 0
-**Framework:** @layera/i18n LEGO system με enterprise configuration
+**Framework:** @layera/tolgee LEGO system με enterprise configuration
 
 ---
 
 ## 🌐 i18n Architecture Overview
 
 ### Strategic Decision: LEGO i18n Implementation
-**Επιλογή:** Χρήση του @layera/i18n LEGO system για consistent i18n σε όλες τις εφαρμογές
+**Επιλογή:** Χρήση του @layera/tolgee LEGO system για consistent i18n σε όλες τις εφαρμογές
 **Λόγος:** Enterprise consistency, shared functionality και μικρότερο bundle size
 
 ### Supported Languages
@@ -41,7 +41,7 @@ src/components/
 
 ### 1. i18n Configuration (src/i18n/index.ts)
 ```typescript
-import { LayeraI18nProvider } from '@layera/i18n';
+import { LayeraI18nProvider } from '@layera/tolgee';
 import el from './locales/el.json';
 import en from './locales/en.json';
 
@@ -62,7 +62,7 @@ export { resources };
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
-import { LayeraI18nProvider } from '@layera/i18n';
+import { LayeraI18nProvider } from '@layera/tolgee';
 import { resources } from './i18n';               // ✅ Import i18n resources
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -80,7 +80,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
 ### 3. Component Usage (src/App.tsx)
 ```typescript
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import LanguageSwitcher from './components/LanguageSwitcher';
 
 function App() {
@@ -151,7 +151,7 @@ export default App
 
 ### Implementation (src/components/LanguageSwitcher.tsx)
 ```typescript
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 const LanguageSwitcher = () => {
   const { currentLanguage, changeLanguage, t } = useLayeraTranslation();
@@ -221,7 +221,7 @@ export default LanguageSwitcher;
 
 ## 🔧 Technical Features
 
-### @layera/i18n LEGO Integration
+### @layera/tolgee LEGO Integration
 - ✅ **useLayeraTranslation Hook:** Enterprise React patterns
 - ✅ **Resource Loading:** JSON-based translations με LEGO system
 - ✅ **Fallback System:** English fallback για missing translations
@@ -242,7 +242,7 @@ export default LanguageSwitcher;
 ## 🚀 Performance Metrics
 
 ### Bundle Impact
-- **@layera/i18n:** ~12KB gzipped (optimized LEGO system)
+- **@layera/tolgee:** ~12KB gzipped (optimized LEGO system)
 - **Translation Files:** ~2KB total (el.json + en.json)
 - **Total Impact:** ~14KB (significantly reduced με LEGO architecture)
 
@@ -351,7 +351,7 @@ resources: {
   }
 }
 
-// 3. Use στο component με @layera/i18n
+// 3. Use στο component με @layera/tolgee
 const { t } = useLayeraTranslation();
 return <h1>{t('newFeature.title')}</h1>
 ```

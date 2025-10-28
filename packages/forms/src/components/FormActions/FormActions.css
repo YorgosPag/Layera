@@ -2,7 +2,7 @@
 .la-form-actions {
   margin-top: var(--la-space-lg);
   padding-top: var(--la-space-md);
-  border-top: var(--la-border-width-1) solid var(--la-color-border-secondary);
+  border-top: var(--la-border-width-1) solid var(--la-color-border-primary);
 }
 
 .la-form-actions__content {

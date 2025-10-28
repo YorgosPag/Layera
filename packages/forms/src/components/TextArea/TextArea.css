@@ -31,7 +31,7 @@
 }
 
 .la-textarea::placeholder {
-  color: var(--la-color-text-muted);
+  color: var(--la-color-text-tertiary);
 }
 
 /* Resize Options */

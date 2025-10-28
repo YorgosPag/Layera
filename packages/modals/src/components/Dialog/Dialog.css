@@ -92,7 +92,7 @@
   border-radius: var(--la-radius-md);
   font-size: var(--la-font-size-sm);
   font-weight: 500;
-  line-height: var(--la-line-height-none);
+  line-height: var(--la-line-height-tight);
   cursor: pointer;
   transition: all 150ms ease;
   text-decoration: none;
@@ -107,7 +107,7 @@
 
 .la-dialog-button-ghost {
   background-color: var(--la-color-transparent);
-  border-color: var(--la-color-border-secondary);
+  border-color: var(--la-color-border-primary);
   color: var(--la-color-text-secondary);
 }
 
@@ -119,7 +119,7 @@
 
 .la-dialog-button-primary {
   background-color: var(--la-color-brand);
-  color: var(--la-color-brand-contrast);
+  color: var(--la-color-text-on-brand);
 }
 
 .la-dialog-button-primary:hover:not(:disabled) {
@@ -128,7 +128,7 @@
 
 .la-dialog-button-success {
   background-color: var(--la-color-brand);
-  color: var(--la-color-brand-contrast);
+  color: var(--la-color-text-on-brand);
 }
 
 .la-dialog-button-success:hover:not(:disabled) {
@@ -137,7 +137,7 @@
 
 .la-dialog-button-warning {
   background-color: var(--la-color-brand);
-  color: var(--la-color-brand-contrast);
+  color: var(--la-color-text-on-brand);
 }
 
 .la-dialog-button-warning:hover:not(:disabled) {
@@ -146,7 +146,7 @@
 
 .la-dialog-button-danger {
   background-color: var(--la-color-brand);
-  color: var(--la-color-brand-contrast);
+  color: var(--la-color-text-on-brand);
 }
 
 .la-dialog-button-danger:hover:not(:disabled) {
@@ -172,7 +172,7 @@
 }
 
 [data-theme="dark"] .la-dialog-button-ghost {
-  border-color: var(--la-color-text-muted);
+  border-color: var(--la-color-text-tertiary);
   color: var(--la-color-text-secondary);
 }
 

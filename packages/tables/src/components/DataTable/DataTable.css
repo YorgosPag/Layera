@@ -417,7 +417,7 @@
 .la-table-pagination-page-active {
   background: var(--la-color-brand);
   border-color: var(--la-color-brand);
-  color: var(--la-color-brand-foreground);
+  color: var(--la-color-text-on-brand);
 }
 
 .la-table-pagination-ellipsis {

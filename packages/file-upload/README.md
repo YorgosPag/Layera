@@ -331,7 +331,7 @@ const { theme } = useTheme();
 - `@layera/buttons` - Button components
 - `@layera/icons` - Icon library
 - `@layera/theme-switcher` - Theme management
-- `@layera/i18n` - Internationalization
+- `@layera/tolgee` - Internationalization
 - `@layera/notifications` - Toast notifications
 - `@layera/error-boundary` - Error handling
 

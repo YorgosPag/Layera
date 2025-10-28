@@ -33,8 +33,8 @@ export const formatArea = (sqMeters: number): string => {
 };
 
 /**
- * Hook for formatted measurement display with i18n support
- * Αντικαθιστά τα hardcoded strings με i18n keys
+ * Hook for formatted measurement display with @layera/tolgee support
+ * Αντικαθιστά τα hardcoded strings με @layera/tolgee keys
  */
 export const useMeasurementFormatter = () => {
   const { t } = useLayeraTranslation();

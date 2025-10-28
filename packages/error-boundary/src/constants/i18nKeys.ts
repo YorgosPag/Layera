@@ -1,5 +1,5 @@
 /**
- * i18n Keys για το Error Boundary System
+ * Translation Keys για το Error Boundary System
  */
 
 export const ERROR_I18N_KEYS = {

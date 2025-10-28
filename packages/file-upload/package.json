@@ -20,29 +20,31 @@
     "verify": "npm run typecheck && npm run lint --max-warnings=0"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "@layera/constants": "workspace:*",
-    "@layera/theme-switcher": "workspace:*",
-    "@layera/error-boundary": "workspace:*",
-    "@layera/notifications": "workspace:*",
-    "@layera/loading": "workspace:*",
+    "@layera/auth-bridge": "workspace:*",
     "@layera/buttons": "workspace:*",
-    "@layera/icons": "workspace:*",
-    "@layera/typography": "workspace:*",
-    "@layera/layout": "workspace:*",
     "@layera/cards": "workspace:*",
+    "@layera/constants": "workspace:*",
+    "@layera/error-boundary": "workspace:*",
     "@layera/forms": "workspace:*",
+    "@layera/icons": "workspace:*",
+    "@layera/layout": "workspace:*",
+    "@layera/loading": "workspace:*",
     "@layera/modals": "workspace:*",
+    "@layera/notifications": "workspace:*",
     "@layera/tables": "workspace:*",
+    "@layera/theme-switcher": "workspace:*",
+    "@layera/tolgee": "workspace:*",
+    "@layera/typography": "workspace:*",
     "@layera/viewport": "workspace:*",
-    "@layera/auth-bridge": "workspace:*"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@rollup/rollup-win32-x64-msvc": "^4.52.5",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
-    "typescript": "^5.0.0",
-    "tsup": "^8.0.0"
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
   },
   "peerDependencies": {
     "react": "^18.0.0",

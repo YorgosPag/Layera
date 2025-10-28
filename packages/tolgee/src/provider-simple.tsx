@@ -9,8 +9,8 @@ import type { TolgeeInstance } from '@tolgee/react';
 import { Box } from '@layera/layout';
 
 // Import existing translations
-import elTranslations from '../../i18n/src/locales/el/common.json';
-import enTranslations from '../../i18n/src/locales/en/common.json';
+import { elTranslations } from './locales/el/common';
+import { enTranslations } from './locales/en/common';
 
 interface SimpleTolgeeProviderProps {
   children: React.ReactNode;

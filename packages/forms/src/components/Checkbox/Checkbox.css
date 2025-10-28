@@ -218,7 +218,7 @@
   transform: translate(-50%, -50%);
   width: var(--la-space-3);
   height: var(--la-space-3);
-  border: var(--la-border-width-1) solid var(--la-color-border-secondary);
+  border: var(--la-border-width-1) solid var(--la-color-border-primary);
   border-top: var(--la-border-width-1) solid var(--la-color-brand);
   border-radius: var(--la-radius-full);
   animation: la-checkbox-spin 1s linear infinite;

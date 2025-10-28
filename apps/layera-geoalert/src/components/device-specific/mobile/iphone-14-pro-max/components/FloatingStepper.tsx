@@ -79,7 +79,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   // Χρήση του auto-discovered steps από το PipelineDiscovery
   const discoveredSteps = pipelineDiscovery.getAvailableStepsForUI();
 
-  // Mapping των discovered steps σε UI format με i18n
+  // Mapping των discovered steps σε UI format με @layera/tolgee
   const steps = discoveredSteps.map(step => ({
     id: step.id,
     title: t(`pipeline.steps.${step.id}.title`, step.title),

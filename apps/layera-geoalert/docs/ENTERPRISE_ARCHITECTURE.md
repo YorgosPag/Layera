@@ -74,7 +74,7 @@ export default defineConfig({
     alias: {
       '@': resolve(__dirname, './src'),
       '@layera/auth-bridge': resolve(__dirname, '../../packages/auth-bridge/src/index.ts'),
-      '@layera/i18n': resolve(__dirname, '../../packages/i18n/src/index.ts'),
+      '@layera/tolgee': resolve(__dirname, '../../packages/tolgee/src/index.ts'),
     },
   },
 })
@@ -88,8 +88,8 @@ export default defineConfig({
       "@/*": ["./src/*"],
       "@layera/auth-bridge": ["../../packages/auth-bridge/src/index.ts"],
       "@layera/auth-bridge/*": ["../../packages/auth-bridge/src/*"],
-      "@layera/i18n": ["../../packages/i18n/src/index.ts"],
-      "@layera/i18n/*": ["../../packages/i18n/src/*"]
+      "@layera/tolgee": ["../../packages/tolgee/src/index.ts"],
+      "@layera/tolgee/*": ["../../packages/tolgee/src/*"]
     }
   }
 }
@@ -111,7 +111,7 @@ export default defineConfig({
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@layera/i18n": "file:../../packages/i18n"
+    "@layera/tolgee": "file:../../packages/tolgee"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
@@ -135,7 +135,7 @@ export default defineConfig({
 
 ## 🌐 i18n Architecture Implementation
 
-### Αρχιτεκτονική επιλογή: @layera/i18n LEGO system
+### Αρχιτεκτονική επιλογή: @layera/tolgee LEGO system
 **Λόγος:** Enterprise consistency και shared functionality με LEGO architecture
 
 ### Translation Structure
@@ -149,7 +149,7 @@ src/i18n/
 
 ### i18n Configuration (src/i18n/index.ts)
 ```typescript
-import { LayeraI18nProvider } from '@layera/i18n';
+import { LayeraI18nProvider } from '@layera/tolgee';
 import el from './locales/el.json';
 import en from './locales/en.json';
 
@@ -182,7 +182,7 @@ export { resources };
 
 ### LanguageSwitcher Component
 ```tsx
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 const LanguageSwitcher = () => {
   const { currentLanguage, changeLanguage, t } = useLayeraTranslation();

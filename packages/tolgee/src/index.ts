@@ -2,7 +2,7 @@
  * @layera/tolgee - Main Export
  * Enterprise Translation Management with Tolgee
  *
- * ΑΝΤΙΚΑΘΙΣΤΑ ΠΛΗΡΩΣ το @layera/i18n
+ * ΑΝΤΙΚΑΘΙΣΤΑ ΠΛΗΡΩΣ το legacy i18n system
  */
 
 // Provider & Configuration - MINIMAL IMPLEMENTATION

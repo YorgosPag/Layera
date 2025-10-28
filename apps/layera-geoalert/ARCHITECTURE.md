@@ -34,7 +34,7 @@ LayeraGeoAlert is the geospatial alerting and monitoring application of the Laye
 - **Authentication**: @layera/auth-bridge integration
 - **Styling**: @layera design system packages
 - **Real-time**: WebSocket connections for live alerts
-- **Internationalization**: @layera/i18n (Greek/English)
+- **Internationalization**: @layera/tolgee (Greek/English)
 
 ### Application Structure
 ```

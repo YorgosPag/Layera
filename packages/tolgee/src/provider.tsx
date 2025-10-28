@@ -9,9 +9,9 @@ import { FormatIcu } from '@tolgee/format-icu';
 import { Box } from '@layera/layout';
 import { TOLGEE_CONFIG } from './config';
 
-// Import existing translations (will be migrated)
-import elTranslations from '../../i18n/src/locales/el/common.json';
-import enTranslations from '../../i18n/src/locales/en/common.json';
+// Import existing translations (migrated to TypeScript)
+import { elTranslations } from './locales/el/common';
+import { enTranslations } from './locales/en/common';
 
 // Initialize Tolgee instance
 const tolgee = Tolgee()

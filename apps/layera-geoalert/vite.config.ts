@@ -5,6 +5,7 @@ import { resolve } from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  assetsInclude: ['**/*.json'],
   define: {
     'process.env': {},
     global: 'globalThis',
@@ -21,6 +22,7 @@ export default defineConfig({
       // LEGO Component Aliases
       '@layera/auth-bridge': resolve(__dirname, '../../packages/auth-bridge/src/index.ts'),
       '@layera/tolgee': resolve(__dirname, '../../packages/tolgee/src/index.ts'),
+      '@layera/tolgee/locales': resolve(__dirname, '../../packages/tolgee/src/locales'),
       '@layera/buttons': resolve(__dirname, '../../packages/buttons/src/index.ts'),
       '@layera/typography': resolve(__dirname, '../../packages/typography/src/index.ts'),
       '@layera/theme-switcher': resolve(__dirname, '../../packages/theme-switcher/src/index.ts'),

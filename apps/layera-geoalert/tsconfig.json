@@ -26,8 +26,8 @@
       "@/*": ["./src/*"],
       "@layera/auth-bridge": ["../../packages/auth-bridge/src/index.ts"],
       "@layera/auth-bridge/*": ["../../packages/auth-bridge/src/*"],
-      "@layera/i18n": ["../../packages/i18n/src/index.ts"],
-      "@layera/i18n/*": ["../../packages/i18n/src/*"]
+      "@layera/tolgee": ["../../packages/tolgee/src/index.ts"],
+      "@layera/tolgee/*": ["../../packages/tolgee/src/*"]
     }
   },
   "include": ["src"],

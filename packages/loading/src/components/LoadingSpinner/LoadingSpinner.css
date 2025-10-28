@@ -13,7 +13,7 @@
 }
 
 .la-loading-spinner-centered {
-  min-height: var(--la-size-48);
+  min-height: var(--la-space-48);
 }
 
 /* Overlay Variant */
@@ -22,7 +22,7 @@
   inset: 0;
   z-index: var(--la-z-index-modal);
   background-color: var(--la-color-surface-overlay);
-  backdrop-filter: blur(var(--la-blur-sm));
+  backdrop-filter: blur(var(--la-shadow-blur-sm));
 }
 
 /* Content Container */

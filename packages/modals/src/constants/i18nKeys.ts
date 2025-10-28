@@ -1,5 +1,5 @@
 /**
- * i18n Keys για το Modal System
+ * Translation Keys για το Modal System
  */
 
 export const MODAL_I18N_KEYS = {

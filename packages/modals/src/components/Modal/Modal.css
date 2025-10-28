@@ -98,7 +98,7 @@
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
-  z-index: var(--la-z-index-modal-close);
+  z-index: var(--la-z-index-dropdown);
   display: flex;
   align-items: center;
   justify-content: center;

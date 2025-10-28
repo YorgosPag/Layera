@@ -134,7 +134,7 @@ $(if ($changedFiles) {
 
 ### ✅ INCLUDED:
 - **apps/** - All application source code
-- **packages/** - Enterprise packages (theme-switcher, typography, buttons, icons, viewport, i18n, auth-bridge)
+- **packages/** - Enterprise packages (theme-switcher, typography, buttons, icons, viewport, tolgee, auth-bridge)
 - **voithitika_docs/** - Documentation and progress logs
 - **strategy/** - Strategic planning documents
 - **.claude/** - Claude Code configuration
@@ -166,7 +166,7 @@ $(if ($changedFiles) {
 - **@layera/buttons** - Enterprise button components
 - **@layera/icons** - Comprehensive icon library
 - **@layera/viewport** - Responsive viewport handling
-- **@layera/i18n** - Internationalization system
+- **@layera/tolgee** - Internationalization system
 - **@layera/auth-bridge** - Authentication utilities
 
 ## 🚀 RESTORE INSTRUCTIONS

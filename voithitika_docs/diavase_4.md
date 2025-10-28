@@ -1,286 +1,81 @@
-# =% ENTERPRISE HARDCODED VALUES REPLACEMENT - TASK SPECIFICATION
+Η αλήθεια: τα --la-* είναι σωστά. Το pattern ^--la- είναι σωστό. Τα σφάλματα προκύπτουν από διαμόρφωση/παρσάρισμα στο repo και από άσχετους κανόνες, όχι από bug στα prefixes. Τεκμήρια: τα logs δείχνουν εκατοντάδες “Expected "--la-*" to match pattern "^--la-"” και επίσης λάθος τιμή prefers-contrast: high. 
 
-**�������ɽ ��ǹĭ�Ŀ���**: ������� ���ν��
-**Status**: �������� - 937+ hardcoded values ��Ŀ���ķ���
-**���ǿ�**: 100% LEGO Systems compliance
+diavase_1
 
-## =� ���������� ������ ��� ���������
+ Επιπλέον, το custom-property-pattern ελέγχει ονόματα και μέσα σε var(), το regex δίνεται ως απλό string και δουλεύει όπως τεκμηριώνεται. 
+stylelint.io
++1
+ Το high είναι άκυρη τιμή· ισχύουν more | less | no-preference | custom. 
+developer.mozilla.org
 
-### <� ������ ���������
-��Ĺ��Ĭ�ı÷ **����** �ɽ ú�����������������ɽ Ĺ�ν �� **Single Sources of Truth** ��� ı ����ǿ�ı LEGO systems.
+Τι ισχύει πρακτικά και πώς το λύνεις γρήγορα:
 
-### =� �������� - 937+ HARDCODED VALUES ������������
+Επαλήθευση ρύθμισης που πραγματικά εφαρμόζεται
 
-#### **=� ��������� 1: Hardcoded Greek Text (i18n Violations)**
-```typescript
-// L ����� - Hardcoded ��������
-CategoryStep.tsx:132 - '�����Ŀ'
-CategoryStep.tsx:132 - '����ï�'
-IntentStep.tsx:133 - '����ƿ��'
-IntentStep.tsx:133 - '�����ķ÷'
-LocationStep.tsx:134 - '���ķ�'
-LocationStep.tsx:135 - '�����Ǯ'
-LocationStep.tsx:135 - '���͸Ž÷'
-```
+npx stylelint --print-config path/to/Slider.css | jq '.rules["custom-property-pattern"]'
+Αν δεν είναι ακριβώς ^--la- ή υπάρχει δεύτερο config από extends/overrides, θα φανεί. 
+stylelint.io
 
-** ����**: ��Ĺ��Ĭ�ı÷ �� `@layera/tolgee`
-```typescript
-//  �����
-import { useLayeraTranslation } from '@layera/tolgee';
-const { t } = useLayeraTranslation();
+Έλεγχος ότι ο πυρήνας του stylelint δεν φταίει
 
-// Usage
-'�����Ŀ' � t('category.property')
-'����ï�' � t('category.job')
-'����ƿ��' � t('intent.offer')
-```
+echo ":root{--la-x:1px}.x{gap:var(--la-x)}" | npx stylelint --stdin --stdin-filename t.css
+Καθαρό αποτέλεσμα εδώ σημαίνει ότι το πρόβλημα είναι στη δική σου resolved config/συντακτικό parser, όχι στο rule. 
+stylelint.io
 
-#### **=� ��������� 2: Hardcoded Colors/Hex Values**
-```typescript
-// L ����� - DeviceModelSelector.tsx
-background: currentModel ? '#4F46E5' : '#6B7280',  // ������ 155
-background: !currentModel ? '#EBF5FF' : 'white',   // ������ 197
-color: '#6B7280',                                  // ������ 214
-backgroundColor: '#F9FAFB',                        // ������ 215
-color: '#9CA3AF',                                  // ������ 253
-frameColor: '#1c1c1e',                            // deviceSpecs
-```
+Σταθεροποίηση εκδόσεων και parser
 
-** ����**: ��Ĺ��Ĭ�ı÷ �� `@layera/constants`
-```typescript
-//  �����
-import { DEVICE_FRAME_COLORS, BRAND_COLORS, UI_COLORS } from '@layera/constants';
+Βεβαίωσε μία έκδοση stylelint σε όλο το monorepo: pnpm why stylelint → αφαίρεση διπλοτύπων, pnpm dedupe.
 
-// Usage
-'#4F46E5' � BRAND_COLORS.PRIMARY
-'#6B7280' � BRAND_COLORS.SECONDARY
-'#EBF5FF' � UI_COLORS.INFO_SUBTLE
-'#F9FAFB' � UI_COLORS.SURFACE_DEFAULT
-'#1c1c1e' � DEVICE_FRAME_COLORS.SPACE_GRAY
-```
+Για καθαρά .css αρχεία, χρησιμοποίησε customSyntax: "postcss" ή άφησέ το κενό. Μην περνάς .css από scss syntax αν δεν χρειάζεται. 
+stylelint.io
 
-#### **=� ��������� 3: Magic Numbers/Spacing**
-```typescript
-// L ����� - Hardcoded spacing
-width: 32px;        // MapContainer.tsx:50
-height: 32px;       // MapContainer.tsx:50
-fontSize: '14px',   // DeviceModelSelector.tsx:160
-gap: '8px',         // DeviceModelSelector.tsx:165
-minWidth: '200px',  // DeviceModelSelector.tsx:166
-maxHeight: '400px', // DeviceModelSelector.tsx:186
-```
+Κάνε το pattern αυστηρό ώστε να “πιάσει” τυχόν αόρατους χαρακτήρες
+Στο .stylelintrc:
 
-** ����**: ��Ĺ��Ĭ�ı÷ �� `@layera/constants`
-```typescript
-//  �����
-import { SPACING_SCALE, FONT_SIZES, FIXED_DIMENSIONS } from '@layera/constants';
+{
+  "rules": {
+    "custom-property-pattern": ["^--la-[a-z0-9-]+$"]
+  }
+}
 
-// Usage
-32px � SPACING_SCALE.XL
-14px � `${FONT_SIZES.SM}px`
-8px � SPACING_SCALE.SM
-200px � FIXED_DIMENSIONS.MIN_BUTTON_WIDTH
-400px � FIXED_DIMENSIONS.DROPDOWN_MAX_HEIGHT
-```
 
-#### **=� ��������� 4: Status/State Values**
-```typescript
-// L ����� - Hardcoded status strings
-'uploading' | 'completed' | 'error'  // UploadCard.tsx
-'draft' | 'published'               // ReviewStep.tsx
-'light' | 'dark'                    // ThemeSwitcher.tsx
-```
+Αν υπάρχει κρυφός χαρακτήρας (π.χ. en-dash ή ZWSP) θα αποτύχει ξεκάθαρα και θα τον εντοπίσεις. 
+stylelint.io
 
-** ����**: ���������� enum �Ŀ `@layera/constants`
-```typescript
-//  ����� - ���ø��� �Ŀ config.ts
-export const UPLOAD_STATUS = {
-  UPLOADING: 'uploading',
-  COMPLETED: 'completed',
-  ERROR: 'error'
-} as const;
+Διόρθωσε τα μη σχετικά errors που ρίχνουν θόρυβο
 
-export const THEME_VARIANTS = {
-  LIGHT: 'light',
-  DARK: 'dark'
-} as const;
-```
+@media (prefers-contrast: more) αντί για high. 
+developer.mozilla.org
 
-#### **=� ��������� 5: CSS-in-JS �� Magic Values**
-```typescript
-// L ����� - Inline styles
-style={{
-  padding: '16px',
-  margin: '8px',
-  borderRadius: '4px',
-  fontSize: '12px'
-}}
-```
+Για το currentColor, είτε γράψε currentcolor είτε ρύθμισε:
 
-** ����**: CSS Variables ��� `@layera/tokens`
-```typescript
-//  �����
-style={{
-  padding: 'var(--la-space-4)',
-  margin: 'var(--la-space-2)',
-  borderRadius: 'var(--la-radius-sm)',
-  fontSize: 'var(--la-font-size-xs)'
-}}
-```
+"value-keyword-case": ["lower", { "ignoreKeywords": ["currentColor"] }]
 
-### <� ������������ ������ ��� ����������� ����� ��������
 
-#### **1. DeviceModelSelector.tsx**
-- **���ĵ����ķı**: �������
-- **Hardcoded values**: 15+ hex colors, spacing, font sizes
-- **LEGO solutions**: DEVICE_FRAME_COLORS, SPACING_SCALE, FONT_SIZES
+stylelint.io
 
-#### **2. CategoryStep.tsx**
-- **���ĵ����ķı**: �������
-- **Hardcoded values**: '�����Ŀ', '����ï�' + UI styling
-- **LEGO solutions**: @layera/tolgee, SPACING_SCALE
+“Expected shorthand property 'inset'”: αντικατάστησε top/right/bottom/left: 0 με inset: 0. (κανόνας declaration-block-no-redundant-longhand-properties). 
+stylelint.io
 
-#### **3. IntentStep.tsx**
-- **���ĵ����ķı**: �������
-- **Hardcoded values**: '����ƿ��', '�����ķ÷' + styling
-- **LEGO solutions**: @layera/tolgee, UI_COLORS
+Απομόνωση θορυβωδών περιοχών
 
-#### **4. MapContainer.tsx**
-- **���ĵ����ķı**: �����
-- **Hardcoded values**: 32px dimensions, undefined SPACING_SCALE values
-- **LEGO solutions**: FIXED_DIMENSIONS, SPACING_SCALE fixes
+Αγνόησε τρίτο-party css ή generated builds με .stylelintignore ή rule-scoped disables όπου πραγματικά χρειάζεται. 
+stylelint.io
 
-#### **5. ThemeSwitcher.tsx**
-- **���ĵ����ķı**: ������
-- **Hardcoded values**: 'light'/'dark' theme strings
-- **LEGO solutions**: THEME_VARIANTS constant
+Ροή εργασίας για πολλούς agents
 
-### =� ����-����-���� ������� ��� ���������
+Κλείδωσε ένα shared .stylelintrc στο root.
 
-#### **���� 1: ����Ŀ���ï�**
-```bash
-# ���������÷ LEGO systems
-grep -r "from '@layera/constants'" packages/
-grep -r "from '@layera/tolgee'" packages/
-```
+Τρέξε lint μόνο στα changed files με lint-staged στο pre-commit.
 
-#### **���� 2: ��Ŀ��ü�� Hardcoded Values**
-```bash
-# ����÷ hex colors
-grep -r "#[0-9A-Fa-f]\{6\}" apps/
+Απαγόρευση αλλαγών στο config από agents.
 
-# ����÷ �������ν strings
-grep -r "\".*[�-ɑ-�].*\"" apps/
+Συμπέρασμα: δεν αλλάζεις prefixes. Ενοποιείς config/έκδοση, σφίγγεις το regex, διορθώνεις το prefers-contrast, και αγνοείς θορυβώδη paths. Με αυτά τα βήματα τα “Expected "--la-*" to match pattern "^--la-"” θα φύγουν ή θα αποκαλύψουν πού υπάρχει λάθος ρύθμιση στην αλυσίδα σου. 
 
-# ����÷ magic numbers
-grep -r "[0-9]\+px" apps/
-```
+diavase_1
 
-#### **���� 3: ��Ĺ��Ĭ�ı÷ �� LEGO Systems**
-1. **Import ı ���Ĭ constants**:
-   ```typescript
-   import { DEVICE_FRAME_COLORS, SPACING_SCALE, FONT_SIZES } from '@layera/constants';
-   import { useLayeraTranslation } from '@layera/tolgee';
-   ```
-
-2. **��Ĺ��Ĭ�ı÷ hardcoded values**:
-   ```typescript
-   // ����
-   backgroundColor: '#F9FAFB'
-
-   // ��Ĭ
-   backgroundColor: UI_COLORS.SURFACE_DEFAULT
-   ```
-
-3. **���ø��� ��ɽ constants ���� �������ı�**:
-   ```typescript
-   // �Ŀ packages/constants/src/config.ts
-   export const NEW_CONSTANT = {
-     VALUE: 'specific_value'
-   } as const;
-   ```
-
-#### **���� 4: Validation**
-```bash
-# TypeScript check
-npm run typecheck
-
-# ����ǿ� ��� �����������ı hardcoded values
-grep -r "#[0-9A-Fa-f]\{6\}" apps/ | wc -l  # Should decrease
-grep -r "\".*[�-ɑ-�].*\"" apps/ | wc -l   # Should decrease
-```
-
-### <� �������� ���������
-
-#### ** �������� �������������**
-- [ ] **Zero hex colors** �Ŀ� �δ��� (̻� ��� constants)
-- [ ] **Zero hardcoded ��������** (̻� ��� @layera/tolgee)
-- [ ] **Zero magic numbers** (̻� ��� SPACING_SCALE/FONT_SIZES)
-- [ ] **100% TypeScript compliance** (npm run typecheck passes)
-- [ ] **���Ŀ������� �Ʊ������** (localhost:3000, localhost:3001)
-
-#### ** ��������� �������**
-- [ ] **�δ���� readable** ��� maintainable
-- [ ] **Consistency** �ķ ���÷ LEGO systems
-- [ ] **No breaking changes** �Ŀ UI/UX
-- [ ] **Proper error handling** ��� missing translations
-
-### =� �������� ���������������
-
-#### **L ��� ������**
-1. **��� �Ʊ���õĵ** existing functionality
-2. **��� ���õĵ** Ŀ UI layout
-3. **��� ���������õĵ** circular dependencies
-4. **��� ���ù������õĵ** ı ����� LayeraIcons.tsx (�����������)
-
-#### ** ������� ������**
-1. **������� test** ��Ĭ ��� ���� ������
-2. **������� import** ��� @layera packages
-3. **������� check** TypeScript errors
-4. **������� document** ��� constants ��� ���ø�ĵĵ
-
-### =� TRACKING PROGRESS
-
-#### **������� �������**
-```bash
-# Daily compliance check
-echo "=� Hardcoded Values Elimination Progress"
-echo "<� Hex colors remaining: $(grep -r '#[0-9A-Fa-f]\{6\}' apps/ | wc -l)"
-echo "<�<� Greek hardcoded: $(grep -r '\".*[�-ɑ-�].*\"' apps/ | wc -l)"
-echo "=� Magic numbers: $(grep -r '[0-9]\+px' apps/ | wc -l)"
-echo " LEGO imports: $(grep -r \"from '@layera/\" apps/ | wc -l)"
-```
-
-### =� ASSIGNMENT DISTRIBUTION
-
-#### **����������� �������� ��������**
-- **Agent 1**: DeviceModelSelector.tsx + device frame colors
-- **Agent 2**: CategoryStep.tsx + IntentStep.tsx (i18n)
-- **Agent 3**: MapContainer.tsx + spacing issues
-- **Agent 4**: ThemeSwitcher.tsx + status constants
-- **Agent 5**: CSS-in-JS to CSS Variables conversion
-
-#### **COORDINATION**
-- **����� branch**: `feature/hardcoded-values-elimination`
-- **PR naming**: `feat: replace hardcoded values in [ComponentName]`
-- **Review requirement**: Mandatory review ��� Enterprise Architect
-
----
-
-## <� ��������� ����������
-
-**Enterprise-grade codebase ��:**
-- **100% LEGO Systems compliance**
-- **Zero hardcoded values**
-- **Perfect i18n coverage**
-- **Maintainable ��� scalable ��ǹĵ�Ŀ����**
-
-**������**: ��� 937+ hardcoded values � **0 hardcoded values**
-
-**DEADLINE**: ���÷ ���ĵ����ķı - Enterprise production readiness
-
----
-
-**�������ɽ**: ������� ���ν��
-**Contact**: Enterprise Architecture Team
-**Reference**: LEGO_SYSTEMS_REGISTRY.md, ENTERPRISE_MIGRATION_REPORT.md
+ 
+stylelint.io
++2
+stylelint.io
++2

@@ -1,0 +1,847 @@
+{
+  "app": {
+    "name": "Layera",
+    "subtitle": "Enterprise Identity Management",
+    "welcome": "Welcome to Layera!",
+    "loading": "Loading...",
+    "languageSwitch": "Language",
+    "title": {
+      "geoAlert": "Layera GeoAlert",
+      "layeraId": "Layera ID"
+    }
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "account": "My Account",
+    "settings": "Settings",
+    "data": "Data",
+    "logout": "Logout",
+    "back": "Back",
+    "backToDashboard": "Back to Dashboard"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "signInWithGoogle": "Sign in with Google",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "signOut": "Sign Out"
+  },
+  "mfa": {
+    "title": "Enable 2FA",
+    "subtitle": "Protect your account with two-factor authentication via SMS. You will receive a code on your mobile every time you log in.",
+    "whyNeeded": {
+      "title": "Why do you need 2FA?",
+      "description": "Two-factor authentication adds an extra layer of security:",
+      "benefits": {
+        "passwordProtection": "Protection against password theft",
+        "secureAccess": "Secure access even from unknown devices",
+        "unauthorizedAlert": "Notification in case of unauthorized access"
+      }
+    },
+    "form": {
+      "phoneLabel": "Mobile Phone Number",
+      "phoneHint": "Enter the number with international code (e.g. +30 for Greece)",
+      "enableButton": "Enable 2FA"
+    },
+    "prompts": {
+      "enterSmsCode": "Enter the SMS code:"
+    },
+    "success": {
+      "enrollmentComplete": "2FA enrollment successful!"
+    },
+    "errors": {
+      "enterPhone": "Enter phone number",
+      "operationNotAllowed": "SMS-based MFA is not enabled in Firebase Console. Please contact the administrator.",
+      "tooManyRequests": "Too many attempts. Try again later.",
+      "invalidPhoneNumber": "Invalid phone number. Use the format +30xxxxxxxxxx",
+      "requiresRecentLogin": "For security reasons, recent login is required. Please logout and login again."
+    }
+  },
+  "account": {
+    "title": "My Account",
+    "info": "Account Information",
+    "security": "Security",
+    "messages": {
+      "emailNotVerified": "Your email is not verified. Please check your inbox.",
+      "mfaRecommendation": "We recommend enabling two-factor authentication (2FA) for additional security."
+    },
+    "badges": {
+      "mfaActive": "2FA: Active",
+      "mfaInactive": "2FA: Inactive"
+    },
+    "actions": {
+      "enable2fa": "Enable 2FA",
+      "settings": "Settings"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Customize your preferences and account settings",
+    "sections": {
+      "security": "Security & Personal Data",
+      "notifications": "Notifications",
+      "appearance": "Appearance",
+      "dangerZone": "Danger Zone"
+    },
+    "items": {
+      "changePassword": {
+        "title": "Change Password",
+        "description": "Update your access password"
+      },
+      "twoFactor": {
+        "title": "Two-Factor Authentication (2FA)",
+        "description": "Status: {{status}}",
+        "statusActive": "Active",
+        "statusInactive": "Inactive"
+      },
+      "emailVerification": {
+        "title": "Email Verification",
+        "description": "Status: {{status}}",
+        "statusVerified": "Verified",
+        "statusUnverified": "Unverified"
+      },
+      "emailNotifications": {
+        "title": "Email Notifications",
+        "description": "Receive notifications for important actions"
+      },
+      "smsNotifications": {
+        "title": "SMS Notifications",
+        "description": "Receive SMS for important security actions"
+      },
+      "theme": {
+        "title": "Application Theme",
+        "description": "Choose light or dark theme",
+        "options": {
+          "light": "Light",
+          "dark": "Dark",
+          "auto": "Auto"
+        }
+      },
+      "language": {
+        "title": "Language",
+        "description": "Choose your preferred language",
+        "options": {
+          "el": "Ελληνικά",
+          "en": "English"
+        }
+      },
+      "deleteAccount": {
+        "title": "Delete Account",
+        "description": "Permanently delete your account"
+      }
+    }
+  },
+  "data": {
+    "title": "My Data",
+    "subtitle": "View and manage all your personal data",
+    "personalInfo": "Personal Information",
+    "security": "Security",
+    "devices": "Devices & Connections",
+    "export": "Data Export",
+    "privacy": "Data Protection",
+    "fields": {
+      "email": "Email",
+      "name": "Name",
+      "displayName": "Display Name",
+      "userId": "User ID",
+      "role": "Role",
+      "emailVerified": "Email Verified",
+      "mfaEnabled": "2FA Enabled",
+      "lastSignIn": "Last Sign In",
+      "accountCreated": "Account Created",
+      "currentDevice": "Current Device",
+      "ipAddress": "IP Address",
+      "connectionProvider": "Connection Provider",
+      "notAvailable": "Not Available",
+      "encrypted": "Encrypted",
+      "webBrowser": "Web Browser"
+    },
+    "exportFormats": {
+      "pdf": "Export to PDF",
+      "json": "Export to JSON",
+      "csv": "Export to CSV"
+    },
+    "exportDescription": "You can export all your personal data in various formats:",
+    "privacyPoints": {
+      "title": "Protecting your data is our priority.",
+      "encryption": "All data is encrypted during transmission and storage",
+      "noSharing": "We do not share personal data with third parties",
+      "deleteAnytime": "You can delete your account at any time",
+      "compliance": "Complies with GDPR and Greek legislation"
+    }
+  },
+  "roles": {
+    "admin": "Administrator",
+    "broker": "Broker",
+    "builder": "Builder",
+    "private": "Private"
+  },
+  "admin": {
+    "roleManagement": {
+      "title": "Role Management",
+      "subtitle": "Manage user roles and security settings",
+      "form": {
+        "title": "Set User Role",
+        "description": "Enter user details to modify their role",
+        "emailHint": "The email of the user you want to modify",
+        "roleHint": "Select the new role to assign to the user"
+      },
+      "info": {
+        "title": "Management Information",
+        "adminOnly": "Only admin can call management functions",
+        "clientRestrictions": "Client does not write claims directly",
+        "mfaRefresh": "2FA refresh checks the user's current status"
+      }
+    },
+    "actions": {
+      "setRole": "Set Role",
+      "refreshMfa": "Refresh 2FA"
+    },
+    "errors": {
+      "enterEmail": "Enter user email",
+      "roleSetFailed": "❌ Role set error: {{error}}",
+      "mfaRefreshFailed": "❌ 2FA refresh error: {{error}}"
+    },
+    "success": {
+      "roleSet": "✅ Role set: {{uid}} → {{role}}",
+      "mfaRefreshed": "✅ 2FA refreshed: {{uid}} → {{status}}"
+    },
+    "checking2FA": "Checking 2FA status..."
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "verified": "Verified",
+    "unverified": "Unverified",
+    "enabled": "Enabled",
+    "disabled": "Disabled"
+  },
+  "actions": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "enable": "Enable",
+    "disable": "Disable",
+    "change": "Change",
+    "manage": "Manage",
+    "verify": "Verify"
+  },
+  "errors": {
+    "required": "This field is required",
+    "invalidEmail": "Invalid email address",
+    "invalidPhone": "Invalid phone number",
+    "passwordTooShort": "Password must be at least 6 characters",
+    "passwordMismatch": "Passwords do not match",
+    "authError": "Authentication error",
+    "networkError": "Network error",
+    "unknownError": "Unknown error",
+    "adminRequired": {
+      "title": "Admin Access Required",
+      "description": "Access denied. Only admin can view this page."
+    }
+  },
+  "geoalert": {
+    "title": "Layera GeoAlert",
+    "subtitle": "Advanced Geographic Notifications System",
+    "geoCanvasReady": "Geo Canvas is Ready",
+    "professionalArchitecture": "Professional architecture with LEGO systems",
+    "enterGeoCanvas": "Enter Geo Canvas",
+    "statusCheck": "Status Check",
+    "port": "Port",
+    "reactReady": "React 19 Ready",
+    "typescriptStrict": "TypeScript Strict Mode",
+    "independentApp": "Independent Application",
+    "enterpriseArchitecture": "Enterprise Architecture",
+    "navigateToLayeraId": "Navigate to Layera ID",
+    "modularMicroservice": "Modular Microservice",
+    "crossAppNavigation": "Cross-App Navigation",
+    "readyForImplementation": "Ready for Implementation"
+  },
+  "map": {
+    "title": "Map",
+    "loading": "Loading map...",
+    "center": "Center",
+    "zoom": "Zoom",
+    "fullscreen": "Fullscreen",
+    "layers": "Layers",
+    "drawing": "Drawing"
+  },
+  "buttons": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "update": "Update",
+    "close": "Close",
+    "open": "Open",
+    "search": "Search",
+    "filter": "Filter",
+    "export": "Export",
+    "import": "Import",
+    "download": "Download",
+    "upload": "Upload",
+    "submit": "Submit",
+    "reset": "Reset",
+    "clear": "Clear",
+    "apply": "Apply",
+    "confirm": "Confirm",
+    "reject": "Reject"
+  },
+  "alerts": {
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Information",
+    "loading": "Loading...",
+    "saving": "Saving...",
+    "deleting": "Deleting...",
+    "updating": "Updating...",
+    "processing": "Processing...",
+    "completed": "Completed",
+    "failed": "Failed"
+  },
+  "forms": {
+    "required": "Required field",
+    "invalid": "Invalid value",
+    "tooShort": "Too short",
+    "tooLong": "Too long",
+    "invalidEmail": "Invalid email",
+    "invalidPhone": "Invalid phone number",
+    "passwordMismatch": "Passwords don't match",
+    "weakPassword": "Weak password",
+    "validation": {
+      "required": "This field is required"
+    },
+    "labels": {
+      "email": "Email Address",
+      "name": "Name",
+      "phone": "Phone",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "role": "Role",
+      "status": "Status"
+    },
+    "placeholders": {
+      "email": "user@example.com",
+      "password": "Enter your password",
+      "confirmPassword": "Confirm your password",
+      "displayName": "Enter your name",
+      "enterValue": "Enter value",
+      "selectRole": "Select role",
+      "search": "Search..."
+    },
+    "hints": {
+      "emailPrivacy": "We'll never share your email",
+      "passwordRequirements": "At least 8 characters, upper and lowercase letters",
+      "displayName": "This will be your display name (optional)"
+    },
+    "select": {
+      "noOptions": "No options available",
+      "clear": "Clear",
+      "loading": "Loading..."
+    }
+  },
+  "realEstate": {
+    "newListing": "New Listing",
+    "categorySelection": "Category Selection",
+    "properties": "Properties",
+    "propertyDescription": "List a property for sale, rent, or create a search alert.",
+    "jobs": "Jobs",
+    "jobDescription": "Offer a job position or declare your availability in a specific area.",
+    "wantToOffer": "I Want to Offer",
+    "offerDescription": "List a property for sale or rent.",
+    "wantToSearch": "I Want to Search (Geo-Alert)",
+    "searchDescription": "Create an alert for future properties in an area.",
+    "transactionType": "Properties - Transaction Type",
+    "sale": "Sale",
+    "saleDescription": "Permanent transfer of property ownership",
+    "rental": "Rental",
+    "rentalDescription": "Grant use of the property for a specific time"
+  },
+  "availability": {
+    "whenAvailable": "When are you available?",
+    "selectPeriod": "Select your availability period",
+    "now": "Now",
+    "nowDescription": "I am immediately available for collaboration",
+    "future": "In the Future",
+    "futureDescription": "I will be available at a specific future date",
+    "details": "Availability Details",
+    "pleaseSetDateAndDuration": "Please set the availability date and duration",
+    "startDate": "Start Date",
+    "datePlaceholder": "dd/mm/yyyy",
+    "duration": "Duration",
+    "durationExample": "12",
+    "unit": "Unit",
+    "months": "Months"
+  },
+  "location": {
+    "locationAndFloorplan": "Location & Floor Plan",
+    "uploadFloorplan": "Upload the floor plan file:",
+    "selectFile": "Select File",
+    "clickToUpload": "Click to upload the floor plan",
+    "or": "or",
+    "searchLocation": "Search Location",
+    "locationExample": "e.g. Ermou 10, Athens"
+  },
+  "jobs": {
+    "listingType": "Jobs - Listing Type",
+    "wantToOfferPosition": "I Want to Offer a Position",
+    "offerPositionDescription": "Post a job listing for an available position.",
+    "lookingForWork": "Looking for Work",
+    "lookingForWorkDescription": "Declare your availability and skills in an area.",
+    "employmentType": "Jobs - Employment Type",
+    "fullTime": "Full Time",
+    "fullTimeDescription": "40 hours per week with full benefits",
+    "partTime": "Part Time",
+    "partTimeDescription": "Less than 40 hours per week",
+    "freelance": "Freelance",
+    "freelanceDescription": "Independent contractor with flexibility",
+    "seasonal": "Seasonal",
+    "seasonalDescription": "Temporary work for a specific period",
+    "whenAvailable": "When are you available?",
+    "selectAvailabilityPeriod": "Select your availability period",
+    "now": "Now",
+    "nowDescription": "I am immediately available for collaboration",
+    "future": "In the Future",
+    "futureDescription": "I will be available at a specific future date",
+    "locationAndMap": "Location & Map",
+    "drawPropertyArea": "Draw the property/job area:",
+    "drawingSearchArea": "Draw the search area:",
+    "openDrawingTool": "Open Drawing Tool",
+    "clickToDrawOnMap": "Click to draw on the map",
+    "jobDetails": "Job Details",
+    "fillJobSearchDetails": "Fill in the details for your search",
+    "title": "Title",
+    "titleExample": "e.g. Frontend Developer with React",
+    "description": "Description",
+    "describeDetailed": "Describe in detail...",
+    "salary": "Salary (€)",
+    "salaryExample": "e.g. 2500",
+    "contactInfo": "Contact Information",
+    "contactExample": "e.g. email@example.com or +30 6912345678"
+  },
+  "common": {
+    "error": "Error",
+    "processing": "Processing...",
+    "addressDetails": "Address Details",
+    "showOnMap": "Show on Map",
+    "clickToShowBoundary": "Click to show boundary",
+    "title": "Title",
+    "subtitle": "Subtitle",
+    "realEstate": "Real Estate",
+    "job": "Job",
+    "marker": "Marker",
+    "polygon": "Polygon",
+    "clear": "Clear",
+    "auto": "Auto",
+    "mobile": "Mobile",
+    "tablet": "Tablet",
+    "desktop": "Desktop",
+    "overrideActive": "Override Active"
+  },
+  "addressDetails": "Address Details",
+  "showOnMap": "Show on Map",
+  "clickToShowBoundary": "Click to show boundary",
+  "notifications": {
+    "loading": "Loading...",
+    "retry": "Retry",
+    "tryAgain": "Try Again",
+    "somethingWentWrong": "Something Went Wrong",
+    "dismiss": "Dismiss",
+    "ok": "OK",
+    "cancel": "Cancel",
+    "types": {
+      "success": "Success",
+      "warning": "Warning",
+      "error": "Error",
+      "info": "Information"
+    },
+    "messages": {
+      "generalError": "An unexpected error occurred",
+      "networkError": "Network connection error",
+      "operationComplete": "Operation completed successfully",
+      "operationFailed": "Operation failed"
+    }
+  },
+  "tables": {
+    "selectAll": "Select all",
+    "selectNone": "Clear selection",
+    "selectRow": "Select row {{index}}",
+    "selectedCount": "{{count}} of {{total}} selected",
+    "noData": {
+      "title": "No data available",
+      "description": "No records found to display"
+    },
+    "search": {
+      "placeholder": "Search..."
+    },
+    "pagination": {
+      "showing": "Showing {{start}}-{{end}} of {{total}}",
+      "itemsPerPage": "Items per page",
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "headers": {
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "status": "Status",
+      "actions": "Actions",
+      "createdAt": "Created",
+      "updatedAt": "Updated"
+    }
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "pipeline": {
+    "newEntry": {
+      "title": "New Entry"
+    },
+    "category": {
+      "selection": {
+        "title": "Category Selection"
+      },
+      "property": {
+        "title": "Properties",
+        "description": "List a property for sale, rent, or create a search alert."
+      },
+      "job": {
+        "title": "Jobs",
+        "description": "Offer a job position or declare your availability in a specific area."
+      }
+    },
+    "intent": {
+      "selection": {
+        "title": "{{category}} - Listing Type"
+      },
+      "offer": {
+        "property": {
+          "title": "I Want to Offer",
+          "description": "List a property for sale or rent."
+        },
+        "job": {
+          "title": "I Want to Offer a Position",
+          "description": "Post a job listing for an available position."
+        }
+      },
+      "search": {
+        "property": {
+          "title": "I Want to Search (Geo-Alert)",
+          "description": "Create an alert for future properties in an area."
+        },
+        "job": {
+          "title": "Looking for Work",
+          "description": "Declare your availability and skills in an area."
+        }
+      }
+    },
+    "preview": {
+      "ready": {
+        "title": "Ready to Save",
+        "description": "Your entry is ready"
+      },
+      "continue": "Continue"
+    }
+  },
+  "dashboard": {
+    "overview": "Overview of your account status",
+    "userInfo": "User Information",
+    "accountDetails": "Account Details",
+    "personalInformation": "Personal Information",
+    "quickActions": "Quick Actions",
+    "accountAge": "Account Age",
+    "daysSinceCreated": "Days since created",
+    "emailStatus": "Email Status",
+    "mfaStatus": "MFA Status",
+    "accountRole": "Account Role",
+    "descriptions": {
+      "account": "Manage your account settings and profile information",
+      "settings": "Configure application preferences and security settings",
+      "data": "View and manage your data and privacy settings",
+      "mfa": "Enable multi-factor authentication for enhanced security"
+    },
+    "actionDescriptions": {
+      "manageAccount": "Manage your account settings and profile information",
+      "configureSettings": "Configure application preferences and security settings",
+      "manageData": "View and manage your data and privacy settings",
+      "enableMfa": "Enable multi-factor authentication for enhanced security"
+    }
+  },
+  "pipelines": {
+    "steps": {
+      "details": {
+        "title": "{{type}} Details",
+        "subtitle": "Fill in the details for {{intent}}",
+        "property": "Property",
+        "job": "Job",
+        "offer": "your offer",
+        "search": "your search",
+        "fields": {
+          "title": "Title",
+          "description": "Description",
+          "price": "Price (€)",
+          "salary": "Salary (€)",
+          "contactInfo": "Contact Information"
+        },
+        "placeholders": {
+          "propertyTitle": "e.g. 85m² Apartment in Kolonaki",
+          "jobTitle": "e.g. Frontend Developer with React",
+          "description": "Describe in detail...",
+          "price": "e.g. 250000",
+          "salary": "e.g. 2500",
+          "contact": "e.g. email@example.com or +30 6912345678"
+        }
+      },
+      "layout": {
+        "title": "Location & Floor Plan",
+        "findMyLocation": "Find My Location",
+        "or": "or",
+        "searchLocation": "Search Location",
+        "locationPlaceholder": "e.g. Ermou 10, Athens",
+        "results": "Results ({{count}})",
+        "locationPin": "Location",
+        "placementTools": {
+          "title": "Placement Tools",
+          "description": "Place your design on the map to see exactly where it is in the real environment. The tools below allow you to resize the floor plan to match the actual dimensions of your property.",
+          "rotation": "Rotation",
+          "scale": "Scale",
+          "units": {
+            "cmToM": "cm - m",
+            "mmToM": "mm - m",
+            "mToM": "m - m"
+          }
+        },
+        "floorPlan": {
+          "title": "Upload the floor plan file",
+          "description": "Click to upload the floor plan",
+          "selectFile": "Select File",
+          "uploaded": "Floor plan uploaded",
+          "supportedTypes": "Supported: Images (JPG, PNG, GIF), PDF, CAD (DXF, DWG)"
+        },
+        "actions": {
+          "back": "Back",
+          "saveLocation": "Save Location & Continue"
+        },
+        "addressBreakdown": {
+          "title": "Address Breakdown"
+        }
+      },
+      "transaction": {
+        "title": "Properties - Transaction Type",
+        "sale": {
+          "title": "Sale",
+          "description": "Permanent transfer of property ownership"
+        },
+        "rent": {
+          "title": "Rental",
+          "description": "Grant use of the property for a specific time"
+        }
+      },
+      "employmentType": {
+        "title": "Job - Employment Type",
+        "fullTime": {
+          "title": "Full Time",
+          "description": "40 hours per week with full benefits"
+        },
+        "partTime": {
+          "title": "Part Time",
+          "description": "Less than 40 hours per week"
+        },
+        "freelance": {
+          "title": "Freelance",
+          "description": "Independent contractor with flexibility"
+        },
+        "seasonal": {
+          "title": "Seasonal",
+          "description": "Temporary work for a specific period"
+        }
+      },
+      "availability": {
+        "title": "Availability Details",
+        "subtitle": "Please set the availability date and duration",
+        "fields": {
+          "startDate": "Start Date",
+          "duration": "Duration",
+          "unit": "Unit"
+        },
+        "units": {
+          "months": "Months",
+          "years": "Years"
+        },
+        "placeholders": {
+          "duration": "12",
+          "datePlaceholder": "dd/mm/yyyy"
+        },
+        "question": {
+          "title": "When are you available?",
+          "subtitle": "Select your availability period"
+        },
+        "options": {
+          "now": {
+            "title": "Now",
+            "description": "I am immediately available for collaboration"
+          },
+          "future": {
+            "title": "In the Future",
+            "description": "I will be available at a specific future date"
+          }
+        }
+      }
+    },
+    "actions": {
+      "back": "Back",
+      "continue": "Continue",
+      "save": "Save"
+    }
+  },
+  "progress": {
+    "stepper": {
+      "optional": "Optional",
+      "labels": {
+        "category": "Category",
+        "intent": "Purpose",
+        "transactionType": "Transaction",
+        "employmentType": "Employment",
+        "availability": "Availability",
+        "availabilityDetails": "Details",
+        "location": "Location",
+        "layout": "Floorplan",
+        "details": "Details",
+        "complete": "Complete"
+      },
+      "descriptions": {
+        "category": "Type",
+        "intent": "Action",
+        "transactionType": "Type",
+        "employmentType": "Type",
+        "availability": "When",
+        "availabilityDetails": "Dates",
+        "location": "Map",
+        "layout": "Layout",
+        "details": "Description",
+        "complete": "Confirmation"
+      }
+    }
+  },
+  "rulers": {
+    "showRulers": "Show Rulers",
+    "hideRulers": "Hide Rulers"
+  },
+  "pipeline": {
+    "newEntry": {
+      "title": "New Entry"
+    },
+    "category": {
+      "selection": {
+        "title": "Category Selection"
+      },
+      "property": {
+        "title": "Property",
+        "description": "List a property for sale, rent or create a search alert."
+      },
+      "job": {
+        "title": "Jobs",
+        "description": "Offer a job position or declare your availability in a specific area."
+      }
+    },
+    "intent": {
+      "selection": {
+        "title": "{{category}} - Listing Type"
+      },
+      "offer": {
+        "property": {
+          "title": "I Want to Offer",
+          "description": "List a property for sale or rent."
+        },
+        "job": {
+          "title": "I Want to Offer Position",
+          "description": "Post a job listing for an available position."
+        }
+      },
+      "search": {
+        "property": {
+          "title": "I Want to Search (Geo-Alert)",
+          "description": "Create an alert for future properties in an area."
+        },
+        "job": {
+          "title": "Looking for Job",
+          "description": "Declare your availability and skills in an area."
+        }
+      }
+    },
+    "categories": {
+      "property": {
+        "title": "Property"
+      },
+      "job": {
+        "title": "Jobs"
+      }
+    },
+    "steps": {
+      "category": {
+        "title": "Category",
+        "short": "Category"
+      },
+      "intent": {
+        "title": "Intent",
+        "short": "Action"
+      },
+      "transactionType": {
+        "title": "Transaction",
+        "short": "Type"
+      },
+      "employmentType": {
+        "title": "Employment",
+        "short": "Type"
+      },
+      "availability": {
+        "title": "Availability",
+        "short": "When"
+      },
+      "availabilityDetails": {
+        "title": "Details",
+        "short": "Dates"
+      },
+      "location": {
+        "title": "Location",
+        "short": "Map",
+        "job": {
+          "short": "Area"
+        }
+      },
+      "layout": {
+        "title": "Layout",
+        "short": "Floorplan"
+      },
+      "details": {
+        "title": "Details",
+        "short": "Description"
+      },
+      "complete": {
+        "title": "Complete",
+        "short": "Confirmation"
+      }
+    },
+    "actions": {
+      "reset": {
+        "tooltip": "Reset - Show add button"
+      }
+    },
+    "forms": {
+      "details": {
+        "title": "Details Form",
+        "placeholder": "Form content will be added here..."
+      }
+    }
+  }
+}

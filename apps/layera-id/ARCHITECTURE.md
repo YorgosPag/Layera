@@ -33,7 +33,7 @@ LayeraID is the core identity management application of the Layera enterprise pl
 - **Authentication**: Firebase Auth + Custom Claims
 - **Styling**: @layera design system packages
 - **Routing**: React Router v6
-- **Internationalization**: @layera/i18n (Greek/English)
+- **Internationalization**: @layera/tolgee (Greek/English)
 - **State Management**: React Context + Firebase
 
 ### Application Structure
@@ -144,7 +144,7 @@ graph TD
 - **@layera/cards**: Dashboard sections and cards
 - **@layera/buttons**: All button interactions
 - **@layera/theme-switcher**: Dark/light theme toggle
-- **@layera/i18n**: Greek/English translations
+- **@layera/tolgee**: Greek/English translations
 
 ## 🚀 Planned Improvements
 

@@ -11,7 +11,7 @@ export const createStepperConfig = (category: Category | null, t?: (key: string)
   const smartTranslate = (key: string, fallback: string): string => {
     if (!t) return fallback;
     const translated = t(key);
-    // If translation fails, i18next returns the key itself
+    // If translation fails, @layera/tolgee returns the key itself
     return translated === key ? fallback : translated;
   };
 

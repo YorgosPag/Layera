@@ -132,11 +132,11 @@
 }
 
 .la-input-group-connected.la-input-group-container-horizontal .la-input-group-item:not(:last-child) {
-  border-right: var(--la-border-width-1) solid var(--la-color-border-secondary);
+  border-right: var(--la-border-width-1) solid var(--la-color-border-primary);
 }
 
 .la-input-group-connected.la-input-group-container-vertical .la-input-group-item:not(:last-child) {
-  border-bottom: var(--la-border-width-1) solid var(--la-color-border-secondary);
+  border-bottom: var(--la-border-width-1) solid var(--la-color-border-primary);
 }
 
 /* Remove borders and shadows from child inputs in connected mode */
@@ -279,7 +279,7 @@
 .la-input-group-spinner {
   width: var(--la-space-5);
   height: var(--la-space-5);
-  border: var(--la-border-width-2) solid var(--la-color-border-secondary);
+  border: var(--la-border-width-2) solid var(--la-color-border-primary);
   border-top: var(--la-border-width-2) solid var(--la-color-brand);
   border-radius: var(--la-radius-full);
   animation: la-input-group-spin 1s linear infinite;
@@ -371,7 +371,7 @@
 
   .la-input-group-connected.la-input-group-container-horizontal .la-input-group-item:not(:last-child) {
     border-right: 0;
-    border-bottom: var(--la-border-width-1) solid var(--la-color-border-secondary);
+    border-bottom: var(--la-border-width-1) solid var(--la-color-border-primary);
   }
 
   /* Adjust radius for vertical mobile layout */

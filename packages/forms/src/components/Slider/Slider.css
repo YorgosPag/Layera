@@ -31,7 +31,7 @@
 .la-slider-vertical {
   flex-direction: row;
   align-items: center;
-  height: var(--la-size-48);
+  height: var(--la-space-48);
 }
 
 .la-slider-vertical .la-slider-container {
@@ -69,7 +69,7 @@
 
 .la-slider-required {
   color: var(--la-color-error);
-  margin-left: var(--la-space-0-5);
+  margin-left: var(--la-space-1);
 }
 
 /* Container */
@@ -103,11 +103,11 @@
   background: var(--la-color-surface-secondary);
   padding: var(--la-space-1) var(--la-space-2);
   border-radius: var(--la-radius-sm);
-  font-family: var(--la-font-family-mono);
+  font-family: var(--la-font-family-monospace);
 }
 
 .la-slider-value-separator {
-  color: var(--la-color-text-muted);
+  color: var(--la-color-text-tertiary);
   font-weight: normal;
 }
 
@@ -336,14 +336,14 @@
   left: 50%;
   transform: translateX(-50%);
   border: var(--la-space-1) solid transparent;
-  border-top-color: var(--la-color-bg-tooltip);
+  border-top-color: var(--la-color-surface-tooltip);
 }
 
 /* Tooltip */
 .la-slider-tooltip {
   position: absolute;
-  background: var(--la-color-bg-tooltip);
-  color: var(--la-color-text-inverse);
+  background: var(--la-color-surface-tooltip);
+  color: var(--la-color-text-on-dark);
   padding: var(--la-space-1) var(--la-space-2);
   border-radius: var(--la-radius-sm);
   font-size: var(--la-font-size-xs);
@@ -351,7 +351,7 @@
   white-space: nowrap;
   pointer-events: none;
   z-index: var(--la-z-index-tooltip);
-  font-family: var(--la-font-family-mono);
+  font-family: var(--la-font-family-monospace);
 }
 
 /* Vertical tooltip positioning */
@@ -368,7 +368,7 @@
   top: 50%;
   transform: translateY(-50%);
   border: var(--la-space-1) solid transparent;
-  border-right-color: var(--la-color-bg-tooltip);
+  border-right-color: var(--la-color-surface-tooltip);
 }
 
 /* Marks */
@@ -401,8 +401,8 @@
 }
 
 .la-slider-sm .la-slider-mark-dot {
-  width: var(--la-space-0-5);
-  height: var(--la-space-0-5);
+  width: var(--la-space-1);
+  height: var(--la-space-1);
 }
 
 .la-slider-lg .la-slider-mark-dot {
@@ -420,7 +420,7 @@
 }
 
 .la-slider-mark-label {
-  color: var(--la-color-text-muted);
+  color: var(--la-color-text-tertiary);
   font-size: var(--la-font-size-xs);
   margin-top: var(--la-space-2);
   text-align: center;

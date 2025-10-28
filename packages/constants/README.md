@@ -254,7 +254,7 @@ export const TIMEOUTS = {
 ### In Components
 ```typescript
 import { USER_ROLES, FORM_STATES, ICON_SIZES } from '@layera/constants';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 const UserRoleSelect = ({ value, onChange }) => {
   const { t } = useLayeraTranslation();
@@ -320,7 +320,7 @@ const roles = ['admin', 'editor', 'viewer'];
 ```typescript
 // Centralized constants - ALWAYS do this
 import { BUTTON_VARIANTS, BUTTON_SIZES, FORM_TYPES, USER_ROLES } from '@layera/constants';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 const { t } = useLayeraTranslation();
 

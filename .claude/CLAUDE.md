@@ -263,7 +263,7 @@ const keys = {
 #### **2. Usage in Components:**
 ```typescript
 // React component με i18n
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 function LoginForm() {
   const { t } = useLayeraTranslation();
@@ -391,7 +391,7 @@ import { BaseCard } from '@layera/cards';
 import { Button } from '@layera/buttons';
 import { HomeIcon, WorkIcon } from '@layera/icons';
 import { Stack, Flex } from '@layera/layout';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { Z_INDEX } from '@layera/constants';
 
 // ❌ ΛΑΘΟΣ - Custom implementations
@@ -437,7 +437,7 @@ import { Button } from '@layera/buttons';
 import { Text, Heading } from '@layera/typography';
 
 // i18n Alternative (17 imports)
-import { useLayeraTranslation, LanguageSwitcher } from '@layera/i18n';
+import { useLayeraTranslation, LanguageSwitcher } from '@layera/tolgee';
 
 // Visual Effects (13 imports)
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
@@ -519,7 +519,7 @@ import { LoadingComponent } from '@layera/loading';
 
 **Device & Responsive**: @layera/viewport, @layera/device-detection, @layera/device-layouts, @layera/device-frames, @layera/responsive-design
 
-**Internationalization**: @layera/i18n, @layera/tolgee, @layera/employment-taxonomy
+**Internationalization**: @layera/tolgee, @layera/tolgee, @layera/employment-taxonomy
 
 **Authentication**: @layera/auth-bridge, @layera/domain
 
@@ -812,7 +812,7 @@ import { useLayeraTranslation, LanguageSwitcher } from '@layera/tolgee';        
 ```typescript
 import { Button } from '@layera/buttons';                                                            // 25 imports
 import { Text, Heading } from '@layera/typography';                                                  // 21 imports
-import { useLayeraTranslation, LanguageSwitcher } from '@layera/i18n';                              // 17 imports
+import { useLayeraTranslation, LanguageSwitcher } from '@layera/tolgee';                              // 17 imports
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';                                              // 13 imports
 import { useAuthContext, UserAvatar } from '@layera/auth-bridge';                                    // 13 imports
 ```

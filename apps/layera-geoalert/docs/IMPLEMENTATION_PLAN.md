@@ -132,8 +132,8 @@ match /users/{userId}/areas/{areaId} {
 2. ✅ **Enterprise Architecture:** TypeScript path mapping για @layera packages
 3. ✅ **Package Configuration:** Δικό του package.json με εξαρτήσεις
 4. ✅ **Development Environment:** Vite configuration με React plugin
-5. ✅ **i18n System:** Πλήρης διεθνοποίηση (ελληνικά/αγγλικά) με @layera/i18n LEGO system
-6. ✅ **Language Switching:** LanguageSwitcher component με @layera/i18n LEGO system
+5. ✅ **i18n System:** Πλήρης διεθνοποίηση (ελληνικά/αγγλικά) με @layera/tolgee LEGO system
+6. ✅ **Language Switching:** LanguageSwitcher component με @layera/tolgee LEGO system
 7. ✅ **Cross-App Navigation:** Links προς άλλα apps (layera-id)
 8. ✅ **Port Management:** Τρέχει στο localhost:3008
 9. ✅ **TypeScript Configuration:** Strict mode με enterprise patterns

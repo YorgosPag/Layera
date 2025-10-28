@@ -119,7 +119,7 @@ try {
     'react-leaflet',
     'leaflet',
     '@layera/constants',
-    '@layera/i18n',
+    '@layera/tolgee',
     '@layera/theme-switcher',
     '@layera/error-boundary',
     '@layera/notifications',
@@ -260,7 +260,7 @@ if (validationPassed) {
   console.log('• OSM Integration: Building outlines με snap-to-geometry');
   console.log('• Measurement Tools: Distance, area, point measurements');
   console.log('• Theme Support: Dark/light theme aware');
-  console.log('• i18n Ready: Internationalization support');
+  console.log('• i18n Ready: Internationalization support (via @layera/tolgee)');
   console.log('');
   console.log('🚀 READY FOR BUILD AND INTEGRATION!');
 
