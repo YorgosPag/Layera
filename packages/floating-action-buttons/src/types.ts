@@ -6,12 +6,27 @@
 
 export type FABSize = 'sm' | 'md' | 'lg';
 export type FABVariant = 'success' | 'primary' | 'secondary' | 'danger' | 'warning';
+
+// 🎯 Single Source of Truth για FAB Colors - Enterprise LEGO System
+export const VARIANT_COLORS: Record<FABVariant, string> = {
+  success: 'var(--layera-bg-success, #22C55E)',
+  primary: 'var(--layera-bg-primary, #3B82F6)',
+  secondary: 'var(--layera-bg-secondary, #6B7280)',
+  danger: 'var(--layera-bg-danger, #EF4444)',
+  warning: 'var(--layera-bg-warning, #F59E0B)'
+};
 export type FABPosition = 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left' | 'center';
 export type DeviceType = 'mobile' | 'tablet' | 'desktop' | 'iphone';
 
 export interface FABProps {
   /** Click handler για το FAB button */
   onClick: () => void;
+
+  /** Mouse down handler για visual feedback */
+  onMouseDown?: (e: React.MouseEvent) => void;
+
+  /** Mouse up handler για visual feedback */
+  onMouseUp?: (e: React.MouseEvent) => void;
 
   /** Icon element να εμφανιστεί μέσα στο FAB */
   icon?: React.ReactNode;

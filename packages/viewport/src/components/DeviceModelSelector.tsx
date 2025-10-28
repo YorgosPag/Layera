@@ -1,6 +1,17 @@
+/**
+ * 🚨🚨🚨 ΠΡΟΣΟΧΗ - DEVICE SIMULATION SELECTOR 🚨🚨🚨
+ *
+ * ✅ ΛΕΙΤΟΥΡΓΕΙ ΤΕΛΕΙΑ: Mobile phones (iPhone, Samsung Galaxy κλπ)
+ * ❌ ΠΡΟΒΛΗΜΑΤΙΚΑ: Tablets, Desktop, Foldables (Samsung Galaxy Z Fold 5)
+ *
+ * ΜΗΝ αλλάξεις τη λίστα συσκευών! Λειτουργεί για mobile preview μόνο.
+ *
+ * - Γιώργος Παγώνης, 28/10/2025
+ */
+
 import React, { useState } from 'react';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
-import { SPACING_SCALE, BORDER_RADIUS_SCALE, DEVICE_FRAME_COLORS } from '@layera/constants';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE, DEVICE_FRAME_COLORS, CSS_DESIGN_TOKENS, FONT_SIZES } from '@layera/constants';
 
 export type DeviceModel =
   | 'iPhone X'
@@ -139,7 +150,7 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
         transform: 'translateX(-50%)',
         zIndex: 9999,
         backgroundColor: isDragging ? 'var(--color-bg-surface-solid)' : 'var(--color-bg-surface-strong)',
-        backdropFilter: 'blur(10px)',
+        backdropFilter: `blur(${SPACING_SCALE.SM}px)`,
         borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
         boxShadow: isDragging
           ? BOX_SHADOW_SCALE.elevation5
@@ -157,7 +168,7 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
           border: 'none',
           borderRadius: `${BORDER_RADIUS_SCALE.BUTTON}px`,
           padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
-          fontSize: 'var(--layera-font-size-sm, var(--font-size-sm))',
+          fontSize: `${FONT_SIZES.XS}px`, // Design token για compact button
           fontWeight: 'var(--layera-font-weight-semibold, var(--font-weight-semibold))',
           cursor: 'inherit',
           display: 'flex',
@@ -168,7 +179,7 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
         }}
       >
         <span>{currentModel || 'Select Device Model'}</span>
-        <span style={{ fontSize: 'var(--layera-font-size-xs, 12px)' }}>{isOpen ? '▲' : '▼'}</span>
+        <span style={{ fontSize: `${FONT_SIZES.XS - 2}px` }}>{isOpen ? '▲' : '▼'}</span>
       </button>
 
       {isOpen && (
@@ -176,13 +187,13 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
           position: 'absolute',
           top: '100%',
           left: '0',
-          right: '0',
+          minWidth: `${SPACING_SCALE.XXXXL * 3}px`, // Design token για dropdown width
           marginTop: `${SPACING_SCALE.SM}px`,
           backgroundColor: 'var(--layera-bg-primary, var(--la-color-surface))',
           borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
           boxShadow: BOX_SHADOW_SCALE.modalDefault,
           overflow: 'hidden',
-          maxHeight: 'var(--layera-height-max-dropdown, var(--la-height-max-dropdown))',
+          maxHeight: SPACING_SCALE.XXXXL * 6 + 'px', // 6 * 96px = 576px - Larger for better UX
           overflowY: 'auto'
         }}>
           <button
@@ -192,14 +203,15 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
             }}
             style={{
               width: '100%',
-              padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px`,
+              padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px`, // Μικρότερο vertical padding
               border: 'none',
               background: !currentModel ? 'var(--layera-bg-info-subtle, var(--la-color-info-subtle))' : 'var(--layera-bg-primary, var(--la-color-surface))',
               cursor: 'pointer',
               textAlign: 'left',
-              fontSize: 'var(--layera-font-size-sm, var(--la-font-size-sm))',
+              fontSize: `${FONT_SIZES.XS}px`, // Design token για "Responsive View"
               fontWeight: !currentModel ? 'var(--layera-font-weight-semibold, var(--la-font-weight-semibold))' : 'var(--layera-font-weight-normal, var(--la-font-weight-normal))',
-              borderBottom: 'var(--layera-border-default, var(--la-border-width-default) solid var(--la-color-border-default))'
+              borderBottom: 'var(--layera-border-default, var(--la-border-width-default) solid var(--la-color-border-default))',
+              whiteSpace: 'nowrap' // Αποτρέπει το αναδίπλωμα
             }}
           >
             🖥️ Responsive View (No Frame)
@@ -208,13 +220,14 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
           {Object.entries(deviceCategories).map(([category, devices]) => (
             <div key={category}>
               <div style={{
-                padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
-                fontSize: 'var(--layera-font-size-xs, var(--la-font-size-xs))',
+                padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px`, // Μικρότερο vertical padding για category headers
+                fontSize: `${FONT_SIZES.XS - 3}px`, // Extra compact για category headers
                 fontWeight: 'var(--layera-font-weight-semibold, var(--la-font-weight-semibold))',
                 color: 'var(--layera-text-secondary, var(--la-color-text-secondary))',
                 backgroundColor: 'var(--layera-bg-secondary, var(--la-color-surface-subtle))',
                 borderTop: 'var(--layera-border-default, var(--la-border-width-default) solid var(--la-color-border-default))',
-                borderBottom: 'var(--layera-border-default, var(--la-border-width-default) solid var(--la-color-border-default))'
+                borderBottom: 'var(--layera-border-default, var(--la-border-width-default) solid var(--la-color-border-default))',
+                whiteSpace: 'nowrap' // Αποτρέπει το αναδίπλωμα category headers
               }}>
                 {category}
               </div>
@@ -227,14 +240,15 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
                   }}
                   style={{
                     width: '100%',
-                    padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.SM}px`,
+                    padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.SM}px`, // Μικρότερο vertical padding
                     border: 'none',
                     background: currentModel === device ? 'var(--layera-bg-info-subtle, var(--la-color-info-subtle))' : 'var(--layera-bg-primary, var(--la-color-surface))',
                     cursor: 'pointer',
                     textAlign: 'left',
-                    fontSize: 'var(--layera-font-size-sm, var(--la-font-size-sm))',
+                    fontSize: `${FONT_SIZES.XS}px`, // Design token για device names
                     fontWeight: currentModel === device ? 'var(--layera-font-weight-semibold, var(--la-font-weight-semibold))' : 'var(--layera-font-weight-normal, var(--la-font-weight-normal))',
-                    transition: 'background 0.2s'
+                    transition: 'background 0.2s',
+                    whiteSpace: 'nowrap' // Αποτρέπει το αναδίπλωμα device names
                   }}
                   onMouseOver={(e) => {
                     if (currentModel !== device) {
@@ -249,7 +263,7 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
                 >
                   {device}
                   <span style={{
-                    fontSize: 'var(--layera-font-size-xs, var(--la-font-size-xs))',
+                    fontSize: `${FONT_SIZES.XS - 4}px`, // Extra compact για διαστάσεις
                     color: 'var(--layera-text-tertiary, var(--la-color-text-tertiary))',
                     marginLeft: `${SPACING_SCALE.SM}px`
                   }}>

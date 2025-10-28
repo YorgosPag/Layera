@@ -1,935 +1,279 @@
-C:\layera\.github\workflows\ci.yml
-  73,31:         if: github.event_name == 'push'
-  177,20:     if: github.ref == 'refs/heads/main'
-
-C:\layera\apps\layera-geoalert\src\components\device-specific\mobile\iphone-14-pro-max\components\AreaMethodMeasurement.tsx
-  77,24:     if (selectedMethod === 'map-drawing') {
-  84,24:     if (selectedMethod === 'map-drawing' && currentResult && currentResult.area && state === 'finished') {
-  84,90:     if (selectedMethod === 'map-drawing' && currentResult && currentResult.area && state === 'finished') {
-  306,38:             Μέθοδος: {selectedMethod === 'manual-input' ? 'Χειροκίνητη Εισαγωγή' :
-  307,38:                       selectedMethod === 'map-drawing' ? 'Σχεδίαση στον Χάρτη' :
-  308,38:                       selectedMethod === 'floor-plan-upload' ? 'Φόρτωση Κάτοψης' :
-  333,27:           {selectedMethod === 'map-drawing' && (
-
-C:\layera\apps\layera-geoalert\src\components\device-specific\mobile\iphone-14-pro-max\components\FloatingStepper.tsx
-  96,26:     if (selectedCategory === 'property') {
-  101,33:     } else if (selectedCategory === 'job') {
-  126,21:     if (currentStep === 'category') {
-  131,26:     if (selectedCategory === 'property') {
-  133,33:     } else if (selectedCategory === 'job') {
-  327,47:     const nextMode: OpacityMode = opacityMode === 'transparent'
-  329,21:       : opacityMode === 'semi-transparent'
-  343,38:       onCardsOpacityToggle(nextMode !== 'transparent');
-  395,25:             opacityMode === 'transparent'
-  397,29:               : opacityMode === 'semi-transparent'
-  402,24:           {opacityMode === 'transparent' ? '○' : opacityMode === 'semi-transparent' ? '◐' : '●'}
-  402,62:           {opacityMode === 'transparent' ? '○' : opacityMode === 'semi-transparent' ? '◐' : '●'}
-  424,20:       {currentStep === 'details' && (
-
-C:\layera\apps\layera-geoalert\src\components\device-specific\mobile\iphone-14-pro-max\components\InfoPanel.tsx
-  101,61:     if (!leafletMap || typeof leafletMap.dragging?.disable !== 'function') {
-
-C:\layera\apps\layera-geoalert\src\components\device-specific\mobile\iphone-14-pro-max\components\LayoutStepCard.tsx
-  161,15:     if (field === 'width') {
-  164,22:     } else if (field === 'height') {
-  167,22:     } else if (field === 'depth') {
-  258,24:     color: opacityMode === 'opaque' ? 'var(--color-text-on-primary)' : 'var(--color-text-primary)', // Κείμενα παραμένουν πλήρως ορατά
-  387,25:               if (e.key === 'Enter' && locationQuery.trim()) {
-  432,36:                 color={opacityMode === 'opaque' ? 'on-primary' : 'primary'}
-  481,38:                   color={opacityMode === 'opaque' ? 'on-primary' : 'primary'}
-  506,38:                   color={opacityMode === 'opaque' ? 'on-primary' : 'primary'}
-  531,38:                   color={opacityMode === 'opaque' ? 'on-primary' : 'primary'}
-
-C:\layera\apps\layera-geoalert\src\components\device-specific\mobile\iphone-14-pro-max\components\PropertyDetailsForm.tsx
-  62,25:     floor: propertyType === 'apartment' ? 2 : undefined,    // Default floor for apartments
-  63,25:     rooms: propertyType === 'apartment' ? 3 : undefined     // Default rooms for apartments
-  113,39:   const showFloorField = propertyType === 'apartment' || propertyType === 'office';
-  113,71:   const showFloorField = propertyType === 'apartment' || propertyType === 'office';
-  116,39:   const showRoomsField = propertyType === 'apartment';
-
-C:\layera\apps\layera-geoalert\src\components\map\MapContainer.tsx
-  137,30:     if (process.env.NODE_ENV === 'development') {
-  156,34:         if (process.env.NODE_ENV === 'development') {
-  164,32:       if (process.env.NODE_ENV === 'development') {
-  183,34:         if (process.env.NODE_ENV === 'development') {
-  193,34:         if (process.env.NODE_ENV === 'development') {
-  201,32:       if (process.env.NODE_ENV === 'development') {
-  208,34:         if (process.env.NODE_ENV === 'development') {
-  280,23:         {currentMode !== 'none' && (
-  293,26:             {currentMode === 'marker' && (
-  301,26:             {currentMode === 'polygon' && (
-  402,30:                   {area.type === 'marker' ?
-
-C:\layera\apps\layera-geoalert\src\components\steps\areaMethod\AreaMethodStep.tsx
-  78,18:       if (method === 'map') {
-
-C:\layera\apps\layera-geoalert\src\components\steps\category\CategoryStep.tsx
-  86,30:     if (process.env.NODE_ENV === 'development') {
-
-C:\layera\apps\layera-geoalert\src\components\steps\complete\CompleteStep.tsx
-  36,50:     const isProperty = context?.selectedCategory === 'property';
-  37,45:     const isOffer = context?.selectedIntent === 'offer';
-
-C:\layera\apps\layera-geoalert\src\components\steps\details\DetailsStep.tsx
-  70,53:       showTransactionStep: context.selectedCategory === 'property' && context.selectedIntent === 'offer',
-  70,94:       showTransactionStep: context.selectedCategory === 'property' && context.selectedIntent === 'offer',
-  124,34:     if (context.selectedCategory === 'property') {
-  125,34:       if (context.selectedIntent === 'offer') {
-  126,38:         if (context.selectedLocation === 'map') {
-  129,38:         if (context.selectedLocation === 'area') {
-  132,38:         if (context.selectedLocation === 'address') {
-  137,34:       if (context.selectedIntent === 'search') {
-  138,38:         if (context.selectedLocation === 'map') {
-  141,38:         if (context.selectedLocation === 'area') {
-  144,38:         if (context.selectedLocation === 'address') {
-  152,34:     if (context.selectedCategory === 'job') {
-  153,34:       if (context.selectedIntent === 'offer') {
-  156,34:       if (context.selectedIntent === 'search') {
-
-C:\layera\apps\layera-geoalert\src\components\steps\flows\stepFlows.ts
-  129,16:   if (category === 'property' && featureFlags.enhanced_flow_enabled) {
-
-C:\layera\apps\layera-geoalert\src\components\steps\intent\IntentStep.tsx
-  70,53:       showTransactionStep: context.selectedCategory === 'property' && intent === 'offer',
-  70,78:       showTransactionStep: context.selectedCategory === 'property' && intent === 'offer',
-  105,19:       if ((cardId === 'offer' || cardId === 'search') && context.selectedCategory) {
-  105,41:       if ((cardId === 'offer' || cardId === 'search') && context.selectedCategory) {
-  122,34:     if (context.selectedCategory === 'property') {
-  126,34:     if (context.selectedCategory === 'job') {
-
-C:\layera\apps\layera-geoalert\src\components\steps\location\LocationStep.tsx
-  134,34:               color={opacityMode === 'opaque' ? 'var(--color-semantic-error-text)' : 'var(--color-semantic-error-border)'}
-  198,54:   const shouldShowUpload = context?.selectedCategory === 'property' &&
-  199,51:                           context?.selectedIntent === 'offer' &&
-  200,57:                           context?.selectedAvailability === 'now';
-  209,18:     if (mimeType === 'application/pdf' || extension === 'pdf') {
-  209,53:     if (mimeType === 'application/pdf' || extension === 'pdf') {
-  357,33:       const contentKey = cardId === 'search' ? 'location-search' :
-  358,32:                         cardId === 'upload' ? 'location-upload' :
-
-C:\layera\apps\layera-geoalert\src\components\steps\occupation\index.ts
-  22,50: if (stepRegistry && typeof stepRegistry.register === 'function') {
-
-C:\layera\apps\layera-geoalert\src\components\steps\pricing\PricingStep.tsx
-  44,34:     if (context.selectedCategory === 'property') {
-  45,34:       if (context.selectedIntent === 'offer') {
-  46,38:         if (context.selectedLocation === 'map' && context.selectedDetails === 'form') {
-  46,75:         if (context.selectedLocation === 'map' && context.selectedDetails === 'form') {
-  49,38:         if (context.selectedLocation === 'area' && context.selectedDetails === 'quick') {
-  49,76:         if (context.selectedLocation === 'area' && context.selectedDetails === 'quick') {
-  55,34:       if (context.selectedIntent === 'search') {
-  56,38:         if (context.selectedLocation === 'address' && context.selectedDetails === 'advanced') {
-  56,79:         if (context.selectedLocation === 'address' && context.selectedDetails === 'advanced') {
-  66,34:     if (context.selectedCategory === 'job') {
-  67,34:       if (context.selectedIntent === 'offer') {
-  70,34:       if (context.selectedIntent === 'search') {
-  116,29:       {process.env.NODE_ENV === 'development' && (
-
-C:\layera\apps\layera-geoalert\src\components\steps\propertyDetails\PropertyDetailsForm.tsx
-  87,30:           label={field.type !== 'boolean' ? field.label : undefined}
-
-C:\layera\apps\layera-geoalert\src\components\steps\review\ReviewStep.tsx
-  93,41:         value: context.selectedCategory === 'property' ? t('review.category.property') : t('review.category.job'),
-  98,39:         value: context.selectedIntent === 'offer' ? t('review.intent.offer') : t('review.intent.search'),
-  103,41:         value: context.selectedLocation === 'map' ? t('review.location.map') :
-  104,41:                context.selectedLocation === 'area' ? t('review.location.area') : t('review.location.address'),
-  109,40:         value: context.selectedDetails === 'form' ? t('review.details.form') :
-  110,40:                context.selectedDetails === 'quick' ? t('review.details.quick') : t('review.details.advanced'),
-  115,40:         value: context.selectedPricing === 'free' ? t('review.pricing.free') :
-  116,40:                context.selectedPricing === 'budget' ? t('review.pricing.budget') :
-  117,40:                context.selectedPricing === 'premium' ? t('review.pricing.premium') : t('review.pricing.negotiable'),
-  135,34:     if (context.selectedCategory === 'property') {
-  138,34:     if (context.selectedCategory === 'job') {
-  210,31:           variant={reviewMode === 'preview' ? 'primary' : 'outline'}
-  217,31:           variant={reviewMode === 'edit' ? 'primary' : 'outline'}
-  224,31:           variant={reviewMode === 'confirm' ? 'primary' : 'outline'}
-  246,29:                 {reviewMode === 'edit' && (
-  273,35:               opacity={reviewMode === 'confirm' ? 0.7 : 1}
-  297,24:           {reviewMode !== 'confirm' ? (
-
-C:\layera\apps\layera-geoalert\src\components\steps\transactionType\index.ts
-  49,56:           check: (context) => context.selectedCategory === 'property'
-  69,56:           check: (context) => context.selectedCategory === 'property'
-  89,56:           check: (context) => context.selectedCategory === 'jobs'
-  109,56:           check: (context) => context.selectedCategory === 'jobs'
-
-C:\layera\apps\layera-geoalert\src\components\steps\transactionType\TransactionStep.tsx
-  60,18:     if (category === 'property') {
-  65,25:     } else if (category === 'jobs') {
-  94,35:     if (typeof PipelineDiscovery !== 'undefined') {
-
-C:\layera\apps\layera-geoalert\src\components\steps\StepOrchestrator.tsx
-  89,23:     if (currentStepId === 'occupation') {
-  101,23:     if (currentStepId === 'intent') {
-  180,23:       if (nextStep.id === 'occupation') {
-  262,21:   if (currentStepId === 'occupation') {
-
-C:\layera\apps\layera-geoalert\src\components\steps\StepRegistry.ts
-  121,28:     if (typeof step.order !== 'number' || step.order < 0) {
-
-C:\layera\apps\layera-geoalert\src\components\GeoHeader.tsx
-  32,30:     if (process.env.NODE_ENV === 'development') {
-  69,45:                 const newLang = currentLang === 'el' ? 'en' : 'el';
-
-C:\layera\apps\layera-geoalert\src\components\GeoMapNew.tsx
-  107,34:         if (process.env.NODE_ENV === 'development') {
-  189,30:     if (process.env.NODE_ENV === 'development') {
-
-C:\layera\apps\layera-geoalert\src\constants\index.ts
-  284,47:   enableConsoleLogging: import.meta.env?.MODE === 'development' || true,
-
-C:\layera\apps\layera-geoalert\src\debug\cursorDebug.ts
-  29,30:     if (process.env.NODE_ENV === 'development') {
-  62,34:       if (mutation.attributeName === 'class' || mutation.attributeName === 'style') {
-  62,72:       if (mutation.attributeName === 'class' || mutation.attributeName === 'style') {
-  79,34:       if (mutation.attributeName === 'class' || mutation.attributeName === 'style') {
-  79,72:       if (mutation.attributeName === 'class' || mutation.attributeName === 'style') {
-  102,14:     if (name === 'cursor' && process.env.NODE_ENV === 'development') {
-  102,51:     if (name === 'cursor' && process.env.NODE_ENV === 'development') {
-  115,34:         if (process.env.NODE_ENV === 'development') {
-  162,30:     if (process.env.NODE_ENV === 'development') {
-
-C:\layera\apps\layera-geoalert\src\modules\sidebars\NavigationRail.tsx
-  63,32:           isActive={activeView === 'dashboard'}
-  75,32:           isActive={activeView === 'map' && !isLayersPanelOpen}
-
-C:\layera\apps\layera-geoalert\src\services\logging\Logger.ts
-  63,30:     if (process.env.NODE_ENV === 'development') {
-
-C:\layera\apps\layera-geoalert\src\services\navigation\NavigationService.ts
-  239,18:     if (category === 'property') {
-  251,18:     if (category === 'job') {
-
-C:\layera\apps\layera-geoalert\src\services\navigation\validation.ts
-  19,21:     return category === 'property' || category === 'job';
-  19,48:     return category === 'property' || category === 'job';
-  24,33:     if (typeof state.stepIndex !== 'number' || state.stepIndex < 0) {
-  29,61:     if (!state.currentStepId || typeof state.currentStepId !== 'string') {
-  39,34:     if (typeof state.totalSteps !== 'number' || state.totalSteps < 1) {
-
-C:\layera\apps\layera-geoalert\src\utils\geometry\validator.ts
-  108,12:   if (type === 'marker') {
-  121,12:   if (type === 'polygon') {
-
-C:\layera\apps\layera-geoalert\src\App.tsx
-  210,34:         if (process.env.NODE_ENV === 'development') {
-  233,30:     if (process.env.NODE_ENV === 'development') {
-  240,30:     if (process.env.NODE_ENV === 'development') {
-
-C:\layera\apps\layera-id\src\components\Dashboard.jsx
-  138,41:               {user?.layeraClaims?.role === 'admin' && (
-
-C:\layera\apps\layera-id\src\components\Login.jsx
-  50,34:           light: currentLanguage === 'el' ? 'Φωτεινό θέμα' : 'Light',
-  51,33:           dark: currentLanguage === 'el' ? 'Σκοτεινό θέμα' : 'Dark',
-  52,35:           system: currentLanguage === 'el' ? 'Σύστημα' : 'System'
-
-C:\layera\apps\layera-id\src\components\MfaEnroll.jsx
-  61,22:       if (error.code === 'auth/operation-not-allowed') {
-  63,29:       } else if (error.code === 'auth/too-many-requests') {
-  65,29:       } else if (error.code === 'auth/invalid-phone-number') {
-  67,29:       } else if (error.code === 'auth/requires-recent-login') {
-
-C:\layera\apps\layera-id\src\components\NewDashboard.tsx
-  193,39:             {user?.layeraClaims?.role === 'admin' && (
-
-C:\layera\apps\layera-id\src\components\RoleBadge.jsx
-  19,29:       backgroundColor={role === 'admin' ? 'var(--layera-bg-info)' : role === 'broker' ? 'var(--layera-bg-warning)' : role === 'builder' ? 'var(--layera-bg-success)' : 'var(--layera-bg-tertiary)'}
-  19,74:       backgroundColor={role === 'admin' ? 'var(--layera-bg-info)' : role === 'broker' ? 'var(--layera-bg-warning)' : role === 'builder' ? 'var(--layera-bg-success)' : 'var(--layera-bg-tertiary)'}
-  19,123:       backgroundColor={role === 'admin' ? 'var(--layera-bg-info)' : role === 'broker' ? 'var(--layera-bg-warning)' : role === 'builder' ? 'var(--layera-bg-success)' : 'var(--layera-bg-tertiary)'}
-
-C:\layera\apps\layera-id\src\pages\AdminRoles.jsx
-  38,21:   if (claims?.role !== "admin") {
-  242,29:               type={msgType === 'error' ? 'error' : msgType === 'success' ? 'success' : 'info'}
-  242,61:               type={msgType === 'error' ? 'error' : msgType === 'success' ? 'success' : 'info'}
-
-C:\layera\apps\layera-id\src\pages\Settings.jsx
-  37,34:           light: currentLanguage === 'el' ? 'Φωτεινό θέμα' : 'Light',
-  38,33:           dark: currentLanguage === 'el' ? 'Σκοτεινό θέμα' : 'Dark',
-  39,35:           system: currentLanguage === 'el' ? 'Σύστημα' : 'System'
-  191,44:                     light: currentLanguage === 'el' ? 'Φωτεινό θέμα' : 'Light',
-  192,43:                     dark: currentLanguage === 'el' ? 'Σκοτεινό θέμα' : 'Dark',
-  193,45:                     system: currentLanguage === 'el' ? 'Σύστημα' : 'System'
-
-C:\layera\esco-database\scripts\import-esco.ts
-  195,36:       isLocalized: row.ISLOCALIZED === 'true',
-  518,28:       if (rel.relationType === 'essential') {
-
-C:\layera\functions\lib\index.js
-  44,89:         if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-  67,56:     if (!ctx.auth?.token?.role || ctx.auth.token.role !== "admin") {
-
-C:\layera\functions\src\index.ts
-  34,54:   if (!ctx.auth?.token?.role || ctx.auth.token.role !== "admin") {
-
-C:\layera\packages\address-breakdown\src\components\AddressBreakdownCard.tsx
-  157,28:     if (finalConfig.layout === 'tags') {
-
-C:\layera\packages\auth-bridge\src\components\TotpSetup.tsx
-  85,12:   if (step === 'start') {
-  131,12:   if (step === 'verify' && setupData) {
-
-C:\layera\packages\auth-bridge\src\hooks\useTotp.ts
-  62,66:     isEnabled: user?.mfaStatus.enabled && user?.mfaStatus.method === 'totp' || false
-
-C:\layera\packages\boundary-service\src\service.ts
-  192,25:       if (result.status === 'fulfilled') {
-  208,61:     const healthyProviders = providers.filter(p => p.status === 'healthy').length;
-  393,23:         result.status === 'fulfilled'
-
-C:\layera\packages\box-shadows\src\hooks\useBoxShadow.ts
-  76,61:         document.documentElement.getAttribute('data-theme') === 'dark';
-  233,31:         return `button${state === 'default' ? 'Default' : state.charAt(0).toUpperCase() + state.slice(1)}` as BoxShadowToken;
-  236,29:         return `card${state === 'default' ? 'Default' : state.charAt(0).toUpperCase() + state.slice(1)}` as BoxShadowToken;
-
-C:\layera\packages\box-shadows\src\index.ts
-  471,21:       if (intensity === 'glow') {
-  488,57:       return shadows.filter(shadow => shadow && shadow !== 'none').join(', ');
-  508,22:       if (baseShadow === 'none') return 'none';
-
-C:\layera\packages\buttons\src\components\Button.tsx
-  70,22:     if (iconPosition === 'right') {
-  79,22:     if (iconPosition === 'only') {
-
-C:\layera\packages\buttons\src\components\LinkButton.tsx
-  39,30:   const computedRel = target === '_blank' && !rel?.includes('noopener')
-  70,22:     if (iconPosition === 'right') {
-  79,22:     if (iconPosition === 'only') {
-
-C:\layera\packages\cad-processing\src\hooks\useCADProcessing.ts
-  112,36:     if (showNotifications && stage === 'complete') {
-  160,26:       if (detectedFormat === 'dwg') {
-  164,27:       if (detectedFormat !== 'dxf') {
-  351,19:     if (extension === 'dwg') {
-
-C:\layera\packages\cad-processing\src\parsers\dxfParser.ts
-  48,44:       const dxfString = typeof fileContent === 'string'
-  431,27:     if (typeof colorValue === 'number') {
-
-C:\layera\packages\cad-processing\src\renderers\cadRenderer.ts
-  120,30:     if (options.renderLayers === 'all') {
-  308,19:     if (lineType !== 'CONTINUOUS') {
-  319,20:     if (color.type === 'rgb' && typeof color.value === 'object') {
-  319,52:     if (color.type === 'rgb' && typeof color.value === 'object') {
-  324,20:     if (color.type === 'index' && typeof color.value === 'number') {
-  324,54:     if (color.type === 'index' && typeof color.value === 'number') {
-
-C:\layera\packages\cad-processing\src\utils\cadValidator.ts
-  58,23:   if (fileInfo.format === 'unknown') {
-  79,28:       if (fileInfo.format !== 'unknown') {
-  98,36:   if (fileInfo.estimatedComplexity === 'high') {
-  132,52:   const complexityMultiplier = estimatedComplexity === 'high' ? 3 :
-  133,52:                                estimatedComplexity === 'medium' ? 2 : 1;
-  285,65:     if (renderOpts.scaleFactor && typeof renderOpts.scaleFactor === 'number') {
-  299,57:     if (parseOpts.encoding && typeof parseOpts.encoding === 'string') {
-  350,22:       if (complexity === 'low') complexity = 'medium';
-  356,22:       if (complexity === 'low') complexity = 'medium';
-
-C:\layera\packages\canvas-transforms\src\utils\canvasUtils.ts
-  266,16:   if (position === 'top' || position === 'bottom') {
-  266,38:   if (position === 'top' || position === 'bottom') {
-  272,33:     ctx.textBaseline = position === 'top' ? 'bottom' : 'top';
-  276,27:       const y1 = position === 'top' ? rulerBounds.maxY : rulerBounds.minY;
-  277,27:       const y2 = position === 'top' ? rulerBounds.maxY - height * 0.6 : rulerBounds.minY + height * 0.6;
-  278,30:       const textY = position === 'top' ? rulerBounds.maxY - 2 : rulerBounds.minY + 2;
-  295,30:     ctx.textAlign = position === 'left' ? 'right' : 'left';
-  300,27:       const x1 = position === 'left' ? rulerBounds.maxX : rulerBounds.minX;
-  301,27:       const x2 = position === 'left' ? rulerBounds.maxX - height * 0.6 : rulerBounds.minX + height * 0.6;
-  302,30:       const textX = position === 'left' ? rulerBounds.maxX - 2 : rulerBounds.minX + 2;
-
-C:\layera\packages\cards\src\components\BaseCard\BaseCard.tsx
-  58,22:     if (opacityMode !== 'transparent') return; // Μόνο αν χρησιμοποιεί το opacity system
-  76,18:     height: size === 'sm' ? `${SPACING_SCALE.LG + SPACING_SCALE.SM}px` : undefined,
-  182,57:     if ((clickable || onClick) && onClick && (event.key === 'Enter' || event.key === ' ')) {
-  182,82:     if ((clickable || onClick) && onClick && (event.key === 'Enter' || event.key === ' ')) {
-
-C:\layera\packages\cards\src\components\DashboardCard\DashboardCard.tsx
-  50,42:                 {metric.change.direction === 'up' ? '↗️' : metric.change.direction === 'down' ? '↘️' : '→'}
-  50,84:                 {metric.change.direction === 'up' ? '↗️' : metric.change.direction === 'down' ? '↘️' : '→'}
-
-C:\layera\packages\cards\src\components\UnifiedCard\UnifiedCard.tsx
-  82,19:   if (config.type === 'data' && config.content) {
-  91,19:   if (config.type === 'selection' && config.selected) {
-  100,19:   if (config.type === 'tool') {
-  105,19:   if (config.type === 'action') {
-  137,24:       {config.priority === 'primary' && (
-
-C:\layera\packages\cards\src\utils\cardConfigFactory.ts
-  314,27:       if (data.reviewType === 'edit') {
-
-C:\layera\packages\cards\src\utils\cardThemes.ts
-  155,19:   if (opacityMode === 'opaque') {
-  157,17:     if (variant === 'property' || variant === 'success') {
-  157,43:     if (variant === 'property' || variant === 'success') {
-  160,17:     if (variant === 'job' || variant === 'info') {
-  160,38:     if (variant === 'job' || variant === 'info') {
-
-C:\layera\packages\cards\src\utils\cardVariantResolver.ts
-  50,20:   if (config.theme === 'property' || context?.category === 'property') {
-  50,56:   if (config.theme === 'property' || context?.category === 'property') {
-  54,20:   if (config.theme === 'job' || context?.category === 'job') {
-  54,51:   if (config.theme === 'job' || context?.category === 'job') {
-  69,25:     return config.theme === 'property' || context?.category === 'property'
-  69,61:     return config.theme === 'property' || context?.category === 'property'
-  75,25:   if (context?.category === 'property') return 'property';
-  76,25:   if (context?.category === 'job') return 'job';
-  105,25:   if (context?.category === 'property') return 'property';
-  106,25:   if (context?.category === 'job') return 'job';
-  128,47:   if ('priority' in config && config.priority === 'primary') {
-
-C:\layera\packages\constants\src\react-hooks.tsx
-  124,23:     if (typeof window === 'undefined' || !isReady) {
-  145,25:       if (typeof window === 'undefined' || !isReady) {
-  216,25:       if (typeof window === 'undefined' || !isReady) {
-  462,29:   if (process.env.NODE_ENV !== 'development') {
-
-C:\layera\packages\constants\src\theme-engine.ts
-  97,23:     if (typeof window === 'undefined') {
-  138,23:     if (typeof window === 'undefined') return;
-  144,34:       if (this.state.activeTheme === 'system') {
-  179,23:     if (typeof window === 'undefined') return;
-  198,23:     if (typeof window === 'undefined') return;
-  215,55:     this.state.resolvedTheme = this.state.activeTheme === 'system'
-
-C:\layera\packages\constants\src\themes.ts
-  216,20:   if (typeof value === 'number') {
-
-C:\layera\packages\database-core\src\namespaces\namespace.ts
-  38,39:     if (!legoName || typeof legoName !== 'string') {
-  53,31:     if (!name || typeof name !== 'string') {
-  305,30:       healthy: health.status === 'healthy',
-
-C:\layera\packages\database-core\src\types\index.ts
-  342,6:   | '==' | '!=' | '<' | '<=' | '>' | '>='
-
-C:\layera\packages\database-core\src\utils\factory.ts
-  42,28:   if (process.env.NODE_ENV === 'development' && !isEmulatorConnected(firestore)) {
-
-C:\layera\packages\device-layouts\src\DeviceLayoutRenderer.tsx
-  68,23:     if (typeof window === 'undefined') {
-  93,26:   if (detectedDeviceType === 'iphone') {
-  145,26:               if (stepId === 'occupation' && currentStep === 'employmentType') {
-  145,58:               if (stepId === 'occupation' && currentStep === 'employmentType') {
-  164,26:               if (stepId === 'category' && data && typeof data === 'object' && 'selectedCategory' in data) {
-  164,64:               if (stepId === 'category' && data && typeof data === 'object' && 'selectedCategory' in data) {
-  179,26:   if (detectedDeviceType === 'desktop') {
-  200,26:   if (detectedDeviceType === 'tablet') {
-
-C:\layera\packages\draggable\src\hooks\useDraggable.ts
-  58,14:     if (axis === 'x') y = position.y;
-  59,14:     if (axis === 'y') x = position.x;
-
-C:\layera\packages\draggable-fab\src\DraggableFAB.tsx
-  74,25:         (typeof window !== 'undefined' ? window.innerWidth - initialPosition.right - getSizePixels(size) : 15) :
-  77,25:         (typeof window !== 'undefined' ? window.innerHeight - initialPosition.bottom - getSizePixels(size) : 15) :
-  90,42:     if (!constrainToViewport || position === 'fixed') return;
-  126,18:     if (position === 'fixed') return; // Fixed position δεν είναι draggable
-  164,24:     position: position === 'fixed' ? 'absolute' : 'absolute',
-  165,18:     ...(position === 'fixed' ? {
-  166,43:       right: typeof initialPosition.right === 'number' ? `${initialPosition.right}px` : undefined,
-  167,45:       bottom: typeof initialPosition.bottom === 'number' ? `${initialPosition.bottom}px` : undefined,
-  181,22:     cursor: position === 'fixed' ? 'pointer' : 'grab',
-  185,26:     transition: position === 'fixed' ? 'all 0.2s ease' : 'none',
-
-C:\layera\packages\employment-taxonomy\src\components\OccupationCard.tsx
-  93,15:   if (variant === 'minimal') {
-  116,15:   if (variant === 'compact') {
-
-C:\layera\packages\employment-taxonomy\src\providers\esco.ts
-  110,48:       if (error instanceof Error && error.name === 'AbortError') {
-  193,22:     if (result._type === 'Occupation') {
-
-C:\layera\packages\error-boundary\src\components\ErrorBoundary\ErrorBoundary.tsx
-  45,30:     if (process.env.NODE_ENV === 'development') {
-  107,29:         if (typeof fallback === 'function') {
-
-C:\layera\packages\error-boundary\src\components\ErrorFallback\ErrorFallback.tsx
-  155,33:           {process.env.NODE_ENV === 'development' && (
-
-C:\layera\packages\error-boundary\src\utils\errorUtils.ts
-  91,16:     error.name === 'NetworkError' ||
-  101,16:     error.name === 'ChunkLoadError' ||
-  109,16:     error.name === 'QuotaExceededError' ||
-
-C:\layera\packages\file-compression\src\hooks\useFileCompression.ts
-  106,36:     if (showNotifications && stage === 'complete') {
-  335,45:     const formatMultiplier = options.format === 'webp' ? 0.8 :
-  336,43:                            options.format === 'avif' ? 0.7 : 1.0;
-
-C:\layera\packages\file-compression\src\utils\compressionValidator.ts
-  91,41:   if (!options.format || options.format === 'jpeg') {
-
-C:\layera\packages\file-import\src\utils\fileValidation.ts
-  229,25:   if (fileType.category === 'image') {
-
-C:\layera\packages\file-transformation\src\hooks\useFileTransformation.ts
-  118,36:     if (showNotifications && stage === 'complete') {
-  431,30:     if (options.sourceFormat === 'dxf' && options.targetFormat === 'geojson') {
-  431,64:     if (options.sourceFormat === 'dxf' && options.targetFormat === 'geojson') {
-  434,37:     } else if (options.sourceFormat === 'svg' && options.targetFormat === 'geojson') {
-  434,71:     } else if (options.sourceFormat === 'svg' && options.targetFormat === 'geojson') {
-  486,14:   if (format === 'geojson' || format === 'kml' || format === 'gpx' || format === 'svg') {
-  486,38:   if (format === 'geojson' || format === 'kml' || format === 'gpx' || format === 'svg') {
-  486,58:   if (format === 'geojson' || format === 'kml' || format === 'gpx' || format === 'svg') {
-  486,78:   if (format === 'geojson' || format === 'kml' || format === 'gpx' || format === 'svg') {
-  494,19:   if (typeof data === 'string') {
-
-C:\layera\packages\file-transformation\src\transformers\vectorTransformer.ts
-  284,35:       const geoJson = typeof data === 'string' ? JSON.parse(data) : data as Record<string, unknown>;
-  286,39:       if (!geoJson || typeof geoJson !== 'object') {
-  292,24:       if (geoJson.type === 'FeatureCollection' && Array.isArray(geoJson.features)) {
-  302,31:       } else if (geoJson.type === 'Feature' && geoJson.geometry) {
-  329,38:       const svgContent = typeof data === 'string' ? data : String(data);
-  403,18:         if (type === 'M' || type === 'L') {
-  403,34:         if (type === 'M' || type === 'L') {
-  524,50:         if (coord.length >= 2 && typeof coord[0] === 'number' && typeof coord[1] === 'number') {
-  524,82:         if (coord.length >= 2 && typeof coord[0] === 'number' && typeof coord[1] === 'number') {
-  552,83:         if (Array.isArray(geometry.coordinates) && typeof geometry.coordinates[0] === 'number') {
-
-C:\layera\packages\file-transformation\src\utils\coordinateTransformer.ts
-  261,32:       if (transform.sourceEPSG === 'EPSG:4326') {
-
-C:\layera\packages\file-transformation\src\utils\transformationValidator.ts
-  232,41:   } else if (compatibility.dataLossRisk === 'high') {
-  239,41:   } else if (compatibility.dataLossRisk === 'medium') {
-  527,22:   if (sourceCategory === 'cad' || targetCategory === 'cad') {
-  527,50:   if (sourceCategory === 'cad' || targetCategory === 'cad') {
-  539,20:     if (complexity === 'low') complexity = 'medium';
-  546,20:     if (complexity === 'low') complexity = 'medium';
-  553,20:     if (complexity === 'low') complexity = 'medium';
-
-C:\layera\packages\file-upload\src\components\DragDropZone.tsx
-  124,15:         theme === 'dark' ? 'bg-blue-900/20' : 'bg-blue-50',
-  131,15:         theme === 'dark' ? 'border-gray-600 hover:border-gray-500' : 'border-gray-300 hover:border-gray-400'
-  162,23:               : theme === 'dark'
-  178,52:             <Typography size="sm" className={theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}>
-
-C:\layera\packages\file-upload\src\components\FileList.tsx
-  29,49:       <Card className={`p-6 text-center ${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-50'}`}>
-  139,35:     <Card className={`p-4 ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'}`}>
-  162,28:               {file.status === 'uploading' && file.speed && (
-  178,81:               <Box className={`w-full bg-gray-200 rounded-full h-2 mt-2 ${theme === 'dark' ? 'bg-gray-600' : 'bg-gray-200'}`}>
-  191,26:             {file.status === 'uploading' && (
-  202,26:             {file.status === 'error' && (
-  213,27:             {(file.status === 'completed' || file.status === 'error' || file.status === 'cancelled') && (
-  213,58:             {(file.status === 'completed' || file.status === 'error' || file.status === 'cancelled') && (
-  213,85:             {(file.status === 'completed' || file.status === 'error' || file.status === 'cancelled') && (
-
-C:\layera\packages\file-upload\src\components\FilePreview.tsx
-  91,22:         return theme === 'dark' ? 'border-gray-600' : 'border-gray-300';
-  96,22:     if (file.status !== 'uploading') return null;
-  136,52:             <Box className={`text-gray-400 ${theme === 'dark' ? 'text-gray-500' : 'text-gray-400'}`}>
-  146,26:             {file.status === 'completed' && (
-  151,26:             {file.status === 'error' && (
-  156,26:             {file.status === 'uploading' && (
-  194,26:             {file.status === 'uploading' && (
-  200,26:             {file.status === 'error' && (
-  210,21:               theme === 'dark'
-  219,24:           {file.status === 'uploading' && file.speed && (
-
-C:\layera\packages\file-upload\src\components\FileUploader.tsx
-  163,53:     const pendingFiles = files.filter(f => f.status === 'idle');
-  175,55:     const uploadingFiles = files.filter(f => f.status === 'uploading');
-  207,21:     if (file.status === 'uploading') {
-  226,50:     const completed = files.filter(f => f.status === 'completed').length;
-  227,50:     const uploading = files.filter(f => f.status === 'uploading').length;
-  228,47:     const errors = files.filter(f => f.status === 'error').length;
-  235,67:   const canStartUpload = !isUploading && files.some(f => f.status === 'idle');
-  244,56:           <Box className={`mb-6 p-4 rounded-lg ${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-50'}`}>
-  264,39:                     variant={viewMode === 'list' ? 'primary' : 'outline'}
-  271,39:                     variant={viewMode === 'grid' ? 'primary' : 'outline'}
-  339,23:             {viewMode === 'list' ? (
-
-C:\layera\packages\file-upload\src\utils\uploadEngine.ts
-  285,39:       if (fileItem && fileItem.status === 'idle') {
-
-C:\layera\packages\floating-action-buttons\src\UnifiedFAB.tsx
-  91,25:         (typeof window !== 'undefined' ? window.innerWidth - initialPosition.right - BTN_SIZE : 20) :
-  94,25:         (typeof window !== 'undefined' ? window.innerHeight - initialPosition.bottom - BTN_SIZE : 20) :
-  108,60:     if (!draggable || !constrainToViewport || positionType === 'fixed') return;
-  144,36:     if (!draggable || positionType === 'fixed') return;
-  183,22:     ...(positionType === 'fixed' || !draggable ? {
-  201,40:     cursor: draggable && positionType !== 'fixed' ? 'grab' : 'pointer',
-  205,30:     transition: positionType === 'fixed' ? 'all 0.2s ease' : 'none',
-  240,23:     if (typeof window === 'undefined') {
-
-C:\layera\packages\forms\src\components\Checkbox\Checkbox.tsx
-  102,20:     if (typeof ref === 'function') {
-
-C:\layera\packages\forms\src\components\DatePicker\DatePicker.tsx
-  285,21:       if (direction === 'prev') {
-
-C:\layera\packages\forms\src\components\InputGroup\InputGroup.tsx
-  249,18:     gap: variant === 'separate' ? gap : undefined,
-
-C:\layera\packages\forms\src\components\NumericInput\NumericInput.tsx
-  267,26:         {stepperPosition === 'separate' && showSteppers && (
-  312,28:           {stepperPosition === 'inline' && showSteppers && (
-  347,26:         {stepperPosition === 'right' && showSteppers && (
-  382,26:         {stepperPosition === 'separate' && showSteppers && (
-
-C:\layera\packages\geo-drawing\src\components\GeometryRenderer.tsx
-  39,26:     const isDark = theme === 'dark';
-  158,31:           {((measurement.type === 'distance' || measurement.type === 'area') && latlngs.length >= 2) && (
-  158,66:           {((measurement.type === 'distance' || measurement.type === 'area') && latlngs.length >= 2) && (
-  187,30:           {(measurement.type === 'area' && latlngs.length >= 3) && (
-
-C:\layera\packages\geo-drawing\src\components\MeasurementCanvas.tsx
-  58,17:       if (state === 'finished') return;
-  93,17:       if (state === 'drawing' && mode !== 'point') {
-  93,40:       if (state === 'drawing' && mode !== 'point') {
-  99,31:       if (e.originalEvent.key === 'Escape' && state === 'drawing') {
-  99,53:       if (e.originalEvent.key === 'Escape' && state === 'drawing') {
-  107,26:     const isDark = theme === 'dark';
-  142,17:         {((mode === 'distance' || mode === 'area') && latlngs.length >= 2) && (
-  142,40:         {((mode === 'distance' || mode === 'area') && latlngs.length >= 2) && (
-  149,32:               dashArray: state === 'drawing' ? '5, 5' : undefined
-  155,16:         {(mode === 'area' && latlngs.length >= 3 && state === 'finished') && (
-  155,59:         {(mode === 'area' && latlngs.length >= 3 && state === 'finished') && (
-
-C:\layera\packages\geo-drawing\src\components\MeasurementControls.tsx
-  51,25:           variant={mode === 'distance' ? 'primary' : 'secondary'}
-  62,25:           variant={mode === 'area' ? 'primary' : 'secondary'}
-  75,25:           variant={mode === 'point' ? 'primary' : 'secondary'}
-  90,18:             mode === 'distance'
-  92,22:               : mode === 'area'
-  146,22:               {mode !== 'point' && (
-
-C:\layera\packages\geo-drawing\src\hooks\useDrawing.ts
-  48,24:     setIsDrawing(mode !== 'none');
-  67,32:     setDrawingMode(drawingMode === 'none' ? 'polygon' : 'none');
-
-C:\layera\packages\geo-drawing\src\hooks\useMeasurement.ts
-  49,14:     if (mode === 'distance' && updatedPoints.length >= 2) {
-  53,21:     } else if (mode === 'area' && updatedPoints.length >= 3) {
-  57,21:     } else if (mode === 'point') {
-  64,16:       ...(mode === 'distance' && distance !== undefined && { distance }),
-  65,16:       ...(mode === 'area' && area !== undefined && { area }),
-  80,14:     if (mode === 'distance' && points.length < 2) {
-  88,14:     if (mode === 'area' && points.length < 3) {
-  132,15:     if (state === 'drawing') {
-  161,16:       if (mode === 'distance' && updatedPoints.length >= 2) {
-  165,23:       } else if (mode === 'area' && updatedPoints.length >= 3) {
-  174,18:         ...(mode === 'distance' && distance !== undefined && { distance }),
-  175,18:         ...(mode === 'area' && area !== undefined && { area }),
-  229,22:     isDrawing: state === 'drawing',
-  230,23:     isFinished: state === 'finished',
-  231,22:     canFinish: (mode === 'distance' && points.length >= 2) ||
-  232,22:                (mode === 'area' && points.length >= 3) ||
-  233,22:                (mode === 'point' && points.length >= 1)
-
-C:\layera\packages\geo-drawing\src\utils\geometry.ts
-  18,20:   if (geometryType === 'Polygon' && Array.isArray(coordinates[0]) && Array.isArray(coordinates[0][0])) {
-  24,20:   if (geometryType === 'LineString' && Array.isArray(coordinates[0]) && typeof coordinates[0][0] === 'number') {
-  24,98:   if (geometryType === 'LineString' && Array.isArray(coordinates[0]) && typeof coordinates[0][0] === 'number') {
-  30,20:   if (geometryType === 'Point' && typeof coordinates[0] === 'number') {
-  30,57:   if (geometryType === 'Point' && typeof coordinates[0] === 'number') {
-  51,20:   if (geometryType === 'Polygon') {
-  178,21:   if (geometry.type === 'Polygon') {
-  184,28:   } else if (geometry.type === 'MultiPolygon') {
-
-C:\layera\packages\geo-mapping\src\services\fallbackBoundaries.ts
-  94,41:     .filter(term => term && typeof term === 'string')
-
-C:\layera\packages\geo-mapping\src\services\osmService_backup.ts
-  21,36:  * - Immediate check: if (baseName === 'Αμπελοκήπων') → instant return (0ms)
-  88,31:   debug: process.env.NODE_ENV === 'development'
-
-C:\layera\packages\geo-mapping\src\services\osmService.ts
-  193,20:   if (element.type === 'relation') {
-  224,20:   if (element.type === 'way') {
-
-C:\layera\packages\geocoding\src\hooks\useGeocode.ts
-  30,24:     if (typeof window !== 'undefined') {
-  66,41:       const storedLang = typeof window !== 'undefined' ? localStorage.getItem('i18nextLng') : null;
-  67,61:       const userLanguage = storedLang || (typeof navigator !== 'undefined' ? navigator.language.slice(0, 2) : 'el');
-  90,27:       if (response.status === 'error') {
-  100,60:       if (searchError instanceof Error && searchError.name === 'AbortError') {
-
-C:\layera\packages\geocoding\src\providers\nominatim.ts
-  56,15:   if (osmType === 'house') return 'exact';
-  57,16:   if (osmClass === 'highway' || osmType === 'residential') return 'street';
-  57,41:   if (osmClass === 'highway' || osmType === 'residential') return 'street';
-  58,16:   if (osmClass === 'place' && (osmType === 'city' || osmType === 'town' || osmType === 'village')) {
-  58,40:   if (osmClass === 'place' && (osmType === 'city' || osmType === 'town' || osmType === 'village')) {
-  58,62:   if (osmClass === 'place' && (osmType === 'city' || osmType === 'town' || osmType === 'village')) {
-  58,84:   if (osmClass === 'place' && (osmType === 'city' || osmType === 'town' || osmType === 'village')) {
-  144,43:       'accept-language': request.language === 'el' ? 'el,en' : 'en'
-  247,47:           'accept-language': request.language === 'el' ? 'el,en' : 'en'
-  387,44:       'accept-language': options?.language === 'en' ? 'en' : 'el,en'
-  549,36:   isAvailable: () => typeof fetch !== 'undefined'
-
-C:\layera\packages\i18n\src\config.ts
-  30,31:   debug: process.env.NODE_ENV === 'development',
-
-C:\layera\packages\icons\src\Icon.tsx
-  80,32:   const iconSize = typeof size === 'number' ? size : ICON_SIZES[size];
-  105,38:     `layera-icon--size-${typeof size === 'string' ? size : 'custom'}`,
-  121,19:         if (e.key === 'Enter' || e.key === ' ') {
-  121,40:         if (e.key === 'Enter' || e.key === ' ') {
-
-C:\layera\packages\layout\src\components\AppShell\AppShell.tsx
-  52,21:       if (event.key === 'Escape' && isMobile && isSidebarOpen) {
-
-C:\layera\packages\layout\src\components\Container\PageContainer.tsx
-  33,18:     ...(maxWidth === 'sm' && { maxWidth: '640px' }),
-  34,18:     ...(maxWidth === 'md' && { maxWidth: '768px' }),
-  35,18:     ...(maxWidth === 'lg' && { maxWidth: '1024px' }),
-  36,18:     ...(maxWidth === 'xl' && { maxWidth: '1280px' }),
-  37,18:     ...(maxWidth === 'full' && { maxWidth: '100%' }),
-  38,17:     ...(padding === 'none' && { padding: '0' }),
-  39,17:     ...(padding === 'sm' && { padding: `${SPACING_SCALE.SM}px` }),
-  40,17:     ...(padding === 'md' && { padding: `${SPACING_SCALE.MD}px` }),
-  41,17:     ...(padding === 'lg' && { padding: `${SPACING_SCALE.LG}px` })
-
-C:\layera\packages\layout\src\components\Header\LayeraHeader.tsx
-  39,35:             {subtitle && variant !== 'minimal' && (
-  46,32:         {navigation && variant === 'rich' && (
-
-C:\layera\packages\layout\src\components\Box.tsx
-  56,20:   if (typeof value === 'string' && value in SPACING_SCALE) {
-  58,26:     return typeof result === 'number' ? `${result}px` : result;
-  62,20:   if (typeof value === 'number') {
-
-C:\layera\packages\layout\src\components\Flex.tsx
-  44,23:     alignItems: align === 'start' ? 'flex-start' : align === 'end' ? 'flex-end' : align,
-  44,58:     alignItems: align === 'start' ? 'flex-start' : align === 'end' ? 'flex-end' : align,
-  45,29:     justifyContent: justify === 'start' ? 'flex-start' : justify === 'end' ? 'flex-end' : justify,
-  45,66:     justifyContent: justify === 'start' ? 'flex-start' : justify === 'end' ? 'flex-end' : justify,
-
-C:\layera\packages\layout\src\components\Stack.tsx
-  32,30:     flexDirection: direction === 'vertical' ? 'column' : 'row',
-  33,23:     alignItems: align === 'start' ? 'flex-start' : align === 'end' ? 'flex-end' : align,
-  33,58:     alignItems: align === 'start' ? 'flex-start' : align === 'end' ? 'flex-end' : align,
-
-C:\layera\packages\layout\src\hooks\useFlex.ts
-  37,36:     const justifyContent = justify === 'start' ? 'flex-start' : justify === 'end' ? 'flex-end' : justify;
-  37,73:     const justifyContent = justify === 'start' ? 'flex-start' : justify === 'end' ? 'flex-end' : justify;
-  38,30:     const alignItems = align === 'start' ? 'flex-start' : align === 'end' ? 'flex-end' : align;
-  38,65:     const alignItems = align === 'start' ? 'flex-start' : align === 'end' ? 'flex-end' : align;
-  145,38:     const alignSelfValue = alignSelf === 'start' ? 'flex-start' : alignSelf === 'end' ? 'flex-end' : alignSelf;
-  145,77:     const alignSelfValue = alignSelf === 'start' ? 'flex-start' : alignSelf === 'end' ? 'flex-end' : alignSelf;
-  149,15:     if (order === 'first') {
-  151,22:     } else if (order === 'last') {
-  161,35:       flexBasis: typeof flexBasis === 'number' ? `${flexBasis}px` : flexBasis,
-
-C:\layera\packages\layout\src\hooks\useGeoAlertLayout.ts
-  72,23:     if (typeof window === 'undefined') return false;
-
-C:\layera\packages\layout\src\sizing\index.ts
-  118,20:   if (typeof value === 'number') {
-
-C:\layera\packages\layout\src\utils\geoalert-layout.ts
-  129,35:   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  141,23:   if (typeof document === 'undefined') return;
-
-C:\layera\packages\loading\src\components\Skeleton\Skeleton.tsx
-  19,16:     animation !== 'none' && `layera-skeleton--${animation}`,
-  24,25:     width: typeof width === 'number' ? `${width}px` : width,
-  25,27:     height: typeof height === 'number' ? `${height}px` : height
-
-C:\layera\packages\map-labels\src\utils\constants.ts
-  258,33:   ENABLED: process.env.NODE_ENV === 'development',
-
-C:\layera\packages\map-labels\src\utils\formatting.ts
-  29,21:   if (preferredUnit === 'auto') {
-  88,21:   if (preferredUnit === 'auto') {
-  140,13:   if (style === 'short') {
-  245,14:   if (format === 'decimal') {
-
-C:\layera\packages\modals\src\components\Modal\Modal.tsx
-  41,21:       if (event.key === 'Escape') {
-  112,42:           padding: typeof overlayPadding === 'number' ? `${overlayPadding}px` : overlayPadding
-  122,44:             padding: typeof contentPadding === 'number' ? `${contentPadding}px` : contentPadding
-  125,65:             '--layera-modal-inner-padding': typeof panelPadding === 'number' ? `${panelPadding}px` : panelPadding
-  151,26:     if (typeof container === 'function') return container();
-
-C:\layera\packages\osm\src\cache\cache.ts
-  177,17:     if (reason !== 'manual') {
-
-C:\layera\packages\osm\src\http\client.ts
-  72,20:     if (this.state === 'closed') {
-  76,20:     if (this.state === 'open') {
-  296,50:         if (error instanceof Error && error.name === 'AbortError') {
-
-C:\layera\packages\osm\src\parsers\boundaries.ts
-  269,53:     const outerMembers = members.filter(m => m.role === 'outer' && m.type === 'way');
-  269,75:     const outerMembers = members.filter(m => m.role === 'outer' && m.type === 'way');
-  270,53:     const innerMembers = members.filter(m => m.role === 'inner' && m.type === 'way');
-  270,75:     const innerMembers = members.filter(m => m.role === 'inner' && m.type === 'way');
-  374,38:           if (element.tags?.boundary === 'administrative') {
-
-C:\layera\packages\osm\src\parsers\buildings.ts
-  71,39:     if (!building || typeof building !== 'string') return false;
-  429,62:     const outerMembers = relation.members.filter(m => m.role === 'outer' && m.type === 'way');
-  429,84:     const outerMembers = relation.members.filter(m => m.role === 'outer' && m.type === 'way');
-
-C:\layera\packages\osm\src\types\osm.ts
-  280,18:     element.type === 'node';
-  283,18:     element.type === 'way';
-  286,18:     element.type === 'relation';
-  292,34:     feature.properties?.boundary === 'administrative';
-  299,33:       return typeof element.lat === 'number' && typeof element.lon === 'number';
-  299,68:       return typeof element.lat === 'number' && typeof element.lon === 'number';
-
-C:\layera\packages\osm\src\utils\strings.ts
-  95,21:   if (typeof input !== 'string') {
-  187,15:     typeof id === 'number' &&
-  224,26:     if (parsed.protocol !== 'https:') {
-
-C:\layera\packages\osm\src\utils\validation.ts
-  227,20:     if (node.type !== 'node') {
-  269,19:     if (way.type !== 'way') {
-  351,24:     if (relation.type !== 'relation') {
-  415,33:         if (typeof member.role !== 'string') {
-  467,34:     if (typeof response.version !== 'number') {
-  477,36:     if (typeof response.generator !== 'string') {
-  505,65:       // const nodeCount = response.elements.filter(e => e.type === 'node').length;
-  506,64:       // const wayCount = response.elements.filter(e => e.type === 'way').length;
-  507,69:       // const relationCount = response.elements.filter(e => e.type === 'relation').length;
-
-C:\layera\packages\pipelines\src\context\PipelineDiscovery.ts
-  97,28:       if (selectedCategory === 'property') {
-  99,35:       } else if (selectedCategory === 'job') {
-  109,24:     if (selectedIntent === 'offer') {
-  124,89:       { id: 'location', title: 'Τοποθεσία', shortTitle: 'Χάρτης', order: selectedIntent === 'offer' ? 3 : 2 },
-  125,85:       { id: 'layout', title: 'Κάτοψη', shortTitle: 'Διάταξη', order: selectedIntent === 'offer' ? 4 : 3 },
-  126,90:       { id: 'details', title: 'Στοιχεία', shortTitle: 'Περιγραφή', order: selectedIntent === 'offer' ? 5 : 4 },
-  127,90:       { id: 'complete', title: 'Τέλος', shortTitle: 'Επιβεβαίωση', order: selectedIntent === 'offer' ? 6 : 5 }
-  356,77:     if (categoryState.showTransactionStep && categoryState.selectedCategory === 'property' && categoryState.selectedIntent === 'offer') {
-  356,124:     if (categoryState.showTransactionStep && categoryState.selectedCategory === 'property' && categoryState.selectedIntent === 'offer') {
-
-C:\layera\packages\pipelines\unified\state\guards.ts
-  10,74: export const isProperty = (context: PipelineContext) => context.category === 'property';
-  11,69: export const isJob = (context: PipelineContext) => context.category === 'job';
-  12,69: export const isOffer = (context: PipelineContext) => context.intent === 'offer';
-  13,73: export const isNow = (context: PipelineContext) => context.availability === 'now';
-  14,76: export const isFuture = (context: PipelineContext) => context.availability === 'future';
-
-C:\layera\packages\pipelines\unified\utils\stepperConfig.ts
-  31,16:   if (category === 'property') {
-  63,16:   if (category === 'job') {
-
-C:\layera\packages\progress-stepper\src\components\LayeraProgressStepper.tsx
-  158,28:               {orientation === 'vertical' && step.description && (
-
-C:\layera\packages\snap-engine\src\utils\GeometryUtils.ts
-  191,24:       if (osmData.type === 'node' && osmData.lat && osmData.lon) {
-  214,24:       if (osmData.type === 'way' && osmData.nodes && osmData.nodes.length > 0) {
-
-C:\layera\packages\snap-interactions\src\components\SnapCanvas.tsx
-  147,47:     ctx.fillStyle = backgroundColor || (theme === 'dark' ? 'var(--layera-color-slate-700, #2c3e50)' : 'var(--layera-color-gray-100, #ecf0f1)');
-  164,28:                      theme === 'dark' ? 'var(--layera-color-gray-100, #ecf0f1)' : 'var(--layera-color-slate-700, #2c3e50)';
-  166,36:     ctx.fillStyle = geometry.layer === 'osm_buildings' ?
-  184,28:         if (ctx.fillStyle !== 'transparent') {
-  202,32:             if (ctx.fillStyle !== 'transparent') {
-
-C:\layera\packages\snap-interactions\src\components\SnapIndicator.tsx
-  91,32:     border: `2px solid ${theme === 'dark' ? 'var(--layera-color-white, #ffffff)' : 'var(--layera-color-black, #000000)'}`,
-  108,28:     backgroundColor: theme === 'dark' ? 'var(--layera-color-slate-700, #2c3e50)' : 'var(--layera-color-gray-100, #ecf0f1)',
-  109,18:     color: theme === 'dark' ? 'var(--layera-color-gray-100, #ecf0f1)' : 'var(--layera-color-slate-700, #2c3e50)',
-  110,32:     border: `1px solid ${theme === 'dark' ? 'var(--layera-color-slate-600, #34495e)' : 'var(--layera-color-gray-300, #bdc3c7)'}`,
-  144,22:         color={theme === 'dark' ? 'var(--layera-color-white, #ffffff)' : 'var(--layera-color-black, #000000)'}
-  203,85:     border: `2px solid ${isSnapped ? 'var(--layera-color-red-600, #e74c3c)' : theme === 'dark' ? 'var(--layera-color-gray-100, #ecf0f1)' : 'var(--layera-color-slate-700, #2c3e50)'}`,
-  238,27:   const lineColor = theme === 'dark' ? 'var(--layera-color-gray-100, #ecf0f1)' : 'var(--layera-color-slate-700, #2c3e50)';
-  269,28:     backgroundColor: theme === 'dark' ? 'var(--layera-color-slate-700, #2c3e50)' : 'var(--layera-color-gray-100, #ecf0f1)',
-  270,18:     color: theme === 'dark' ? 'var(--layera-color-gray-100, #ecf0f1)' : 'var(--layera-color-slate-700, #2c3e50)',
-  271,32:     border: `1px solid ${theme === 'dark' ? 'var(--layera-color-slate-600, #34495e)' : 'var(--layera-color-gray-300, #bdc3c7)'}`,
-
-C:\layera\packages\snap-interactions\src\index.ts
-  205,26:     if (performanceLevel === 'high') {
-
-C:\layera\packages\tables\src\components\DataTable\DataTable.tsx
-  93,23:     if (typeof rowKey === 'function') {
-
-C:\layera\packages\tables\src\components\DataTable\TablePagination.tsx
-  126,31:               {typeof pageNum === 'number' ? (
-
-C:\layera\packages\theme-switcher\src\components\ThemeSwitcher.tsx
-  140,15:     if (theme === 'system') {
-  143,26:     return resolvedTheme === 'light' ? icons.light : icons.dark;
-  147,15:     if (theme === 'system') {
-  150,26:     return resolvedTheme === 'light' ? labels.light : labels.dark;
-  155,17:     if (variant === 'icon') {
-  171,15:   if (variant === 'icon') {
-  178,48:         aria-label={`Αλλαγή σε ${resolvedTheme === 'light' ? 'σκοτεινό' : 'φωτεινό'} θέμα`}
-  190,15:   if (variant === 'button') {
-  213,15:   if (variant === 'dropdown') {
-  242,65:               className={`layera-theme-switcher__option ${theme === 'light' ? 'layera-theme-switcher__option--active' : ''}`}
-  256,65:               className={`layera-theme-switcher__option ${theme === 'dark' ? 'layera-theme-switcher__option--active' : ''}`}
-  270,65:               className={`layera-theme-switcher__option ${theme === 'system' ? 'layera-theme-switcher__option--active' : ''}`}
-
-C:\layera\packages\theme-switcher\src\context\ThemeContext.tsx
-  33,23:     if (typeof window === 'undefined') return defaultTheme;
-  52,15:     if (theme === 'system') {
-
-C:\layera\packages\theme-switcher\src\hooks\useTheme.ts
-  26,23:     if (resolvedTheme === 'light') {
-
-C:\layera\packages\tolgee\src\config.ts
-  8,28:   apiUrl: (typeof process !== 'undefined' && process.env?.TOLGEE_API_URL) || 'https://app.tolgee.io',
-  9,28:   apiKey: (typeof process !== 'undefined' && process.env?.TOLGEE_API_KEY) || '',
-  12,31:   projectId: (typeof process !== 'undefined' && process.env?.TOLGEE_PROJECT_ID) || '',
-  20,34:   isDevelopment: typeof process !== 'undefined' && process.env?.NODE_ENV === 'development',
-  20,74:   isDevelopment: typeof process !== 'undefined' && process.env?.NODE_ENV === 'development',
-  21,37:   inContextEditing: typeof process !== 'undefined' && process.env?.NODE_ENV === 'development',
-  21,77:   inContextEditing: typeof process !== 'undefined' && process.env?.NODE_ENV === 'development',
-
-C:\layera\packages\tolgee\src\hooks-minimal.ts
-  70,29:     const locale = language === 'el' ? 'el-GR' : 'en-US';
-  75,29:     const locale = language === 'el' ? 'el-GR' : 'en-US';
-  80,29:     const locale = language === 'el' ? 'el-GR' : 'en-US';
-
-C:\layera\packages\tolgee\src\hooks.ts
-  101,25:     const locale = lang === 'el' ? 'el-GR' : 'en-US';
-  106,25:     const locale = lang === 'el' ? 'el-GR' : 'en-US';
-  111,25:     const locale = lang === 'el' ? 'el-GR' : 'en-US';
-
-C:\layera\packages\tolgee\src\provider-minimal.tsx
-  50,33:       if (value && typeof value === 'object' && k in value) {
-  57,22:     if (typeof value === 'string') {
-
-C:\layera\packages\tolgee\src\provider.tsx
-  69,17:       if (e.key === 'tolgee_language' || e.key === 'i18nextLng') {
-  69,48:       if (e.key === 'tolgee_language' || e.key === 'i18nextLng') {
-
-C:\layera\packages\viewport\src\components\icons\ViewportIcons.tsx
-  40,32:   const iconSize = typeof size === 'number' ? size : ICON_SIZES[size];
-  75,32:   const iconSize = typeof size === 'number' ? size : ICON_SIZES[size];
-  108,32:   const iconSize = typeof size === 'number' ? size : ICON_SIZES[size];
-  142,32:   const iconSize = typeof size === 'number' ? size : ICON_SIZES[size];
-  175,32:   const iconSize = typeof size === 'number' ? size : ICON_SIZES[size];
-  210,32:   const iconSize = typeof size === 'number' ? size : ICON_SIZES[size];
-
-C:\layera\packages\viewport\src\components\DeviceOverrideProvider.tsx
-  47,30:     isMobile: overrideDevice === 'mobile',
-  48,30:     isTablet: overrideDevice === 'tablet',
-  49,31:     isDesktop: overrideDevice === 'desktop'
-
-C:\layera\packages\viewport\src\components\ViewportDebugger.tsx
-  32,28:   if (process.env.NODE_ENV === 'production' && !showAlways) {
-  78,33:     return viewport.orientation === 'portrait' ? <MobileIcon size="xs" theme="neutral" /> : <TabletLandscapeIcon size="xs" theme="neutral" />;
-
-C:\layera\packages\viewport\src\hooks\useViewport.ts
-  22,23:     if (typeof window === 'undefined') {
-  46,28:       isMobile: deviceType === 'mobile',
-  47,28:       isTablet: deviceType === 'tablet',
-  48,29:       isDesktop: deviceType === 'desktop',
-  49,31:       isPortrait: orientation === 'portrait',
-  50,32:       isLandscape: orientation === 'landscape'
-  71,32:           isMobile: deviceType === 'mobile',
-  72,32:           isTablet: deviceType === 'tablet',
-  73,33:           isDesktop: deviceType === 'desktop',
-  74,35:           isPortrait: orientation === 'portrait',
-  75,36:           isLandscape: orientation === 'landscape'
-  98,22:   if (typeof window !== 'undefined') {
-
-C:\layera\packages\viewport\vite.config.ts
-  19,45:       fileName: (format) => `index.${format === 'es' ? 'esm' : 'cjs'}.js`
-
-C:\layera\validate-geo-drawing.js
-  104,24:   if (packageJson.name === '@layera/geo-drawing') {
-
-C:\layera\validate-snap-packages.js
-  82,46:         .filter(([name, version]) => version === 'workspace:*')
-  130,32:           if (relativeItemPath === 'index.ts' && !content.includes('export')) {
+11:08:16.450 react-dom_client.js?v=7a401686:20359 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+11:08:16.535 StepRegistry.ts:45 ✅ Step registered: category (order: 1)
+11:08:16.535 index.ts:58 ✅ Category Step registered in StepRegistry
+11:08:16.536 StepRegistry.ts:45 ✅ Step registered: intent (order: 2)
+11:08:16.536 index.ts:65 ✅ Intent Step registered in StepRegistry
+11:08:16.536 StepRegistry.ts:45 ✅ Step registered: transactionType (order: 3)
+11:08:16.536 index.ts:120 ✅ Transaction Type Step registered in StepRegistry
+11:08:16.536 StepRegistry.ts:45 ✅ Step registered: availability (order: 7)
+11:08:16.542 i18next.js?v=7a401686:215 i18next: languageChanged el
+11:08:16.542 i18next.js?v=7a401686:215 i18next: initialized Object
+11:08:16.543 StepRegistry.ts:45 ✅ Step registered: upload (order: 17)
+11:08:16.543 StepRegistry.ts:45 ✅ Step registered: layout (order: 13)
+11:08:16.543 StepRegistry.ts:45 ✅ Step registered: propertyType (order: 16)
+11:08:16.547 StepRegistry.ts:45 ✅ Step registered: propertyDetails (order: 15)
+11:08:16.547 StepRegistry.ts:45 ✅ Step registered: areaMethod (order: 10)
+11:08:16.547 StepRegistry.ts:45 ✅ Step registered: location (order: 14)
+11:08:16.548 StepRegistry.ts:45 ✅ Step registered: employmentType (order: 5)
+11:08:16.548 index.ts:8 🚀 LOADING OCCUPATION STEP MODULE - VALIDATION FIXED!
+11:08:16.548 index.ts:14 🔍 DEBUG: stepRegistry instance: StepRegistry
+11:08:16.548 index.ts:16 🔍 DEBUG: stepRegistry instance: StepRegistry
+11:08:16.549 index.ts:17 🔍 DEBUG: stepRegistry type: object
+11:08:16.549 index.ts:18 🔍 DEBUG: stepRegistry.register: ƒ register(step) {
+    if (this.steps.has(step.id)) {
+      console.warn(`⚠️ Step '${step.id}' already registered. Overriding...`);
+    }
+    this.validateStepDefinition(step);
+    this.steps.set(step.…
+11:08:16.549 index.ts:19 🔍 DEBUG: stepRegistry.register type: function
+11:08:16.549 index.ts:23 ✅ About to register occupation step...
+11:08:16.549 StepRegistry.ts:45 ✅ Step registered: occupation (order: 6)
+11:08:16.549 index.ts:51 ✅ 🎯 OCCUPATION STEP REGISTERED με ESCO integration - Firebase ready!
+11:08:16.549 StepRegistry.ts:45 ✅ Step registered: availabilityDetails (order: 12)
+11:08:16.549 StepRegistry.ts:45 ✅ Step registered: complete (order: 100)
+11:08:16.646 react-dom_client.js?v=7a401686:2460 React does not recognize the `marginBottom` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `marginbottom` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+validateProperty @ react-dom_client.js?v=7a401686:2460
+11:08:16.650 react-dom_client.js?v=7a401686:2460 React does not recognize the `boxShadow` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `boxshadow` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+validateProperty @ react-dom_client.js?v=7a401686:2460
+11:08:16.653 react-dom_client.js?v=7a401686:2460 React does not recognize the `gridTemplateColumns` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `gridtemplatecolumns` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+validateProperty @ react-dom_client.js?v=7a401686:2460
+11:08:16.653 react-dom_client.js?v=7a401686:2460 React does not recognize the `marginTop` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `margintop` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+validateProperty @ react-dom_client.js?v=7a401686:2460
+11:08:16.657 react-dom_client.js?v=7a401686:2460 React does not recognize the `borderRadius` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `borderradius` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+validateProperty @ react-dom_client.js?v=7a401686:2460
+11:08:16.660 react-dom_client.js?v=7a401686:2460 React does not recognize the `textAlign` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `textalign` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+validateProperty @ react-dom_client.js?v=7a401686:2460
+11:08:16.660 react-dom_client.js?v=7a401686:2460 React does not recognize the `backgroundColor` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `backgroundcolor` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+validateProperty @ react-dom_client.js?v=7a401686:2460
+11:08:16.978 :3007/vite.svg:1  Failed to load resource: the server responded with a status of 404 (Not Found)
+11:08:18.369 react-dom_client.js?v=7a401686:2460 React does not recognize the `boxSizing` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `boxsizing` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+validateProperty @ react-dom_client.js?v=7a401686:2460
+warnUnknownProperties @ react-dom_client.js?v=7a401686:2598
+validatePropertiesInDevelopment @ react-dom_client.js?v=7a401686:14341
+setInitialProperties @ react-dom_client.js?v=7a401686:14766
+completeWork @ react-dom_client.js?v=7a401686:9223
+runWithFiberInDEV @ react-dom_client.js?v=7a401686:1027
+completeUnitOfWork @ react-dom_client.js?v=7a401686:12859
+performUnitOfWork @ react-dom_client.js?v=7a401686:12762
+workLoopSync @ react-dom_client.js?v=7a401686:12607
+renderRootSync @ react-dom_client.js?v=7a401686:12590
+performWorkOnRoot @ react-dom_client.js?v=7a401686:11940
+performSyncWorkOnRoot @ react-dom_client.js?v=7a401686:13715
+flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=7a401686:13608
+processRootScheduleInMicrotask @ react-dom_client.js?v=7a401686:13631
+(anonymous) @ react-dom_client.js?v=7a401686:13729
+11:08:18.373 DeviceModelSelector.tsx:89 🎯 DeviceModelSelector mounted! Samsung Galaxy A35 should be available.
+11:08:18.394 App.tsx:253 📱 Device mode changed: Responsive
+11:08:18.394 App.tsx:253 📱 Device mode changed: Responsive
+11:08:18.397 DeviceModelSelector.tsx:89 🎯 DeviceModelSelector mounted! Samsung Galaxy A35 should be available.
+11:08:18.400 App.tsx:253 📱 Device mode changed: Responsive
+11:08:18.401 App.tsx:253 📱 Device mode changed: Responsive
+11:08:20.973 Flex.tsx:54 React does not recognize the `minHeight` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `minheight` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+validateProperty @ react-dom_client.js?v=7a401686:2460
+warnUnknownProperties @ react-dom_client.js?v=7a401686:2598
+validatePropertiesInDevelopment @ react-dom_client.js?v=7a401686:14341
+setInitialProperties @ react-dom_client.js?v=7a401686:14766
+completeWork @ react-dom_client.js?v=7a401686:9223
+runWithFiberInDEV @ react-dom_client.js?v=7a401686:1027
+completeUnitOfWork @ react-dom_client.js?v=7a401686:12859
+performUnitOfWork @ react-dom_client.js?v=7a401686:12762
+workLoopSync @ react-dom_client.js?v=7a401686:12607
+renderRootSync @ react-dom_client.js?v=7a401686:12590
+performWorkOnRoot @ react-dom_client.js?v=7a401686:11940
+performSyncWorkOnRoot @ react-dom_client.js?v=7a401686:13715
+flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=7a401686:13608
+processRootScheduleInMicrotask @ react-dom_client.js?v=7a401686:13631
+(anonymous) @ react-dom_client.js?v=7a401686:13729
+<div>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=7a401686:253
+Flex @ Flex.tsx:54
+react_stack_bottom_frame @ react-dom_client.js?v=7a401686:18763
+renderWithHooksAgain @ react-dom_client.js?v=7a401686:5844
+renderWithHooks @ react-dom_client.js?v=7a401686:5780
+updateFunctionComponent @ react-dom_client.js?v=7a401686:7604
+beginWork @ react-dom_client.js?v=7a401686:8664
+runWithFiberInDEV @ react-dom_client.js?v=7a401686:1027
+performUnitOfWork @ react-dom_client.js?v=7a401686:12748
+workLoopSync @ react-dom_client.js?v=7a401686:12607
+renderRootSync @ react-dom_client.js?v=7a401686:12590
+performWorkOnRoot @ react-dom_client.js?v=7a401686:11940
+performSyncWorkOnRoot @ react-dom_client.js?v=7a401686:13715
+flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=7a401686:13608
+processRootScheduleInMicrotask @ react-dom_client.js?v=7a401686:13631
+(anonymous) @ react-dom_client.js?v=7a401686:13729
+<Flex>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=7a401686:253
+DeviceFrameWrapper @ DeviceFrameWrapper.tsx:203
+react_stack_bottom_frame @ react-dom_client.js?v=7a401686:18763
+renderWithHooksAgain @ react-dom_client.js?v=7a401686:5844
+renderWithHooks @ react-dom_client.js?v=7a401686:5780
+updateFunctionComponent @ react-dom_client.js?v=7a401686:7604
+beginWork @ react-dom_client.js?v=7a401686:8664
+runWithFiberInDEV @ react-dom_client.js?v=7a401686:1027
+performUnitOfWork @ react-dom_client.js?v=7a401686:12748
+workLoopSync @ react-dom_client.js?v=7a401686:12607
+renderRootSync @ react-dom_client.js?v=7a401686:12590
+performWorkOnRoot @ react-dom_client.js?v=7a401686:11940
+performSyncWorkOnRoot @ react-dom_client.js?v=7a401686:13715
+flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=7a401686:13608
+processRootScheduleInMicrotask @ react-dom_client.js?v=7a401686:13631
+(anonymous) @ react-dom_client.js?v=7a401686:13729
+11:08:20.977 DeviceModelSelector.tsx:89 🎯 DeviceModelSelector mounted! Samsung Galaxy A35 should be available.
+11:08:20.986 App.tsx:253 📱 Device mode changed: Device Frame
+11:08:20.986 DeviceModelSelector.tsx:89 🎯 DeviceModelSelector mounted! Samsung Galaxy A35 should be available.
+11:08:21.021 App.tsx:253 📱 Device mode changed: Device Frame
+11:08:21.022 App.tsx:253 📱 Device mode changed: Device Frame
+11:08:21.684 index.ts:163 Uncaught TypeError: e.stopImmediatePropagation is not a function
+    at stopAll (index.ts:163:29)
+    at onDown (DraggableFAB.tsx:165:5)
+    at executeDispatch (react-dom_client.js?v=7a401686:13821:11)
+    at runWithFiberInDEV (react-dom_client.js?v=7a401686:1027:72)
+    at processDispatchQueue (react-dom_client.js?v=7a401686:13840:37)
+    at react-dom_client.js?v=7a401686:14280:11
+    at batchedUpdates$1 (react-dom_client.js?v=7a401686:2686:42)
+    at dispatchEventForPluginEventSystem (react-dom_client.js?v=7a401686:13966:9)
+    at dispatchEvent (react-dom_client.js?v=7a401686:17026:13)
+    at dispatchDiscreteEvent (react-dom_client.js?v=7a401686:17007:62)
+stopAll @ index.ts:163
+onDown @ DraggableFAB.tsx:165
+executeDispatch @ react-dom_client.js?v=7a401686:13821
+runWithFiberInDEV @ react-dom_client.js?v=7a401686:1027
+processDispatchQueue @ react-dom_client.js?v=7a401686:13840
+(anonymous) @ react-dom_client.js?v=7a401686:14280
+batchedUpdates$1 @ react-dom_client.js?v=7a401686:2686
+dispatchEventForPluginEventSystem @ react-dom_client.js?v=7a401686:13966
+dispatchEvent @ react-dom_client.js?v=7a401686:17026
+dispatchDiscreteEvent @ react-dom_client.js?v=7a401686:17007
+<div>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=7a401686:253
+Box @ Box.tsx:100
+react_stack_bottom_frame @ react-dom_client.js?v=7a401686:18763
+renderWithHooksAgain @ react-dom_client.js?v=7a401686:5844
+renderWithHooks @ react-dom_client.js?v=7a401686:5780
+updateFunctionComponent @ react-dom_client.js?v=7a401686:7604
+beginWork @ react-dom_client.js?v=7a401686:8664
+runWithFiberInDEV @ react-dom_client.js?v=7a401686:1027
+performUnitOfWork @ react-dom_client.js?v=7a401686:12748
+workLoopSync @ react-dom_client.js?v=7a401686:12607
+renderRootSync @ react-dom_client.js?v=7a401686:12590
+performWorkOnRoot @ react-dom_client.js?v=7a401686:11940
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=7a401686:13702
+performWorkUntilDeadline @ react-dom_client.js?v=7a401686:36
+<Box>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=7a401686:253
+DraggableFAB @ DraggableFAB.tsx:253
+react_stack_bottom_frame @ react-dom_client.js?v=7a401686:18763
+renderWithHooksAgain @ react-dom_client.js?v=7a401686:5844
+renderWithHooks @ react-dom_client.js?v=7a401686:5780
+updateFunctionComponent @ react-dom_client.js?v=7a401686:7604
+beginWork @ react-dom_client.js?v=7a401686:8664
+runWithFiberInDEV @ react-dom_client.js?v=7a401686:1027
+performUnitOfWork @ react-dom_client.js?v=7a401686:12748
+workLoopSync @ react-dom_client.js?v=7a401686:12607
+renderRootSync @ react-dom_client.js?v=7a401686:12590
+performWorkOnRoot @ react-dom_client.js?v=7a401686:11940
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=7a401686:13702
+performWorkUntilDeadline @ react-dom_client.js?v=7a401686:36
+<DraggableFAB>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=7a401686:253
+GeoMap @ GeoMapNew.tsx:329
+react_stack_bottom_frame @ react-dom_client.js?v=7a401686:18763
+renderWithHooksAgain @ react-dom_client.js?v=7a401686:5844
+renderWithHooks @ react-dom_client.js?v=7a401686:5780
+updateFunctionComponent @ react-dom_client.js?v=7a401686:7604
+beginWork @ react-dom_client.js?v=7a401686:8664
+runWithFiberInDEV @ react-dom_client.js?v=7a401686:1027
+performUnitOfWork @ react-dom_client.js?v=7a401686:12748
+workLoopSync @ react-dom_client.js?v=7a401686:12607
+renderRootSync @ react-dom_client.js?v=7a401686:12590
+performWorkOnRoot @ react-dom_client.js?v=7a401686:11940
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=7a401686:13702
+performWorkUntilDeadline @ react-dom_client.js?v=7a401686:36
+11:10:19.861 index.ts:163 Uncaught TypeError: e.stopImmediatePropagation is not a function
+    at stopAll (index.ts:163:29)
+    at onDown (DraggableFAB.tsx:165:5)
+    at executeDispatch (react-dom_client.js?v=7a401686:13821:11)
+    at runWithFiberInDEV (react-dom_client.js?v=7a401686:1027:72)
+    at processDispatchQueue (react-dom_client.js?v=7a401686:13840:37)
+    at react-dom_client.js?v=7a401686:14280:11
+    at batchedUpdates$1 (react-dom_client.js?v=7a401686:2686:42)
+    at dispatchEventForPluginEventSystem (react-dom_client.js?v=7a401686:13966:9)
+    at dispatchEvent (react-dom_client.js?v=7a401686:17026:13)
+    at dispatchDiscreteEvent (react-dom_client.js?v=7a401686:17007:62)
+stopAll @ index.ts:163
+onDown @ DraggableFAB.tsx:165
+executeDispatch @ react-dom_client.js?v=7a401686:13821
+runWithFiberInDEV @ react-dom_client.js?v=7a401686:1027
+processDispatchQueue @ react-dom_client.js?v=7a401686:13840
+(anonymous) @ react-dom_client.js?v=7a401686:14280
+batchedUpdates$1 @ react-dom_client.js?v=7a401686:2686
+dispatchEventForPluginEventSystem @ react-dom_client.js?v=7a401686:13966
+dispatchEvent @ react-dom_client.js?v=7a401686:17026
+dispatchDiscreteEvent @ react-dom_client.js?v=7a401686:17007
+<div>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=7a401686:253
+Box @ Box.tsx:100
+react_stack_bottom_frame @ react-dom_client.js?v=7a401686:18763
+renderWithHooksAgain @ react-dom_client.js?v=7a401686:5844
+renderWithHooks @ react-dom_client.js?v=7a401686:5780
+updateFunctionComponent @ react-dom_client.js?v=7a401686:7604
+beginWork @ react-dom_client.js?v=7a401686:8664
+runWithFiberInDEV @ react-dom_client.js?v=7a401686:1027
+performUnitOfWork @ react-dom_client.js?v=7a401686:12748
+workLoopSync @ react-dom_client.js?v=7a401686:12607
+renderRootSync @ react-dom_client.js?v=7a401686:12590
+performWorkOnRoot @ react-dom_client.js?v=7a401686:11940
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=7a401686:13702
+performWorkUntilDeadline @ react-dom_client.js?v=7a401686:36
+<Box>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=7a401686:253
+DraggableFAB @ DraggableFAB.tsx:253
+react_stack_bottom_frame @ react-dom_client.js?v=7a401686:18763
+renderWithHooksAgain @ react-dom_client.js?v=7a401686:5844
+renderWithHooks @ react-dom_client.js?v=7a401686:5780
+updateFunctionComponent @ react-dom_client.js?v=7a401686:7604
+beginWork @ react-dom_client.js?v=7a401686:8664
+runWithFiberInDEV @ react-dom_client.js?v=7a401686:1027
+performUnitOfWork @ react-dom_client.js?v=7a401686:12748
+workLoopSync @ react-dom_client.js?v=7a401686:12607
+renderRootSync @ react-dom_client.js?v=7a401686:12590
+performWorkOnRoot @ react-dom_client.js?v=7a401686:11940
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=7a401686:13702
+performWorkUntilDeadline @ react-dom_client.js?v=7a401686:36
+<DraggableFAB>
+exports.jsxDEV @ react_jsx-dev-runtime.js?v=7a401686:253
+GeoMap @ GeoMapNew.tsx:329
+react_stack_bottom_frame @ react-dom_client.js?v=7a401686:18763
+renderWithHooksAgain @ react-dom_client.js?v=7a401686:5844
+renderWithHooks @ react-dom_client.js?v=7a401686:5780
+updateFunctionComponent @ react-dom_client.js?v=7a401686:7604
+beginWork @ react-dom_client.js?v=7a401686:8664
+runWithFiberInDEV @ react-dom_client.js?v=7a401686:1027
+performUnitOfWork @ react-dom_client.js?v=7a401686:12748
+workLoopSync @ react-dom_client.js?v=7a401686:12607
+renderRootSync @ react-dom_client.js?v=7a401686:12590
+performWorkOnRoot @ react-dom_client.js?v=7a401686:11940
+performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=7a401686:13702
+performWorkUntilDeadline @ react-dom_client.js?v=7a401686:36
+11:10:22.407 App.tsx:253 📱 Device mode changed: Device Frame
+11:10:23.589 index.ts:163 Uncaught TypeError: e.stopImmediatePropagation is not a function
+    at stopAll (index.ts:163:29)
+    at onDown (DraggableFAB.tsx:165:5)
+    at executeDispatch (react-dom_client.js?v=7a401686:13821:11)
+    at runWithFiberInDEV (react-dom_client.js?v=7a401686:1027:72)
+    at processDispatchQueue (react-dom_client.js?v=7a401686:13840:37)
+    at react-dom_client.js?v=7a401686:14280:11
+    at batchedUpdates$1 (react-dom_client.js?v=7a401686:2686:42)
+    at dispatchEventForPluginEventSystem (react-dom_client.js?v=7a401686:13966:9)
+    at dispatchEvent (react-dom_client.js?v=7a401686:17026:13)
+    at dispatchDiscreteEvent (react-dom_client.js?v=7a401686:17007:62)
+stopAll @ index.ts:163
+onDown @ DraggableFAB.tsx:165
+executeDispatch @ react-dom_client.js?v=7a401686:13821
+runWithFiberInDEV @ react-dom_client.js?v=7a401686:1027
+processDispatchQueue @ react-dom_client.js?v=7a401686:13840
+(anonymous) @ react-dom_client.js?v=7a401686:14280
+batchedUpdates$1 @ react-dom_client.js?v=7a401686:2686
+dispatchEventForPluginEventSystem @ react-dom_client.js?v=7a401686:13966
+dispatchEvent @ react-dom_client.js?v=7a401686:17026
+dispatchDiscreteEvent @ react-dom_client.js?v=7a401686:17007

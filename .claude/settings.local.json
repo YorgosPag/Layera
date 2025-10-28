@@ -18,7 +18,21 @@
       "Bash(done)",
       "Bash(sort:*)",
       "Bash(git restore:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(pnpm exec:*)",
+      "Bash(pnpm dev:*)",
+      "Bash(pnpm --filter @layera/geoalert exec rimraf node_modules/.vite)",
+      "Bash(pnpm --filter @layera/geoalert dev)",
+      "Bash(grep:*)",
+      "Bash(start http://localhost:3005)",
+      "Bash(start http://localhost:3001)",
+      "Bash(pnpm --filter @layera/draggable-fab build)",
+      "Bash(pnpm --filter @layera/draggable build)",
+      "Bash(pnpm --filter @layera/draggable exec tsc --noEmit)",
+      "Bash(do echo \"$dir\")",
+      "Bash(pnpm build:*)",
+      "Bash(start http://localhost:3007)"
     ],
     "deny": [],
     "ask": []

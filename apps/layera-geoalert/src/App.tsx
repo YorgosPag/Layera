@@ -97,7 +97,7 @@ function TestNotificationsComponent() {
 
       <Box
         display="grid"
-        gridTemplateColumns="repeat(auto-fit, minmax(200px, 1fr))"
+        gridTemplateColumns={`repeat(auto-fit, minmax(${SPACING_SCALE.CONTAINER_SM}px, 1fr))`}
         gap="md"
         marginBottom="md"
       >
@@ -188,7 +188,7 @@ function App() {
   const [, setSavedAreas] = useState<DrawnArea[]>([]);
 
   // State για responsive mode detection από DeviceFrameWrapper
-  const [isResponsiveMode, setIsResponsiveMode] = useState(true);
+  const [isResponsiveMode, setIsResponsiveMode] = useState(true); // true = responsive, false = device frame
   // REMOVED: Legacy unified pipeline state - replaced by modular step system
 
   // Use detected iPhone mode
@@ -247,6 +247,13 @@ function App() {
     setShowCategoryElements(true);
   };
 
+  const handleResponsiveModeChange = (isResponsive: boolean) => {
+    setIsResponsiveMode(isResponsive);
+    if (process.env.NODE_ENV === 'development') {
+      console.log('📱 Device mode changed:', isResponsive ? 'Responsive' : 'Device Frame');
+    }
+  };
+
   // REMOVED: Legacy unified pipeline submit handler
 
   if (isMapMode) {
@@ -285,64 +292,29 @@ function App() {
                 background-color: transparent !important;
               }
             `}</style>
-            {isResponsiveMode ? (
-              /* Responsive Mode - Fullscreen Layout */
-              <Box width="100%" height="100vh">
-                <DeviceFrameWrapper
-                  enabled={true}
-                  onResponsiveModeChange={setIsResponsiveMode}
-                >
-                  <AppShell
-                    layout="fullscreen"
-                    header={(!showCategoryElements || !finalIsIPhone) ?
-                      <GeoHeader onBackClick={() => setIsMapMode(false)} isIPhone14ProMax={finalIsIPhone} /> :
-                      null}
-                    className={`geo-map-shell ${showCategoryElements && finalIsIPhone ? 'hide-header' : ''}`}
-                  >
-                    <ViewportFrame id="layera-device-simulator-viewport">
-                      <GeoMap
-                        onAreaCreated={handleAreaCreated}
-                        onNewEntryClick={handleNewEntryClick}
-                        isIPhone14ProMaxDevice={finalIsIPhone}
-                        onCategoryElementsChange={setShowCategoryElements}
-                        showCategoryElements={showCategoryElements}
-                      />
-                    </ViewportFrame>
-                  </AppShell>
-                </DeviceFrameWrapper>
-              </Box>
-            ) : (
-              /* Device Mode - Constrained Layout */
-              <Flex direction="row" height="100vh">
-                <Box flex="1">
-                <DeviceFrameWrapper
-                  enabled={true}
-                  onResponsiveModeChange={setIsResponsiveMode}
-                >
-                  <AppShell
-                    layout="fullscreen"
-                    header={(!showCategoryElements || !finalIsIPhone) ?
-                      <GeoHeader onBackClick={() => setIsMapMode(false)} isIPhone14ProMax={finalIsIPhone} /> :
-                      null}
-                    className={`geo-map-shell ${showCategoryElements && finalIsIPhone ? 'hide-header' : ''}`}
-                  >
-                    <ViewportFrame id="layera-device-simulator-viewport">
-                      <GeoMap
-                        onAreaCreated={handleAreaCreated}
-                        onNewEntryClick={handleNewEntryClick}
-                        isIPhone14ProMaxDevice={finalIsIPhone}
-                        onCategoryElementsChange={setShowCategoryElements}
-                        showCategoryElements={showCategoryElements}
-                      />
-                    </ViewportFrame>
-                  </AppShell>
-                </DeviceFrameWrapper>
-              </Box>
-
-                {/* Legacy pipeline control panel removed - using integrated floating stepper */}
-
-              </Flex>
-            )}
+            <DeviceFrameWrapper
+              enabled={true}
+              onResponsiveModeChange={handleResponsiveModeChange}
+            >
+              <AppShell
+                layout="fullscreen"
+                header={(!showCategoryElements || !finalIsIPhone) ?
+                  <GeoHeader onBackClick={() => setIsMapMode(false)} isIPhone14ProMax={finalIsIPhone} /> :
+                  null}
+                className={`geo-map-shell ${showCategoryElements && finalIsIPhone ? 'hide-header' : ''}`}
+              >
+                <ViewportFrame id="layera-device-simulator-viewport">
+                  <GeoMap
+                    onAreaCreated={handleAreaCreated}
+                    onNewEntryClick={handleNewEntryClick}
+                    isIPhone14ProMaxDevice={finalIsIPhone}
+                    onCategoryElementsChange={setShowCategoryElements}
+                    showCategoryElements={showCategoryElements}
+                    isResponsiveMode={isResponsiveMode}
+                  />
+                </ViewportFrame>
+              </AppShell>
+            </DeviceFrameWrapper>
           </DeviceOverrideProvider>
         </NotificationProvider>
         </ThemeProvider>
@@ -351,10 +323,11 @@ function App() {
   }
 
   return (
-    <ErrorBoundary level="page" onError={(error, errorInfo) => console.error('🛡️ GeoAlert Main Error:', error, errorInfo)}>
-      <ThemeProvider defaultTheme="system" storageKey="layera-geoalert-theme">
-      <NotificationProvider>
-        <DeviceOverrideProvider>
+    <>
+      <ErrorBoundary level="page" onError={(error, errorInfo) => console.error('🛡️ GeoAlert Main Error:', error, errorInfo)}>
+        <ThemeProvider defaultTheme="system" storageKey="layera-geoalert-theme">
+        <NotificationProvider>
+          <DeviceOverrideProvider>
           <Box
             padding="xl"
             textAlign="center"
@@ -454,7 +427,7 @@ function App() {
                   size="md"
                   color="info"
                   padding={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.LG}px`}
-                  border="2px solid var(--layera-bg-info)"
+                  border={`${SPACING_SCALE.XXS}px solid var(--layera-bg-info)`}
                   borderRadius={`${BORDER_RADIUS.MD}px`}
                   fontWeight="bold"
                   transition="all 0.2s"
@@ -478,10 +451,11 @@ function App() {
                 </Text>
               </Box>
           </Box>
-        </DeviceOverrideProvider>
-      </NotificationProvider>
-      </ThemeProvider>
-    </ErrorBoundary>
+          </DeviceOverrideProvider>
+        </NotificationProvider>
+        </ThemeProvider>
+      </ErrorBoundary>
+    </>
   );
 }
 

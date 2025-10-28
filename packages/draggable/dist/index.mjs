@@ -434,6 +434,21 @@ var FAB_POSITIONS = {
     bottom: window?.innerHeight ? window.innerHeight / 2 - 28 : 300
   }
 };
+var stopAll = (e) => {
+  e.stopPropagation();
+  if ('stopImmediatePropagation' in e && typeof e.stopImmediatePropagation === 'function') {
+    e.stopImmediatePropagation();
+  }
+  e.preventDefault();
+};
+var swallowNextWindowClick = () => {
+  const f = (e) => {
+    stopAll(e);
+    window.removeEventListener("click", f, true);
+  };
+  window.addEventListener("click", f, true);
+};
+var killNextClick = swallowNextWindowClick;
 var PACKAGE_VERSION = "1.0.0";
 var PACKAGE_NAME = "@layera/draggable";
 export {
@@ -446,6 +461,9 @@ export {
   createBounds,
   createDraggableConfig,
   createRightBottomBounds,
+  killNextClick,
+  stopAll,
+  swallowNextWindowClick,
   useDraggable,
   useDraggableRightBottom
 };

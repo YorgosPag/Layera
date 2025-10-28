@@ -3,11 +3,33 @@
  *
  * Single source of truth για draggable functionality σε όλο το Layera ecosystem.
  * Εξαχθέν από GeoMapNew.tsx για reusability και modularity.
+ *
+ * 🔥🔥🔥 WORKING DRAG SOLUTION - TESTED 28 Oct 2025 🔥🔥🔥
+ *
+ * ✅ ΚΡΙΣΙΜΑ REQUIREMENTS ΓΙΑ WORKING FUNCTIONALITY:
+ * 1. position="viewport-relative" - ΑΠΑΡΑΙΤΗΤΟ για movement
+ * 2. viewportSelector="body" - ΠΡΕΠΕΙ να είναι selector που υπάρχει πάντα
+ * 3. constrainToViewport={true} - Περιορίζει movement στα όρια
+ * 4. frameRef.current - ΠΡΕΠΕΙ να βρίσκει valid DOM element
+ * 5. setFabPos() - Ενημερώνει το position state που χρησιμοποιείται στο style
+ *
+ * 🎯 WORKING FLOW:
+ * 1. useEffect → βρίσκει frameRef με document.querySelector(viewportSelector)
+ * 2. onMove → υπολογίζει νέα θέση με getBoundingClientRect()
+ * 3. setFabPos({ x, y }) → ενημερώνει state
+ * 4. style={{ left: fabPos.x, top: fabPos.y }} → εφαρμόζει positioning
+ *
+ * ❌ COMMON FAILURES:
+ * - frameRef is null → viewportSelector δεν βρίσκει element
+ * - No movement → position="fixed" ή frameRef issue
+ * - setFabPos not called → early return στο onMove
  */
 
-import React, { useState, useRef, useEffect } from 'react';
-import { BORDER_RADIUS_SCALE } from '@layera/constants';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
+import { BORDER_RADIUS_SCALE, SPACING_SCALE } from '@layera/constants';
 import { Box } from '@layera/layout';
+import { VARIANT_COLORS } from '@layera/floating-action-buttons';
+import { killNextClick, swallowNextWindowClick, stopAll, useDraggable } from '@layera/draggable';
 
 export interface DraggableFABProps {
   children: React.ReactNode;
@@ -54,6 +76,25 @@ export const DraggableFAB: React.FC<DraggableFABProps> = ({
   'aria-label': ariaLabel = 'Floating Action Button',
   title
 }) => {
+  // 🎯 ENTERPRISE: Ελάχιστος σωστός χειρισμός με suppressClick
+  const THRESH = 6;
+  const start = useRef<{x:number;y:number;px:number;py:number}|null>(null);
+  const dragging = useRef(false);
+  const suppressClick = useRef(false);
+  // 🚨🚨🚨 ΑΥΣΤΗΡΟΤΑΤΗ ΠΡΟΕΙΔΟΠΟΙΗΣΗ - ΜΗΝ ΠΕΙΡΑΞΕΙΣ ΑΥΤΟΝ ΤΟΝ ΚΩΔΙΚΑ 🚨🚨🚨
+  //
+  // ❌ ΑΠΑΓΟΡΕΥΕΤΑΙ ΑΠΟΛΥΤΑ να αλλάξεις αυτό το useState
+  // ❌ ΑΠΑΓΟΡΕΥΕΤΑΙ ΑΠΟΛΥΤΑ να το αντικαταστήσεις με hook
+  // ❌ ΑΠΑΓΟΡΕΥΕΤΑΙ ΑΠΟΛΥΤΑ να αφαιρέσεις τις setIsDragging κλήσεις
+  //
+  // ✅ ΑΥΤΟΣ Ο ΚΩΔΙΚΑΣ ΔΟΥΛΕΥΕΙ ΤΕΛΕΙΑ ΓΙΑ ΤΟ ΠΟΡΤΟΚΑΛΙ ΧΡΩΜΑ DRAGGING
+  // ✅ ΕΙΝΑΙ Η ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ ΠΟΥ ΛΕΙΤΟΥΡΓΕΙ ΣΩΣΤΑ
+  // ✅ 28 ΟΚΤΩΒΡΙΟΥ 2025 - ΕΠΙΒΕΒΑΙΩΜΕΝΟ ΟΤΙ ΔΟΥΛΕΥΕΙ
+  //
+  // 🔥 ΑΝ ΑΛΛΑΞΕΙΣ ΚΑΤΙ, Ο ΓΙΩΡΓΟΣ ΠΑΓΩΝΗΣ ΘΑ ΧΑΣΕΙ 16 ΩΡΕΣ ΔΟΥΛΕΙΑΣ!
+  // 🔥 ΑΥΤΟ ΤΟ COMMENT ΕΙΝΑΙ ΠΙΟ ΣΗΜΑΝΤΙΚΟ ΑΠΟ ΟΠΟΙΟΔΗΠΟΤΕ "REFACTOR"!
+  //
+  const [isDragging, setIsDragging] = useState(false);
   // 🎯 SIZE CONFIGURATION - moved before useState
   const getSizePixels = (sizeStr: 'sm' | 'md' | 'lg'): number => {
     switch (sizeStr) {
@@ -63,6 +104,9 @@ export const DraggableFAB: React.FC<DraggableFABProps> = ({
       default: return 56;
     }
   };
+
+  // 🎯 ΕΞΑΛΕΙΨΗ ΔΙΠΛΟΤΥΠΩΝ - Click Suppression από @layera/draggable LEGO system
+  // Utilities εισαχθέντα από @layera/draggable - Single Source of Truth
 
   // 🎯 STATE MANAGEMENT από GeoMapNew.tsx
   const frameRef = useRef<HTMLDivElement | null>(null);
@@ -87,6 +131,14 @@ export const DraggableFAB: React.FC<DraggableFABProps> = ({
 
   // 🎯 VIEWPORT CONSTRAINT LOGIC από GeoMapNew.tsx
   useEffect(() => {
+    // Βρες το viewport frame element
+    frameRef.current = document.querySelector(viewportSelector) as HTMLDivElement;
+
+    // Fallback: αν δεν υπάρχει το selector, χρησιμοποίησε το body
+    if (!frameRef.current) {
+      frameRef.current = document.querySelector('body') as HTMLDivElement;
+    }
+
     if (!constrainToViewport || position === 'fixed') return;
 
     const clamp = () => {
@@ -121,45 +173,78 @@ export const DraggableFAB: React.FC<DraggableFABProps> = ({
     };
   }, [fabPos.x, fabPos.y, constrainToViewport, position, viewportSelector, BTN_SIZE]);
 
-  // 🎯 DRAG HANDLER από GeoMapNew.tsx
-  const handleFabPointerDown = (e: React.PointerEvent) => {
-    if (position === 'fixed') return; // Fixed position δεν είναι draggable
-
-    // Αναζήτηση του ViewportFrame
-    const frame = document.querySelector(viewportSelector);
-    if (!frame) return;
-
-    frameRef.current = frame as HTMLDivElement;
-    const rect = frame.getBoundingClientRect();
-    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
-    startRef.current = { x: e.clientX, y: e.clientY, px: fabPos.x, py: fabPos.y };
-
-    const onMove = (ev: PointerEvent) => {
-      if (!startRef.current || !rect) return;
-      const dx = ev.clientX - startRef.current.x;
-      const dy = ev.clientY - startRef.current.y;
-
-      // Σιγουρεύουμε ότι τα όρια είναι σωστά
-      const maxX = Math.max(0, rect.width - BTN_SIZE - MARGIN);
-      const maxY = Math.max(0, rect.height - BTN_SIZE - MARGIN);
-
-      const nx = Math.max(MARGIN, Math.min(maxX, startRef.current.px + dx));
-      const ny = Math.max(MARGIN, Math.min(maxY, startRef.current.py + dy));
-
-      setFabPos({ x: nx, y: ny });
-    };
-
-    const onUp = () => {
-      startRef.current = null;
-      window.removeEventListener('pointermove', onMove);
-      window.removeEventListener('pointerup', onUp);
-    };
-
-    window.addEventListener('pointermove', onMove);
-    window.addEventListener('pointerup', onUp);
+  const onDown = (e: React.PointerEvent) => {
+    if (position === 'fixed') return;
+    stopAll(e);
+    dragging.current = false;
+    setIsDragging(false);
+    (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
+    start.current = { x: e.clientX, y: e.clientY, px: fabPos.x, py: fabPos.y };
   };
 
-  // 🎯 STYLE COMPUTATION
+  const onMove = (e: React.PointerEvent) => {
+    if (position === 'fixed' || !start.current) return;
+    stopAll(e); // μπλοκάρει map gestures + synthetic events
+    const dx = e.clientX - start.current.x;
+    const dy = e.clientY - start.current.y;
+    if (!dragging.current && Math.hypot(dx,dy) > THRESH) {
+      dragging.current = true;
+      setIsDragging(true);
+      // Drag detection successful
+    }
+
+    if (!frameRef.current) return;
+    const rect = frameRef.current.getBoundingClientRect();
+    const maxX = Math.max(0, rect.width - BTN_SIZE - MARGIN);
+    const maxY = Math.max(0, rect.height - BTN_SIZE - MARGIN);
+    const nx = Math.max(MARGIN, Math.min(maxX, start.current.px + dx));
+    const ny = Math.max(MARGIN, Math.min(maxY, start.current.py + dy));
+    setFabPos({ x: nx, y: ny });
+  };
+
+  const onUp = (e: React.PointerEvent) => {
+    stopAll(e);
+    (e.currentTarget as HTMLElement).releasePointerCapture?.(e.pointerId);
+    const wasDrag = dragging.current;
+    dragging.current = false;
+    setIsDragging(false);
+    start.current = null;
+
+    if (wasDrag) {
+      suppressClick.current = true; // κόβει το συνθετικό click
+      swallowNextWindowClick(); // ← αυτό κόβει οτιδήποτε (Leaflet/Mapbox) στο capture-phase
+      queueMicrotask(() => { suppressClick.current = false; });
+      return;
+    }
+    onClick?.(); // pure click
+  };
+
+  const onClickCapture = (e: React.MouseEvent) => {
+    if (suppressClick.current) {
+      stopAll(e);
+    }
+  };
+
+  const onPointerCancel = (e: React.PointerEvent) => {
+    (e.currentTarget as HTMLElement).releasePointerCapture?.(e.pointerId);
+    dragging.current = false;
+    start.current = null;
+    suppressClick.current = false;
+  };
+
+  // 🚨🚨🚨 ΑΥΣΤΗΡΟΤΑΤΗ ΠΡΟΕΙΔΟΠΟΙΗΣΗ - ΜΗΝ ΠΕΙΡΑΞΕΙΣ ΤΟ COLOR LOGIC 🚨🚨🚨
+  //
+  // ❌ ΑΠΑΓΟΡΕΥΕΤΑΙ ΑΠΟΛΥΤΑ να αλλάξεις το VARIANT_COLORS.warning
+  // ❌ ΑΠΑΓΟΡΕΥΕΤΑΙ ΑΠΟΛΥΤΑ να αλλάξεις το VARIANT_COLORS.success
+  // ❌ ΑΠΑΓΟΡΕΥΕΤΑΙ ΑΠΟΛΥΤΑ να αλλάξεις τη λογική isDragging
+  //
+  // ✅ ΠΟΡΤΟΚΑΛΙ ΧΡΩΜΑ ΕΜΦΑΝΙΖΕΤΑΙ ΤΕΛΕΙΑ ΟΤΑΝ ΚΙΝΕΙΣ ΤΟ ΠΛΗΚΤΡΟ
+  // ✅ 28 ΟΚΤΩΒΡΙΟΥ 2025 - ΕΠΙΒΕΒΑΙΩΜΕΝΟ ΟΤΙ ΔΟΥΛΕΥΕΙ
+  //
+  // 🔥 ΜΗΝ ΤΟ ΠΕΙΡΑΞΕΙΣ! WORKING SOLUTION!
+  //
+  const bg = isDragging ? VARIANT_COLORS.warning : VARIANT_COLORS.success;
+
   const computedStyle: React.CSSProperties = {
     position: position === 'fixed' ? 'absolute' : 'absolute',
     ...(position === 'fixed' ? {
@@ -172,8 +257,7 @@ export const DraggableFAB: React.FC<DraggableFABProps> = ({
     width: BTN_SIZE,
     height: BTN_SIZE,
     borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
-    background: 'var(--layera-bg-success, #22C55E)',
-    border: '2px solid var(--color-bg-canvas)',
+    border: `${SPACING_SCALE.XXS}px solid var(--color-bg-canvas)`,
     boxShadow: 'var(--elevation-md)',
     display: 'flex',
     alignItems: 'center',
@@ -183,18 +267,24 @@ export const DraggableFAB: React.FC<DraggableFABProps> = ({
     userSelect: 'none',
     touchAction: 'none',
     transition: position === 'fixed' ? 'all 0.2s ease' : 'none',
+    background: bg,
     ...style
   };
 
   return (
     <Box
-      onPointerDown={handleFabPointerDown}
-      onClick={onClick}
+      style={{...computedStyle, background: bg, touchAction: 'none', userSelect: 'none'}}
+      draggable={false}
+      onDragStart={(e)=> e.preventDefault()}
+      onPointerDownCapture={onDown}
+      onPointerMoveCapture={onMove}
+      onPointerUpCapture={onUp}
+      onPointerCancel={onPointerCancel}
+      onClickCapture={onClickCapture}
       aria-label={ariaLabel}
       title={title}
       data-testid={testId}
       className={className}
-      style={computedStyle}
     >
       {children}
     </Box>

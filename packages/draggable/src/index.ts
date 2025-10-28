@@ -31,7 +31,7 @@ export type {
 
   // Component Props Types
   DraggableWrapperProps,
-  DraggableFABProps,
+  // Note: DraggableFABProps is in @layera/draggable-fab package
 
   // Theme Types
   DraggableTheme,
@@ -56,10 +56,8 @@ export {
 // Components Export
 // ===============================
 
-export {
-  DraggableFAB,
-  default as DraggableFABDefault
-} from './components/DraggableFAB';
+// Note: DraggableFAB component is located in @layera/draggable-fab package
+// This package provides only the core utilities and hooks
 
 // ===============================
 // Utility Functions Export
@@ -67,6 +65,7 @@ export {
 
 // Import the types for utility functions
 import type { DraggableConfig, DraggableBounds } from './types';
+
 
 /**
  * Utility function για δημιουργία default DraggableConfig
@@ -154,6 +153,44 @@ export const FAB_POSITIONS = {
     bottom: window?.innerHeight ? window.innerHeight / 2 - 28 : 300
   }
 } as const;
+
+// ===============================
+// Event Handling Utilities Export
+// ===============================
+
+/**
+ * Event handling utilities για drag/click separation - Single Source of Truth
+ * Αντικαθιστά duplicates από DraggableFAB και UnifiedFAB components
+ */
+
+/**
+ * Utility function για blocking όλων των event handlers
+ * Χρησιμοποιείται για πλήρη event isolation κατά το dragging
+ * Pattern από useDraggable.ts - Single Source of Truth
+ */
+export const stopAll = (e: React.SyntheticEvent): void => {
+  e.stopPropagation();
+  e.preventDefault(); // Pattern από useDraggable hook
+};
+
+/**
+ * Global click suppression utility
+ * Προσθέτει event listener στο window που καταναλώνει το επόμενο click
+ */
+export const swallowNextWindowClick = (): void => {
+  const f = (e: Event) => {
+    e.stopPropagation();
+    e.preventDefault(); // Native Event pattern - διαφορετικό από React SyntheticEvent
+    window.removeEventListener('click', f, true);
+  };
+  window.addEventListener('click', f, true);
+};
+
+/**
+ * Legacy utility για click suppression
+ * Maintained για backward compatibility
+ */
+export const killNextClick = swallowNextWindowClick;
 
 // ===============================
 // Version Information
