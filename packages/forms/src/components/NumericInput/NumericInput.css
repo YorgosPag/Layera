@@ -15,7 +15,7 @@
 }
 
 .layera-numeric-input--loading {
-  pointer-events: none;
+  pointer-events: var(--la-pointer-events-none);
 }
 
 /* Label */
@@ -60,7 +60,7 @@
 .layera-numeric-input__input-wrapper {
   display: flex;
   align-items: center;
-  flex: 1;
+  flex: var(--la-flex-1);
   position: relative;
   border: 2px solid var(--layera-color-border-default);
   border-radius: var(--layera-border-radius-md);
@@ -113,7 +113,7 @@
 
 /* Input element */
 .layera-numeric-input__input {
-  flex: 1;
+  flex: var(--la-flex-1);
   border: none;
   outline: none;
   background: transparent;
@@ -132,7 +132,7 @@
 
 .layera-numeric-input__input:disabled {
   color: var(--layera-color-text-disabled);
-  cursor: not-allowed;
+  cursor: var(--la-cursor-not-allowed);
 }
 
 /* Size variants for input */
@@ -166,7 +166,7 @@
   font-size: var(--layera-font-size-body);
   padding: 0 8px;
   white-space: nowrap;
-  user-select: none;
+  user-select: var(--la-user-select-none);
 }
 
 .layera-numeric-input--sm .layera-numeric-input__prefix,
@@ -195,7 +195,7 @@
   right: 8px;
   top: 50%;
   transform: translateY(-50%);
-  pointer-events: none;
+  pointer-events: var(--la-pointer-events-none);
 }
 
 .layera-numeric-input__spinner {
@@ -231,9 +231,9 @@
   border: 1px solid var(--layera-color-border-default);
   background: var(--layera-color-bg-secondary);
   color: var(--layera-color-text-primary);
-  cursor: pointer;
+  cursor: var(--la-cursor-pointer);
   transition: all 0.2s ease-in-out;
-  user-select: none;
+  user-select: var(--la-user-select-none);
   padding: 0;
   outline: none;
 }
@@ -255,7 +255,7 @@
 
 .layera-numeric-input__stepper:disabled {
   opacity: 0.4;
-  cursor: not-allowed;
+  cursor: var(--la-cursor-not-allowed);
   background: var(--layera-color-bg-disabled);
   border-color: var(--layera-color-border-disabled);
 }
@@ -263,7 +263,7 @@
 .layera-numeric-input__stepper-icon {
   width: 16px;
   height: 16px;
-  flex-shrink: 0;
+  flex-shrink: var(--la-flex-shrink-0);
 }
 
 /* Right positioned steppers */
@@ -365,7 +365,7 @@
   width: 40px;
   height: 40px;
   border-radius: var(--layera-border-radius-md);
-  flex-shrink: 0;
+  flex-shrink: var(--la-flex-shrink-0);
 }
 
 .layera-numeric-input--sm.layera-numeric-input--steppers-separate .layera-numeric-input__stepper {

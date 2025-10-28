@@ -7,17 +7,17 @@
   /* Global Layera Theme Variables - Enterprise Standards */
 
   /* Application Colors - Light Theme */
-  --layera-bg-primary: #ffffff;
-  --layera-bg-secondary: #f8fafc;
-  --layera-bg-tertiary: #f1f5f9;
-  --layera-bg-success: #10b981;
-  --layera-bg-success-light: #d1fae5;
-  --layera-bg-info: #3b82f6;
-  --layera-bg-warning: #f59e0b;
-  --layera-bg-danger: #ef4444;
+  --la-bg-primary: #ffffff;
+  --la-bg-secondary: #f8fafc;
+  --la-bg-tertiary: #f1f5f9;
+  --la-bg-success: #10b981;
+  --la-bg-success-light: #d1fae5;
+  --la-bg-info: #3b82f6;
+  --la-bg-warning: #f59e0b;
+  --la-bg-danger: #ef4444;
 
-  --layera-text-primary: #1e293b;
-  --layera-text-secondary: #64748b;
+  --la-text-primary: #1e293b;
+  --la-text-secondary: #64748b;
   --layera-text-tertiary: #94a3b8;
   --layera-text-on-dark: #ffffff;
   --layera-text-on-success: #ffffff;
@@ -121,8 +121,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  user-select: none;
+  cursor: var(--la-cursor-pointer);
+  user-select: var(--la-user-select-none);
   border: 1px solid var(--layera-theme-switcher-border);
   border-radius: var(--layera-theme-switcher-border-radius);
   background-color: var(--layera-theme-switcher-bg);
@@ -146,12 +146,12 @@
 
   &:focus-visible {
     outline: none;
-    box-shadow: var(--layera-theme-switcher-focus-ring);
+    box-shadow: var(--la-theme-switcher-focus-ring);
   }
 
   &:disabled {
     opacity: 0.6;
-    cursor: not-allowed;
+    cursor: var(--la-cursor-not-allowed);
   }
 }
 
@@ -196,7 +196,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  flex-shrink: var(--la-flex-shrink-0);
 }
 
 /* Button Variant */
@@ -225,7 +225,7 @@
   background-color: var(--layera-theme-switcher-bg);
   border: 1px solid var(--layera-theme-switcher-border);
   border-radius: var(--layera-theme-switcher-border-radius);
-  cursor: pointer;
+  cursor: var(--la-cursor-pointer);
   display: flex;
   align-items: center;
   font-family: var(--layera-theme-switcher-font-family);
@@ -240,7 +240,7 @@
 
   &:focus-visible {
     outline: none;
-    box-shadow: var(--layera-theme-switcher-focus-ring);
+    box-shadow: var(--la-theme-switcher-focus-ring);
   }
 }
 
@@ -271,16 +271,16 @@
 }
 
 .layera-theme-switcher__dropdown--left {
-  left: 0;
+  left: var(--la-left-0);
 }
 
 .layera-theme-switcher__dropdown--right {
-  right: 0;
+  right: var(--la-right-0);
 }
 
 .layera-theme-switcher__dropdown--center {
-  left: 0;
-  right: 0;
+  left: var(--la-left-0);
+  right: var(--la-right-0);
   margin-left: auto;
   margin-right: auto;
   width: fit-content;
@@ -295,7 +295,7 @@
   background: none;
   border: none;
   text-align: left;
-  cursor: pointer;
+  cursor: var(--la-cursor-pointer);
   font-family: var(--layera-theme-switcher-font-family);
   font-size: 0.875rem;
   color: var(--layera-theme-switcher-color);
@@ -332,11 +332,11 @@
   justify-content: center;
   width: 1rem;
   height: 1rem;
-  flex-shrink: 0;
+  flex-shrink: var(--la-flex-shrink-0);
 }
 
 .layera-theme-switcher__option-label {
-  flex: 1;
+  flex: var(--la-flex-1);
   white-space: nowrap;
 }
 

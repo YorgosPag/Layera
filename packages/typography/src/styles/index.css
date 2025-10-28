@@ -5,173 +5,173 @@
 
 :root {
   /* Primary Font Family */
-  --layera-font-family-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --layera-font-family-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  --la-font-family-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --la-font-family-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
 
   /* Font Sizes - Enterprise Scale */
-  --layera-text-xs: 0.75rem;    /* 12px */
-  --layera-text-sm: 0.875rem;   /* 14px */
-  --layera-text-base: 1rem;     /* 16px */
-  --layera-text-lg: 1.125rem;   /* 18px */
-  --layera-text-xl: 1.25rem;    /* 20px */
-  --layera-text-2xl: 1.5rem;    /* 24px */
-  --layera-text-3xl: 1.875rem;  /* 30px */
-  --layera-text-4xl: 2.25rem;   /* 36px */
-  --layera-text-5xl: 3rem;      /* 48px */
-  --layera-text-6xl: 3.75rem;   /* 60px */
+  --la-text-xs: 0.75rem;    /* 12px */
+  --la-text-sm: 0.875rem;   /* 14px */
+  --la-text-base: 1rem;     /* 16px */
+  --la-text-lg: 1.125rem;   /* 18px */
+  --la-text-xl: 1.25rem;    /* 20px */
+  --la-text-2xl: 1.5rem;    /* 24px */
+  --la-text-3xl: 1.875rem;  /* 30px */
+  --la-text-4xl: 2.25rem;   /* 36px */
+  --la-text-5xl: 3rem;      /* 48px */
+  --la-text-6xl: 3.75rem;   /* 60px */
 
   /* Font Weights */
-  --layera-font-light: 300;
-  --layera-font-normal: 400;
-  --layera-font-medium: 500;
-  --layera-font-semibold: 600;
-  --layera-font-bold: 700;
-  --layera-font-extrabold: 800;
+  --la-font-light: 300;
+  --la-font-normal: 400;
+  --la-font-medium: 500;
+  --la-font-semibold: 600;
+  --la-font-bold: 700;
+  --la-font-extrabold: 800;
 
   /* Line Heights */
-  --layera-leading-tight: 1.25;
-  --layera-leading-snug: 1.375;
-  --layera-leading-normal: 1.5;
-  --layera-leading-relaxed: 1.625;
-  --layera-leading-loose: 2;
+  --la-leading-tight: 1.25;
+  --la-leading-snug: 1.375;
+  --la-leading-normal: 1.5;
+  --la-leading-relaxed: 1.625;
+  --la-leading-loose: 2;
 
   /* Letter Spacing */
-  --layera-tracking-xs: -0.025em;
-  --layera-tracking-sm: -0.0125em;
-  --layera-tracking-base: 0em;
-  --layera-tracking-lg: 0.0125em;
-  --layera-tracking-xl: 0.025em;
+  --la-tracking-xs: -0.025em;
+  --la-tracking-sm: -0.0125em;
+  --la-tracking-base: 0em;
+  --la-tracking-lg: 0.0125em;
+  --la-tracking-xl: 0.025em;
 
   /* Text Colors - Συνδεδεμένα με το Layera color system */
-  --layera-text-primary: #111827;
-  --layera-text-secondary: #374151;
-  --layera-text-muted: #6b7280;
-  --layera-text-accent: #2563eb;
-  --layera-text-success: #059669;
-  --layera-text-warning: #d97706;
-  --layera-text-danger: #dc2626;
-  --layera-text-info: #0891b2;
+  --la-text-primary: var(--la-color-text-primary);
+  --la-text-secondary: var(--la-color-text-secondary);
+  --la-text-muted: var(--la-color-text-muted);
+  --la-text-accent: var(--la-color-primary);
+  --la-text-success: var(--la-color-success);
+  --la-text-warning: var(--la-color-warning);
+  --la-text-danger: var(--la-color-danger);
+  --la-text-info: var(--la-color-info);
 }
 
 /* Base Typography Classes */
-.layera-text {
-  font-family: var(--layera-font-family-sans);
+.la-text {
+  font-family: var(--la-font-family-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* Font Size Classes */
-.layera-text-xs { font-size: var(--layera-text-xs); letter-spacing: var(--layera-tracking-xs); }
-.layera-text-sm { font-size: var(--layera-text-sm); letter-spacing: var(--layera-tracking-sm); }
-.layera-text-base { font-size: var(--layera-text-base); letter-spacing: var(--layera-tracking-base); }
-.layera-text-lg { font-size: var(--layera-text-lg); letter-spacing: var(--layera-tracking-base); }
-.layera-text-xl { font-size: var(--layera-text-xl); letter-spacing: var(--layera-tracking-lg); }
-.layera-text-2xl { font-size: var(--layera-text-2xl); letter-spacing: var(--layera-tracking-lg); }
-.layera-text-3xl { font-size: var(--layera-text-3xl); letter-spacing: var(--layera-tracking-xl); }
-.layera-text-4xl { font-size: var(--layera-text-4xl); letter-spacing: var(--layera-tracking-xl); }
-.layera-text-5xl { font-size: var(--layera-text-5xl); letter-spacing: var(--layera-tracking-xl); }
-.layera-text-6xl { font-size: var(--layera-text-6xl); letter-spacing: var(--layera-tracking-xl); }
+.la-text-xs { font-size: var(--la-text-xs); letter-spacing: var(--la-tracking-xs); }
+.la-text-sm { font-size: var(--la-text-sm); letter-spacing: var(--la-tracking-sm); }
+.la-text-base { font-size: var(--la-text-base); letter-spacing: var(--la-tracking-base); }
+.la-text-lg { font-size: var(--la-text-lg); letter-spacing: var(--la-tracking-base); }
+.la-text-xl { font-size: var(--la-text-xl); letter-spacing: var(--la-tracking-lg); }
+.la-text-2xl { font-size: var(--la-text-2xl); letter-spacing: var(--la-tracking-lg); }
+.la-text-3xl { font-size: var(--la-text-3xl); letter-spacing: var(--la-tracking-xl); }
+.la-text-4xl { font-size: var(--la-text-4xl); letter-spacing: var(--la-tracking-xl); }
+.la-text-5xl { font-size: var(--la-text-5xl); letter-spacing: var(--la-tracking-xl); }
+.la-text-6xl { font-size: var(--la-text-6xl); letter-spacing: var(--la-tracking-xl); }
 
 /* Font Weight Classes */
-.layera-font-light { font-weight: var(--layera-font-light); }
-.layera-font-normal { font-weight: var(--layera-font-normal); }
-.layera-font-medium { font-weight: var(--layera-font-medium); }
-.layera-font-semibold { font-weight: var(--layera-font-semibold); }
-.layera-font-bold { font-weight: var(--layera-font-bold); }
-.layera-font-extrabold { font-weight: var(--layera-font-extrabold); }
+.la-font-light { font-weight: var(--la-font-light); }
+.la-font-normal { font-weight: var(--la-font-normal); }
+.la-font-medium { font-weight: var(--la-font-medium); }
+.la-font-semibold { font-weight: var(--la-font-semibold); }
+.la-font-bold { font-weight: var(--la-font-bold); }
+.la-font-extrabold { font-weight: var(--la-font-extrabold); }
 
 /* Line Height Classes */
-.layera-leading-tight { line-height: var(--layera-leading-tight); }
-.layera-leading-snug { line-height: var(--layera-leading-snug); }
-.layera-leading-normal { line-height: var(--layera-leading-normal); }
-.layera-leading-relaxed { line-height: var(--layera-leading-relaxed); }
-.layera-leading-loose { line-height: var(--layera-leading-loose); }
+.la-leading-tight { line-height: var(--la-leading-tight); }
+.la-leading-snug { line-height: var(--la-leading-snug); }
+.la-leading-normal { line-height: var(--la-leading-normal); }
+.layera-leading-relaxed { line-height: var(--la-leading-relaxed); }
+.layera-leading-loose { line-height: var(--la-leading-loose); }
 
 /* Text Color Classes */
-.layera-text-primary { color: var(--layera-text-primary); }
-.layera-text-secondary { color: var(--layera-text-secondary); }
-.layera-text-muted { color: var(--layera-text-muted); }
-.layera-text-accent { color: var(--layera-text-accent); }
-.layera-text-success { color: var(--layera-text-success); }
-.layera-text-warning { color: var(--layera-text-warning); }
-.layera-text-danger { color: var(--layera-text-danger); }
-.layera-text-info { color: var(--layera-text-info); }
+.la-text-primary { color: var(--la-text-primary); }
+.la-text-secondary { color: var(--la-text-secondary); }
+.la-text-muted { color: var(--la-text-muted); }
+.la-text-accent { color: var(--la-text-accent); }
+.la-text-success { color: var(--la-text-success); }
+.la-text-warning { color: var(--la-text-warning); }
+.la-text-danger { color: var(--la-text-danger); }
+.la-text-info { color: var(--la-text-info); }
 
 /* Text Alignment Classes */
-.layera-text-left { text-align: left; }
-.layera-text-center { text-align: center; }
-.layera-text-right { text-align: right; }
-.layera-text-justify { text-align: justify; }
+.la-text-left { text-align: left; }
+.la-text-center { text-align: center; }
+.la-text-right { text-align: right; }
+.la-text-justify { text-align: justify; }
 
 /* Enterprise Typography Combinations */
 .layera-heading-1 {
-  font-size: var(--layera-text-4xl);
-  font-weight: var(--layera-font-extrabold);
-  line-height: var(--layera-leading-tight);
-  letter-spacing: var(--layera-tracking-xl);
-  color: var(--layera-text-primary);
+  font-size: var(--la-text-4xl);
+  font-weight: var(--la-font-extrabold);
+  line-height: var(--la-leading-tight);
+  letter-spacing: var(--la-tracking-xl);
+  color: var(--la-text-primary);
 }
 
 .layera-heading-2 {
-  font-size: var(--layera-text-3xl);
-  font-weight: var(--layera-font-bold);
-  line-height: var(--layera-leading-tight);
-  letter-spacing: var(--layera-tracking-lg);
-  color: var(--layera-text-primary);
+  font-size: var(--la-text-3xl);
+  font-weight: var(--la-font-bold);
+  line-height: var(--la-leading-tight);
+  letter-spacing: var(--la-tracking-lg);
+  color: var(--la-text-primary);
 }
 
 .layera-heading-3 {
-  font-size: var(--layera-text-2xl);
-  font-weight: var(--layera-font-semibold);
-  line-height: var(--layera-leading-snug);
-  letter-spacing: var(--layera-tracking-lg);
-  color: var(--layera-text-primary);
+  font-size: var(--la-text-2xl);
+  font-weight: var(--la-font-semibold);
+  line-height: var(--la-leading-snug);
+  letter-spacing: var(--la-tracking-lg);
+  color: var(--la-text-primary);
 }
 
-.layera-body-large {
-  font-size: var(--layera-text-lg);
-  font-weight: var(--layera-font-normal);
-  line-height: var(--layera-leading-relaxed);
-  color: var(--layera-text-secondary);
+.la-body-large {
+  font-size: var(--la-text-lg);
+  font-weight: var(--la-font-normal);
+  line-height: var(--la-leading-relaxed);
+  color: var(--la-text-secondary);
 }
 
-.layera-body {
-  font-size: var(--layera-text-base);
-  font-weight: var(--layera-font-normal);
-  line-height: var(--layera-leading-normal);
-  color: var(--layera-text-secondary);
+.la-body {
+  font-size: var(--la-text-base);
+  font-weight: var(--la-font-normal);
+  line-height: var(--la-leading-normal);
+  color: var(--la-text-secondary);
 }
 
-.layera-body-small {
-  font-size: var(--layera-text-sm);
-  font-weight: var(--layera-font-normal);
-  line-height: var(--layera-leading-normal);
-  color: var(--layera-text-muted);
+.la-body-small {
+  font-size: var(--la-text-sm);
+  font-weight: var(--la-font-normal);
+  line-height: var(--la-leading-normal);
+  color: var(--la-text-muted);
 }
 
-.layera-caption {
-  font-size: var(--layera-text-xs);
-  font-weight: var(--layera-font-medium);
-  line-height: var(--layera-leading-tight);
-  color: var(--layera-text-muted);
+.la-caption {
+  font-size: var(--la-text-xs);
+  font-weight: var(--la-font-medium);
+  line-height: var(--la-leading-tight);
+  color: var(--la-text-muted);
 }
 
 /* Layout Utility Classes */
-.layera-flex { display: flex; }
-.layera-items-center { align-items: center; }
-.layera-gap-1 { gap: 0.25rem; }
-.layera-gap-2 { gap: 0.5rem; }
-.layera-gap-3 { gap: 0.75rem; }
-.layera-gap-4 { gap: 1rem; }
+.la-flex { display: flex; }
+.la-items-center { align-items: center; }
+.la-gap-1 { gap: 0.25rem; }
+.la-gap-2 { gap: 0.5rem; }
+.la-gap-3 { gap: 0.75rem; }
+.la-gap-4 { gap: 1rem; }
 
 /* Margin Utility Classes */
-.layera-mb-2 { margin-bottom: 0.5rem; }
-.layera-mb-4 { margin-bottom: 1rem; }
-.layera-mb-8 { margin-bottom: 2rem; }
+.la-mb-2 { margin-bottom: 0.5rem; }
+.la-mb-4 { margin-bottom: 1rem; }
+.la-mb-8 { margin-bottom: 2rem; }
 
 /* Responsive Typography - Mobile First */
-@media (max-width: 640px) {
-  .layera-heading-1 { font-size: var(--layera-text-3xl); }
-  .layera-heading-2 { font-size: var(--layera-text-2xl); }
-  .layera-heading-3 { font-size: var(--layera-text-xl); }
+@media (width <= 40rem) {
+  .layera-heading-1 { font-size: var(--la-text-3xl); }
+  .layera-heading-2 { font-size: var(--la-text-2xl); }
+  .layera-heading-3 { font-size: var(--la-text-xl); }
 }

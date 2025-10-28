@@ -9,7 +9,7 @@
 }
 
 .layera-textarea {
-  flex: 1;
+  flex: var(--la-flex-1);
   border: none;
   background: transparent;
   outline: none;
@@ -124,12 +124,12 @@
 
 .layera-textarea-wrapper--disabled {
   opacity: 0.6;
-  cursor: not-allowed;
+  cursor: var(--la-cursor-not-allowed);
   background: var(--layera-color-background-disabled);
 }
 
 .layera-textarea--disabled {
-  cursor: not-allowed;
+  cursor: var(--la-cursor-not-allowed);
   color: var(--layera-color-text-disabled);
 }
 

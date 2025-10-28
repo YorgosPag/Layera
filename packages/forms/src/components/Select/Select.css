@@ -1,12 +1,12 @@
 /* Select Component Styles */
-.layera-select {
+.la-select {
   position: relative;
   display: inline-block;
-  cursor: pointer;
+  cursor: var(--la-cursor-pointer);
   outline: none;
 }
 
-.layera-select__control {
+.la-select__control {
   display: flex;
   align-items: center;
   background: var(--layera-color-background-primary);
@@ -16,8 +16,8 @@
   min-height: 2.75rem;
 }
 
-.layera-select__value {
-  flex: 1;
+.la-select__value {
+  flex: var(--la-flex-1);
   padding: 0.75rem 1rem;
   font-size: 1rem;
   color: var(--layera-color-text-primary);
@@ -26,11 +26,11 @@
   white-space: nowrap;
 }
 
-.layera-select__placeholder {
+.la-select__placeholder {
   color: var(--layera-color-text-placeholder);
 }
 
-.layera-select__search {
+.la-select__search {
   border: none;
   background: transparent;
   outline: none;
@@ -45,41 +45,41 @@
 }
 
 /* Sizes */
-.layera-select--sm .layera-select__control {
+.la-select--sm .la-select__control {
   min-height: 2.25rem;
 }
 
-.layera-select--sm .layera-select__value {
+.la-select--sm .la-select__value {
   padding: 0.5rem 0.75rem;
   font-size: 0.875rem;
 }
 
-.layera-select--lg .layera-select__control {
+.la-select--lg .la-select__control {
   min-height: 3.25rem;
 }
 
-.layera-select--lg .layera-select__value {
+.la-select--lg .la-select__value {
   padding: 1rem 1.25rem;
   font-size: 1.125rem;
 }
 
 /* Variants */
-.layera-select--outline .layera-select__control {
+.la-select--outline .la-select__control {
   background: transparent;
   border: 2px solid var(--layera-color-border-primary);
 }
 
-.layera-select--filled .layera-select__control {
+.la-select--filled .la-select__control {
   background: var(--layera-color-background-secondary);
   border: 1px solid transparent;
 }
 
-.layera-select--ghost .layera-select__control {
+.la-select--ghost .la-select__control {
   background: transparent;
   border: 1px solid transparent;
 }
 
-.layera-select--underline .layera-select__control {
+.la-select--underline .la-select__control {
   background: transparent;
   border: none;
   border-bottom: 2px solid var(--layera-color-border-primary);
@@ -88,40 +88,40 @@
 
 /* States */
 .layera-select:focus .layera-select__control,
-.layera-select--open .layera-select__control {
+.la-select--open .la-select__control {
   border-color: var(--layera-color-primary-500);
   box-shadow: 0 0 0 3px var(--layera-color-primary-100);
 }
 
-.layera-select--error .layera-select__control {
+.la-select--error .la-select__control {
   border-color: var(--layera-color-error-500);
 }
 
-.layera-select--error:focus .layera-select__control,
-.layera-select--error.layera-select--open .layera-select__control {
+.la-select--error:focus .layera-select__control,
+.la-select--error.la-select--open .la-select__control {
   border-color: var(--layera-color-error-500);
   box-shadow: 0 0 0 3px var(--layera-color-error-100);
 }
 
-.layera-select--success .layera-select__control {
+.la-select--success .la-select__control {
   border-color: var(--layera-color-success-500);
 }
 
-.layera-select--warning .layera-select__control {
+.la-select--warning .la-select__control {
   border-color: var(--layera-color-warning-500);
 }
 
-.layera-select--disabled {
+.la-select--disabled {
   opacity: 0.6;
-  cursor: not-allowed;
+  cursor: var(--la-cursor-not-allowed);
 }
 
-.layera-select--disabled .layera-select__control {
+.la-select--disabled .la-select__control {
   background: var(--layera-color-background-disabled);
 }
 
 /* Icons and Indicators */
-.layera-select__start-icon {
+.la-select__start-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -129,20 +129,20 @@
   color: var(--layera-color-text-secondary);
 }
 
-.layera-select__indicators {
+.la-select__indicators {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   padding-right: 1rem;
 }
 
-.layera-select__loading {
+.la-select__loading {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.layera-select__spinner {
+.la-select__spinner {
   width: 1rem;
   height: 1rem;
   border: 2px solid var(--layera-color-border-primary);
@@ -156,7 +156,7 @@
   100% { transform: rotate(360deg); }
 }
 
-.layera-select__clear {
+.la-select__clear {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -165,7 +165,7 @@
   border: none;
   background: transparent;
   color: var(--layera-color-text-secondary);
-  cursor: pointer;
+  cursor: var(--la-cursor-pointer);
   border-radius: var(--layera-radius-sm);
   font-size: 1.125rem;
   line-height: 1;
@@ -177,7 +177,7 @@
   color: var(--layera-color-text-primary);
 }
 
-.layera-select__arrow {
+.la-select__arrow {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -185,16 +185,16 @@
   transition: transform 0.2s ease-in-out;
 }
 
-.layera-select--open .layera-select__arrow {
+.la-select--open .la-select__arrow {
   transform: rotate(180deg);
 }
 
 /* Dropdown */
-.layera-select__dropdown {
+.la-select__dropdown {
   position: absolute;
   top: 100%;
-  left: 0;
-  right: 0;
+  left: var(--la-left-0);
+  right: var(--la-right-0);
   z-index: 1000;
   margin-top: 0.25rem;
   background: var(--layera-color-background-primary);
@@ -205,9 +205,9 @@
   overflow-y: auto;
 }
 
-.layera-select__option {
+.la-select__option {
   padding: 0.75rem 1rem;
-  cursor: pointer;
+  cursor: var(--la-cursor-pointer);
   transition: background-color 0.2s ease-in-out;
   border-bottom: 1px solid var(--layera-color-border-secondary);
 }
@@ -229,14 +229,14 @@
 
 .layera-select__option--disabled {
   opacity: 0.5;
-  cursor: not-allowed;
+  cursor: var(--la-cursor-not-allowed);
 }
 
 .layera-select__option--disabled:hover {
   background: transparent;
 }
 
-.layera-select__empty {
+.la-select__empty {
   padding: 1rem;
   text-align: center;
   color: var(--layera-color-text-secondary);
@@ -244,13 +244,13 @@
 }
 
 /* Full width */
-.layera-select--full-width {
+.la-select--full-width {
   width: 100%;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .layera-select__dropdown {
+  .la-select__dropdown {
     max-height: 12rem;
   }
 }
@@ -258,12 +258,12 @@
 /* Dark mode adjustments */
 @media (prefers-color-scheme: dark) {
   .layera-select:focus .layera-select__control,
-  .layera-select--open .layera-select__control {
+  .la-select--open .la-select__control {
     box-shadow: 0 0 0 3px var(--layera-color-primary-800);
   }
 
-  .layera-select--error:focus .layera-select__control,
-  .layera-select--error.layera-select--open .layera-select__control {
+  .la-select--error:focus .layera-select__control,
+  .la-select--error.la-select--open .la-select__control {
     box-shadow: 0 0 0 3px var(--layera-color-error-800);
   }
 

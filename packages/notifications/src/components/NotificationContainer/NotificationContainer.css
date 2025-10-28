@@ -2,80 +2,80 @@
  * Layera NotificationContainer - Styles
  */
 
-.layera-notification-container {
+.la-notification-container {
   position: fixed;
-  z-index: var(--layera-notification-z-index, 1050);
+  z-index: var(--la-z-index-toast);
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm, 8px);
+  gap: var(--la-space-2);
   pointer-events: none;
 }
 
-.layera-notification-container > * {
+.la-notification-container > * {
   pointer-events: auto;
 }
 
 /* Position variants */
-.layera-notification-container--top-left {
-  top: var(--space-lg, 24px);
-  left: var(--space-lg, 24px);
+.la-notification-container-top-left {
+  top: var(--la-space-6);
+  left: var(--la-space-6);
 }
 
-.layera-notification-container--top-center {
-  top: var(--space-lg, 24px);
+.la-notification-container-top-center {
+  top: var(--la-space-6);
   left: 50%;
   transform: translateX(-50%);
   align-items: center;
 }
 
-.layera-notification-container--top-right {
-  top: var(--space-lg, 24px);
-  right: var(--space-lg, 24px);
+.la-notification-container-top-right {
+  top: var(--la-space-6);
+  right: var(--la-space-6);
   align-items: flex-end;
 }
 
-.layera-notification-container--bottom-left {
-  bottom: var(--space-lg, 24px);
-  left: var(--space-lg, 24px);
+.la-notification-container-bottom-left {
+  bottom: var(--la-space-6);
+  left: var(--la-space-6);
   flex-direction: column-reverse;
 }
 
-.layera-notification-container--bottom-center {
-  bottom: var(--space-lg, 24px);
+.la-notification-container-bottom-center {
+  bottom: var(--la-space-6);
   left: 50%;
   transform: translateX(-50%);
   flex-direction: column-reverse;
   align-items: center;
 }
 
-.layera-notification-container--bottom-right {
-  bottom: var(--space-lg, 24px);
-  right: var(--space-lg, 24px);
+.la-notification-container-bottom-right {
+  bottom: var(--la-space-6);
+  right: var(--la-space-6);
   flex-direction: column-reverse;
   align-items: flex-end;
 }
 
 /* Mobile responsiveness */
-@media (max-width: 640px) {
-  .layera-notification-container--top-left,
-  .layera-notification-container--bottom-left {
-    left: var(--space-sm, 8px);
+@media (width <= 40rem) {
+  .la-notification-container-top-left,
+  .la-notification-container-bottom-left {
+    left: var(--la-space-2);
   }
 
-  .layera-notification-container--top-right,
-  .layera-notification-container--bottom-right {
-    right: var(--space-sm, 8px);
+  .la-notification-container-top-right,
+  .la-notification-container-bottom-right {
+    right: var(--la-space-2);
   }
 
-  .layera-notification-container--top-left,
-  .layera-notification-container--top-center,
-  .layera-notification-container--top-right {
-    top: var(--space-sm, 8px);
+  .la-notification-container-top-left,
+  .la-notification-container-top-center,
+  .la-notification-container-top-right {
+    top: var(--la-space-2);
   }
 
-  .layera-notification-container--bottom-left,
-  .layera-notification-container--bottom-center,
-  .layera-notification-container--bottom-right {
-    bottom: var(--space-sm, 8px);
+  .la-notification-container-bottom-left,
+  .la-notification-container-bottom-center,
+  .la-notification-container-bottom-right {
+    bottom: var(--la-space-2);
   }
 }

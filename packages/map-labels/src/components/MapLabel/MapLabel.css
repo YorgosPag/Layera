@@ -8,228 +8,228 @@
 /* CSS Variables (Design Tokens) */
 :root {
   /* Label backgrounds */
-  --layera-label-bg-transparent: rgba(255, 255, 255, 0);
-  --layera-label-bg-semi: rgba(255, 255, 255, 0.85);
-  --layera-label-bg-solid: rgba(255, 255, 255, 0.95);
+  --la-label-bg-transparent: color(from white srgb / 0%);
+  --la-label-bg-semi: color(from white srgb / 85%);
+  --la-label-bg-solid: color(from white srgb / 95%);
 
   /* Label borders */
-  --layera-label-border: 1px solid rgba(0, 0, 0, 0.1);
-  --layera-label-border-radius: 4px;
+  --la-label-border: var(--la-border-width-1) solid color(from black srgb / 20%);
+  --la-label-border-radius: var(--la-radius-sm);
 
   /* Label shadows */
-  --layera-label-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --layera-label-shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --la-label-shadow: var(--la-shadow-sm);
+  --la-label-shadow-hover: var(--la-shadow-md);
 
   /* Label z-indexes */
-  --layera-label-z-base: 1000;
-  --layera-label-z-hover: 1001;
-  --layera-label-z-active: 1002;
+  --la-label-z-base: var(--la-z-1000);
+  --la-label-z-hover: var(--la-z-1001);
+  --la-label-z-active: var(--la-z-1002);
 
   /* Text colors */
-  --layera-label-text-primary: #1F2937;
-  --layera-label-text-secondary: #6B7280;
-  --layera-label-text-muted: #9CA3AF;
-  --layera-label-text-success: #059669;
-  --layera-label-text-warning: #D97706;
-  --layera-label-text-error: #DC2626;
+  --la-label-text-primary: var(--la-color-text-primary);
+  --la-label-text-secondary: var(--la-color-text-secondary);
+  --la-label-text-muted: var(--la-color-text-tertiary);
+  --la-label-text-success: var(--la-color-success);
+  --la-label-text-warning: var(--la-color-warning);
+  --la-label-text-error: var(--la-color-error);
 
   /* Transitions */
-  --layera-label-transition: all 0.2s ease-in-out;
+  --la-label-transition: var(--la-transition-fast);
 }
 
 /* Base MapLabel Styles */
-.layera-map-label {
+.la-map-label {
   position: absolute;
-  z-index: var(--layera-label-z-base);
+  z-index: var(--la-label-z-base);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   pointer-events: auto;
-  user-select: none;
-  transition: var(--layera-label-transition);
+  user-select: var(--la-user-select-none);
+  transition: var(--la-label-transition);
 
   /* Prevent text selection */
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+  -webkit-user-select: var(--la-user-select-none);
+  -moz-user-select: var(--la-user-select-none);
+  -ms-user-select: var(--la-user-select-none);
 }
 
 /* Visibility States */
-.layera-map-label--visible {
+.la-map-label-visible {
   opacity: 1;
   transform: scale(1);
 }
 
-.layera-map-label--hidden {
+.la-map-label-hidden {
   opacity: 0;
   transform: scale(0.8);
-  pointer-events: none;
+  pointer-events: var(--la-pointer-events-none);
 }
 
-.layera-map-label--animating {
+.la-map-label-animating {
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 /* Background Variants */
-.layera-map-label--bg-transparent {
-  background: var(--layera-label-bg-transparent);
+.la-map-label-bg-transparent {
+  background: var(--la-label-bg-transparent);
   border: none;
   box-shadow: none;
 }
 
-.layera-map-label--bg-semi {
-  background: var(--layera-label-bg-semi);
-  border: var(--layera-label-border);
-  box-shadow: var(--layera-label-shadow);
+.la-map-label-bg-semi {
+  background: var(--la-label-bg-semi);
+  border: var(--la-label-border);
+  box-shadow: var(--la-label-shadow);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
 }
 
-.layera-map-label--bg-solid {
-  background: var(--layera-label-bg-solid);
-  border: var(--layera-label-border);
-  box-shadow: var(--layera-label-shadow);
+.la-map-label-bg-solid {
+  background: var(--la-label-bg-solid);
+  border: var(--la-label-border);
+  box-shadow: var(--la-label-shadow);
 }
 
 /* Label Variants */
 
 /* Title variant - για boundary names */
-.layera-map-label--title {
-  font-size: 1.125rem;
+.la-map-label-title {
+  font-size: var(--la-font-size-lg);
   font-weight: 600;
-  color: var(--layera-label-text-primary);
-  padding: 0.5rem 0.75rem;
-  border-radius: var(--layera-label-border-radius);
+  color: var(--la-label-text-primary);
+  padding: var(--la-space-2) var(--la-space-3);
+  border-radius: var(--la-label-border-radius);
   line-height: 1.2;
   text-align: center;
   white-space: nowrap;
 }
 
 /* Subtitle variant - για secondary information */
-.layera-map-label--subtitle {
-  font-size: 1rem;
+.la-map-label-subtitle {
+  font-size: var(--la-font-size-base);
   font-weight: 500;
-  color: var(--layera-label-text-primary);
-  padding: 0.375rem 0.625rem;
-  border-radius: var(--layera-label-border-radius);
+  color: var(--la-label-text-primary);
+  padding: var(--la-space-1-5) var(--la-space-2-5);
+  border-radius: var(--la-label-border-radius);
   line-height: 1.3;
   text-align: center;
 }
 
 /* Area variant - για area calculations */
-.layera-map-label--area {
-  font-size: 0.875rem;
+.la-map-label-area {
+  font-size: var(--la-font-size-sm);
   font-weight: 500;
-  color: var(--layera-label-text-secondary);
-  padding: 0.25rem 0.5rem;
-  border-radius: calc(var(--layera-label-border-radius) * 0.75);
+  color: var(--la-label-text-secondary);
+  padding: var(--la-space-1) var(--la-space-2);
+  border-radius: calc(var(--la-label-border-radius) * 0.75);
   line-height: 1.4;
   text-align: center;
   white-space: nowrap;
 }
 
 /* Distance variant - για distance measurements */
-.layera-map-label--distance {
-  font-size: 0.875rem;
+.la-map-label-distance {
+  font-size: var(--la-font-size-sm);
   font-weight: 500;
-  color: var(--layera-label-text-secondary);
-  padding: 0.25rem 0.5rem;
-  border-radius: calc(var(--layera-label-border-radius) * 0.75);
+  color: var(--la-label-text-secondary);
+  padding: var(--la-space-1) var(--la-space-2);
+  border-radius: calc(var(--la-label-border-radius) * 0.75);
   line-height: 1.4;
   text-align: center;
   white-space: nowrap;
 }
 
 /* Info variant - για general information */
-.layera-map-label--info {
-  font-size: 0.75rem;
+.la-map-label-info {
+  font-size: var(--la-font-size-xs);
   font-weight: 400;
-  color: var(--layera-label-text-muted);
-  padding: 0.25rem 0.5rem;
-  border-radius: calc(var(--layera-label-border-radius) * 0.5);
+  color: var(--la-label-text-muted);
+  padding: var(--la-space-1) var(--la-space-2);
+  border-radius: calc(var(--la-label-border-radius) * 0.5);
   line-height: 1.4;
   text-align: center;
 }
 
 /* Warning variant - για warning messages */
-.layera-map-label--warning {
-  font-size: 0.875rem;
+.la-map-label-warning {
+  font-size: var(--la-font-size-sm);
   font-weight: 500;
-  color: var(--layera-label-text-warning);
-  padding: 0.25rem 0.5rem;
-  border-radius: var(--layera-label-border-radius);
+  color: var(--la-label-text-warning);
+  padding: var(--la-space-1) var(--la-space-2);
+  border-radius: var(--la-label-border-radius);
   line-height: 1.4;
   text-align: center;
-  background: rgba(251, 191, 36, 0.1);
-  border: 1px solid rgba(251, 191, 36, 0.3);
+  background: color(from oklch(0.7 0.15 85) srgb / 10%);
+  border: var(--la-border-width-1) solid color(from oklch(0.7 0.15 85) srgb / 30%);
 }
 
 /* Success variant - για success states */
-.layera-map-label--success {
-  font-size: 0.875rem;
+.la-map-label-success {
+  font-size: var(--la-font-size-sm);
   font-weight: 500;
-  color: var(--layera-label-text-success);
-  padding: 0.25rem 0.5rem;
-  border-radius: var(--layera-label-border-radius);
+  color: var(--la-label-text-success);
+  padding: var(--la-space-1) var(--la-space-2);
+  border-radius: var(--la-label-border-radius);
   line-height: 1.4;
   text-align: center;
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  background: color(from oklch(0.6 0.15 150) srgb / 10%);
+  border: var(--la-border-width-1) solid color(from oklch(0.6 0.15 150) srgb / 30%);
 }
 
 /* Text Alignment */
-.layera-map-label--align-left {
+.la-map-label-align-left {
   text-align: left;
 }
 
-.layera-map-label--align-center {
+.la-map-label-align-center {
   text-align: center;
 }
 
-.layera-map-label--align-right {
+.la-map-label-align-right {
   text-align: right;
 }
 
 /* Interactive States */
-.layera-map-label--clickable {
-  cursor: pointer;
+.la-map-label-clickable {
+  cursor: var(--la-cursor-pointer);
 }
 
-.layera-map-label--clickable:hover {
-  z-index: var(--layera-label-z-hover);
-  box-shadow: var(--layera-label-shadow-hover);
-  transform: translateY(-1px);
+.la-map-label-clickable:hover {
+  z-index: var(--la-label-z-hover);
+  box-shadow: var(--la-label-shadow-hover);
+  transform: translateY(calc(-1 * var(--la-space-0-5)));
 }
 
-.layera-map-label--clickable:active {
-  z-index: var(--layera-label-z-active);
+.la-map-label-clickable:active {
+  z-index: var(--la-label-z-active);
   transform: translateY(0);
 }
 
-.layera-map-label--hover {
-  z-index: var(--layera-label-z-hover);
-  box-shadow: var(--layera-label-shadow-hover);
+.la-map-label-hover {
+  z-index: var(--la-label-z-hover);
+  box-shadow: var(--la-label-shadow-hover);
 }
 
-.layera-map-label--active {
-  z-index: var(--layera-label-z-active);
-  box-shadow: var(--layera-label-shadow-hover);
-  background: rgba(59, 130, 246, 0.1);
-  border-color: rgba(59, 130, 246, 0.3);
+.la-map-label-active {
+  z-index: var(--la-label-z-active);
+  box-shadow: var(--la-label-shadow-hover);
+  background: color(from oklch(0.6 0.15 250) srgb / 10%);
+  border-color: color(from oklch(0.6 0.15 250) srgb / 30%);
 }
 
 /* Animation Classes */
-.layera-map-label--fade-in {
+.la-map-label-fade-in {
   animation: layeraLabelFadeIn 0.3s ease-out forwards;
 }
 
-.layera-map-label--fade-out {
+.la-map-label-fade-out {
   animation: layeraLabelFadeOut 0.3s ease-in forwards;
 }
 
-.layera-map-label--scale-in {
+.la-map-label-scale-in {
   animation: layeraLabelScaleIn 0.3s ease-out forwards;
 }
 
-.layera-map-label--scale-out {
+.la-map-label-scale-out {
   animation: layeraLabelScaleOut 0.3s ease-in forwards;
 }
 
@@ -275,50 +275,50 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-  .layera-map-label--title {
-    font-size: 1rem;
-    padding: 0.375rem 0.625rem;
+@media (width <= 48rem) {
+  .la-map-label-title {
+    font-size: var(--la-font-size-base);
+    padding: var(--la-space-1-5) var(--la-space-2-5);
   }
 
-  .layera-map-label--subtitle {
-    font-size: 0.875rem;
-    padding: 0.25rem 0.5rem;
+  .la-map-label-subtitle {
+    font-size: var(--la-font-size-sm);
+    padding: var(--la-space-1) var(--la-space-2);
   }
 
-  .layera-map-label--area,
-  .layera-map-label--distance {
-    font-size: 0.75rem;
-    padding: 0.25rem 0.375rem;
+  .la-map-label-area,
+  .la-map-label-distance {
+    font-size: var(--la-font-size-xs);
+    padding: var(--la-space-1) var(--la-space-1-5);
   }
 }
 
 /* High Contrast Mode Support */
 @media (prefers-contrast: high) {
-  .layera-map-label {
-    border-width: 2px;
+  .la-map-label {
+    border-width: var(--la-border-width-2);
   }
 
-  .layera-map-label--bg-semi {
-    background: rgba(255, 255, 255, 0.95);
+  .la-map-label-bg-semi {
+    background: color(from white srgb / 95%);
   }
 
-  .layera-map-label--bg-solid {
-    background: rgba(255, 255, 255, 1);
+  .la-map-label-bg-solid {
+    background: color(from white srgb / 100%);
   }
 }
 
 /* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
-  .layera-map-label,
-  .layera-map-label--animating {
+  .la-map-label,
+  .la-map-label-animating {
     transition: none;
   }
 
-  .layera-map-label--fade-in,
-  .layera-map-label--fade-out,
-  .layera-map-label--scale-in,
-  .layera-map-label--scale-out {
+  .la-map-label-fade-in,
+  .la-map-label-fade-out,
+  .la-map-label-scale-in,
+  .la-map-label-scale-out {
     animation: none;
   }
 }
@@ -326,12 +326,12 @@
 /* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
   :root {
-    --layera-label-bg-transparent: rgba(0, 0, 0, 0);
-    --layera-label-bg-semi: rgba(0, 0, 0, 0.85);
-    --layera-label-bg-solid: rgba(0, 0, 0, 0.95);
-    --layera-label-border: 1px solid rgba(255, 255, 255, 0.2);
-    --layera-label-text-primary: #F9FAFB;
-    --layera-label-text-secondary: #D1D5DB;
-    --layera-label-text-muted: #9CA3AF;
+    --la-label-bg-transparent: color(from black srgb / 0%);
+    --la-label-bg-semi: color(from black srgb / 85%);
+    --la-label-bg-solid: color(from black srgb / 95%);
+    --la-label-border: var(--la-border-width-1) solid color(from white srgb / 20%);
+    --la-label-text-primary: var(--la-color-text-primary);
+    --la-label-text-secondary: var(--la-color-text-secondary);
+    --la-label-text-muted: var(--la-color-text-tertiary);
   }
 }

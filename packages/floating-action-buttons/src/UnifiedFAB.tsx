@@ -73,7 +73,8 @@ export const UnifiedFAB: React.FC<FABProps> = ({
   // 🎯 ΕΞΑΛΕΙΨΗ ΔΙΠΛΟΤΥΠΩΝ - Click Suppression από @layera/draggable LEGO system
   // Utilities εισαχθέντα από @layera/draggable - Single Source of Truth
 
-  // 🎯 ENTERPRISE: Ίδια λογική, χωρίς HTML draggable με suppressClick
+  // 🎯 ENTERPRISE: Dragging state
+  const [isDragging, setIsDragging] = useState(false);
   const THRESH = 6;
   const start = useRef<{x:number;y:number}|null>(null);
   const dragging = useRef(false);

@@ -3,4 +3,4 @@
  * Import all table component styles
  */
 
-@import '../src/components/DataTable/DataTable.css';
+@import url('../src/components/DataTable/DataTable.css');

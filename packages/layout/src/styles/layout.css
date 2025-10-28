@@ -7,7 +7,7 @@
 
 .layera-layout-container {
   width: 100%;
-  height: 100vh;
+  height: var(--la-height-screen);
   overflow: hidden;
   background-color: var(--layera-layout-bg);
 }
@@ -17,7 +17,7 @@
 .layera-app-shell {
   display: grid;
   width: 100%;
-  height: 100vh;
+  height: var(--la-height-screen);
   background-color: var(--layera-layout-bg);
 }
 
@@ -116,7 +116,7 @@
   overflow-y: auto;
   position: relative;
   width: 100%;
-  max-width: 100%;
+  max-width: var(--la-width-full);
 }
 
 .layera-layout-footer {
@@ -140,7 +140,7 @@
   .layera-layout-sidebar {
     position: fixed;
     top: var(--layera-header-height);
-    left: 0;
+    left: var(--la-left-0);
     width: var(--layera-sidebar-width);
     height: calc(100vh - var(--layera-header-height));
     transform: translateX(-100%);
@@ -153,10 +153,10 @@
 
   .layera-layout-sidebar-backdrop {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: var(--la-top-0);
+    left: var(--la-left-0);
     width: 100%;
-    height: 100%;
+    height: var(--la-height-full);
     background-color: rgb(0 0 0 / 0.5);
     z-index: calc(var(--layera-z-sidebar) - 1);
     opacity: 0;

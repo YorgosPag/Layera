@@ -3,54 +3,54 @@
  */
 
 :root {
-  --layera-skeleton-bg: var(--color-surface-secondary, #f3f4f6);
-  --layera-skeleton-highlight: var(--color-surface-tertiary, #e5e7eb);
-  --layera-skeleton-radius: var(--border-radius-md, 8px);
+  --la-skeleton-bg: var(--la-color-surface-secondary);
+  --la-skeleton-highlight: var(--la-color-surface-tertiary);
+  --la-skeleton-radius: var(--la-radius-md);
 }
 
 /* Dark theme */
 [data-theme="dark"] {
-  --layera-skeleton-bg: var(--color-surface-secondary-dark, #374151);
-  --layera-skeleton-highlight: var(--color-surface-tertiary-dark, #4b5563);
+  --la-skeleton-bg: var(--la-color-surface-secondary);
+  --la-skeleton-highlight: var(--la-color-surface-tertiary);
 }
 
-.layera-skeleton {
+.la-skeleton {
   display: block;
-  background-color: var(--layera-skeleton-bg);
-  border-radius: var(--layera-skeleton-radius);
+  background-color: var(--la-skeleton-bg);
+  border-radius: var(--la-skeleton-radius);
   overflow: hidden;
   position: relative;
 }
 
 /* Variant styles */
-.layera-skeleton--text {
-  border-radius: 4px;
+.la-skeleton--text {
+  border-radius: var(--la-radius-sm);
   height: 1em;
 }
 
-.layera-skeleton--rectangular {
-  border-radius: var(--layera-skeleton-radius);
+.la-skeleton--rectangular {
+  border-radius: var(--la-skeleton-radius);
 }
 
-.layera-skeleton--circular {
+.la-skeleton--circular {
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 /* Wave animation */
-.layera-skeleton--wave {
+.la-skeleton--wave {
   background: linear-gradient(
     90deg,
-    var(--layera-skeleton-bg) 25%,
-    var(--layera-skeleton-highlight) 50%,
-    var(--layera-skeleton-bg) 75%
+    var(--la-skeleton-bg) 25%,
+    var(--la-skeleton-highlight) 50%,
+    var(--la-skeleton-bg) 75%
   );
   background-size: 200% 100%;
-  animation: layera-skeleton-wave 1.5s ease-in-out infinite;
+  animation: la-skeleton-wave 1.5s ease-in-out infinite;
 }
 
-@keyframes layera-skeleton-wave {
+@keyframes la-skeleton-wave {
   0% {
     background-position: -200% 0;
   }
@@ -60,11 +60,11 @@
 }
 
 /* Pulse animation */
-.layera-skeleton--pulse {
-  animation: layera-skeleton-pulse 1.5s ease-in-out infinite;
+.la-skeleton--pulse {
+  animation: la-skeleton-pulse 1.5s ease-in-out infinite;
 }
 
-@keyframes layera-skeleton-pulse {
+@keyframes la-skeleton-pulse {
   0% {
     opacity: 1;
   }
@@ -78,8 +78,8 @@
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
-  .layera-skeleton--wave,
-  .layera-skeleton--pulse {
+  .la-skeleton--wave,
+  .la-skeleton--pulse {
     animation: none;
   }
 }

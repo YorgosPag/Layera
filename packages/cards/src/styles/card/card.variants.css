@@ -5,54 +5,54 @@
 
 /* ============ CARD VARIANTS ============ */
 
-.layera-card--elevated {
+.la-card--elevated {
   border: none;
-  box-shadow: var(--layera-card-elevated-shadow);
+  box-shadow: var(--la-card-elevated-shadow);
 }
 
-.layera-card--outlined {
-  border: 2px solid var(--layera-card-border);
+.la-card--outlined {
+  border: var(--la-border-width-2) solid var(--la-card-border);
   box-shadow: none;
 }
 
-.layera-card--filled {
-  background-color: var(--layera-card-bg);
+.la-card--filled {
+  background-color: var(--la-card-bg);
   border: none;
   box-shadow: none;
 }
 
 /* ============ CARD SIZES ============ */
 
-.layera-card--sm {
-  min-width: var(--layera-card-size-sm);
+.la-card--sm {
+  min-width: var(--la-card-size-sm);
 }
 
-.layera-card--md {
-  min-width: var(--layera-card-size-md);
+.la-card--md {
+  min-width: var(--la-card-size-md);
 }
 
-.layera-card--lg {
-  min-width: var(--layera-card-size-lg);
+.la-card--lg {
+  min-width: var(--la-card-size-lg);
 }
 
-.layera-card--xl {
-  min-width: var(--layera-card-size-xl);
+.la-card--xl {
+  min-width: var(--la-card-size-xl);
 }
 
 /* ============ CARD PADDING ============ */
 
-.layera-card--padding-none {
-  padding: var(--layera-card-padding-none);
+.la-card--padding-none {
+  padding: var(--la-card-padding-none);
 }
 
-.layera-card--padding-sm {
-  padding: var(--layera-card-padding-sm);
+.la-card--padding-sm {
+  padding: var(--la-card-padding-sm);
 }
 
-.layera-card--padding-md {
-  padding: var(--layera-card-padding-md);
+.la-card--padding-md {
+  padding: var(--la-card-padding-md);
 }
 
-.layera-card--padding-lg {
-  padding: var(--layera-card-padding-lg);
+.la-card--padding-lg {
+  padding: var(--la-card-padding-lg);
 }

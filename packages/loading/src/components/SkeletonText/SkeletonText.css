@@ -2,20 +2,20 @@
  * Layera SkeletonText - Styles
  */
 
-.layera-skeleton-text {
+.la-skeleton-text {
   display: flex;
   flex-direction: column;
 }
 
 /* Spacing variants */
-.layera-skeleton-text--spacing-sm {
-  gap: var(--space-xs, 4px);
+.la-skeleton-text--spacing-sm {
+  gap: var(--la-space-xs);
 }
 
-.layera-skeleton-text--spacing-md {
-  gap: var(--space-sm, 8px);
+.la-skeleton-text--spacing-md {
+  gap: var(--la-space-sm);
 }
 
-.layera-skeleton-text--spacing-lg {
-  gap: var(--space-md, 16px);
+.la-skeleton-text--spacing-lg {
+  gap: var(--la-space-md);
 }

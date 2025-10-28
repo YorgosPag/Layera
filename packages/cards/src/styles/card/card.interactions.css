@@ -5,17 +5,17 @@
 
 /* ============ INTERACTIVE STATES ============ */
 
-.layera-card--hoverable:hover {
-  box-shadow: var(--layera-card-shadow-hover);
-  transform: translateY(-1px);
+.la-card--hoverable:hover {
+  box-shadow: var(--la-card-shadow-hover);
+  transform: translateY(calc(-1 / 16 * 1rem));
 }
 
-.layera-card--elevated.layera-card--hoverable:hover {
-  box-shadow: var(--layera-card-elevated-shadow-hover);
+.la-card--elevated.la-card--hoverable:hover {
+  box-shadow: var(--la-card-elevated-shadow-hover);
 }
 
-.layera-card--clickable {
-  cursor: pointer;
+.la-card--clickable {
+  cursor: var(--la-cursor-pointer);
   border: none;
   background: inherit;
   font: inherit;
@@ -23,16 +23,16 @@
   width: 100%;
 }
 
-.layera-card--clickable:hover {
-  box-shadow: var(--layera-card-shadow-hover);
-  transform: translateY(-1px);
+.la-card--clickable:hover {
+  box-shadow: var(--la-card-shadow-hover);
+  transform: translateY(calc(-1 / 16 * 1rem));
 }
 
-.layera-card--clickable:focus-visible {
-  outline: 2px solid var(--layera-color-focus);
-  outline-offset: 2px;
+.la-card--clickable:focus-visible {
+  outline: var(--la-border-width-2) solid var(--la-color-focus);
+  outline-offset: var(--la-border-width-2);
 }
 
-.layera-card--clickable:active {
+.la-card--clickable:active {
   transform: translateY(0);
 }

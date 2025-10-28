@@ -32,7 +32,8 @@
       "Bash(pnpm --filter @layera/draggable exec tsc --noEmit)",
       "Bash(do echo \"$dir\")",
       "Bash(pnpm build:*)",
-      "Bash(start http://localhost:3007)"
+      "Bash(start http://localhost:3007)",
+      "Bash(awk:*)"
     ],
     "deny": [],
     "ask": []

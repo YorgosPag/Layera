@@ -1,98 +1,98 @@
 /* FormSection Styles */
-.layera-form-section {
-  margin-bottom: var(--layera-space-lg);
+.la-form-section {
+  margin-bottom: var(--la-space-lg);
 }
 
-.layera-form-section__header {
+.la-form-section__header {
   display: flex;
   align-items: flex-start;
-  gap: var(--layera-space-sm);
-  margin-bottom: var(--layera-space-md);
+  gap: var(--la-space-sm);
+  margin-bottom: var(--la-space-md);
 }
 
-.layera-form-section--collapsible .layera-form-section__header {
-  cursor: pointer;
-  padding: var(--layera-space-sm);
-  border-radius: var(--layera-radius-md);
-  transition: background-color 0.2s ease-in-out;
+.la-form-section--collapsible .la-form-section__header {
+  cursor: var(--la-cursor-pointer);
+  padding: var(--la-space-sm);
+  border-radius: var(--la-radius-md);
+  transition: background-color var(--la-transition-default);
 }
 
-.layera-form-section--collapsible .layera-form-section__header:hover {
-  background: var(--layera-color-background-hover);
+.la-form-section--collapsible .la-form-section__header:hover {
+  background: var(--la-color-background-hover);
 }
 
-.layera-form-section--collapsible .layera-form-section__header:focus {
-  outline: 2px solid var(--layera-color-primary-500);
-  outline-offset: 2px;
+.la-form-section--collapsible .la-form-section__header:focus {
+  outline: var(--la-border-width-2) solid var(--la-color-primary-500);
+  outline-offset: var(--la-border-width-2);
 }
 
-.layera-form-section__icon {
+.la-form-section__icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  margin-top: 0.125rem;
-  color: var(--layera-color-primary-600);
+  flex-shrink: var(--la-flex-shrink-0);
+  margin-top: var(--la-space-0-5);
+  color: var(--la-color-primary-600);
 }
 
-.layera-form-section__header-content {
-  flex: 1;
+.la-form-section__header-content {
+  flex: var(--la-flex-1);
   min-width: 0;
 }
 
-.layera-form-section__title {
+.la-form-section__title {
   margin: 0;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--layera-color-text-primary);
-  line-height: 1.5;
+  font-size: var(--la-text-xl);
+  font-weight: var(--la-font-semibold);
+  color: var(--la-color-text-primary);
+  line-height: var(--la-leading-relaxed);
 }
 
-.layera-form-section__description {
-  margin: 0.25rem 0 0 0;
-  font-size: 0.875rem;
-  color: var(--layera-color-text-secondary);
-  line-height: 1.5;
+.la-form-section__description {
+  margin: var(--la-space-1) 0 0 0;
+  font-size: var(--la-text-sm);
+  color: var(--la-color-text-secondary);
+  line-height: var(--la-leading-relaxed);
 }
 
-.layera-form-section__toggle {
+.la-form-section__toggle {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  color: var(--layera-color-text-secondary);
-  transition: transform 0.2s ease-in-out;
+  flex-shrink: var(--la-flex-shrink-0);
+  color: var(--la-color-text-secondary);
+  transition: transform var(--la-transition-default);
 }
 
-.layera-form-section__chevron {
-  transition: transform 0.2s ease-in-out;
+.la-form-section__chevron {
+  transition: transform var(--la-transition-default);
 }
 
-.layera-form-section--collapsed .layera-form-section__chevron {
+.la-form-section--collapsed .la-form-section__chevron {
   transform: rotate(-90deg);
 }
 
-.layera-form-section__content {
-  transition: all 0.2s ease-in-out;
+.la-form-section__content {
+  transition: all var(--la-transition-default);
 }
 
-.layera-form-section--collapsed .layera-form-section__content {
+.la-form-section--collapsed .la-form-section__content {
   height: 0;
   overflow: hidden;
   opacity: 0;
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
-  .layera-form-section {
-    margin-bottom: var(--layera-space-md);
+@media (max-width: 48rem) {
+  .la-form-section {
+    margin-bottom: var(--la-space-md);
   }
 
-  .layera-form-section__header {
-    margin-bottom: var(--layera-space-sm);
+  .la-form-section__header {
+    margin-bottom: var(--la-space-sm);
   }
 
-  .layera-form-section__title {
-    font-size: 1.125rem;
+  .la-form-section__title {
+    font-size: var(--la-text-lg);
   }
 }

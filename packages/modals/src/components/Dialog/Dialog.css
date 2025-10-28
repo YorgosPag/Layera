@@ -2,95 +2,95 @@
  * Layera Dialog - Styles
  */
 
-.layera-dialog {
+.la-dialog {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: var(--space-md, 16px);
+  gap: var(--la-space-4);
 }
 
-.layera-dialog__icon-container {
+.la-dialog-icon-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  margin-bottom: var(--space-sm, 8px);
+  width: var(--la-space-12);
+  height: var(--la-space-12);
+  border-radius: var(--la-radius-full);
+  margin-bottom: var(--la-space-3);
 }
 
-.layera-dialog__icon {
-  width: 24px;
-  height: 24px;
+.la-dialog-icon {
+  width: var(--la-space-6);
+  height: var(--la-space-6);
 }
 
-.layera-dialog__icon--info {
-  color: var(--color-info, #3b82f6);
+.la-dialog-icon-info {
+  color: var(--la-color-brand);
 }
 
-.layera-dialog__icon--success {
-  color: var(--color-success, #10b981);
+.la-dialog-icon-success {
+  color: var(--la-color-brand);
 }
 
-.layera-dialog__icon--warning {
-  color: var(--color-warning, #f59e0b);
+.la-dialog-icon-warning {
+  color: var(--la-color-brand);
 }
 
-.layera-dialog__icon--error {
-  color: var(--color-error, #ef4444);
+.la-dialog-icon-error {
+  color: var(--la-color-brand);
 }
 
-.layera-dialog__icon--question {
-  color: var(--color-primary, #3b82f6);
+.la-dialog-icon-question {
+  color: var(--la-color-brand);
 }
 
 /* Icon backgrounds */
-.layera-dialog--info .layera-dialog__icon-container {
-  background-color: rgba(59, 130, 246, 0.1);
+.la-dialog-info .la-dialog-icon-container {
+  background-color: var(--la-color-bg-app);
 }
 
-.layera-dialog--success .layera-dialog__icon-container {
-  background-color: rgba(16, 185, 129, 0.1);
+.la-dialog-success .la-dialog-icon-container {
+  background-color: var(--la-color-bg-app);
 }
 
-.layera-dialog--warning .layera-dialog__icon-container {
-  background-color: rgba(245, 158, 11, 0.1);
+.la-dialog-warning .la-dialog-icon-container {
+  background-color: var(--la-color-bg-app);
 }
 
-.layera-dialog--error .layera-dialog__icon-container {
-  background-color: rgba(239, 68, 68, 0.1);
+.la-dialog-error .la-dialog-icon-container {
+  background-color: var(--la-color-bg-app);
 }
 
-.layera-dialog--question .layera-dialog__icon-container {
-  background-color: rgba(59, 130, 246, 0.1);
+.la-dialog-question .la-dialog-icon-container {
+  background-color: var(--la-color-bg-app);
 }
 
-.layera-dialog__message {
+.la-dialog-message {
   margin: 0;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--color-text-primary, #111827);
+  font-size: var(--la-font-size-base);
+  line-height: var(--la-line-height-normal);
+  color: var(--la-color-text-primary);
   max-width: 400px;
 }
 
-.layera-dialog__actions {
+.la-dialog-actions {
   display: flex;
   align-items: center;
-  gap: var(--space-sm, 8px);
+  gap: var(--la-space-3);
 }
 
 /* Button styles */
-.layera-dialog__button {
+.la-dialog-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-xs, 4px);
-  height: 40px;
-  padding: 0 var(--space-md, 16px);
-  border: 1px solid transparent;
-  border-radius: var(--border-radius-md, 8px);
-  font-size: 0.875rem;
+  gap: var(--la-space-2);
+  height: var(--la-space-10);
+  padding: 0 var(--la-space-4);
+  border: var(--la-border-width-1) solid transparent;
+  border-radius: var(--la-radius-md);
+  font-size: var(--la-font-size-sm);
   font-weight: 500;
   line-height: 1;
   cursor: pointer;
@@ -100,60 +100,60 @@
   user-select: none;
 }
 
-.layera-dialog__button:disabled {
+.la-dialog-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
-.layera-dialog__button--ghost {
+.la-dialog-button-ghost {
   background-color: transparent;
-  border-color: var(--color-border, #e5e7eb);
-  color: var(--color-text-secondary, #6b7280);
+  border-color: var(--la-color-text-muted);
+  color: var(--la-color-text-secondary);
 }
 
-.layera-dialog__button--ghost:hover:not(:disabled) {
-  background-color: var(--color-surface-hover, #f3f4f6);
-  border-color: var(--color-border-hover, #d1d5db);
-  color: var(--color-text-primary, #111827);
+.la-dialog-button-ghost:hover:not(:disabled) {
+  background-color: var(--la-color-bg-app);
+  border-color: var(--la-color-text-primary);
+  color: var(--la-color-text-primary);
 }
 
-.layera-dialog__button--primary {
-  background-color: var(--color-primary, #3b82f6);
-  color: white;
+.la-dialog-button-primary {
+  background-color: var(--la-color-brand);
+  color: var(--la-color-brand-contrast);
 }
 
-.layera-dialog__button--primary:hover:not(:disabled) {
-  background-color: var(--color-primary-hover, #2563eb);
+.la-dialog-button-primary:hover:not(:disabled) {
+  background-color: var(--la-color-brand);
 }
 
-.layera-dialog__button--success {
-  background-color: var(--color-success, #10b981);
-  color: white;
+.la-dialog-button-success {
+  background-color: var(--la-color-brand);
+  color: var(--la-color-brand-contrast);
 }
 
-.layera-dialog__button--success:hover:not(:disabled) {
-  background-color: var(--color-success-hover, #059669);
+.la-dialog-button-success:hover:not(:disabled) {
+  background-color: var(--la-color-brand);
 }
 
-.layera-dialog__button--warning {
-  background-color: var(--color-warning, #f59e0b);
-  color: white;
+.la-dialog-button-warning {
+  background-color: var(--la-color-brand);
+  color: var(--la-color-brand-contrast);
 }
 
-.layera-dialog__button--warning:hover:not(:disabled) {
-  background-color: var(--color-warning-hover, #d97706);
+.la-dialog-button-warning:hover:not(:disabled) {
+  background-color: var(--la-color-brand);
 }
 
-.layera-dialog__button--danger {
-  background-color: var(--color-error, #ef4444);
-  color: white;
+.la-dialog-button-danger {
+  background-color: var(--la-color-brand);
+  color: var(--la-color-brand-contrast);
 }
 
-.layera-dialog__button--danger:hover:not(:disabled) {
-  background-color: var(--color-error-hover, #dc2626);
+.la-dialog-button-danger:hover:not(:disabled) {
+  background-color: var(--la-color-brand);
 }
 
-.layera-dialog__spinner {
+.la-dialog-spinner {
   animation: layera-dialog-spin 1s linear infinite;
 }
 
@@ -167,29 +167,29 @@
 }
 
 /* Dark theme support */
-[data-theme="dark"] .layera-dialog__message {
-  color: var(--color-text-primary-dark, #f9fafb);
+[data-theme="dark"] .la-dialog-message {
+  color: var(--la-color-text-primary);
 }
 
-[data-theme="dark"] .layera-dialog__button--ghost {
-  border-color: var(--color-border-dark, #374151);
-  color: var(--color-text-secondary-dark, #d1d5db);
+[data-theme="dark"] .la-dialog-button-ghost {
+  border-color: var(--la-color-text-muted);
+  color: var(--la-color-text-secondary);
 }
 
-[data-theme="dark"] .layera-dialog__button--ghost:hover:not(:disabled) {
-  background-color: var(--color-surface-hover-dark, #374151);
-  border-color: var(--color-border-hover-dark, #4b5563);
-  color: var(--color-text-primary-dark, #f9fafb);
+[data-theme="dark"] .la-dialog-button-ghost:hover:not(:disabled) {
+  background-color: var(--la-color-bg-app);
+  border-color: var(--la-color-text-primary);
+  color: var(--la-color-text-primary);
 }
 
 /* Mobile responsiveness */
-@media (max-width: 640px) {
-  .layera-dialog__actions {
+@media (width <= 40rem) {
+  .la-dialog-actions {
     width: 100%;
     flex-direction: column;
   }
 
-  .layera-dialog__button {
+  .la-dialog-button {
     width: 100%;
   }
 }
