@@ -1,29 +1,130 @@
 :root {
-  /* spacing */
+  /* Spacing */
   --la-space-0: 0;
+  --la-space-0-5: 2px;
   --la-space-1: 4px;
+  --la-space-1-5: 6px;
   --la-space-2: 8px;
+  --la-space-2-5: 10px;
   --la-space-3: 12px;
   --la-space-4: 16px;
+  --la-space-5: 20px;
   --la-space-6: 24px;
   --la-space-8: 32px;
+  --la-space-10: 40px;
+  --la-space-12: 48px;
 
-  /* radius */
+  /* Sizes */
+  --la-size-48: 12rem;
+  --la-size-64: 16rem;
+  --la-size-96: 24rem;
+
+  /* Border Radius */
+  --la-radius-none: 0;
+  --la-radius-xs: 2px;
   --la-radius-sm: 6px;
   --la-radius-md: 10px;
   --la-radius-lg: 16px;
+  --la-radius-full: 9999px;
 
-  /* colors (semantic) */
-  --la-color-bg-app: #f8fafc;
+  /* Border Widths */
+  --la-border-width-1: 1px;
+  --la-border-width-2: 2px;
+  --la-border-width-3: 3px;
+  --la-border-none: 0;
+
+  /* Colors - Base */
+  --la-color-transparent: transparent;
   --la-color-surface: #ffffff;
-  --la-color-text-primary: #0f172a;
-  --la-color-text-muted: #475569;
-  --la-color-brand: #2563eb;
-  --la-color-brand-contrast: #ffffff;
+  --la-color-surface-secondary: #f8fafc;
+  --la-color-surface-tertiary: #f1f5f9;
+  --la-color-surface-overlay: rgba(0, 0, 0, 0.5);
+  --la-color-surface-hover: #f8fafc;
+  --la-color-surface-disabled: #e2e8f0;
 
-  /* typography */
-  --la-font-sans: Inter, system-ui, sans-serif;
-  --la-font-size-base: 14px;
+  /* Colors - Text */
+  --la-color-text-primary: #0f172a;
+  --la-color-text-secondary: #475569;
+  --la-color-text-tertiary: #64748b;
+  --la-color-text-muted: #94a3b8;
+  --la-color-text-disabled: #cbd5e1;
+  --la-color-text-inverse: #ffffff;
+
+  /* Colors - Brand */
+  --la-color-brand: #2563eb;
+  --la-color-brand-hover: #1d4ed8;
+  --la-color-brand-active: #1e40af;
+  --la-color-brand-light: #dbeafe;
+  --la-color-brand-background: #eff6ff;
+  --la-color-brand-foreground: #ffffff;
+
+  /* Colors - Borders */
+  --la-color-border-primary: #e2e8f0;
+  --la-color-border-secondary: #cbd5e1;
+  --la-color-border-subtle: #f1f5f9;
+  --la-color-border-strong: #475569;
+
+  /* Colors - State */
+  --la-color-error: #dc2626;
+  --la-color-error-hover: #b91c1c;
+  --la-color-error-active: #991b1b;
+  --la-color-success: #16a34a;
+  --la-color-success-light: #dcfce7;
+  --la-color-warning: #ea580c;
+  --la-color-warning-light: #fed7aa;
+
+  /* Colors - Background */
+  --la-color-bg-app: #f8fafc;
+  --la-color-bg-secondary: #f1f5f9;
+  --la-color-bg-tooltip: #374151;
+  --la-color-bg-brand: #2563eb;
+  --la-color-bg-warning: #fef3c7;
+  --la-color-bg-success: #dcfce7;
+
+  /* Typography */
+  --la-font-family-base: Inter, system-ui, sans-serif;
+  --la-font-family-mono: 'JetBrains Mono', monospace;
+  --la-font-size-xs: 12px;
+  --la-font-size-sm: 14px;
+  --la-font-size-base: 16px;
+  --la-font-size-lg: 18px;
   --la-font-size-xl: 20px;
+  --la-font-weight-normal: 400;
+  --la-font-weight-medium: 500;
+  --la-font-weight-semibold: 600;
+
+  /* Line Heights */
+  --la-line-height-tight: 1.25;
   --la-line-height-normal: 1.5;
+  --la-line-height-relaxed: 1.75;
+
+  /* Z-Index */
+  --la-z-index-base: 1;
+  --la-z-index-dropdown: 10;
+  --la-z-index-overlay: 20;
+  --la-z-index-modal: 30;
+  --la-z-index-popover: 40;
+  --la-z-index-tooltip: 50;
+
+  /* Shadows */
+  --la-shadow-none: none;
+  --la-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --la-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --la-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --la-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --la-shadow-focus: 0 0 0 3px rgba(37, 99, 235, 0.2);
+  --la-shadow-focus-lg: 0 0 0 4px rgba(37, 99, 235, 0.3);
+  --la-shadow-error: 0 0 0 3px rgba(220, 38, 38, 0.2);
+  --la-shadow-error-lg: 0 0 0 4px rgba(220, 38, 38, 0.3);
+  --la-shadow-success: 0 0 0 3px rgba(22, 163, 74, 0.2);
+  --la-shadow-warning: 0 0 0 3px rgba(234, 88, 12, 0.2);
+
+  /* Blur */
+  --la-blur-sm: 4px;
+
+  /* Gradients */
+  --la-gradient-brand-horizontal: linear-gradient(90deg, #2563eb, #1d4ed8);
+  --la-gradient-brand-vertical: linear-gradient(180deg, #2563eb, #1d4ed8);
+  --la-gradient-stepped-horizontal: linear-gradient(90deg, #2563eb 25%, #1d4ed8 50%, #1e40af 75%);
+  --la-gradient-stepped-vertical: linear-gradient(180deg, #2563eb 25%, #1d4ed8 50%, #1e40af 75%);
 }

@@ -33,7 +33,8 @@
       "Bash(do echo \"$dir\")",
       "Bash(pnpm build:*)",
       "Bash(start http://localhost:3007)",
-      "Bash(awk:*)"
+      "Bash(awk:*)",
+      "Bash(npx stylelint:*)"
     ],
     "deny": [],
     "ask": []

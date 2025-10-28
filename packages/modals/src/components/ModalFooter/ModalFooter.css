@@ -5,11 +5,11 @@
 .la-modal-footer {
   display: flex;
   align-items: center;
-  gap: var(--la-space-md);
-  padding: var(--la-space-md) var(--la-modal-padding) var(--la-modal-padding);
-  border-top: var(--la-border-width-1) solid var(--la-modal-border);
-  background-color: var(--la-modal-bg);
-  border-radius: var(--la-radius-bottom-lg);
+  gap: var(--la-space-3);
+  padding: var(--la-space-3) var(--la-space-4) var(--la-space-4);
+  border-top: var(--la-border-width-1) solid var(--la-color-border-primary);
+  background-color: var(--la-color-surface);
+  border-radius: var(--la-radius-md);
 }
 
 .la-modal-footer-content {
@@ -47,7 +47,7 @@
 
 
 /* Mobile responsiveness */
-@media (max-width: 40rem) {
+@media (width <= 40rem) {
   .la-modal-footer {
     flex-direction: column;
     align-items: stretch;

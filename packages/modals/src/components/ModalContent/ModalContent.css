@@ -35,11 +35,11 @@
 }
 
 .la-modal-content-scrollable::-webkit-scrollbar-track {
-  background: var(--la-color-transparent);
+  background: transparent;
 }
 
 .la-modal-content-scrollable::-webkit-scrollbar-thumb {
-  background: var(--la-modal-border);
+  background: var(--la-color-border-primary);
   border-radius: var(--la-radius-xs);
 }
 

@@ -175,7 +175,7 @@
   border: var(--la-border-width-2) solid var(--la-color-brand);
   border-radius: var(--la-radius-full);
   animation: la-spinner-ring 1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: var(--la-color-brand) transparent;
+  border-color: var(--la-color-brand) var(--la-color-transparent);
 }
 
 .la-spinner-ring div:nth-child(1) {

@@ -11,7 +11,7 @@
   display: flex;
   align-items: flex-start;
   gap: var(--la-space-3);
-  width: var(--la-space-96);
+  width: 24rem;
   max-width: calc(100vw - var(--la-space-8));
   padding: var(--la-space-4);
   background-color: var(--la-color-surface);
@@ -61,11 +61,11 @@
 }
 
 .la-toast-error {
-  border-left: var(--la-border-width-4) solid var(--la-color-destructive);
+  border-left: var(--la-border-width-4) solid var(--la-color-error);
 }
 
 .la-toast-error .la-toast-icon {
-  color: var(--la-color-destructive);
+  color: var(--la-color-error);
 }
 
 /* Toast Title */
@@ -100,7 +100,7 @@
   padding: 0 var(--la-space-3);
   border: var(--la-border-width-1) solid var(--la-color-border-primary);
   border-radius: var(--la-radius-sm);
-  background-color: var(--la-color-transparent);
+  background-color: transparent;
   font-size: var(--la-font-size-base);
   font-weight: 500;
   color: var(--la-color-text-primary);
@@ -109,7 +109,7 @@
 }
 
 .la-toast-action:hover {
-  background-color: var(--la-color-surface-hover);
+  background-color: var(--la-color-surface-secondary);
   color: var(--la-color-text-primary);
 }
 
@@ -125,14 +125,14 @@
   height: var(--la-space-6);
   border: none;
   border-radius: var(--la-radius-xs);
-  background-color: var(--la-color-transparent);
+  background-color: transparent;
   color: var(--la-color-text-secondary);
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .la-toast-close:hover {
-  background-color: var(--la-color-surface-hover);
+  background-color: var(--la-color-surface-secondary);
   color: var(--la-color-text-primary);
 }
 
@@ -143,7 +143,7 @@
   left: 0;
   height: var(--la-space-1);
   background-color: var(--la-color-brand);
-  border-radius: var(--la-radius-bottom-lg);
+  border-radius: var(--la-radius-sm);
   transition: width 0.1s linear;
 }
 
@@ -160,7 +160,7 @@
 }
 
 .la-toast-error .la-toast-progress {
-  background-color: var(--la-color-destructive);
+  background-color: var(--la-color-error);
 }
 
 /* Dark Theme Support */
@@ -180,7 +180,7 @@
 }
 
 /* Mobile Responsiveness */
-@media (max-width: 40rem) {
+@media (width <= 40rem) {
   .la-toast {
     width: calc(100vw - var(--la-space-6));
     margin: 0 var(--la-space-3);

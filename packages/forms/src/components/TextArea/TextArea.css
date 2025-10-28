@@ -9,9 +9,9 @@
 .la-textarea-wrapper {
   position: relative;
   display: inline-flex;
-  background: var(--la-color-surface);
-  border: var(--la-border-width-1) solid var(--la-color-border-primary);
-  border-radius: var(--la-radius-md);
+  background: var(--layera-color-surface);
+  border: var(--layera-border-width-1) solid var(--layera-color-border-primary);
+  border-radius: var(--layera-radius-md);
   transition: all 0.15s ease;
 }
 
@@ -19,14 +19,14 @@
 .la-textarea {
   flex: 1;
   border: none;
-  background: transparent;
+  background: var(--layera-color-transparent);
   outline: none;
-  font-family: var(--la-font-family-base);
-  font-size: var(--la-font-size-base);
-  color: var(--la-color-text-primary);
-  padding: var(--la-space-3) var(--la-space-4);
+  font-family: var(--layera-font-family-base);
+  font-size: var(--layera-font-size-base);
+  color: var(--layera-color-text-primary);
+  padding: var(--layera-space-3) var(--layera-space-4);
   transition: all 0.15s ease;
-  line-height: var(--la-line-height-normal);
+  line-height: var(--layera-line-height-normal);
   resize: vertical;
 }
 
@@ -54,47 +54,47 @@
 /* Size Variants */
 .la-textarea-sm,
 .la-textarea-wrapper-sm .la-textarea {
-  padding: var(--layera-space-2) var(--la-space-3);
+  padding: var(--layera-space-2) var(--layera-space-3);
   font-size: var(--layera-font-size-sm);
   line-height: var(--layera-line-height-tight);
 }
 
 .la-textarea-wrapper-sm {
-  border-radius: var(--layera-border-radius-sm);
+  border-radius: var(--layera-radius-sm);
 }
 
 .la-textarea-lg,
 .la-textarea-wrapper-lg .la-textarea {
-  padding: var(--la-space-4) var(--layera-space-5);
+  padding: var(--layera-space-4) var(--layera-space-5);
   font-size: var(--layera-font-size-lg);
   line-height: var(--layera-line-height-relaxed);
 }
 
 .la-textarea-wrapper-lg {
-  border-radius: var(--layera-border-radius-lg);
+  border-radius: var(--layera-radius-lg);
 }
 
 /* Style Variants */
 .la-textarea-wrapper-outline {
-  background: transparent;
-  border: var(--layera-border-width-2) solid var(--la-color-border-primary);
+  background: var(--layera-color-transparent);
+  border: var(--layera-border-width-2) solid var(--layera-color-border-primary);
 }
 
 .la-textarea-wrapper-filled {
   background: var(--layera-color-surface-secondary);
-  border: var(--la-border-width-1) solid transparent;
+  border: var(--layera-border-width-1) solid var(--layera-color-transparent);
 }
 
 .la-textarea-wrapper-ghost {
-  background: transparent;
-  border: var(--la-border-width-1) solid transparent;
+  background: var(--layera-color-transparent);
+  border: var(--layera-border-width-1) solid var(--layera-color-transparent);
 }
 
 .la-textarea-wrapper-underline {
-  background: transparent;
+  background: var(--layera-color-transparent);
   border: none;
-  border-bottom: var(--layera-border-width-2) solid var(--la-color-border-primary);
-  border-radius: 0;
+  border-bottom: var(--layera-border-width-2) solid var(--layera-color-border-primary);
+  border-radius: var(--layera-radius-none);
 }
 
 /* Focus States */

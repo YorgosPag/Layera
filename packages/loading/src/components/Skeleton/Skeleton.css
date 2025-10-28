@@ -79,11 +79,11 @@
 
   .la-skeleton-wave {
     background: linear-gradient(
-      90deg,
-      var(--la-color-surface-secondary),
-      var(--la-color-surface-tertiary),
-      var(--la-color-surface-secondary)
-    );
+    90deg,
+    var(--la-color-surface-secondary),
+    var(--la-color-surface-tertiary),
+    var(--la-color-surface-secondary)
+  );
   }
 }
 

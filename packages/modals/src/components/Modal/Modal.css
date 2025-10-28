@@ -9,7 +9,7 @@
   position: fixed;
   inset: 0;
   z-index: var(--la-z-index-modal);
-  background-color: var(--la-color-bg-overlay);
+  background-color: var(--la-color-surface-overlay);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -106,14 +106,14 @@
   height: 2rem;
   border: none;
   border-radius: var(--la-radius-md);
-  background-color: var(--la-color-transparent);
+  background-color: transparent;
   color: var(--la-color-text-secondary);
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .la-modal-close:hover {
-  background-color: var(--la-color-bg-app);
+  background-color: var(--la-color-surface-secondary);
   color: var(--la-color-text-primary);
 }
 

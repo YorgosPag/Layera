@@ -60,7 +60,7 @@
 }
 
 /* Mobile Responsiveness */
-@media (max-width: 40rem) {
+@media (width <= 40rem) {
   .la-notification-container-top-left,
   .la-notification-container-bottom-left {
     left: var(--la-space-2);

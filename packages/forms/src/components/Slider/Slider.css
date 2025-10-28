@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--layera-space-2);
-  font-family: var(--la-font-family-base);
+  font-family: var(--layera-font-family-base);
   position: relative;
 }
 
@@ -31,7 +31,7 @@
 .la-slider-vertical {
   flex-direction: row;
   align-items: center;
-  height: var(--la-size-48);
+  height: var(--layera-size-48);
 }
 
 .la-slider-vertical .la-slider-container {
@@ -49,7 +49,7 @@
 /* Label */
 .la-slider-label {
   color: var(--layera-color-text-primary);
-  font-size: var(--la-font-size-base);
+  font-size: var(--layera-font-size-base);
   font-weight: var(--layera-font-weight-medium);
   line-height: var(--layera-line-height-normal);
   margin: 0;
@@ -60,11 +60,11 @@
 }
 
 .la-slider-lg .la-slider-label {
-  font-size: var(--la-font-size-lg);
+  font-size: var(--layera-font-size-lg);
 }
 
 .la-slider-disabled .la-slider-label {
-  color: var(--la-color-text-disabled);
+  color: var(--layera-color-text-disabled);
 }
 
 .la-slider-required {
@@ -95,12 +95,12 @@
 }
 
 .la-slider-lg .la-slider-values {
-  font-size: var(--la-font-size-base);
+  font-size: var(--layera-font-size-base);
 }
 
 .la-slider-value {
   color: var(--layera-color-text-primary);
-  background: var(--la-color-surface-secondary);
+  background: var(--layera-color-surface-secondary);
   padding: var(--layera-space-1) var(--layera-space-2);
   border-radius: var(--layera-radius-sm);
   font-family: var(--layera-font-family-mono);
@@ -122,7 +122,7 @@
 .la-slider-track-container {
   position: relative;
   width: 100%;
-  height: var(--la-space-8);
+  height: var(--layera-space-8);
 }
 
 .la-slider-sm .la-slider-track-container {
@@ -130,12 +130,12 @@
 }
 
 .la-slider-lg .la-slider-track-container {
-  height: var(--la-space-10);
+  height: var(--layera-space-10);
 }
 
 /* Vertical track container */
 .la-slider-vertical .la-slider-track-container {
-  width: var(--la-space-8);
+  width: var(--layera-space-8);
   height: 100%;
 }
 
@@ -144,7 +144,7 @@
 }
 
 .la-slider-vertical.la-slider-lg .la-slider-track-container {
-  width: var(--la-space-10);
+  width: var(--layera-space-10);
 }
 
 /* Track */
@@ -200,7 +200,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--la-color-surface-tertiary);
+  background: var(--layera-color-surface-tertiary);
   border-radius: var(--layera-radius-full);
   border: var(--layera-border-width-1) solid var(--layera-color-border-subtle);
 }
@@ -221,29 +221,40 @@
 }
 
 .la-slider-success .la-slider-track-fill {
-  background: var(--la-color-success);
+  background: var(--layera-color-success);
 }
 
 .la-slider-warning .la-slider-track-fill {
-  background: var(--la-color-warning);
+  background: var(--layera-color-warning);
 }
 
 /* Gradient variant */
 .la-slider-gradient .la-slider-track-fill {
-  background: var(--la-gradient-brand-horizontal);
+  background: var(--layera-gradient-brand-horizontal);
 }
 
 .la-slider-vertical.la-slider-gradient .la-slider-track-fill {
-  background: var(--la-gradient-brand-vertical);
+  background: var(--layera-gradient-brand-vertical);
 }
 
 /* Stepped variant */
 .la-slider-stepped .la-slider-track-fill {
-  background: var(--la-gradient-stepped-horizontal);
+  background: var(--layera-gradient-stepped-horizontal);
 }
 
 .la-slider-vertical.la-slider-stepped .la-slider-track-fill {
-  background: var(--la-gradient-stepped-vertical);
+  background: var(--layera-gradient-stepped-vertical);
+}
+
+/* Size variants for thumbs */
+.la-slider-sm .la-slider-thumb {
+  width: var(--layera-space-4);
+  height: var(--layera-space-4);
+}
+
+.la-slider-lg .la-slider-thumb {
+  width: var(--layera-space-6);
+  height: var(--layera-space-6);
 }
 
 /* Thumbs */
@@ -258,7 +269,7 @@
   transition: all 0.2s ease-in-out;
   touch-action: none;
   user-select: none;
-  z-index: var(--la-z-index-overlay);
+  z-index: var(--layera-z-index-overlay);
 }
 
 /* Horizontal thumb positioning */
@@ -271,17 +282,6 @@
 .la-slider-vertical .la-slider-thumb {
   left: 50%;
   transform: translate(-50%, 50%);
-}
-
-/* Size variants for thumbs */
-.la-slider-sm .la-slider-thumb {
-  width: var(--layera-space-4);
-  height: var(--layera-space-4);
-}
-
-.la-slider-lg .la-slider-thumb {
-  width: var(--layera-space-6);
-  height: var(--layera-space-6);
 }
 
 /* Thumb states */
@@ -319,22 +319,7 @@
 }
 
 .la-slider-thumb-max {
-  z-index: var(--la-z-index-overlay);
-}
-
-/* Tooltip */
-.la-slider-tooltip {
-  position: absolute;
-  background: var(--layera-color-bg-tooltip);
-  color: var(--layera-color-text-inverse);
-  padding: var(--layera-space-1) var(--layera-space-2);
-  border-radius: var(--layera-radius-sm);
-  font-size: var(--layera-font-size-xs);
-  font-weight: var(--layera-font-weight-medium);
-  white-space: nowrap;
-  pointer-events: none;
-  z-index: var(--layera-z-index-tooltip);
-  font-family: var(--layera-font-family-mono);
+  z-index: var(--layera-z-index-overlay);
 }
 
 /* Horizontal tooltip positioning */
@@ -352,6 +337,21 @@
   transform: translateX(-50%);
   border: var(--layera-space-1) solid transparent;
   border-top-color: var(--layera-color-bg-tooltip);
+}
+
+/* Tooltip */
+.la-slider-tooltip {
+  position: absolute;
+  background: var(--layera-color-bg-tooltip);
+  color: var(--layera-color-text-inverse);
+  padding: var(--layera-space-1) var(--layera-space-2);
+  border-radius: var(--layera-radius-sm);
+  font-size: var(--layera-font-size-xs);
+  font-weight: var(--layera-font-weight-medium);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: var(--layera-z-index-tooltip);
+  font-family: var(--layera-font-family-mono);
 }
 
 /* Vertical tooltip positioning */
@@ -400,15 +400,6 @@
   justify-content: center;
 }
 
-.la-slider-mark-dot {
-  width: var(--layera-space-1);
-  height: var(--layera-space-1);
-  background: var(--layera-color-border-primary);
-  border-radius: var(--layera-radius-full);
-  position: relative;
-  z-index: var(--layera-z-index-base);
-}
-
 .la-slider-sm .la-slider-mark-dot {
   width: var(--layera-space-0-5);
   height: var(--layera-space-0-5);
@@ -417,6 +408,15 @@
 .la-slider-lg .la-slider-mark-dot {
   width: var(--layera-space-1-5);
   height: var(--layera-space-1-5);
+}
+
+.la-slider-mark-dot {
+  width: var(--layera-space-1);
+  height: var(--layera-space-1);
+  background: var(--layera-color-border-primary);
+  border-radius: var(--layera-radius-full);
+  position: relative;
+  z-index: var(--layera-z-index-base);
 }
 
 .la-slider-mark-label {

@@ -19,27 +19,27 @@
 
 /* Type Variants */
 .la-alert-info {
-  background-color: var(--la-color-info-background);
-  border-color: var(--la-color-info-border);
-  color: var(--la-color-info-foreground);
+  background-color: var(--la-color-info-light);
+  border-color: var(--la-color-info);
+  color: var(--la-color-info-dark);
 }
 
 .la-alert-success {
-  background-color: var(--la-color-success-background);
-  border-color: var(--la-color-success-border);
-  color: var(--la-color-success-foreground);
+  background-color: var(--la-color-success-light);
+  border-color: var(--la-color-success);
+  color: var(--la-color-success-dark);
 }
 
 .la-alert-warning {
-  background-color: var(--la-color-warning-background);
-  border-color: var(--la-color-warning-border);
-  color: var(--la-color-warning-foreground);
+  background-color: var(--la-color-warning-light);
+  border-color: var(--la-color-warning);
+  color: var(--la-color-warning-dark);
 }
 
 .la-alert-error {
-  background-color: var(--la-color-destructive-background);
-  border-color: var(--la-color-destructive-border);
-  color: var(--la-color-destructive-foreground);
+  background-color: var(--la-color-error-light);
+  border-color: var(--la-color-error);
+  color: var(--la-color-error-dark);
 }
 
 /* Alert Icon */
@@ -53,6 +53,7 @@
   margin-top: var(--la-space-0-5);
 }
 
+/* Icon Colors */
 .la-alert-info .la-alert-icon {
   color: var(--la-color-info);
 }
@@ -66,7 +67,7 @@
 }
 
 .la-alert-error .la-alert-icon {
-  color: var(--la-color-destructive);
+  color: var(--la-color-error);
 }
 
 /* Alert Content */
@@ -76,98 +77,110 @@
 }
 
 .la-alert-title {
-  font-weight: 600;
-  margin-bottom: var(--la-space-1);
-  color: var(--la-color-current);
+  font-weight: var(--la-font-weight-semibold);
+  margin: 0 0 var(--la-space-1) 0;
+  color: inherit;
 }
 
-.la-alert-message {
-  opacity: 0.9;
-  color: var(--la-color-current);
+.la-alert-description {
+  margin: 0;
+  color: inherit;
 }
 
-/* Alert Actions */
-.la-alert-action {
-  display: inline-flex;
+/* Close Button */
+.la-alert-close {
+  display: flex;
   align-items: center;
   justify-content: center;
+  width: var(--la-space-6);
   height: var(--la-space-6);
-  padding: 0 var(--la-space-3);
-  border: var(--la-border-width-1) solid var(--la-color-current);
+  padding: var(--la-space-3);
+  border: var(--la-border-width-1) solid currentColor;
   border-radius: var(--la-radius-sm);
-  background-color: var(--la-color-transparent);
+  background-color: transparent;
   font-size: var(--la-font-size-sm);
-  font-weight: 500;
-  color: var(--la-color-current);
+  line-height: 1;
+  color: currentColor;
   cursor: pointer;
   transition: all 0.15s ease;
+  margin-top: var(--la-space-0-5);
   flex-shrink: 0;
-  opacity: 0.8;
 }
 
-.la-alert-action:hover {
-  opacity: 1;
-  background-color: var(--la-color-surface-hover);
+.la-alert-close:hover {
+  background-color: var(--la-color-surface-secondary);
 }
 
-/* Dismiss Button */
+/* Additional Close Button */
 .la-alert-dismiss {
   display: flex;
   align-items: center;
   justify-content: center;
   width: var(--la-space-6);
   height: var(--la-space-6);
-  border: none;
+  margin-left: var(--la-space-3);
   border-radius: var(--la-radius-xs);
-  background-color: var(--la-color-transparent);
-  color: var(--la-color-current);
+  background-color: transparent;
+  color: currentColor;
   cursor: pointer;
   transition: all 0.15s ease;
+  border: 0;
+  padding: 0;
   flex-shrink: 0;
-  opacity: 0.6;
 }
 
 .la-alert-dismiss:hover {
-  opacity: 1;
-  background-color: var(--la-color-surface-hover);
+  background-color: var(--la-color-surface-secondary);
 }
 
-/* Dark Theme Support */
+/* Action Variants */
+.la-alert-action {
+  margin-top: var(--la-space-2);
+}
+
+/* Dark Theme Variants */
 @media (prefers-color-scheme: dark) {
   .la-alert-info {
-    background-color: var(--la-color-info-background);
-    border-color: var(--la-color-info-border);
-    color: var(--la-color-info-foreground);
+    background-color: var(--la-color-info-light);
+    border-color: var(--la-color-info);
+    color: var(--la-color-info-dark);
   }
 
   .la-alert-success {
-    background-color: var(--la-color-success-background);
-    border-color: var(--la-color-success-border);
-    color: var(--la-color-success-foreground);
+    background-color: var(--la-color-success-light);
+    border-color: var(--la-color-success);
+    color: var(--la-color-success-dark);
   }
 
   .la-alert-warning {
-    background-color: var(--la-color-warning-background);
-    border-color: var(--la-color-warning-border);
-    color: var(--la-color-warning-foreground);
+    background-color: var(--la-color-warning-light);
+    border-color: var(--la-color-warning);
+    color: var(--la-color-warning-dark);
   }
 
   .la-alert-error {
-    background-color: var(--la-color-destructive-background);
-    border-color: var(--la-color-destructive-border);
-    color: var(--la-color-destructive-foreground);
+    background-color: var(--la-color-error-light);
+    border-color: var(--la-color-error);
+    color: var(--la-color-error-dark);
   }
 
-  .la-alert-action:hover,
+  .la-alert-close:hover,
   .la-alert-dismiss:hover {
-    background-color: var(--la-color-surface-hover);
+    background-color: var(--la-color-surface-secondary);
   }
 }
 
 /* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
-  .la-alert-action,
+  .la-alert-close,
   .la-alert-dismiss {
     transition: none;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .la-alert {
+    border-width: var(--la-border-width-2);
   }
 }
