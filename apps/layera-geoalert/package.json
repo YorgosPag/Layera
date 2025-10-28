@@ -27,7 +27,6 @@
     "@layera/geo-core": "workspace:^",
     "@layera/geo-drawing": "file:..\\..\\packages\\geo-drawing",
     "@layera/geocoding": "file:../../packages/geocoding",
-    "@layera/i18n": "file:../../packages/i18n",
     "@layera/icons": "file:../../packages/icons",
     "@layera/info-panels": "file:../../packages/info-panels",
     "@layera/layout": "file:../../packages/layout",

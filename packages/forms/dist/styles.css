@@ -8,13 +8,13 @@
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 500;
-  color: var(--layera-text-secondary);
+  color: var(--la-text-secondary);
 }
 
 .layera-form-input {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid var(--layera-border-primary);
+  border: 1px solid var(--la-border-primary);
   border-radius: 0.375rem;
   font-size: 1rem;
   transition: border-color 0.3s, box-shadow 0.3s;
@@ -22,24 +22,24 @@
 
 .layera-form-input:focus {
   outline: none;
-  border-color: var(--layera-bg-info);
+  border-color: var(--la-bg-info);
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
 .layera-form-select {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid var(--layera-border-primary);
+  border: 1px solid var(--la-border-primary);
   border-radius: 0.375rem;
   font-size: 1rem;
-  background: var(--layera-bg-primary);
+  background: var(--la-bg-primary);
   cursor: pointer;
 }
 
 .layera-form-textarea {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid var(--layera-border-primary);
+  border: 1px solid var(--la-border-primary);
   border-radius: 0.375rem;
   font-size: 1rem;
   resize: vertical;
@@ -47,7 +47,7 @@
 }
 
 .layera-form-error {
-  color: var(--layera-bg-danger);
+  color: var(--la-bg-danger);
   font-size: 0.875rem;
   margin-top: 0.25rem;
 }

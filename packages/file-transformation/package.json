@@ -31,7 +31,6 @@
   "dependencies": {
     "@layera/notifications": "workspace:*",
     "@layera/loading": "workspace:*",
-    "@layera/i18n": "workspace:*",
     "proj4": "^2.9.0"
   },
   "peerDependencies": {

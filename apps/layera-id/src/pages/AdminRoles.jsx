@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { callSetRole, callRefreshMfaClaim } from "../lib/functions";
 import { useAuth } from "../contexts/AuthContext";
 import { useAuthContext, UserAvatar } from '@layera/auth-bridge';
-import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
+import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { Button } from '@layera/buttons';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, Box } from '@layera/layout';

@@ -4,7 +4,7 @@ import { FormField, FormSection, FormActions, Select, TextArea } from '@layera/f
 import { Button } from '@layera/buttons';
 import { BaseCard } from '@layera/cards';
 import { Box } from '@layera/layout';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { FORM_SIZES } from '@layera/constants';
 import './Support.css';
 

@@ -35,7 +35,7 @@
 }
 
 .la-modal-content-scrollable::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--la-color-transparent);
 }
 
 .la-modal-content-scrollable::-webkit-scrollbar-thumb {

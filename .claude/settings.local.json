@@ -35,7 +35,8 @@
       "Bash(start http://localhost:3007)",
       "Bash(awk:*)",
       "Bash(npx stylelint:*)",
-      "Bash(tasklist)"
+      "Bash(tasklist)",
+      "Bash(node:*)"
     ],
     "deny": [],
     "ask": []

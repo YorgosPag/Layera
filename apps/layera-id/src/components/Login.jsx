@@ -3,7 +3,7 @@ import { useAuthContext, GoogleSignInButton } from '@layera/auth-bridge';
 import { useNavigate, Link } from 'react-router-dom';
 import { FormField, FormSection, FormActions, Input } from '@layera/forms';
 import { Button } from '@layera/buttons';
-import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
+import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, FlexCenter, Box, Flex } from '@layera/layout';
 import { DashboardCard } from '@layera/cards';

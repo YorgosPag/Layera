@@ -16,7 +16,7 @@ import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { LocationIcon, MapIcon } from '@layera/icons';
 import { Spinner } from '@layera/loading';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 // Fixed import - χρησιμοποιούμε το νέο working osmService από geo-mapping

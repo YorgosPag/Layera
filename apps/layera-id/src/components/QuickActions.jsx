@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
 import { HomeIcon, SettingsIcon, SaveIcon, GlobeIcon } from '@layera/icons';
 

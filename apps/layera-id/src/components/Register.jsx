@@ -5,7 +5,7 @@ import { FormField, FormSection, FormActions, Input } from '@layera/forms';
 import { Button } from '@layera/buttons';
 import { BaseCard } from '@layera/cards';
 import { Box } from '@layera/layout';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { FORM_TYPES, FORM_SIZES } from '@layera/constants';
 import './Auth.css';
 

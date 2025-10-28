@@ -26,7 +26,6 @@
     "@layera/constants": "workspace:*",
     "@layera/geo-core": "workspace:*",
     "@layera/geo-mapping": "workspace:*",
-    "@layera/i18n": "workspace:*",
     "@layera/theme-switcher": "workspace:*",
     "@layera/error-boundary": "workspace:*",
     "@layera/notifications": "workspace:*",

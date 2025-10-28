@@ -3,7 +3,7 @@ import RoleBadge from "../components/RoleBadge";
 import MfaStatus from "../components/MfaStatus";
 import QuickActions from "../components/QuickActions";
 import { Link, useNavigate } from "react-router-dom";
-import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
+import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { Button } from '@layera/buttons';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, Box, FlexColumn } from '@layera/layout';

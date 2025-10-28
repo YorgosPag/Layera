@@ -19,51 +19,51 @@
 /* Enterprise CSS Variables for LEGO System */
 :root {
   /* Layera Color Palette */
-  --layera-bg-primary: #ffffff;
-  --layera-bg-secondary: #f8fafc;
-  --layera-bg-tertiary: #f1f5f9;
+  --la-bg-primary: #ffffff;
+  --la-bg-secondary: #f8fafc;
+  --la-bg-tertiary: #f1f5f9;
 
-  --layera-text-primary: #1e293b;
-  --layera-text-secondary: #64748b;
-  --layera-text-tertiary: #94a3b8;
+  --la-text-primary: #1e293b;
+  --la-text-secondary: #64748b;
+  --la-text-tertiary: #94a3b8;
 
-  --layera-border-primary: #e2e8f0;
-  --layera-border-secondary: #cbd5e1;
+  --la-border-primary: #e2e8f0;
+  --la-border-secondary: #cbd5e1;
 
   /* Semantic Colors */
-  --layera-bg-info: #667eea;
-  --layera-bg-success: #10b981;
-  --layera-bg-warning: #f59e0b;
-  --layera-bg-danger: #ef4444;
+  --la-bg-info: #667eea;
+  --la-bg-success: #10b981;
+  --la-bg-warning: #f59e0b;
+  --la-bg-danger: #ef4444;
 
-  --layera-text-on-info: #ffffff;
-  --layera-text-on-success: #ffffff;
-  --layera-text-on-warning: #ffffff;
-  --layera-text-on-danger: #ffffff;
+  --la-text-on-info: #ffffff;
+  --la-text-on-success: #ffffff;
+  --la-text-on-warning: #ffffff;
+  --la-text-on-danger: #ffffff;
 
   /* Z-Index Scale */
-  --layera-z-dropdown: 1000;
-  --layera-z-sticky: 1020;
-  --layera-z-fixed: 1030;
-  --layera-z-modal-backdrop: 1040;
-  --layera-z-modal: 1050;
-  --layera-z-popover: 1060;
-  --layera-z-tooltip: 1070;
-  --layera-z-toast: 1080;
+  --la-z-dropdown: 1000;
+  --la-z-sticky: 1020;
+  --la-z-fixed: 1030;
+  --la-z-modal-backdrop: 1040;
+  --la-z-modal: 1050;
+  --la-z-popover: 1060;
+  --la-z-tooltip: 1070;
+  --la-z-toast: 1080;
 }
 
 /* Dark Theme Support */
 [data-theme="dark"] {
-  --layera-bg-primary: #0f172a;
-  --layera-bg-secondary: #1e293b;
-  --layera-bg-tertiary: #334155;
+  --la-bg-primary: #0f172a;
+  --la-bg-secondary: #1e293b;
+  --la-bg-tertiary: #334155;
 
-  --layera-text-primary: #f8fafc;
-  --layera-text-secondary: #cbd5e1;
-  --layera-text-tertiary: #94a3b8;
+  --la-text-primary: #f8fafc;
+  --la-text-secondary: #cbd5e1;
+  --la-text-tertiary: #94a3b8;
 
-  --layera-border-primary: #334155;
-  --layera-border-secondary: #475569;
+  --la-border-primary: #334155;
+  --la-border-secondary: #475569;
 }
 
 /* Enterprise Base Styles */
@@ -77,8 +77,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--layera-bg-primary);
-  color: var(--layera-text-primary);
+  background-color: var(--la-bg-primary);
+  color: var(--la-text-primary);
   margin: 0;
   padding: 0;
 }
@@ -97,6 +97,6 @@ body {
 }
 
 .layera-focus-ring:focus {
-  outline: 2px solid var(--layera-bg-info);
+  outline: 2px solid var(--la-bg-info);
   outline-offset: 2px;
 }

@@ -79,12 +79,12 @@
 .la-alert-title {
   font-weight: var(--la-font-weight-semibold);
   margin: 0 0 var(--la-space-1) 0;
-  color: inherit;
+  color: var(--la-color-text-primary);
 }
 
 .la-alert-description {
   margin: 0;
-  color: inherit;
+  color: var(--la-color-text-primary);
 }
 
 /* Close Button */
@@ -97,10 +97,10 @@
   padding: var(--la-space-3);
   border: var(--la-border-width-1) solid currentColor;
   border-radius: var(--la-radius-sm);
-  background-color: transparent;
+  background-color: var(--la-color-transparent);
   font-size: var(--la-font-size-sm);
-  line-height: 1;
-  color: currentColor;
+  line-height: var(--la-line-height-none);
+  color: currentcolor;
   cursor: pointer;
   transition: all 0.15s ease;
   margin-top: var(--la-space-0-5);
@@ -120,8 +120,8 @@
   height: var(--la-space-6);
   margin-left: var(--la-space-3);
   border-radius: var(--la-radius-xs);
-  background-color: transparent;
-  color: currentColor;
+  background-color: var(--la-color-transparent);
+  color: currentcolor;
   cursor: pointer;
   transition: all 0.15s ease;
   border: 0;

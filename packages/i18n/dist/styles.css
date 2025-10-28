@@ -5,9 +5,9 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  border: 1px solid var(--layera-border-primary);
+  border: 1px solid var(--la-border-primary);
   border-radius: 0.375rem;
-  background: var(--layera-bg-primary);
+  background: var(--la-bg-primary);
   cursor: pointer;
   transition: all 0.3s;
   font-size: 0.875rem;
@@ -15,13 +15,13 @@
 }
 
 .layera-language-switcher:hover {
-  border-color: var(--layera-bg-info);
-  background: var(--layera-bg-secondary);
+  border-color: var(--la-bg-info);
+  background: var(--la-bg-secondary);
 }
 
 .layera-language-switcher-active {
-  border-color: var(--layera-bg-info);
-  color: var(--layera-bg-info);
+  border-color: var(--la-bg-info);
+  color: var(--la-bg-info);
 }
 
 .layera-language-switcher-dropdown {
@@ -29,8 +29,8 @@
   top: 100%;
   left: 0;
   right: 0;
-  background: var(--layera-bg-primary);
-  border: 1px solid var(--layera-border-primary);
+  background: var(--la-bg-primary);
+  border: 1px solid var(--la-border-primary);
   border-radius: 0.375rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   z-index: 1000;
@@ -47,12 +47,12 @@
 }
 
 .layera-language-option:hover {
-  background: var(--layera-bg-secondary);
+  background: var(--la-bg-secondary);
 }
 
 .layera-language-option-selected {
-  background: var(--layera-bg-info);
-  color: var(--layera-text-on-info);
+  background: var(--la-bg-info);
+  color: var(--la-text-on-info);
 }
 
 .layera-flag-icon {

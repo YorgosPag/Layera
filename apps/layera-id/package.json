@@ -20,7 +20,7 @@
     "@layera/cards": "*",
     "@layera/constants": "*",
     "@layera/forms": "*",
-    "@layera/i18n": "*",
+    "@layera/tolgee": "*",
     "@layera/layout": "*",
     "@layera/notifications": "*",
     "@layera/tables": "*",

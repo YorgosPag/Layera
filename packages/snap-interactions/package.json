@@ -35,7 +35,6 @@
   "dependencies": {
     "@layera/snap-engine": "workspace:*",
     "@layera/theme-switcher": "workspace:*",
-    "@layera/i18n": "workspace:*",
     "@layera/notifications": "workspace:*",
     "@layera/buttons": "workspace:*",
     "@layera/forms": "workspace:*",

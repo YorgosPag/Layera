@@ -29,8 +29,7 @@
   ],
   "dependencies": {
     "@layera/notifications": "workspace:*",
-    "@layera/loading": "workspace:*",
-    "@layera/i18n": "workspace:*"
+    "@layera/loading": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18.0.0",

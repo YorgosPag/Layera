@@ -1,7 +1,7 @@
 import { auth } from '../firebase';
 import { sendEmailVerification, reload } from 'firebase/auth';
 import { Button } from '@layera/buttons';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { SPACING_SCALE } from '@layera/constants';
 import { Box } from '@layera/layout';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@layera/layout';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 import './FormSection.css';
 
 export interface FormSectionProps {

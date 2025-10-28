@@ -25,7 +25,6 @@
     "@layera/cards": "workspace:*",
     "@layera/buttons": "workspace:*",
     "@layera/forms": "workspace:*",
-    "@layera/i18n": "workspace:*",
     "@layera/constants": "workspace:*",
     "@layera/error-boundary": "workspace:*",
     "react": "^18.2.0",

@@ -33,7 +33,6 @@
   "dependencies": {
     "@layera/notifications": "workspace:*",
     "@layera/loading": "workspace:*",
-    "@layera/i18n": "workspace:*",
     "@layera/file-transformation": "workspace:*",
     "dxf-parser": "^1.1.2"
   },

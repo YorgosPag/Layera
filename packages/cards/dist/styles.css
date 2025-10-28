@@ -12,89 +12,89 @@
 :root {
   /* ============ CARD DIMENSIONS ============ */
   /* Card padding */
-  --layera-card-padding-none: 0;
-  --layera-card-padding-sm: var(--layera-space-3, 0.75rem);
-  --layera-card-padding-md: var(--layera-space-4, 1rem);
-  --layera-card-padding-lg: var(--layera-space-6, 1.5rem);
+  --la-card-padding-none: 0;
+  --la-card-padding-sm: var(--la-space-3, 0.75rem);
+  --la-card-padding-md: var(--la-space-4, 1rem);
+  --la-card-padding-lg: var(--la-space-6, 1.5rem);
 
   /* Card sizes */
-  --layera-card-size-sm: 200px;
-  --layera-card-size-md: 280px;
-  --layera-card-size-lg: 360px;
-  --layera-card-size-xl: 480px;
+  --la-card-size-sm: 200px;
+  --la-card-size-md: 280px;
+  --la-card-size-lg: 360px;
+  --la-card-size-xl: 480px;
 
   /* ============ CARD COLORS - Apple iOS Design System ============ */
   /* Base card colors - Apple iOS inspired with 7:1 contrast ratio preferred */
-  --layera-card-bg: hsl(0 0% 100%);  /* Pure white for clean background */
-  --layera-card-border: hsl(0 0% 86%);  /* Stronger border for better contrast (4.5:1 compliant) */
-  --layera-card-shadow: 0 1px 3px rgb(0 0 0 / 0.12), 0 1px 2px rgb(0 0 0 / 0.24);  /* Apple-style layered shadows */
-  --layera-card-shadow-hover: 0 3px 6px rgb(0 0 0 / 0.16), 0 3px 6px rgb(0 0 0 / 0.23);  /* Enhanced hover state */
+  --la-card-bg: hsl(0 0% 100%);  /* Pure white for clean background */
+  --la-card-border: hsl(0 0% 86%);  /* Stronger border for better contrast (4.5:1 compliant) */
+  --la-card-shadow: 0 1px 3px rgb(0 0 0 / 0.12), 0 1px 2px rgb(0 0 0 / 0.24);  /* Apple-style layered shadows */
+  --la-card-shadow-hover: 0 3px 6px rgb(0 0 0 / 0.16), 0 3px 6px rgb(0 0 0 / 0.23);  /* Enhanced hover state */
 
   /* Card variants - Apple iOS elevated cards */
-  --layera-card-elevated-shadow: 0 2px 10px rgb(0 0 0 / 0.12), 0 1px 4px rgb(0 0 0 / 0.24);  /* Apple-style elevation */
-  --layera-card-elevated-shadow-hover: 0 4px 14px rgb(0 0 0 / 0.16), 0 2px 8px rgb(0 0 0 / 0.28);  /* Enhanced elevation on hover */
+  --la-card-elevated-shadow: 0 2px 10px rgb(0 0 0 / 0.12), 0 1px 4px rgb(0 0 0 / 0.24);  /* Apple-style elevation */
+  --la-card-elevated-shadow-hover: 0 4px 14px rgb(0 0 0 / 0.16), 0 2px 8px rgb(0 0 0 / 0.28);  /* Enhanced elevation on hover */
 
   /* Dashboard card variants - Apple iOS system colors inspired */
-  --layera-card-stats-bg: hsl(0 0% 100%);  /* Clean white for stats - high contrast */
-  --layera-card-chart-bg: hsl(210 100% 98%);  /* Subtle blue tint for charts */
-  --layera-card-status-bg: hsl(0 0% 100%);  /* Pure white for status cards */
-  --layera-card-actions-bg: hsl(0 0% 100%);  /* Clean white for action cards */
-  --layera-card-info-bg: hsl(210 100% 98%);  /* Subtle system blue for info cards */
+  --la-card-stats-bg: hsl(0 0% 100%);  /* Clean white for stats - high contrast */
+  --la-card-chart-bg: hsl(210 100% 98%);  /* Subtle blue tint for charts */
+  --la-card-status-bg: hsl(0 0% 100%);  /* Pure white for status cards */
+  --la-card-actions-bg: hsl(0 0% 100%);  /* Clean white for action cards */
+  --la-card-info-bg: hsl(210 100% 98%);  /* Subtle system blue for info cards */
 
   /* ============ BORDER RADIUS - Apple iOS Style ============ */
-  --layera-card-radius: 16px;           /* Apple-style rounded corners for cards */
-  --layera-card-radius-sm: 12px;        /* Smaller radius for components inside cards */
-  --layera-card-radius-lg: 20px;        /* Larger radius for prominent cards */
+  --la-card-radius: 16px;           /* Apple-style rounded corners for cards */
+  --la-card-radius-sm: 12px;        /* Smaller radius for components inside cards */
+  --la-card-radius-lg: 20px;        /* Larger radius for prominent cards */
 
   /* ============ TRANSITIONS ============ */
-  --layera-card-transition: all var(--layera-transition-normal, 250ms ease-in-out);
+  --la-card-transition: all var(--la-transition-normal, 250ms ease-in-out);
 
   /* ============ TYPOGRAPHY ============ */
-  --layera-card-title-size: 1.125rem;
-  --layera-card-title-weight: 600;
-  --layera-card-subtitle-size: 0.875rem;
-  --layera-card-subtitle-weight: 400;
+  --la-card-title-size: 1.125rem;
+  --la-card-title-weight: 600;
+  --la-card-subtitle-size: 0.875rem;
+  --la-card-subtitle-weight: 400;
 
   /* ============ SEMANTIC COLORS - Apple iOS Design System (Balanced) ============ */
-  --layera-color-focus: hsl(210 100% 50%);  /* Apple iOS system blue for focus states */
-  --layera-text-secondary: hsl(0 0% 60%);   /* Apple-style balanced secondary text (4.5:1 ratio) */
-  --layera-text-tertiary: hsl(0 0% 70%);    /* Apple-style tertiary text for subtle elements */
-  --layera-red: hsl(0 80% 50%);             /* Apple iOS system red balanced */
-  --layera-green: hsl(142 70% 35%);         /* Apple iOS system green balanced */
+  --la-color-focus: hsl(210 100% 50%);  /* Apple iOS system blue for focus states */
+  --la-text-secondary: hsl(0 0% 60%);   /* Apple-style balanced secondary text (4.5:1 ratio) */
+  --la-text-tertiary: hsl(0 0% 70%);    /* Apple-style tertiary text for subtle elements */
+  --la-red: hsl(0 80% 50%);             /* Apple iOS system red balanced */
+  --la-green: hsl(142 70% 35%);         /* Apple iOS system green balanced */
 
   /* Dashboard metric typography */
-  --layera-dashboard-metric-value-size: 2rem;
-  --layera-dashboard-metric-value-weight: 700;
-  --layera-dashboard-metric-label-size: 0.875rem;
-  --layera-dashboard-metric-change-size: 0.75rem;
+  --la-dashboard-metric-value-size: 2rem;
+  --la-dashboard-metric-value-weight: 700;
+  --la-dashboard-metric-label-size: 0.875rem;
+  --la-dashboard-metric-change-size: 0.75rem;
 
   /* ============ SPACING ============ */
-  --layera-card-header-spacing: var(--layera-space-4, 1rem);
-  --layera-card-content-spacing: var(--layera-space-3, 0.75rem);
-  --layera-card-footer-spacing: var(--layera-space-4, 1rem);
+  --la-card-header-spacing: var(--la-space-4, 1rem);
+  --la-card-content-spacing: var(--la-space-3, 0.75rem);
+  --la-card-footer-spacing: var(--la-space-4, 1rem);
 
   /* Grid spacing */
-  --layera-dashboard-grid-gap-sm: var(--layera-space-3, 0.75rem);
-  --layera-dashboard-grid-gap-md: var(--layera-space-4, 1rem);
-  --layera-dashboard-grid-gap-lg: var(--layera-space-6, 1.5rem);
+  --la-dashboard-grid-gap-sm: var(--la-space-3, 0.75rem);
+  --la-dashboard-grid-gap-md: var(--la-space-4, 1rem);
+  --la-dashboard-grid-gap-lg: var(--la-space-6, 1.5rem);
 }
 
 /* Dark theme overrides - Apple iOS Dark Mode inspired */
 
 [data-theme="dark"] {
-  --layera-card-bg: hsl(0 0% 8%);  /* Apple dark mode card background */
-  --layera-card-border: hsl(0 0% 20%);  /* Higher contrast border for dark mode (4.5:1 compliant) */
-  --layera-card-shadow: 0 1px 3px rgb(0 0 0 / 0.5), 0 1px 2px rgb(0 0 0 / 0.6);  /* Stronger shadows for dark mode */
-  --layera-card-shadow-hover: 0 3px 6px rgb(0 0 0 / 0.6), 0 3px 6px rgb(0 0 0 / 0.7);
+  --la-card-bg: hsl(0 0% 8%);  /* Apple dark mode card background */
+  --la-card-border: hsl(0 0% 20%);  /* Higher contrast border for dark mode (4.5:1 compliant) */
+  --la-card-shadow: 0 1px 3px rgb(0 0 0 / 0.5), 0 1px 2px rgb(0 0 0 / 0.6);  /* Stronger shadows for dark mode */
+  --la-card-shadow-hover: 0 3px 6px rgb(0 0 0 / 0.6), 0 3px 6px rgb(0 0 0 / 0.7);
 
-  --layera-card-elevated-shadow: 0 2px 10px rgb(0 0 0 / 0.5), 0 1px 4px rgb(0 0 0 / 0.6);  /* Apple dark mode elevation */
-  --layera-card-elevated-shadow-hover: 0 4px 14px rgb(0 0 0 / 0.6), 0 2px 8px rgb(0 0 0 / 0.7);
+  --la-card-elevated-shadow: 0 2px 10px rgb(0 0 0 / 0.5), 0 1px 4px rgb(0 0 0 / 0.6);  /* Apple dark mode elevation */
+  --la-card-elevated-shadow-hover: 0 4px 14px rgb(0 0 0 / 0.6), 0 2px 8px rgb(0 0 0 / 0.7);
 
-  --layera-card-stats-bg: hsl(0 0% 8%);  /* Clean dark background for stats */
-  --layera-card-chart-bg: hsl(210 25% 10%);  /* Subtle blue dark tint for charts */
-  --layera-card-status-bg: hsl(0 0% 8%);  /* Pure dark for status cards */
-  --layera-card-actions-bg: hsl(0 0% 8%);  /* Clean dark for action cards */
-  --layera-card-info-bg: hsl(210 25% 10%);  /* Subtle system blue dark for info cards */
+  --la-card-stats-bg: hsl(0 0% 8%);  /* Clean dark background for stats */
+  --la-card-chart-bg: hsl(210 25% 10%);  /* Subtle blue dark tint for charts */
+  --la-card-status-bg: hsl(0 0% 8%);  /* Pure dark for status cards */
+  --la-card-actions-bg: hsl(0 0% 8%);  /* Clean dark for action cards */
+  --la-card-info-bg: hsl(210 25% 10%);  /* Subtle system blue dark for info cards */
 }
 
 /* CSS Layers for proper cascade control */

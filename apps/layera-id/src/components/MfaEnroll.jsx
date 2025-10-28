@@ -3,7 +3,7 @@ import { PhoneAuthProvider, RecaptchaVerifier, multiFactor } from 'firebase/auth
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthContext, UserAvatar } from '@layera/auth-bridge';
-import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
+import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { Button } from '@layera/buttons';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, Flex, FlexColumn, Box } from '@layera/layout';

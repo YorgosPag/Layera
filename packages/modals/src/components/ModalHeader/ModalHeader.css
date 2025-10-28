@@ -42,7 +42,7 @@
   height: var(--la-space-8);
   border: none;
   border-radius: var(--la-radius-md);
-  background-color: transparent;
+  background-color: var(--la-color-transparent);
   color: var(--la-color-text-secondary);
   cursor: pointer;
   transition: all 0.15s ease;

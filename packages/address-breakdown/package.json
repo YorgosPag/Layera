@@ -22,7 +22,7 @@
     "@layera/cards": "file:../cards",
     "@layera/buttons": "file:../buttons",
     "@layera/icons": "file:../icons",
-    "@layera/i18n": "file:../i18n",
+    "@layera/tolgee": "file:../tolgee",
     "@layera/geocoding": "file:../geocoding",
     "react": "^19.0.0"
   },

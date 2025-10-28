@@ -9,7 +9,7 @@
   width: 100%;
   height: var(--la-height-screen);
   overflow: hidden;
-  background-color: var(--layera-layout-bg);
+  background-color: var(--la-layout-bg);
 }
 
 /* ============ APP SHELL LAYOUTS ============ */
@@ -18,7 +18,7 @@
   display: grid;
   width: 100%;
   height: var(--la-height-screen);
-  background-color: var(--layera-layout-bg);
+  background-color: var(--la-layout-bg);
 }
 
 /* Dashboard Layout - Header + Sidebar + Content */
@@ -26,8 +26,8 @@
   grid-template-areas:
     "header header"
     "sidebar content";
-  grid-template-rows: var(--layera-header-height) 1fr;
-  grid-template-columns: var(--layera-sidebar-width) 1fr;
+  grid-template-rows: var(--la-header-height) 1fr;
+  grid-template-columns: var(--la-sidebar-width) 1fr;
 }
 
 /* Dashboard Layout χωρίς sidebar - πλήρες πλάτος */
@@ -35,12 +35,12 @@
   grid-template-areas:
     "header"
     "content";
-  grid-template-rows: var(--layera-header-height) 1fr;
+  grid-template-rows: var(--la-header-height) 1fr;
   grid-template-columns: 1fr;
 }
 
 .layera-app-shell--dashboard.sidebar-collapsed {
-  grid-template-columns: var(--layera-sidebar-width-collapsed) 1fr;
+  grid-template-columns: var(--la-sidebar-width-collapsed) 1fr;
 }
 
 /* Fullscreen Layout - Header + Content (no sidebar) */
@@ -48,7 +48,7 @@
   grid-template-areas:
     "header"
     "content";
-  grid-template-rows: var(--layera-header-height) 1fr;
+  grid-template-rows: var(--la-header-height) 1fr;
   grid-template-columns: 1fr;
   width: 100vw;
   max-width: 100vw;
@@ -59,8 +59,8 @@
   grid-template-areas:
     "header header"
     "sidebar content";
-  grid-template-rows: var(--layera-header-height-minimal) 1fr;
-  grid-template-columns: var(--layera-sidebar-width-collapsed) 1fr;
+  grid-template-rows: var(--la-header-height-minimal) 1fr;
+  grid-template-columns: var(--la-sidebar-width-collapsed) 1fr;
 }
 
 /* Minimal Layout - Just content */
@@ -75,44 +75,44 @@
   grid-template-areas:
     "header header header"
     "sidebar-left content sidebar-right";
-  grid-template-rows: var(--layera-header-height) 1fr;
-  grid-template-columns: var(--layera-sidebar-width) 1fr var(--layera-sidebar-width);
+  grid-template-rows: var(--la-header-height) 1fr;
+  grid-template-columns: var(--la-sidebar-width) 1fr var(--la-sidebar-width);
 }
 
 /* ============ LAYOUT REGIONS ============ */
 
 .layera-layout-header {
   grid-area: header;
-  z-index: var(--layera-z-header);
-  border-bottom: 1px solid var(--layera-layout-border);
-  background-color: var(--layera-header-bg);
+  z-index: var(--la-z-header);
+  border-bottom: 1px solid var(--la-layout-border);
+  background-color: var(--la-header-bg);
 }
 
 .layera-layout-sidebar {
   grid-area: sidebar;
-  z-index: var(--layera-z-sidebar);
-  border-right: 1px solid var(--layera-layout-border);
-  background-color: var(--layera-sidebar-bg);
+  z-index: var(--la-z-sidebar);
+  border-right: 1px solid var(--la-layout-border);
+  background-color: var(--la-sidebar-bg);
   overflow-y: auto;
 }
 
 .layera-layout-sidebar-left {
   grid-area: sidebar-left;
-  z-index: var(--layera-z-sidebar);
-  border-right: 1px solid var(--layera-layout-border);
-  background-color: var(--layera-sidebar-bg);
+  z-index: var(--la-z-sidebar);
+  border-right: 1px solid var(--la-layout-border);
+  background-color: var(--la-sidebar-bg);
 }
 
 .layera-layout-sidebar-right {
   grid-area: sidebar-right;
-  z-index: var(--layera-z-sidebar);
-  border-left: 1px solid var(--layera-layout-border);
-  background-color: var(--layera-sidebar-bg);
+  z-index: var(--la-z-sidebar);
+  border-left: 1px solid var(--la-layout-border);
+  background-color: var(--la-sidebar-bg);
 }
 
 .layera-layout-content {
   grid-area: content;
-  background-color: var(--layera-content-bg);
+  background-color: var(--la-content-bg);
   overflow-y: auto;
   position: relative;
   width: 100%;
@@ -121,8 +121,8 @@
 
 .layera-layout-footer {
   grid-area: footer;
-  border-top: 1px solid var(--layera-layout-border);
-  background-color: var(--layera-header-bg);
+  border-top: 1px solid var(--la-layout-border);
+  background-color: var(--la-header-bg);
 }
 
 /* ============ RESPONSIVE UTILITIES ============ */
@@ -133,18 +133,18 @@
     grid-template-areas:
       "header"
       "content";
-    grid-template-rows: var(--layera-header-height) 1fr;
+    grid-template-rows: var(--la-header-height) 1fr;
     grid-template-columns: 1fr;
   }
 
   .layera-layout-sidebar {
     position: fixed;
-    top: var(--layera-header-height);
+    top: var(--la-header-height);
     left: var(--la-left-0);
-    width: var(--layera-sidebar-width);
-    height: calc(100vh - var(--layera-header-height));
+    width: var(--la-sidebar-width);
+    height: calc(100vh - var(--la-header-height));
     transform: translateX(-100%);
-    transition: transform var(--layera-transition-normal);
+    transition: transform var(--la-transition-normal);
   }
 
   .layera-layout-sidebar.sidebar-open {
@@ -158,10 +158,10 @@
     width: 100%;
     height: var(--la-height-full);
     background-color: rgb(0 0 0 / 0.5);
-    z-index: calc(var(--layera-z-sidebar) - 1);
+    z-index: calc(var(--la-z-sidebar) - 1);
     opacity: 0;
     visibility: hidden;
-    transition: all var(--layera-transition-normal);
+    transition: all var(--la-transition-normal);
   }
 
   .layera-layout-sidebar-backdrop.active {
@@ -173,22 +173,22 @@
 /* Tablet breakpoint adjustments */
 @media (min-width: 768px) and (max-width: 1023px) {
   .layera-app-shell--dashboard {
-    grid-template-columns: var(--layera-sidebar-width-compact) 1fr;
+    grid-template-columns: var(--la-sidebar-width-compact) 1fr;
   }
 
   .layera-app-shell--dashboard.sidebar-collapsed {
-    grid-template-columns: var(--layera-sidebar-width-collapsed) 1fr;
+    grid-template-columns: var(--la-sidebar-width-collapsed) 1fr;
   }
 }
 
 /* ============ ANIMATION UTILITIES ============ */
 
 .layera-layout-transition {
-  transition: all var(--layera-transition-normal);
+  transition: all var(--la-transition-normal);
 }
 
 .layera-sidebar-transition {
-  transition: width var(--layera-transition-normal), transform var(--layera-transition-normal);
+  transition: width var(--la-transition-normal), transform var(--la-transition-normal);
 }
 
 /* ============ ACCESSIBILITY ============ */
@@ -198,17 +198,17 @@
   top: -9999px;
   left: -9999px;
   z-index: 999;
-  padding: var(--layera-space-md);
-  background-color: var(--layera-header-bg);
+  padding: var(--la-space-md);
+  background-color: var(--la-header-bg);
   color: inherit;
   text-decoration: none;
-  border: 2px solid var(--layera-layout-border);
-  border-radius: var(--layera-radius-md);
+  border: 2px solid var(--la-layout-border);
+  border-radius: var(--la-radius-md);
 }
 
 .layera-skip-to-content:focus {
-  top: var(--layera-space-md);
-  left: var(--layera-space-md);
+  top: var(--la-space-md);
+  left: var(--la-space-md);
 }
 
 /* ============ GEOALERT STEP LAYOUT SYSTEM ============ */
@@ -216,14 +216,14 @@
 /* Enterprise LEGO Card Layout System */
 .layera-geoalert-card-container {
   position: fixed;
-  top: var(--layera-cards-top);
-  left: var(--layera-side-margins);
-  right: var(--layera-side-margins);
-  z-index: var(--layera-z-fixed);
+  top: var(--la-cards-top);
+  left: var(--la-side-margins);
+  right: var(--la-side-margins);
+  z-index: var(--la-z-fixed);
   padding: 0;
   display: flex;
-  gap: var(--layera-cards-gap);
-  transition: all var(--layera-transition-normal);
+  gap: var(--la-cards-gap);
+  transition: all var(--la-transition-normal);
 }
 
 /* Horizontal layout for card pairs */
@@ -239,12 +239,12 @@
 /* Smart layout for 3 cards: 2+1 arrangement */
 .layera-geoalert-card-container--smart-triple {
   flex-direction: column;
-  gap: var(--layera-cards-gap);
+  gap: var(--la-cards-gap);
 }
 
 .layera-geoalert-card-container--smart-triple .layera-card-row {
   display: flex;
-  gap: var(--layera-cards-gap);
+  gap: var(--la-cards-gap);
 }
 
 .layera-geoalert-card-container--smart-triple .layera-card-row:first-child {
@@ -259,21 +259,21 @@
 /* InfoPanel positioning using CSS variables */
 .layera-geoalert-info-panel {
   position: fixed;
-  top: var(--layera-info-panel-top);
-  left: var(--layera-side-margins);
-  right: var(--layera-side-margins);
-  z-index: var(--layera-z-popover);
+  top: var(--la-info-panel-top);
+  left: var(--la-side-margins);
+  right: var(--la-side-margins);
+  z-index: var(--la-z-popover);
   max-height: 60vh;
   overflow: auto;
-  transition: all var(--layera-transition-normal);
+  transition: all var(--la-transition-normal);
 }
 
 /* Responsive adjustments */
 @media (min-width: 768px) {
   .layera-geoalert-info-panel {
     position: fixed;
-    top: var(--layera-space-6); /* 24px */
-    right: var(--layera-space-6); /* 24px */
+    top: var(--la-space-6); /* 24px */
+    right: var(--la-space-6); /* 24px */
     left: auto;
     width: 320px;
     max-height: 400px;
