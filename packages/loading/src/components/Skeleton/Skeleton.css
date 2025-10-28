@@ -1,85 +1,96 @@
 /**
- * Layera Skeleton - Styles
+ * @layera/loading - Skeleton Component Styles
+ *
+ * Enterprise CSS για skeleton loading system.
+ * Consistent με Layera design tokens.
  */
 
-:root {
-  --la-skeleton-bg: var(--la-color-surface-secondary);
-  --la-skeleton-highlight: var(--la-color-surface-tertiary);
-  --la-skeleton-radius: var(--la-radius-md);
-}
-
-/* Dark theme */
-[data-theme="dark"] {
-  --la-skeleton-bg: var(--la-color-surface-secondary);
-  --la-skeleton-highlight: var(--la-color-surface-tertiary);
-}
-
+/* Base Skeleton */
 .la-skeleton {
   display: block;
-  background-color: var(--la-skeleton-bg);
-  border-radius: var(--la-skeleton-radius);
+  background-color: var(--la-color-surface-secondary);
+  border-radius: 0.375rem;
   overflow: hidden;
   position: relative;
 }
 
-/* Variant styles */
-.la-skeleton--text {
-  border-radius: var(--la-radius-sm);
+/* Shape Variants */
+.la-skeleton-text {
+  border-radius: 0.25rem;
   height: 1em;
 }
 
-.la-skeleton--rectangular {
-  border-radius: var(--la-skeleton-radius);
+.la-skeleton-rectangular {
+  border-radius: 0.375rem;
 }
 
-.la-skeleton--circular {
+.la-skeleton-circular {
   border-radius: 50%;
   width: 2.5rem;
   height: 2.5rem;
 }
 
-/* Wave animation */
-.la-skeleton--wave {
+/* Animation Variants */
+.la-skeleton-wave {
   background: linear-gradient(
     90deg,
-    var(--la-skeleton-bg) 25%,
-    var(--la-skeleton-highlight) 50%,
-    var(--la-skeleton-bg) 75%
+    var(--la-color-surface-secondary) 25%,
+    var(--la-color-surface-tertiary) 50%,
+    var(--la-color-surface-secondary) 75%
   );
   background-size: 200% 100%;
   animation: la-skeleton-wave 1.5s ease-in-out infinite;
 }
 
+.la-skeleton-pulse {
+  animation: la-skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+/* Keyframe Animations */
 @keyframes la-skeleton-wave {
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
-}
-
-/* Pulse animation */
-.la-skeleton--pulse {
-  animation: la-skeleton-pulse 1.5s ease-in-out infinite;
 }
 
 @keyframes la-skeleton-pulse {
   0% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.5;
   }
+
   100% {
     opacity: 1;
   }
 }
 
-/* Accessibility */
+/* Dark Theme Support */
+@media (prefers-color-scheme: dark) {
+  .la-skeleton {
+    background-color: var(--la-color-surface-secondary);
+  }
+
+  .la-skeleton-wave {
+    background: linear-gradient(
+      90deg,
+      var(--la-color-surface-secondary) 25%,
+      var(--la-color-surface-tertiary) 50%,
+      var(--la-color-surface-secondary) 75%
+    );
+  }
+}
+
+/* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
-  .la-skeleton--wave,
-  .la-skeleton--pulse {
+  .la-skeleton-wave,
+  .la-skeleton-pulse {
     animation: none;
   }
 }

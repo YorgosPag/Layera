@@ -6,35 +6,35 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: var(--la-space-4);
+  gap: var(--la-space-3);
   padding: var(--la-space-4);
-  padding-bottom: var(--la-space-4);
-  border-bottom: var(--la-border-width-1) solid var(--la-color-text-muted);
-  background-color: var(--la-color-surface);
+  padding-bottom: var(--la-space-3);
+  border-bottom: 0.0625rem solid var(--la-color-border-primary);
+  background-color: var(--la-color-bg-primary);
   border-radius: var(--la-radius-lg) var(--la-radius-lg) 0 0;
 }
 
-.la-modal-header-content {
+.la-modal-header--content {
   flex: 1;
   min-width: 0;
 }
 
-.la-modal-header-title {
+.la-modal-header--title {
   margin: 0;
   font-size: var(--la-font-size-xl);
   font-weight: 600;
-  line-height: var(--la-line-height-normal);
+  line-height: 1.5;
   color: var(--la-color-text-primary);
 }
 
-.la-modal-header-subtitle {
-  margin: var(--la-space-1) 0 0 0;
+.la-modal-header--subtitle {
+  margin: 0.25rem 0 0 0;
   font-size: var(--la-font-size-sm);
-  line-height: var(--la-line-height-normal);
+  line-height: 1.5;
   color: var(--la-color-text-secondary);
 }
 
-.la-modal-header-close {
+.la-modal-header--close {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,35 +49,12 @@
   flex-shrink: 0;
 }
 
-.la-modal-header-close:hover {
+.la-modal-header--close:hover {
   background-color: var(--la-color-bg-app);
   color: var(--la-color-text-primary);
 }
 
-.la-modal-header-close:focus {
-  outline: var(--la-border-width-2) solid var(--la-color-brand);
-  outline-offset: var(--la-border-width-2);
-}
-
-/* Dark theme support */
-[data-theme="dark"] .la-modal-header {
-  background-color: var(--la-color-surface);
-  border-bottom-color: var(--la-color-text-muted);
-}
-
-[data-theme="dark"] .la-modal-header-title {
-  color: var(--la-color-text-primary);
-}
-
-[data-theme="dark"] .la-modal-header-subtitle {
-  color: var(--la-color-text-secondary);
-}
-
-[data-theme="dark"] .la-modal-header-close {
-  color: var(--la-color-text-secondary);
-}
-
-[data-theme="dark"] .la-modal-header-close:hover {
-  background-color: var(--la-color-bg-app);
-  color: var(--la-color-text-primary);
+.la-modal-header--close:focus {
+  outline: 0.125rem solid var(--la-color-brand);
+  outline-offset: 0.125rem;
 }

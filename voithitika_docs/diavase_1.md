@@ -1,115 +1,460 @@
- 279:3   ✖  Expected class selector ".la-map-label--title" to    selector-class-pattern
-             be kebab-case
-  280:16  ✖  Unexpected value "1rem" for property "font-size"     declaration-property-value-allowed-list   
-  284:3   ✖  Expected class selector ".la-map-label--subtitle"    selector-class-pattern
-             to be kebab-case
-  285:16  ✖  Unexpected value "0.875rem" for property             declaration-property-value-allowed-list   
-             "font-size"
-  289:3   ✖  Expected class selector ".la-map-label--area" to be  selector-class-pattern
+             "^--la-"
+  396:23  ✖  Expected "--la-pointer-events-none" to       custom-property-pattern
+             match pattern "^--la-"
+  399:1   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__mark" to be kebab-case
+  404:23  ✖  Expected "--la-pointer-events-none" to       custom-property-pattern
+             match pattern "^--la-"
+  408:20  ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider--vertical" to be kebab-case
+  408:46  ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__mark" to be kebab-case
+  414:1   ✖  Expected selector ".layera-slider--vertical  no-descending-specificity
+             .layera-slider__mark" to come before
+             selector
+             ".layera-slider:not(.layera-slider--
+             vertical) .layera-slider__mark", at line
+             408
+  414:1   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider--vertical" to be kebab-case
+  414:26  ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__mark" to be kebab-case
+  421:1   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__mark-dot" to be kebab-case
+  422:11  ✖  Unexpected unit "px"                         unit-disallowed-list
+  423:12  ✖  Unexpected unit "px"                         unit-disallowed-list
+  424:15  ✖  Unexpected value                             declaration-property-value-allowed-list
+             "var(--layera-color-border-default)" for
+             property "background"
+  424:19  ✖  Expected "--layera-color-border-default" to  custom-property-pattern
+             match pattern "^--la-"
+  425:18  ✖  Unexpected value "50%" for property          declaration-property-value-allowed-list
+             "border-radius"
+  427:12  ✖  Unexpected value "1" for property "z-index"  declaration-property-value-allowed-list
+  430:1   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider--sm" to be kebab-case
+  430:20  ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__mark-dot" to be kebab-case
+  431:11  ✖  Unexpected unit "px"                         unit-disallowed-list
+  432:12  ✖  Unexpected unit "px"                         unit-disallowed-list
+  435:1   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider--lg" to be kebab-case
+  435:20  ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__mark-dot" to be kebab-case
+  436:11  ✖  Unexpected unit "px"                         unit-disallowed-list
+  437:12  ✖  Unexpected unit "px"                         unit-disallowed-list
+  440:1   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__mark-label" to be
              kebab-case
-  290:3   ✖  Expected class selector ".la-map-label--distance"    selector-class-pattern
-             to be kebab-case
-  291:16  ✖  Unexpected value "0.75rem" for property "font-size"  declaration-property-value-allowed-list   
-  299:20  ✖  Unexpected unit "px"                                 unit-disallowed-list
-  302:3   ✖  Expected class selector ".la-map-label--bg-semi" to  selector-class-pattern
-             be kebab-case
-  303:17  ✖  Expected modern color-function notation              color-function-notation
-  303:17  ✖  Unexpected value "rgba(255, 255, 255, 0.95)" for     declaration-property-value-allowed-list   
-             property "background"
-  303:37  ✖  Expected "0.95" to be "95%"                          alpha-value-notation
-  306:3   ✖  Expected class selector ".la-map-label--bg-solid"    selector-class-pattern
-             to be kebab-case
-  307:17  ✖  Expected modern color-function notation              color-function-notation
-  307:17  ✖  Unexpected value "rgba(255, 255, 255, 1)" for        declaration-property-value-allowed-list   
-             property "background"
-  307:37  ✖  Expected "1" to be "100%"                            alpha-value-notation
-  314:3   ✖  Expected class selector ".la-map-label--animating"   selector-class-pattern
-             to be kebab-case
-  318:3   ✖  Expected class selector ".la-map-label--fade-in" to  selector-class-pattern
-             be kebab-case
-  319:3   ✖  Expected class selector ".la-map-label--fade-out"    selector-class-pattern
-             to be kebab-case
-  320:3   ✖  Expected class selector ".la-map-label--scale-in"    selector-class-pattern
-             to be kebab-case
-  321:3   ✖  Expected class selector ".la-map-label--scale-out"   selector-class-pattern
-             to be kebab-case
-  329:5   ✖  Expected "--layera-label-bg-transparent" to match    custom-property-pattern
+  441:10  ✖  Unexpected value                             declaration-property-value-allowed-list
+             "var(--layera-color-text-tertiary)" for
+             property "color"
+  441:14  ✖  Expected "--layera-color-text-tertiary" to   custom-property-pattern
+             match pattern "^--la-"
+  442:14  ✖  Unexpected value                             declaration-property-value-allowed-list
+             "var(--layera-font-size-xs)" for property
+             "font-size"
+  442:18  ✖  Expected "--layera-font-size-xs" to match    custom-property-pattern
              pattern "^--la-"
-  329:36  ✖  Expected modern color-function notation              color-function-notation
-  329:50  ✖  Expected "0" to be "0%"                              alpha-value-notation
-  330:5   ✖  Expected "--layera-label-bg-semi" to match pattern   custom-property-pattern
+  443:16  ✖  Unexpected unit "px"                         unit-disallowed-list
+  448:1   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider--vertical" to be kebab-case
+  448:26  ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__mark-label" to be
+             kebab-case
+  449:19  ✖  Expected "--la-top-0" to match pattern       custom-property-pattern
              "^--la-"
-  330:29  ✖  Expected modern color-function notation              color-function-notation
-  330:43  ✖  Expected "0.85" to be "85%"                          alpha-value-notation
-  331:5   ✖  Expected "--layera-label-bg-solid" to match pattern  custom-property-pattern
-             "^--la-"
-  331:30  ✖  Expected modern color-function notation              color-function-notation
-  331:44  ✖  Expected "0.95" to be "95%"                          alpha-value-notation
-  332:5   ✖  Expected "--layera-label-border" to match pattern    custom-property-pattern
-             "^--la-"
-  332:29  ✖  Unexpected unit "px"                                 unit-disallowed-list
-  332:38  ✖  Expected modern color-function notation              color-function-notation
-  332:58  ✖  Expected "0.2" to be "20%"                           alpha-value-notation
-  333:5   ✖  Expected "--layera-label-text-primary" to match      custom-property-pattern
+  450:17  ✖  Unexpected unit "px"                         unit-disallowed-list
+  453:1   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider--sm" to be kebab-case
+  453:20  ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__mark-label" to be
+             kebab-case
+  454:14  ✖  Unexpected value "10px" for property         declaration-property-value-allowed-list
+             "font-size"
+  454:16  ✖  Unexpected unit "px"                         unit-disallowed-list
+  455:16  ✖  Unexpected unit "px"                         unit-disallowed-list
+  458:1   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider--lg" to be kebab-case
+  458:20  ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__mark-label" to be
+             kebab-case
+  459:14  ✖  Unexpected value                             declaration-property-value-allowed-list
+             "var(--layera-font-size-sm)" for property
+             "font-size"
+  459:18  ✖  Expected "--layera-font-size-sm" to match    custom-property-pattern
              pattern "^--la-"
-  333:34  ✖  Unexpected hex color "#F9FAFB"                       color-no-hex
-  333:34  ✖  Unexpected value "#F9FAFB" for property              declaration-property-value-disallowed-list             "--layera-label-text-primary"
-  334:5   ✖  Expected "--layera-label-text-secondary" to match    custom-property-pattern
+  460:17  ✖  Unexpected unit "px"                         unit-disallowed-list
+  464:1   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__loading" to be kebab-case
+  469:23  ✖  Expected "--la-pointer-events-none" to       custom-property-pattern
+             match pattern "^--la-"
+  470:12  ✖  Unexpected value "5" for property "z-index"  declaration-property-value-allowed-list
+  473:1   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__spinner" to be kebab-case
+  474:12  ✖  Unexpected unit "px"                         unit-disallowed-list
+  475:13  ✖  Unexpected unit "px"                         unit-disallowed-list
+  476:12  ✖  Unexpected unit "px"                         unit-disallowed-list
+  476:25  ✖  Expected "--layera-color-border-subtle" to   custom-property-pattern
+             match pattern "^--la-"
+  477:16  ✖  Unexpected unit "px"                         unit-disallowed-list
+  477:29  ✖  Expected "--layera-color-primary" to match   custom-property-pattern
              pattern "^--la-"
-  334:36  ✖  Unexpected hex color "#D1D5DB"                       color-no-hex
-  334:36  ✖  Unexpected value "#D1D5DB" for property              declaration-property-value-disallowed-list             "--layera-label-text-secondary"
-  335:5   ✖  Expected "--la-label-text-muted" to match pattern    custom-property-pattern
+  478:18  ✖  Unexpected value "50%" for property          declaration-property-value-allowed-list
+             "border-radius"
+  482:1   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider--sm" to be kebab-case
+  482:20  ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__spinner" to be kebab-case
+  483:12  ✖  Unexpected unit "px"                         unit-disallowed-list
+  484:13  ✖  Unexpected unit "px"                         unit-disallowed-list
+  485:18  ✖  Unexpected unit "px"                         unit-disallowed-list
+  488:1   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider--lg" to be kebab-case
+  488:20  ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__spinner" to be kebab-case
+  489:12  ✖  Unexpected unit "px"                         unit-disallowed-list
+  490:13  ✖  Unexpected unit "px"                         unit-disallowed-list
+  499:1   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__footer" to be kebab-case
+  502:9   ✖  Unexpected unit "px"                         unit-disallowed-list
+  505:1   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__description" to be
+             kebab-case
+  506:10  ✖  Unexpected value                             declaration-property-value-allowed-list
+             "var(--layera-color-text-secondary)" for
+             property "color"
+  506:14  ✖  Expected "--layera-color-text-secondary" to  custom-property-pattern
+             match pattern "^--la-"
+  507:14  ✖  Unexpected value                             declaration-property-value-allowed-list
+             "var(--layera-font-size-sm)" for property
+             "font-size"
+  507:18  ✖  Expected "--layera-font-size-sm" to match    custom-property-pattern
+             pattern "^--la-"
+  508:16  ✖  Unexpected value                             declaration-property-value-allowed-list
+             "var(--layera-line-height-sm)" for property
+             "line-height"
+  508:20  ✖  Expected "--layera-line-height-sm" to match  custom-property-pattern
+             pattern "^--la-"
+  511:1   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__error" to be kebab-case
+  512:10  ✖  Unexpected value                             declaration-property-value-allowed-list
+             "var(--layera-color-error)" for property
+             "color"
+  512:14  ✖  Expected "--layera-color-error" to match     custom-property-pattern
+             pattern "^--la-"
+  513:14  ✖  Unexpected value                             declaration-property-value-allowed-list
+             "var(--layera-font-size-sm)" for property
+             "font-size"
+  513:18  ✖  Expected "--layera-font-size-sm" to match    custom-property-pattern
+             pattern "^--la-"
+  514:20  ✖  Expected "--layera-font-weight-medium" to    custom-property-pattern
+             match pattern "^--la-"
+  515:16  ✖  Unexpected value                             declaration-property-value-allowed-list
+             "var(--layera-line-height-sm)" for property
+             "line-height"
+  515:20  ✖  Expected "--layera-line-height-sm" to match  custom-property-pattern
+             pattern "^--la-"
+  520:3   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__track-background" to be
+             kebab-case
+  521:3   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__thumb" to be kebab-case
+  522:20  ✖  Unexpected unit "px"                         unit-disallowed-list
+  525:3   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__mark-dot" to be kebab-case
+  526:14  ✖  Unexpected unit "px"                         unit-disallowed-list
+  526:27  ✖  Expected "--layera-color-border-strong" to   custom-property-pattern
+             match pattern "^--la-"
+  532:3   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__track-fill" to be
+             kebab-case
+  533:3   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__thumb" to be kebab-case
+  534:3   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__spinner" to be kebab-case
+  542:3   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__thumb" to be kebab-case
+  543:3   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__tooltip" to be kebab-case
+  547:3   ✖  Expected class selector                      selector-class-pattern
+             ".layera-slider__track-fill" to be
+             kebab-case
+  548:17  ✖  Unexpected hex color "#333"                  color-no-hex
+  548:17  ✖  Unexpected value "#333" for property         declaration-property-value-allowed-list
+             "background"
+  548:17  ✖  Unexpected value "#333" for property         declaration-property-value-disallowed-list        
+             "background"
+
+packages/forms/src/components/TextArea/TextArea.css
+   12:19  ✖  Expected "--la-color-surface" to match pattern          custom-property-pattern
              "^--la-"
-  335:32  ✖  Expected "--la-color-text-tertiary" to match         custom-property-pattern
+   13:15  ✖  Expected "--la-border-width-1" to match pattern         custom-property-pattern
+             "^--la-"
+   13:46  ✖  Expected "--la-color-border-primary" to match pattern   custom-property-pattern
+             "^--la-"
+   14:22  ✖  Expected "--la-radius-md" to match pattern "^--la-"     custom-property-pattern
+   22:15  ✖  Unexpected value "transparent" for property             declaration-property-value-allowed-list             "background"
+   24:20  ✖  Expected "--la-font-family-base" to match pattern       custom-property-pattern
+             "^--la-"
+   25:18  ✖  Expected "--la-font-size-base" to match pattern         custom-property-pattern
+             "^--la-"
+   26:14  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
+             "^--la-"
+   27:16  ✖  Expected "--la-space-3" to match pattern "^--la-"       custom-property-pattern
+   27:34  ✖  Expected "--la-space-4" to match pattern "^--la-"       custom-property-pattern
+   29:20  ✖  Expected "--la-line-height-normal" to match pattern     custom-property-pattern
+             "^--la-"
+   34:14  ✖  Expected "--la-color-text-muted" to match pattern       custom-property-pattern
+             "^--la-"
+   57:16  ✖  Expected "--la-space-2" to match pattern "^--la-"       custom-property-pattern
+   57:34  ✖  Expected "--la-space-3" to match pattern "^--la-"       custom-property-pattern
+   58:18  ✖  Expected "--la-font-size-sm" to match pattern "^--la-"  custom-property-pattern
+   59:20  ✖  Expected "--la-line-height-tight" to match pattern      custom-property-pattern
+             "^--la-"
+   63:22  ✖  Expected "--la-radius-sm" to match pattern "^--la-"     custom-property-pattern
+   68:16  ✖  Expected "--la-space-4" to match pattern "^--la-"       custom-property-pattern
+   68:34  ✖  Expected "--la-space-5" to match pattern "^--la-"       custom-property-pattern
+   69:18  ✖  Expected "--la-font-size-lg" to match pattern "^--la-"  custom-property-pattern
+   70:20  ✖  Expected "--la-line-height-relaxed" to match pattern    custom-property-pattern
+             "^--la-"
+   74:22  ✖  Expected "--la-radius-lg" to match pattern "^--la-"     custom-property-pattern
+   79:15  ✖  Unexpected value "transparent" for property             declaration-property-value-allowed-list             "background"
+   80:15  ✖  Expected "--la-border-width-2" to match pattern         custom-property-pattern
+             "^--la-"
+   80:46  ✖  Expected "--la-color-border-primary" to match pattern   custom-property-pattern
+             "^--la-"
+   84:19  ✖  Expected "--la-color-surface-secondary" to match        custom-property-pattern
              pattern "^--la-"
+   85:15  ✖  Expected "--la-border-width-1" to match pattern         custom-property-pattern
+             "^--la-"
+   89:15  ✖  Unexpected value "transparent" for property             declaration-property-value-allowed-list             "background"
+   90:15  ✖  Expected "--la-border-width-1" to match pattern         custom-property-pattern
+             "^--la-"
+   94:15  ✖  Unexpected value "transparent" for property             declaration-property-value-allowed-list             "background"
+   96:22  ✖  Expected "--la-border-width-2" to match pattern         custom-property-pattern
+             "^--la-"
+   96:53  ✖  Expected "--la-color-border-primary" to match pattern   custom-property-pattern
+             "^--la-"
+   97:18  ✖  Unexpected value "0" for property "border-radius"       declaration-property-value-allowed-list  102:21  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
+  103:19  ✖  Expected "--la-shadow-focus" to match pattern "^--la-"  custom-property-pattern
+  108:21  ✖  Expected "--la-color-error" to match pattern "^--la-"   custom-property-pattern
+  112:21  ✖  Expected "--la-color-error" to match pattern "^--la-"   custom-property-pattern
+  113:19  ✖  Expected "--la-shadow-error" to match pattern "^--la-"  custom-property-pattern
+  117:21  ✖  Expected "--la-color-success" to match pattern          custom-property-pattern
+             "^--la-"
+  121:21  ✖  Expected "--la-color-success" to match pattern          custom-property-pattern
+             "^--la-"
+  122:19  ✖  Expected "--la-shadow-success" to match pattern         custom-property-pattern
+             "^--la-"
+  126:21  ✖  Expected "--la-color-warning" to match pattern          custom-property-pattern
+             "^--la-"
+  130:21  ✖  Expected "--la-color-warning" to match pattern          custom-property-pattern
+             "^--la-"
+  131:19  ✖  Expected "--la-shadow-warning" to match pattern         custom-property-pattern
+             "^--la-"
+  137:19  ✖  Expected "--la-color-surface-disabled" to match         custom-property-pattern
+             pattern "^--la-"
+  142:14  ✖  Expected "--la-color-text-disabled" to match pattern    custom-property-pattern
+             "^--la-"
+  153:21  ✖  Expected "--la-shadow-focus" to match pattern "^--la-"  custom-property-pattern
+  157:21  ✖  Expected "--la-shadow-error" to match pattern "^--la-"  custom-property-pattern
+  161:21  ✖  Expected "--la-shadow-success" to match pattern         custom-property-pattern
+             "^--la-"
+  165:21  ✖  Expected "--la-shadow-warning" to match pattern         custom-property-pattern
+             "^--la-"
+  180:23  ✖  Expected "--la-border-width-2" to match pattern         custom-property-pattern
+             "^--la-"
+  184:23  ✖  Expected "--la-border-width-3" to match pattern         custom-property-pattern
+             "^--la-"
+
+packages/loading/src/components/LoadingSpinner/LoadingSpinner.css
+  23:12  ✖  Unexpected value "1040" for property "z-index"        declaration-property-value-allowed-list   
+  24:21  ✖  Unexpected value "hsl(0deg 0% 100% / 80%)" for        declaration-property-value-allowed-list   
+            property "background-color"
+  24:21  ✖  Unexpected value "hsl(0deg 0% 100% / 80%)" for        declaration-property-value-disallowed-list            property "background-color"
+  29:21  ✖  Unexpected value "hsl(0deg 0% 0% / 80%)" for          declaration-property-value-allowed-list   
+            property "background-color"
+  29:21  ✖  Unexpected value "hsl(0deg 0% 0% / 80%)" for          declaration-property-value-disallowed-list            property "background-color"
+  42:14  ✖  Unexpected value "0.875rem" for property "font-size"  declaration-property-value-allowed-list   
+  43:14  ✖  Expected "--la-color-text-secondary" to match         custom-property-pattern
+            pattern "^--la-"
+  45:18  ✖  Expected "--la-size-48" to match pattern "^--la-"     custom-property-pattern
+  49:14  ✖  Expected "--la-color-text-secondary" to match         custom-property-pattern
+            pattern "^--la-"
+
+packages/loading/src/components/Skeleton/Skeleton.css
+  11:25  ✖  Expected "--la-color-surface-secondary" to match         custom-property-pattern
+            pattern "^--la-"
+  12:18  ✖  Unexpected value "0.375rem" for property                 declaration-property-value-allowed-list            "border-radius"
+  19:18  ✖  Unexpected value "0.25rem" for property "border-radius"  declaration-property-value-allowed-list  24:18  ✖  Unexpected value "0.375rem" for property                 declaration-property-value-allowed-list            "border-radius"
+  28:18  ✖  Unexpected value "50%" for property "border-radius"      declaration-property-value-allowed-list  35:15  ✖  Unexpected value "linear-gradient(     90deg,            declaration-property-value-allowed-list            var(--la-color-surface-secondary) 25%,
+            var(--la-color-surface-tertiary) 50%,
+            var(--la-color-surface-secondary) 75%   )" for property
+            "background"
+  37:9   ✖  Expected "--la-color-surface-secondary" to match         custom-property-pattern
+            pattern "^--la-"
+  38:9   ✖  Expected "--la-color-surface-tertiary" to match pattern  custom-property-pattern
+            "^--la-"
+  39:9   ✖  Expected "--la-color-surface-secondary" to match         custom-property-pattern
+            pattern "^--la-"
+  77:27  ✖  Expected "--la-color-surface-secondary" to match         custom-property-pattern
+            pattern "^--la-"
+  81:17  ✖  Unexpected value "linear-gradient(       90deg,          declaration-property-value-allowed-list            var(--la-color-surface-secondary) 25%,
+            var(--la-color-surface-tertiary) 50%,
+            var(--la-color-surface-secondary) 75%     )" for
+            property "background"
+  83:11  ✖  Expected "--la-color-surface-secondary" to match         custom-property-pattern
+            pattern "^--la-"
+  84:11  ✖  Expected "--la-color-surface-tertiary" to match pattern  custom-property-pattern
+            "^--la-"
+  85:11  ✖  Expected "--la-color-surface-secondary" to match         custom-property-pattern
+            pattern "^--la-"
+
+packages/loading/src/components/Spinner/Spinner.css
+   11:10  ✖  Unexpected value "oklch(50% 0.15 240deg)" for property  declaration-property-value-allowed-list             "color"
+   93:21  ✖  Unexpected value "currentColor" for property            declaration-property-value-allowed-list             "background-color"
+   93:21  ✖  Expected "currentColor" to be "currentcolor"            value-keyword-case
+   94:18  ✖  Unexpected value "50%" for property "border-radius"     declaration-property-value-allowed-list  136:21  ✖  Unexpected value "currentColor" for property            declaration-property-value-allowed-list             "background-color"
+  136:21  ✖  Expected "currentColor" to be "currentcolor"            value-keyword-case
+  137:18  ✖  Unexpected value "50%" for property "border-radius"     declaration-property-value-allowed-list  175:26  ✖  Expected "currentColor" to be "currentcolor"            value-keyword-case
+  176:18  ✖  Unexpected value "50%" for property "border-radius"     declaration-property-value-allowed-list  178:17  ✖  Unexpected value "currentColor transparent" for         declaration-property-value-allowed-list             property "border-color"
+  178:17  ✖  Expected "currentColor" to be "currentcolor"            value-keyword-case
+  220:1   ✖  Expected selector ".la-spinner-bars div" to come        no-descending-specificity
+             before selector ".la-spinner-ring div:nth-child(1)",
+             at line 181
+  222:21  ✖  Unexpected value "currentColor" for property            declaration-property-value-allowed-list             "background-color"
+  222:21  ✖  Expected "currentColor" to be "currentcolor"            value-keyword-case
+
+packages/map-labels/src/components/MapLabel/MapLabel.css
+   11:16  ✖  Expected "--la-z-index-overlay" to match pattern        custom-property-pattern
+             "^--la-"
+   12:20  ✖  Expected "--la-font-family-base" to match pattern       custom-property-pattern
+             "^--la-"
+   36:15  ✖  Unexpected value "transparent" for property             declaration-property-value-allowed-list             "background"
+   38:15  ✖  Unexpected value "none" for property "box-shadow"       declaration-property-value-allowed-list   42:19  ✖  Expected "--la-color-surface-alpha" to match pattern    custom-property-pattern
+             "^--la-"
+   43:31  ✖  Expected "--la-color-border-primary" to match pattern   custom-property-pattern
+             "^--la-"
+   44:19  ✖  Expected "--la-shadow-sm" to match pattern "^--la-"     custom-property-pattern
+   49:19  ✖  Expected "--la-color-surface" to match pattern          custom-property-pattern
+             "^--la-"
+   50:31  ✖  Expected "--la-color-border-primary" to match pattern   custom-property-pattern
+             "^--la-"
+   51:19  ✖  Expected "--la-shadow-sm" to match pattern "^--la-"     custom-property-pattern
+   58:18  ✖  Expected "--la-font-size-lg" to match pattern "^--la-"  custom-property-pattern
+   60:14  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
+             "^--la-"
+   61:16  ✖  Expected "--la-space-2" to match pattern "^--la-"       custom-property-pattern
+   61:34  ✖  Expected "--la-space-3" to match pattern "^--la-"       custom-property-pattern
+   62:22  ✖  Expected "--la-radius-sm" to match pattern "^--la-"     custom-property-pattern
+   63:20  ✖  Expected "--la-line-height-tight" to match pattern      custom-property-pattern
+             "^--la-"
+   70:18  ✖  Expected "--la-font-size-base" to match pattern         custom-property-pattern
+             "^--la-"
+   72:14  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
+             "^--la-"
+   73:16  ✖  Expected "--la-space-3" to match pattern "^--la-"       custom-property-pattern
+   73:34  ✖  Expected "--la-space-5" to match pattern "^--la-"       custom-property-pattern
+   74:22  ✖  Expected "--la-radius-sm" to match pattern "^--la-"     custom-property-pattern
+   75:20  ✖  Expected "--la-line-height-normal" to match pattern     custom-property-pattern
+             "^--la-"
+   81:18  ✖  Expected "--la-font-size-sm" to match pattern "^--la-"  custom-property-pattern
+   83:14  ✖  Expected "--la-color-text-secondary" to match pattern   custom-property-pattern
+             "^--la-"
+   84:16  ✖  Expected "--la-space-1" to match pattern "^--la-"       custom-property-pattern
+   84:34  ✖  Expected "--la-space-2" to match pattern "^--la-"       custom-property-pattern
+   85:22  ✖  Expected "--la-radius-xs" to match pattern "^--la-"     custom-property-pattern
+   86:20  ✖  Expected "--la-line-height-normal" to match pattern     custom-property-pattern
+             "^--la-"
+   93:18  ✖  Expected "--la-font-size-sm" to match pattern "^--la-"  custom-property-pattern
+   95:14  ✖  Expected "--la-color-text-secondary" to match pattern   custom-property-pattern
+             "^--la-"
+   96:16  ✖  Expected "--la-space-1" to match pattern "^--la-"       custom-property-pattern
+   96:34  ✖  Expected "--la-space-2" to match pattern "^--la-"       custom-property-pattern
+   97:22  ✖  Expected "--la-radius-xs" to match pattern "^--la-"     custom-property-pattern
+   98:20  ✖  Expected "--la-line-height-normal" to match pattern     custom-property-pattern
+             "^--la-"
+  105:18  ✖  Expected "--la-font-size-xs" to match pattern "^--la-"  custom-property-pattern
+  107:14  ✖  Expected "--la-color-text-tertiary" to match pattern    custom-property-pattern
+             "^--la-"
+  108:16  ✖  Expected "--la-space-1" to match pattern "^--la-"       custom-property-pattern
+  108:34  ✖  Expected "--la-space-2" to match pattern "^--la-"       custom-property-pattern
+  109:22  ✖  Expected "--la-radius-xs" to match pattern "^--la-"     custom-property-pattern
+  110:20  ✖  Expected "--la-line-height-normal" to match pattern     custom-property-pattern
+             "^--la-"
+  116:18  ✖  Expected "--la-font-size-sm" to match pattern "^--la-"  custom-property-pattern
+  118:14  ✖  Expected "--la-color-warning" to match pattern          custom-property-pattern
+             "^--la-"
+  119:16  ✖  Expected "--la-space-1" to match pattern "^--la-"       custom-property-pattern
+  119:34  ✖  Expected "--la-space-2" to match pattern "^--la-"       custom-property-pattern
+  120:22  ✖  Expected "--la-radius-sm" to match pattern "^--la-"     custom-property-pattern
+  121:20  ✖  Expected "--la-line-height-normal" to match pattern     custom-property-pattern
+             "^--la-"
+  123:19  ✖  Expected "--la-color-bg-warning" to match pattern       custom-property-pattern
+             "^--la-"
+  124:31  ✖  Expected "--la-color-border-warning" to match pattern   custom-property-pattern
+             "^--la-"
+  129:18  ✖  Expected "--la-font-size-sm" to match pattern "^--la-"  custom-property-pattern
+  131:14  ✖  Expected "--la-color-success" to match pattern          custom-property-pattern
+             "^--la-"
+  132:16  ✖  Expected "--la-space-1" to match pattern "^--la-"       custom-property-pattern
+  132:34  ✖  Expected "--la-space-2" to match pattern "^--la-"       custom-property-pattern
+  133:22  ✖  Expected "--la-radius-sm" to match pattern "^--la-"     custom-property-pattern
+  134:20  ✖  Expected "--la-line-height-normal" to match pattern     custom-property-pattern
+             "^--la-"
+  136:19  ✖  Expected "--la-color-bg-success" to match pattern       custom-property-pattern
+             "^--la-"
+  137:31  ✖  Expected "--la-color-border-success" to match pattern   custom-property-pattern
+             "^--la-"
+  159:16  ✖  Expected "--la-z-index-tooltip" to match pattern        custom-property-pattern
+             "^--la-"
+  160:19  ✖  Expected "--la-shadow-md" to match pattern "^--la-"     custom-property-pattern
+  165:16  ✖  Expected "--la-z-index-popover" to match pattern        custom-property-pattern
+             "^--la-"
+  170:16  ✖  Expected "--la-z-index-tooltip" to match pattern        custom-property-pattern
+             "^--la-"
+  171:19  ✖  Expected "--la-shadow-md" to match pattern "^--la-"     custom-property-pattern
+  175:16  ✖  Expected "--la-z-index-popover" to match pattern        custom-property-pattern
+             "^--la-"
+  176:19  ✖  Expected "--la-shadow-md" to match pattern "^--la-"     custom-property-pattern
+  177:19  ✖  Expected "--la-color-bg-brand" to match pattern         custom-property-pattern
+             "^--la-"
+  178:21  ✖  Expected "--la-color-border-brand" to match pattern     custom-property-pattern
+             "^--la-"
+  244:8   ✖  Expected "context" media feature range notation         media-feature-range-notation
+  246:20  ✖  Expected "--la-font-size-base" to match pattern         custom-property-pattern
+             "^--la-"
+  251:20  ✖  Expected "--la-font-size-sm" to match pattern "^--la-"  custom-property-pattern
+  252:18  ✖  Expected "--la-space-1" to match pattern "^--la-"       custom-property-pattern
+  252:36  ✖  Expected "--la-space-2" to match pattern "^--la-"       custom-property-pattern
+  257:20  ✖  Expected "--la-font-size-xs" to match pattern "^--la-"  custom-property-pattern
+  258:18  ✖  Expected "--la-space-1" to match pattern "^--la-"       custom-property-pattern
+  269:21  ✖  Expected "--la-color-surface" to match pattern          custom-property-pattern
+             "^--la-"
+  273:21  ✖  Expected "--la-color-surface" to match pattern          custom-property-pattern
+             "^--la-"
+  295:17  ✖  Unexpected value "transparent" for property             declaration-property-value-allowed-list             "background"
+  299:21  ✖  Expected "--la-color-surface-dark" to match pattern     custom-property-pattern
+             "^--la-"
+  300:23  ✖  Expected "--la-color-border-primary" to match pattern   custom-property-pattern
+             "^--la-"
+  304:21  ✖  Expected "--la-color-surface-dark" to match pattern     custom-property-pattern
+             "^--la-"
+  305:23  ✖  Expected "--la-color-border-primary" to match pattern   custom-property-pattern
+             "^--la-"
 
 packages/modals/src/components/Dialog/Dialog.css
-   10:12  ✖  Expected "--la-space-4" to match pattern "^--la-"       custom-property-pattern
-   13:1   ✖  Expected class selector ".la-dialog__icon-container"    selector-class-pattern
-             to be kebab-case
-   17:14  ✖  Expected "--la-space-12" to match pattern "^--la-"      custom-property-pattern
-   18:15  ✖  Expected "--la-space-12" to match pattern "^--la-"      custom-property-pattern
    19:22  ✖  Expected "--la-radius-full" to match pattern "^--la-"   custom-property-pattern
-   20:22  ✖  Expected "--la-space-3" to match pattern "^--la-"       custom-property-pattern
-   23:1   ✖  Expected class selector ".la-dialog__icon" to be        selector-class-pattern
-             kebab-case
-   24:14  ✖  Expected "--la-space-6" to match pattern "^--la-"       custom-property-pattern
-   25:15  ✖  Expected "--la-space-6" to match pattern "^--la-"       custom-property-pattern
-   28:1   ✖  Expected class selector ".la-dialog__icon--info" to be  selector-class-pattern
-             kebab-case
    29:14  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
-   32:1   ✖  Expected class selector ".la-dialog__icon--success" to  selector-class-pattern
-             be kebab-case
    33:14  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
-   36:1   ✖  Expected class selector ".la-dialog__icon--warning" to  selector-class-pattern
-             be kebab-case
    37:14  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
-   40:1   ✖  Expected class selector ".la-dialog__icon--error" to    selector-class-pattern
-             be kebab-case
    41:14  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
-   44:1   ✖  Expected class selector ".la-dialog__icon--question"    selector-class-pattern
-             to be kebab-case
    45:14  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
-   49:1   ✖  Expected class selector ".la-dialog--info" to be        selector-class-pattern
-             kebab-case
-   49:18  ✖  Expected class selector ".la-dialog__icon-container"    selector-class-pattern
-             to be kebab-case
    50:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
-   53:1   ✖  Expected class selector ".la-dialog--success" to be     selector-class-pattern
-             kebab-case
-   53:21  ✖  Expected class selector ".la-dialog__icon-container"    selector-class-pattern
-             to be kebab-case
    54:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
-   57:1   ✖  Expected class selector ".la-dialog--warning" to be     selector-class-pattern
-             kebab-case
-   57:21  ✖  Expected class selector ".la-dialog__icon-container"    selector-class-pattern
-             to be kebab-case
    58:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
-   61:18  ✖  Expected class selector ".la-dialog__icon-container"    selector-class-pattern
-             to be kebab-case
    62:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
-   65:21  ✖  Expected class selector ".la-dialog__icon-container"    selector-class-pattern
-             to be kebab-case
    66:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
    71:18  ✖  Expected "--la-font-size-base" to match pattern         custom-property-pattern
              "^--la-"
@@ -117,76 +462,51 @@ packages/modals/src/components/Dialog/Dialog.css
              "^--la-"
    73:14  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
              "^--la-"
-   74:17  ✖  Unexpected unit "px"                                    unit-disallowed-list
-   80:12  ✖  Expected "--la-space-3" to match pattern "^--la-"       custom-property-pattern
+   74:18  ✖  Expected "--la-space-96" to match pattern "^--la-"      custom-property-pattern
    88:12  ✖  Expected "--la-space-2" to match pattern "^--la-"       custom-property-pattern
    89:15  ✖  Expected "--la-space-10" to match pattern "^--la-"      custom-property-pattern
-   90:18  ✖  Expected "--la-space-4" to match pattern "^--la-"       custom-property-pattern
    91:15  ✖  Expected "--la-border-width-1" to match pattern         custom-property-pattern
              "^--la-"
    92:22  ✖  Expected "--la-radius-md" to match pattern "^--la-"     custom-property-pattern
    93:18  ✖  Expected "--la-font-size-sm" to match pattern "^--la-"  custom-property-pattern
-   95:16  ✖  Unexpected value "1" for property "line-height"         declaration-property-value-allowed-list  108:1   ✖  Expected class selector ".la-dialog-button--ghost" to   selector-class-pattern
-             be kebab-case
-  109:21  ✖  Unexpected value "transparent" for property             declaration-property-value-allowed-list             "background-color"
-  110:21  ✖  Expected "--la-color-text-muted" to match pattern       custom-property-pattern
+   95:16  ✖  Unexpected value "1" for property "line-height"         declaration-property-value-allowed-list  109:25  ✖  Expected "--la-color-transparent" to match pattern      custom-property-pattern
              "^--la-"
+  110:21  ✖  Expected "--la-color-border-secondary" to match         custom-property-pattern
+             pattern "^--la-"
   111:14  ✖  Expected "--la-color-text-secondary" to match pattern   custom-property-pattern
              "^--la-"
-  114:1   ✖  Expected class selector ".la-dialog-button--ghost" to   selector-class-pattern
-             be kebab-case
   115:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
   116:21  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
              "^--la-"
   117:14  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
              "^--la-"
-  120:1   ✖  Expected class selector ".la-dialog-button--primary"    selector-class-pattern
-             to be kebab-case
   121:25  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
   122:14  ✖  Expected "--la-color-brand-contrast" to match pattern   custom-property-pattern
              "^--la-"
-  125:1   ✖  Expected class selector ".la-dialog-button--primary"    selector-class-pattern
-             to be kebab-case
   126:25  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
-  129:1   ✖  Expected class selector ".la-dialog-button--success"    selector-class-pattern
-             to be kebab-case
   130:25  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
   131:14  ✖  Expected "--la-color-brand-contrast" to match pattern   custom-property-pattern
              "^--la-"
-  134:1   ✖  Expected class selector ".la-dialog-button--success"    selector-class-pattern
-             to be kebab-case
   135:25  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
-  138:1   ✖  Expected class selector ".la-dialog-button--warning"    selector-class-pattern
-             to be kebab-case
   139:25  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
   140:14  ✖  Expected "--la-color-brand-contrast" to match pattern   custom-property-pattern
              "^--la-"
-  143:1   ✖  Expected class selector ".la-dialog-button--warning"    selector-class-pattern
-             to be kebab-case
   144:25  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
-  147:1   ✖  Expected class selector ".la-dialog-button--danger" to  selector-class-pattern
-             be kebab-case
   148:25  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
   149:14  ✖  Expected "--la-color-brand-contrast" to match pattern   custom-property-pattern
              "^--la-"
-  152:1   ✖  Expected class selector ".la-dialog-button--danger" to  selector-class-pattern
-             be kebab-case
   153:25  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
   164:3   ✖  Expected empty line before rule                         rule-empty-line-before
   171:14  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
              "^--la-"
   174:1   ✖  Expected selector "[data-theme="dark"]                  no-descending-specificity
-             .la-dialog-button--ghost" to come before selector
-             ".la-dialog-button--ghost:hover:not(:disabled)", at
+             .la-dialog-button-ghost" to come before selector
+             ".la-dialog-button-ghost:hover:not(:disabled)", at
              line 114
-  174:21  ✖  Expected class selector ".la-dialog-button--ghost" to   selector-class-pattern
-             be kebab-case
   175:21  ✖  Expected "--la-color-text-muted" to match pattern       custom-property-pattern
              "^--la-"
   176:14  ✖  Expected "--la-color-text-secondary" to match pattern   custom-property-pattern
              "^--la-"
-  179:21  ✖  Expected class selector ".la-dialog-button--ghost" to   selector-class-pattern
-             be kebab-case
   180:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
   181:21  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
              "^--la-"
@@ -194,124 +514,39 @@ packages/modals/src/components/Dialog/Dialog.css
              "^--la-"
 
 packages/modals/src/components/Modal/Modal.css
-    6:3   ✖  Expected "--la-z-index-modal" to match pattern          custom-property-pattern
+   11:12  ✖  Unexpected value "1000" for property "z-index"          declaration-property-value-allowed-list   12:25  ✖  Expected "--la-color-bg-overlay" to match pattern       custom-property-pattern
              "^--la-"
-    7:3   ✖  Expected "--la-color-overlay" to match pattern          custom-property-pattern
+   22:25  ✖  Expected "--la-color-surface" to match pattern          custom-property-pattern
              "^--la-"
-    7:27  ✖  Expected "--la-color-bg-overlay" to match pattern       custom-property-pattern
+   24:18  ✖  Unexpected value "0.5rem" for property "border-radius"  declaration-property-value-allowed-list   25:15  ✖  Unexpected value "0 1.25rem 2.5rem -0.75rem oklch(0% 0  declaration-property-value-allowed-list             0deg / 25%), 0:0.625rem 1.25rem -0.375rem oklch(0% 0
+             0deg / 10%)" for property "box-shadow"
+   76:31  ✖  Expected "--la-space-8" to match pattern "^--la-"       custom-property-pattern
+   82:15  ✖  Unexpected value "0 1.5rem 3rem -0.75rem oklch(0% 0     declaration-property-value-allowed-list             0deg / 30%), 0:0.75rem 1.5rem -0.375rem oklch(0% 0
+             0deg / 15%)" for property "box-shadow"
+   92:18  ✖  Unexpected value "0" for property "border-radius"       declaration-property-value-allowed-list  101:12  ✖  Unexpected value "1050" for property "z-index"          declaration-property-value-allowed-list  108:18  ✖  Unexpected value "0.375rem" for property                declaration-property-value-allowed-list             "border-radius"
+  109:21  ✖  Unexpected value "transparent" for property             declaration-property-value-allowed-list             "background-color"
+  110:14  ✖  Expected "--la-color-text-secondary" to match pattern   custom-property-pattern
              "^--la-"
-    8:3   ✖  Expected "--la-color-surface" to match pattern          custom-property-pattern
+  116:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
+  117:14  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
              "^--la-"
-    8:27  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
-    9:3   ✖  Expected "--la-color-text-muted" to match pattern       custom-property-pattern
-             "^--la-"
-    9:30  ✖  Expected "--la-color-text-secondary" to match pattern   custom-property-pattern
-             "^--la-"
-   10:3   ✖  Expected "--la-box-shadow-xl" to match pattern          custom-property-pattern
-             "^--la-"
-   10:27  ✖  Expected "--la-shadow-xl" to match pattern "^--la-"     custom-property-pattern
-   11:3   ✖  Expected "--la-radius-lg" to match pattern "^--la-"     custom-property-pattern
-   14:3   ✖  Expected "--la-size-xs" to match pattern "^--la-"       custom-property-pattern
-   15:3   ✖  Expected "--la-size-sm" to match pattern "^--la-"       custom-property-pattern
-   16:3   ✖  Expected "--la-size-md" to match pattern "^--la-"       custom-property-pattern
-   17:3   ✖  Expected "--la-size-lg" to match pattern "^--la-"       custom-property-pattern
-   18:3   ✖  Expected "--la-size-xl" to match pattern "^--la-"       custom-property-pattern
-   21:3   ✖  Expected "--la-space-4" to match pattern "^--la-"       custom-property-pattern
-   22:3   ✖  Expected "--la-space-3" to match pattern "^--la-"       custom-property-pattern
-   25:3   ✖  Expected "--la-transition-duration" to match pattern    custom-property-pattern
-             "^--la-"
-   26:3   ✖  Expected "--la-transition-timing" to match pattern      custom-property-pattern
-             "^--la-"
-   31:3   ✖  Expected "--la-color-surface" to match pattern          custom-property-pattern
-             "^--la-"
-   31:27  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
-   32:3   ✖  Expected "--la-color-text-muted" to match pattern       custom-property-pattern
-             "^--la-"
-   32:30  ✖  Expected "--la-color-text-secondary" to match pattern   custom-property-pattern
-             "^--la-"
-   33:3   ✖  Expected "--la-color-overlay" to match pattern          custom-property-pattern
-             "^--la-"
-   33:27  ✖  Expected "--la-color-bg-overlay" to match pattern       custom-property-pattern
-             "^--la-"
-   40:16  ✖  Expected "--la-z-index-modal" to match pattern          custom-property-pattern
-             "^--la-"
-   41:25  ✖  Expected "--la-color-overlay" to match pattern          custom-property-pattern
-             "^--la-"
-   45:16  ✖  Expected "--la-space-4" to match pattern "^--la-"       custom-property-pattern
-   51:25  ✖  Expected "--la-color-surface" to match pattern          custom-property-pattern
-             "^--la-"
-   52:31  ✖  Expected "--la-color-text-muted" to match pattern       custom-property-pattern
-             "^--la-"
-   53:22  ✖  Expected "--la-radius-lg" to match pattern "^--la-"     custom-property-pattern
-   54:15  ✖  Unexpected value "var(--la-box-shadow-xl)" for          declaration-property-value-allowed-list             property "box-shadow"
-   54:19  ✖  Expected "--la-box-shadow-xl" to match pattern          custom-property-pattern
-             "^--la-"
-   56:36  ✖  Expected "--la-space-4" to match pattern "^--la-"       custom-property-pattern
-   60:16  ✖  Expected "--la-space-4" to match pattern "^--la-"       custom-property-pattern
-   85:18  ✖  Expected "--la-size-xs" to match pattern "^--la-"       custom-property-pattern
-   89:18  ✖  Expected "--la-size-sm" to match pattern "^--la-"       custom-property-pattern
-   93:18  ✖  Expected "--la-size-md" to match pattern "^--la-"       custom-property-pattern
-   97:18  ✖  Expected "--la-size-lg" to match pattern "^--la-"       custom-property-pattern
-  101:18  ✖  Expected "--la-size-xl" to match pattern "^--la-"       custom-property-pattern
-  105:35  ✖  Expected "--la-space-4" to match pattern "^--la-"       custom-property-pattern
-  106:36  ✖  Expected "--la-space-4" to match pattern "^--la-"       custom-property-pattern
-  111:15  ✖  Unexpected value "var(--la-box-shadow-xl)" for          declaration-property-value-allowed-list             property "box-shadow"
-  111:19  ✖  Expected "--la-box-shadow-xl" to match pattern          custom-property-pattern
-             "^--la-"
-  121:22  ✖  Expected "--la-radius-none" to match pattern "^--la-"   custom-property-pattern
-  128:12  ✖  Expected "--la-space-3" to match pattern "^--la-"       custom-property-pattern
-  129:14  ✖  Expected "--la-space-3" to match pattern "^--la-"       custom-property-pattern
-  130:16  ✖  Expected "--la-z-index-modal" to match pattern          custom-property-pattern
-             "^--la-"
-  134:14  ✖  Expected "--la-space-8" to match pattern "^--la-"       custom-property-pattern
-  135:15  ✖  Expected "--la-space-8" to match pattern "^--la-"       custom-property-pattern
-  137:22  ✖  Expected "--la-radius-md" to match pattern "^--la-"     custom-property-pattern
-  138:21  ✖  Unexpected value "transparent" for property             declaration-property-value-allowed-list             "background-color"
-  139:14  ✖  Expected "--la-color-text-secondary" to match pattern   custom-property-pattern
-             "^--la-"
-  141:23  ✖  Expected "--la-transition-duration" to match pattern    custom-property-pattern
-             "^--la-"
-  141:53  ✖  Expected "--la-transition-timing" to match pattern      custom-property-pattern
-             "^--la-"
-  145:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
-  146:14  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
-             "^--la-"
-  150:16  ✖  Expected "--la-border-width-2" to match pattern         custom-property-pattern
-             "^--la-"
-  150:47  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
-  151:23  ✖  Expected "--la-border-width-2" to match pattern         custom-property-pattern
-             "^--la-"
-  156:35  ✖  Expected "--la-transition-duration" to match pattern    custom-property-pattern
-             "^--la-"
-  156:65  ✖  Expected "--la-transition-timing" to match pattern      custom-property-pattern
-             "^--la-"
-  160:36  ✖  Expected "--la-transition-duration" to match pattern    custom-property-pattern
-             "^--la-"
-  160:66  ✖  Expected "--la-transition-timing" to match pattern      custom-property-pattern
-             "^--la-"
-  164:36  ✖  Expected "--la-transition-duration" to match pattern    custom-property-pattern
-             "^--la-"
-  164:66  ✖  Expected "--la-transition-timing" to match pattern      custom-property-pattern
-             "^--la-"
-  168:36  ✖  Expected "--la-transition-duration" to match pattern    custom-property-pattern
-             "^--la-"
-  168:66  ✖  Expected "--la-transition-timing" to match pattern      custom-property-pattern
-             "^--la-"
-  175:3   ✖  Expected empty line before rule                         rule-empty-line-before
-  185:3   ✖  Expected empty line before rule                         rule-empty-line-before
-  196:3   ✖  Expected empty line before rule                         rule-empty-line-before
-  205:18  ✖  Expected "--la-space-3" to match pattern "^--la-"       custom-property-pattern
+  146:3   ✖  Expected empty line before rule                         rule-empty-line-before
+  156:3   ✖  Expected empty line before rule                         rule-empty-line-before
+  167:3   ✖  Expected empty line before rule                         rule-empty-line-before
 
 packages/modals/src/components/ModalContent/ModalContent.css
-   8:25  ✖  Expected "--la-color-surface" to match pattern "^--la-"                  custom-property-pattern  17:16  ✖  Expected "--la-space-3" to match pattern "^--la-"                        custom-property-pattern  17:34  ✖  Expected "--la-space-4" to match pattern "^--la-"                        custom-property-pattern  21:16  ✖  Expected "--la-space-4" to match pattern "^--la-"                        custom-property-pattern  21:34  ✖  Expected "--la-space-4" to match pattern "^--la-"                        custom-property-pattern  25:16  ✖  Expected "--la-space-4" to match pattern "^--la-"                        custom-property-pattern  34:14  ✖  Expected "--la-space-2" to match pattern "^--la-"                        custom-property-pattern  38:19  ✖  Expected "--la-color-surface" to match pattern "^--la-"                  custom-property-pattern  41:1   ✖  Expected class selector ".la-modal-content--scrollable" to be            selector-class-pattern 
-            kebab-case
-  42:19  ✖  Expected "--la-color-border" to match pattern "^--la-"                   custom-property-pattern  43:22  ✖  Expected "--la-radius-xs" to match pattern "^--la-"                      custom-property-pattern  46:1   ✖  Expected class selector ".la-modal-content--scrollable" to be            selector-class-pattern 
-            kebab-case
-  47:19  ✖  Expected "--la-color-text-secondary" to match pattern "^--la-"           custom-property-pattern  52:25  ✖  Expected "--la-modal-bg" to match pattern "^--la-"                       custom-property-pattern  55:21  ✖  Expected class selector ".la-modal-content--scrollable" to be            selector-class-pattern 
-            kebab-case
-  56:19  ✖  Expected "--la-modal-border" to match pattern "^--la-"                   custom-property-pattern  59:21  ✖  Expected class selector ".la-modal-content--scrollable" to be            selector-class-pattern 
-            kebab-case
-  60:19  ✖  Expected "--la-color-text-secondary" to match pattern "^--la-"           custom-property-pattern
+   8:25  ✖  Expected "--la-color-surface" to match pattern "^--la-"         custom-property-pattern
+  17:16  ✖  Expected "--la-space-3" to match pattern "^--la-"               custom-property-pattern
+  17:34  ✖  Expected "--la-space-4" to match pattern "^--la-"               custom-property-pattern
+  21:16  ✖  Expected "--la-space-4" to match pattern "^--la-"               custom-property-pattern
+  21:34  ✖  Expected "--la-space-4" to match pattern "^--la-"               custom-property-pattern
+  25:16  ✖  Expected "--la-space-4" to match pattern "^--la-"               custom-property-pattern
+  34:14  ✖  Expected "--la-space-1" to match pattern "^--la-"               custom-property-pattern
+  38:19  ✖  Expected "--la-color-transparent" to match pattern "^--la-"     custom-property-pattern
+  42:19  ✖  Expected "--la-modal-border" to match pattern "^--la-"          custom-property-pattern
+  43:22  ✖  Expected "--la-radius-xs" to match pattern "^--la-"             custom-property-pattern
+  47:19  ✖  Expected "--la-color-text-secondary" to match pattern "^--la-"  custom-property-pattern
+
 packages/modals/src/components/ModalFooter/ModalFooter.css
    8:12  ✖  Expected "--la-space-md" to match pattern "^--la-"       custom-property-pattern
    9:16  ✖  Expected "--la-space-md" to match pattern "^--la-"       custom-property-pattern
@@ -321,389 +556,229 @@ packages/modals/src/components/ModalFooter/ModalFooter.css
             "^--la-"
   10:50  ✖  Expected "--la-modal-border" to match pattern "^--la-"   custom-property-pattern
   11:25  ✖  Expected "--la-modal-bg" to match pattern "^--la-"       custom-property-pattern
-  12:18  ✖  Unexpected value "0 0 var(--la-modal-radius)             declaration-property-value-allowed-list            var(--la-modal-radius)" for property "border-radius"
-  12:26  ✖  Expected "--la-modal-radius" to match pattern "^--la-"   custom-property-pattern
-  12:49  ✖  Expected "--la-modal-radius" to match pattern "^--la-"   custom-property-pattern
-  15:1   ✖  Expected class selector ".la-modal-footer__content" to   selector-class-pattern
-            be kebab-case
-  16:13  ✖  Expected "--la-flex-1" to match pattern "^--la-"         custom-property-pattern
-  20:1   ✖  Expected class selector ".la-modal-footer__actions" to   selector-class-pattern
-            be kebab-case
-  23:12  ✖  Expected "--la-space-sm" to match pattern "^--la-"       custom-property-pattern
-  24:20  ✖  Expected "--la-flex-shrink-0" to match pattern "^--la-"  custom-property-pattern
-  28:1   ✖  Expected class selector ".la-modal-footer--left" to be   selector-class-pattern
-            kebab-case
-  32:1   ✖  Expected class selector ".la-modal-footer--center" to    selector-class-pattern
-            be kebab-case
-  36:1   ✖  Expected class selector ".la-modal-footer--right" to be  selector-class-pattern
-            kebab-case
-  40:1   ✖  Expected class selector ".la-modal-footer--between" to   selector-class-pattern
-            be kebab-case
-  44:1   ✖  Expected class selector ".la-modal-footer--between" to   selector-class-pattern
-            be kebab-case
-  44:27  ✖  Expected class selector ".la-modal-footer__content" to   selector-class-pattern
-            be kebab-case
-  50:25  ✖  Expected "--la-modal-bg" to match pattern "^--la-"       custom-property-pattern
-  51:25  ✖  Expected "--la-modal-border" to match pattern "^--la-"   custom-property-pattern
-  59:14  ✖  Expected "--la-space-sm" to match pattern "^--la-"       custom-property-pattern
-  62:3   ✖  Expected class selector ".la-modal-footer__actions" to   selector-class-pattern
-            be kebab-case
-  67:3   ✖  Expected class selector ".la-modal-footer__actions" to   selector-class-pattern
-            be kebab-case
-  68:15  ✖  Expected "--la-flex-1" to match pattern "^--la-"         custom-property-pattern
+  12:18  ✖  Unexpected value "0 0 var(--la-radius-lg)                declaration-property-value-allowed-list            var(--la-radius-lg)" for property "border-radius"
+  12:26  ✖  Expected "--la-radius-lg" to match pattern "^--la-"      custom-property-pattern
+  12:46  ✖  Expected "--la-radius-lg" to match pattern "^--la-"      custom-property-pattern
+  23:12  ✖  Expected "--la-space-2" to match pattern "^--la-"        custom-property-pattern
+  54:14  ✖  Expected "--la-space-2" to match pattern "^--la-"        custom-property-pattern
 
 packages/modals/src/components/ModalHeader/ModalHeader.css
-   9:12  ✖  Expected "--la-space-md" to match pattern "^--la-"       custom-property-pattern
-  10:16  ✖  Expected "--la-modal-padding" to match pattern "^--la-"  custom-property-pattern
-  11:23  ✖  Expected "--la-space-md" to match pattern "^--la-"       custom-property-pattern
-  12:22  ✖  Expected "--la-border-width-1" to match pattern          custom-property-pattern
+   9:12  ✖  Expected "--la-space-3" to match pattern "^--la-"        custom-property-pattern
+  10:16  ✖  Expected "--la-space-4" to match pattern "^--la-"        custom-property-pattern
+  11:23  ✖  Expected "--la-space-3" to match pattern "^--la-"        custom-property-pattern
+  12:38  ✖  Expected "--la-color-border-primary" to match pattern    custom-property-pattern
             "^--la-"
-  12:53  ✖  Expected "--la-modal-border" to match pattern "^--la-"   custom-property-pattern
-  13:25  ✖  Expected "--la-modal-bg" to match pattern "^--la-"       custom-property-pattern
-  14:18  ✖  Unexpected value "var(--la-modal-radius)                 declaration-property-value-allowed-list            var(--la-modal-radius) 0:0" for property
-            "border-radius"
-  14:22  ✖  Expected "--la-modal-radius" to match pattern "^--la-"   custom-property-pattern
-  14:45  ✖  Expected "--la-modal-radius" to match pattern "^--la-"   custom-property-pattern
-  17:1   ✖  Expected class selector ".la-modal-header__content" to   selector-class-pattern
+  13:25  ✖  Expected "--la-color-bg-primary" to match pattern        custom-property-pattern
+            "^--la-"
+  14:22  ✖  Expected "--la-radius-lg" to match pattern "^--la-"      custom-property-pattern
+  14:42  ✖  Expected "--la-radius-lg" to match pattern "^--la-"      custom-property-pattern
+  17:1   ✖  Expected class selector ".la-modal-header--content" to   selector-class-pattern
             be kebab-case
-  18:13  ✖  Expected "--la-flex-1" to match pattern "^--la-"         custom-property-pattern
-  22:1   ✖  Expected class selector ".la-modal-header__title" to be  selector-class-pattern
+  22:1   ✖  Expected class selector ".la-modal-header--title" to be  selector-class-pattern
             kebab-case
-  24:14  ✖  Unexpected value "var(--la-text-xl)" for property        declaration-property-value-allowed-list            "font-size"
-  24:18  ✖  Expected "--la-text-xl" to match pattern "^--la-"        custom-property-pattern
-  25:20  ✖  Expected "--la-font-semibold" to match pattern "^--la-"  custom-property-pattern
-  26:16  ✖  Unexpected value "var(--la-leading-relaxed)" for         declaration-property-value-allowed-list            property "line-height"
-  26:20  ✖  Expected "--la-leading-relaxed" to match pattern         custom-property-pattern
+  24:18  ✖  Expected "--la-font-size-xl" to match pattern "^--la-"   custom-property-pattern
+  26:16  ✖  Unexpected value "1.5" for property "line-height"        declaration-property-value-allowed-list  27:14  ✖  Expected "--la-color-text-primary" to match pattern      custom-property-pattern
             "^--la-"
-  27:14  ✖  Expected "--la-color-text-primary" to match pattern      custom-property-pattern
-            "^--la-"
-  30:1   ✖  Expected class selector ".la-modal-header__subtitle" to  selector-class-pattern
+  30:1   ✖  Expected class selector ".la-modal-header--subtitle" to  selector-class-pattern
             be kebab-case
-  31:15  ✖  Expected "--la-space-xs" to match pattern "^--la-"       custom-property-pattern
-  32:14  ✖  Unexpected value "var(--la-text-sm)" for property        declaration-property-value-allowed-list            "font-size"
-  32:18  ✖  Expected "--la-text-sm" to match pattern "^--la-"        custom-property-pattern
-  33:16  ✖  Unexpected value "var(--la-leading-normal)" for          declaration-property-value-allowed-list            property "line-height"
-  33:20  ✖  Expected "--la-leading-normal" to match pattern          custom-property-pattern
+  31:11  ✖  Expected "0.25rem 0 0 0" to be "0.25rem 0 0"             shorthand-property-no-redundant-values 
+  32:18  ✖  Expected "--la-font-size-sm" to match pattern "^--la-"   custom-property-pattern
+  33:16  ✖  Unexpected value "1.5" for property "line-height"        declaration-property-value-allowed-list  34:14  ✖  Expected "--la-color-text-secondary" to match pattern    custom-property-pattern
             "^--la-"
-  34:14  ✖  Expected "--la-color-text-secondary" to match pattern    custom-property-pattern
-            "^--la-"
-  37:1   ✖  Expected class selector ".la-modal-header__close" to be  selector-class-pattern
+  37:1   ✖  Expected class selector ".la-modal-header--close" to be  selector-class-pattern
             kebab-case
-  41:14  ✖  Expected "--la-size-8" to match pattern "^--la-"         custom-property-pattern
-  42:15  ✖  Expected "--la-size-8" to match pattern "^--la-"         custom-property-pattern
+  41:14  ✖  Expected "--la-space-8" to match pattern "^--la-"        custom-property-pattern
+  42:15  ✖  Expected "--la-space-8" to match pattern "^--la-"        custom-property-pattern
   44:22  ✖  Expected "--la-radius-md" to match pattern "^--la-"      custom-property-pattern
   45:21  ✖  Unexpected value "transparent" for property              declaration-property-value-allowed-list            "background-color"
   46:14  ✖  Expected "--la-color-text-secondary" to match pattern    custom-property-pattern
             "^--la-"
-  47:15  ✖  Expected "--la-cursor-pointer" to match pattern          custom-property-pattern
-            "^--la-"
-  48:23  ✖  Expected "--la-transition-fast" to match pattern         custom-property-pattern
-            "^--la-"
-  49:20  ✖  Expected "--la-flex-shrink-0" to match pattern "^--la-"  custom-property-pattern
-  52:1   ✖  Expected class selector ".la-modal-header__close" to be  selector-class-pattern
+  52:1   ✖  Expected class selector ".la-modal-header--close" to be  selector-class-pattern
             kebab-case
-  53:25  ✖  Expected "--la-color-surface-hover" to match pattern     custom-property-pattern
-            "^--la-"
+  53:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"   custom-property-pattern
   54:14  ✖  Expected "--la-color-text-primary" to match pattern      custom-property-pattern
             "^--la-"
-  57:1   ✖  Expected class selector ".la-modal-header__close" to be  selector-class-pattern
+  57:1   ✖  Expected class selector ".la-modal-header--close" to be  selector-class-pattern
             kebab-case
-  58:16  ✖  Expected "--la-border-width-2" to match pattern          custom-property-pattern
-            "^--la-"
-  58:47  ✖  Expected "--la-color-primary" to match pattern "^--la-"  custom-property-pattern
-  59:23  ✖  Expected "--la-border-width-2" to match pattern          custom-property-pattern
-            "^--la-"
-  64:25  ✖  Expected "--la-modal-bg" to match pattern "^--la-"       custom-property-pattern
-  65:28  ✖  Expected "--la-modal-border" to match pattern "^--la-"   custom-property-pattern
-  68:21  ✖  Expected class selector ".la-modal-header__title" to be  selector-class-pattern
-            kebab-case
-  69:14  ✖  Expected "--la-color-text-primary" to match pattern      custom-property-pattern
-            "^--la-"
-  72:21  ✖  Expected class selector ".la-modal-header__subtitle" to  selector-class-pattern
-            be kebab-case
-  73:14  ✖  Expected "--la-color-text-secondary" to match pattern    custom-property-pattern
-            "^--la-"
-  76:21  ✖  Expected class selector ".la-modal-header__close" to be  selector-class-pattern
-            kebab-case
-  77:14  ✖  Expected "--la-color-text-secondary" to match pattern    custom-property-pattern
-            "^--la-"
-  80:21  ✖  Expected class selector ".la-modal-header__close" to be  selector-class-pattern
-            kebab-case
-  81:25  ✖  Expected "--la-color-surface-hover" to match pattern     custom-property-pattern
-            "^--la-"
-  82:14  ✖  Expected "--la-color-text-primary" to match pattern      custom-property-pattern
-            "^--la-"
+  58:31  ✖  Expected "--la-color-brand" to match pattern "^--la-"    custom-property-pattern
 
 packages/notifications/src/components/Alert/Alert.css
-    8:12  ✖  Expected "--la-space-sm" to match pattern "^--la-"      custom-property-pattern
-    9:16  ✖  Expected "--la-space-md" to match pattern "^--la-"      custom-property-pattern
-   10:15  ✖  Expected "--la-border-width-1" to match pattern         custom-property-pattern
+   11:22  ✖  Expected "--la-radius-md" to match pattern "^--la-"     custom-property-pattern
+   12:18  ✖  Expected "--la-font-size-sm" to match pattern "^--la-"  custom-property-pattern
+   13:20  ✖  Expected "--la-line-height-normal" to match pattern     custom-property-pattern
              "^--la-"
-   11:22  ✖  Expected "--la-radius-lg" to match pattern "^--la-"     custom-property-pattern
-   12:14  ✖  Unexpected value "var(--la-text-sm)" for property       declaration-property-value-allowed-list             "font-size"
-   12:18  ✖  Expected "--la-text-sm" to match pattern "^--la-"       custom-property-pattern
-   13:16  ✖  Unexpected value "var(--la-leading-normal)" for         declaration-property-value-allowed-list             property "line-height"
-   13:20  ✖  Expected "--la-leading-normal" to match pattern         custom-property-pattern
+   18:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
+   19:21  ✖  Expected "--la-color-text-muted" to match pattern       custom-property-pattern
              "^--la-"
-   18:25  ✖  Expected "--la-color-info-bg" to match pattern          custom-property-pattern
+   20:14  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
              "^--la-"
-   19:21  ✖  Expected "--la-color-info-border" to match pattern      custom-property-pattern
+   24:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
+   25:21  ✖  Expected "--la-color-text-muted" to match pattern       custom-property-pattern
              "^--la-"
-   20:14  ✖  Expected "--la-color-info-dark" to match pattern        custom-property-pattern
+   26:14  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
              "^--la-"
-   24:25  ✖  Expected "--la-color-success-bg" to match pattern       custom-property-pattern
+   30:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
+   31:21  ✖  Expected "--la-color-text-muted" to match pattern       custom-property-pattern
              "^--la-"
-   25:21  ✖  Expected "--la-color-success-border" to match pattern   custom-property-pattern
+   32:14  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
              "^--la-"
-   26:14  ✖  Expected "--la-color-success-dark" to match pattern     custom-property-pattern
+   36:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
+   37:21  ✖  Expected "--la-color-text-muted" to match pattern       custom-property-pattern
              "^--la-"
-   30:25  ✖  Expected "--la-color-warning-bg" to match pattern       custom-property-pattern
+   38:14  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
              "^--la-"
-   31:21  ✖  Expected "--la-color-warning-border" to match pattern   custom-property-pattern
+   52:14  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
+   56:14  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
+   60:14  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
+   64:14  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
+   88:18  ✖  Unexpected value "0.375rem" for property                declaration-property-value-allowed-list             "border-radius"
+   89:21  ✖  Unexpected value "transparent" for property             declaration-property-value-allowed-list             "background-color"
+   90:14  ✖  Unexpected value "1rem" for property "font-size"        declaration-property-value-allowed-list   92:14  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
              "^--la-"
-   32:14  ✖  Expected "--la-color-warning-dark" to match pattern     custom-property-pattern
+  101:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
+  111:18  ✖  Unexpected value "0.25rem" for property                 declaration-property-value-allowed-list             "border-radius"
+  112:21  ✖  Unexpected value "transparent" for property             declaration-property-value-allowed-list             "background-color"
+  113:14  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
              "^--la-"
-   36:25  ✖  Expected "--la-color-error-bg" to match pattern         custom-property-pattern
+  122:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
+  127:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
+  128:21  ✖  Expected "--la-color-text-muted" to match pattern       custom-property-pattern
              "^--la-"
-   37:21  ✖  Expected "--la-color-error-border" to match pattern     custom-property-pattern
+  129:14  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
              "^--la-"
-   38:14  ✖  Expected "--la-color-error-dark" to match pattern       custom-property-pattern
+  133:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
+  134:21  ✖  Expected "--la-color-text-muted" to match pattern       custom-property-pattern
              "^--la-"
-   46:14  ✖  Expected "--la-space-6" to match pattern "^--la-"       custom-property-pattern
-   47:15  ✖  Expected "--la-space-6" to match pattern "^--la-"       custom-property-pattern
-   48:19  ✖  Expected "--la-border-width-2" to match pattern         custom-property-pattern
+  135:14  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
              "^--la-"
-   52:14  ✖  Expected "--la-color-info" to match pattern "^--la-"    custom-property-pattern
-   56:14  ✖  Expected "--la-color-success" to match pattern          custom-property-pattern
+  139:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
+  140:21  ✖  Expected "--la-color-text-muted" to match pattern       custom-property-pattern
+             "^--la-"
+  141:14  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
+             "^--la-"
+  145:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
+  146:21  ✖  Expected "--la-color-text-muted" to match pattern       custom-property-pattern
+             "^--la-"
+  147:14  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
+             "^--la-"
+  151:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
+  155:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
+
+packages/notifications/src/components/NotificationContainer/NotificationContainer.css
+  7:16  ✖  Expected "--la-z-index-notification" to match pattern "^--la-"  custom-property-pattern
+
+packages/notifications/src/components/Toast/Toast.css
+   13:12  ✖  Expected "--la-space-3" to match pattern "^--la-"       custom-property-pattern
+   14:14  ✖  Expected "--la-space-96" to match pattern "^--la-"      custom-property-pattern
+   15:31  ✖  Expected "--la-space-8" to match pattern "^--la-"       custom-property-pattern
+   16:16  ✖  Expected "--la-space-4" to match pattern "^--la-"       custom-property-pattern
+   17:25  ✖  Expected "--la-color-surface" to match pattern          custom-property-pattern
+             "^--la-"
+   18:15  ✖  Expected "--la-border-width-1" to match pattern         custom-property-pattern
+             "^--la-"
+   18:46  ✖  Expected "--la-color-border-primary" to match pattern   custom-property-pattern
+             "^--la-"
+   19:22  ✖  Expected "--la-radius-lg" to match pattern "^--la-"     custom-property-pattern
+   20:19  ✖  Expected "--la-shadow-lg" to match pattern "^--la-"     custom-property-pattern
+   33:14  ✖  Expected "--la-space-5" to match pattern "^--la-"       custom-property-pattern
+   34:15  ✖  Expected "--la-space-5" to match pattern "^--la-"       custom-property-pattern
+   35:19  ✖  Expected "--la-space-0-5" to match pattern "^--la-"     custom-property-pattern
+   40:20  ✖  Expected "--la-border-width-4" to match pattern         custom-property-pattern
+             "^--la-"
+   40:51  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
+   44:14  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
+   48:20  ✖  Expected "--la-border-width-4" to match pattern         custom-property-pattern
+             "^--la-"
+   48:51  ✖  Expected "--la-color-success" to match pattern          custom-property-pattern
+             "^--la-"
+   52:14  ✖  Expected "--la-color-success" to match pattern          custom-property-pattern
+             "^--la-"
+   56:20  ✖  Expected "--la-border-width-4" to match pattern         custom-property-pattern
+             "^--la-"
+   56:51  ✖  Expected "--la-color-warning" to match pattern          custom-property-pattern
              "^--la-"
    60:14  ✖  Expected "--la-color-warning" to match pattern          custom-property-pattern
              "^--la-"
-   64:14  ✖  Expected "--la-color-error" to match pattern "^--la-"   custom-property-pattern
-   68:13  ✖  Expected "--la-flex-1" to match pattern "^--la-"        custom-property-pattern
-   73:20  ✖  Expected "--la-font-semibold" to match pattern          custom-property-pattern
+   64:20  ✖  Expected "--la-border-width-4" to match pattern         custom-property-pattern
              "^--la-"
-   74:22  ✖  Expected "--la-space-xs" to match pattern "^--la-"      custom-property-pattern
-   78:16  ✖  Expected "--la-opacity-90" to match pattern "^--la-"    custom-property-pattern
-   85:15  ✖  Expected "--la-space-6" to match pattern "^--la-"       custom-property-pattern
-   86:18  ✖  Expected "--la-space-sm" to match pattern "^--la-"      custom-property-pattern
-   87:15  ✖  Expected "--la-border-width-1" to match pattern         custom-property-pattern
+   64:51  ✖  Expected "--la-color-destructive" to match pattern      custom-property-pattern
              "^--la-"
-   88:22  ✖  Expected "--la-radius-md" to match pattern "^--la-"     custom-property-pattern
-   89:21  ✖  Unexpected value "transparent" for property             declaration-property-value-allowed-list             "background-color"
-   90:18  ✖  Expected "--la-font-size-base" to match pattern         custom-property-pattern
+   68:14  ✖  Expected "--la-color-destructive" to match pattern      custom-property-pattern
              "^--la-"
-   92:14  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
+   73:19  ✖  Expected "--la-space-1" to match pattern "^--la-"       custom-property-pattern
+   74:18  ✖  Expected "--la-font-size-base" to match pattern         custom-property-pattern
              "^--la-"
-  101:25  ✖  Expected "--la-color-background-hover" to match         custom-property-pattern
-             pattern "^--la-"
-  108:14  ✖  Expected "--la-space-6" to match pattern "^--la-"       custom-property-pattern
-  109:15  ✖  Expected "--la-space-6" to match pattern "^--la-"       custom-property-pattern
-  111:22  ✖  Expected "--la-radius-sm" to match pattern "^--la-"     custom-property-pattern
-  112:25  ✖  Expected "--la-color-background-transparent" to match   custom-property-pattern
-             pattern "^--la-"
+   76:20  ✖  Expected "--la-line-height-normal" to match pattern     custom-property-pattern
+             "^--la-"
+   77:14  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
+             "^--la-"
+   83:18  ✖  Expected "--la-font-size-base" to match pattern         custom-property-pattern
+             "^--la-"
+   84:20  ✖  Expected "--la-line-height-normal" to match pattern     custom-property-pattern
+             "^--la-"
+   85:14  ✖  Expected "--la-color-text-secondary" to match pattern   custom-property-pattern
+             "^--la-"
+   91:12  ✖  Expected "--la-space-2" to match pattern "^--la-"       custom-property-pattern
+   92:19  ✖  Expected "--la-space-3" to match pattern "^--la-"       custom-property-pattern
+   99:15  ✖  Expected "--la-space-8" to match pattern "^--la-"       custom-property-pattern
+  100:18  ✖  Expected "--la-space-3" to match pattern "^--la-"       custom-property-pattern
+  101:15  ✖  Expected "--la-border-width-1" to match pattern         custom-property-pattern
+             "^--la-"
+  101:46  ✖  Expected "--la-color-border-primary" to match pattern   custom-property-pattern
+             "^--la-"
+  102:22  ✖  Expected "--la-radius-sm" to match pattern "^--la-"     custom-property-pattern
+  103:21  ✖  Unexpected value "transparent" for property             declaration-property-value-allowed-list             "background-color"
+  104:18  ✖  Expected "--la-font-size-base" to match pattern         custom-property-pattern
+             "^--la-"
+  106:14  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
+             "^--la-"
+  112:25  ✖  Expected "--la-color-surface-hover" to match pattern    custom-property-pattern
+             "^--la-"
   113:14  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
              "^--la-"
-  117:16  ✖  Expected "--la-opacity-60" to match pattern "^--la-"    custom-property-pattern
-  122:25  ✖  Expected "--la-color-background-active" to match        custom-property-pattern
-             pattern "^--la-"
-  127:25  ✖  Expected "--la-color-info-bg" to match pattern          custom-property-pattern
+  119:12  ✖  Expected "--la-space-2" to match pattern "^--la-"       custom-property-pattern
+  120:14  ✖  Expected "--la-space-2" to match pattern "^--la-"       custom-property-pattern
+  124:14  ✖  Expected "--la-space-6" to match pattern "^--la-"       custom-property-pattern
+  125:15  ✖  Expected "--la-space-6" to match pattern "^--la-"       custom-property-pattern
+  127:22  ✖  Expected "--la-radius-xs" to match pattern "^--la-"     custom-property-pattern
+  128:21  ✖  Unexpected value "transparent" for property             declaration-property-value-allowed-list             "background-color"
+  129:14  ✖  Expected "--la-color-text-secondary" to match pattern   custom-property-pattern
              "^--la-"
-  128:21  ✖  Expected "--la-color-info-border" to match pattern      custom-property-pattern
+  135:25  ✖  Expected "--la-color-surface-hover" to match pattern    custom-property-pattern
              "^--la-"
-  129:14  ✖  Expected "--la-color-info-light" to match pattern       custom-property-pattern
+  136:14  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
              "^--la-"
-  133:25  ✖  Expected "--la-color-success-bg" to match pattern       custom-property-pattern
+  144:15  ✖  Expected "--la-space-1" to match pattern "^--la-"       custom-property-pattern
+  145:25  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
+  146:18  ✖  Unexpected value "0 0 var(--la-radius-lg)               declaration-property-value-allowed-list             var(--la-radius-lg)" for property "border-radius"
+  146:26  ✖  Expected "--la-radius-lg" to match pattern "^--la-"     custom-property-pattern
+  146:46  ✖  Expected "--la-radius-lg" to match pattern "^--la-"     custom-property-pattern
+  151:25  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
+  155:25  ✖  Expected "--la-color-success" to match pattern          custom-property-pattern
              "^--la-"
-  134:21  ✖  Expected "--la-color-success-border" to match pattern   custom-property-pattern
+  159:25  ✖  Expected "--la-color-warning" to match pattern          custom-property-pattern
              "^--la-"
-  135:14  ✖  Expected "--la-color-success-light" to match pattern    custom-property-pattern
+  163:25  ✖  Expected "--la-color-destructive" to match pattern      custom-property-pattern
              "^--la-"
-  139:25  ✖  Expected "--la-color-warning-bg" to match pattern       custom-property-pattern
+  169:27  ✖  Expected "--la-color-surface" to match pattern          custom-property-pattern
              "^--la-"
-  140:21  ✖  Expected "--la-color-warning-border" to match pattern   custom-property-pattern
+  170:23  ✖  Expected "--la-color-border-primary" to match pattern   custom-property-pattern
              "^--la-"
-  141:14  ✖  Expected "--la-color-warning-light" to match pattern    custom-property-pattern
+  174:16  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
              "^--la-"
-  145:25  ✖  Expected "--la-color-error-bg" to match pattern         custom-property-pattern
+  178:16  ✖  Expected "--la-color-text-secondary" to match pattern   custom-property-pattern
              "^--la-"
-  146:21  ✖  Expected "--la-color-error-border" to match pattern     custom-property-pattern
-             "^--la-"
-  147:14  ✖  Expected "--la-color-error-light" to match pattern      custom-property-pattern
-             "^--la-"
-  151:25  ✖  Expected "--la-color-background-hover" to match         custom-property-pattern
-             pattern "^--la-"
-  155:25  ✖  Expected "--la-color-background-hover" to match         custom-property-pattern
-             pattern "^--la-"
-
-packages/notifications/src/components/NotificationContainer/NotificationContainer.css
-   7:12  ✖  Unexpected value "1000" for property "z-index"     declaration-property-value-allowed-list      
-  10:12  ✖  Expected "--la-space-2" to match pattern "^--la-"  custom-property-pattern
-  20:12  ✖  Expected "--la-space-6" to match pattern "^--la-"  custom-property-pattern
-  21:13  ✖  Expected "--la-space-6" to match pattern "^--la-"  custom-property-pattern
-  25:12  ✖  Expected "--la-space-6" to match pattern "^--la-"  custom-property-pattern
-  32:12  ✖  Expected "--la-space-6" to match pattern "^--la-"  custom-property-pattern
-  33:14  ✖  Expected "--la-space-6" to match pattern "^--la-"  custom-property-pattern
-  38:15  ✖  Expected "--la-space-6" to match pattern "^--la-"  custom-property-pattern
-  39:13  ✖  Expected "--la-space-6" to match pattern "^--la-"  custom-property-pattern
-  44:15  ✖  Expected "--la-space-6" to match pattern "^--la-"  custom-property-pattern
-  52:15  ✖  Expected "--la-space-6" to match pattern "^--la-"  custom-property-pattern
-  53:14  ✖  Expected "--la-space-6" to match pattern "^--la-"  custom-property-pattern
-  62:15  ✖  Expected "--la-space-2" to match pattern "^--la-"  custom-property-pattern
-  67:16  ✖  Expected "--la-space-2" to match pattern "^--la-"  custom-property-pattern
-  73:14  ✖  Expected "--la-space-2" to match pattern "^--la-"  custom-property-pattern
-  79:17  ✖  Expected "--la-space-2" to match pattern "^--la-"  custom-property-pattern
-
-packages/notifications/src/components/Toast/Toast.css
-    6:3   ✖  Expected "--la-toast-width" to match pattern "^--la-"   custom-property-pattern
-    7:3   ✖  Expected "--la-toast-max-width" to match pattern        custom-property-pattern
-             "^--la-"
-    8:3   ✖  Expected "--la-toast-padding" to match pattern          custom-property-pattern
-             "^--la-"
-    8:27  ✖  Expected "--la-space-4" to match pattern "^--la-"       custom-property-pattern
-    9:3   ✖  Expected "--la-toast-gap" to match pattern "^--la-"     custom-property-pattern
-    9:23  ✖  Expected "--la-space-3" to match pattern "^--la-"       custom-property-pattern
-   10:3   ✖  Expected "--la-toast-radius" to match pattern "^--la-"  custom-property-pattern
-   10:26  ✖  Expected "--la-radius-lg" to match pattern "^--la-"     custom-property-pattern
-   11:3   ✖  Expected "--la-toast-shadow" to match pattern "^--la-"  custom-property-pattern
-   11:26  ✖  Unexpected unit "px"                                    unit-disallowed-list
-   11:31  ✖  Unexpected unit "px"                                    unit-disallowed-list
-   11:36  ✖  Unexpected unit "px"                                    unit-disallowed-list
-   11:39  ✖  Expected modern color-function notation                 color-function-notation
-   11:53  ✖  Expected "0.1" to be "10%"                              alpha-value-notation
-   12:3   ✖  Expected "--la-toast-border-width" to match pattern     custom-property-pattern
-             "^--la-"
-   15:3   ✖  Expected "--la-toast-bg" to match pattern "^--la-"      custom-property-pattern
-   15:22  ✖  Expected "--la-color-surface" to match pattern          custom-property-pattern
-             "^--la-"
-   16:3   ✖  Expected "--la-toast-border" to match pattern "^--la-"  custom-property-pattern
-   16:26  ✖  Expected "--la-color-text-muted" to match pattern       custom-property-pattern
-             "^--la-"
-   17:3   ✖  Expected "--la-toast-text" to match pattern "^--la-"    custom-property-pattern
-   17:24  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
-             "^--la-"
-   18:3   ✖  Expected "--la-toast-text-secondary" to match pattern   custom-property-pattern
-             "^--la-"
-   18:34  ✖  Expected "--la-color-text-muted" to match pattern       custom-property-pattern
-             "^--la-"
-   21:3   ✖  Expected "--la-toast-info-color" to match pattern       custom-property-pattern
-             "^--la-"
-   21:30  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
-   22:3   ✖  Expected "--la-toast-success-color" to match pattern    custom-property-pattern
-             "^--la-"
-   22:33  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
-   23:3   ✖  Expected "--la-toast-warning-color" to match pattern    custom-property-pattern
-             "^--la-"
-   23:33  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
-   24:3   ✖  Expected "--la-toast-error-color" to match pattern      custom-property-pattern
-             "^--la-"
-   24:31  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
-   27:3   ✖  Expected "--la-toast-duration" to match pattern         custom-property-pattern
-             "^--la-"
-   28:3   ✖  Expected "--la-toast-timing" to match pattern "^--la-"  custom-property-pattern
-   33:3   ✖  Expected "--la-toast-bg" to match pattern "^--la-"      custom-property-pattern
-   33:22  ✖  Expected "--la-color-surface" to match pattern          custom-property-pattern
-             "^--la-"
-   34:3   ✖  Expected "--la-toast-border" to match pattern "^--la-"  custom-property-pattern
-   34:26  ✖  Expected "--la-color-text-muted" to match pattern       custom-property-pattern
-             "^--la-"
-   35:3   ✖  Expected "--la-toast-text" to match pattern "^--la-"    custom-property-pattern
-   35:24  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
-             "^--la-"
-   36:3   ✖  Expected "--la-toast-text-secondary" to match pattern   custom-property-pattern
-             "^--la-"
-   36:34  ✖  Expected "--la-color-text-muted" to match pattern       custom-property-pattern
-             "^--la-"
-   43:12  ✖  Expected "--la-toast-gap" to match pattern "^--la-"     custom-property-pattern
-   44:14  ✖  Expected "--la-toast-width" to match pattern "^--la-"   custom-property-pattern
-   45:18  ✖  Expected "--la-toast-max-width" to match pattern        custom-property-pattern
-             "^--la-"
-   46:16  ✖  Expected "--la-toast-padding" to match pattern          custom-property-pattern
-             "^--la-"
-   47:25  ✖  Expected "--la-toast-bg" to match pattern "^--la-"      custom-property-pattern
-   48:15  ✖  Expected "--la-toast-border-width" to match pattern     custom-property-pattern
-             "^--la-"
-   48:50  ✖  Expected "--la-toast-border" to match pattern "^--la-"  custom-property-pattern
-   49:18  ✖  Unexpected value "var(--la-toast-radius)" for property  declaration-property-value-allowed-list             "border-radius"
-   49:22  ✖  Expected "--la-toast-radius" to match pattern "^--la-"  custom-property-pattern
-   50:15  ✖  Unexpected value "var(--la-toast-shadow)" for property  declaration-property-value-allowed-list             "box-shadow"
-   50:19  ✖  Expected "--la-toast-shadow" to match pattern "^--la-"  custom-property-pattern
-   53:23  ✖  Expected "--la-toast-duration" to match pattern         custom-property-pattern
-             "^--la-"
-   53:48  ✖  Expected "--la-toast-timing" to match pattern "^--la-"  custom-property-pattern
-   85:25  ✖  Unexpected unknown function "-var"                      function-no-unknown
-   94:37  ✖  Unexpected unknown function "-var"                      function-no-unknown
-   98:41  ✖  Expected "--la-space-6" to match pattern "^--la-"       custom-property-pattern
-  103:17  ✖  Unexpected unit "px"                                    unit-disallowed-list
-  103:30  ✖  Expected "--la-toast-info-color" to match pattern       custom-property-pattern
-             "^--la-"
-  107:17  ✖  Unexpected unit "px"                                    unit-disallowed-list
-  107:30  ✖  Expected "--la-toast-success-color" to match pattern    custom-property-pattern
-             "^--la-"
-  111:17  ✖  Unexpected unit "px"                                    unit-disallowed-list
-  111:30  ✖  Expected "--la-toast-warning-color" to match pattern    custom-property-pattern
-             "^--la-"
-  115:17  ✖  Unexpected unit "px"                                    unit-disallowed-list
-  115:30  ✖  Expected "--la-toast-error-color" to match pattern      custom-property-pattern
-             "^--la-"
-  123:14  ✖  Expected "--la-space-6" to match pattern "^--la-"       custom-property-pattern
-  124:15  ✖  Expected "--la-space-6" to match pattern "^--la-"       custom-property-pattern
-  125:19  ✖  Expected "--la-space-1" to match pattern "^--la-"       custom-property-pattern
-  129:14  ✖  Expected "--la-toast-info-color" to match pattern       custom-property-pattern
-             "^--la-"
-  133:14  ✖  Expected "--la-toast-success-color" to match pattern    custom-property-pattern
-             "^--la-"
-  137:14  ✖  Expected "--la-toast-warning-color" to match pattern    custom-property-pattern
-             "^--la-"
-  141:14  ✖  Expected "--la-toast-error-color" to match pattern      custom-property-pattern
-             "^--la-"
-  150:18  ✖  Expected "--la-font-size-base" to match pattern         custom-property-pattern
-             "^--la-"
-  152:20  ✖  Expected "--la-line-height-normal" to match pattern     custom-property-pattern
-             "^--la-"
-  153:14  ✖  Expected "--la-toast-text" to match pattern "^--la-"    custom-property-pattern
-  154:19  ✖  Unexpected unit "px"                                    unit-disallowed-list
-  158:18  ✖  Expected "--la-font-size-base" to match pattern         custom-property-pattern
-             "^--la-"
-  159:20  ✖  Expected "--la-line-height-normal" to match pattern     custom-property-pattern
-             "^--la-"
-  160:14  ✖  Expected "--la-toast-text-secondary" to match pattern   custom-property-pattern
-             "^--la-"
-  168:18  ✖  Expected "--la-space-3" to match pattern "^--la-"       custom-property-pattern
-  169:31  ✖  Expected "--la-toast-border" to match pattern "^--la-"  custom-property-pattern
-  170:22  ✖  Expected "--la-radius-md" to match pattern "^--la-"     custom-property-pattern
-  171:21  ✖  Unexpected value "transparent" for property             declaration-property-value-allowed-list             "background-color"
-  172:18  ✖  Expected "--la-font-size-base" to match pattern         custom-property-pattern
-             "^--la-"
-  174:14  ✖  Expected "--la-toast-text" to match pattern "^--la-"    custom-property-pattern
-  181:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
-  182:21  ✖  Expected "--la-color-text-primary" to match pattern     custom-property-pattern
-             "^--la-"
-  189:14  ✖  Expected "--la-space-6" to match pattern "^--la-"       custom-property-pattern
-  190:15  ✖  Expected "--la-space-6" to match pattern "^--la-"       custom-property-pattern
-  192:22  ✖  Expected "--la-radius-sm" to match pattern "^--la-"     custom-property-pattern
-  193:21  ✖  Unexpected value "transparent" for property             declaration-property-value-allowed-list             "background-color"
-  194:14  ✖  Expected "--la-toast-text-secondary" to match pattern   custom-property-pattern
-             "^--la-"
-  201:25  ✖  Expected "--la-color-bg-app" to match pattern "^--la-"  custom-property-pattern
-  202:14  ✖  Expected "--la-toast-text" to match pattern "^--la-"    custom-property-pattern
-  209:15  ✖  Expected "--la-space-1" to match pattern "^--la-"       custom-property-pattern
-  210:25  ✖  Expected "--la-toast-info-color" to match pattern       custom-property-pattern
-             "^--la-"
-  215:25  ✖  Expected "--la-toast-success-color" to match pattern    custom-property-pattern
-             "^--la-"
-  219:25  ✖  Expected "--la-toast-warning-color" to match pattern    custom-property-pattern
-             "^--la-"
-  223:25  ✖  Expected "--la-color-brand" to match pattern "^--la-"   custom-property-pattern
-  240:33  ✖  Expected "--la-space-4" to match pattern "^--la-"       custom-property-pattern
-  241:19  ✖  Expected "--la-space-2" to match pattern "^--la-"       custom-property-pattern
+  183:8   ✖  Expected "context" media feature range notation         media-feature-range-notation
+  185:29  ✖  Expected "--la-space-6" to match pattern "^--la-"       custom-property-pattern
+  186:19  ✖  Expected "--la-space-3" to match pattern "^--la-"       custom-property-pattern
 
 packages/tables/src/components/DataTable/DataTable.css
     5:19  ✖  Expected "--la-color-surface" to match       custom-property-pattern
              pattern "^--la-"
     6:31  ✖  Expected "--la-color-text-muted" to match    custom-property-pattern
              pattern "^--la-"
-    7:22  ✖  Expected "--la-radius-lg" to match pattern   custom-property-pattern
-             "^--la-"
+    7:18  ✖  Unexpected value "0.5rem" for property       declaration-property-value-allowed-list
+             "border-radius"
    25:19  ✖  Expected "--la-color-bg-app" to match        custom-property-pattern
              pattern "^--la-"
    30:37  ✖  Expected "--la-color-text-muted" to match    custom-property-pattern
@@ -723,10 +798,6 @@ packages/tables/src/components/DataTable/DataTable.css
              .la-table-body-cell" to come before
              selector ".la-data-table-bordered
              .la-table-body-cell:last-child", at line 33
-   50:16  ✖  Expected "--la-space-1" to match pattern     custom-property-pattern
-             "^--la-"
-   50:34  ✖  Expected "--la-space-2" to match pattern     custom-property-pattern
-             "^--la-"
    53:1   ✖  Expected selector ".la-data-table-normal     no-descending-specificity
              .la-table-header-cell" to come before
              selector ".la-data-table-bordered
@@ -736,10 +807,6 @@ packages/tables/src/components/DataTable/DataTable.css
              .la-table-body-cell" to come before
              selector ".la-data-table-bordered
              .la-table-body-cell:last-child", at line 33
-   55:16  ✖  Expected "--la-space-2" to match pattern     custom-property-pattern
-             "^--la-"
-   55:34  ✖  Expected "--la-space-4" to match pattern     custom-property-pattern
-             "^--la-"
    58:1   ✖  Expected selector                            no-descending-specificity
              ".la-data-table-comfortable
              .la-table-header-cell" to come before
@@ -751,30 +818,18 @@ packages/tables/src/components/DataTable/DataTable.css
              .la-table-body-cell" to come before
              selector ".la-data-table-bordered
              .la-table-body-cell:last-child", at line 33
-   60:16  ✖  Expected "--la-space-4" to match pattern     custom-property-pattern
-             "^--la-"
-   60:34  ✖  Expected "--la-space-6" to match pattern     custom-property-pattern
-             "^--la-"
-   66:28  ✖  Expected "--la-space-8" to match pattern     custom-property-pattern
-             "^--la-"
-   74:3   ✖  Expected shorthand property "inset"          declaration-block-no-redundant-longhand-properties   75:15  ✖  Expected modern color-function notation      color-function-notation
-   75:15  ✖  Unexpected value "rgba(0, 0, 0, 0.8)" for    declaration-property-value-allowed-list
+   74:3   ✖  Expected shorthand property "inset"          declaration-block-no-redundant-longhand-properties   75:15  ✖  Unexpected value "oklch(0 0 0 / 80%)" for    declaration-property-value-allowed-list
              property "background"
-   75:29  ✖  Expected "0.8" to be "80%"                   alpha-value-notation
-   79:16  ✖  Expected "--la-z-index-modal" to match       custom-property-pattern
-             pattern "^--la-"
-   83:14  ✖  Expected "--la-space-8" to match pattern     custom-property-pattern
-             "^--la-"
-   84:15  ✖  Expected "--la-space-8" to match pattern     custom-property-pattern
-             "^--la-"
+   75:21  ✖  Expected "0" to be "0%"                      lightness-notation
+   75:25  ✖  Expected "0" to be "0deg"                    hue-degree-notation
+   79:12  ✖  Unexpected value "1000" for property         declaration-property-value-allowed-list
+             "z-index"
    85:30  ✖  Expected "--la-color-text-muted" to match    custom-property-pattern
              pattern "^--la-"
-   86:19  ✖  Expected "--la-border-width-2" to match      custom-property-pattern
+   86:34  ✖  Expected "--la-color-brand" to match         custom-property-pattern
              pattern "^--la-"
-   86:50  ✖  Expected "--la-color-brand" to match         custom-property-pattern
-             pattern "^--la-"
-   87:22  ✖  Expected "--la-radius-full" to match         custom-property-pattern
-             pattern "^--la-"
+   87:18  ✖  Unexpected value "50%" for property          declaration-property-value-allowed-list
+             "border-radius"
    98:19  ✖  Expected "--la-color-bg-app" to match        custom-property-pattern
              pattern "^--la-"
    99:37  ✖  Expected "--la-color-text-muted" to match    custom-property-pattern
@@ -797,10 +852,6 @@ packages/tables/src/components/DataTable/DataTable.css
              pattern "^--la-"
   122:19  ✖  Expected "--la-color-bg-app" to match        custom-property-pattern
              pattern "^--la-"
-  134:14  ✖  Expected "--la-space-8" to match pattern     custom-property-pattern
-             "^--la-"
-  141:12  ✖  Expected "--la-space-1" to match pattern     custom-property-pattern
-             "^--la-"
   151:14  ✖  Expected "--la-color-text-muted" to match    custom-property-pattern
              pattern "^--la-"
   156:14  ✖  Expected "--la-color-brand" to match         custom-property-pattern
@@ -829,103 +880,59 @@ packages/tables/src/components/DataTable/DataTable.css
              pattern "^--la-"
   183:38  ✖  Expected "--la-color-text-muted" to match    custom-property-pattern
              pattern "^--la-"
-  196:14  ✖  Expected "--la-space-8" to match pattern     custom-property-pattern
-             "^--la-"
-  215:16  ✖  Expected "--la-space-8" to match pattern     custom-property-pattern
-             "^--la-"
-  224:12  ✖  Expected "--la-space-4" to match pattern     custom-property-pattern
-             "^--la-"
   225:14  ✖  Expected "--la-color-text-muted" to match    custom-property-pattern
              pattern "^--la-"
-  233:18  ✖  Expected "--la-font-size-xl" to match        custom-property-pattern
-             pattern "^--la-"
-  239:18  ✖  Expected "--la-font-size-base" to match      custom-property-pattern
-             pattern "^--la-"
-  246:16  ✖  Expected "--la-space-4" to match pattern     custom-property-pattern
-             "^--la-"
+  233:14  ✖  Unexpected value "1.25rem" for property      declaration-property-value-allowed-list
+             "font-size"
+  239:14  ✖  Unexpected value "1rem" for property         declaration-property-value-allowed-list
+             "font-size"
   247:38  ✖  Expected "--la-color-text-muted" to match    custom-property-pattern
              pattern "^--la-"
   248:19  ✖  Expected "--la-color-surface" to match       custom-property-pattern
              pattern "^--la-"
-  255:12  ✖  Expected "--la-space-4" to match pattern     custom-property-pattern
-             "^--la-"
-  261:12  ✖  Expected "--la-space-4" to match pattern     custom-property-pattern
-             "^--la-"
   267:14  ✖  Expected "--la-color-brand" to match         custom-property-pattern
              pattern "^--la-"
-  273:12  ✖  Expected "--la-space-2" to match pattern     custom-property-pattern
-             "^--la-"
-  284:16  ✖  Expected "--la-space-2" to match pattern     custom-property-pattern
-             "^--la-"
-  284:34  ✖  Expected "--la-space-4" to match pattern     custom-property-pattern
-             "^--la-"
-  285:21  ✖  Expected "--la-space-8" to match pattern     custom-property-pattern
-             "^--la-"
   286:31  ✖  Expected "--la-color-text-muted" to match    custom-property-pattern
              pattern "^--la-"
-  287:22  ✖  Expected "--la-radius-md" to match pattern   custom-property-pattern
-             "^--la-"
+  287:18  ✖  Unexpected value "0.375rem" for property     declaration-property-value-allowed-list
+             "border-radius"
   288:19  ✖  Expected "--la-color-surface" to match       custom-property-pattern
              pattern "^--la-"
-  289:18  ✖  Expected "--la-font-size-base" to match      custom-property-pattern
-             pattern "^--la-"
+  289:14  ✖  Unexpected value "1rem" for property         declaration-property-value-allowed-list
+             "font-size"
   295:21  ✖  Expected "--la-color-brand" to match         custom-property-pattern
              pattern "^--la-"
-  296:15  ✖  Unexpected value "0 0 0 var(--la-space-1)    declaration-property-value-allowed-list
+  296:15  ✖  Unexpected value "0 0 0 0.25rem              declaration-property-value-allowed-list
              var(--la-color-brand)" for property
              "box-shadow"
-  296:25  ✖  Expected "--la-space-1" to match pattern     custom-property-pattern
-             "^--la-"
-  296:43  ✖  Expected "--la-color-brand" to match         custom-property-pattern
+  296:33  ✖  Expected "--la-color-brand" to match         custom-property-pattern
              pattern "^--la-"
-  301:13  ✖  Expected "--la-space-2" to match pattern     custom-property-pattern
-             "^--la-"
   304:14  ✖  Expected "--la-color-text-muted" to match    custom-property-pattern
              pattern "^--la-"
-  311:12  ✖  Expected "--la-space-2" to match pattern     custom-property-pattern
-             "^--la-"
-  319:16  ✖  Expected "--la-space-4" to match pattern     custom-property-pattern
-             "^--la-"
   320:35  ✖  Expected "--la-color-text-muted" to match    custom-property-pattern
              pattern "^--la-"
   321:19  ✖  Expected "--la-color-surface" to match       custom-property-pattern
              pattern "^--la-"
-  322:12  ✖  Expected "--la-space-4" to match pattern     custom-property-pattern
-             "^--la-"
-  328:12  ✖  Expected "--la-space-6" to match pattern     custom-property-pattern
-             "^--la-"
-  333:18  ✖  Expected "--la-font-size-base" to match      custom-property-pattern
-             pattern "^--la-"
+  333:14  ✖  Unexpected value "1rem" for property         declaration-property-value-allowed-list
+             "font-size"
   334:14  ✖  Expected "--la-color-text-muted" to match    custom-property-pattern
              pattern "^--la-"
-  340:12  ✖  Expected "--la-space-1" to match pattern     custom-property-pattern
-             "^--la-"
-  344:18  ✖  Expected "--la-font-size-base" to match      custom-property-pattern
-             pattern "^--la-"
+  344:14  ✖  Unexpected value "1rem" for property         declaration-property-value-allowed-list
+             "font-size"
   345:14  ✖  Expected "--la-color-text-muted" to match    custom-property-pattern
              pattern "^--la-"
-  349:16  ✖  Expected "--la-space-1" to match pattern     custom-property-pattern
-             "^--la-"
-  349:34  ✖  Expected "--la-space-2" to match pattern     custom-property-pattern
-             "^--la-"
   350:31  ✖  Expected "--la-color-text-muted" to match    custom-property-pattern
              pattern "^--la-"
-  351:22  ✖  Expected "--la-radius-sm" to match pattern   custom-property-pattern
-             "^--la-"
+  351:18  ✖  Unexpected value "0.25rem" for property      declaration-property-value-allowed-list
+             "border-radius"
   352:19  ✖  Expected "--la-color-surface" to match       custom-property-pattern
              pattern "^--la-"
-  353:18  ✖  Expected "--la-font-size-base" to match      custom-property-pattern
-             pattern "^--la-"
-  359:12  ✖  Expected "--la-space-1" to match pattern     custom-property-pattern
-             "^--la-"
-  366:14  ✖  Expected "--la-space-8" to match pattern     custom-property-pattern
-             "^--la-"
-  367:15  ✖  Expected "--la-space-8" to match pattern     custom-property-pattern
-             "^--la-"
+  353:14  ✖  Unexpected value "1rem" for property         declaration-property-value-allowed-list
+             "font-size"
   368:31  ✖  Expected "--la-color-text-muted" to match    custom-property-pattern
              pattern "^--la-"
-  369:22  ✖  Expected "--la-radius-sm" to match pattern   custom-property-pattern
-             "^--la-"
+  369:18  ✖  Unexpected value "0.25rem" for property      declaration-property-value-allowed-list
+             "border-radius"
   370:19  ✖  Expected "--la-color-surface" to match       custom-property-pattern
              pattern "^--la-"
   371:14  ✖  Expected "--la-color-text-primary" to match  custom-property-pattern
@@ -939,24 +946,16 @@ packages/tables/src/components/DataTable/DataTable.css
              come before selector
              ".la-table-pagination-
              button:hover:not(:disabled)", at line 376
-  389:12  ✖  Expected "--la-space-1" to match pattern     custom-property-pattern
-             "^--la-"
-  396:18  ✖  Expected "--la-space-8" to match pattern     custom-property-pattern
-             "^--la-"
-  397:15  ✖  Expected "--la-space-8" to match pattern     custom-property-pattern
-             "^--la-"
-  398:18  ✖  Expected "--la-space-2" to match pattern     custom-property-pattern
-             "^--la-"
   399:31  ✖  Expected "--la-color-text-muted" to match    custom-property-pattern
              pattern "^--la-"
-  400:22  ✖  Expected "--la-radius-sm" to match pattern   custom-property-pattern
-             "^--la-"
+  400:18  ✖  Unexpected value "0.25rem" for property      declaration-property-value-allowed-list
+             "border-radius"
   401:19  ✖  Expected "--la-color-surface" to match       custom-property-pattern
              pattern "^--la-"
   402:14  ✖  Expected "--la-color-text-primary" to match  custom-property-pattern
              pattern "^--la-"
-  404:18  ✖  Expected "--la-font-size-base" to match      custom-property-pattern
-             pattern "^--la-"
+  404:14  ✖  Unexpected value "1rem" for property         declaration-property-value-allowed-list
+             "font-size"
   409:19  ✖  Expected "--la-color-bg-app" to match        custom-property-pattern
              pattern "^--la-"
   410:21  ✖  Expected "--la-color-brand" to match         custom-property-pattern
@@ -967,26 +966,17 @@ packages/tables/src/components/DataTable/DataTable.css
              pattern "^--la-"
   416:14  ✖  Expected "--la-color-brand-contrast" to      custom-property-pattern
              match pattern "^--la-"
-  423:14  ✖  Expected "--la-space-8" to match pattern     custom-property-pattern
-             "^--la-"
-  424:15  ✖  Expected "--la-space-8" to match pattern     custom-property-pattern
-             "^--la-"
   425:14  ✖  Expected "--la-color-text-muted" to match    custom-property-pattern
              pattern "^--la-"
-  426:18  ✖  Expected "--la-font-size-sm" to match        custom-property-pattern
+  426:14  ✖  Unexpected value "0.875rem" for property     declaration-property-value-allowed-list
+             "font-size"
+  458:21  ✖  Expected "--la-color-brand" to match         custom-property-pattern
              pattern "^--la-"
-  434:14  ✖  Expected "--la-space-2" to match pattern     custom-property-pattern
-             "^--la-"
-  458:21  ✖  Expected "--la-color-primary-600" to match   custom-property-pattern
-             pattern "^--la-"
-  462:17  ✖  Unexpected value "0 0 0                      declaration-property-value-allowed-list
-             var(--la-border-width-2)
-             var(--la-color-primary-600)" for property
+  462:17  ✖  Unexpected value "0 0 0 0.125rem             declaration-property-value-allowed-list
+             var(--la-color-brand)" for property
              "box-shadow"
-  462:27  ✖  Expected "--la-border-width-2" to match      custom-property-pattern
-             pattern "^--la-"
-  462:52  ✖  Expected "--la-color-primary-600" to match   custom-property-pattern
+  462:36  ✖  Expected "--la-color-brand" to match         custom-property-pattern
              pattern "^--la-"
 
-✖ 6453 problems (6453 errors, 0 warnings)
-  377 errors potentially fixable with the "--fix" option.
+✖ 5733 problems (5733 errors, 0 warnings)
+  266 errors potentially fixable with the "--fix" option.

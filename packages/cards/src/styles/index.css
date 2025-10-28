@@ -4,21 +4,21 @@
  */
 
 /* Import design tokens first */
-@import './tokens.css';
+@import url('./tokens.css');
 
 /* CSS Layers for proper cascade control */
 @layer base {
-  @import './card/card.base.css';
+  @import url('./card/card.base.css');
 }
 
 @layer components {
-  @import './card/card.variants.css';
-  @import './card/card.interactions.css';
-  @import './card/card.dashboard.css';
+  @import url('./card/card.variants.css');
+  @import url('./card/card.interactions.css');
+  @import url('./card/card.dashboard.css');
 }
 
 @layer utilities {
-  @import './card/card.responsive.css';
-  @import './card/card.a11y.css';
-  @import './card/card.animations.css';
+  @import url('./card/card.responsive.css');
+  @import url('./card/card.a11y.css');
+  @import url('./card/card.animations.css');
 }

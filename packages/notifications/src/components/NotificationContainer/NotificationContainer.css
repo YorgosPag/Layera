@@ -1,10 +1,14 @@
 /**
- * Layera NotificationContainer - Styles
+ * @layera/notifications - NotificationContainer Component Styles
+ *
+ * Enterprise CSS για notification container system.
+ * Consistent με Layera design tokens.
  */
 
+/* Base Container */
 .la-notification-container {
   position: fixed;
-  z-index: var(--la-z-index-toast);
+  z-index: var(--la-z-index-modal);
   display: flex;
   flex-direction: column;
   gap: var(--la-space-2);
@@ -15,7 +19,7 @@
   pointer-events: auto;
 }
 
-/* Position variants */
+/* Position Variants */
 .la-notification-container-top-left {
   top: var(--la-space-6);
   left: var(--la-space-6);
@@ -55,8 +59,8 @@
   align-items: flex-end;
 }
 
-/* Mobile responsiveness */
-@media (width <= 40rem) {
+/* Mobile Responsiveness */
+@media (max-width: 40rem) {
   .la-notification-container-top-left,
   .la-notification-container-bottom-left {
     left: var(--la-space-2);

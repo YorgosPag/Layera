@@ -159,14 +159,14 @@ export const UI_CONFIG = {
 export const COLORS = {
   categories: {
     property: {
-      primary: 'var(--layera-color-emerald-500-alpha-95, rgba(16, 185, 129, 0.95))',
-      border: 'var(--layera-color-emerald-500-alpha-30, rgba(16, 185, 129, 0.3))',
-      light: 'var(--layera-color-green-500, #22c55e)',
-      dark: 'var(--layera-color-green-600, #16a34a)'
+      primary: 'var(--color-semantic-success-background)',
+      border: 'var(--color-semantic-success-border)',
+      light: 'var(--color-semantic-success)',
+      dark: 'var(--color-semantic-success-strong)'
     },
     job: {
-      primary: 'var(--layera-color-blue-500-alpha-95, rgba(59, 130, 246, 0.95))',
-      border: 'var(--layera-color-blue-500-alpha-30, rgba(59, 130, 246, 0.3))',
+      primary: 'var(--color-interactive-primary-background)',
+      border: 'var(--color-interactive-primary-border)',
       light: 'var(--layera-color-blue-500, #3b82f6)',
       dark: 'var(--layera-color-blue-600, #2563eb)'
     },

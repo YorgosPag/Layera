@@ -1,21 +1,25 @@
 /**
- * Layera SkeletonText - Styles
+ * @layera/loading - SkeletonText Component Styles
+ *
+ * Enterprise CSS για skeleton text loading system.
+ * Consistent με Layera design tokens.
  */
 
+/* Base SkeletonText */
 .la-skeleton-text {
   display: flex;
   flex-direction: column;
 }
 
-/* Spacing variants */
-.la-skeleton-text--spacing-sm {
-  gap: var(--la-space-xs);
+/* Spacing Variants */
+.la-skeleton-text-spacing-sm {
+  gap: 0.5rem;
 }
 
-.la-skeleton-text--spacing-md {
-  gap: var(--la-space-sm);
+.la-skeleton-text-spacing-md {
+  gap: 0.75rem;
 }
 
-.la-skeleton-text--spacing-lg {
-  gap: var(--la-space-md);
+.la-skeleton-text-spacing-lg {
+  gap: 1rem;
 }

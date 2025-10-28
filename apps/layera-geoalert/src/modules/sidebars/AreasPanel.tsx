@@ -4,7 +4,8 @@ import { useLayeraTranslation } from '@layera/tolgee';
 import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { DrawnArea } from '@layera/geo-drawing';
-import { SearchIcon, TrashIcon, EyeIcon, EyeOffIcon } from '@layera/icons';
+import { SearchIcon, TrashIcon, EyeIcon, EyeOffIcon, EditIcon } from '@layera/icons';
+import { BaseCard } from '@layera/cards';
 
 interface AreasPanelProps {
   isOpen: boolean;
@@ -93,9 +94,18 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
               onDragEnter={(e) => handleDragEnter(e, index)}
               onDragEnd={handleDragEnd}
               onDragOver={(e) => e.preventDefault()}
-              className={`p-2 border-b border-gray-200 cursor-move ${editingAreaId === area.id ? 'bg-blue-100 ring-2 ring-blue-500' : ''}`}
+              className="border-b border-gray-200 cursor-move"
             >
-              <Box className="flex items-center justify-between">
+              <BaseCard
+                variant={editingAreaId === area.id ? 'info' : 'outlined'}
+                opacityMode="semi-transparent"
+                className="mb-0 border-0"
+                style={{
+                  transition: 'all 0.2s ease',
+                  cursor: 'move'
+                }}
+              >
+                <Box className="flex items-center justify-between p-2">
                 <Text size="sm" weight="semibold" className="truncate pr-2" title={area.name}>
                   {area.name}
                 </Text>
@@ -106,9 +116,7 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
                     variant="ghost"
                     size="xs"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 1v4m0 0h-4m4 0l-5-5" />
-                    </svg>
+                    <EditIcon className="h-5 w-5" />
                   </Button>
 
                   <Button
@@ -141,6 +149,7 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
                   />
                 </Box>
               </Box>
+              </BaseCard>
 
               <input
                 type="range"

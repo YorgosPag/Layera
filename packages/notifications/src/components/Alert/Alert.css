@@ -1,43 +1,48 @@
 /**
- * Layera Alert - Styles
+ * @layera/notifications - Alert Component Styles
+ *
+ * Enterprise CSS για alert notification system.
+ * Consistent με Layera design tokens.
  */
 
+/* Base Alert */
 .la-alert {
   display: flex;
   align-items: flex-start;
-  gap: var(--la-space-sm);
-  padding: var(--la-space-md);
+  gap: var(--la-space-3);
+  padding: var(--la-space-4);
   border: var(--la-border-width-1) solid;
-  border-radius: var(--la-radius-lg);
-  font-size: var(--la-text-sm);
-  line-height: var(--la-leading-normal);
+  border-radius: var(--la-radius-md);
+  font-size: var(--la-font-size-sm);
+  line-height: var(--la-line-height-normal);
 }
 
-/* Type variants */
+/* Type Variants */
 .la-alert-info {
-  background-color: var(--la-color-info-bg);
+  background-color: var(--la-color-info-background);
   border-color: var(--la-color-info-border);
-  color: var(--la-color-info-dark);
+  color: var(--la-color-info-foreground);
 }
 
 .la-alert-success {
-  background-color: var(--la-color-success-bg);
+  background-color: var(--la-color-success-background);
   border-color: var(--la-color-success-border);
-  color: var(--la-color-success-dark);
+  color: var(--la-color-success-foreground);
 }
 
 .la-alert-warning {
-  background-color: var(--la-color-warning-bg);
+  background-color: var(--la-color-warning-background);
   border-color: var(--la-color-warning-border);
-  color: var(--la-color-warning-dark);
+  color: var(--la-color-warning-foreground);
 }
 
 .la-alert-error {
-  background-color: var(--la-color-error-bg);
-  border-color: var(--la-color-error-border);
-  color: var(--la-color-error-dark);
+  background-color: var(--la-color-destructive-background);
+  border-color: var(--la-color-destructive-border);
+  color: var(--la-color-destructive-foreground);
 }
 
+/* Alert Icon */
 .la-alert-icon {
   display: flex;
   align-items: center;
@@ -45,7 +50,7 @@
   flex-shrink: 0;
   width: var(--la-space-6);
   height: var(--la-space-6);
-  margin-top: var(--la-border-width-2);
+  margin-top: var(--la-space-0-5);
 }
 
 .la-alert-info .la-alert-icon {
@@ -61,35 +66,39 @@
 }
 
 .la-alert-error .la-alert-icon {
-  color: var(--la-color-error);
+  color: var(--la-color-destructive);
 }
 
+/* Alert Content */
 .la-alert-content {
-  flex: var(--la-flex-1);
+  flex: 1;
   min-width: 0;
 }
 
 .la-alert-title {
-  font-weight: var(--la-font-semibold);
-  margin-bottom: var(--la-space-xs);
+  font-weight: 600;
+  margin-bottom: var(--la-space-1);
+  color: currentcolor;
 }
 
 .la-alert-message {
-  opacity: var(--la-opacity-90);
+  opacity: 0.9;
+  color: currentcolor;
 }
 
+/* Alert Actions */
 .la-alert-action {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   height: var(--la-space-6);
-  padding: 0 var(--la-space-sm);
+  padding: 0 var(--la-space-3);
   border: var(--la-border-width-1) solid currentcolor;
-  border-radius: var(--la-radius-md);
+  border-radius: var(--la-radius-sm);
   background-color: transparent;
-  font-size: var(--la-font-size-base);
+  font-size: var(--la-font-size-sm);
   font-weight: 500;
-  color: var(--la-color-text-primary);
+  color: currentcolor;
   cursor: pointer;
   transition: all 0.15s ease;
   flex-shrink: 0;
@@ -98,9 +107,10 @@
 
 .la-alert-action:hover {
   opacity: 1;
-  background-color: var(--la-color-background-hover);
+  background-color: var(--la-color-surface-hover);
 }
 
+/* Dismiss Button */
 .la-alert-dismiss {
   display: flex;
   align-items: center;
@@ -108,49 +118,56 @@
   width: var(--la-space-6);
   height: var(--la-space-6);
   border: none;
-  border-radius: var(--la-radius-sm);
-  background-color: var(--la-color-background-transparent);
-  color: var(--la-color-text-primary);
+  border-radius: var(--la-radius-xs);
+  background-color: transparent;
+  color: currentcolor;
   cursor: pointer;
   transition: all 0.15s ease;
   flex-shrink: 0;
-  opacity: var(--la-opacity-60);
+  opacity: 0.6;
 }
 
 .la-alert-dismiss:hover {
   opacity: 1;
-  background-color: var(--la-color-background-active);
+  background-color: var(--la-color-surface-hover);
 }
 
-/* Dark theme adjustments */
-[data-theme="dark"] .la-alert-info {
-  background-color: var(--la-color-info-bg);
-  border-color: var(--la-color-info-border);
-  color: var(--la-color-info-light);
+/* Dark Theme Support */
+@media (prefers-color-scheme: dark) {
+  .la-alert-info {
+    background-color: var(--la-color-info-background);
+    border-color: var(--la-color-info-border);
+    color: var(--la-color-info-foreground);
+  }
+
+  .la-alert-success {
+    background-color: var(--la-color-success-background);
+    border-color: var(--la-color-success-border);
+    color: var(--la-color-success-foreground);
+  }
+
+  .la-alert-warning {
+    background-color: var(--la-color-warning-background);
+    border-color: var(--la-color-warning-border);
+    color: var(--la-color-warning-foreground);
+  }
+
+  .la-alert-error {
+    background-color: var(--la-color-destructive-background);
+    border-color: var(--la-color-destructive-border);
+    color: var(--la-color-destructive-foreground);
+  }
+
+  .la-alert-action:hover,
+  .la-alert-dismiss:hover {
+    background-color: var(--la-color-surface-hover);
+  }
 }
 
-[data-theme="dark"] .la-alert-success {
-  background-color: var(--la-color-success-bg);
-  border-color: var(--la-color-success-border);
-  color: var(--la-color-success-light);
-}
-
-[data-theme="dark"] .la-alert-warning {
-  background-color: var(--la-color-warning-bg);
-  border-color: var(--la-color-warning-border);
-  color: var(--la-color-warning-light);
-}
-
-[data-theme="dark"] .la-alert-error {
-  background-color: var(--la-color-error-bg);
-  border-color: var(--la-color-error-border);
-  color: var(--la-color-error-light);
-}
-
-[data-theme="dark"] .la-alert-action:hover {
-  background-color: var(--la-color-background-hover);
-}
-
-[data-theme="dark"] .la-alert-dismiss:hover {
-  background-color: var(--la-color-background-hover);
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .la-alert-action,
+  .la-alert-dismiss {
+    transition: none;
+  }
 }

@@ -15,10 +15,10 @@
 
 @media (prefers-contrast: high) {
   .la-card {
-    border-width: var(--la-border-width-2);
+    border-width: 0.125rem;
   }
 
-  .la-card--elevated {
-    border: var(--la-border-width-2) solid var(--la-card-border);
+  .la-card-elevated {
+    border: 0.125rem solid var(--la-color-border-primary);
   }
 }

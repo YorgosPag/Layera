@@ -5,131 +5,131 @@
 
 /* ============ DASHBOARD CARDS ============ */
 
-.la-dashboard-card--stats {
-  background: var(--la-card-stats-bg);
+.la-dashboard-card-stats {
+  background: var(--la-color-surface);
 }
 
-.la-dashboard-card--chart {
-  background: var(--la-card-chart-bg);
+.la-dashboard-card-chart {
+  background: var(--la-color-bg-secondary);
 }
 
-.la-dashboard-card--status {
-  background: var(--la-card-status-bg);
+.la-dashboard-card-status {
+  background: var(--la-color-surface);
 }
 
-.la-dashboard-card--actions {
-  background: var(--la-card-actions-bg);
+.la-dashboard-card-actions {
+  background: var(--la-color-surface);
 }
 
-.la-dashboard-card--info {
-  background: var(--la-card-info-bg);
+.la-dashboard-card-info {
+  background: var(--la-color-bg-secondary);
 }
 
 /* Dashboard card states */
-.la-dashboard-card--loading {
+.la-dashboard-card-loading {
   position: relative;
 }
 
-.la-dashboard-card--error {
-  border-color: hsl(var(--la-red) / 0.3);
-  background: hsl(var(--la-red) / 0.05);
+.la-dashboard-card-error {
+  border-color: var(--la-color-border-error);
+  background: var(--la-color-bg-error);
 }
 
 /* ============ DASHBOARD CARD CONTENT ============ */
 
-.la-dashboard-card__metric {
+.la-dashboard-card-metric {
   display: flex;
   flex-direction: column;
   gap: var(--la-space-2);
 }
 
-.la-dashboard-card__metric-value {
-  font-size: var(--la-dashboard-metric-value-size);
-  font-weight: var(--la-dashboard-metric-value-weight);
+.la-dashboard-card-metric-value {
+  font-size: var(--la-font-size-2xl);
+  font-weight: 700;
   line-height: 1;
-  color: inherit;
+  color: var(--la-color-text-primary);
 }
 
-.la-dashboard-card__metric-label {
-  font-size: var(--la-dashboard-metric-label-size);
+.la-dashboard-card-metric-label {
+  font-size: var(--la-font-size-sm);
   font-weight: 500;
-  color: var(--la-text-secondary);
+  color: var(--la-color-text-secondary);
 }
 
-.la-dashboard-card__metric-change {
+.la-dashboard-card-metric-change {
   display: flex;
   align-items: center;
   gap: var(--la-space-1);
-  font-size: var(--la-dashboard-metric-change-size);
+  font-size: var(--la-font-size-xs);
   font-weight: 500;
 }
 
-.la-dashboard-card__metric-change--up {
-  color: var(--la-green);
+.la-dashboard-card-metric-change-up {
+  color: var(--la-color-success);
 }
 
-.la-dashboard-card__metric-change--down {
-  color: var(--la-red);
+.la-dashboard-card-metric-change-down {
+  color: var(--la-color-error);
 }
 
-.la-dashboard-card__metric-change--neutral {
-  color: var(--la-text-secondary);
+.la-dashboard-card-metric-change-neutral {
+  color: var(--la-color-text-secondary);
 }
 
-.la-dashboard-card__metric-change-period {
-  color: var(--la-text-secondary);
+.la-dashboard-card-metric-change-period {
+  color: var(--la-color-text-secondary);
   font-weight: 400;
 }
 
 /* ============ LOADING & ERROR STATES ============ */
 
-.la-dashboard-card__loading {
-  padding: var(--la-card-padding-md);
+.la-dashboard-card-loading {
+  padding: var(--la-space-4);
 }
 
-.la-dashboard-card__skeleton {
+.la-dashboard-card-skeleton {
   display: flex;
   flex-direction: column;
   gap: var(--la-space-2);
 }
 
 .la-skeleton {
-  background: linear-gradient(90deg, hsl(0 0% 93%) 25%, hsl(0 0% 88%) 50%, hsl(0 0% 93%) 75%);
+  background: var(--la-color-bg-secondary);
   background-size: 200% 100%;
   animation: la-skeleton 1.5s infinite;
-  border-radius: var(--la-card-radius-sm);  /* Apple-style rounded skeleton */
+  border-radius: var(--la-radius-sm);
 }
 
-.la-skeleton--text {
-  height: var(--la-size-4);
+.la-skeleton-text {
+  height: var(--la-space-4);
   width: 100%;
 }
 
-.la-skeleton--sm {
+.la-skeleton-sm {
   width: 60%;
 }
 
 [data-theme="dark"] .la-skeleton {
-  background: linear-gradient(90deg, hsl(0 0% 12%) 25%, hsl(0 0% 16%) 50%, hsl(0 0% 12%) 75%);
+  background: var(--la-color-bg-tertiary);
   background-size: 200% 100%;
 }
 
-.la-dashboard-card__error {
+.la-dashboard-card-error {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--la-space-2);
-  padding: var(--la-card-padding-md);
+  padding: var(--la-space-4);
   text-align: center;
 }
 
-.la-dashboard-card__error-icon {
-  font-size: var(--la-text-2xl);
+.la-dashboard-card-error-icon {
+  font-size: var(--la-font-size-2xl);
   opacity: 0.6;
 }
 
-.la-dashboard-card__error-message {
+.la-dashboard-card-error-message {
   margin: 0;
-  font-size: var(--la-card-subtitle-size);
-  color: var(--la-red);
+  font-size: var(--la-font-size-sm);
+  color: var(--la-color-error);
 }

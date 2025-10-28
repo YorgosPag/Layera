@@ -7,22 +7,22 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: var(--la-space-4);
+  gap: 1rem;
 }
 
 .la-dialog-icon-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--la-space-12);
-  height: var(--la-space-12);
+  width: 3rem;
+  height: 3rem;
   border-radius: var(--la-radius-full);
-  margin-bottom: var(--la-space-3);
+  margin-bottom: 0.75rem;
 }
 
 .la-dialog-icon {
-  width: var(--la-space-6);
-  height: var(--la-space-6);
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .la-dialog-icon-info {
@@ -71,13 +71,13 @@
   font-size: var(--la-font-size-base);
   line-height: var(--la-line-height-normal);
   color: var(--la-color-text-primary);
-  max-width: 400px;
+  max-width: var(--la-space-96);
 }
 
 .la-dialog-actions {
   display: flex;
   align-items: center;
-  gap: var(--la-space-3);
+  gap: 0.75rem;
 }
 
 /* Button styles */
@@ -87,7 +87,7 @@
   justify-content: center;
   gap: var(--la-space-2);
   height: var(--la-space-10);
-  padding: 0 var(--la-space-4);
+  padding: 0 1rem;
   border: var(--la-border-width-1) solid transparent;
   border-radius: var(--la-radius-md);
   font-size: var(--la-font-size-sm);
@@ -106,8 +106,8 @@
 }
 
 .la-dialog-button-ghost {
-  background-color: transparent;
-  border-color: var(--la-color-text-muted);
+  background-color: var(--la-color-transparent);
+  border-color: var(--la-color-border-secondary);
   color: var(--la-color-text-secondary);
 }
 

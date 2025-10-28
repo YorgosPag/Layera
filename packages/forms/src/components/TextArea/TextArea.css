@@ -1,158 +1,186 @@
-/* TextArea Component Styles */
-.layera-textarea-wrapper {
+/**
+ * @layera/forms - TextArea Component Styles
+ *
+ * Enterprise CSS για textarea system.
+ * Consistent με Layera design tokens.
+ */
+
+/* Base TextArea Wrapper */
+.la-textarea-wrapper {
   position: relative;
   display: inline-flex;
-  background: var(--layera-color-background-primary);
-  border: 1px solid var(--layera-color-border-primary);
-  border-radius: var(--layera-radius-md);
-  transition: all 0.2s ease-in-out;
+  background: var(--la-color-surface);
+  border: var(--la-border-width-1) solid var(--la-color-border-primary);
+  border-radius: var(--la-radius-md);
+  transition: all 0.15s ease;
 }
 
-.layera-textarea {
-  flex: var(--la-flex-1);
+/* Base TextArea */
+.la-textarea {
+  flex: 1;
   border: none;
-  background: transparent;
+  background: var(--la-color-transparent);
   outline: none;
-  font-family: inherit;
-  font-size: 1rem;
-  color: var(--layera-color-text-primary);
-  padding: 0.75rem 1rem;
-  transition: all 0.2s ease-in-out;
-  line-height: 1.375;
+  font-family: var(--la-font-family-base);
+  font-size: var(--la-font-size-base);
+  color: var(--la-color-text-primary);
+  padding: var(--la-space-3) var(--la-space-4);
+  transition: all 0.15s ease;
+  line-height: var(--la-line-height-normal);
   resize: vertical;
 }
 
-.layera-textarea::placeholder {
-  color: var(--layera-color-text-placeholder);
+.la-textarea::placeholder {
+  color: var(--la-color-text-muted);
 }
 
-/* Resize options */
-.layera-textarea--resize-none {
+/* Resize Options */
+.la-textarea-resize-none {
   resize: none;
 }
 
-.layera-textarea--resize-vertical {
+.la-textarea-resize-vertical {
   resize: vertical;
 }
 
-.layera-textarea--resize-horizontal {
+.la-textarea-resize-horizontal {
   resize: horizontal;
 }
 
-.layera-textarea--resize-both {
+.la-textarea-resize-both {
   resize: both;
 }
 
-/* Sizes */
-.layera-textarea--sm,
-.layera-textarea-wrapper--sm .layera-textarea {
-  padding: 0.5rem 0.75rem;
-  font-size: 0.875rem;
-  line-height: 1.25;
+/* Size Variants */
+.la-textarea-sm,
+.la-textarea-wrapper-sm .la-textarea {
+  padding: var(--la-space-2) var(--la-space-3);
+  font-size: var(--la-font-size-sm);
+  line-height: var(--la-line-height-tight);
 }
 
-.layera-textarea-wrapper--sm {
-  border-radius: var(--layera-radius-sm);
+.la-textarea-wrapper-sm {
+  border-radius: var(--la-radius-sm);
 }
 
-.layera-textarea--lg,
-.layera-textarea-wrapper--lg .layera-textarea {
-  padding: 1rem 1.25rem;
-  font-size: 1.125rem;
-  line-height: 1.5;
+.la-textarea-lg,
+.la-textarea-wrapper-lg .la-textarea {
+  padding: var(--la-space-4) var(--la-space-5);
+  font-size: var(--la-font-size-lg);
+  line-height: var(--la-line-height-relaxed);
 }
 
-.layera-textarea-wrapper--lg {
-  border-radius: var(--layera-radius-lg);
+.la-textarea-wrapper-lg {
+  border-radius: var(--la-radius-lg);
 }
 
-/* Variants */
-.layera-textarea-wrapper--outline {
-  background: transparent;
-  border: 2px solid var(--layera-color-border-primary);
+/* Style Variants */
+.la-textarea-wrapper-outline {
+  background: var(--la-color-transparent);
+  border: var(--la-border-width-2) solid var(--la-color-border-primary);
 }
 
-.layera-textarea-wrapper--filled {
-  background: var(--layera-color-background-secondary);
-  border: 1px solid transparent;
+.la-textarea-wrapper-filled {
+  background: var(--la-color-surface-secondary);
+  border: var(--la-border-width-1) solid var(--la-color-transparent);
 }
 
-.layera-textarea-wrapper--ghost {
-  background: transparent;
-  border: 1px solid transparent;
+.la-textarea-wrapper-ghost {
+  background: var(--la-color-transparent);
+  border: var(--la-border-width-1) solid var(--la-color-transparent);
 }
 
-.layera-textarea-wrapper--underline {
-  background: transparent;
+.la-textarea-wrapper-underline {
+  background: var(--la-color-transparent);
   border: none;
-  border-bottom: 2px solid var(--layera-color-border-primary);
-  border-radius: 0;
+  border-bottom: var(--la-border-width-2) solid var(--la-color-border-primary);
+  border-radius: var(--la-radius-none);
 }
 
-/* States */
-.layera-textarea-wrapper:focus-within {
-  border-color: var(--layera-color-primary-500);
-  box-shadow: 0 0 0 3px var(--layera-color-primary-100);
+/* Focus States */
+.la-textarea-wrapper:focus-within {
+  border-color: var(--la-color-brand);
+  box-shadow: var(--la-shadow-focus);
 }
 
-.layera-textarea-wrapper--error {
-  border-color: var(--layera-color-error-500);
+/* State Variants */
+.la-textarea-wrapper-error {
+  border-color: var(--la-color-error);
 }
 
-.layera-textarea-wrapper--error:focus-within {
-  border-color: var(--layera-color-error-500);
-  box-shadow: 0 0 0 3px var(--layera-color-error-100);
+.la-textarea-wrapper-error:focus-within {
+  border-color: var(--la-color-error);
+  box-shadow: var(--la-shadow-error);
 }
 
-.layera-textarea-wrapper--success {
-  border-color: var(--layera-color-success-500);
+.la-textarea-wrapper-success {
+  border-color: var(--la-color-success);
 }
 
-.layera-textarea-wrapper--success:focus-within {
-  border-color: var(--layera-color-success-500);
-  box-shadow: 0 0 0 3px var(--layera-color-success-100);
+.la-textarea-wrapper-success:focus-within {
+  border-color: var(--la-color-success);
+  box-shadow: var(--la-shadow-success);
 }
 
-.layera-textarea-wrapper--warning {
-  border-color: var(--layera-color-warning-500);
+.la-textarea-wrapper-warning {
+  border-color: var(--la-color-warning);
 }
 
-.layera-textarea-wrapper--warning:focus-within {
-  border-color: var(--layera-color-warning-500);
-  box-shadow: 0 0 0 3px var(--layera-color-warning-100);
+.la-textarea-wrapper-warning:focus-within {
+  border-color: var(--la-color-warning);
+  box-shadow: var(--la-shadow-warning);
 }
 
-.layera-textarea-wrapper--disabled {
+.la-textarea-wrapper-disabled {
   opacity: 0.6;
-  cursor: var(--la-cursor-not-allowed);
-  background: var(--layera-color-background-disabled);
+  cursor: not-allowed;
+  background: var(--la-color-surface-disabled);
 }
 
-.layera-textarea--disabled {
-  cursor: var(--la-cursor-not-allowed);
-  color: var(--layera-color-text-disabled);
+.la-textarea-disabled {
+  cursor: not-allowed;
+  color: var(--la-color-text-disabled);
 }
 
-/* Full width */
-.layera-textarea-wrapper--full-width {
+/* Layout Options */
+.la-textarea-wrapper-full-width {
   width: 100%;
 }
 
-/* Dark mode adjustments */
+/* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
-  .layera-textarea-wrapper:focus-within {
-    box-shadow: 0 0 0 3px var(--layera-color-primary-800);
+  .la-textarea-wrapper:focus-within {
+    box-shadow: var(--la-shadow-focus);
   }
 
-  .layera-textarea-wrapper--error:focus-within {
-    box-shadow: 0 0 0 3px var(--layera-color-error-800);
+  .la-textarea-wrapper-error:focus-within {
+    box-shadow: var(--la-shadow-error);
   }
 
-  .layera-textarea-wrapper--success:focus-within {
-    box-shadow: 0 0 0 3px var(--layera-color-success-800);
+  .la-textarea-wrapper-success:focus-within {
+    box-shadow: var(--la-shadow-success);
   }
 
-  .layera-textarea-wrapper--warning:focus-within {
-    box-shadow: 0 0 0 3px var(--layera-color-warning-800);
+  .la-textarea-wrapper-warning:focus-within {
+    box-shadow: var(--la-shadow-warning);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .la-textarea-wrapper,
+  .la-textarea {
+    transition: none;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .la-textarea-wrapper {
+    border-width: var(--la-border-width-2);
+  }
+
+  .la-textarea-wrapper-outline {
+    border-width: var(--la-border-width-3);
   }
 }

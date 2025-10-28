@@ -1,73 +1,62 @@
 /**
- * Layera Spinner - Styles
+ * @layera/loading - Spinner Component Styles
+ *
+ * Enterprise CSS για spinner loading system.
+ * Consistent με Layera design tokens.
  */
 
-:root {
-  --la-spinner-color: var(--la-color-primary);
-
-  /* Sizes */
-  --la-spinner-xs: 1rem;
-  --la-spinner-sm: 1.25rem;
-  --la-spinner-md: 1.5rem;
-  --la-spinner-lg: 2rem;
-  --la-spinner-xl: 3rem;
-
-  /* Speeds */
-  --la-spinner-speed-slow: 2s;
-  --la-spinner-speed-normal: 1s;
-  --la-spinner-speed-fast: 0.5s;
-}
-
+/* Base Spinner */
 .la-spinner {
   display: inline-block;
-  color: var(--la-spinner-color);
+  color: var(--la-color-brand);
 }
 
-/* Size variants */
+/* Size Variants */
 .la-spinner-xs {
-  width: var(--la-spinner-xs);
-  height: var(--la-spinner-xs);
+  width: 1rem;
+  height: 1rem;
 }
 
 .la-spinner-sm {
-  width: var(--la-spinner-sm);
-  height: var(--la-spinner-sm);
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .la-spinner-md {
-  width: var(--la-spinner-md);
-  height: var(--la-spinner-md);
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .la-spinner-lg {
-  width: var(--la-spinner-lg);
-  height: var(--la-spinner-lg);
+  width: 2rem;
+  height: 2rem;
 }
 
 .la-spinner-xl {
-  width: var(--la-spinner-xl);
-  height: var(--la-spinner-xl);
+  width: 3rem;
+  height: 3rem;
 }
 
-/* Default circular spinner */
+/* Circle Variant */
 .la-spinner-circle {
   width: 100%;
   height: 100%;
-  animation: la-spinner-rotate var(--la-spinner-speed-normal) linear infinite;
+  animation: la-spinner-rotate 1s linear infinite;
 }
 
 .la-spinner-speed-slow .la-spinner-circle {
-  animation-duration: var(--la-spinner-speed-slow);
+  animation-duration: 2s;
 }
 
 .la-spinner-speed-fast .la-spinner-circle {
-  animation-duration: var(--la-spinner-speed-fast);
+  animation-duration: 0.5s;
 }
 
 .la-spinner-progress {
   animation: la-spinner-dash 1.5s ease-in-out infinite;
 }
 
+/* Keyframe Animations */
 @keyframes la-spinner-rotate {
   100% {
     transform: rotate(360deg);
@@ -79,21 +68,23 @@
     stroke-dasharray: 1, 150;
     stroke-dashoffset: 0;
   }
+
   50% {
     stroke-dasharray: 90, 150;
     stroke-dashoffset: -35;
   }
+
   100% {
     stroke-dasharray: 90, 150;
     stroke-dashoffset: -124;
   }
 }
 
-/* Dots variant */
+/* Dots Variant */
 .la-spinner-dots {
   display: flex;
   align-items: center;
-  gap: var(--la-space-1);
+  gap: 0.25rem;
 }
 
 .la-spinner-dot {
@@ -101,7 +92,7 @@
   height: 25%;
   background-color: currentColor;
   border-radius: 50%;
-  animation: la-spinner-dots var(--la-spinner-speed-normal) ease-in-out infinite;
+  animation: la-spinner-dots 1s ease-in-out infinite;
 }
 
 .la-spinner-dot:nth-child(1) {
@@ -117,39 +108,42 @@
 }
 
 .la-spinner-speed-slow .la-spinner-dot {
-  animation-duration: var(--la-spinner-speed-slow);
+  animation-duration: 2s;
 }
 
 .la-spinner-speed-fast .la-spinner-dot {
-  animation-duration: var(--la-spinner-speed-fast);
+  animation-duration: 0.5s;
 }
 
 @keyframes la-spinner-dots {
-  0%, 80%, 100% {
+  0%,
+  80%,
+  100% {
     transform: scale(0);
     opacity: 0.5;
   }
+
   40% {
     transform: scale(1);
     opacity: 1;
   }
 }
 
-/* Pulse variant */
+/* Pulse Variant */
 .la-spinner-pulse {
   width: 100%;
   height: 100%;
   background-color: currentColor;
   border-radius: 50%;
-  animation: la-spinner-pulse var(--la-spinner-speed-normal) ease-in-out infinite;
+  animation: la-spinner-pulse 1s ease-in-out infinite;
 }
 
 .la-spinner-speed-slow .la-spinner-pulse {
-  animation-duration: var(--la-spinner-speed-slow);
+  animation-duration: 2s;
 }
 
 .la-spinner-speed-fast .la-spinner-pulse {
-  animation-duration: var(--la-spinner-speed-fast);
+  animation-duration: 0.5s;
 }
 
 @keyframes la-spinner-pulse {
@@ -157,13 +151,14 @@
     transform: scale(0);
     opacity: 1;
   }
+
   100% {
     transform: scale(1);
     opacity: 0;
   }
 }
 
-/* Ring variant */
+/* Ring Variant */
 .la-spinner-ring {
   display: inline-block;
   position: relative;
@@ -177,10 +172,10 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  border: var(--la-border-width-3) solid currentColor;
+  border: 0.125rem solid currentColor;
   border-radius: 50%;
-  animation: la-spinner-ring var(--la-spinner-speed-normal) cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: currentColor transparent transparent transparent;
+  animation: la-spinner-ring 1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: currentColor transparent;
 }
 
 .la-spinner-ring div:nth-child(1) {
@@ -196,23 +191,24 @@
 }
 
 .la-spinner-speed-slow .la-spinner-ring div {
-  animation-duration: var(--la-spinner-speed-slow);
+  animation-duration: 2s;
 }
 
 .la-spinner-speed-fast .la-spinner-ring div {
-  animation-duration: var(--la-spinner-speed-fast);
+  animation-duration: 0.5s;
 }
 
 @keyframes la-spinner-ring {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
 }
 
-/* Bars variant */
+/* Bars Variant */
 .la-spinner-bars {
   display: flex;
   align-items: flex-end;
@@ -224,7 +220,7 @@
 .la-spinner-bars div {
   width: 15%;
   background-color: currentColor;
-  animation: la-spinner-bars var(--la-spinner-speed-normal) ease-in-out infinite;
+  animation: la-spinner-bars 1s ease-in-out infinite;
 }
 
 .la-spinner-bars div:nth-child(1) {
@@ -248,18 +244,33 @@
 }
 
 .la-spinner-speed-slow .la-spinner-bars div {
-  animation-duration: var(--la-spinner-speed-slow);
+  animation-duration: 2s;
 }
 
 .la-spinner-speed-fast .la-spinner-bars div {
-  animation-duration: var(--la-spinner-speed-fast);
+  animation-duration: 0.5s;
 }
 
 @keyframes la-spinner-bars {
-  0%, 40%, 100% {
+  0%,
+  40%,
+  100% {
     height: 30%;
   }
+
   20% {
     height: 100%;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .la-spinner-circle,
+  .la-spinner-progress,
+  .la-spinner-dot,
+  .la-spinner-pulse,
+  .la-spinner-ring div,
+  .la-spinner-bars div {
+    animation: none;
   }
 }

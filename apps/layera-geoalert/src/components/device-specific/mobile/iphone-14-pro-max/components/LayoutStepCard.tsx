@@ -297,7 +297,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
       case 'transparent':
         return {
           backgroundColor: 'var(--layera-bg-overlay-light, rgba(var(--color-semantic-success-rgb), 0.1))',
-          border: '1px solid var(--layera-color-green-500, var(--color-semantic-success-border))',
+          border: '1px solid var(--color-semantic-success-border)',
           color: 'var(--color-semantic-success-text)'
         };
       case 'semi-transparent':
@@ -343,7 +343,8 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
     <Box width="full" padding="sm">
       {/* Πρώτη σειρά: Μεγάλη κάρτα για Τοποθεσία (σαν δύο κάρτες ενωμένες) */}
       <BaseCard
-        variant="default"
+        variant="success"
+        opacityMode={opacityMode}
         padding="md"
         marginBottom="sm"
         minHeight={`${SPACING_SCALE.XL}px`}
@@ -402,6 +403,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
         {/* Κάρτα Περιστροφής */}
         <BaseCard
           variant="success"
+          opacityMode={opacityMode}
           padding="sm"
           flex="1"
           minHeight={`${SPACING_SCALE.LG}px`}
@@ -456,6 +458,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
         {/* Κάρτα Κλίμακας */}
         <BaseCard
           variant="success"
+          opacityMode={opacityMode}
           padding="sm"
           flex="1"
           minHeight={`${SPACING_SCALE.LG}px`}
@@ -558,6 +561,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
       {/* Status */}
       <BaseCard
         variant="success"
+        opacityMode={opacityMode}
         padding="sm"
         marginBottom="sm"
         textAlign="center"

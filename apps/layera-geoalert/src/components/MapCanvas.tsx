@@ -130,7 +130,7 @@ const MapCanvas: React.FC<MapCanvasProps> = ({
     return (
       <Box className={`flex items-center justify-center h-64 bg-gray-100 ${className}`}>
         <Box className="text-center">
-          <Box className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-2"></Box>
+          <Box className="animate-spin rounded-full h-8 w-8 border-b-2 border-brand mx-auto mb-2"></Box>
           <p className="text-sm text-gray-600">{t('loadingMap')}</p>
         </Box>
       </Box>
@@ -157,7 +157,7 @@ const MapCanvas: React.FC<MapCanvasProps> = ({
           padding="md"
         >
           {isLoadingLocation ? (
-            <Box className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></Box>
+            <Box className="animate-spin rounded-full h-5 w-5 border-b-2 border-brand"></Box>
           ) : (
             <svg
               xmlns="http://www.w3.org/2000/svg"
