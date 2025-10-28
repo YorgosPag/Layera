@@ -11,20 +11,20 @@ module.exports = {
 
     // ΝΕΑ: επιτρέπουμε ΜΟΝΟ tokens για τις κρίσιμες ιδιότητες
     'declaration-property-value-allowed-list': {
-      'font-family': [/^var\(--la-font-/],
-      'font-size':   [/^var\(--la-font-size-/],
-      'line-height': [/^var\(--la-line-height-/],
-      'letter-spacing': [/^var\(--la-letter-spacing-/],
-      'z-index':     [/^var\(--la-z-/],
-      'border-radius': [/^var\(--la-radius-/],
-      'box-shadow':  [/^var\(--la-shadow-/],
-      'color':       [/^var\(--la-/],
-      'background':  [/^var\(--la-/],
-      'background-color': [/^var\(--la-/],
-      'border-color': [/^var\(--la-/]
+      'font-family': [/^var\(--layera?-font-/],
+      'font-size':   [/^var\(--layera?-font-size-/],
+      'line-height': [/^var\(--layera?-line-height-/],
+      'letter-spacing': [/^var\(--layera?-letter-spacing-/],
+      'z-index':     [/^var\(--layera?-z-/],
+      'border-radius': [/^var\(--layera?-radius-/],
+      'box-shadow':  [/^var\(--layera?-shadow-/],
+      'color':       [/^var\(--layera?-/],
+      'background':  [/^var\(--layera?-/],
+      'background-color': [/^var\(--layera?-/],
+      'border-color': [/^var\(--layera?-/]
     },
 
-    // ΝΕΑ: ονόματα custom props
-    'custom-property-pattern': '^--la-'
+    // ΝΕΑ: ονόματα custom props - δεχόμαστε και --la- και --layera-
+    'custom-property-pattern': '^--(la|layera)-'
   }
 };

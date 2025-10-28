@@ -8,8 +8,8 @@
 /* Base MapLabel Styles */
 .la-map-label {
   position: absolute;
-  z-index: var(--layera-z-index-overlay);
-  font-family: var(--layera-font-family-base);
+  z-index: var(--la-z-index-overlay);
+  font-family: var(--la-font-family-base);
   pointer-events: auto;
   user-select: none;
   transition: all 0.15s ease;
@@ -33,108 +33,108 @@
 
 /* Background Variants */
 .la-map-label-bg-transparent {
-  background: var(--layera-color-transparent);
-  border: var(--layera-border-none);
-  box-shadow: var(--layera-shadow-none);
+  background: var(--la-color-transparent);
+  border: var(--la-border-none);
+  box-shadow: var(--la-shadow-none);
 }
 
 .la-map-label-bg-semi {
-  background: var(--layera-color-surface-secondary);
-  border: var(--layera-border-width-1) solid var(--layera-color-border-primary);
-  box-shadow: var(--layera-shadow-sm);
-  backdrop-filter: blur(var(--layera-blur-sm));
+  background: var(--la-color-surface-secondary);
+  border: var(--la-border-width-1) solid var(--la-color-border-primary);
+  box-shadow: var(--la-shadow-sm);
+  backdrop-filter: blur(var(--la-blur-sm));
 }
 
 .la-map-label-bg-solid {
-  background: var(--layera-color-surface);
-  border: var(--layera-border-width-1) solid var(--layera-color-border-primary);
-  box-shadow: var(--layera-shadow-sm);
+  background: var(--la-color-surface);
+  border: var(--la-border-width-1) solid var(--la-color-border-primary);
+  box-shadow: var(--la-shadow-sm);
 }
 
 /* Label Variants */
 
 /* Title variant - για boundary names */
 .la-map-label-title {
-  font-size: var(--layera-font-size-lg);
-  font-weight: var(--layera-font-weight-semibold);
-  color: var(--layera-color-text-primary);
-  padding: var(--layera-space-2) var(--layera-space-3);
-  border-radius: var(--layera-radius-sm);
-  line-height: var(--layera-line-height-tight);
+  font-size: var(--la-font-size-lg);
+  font-weight: var(--la-font-weight-semibold);
+  color: var(--la-color-text-primary);
+  padding: var(--la-space-2) var(--la-space-3);
+  border-radius: var(--la-radius-sm);
+  line-height: var(--la-line-height-tight);
   text-align: center;
   white-space: nowrap;
 }
 
 /* Subtitle variant - για secondary information */
 .la-map-label-subtitle {
-  font-size: var(--layera-font-size-base);
-  font-weight: var(--layera-font-weight-medium);
-  color: var(--layera-color-text-primary);
-  padding: var(--layera-space-3) var(--layera-space-5);
-  border-radius: var(--layera-radius-sm);
-  line-height: var(--layera-line-height-normal);
+  font-size: var(--la-font-size-base);
+  font-weight: var(--la-font-weight-medium);
+  color: var(--la-color-text-primary);
+  padding: var(--la-space-3) var(--la-space-5);
+  border-radius: var(--la-radius-sm);
+  line-height: var(--la-line-height-normal);
   text-align: center;
 }
 
 /* Area variant - για area calculations */
 .la-map-label-area {
-  font-size: var(--layera-font-size-sm);
-  font-weight: var(--layera-font-weight-medium);
-  color: var(--layera-color-text-secondary);
-  padding: var(--layera-space-1) var(--layera-space-2);
-  border-radius: var(--layera-radius-xs);
-  line-height: var(--layera-line-height-normal);
+  font-size: var(--la-font-size-sm);
+  font-weight: var(--la-font-weight-medium);
+  color: var(--la-color-text-secondary);
+  padding: var(--la-space-1) var(--la-space-2);
+  border-radius: var(--la-radius-xs);
+  line-height: var(--la-line-height-normal);
   text-align: center;
   white-space: nowrap;
 }
 
 /* Distance variant - για distance measurements */
 .la-map-label-distance {
-  font-size: var(--layera-font-size-sm);
-  font-weight: var(--layera-font-weight-medium);
-  color: var(--layera-color-text-secondary);
-  padding: var(--layera-space-1) var(--layera-space-2);
-  border-radius: var(--layera-radius-xs);
-  line-height: var(--layera-line-height-normal);
+  font-size: var(--la-font-size-sm);
+  font-weight: var(--la-font-weight-medium);
+  color: var(--la-color-text-secondary);
+  padding: var(--la-space-1) var(--la-space-2);
+  border-radius: var(--la-radius-xs);
+  line-height: var(--la-line-height-normal);
   text-align: center;
   white-space: nowrap;
 }
 
 /* Info variant - για general information */
 .la-map-label-info {
-  font-size: var(--layera-font-size-xs);
-  font-weight: var(--layera-font-weight-normal);
-  color: var(--layera-color-text-tertiary);
-  padding: var(--layera-space-1) var(--layera-space-2);
-  border-radius: var(--layera-radius-xs);
-  line-height: var(--layera-line-height-normal);
+  font-size: var(--la-font-size-xs);
+  font-weight: var(--la-font-weight-normal);
+  color: var(--la-color-text-tertiary);
+  padding: var(--la-space-1) var(--la-space-2);
+  border-radius: var(--la-radius-xs);
+  line-height: var(--la-line-height-normal);
   text-align: center;
 }
 
 /* Warning variant - για warning messages */
 .la-map-label-warning {
-  font-size: var(--layera-font-size-sm);
-  font-weight: var(--layera-font-weight-medium);
-  color: var(--layera-color-warning);
-  padding: var(--layera-space-1) var(--layera-space-2);
-  border-radius: var(--layera-radius-sm);
-  line-height: var(--layera-line-height-normal);
+  font-size: var(--la-font-size-sm);
+  font-weight: var(--la-font-weight-medium);
+  color: var(--la-color-warning);
+  padding: var(--la-space-1) var(--la-space-2);
+  border-radius: var(--la-radius-sm);
+  line-height: var(--la-line-height-normal);
   text-align: center;
-  background: var(--layera-color-warning-light);
-  border: var(--layera-border-width-1) solid var(--layera-color-warning);
+  background: var(--la-color-warning-light);
+  border: var(--la-border-width-1) solid var(--la-color-warning);
 }
 
 /* Success variant - για success states */
 .la-map-label-success {
-  font-size: var(--layera-font-size-sm);
-  font-weight: var(--layera-font-weight-medium);
-  color: var(--layera-color-success);
-  padding: var(--layera-space-1) var(--layera-space-2);
-  border-radius: var(--layera-radius-sm);
-  line-height: var(--layera-line-height-normal);
+  font-size: var(--la-font-size-sm);
+  font-weight: var(--la-font-weight-medium);
+  color: var(--la-color-success);
+  padding: var(--la-space-1) var(--la-space-2);
+  border-radius: var(--la-radius-sm);
+  line-height: var(--la-line-height-normal);
   text-align: center;
-  background: var(--layera-color-success-light);
-  border: var(--layera-border-width-1) solid var(--layera-color-success);
+  background: var(--la-color-success-light);
+  border: var(--la-border-width-1) solid var(--la-color-success);
 }
 
 /* Text Alignment */
@@ -156,26 +156,26 @@
 }
 
 .la-map-label-clickable:hover {
-  z-index: var(--layera-z-index-tooltip);
-  box-shadow: var(--layera-shadow-md);
+  z-index: var(--la-z-index-tooltip);
+  box-shadow: var(--la-shadow-md);
   transform: translateY(-0.125rem);
 }
 
 .la-map-label-clickable:active {
-  z-index: var(--layera-z-index-popover);
+  z-index: var(--la-z-index-popover);
   transform: translateY(0);
 }
 
 .la-map-label-hover {
-  z-index: var(--layera-z-index-tooltip);
-  box-shadow: var(--layera-shadow-md);
+  z-index: var(--la-z-index-tooltip);
+  box-shadow: var(--la-shadow-md);
 }
 
 .la-map-label-active {
-  z-index: var(--layera-z-index-popover);
-  box-shadow: var(--layera-shadow-md);
-  background: var(--layera-color-brand-light);
-  border-color: var(--layera-color-brand);
+  z-index: var(--la-z-index-popover);
+  box-shadow: var(--la-shadow-md);
+  background: var(--la-color-brand-light);
+  border-color: var(--la-color-brand);
 }
 
 /* Animation Classes */
@@ -243,34 +243,34 @@
 /* Responsive Design */
 @media (width <= 48rem) {
   .la-map-label-title {
-    font-size: var(--layera-font-size-base);
-    padding: var(--layera-space-3) var(--layera-space-5);
+    font-size: var(--la-font-size-base);
+    padding: var(--la-space-3) var(--la-space-5);
   }
 
   .la-map-label-subtitle {
-    font-size: var(--layera-font-size-sm);
-    padding: var(--layera-space-1) var(--layera-space-2);
+    font-size: var(--la-font-size-sm);
+    padding: var(--la-space-1) var(--la-space-2);
   }
 
   .la-map-label-area,
   .la-map-label-distance {
-    font-size: var(--layera-font-size-xs);
-    padding: var(--layera-space-1) var(--layera-space-3);
+    font-size: var(--la-font-size-xs);
+    padding: var(--la-space-1) var(--la-space-3);
   }
 }
 
 /* High Contrast Mode Support */
 @media (prefers-contrast: high) {
   .la-map-label {
-    border-width: var(--layera-border-width-2);
+    border-width: var(--la-border-width-2);
   }
 
   .la-map-label-bg-semi {
-    background: var(--layera-color-surface);
+    background: var(--la-color-surface);
   }
 
   .la-map-label-bg-solid {
-    background: var(--layera-color-surface);
+    background: var(--la-color-surface);
   }
 }
 
@@ -292,16 +292,16 @@
 /* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
   .la-map-label-bg-transparent {
-    background: var(--layera-color-transparent);
+    background: var(--la-color-transparent);
   }
 
   .la-map-label-bg-semi {
-    background: var(--layera-color-surface-secondary);
-    border-color: var(--layera-color-border-primary);
+    background: var(--la-color-surface-secondary);
+    border-color: var(--la-color-border-primary);
   }
 
   .la-map-label-bg-solid {
-    background: var(--layera-color-surface);
-    border-color: var(--layera-color-border-primary);
+    background: var(--la-color-surface);
+    border-color: var(--la-color-border-primary);
   }
 }
