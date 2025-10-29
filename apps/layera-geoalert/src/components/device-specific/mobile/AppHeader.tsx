@@ -46,7 +46,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
 
   const languageStyles: React.CSSProperties = {
     // fontSize handled by Text component
-    color: 'var(--color-interactive-primary)', // Design system primary color instead of hardcoded #007AFF
+    color: 'var(--color-interactive-primary)', // Design system primary color instead of hardcoded var(--la-color-primary)
     background: 'none',
     border: 'none',
     cursor: getCursorVar('pointer'), // Cursor system token για interactive elements

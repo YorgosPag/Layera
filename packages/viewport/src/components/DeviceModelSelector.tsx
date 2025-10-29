@@ -204,7 +204,7 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
               width: '100%',
               padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px`, // Μικρότερο vertical padding
               border: 'none',
-              background: !currentModel ? '#e3f2fd' : 'var(--la-color-surface)', // Ξεκάθαρα χρώματα
+              background: !currentModel ? 'var(--la-bg-info-light)' : 'var(--la-color-surface)', // Ξεκάθαρα χρώματα
               color: 'var(--la-text-primary)', // Μαύρο κείμενο για καλύτερη ορατότητα
               cursor: 'pointer',
               textAlign: 'left',
@@ -224,7 +224,7 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
                 fontSize: `${FONT_SIZES.XS - 3}px`, // Extra compact για category headers
                 fontWeight: 'var(--la-font-weight-semibold, var(--la-font-weight-semibold))',
                 color: 'var(--la-text-primary)', // Σκούρο γκρι κείμενο για καλύτερη ορατότητα
-                backgroundColor: '#f5f5f5', // Ανοικτό γκρι για category headers
+                backgroundColor: 'var(--la-bg-subtle)', // Ανοικτό γκρι για category headers
                 borderTop: 'var(--la-border-default, var(--la-border-width-default) solid var(--la-color-border-default))',
                 borderBottom: 'var(--la-border-default, var(--la-border-width-default) solid var(--la-color-border-default))',
                 whiteSpace: 'nowrap' // Αποτρέπει το αναδίπλωμα category headers
@@ -242,7 +242,7 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
                     width: '100%',
                     padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.SM}px`, // Μικρότερο vertical padding
                     border: 'none',
-                    background: currentModel === device ? '#e3f2fd' : 'var(--la-color-surface)', // Ξεκάθαρα χρώματα για device selection
+                    background: currentModel === device ? 'var(--la-bg-info-light)' : 'var(--la-color-surface)', // Ξεκάθαρα χρώματα για device selection
                     color: 'var(--la-text-primary)', // Μαύρο κείμενο για καλύτερη ορατότητα
                     cursor: 'pointer',
                     textAlign: 'left',

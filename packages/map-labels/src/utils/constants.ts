@@ -117,10 +117,10 @@ export const DEFAULT_STYLES = {
   /** Default text colors */
   TEXT_COLORS: {
     primary: '#1F2937',
-    secondary: '#6B7280',
-    muted: '#9CA3AF',
-    success: '#059669',
-    warning: '#D97706',
+    secondary: 'var(--la-text-secondary)',
+    muted: 'var(--la-text-muted)',
+    success: 'var(--la-color-success-dark)',
+    warning: 'var(--la-color-warning-dark)',
     error: '#DC2626'
   },
 

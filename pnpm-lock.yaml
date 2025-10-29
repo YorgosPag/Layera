@@ -100,7 +100,7 @@ importers:
         version: link:../../packages/geo-core
       '@layera/geo-drawing':
         specifier: file:..\..\packages\geo-drawing
-        version: file:packages/geo-drawing(react@19.2.0)
+        version: file:packages/geo-drawing(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@layera/geocoding':
         specifier: file:../../packages/geocoding
         version: link:../../packages/geocoding
@@ -112,7 +112,7 @@ importers:
         version: link:../../packages/info-panels
       '@layera/layout':
         specifier: file:../../packages/layout
-        version: link:../../packages/layout
+        version: file:packages/layout(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@layera/loading':
         specifier: file:../../packages/loading
         version: link:../../packages/loading
@@ -142,7 +142,7 @@ importers:
         version: file:packages/tolgee(react@19.2.0)
       '@layera/typography':
         specifier: file:../../packages/typography
-        version: link:../../packages/typography
+        version: file:packages/typography(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@layera/viewport':
         specifier: file:../../packages/viewport
         version: link:../../packages/viewport
@@ -1020,13 +1020,65 @@ importers:
         version: 5.9.3
 
   packages/geo-drawing:
-    devDependencies:
-      '@types/react':
-        specifier: ^18.0.0
-        version: 18.3.26
+    dependencies:
+      '@layera/buttons':
+        specifier: workspace:*
+        version: link:../buttons
+      '@layera/cards':
+        specifier: workspace:*
+        version: link:../cards
+      '@layera/constants':
+        specifier: workspace:*
+        version: link:../constants
+      '@layera/error-boundary':
+        specifier: workspace:*
+        version: link:../error-boundary
+      '@layera/forms':
+        specifier: workspace:*
+        version: link:../forms
+      '@layera/icons':
+        specifier: workspace:*
+        version: link:../icons
+      '@layera/layout':
+        specifier: workspace:*
+        version: link:../layout
+      '@layera/loading':
+        specifier: workspace:*
+        version: link:../loading
+      '@layera/notifications':
+        specifier: workspace:*
+        version: link:../notifications
+      '@layera/snap-engine':
+        specifier: workspace:*
+        version: link:../snap-engine
+      '@layera/snap-interactions':
+        specifier: workspace:*
+        version: link:../snap-interactions
+      '@layera/theme-switcher':
+        specifier: workspace:*
+        version: link:../theme-switcher
+      '@layera/tolgee':
+        specifier: workspace:*
+        version: link:../tolgee
+      '@layera/typography':
+        specifier: workspace:*
+        version: link:../typography
+      leaflet:
+        specifier: ^1.9.0
+        version: 1.9.4
       react:
         specifier: ^18.0.0
         version: 18.3.1
+      react-leaflet:
+        specifier: ^4.2.0
+        version: 4.2.1(leaflet@1.9.4)(react-dom@19.2.0(react@18.3.1))(react@18.3.1)
+    devDependencies:
+      '@types/leaflet':
+        specifier: ^1.9.0
+        version: 1.9.21
+      '@types/react':
+        specifier: ^18.0.0
+        version: 18.3.26
       tsup:
         specifier: ^8.0.0
         version: 8.5.0(@microsoft/api-extractor@7.53.3(@types/node@22.18.11))(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)
@@ -1120,6 +1172,9 @@ importers:
 
   packages/layout:
     dependencies:
+      '@layera/tokens':
+        specifier: workspace:*
+        version: link:../tokens
       react:
         specifier: ^18.0.0 || ^19.0.0
         version: 19.2.0
@@ -1649,6 +1704,9 @@ importers:
 
   packages/typography:
     dependencies:
+      '@layera/tokens':
+        specifier: workspace:*
+        version: link:../tokens
       react:
         specifier: ^18.0.0 || ^19.0.0
         version: 19.2.0
@@ -3363,6 +3421,12 @@ packages:
     peerDependencies:
       react: '>=18.0.0'
 
+  '@layera/layout@file:packages/layout':
+    resolution: {directory: packages/layout, type: directory}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
+
   '@layera/map-core@file:packages/map-core':
     resolution: {directory: packages/map-core, type: directory}
     peerDependencies:
@@ -3377,6 +3441,12 @@ packages:
     resolution: {directory: packages/tolgee, type: directory}
     peerDependencies:
       react: '>=18.0.0'
+
+  '@layera/typography@file:packages/typography':
+    resolution: {directory: packages/typography, type: directory}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
 
   '@manypkg/find-root@1.1.0':
     resolution: {integrity: sha512-mki5uBvhHzO8kYYix/WRy2WX8S3B5wdVSc9D6KcU5lQNglP2yt58/VfLuAK49glRXChosY8ap2oJ1qgma3GUVA==}
@@ -3540,6 +3610,13 @@ packages:
 
   '@protobufjs/utf8@1.1.0':
     resolution: {integrity: sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==}
+
+  '@react-leaflet/core@2.1.0':
+    resolution: {integrity: sha512-Qk7Pfu8BSarKGqILj4x7bCSZ1pjuAPZ+qmRwH5S7mDS91VSbVVsJSrW4qA+GPrro8t69gFYVMWb1Zc4yFmPiVg==}
+    peerDependencies:
+      leaflet: ^1.9.0
+      react: ^18.0.0
+      react-dom: ^18.0.0
 
   '@react-leaflet/core@3.0.0':
     resolution: {integrity: sha512-3EWmekh4Nz+pGcr+xjf0KNyYfC3U2JjnkWsh0zcqaexYqmmB5ZhH37kz41JXGmKzpaMZCnPofBBm64i+YrEvGQ==}
@@ -7220,6 +7297,13 @@ packages:
   react-is@19.2.0:
     resolution: {integrity: sha512-x3Ax3kNSMIIkyVYhWPyO09bu0uttcAIoecO/um/rKGQ4EltYWVYtyiGkS/3xMynrbVQdS69Jhlv8FXUEZehlzA==}
 
+  react-leaflet@4.2.1:
+    resolution: {integrity: sha512-p9chkvhcKrWn/H/1FFeVSqLdReGwn2qmiobOQGO3BifX+/vV/39qhY8dGqbdcPh1e6jxh/QHriLXr7a4eLFK4Q==}
+    peerDependencies:
+      leaflet: ^1.9.0
+      react: ^18.0.0
+      react-dom: ^18.0.0
+
   react-leaflet@5.0.0:
     resolution: {integrity: sha512-CWbTpr5vcHw5bt9i4zSlPEVQdTVcML390TjeDG0cK59z1ylexpqC6M1PJFjV8jD7CF+ACBFsLIDs6DRMoLEofw==}
     peerDependencies:
@@ -10310,9 +10394,33 @@ snapshots:
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
 
-  '@layera/geo-drawing@file:packages/geo-drawing(react@19.2.0)':
+  '@layera/geo-drawing@file:packages/geo-drawing(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
+      '@layera/buttons': link:packages/buttons
+      '@layera/cards': link:packages/cards
+      '@layera/constants': link:packages/constants
+      '@layera/error-boundary': link:packages/error-boundary
+      '@layera/forms': link:packages/forms
+      '@layera/icons': link:packages/icons
+      '@layera/layout': link:packages/layout
+      '@layera/loading': link:packages/loading
+      '@layera/notifications': link:packages/notifications
+      '@layera/snap-engine': link:packages/snap-engine
+      '@layera/snap-interactions': link:packages/snap-interactions
+      '@layera/theme-switcher': link:packages/theme-switcher
+      '@layera/tolgee': link:packages/tolgee
+      '@layera/typography': link:packages/typography
+      leaflet: 1.9.4
       react: 19.2.0
+      react-leaflet: 4.2.1(leaflet@1.9.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+    transitivePeerDependencies:
+      - react-dom
+
+  '@layera/layout@file:packages/layout(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+    dependencies:
+      '@layera/tokens': link:packages/tokens
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
 
   '@layera/map-core@file:packages/map-core(react@19.2.0)':
     dependencies:
@@ -10329,6 +10437,12 @@ snapshots:
       '@tolgee/react': 5.33.2(react@19.2.0)
       react: 19.2.0
       react-dom: 18.3.1(react@19.2.0)
+
+  '@layera/typography@file:packages/typography(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+    dependencies:
+      '@layera/tokens': link:packages/tokens
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
 
   '@manypkg/find-root@1.1.0':
     dependencies:
@@ -10537,6 +10651,18 @@ snapshots:
   '@protobufjs/pool@1.1.0': {}
 
   '@protobufjs/utf8@1.1.0': {}
+
+  '@react-leaflet/core@2.1.0(leaflet@1.9.4)(react-dom@19.2.0(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      leaflet: 1.9.4
+      react: 18.3.1
+      react-dom: 19.2.0(react@18.3.1)
+
+  '@react-leaflet/core@2.1.0(leaflet@1.9.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+    dependencies:
+      leaflet: 1.9.4
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
 
   '@react-leaflet/core@3.0.0(leaflet@1.9.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
@@ -15047,6 +15173,11 @@ snapshots:
       react: 19.2.0
       scheduler: 0.23.2
 
+  react-dom@19.2.0(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+      scheduler: 0.27.0
+
   react-dom@19.2.0(react@19.2.0):
     dependencies:
       react: 19.2.0
@@ -15059,6 +15190,20 @@ snapshots:
   react-is@18.3.1: {}
 
   react-is@19.2.0: {}
+
+  react-leaflet@4.2.1(leaflet@1.9.4)(react-dom@19.2.0(react@18.3.1))(react@18.3.1):
+    dependencies:
+      '@react-leaflet/core': 2.1.0(leaflet@1.9.4)(react-dom@19.2.0(react@18.3.1))(react@18.3.1)
+      leaflet: 1.9.4
+      react: 18.3.1
+      react-dom: 19.2.0(react@18.3.1)
+
+  react-leaflet@4.2.1(leaflet@1.9.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+    dependencies:
+      '@react-leaflet/core': 2.1.0(leaflet@1.9.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      leaflet: 1.9.4
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
 
   react-leaflet@5.0.0(leaflet@1.9.4)(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:

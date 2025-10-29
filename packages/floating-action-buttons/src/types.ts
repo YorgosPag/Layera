@@ -9,11 +9,11 @@ export type FABVariant = 'success' | 'primary' | 'secondary' | 'danger' | 'warni
 
 // 🎯 Single Source of Truth για FAB Colors - Enterprise LEGO System
 export const VARIANT_COLORS: Record<FABVariant, string> = {
-  success: 'var(--la-bg-success, #22C55E)',
-  primary: 'var(--la-bg-primary, #3B82F6)',
-  secondary: 'var(--la-bg-secondary, #6B7280)',
-  danger: 'var(--la-bg-danger, #EF4444)',
-  warning: 'var(--la-bg-warning, #F59E0B)'
+  success: 'var(--la-bg-success, var(--la-color-success))',
+  primary: 'var(--la-bg-primary, var(--la-color-primary))',
+  secondary: 'var(--la-bg-secondary, var(--la-text-secondary))',
+  danger: 'var(--la-bg-danger, var(--la-color-error))',
+  warning: 'var(--la-bg-warning, var(--la-color-warning))'
 };
 export type FABPosition = 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left' | 'center';
 export type DeviceType = 'mobile' | 'tablet' | 'desktop' | 'iphone';

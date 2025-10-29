@@ -1,351 +1,160 @@
-PS C:\layera> git add . ; if ($?) { git commit -m "?? Auto-commit #$(git rev-list --count HEAD)" } ; if ($?) { git
->>   push }
+PS C:\layera> npm run enterprise:validate
 
-test.css
-  1:7  ✖  Expected no more than 1 declaration  declaration-block-single-line-max-declarations
+> layera@1.0.0 enterprise:validate
+> node scripts/domains/validation/validate-duplicates.js
 
-apps/layera-id/src/components/MfaEnroll.css
-  175:12  ✖  Expected ".secondary" to match pattern                                   selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  180:12  ✖  Expected ".secondary" to match pattern                                   selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
+🛡️ LAYERA ENTERPRISE DUPLICATE PREVENTION SYSTEM
+================================================
+⚡ Powered by existing validation infrastructure
+📋 Based on DUPLICATE_PREVENTION_PROTOCOL.md
 
-apps/layera-id/src/pages/Account.css
-  149:11  ✖  Expected ".inactive" to match pattern                                    selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  217:15  ✖  Expected ".secondary" to match pattern                                   selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  221:15  ✖  Expected ".secondary" to match pattern                                   selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
 
-apps/layera-id/src/pages/Data.css
-  110:14  ✖  Expected ".privacy" to match pattern                                     selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  158:12  ✖  Expected ".verified" to match pattern                                    selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  163:12  ✖  Expected ".unverified" to match pattern                                  selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
+🔍 ΒΗΜΑ 1: ΥΠΟΧΡΕΩΤΙΚΗ ΠΡΟΣΑΡΩΣΗ ΠΡΙΝ ΓΡΑΦΩ ΚΩΔΙΚΑ
+====================================================
 
-apps/layera-id/src/pages/Settings.css
-  110:18  ✖  Expected ".danger" to match pattern                                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  125:18  ✖  Expected ".danger" to match pattern                                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  182:14  ✖  Expected ".secondary" to match pattern                                   selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  186:14  ✖  Expected ".secondary" to match pattern                                   selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  190:14  ✖  Expected ".danger" to match pattern                                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  194:14  ✖  Expected ".danger" to match pattern                                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
+🧩 ΒΗΜΑ 2: LEGO SYSTEMS COMPLIANCE VALIDATION
+==============================================
 
-packages/buttons/src/styles/index.css
-  485:3  ✖  Expected ".dot" to match pattern                                          selector-class-pattern            "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-            |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-            |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-            |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-            |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
+🔷 ΒΗΜΑ 3: TYPESCRIPT STRICT VALIDATION
+=======================================
 
-packages/layout/src/styles/layout.css
-   31:28  ✖  Expected ".no-sidebar" to match pattern                                  selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-   36:28  ✖  Expected ".sidebar-collapsed" to match pattern                           selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  130:25  ✖  Expected ".sidebar-open" to match pattern                                selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  147:34  ✖  Expected ".active" to match pattern                                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  159:30  ✖  Expected ".sidebar-collapsed" to match pattern                           selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
+🌍 ΒΗΜΑ 4: I18N COMPLIANCE VALIDATION
+====================================
 
-packages/pipelines/unified/styles/modal.css
-    7:1   ✖  Expected ".unified-pipeline-modal-overlay" to match pattern              selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-   12:3   ✖  Expected ".unified-pipeline-modal-overlay" to match pattern              selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-   18:3   ✖  Expected ".unified-pipeline-modal-overlay" to match pattern              selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-   26:1   ✖  Expected ".unified-pipeline-modal-overlay" to match pattern              selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-   40:1   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-   51:1   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-   61:3   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-   70:3   ✖  Expected ".unified-pipeline-modal-overlay" to match pattern              selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-   76:3   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  119:3   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  128:1   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  144:1   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  153:3   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  165:3   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  175:3   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  183:1   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  183:25  ✖  Expected ".card-title" to match pattern                                  selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  195:1   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  195:25  ✖  Expected ".card-text" to match pattern                                   selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  212:3   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  212:27  ✖  Expected ".card-title" to match pattern                                  selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  220:3   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  220:27  ✖  Expected ".card-text" to match pattern                                   selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  230:3   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  230:27  ✖  Expected ".card-title" to match pattern                                  selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  235:3   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  235:27  ✖  Expected ".card-text" to match pattern                                   selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  242:1   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  243:1   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  252:3   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  253:3   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  261:3   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  262:3   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  269:1   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  276:1   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  283:1   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  284:1   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  285:1   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  293:1   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  300:3   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  304:3   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  309:3   ✖  Expected ".unified-pipeline-modal" to match pattern                      selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
-  309:27  ✖  Expected ".card-text" to match pattern                                   selector-class-pattern             "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-             |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-
-             |welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-
-             |submit-|error-|success-|warning-|secondary-|inactive-|verified-
-             |unverified-|primary-|badges-|role-|item-|toggle-|danger-).*"
+🏛️ ΒΗΜΑ 5: SINGLE SOURCE OF TRUTH VALIDATION
+==============================================
+🚀 Starting enhanced enterprise validation - this may take 30-60 seconds...
 
-packages/theme-switcher/src/styles/index.css
-  56:1  ✖  Expected ".dark" to match pattern                                          selector-class-pattern           "^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-
-           |nav-|user-|form-|language-|logout-|info-|action-|status-|badge-|welcome-
-           |export-|privacy-|back-|security-|recaptcha-|divider|divider-|submit-
-           |error-|success-|warning-|secondary-|inactive-|verified-|unverified-
-           |primary-|badges-|role-|item-|toggle-|danger-).*"
 
-packages/forms/src/components/InputGroup/InputGroup.css
-  341:1  ✖  Expected                                                                selector-max-specificity            ".la-input-group-connected.la-input-group-error:hover:not(.la-input-
-            group-disabled) .la-input-group-container" to have a specificity no
-            more than "0,4,0"
+📁 Έλεγχος για problematic duplicated files:
+✅ No problematic duplicate filenames found
+ℹ️  Standard monorepo patterns (index.ts, types.ts, etc.) are allowed
 
-✖ 66 problems (66 errors, 0 warnings)
+📤 Έλεγχος για duplicated exports:
+ℹ️  Domain-specific types in device-detection: './types' (allowed)
+ℹ️  Domain-specific hooks in device-detection: './hooks' (allowed)
+ℹ️  Domain-specific types in device-layouts: './types' (allowed)
+ℹ️  Domain-specific utils in error-boundary: './utils' (allowed)
+ℹ️  Domain-specific constants in error-boundary: './constants' (allowed)
+ℹ️  Domain-specific types in floating-action-buttons: './types' (allowed)
+ℹ️  Domain-specific types in geo-core: './types' (allowed)
+ℹ️  Domain-specific utils in geo-core: './utils' (allowed)
+ℹ️  Domain-specific hooks in geocoding: './hooks' (allowed)
+ℹ️  Domain-specific types in map-core: './types' (allowed)
+ℹ️  Domain-specific constants in modals: './constants' (allowed)
+ℹ️  Domain-specific types in navigation-handlers: './types' (allowed)
+✅ No duplicate exports found
 
-husky - pre-commit script failed (code 2)
+🎨 Έλεγχος για duplicated CSS tokens:
+✅ No duplicate CSS tokens found
+
+🔍 Έλεγχος για anti-patterns:
+✅ No styled-components anti-patterns found
+✅ Minimal hardcoded colors found
+✅ Found 383 @layera imports (good LEGO usage)
+
+📝 Έλεγχος για any types:
+❌ Found 5 'any' types (should use specific types)
+❌ TypeScript compilation failed
+
+🔤 Έλεγχος για hardcoded strings:
+⚠️  Found 194 hardcoded Greek strings (should use t() function)
+✅ Found 438 i18n usages (good internationalization)
+
+🔑 Έλεγχος για untranslated keys:
+❌ Found 19 potentially untranslated keys:
+  🔑 app.name:
+    🇬🇷 "Layera"
+    🇺🇸 "Layera"
+  🔑 app.title.geoAlert:
+    🇬🇷 "Layera GeoAlert"
+    🇺🇸 "Layera GeoAlert"
+  🔑 app.title.layeraId:
+    🇬🇷 "Layera ID"
+    🇺🇸 "Layera ID"
+  🔑 auth.email:
+    🇬🇷 "Email"
+    🇺🇸 "Email"
+  🔑 settings.items.language.options.en:
+    🇬🇷 "English"
+    🇺🇸 "English"
+  🔑 data.fields.email:
+    🇬🇷 "Email"
+    🇺🇸 "Email"
+  🔑 data.fields.userId:
+    🇬🇷 "User ID"
+    🇺🇸 "User ID"
+  🔑 data.fields.ipAddress:
+    🇬🇷 "IP Address"
+    🇺🇸 "IP Address"
+  🔑 data.fields.webBrowser:
+    🇬🇷 "Web Browser"
+    🇺🇸 "Web Browser"
+  🔑 geoalert.title:
+    🇬🇷 "Layera GeoAlert"
+    🇺🇸 "Layera GeoAlert"
+    ... και 9 ακόμη
+
+📊 Translation Coverage:
+  🇬🇷 Greek: 544/561 keys (97%)
+  🇺🇸 English: 548/561 keys (98%)
+
+🎯 Έλεγχος για Single Source of Truth violations:
+❌ Found 33 Single Source of Truth violations
+❌ Custom Card implementation in cardData.ts - Use @layera/cards
+❌ Custom Card implementation in cardData.ts - Use @layera/cards
+❌ Custom Button implementation in FloatingStepper.tsx - Use @layera/buttons
+❌ Custom Button implementation in LayoutStepCard.tsx - Use @layera/buttons
+❌ Custom Button implementation in LayoutStepCard.tsx - Use @layera/buttons
+❌ Custom Form implementation in PropertyDetailsForm.tsx - Use @layera/forms
+❌ Custom Icon implementation in GeoHeader.tsx - Use @layera/icons
+❌ Custom Icon implementation in MapContainer.tsx - Use @layera/icons
+❌ Custom Icon implementation in AreaMethodCard.tsx - Use @layera/icons
+❌ Custom Icon implementation in AvailabilityCard.tsx - Use @layera/icons
+
+📊 LEGO Usage Report:
+ℹ️  Total @layera imports: 226
+ℹ️  @layera/layout: 52 imports
+ℹ️  @layera/tolgee: 36 imports
+ℹ️  @layera/cards: 34 imports
+ℹ️  @layera/constants: 33 imports
+ℹ️  @layera/icons: 28 imports
+ℹ️  @layera/typography: 21 imports
+ℹ️  @layera/buttons: 15 imports
+ℹ️  @layera/forms: 7 imports
+✅ Excellent LEGO usage: 226 imports
+
+📊 ENTERPRISE VALIDATION SUMMARY
+================================
+❌ VALIDATION ISSUES DETECTED!
+
+📈 Statistics:
+  - Errors: 14
+  - Warnings: 1
+  - Duplicates: 0
+
+🚨 CRITICAL ERRORS:
+  - Found 5 'any' types (should use specific types)
+  - TypeScript compilation failed
+  - Found 19 potentially untranslated keys:
+  - Found 33 Single Source of Truth violations
+  - Custom Card implementation in cardData.ts - Use @layera/cards
+  - Custom Card implementation in cardData.ts - Use @layera/cards
+  - Custom Button implementation in FloatingStepper.tsx - Use @layera/buttons
+  - Custom Button implementation in LayoutStepCard.tsx - Use @layera/buttons
+  - Custom Button implementation in LayoutStepCard.tsx - Use @layera/buttons
+  - Custom Form implementation in PropertyDetailsForm.tsx - Use @layera/forms
+  - Custom Icon implementation in GeoHeader.tsx - Use @layera/icons
+  - Custom Icon implementation in MapContainer.tsx - Use @layera/icons
+  - Custom Icon implementation in AreaMethodCard.tsx - Use @layera/icons
+  - Custom Icon implementation in AvailabilityCard.tsx - Use @layera/icons
+
+⚠️  WARNINGS:
+  - Found 194 hardcoded Greek strings (should use t() function)
+
+📋 NEXT STEPS:
+1. Fix all duplicates before proceeding
+2. Follow DUPLICATE_PREVENTION_PROTOCOL.md
+3. Use only @layera LEGO systems
+4. Re-run this validation after fixes
 PS C:\layera> 

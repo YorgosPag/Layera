@@ -48,7 +48,7 @@ export const useCategoryTheming = (selectedCategory: CategoryType): CategoryThem
           backgroundColor: 'var(--la-color-orange-500-alpha-95, var(--la-color-warning-alpha-95))', // orange-500
           borderColor: 'var(--la-color-orange-500-alpha-30, var(--la-color-warning-alpha-30))',
           textColor: 'var(--la-color-white, var(--la-color-surface))',
-          accentColor: 'var(--la-color-orange-600, #f97316)',
+          accentColor: 'var(--la-color-orange-600, var(--la-color-orange))',
           isDark: false
         };
     }
@@ -85,7 +85,7 @@ export const getCategoryTheme = (selectedCategory: CategoryType): CategoryTheme 
         backgroundColor: 'var(--la-bg-secondary)',
         borderColor: 'var(--la-color-warning-alpha-30)',
         textColor: 'var(--la-color-surface)',
-        accentColor: '#f97316',
+        accentColor: 'var(--la-color-orange)',
         isDark: false
       };
   }

@@ -106,9 +106,9 @@ export const MeasurementCanvas: React.FC<MeasurementCanvasProps> = ({
   const getColors = useCallback(() => {
     const isDark = theme === 'dark';
     return {
-      line: isDark ? 'var(--la-color-blue-400, #60a5fa)' : 'var(--la-color-blue-600, var(--la-color-brand))',
+      line: isDark ? 'var(--la-color-blue-400, var(--la-color-primary-light))' : 'var(--la-color-blue-600, var(--la-color-brand))',
       fill: isDark ? 'var(--la-color-blue-400-alpha-20, rgba(96, 165, 250, 0.2))' : 'var(--la-color-blue-600-alpha-20, rgba(59, 130, 246, 0.2))',
-      point: isDark ? 'var(--la-color-amber-500, var(--la-color-warning))' : 'var(--la-color-amber-600, #d97706)',
+      point: isDark ? 'var(--la-color-amber-500, var(--la-color-warning))' : 'var(--la-color-amber-600, var(--la-color-warning-dark))',
       pointBorder: isDark ? 'var(--la-color-gray-800, var(--la-text-primary))' : 'var(--la-color-white, var(--la-color-surface))'
     };
   }, [theme]);

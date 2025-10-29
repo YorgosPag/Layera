@@ -46,7 +46,7 @@
  * =====================================================
  * - Event listener captures 'showAdministrativeBoundary'
  * - Boundary data μετατρέπεται σε Leaflet layers
- * - Purple styling: color='#8B5CF6', weight=2, fillOpacity=0.1
+ * - Purple styling: color='var(--la-color-accent)', weight=2, fillOpacity=0.1
  * - addLayer() → boundary εμφανίζεται στον χάρτη
  * - fitBounds() → χάρτης zooms στο boundary extent
  *

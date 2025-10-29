@@ -84,7 +84,10 @@
       "Bash(forfiles:*)",
       "Bash(git stash pop:*)",
       "Bash(git stash:*)",
-      "Bash(git reset:*)"
+      "Bash(git reset:*)",
+      "Bash(del temp-color-analysis.js)",
+      "Bash(del /S /Q packagesinfo-panelsdist-manual)",
+      "Bash(start http://localhost:3000)"
     ],
     "deny": [],
     "ask": []

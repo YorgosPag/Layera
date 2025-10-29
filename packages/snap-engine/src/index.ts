@@ -269,9 +269,9 @@ export function createGeometry(
 // 📊 VERSION INFORMATION
 // ========================================
 
-export const VERSION = '1.0.0';
-export const BUILD_INFO = {
-  version: VERSION,
+export const SNAP_ENGINE_VERSION = '1.0.0';
+export const SNAP_ENGINE_BUILD_INFO = {
+  version: SNAP_ENGINE_VERSION,
   buildDate: new Date().toISOString(),
   features: [
     'R-tree spatial indexing',

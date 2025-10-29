@@ -90,7 +90,7 @@ export const ESCO_NAMESPACES = {
 export const DEVICE_FRAME_COLORS = {
   SPACE_GRAY: '#1c1c1e',
   SILVER: '#f0f0f0',
-  BLACK: '#000000',
+  BLACK: 'var(--la-color-black)000',
   WHITE: '#e5e5e7',
   GOLD: '#e5e5e7',
   GOOGLE_CHARCOAL: '#202124',
@@ -181,9 +181,9 @@ export const FIXED_DIMENSIONS = {
  */
 export const BRAND_COLORS = {
   PRIMARY: '#4F46E5',
-  SECONDARY: '#6B7280',
+  SECONDARY: 'var(--la-text-secondary)',
   WHITE: 'var(--la-color-surface)',
-  BLACK: '#000000',
+  BLACK: 'var(--la-color-black)000',
 } as const;
 
 /**
@@ -191,13 +191,13 @@ export const BRAND_COLORS = {
  */
 export const UI_COLORS = {
   INFO_SUBTLE: '#EBF5FF',
-  INFO_DEFAULT: '#3B82F6',
+  INFO_DEFAULT: 'var(--la-color-primary)',
   NEUTRAL_LIGHT: '#F3F4F6',
-  NEUTRAL_DEFAULT: '#6B7280',
-  NEUTRAL_DARK: '#374151',
+  NEUTRAL_DEFAULT: 'var(--la-text-secondary)',
+  NEUTRAL_DARK: 'var(--la-color-gray-dark)',
   BORDER_DEFAULT: '#E5E7EB',
   SURFACE_DEFAULT: '#F9FAFB',
-  TEXT_TERTIARY: '#9CA3AF',
+  TEXT_TERTIARY: 'var(--la-text-muted)',
 } as const;
 
 
@@ -280,7 +280,7 @@ export const CONFIG = {
     minSnapZoom: 16,
     debounceMs: 500,
     measurementPrecision: 2,
-    defaultStrokeColor: '#3B82F6',
+    defaultStrokeColor: 'var(--la-color-primary)',
     defaultFillColor: 'rgba(59, 130, 246, 0.1)',
     defaultStrokeWidth: 2,
   },

@@ -198,16 +198,16 @@
 }
 
 [data-theme="dark"] .la-error-fallback-message {
-  color: var(--color-text-secondary-dark, #d1d5db);
+  color: var(--color-text-secondary-dark, var(--la-color-border-light));
 }
 
 [data-theme="dark"] .la-error-fallback-details-toggle {
   border-color: var(--la-color-border-dark);
-  color: var(--color-text-secondary-dark, #d1d5db);
+  color: var(--color-text-secondary-dark, var(--la-color-border-light));
 }
 
 [data-theme="dark"] .la-error-fallback-details-toggle:hover {
-  background-color: var(--color-surface-hover-dark, #374151);
+  background-color: var(--color-surface-hover-dark, var(--la-color-gray-dark));
   border-color: var(--color-border-hover-dark, #4b5563);
   color: var(--color-text-primary-dark, #f9fafb);
 }

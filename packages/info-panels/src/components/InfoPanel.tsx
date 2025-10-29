@@ -233,7 +233,7 @@ export const InfoPanel = React.memo<InfoPanelProps>(({
           border: 'var(--la-border-none, none)',
           borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
           backgroundColor: 'var(--color-bg-surface-overlay)',
-          color: 'var(--la-color-white, #fff)',
+          color: 'var(--la-color-white, var(--la-color-white))',
           fontWeight: 'var(--la-font-bold)',
           lineHeight: 'var(--la-line-height-none, 1)',
           zIndex: mobileStyles.zIndex + 1,

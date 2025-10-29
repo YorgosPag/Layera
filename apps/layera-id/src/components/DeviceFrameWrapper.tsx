@@ -78,7 +78,7 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
       transform: 'translateX(-50%)',
       width: 'var(--la-device-notch-width, 209px)',
       height: 'var(--la-device-notch-height, 30px)',
-      backgroundColor: 'var(--la-device-notch-color, #000)',
+      backgroundColor: 'var(--la-device-notch-color, var(--la-color-black))',
       borderBottomLeftRadius: `${BORDER_RADIUS_SCALE.LAYOUT_SM}px`,
       borderBottomRightRadius: `${BORDER_RADIUS_SCALE.LAYOUT_SM}px`,
       zIndex: 10
@@ -95,7 +95,7 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
       transform: 'translateX(-50%)',
       width: 'var(--la-device-home-width, 134px)',
       height: 'var(--la-device-home-height, 5px)',
-      backgroundColor: 'var(--la-device-notch-color, #000)',
+      backgroundColor: 'var(--la-device-notch-color, var(--la-color-black))',
       borderRadius: `${BORDER_RADIUS_SCALE.PILL}px`,
       zIndex: 10
     };

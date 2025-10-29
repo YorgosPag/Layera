@@ -183,7 +183,7 @@ export const COLORS = {
     border: 'var(--la-border-default, var(--color-border-default))',
     text: {
       primary: 'var(--la-text-primary, var(--la-text-primary))',
-      secondary: 'var(--la-text-secondary, #6b7280)'
+      secondary: 'var(--la-text-secondary, var(--la-text-secondary))'
     }
   }
 } as const;

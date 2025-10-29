@@ -324,22 +324,22 @@ export class CADRenderer {
     if (color.type === 'index' && typeof color.value === 'number') {
       // AutoCAD color index to RGB mapping (simplified)
       const colorMap: Record<number, string> = {
-        0: '#000000', // ByBlock
+        0: 'var(--la-color-black)000', // ByBlock
         1: '#ff0000', // Red
-        2: '#ffff00', // Yellow
+        2: 'var(--la-color-white)f00', // Yellow
         3: '#00ff00', // Green
         4: '#00ffff', // Cyan
-        5: '#0000ff', // Blue
+        5: 'var(--la-color-black)0ff', // Blue
         6: '#ff00ff', // Magenta
         7: 'var(--la-color-surface)', // White
         8: '#414141', // Dark Gray
         9: '#808080'  // Light Gray
       };
 
-      return colorMap[color.value] || '#000000';
+      return colorMap[color.value] || 'var(--la-color-black)000';
     }
 
-    return '#000000'; // Default black
+    return 'var(--la-color-black)000'; // Default black
   }
 
   /**

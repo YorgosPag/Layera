@@ -52,13 +52,13 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
 
   const getExperienceLevelColor = (level: string) => {
     switch (level) {
-      case 'entry': return 'var(--la-color-green-500, #10B981)'; // Green
-      case 'junior': return 'var(--la-color-blue-500, #3B82F6)'; // Blue
-      case 'mid': return 'var(--la-color-yellow-500, #F59E0B)'; // Yellow
-      case 'senior': return 'var(--la-color-red-500, #EF4444)'; // Red
-      case 'expert': return 'var(--la-color-purple-500, #8B5CF6)'; // Purple
-      case 'executive': return 'var(--la-color-gray-700, #374151)'; // Gray
-      default: return 'var(--la-color-gray-500, #6B7280)';
+      case 'entry': return 'var(--la-color-green-500, var(--la-color-success))'; // Green
+      case 'junior': return 'var(--la-color-blue-500, var(--la-color-primary))'; // Blue
+      case 'mid': return 'var(--la-color-yellow-500, var(--la-color-warning))'; // Yellow
+      case 'senior': return 'var(--la-color-red-500, var(--la-color-error))'; // Red
+      case 'expert': return 'var(--la-color-purple-500, var(--la-color-accent))'; // Purple
+      case 'executive': return 'var(--la-color-gray-700, var(--la-color-gray-dark))'; // Gray
+      default: return 'var(--la-color-gray-500, var(--la-text-secondary))';
     }
   };
 

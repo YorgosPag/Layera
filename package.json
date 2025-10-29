@@ -22,7 +22,7 @@
     "policy:check": "echo '✅ TIER 1 Rules handled by pre-commit hooks'",
     "dup:check": "jscpd --pattern \"**/*.{ts,tsx,js,jsx,css,scss}\" -t 0 --ignore \"**/dist/**,**/node_modules/**,packages/tokens/**,packages/styles/**,**/*.svg\"",
     "validation:critical": "node scripts/domains/validation/critical-validation.js",
-    "enterprise:validate": "node validate-duplicates.js",
+    "enterprise:validate": "node scripts/domains/validation/validate-duplicates.js",
     "enterprise:protocol": "echo '📋 DUPLICATE_PREVENTION_PROTOCOL.md enforced by pre-commit hooks'",
     "enterprise:full": "node scripts/enterprise-validation-engine.js",
     "enterprise:auto-fix": "node scripts/enterprise-auto-fix.js",

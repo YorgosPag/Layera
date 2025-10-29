@@ -88,7 +88,7 @@ export const SnapIndicator: React.FC<SnapIndicatorProps> = ({
     zIndex: 10000,
     borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
     backgroundColor: color,
-    border: `2px solid ${theme === 'dark' ? 'var(--la-color-white, var(--la-color-surface))' : 'var(--la-color-black, #000000)'}`,
+    border: `2px solid ${theme === 'dark' ? 'var(--la-color-white, var(--la-color-surface))' : 'var(--la-color-black, var(--la-color-black)000)'}`,
     boxShadow: `0 0 8px ${color}`,
     display: 'flex',
     alignItems: 'center',
@@ -105,9 +105,9 @@ export const SnapIndicator: React.FC<SnapIndicatorProps> = ({
     transform: 'translateX(-50%)',
     marginBottom: `${SPACING_SCALE.XS}px`,
     padding: `${SPACING_SCALE.XS - 4}px ${SPACING_SCALE.XS}px`,
-    backgroundColor: theme === 'dark' ? 'var(--la-color-slate-700, #2c3e50)' : 'var(--la-color-gray-100, #ecf0f1)',
-    color: theme === 'dark' ? 'var(--la-color-gray-100, #ecf0f1)' : 'var(--la-color-slate-700, #2c3e50)',
-    border: `1px solid ${theme === 'dark' ? 'var(--la-color-slate-600, #34495e)' : 'var(--la-color-gray-300, #bdc3c7)'}`,
+    backgroundColor: theme === 'dark' ? 'var(--la-color-slate-700, var(--la-color-dark))' : 'var(--la-color-gray-100, var(--la-bg-light))',
+    color: theme === 'dark' ? 'var(--la-color-gray-100, var(--la-bg-light))' : 'var(--la-color-slate-700, var(--la-color-dark))',
+    border: `1px solid ${theme === 'dark' ? 'var(--la-color-slate-600, var(--la-color-slate))' : 'var(--la-color-gray-300, var(--la-color-gray-light))'}`,
     borderRadius: `${SPACING_SCALE.XS - 4}px`,
     fontSize: 'var(--la-font-size-xs)',
     fontWeight: 500,
@@ -141,7 +141,7 @@ export const SnapIndicator: React.FC<SnapIndicatorProps> = ({
       <Icon
         name={iconName}
         size={size * 0.6}
-        color={theme === 'dark' ? 'var(--la-color-white, var(--la-color-surface))' : 'var(--la-color-black, #000000)'}
+        color={theme === 'dark' ? 'var(--la-color-white, var(--la-color-surface))' : 'var(--la-color-black, var(--la-color-black)000)'}
       />
 
       {/* Tooltip */}
@@ -200,7 +200,7 @@ export const SnapCursor: React.FC<SnapCursorProps> = ({
     height: size,
     pointerEvents: 'none',
     zIndex: 9999,
-    border: `2px solid ${isSnapped ? 'var(--la-color-red-600, #e74c3c)' : theme === 'dark' ? 'var(--la-color-gray-100, #ecf0f1)' : 'var(--la-color-slate-700, #2c3e50)'}`,
+    border: `2px solid ${isSnapped ? 'var(--la-color-red-600, var(--la-color-error))' : theme === 'dark' ? 'var(--la-color-gray-100, var(--la-bg-light))' : 'var(--la-color-slate-700, var(--la-color-dark))'}`,
     borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
     backgroundColor: isSnapped ? 'var(--la-color-red-600-alpha-20, rgba(231, 76, 60, 0.2))' : 'transparent',
     transition: 'all 0.1s ease-out',
@@ -235,7 +235,7 @@ export const SnapGuidelines: React.FC<SnapGuidelinesProps> = ({
   }
 
   const { snapPoint } = snapResult;
-  const lineColor = theme === 'dark' ? 'var(--la-color-gray-100, #ecf0f1)' : 'var(--la-color-slate-700, #2c3e50)';
+  const lineColor = theme === 'dark' ? 'var(--la-color-gray-100, var(--la-bg-light))' : 'var(--la-color-slate-700, var(--la-color-dark))';
 
   // Calculate line από cursor σε snap point
   const lineStyle: React.CSSProperties = {
@@ -266,9 +266,9 @@ export const SnapGuidelines: React.FC<SnapGuidelinesProps> = ({
     top: midPointY - 20,
     transform: 'translateX(-50%)',
     padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.XS + SPACING_SCALE.XS}px`,
-    backgroundColor: theme === 'dark' ? 'var(--la-color-slate-700, #2c3e50)' : 'var(--la-color-gray-100, #ecf0f1)',
-    color: theme === 'dark' ? 'var(--la-color-gray-100, #ecf0f1)' : 'var(--la-color-slate-700, #2c3e50)',
-    border: `1px solid ${theme === 'dark' ? 'var(--la-color-slate-600, #34495e)' : 'var(--la-color-gray-300, #bdc3c7)'}`,
+    backgroundColor: theme === 'dark' ? 'var(--la-color-slate-700, var(--la-color-dark))' : 'var(--la-color-gray-100, var(--la-bg-light))',
+    color: theme === 'dark' ? 'var(--la-color-gray-100, var(--la-bg-light))' : 'var(--la-color-slate-700, var(--la-color-dark))',
+    border: `1px solid ${theme === 'dark' ? 'var(--la-color-slate-600, var(--la-color-slate))' : 'var(--la-color-gray-300, var(--la-color-gray-light))'}`,
     borderRadius: `${BORDER_RADIUS_SCALE.XXS}px`,
     fontSize: '11px',
     fontWeight: 500,

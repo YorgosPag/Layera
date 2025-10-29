@@ -195,7 +195,7 @@
 .unified-pipeline-modal .card-text {
   font-size: var(--la-text-sm, 0.65rem);
   line-height: var(--la-leading-relaxed, 1.4);
-  color: var(--la-text-secondary, #6b7280);
+  color: var(--la-text-secondary, var(--la-text-secondary));
   overflow-wrap: break-word;
   white-space: normal;
   hyphens: auto;
@@ -220,7 +220,7 @@
   .unified-pipeline-modal .card-text {
     font-size: 0.85rem;
     line-height: var(--la-leading-normal);
-    color: var(--la-text-secondary, #6b7280);
+    color: var(--la-text-secondary, var(--la-text-secondary));
     min-height: 2.5rem;
   }
 }

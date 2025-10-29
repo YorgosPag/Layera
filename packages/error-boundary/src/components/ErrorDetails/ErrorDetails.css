@@ -143,12 +143,12 @@
 
 .layera-error-details-content::-webkit-scrollbar-thumb:hover,
 .layera-error-details-stack::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-secondary, #6b7280);
+  background: var(--color-text-secondary, var(--la-text-secondary));
 }
 
 /* Dark theme support */
 [data-theme="dark"] .layera-error-details {
-  background-color: var(--color-surface-secondary-dark, #374151);
+  background-color: var(--color-surface-secondary-dark, var(--la-color-gray-dark));
   border-color: var(--color-border-dark, #4b5563);
 }
 
@@ -163,7 +163,7 @@
 
 [data-theme="dark"] .layera-error-details-copy,
 [data-theme="dark"] .layera-error-details-toggle {
-  color: var(--color-text-secondary-dark, #d1d5db);
+  color: var(--color-text-secondary-dark, var(--la-color-border-light));
 }
 
 [data-theme="dark"] .layera-error-details-copy:hover,
@@ -173,11 +173,11 @@
 }
 
 [data-theme="dark"] .layera-error-details-section-title {
-  color: var(--color-text-secondary-dark, #d1d5db);
+  color: var(--color-text-secondary-dark, var(--la-color-border-light));
 }
 
 [data-theme="dark"] .layera-error-details-label {
-  color: var(--color-text-secondary-dark, #d1d5db);
+  color: var(--color-text-secondary-dark, var(--la-color-border-light));
 }
 
 [data-theme="dark"] .layera-error-details-value {
@@ -187,7 +187,7 @@
 
 [data-theme="dark"] .layera-error-details-stack {
   background-color: var(--color-surface-tertiary-dark, #4b5563);
-  border-color: var(--color-border-dark, #6b7280);
+  border-color: var(--color-border-dark, var(--la-text-secondary));
   color: var(--color-text-primary-dark, #f9fafb);
 }
 
@@ -198,5 +198,5 @@
 
 [data-theme="dark"] .layera-error-details-content::-webkit-scrollbar-thumb:hover,
 [data-theme="dark"] .layera-error-details-stack::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-secondary-dark, #d1d5db);
+  background: var(--color-text-secondary-dark, var(--la-color-border-light));
 }

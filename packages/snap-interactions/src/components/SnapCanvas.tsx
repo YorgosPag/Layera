@@ -144,7 +144,7 @@ export const SnapCanvas: React.FC<SnapCanvasProps> = ({
     ctx.clearRect(0, 0, width, height);
 
     // Background
-    ctx.fillStyle = backgroundColor || (theme === 'dark' ? 'var(--la-color-slate-700, #2c3e50)' : 'var(--la-color-gray-100, #ecf0f1)');
+    ctx.fillStyle = backgroundColor || (theme === 'dark' ? 'var(--la-color-slate-700, var(--la-color-dark))' : 'var(--la-color-gray-100, var(--la-bg-light))');
     ctx.fillRect(0, 0, width, height);
 
     // Render geometries
@@ -160,8 +160,8 @@ export const SnapCanvas: React.FC<SnapCanvasProps> = ({
     const isSelected = canvasState.selectedGeometry?.id === geometry.id;
     const isHovered = canvasState.hoverGeometry?.id === geometry.id;
 
-    ctx.strokeStyle = isSelected ? 'var(--la-color-red-600, #e74c3c)' : isHovered ? 'var(--la-color-blue-600, #3498db)' :
-                     theme === 'dark' ? 'var(--la-color-gray-100, #ecf0f1)' : 'var(--la-color-slate-700, #2c3e50)';
+    ctx.strokeStyle = isSelected ? 'var(--la-color-red-600, var(--la-color-error))' : isHovered ? 'var(--la-color-blue-600, var(--la-color-blue))' :
+                     theme === 'dark' ? 'var(--la-color-gray-100, var(--la-bg-light))' : 'var(--la-color-slate-700, var(--la-color-dark))';
     ctx.lineWidth = isSelected ? 3 : isHovered ? 2 : 1;
     ctx.fillStyle = geometry.layer === 'osm_buildings' ?
                    'var(--la-color-blue-600-alpha-20, rgba(52, 152, 219, 0.2))' : 'transparent';

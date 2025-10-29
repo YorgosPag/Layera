@@ -91,7 +91,7 @@ export {
   type FlexJustify,
   type FlexAlign,
   type FlexAlignContent,
-  type FlexWrap,
+  type FlexWrap as FlexWrapType,
   type FlexValue,
   type FlexGap
 } from './flex';

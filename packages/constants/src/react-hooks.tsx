@@ -425,9 +425,9 @@ function getSSRFallback(tokenName: string): string {
 
     // Color fallbacks (light theme defaults)
     'color-bg-canvas': 'var(--la-color-white, var(--la-color-surface))',
-    'color-bg-surface': 'var(--la-color-gray-50, #fafafa)',
-    'color-text-primary': 'var(--la-color-gray-900, #0f0f0f)',
-    'color-text-secondary': 'var(--la-color-gray-500, #6b7280)',
+    'color-bg-surface': 'var(--la-color-gray-50, var(--la-bg-subtle))',
+    'color-text-primary': 'var(--la-color-gray-900, var(--la-color-black))',
+    'color-text-secondary': 'var(--la-color-gray-500, var(--la-text-secondary))',
 
     // Motion fallbacks
     'motion-duration-fast': '150ms',
