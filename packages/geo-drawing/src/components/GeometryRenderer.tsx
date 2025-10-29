@@ -41,7 +41,7 @@ export const GeometryRenderer: React.FC<GeometryRendererProps> = ({
       // Measurement colors
       measurementLine: isDark ? '#10b981' : '#059669',
       measurementFill: isDark ? 'rgba(16, 185, 129, 0.2)' : 'rgba(5, 150, 105, 0.2)',
-      measurementPoint: isDark ? '#f59e0b' : '#d97706',
+      measurementPoint: isDark ? 'var(--la-color-warning)' : '#d97706',
 
       // OSM building colors
       buildingLine: isDark ? '#6b7280' : '#9ca3af',
@@ -49,7 +49,7 @@ export const GeometryRenderer: React.FC<GeometryRendererProps> = ({
       buildingHover: isDark ? '#374151' : '#d1d5db',
 
       // Border colors
-      border: isDark ? '#1f2937' : '#ffffff'
+      border: isDark ? 'var(--la-text-primary)' : 'var(--la-color-surface)'
     };
   }, [theme]);
 

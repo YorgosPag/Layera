@@ -189,7 +189,7 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
           left: '0',
           minWidth: `${SPACING_SCALE.XXXXL * 3}px`, // Design token για dropdown width
           marginTop: `${SPACING_SCALE.SM}px`,
-          backgroundColor: '#ffffff', // WHITE BACKGROUND για καλύτερη ορατότητα συσκευών
+          backgroundColor: 'var(--la-color-surface)', // WHITE BACKGROUND για καλύτερη ορατότητα συσκευών
           borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
           boxShadow: BOX_SHADOW_SCALE.modalDefault,
           overflow: 'hidden',
@@ -205,8 +205,8 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
               width: '100%',
               padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px`, // Μικρότερο vertical padding
               border: 'none',
-              background: !currentModel ? '#e3f2fd' : '#ffffff', // Ξεκάθαρα χρώματα
-              color: '#000000', // Μαύρο κείμενο για καλύτερη ορατότητα
+              background: !currentModel ? '#e3f2fd' : 'var(--la-color-surface)', // Ξεκάθαρα χρώματα
+              color: 'var(--la-text-primary)', // Μαύρο κείμενο για καλύτερη ορατότητα
               cursor: 'pointer',
               textAlign: 'left',
               fontSize: `${FONT_SIZES.XS}px`, // Design token για "Responsive View"
@@ -224,7 +224,7 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
                 padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px`, // Μικρότερο vertical padding για category headers
                 fontSize: `${FONT_SIZES.XS - 3}px`, // Extra compact για category headers
                 fontWeight: 'var(--la-font-weight-semibold, var(--la-font-weight-semibold))',
-                color: '#333333', // Σκούρο γκρι κείμενο για καλύτερη ορατότητα
+                color: 'var(--la-text-primary)', // Σκούρο γκρι κείμενο για καλύτερη ορατότητα
                 backgroundColor: '#f5f5f5', // Ανοικτό γκρι για category headers
                 borderTop: 'var(--la-border-default, var(--la-border-width-default) solid var(--la-color-border-default))',
                 borderBottom: 'var(--la-border-default, var(--la-border-width-default) solid var(--la-color-border-default))',
@@ -243,8 +243,8 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
                     width: '100%',
                     padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.SM}px`, // Μικρότερο vertical padding
                     border: 'none',
-                    background: currentModel === device ? '#e3f2fd' : '#ffffff', // Ξεκάθαρα χρώματα για device selection
-                    color: '#000000', // Μαύρο κείμενο για καλύτερη ορατότητα
+                    background: currentModel === device ? '#e3f2fd' : 'var(--la-color-surface)', // Ξεκάθαρα χρώματα για device selection
+                    color: 'var(--la-text-primary)', // Μαύρο κείμενο για καλύτερη ορατότητα
                     cursor: 'pointer',
                     textAlign: 'left',
                     fontSize: `${FONT_SIZES.XS}px`, // Design token για device names

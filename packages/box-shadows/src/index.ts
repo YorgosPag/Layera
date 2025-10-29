@@ -28,10 +28,10 @@ export const BOX_SHADOW_SCALE = {
   // Level 0-5: Surface elevations
   elevation0: 'none', // Surface level
   elevation1: 'var(--la-shadow-subtle, 0 1px 2px 0 rgba(0, 0, 0, 0.05))', // Raised surface
-  elevation2: 'var(--la-shadow-card, 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06))', // Card
-  elevation3: 'var(--la-shadow-dropdown, 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06))', // Dropdown
-  elevation4: 'var(--la-shadow-modal, 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05))', // Modal
-  elevation5: 'var(--la-shadow-popover, 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04))', // Popover
+  elevation2: 'var(--la-shadow-card, 0 1px 3px 0 var(--la-shadow-sm), 0 1px 2px 0 rgba(0, 0, 0, 0.06))', // Card
+  elevation3: 'var(--la-shadow-dropdown, 0 4px 6px -1px var(--la-shadow-sm), 0 2px 4px -1px rgba(0, 0, 0, 0.06))', // Dropdown
+  elevation4: 'var(--la-shadow-modal, 0 10px 15px -3px var(--la-shadow-sm), 0 4px 6px -2px rgba(0, 0, 0, 0.05))', // Modal
+  elevation5: 'var(--la-shadow-popover, 0 20px 25px -5px var(--la-shadow-sm), 0 10px 10px -5px rgba(0, 0, 0, 0.04))', // Popover
 
   // Extended elevations για complex interfaces
   elevation6: 'var(--la-shadow-dialog, 0 25px 50px -12px rgba(0, 0, 0, 0.25))', // Dialog/Sheet
@@ -40,8 +40,8 @@ export const BOX_SHADOW_SCALE = {
   // Semantic shadows (context-aware)
   // Interactive elements
   buttonDefault: 'var(--la-shadow-button, 0 1px 2px 0 rgba(0, 0, 0, 0.05))', // Button at rest
-  buttonHover: 'var(--la-shadow-button-hover, 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06))', // Button on hover
-  buttonActive: 'var(--la-shadow-button-active, 0 1px 2px 0 rgba(0, 0, 0, 0.1))', // Button when pressed
+  buttonHover: 'var(--la-shadow-button-hover, 0 4px 6px -1px var(--la-shadow-sm), 0 2px 4px -1px rgba(0, 0, 0, 0.06))', // Button on hover
+  buttonActive: 'var(--la-shadow-button-active, 0 1px 2px 0 var(--la-shadow-sm))', // Button when pressed
   buttonFocus: 'var(--la-shadow-focus, 0 0 0 3px rgba(59, 130, 246, 0.1))', // Focus ring shadow
 
   // Input elements
@@ -50,19 +50,19 @@ export const BOX_SHADOW_SCALE = {
   inputError: 'var(--la-shadow-input-error, 0 0 0 3px rgba(239, 68, 68, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.05))', // Input with error
 
   // Card variations
-  cardSubtle: 'var(--la-shadow-card-subtle, 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06))', // Minimal card
-  cardDefault: 'var(--la-shadow-card-default, 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06))', // Standard card
-  cardHover: 'var(--la-shadow-card-hover, 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05))', // Card on hover
-  cardPressed: 'var(--la-shadow-card-pressed, 0 1px 2px 0 rgba(0, 0, 0, 0.1))', // Card when pressed
+  cardSubtle: 'var(--la-shadow-card-subtle, 0 1px 3px 0 var(--la-shadow-sm), 0 1px 2px 0 rgba(0, 0, 0, 0.06))', // Minimal card
+  cardDefault: 'var(--la-shadow-card-default, 0 4px 6px -1px var(--la-shadow-sm), 0 2px 4px -1px rgba(0, 0, 0, 0.06))', // Standard card
+  cardHover: 'var(--la-shadow-card-hover, 0 10px 15px -3px var(--la-shadow-sm), 0 4px 6px -2px rgba(0, 0, 0, 0.05))', // Card on hover
+  cardPressed: 'var(--la-shadow-card-pressed, 0 1px 2px 0 var(--la-shadow-sm))', // Card when pressed
 
   // Navigation elements
-  navbarDefault: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)', // Navigation bar
-  sidebarDefault: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)', // Sidebar
+  navbarDefault: '0 1px 3px 0 var(--la-shadow-sm), 0 1px 2px 0 rgba(0, 0, 0, 0.06)', // Navigation bar
+  sidebarDefault: '0 4px 6px -1px var(--la-shadow-sm), 0 2px 4px -1px rgba(0, 0, 0, 0.06)', // Sidebar
 
   // Overlay elements
-  tooltipDefault: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)', // Tooltip
-  dropdownDefault: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', // Dropdown menu
-  modalDefault: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)', // Modal dialog
+  tooltipDefault: '0 4px 6px -1px var(--la-shadow-sm), 0 2px 4px -1px rgba(0, 0, 0, 0.06)', // Tooltip
+  dropdownDefault: '0 10px 15px -3px var(--la-shadow-sm), 0 4px 6px -2px rgba(0, 0, 0, 0.05)', // Dropdown menu
+  modalDefault: '0 20px 25px -5px var(--la-shadow-sm), 0 10px 10px -5px rgba(0, 0, 0, 0.04)', // Modal dialog
   drawerDefault: '0 25px 50px -12px rgba(0, 0, 0, 0.25)', // Side drawer/sheet
 
   // Status shadows (semantic coloring)
@@ -72,9 +72,9 @@ export const BOX_SHADOW_SCALE = {
   shadowInfo: '0 4px 6px -1px rgba(59, 130, 246, 0.1), 0 2px 4px -1px rgba(59, 130, 246, 0.06)', // Info state
 
   // Specialized shadows
-  imageFrame: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)', // Image frames
+  imageFrame: '0 4px 6px -1px var(--la-shadow-sm), 0 2px 4px -1px rgba(0, 0, 0, 0.06)', // Image frames
   avatarDefault: '0 1px 2px 0 rgba(0, 0, 0, 0.05)', // User avatars
-  avatarHover: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)', // Avatar on hover
+  avatarHover: '0 4px 6px -1px var(--la-shadow-sm), 0 2px 4px -1px rgba(0, 0, 0, 0.06)', // Avatar on hover
 
   // Glow effects (για accent elements)
   glowSubtle: '0 0 0 1px rgba(59, 130, 246, 0.1)', // Subtle glow
@@ -84,10 +84,10 @@ export const BOX_SHADOW_SCALE = {
   // Inner shadows (για depressed/inset effects)
   innerSubtle: 'inset 0 1px 2px 0 rgba(0, 0, 0, 0.05)', // Subtle inner shadow
   innerDefault: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)', // Standard inner shadow
-  innerStrong: 'inset 0 4px 6px 0 rgba(0, 0, 0, 0.1)', // Strong inner shadow
+  innerStrong: 'inset 0 4px 6px 0 var(--la-shadow-sm)', // Strong inner shadow
 
   // Text shadows (για typography enhancement)
-  textSubtle: '0 1px 2px rgba(0, 0, 0, 0.1)', // Subtle text shadow
+  textSubtle: '0 1px 2px var(--la-shadow-sm)', // Subtle text shadow
   textDefault: '0 1px 3px rgba(0, 0, 0, 0.15)', // Standard text shadow
   textStrong: '0 2px 4px rgba(0, 0, 0, 0.25)' // Strong text shadow (για headings)
 } as const;
@@ -479,7 +479,7 @@ export const COMPLETE_BOX_SHADOW_SYSTEM = {
       offsetY: number = 4,
       blurRadius: number = 6,
       spreadRadius: number = -1,
-      color: string = 'rgba(0, 0, 0, 0.1)'
+      color: string = 'var(--la-shadow-sm)'
     ) => {
       return `${offsetX}px ${offsetY}px ${blurRadius}px ${spreadRadius}px ${color}`;
     },

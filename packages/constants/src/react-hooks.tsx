@@ -424,7 +424,7 @@ function getSSRFallback(tokenName: string): string {
     'spacing-xxxl': '64px',
 
     // Color fallbacks (light theme defaults)
-    'color-bg-canvas': 'var(--la-color-white, #ffffff)',
+    'color-bg-canvas': 'var(--la-color-white, var(--la-color-surface))',
     'color-bg-surface': 'var(--la-color-gray-50, #fafafa)',
     'color-text-primary': 'var(--la-color-gray-900, #0f0f0f)',
     'color-text-secondary': 'var(--la-color-gray-500, #6b7280)',
@@ -443,7 +443,7 @@ function getSSRFallback(tokenName: string): string {
     'border-radius-lg': '8px',
 
     // Elevation fallbacks
-    'elevation-sm': 'var(--la-shadow-sm, 0 1px 3px rgba(0,0,0,0.1))',
+    'elevation-sm': 'var(--la-shadow-sm, 0 1px 3px var(--la-shadow-sm))',
 
     // Z-index fallbacks
     'z-index-modal': '400',

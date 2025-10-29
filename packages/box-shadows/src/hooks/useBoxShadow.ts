@@ -143,7 +143,7 @@ export const useDynamicShadow = (options: UseBoxShadowOptions = {}) => {
     offsetY: number = 4,
     blurRadius: number = 6,
     spreadRadius: number = -1,
-    color: string = 'rgba(0, 0, 0, 0.1)'
+    color: string = 'var(--la-shadow-sm)'
   ) => {
     return COMPLETE_BOX_SHADOW_SYSTEM.helpers.createCustomShadow(
       offsetX, offsetY, blurRadius, spreadRadius, color

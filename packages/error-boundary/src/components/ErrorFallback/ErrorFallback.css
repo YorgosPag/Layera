@@ -174,7 +174,7 @@
 
 /* Dark theme support */
 [data-theme="dark"] .la-error-fallback {
-  background-color: var(--color-surface-dark, #1f2937);
+  background-color: var(--color-surface-dark, var(--la-text-primary));
   border-color: var(--la-color-border-dark);
   color: var(--color-text-primary-dark, #f9fafb);
 }

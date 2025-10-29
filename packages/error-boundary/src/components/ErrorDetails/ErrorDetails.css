@@ -97,7 +97,7 @@
   font-size: var(--la-font-size-xs);
   font-family: var(--font-mono, 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace);
   color: var(--la-color-text-primary);
-  background-color: var(--color-surface-tertiary, #f3f4f6);
+  background-color: var(--color-surface-tertiary, var(--la-color-border-subtle));
   padding: var(--la-space-1) var(--la-space-1-5);
   border-radius: var(--la-radius-sm);
   word-break: break-all;
@@ -106,7 +106,7 @@
 .layera-error-details-stack {
   margin: var(--la-size-0);
   padding: var(--space-sm, 0.5rem);
-  background-color: var(--color-surface-tertiary, #f3f4f6);
+  background-color: var(--color-surface-tertiary, var(--la-color-border-subtle));
   border: var(--la-border-width-1) solid var(--la-color-border-primary);
   border-radius: var(--la-radius-sm);
   font-size: var(--la-font-size-xs);
@@ -137,7 +137,7 @@
 
 .layera-error-details-content::-webkit-scrollbar-thumb,
 .layera-error-details-stack::-webkit-scrollbar-thumb {
-  background: var(--color-border, #e5e7eb);
+  background: var(--color-border, var(--la-color-border-primary));
   border-radius: var(--la-radius-sm);
 }
 
@@ -153,7 +153,7 @@
 }
 
 [data-theme="dark"] .layera-error-details-header {
-  background-color: var(--color-surface-dark, #1f2937);
+  background-color: var(--color-surface-dark, var(--la-text-primary));
   border-bottom-color: var(--color-border-dark, #4b5563);
 }
 

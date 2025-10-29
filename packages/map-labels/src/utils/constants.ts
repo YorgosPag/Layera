@@ -126,15 +126,15 @@ export const DEFAULT_STYLES = {
 
   /** Default border colors */
   BORDER_COLORS: {
-    light: 'rgba(0, 0, 0, 0.1)',
+    light: 'var(--la-shadow-sm)',
     medium: 'rgba(0, 0, 0, 0.2)',
     dark: 'rgba(0, 0, 0, 0.3)'
   },
 
   /** Default shadows */
   SHADOWS: {
-    light: '0 1px 3px rgba(0, 0, 0, 0.1)',
-    medium: '0 2px 4px rgba(0, 0, 0, 0.1)',
+    light: '0 1px 3px var(--la-shadow-sm)',
+    medium: '0 2px 4px var(--la-shadow-sm)',
     strong: '0 4px 8px rgba(0, 0, 0, 0.15)'
   },
 

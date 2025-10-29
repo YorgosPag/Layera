@@ -389,7 +389,7 @@ function App() {
                   className="layera-mb-8"
                   margin="auto"
                   marginBottom="xl"
-                  style={{ boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}
+                  style={{ boxShadow: '0 2px 4px var(--la-shadow-sm)' }}
                 >
                   {t('geoalert.enterGeoCanvas')}
                 </Button>

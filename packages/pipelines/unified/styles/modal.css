@@ -214,7 +214,7 @@
     line-height: var(--la-leading-snug);
     margin-bottom: 0.4rem;
     font-weight: 600;
-    color: var(--la-text-primary, #1f2937);
+    color: var(--la-text-primary, var(--la-text-primary));
   }
 
   .unified-pipeline-modal .card-text {

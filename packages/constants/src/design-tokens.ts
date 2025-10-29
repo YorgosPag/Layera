@@ -65,42 +65,42 @@ export const CSS_DESIGN_TOKENS = {
   // === SEMANTIC COLOR TOKENS ===
   colors: {
     // Background colors - theme-aware
-    'color-bg-canvas': 'light-dark(#ffffff, #0f0f0f)',
+    'color-bg-canvas': 'light-dark(var(--la-color-surface), #0f0f0f)',
     'color-bg-surface': 'light-dark(#fafafa, #1a1a1a)',
-    'color-bg-surface-raised': 'light-dark(#ffffff, #262626)',
+    'color-bg-surface-raised': 'light-dark(var(--la-color-surface), #262626)',
     'color-bg-surface-overlay': 'light-dark(rgba(255,255,255,0.95), rgba(15,15,15,0.95))',
 
     // Text colors - WCAG AAA compliant
     'color-text-primary': 'light-dark(#0f0f0f, #f0f0f0)',
     'color-text-secondary': 'light-dark(#6b7280, #a1a1aa)',
     'color-text-tertiary': 'light-dark(#9ca3af, #71717a)',
-    'color-text-inverse': 'light-dark(#ffffff, #0f0f0f)',
+    'color-text-inverse': 'light-dark(var(--la-color-surface), #0f0f0f)',
 
     // Semantic states - accessibility compliant
     'color-semantic-info-bg': 'light-dark(#eff6ff, #1e3a8a)',
-    'color-semantic-info-border': 'light-dark(#3b82f6, #60a5fa)',
+    'color-semantic-info-border': 'light-dark(var(--la-color-brand), #60a5fa)',
     'color-semantic-info-text': 'light-dark(#1e40af, #bfdbfe)',
 
     'color-semantic-success-bg': 'light-dark(#f0fdf4, #14532d)',
-    'color-semantic-success-border': 'light-dark(#22c55e, #4ade80)',
+    'color-semantic-success-border': 'light-dark(var(--la-color-success), #4ade80)',
     'color-semantic-success-text': 'light-dark(#166534, #bbf7d0)',
 
     'color-semantic-warning-bg': 'light-dark(#fffbeb, #92400e)',
-    'color-semantic-warning-border': 'light-dark(#f59e0b, #fbbf24)',
+    'color-semantic-warning-border': 'light-dark(var(--la-color-warning), #fbbf24)',
     'color-semantic-warning-text': 'light-dark(#d97706, #fef3c7)',
 
     'color-semantic-error-bg': 'light-dark(#fef2f2, #7f1d1d)',
-    'color-semantic-error-border': 'light-dark(#ef4444, #f87171)',
+    'color-semantic-error-border': 'light-dark(var(--la-color-error), #f87171)',
     'color-semantic-error-text': 'light-dark(#dc2626, #fecaca)',
 
     // Interactive states
-    'color-interactive-primary': 'light-dark(#3b82f6, #60a5fa)',
-    'color-interactive-primary-hover': 'light-dark(#2563eb, #3b82f6)',
-    'color-interactive-primary-active': 'light-dark(#1d4ed8, #2563eb)',
+    'color-interactive-primary': 'light-dark(var(--la-color-brand), #60a5fa)',
+    'color-interactive-primary-hover': 'light-dark(var(--la-color-brand-hover), var(--la-color-brand))',
+    'color-interactive-primary-active': 'light-dark(#1d4ed8, var(--la-color-brand-hover))',
 
     // Border colors
-    'color-border-default': 'light-dark(#e5e7eb, #374151)',
-    'color-border-subtle': 'light-dark(#f3f4f6, #1f2937)',
+    'color-border-default': 'light-dark(var(--la-color-border-primary), #374151)',
+    'color-border-subtle': 'light-dark(var(--la-color-border-subtle), var(--la-text-primary))',
     'color-border-strong': 'light-dark(#d1d5db, #4b5563)',
   },
 
@@ -108,11 +108,11 @@ export const CSS_DESIGN_TOKENS = {
   elevation: {
     'elevation-none': 'none',
     'elevation-xs': 'light-dark(0 1px 2px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.3))',
-    'elevation-sm': 'light-dark(0 1px 3px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.4))',
-    'elevation-md': 'light-dark(0 4px 6px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.4))',
-    'elevation-lg': 'light-dark(0 10px 15px rgba(0,0,0,0.1), 0 10px 15px rgba(0,0,0,0.4))',
-    'elevation-xl': 'light-dark(0 20px 25px rgba(0,0,0,0.1), 0 20px 25px rgba(0,0,0,0.4))',
-    'elevation-xxl': 'light-dark(0 25px 50px rgba(0,0,0,0.25), 0 25px 50px rgba(0,0,0,0.6))',
+    'elevation-sm': 'light-dark(0 1px 3px var(--la-shadow-sm), 0 1px 3px rgba(0,0,0,0.4))',
+    'elevation-md': 'light-dark(0 4px 6px var(--la-shadow-sm), 0 4px 6px rgba(0,0,0,0.4))',
+    'elevation-lg': 'light-dark(0 10px 15px var(--la-shadow-sm), 0 10px 15px rgba(0,0,0,0.4))',
+    'elevation-xl': 'light-dark(0 20px 25px var(--la-shadow-sm), 0 20px 25px rgba(0,0,0,0.4))',
+    'elevation-xxl': 'light-dark(0 25px 50px rgba(0,0,0,0.25), 0 25px 50px var(--la-overlay-bg))',
   },
 
   // === MOTION TOKENS ===
@@ -242,7 +242,7 @@ export const COMPONENT_DESIGN_TOKENS = {
   },
 
   modal: {
-    'modal-backdrop': 'var(--la-bg-overlay, rgba(0, 0, 0, 0.6))',
+    'modal-backdrop': 'var(--la-bg-overlay, var(--la-overlay-bg))',
     'modal-elevation': 'var(--elevation-xxl)',
     'modal-border-radius': 'var(--border-radius-xl)',
     'modal-padding': 'var(--spacing-xxl)',

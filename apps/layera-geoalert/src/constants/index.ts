@@ -167,22 +167,22 @@ export const COLORS = {
     job: {
       primary: 'var(--color-interactive-primary-background)',
       border: 'var(--color-interactive-primary-border)',
-      light: 'var(--la-color-blue-500, #3b82f6)',
-      dark: 'var(--la-color-blue-600, #2563eb)'
+      light: 'var(--la-color-blue-500, var(--la-color-brand))',
+      dark: 'var(--la-color-blue-600, var(--la-color-brand-hover))'
     },
     initial: {
-      primary: 'var(--la-color-orange-500-alpha-95, rgba(249, 115, 22, 0.95))',
-      border: 'var(--la-color-orange-500-alpha-30, rgba(249, 115, 22, 0.3))'
+      primary: 'var(--la-color-orange-500-alpha-95, var(--la-color-warning-alpha-95))',
+      border: 'var(--la-color-orange-500-alpha-30, var(--la-color-warning-alpha-30))'
     }
   },
   common: {
     white: 'var(--la-color-white, var(--color-bg-canvas))',
     black: 'var(--la-color-black, var(--color-text-primary))',
     transparent: 'var(--la-color-transparent, transparent)',
-    backdrop: 'var(--la-bg-overlay, rgba(0, 0, 0, 0.12))',
+    backdrop: 'var(--la-bg-overlay, var(--la-bg-overlay))',
     border: 'var(--la-border-default, var(--color-border-default))',
     text: {
-      primary: 'var(--la-text-primary, #1f2937)',
+      primary: 'var(--la-text-primary, var(--la-text-primary))',
       secondary: 'var(--la-text-secondary, #6b7280)'
     }
   }

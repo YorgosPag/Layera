@@ -331,7 +331,7 @@ export class CADRenderer {
         4: '#00ffff', // Cyan
         5: '#0000ff', // Blue
         6: '#ff00ff', // Magenta
-        7: '#ffffff', // White
+        7: 'var(--la-color-surface)', // White
         8: '#414141', // Dark Gray
         9: '#808080'  // Light Gray
       };

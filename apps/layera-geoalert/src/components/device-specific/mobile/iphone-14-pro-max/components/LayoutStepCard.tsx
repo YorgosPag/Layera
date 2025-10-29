@@ -203,15 +203,15 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
     switch (opacityMode) {
       case 'transparent':
         return {
-          backgroundColor: 'var(--la-bg-overlay-transparent, rgba(var(--color-semantic-success-rgb), 0.01))', // Πλήρως διαφανές background ΜΟΝΟ
-          titleBackground: 'var(--la-bg-overlay-subtle, rgba(var(--color-semantic-success-rgb), 0.02))',
+          backgroundColor: 'var(--la-bg-overlay-transparent, var(--la-color-success-alpha-1))', // Πλήρως διαφανές background ΜΟΝΟ
+          titleBackground: 'var(--la-bg-overlay-subtle, var(--la-color-success-alpha-2))',
           backdropFilter: 'none', // ΚΑΜΙΑ θόλωση - όλα καθαρά
           opacity: 1, // ΠΑΡΑΜΕΝΕΙ 1 - μόνο το background είναι διαφανές
           titleShadow: 'none' // Χωρίς shadow στο transparent mode επίσης
         };
       case 'semi-transparent':
         return {
-          backgroundColor: 'var(--la-bg-overlay-semi, rgba(var(--color-semantic-success-rgb), 0.65))', // Πιο έντονο πράσινο, λιγότερη διαφάνεια
+          backgroundColor: 'var(--la-bg-overlay-semi, var(--la-color-success-alpha-65))', // Πιο έντονο πράσινο, λιγότερη διαφάνεια
           titleBackground: 'transparent', // Χωρίς δεύτερο στρώμα στον τίτλο
           backdropFilter: 'none', // Χωρίς blur - κείμενα και εικονίδια καθαρά
           opacity: 0.8,
@@ -219,7 +219,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
         };
       case 'opaque':
         return {
-          backgroundColor: 'var(--la-bg-overlay-opaque, rgba(var(--color-semantic-success-rgb), 0.95))', // Συμπαγές
+          backgroundColor: 'var(--la-bg-overlay-opaque, var(--la-color-success-alpha-95))', // Συμπαγές
           titleBackground: 'transparent', // Χωρίς δεύτερο στρώμα στον τίτλο
           backdropFilter: 'none', // Χωρίς blur
           opacity: 0.95,

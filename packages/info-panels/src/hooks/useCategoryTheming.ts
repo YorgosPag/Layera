@@ -27,8 +27,8 @@ export const useCategoryTheming = (selectedCategory: CategoryType): CategoryThem
         return {
           backgroundColor: 'var(--la-color-emerald-500-alpha-95, rgba(16, 185, 129, 0.95))', // emerald-500
           borderColor: 'var(--la-color-emerald-500-alpha-30, rgba(16, 185, 129, 0.3))',
-          textColor: 'var(--la-color-white, #ffffff)',
-          accentColor: 'var(--la-color-green-500, #22c55e)',
+          textColor: 'var(--la-color-white, var(--la-color-surface))',
+          accentColor: 'var(--la-color-green-500, var(--la-color-success))',
           isDark: false
         };
 
@@ -36,8 +36,8 @@ export const useCategoryTheming = (selectedCategory: CategoryType): CategoryThem
         return {
           backgroundColor: 'var(--la-color-blue-500-alpha-95, rgba(59, 130, 246, 0.95))', // blue-500
           borderColor: 'var(--la-color-blue-500-alpha-30, rgba(59, 130, 246, 0.3))',
-          textColor: 'var(--la-color-white, #ffffff)',
-          accentColor: 'var(--la-color-blue-500, #3b82f6)',
+          textColor: 'var(--la-color-white, var(--la-color-surface))',
+          accentColor: 'var(--la-color-blue-500, var(--la-color-brand))',
           isDark: false
         };
 
@@ -45,9 +45,9 @@ export const useCategoryTheming = (selectedCategory: CategoryType): CategoryThem
       case null:
       default:
         return {
-          backgroundColor: 'var(--la-color-orange-500-alpha-95, rgba(249, 115, 22, 0.95))', // orange-500
-          borderColor: 'var(--la-color-orange-500-alpha-30, rgba(249, 115, 22, 0.3))',
-          textColor: 'var(--la-color-white, #ffffff)',
+          backgroundColor: 'var(--la-color-orange-500-alpha-95, var(--la-color-warning-alpha-95))', // orange-500
+          borderColor: 'var(--la-color-orange-500-alpha-30, var(--la-color-warning-alpha-30))',
+          textColor: 'var(--la-color-white, var(--la-color-surface))',
           accentColor: 'var(--la-color-orange-600, #f97316)',
           isDark: false
         };
@@ -62,19 +62,19 @@ export const getCategoryTheme = (selectedCategory: CategoryType): CategoryTheme 
   switch (selectedCategory) {
     case 'property':
       return {
-        backgroundColor: 'rgba(16, 185, 129, 0.95)',
+        backgroundColor: 'var(--la-bg-secondary)',
         borderColor: 'rgba(16, 185, 129, 0.3)',
-        textColor: '#ffffff',
-        accentColor: '#22c55e',
+        textColor: 'var(--la-color-surface)',
+        accentColor: 'var(--la-color-success)',
         isDark: false
       };
 
     case 'job':
       return {
-        backgroundColor: 'rgba(59, 130, 246, 0.95)',
+        backgroundColor: 'var(--la-bg-secondary)',
         borderColor: 'rgba(59, 130, 246, 0.3)',
-        textColor: '#ffffff',
-        accentColor: '#3b82f6',
+        textColor: 'var(--la-color-surface)',
+        accentColor: 'var(--la-color-brand)',
         isDark: false
       };
 
@@ -82,9 +82,9 @@ export const getCategoryTheme = (selectedCategory: CategoryType): CategoryTheme 
     case null:
     default:
       return {
-        backgroundColor: 'rgba(249, 115, 22, 0.95)',
-        borderColor: 'rgba(249, 115, 22, 0.3)',
-        textColor: '#ffffff',
+        backgroundColor: 'var(--la-bg-secondary)',
+        borderColor: 'var(--la-color-warning-alpha-30)',
+        textColor: 'var(--la-color-surface)',
         accentColor: '#f97316',
         isDark: false
       };

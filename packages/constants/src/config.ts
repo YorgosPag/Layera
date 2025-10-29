@@ -182,7 +182,7 @@ export const FIXED_DIMENSIONS = {
 export const BRAND_COLORS = {
   PRIMARY: '#4F46E5',
   SECONDARY: '#6B7280',
-  WHITE: '#ffffff',
+  WHITE: 'var(--la-color-surface)',
   BLACK: '#000000',
 } as const;
 

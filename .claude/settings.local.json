@@ -83,7 +83,8 @@
       "Read(//c/**)",
       "Bash(forfiles:*)",
       "Bash(git stash pop:*)",
-      "Bash(git stash:*)"
+      "Bash(git stash:*)",
+      "Bash(git reset:*)"
     ],
     "deny": [],
     "ask": []

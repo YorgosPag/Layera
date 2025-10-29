@@ -88,7 +88,7 @@ export const SnapIndicator: React.FC<SnapIndicatorProps> = ({
     zIndex: 10000,
     borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
     backgroundColor: color,
-    border: `2px solid ${theme === 'dark' ? 'var(--la-color-white, #ffffff)' : 'var(--la-color-black, #000000)'}`,
+    border: `2px solid ${theme === 'dark' ? 'var(--la-color-white, var(--la-color-surface))' : 'var(--la-color-black, #000000)'}`,
     boxShadow: `0 0 8px ${color}`,
     display: 'flex',
     alignItems: 'center',
@@ -112,7 +112,7 @@ export const SnapIndicator: React.FC<SnapIndicatorProps> = ({
     fontSize: 'var(--la-font-size-xs)',
     fontWeight: 500,
     whiteSpace: 'nowrap',
-    boxShadow: 'var(--la-shadow-sm, 0 2px 4px rgba(0,0,0,0.1))',
+    boxShadow: 'var(--la-shadow-sm, 0 2px 4px var(--la-shadow-sm))',
     zIndex: 10001
   };
 
@@ -141,7 +141,7 @@ export const SnapIndicator: React.FC<SnapIndicatorProps> = ({
       <Icon
         name={iconName}
         size={size * 0.6}
-        color={theme === 'dark' ? 'var(--la-color-white, #ffffff)' : 'var(--la-color-black, #000000)'}
+        color={theme === 'dark' ? 'var(--la-color-white, var(--la-color-surface))' : 'var(--la-color-black, #000000)'}
       />
 
       {/* Tooltip */}
