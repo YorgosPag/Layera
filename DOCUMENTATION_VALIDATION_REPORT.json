@@ -1,14 +1,77 @@
 {
-  "timestamp": "2025-10-29T21:41:21.716Z",
+  "timestamp": "2025-10-29T23:05:04.337Z",
   "summary": {
-    "filesScanned": 158,
-    "violationsFound": 0,
+    "filesScanned": 159,
+    "violationsFound": 7,
     "violationsFixed": 0,
     "criticalViolations": 0,
     "highViolations": 0,
-    "mediumViolations": 0,
-    "lowViolations": 0
+    "mediumViolations": 1,
+    "lowViolations": 6
   },
-  "violations": [],
-  "recommendations": []
+  "violations": [
+    {
+      "file": "docs\\MONOREPO_MIGRATION_PLAN.md",
+      "pattern": "Inline pixel values → design tokens",
+      "match": "style={{maxWidth:'420px', margin: 'var(--la-space-md) auto', padding:'var(--la-space-4)', border:'1px solid var(--la-color-primary)', borderRadius:'var(--la-radius-md)'}}",
+      "severity": "LOW",
+      "replacement": "style={{ padding: 'var(--la-space-md)' }}",
+      "line": 454
+    },
+    {
+      "file": "docs\\MONOREPO_MIGRATION_PLAN.md",
+      "pattern": "Inline pixel values → design tokens",
+      "match": "style={{maxWidth:'420px', margin: 'var(--la-space-md) auto', padding:'var(--la-space-4)', border:'1px solid var(--la-color-primary)', borderRadius:'var(--la-radius-md)'}}",
+      "severity": "LOW",
+      "replacement": "style={{ padding: 'var(--la-space-md)' }}",
+      "line": 454
+    },
+    {
+      "file": "docs\\MONOREPO_MIGRATION_PLAN.md",
+      "pattern": "Inline pixel values → design tokens",
+      "match": "style={{maxWidth:'420px', margin: 'var(--la-space-md) auto', padding:'var(--la-space-4)', border:'1px solid var(--la-color-primary)', borderRadius:'var(--la-radius-md)'}}",
+      "severity": "LOW",
+      "replacement": "style={{ padding: 'var(--la-space-md)' }}",
+      "line": 454
+    },
+    {
+      "file": "voithitika_docs\\diavase_1.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { useState } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 51
+    },
+    {
+      "file": "voithitika_docs\\diavase_4.md",
+      "pattern": "Inline pixel values → design tokens",
+      "match": "style={{maxWidth:'420px', margin: 'var(--la-space-md) auto', padding:       \r\n           +  'var(--la-space-4)', border:'1px solid var(--la-color-primary)', borderRadius:       \r\n           +  'var(--la-radius-md)'}}",
+      "severity": "LOW",
+      "replacement": "style={{ padding: 'var(--la-space-md)' }}",
+      "line": 588
+    },
+    {
+      "file": "voithitika_docs\\diavase_4.md",
+      "pattern": "Inline pixel values → design tokens",
+      "match": "style={{maxWidth:'420px', margin: 'var(--la-space-md) auto', padding:\r\n           +  'var(--la-space-4)', border:'1px solid var(--la-color-primary)', borderRadius:\r\n           +  'var(--la-radius-md)'}}",
+      "severity": "LOW",
+      "replacement": "style={{ padding: 'var(--la-space-md)' }}",
+      "line": 600
+    },
+    {
+      "file": "voithitika_docs\\diavase_4.md",
+      "pattern": "Inline pixel values → design tokens",
+      "match": "style={{maxWidth:'420px', margin: 'var(--la-space-md) auto', padding:\r\n           +  'var(--la-space-4)', border:'1px solid var(--la-color-primary)', borderRadius:\r\n           +  'var(--la-radius-md)'}}",
+      "severity": "LOW",
+      "replacement": "style={{ padding: 'var(--la-space-md)' }}",
+      "line": 600
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "MEDIUM",
+      "action": "Standardization της τεκμηρίωσης με enterprise patterns",
+      "impact": "Developer confusion και μη συμβατά examples"
+    }
+  ]
 }
