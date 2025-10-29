@@ -2,20 +2,20 @@
  * @layera/tolgee - Main Export
  * Enterprise Translation Management with Tolgee
  *
- * ΑΝΤΙΚΑΘΙΣΤΑ ΠΛΗΡΩΣ το legacy i18n system
+ * Complete Translation Management with Tolgee
  */
 
 // Provider & Configuration - MINIMAL IMPLEMENTATION
 export { MinimalTolgeeProvider as TolgeeProvider } from './provider-minimal';
 export { MinimalTolgeeProvider as SimpleTolgeeProvider } from './provider-minimal';
-export { MinimalTolgeeProvider as LayeraI18nProvider } from './provider-minimal'; // Alias για compatibility
+export { MinimalTolgeeProvider as LayeraI18nProvider } from './provider-minimal'; // LEGACY: backward compatibility alias
 export { TOLGEE_CONFIG } from './config';
 export type { SupportedLanguage } from './config';
 
 // Components
 export { LanguageSwitcher } from './components/LanguageSwitcher';
 
-// Hooks - ΙΔΙΟ API με το παλιό για εύκολη μετάβαση
+// Hooks - Same API for easy migration
 export {
   useLayeraTranslation,
   useDetectedLanguage,

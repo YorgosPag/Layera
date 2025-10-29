@@ -5,20 +5,20 @@
 
 :root {
   /* Primary Font Family */
-  --la-font-family-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --la-font-family-monospace: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  --la-font-family-sans: system-ui, -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, 'Helvetica Neue', arial, sans-serif;
+  --la-font-family-monospace: 'SF Mono', monaco, 'Cascadia Code', 'Roboto Mono', consolas, 'Courier New', monospace;
 
   /* Font Sizes - Enterprise Scale */
-  --la-text-xs: 0.75rem;    /* 12px */
-  --la-text-sm: 0.875rem;   /* 14px */
-  --la-text-base: 1rem;     /* 16px */
-  --la-text-lg: 1.125rem;   /* 18px */
-  --la-text-xl: 1.25rem;    /* 20px */
-  --la-text-2xl: 1.5rem;    /* 24px */
-  --la-text-3xl: 1.875rem;  /* 30px */
-  --la-text-4xl: 2.25rem;   /* 36px */
-  --la-text-5xl: 3rem;      /* 48px */
-  --la-text-6xl: 3.75rem;   /* 60px */
+  --la-text-xs: 0.75rem;
+  --la-text-sm: 0.875rem;
+  --la-text-base: 1rem;
+  --la-text-lg: 1.125rem;
+  --la-text-xl: 1.25rem;
+  --la-text-2xl: 1.5rem;
+  --la-text-3xl: 1.875rem;
+  --la-text-4xl: 2.25rem;
+  --la-text-5xl: 3rem;
+  --la-text-6xl: 3.75rem;
 
   /* Font Weights */
   --la-font-light: 300;
@@ -61,16 +61,55 @@
 }
 
 /* Font Size Classes */
-.la-text-xs { font-size: var(--la-text-xs); letter-spacing: var(--la-tracking-xs); }
-.la-text-sm { font-size: var(--la-text-sm); letter-spacing: var(--la-tracking-sm); }
-.la-text-base { font-size: var(--la-text-base); letter-spacing: var(--la-tracking-base); }
-.la-text-lg { font-size: var(--la-text-lg); letter-spacing: var(--la-tracking-base); }
-.la-text-xl { font-size: var(--la-text-xl); letter-spacing: var(--la-tracking-lg); }
-.la-text-2xl { font-size: var(--la-text-2xl); letter-spacing: var(--la-tracking-lg); }
-.la-text-3xl { font-size: var(--la-text-3xl); letter-spacing: var(--la-tracking-xl); }
-.la-text-4xl { font-size: var(--la-text-4xl); letter-spacing: var(--la-tracking-xl); }
-.la-text-5xl { font-size: var(--la-text-5xl); letter-spacing: var(--la-tracking-xl); }
-.la-text-6xl { font-size: var(--la-text-6xl); letter-spacing: var(--la-tracking-xl); }
+.la-text-xs {
+  font-size: var(--la-text-xs);
+  letter-spacing: var(--la-tracking-xs);
+}
+
+.la-text-sm {
+  font-size: var(--la-text-sm);
+  letter-spacing: var(--la-tracking-sm);
+}
+
+.la-text-base {
+  font-size: var(--la-text-base);
+  letter-spacing: var(--la-tracking-base);
+}
+
+.la-text-lg {
+  font-size: var(--la-text-lg);
+  letter-spacing: var(--la-tracking-base);
+}
+
+.la-text-xl {
+  font-size: var(--la-text-xl);
+  letter-spacing: var(--la-tracking-lg);
+}
+
+.la-text-2xl {
+  font-size: var(--la-text-2xl);
+  letter-spacing: var(--la-tracking-lg);
+}
+
+.la-text-3xl {
+  font-size: var(--la-text-3xl);
+  letter-spacing: var(--la-tracking-xl);
+}
+
+.la-text-4xl {
+  font-size: var(--la-text-4xl);
+  letter-spacing: var(--la-tracking-xl);
+}
+
+.la-text-5xl {
+  font-size: var(--la-text-5xl);
+  letter-spacing: var(--la-tracking-xl);
+}
+
+.la-text-6xl {
+  font-size: var(--la-text-6xl);
+  letter-spacing: var(--la-tracking-xl);
+}
 
 /* Font Weight Classes */
 .la-font-light { font-weight: var(--la-font-light); }

@@ -85,7 +85,7 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
     // Auto-advance to next step
     onNext?.();
 
-    console.log(`✅ Details selected: ${details} for ${context.selectedCategory}/${context.selectedIntent}/${context.selectedLocation}`);
+
   }, [context.selectedCategory, context.selectedIntent, context.selectedLocation, onNext, onStepComplete, onDetailsSelected, pipelineDiscovery]);
 
   // Handle info button clicks

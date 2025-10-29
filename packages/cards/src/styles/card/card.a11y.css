@@ -13,12 +13,12 @@
   }
 }
 
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
   .la-card {
-    border-width: 0.125rem;
+    border-width: var(--la-border-width-2);
   }
 
   .la-card-elevated {
-    border: 0.125rem solid var(--la-color-border-primary);
+    border: var(--la-border-width-2) solid var(--la-color-border-primary);
   }
 }

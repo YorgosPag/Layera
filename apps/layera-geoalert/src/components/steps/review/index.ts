@@ -110,7 +110,7 @@ stepRegistry.register({
   }
 });
 
-console.log('✅ Review Step registered in StepRegistry');
+
 
 // 🎯 CLEAN EXPORTS
 export { ReviewStep } from './ReviewStep';

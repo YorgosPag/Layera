@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useRef, useState, useEffect, ReactNode } from 'react';
-import { LeafletMap, LatLngBounds, MapConfig } from '../types';
+import React, { createContext, useContext, useRef, useState, useEffect, useCallback, ReactNode } from 'react';
+import { LeafletMap, LatLngBounds, MapConfig, MapInitializationOptions } from '../types';
 import { MapInitializationService } from '../services/MapInitializationService';
 
 interface MapContextValue {
@@ -36,15 +36,26 @@ export const MapProvider: React.FC<MapProviderProps> = ({ children, defaultConfi
     }
   };
 
-  const initializeMap = async (containerId: string, config?: Partial<MapConfig>) => {
+  const initializeMap = useCallback(async (containerId: string, config?: Partial<MapConfig>) => {
+    console.log('🗺️ MapProvider.initializeMap() CALLED with:', containerId);
+
     try {
       setIsLoading(true);
 
       const mapConfig = { ...defaultConfig, ...config };
-      const map = mapInitService.current.initializeMap({
+      console.log('🔧 MapProvider config prepared:', mapConfig);
+
+      const initOptions: MapInitializationOptions = {
         containerId,
-        config: mapConfig as MapConfig
-      });
+        config: mapConfig as MapConfig,
+        enableGeoLocation: false,
+        enableSearch: false,
+        enableDrawing: false
+      };
+
+      console.log('🚀 MapProvider calling MapInitializationService...');
+      const map = mapInitService.current.initializeMap(initOptions);
+      console.log('✅ MapProvider received map instance:', !!map);
 
       mapRef.current = map;
 
@@ -58,18 +69,21 @@ export const MapProvider: React.FC<MapProviderProps> = ({ children, defaultConfi
       // Initial state update
       updateMapState();
       setIsLoading(false);
-    } catch (error) {
-      console.error('Failed to initialize map:', error);
-      setIsLoading(false);
-    }
-  };
 
-  const cleanupMap = () => {
+      console.log('✅ MapProvider initialization complete');
+    } catch (error) {
+      console.error('❌ MapProvider initialization failed:', error);
+      setIsLoading(false);
+      throw error; // Re-throw to let the caller handle it
+    }
+  }, [defaultConfig]);
+
+  const cleanupMap = useCallback(() => {
     if (mapRef.current) {
       mapInitService.current.cleanupMap(mapRef.current);
       mapRef.current = null;
     }
-  };
+  }, []);
 
   // Cleanup on unmount
   useEffect(() => {
@@ -87,6 +101,12 @@ export const MapProvider: React.FC<MapProviderProps> = ({ children, defaultConfi
     initializeMap,
     cleanupMap
   };
+
+  // Debug log to verify the function is correct
+  if (process.env.NODE_ENV === 'development') {
+    console.log('🔧 MapProvider creating context value with initializeMap:', initializeMap.toString().substring(0, 200));
+  }
+
 
   return (
     <MapContext.Provider value={value}>

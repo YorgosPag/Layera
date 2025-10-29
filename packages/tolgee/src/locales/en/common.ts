@@ -80,6 +80,24 @@ export const enTranslations = {
     "processing": "Processing...",
     "title": "Title",
     "subtitle": "Subtitle"
+  },
+  "pipeline": {
+    "newEntry": {
+      "title": "New Entry"
+    },
+    "category": {
+      "selection": {
+        "title": "Category Selection"
+      },
+      "property": {
+        "title": "Properties",
+        "description": "List a property for sale, rent or create a search alert."
+      },
+      "job": {
+        "title": "Jobs",
+        "description": "Offer a job position or declare your availability in a specific area."
+      }
+    }
   }
 } as const;
 

@@ -2,7 +2,7 @@
  * Translation Keys για το Notification System
  */
 
-export const NOTIFICATION_I18N_KEYS = {
+export const NOTIFICATION_TRANSLATION_KEYS = {
   // Toast actions
   DISMISS: 'notifications.dismiss',
   OK: 'notifications.ok',

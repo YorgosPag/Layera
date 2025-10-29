@@ -11,7 +11,7 @@
 }
 
 .la-card-outlined {
-  border: 0.125rem solid var(--la-color-border-primary);
+  border: var(--la-border-width-2) solid var(--la-color-border-primary);
   box-shadow: var(--la-shadow-none);
 }
 
@@ -42,7 +42,7 @@
 /* ============ CARD PADDING ============ */
 
 .la-card-padding-none {
-  padding: 0;
+  padding: var(--la-size-0);
 }
 
 .la-card-padding-sm {

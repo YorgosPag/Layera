@@ -24,6 +24,13 @@ import { MarkerIcon, PolygonIcon, TrashIcon, PlusIcon, LocationIcon } from '@lay
 import { BaseCard } from '@layera/cards';
 import L from 'leaflet';
 
+// Extend window object for Leaflet icons fix
+declare global {
+  interface Window {
+    leafletIconsFixed?: boolean;
+  }
+}
+
 interface MapContainerProps {
   onAreaCreated?: (area: any) => void;
   onNewEntryClick?: () => void;
@@ -37,7 +44,19 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
   const mapContainerRef = useRef<HTMLDivElement>(null);
 
   // Map initialization
-  const { map, initializeMap, isLoading } = useMap();
+  const mapContext = useMap();
+  const { map, initializeMap, isLoading } = mapContext;
+
+  // Debug MapProvider context (run once)
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🗺️ MapProvider context available:', {
+        hasContext: !!mapContext,
+        hasInitializeMap: !!initializeMap,
+        initialLoadingState: isLoading
+      });
+    }
+  }, []); // Run only once
 
   // User location marker state
   const userLocationMarkerRef = useRef<L.Marker | null>(null);
@@ -134,36 +153,129 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
     // Store marker reference
     userLocationMarkerRef.current = marker;
 
-    if (process.env.NODE_ENV === 'development') {
-      console.log('✅ MapContainer: User location marker added with animation');
-    }
   };
+
+  // Add ref to track if initialization is in progress
+  const initializingRef = useRef(false);
 
   // Initialize map when component mounts
   useEffect(() => {
-    if (mapContainerRef.current && !map) {
-      initializeMap('geo-map', {
-        center: [37.9755, 23.7348], // Athens
-        zoom: 13
-      });
+    // Only run once when component mounts and map is not initialized
+    if (!map && !initializingRef.current && mapContainerRef.current) {
+      initializingRef.current = true;
+
+      // Wait for Leaflet CSS to be loaded and container to have dimensions
+      const initMap = () => {
+        if (!mapContainerRef.current) {
+          initializingRef.current = false;
+          return;
+        }
+
+        const hasValidSize = mapContainerRef.current.offsetWidth > 0 && mapContainerRef.current.offsetHeight > 0;
+
+        if (process.env.NODE_ENV === 'development') {
+          console.log('🚀 Map init attempt - Container size:', {
+            width: mapContainerRef.current.offsetWidth,
+            height: mapContainerRef.current.offsetHeight,
+            hasValidSize
+          });
+        }
+
+        if (!hasValidSize) {
+          if (process.env.NODE_ENV === 'development') {
+            console.warn('⚠️ Container has zero dimensions, retrying...');
+          }
+          setTimeout(initMap, 100);
+          return;
+        }
+
+        if (process.env.NODE_ENV === 'development') {
+          console.log('🚀 Starting map initialization...');
+          console.log('🔧 initializeMap function available:', typeof initializeMap);
+          console.log('🔧 initializeMap function source:', initializeMap.toString().substring(0, 200));
+        }
+
+        if (!initializeMap) {
+          console.error('❌ initializeMap function not available');
+          initializingRef.current = false;
+          return;
+        }
+
+        try {
+          if (process.env.NODE_ENV === 'development') {
+            console.log('🚀 DIRECT LEAFLET: Bypassing mock initializeMap, creating real map...');
+          }
+
+          // DIRECT LEAFLET IMPLEMENTATION - BYPASS MOCK
+          // Clear container first
+          mapContainerRef.current.innerHTML = '';
+
+          // Fix Leaflet icon paths
+          if (!window.leafletIconsFixed) {
+            delete (L.Icon.Default.prototype as any)._getIconUrl;
+            L.Icon.Default.mergeOptions({
+              iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+              iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+              shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+            });
+            window.leafletIconsFixed = true;
+          }
+
+          // Create the map directly with Leaflet
+          const mapInstance = L.map('geo-map', {
+            zoomControl: false,
+          }).setView([37.9755, 23.7348], 13);
+
+          // Add tile layer
+          const tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 18,
+            minZoom: 8
+          });
+
+          tileLayer.addTo(mapInstance);
+
+          // Add debugging
+          if (process.env.NODE_ENV === 'development') {
+            console.log('🗺️ DIRECT LEAFLET: Map instance created:', !!mapInstance);
+            console.log('🗺️ DIRECT LEAFLET: Map container ID:', mapInstance.getContainer().id);
+            console.log('🗺️ DIRECT LEAFLET: Map center:', mapInstance.getCenter());
+            console.log('🗺️ DIRECT LEAFLET: Map zoom:', mapInstance.getZoom());
+          }
+
+          // Force resize and tile loading
+          setTimeout(() => {
+            mapInstance.invalidateSize();
+            if (process.env.NODE_ENV === 'development') {
+              console.log('✅ DIRECT LEAFLET: Map initialized successfully! Size:', mapInstance.getSize());
+            }
+          }, 100);
+
+          initializingRef.current = false;
+
+        } catch (error) {
+          console.error('❌ DIRECT LEAFLET: Map initialization error:', error);
+          initializingRef.current = false;
+        }
+      };
+
+      // Wait for CSS and DOM to be ready
+      setTimeout(initMap, 200);
     }
-  }, [map, initializeMap]);
+  }, []); // Empty dependency array - run only once
 
   // Event listeners για location centering
   useEffect(() => {
     const handleCenterMapToLocation = (event: CustomEvent) => {
       if (!map) {
         if (process.env.NODE_ENV === 'development') {
-          console.warn('🗺️ MapContainer: Map not initialized yet, cannot center to location');
+          console.warn('Map not initialized yet, cannot center to location');
         }
         return;
       }
 
       const { latitude, longitude, zoom = 16, animate = true } = event.detail;
 
-      if (process.env.NODE_ENV === 'development') {
-        console.log('🎯 MapContainer: Centering map to location:', { latitude, longitude, zoom });
-      }
 
       try {
         if (animate) {
@@ -180,9 +292,6 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
         // Add user location marker with animation
         addUserLocationMarker(latitude, longitude);
 
-        if (process.env.NODE_ENV === 'development') {
-          console.log('✅ MapContainer: Map centered successfully');
-        }
       } catch (error) {
         console.error('❌ MapContainer: Error centering map:', error);
       }
@@ -198,16 +307,10 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
 
       const { latitude, longitude } = event.detail;
 
-      if (process.env.NODE_ENV === 'development') {
-        console.log('🔍 MapContainer: Focusing map on location:', { latitude, longitude });
-      }
 
       try {
         // Additional focus logic - could add marker or highlight
         map.panTo([latitude, longitude]);
-        if (process.env.NODE_ENV === 'development') {
-          console.log('✅ MapContainer: Map focused successfully');
-        }
       } catch (error) {
         console.error('❌ MapContainer: Error focusing map:', error);
       }

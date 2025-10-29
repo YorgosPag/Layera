@@ -84,7 +84,6 @@ stepRegistry.register({
   }
 });
 
-console.log('✅ Details Step registered in StepRegistry');
 
 // 🎯 CLEAN EXPORTS
 export { DetailsStep } from './DetailsStep';

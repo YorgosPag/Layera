@@ -58,7 +58,7 @@ export const TolgeeProvider: React.FC<TolgeeProviderProps> = ({
     if (language && TOLGEE_CONFIG.supportedLanguages.includes(language as any)) {
       tolgee.changeLanguage(language);
       // Store in localStorage for persistence
-      localStorage.setItem('i18nextLng', language); // Keep compatibility
+      localStorage.setItem('i18nextLng', language); // LEGACY: backward compatibility
       localStorage.setItem('tolgee_language', language);
     }
   }, [language]);
@@ -66,7 +66,7 @@ export const TolgeeProvider: React.FC<TolgeeProviderProps> = ({
   // Listen for language changes from other tabs
   React.useEffect(() => {
     const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === 'tolgee_language' || e.key === 'i18nextLng') {
+      if (e.key === 'tolgee_language' || e.key === 'i18nextLng') { // LEGACY: backward compatibility
         const newLang = e.newValue;
         if (newLang && TOLGEE_CONFIG.supportedLanguages.includes(newLang as any)) {
           tolgee.changeLanguage(newLang);

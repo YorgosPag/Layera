@@ -29,26 +29,26 @@
 }
 
 .la-form-section-collapsible .la-form-section-header:focus {
-  outline: var(--la-border-width-2) solid var(--la-color-brand);
-  outline-offset: var(--la-border-width-2);
+  outline: 0.125rem solid var(--la-color-brand);
+  outline-offset: 0.125rem;
 }
 
 .la-form-section-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  flex-shrink: var(--la-size-0);
   margin-top: var(--la-space-1);
   color: var(--la-color-brand);
 }
 
 .la-form-section-header-content {
   flex: 1;
-  min-width: 0;
+  min-width: var(--la-size-0);
 }
 
 .la-form-section-title {
-  margin: 0;
+  margin: var(--la-size-0);
   font-size: var(--la-font-size-xl);
   font-weight: 600;
   color: var(--la-color-text-primary);
@@ -66,7 +66,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  flex-shrink: var(--la-size-0);
   color: var(--la-color-text-secondary);
   transition: transform 0.15s ease;
 }
@@ -84,13 +84,13 @@
 }
 
 .la-form-section-collapsed .la-form-section-content {
-  height: 0;
+  height: var(--la-size-0);
   overflow: hidden;
-  opacity: 0;
+  opacity: var(--la-size-0);
 }
 
 /* Responsive Design */
-@media (max-width: 48rem) {
+@media (width <= 48rem) {
   .la-form-section {
     margin-bottom: var(--la-space-4);
   }

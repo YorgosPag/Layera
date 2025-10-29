@@ -117,7 +117,7 @@ stepRegistry.register({
   }
 });
 
-console.log('✅ Transaction Type Step registered in StepRegistry');
+
 
 // 🎯 CLEAN EXPORTS
 export { TransactionStep } from './TransactionStep';

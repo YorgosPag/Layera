@@ -2,7 +2,7 @@
  * Translation Keys για το Error Boundary System
  */
 
-export const ERROR_I18N_KEYS = {
+export const ERROR_TRANSLATION_KEYS = {
   // Network errors
   NETWORK_TITLE: 'errors.networkError',
   NETWORK_MESSAGE: 'errors.networkError',

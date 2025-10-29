@@ -35,14 +35,13 @@ export class StepRegistry implements StepRegistryInterface {
    */
   register(step: StepDefinition): void {
     if (this.steps.has(step.id)) {
-      console.warn(`⚠️ Step '${step.id}' already registered. Overriding...`);
+      // Step already registered, overriding
     }
 
     // Validation
     this.validateStepDefinition(step);
 
     this.steps.set(step.id, step);
-    console.log(`✅ Step registered: ${step.id} (order: ${step.order})`);
   }
 
   /**
@@ -72,12 +71,9 @@ export class StepRegistry implements StepRegistryInterface {
       if (step) {
         step.order = order;
         console.log(`🔄 Step '${stepId}' reordered to position ${order}`);
-      } else {
-        console.warn(`⚠️ Cannot reorder unknown step: ${stepId}`);
       }
     });
 
-    console.log('✅ Step reordering completed');
   }
 
   /**

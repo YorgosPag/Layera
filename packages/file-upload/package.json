@@ -1,64 +1,52 @@
 {
   "name": "@layera/file-upload",
   "version": "1.0.0",
-  "description": "Enterprise file upload system με progressive upload, chunked transfers, and comprehensive LEGO integration",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "description": "File upload components and utilities for Layera Design System",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts",
       "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    }
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint \"src/**/*.{ts,tsx}\"",
-    "verify": "npm run typecheck && npm run lint --max-warnings=0"
+    "clean": "rm -rf dist"
   },
-  "dependencies": {
-    "@layera/auth-bridge": "workspace:*",
-    "@layera/buttons": "workspace:*",
-    "@layera/cards": "workspace:*",
-    "@layera/constants": "workspace:*",
-    "@layera/error-boundary": "workspace:*",
-    "@layera/forms": "workspace:*",
-    "@layera/icons": "workspace:*",
-    "@layera/layout": "workspace:*",
-    "@layera/loading": "workspace:*",
-    "@layera/modals": "workspace:*",
-    "@layera/notifications": "workspace:*",
-    "@layera/tables": "workspace:*",
-    "@layera/theme-switcher": "workspace:*",
-    "@layera/tolgee": "workspace:*",
-    "@layera/typography": "workspace:*",
-    "@layera/viewport": "workspace:*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
+  "keywords": [
+    "layera",
+    "design-system",
+    "file-upload",
+    "dropzone",
+    "files",
+    "typescript"
+  ],
+  "author": "Layera Team",
+  "license": "MIT",
   "devDependencies": {
-    "@rollup/rollup-win32-x64-msvc": "^4.52.5",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
+    "@types/react": "^18.0.0",
+    "react": "^18.0.0",
     "tsup": "^8.0.0",
     "typescript": "^5.0.0"
   },
   "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": ">=18.0.0"
   },
-  "keywords": [
-    "layera",
-    "lego",
-    "file-upload",
-    "drag-drop",
-    "progressive-upload",
-    "chunked-transfer",
-    "enterprise"
-  ],
-  "author": "Layera Team",
-  "license": "MIT"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/layera/layera.git",
+    "directory": "packages/file-upload"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

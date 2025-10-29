@@ -28,7 +28,7 @@ export const SimpleTolgeeProvider: React.FC<SimpleTolgeeProviderProps> = ({
   const [tolgee] = useState<TolgeeInstance>(() =>
     Tolgee()
       .init({
-        language: language || localStorage.getItem('i18nextLng') || 'el',
+        language: language || localStorage.getItem('i18nextLng') || 'el', // LEGACY: backward compatibility
         fallbackLanguage: 'el',
         staticData: {
           el: elTranslations,
@@ -43,7 +43,7 @@ export const SimpleTolgeeProvider: React.FC<SimpleTolgeeProviderProps> = ({
   // Handle language changes
   useEffect(() => {
     const handleStorageChange = () => {
-      const newLang = localStorage.getItem('i18nextLng') || 'el';
+      const newLang = localStorage.getItem('i18nextLng') || 'el'; // LEGACY: backward compatibility
       tolgee.changeLanguage(newLang);
     };
 

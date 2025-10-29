@@ -25,3 +25,17 @@
   - ; if ($?) { git push } → Το push εκτελείται μόνο αν το commit επέτυχε
 
   Αποτέλεσμα: Ίδιο με την πρώτη, αλλά σταματάει αν κάποιο βήμα αποτύχει
+
+
+  Start-Process powershell -ArgumentList "-NoExit","-Command","cd 'C:\layera\apps\layera-id'; npm run dev -- --port 3000"
+Start-Process powershell -ArgumentList "-NoExit","-Command","cd 'C:\layera\apps\layera-geoalert'; npm run dev -- --port 3001"
+
+
+# Terminal 1
+cd C:\layera\apps\layera-id
+npm run dev -- --port 3000
+
+# Terminal 2
+cd C:\layera\apps\layera-geoalert
+npm run dev -- --port 3001
+

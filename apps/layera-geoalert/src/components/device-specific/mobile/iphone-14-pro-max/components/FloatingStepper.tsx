@@ -63,21 +63,45 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   const { t } = useLayeraTranslation();
 
   // 🚀 ENTERPRISE AUTO-DISCOVERY: Ενεργοποιημένο!
-  const pipelineDiscovery = React.useMemo(() => PipelineDiscovery.getInstance(), []);
+  const pipelineDiscovery = React.useMemo(() => {
+    if (!PipelineDiscovery || typeof PipelineDiscovery.getInstance !== 'function') {
+      return null;
+    }
+    try {
+      return PipelineDiscovery.getInstance();
+    } catch (error) {
+      return null;
+    }
+  }, []);
 
   // 🚀 ENTERPRISE AUTO-DISCOVERY: Χρήση του PipelineDiscovery για αυτόματη ανακάλυψη steps
   React.useEffect(() => {
-    // Συγχρονισμός με το CategoryStep state
-    pipelineDiscovery.syncWithCategoryStep({
-      selectedCategory,
-      selectedIntent,
-      showTransactionStep,
-      currentStep
-    });
+    if (!pipelineDiscovery || typeof pipelineDiscovery.syncWithCategoryStep !== 'function') {
+      return;
+    }
+    try {
+      pipelineDiscovery.syncWithCategoryStep({
+        selectedCategory,
+        selectedIntent,
+        showTransactionStep,
+        currentStep
+      });
+    } catch (error) {
+      // Silent error handling
+    }
   }, [selectedCategory, selectedIntent, showTransactionStep, currentStep, pipelineDiscovery]);
 
-  // Χρήση του auto-discovered steps από το PipelineDiscovery
-  const discoveredSteps = pipelineDiscovery.getAvailableStepsForUI();
+  // Χρήση του auto-discovered steps από το PipelineDiscovery με null checks
+  const discoveredSteps = React.useMemo(() => {
+    if (!pipelineDiscovery || typeof pipelineDiscovery.getAvailableStepsForUI !== 'function') {
+      return [];
+    }
+    try {
+      return pipelineDiscovery.getAvailableStepsForUI();
+    } catch (error) {
+      return [];
+    }
+  }, [pipelineDiscovery]);
 
   // Mapping των discovered steps σε UI format με @layera/tolgee
   const steps = discoveredSteps.map(step => ({
@@ -86,8 +110,17 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     shortTitle: t(`pipeline.steps.${step.id}.short`, step.shortTitle)
   }));
 
-  // 🚀 ENTERPRISE AUTO-DISCOVERY: Χρήση του PipelineDiscovery για step index
-  const pipelineState = pipelineDiscovery.getCurrentState();
+  // 🚀 ENTERPRISE AUTO-DISCOVERY: Χρήση του PipelineDiscovery για step index με null check
+  const pipelineState = React.useMemo(() => {
+    if (!pipelineDiscovery || typeof pipelineDiscovery.getCurrentState !== 'function') {
+      return { currentStepIndex: 0, totalSteps: 0 };
+    }
+    try {
+      return pipelineDiscovery.getCurrentState();
+    } catch (error) {
+      return { currentStepIndex: 0, totalSteps: 0 };
+    }
+  }, [pipelineDiscovery]);
   const effectiveStepIndex = pipelineState.currentStepIndex;
   const currentStepData = steps[effectiveStepIndex] || steps[0];
 
@@ -169,7 +202,8 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   const getProgressDotStyle = (index: number): React.CSSProperties => {
     // 🚀 ENTERPRISE: Χρήση του PipelineDiscovery για step completion status
     const stepId = steps[index]?.id;
-    const isCompleted = stepId ? pipelineDiscovery.isStepCompleted(stepId) : false;
+    const isCompleted = stepId && pipelineDiscovery && typeof pipelineDiscovery.isStepCompleted === 'function'
+      ? pipelineDiscovery.isStepCompleted(stepId) : false;
     const isActive = index === effectiveStepIndex;
     const isVisited = index <= effectiveStepIndex;
 
@@ -215,7 +249,9 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   };
 
   // 🚀 ENTERPRISE: Χρήση του PipelineDiscovery για button states
-  const canActuallyGoPrevious = pipelineDiscovery.canGoToPrevious() || canGoPrevious;
+  const canActuallyGoPrevious = (pipelineDiscovery && typeof pipelineDiscovery.canGoToPrevious === 'function'
+    ? pipelineDiscovery.canGoToPrevious()
+    : false) || canGoPrevious;
 
   const previousButtonStyles: React.CSSProperties = {
     ...buttonStyles,
@@ -271,7 +307,9 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
       }
       // 🚀 ENTERPRISE: Χρήση του PipelineDiscovery για έξυπνη πλοήγηση
       const targetStepId = steps[index].id;
-      pipelineDiscovery.navigateToStep(targetStepId);
+      if (pipelineDiscovery && typeof pipelineDiscovery.navigateToStep === 'function') {
+        pipelineDiscovery.navigateToStep(targetStepId);
+      }
 
       // Fallback στο παλιό API αν υπάρχει
       if (onStepClick) {
@@ -287,12 +325,15 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     }
 
     // 🚀 ENTERPRISE: Χρήση του PipelineDiscovery για σωστή πλοήγηση ένα βήμα πίσω
-    const success = pipelineDiscovery.goToPreviousStep();
+    let success = false;
+    if (pipelineDiscovery && typeof pipelineDiscovery.goToPreviousStep === 'function') {
+      success = pipelineDiscovery.goToPreviousStep();
 
-    // 🚀 ENTERPRISE: Ειδοποίηση του parent component για την αλλαγή βήματος
-    if (success && onStepClick) {
-      const newState = pipelineDiscovery.getCurrentState();
-      onStepClick(newState.currentStepIndex);
+      // 🚀 ENTERPRISE: Ειδοποίηση του parent component για την αλλαγή βήματος
+      if (success && onStepClick && typeof pipelineDiscovery.getCurrentState === 'function') {
+        const newState = pipelineDiscovery.getCurrentState();
+        onStepClick(newState.currentStepIndex);
+      }
     }
 
     // Fallback στο παλιό API αν το PipelineDiscovery αποτύχει
@@ -309,7 +350,9 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     }
 
     // 🚀 ENTERPRISE: Χρήση του PipelineDiscovery για reset
-    pipelineDiscovery.reset();
+    if (pipelineDiscovery && typeof pipelineDiscovery.reset === 'function') {
+      pipelineDiscovery.reset();
+    }
 
     // Fallback στο παλιό API
     if (onReset) {

@@ -17,8 +17,8 @@ export function useLayeraTranslation() {
 
   // Language switcher function
   const changeLanguage = useCallback(async (newLang: string) => {
-    // Store in both keys for compatibility during migration
-    localStorage.setItem('i18nextLng', newLang);
+    // Store in both keys for backward compatibility
+    localStorage.setItem('i18nextLng', newLang); // LEGACY: backward compatibility key
     localStorage.setItem('tolgee_language', newLang);
 
     // Change language in Tolgee WITHOUT reload
@@ -52,13 +52,15 @@ export function useLayeraTranslation() {
 export function useDetectedLanguage() {
   // Get language from localStorage or browser
   // Priority:
-  // 1. localStorage (for migration compatibility)
-  // 2. Browser language
-  // 3. Default (Greek)
+  // Language detection priority:
+  // 1. Tolgee storage (preferred)
+  // 2. Legacy i18nextLng (backward compatibility)
+  // 3. Browser language detection
+  // 4. Default (Greek)
 
   const detectedLang =
     localStorage.getItem('tolgee_language') ||
-    localStorage.getItem('i18nextLng') ||
+    localStorage.getItem('i18nextLng') || // LEGACY: backward compatibility
     (navigator.language?.startsWith('el') ? 'el' : 'en') ||
     'el';
 

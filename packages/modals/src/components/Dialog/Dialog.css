@@ -67,7 +67,7 @@
 }
 
 .la-dialog-message {
-  margin: 0;
+  margin: var(--la-size-0);
   font-size: var(--la-font-size-base);
   line-height: var(--la-line-height-normal);
   color: var(--la-color-text-primary);
@@ -88,7 +88,7 @@
   gap: var(--la-space-2);
   height: var(--la-space-10);
   padding: 0 1rem;
-  border: var(--la-border-width-1) solid var(--la-color-transparent);
+  border: 0.063rem solid var(--la-color-transparent);
   border-radius: var(--la-radius-md);
   font-size: var(--la-font-size-sm);
   font-weight: 500;
@@ -161,6 +161,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

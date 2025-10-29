@@ -5,22 +5,13 @@
  * Enterprise-grade ESCO occupation selection
  */
 
-console.log('🚀 LOADING OCCUPATION STEP MODULE - VALIDATION FIXED!');
-
 import React from 'react';
 import { stepRegistry } from '../StepRegistry';
 import { OccupationStep } from './OccupationStep';
 
-console.log('🔍 DEBUG: stepRegistry instance:', stepRegistry);
-
-console.log('🔍 DEBUG: stepRegistry instance:', stepRegistry);
-console.log('🔍 DEBUG: stepRegistry type:', typeof stepRegistry);
-console.log('🔍 DEBUG: stepRegistry.register:', stepRegistry?.register);
-console.log('🔍 DEBUG: stepRegistry.register type:', typeof stepRegistry?.register);
 
 // 🚀 AUTO-REGISTRATION: Register this step in the registry
 if (stepRegistry && typeof stepRegistry.register === 'function') {
-  console.log('✅ About to register occupation step...');
   stepRegistry.register({
   id: 'occupation',
   name: 'Επάγγελμα',
@@ -48,9 +39,6 @@ if (stepRegistry && typeof stepRegistry.register === 'function') {
     ]
   }
   });
-  console.log('✅ 🎯 OCCUPATION STEP REGISTERED με ESCO integration - Firebase ready!');
-} else {
-  console.error('❌ stepRegistry.register is not available!', { stepRegistry, registerMethod: stepRegistry?.register });
 }
 
 // 🎯 CLEAN EXPORTS

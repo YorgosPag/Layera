@@ -84,7 +84,7 @@ export const IntentStep: React.FC<IntentStepProps> = ({
     // Το StepOrchestrator χρειάζεται το onNext() για να προχωρήσει στο επόμενο step
     onNext?.();
 
-    console.log(`✅ Intent selected: ${intent} for category: ${context.selectedCategory}`);
+
   }, [context.selectedCategory, onNext, onStepComplete, onIntentSelected, pipelineDiscovery]);
 
   // Handle info button clicks

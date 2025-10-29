@@ -7,7 +7,7 @@
 
 .la-card-hoverable:hover {
   box-shadow: var(--la-shadow-lg);
-  transform: translateY(-0.0625rem);
+  transform: translateY(calc(-1 * var(--la-border-width-1)));
 }
 
 .la-card-elevated.la-card-hoverable:hover {
@@ -18,19 +18,19 @@
   cursor: pointer;
   border: none;
   background: var(--la-color-surface);
-  font: inherit;
-  text-align: inherit;
+  font: var(--la-inherit);
+  text-align: var(--la-inherit);
   width: 100%;
 }
 
 .la-card-clickable:hover {
   box-shadow: var(--la-shadow-lg);
-  transform: translateY(-0.0625rem);
+  transform: translateY(calc(-1 * var(--la-border-width-1)));
 }
 
 .la-card-clickable:focus-visible {
-  outline: 0.125rem solid var(--la-color-brand);
-  outline-offset: 0.125rem;
+  outline: var(--la-border-width-2) solid var(--la-color-brand);
+  outline-offset: var(--la-border-width-2);
 }
 
 .la-card-clickable:active {

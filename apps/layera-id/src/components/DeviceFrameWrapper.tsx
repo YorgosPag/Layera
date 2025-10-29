@@ -122,7 +122,7 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
             <Box style={getHomeIndicatorStyles()} />
           </Box>
         </Box>
-      </Box>
+      </Flex>
     </>
   );
 };

@@ -100,7 +100,7 @@ export const CompleteStep: React.FC<CompleteStepProps> = ({
 
       // Final completion
       setTimeout(() => {
-        console.log('✅ Process completed successfully');
+
         // Reset ή navigate away
       }, 500);
 

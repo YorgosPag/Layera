@@ -6,71 +6,71 @@
   margin-bottom: var(--la-space-md);
 }
 
-.la-form-field__label {
+.la-form-field-label {
   display: flex;
   align-items: center;
   gap: var(--la-space-xs);
   font-weight: var(--la-font-semibold);
-  font-size: var(--la-text-sm);
+  font-size: var(--la-font-size-sm);
   color: var(--la-color-text-primary);
-  line-height: var(--la-leading-relaxed);
+  line-height: var(--la-line-height-relaxed);
 }
 
-.la-form-field__required {
+.la-form-field-required {
   color: var(--la-color-error-500);
   font-weight: var(--la-font-bold);
 }
 
-.la-form-field__description {
-  font-size: var(--la-text-sm);
+.la-form-field-description {
+  font-size: var(--la-font-size-sm);
   color: var(--la-color-text-secondary);
-  line-height: var(--la-leading-relaxed);
+  line-height: var(--la-line-height-relaxed);
 }
 
-.la-form-field__control {
+.la-form-field-control {
   position: relative;
 }
 
-.la-form-field__error {
-  font-size: var(--la-text-sm);
+.la-form-field-error {
+  font-size: var(--la-font-size-sm);
   color: var(--la-color-error-600);
-  line-height: var(--la-leading-relaxed);
+  line-height: var(--la-line-height-relaxed);
   display: flex;
   align-items: center;
   gap: var(--la-space-xs);
 }
 
-.la-form-field__hint {
-  font-size: var(--la-text-sm);
+.la-form-field-hint {
+  font-size: var(--la-font-size-sm);
   color: var(--la-color-text-tertiary);
-  line-height: var(--la-leading-relaxed);
+  line-height: var(--la-line-height-relaxed);
 }
 
 /* States */
-.la-form-field--error .la-form-field__label {
+.la-form-field-error-state .la-form-field-label {
   color: var(--la-color-error-600);
 }
 
-.la-form-field--disabled {
+.la-form-field-disabled {
   opacity: var(--la-opacity-60);
   pointer-events: var(--la-pointer-events-none);
 }
 
-.la-form-field--disabled .la-form-field__label {
+.la-form-field-disabled .la-form-field-label {
   color: var(--la-color-text-disabled);
 }
 
 /* Focus-within styling for better accessibility */
-.la-form-field:focus-within .la-form-field__label {
+.la-form-field:focus-within .la-form-field-label {
   color: var(--la-color-primary-600);
 }
 
-.la-form-field--error:focus-within .la-form-field__label {
+.la-form-field-error-state:focus-within .la-form-field-label {
   color: var(--la-color-error-600);
 }
 
 /* Responsive adjustments */
-@media (max-width: 48rem) {
+@media (width <= 48rem) {
   .la-form-field {
     margin-bottom: var(--la-space-sm);
   }

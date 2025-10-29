@@ -47,7 +47,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  flex-shrink: var(--la-size-0);
   width: var(--la-space-6);
   height: var(--la-space-6);
   margin-top: var(--la-space-1);
@@ -73,7 +73,7 @@
 /* Alert Content */
 .la-alert-content {
   flex: 1;
-  min-width: 0;
+  min-width: var(--la-size-0);
 }
 
 .la-alert-title {
@@ -83,7 +83,7 @@
 }
 
 .la-alert-description {
-  margin: 0;
+  margin: var(--la-size-0);
   color: var(--la-color-text-primary);
 }
 
@@ -95,16 +95,16 @@
   width: var(--la-space-6);
   height: var(--la-space-6);
   padding: var(--la-space-3);
-  border: var(--la-border-width-1) solid currentColor;
+  border: 0.063rem solid var(--la-color-text-primary);
   border-radius: var(--la-radius-sm);
   background-color: var(--la-color-transparent);
   font-size: var(--la-font-size-sm);
   line-height: var(--la-line-height-tight);
-  color: currentcolor;
+  color: var(--la-color-text-primary);
   cursor: pointer;
   transition: all 0.15s ease;
   margin-top: var(--la-space-1);
-  flex-shrink: 0;
+  flex-shrink: var(--la-size-0);
 }
 
 .la-alert-close:hover {
@@ -121,12 +121,12 @@
   margin-left: var(--la-space-3);
   border-radius: var(--la-radius-xs);
   background-color: var(--la-color-transparent);
-  color: currentcolor;
+  color: var(--la-color-text-primary);
   cursor: pointer;
   transition: all 0.15s ease;
   border: 0;
   padding: 0;
-  flex-shrink: 0;
+  flex-shrink: var(--la-size-0);
 }
 
 .la-alert-dismiss:hover {
@@ -179,8 +179,8 @@
 }
 
 /* High Contrast Mode Support */
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
   .la-alert {
-    border-width: var(--la-border-width-2);
+    border-width: 0.125rem;
   }
 }

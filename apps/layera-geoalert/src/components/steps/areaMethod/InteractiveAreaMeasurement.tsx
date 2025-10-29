@@ -110,7 +110,7 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
   }, [startMeasurement]);
 
   const finishMeasurement = useCallback(() => {
-    console.log(`✅ Finishing measurement with area: ${currentArea} τ.μ.`);
+
 
     setIsDrawing(false);
     setMeasurementComplete(true);

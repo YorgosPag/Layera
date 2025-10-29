@@ -1,44 +1,50 @@
 {
   "name": "@layera/pipelines",
   "version": "1.0.0",
-  "description": "Enterprise pipeline components and workflows for the Layera platform",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "description": "Processing pipelines and workflow management for Layera Design System",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    }
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
   },
-  "files": [
-    "dist"
-  ],
   "keywords": [
     "layera",
+    "design-system",
     "pipelines",
-    "workflows",
-    "enterprise"
+    "processing",
+    "workflow",
+    "typescript"
   ],
   "author": "Layera Team",
-  "license": "ISC",
-  "dependencies": {
-    "react": "^18.0.0"
-  },
+  "license": "MIT",
   "devDependencies": {
-    "@types/node": "^20.0.0",
     "@types/react": "^18.0.0",
+    "react": "^18.0.0",
     "tsup": "^8.0.0",
     "typescript": "^5.0.0"
   },
   "peerDependencies": {
     "react": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/layera/layera.git",
+    "directory": "packages/pipelines"
   },
   "publishConfig": {
     "access": "public"

@@ -3,4 +3,4 @@
  */
 
 export * from './errorMessages';
-export * from './i18nKeys';
+export * from './translationKeys';

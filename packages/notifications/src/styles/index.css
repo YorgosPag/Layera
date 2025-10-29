@@ -2,6 +2,6 @@
  * Layera Notifications - Main Styles Import
  */
 
-@import '../components/Toast/Toast.css';
-@import '../components/NotificationContainer/NotificationContainer.css';
-@import '../components/Alert/Alert.css';
+@import url('../components/Toast/Toast.css');
+@import url('../components/NotificationContainer/NotificationContainer.css');
+@import url('../components/Alert/Alert.css');

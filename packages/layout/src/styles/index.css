@@ -3,5 +3,5 @@
  */
 
 /* Import order matters - tokens first, then components */
-@import './tokens.css';
-@import './layout.css';
+@import url('./tokens.css');
+@import url('./layout.css');

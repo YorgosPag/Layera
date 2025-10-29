@@ -7,21 +7,21 @@
   align-items: center;
   gap: var(--la-space-3);
   padding: var(--la-space-3) var(--la-space-4) var(--la-space-4);
-  border-top: var(--la-border-width-1) solid var(--la-color-border-primary);
+  border-top: 0.063rem solid var(--la-color-border-primary);
   background-color: var(--la-color-surface);
   border-radius: var(--la-radius-md);
 }
 
 .la-modal-footer-content {
   flex: 1;
-  min-width: 0;
+  min-width: var(--la-size-0);
 }
 
 .la-modal-footer-actions {
   display: flex;
   align-items: center;
   gap: var(--la-space-2);
-  flex-shrink: 0;
+  flex-shrink: var(--la-size-0);
 }
 
 /* Alignment variants */

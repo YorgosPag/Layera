@@ -130,9 +130,14 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
   // Τελευταία ενημέρωση: 28/10/2025 - ΓΙΩΡΓΟΣ ΠΑΓΩΝΗΣ
 
   const getFrameStyles = (): React.CSSProperties => {
+    // Βελτιώσεις για tablets, desktop και foldables
+    const isTablet = selectedModel?.includes('iPad') || selectedModel?.includes('Surface');
+    const isDesktop = selectedModel?.includes('MacBook') || selectedModel?.includes('iMac');
+    const isFoldable = selectedModel?.includes('Z Fold');
+
     const baseStyles: React.CSSProperties = {
       position: 'relative',
-      margin: `0 auto`,
+      margin: `${SPACING_SCALE.MD}px auto`,
       backgroundColor: specs.frameColor,
       borderRadius: `${BORDER_RADIUS_SCALE.LG}px`,
       padding: `${SPACING_SCALE.SM}px`,
@@ -144,7 +149,11 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      // Βελτιώσεις για μεγάλα devices
+      maxWidth: '95vw',
+      maxHeight: '90vh',
+      overflow: 'visible'
     };
 
     return baseStyles;
@@ -164,17 +173,19 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
   const getNotchStyles = (): React.CSSProperties => {
     if (!specs.hasNotch) return { display: 'none' };
 
+    // ΠΟΛΥ ΜΙΚΡΟ iPhone notch με LEGO design tokens μόνο
     return {
       position: 'absolute',
-      top: '0',
+      top: `${SPACING_SCALE.XS / 4}px`, // LEGO token: XS/4 = 2px
       left: '50%',
       transform: 'translateX(-50%)',
-      width: `${SPACING_SCALE.XXXL}px`,
-      height: `${SPACING_SCALE.XXL}px`,
-      backgroundColor: 'var(--color-text-primary)',
-      borderBottomLeftRadius: `${SPACING_SCALE.LG}px`,
-      borderBottomRightRadius: `${SPACING_SCALE.LG}px`,
-      zIndex: 10 // Local z-index within device frame
+      width: `${SPACING_SCALE.MD}px`, // LEGO token: MD = 24px (ΠΟΛΥ μικρό)
+      height: `${SPACING_SCALE.XS / 4}px`, // LEGO token: XS/4 = 2px (ΠΟΛΥ μικρό)
+      backgroundColor: 'var(--color-border-subtle)', // LEGO color token (ακόμη λιγότερο σκούρο)
+      borderBottomLeftRadius: `${BORDER_RADIUS_SCALE.XS}px`, // LEGO border radius token (μικρότερη καμπυλότητα)
+      borderBottomRightRadius: `${BORDER_RADIUS_SCALE.XS}px`, // LEGO border radius token (μικρότερη καμπυλότητα)
+      zIndex: 10, // Local z-index within device frame
+      opacity: 0.4 // Πολύ λιγότερο σκούρο
     };
   };
 
@@ -207,6 +218,10 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
         backgroundColor="surface"
         padding="custom"
         overflow="auto"
+        style={{
+          paddingTop: `${SPACING_SCALE.LG}px`,
+          paddingBottom: `${SPACING_SCALE.LG}px`,
+        }}
         className="device-frame-container">
         <Box
           className="device-frame"

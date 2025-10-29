@@ -4,13 +4,13 @@
 
 .la-modal-content {
   flex: 1;
-  min-height: 0;
+  min-height: var(--la-size-0);
   background-color: var(--la-color-surface);
 }
 
 /* Padding variants */
 .la-modal-content-none {
-  padding: 0;
+  padding: var(--la-size-0);
 }
 
 .la-modal-content-sm {

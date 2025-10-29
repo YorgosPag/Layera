@@ -3,3 +3,6 @@ packages/styles/**
 **/*.svg
 **/dist/**
 **/node_modules/**
+STEPS/**
+voithitika_docs/**
+.github/**

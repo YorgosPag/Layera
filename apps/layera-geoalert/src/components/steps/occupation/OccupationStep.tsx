@@ -30,8 +30,6 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
   isVisible = true,
   deviceProps = {}
 }) => {
-  console.log('🚀 OCCUPATION STEP: Component mounted!', { isVisible, context });
-  console.log('🔍 OCCUPATION STEP: Props received:', { onNext, onStepComplete, onOccupationSelected });
   const { t } = useLayeraTranslation();
 
   // Local state

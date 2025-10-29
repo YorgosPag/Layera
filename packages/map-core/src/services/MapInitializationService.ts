@@ -52,7 +52,18 @@ export class MapInitializationService {
     // Clear container safely
     const mapContainer = document.getElementById(options.containerId);
     if (!mapContainer) {
-      throw new Error(`Map container with id "${options.containerId}" not found`);
+      const error = `Map container with id "${options.containerId}" not found`;
+      console.error('❌ MapInitializationService:', error);
+      throw new Error(error);
+    }
+
+    if (process.env.NODE_ENV === 'development') {
+      console.log('📦 Map container found:', {
+        id: options.containerId,
+        width: mapContainer.offsetWidth,
+        height: mapContainer.offsetHeight,
+        visible: mapContainer.offsetWidth > 0 && mapContainer.offsetHeight > 0
+      });
     }
 
     try {
@@ -67,17 +78,40 @@ export class MapInitializationService {
     }).setView(config.center, config.zoom);
 
     // Add tile layer
-    L.tileLayer(config.tileUrl, {
+    const tileLayer = L.tileLayer(config.tileUrl, {
       attribution: config.attribution,
       maxZoom: config.maxZoom,
       minZoom: config.minZoom
-    }).addTo(map);
+    });
+
+    tileLayer.on('loading', () => {
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🌍 Tiles loading...');
+      }
+    });
+
+    tileLayer.on('load', () => {
+      if (process.env.NODE_ENV === 'development') {
+        console.log('✅ Tiles loaded successfully');
+      }
+    });
+
+    tileLayer.on('tileerror', (error) => {
+      console.error('❌ Tile loading error:', error);
+    });
+
+    tileLayer.addTo(map);
 
     // Add overlay styles
     this.addOverlayStyles();
 
     // Force resize after creation
-    setTimeout(() => map.invalidateSize(), 0);
+    setTimeout(() => {
+      map.invalidateSize();
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🗺️ Map initialized successfully with size:', map.getSize());
+      }
+    }, 100);
 
     return map;
   }

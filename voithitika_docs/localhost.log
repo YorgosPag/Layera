@@ -1,162 +1,64 @@
-15:14:12.348 react-dom_client.js?v=31e681a3:20359 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
-15:14:12.404 StepRegistry.ts:45 ✅ Step registered: category (order: 1)
-15:14:12.404 index.ts:58 ✅ Category Step registered in StepRegistry
-15:14:12.404 StepRegistry.ts:45 ✅ Step registered: intent (order: 2)
-15:14:12.404 index.ts:65 ✅ Intent Step registered in StepRegistry
-15:14:12.404 StepRegistry.ts:45 ✅ Step registered: transactionType (order: 3)
-15:14:12.405 index.ts:120 ✅ Transaction Type Step registered in StepRegistry
-15:14:12.405 StepRegistry.ts:45 ✅ Step registered: availability (order: 7)
-15:14:12.410 i18next.js?v=6b3bd940:215 i18next: languageChanged el
-15:14:12.410 i18next.js?v=6b3bd940:215 i18next: initialized Object
-15:14:12.410 StepRegistry.ts:45 ✅ Step registered: upload (order: 17)
-15:14:12.410 StepRegistry.ts:45 ✅ Step registered: layout (order: 13)
-15:14:12.410 StepRegistry.ts:45 ✅ Step registered: propertyType (order: 16)
-15:14:12.414 StepRegistry.ts:45 ✅ Step registered: propertyDetails (order: 15)
-15:14:12.414 StepRegistry.ts:45 ✅ Step registered: areaMethod (order: 10)
-15:14:12.415 StepRegistry.ts:45 ✅ Step registered: location (order: 14)
-15:14:12.415 StepRegistry.ts:45 ✅ Step registered: employmentType (order: 5)
-15:14:12.415 index.ts:8 🚀 LOADING OCCUPATION STEP MODULE - VALIDATION FIXED!
-15:14:12.415 index.ts:14 🔍 DEBUG: stepRegistry instance: StepRegistry
-15:14:12.415 index.ts:16 🔍 DEBUG: stepRegistry instance: StepRegistry
-15:14:12.415 index.ts:17 🔍 DEBUG: stepRegistry type: object
-15:14:12.415 index.ts:18 🔍 DEBUG: stepRegistry.register: ƒ register(step) {
-    if (this.steps.has(step.id)) {
-      console.warn(`⚠️ Step '${step.id}' already registered. Overriding...`);
-    }
-    this.validateStepDefinition(step);
-    this.steps.set(step.…
-15:14:12.415 index.ts:19 🔍 DEBUG: stepRegistry.register type: function
-15:14:12.415 index.ts:23 ✅ About to register occupation step...
-15:14:12.415 StepRegistry.ts:45 ✅ Step registered: occupation (order: 6)
-15:14:12.415 index.ts:51 ✅ 🎯 OCCUPATION STEP REGISTERED με ESCO integration - Firebase ready!
-15:14:12.415 StepRegistry.ts:45 ✅ Step registered: availabilityDetails (order: 12)
-15:14:12.416 StepRegistry.ts:45 ✅ Step registered: complete (order: 100)
-15:14:12.491 react-dom_client.js?v=31e681a3:2460 React does not recognize the `marginBottom` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `marginbottom` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
-validateProperty @ react-dom_client.js?v=31e681a3:2460
-15:14:12.495 react-dom_client.js?v=31e681a3:2460 React does not recognize the `boxShadow` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `boxshadow` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
-validateProperty @ react-dom_client.js?v=31e681a3:2460
-15:14:12.497 react-dom_client.js?v=31e681a3:2460 React does not recognize the `gridTemplateColumns` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `gridtemplatecolumns` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
-validateProperty @ react-dom_client.js?v=31e681a3:2460
-15:14:12.498 react-dom_client.js?v=31e681a3:2460 React does not recognize the `marginTop` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `margintop` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
-validateProperty @ react-dom_client.js?v=31e681a3:2460
-15:14:12.501 react-dom_client.js?v=31e681a3:2460 React does not recognize the `borderRadius` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `borderradius` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
-validateProperty @ react-dom_client.js?v=31e681a3:2460
-15:14:12.504 react-dom_client.js?v=31e681a3:2460 React does not recognize the `textAlign` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `textalign` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
-validateProperty @ react-dom_client.js?v=31e681a3:2460
-15:14:12.504 react-dom_client.js?v=31e681a3:2460 React does not recognize the `backgroundColor` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `backgroundcolor` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
-validateProperty @ react-dom_client.js?v=31e681a3:2460
-15:14:15.970 UnifiedFAB.tsx:143 Uncaught ReferenceError: isDragging is not defined
-    at UnifiedFAB (UnifiedFAB.tsx:143:14)
-    at Object.react_stack_bottom_frame (react-dom_client.js?v=31e681a3:18763:20)
-    at renderWithHooks (react-dom_client.js?v=31e681a3:5769:24)
-    at updateFunctionComponent (react-dom_client.js?v=31e681a3:7604:21)
-    at beginWork (react-dom_client.js?v=31e681a3:8664:20)
-    at runWithFiberInDEV (react-dom_client.js?v=31e681a3:1027:72)
-    at performUnitOfWork (react-dom_client.js?v=31e681a3:12748:98)
-    at workLoopSync (react-dom_client.js?v=31e681a3:12607:11)
-    at renderRootSync (react-dom_client.js?v=31e681a3:12590:15)
-    at performWorkOnRoot (react-dom_client.js?v=31e681a3:12001:37)
-UnifiedFAB @ UnifiedFAB.tsx:143
-react_stack_bottom_frame @ react-dom_client.js?v=31e681a3:18763
-renderWithHooks @ react-dom_client.js?v=31e681a3:5769
-updateFunctionComponent @ react-dom_client.js?v=31e681a3:7604
-beginWork @ react-dom_client.js?v=31e681a3:8664
-runWithFiberInDEV @ react-dom_client.js?v=31e681a3:1027
-performUnitOfWork @ react-dom_client.js?v=31e681a3:12748
-workLoopSync @ react-dom_client.js?v=31e681a3:12607
-renderRootSync @ react-dom_client.js?v=31e681a3:12590
-performWorkOnRoot @ react-dom_client.js?v=31e681a3:12001
-performSyncWorkOnRoot @ react-dom_client.js?v=31e681a3:13715
-flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=31e681a3:13608
-processRootScheduleInMicrotask @ react-dom_client.js?v=31e681a3:13631
-(anonymous) @ react-dom_client.js?v=31e681a3:13729
-<UnifiedFAB>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=c94f15ae:253
-GeoMap @ GeoMapNew.tsx:321
-react_stack_bottom_frame @ react-dom_client.js?v=31e681a3:18763
-renderWithHooksAgain @ react-dom_client.js?v=31e681a3:5844
-renderWithHooks @ react-dom_client.js?v=31e681a3:5780
-updateFunctionComponent @ react-dom_client.js?v=31e681a3:7604
-beginWork @ react-dom_client.js?v=31e681a3:8664
-runWithFiberInDEV @ react-dom_client.js?v=31e681a3:1027
-performUnitOfWork @ react-dom_client.js?v=31e681a3:12748
-workLoopSync @ react-dom_client.js?v=31e681a3:12607
-renderRootSync @ react-dom_client.js?v=31e681a3:12590
-performWorkOnRoot @ react-dom_client.js?v=31e681a3:12001
-performSyncWorkOnRoot @ react-dom_client.js?v=31e681a3:13715
-flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=31e681a3:13608
-processRootScheduleInMicrotask @ react-dom_client.js?v=31e681a3:13631
-(anonymous) @ react-dom_client.js?v=31e681a3:13729
-<GeoMap>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=c94f15ae:253
-App @ App.tsx:307
-react_stack_bottom_frame @ react-dom_client.js?v=31e681a3:18763
-renderWithHooksAgain @ react-dom_client.js?v=31e681a3:5844
-renderWithHooks @ react-dom_client.js?v=31e681a3:5780
-updateFunctionComponent @ react-dom_client.js?v=31e681a3:7604
-beginWork @ react-dom_client.js?v=31e681a3:8664
-runWithFiberInDEV @ react-dom_client.js?v=31e681a3:1027
-performUnitOfWork @ react-dom_client.js?v=31e681a3:12748
-workLoopSync @ react-dom_client.js?v=31e681a3:12607
-renderRootSync @ react-dom_client.js?v=31e681a3:12590
-performWorkOnRoot @ react-dom_client.js?v=31e681a3:12001
-performSyncWorkOnRoot @ react-dom_client.js?v=31e681a3:13715
-flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=31e681a3:13608
-processRootScheduleInMicrotask @ react-dom_client.js?v=31e681a3:13631
-(anonymous) @ react-dom_client.js?v=31e681a3:13729
-15:14:15.971 GeoMapNew.tsx:321 An error occurred in the <UnifiedFAB> component.
-
-Consider adding an error boundary to your tree to customize error handling behavior.
-Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
-
-defaultOnUncaughtError @ react-dom_client.js?v=31e681a3:7092
-logUncaughtError @ react-dom_client.js?v=31e681a3:7146
-runWithFiberInDEV @ react-dom_client.js?v=31e681a3:1027
-lane.callback @ react-dom_client.js?v=31e681a3:7174
-callCallback @ react-dom_client.js?v=31e681a3:5601
-commitCallbacks @ react-dom_client.js?v=31e681a3:5613
-runWithFiberInDEV @ react-dom_client.js?v=31e681a3:1029
-commitLayoutEffectOnFiber @ react-dom_client.js?v=31e681a3:10141
-flushLayoutEffects @ react-dom_client.js?v=31e681a3:13114
-commitRoot @ react-dom_client.js?v=31e681a3:12993
-commitRootWhenReady @ react-dom_client.js?v=31e681a3:12194
-performWorkOnRoot @ react-dom_client.js?v=31e681a3:12128
-performSyncWorkOnRoot @ react-dom_client.js?v=31e681a3:13715
-flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=31e681a3:13608
-processRootScheduleInMicrotask @ react-dom_client.js?v=31e681a3:13631
-(anonymous) @ react-dom_client.js?v=31e681a3:13729
-<UnifiedFAB>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=c94f15ae:253
-GeoMap @ GeoMapNew.tsx:321
-react_stack_bottom_frame @ react-dom_client.js?v=31e681a3:18763
-renderWithHooksAgain @ react-dom_client.js?v=31e681a3:5844
-renderWithHooks @ react-dom_client.js?v=31e681a3:5780
-updateFunctionComponent @ react-dom_client.js?v=31e681a3:7604
-beginWork @ react-dom_client.js?v=31e681a3:8664
-runWithFiberInDEV @ react-dom_client.js?v=31e681a3:1027
-performUnitOfWork @ react-dom_client.js?v=31e681a3:12748
-workLoopSync @ react-dom_client.js?v=31e681a3:12607
-renderRootSync @ react-dom_client.js?v=31e681a3:12590
-performWorkOnRoot @ react-dom_client.js?v=31e681a3:12001
-performSyncWorkOnRoot @ react-dom_client.js?v=31e681a3:13715
-flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=31e681a3:13608
-processRootScheduleInMicrotask @ react-dom_client.js?v=31e681a3:13631
-(anonymous) @ react-dom_client.js?v=31e681a3:13729
-<GeoMap>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=c94f15ae:253
-App @ App.tsx:307
-react_stack_bottom_frame @ react-dom_client.js?v=31e681a3:18763
-renderWithHooksAgain @ react-dom_client.js?v=31e681a3:5844
-renderWithHooks @ react-dom_client.js?v=31e681a3:5780
-updateFunctionComponent @ react-dom_client.js?v=31e681a3:7604
-beginWork @ react-dom_client.js?v=31e681a3:8664
-runWithFiberInDEV @ react-dom_client.js?v=31e681a3:1027
-performUnitOfWork @ react-dom_client.js?v=31e681a3:12748
-workLoopSync @ react-dom_client.js?v=31e681a3:12607
-renderRootSync @ react-dom_client.js?v=31e681a3:12590
-performWorkOnRoot @ react-dom_client.js?v=31e681a3:12001
-performSyncWorkOnRoot @ react-dom_client.js?v=31e681a3:13715
-flushSyncWorkAcrossRoots_impl @ react-dom_client.js?v=31e681a3:13608
-processRootScheduleInMicrotask @ react-dom_client.js?v=31e681a3:13631
-(anonymous) @ react-dom_client.js?v=31e681a3:13729
-15:14:18.279 (index):1 Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist.
+11:36:56.247 react-dom_client.js?v=828649d3:20359 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+11:36:56.629 main.tsx:16 🍃 Leaflet CSS loaded successfully
+11:36:56.727 vite.svg:1  GET http://localhost:3011/vite.svg 404 (Not Found)
+11:37:00.042 DeviceModelSelector.tsx:89 🎯 DeviceModelSelector mounted! Samsung Galaxy A35 should be available.
+11:37:00.042 MapContainer.tsx:46 🗺️ MapProvider context available: {hasContext: true, hasInitializeMap: true, initialLoadingState: false}
+11:37:00.044 App.tsx:275 📱 Device mode changed: Responsive
+11:37:00.044 App.tsx:275 📱 Device mode changed: Responsive
+11:37:00.045 DeviceModelSelector.tsx:89 🎯 DeviceModelSelector mounted! Samsung Galaxy A35 should be available.
+11:37:00.046 MapContainer.tsx:46 🗺️ MapProvider context available: {hasContext: true, hasInitializeMap: true, initialLoadingState: false}
+11:37:00.046 App.tsx:275 📱 Device mode changed: Responsive
+11:37:00.046 App.tsx:275 📱 Device mode changed: Responsive
+11:37:00.248 MapContainer.tsx:170 🚀 Map init attempt - Container size: {width: 430, height: 953, hasValidSize: true}
+11:37:00.248 MapContainer.tsx:186 🚀 Starting map initialization...
+11:37:00.248 MapContainer.tsx:187 🔧 initializeMap function available: function
+11:37:00.248 MapContainer.tsx:188 🔧 initializeMap function source: function(containerId, config = {}) {
+          return Promise.resolve();
+        }
+11:37:00.248 MapContainer.tsx:199 🔧 Calling initializeMap with geo-map...
+11:37:00.248 MapContainer.tsx:208 🔧 initializeMap returned: object
+11:37:00.248 MapContainer.tsx:214 ✅ Map initialization promise resolved
+11:37:02.070 GeoMapNew.tsx:138 FAB clicked! isResponsiveMode: true
+11:37:02.085 FloatingStepper.tsx:100 PipelineDiscovery: getAvailableStepsForUI
+11:37:02.085 FloatingStepper.tsx:100 PipelineDiscovery: getAvailableStepsForUI
+11:37:02.086 FloatingStepper.tsx:119 PipelineDiscovery: getCurrentState
+11:37:02.086 FloatingStepper.tsx:119 PipelineDiscovery: getCurrentState
+11:37:02.118 FloatingStepper.tsx:83 PipelineDiscovery: syncWithCategoryStep {selectedCategory: null, selectedIntent: null, showTransactionStep: false, currentStep: 'category'}
+11:37:02.119 App.tsx:275 📱 Device mode changed: Responsive
+11:37:02.120 App.tsx:275 📱 Device mode changed: Responsive
+11:37:02.121 FloatingStepper.tsx:83 PipelineDiscovery: syncWithCategoryStep {selectedCategory: null, selectedIntent: null, showTransactionStep: false, currentStep: 'category'}
+11:37:04.412 FloatingStepper.tsx:100 PipelineDiscovery: getAvailableStepsForUI
+11:37:04.412 FloatingStepper.tsx:100 PipelineDiscovery: getAvailableStepsForUI
+11:37:04.412 FloatingStepper.tsx:119 PipelineDiscovery: getCurrentState
+11:37:04.412 FloatingStepper.tsx:119 PipelineDiscovery: getCurrentState
+11:37:04.426 DeviceModelSelector.tsx:89 🎯 DeviceModelSelector mounted! Samsung Galaxy A35 should be available.
+11:37:04.426 MapContainer.tsx:46 🗺️ MapProvider context available: {hasContext: true, hasInitializeMap: true, initialLoadingState: false}
+11:37:04.427 FloatingStepper.tsx:83 PipelineDiscovery: syncWithCategoryStep {selectedCategory: null, selectedIntent: null, showTransactionStep: false, currentStep: 'category'}
+11:37:04.429 App.tsx:275 📱 Device mode changed: Device Frame
+11:37:04.429 DeviceModelSelector.tsx:89 🎯 DeviceModelSelector mounted! Samsung Galaxy A35 should be available.
+11:37:04.430 MapContainer.tsx:46 🗺️ MapProvider context available: {hasContext: true, hasInitializeMap: true, initialLoadingState: false}
+11:37:04.431 FloatingStepper.tsx:83 PipelineDiscovery: syncWithCategoryStep {selectedCategory: null, selectedIntent: null, showTransactionStep: false, currentStep: 'category'}
+11:37:04.460 App.tsx:275 📱 Device mode changed: Device Frame
+11:37:04.461 App.tsx:275 📱 Device mode changed: Device Frame
+11:37:04.638 MapContainer.tsx:170 🚀 Map init attempt - Container size: {width: 430, height: 953, hasValidSize: true}
+11:37:04.638 MapContainer.tsx:186 🚀 Starting map initialization...
+11:37:04.638 MapContainer.tsx:187 🔧 initializeMap function available: function
+11:37:04.639 MapContainer.tsx:188 🔧 initializeMap function source: function(containerId, config = {}) {
+          return Promise.resolve();
+        }
+11:37:04.639 MapContainer.tsx:199 🔧 Calling initializeMap with geo-map...
+11:37:04.639 MapContainer.tsx:208 🔧 initializeMap returned: object
+11:37:04.639 MapContainer.tsx:214 ✅ Map initialization promise resolved
+11:38:56.702 FloatingStepper.tsx:354 PipelineDiscovery: reset
+11:38:56.703 Logger.ts:80 [2025-10-29T09:38:56.703Z] [NavigationService] [INFO] Resetting navigation state undefined
+11:38:56.720 App.tsx:275 📱 Device mode changed: Device Frame
+11:38:56.721 App.tsx:275 📱 Device mode changed: Device Frame
+11:38:58.248 GeoMapNew.tsx:138 FAB clicked! isResponsiveMode: false
+11:38:58.261 FloatingStepper.tsx:100 PipelineDiscovery: getAvailableStepsForUI
+11:38:58.262 FloatingStepper.tsx:100 PipelineDiscovery: getAvailableStepsForUI
+11:38:58.262 FloatingStepper.tsx:119 PipelineDiscovery: getCurrentState
+11:38:58.262 FloatingStepper.tsx:119 PipelineDiscovery: getCurrentState
+11:38:58.278 FloatingStepper.tsx:83 PipelineDiscovery: syncWithCategoryStep {selectedCategory: null, selectedIntent: null, showTransactionStep: false, currentStep: 'category'}
+11:38:58.279 App.tsx:275 📱 Device mode changed: Device Frame
+11:38:58.279 App.tsx:275 📱 Device mode changed: Device Frame
+11:38:58.279 FloatingStepper.tsx:83 PipelineDiscovery: syncWithCategoryStep {selectedCategory: null, selectedIntent: null, showTransactionStep: false, currentStep: 'category'}

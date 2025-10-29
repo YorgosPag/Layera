@@ -2,15 +2,14 @@
   "name": "@layera/error-boundary",
   "version": "1.0.0",
   "description": "Layera Error Boundary System - Error handling και recovery για enterprise εφαρμογές",
-  "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./styles": "./dist/styles.css"
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
   },
   "files": [
     "dist",

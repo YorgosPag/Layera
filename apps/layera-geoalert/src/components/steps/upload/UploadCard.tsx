@@ -41,7 +41,7 @@ export const UploadCard: React.FC<UploadCardProps> = ({
   };
 
   const handleUploadComplete = (file: FileUploadItem) => {
-    console.log(`✅ Upload completed for file: ${file.file.name}`, file.response);
+
   };
 
   const handleUploadError = (file: FileUploadItem, error: string) => {

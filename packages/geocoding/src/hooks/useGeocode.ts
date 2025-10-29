@@ -28,6 +28,7 @@ export function useGeocode(options: UseGeocodeOptions = {}): UseGeocodeReturn {
   const [selectedResult, setSelectedResult] = useState<GeocodeResult | null>(null);
   const [currentLanguage, setCurrentLanguage] = useState<string>(() => {
     if (typeof window !== 'undefined') {
+      // LEGACY: 'i18nextLng' key maintained for backward compatibility with existing installations
       return localStorage.getItem('i18nextLng') || 'el';
     }
     return 'el';
@@ -62,7 +63,7 @@ export function useGeocode(options: UseGeocodeOptions = {}): UseGeocodeReturn {
 
     try {
       // Ανίχνευση γλώσσας από browser ή localStorage
-      // ΣΗΜΑΝΤΙΚΟ: Το i18nextLng (legacy key) μπορεί να είναι 'el' ή 'en', όχι 'el-GR' ή 'en-US'
+      // LEGACY: Using 'i18nextLng' for backward compatibility - can be 'el' or 'en', not 'el-GR' or 'en-US'
       const storedLang = typeof window !== 'undefined' ? localStorage.getItem('i18nextLng') : null;
       const userLanguage = storedLang || (typeof navigator !== 'undefined' ? navigator.language.slice(0, 2) : 'el');
 
@@ -137,6 +138,7 @@ export function useGeocode(options: UseGeocodeOptions = {}): UseGeocodeReturn {
   // Listen για αλλαγές γλώσσας και re-search αν υπάρχουν αποτελέσματα
   useEffect(() => {
     const handleLanguageChange = () => {
+      // LEGACY: 'i18nextLng' key for backward compatibility
       const newLanguage = localStorage.getItem('i18nextLng') || 'el';
       console.log('🌍 Language changed from', currentLanguage, 'to', newLanguage);
 
@@ -159,6 +161,7 @@ export function useGeocode(options: UseGeocodeOptions = {}): UseGeocodeReturn {
 
     // Polling για τοπικές αλλαγές (same tab)
     const interval = setInterval(() => {
+      // LEGACY: Check for language changes using legacy key
       const newLang = localStorage.getItem('i18nextLng') || 'el';
       if (newLang !== currentLanguage) {
         handleLanguageChange();

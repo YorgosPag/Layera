@@ -100,7 +100,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
             onLocationFound(latitude, longitude);
           }
 
-          console.log('✅ LayoutStepCard: Location centered successfully');
+
         },
         (error) => {
           console.error('❌ LayoutStepCard: Geolocation error:', error);

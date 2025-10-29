@@ -69,7 +69,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
     console.log(`🔍 CategoryStep: Getting content for ${cardId}`);
     try {
       const content = infoContentProvider.getContent(cardId);
-      console.log(`✅ CategoryStep: Content found for ${cardId}:`, content);
+
       return content;
     } catch (error) {
       console.warn(`❌ CategoryStep: Info content not found for card: ${cardId}`, error);
@@ -120,7 +120,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
       {/* Ακίνητα Card */}
       <BaseCard
         variant="property"
-        title={t('category.property.title')}
+        title={t('pipeline.category.property.title')}
         icon={<VillaIcon size="sm" theme="neutral" />}
         onClick={() => handleCategorySelection('property')}
         onInfoClick={() => handleInfoClick('property')}
@@ -130,7 +130,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
       {/* Εργασία Card */}
       <BaseCard
         variant="job"
-        title={t('category.job.title')}
+        title={t('pipeline.category.job.title')}
         icon={<BriefcaseIcon size="sm" theme="neutral" />}
         onClick={() => handleCategorySelection('job')}
         onInfoClick={() => handleInfoClick('job')}

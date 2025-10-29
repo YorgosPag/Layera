@@ -22,7 +22,7 @@
 }
 
 .la-map-label-hidden {
-  opacity: 0;
+  opacity: var(--la-size-0);
   transform: scale(0.8);
   pointer-events: none;
 }
@@ -121,7 +121,7 @@
   line-height: var(--la-line-height-normal);
   text-align: center;
   background: var(--la-color-warning-light);
-  border: var(--la-border-width-1) solid var(--la-color-warning);
+  border: 0.063rem solid var(--la-color-warning);
 }
 
 /* Success variant - για success states */
@@ -134,7 +134,7 @@
   line-height: var(--la-line-height-normal);
   text-align: center;
   background: var(--la-color-success-light);
-  border: var(--la-border-width-1) solid var(--la-color-success);
+  border: 0.063rem solid var(--la-color-success);
 }
 
 /* Text Alignment */
@@ -198,7 +198,7 @@
 /* Keyframe Animations */
 @keyframes la-label-fade-in {
   from {
-    opacity: 0;
+    opacity: var(--la-size-0);
   }
 
   to {
@@ -212,13 +212,13 @@
   }
 
   to {
-    opacity: 0;
+    opacity: var(--la-size-0);
   }
 }
 
 @keyframes la-label-scale-in {
   from {
-    opacity: 0;
+    opacity: var(--la-size-0);
     transform: scale(0.8);
   }
 
@@ -235,7 +235,7 @@
   }
 
   to {
-    opacity: 0;
+    opacity: var(--la-size-0);
     transform: scale(0.8);
   }
 }
@@ -260,9 +260,9 @@
 }
 
 /* High Contrast Mode Support */
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
   .la-map-label {
-    border-width: var(--la-border-width-2);
+    border-width: 0.125rem;
   }
 
   .la-map-label-bg-semi {

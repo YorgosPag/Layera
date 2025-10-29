@@ -1,13 +1,10 @@
 // React imports
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Enterprise LEGO Design System imports
-import '@layera/styles';
-import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { Button } from '@layera/buttons';
 import { BaseCard } from '@layera/cards';
-import { SPACING_SCALE, BORDER_RADIUS, TABLE_COLUMN_WIDTHS } from '@layera/constants';
-import { ErrorBoundary } from '@layera/error-boundary';
+import { SPACING_SCALE, BORDER_RADIUS } from '@layera/constants';
 import { MapIcon, ShareIcon, LayersIcon, AlertTriangleIcon, CheckIcon, MoreIcon } from '@layera/icons';
 import { AppShell, Flex, Box } from '@layera/layout';
 import { LoadingSpinner } from '@layera/loading';
@@ -16,6 +13,34 @@ import { ThemeProvider, ThemeSwitcher } from '@layera/theme-switcher';
 import { useLayeraTranslation, LanguageSwitcher } from '@layera/tolgee';
 import { Text, Heading } from '@layera/typography';
 import { useViewportWithOverride, DeviceOverrideProvider } from '@layera/viewport';
+
+// Simple Error Boundary component
+class SimpleErrorBoundary extends React.Component<
+  { children: React.ReactNode; level?: string; onError?: (error: Error, errorInfo: any) => void },
+  { hasError: boolean }
+> {
+  constructor(props: any) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(_error: Error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error, errorInfo: any) {
+    if (this.props.onError) {
+      this.props.onError(error, errorInfo);
+    }
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <div>Something went wrong.</div>;
+    }
+    return this.props.children;
+  }
+}
 
 // Local application imports
 import { APP_CONFIG, DEVICE_CONFIG, ANIMATION_CONFIG } from './constants';
@@ -240,9 +265,6 @@ function App() {
 
 
   const handleNewEntryClick = () => {
-    if (process.env.NODE_ENV === 'development') {
-      console.log('🚀 Opening modular step system (CategoryStep)...');
-    }
     // Ενεργοποίηση του modular step system (CategoryStep)
     setShowCategoryElements(true);
   };
@@ -258,7 +280,7 @@ function App() {
 
   if (isMapMode) {
     return (
-      <ErrorBoundary level="page" onError={(error, errorInfo) => console.error('🛡️ GeoAlert Map Error:', error, errorInfo)}>
+      <SimpleErrorBoundary level="page" onError={(error, errorInfo) => console.error('🛡️ GeoAlert Map Error:', error, errorInfo)}>
         <ThemeProvider defaultTheme="system" storageKey="layera-geoalert-theme">
         <NotificationProvider>
           <DeviceOverrideProvider>
@@ -318,13 +340,13 @@ function App() {
           </DeviceOverrideProvider>
         </NotificationProvider>
         </ThemeProvider>
-      </ErrorBoundary>
+      </SimpleErrorBoundary>
     );
   }
 
   return (
     <>
-      <ErrorBoundary level="page" onError={(error, errorInfo) => console.error('🛡️ GeoAlert Main Error:', error, errorInfo)}>
+      <SimpleErrorBoundary level="page" onError={(error, errorInfo) => console.error('🛡️ GeoAlert Main Error:', error, errorInfo)}>
         <ThemeProvider defaultTheme="system" storageKey="layera-geoalert-theme">
         <NotificationProvider>
           <DeviceOverrideProvider>
@@ -367,7 +389,7 @@ function App() {
                   className="layera-mb-8"
                   margin="auto"
                   marginBottom="xl"
-                  boxShadow={BOX_SHADOW_SCALE.cardDefault}
+                  style={{ boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}
                 >
                   {t('geoalert.enterGeoCanvas')}
                 </Button>
@@ -454,7 +476,7 @@ function App() {
           </DeviceOverrideProvider>
         </NotificationProvider>
         </ThemeProvider>
-      </ErrorBoundary>
+      </SimpleErrorBoundary>
     </>
   );
 }

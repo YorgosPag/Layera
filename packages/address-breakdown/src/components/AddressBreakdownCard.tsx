@@ -270,9 +270,9 @@ export function AddressBreakdownCard({
               fontWeight="var(--layera-font-weight-medium, 500)"
               color="var(--layera-color-primary)"
               minWidth="var(--layera-width-min-2rem, 2rem)"
-            }}>
+            >
               {loadingTimer}s
-            </span>
+            </Text>
           </Box>
         )}
       </Box>

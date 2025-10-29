@@ -11,7 +11,7 @@
   display: flex;
   align-items: flex-start;
   gap: var(--la-space-3);
-  width: 24rem;
+  width: var(--la-size-96);
   max-width: calc(100vw - var(--la-space-8));
   padding: var(--la-space-4);
   background-color: var(--la-color-surface);
@@ -24,12 +24,12 @@
 /* Toast Content */
 .la-toast-content {
   flex: 1;
-  min-width: 0;
+  min-width: var(--la-size-0);
 }
 
 /* Toast Icon */
 .la-toast-icon {
-  flex-shrink: 0;
+  flex-shrink: var(--la-size-0);
   width: var(--la-space-5);
   height: var(--la-space-5);
   margin-top: var(--la-space-1);
@@ -37,7 +37,7 @@
 
 /* Type Variants */
 .la-toast-info {
-  border-left: var(--la-border-width-4) solid var(--la-color-brand);
+  border-left: var(--la-border-width-3) solid var(--la-color-brand);
 }
 
 .la-toast-info .la-toast-icon {
@@ -45,7 +45,7 @@
 }
 
 .la-toast-success {
-  border-left: var(--la-border-width-4) solid var(--la-color-success);
+  border-left: var(--la-border-width-3) solid var(--la-color-success);
 }
 
 .la-toast-success .la-toast-icon {
@@ -53,7 +53,7 @@
 }
 
 .la-toast-warning {
-  border-left: var(--la-border-width-4) solid var(--la-color-warning);
+  border-left: var(--la-border-width-3) solid var(--la-color-warning);
 }
 
 .la-toast-warning .la-toast-icon {
@@ -61,7 +61,7 @@
 }
 
 .la-toast-error {
-  border-left: var(--la-border-width-4) solid var(--la-color-error);
+  border-left: var(--la-border-width-3) solid var(--la-color-error);
 }
 
 .la-toast-error .la-toast-icon {
@@ -79,7 +79,7 @@
 
 /* Toast Description */
 .la-toast-description {
-  margin: 0;
+  margin: var(--la-size-0);
   font-size: var(--la-font-size-base);
   line-height: var(--la-line-height-normal);
   color: var(--la-color-text-secondary);
@@ -139,8 +139,8 @@
 /* Progress Bar */
 .la-toast-progress {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: var(--la-size-0);
+  left: var(--la-size-0);
   height: var(--la-space-1);
   background-color: var(--la-color-brand);
   border-radius: var(--la-radius-sm);

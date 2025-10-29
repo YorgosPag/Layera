@@ -21,41 +21,13 @@ stepRegistry.register({
   isVisible: true,
   dependencies: [], // First step, no dependencies
   conditions: [], // Always available
-  cards: [
-    {
-      id: 'property-category-card',
-      component: (props) => React.createElement(CategoryCard, {
-        ...props,
-        categoryType: 'property',
-        title: 'Ακίνητα',
-        icon: React.createElement(VillaIcon, { size: 'md', theme: 'neutral' }),
-        onCategorySelect: (category) => {
-          console.log('Property category selected:', category);
-        }
-      }),
-      order: 1
-    },
-    {
-      id: 'job-category-card',
-      component: (props) => React.createElement(CategoryCard, {
-        ...props,
-        categoryType: 'job',
-        title: 'Εργασία',
-        icon: React.createElement(BriefcaseIcon, { size: 'md', theme: 'neutral' }),
-        onCategorySelect: (category) => {
-          console.log('Job category selected:', category);
-        }
-      }),
-      order: 2
-    }
-  ],
+  cards: [], // ΔΙΠΛΟΤΥΠΟΣ ΑΦΑΙΡΕΘΗΚΕ: Τα cards render-άρονται ήδη στο CategoryStep.tsx
   metadata: {
     isOptional: false,
     estimatedTime: 5 // 5 seconds average
   }
 });
 
-console.log('✅ Category Step registered in StepRegistry');
 
 // 🎯 CLEAN EXPORTS
 export { CategoryStep } from './CategoryStep';

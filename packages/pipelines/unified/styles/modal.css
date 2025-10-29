@@ -5,69 +5,66 @@
 
 /* GLOBAL OVERRIDE για @layera/modals - μείωση overlay padding */
 .unified-pipeline-modal-overlay.layera-modal-overlay {
-  padding: 0.5rem !important;
+  padding: var(--la-space-2);
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (width >= 768px) {
   .unified-pipeline-modal-overlay.layera-modal-overlay {
-    padding: 0.75rem !important;
+    padding: var(--la-space-3);
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (width >= 1024px) {
   .unified-pipeline-modal-overlay.layera-modal-overlay {
-    padding: 1rem !important;
+    padding: var(--la-space-4);
   }
 }
 
 /* Design tokens - embedded για enterprise consistency */
 :root {
-  --la-overlay-bg: rgba(0, 0, 0, 0.6);
+  --la-overlay-bg: rgb(0 0 0 / 60%);
   --la-z-modal-overlay: 1000;
   --la-z-modal: 1010;
-  --la-bg-primary: #ffffff;
-  --la-radius-lg: 12px;
-  --la-radius-md: 8px;
-  --la-shadow-modal: 0 10px 40px rgba(0, 0, 0, 0.3);
-  --la-modal-width-mobile: 320px;
-  --la-modal-width-tablet: 320px;
-  --la-modal-width-desktop: 280px;
-  --la-modal-width-desktop-lg: 260px;
-  --la-spacing-md: 0.75rem;
-  --la-spacing-sm: 0.6rem;
-  --la-spacing-xs: 0.5rem;
-  --la-spacing-2xs: 0.45rem;
-  --la-text-sm: 0.75rem;
-  --la-text-xs: 0.7rem;
-  --la-text-2xs: 0.65rem;
-  --la-text-base: 0.85rem;
-  --la-leading-tight: 1.3;
-  --la-leading-relaxed: 1.4;
-  --la-color-primary: hsl(210 100% 50%);
-  --la-color-primary-dark: hsl(210 100% 45%);
-  --la-color-primary-light: hsl(210 80% 85%);
-  --la-text-secondary: #6b7280;
+  --la-bg-primary: hsl(0deg 0% 100%);
+  --la-radius-lg: var(--la-size-3);
+  --la-radius-md: var(--la-size-2);
+  --la-shadow-modal: var(--la-shadow-xl);
+  --la-modal-width-mobile: var(--la-size-80);
+  --la-modal-width-tablet: var(--la-size-80);
+  --la-modal-width-desktop: var(--la-size-70);
+  --la-modal-width-desktop-lg: var(--la-size-65);
+  --la-spacing-md: var(--la-space-3);
+  --la-spacing-sm: var(--la-space-2-5);
+  --la-spacing-xs: var(--la-space-2);
+  --la-spacing-2xs: var(--la-space-1-5);
+  --la-text-sm: var(--la-font-size-sm);
+  --la-text-xs: var(--la-font-size-xs);
+  --la-text-2xs: var(--la-font-size-xs);
+  --la-text-base: var(--la-font-size-base);
+  --la-leading-tight: var(--la-line-height-tight);
+  --la-leading-relaxed: var(--la-line-height-relaxed);
+  --la-color-primary: var(--la-color-brand);
+  --la-color-primary-dark: var(--la-color-brand-hover);
+  --la-color-primary-light: rgb(219 234 254);
+  --la-text-secondary: rgb(107 114 128);
   --la-font-bold: 600;
-  --la-icon-md: 20px;
-  --la-icon-sm: 18px;
-  --la-icon-xs: 16px;
+  --la-icon-md: 1.25rem;
+  --la-icon-sm: 1.125rem;
+  --la-icon-xs: 1rem;
   --la-transition-colors: background-color 0.2s ease, border-color 0.2s ease;
 
   /* Dark mode tokens */
-  --la-bg-dark: #1f2937;
-  --la-text-secondary-dark: #9ca3af;
+  --la-bg-dark: rgb(31 41 55);
+  --la-text-secondary-dark: rgb(156 163 175);
 }
 
 /* Base Modal Overlay */
 .unified-pipeline-modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: var(--la-size-0);
   width: 100vw;
   height: 100vh;
-  background-color: var(--la-overlay-bg, rgba(0, 0, 0, 0.6));
+  background-color: var(--la-overlay-bg, rgb(0 0 0 / 60%));
   z-index: var(--la-z-modal-overlay, 1000);
   display: flex;
   align-items: center;
@@ -78,11 +75,10 @@
 /* Base Modal Container */
 .unified-pipeline-modal {
   position: relative;
-  background-color: var(--la-bg-primary, #ffffff);
-  border-radius: var(--la-radius-lg, 12px);
-  box-shadow: var(--la-shadow-modal, 0 10px 40px rgba(0, 0, 0, 0.3));
-  overflow-y: auto;
-  overflow-x: hidden;
+  background-color: var(--la-bg-primary, rgb(255 255 255));
+  border-radius: var(--la-radius-lg, 0.75rem);
+  box-shadow: var(--la-shadow-modal, 0 0.625rem 2.5rem rgb(0 0 0 / 30%));
+  overflow: hidden auto;
   box-sizing: border-box;
   z-index: var(--la-z-modal, 1010);
 }
@@ -90,62 +86,63 @@
 /* Responsive Modal Sizing - Mobile First */
 .unified-pipeline-modal {
   width: 100%;
-  max-width: var(--la-modal-width-mobile, 320px);
+  max-width: var(--la-modal-width-mobile, 20rem);
   max-height: calc(100vh - 2rem);
   padding: var(--la-spacing-xs, 0.5rem);
   font-size: var(--la-text-sm, 0.75rem);
 }
 
 /* Tablet Styles */
-@media screen and (min-width: 768px) and (max-width: 1023px) {
+@media screen and (width >= 768px) and (width <= 1023px) {
   .unified-pipeline-modal {
-    max-width: var(--la-modal-width-tablet, 320px);
+    max-width: var(--la-modal-width-tablet, 20rem);
     padding: var(--la-spacing-xs, 0.5rem);
     font-size: var(--la-text-sm, 0.75rem);
   }
 }
 
 /* Desktop Styles - Floating Panel Mode */
-@media screen and (min-width: 1024px) {
+@media screen and (width >= 1024px) {
   .unified-pipeline-modal-overlay {
     /* Transparent overlay για desktop - δεν κλείνει το background */
-    background-color: transparent !important;
-    pointer-events: none !important;
+    background-color: var(--la-color-transparent);
+    pointer-events: none;
   }
 
   .unified-pipeline-modal {
     /* Floating panel στη δεξιά πλευρά */
-    position: fixed !important;
-    top: 80px !important; /* Κάτω από header */
-    right: 20px !important;
-    left: auto !important;
-    transform: none !important;
-    width: 400px !important;
-    max-width: 400px !important;
-    max-height: calc(100vh - 120px) !important;
-    overflow-y: auto !important;
+    position: fixed;
+    top: 5rem; /* Κάτω από header */
+    right: 1.25rem;
+    left: auto;
+    transform: none;
+    width: 25rem;
+    max-width: 25rem;
+    max-height: calc(100vh - 7.5rem);
+    overflow-y: auto;
 
     /* Panel styling */
-    background-color: var(--la-bg-primary, #ffffff) !important;
-    border-radius: var(--la-radius-lg, 12px) !important;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05) !important;
-    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    background-color: var(--la-bg-primary, rgb(255 255 255));
+    border-radius: var(--la-radius-lg, 0.75rem);
+    box-shadow: 0 0.5rem 2rem rgb(0 0 0 / 15%), 0 0 0 0.063rem rgb(0 0 0 / 5%);
+    border: 0.063rem solid rgb(0 0 0 / 10%);
 
     /* Panel animation */
-    animation: slideInFromRight 0.3s ease-out !important;
-    pointer-events: auto !important;
+    animation: slide-in-from-right 0.3s ease-out;
+    pointer-events: auto;
 
     /* Typography και spacing */
-    padding: 0.75rem !important;
-    font-size: 0.875rem !important;
+    padding: var(--la-space-3);
+    font-size: 0.875rem;
   }
 
   /* Slide-in animation */
-  @keyframes slideInFromRight {
+  @keyframes slide-in-from-right {
     from {
       transform: translateX(100%);
-      opacity: 0;
+      opacity: var(--la-size-0);
     }
+
     to {
       transform: translateX(0);
       opacity: 1;
@@ -154,20 +151,20 @@
 }
 
 /* Large Desktop - Slightly bigger panel */
-@media screen and (min-width: 1440px) {
+@media screen and (width >= 1440px) {
   .unified-pipeline-modal {
-    width: 450px !important;
-    max-width: 450px !important;
-    padding: 0.85rem !important;
-    font-size: 0.9rem !important;
+    width: 28.125rem;
+    max-width: 28.125rem;
+    padding: 0.85rem;
+    font-size: 0.9rem;
   }
 }
 
 /* Card Styles - Progressive sizing */
 .unified-pipeline-modal .layera-unified-card {
-  border: 2px solid var(--la-color-primary, hsl(210 100% 50%));
-  border-radius: var(--la-radius-md, 8px);
-  background-color: var(--la-bg-primary, #ffffff);
+  border: 0.125rem solid var(--la-color-primary, rgb(37 99 235));
+  border-radius: var(--la-radius-md, 0.5rem);
+  background-color: var(--la-bg-primary, rgb(255 255 255));
   transition: var(--la-transition-colors, background-color 0.2s ease, border-color 0.2s ease);
   cursor: pointer;
   box-sizing: border-box;
@@ -181,45 +178,40 @@
 }
 
 .unified-pipeline-modal .layera-unified-card:hover {
-  border-color: var(--la-color-primary-dark, hsl(210 100% 45%));
-  background-color: var(--la-color-primary-light, hsl(210 80% 85%));
+  border-color: var(--la-color-primary-dark, rgb(29 78 216));
+  background-color: var(--la-color-primary-light, rgb(219 234 254));
 }
 
 /* Card sizing - Mobile */
-.unified-pipeline-modal .layera-unified-card {
-  margin: var(--la-spacing-sm, 0.4rem) 0;
-  padding: var(--la-spacing-sm, 0.6rem);
-  min-height: 80px;
-}
 
 /* Card sizing - Desktop Floating Panel */
-@media screen and (min-width: 1024px) {
+@media screen and (width >= 1024px) {
   .unified-pipeline-modal .layera-unified-card {
-    margin: 0.5rem 0;
-    padding: 0.75rem;
-    min-height: 80px;
+    min-height: 5rem;
+    margin: var(--la-spacing-sm, 0.4rem) 0;
+    padding: var(--la-spacing-sm, 0.6rem);
 
     /* Enhanced panel card styling */
-    border: 1px solid var(--la-color-primary, hsl(210 100% 50%));
-    border-radius: 8px;
+    border: 0.063rem solid var(--la-color-primary, hsl(210deg 100% 50%));
+    border-radius: 0.625rem;
     transition: all 0.2s ease;
     cursor: pointer;
   }
 
   .unified-pipeline-modal .layera-unified-card:hover {
-    border-color: var(--la-color-primary-dark, hsl(210 100% 45%));
-    background-color: var(--la-color-primary-light, hsl(210 80% 95%));
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: var(--la-color-primary-dark, rgb(29 78 216));
+    background-color: var(--la-color-primary-light, hsl(210deg 80% 95%));
+    transform: translateY(-0.063rem);
+    box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 10%);
   }
 }
 
 /* Large Desktop - Slightly larger cards */
-@media screen and (min-width: 1440px) {
+@media screen and (width >= 1440px) {
   .unified-pipeline-modal .layera-unified-card {
     margin: 0.6rem 0;
     padding: 0.85rem;
-    min-height: 85px;
+    min-height: 5.3125rem;
   }
 }
 
@@ -229,7 +221,6 @@
   line-height: var(--la-leading-tight, 1.3);
   margin-bottom: var(--la-spacing-xs, 0.3rem);
   font-weight: var(--la-font-bold, 600);
-  word-wrap: break-word;
   overflow-wrap: break-word;
   hyphens: auto;
   white-space: normal;
@@ -241,7 +232,6 @@
   font-size: var(--la-text-sm, 0.65rem);
   line-height: var(--la-leading-relaxed, 1.4);
   color: var(--la-text-secondary, #6b7280);
-  word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: normal;
   hyphens: auto;
@@ -250,14 +240,14 @@
   width: 100%;
   box-sizing: border-box;
   height: auto;
-  min-height: 28px;
+  min-height: 1.75rem;
 }
 
 /* Desktop Floating Panel Typography */
-@media screen and (min-width: 1024px) {
+@media screen and (width >= 1024px) {
   .unified-pipeline-modal .card-title {
     font-size: 1rem;
-    line-height: 1.4;
+    line-height: var(--la-leading-snug);
     margin-bottom: 0.4rem;
     font-weight: 600;
     color: var(--la-text-primary, #1f2937);
@@ -265,14 +255,14 @@
 
   .unified-pipeline-modal .card-text {
     font-size: 0.85rem;
-    line-height: 1.5;
+    line-height: var(--la-leading-normal);
     color: var(--la-text-secondary, #6b7280);
-    min-height: 40px;
+    min-height: 2.5rem;
   }
 }
 
 /* Large Desktop - Slightly larger text */
-@media screen and (min-width: 1440px) {
+@media screen and (width >= 1440px) {
   .unified-pipeline-modal .card-title {
     font-size: 1.05rem;
     margin-bottom: 0.45rem;
@@ -280,34 +270,34 @@
 
   .unified-pipeline-modal .card-text {
     font-size: 0.9rem;
-    min-height: 42px;
+    min-height: 2.625rem;
   }
 }
 
 /* Icon sizing - Progressive */
 .unified-pipeline-modal .layera-unified-card svg,
 .unified-pipeline-modal .layera-unified-card .layera-icon {
-  flex-shrink: 0;
-  width: var(--la-icon-md, 20px);
-  height: var(--la-icon-md, 20px);
-  margin-top: 2px;
+  flex-shrink: var(--la-size-0);
+  width: var(--la-icon-md, 1.25rem);
+  height: var(--la-icon-md, 1.25rem);
+  margin-top: 0.125rem;
 }
 
 /* Desktop Floating Panel Icons */
-@media screen and (min-width: 1024px) {
+@media screen and (width >= 1024px) {
   .unified-pipeline-modal .layera-unified-card svg,
   .unified-pipeline-modal .layera-unified-card .layera-icon {
-    width: 24px;
-    height: 24px;
-    margin-top: 3px;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 0.1875rem;
   }
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (width >= 1440px) {
   .unified-pipeline-modal .layera-unified-card svg,
   .unified-pipeline-modal .layera-unified-card .layera-icon {
-    width: 26px;
-    height: 26px;
+    width: 1.625rem;
+    height: 1.625rem;
   }
 }
 
@@ -315,12 +305,12 @@
 .unified-pipeline-modal .layera-unified-card > * {
   width: 100%;
   max-width: 100%;
-  min-width: 0;
+  min-width: var(--la-size-0);
   flex-shrink: 1;
 }
 
 .unified-pipeline-modal .layera-unified-card [style*="flex: 1"] {
-  min-width: 0;
+  min-width: var(--la-size-0);
   max-width: 100%;
   width: 100%;
   overflow: hidden;
@@ -332,27 +322,27 @@
   align-items: flex-start;
   gap: var(--la-spacing-sm, 0.5rem);
   width: 100%;
-  min-height: 56px;
+  min-height: 3.5rem;
   display: flex;
 }
 
 .unified-pipeline-modal .layera-unified-card .layera-stack {
-  min-width: 0;
+  min-width: var(--la-size-0);
   flex: 1;
 }
 
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
   .unified-pipeline-modal {
-    background-color: var(--la-bg-dark, #1f2937);
+    background-color: var(--la-bg-dark, rgb(31 41 55));
   }
 
   .unified-pipeline-modal .layera-unified-card {
-    background-color: var(--la-bg-dark, #1f2937);
-    border-color: var(--la-color-primary-dark, hsl(210 80% 60%));
+    background-color: var(--la-bg-dark, rgb(31 41 55));
+    border-color: var(--la-color-primary-dark, rgb(59 130 246));
   }
 
   .unified-pipeline-modal .card-text {
-    color: var(--la-text-secondary-dark, #9ca3af);
+    color: var(--la-text-secondary-dark, rgb(156 163 175));
   }
 }

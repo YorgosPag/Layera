@@ -8,12 +8,12 @@
 @import '../cards/dist/styles.css';
 
 /* Additional utility classes that complement LEGO components */
-.layera-mb-2 { margin-bottom: 0.5rem; }
-.layera-mb-4 { margin-bottom: 1rem; }
-.layera-mb-8 { margin-bottom: 2rem; }
+.layera-mb-2 { margin-bottom: var(--la-space-2); }
+.layera-mb-4 { margin-bottom: var(--la-space-4); }
+.layera-mb-8 { margin-bottom: var(--la-space-8); }
 
 .layera-items-center { align-items: center; }
-.layera-gap-2 { gap: 0.5rem; }
+.layera-gap-2 { gap: var(--la-space-2); }
 .layera-flex { display: flex; }
 
 /* Enterprise CSS Variables for LEGO System */
@@ -40,6 +40,13 @@
   --la-text-on-success: #ffffff;
   --la-text-on-warning: #ffffff;
   --la-text-on-danger: #ffffff;
+
+  /* Spacing Scale */
+  --la-size-0: 0;
+  --la-size-1: 0.25rem;
+  --la-size-2: 0.5rem;
+  --la-size-4: 1rem;
+  --la-size-8: 2rem;
 
   /* Z-Index Scale */
   --la-z-dropdown: 1000;
@@ -79,24 +86,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--la-bg-primary);
   color: var(--la-text-primary);
-  margin: 0;
-  padding: 0;
+  margin: var(--la-size-0);
+  padding: var(--la-size-0);
 }
 
 /* Global Enterprise Utilities */
 .layera-sr-only {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
+  width: 0.063rem;
+  height: 0.063rem;
+  padding: var(--la-size-0);
+  margin: -0.063rem;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
-  border: 0;
+  border: var(--la-size-0);
 }
 
 .layera-focus-ring:focus {
-  outline: 2px solid var(--la-bg-info);
-  outline-offset: 2px;
+  outline: 0.125rem solid var(--la-bg-info);
+  outline-offset: 0.125rem;
 }

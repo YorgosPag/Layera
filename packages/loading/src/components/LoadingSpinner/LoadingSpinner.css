@@ -19,7 +19,7 @@
 /* Overlay Variant */
 .la-loading-spinner-overlay {
   position: fixed;
-  inset: 0;
+  inset: var(--la-size-0);
   z-index: var(--la-z-index-modal);
   background-color: var(--la-color-surface-overlay);
   backdrop-filter: blur(var(--la-shadow-blur-sm));

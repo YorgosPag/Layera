@@ -38,19 +38,9 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
     borderBottom: 'var(--layera-border-bottom-subtle, 1px solid var(--color-border-subtle))',
     // Layout handled by Flex wrapper
     padding: `0 ${SPACING_SCALE.MD}px`,
-    position: 'var(--layera-position-relative, relative)'
+    position: 'relative' as const
   };
 
-  const backButtonStyles: React.CSSProperties = {
-    background: 'var(--layera-background-none, none)',
-    border: 'var(--layera-border-none, none)',
-    // fontSize handled by Text component
-    color: 'var(--color-interactive-primary)', // Design system primary color instead of hardcoded #007AFF
-    cursor: getCursorVar('pointer'), // Cursor system token για interactive elements
-    padding: `${SPACING_SCALE.SM}px`,
-    // Layout handled by Flex wrapper
-    // gap handled by Flex component
-  };
 
   // titleStyles moved inline
 
@@ -87,13 +77,15 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
         size="base"
         weight="bold"
         color="primary"
-        position="absolute"
-        left="50%"
-        transform="translateX(-50%)"
-        maxWidth="xxxl"
-        overflow="hidden"
-        textOverflow="ellipsis"
-        whiteSpace="nowrap"
+        style={{
+          position: 'absolute',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          maxWidth: '200px',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap'
+        }}
       >
         {title}
       </Text>

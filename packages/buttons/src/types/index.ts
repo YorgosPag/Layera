@@ -75,6 +75,27 @@ export interface BaseButtonProps {
 export interface ButtonProps extends BaseButtonProps, Omit<ComponentPropsWithoutRef<'button'>, keyof BaseButtonProps> {
   /** Button type - default is 'button' για accessibility */
   type?: 'button' | 'submit' | 'reset';
+
+  // Additional CSS properties that should NOT be passed to DOM (handled internally)
+  margin?: string | number;
+  marginTop?: string | number;
+  marginBottom?: string | number;
+  marginLeft?: string | number;
+  marginRight?: string | number;
+  padding?: string | number;
+  width?: string | number;
+  border?: string;
+  borderRadius?: string | number;
+  fontWeight?: string;
+  transition?: string;
+  color?: string;
+  position?: string;
+  top?: string;
+  right?: string;
+  bottom?: string;
+  left?: string;
+  fontSize?: string;
+  title?: string;
 }
 
 /**

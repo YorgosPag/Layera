@@ -61,15 +61,15 @@ const deviceSpecs: Record<DeviceModel, DeviceSpecs> = {
   'Samsung Galaxy S24': { width: 393, height: 851, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: DEVICE_FRAME_COLORS.SPACE_GRAY },
   'Samsung Galaxy S24 Ultra': { width: 412, height: 926, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: DEVICE_FRAME_COLORS.BLACK },
   'Samsung Galaxy A35': { width: 390, height: 844, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 30, frameColor: DEVICE_FRAME_COLORS.SPACE_GRAY },
-  'Samsung Galaxy Z Fold 5': { width: 904, height: 905, scale: 0.8, hasNotch: false, hasHomeBar: false, borderRadius: 30, frameColor: DEVICE_FRAME_COLORS.BLACK },
+  'Samsung Galaxy Z Fold 5': { width: 720, height: 720, scale: 0.9, hasNotch: false, hasHomeBar: false, borderRadius: 30, frameColor: DEVICE_FRAME_COLORS.BLACK },
   'Samsung Galaxy Z Flip 5': { width: 390, height: 876, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: DEVICE_FRAME_COLORS.SPACE_GRAY },
   'Google Pixel 5': { width: 393, height: 851, scale: 1, hasNotch: false, hasHomeBar: true, borderRadius: 30, frameColor: DEVICE_FRAME_COLORS.GRAPHITE },
-  'iPad Air': { width: 820, height: 1180, scale: 0.7, hasNotch: false, hasHomeBar: false, borderRadius: 20, frameColor: DEVICE_FRAME_COLORS.WHITE },
-  'iPad Pro 11"': { width: 834, height: 1194, scale: 0.7, hasNotch: false, hasHomeBar: false, borderRadius: 20, frameColor: DEVICE_FRAME_COLORS.SPACE_GRAY },
-  'iPad Pro 12.9"': { width: 1024, height: 1366, scale: 0.6, hasNotch: false, hasHomeBar: false, borderRadius: 20, frameColor: DEVICE_FRAME_COLORS.SPACE_GRAY },
-  'Surface Pro 7': { width: 912, height: 1368, scale: 0.6, hasNotch: false, hasHomeBar: false, borderRadius: 0, frameColor: DEVICE_FRAME_COLORS.BLACK },
-  'MacBook Pro 13"': { width: 1440, height: 900, scale: 0.5, hasNotch: false, hasHomeBar: false, borderRadius: 10, frameColor: DEVICE_FRAME_COLORS.WHITE },
-  'iMac 24"': { width: 1920, height: 1080, scale: 0.7, hasNotch: false, hasHomeBar: false, borderRadius: 15, frameColor: DEVICE_FRAME_COLORS.SILVER }
+  'iPad Air': { width: 720, height: 960, scale: 0.8, hasNotch: false, hasHomeBar: false, borderRadius: 20, frameColor: DEVICE_FRAME_COLORS.WHITE },
+  'iPad Pro 11"': { width: 740, height: 980, scale: 0.8, hasNotch: false, hasHomeBar: false, borderRadius: 20, frameColor: DEVICE_FRAME_COLORS.SPACE_GRAY },
+  'iPad Pro 12.9"': { width: 800, height: 1080, scale: 0.75, hasNotch: false, hasHomeBar: false, borderRadius: 20, frameColor: DEVICE_FRAME_COLORS.SPACE_GRAY },
+  'Surface Pro 7': { width: 760, height: 1020, scale: 0.75, hasNotch: false, hasHomeBar: false, borderRadius: 0, frameColor: DEVICE_FRAME_COLORS.BLACK },
+  'MacBook Pro 13"': { width: 900, height: 600, scale: 0.8, hasNotch: false, hasHomeBar: false, borderRadius: 10, frameColor: DEVICE_FRAME_COLORS.WHITE },
+  'iMac 24"': { width: 1000, height: 700, scale: 0.8, hasNotch: false, hasHomeBar: false, borderRadius: 15, frameColor: DEVICE_FRAME_COLORS.SILVER }
 };
 
 interface DeviceModelSelectorProps {
@@ -189,7 +189,7 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
           left: '0',
           minWidth: `${SPACING_SCALE.XXXXL * 3}px`, // Design token για dropdown width
           marginTop: `${SPACING_SCALE.SM}px`,
-          backgroundColor: 'var(--layera-bg-primary, var(--la-color-surface))',
+          backgroundColor: '#ffffff', // WHITE BACKGROUND για καλύτερη ορατότητα συσκευών
           borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
           boxShadow: BOX_SHADOW_SCALE.modalDefault,
           overflow: 'hidden',
@@ -205,7 +205,8 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
               width: '100%',
               padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px`, // Μικρότερο vertical padding
               border: 'none',
-              background: !currentModel ? 'var(--layera-bg-info-subtle, var(--la-color-info-subtle))' : 'var(--layera-bg-primary, var(--la-color-surface))',
+              background: !currentModel ? '#e3f2fd' : '#ffffff', // Ξεκάθαρα χρώματα
+              color: '#000000', // Μαύρο κείμενο για καλύτερη ορατότητα
               cursor: 'pointer',
               textAlign: 'left',
               fontSize: `${FONT_SIZES.XS}px`, // Design token για "Responsive View"
@@ -223,8 +224,8 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
                 padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px`, // Μικρότερο vertical padding για category headers
                 fontSize: `${FONT_SIZES.XS - 3}px`, // Extra compact για category headers
                 fontWeight: 'var(--layera-font-weight-semibold, var(--la-font-weight-semibold))',
-                color: 'var(--layera-text-secondary, var(--la-color-text-secondary))',
-                backgroundColor: 'var(--layera-bg-secondary, var(--la-color-surface-subtle))',
+                color: '#333333', // Σκούρο γκρι κείμενο για καλύτερη ορατότητα
+                backgroundColor: '#f5f5f5', // Ανοικτό γκρι για category headers
                 borderTop: 'var(--layera-border-default, var(--la-border-width-default) solid var(--la-color-border-default))',
                 borderBottom: 'var(--layera-border-default, var(--la-border-width-default) solid var(--la-color-border-default))',
                 whiteSpace: 'nowrap' // Αποτρέπει το αναδίπλωμα category headers
@@ -242,7 +243,8 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
                     width: '100%',
                     padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.XS}px ${SPACING_SCALE.LG + SPACING_SCALE.SM}px`, // Μικρότερο vertical padding
                     border: 'none',
-                    background: currentModel === device ? 'var(--layera-bg-info-subtle, var(--la-color-info-subtle))' : 'var(--layera-bg-primary, var(--la-color-surface))',
+                    background: currentModel === device ? '#e3f2fd' : '#ffffff', // Ξεκάθαρα χρώματα για device selection
+                    color: '#000000', // Μαύρο κείμενο για καλύτερη ορατότητα
                     cursor: 'pointer',
                     textAlign: 'left',
                     fontSize: `${FONT_SIZES.XS}px`, // Design token για device names

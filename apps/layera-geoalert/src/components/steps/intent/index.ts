@@ -62,7 +62,7 @@ stepRegistry.register({
   }
 });
 
-console.log('✅ Intent Step registered in StepRegistry');
+
 
 // 🎯 CLEAN EXPORTS
 export { IntentStep } from './IntentStep';

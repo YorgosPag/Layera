@@ -102,7 +102,7 @@ stepRegistry.register({
   }
 });
 
-console.log('✅ Pricing Step registered in StepRegistry');
+
 
 // 🎯 CLEAN EXPORTS
 export { PricingStep } from './PricingStep';

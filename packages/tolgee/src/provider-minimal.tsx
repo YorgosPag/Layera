@@ -35,7 +35,7 @@ export const MinimalTolgeeProvider: React.FC<MinimalTolgeeProviderProps> = ({
   language
 }) => {
   const [currentLang, setCurrentLang] = React.useState(
-    language || localStorage.getItem('i18nextLng') || 'el'
+    language || localStorage.getItem('i18nextLng') || 'el' // LEGACY: backward compatibility
   );
 
   const t = React.useCallback((key: string, params?: Record<string, unknown>) => {
@@ -68,7 +68,7 @@ export const MinimalTolgeeProvider: React.FC<MinimalTolgeeProviderProps> = ({
   }, [currentLang]);
 
   const changeLanguage = React.useCallback((newLang: string) => {
-    localStorage.setItem('i18nextLng', newLang);
+    localStorage.setItem('i18nextLng', newLang); // LEGACY: backward compatibility
     localStorage.setItem('tolgee_language', newLang);
     setCurrentLang(newLang);
 

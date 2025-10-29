@@ -11,16 +11,16 @@
   display: inline-flex;
   align-items: center;
   background: var(--la-color-surface);
-  border: var(--la-border-width-1) solid var(--la-color-border-primary);
+  border: 0.063rem solid var(--la-color-border-primary);
   border-radius: var(--la-radius-md);
   transition: all 0.15s ease;
 }
 
 .la-input {
   flex: 1;
-  border: 0;
-  background: transparent;
-  outline: 0;
+  border: none;
+  background: var(--la-color-transparent);
+  outline: none;
   font-family: inherit;
   font-size: var(--la-font-size-base);
   color: var(--la-color-text-primary);
@@ -55,25 +55,25 @@
 
 /* Style Variants */
 .la-input-wrapper-outline {
-  background: transparent;
-  border: var(--la-border-width-2) solid var(--la-color-border-primary);
+  background: var(--la-color-transparent);
+  border: 0.125rem solid var(--la-color-border-primary);
 }
 
 .la-input-wrapper-filled {
   background: var(--la-color-surface-secondary);
-  border: var(--la-border-width-1) solid transparent;
+  border: 0.063rem solid var(--la-color-transparent);
 }
 
 .la-input-wrapper-ghost {
-  background: transparent;
-  border: var(--la-border-width-1) solid transparent;
+  background: var(--la-color-transparent);
+  border: 0.063rem solid var(--la-color-transparent);
 }
 
 .la-input-wrapper-underline {
-  background: transparent;
-  border: 0;
-  border-bottom: var(--la-border-width-2) solid var(--la-color-border-primary);
-  border-radius: 0;
+  background: var(--la-color-transparent);
+  border: none;
+  border-bottom: 0.125rem solid var(--la-color-border-primary);
+  border-radius: var(--la-radius-none);
 }
 
 /* States */
@@ -127,7 +127,7 @@
   align-items: center;
   justify-content: center;
   color: var(--la-color-text-secondary);
-  flex-shrink: 0;
+  flex-shrink: var(--la-size-0);
 }
 
 .la-input-start-icon {
@@ -158,8 +158,8 @@
 .la-input-spinner {
   width: var(--la-space-4);
   height: var(--la-space-4);
-  border: var(--la-border-width-2) solid var(--la-color-border-primary);
-  border-top: var(--la-border-width-2) solid var(--la-color-brand);
+  border: 0.125rem solid var(--la-color-border-primary);
+  border-top: 0.125rem solid var(--la-color-brand);
   border-radius: var(--la-radius-full);
   animation: la-input-spin 1s linear infinite;
 }
@@ -204,12 +204,12 @@
 }
 
 /* High Contrast Mode */
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
   .la-input-wrapper {
-    border-width: var(--la-border-width-3);
+    border-width: 0.1875rem;
   }
 
   .la-input-wrapper-outline {
-    border-width: var(--la-border-width-4);
+    border-width: 0.25rem;
   }
 }

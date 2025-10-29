@@ -3,4 +3,4 @@
  */
 
 export * from './modalConstants';
-export * from './i18nKeys';
+export * from './translationKeys';

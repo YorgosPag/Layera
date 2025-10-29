@@ -2,32 +2,14 @@
   "name": "@layera/layout",
   "version": "1.0.0",
   "description": "Layera Layout System - Enterprise UI Components for unified app experiences",
-  "type": "module",
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    },
-    "./minimal": {
-      "types": "./dist/index.minimal.d.ts",
-      "import": "./dist/index.minimal.js",
-      "require": "./dist/index.minimal.cjs"
-    },
-    "./sizing": {
-      "types": "./dist/exports/sizing.d.ts",
-      "import": "./dist/exports/sizing.js",
-      "require": "./dist/exports/sizing.cjs"
-    },
-    "./shortcuts": {
-      "types": "./dist/exports/shortcuts.d.ts",
-      "import": "./dist/exports/shortcuts.js",
-      "require": "./dist/exports/shortcuts.cjs"
-    },
-    "./styles": "./dist/styles.css"
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
   },
   "files": [
     "dist",

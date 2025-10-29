@@ -3,12 +3,10 @@
   "version": "1.0.0",
   "description": "Enterprise Box Shadow System για το Layera Design System - ξεπερνά Material Design 3, Fluent Design, και Apple HIG",
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
       "require": "./dist/index.js",
       "default": "./dist/index.js"
     },

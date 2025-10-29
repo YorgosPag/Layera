@@ -171,21 +171,12 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
     const currentIndex = availableSteps.findIndex(step => step.id === stepId);
     const nextStep = availableSteps[currentIndex + 1];
 
-    console.log(`🔍 ORCHESTRATOR DEBUG: currentIndex=${currentIndex}, nextStep=${nextStep?.id}, allSteps=[${availableSteps.map(s => s.id).join(', ')}]`);
 
     if (nextStep) {
-      console.log(`🎼 ORCHESTRATOR: Auto-advancing to ${nextStep.id}`);
 
-      // Special debug για occupation step
-      if (nextStep.id === 'occupation') {
-        console.log('🔍 ORCHESTRATOR: Next step is OCCUPATION - this should render the component');
-      }
 
       setTimeout(() => {
-        console.log(`🎼 ORCHESTRATOR: Executing onStepChange to ${nextStep.id}`);
-        console.log(`🎼 ORCHESTRATOR: onStepChange function:`, typeof onStepChange, onStepChange?.toString().substring(0, 100));
         if (onStepChange) {
-          console.log(`🎼 ORCHESTRATOR: Calling onStepChange('${nextStep.id}')`);
           onStepChange(nextStep.id);
           console.log(`🎼 ORCHESTRATOR: onStepChange('${nextStep.id}') completed`);
         } else {
@@ -233,10 +224,9 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
           variant={selectedCategory || 'property'}
           onChange={(data) => {
             // Card data changes μπορούν να trigger step updates
-            console.log(`🔄 Card ${card.id} data changed:`, data);
           }}
           onValidationChange={(isValid) => {
-            console.log(`✅ Card ${card.id} validation:`, isValid);
+            // Validation state updated
           }}
         />
       );
@@ -258,12 +248,6 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
   // 🎯 Render current step
   const StepComponent = currentStep.component;
 
-  // Debug log για occupation step specifically
-  if (currentStepId === 'occupation') {
-    console.log('🔍 ORCHESTRATOR: About to render OCCUPATION step');
-    console.log('🔍 ORCHESTRATOR: StepComponent:', StepComponent);
-    console.log('🔍 ORCHESTRATOR: stepContext:', stepContext);
-  }
 
   const stepElement = (
     <StepComponent

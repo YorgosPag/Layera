@@ -32,7 +32,7 @@
   font-size: var(--la-font-size-base);
   font-weight: 500;
   line-height: var(--la-line-height-normal);
-  margin: 0;
+  margin: var(--la-size-0);
 }
 
 .la-input-group-sm .la-input-group-label {
@@ -83,7 +83,7 @@
 
 /* Connected Variant */
 .la-input-group-connected .la-input-group-container {
-  border: var(--la-border-width-2) solid var(--la-color-border-primary);
+  border: 0.125rem solid var(--la-color-border-primary);
   border-radius: var(--la-radius-md);
   background: var(--la-color-surface);
   overflow: hidden;
@@ -127,23 +127,23 @@
 
 /* Connected Items */
 .la-input-group-connected .la-input-group-item {
-  border: 0;
-  background: transparent;
+  border: var(--la-size-0);
+  background: var(--la-color-transparent);
 }
 
 .la-input-group-connected.la-input-group-container-horizontal .la-input-group-item:not(:last-child) {
-  border-right: var(--la-border-width-1) solid var(--la-color-border-primary);
+  border-right: 0.063rem solid var(--la-color-border-primary);
 }
 
 .la-input-group-connected.la-input-group-container-vertical .la-input-group-item:not(:last-child) {
-  border-bottom: var(--la-border-width-1) solid var(--la-color-border-primary);
+  border-bottom: 0.063rem solid var(--la-color-border-primary);
 }
 
 /* Remove borders and shadows from child inputs in connected mode */
 .la-input-group-connected .la-input-group-item > * {
-  border: 0 !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
+  border: 0;
+  box-shadow: var(--la-shadow-none);
+  border-radius: var(--la-radius-none);
 }
 
 /* Outlined Variant */
@@ -220,7 +220,7 @@
 .la-input-group-item {
   display: flex;
   align-items: stretch;
-  min-width: 0;
+  min-width: var(--la-size-0);
   position: relative;
 }
 
@@ -254,7 +254,7 @@
 .la-input-group-item > .la-textarea,
 .la-input-group-item > .la-numeric-input,
 .la-input-group-item > .la-datepicker {
-  margin: 0;
+  margin: var(--la-size-0);
 }
 
 /* Remove margins from wrapped components */
@@ -263,7 +263,7 @@
 .la-input-group-item > * > .la-textarea-wrapper,
 .la-input-group-item > * > .la-numeric-input-input-wrapper,
 .la-input-group-item > * > .la-datepicker-input-wrapper {
-  margin: 0;
+  margin: var(--la-size-0);
 }
 
 /* Loading */
@@ -279,8 +279,8 @@
 .la-input-group-spinner {
   width: var(--la-space-5);
   height: var(--la-space-5);
-  border: var(--la-border-width-2) solid var(--la-color-border-primary);
-  border-top: var(--la-border-width-2) solid var(--la-color-brand);
+  border: 0.125rem solid var(--la-color-border-primary);
+  border-top: 0.125rem solid var(--la-color-brand);
   border-radius: var(--la-radius-full);
   animation: la-input-group-spin 1s linear infinite;
 }
@@ -288,7 +288,7 @@
 .la-input-group-sm .la-input-group-spinner {
   width: var(--la-space-4);
   height: var(--la-space-4);
-  border-width: var(--la-border-width-1);
+  border-width: 0.063rem;
 }
 
 .la-input-group-lg .la-input-group-spinner {
@@ -343,13 +343,13 @@
 }
 
 /* High Contrast Mode Support */
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
   .la-input-group-container {
-    border-width: var(--la-border-width-3);
+    border-width: 0.1875rem;
   }
 
   .la-input-group-connected .la-input-group-item:not(:last-child) {
-    border-width: var(--la-border-width-2);
+    border-width: 0.125rem;
   }
 }
 
@@ -363,15 +363,15 @@
 }
 
 /* Responsive Design */
-@media (max-width: 48rem) {
+@media (width <= 48rem) {
   /* Force vertical layout on mobile for better UX */
   .la-input-group-container-horizontal {
     flex-direction: column;
   }
 
   .la-input-group-connected.la-input-group-container-horizontal .la-input-group-item:not(:last-child) {
-    border-right: 0;
-    border-bottom: var(--la-border-width-1) solid var(--la-color-border-primary);
+    border-right: var(--la-size-0);
+    border-bottom: 0.063rem solid var(--la-color-border-primary);
   }
 
   /* Adjust radius for vertical mobile layout */
@@ -380,7 +380,7 @@
   }
 
   .la-input-group-outlined.la-input-group-container-horizontal .la-input-group-item:last-child {
-    border-radius: 0 0 var(--la-radius-md) var(--la-radius-md);
+    border-radius: var(--la-radius-none) var(--la-radius-none) var(--la-radius-md) var(--la-radius-md);
   }
 }
 

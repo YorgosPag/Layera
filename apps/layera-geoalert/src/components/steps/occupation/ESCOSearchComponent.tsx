@@ -106,7 +106,7 @@ export const ESCOSearchComponent: React.FC<ESCOSearchProps> = ({
         });
       });
 
-      console.log(`✅ ESCO Search found ${results.length} results`);
+
       return results;
 
     } catch (error) {
@@ -154,7 +154,7 @@ export const ESCOSearchComponent: React.FC<ESCOSearchProps> = ({
 
   // Handle occupation selection
   const handleOccupationSelect = useCallback((occupation: ESCOOccupation) => {
-    console.log(`✅ OCCUPATION SELECTED: ${occupation.preferredLabel} (ID: ${occupation.id})`);
+
 
     setSearchState(prev => ({
       ...prev,

@@ -104,7 +104,7 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
     console.log('🔧 PropertyDetailsForm: Validation result:', isValid);
 
     if (isValid) {
-      console.log('✅ PropertyDetailsForm: Validation passed - calling onSubmit');
+
       onSubmit(formData);
     } else {
       console.log('❌ PropertyDetailsForm: Validation failed - showing errors:', errors);

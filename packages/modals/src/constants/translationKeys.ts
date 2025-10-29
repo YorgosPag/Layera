@@ -2,7 +2,7 @@
  * Translation Keys για το Modal System
  */
 
-export const MODAL_I18N_KEYS = {
+export const MODAL_TRANSLATION_KEYS = {
   // Dialog actions
   OK: 'notifications.ok',
   CANCEL: 'notifications.cancel',

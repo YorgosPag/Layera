@@ -27,6 +27,27 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   children,
   disabled,
   type = 'button',
+  // CSS properties that should be handled internally
+  margin,
+  marginTop,
+  marginBottom,
+  marginLeft,
+  marginRight,
+  padding,
+  width,
+  border,
+  borderRadius,
+  fontWeight,
+  transition,
+  color,
+  position,
+  top,
+  right,
+  bottom,
+  left,
+  fontSize,
+  title,
+  style,
   ...props
 }, ref) => {
   // Υπολογισμός CSS classes
@@ -39,6 +60,29 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
     icon && !children && 'layera-btn--icon-only',
     className
   ].filter(Boolean).join(' ');
+
+  // Handle additional CSS properties
+  const buttonStyles: React.CSSProperties = {
+    margin: typeof margin === 'number' ? `${margin}px` : margin,
+    marginTop: typeof marginTop === 'number' ? `${marginTop}px` : marginTop,
+    marginBottom: typeof marginBottom === 'number' ? `${marginBottom}px` : marginBottom,
+    marginLeft: typeof marginLeft === 'number' ? `${marginLeft}px` : marginLeft,
+    marginRight: typeof marginRight === 'number' ? `${marginRight}px` : marginRight,
+    padding: typeof padding === 'number' ? `${padding}px` : padding,
+    width: typeof width === 'number' ? `${width}px` : width,
+    border,
+    borderRadius: typeof borderRadius === 'number' ? `${borderRadius}px` : borderRadius,
+    fontWeight,
+    transition,
+    color,
+    position,
+    top,
+    right,
+    bottom,
+    left,
+    fontSize,
+    ...style
+  };
 
   // Loading content βάσει variant
   const renderLoadingContent = () => {
