@@ -11,7 +11,7 @@ const path = require('path');
 console.log('🧪 GEO-DRAWING PACKAGE VALIDATION');
 console.log('=====================================');
 
-const packageDir = path.join(__dirname, 'packages', 'geo-drawing');
+const packageDir = path.join(process.cwd(), 'packages', 'geo-drawing');
 let validationPassed = true;
 const errors = [];
 const warnings = [];
@@ -220,7 +220,7 @@ console.log('\n🔗 Integration Validation:');
 
 try {
   // Check if @layera/constants has geo-drawing exports
-  const constantsPath = path.join(__dirname, 'packages', 'constants', 'src', 'index.ts');
+  const constantsPath = path.join(process.cwd(), 'packages', 'constants', 'src', 'index.ts');
   if (fs.existsSync(constantsPath)) {
     const constantsContent = fs.readFileSync(constantsPath, 'utf8');
     if (constantsContent.includes('geo-drawing')) {
@@ -233,7 +233,7 @@ try {
   }
 
   // Check geo-drawing constants file
-  const geoConstantsPath = path.join(__dirname, 'packages', 'constants', 'src', 'geo-drawing.ts');
+  const geoConstantsPath = path.join(process.cwd(), 'packages', 'constants', 'src', 'geo-drawing.ts');
   if (fs.existsSync(geoConstantsPath)) {
     logSuccess('Geo-drawing constants file exists');
   } else {

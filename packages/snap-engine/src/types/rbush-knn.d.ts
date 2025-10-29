@@ -1,28 +1,37 @@
-// Type definitions for rbush-knn
+// Type definitions for rbush-knn - Enterprise TypeScript strict mode
 declare module 'rbush-knn' {
   import RBush from 'rbush';
 
-  interface KNNOptions {
-    k?: number;
-    maxDistance?: number;
-    predicate?: (item: unknown) => boolean;
+  // Generic spatial item with bounding box
+  interface SpatialItem {
+    minX: number;
+    minY: number;
+    maxX: number;
+    maxY: number;
   }
 
-  function knn(
-    tree: RBush<any>,
+  interface KNNOptions<T extends SpatialItem> {
+    k?: number;
+    maxDistance?: number;
+    predicate?: (item: T) => boolean;
+  }
+
+  // Strongly typed KNN function overloads
+  function knn<T extends SpatialItem>(
+    tree: RBush<T>,
     x: number,
     y: number,
     n?: number,
-    predicate?: (item: unknown) => boolean,
+    predicate?: (item: T) => boolean,
     maxDistance?: number
-  ): unknown[];
+  ): T[];
 
-  function knn(
-    tree: RBush<any>,
+  function knn<T extends SpatialItem>(
+    tree: RBush<T>,
     x: number,
     y: number,
-    options?: KNNOptions
-  ): unknown[];
+    options?: KNNOptions<T>
+  ): T[];
 
   export = knn;
 }
