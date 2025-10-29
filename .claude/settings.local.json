@@ -90,7 +90,9 @@
       "Bash(start http://localhost:3000)",
       "Bash(del \"C:\\layera\\nul\")",
       "Bash(cat:*)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(pnpm --filter @layera/tolgee build)",
+      "Bash(pnpm --filter @layera/forms build)"
     ],
     "deny": [],
     "ask": []

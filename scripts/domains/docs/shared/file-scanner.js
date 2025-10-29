@@ -242,6 +242,96 @@ function cleanupBackups(rootDir, maxAge = 7) {
 }
 
 /**
+ * 🔍 Γενική σάρωση για όλους τους τύπους αρχείων
+ * @param {string} rootDir - Η ρίζα του project
+ * @param {Object} options - Επιλογές σάρωσης
+ * @returns {Array} - Λίστα με file objects {path, name, ext, size}
+ */
+function findAllFiles(rootDir = '.', options = {}) {
+  const defaultOptions = {
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.css', '.scss', '.md'],
+    excludeNodeModules: true,
+    excludeBackups: true,
+    excludeDotFiles: true,
+    patterns: [],
+    excludePatterns: ['**/node_modules/**', '**/dist/**', '**/build/**', '**/.git/**'],
+    maxDepth: 10,
+    followSymlinks: false
+  };
+
+  const opts = { ...defaultOptions, ...options };
+  const results = [];
+
+  function scanDirectory(dir, currentDepth = 0) {
+    if (currentDepth > opts.maxDepth) return;
+
+    try {
+      const entries = fs.readdirSync(dir, { withFileTypes: true });
+
+      for (const entry of entries) {
+        const fullPath = path.join(dir, entry.name);
+        const relativePath = path.relative(rootDir, fullPath);
+
+        // Skip dot files if option is set
+        if (opts.excludeDotFiles && entry.name.startsWith('.')) {
+          continue;
+        }
+
+        // Skip excluded patterns
+        if (opts.excludePatterns.some(pattern =>
+          relativePath.includes(pattern.replace(/\*\*/g, '').replace(/\*/g, ''))
+        )) {
+          continue;
+        }
+
+        if (entry.isDirectory()) {
+          if (!opts.followSymlinks && entry.isSymbolicLink()) {
+            continue;
+          }
+          scanDirectory(fullPath, currentDepth + 1);
+        } else if (entry.isFile()) {
+          const fileExt = path.extname(entry.name);
+
+          // Check extension filter
+          if (opts.extensions.length > 0 && !opts.extensions.includes(fileExt)) {
+            continue;
+          }
+
+          // Check pattern filter if provided
+          if (opts.patterns.length > 0) {
+            const matchesPattern = opts.patterns.some(pattern => {
+              const regex = new RegExp(pattern.replace(/\*/g, '.*').replace(/\?/g, '.'));
+              return regex.test(relativePath);
+            });
+            if (!matchesPattern) continue;
+          }
+
+          try {
+            const stats = fs.statSync(fullPath);
+            results.push({
+              path: fullPath,
+              relativePath: relativePath,
+              name: entry.name,
+              ext: fileExt,
+              size: stats.size,
+              modified: stats.mtime,
+              directory: path.dirname(relativePath)
+            });
+          } catch (error) {
+            console.warn(`Could not get stats for ${fullPath}:`, error.message);
+          }
+        }
+      }
+    } catch (error) {
+      console.warn(`Could not read directory: ${dir}`, error.message);
+    }
+  }
+
+  scanDirectory(rootDir);
+  return results.sort((a, b) => a.relativePath.localeCompare(b.relativePath));
+}
+
+/**
  * 📈 File watching (για real-time validation)
  * @param {string} rootDir - Η ρίζα
  * @param {Function} callback - Callback για αλλαγές
@@ -294,6 +384,7 @@ function watchFiles(rootDir, callback, options = {}) {
 
 module.exports = {
   findMarkdownFiles,
+  findAllFiles,
   getDirectoryStats,
   searchInFiles,
   createBackup,

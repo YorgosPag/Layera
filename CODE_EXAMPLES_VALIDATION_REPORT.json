@@ -1,20 +1,20 @@
 {
-  "timestamp": "2025-10-29T23:08:12.604Z",
+  "timestamp": "2025-10-29T23:33:13.360Z",
   "summary": {
-    "filesScanned": 155,
-    "codeBlocksFound": 102,
+    "filesScanned": 156,
+    "codeBlocksFound": 116,
     "codeBlocksValid": 10,
     "syntaxErrors": 39,
     "importErrors": 0,
     "legoViolations": 23,
     "totalViolations": 63,
-    "successRate": 10
+    "successRate": 9
   },
   "violations": [
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779109119.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779109119.tsx(2,34): error TS2307: Cannot find module '@layera/tolgee' or its corresponding type declarations.\r\ntemp/validation_1761779109119.tsx(4,1): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780639922.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780639922.tsx(4,1): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\n",
       "file": "apps\\layera-id\\README.md",
       "line": 113,
       "codeBlock": {
@@ -36,7 +36,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779126625.ts(13,15): error TS1005: '>' expected.\r\ntemp/validation_1761779126625.ts(13,19): error TS1005: ')' expected.\r\ntemp/validation_1761779126625.ts(13,33): error TS1005: ',' expected.\r\ntemp/validation_1761779126625.ts(14,19): error TS1005: '>' expected.\r\ntemp/validation_1761779126625.ts(14,23): error TS1005: ';' expected.\r\ntemp/validation_1761779126625.ts(14,40): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761779126625.ts(16,8): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761779126625.ts(17,6): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761779126625.ts(18,3): error TS1128: Declaration or statement expected.\r\ntemp/validation_1761779126625.ts(19,1): error TS1128: Declaration or statement expected.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780661639.ts(13,15): error TS1005: '>' expected.\r\ntemp/validation_1761780661639.ts(13,19): error TS1005: ')' expected.\r\ntemp/validation_1761780661639.ts(13,33): error TS1005: ',' expected.\r\ntemp/validation_1761780661639.ts(14,19): error TS1005: '>' expected.\r\ntemp/validation_1761780661639.ts(14,23): error TS1005: ';' expected.\r\ntemp/validation_1761780661639.ts(14,40): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761780661639.ts(16,8): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761780661639.ts(17,6): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761780661639.ts(18,3): error TS1128: Declaration or statement expected.\r\ntemp/validation_1761780661639.ts(19,1): error TS1128: Declaration or statement expected.\r\n",
       "file": "packages\\constants\\README.md",
       "line": 87,
       "codeBlock": {
@@ -49,7 +49,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779130057.ts(10,7): error TS1005: '>' expected.\r\ntemp/validation_1761779130057.ts(10,12): error TS1005: ')' expected.\r\ntemp/validation_1761779130057.ts(10,14): error TS1136: Property assignment expected.\r\ntemp/validation_1761779130057.ts(12,15): error TS1005: ';' expected.\r\ntemp/validation_1761779130057.ts(13,12): error TS1005: ';' expected.\r\ntemp/validation_1761779130057.ts(15,5): error TS1109: Expression expected.\r\ntemp/validation_1761779130057.ts(17,6): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761779130057.ts(18,3): error TS1128: Declaration or statement expected.\r\ntemp/validation_1761779130057.ts(19,1): error TS1128: Declaration or statement expected.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780665094.ts(10,7): error TS1005: '>' expected.\r\ntemp/validation_1761780665094.ts(10,12): error TS1005: ')' expected.\r\ntemp/validation_1761780665094.ts(10,14): error TS1136: Property assignment expected.\r\ntemp/validation_1761780665094.ts(12,15): error TS1005: ';' expected.\r\ntemp/validation_1761780665094.ts(13,12): error TS1005: ';' expected.\r\ntemp/validation_1761780665094.ts(15,5): error TS1109: Expression expected.\r\ntemp/validation_1761780665094.ts(17,6): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761780665094.ts(18,3): error TS1128: Declaration or statement expected.\r\ntemp/validation_1761780665094.ts(19,1): error TS1128: Declaration or statement expected.\r\n",
       "file": "packages\\constants\\README.md",
       "line": 110,
       "codeBlock": {
@@ -62,7 +62,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779134482.ts(1,10): error TS2305: Module '\"@layera/constants\"' has no exported member 'FORM_VALIDATION'.\r\ntemp/validation_1761779134482.ts(2,38): error TS2307: Cannot find module '@layera/tolgee' or its corresponding type declarations.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780668343.ts(1,10): error TS2305: Module '\"@layera/constants\"' has no exported member 'FORM_VALIDATION'.\r\n",
       "file": "packages\\constants\\README.md",
       "line": 133,
       "codeBlock": {
@@ -75,7 +75,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779140486.ts(1,10): error TS2305: Module '\"@layera/constants\"' has no exported member 'API_STATUS'.\r\ntemp/validation_1761779140486.ts(1,22): error TS2305: Module '\"@layera/constants\"' has no exported member 'API_TIMEOUTS'.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780671654.ts(1,10): error TS2305: Module '\"@layera/constants\"' has no exported member 'API_STATUS'.\r\ntemp/validation_1761780671654.ts(1,22): error TS2305: Module '\"@layera/constants\"' has no exported member 'API_TIMEOUTS'.\r\n",
       "file": "packages\\constants\\README.md",
       "line": 150,
       "codeBlock": {
@@ -88,7 +88,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779145390.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779145390.tsx(3,38): error TS2307: Cannot find module '@layera/tolgee' or its corresponding type declarations.\r\ntemp/validation_1761779145390.tsx(4,24): error TS2307: Cannot find module '@layera/forms' or its corresponding type declarations.\r\ntemp/validation_1761779145390.tsx(15,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780675220.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780675220.tsx(15,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\n",
       "file": "packages\\constants\\README.md",
       "line": 184,
       "codeBlock": {
@@ -101,7 +101,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779150744.ts(1,10): error TS2305: Module '\"@layera/constants\"' has no exported member 'FORM_VALIDATION'.\r\ntemp/validation_1761779150744.ts(2,38): error TS2307: Cannot find module '@layera/tolgee' or its corresponding type declarations.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780678810.ts(1,10): error TS2305: Module '\"@layera/constants\"' has no exported member 'FORM_VALIDATION'.\r\n",
       "file": "packages\\constants\\README.md",
       "line": 212,
       "codeBlock": {
@@ -114,7 +114,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779160058.ts(2,9): error TS1005: '>' expected.\r\ntemp/validation_1761779160058.ts(2,16): error TS1005: ';' expected.\r\ntemp/validation_1761779160058.ts(2,27): error TS1005: ';' expected.\r\ntemp/validation_1761779160058.ts(2,42): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761779160058.ts(3,8): error TS1005: ';' expected.\r\ntemp/validation_1761779160058.ts(3,21): error TS1005: ';' expected.\r\ntemp/validation_1761779160058.ts(3,48): error TS1109: Expression expected.\r\ntemp/validation_1761779160058.ts(4,1): error TS1109: Expression expected.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780685968.ts(2,9): error TS1005: '>' expected.\r\ntemp/validation_1761780685968.ts(2,16): error TS1005: ';' expected.\r\ntemp/validation_1761780685968.ts(2,27): error TS1005: ';' expected.\r\ntemp/validation_1761780685968.ts(2,42): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761780685968.ts(3,8): error TS1005: ';' expected.\r\ntemp/validation_1761780685968.ts(3,21): error TS1005: ';' expected.\r\ntemp/validation_1761780685968.ts(3,48): error TS1109: Expression expected.\r\ntemp/validation_1761780685968.ts(4,1): error TS1109: Expression expected.\r\n",
       "file": "packages\\constants\\README.md",
       "line": 257,
       "codeBlock": {
@@ -135,7 +135,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779164210.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779164210.tsx(4,38): error TS2307: Cannot find module '@layera/tolgee' or its corresponding type declarations.\r\ntemp/validation_1761779164210.tsx(5,24): error TS2307: Cannot find module '@layera/buttons' or its corresponding type declarations.\r\ntemp/validation_1761779164210.tsx(6,23): error TS2307: Cannot find module '@layera/forms' or its corresponding type declarations.\r\ntemp/validation_1761779164210.tsx(12,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761779164210.tsx(13,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761779164210.tsx(13,34): error TS2339: Property 'LARGE' does not exist on type '{ readonly XS: \"xs\"; readonly SM: \"sm\"; readonly MD: \"md\"; readonly LG: \"lg\"; readonly XL: \"xl\"; }'.\r\ntemp/validation_1761779164210.tsx(16,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780688927.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780688927.tsx(5,24): error TS2307: Cannot find module '@layera/buttons' or its corresponding type declarations.\r\ntemp/validation_1761780688927.tsx(12,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761780688927.tsx(13,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761780688927.tsx(13,34): error TS2339: Property 'LARGE' does not exist on type '{ readonly XS: \"xs\"; readonly SM: \"sm\"; readonly MD: \"md\"; readonly LG: \"lg\"; readonly XL: \"xl\"; }'.\r\ntemp/validation_1761780688927.tsx(16,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\n",
       "file": "packages\\constants\\README.md",
       "line": 265,
       "codeBlock": {
@@ -148,7 +148,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779169006.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779169006.tsx(30,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780692847.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780692847.tsx(30,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\n",
       "file": "packages\\file-upload\\README.md",
       "line": 31,
       "codeBlock": {
@@ -178,7 +178,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779174322.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780696229.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\n",
       "file": "packages\\file-upload\\README.md",
       "line": 74,
       "codeBlock": {
@@ -191,7 +191,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779178839.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780699783.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\n",
       "file": "packages\\file-upload\\README.md",
       "line": 103,
       "codeBlock": {
@@ -204,7 +204,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779183288.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779183288.tsx(2,1): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761779183288.tsx(2,2): error TS2304: Cannot find name 'FileUploader'.\r\ntemp/validation_1761779183288.tsx(3,11): error TS2304: Cannot find name 'uploadConfig'.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780703006.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780703006.tsx(2,1): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761780703006.tsx(2,2): error TS2304: Cannot find name 'FileUploader'.\r\ntemp/validation_1761780703006.tsx(3,11): error TS2304: Cannot find name 'uploadConfig'.\r\n",
       "file": "packages\\file-upload\\README.md",
       "line": 123,
       "codeBlock": {
@@ -225,7 +225,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779188569.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779188569.tsx(2,1): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761779188569.tsx(2,2): error TS2304: Cannot find name 'DragDropZone'.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780706722.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780706722.tsx(2,1): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761780706722.tsx(2,2): error TS2304: Cannot find name 'DragDropZone'.\r\n",
       "file": "packages\\file-upload\\README.md",
       "line": 139,
       "codeBlock": {
@@ -246,7 +246,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779193420.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779193420.tsx(2,1): error TS2607: JSX element class does not support attributes because it does not have a 'props' property.\r\ntemp/validation_1761779193420.tsx(2,1): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761779193420.tsx(2,2): error TS2786: 'FileList' cannot be used as a JSX component.\r\n  Its type '{ new (): FileList; prototype: FileList; }' is not a valid JSX element type.\r\n    Type '{ new (): FileList; prototype: FileList; }' is not assignable to type 'new (props: any, deprecatedLegacyContext?: any) => Component<any, any, any>'.\r\n      Type 'FileList' is missing the following properties from type 'Component<any, any, any>': context, setState, forceUpdate, render, and 3 more.\r\ntemp/validation_1761779193420.tsx(3,10): error TS2304: Cannot find name 'fileItems'.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780710293.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780710293.tsx(2,1): error TS2607: JSX element class does not support attributes because it does not have a 'props' property.\r\ntemp/validation_1761780710293.tsx(2,1): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761780710293.tsx(2,2): error TS2786: 'FileList' cannot be used as a JSX component.\r\n  Its type '{ new (): FileList; prototype: FileList; }' is not a valid JSX element type.\r\n    Type '{ new (): FileList; prototype: FileList; }' is not assignable to type 'new (props: any, deprecatedLegacyContext?: any) => Component<any, any, any>'.\r\n      Type 'FileList' is missing the following properties from type 'Component<any, any, any>': context, setState, forceUpdate, render, and 3 more.\r\ntemp/validation_1761780710293.tsx(3,10): error TS2304: Cannot find name 'fileItems'.\r\n",
       "file": "packages\\file-upload\\README.md",
       "line": 152,
       "codeBlock": {
@@ -267,7 +267,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779199096.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779199096.tsx(2,1): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761779199096.tsx(2,2): error TS2304: Cannot find name 'FilePreview'.\r\ntemp/validation_1761779199096.tsx(3,9): error TS2304: Cannot find name 'fileItem'.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780713817.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780713817.tsx(2,1): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761780713817.tsx(2,2): error TS2304: Cannot find name 'FilePreview'.\r\ntemp/validation_1761780713817.tsx(3,9): error TS2304: Cannot find name 'fileItem'.\r\n",
       "file": "packages\\file-upload\\README.md",
       "line": 167,
       "codeBlock": {
@@ -288,7 +288,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779204131.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779204131.tsx(4,33): error TS2304: Cannot find name 'config'.\r\ntemp/validation_1761779204131.tsx(17,16): error TS2304: Cannot find name 'fileItem'.\r\ntemp/validation_1761779204131.tsx(20,19): error TS2304: Cannot find name 'fileItem'.\r\ntemp/validation_1761779204131.tsx(23,21): error TS2552: Cannot find name 'fileId'. Did you mean 'File'?\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780717072.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780717072.tsx(4,33): error TS2304: Cannot find name 'config'.\r\ntemp/validation_1761780717072.tsx(17,16): error TS2304: Cannot find name 'fileItem'.\r\ntemp/validation_1761780717072.tsx(20,19): error TS2304: Cannot find name 'fileItem'.\r\ntemp/validation_1761780717072.tsx(23,21): error TS2552: Cannot find name 'fileId'. Did you mean 'File'?\r\n",
       "file": "packages\\file-upload\\README.md",
       "line": 180,
       "codeBlock": {
@@ -301,7 +301,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779208861.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779208861.tsx(5,33): error TS2552: Cannot find name 'file'. Did you mean 'File'?\r\ntemp/validation_1761779208861.tsx(5,39): error TS2304: Cannot find name 'config'.\r\ntemp/validation_1761779208861.tsx(11,41): error TS2552: Cannot find name 'files'. Did you mean 'File'?\r\ntemp/validation_1761779208861.tsx(11,48): error TS2304: Cannot find name 'config'.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780720386.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780720386.tsx(5,33): error TS2552: Cannot find name 'file'. Did you mean 'File'?\r\ntemp/validation_1761780720386.tsx(5,39): error TS2304: Cannot find name 'config'.\r\ntemp/validation_1761780720386.tsx(11,41): error TS2552: Cannot find name 'files'. Did you mean 'File'?\r\ntemp/validation_1761780720386.tsx(11,48): error TS2304: Cannot find name 'config'.\r\n",
       "file": "packages\\file-upload\\README.md",
       "line": 207,
       "codeBlock": {
@@ -314,7 +314,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779214901.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779214901.tsx(2,32): error TS2304: Cannot find name 'DragDropZoneProps'.\r\ntemp/validation_1761779214901.tsx(4,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761779214901.tsx(10,1): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761779214901.tsx(10,2): error TS2304: Cannot find name 'FileUploader'.\r\ntemp/validation_1761779214901.tsx(11,11): error TS2304: Cannot find name 'config'.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780723970.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780723970.tsx(2,32): error TS2304: Cannot find name 'DragDropZoneProps'.\r\ntemp/validation_1761780723970.tsx(4,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761780723970.tsx(10,1): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761780723970.tsx(10,2): error TS2304: Cannot find name 'FileUploader'.\r\ntemp/validation_1761780723970.tsx(11,11): error TS2304: Cannot find name 'config'.\r\n",
       "file": "packages\\file-upload\\README.md",
       "line": 225,
       "codeBlock": {
@@ -335,7 +335,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779220134.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779220134.tsx(6,32): error TS2304: Cannot find name 'token'.\r\ntemp/validation_1761779220134.tsx(7,21): error TS2304: Cannot find name 'csrfToken'.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780727385.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780727385.tsx(6,32): error TS2304: Cannot find name 'token'.\r\ntemp/validation_1761780727385.tsx(7,21): error TS2304: Cannot find name 'csrfToken'.\r\n",
       "file": "packages\\file-upload\\README.md",
       "line": 308,
       "codeBlock": {
@@ -348,7 +348,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779224959.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779224959.tsx(3,19): error TS2304: Cannot find name 'useTheme'.\r\ntemp/validation_1761779224959.tsx(6,1): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761779224959.tsx(6,2): error TS2304: Cannot find name 'FileUploader'.\r\ntemp/validation_1761779224959.tsx(7,11): error TS2304: Cannot find name 'config'.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780730725.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780730725.tsx(3,19): error TS2304: Cannot find name 'useTheme'.\r\ntemp/validation_1761780730725.tsx(6,1): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761780730725.tsx(6,2): error TS2304: Cannot find name 'FileUploader'.\r\ntemp/validation_1761780730725.tsx(7,11): error TS2304: Cannot find name 'config'.\r\n",
       "file": "packages\\file-upload\\README.md",
       "line": 331,
       "codeBlock": {
@@ -369,7 +369,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779230263.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779230263.tsx(3,6): error TS2304: Cannot find name 'DEFAULT_UPLOAD_CONFIG'.\r\ntemp/validation_1761779230263.tsx(10,1): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761779230263.tsx(10,2): error TS2304: Cannot find name 'FileUploader'.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780734038.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780734038.tsx(3,6): error TS2304: Cannot find name 'DEFAULT_UPLOAD_CONFIG'.\r\ntemp/validation_1761780734038.tsx(10,1): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761780734038.tsx(10,2): error TS2304: Cannot find name 'FileUploader'.\r\n",
       "file": "packages\\file-upload\\README.md",
       "line": 360,
       "codeBlock": {
@@ -390,7 +390,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779235207.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779235207.tsx(3,6): error TS2304: Cannot find name 'DEFAULT_UPLOAD_CONFIG'.\r\ntemp/validation_1761779235207.tsx(11,1): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761779235207.tsx(11,2): error TS2304: Cannot find name 'FileUploader'.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780737305.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780737305.tsx(3,6): error TS2304: Cannot find name 'DEFAULT_UPLOAD_CONFIG'.\r\ntemp/validation_1761780737305.tsx(11,1): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761780737305.tsx(11,2): error TS2304: Cannot find name 'FileUploader'.\r\n",
       "file": "packages\\file-upload\\README.md",
       "line": 373,
       "codeBlock": {
@@ -411,7 +411,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779239470.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779239470.tsx(3,6): error TS2304: Cannot find name 'DEFAULT_UPLOAD_CONFIG'.\r\ntemp/validation_1761779239470.tsx(11,1): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761779239470.tsx(11,2): error TS2304: Cannot find name 'FileUploader'.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780740677.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780740677.tsx(3,6): error TS2304: Cannot find name 'DEFAULT_UPLOAD_CONFIG'.\r\ntemp/validation_1761780740677.tsx(11,1): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761780740677.tsx(11,2): error TS2304: Cannot find name 'FileUploader'.\r\n",
       "file": "packages\\file-upload\\README.md",
       "line": 387,
       "codeBlock": {
@@ -432,7 +432,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779242908.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780744027.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\n",
       "file": "packages\\file-upload\\README.md",
       "line": 405,
       "codeBlock": {
@@ -445,7 +445,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779246316.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780747355.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\n",
       "file": "packages\\file-upload\\README.md",
       "line": 416,
       "codeBlock": {
@@ -458,7 +458,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779249804.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779249804.tsx(5,29): error TS2552: Cannot find name 'file'. Did you mean 'File'?\r\ntemp/validation_1761779249804.tsx(5,35): error TS2304: Cannot find name 'config'.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780750711.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780750711.tsx(5,29): error TS2552: Cannot find name 'file'. Did you mean 'File'?\r\ntemp/validation_1761780750711.tsx(5,35): error TS2304: Cannot find name 'config'.\r\n",
       "file": "packages\\file-upload\\README.md",
       "line": 426,
       "codeBlock": {
@@ -471,7 +471,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779253133.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779253133.tsx(2,34): error TS2307: Cannot find module '@layera/forms' or its corresponding type declarations.\r\ntemp/validation_1761779253133.tsx(4,38): error TS2307: Cannot find module '@layera/tolgee' or its corresponding type declarations.\r\ntemp/validation_1761779253133.tsx(12,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761779253133.tsx(18,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780754038.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780754038.tsx(12,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761780754038.tsx(18,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\n",
       "file": "packages\\forms\\README.md",
       "line": 37,
       "codeBlock": {
@@ -493,7 +493,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779256771.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779256771.tsx(2,23): error TS2307: Cannot find module '@layera/forms' or its corresponding type declarations.\r\ntemp/validation_1761779256771.tsx(4,38): error TS2307: Cannot find module '@layera/tolgee' or its corresponding type declarations.\r\ntemp/validation_1761779256771.tsx(12,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761779256771.tsx(14,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761779256771.tsx(17,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761779256771.tsx(25,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761779256771.tsx(26,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761779256771.tsx(27,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780757565.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780757565.tsx(12,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761780757565.tsx(14,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761780757565.tsx(17,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761780757565.tsx(25,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761780757565.tsx(26,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761780757565.tsx(27,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\n",
       "file": "packages\\forms\\README.md",
       "line": 69,
       "codeBlock": {
@@ -515,7 +515,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779260260.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779260260.tsx(2,24): error TS2307: Cannot find module '@layera/forms' or its corresponding type declarations.\r\ntemp/validation_1761779260260.tsx(4,38): error TS2307: Cannot find module '@layera/tolgee' or its corresponding type declarations.\r\ntemp/validation_1761779260260.tsx(16,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780761073.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780761073.tsx(16,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\n",
       "file": "packages\\forms\\README.md",
       "line": 105,
       "codeBlock": {
@@ -537,7 +537,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779263824.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779263824.tsx(2,45): error TS2307: Cannot find module '@layera/forms' or its corresponding type declarations.\r\ntemp/validation_1761779263824.tsx(9,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761779263824.tsx(11,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761779263824.tsx(18,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780764568.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780764568.tsx(9,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761780764568.tsx(11,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761780764568.tsx(18,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\n",
       "file": "packages\\forms\\README.md",
       "line": 135,
       "codeBlock": {
@@ -559,7 +559,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779267199.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779267199.tsx(2,26): error TS2307: Cannot find module '@layera/forms' or its corresponding type declarations.\r\ntemp/validation_1761779267199.tsx(8,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780767978.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780767978.tsx(8,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\n",
       "file": "packages\\forms\\README.md",
       "line": 170,
       "codeBlock": {
@@ -581,7 +581,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779270635.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779270635.tsx(2,35): error TS2307: Cannot find module '@layera/forms' or its corresponding type declarations.\r\ntemp/validation_1761779270635.tsx(3,10): error TS2305: Module '\"@layera/constants\"' has no exported member 'FORM_VALIDATION'.\r\ntemp/validation_1761779270635.tsx(18,10): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780771286.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780771286.tsx(3,10): error TS2305: Module '\"@layera/constants\"' has no exported member 'FORM_VALIDATION'.\r\ntemp/validation_1761780771286.tsx(18,10): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\n",
       "file": "packages\\forms\\README.md",
       "line": 192,
       "codeBlock": {
@@ -603,7 +603,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779274021.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761779274021.tsx(2,34): error TS2307: Cannot find module '@layera/forms' or its corresponding type declarations.\r\ntemp/validation_1761779274021.tsx(15,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761779274021.tsx(16,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780774886.tsx(1,8): error TS1259: Module '\"C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index\"' can only be default-imported using the 'esModuleInterop' flag\r\ntemp/validation_1761780774886.tsx(15,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\ntemp/validation_1761780774886.tsx(16,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.\r\n",
       "file": "packages\\forms\\README.md",
       "line": 215,
       "codeBlock": {
@@ -625,7 +625,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779277518.ts(6,13): error TS2304: Cannot find name 'ReactNode'.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780778283.ts(6,13): error TS2304: Cannot find name 'ReactNode'.\r\n",
       "file": "packages\\forms\\README.md",
       "line": 253,
       "codeBlock": {
@@ -638,7 +638,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779280741.ts(3,22): error TS2304: Cannot find name 'ChangeEvent'.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780781590.ts(3,22): error TS2304: Cannot find name 'ChangeEvent'.\r\n",
       "file": "packages\\forms\\README.md",
       "line": 265,
       "codeBlock": {
@@ -659,7 +659,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779283973.ts(11,8): error TS1005: '>' expected.\r\ntemp/validation_1761779283973.ts(12,2): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761779283973.ts(15,12): error TS1005: ';' expected.\r\ntemp/validation_1761779283973.ts(16,15): error TS1005: '>' expected.\r\ntemp/validation_1761779283973.ts(17,2): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761779283973.ts(20,12): error TS1005: ';' expected.\r\ntemp/validation_1761779283973.ts(20,24): error TS1136: Property assignment expected.\r\ntemp/validation_1761779283973.ts(20,27): error TS1005: ';' expected.\r\ntemp/validation_1761779283973.ts(20,49): error TS1128: Declaration or statement expected.\r\ntemp/validation_1761779283973.ts(20,51): error TS1161: Unterminated regular expression literal.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780784759.ts(11,8): error TS1005: '>' expected.\r\ntemp/validation_1761780784759.ts(12,2): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761780784759.ts(15,12): error TS1005: ';' expected.\r\ntemp/validation_1761780784759.ts(16,15): error TS1005: '>' expected.\r\ntemp/validation_1761780784759.ts(17,2): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761780784759.ts(20,12): error TS1005: ';' expected.\r\ntemp/validation_1761780784759.ts(20,24): error TS1136: Property assignment expected.\r\ntemp/validation_1761780784759.ts(20,27): error TS1005: ';' expected.\r\ntemp/validation_1761780784759.ts(20,49): error TS1128: Declaration or statement expected.\r\ntemp/validation_1761780784759.ts(20,51): error TS1161: Unterminated regular expression literal.\r\n",
       "file": "README.md",
       "line": 73,
       "codeBlock": {
@@ -680,7 +680,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779286793.ts(16,18): error TS1005: '>' expected.\r\ntemp/validation_1761779286793.ts(16,22): error TS1005: ')' expected.\r\ntemp/validation_1761779286793.ts(16,32): error TS1005: ';' expected.\r\ntemp/validation_1761779286793.ts(17,13): error TS1136: Property assignment expected.\r\ntemp/validation_1761779286793.ts(17,24): error TS1005: ';' expected.\r\ntemp/validation_1761779286793.ts(18,27): error TS1005: '>' expected.\r\ntemp/validation_1761779286793.ts(19,14): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761779286793.ts(20,13): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761779286793.ts(21,10): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761779286793.ts(22,8): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761779286793.ts(23,6): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761779286793.ts(24,3): error TS1128: Declaration or statement expected.\r\ntemp/validation_1761779286793.ts(25,1): error TS1128: Declaration or statement expected.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780787646.ts(16,18): error TS1005: '>' expected.\r\ntemp/validation_1761780787646.ts(16,22): error TS1005: ')' expected.\r\ntemp/validation_1761780787646.ts(16,32): error TS1005: ';' expected.\r\ntemp/validation_1761780787646.ts(17,13): error TS1136: Property assignment expected.\r\ntemp/validation_1761780787646.ts(17,24): error TS1005: ';' expected.\r\ntemp/validation_1761780787646.ts(18,27): error TS1005: '>' expected.\r\ntemp/validation_1761780787646.ts(19,14): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761780787646.ts(20,13): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761780787646.ts(21,10): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761780787646.ts(22,8): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761780787646.ts(23,6): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761780787646.ts(24,3): error TS1128: Declaration or statement expected.\r\ntemp/validation_1761780787646.ts(25,1): error TS1128: Declaration or statement expected.\r\n",
       "file": "README.md",
       "line": 169,
       "codeBlock": {
@@ -701,7 +701,7 @@
     {
       "type": "syntax-error",
       "severity": "CRITICAL",
-      "message": "TypeScript compilation error: temp/validation_1761779289588.ts(7,7): error TS1005: '>' expected.\r\ntemp/validation_1761779289588.ts(7,13): error TS1005: ')' expected.\r\ntemp/validation_1761779289588.ts(7,15): error TS1136: Property assignment expected.\r\ntemp/validation_1761779289588.ts(8,19): error TS1136: Property assignment expected.\r\ntemp/validation_1761779289588.ts(8,22): error TS1005: ';' expected.\r\ntemp/validation_1761779289588.ts(8,52): error TS1128: Declaration or statement expected.\r\ntemp/validation_1761779289588.ts(9,5): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761779289588.ts(10,3): error TS1128: Declaration or statement expected.\r\ntemp/validation_1761779289588.ts(11,1): error TS1128: Declaration or statement expected.\r\n",
+      "message": "TypeScript compilation error: temp/validation_1761780790551.ts(7,7): error TS1005: '>' expected.\r\ntemp/validation_1761780790551.ts(7,13): error TS1005: ')' expected.\r\ntemp/validation_1761780790551.ts(7,15): error TS1136: Property assignment expected.\r\ntemp/validation_1761780790551.ts(8,19): error TS1136: Property assignment expected.\r\ntemp/validation_1761780790551.ts(8,22): error TS1005: ';' expected.\r\ntemp/validation_1761780790551.ts(8,52): error TS1128: Declaration or statement expected.\r\ntemp/validation_1761780790551.ts(9,5): error TS1161: Unterminated regular expression literal.\r\ntemp/validation_1761780790551.ts(10,3): error TS1128: Declaration or statement expected.\r\ntemp/validation_1761780790551.ts(11,1): error TS1128: Declaration or statement expected.\r\n",
       "file": "README.md",
       "line": 199,
       "codeBlock": {

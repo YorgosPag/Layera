@@ -91,7 +91,7 @@ export const MinimalTolgeeProvider: React.FC<MinimalTolgeeProviderProps> = ({
   );
 };
 
-export const useMinimalTolgee = (): void => {
+export const useMinimalTolgee = () => {
   const context = useContext(MinimalTolgeeContext);
   if (!context) {
     throw new Error('useMinimalTolgee must be used within MinimalTolgeeProvider');
