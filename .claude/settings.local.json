@@ -78,7 +78,12 @@
       "Bash(if [ -f \"scripts/validate-enterprise-policies.js\" ])",
       "Bash(then echo \"❌ ΣΦΑΛΜΑ: Το διπλότυπο script υπάρχει ακόμη!\")",
       "Bash(else echo \"✅ OK: Το διπλότυπο script έχει διαγραφεί\")",
-      "Bash(chmod:*)"
+      "Bash(chmod:*)",
+      "Bash(git stash show:*)",
+      "Read(//c/**)",
+      "Bash(forfiles:*)",
+      "Bash(git stash pop:*)",
+      "Bash(git stash:*)"
     ],
     "deny": [],
     "ask": []

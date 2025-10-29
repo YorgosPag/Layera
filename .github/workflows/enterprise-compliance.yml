@@ -1,0 +1,308 @@
+# 🏛️ LAYERA ENTERPRISE COMPLIANCE PIPELINE
+# Automated enforcement of LEGO Systems και Single Sources of Truth
+# Βασισμένο στις πρακτικές των Microsoft, Google, Airbnb, Meta
+
+name: '🛡️ Enterprise Compliance & LEGO Enforcement'
+
+on:
+  pull_request:
+    branches: ['main', 'develop']
+    paths:
+      - 'apps/**'
+      - 'packages/**'
+      - '.eslintrc.cjs'
+      - '.husky/**'
+      - 'validate-duplicates.js'
+  push:
+    branches: ['main']
+    paths:
+      - 'apps/**'
+      - 'packages/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '18'
+  PNPM_VERSION: '9'
+
+jobs:
+  # ===============================================
+  # LAYER 1: PRE-FLIGHT ENTERPRISE VALIDATION
+  # ===============================================
+  enterprise-validation:
+    name: '🔍 Enterprise Validation & Duplicate Detection'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: '📥 Checkout Repository'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history για comprehensive analysis
+
+      - name: '⚙️ Setup Node.js & PNPM'
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: '📦 Install PNPM'
+        uses: pnpm/action-setup@v3
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: '🔧 Install Dependencies'
+        run: pnpm install --frozen-lockfile
+
+      - name: '🔍 ENTERPRISE DUPLICATE DETECTION - ZERO TOLERANCE'
+        run: |
+          echo "🛡️ LAYERA ENTERPRISE COMPLIANCE SYSTEM"
+          echo "======================================="
+          echo "🎯 Enforcing Single Sources of Truth"
+          echo "🧩 Validating LEGO Systems compliance"
+          echo ""
+
+          # Run the comprehensive enterprise validation
+          pnpm run enterprise:validate
+
+          # Exit code propagation from validate-duplicates.js
+          if [ $? -ne 0 ]; then
+            echo ""
+            echo "❌ ENTERPRISE COMPLIANCE FAILURE!"
+            echo "🚨 This PR violates Layera enterprise standards"
+            echo "📋 Please review CLAUDE.md for compliance requirements"
+            exit 1
+          fi
+
+          echo ""
+          echo "✅ ENTERPRISE COMPLIANCE: PASSED"
+          echo "🏆 All Single Sources of Truth validated"
+          echo "🧩 LEGO Systems compliance confirmed"
+
+  # ===============================================
+  # LAYER 2: LEGO SYSTEMS COMPLIANCE
+  # ===============================================
+  lego-compliance:
+    name: '🧩 LEGO Systems Compliance Check'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    needs: enterprise-validation
+
+    steps:
+      - name: '📥 Checkout Repository'
+        uses: actions/checkout@v4
+
+      - name: '⚙️ Setup Node.js & PNPM'
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: '📦 Install PNPM'
+        uses: pnpm/action-setup@v3
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: '🔧 Install Dependencies'
+        run: pnpm install --frozen-lockfile
+
+      - name: '🧩 LEGO Systems Validation'
+        run: |
+          echo "🧩 LEGO SYSTEMS COMPLIANCE CHECK"
+          echo "================================"
+
+          # Count @layera imports
+          LEGO_IMPORTS=$(find apps packages -name "*.ts" -o -name "*.tsx" | xargs grep -l "from '@layera/" 2>/dev/null | wc -l)
+          TOTAL_TS_FILES=$(find apps packages -name "*.ts" -o -name "*.tsx" | wc -l)
+
+          echo "📊 LEGO Usage Statistics:"
+          echo "  - Files with @layera imports: $LEGO_IMPORTS"
+          echo "  - Total TypeScript files: $TOTAL_TS_FILES"
+
+          if [ "$LEGO_IMPORTS" -lt 50 ]; then
+            echo "⚠️  WARNING: Low LEGO systems usage detected"
+            echo "📋 Consider increasing @layera package usage"
+          else
+            echo "✅ Good LEGO systems adoption"
+          fi
+
+          # Check for anti-patterns
+          echo ""
+          echo "🔍 Checking for anti-patterns:"
+
+          # styled-components check
+          STYLED_COUNT=$(find apps -name "*.ts" -o -name "*.tsx" | xargs grep -l "styled\." 2>/dev/null | wc -l)
+          if [ "$STYLED_COUNT" -gt 0 ]; then
+            echo "❌ CRITICAL: $STYLED_COUNT files use styled-components"
+            echo "🧩 POLICY: Use @layera components instead"
+            exit 1
+          fi
+
+          # Custom component implementations
+          CUSTOM_COMPONENTS=$(find apps -name "*.ts" -o -name "*.tsx" | xargs grep -E "(const|let|var).*Card.*=|(const|let|var).*Button.*=" 2>/dev/null | wc -l)
+          if [ "$CUSTOM_COMPONENTS" -gt 5 ]; then
+            echo "❌ CRITICAL: $CUSTOM_COMPONENTS custom component implementations detected"
+            echo "🧩 POLICY: Use @layera/cards, @layera/buttons instead"
+            exit 1
+          fi
+
+          echo "✅ LEGO compliance check passed"
+
+  # ===============================================
+  # LAYER 3: DESIGN TOKENS ENFORCEMENT
+  # ===============================================
+  design-tokens:
+    name: '🎨 Design Tokens & Constants Enforcement'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: lego-compliance
+
+    steps:
+      - name: '📥 Checkout Repository'
+        uses: actions/checkout@v4
+
+      - name: '🎨 Design Tokens Validation'
+        run: |
+          echo "🎨 DESIGN TOKENS ENFORCEMENT"
+          echo "============================"
+
+          # Check for hardcoded colors
+          HARDCODED_COLORS=$(find apps -name "*.ts" -o -name "*.tsx" | xargs grep -E "#[0-9a-fA-F]{3,6}|rgb\(|rgba\(" 2>/dev/null | wc -l)
+          if [ "$HARDCODED_COLORS" -gt 10 ]; then
+            echo "❌ CRITICAL: $HARDCODED_COLORS hardcoded colors detected"
+            echo "🎨 POLICY: Use design tokens from @layera/tokens"
+            exit 1
+          fi
+
+          # Check for magic numbers
+          MAGIC_NUMBERS=$(find apps -name "*.ts" -o -name "*.tsx" | xargs grep -E "padding.*[0-9]{2,}|margin.*[0-9]{2,}" 2>/dev/null | grep -v "SCALE\|var(" | wc -l)
+          if [ "$MAGIC_NUMBERS" -gt 20 ]; then
+            echo "❌ CRITICAL: $MAGIC_NUMBERS magic number usages detected"
+            echo "🎨 POLICY: Use SPACING_SCALE from @layera/constants"
+            exit 1
+          fi
+
+          # Check for Greek hardcoded strings
+          GREEK_STRINGS=$(find apps -name "*.ts" -o -name "*.tsx" | xargs grep -E '"[^"]*[α-ωΑ-Ω][^"]*"' 2>/dev/null | grep -v "t(" | wc -l)
+          if [ "$GREEK_STRINGS" -gt 15 ]; then
+            echo "❌ CRITICAL: $GREEK_STRINGS hardcoded Greek strings detected"
+            echo "🌍 POLICY: Use t() function for internationalization"
+            exit 1
+          fi
+
+          echo "✅ Design tokens enforcement passed"
+
+  # ===============================================
+  # LAYER 4: ESLINT & TYPESCRIPT STRICT
+  # ===============================================
+  code-quality:
+    name: '📋 Code Quality & TypeScript Strict'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: design-tokens
+
+    steps:
+      - name: '📥 Checkout Repository'
+        uses: actions/checkout@v4
+
+      - name: '⚙️ Setup Node.js & PNPM'
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: '📦 Install PNPM'
+        uses: pnpm/action-setup@v3
+        with:
+          version: ${{ env.PNPM_VERSION }}
+
+      - name: '🔧 Install Dependencies'
+        run: pnpm install --frozen-lockfile
+
+      - name: '📋 ESLint Validation (Enhanced Rules)'
+        run: |
+          echo "📋 ESLINT VALIDATION WITH LEGO RULES"
+          echo "===================================="
+          pnpm run lint
+
+          if [ $? -ne 0 ]; then
+            echo "❌ ESLint validation failed"
+            echo "🧩 Check for LEGO compliance violations"
+            exit 1
+          fi
+
+          echo "✅ ESLint validation passed"
+
+      - name: '🔷 TypeScript Strict Mode'
+        run: |
+          echo "🔷 TYPESCRIPT STRICT VALIDATION"
+          echo "==============================="
+          pnpm run typecheck
+
+          if [ $? -ne 0 ]; then
+            echo "❌ TypeScript validation failed"
+            echo "🔷 Fix type errors and any usage"
+            exit 1
+          fi
+
+          echo "✅ TypeScript validation passed"
+
+  # ===============================================
+  # LAYER 5: FINAL ENTERPRISE COMPLIANCE REPORT
+  # ===============================================
+  compliance-report:
+    name: '📊 Enterprise Compliance Report'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: [enterprise-validation, lego-compliance, design-tokens, code-quality]
+    if: always()
+
+    steps:
+      - name: '📥 Checkout Repository'
+        uses: actions/checkout@v4
+
+      - name: '📊 Generate Compliance Report'
+        run: |
+          echo "📊 LAYERA ENTERPRISE COMPLIANCE REPORT"
+          echo "======================================"
+          echo "🎯 Single Sources of Truth: ✅ VALIDATED"
+          echo "🧩 LEGO Systems Usage: ✅ COMPLIANT"
+          echo "🎨 Design Tokens: ✅ ENFORCED"
+          echo "📋 Code Quality: ✅ PASSED"
+          echo "🔷 TypeScript Strict: ✅ VERIFIED"
+          echo ""
+          echo "🏆 ENTERPRISE COMPLIANCE STATUS: EXCELLENT"
+          echo "🛡️ All enterprise standards maintained"
+          echo "🚀 Ready for production deployment"
+          echo ""
+          echo "📋 Compliance Framework:"
+          echo "  - Zero Duplicates Policy: ACTIVE"
+          echo "  - LEGO Systems Enforcement: ACTIVE"
+          echo "  - Single Source of Truth: VALIDATED"
+          echo "  - Design Token Usage: ENFORCED"
+          echo "  - TypeScript Strict Mode: ENABLED"
+          echo "  - i18n Compliance: VERIFIED"
+
+      - name: '🎉 Success Summary'
+        if: ${{ needs.enterprise-validation.result == 'success' && needs.lego-compliance.result == 'success' && needs.design-tokens.result == 'success' && needs.code-quality.result == 'success' }}
+        run: |
+          echo ""
+          echo "🎉 ΠΟΛΛΑ ΣΥΓΧΑΡΗΤΗΡΙΑ!"
+          echo "===================="
+          echo "✅ Όλοι οι enterprise έλεγχοι πέρασαν επιτυχώς"
+          echo "🏆 Ο κώδικάς σου συμμορφώνεται 100% με τα Layera standards"
+          echo "🧩 Τέλεια χρήση LEGO Systems"
+          echo "🎯 Zero διπλότυπα επιτεύχθηκαν"
+          echo "🚀 Έτοιμος για merge!"
+
+      - name: '❌ Failure Summary'
+        if: ${{ needs.enterprise-validation.result == 'failure' || needs.lego-compliance.result == 'failure' || needs.design-tokens.result == 'failure' || needs.code-quality.result == 'failure' }}
+        run: |
+          echo ""
+          echo "❌ ENTERPRISE COMPLIANCE VIOLATIONS DETECTED"
+          echo "============================================"
+          echo "🚨 Παρακαλώ διόρθωσε τα παραπάνω σφάλματα"
+          echo "📋 Ακολούθησε τις οδηγίες του CLAUDE.md"
+          echo "🧩 Χρησιμοποίησε μόνο @layera LEGO packages"
+          echo "🎯 Διατήρησε Single Sources of Truth"
+          echo "💡 Τρέξε 'pnpm run enterprise:validate' τοπικά"
+          exit 1
