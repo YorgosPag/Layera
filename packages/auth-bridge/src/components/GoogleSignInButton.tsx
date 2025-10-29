@@ -66,21 +66,21 @@ export function GoogleSignInButton({
   };
 
   const defaultStyle: React.CSSProperties = {
-    display: 'var(--layera-display-flex, flex)',
-    alignItems: 'var(--layera-align-center, center)',
-    justifyContent: 'var(--layera-justify-center, center)',
-    gap: 'var(--layera-gap-sm, 8px)',
+    display: 'var(--la-display-flex, flex)',
+    alignItems: 'var(--la-align-center, center)',
+    justifyContent: 'var(--la-justify-center, center)',
+    gap: 'var(--la-gap-sm, 8px)',
     padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS / 2}px ${SPACING_SCALE.MD}px`,
-    border: '1px solid var(--layera-border-default, #dadce0)',
+    border: '1px solid var(--la-border-default, #dadce0)',
     borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
-    backgroundColor: 'var(--layera-bg-primary)',
-    color: 'var(--layera-text-primary)',
+    backgroundColor: 'var(--la-bg-primary)',
+    color: 'var(--la-text-primary)',
     fontFamily: 'Google Sans, Roboto, sans-serif',
-    fontSize: 'var(--layera-font-size-sm, 14px)',
-    fontWeight: 'var(--layera-font-weight-medium, 500)',
-    cursor: loading || externalDisabled ? 'var(--layera-cursor-not-allowed, not-allowed)' : 'var(--layera-cursor-pointer, pointer)',
-    opacity: loading || externalDisabled ? 'var(--layera-opacity-disabled, 0.6)' : 'var(--layera-opacity-full, 1)',
-    transition: 'var(--layera-transition-box-shadow, box-shadow 0.15s ease-in-out)',
+    fontSize: 'var(--la-font-size-sm, 14px)',
+    fontWeight: 'var(--la-font-weight-medium, 500)',
+    cursor: loading || externalDisabled ? 'var(--la-cursor-not-allowed, not-allowed)' : 'var(--la-cursor-pointer, pointer)',
+    opacity: loading || externalDisabled ? 'var(--la-opacity-disabled, 0.6)' : 'var(--la-opacity-full, 1)',
+    transition: 'var(--la-transition-box-shadow, box-shadow 0.15s ease-in-out)',
     ...style
   };
 
@@ -109,10 +109,10 @@ export function GoogleSignInButton({
       {loading ? (
         <>
           <Box
-            width="var(--layera-icon-size-md)"
-            height="var(--layera-icon-size-md)"
-            border="2px solid var(--layera-border-default)"
-            borderTop="2px solid var(--layera-color-primary)"
+            width="var(--la-icon-size-md)"
+            height="var(--la-icon-size-md)"
+            border="2px solid var(--la-border-default)"
+            borderTop="2px solid var(--la-color-primary)"
             borderRadius={BORDER_RADIUS_SCALE.CIRCLE}
           />
           <span>Σύνδεση...</span>

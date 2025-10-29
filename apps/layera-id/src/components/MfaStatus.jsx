@@ -6,10 +6,10 @@ export default function MfaStatus({ mfa }) {
     <Box
       as="span"
       padding={`${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`}
-      border="1px solid var(--layera-border-primary)"
+      border="1px solid var(--la-border-primary)"
       borderRadius={8}
-      fontSize="var(--layera-font-size-xs)"
-      backgroundColor={mfa ? 'var(--layera-bg-success)' : 'var(--layera-bg-warning)'}
+      fontSize="var(--la-font-size-xs)"
+      backgroundColor={mfa ? 'var(--la-bg-success)' : 'var(--la-bg-warning)'}
     >
       2FA: {mfa ? "Ενεργό" : "Ανενεργό"}
     </Box>

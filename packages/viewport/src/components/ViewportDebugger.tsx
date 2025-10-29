@@ -36,9 +36,9 @@ export const ViewportDebugger: React.FC<ViewportDebuggerProps> = ({
   const getPositionStyles = () => {
     const baseStyles: React.CSSProperties = {
       position: 'fixed',
-      zIndex: 'var(--layera-z-modal)', // Enterprise CSS Custom Property - Single Source of Truth
-      backgroundColor: 'color-mix(in srgb, var(--layera-bg-secondary) 90%, transparent 10%)',
-      color: 'var(--layera-text-primary)',
+      zIndex: 'var(--la-z-modal)', // Enterprise CSS Custom Property - Single Source of Truth
+      backgroundColor: 'color-mix(in srgb, var(--la-bg-secondary) 90%, transparent 10%)',
+      color: 'var(--la-text-primary)',
       padding: compact ? `${SPACING_SCALE.SM}px` : `${SPACING_SCALE.MD}px`,
       borderRadius: `${BORDER_RADIUS_SCALE.INPUT}px`,
       fontSize: compact ? '0.75rem' : '0.875rem',
@@ -104,8 +104,8 @@ export const ViewportDebugger: React.FC<ViewportDebuggerProps> = ({
           position="absolute"
           top={`${SPACING_SCALE.XS}px`}
           right={`${SPACING_SCALE.XS}px`}
-          color="var(--layera-text-primary)"
-          fontSize="var(--layera-font-size-xs)"
+          color="var(--la-text-primary)"
+          fontSize="var(--la-font-size-xs)"
           title="Hide Debugger"
         >
           ✕
@@ -128,7 +128,7 @@ export const ViewportDebugger: React.FC<ViewportDebuggerProps> = ({
         {!compact && (
           <>
             <Box>📐 {viewport.width} × {viewport.height}px</Box>
-            <Box marginTop={`${SPACING_SCALE.SM}px`} fontSize="var(--layera-font-size-xs)" opacity={0.8}>
+            <Box marginTop={`${SPACING_SCALE.SM}px`} fontSize="var(--la-font-size-xs)" opacity={0.8}>
               Mobile: {viewport.isMobile ? '✅' : '❌'} |
               Tablet: {viewport.isTablet ? '✅' : '❌'} |
               Desktop: {viewport.isDesktop ? '✅' : '❌'}

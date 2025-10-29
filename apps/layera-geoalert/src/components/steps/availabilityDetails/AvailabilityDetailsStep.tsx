@@ -80,13 +80,13 @@ export const AvailabilityDetailsStep: React.FC<AvailabilityDetailsStepProps> = (
 
   const containerStyles: React.CSSProperties = {
     position: 'fixed',
-    top: 'var(--layera-cards-top)',
-    left: 'var(--layera-side-margins)',
-    right: 'var(--layera-side-margins)',
+    top: 'var(--la-cards-top)',
+    left: 'var(--la-side-margins)',
+    right: 'var(--la-side-margins)',
     zIndex: 10002,
     display: 'flex',
     flexDirection: 'column',
-    gap: 'var(--layera-cards-gap)',
+    gap: 'var(--la-cards-gap)',
     padding: '0',
     maxHeight: 'calc(100vh - 200px)',
     overflowY: 'auto'

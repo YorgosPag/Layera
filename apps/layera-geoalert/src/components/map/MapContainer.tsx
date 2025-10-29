@@ -52,8 +52,11 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
     if (process.env.NODE_ENV === 'development') {
       console.log('🗺️ MapProvider context available:', {
         hasContext: !!mapContext,
+        contextKeys: mapContext ? Object.keys(mapContext) : [],
         hasInitializeMap: !!initializeMap,
-        initialLoadingState: isLoading
+        initializeMapType: typeof initializeMap,
+        initialLoadingState: isLoading,
+        fullContext: mapContext
       });
     }
   }, []); // Run only once
@@ -192,12 +195,19 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
         if (process.env.NODE_ENV === 'development') {
           console.log('🚀 Starting map initialization...');
           console.log('🔧 initializeMap function available:', typeof initializeMap);
-          console.log('🔧 initializeMap function source:', initializeMap.toString().substring(0, 200));
+          if (initializeMap && typeof initializeMap === 'function') {
+            console.log('🔧 initializeMap function source:', initializeMap.toString().substring(0, 200));
+          }
         }
 
         if (!initializeMap) {
-          console.error('❌ initializeMap function not available');
-          initializingRef.current = false;
+          console.error('❌ initializeMap function not available - using fallback');
+          // Temporal fallback για LEGO compatibility μέχρι module resolution fix
+          const fallbackInit = () => {
+            console.log('🔄 Using temporal fallback initialization');
+            initializingRef.current = false;
+          };
+          setTimeout(fallbackInit, 100);
           return;
         }
 

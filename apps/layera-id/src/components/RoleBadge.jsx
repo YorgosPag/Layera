@@ -13,10 +13,10 @@ export default function RoleBadge({ role = "private" }) {
     <Box
       as="span"
       padding={`${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`}
-      border="1px solid var(--layera-border-primary)"
+      border="1px solid var(--la-border-primary)"
       borderRadius={`${BORDER_RADIUS_SCALE.SM}px`}
-      fontSize="var(--layera-font-size-xs)"
-      backgroundColor={role === 'admin' ? 'var(--layera-bg-info)' : role === 'broker' ? 'var(--layera-bg-warning)' : role === 'builder' ? 'var(--layera-bg-success)' : 'var(--layera-bg-tertiary)'}
+      fontSize="var(--la-font-size-xs)"
+      backgroundColor={role === 'admin' ? 'var(--la-bg-info)' : role === 'broker' ? 'var(--la-bg-warning)' : role === 'builder' ? 'var(--la-bg-success)' : 'var(--la-bg-tertiary)'}
     >
       {LABELS[role] ?? LABELS.private}
     </Box>

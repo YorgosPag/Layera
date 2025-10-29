@@ -105,12 +105,12 @@ export const PropertyTypeStep: React.FC<PropertyTypeStepProps> = ({
     // LEGO:JUSTIFIED(reason=MOBILE_STEP_OVERLAY_FIXED; owner=@team-geo; expires=2026-01-31)
     <Box
       position="fixed"
-      top="var(--layera-overlay-top, var(--layera-cards-top, 64px))"
-      left="var(--layera-side-margins, 16px)"
-      right="var(--layera-side-margins, 16px)"
-      zIndex="var(--layera-z-overlay)"
-      maxHeight="var(--layera-height-calc-max, calc(100vh - var(--layera-overlay-vertical-offset, 200px)))"
-      overflow="var(--layera-overflow-auto, auto)"
+      top="var(--la-overlay-top, var(--la-cards-top, 64px))"
+      left="var(--la-side-margins, 16px)"
+      right="var(--la-side-margins, 16px)"
+      zIndex="var(--la-z-overlay)"
+      maxHeight="var(--la-height-calc-max, calc(100vh - var(--la-overlay-vertical-offset, 200px)))"
+      overflow="var(--la-overflow-auto, auto)"
     >
       <Flex direction="column" gap="xs" padding="none">
       {propertyTypes.map((type) => (

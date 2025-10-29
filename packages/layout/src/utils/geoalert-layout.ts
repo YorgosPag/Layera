@@ -145,13 +145,13 @@ export function updateGeoAlertLayoutVariables(
   const positions = calculateGeoAlertPositions(fullConfig);
 
   // Update CSS custom properties
-  root.style.setProperty('--layera-stepper-height', `${fullConfig.stepperHeight}px`);
-  root.style.setProperty('--layera-stepper-to-cards-gap', `${fullConfig.stepperToCardsGap}px`);
-  root.style.setProperty('--layera-cards-gap', `${fullConfig.cardsGap}px`);
-  root.style.setProperty('--layera-cards-height', `${fullConfig.cardHeight}px`);
-  root.style.setProperty('--layera-side-margins', `${fullConfig.sideMargins}px`);
+  root.style.setProperty('--la-stepper-height', `${fullConfig.stepperHeight}px`);
+  root.style.setProperty('--la-stepper-to-cards-gap', `${fullConfig.stepperToCardsGap}px`);
+  root.style.setProperty('--la-cards-gap', `${fullConfig.cardsGap}px`);
+  root.style.setProperty('--la-cards-height', `${fullConfig.cardHeight}px`);
+  root.style.setProperty('--la-side-margins', `${fullConfig.sideMargins}px`);
 
   // Update calculated positions
-  root.style.setProperty('--layera-cards-top', positions.cardsTop);
-  root.style.setProperty('--layera-info-panel-top', positions.infoPanelTop);
+  root.style.setProperty('--la-cards-top', positions.cardsTop);
+  root.style.setProperty('--la-info-panel-top', positions.infoPanelTop);
 }

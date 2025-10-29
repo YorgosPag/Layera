@@ -4,8 +4,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: var(--layera-text-primary);
-  background-color: var(--layera-bg-primary);
+  color: var(--la-text-primary);
+  background-color: var(--la-bg-primary);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,11 +15,11 @@
 
 a {
   font-weight: 500;
-  color: var(--layera-bg-info);
+  color: var(--la-bg-info);
   text-decoration: inherit;
 }
 a:hover {
-  color: color-mix(in srgb, var(--layera-bg-info) 80%, black 20%);
+  color: color-mix(in srgb, var(--la-bg-info) 80%, black 20%);
 }
 
 body {
@@ -42,13 +42,13 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: var(--layera-bg-secondary);
-  color: var(--layera-text-primary);
+  background-color: var(--la-bg-secondary);
+  color: var(--la-text-primary);
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: var(--layera-bg-info);
+  border-color: var(--la-bg-info);
 }
 button:focus,
 button:focus-visible {
@@ -57,13 +57,13 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: var(--layera-text-primary);
-    background-color: var(--layera-bg-primary);
+    color: var(--la-text-primary);
+    background-color: var(--la-bg-primary);
   }
   a:hover {
-    color: color-mix(in srgb, var(--layera-bg-info) 80%, black 20%);
+    color: color-mix(in srgb, var(--la-bg-info) 80%, black 20%);
   }
   button {
-    background-color: var(--layera-bg-tertiary);
+    background-color: var(--la-bg-tertiary);
   }
 }

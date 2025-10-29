@@ -89,8 +89,8 @@ const Login = () => {
               fontSize="sm"
               border="danger"
               padding={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px`}
-              background="var(--layera-bg-danger-subtle, color-mix(in srgb, var(--layera-bg-danger) 10%, transparent))"
-              borderColor="var(--layera-border-danger-subtle, 1px solid color-mix(in srgb, var(--layera-bg-danger) 30%, transparent))"
+              background="var(--la-bg-danger-subtle, color-mix(in srgb, var(--la-bg-danger) 10%, transparent))"
+              borderColor="var(--la-border-danger-subtle, 1px solid color-mix(in srgb, var(--la-bg-danger) 30%, transparent))"
             >
               <Text size="sm" color="danger">{error}</Text>
             </Box>
@@ -164,7 +164,7 @@ const Login = () => {
               zIndex="1"
               top="50%"
               height="1px"
-              background="var(--layera-border-primary)"
+              background="var(--la-border-primary)"
             />
             <Text
               as="span"
@@ -172,7 +172,7 @@ const Login = () => {
               padding="custom"
               position="relative"
               zIndex="2"
-              background="var(--layera-bg-primary)"
+              background="var(--la-bg-primary)"
               padding={`0 ${SPACING_SCALE.MD - SPACING_SCALE.XS}px`}
             >
               ή
@@ -199,9 +199,9 @@ const Login = () => {
           >
             <Link
               to="/forgot-password"
-              color="var(--layera-color-info, var(--layera-bg-info))"
-              textDecoration="var(--layera-text-decoration-none, none)"
-              fontWeight="var(--layera-font-weight-medium, 500)"
+              color="var(--la-color-info, var(--la-bg-info))"
+              textDecoration="var(--la-text-decoration-none, none)"
+              fontWeight="var(--la-font-weight-medium, 500)"
             >
               {t('auth.forgotPassword')}
             </Link>
@@ -214,9 +214,9 @@ const Login = () => {
               {t('auth.noAccount')} {' '}
               <Link
                 to="/register"
-                color="var(--layera-color-info, var(--layera-bg-info))"
-                textDecoration="var(--layera-text-decoration-none, none)"
-                fontWeight="var(--layera-font-weight-medium, 500)"
+                color="var(--la-color-info, var(--la-bg-info))"
+                textDecoration="var(--la-text-decoration-none, none)"
+                fontWeight="var(--la-font-weight-medium, 500)"
               >
                 {t('auth.register')}
               </Link>

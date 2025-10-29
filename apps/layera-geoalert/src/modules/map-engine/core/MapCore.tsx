@@ -41,8 +41,8 @@ const MapCore: React.FC<MapCoreProps> = ({ onMapReady, children }) => {
             maxZoom={MAP_DEFAULTS.maxZoom}
             className="w-full h-full bg-gray-400"
             zoomControl={false}
-            height="var(--layera-height-full, 100%)"
-            width="var(--layera-width-full, 100%)"
+            height="var(--la-height-full, 100%)"
+            width="var(--la-width-full, 100%)"
         >
             {/* Map instance για parent components */}
             {onMapReady && <MapInstanceGrabber onMapReady={onMapReady} />}

@@ -155,13 +155,13 @@ export const DEFAULT_STYLES = {
 export const TYPOGRAPHY = {
   /** Font sizes για different variants */
   FONT_SIZES: {
-    title: 'var(--layera-font-size-lg, 1.125rem)',    // 18px
-    subtitle: 'var(--layera-font-size-md, 1rem)',     // 16px
-    area: 'var(--layera-font-size-sm, 0.875rem)',     // 14px
-    distance: 'var(--layera-font-size-sm, 0.875rem)', // 14px
-    info: 'var(--layera-font-size-xs, 0.75rem)',      // 12px
-    warning: 'var(--layera-font-size-sm, 0.875rem)',  // 14px
-    success: 'var(--layera-font-size-sm, 0.875rem)'   // 14px
+    title: 'var(--la-font-size-lg, 1.125rem)',    // 18px
+    subtitle: 'var(--la-font-size-md, 1rem)',     // 16px
+    area: 'var(--la-font-size-sm, 0.875rem)',     // 14px
+    distance: 'var(--la-font-size-sm, 0.875rem)', // 14px
+    info: 'var(--la-font-size-xs, 0.75rem)',      // 12px
+    warning: 'var(--la-font-size-sm, 0.875rem)',  // 14px
+    success: 'var(--la-font-size-sm, 0.875rem)'   // 14px
   },
 
   /** Font weights */

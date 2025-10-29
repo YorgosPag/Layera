@@ -33,9 +33,9 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
   const headerStyles: React.CSSProperties = {
     height: 'var(--header-h)',
     backgroundColor: 'var(--color-bg-surface-overlay)',
-    backdropFilter: 'var(--layera-backdrop-filter-blur-20, blur(20px))',
-    WebkitBackdropFilter: 'var(--layera-webkit-backdrop-filter-blur-20, blur(20px))',
-    borderBottom: 'var(--layera-border-bottom-subtle, 1px solid var(--color-border-subtle))',
+    backdropFilter: 'var(--la-backdrop-filter-blur-20, blur(20px))',
+    WebkitBackdropFilter: 'var(--la-webkit-backdrop-filter-blur-20, blur(20px))',
+    borderBottom: 'var(--la-border-bottom-subtle, 1px solid var(--color-border-subtle))',
     // Layout handled by Flex wrapper
     padding: `0 ${SPACING_SCALE.MD}px`,
     position: 'relative' as const

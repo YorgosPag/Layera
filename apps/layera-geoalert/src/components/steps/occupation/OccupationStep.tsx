@@ -87,7 +87,7 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
   // Container styles
   const containerStyles: React.CSSProperties = {
     position: 'fixed',
-    top: 'var(--layera-cards-top)',
+    top: 'var(--la-cards-top)',
     left: '50%',
     transform: 'translateX(-50%)',
     width: `${SPACING_SCALE.XXXL * 2}px`,
@@ -123,7 +123,7 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
       {selectedOccupation && !isConfirming && (
         <BaseCard
           backgroundColor="var(--color-semantic-info-bg)"
-          border="var(--layera-border-accent-primary, 2px solid var(--layera-color-primary))"
+          border="var(--la-border-accent-primary, 2px solid var(--la-color-primary))"
           padding="md"
           marginTop="md">
           <Stack spacing="xs">
@@ -148,7 +148,7 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
       {isConfirming && selectedOccupation && (
         <BaseCard
           backgroundColor="var(--color-semantic-success-bg)"
-          border="var(--layera-border-success, 1px solid var(--layera-color-success))"
+          border="var(--la-border-success, 1px solid var(--la-color-success))"
           padding="md"
           marginTop="md">
           <Stack spacing="xs" align="center">

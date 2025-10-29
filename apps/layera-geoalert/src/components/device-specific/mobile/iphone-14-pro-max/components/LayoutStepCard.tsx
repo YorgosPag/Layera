@@ -203,15 +203,15 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
     switch (opacityMode) {
       case 'transparent':
         return {
-          backgroundColor: 'var(--layera-bg-overlay-transparent, rgba(var(--color-semantic-success-rgb), 0.01))', // Πλήρως διαφανές background ΜΟΝΟ
-          titleBackground: 'var(--layera-bg-overlay-subtle, rgba(var(--color-semantic-success-rgb), 0.02))',
+          backgroundColor: 'var(--la-bg-overlay-transparent, rgba(var(--color-semantic-success-rgb), 0.01))', // Πλήρως διαφανές background ΜΟΝΟ
+          titleBackground: 'var(--la-bg-overlay-subtle, rgba(var(--color-semantic-success-rgb), 0.02))',
           backdropFilter: 'none', // ΚΑΜΙΑ θόλωση - όλα καθαρά
           opacity: 1, // ΠΑΡΑΜΕΝΕΙ 1 - μόνο το background είναι διαφανές
           titleShadow: 'none' // Χωρίς shadow στο transparent mode επίσης
         };
       case 'semi-transparent':
         return {
-          backgroundColor: 'var(--layera-bg-overlay-semi, rgba(var(--color-semantic-success-rgb), 0.65))', // Πιο έντονο πράσινο, λιγότερη διαφάνεια
+          backgroundColor: 'var(--la-bg-overlay-semi, rgba(var(--color-semantic-success-rgb), 0.65))', // Πιο έντονο πράσινο, λιγότερη διαφάνεια
           titleBackground: 'transparent', // Χωρίς δεύτερο στρώμα στον τίτλο
           backdropFilter: 'none', // Χωρίς blur - κείμενα και εικονίδια καθαρά
           opacity: 0.8,
@@ -219,7 +219,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
         };
       case 'opaque':
         return {
-          backgroundColor: 'var(--layera-bg-overlay-opaque, rgba(var(--color-semantic-success-rgb), 0.95))', // Συμπαγές
+          backgroundColor: 'var(--la-bg-overlay-opaque, rgba(var(--color-semantic-success-rgb), 0.95))', // Συμπαγές
           titleBackground: 'transparent', // Χωρίς δεύτερο στρώμα στον τίτλο
           backdropFilter: 'none', // Χωρίς blur
           opacity: 0.95,
@@ -231,7 +231,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
   const propertyTheme = {
     ...getPropertyTheme(),
     borderColor: 'var(--color-semantic-success-border)',
-    titleShadow: 'var(--layera-shadow-glow-success, 0 0 25px rgba(var(--color-semantic-success-rgb), 0.2))'
+    titleShadow: 'var(--la-shadow-glow-success, 0 0 25px rgba(var(--color-semantic-success-rgb), 0.2))'
   };
 
   const cardBaseStyles: React.CSSProperties = {
@@ -239,7 +239,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
     boxShadow: BOX_SHADOW_SCALE.none,
     padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
     cursor: getCursorVar('pointer'), // Cursor system token για interactive elements
-    transition: 'var(--layera-transition-normal)',
+    transition: 'var(--la-transition-normal)',
     userSelect: 'none',
     WebkitTapHighlightColor: 'transparent',
     // Layout handled by Flex wrapper
@@ -256,7 +256,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
     padding: `${SPACING_SCALE.XS + 2}px ${SPACING_SCALE.SM}px`,
     borderRadius: `${SPACING_SCALE.SM}px`,
     // fontSize handled by Text component
-    fontWeight: 'var(--layera-font-semibold)', // Typography system token για 600
+    fontWeight: 'var(--la-font-semibold)', // Typography system token για 600
     color: opacityMode === 'opaque' ? 'var(--color-text-on-primary)' : 'var(--color-text-primary)', // Κείμενα παραμένουν πλήρως ορατά
     textAlign: 'center',
     lineHeight: '1.2',
@@ -272,20 +272,20 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
     switch (opacityMode) {
       case 'transparent':
         return {
-          backgroundColor: 'var(--layera-bg-overlay-subtle-transparent, rgba(var(--color-semantic-success-rgb), 0.05))',
+          backgroundColor: 'var(--la-bg-overlay-subtle-transparent, rgba(var(--color-semantic-success-rgb), 0.05))',
           border: '2px solid var(--color-semantic-success-border)',
           color: 'var(--color-text-primary)'
         };
       case 'semi-transparent':
         return {
           backgroundColor: 'var(--color-bg-surface-strong)', // Λευκό background για καλή ορατότητα
-          border: '2px solid var(--layera-color-white, var(--color-bg-canvas))',
+          border: '2px solid var(--la-color-white, var(--color-bg-canvas))',
           color: 'var(--color-text-primary)'
         };
       case 'opaque':
         return {
           backgroundColor: 'var(--color-bg-surface-solid)', // Πιο έντονο λευκό
-          border: '2px solid var(--layera-color-white, var(--color-bg-canvas))',
+          border: '2px solid var(--la-color-white, var(--color-bg-canvas))',
           color: 'var(--color-text-primary)'
         };
     }
@@ -296,20 +296,20 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
     switch (opacityMode) {
       case 'transparent':
         return {
-          backgroundColor: 'var(--layera-bg-overlay-light, rgba(var(--color-semantic-success-rgb), 0.1))',
+          backgroundColor: 'var(--la-bg-overlay-light, rgba(var(--color-semantic-success-rgb), 0.1))',
           border: '1px solid var(--color-semantic-success-border)',
           color: 'var(--color-semantic-success-text)'
         };
       case 'semi-transparent':
         return {
           backgroundColor: 'var(--color-bg-surface-strong)',
-          border: '2px solid var(--layera-color-white, var(--color-bg-canvas))',
+          border: '2px solid var(--la-color-white, var(--color-bg-canvas))',
           color: 'var(--color-semantic-success-text)'
         };
       case 'opaque':
         return {
           backgroundColor: 'var(--color-bg-surface-solid)',
-          border: '2px solid var(--layera-color-white, var(--color-bg-canvas))',
+          border: '2px solid var(--la-color-white, var(--color-bg-canvas))',
           color: 'var(--color-semantic-success-text)'
         };
     }
@@ -327,13 +327,13 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
       case 'semi-transparent':
         return {
           backgroundColor: 'var(--color-bg-surface-strong)', // Λευκό background για καλή ορατότητα
-          border: '2px solid var(--layera-color-white, var(--color-bg-canvas))',
+          border: '2px solid var(--la-color-white, var(--color-bg-canvas))',
           color: 'var(--color-semantic-success-border)' // Πράσινο κείμενο για contrast
         };
       case 'opaque':
         return {
           backgroundColor: 'var(--color-bg-surface-solid)', // Πιο έντονο λευκό
-          border: '2px solid var(--layera-color-white, var(--color-bg-canvas))',
+          border: '2px solid var(--la-color-white, var(--color-bg-canvas))',
           color: 'var(--color-semantic-success-border)' // Πράσινο κείμενο
         };
     }
@@ -579,7 +579,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
           onClick={onComplete}
           fullWidth
           backgroundColor="var(--color-semantic-success-border)"
-          fontWeight="var(--layera-font-bold)"
+          fontWeight="var(--la-font-bold)"
           padding={`${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`}
           border="2px solid var(--color-semantic-success-border)"
           borderRadius={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px`}

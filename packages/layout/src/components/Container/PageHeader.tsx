@@ -39,13 +39,13 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
     margin: 0,
     fontSize: '1.875rem',
     fontWeight: 'bold',
-    color: 'var(--layera-text-primary)'
+    color: 'var(--la-text-primary)'
   };
 
   const subtitleStyles: React.CSSProperties = {
     margin: `${SPACING_SCALE.XS}px 0 0 0`,
     fontSize: '1rem',
-    color: 'var(--layera-text-secondary)'
+    color: 'var(--la-text-secondary)'
   };
 
   return (

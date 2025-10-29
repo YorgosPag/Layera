@@ -122,7 +122,7 @@ export const Modal: React.FC<BaseModalProps> = ({
             padding: typeof contentPadding === 'number' ? `${contentPadding}px` : contentPadding
           }),
           ...(panelPadding !== undefined && {
-            '--layera-modal-inner-padding': typeof panelPadding === 'number' ? `${panelPadding}px` : panelPadding
+            '--la-modal-inner-padding': typeof panelPadding === 'number' ? `${panelPadding}px` : panelPadding
           })
         } as React.CSSProperties}
       >

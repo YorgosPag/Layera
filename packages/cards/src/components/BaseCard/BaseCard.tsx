@@ -86,7 +86,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
 
     // Interaction
     cursor: (clickable || onClick) ? getCursorVar('pointer') : 'default',
-    transition: 'var(--layera-transition-normal)',
+    transition: 'var(--la-transition-normal)',
     userSelect: 'none',
     WebkitTapHighlightColor: 'transparent',
 
@@ -101,7 +101,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
   const titleStyles: React.CSSProperties = {
     padding: `${SPACING_SCALE.XS + 2}px ${SPACING_SCALE.SM}px`,
     borderRadius: `${SPACING_SCALE.XS + 2}px`,
-    fontWeight: 'var(--layera-font-semibold)',
+    fontWeight: 'var(--la-font-semibold)',
     color: textColor,
     textAlign: 'center',
     lineHeight: '1.2',
@@ -121,11 +121,11 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
     borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
     backgroundColor: 'transparent',
     border: 'none',
-    fontWeight: 'var(--layera-font-bold)',
+    fontWeight: 'var(--la-font-bold)',
     color: 'var(--color-text-secondary)',
     cursor: getCursorVar('pointer'),
-    transition: 'var(--layera-transition-fast)',
-    zIndex: 'var(--layera-z-popover)', // Enterprise CSS Custom Property - Single Source of Truth
+    transition: 'var(--la-transition-fast)',
+    zIndex: 'var(--la-z-popover)', // Enterprise CSS Custom Property - Single Source of Truth
     boxShadow: BOX_SHADOW_SCALE.none,
     WebkitTapHighlightColor: 'transparent',
     touchAction: 'manipulation'
@@ -216,7 +216,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
           align="center"
           justify="center"
           gap="xs"
-          width="var(--layera-width-full, 100%)"
+          width="var(--la-width-full, 100%)"
         >
           <Flex align="center" justify="center" gap="xs" style={titleStyles}>
             {icon}
@@ -226,11 +226,11 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
           {/* Description support για UploadStep pattern */}
           {description && (
             <Box
-              fontSize="var(--layera-font-size-sm)"
+              fontSize="var(--la-font-size-sm)"
               color={getCardTextColor(variant, opacityMode)}
-              textAlign="var(--layera-text-align-center, center)"
+              textAlign="var(--la-text-align-center, center)"
               marginTop={`${SPACING_SCALE.XS}px`}
-              opacity="var(--layera-opacity-80, 0.8)"
+              opacity="var(--la-opacity-80, 0.8)"
             >
               {description}
             </Box>
@@ -243,20 +243,20 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
             onClick={handleInfoClick}
             style={{
               ...infoButtonStyles,
-              display: 'var(--layera-display-flex, flex)',
-              alignItems: 'var(--layera-align-center, center)',
-              justifyContent: 'var(--layera-justify-center, center)'
+              display: 'var(--la-display-flex, flex)',
+              alignItems: 'var(--la-align-center, center)',
+              justifyContent: 'var(--la-justify-center, center)'
             }}
             onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
               if (window.matchMedia('(hover: hover)').matches) {
                 e.currentTarget.style.color = 'var(--color-text-primary)';
-                e.currentTarget.style.transform = 'var(--layera-transform-scale-110, scale(1.1))';
+                e.currentTarget.style.transform = 'var(--la-transform-scale-110, scale(1.1))';
               }
             }}
             onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
               if (window.matchMedia('(hover: hover)').matches) {
                 e.currentTarget.style.color = 'var(--color-text-secondary)';
-                e.currentTarget.style.transform = 'var(--layera-transform-scale-100, scale(1))';
+                e.currentTarget.style.transform = 'var(--la-transform-scale-100, scale(1))';
               }
             }}
             onTouchStart={handleInfoTouchStart}
@@ -324,14 +324,14 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
           onClick={handleInfoClick}
           style={{
             ...infoButtonStyles,
-            display: 'var(--layera-display-flex, flex)',
-            alignItems: 'var(--layera-align-center, center)',
-            justifyContent: 'var(--layera-justify-center, center)'
+            display: 'var(--la-display-flex, flex)',
+            alignItems: 'var(--la-align-center, center)',
+            justifyContent: 'var(--la-justify-center, center)'
           }}
           onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
             if (window.matchMedia('(hover: hover)').matches) {
               e.currentTarget.style.color = 'var(--color-text-primary)';
-              e.currentTarget.style.transform = 'var(--layera-transform-scale-110, scale(1.1))';
+              e.currentTarget.style.transform = 'var(--la-transform-scale-110, scale(1.1))';
             }
           }}
           onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {

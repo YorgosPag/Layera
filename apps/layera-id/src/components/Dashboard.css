@@ -1,6 +1,6 @@
 .dashboard-container {
   min-height: 100vh;
-  background: var(--layera-bg-secondary);
+  background: var(--la-bg-secondary);
 }
 
 .dashboard-nav {
@@ -85,17 +85,17 @@
 .user-info {
   margin-top: 40px;
   padding-top: 30px;
-  border-top: 1px solid var(--layera-border-primary);
+  border-top: 1px solid var(--la-border-primary);
 }
 
 .user-info h3 {
-  color: var(--layera-text-primary);
+  color: var(--la-text-primary);
   margin-bottom: 20px;
   font-size: 20px;
 }
 
 .user-details {
-  background: var(--layera-bg-tertiary);
+  background: var(--la-bg-tertiary);
   border-radius: 8px;
   padding: 20px;
 }
@@ -105,7 +105,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 0;
-  border-bottom: 1px solid var(--layera-border-primary);
+  border-bottom: 1px solid var(--la-border-primary);
   font-size: 14px;
 }
 
@@ -114,7 +114,7 @@
 }
 
 .user-field strong {
-  color: var(--layera-text-secondary);
+  color: var(--la-text-secondary);
   font-weight: 600;
   min-width: 120px;
 }
@@ -132,11 +132,11 @@
 .dashboard-actions {
   margin-top: 40px;
   padding-top: 30px;
-  border-top: 1px solid var(--layera-border-primary);
+  border-top: 1px solid var(--la-border-primary);
 }
 
 .dashboard-actions h3 {
-  color: var(--layera-text-primary);
+  color: var(--la-text-primary);
   margin-bottom: 20px;
   font-size: 20px;
 }
@@ -149,8 +149,8 @@
 }
 
 .action-button {
-  background: var(--layera-bg-info);
-  color: var(--layera-text-on-info);
+  background: var(--la-bg-info);
+  color: var(--la-text-on-info);
   border: none;
   padding: 12px 30px;
   border-radius: 6px;

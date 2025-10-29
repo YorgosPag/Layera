@@ -52,13 +52,13 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
 
   const getExperienceLevelColor = (level: string) => {
     switch (level) {
-      case 'entry': return 'var(--layera-color-green-500, #10B981)'; // Green
-      case 'junior': return 'var(--layera-color-blue-500, #3B82F6)'; // Blue
-      case 'mid': return 'var(--layera-color-yellow-500, #F59E0B)'; // Yellow
-      case 'senior': return 'var(--layera-color-red-500, #EF4444)'; // Red
-      case 'expert': return 'var(--layera-color-purple-500, #8B5CF6)'; // Purple
-      case 'executive': return 'var(--layera-color-gray-700, #374151)'; // Gray
-      default: return 'var(--layera-color-gray-500, #6B7280)';
+      case 'entry': return 'var(--la-color-green-500, #10B981)'; // Green
+      case 'junior': return 'var(--la-color-blue-500, #3B82F6)'; // Blue
+      case 'mid': return 'var(--la-color-yellow-500, #F59E0B)'; // Yellow
+      case 'senior': return 'var(--la-color-red-500, #EF4444)'; // Red
+      case 'expert': return 'var(--la-color-purple-500, #8B5CF6)'; // Purple
+      case 'executive': return 'var(--la-color-gray-700, #374151)'; // Gray
+      default: return 'var(--la-color-gray-500, #6B7280)';
     }
   };
 
@@ -95,8 +95,8 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
       <BaseCard
         onClick={handleClick}
         style={{
-          cursor: onClick ? 'var(--layera-cursor-pointer, pointer)' : 'var(--layera-cursor-default, default)',
-          border: isSelected ? '2px solid var(--layera-color-primary)' : '1px solid var(--layera-border-default)',
+          cursor: onClick ? 'var(--la-cursor-pointer, pointer)' : 'var(--la-cursor-default, default)',
+          border: isSelected ? '2px solid var(--la-color-primary)' : '1px solid var(--la-border-default)',
           ...style
         }}
       >
@@ -118,9 +118,9 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
       <BaseCard
         onClick={handleClick}
         style={{
-          cursor: onClick ? 'var(--layera-cursor-pointer, pointer)' : 'var(--layera-cursor-default, default)',
-          border: isSelected ? '2px solid var(--layera-color-primary)' : '1px solid var(--layera-border-default)',
-          backgroundColor: isSelected ? 'var(--layera-bg-primary-subtle)' : 'var(--layera-bg-primary)',
+          cursor: onClick ? 'var(--la-cursor-pointer, pointer)' : 'var(--la-cursor-default, default)',
+          border: isSelected ? '2px solid var(--la-color-primary)' : '1px solid var(--la-border-default)',
+          backgroundColor: isSelected ? 'var(--la-bg-primary-subtle)' : 'var(--la-bg-primary)',
           ...style
         }}
       >
@@ -139,10 +139,10 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
 
           {occupation.description && (
             <Text size="sm" color="secondary" style={{
-              display: 'var(--layera-display-webkit-box, -webkit-box)',
-              WebkitLineClamp: 'var(--layera-webkit-line-clamp-2, 2)',
-              WebkitBoxOrient: 'var(--layera-webkit-box-orient-vertical, vertical)',
-              overflow: 'var(--layera-overflow-hidden, hidden)'
+              display: 'var(--la-display-webkit-box, -webkit-box)',
+              WebkitLineClamp: 'var(--la-webkit-line-clamp-2, 2)',
+              WebkitBoxOrient: 'var(--la-webkit-box-orient-vertical, vertical)',
+              overflow: 'var(--la-overflow-hidden, hidden)'
             }}>
               {occupation.description}
             </Text>
@@ -152,11 +152,11 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
             {/* Category */}
             {occupation.category && (
               <Box style={{
-                backgroundColor: 'var(--layera-bg-secondary)',
+                backgroundColor: 'var(--la-bg-secondary)',
                 padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
                 borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
-                fontSize: 'var(--layera-font-size-xs)',
-                color: 'var(--layera-text-primary)'
+                fontSize: 'var(--la-font-size-xs)',
+                color: 'var(--la-text-primary)'
               }}>
                 {occupation.category.name}
               </Box>
@@ -165,11 +165,11 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
             {/* Experience Level */}
             <Box style={{
               backgroundColor: getExperienceLevelColor(occupation.experienceLevel),
-              color: 'var(--layera-color-white, white)',
+              color: 'var(--la-color-white, white)',
               padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
               borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
-              fontSize: 'var(--layera-font-size-xs)',
-              fontWeight: 'var(--layera-font-weight-medium, 500)'
+              fontSize: 'var(--la-font-size-xs)',
+              fontWeight: 'var(--la-font-weight-medium, 500)'
             }}>
               {getExperienceLevelLabel(occupation.experienceLevel)}
             </Box>
@@ -184,9 +184,9 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
     <BaseCard
       onClick={handleClick}
       style={{
-        cursor: onClick ? 'var(--layera-cursor-pointer, pointer)' : 'var(--layera-cursor-default, default)',
-        border: isSelected ? '2px solid var(--layera-color-primary)' : '1px solid var(--layera-border-default)',
-        backgroundColor: isSelected ? 'var(--layera-bg-primary-subtle)' : 'var(--layera-bg-primary)',
+        cursor: onClick ? 'var(--la-cursor-pointer, pointer)' : 'var(--la-cursor-default, default)',
+        border: isSelected ? '2px solid var(--la-color-primary)' : '1px solid var(--la-border-default)',
+        backgroundColor: isSelected ? 'var(--la-bg-primary-subtle)' : 'var(--la-bg-primary)',
         ...style
       }}
     >
@@ -237,12 +237,12 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
                 <Box
                   key={index}
                   style={{
-                    backgroundColor: 'var(--layera-bg-info-subtle)',
-                    color: 'var(--layera-color-info)',
+                    backgroundColor: 'var(--la-bg-info-subtle)',
+                    color: 'var(--la-color-info)',
                     padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
                     borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
-                    fontSize: 'var(--layera-font-size-xs)',
-                    fontWeight: 'var(--layera-font-weight-medium, 500)'
+                    fontSize: 'var(--la-font-size-xs)',
+                    fontWeight: 'var(--la-font-weight-medium, 500)'
                   }}
                 >
                   {getEmploymentTypeLabel(type)}
@@ -263,11 +263,11 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
                 <Box
                   key={index}
                   style={{
-                    backgroundColor: 'var(--layera-bg-success-subtle)',
-                    color: 'var(--layera-color-success)',
+                    backgroundColor: 'var(--la-bg-success-subtle)',
+                    color: 'var(--la-color-success)',
                     padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
                     borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
-                    fontSize: 'var(--layera-font-size-xs)'
+                    fontSize: 'var(--la-font-size-xs)'
                   }}
                 >
                   {skill.name}

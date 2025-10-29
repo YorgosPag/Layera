@@ -353,8 +353,8 @@ function App() {
           <Box
             padding="xl"
             textAlign="center"
-            backgroundColor="var(--layera-bg-primary)"
-            color="var(--layera-text-primary)"
+            backgroundColor="var(--la-bg-primary)"
+            color="var(--la-text-primary)"
             minHeight="100vh">
               <Flex justify="space-between" align="center" marginBottom="md">
                 <Heading as="h1" size="2xl" color="primary" className="layera-flex layera-items-center layera-gap-2">
@@ -449,7 +449,7 @@ function App() {
                   size="md"
                   color="info"
                   padding={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.LG}px`}
-                  border={`${SPACING_SCALE.XXS}px solid var(--layera-bg-info)`}
+                  border={`${SPACING_SCALE.XXS}px solid var(--la-bg-info)`}
                   borderRadius={`${BORDER_RADIUS.MD}px`}
                   fontWeight="bold"
                   transition="all 0.2s"

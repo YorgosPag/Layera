@@ -28,8 +28,15 @@ if git grep -nE 'borderRadius[[:space:]]*:(?![[:space:]]*var\()' -- '*.ts' '*.ts
   echo "Policy: borderRadius must use var(--la-radius-*)"; exit 1
 fi
 
-# 4: διπλότυπα κώδικα
+# 4: BULLETPROOF διπλότυπα κώδικα - ZERO TOLERANCE
+echo "🔒 ENTERPRISE DUPLICATE DETECTION - BULLETPROOF MODE"
 pnpm -w exec jscpd --pattern "**/*.{ts,tsx,js,jsx,css,scss}" -t 0 --ignore "**/dist/**,**/node_modules/**,packages/tokens/**,packages/styles/**,**/*.svg"
+if [ $? -ne 0 ]; then
+  echo "❌ BLOCKING COMMIT: Duplicates detected! Enterprise policy violation."
+  echo "🚨 NO DUPLICATES ALLOWED IN ENTERPRISE CODEBASE"
+  exit 1
+fi
+echo "✅ Duplicate check passed - proceeding"
 
 # 5: import boundaries
 pnpm -w imports:check

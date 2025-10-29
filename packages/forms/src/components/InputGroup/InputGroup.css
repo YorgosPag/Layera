@@ -338,7 +338,7 @@
   border-color: var(--la-color-brand);
 }
 
-.la-input-group-connected.la-input-group-error:hover:not(.la-input-group-disabled) .la-input-group-container {
+.la-input-group-error:hover .la-input-group-container {
   border-color: var(--la-color-destructive);
 }
 

@@ -77,8 +77,8 @@ export const ErrorDetails: React.FC<ErrorDetailsProps> = ({
                 stroke="currentColor"
                 strokeWidth="2"
                 style={{
-                  transform: expanded ? 'var(--layera-transform-rotate-180, rotate(180deg))' : 'var(--layera-transform-rotate-0, rotate(0deg))',
-                  transition: 'var(--layera-transition-transform, transform 150ms ease)'
+                  transform: expanded ? 'var(--la-transform-rotate-180, rotate(180deg))' : 'var(--la-transform-rotate-0, rotate(0deg))',
+                  transition: 'var(--la-transition-transform, transform 150ms ease)'
                 }}
               >
                 <polyline points="6,9 12,15 18,9"/>

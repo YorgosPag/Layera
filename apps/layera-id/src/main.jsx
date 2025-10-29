@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { AuthProvider, initializeFirebaseApp } from '@layera/auth-bridge'
+import '@layera/tokens/dist/tokens.css'
 import '@layera/styles'
 import './index.css'
 import App from './App.jsx'

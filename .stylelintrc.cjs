@@ -76,6 +76,31 @@ module.exports = {
     // DISABLE: custom-property-pattern rule has a bug and doesn't work correctly
     // 'custom-property-pattern': "^--la-.*"
 
+    // ✅ TIER 1 RULE 1: Custom Property Pattern - ΛΥΜΕΝΟ ΜΕ CUSTOM SCRIPT
+    // Validation μέσω npm run policy:check script (validate-enterprise-policies.js)
+    // 'custom-property-pattern': '^--la-.*', // Disabled - handled by custom script
+
+    // ✅ TIER 1 RULE 2: CSS Selector Class Pattern - ΛΥΜΕΝΟ ΜΕ CUSTOM SCRIPT
+    // Validation μέσω npm run policy:check script (validate-enterprise-policies.js)
+    // Stylelint rule disabled - handled by custom script
+    // 'selector-class-pattern': '^(la-|layera-|account-|auth-|dashboard-|mfa-|support-|data-|settings-|nav-|user-|form-|language-|logout-|info-|action-|status-|badge-|welcome-|export-|privacy-|back-|security-|recaptcha-|divider|divider-|submit-|error-|success-|warning-|secondary-|inactive-|verified-|unverified-|primary-|badges-|role-|item-|toggle-|danger-).*',
+
+    // ✅ TIER 1 ENTERPRISE MANDATORY RULE 3: No Important Declarations
+    // Απαγόρευση !important για καλύτερο CSS architecture
+    'declaration-no-important': true,
+
+    // ✅ TIER 1 ENTERPRISE MANDATORY RULE 4: Selector Max Specificity
+    // Περιορισμός CSS specificity για καλύτερη maintainability
+    'selector-max-specificity': '0,4,0',
+
+    // ✅ TIER 1 ENTERPRISE MANDATORY RULE 5: Max Nesting Depth
+    // Περιορισμός βάθους nesting για καλύτερη readability
+    'max-nesting-depth': 3,
+
+    // ✅ TIER 1 ENTERPRISE MANDATORY RULE 6: No Duplicate Properties
+    // Αποφυγή duplicate CSS properties σε ίδιο block
+    'declaration-block-no-duplicate-properties': true,
+
     // ΤΕΛΙΚΗ ΛΥΣΗ: Πιο ευρεία επιτρεπόμενα patterns για production ready CSS
     'declaration-property-value-disallowed-list': null,  // Disable για να επιτρέπουμε όλα τα values
     'declaration-property-value-allowed-list': null,  // Disable και τα allowed lists για πλήρη ελευθερία

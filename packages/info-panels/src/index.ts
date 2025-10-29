@@ -91,9 +91,9 @@ export const createInfoPanelTheme = (
     backgroundColor: `rgba(${baseColor}, ${opacity})`,
     color: 'white',
     borderColor: `rgba(${baseColor}, ${borderOpacity})`,
-    boxShadow: 'var(--layera-shadow-card-default)',
+    boxShadow: 'var(--la-shadow-card-default)',
     borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
-    fontSize: 'var(--layera-font-size-xs)',
+    fontSize: 'var(--la-font-size-xs)',
     padding: `${SPACING_SCALE.MD}px`
   };
 };
@@ -112,9 +112,9 @@ export const INFO_PANEL_THEMES = {
 export const DEFAULT_INFO_PANEL_STYLES = {
   mobile: {
     position: {
-      top: 'var(--layera-info-panel-top)', // Calculated από CSS variables
-      left: 'var(--layera-side-margins)',
-      right: 'var(--layera-side-margins)'
+      top: 'var(--la-info-panel-top)', // Calculated από CSS variables
+      left: 'var(--la-side-margins)',
+      right: 'var(--la-side-margins)'
     },
     zIndex: 10000,
     maxHeight: '60vh',
@@ -122,8 +122,8 @@ export const DEFAULT_INFO_PANEL_STYLES = {
   },
   desktop: {
     position: {
-      top: 'var(--layera-space-6)', // 24px από design tokens
-      right: 'var(--layera-space-6)' // 24px από design tokens
+      top: 'var(--la-space-6)', // 24px από design tokens
+      right: 'var(--la-space-6)' // 24px από design tokens
     },
     zIndex: 10000,
     maxHeight: '400px',
@@ -141,6 +141,6 @@ export const createInfoPanelStyles = (isMobile: boolean = true): React.CSSProper
     zIndex: baseStyles.zIndex,
     maxHeight: baseStyles.maxHeight,
     overflow: baseStyles.overflow as 'auto',
-    transition: 'all var(--layera-transition-normal)'
+    transition: 'all var(--la-transition-normal)'
   };
 };

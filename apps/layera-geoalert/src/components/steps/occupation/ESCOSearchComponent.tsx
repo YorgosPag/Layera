@@ -204,11 +204,11 @@ export const ESCOSearchComponent: React.FC<ESCOSearchProps> = ({
           left={0}
           right={0}
           backgroundColor="var(--color-bg-canvas)"
-          border="1px solid var(--layera-border-default)"
+          border="1px solid var(--la-border-default)"
           borderRadius={`${SPACING_SCALE.SM}px`}
           maxHeight={`${TABLE_COLUMN_WIDTHS.WIDE}px`}
           overflowY={CSS_DESIGN_TOKENS.positioning['overflow-auto']}
-          zIndex="var(--layera-z-index-dropdown, 1000)"
+          zIndex="var(--la-z-index-dropdown, 1000)"
           boxShadow={BOX_SHADOW_SCALE.cardDefault}>
           {/* Loading */}
           {searchState.isLoading && (

@@ -10,16 +10,16 @@ import { FontSize, FontWeight, LineHeight, TypographyScale } from '../types';
 export const useTypography = () => {
   const typographyScale: TypographyScale = useMemo(() => ({
     fontSizes: {
-      xs: 'var(--layera-font-size-xs, 0.75rem)',      // 12px
-      sm: 'var(--layera-font-size-sm, 0.875rem)',     // 14px
-      base: 'var(--layera-font-size-md, 1rem)',       // 16px
-      lg: 'var(--layera-font-size-lg, 1.125rem)',     // 18px
-      xl: 'var(--layera-font-size-xl, 1.25rem)',      // 20px
-      '2xl': 'var(--layera-font-size-xxl, 1.5rem)',    // 24px
-      '3xl': 'var(--layera-font-size-xxxl, 1.875rem)',  // 30px
-      '4xl': 'var(--layera-font-size-display-sm, 2.25rem)',   // 36px
-      '5xl': 'var(--layera-font-size-display-md, 3rem)',      // 48px
-      '6xl': 'var(--layera-font-size-display-lg, 3.75rem)'    // 60px
+      xs: 'var(--la-font-size-xs, 0.75rem)',      // 12px
+      sm: 'var(--la-font-size-sm, 0.875rem)',     // 14px
+      base: 'var(--la-font-size-md, 1rem)',       // 16px
+      lg: 'var(--la-font-size-lg, 1.125rem)',     // 18px
+      xl: 'var(--la-font-size-xl, 1.25rem)',      // 20px
+      '2xl': 'var(--la-font-size-xxl, 1.5rem)',    // 24px
+      '3xl': 'var(--la-font-size-xxxl, 1.875rem)',  // 30px
+      '4xl': 'var(--la-font-size-display-sm, 2.25rem)',   // 36px
+      '5xl': 'var(--la-font-size-display-md, 3rem)',      // 48px
+      '6xl': 'var(--la-font-size-display-lg, 3.75rem)'    // 60px
     },
     fontWeights: {
       light: 300,
@@ -67,7 +67,7 @@ export const useTypography = () => {
       fontWeight: typographyScale.fontWeights[weight],
       lineHeight: typographyScale.lineHeights[lineHeight],
       letterSpacing: typographyScale.letterSpacing[size],
-      fontFamily: 'var(--layera-font-family-sans)'
+      fontFamily: 'var(--la-font-family-sans)'
     };
   };
 
@@ -102,23 +102,23 @@ export const useTypography = () => {
    */
   const getCSSCustomProperties = () => {
     return {
-      '--layera-font-family-sans': 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-      '--layera-font-family-mono': '"SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace',
+      '--la-font-family-sans': 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+      '--la-font-family-mono': '"SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace',
       ...Object.fromEntries(
         Object.entries(typographyScale.fontSizes).map(([key, value]) => [
-          `--layera-text-${key}`,
+          `--la-text-${key}`,
           value
         ])
       ),
       ...Object.fromEntries(
         Object.entries(typographyScale.fontWeights).map(([key, value]) => [
-          `--layera-font-${key}`,
+          `--la-font-${key}`,
           value
         ])
       ),
       ...Object.fromEntries(
         Object.entries(typographyScale.lineHeights).map(([key, value]) => [
-          `--layera-leading-${key}`,
+          `--la-leading-${key}`,
           value
         ])
       )

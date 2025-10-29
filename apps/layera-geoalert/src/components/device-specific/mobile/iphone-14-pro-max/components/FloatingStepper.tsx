@@ -153,7 +153,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
 
   // Function για να επιστρέφει τον τίτλο με prefix κατηγορίας
   const getStepTitle = () => {
-    const baseTitle = currentStepData.shortTitle;
+    const baseTitle = currentStepData?.shortTitle || t('pipeline.step.unknown');
 
     // Αν είμαστε στο category step, δεν χρειάζεται prefix
     if (currentStep === 'category') {
@@ -173,7 +173,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
 
   // Floating bar styles - optimized για iPhone 14 Pro Max (430px width)
   const floatingBarStyles: React.CSSProperties = {
-    position: 'var(--layera-position-fixed, fixed)',
+    position: 'var(--la-position-fixed, fixed)',
     top: `${UI_CONFIG.floatingStepper.position.top}px`,
     left: `${UI_CONFIG.floatingStepper.position.left}px`,
     right: `${UI_CONFIG.floatingStepper.position.right}px`,
@@ -187,10 +187,10 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     // Layout handled by Flex wrapper
     padding: `0 ${UI_CONFIG.floatingStepper.padding}px`,
     gap: `${UI_CONFIG.floatingStepper.gap}px`,
-    transition: 'var(--layera-transition-normal)',
-    transform: 'var(--layera-transform-translate-y-0, translateY(0))',
-    userSelect: 'var(--layera-user-select-none, none)',
-    WebkitTapHighlightColor: 'var(--layera-webkit-tap-highlight-color, transparent)'
+    transition: 'var(--la-transition-normal)',
+    transform: 'var(--la-transform-translate-y-0, translateY(0))',
+    userSelect: 'var(--la-user-select-none, none)',
+    WebkitTapHighlightColor: 'var(--la-webkit-tap-highlight-color, transparent)'
   };
 
   // Progress dots styles
@@ -214,20 +214,20 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
       backgroundColor: isCompleted
         ? 'var(--color-semantic-success-border)' // Πράσινο για completed
         : isActive
-          ? 'var(--layera-color-white, white)' // Λευκό για active
+          ? 'var(--la-color-white, white)' // Λευκό για active
           : isVisited
             ? 'var(--color-text-primary-overlay-medium)' // Ημι-διαφανές για visited
             : 'var(--color-text-primary-overlay-light)', // Ακόμα πιο διαφανές για unvisited
-      transition: 'var(--layera-transition-fast)',
+      transition: 'var(--la-transition-fast)',
       cursor: isVisited ? getCursorVar('pointer') : getCursorVar('default'), // Conditional cursor από cursor system
-      border: isActive ? '1px solid var(--color-border-primary-overlay)' : 'var(--layera-border-none, none)'
+      border: isActive ? '1px solid var(--color-border-primary-overlay)' : 'var(--la-border-none, none)'
     };
   };
 
   // Step title styles
   const stepTitleStyles: React.CSSProperties = {
     // fontSize handled by Text component
-    fontWeight: 'var(--layera-font-semibold)', // Typography system token για 600
+    fontWeight: 'var(--la-font-semibold)', // Typography system token για 600
     color: COLORS.common.white,
     flex: 1,
     textAlign: 'left',
@@ -239,13 +239,13 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   // Button styles - compact για mobile
   const buttonStyles: React.CSSProperties = {
     padding: `${SPACING_SCALE.XS + 2}px ${SPACING_SCALE.SM}px`,
-    fontWeight: 'var(--layera-font-semibold)', // Typography system token για 600
+    fontWeight: 'var(--la-font-semibold)', // Typography system token για 600
     borderRadius: `${SPACING_SCALE.XS + 2}px`,
     border: 'none',
     cursor: getCursorVar('pointer'), // Cursor system token για interactive elements
-    transition: 'var(--layera-transition-fast)',
-    userSelect: 'var(--layera-user-select-none, none)',
-    WebkitTapHighlightColor: 'var(--layera-webkit-tap-highlight-color, transparent)'
+    transition: 'var(--la-transition-fast)',
+    userSelect: 'var(--la-user-select-none, none)',
+    WebkitTapHighlightColor: 'var(--la-webkit-tap-highlight-color, transparent)'
   };
 
   // 🚀 ENTERPRISE: Χρήση του PipelineDiscovery για button states
@@ -264,7 +264,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   const resetButtonStyles: React.CSSProperties = {
     ...buttonStyles,
     backgroundColor: onReset ? 'var(--color-semantic-error-bg)' : 'var(--color-border-default)', // Κόκκινο χρώμα για reset
-    color: onReset ? 'var(--layera-color-white, white)' : 'var(--layera-text-secondary, var(--color-text-secondary))',
+    color: onReset ? 'var(--la-color-white, white)' : 'var(--la-text-secondary, var(--color-text-secondary))',
     opacity: onReset ? 1 : 0.5
   };
 
@@ -287,7 +287,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
         return {
           ...baseStyles,
           backgroundColor: 'var(--color-semantic-warning-border)', // Κίτρινο για ημιδιαφανές
-          color: 'var(--layera-text-primary, var(--color-text-primary))'
+          color: 'var(--la-text-primary, var(--color-text-primary))'
         };
       case 'opaque':
         return {
@@ -491,7 +491,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
             size="base"
             weight="bold"
             textAlign="center"
-            color="var(--layera-text-primary, var(--color-text-primary))"
+            color="var(--la-text-primary, var(--color-text-primary))"
             display="block"
           >
             Φόρμα Λεπτομερειών
@@ -499,7 +499,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
           <Text
             size="sm"
             marginTop={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px`}
-            color="var(--layera-text-secondary, var(--color-text-secondary))"
+            color="var(--la-text-secondary, var(--color-text-secondary))"
             textAlign="center"
             display="block"
           >

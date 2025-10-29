@@ -169,8 +169,8 @@ export function AddressBreakdownCard({
             <Text
               as="span"
               marginLeft={`${SPACING_SCALE.SM}px`}
-              fontSize="var(--layera-font-size-xs)"
-              color="var(--layera-text-secondary)"
+              fontSize="var(--la-font-size-xs)"
+              color="var(--la-text-secondary)"
             >
               ({loadingTimer}s)
             </Text>
@@ -190,14 +190,14 @@ export function AddressBreakdownCard({
           padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
           borderRadius: `${BORDER_RADIUS_SCALE.INPUT}px`,
           marginBottom: `${SPACING_SCALE.SM}px`,
-          border: 'var(--layera-border-default-style, 1px solid var(--layera-border-default))',
-          transition: 'var(--layera-transition-smooth, all 0.2s ease-in-out)',
-          backgroundColor: isClickable ? 'var(--layera-bg-primary)' : 'var(--layera-bg-secondary)',
-          textAlign: 'var(--layera-text-align-left, left)', // Ευθυγράμμιση προς τα αριστερά
+          border: 'var(--la-border-default-style, 1px solid var(--la-border-default))',
+          transition: 'var(--la-transition-smooth, all 0.2s ease-in-out)',
+          backgroundColor: isClickable ? 'var(--la-bg-primary)' : 'var(--la-bg-secondary)',
+          textAlign: 'var(--la-text-align-left, left)', // Ευθυγράμμιση προς τα αριστερά
           ...(isClickable && {
             ':hover': {
-              backgroundColor: 'var(--layera-bg-secondary)',
-              borderColor: 'var(--layera-border-hover)',
+              backgroundColor: 'var(--la-bg-secondary)',
+              borderColor: 'var(--la-border-hover)',
               transform: 'translateY(-1px)',
               boxShadow: BOX_SHADOW_SCALE.cardHover
             }
@@ -205,52 +205,52 @@ export function AddressBreakdownCard({
         }}
         onMouseEnter={(e) => {
           if (isClickable && !isLoading) {
-            e.currentTarget.style.backgroundColor = 'var(--layera-bg-hover)';
-            e.currentTarget.style.borderColor = 'var(--layera-border-hover)';
+            e.currentTarget.style.backgroundColor = 'var(--la-bg-hover)';
+            e.currentTarget.style.borderColor = 'var(--la-border-hover)';
             e.currentTarget.style.transform = 'translateY(-1px)';
             e.currentTarget.style.boxShadow = BOX_SHADOW_SCALE.cardHover;
           }
         }}
         onMouseLeave={(e) => {
           if (isClickable && !isLoading) {
-            e.currentTarget.style.backgroundColor = 'var(--layera-bg-primary)';
-            e.currentTarget.style.borderColor = 'var(--layera-border-default)';
+            e.currentTarget.style.backgroundColor = 'var(--la-bg-primary)';
+            e.currentTarget.style.borderColor = 'var(--la-border-default)';
             e.currentTarget.style.transform = 'translateY(0)';
             e.currentTarget.style.boxShadow = BOX_SHADOW_SCALE.none;
           }
         }}
       >
         <Box className="list-item-content" style={{
-          display: 'var(--layera-display-flex, flex)',
-          alignItems: 'var(--layera-align-center, center)',
-          justifyContent: 'var(--layera-justify-start, flex-start)', // Ευθυγράμμιση προς τα αριστερά
+          display: 'var(--la-display-flex, flex)',
+          alignItems: 'var(--la-align-center, center)',
+          justifyContent: 'var(--la-justify-start, flex-start)', // Ευθυγράμμιση προς τα αριστερά
           gap: `${SPACING_SCALE.SM}px`,
-          width: 'var(--layera-width-full, 100%)'
+          width: 'var(--la-width-full, 100%)'
         }}>
           {isLoading ? (
             <Spinner size="sm" variant="default" />
           ) : isClickable ? (
             <MapIcon className="list-icon" style={{
-              width: 'var(--layera-icon-size-md)',
-              height: 'var(--layera-icon-size-md)',
-              color: 'var(--layera-color-primary)'
+              width: 'var(--la-icon-size-md)',
+              height: 'var(--la-icon-size-md)',
+              color: 'var(--la-color-primary)'
             }} />
           ) : (
             <LocationIcon className="list-icon" style={{
-              width: 'var(--layera-icon-size-md)',
-              height: 'var(--layera-icon-size-md)',
-              color: 'var(--layera-text-secondary)'
+              width: 'var(--la-icon-size-md)',
+              height: 'var(--la-icon-size-md)',
+              color: 'var(--la-text-secondary)'
             }} />
           )}
           <span className="list-label" style={{
-            flex: 'var(--layera-flex-1, 1)',
-            fontSize: 'var(--layera-font-size-sm)',
-            color: isClickable ? 'var(--layera-text-primary)' : 'var(--layera-text-secondary)',
-            fontWeight: isClickable ? 'var(--layera-font-weight-medium, 500)' : 'var(--layera-font-weight-normal, 400)',
-            textAlign: 'var(--layera-text-align-left, left)', // Ευθυγράμμιση κειμένου προς τα αριστερά
-            whiteSpace: 'var(--layera-white-space-nowrap, nowrap)',
-            overflow: 'var(--layera-overflow-hidden, hidden)',
-            textOverflow: 'var(--layera-text-overflow-ellipsis, ellipsis)'
+            flex: 'var(--la-flex-1, 1)',
+            fontSize: 'var(--la-font-size-sm)',
+            color: isClickable ? 'var(--la-text-primary)' : 'var(--la-text-secondary)',
+            fontWeight: isClickable ? 'var(--la-font-weight-medium, 500)' : 'var(--la-font-weight-normal, 400)',
+            textAlign: 'var(--la-text-align-left, left)', // Ευθυγράμμιση κειμένου προς τα αριστερά
+            whiteSpace: 'var(--la-white-space-nowrap, nowrap)',
+            overflow: 'var(--la-overflow-hidden, hidden)',
+            textOverflow: 'var(--la-text-overflow-ellipsis, ellipsis)'
           }}>
             {component.label}
           </span>
@@ -258,18 +258,18 @@ export function AddressBreakdownCard({
         {isLoading && (
           <Box className="loading-indicator" style={{
             marginTop: `${SPACING_SCALE.XS}px`,
-            fontSize: 'var(--layera-font-size-xs)',
-            color: 'var(--layera-text-secondary)',
-            display: 'var(--layera-display-flex, flex)',
-            alignItems: 'var(--layera-align-center, center)',
+            fontSize: 'var(--la-font-size-xs)',
+            color: 'var(--la-text-secondary)',
+            display: 'var(--la-display-flex, flex)',
+            alignItems: 'var(--la-align-center, center)',
             gap: `${SPACING_SCALE.SM}px`
           }}>
             <span>Αναζήτηση περιγράμματος...</span>
             <Text
               as="span"
-              fontWeight="var(--layera-font-weight-medium, 500)"
-              color="var(--layera-color-primary)"
-              minWidth="var(--layera-width-min-2rem, 2rem)"
+              fontWeight="var(--la-font-weight-medium, 500)"
+              color="var(--la-color-primary)"
+              minWidth="var(--la-width-min-2rem, 2rem)"
             >
               {loadingTimer}s
             </Text>
@@ -323,10 +323,10 @@ export function AddressBreakdownCard({
       {/* Instruction text μία φορά στην κορυφή */}
       {!isLoading && visibleComponents.some(c => c.clickable) && finalConfig.enableBoundarySearch && (
         <Box style={{
-          fontSize: 'var(--layera-font-size-sm)',
-          color: 'var(--layera-text-secondary)',
+          fontSize: 'var(--la-font-size-sm)',
+          color: 'var(--la-text-secondary)',
           marginBottom: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
-          fontStyle: 'var(--layera-font-style-italic, italic)'
+          fontStyle: 'var(--la-font-style-italic, italic)'
         }}>
           {t('clickToShowBoundary')}
         </Box>

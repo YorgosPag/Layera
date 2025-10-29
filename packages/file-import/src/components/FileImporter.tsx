@@ -148,14 +148,14 @@ export const FileImporter: React.FC<FileImporterProps> = ({
               accept={formatFileTypes()}
               onChange={handleFileInputChange}
               disabled={disabled || isProcessing}
-              display="var(--layera-display-none, none)"
+              display="var(--la-display-none, none)"
               id="file-input-compact"
             />
             <label htmlFor="file-input-compact">
               <Button
                 variant="primary"
                 disabled={disabled || isProcessing}
-                cursor={disabled || isProcessing ? 'var(--layera-cursor-not-allowed, not-allowed)' : 'var(--layera-cursor-pointer, pointer)'}
+                cursor={disabled || isProcessing ? 'var(--la-cursor-not-allowed, not-allowed)' : 'var(--la-cursor-pointer, pointer)'}
               >
                 {isProcessing ? (
                   <>
@@ -169,7 +169,7 @@ export const FileImporter: React.FC<FileImporterProps> = ({
             </label>
 
             {showProgress && isProcessing && (
-              <Box marginTop={`${SPACING_SCALE.SM}px`} fontSize="var(--layera-font-size-xs)" color="var(--layera-text-secondary)">
+              <Box marginTop={`${SPACING_SCALE.SM}px`} fontSize="var(--la-font-size-xs)" color="var(--la-text-secondary)">
                 {t('file.import.progress')}: {Math.round(progress)}%
               </Box>
             )}
@@ -182,7 +182,7 @@ export const FileImporter: React.FC<FileImporterProps> = ({
   return (
     <SafeErrorBoundary fallback={<Box>{t('file.import.error.boundary')}</Box>}>
       <BaseCard className="file-importer">
-        <Box padding={`${SPACING_SCALE.MD}px`} borderBottom="1px solid var(--layera-border-default)">
+        <Box padding={`${SPACING_SCALE.MD}px`} borderBottom="1px solid var(--la-border-default)">
           <Heading as="h3">
             {title || t('file.import.title')}
           </Heading>
@@ -210,7 +210,7 @@ export const FileImporter: React.FC<FileImporterProps> = ({
               accept={formatFileTypes()}
               onChange={handleFileInputChange}
               disabled={disabled || isProcessing}
-              display="var(--layera-display-none, none)"
+              display="var(--la-display-none, none)"
               id="file-input"
             />
             <label htmlFor="file-input">
@@ -218,7 +218,7 @@ export const FileImporter: React.FC<FileImporterProps> = ({
                 variant="primary"
                 size="lg"
                 disabled={disabled || isProcessing}
-                cursor={disabled || isProcessing ? 'var(--layera-cursor-not-allowed, not-allowed)' : 'var(--layera-cursor-pointer, pointer)'}
+                cursor={disabled || isProcessing ? 'var(--la-cursor-not-allowed, not-allowed)' : 'var(--la-cursor-pointer, pointer)'}
               >
                 {isProcessing ? (
                   <>
@@ -234,17 +234,17 @@ export const FileImporter: React.FC<FileImporterProps> = ({
 
           {/* Progress display */}
           {showProgress && isProcessing && (
-            <Box marginTop={`${SPACING_SCALE.MD}px`} padding={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px`} backgroundColor="var(--layera-bg-secondary)" borderRadius={`${BORDER_RADIUS_SCALE.XS}px`}>
-              <Box fontSize="var(--layera-font-size-sm)" marginBottom={`${SPACING_SCALE.XS - 4}px`}>
+            <Box marginTop={`${SPACING_SCALE.MD}px`} padding={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px`} backgroundColor="var(--la-bg-secondary)" borderRadius={`${BORDER_RADIUS_SCALE.XS}px`}>
+              <Box fontSize="var(--la-font-size-sm)" marginBottom={`${SPACING_SCALE.XS - 4}px`}>
                 {t('file.import.progress')}: {Math.round(progress)}%
               </Box>
-              <Box width="100%" height="var(--layera-spacing-xs)" backgroundColor="var(--layera-bg-tertiary)" borderRadius={`${BORDER_RADIUS_SCALE.XXS}px`}>
+              <Box width="100%" height="var(--la-spacing-xs)" backgroundColor="var(--la-bg-tertiary)" borderRadius={`${BORDER_RADIUS_SCALE.XXS}px`}>
                 <Box
                   width={`${progress}%`}
-                  height="var(--layera-height-full, 100%)"
-                  backgroundColor="var(--layera-color-primary)"
+                  height="var(--la-height-full, 100%)"
+                  backgroundColor="var(--la-color-primary)"
                   borderRadius={`${BORDER_RADIUS_SCALE.XXS}px`}
-                  transition="var(--layera-transition-width, width 0.3s ease)"
+                  transition="var(--la-transition-width, width 0.3s ease)"
                 />
               </Box>
             </Box>

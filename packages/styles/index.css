@@ -17,61 +17,9 @@
 .layera-flex { display: flex; }
 
 /* Enterprise CSS Variables for LEGO System */
-:root {
-  /* Layera Color Palette */
-  --la-bg-primary: #ffffff;
-  --la-bg-secondary: #f8fafc;
-  --la-bg-tertiary: #f1f5f9;
+/* Όλα τα tokens διαχειρίζονται από packages/tokens/ - Single Source of Truth */
 
-  --la-text-primary: #1e293b;
-  --la-text-secondary: #64748b;
-  --la-text-tertiary: #94a3b8;
-
-  --la-border-primary: #e2e8f0;
-  --la-border-secondary: #cbd5e1;
-
-  /* Semantic Colors */
-  --la-bg-info: #667eea;
-  --la-bg-success: #10b981;
-  --la-bg-warning: #f59e0b;
-  --la-bg-danger: #ef4444;
-
-  --la-text-on-info: #ffffff;
-  --la-text-on-success: #ffffff;
-  --la-text-on-warning: #ffffff;
-  --la-text-on-danger: #ffffff;
-
-  /* Spacing Scale */
-  --la-size-0: 0;
-  --la-size-1: 0.25rem;
-  --la-size-2: 0.5rem;
-  --la-size-4: 1rem;
-  --la-size-8: 2rem;
-
-  /* Z-Index Scale */
-  --la-z-dropdown: 1000;
-  --la-z-sticky: 1020;
-  --la-z-fixed: 1030;
-  --la-z-modal-backdrop: 1040;
-  --la-z-modal: 1050;
-  --la-z-popover: 1060;
-  --la-z-tooltip: 1070;
-  --la-z-toast: 1080;
-}
-
-/* Dark Theme Support */
-[data-theme="dark"] {
-  --la-bg-primary: #0f172a;
-  --la-bg-secondary: #1e293b;
-  --la-bg-tertiary: #334155;
-
-  --la-text-primary: #f8fafc;
-  --la-text-secondary: #cbd5e1;
-  --la-text-tertiary: #94a3b8;
-
-  --la-border-primary: #334155;
-  --la-border-secondary: #475569;
-}
+/* Dark Theme Support - διαχειρίζεται από packages/tokens/ */
 
 /* Enterprise Base Styles */
 * {

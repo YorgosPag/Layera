@@ -4,27 +4,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Global Layera Theme Variables - Enterprise Standards */
-
-  /* Application Colors - Light Theme */
-  --la-bg-primary: var(--la-color-white);
-  --la-bg-secondary: var(--la-color-slate-50);
-  --la-bg-tertiary: var(--la-color-slate-100);
-  --la-bg-success: var(--la-color-emerald-500);
-  --la-bg-success-light: var(--la-color-emerald-100);
-  --la-bg-info: var(--la-color-blue-500);
-  --la-bg-warning: var(--la-color-amber-500);
-  --la-bg-danger: var(--la-color-red-500);
-  --la-text-primary: var(--la-color-slate-800);
-  --la-text-secondary: var(--la-color-slate-500);
-  --la-text-tertiary: var(--la-color-slate-400);
-  --la-text-on-dark: var(--la-color-white);
-  --la-text-on-success: var(--la-color-white);
-  --la-text-on-info: var(--la-color-white);
-  --la-border-primary: var(--la-color-slate-200);
-  --la-border-secondary: var(--la-color-slate-300);
-  --la-border-tertiary: var(--la-color-slate-400);
-
   /* Theme Switcher Design Tokens - Enterprise Standards */
 
   /* Base Properties */
@@ -75,25 +54,6 @@
 
 /* Manual Dark Theme (με class) */
 .dark {
-  /* Global Application Colors - Dark Theme */
-  --la-bg-primary: var(--la-color-slate-950);
-  --la-bg-secondary: var(--la-color-slate-800);
-  --la-bg-tertiary: var(--la-color-slate-700);
-  --la-bg-success: var(--la-color-emerald-600);
-  --la-bg-success-light: var(--la-color-emerald-900);
-  --la-bg-info: var(--la-color-blue-600);
-  --la-bg-warning: var(--la-color-amber-600);
-  --la-bg-danger: var(--la-color-red-600);
-  --la-text-primary: var(--la-color-slate-100);
-  --la-text-secondary: var(--la-color-slate-300);
-  --la-text-tertiary: var(--la-color-slate-400);
-  --la-text-on-dark: var(--la-color-white);
-  --la-text-on-success: var(--la-color-white);
-  --la-text-on-info: var(--la-color-white);
-  --la-border-primary: var(--la-color-slate-700);
-  --la-border-secondary: var(--la-color-slate-600);
-  --la-border-tertiary: var(--la-color-slate-500);
-
   /* Theme Switcher Colors */
   --la-theme-switcher-bg: var(--la-color-slate-800);
   --la-theme-switcher-color: var(--la-color-slate-100);

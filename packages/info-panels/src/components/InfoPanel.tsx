@@ -209,11 +209,11 @@ export const InfoPanel = React.memo<InfoPanelProps>(({
         position: 'fixed',
         ...mobileStyles.position,
         backgroundColor: categoryTheme.backgroundColor,
-        border: `var(--layera-border-width-default, 1px) solid ${categoryTheme.borderColor}`,
+        border: `var(--la-border-width-default, 1px) solid ${categoryTheme.borderColor}`,
         boxShadow: BOX_SHADOW_SCALE.cardDefault,
         borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
         padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XL + SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.MD}px`,
-        minHeight: 'var(--layera-min-height-auto, auto)',
+        minHeight: 'var(--la-min-height-auto, auto)',
         maxHeight: mobileStyles.maxHeight,
         overflow: mobileStyles.overflow as 'auto',
         zIndex: mobileStyles.zIndex
@@ -230,14 +230,14 @@ export const InfoPanel = React.memo<InfoPanelProps>(({
           right: `${SPACING_SCALE.XS}px`,
           width: `${SPACING_SCALE.LG}px`,
           height: `${SPACING_SCALE.LG}px`,
-          border: 'var(--layera-border-none, none)',
+          border: 'var(--la-border-none, none)',
           borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
           backgroundColor: 'var(--color-bg-surface-overlay)',
-          color: 'var(--layera-color-white, #fff)',
-          fontWeight: 'var(--layera-font-bold)',
-          lineHeight: 'var(--layera-line-height-none, 1)',
+          color: 'var(--la-color-white, #fff)',
+          fontWeight: 'var(--la-font-bold)',
+          lineHeight: 'var(--la-line-height-none, 1)',
           zIndex: mobileStyles.zIndex + 1,
-          cursor: 'var(--layera-cursor-pointer, pointer)'
+          cursor: 'var(--la-cursor-pointer, pointer)'
         }}
         onClick={onClose}
       >
@@ -251,7 +251,7 @@ export const InfoPanel = React.memo<InfoPanelProps>(({
           weight="bold"
           color={categoryTheme.textColor}
           marginBottom={`${SPACING_SCALE.SM}px`}
-          display="var(--layera-display-block, block)"
+          display="var(--la-display-block, block)"
         >
           {displayContent.title}
         </Text>
@@ -265,7 +265,7 @@ export const InfoPanel = React.memo<InfoPanelProps>(({
         <Box
           className="content-text"
           color={categoryTheme.textColor}
-          fontSize="var(--layera-text-sm)"
+          fontSize="var(--la-text-sm)"
           lineHeight="1.4"
           dangerouslySetInnerHTML={{ __html: displayContent.content }}
         />

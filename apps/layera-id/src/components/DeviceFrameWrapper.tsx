@@ -61,7 +61,7 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
     return {
       width: '100%',
       height: '100%',
-      backgroundColor: 'var(--layera-bg-primary)',
+      backgroundColor: 'var(--la-bg-primary)',
       borderRadius: `${specs.borderRadius - 8}px`,
       overflow: 'hidden',
       position: 'relative'
@@ -76,9 +76,9 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
       top: '0',
       left: '50%',
       transform: 'translateX(-50%)',
-      width: 'var(--layera-device-notch-width, 209px)',
-      height: 'var(--layera-device-notch-height, 30px)',
-      backgroundColor: 'var(--layera-device-notch-color, #000)',
+      width: 'var(--la-device-notch-width, 209px)',
+      height: 'var(--la-device-notch-height, 30px)',
+      backgroundColor: 'var(--la-device-notch-color, #000)',
       borderBottomLeftRadius: `${BORDER_RADIUS_SCALE.LAYOUT_SM}px`,
       borderBottomRightRadius: `${BORDER_RADIUS_SCALE.LAYOUT_SM}px`,
       zIndex: 10
@@ -93,9 +93,9 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
       bottom: `${SPACING_SCALE.SM}px`,
       left: '50%',
       transform: 'translateX(-50%)',
-      width: 'var(--layera-device-home-width, 134px)',
-      height: 'var(--layera-device-home-height, 5px)',
-      backgroundColor: 'var(--layera-device-notch-color, #000)',
+      width: 'var(--la-device-home-width, 134px)',
+      height: 'var(--la-device-home-height, 5px)',
+      backgroundColor: 'var(--la-device-notch-color, #000)',
       borderRadius: `${BORDER_RADIUS_SCALE.PILL}px`,
       zIndex: 10
     };
@@ -111,7 +111,7 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
         justify="center"
         align="flex-start"
         minHeight="100vh"
-        backgroundColor="var(--layera-color-neutral-100)"
+        backgroundColor="var(--la-color-neutral-100)"
         padding={`100px ${SPACING_SCALE.LG}px ${SPACING_SCALE.LG}px ${SPACING_SCALE.LG}px`}
         overflow="auto"
       >

@@ -73,7 +73,12 @@
       "Bash(pnpm --filter @layera/map-core build)",
       "Bash(start http://localhost:3004)",
       "Bash(start http://localhost:3002)",
-      "Bash(start http://localhost:3011)"
+      "Bash(start http://localhost:3011)",
+      "Bash(move scriptsvalidate-css-tokens.js scriptsvalidate-enterprise-policies.js)",
+      "Bash(if [ -f \"scripts/validate-enterprise-policies.js\" ])",
+      "Bash(then echo \"❌ ΣΦΑΛΜΑ: Το διπλότυπο script υπάρχει ακόμη!\")",
+      "Bash(else echo \"✅ OK: Το διπλότυπο script έχει διαγραφεί\")",
+      "Bash(chmod:*)"
     ],
     "deny": [],
     "ask": []

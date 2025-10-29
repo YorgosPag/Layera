@@ -109,13 +109,13 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({
 
   const containerStyles: React.CSSProperties = {
     position: 'fixed',
-    top: 'var(--layera-cards-top)',
-    left: 'var(--layera-side-margins)',
-    right: 'var(--layera-side-margins)',
-    zIndex: 'var(--layera-z-popover)', // Enterprise CSS Custom Property - Single Source of Truth
+    top: 'var(--la-cards-top)',
+    left: 'var(--la-side-margins)',
+    right: 'var(--la-side-margins)',
+    zIndex: 'var(--la-z-popover)', // Enterprise CSS Custom Property - Single Source of Truth
     display: 'flex',
     flexDirection: 'column',
-    gap: 'var(--layera-cards-gap)',
+    gap: 'var(--la-cards-gap)',
     padding: '0'
   };
 

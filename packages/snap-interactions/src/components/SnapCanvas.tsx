@@ -144,7 +144,7 @@ export const SnapCanvas: React.FC<SnapCanvasProps> = ({
     ctx.clearRect(0, 0, width, height);
 
     // Background
-    ctx.fillStyle = backgroundColor || (theme === 'dark' ? 'var(--layera-color-slate-700, #2c3e50)' : 'var(--layera-color-gray-100, #ecf0f1)');
+    ctx.fillStyle = backgroundColor || (theme === 'dark' ? 'var(--la-color-slate-700, #2c3e50)' : 'var(--la-color-gray-100, #ecf0f1)');
     ctx.fillRect(0, 0, width, height);
 
     // Render geometries
@@ -160,11 +160,11 @@ export const SnapCanvas: React.FC<SnapCanvasProps> = ({
     const isSelected = canvasState.selectedGeometry?.id === geometry.id;
     const isHovered = canvasState.hoverGeometry?.id === geometry.id;
 
-    ctx.strokeStyle = isSelected ? 'var(--layera-color-red-600, #e74c3c)' : isHovered ? 'var(--layera-color-blue-600, #3498db)' :
-                     theme === 'dark' ? 'var(--layera-color-gray-100, #ecf0f1)' : 'var(--layera-color-slate-700, #2c3e50)';
+    ctx.strokeStyle = isSelected ? 'var(--la-color-red-600, #e74c3c)' : isHovered ? 'var(--la-color-blue-600, #3498db)' :
+                     theme === 'dark' ? 'var(--la-color-gray-100, #ecf0f1)' : 'var(--la-color-slate-700, #2c3e50)';
     ctx.lineWidth = isSelected ? 3 : isHovered ? 2 : 1;
     ctx.fillStyle = geometry.layer === 'osm_buildings' ?
-                   'var(--layera-color-blue-600-alpha-20, rgba(52, 152, 219, 0.2))' : 'transparent';
+                   'var(--la-color-blue-600-alpha-20, rgba(52, 152, 219, 0.2))' : 'transparent';
 
     // Render based on geometry type
     switch (geometry.type) {
@@ -394,7 +394,7 @@ export const SnapCanvas: React.FC<SnapCanvasProps> = ({
             left={0}
             right={0}
             bottom={0}
-            backgroundColor="var(--layera-overlay-backdrop, rgba(0,0,0,0.5))"
+            backgroundColor="var(--la-overlay-backdrop, rgba(0,0,0,0.5))"
             display="flex"
             alignItems="center"
             justifyContent="center"

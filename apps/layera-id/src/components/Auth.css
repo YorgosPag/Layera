@@ -14,13 +14,13 @@
 }
 
 .error-message {
-  background: color-mix(in srgb, var(--layera-bg-danger) 10%, transparent);
-  color: var(--layera-bg-danger);
+  background: color-mix(in srgb, var(--la-bg-danger) 10%, transparent);
+  color: var(--la-bg-danger);
   padding: 12px;
   border-radius: 6px;
   margin-bottom: 20px;
   font-size: 14px;
-  border: 1px solid color-mix(in srgb, var(--layera-bg-danger) 30%, transparent);
+  border: 1px solid color-mix(in srgb, var(--la-bg-danger) 30%, transparent);
 }
 
 .form-group {
@@ -30,7 +30,7 @@
 .form-group label {
   display: block;
   margin-bottom: 8px;
-  color: var(--layera-text-secondary);
+  color: var(--la-text-secondary);
   font-weight: 500;
   font-size: 14px;
 }
@@ -38,7 +38,7 @@
 .form-group input {
   width: 100%;
   padding: 12px;
-  border: 1px solid var(--layera-border-primary);
+  border: 1px solid var(--la-border-primary);
   border-radius: 6px;
   font-size: 16px;
   transition: border-color 0.3s, box-shadow 0.3s;
@@ -54,8 +54,8 @@
 .submit-button {
   width: 100%;
   padding: 14px;
-  background: var(--layera-bg-info);
-  color: var(--layera-text-on-info);
+  background: var(--la-bg-info);
+  color: var(--la-text-on-info);
   border: none;
   border-radius: 6px;
   font-size: 16px;
@@ -78,7 +78,7 @@
   margin: 25px 0;
   text-align: center;
   position: relative;
-  color: var(--layera-text-secondary);
+  color: var(--la-text-secondary);
   font-size: 14px;
 }
 
@@ -89,12 +89,12 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: var(--layera-border-primary);
+  background: var(--la-border-primary);
   z-index: 1;
 }
 
 .divider span {
-  background: var(--layera-bg-primary);
+  background: var(--la-bg-primary);
   padding: 0 15px;
   position: relative;
   z-index: 2;
@@ -108,7 +108,7 @@
 
 .auth-links p {
   margin: 10px 0;
-  color: var(--layera-text-secondary);
+  color: var(--la-text-secondary);
 }
 
 .auth-links a {

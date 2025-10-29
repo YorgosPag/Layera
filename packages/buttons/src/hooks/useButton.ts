@@ -49,195 +49,195 @@ export const useButton = () => {
     },
     variants: {
       primary: {
-        background: 'var(--layera-bg-info)',
-        color: 'var(--layera-text-on-info)',
-        border: 'var(--layera-bg-info)',
+        background: 'var(--la-bg-info)',
+        color: 'var(--la-text-on-info)',
+        border: 'var(--la-bg-info)',
         hover: {
-          background: 'color-mix(in srgb, var(--layera-bg-info) 80%, black 20%)',
-          color: 'var(--layera-text-on-info)',
-          border: 'color-mix(in srgb, var(--layera-bg-info) 80%, black 20%)'
+          background: 'color-mix(in srgb, var(--la-bg-info) 80%, black 20%)',
+          color: 'var(--la-text-on-info)',
+          border: 'color-mix(in srgb, var(--la-bg-info) 80%, black 20%)'
         },
         active: {
-          background: 'color-mix(in srgb, var(--layera-bg-info) 70%, black 30%)',
-          color: 'var(--layera-text-on-info)',
-          border: 'color-mix(in srgb, var(--layera-bg-info) 70%, black 30%)'
+          background: 'color-mix(in srgb, var(--la-bg-info) 70%, black 30%)',
+          color: 'var(--la-text-on-info)',
+          border: 'color-mix(in srgb, var(--la-bg-info) 70%, black 30%)'
         },
         focus: {
-          outline: '2px solid color-mix(in srgb, var(--layera-bg-info) 50%, transparent 50%)',
-          ring: '0 0 0 2px color-mix(in srgb, var(--layera-bg-info) 30%, transparent 70%)'
+          outline: '2px solid color-mix(in srgb, var(--la-bg-info) 50%, transparent 50%)',
+          ring: '0 0 0 2px color-mix(in srgb, var(--la-bg-info) 30%, transparent 70%)'
         },
         disabled: {
-          background: 'var(--layera-bg-tertiary)',
-          color: 'var(--layera-text-tertiary)',
-          border: 'var(--layera-border-primary)'
+          background: 'var(--la-bg-tertiary)',
+          color: 'var(--la-text-tertiary)',
+          border: 'var(--la-border-primary)'
         }
       },
       secondary: {
-        background: 'var(--layera-text-secondary)',
-        color: 'var(--layera-text-on-dark)',
-        border: 'var(--layera-text-secondary)',
+        background: 'var(--la-text-secondary)',
+        color: 'var(--la-text-on-dark)',
+        border: 'var(--la-text-secondary)',
         hover: {
-          background: 'color-mix(in srgb, var(--layera-text-secondary) 80%, black 20%)',
-          color: 'var(--layera-text-on-dark)',
-          border: 'color-mix(in srgb, var(--layera-text-secondary) 80%, black 20%)'
+          background: 'color-mix(in srgb, var(--la-text-secondary) 80%, black 20%)',
+          color: 'var(--la-text-on-dark)',
+          border: 'color-mix(in srgb, var(--la-text-secondary) 80%, black 20%)'
         },
         active: {
-          background: 'color-mix(in srgb, var(--layera-text-secondary) 70%, black 30%)',
-          color: 'var(--layera-text-on-dark)',
-          border: 'color-mix(in srgb, var(--layera-text-secondary) 70%, black 30%)'
+          background: 'color-mix(in srgb, var(--la-text-secondary) 70%, black 30%)',
+          color: 'var(--la-text-on-dark)',
+          border: 'color-mix(in srgb, var(--la-text-secondary) 70%, black 30%)'
         },
         focus: {
-          outline: '2px solid color-mix(in srgb, var(--layera-text-secondary) 50%, transparent 50%)',
-          ring: '0 0 0 2px color-mix(in srgb, var(--layera-text-secondary) 30%, transparent 70%)'
+          outline: '2px solid color-mix(in srgb, var(--la-text-secondary) 50%, transparent 50%)',
+          ring: '0 0 0 2px color-mix(in srgb, var(--la-text-secondary) 30%, transparent 70%)'
         },
         disabled: {
-          background: 'var(--layera-bg-tertiary)',
-          color: 'var(--layera-text-tertiary)',
-          border: 'var(--layera-border-primary)'
+          background: 'var(--la-bg-tertiary)',
+          color: 'var(--la-text-tertiary)',
+          border: 'var(--la-border-primary)'
         }
       },
       outline: {
         background: 'transparent',
-        color: 'var(--layera-bg-info)',
-        border: 'var(--layera-bg-info)',
+        color: 'var(--la-bg-info)',
+        border: 'var(--la-bg-info)',
         hover: {
-          background: 'var(--layera-bg-info)',
-          color: 'var(--layera-text-on-info)',
-          border: 'var(--layera-bg-info)'
+          background: 'var(--la-bg-info)',
+          color: 'var(--la-text-on-info)',
+          border: 'var(--la-bg-info)'
         },
         active: {
-          background: 'color-mix(in srgb, var(--layera-bg-info) 70%, black 30%)',
-          color: 'var(--layera-text-on-info)',
-          border: 'color-mix(in srgb, var(--layera-bg-info) 70%, black 30%)'
+          background: 'color-mix(in srgb, var(--la-bg-info) 70%, black 30%)',
+          color: 'var(--la-text-on-info)',
+          border: 'color-mix(in srgb, var(--la-bg-info) 70%, black 30%)'
         },
         focus: {
-          outline: '2px solid color-mix(in srgb, var(--layera-bg-info) 50%, transparent 50%)',
-          ring: '0 0 0 2px color-mix(in srgb, var(--layera-bg-info) 30%, transparent 70%)'
+          outline: '2px solid color-mix(in srgb, var(--la-bg-info) 50%, transparent 50%)',
+          ring: '0 0 0 2px color-mix(in srgb, var(--la-bg-info) 30%, transparent 70%)'
         },
         disabled: {
-          background: 'var(--layera-bg-tertiary)',
-          color: 'var(--layera-text-tertiary)',
-          border: 'var(--layera-border-primary)'
+          background: 'var(--la-bg-tertiary)',
+          color: 'var(--la-text-tertiary)',
+          border: 'var(--la-border-primary)'
         }
       },
       ghost: {
         background: 'transparent',
-        color: 'var(--layera-text-primary)',
+        color: 'var(--la-text-primary)',
         border: 'transparent',
         hover: {
-          background: 'var(--layera-bg-tertiary)',
-          color: 'var(--layera-text-primary)',
+          background: 'var(--la-bg-tertiary)',
+          color: 'var(--la-text-primary)',
           border: 'transparent'
         },
         active: {
-          background: 'var(--layera-bg-secondary)',
-          color: 'var(--layera-text-primary)',
+          background: 'var(--la-bg-secondary)',
+          color: 'var(--la-text-primary)',
           border: 'transparent'
         },
         focus: {
-          outline: '2px solid var(--layera-border-secondary)',
-          ring: '0 0 0 2px color-mix(in srgb, var(--layera-border-primary) 30%, transparent 70%)'
+          outline: '2px solid var(--la-border-secondary)',
+          ring: '0 0 0 2px color-mix(in srgb, var(--la-border-primary) 30%, transparent 70%)'
         },
         disabled: {
-          background: 'var(--layera-bg-tertiary)',
-          color: 'var(--layera-text-tertiary)',
-          border: 'var(--layera-border-primary)'
+          background: 'var(--la-bg-tertiary)',
+          color: 'var(--la-text-tertiary)',
+          border: 'var(--la-border-primary)'
         }
       },
       danger: {
-        background: 'var(--layera-bg-danger)',
-        color: 'var(--layera-text-on-dark)',
-        border: 'var(--layera-bg-danger)',
+        background: 'var(--la-bg-danger)',
+        color: 'var(--la-text-on-dark)',
+        border: 'var(--la-bg-danger)',
         hover: {
-          background: 'color-mix(in srgb, var(--layera-bg-danger) 80%, black 20%)',
-          color: 'var(--layera-text-on-dark)',
-          border: 'color-mix(in srgb, var(--layera-bg-danger) 80%, black 20%)'
+          background: 'color-mix(in srgb, var(--la-bg-danger) 80%, black 20%)',
+          color: 'var(--la-text-on-dark)',
+          border: 'color-mix(in srgb, var(--la-bg-danger) 80%, black 20%)'
         },
         active: {
-          background: 'color-mix(in srgb, var(--layera-bg-danger) 70%, black 30%)',
-          color: 'var(--layera-text-on-dark)',
-          border: 'color-mix(in srgb, var(--layera-bg-danger) 70%, black 30%)'
+          background: 'color-mix(in srgb, var(--la-bg-danger) 70%, black 30%)',
+          color: 'var(--la-text-on-dark)',
+          border: 'color-mix(in srgb, var(--la-bg-danger) 70%, black 30%)'
         },
         focus: {
-          outline: '2px solid color-mix(in srgb, var(--layera-bg-danger) 50%, transparent 50%)',
-          ring: '0 0 0 2px color-mix(in srgb, var(--layera-bg-danger) 30%, transparent 70%)'
+          outline: '2px solid color-mix(in srgb, var(--la-bg-danger) 50%, transparent 50%)',
+          ring: '0 0 0 2px color-mix(in srgb, var(--la-bg-danger) 30%, transparent 70%)'
         },
         disabled: {
-          background: 'var(--layera-bg-tertiary)',
-          color: 'var(--layera-text-tertiary)',
-          border: 'var(--layera-border-primary)'
+          background: 'var(--la-bg-tertiary)',
+          color: 'var(--la-text-tertiary)',
+          border: 'var(--la-border-primary)'
         }
       },
       success: {
-        background: 'var(--layera-bg-success)',
-        color: 'var(--layera-text-on-success)',
-        border: 'var(--layera-bg-success)',
+        background: 'var(--la-bg-success)',
+        color: 'var(--la-text-on-success)',
+        border: 'var(--la-bg-success)',
         hover: {
-          background: 'color-mix(in srgb, var(--layera-bg-success) 80%, black 20%)',
-          color: 'var(--layera-text-on-success)',
-          border: 'color-mix(in srgb, var(--layera-bg-success) 80%, black 20%)'
+          background: 'color-mix(in srgb, var(--la-bg-success) 80%, black 20%)',
+          color: 'var(--la-text-on-success)',
+          border: 'color-mix(in srgb, var(--la-bg-success) 80%, black 20%)'
         },
         active: {
-          background: 'color-mix(in srgb, var(--layera-bg-success) 70%, black 30%)',
-          color: 'var(--layera-text-on-success)',
-          border: 'color-mix(in srgb, var(--layera-bg-success) 70%, black 30%)'
+          background: 'color-mix(in srgb, var(--la-bg-success) 70%, black 30%)',
+          color: 'var(--la-text-on-success)',
+          border: 'color-mix(in srgb, var(--la-bg-success) 70%, black 30%)'
         },
         focus: {
-          outline: '2px solid color-mix(in srgb, var(--layera-bg-success) 50%, transparent 50%)',
-          ring: '0 0 0 2px color-mix(in srgb, var(--layera-bg-success) 30%, transparent 70%)'
+          outline: '2px solid color-mix(in srgb, var(--la-bg-success) 50%, transparent 50%)',
+          ring: '0 0 0 2px color-mix(in srgb, var(--la-bg-success) 30%, transparent 70%)'
         },
         disabled: {
-          background: 'var(--layera-bg-tertiary)',
-          color: 'var(--layera-text-tertiary)',
-          border: 'var(--layera-border-primary)'
+          background: 'var(--la-bg-tertiary)',
+          color: 'var(--la-text-tertiary)',
+          border: 'var(--la-border-primary)'
         }
       },
       warning: {
-        background: 'var(--layera-bg-warning)',
-        color: 'var(--layera-text-on-dark)',
-        border: 'var(--layera-bg-warning)',
+        background: 'var(--la-bg-warning)',
+        color: 'var(--la-text-on-dark)',
+        border: 'var(--la-bg-warning)',
         hover: {
-          background: 'color-mix(in srgb, var(--layera-bg-warning) 80%, black 20%)',
-          color: 'var(--layera-text-on-dark)',
-          border: 'color-mix(in srgb, var(--layera-bg-warning) 80%, black 20%)'
+          background: 'color-mix(in srgb, var(--la-bg-warning) 80%, black 20%)',
+          color: 'var(--la-text-on-dark)',
+          border: 'color-mix(in srgb, var(--la-bg-warning) 80%, black 20%)'
         },
         active: {
-          background: 'color-mix(in srgb, var(--layera-bg-warning) 70%, black 30%)',
-          color: 'var(--layera-text-on-dark)',
-          border: 'color-mix(in srgb, var(--layera-bg-warning) 70%, black 30%)'
+          background: 'color-mix(in srgb, var(--la-bg-warning) 70%, black 30%)',
+          color: 'var(--la-text-on-dark)',
+          border: 'color-mix(in srgb, var(--la-bg-warning) 70%, black 30%)'
         },
         focus: {
-          outline: '2px solid color-mix(in srgb, var(--layera-bg-warning) 50%, transparent 50%)',
-          ring: '0 0 0 2px color-mix(in srgb, var(--layera-bg-warning) 30%, transparent 70%)'
+          outline: '2px solid color-mix(in srgb, var(--la-bg-warning) 50%, transparent 50%)',
+          ring: '0 0 0 2px color-mix(in srgb, var(--la-bg-warning) 30%, transparent 70%)'
         },
         disabled: {
-          background: 'var(--layera-bg-tertiary)',
-          color: 'var(--layera-text-tertiary)',
-          border: 'var(--layera-border-primary)'
+          background: 'var(--la-bg-tertiary)',
+          color: 'var(--la-text-tertiary)',
+          border: 'var(--la-border-primary)'
         }
       },
       info: {
-        background: 'var(--layera-bg-info)',
-        color: 'var(--layera-text-on-info)',
-        border: 'var(--layera-bg-info)',
+        background: 'var(--la-bg-info)',
+        color: 'var(--la-text-on-info)',
+        border: 'var(--la-bg-info)',
         hover: {
-          background: 'color-mix(in srgb, var(--layera-bg-info) 80%, black 20%)',
-          color: 'var(--layera-text-on-info)',
-          border: 'color-mix(in srgb, var(--layera-bg-info) 80%, black 20%)'
+          background: 'color-mix(in srgb, var(--la-bg-info) 80%, black 20%)',
+          color: 'var(--la-text-on-info)',
+          border: 'color-mix(in srgb, var(--la-bg-info) 80%, black 20%)'
         },
         active: {
-          background: 'color-mix(in srgb, var(--layera-bg-info) 70%, black 30%)',
-          color: 'var(--layera-text-on-info)',
-          border: 'color-mix(in srgb, var(--layera-bg-info) 70%, black 30%)'
+          background: 'color-mix(in srgb, var(--la-bg-info) 70%, black 30%)',
+          color: 'var(--la-text-on-info)',
+          border: 'color-mix(in srgb, var(--la-bg-info) 70%, black 30%)'
         },
         focus: {
-          outline: '2px solid color-mix(in srgb, var(--layera-bg-info) 50%, transparent 50%)',
-          ring: '0 0 0 2px color-mix(in srgb, var(--layera-bg-info) 30%, transparent 70%)'
+          outline: '2px solid color-mix(in srgb, var(--la-bg-info) 50%, transparent 50%)',
+          ring: '0 0 0 2px color-mix(in srgb, var(--la-bg-info) 30%, transparent 70%)'
         },
         disabled: {
-          background: 'var(--layera-bg-tertiary)',
-          color: 'var(--layera-text-tertiary)',
-          border: 'var(--layera-border-primary)'
+          background: 'var(--la-bg-tertiary)',
+          color: 'var(--la-text-tertiary)',
+          border: 'var(--la-border-primary)'
         }
       }
     },
@@ -321,36 +321,36 @@ export const useButton = () => {
 
     // Size properties
     Object.entries(buttonTokens.sizes).forEach(([size, tokens]) => {
-      properties[`--layera-btn-${size}-height`] = tokens.height;
-      properties[`--layera-btn-${size}-padding`] = tokens.padding;
-      properties[`--layera-btn-${size}-font-size`] = tokens.fontSize;
-      properties[`--layera-btn-${size}-icon-size`] = tokens.iconSize;
-      properties[`--layera-btn-${size}-gap`] = tokens.gap;
+      properties[`--la-btn-${size}-height`] = tokens.height;
+      properties[`--la-btn-${size}-padding`] = tokens.padding;
+      properties[`--la-btn-${size}-font-size`] = tokens.fontSize;
+      properties[`--la-btn-${size}-icon-size`] = tokens.iconSize;
+      properties[`--la-btn-${size}-gap`] = tokens.gap;
     });
 
     // Variant properties
     Object.entries(buttonTokens.variants).forEach(([variant, tokens]) => {
-      properties[`--layera-btn-${variant}-bg`] = tokens.background;
-      properties[`--layera-btn-${variant}-color`] = tokens.color;
-      properties[`--layera-btn-${variant}-border`] = tokens.border;
-      properties[`--layera-btn-${variant}-hover-bg`] = tokens.hover.background;
-      properties[`--layera-btn-${variant}-hover-color`] = tokens.hover.color;
-      properties[`--layera-btn-${variant}-hover-border`] = tokens.hover.border;
-      properties[`--layera-btn-${variant}-active-bg`] = tokens.active.background;
-      properties[`--layera-btn-${variant}-active-color`] = tokens.active.color;
-      properties[`--layera-btn-${variant}-active-border`] = tokens.active.border;
-      properties[`--layera-btn-${variant}-focus-outline`] = tokens.focus.outline;
-      properties[`--layera-btn-${variant}-focus-ring`] = tokens.focus.ring;
+      properties[`--la-btn-${variant}-bg`] = tokens.background;
+      properties[`--la-btn-${variant}-color`] = tokens.color;
+      properties[`--la-btn-${variant}-border`] = tokens.border;
+      properties[`--la-btn-${variant}-hover-bg`] = tokens.hover.background;
+      properties[`--la-btn-${variant}-hover-color`] = tokens.hover.color;
+      properties[`--la-btn-${variant}-hover-border`] = tokens.hover.border;
+      properties[`--la-btn-${variant}-active-bg`] = tokens.active.background;
+      properties[`--la-btn-${variant}-active-color`] = tokens.active.color;
+      properties[`--la-btn-${variant}-active-border`] = tokens.active.border;
+      properties[`--la-btn-${variant}-focus-outline`] = tokens.focus.outline;
+      properties[`--la-btn-${variant}-focus-ring`] = tokens.focus.ring;
     });
 
     // Transition properties
     Object.entries(buttonTokens.transitions).forEach(([key, value]) => {
-      properties[`--layera-btn-transition-${key}`] = value;
+      properties[`--la-btn-transition-${key}`] = value;
     });
 
     // Radius properties
     Object.entries(buttonTokens.radius).forEach(([key, value]) => {
-      properties[`--layera-btn-radius-${key}`] = value;
+      properties[`--la-btn-radius-${key}`] = value;
     });
 
     return properties;

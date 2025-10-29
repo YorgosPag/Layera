@@ -175,7 +175,7 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
       <Flex
         direction="column"
         position="fixed"
-        top="var(--layera-cards-top)"
+        top="var(--la-cards-top)"
         left="50%"
         transform="translateX(-50%)"
         width={`${SPACING_SCALE.LAYOUT_XXXL}px`}

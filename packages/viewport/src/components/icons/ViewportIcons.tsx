@@ -20,13 +20,13 @@ const ICON_SIZES = {
 };
 
 const THEME_COLORS = {
-  primary: 'var(--layera-bg-info)',
-  secondary: 'var(--layera-text-secondary)',
-  success: 'var(--layera-bg-success)',
-  warning: 'var(--layera-bg-warning)',
-  danger: 'var(--layera-bg-danger)',
-  info: 'var(--layera-bg-info)',
-  neutral: 'var(--layera-text-secondary)'
+  primary: 'var(--la-bg-info)',
+  secondary: 'var(--la-text-secondary)',
+  success: 'var(--la-bg-success)',
+  warning: 'var(--la-bg-warning)',
+  danger: 'var(--la-bg-danger)',
+  info: 'var(--la-bg-info)',
+  neutral: 'var(--la-text-secondary)'
 };
 
 // Refresh/Auto Icon (🔄)

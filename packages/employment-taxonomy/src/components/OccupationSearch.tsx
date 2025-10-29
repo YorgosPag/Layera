@@ -122,12 +122,12 @@ export const OccupationSearch: React.FC<OccupationSearchProps> = ({
                 onChange={handleSearchInputChange}
                 placeholder={placeholder || t('employment.search.placeholder', 'π.χ. Προγραμματιστής, Δικηγόρος, Γιατρός...')}
                 style={{
-                  width: 'var(--layera-width-full, 100%)',
+                  width: 'var(--la-width-full, 100%)',
                   padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.XXL + SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
-                  border: 'var(--layera-border-default-style, 1px solid var(--layera-border-default))',
+                  border: 'var(--la-border-default-style, 1px solid var(--la-border-default))',
                   borderRadius: `${BORDER_RADIUS_SCALE.INPUT}px`,
-                  fontSize: 'var(--layera-font-size-base)',
-                  backgroundColor: 'var(--layera-bg-primary)'
+                  fontSize: 'var(--la-font-size-base)',
+                  backgroundColor: 'var(--la-bg-primary)'
                 }}
               />
 
@@ -139,8 +139,8 @@ export const OccupationSearch: React.FC<OccupationSearchProps> = ({
                   style={{
                     position: 'absolute',
                     right: `${SPACING_SCALE.SM}px`,
-                    top: 'var(--layera-position-center-y, 50%)',
-                    transform: 'var(--layera-transform-center-y, translateY(-50%))'
+                    top: 'var(--la-position-center-y, 50%)',
+                    transform: 'var(--la-transform-center-y, translateY(-50%))'
                   }}
                 >
                   <CloseIcon size="sm" />
@@ -153,7 +153,7 @@ export const OccupationSearch: React.FC<OccupationSearchProps> = ({
                 variant="primary"
                 onClick={handleManualSearch}
                 disabled={!hasQuery || isLoading}
-                width="var(--layera-width-full, 100%)"
+                width="var(--la-width-full, 100%)"
               >
                 <SearchIcon size="sm" />
                 {t('employment.search.button', 'Αναζήτηση')}
@@ -211,7 +211,7 @@ export const OccupationSearch: React.FC<OccupationSearchProps> = ({
             variant="outline"
             onClick={meta.loadMore}
             disabled={isLoading}
-            width="var(--layera-width-full, 100%)"
+            width="var(--la-width-full, 100%)"
           >
             {t('employment.search.loadMore', 'Φόρτωση περισσότερων')}
           </Button>

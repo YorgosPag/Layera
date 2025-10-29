@@ -163,18 +163,18 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
       <button
         onClick={() => !isDragging && setIsOpen(!isOpen)}
         style={{
-          background: currentModel ? 'var(--layera-color-primary, var(--color-semantic-info-border))' : 'var(--layera-color-neutral, var(--color-text-secondary))',
-          color: 'var(--layera-color-white, var(--color-text-on-primary))',
+          background: currentModel ? 'var(--la-color-primary, var(--color-semantic-info-border))' : 'var(--la-color-neutral, var(--color-text-secondary))',
+          color: 'var(--la-color-white, var(--color-text-on-primary))',
           border: 'none',
           borderRadius: `${BORDER_RADIUS_SCALE.BUTTON}px`,
           padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`,
           fontSize: `${FONT_SIZES.XS}px`, // Design token για compact button
-          fontWeight: 'var(--layera-font-weight-semibold, var(--font-weight-semibold))',
+          fontWeight: 'var(--la-font-weight-semibold, var(--font-weight-semibold))',
           cursor: 'inherit',
           display: 'flex',
           alignItems: 'center',
           gap: `${SPACING_SCALE.SM}px`,
-          minWidth: 'var(--layera-width-min-200, var(--la-width-min-dropdown))',
+          minWidth: 'var(--la-width-min-200, var(--la-width-min-dropdown))',
           justifyContent: 'space-between'
         }}
       >
@@ -210,8 +210,8 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
               cursor: 'pointer',
               textAlign: 'left',
               fontSize: `${FONT_SIZES.XS}px`, // Design token για "Responsive View"
-              fontWeight: !currentModel ? 'var(--layera-font-weight-semibold, var(--la-font-weight-semibold))' : 'var(--layera-font-weight-normal, var(--la-font-weight-normal))',
-              borderBottom: 'var(--layera-border-default, var(--la-border-width-default) solid var(--la-color-border-default))',
+              fontWeight: !currentModel ? 'var(--la-font-weight-semibold, var(--la-font-weight-semibold))' : 'var(--la-font-weight-normal, var(--la-font-weight-normal))',
+              borderBottom: 'var(--la-border-default, var(--la-border-width-default) solid var(--la-color-border-default))',
               whiteSpace: 'nowrap' // Αποτρέπει το αναδίπλωμα
             }}
           >
@@ -223,11 +223,11 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
               <div style={{
                 padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.MD}px`, // Μικρότερο vertical padding για category headers
                 fontSize: `${FONT_SIZES.XS - 3}px`, // Extra compact για category headers
-                fontWeight: 'var(--layera-font-weight-semibold, var(--la-font-weight-semibold))',
+                fontWeight: 'var(--la-font-weight-semibold, var(--la-font-weight-semibold))',
                 color: '#333333', // Σκούρο γκρι κείμενο για καλύτερη ορατότητα
                 backgroundColor: '#f5f5f5', // Ανοικτό γκρι για category headers
-                borderTop: 'var(--layera-border-default, var(--la-border-width-default) solid var(--la-color-border-default))',
-                borderBottom: 'var(--layera-border-default, var(--la-border-width-default) solid var(--la-color-border-default))',
+                borderTop: 'var(--la-border-default, var(--la-border-width-default) solid var(--la-color-border-default))',
+                borderBottom: 'var(--la-border-default, var(--la-border-width-default) solid var(--la-color-border-default))',
                 whiteSpace: 'nowrap' // Αποτρέπει το αναδίπλωμα category headers
               }}>
                 {category}
@@ -248,13 +248,13 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
                     cursor: 'pointer',
                     textAlign: 'left',
                     fontSize: `${FONT_SIZES.XS}px`, // Design token για device names
-                    fontWeight: currentModel === device ? 'var(--layera-font-weight-semibold, var(--la-font-weight-semibold))' : 'var(--layera-font-weight-normal, var(--la-font-weight-normal))',
+                    fontWeight: currentModel === device ? 'var(--la-font-weight-semibold, var(--la-font-weight-semibold))' : 'var(--la-font-weight-normal, var(--la-font-weight-normal))',
                     transition: 'background 0.2s',
                     whiteSpace: 'nowrap' // Αποτρέπει το αναδίπλωμα device names
                   }}
                   onMouseOver={(e) => {
                     if (currentModel !== device) {
-                      e.currentTarget.style.background = 'var(--layera-bg-hover, var(--la-color-surface-hover))';
+                      e.currentTarget.style.background = 'var(--la-bg-hover, var(--la-color-surface-hover))';
                     }
                   }}
                   onMouseOut={(e) => {
@@ -266,7 +266,7 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
                   {device}
                   <span style={{
                     fontSize: `${FONT_SIZES.XS - 4}px`, // Extra compact για διαστάσεις
-                    color: 'var(--layera-text-tertiary, var(--la-color-text-tertiary))',
+                    color: 'var(--la-text-tertiary, var(--la-color-text-tertiary))',
                     marginLeft: `${SPACING_SCALE.SM}px`
                   }}>
                     ({deviceSpecs[device].width}x{deviceSpecs[device].height})

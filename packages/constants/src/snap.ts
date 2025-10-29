@@ -62,28 +62,28 @@ export const SNAP_VISUAL = {
   // Colors per snap type (theme-aware)
   COLORS: {
     light: {
-      endpoint: 'var(--layera-color-red-400, #ff6b6b)',
-      midpoint: 'var(--layera-color-teal-400, #4ecdc4)',
-      center: 'var(--layera-color-blue-400, #45b7d1)',
-      vertex: 'var(--layera-color-green-300, #96ceb4)',
-      intersection: 'var(--layera-color-yellow-200, #ffeaa7)',
-      perpendicular: 'var(--layera-color-purple-300, #dda0dd)',
-      tangent: 'var(--layera-color-teal-300, #98d8c8)',
-      nearest: 'var(--layera-color-yellow-300, #f7dc6f)',
-      grid: 'var(--layera-color-purple-400, #bb8fce)',
-      edge: 'var(--layera-color-blue-300, #85c1e9)'
+      endpoint: 'var(--la-color-red-400, #ff6b6b)',
+      midpoint: 'var(--la-color-teal-400, #4ecdc4)',
+      center: 'var(--la-color-blue-400, #45b7d1)',
+      vertex: 'var(--la-color-green-300, #96ceb4)',
+      intersection: 'var(--la-color-yellow-200, #ffeaa7)',
+      perpendicular: 'var(--la-color-purple-300, #dda0dd)',
+      tangent: 'var(--la-color-teal-300, #98d8c8)',
+      nearest: 'var(--la-color-yellow-300, #f7dc6f)',
+      grid: 'var(--la-color-purple-400, #bb8fce)',
+      edge: 'var(--la-color-blue-300, #85c1e9)'
     },
     dark: {
-      endpoint: 'var(--layera-color-red-600, #e74c3c)',
-      midpoint: 'var(--layera-color-teal-600, #1abc9c)',
-      center: 'var(--layera-color-blue-600, #3498db)',
-      vertex: 'var(--layera-color-green-600, #2ecc71)',
-      intersection: 'var(--layera-color-orange-600, #f39c12)',
-      perpendicular: 'var(--layera-color-purple-600, #9b59b6)',
-      tangent: 'var(--layera-color-teal-700, #16a085)',
-      nearest: 'var(--layera-color-yellow-600, #f1c40f)',
-      grid: 'var(--layera-color-purple-700, #8e44ad)',
-      edge: 'var(--layera-color-blue-700, #2980b9)'
+      endpoint: 'var(--la-color-red-600, #e74c3c)',
+      midpoint: 'var(--la-color-teal-600, #1abc9c)',
+      center: 'var(--la-color-blue-600, #3498db)',
+      vertex: 'var(--la-color-green-600, #2ecc71)',
+      intersection: 'var(--la-color-orange-600, #f39c12)',
+      perpendicular: 'var(--la-color-purple-600, #9b59b6)',
+      tangent: 'var(--la-color-teal-700, #16a085)',
+      nearest: 'var(--la-color-yellow-600, #f1c40f)',
+      grid: 'var(--la-color-purple-700, #8e44ad)',
+      edge: 'var(--la-color-blue-700, #2980b9)'
     }
   },
 

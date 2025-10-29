@@ -36,7 +36,7 @@ const LatitudeRuler: React.FC<RulerProps> = ({ bounds, mapSize, tickDensity = 'm
         ctx.fillRect(0, 0, w, h);
 
         // Draw right border
-        ctx.strokeStyle = 'var(--layera-border-default, var(--color-border-subtle))';
+        ctx.strokeStyle = 'var(--la-border-default, var(--color-border-subtle))';
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(RULER_SIZE - 0.5, 0);

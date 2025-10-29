@@ -20,43 +20,7 @@
   }
 }
 
-/* Design tokens - embedded για enterprise consistency */
-:root {
-  --la-overlay-bg: rgb(0 0 0 / 60%);
-  --la-z-modal-overlay: 1000;
-  --la-z-modal: 1010;
-  --la-bg-primary: hsl(0deg 0% 100%);
-  --la-radius-lg: var(--la-size-3);
-  --la-radius-md: var(--la-size-2);
-  --la-shadow-modal: var(--la-shadow-xl);
-  --la-modal-width-mobile: var(--la-size-80);
-  --la-modal-width-tablet: var(--la-size-80);
-  --la-modal-width-desktop: var(--la-size-70);
-  --la-modal-width-desktop-lg: var(--la-size-65);
-  --la-spacing-md: var(--la-space-3);
-  --la-spacing-sm: var(--la-space-2-5);
-  --la-spacing-xs: var(--la-space-2);
-  --la-spacing-2xs: var(--la-space-1-5);
-  --la-text-sm: var(--la-font-size-sm);
-  --la-text-xs: var(--la-font-size-xs);
-  --la-text-2xs: var(--la-font-size-xs);
-  --la-text-base: var(--la-font-size-base);
-  --la-leading-tight: var(--la-line-height-tight);
-  --la-leading-relaxed: var(--la-line-height-relaxed);
-  --la-color-primary: var(--la-color-brand);
-  --la-color-primary-dark: var(--la-color-brand-hover);
-  --la-color-primary-light: rgb(219 234 254);
-  --la-text-secondary: rgb(107 114 128);
-  --la-font-bold: 600;
-  --la-icon-md: 1.25rem;
-  --la-icon-sm: 1.125rem;
-  --la-icon-xs: 1rem;
-  --la-transition-colors: background-color 0.2s ease, border-color 0.2s ease;
-
-  /* Dark mode tokens */
-  --la-bg-dark: rgb(31 41 55);
-  --la-text-secondary-dark: rgb(156 163 175);
-}
+/* Design tokens - όλα διαχειρίζονται από packages/tokens/ - Single Source of Truth */
 
 /* Base Modal Overlay */
 .unified-pipeline-modal-overlay {

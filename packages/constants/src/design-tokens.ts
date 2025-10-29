@@ -242,7 +242,7 @@ export const COMPONENT_DESIGN_TOKENS = {
   },
 
   modal: {
-    'modal-backdrop': 'var(--layera-bg-overlay, rgba(0, 0, 0, 0.6))',
+    'modal-backdrop': 'var(--la-bg-overlay, rgba(0, 0, 0, 0.6))',
     'modal-elevation': 'var(--elevation-xxl)',
     'modal-border-radius': 'var(--border-radius-xl)',
     'modal-padding': 'var(--spacing-xxl)',

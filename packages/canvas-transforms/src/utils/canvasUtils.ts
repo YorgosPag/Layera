@@ -97,8 +97,8 @@ export const drawGrid = (
   } = {}
 ): void => {
   const {
-    majorGridColor = 'var(--layera-color-gray-300, #ddd)',
-    minorGridColor = 'var(--layera-color-gray-100, #f0f0f0)',
+    majorGridColor = 'var(--la-color-gray-300, #ddd)',
+    minorGridColor = 'var(--la-color-gray-100, #f0f0f0)',
     majorGridInterval = 5,
     lineWidth = 1,
     alpha = 1
@@ -155,12 +155,12 @@ export const drawAxes = (
   } = {}
 ): void => {
   const {
-    xAxisColor = 'var(--layera-color-gray-700, #333)',
-    yAxisColor = 'var(--layera-color-gray-700, #333)',
+    xAxisColor = 'var(--la-color-gray-700, #333)',
+    yAxisColor = 'var(--la-color-gray-700, #333)',
     lineWidth = 2,
     showLabels = true,
-    labelFont = 'var(--layera-font-size-xs) Arial',
-    labelColor = 'var(--layera-color-gray-600, #666)'
+    labelFont = 'var(--la-font-size-xs) Arial',
+    labelColor = 'var(--la-color-gray-600, #666)'
   } = options;
 
   ctx.save();
@@ -222,9 +222,9 @@ export const drawRuler = (
 ): void => {
   const {
     height = 30,
-    backgroundColor = 'var(--layera-bg-surface-overlay, rgba(255, 255, 255, 0.9))',
-    textColor = 'var(--layera-color-gray-700, #333)',
-    tickColor = 'var(--layera-color-gray-600, #666)',
+    backgroundColor = 'var(--la-bg-surface-overlay, rgba(255, 255, 255, 0.9))',
+    textColor = 'var(--la-color-gray-700, #333)',
+    tickColor = 'var(--la-color-gray-600, #666)',
     font = '11px Arial',
     unit = ''
   } = options;
@@ -331,7 +331,7 @@ export const drawCrosshair = (
   } = {}
 ): void => {
   const {
-    color = 'var(--layera-color-red-500, #ff0000)',
+    color = 'var(--la-color-red-500, #ff0000)',
     lineWidth = 1,
     dashPattern = [5, 5],
     alpha = 0.7

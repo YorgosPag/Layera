@@ -88,7 +88,7 @@ export const SnapIndicator: React.FC<SnapIndicatorProps> = ({
     zIndex: 10000,
     borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
     backgroundColor: color,
-    border: `2px solid ${theme === 'dark' ? 'var(--layera-color-white, #ffffff)' : 'var(--layera-color-black, #000000)'}`,
+    border: `2px solid ${theme === 'dark' ? 'var(--la-color-white, #ffffff)' : 'var(--la-color-black, #000000)'}`,
     boxShadow: `0 0 8px ${color}`,
     display: 'flex',
     alignItems: 'center',
@@ -105,14 +105,14 @@ export const SnapIndicator: React.FC<SnapIndicatorProps> = ({
     transform: 'translateX(-50%)',
     marginBottom: `${SPACING_SCALE.XS}px`,
     padding: `${SPACING_SCALE.XS - 4}px ${SPACING_SCALE.XS}px`,
-    backgroundColor: theme === 'dark' ? 'var(--layera-color-slate-700, #2c3e50)' : 'var(--layera-color-gray-100, #ecf0f1)',
-    color: theme === 'dark' ? 'var(--layera-color-gray-100, #ecf0f1)' : 'var(--layera-color-slate-700, #2c3e50)',
-    border: `1px solid ${theme === 'dark' ? 'var(--layera-color-slate-600, #34495e)' : 'var(--layera-color-gray-300, #bdc3c7)'}`,
+    backgroundColor: theme === 'dark' ? 'var(--la-color-slate-700, #2c3e50)' : 'var(--la-color-gray-100, #ecf0f1)',
+    color: theme === 'dark' ? 'var(--la-color-gray-100, #ecf0f1)' : 'var(--la-color-slate-700, #2c3e50)',
+    border: `1px solid ${theme === 'dark' ? 'var(--la-color-slate-600, #34495e)' : 'var(--la-color-gray-300, #bdc3c7)'}`,
     borderRadius: `${SPACING_SCALE.XS - 4}px`,
-    fontSize: 'var(--layera-font-size-xs)',
+    fontSize: 'var(--la-font-size-xs)',
     fontWeight: 500,
     whiteSpace: 'nowrap',
-    boxShadow: 'var(--layera-shadow-sm, 0 2px 4px rgba(0,0,0,0.1))',
+    boxShadow: 'var(--la-shadow-sm, 0 2px 4px rgba(0,0,0,0.1))',
     zIndex: 10001
   };
 
@@ -124,7 +124,7 @@ export const SnapIndicator: React.FC<SnapIndicatorProps> = ({
     <Box style={tooltipStyle}>
       {t(`snap.types.${snapType}`, { defaultValue: snapType })}
       {target.metadata?.layer && (
-        <Box fontSize="var(--layera-font-size-xxs)" opacity={0.8}>
+        <Box fontSize="var(--la-font-size-xxs)" opacity={0.8}>
           {t('snap.layer')}: {target.metadata.layer}
         </Box>
       )}
@@ -141,7 +141,7 @@ export const SnapIndicator: React.FC<SnapIndicatorProps> = ({
       <Icon
         name={iconName}
         size={size * 0.6}
-        color={theme === 'dark' ? 'var(--layera-color-white, #ffffff)' : 'var(--layera-color-black, #000000)'}
+        color={theme === 'dark' ? 'var(--la-color-white, #ffffff)' : 'var(--la-color-black, #000000)'}
       />
 
       {/* Tooltip */}
@@ -200,9 +200,9 @@ export const SnapCursor: React.FC<SnapCursorProps> = ({
     height: size,
     pointerEvents: 'none',
     zIndex: 9999,
-    border: `2px solid ${isSnapped ? 'var(--layera-color-red-600, #e74c3c)' : theme === 'dark' ? 'var(--layera-color-gray-100, #ecf0f1)' : 'var(--layera-color-slate-700, #2c3e50)'}`,
+    border: `2px solid ${isSnapped ? 'var(--la-color-red-600, #e74c3c)' : theme === 'dark' ? 'var(--la-color-gray-100, #ecf0f1)' : 'var(--la-color-slate-700, #2c3e50)'}`,
     borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
-    backgroundColor: isSnapped ? 'var(--layera-color-red-600-alpha-20, rgba(231, 76, 60, 0.2))' : 'transparent',
+    backgroundColor: isSnapped ? 'var(--la-color-red-600-alpha-20, rgba(231, 76, 60, 0.2))' : 'transparent',
     transition: 'all 0.1s ease-out',
     transform: isSnapped ? 'scale(1.2)' : 'scale(1)'
   };
@@ -235,7 +235,7 @@ export const SnapGuidelines: React.FC<SnapGuidelinesProps> = ({
   }
 
   const { snapPoint } = snapResult;
-  const lineColor = theme === 'dark' ? 'var(--layera-color-gray-100, #ecf0f1)' : 'var(--layera-color-slate-700, #2c3e50)';
+  const lineColor = theme === 'dark' ? 'var(--la-color-gray-100, #ecf0f1)' : 'var(--la-color-slate-700, #2c3e50)';
 
   // Calculate line από cursor σε snap point
   const lineStyle: React.CSSProperties = {
@@ -266,9 +266,9 @@ export const SnapGuidelines: React.FC<SnapGuidelinesProps> = ({
     top: midPointY - 20,
     transform: 'translateX(-50%)',
     padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.XS + SPACING_SCALE.XS}px`,
-    backgroundColor: theme === 'dark' ? 'var(--layera-color-slate-700, #2c3e50)' : 'var(--layera-color-gray-100, #ecf0f1)',
-    color: theme === 'dark' ? 'var(--layera-color-gray-100, #ecf0f1)' : 'var(--layera-color-slate-700, #2c3e50)',
-    border: `1px solid ${theme === 'dark' ? 'var(--layera-color-slate-600, #34495e)' : 'var(--layera-color-gray-300, #bdc3c7)'}`,
+    backgroundColor: theme === 'dark' ? 'var(--la-color-slate-700, #2c3e50)' : 'var(--la-color-gray-100, #ecf0f1)',
+    color: theme === 'dark' ? 'var(--la-color-gray-100, #ecf0f1)' : 'var(--la-color-slate-700, #2c3e50)',
+    border: `1px solid ${theme === 'dark' ? 'var(--la-color-slate-600, #34495e)' : 'var(--la-color-gray-300, #bdc3c7)'}`,
     borderRadius: `${BORDER_RADIUS_SCALE.XXS}px`,
     fontSize: '11px',
     fontWeight: 500,

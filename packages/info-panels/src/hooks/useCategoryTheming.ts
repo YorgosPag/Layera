@@ -25,19 +25,19 @@ export const useCategoryTheming = (selectedCategory: CategoryType): CategoryThem
     switch (selectedCategory) {
       case 'property':
         return {
-          backgroundColor: 'var(--layera-color-emerald-500-alpha-95, rgba(16, 185, 129, 0.95))', // emerald-500
-          borderColor: 'var(--layera-color-emerald-500-alpha-30, rgba(16, 185, 129, 0.3))',
-          textColor: 'var(--layera-color-white, #ffffff)',
-          accentColor: 'var(--layera-color-green-500, #22c55e)',
+          backgroundColor: 'var(--la-color-emerald-500-alpha-95, rgba(16, 185, 129, 0.95))', // emerald-500
+          borderColor: 'var(--la-color-emerald-500-alpha-30, rgba(16, 185, 129, 0.3))',
+          textColor: 'var(--la-color-white, #ffffff)',
+          accentColor: 'var(--la-color-green-500, #22c55e)',
           isDark: false
         };
 
       case 'job':
         return {
-          backgroundColor: 'var(--layera-color-blue-500-alpha-95, rgba(59, 130, 246, 0.95))', // blue-500
-          borderColor: 'var(--layera-color-blue-500-alpha-30, rgba(59, 130, 246, 0.3))',
-          textColor: 'var(--layera-color-white, #ffffff)',
-          accentColor: 'var(--layera-color-blue-500, #3b82f6)',
+          backgroundColor: 'var(--la-color-blue-500-alpha-95, rgba(59, 130, 246, 0.95))', // blue-500
+          borderColor: 'var(--la-color-blue-500-alpha-30, rgba(59, 130, 246, 0.3))',
+          textColor: 'var(--la-color-white, #ffffff)',
+          accentColor: 'var(--la-color-blue-500, #3b82f6)',
           isDark: false
         };
 
@@ -45,10 +45,10 @@ export const useCategoryTheming = (selectedCategory: CategoryType): CategoryThem
       case null:
       default:
         return {
-          backgroundColor: 'var(--layera-color-orange-500-alpha-95, rgba(249, 115, 22, 0.95))', // orange-500
-          borderColor: 'var(--layera-color-orange-500-alpha-30, rgba(249, 115, 22, 0.3))',
-          textColor: 'var(--layera-color-white, #ffffff)',
-          accentColor: 'var(--layera-color-orange-600, #f97316)',
+          backgroundColor: 'var(--la-color-orange-500-alpha-95, rgba(249, 115, 22, 0.95))', // orange-500
+          borderColor: 'var(--la-color-orange-500-alpha-30, rgba(249, 115, 22, 0.3))',
+          textColor: 'var(--la-color-white, #ffffff)',
+          accentColor: 'var(--la-color-orange-600, #f97316)',
           isDark: false
         };
     }

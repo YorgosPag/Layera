@@ -29,7 +29,7 @@ export const StepRegistryTest: React.FC = () => {
   const registryStatus = stepRegistry.getRegistryStatus();
 
   return (
-    <Box padding={`${SPACING_SCALE.LG}px`} fontFamily="var(--layera-font-family-mono)">
+    <Box padding={`${SPACING_SCALE.LG}px`} fontFamily="var(--la-font-family-mono)">
       <Heading level={2}>🧪 Step Registry Test</Heading>
 
       <Box marginBottom={`${SPACING_SCALE.LG}px`}>

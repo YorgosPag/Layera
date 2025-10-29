@@ -73,11 +73,11 @@ export const ResponsiveContainer: React.FC<ResponsiveContainerProps> = ({
 
   // Set CSS custom properties για child components
   const cssVariables = {
-    '--layera-device-type': deviceType,
-    '--layera-viewport-width': `${width}px`,
-    '--layera-grid-columns': currentConfig.gridColumns?.toString() || '1',
-    '--layera-container-padding': currentConfig.padding || `${SPACING_SCALE.MD}px`,
-    '--layera-container-max-width': currentConfig.maxWidth || '100%'
+    '--la-device-type': deviceType,
+    '--la-viewport-width': `${width}px`,
+    '--la-grid-columns': currentConfig.gridColumns?.toString() || '1',
+    '--la-container-padding': currentConfig.padding || `${SPACING_SCALE.MD}px`,
+    '--la-container-max-width': currentConfig.maxWidth || '100%'
   } as React.CSSProperties;
 
   return (

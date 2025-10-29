@@ -88,18 +88,18 @@ export const ResponsiveMapLayout: React.FC<ResponsiveMapLayoutProps> = ({
       position="absolute"
       right={`${SPACING_SCALE.LG}px`}
       bottom={`${SPACING_SCALE.LG}px`}
-      width="var(--layera-size-fab, 56px)"
-      height="var(--layera-size-fab, 56px)"
+      width="var(--la-size-fab, 56px)"
+      height="var(--la-size-fab, 56px)"
       borderRadius={BORDER_RADIUS_SCALE.CIRCLE}
-      background="var(--layera-bg-success, #22C55E)"
-      border="var(--layera-border-fab, 2px solid white)"
+      background="var(--la-bg-success, #22C55E)"
+      border="var(--la-border-fab, 2px solid white)"
       boxShadow={BOX_SHADOW_SCALE.cardDefault}
-      display="var(--layera-display-flex, flex)"
-      alignItems="var(--layera-align-center, center)"
-      justifyContent="var(--layera-justify-center, center)"
-      cursor="var(--layera-cursor-pointer, pointer)"
-      zIndex="var(--layera-z-index-fab, 9999)"
-      userSelect="var(--layera-user-select-none, none)"
+      display="var(--la-display-flex, flex)"
+      alignItems="var(--la-align-center, center)"
+      justifyContent="var(--la-justify-center, center)"
+      cursor="var(--la-cursor-pointer, pointer)"
+      zIndex="var(--la-z-index-fab, 9999)"
+      userSelect="var(--la-user-select-none, none)"
     >
       {fab.icon}
     </Box>

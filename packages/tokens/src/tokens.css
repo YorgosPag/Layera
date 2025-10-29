@@ -12,11 +12,16 @@
   --la-space-8: 2rem;
   --la-space-10: 2.5rem;
   --la-space-12: 3rem;
+  --la-space-20: 5rem;
 
   /* Sizes */
   --la-space-48: 12rem;
+  --la-size-20: 5rem;
   --la-size-64: 16rem;
   --la-size-96: 24rem;
+
+  /* Widths */
+  --la-width-md: 28rem;
 
   /* Border Radius */
   --la-radius-none: var(--la-size-0);
@@ -80,6 +85,53 @@
   --la-color-bg-warning: hsl(48deg 96% 89%);
   --la-color-bg-success: hsl(138deg 76% 97%);
 
+  /* Overlay & Modal Specific */
+  --la-overlay-bg: rgb(0 0 0 / 60%);
+  --la-color-primary-light: hsl(214deg 95% 93%);
+
+  /* Modal Sizing */
+  --la-modal-width-mobile: 20rem;
+  --la-modal-width-tablet: 20rem;
+  --la-modal-width-desktop: 17.5rem;
+  --la-modal-width-desktop-lg: 16.25rem;
+
+  /* Additional Spacing Aliases */
+  --la-spacing-md: var(--la-space-3);
+  --la-spacing-sm: var(--la-space-2-5);
+  --la-spacing-xs: var(--la-space-2);
+  --la-spacing-2xs: var(--la-space-1-5);
+
+  /* Text Size Aliases */
+  --la-text-sm: var(--la-font-size-sm);
+  --la-text-xs: var(--la-font-size-xs);
+  --la-text-2xs: var(--la-font-size-xs);
+  --la-text-base: var(--la-font-size-base);
+
+  /* Line Height Aliases */
+  --la-leading-tight: var(--la-line-height-tight);
+  --la-leading-relaxed: var(--la-line-height-relaxed);
+  --la-leading-normal: var(--la-line-height-normal);
+  --la-leading-snug: 1.375;
+
+  /* Brand Color Aliases */
+  --la-color-primary: var(--la-color-brand);
+  --la-color-primary-dark: var(--la-color-brand-hover);
+
+  /* Font Weight */
+  --la-font-bold: 600;
+
+  /* Icon Sizes */
+  --la-icon-md: 1.25rem;
+  --la-icon-sm: 1.125rem;
+  --la-icon-xs: 1rem;
+
+  /* Transitions */
+  --la-transition-colors: background-color 0.2s ease, border-color 0.2s ease;
+
+  /* Dark Mode Colors */
+  --la-bg-dark: hsl(222deg 84% 5%);
+  --la-text-secondary-dark: hsl(215deg 20% 65%);
+
   /* Typography */
   --la-font-family-base: system-ui, sans-serif;
   --la-font-family-monospace: 'JetBrains Mono', monospace;
@@ -104,6 +156,9 @@
   --la-z-index-modal: 30;
   --la-z-index-popover: 40;
   --la-z-index-tooltip: 50;
+  --la-z-toast: 1080;
+  --la-z-modal-overlay: 1000;
+  --la-z-modal: 1010;
 
   /* Shadows */
   --la-shadow-none: none;
@@ -126,6 +181,49 @@
   --la-gradient-brand-vertical: linear-gradient(180deg, hsl(217deg 91% 60%), hsl(217deg 91% 55%));
   --la-gradient-stepped-horizontal: linear-gradient(90deg, hsl(217deg 91% 60%) 25%, hsl(217deg 91% 55%) 50%, hsl(217deg 83% 47%) 75%);
   --la-gradient-stepped-vertical: linear-gradient(180deg, hsl(217deg 91% 60%) 25%, hsl(217deg 91% 55%) 50%, hsl(217deg 83% 47%) 75%);
+
+  /* Legacy aliases for backward compatibility - These will be deprecated */
+  --color-bg-surface-overlay-light: var(--la-color-surface-overlay);
+  --color-bg-surface-overlay-medium: var(--la-color-surface-disabled);
+  --color-border-primary-overlay: var(--la-color-border-primary);
+  --color-border-subtle: var(--la-color-border-subtle);
+}
+
+/* Light theme */
+[data-theme="light"] {
+  --la-layout-bg: hsl(0deg 0% 100%);
+  --la-layout-border: hsl(0deg 0% 90%);
+  --la-header-bg: hsl(0deg 0% 100%);
+  --la-sidebar-bg: hsl(0deg 0% 98%);
+  --la-content-bg: hsl(0deg 0% 100%);
+  /* Application Semantic Colors - Enterprise Standards */
+  --la-bg-primary: hsl(0deg 0% 100%);
+  --la-bg-secondary: hsl(210deg 40% 98%);
+  --la-bg-tertiary: hsl(210deg 40% 96%);
+  --la-text-primary: hsl(222deg 84% 5%);
+  --la-text-secondary: hsl(215deg 16% 47%);
+  --la-text-tertiary: hsl(215deg 20% 65%);
+  --la-border-primary: hsl(214deg 32% 91%);
+  --la-border-secondary: hsl(214deg 32% 83%);
+  --la-border-tertiary: hsl(215deg 16% 47%);
+
+  /* Success Colors */
+  --la-bg-success: hsl(142deg 76% 36%);
+  --la-bg-success-light: hsl(138deg 76% 97%);
+  --la-text-on-success: hsl(0deg 0% 100%);
+
+  /* Info Colors */
+  --la-bg-info: hsl(217deg 91% 60%);
+  --la-text-on-info: hsl(0deg 0% 100%);
+
+  /* Warning Colors */
+  --la-bg-warning: hsl(21deg 90% 48%);
+
+  /* Danger Colors */
+  --la-bg-danger: hsl(0deg 84% 60%);
+
+  /* Text on Dark */
+  --la-text-on-dark: hsl(0deg 0% 100%);
 }
 
 /* Light theme */
@@ -144,4 +242,22 @@
   --la-header-bg: hsl(222deg 84% 5%);
   --la-sidebar-bg: hsl(221deg 39% 11%);
   --la-content-bg: hsl(222deg 84% 5%);
+
+  /* Dark theme overrides για semantic colors */
+  --la-bg-primary: hsl(222deg 84% 5%);
+  --la-bg-secondary: hsl(221deg 39% 11%);
+  --la-bg-tertiary: hsl(217deg 32% 17%);
+  --la-text-primary: hsl(210deg 40% 98%);
+  --la-text-secondary: hsl(214deg 32% 83%);
+  --la-text-tertiary: hsl(215deg 20% 65%);
+  --la-border-primary: hsl(217deg 32% 17%);
+  --la-border-secondary: hsl(215deg 16% 47%);
+  --la-border-tertiary: hsl(214deg 32% 83%);
+
+  /* Dark theme για success/info/warning/danger */
+  --la-bg-success: hsl(142deg 76% 36%);
+  --la-bg-success-light: hsl(138deg 50% 20%);
+  --la-bg-info: hsl(217deg 91% 60%);
+  --la-bg-warning: hsl(21deg 90% 48%);
+  --la-bg-danger: hsl(0deg 84% 60%);
 }

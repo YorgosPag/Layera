@@ -108,7 +108,7 @@ export const UI_CONFIG = {
       height: 40,
       borderRadius: BORDER_RADIUS_SCALE.LG
     },
-    zIndex: 'var(--layera-z-index-map-modal, 10100)', // Enterprise: Design token implementation
+    zIndex: 'var(--la-z-index-map-modal, 10100)', // Enterprise: Design token implementation
     gap: 12,
     padding: 16
   },
@@ -119,7 +119,7 @@ export const UI_CONFIG = {
       top: UI_POSITIONS.cards.top,
       ...UI_BLOCK_BASE.horizontalPadding
     },
-    zIndex: 'var(--layera-z-index-overlay, 300)', // Enterprise: Design token implementation
+    zIndex: 'var(--la-z-index-overlay, 300)', // Enterprise: Design token implementation
     gap: 8
   },
 
@@ -129,7 +129,7 @@ export const UI_CONFIG = {
       top: UI_POSITIONS.cards.top, // Ίδια θέση με categoryStep
       ...UI_BLOCK_BASE.horizontalPadding
     },
-    zIndex: 'var(--layera-z-index-overlay, 300)', // Enterprise: Design token implementation
+    zIndex: 'var(--la-z-index-overlay, 300)', // Enterprise: Design token implementation
     gap: 8
   },
 
@@ -167,23 +167,23 @@ export const COLORS = {
     job: {
       primary: 'var(--color-interactive-primary-background)',
       border: 'var(--color-interactive-primary-border)',
-      light: 'var(--layera-color-blue-500, #3b82f6)',
-      dark: 'var(--layera-color-blue-600, #2563eb)'
+      light: 'var(--la-color-blue-500, #3b82f6)',
+      dark: 'var(--la-color-blue-600, #2563eb)'
     },
     initial: {
-      primary: 'var(--layera-color-orange-500-alpha-95, rgba(249, 115, 22, 0.95))',
-      border: 'var(--layera-color-orange-500-alpha-30, rgba(249, 115, 22, 0.3))'
+      primary: 'var(--la-color-orange-500-alpha-95, rgba(249, 115, 22, 0.95))',
+      border: 'var(--la-color-orange-500-alpha-30, rgba(249, 115, 22, 0.3))'
     }
   },
   common: {
-    white: 'var(--layera-color-white, var(--color-bg-canvas))',
-    black: 'var(--layera-color-black, var(--color-text-primary))',
-    transparent: 'var(--layera-color-transparent, transparent)',
-    backdrop: 'var(--layera-bg-overlay, rgba(0, 0, 0, 0.12))',
-    border: 'var(--layera-border-default, var(--color-border-default))',
+    white: 'var(--la-color-white, var(--color-bg-canvas))',
+    black: 'var(--la-color-black, var(--color-text-primary))',
+    transparent: 'var(--la-color-transparent, transparent)',
+    backdrop: 'var(--la-bg-overlay, rgba(0, 0, 0, 0.12))',
+    border: 'var(--la-border-default, var(--color-border-default))',
     text: {
-      primary: 'var(--layera-text-primary, #1f2937)',
-      secondary: 'var(--layera-text-secondary, #6b7280)'
+      primary: 'var(--la-text-primary, #1f2937)',
+      secondary: 'var(--la-text-secondary, #6b7280)'
     }
   }
 } as const;
@@ -288,7 +288,7 @@ export const DEBUG_CONFIG = {
 
 // Re-export LEGO constants for convenience
 export { BORDER_RADIUS_SCALE, SPACING_SCALE };
-// ❌ Z_INDEX removed - use CSS custom properties: var(--layera-z-modal), var(--layera-z-popover), etc.
+// ❌ Z_INDEX removed - use CSS custom properties: var(--la-z-modal), var(--la-z-popover), etc.
 
 // Export all as default for convenience
 export default {
