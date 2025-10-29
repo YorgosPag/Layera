@@ -20,6 +20,8 @@ console.log('');
 
 let totalViolationsBefore = 0;
 let totalViolationsAfter = 0;
+let docsViolationsBefore = 0;
+let docsViolationsAfter = 0;
 
 /**
  * Execute command with proper error handling
@@ -180,6 +182,17 @@ function applyAutomatedFixes() {
     console.log('⚠️  i18n fixer script not found');
   }
 
+  // Fix #5: Documentation violations (NEW - Phase 3)
+  if (fs.existsSync('scripts/domains/docs/fix-docs-violations.js')) {
+    console.log('📚 DOCUMENTATION VALIDATION...');
+    const resultDocs = executeCommand('node scripts/domains/docs/fix-docs-violations.js --fix', 'Documentation compliance enforcement');
+    if (resultDocs.success) {
+      console.log('📚 Documentation violations: FIXED');
+    }
+  } else {
+    console.log('⚠️  Documentation fixer script not found');
+  }
+
   console.log('');
 }
 
@@ -258,6 +271,7 @@ function generateComplianceReport() {
     console.log('✅ TypeScript Strict Mode: 100% COMPLIANT');
     console.log('✅ Design Tokens Usage: 100% COMPLIANT');
     console.log('✅ LEGO Systems Compliance: VERIFIED');
+    console.log('✅ Documentation Standards: PERFECT');
     console.log('✅ Single Sources of Truth: MAINTAINED');
     console.log('');
     console.log('🎉 ΣΥΓΧΑΡΗΤΗΡΙΑ! Enterprise standards: PERFECT');

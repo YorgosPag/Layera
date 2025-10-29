@@ -27,6 +27,8 @@
     "enterprise:full": "node scripts/enterprise-validation-engine.js",
     "enterprise:auto-fix": "node scripts/enterprise-auto-fix.js",
     "fix:any-types": "node scripts/domains/typescript/fix-any-types.js",
+    "fix:docs": "node scripts/domains/docs/fix-docs-violations.js",
+    "docs:validate": "node scripts/domains/docs/fix-docs-violations.js --dry-run",
     "fix:colors": "node scripts/domains/design/fix-hardcoded-colors.js",
     "fix:console-logs": "node scripts/domains/production/fix-console-logs.js",
     "verify": "npm run typecheck && npm run lint && npm run policy:check && npm run dup:check && npm run enterprise:validate",

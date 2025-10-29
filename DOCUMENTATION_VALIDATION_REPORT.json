@@ -1,0 +1,2831 @@
+{
+  "timestamp": "2025-10-29T21:36:48.620Z",
+  "summary": {
+    "filesScanned": 158,
+    "violationsFound": 350,
+    "violationsFixed": 0,
+    "criticalViolations": 266,
+    "highViolations": 18,
+    "mediumViolations": 56,
+    "lowViolations": 10
+  },
+  "violations": [
+    {
+      "file": ".claude\\CLAUDE.md",
+      "pattern": "styled-components → LEGO components",
+      "match": "styled.button`...`",
+      "severity": "CRITICAL",
+      "replacement": "// ✅ Use @layera/components instead",
+      "line": 399
+    },
+    {
+      "file": ".claude\\CLAUDE.md",
+      "pattern": "styled-components → LEGO components",
+      "match": "styled.button`background: blue; padding: 8px;`",
+      "severity": "CRITICAL",
+      "replacement": "// ✅ Use @layera/components instead",
+      "line": 834
+    },
+    {
+      "file": ".claude\\CLAUDE.md",
+      "pattern": "Custom components → LEGO imports",
+      "match": "const CustomCard = (",
+      "severity": "HIGH",
+      "replacement": "// ✅ Import from @layera packages",
+      "line": 398
+    },
+    {
+      "file": ".claude\\CLAUDE.md",
+      "pattern": "Custom components → LEGO imports",
+      "match": "const MyCard = (",
+      "severity": "HIGH",
+      "replacement": "// ✅ Import from @layera packages",
+      "line": 571
+    },
+    {
+      "file": ".claude\\CLAUDE.md",
+      "pattern": "Custom components → LEGO imports",
+      "match": "const MyCard = (",
+      "severity": "HIGH",
+      "replacement": "// ✅ Import from @layera packages",
+      "line": 571
+    },
+    {
+      "file": ".claude\\CLAUDE.md",
+      "pattern": "Custom components → LEGO imports",
+      "match": "const AnotherButton = (",
+      "severity": "HIGH",
+      "replacement": "// ✅ Import from @layera packages",
+      "line": 849
+    },
+    {
+      "file": ".claude\\CLAUDE.md",
+      "pattern": "Custom CSS classes → design system classes",
+      "match": "className=\"my-custom-card\"",
+      "severity": "MEDIUM",
+      "replacement": "className=\"la-component\"",
+      "line": 846
+    },
+    {
+      "file": ".claude\\CLAUDE.md",
+      "pattern": "Magic padding values → spacing scale",
+      "match": "padding: 8px",
+      "severity": "MEDIUM",
+      "replacement": "padding: var(--la-space-md)",
+      "line": 834
+    },
+    {
+      "file": ".claude\\CLAUDE.md",
+      "pattern": "Magic padding values → spacing scale",
+      "match": "padding: '16px'",
+      "severity": "MEDIUM",
+      "replacement": "padding: var(--la-space-md)",
+      "line": 839
+    },
+    {
+      "file": ".claude\\CLAUDE.md",
+      "pattern": "Magic margin values → spacing scale",
+      "match": "margin: '8px'",
+      "severity": "MEDIUM",
+      "replacement": "margin: var(--la-space-md)",
+      "line": 839
+    },
+    {
+      "file": ".claude\\CLAUDE.md",
+      "pattern": "Inline pixel values → design tokens",
+      "match": "style={{ padding: '16px', margin: '8px' }}",
+      "severity": "LOW",
+      "replacement": "style={{ padding: 'var(--la-space-md)' }}",
+      "line": 839
+    },
+    {
+      "file": ".claude\\policy.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#0f172a",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 83
+    },
+    {
+      "file": ".claude\\policy.md",
+      "pattern": "Magic padding values → spacing scale",
+      "match": "padding: '16px'",
+      "severity": "MEDIUM",
+      "replacement": "padding: var(--la-space-md)",
+      "line": 83
+    },
+    {
+      "file": ".claude\\policy.md",
+      "pattern": "Inline pixel values → design tokens",
+      "match": "style={{ color: '#0f172a', padding: '16px', zIndex: 1000 }}",
+      "severity": "LOW",
+      "replacement": "style={{ padding: 'var(--la-space-md)' }}",
+      "line": 83
+    },
+    {
+      "file": ".github\\BRANCH_PROTECTION_SETUP.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#3b82f6",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 75
+    },
+    {
+      "file": ".github\\BRANCH_PROTECTION_SETUP.md",
+      "pattern": "Magic padding values → spacing scale",
+      "match": "padding: 16px",
+      "severity": "MEDIUM",
+      "replacement": "padding: var(--la-space-md)",
+      "line": 78
+    },
+    {
+      "file": "apps\\layera-geoalert\\docs\\ENTERPRISE_ARCHITECTURE.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#2563eb",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 219
+    },
+    {
+      "file": "apps\\layera-geoalert\\docs\\ENTERPRISE_ARCHITECTURE.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#2563eb",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 219
+    },
+    {
+      "file": "apps\\layera-geoalert\\docs\\ENTERPRISE_ARCHITECTURE.md",
+      "pattern": "Inline pixel values → design tokens",
+      "match": "style={{\r\n    color: '#2563eb',\r\n    textDecoration: 'none',\r\n    padding: '0.75rem 1.5rem',\r\n    border: '2px solid #2563eb',\r\n    borderRadius: '6px',\r\n    display: 'inline-block',\r\n    fontWeight: 'bold'\r\n  }}",
+      "severity": "LOW",
+      "replacement": "style={{ padding: 'var(--la-space-md)' }}",
+      "line": 218
+    },
+    {
+      "file": "apps\\layera-geoalert\\docs\\I18N_IMPLEMENTATION.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#2563eb",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 92
+    },
+    {
+      "file": "apps\\layera-geoalert\\docs\\I18N_IMPLEMENTATION.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#6b7280",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 97
+    },
+    {
+      "file": "apps\\layera-geoalert\\docs\\I18N_IMPLEMENTATION.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#3b82f6",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 168
+    },
+    {
+      "file": "apps\\layera-geoalert\\docs\\I18N_IMPLEMENTATION.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#2563eb",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 92
+    },
+    {
+      "file": "apps\\layera-geoalert\\docs\\I18N_IMPLEMENTATION.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#3b82f6",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 168
+    },
+    {
+      "file": "apps\\layera-geoalert\\docs\\I18N_IMPLEMENTATION.md",
+      "pattern": "Inline pixel values → design tokens",
+      "match": "style={{\r\n        backgroundColor: '#3b82f6',\r\n        color: 'white',\r\n        border: 'none',\r\n        borderRadius: '6px',\r\n        padding: '0.5rem 1rem',\r\n        fontSize: '0.875rem',\r\n        fontWeight: 'bold',\r\n        cursor: 'pointer',\r\n        transition: 'all 0.2s',\r\n        display: 'flex',\r\n        alignItems: 'center',\r\n        gap: '0.5rem'\r\n      }}",
+      "severity": "LOW",
+      "replacement": "style={{ padding: 'var(--la-space-md)' }}",
+      "line": 167
+    },
+    {
+      "file": "apps\\layera-id\\docs\\LAYOUT_MIGRATION_PLAN.md",
+      "pattern": "Magic padding values → spacing scale",
+      "match": "padding: 24px",
+      "severity": "MEDIUM",
+      "replacement": "padding: var(--la-space-md)",
+      "line": 293
+    },
+    {
+      "file": "apps\\layera-id\\docs\\LAYOUT_MIGRATION_PLAN.md",
+      "pattern": "Magic padding values → spacing scale",
+      "match": "padding: 20px",
+      "severity": "MEDIUM",
+      "replacement": "padding: var(--la-space-md)",
+      "line": 299
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\file-management\\DXF-PROCESSING-LEGO-SYSTEM.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#1a1a1a",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 837
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\file-management\\DXF-PROCESSING-LEGO-SYSTEM.md",
+      "pattern": "Inline pixel values → design tokens",
+      "match": "style={{\r\n          backgroundColor: props.backgroundColor || '#1a1a1a',\r\n          height: '500px',\r\n          width: '100%'\r\n        }}",
+      "severity": "LOW",
+      "replacement": "style={{ padding: 'var(--la-space-md)' }}",
+      "line": 836
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\file-management\\DXF-PROCESSING-LEGO-SYSTEM.md",
+      "pattern": "Inline pixel values → design tokens",
+      "match": "style={{ marginTop: '16px' }}",
+      "severity": "LOW",
+      "replacement": "style={{ padding: 'var(--la-space-md)' }}",
+      "line": 1898
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\file-management\\DXF-PROCESSING-LEGO-SYSTEM.md",
+      "pattern": "Inline pixel values → design tokens",
+      "match": "style={{ marginTop: '16px' }}",
+      "severity": "LOW",
+      "replacement": "style={{ padding: 'var(--la-space-md)' }}",
+      "line": 1898
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\advanced-controls\\Checkbox.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { useState } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 185
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\advanced-controls\\Checkbox.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { useState } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 185
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\advanced-controls\\Checkbox.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { useMemo } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 352
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\advanced-controls\\DatePicker.md",
+      "pattern": "Custom components → LEGO imports",
+      "match": "const validateForm = (",
+      "severity": "HIGH",
+      "replacement": "// ✅ Import from @layera packages",
+      "line": 349
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\advanced-controls\\DatePicker.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { useState } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 245
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\advanced-controls\\DatePicker.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { useState, useCallback } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 277
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\advanced-controls\\DatePicker.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { useState } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 245
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\advanced-controls\\InputGroup.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { useState } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 269
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\advanced-controls\\InputGroup.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { useState, useCallback } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 313
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\advanced-controls\\InputGroup.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { useState } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 269
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\advanced-controls\\NumericInput.md",
+      "pattern": "Custom components → LEGO imports",
+      "match": "const validateForm = (",
+      "severity": "HIGH",
+      "replacement": "// ✅ Import from @layera packages",
+      "line": 320
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\advanced-controls\\NumericInput.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { useState } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 232
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\advanced-controls\\NumericInput.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { useState, useCallback } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 258
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\advanced-controls\\NumericInput.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { useState } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 232
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\advanced-controls\\Slider.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { useState } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 207
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\advanced-controls\\Slider.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { useState, useCallback } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 233
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\advanced-controls\\Slider.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { useState } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 207
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\TextArea.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { useState } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 28
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\README.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { useState } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 183
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\snap-geometry\\03-SNAP-INTERACTIONS-DESIGN.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#FF6B35",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 483
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\snap-geometry\\03-SNAP-INTERACTIONS-DESIGN.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#4ECDC4",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 484
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\snap-geometry\\03-SNAP-INTERACTIONS-DESIGN.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#45B7D1",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 485
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\snap-geometry\\03-SNAP-INTERACTIONS-DESIGN.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#FFA07A",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 486
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\snap-geometry\\03-SNAP-INTERACTIONS-DESIGN.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#98D8C8",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 487
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\snap-geometry\\03-SNAP-INTERACTIONS-DESIGN.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#F7DC6F",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 488
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\snap-geometry\\03-SNAP-INTERACTIONS-DESIGN.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#BB86FC",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 489
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\snap-geometry\\03-SNAP-INTERACTIONS-DESIGN.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#A0A0A0",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 490
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\snap-geometry\\03-SNAP-INTERACTIONS-DESIGN.md",
+      "pattern": "Custom components → LEGO imports",
+      "match": "const CustomButton = (",
+      "severity": "HIGH",
+      "replacement": "// ✅ Import from @layera packages",
+      "line": 228
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\snap-geometry\\03-SNAP-INTERACTIONS-DESIGN.md",
+      "pattern": "Custom components → LEGO imports",
+      "match": "const CustomCard = (",
+      "severity": "HIGH",
+      "replacement": "// ✅ Import from @layera packages",
+      "line": 230
+    },
+    {
+      "file": "docs\\DEVELOPER_ONBOARDING.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#123",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 483
+    },
+    {
+      "file": "docs\\DEVELOPER_ONBOARDING.md",
+      "pattern": "Custom components → LEGO imports",
+      "match": "const useLoginForm = (",
+      "severity": "HIGH",
+      "replacement": "// ✅ Import from @layera packages",
+      "line": 242
+    },
+    {
+      "file": "docs\\DEVELOPER_ONBOARDING.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { useState, useCallback } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 285
+    },
+    {
+      "file": "docs\\enterprise\\DEVELOPMENT_STANDARDS.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#3b82f6",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 44
+    },
+    {
+      "file": "docs\\enterprise\\DEVELOPMENT_STANDARDS.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ef4444",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 44
+    },
+    {
+      "file": "docs\\enterprise\\DEVELOPMENT_STANDARDS.md",
+      "pattern": "Inline pixel values → design tokens",
+      "match": "style={{ width: '200px' }}",
+      "severity": "LOW",
+      "replacement": "style={{ padding: 'var(--la-space-md)' }}",
+      "line": 33
+    },
+    {
+      "file": "docs\\enterprise\\MAP_LABELS_LEGO_SYSTEM.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#1F2937",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 430
+    },
+    {
+      "file": "docs\\geo-drawing-architecture\\04-IMPLEMENTATION-GUIDE.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ffffff",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 79
+    },
+    {
+      "file": "docs\\geo-drawing-architecture\\04-IMPLEMENTATION-GUIDE.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { useEffect, useRef, useState } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 577
+    },
+    {
+      "file": "docs\\geo-drawing-architecture\\04-IMPLEMENTATION-GUIDE.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { useState } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 1054
+    },
+    {
+      "file": "docs\\geo-drawing-architecture\\04-IMPLEMENTATION-GUIDE.md",
+      "pattern": "Custom CSS classes → design system classes",
+      "match": "className=\"custom-geo-panel\"",
+      "severity": "MEDIUM",
+      "replacement": "className=\"la-component\"",
+      "line": 74
+    },
+    {
+      "file": "docs\\geo-drawing-architecture\\04-IMPLEMENTATION-GUIDE.md",
+      "pattern": "Inline pixel values → design tokens",
+      "match": "style={{\r\n                        height: '500px',\r\n                        width: '100%',\r\n                        backgroundColor: isDarkMode\r\n                          ? currentTheme.colors.dark.surface\r\n                          : currentTheme.colors.light.surface,\r\n                      }}",
+      "severity": "LOW",
+      "replacement": "style={{ padding: 'var(--la-space-md)' }}",
+      "line": 778
+    },
+    {
+      "file": "docs\\issues\\cross-cutting\\DEPENDENCY_MATRIX.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#90EE90",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 46
+    },
+    {
+      "file": "docs\\issues\\cross-cutting\\DEPENDENCY_MATRIX.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#90EE90",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 46
+    },
+    {
+      "file": "docs\\issues\\cross-cutting\\DEPENDENCY_MATRIX.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#FFB6C1",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 48
+    },
+    {
+      "file": "docs\\issues\\cross-cutting\\DEPENDENCY_MATRIX.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#FFB6C1",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 48
+    },
+    {
+      "file": "docs\\issues\\cross-cutting\\DEPENDENCY_MATRIX.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#FFB6C1",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 48
+    },
+    {
+      "file": "docs\\issues\\cross-cutting\\DEPENDENCY_MATRIX.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#90EE90",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 46
+    },
+    {
+      "file": "docs\\issues\\cross-cutting\\DEPENDENCY_MATRIX.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#FFB6C1",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 48
+    },
+    {
+      "file": "docs\\issues\\cross-cutting\\DEPENDENCY_MATRIX.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#FFA500",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 66
+    },
+    {
+      "file": "docs\\issues\\cross-cutting\\DEPENDENCY_MATRIX.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#FFA500",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 66
+    },
+    {
+      "file": "docs\\issues\\cross-cutting\\DEPENDENCY_MATRIX.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#FFA500",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 66
+    },
+    {
+      "file": "docs\\issues\\cross-cutting\\DEPENDENCY_MATRIX.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#FFB6C1",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 48
+    },
+    {
+      "file": "docs\\issues\\cross-cutting\\DEPENDENCY_MATRIX.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#FFB6C1",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 48
+    },
+    {
+      "file": "docs\\issues\\cross-cutting\\DEPENDENCY_MATRIX.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#FF6B6B",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 85
+    },
+    {
+      "file": "docs\\MONOREPO_MIGRATION_PLAN.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ccc",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 338
+    },
+    {
+      "file": "docs\\MONOREPO_MIGRATION_PLAN.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ddd",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 454
+    },
+    {
+      "file": "docs\\MONOREPO_MIGRATION_PLAN.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#0a0",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 496
+    },
+    {
+      "file": "docs\\MONOREPO_MIGRATION_PLAN.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#c00",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 497
+    },
+    {
+      "file": "docs\\MONOREPO_MIGRATION_PLAN.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ddd",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 454
+    },
+    {
+      "file": "docs\\MONOREPO_MIGRATION_PLAN.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#0a0",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 496
+    },
+    {
+      "file": "docs\\MONOREPO_MIGRATION_PLAN.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#c00",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 497
+    },
+    {
+      "file": "docs\\MONOREPO_MIGRATION_PLAN.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ddd",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 454
+    },
+    {
+      "file": "docs\\MONOREPO_MIGRATION_PLAN.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#0a0",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 496
+    },
+    {
+      "file": "docs\\MONOREPO_MIGRATION_PLAN.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#c00",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 497
+    },
+    {
+      "file": "docs\\MONOREPO_MIGRATION_PLAN.md",
+      "pattern": "Magic margin values → spacing scale",
+      "match": "margin:\"40px",
+      "severity": "MEDIUM",
+      "replacement": "margin: var(--la-space-md)",
+      "line": 454
+    },
+    {
+      "file": "docs\\MONOREPO_MIGRATION_PLAN.md",
+      "pattern": "Magic margin values → spacing scale",
+      "match": "margin:\"12px",
+      "severity": "MEDIUM",
+      "replacement": "margin: var(--la-space-md)",
+      "line": 485
+    },
+    {
+      "file": "docs\\MONOREPO_MIGRATION_PLAN.md",
+      "pattern": "Magic margin values → spacing scale",
+      "match": "margin:\"40px",
+      "severity": "MEDIUM",
+      "replacement": "margin: var(--la-space-md)",
+      "line": 454
+    },
+    {
+      "file": "docs\\MONOREPO_MIGRATION_PLAN.md",
+      "pattern": "Magic margin values → spacing scale",
+      "match": "margin:\"40px",
+      "severity": "MEDIUM",
+      "replacement": "margin: var(--la-space-md)",
+      "line": 454
+    },
+    {
+      "file": "docs\\pipeline-architecture\\02-TARGET-ARCHITECTURE.md",
+      "pattern": "Custom components → LEGO imports",
+      "match": "const CustomCard = (",
+      "severity": "HIGH",
+      "replacement": "// ✅ Import from @layera packages",
+      "line": 370
+    },
+    {
+      "file": "docs\\pipeline-architecture\\02-TARGET-ARCHITECTURE.md",
+      "pattern": "Custom components → LEGO imports",
+      "match": "const CustomButton = (",
+      "severity": "HIGH",
+      "replacement": "// ✅ Import from @layera packages",
+      "line": 371
+    },
+    {
+      "file": "docs\\pipeline-architecture\\02-TARGET-ARCHITECTURE.md",
+      "pattern": "Custom components → LEGO imports",
+      "match": "const CustomIcon = (",
+      "severity": "HIGH",
+      "replacement": "// ✅ Import from @layera packages",
+      "line": 372
+    },
+    {
+      "file": "docs\\pipeline-architecture\\04-IMPLEMENTATION-GUIDE.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { createContext, useContext, ReactNode } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 424
+    },
+    {
+      "file": "docs\\pipeline-architecture\\05-FILE-PROCESSING-LEGO-SYSTEMS.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#FFFFFF",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 492
+    },
+    {
+      "file": "ENTERPRISE_DOCUMENTATION_VALIDATION_SUMMARY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#3b82f6",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 128
+    },
+    {
+      "file": "ENTERPRISE_DOCUMENTATION_VALIDATION_SUMMARY.md",
+      "pattern": "styled-components → LEGO components",
+      "match": "styled.button`\r\n  background: #3b82f6;\r\n  padding: 8px;\r\n`",
+      "severity": "CRITICAL",
+      "replacement": "// ✅ Use @layera/components instead",
+      "line": 127
+    },
+    {
+      "file": "ENTERPRISE_DOCUMENTATION_VALIDATION_SUMMARY.md",
+      "pattern": "Magic padding values → spacing scale",
+      "match": "padding: 8px",
+      "severity": "MEDIUM",
+      "replacement": "padding: var(--la-space-md)",
+      "line": 129
+    },
+    {
+      "file": "ENTERPRISE_LEGO_SYSTEM.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#1e40af",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 70
+    },
+    {
+      "file": "ENTERPRISE_LEGO_SYSTEM.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#3b82f6",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 70
+    },
+    {
+      "file": "ENTERPRISE_LEGO_SYSTEM.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#dc2626",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 71
+    },
+    {
+      "file": "ENTERPRISE_LEGO_SYSTEM.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ef4444",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 71
+    },
+    {
+      "file": "LEGO_SYSTEMS_REGISTRY.md",
+      "pattern": "styled-components → LEGO components",
+      "match": "styled.button`...`",
+      "severity": "CRITICAL",
+      "replacement": "// ✅ Use @layera/components instead",
+      "line": 280
+    },
+    {
+      "file": "LEGO_SYSTEMS_REGISTRY.md",
+      "pattern": "Magic padding values → spacing scale",
+      "match": "padding: '16px'",
+      "severity": "MEDIUM",
+      "replacement": "padding: var(--la-space-md)",
+      "line": 291
+    },
+    {
+      "file": "LEGO_SYSTEMS_REGISTRY.md",
+      "pattern": "Inline pixel values → design tokens",
+      "match": "style={{ padding: '16px' }}",
+      "severity": "LOW",
+      "replacement": "style={{ padding: 'var(--la-space-md)' }}",
+      "line": 291
+    },
+    {
+      "file": "packages\\auth-bridge\\README.md",
+      "pattern": "Custom CSS classes → design system classes",
+      "match": "className=\"custom-setup-style\"",
+      "severity": "MEDIUM",
+      "replacement": "className=\"la-component\"",
+      "line": 327
+    },
+    {
+      "file": "packages\\canvas-transforms\\README.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ddd",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 173
+    },
+    {
+      "file": "packages\\canvas-transforms\\README.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#f5f5f5",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 174
+    },
+    {
+      "file": "packages\\canvas-transforms\\README.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#333",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 366
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ffffff",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 383
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#0f0f0f",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 383
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#fafafa",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 384
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#1a1a1a",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 384
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ffffff",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 383
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#262626",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 385
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#0f0f0f",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 383
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#f0f0f0",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 387
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#6b7280",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 388
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#a1a1aa",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 388
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#9ca3af",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 389
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#71717a",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 389
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ffffff",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 383
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#0f0f0f",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 383
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#eff6ff",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 391
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#1e3a8a",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 391
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#3b82f6",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 392
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#60a5fa",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 392
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#1e40af",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 393
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#bfdbfe",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 393
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#f0fdf4",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 394
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#14532d",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 394
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#22c55e",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 395
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#4ade80",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 395
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#166534",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 396
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#bbf7d0",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 396
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#fffbeb",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 397
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#92400e",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 397
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#f59e0b",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 398
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#fbbf24",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 398
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#d97706",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 399
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#fef3c7",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 399
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#fef2f2",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 400
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#7f1d1d",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 400
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ef4444",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 401
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#f87171",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 401
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#dc2626",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 402
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#fecaca",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 402
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#3b82f6",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 392
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#60a5fa",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 392
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#2563eb",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 404
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#3b82f6",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 392
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#1d4ed8",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 405
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#2563eb",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 404
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#e5e7eb",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 406
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#374151",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 406
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#f3f4f6",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 407
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#1f2937",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 407
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#d1d5db",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 408
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#4b5563",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 408
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ff6b6b",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1007
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#4ecdc4",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1008
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#45b7d1",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1009
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#96ceb4",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1010
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ffeaa7",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1011
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#dda0dd",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1012
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#98d8c8",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1013
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#f7dc6f",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1014
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#bb8fce",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1015
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#85c1e9",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1016
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#e74c3c",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1019
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#1abc9c",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1020
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#3498db",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1021
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#2ecc71",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1022
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#f39c12",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1023
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#9b59b6",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1024
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#16a085",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1025
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#f1c40f",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1026
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#8e44ad",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1027
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#2980b9",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1028
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ffffff",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 383
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#0f0f0f",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 383
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#fafafa",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 384
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#1a1a1a",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 384
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ffffff",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 383
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#262626",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 385
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#0f0f0f",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 383
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#f0f0f0",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 387
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#6b7280",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 388
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#a1a1aa",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 388
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#9ca3af",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 389
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#71717a",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 389
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ffffff",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 383
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#0f0f0f",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 383
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#eff6ff",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 391
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#1e3a8a",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 391
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#3b82f6",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 392
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#60a5fa",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 392
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#1e40af",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 393
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#bfdbfe",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 393
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#f0fdf4",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 394
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#14532d",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 394
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#22c55e",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 395
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#4ade80",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 395
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#166534",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 396
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#bbf7d0",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 396
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#fffbeb",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 397
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#92400e",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 397
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#f59e0b",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 398
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#fbbf24",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 398
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#d97706",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 399
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#fef3c7",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 399
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#fef2f2",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 400
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#7f1d1d",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 400
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ef4444",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 401
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#f87171",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 401
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#dc2626",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 402
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#fecaca",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 402
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#3b82f6",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 392
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#60a5fa",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 392
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#2563eb",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 404
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#3b82f6",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 392
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#1d4ed8",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 405
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#2563eb",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 404
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#e5e7eb",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 406
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#374151",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 406
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#f3f4f6",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 407
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#1f2937",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 407
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#d1d5db",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 408
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#4b5563",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 408
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ff6b6b",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1007
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#4ecdc4",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1008
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#45b7d1",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1009
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#96ceb4",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1010
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ffeaa7",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1011
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#dda0dd",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1012
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#98d8c8",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1013
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#f7dc6f",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1014
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#bb8fce",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1015
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#85c1e9",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1016
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#e74c3c",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1019
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#1abc9c",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1020
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#3498db",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1021
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#2ecc71",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1022
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#f39c12",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1023
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#9b59b6",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1024
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#16a085",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1025
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#f1c40f",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1026
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#8e44ad",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1027
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#2980b9",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 1028
+    },
+    {
+      "file": "packages\\file-upload\\README.md",
+      "pattern": "Custom CSS classes → design system classes",
+      "match": "className=\"my-custom-drop-zone\"",
+      "severity": "MEDIUM",
+      "replacement": "className=\"la-component\"",
+      "line": 212
+    },
+    {
+      "file": "packages\\forms\\README.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#e2e8f0",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 228
+    },
+    {
+      "file": "packages\\forms\\README.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#3b82f6",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 229
+    },
+    {
+      "file": "packages\\forms\\README.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ef4444",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 230
+    },
+    {
+      "file": "packages\\forms\\README.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#10b981",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 231
+    },
+    {
+      "file": "packages\\icons\\README.md",
+      "pattern": "Custom CSS classes → design system classes",
+      "match": "className=\"my-custom-class\"",
+      "severity": "MEDIUM",
+      "replacement": "className=\"la-component\"",
+      "line": 152
+    },
+    {
+      "file": "packages\\modals\\README.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ffffff",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 277
+    },
+    {
+      "file": "packages\\modals\\README.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#e5e7eb",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 278
+    },
+    {
+      "file": "packages\\modals\\README.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#1f2937",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 289
+    },
+    {
+      "file": "packages\\modals\\README.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#374151",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 290
+    },
+    {
+      "file": "packages\\modals\\README.md",
+      "pattern": "Custom CSS classes → design system classes",
+      "match": "className=\"my-custom-modal\"",
+      "severity": "MEDIUM",
+      "replacement": "className=\"la-component\"",
+      "line": 299
+    },
+    {
+      "file": "packages\\modals\\README.md",
+      "pattern": "Custom CSS classes → design system classes",
+      "match": "className=\"my-custom-content\"",
+      "severity": "MEDIUM",
+      "replacement": "className=\"la-component\"",
+      "line": 302
+    },
+    {
+      "file": "packages\\modals\\README.md",
+      "pattern": "Magic padding values → spacing scale",
+      "match": "padding: 24px",
+      "severity": "MEDIUM",
+      "replacement": "padding: var(--la-space-md)",
+      "line": 281
+    },
+    {
+      "file": "packages\\tables\\README.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#e2e8f0",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 274
+    },
+    {
+      "file": "packages\\tables\\README.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#f8fafc",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 275
+    },
+    {
+      "file": "packages\\tables\\README.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#f1f5f9",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 276
+    },
+    {
+      "file": "packages\\tables\\README.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#dbeafe",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 277
+    },
+    {
+      "file": "packages\\tables\\README.md",
+      "pattern": "Custom CSS classes → design system classes",
+      "match": "className=\"custom-table\"",
+      "severity": "MEDIUM",
+      "replacement": "className=\"la-component\"",
+      "line": 285
+    },
+    {
+      "file": "voithitika_docs\\BASECARD_FEATURE_GAP_ANALYSIS.md",
+      "pattern": "Custom components → LEGO imports",
+      "match": "const getCardTheme = (",
+      "severity": "HIGH",
+      "replacement": "// ✅ Import from @layera packages",
+      "line": 86
+    },
+    {
+      "file": "voithitika_docs\\BASECARD_UNIFICATION_ACTION_PLAN.md",
+      "pattern": "Custom components → LEGO imports",
+      "match": "const getEnhancedCardTheme = (",
+      "severity": "HIGH",
+      "replacement": "// ✅ Import from @layera packages",
+      "line": 174
+    },
+    {
+      "file": "voithitika_docs\\diavase_1.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#fff",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 35
+    },
+    {
+      "file": "voithitika_docs\\diavase_1.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ffffff",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 35
+    },
+    {
+      "file": "voithitika_docs\\diavase_3.md",
+      "pattern": "styled-components → LEGO components",
+      "match": "styled.button`...`",
+      "severity": "CRITICAL",
+      "replacement": "// ✅ Use @layera/components instead",
+      "line": 78
+    },
+    {
+      "file": "voithitika_docs\\diavase_3.md",
+      "pattern": "styled-components → LEGO components",
+      "match": "styled.button`background: blue; padding: 8px;`",
+      "severity": "CRITICAL",
+      "replacement": "// ✅ Use @layera/components instead",
+      "line": 82
+    },
+    {
+      "file": "voithitika_docs\\diavase_3.md",
+      "pattern": "Custom components → LEGO imports",
+      "match": "const CustomCard = (",
+      "severity": "HIGH",
+      "replacement": "// ✅ Import from @layera packages",
+      "line": 86
+    },
+    {
+      "file": "voithitika_docs\\diavase_3.md",
+      "pattern": "Custom components → LEGO imports",
+      "match": "const MyCard = (",
+      "severity": "HIGH",
+      "replacement": "// ✅ Import from @layera packages",
+      "line": 90
+    },
+    {
+      "file": "voithitika_docs\\diavase_3.md",
+      "pattern": "Custom components → LEGO imports",
+      "match": "const MyCard = (",
+      "severity": "HIGH",
+      "replacement": "// ✅ Import from @layera packages",
+      "line": 90
+    },
+    {
+      "file": "voithitika_docs\\diavase_3.md",
+      "pattern": "Custom components → LEGO imports",
+      "match": "const AnotherButton = (",
+      "severity": "HIGH",
+      "replacement": "// ✅ Import from @layera packages",
+      "line": 98
+    },
+    {
+      "file": "voithitika_docs\\diavase_3.md",
+      "pattern": "Custom CSS classes → design system classes",
+      "match": "className=\"my-custom-card\"",
+      "severity": "MEDIUM",
+      "replacement": "className=\"la-component\"",
+      "line": 102
+    },
+    {
+      "file": "voithitika_docs\\diavase_3.md",
+      "pattern": "Magic padding values → spacing scale",
+      "match": "padding: 8px",
+      "severity": "MEDIUM",
+      "replacement": "padding: var(--la-space-md)",
+      "line": 82
+    },
+    {
+      "file": "voithitika_docs\\diavase_3.md",
+      "pattern": "Magic padding values → spacing scale",
+      "match": "padding: 8px",
+      "severity": "MEDIUM",
+      "replacement": "padding: var(--la-space-md)",
+      "line": 82
+    },
+    {
+      "file": "voithitika_docs\\diavase_3.md",
+      "pattern": "Magic padding values → spacing scale",
+      "match": "padding: '16px'",
+      "severity": "MEDIUM",
+      "replacement": "padding: var(--la-space-md)",
+      "line": 110
+    },
+    {
+      "file": "voithitika_docs\\diavase_3.md",
+      "pattern": "Magic margin values → spacing scale",
+      "match": "margin: '8px'",
+      "severity": "MEDIUM",
+      "replacement": "margin: var(--la-space-md)",
+      "line": 114
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_LEGO_COMPLIANCE_CRISIS_REPORT.md",
+      "pattern": "Magic padding values → spacing scale",
+      "match": "padding: '8px",
+      "severity": "MEDIUM",
+      "replacement": "padding: var(--la-space-md)",
+      "line": 107
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_LEGO_COMPLIANCE_CRISIS_REPORT.md",
+      "pattern": "Magic margin values → spacing scale",
+      "match": "margin: '20px'",
+      "severity": "MEDIUM",
+      "replacement": "margin: var(--la-space-md)",
+      "line": 106
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#333333",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 57
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#f0fdf4",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 158
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#14532d",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 158
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#22c55e",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 159
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#4ade80",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 159
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#166534",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 160
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#bbf7d0",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 160
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#fffbeb",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 162
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#92400e",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 162
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#f59e0b",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 163
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#fbbf24",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 163
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#d97706",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 164
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#fef3c7",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 164
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#fef2f2",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 166
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#7f1d1d",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 166
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#ef4444",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 167
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#f87171",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 167
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#dc2626",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 168
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#fecaca",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 168
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#333333",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 57
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#666666",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 232
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#333333",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 57
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#666666",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 232
+    },
+    {
+      "file": "voithitika_docs\\Git_Add.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#123",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 12
+    },
+    {
+      "file": "voithitika_docs\\LEGO_SYSTEMS_ARCHITECTURE.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#6b7280",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 166
+    },
+    {
+      "file": "voithitika_docs\\LEGO_SYSTEMS_ARCHITECTURE.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#1f2937",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 167
+    },
+    {
+      "file": "voithitika_docs\\LEGO_SYSTEMS_ARCHITECTURE.md",
+      "pattern": "Magic padding values → spacing scale",
+      "match": "padding: '16px'",
+      "severity": "MEDIUM",
+      "replacement": "padding: var(--la-space-md)",
+      "line": 179
+    },
+    {
+      "file": "voithitika_docs\\PATTERN_ANALYSIS_REPORT.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#6b7280",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 52
+    },
+    {
+      "file": "voithitika_docs\\PATTERN_ANALYSIS_REPORT.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#1f2937",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 52
+    },
+    {
+      "file": "voithitika_docs\\PATTERN_ANALYSIS_REPORT.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#007AFF",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 52
+    },
+    {
+      "file": "voithitika_docs\\PATTERN_ANALYSIS_REPORT.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#6b7280",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 52
+    },
+    {
+      "file": "voithitika_docs\\PATTERN_ANALYSIS_REPORT.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#1f2937",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 52
+    },
+    {
+      "file": "voithitika_docs\\PATTERN_ANALYSIS_REPORT.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#1f2937",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 52
+    },
+    {
+      "file": "voithitika_docs\\PATTERN_ANALYSIS_REPORT.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#6b7280",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 52
+    },
+    {
+      "file": "voithitika_docs\\PATTERN_ANALYSIS_REPORT.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#9ca3af",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 140
+    },
+    {
+      "file": "voithitika_docs\\PATTERN_ANALYSIS_REPORT.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#007AFF",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 52
+    },
+    {
+      "file": "voithitika_docs\\PATTERN_ANALYSIS_REPORT.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#5856d6",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 144
+    },
+    {
+      "file": "voithitika_docs\\PATTERN_ANALYSIS_REPORT.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#22c55e",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 145
+    },
+    {
+      "file": "voithitika_docs\\PATTERN_ANALYSIS_REPORT.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#6b7280",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 52
+    },
+    {
+      "file": "voithitika_docs\\readme_3.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#667eea",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 179
+    },
+    {
+      "file": "voithitika_docs\\readme_3.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#764ba2",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 179
+    },
+    {
+      "file": "voithitika_docs\\readme_3.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#f5f5f5",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 217
+    },
+    {
+      "file": "voithitika_docs\\readme_3.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#667eea",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 179
+    },
+    {
+      "file": "voithitika_docs\\readme_3.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#764ba2",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 179
+    },
+    {
+      "file": "voithitika_docs\\readme_3.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#888",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 362
+    },
+    {
+      "file": "voithitika_docs\\readme_3.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { createContext, useContext, useState, useEffect } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 131
+    },
+    {
+      "file": "voithitika_docs\\readme_3.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { useState } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 146
+    },
+    {
+      "file": "voithitika_docs\\readme_3.md",
+      "pattern": "Direct React imports → LEGO abstractions",
+      "match": "import React, { useState } from 'react'",
+      "severity": "MEDIUM",
+      "replacement": "import { useLayeraTranslation } from '@layera/tolgee';\n// ✅ Use LEGO hooks and utilities",
+      "line": 146
+    },
+    {
+      "file": "voithitika_docs\\readme_3.md",
+      "pattern": "Magic padding values → spacing scale",
+      "match": "padding: 20px",
+      "severity": "MEDIUM",
+      "replacement": "padding: var(--la-space-md)",
+      "line": 180
+    },
+    {
+      "file": "voithitika_docs\\readme_3.md",
+      "pattern": "Magic padding values → spacing scale",
+      "match": "padding: 15px",
+      "severity": "MEDIUM",
+      "replacement": "padding: var(--la-space-md)",
+      "line": 221
+    },
+    {
+      "file": "voithitika_docs\\responsive-info-icon-feedback.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#374151",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 15
+    },
+    {
+      "file": "voithitika_docs\\responsive-info-icon-feedback.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#374151",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 15
+    },
+    {
+      "file": "voithitika_docs\\responsive-info-icon-feedback.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#6b7280",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 51
+    },
+    {
+      "file": "voithitika_docs\\responsive-info-icon-feedback.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#374151",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 15
+    },
+    {
+      "file": "voithitika_docs\\responsive-info-icon-feedback.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#6b7280",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 51
+    },
+    {
+      "file": "voithitika_docs\\responsive-info-icon-feedback.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#374151",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 15
+    },
+    {
+      "file": "ΕΝΤΟΛΕΣ_ΕΛΕΓΧΟΥ_ΓΙΩΡΓΟΣ.md",
+      "pattern": "Hardcoded hex colors → design tokens",
+      "match": "#3366CC",
+      "severity": "CRITICAL",
+      "replacement": "var(--la-color-primary)",
+      "line": 377
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "URGENT",
+      "action": "Αμεση αντικατάσταση hardcoded values με design tokens",
+      "impact": "Σπάει το Single Source of Truth principle"
+    },
+    {
+      "priority": "HIGH",
+      "action": "Migration σε LEGO components από custom implementations",
+      "impact": "Technical debt και inconsistency"
+    },
+    {
+      "priority": "MEDIUM",
+      "action": "Standardization της τεκμηρίωσης με enterprise patterns",
+      "impact": "Developer confusion και μη συμβατά examples"
+    }
+  ]
+}
