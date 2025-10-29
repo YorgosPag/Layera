@@ -224,10 +224,12 @@ const SnapSettingsPanel = () => {
   );
 };
 
-// ❌ ΛΑΘΟΣ - Reimplementing existing UI
-// const CustomButton = () => {} // ΜΗ το κάνεις - υπάρχει @layera/buttons
+// ❌ ΛΑΘΟΣ - Deprecated Pattern
+// Αυτό το pattern δεν πρέπει να χρησιμοποιείται πλέον
+
+// ✅ ΣΩΣΤΟ - LEGO System// ✅ Import from @layera packages) => {} // ΜΗ το κάνεις - υπάρχει @layera/buttons
 // const CustomSlider = () => {} // ΜΗ το κάνεις - υπάρχει @layera/forms
-// const CustomCard = () => {}   // ΜΗ το κάνεις - υπάρχει @layera/cards
+// // ✅ Import from @layera packages) => {}   // ΜΗ το κάνεις - υπάρχει @layera/cards
 ```
 
 ---
@@ -480,14 +482,14 @@ interface SnapVisualDesignSystem {
   // Color palette για different snap types
   colorPalette: {
     primary: {
-      endpoint: '#FF6B35',        // Vibrant orange για endpoints
-      midpoint: '#4ECDC4',        // Teal για midpoints
-      center: '#45B7D1',          // Blue για centers
-      intersection: '#FFA07A',    // Light coral για intersections
-      perpendicular: '#98D8C8',   // Mint για perpendicular
-      tangent: '#F7DC6F',         // Yellow για tangent
-      building: '#BB86FC',        // Purple για OSM buildings
-      grid: '#A0A0A0'             // Gray για grid points
+      endpoint: 'var(--la-color-primary)',        // Vibrant orange για endpoints
+      midpoint: 'var(--la-color-primary)',        // Teal για midpoints
+      center: 'var(--la-color-primary)',          // Blue για centers
+      intersection: 'var(--la-color-primary)',    // Light coral για intersections
+      perpendicular: 'var(--la-color-primary)',   // Mint για perpendicular
+      tangent: 'var(--la-color-primary)',         // Yellow για tangent
+      building: 'var(--la-color-primary)',        // Purple για OSM buildings
+      grid: 'var(--la-color-primary)'             // Gray για grid points
     };
 
     states: {

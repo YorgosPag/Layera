@@ -225,10 +225,10 @@ Components support the Layera design system:
 ```css
 /* CSS custom properties */
 :root {
-  --layera-form-border: #e2e8f0;
-  --layera-form-focus: #3b82f6;
-  --layera-form-error: #ef4444;
-  --layera-form-success: #10b981;
+  --layera-form-border: var(--la-color-primary);
+  --layera-form-focus: var(--la-color-primary);
+  --layera-form-error: var(--la-color-primary);
+  --layera-form-success: var(--la-color-primary);
 }
 ```
 

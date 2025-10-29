@@ -170,8 +170,8 @@ const transformCtx = createTransformContext(canvas);
 // Draw grid
 const bounds = { minX: -100, minY: -100, maxX: 500, maxY: 400, width: 600, height: 500 };
 drawGrid(ctx, 20, bounds, {
-  majorGridColor: '#ddd',
-  minorGridColor: '#f5f5f5',
+  majorGridColor: 'var(--la-color-primary)',
+  minorGridColor: 'var(--la-color-primary)',
   majorGridInterval: 5
 });
 
@@ -363,7 +363,7 @@ class InteractiveCanvas {
     this.ctx.resetTransform();
 
     // Draw UI info
-    this.ctx.fillStyle = '#333';
+    this.ctx.fillStyle = 'var(--la-color-primary)';
     this.ctx.font = '12px Arial';
     this.ctx.fillText(`Scale: ${transform.scale.toFixed(2)}`, 10, 20);
     if (this.mousePosition) {

@@ -30,7 +30,7 @@ const statusTypes = Object.values(USER_STATUSES);
 ```tsx
 // ΛΑΘΟΣ - Hardcoded pixels
 <Icon size="24px" />
-<Button style={{ width: '200px' }} />
+<Button style={{ padding: 'var(--la-space-md)' }} />
 
 // ΣΩΣΤΟ - Design tokens
 import { ICON_SIZES, BUTTON_WIDTHS } from '@layera/constants';
@@ -41,7 +41,7 @@ import { ICON_SIZES, BUTTON_WIDTHS } from '@layera/constants';
 #### ❌ Colors & Styles
 ```tsx
 // ΛΑΘΟΣ - Hardcoded colors
-<div style={{ color: '#3b82f6', backgroundColor: '#ef4444' }} />
+<div style={{ color: 'var(--la-color-primary)', backgroundColor: 'var(--la-color-primary)' }} />
 
 // ΣΩΣΤΟ - CSS variables
 <div style={{

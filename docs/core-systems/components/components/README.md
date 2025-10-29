@@ -180,7 +180,8 @@ function App() {
 ### 3. Complete Form Example
 
 ```tsx
-import React, { useState } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
 import {
   FormField,
   FormSection,

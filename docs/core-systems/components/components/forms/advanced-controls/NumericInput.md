@@ -229,7 +229,8 @@ export const PROPERTY_NUMERIC_LIMITS = {
 
 ### **Basic Usage:**
 ```typescript
-import React, { useState } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
 import { NumericInput } from '@layera/forms';
 import { useLayeraTranslation } from '@layera/i18n/hooks';
 import { CONSTANTS } from '@layera/constants';
@@ -255,7 +256,8 @@ export const BasicNumericExample: React.FC = () => {
 
 ### **Complete LEGO Integration με Property Form:**
 ```typescript
-import React, { useState, useCallback } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
 import { NumericInput, FormSection, FormField } from '@layera/forms';
 import { Card, CardHeader, CardContent } from '@layera/cards';
 import { Container, Grid, Stack, Flex } from '@layera/layout';
@@ -317,7 +319,7 @@ export const PropertyDetailsForm: React.FC = () => {
     }
   };
 
-  const validateForm = (): boolean => {
+  // ✅ Import from @layera packages): boolean => {
     const required = ['bedrooms', 'bathrooms', 'area', 'price'];
     return required.every(field => propertyDetails[field as keyof typeof propertyDetails] !== null);
   };
@@ -561,7 +563,8 @@ export const PropertyDetailsForm: React.FC = () => {
 
 ### **Advanced Currency Input:**
 ```typescript
-import React, { useState } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
 import { NumericInput } from '@layera/forms';
 import { Stack } from '@layera/layout';
 import { Text } from '@layera/typography';

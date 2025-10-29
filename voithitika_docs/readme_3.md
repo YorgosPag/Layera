@@ -128,7 +128,8 @@
 
 ● Write(leyera-app\src\contexts\AuthContext.jsx)
   ⎿  Wrote 1 lines to leyera-app\src\contexts\AuthContext.jsx
-     import React, { createContext, useContext, useState, useEffect } from 'react';
+     import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
      import {
        createUserWithEmailAndPassword,
        signInWithEmailAndPassword,
@@ -143,7 +144,8 @@
 
 ● Write(leyera-app\src\components\Login.jsx)
   ⎿  Wrote 1 lines to leyera-app\src\components\Login.jsx
-     import React, { useState } from 'react';
+     import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
      import { useAuth } from '../contexts/AuthContext';
      import { useNavigate, Link } from 'react-router-dom';
      import './Auth.css';
@@ -157,7 +159,8 @@
 
 ● Write(leyera-app\src\components\Register.jsx)
   ⎿  Wrote 1 lines to leyera-app\src\components\Register.jsx
-     import React, { useState } from 'react';
+     import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
      import { useAuth } from '../contexts/AuthContext';
      import { useNavigate, Link } from 'react-router-dom';
      import './Auth.css';
@@ -176,8 +179,8 @@
        display: flex;
        align-items: center;
        justify-content: center;
-       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);    
-       padding: 20px;
+       background: linear-gradient(135deg, var(--la-color-primary) 0%, var(--la-color-primary) 100%);    
+       padding: var(--la-space-md);
      }
      .auth-card {
 
@@ -214,11 +217,11 @@
   ⎿  Wrote 1 lines to leyera-app\src\components\Dashboard.css
      .dashboard-container {
        min-height: 100vh;
-       background: #f5f5f5;
+       background: var(--la-color-primary);
      }
      .dashboard-nav {
-       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-       padding: 15px 30px;
+       background: linear-gradient(135deg, var(--la-color-primary) 0%, var(--la-color-primary) 100%);
+       padding: var(--la-space-md) 30px;
        display: flex;
        justify-content: space-between;
 
@@ -359,7 +362,7 @@
        28 -  }
        29 -  
        30 -  .read-the-docs {
-       31 -    color: #888;
+       31 -    color: var(--la-color-primary);
        32 -  }
 
 ● Τώρα ας ξεκινήσουμε την εφαρμογή για να δούμε αν λειτουργεί:

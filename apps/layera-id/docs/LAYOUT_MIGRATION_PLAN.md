@@ -290,13 +290,13 @@ export const AdminRoles: React.FC = () => {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  padding: 24px;
+  padding: var(--la-space-md);
 }
 
 .card {
   background: white;
   border-radius: 8px;
-  padding: 20px;
+  padding: var(--la-space-md);
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 

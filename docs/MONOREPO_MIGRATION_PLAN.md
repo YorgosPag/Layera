@@ -335,7 +335,7 @@ import { RequireVerified, LoginButton } from "@layera/auth-bridge";
 export default function ProtectedDemo() {
   return (
     <RequireVerified fallback={<LoginButton to="/login" label="Σύνδεση απαιτείται" />}>
-      <div style={{padding: 20, border: "1px solid #ccc", borderRadius: 8}}>
+      <div style={{padding: 20, border: "1px solid var(--la-color-primary)", borderRadius: 8}}>
         <h2>Προστατευμένο Περιεχόμενο</h2>
         <p>Αυτό το περιεχόμενο εμφανίζεται μόνο σε χρήστες με επιβεβαιωμένο email.</p>
       </div>
@@ -451,7 +451,7 @@ export default function Login() {
   }
 
   return (
-    <div style={{maxWidth:420, margin:"40px auto", padding:20, border:"1px solid #ddd", borderRadius:8}}>
+    <div style={{maxWidth:420, margin: var(--la-space-md) auto", padding:20, border:"1px solid var(--la-color-primary)", borderRadius:8}}>
       <h1>Σύνδεση</h1>
 
       <form onSubmit={onEmailLogin} style={{display:"grid", gap:12}}>
@@ -482,7 +482,7 @@ export default function Login() {
         </button>
       </form>
 
-      <div style={{margin:"12px 0"}}>
+      <div style={{margin: var(--la-space-md) 0"}}>
         <button type="button" onClick={onGoogle} disabled={loading}>
           Σύνδεση με Google
         </button>
@@ -493,8 +493,8 @@ export default function Login() {
         <Link to="/reset">Ξέχασα τον κωδικό</Link>
       </div>
 
-      {msg && <p style={{marginTop:12, color:"#0a0"}}>{msg}</p>}
-      {err && <p style={{marginTop:12, color:"#c00"}}>{err}</p>}
+      {msg && <p style={{marginTop:12, color:"var(--la-color-primary)"}}>{msg}</p>}
+      {err && <p style={{marginTop:12, color:"var(--la-color-primary)"}}>{err}</p>}
 
       {needsVerify && (
         <div style={{marginTop:12}}>
@@ -541,7 +541,7 @@ export default function Register() {
   }
 
   return (
-    <div style={{maxWidth:420, margin:"40px auto", padding:20, border:"1px solid #ddd", borderRadius:8}}>
+    <div style={{maxWidth:420, margin: var(--la-space-md) auto", padding:20, border:"1px solid var(--la-color-primary)", borderRadius:8}}>
       <h1>Δημιουργία λογαριασμού</h1>
       <form onSubmit={onSubmit} style={{display:"grid", gap:12}}>
         <label>
@@ -563,8 +563,8 @@ export default function Register() {
         <Link to="/login">Έχω ήδη λογαριασμό</Link>
       </div>
 
-      {msg && <p style={{marginTop:12, color:"#0a0"}}>{msg}</p>}
-      {err && <p style={{marginTop:12, color:"#c00"}}>{err}</p>}
+      {msg && <p style={{marginTop:12, color:"var(--la-color-primary)"}}>{msg}</p>}
+      {err && <p style={{marginTop:12, color:"var(--la-color-primary)"}}>{err}</p>}
     </div>
   );
 }
@@ -598,7 +598,7 @@ export default function Reset() {
   }
 
   return (
-    <div style={{maxWidth:420, margin:"40px auto", padding:20, border:"1px solid #ddd", borderRadius:8}}>
+    <div style={{maxWidth:420, margin: var(--la-space-md) auto", padding:20, border:"1px solid var(--la-color-primary)", borderRadius:8}}>
       <h1>Επαναφορά κωδικού</h1>
       <form onSubmit={onSubmit} style={{display:"grid", gap:12}}>
         <label>
@@ -613,8 +613,8 @@ export default function Reset() {
         <Link to="/register">Δημιουργία λογαριασμού</Link>
       </div>
 
-      {msg && <p style={{marginTop:12, color:"#0a0"}}>{msg}</p>}
-      {err && <p style={{marginTop:12, color:"#c00"}}>{err}</p>}
+      {msg && <p style={{marginTop:12, color:"var(--la-color-primary)"}}>{msg}</p>}
+      {err && <p style={{marginTop:12, color:"var(--la-color-primary)"}}>{err}</p>}
     </div>
   );
 }

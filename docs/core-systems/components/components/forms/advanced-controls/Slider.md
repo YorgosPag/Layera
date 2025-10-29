@@ -204,7 +204,8 @@ export const SLIDER_ORIENTATIONS = {
 
 ### **Basic Usage:**
 ```typescript
-import React, { useState } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
 import { Slider } from '@layera/forms';
 import { useLayeraTranslation } from '@layera/i18n/hooks';
 import { CONSTANTS } from '@layera/constants';
@@ -230,7 +231,8 @@ export const BasicSliderExample: React.FC = () => {
 
 ### **Complete LEGO Integration με Geo-Drawing:**
 ```typescript
-import React, { useState, useCallback } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
 import { Slider, FormSection, FormField } from '@layera/forms';
 import { Card, CardHeader, CardContent } from '@layera/cards';
 import { Container, Grid, Stack, Flex } from '@layera/layout';
@@ -425,7 +427,8 @@ export const GeoRadiusSelector: React.FC = () => {
 
 ### **Advanced Range Slider:**
 ```typescript
-import React, { useState } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
 import { Slider } from '@layera/forms';
 import { Card, CardContent } from '@layera/cards';
 import { Stack } from '@layera/layout';

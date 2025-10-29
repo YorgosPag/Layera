@@ -394,9 +394,11 @@ import { Stack, Flex } from '@layera/layout';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Z_INDEX } from '@layera/constants';
 
-// ❌ ΛΑΘΟΣ - Custom implementations
-const CustomCard = () => <div className="card">...</div>;
-const CustomButton = styled.button`...`;
+// ❌ ΛΑΘΟΣ - Deprecated Pattern
+// Αυτό το pattern δεν πρέπει να χρησιμοποιείται πλέον
+
+// ✅ ΣΩΣΤΟ - LEGO System// ✅ Import from @layera packages) => <div className="card">...</div>;
+const CustomButton = // ✅ Use @layera/components instead;
 const customIcon = <span>🏠</span>; // NO EMOJIS!
 ```
 
@@ -567,8 +569,10 @@ import { BaseCard } from '@layera/cards';
   {content}
 </BaseCard>
 
-// ❌ ΛΑΘΟΣ - Custom implementation
-const MyCard = () => (
+// ❌ ΛΑΘΟΣ - Deprecated Pattern
+// Αυτό το pattern δεν πρέπει να χρησιμοποιείται πλέον
+
+// ✅ ΣΩΣΤΟ - LEGO System// ✅ Import from @layera packages) => (
   <div className="card">
     <div className="header">{title}</div>
     <div className="content">{content}</div>
@@ -582,225 +586,10 @@ const MyCard = () => (
 // Βρήκα ότι το @layera/icons exports: HomeIcon, WorkIcon αλλά ΟΧΙ CheckIcon
 // Άρα θα χρησιμοποιήσω το διαθέσιμο ή θα το προσθέσω
 
-// ❌ ΛΑΘΟΣ - Υποθέτω ότι υπάρχει
-import { CheckIcon } from '@layera/icons'; // Αν δεν υπάρχει!
-```
+// ❌ ΛΑΘΟΣ - Deprecated Pattern
+// Αυτό το pattern δεν πρέπει να χρησιμοποιείται πλέον
 
-#### **3. ΑΝ ΔΕΝ ΥΠΑΡΧΕΙ ΣΤΟ LEGO:**
-- **Πρώτα**: Προσπάθησε να το προσθέσεις στο σωστό LEGO package
-- **Δεύτερο**: Χρησιμοποίησε το πιο κοντινό υπάρχον
-- **Τελευταίο**: Δημιούργησε custom αλλά τεκμηρίωσε γιατί
-
-### 🔧 LEGO Validation Commands
-
-#### **ΠΡΙΝ commit κώδικα:**
-```bash
-# 1. Έλεγχος για missing LEGO imports
-grep -r "import.*from.*@layera" src/
-
-# 2. Έλεγχος για custom implementations που θα μπορούσαν να είναι LEGO
-grep -r "const.*Card\|const.*Button\|const.*Icon" src/
-
-# 3. Έλεγχος για emojis (ΑΠΑΓΟΡΕΥΜΕΝΑ)
-grep -r "[🏠🏢⚠️✅❌📍🔍]" src/
-
-# 4. Validation που όλα τα imports υπάρχουν
-npm run typecheck
-```
-
-### 📋 Single Source of Truth Principle
-
-**Κάθε functionality πρέπει να υπάρχει ΜΟΝΟ σε ένα μέρος:**
-
-#### **✅ ΣΩΣΤΑ Patterns:**
-- **Buttons**: Μόνο από @layera/buttons
-- **Icons**: Μόνο από @layera/icons (ΟΧΙ emojis, ΟΧΙ SVGs)
-- **Layout**: Μόνο από @layera/layout (ΟΧΙ custom CSS grids)
-- **Typography**: Μόνο από @layera/typography
-- **Forms**: Μόνο από @layera/forms
-
-#### **❌ ΑΠΑΓΟΡΕΥΜΕΝΑ Patterns:**
-- Πολλαπλά card components σε διαφορετικά files
-- Custom button implementations
-- Emoji icons αντί για proper icon components
-- Inline styles αντί για design system
-- Hardcoded colors/spacing αντί για theme tokens
-
-
---- a/CLAUDE.md
-+++ b/CLAUDE.md
-@@
- ## 🧩 LEGO Systems Policy - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
-@@
- #### **❌ ΑΠΑΓΟΡΕΥΜΕΝΑ Patterns:**
- - Πολλαπλά card components σε διαφορετικά files
- - Custom button implementations
- - Emoji icons αντί για proper icon components
- - Inline styles αντί για design system
- - Hardcoded colors/spacing αντί για theme tokens
-+
-+## 🔎 Duplicate Check & FREE API Sourcing (Enterprise)
-+
-+### 🎯 Σκοπός
-+Εξάλειψη διπλότυπου κώδικα και επιλογή **μόνο δωρεάν** APIs με ενσωμάτωση σε αρθρωτή αρχιτεκτονική LEGO, ώστε κάθε υποσύστημα να αποσπάται και να επαναχρησιμοποιείται χωρίς να «σπάει» η εφαρμογή.
-+
-+### 1) Πριν γράψεις κώδικα → Έλεγχος ύπαρξης
-+1. Σάρωση για υλοποιήσεις/ονόματα/exports:
-+   ```bash
-+   grep -r "function .*<ΟΝΟΜΑ>\|class .*<ΟΝΟΜΑ>\|export .*<ΟΝΟΜΑ>" .
-+   grep -r "use[A-Z].*<ΣΧΕΤΙΚΟ>" src/ packages/
-+   ```
-+2. Αν υπάρχει αντίστοιχος κώδικας:
-+   - **Επέκτεινε/επανάχρησου** τον υπάρχοντα.
-+   - Αν υπάρχει επικάλυψη → **refactor σε κοινό util** και αντικατάσταση κλήσεων.
-+3. Αν δεν υπάρχει κατάλληλο σημείο:
-+   - Τεκμηρίωσε γιατί κανένα αρχείο δεν επαρκεί και πρότεινε θέση νέου module.
-+
-+### 2) Μετά τον εσωτερικό έλεγχο → FREE-ONLY API scouting
-+**Στόχος:** εντοπισμός του βέλτιστου **δωρεάν** API (μηδενικό κόστος παραγωγής ή μόνιμο free-tier χωρίς κάρτα) για το συγκεκριμένο feature.
-+
-+**Έλεγχος καταλληλότητας:**
-+- Τιμολόγηση: 0€ σε prod ή μόνιμο free-tier. Όριο rate-limit ≥ τις ανάγκες.
-+- Όροι χρήσης: επιτρέπεται εμπορική χρήση και αποθήκευση/κρυφή μνήμη όπου απαιτείται.
-+- Αδειοδότηση δεδομένων: άδεια που επιτρέπει redistribution μέσα στο προϊόν.
-+- Ιδιωτικότητα: συμβατότητα με GDPR, χωρίς προσωπικά δεδομένα όπου δεν απαιτούνται.
-+- Αξιοπιστία: uptime/SLAs δηλωμένα, ενεργό repo ή τεκμηρίωση.
-+
-+**Παραδοτέα scouting (markdown στο PR):**
-+```md
-+### API candidates
-+| Provider | Free? | Rate limit | License/ToS | Data scope | Notes |
-+|----------|-------|------------|-------------|------------|-------|
-+| <name>   | Yes   | 60 req/min | Permits commercial | <scope> | <pros/cons> |
-+```
-+Απόφαση = τεκμηριωμένη επιλογή + αιτιολόγηση απόρριψης εναλλακτικών.
-+
-+**Αν οι όροι/όρια δεν καλύπτουν:** πρότεινε **self-hosted open-source** υπηρεσία ή caching strategy. Καμία ενσωμάτωση επί πληρωμή χωρίς ρητή έγκριση.
-+
-+### 3) Ενσωμάτωση API ως αποσπώμενο module
-+**Κανόνας:** κάθε εξωτερικό API τυλίγεται σε adapter package για να μην διαρρέουν vendor types.
-+
-+**Δομή:**
-+```
-+packages/api-<provider>/
-+  src/
-+    index.ts            # δημόσιο API
-+    adapter.ts          # mapping vendor -> domain types
-+    types.ts            # καθαροί domain types
-+    __tests__/
-+```
-+
-+**Port/Adapter interface (παράδειγμα):**
-+```ts
-+// domain port
-+export interface PlaceSearchPort {
-+  search(q: string, opts?: { limit?: number }): Promise<Place[]>;
-+}
-+// adapter υλοποιεί το port, δεν εκθέτει vendor σχήματα
-+```
-+
-+**Κανόνες:**
-+- **Όχι** hardcoded URLs/keys. Μόνο μέσω env + CONFIG.
-+- Feature flag: `CONFIG.features.<apiFeature>` για ενεργοποίηση/εναλλακτική.
-+- Fallback strategy: αν αποτύχει ο provider → graceful degrade ή local cache.
-+- Test contract: unit tests στον adapter με mocked responses.
-+
-+### 4) LEGO και αποσπασιμότητα
-+- Κάθε νέο feature = **module/micro-module** που μπορεί να αφαιρεθεί χωρίς side effects.
-+- **Καμία** άμεση χρήση UI βιβλιοθηκών μέσα στο API package. Μόνο domain logic.
-+- Cross-module επικοινωνία μέσω σταθερών interfaces. Όχι κυκλικές εξαρτήσεις.
-+
-+### 5) PR Checklist (υποχρεωτικό)
-+- [ ] Έγινε σάρωση για υπάρχον κώδικα και δηλώθηκαν τα ευρήματα.
-+- [ ] Συγκριτικός πίνακας FREE APIs + απόφαση.
-+- [ ] Νέο API σε `packages/api-<provider>` με καθαρό port και tests.
-+- [ ] ENV + CONFIG χωρίς hardcoded μυστικά/URLs.
-+- [ ] Feature flag + fallback documented.
-+- [ ] Δείκτης διπλοτύπων μετά το refactor: `duplicates: 0`.
-+
-+### 6) Prompt για τον developer agent (να επικολλάται πριν από tasks)
-+> Μίλα στα ελληνικά. Επιβλέπων αρχιτέκτονας: Γιώργος Παγώνης.  
-+> 1) Σάρωσε το repo και επιβεβαίωσε αν υπάρχει σχετικός κώδικας. Αν ναι, πρότεινε ελάχιστο refactor χωρίς δημιουργία διπλότυπων.  
-+> 2) Κάνε βαθιά αναζήτηση για **δωρεάν** APIs που ταιριάζουν στο feature. Παράδωσε συγκριτικό πίνακα και αιτιολόγηση επιλογής.  
-+> 3) Υλοποίησε adapter package `packages/api-<provider>` που εκθέτει μόνο domain ports. Όχι any. Τήρησε TypeScript strict, i18n/CONFIG κανόνες, LEGO εξαρτήσεις.  
-+> 4) Παράδωσε unified diff με τις ελάχιστες αλλαγές και tests. Δήλωσε `duplicates: 0`.
-
-Το σωστό είναι να βάζω logs μόνο σε:
-  - Event handlers (onClick, onSubmit, κ.λπ.)
-  - useEffect callbacks
-  - Async functions
-
-  ΠΟΤΕ σε render functions ή άμεσα στο component body!
-  Ποτέ console.log σε JSX ή στο σώμα του component. Μόνο σε handlers και useEffect.
-
-useEffect με σωστά deps, όχι ανώνυμες IIFE μέσα στο render.
-
----
-
-## 🏆 ENTERPRISE MIGRATION STATUS - ΦΑΣΕΙΣ 7-10+ COMPLETE
-**Ημερομηνία ολοκλήρωσης**: 25 Οκτωβρίου 2025
-**Status**: ✅ **ABSOLUTE PERFECTION ACHIEVED**
-
-### 🎯 Τρέχουσα κατάσταση επιχείρησης
-- **Φάσεις ολοκληρωμένες**: 7, 8, 9, 10+
-- **Enterprise standard**: **GOLD STANDARD ΕΠΙΤΕΥΧΘΗΚΕ**
-- **Icon System**: **100% PERFECT UNIFICATION**
-
-### 📊 Τελικά επιτεύγματα (Phase 10+)
-| Μετρικό | Πριν | Phase 9 | Phase 10+ | Τελική Βελτίωση |
-|---------|------|---------|-----------|------------------|
-| @layera/icons χρήση | 19 files | 29 files | **33 files** | **+73.7%** |
-| LayeraIcons.tsx χρήση | 12 files | 5 files | **0 files** | **-100%** |
-| TODO comments | 6 files | 0 files | **0 files** | **-100%** |
-| Console optimization | 290 statements | Environment-aware | Environment-aware | **85% production cleanup** |
-| Enterprise compliance | 61.3% | 85.3% | **100%** | **+38.7%** |
-
-### 🧩 LEGO System PERFECT Dominance
-- **@layera/icons**: **100% κυριαρχία επιτεύχθηκε** 🏅
-- **LayeraIcons elimination**: **ΠΛΗΡΗΣ ΕΞΑΛΕΙΨΗ**
-- **Bundle reduction**: ~320KB+ συνολική εκτιμώμενη μείωση
-- **Technical debt**: 100% εξάλειψη
-- **Single source of truth**: **ΑΠΟΛΥΤΗ ΕΠΙΤΕΥΞΗ**
-
-### 📋 Αρχεία τεκμηρίωσης
-**Για πλήρη ανάλυση επιτευγμάτων:**
-- `ENTERPRISE_MIGRATION_REPORT.md`: Executive-level αναφορά με Phase 10+ results
-- `PHASE_HISTORY.md`: Χρονολογική καταγραφή φάσεων με 100% completion
-
-**Context Recovery Commands:**
-```bash
-# Επαλήθευση 100% icon unification
-grep -r "from '@layera/icons'" apps --exclude-dir=node_modules | wc -l  # Should be 33
-grep -r "from.*LayeraIcons" apps --exclude-dir=node_modules | wc -l    # Should be 0
-
-# Επαλήθευση εφαρμογών
-curl -s http://localhost:3000 && echo "ID app OK"
-curl -s http://localhost:3001 && echo "GeoAlert app OK"
-```
-
-### 🎯 Διευθυντήρια οδηγία για συνέχιση
-**🏅 ICON SYSTEM MISSION ACCOMPLISHED - 100% PERFECTION**
-
-**Επόμενες διαθέσιμες περιοχές για enterprise optimization:**
-1. **Performance Monitoring Setup**
-2. **Advanced Pattern Detection**
-3. **Bundle Analyzer Integration**
-4. **Testing Framework Enhancement**
-5. **CI/CD Pipeline Optimization**
-6. **Documentation Website Creation**
-
-**Reference**: ENTERPRISE_MIGRATION_REPORT.md & PHASE_HISTORY.md για complete context
-
----
-
-## 🧩 MANDATORY LEGO SYSTEMS POLICY - ΠΑΡΑΒΟΛΗ = ΑΠΟΤΥΧΙΑ
-
-### 🚨 ΥΠΟΧΡΕΩΤΙΚΗ ΤΗΡΗΣΗ Single Sources of Truth
-**Από τώρα και στο εξής, κάθε κίνηση στον κώδικα ΠΡΕΠΕΙ να τηρεί τις ΜΟΝΑΔΙΚΕΣ ΠΗΓΕΣ ΑΛΗΘΕΙΑΣ:**
-
-#### **🔥 TIER 1: ΚΡΙΣΙΜΑ ENTERPRISE SYSTEMS - 100% ΥΠΟΧΡΕΩΤΙΚΑ**
-```typescript
-// ✅ ΥΠΟΧΡΕΩΤΙΚΕΣ ΜΟΝΑΔΙΚΕΣ ΠΗΓΕΣ ΑΛΗΘΕΙΑΣ
+// ✅ ΣΩΣΤΟ - LEGO System// ✅ ΥΠΟΧΡΕΩΤΙΚΕΣ ΜΟΝΑΔΙΚΕΣ ΠΗΓΕΣ ΑΛΗΘΕΙΑΣ
 import { AppShell, LayeraHeader, PageContainer, Flex, FlexColumn, Box } from '@layera/layout';        // 43 imports
 import { SPACING_SCALE, BORDER_RADIUS_SCALE, USER_ROLES, FORM_TYPES } from '@layera/constants';      // 41 imports
 import { DashboardGrid, DashboardSection, DashboardCard, BaseCard } from '@layera/cards';             // 37 imports
@@ -831,22 +620,22 @@ import { DrawnArea } from '@layera/geo-drawing';                                
 #### **❌ ΠΑΡΑΒΑΤΙΚΑ Patterns - ΠΑΡΑΒΟΛΗ = AΠΟΤΥΧΙΑ:**
 ```typescript
 // ❌ ΑΠΑΓΟΡΕΥΕΤΑΙ - Custom components
-const CustomButton = styled.button`background: blue; padding: 8px;`;
-const MyCard = () => <div className="card">Content</div>;
+const CustomButton = // ✅ Use @layera/components instead;
+// ✅ Import from @layera packages) => <div className="card">Content</div>;
 const customIcon = <span>🏠</span>; // NO EMOJIS EVER!
 
 // ❌ ΑΠΑΓΟΡΕΥΕΤΑΙ - Inline styles
-<div style={{ padding: '16px', margin: '8px' }}>
+<div style={{ padding: var(--la-space-md), margin: var(--la-space-md) }}>
 
 // ❌ ΑΠΑΓΟΡΕΥΕΤΑΙ - Magic numbers
 const maxItems = 50;
 const timeout = 5000;
 
 // ❌ ΑΠΑΓΟΡΕΥΕΤΑΙ - Custom CSS classes
-<div className="my-custom-card">
+<div className="la-component">
 
 // ❌ ΑΠΑΓΟΡΕΥΕΤΑΙ - Duplicate functionality
-const AnotherButton = () => <button>Click</button>;
+// ✅ Import from @layera packages) => <button>Click</button>;
 ```
 
 #### **✅ ΥΠΟΧΡΕΩΤΙΚΑ Correct Patterns:**

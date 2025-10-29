@@ -89,12 +89,12 @@ function App() {
   return (
     <div style={{ padding: '2rem', textAlign: 'center', fontFamily: 'Arial, sans-serif' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--layera-space-md)' }}>
-        <h1 style={{ color: '#2563eb', marginBottom: 'var(--layera-space-sm)', margin: 0 }}>
+        <h1 style={{ color: 'var(--la-color-primary)', marginBottom: 'var(--layera-space-sm)', margin: 0 }}>
           🗺️ {t('title')}
         </h1>
         <LanguageSwitcher />
       </div>
-      <p style={{ color: '#6b7280', marginBottom: 'var(--layera-space-xl)' }}>
+      <p style={{ color: 'var(--la-color-primary)', marginBottom: 'var(--layera-space-xl)' }}>
         {t('subtitle')}
       </p>
       {/* More translated content... */}
@@ -164,25 +164,12 @@ const LanguageSwitcher = () => {
   return (
     <button
       onClick={toggleLanguage}
-      style={{
-        backgroundColor: '#3b82f6',
-        color: 'white',
-        border: 'none',
-        borderRadius: '6px',
-        padding: '0.5rem 1rem',
-        fontSize: '0.875rem',
-        fontWeight: 'bold',
-        cursor: 'pointer',
-        transition: 'all 0.2s',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '0.5rem'
-      }}
+      style={{ padding: 'var(--la-space-md)' }}
       onMouseOver={(e) => {
-        e.currentTarget.style.backgroundColor = '#2563eb';
+        e.currentTarget.style.backgroundColor = 'var(--la-color-primary)';
       }}
       onMouseOut={(e) => {
-        e.currentTarget.style.backgroundColor = '#3b82f6';
+        e.currentTarget.style.backgroundColor = 'var(--la-color-primary)';
       }}
     >
       {t('languageSwitch')} ({currentLanguage.toUpperCase()})

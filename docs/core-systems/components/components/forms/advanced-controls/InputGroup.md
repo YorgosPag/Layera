@@ -266,7 +266,8 @@ export const MEASUREMENT_UNITS = [
 
 ### **Basic Usage:**
 ```typescript
-import React, { useState } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
 import { InputGroup, NumericInput, Select } from '@layera/forms';
 import { useLayeraTranslation } from '@layera/i18n/hooks';
 import { CONSTANTS } from '@layera/constants';
@@ -310,7 +311,8 @@ export const BasicInputGroupExample: React.FC = () => {
 
 ### **Complete LEGO Integration με Property Search:**
 ```typescript
-import React, { useState, useCallback } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
 import { InputGroup, NumericInput, Select, Slider, DatePicker } from '@layera/forms';
 import { Card, CardHeader, CardContent } from '@layera/cards';
 import { Container, Grid, Stack, Flex } from '@layera/layout';
@@ -708,7 +710,8 @@ export const PropertySearchForm: React.FC = () => {
 
 ### **Currency Input Group:**
 ```typescript
-import React, { useState } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
 import { InputGroup, NumericInput, Select } from '@layera/forms';
 
 export const CurrencyInputExample: React.FC = () => {

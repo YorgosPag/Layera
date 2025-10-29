@@ -25,7 +25,8 @@ npm install @layera/forms
 ## Basic Usage
 
 ```tsx
-import React, { useState } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
 import { TextArea } from '@layera/forms';
 
 function MyComponent() {

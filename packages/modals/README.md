@@ -274,11 +274,11 @@ function MultiStepDialog() {
 :root {
   --layera-modal-z-index: 1000;
   --layera-modal-overlay-bg: rgba(0, 0, 0, 0.5);
-  --layera-modal-bg: #ffffff;
-  --layera-modal-border: #e5e7eb;
+  --layera-modal-bg: var(--la-color-primary);
+  --layera-modal-border: var(--la-color-primary);
   --layera-modal-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
   --layera-modal-radius: 12px;
-  --layera-modal-padding: 24px;
+  --layera-modal-padding: var(--la-space-md);
 }
 ```
 
@@ -286,8 +286,8 @@ function MultiStepDialog() {
 
 ```css
 [data-theme="dark"] {
-  --layera-modal-bg: #1f2937;
-  --layera-modal-border: #374151;
+  --layera-modal-bg: var(--la-color-primary);
+  --layera-modal-border: var(--la-color-primary);
   --layera-modal-overlay-bg: rgba(0, 0, 0, 0.8);
 }
 ```
@@ -296,10 +296,10 @@ function MultiStepDialog() {
 
 ```tsx
 <Modal
-  className="my-custom-modal"
+  className="la-component"
   overlayClassName="my-custom-overlay"
 >
-  <ModalContent className="my-custom-content">
+  <ModalContent className="la-component">
     Content here
   </ModalContent>
 </Modal>

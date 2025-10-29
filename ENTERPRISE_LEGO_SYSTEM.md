@@ -67,8 +67,8 @@ export class StaticContentProvider implements InfoContentProvider {
 ```typescript
 // Property & Job color variants
 export const INFO_PANEL_THEMES = {
-  property: { backgroundColor: '#1e40af', borderColor: '#3b82f6' },
-  job: { backgroundColor: '#dc2626', borderColor: '#ef4444' }
+  property: { backgroundColor: 'var(--la-color-primary)', borderColor: 'var(--la-color-primary)' },
+  job: { backgroundColor: 'var(--la-color-primary)', borderColor: 'var(--la-color-primary)' }
 }
 ```
 

@@ -427,7 +427,7 @@ import { BoundaryLabel } from '@layera/map-labels';
   styling={{
     titleVariant: 'h3',
     backgroundColor: 'rgba(255, 255, 255, 0.9)',
-    textColor: '#1F2937',
+    textColor: 'var(--la-color-primary)',
     border: true
   }}
 />

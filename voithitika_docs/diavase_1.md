@@ -32,7 +32,7 @@
   // Modern CSS
   'color-function-notation': 'modern',  // rgb() αντί rgba()
   'color-hex-case': 'lower',  // lowercase hex
-  'color-hex-length': 'short'  // #fff αντί #ffffff
+  'color-hex-length': 'short'  // var(--la-color-primary) αντί var(--la-color-primary)
 
   🛡️ TIER 3: ARCHITECTURE ENFORCEMENT
 

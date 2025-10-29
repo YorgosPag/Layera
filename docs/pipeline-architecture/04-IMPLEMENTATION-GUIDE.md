@@ -421,7 +421,8 @@ export const pipelineStore = configureStore({
 **Step 1.7: React Context Integration**
 ```typescript
 // apps/layera-geoalert/src/pipeline/context/PipelineContext.tsx
-import React, { createContext, useContext, ReactNode } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
 import { Provider } from 'react-redux';
 import { LayeraPipelineEngine } from '../engine/PipelineEngine';
 import { pipelineStore } from '../store/PipelineStore';

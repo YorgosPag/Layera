@@ -833,11 +833,7 @@ const DXFRenderingViewport: React.FC<DXFRenderingViewportProps> = ({
       <div
         ref={mapContainerRef}
         className="dxf-map-container"
-        style={{
-          backgroundColor: props.backgroundColor || '#1a1a1a',
-          height: '500px',
-          width: '100%'
-        }}
+        style={{ padding: 'var(--la-space-md)' }}
       />
 
       {/* Viewport status */}
@@ -1895,7 +1891,7 @@ const ComprehensiveDXFExample: React.FC = () => {
               />
 
               {/* Performance metrics */}
-              <Card style={{ marginTop: '16px' }}>
+              <Card style={{ padding: 'var(--la-space-md)' }}>
                 <CardHeader>
                   <Heading level={4}>{t('dxf.performance.title')}</Heading>
                 </CardHeader>
@@ -1909,7 +1905,7 @@ const ComprehensiveDXFExample: React.FC = () => {
 
         {/* Entity selection info */}
         {selectedEntities.length > 0 && (
-          <Card style={{ marginTop: '16px' }}>
+          <Card style={{ padding: 'var(--la-space-md)' }}>
             <CardContent>
               <Text>
                 {t('dxf.selection.info', { count: selectedEntities.length })}

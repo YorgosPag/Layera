@@ -209,7 +209,7 @@ if (listValidation.warnings.length > 0) {
 ```tsx
 function CustomDropZone(props: DragDropZoneProps) {
   return (
-    <div className="my-custom-drop-zone">
+    <div className="la-component">
       {/* Custom implementation */}
     </div>
   );

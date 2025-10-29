@@ -171,7 +171,7 @@ export interface EnhancedCardTheme {
 }
 
 // Enhanced theme function που καλύπτει όλες τις περιπτώσεις
-export const getEnhancedCardTheme = (
+export // ✅ Import from @layera packages
   variant: UnifiedBaseCardProps['variant'],
   opacityMode: OpacityMode = 'transparent'
 ): EnhancedCardTheme => {

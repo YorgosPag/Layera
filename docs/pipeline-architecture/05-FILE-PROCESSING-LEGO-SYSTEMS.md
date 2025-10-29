@@ -489,7 +489,7 @@ interface RenderingPipeline {
 
   // Styling
   materialSystem: {
-    defaultColor: '#FFFFFF',
+    defaultColor: 'var(--la-color-primary)',
     layerColors: AutoCADColorIndex,
     lineWeights: StandardLineWeights,
     lineTypes: { CONTINUOUS, DASHED, DOTTED, CENTER, PHANTOM },

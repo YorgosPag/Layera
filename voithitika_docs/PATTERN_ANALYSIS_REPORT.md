@@ -49,12 +49,12 @@
 
 | Pattern Type | Count | Impact | Examples |
 |--------------|-------|--------|----------|
-| Hardcoded hex colors (`#######`) | 405 | 🔴 High | `#6b7280`, `#1f2937`, `#007AFF` |
+| Hardcoded hex colors (`#######`) | 405 | 🔴 High | `var(--la-color-primary)`, `var(--la-color-primary)`, `var(--la-color-primary)` |
 | Hardcoded rgba/rgb | 403 | 🔴 High | `rgba(0,0,0,0.1)`, `rgb(255,255,255)` |
 
 **🎯 Sample hardcoded colors**:
-- `color: '#6b7280'` (Gray-500 equivalent)
-- `color: '#1f2937'` (Gray-900 equivalent)
+- `color: 'var(--la-color-primary)'` (Gray-500 equivalent)
+- `color: 'var(--la-color-primary)'` (Gray-900 equivalent)
 - `color: 'white'` (Basic white)
 
 ### **4️⃣ SPACING PATTERNS (2,184 instances)**
@@ -135,14 +135,14 @@ export { LayeraHeader } from './components/Header';   ✅
 // Χρειάζονται για τα 808 hardcoded color instances
 SEMANTIC_COLORS = {
   text: {
-    primary: '#1f2937',      // Gray-900
-    secondary: '#6b7280',    // Gray-500
-    tertiary: '#9ca3af'      // Gray-400
+    primary: 'var(--la-color-primary)',      // Gray-900
+    secondary: 'var(--la-color-primary)',    // Gray-500
+    tertiary: 'var(--la-color-primary)'      // Gray-400
   },
   interactive: {
-    primary: '#007AFF',      // iOS Blue
-    secondary: '#5856d6',    // iOS Purple
-    success: '#22c55e'       // Green-500
+    primary: 'var(--la-color-primary)',      // iOS Blue
+    secondary: 'var(--la-color-primary)',    // iOS Purple
+    success: 'var(--la-color-primary)'       // Green-500
   }
 }
 ```
@@ -204,7 +204,7 @@ SEMANTIC_COLORS = {
 ### **🎯 Color Pattern Samples:**
 ```typescript
 // ❌ Current (405 instances):
-color: '#6b7280'
+color: 'var(--la-color-primary)'
 
 // ✅ Target LEGO:
 color: SEMANTIC_COLORS.text.secondary

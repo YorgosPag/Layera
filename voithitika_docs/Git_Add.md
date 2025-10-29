@@ -9,7 +9,7 @@
   - $(git rev-list --count HEAD) → Μετράει πόσα commits υπάρχουν στο branch (δίνει αριθμό)
   - git push → Στέλνει τις αλλαγές στο remote repository
 
-  Αποτέλεσμα: Στέλνει όλες τις αλλαγές με μήνυμα "🔧 Auto-commit #123" (όπου 123 = αριθμός commit)  
+  Αποτέλεσμα: Στέλνει όλες τις αλλαγές με μήνυμα "🔧 Auto-commit var(--la-color-primary)" (όπου 123 = αριθμός commit)  
 
   ---
   Εντολή 2 (Ασφαλής):

@@ -12,7 +12,7 @@
 // Χρησιμοποιεί CSS Media Query: (hover: hover)
 onMouseEnter={(e) => {
   if (window.matchMedia('(hover: hover)').matches) {
-    e.currentTarget.style.color = '#374151'; // Σκούρο γκρι
+    e.currentTarget.style.color = 'var(--la-color-primary)'; // Σκούρο γκρι
     e.currentTarget.style.transform = 'scale(1.1)';
   }
 }}
@@ -25,7 +25,7 @@ onTouchStart={handleInfoTouchStart}
 onTouchEnd={handleInfoTouchEnd}
 
 const handleInfoTouchStart = (e) => {
-  target.style.color = '#374151';
+  target.style.color = 'var(--la-color-primary)';
   target.style.transform = 'scale(1.1)';
   navigator.vibrate(10); // Haptic feedback
 };
@@ -48,13 +48,13 @@ touchAction: 'manipulation'            /* Optimized for touch */
 - **Touch**: `navigator.vibrate(10)` (μαλακή δόνηση)
 
 ### 4. **Visual States**
-- **Normal**: `color: '#6b7280'` (neutral gray)
-- **Active**: `color: '#374151'` (darker gray)
+- **Normal**: `color: 'var(--la-color-primary)'` (neutral gray)
+- **Active**: `color: 'var(--la-color-primary)'` (darker gray)
 - **Scale**: `transform: 'scale(1.1)'` (μεγέθυνση 10%)
 
 ## 🎨 Color Consistency
-- **Neutral Icons**: `#6b7280` (βάση)
-- **Active State**: `#374151` (hover/touch)
+- **Neutral Icons**: `var(--la-color-primary)` (βάση)
+- **Active State**: `var(--la-color-primary)` (hover/touch)
 - **Transition**: `all 0.2s ease` (smooth)
 
 ## ⚡ Performance Notes

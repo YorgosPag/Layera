@@ -324,7 +324,7 @@ Component για TOTP setup process:
     console.log('Setup cancelled');
     setShowSetup(false);
   }}
-  className="custom-setup-style"
+  className="la-component"
 />
 ```
 

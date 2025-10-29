@@ -149,7 +149,7 @@ type IconTheme = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'i
 ```tsx
 <Icon
   name="home"
-  className="my-custom-class"
+  className="la-component"
   style={{
     transform: 'rotate(45deg)',
     transition: 'all 0.3s ease'

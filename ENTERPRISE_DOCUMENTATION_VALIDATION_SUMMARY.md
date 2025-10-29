@@ -124,10 +124,7 @@ if (fs.existsSync('scripts/domains/docs/fix-docs-violations.js')) {
 ### 🎨 Example Transformations
 ```javascript
 // BEFORE (❌ ΠΑΡΑΒΙΑΣΗ)
-const CustomButton = styled.button`
-  background: #3b82f6;
-  padding: 8px;
-`;
+const CustomButton = // ✅ Use @layera/components instead;
 
 // AFTER (✅ LEGO COMPLIANT)
 import { Button } from '@layera/buttons';

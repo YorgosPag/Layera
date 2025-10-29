@@ -163,8 +163,8 @@ interface TextProps {
 #### **Colors Migration Script:**
 ```bash
 # Find & replace hex colors
-find apps/ packages/ -name "*.tsx" -exec sed -i 's/#6b7280/SEMANTIC_COLORS.text.secondary.light/g' {} \;
-find apps/ packages/ -name "*.tsx" -exec sed -i 's/#1f2937/SEMANTIC_COLORS.text.primary.light/g' {} \;
+find apps/ packages/ -name "*.tsx" -exec sed -i 's/var(--la-color-primary)/SEMANTIC_COLORS.text.secondary.light/g' {} \;
+find apps/ packages/ -name "*.tsx" -exec sed -i 's/var(--la-color-primary)/SEMANTIC_COLORS.text.primary.light/g' {} \;
 ```
 
 #### **Layout Patterns Migration Script:**
@@ -176,7 +176,7 @@ find apps/ packages/ -name "*.tsx" -exec sed -i "s/display: 'flex', alignItems: 
 #### **Spacing Migration Script:**
 ```bash
 # Padding migration
-find apps/ packages/ -name "*.tsx" -exec sed -i "s/padding: '16px'/<Padded size='md'>/g" {} \;
+find apps/ packages/ -name "*.tsx" -exec sed -i "s/padding: var(--la-space-md)/<Padded size='md'>/g" {} \;
 ```
 
 ---

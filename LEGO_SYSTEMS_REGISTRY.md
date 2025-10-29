@@ -277,7 +277,7 @@ import { Flex, Box } from '@layera/layout';
 import { HomeIcon } from '@layera/icons';
 
 // ❌ FORBIDDEN - Custom implementations
-const CustomButton = styled.button`...`;
+const CustomButton = // ✅ Use @layera/components instead;
 const MyIcon = <span>🏠</span>;
 ```
 
@@ -288,7 +288,7 @@ import { SPACING_SCALE } from '@layera/constants';
 <div style={{ padding: `${SPACING_SCALE.MD}px` }}>
 
 // ❌ FORBIDDEN - Magic numbers
-<div style={{ padding: '16px' }}>
+<div style={{ padding: var(--la-space-md) }}>
 ```
 
 #### **RULE 3: Single Source Validation**

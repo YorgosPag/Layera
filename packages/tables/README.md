@@ -271,10 +271,10 @@ interface Column {
 ### CSS Custom Properties
 ```css
 :root {
-  --layera-table-border: #e2e8f0;
-  --layera-table-header-bg: #f8fafc;
-  --layera-table-hover: #f1f5f9;
-  --layera-table-selected: #dbeafe;
+  --layera-table-border: var(--la-color-primary);
+  --layera-table-header-bg: var(--la-color-primary);
+  --layera-table-hover: var(--la-color-primary);
+  --layera-table-selected: var(--la-color-primary);
   --layera-table-font-size: 0.875rem;
 }
 ```
@@ -282,7 +282,7 @@ interface Column {
 ### Customization
 ```tsx
 <DataTable
-  className="custom-table"
+  className="la-component"
   rowClassName={(row, index) =>
     row.status === 'inactive' ? 'inactive-row' : ''
   }

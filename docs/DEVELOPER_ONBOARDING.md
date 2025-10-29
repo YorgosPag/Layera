@@ -239,7 +239,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, loading, error }) => {
 };
 
 // ✅ Good: Custom hooks
-const useLoginForm = () => {
+// ✅ Import from @layera packages) => {
   const [credentials, setCredentials] = useState<LoginCredentials>({
     email: '',
     password: ''
@@ -282,7 +282,8 @@ useAuth.test.ts
 
 ```typescript
 // 1. External libraries
-import React, { useState, useCallback } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
 import { useNavigate } from 'react-router-dom';
 
 // 2. Internal packages
@@ -480,7 +481,7 @@ git commit -m "feat(auth): add TOTP MFA enrollment flow
 - Add MFA verification to auth flow
 - Update RoleGuard to check MFA status
 
-Closes #123"
+Closes var(--la-color-primary)"
 
 # Keep commits atomic
 git add src/components/MfaEnroll.tsx

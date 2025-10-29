@@ -72,10 +72,10 @@ Branch name pattern: main
 ### ❌ Θα Αποτύχει
 ```css
 /* Hardcoded color */
-.button { background: #3b82f6; }
+.button { background: var(--la-color-primary); }
 
 /* Hardcoded spacing */
-.card { padding: 16px; }
+.card { padding: var(--la-space-md); }
 
 /* Custom property εκτός tokens */
 .component { --custom-color: red; }

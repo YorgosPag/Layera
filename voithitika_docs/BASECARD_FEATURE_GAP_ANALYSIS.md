@@ -83,7 +83,7 @@ export interface BaseCardProps {
 }
 
 // ADDITIONAL EXPORTS:
-export const getCardTheme = (variant: 'property' | 'job', opacityMode: OpacityMode) => Theme;
+export // ✅ Import from @layera packagesvariant: 'property' | 'job', opacityMode: OpacityMode) => Theme;
 export const cardThemes = { property: Theme, job: Theme };
 export type CardVariant = 'property' | 'job';
 ```

@@ -71,12 +71,12 @@ import { ErrorBoundary } from '@layera/error-boundary';
 import { CONSTANTS } from '@layera/constants';
 
 // 🚨 ΑΠΑΓΟΡΕΥΕΤΑΙ:
-// ❌ Custom UI components: <div className="custom-geo-panel">
+// ❌ Custom UI components: <div className="la-component">
 // ❌ Hardcoded strings: "Draw Polygon", "Μέτρηση Εμβαδού"
 // ❌ Magic numbers: radius: 100, precision: 2
 // ❌ Any types: geoData: any
 // ❌ Custom icons: <svg>...</svg>
-// ❌ Theme-unaware styling: backgroundColor: "#ffffff"
+// ❌ Theme-unaware styling: backgroundColor: "var(--la-color-primary)"
 // ❌ Non-i18n text: alert("Drawing completed")
 ```
 
@@ -574,7 +574,8 @@ export type MeasurementUnit =
 **Step 2.1: DrawingCanvas με Full LEGO Integration**
 ```typescript
 // packages/geo-drawing/src/components/canvas/DrawingCanvas.tsx
-import React, { useEffect, useRef, useState } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
 import L from 'leaflet';
 
 // COMPLETE LEGO SYSTEMS INTEGRATION
@@ -775,13 +776,7 @@ export const DrawingCanvas: React.FC<DrawingCanvasProps> = ({
                   <CardContent padding="none">
                     <div
                       ref={mapRef}
-                      style={{
-                        height: '500px',
-                        width: '100%',
-                        backgroundColor: isDarkMode
-                          ? currentTheme.colors.dark.surface
-                          : currentTheme.colors.light.surface,
-                      }}
+                      style={{ padding: 'var(--la-space-md)' }}
                       data-testid="geo-drawing-canvas"
                     />
                   </CardContent>
@@ -1051,7 +1046,8 @@ export default MeasurementDisplay;
 **Step 3.1: Export Functionality**
 ```typescript
 // packages/geo-drawing/src/components/dialogs/ExportDialog.tsx
-import React, { useState } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
 
 // COMPLETE LEGO INTEGRATION
 import { Modal, Dialog, DialogContent, DialogHeader, DialogFooter } from '@layera/modals';

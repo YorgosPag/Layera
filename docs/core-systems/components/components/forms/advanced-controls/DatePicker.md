@@ -242,7 +242,8 @@ export const AVAILABILITY_LIMITS = {
 
 ### **Basic Usage:**
 ```typescript
-import React, { useState } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
 import { DatePicker } from '@layera/forms';
 import { useLayeraTranslation } from '@layera/i18n/hooks';
 import { CONSTANTS } from '@layera/constants';
@@ -274,7 +275,8 @@ export const BasicDatePickerExample: React.FC = () => {
 
 ### **Complete LEGO Integration με Availability Form:**
 ```typescript
-import React, { useState, useCallback } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
 import { DatePicker, FormSection, FormField, Select } from '@layera/forms';
 import { Card, CardHeader, CardContent } from '@layera/cards';
 import { Container, Grid, Stack, Flex } from '@layera/layout';
@@ -346,7 +348,7 @@ export const PropertyAvailabilityForm: React.FC = () => {
     );
   };
 
-  const validateForm = (): boolean => {
+  // ✅ Import from @layera packages): boolean => {
     return availabilityData.startDate !== null &&
            (availabilityData.availabilityType === 'immediate' || availabilityData.endDate !== null);
   };
@@ -621,7 +623,8 @@ export const PropertyAvailabilityForm: React.FC = () => {
 
 ### **Range Date Selection:**
 ```typescript
-import React, { useState } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
 import { DatePicker } from '@layera/forms';
 import { Stack } from '@layera/layout';
 import { Text } from '@layera/typography';

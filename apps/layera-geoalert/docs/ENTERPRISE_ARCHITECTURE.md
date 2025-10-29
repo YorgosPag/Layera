@@ -215,15 +215,7 @@ const LanguageSwitcher = () => {
 <a
   href="http://localhost:3001"
   target="_blank"
-  style={{
-    color: '#2563eb',
-    textDecoration: 'none',
-    padding: '0.75rem 1.5rem',
-    border: '2px solid #2563eb',
-    borderRadius: '6px',
-    display: 'inline-block',
-    fontWeight: 'bold'
-  }}
+  style={{ padding: 'var(--la-space-md)' }}
 >
   {t('navigateToLayeraId')}
 </a>

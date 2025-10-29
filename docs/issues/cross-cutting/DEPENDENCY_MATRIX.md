@@ -43,11 +43,11 @@ graph LR
     I18N002 --> MOB002[MOB-002 OPEN]
     MOB002 --> MOB003[MOB-003 OPEN]
 
-    style PKG001 fill:#90EE90
-    style I18N001 fill:#90EE90
-    style I18N002 fill:#FFB6C1
-    style MOB002 fill:#FFB6C1
-    style MOB003 fill:#FFB6C1
+    style PKG001 fill:var(--la-color-primary)
+    style I18N001 fill:var(--la-color-primary)
+    style I18N002 fill:var(--la-color-primary)
+    style MOB002 fill:var(--la-color-primary)
+    style MOB003 fill:var(--la-color-primary)
 ```
 
 **Impact:** Βλοκάρει ολόκληρη την mobile UX development
@@ -61,11 +61,11 @@ graph LR
     HOOK002 --> MOB004[MOB-004 OPEN]
     PKG002[PKG-002 OPEN] --> HOOK003[HOOK-003 OPEN]
 
-    style HOOK001 fill:#90EE90
-    style HOOK002 fill:#FFB6C1
-    style MOB004 fill:#FFA500
-    style PKG002 fill:#FFA500
-    style HOOK003 fill:#FFA500
+    style HOOK001 fill:var(--la-color-primary)
+    style HOOK002 fill:var(--la-color-primary)
+    style MOB004 fill:var(--la-color-primary)
+    style PKG002 fill:var(--la-color-primary)
+    style HOOK003 fill:var(--la-color-primary)
 ```
 
 **Impact:** Επηρεάζει component stability και maintainability
@@ -80,9 +80,9 @@ graph TD
     PKG002 --> MOB001[MOB-001]
     PKG002 --> HOOK003[HOOK-003]
 
-    style PKG002 fill:#FFB6C1
-    style PKG003 fill:#FFB6C1
-    style ALLDEV fill:#FF6B6B
+    style PKG002 fill:var(--la-color-primary)
+    style PKG003 fill:var(--la-color-primary)
+    style ALLDEV fill:var(--la-color-primary)
 ```
 
 **Impact:** Καταστροφικό για όλη την development pipeline

@@ -182,7 +182,8 @@ export const CHECKBOX_COLORS = {
 
 ### **Basic Usage:**
 ```typescript
-import React, { useState } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
 import { Checkbox } from '@layera/forms';
 import { useLayeraTranslation } from '@layera/i18n/hooks';
 
@@ -204,7 +205,8 @@ export const BasicCheckboxExample: React.FC = () => {
 
 ### **Complete LEGO Integration Example:**
 ```typescript
-import React, { useState } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
 import { Checkbox, FormSection, FormField } from '@layera/forms';
 import { Card, CardHeader, CardContent } from '@layera/cards';
 import { Container, Grid, Stack, Flex } from '@layera/layout';
@@ -349,7 +351,8 @@ export const PropertyAmenitiesForm: React.FC = () => {
 
 ### **Group Selection with Indeterminate:**
 ```typescript
-import React, { useMemo } from 'react';
+import { useLayeraTranslation } from '@layera/tolgee';
+// ✅ Use LEGO hooks and utilities;
 import { Checkbox } from '@layera/forms';
 
 export const CheckboxGroupExample: React.FC = () => {

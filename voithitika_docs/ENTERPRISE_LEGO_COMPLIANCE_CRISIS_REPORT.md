@@ -103,8 +103,8 @@ style={{ flex: 1 }}
 ```typescript
 // MIXED IMPLEMENTATION (Partially LEGO-compliant):
 marginTop: `${SPACING_SCALE.MD}px`  // ✅ Good
-margin: '20px'                      // ❌ Hardcoded
-padding: '8px 16px'                // ❌ Non-standard
+margin: var(--la-space-md)                      // ❌ Hardcoded
+padding: var(--la-space-md) 16px'                // ❌ Non-standard
 ```
 
 ---

@@ -367,9 +367,9 @@ const PipelineStep: React.FC = () => {
 };
 
 // ❌ ΑΠΑΓΟΡΕΥΜΕΝΟ: Δημιουργία custom components
-const CustomCard = () => <div className="card">...</div>;        // ❌ NO!
-const CustomButton = () => <button>Click me</button>;            // ❌ NO!
-const CustomIcon = () => <svg>...</svg>;                         // ❌ NO!
+// ✅ Import from @layera packages) => <div className="card">...</div>;        // ❌ NO!
+// ✅ Import from @layera packages) => <button>Click me</button>;            // ❌ NO!
+// ✅ Import from @layera packages) => <svg>...</svg>;                         // ❌ NO!
 const hardcodedText = "Category Selection";                      // ❌ NO!
 const anyTypeVariable: any = data;                               // ❌ NO!
 

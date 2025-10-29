@@ -54,7 +54,7 @@ grep -r "rgb(" apps/ packages/ | wc -l
 2. `display: 'flex', justifyContent: 'space-between'` - 89 instances
 3. `display: 'flex', justifyContent: 'center'` - 73 instances
 4. `fontSize: '14px'` - 156 instances
-5. `color: '#333333'` - 198 instances
+5. `color: 'var(--la-color-primary)'` - 198 instances
 ```
 
 ### 🔍 **Βήμα 1.2**: Missing LEGO Systems Identification
@@ -155,17 +155,17 @@ export const FlexCenter: React.FC<FlexCenterProps> = ({
 export const CSS_DESIGN_TOKENS = {
   colors: {
     // Semantic state colors - ήδη διαθέσιμα
-    'color-semantic-success-bg': 'light-dark(#f0fdf4, #14532d)',
-    'color-semantic-success-border': 'light-dark(#22c55e, #4ade80)',
-    'color-semantic-success-text': 'light-dark(#166534, #bbf7d0)',
+    'color-semantic-success-bg': 'light-dark(var(--la-color-primary), var(--la-color-primary))',
+    'color-semantic-success-border': 'light-dark(var(--la-color-primary), var(--la-color-primary))',
+    'color-semantic-success-text': 'light-dark(var(--la-color-primary), var(--la-color-primary))',
 
-    'color-semantic-warning-bg': 'light-dark(#fffbeb, #92400e)',
-    'color-semantic-warning-border': 'light-dark(#f59e0b, #fbbf24)',
-    'color-semantic-warning-text': 'light-dark(#d97706, #fef3c7)',
+    'color-semantic-warning-bg': 'light-dark(var(--la-color-primary), var(--la-color-primary))',
+    'color-semantic-warning-border': 'light-dark(var(--la-color-primary), var(--la-color-primary))',
+    'color-semantic-warning-text': 'light-dark(var(--la-color-primary), var(--la-color-primary))',
 
-    'color-semantic-error-bg': 'light-dark(#fef2f2, #7f1d1d)',
-    'color-semantic-error-border': 'light-dark(#ef4444, #f87171)',
-    'color-semantic-error-text': 'light-dark(#dc2626, #fecaca)',
+    'color-semantic-error-bg': 'light-dark(var(--la-color-primary), var(--la-color-primary))',
+    'color-semantic-error-border': 'light-dark(var(--la-color-primary), var(--la-color-primary))',
+    'color-semantic-error-text': 'light-dark(var(--la-color-primary), var(--la-color-primary))',
   }
 } as const;
 ```
@@ -228,8 +228,8 @@ export const MIGRATION_MAP = {
   "fontWeight: 'bold'": "<Text weight='bold'>",
 
   // Color μετανάστευση (χρησιμοποιώντας @layera/constants)
-  "#333333": "var(--color-text-primary)",
-  "#666666": "var(--color-text-secondary)",
+  "var(--la-color-primary)": "var(--color-text-primary)",
+  "var(--la-color-primary)": "var(--color-text-secondary)",
   "color: 'red'": "var(--color-semantic-error-text)"
 } as const;
 ```
@@ -283,8 +283,8 @@ echo "✅ Typography patterns μεταναστεύθηκαν"
 echo "🔄 Μετανάστευση color patterns..."
 
 # Μετανάστευση σκληροκωδικοποιημένων χρωμάτων (ΔΙΟΡΘΩΜΕΝΟ - χρησιμοποιώντας @layera/constants)
-find apps/ packages/ -name "*.tsx" -type f -exec sed -i 's/#333333/var(--color-text-primary)/g' {} \;
-find apps/ packages/ -name "*.tsx" -type f -exec sed -i 's/#666666/var(--color-text-secondary)/g' {} \;
+find apps/ packages/ -name "*.tsx" -type f -exec sed -i 's/var(--la-color-primary)/var(--color-text-primary)/g' {} \;
+find apps/ packages/ -name "*.tsx" -type f -exec sed -i 's/var(--la-color-primary)/var(--color-text-secondary)/g' {} \;
 
 echo "✅ Color patterns μεταναστεύθηκαν"
 ```
