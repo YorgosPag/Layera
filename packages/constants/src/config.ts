@@ -251,6 +251,36 @@ export const EASING_FUNCTIONS = {
 } as const;
 
 // ============================================================================
+// API & HTTP CONSTANTS - Enterprise HTTP/API Standards
+// ============================================================================
+
+/**
+ * HTTP Status Codes
+ */
+export const API_STATUS = {
+  OK: 200,
+  CREATED: 201,
+  NO_CONTENT: 204,
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+  FORBIDDEN: 403,
+  NOT_FOUND: 404,
+  CONFLICT: 409,
+  INTERNAL_SERVER_ERROR: 500,
+  SERVICE_UNAVAILABLE: 503,
+} as const;
+
+/**
+ * API Timeouts (in milliseconds)
+ */
+export const API_TIMEOUTS = {
+  FAST: 3000,
+  MEDIUM: 10000,
+  SLOW: 30000,
+  UPLOAD: 60000,
+} as const;
+
+// ============================================================================
 // DEFAULT EXPORTS - Backwards Compatibility
 // ============================================================================
 

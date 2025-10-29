@@ -63,6 +63,19 @@ export const FIELD_SIZES = {
   FULL: 'full'
 } as const;
 
+/**
+ * Form Validation Constants
+ */
+export const FORM_VALIDATION = {
+  PASSWORD_MIN: 8,
+  PASSWORD_MAX: 128,
+  EMAIL_MAX: 254,
+  TEXT_MAX: 500,
+  TEXTAREA_MAX: 2000,
+  PHONE_MIN: 10,
+  PHONE_MAX: 15,
+} as const;
+
 // Type exports
 export type FormType = typeof FORM_TYPES[keyof typeof FORM_TYPES];
 export type InputVariant = typeof INPUT_VARIANTS[keyof typeof INPUT_VARIANTS];

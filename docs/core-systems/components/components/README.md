@@ -72,7 +72,7 @@ import { FormField, Input, TextArea, Button } from '@layera/forms';
 </FormField>
 ```
 
-### 🌐 [@layera/i18n](./i18n/)
+### 🌐 [@layera/tolgee](./i18n/)
 
 **Internationalization components και language management**
 
@@ -84,11 +84,11 @@ import { FormField, Input, TextArea, Button } from '@layera/forms';
 
 **Installation & Basic Usage:**
 ```bash
-npm install @layera/i18n
+npm install @layera/tolgee
 ```
 
 ```tsx
-import { LanguageSwitcher, useLayeraTranslation } from '@layera/i18n';
+import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 
 function Header() {
   const { t } = useLayeraTranslation();
@@ -145,7 +145,7 @@ function Header() {
 
 ```bash
 # Core packages
-npm install @layera/forms @layera/buttons @layera/i18n
+npm install @layera/forms @layera/buttons @layera/tolgee
 
 # Layout και styling
 npm install @layera/layout @layera/theme-switcher
@@ -161,7 +161,7 @@ npm install @layera/constants
 
 ```tsx
 import React from 'react';
-import { LayeraI18nProvider } from '@layera/i18n';
+import { LayeraI18nProvider } from '@layera/tolgee';
 import { ThemeProvider } from '@layera/theme-switcher';
 import '@layera/forms/dist/index.css';
 import '@layera/buttons/dist/styles.css';
@@ -192,10 +192,15 @@ import {
   FORM_SIZES
 } from '@layera/forms';
 import { Button } from '@layera/buttons';
-import { useLayeraTranslation } from '@layera/i18n';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 function ContactForm() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+  }>({
     name: '',
     email: '',
     subject: '',
@@ -338,7 +343,7 @@ src/
 |---------|------------|---------|---------------|------|-------------|
 | @layera/forms | 6 | ✅ Complete | 95% | ✅ Complete | ⚡ <30ms |
 | @layera/buttons | 2 | ✅ Complete | 98% | ✅ Complete | ⚡ <20ms |
-| @layera/i18n | 3 | ✅ Complete | 92% | ✅ Complete | ⚡ <25ms |
+| @layera/tolgee | 3 | ✅ Complete | 92% | ✅ Complete | ⚡ <25ms |
 | @layera/theme-switcher | 2 | ✅ Complete | 94% | ✅ Complete | ⚡ <15ms |
 | @layera/layout | 3 | ✅ Complete | 89% | ✅ Complete | ⚡ <35ms |
 | @layera/notifications | 2 | ✅ Complete | 96% | ✅ Complete | ⚡ <40ms |

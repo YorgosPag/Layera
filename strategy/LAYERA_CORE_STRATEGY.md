@@ -657,8 +657,8 @@ interface ReverseAreaDiscovery {
 
 // Grid-based Area Scanning Algorithm
 async function discoverQualifyingAreas(criteria: DiscoveryCriteria) {
-  // 1. Generate city scanning grid (500m cells)
-  const cityGrid = generateScanningGrid(criteria.city, 500);
+  // 1. Generate city scanning grid (using GRID_CELL_SIZE constant)
+  const cityGrid = generateScanningGrid(criteria.city, GRID_CONSTANTS.CELL_SIZE_METERS);
 
   // 2. Parallel POI checking για κάθε grid cell
   const cellResults = await Promise.all(

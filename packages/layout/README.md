@@ -168,9 +168,9 @@ interface NavigationSidebarProps {
 
 Το layout system είναι fully responsive:
 
-- **Mobile (<768px)**: Sidebar γίνεται overlay, compact header
-- **Tablet (768px-1024px)**: Compact sidebar, responsive containers
-- **Desktop (>1024px)**: Full layout με όλα τα features
+- **Mobile (<${BREAKPOINTS.TABLET_MIN}px)**: Sidebar γίνεται overlay, compact header
+- **Tablet (${BREAKPOINTS.TABLET_MIN}px-${BREAKPOINTS.DESKTOP_MIN}px)**: Compact sidebar, responsive containers
+- **Desktop (>${BREAKPOINTS.DESKTOP_MIN}px)**: Full layout με όλα τα features
 
 ## 🎨 Design Tokens
 

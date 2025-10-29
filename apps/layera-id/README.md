@@ -6,7 +6,7 @@
 
 - **React 19** με Vite για γρήγορη ανάπτυξη
 - **Firebase Authentication** με MFA (SMS-based)
-- **Enterprise i18n System** (@layera/i18n) με δυναμική εναλλαγή γλωσσών
+- **Enterprise i18n System** (@layera/tolgee) με δυναμική εναλλαγή γλωσσών
 - **Monorepo Architecture** με shared packages
 - **React Router v6** για navigation
 - **Modern CSS** με responsive design
@@ -39,7 +39,7 @@
 ### 🏗️ Αρχιτεκτονική
 - Monorepo structure με shared packages
 - `@layera/auth-bridge` για authentication logic
-- `@layera/i18n` για internationalization
+- `@layera/tolgee` για internationalization
 - Modular component design
 - Enterprise-ready code organization
 
@@ -110,7 +110,10 @@ t('dashboard:user.successfulLogin', { email: user.email })
 
 ### Language Switcher
 Κάθε σελίδα περιλαμβάνει LanguageSwitcher component στο header:
-```jsx
+```tsx
+import React from 'react';
+import { LanguageSwitcher } from '@layera/tolgee';
+
 <LanguageSwitcher
   variant="toggle"
   className="language-switcher-nav"

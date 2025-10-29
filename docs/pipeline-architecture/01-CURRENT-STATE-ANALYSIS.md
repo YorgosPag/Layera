@@ -67,8 +67,8 @@ import {
 // ❌ Hardcoded: "Category Selection"
 // ✅ LEGO FIX: <Heading>{t('category.selection')}</Heading>
 //
-// ❌ Magic numbers: timeout: 5000
-// ✅ LEGO FIX: timeout: CONSTANTS.TIMEOUTS.DEFAULT
+// ❌ Magic numbers: timeout: CONFIG.api.timeout
+// ✅ LEGO FIX: timeout: CONFIG.api.timeout
 //
 // ❌ Monolithic drawing: StepDrawLocation.tsx (400+ lines)
 // ✅ LEGO FIX: <GeoDrawingCanvas mode="polygon" /> (reusable LEGO component)

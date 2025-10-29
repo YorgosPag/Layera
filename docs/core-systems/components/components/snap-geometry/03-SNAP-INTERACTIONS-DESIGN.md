@@ -589,7 +589,7 @@ class SnapEngagementAnimation {
     timeline.add({
       targets: snapPoint.visualElement,
       scale: [1.2, 1.0],
-      opacity: [0.8, 1.0],
+      opacity: [OPACITY.MEDIUM, OPACITY.FULL],
       duration: 50,
       easing: 'easeInCubic'
     }, 50);
@@ -598,7 +598,7 @@ class SnapEngagementAnimation {
     timeline.add({
       targets: snapPoint.glyphElement,
       scale: [0, 1],
-      opacity: [0, 1],
+      opacity: [OPACITY.NONE, OPACITY.FULL],
       rotation: [0, 360],
       duration: 50,
       easing: 'easeOutBack'

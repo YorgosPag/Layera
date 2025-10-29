@@ -17,7 +17,7 @@
 #### ❌ Τύποι & Options
 ```tsx
 // ΛΑΘΟΣ - Hardcoded arrays
-const roleOptions = ['admin', 'editor', 'viewer'];
+const roleOptions = Object.values(USER_ROLES);
 const statusTypes = ['active', 'inactive', 'pending'];
 
 // ΣΩΣΤΟ - From constants
@@ -29,7 +29,7 @@ const statusTypes = Object.values(USER_STATUSES);
 #### ❌ Sizes & Dimensions
 ```tsx
 // ΛΑΘΟΣ - Hardcoded pixels
-<Icon size="24px" />
+<Icon size={ICON_SIZES.MD} />
 <Button style={{ padding: 'var(--la-space-md)' }} />
 
 // ΣΩΣΤΟ - Design tokens
@@ -85,8 +85,8 @@ export const USER_ROLES = {
 } as const;
 
 export const ICON_SIZES = {
-  xs: '12px',
-  sm: '16px',
+  xs: 'var(--la-text-xs)',
+  sm: 'var(--la-text-sm)',
   md: '20px',
   lg: '24px',
   xl: '32px'

@@ -47,7 +47,7 @@ import {
   ArrowLeftIcon, ArrowRightIcon, EditIcon, DeleteIcon,
   UploadIcon, DownloadIcon, SettingsIcon, UserIcon
 } from '@layera/icons';
-import { useLayeraTranslation } from '@layera/i18n/hooks';
+import { useLayeraTranslation } from '@layera/tolgee/hooks';
 import { useAuth } from '@layera/auth-bridge/hooks';
 import { useTheme } from '@layera/theme-switcher/hooks';
 import { ErrorBoundary } from '@layera/error-boundary';
@@ -66,7 +66,7 @@ import {
 // ❌ Custom UI components: <div className="card">
 // ❌ Custom layout CSS: display: flex, grid, etc.
 // ❌ Hardcoded strings: "Select Category"
-// ❌ Magic numbers: timeout: 5000
+// ❌ Magic numbers: timeout: CONFIG.api.timeout
 // ❌ Any types: data: any
 // ❌ Custom icons: <svg>...</svg>
 // ❌ Σύνδεση με OLD_geo-canvas κώδικα
@@ -79,7 +79,7 @@ import {
 - **Αν χρειάζεσαι UI**: Χρησιμοποίησε ΜΟΝΟ @layera packages
 - **Αν χρειάζεσαι layout**: @layera/layout (όχι custom CSS!)
 - **Αν χρειάζεσαι εικονίδιο**: @layera/icons (όχι custom SVG!)
-- **Αν χρειάζεσαι κείμενο**: @layera/i18n + translation keys
+- **Αν χρειάζεσαι κείμενο**: @layera/tolgee + translation keys
 - **Αν χρειάζεσαι τιμές**: @layera/constants
 - **Αν χρειάζεσαι geo features**: @layera/geo-drawing (όχι direct Leaflet!)
 - **Αν χρειάζεσαι polygon/circle drawing**: GeoDrawingCanvas component
@@ -142,7 +142,7 @@ mkdir -p apps/layera-geoalert/src/pipeline/__tests__
     "@layera/loading": "workspace:*",
     "@layera/notifications": "workspace:*",
     "@layera/icons": "workspace:*",
-    "@layera/i18n": "workspace:*",
+    "@layera/tolgee": "workspace:*",
     "@layera/auth-bridge": "workspace:*",
     "@layera/theme-switcher": "workspace:*",
     "@layera/constants": "workspace:*",

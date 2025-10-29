@@ -1,0 +1,480 @@
+# 🏷️ ENTERPRISE NAMING CONVENTIONS CI/CD PIPELINE
+# Γιώργου Παγώνη - Automated Naming Standards Enforcement
+#
+# Fortune 500 inspired CI/CD validation:
+# - Pre-commit validation hooks
+# - Automated naming conventions checking
+# - Enterprise compliance scoring
+# - Auto-fix suggestions and PR comments
+# - Branch protection integration
+#
+# Based on Microsoft Azure DevOps Guardrails & Google Engineering Standards
+
+name: 🏷️ Enterprise Naming Conventions
+
+on:
+  push:
+    branches: [ main, develop, 'feature/*', 'hotfix/*' ]
+  pull_request:
+    branches: [ main, develop ]
+    types: [opened, synchronize, reopened]
+
+  # Allow manual triggering
+  workflow_dispatch:
+    inputs:
+      auto_fix:
+        description: 'Automatically fix violations (if safe)'
+        required: false
+        default: 'false'
+        type: boolean
+      strict_mode:
+        description: 'Enable strict enterprise mode'
+        required: false
+        default: 'true'
+        type: boolean
+
+env:
+  NODE_VERSION: '18'
+  ENTERPRISE_COMPLIANCE_THRESHOLD: 85
+  STRICT_COMPLIANCE_THRESHOLD: 95
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+  actions: read
+
+jobs:
+  # ============================================================================
+  # JOB 1: ENTERPRISE NAMING VALIDATION
+  # ============================================================================
+  naming-validation:
+    name: 🔍 Naming Standards Validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    outputs:
+      compliance-score: ${{ steps.validation.outputs.compliance-score }}
+      violations-found: ${{ steps.validation.outputs.violations-found }}
+      critical-violations: ${{ steps.validation.outputs.critical-violations }}
+      auto-fix-available: ${{ steps.validation.outputs.auto-fix-available }}
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🔧 Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      - name: 🏷️ Run Enterprise Naming Validation
+        id: validation
+        run: |
+          echo "🔍 Running enterprise naming conventions validation..."
+
+          # Run validation and capture output
+          if node scripts/domains/docs/validate-naming-conventions.js \
+             --path=. \
+             ${{ github.event.inputs.strict_mode == 'true' && '--strict' || '' }} \
+             --format=json \
+             > naming-validation-report.json; then
+            VALIDATION_SUCCESS=true
+          else
+            VALIDATION_SUCCESS=false
+          fi
+
+          # Extract metrics from report
+          COMPLIANCE_SCORE=$(jq -r '.summary.overallScore // 0' naming-validation-report.json)
+          VIOLATIONS_COUNT=$(jq -r '.summary.totalViolations // 0' naming-validation-report.json)
+          CRITICAL_VIOLATIONS=$(jq -r '.violations | map(select(.severity == "CRITICAL")) | length' naming-validation-report.json)
+
+          echo "compliance-score=$COMPLIANCE_SCORE" >> $GITHUB_OUTPUT
+          echo "violations-found=$VIOLATIONS_COUNT" >> $GITHUB_OUTPUT
+          echo "critical-violations=$CRITICAL_VIOLATIONS" >> $GITHUB_OUTPUT
+          echo "auto-fix-available=$([[ $VIOLATIONS_COUNT -gt 0 ]] && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+
+          echo "📊 Compliance Score: $COMPLIANCE_SCORE%"
+          echo "🔍 Total Violations: $VIOLATIONS_COUNT"
+          echo "🚨 Critical Violations: $CRITICAL_VIOLATIONS"
+
+          # Set job status
+          if [[ $COMPLIANCE_SCORE -ge $ENTERPRISE_COMPLIANCE_THRESHOLD ]]; then
+            echo "✅ Enterprise naming standards: PASSED"
+            exit 0
+          else
+            echo "❌ Enterprise naming standards: FAILED"
+            echo "Required: ${ENTERPRISE_COMPLIANCE_THRESHOLD}%, Actual: ${COMPLIANCE_SCORE}%"
+            exit 1
+          fi
+
+      - name: 📊 Upload Validation Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: naming-validation-report
+          path: |
+            naming-validation-report.json
+            NAMING_CONVENTIONS_VALIDATION_REPORT.json
+          retention-days: 30
+
+      - name: 📝 Generate Validation Summary
+        if: always()
+        run: |
+          echo "## 🏷️ Enterprise Naming Conventions Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Value | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Overall Compliance | ${{ steps.validation.outputs.compliance-score }}% | ${{ steps.validation.outputs.compliance-score >= env.ENTERPRISE_COMPLIANCE_THRESHOLD && '✅ PASS' || '❌ FAIL' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Total Violations | ${{ steps.validation.outputs.violations-found }} | ${{ steps.validation.outputs.violations-found == '0' && '✅ NONE' || '⚠️ FOUND' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Critical Violations | ${{ steps.validation.outputs.critical-violations }} | ${{ steps.validation.outputs.critical-violations == '0' && '✅ NONE' || '🚨 CRITICAL' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Auto-fix Available | ${{ steps.validation.outputs.auto-fix-available }} | ${{ steps.validation.outputs.auto-fix-available == 'true' && '🔧 YES' || '✅ N/A' }} |" >> $GITHUB_STEP_SUMMARY
+
+  # ============================================================================
+  # JOB 2: TERMINOLOGY CONSISTENCY CHECK
+  # ============================================================================
+  terminology-check:
+    name: 📝 Terminology Consistency
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      - name: 📝 Run Terminology Validation
+        run: |
+          echo "📝 Checking terminology consistency..."
+          node scripts/domains/docs/check-terminology.js --path=. --strict
+
+      - name: 📊 Upload Terminology Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: terminology-validation-report
+          path: TERMINOLOGY_VALIDATION_REPORT.json
+          retention-days: 30
+
+  # ============================================================================
+  # JOB 3: AUTO-FIX (CONDITIONAL)
+  # ============================================================================
+  auto-fix:
+    name: 🔧 Auto-fix Violations
+    runs-on: ubuntu-latest
+    needs: [naming-validation]
+    if: |
+      (github.event.inputs.auto_fix == 'true' ||
+       (github.event_name == 'pull_request' && needs.naming-validation.outputs.auto-fix-available == 'true')) &&
+      needs.naming-validation.outputs.critical-violations == '0'
+    timeout-minutes: 10
+
+    steps:
+      - name: 📥 Checkout Code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: 🔧 Setup Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      - name: 🔧 Apply Auto-fixes
+        id: auto-fix
+        run: |
+          echo "🔧 Applying automatic naming convention fixes..."
+
+          # Configure git
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action - Naming Convention Auto-fix"
+
+          # Run auto-fix
+          if node scripts/domains/docs/fix-naming-violations.js --path=. --backup; then
+            AUTO_FIX_SUCCESS=true
+            CHANGES_MADE=$(git status --porcelain | wc -l)
+          else
+            AUTO_FIX_SUCCESS=false
+            CHANGES_MADE=0
+          fi
+
+          echo "auto-fix-success=$AUTO_FIX_SUCCESS" >> $GITHUB_OUTPUT
+          echo "changes-made=$CHANGES_MADE" >> $GITHUB_OUTPUT
+
+          if [[ $CHANGES_MADE -gt 0 ]]; then
+            echo "📝 $CHANGES_MADE files were automatically fixed"
+
+            # Show changes
+            echo "Changes made:"
+            git diff --name-only
+
+            # Commit changes
+            git add .
+            git commit -m "🤖 Auto-fix naming convention violations
+
+          🔧 Automated fixes applied by Enterprise Naming Conventions CI/CD
+
+          - Files renamed to follow Enterprise standards
+          - Import paths updated after renames
+          - Package names corrected
+          - Directory structure aligned with conventions
+
+          🤖 Generated with [Claude Code](https://claude.ai/code)
+
+          Co-Authored-By: Claude <noreply@anthropic.com>"
+
+            # Push changes (only for PR branches)
+            if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+              git push origin HEAD
+              echo "✅ Auto-fixes pushed to PR branch"
+            else
+              echo "ℹ️ Auto-fixes prepared but not pushed (main branch protection)"
+            fi
+          else
+            echo "ℹ️ No changes were needed"
+          fi
+
+      - name: 📝 Comment on PR
+        if: github.event_name == 'pull_request' && steps.auto-fix.outputs.changes-made > 0
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const changesCount = '${{ steps.auto-fix.outputs.changes-made }}';
+            const complianceScore = '${{ needs.naming-validation.outputs.compliance-score }}';
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## 🤖 Enterprise Naming Conventions Auto-fix Applied
+
+            ✅ **${changesCount} files** were automatically updated to meet Enterprise naming standards.
+
+            ### 📊 Compliance Improvement
+            - **Before**: Below ${process.env.ENTERPRISE_COMPLIANCE_THRESHOLD}% compliance
+            - **After**: Auto-fixes applied
+            - **Action**: Please review and re-run validation
+
+            ### 🔍 Changes Made
+            - File names updated to follow conventions
+            - Import paths corrected after renames
+            - Package names aligned with standards
+            - Directory structure improvements
+
+            ### 📋 Next Steps
+            1. Review the auto-applied changes
+            2. Run tests to ensure nothing is broken
+            3. The CI will re-validate after these changes
+
+            *🤖 Auto-fix powered by Enterprise Naming Conventions System*`
+            });
+
+  # ============================================================================
+  # JOB 4: COMPLIANCE GATE (REQUIRED CHECK)
+  # ============================================================================
+  compliance-gate:
+    name: 🚪 Enterprise Compliance Gate
+    runs-on: ubuntu-latest
+    needs: [naming-validation, terminology-check]
+    if: always()
+
+    steps:
+      - name: 📊 Evaluate Compliance
+        run: |
+          COMPLIANCE_SCORE="${{ needs.naming-validation.outputs.compliance-score }}"
+          VIOLATIONS="${{ needs.naming-validation.outputs.violations-found }}"
+          CRITICAL_VIOLATIONS="${{ needs.naming-validation.outputs.critical-violations }}"
+
+          echo "🏆 ENTERPRISE COMPLIANCE EVALUATION"
+          echo "=================================="
+          echo "Compliance Score: $COMPLIANCE_SCORE%"
+          echo "Total Violations: $VIOLATIONS"
+          echo "Critical Violations: $CRITICAL_VIOLATIONS"
+          echo ""
+
+          # Determine compliance level
+          if [[ $COMPLIANCE_SCORE -ge $STRICT_COMPLIANCE_THRESHOLD ]]; then
+            echo "🥇 GOLD STANDARD: Excellent enterprise compliance!"
+            COMPLIANCE_LEVEL="GOLD"
+          elif [[ $COMPLIANCE_SCORE -ge $ENTERPRISE_COMPLIANCE_THRESHOLD ]]; then
+            echo "🥈 SILVER STANDARD: Good enterprise compliance"
+            COMPLIANCE_LEVEL="SILVER"
+          elif [[ $COMPLIANCE_SCORE -ge 75 ]]; then
+            echo "🥉 BRONZE STANDARD: Minimum acceptable compliance"
+            COMPLIANCE_LEVEL="BRONZE"
+          else
+            echo "❌ BELOW STANDARD: Unacceptable for enterprise deployment"
+            COMPLIANCE_LEVEL="FAILED"
+          fi
+
+          # Critical violations are always a failure
+          if [[ $CRITICAL_VIOLATIONS -gt 0 ]]; then
+            echo "🚨 CRITICAL VIOLATIONS DETECTED - BLOCKING DEPLOYMENT"
+            COMPLIANCE_LEVEL="CRITICAL_FAILURE"
+          fi
+
+          echo "COMPLIANCE_LEVEL=$COMPLIANCE_LEVEL" >> $GITHUB_ENV
+
+          # Set exit code
+          if [[ $COMPLIANCE_LEVEL == "FAILED" || $COMPLIANCE_LEVEL == "CRITICAL_FAILURE" ]]; then
+            echo "💥 Enterprise compliance check: FAILED"
+            exit 1
+          else
+            echo "✅ Enterprise compliance check: PASSED"
+            exit 0
+          fi
+
+      - name: 🏷️ Add Compliance Label
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const complianceLevel = process.env.COMPLIANCE_LEVEL;
+            const labels = ['naming-compliance-gold', 'naming-compliance-silver', 'naming-compliance-bronze', 'naming-compliance-failed'];
+
+            // Remove existing compliance labels
+            for (const label of labels) {
+              try {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  name: label
+                });
+              } catch (error) {
+                // Label might not exist, ignore
+              }
+            }
+
+            // Add appropriate compliance label
+            let newLabel;
+            switch (complianceLevel) {
+              case 'GOLD': newLabel = 'naming-compliance-gold'; break;
+              case 'SILVER': newLabel = 'naming-compliance-silver'; break;
+              case 'BRONZE': newLabel = 'naming-compliance-bronze'; break;
+              default: newLabel = 'naming-compliance-failed'; break;
+            }
+
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: [newLabel]
+            });
+
+  # ============================================================================
+  # JOB 5: REPORTING & NOTIFICATIONS
+  # ============================================================================
+  reporting:
+    name: 📊 Compliance Reporting
+    runs-on: ubuntu-latest
+    needs: [naming-validation, terminology-check, compliance-gate]
+    if: always()
+
+    steps:
+      - name: 📥 Download Reports
+        uses: actions/download-artifact@v4
+        with:
+          name: naming-validation-report
+          path: ./reports
+
+      - name: 📊 Generate Compliance Dashboard
+        run: |
+          echo "# 🏷️ Enterprise Naming Conventions Compliance Report" > compliance-report.md
+          echo "" >> compliance-report.md
+          echo "**Generated**: $(date)" >> compliance-report.md
+          echo "**Commit**: ${{ github.sha }}" >> compliance-report.md
+          echo "**Branch**: ${{ github.ref_name }}" >> compliance-report.md
+          echo "" >> compliance-report.md
+
+          COMPLIANCE_SCORE="${{ needs.naming-validation.outputs.compliance-score }}"
+          VIOLATIONS="${{ needs.naming-validation.outputs.violations-found }}"
+
+          if [[ $COMPLIANCE_SCORE -ge $ENTERPRISE_COMPLIANCE_THRESHOLD ]]; then
+            echo "## ✅ COMPLIANCE STATUS: PASSED" >> compliance-report.md
+          else
+            echo "## ❌ COMPLIANCE STATUS: FAILED" >> compliance-report.md
+          fi
+
+          echo "" >> compliance-report.md
+          echo "### 📈 Metrics" >> compliance-report.md
+          echo "- **Overall Score**: $COMPLIANCE_SCORE%" >> compliance-report.md
+          echo "- **Total Violations**: $VIOLATIONS" >> compliance-report.md
+          echo "- **Enterprise Threshold**: $ENTERPRISE_COMPLIANCE_THRESHOLD%" >> compliance-report.md
+          echo "" >> compliance-report.md
+
+          if [[ -f "./reports/naming-validation-report.json" ]]; then
+            echo "### 📋 Category Breakdown" >> compliance-report.md
+            echo "\`\`\`json" >> compliance-report.md
+            jq '.categories' ./reports/naming-validation-report.json >> compliance-report.md
+            echo "\`\`\`" >> compliance-report.md
+          fi
+
+      - name: 📤 Upload Compliance Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: enterprise-compliance-report
+          path: compliance-report.md
+          retention-days: 90
+
+      - name: 💬 Post PR Summary
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const complianceScore = '${{ needs.naming-validation.outputs.compliance-score }}';
+            const violations = '${{ needs.naming-validation.outputs.violations-found }}';
+            const threshold = process.env.ENTERPRISE_COMPLIANCE_THRESHOLD;
+
+            const status = complianceScore >= threshold ? '✅ PASSED' : '❌ FAILED';
+            const statusIcon = complianceScore >= threshold ? '✅' : '❌';
+
+            let reportContent = '';
+            try {
+              reportContent = fs.readFileSync('compliance-report.md', 'utf8');
+            } catch (error) {
+              reportContent = 'Report generation failed';
+            }
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## 🏷️ Enterprise Naming Conventions Check ${statusIcon}
+
+            **Status**: ${status}
+            **Compliance Score**: ${complianceScore}%
+            **Violations Found**: ${violations}
+
+            ${reportContent}
+
+            ---
+            *🤖 Automated by Enterprise Naming Conventions CI/CD Pipeline*`
+            });
+
+# ============================================================================
+# WORKFLOW CONFIGURATION
+# ============================================================================
+concurrency:
+  group: naming-conventions-${{ github.ref }}
+  cancel-in-progress: true

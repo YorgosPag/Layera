@@ -93,6 +93,8 @@ apps/layera-geoalert/
 **Collection:** `users/{uid}/areas/{areaId}`
 
 ```typescript
+import { Timestamp } from 'firebase/firestore';
+
 interface AreaDocument {
   name: string;                    // "Κέντρο Θεσσαλονίκης"
   geometry: {
@@ -108,7 +110,7 @@ interface AreaDocument {
     sqmMax: number;
   };
   active: boolean;
-  createdAt: FirebaseTimestamp;
+  createdAt: Timestamp;
 }
 ```
 

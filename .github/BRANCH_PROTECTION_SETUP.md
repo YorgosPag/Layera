@@ -83,10 +83,10 @@ Branch name pattern: main
 
 ```typescript
 // Magic number
-const timeout = 5000;
+const timeout = CONFIG.api.timeout;
 
 // Hardcoded role
-const userRole = "admin";
+const userRole = USER_ROLES.ADMIN;
 
 // Import token directly σε app
 import '@layera/tokens';

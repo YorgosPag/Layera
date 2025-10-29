@@ -1,0 +1,977 @@
+{
+  "timestamp": "2025-10-29T22:14:28.910Z",
+  "summary": {
+    "filesScanned": 155,
+    "imagesFound": 1,
+    "brokenImages": 0,
+    "outdatedImages": 0,
+    "missingAltText": 0,
+    "validImages": 1,
+    "totalViolations": 0,
+    "imageSuccessRate": 100,
+    "accessibilityScore": 100,
+    "averageVisualCoverage": 0
+  },
+  "violations": [],
+  "files": [
+    {
+      "file": ".github\\BRANCH_PROTECTION_SETUP.md",
+      "images": [
+        {
+          "type": "markdown",
+          "altText": "Policy",
+          "src": "https://github.com/layera/repo/workflows/policy/badge.svg",
+          "title": "",
+          "lineNumber": 120,
+          "context": "![Policy](https://github.com/layera/repo/workflows/policy/badge.svg)",
+          "syntax": "![Policy](https://github.com/layera/repo/workflows/policy/badge.svg)"
+        }
+      ],
+      "violations": [],
+      "visualCoverage": 51
+    },
+    {
+      "file": "ΕΝΤΟΛΕΣ_ΕΛΕΓΧΟΥ_ΓΙΩΡΓΟΣ.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "apps\\layera-geoalert\\ARCHITECTURE.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "apps\\layera-geoalert\\docs\\DETAILED_IMPLEMENTATION_STEPS.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "apps\\layera-geoalert\\docs\\ENTERPRISE_ARCHITECTURE.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "apps\\layera-geoalert\\docs\\I18N_IMPLEMENTATION.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "apps\\layera-geoalert\\docs\\IMPLEMENTATION_PLAN.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "apps\\layera-geoalert\\docs\\IPHONE_14_PRO_MAX_PIPELINE_AUDIT.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "apps\\layera-geoalert\\src\\components\\steps\\areaMethod\\README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "apps\\layera-id\\ARCHITECTURE.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "apps\\layera-id\\docs\\LAYOUT_MIGRATION_PLAN.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "apps\\layera-id\\README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\API_DOCUMENTATION.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\API.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\ARCHITECTURE.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\architecture\\BOUNDARY_SERVICE_IMPLEMENTATION.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\architecture\\LEGO_DATABASE_ARCHITECTURE.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\CODE_MAPPING.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\COMPLETION_ROADMAP.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\file-management\\DXF-PROCESSING-LEGO-SYSTEM.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\file-management\\FILE-COMPRESSION-LEGO-SYSTEM.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\file-management\\FILE-IMPORT-LEGO-SYSTEM.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\file-management\\FILE-TRANSFORMATION-LEGO-SYSTEM.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\file-management\\file-upload.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\advanced-controls\\Checkbox.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\advanced-controls\\DatePicker.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\advanced-controls\\InputGroup.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\advanced-controls\\NumericInput.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\advanced-controls\\README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\advanced-controls\\Slider.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\forms\\TextArea.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\i18n\\LanguageSwitcher.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\snap-geometry\\01-SNAP-GEOMETRY-OVERVIEW.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\snap-geometry\\02-SNAP-ENGINE-ARCHITECTURE.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\snap-geometry\\03-SNAP-INTERACTIONS-DESIGN.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\snap-geometry\\04-IMPLEMENTATION-GUIDE.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\core-systems\\components\\components\\snap-geometry\\05-PERFORMANCE-OPTIMIZATION.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\core-systems\\GEO_DRAWING_IMPLEMENTATION_COMPLETE.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\core-systems\\LAYERA_LAYOUT_SYSTEM_IMPLEMENTATION.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\core-systems\\LAYOUT_PACKAGES_IMPLEMENTATION.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\core-systems\\LEGO_COMPLIANCE_AUDIT_REPORT.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\DEPLOYMENT_GUIDE.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\DEPLOYMENT.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\DEVELOPER_ONBOARDING.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\enterprise\\DEVELOPMENT_STANDARDS.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\enterprise\\ENTERPRISE_COMPONENT_AUDIT.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\enterprise\\ENTERPRISE_ROADMAP.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\enterprise\\MAP_LABELS_LEGO_SYSTEM.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\enterprise\\MICRO_FRONTEND_REFACTORING_PLAN.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\enterprise\\README-EXPORT.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\geo-drawing-architecture\\01-CURRENT-STATE-ANALYSIS.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\geo-drawing-architecture\\02-TARGET-ARCHITECTURE.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\geo-drawing-architecture\\03-MIGRATION-STRATEGY.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\geo-drawing-architecture\\04-IMPLEMENTATION-GUIDE.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\geo-drawing-architecture\\05-GEO-DRAWING-UPDATES.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\I18N_ROADMAP.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\issues\\architecture\\REACT_HOOKS_VIOLATIONS.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\issues\\cross-cutting\\DEPENDENCY_MATRIX.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\issues\\ISSUES_INDEX.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\issues\\packages\\I18N_SYSTEM_AUDIT.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\issues\\packages\\PACKAGE_BUILD_ISSUES.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\meta\\DOCUMENTATION_INDEX.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\meta\\PACKAGES_OVERVIEW.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\migration\\IMPLEMENTATION_GUIDE.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\migration\\MIGRATION_STRATEGY.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\migration\\UI_MIGRATION_GUIDE.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\MONOREPO_MIGRATION_PLAN.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\pipeline-architecture\\01-CURRENT-STATE-ANALYSIS.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\pipeline-architecture\\02-TARGET-ARCHITECTURE.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\pipeline-architecture\\03-MIGRATION-STRATEGY.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\pipeline-architecture\\04-IMPLEMENTATION-GUIDE.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\pipeline-architecture\\05-FILE-PROCESSING-LEGO-SYSTEMS.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\pipeline-architecture\\06-PIPELINE-ARCHITECTURE-UPDATES.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\PROJECT-RULES.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\SECURITY.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "docs\\translation-check.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "DOCUMENTATION_INDEX.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "DUPLICATE_FILES_ANALYSIS.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "ENTERPRISE_AUTOMATION_ROADMAP.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "ENTERPRISE_DOCUMENTATION_VALIDATION_SUMMARY.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "ENTERPRISE_FIXING_SCRIPTS_ANALYSIS.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "ENTERPRISE_LEGO_SYSTEM.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "ENTERPRISE_MIGRATION_REPORT.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "ENTERPRISE_VALIDATION_ARCHITECTURE.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "esco-database\\FIREBASE_SETUP_STEPS.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "esco-database\\MANUAL_FIREBASE_STEPS.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "esco-database\\PRODUCTION_SETUP.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "esco-database\\README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "esco-database\\schemas\\firestore-schema.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "GITHUB_SETUP_INSTRUCTIONS.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "layera-tokens-analysis.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "LEGO_SYSTEMS_REGISTRY.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "MIGRATION_PLAN.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "packages\\auth-bridge\\README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "packages\\box-shadows\\README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "packages\\canvas-transforms\\README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "packages\\constants\\etc\\constants.api.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "packages\\constants\\README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "packages\\constants\\temp\\constants.api.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "packages\\employment-taxonomy\\README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "packages\\file-upload\\README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "packages\\forms\\README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "packages\\geo-core\\README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "packages\\geo-mapping\\README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "packages\\icons\\README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "packages\\layout\\etc\\layout.api.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "packages\\layout\\README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "packages\\layout\\temp\\layout.api.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "packages\\modals\\README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "packages\\tables\\README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "packages\\ui\\etc\\ui.api.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "packages\\ui\\temp\\ui.api.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "packages\\viewport\\README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "PHASE_12_DEVICE_DEDUPLICATION_REPORT.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "PHASE_17_COMPLETION_SUMMARY.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "PHASE_18_BUNDLE_ANALYSIS_REPORT.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "PHASE_20_ROADMAP.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "PHASE_HISTORY.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "safety-backups\\20251028_151933_critical_fix\\CHECKPOINT_INFO.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "scripts\\domains\\docs\\README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "strategy\\DASHBOARDS_DATABASE_ARCHITECTURE.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "strategy\\JOBS_ANALYSIS.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "strategy\\LAYERA_CORE_STRATEGY.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "strategy\\REAL_ESTATE_ANALYSIS.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "TABLE_OF_CONTENTS.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "VALIDATION_ROADMAP_IMPLEMENTATION.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\BASECARD_FEATURE_GAP_ANALYSIS.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\BASECARD_UNIFICATION_ACTION_PLAN.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\CARD_PATTERNS_ANALYSIS.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\CATEGORY_CARD_MIGRATION_VALIDATION.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\cursor_debugging_guide.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\diavase_1.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\diavase_2.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\diavase_3.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\diavase_4.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\diavase_5.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\DUPLICATE_ANALYSIS_REPORT.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\DUPLICATE_PREVENTION_PROTOCOL.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_LEGO_COMPLIANCE_CRISIS_REPORT.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\ENTERPRISE_MIGRATION_STRATEGY.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\esco-demo-status.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\Git_Add.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\LEGO_SYSTEMS_ARCHITECTURE.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\PATTERN_ANALYSIS_REPORT.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\readme_1.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\readme_2.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\readme_3.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\responsive-info-icon-feedback.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\SOS_CategorySteps.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\tabiya-open-dataset\\README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\tabiya-open-dataset\\tabiya-esco-v1.1.1\\CSV_Format_Documentation.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    },
+    {
+      "file": "voithitika_docs\\tabiya-open-dataset\\tabiya-esco-v1.1.1\\README.md",
+      "images": [],
+      "violations": [],
+      "visualCoverage": 0
+    }
+  ],
+  "imageInventory": [
+    {
+      "type": "markdown",
+      "altText": "Policy",
+      "src": "https://github.com/layera/repo/workflows/policy/badge.svg",
+      "title": "",
+      "lineNumber": 120,
+      "context": "![Policy](https://github.com/layera/repo/workflows/policy/badge.svg)",
+      "syntax": "![Policy](https://github.com/layera/repo/workflows/policy/badge.svg)",
+      "exists": true,
+      "size": 0,
+      "format": "",
+      "dimensions": null,
+      "lastModified": null,
+      "violations": [],
+      "isExternal": true
+    }
+  ],
+  "complianceLevel": "EXCELLENT"
+}

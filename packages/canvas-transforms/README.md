@@ -178,7 +178,7 @@ drawGrid(ctx, 20, bounds, {
 // Draw coordinate axes
 drawAxes(ctx, bounds, {
   showLabels: true,
-  labelFont: '12px Arial'
+  labelFont: `${FONT_SIZES.SM}px ${FONT_FAMILIES.SYSTEM}`
 });
 
 // Draw rulers
@@ -364,7 +364,7 @@ class InteractiveCanvas {
 
     // Draw UI info
     this.ctx.fillStyle = 'var(--la-color-primary)';
-    this.ctx.font = '12px Arial';
+    this.ctx.font = `${FONT_SIZES.SM}px ${FONT_FAMILIES.SYSTEM}`;
     this.ctx.fillText(`Scale: ${transform.scale.toFixed(2)}`, 10, 20);
     if (this.mousePosition) {
       this.ctx.fillText(

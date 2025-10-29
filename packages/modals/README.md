@@ -25,6 +25,7 @@ npm install @layera/modals
 ### Simple Modal
 
 ```tsx
+import React from 'react';
 import { Modal, ModalHeader, ModalContent, ModalFooter, useModal } from '@layera/modals';
 import '@layera/modals/styles';
 
@@ -52,6 +53,7 @@ function MyComponent() {
 ### Dialog (Confirmation)
 
 ```tsx
+import React from 'react';
 import { Dialog, useModal } from '@layera/modals';
 
 function DeleteButton() {
@@ -207,7 +209,7 @@ toggle();   // Toggles modal state
 ```tsx
 function EditUserModal({ userId, onSave }) {
   const { isOpen, open, close } = useModal();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = React.useState(false);
 
   const handleSubmit = async (formData) => {
     setLoading(true);
@@ -247,9 +249,12 @@ function EditUserModal({ userId, onSave }) {
 ### Multi-step Dialog
 
 ```tsx
+import React from 'react';
+import { Dialog, useModal } from '@layera/modals';
+
 function MultiStepDialog() {
   const { isOpen, open, close } = useModal();
-  const [step, setStep] = useState(1);
+  const [step, setStep] = React.useState(1);
 
   return (
     <Dialog

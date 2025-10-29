@@ -710,7 +710,7 @@ export const DrawingCanvas: React.FC<DrawingCanvasProps> = ({
           <Stack spacing="lg" align="center">
             <LoadingSpinner size="lg" />
             <Text>{t('geo.drawing.loading')}</Text>
-            <SkeletonCard height="400px" />
+            <SkeletonCard height="var(--la-height-xl)" />
           </Stack>
         </CardContent>
       </Card>
@@ -947,7 +947,7 @@ export const MeasurementDisplay: React.FC<MeasurementDisplayProps> = ({
           </Flex>
         </CardHeader>
         <CardContent>
-          <SkeletonCard count={3} height="40px" />
+          <SkeletonCard count={3} height="var(--la-height-sm)" />
         </CardContent>
       </Card>
     );
@@ -1156,7 +1156,7 @@ export const ExportDialog: React.FC<ExportDialogProps> = ({
               </FormField>
 
               {/* Export Options */}
-              <Grid cols={2} spacing="lg">
+              <Grid cols={GRID_COLUMNS.TWO} spacing="lg">
                 <FormField>
                   <Label>{t('geo.export.coordinate_system')}</Label>
                   <Dropdown

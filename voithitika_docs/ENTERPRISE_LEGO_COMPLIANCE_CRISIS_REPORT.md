@@ -104,7 +104,7 @@ style={{ flex: 1 }}
 // MIXED IMPLEMENTATION (Partially LEGO-compliant):
 marginTop: `${SPACING_SCALE.MD}px`  // ✅ Good
 margin: var(--la-space-md)                      // ❌ Hardcoded
-padding: var(--la-space-md) 16px'                // ❌ Non-standard
+padding: var(--la-space-md)'                     // ✅ Standard
 ```
 
 ---

@@ -132,6 +132,12 @@ import { Input, Button, Select } from '@layera/forms';
 const { t } = useLayeraTranslation();
 const roles = Object.values(USER_ROLES);
 
+<Input type={FORM_TYPES.EMAIL} placeholder={t('forms.placeholders.email')} />
+<Button>{t('actions.save')}</Button>
+
+const { t } = useLayeraTranslation();
+const roles = Object.values(USER_ROLES);
+
 <Input
   type={FORM_TYPES.EMAIL}
   placeholder={t('forms.placeholders.email')}

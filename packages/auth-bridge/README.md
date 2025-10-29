@@ -4,15 +4,15 @@
 
 ## Χαρακτηριστικά
 
-- 🔐 **Role-Based Access Control (RBAC)** με 4 ρόλους: private, broker, builder, admin
-- 🛡️ **Multi-Factor Authentication (MFA)** με TOTP support (Google Authenticator, Authy)
-- ✉️ **Email Verification** υποχρεωτικό για όλους τους χρήστες
-- 🚀 **Firebase Integration** με custom claims
-- ⚛️ **React Components** ready-to-use
-- 🎯 **TypeScript** πλήρως typed
-- 🧪 **Testing-friendly** με comprehensive mocks
-- 🔑 **Backup Codes** για recovery access
-- 📱 **QR Code Generation** για εύκολο setup
+- **Role-Based Access Control (RBAC)** με 4 ρόλους: private, broker, builder, admin
+- **Multi-Factor Authentication (MFA)** με TOTP support (Google Authenticator, Authy)
+- **Email Verification** υποχρεωτικό για όλους τους χρήστες
+- **Firebase Integration** με custom claims
+- **React Components** ready-to-use
+- **TypeScript** πλήρως typed
+- **Testing-friendly** με comprehensive mocks
+- **Backup Codes** για recovery access
+- **QR Code Generation** για εύκολο setup
 
 ## Εγκατάσταση
 

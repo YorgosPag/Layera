@@ -35,149 +35,207 @@ npm install @layera/forms @layera/constants @layera/tolgee
 Wrapper component that provides consistent layout, validation, and accessibility.
 
 ```tsx
+import React from 'react';
 import { FormField, Input } from '@layera/forms';
 import { FORM_TYPES } from '@layera/constants';
 import { useLayeraTranslation } from '@layera/tolgee';
 
-const { t } = useLayeraTranslation();
+function FormExample() {
+  const { t } = useLayeraTranslation();
+  const [errors, setErrors] = React.useState<Record<string, string>>({});
+  const [email, setEmail] = React.useState('');
 
-<FormField
-  label={t('forms.labels.email')}
-  required
-  error={errors.email}
-  hint={t('forms.hints.emailPrivacy')}
->
-  <Input
-    type={FORM_TYPES.EMAIL}
-    value={email}
-    onChange={(e) => setEmail(e.target.value)}
-    placeholder={t('forms.placeholders.email')}
-  />
-</FormField>
+  return (
+    <FormField
+      label={t('forms.labels.email')}
+      required
+      error={errors.email}
+      hint={t('forms.hints.emailPrivacy')}
+    >
+      <Input
+        type={FORM_TYPES.EMAIL}
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder={t('forms.placeholders.email')}
+      />
+    </FormField>
+  );
+}
 ```
 
 ### Input
 Text input component with multiple variants and states.
 
 ```tsx
+import React from 'react';
 import { Input } from '@layera/forms';
 import { FORM_SIZES, FORM_STATES } from '@layera/constants';
 import { useLayeraTranslation } from '@layera/tolgee';
 
-const { t } = useLayeraTranslation();
+function InputExample() {
+  const { t } = useLayeraTranslation();
+  const [value, setValue] = React.useState('');
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
 
-// Basic input
-<Input value={value} onChange={onChange} />
+  return (
+    <div>
+      {/* Basic input */}
+      <Input value={value} onChange={onChange} />
 
-// With validation state
-<Input
-  value={value}
-  onChange={onChange}
-  state={FORM_STATES.ERROR}
-  placeholder={t('forms.placeholders.enterValue')}
-/>
+      {/* With validation state */}
+      <Input
+        value={value}
+        onChange={onChange}
+        state={FORM_STATES.ERROR}
+        placeholder={t('forms.placeholders.enterValue')}
+      />
 
-// Different sizes
-<Input size={FORM_SIZES.SMALL} />
-<Input size={FORM_SIZES.MEDIUM} /> // default
-<Input size={FORM_SIZES.LARGE} />
+      {/* Different sizes */}
+      <Input size={FORM_SIZES.SMALL} />
+      <Input size={FORM_SIZES.MEDIUM} />
+      <Input size={FORM_SIZES.LARGE} />
+    </div>
+  );
+}
 ```
 
 ### Select
 Dropdown selection component with search and multi-select support.
 
 ```tsx
+import React from 'react';
 import { Select } from '@layera/forms';
 import { USER_ROLES } from '@layera/constants';
 import { useLayeraTranslation } from '@layera/tolgee';
 
-const { t } = useLayeraTranslation();
+function SelectExample() {
+  const { t } = useLayeraTranslation();
+  const [selectedRole, setSelectedRole] = React.useState('');
 
-const options = Object.values(USER_ROLES).map(role => ({
-  value: role,
-  label: t(`roles.${role}`)
-}));
+  const options = Object.values(USER_ROLES).map(role => ({
+    value: role,
+    label: t(`roles.${role}`)
+  }));
 
-<Select
-  options={options}
-  value={selectedRole}
-  onChange={setSelectedRole}
-  placeholder={t('forms.placeholders.selectRole')}
-  searchable
-/>
+  return (
+    <Select
+      options={options}
+      value={selectedRole}
+      onChange={setSelectedRole}
+      placeholder={t('forms.placeholders.selectRole')}
+      searchable
+    />
+  );
+}
 ```
 
 ### Checkbox & Radio
 Selection components with consistent styling.
 
 ```tsx
+import React from 'react';
 import { Checkbox, Radio, RadioGroup } from '@layera/forms';
 
-// Checkbox
-<Checkbox
-  checked={agreed}
-  onChange={setAgreed}
-  label="I agree to the terms"
-/>
+function CheckboxExample() {
+  const [agreed, setAgreed] = React.useState(false);
+  const [theme, setTheme] = React.useState('light');
 
-// Radio group
-<RadioGroup
-  value={theme}
-  onChange={setTheme}
-  options={[
-    { value: 'light', label: 'Light Theme' },
-    { value: 'dark', label: 'Dark Theme' },
-    { value: 'auto', label: 'Auto' }
-  ]}
-/>
+  return (
+    <div>
+      {/* Checkbox */}
+      <Checkbox
+        checked={agreed}
+        onChange={setAgreed}
+        label="I agree to the terms"
+      />
+
+      {/* Radio group */}
+      <RadioGroup
+        value={theme}
+        onChange={setTheme}
+        options={[
+          { value: 'light', label: 'Light Theme' },
+          { value: 'dark', label: 'Dark Theme' },
+          { value: 'auto', label: 'Auto' }
+        ]}
+      />
+    </div>
+  );
+}
 ```
 
 ### TextArea
 Multi-line text input with auto-resize capability.
 
 ```tsx
+import React from 'react';
 import { TextArea } from '@layera/forms';
 
-<TextArea
-  value={description}
-  onChange={setDescription}
-  rows={4}
-  placeholder="Enter description..."
-  autoResize
-/>
+function TextAreaExample() {
+  const [description, setDescription] = React.useState('');
+
+  return (
+    <TextArea
+      value={description}
+      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value)}
+      rows={4}
+      placeholder="Enter description..."
+      autoResize
+    />
+  );
+}
 ```
 
 ## 🎨 Validation
 
 ### Built-in Validation
 ```tsx
+import React from 'react';
 import { useFormValidation } from '@layera/forms';
+import { FORM_VALIDATION } from '@layera/constants';
 
-const { validate, errors, isValid } = useFormValidation({
-  email: {
-    required: true,
-    type: 'email'
-  },
-  password: {
-    required: true,
-    minLength: 8,
-    pattern: /^(?=.*[A-Za-z])(?=.*\d)/
-  }
-});
+function ValidationExample() {
+  const { validate, errors, isValid } = useFormValidation({
+    email: {
+      required: true,
+      type: 'email'
+    },
+    password: {
+      required: true,
+      minLength: FORM_VALIDATION.PASSWORD_MIN,
+      pattern: /^(?=.*[A-Za-z])(?=.*\d).*$/
+    }
+  });
+
+  return <div>Validation logic here</div>;
+}
 ```
 
 ### Custom Validation
 ```tsx
-const customValidator = (value) => {
-  if (!value.includes('@company.com')) {
-    return 'Must be a company email';
-  }
-  return null;
-};
+import React from 'react';
+import { FormField, Input } from '@layera/forms';
 
-<FormField validator={customValidator}>
-  <Input type="email" />
-</FormField>
+function CustomValidationExample() {
+  const [value, setValue] = React.useState('');
+
+  const customValidator = (value: string) => {
+    if (!value.includes('@company.com')) {
+      return 'Must be a company email';
+    }
+    return null;
+  };
+
+  return (
+    <FormField validator={customValidator}>
+      <Input
+        type="email"
+        value={value}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
+      />
+    </FormField>
+  );
+}
 ```
 
 ## ♿ Accessibility

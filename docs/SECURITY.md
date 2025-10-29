@@ -75,9 +75,9 @@ match /projects/{projectId} {
 ```javascript
 // Firebase Authentication Password Requirements
 const passwordRequirements = {
-  minLength: 6,               // Firebase minimum
+  minLength: FORM_VALIDATION.PASSWORD_MIN,               // Firebase minimum
   recommended: {
-    minLength: 12,
+    minLength: FORM_VALIDATION.PASSWORD_STRONG,
     requireUppercase: true,
     requireLowercase: true,
     requireNumbers: true,
@@ -394,7 +394,7 @@ export const setRole = functions.region('europe-west1').https.onCall(async (data
       type: 'string',
       enum: ['private', 'broker', 'builder', 'admin']
     },
-    email: { type: 'string', pattern: /^[\\w\\.-]+@[\\w\\.-]+\\.\\w+$/ },
+    email: { type: 'string', pattern: /^[\w\.-]+@[\w\.-]+\.\w+$/ },
     uid: { type: 'string', pattern: /^[a-zA-Z0-9]{28}$/ }
   });
 

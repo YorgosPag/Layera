@@ -207,7 +207,7 @@ export function RequireVerified({
 /** Κουμπί login που στέλνει στο /login (ρυθμιζόμενο). */
 export function LoginButton({
   to = "/login",
-  label = "Σύνδεση"
+  label = t('auth.login.title')
 }: {
   to?: string;
   label?: string;
@@ -334,8 +334,8 @@ import { RequireVerified, LoginButton } from "@layera/auth-bridge";
 
 export default function ProtectedDemo() {
   return (
-    <RequireVerified fallback={<LoginButton to="/login" label="Σύνδεση απαιτείται" />}>
-      <div style={{padding: 20, border: "1px solid var(--la-color-primary)", borderRadius: 8}}>
+    <RequireVerified fallback={<LoginButton to="/login" label={t('auth.loginRequired')} />}>
+      <div style={{padding: 'var(--la-space-4)', border: "1px solid var(--la-color-primary)", borderRadius: 'var(--la-radius-md)'}}>
         <h2>Προστατευμένο Περιεχόμενο</h2>
         <p>Αυτό το περιεχόμενο εμφανίζεται μόνο σε χρήστες με επιβεβαιωμένο email.</p>
       </div>
@@ -411,12 +411,12 @@ export default function Login() {
       const { user } = await signInWithEmailAndPassword(auth, email, pass);
       if (!user.emailVerified) {
         setNeedsVerify(true);
-        setMsg("Συνδέθηκες. Χρειάζεται επιβεβαίωση e-mail πριν συνεχίσεις.");
+        setMsg(t('auth.login.verificationRequired'));
         return;
       }
       nav("/protected");
     } catch (e: unknown) {
-      setErr(e instanceof Error ? e.message : "Σφάλμα σύνδεσης");
+      setErr(e instanceof Error ? e.message : t('auth.login.error'));
     } finally {
       setLoading(false);
     }
@@ -428,12 +428,12 @@ export default function Login() {
       const { user } = await signInWithPopup(auth, new GoogleAuthProvider());
       if (!user.emailVerified) {
         setNeedsVerify(true);
-        setMsg("Ο λογαριασμός χρειάζεται επιβεβαίωση e-mail.");
+        setMsg(t('auth.verification.required'));
         return;
       }
       nav("/protected");
     } catch (e: unknown) {
-      setErr(e instanceof Error ? e.message : "Σφάλμα Google login");
+      setErr(e instanceof Error ? e.message : t('auth.google.error'));
     } finally {
       setLoading(false);
     }
@@ -444,17 +444,17 @@ export default function Login() {
     if (!u) return;
     try {
       await sendEmailVerification(u);
-      setMsg("Στάλθηκε νέο e-mail επιβεβαίωσης.");
+      setMsg(t('auth.verification.emailSent'));
     } catch (e: unknown) {
-      setErr(e instanceof Error ? e.message : "Αποτυχία αποστολής επιβεβαίωσης");
+      setErr(e instanceof Error ? e.message : t('auth.verification.error'));
     }
   }
 
   return (
-    <div style={{maxWidth:420, margin: var(--la-space-md) auto", padding:20, border:"1px solid var(--la-color-primary)", borderRadius:8}}>
+    <div style={{maxWidth:'var(--la-max-width-sm)', margin: 'var(--la-space-md) auto', padding:'var(--la-space-4)', border:'1px solid var(--la-color-primary)', borderRadius:'var(--la-radius-md)'}}>
       <h1>Σύνδεση</h1>
 
-      <form onSubmit={onEmailLogin} style={{display:"grid", gap:12}}>
+      <form onSubmit={onEmailLogin} style={{display:"grid", gap:'var(--la-space-3)'}}>
         <label>
           E-mail
           <input
@@ -478,7 +478,7 @@ export default function Login() {
         </label>
 
         <button type="submit" disabled={loading}>
-          {loading ? "Παρακαλώ..." : "Σύνδεση"}
+          {loading ? t('loading.wait') : t('auth.login.submit')}
         </button>
       </form>
 
@@ -526,22 +526,22 @@ export default function Register() {
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setErr(null); setMsg(null);
-    if (pass !== confirm) { setErr("Οι κωδικοί δεν ταιριάζουν."); return; }
+    if (pass !== confirm) { setErr(t('auth.register.passwordMismatch')); return; }
     setLoading(true);
     try {
       const { user } = await createUserWithEmailAndPassword(auth, email, pass);
       await sendEmailVerification(user);
       await signOut(auth);
-      setMsg("Ο λογαριασμός δημιουργήθηκε. Έγινε αποστολή e-mail επιβεβαίωσης. Συνδέσου μετά την επιβεβαίωση.");
+      setMsg(t('auth.register.success'));
     } catch (e: unknown) {
-      setErr(e instanceof Error ? e.message : "Σφάλμα δημιουργίας λογαριασμού");
+      setErr(e instanceof Error ? e.message : t('auth.register.error'));
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <div style={{maxWidth:420, margin: var(--la-space-md) auto", padding:20, border:"1px solid var(--la-color-primary)", borderRadius:8}}>
+    <div style={{maxWidth:'420px', margin: 'var(--la-space-md) auto', padding:'var(--la-space-4)', border:'1px solid var(--la-color-primary)', borderRadius:'var(--la-radius-md)'}}>
       <h1>Δημιουργία λογαριασμού</h1>
       <form onSubmit={onSubmit} style={{display:"grid", gap:12}}>
         <label>
@@ -556,7 +556,7 @@ export default function Register() {
           Επιβεβαίωση κωδικού
           <input type="password" value={confirm} onChange={e=>setConfirm(e.target.value)} required style={{width:"100%"}}/>
         </label>
-        <button type="submit" disabled={loading}>{loading ? "Παρακαλώ..." : "Εγγραφή"}</button>
+        <button type="submit" disabled={loading}>{loading ? t('loading.wait') : t('auth.register.submit')}</button>
       </form>
 
       <div style={{display:"flex", gap:12, fontSize:14, marginTop:12}}>
@@ -589,23 +589,23 @@ export default function Reset() {
     setErr(null); setMsg(null); setLoading(true);
     try {
       await sendPasswordResetEmail(auth, email);
-      setMsg("Στάλθηκε e-mail επαναφοράς κωδικού.");
+      setMsg(t('auth.passwordReset.emailSent'));
     } catch (e: unknown) {
-      setErr(e instanceof Error ? e.message : "Αποτυχία αποστολής e-mail επαναφοράς");
+      setErr(e instanceof Error ? e.message : t('auth.passwordReset.error'));
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <div style={{maxWidth:420, margin: var(--la-space-md) auto", padding:20, border:"1px solid var(--la-color-primary)", borderRadius:8}}>
+    <div style={{maxWidth:'420px', margin: 'var(--la-space-md) auto', padding:'var(--la-space-4)', border:'1px solid var(--la-color-primary)', borderRadius:'var(--la-radius-md)'}}>
       <h1>Επαναφορά κωδικού</h1>
       <form onSubmit={onSubmit} style={{display:"grid", gap:12}}>
         <label>
           E-mail
           <input type="email" value={email} onChange={e=>setEmail(e.target.value)} required style={{width:"100%"}}/>
         </label>
-        <button type="submit" disabled={loading}>{loading ? "Παρακαλώ..." : "Αποστολή"}</button>
+        <button type="submit" disabled={loading}>{loading ? t('loading.wait') : t('actions.send')}</button>
       </form>
 
       <div style={{display:"flex", gap:12, fontSize:14, marginTop:12}}>

@@ -29,9 +29,19 @@ npm install @layera/file-upload
 ## 🎯 Quick Start
 
 ```tsx
+import React from 'react';
 import { FileUploader, DEFAULT_UPLOAD_CONFIG } from '@layera/file-upload';
 
+interface UploadFile {
+  file: File;
+  id: string;
+  status: 'pending' | 'uploading' | 'completed' | 'error';
+}
+
 function MyComponent() {
+  const [errors, setErrors] = React.useState<Record<string, string>>({});
+  const [email, setEmail] = React.useState('');
+
   const uploadConfig = {
     ...DEFAULT_UPLOAD_CONFIG,
     uploadUrl: '/api/upload',
@@ -39,15 +49,19 @@ function MyComponent() {
     autoUpload: true
   };
 
+  const handleUploadComplete = (file: UploadFile) => {
+    console.log('Upload completed:', file.file.name);
+  };
+
+  const handleUploadError = (file: UploadFile, error: Error) => {
+    console.error('Upload failed:', error);
+  };
+
   return (
     <FileUploader
       config={uploadConfig}
-      onUploadComplete={(file) => {
-        console.log('Upload completed:', file.file.name);
-      }}
-      onUploadError={(file, error) => {
-        console.error('Upload failed:', error);
-      }}
+      onUploadComplete={handleUploadComplete}
+      onUploadError={handleUploadError}
     />
   );
 }
@@ -58,6 +72,8 @@ function MyComponent() {
 ### FileUploadConfig
 
 ```tsx
+export type SupportedFileType = 'pdf' | 'docx' | 'xlsx' | 'image' | 'zip';
+
 interface FileUploadConfig {
   /** Maximum file size σε bytes */
   maxFileSize: number;

@@ -22,7 +22,7 @@ Layer 1: Foundation
 └── @layera/geo-core         ← provides types for geo-mapping
 ```
 
-## 🎯 Σκοπός
+## Σκοπός
 
 - **OSM Integration**: Seamless integration με OpenStreetMap Overpass API
 - **Administrative Boundaries**: Fetching και caching για Ελληνικές διοικητικές ενότητες
@@ -30,7 +30,7 @@ Layer 1: Foundation
 - **Enterprise Caching**: In-memory caching για performance
 - **Type Safety**: Αυστηρά TypeScript types από @layera/geo-core
 
-## 🚀 Μεταφορά από geo-drawing
+## Μεταφορά από geo-drawing
 
 Αυτό το package περιέχει τις OSM services που προηγουμένως ήταν στο `@layera/geo-drawing/services/osmService.ts`.
 

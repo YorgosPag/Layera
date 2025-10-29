@@ -28,235 +28,170 @@ import {
   VALIDATION_RULES
 } from '@layera/constants';
 
-// Component sizes
-export const FORM_SIZES = {
-  SMALL: 'sm',
-  MEDIUM: 'md',
-  LARGE: 'lg'
-} as const;
-
-// Component states
-export const FORM_STATES = {
-  DEFAULT: 'default',
-  ERROR: 'error',
-  SUCCESS: 'success',
-  WARNING: 'warning',
-  DISABLED: 'disabled'
-} as const;
-
-// Input types
-export const FORM_TYPES = {
-  TEXT: 'text',
-  EMAIL: 'email',
-  PASSWORD: 'password',
-  NUMBER: 'number',
-  TEL: 'tel',
-  URL: 'url',
-  SEARCH: 'search'
-} as const;
+// Usage example - using imported constants
+const emailInputConfig = {
+  type: FORM_TYPES.EMAIL,
+  className: `input-${FORM_SIZES.MEDIUM}`,
+  'data-state': FORM_STATES.DEFAULT
+};
 ```
 
 ### User & Role Constants
 ```typescript
 import {
   USER_ROLES,
-  USER_STATUSES,
+  USER_STATUS,
   PERMISSIONS
 } from '@layera/constants';
 
-// User roles hierarchy
-export const USER_ROLES = {
-  ADMIN: 'admin',
-  EDITOR: 'editor',
-  VIEWER: 'viewer',
-  PRIVATE: 'private'
-} as const;
+// Usage example - role-based access control
+interface User {
+  role: string;
+  status: string;
+}
 
-// User account statuses
-export const USER_STATUSES = {
-  ACTIVE: 'active',
-  INACTIVE: 'inactive',
-  PENDING: 'pending',
-  SUSPENDED: 'suspended',
-  DELETED: 'deleted'
-} as const;
+const checkUserPermission = (user: User, requiredRole: keyof typeof USER_ROLES) => {
+  return USER_ROLES[user.role as keyof typeof USER_ROLES] === USER_ROLES[requiredRole];
+};
 
-// Permission levels
-export const PERMISSIONS = {
-  READ: 'read',
-  WRITE: 'write',
-  DELETE: 'delete',
-  ADMIN: 'admin'
-} as const;
+// Status checking
+const isActiveUser = (user: User) => {
+  return user.status === USER_STATUS.ACTIVE;
+};
 ```
 
 ### Table & Data Constants
 ```typescript
 import {
-  TABLE_SIZES,
-  TABLE_STATES,
   SORT_DIRECTIONS,
   PAGINATION_SIZES
 } from '@layera/constants';
 
-// Table component sizes
-export const TABLE_SIZES = {
-  COMPACT: 'compact',
-  STANDARD: 'standard',
-  COMFORTABLE: 'comfortable'
-} as const;
+// Table sorting and pagination logic
+const createTableLogic = (data: any[], currentPage: number) => {
+  const sortedData = data.sort((a, b) => {
+    // Use SORT_DIRECTIONS for consistent sorting
+    return SORT_DIRECTIONS.ASC ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
+  });
 
-// Pagination options
-export const PAGINATION_SIZES = {
-  SMALL: 10,
-  MEDIUM: 20,
-  LARGE: 50,
-  EXTRA_LARGE: 100
-} as const;
+  const paginatedData = sortedData.slice(
+    currentPage * PAGINATION_SIZES.MEDIUM,
+    (currentPage + 1) * PAGINATION_SIZES.MEDIUM
+  );
 
-// Sort directions
-export const SORT_DIRECTIONS = {
-  ASC: 'asc',
-  DESC: 'desc',
-  NONE: null
-} as const;
+  return { sortedData, paginatedData };
+};
 ```
 
 ### UI Component Constants
 ```typescript
 import {
-  BUTTON_VARIANTS,
   BUTTON_SIZES,
   ICON_SIZES,
   MODAL_SIZES
 } from '@layera/constants';
+import { Button } from '@layera/buttons';
+import { HomeIcon } from '@layera/icons';
 
-// Button variants
-export const BUTTON_VARIANTS = {
-  PRIMARY: 'primary',
-  SECONDARY: 'secondary',
-  TERTIARY: 'tertiary',
-  GHOST: 'ghost',
-  DANGER: 'danger'
-} as const;
-
-// Icon sizes (in pixels)
-export const ICON_SIZES = {
-  XS: '12px',
-  SM: '16px',
-  MD: '20px',
-  LG: '24px',
-  XL: '32px',
-  XXL: '48px'
-} as const;
-
-// Modal sizes
-export const MODAL_SIZES = {
-  SMALL: 'sm',
-  MEDIUM: 'md',
-  LARGE: 'lg',
-  EXTRA_LARGE: 'xl',
-  FULL: 'full'
-} as const;
+// UI component usage with constants
+const ExampleComponent = () => {
+  return (
+    <div>
+      <Button size={BUTTON_SIZES.LARGE}>
+        <HomeIcon size={ICON_SIZES.MD} />
+        Home
+      </Button>
+    </div>
+  );
+};
 ```
 
 ### Layout & Spacing Constants
 ```typescript
-import {
-  BREAKPOINTS,
-  SPACING_SCALE,
-  LAYOUT_VARIANTS
-} from '@layera/constants';
+import { SPACING_SCALE } from '@layera/constants';
+import { useViewportWithOverride } from '@layera/viewport';
 
-// Responsive breakpoints
-export const BREAKPOINTS = {
-  XS: '0px',
-  SM: '640px',
-  MD: '768px',
-  LG: '1024px',
-  XL: '1280px',
-  XXL: '1536px'
-} as const;
+// Responsive layout with design tokens
+const ResponsiveLayout = () => {
+  const { isMobile, isTablet, isDesktop } = useViewportWithOverride();
 
-// Spacing scale (matches CSS design tokens)
-export const SPACING_SCALE = {
-  XS: 'var(--layera-space-xs)',
-  SM: 'var(--layera-space-sm)',
-  MD: 'var(--layera-space-md)',
-  LG: 'var(--layera-space-lg)',
-  XL: 'var(--layera-space-xl)'
-} as const;
+  return (
+    <div
+      style={{
+        padding: SPACING_SCALE.MD,
+        margin: SPACING_SCALE.LG,
+        gap: SPACING_SCALE.SM
+      }}
+    >
+      {/* Responsive content */}
+    </div>
+  );
+};
 ```
 
 ### Validation Constants
 ```typescript
-import {
-  VALIDATION_PATTERNS,
-  VALIDATION_LIMITS,
-  ERROR_TYPES
-} from '@layera/constants';
+import { FORM_VALIDATION } from '@layera/constants';
+import { useLayeraTranslation } from '@layera/tolgee';
 
-// Regex patterns for validation
-export const VALIDATION_PATTERNS = {
-  EMAIL: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-  PHONE_GR: /^\+30\d{10}$/,
-  PASSWORD_STRONG: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
-  USERNAME: /^[a-zA-Z0-9_-]{3,20}$/
-} as const;
+// Validation with i18n
+const validatePassword = (password: string) => {
+  const { t } = useLayeraTranslation();
 
-// Validation limits
-export const VALIDATION_LIMITS = {
-  PASSWORD_MIN: 8,
-  PASSWORD_MAX: 128,
-  USERNAME_MIN: 3,
-  USERNAME_MAX: 20,
-  DESCRIPTION_MAX: 500
-} as const;
+  if (password.length < FORM_VALIDATION.PASSWORD_MIN) {
+    return t('validation.passwordTooShort', { min: FORM_VALIDATION.PASSWORD_MIN });
+  }
+
+  return null; // Valid
+};
 ```
 
 ### API & Configuration Constants
 ```typescript
-import {
-  API_ENDPOINTS,
-  HTTP_STATUS,
-  TIMEOUTS
-} from '@layera/constants';
+import { API_STATUS, API_TIMEOUTS } from '@layera/constants';
 
-// API configuration
-export const API_ENDPOINTS = {
-  AUTH: '/api/auth',
-  USERS: '/api/users',
-  ROLES: '/api/roles',
-  ALERTS: '/api/alerts'
-} as const;
+// API client with constants
+const apiClient = async (endpoint: string) => {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), API_TIMEOUTS.MEDIUM);
 
-// HTTP status codes
-export const HTTP_STATUS = {
-  OK: 200,
-  CREATED: 201,
-  BAD_REQUEST: 400,
-  UNAUTHORIZED: 401,
-  FORBIDDEN: 403,
-  NOT_FOUND: 404,
-  INTERNAL_ERROR: 500
-} as const;
+  try {
+    const response = await fetch(endpoint, {
+      signal: controller.signal
+    });
+    clearTimeout(timeoutId);
 
-// Timeout values (in milliseconds)
-export const TIMEOUTS = {
-  SHORT: 5000,
-  MEDIUM: 10000,
-  LONG: 30000
-} as const;
+    if (response.status === API_STATUS.UNAUTHORIZED) {
+      // Handle unauthorized
+      throw new Error('Authentication required');
+    }
+
+    if (response.status === API_STATUS.OK) {
+      return response.json();
+    }
+
+    throw new Error(`API error: ${response.status}`);
+  } catch (error) {
+    clearTimeout(timeoutId);
+    throw error;
+  }
+};
 ```
 
 ## 🔧 Usage Examples
 
 ### In Components
-```typescript
-import { USER_ROLES, FORM_STATES, ICON_SIZES } from '@layera/constants';
+```tsx
+import { USER_ROLES, FORM_STATES } from '@layera/constants';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { Select } from '@layera/forms';
 
-const UserRoleSelect = ({ value, onChange }) => {
+interface UserRoleSelectProps {
+  value: string;
+  onChange: (value: string) => void;
+}
+
+const UserRoleSelect: React.FC<UserRoleSelectProps> = ({ value, onChange }) => {
   const { t } = useLayeraTranslation();
 
   return (
@@ -275,18 +210,19 @@ const UserRoleSelect = ({ value, onChange }) => {
 
 ### In Validation
 ```typescript
-import { VALIDATION_PATTERNS, VALIDATION_LIMITS } from '@layera/constants';
+import { FORM_VALIDATION } from '@layera/constants';
+import { useLayeraTranslation } from '@layera/tolgee';
 
-const validatePassword = (password: string) => {
-  if (password.length < VALIDATION_LIMITS.PASSWORD_MIN) {
-    return t('validation.passwordTooShort', { min: VALIDATION_LIMITS.PASSWORD_MIN });
-  }
+const usePasswordValidation = () => {
+  const { t } = useLayeraTranslation();
 
-  if (!VALIDATION_PATTERNS.PASSWORD_STRONG.test(password)) {
-    return t('validation.passwordWeak');
-  }
+  return (password: string): string | null => {
+    if (password.length < FORM_VALIDATION.PASSWORD_MIN) {
+      return t('validation.passwordTooShort', { min: FORM_VALIDATION.PASSWORD_MIN });
+    }
 
-  return null;
+    return null; // Valid
+  };
 };
 ```
 
@@ -295,6 +231,8 @@ const validatePassword = (password: string) => {
 All constants are properly typed with `as const` assertions:
 
 ```typescript
+import { USER_ROLES, FORM_STATES, USER_STATUS } from '@layera/constants';
+
 // Type inference works perfectly
 type UserRole = typeof USER_ROLES[keyof typeof USER_ROLES]; // 'admin' | 'editor' | 'viewer' | 'private'
 type FormState = typeof FORM_STATES[keyof typeof FORM_STATES]; // 'default' | 'error' | 'success' | etc.
@@ -302,7 +240,14 @@ type FormState = typeof FORM_STATES[keyof typeof FORM_STATES]; // 'default' | 'e
 // Use in component props
 interface UserCardProps {
   role: UserRole;
-  status: typeof USER_STATUSES[keyof typeof USER_STATUSES];
+  status: typeof USER_STATUS[keyof typeof USER_STATUS];
+}
+
+interface User {
+  role: string;
+  status: string;
+  displayName?: string;
+  email?: string;
 }
 ```
 
@@ -317,20 +262,29 @@ const roles = ['admin', 'editor', 'viewer'];
 ```
 
 ### After (✅ Correct)
-```typescript
+```tsx
 // Centralized constants - ALWAYS do this
-import { BUTTON_VARIANTS, BUTTON_SIZES, FORM_TYPES, USER_ROLES } from '@layera/constants';
+import { BUTTON_SIZES, FORM_TYPES, USER_ROLES } from '@layera/constants';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { Button } from '@layera/buttons';
+import { Input } from '@layera/forms';
 
-const { t } = useLayeraTranslation();
+const MyComponent = () => {
+  const { t } = useLayeraTranslation();
 
-<Button variant={BUTTON_VARIANTS.PRIMARY} size={BUTTON_SIZES.LARGE}>
-  {t('actions.save')}
-</Button>
-<Input
-  type={FORM_TYPES.EMAIL}
-  placeholder={t('forms.placeholders.email')}
-/>
+  return (
+    <div>
+      <Button size={BUTTON_SIZES.LARGE}>
+        {t('actions.save')}
+      </Button>
+      <Input
+        type={FORM_TYPES.EMAIL}
+        placeholder={t('forms.placeholders.email')}
+      />
+    </div>
+  );
+};
+
 const roles = Object.values(USER_ROLES);
 ```
 

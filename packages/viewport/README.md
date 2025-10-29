@@ -2,7 +2,7 @@
 
 Enterprise-grade viewport detection system για την Layera πλατφόρμα.
 
-## 🏗️ Enterprise Features
+## Enterprise Features
 
 - **Type-safe device detection** - Mobile, Tablet, Desktop με TypeScript support
 - **SSR Compatible** - Λειτουργεί με Server-Side Rendering
@@ -10,7 +10,7 @@ Enterprise-grade viewport detection system για την Layera πλατφόρμ
 - **Modular Architecture** - Standalone hooks, components και utilities
 - **Development Tools** - Debugging components για testing responsive behavior
 
-## 📦 Installation
+## Installation
 
 ```bash
 # Στο workspace ως dependency
@@ -20,7 +20,7 @@ npm install @layera/viewport
 "@layera/viewport": "file:../../packages/viewport"
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ```tsx
 import { useViewport, ResponsiveContainer, ViewportDebugger } from '@layera/viewport';
@@ -71,13 +71,15 @@ const isDesktop = useIsDesktop();    // boolean
 Auto-adaptive container με device-specific configuration.
 
 ```tsx
+import { SPACING_SCALE, BREAKPOINTS } from '@layera/constants';
+
 <ResponsiveContainer
   enablePadding={true}      // Auto device padding
   enableMaxWidth={true}     // Responsive max-width
   config={{                 // Custom breakpoints
-    mobile: { padding: '1rem', maxWidth: '100%' },
-    tablet: { padding: '2rem', maxWidth: '768px' },
-    desktop: { padding: '3rem', maxWidth: '1200px' }
+    mobile: { padding: SPACING_SCALE.SM, maxWidth: '100%' },
+    tablet: { padding: SPACING_SCALE.MD, maxWidth: BREAKPOINTS.TABLET },
+    desktop: { padding: SPACING_SCALE.LG, maxWidth: BREAKPOINTS.DESKTOP }
   }}
 >
   <YourContent />
@@ -108,9 +110,9 @@ Development tool για viewport testing.
 
 Default enterprise breakpoints:
 
-- **Mobile**: 0-767px
-- **Tablet**: 768-1023px
-- **Desktop**: 1024px+
+- **Mobile**: 0-${BREAKPOINTS.MOBILE_MAX}px
+- **Tablet**: ${BREAKPOINTS.TABLET_MIN}-${BREAKPOINTS.TABLET_MAX}px
+- **Desktop**: ${BREAKPOINTS.DESKTOP_MIN}px+
 
 ## 🏢 Enterprise Usage
 
@@ -127,10 +129,12 @@ import { useViewport } from '@layera/viewport';
 
 ### Advanced Configuration
 ```tsx
+import { BREAKPOINTS } from '@layera/constants';
+
 const customConfig = {
-  mobile: { breakpoint: 600, gridColumns: 1 },
-  tablet: { breakpoint: 900, gridColumns: 2 },
-  desktop: { breakpoint: 1200, gridColumns: 3 }
+  mobile: { breakpoint: BREAKPOINTS.MOBILE_MAX, gridColumns: 1 },
+  tablet: { breakpoint: BREAKPOINTS.TABLET_MAX, gridColumns: 2 },
+  desktop: { breakpoint: BREAKPOINTS.DESKTOP_MIN, gridColumns: 3 }
 };
 
 <ResponsiveContainer config={customConfig}>

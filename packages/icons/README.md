@@ -2,11 +2,11 @@
 
 Enterprise Icon System για το Layera Ecosystem
 
-## 🎯 Σκοπός
+## Σκοπός
 
 Το `@layera/icons` είναι ένα ενιαίο icon system που εξασφαλίζει συνέπεια στα εικονίδια σε όλες τις Layera εφαρμογές. Παρέχει enterprise-grade λύση με στυλ, μεγέθη και θέματα που ταιριάζουν στο Layera brand.
 
-## 🚀 Εγκατάσταση
+## Εγκατάσταση
 
 ```bash
 npm install @layera/icons
@@ -42,7 +42,7 @@ import { HomeIcon, MapIcon, PhoneIcon } from '@layera/icons';
 <PhoneIcon size={32} variant="solid" />
 ```
 
-## 🎨 Παράμετροι
+## Παράμετροι
 
 ### Sizes (Μεγέθη)
 
@@ -142,7 +142,7 @@ type IconTheme = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'i
 - Συνεπή μεγέθη και spacing
 - Standardized naming conventions
 
-## 🔧 Advanced Usage
+## Advanced Usage
 
 ### Custom Styling
 
@@ -190,7 +190,7 @@ const getThemeByStatus = (status: string): IconTheme => {
 />
 ```
 
-## 🎨 CSS Classes
+## CSS Classes
 
 Κάθε εικονίδιο παράγει τις εξής CSS κλάσεις:
 

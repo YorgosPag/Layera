@@ -289,15 +289,15 @@ export const AdminRoles: React.FC = () => {
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: var(--la-space-6);
   padding: var(--la-space-md);
 }
 
 .card {
   background: white;
-  border-radius: 8px;
+  border-radius: var(--la-radius-md);
   padding: var(--la-space-md);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: var(--la-shadow-sm);
 }
 
 /* REPLACE WITH: Layout tokens */

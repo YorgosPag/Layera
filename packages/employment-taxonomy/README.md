@@ -2,11 +2,11 @@
 
 Enterprise employment and occupation taxonomy system based on ESCO EU standard.
 
-## 🎯 Overview
+## Overview
 
 Professional LEGO system που παρέχει comprehensive occupation search και taxonomy management μέσω του επίσημου ESCO API της Ευρωπαϊκής Ένωσης.
 
-### ✨ Key Features
+### Key Features
 
 - **ESCO Integration** - Official EU taxonomy με 2,942 occupations
 - **Professional Search** - Debounced search με caching
@@ -16,7 +16,7 @@ Professional LEGO system που παρέχει comprehensive occupation search �
 - **Enterprise UI** - Professional React components
 - **Reusable LEGO** - Αποσπώμενο και επαναχρησιμοποιήσιμο
 
-## 🚀 Quick Start
+## Quick Start
 
 ```typescript
 import {
@@ -65,7 +65,7 @@ function CustomSearch() {
 }
 ```
 
-## 📦 Components
+## Components
 
 ### OccupationSearch
 Professional search interface με ESCO integration:
@@ -81,7 +81,7 @@ Structured occupation display:
 - Employment types
 - Experience levels
 
-## 🔧 Hooks
+## Hooks
 
 ### useOccupationSearch
 Enterprise search hook:
@@ -104,7 +104,7 @@ Enterprise search hook:
 - **Hierarchy**: ISCO-08 4-level classification
 - **Mappings**: Crosswalks to national taxonomies
 
-## 🎨 Enterprise Architecture
+## Enterprise Architecture
 
 ### Single Source of Truth
 ```typescript

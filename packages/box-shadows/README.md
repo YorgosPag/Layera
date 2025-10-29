@@ -448,4 +448,4 @@ Comprehensive list of all available shadow tokens με their use cases και re
 ---
 
 **Enterprise Box Shadow System** - Part of the Layera Design System
-Built with ❤️ για world-class applications
+Built with passion for world-class applications
