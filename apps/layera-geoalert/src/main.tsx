@@ -5,7 +5,7 @@ import App from './App.tsx'
 import { TolgeeProvider } from '@layera/tolgee'
 
 // Load Leaflet CSS manually to ensure it's loaded
-const loadLeafletCSS = () => {
+const loadLeafletCSS = (): void => {
   const link = document.createElement('link');
   link.rel = 'stylesheet';
   link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
@@ -14,8 +14,7 @@ const loadLeafletCSS = () => {
   document.head.appendChild(link);
 
   if (process.env.NODE_ENV === 'development') {
-    link.onload = () => console.log('🍃 Leaflet CSS loaded successfully');
-    link.onerror = () => console.error('❌ Failed to load Leaflet CSS');
+    link.onload = () =>link.onerror = () => console.error('❌ Failed to load Leaflet CSS');
   }
 };
 

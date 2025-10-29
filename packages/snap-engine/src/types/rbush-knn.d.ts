@@ -5,7 +5,7 @@ declare module 'rbush-knn' {
   interface KNNOptions {
     k?: number;
     maxDistance?: number;
-    predicate?: (item: any) => boolean;
+    predicate?: (item: unknown) => boolean;
   }
 
   function knn(
@@ -13,16 +13,16 @@ declare module 'rbush-knn' {
     x: number,
     y: number,
     n?: number,
-    predicate?: (item: any) => boolean,
+    predicate?: (item: unknown) => boolean,
     maxDistance?: number
-  ): any[];
+  ): unknown[];
 
   function knn(
     tree: RBush<any>,
     x: number,
     y: number,
     options?: KNNOptions
-  ): any[];
+  ): unknown[];
 
   export = knn;
 }

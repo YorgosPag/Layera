@@ -34,7 +34,7 @@ export const PropertyTypeCard: React.FC<PropertyTypeCardProps> = ({
     return null;
   }
 
-  const getIcon = () => {
+  const getIcon = (): void => {
     switch (propertyType) {
       case 'apartment':
         return <BuildingIcon size="sm" theme="neutral" />;

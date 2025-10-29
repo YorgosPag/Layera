@@ -30,8 +30,8 @@ import type {
  * @example
  * ```typescript
  * const { user, signIn, signUp, signOut, loading } = useAuth({
- *   onSignIn: (user) => console.log('User signed in:', user.email),
- *   onSignOut: () => console.log('User signed out')
+ *   onSignIn: (user) => handleUserSignIn(user.email),
+ *   onSignOut: () => handleUserSignOut()
  * });
  * ```
  */

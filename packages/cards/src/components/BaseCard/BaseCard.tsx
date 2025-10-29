@@ -59,7 +59,6 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
 
     const handleOpacityToggle = (event: CustomEvent) => {
       // Αυτό θα χειριστεί το parent component που διαχειρίζεται το opacityMode state
-      console.log('🎯 ENHANCED BASECARD: Opacity toggle event received', event.detail);
     };
 
     window.addEventListener('toggleCardsOpacity', handleOpacityToggle as EventListener);
@@ -172,7 +171,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
   };
 
   // ============= CLICK HANDLERS =============
-  const handleClick = () => {
+  const handleClick = (): void => {
     if ((clickable || onClick) && onClick) {
       onClick();
     }

@@ -154,7 +154,7 @@ export const SnapSettingsPanel: React.FC<SnapSettingsPanelProps> = ({
         <ToggleButton
           active={isEnabled}
           disabled={disabled}
-          onClick={() => handleSnapTypeToggle(type, !isEnabled)}
+          onClick={(): void => handleSnapTypeToggle(type, !isEnabled)}
           size={compact ? 'small' : 'medium'}
         >
           {isEnabled ? t('common.enabled') : t('common.disabled')}
@@ -249,7 +249,7 @@ export const SnapSettingsPanel: React.FC<SnapSettingsPanelProps> = ({
                     key={category}
                     variant={activeCategory === category ? 'primary' : 'outline'}
                     size="small"
-                    onClick={() => setActiveCategory(category)}
+                    onClick={(): void => setActiveCategory(category)}
                     disabled={disabled}
                   >
                     {t(`snap.categories.${category}`)}
@@ -288,7 +288,7 @@ export const SnapSettingsPanel: React.FC<SnapSettingsPanelProps> = ({
                     key={level}
                     variant={configuration.performanceLevel === level ? 'primary' : 'outline'}
                     size={compact ? 'small' : 'medium'}
-                    onClick={() => handlePerformanceLevelChange(level)}
+                    onClick={(): void => handlePerformanceLevelChange(level)}
                     disabled={disabled}
                   >
                     {t(`snap.performance.${level}`)}
@@ -353,7 +353,7 @@ export const SnapToolbar: React.FC<SnapToolbarProps> = ({
       {/* Master Enable/Disable */}
       <ToggleButton
         active={enabled}
-        onClick={() => onToggleEnabled(!enabled)}
+        onClick={(): void => onToggleEnabled(!enabled)}
         variant="primary"
       >
         <Icon name="magnet" size={16} marginRight={`${SPACING_SCALE.XXS}px`} />
@@ -365,7 +365,7 @@ export const SnapToolbar: React.FC<SnapToolbarProps> = ({
         <ToggleButton
           key={type}
           active={configuration.enabledTypes.has(type)}
-          onClick={() => {
+          onClick={(): void => {
             const newTypes = new Set(configuration.enabledTypes);
             if (newTypes.has(type)) {
               newTypes.delete(type);

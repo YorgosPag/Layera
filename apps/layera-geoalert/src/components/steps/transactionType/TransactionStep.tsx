@@ -75,8 +75,6 @@ export const TransactionStep: React.FC<TransactionStepProps> = ({
 
   // Handle transaction type selection
   const handleTransactionSelection = useCallback((transactionType: TransactionType) => {
-    console.log(`🎯 TRANSACTION: Selected transaction type: ${transactionType} for category: ${context.selectedCategory}`);
-
     setSelectedTransactionType(transactionType);
 
     // Update context
@@ -97,7 +95,7 @@ export const TransactionStep: React.FC<TransactionStepProps> = ({
     }
 
     // Auto-advance to next step
-    setTimeout(() => {
+    setTimeout((): void => {
       onNext?.();
     }, 300);
   }, [context.selectedCategory, onStepComplete, onTransactionSelected, onNext]);
@@ -123,14 +121,14 @@ export const TransactionStep: React.FC<TransactionStepProps> = ({
 
   return (
     <Box className="transaction-step">
-      {transactionOptions.map((option) => (
+      {transactionOptions.map((option: unknown) => (
         <BaseCard
           key={option.type}
           variant={context.selectedCategory}
           title={option.title}
           subtitle={option.description}
           icon={null}
-          onClick={() => handleTransactionSelection(option.type)}
+          onClick={(): void => handleTransactionSelection(option.type)}
           onInfoClick={() => handleInfoClick(`transaction-${option.type}` as CardId)}
           data-testid={`transaction-card-${option.type}`}
           className={selectedTransactionType === option.type ? 'selected' : ''}

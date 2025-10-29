@@ -38,7 +38,7 @@ const NewDashboard: React.FC = () => {
           <UserAvatar
             user={user}
             size="medium"
-            onClick={() => navigate('/account')}
+            onClick={(): void => navigate('/account')}
           />
           <Button variant="ghost" size="sm" onClick={handleLogout}>
             {t('navigation.logout')}
@@ -179,7 +179,7 @@ const NewDashboard: React.FC = () => {
                     title={t('dashboard:cards.mfa.title')}
                     variant="stats"
                     clickable
-                    onClick={() => navigate('/mfa-enroll')}
+                    onClick={(): void => navigate('/mfa-enroll')}
                   >
                     <SettingsIcon size="lg" theme="info" />
                     <Text>{t('dashboard.actionDescriptions.enableMfa')}</Text>
@@ -198,7 +198,7 @@ const NewDashboard: React.FC = () => {
                     title={t('dashboard:admin.roleManagement')}
                     variant="chart"
                     clickable
-                    onClick={() => navigate('/admin/roles')}
+                    onClick={(): void => navigate('/admin/roles')}
                   >
                     <SettingsIcon size="lg" theme="info" />
                     <Text>Manage user roles and permissions</Text>

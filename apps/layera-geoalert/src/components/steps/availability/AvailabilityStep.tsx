@@ -30,8 +30,6 @@ export const AvailabilityStep: React.FC<AvailabilityStepProps> = ({
   const { t } = useLayeraTranslation();
 
   const handleAvailabilitySelection = useCallback(async (availability: AvailabilityType) => {
-    console.log(`🎯 AVAILABILITY UI: Selected availability: ${availability}`);
-
     try {
       // Ενημερώνουμε το StepOrchestrator
       if (onStepComplete) {
@@ -45,7 +43,7 @@ export const AvailabilityStep: React.FC<AvailabilityStepProps> = ({
       onAvailabilitySelected?.(availability);
 
       // Auto-advance
-      setTimeout(() => {
+      setTimeout((): void => {
         onNext?.();
       }, 300);
 
@@ -77,7 +75,7 @@ export const AvailabilityStep: React.FC<AvailabilityStepProps> = ({
         availability="now"
         title={t('availability.now.title', 'Τώρα')}
         description={t('availability.now.description', 'Άμεσα διαθέσιμο')}
-        onClick={() => handleAvailabilitySelection('now')}
+        onClick={(): void => handleAvailabilitySelection('now')}
         data-testid="availability-card-now"
       />
 
@@ -86,7 +84,7 @@ export const AvailabilityStep: React.FC<AvailabilityStepProps> = ({
         availability="future"
         title={t('availability.future.title', 'Μελλοντικά')}
         description={t('availability.future.description', 'Διαθέσιμο στο μέλλον')}
-        onClick={() => handleAvailabilitySelection('future')}
+        onClick={(): void => handleAvailabilitySelection('future')}
         data-testid="availability-card-future"
       />
     </Box>

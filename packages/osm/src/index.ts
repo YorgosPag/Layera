@@ -175,15 +175,15 @@ export {
  * Main OSM client interface
  */
 export interface OSMClient {
-  readonly buildings: any; // BuildingsRepository
-  readonly boundaries: any; // BoundariesRepository
+  readonly buildings: unknown; // BuildingsRepository
+  readonly boundaries: unknown; // BoundariesRepository
 
   /**
    * Gets client health and performance metrics
    */
   getHealth(): {
-    http: any;
-    cache: any;
+    http: unknown;
+    cache: unknown;
     uptime: number;
   };
 
@@ -210,12 +210,12 @@ export interface OSMClientConfig {
   /**
    * HTTP client configuration
    */
-  readonly http?: any; // Partial<OverpassClientConfig>
+  readonly http?: unknown; // Partial<OverpassClientConfig>
 
   /**
    * Cache configuration
    */
-  readonly cache?: any; // Partial<OSMCacheConfig>
+  readonly cache?: unknown; // Partial<OSMCacheConfig>
 
   /**
    * Enable debug logging
@@ -265,7 +265,6 @@ class OSMClientImpl implements OSMClient {
     this._buildings = new BuildingsRepository(this.httpClient, this.cache);
 
     if (config.debug) {
-      console.log('OSM Client initialized with config:', config);
     }
   }
 

@@ -42,8 +42,6 @@ export class DatabaseNamespace implements IDataBaseNamespace {
     // Sanitize namespace
     this.namespace = `lego_${legoName.toLowerCase().replace(/[^a-z0-9_]/g, '_')}`;
     this.firestore = firestore;
-
-    console.log(`📦 Created database namespace: ${this.namespace}`);
   }
 
   /**
@@ -116,8 +114,6 @@ export class DatabaseNamespace implements IDataBaseNamespace {
           await this.clearCollection(tx, collectionName);
         }
       });
-
-      console.log(`✅ Cleared namespace: ${this.namespace}`);
     } catch (error) {
       console.error(`🚫 Failed to clear namespace: ${this.namespace}`, error);
       throw new Error(`Clear failed: ${error instanceof Error ? error.message : 'Unknown error'}`);

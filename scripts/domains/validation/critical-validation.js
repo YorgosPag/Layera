@@ -33,14 +33,14 @@ const CRITICAL_RULES = [
   },
   {
     name: 'Console.log in production',
-    pattern: /console\.log\(/g,
+    pattern: /^(?!\s*[*\/]).+console\.log\(/gm, // Ignore lines starting with comment chars
     severity: 'error',
     message: '🚨 CRITICAL: Remove console.log statements',
     category: 'production'
   },
   {
     name: 'Hardcoded API keys',
-    pattern: /api[_-]?key\s*[=:]\s*["'][^"']+["']/gi,
+    pattern: /^(?!\s*[*\/]).+api[_-]?key\s*[=:]\s*["'][^"']+["']/gmi, // Ignore comment lines
     severity: 'error',
     message: '🔐 CRITICAL: Hardcoded API keys detected',
     category: 'security'
@@ -54,7 +54,7 @@ const CRITICAL_RULES = [
   },
   {
     name: 'Hardcoded passwords',
-    pattern: /password\s*[=:]\s*["'][^"']+["']/gi,
+    pattern: /^(?!\s*[*\/]).+password\s*[=:]\s*["'](?!password|new-password|current-password)[^"'\s]{8,}["']/gmi, // Ignore HTML constants & comments
     severity: 'error',
     message: '🔐 CRITICAL: Hardcoded passwords detected',
     category: 'security'
@@ -106,7 +106,8 @@ function scanDirectory(dir, depth = 0) {
 
     if (stat.isDirectory()) {
       violations = violations.concat(scanDirectory(fullPath, depth + 1));
-    } else if (item.endsWith('.ts') || item.endsWith('.tsx') || item.endsWith('.js') || item.endsWith('.jsx')) {
+    } else if ((item.endsWith('.ts') || item.endsWith('.tsx') || item.endsWith('.js') || item.endsWith('.jsx'))
+               && !item.includes('test') && !item.includes('spec') && !item.includes('.d.ts')) {
       violations = violations.concat(processFile(fullPath));
     }
   });

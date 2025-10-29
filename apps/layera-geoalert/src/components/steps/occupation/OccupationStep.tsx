@@ -40,17 +40,12 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
 
   // Debug mount/unmount lifecycle
   React.useEffect(() => {
-    console.log('🎯 OCCUPATION STEP: Component mounted and ready for interaction');
     return () => {
-      console.log('🚪 OCCUPATION STEP: Component unmounting');
     };
   }, []);
 
   // Handle occupation selection από ESCO search
   const handleOccupationSelection = useCallback(async (occupation: ESCOOccupation) => {
-    console.log(`🎯 OCCUPATION STEP: Selected occupation: ${occupation.preferredLabel} (${occupation.id})`);
-    console.log('🔍 OCCUPATION DEBUG: Auto-selection triggered, this should NOT happen automatically!');
-
     setSelectedOccupation(occupation);
     setIsConfirming(true);
 
@@ -69,7 +64,7 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
       onOccupationSelected?.(occupation);
 
       // Auto-advance μετά από confirmation
-      setTimeout(() => {
+      setTimeout((): void => {
         onNext?.();
         setIsConfirming(false);
       }, 1500);
@@ -95,7 +90,6 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
     padding: `0 ${SPACING_SCALE.LG + SPACING_SCALE.XS}px`,
     boxSizing: 'border-box'
   };
-
 
   // All styles converted to LEGO BaseCard components
 

@@ -32,7 +32,7 @@ export const DeviceOverrideProvider: React.FC<{ children: ReactNode }> = ({ chil
 /**
  * Enhanced useViewport hook που υποστηρίζει manual override
  */
-export const useViewportWithOverride = () => {
+export const useViewportWithOverride = (): void => {
   const originalViewport = useOriginalViewport();
   const { overrideDevice } = useContext(DeviceOverrideContext);
 

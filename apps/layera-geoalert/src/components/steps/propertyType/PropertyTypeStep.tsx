@@ -73,8 +73,6 @@ export const PropertyTypeStep: React.FC<PropertyTypeStepProps> = ({
   ];
 
   const handlePropertyTypeSelection = useCallback(async (propertyType: PropertyType) => {
-    console.log(`🎯 PROPERTY TYPE UI: Selected property type: ${propertyType}`);
-
     try {
       // Ενημερώνουμε το StepOrchestrator
       if (onStepComplete) {
@@ -88,7 +86,7 @@ export const PropertyTypeStep: React.FC<PropertyTypeStepProps> = ({
       onPropertyTypeSelected?.(propertyType);
 
       // Auto-advance
-      setTimeout(() => {
+      setTimeout((): void => {
         onNext?.();
       }, 300);
 
@@ -113,13 +111,13 @@ export const PropertyTypeStep: React.FC<PropertyTypeStepProps> = ({
       overflow="var(--la-overflow-auto, auto)"
     >
       <Flex direction="column" gap="xs" padding="none">
-      {propertyTypes.map((type) => (
+      {propertyTypes.map((type: unknown) => (
         <PropertyTypeCard
           key={type.id}
           propertyType={type.id}
           title={type.title}
           description={type.description}
-          onClick={() => handlePropertyTypeSelection(type.id)}
+          onClick={(): void => handlePropertyTypeSelection(type.id)}
           data-testid={`property-type-card-${type.id}`}
         />
       ))}

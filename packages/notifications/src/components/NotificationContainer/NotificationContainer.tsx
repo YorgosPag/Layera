@@ -37,7 +37,7 @@ export const NotificationContainer: React.FC<NotificationContainerProps> = ({
 
   const containerContent = (
     <Box className={containerClasses} role="region" aria-label="Notifications">
-      {visibleNotifications.map((notification) => (
+      {visibleNotifications.map((notification: unknown) => (
         <Toast
           key={notification.id}
           notification={notification}

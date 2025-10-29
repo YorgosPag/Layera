@@ -42,14 +42,14 @@ export const Dialog: React.FC<DialogProps> = ({
     }
   };
 
-  const handleCancel = () => {
+  const handleCancel = (): void => {
     if (onCancel) {
       onCancel();
     }
     onClose();
   };
 
-  const getTypeIcon = () => {
+  const getTypeIcon = (): void => {
     const iconProps = { size: "md" as const, className: `layera-dialog__icon layera-dialog__icon--${type}` };
 
     switch (type) {
@@ -68,7 +68,7 @@ export const Dialog: React.FC<DialogProps> = ({
     }
   };
 
-  const getConfirmButtonClass = () => {
+  const getConfirmButtonClass = (): void => {
     switch (type) {
       case 'error':
         return 'layera-dialog__button--danger';

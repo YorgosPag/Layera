@@ -31,7 +31,7 @@ export const AvailabilityDetailsForm: React.FC<AvailabilityDetailsFormProps> = (
       >
         <DatePicker
           value={details.date || ''}
-          onChange={(e) => onChange('date', e.target.value)}
+          onChange={(e: React.FormEvent<HTMLFormElement>) => onChange('date', e.target.value)}
           placeholder={t('availabilityDetails.selectStartDate', 'Επιλέξτε ημερομηνία έναρξης')}
           minDate={new Date().toISOString().split('T')[0]}
           size="md"
@@ -47,7 +47,7 @@ export const AvailabilityDetailsForm: React.FC<AvailabilityDetailsFormProps> = (
       >
         <NumericInput
           value={details.duration || 0}
-          onChange={(e) => onChange('duration', e.target.value ? Number(e.target.value) : 0)}
+          onChange={(e: React.FormEvent<HTMLFormElement>) => onChange('duration', e.target.value ? Number(e.target.value) : 0)}
           placeholder={t('availabilityDetails.durationPlaceholder', 'π.χ. 12')}
           min={1}
           max={120}
@@ -64,7 +64,7 @@ export const AvailabilityDetailsForm: React.FC<AvailabilityDetailsFormProps> = (
       >
         <Select
           value={details.unit || 'months'}
-          onChange={(e) => onChange('unit', e.target.value as 'months' | 'years')}
+          onChange={(e: React.FormEvent<HTMLFormElement>) => onChange('unit', e.target.value as 'months' | 'years')}
           options={[
             { value: 'months', label: t('availabilityDetails.months', 'Μήνες') },
             { value: 'years', label: t('availabilityDetails.years', 'Χρόνια') }

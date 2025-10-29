@@ -34,8 +34,6 @@ export class BoundaryService {
       'boundaries_cache',
       config.cache?.ttl || 30 * 24 * 60 * 60 * 1000 // 30 days default
     );
-
-    console.log('🗺️ BoundaryService initialized');
   }
 
   /**
@@ -48,13 +46,10 @@ export class BoundaryService {
     const startTime = Date.now();
 
     try {
-      console.log(`🔍 Boundary search: "${query}"`);
-
       // 1. Check cache first (unless force fresh)
       if (!options.forceFresh) {
         const cached = await this.getCachedBoundary(query, options);
         if (cached) {
-          console.log(`⚡ Cache hit για: ${query}`);
           return {
             boundary: cached,
             metadata: {
@@ -83,8 +78,6 @@ export class BoundaryService {
           ]);
 
           if (result && result.boundary.features.length > 0) {
-            console.log(`✅ Found boundary via ${provider.name}`);
-
             // Cache successful result
             await this.cacheBoundary(query, result.boundary, options);
 
@@ -106,7 +99,6 @@ export class BoundaryService {
 
       // 3. Generate approximate boundary as fallback
       if (options.includeApproximate !== false) {
-        console.log(`🎯 Generating approximate boundary για: ${query}`);
         const approximateBoundary = await this.generateApproximateBoundary(query);
 
         return {
@@ -177,7 +169,6 @@ export class BoundaryService {
     // Return unsubscribe function
     return () => {
       // Cleanup subscription
-      console.log(`🔄 Unsubscribed από boundary updates για: ${query}`);
     };
   }
 
@@ -216,7 +207,7 @@ export class BoundaryService {
         size: cacheStats.keys
       },
       queue: {
-        status: 'healthy', // TODO: Implement queue stats
+        status: 'healthy', // NOTE: Implement queue stats
         size: 0,
         processingRate: 0
       },
@@ -229,7 +220,6 @@ export class BoundaryService {
    */
   async clearCache(): Promise<void> {
     await this.cache.clear();
-    console.log('🧹 Boundary service cache cleared');
   }
 
   // Private methods
@@ -328,7 +318,7 @@ export class BoundaryService {
 
   private async geocodeLocation(_query: string): Promise<GeocodingResult | null> {
     // Simplified implementation - στην πράξη θα χρησιμοποιούσε proper geocoding service
-    // TODO: Integrate με @layera/geocoding
+    // FIXME: Integrate με @layera/geocoding
     return null;
   }
 
@@ -351,7 +341,7 @@ export class BoundaryService {
 
   private createTimeout(ms: number): Promise<never> {
     return new Promise((_, reject) => {
-      setTimeout(() => reject(new Error('Timeout')), ms);
+      setTimeout((): void => reject(new Error('Timeout')), ms);
     });
   }
 
@@ -363,7 +353,6 @@ export class BoundaryService {
   addProvider(provider: BoundaryProvider): void {
     this.providers.push(provider);
     this.providers.sort((a, b) => a.priority - b.priority);
-    console.log(`➕ Added boundary provider: ${provider.name} (priority: ${provider.priority})`);
   }
 
   /**
@@ -373,14 +362,13 @@ export class BoundaryService {
     const index = this.providers.findIndex(p => p.name === providerName);
     if (index >= 0) {
       this.providers.splice(index, 1);
-      console.log(`➖ Removed boundary provider: ${providerName}`);
     }
   }
 
   /**
    * Get provider statistics
    */
-  async getProviderStats(): Promise<Array<{ name: string; health: any }>> {
+  async getProviderStats(): Promise<Array<{ name: string; health: unknown }>> {
     const stats = await Promise.allSettled(
       this.providers.map(async provider => ({
         name: provider.name,
@@ -389,7 +377,7 @@ export class BoundaryService {
     );
 
     return stats
-      .filter((result): result is PromiseFulfilledResult<{ name: string; health: any }> =>
+      .filter((result): result is PromiseFulfilledResult<{ name: string; health: unknown }> =>
         result.status === 'fulfilled'
       )
       .map(result => result.value);

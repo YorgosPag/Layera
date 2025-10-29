@@ -91,7 +91,7 @@ export class UploadEngine {
     const xhr = new XMLHttpRequest();
 
     // Track upload progress
-    xhr.upload.addEventListener('progress', (event) => {
+    xhr.upload.addEventListener('progress', (event: React.MouseEvent<HTMLElement>) => {
       if (event.lengthComputable) {
         const progress = (event.loaded / event.total) * 100;
         fileItem.progress = progress;

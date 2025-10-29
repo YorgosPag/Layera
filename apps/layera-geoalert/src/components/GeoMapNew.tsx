@@ -88,7 +88,6 @@ export const GeoMap: React.FC<GeoMapProps> = ({
   const { isDesktop, isTablet, isMobile } = useViewportWithOverride();
   const { t } = useLayeraTranslation();
 
-
   // 🚀 ENTERPRISE DEVICE DETECTION: @layera/device-detection LEGO package
   const isDetectedIPhone14ProMax = useIPhone14ProMaxDetection({
     frameSelector: '.device-frame-wrapper',
@@ -98,7 +97,6 @@ export const GeoMap: React.FC<GeoMapProps> = ({
 
   // Hybrid approach: χρησιμοποιώ το prop από App.tsx αλλά με fallback το LEGO detection
   const finalIPhone14ProMaxDecision = isIPhone14ProMaxDevice || isDetectedIPhone14ProMax;
-
 
   // 🚀 ENTERPRISE NAVIGATION: Rock-solid service που δεν σπάει ποτέ
   const navigation = useNavigation();
@@ -110,15 +108,13 @@ export const GeoMap: React.FC<GeoMapProps> = ({
         !['category', 'intent', 'transactionType', 'employmentType', 'occupation', 'availability', 'upload', 'layout', 'propertyType', 'propertyDetails', 'areaMethod', 'location', 'availabilityDetails', 'complete', 'details', 'pricing', 'review'].includes(navigation.currentStep) &&
         navigation.selectedCategory) {
       // Event-based reset - Production-safe logging
-      setTimeout(() => {
+      setTimeout((): void => {
         if (process.env.NODE_ENV === 'development') {
-          console.log(`🔄 AUTO-RESET: Step '${navigation.currentStep}' not implemented yet, resetting to category`);
         }
         navigation.reset();
       }, 100);
     }
   }, [navigation.currentStep, navigation.selectedCategory, navigation.reset]);
-
 
   // 🚀 ENTERPRISE NAVIGATION HANDLERS: @layera/navigation-handlers LEGO package
   const {
@@ -134,8 +130,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
     onNewEntryClick
   });
 
-  const handleFabClick = () => {
-    console.log('FAB clicked! isResponsiveMode:', isResponsiveMode);
+  const handleFabClick = (): void => {
     handleNewEntryClick();
   };
 
@@ -192,17 +187,15 @@ export const GeoMap: React.FC<GeoMapProps> = ({
     canGoBack: navigation.canGoBack
   };
 
-
   // 🚀 ENTERPRISE STEP CLICK HANDLER: Back button synchronization με κάρτες
   const handleStepClick = (stepIndex: number) => {
     if (process.env.NODE_ENV === 'development') {
-      console.log('🔄 Step click navigation:', { stepIndex, currentStep: navigation.currentStep });
     }
 
     // Το PipelineDiscovery έχει ήδη ενημερωθεί από το FloatingStepper
     // Εδώ μπορούμε να προσθέσουμε επιπλέον logic αν χρειάζεται
 
-    // TODO: Μελλοντικά μπορεί να χρειαστεί συγχρονισμός με cards state
+    // FIXME: Μελλοντικά μπορεί να χρειαστεί συγχρονισμός με cards state
     // Για τώρα το PipelineDiscovery αναλαμβάνει τον συγχρονισμό
   };
 
@@ -213,8 +206,6 @@ export const GeoMap: React.FC<GeoMapProps> = ({
     onStepClick: handleStepClick,
     onNewEntryClick: handleNewEntryClick
   };
-
-
 
   return (
     <Box position="relative" width="full" height="full">

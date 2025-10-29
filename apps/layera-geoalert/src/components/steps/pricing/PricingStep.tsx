@@ -91,7 +91,7 @@ export const PricingStep: React.FC<PricingStepProps> = ({
   };
 
   // 🎮 Handle navigation
-  const handleNext = () => {
+  const handleNext = (): void => {
     if (selectedPricing) {
       onNext?.();
     }
@@ -128,12 +128,12 @@ export const PricingStep: React.FC<PricingStepProps> = ({
         gridTemplateColumns={deviceProps?.isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))'}
         gap={`${SPACING_SCALE.MD}px`}
       >
-        {cards.map((card) => (
+        {cards.map((card: unknown) => (
           <BaseCard
             key={card.id}
             title={card.title}
             variant={selectedPricing === card.value ? 'filled' : 'outline'}
-            onClick={() => handlePricingSelect(card.value as PricingType)}
+            onClick={(): void => handlePricingSelect(card.value as PricingType)}
           >
             <Stack spacing="sm" align="center">
               {card.icon && <Box>{card.icon}</Box>}
@@ -149,7 +149,7 @@ export const PricingStep: React.FC<PricingStepProps> = ({
       <Stack direction="row" justify="space-between" marginTop="lg">
         <Button
           variant="outline"
-          onClick={() => window.history.back()}
+          onClick={(): void => window.history.back()}
         >
           Πίσω
         </Button>

@@ -7,11 +7,8 @@ const SimpleMap: React.FC = () => {
 
   useEffect(() => {
     if (mapInitialized.current) return;
-
-    console.log('SimpleMap component mounted');
-
     // Δοκιμάζουμε να φορτώσουμε το Leaflet CSS
-    const loadLeafletCSS = () => {
+    const loadLeafletCSS = (): void => {
       if (!document.querySelector('link[href*="leaflet.css"]')) {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
@@ -19,7 +16,6 @@ const SimpleMap: React.FC = () => {
         link.integrity = 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=';
         link.crossOrigin = '';
         document.head.appendChild(link);
-        console.log('Leaflet CSS loaded from CDN');
       }
     };
 
@@ -30,8 +26,6 @@ const SimpleMap: React.FC = () => {
       try {
         // Δυναμική εισαγωγή του Leaflet
         const L = await import('leaflet');
-        console.log('Leaflet loaded successfully:', L);
-
         const mapContainer = document.getElementById('simple-map');
         if (mapContainer && L.default && !mapInitialized.current) {
           // Καθαρίζουμε το container πρώτα
@@ -44,7 +38,6 @@ const SimpleMap: React.FC = () => {
           }).addTo(map);
 
           mapInitialized.current = true;
-          console.log('Map initialized successfully');
         }
       } catch (error) {
         console.error('Error loading Leaflet:', error);

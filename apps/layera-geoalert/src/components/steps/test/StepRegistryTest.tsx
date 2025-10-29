@@ -60,14 +60,12 @@ export const StepRegistryTest: React.FC = () => {
           completedSteps={context.completedSteps}
           featureFlags={context.featureFlags}
           onStepChange={(stepId) => {
-            console.log('Step changed to:', stepId);
             setContext(prev => ({
               ...prev,
               currentStepId: stepId
             }));
           }}
           onStepComplete={(stepId, data) => {
-            console.log('Step completed:', stepId, data);
             setContext(prev => ({
               ...prev,
               completedSteps: new Set([...prev.completedSteps, stepId])

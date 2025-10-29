@@ -54,10 +54,10 @@ export const useViewport = (): ViewportInfo => {
   useEffect(() => {
     let timeoutId: number;
 
-    const handleResize = () => {
+    const handleResize = (): void => {
       // Debounce για performance
       clearTimeout(timeoutId);
-      timeoutId = window.setTimeout(() => {
+      timeoutId = window.setTimeout((): void => {
         const width = window.innerWidth;
         const height = window.innerHeight;
         const deviceType = getDeviceType(width);
@@ -126,7 +126,6 @@ function getDeviceType(width: number): DeviceType {
     const isSimulatorSize = width <= 430 || (aspectRatio < 0.8 && width <= 768);
 
     if (width <= 480 || isSimulatorSize) {
-      console.log('🎯 useViewport: Mobile detected:', { width, height, aspectRatio, isSimulatorSize });
       return 'mobile';
     }
   }

@@ -27,15 +27,15 @@ vi.mock('firebase/app', () => ({
   getApps: vi.fn(() => []),
 }));
 
-// Mock environment variables
+// Mock environment variables - TEST DATA ONLY
 Object.defineProperty(import.meta, 'env', {
   value: {
-    VITE_FIREBASE_API_KEY: 'test-api-key',
-    VITE_FIREBASE_AUTH_DOMAIN: 'test.firebaseapp.com',
-    VITE_FIREBASE_PROJECT_ID: 'test-project',
-    VITE_FIREBASE_STORAGE_BUCKET: 'test.appspot.com',
-    VITE_FIREBASE_MESSAGING_SENDER_ID: '123456789',
-    VITE_FIREBASE_APP_ID: 'test-app-id',
+    VITE_FIREBASE_API_KEY: 'MOCK_TEST_API_KEY_NOT_REAL',
+    VITE_FIREBASE_AUTH_DOMAIN: 'mock-test.firebaseapp.com',
+    VITE_FIREBASE_PROJECT_ID: 'mock-test-project',
+    VITE_FIREBASE_STORAGE_BUCKET: 'mock-test.appspot.com',
+    VITE_FIREBASE_MESSAGING_SENDER_ID: 'MOCK_123456789',
+    VITE_FIREBASE_APP_ID: 'MOCK_TEST_APP_ID_NOT_REAL',
   },
   writable: true,
 });

@@ -106,7 +106,7 @@ export const LayeraProgressStepper: React.FC<LayeraProgressStepperProps> = ({
 
     if (isClickable) {
       return (
-        <StepButton onClick={() => handleStepClick(stepIndex)}>
+        <StepButton onClick={(): void => handleStepClick(stepIndex)}>
           {labelContent}
         </StepButton>
       );

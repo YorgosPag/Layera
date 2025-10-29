@@ -48,7 +48,7 @@ export interface UseCADProcessingReturn {
 export function useCADProcessing(
   options: UseCADProcessingOptions = {}
 ): UseCADProcessingReturn {
-  // TODO: Add translation support using @layera/tolgee
+  // NOTE: Add translation support using @layera/tolgee - I18n integration required
   const [isProcessing, setIsProcessing] = useState(false);
   const [progress, setProgress] = useState(0);
   const [result, setResult] = useState<CADProcessingResult | null>(null);

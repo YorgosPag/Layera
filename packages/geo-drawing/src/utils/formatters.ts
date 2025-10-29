@@ -36,7 +36,7 @@ export const formatArea = (sqMeters: number): string => {
  * Hook for formatted measurement display with @layera/tolgee support
  * Αντικαθιστά τα hardcoded strings με @layera/tolgee keys
  */
-export const useMeasurementFormatter = () => {
+export const useMeasurementFormatter = (): void => {
   const { t } = useLayeraTranslation();
 
   const formatDistanceWithLabels = (meters: number, decimals: number = 2): string => {

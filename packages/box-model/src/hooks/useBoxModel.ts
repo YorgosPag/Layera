@@ -113,7 +113,7 @@ export const useBoxModel = (options: {
 /**
  * Hook για modern defaults (enterprise best practices)
  */
-export const useModernDefaults = () => {
+export const useModernDefaults = (): void => {
   return useMemo(() => ({
     // Universal border-box (industry standard)
     universalBorderBox: {
@@ -147,7 +147,7 @@ export const useModernDefaults = () => {
 /**
  * Hook για layout patterns
  */
-export const useLayoutPatterns = () => {
+export const useLayoutPatterns = (): void => {
   return useMemo(() => ({
     // Full width container
     fullWidth: {
@@ -198,7 +198,7 @@ export const useLayoutPatterns = () => {
 /**
  * Hook για component patterns
  */
-export const useComponentPatterns = () => {
+export const useComponentPatterns = (): void => {
   return useMemo(() => ({
     // Card component
     card: {
@@ -245,7 +245,7 @@ export const useComponentPatterns = () => {
 /**
  * Hook για accessibility patterns
  */
-export const useAccessibilityPatterns = () => {
+export const useAccessibilityPatterns = (): void => {
   return useMemo(() => ({
     // Screen reader only
     srOnly: {
@@ -283,7 +283,7 @@ export const useAccessibilityPatterns = () => {
 /**
  * Hook για complete box model system access
  */
-export const useBoxModelSystem = () => {
+export const useBoxModelSystem = (): void => {
   return useMemo(() => ({
     // Scale access
     scale: BOX_MODEL_SCALE,
@@ -327,7 +327,7 @@ export const useBoxModelSystem = () => {
 /**
  * Hook για responsive box model (μελλοντική χρήση με breakpoints)
  */
-export const useResponsiveBoxModel = () => {
+export const useResponsiveBoxModel = (): void => {
   return useMemo(() => ({
     // Mobile patterns
     mobile: {

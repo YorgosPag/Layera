@@ -81,8 +81,6 @@ export const CompleteStep: React.FC<CompleteStepProps> = ({
   }, [context?.selectedCategory, context?.selectedIntent]);
 
   const handleComplete = useCallback(async () => {
-    console.log('🎯 COMPLETE UI: Completing process');
-
     try {
       // Ενημερώνουμε το StepOrchestrator
       if (onStepComplete) {
@@ -99,7 +97,7 @@ export const CompleteStep: React.FC<CompleteStepProps> = ({
       onComplete?.();
 
       // Final completion
-      setTimeout(() => {
+      setTimeout((): void => {
 
         // Reset ή navigate away
       }, 500);
@@ -110,7 +108,6 @@ export const CompleteStep: React.FC<CompleteStepProps> = ({
   }, [onStepComplete, onComplete, completionSummary]);
 
   const handleGoBack = useCallback(() => {
-    console.log('🎯 COMPLETE UI: Going back for changes');
     // Go back logic - μπορεί να χρησιμοποιήσει navigation service
   }, []);
 

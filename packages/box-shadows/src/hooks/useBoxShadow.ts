@@ -71,7 +71,7 @@ export const useBoxShadow = (options: UseBoxShadowOptions = {}) => {
 
   // Detect dark mode changes
   useEffect(() => {
-    const checkDarkMode = () => {
+    const checkDarkMode = (): void => {
       const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches ||
         document.documentElement.getAttribute('data-theme') === 'dark';
       setIsDarkMode(isDark);
@@ -387,7 +387,7 @@ export const useTooltipShadow = (options: UseBoxShadowOptions = {}) => {
  */
 
 // Complete box shadow system hook
-export const useBoxShadowSystem = () => {
+export const useBoxShadowSystem = (): void => {
   return useMemo(() => COMPLETE_BOX_SHADOW_SYSTEM, []);
 };
 
@@ -396,7 +396,7 @@ export const useResponsiveShadow = (mobileToken: BoxShadowToken, desktopToken: B
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => {
+    const checkMobile = (): void => {
       setIsMobile(window.innerWidth < 768);
     };
 

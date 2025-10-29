@@ -48,7 +48,7 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
     dragOverItem.current = index;
   };
 
-  const handleDragEnd = () => {
+  const handleDragEnd = (): void => {
     if (dragItem.current !== null && dragOverItem.current !== null && dragItem.current !== dragOverItem.current) {
       const newAreas = [...areas];
       const draggedItemContent = newAreas.splice(dragItem.current, 1)[0];
@@ -90,10 +90,10 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
             <li
               key={area.id}
               draggable
-              onDragStart={(e) => handleDragStart(e, index)}
-              onDragEnter={(e) => handleDragEnter(e, index)}
+              onDragStart={(e: React.FormEvent<HTMLFormElement>) => handleDragStart(e, index)}
+              onDragEnter={(e: React.FormEvent<HTMLFormElement>) => handleDragEnter(e, index)}
               onDragEnd={handleDragEnd}
-              onDragOver={(e) => e.preventDefault()}
+              onDragOver={(e: React.FormEvent<HTMLFormElement>) => e.preventDefault()}
               className="border-b border-gray-200 cursor-move"
             >
               <BaseCard
@@ -111,7 +111,7 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
                 </Text>
                 <Box className="flex items-center space-x-2">
                   <Button
-                    onMouseDown={(e) => { e.preventDefault(); e.stopPropagation(); onEditArea(area); }}
+                    onMouseDown={(e: React.FormEvent<HTMLFormElement>) => { e.preventDefault(); e.stopPropagation(); onEditArea(area); }}
                     title={t('editArea')}
                     variant="ghost"
                     size="xs"
@@ -120,7 +120,7 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
                   </Button>
 
                   <Button
-                    onMouseDown={(e) => { e.preventDefault(); e.stopPropagation(); onZoomToArea(area.id); }}
+                    onMouseDown={(e: React.FormEvent<HTMLFormElement>) => { e.preventDefault(); e.stopPropagation(); onZoomToArea(area.id); }}
                     title={t('zoomToArea')}
                     variant="ghost"
                     size="xs"
@@ -128,7 +128,7 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
                   />
 
                   <Button
-                    onMouseDown={(e) => { e.preventDefault(); e.stopPropagation(); onToggleAreaVisibility(area.id); }}
+                    onMouseDown={(e: React.FormEvent<HTMLFormElement>) => { e.preventDefault(); e.stopPropagation(); onToggleAreaVisibility(area.id); }}
                     title={area.isVisible ? t('hide') : t('show')}
                     variant="ghost"
                     size="xs"
@@ -136,12 +136,12 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
                   />
 
                   <Button
-                    onClick={() => {
+                    onClick={(): void => {
                       if (window.confirm(t('confirmDelete'))) {
                         onRemoveArea(area.id);
                       }
                     }}
-                    onMouseDown={(e) => e.stopPropagation()}
+                    onMouseDown={(e: React.FormEvent<HTMLFormElement>) => e.stopPropagation()}
                     title={t('deleteArea')}
                     variant="ghost"
                     size="xs"
@@ -157,7 +157,7 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
                 max="1"
                 step="0.05"
                 value={area.opacity || 1}
-                onChange={(e) => onUpdateAreaOpacity(area.id, parseFloat(e.target.value))}
+                onChange={(e: React.FormEvent<HTMLFormElement>) => onUpdateAreaOpacity(area.id, parseFloat(e.target.value))}
                 className="w-full mt-1 h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer"
               />
             </li>

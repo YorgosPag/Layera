@@ -55,7 +55,7 @@ export function AddressBreakdownCard({
 
     if (boundaryLoading) {
       setLoadingTimer(0);
-      interval = setInterval(() => {
+      interval = setInterval((): void => {
         setLoadingTimer(prev => prev + 1);
       }, 1000);
     } else {
@@ -95,22 +95,17 @@ export function AddressBreakdownCard({
     if (finalConfig.onComponentClick) {
       finalConfig.onComponentClick(component);
     }
-
-    console.log(`🔄 Starting boundary search for: ${component.label}, ID: ${component.id}`);
     setBoundaryLoading(component.id);
     setBoundaryError(null);
 
     try {
       // Κάνω fetch του boundary από το OSM API
-      console.log(`🔍 Fetching boundary for: ${component.label}`);
       const boundaryData = await fetchBoundaryByAddressComponent({
         label: component.label,
         type: component.type
       });
 
       if (boundaryData && boundaryData.features && boundaryData.features.length > 0) {
-        console.log(`✅ Found boundary with ${boundaryData.features.length} features`);
-
         // Dispatch event με τα actual boundary data
         const event = new CustomEvent('showAdministrativeBoundary', {
           detail: {
@@ -118,11 +113,9 @@ export function AddressBreakdownCard({
             component,
             geocodeResult,
             boundary: boundaryData
-          } as BoundaryVisualizationEvent & { boundary: any }
+          } as BoundaryVisualizationEvent & { boundary: unknown }
         });
         window.dispatchEvent(event);
-
-        console.log(`🎯 Boundary search completed for: ${component.label}`);
       } else {
         console.warn(`⚠️ No boundary data found for: ${component.label}`);
         setBoundaryError(`Δεν βρέθηκαν όρια για ${component.label}`);
@@ -131,7 +124,6 @@ export function AddressBreakdownCard({
       setBoundaryError(`Failed to search boundary for ${component.label}`);
       console.error('Boundary search error:', error);
     } finally {
-      console.log(`🏁 Boundary search completed for: ${component.label}, clearing loading state`);
       setBoundaryLoading(null);
     }
   }, [finalConfig, geocodeResult, t]);
@@ -142,7 +134,6 @@ export function AddressBreakdownCard({
   const renderComponent = (component: AddressComponent) => {
     const isLoading = boundaryLoading === component.id;
     const isClickable = component.clickable && finalConfig.enableBoundarySearch;
-
 
     const componentProps = {
       className: `address-component ${component.className || ''} ${isClickable ? 'clickable' : ''}`,
@@ -203,7 +194,7 @@ export function AddressBreakdownCard({
             }
           })
         }}
-        onMouseEnter={(e) => {
+        onMouseEnter={(e: React.FormEvent<HTMLFormElement>) => {
           if (isClickable && !isLoading) {
             e.currentTarget.style.backgroundColor = 'var(--la-bg-hover)';
             e.currentTarget.style.borderColor = 'var(--la-border-hover)';
@@ -211,7 +202,7 @@ export function AddressBreakdownCard({
             e.currentTarget.style.boxShadow = BOX_SHADOW_SCALE.cardHover;
           }
         }}
-        onMouseLeave={(e) => {
+        onMouseLeave={(e: React.FormEvent<HTMLFormElement>) => {
           if (isClickable && !isLoading) {
             e.currentTarget.style.backgroundColor = 'var(--la-bg-primary)';
             e.currentTarget.style.borderColor = 'var(--la-border-default)';
@@ -284,7 +275,7 @@ export function AddressBreakdownCard({
     <Button
       variant="ghost"
       size="sm"
-      onClick={() => {
+      onClick={(): void => {
         const event = new CustomEvent('showSearchResult', {
           detail: {
             latitude: geocodeResult.coordinates.latitude,

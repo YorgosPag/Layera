@@ -69,8 +69,6 @@ export const UploadStep: React.FC<UploadStepProps> = React.memo(({
   }), []);
 
   const handleUploadComplete = useCallback((fileItem: FileUploadItem) => {
-    console.log(`🎯 ENTERPRISE UPLOAD: File completed: ${fileItem.file.name}`);
-
     const uploadedFile = convertToUploadedFile(fileItem);
     setUploadedFiles(prev => {
       const updated = [...prev, uploadedFile];
@@ -80,8 +78,6 @@ export const UploadStep: React.FC<UploadStepProps> = React.memo(({
   }, [convertToUploadedFile, onFilesUploaded]);
 
   const handleAllUploadsComplete = useCallback((completedFiles: FileUploadItem[]) => {
-    console.log(`🎯 ENTERPRISE UPLOAD: All uploads completed: ${completedFiles.length} files`);
-
     const finalFiles = completedFiles.map(convertToUploadedFile);
     setUploadedFiles(finalFiles);
     onFilesUploaded?.(finalFiles);
@@ -92,8 +88,6 @@ export const UploadStep: React.FC<UploadStepProps> = React.memo(({
   }, []);
 
   const handleContinue = useCallback(async () => {
-    console.log(`🎯 UPLOAD UI: Continue with ${uploadedFiles.length} files`);
-
     try {
       // Ενημερώνουμε το StepOrchestrator
       if (onStepComplete) {
@@ -106,7 +100,7 @@ export const UploadStep: React.FC<UploadStepProps> = React.memo(({
       }
 
       // Auto-advance
-      setTimeout(() => {
+      setTimeout((): void => {
         onNext?.();
       }, 300);
 
@@ -116,8 +110,6 @@ export const UploadStep: React.FC<UploadStepProps> = React.memo(({
   }, [uploadedFiles, onStepComplete, onNext]);
 
   const handleSkip = useCallback(async () => {
-    console.log('🎯 UPLOAD UI: Skipping upload');
-
     try {
       // Ενημερώνουμε το StepOrchestrator με κενά files
       if (onStepComplete) {
@@ -130,7 +122,7 @@ export const UploadStep: React.FC<UploadStepProps> = React.memo(({
       }
 
       // Auto-advance
-      setTimeout(() => {
+      setTimeout((): void => {
         onNext?.();
       }, 300);
 
@@ -236,7 +228,7 @@ export const UploadStep: React.FC<UploadStepProps> = React.memo(({
             variant="neutral"
             title={t('actions.back')}
             description={t('actions.backToMenu')}
-            onClick={() => setShowFileUploader(false)}
+            onClick={(): void => setShowFileUploader(false)}
             data-testid="upload-back-card"
           />
         </>

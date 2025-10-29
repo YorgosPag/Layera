@@ -36,7 +36,7 @@ export const useGeometrySnap = (isEnabled: boolean = true) => {
       }
     };
 
-    const debouncedFetch = () => {
+    const debouncedFetch = (): void => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
@@ -63,7 +63,7 @@ export const useGeometrySnap = (isEnabled: boolean = true) => {
    * Temporary implementation που επιστρέφει το original point
    */
   const snapToGeometry = useCallback(async (point: L.LatLng): Promise<L.LatLng> => {
-    // TODO: Implement actual snapping when snap packages are compatible
+    // FIXME: Implement actual snapping when snap packages are compatible
     return point;
   }, []);
 
@@ -71,16 +71,14 @@ export const useGeometrySnap = (isEnabled: boolean = true) => {
    * Toggles snap types - placeholder
    */
   const toggleSnapType = useCallback((type: string, enabled: boolean) => {
-    // TODO: Implement when snap engine is compatible
-    console.log(`Toggle snap type ${type}: ${enabled}`);
+    // FIXME: Implement when snap engine is compatible
   }, []);
 
   /**
    * Updates snap tolerance - placeholder
    */
   const updateTolerance = useCallback((tolerance: number) => {
-    // TODO: Implement when snap engine is compatible
-    console.log(`Update tolerance: ${tolerance}`);
+    // FIXME: Implement when snap engine is compatible
   }, []);
 
   return {

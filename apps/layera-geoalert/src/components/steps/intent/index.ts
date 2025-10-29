@@ -36,7 +36,6 @@ stepRegistry.register({
         title: 'Προσφορά',
         icon: null, // React.createElement(OfferIcon, { size: 'md', theme: 'neutral' }),
         onIntentSelect: (intent) => {
-          console.log('Offer intent selected:', intent);
         }
       }),
       order: 1
@@ -50,7 +49,6 @@ stepRegistry.register({
         title: 'Αναζήτηση',
         icon: null, // React.createElement(SearchIcon, { size: 'md', theme: 'neutral' }),
         onIntentSelect: (intent) => {
-          console.log('Search intent selected:', intent);
         }
       }),
       order: 2
@@ -61,8 +59,6 @@ stepRegistry.register({
     estimatedTime: 3 // 3 seconds average
   }
 });
-
-
 
 // 🎯 CLEAN EXPORTS
 export { IntentStep } from './IntentStep';

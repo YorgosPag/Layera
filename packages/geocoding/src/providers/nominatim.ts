@@ -153,8 +153,6 @@ async function searchNominatim(request: GeocodeRequest): Promise<GeocodeResponse
       if (request.structured.state) params.append('state', request.structured.state);
       if (request.structured.country) params.append('country', request.structured.country);
       if (request.structured.amenity) params.append('amenity', request.structured.amenity);
-
-      console.log('🎯 Using STRUCTURED search:', request.structured);
     } else {
       // Free-form query
       params.append('q', request.query);
@@ -192,9 +190,6 @@ async function searchNominatim(request: GeocodeRequest): Promise<GeocodeResponse
     if (request.excludePlaceIds?.length) {
       params.append('exclude_place_ids', request.excludePlaceIds.join(','));
     }
-
-    console.log('🔍 NominatimProvider: Advanced search with params:', params.toString());
-
     const response = await fetch(`${NOMINATIM_SEARCH}?${params.toString()}`, {
       headers: {
         'User-Agent': 'Layera-GeoAlert/1.0 (contact@layera.com)'
@@ -206,13 +201,8 @@ async function searchNominatim(request: GeocodeRequest): Promise<GeocodeResponse
     }
 
     let data: NominatimResponse[] = await response.json();
-
-    console.log('📍 NominatimProvider: Found', data.length, 'results');
-
     // ADDRESS INTERPOLATION για missing addresses
     if (data.length === 0 && request.query.includes(',')) {
-      console.log('🔄 No exact match. Attempting interpolation and broader search...');
-
       // Create user requested result with interpolation
       const userRequestedResult: NominatimResponse = {
         place_id: -1,
@@ -260,7 +250,6 @@ async function searchNominatim(request: GeocodeRequest): Promise<GeocodeResponse
         if (broaderResponse.ok) {
           const broaderData: NominatimResponse[] = await broaderResponse.json();
           if (broaderData.length > 0) {
-            console.log('✅ Found alternative results via interpolation');
             const alternativeResults = broaderData.map((item, index) => ({
               ...item,
               display_name: `💡 Εναλλακτικά ${index + 1}: ${item.display_name}`
@@ -347,9 +336,6 @@ async function searchNominatim(request: GeocodeRequest): Promise<GeocodeResponse
 
       return bConfidence - aConfidence;
     });
-
-    console.log('📍 NominatimProvider: Results sorted with street priority');
-
     return {
       results: sortedResults,
       total: sortedResults.length,
@@ -386,9 +372,6 @@ async function reverseGeocode(
       addressdetails: options?.addressDetails !== false ? '1' : '0',
       'accept-language': options?.language === 'en' ? 'en' : 'el,en'
     });
-
-    console.log(`📍 Reverse geocoding for: ${coordinates.latitude}, ${coordinates.longitude}`);
-
     const response = await fetch(`${NOMINATIM_REVERSE}?${params.toString()}`, {
       headers: {
         'User-Agent': 'Layera-GeoAlert/1.0 (contact@layera.com)'
@@ -416,8 +399,6 @@ async function reverseGeocode(
  * BATCH GEOCODING - Πολλαπλές διευθύνσεις ταυτόχρονα
  */
 async function batchGeocode(requests: GeocodeRequest[]): Promise<GeocodeResponse[]> {
-  console.log(`🚀 Batch geocoding ${requests.length} addresses...`);
-
   // Process in parallel with rate limiting (max 5 concurrent)
   const batchSize = 5;
   const results: GeocodeResponse[] = [];
@@ -446,8 +427,6 @@ async function batchGeocode(requests: GeocodeRequest[]): Promise<GeocodeResponse
       }));
     }
   }
-
-  console.log(`✅ Batch geocoding completed: ${results.length} results`);
   return results;
 }
 
@@ -458,8 +437,6 @@ async function interpolateAddress(
   street: string,
   houseNumber: string
 ): Promise<GeocodeResult | null> {
-  console.log(`🔢 Interpolating address: ${street} ${houseNumber}`);
-
   // First, find the street
   const streetSearch: GeocodeRequest = {
     query: street,
@@ -471,13 +448,11 @@ async function interpolateAddress(
   const streetResult = await searchNominatim(streetSearch);
 
   if (streetResult.results.length === 0) {
-    console.log('❌ Street not found for interpolation');
     return null;
   }
 
   const streetData = streetResult.results[0];
   if (!streetData) {
-    console.log('❌ No street data for interpolation');
     return null;
   }
 
@@ -498,8 +473,6 @@ async function interpolateAddress(
       type: 'interpolated'
     }
   };
-
-  console.log('✅ Address interpolated successfully');
   return interpolated;
 }
 

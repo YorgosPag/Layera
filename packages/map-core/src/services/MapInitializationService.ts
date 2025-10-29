@@ -57,14 +57,7 @@ export class MapInitializationService {
       throw new Error(error);
     }
 
-    if (process.env.NODE_ENV === 'development') {
-      console.log('📦 Map container found:', {
-        id: options.containerId,
-        width: mapContainer.offsetWidth,
-        height: mapContainer.offsetHeight,
-        visible: mapContainer.offsetWidth > 0 && mapContainer.offsetHeight > 0
-      });
-    }
+    if (process.env.NODE_ENV === 'development') {}
 
     try {
       mapContainer.innerHTML = '';
@@ -86,13 +79,11 @@ export class MapInitializationService {
 
     tileLayer.on('loading', () => {
       if (process.env.NODE_ENV === 'development') {
-        console.log('🌍 Tiles loading...');
       }
     });
 
     tileLayer.on('load', () => {
       if (process.env.NODE_ENV === 'development') {
-        console.log('✅ Tiles loaded successfully');
       }
     });
 
@@ -106,10 +97,9 @@ export class MapInitializationService {
     this.addOverlayStyles();
 
     // Force resize after creation
-    setTimeout(() => {
+    setTimeout((): void => {
       map.invalidateSize();
       if (process.env.NODE_ENV === 'development') {
-        console.log('🗺️ Map initialized successfully with size:', map.getSize());
       }
     }, 100);
 

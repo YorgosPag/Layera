@@ -141,7 +141,7 @@ export const DraggableFAB: React.FC<DraggableFABProps> = ({
 
     if (!constrainToViewport || position === 'fixed') return;
 
-    const clamp = () => {
+    const clamp = (): void => {
       const frame = document.querySelector(viewportSelector);
       if (!frame) return;
 
@@ -275,7 +275,7 @@ export const DraggableFAB: React.FC<DraggableFABProps> = ({
     <Box
       style={{...computedStyle, background: bg, touchAction: 'none', userSelect: 'none'}}
       draggable={false}
-      onDragStart={(e)=> e.preventDefault()}
+      onDragStart={(e: React.FormEvent<HTMLFormElement>) => e.preventDefault()}
       onPointerDownCapture={onDown}
       onPointerMoveCapture={onMove}
       onPointerUpCapture={onUp}

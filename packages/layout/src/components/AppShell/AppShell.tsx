@@ -21,7 +21,7 @@ export const AppShell: React.FC<AppShellProps> = ({
 
   // Responsive detection
   useEffect(() => {
-    const checkMobile = () => {
+    const checkMobile = (): void => {
       setIsMobile(window.innerWidth < 768);
     };
 
@@ -31,7 +31,7 @@ export const AppShell: React.FC<AppShellProps> = ({
   }, []);
 
   // Handle sidebar toggle
-  const handleSidebarToggle = () => {
+  const handleSidebarToggle = (): void => {
     if (isMobile) {
       setIsSidebarOpen(!isSidebarOpen);
     } else {
@@ -40,7 +40,7 @@ export const AppShell: React.FC<AppShellProps> = ({
   };
 
   // Close mobile sidebar when clicking outside
-  const handleBackdropClick = () => {
+  const handleBackdropClick = (): void => {
     if (isMobile && isSidebarOpen) {
       setIsSidebarOpen(false);
     }

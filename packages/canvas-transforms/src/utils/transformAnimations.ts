@@ -240,7 +240,6 @@ export const animations = {
       to: { scale: targetScale },
       onUpdate: (transform) => {
         // This would be handled by the viewport manager
-        console.log('Zoom animation update:', transform);
       }
     });
   },
@@ -259,7 +258,6 @@ export const animations = {
       from: { translation: { x: 0, y: 0 } },
       to: { translation: targetPosition },
       onUpdate: (transform) => {
-        console.log('Pan animation update:', transform);
       }
     });
   },
@@ -278,7 +276,6 @@ export const animations = {
       from: { rotation: 0 },
       to: { rotation: targetRotation },
       onUpdate: (transform) => {
-        console.log('Rotation animation update:', transform);
       }
     });
   },
@@ -298,7 +295,6 @@ export const animations = {
       from: fromTransform,
       to: toTransform,
       onUpdate: (transform) => {
-        console.log('Transition animation update:', transform);
       }
     });
   }

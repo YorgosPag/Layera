@@ -27,7 +27,7 @@
  *
  * const result = await fetchData();
  * if (result.ok) {
- *   console.log(result.data); // Type-safe access
+ *// Type-safe access
  * } else {
  *   console.error(result.error.message);
  * }

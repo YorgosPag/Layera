@@ -188,13 +188,13 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
           direction="column"
           gap="sm"
         >
-          {detailsCards.map((cardConfig) => (
+          {detailsCards.map((cardConfig: unknown) => (
             <BaseCard
               key={cardConfig.id}
               variant={context.selectedCategory || 'property'}
               title={t(cardConfig.titleKey)}
               icon={cardConfig.icon}
-              onClick={() => handleDetailsClick(cardConfig)}
+              onClick={(): void => handleDetailsClick(cardConfig)}
               onInfoClick={() => handleInfoClick(cardConfig.id)}
               data-testid={`details-card-${cardConfig.id}`}
             />

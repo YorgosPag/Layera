@@ -28,19 +28,19 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
     onPageSizeChange(Number(e.target.value) as PaginationSize);
   };
 
-  const handlePrevious = () => {
+  const handlePrevious = (): void => {
     if (page > 1) {
       onPageChange(page - 1);
     }
   };
 
-  const handleNext = () => {
+  const handleNext = (): void => {
     if (page < totalPages) {
       onPageChange(page + 1);
     }
   };
 
-  const getPageNumbers = () => {
+  const getPageNumbers = (): void => {
     const pages: (number | string)[] = [];
     const maxVisible = 5;
 
@@ -93,7 +93,7 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
             onChange={handlePageSizeChange}
             className="layera-table-pagination__page-size-select"
           >
-            {Object.values(PAGINATION_SIZES).map((size) => (
+            {Object.values(PAGINATION_SIZES).map((size: unknown) => (
               <option key={size} value={size}>
                 {size}
               </option>
@@ -125,7 +125,7 @@ export const TablePagination: React.FC<TablePaginationProps> = ({
             <React.Fragment key={index}>
               {typeof pageNum === 'number' ? (
                 <button
-                  onClick={() => onPageChange(pageNum)}
+                  onClick={(): void => onPageChange(pageNum)}
                   className={[
                     'layera-table-pagination__page',
                     pageNum === page && 'layera-table-pagination__page--active'

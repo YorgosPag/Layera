@@ -422,8 +422,6 @@ export class BoundariesRepository {
     }
 
     const queryString = query.build();
-    console.log('🔍 Generated Boundary Search Query:', queryString);
-
     const response = await this.httpClient.executeQuery(queryString);
     if (!response.ok) {
       return ResultUtils.error(response.error);
@@ -606,8 +604,8 @@ export class OSMRepositoryManager {
    * Gets performance metrics από all repositories
    */
   getMetrics(): {
-    http: any;
-    cache: any;
+    http: unknown;
+    cache: unknown;
   } {
     return {
       http: this.httpClient.getHealthStatus(),

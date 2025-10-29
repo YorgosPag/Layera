@@ -120,7 +120,7 @@ export default eventBus;
 /**
  * React hook για easier event usage in components
  */
-export const useEventBus = () => {
+export const useEventBus = (): void => {
   return {
     on: eventBus.on.bind(eventBus),
     once: eventBus.once.bind(eventBus),

@@ -189,16 +189,11 @@ function levenshteinDistance(str1: string, str2: string): number {
  * Επιστρέφει κάθε διοικητική διαίρεση σε ξεχωριστή γραμμή
  */
 export function processDisplayNameToHierarchy(displayName: string): string {
-  console.log('🔄 Processing display name for hierarchy:', displayName);
-
   // Split by comma και καθαρισμός
   const parts = displayName
     .split(',')
     .map(part => part.trim())
     .filter(part => part.length > 0);
-
-  console.log('📝 Initial parts:', parts);
-
   // ΕΙΔΙΚΗ ΛΟΓΙΚΗ: Δημιουργία οδού με αριθμό και Τ.Κ.
   let streetWithNumberAndPostal = '';
   const nonStreetParts: string[] = [];
@@ -231,14 +226,8 @@ export function processDisplayNameToHierarchy(displayName: string): string {
 
     nonStreetParts.push(part);
   }
-
-  console.log('🛣️ Street with number and postal:', streetWithNumberAndPostal);
-  console.log('🧹 Non-street parts:', nonStreetParts);
-
   // Αφαίρεση διπλότυπων από τα non-street parts
   const uniqueNonStreetParts = removeDuplicates(nonStreetParts);
-  console.log('✨ Unique non-street parts:', uniqueNonStreetParts);
-
   // Ταξινόμηση κατά ιεραρχικό επίπεδο (μικρό προς μεγάλο)
   const hierarchicalParts = uniqueNonStreetParts
     .map(part => ({
@@ -247,9 +236,6 @@ export function processDisplayNameToHierarchy(displayName: string): string {
     }))
     .sort((a, b) => a.level - b.level)
     .map(item => item.text);
-
-  console.log('🏛️ Hierarchically sorted non-street parts:', hierarchicalParts);
-
   // ΣΥΝΟΛΙΚΗ ΙΕΡΑΡΧΙΑ: Οδός πρώτα, μετά τα υπόλοιπα
   const finalParts = [];
   if (streetWithNumberAndPostal) {
@@ -259,8 +245,6 @@ export function processDisplayNameToHierarchy(displayName: string): string {
 
   // ΚΑΘΕ ΔΙΟΙΚΗΤΙΚΗ ΔΙΑΙΡΕΣΗ ΣΕ ΞΕΧΩΡΙΣΤΗ ΓΡΑΜΜΗ
   const formattedHierarchy = finalParts.join('\n');
-  console.log('📋 Final formatted hierarchy:', formattedHierarchy);
-
   return formattedHierarchy;
 }
 
@@ -292,7 +276,7 @@ export function processDisplayNameByCountry(displayName: string): string {
       return processDisplayNameToHierarchy(displayName);
 
     case 'bulgaria':
-      // TODO: Υλοποίηση για Βουλγαρία
+      // FIXME: Υλοποίηση για Βουλγαρία - Implementation required
       return displayName; // Fallback προς το παρόν
 
     default:

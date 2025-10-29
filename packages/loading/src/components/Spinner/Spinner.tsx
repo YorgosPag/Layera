@@ -23,7 +23,7 @@ export const Spinner: React.FC<SpinnerProps> = ({
 
   const spinnerStyle = color ? { color } : undefined;
 
-  const renderSpinner = () => {
+  const renderSpinner = (): void => {
     switch (variant) {
       case 'dots':
         return (

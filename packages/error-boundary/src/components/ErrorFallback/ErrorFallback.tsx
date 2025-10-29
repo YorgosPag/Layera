@@ -22,7 +22,7 @@ export const ErrorFallback: React.FC<ErrorFallbackProps> = ({
   const isNetwork = isNetworkError(error);
   const isChunk = isChunkError(error);
 
-  const getErrorIcon = () => {
+  const getErrorIcon = (): void => {
     if (isNetwork) {
       return (
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -71,7 +71,7 @@ export const ErrorFallback: React.FC<ErrorFallbackProps> = ({
     }
   };
 
-  const getErrorTitle = () => {
+  const getErrorTitle = (): void => {
     if (isNetwork) return ERROR_MESSAGES.NETWORK_TITLE;
     if (isChunk) return ERROR_MESSAGES.CHUNK_TITLE;
 
@@ -85,7 +85,7 @@ export const ErrorFallback: React.FC<ErrorFallbackProps> = ({
     }
   };
 
-  const getErrorMessage = () => {
+  const getErrorMessage = (): void => {
     if (isNetwork) {
       return ERROR_MESSAGES.NETWORK_MESSAGE;
     }
@@ -104,13 +104,13 @@ export const ErrorFallback: React.FC<ErrorFallbackProps> = ({
     }
   };
 
-  const getRetryText = () => {
+  const getRetryText = (): void => {
     if (isNetwork) return ERROR_MESSAGES.NETWORK_RETRY;
     if (isChunk) return ERROR_MESSAGES.CHUNK_RETRY;
     return ERROR_MESSAGES.GENERIC_RETRY;
   };
 
-  const handleRetry = () => {
+  const handleRetry = (): void => {
     if (isChunk) {
       window.location.reload();
     } else {
@@ -156,7 +156,7 @@ export const ErrorFallback: React.FC<ErrorFallbackProps> = ({
             <button
               type="button"
               className="layera-error-fallback__details-toggle"
-              onClick={() => setShowDetails(!showDetails)}
+              onClick={(): void => setShowDetails(!showDetails)}
             >
               {showDetails ? ERROR_MESSAGES.HIDE_DETAILS : ERROR_MESSAGES.SHOW_DETAILS}
             </button>

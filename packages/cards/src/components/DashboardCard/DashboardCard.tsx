@@ -14,7 +14,7 @@ export const DashboardCard: React.FC<DashboardCardProps> = ({
   metric,
   ...baseProps
 }) => {
-  const renderContent = () => {
+  const renderContent = (): void => {
     if (loading) {
       return (
         <Box className="layera-dashboard-card__loading">

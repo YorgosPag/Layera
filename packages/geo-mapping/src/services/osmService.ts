@@ -10,8 +10,6 @@ export const fetchBoundaryByAddressComponent = async (
   addressComponent: { label: string; type: string }
 ): Promise<OSMAdminCollection> => {
   try {
-    console.log(`🌍 Fetching boundary για: ${addressComponent.label}`);
-
     // Χρησιμοποιούμε Nominatim για να πάρουμε το ΠΛΗΡΕΣ POLYGON
     const searchUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(addressComponent.label)}&format=json&limit=1&polygon_geojson=1`;
 
@@ -32,8 +30,6 @@ export const fetchBoundaryByAddressComponent = async (
 
       // Προτίμηση: Χρήση του πραγματικού polygon αν υπάρχει
       if (result.geojson) {
-        console.log(`✅ Found FULL POLYGON για ${addressComponent.label} με ${result.geojson.coordinates?.[0]?.length || 0} σημεία`);
-
         return {
           type: 'FeatureCollection',
           features: [{
@@ -58,9 +54,6 @@ export const fetchBoundaryByAddressComponent = async (
         const north = parseFloat(bbox[1]);
         const west = parseFloat(bbox[2]);
         const east = parseFloat(bbox[3]);
-
-        console.log(`⚠️ Using bounding box για ${addressComponent.label} (no polygon available)`);
-
         return {
           type: 'FeatureCollection',
           features: [{
@@ -111,8 +104,6 @@ export const fetchBoundaryByAddressComponent = async (
     const data = await response.json();
 
     if (data.elements && data.elements.length > 0) {
-      console.log(`✅ OSM boundary IDs found για: ${addressComponent.label} (${data.elements.length} elements)`);
-
       // Επιστρέφουμε null geometry για τώρα
       // Το πραγματικό boundary χρειάζεται πιο σύνθετο query
       return {
@@ -120,8 +111,6 @@ export const fetchBoundaryByAddressComponent = async (
         features: []
       };
     }
-
-    console.log(`⚠️ No OSM boundary found για: ${addressComponent.label}`);
     return {
       type: 'FeatureCollection',
       features: []
@@ -131,7 +120,6 @@ export const fetchBoundaryByAddressComponent = async (
     console.error(`🚫 OSM API error για ${addressComponent.label}:`, error);
 
     // Fallback to local boundary system
-    console.log(`⚠️ Fallback to local boundary system για: ${addressComponent.label}`);
     return await fetchLocalBoundary(addressComponent);
   }
 };
@@ -151,9 +139,6 @@ async function fetchLocalBoundary(
     .replace(/\s+-\s+.*$/, '')
     .replace(/\s+\(.+\)$/, '')
     .trim();
-
-  console.log('⚠️ Fallback to local boundary system για:', baseName);
-
   // Use existing fallback system if available
   try {
     const { findFallbackBoundary } = await import('./fallbackBoundaries');
@@ -161,7 +146,6 @@ async function fetchLocalBoundary(
     const fallbackBoundary = findFallbackBoundary(searchTerms);
 
     if (fallbackBoundary) {
-      console.log('✅ Local fallback boundary found');
       return fallbackBoundary;
     }
   } catch (fallbackError) {
@@ -180,14 +164,14 @@ async function fetchLocalBoundary(
 export const fetchBuildingOutlines = async () => ({ type: 'FeatureCollection', features: [] });
 export const fetchAdministrativeBoundary = async () => ({ type: 'FeatureCollection', features: [] });
 export const clearOSMCache = async () => {};
-export const getCacheSize = () => 0;
-export const isBoundsCached = () => false;
+export const getCacheSize = (): void => 0;
+export const isBoundsCached = (): void => false;
 export const prefetchBuildingOutlines = async () => {};
 
 /**
  * Convert OSM geometry to GeoJSON geometry
  */
-function convertOSMGeometry(element: any): any {
+function convertOSMGeometry(element: unknown): unknown {
   if (!element.geometry) return null;
 
   if (element.type === 'relation') {
@@ -197,7 +181,7 @@ function convertOSMGeometry(element: any): any {
     if (element.geometry && element.geometry.length > 0) {
       const outerRing: number[][] = [];
 
-      element.geometry.forEach((geom: any) => {
+      element.geometry.forEach((geom: unknown) => {
         if (geom.lat && geom.lon) {
           outerRing.push([geom.lon, geom.lat]);
         }
@@ -225,7 +209,7 @@ function convertOSMGeometry(element: any): any {
     const coordinates: number[][] = [];
 
     if (element.geometry) {
-      element.geometry.forEach((geom: any) => {
+      element.geometry.forEach((geom: unknown) => {
         if (geom.lat && geom.lon) {
           coordinates.push([geom.lon, geom.lat]);
         }

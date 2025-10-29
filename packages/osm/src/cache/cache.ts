@@ -338,7 +338,7 @@ export class LayeraCache<T> {
   }
 
   private startCleanupTimer(): void {
-    this.cleanupTimer = setInterval(() => {
+    this.cleanupTimer = setInterval((): void => {
       this.cleanup();
     }, this.config.cleanupIntervalMs);
   }

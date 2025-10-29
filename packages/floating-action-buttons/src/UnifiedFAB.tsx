@@ -37,7 +37,6 @@ const DEFAULT_CONFIG: ResponsiveFABConfig = {
   }
 };
 
-
 // Enterprise draggable state interfaces
 interface FabPosition {
   x: number;
@@ -102,7 +101,6 @@ export const UnifiedFAB: React.FC<FABProps> = ({
     if (!dragging.current && Math.hypot(e.clientX - start.current.x, e.clientY - start.current.y) > THRESH) {
       dragging.current = true;
       setIsDragging(true);
-      console.log('🔥 DRAG DETECTED IN UNIFIED FAB! Working now!');
     }
   };
 

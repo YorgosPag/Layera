@@ -47,9 +47,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
   type OpacityMode = 'transparent' | 'semi-transparent' | 'opaque';
   const [opacityMode, setOpacityMode] = useState<OpacityMode>('transparent');
 
-  const handleFindMyLocation = () => {
-    console.log('🔍 LayoutStepCard: Find location clicked');
-
+  const handleFindMyLocation = (): void => {
     if ('geolocation' in navigator) {
       // Προσθήκη loading state feedback
       setLocationQuery('Εντοπισμός θέσης...');
@@ -57,8 +55,6 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          console.log('📍 LayoutStepCard: Location found:', { latitude, longitude });
-
           // 1. Στείλε event στον χάρτη για κεντράρισμα με υψηλό zoom
           const mapEvent = new CustomEvent('centerMapToLocation', {
             detail: {
@@ -100,7 +96,6 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
             onLocationFound(latitude, longitude);
           }
 
-
         },
         (error) => {
           console.error('❌ LayoutStepCard: Geolocation error:', error);
@@ -122,7 +117,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
           setLocationQuery(errorMessage);
 
           // Reset το error message μετά από 3 δευτερόλεπτα
-          setTimeout(() => {
+          setTimeout((): void => {
             setLocationQuery('');
           }, 3000);
         },
@@ -136,7 +131,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
       console.error('❌ LayoutStepCard: Geolocation not supported');
       setLocationQuery('Δεν υποστηρίζεται geolocation');
 
-      setTimeout(() => {
+      setTimeout((): void => {
         setLocationQuery('');
       }, 3000);
     }
@@ -144,8 +139,6 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
 
   const handleRotationChange = (newRotation: number) => {
     setRotation(newRotation);
-    console.log('🔄 LayoutStepCard: Rotation changed to:', newRotation);
-
     // Στείλε event στον χάρτη για περιστροφή κάτοψης
     const rotateEvent = new CustomEvent('rotateFloorPlan', {
       detail: { rotation: newRotation }
@@ -170,9 +163,6 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
       setScaleDepth(value);
       newScale.depth = value;
     }
-
-    console.log('📏 LayoutStepCard: Scale changed:', newScale);
-
     // Στείλε event στον χάρτη για αλλαγή κλίμακας
     const scaleEvent = new CustomEvent('scaleFloorPlan', {
       detail: newScale
@@ -199,7 +189,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
   }, []);
 
   // BaseCard styles από το theme system με 3 opacity modes
-  const getPropertyTheme = () => {
+  const getPropertyTheme = (): void => {
     switch (opacityMode) {
       case 'transparent':
         return {
@@ -268,7 +258,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
   };
 
   // Dynamic styles για input fields ανάλογα με το opacity mode
-  const getInputStyles = () => {
+  const getInputStyles = (): void => {
     switch (opacityMode) {
       case 'transparent':
         return {
@@ -292,7 +282,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
   };
 
   // Dynamic styles για buttons ανάλογα με το opacity mode
-  const getButtonStyles = () => {
+  const getButtonStyles = (): void => {
     switch (opacityMode) {
       case 'transparent':
         return {
@@ -316,7 +306,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
   };
 
   // Dynamic styles για primary button (location button) ανάλογα με το opacity mode
-  const getPrimaryButtonStyles = () => {
+  const getPrimaryButtonStyles = (): void => {
     switch (opacityMode) {
       case 'transparent':
         return {
@@ -379,16 +369,15 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
           <Input
             type="text"
             value={locationQuery}
-            onChange={(e) => setLocationQuery(e.target.value)}
+            onChange={(e: React.FormEvent<HTMLFormElement>) => setLocationQuery(e.target.value)}
             placeholder={t('search.address-placeholder')}
             variant="outline"
             size="sm"
             fullWidth
             position="relative"
             zIndex={3}
-            onKeyPress={(e) => {
+            onKeyPress={(e: React.FormEvent<HTMLFormElement>) => {
               if (e.key === 'Enter' && locationQuery.trim()) {
-                console.log('🔍 LayoutStepCard: Search for:', locationQuery);
                 if (onLocationSearch) {
                   onLocationSearch(locationQuery);
                 }
@@ -422,7 +411,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => handleRotationChange(rotation - 90)}
+                onClick={(): void => handleRotationChange(rotation - 90)}
                 padding="xs"
                 position="relative"
                 zIndex={3}
@@ -444,7 +433,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => handleRotationChange(rotation + 90)}
+                onClick={(): void => handleRotationChange(rotation + 90)}
                 padding="xs"
                 position="relative"
                 zIndex={3}
@@ -493,7 +482,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
                 <Input
                   type="number"
                   value={scaleWidth.toString()}
-                  onChange={(e) => handleScaleChange('width', parseFloat(e.target.value) || 1)}
+                  onChange={(e: React.FormEvent<HTMLFormElement>) => handleScaleChange('width', parseFloat(e.target.value) || 1)}
                   width="full"
                   padding="xs"
                   borderRadius="xs"
@@ -518,7 +507,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
                 <Input
                   type="number"
                   value={scaleHeight.toString()}
-                  onChange={(e) => handleScaleChange('height', parseFloat(e.target.value) || 1)}
+                  onChange={(e: React.FormEvent<HTMLFormElement>) => handleScaleChange('height', parseFloat(e.target.value) || 1)}
                   width="full"
                   padding="xs"
                   borderRadius="xs"
@@ -543,7 +532,7 @@ export const LayoutStepCard: React.FC<LayoutStepCardProps> = ({
                 <Input
                   type="number"
                   value={scaleDepth.toString()}
-                  onChange={(e) => handleScaleChange('depth', parseFloat(e.target.value) || 1)}
+                  onChange={(e: React.FormEvent<HTMLFormElement>) => handleScaleChange('depth', parseFloat(e.target.value) || 1)}
                   width="full"
                   padding="xs"
                   borderRadius="xs"

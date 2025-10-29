@@ -55,7 +55,6 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
 
   // Handle info button clicks
   const handleInfoClick = useCallback((categoryId: 'property' | 'job') => {
-    console.log(`🔍 CategoryStep: Info clicked for ${categoryId}`);
     setCurrentInfoCard(categoryId);
     setShowInfoPanel(true);
 
@@ -66,7 +65,6 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
 
   // Get info content για specific card
   const getInfoContent = useCallback((cardId: 'property' | 'job') => {
-    console.log(`🔍 CategoryStep: Getting content for ${cardId}`);
     try {
       const content = infoContentProvider.getContent(cardId);
 
@@ -84,7 +82,6 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
   // TEMPORARY bridge handler - ενημερώνει ΚΑΙ StepOrchestrator ΚΑΙ NavigationService
   const handleCategorySelection = useCallback(async (category: CategoryType) => {
     if (process.env.NODE_ENV === 'development') {
-      console.log(`🎯 CATEGORY UI: Selected category: ${category}`);
     }
 
     try {
@@ -122,7 +119,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
         variant="property"
         title={t('pipeline.category.property.title')}
         icon={<VillaIcon size="sm" theme="neutral" />}
-        onClick={() => handleCategorySelection('property')}
+        onClick={(): void => handleCategorySelection('property')}
         onInfoClick={() => handleInfoClick('property')}
         data-testid="category-card-property"
       />
@@ -132,7 +129,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
         variant="job"
         title={t('pipeline.category.job.title')}
         icon={<BriefcaseIcon size="sm" theme="neutral" />}
-        onClick={() => handleCategorySelection('job')}
+        onClick={(): void => handleCategorySelection('job')}
         onInfoClick={() => handleInfoClick('job')}
         data-testid="category-card-job"
       />

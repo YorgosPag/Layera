@@ -54,7 +54,7 @@ export const GeometryRenderer: React.FC<GeometryRendererProps> = ({
   }, [theme]);
 
   // Render OSM building outlines
-  const renderOSMBuildings = () => {
+  const renderOSMBuildings = (): void => {
     if (!showOSMBuildings || osmFeatures.length === 0) return null;
 
     return osmFeatures.map((feature, index) => {
@@ -76,13 +76,13 @@ export const GeometryRenderer: React.FC<GeometryRendererProps> = ({
             }}
             eventHandlers={{
               click: () => onBuildingClick?.(feature),
-              mouseover: (e) => {
+              mouseover: (e: React.FormEvent<HTMLFormElement>) => {
                 e.target.setStyle({
                   fillColor: colors.buildingHover,
                   fillOpacity: 0.3
                 });
               },
-              mouseout: (e) => {
+              mouseout: (e: React.FormEvent<HTMLFormElement>) => {
                 e.target.setStyle({
                   fillColor: colors.buildingFill,
                   fillOpacity: 0.1
@@ -116,10 +116,10 @@ export const GeometryRenderer: React.FC<GeometryRendererProps> = ({
   };
 
   // Render measurement results
-  const renderMeasurements = () => {
+  const renderMeasurements = (): void => {
     if (!showMeasurements || measurements.length === 0) return null;
 
-    return measurements.map((measurement) => {
+    return measurements.map((measurement: unknown) => {
       const latlngs = measurement.points.map(p => p.latlng);
       const key = `measurement-${measurement.timestamp}`;
 

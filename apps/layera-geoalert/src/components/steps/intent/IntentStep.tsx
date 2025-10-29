@@ -145,13 +145,13 @@ export const IntentStep: React.FC<IntentStepProps> = ({
   return (
     <>
       <Box style={containerStyles} className={containerClass}>
-        {intentCards.map((cardConfig) => (
+        {intentCards.map((cardConfig: unknown) => (
           <BaseCard
             key={cardConfig.id}
             variant={context.selectedCategory || 'property'}
             title={t(cardConfig.titleKey)}
             icon={React.createElement(cardConfig.icon, { size: 'sm', theme: 'neutral' })}
-            onClick={() => handleIntentClick(cardConfig)}
+            onClick={(): void => handleIntentClick(cardConfig)}
             onInfoClick={() => handleInfoClick(cardConfig.id)}
             data-testid={`intent-card-${cardConfig.id}`}
           />

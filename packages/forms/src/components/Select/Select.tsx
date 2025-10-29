@@ -85,7 +85,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
     className
   ].filter(Boolean).join(' ');
 
-  const handleToggle = () => {
+  const handleToggle = (): void => {
     if (!disabled && !loading) {
       setIsOpen(!isOpen);
       if (!isOpen && searchable) {
@@ -195,10 +195,10 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
               ref={inputRef}
               type="text"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={(e: React.FormEvent<HTMLFormElement>) => setSearchTerm(e.target.value)}
               className="layera-select__search"
               placeholder={selectedOption?.label || resolvedPlaceholder}
-              onClick={(e) => e.stopPropagation()}
+              onClick={(e: React.FormEvent<HTMLFormElement>) => e.stopPropagation()}
             />
           ) : (
             <span className={selectedOption ? '' : 'layera-select__placeholder'}>
@@ -251,7 +251,7 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
                   index === highlightedIndex && 'layera-select__option--highlighted',
                   option.value === value && 'layera-select__option--selected'
                 ].filter(Boolean).join(' ')}
-                onClick={() => handleOptionSelect(option)}
+                onClick={(): void => handleOptionSelect(option)}
                 role="option"
                 aria-selected={option.value === value}
                 aria-disabled={option.disabled}

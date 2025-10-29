@@ -247,10 +247,8 @@ export const fetchBoundaryByAddressComponent = async (
   addressComponent: { label: string; type: string }
 ): Promise<OSMAdminCollection> => {
   try {
-    console.log('🌍 MOCK BOUNDARY SERVICE για:', addressComponent.label);
-
     // ΠΡΟΣΩΡΙΝΗ MOCK IMPLEMENTATION για immediate testing
-    // TODO: Ενεργοποίηση του enterprise service μετά την επίλυση των module issues
+    // NOTE: Ενεργοποίηση του enterprise service μετά την επίλυση των module issues - Enterprise service activation required
 
     // Basic query normalization
     const baseName = addressComponent.label
@@ -261,9 +259,6 @@ export const fetchBoundaryByAddressComponent = async (
       .replace(/\s+-\s+.*$/, '')
       .replace(/\s+\(.+\)$/, '')
       .trim();
-
-    console.log('🔍 Mock search για:', baseName);
-
     // MOCK IMPLEMENTATION - ΕΠΙΣΤΡΕΦΕΙ DUMMY BOUNDARIES ΓΙΑ TESTING
     // Απλή λίστα με γνωστές περιοχές για immediate testing
 
@@ -343,12 +338,10 @@ export const fetchBoundaryByAddressComponent = async (
 
     const mockResult = MOCK_BOUNDARIES[baseName];
     if (mockResult) {
-      console.log(`✅ MOCK boundary found για: ${baseName}`);
       return mockResult;
     }
 
     // No mock data found - return empty
-    console.log(`⚠️ No mock boundary data για: ${baseName}`);
     return {
       type: 'FeatureCollection',
       features: []
@@ -366,15 +359,11 @@ export const fetchBoundaryByAddressComponent = async (
       .replace(/\s+-\s+.*$/, '')
       .replace(/\s+\(.+\)$/, '')
       .trim();
-
-    console.log('⚠️ Fallback to local boundary system για:', baseName);
-
     // Use local fallback system
     const searchTerms = [addressComponent.label, baseName];
     const fallbackBoundary = findFallbackBoundary(searchTerms);
 
     if (fallbackBoundary) {
-      console.log('✅ Local fallback boundary found');
       return fallbackBoundary;
     }
 
@@ -392,7 +381,6 @@ export const fetchBoundaryByAddressComponent = async (
  * Now delegates to enterprise cache management
  */
 export const clearOSMCache = (): void => {
-  console.log('🧹 Clearing enterprise OSM cache...');
   osmClient.clearCaches();
 };
 
@@ -415,7 +403,7 @@ export const getCacheSize = (): number => {
  * Gets detailed cache statistics
  * NEW: Enterprise-grade cache monitoring
  */
-export const getCacheStats = () => {
+export const getCacheStats = (): void => {
   return osmClient.getHealth();
 };
 
@@ -440,10 +428,8 @@ export const isBoundsCached = (bounds: L.LatLngBounds): boolean => {
 export const prefetchBuildingOutlines = async (bounds: L.LatLngBounds): Promise<void> => {
   try {
     await fetchBuildingOutlines(bounds);
-    console.log('✅ Prefetch completed for bounds');
   } catch (error) {
     // Silently fail για prefetch operations
-    console.log('⚠️ Prefetch failed (non-critical):', error);
   }
 };
 
@@ -451,7 +437,7 @@ export const prefetchBuildingOutlines = async (bounds: L.LatLngBounds): Promise<
  * Gets enterprise client health status
  * NEW: Comprehensive system monitoring
  */
-export const getSystemHealth = () => {
+export const getSystemHealth = (): void => {
   return osmClient.getHealth();
 };
 
@@ -460,7 +446,6 @@ export const getSystemHealth = () => {
  * NEW: Resource management
  */
 export const performMaintenance = (): void => {
-  console.log('🔧 Performing enterprise OSM maintenance...');
   osmClient.cleanup();
 };
 

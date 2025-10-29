@@ -17,7 +17,7 @@ export const Alert: React.FC<AlertProps> = ({
   icon,
   className = ''
 }) => {
-  const getTypeIcon = () => {
+  const getTypeIcon = (): void => {
     if (icon) return icon;
 
     switch (type) {

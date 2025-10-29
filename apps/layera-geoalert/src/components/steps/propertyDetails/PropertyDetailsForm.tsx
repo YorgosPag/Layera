@@ -27,7 +27,7 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
           <Input
             type="number"
             value={value as number || ''}
-            onChange={(e) => onChange(field.id, e.target.value ? Number(e.target.value) : undefined)}
+            onChange={(e: React.FormEvent<HTMLFormElement>) => onChange(field.id, e.target.value ? Number(e.target.value) : undefined)}
             placeholder={field.placeholder}
             min={field.min}
             max={field.max}
@@ -42,7 +42,7 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
           <Input
             type="text"
             value={value as string || ''}
-            onChange={(e) => onChange(field.id, e.target.value)}
+            onChange={(e: React.FormEvent<HTMLFormElement>) => onChange(field.id, e.target.value)}
             placeholder={field.placeholder}
             variant="outline"
             size="md"
@@ -54,7 +54,7 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
         return (
           <TextArea
             value={value as string || ''}
-            onChange={(e) => onChange(field.id, e.target.value)}
+            onChange={(e: React.FormEvent<HTMLFormElement>) => onChange(field.id, e.target.value)}
             placeholder={field.placeholder}
             rows={3}
             variant="outline"
@@ -81,7 +81,7 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
 
   return (
     <Stack spacing="md" className="bg-gray-50 p-4 rounded-lg">
-      {fields.map((field) => (
+      {fields.map((field: unknown) => (
         <FormField
           key={field.id}
           label={field.type !== 'boolean' ? field.label : undefined}

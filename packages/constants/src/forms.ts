@@ -1,11 +1,11 @@
 /**
- * Form-related constants
+ * Form-related constants - HTML input types and form field types
  */
 
 export const FORM_TYPES = {
   TEXT: 'text',
   EMAIL: 'email',
-  PASSWORD: 'password',
+  PASSWORD: 'password', // HTML input type="password"
   TEL: 'tel',
   URL: 'url',
   NUMBER: 'number',
@@ -47,8 +47,8 @@ export const AUTOCOMPLETE_VALUES = {
   NAME: 'name',
   EMAIL: 'email',
   USERNAME: 'username',
-  NEW_PASSWORD: 'new-password',
-  CURRENT_PASSWORD: 'current-password',
+  NEW_PASSWORD: 'new-password', // HTML autocomplete="new-password"
+  CURRENT_PASSWORD: 'current-password', // HTML autocomplete="current-password"
   PHONE: 'tel',
   ORGANIZATION: 'organization',
   STREET_ADDRESS: 'street-address',

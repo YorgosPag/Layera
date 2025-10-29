@@ -19,7 +19,7 @@ export const Heading: React.FC<HeadingProps> = ({
   ...props
 }) => {
   // Προκαθορισμένα styles βάσει του heading level
-  const getDefaultStylesForLevel = () => {
+  const getDefaultStylesForLevel = (): void => {
     switch (Component) {
       case 'h1':
         return {

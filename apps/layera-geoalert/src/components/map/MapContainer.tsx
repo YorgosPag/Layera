@@ -32,7 +32,7 @@ declare global {
 }
 
 interface MapContainerProps {
-  onAreaCreated?: (area: any) => void;
+  onAreaCreated?: (area: { id: string; type: string; coordinates: number[][]; name: string; category: string }) => void;
   onNewEntryClick?: () => void;
   hideDrawingControls?: boolean;
   isIPhone14ProMaxDevice?: boolean;
@@ -47,17 +47,18 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
   const mapContext = useMap();
   const { map, initializeMap, isLoading } = mapContext;
 
-  // Debug MapProvider context (run once)
+  // MapProvider context validation (development only)
   useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
-      console.log('🗺️ MapProvider context available:', {
+      // Debug context availability for development
+      const debugInfo = {
         hasContext: !!mapContext,
         contextKeys: mapContext ? Object.keys(mapContext) : [],
         hasInitializeMap: !!initializeMap,
         initializeMapType: typeof initializeMap,
-        initialLoadingState: isLoading,
-        fullContext: mapContext
-      });
+        initialLoadingState: isLoading
+      };
+      // Context validation complete
     }
   }, []); // Run only once
 
@@ -65,7 +66,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
   const userLocationMarkerRef = useRef<L.Marker | null>(null);
 
   // Create custom user location icon
-  const createUserLocationIcon = () => {
+  const createUserLocationIcon = (): void => {
     // Create a div element with just the LocationIcon
     const iconDiv = document.createElement('div');
     iconDiv.style.cssText = `
@@ -168,7 +169,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
       initializingRef.current = true;
 
       // Wait for Leaflet CSS to be loaded and container to have dimensions
-      const initMap = () => {
+      const initMap = (): void => {
         if (!mapContainerRef.current) {
           initializingRef.current = false;
           return;
@@ -176,13 +177,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
 
         const hasValidSize = mapContainerRef.current.offsetWidth > 0 && mapContainerRef.current.offsetHeight > 0;
 
-        if (process.env.NODE_ENV === 'development') {
-          console.log('🚀 Map init attempt - Container size:', {
-            width: mapContainerRef.current.offsetWidth,
-            height: mapContainerRef.current.offsetHeight,
-            hasValidSize
-          });
-        }
+        if (process.env.NODE_ENV === 'development') {}
 
         if (!hasValidSize) {
           if (process.env.NODE_ENV === 'development') {
@@ -193,18 +188,14 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
         }
 
         if (process.env.NODE_ENV === 'development') {
-          console.log('🚀 Starting map initialization...');
-          console.log('🔧 initializeMap function available:', typeof initializeMap);
           if (initializeMap && typeof initializeMap === 'function') {
-            console.log('🔧 initializeMap function source:', initializeMap.toString().substring(0, 200));
           }
         }
 
         if (!initializeMap) {
           console.error('❌ initializeMap function not available - using fallback');
           // Temporal fallback για LEGO compatibility μέχρι module resolution fix
-          const fallbackInit = () => {
-            console.log('🔄 Using temporal fallback initialization');
+          const fallbackInit = (): void => {
             initializingRef.current = false;
           };
           setTimeout(fallbackInit, 100);
@@ -213,7 +204,6 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
 
         try {
           if (process.env.NODE_ENV === 'development') {
-            console.log('🚀 DIRECT LEAFLET: Bypassing mock initializeMap, creating real map...');
           }
 
           // DIRECT LEAFLET IMPLEMENTATION - BYPASS MOCK
@@ -247,17 +237,12 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
 
           // Add debugging
           if (process.env.NODE_ENV === 'development') {
-            console.log('🗺️ DIRECT LEAFLET: Map instance created:', !!mapInstance);
-            console.log('🗺️ DIRECT LEAFLET: Map container ID:', mapInstance.getContainer().id);
-            console.log('🗺️ DIRECT LEAFLET: Map center:', mapInstance.getCenter());
-            console.log('🗺️ DIRECT LEAFLET: Map zoom:', mapInstance.getZoom());
           }
 
           // Force resize and tile loading
-          setTimeout(() => {
+          setTimeout((): void => {
             mapInstance.invalidateSize();
             if (process.env.NODE_ENV === 'development') {
-              console.log('✅ DIRECT LEAFLET: Map initialized successfully! Size:', mapInstance.getSize());
             }
           }, 100);
 
@@ -285,7 +270,6 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
       }
 
       const { latitude, longitude, zoom = 16, animate = true } = event.detail;
-
 
       try {
         if (animate) {
@@ -316,7 +300,6 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
       }
 
       const { latitude, longitude } = event.detail;
-
 
       try {
         // Additional focus logic - could add marker or highlight
@@ -363,7 +346,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
     setDrawingMode(mode);
   };
 
-  const handleClearAll = () => {
+  const handleClearAll = (): void => {
     clearAll();
   };
 
@@ -423,7 +406,6 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
           </BaseCard>
         )}
 
-
         {/* Floating Action Button for New Entry */}
         {onNewEntryClick && (
           <FlexCenter
@@ -479,7 +461,6 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
           bottom: 0
         }}
       />
-
 
       {/* Areas List - ΑΦΑΙΡΕΘΗΚΕ για dark mode compatibility */}
       {false && drawnAreas.length > 0 && (

@@ -70,12 +70,12 @@ export const InfoPanel = React.memo<InfoPanelProps>(({
 
     const previousPointerEvents = mapElement.style.pointerEvents;
 
-    const handlePanelEnter = () => {
+    const handlePanelEnter = (): void => {
       // Σταματά ο χάρτης να λαμβάνει events
       mapElement.style.pointerEvents = 'none';
     };
 
-    const handlePanelLeave = () => {
+    const handlePanelLeave = (): void => {
       mapElement.style.pointerEvents = previousPointerEvents;
     };
 
@@ -114,7 +114,7 @@ export const InfoPanel = React.memo<InfoPanelProps>(({
       // Leaflet propagation setup failed - continue without it
     }
 
-    const handlePanelEnterAdvanced = () => {
+    const handlePanelEnterAdvanced = (): void => {
       try {
         leafletMap.dragging?.disable();
         leafletMap.boxZoom?.disable();
@@ -126,7 +126,7 @@ export const InfoPanel = React.memo<InfoPanelProps>(({
       }
     };
 
-    const handlePanelLeaveAdvanced = () => {
+    const handlePanelLeaveAdvanced = (): void => {
       try {
         leafletMap.dragging?.enable();
         leafletMap.boxZoom?.enable();
@@ -196,7 +196,7 @@ export const InfoPanel = React.memo<InfoPanelProps>(({
       maxHeight={mobileStyles.maxHeight}
       overflow={mobileStyles.overflow}
       zIndex={mobileStyles.zIndex}
-      onClick={(e) => e.stopPropagation()}
+      onClick={(e: React.FormEvent<HTMLFormElement>) => e.stopPropagation()}
     >
       {/* Clean close button - χωρίς mouse handlers */}
       <Box

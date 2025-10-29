@@ -62,8 +62,6 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({
   ];
 
   const handleToolToggle = useCallback((tool: LayoutTool) => {
-    console.log(`🎯 LAYOUT UI: Toggling tool: ${tool}`);
-
     setSelectedTools(prev => {
       const isSelected = prev.includes(tool);
       if (isSelected) {
@@ -75,8 +73,6 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({
   }, []);
 
   const handleComplete = useCallback(async () => {
-    console.log(`🎯 LAYOUT UI: Complete with tools: ${selectedTools.join(', ')}`);
-
     try {
       // Ενημερώνουμε το StepOrchestrator
       if (onStepComplete) {
@@ -94,7 +90,7 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({
       });
 
       // Auto-advance
-      setTimeout(() => {
+      setTimeout((): void => {
         onNext?.();
       }, 300);
 
@@ -122,14 +118,14 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({
   return (
     <Box style={containerStyles}>
       {/* Layout Tools */}
-      {layoutTools.map((tool) => (
+      {layoutTools.map((tool: unknown) => (
         <LayoutToolCard
           key={tool.id}
           tool={tool.id}
           title={tool.title}
           description={tool.description}
           isActive={tool.isActive}
-          onClick={() => handleToolToggle(tool.id)}
+          onClick={(): void => handleToolToggle(tool.id)}
           data-testid={`layout-tool-${tool.id}`}
         />
       ))}

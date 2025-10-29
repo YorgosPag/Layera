@@ -160,7 +160,7 @@ export function TotpSetup({
               <Box className="key-display">
                 <code>{setupData.manualEntryKey}</code>
                 <button
-                  onClick={() => copyToClipboard(setupData.secret)}
+                  onClick={(): void => copyToClipboard(setupData.secret)}
                   className="copy-btn"
                   title="Αντιγραφή"
                 >
@@ -181,7 +181,7 @@ export function TotpSetup({
               <input
                 type="text"
                 value={verificationCode}
-                onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                onChange={(e: React.FormEvent<HTMLFormElement>) => setVerificationCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
                 placeholder="123456"
                 className="totp-input"
                 maxLength={6}
@@ -211,7 +211,7 @@ export function TotpSetup({
               ))}
             </Box>
             <button
-              onClick={() => copyToClipboard(setupData.backupCodes.join('\n'))}
+              onClick={(): void => copyToClipboard(setupData.backupCodes.join('\n'))}
               className="copy-backup-btn"
             >
               Αντιγραφή όλων των backup codes
@@ -229,7 +229,7 @@ export function TotpSetup({
           </button>
 
           <button
-            onClick={() => setStep('start')}
+            onClick={(): void => setStep('start')}
             className="btn btn-secondary"
           >
             Πίσω
@@ -307,7 +307,7 @@ export function TotpVerification({
             <input
               type="text"
               value={code}
-              onChange={(e) => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+              onChange={(e: React.FormEvent<HTMLFormElement>) => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
               placeholder="123456"
               className="totp-input"
               maxLength={6}
@@ -333,7 +333,7 @@ export function TotpVerification({
           {onUseBackup && (
             <button
               type="button"
-              onClick={() => setShowBackup(true)}
+              onClick={(): void => setShowBackup(true)}
               className="btn btn-link"
             >
               Χρήση backup κωδικού
@@ -348,7 +348,7 @@ export function TotpVerification({
               id="backup-code"
               type="text"
               value={backupCode}
-              onChange={(e) => setBackupCode(e.target.value)}
+              onChange={(e: React.FormEvent<HTMLFormElement>) => setBackupCode(e.target.value)}
               placeholder="ABCD1234"
               className="backup-input"
               autoComplete="off"
@@ -372,7 +372,7 @@ export function TotpVerification({
 
             <button
               type="button"
-              onClick={() => setShowBackup(false)}
+              onClick={(): void => setShowBackup(false)}
               className="btn btn-secondary"
             >
               Πίσω στον TOTP

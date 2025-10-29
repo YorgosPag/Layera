@@ -244,7 +244,7 @@ export interface SnapContextValue {
 
 // Note: Full context implementation θα ήταν εδώ
 // export const SnapContext = React.createContext<SnapContextValue | null>(null);
-// export const useSnapContext = () => { ... };
+// export const useSnapContext = (): void => { ... };
 
 // ========================================
 // 📊 VERSION INFORMATION

@@ -200,7 +200,6 @@ export class SnapEngine {
       this.spatialIndex.insertGeometry(geometry);
 
       if (this.configuration.debugMode) {
-        console.log(`Added geometry ${geometry.id} to snap engine`);
       }
 
       return true;
@@ -432,7 +431,6 @@ export class SnapEngine {
     // Setup internal event listeners for debugging
     if (this.configuration.debugMode) {
       this.addEventListener('snap:found', (data) => {
-        console.log('Snap found:', data.result);
       });
 
       this.addEventListener('snap:error', (data) => {

@@ -45,17 +45,7 @@ export class iPhone14ProMaxAdapter implements DeviceDetectionPort {
 
     const specs = this.getDeviceSpecs();
 
-    if (debugMode) {
-      console.log('[DeviceDetection] iPhone 14 Pro Max Detection:', {
-        isFrameBased,
-        isWindowBased,
-        isUserAgentBased,
-        isInFrame,
-        frame,
-        specs,
-        result: isIPhone14ProMax
-      });
-    }
+    if (debugMode) {}
 
     return {
       isIPhone14ProMax,

@@ -7,7 +7,7 @@ import { FontSize, FontWeight, LineHeight, TypographyScale } from '../types';
  * Επιστρέφει τα typography tokens και utility functions
  * για programmatic χρήση των typography standards
  */
-export const useTypography = () => {
+export const useTypography = (): void => {
   const typographyScale: TypographyScale = useMemo(() => ({
     fontSizes: {
       xs: 'var(--la-font-size-xs, 0.75rem)',      // 12px
@@ -100,7 +100,7 @@ export const useTypography = () => {
   /**
    * Επιστρέφει τα CSS custom properties ως object
    */
-  const getCSSCustomProperties = () => {
+  const getCSSCustomProperties = (): void => {
     return {
       '--la-font-family-sans': 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
       '--la-font-family-mono': '"SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace',

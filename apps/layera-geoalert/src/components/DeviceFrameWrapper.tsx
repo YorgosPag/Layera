@@ -34,7 +34,6 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
   const [selectedModel, setSelectedModel] = useState<DeviceModel | null>(null);
 
   const handleModelSelect = (model: DeviceModel | null) => {
-    console.log('🎯 DeviceFrameWrapper: Model selected:', model);
     setSelectedModel(model);
   };
 

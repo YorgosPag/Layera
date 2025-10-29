@@ -35,8 +35,6 @@ export class FirestoreCache implements CacheStrategy {
     this.namespace = namespace;
     this.collectionName = collectionName;
     this.defaultTTL = defaultTTL;
-
-    console.log(`💾 Created Firestore cache: ${namespace.namespace}/${collectionName}`);
   }
 
   /**
@@ -129,8 +127,6 @@ export class FirestoreCache implements CacheStrategy {
       // Delete in batches
       const deletePromises = snapshot.docs.map(doc => deleteDoc(doc.ref));
       await Promise.all(deletePromises);
-
-      console.log(`✅ Cleared cache: ${this.namespace.namespace}/${this.collectionName}`);
     } catch (error) {
       console.error(`🚫 Cache clear failed`, error);
       throw error;
@@ -207,7 +203,6 @@ export class FirestoreCache implements CacheStrategy {
 
       const cleanedCount = snapshot.size;
       if (cleanedCount > 0) {
-        console.log(`🧹 Cleaned ${cleanedCount} expired cache entries`);
       }
 
       return cleanedCount;
@@ -225,8 +220,6 @@ export class FirestoreCache implements CacheStrategy {
     try {
       const loadPromises = keys.map(key => this.get(key));
       await Promise.all(loadPromises);
-
-      console.log(`📦 Preloaded ${keys.length} cache keys`);
     } catch (error) {
       console.error('🚫 Cache preload failed', error);
     }

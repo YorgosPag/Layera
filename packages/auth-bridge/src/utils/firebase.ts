@@ -17,9 +17,9 @@ let firebaseAuth: Auth | null = null;
  * @example
  * ```typescript
  * const app = initializeFirebaseApp({
- *   projectId: 'my-project',
- *   apiKey: 'api-key',
- *   authDomain: 'my-project.firebaseapp.com'
+ *   projectId: 'example-project-id',
+ *   apiKey: 'example-api-key-not-real',
+ *   authDomain: 'example-project.firebaseapp.com'
  * });
  * ```
  */

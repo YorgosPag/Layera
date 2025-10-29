@@ -125,7 +125,7 @@ export namespace AddressProcessor {
     postcode?: string;
     country?: string;
   } => {
-    const addr: any = {};
+    const addr: unknown = {};
 
     const housenumber = tags['addr:housenumber']?.trim();
     if (housenumber) addr.housenumber = housenumber;

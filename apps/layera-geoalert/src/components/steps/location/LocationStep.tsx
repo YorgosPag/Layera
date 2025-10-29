@@ -53,7 +53,7 @@ const SearchInputCard: React.FC<{
   }, []);
 
   // Dynamic styles ανάλογα με το opacity mode
-  const getInputStyles = () => {
+  const getInputStyles = (): void => {
     switch (opacityMode) {
       case 'transparent':
         return {
@@ -81,7 +81,7 @@ const SearchInputCard: React.FC<{
 
   const inputStyles = getInputStyles();
 
-  const getLabelColor = () => {
+  const getLabelColor = (): void => {
     switch (opacityMode) {
       case 'transparent':
         return 'var(--color-text-primary)';
@@ -92,7 +92,7 @@ const SearchInputCard: React.FC<{
     }
   };
 
-  const getMessageColor = () => {
+  const getMessageColor = (): void => {
     switch (opacityMode) {
       case 'transparent':
         return 'var(--color-text-secondary)';
@@ -140,7 +140,7 @@ const SearchInputCard: React.FC<{
         </Box>
       }
       icon={<SearchIcon size="sm" theme="neutral" />}
-      onClick={() => {}} // Empty click handler
+      onClick={(): void => {}} // Empty click handler
       data-testid="location-search-input-card"
     />
   );
@@ -187,10 +187,8 @@ export const LocationStep: React.FC<LocationStepProps> = ({
   const error = null;
   const actions = {
     setQuery: (query: string) => {
-      console.log('Geocoding disabled temporarily:', query);
     },
     clear: () => {
-      console.log('Geocoding cleared');
     }
   };
 
@@ -229,8 +227,6 @@ export const LocationStep: React.FC<LocationStepProps> = ({
         fileSize: file.size
       }
     });
-
-    console.log(`📂 LOCATION UI: Sending floor plan to map: ${file.name}`);
     window.dispatchEvent(mapEvent);
   };
 
@@ -246,9 +242,6 @@ export const LocationStep: React.FC<LocationStepProps> = ({
       if (file) {
         setUploadedFile(file);
         sendFileToMap(file);
-
-        console.log(`🎯 LOCATION UI: File uploaded: ${file.name}, Type: ${getFileType(file)}`);
-
         // Complete step
         const locationDetails: LocationDetails = {
           method: 'upload',
@@ -267,7 +260,7 @@ export const LocationStep: React.FC<LocationStepProps> = ({
         onLocationConfigured?.(locationDetails);
 
         // Auto-advance handled by StepOrchestrator
-        // setTimeout(() => {
+        // setTimeout((): void => {
         //   onNext?.();
         // }, 500);
       }
@@ -289,8 +282,6 @@ export const LocationStep: React.FC<LocationStepProps> = ({
   }, [actions]);
 
   const handleLocationSelected = useCallback((result: unknown) => {
-    console.log(`🎯 ENTERPRISE LOCATION: Location selected (temporarily disabled):`, result);
-
     const locationDetails: LocationDetails = {
       method: 'search',
       searchResult: result,
@@ -312,14 +303,12 @@ export const LocationStep: React.FC<LocationStepProps> = ({
     onLocationConfigured?.(locationDetails);
 
     // Auto-advance handled by StepOrchestrator
-    // setTimeout(() => {
+    // setTimeout((): void => {
     //   onNext?.();
     // }, 500);
   }, [onStepComplete, onLocationConfigured, onNext]);
 
   const handleDrawingTool = useCallback(() => {
-    console.log(`🎯 LOCATION UI: Opening drawing tool`);
-
     const locationDetails: LocationDetails = {
       method: 'drawing'
     };
@@ -335,7 +324,7 @@ export const LocationStep: React.FC<LocationStepProps> = ({
     onLocationConfigured?.(locationDetails);
 
     // Auto-advance handled by StepOrchestrator, no need for manual onNext
-    // setTimeout(() => {
+    // setTimeout((): void => {
     //   onNext?.();
     // }, 300);
   }, [onStepComplete, onLocationConfigured, onNext]);
@@ -379,7 +368,6 @@ export const LocationStep: React.FC<LocationStepProps> = ({
   // Enterprise LEGO Layout - Smart arrangement for 3 cards (2+1)
   const containerStyles = utils.getCardStyles('smart-triple');
   const containerClass = utils.getCardContainerClass('smart-triple');
-
 
   return (
     <>
@@ -477,14 +465,14 @@ export const LocationStep: React.FC<LocationStepProps> = ({
               overflow={CSS_DESIGN_TOKENS.positioning['overflow-auto']}
               marginBottom="sm"
             >
-              {results.map((result) => (
+              {results.map((result: unknown) => (
                 <BaseCard
                   key={result.id}
                   variant="job"
                   title={result.displayName}
                   description={result.address?.country ? `${result.address.country}` : ''}
                   icon={<LocationIcon size="sm" theme="neutral" />}
-                  onClick={() => handleLocationSelected(result)}
+                  onClick={(): void => handleLocationSelected(result)}
                   marginBottom="sm"
                 />
               ))}
@@ -509,7 +497,7 @@ export const LocationStep: React.FC<LocationStepProps> = ({
             variant="job"
             title={t('location.back.title')}
             description={t('location.back.description')}
-            onClick={() => {
+            onClick={(): void => {
               setShowLocationSearch(false);
               actions.clear();
               setSearchInput('');

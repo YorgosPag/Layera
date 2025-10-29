@@ -16,10 +16,10 @@ import { useViewportWithOverride, DeviceOverrideProvider } from '@layera/viewpor
 
 // Simple Error Boundary component
 class SimpleErrorBoundary extends React.Component<
-  { children: React.ReactNode; level?: string; onError?: (error: Error, errorInfo: any) => void },
+  { children: React.ReactNode; level?: string; onError?: (error: Error, errorInfo: { componentStack: string; errorBoundary?: React.ComponentType<React.SVGProps<SVGSVGElement>> | null; errorBoundaryStack?: string | null }) => void },
   { hasError: boolean }
 > {
-  constructor(props: any) {
+  constructor(props: Record<string, unknown>) {
     super(props);
     this.state = { hasError: false };
   }
@@ -28,7 +28,7 @@ class SimpleErrorBoundary extends React.Component<
     return { hasError: true };
   }
 
-  componentDidCatch(error: Error, errorInfo: any) {
+  componentDidCatch(error: Error, errorInfo: { componentStack: string; errorBoundary?: React.ComponentType<React.SVGProps<SVGSVGElement>> | null; errorBoundaryStack?: string | null }) {
     if (this.props.onError) {
       this.props.onError(error, errorInfo);
     }
@@ -65,42 +65,42 @@ interface DrawnArea {
   category: 'real_estate' | 'jobs';
   isVisible?: boolean;
   opacity?: number;
-  metadata?: any;
+  metadata?: Record<string, unknown>;
 }
 
 function TestNotificationsComponent() {
   const { addNotification } = useNotifications();
   const [isLoading, setIsLoading] = useState(false);
 
-  const testSuccessNotification = () => {
+  const testSuccessNotification = (): void => {
     addNotification({
       type: 'success',
       message: 'LEGO Notifications Working! Integration επιτυχής! 🎉'
     });
   };
 
-  const testErrorNotification = () => {
+  const testErrorNotification = (): void => {
     addNotification({
       type: 'error',
       message: 'Test Error Notification - LEGO Systems Functioning! ⚠️'
     });
   };
 
-  const testInfoNotification = () => {
+  const testInfoNotification = (): void => {
     addNotification({
       type: 'info',
       message: 'LEGO Architecture: 13 Packages Successfully Integrated! 📦'
     });
   };
 
-  const testLoadingSpinner = () => {
+  const testLoadingSpinner = (): void => {
     setIsLoading(true);
     addNotification({
       type: 'info',
       message: 'Testing Loading Spinner... 🔄'
     });
 
-    setTimeout(() => {
+    setTimeout((): void => {
       setIsLoading(false);
       addNotification({
         type: 'success',
@@ -207,7 +207,6 @@ function App() {
       frameHeight >= DEVICE_CONFIG.iPhone14ProMax.tolerance.heightMin &&
       frameHeight <= DEVICE_CONFIG.iPhone14ProMax.tolerance.heightMax));
 
-
   // State για re-render αν αλλάξει
   const [deviceDetected, setDeviceDetected] = useState(isIPhone14ProMaxDevice);
   const [, setSavedAreas] = useState<DrawnArea[]>([]);
@@ -220,7 +219,7 @@ function App() {
   const finalIsIPhone = deviceDetected || isIPhone14ProMaxDevice;
 
   useEffect(() => {
-    const checkDevice = () => {
+    const checkDevice = (): void => {
       const deviceFrameElement = document.getElementById(DEVICE_CONFIG.iPhone14ProMax.viewport.id);
       const isInDeviceFrame = !!deviceFrameElement;
 
@@ -235,16 +234,7 @@ function App() {
                                   frameHeight >= DEVICE_CONFIG.iPhone14ProMax.tolerance.heightMin &&
                                   frameHeight <= DEVICE_CONFIG.iPhone14ProMax.tolerance.heightMax));
 
-        if (process.env.NODE_ENV === 'development') {
-          console.log('🎯 App.tsx Device Detection Update:', {
-            deviceFrameElement: !!deviceFrameElement,
-            frameWidth,
-            frameHeight,
-            isIPhone14ProMax,
-            windowWidth: window.innerWidth,
-            windowHeight: window.innerHeight
-          });
-        }
+        if (process.env.NODE_ENV === 'development') {}
 
         setDeviceDetected(isIPhone14ProMax);
       }
@@ -259,12 +249,10 @@ function App() {
   const handleAreaCreated = (area: DrawnArea) => {
     setSavedAreas(prev => [...prev, area]);
     if (process.env.NODE_ENV === 'development') {
-      console.log('New area created:', area);
     }
   };
 
-
-  const handleNewEntryClick = () => {
+  const handleNewEntryClick = (): void => {
     // Ενεργοποίηση του modular step system (CategoryStep)
     setShowCategoryElements(true);
   };
@@ -272,7 +260,6 @@ function App() {
   const handleResponsiveModeChange = (isResponsive: boolean) => {
     setIsResponsiveMode(isResponsive);
     if (process.env.NODE_ENV === 'development') {
-      console.log('📱 Device mode changed:', isResponsive ? 'Responsive' : 'Device Frame');
     }
   };
 
@@ -384,7 +371,7 @@ function App() {
                 <Button
                   variant="primary"
                   size="xl"
-                  onClick={() => setIsMapMode(true)}
+                  onClick={(): void => setIsMapMode(true)}
                   icon={<MapIcon size="lg" theme="neutral" />}
                   className="layera-mb-8"
                   margin="auto"
@@ -436,8 +423,7 @@ function App() {
                 </BaseCard>
 
                 <Button
-                  onClick={() => {
-                    console.log('🔗 Μετάβαση σε Layera ID - Προσπάθεια άνοιγμα...');
+                  onClick={(): void => {
                     try {
                       window.open(APP_CONFIG.urls.id, '_blank');
                     } catch (error) {

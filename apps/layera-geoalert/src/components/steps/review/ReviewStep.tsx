@@ -31,7 +31,7 @@ export interface ReviewStepProps extends StepProps {
   onReviewAction?: (action: ReviewType) => void;
 
   /** Final submission handler */
-  onSubmit?: (context: any) => void;
+  onSubmit?: (context: Record<string, unknown>) => void;
 
   /** Edit handler για specific step */
   onEditStep?: (stepId: string) => void;
@@ -151,7 +151,6 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
 
   // 🎮 Handle step editing
   const handleEditStep = (stepId: string) => {
-    console.log(`🔧 Editing step: ${stepId}`);
     onEditStep?.(stepId);
   };
 
@@ -209,21 +208,21 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
         <Button
           variant={reviewMode === 'preview' ? 'primary' : 'outline'}
           size="sm"
-          onClick={() => handleReviewModeChange('preview')}
+          onClick={(): void => handleReviewModeChange('preview')}
         >
           Προεπισκόπηση
         </Button>
         <Button
           variant={reviewMode === 'edit' ? 'primary' : 'outline'}
           size="sm"
-          onClick={() => handleReviewModeChange('edit')}
+          onClick={(): void => handleReviewModeChange('edit')}
         >
           Επεξεργασία
         </Button>
         <Button
           variant={reviewMode === 'confirm' ? 'primary' : 'outline'}
           size="sm"
-          onClick={() => handleReviewModeChange('confirm')}
+          onClick={(): void => handleReviewModeChange('confirm')}
         >
           Επιβεβαίωση
         </Button>
@@ -247,7 +246,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
                   <Button
                     variant="ghost"
                     size="xs"
-                    onClick={() => handleEditStep(item.stepId)}
+                    onClick={(): void => handleEditStep(item.stepId)}
                   >
                     ✏️
                   </Button>
@@ -265,7 +264,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
           gridTemplateColumns={deviceProps?.isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))'}
           gap="md"
         >
-          {cards.map((card) => (
+          {cards.map((card: unknown) => (
             <BaseCard
               key={card.id}
               title={card.title}
@@ -287,7 +286,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
       <Stack direction="row" justify="space-between" marginTop="lg">
         <Button
           variant="outline"
-          onClick={() => window.history.back()}
+          onClick={(): void => window.history.back()}
           disabled={isSubmitting}
         >
           Πίσω
@@ -297,7 +296,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
           {reviewMode !== 'confirm' ? (
             <Button
               variant="primary"
-              onClick={() => handleReviewModeChange('confirm')}
+              onClick={(): void => handleReviewModeChange('confirm')}
               disabled={isSubmitting}
             >
               Επιβεβαίωση

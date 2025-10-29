@@ -24,13 +24,10 @@ createRoot(document.getElementById('root')).render(
     <AuthProvider
       callbacks={{
         onSignIn: (user) => {
-          console.log('User signed in:', user.email, 'Role:', user.layeraClaims.role)
         },
         onSignOut: () => {
-          console.log('User signed out')
         },
         onRoleChange: (newRole, oldRole) => {
-          console.log('Role changed from', oldRole, 'to', newRole)
         }
       }}
     >

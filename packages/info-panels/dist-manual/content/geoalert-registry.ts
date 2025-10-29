@@ -245,7 +245,7 @@ export const GEOALERT_INFO_CONTENT: StaticContentConfig = {
 };
 
 // Helper function για easy access
-export const createGeoAlertContentProvider = () => {
+export const createGeoAlertContentProvider = (): void => {
   const { StaticContentProvider } = require('../providers/StaticContentProvider');
   return new StaticContentProvider(GEOALERT_INFO_CONTENT);
 };

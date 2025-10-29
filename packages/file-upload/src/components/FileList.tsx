@@ -37,7 +37,7 @@ export const FileList: React.FC<FileListProps> = ({
 
   return (
     <Box className="space-y-3">
-      {files.map((file) => (
+      {files.map((file: unknown) => (
         <FileListItem
           key={file.id}
           file={file}
@@ -72,7 +72,7 @@ const FileListItem: React.FC<FileListItemProps> = ({
   const { t } = useLayeraTranslation();
   const { theme } = useTheme();
 
-  const getStatusIcon = () => {
+  const getStatusIcon = (): void => {
     switch (file.status) {
       case 'completed':
         return <UploadIcon className="w-5 h-5 text-green-500" />;
@@ -89,7 +89,7 @@ const FileListItem: React.FC<FileListItemProps> = ({
     }
   };
 
-  const getStatusText = () => {
+  const getStatusText = (): void => {
     switch (file.status) {
       case 'completed':
         return t('file-upload.status.completed');
@@ -106,7 +106,7 @@ const FileListItem: React.FC<FileListItemProps> = ({
     }
   };
 
-  const getProgressBarColor = () => {
+  const getProgressBarColor = (): void => {
     switch (file.status) {
       case 'completed':
         return 'bg-green-500';
@@ -192,7 +192,7 @@ const FileListItem: React.FC<FileListItemProps> = ({
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => onCancel(file.id)}
+                onClick={(): void => onCancel(file.id)}
                 className="text-red-600 hover:text-red-700"
               >
                 <CloseIcon className="w-4 h-4" />
@@ -203,7 +203,7 @@ const FileListItem: React.FC<FileListItemProps> = ({
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => onRetry(file.id)}
+                onClick={(): void => onRetry(file.id)}
                 className="text-blue-600 hover:text-blue-700"
               >
                 <RefreshIcon className="w-4 h-4" />
@@ -214,7 +214,7 @@ const FileListItem: React.FC<FileListItemProps> = ({
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => onRemove(file.id)}
+                onClick={(): void => onRemove(file.id)}
                 className="text-gray-600 hover:text-gray-700"
               >
                 <DeleteIcon className="w-4 h-4" />

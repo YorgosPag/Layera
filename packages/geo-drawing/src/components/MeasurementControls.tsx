@@ -50,7 +50,7 @@ export const MeasurementControls: React.FC<MeasurementControlsProps> = ({
         <Button
           variant={mode === 'distance' ? 'primary' : 'secondary'}
           size="sm"
-          onClick={() => onModeChange('distance')}
+          onClick={(): void => onModeChange('distance')}
           disabled={isDrawing}
           className="flex-1"
         >
@@ -61,7 +61,7 @@ export const MeasurementControls: React.FC<MeasurementControlsProps> = ({
         <Button
           variant={mode === 'area' ? 'primary' : 'secondary'}
           size="sm"
-          onClick={() => onModeChange('area')}
+          onClick={(): void => onModeChange('area')}
           disabled={isDrawing}
           className="flex-1"
         >
@@ -74,7 +74,7 @@ export const MeasurementControls: React.FC<MeasurementControlsProps> = ({
         <Button
           variant={mode === 'point' ? 'primary' : 'secondary'}
           size="sm"
-          onClick={() => onModeChange('point')}
+          onClick={(): void => onModeChange('point')}
           disabled={isDrawing}
           className="flex-1"
         >

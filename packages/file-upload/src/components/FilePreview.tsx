@@ -37,7 +37,7 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
     };
   }, [file.file, showPreview]);
 
-  const getFileCategory = () => {
+  const getFileCategory = (): void => {
     const extension = file.file.name.split('.').pop()?.toLowerCase();
     switch (extension) {
       case 'dxf':
@@ -59,7 +59,7 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
     }
   };
 
-  const getFileIcon = () => {
+  const getFileIcon = (): void => {
     const category = getFileCategory();
     // Enhanced file type detection with CAD support
     switch (category) {
@@ -75,7 +75,7 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
     }
   };
 
-  const getStatusColor = () => {
+  const getStatusColor = (): void => {
     switch (file.status) {
       case 'completed':
         return 'border-green-500';
@@ -92,7 +92,7 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
     }
   };
 
-  const getProgressOverlay = () => {
+  const getProgressOverlay = (): void => {
     if (file.status !== 'uploading') return null;
 
     return (
@@ -107,12 +107,12 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
     );
   };
 
-  const handleImageError = () => {
+  const handleImageError = (): void => {
     setPreviewError(true);
     setPreviewUrl(null);
   };
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     if (onClick) {
       onClick(file);
     }
@@ -165,7 +165,7 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
             <Button
               variant="outline"
               size="sm"
-              onClick={(e) => {
+              onClick={(e: React.FormEvent<HTMLFormElement>) => {
                 e.stopPropagation();
                 onRemove(file.id);
               }}

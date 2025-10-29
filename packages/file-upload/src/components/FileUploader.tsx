@@ -221,7 +221,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
     setIsUploading(false);
   }, []);
 
-  const getUploadSummary = () => {
+  const getUploadSummary = (): void => {
     const total = files.length;
     const completed = files.filter(f => f.status === 'completed').length;
     const uploading = files.filter(f => f.status === 'uploading').length;
@@ -263,14 +263,14 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
                   <Button
                     variant={viewMode === 'list' ? 'primary' : 'outline'}
                     size="sm"
-                    onClick={() => setViewMode('list')}
+                    onClick={(): void => setViewMode('list')}
                   >
                     <UploadIcon className="w-4 h-4" />
                   </Button>
                   <Button
                     variant={viewMode === 'grid' ? 'primary' : 'outline'}
                     size="sm"
-                    onClick={() => setViewMode('grid')}
+                    onClick={(): void => setViewMode('grid')}
                   >
                     <UploadIcon className="w-4 h-4" />
                   </Button>

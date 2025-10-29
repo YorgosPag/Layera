@@ -69,7 +69,7 @@ export function useNavigationHandlers(
 
     // Override handleNewEntryClick to support external callback
     const originalHandleNewEntryClick = adapterHandlers.handleNewEntryClick;
-    const enhancedHandleNewEntryClick = () => {
+    const enhancedHandleNewEntryClick = (): void => {
       if (isSpecialDevice) {
         // Special device: use ONLY adapter logic (stepper/category elements)
         originalHandleNewEntryClick();

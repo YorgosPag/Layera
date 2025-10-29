@@ -34,7 +34,7 @@ export const EmploymentTypeCard: React.FC<EmploymentTypeCardProps> = ({
     return null;
   }
 
-  const getIcon = () => {
+  const getIcon = (): void => {
     switch (employmentType) {
       case 'full_time':
         return <ToolIcon size="sm" theme="neutral" />;

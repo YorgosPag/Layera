@@ -104,7 +104,6 @@ export const findFallbackBoundary = (
     });
 
     if (matches) {
-      console.log(`✅ Fallback boundary found για: ${boundary.name}`);
       return {
         type: 'FeatureCollection',
         features: [{
@@ -137,7 +136,6 @@ export const addFallbackBoundary = (boundary: FallbackBoundary): void => {
 
   if (!exists) {
     FALLBACK_BOUNDARIES.push(boundary);
-    console.log(`📍 Added fallback boundary: ${boundary.name}`);
   }
 };
 

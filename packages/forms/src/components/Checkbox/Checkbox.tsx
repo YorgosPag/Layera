@@ -107,7 +107,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
   }, [ref]);
 
   // Render icon based on state
-  const renderIcon = () => {
+  const renderIcon = (): void => {
     if (loading) {
       return <Box className="layera-checkbox__spinner" />;
     }

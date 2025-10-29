@@ -48,7 +48,7 @@ export const useSizingTokens = <T extends readonly SizingToken[]>(tokens: T) => 
 /**
  * Hook για complete sizing system access
  */
-export const useSizingSystem = () => {
+export const useSizingSystem = (): void => {
   return useMemo(() => ({
     // Direct scale access
     scale: SPACING_SCALE,
@@ -87,7 +87,7 @@ export const useSizingSystem = () => {
 /**
  * Hook για responsive sizing (μελλοντική χρήση με breakpoints)
  */
-export const useResponsiveSizing = () => {
+export const useResponsiveSizing = (): void => {
   return useMemo(() => ({
     // Mobile sizing
     mobile: {
@@ -118,7 +118,7 @@ export const useResponsiveSizing = () => {
 /**
  * Hook για CSS-in-JS styling με sizing tokens
  */
-export const useSizingStyles = () => {
+export const useSizingStyles = (): void => {
   return useMemo(() => {
     const createSizingStyle = (width?: SizingToken, height?: SizingToken) => ({
       width: width ? getSizingValue(width) : undefined,

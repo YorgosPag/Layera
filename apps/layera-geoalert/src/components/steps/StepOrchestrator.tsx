@@ -86,20 +86,11 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
 }) => {
   // Debug log για occupation step tracking
   React.useEffect(() => {
-    if (currentStepId === 'occupation') {
-      console.log('🎯 ORCHESTRATOR: currentStepId changed to OCCUPATION');
-      console.log('🎯 ORCHESTRATOR: Props at occupation render:', {
-        currentStepId,
-        selectedCategory,
-        selectedEmploymentType,
-        selectedOccupation
-      });
-    }
+    if (currentStepId === 'occupation') {}
   }, [currentStepId]);
   // 🎯 ONE-TIME LOG: StepOrchestrator mounted για συγκεκριμένο step
   React.useEffect(() => {
     if (currentStepId === 'intent') {
-      console.log('🎯 ORCHESTRATOR: Intent Step mounted με category:', selectedCategory);
     }
   }, [currentStepId]); // Τρέχει μόνο όταν αλλάζει το step, όχι το category
 
@@ -163,28 +154,22 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
   }, [availableSteps, currentStepId, onStepChange, onPrevious]);
 
   const handleStepComplete = useCallback((stepId: StepId, data?: unknown) => {
-    console.log(`🎼 ORCHESTRATOR: Step ${stepId} completed with data:`, data);
-
     onStepComplete?.(stepId, data);
 
     // Auto-advance to next step αν δεν είναι το τελευταίο
     const currentIndex = availableSteps.findIndex(step => step.id === stepId);
     const nextStep = availableSteps[currentIndex + 1];
 
-
     if (nextStep) {
 
-
-      setTimeout(() => {
+      setTimeout((): void => {
         if (onStepChange) {
           onStepChange(nextStep.id);
-          console.log(`🎼 ORCHESTRATOR: onStepChange('${nextStep.id}') completed`);
         } else {
           console.warn(`🎼 ORCHESTRATOR: onStepChange is not defined!`);
         }
       }, 500); // Small delay για UX
     } else {
-      console.log(`🎼 ORCHESTRATOR: No next step, flow completed`);
     }
   }, [availableSteps, onStepChange, onStepComplete]);
 
@@ -247,7 +232,6 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
 
   // 🎯 Render current step
   const StepComponent = currentStep.component;
-
 
   const stepElement = (
     <StepComponent
@@ -321,7 +305,7 @@ export const useStepNavigation = (
 /**
  * Hook για step registry status
  */
-export const useStepRegistry = () => {
+export const useStepRegistry = (): void => {
   return {
     registry: stepRegistry,
     status: stepRegistry.getRegistryStatus(),

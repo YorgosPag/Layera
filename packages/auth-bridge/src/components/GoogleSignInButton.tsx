@@ -95,12 +95,12 @@ export function GoogleSignInButton({
       style={defaultStyle}
       onClick={handleClick}
       disabled={loading || externalDisabled}
-      onMouseEnter={(e) => {
+      onMouseEnter={(e: React.FormEvent<HTMLFormElement>) => {
         if (!loading && !externalDisabled) {
           Object.assign(e.currentTarget.style, hoverStyle);
         }
       }}
-      onMouseLeave={(e) => {
+      onMouseLeave={(e: React.FormEvent<HTMLFormElement>) => {
         if (!loading && !externalDisabled) {
           e.currentTarget.style.boxShadow = BOX_SHADOW_SCALE.none;
         }

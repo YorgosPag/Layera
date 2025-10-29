@@ -30,7 +30,6 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, isIPhone14Pro
     toggleTheme = themeHook.toggleTheme;
   } catch (error) {
     if (process.env.NODE_ENV === 'development') {
-      console.log('🎯 GeoHeader: Theme hook not available, using fallback');
     }
   }
 
@@ -63,11 +62,9 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, isIPhone14Pro
               icon={<GlobeIcon size="sm" theme="neutral" />}
               iconPosition="only"
               title={t('header.languageButton.title')}
-              onClick={() => {
-                console.log('🌐 Language switch clicked!');
+              onClick={(): void => {
                 const currentLang = document.documentElement.lang || 'el';
                 const newLang = currentLang === 'el' ? 'en' : 'el';
-                console.log('🌐 Language switch:', currentLang, '->', newLang);
               }}
               padding="sm"
               borderRadius="md"
@@ -81,9 +78,7 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, isIPhone14Pro
               icon={<SettingsIcon size="sm" theme="neutral" />}
               iconPosition="only"
               title={t('header.themeButton.title')}
-              onClick={() => {
-                console.log('🎨 Theme switch clicked!');
-                console.log('🎨 Theme switch:', theme, '-> toggling');
+              onClick={(): void => {
                 toggleTheme();
               }}
               padding="sm"

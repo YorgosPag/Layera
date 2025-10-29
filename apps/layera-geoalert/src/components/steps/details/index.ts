@@ -44,7 +44,6 @@ stepRegistry.register({
         title: 'Φόρμα',
         icon: React.createElement(FormIcon, { size: 'md', theme: 'neutral' }),
         onDetailsSelect: (details) => {
-          console.log('Form details selected:', details);
         }
       }),
       order: 1
@@ -58,7 +57,6 @@ stepRegistry.register({
         title: 'Γρήγορα',
         icon: React.createElement(QuickIcon, { size: 'md', theme: 'neutral' }),
         onDetailsSelect: (details) => {
-          console.log('Quick details selected:', details);
         }
       }),
       order: 2
@@ -72,7 +70,6 @@ stepRegistry.register({
         title: 'Προχωρημένα',
         icon: React.createElement(AdvancedIcon, { size: 'md', theme: 'neutral' }),
         onDetailsSelect: (details) => {
-          console.log('Advanced details selected:', details);
         }
       }),
       order: 3
@@ -83,7 +80,6 @@ stepRegistry.register({
     estimatedTime: 8 // 8 seconds average for details collection
   }
 });
-
 
 // 🎯 CLEAN EXPORTS
 export { DetailsStep } from './DetailsStep';

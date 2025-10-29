@@ -38,7 +38,6 @@ export const ErrorDetails: React.FC<ErrorDetailsProps> = ({
     try {
       await navigator.clipboard.writeText(JSON.stringify(errorReport, null, 2));
       // Show success message (could integrate with notification system)
-      console.log('Error details copied to clipboard');
     } catch (err) {
       console.error('Failed to copy error details:', err);
     }

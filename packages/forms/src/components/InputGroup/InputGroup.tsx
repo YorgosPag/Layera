@@ -315,7 +315,7 @@ InputGroup.Item = InputGroupItem;
 InputGroup.displayName = 'InputGroup';
 
 // Hook for accessing context
-export const useInputGroup = () => {
+export const useInputGroup = (): void => {
   const context = React.useContext(InputGroupContext);
   if (!context) {
     throw new Error('useInputGroup must be used within an InputGroup');

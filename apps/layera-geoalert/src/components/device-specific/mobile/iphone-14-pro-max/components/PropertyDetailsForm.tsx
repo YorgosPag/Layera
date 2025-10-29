@@ -67,7 +67,6 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
 
   const [errors, setErrors] = useState<Partial<Record<keyof PropertyDetailsData, string>>>({});
 
-
   const handleInputChange = (field: keyof PropertyDetailsData, value: string | number) => {
     setFormData(prev => ({ ...prev, [field]: value }));
 
@@ -97,17 +96,12 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = () => {
-    console.log('🔧 PropertyDetailsForm: Submit clicked', { propertyType, formData });
-
+  const handleSubmit = (): void => {
     const isValid = validateForm();
-    console.log('🔧 PropertyDetailsForm: Validation result:', isValid);
-
     if (isValid) {
 
       onSubmit(formData);
     } else {
-      console.log('❌ PropertyDetailsForm: Validation failed - showing errors:', errors);
     }
   };
 
@@ -144,7 +138,7 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
           <Input
             type="text"
             value={formData.title}
-            onChange={(e) => handleInputChange('title', e.target.value)}
+            onChange={(e: React.FormEvent<HTMLFormElement>) => handleInputChange('title', e.target.value)}
             placeholder={t('property.form.title.placeholder')}
             variant="outline"
             size="md"
@@ -167,7 +161,7 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
           <Input
             type="number"
             value={formData.squareMeters}
-            onChange={(e) => handleInputChange('squareMeters', parseFloat(e.target.value) || 0)}
+            onChange={(e: React.FormEvent<HTMLFormElement>) => handleInputChange('squareMeters', parseFloat(e.target.value) || 0)}
             placeholder="85"
             variant="outline"
             size="md"
@@ -190,7 +184,7 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
           <Input
             type="number"
             value={formData.price}
-            onChange={(e) => handleInputChange('price', parseFloat(e.target.value) || 0)}
+            onChange={(e: React.FormEvent<HTMLFormElement>) => handleInputChange('price', parseFloat(e.target.value) || 0)}
             placeholder="150000"
             variant="outline"
             size="md"
@@ -214,7 +208,7 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
             </Text>
             <Select
               value={formData.floor || ''}
-              onChange={(e) => handleInputChange('floor', parseInt(e.target.value))}
+              onChange={(e: React.FormEvent<HTMLFormElement>) => handleInputChange('floor', parseInt(e.target.value))}
               variant="outline"
               size="md"
               fullWidth
@@ -235,7 +229,7 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
             </Text>
             <Select
               value={formData.rooms || ''}
-              onChange={(e) => handleInputChange('rooms', parseInt(e.target.value))}
+              onChange={(e: React.FormEvent<HTMLFormElement>) => handleInputChange('rooms', parseInt(e.target.value))}
               variant="outline"
               size="md"
               fullWidth

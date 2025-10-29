@@ -181,7 +181,6 @@ const Login = () => {
 
           <GoogleSignInButton
             onSuccess={(user) => {
-              console.log('Google sign-in successful:', user.email);
               navigate('/dashboard');
             }}
             onError={(error) => {

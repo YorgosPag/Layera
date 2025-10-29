@@ -193,11 +193,11 @@ export const OccupationSearch: React.FC<OccupationSearchProps> = ({
         {/* Search Results */}
         {hasResults && (
           <Stack spacing="xs">
-            {results.map((occupation) => (
+            {results.map((occupation: unknown) => (
               <OccupationCard
                 key={occupation.id}
                 occupation={occupation}
-                onClick={() => handleOccupationSelect(occupation)}
+                onClick={(): void => handleOccupationSelect(occupation)}
                 isSelected={selectedOccupation?.id === occupation.id}
                 variant="compact"
               />

@@ -117,8 +117,6 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
   }, []);
 
   const handleSubmit = useCallback(async () => {
-    console.log('🎯 PROPERTY DETAILS UI: Submitting details', details);
-
     try {
       // Ενημερώνουμε το StepOrchestrator
       if (onStepComplete) {
@@ -133,7 +131,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
       onPropertyDetailsSubmitted?.(details);
 
       // Auto-advance
-      setTimeout(() => {
+      setTimeout((): void => {
         onNext?.();
       }, 300);
 
@@ -143,8 +141,6 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
   }, [details, onStepComplete, onPropertyDetailsSubmitted, onNext]);
 
   const handleSkip = useCallback(async () => {
-    console.log('🎯 PROPERTY DETAILS UI: Skipping details');
-
     try {
       // Ενημερώνουμε το StepOrchestrator με κενά details
       if (onStepComplete) {
@@ -156,7 +152,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
       }
 
       // Auto-advance
-      setTimeout(() => {
+      setTimeout((): void => {
         onNext?.();
       }, 300);
 
@@ -233,7 +229,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
             variant="neutral"
             title={t('actions.back')}
             description={t('actions.back-to-menu')}
-            onClick={() => setShowForm(false)}
+            onClick={(): void => setShowForm(false)}
             data-testid="property-details-back"
           />
         </>

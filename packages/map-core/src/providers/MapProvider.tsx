@@ -27,7 +27,7 @@ export const MapProvider: React.FC<MapProviderProps> = ({ children, defaultConfi
   const [mapSize, setMapSize] = useState({ width: 0, height: 0 });
   const [isLoading, setIsLoading] = useState(true);
 
-  const updateMapState = () => {
+  const updateMapState = (): void => {
     if (isComponentMounted.current && mapRef.current) {
       const bounds = mapRef.current.getBounds();
       const size = mapRef.current.getSize();
@@ -37,14 +37,10 @@ export const MapProvider: React.FC<MapProviderProps> = ({ children, defaultConfi
   };
 
   const initializeMap = useCallback(async (containerId: string, config?: Partial<MapConfig>) => {
-    console.log('🗺️ MapProvider.initializeMap() CALLED with:', containerId);
-
     try {
       setIsLoading(true);
 
       const mapConfig = { ...defaultConfig, ...config };
-      console.log('🔧 MapProvider config prepared:', mapConfig);
-
       const initOptions: MapInitializationOptions = {
         containerId,
         config: mapConfig as MapConfig,
@@ -52,11 +48,7 @@ export const MapProvider: React.FC<MapProviderProps> = ({ children, defaultConfi
         enableSearch: false,
         enableDrawing: false
       };
-
-      console.log('🚀 MapProvider calling MapInitializationService...');
       const map = mapInitService.current.initializeMap(initOptions);
-      console.log('✅ MapProvider received map instance:', !!map);
-
       mapRef.current = map;
 
       // Setup event listeners for state updates
@@ -69,8 +61,6 @@ export const MapProvider: React.FC<MapProviderProps> = ({ children, defaultConfi
       // Initial state update
       updateMapState();
       setIsLoading(false);
-
-      console.log('✅ MapProvider initialization complete');
     } catch (error) {
       console.error('❌ MapProvider initialization failed:', error);
       setIsLoading(false);
@@ -104,9 +94,7 @@ export const MapProvider: React.FC<MapProviderProps> = ({ children, defaultConfi
 
   // Debug log to verify the function is correct
   if (process.env.NODE_ENV === 'development') {
-    console.log('🔧 MapProvider creating context value with initializeMap:', initializeMap.toString().substring(0, 200));
   }
-
 
   return (
     <MapContext.Provider value={value}>

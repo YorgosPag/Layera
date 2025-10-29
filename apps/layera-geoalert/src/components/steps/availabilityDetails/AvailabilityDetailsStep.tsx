@@ -49,8 +49,6 @@ export const AvailabilityDetailsStep: React.FC<AvailabilityDetailsStepProps> = (
   }, []);
 
   const handleSubmit = useCallback(async () => {
-    console.log('🎯 AVAILABILITY DETAILS UI: Submitting details', details);
-
     try {
       // Ενημερώνουμε το StepOrchestrator
       if (onStepComplete) {
@@ -65,7 +63,7 @@ export const AvailabilityDetailsStep: React.FC<AvailabilityDetailsStepProps> = (
       onAvailabilityDetailsSubmitted?.(details);
 
       // Auto-advance
-      setTimeout(() => {
+      setTimeout((): void => {
         onNext?.();
       }, 300);
 
@@ -131,7 +129,7 @@ export const AvailabilityDetailsStep: React.FC<AvailabilityDetailsStepProps> = (
             variant="job"
             title={t('actions.back')}
             description={t('actions.backToMenu')}
-            onClick={() => setShowForm(false)}
+            onClick={(): void => setShowForm(false)}
             data-testid="availability-details-back"
           />
         </>

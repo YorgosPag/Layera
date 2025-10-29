@@ -370,7 +370,7 @@ const DatePickerComponent = (props: DatePickerProps, ref: React.Ref<HTMLInputEle
           id={datePickerId}
           value={inputValue}
           onChange={handleInputChange}
-          onClick={() => showCalendar && setIsOpen(true)}
+          onClick={(): void => showCalendar && setIsOpen(true)}
           disabled={disabled || loading}
           placeholder={placeholder || t('datepicker.selectDate')}
           className={inputClasses}
@@ -381,7 +381,7 @@ const DatePickerComponent = (props: DatePickerProps, ref: React.Ref<HTMLInputEle
           <button
             type="button"
             className="layera-datepicker__toggle"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={(): void => setIsOpen(!isOpen)}
             disabled={disabled || loading}
             aria-label={t('datepicker.selectDate')}
           >
@@ -407,7 +407,7 @@ const DatePickerComponent = (props: DatePickerProps, ref: React.Ref<HTMLInputEle
             <button
               type="button"
               className="layera-datepicker__nav"
-              onClick={() => navigateMonth('prev')}
+              onClick={(): void => navigateMonth('prev')}
               aria-label={t('datepicker.previous')}
             >
               <svg viewBox="0 0 24 24" fill="none">
@@ -422,7 +422,7 @@ const DatePickerComponent = (props: DatePickerProps, ref: React.Ref<HTMLInputEle
             <button
               type="button"
               className="layera-datepicker__nav"
-              onClick={() => navigateMonth('next')}
+              onClick={(): void => navigateMonth('next')}
               aria-label={t('datepicker.next')}
             >
               <svg viewBox="0 0 24 24" fill="none">
@@ -460,7 +460,7 @@ const DatePickerComponent = (props: DatePickerProps, ref: React.Ref<HTMLInputEle
                   key={index}
                   type="button"
                   className={dayClasses}
-                  onClick={() => handleDateSelect(date)}
+                  onClick={(): void => handleDateSelect(date)}
                   disabled={isDisabled(date)}
                 >
                   {date.getDate()}

@@ -200,7 +200,7 @@ export const NumericInput = forwardRef<HTMLInputElement, NumericInputProps>(({
     if (longPressIntervalRef.current) clearInterval(longPressIntervalRef.current);
 
     // Start long press after 500ms
-    longPressTimerRef.current = setTimeout(() => {
+    longPressTimerRef.current = setTimeout((): void => {
       // Repeat every 100ms while pressed
       longPressIntervalRef.current = setInterval(action, 100);
     }, 500);

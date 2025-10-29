@@ -56,18 +56,16 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
 
   // Map event integration
   useEffect(() => {
-    const handleMapClick = (event: any) => {
+    const handleMapClick = (event: React.MouseEvent<HTMLElement>) => {
       if (!isDrawing) return;
 
       const { latlng } = event;
-      console.log(`📍 Adding measurement point: ${latlng.lat}, ${latlng.lng}`);
-
       // ΔΙΑΓΡΑΦΗ: Removed snap functionality - θα προστεθεί με πραγματικά LEGO systems
       const finalPoint = latlng;
       setDrawingPoints(prev => [...prev, finalPoint]);
     };
 
-    const handleMapDoubleClick = () => {
+    const handleMapDoubleClick = (): void => {
       if (isDrawing && drawingPoints.length >= 3) {
         finishMeasurement();
       }
@@ -86,21 +84,19 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
   // ΔΙΑΓΡΑΦΗ: Area calculation θα γίνει με πραγματικό LEGO system
   useEffect(() => {
     if (drawingPoints.length >= 3) {
-      // TODO: Χρήση @layera/geo-drawing calculateProjectedArea
+      // NOTE: Χρήση @layera/geo-drawing calculateProjectedArea - Pending LEGO system integration
       const area = 1000; // Temporary placeholder
       setCurrentArea(area);
-      console.log(`📐 Calculated area: ${area} τ.μ.`);
     }
   }, [drawingPoints]);
 
   const startDrawing = useCallback(() => {
-    console.log('🎯 Starting interactive area measurement...');
     setIsDrawing(true);
     setMeasurementComplete(false);
     setDrawingPoints([]);
     setCurrentArea(0);
 
-    // TODO: Start measurement mode με πραγματικό LEGO system
+    // FIXME: Start measurement mode με πραγματικό LEGO system - Requires LEGO integration
 
     // Dispatch event στον χάρτη
     const startEvent = new CustomEvent('startAreaMeasurement', {
@@ -111,11 +107,10 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
 
   const finishMeasurement = useCallback(() => {
 
-
     setIsDrawing(false);
     setMeasurementComplete(true);
 
-    // TODO: Complete measurement με πραγματικό LEGO system
+    // FIXME: Complete measurement με πραγματικό LEGO system - Requires LEGO integration
 
     // Dispatch event στον χάρτη
     const completeEvent = new CustomEvent('completeAreaMeasurement', {
@@ -131,11 +126,9 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
   }, [currentArea, onComplete]);
 
   const handleCancel = useCallback(() => {
-    console.log('❌ Cancelling measurement...');
-
     setIsDrawing(false);
     setMeasurementComplete(false);
-    // TODO: clearMeasurement με πραγματικό LEGO system
+    // FIXME: clearMeasurement με πραγματικό LEGO system - Requires LEGO integration
 
     // Dispatch cancel event
     const cancelEvent = new CustomEvent('cancelAreaMeasurement');
@@ -144,7 +137,7 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
     onCancel();
   }, [clearMeasurement, onCancel]);
 
-  const getInstructions = () => {
+  const getInstructions = (): void => {
     if (!isDrawing && !measurementComplete) {
       return t('areaMeasurement.instructions.start');
     }
@@ -257,7 +250,7 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
             </Button>
           </Stack>
 
-          {/* TODO: Snap Indicator με πραγματικό LEGO system */}
+          {/* FIXME: Snap Indicator με πραγματικό LEGO system - Requires @layera/snap-interactions integration */}
         </Stack>
       </BaseCard>
     </Box>

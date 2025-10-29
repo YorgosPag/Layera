@@ -93,21 +93,21 @@ export const TableBody = <T extends Record<string, unknown>>({
               isSelected && 'layera-table-body__row--selected',
               onRowClick && 'layera-table-body__row--clickable'
             ].filter(Boolean).join(' ')}
-            onClick={onRowClick ? (e) => handleRowClick(row, index, e) : undefined}
+            onClick={onRowClick ? (e: React.FormEvent<HTMLFormElement>) => handleRowClick(row, index, e) : undefined}
           >
             {selectable && (
               <td className="layera-table-body__cell layera-table-body__cell--checkbox">
                 <input
                   type="checkbox"
                   checked={isSelected}
-                  onChange={(e) => handleRowCheckboxChange(rowKey, e.target.checked)}
+                  onChange={(e: React.FormEvent<HTMLFormElement>) => handleRowCheckboxChange(rowKey, e.target.checked)}
                   aria-label={t('tables.selectRow', { index: index + 1 })}
                   className="layera-table-body__checkbox"
                 />
               </td>
             )}
 
-            {columns.map((column) => {
+            {columns.map((column: unknown) => {
               const value = row[column.key];
               const cellContent = column.render
                 ? column.render(value, row, index)

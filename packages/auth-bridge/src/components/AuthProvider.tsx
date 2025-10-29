@@ -41,8 +41,8 @@ interface AuthProviderProps {
  *   return (
  *     <AuthProvider
  *       callbacks={{
- *         onSignIn: (user) => console.log('Welcome', user.email),
- *         onSignOut: () => console.log('Goodbye')
+ *         onSignIn: (user) => showWelcomeMessage(user.email),
+ *         onSignOut: () => showGoodbyeMessage()
  *       }}
  *       LoadingComponent={Spinner}
  *     >
@@ -96,12 +96,11 @@ export function AuthProvider({
  *   const handleLogin = async () => {
  *     const result = await signIn({
  *       email: 'user@example.com',
- *       password: 'password'
+ *       password: 'example-password-not-real'
  *     });
  *
  *     if (result.success) {
- *       console.log('Logged in successfully');
- *     }
+ **     }
  *   };
  *
  *   return (

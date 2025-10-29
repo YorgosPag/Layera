@@ -47,9 +47,6 @@ export function useGeocode(options: UseGeocodeOptions = {}): UseGeocodeReturn {
       setError(null);
       return;
     }
-
-    console.log('🔍 useGeocode: Starting search for:', queryToSearch);
-
     // Cancel προηγούμενη αναζήτηση
     if (abortControllerRef.current) {
       abortControllerRef.current.abort();
@@ -66,28 +63,18 @@ export function useGeocode(options: UseGeocodeOptions = {}): UseGeocodeReturn {
       // LEGACY: Using 'i18nextLng' for backward compatibility - can be 'el' or 'en', not 'el-GR' or 'en-US'
       const storedLang = typeof window !== 'undefined' ? localStorage.getItem('i18nextLng') : null;
       const userLanguage = storedLang || (typeof navigator !== 'undefined' ? navigator.language.slice(0, 2) : 'el');
-
-      console.log('🌐 Detected language:', userLanguage, '(stored:', storedLang, ')');
-
       const request: GeocodeRequest = {
         query: queryToSearch,
         // Αφαιρούμε το countryCode για παγκόσμια αναζήτηση
         limit: 5,
         language: userLanguage.startsWith('el') ? 'el' : 'en' // Χρήση γλώσσας χρήστη
       };
-
-      console.log('📡 useGeocode: Making API request with:', request);
-
       const response = await provider.search(request);
 
       // Έλεγχος αν η αναζήτηση ακυρώθηκε
       if (abortControllerRef.current?.signal.aborted) {
-        console.log('🛑 useGeocode: Search aborted');
         return;
       }
-
-      console.log('✅ useGeocode: Search completed with', response.results.length, 'results');
-
       if (response.status === 'error') {
         setError(response.error || 'Σφάλμα αναζήτησης');
         setResults([]);
@@ -99,7 +86,6 @@ export function useGeocode(options: UseGeocodeOptions = {}): UseGeocodeReturn {
     } catch (searchError) {
       // Αγνόησε σφάλματα από cancelled requests
       if (searchError instanceof Error && searchError.name === 'AbortError') {
-        console.log('🛑 useGeocode: Request cancelled');
         return;
       }
 
@@ -117,7 +103,7 @@ export function useGeocode(options: UseGeocodeOptions = {}): UseGeocodeReturn {
       clearTimeout(debounceTimeoutRef.current);
     }
 
-    debounceTimeoutRef.current = setTimeout(() => {
+    debounceTimeoutRef.current = setTimeout((): void => {
       search(searchQuery);
     }, debounceMs);
   }, [search, debounceMs]);
@@ -137,17 +123,14 @@ export function useGeocode(options: UseGeocodeOptions = {}): UseGeocodeReturn {
 
   // Listen για αλλαγές γλώσσας και re-search αν υπάρχουν αποτελέσματα
   useEffect(() => {
-    const handleLanguageChange = () => {
+    const handleLanguageChange = (): void => {
       // LEGACY: 'i18nextLng' key for backward compatibility
       const newLanguage = localStorage.getItem('i18nextLng') || 'el';
-      console.log('🌍 Language changed from', currentLanguage, 'to', newLanguage);
-
       if (newLanguage !== currentLanguage) {
         setCurrentLanguage(newLanguage);
 
         // Αν υπάρχουν αποτελέσματα ή active query, ξανακάνε αναζήτηση
         if (query.trim() && results.length > 0) {
-          console.log('🔄 Re-searching with new language:', newLanguage);
           search(query);
         }
       }
@@ -160,7 +143,7 @@ export function useGeocode(options: UseGeocodeOptions = {}): UseGeocodeReturn {
     window.addEventListener('languagechange', handleLanguageChange);
 
     // Polling για τοπικές αλλαγές (same tab)
-    const interval = setInterval(() => {
+    const interval = setInterval((): void => {
       // LEGACY: Check for language changes using legacy key
       const newLang = localStorage.getItem('i18nextLng') || 'el';
       if (newLang !== currentLanguage) {
@@ -189,7 +172,6 @@ export function useGeocode(options: UseGeocodeOptions = {}): UseGeocodeReturn {
 
   // Action για επιλογή αποτελέσματος
   const selectResult = useCallback((result: GeocodeResult) => {
-    console.log('🎯 useGeocode: Selected result:', result.displayName);
     setSelectedResult(result);
 
     if (onSelect) {
@@ -199,7 +181,6 @@ export function useGeocode(options: UseGeocodeOptions = {}): UseGeocodeReturn {
 
   // Action για καθαρισμό
   const clear = useCallback(() => {
-    console.log('🧹 useGeocode: Clearing results');
     setQuery('');
     setResults([]);
     setError(null);

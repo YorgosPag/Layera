@@ -31,7 +31,7 @@ export const createCoordinateMapping = (
   let cachedMatrix: TransformationMatrix | null = null;
   let cachedInverseMatrix: TransformationMatrix | null = null;
 
-  const updateMatrices = () => {
+  const updateMatrices = (): void => {
     // Create transformation matrix: screen -> world
     let matrix = createIdentityMatrix();
 

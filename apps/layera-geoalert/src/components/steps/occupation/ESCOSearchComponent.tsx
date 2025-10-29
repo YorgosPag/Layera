@@ -75,8 +75,6 @@ export const ESCOSearchComponent: React.FC<ESCOSearchProps> = ({
     }
 
     try {
-      console.log(`🔍 ESCO Search: "${searchQuery}"`);
-
       const searchTerms = searchQuery.toLowerCase().split(' ').filter(term => term.length > 2);
 
       if (searchTerms.length === 0) return [];
@@ -105,7 +103,6 @@ export const ESCOSearchComponent: React.FC<ESCOSearchProps> = ({
           essentialSkills: data.essentialSkills || []
         });
       });
-
 
       return results;
 
@@ -154,7 +151,6 @@ export const ESCOSearchComponent: React.FC<ESCOSearchProps> = ({
 
   // Handle occupation selection
   const handleOccupationSelect = useCallback((occupation: ESCOOccupation) => {
-
 
     setSearchState(prev => ({
       ...prev,
@@ -229,7 +225,7 @@ export const ESCOSearchComponent: React.FC<ESCOSearchProps> = ({
           )}
 
           {/* Results */}
-          {!searchState.isLoading && !searchState.error && searchState.results.map((occupation) => (
+          {!searchState.isLoading && !searchState.error && searchState.results.map((occupation: unknown) => (
             <BaseCard
               key={occupation.id}
               variant="job"
@@ -238,7 +234,7 @@ export const ESCOSearchComponent: React.FC<ESCOSearchProps> = ({
                 `${occupation.description.slice(0, 100)}${occupation.description.length > 100 ? '...' : ''}` :
                 undefined
               }
-              onClick={() => handleOccupationSelect(occupation)}
+              onClick={(): void => handleOccupationSelect(occupation)}
               marginBottom="xs"
               data-testid={`esco-result-${occupation.id}`}
             >

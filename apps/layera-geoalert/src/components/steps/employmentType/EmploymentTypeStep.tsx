@@ -53,8 +53,6 @@ export const EmploymentTypeStep: React.FC<EmploymentTypeStepProps> = ({
   ];
 
   const handleEmploymentTypeSelection = useCallback(async (employmentType: EmploymentType) => {
-    console.log(`🎯 EMPLOYMENT TYPE UI: Selected employment type: ${employmentType}`);
-
     try {
       // Ενημερώνουμε το StepOrchestrator
       if (onStepComplete) {
@@ -68,7 +66,7 @@ export const EmploymentTypeStep: React.FC<EmploymentTypeStepProps> = ({
       onEmploymentTypeSelected?.(employmentType);
 
       // Auto-advance
-      setTimeout(() => {
+      setTimeout((): void => {
         onNext?.();
       }, 300);
 
@@ -95,13 +93,13 @@ export const EmploymentTypeStep: React.FC<EmploymentTypeStepProps> = ({
 
   return (
     <Box style={containerStyles}>
-      {employmentTypes.map((type) => (
+      {employmentTypes.map((type: unknown) => (
         <EmploymentTypeCard
           key={type.id}
           employmentType={type.id}
           title={type.title}
           description={type.description}
-          onClick={() => handleEmploymentTypeSelection(type.id)}
+          onClick={(): void => handleEmploymentTypeSelection(type.id)}
           data-testid={`employment-type-card-${type.id}`}
         />
       ))}

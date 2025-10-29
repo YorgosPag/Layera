@@ -116,7 +116,6 @@ const MapCanvas: React.FC<MapCanvasProps> = ({
     });
 
     const unsubscribeAreaCreated = eventBus.on('area:created', ({ area }) => {
-      console.log('Area created:', area);
       // Future: Show toast notification
     });
 

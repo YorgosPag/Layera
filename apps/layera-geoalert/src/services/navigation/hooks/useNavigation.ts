@@ -49,7 +49,7 @@ export const useNavigation = (): UseNavigationReturn => {
 
   // Subscribe to navigation state changes
   useEffect(() => {
-    const updateState = () => {
+    const updateState = (): void => {
       setNavigationState(navigationService.getState());
     };
 

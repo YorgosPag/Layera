@@ -69,8 +69,6 @@ export const AreaMethodStep: React.FC<AreaMethodStepProps> = ({
   ];
 
   const handleAreaMethodSelection = useCallback(async (method: AreaMethodType) => {
-    console.log(`🎯 AREA METHOD UI: Selected area method: ${method}`);
-
     setSelectedMethod(method);
 
     try {
@@ -103,7 +101,7 @@ export const AreaMethodStep: React.FC<AreaMethodStepProps> = ({
       onAreaMethodSelected?.(method);
 
       // Auto-advance
-      setTimeout(() => {
+      setTimeout((): void => {
         onNext?.();
       }, 300);
 
@@ -113,13 +111,11 @@ export const AreaMethodStep: React.FC<AreaMethodStepProps> = ({
   }, [onStepComplete, onAreaMethodSelected, onNext]);
 
   const handleMeasurementComplete = useCallback((area: number) => {
-    console.log(`📐 MEASUREMENT COMPLETE: ${area} τ.μ.`);
     setShowInteractiveMeasurement(false);
     completeStep('map', area);
   }, [completeStep]);
 
   const handleMeasurementCancel = useCallback(() => {
-    console.log('📐 MEASUREMENT CANCELLED');
     setShowInteractiveMeasurement(false);
     setSelectedMethod(null);
   }, []);
@@ -153,14 +149,14 @@ export const AreaMethodStep: React.FC<AreaMethodStepProps> = ({
 
   return (
     <Box style={containerStyles}>
-      {areaMethods.map((method) => (
+      {areaMethods.map((method: unknown) => (
         <AreaMethodCard
           key={method.id}
           method={method.id}
           title={method.title}
           description={method.description}
           isRecommended={method.isRecommended}
-          onClick={() => handleAreaMethodSelection(method.id)}
+          onClick={(): void => handleAreaMethodSelection(method.id)}
           data-testid={`area-method-card-${method.id}`}
         />
       ))}

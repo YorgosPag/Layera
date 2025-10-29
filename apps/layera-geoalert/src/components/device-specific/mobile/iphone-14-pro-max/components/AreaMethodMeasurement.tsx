@@ -84,8 +84,6 @@ export const AreaMethodMeasurement: React.FC<AreaMethodMeasurementProps> = ({
   // Monitor measurement completion from geo-drawing
   React.useEffect(() => {
     if (selectedMethod === 'map-drawing' && currentResult && currentResult.area && state === 'finished') {
-      console.log('🎯 Area measurement completed via geo-drawing:', currentResult);
-
       const result: AreaMeasurementResult = {
         method: 'map-drawing',
         area: currentResult.area,
@@ -102,9 +100,6 @@ export const AreaMethodMeasurement: React.FC<AreaMethodMeasurementProps> = ({
       alert(t('area-measurement.validation.area-must-be-positive'));
       return;
     }
-
-    console.log('📝 Manual area input:', manualArea);
-
     const result: AreaMeasurementResult = {
       method: 'manual-input',
       area: manualArea,
@@ -120,9 +115,6 @@ export const AreaMethodMeasurement: React.FC<AreaMethodMeasurementProps> = ({
     // Simulate floor plan upload process
     // Στην πραγματικότητα εδώ θα γίνει integration με upload system
     await new Promise(resolve => setTimeout(resolve, 2000));
-
-    console.log('🏗️ Floor plan upload simulation');
-
     const result: AreaMeasurementResult = {
       method: 'floor-plan-upload',
       area: 92, // Simulated area from floor plan
@@ -147,9 +139,6 @@ export const AreaMethodMeasurement: React.FC<AreaMethodMeasurementProps> = ({
     // Simulate OSM building detection
     // Στην πραγματικότητα εδώ θα γίνει κλήση στο OSM service
     await new Promise(resolve => setTimeout(resolve, 1500));
-
-    console.log('🤖 Auto-calculate via OSM simulation');
-
     const result: AreaMeasurementResult = {
       method: 'auto-calculate',
       area: 88, // Calculated from OSM building outline
@@ -165,7 +154,7 @@ export const AreaMethodMeasurement: React.FC<AreaMethodMeasurementProps> = ({
     onMeasurementComplete(result);
   }, [onMeasurementComplete]);
 
-  const renderMethodInterface = () => {
+  const renderMethodInterface = (): void => {
     switch (selectedMethod) {
       case 'manual-input':
         return (
@@ -176,7 +165,7 @@ export const AreaMethodMeasurement: React.FC<AreaMethodMeasurementProps> = ({
             <Input
               type="number"
               value={manualArea.toString()}
-              onChange={(e) => setManualArea(parseFloat(e.target.value) || 0)}
+              onChange={(e: React.FormEvent<HTMLFormElement>) => setManualArea(parseFloat(e.target.value) || 0)}
               placeholder={t('area-measurement.manual-input.placeholder')}
               width="full"
               padding="sm"

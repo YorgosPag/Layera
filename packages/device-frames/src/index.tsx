@@ -20,7 +20,7 @@ export const DeviceFrame: React.FC<DeviceFrameProps> = ({
   const [DeviceFrameset, setDeviceFrameset] = React.useState<any>(null);
 
   React.useEffect(() => {
-    import('react-device-frameset').then((module) => {
+    import('react-device-frameset').then((module: unknown) => {
       setDeviceFrameset(() => module.default || module);
     });
   }, []);

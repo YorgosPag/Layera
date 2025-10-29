@@ -48,7 +48,6 @@ stepRegistry.register({
         title: 'Δωρεάν',
         icon: React.createElement(TagIcon, { size: 'md', theme: 'success' }),
         onPricingSelect: (pricing) => {
-          console.log('Free pricing selected:', pricing);
         }
       }),
       order: 1
@@ -62,7 +61,6 @@ stepRegistry.register({
         title: 'Οικονομικό',
         icon: React.createElement(EuroIcon, { size: 'md', theme: 'warning' }),
         onPricingSelect: (pricing) => {
-          console.log('Budget pricing selected:', pricing);
         }
       }),
       order: 2
@@ -76,7 +74,6 @@ stepRegistry.register({
         title: 'Premium',
         icon: React.createElement(EuroIcon, { size: 'md', theme: 'primary' }),
         onPricingSelect: (pricing) => {
-          console.log('Premium pricing selected:', pricing);
         }
       }),
       order: 3
@@ -90,7 +87,6 @@ stepRegistry.register({
         title: 'Διαπραγματεύσιμο',
         icon: React.createElement(HandshakeIcon, { size: 'md', theme: 'info' }),
         onPricingSelect: (pricing) => {
-          console.log('Negotiable pricing selected:', pricing);
         }
       }),
       order: 4
@@ -101,8 +97,6 @@ stepRegistry.register({
     estimatedTime: 5 // 5 seconds average for pricing selection
   }
 });
-
-
 
 // 🎯 CLEAN EXPORTS
 export { PricingStep } from './PricingStep';

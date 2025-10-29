@@ -45,6 +45,6 @@ export const reorderSteps = (newOrder: Array<{ stepId: StepId; order: number }>)
 /**
  * Get registry debug info
  */
-export const getStepRegistryStatus = () => {
+export const getStepRegistryStatus = (): void => {
   return stepRegistry.getRegistryStatus();
 };

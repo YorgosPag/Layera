@@ -85,7 +85,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   };
 
   // Loading content βάσει variant
-  const renderLoadingContent = () => {
+  const renderLoadingContent = (): void => {
     switch (loadingVariant) {
       case 'dots':
         return (
@@ -104,13 +104,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   };
 
   // Icon rendering
-  const renderIcon = () => {
+  const renderIcon = (): void => {
     if (!icon) return null;
     return <span className="layera-btn__icon">{icon}</span>;
   };
 
   // Content ordering βάσει icon position
-  const renderContent = () => {
+  const renderContent = (): void => {
     if (iconPosition === 'right') {
       return (
         <>

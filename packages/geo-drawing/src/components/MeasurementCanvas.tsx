@@ -10,7 +10,7 @@ import type { MeasurementMode, CanvasInteractionEvent } from '../types';
 interface MeasurementCanvasProps {
   mode: MeasurementMode;
   enableSnapping?: boolean;
-  onMeasurementChange?: (result: any) => void;
+  onMeasurementChange?: (result: unknown) => void;
   className?: string;
 }
 
@@ -116,7 +116,7 @@ export const MeasurementCanvas: React.FC<MeasurementCanvasProps> = ({
   const colors = getColors();
 
   // Render measurement geometry
-  const renderGeometry = () => {
+  const renderGeometry = (): void => {
     if (points.length === 0) return null;
 
     const latlngs = points.map(p => p.latlng);

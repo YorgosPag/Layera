@@ -22,7 +22,7 @@ export type CardId =
 export interface CardConfig {
   id: CardId;
   titleKey: string; // Translation key instead of hardcoded title
-  icon: React.ComponentType<any>;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   variant: CardVariant;
   category?: 'property' | 'job';
   step?: string;

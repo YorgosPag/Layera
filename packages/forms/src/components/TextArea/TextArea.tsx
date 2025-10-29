@@ -54,7 +54,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
   ].filter(Boolean).join(' ');
 
   // Calculate min-height based on rows and line-height
-  const getMinHeight = () => {
+  const getMinHeight = (): void => {
     const lineHeight = size === FORM_SIZES.SMALL ? 1.25 : size === FORM_SIZES.LARGE ? 1.5 : 1.375;
     const fontSize = size === FORM_SIZES.SMALL ? 14 : size === FORM_SIZES.LARGE ? 18 : 16;
     const padding = size === FORM_SIZES.SMALL ? 16 : size === FORM_SIZES.LARGE ? 32 : 24;
@@ -62,7 +62,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(({
     return (minRows * fontSize * lineHeight) + padding;
   };
 
-  const getMaxHeight = () => {
+  const getMaxHeight = (): void => {
     if (!maxRows) return undefined;
 
     const lineHeight = size === FORM_SIZES.SMALL ? 1.25 : size === FORM_SIZES.LARGE ? 1.5 : 1.375;

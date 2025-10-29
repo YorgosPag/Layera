@@ -46,8 +46,7 @@ interface TotpState {
  *   const result = await startSetup();
  *   if (result.success) {
  *     // Εμφάνιση QR code
- *     console.log('QR Code:', result.data?.qrCodeUrl);
- *   }
+ **   }
  * };
  * ```
  */

@@ -102,7 +102,7 @@ export const DragDropZone: React.FC<DragDropZoneProps> = ({
     e.target.value = '';
   }, [onFilesDrop]);
 
-  const getZoneClasses = () => {
+  const getZoneClasses = (): void => {
     const baseClasses = [
       'relative',
       'border-2',

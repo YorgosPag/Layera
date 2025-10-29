@@ -33,7 +33,7 @@ export const ViewportDebugger: React.FC<ViewportDebuggerProps> = ({
     return null;
   }
 
-  const getPositionStyles = () => {
+  const getPositionStyles = (): void => {
     const baseStyles: React.CSSProperties = {
       position: 'fixed',
       zIndex: 'var(--la-z-modal)', // Enterprise CSS Custom Property - Single Source of Truth
@@ -61,7 +61,7 @@ export const ViewportDebugger: React.FC<ViewportDebuggerProps> = ({
     }
   };
 
-  const getDeviceIcon = () => {
+  const getDeviceIcon = (): void => {
     switch (viewport.deviceType) {
       case 'mobile':
         return <MobileIcon size="xs" theme="neutral" />;
@@ -74,7 +74,7 @@ export const ViewportDebugger: React.FC<ViewportDebuggerProps> = ({
     }
   };
 
-  const getOrientationIcon = () => {
+  const getOrientationIcon = (): void => {
     return viewport.orientation === 'portrait' ? <MobileIcon size="xs" theme="neutral" /> : <TabletLandscapeIcon size="xs" theme="neutral" />;
   };
 
@@ -82,7 +82,7 @@ export const ViewportDebugger: React.FC<ViewportDebuggerProps> = ({
     return (
       <Box style={getPositionStyles()}>
         <Button
-          onClick={() => setIsVisible(true)}
+          onClick={(): void => setIsVisible(true)}
           variant="ghost"
           size="sm"
           padding={`${SPACING_SCALE.SM}px`}
@@ -98,7 +98,7 @@ export const ViewportDebugger: React.FC<ViewportDebuggerProps> = ({
     <Box style={getPositionStyles()}>
       {!showAlways && (
         <Button
-          onClick={() => setIsVisible(false)}
+          onClick={(): void => setIsVisible(false)}
           variant="ghost"
           size="xs"
           position="absolute"

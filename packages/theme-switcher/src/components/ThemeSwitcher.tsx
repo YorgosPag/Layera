@@ -18,7 +18,7 @@ import type { ThemeSwitcherProps, Theme } from '../types';
  */
 
 // Default icons (SVG-based για consistency)
-const SunIcon = () => (
+const SunIcon = (): void => (
   <svg
     width="20"
     height="20"
@@ -41,7 +41,7 @@ const SunIcon = () => (
   </svg>
 );
 
-const MoonIcon = () => (
+const MoonIcon = (): void => (
   <svg
     width="20"
     height="20"
@@ -56,7 +56,7 @@ const MoonIcon = () => (
   </svg>
 );
 
-const SystemIcon = () => (
+const SystemIcon = (): void => (
   <svg
     width="20"
     height="20"
@@ -97,7 +97,7 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
   const [isOpen, setIsOpen] = React.useState(false);
 
   // Dropdown functions
-  const handleToggle = () => {
+  const handleToggle = (): void => {
     setIsOpen(!isOpen);
   };
 
@@ -136,14 +136,14 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
   };
 
   // Current theme display
-  const getCurrentIcon = () => {
+  const getCurrentIcon = (): void => {
     if (theme === 'system') {
       return icons.system;
     }
     return resolvedTheme === 'light' ? icons.light : icons.dark;
   };
 
-  const getCurrentLabel = () => {
+  const getCurrentLabel = (): void => {
     if (theme === 'system') {
       return labels.system;
     }
@@ -151,7 +151,7 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
   };
 
   // Handle click based on variant
-  const handleClick = () => {
+  const handleClick = (): void => {
     if (variant === 'icon') {
       toggleTheme(); // Simple toggle για icon variant
     } else {
@@ -240,7 +240,7 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
             <button
               type="button"
               className={`layera-theme-switcher__option ${theme === 'light' ? 'layera-theme-switcher__option--active' : ''}`}
-              onClick={() => handleSelect('light')}
+              onClick={(): void => handleSelect('light')}
               role="menuitem"
             >
               <span className="layera-theme-switcher__option-icon" aria-hidden="true">
@@ -254,7 +254,7 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
             <button
               type="button"
               className={`layera-theme-switcher__option ${theme === 'dark' ? 'layera-theme-switcher__option--active' : ''}`}
-              onClick={() => handleSelect('dark')}
+              onClick={(): void => handleSelect('dark')}
               role="menuitem"
             >
               <span className="layera-theme-switcher__option-icon" aria-hidden="true">
@@ -268,7 +268,7 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
             <button
               type="button"
               className={`layera-theme-switcher__option ${theme === 'system' ? 'layera-theme-switcher__option--active' : ''}`}
-              onClick={() => handleSelect('system')}
+              onClick={(): void => handleSelect('system')}
               role="menuitem"
             >
               <span className="layera-theme-switcher__option-icon" aria-hidden="true">

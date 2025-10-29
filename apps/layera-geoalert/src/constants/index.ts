@@ -51,7 +51,7 @@ const UI_BLOCK_BASE = {
 } as const;
 
 // Αυτόματος υπολογισμός όλων των θέσεων από το base
-const calculateUIPositions = () => {
+const calculateUIPositions = (): void => {
   const stepperHeight = 40;
   const stepperMargin = 8;
   const cardsHeight = 45; // Εκτίμηση ύψους καρτών

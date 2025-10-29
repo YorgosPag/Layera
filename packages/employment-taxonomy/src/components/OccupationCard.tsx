@@ -44,7 +44,7 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
 }) => {
   const { t } = useLayeraTranslation();
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     if (onClick) {
       onClick(occupation);
     }

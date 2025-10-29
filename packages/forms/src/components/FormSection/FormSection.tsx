@@ -39,7 +39,7 @@ export const FormSection: React.FC<FormSectionProps> = ({
     className
   ].filter(Boolean).join(' ');
 
-  const handleToggle = () => {
+  const handleToggle = (): void => {
     if (collapsible) {
       setIsCollapsed(!isCollapsed);
     }

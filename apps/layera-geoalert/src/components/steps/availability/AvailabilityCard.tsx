@@ -34,7 +34,7 @@ export const AvailabilityCard: React.FC<AvailabilityCardProps> = ({
     return null;
   }
 
-  const getIcon = () => {
+  const getIcon = (): void => {
     switch (availability) {
       case 'now':
         return <ClockIcon size="sm" theme="neutral" />;

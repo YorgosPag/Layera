@@ -34,7 +34,7 @@ export interface ResponsiveMapLayoutProps {
   iPhoneComponents?: {
     stepper?: React.ComponentType<StepperComponentProps>;
     category?: React.ComponentType<CategoryComponentProps>;
-    orchestrator?: React.ComponentType<any>;
+    orchestrator?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   };
 
   /** Navigation state */

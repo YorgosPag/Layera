@@ -36,7 +36,7 @@ export const AreaMethodCard: React.FC<AreaMethodCardProps> = ({
     return null;
   }
 
-  const getIcon = () => {
+  const getIcon = (): void => {
     switch (method) {
       case 'manual':
         return <EditIcon size="sm" theme="neutral" />;

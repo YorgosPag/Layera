@@ -42,10 +42,8 @@ export function initializeFirestore(config?: FirebaseConfig): Firestore {
   if (process.env.NODE_ENV === 'development' && !isEmulatorConnected(firestore)) {
     try {
       connectFirestoreEmulator(firestore, 'localhost', 8080);
-      console.log('🔧 Connected to Firestore emulator');
     } catch (error) {
       // Emulator might not be running - that's ok
-      console.log('📡 Using production Firestore');
     }
   }
 

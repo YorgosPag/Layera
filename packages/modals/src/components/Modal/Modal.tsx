@@ -78,7 +78,7 @@ export const Modal: React.FC<BaseModalProps> = ({
     }
   };
 
-  const handleCloseClick = () => {
+  const handleCloseClick = (): void => {
     onClose();
   };
 

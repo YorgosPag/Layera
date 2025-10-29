@@ -286,7 +286,6 @@ export const SnapCanvas: React.FC<SnapCanvasProps> = ({
     if (drawingMode) {
       // Drawing functionality - simplified example
       // Real implementation θα είχε διάφορα drawing tools
-      console.log('Drawing at:', { x, y });
     }
   }, [interactive, selectionMode, drawingMode, onGeometrySelect]);
 

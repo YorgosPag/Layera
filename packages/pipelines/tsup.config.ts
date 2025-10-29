@@ -17,6 +17,5 @@ export default defineConfig({
   },
   // Skip packages που προκαλούν προβλήματα στο DTS build
   onSuccess: async () => {
-    console.log('✅ Pipeline package built successfully');
   },
 });

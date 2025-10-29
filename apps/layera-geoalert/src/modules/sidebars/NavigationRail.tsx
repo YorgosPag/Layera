@@ -58,7 +58,7 @@ const NavigationRail: React.FC<NavigationRailProps> = ({
 
       <Box className="flex-grow flex flex-col items-center space-y-4">
         <NavButton
-          onClick={() => onViewChange('dashboard')}
+          onClick={(): void => onViewChange('dashboard')}
           title={t('dashboard')}
           isActive={activeView === 'dashboard'}
         >
@@ -66,7 +66,7 @@ const NavigationRail: React.FC<NavigationRailProps> = ({
         </NavButton>
 
         <NavButton
-          onClick={() => {
+          onClick={(): void => {
             onViewChange('map');
             onFlyToUserLocation();
             if (isLayersPanelOpen) onToggleLayersPanel();

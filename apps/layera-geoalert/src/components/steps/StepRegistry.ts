@@ -70,7 +70,6 @@ export class StepRegistry implements StepRegistryInterface {
       const step = this.steps.get(stepId);
       if (step) {
         step.order = order;
-        console.log(`🔄 Step '${stepId}' reordered to position ${order}`);
       }
     });
 
@@ -89,8 +88,6 @@ export class StepRegistry implements StepRegistryInterface {
         step.order = order;
       }
     });
-
-    console.log(`🎮 Flow set: ${flowConfig.name} (${flowConfig.steps.length} steps)`);
   }
 
   /**

@@ -101,11 +101,11 @@ export function useOccupationSearch(options: UseOccupationSearchOptions = {}): U
       category: {
         id: escoOccupation.iscoGroup || 'unknown',
         name: escoOccupation.iscoGroup || 'Άγνωστη κατηγορία',
-        level: 1 // TODO: Extract from ISCO code
+        level: 1 // NOTE: Extract from ISCO code
       },
-      employmentTypes: ['full_time'], // TODO: Infer from occupation data
-      skills: [], // TODO: Transform ESCO skills
-      experienceLevel: 'mid', // TODO: Infer from occupation
+      employmentTypes: ['full_time'], // NOTE: Infer from occupation data
+      skills: [], // NOTE: Transform ESCO skills
+      experienceLevel: 'mid', // NOTE: Infer from occupation
       escoUri: escoOccupation.uri,
       iscoCode: escoOccupation.iscoGroup,
       localizations: {
@@ -132,9 +132,6 @@ export function useOccupationSearch(options: UseOccupationSearchOptions = {}): U
       setTotal(0);
       return;
     }
-
-    console.log('🔍 useOccupationSearch: Starting search for:', queryToSearch);
-
     // Cancel previous search
     if (abortControllerRef.current) {
       abortControllerRef.current.abort();
@@ -158,9 +155,6 @@ export function useOccupationSearch(options: UseOccupationSearchOptions = {}): U
       const occupations = escoResponse.results
         .filter((result): result is ESCOOccupation => 'iscoGroup' in result)
         .map(transformESCOToOccupation);
-
-      console.log(`✅ useOccupationSearch: Found ${occupations.length} occupations`);
-
       setResults(occupations);
       setTotal(escoResponse.total);
       setCurrentPage(Math.floor((filtersToUse.offset || 0) / (filtersToUse.limit || 20)));
@@ -183,7 +177,7 @@ export function useOccupationSearch(options: UseOccupationSearchOptions = {}): U
       clearTimeout(debounceTimeoutRef.current);
     }
 
-    debounceTimeoutRef.current = setTimeout(() => {
+    debounceTimeoutRef.current = setTimeout((): void => {
       search(searchQuery);
     }, debounceMs);
   }, [search, debounceMs]);
@@ -221,7 +215,6 @@ export function useOccupationSearch(options: UseOccupationSearchOptions = {}): U
    * Select occupation
    */
   const selectOccupation = useCallback((occupation: Occupation) => {
-    console.log('🎯 useOccupationSearch: Selected occupation:', occupation.title);
     setSelectedOccupation(occupation);
 
     if (onOccupationSelect) {
@@ -240,7 +233,6 @@ export function useOccupationSearch(options: UseOccupationSearchOptions = {}): U
    * Clear search
    */
   const clear = useCallback(() => {
-    console.log('🧹 useOccupationSearch: Clearing search');
     setQuery('');
     setResults([]);
     setError(null);

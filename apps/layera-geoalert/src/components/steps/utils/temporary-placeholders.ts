@@ -6,7 +6,7 @@
  */
 
 // Temporary placeholder για getCardsForStep
-export const getCardsForStep = (stepId: string): any[] => {
+export const getCardsForStep = (stepId: string): unknown[] => {
   console.warn(`⚠️ Temporary placeholder: getCardsForStep('${stepId}') - should be replaced with StepOrchestrator cards`);
   return [];
 };
@@ -14,9 +14,9 @@ export const getCardsForStep = (stepId: string): any[] => {
 // Temporary placeholder για CardConfig type
 export interface CardConfig {
   id: string;
-  component: any;
+  component: unknown;
   order: number;
-  conditions?: any[];
+  conditions?: unknown[];
 }
 
 // Temporary placeholder για CardId type

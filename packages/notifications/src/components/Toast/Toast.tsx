@@ -17,13 +17,13 @@ export const Toast: React.FC<ToastProps> = ({
 
   useEffect(() => {
     // Trigger enter animation
-    const timer = setTimeout(() => setIsVisible(true), 10);
+    const timer = setTimeout((): void => setIsVisible(true), 10);
     return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
     if (!notification.persistent && notification.duration > 0) {
-      const timer = setTimeout(() => {
+      const timer = setTimeout((): void => {
         handleDismiss();
       }, notification.duration);
 
@@ -31,21 +31,21 @@ export const Toast: React.FC<ToastProps> = ({
     }
   }, [notification.duration, notification.persistent]);
 
-  const handleDismiss = () => {
+  const handleDismiss = (): void => {
     setIsExiting(true);
-    setTimeout(() => {
+    setTimeout((): void => {
       onDismiss(notification.id);
     }, 300);
   };
 
-  const handleActionClick = () => {
+  const handleActionClick = (): void => {
     if (notification.action) {
       notification.action.onClick();
       handleDismiss();
     }
   };
 
-  const getTypeIcon = () => {
+  const getTypeIcon = (): void => {
     if (notification.icon) return notification.icon;
 
     switch (notification.type) {

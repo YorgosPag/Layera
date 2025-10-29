@@ -42,7 +42,7 @@ export const SimpleTolgeeProvider: React.FC<SimpleTolgeeProviderProps> = ({
 
   // Handle language changes
   useEffect(() => {
-    const handleStorageChange = () => {
+    const handleStorageChange = (): void => {
       const newLang = localStorage.getItem('i18nextLng') || 'el'; // LEGACY: backward compatibility
       tolgee.changeLanguage(newLang);
     };

@@ -10,7 +10,7 @@ import { useNotifications } from '@layera/notifications';
  * Core measurement hook για το geo-drawing system
  * Μεταφέρθηκε και βελτιώθηκε από OLD_geo-canvas
  */
-export const useMeasurement = () => {
+export const useMeasurement = (): void => {
   const { t } = useLayeraTranslation();
   const { addNotification } = useNotifications();
   const { formatDistanceWithLabels, formatAreaWithLabels } = useMeasurementFormatter();

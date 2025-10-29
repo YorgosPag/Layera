@@ -12,7 +12,7 @@ export interface ReviewStepProps extends StepProps {
   onReviewAction?: (action: ReviewType) => void;
 
   /** Final submission handler */
-  onSubmit?: (context: any) => void;
+  onSubmit?: (context: Record<string, unknown>) => void;
 
   /** Edit handler για specific step */
   onEditStep?: (stepId: string) => void;

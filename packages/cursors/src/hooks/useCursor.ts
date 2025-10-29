@@ -120,7 +120,7 @@ export const useLoadingCursor = (isLoading: boolean = false, showProgress: boole
 /**
  * Hook για complete cursor system access
  */
-export const useCursorSystem = () => {
+export const useCursorSystem = (): void => {
   return useMemo(() => ({
     // Scale access
     scale: CURSOR_SCALE,
@@ -223,7 +223,7 @@ export const useConditionalCursor = (conditions: Array<{
 /**
  * Hook για context-aware cursor (μελλοντική χρήση με context providers)
  */
-export const useContextCursor = () => {
+export const useContextCursor = (): void => {
   // Placeholder για μελλοντική υλοποίηση με React Context
   return useMemo(() => ({
     // Global cursor context

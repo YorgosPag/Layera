@@ -58,7 +58,6 @@ stepRegistry.register({
         title: 'Προεπισκόπηση',
         icon: React.createElement(EyeIcon, { size: 'md', theme: 'info' }),
         onReviewAction: (action, stepId) => {
-          console.log('Preview review action:', action, stepId);
         }
       }),
       order: 1
@@ -78,7 +77,6 @@ stepRegistry.register({
         title: 'Επεξεργασία',
         icon: React.createElement(EditIcon, { size: 'md', theme: 'warning' }),
         onReviewAction: (action, stepId) => {
-          console.log('Edit review action:', action, stepId);
         }
       }),
       order: 2
@@ -98,7 +96,6 @@ stepRegistry.register({
         title: 'Επιβεβαίωση',
         icon: React.createElement(CheckIcon, { size: 'md', theme: 'success' }),
         onReviewAction: (action, stepId) => {
-          console.log('Confirm review action:', action, stepId);
         }
       }),
       order: 3
@@ -109,8 +106,6 @@ stepRegistry.register({
     estimatedTime: 10 // 10 seconds average for final review
   }
 });
-
-
 
 // 🎯 CLEAN EXPORTS
 export { ReviewStep } from './ReviewStep';

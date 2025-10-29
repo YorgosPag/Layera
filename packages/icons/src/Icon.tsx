@@ -117,7 +117,7 @@ export const Icon: React.FC<IconProps> = ({
       onClick={onClick}
       role={onClick ? 'button' : 'img'}
       tabIndex={onClick ? 0 : undefined}
-      onKeyDown={onClick ? (e) => {
+      onKeyDown={onClick ? (e: React.FormEvent<HTMLFormElement>) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           onClick();

@@ -39,7 +39,6 @@ stepRegistry.register({
         title: 'Ενοικίαση',
         icon: null, // React.createElement(RentIcon, { size: 'md', theme: 'neutral' }),
         onTransactionSelect: (transactionType) => {
-          console.log('Rent transaction selected:', transactionType);
         }
       }),
       order: 1,
@@ -59,7 +58,6 @@ stepRegistry.register({
         title: 'Πώληση',
         icon: null, // React.createElement(SaleIcon, { size: 'md', theme: 'neutral' }),
         onTransactionSelect: (transactionType) => {
-          console.log('Sale transaction selected:', transactionType);
         }
       }),
       order: 2,
@@ -79,7 +77,6 @@ stepRegistry.register({
         title: 'Πλήρης Απασχόληση',
         icon: null, // React.createElement(FullTimeIcon, { size: 'md', theme: 'neutral' }),
         onTransactionSelect: (transactionType) => {
-          console.log('Full time transaction selected:', transactionType);
         }
       }),
       order: 1,
@@ -99,7 +96,6 @@ stepRegistry.register({
         title: 'Μερική Απασχόληση',
         icon: null, // React.createElement(PartTimeIcon, { size: 'md', theme: 'neutral' }),
         onTransactionSelect: (transactionType) => {
-          console.log('Part time transaction selected:', transactionType);
         }
       }),
       order: 2,
@@ -116,8 +112,6 @@ stepRegistry.register({
     estimatedTime: 3 // 3 seconds average
   }
 });
-
-
 
 // 🎯 CLEAN EXPORTS
 export { TransactionStep } from './TransactionStep';

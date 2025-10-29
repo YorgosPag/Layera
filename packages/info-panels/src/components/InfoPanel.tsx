@@ -87,11 +87,11 @@ export const InfoPanel = React.memo<InfoPanelProps>(({
 
     const previousPointerEvents = mapElement.style.pointerEvents;
 
-    const handlePanelEnter = () => {
+    const handlePanelEnter = (): void => {
       mapElement.style.pointerEvents = 'none';
     };
 
-    const handlePanelLeave = () => {
+    const handlePanelLeave = (): void => {
       mapElement.style.pointerEvents = previousPointerEvents;
     };
 
@@ -125,7 +125,7 @@ export const InfoPanel = React.memo<InfoPanelProps>(({
 
     if (!leafletMap) return;
 
-    const handlePanelEnter = () => {
+    const handlePanelEnter = (): void => {
       try {
         leafletMap.dragging?.disable();
         leafletMap.boxZoom?.disable();
@@ -137,7 +137,7 @@ export const InfoPanel = React.memo<InfoPanelProps>(({
       }
     };
 
-    const handlePanelLeave = () => {
+    const handlePanelLeave = (): void => {
       try {
         leafletMap.dragging?.enable();
         leafletMap.boxZoom?.enable();
@@ -218,7 +218,7 @@ export const InfoPanel = React.memo<InfoPanelProps>(({
         overflow: mobileStyles.overflow as 'auto',
         zIndex: mobileStyles.zIndex
       }}
-      onClick={(e) => e.stopPropagation()}
+      onClick={(e: React.FormEvent<HTMLFormElement>) => e.stopPropagation()}
     >
       {/* Close button */}
       <button

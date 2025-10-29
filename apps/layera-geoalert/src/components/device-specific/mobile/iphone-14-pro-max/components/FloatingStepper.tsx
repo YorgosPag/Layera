@@ -125,7 +125,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   const currentStepData = steps[effectiveStepIndex] || steps[0];
 
   // Function για να επιστρέφει τα σωστά χρώματα ανάλογα με την κατηγορία
-  const getStepperColors = () => {
+  const getStepperColors = (): void => {
     if (selectedCategory === 'property') {
       return {
         backgroundColor: COLORS.categories.property.primary,
@@ -152,7 +152,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   const stepperColors = getStepperColors();
 
   // Function για να επιστρέφει τον τίτλο με prefix κατηγορίας
-  const getStepTitle = () => {
+  const getStepTitle = (): void => {
     const baseTitle = currentStepData?.shortTitle || t('pipeline.step.unknown');
 
     // Αν είμαστε στο category step, δεν χρειάζεται prefix
@@ -319,7 +319,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   };
 
   // Handle previous button - Enterprise Auto-Navigation
-  const handlePrevious = () => {
+  const handlePrevious = (): void => {
     if ('vibrate' in navigator) {
       navigator.vibrate(50);
     }
@@ -344,7 +344,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
 
 
   // Handle reset button - Enterprise Reset
-  const handleReset = () => {
+  const handleReset = (): void => {
     if ('vibrate' in navigator) {
       navigator.vibrate(50);
     }
@@ -361,7 +361,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   };
 
   // Handle opacity toggle - Cards transparency control με 3 modes
-  const handleOpacityToggle = () => {
+  const handleOpacityToggle = (): void => {
     if ('vibrate' in navigator) {
       navigator.vibrate(30);
     }
@@ -398,7 +398,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
             <Box
               key={step.id}
               style={getProgressDotStyle(index)}
-              onClick={() => handleStepDotClick(index)}
+              onClick={(): void => handleStepDotClick(index)}
               title={step.title}
             />
           ))}
@@ -413,12 +413,12 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
         <button
           style={previousButtonStyles}
           onClick={handlePrevious}
-          onTouchStart={(e) => {
+          onTouchStart={(e: React.FormEvent<HTMLFormElement>) => {
             if (canActuallyGoPrevious) {
               e.currentTarget.style.transform = 'scale(0.95)';
             }
           }}
-          onTouchEnd={(e) => {
+          onTouchEnd={(e: React.FormEvent<HTMLFormElement>) => {
             e.currentTarget.style.transform = 'scale(1)';
           }}
         >
@@ -428,10 +428,10 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
         <button
           style={getToggleButtonStyles()}
           onClick={handleOpacityToggle}
-          onTouchStart={(e) => {
+          onTouchStart={(e: React.FormEvent<HTMLFormElement>) => {
             e.currentTarget.style.transform = 'scale(0.95)';
           }}
-          onTouchEnd={(e) => {
+          onTouchEnd={(e: React.FormEvent<HTMLFormElement>) => {
             e.currentTarget.style.transform = 'scale(1)';
           }}
           title={
@@ -449,12 +449,12 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
           style={resetButtonStyles}
           onClick={handleReset}
           disabled={!onReset}
-          onTouchStart={(e) => {
+          onTouchStart={(e: React.FormEvent<HTMLFormElement>) => {
             if (onReset) {
               e.currentTarget.style.transform = 'scale(0.95)';
             }
           }}
-          onTouchEnd={(e) => {
+          onTouchEnd={(e: React.FormEvent<HTMLFormElement>) => {
             e.currentTarget.style.transform = 'scale(1)';
           }}
           title={t('actions.reset-show-add-button')}

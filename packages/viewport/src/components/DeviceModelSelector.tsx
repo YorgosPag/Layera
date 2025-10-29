@@ -86,7 +86,6 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
   const [isDragging, setIsDragging] = useState(false);
 
   React.useEffect(() => {
-    console.log('🎯 DeviceModelSelector mounted! Samsung Galaxy A35 should be available.');
   }, []);
 
   const deviceCategories = {
@@ -129,7 +128,7 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
         setPosition({ x: newX, y: newY });
       };
 
-      const handleMouseUp = () => {
+      const handleMouseUp = (): void => {
         setIsDragging(false);
         document.removeEventListener('mousemove', handleMouseMove);
         document.removeEventListener('mouseup', handleMouseUp);
@@ -161,7 +160,7 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
         transition: isDragging ? 'none' : 'all 0.2s ease'
       }}>
       <button
-        onClick={() => !isDragging && setIsOpen(!isOpen)}
+        onClick={(): void => !isDragging && setIsOpen(!isOpen)}
         style={{
           background: currentModel ? 'var(--la-color-primary, var(--color-semantic-info-border))' : 'var(--la-color-neutral, var(--color-text-secondary))',
           color: 'var(--la-color-white, var(--color-text-on-primary))',
@@ -197,7 +196,7 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
           overflowY: 'auto'
         }}>
           <button
-            onClick={() => {
+            onClick={(): void => {
               onModelSelect(null);
               setIsOpen(false);
             }}
@@ -232,10 +231,10 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
               }}>
                 {category}
               </div>
-              {devices.map((device) => (
+              {devices.map((device: unknown) => (
                 <button
                   key={device}
-                  onClick={() => {
+                  onClick={(): void => {
                     onModelSelect(device);
                     setIsOpen(false);
                   }}
@@ -252,12 +251,12 @@ export const DeviceModelSelector: React.FC<DeviceModelSelectorProps> = ({
                     transition: 'background 0.2s',
                     whiteSpace: 'nowrap' // Αποτρέπει το αναδίπλωμα device names
                   }}
-                  onMouseOver={(e) => {
+                  onMouseOver={(e: React.FormEvent<HTMLFormElement>) => {
                     if (currentModel !== device) {
                       e.currentTarget.style.background = 'var(--la-bg-hover, var(--la-color-surface-hover))';
                     }
                   }}
-                  onMouseOut={(e) => {
+                  onMouseOut={(e: React.FormEvent<HTMLFormElement>) => {
                     if (currentModel !== device) {
                       e.currentTarget.style.background = 'var(--la-color-surface)';
                     }

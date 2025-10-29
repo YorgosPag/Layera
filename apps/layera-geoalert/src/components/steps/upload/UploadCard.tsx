@@ -33,7 +33,6 @@ export const UploadCard: React.FC<UploadCardProps> = ({
   };
 
   const handleFilesAdded = (files: File[]) => {
-    console.log(`📎 Files added to upload queue: ${files.length} files`);
     // Convert File[] to FileList for backward compatibility if needed
     // In a real enterprise system, this would be handled by the parent component
     const fileList = files as unknown as FileList;

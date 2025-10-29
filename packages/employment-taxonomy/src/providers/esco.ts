@@ -38,7 +38,6 @@ export class ESCOProvider {
     if (this.config.enableCache) {
       const cached = this.getFromCache<ESCOSearchResponse>(cacheKey);
       if (cached) {
-        console.log('🎯 ESCO: Cache hit for search:', request.text);
         return cached;
       }
     }
@@ -59,10 +58,8 @@ export class ESCOProvider {
     const url = `${this.config.baseUrl}/search?${params.toString()}`;
 
     try {
-      console.log('🔍 ESCO API: Searching for:', request.text);
-
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), this.config.timeout);
+      const timeoutId = setTimeout((): void => controller.abort(), this.config.timeout);
 
       const response = await fetch(url, {
         method: 'GET',
@@ -102,8 +99,6 @@ export class ESCOProvider {
       if (this.config.enableCache) {
         this.setCache(cacheKey, searchResponse);
       }
-
-      console.log(`✅ ESCO API: Found ${searchResponse.results.length} results`);
       return searchResponse;
 
     } catch (error) {
@@ -175,9 +170,8 @@ export class ESCOProvider {
    * Get occupation hierarchy/taxonomy
    */
   async getHierarchy(language?: string): Promise<unknown> {
-    // TODO: Implement hierarchy fetching
+    // FIXME: Implement hierarchy fetching - API implementation pending
     // This would fetch the ESCO occupation taxonomy structure
-    console.log('🔄 ESCO: Fetching hierarchy for language:', language);
     return {};
   }
 
@@ -188,7 +182,7 @@ export class ESCOProvider {
     return results.map(result => this.transformSearchResult(result));
   }
 
-  private transformSearchResult(result: any): ESCOOccupation | ESCOSkill {
+  private transformSearchResult(result: unknown): ESCOOccupation | ESCOSkill {
     // Basic transformation από ESCO API format
     if (result._type === 'Occupation') {
       return this.transformOccupation(result);
@@ -197,7 +191,7 @@ export class ESCOProvider {
     }
   }
 
-  private transformOccupation(data: any): ESCOOccupation {
+  private transformOccupation(data: unknown): ESCOOccupation {
     return {
       uri: data.uri || data._id,
       uuid: data.uuid || this.extractUuidFromUri(data.uri),
@@ -213,7 +207,7 @@ export class ESCOProvider {
     };
   }
 
-  private transformSkill(data: any): ESCOSkill {
+  private transformSkill(data: unknown): ESCOSkill {
     return {
       uri: data.uri || data._id,
       uuid: data.uuid || this.extractUuidFromUri(data.uri),

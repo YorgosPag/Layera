@@ -24,12 +24,12 @@ export function useDeviceDetection(
     adapter.detectiPhone14ProMax(options)
   );
 
-  const refresh = () => {
+  const refresh = (): void => {
     setResult(adapter.detectiPhone14ProMax(options));
   };
 
   useEffect(() => {
-    const handleResize = () => {
+    const handleResize = (): void => {
       refresh();
     };
 

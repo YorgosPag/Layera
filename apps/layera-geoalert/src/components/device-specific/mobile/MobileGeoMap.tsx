@@ -48,13 +48,12 @@ export const MobileGeoMap: React.FC<MobileGeoMapProps> = () => {
           cursor="pointer"
           boxShadow="shadowSuccess"
           minHeight={`${UI_CONFIG.mobileGeoMap.button.minHeight}px`}
-        onClick={() => {
-          console.log('Mobile: Property selected');
+        onClick={(): void => {
         }}
-        onMouseOver={(e) => {
+        onMouseOver={(e: React.FormEvent<HTMLFormElement>) => {
           e.currentTarget.style.backgroundColor = COLORS.categories.property.dark;
         }}
-        onMouseOut={(e) => {
+        onMouseOut={(e: React.FormEvent<HTMLFormElement>) => {
           e.currentTarget.style.backgroundColor = COLORS.categories.property.light;
         }}
         >
@@ -80,13 +79,12 @@ export const MobileGeoMap: React.FC<MobileGeoMapProps> = () => {
           cursor="pointer"
           boxShadow="shadowInfo"
           minHeight={`${UI_CONFIG.mobileGeoMap.button.minHeight}px`}
-        onClick={() => {
-          console.log('Mobile: Job selected');
+        onClick={(): void => {
         }}
-        onMouseOver={(e) => {
+        onMouseOver={(e: React.FormEvent<HTMLFormElement>) => {
           e.currentTarget.style.backgroundColor = COLORS.categories.job.dark;
         }}
-        onMouseOut={(e) => {
+        onMouseOut={(e: React.FormEvent<HTMLFormElement>) => {
           e.currentTarget.style.backgroundColor = COLORS.categories.job.light;
         }}
         >

@@ -78,7 +78,7 @@ export const useProgressStepper = ({
   const resetStepper = useCallback(() => {
     setActiveStep(initialActiveStep);
     setSteps(
-      initialSteps.map((step) => ({
+      initialSteps.map((step: unknown) => ({
         ...step,
         completed: false,
         error: false,

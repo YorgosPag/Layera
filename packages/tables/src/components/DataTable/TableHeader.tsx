@@ -80,7 +80,7 @@ export const TableHeader = <T,>({
           </th>
         )}
 
-        {columns.map((column) => {
+        {columns.map((column: unknown) => {
           const resolvedTitle = column.titleKey ? t(column.titleKey) : column.title;
 
           return (
