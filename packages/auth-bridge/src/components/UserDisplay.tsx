@@ -97,7 +97,7 @@ export function UserDisplay({
   /**
    * Renders ρόλο βάσει format
    */
-  const renderRole = (): void => {
+  const renderRole = (): React.ReactElement => {
     const role = user.layeraClaims.role;
     const label = ROLE_LABELS[role];
 

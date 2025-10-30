@@ -164,23 +164,25 @@ function calculateSimilarity(str1: string, str2: string): number {
  * Levenshtein distance algorithm
  */
 function levenshteinDistance(str1: string, str2: string): number {
-  const matrix = Array(str2.length + 1).fill(null).map(() => Array(str1.length + 1).fill(null));
+  const matrix = Array(str2.length + 1).fill(null).map(() => Array(str1.length + 1).fill(0));
 
-  for (let i = 0; i <= str1.length; i++) matrix[0][i] = i;
-  for (let j = 0; j <= str2.length; j++) matrix[j][0] = j;
+  for (let i = 0; i <= str1.length; i++) matrix[0]![i] = i;
+  for (let j = 0; j <= str2.length; j++) matrix[j]![0] = j;
 
   for (let j = 1; j <= str2.length; j++) {
     for (let i = 1; i <= str1.length; i++) {
       const cost = str1[i - 1] === str2[j - 1] ? 0 : 1;
-      matrix[j][i] = Math.min(
-        matrix[j][i - 1] + 1,     // deletion
-        matrix[j - 1][i] + 1,     // insertion
-        matrix[j - 1][i - 1] + cost // substitution
+      const row = matrix[j]!;
+      const prevRow = matrix[j - 1]!;
+      row[i] = Math.min(
+        row[i - 1]! + 1,     // deletion
+        prevRow[i]! + 1,     // insertion
+        prevRow[i - 1]! + cost // substitution
       );
     }
   }
 
-  return matrix[str2.length][str1.length];
+  return matrix[str2.length]![str1.length]!;
 }
 
 /**
@@ -202,20 +204,27 @@ export function processDisplayNameToHierarchy(displayName: string): string {
   // Βρες postal code
   const postalIndex = parts.findIndex(part => /^\d{3,5}(-\d{4})?$/.test(part));
   if (postalIndex !== -1) {
-    postalCode = parts[postalIndex];
+    const postal = parts[postalIndex];
+    if (postal) {
+      postalCode = postal;
+    }
   }
 
   // Βρες οδό με αριθμό (πρώτο part που έχει αριθμό)
   const streetIndex = parts.findIndex(part => /^.*?\s*\d+/.test(part));
   if (streetIndex !== -1) {
-    streetWithNumberAndPostal = postalCode
-      ? `${parts[streetIndex]}, ${postalCode}`
-      : parts[streetIndex];
+    const street = parts[streetIndex];
+    if (street) {
+      streetWithNumberAndPostal = postalCode
+        ? `${street}, ${postalCode}`
+        : street;
+    }
   }
 
   // Μάζεψε όλα τα άλλα parts (εκτός από οδό και postal code)
   for (let i = 0; i < parts.length; i++) {
     const part = parts[i];
+    if (!part) continue;
 
     // Skip postal codes
     if (/^\d{3,5}(-\d{4})?$/.test(part)) continue;

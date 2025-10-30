@@ -164,24 +164,36 @@ async function fetchLocalBoundary(
 export const fetchBuildingOutlines = async () => ({ type: 'FeatureCollection', features: [] });
 export const fetchAdministrativeBoundary = async () => ({ type: 'FeatureCollection', features: [] });
 export const clearOSMCache = async () => {};
-export const getCacheSize = (): void => 0;
-export const isBoundsCached = (): void => false;
+export const getCacheSize = (): number => 0;
+export const isBoundsCached = (): boolean => false;
 export const prefetchBuildingOutlines = async () => {};
+
+// Types for OSM elements
+interface OSMGeometry {
+  lat: number;
+  lon: number;
+}
+
+interface OSMElement {
+  type: 'relation' | 'way' | 'node';
+  geometry?: OSMGeometry[];
+}
 
 /**
  * Convert OSM geometry to GeoJSON geometry
  */
 function convertOSMGeometry(element: unknown): unknown {
-  if (!element.geometry) return null;
+  const osmElement = element as OSMElement;
+  if (!osmElement.geometry) return null;
 
-  if (element.type === 'relation') {
+  if (osmElement.type === 'relation') {
     // For relations, try to build polygon from ways
     const coordinates: number[][][] = [];
 
-    if (element.geometry && element.geometry.length > 0) {
+    if (osmElement.geometry && osmElement.geometry.length > 0) {
       const outerRing: number[][] = [];
 
-      element.geometry.forEach((geom: unknown) => {
+      osmElement.geometry.forEach((geom: OSMGeometry) => {
         if (geom.lat && geom.lon) {
           outerRing.push([geom.lon, geom.lat]);
         }
@@ -189,9 +201,11 @@ function convertOSMGeometry(element: unknown): unknown {
 
       if (outerRing.length > 2) {
         // Close the ring if needed
-        if (outerRing[0][0] !== outerRing[outerRing.length - 1][0] ||
-            outerRing[0][1] !== outerRing[outerRing.length - 1][1]) {
-          outerRing.push([...outerRing[0]]);
+        const firstPoint = outerRing[0];
+        const lastPoint = outerRing[outerRing.length - 1];
+        if (firstPoint && lastPoint &&
+            (firstPoint[0] !== lastPoint[0] || firstPoint[1] !== lastPoint[1])) {
+          outerRing.push([...firstPoint]);
         }
         coordinates.push(outerRing);
       }
@@ -205,11 +219,11 @@ function convertOSMGeometry(element: unknown): unknown {
     }
   }
 
-  if (element.type === 'way') {
+  if (osmElement.type === 'way') {
     const coordinates: number[][] = [];
 
-    if (element.geometry) {
-      element.geometry.forEach((geom: unknown) => {
+    if (osmElement.geometry) {
+      osmElement.geometry.forEach((geom: OSMGeometry) => {
         if (geom.lat && geom.lon) {
           coordinates.push([geom.lon, geom.lat]);
         }
@@ -218,9 +232,11 @@ function convertOSMGeometry(element: unknown): unknown {
 
     if (coordinates.length > 2) {
       // Close the ring if needed for polygon
-      if (coordinates[0][0] !== coordinates[coordinates.length - 1][0] ||
-          coordinates[0][1] !== coordinates[coordinates.length - 1][1]) {
-        coordinates.push([...coordinates[0]]);
+      const firstCoord = coordinates[0];
+      const lastCoord = coordinates[coordinates.length - 1];
+      if (firstCoord && lastCoord &&
+          (firstCoord[0] !== lastCoord[0] || firstCoord[1] !== lastCoord[1])) {
+        coordinates.push([...firstCoord]);
       }
 
       return {

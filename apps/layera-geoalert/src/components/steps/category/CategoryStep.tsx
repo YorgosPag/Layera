@@ -12,7 +12,7 @@ import { useLayeraTranslation } from '@layera/tolgee';
 import { BaseCard } from '@layera/cards';
 import { Box } from '@layera/layout';
 import { VillaIcon, BriefcaseIcon } from '@layera/icons';
-// REMOVED: useNavigation - Replaced με StepOrchestrator για clean enterprise architecture
+// REMOVED: custom navigation hook - StepOrchestrator handles all navigation
 import { InfoPanel } from '@layera/info-panels';
 import {
   GEOALERT_INFO_CONTENT,
@@ -38,7 +38,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
   deviceProps = {}
 }) => {
   const { t } = useLayeraTranslation();
-  // REMOVED: useNavigation hook - Clean enterprise architecture με μόνο StepOrchestrator
+  // REMOVED: custom navigation hook - CLEAN enterprise architecture με μόνο StepOrchestrator
 
   // Enterprise LEGO Layout System
   const { utils } = useGeoAlertLayout();
@@ -79,29 +79,30 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
     }
   }, [infoContentProvider]);
 
-  // TEMPORARY bridge handler - ενημερώνει ΚΑΙ StepOrchestrator ΚΑΙ NavigationService
+  // ✅ ENTERPRISE CLEAN: Single Source of Truth - μόνο StepOrchestrator navigation
   const handleCategorySelection = useCallback(async (category: CategoryType) => {
     if (process.env.NODE_ENV === 'development') {
+      console.log(`CategoryStep: Selecting category: ${category}`);
     }
 
     try {
-      // 1. ENTERPRISE CLEAN: Μόνο StepOrchestrator για clean architecture
+      // 1. StepOrchestrator notification με selected category data
       if (onStepComplete) {
         onStepComplete('category', {
           selectedCategory: category
         });
       }
 
-      // 2. Legacy callback
+      // 2. Legacy callback για backward compatibility
       onCategorySelected?.(category);
 
-      // 3. CLEAN ENTERPRISE NAVIGATION: Μόνο StepOrchestrator
+      // 3. ✅ CLEAN ENTERPRISE NAVIGATION: StepOrchestrator handles via @layera/navigation-handlers
       onNext?.();
 
     } catch (error) {
       console.error('Category selection failed:', error);
     }
-  }, [onStepComplete, onCategorySelected]);
+  }, [onStepComplete, onCategorySelected, onNext]);
 
   if (!isVisible) {
     return null;

@@ -238,7 +238,7 @@ export function AddressBreakdownCard({
             fontSize: 'var(--la-font-size-sm)',
             color: isClickable ? 'var(--la-text-primary)' : 'var(--la-text-secondary)',
             fontWeight: isClickable ? 'var(--la-font-weight-medium, 500)' : 'var(--la-font-weight-normal, 400)',
-            textAlign: 'var(--la-text-align-left, left)', // Ευθυγράμμιση κειμένου προς τα αριστερά
+            textAlign: 'left' as const, // Ευθυγράμμιση κειμένου προς τα αριστερά
             whiteSpace: 'var(--la-white-space-nowrap, nowrap)',
             overflow: 'var(--la-overflow-hidden, hidden)',
             textOverflow: 'var(--la-text-overflow-ellipsis, ellipsis)'

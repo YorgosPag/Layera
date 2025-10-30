@@ -3,7 +3,27 @@
     "allow": [
       "Bash(git tag:*)",
       "Bash(echo \"Exit code: $?\")",
-      "Bash(echo:*)"
+      "Bash(echo:*)",
+      "Read(//c/Users/user/Downloads/**)",
+      "Bash(npm run typecheck:*)",
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run dev:*)",
+      "Bash(kit:*)",
+      "Bash(npx:*)",
+      "Bash(findstr:*)",
+      "Bash(mkdir:*)",
+      "Bash(npm create:*)",
+      "Bash(start http://localhost:3001)",
+      "Bash(npm run build:*)",
+      "Bash(start http://localhost:3003)",
+      "Bash(npm init:*)",
+      "Bash(start http://localhost:5173)",
+      "Bash(git add:*)",
+      "Bash(git reset:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git remote add:*)"
     ],
     "deny": [],
     "ask": []

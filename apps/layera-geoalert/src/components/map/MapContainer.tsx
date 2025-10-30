@@ -12,7 +12,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { MapProvider, useMap } from '@layera/map-core';
-import { useDrawing, DrawingMode } from '@layera/geo-drawing';
+// TEMPORARILY DISABLED: import { useDrawing, DrawingMode } from '@layera/geo-drawing';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import { Flex, FlexCenter } from '@layera/layout';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
@@ -326,21 +326,28 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
     };
   }, [map]);
 
-  // Drawing functionality - pass map instance directly
-  const {
-    setDrawingMode,
-    currentMode,
-    drawnAreas,
-    clearAll
-  } = useDrawing({
-    config: {
-      enablePolygon: true,
-      enableMarker: true,
-      defaultCategory: 'real_estate'
-    },
-    onAreaCreated,
-    map // Pass map instance directly
-  });
+  // TEMPORARILY DISABLED: Drawing functionality
+  // const {
+  //   setDrawingMode,
+  //   currentMode,
+  //   drawnAreas,
+  //   clearAll
+  // } = useDrawing({
+  //   config: {
+  //     enablePolygon: true,
+  //     enableMarker: true,
+  //     defaultCategory: 'real_estate'
+  //   },
+  //   onAreaCreated,
+  //   map // Pass map instance directly
+  // });
+
+  // Temporary placeholders for disabled functionality
+  type DrawingMode = 'disabled' | 'polygon' | 'marker';
+  const setDrawingMode = (_mode: DrawingMode) => {};
+  const currentMode: DrawingMode = 'disabled';
+  const drawnAreas: unknown[] = [];
+  const clearAll = () => {};
 
   const handleDrawingModeChange = (mode: DrawingMode) => {
     setDrawingMode(mode);

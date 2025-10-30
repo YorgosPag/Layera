@@ -73,13 +73,17 @@ export function TotpSetup({
   /**
    * Αντιγράφει το secret στο clipboard
    */
-  const copyToClipboard = async (text: string) => {
+  const copyToClipboard = async (text: string): Promise<void> => {
     try {
       await navigator.clipboard.writeText(text);
       alert('Αντιγράφηκε στο clipboard!');
     } catch (error) {
       console.error('Αποτυχία αντιγραφής:', error);
     }
+  };
+
+  const handleCopyClick = (text: string) => {
+    copyToClipboard(text).catch(console.error);
   };
 
   if (step === 'start') {
@@ -160,7 +164,7 @@ export function TotpSetup({
               <Box className="key-display">
                 <code>{setupData.manualEntryKey}</code>
                 <button
-                  onClick={(): void => copyToClipboard(setupData.secret)}
+                  onClick={() => handleCopyClick(setupData.secret)}
                   className="copy-btn"
                   title="Αντιγραφή"
                 >
@@ -181,7 +185,7 @@ export function TotpSetup({
               <input
                 type="text"
                 value={verificationCode}
-                onChange={(e: React.FormEvent<HTMLFormElement>) => setVerificationCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setVerificationCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
                 placeholder="123456"
                 className="totp-input"
                 maxLength={6}
@@ -211,7 +215,7 @@ export function TotpSetup({
               ))}
             </Box>
             <button
-              onClick={(): void => copyToClipboard(setupData.backupCodes.join('\n'))}
+              onClick={() => handleCopyClick(setupData.backupCodes.join('\n'))}
               className="copy-backup-btn"
             >
               Αντιγραφή όλων των backup codes
@@ -307,7 +311,7 @@ export function TotpVerification({
             <input
               type="text"
               value={code}
-              onChange={(e: React.FormEvent<HTMLFormElement>) => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
               placeholder="123456"
               className="totp-input"
               maxLength={6}
@@ -348,7 +352,7 @@ export function TotpVerification({
               id="backup-code"
               type="text"
               value={backupCode}
-              onChange={(e: React.FormEvent<HTMLFormElement>) => setBackupCode(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setBackupCode(e.target.value)}
               placeholder="ABCD1234"
               className="backup-input"
               autoComplete="off"
