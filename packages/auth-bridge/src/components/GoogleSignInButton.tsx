@@ -95,12 +95,12 @@ export function GoogleSignInButton({
       style={defaultStyle}
       onClick={handleClick}
       disabled={loading || externalDisabled}
-      onMouseEnter={(e: React.FormEvent<HTMLFormElement>) => {
+      onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
         if (!loading && !externalDisabled) {
           Object.assign(e.currentTarget.style, hoverStyle);
         }
       }}
-      onMouseLeave={(e: React.FormEvent<HTMLFormElement>) => {
+      onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
         if (!loading && !externalDisabled) {
           e.currentTarget.style.boxShadow = BOX_SHADOW_SCALE.none;
         }
@@ -109,11 +109,13 @@ export function GoogleSignInButton({
       {loading ? (
         <>
           <Box
-            width="var(--la-icon-size-md)"
-            height="var(--la-icon-size-md)"
-            border="2px solid var(--la-border-default)"
-            borderTop="2px solid var(--la-color-primary)"
-            borderRadius={BORDER_RADIUS_SCALE.CIRCLE}
+            style={{
+              width: "var(--la-icon-size-md)",
+              height: "var(--la-icon-size-md)",
+              border: "2px solid var(--la-border-default)",
+              borderTop: "2px solid var(--la-color-primary)",
+              borderRadius: `${BORDER_RADIUS_SCALE.CIRCLE}px`
+            }}
           />
           <span>Σύνδεση...</span>
         </>

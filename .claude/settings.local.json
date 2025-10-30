@@ -92,7 +92,14 @@
       "Bash(cat:*)",
       "WebSearch",
       "Bash(pnpm --filter @layera/tolgee build)",
-      "Bash(pnpm --filter @layera/forms build)"
+      "Bash(pnpm --filter @layera/forms build)",
+      "Bash(pnpm --filter @layera/auth-bridge build)",
+      "Bash(for dir in docs-enterprise/*/)",
+      "Bash(./organize-docs-manual.sh:*)",
+      "Bash(__NEW_LINE__ rm voithitika_docs/BASECARD_FEATURE_GAP_ANALYSIS.md voithitika_docs/BASECARD_UNIFICATION_ACTION_PLAN.md voithitika_docs/CARD_PATTERNS_ANALYSIS.md voithitika_docs/CATEGORY_CARD_MIGRATION_VALIDATION.md voithitika_docs/CURSOR_DEBUGGING_GUIDE.md voithitika_docs/DUPLICATE_ANALYSIS_REPORT.md voithitika_docs/DUPLICATE_PREVENTION_PROTOCOL.md voithitika_docs/ENTERPRISE_LEGO_COMPLIANCE_CRISIS_REPORT.md voithitika_docs/ENTERPRISE_MIGRATION_STRATEGY.md voithitika_docs/esco-demo-status.md voithitika_docs/GIT_ADD.md voithitika_docs/LEGO_SYSTEMS_ARCHITECTURE.md voithitika_docs/PATTERN_ANALYSIS_REPORT.md voithitika_docs/README_1.md voithitika_docs/README_2.md voithitika_docs/README_3.md voithitika_docs/responsive-info-icon-feedback.md voithitika_docs/SOS_CategorySteps.md voithitika_docs/TERMINOLOGY_RULES.md)",
+      "Bash(__NEW_LINE__ echo \"✅ Αρχεία διαγράφηκαν από voithitika_docs\")",
+      "Bash(move \"DOCUMENTATION_INDEX.md\" \"docs-enterprise\\01-overview\\DOCUMENTATION_INDEX.md\")",
+      "Bash(move \"C:\\layera\\CODE_EXAMPLES_VALIDATION_REPORT.json\" \"C:\\layera\\docs-enterprise\\09-validation\\code-quality\"\")"
     ],
     "deny": [],
     "ask": []

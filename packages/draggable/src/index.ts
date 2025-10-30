@@ -146,11 +146,11 @@ export const DRAGGABLE_DEFAULTS = {
 export const FAB_POSITIONS = {
   BOTTOM_RIGHT: { right: 15, bottom: 15 },
   BOTTOM_LEFT: { right: 15, bottom: 15 }, // Note: DraggableFAB uses right/bottom
-  BOTTOM_CENTER: { right: window?.innerWidth ? window.innerWidth / 2 - 28 : 200, bottom: 15 },
-  TOP_RIGHT: { right: 15, bottom: window?.innerHeight ? window.innerHeight - 71 : 600 },
+  BOTTOM_CENTER: { right: typeof window !== 'undefined' && window.innerWidth ? window.innerWidth / 2 - 28 : 200, bottom: 15 },
+  TOP_RIGHT: { right: 15, bottom: typeof window !== 'undefined' && window.innerHeight ? window.innerHeight - 71 : 600 },
   CENTER: {
-    right: window?.innerWidth ? window.innerWidth / 2 - 28 : 200,
-    bottom: window?.innerHeight ? window.innerHeight / 2 - 28 : 300
+    right: typeof window !== 'undefined' && window.innerWidth ? window.innerWidth / 2 - 28 : 200,
+    bottom: typeof window !== 'undefined' && window.innerHeight ? window.innerHeight / 2 - 28 : 300
   }
 } as const;
 

@@ -387,7 +387,7 @@ export const useTooltipShadow = (options: UseBoxShadowOptions = {}) => {
  */
 
 // Complete box shadow system hook
-export const useBoxShadowSystem = (): void => {
+export const useBoxShadowSystem = () => {
   return useMemo(() => COMPLETE_BOX_SHADOW_SYSTEM, []);
 };
 

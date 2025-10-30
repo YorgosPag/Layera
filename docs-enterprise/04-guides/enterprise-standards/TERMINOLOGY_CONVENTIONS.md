@@ -1,0 +1,440 @@
+# 🏷️ ENTERPRISE TERMINOLOGY CONVENTIONS
+**Γιώργου Παγώνη - Single Source of Truth για Naming Standards**
+
+## 🎯 **ΚΥΡΙΑ ΑΠΟΣΤΟΛΗ**
+Εξασφάλιση 100% συνέπειας στην τερμινολογία και naming conventions σε όλο το Layera ecosystem, με αυτόματη επιβολή μέσω validation scripts και CI/CD pipelines.
+
+---
+
+## 🚨 **ZERO TOLERANCE POLICY**
+**ΔΕΝ ΕΠΙΤΡΕΠΕΤΑΙ** καμία απόκλιση από τους καθορισμένους κανόνες. Κάθε παραβίαση αποτελεί **ΑΠΟΤΥΧΙΑ ENTERPRISE STANDARD** και θα αποκρούεται αυτόματα από τα validation systems.
+
+---
+
+## 📚 **SINGLE SOURCES OF TRUTH**
+
+### 🔧 **1. VALIDATION ENGINE**
+```bash
+# Κεντρικός έλεγχος τερμινολογίας
+node scripts/domains/docs/check-terminology.js
+
+# Automated enforcement
+scripts/domains/docs/shared/validation-rules.js
+```
+
+### 📊 **2. COMPLIANCE MONITORING**
+```bash
+# Παραγωγή compliance report
+TERMINOLOGY_VALIDATION_REPORT.json
+
+# Scoring system: 0-100%
+# - EXCELLENT: 90%+
+# - GOOD: 75-89%
+# - NEEDS_WORK: <75%
+```
+
+---
+
+## 🏗️ **CORE TERMINOLOGY STANDARDS**
+
+### **🎯 TIER 1: BRAND & PRODUCT NAMES (CRITICAL)**
+| **✅ ΣΩΣΤΟ** | **❌ ΑΠΑΓΟΡΕΥΜΕΝΟ** |
+|---|---|
+| **GeoAlert** | Geo Alert, geoalert, geo-alert |
+| **Layera** | LAYERA, layera |
+| **LayeraID** | Layera ID, layera-id, LayeraId |
+
+### **💻 TIER 2: TECHNICAL TERMINOLOGY (HIGH)**
+| **✅ ΣΩΣΤΟ** | **❌ ΑΠΑΓΟΡΕΥΜΕΝΟ** |
+|---|---|
+| **TypeScript** | Typescript, typescript, TS |
+| **JavaScript** | Javascript, javascript, JS |
+| **React** | react, REACT, React.js |
+| **Node.js** | nodejs, NodeJS, node |
+| **GitHub** | github, Github, GITHUB |
+| **npm** | NPM, Npm |
+
+### **🧩 TIER 3: LEGO SYSTEMS (CRITICAL)**
+| **✅ ΣΩΣΤΟ** | **❌ ΑΠΑΓΟΡΕΥΜΕΝΟ** |
+|---|---|
+| **@layera/package** | @Layera/package, layera-package |
+| **LEGO system** | lego system, Lego System |
+| **Single Source of Truth** | single source of truth, SSOT |
+| **enterprise-grade** | enterprise grade, Enterprise Grade |
+
+---
+
+## 🔥 **AUTOMATED ENFORCEMENT RULES**
+
+### **📝 1. CONSISTENT TERMINOLOGY**
+```javascript
+// Source: scripts/domains/docs/shared/validation-rules.js:220-225
+const TERMINOLOGY_RULES = {
+  consistent: {
+    'GeoAlert': ['Geo Alert', 'geoalert', 'geo-alert'],
+    'Layera': ['LAYERA', 'layera'],
+    'TypeScript': ['Typescript', 'typescript', 'TS'],
+    'JavaScript': ['Javascript', 'javascript', 'JS']
+  }
+};
+```
+
+### **🚫 2. PROHIBITED TERMS**
+```javascript
+// Source: scripts/domains/docs/shared/validation-rules.js:226-232
+const PROHIBITED_TERMS = [
+  'TODO',        // → "Implementation pending"
+  'FIXME',       // → "Requires refactoring"
+  'HACK',        // → "Temporary solution"
+  'XXX',         // → "Important note"
+  'lorem ipsum'  // → Real content required
+];
+```
+
+### **✅ 3. REQUIRED ENTERPRISE TERMS**
+```javascript
+// Source: scripts/domains/docs/shared/validation-rules.js:233-237
+const REQUIRED_TERMS = [
+  'enterprise',
+  'LEGO system',
+  'Single Source of Truth'
+];
+```
+
+---
+
+## 🎨 **CAPITALIZATION STANDARDS**
+
+### **📏 CONSISTENT FORMATTING**
+```typescript
+// ✅ ΣΩΣΤΟ - PascalCase για Components
+export const LayeraHeader = () => {};
+export const GeoAlertCard = () => {};
+
+// ✅ ΣΩΣΤΟ - camelCase για variables/functions
+const userPreferences = {};
+const handleGeoAlertUpdate = () => {};
+
+// ✅ ΣΩΣΤΟ - SCREAMING_SNAKE_CASE για constants
+const MAX_RETRY_ATTEMPTS = 3;
+const LAYERA_API_TIMEOUT = 5000;
+
+// ✅ ΣΩΣΤΟ - kebab-case για CSS classes/files
+.layera-component { }
+geo-alert-styles.css
+
+// ❌ ΛΑΘΟΣ - Inconsistent patterns
+const LayeraHeader = // PascalCase for non-components
+export const layeraheader = // lowercase for components
+const Max_Retry_Attempts = // mixed case constants
+.LayeraComponent { } // PascalCase CSS
+```
+
+---
+
+## 📦 **FILE & DIRECTORY NAMING**
+
+### **🗂️ DIRECTORY STRUCTURE**
+```bash
+# ✅ ENTERPRISE STANDARD
+packages/
+├── @layera/buttons/          # kebab-case, package scope
+├── @layera/geo-drawing/      # kebab-case with hyphens
+├── @layera/file-upload/      # descriptive, hyphenated
+apps/
+├── layera-geoalert/          # app prefix + core name
+├── layera-id/                # short, clear identity
+docs/
+├── enterprise/               # domain-based grouping
+├── core-systems/             # hyphenated categories
+```
+
+### **📄 FILE NAMING PATTERNS**
+```bash
+# ✅ COMPONENTS (PascalCase.tsx)
+LayeraHeader.tsx
+GeoAlertCard.tsx
+UserProfileModal.tsx
+
+# ✅ HOOKS (camelCase.ts)
+useLayeraAuth.ts
+useGeoAlertState.ts
+useMapInteraction.ts
+
+# ✅ UTILITIES (camelCase.ts)
+formatCoordinates.ts
+validateUserInput.ts
+parseGeoData.ts
+
+# ✅ CONSTANTS (SCREAMING_SNAKE_CASE.ts)
+API_ENDPOINTS.ts
+USER_ROLES.ts
+VALIDATION_RULES.ts
+
+# ✅ STYLES (kebab-case.css)
+layera-header.css
+geo-alert-card.css
+user-profile-modal.css
+
+# ✅ DOCUMENTATION (CAPS_WITH_UNDERSCORES.md)
+TERMINOLOGY_CONVENTIONS.md
+LEGO_SYSTEMS_REGISTRY.md
+ENTERPRISE_STANDARDS.md
+```
+
+---
+
+## 🔗 **PACKAGE & IMPORT NAMING**
+
+### **📦 LEGO PACKAGES IMPORTS**
+```typescript
+// ✅ TIER 1: CRITICAL SYSTEMS (Mandatory)
+import { AppShell, LayeraHeader, PageContainer } from '@layera/layout';
+import { DashboardCard, BaseCard } from '@layera/cards';
+import { HomeIcon, UserIcon, SettingsIcon } from '@layera/icons';
+import { SPACING_SCALE, Z_INDEX } from '@layera/constants';
+
+// ✅ TIER 2: HIGH-FREQUENCY (Required)
+import { Button } from '@layera/buttons';
+import { Text, Heading } from '@layera/typography';
+import { useLayeraTranslation } from '@layera/tolgee';
+
+// ❌ FORBIDDEN PATTERNS
+import Button from 'react-bootstrap/Button';  // Use @layera/buttons
+import { Card } from 'antd';                  // Use @layera/cards
+import styled from 'styled-components';       // Use design tokens
+```
+
+### **🎯 IMPORT ORDER & GROUPING**
+```typescript
+// 1. External libraries (alfabetically)
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+
+// 2. @layera packages (grouped by importance)
+import { AppShell, PageContainer } from '@layera/layout';
+import { Button } from '@layera/buttons';
+import { HomeIcon } from '@layera/icons';
+
+// 3. Relative imports (closest to furthest)
+import { UserService } from './services/UserService';
+import { validateInput } from '../utils/validation';
+import { CONFIG } from '../../config/constants';
+```
+
+---
+
+## 🌍 **INTERNATIONALIZATION (i18n) NAMING**
+
+### **🔑 TRANSLATION KEYS STRUCTURE**
+```json
+{
+  "auth": {
+    "login": {
+      "title": "Σύνδεση | Login",
+      "email": "Email",
+      "password": "Κωδικός | Password",
+      "submit": "Σύνδεση | Sign In",
+      "forgot": "Ξέχασα τον κωδικό | Forgot Password"
+    }
+  },
+  "geoAlert": {
+    "map": {
+      "drawing": {
+        "start": "Ξεκίνα Σχεδίαση | Start Drawing",
+        "finish": "Ολοκλήρωση | Finish",
+        "clear": "Καθαρισμός | Clear"
+      }
+    }
+  }
+}
+```
+
+### **📝 NAMING CONVENTIONS**
+```typescript
+// ✅ HIERARCHICAL STRUCTURE
+// domain.component.element.action
+"auth.login.form.submit"
+"geoAlert.map.toolbar.drawing"
+"user.profile.settings.update"
+
+// ✅ DESCRIPTIVE & CONSISTENT
+const { t } = useLayeraTranslation();
+return <Button>{t('auth.login.form.submit')}</Button>;
+
+// ❌ FORBIDDEN PATTERNS
+"loginSubmit"           // Too flat
+"LOGIN_SUBMIT_BUTTON"   // SCREAMING_SNAKE for keys
+"auth_login_submit"     // snake_case for keys
+```
+
+---
+
+## 🚀 **API & ENDPOINT NAMING**
+
+### **🌐 RESTful CONVENTIONS**
+```typescript
+// ✅ RESOURCE-BASED URLS
+GET    /api/v1/users
+POST   /api/v1/users
+GET    /api/v1/users/{id}
+PUT    /api/v1/users/{id}
+DELETE /api/v1/users/{id}
+
+// ✅ NESTED RESOURCES
+GET    /api/v1/users/{id}/geo-alerts
+POST   /api/v1/users/{id}/geo-alerts
+GET    /api/v1/geo-alerts/{id}/coordinates
+
+// ✅ ACTION ENDPOINTS (when REST isn't enough)
+POST   /api/v1/users/{id}/actions/reset-password
+POST   /api/v1/geo-alerts/{id}/actions/duplicate
+POST   /api/v1/maps/{id}/actions/export-pdf
+
+// ❌ FORBIDDEN PATTERNS
+/api/getUsers                    // Use GET /api/users
+/api/user_profile               // Use /api/users/{id}/profile
+/api/GeoAlert/CreateNew         // Use POST /api/geo-alerts
+```
+
+---
+
+## 📊 **VALIDATION & COMPLIANCE**
+
+### **🔍 AUTOMATED CHECKS**
+```bash
+# Daily compliance monitoring
+npm run terminology:check        # Έλεγχος συνέπειας
+npm run naming:validate         # Validation patterns
+npm run compliance:report       # Παραγωγή αναφοράς
+
+# CI/CD Integration
+.github/workflows/terminology-check.yml
+```
+
+### **📈 COMPLIANCE SCORING**
+```javascript
+// Target Scores (0-100%)
+{
+  "EXCELLENT": 90,    // Enterprise gold standard
+  "GOOD": 75,         // Minor improvements needed
+  "FAIR": 60,         // Significant work required
+  "NEEDS_WORK": 0     // Critical violations present
+}
+```
+
+### **🎯 SUCCESS METRICS**
+- **100% LEGO compliance** - No custom implementations
+- **Zero hardcoded strings** - All text via i18n
+- **Perfect naming consistency** - Automated validation passes
+- **Enterprise documentation** - All required sections complete
+
+---
+
+## 🛠️ **IMPLEMENTATION TOOLS**
+
+### **🔧 DEVELOPMENT UTILITIES**
+```bash
+# Automated fixing tools
+node scripts/domains/docs/fix-docs-violations.js
+node scripts/domains/i18n/fix-i18n-violations.js
+node scripts/domains/lego/fix-lego-violations.js
+
+# Real-time validation
+npm run dev:validate     # Watch mode validation
+npm run build:check      # Pre-build compliance
+```
+
+### **📋 VSCode Integration**
+```json
+// .vscode/settings.json
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.terminology": true,
+    "source.fixAll.naming": true
+  },
+  "layera.validation.enabled": true,
+  "layera.naming.enforce": true
+}
+```
+
+---
+
+## 🎯 **TEAM COORDINATION PROTOCOLS**
+
+### **👥 MULTI-DEVELOPER WORKFLOW**
+```markdown
+## PR Checklist - Terminology Compliance
+- [ ] Ran `npm run terminology:check` → 0 violations
+- [ ] No hardcoded strings (all via i18n)
+- [ ] LEGO systems usage only (no custom components)
+- [ ] Consistent naming throughout
+- [ ] Documentation updated if terminology added
+```
+
+### **🚨 CONFLICT RESOLUTION**
+```bash
+# When different developers use different terms:
+1. Check TERMINOLOGY_CONVENTIONS.md (this document)
+2. Run automated validation: npm run terminology:check
+3. Use officially approved term from validation-rules.js
+4. Update code to match Single Source of Truth
+5. If term missing: Add to validation-rules.js + update docs
+```
+
+---
+
+## 🔥 **ENFORCEMENT & GOVERNANCE**
+
+### **⚡ IMMEDIATE ACTIONS**
+1. **Pre-commit hooks** - Block violations before commit
+2. **CI/CD validation** - Fail builds on terminology errors
+3. **Automated fixes** - Apply corrections where possible
+4. **Compliance reports** - Daily monitoring dashboards
+
+### **📊 MONITORING DASHBOARD**
+```bash
+# Enterprise Compliance Status
+✅ Terminology Consistency: 98%
+✅ Naming Conventions: 95%
+✅ LEGO Systems Usage: 100%
+⚠️ i18n Coverage: 87% (needs improvement)
+```
+
+### **🎖️ EXCELLENCE STANDARDS**
+- **GOLD**: 95%+ compliance across all metrics
+- **SILVER**: 85%+ compliance, minor improvements
+- **BRONZE**: 75%+ compliance, significant work needed
+- **VIOLATION**: <75% compliance, immediate action required
+
+---
+
+## 📚 **REFERENCES & DEPENDENCIES**
+
+### **🔗 RELATED DOCUMENTATION**
+- `LEGO_SYSTEMS_REGISTRY.md` - Complete package registry
+- `scripts/domains/docs/shared/validation-rules.js` - Implementation rules
+- `ENTERPRISE_DEVELOPMENT_STANDARDS.md` - Overall standards
+- `.claude/CLAUDE.md` - Development protocols
+
+### **🛠️ TECHNICAL IMPLEMENTATION**
+- **Validation Engine**: `scripts/domains/docs/check-terminology.js`
+- **Rules Database**: `scripts/domains/docs/shared/validation-rules.js`
+- **Automated Fixes**: `scripts/domains/docs/fix-docs-violations.js`
+- **CI/CD Integration**: `.github/workflows/terminology-check.yml`
+
+---
+
+## 🏆 **SUCCESS COMMITMENT**
+
+**"Σέβομαι την ενότητα της τερμινολογίας ως θεμέλιο της enterprise excellence.
+Δεσμεύομαι για 100% συνέπεια στην naming conventions,
+αυτόματη validation, και continuous compliance monitoring.
+Single Source of Truth πάντα. Zero tolerance για αποκλίσεις."**
+
+---
+
+**📅 Document Version**: 1.0.0
+**🔄 Last Updated**: 2025-01-30
+**👨‍💼 Owner**: Γιώργος Παγώνης
+**🔍 Validation**: Automated via scripts/domains/docs/check-terminology.js
