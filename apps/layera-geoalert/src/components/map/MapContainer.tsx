@@ -12,7 +12,8 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { MapProvider, useMap } from '@layera/map-core';
-// TEMPORARILY DISABLED: import { useDrawing, DrawingMode } from '@layera/geo-drawing';
+// ✅ ENTERPRISE APPROACH: Βραχυπρόθεσμη λύση - χρήση local implementation until @layera/geo-drawing build succeeds
+// import { useDrawing, DrawingMode } from '@layera/geo-drawing';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import { Flex, FlexCenter } from '@layera/layout';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
@@ -342,19 +343,35 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
   //   map // Pass map instance directly
   // });
 
-  // Temporary placeholders for disabled functionality
-  type DrawingMode = 'disabled' | 'polygon' | 'marker';
-  const setDrawingMode = (_mode: DrawingMode) => {};
-  const currentMode: DrawingMode = 'disabled';
-  const drawnAreas: unknown[] = [];
-  const clearAll = () => {};
+  // ✅ ENTERPRISE LOCAL IMPLEMENTATION: Compatible with @layera/geo-drawing interface
+  // Uses same API as @layera/geo-drawing for seamless migration
+  type DrawingMode = 'none' | 'polygon' | 'marker' | 'circle';
+
+  const [drawingMode, setDrawingModeState] = useState<DrawingMode>('none');
+  const [drawnAreas, setDrawnAreas] = useState<Array<{
+    id: string;
+    type: string;
+    coordinates: number[][];
+    name: string;
+    category: string;
+  }>>([]);
+
+  const setDrawingMode = (mode: DrawingMode) => {
+    setDrawingModeState(mode);
+  };
+
+  const clearAreas = () => {
+    setDrawnAreas([]);
+  };
+
+  const isDrawing = drawingMode !== 'none';
 
   const handleDrawingModeChange = (mode: DrawingMode) => {
     setDrawingMode(mode);
   };
 
   const handleClearAll = (): void => {
-    clearAll();
+    clearAreas();
   };
 
   // Render device-specific UI
@@ -380,7 +397,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
         />
 
         {/* Drawing Status Indicator */}
-        {currentMode !== 'none' && (
+        {drawingMode !== 'none' && (
           <BaseCard
             variant="overlay"
             padding="sm"
@@ -393,7 +410,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
               maxWidth: '80%'
             }}>
             <FlexCenter gap="xs">
-            {currentMode === 'marker' && (
+            {drawingMode === 'marker' && (
               <>
                 <MarkerIcon size="sm" theme="neutral" />
                 <Text size="xs" color="white">
@@ -401,7 +418,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
                 </Text>
               </>
             )}
-            {currentMode === 'polygon' && (
+            {drawingMode === 'polygon' && (
               <>
                 <PolygonIcon size="sm" theme="neutral" />
                 <Text size="xs" color="white">

@@ -23,7 +23,11 @@
       "Bash(git reset:*)",
       "Bash(git commit:*)",
       "Bash(git push:*)",
-      "Bash(git remote add:*)"
+      "Bash(git remote add:*)",
+      "Bash(start http://localhost:3004)",
+      "Bash(start http://localhost:3005)",
+      "Bash(start http://localhost:3006)",
+      "Bash(curl:*)"
     ],
     "deny": [],
     "ask": []

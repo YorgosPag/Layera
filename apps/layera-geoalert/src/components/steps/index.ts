@@ -15,14 +15,33 @@ export { STEP_FLOWS } from './flows/stepFlows';
 
 // 📋 STEP REGISTRATION
 // Individual steps θα κάνουν auto-register όταν import-αρονται
+
+// 🚀 TIER 1: CORE STEPS (Always enabled)
 export * from './category';
 export * from './intent';
 export * from './transactionType';
 export * from './occupation';
-// export * from './location'; // Temporarily disabled due to geocoding package issues
 export * from './details';
 export * from './pricing';
 export * from './review';
+export * from './complete';
+
+// 🏢 TIER 2: PROPERTY-SPECIFIC STEPS
+export * from './propertyType';
+export * from './propertyDetails';
+export * from './areaMethod';
+export * from './layout';
+
+// 💼 TIER 3: JOB-SPECIFIC STEPS
+export * from './employmentType';
+export * from './availability';
+export * from './availabilityDetails';
+
+// 📤 TIER 4: UPLOAD & SHARING
+export * from './upload';
+
+// 📍 LOCATION STEP - ΕΝΕΡΓΟΠΟΙΗΜΕΝΟ
+export * from './location';
 
 // 🎮 CONVENIENCE FUNCTIONS
 import { stepRegistry } from './StepRegistry';

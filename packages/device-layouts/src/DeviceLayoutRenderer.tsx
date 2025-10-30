@@ -7,6 +7,7 @@
 
 import React from 'react';
 import { Box } from '@layera/layout';
+import { useIPhone14ProMaxDetection } from '@layera/device-detection';
 import { DeviceLayoutRendererProps, ResponsiveLayoutConfig, DeviceType } from './types';
 
 const DEFAULT_LAYOUT_CONFIG: ResponsiveLayoutConfig = {
@@ -54,7 +55,14 @@ export const DeviceLayoutRenderer: React.FC<DeviceLayoutRendererProps> = ({
   showCategoryElements = false,
   fab
 }) => {
-  // Auto-detect device type αν δεν δίνεται - STABILIZED
+  // 🚀 ENTERPRISE SINGLE SOURCE OF TRUTH: @layera/device-detection
+  const isIPhone14ProMax = useIPhone14ProMaxDetection({
+    frameSelector: '.device-frame-wrapper',
+    enableWindowFallback: true,
+    enableUserAgentFallback: true
+  });
+
+  // Auto-detect device type αν δεν δίνεται - ENTERPRISE EDITION
   const detectedDeviceType = React.useMemo((): DeviceType => {
     if (forceDeviceType) {
       return forceDeviceType;
@@ -64,21 +72,23 @@ export const DeviceLayoutRenderer: React.FC<DeviceLayoutRendererProps> = ({
       return propDeviceType;
     }
 
-    // Fallback auto-detection (θα μπορούσε να χρησιμοποιήσει @layera/device-detection)
+    // 🏆 ENTERPRISE: Χρήση της επίσημης Single Source of Truth
+    if (isIPhone14ProMax) {
+      return 'iphone';
+    }
+
+    // Fallback για άλλες συσκευές
     if (typeof window === 'undefined') {
       return 'desktop';
     }
 
-    // Χρησιμοποιώ σταθερή τιμή για να αποφύγω infinite re-renders
     const width = window.innerWidth;
-    if (width <= 430) {
-      return 'mobile';
-    } else if (width <= 768) {
+    if (width <= 768) {
       return 'tablet';
     } else {
       return 'desktop';
     }
-  }, [propDeviceType, forceDeviceType]);
+  }, [propDeviceType, forceDeviceType, isIPhone14ProMax]);
 
   // Merge configuration
   const finalConfig = {

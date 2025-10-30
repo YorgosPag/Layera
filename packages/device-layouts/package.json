@@ -18,6 +18,10 @@
     "clean": "rimraf dist"
   },
   "keywords": ["layera", "device-layouts", "responsive", "orchestrator", "enterprise"],
+  "dependencies": {
+    "@layera/device-detection": "workspace:*",
+    "@layera/layout": "workspace:*"
+  },
   "peerDependencies": {
     "react": "^18.0.0"
   },
