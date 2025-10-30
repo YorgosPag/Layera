@@ -1,0 +1,155 @@
+{
+  "$schema": "https://kit.svelte.dev/schema/hub-config.json",
+  "name": "Layera Enterprise Platform",
+  "description": "Enterprise Authentication Platform with GeoAlert System - Monorepo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YorgosPag/Layera.git"
+  },
+  "owner": "YorgosPag",
+  "homepage": "https://github.com/YorgosPag/Layera",
+  "keywords": [
+    "enterprise",
+    "authentication",
+    "geolocation",
+    "monorepo",
+    "typescript",
+    "react",
+    "firebase",
+    "rbac",
+    "mfa",
+    "i18n"
+  ],
+  "license": "ISC",
+  "author": {
+    "name": "Layera Team",
+    "email": "info@layera.com"
+  },
+  "contributors": [
+    {
+      "name": "Γιώργος Παγώνης",
+      "role": "Enterprise Architect"
+    }
+  ],
+  "type": "monorepo",
+  "framework": "multiple",
+  "technologies": {
+    "frontend": ["React", "TypeScript", "Vite"],
+    "backend": ["Firebase", "Node.js"],
+    "styling": ["CSS", "Custom Design Tokens"],
+    "i18n": ["Tolgee"],
+    "testing": ["Jest", "ESLint"],
+    "build": ["Vite", "TypeScript"],
+    "deployment": ["Firebase Hosting", "GitHub Actions"]
+  },
+  "structure": {
+    "apps": [
+      {
+        "name": "layera-id",
+        "description": "Authentication & Identity Service",
+        "port": 3000,
+        "path": "apps/layera-id"
+      },
+      {
+        "name": "layera-geoalert",
+        "description": "Main GeoAlert Application",
+        "port": 3001,
+        "path": "apps/layera-geoalert"
+      }
+    ],
+    "packages": 52,
+    "packagesPath": "packages/",
+    "documentation": "docs/",
+    "scripts": "scripts/"
+  },
+  "environments": {
+    "development": {
+      "urls": {
+        "identity": "http://localhost:3000",
+        "geoalert": "http://localhost:3001",
+        "kit-hub": "http://localhost:5173"
+      }
+    },
+    "production": {
+      "urls": {
+        "identity": "https://id.layera.com",
+        "geoalert": "https://app.layera.com",
+        "kit-hub": "https://hub.layera.com"
+      }
+    }
+  },
+  "features": {
+    "authentication": {
+      "enabled": true,
+      "provider": "Firebase Auth",
+      "features": ["MFA", "RBAC", "SSO"]
+    },
+    "geolocation": {
+      "enabled": true,
+      "provider": "Custom Maps",
+      "features": ["Drawing", "Alerts", "Zones"]
+    },
+    "internationalization": {
+      "enabled": true,
+      "provider": "Tolgee",
+      "languages": ["el", "en"],
+      "defaultLanguage": "el"
+    },
+    "components": {
+      "enabled": true,
+      "system": "LEGO Design System",
+      "packages": 52,
+      "singleSourceOfTruth": true
+    }
+  },
+  "quality": {
+    "typescript": {
+      "strict": true,
+      "noImplicitAny": true,
+      "exactOptionalPropertyTypes": true
+    },
+    "linting": {
+      "eslint": true,
+      "stylelint": true,
+      "maxWarnings": 0
+    },
+    "testing": {
+      "coverage": "enabled",
+      "e2e": "planned"
+    },
+    "duplicateDetection": {
+      "enabled": true,
+      "threshold": 0,
+      "tools": ["jscpd"]
+    }
+  },
+  "deployment": {
+    "strategy": "monorepo",
+    "ci": "GitHub Actions",
+    "hosting": "Firebase",
+    "domains": {
+      "identity": "id.layera.com",
+      "main": "app.layera.com"
+    }
+  },
+  "integration": {
+    "kit-hub": {
+      "enabled": true,
+      "path": "kit-hub-integration/",
+      "port": 5173,
+      "sync": true,
+      "features": [
+        "Repository Analytics",
+        "Deployment Status",
+        "Performance Monitoring",
+        "Error Tracking"
+      ]
+    }
+  },
+  "metadata": {
+    "created": "2025-10-31",
+    "lastUpdated": "2025-10-31",
+    "version": "1.0.0",
+    "kitHubVersion": "1.0.0"
+  }
+}

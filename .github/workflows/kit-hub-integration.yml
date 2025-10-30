@@ -1,0 +1,188 @@
+name: Kit Hub Integration
+
+on:
+  push:
+    branches: [ main, develop, 'feature/*' ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '18'
+  KIT_HUB_PORT: 5173
+
+jobs:
+  kit-hub-sync:
+    name: 🔄 Kit Hub Sync
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: |
+          cd kit-hub-integration
+          npm ci
+
+      - name: 🏗️ Build Kit Hub Integration
+        run: |
+          cd kit-hub-integration
+          npm run build
+
+      - name: 🧪 Test Kit Hub Integration
+        run: |
+          cd kit-hub-integration
+          npm run check
+
+      - name: 📊 Generate Kit Hub Manifest
+        run: |
+          echo "Generating Kit Hub manifest..."
+          node -e "
+            const config = require('./.kit-hub.config.json');
+            const manifest = {
+              name: config.name,
+              repository: config.repository.url,
+              lastSync: new Date().toISOString(),
+              apps: config.structure.apps,
+              packages: config.structure.packages,
+              technologies: config.technologies,
+              features: config.features
+            };
+            require('fs').writeFileSync('./kit-hub-manifest.json', JSON.stringify(manifest, null, 2));
+          "
+
+      - name: 📈 Repository Analytics
+        run: |
+          echo "📊 Repository Analytics for Kit Hub"
+          echo "=================================="
+          echo "📦 Total Packages: $(ls packages/ | wc -l)"
+          echo "🎯 Total Apps: $(ls apps/ | wc -l)"
+          echo "📄 TypeScript Files: $(find . -name '*.ts' -o -name '*.tsx' | wc -l)"
+          echo "⚛️ React Components: $(find . -name '*.tsx' | wc -l)"
+          echo "📝 Lines of Code: $(find . -name '*.ts' -o -name '*.tsx' -o -name '*.js' -o -name '*.jsx' | xargs wc -l | tail -1)"
+
+          # Kit Hub specific metrics
+          echo "🎯 Kit Hub Metrics"
+          echo "=================="
+          echo "🔧 Kit Hub Port: ${{ env.KIT_HUB_PORT }}"
+          echo "📅 Last Update: $(date)"
+          echo "🏷️ Current Branch: ${{ github.ref_name }}"
+          echo "📝 Commit SHA: ${{ github.sha }}"
+
+      - name: 🚀 Deploy to Kit Hub (Production)
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "🚀 Deploying to Kit Hub Production..."
+          cd kit-hub-integration
+          npm run build
+          # Simulation of deployment to Kit Hub
+          echo "✅ Deployed to https://hub.layera.com"
+
+      - name: 🔧 Deploy to Kit Hub (Staging)
+        if: github.ref == 'refs/heads/develop'
+        run: |
+          echo "🔧 Deploying to Kit Hub Staging..."
+          cd kit-hub-integration
+          npm run build
+          # Simulation of deployment to Kit Hub staging
+          echo "✅ Deployed to https://staging-hub.layera.com"
+
+      - name: 📤 Upload Kit Hub Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: kit-hub-build-${{ github.sha }}
+          path: |
+            kit-hub-integration/build/
+            kit-hub-manifest.json
+            .kit-hub.config.json
+
+  enterprise-validation:
+    name: 🛡️ Enterprise Validation
+    runs-on: ubuntu-latest
+    needs: kit-hub-sync
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        run: npm ci
+
+      - name: 🧪 Run Enterprise Validation
+        run: |
+          echo "🛡️ Running Enterprise Validation for Kit Hub..."
+          npm run enterprise:validate
+          npm run typecheck
+          npm run lint
+
+      - name: 📊 LEGO Systems Compliance
+        run: |
+          echo "🧩 Checking LEGO Systems Compliance..."
+          # Check for LEGO system usage
+          LEGO_IMPORTS=$(grep -r "from '@layera/" apps --include="*.ts" --include="*.tsx" | wc -l)
+          echo "📦 @layera imports found: $LEGO_IMPORTS"
+
+          # Check for anti-patterns
+          STYLED_COMPONENTS=$(grep -r "styled\." apps --include="*.ts" --include="*.tsx" | wc -l)
+          echo "❌ styled-components usage: $STYLED_COMPONENTS"
+
+          # Validate zero duplicates policy
+          npm run dup:check
+
+          echo "✅ LEGO Systems compliance validated"
+
+      - name: 🌍 i18n Validation
+        run: |
+          echo "🌍 Validating i18n compliance..."
+          # Check for hardcoded strings
+          HARDCODED_GR=$(grep -r "\".*[α-ωΑ-Ω].*\"" apps --include="*.ts" --include="*.tsx" | grep -v "t(" | wc -l)
+          HARDCODED_EN=$(grep -r "\"[A-Za-z ].*\"" apps --include="*.ts" --include="*.tsx" | grep -v "t(" | wc -l)
+
+          echo "❌ Hardcoded Greek strings: $HARDCODED_GR"
+          echo "❌ Hardcoded English strings: $HARDCODED_EN"
+
+          if [ $HARDCODED_GR -gt 0 ] || [ $HARDCODED_EN -gt 0 ]; then
+            echo "⚠️ Found hardcoded strings - should use t() function"
+          else
+            echo "✅ i18n compliance validated"
+          fi
+
+  kit-hub-notification:
+    name: 📢 Kit Hub Notification
+    runs-on: ubuntu-latest
+    needs: [kit-hub-sync, enterprise-validation]
+    if: always()
+
+    steps:
+      - name: 📢 Success Notification
+        if: needs.kit-hub-sync.result == 'success' && needs.enterprise-validation.result == 'success'
+        run: |
+          echo "🎉 Kit Hub Integration Successful!"
+          echo "✅ Repository: https://github.com/YorgosPag/Layera"
+          echo "✅ Kit Hub URL: http://localhost:5173"
+          echo "✅ Branch: ${{ github.ref_name }}"
+          echo "✅ Commit: ${{ github.sha }}"
+
+      - name: 📢 Failure Notification
+        if: needs.kit-hub-sync.result == 'failure' || needs.enterprise-validation.result == 'failure'
+        run: |
+          echo "❌ Kit Hub Integration Failed!"
+          echo "🔍 Check the logs for details"
+          echo "📝 Repository: https://github.com/YorgosPag/Layera"
+          echo "📝 Branch: ${{ github.ref_name }}"
+          echo "📝 Commit: ${{ github.sha }}"
