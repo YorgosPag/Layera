@@ -32,7 +32,6 @@
     "@layera/layout": "file:../../packages/layout",
     "@layera/loading": "file:../../packages/loading",
     "@layera/map-core": "file:../../packages/map-core",
-    "@layera/navigation-handlers": "workspace:^",
     "@layera/notifications": "file:../../packages/notifications",
     "@layera/pipelines": "file:../../packages/pipelines",
     "@layera/snap-engine": "workspace:^",

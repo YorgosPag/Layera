@@ -212,7 +212,6 @@ import { DrawnArea } from '@layera/geo-drawing';
 - ✅ `@layera/floating-action-buttons` - FAB components (1 import)
 - ✅ `@layera/snap-engine` - Snapping engine (1 import)
 - ✅ `@layera/snap-interactions` - Snap interactions (1 import)
-- ✅ `@layera/navigation-handlers` - Navigation logic (1 import)
 
 #### **File & Data Processing (6 packages)**
 - ✅ `@layera/file-upload` - File uploading (5 imports)

@@ -508,7 +508,6 @@ import { SnapEngine } from '@layera/snap-engine';
 import { SnapInteraction } from '@layera/snap-interactions';
 
 // Navigation Handlers (1 import)
-import { NavigationHandler } from '@layera/navigation-handlers';
 
 // Loading States (1 import)
 import { LoadingComponent } from '@layera/loading';
@@ -527,7 +526,6 @@ import { LoadingComponent } from '@layera/loading';
 
 **Mapping & Geo**: @layera/geo-drawing, @layera/geo-core, @layera/geo-mapping, @layera/map-core, @layera/map-labels, @layera/geocoding, @layera/osm, @layera/boundary-service
 
-**Interactions**: @layera/draggable, @layera/draggable-fab, @layera/floating-action-buttons, @layera/snap-engine, @layera/snap-interactions, @layera/navigation-handlers
 
 **File Processing**: @layera/file-upload, @layera/file-import, @layera/file-transformation, @layera/file-compression, @layera/cad-processing, @layera/address-breakdown
 

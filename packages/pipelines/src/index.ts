@@ -1,19 +1,9 @@
 /**
- * @layera/pipelines - Enterprise Pipeline Discovery & Management System
+ * @layera/pipelines - Enterprise Pipeline Management System
  *
- * Αυτόματη ανακάλυψη και συγχρονισμός pipeline steps χωρίς manual configuration.
- * Enterprise-grade pipeline state management για scalable εφαρμογές.
+ * 🚨 DEPRECATED: PipelineDiscovery system removed.
+ * Use @layera/steps/StepOrchestrator as the single source of truth.
  */
-
-// Enterprise Auto-Discovery Pipeline System
-export { PipelineDiscovery } from './context/PipelineDiscovery';
-export type {
-  CategoryType,
-  IntentType,
-  PipelineStepId,
-  PipelineStep,
-  PipelineState
-} from './context/PipelineDiscovery';
 
 // Version
 export const LAYERA_PIPELINES_VERSION = '1.0.0';

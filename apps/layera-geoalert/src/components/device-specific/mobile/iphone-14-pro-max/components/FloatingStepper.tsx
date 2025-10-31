@@ -14,7 +14,7 @@ import React, { useEffect } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { Flex, Box } from '@layera/layout';
-import { PipelineDiscovery } from '@layera/pipelines';
+// ✅ PipelineDiscovery ΔΙΑΓΡΑΦΗΚΕ - χρησιμοποιούμε StepOrchestrator μόνο
 import { SPACING_SCALE, BORDER_RADIUS_SCALE, useDesignTokens } from '@layera/constants';
 import { Text } from '@layera/typography';
 import { getCursorVar } from '@layera/cursors';
@@ -62,17 +62,8 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   const [opacityMode, setOpacityMode] = React.useState<OpacityMode>('transparent');
   const { t } = useLayeraTranslation();
 
-  // 🚀 ENTERPRISE AUTO-DISCOVERY: Ενεργοποιημένο!
-  const pipelineDiscovery = React.useMemo(() => {
-    if (!PipelineDiscovery || typeof PipelineDiscovery.getInstance !== 'function') {
-      return null;
-    }
-    try {
-      return PipelineDiscovery.getInstance();
-    } catch (error) {
-      return null;
-    }
-  }, []);
+  // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
+  const pipelineDiscovery = null;
 
   // 🚀 ENTERPRISE AUTO-DISCOVERY: Χρήση του PipelineDiscovery για αυτόματη ανακάλυψη steps
   React.useEffect(() => {

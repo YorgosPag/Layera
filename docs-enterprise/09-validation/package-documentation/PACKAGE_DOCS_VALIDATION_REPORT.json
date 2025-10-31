@@ -3680,11 +3680,9 @@
     },
     {
       "package": {
-        "name": "navigation-handlers",
-        "fullName": "@layera/navigation-handlers",
-        "path": "packages\\navigation-handlers",
+        "fullName": 
         "packageJson": {
-          "name": "@layera/navigation-handlers",
+          "name": 
           "version": "1.0.0",
           "description": "Enterprise navigation handlers - Single source of truth για navigation behavior στο Layera ecosystem",
           "main": "dist/index.js",

@@ -5,19 +5,20 @@
  * Χρησιμοποιεί @layera/map-core και @layera/geo-drawing packages.
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useViewportWithOverride } from '@layera/viewport';
-import { useNavigation } from '../services/navigation/hooks/useNavigation';
 // 🚀 ENTERPRISE: Single Source of Truth - Enhanced @layera/viewport
 import { useIPhone14ProMaxDetection } from '@layera/viewport';
-import { useNavigationHandlers } from '@layera/navigation-handlers';
+// 🚀 ENTERPRISE: StepOrchestrator - ΜΟΝΑΔΙΚΗ Single Source of Truth
+import { useStepNavigation, useStepRegistry, getAvailableSteps } from './steps';
+import type { StepId, CategoryType, IntentType } from './steps/types';
 import { ResponsiveMapLayout, MapComponentProps } from '@layera/device-layouts';
 import { MapContainer } from './map/MapContainer';
 import { PlusIcon } from '@layera/icons';
 import { Box } from '@layera/layout';
 import { UnifiedFAB } from '@layera/floating-action-buttons';
 import { DraggableFAB } from '@layera/draggable-fab';
-import { CONFIG, SPACING_SCALE } from '@layera/constants';
+import { CONFIG, SPACING_SCALE, PIPELINE_STEP } from '@layera/constants';
 import { COLORS } from '../constants';
 import { useLayeraTranslation } from '@layera/tolgee';
 import {
@@ -99,37 +100,22 @@ export const GeoMap: React.FC<GeoMapProps> = ({
   // Hybrid approach: χρησιμοποιώ το prop από App.tsx αλλά με fallback το LEGO detection
   const finalIPhone14ProMaxDecision = isIPhone14ProMaxDevice || isDetectedIPhone14ProMax;
 
-  // 🚀 ENTERPRISE NAVIGATION: Rock-solid service που δεν σπάει ποτέ
-  const navigation = useNavigation();
+  // 🚀 ENTERPRISE NAVIGATION: Placeholder για StepOrchestrator integration
+  // TODO: Το StepOrchestrator θα παρέχει το navigation state μέσω context ή props
+  const navigation = {
+    currentStep: PIPELINE_STEP.CATEGORY,
+    stepIndex: 0,
+    totalSteps: 1,
+    selectedCategory: null,
+    canGoNext: false,
+    canGoBack: false,
+    reset: () => {}
+  };
 
-  // 🔧 AUTO-RESET μόνο για unregistered steps, όχι για valid steps
-  React.useEffect(() => {
-    // Reset μόνο αν είμαστε σε step που δεν υπάρχει στο StepOrchestrator
-    if (navigation.currentStep &&
-        !['category', 'intent', 'transactionType', 'employmentType', 'occupation', 'availability', 'upload', 'layout', 'propertyType', 'propertyDetails', 'areaMethod', 'location', 'availabilityDetails', 'complete', 'details', 'pricing', 'review'].includes(navigation.currentStep) &&
-        navigation.selectedCategory) {
-      // Event-based reset - Production-safe logging
-      setTimeout((): void => {
-        if (process.env.NODE_ENV === 'development') {
-        }
-        navigation.reset();
-      }, 100);
-    }
-  }, [navigation.currentStep, navigation.selectedCategory, navigation.reset]);
-
-  // 🚀 ENTERPRISE NAVIGATION HANDLERS: @layera/navigation-handlers LEGO package
-  const {
-    handleStepNext,
-    handleStepPrevious,
-    handleStepReset,
-    handleNewEntryClick,
-    state: navigationState
-  } = useNavigationHandlers({
-    navigation,
-    isSpecialDevice: finalIPhone14ProMaxDecision,
-    onCategoryElementsChange,
-    onNewEntryClick
-  });
+  const handleStepNext = () => {};
+  const handleStepPrevious = () => {};
+  const handleStepReset = () => {};
+  const handleNewEntryClick = () => { onNewEntryClick?.(); };
 
   const handleFabClick = (): void => {
     handleNewEntryClick();
