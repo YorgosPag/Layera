@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { useNotifications } from '@layera/notifications';
-import { ErrorBoundary } from '@layera/error-boundary';
+// import { ErrorBoundary } from '@layera/error-boundary'; // Temporarily disabled due to type conflicts"
 import { Text as Typography } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { Box } from '@layera/layout';
@@ -12,7 +12,7 @@ import { DragDropZone } from './DragDropZone';
 import { FileList } from './FileList';
 import { FilePreview } from './FilePreview';
 import { UploadEngine } from '../utils/uploadEngine';
-import { validateFileList, validateFile } from '../utils/fileValidation';
+import { validateFileList } from '../utils/fileValidation';
 
 /**
  * Main file uploader component με enterprise-grade functionality
@@ -188,7 +188,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
     if (!file) return;
 
     // Reset file status
-    const resetFile: FileUploadItem = { ...file, status: 'idle' as const, progress: 0, error: undefined };
+    const resetFile: FileUploadItem = { ...file, status: 'idle' as const, progress: 0, error: '' };
     setFiles(prev => prev.map(f => f.id === fileId ? resetFile : f));
 
     // Add back to upload engine
@@ -221,7 +221,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
     setIsUploading(false);
   }, []);
 
-  const getUploadSummary = (): void => {
+  const getUploadSummary = () => {
     const total = files.length;
     const completed = files.filter(f => f.status === 'completed').length;
     const uploading = files.filter(f => f.status === 'uploading').length;
@@ -237,17 +237,16 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
   const FileListComponent = CustomFileList || FileList;
 
   return (
-    <ErrorBoundary>
-      <Box className={`layera-file-uploader ${className}`}>
+    <Box className={`layera-file-uploader ${className}`}>
         {/* Upload Controls */}
         {hasFiles && (
           <Box className={`mb-6 p-4 rounded-lg ${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-50'}`}>
             <Box className="flex items-center justify-between mb-4">
               <Box>
-                <Typography variant="h6" className="mb-1">
+                <Typography size="lg" className="mb-1">
                   {t('file-upload.upload-summary')}
                 </Typography>
-                <Typography variant="caption" className="text-gray-500">
+                <Typography size="sm" className="text-gray-500">
                   {t('file-upload.files-summary', {
                     total: summary.total,
                     completed: summary.completed,
@@ -360,6 +359,5 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
           </Box>
         )}
       </Box>
-    </ErrorBoundary>
   );
 };

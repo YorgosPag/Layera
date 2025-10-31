@@ -6,9 +6,10 @@ import { ThemeSwitcher } from '@layera/theme-switcher';
 import { Button } from '@layera/buttons';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, Flex, FlexColumn, Box } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
-import { Text, Heading } from '@layera/typography';
+// import { Text, Heading } from '@layera/typography'; // Temporarily disabled until package is fixed
 import { SPACING_SCALE } from '@layera/constants';
-import { SmartphoneIcon, CheckIcon, SettingsIcon, ChartIcon, ShieldIcon, FolderIcon, LockIcon, UserIcon, FileIcon, XIcon } from '@layera/icons';
+// import { SmartphoneIcon, CheckIcon, SettingsIcon, ChartIcon, ShieldIcon, FolderIcon, LockIcon, UserIcon, FileIcon, XIcon } from '@layera/icons';
+// ΠΡΟΣΩΡΙΝΟ: Σχολιασμένα όλα τα icons μέχρι να λυθεί το export problem
 import QuickActions from '../components/QuickActions';
 
 export default function Data() {
@@ -74,7 +75,7 @@ export default function Data() {
         <Box padding="lg">
           <DashboardSection
             title={t('data.personalInfo')}
-            icon={<UserIcon size="md" theme="neutral" />}
+            icon={<span>👤</span>} // icon={<UserIcon size="md" theme="neutral" />}
           >
           <DashboardGrid columns={{ xs: 1, sm: 1, md: 2, lg: 4 }}>
             <DashboardCard
@@ -87,12 +88,12 @@ export default function Data() {
               <Flex align="center" gap="sm" marginTop="sm">
                 {user.emailVerified ? (
                   <>
-                    <CheckIcon size="sm" theme="success" />
+                    <span>✓</span> {/* <CheckIcon size="sm" theme="success" /> */}
                     <Text color="success">{t('status.verified')}</Text>
                   </>
                 ) : (
                   <>
-                    <XIcon size="sm" theme="danger" />
+                    <span>✗</span> {/* <XIcon size="sm" theme="danger" /> */}
                     <Text color="error">{t('status.unverified')}</Text>
                   </>
                 )}
@@ -142,7 +143,7 @@ export default function Data() {
         <Box padding="lg">
           <DashboardSection
           title={t('data.security')}
-          icon={<ShieldIcon size="md" theme="neutral" />}
+          icon={<span>🛡️</span>} // icon={<ShieldIcon size="md" theme="neutral" />}
         >
           <DashboardGrid columns={{ xs: 1, sm: 1, md: 2, lg: 2 }}>
             <DashboardCard
@@ -152,7 +153,7 @@ export default function Data() {
               <Flex align="center" gap="md">
                 {user.layeraClaims?.mfa_verified ? (
                   <>
-                    <LockIcon size="lg" theme="success" />
+                    <span>🔒</span> {/* <LockIcon size="lg" theme="success" /> */}
                     <Box>
                       <Text weight="semibold" color="success">
                         {t('status.enabled')}
@@ -164,7 +165,7 @@ export default function Data() {
                   </>
                 ) : (
                   <>
-                    <XIcon size="lg" theme="warning" />
+                    <span>⚠️</span> {/* <XIcon size="lg" theme="warning" /> */}
                     <Box>
                       <Text weight="semibold" color="warning">
                         {t('status.disabled')}
@@ -195,7 +196,7 @@ export default function Data() {
         <Box padding="lg">
           <DashboardSection
           title={t('dashboard.accountDetails')}
-          icon={<UserIcon size="md" theme="neutral" />}
+          icon={<span>👤</span>} // icon={<UserIcon size="md" theme="neutral" />}
         >
           <DashboardGrid columns={{ xs: 1, sm: 1, md: 2, lg: 2 }}>
             <DashboardCard
@@ -229,7 +230,7 @@ export default function Data() {
         <Box padding="lg">
           <DashboardSection
           title={t('data.export')}
-          icon={<FolderIcon size="md" theme="neutral" />}
+          icon={<span>📁</span>} // icon={<FolderIcon size="md" theme="neutral" />}
         >
           <DashboardCard
             title={t('data.exportDescription')}
@@ -238,15 +239,15 @@ export default function Data() {
             <Flex direction="column" gap="lg">
               <Flex gap="lg" wrap={true}>
                 <Button variant="secondary" size="sm">
-                  <FileIcon size="sm" theme="neutral" />
+                  <span>📄</span> {/* <FileIcon size="sm" theme="neutral" /> */}
                   {t('data.exportFormats.pdf')}
                 </Button>
                 <Button variant="secondary" size="sm">
-                  <FileIcon size="sm" theme="neutral" />
+                  <span>📄</span> {/* <FileIcon size="sm" theme="neutral" /> */}
                   {t('data.exportFormats.json')}
                 </Button>
                 <Button variant="secondary" size="sm">
-                  <FileIcon size="sm" theme="neutral" />
+                  <span>📄</span> {/* <FileIcon size="sm" theme="neutral" /> */}
                   {t('data.exportFormats.csv')}
                 </Button>
               </Flex>
@@ -259,7 +260,7 @@ export default function Data() {
         <Box padding="lg">
           <DashboardSection
           title={t('data.privacy')}
-          icon={<LockIcon size="md" theme="neutral" />}
+          icon={<span>🔒</span>} // icon={<LockIcon size="md" theme="neutral" />}
         >
           <DashboardCard
             title={t('data.privacyPoints.title')}
@@ -267,19 +268,19 @@ export default function Data() {
           >
             <Flex direction="column" gap="md">
               <Flex align="flex-start" gap="sm">
-                <CheckIcon size="sm" theme="success" marginTop="xs" />
+                <span>✓</span> {/* <CheckIcon size="sm" theme="success" marginTop="xs" /> */}
                 <span>{t('data.privacyPoints.encryption')}</span>
               </Flex>
               <Flex align="flex-start" gap="sm">
-                <CheckIcon size="sm" theme="success" marginTop="xs" />
+                <span>✓</span> {/* <CheckIcon size="sm" theme="success" marginTop="xs" /> */}
                 <span>{t('data.privacyPoints.noSharing')}</span>
               </Flex>
               <Flex align="flex-start" gap="sm">
-                <CheckIcon size="sm" theme="success" marginTop="xs" />
+                <span>✓</span> {/* <CheckIcon size="sm" theme="success" marginTop="xs" /> */}
                 <span>{t('data.privacyPoints.deleteAnytime')}</span>
               </Flex>
               <Flex align="flex-start" gap="sm">
-                <CheckIcon size="sm" theme="success" marginTop="xs" />
+                <span>✓</span> {/* <CheckIcon size="sm" theme="success" marginTop="xs" /> */}
                 <span>{t('data.privacyPoints.compliance')}</span>
               </Flex>
             </Flex>

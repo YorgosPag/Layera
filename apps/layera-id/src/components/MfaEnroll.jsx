@@ -7,10 +7,10 @@ import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { Button } from '@layera/buttons';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, Flex, FlexColumn, Box } from '@layera/layout';
-import { Text, Heading } from '@layera/typography';
+// import { Text, Heading } from '@layera/typography'; // Temporarily disabled until package is fixed
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
 import { SPACING_SCALE } from '@layera/constants';
-import { SmartphoneIcon, CheckIcon, LockIcon, ShieldIcon, RocketIcon } from '@layera/icons';
+// import { SmartphoneIcon, CheckIcon, LockIcon, RocketIcon, ShieldIcon } from '@layera/icons'; // DISABLED: Export issues
 import QuickActions from './QuickActions';
 import './MfaEnroll.css';
 
@@ -116,7 +116,7 @@ export default function MfaEnroll() {
         <Box padding="lg">
           <DashboardSection
             title={t('mfa.whyNeeded.title')}
-            icon={<ShieldIcon size="md" theme="neutral" />}
+            icon={<span style={{fontSize: '20px'}}>🛡️</span>}
           >
             <DashboardCard
               title={t('mfa.whyNeeded.description')}
@@ -124,16 +124,16 @@ export default function MfaEnroll() {
             >
               <Flex direction="column" gap="md">
                 <Flex align="flex-start" gap="sm">
-                  <CheckIcon size="sm" theme="success" marginTop="xs" />
-                  <Text>{t('mfa.whyNeeded.benefits.passwordProtection')}</Text>
+                  <span style={{fontSize: '16px'}}>✅</span>
+                  <span>{t('mfa.whyNeeded.benefits.passwordProtection')}</span>
                 </Flex>
                 <Flex align="flex-start" gap="sm">
-                  <CheckIcon size="sm" theme="success" marginTop="xs" />
-                  <Text>{t('mfa.whyNeeded.benefits.secureAccess')}</Text>
+                  <span style={{fontSize: '16px'}}>✅</span>
+                  <span>{t('mfa.whyNeeded.benefits.secureAccess')}</span>
                 </Flex>
                 <Flex align="flex-start" gap="sm">
-                  <CheckIcon size="sm" theme="success" marginTop="xs" />
-                  <Text>{t('mfa.whyNeeded.benefits.unauthorizedAlert')}</Text>
+                  <span style={{fontSize: '16px'}}>✅</span>
+                  <span>{t('mfa.whyNeeded.benefits.unauthorizedAlert')}</span>
                 </Flex>
               </Flex>
             </DashboardCard>
@@ -144,7 +144,7 @@ export default function MfaEnroll() {
         <Box padding="lg">
           <DashboardSection
             title={t('mfa.form.enableButton')}
-            icon={<LockIcon size="md" theme="neutral" />}
+            icon={<span style={{fontSize: '20px'}}>🔒</span>}
           >
             <DashboardCard
               title={t('mfa.form.phoneLabel')}
@@ -154,8 +154,8 @@ export default function MfaEnroll() {
                 <Flex direction="column" gap="lg">
                   <Flex direction="column" gap="sm">
                     <Flex align="center" gap="sm">
-                      <SmartphoneIcon size="sm" theme="neutral" />
-                      <Text weight="semibold">{t('mfa.form.phoneLabel')}</Text>
+                      <span style={{fontSize: '16px'}}>📱</span>
+                      <span style={{ fontWeight: 'var(--la-font-weight-semibold)' }}>{t('mfa.form.phoneLabel')}</span>
                     </Flex>
                     <input
                       id="phone"
@@ -167,9 +167,9 @@ export default function MfaEnroll() {
                       disabled={loading}
                       required
                     />
-                    <Text size="sm" color="secondary">
+                    <span style={{ fontSize: 'var(--la-font-size-sm)', color: 'var(--la-text-secondary)' }}>
                       {t('mfa.form.phoneHint')}
-                    </Text>
+                    </span>
                   </Flex>
 
                   <Box margin="md" id="recaptcha"></Box>
@@ -184,7 +184,7 @@ export default function MfaEnroll() {
                   {loading ? (
                     <>⏳ {t('common.processing')}</>
                   ) : (
-                    <><RocketIcon size="sm" theme="neutral" /> {t('mfa.form.enableButton')}</>
+                    <><span style={{fontSize: '16px'}}>🚀</span> {t('mfa.form.enableButton')}</>
                   )}
                 </Button>
                 </Flex>

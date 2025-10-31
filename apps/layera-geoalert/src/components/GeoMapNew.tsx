@@ -8,7 +8,8 @@
 import React, { useState } from 'react';
 import { useViewportWithOverride } from '@layera/viewport';
 import { useNavigation } from '../services/navigation/hooks/useNavigation';
-import { useIPhone14ProMaxDetection } from '@layera/device-detection';
+// 🚀 ENTERPRISE: Single Source of Truth - Enhanced @layera/viewport
+import { useIPhone14ProMaxDetection } from '@layera/viewport';
 import { useNavigationHandlers } from '@layera/navigation-handlers';
 import { ResponsiveMapLayout, MapComponentProps } from '@layera/device-layouts';
 import { MapContainer } from './map/MapContainer';
@@ -88,7 +89,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
   const { isDesktop, isTablet, isMobile } = useViewportWithOverride();
   const { t } = useLayeraTranslation();
 
-  // 🚀 ENTERPRISE DEVICE DETECTION: @layera/device-detection LEGO package
+  // 🚀 ENTERPRISE DEVICE DETECTION: @layera/viewport LEGO package - Single Source of Truth
   const isDetectedIPhone14ProMax = useIPhone14ProMaxDetection({
     frameSelector: '.device-frame-wrapper',
     enableWindowFallback: true,

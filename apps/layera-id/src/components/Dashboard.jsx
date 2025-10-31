@@ -2,12 +2,12 @@ import React from 'react';
 import { useAuthContext, UserAvatar } from '@layera/auth-bridge';
 import { useNavigate, Link } from 'react-router-dom';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
-import { Text, Heading } from '@layera/typography';
+// import { Text, Heading } from '@layera/typography'; // Temporarily disabled until package is fixed
 import { Button } from '@layera/buttons';
 import { BaseCard } from '@layera/cards';
 import { Stack, Box } from '@layera/layout';
 import { ThemeSwitcher } from '@layera/theme-switcher';
-import { CheckIcon, XIcon } from '@layera/icons';
+// import { CheckIcon, XIcon } from '@layera/icons'; // DISABLED: Export issues
 import './Dashboard.css';
 import '../styles/typography.css';
 
@@ -89,13 +89,13 @@ const Dashboard = () => {
                   <Box className="user-field">
                     <strong>{t('data.fields.emailVerified')}:</strong>
                     <span className={user.emailVerified ? 'status-verified' : 'status-unverified'}>
-                      {user.emailVerified ? <> <CheckIcon size="xs" theme="success" /> {t('status.verified')}</> : <> <XIcon size="xs" theme="danger" /> {t('status.unverified')}</>}
+                      {user.emailVerified ? <> <span style={{fontSize: '12px'}}>✅</span> {t('status.verified')}</> : <> <span style={{fontSize: '12px'}}>❌</span> {t('status.unverified')}</>}
                     </span>
                   </Box>
                   <Box className="user-field">
                     <strong>{t('data.fields.mfaEnabled')}:</strong>
                     <span className={user.layeraClaims?.mfa_verified ? 'status-verified' : 'status-unverified'}>
-                      {user.layeraClaims?.mfa_verified ? <> <CheckIcon size="xs" theme="success" /> {t('status.enabled')}</> : <> <XIcon size="xs" theme="danger" /> {t('status.disabled')}</>}
+                      {user.layeraClaims?.mfa_verified ? <> <span style={{fontSize: '12px'}}>✅</span> {t('status.enabled')}</> : <> <span style={{fontSize: '12px'}}>❌</span> {t('status.disabled')}</>}
                     </span>
                   </Box>
                   <Box className="user-field">

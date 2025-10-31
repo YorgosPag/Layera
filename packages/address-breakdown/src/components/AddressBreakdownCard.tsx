@@ -150,8 +150,7 @@ export function AddressBreakdownCard({
         <Button
           key={component.id}
           {...componentProps}
-          variant={isClickable ? 'outline' : 'ghost'}
-          size="sm"
+          variant={isClickable ? 'outline' : 'secondary'}
           startIcon={isClickable ? <MapIcon /> : <LocationIcon />}
           loading={isLoading}
         >
@@ -184,7 +183,7 @@ export function AddressBreakdownCard({
           border: 'var(--la-border-default-style, 1px solid var(--la-border-default))',
           transition: 'var(--la-transition-smooth, all 0.2s ease-in-out)',
           backgroundColor: isClickable ? 'var(--la-bg-primary)' : 'var(--la-bg-secondary)',
-          textAlign: 'var(--la-text-align-left, left)', // Ευθυγράμμιση προς τα αριστερά
+          textAlign: 'left' as const, // Ευθυγράμμιση προς τα αριστερά
           ...(isClickable && {
             ':hover': {
               backgroundColor: 'var(--la-bg-secondary)',
@@ -219,15 +218,15 @@ export function AddressBreakdownCard({
           width: 'var(--la-width-full, 100%)'
         }}>
           {isLoading ? (
-            <Spinner size="sm" variant="default" />
+            <Spinner size="sm" />
           ) : isClickable ? (
-            <MapIcon className="list-icon" style={{
+            <MapIcon style={{
               width: 'var(--la-icon-size-md)',
               height: 'var(--la-icon-size-md)',
               color: 'var(--la-color-primary)'
             }} />
           ) : (
-            <LocationIcon className="list-icon" style={{
+            <LocationIcon style={{
               width: 'var(--la-icon-size-md)',
               height: 'var(--la-icon-size-md)',
               color: 'var(--la-text-secondary)'
@@ -273,8 +272,7 @@ export function AddressBreakdownCard({
   // Card actions
   const cardActions = (
     <Button
-      variant="ghost"
-      size="sm"
+      variant="secondary"
       onClick={(): void => {
         const event = new CustomEvent('showSearchResult', {
           detail: {

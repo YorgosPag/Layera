@@ -1,14 +1,13 @@
 import React from 'react';
 import { useAuthContext, UserAvatar } from '@layera/auth-bridge';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
-import { Text, Heading } from '@layera/typography';
+// import { Text, Heading } from '@layera/typography'; // Temporarily disabled until package is fixed
 import { Button } from '@layera/buttons';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, FlexColumn, Box } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
-import { CheckIcon, SettingsIcon, SaveIcon, GlobeIcon, CloseIcon, BriefcaseIcon } from '@layera/icons';
-import { SPACING_SCALE } from '@layera/constants';
+// import { CheckIcon, SettingsIcon, CloseIcon } from '@layera/icons'; // DISABLED: Export issues
 import QuickActions from './QuickActions';
 
 /**
@@ -31,14 +30,14 @@ const NewDashboard: React.FC = () => {
   // Header actions
   const headerActions = (
     <HeaderActionsGroup>
-      <LanguageSwitcher variant="toggle" showFlags={true} />
+      <LanguageSwitcher />
       <ThemeSwitcher variant="icon" size="md" />
       {user && (
         <>
           <UserAvatar
             user={user}
             size="medium"
-            onClick={(): void => navigate('/account')}
+            onClick={() => navigate('/account')}
           />
           <Button variant="ghost" size="sm" onClick={handleLogout}>
             {t('navigation.logout')}
@@ -87,9 +86,9 @@ const NewDashboard: React.FC = () => {
                 >
                   <Box textAlign="center" padding="md">
                     {user.emailVerified ? (
-                      <CheckIcon size="lg" theme="success" />
+                      <span style={{fontSize: '24px'}}>✅</span>
                     ) : (
-                      <CloseIcon size="lg" theme="danger" />
+                      <span style={{fontSize: '24px'}}>❌</span>
                     )}
                   </Box>
                 </DashboardCard>
@@ -98,15 +97,15 @@ const NewDashboard: React.FC = () => {
                   title={t('data.fields.mfaEnabled')}
                   variant="status"
                   metric={{
-                    value: user.layeraClaims?.mfa_verified ? t('status.enabled') : t('status.disabled'),
+                    value: user.layeraClaims?.mfaVerified ? t('status.enabled') : t('status.disabled'),
                     label: t('dashboard.mfaStatus')
                   }}
                 >
                   <Box textAlign="center" padding="md">
-                    {user.layeraClaims?.mfa_verified ? (
-                      <CheckIcon size="lg" theme="success" />
+                    {user.layeraClaims?.mfaVerified ? (
+                      <span style={{fontSize: '24px'}}>✅</span>
                     ) : (
-                      <CloseIcon size="lg" theme="danger" />
+                      <span style={{fontSize: '24px'}}>❌</span>
                     )}
                   </Box>
                 </DashboardCard>
@@ -154,9 +153,15 @@ const NewDashboard: React.FC = () => {
                     )}
                     <Box>
                       <strong>{t('data.fields.userId')}:</strong>
-                      <Text size="sm" color="secondary" fontFamily="monospace">
+                      <span
+                        style={{
+                          fontSize: 'var(--la-font-size-sm)',
+                          color: 'var(--la-text-secondary)',
+                          fontFamily: 'var(--la-font-family-mono)'
+                        }}
+                      >
                         {user.uid}
-                      </Text>
+                      </span>
                     </Box>
                     <Box>
                       <strong>{t('data.fields.accountCreated')}:</strong> {user.metadata?.creationTime ? new Date(user.metadata.creationTime).toLocaleString('el-GR') : t('data.fields.notAvailable')}
@@ -171,7 +176,7 @@ const NewDashboard: React.FC = () => {
             </Box>
 
             {/* MFA Action if needed */}
-            {!user?.layeraClaims?.mfa_verified && (
+            {!user?.layeraClaims?.mfaVerified && (
               <Box padding="lg">
                 <DashboardSection title={t('account.security')}>
                   <DashboardGrid columns={{ xs: 1, sm: 1, md: 1, lg: 1 }}>
@@ -179,10 +184,10 @@ const NewDashboard: React.FC = () => {
                     title={t('dashboard:cards.mfa.title')}
                     variant="stats"
                     clickable
-                    onClick={(): void => navigate('/mfa-enroll')}
+                    onClick={() => navigate('/mfa-enroll')}
                   >
-                    <SettingsIcon size="lg" theme="info" />
-                    <Text>{t('dashboard.actionDescriptions.enableMfa')}</Text>
+                    <span style={{fontSize: '24px'}}>⚙️</span>
+                    <span>{t('dashboard.actionDescriptions.enableMfa')}</span>
                   </DashboardCard>
                 </DashboardGrid>
                 </DashboardSection>
@@ -198,10 +203,10 @@ const NewDashboard: React.FC = () => {
                     title={t('dashboard:admin.roleManagement')}
                     variant="chart"
                     clickable
-                    onClick={(): void => navigate('/admin/roles')}
+                    onClick={() => navigate('/admin/roles')}
                   >
-                    <SettingsIcon size="lg" theme="info" />
-                    <Text>Manage user roles and permissions</Text>
+                    <span style={{fontSize: '24px'}}>⚙️</span>
+                    <span>Manage user roles and permissions</span>
                   </DashboardCard>
                 </DashboardGrid>
                 </DashboardSection>

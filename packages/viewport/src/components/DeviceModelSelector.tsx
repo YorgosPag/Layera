@@ -11,7 +11,7 @@
 
 import React, { useState } from 'react';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
-import { SPACING_SCALE, BORDER_RADIUS_SCALE, DEVICE_FRAME_COLORS, CSS_DESIGN_TOKENS, FONT_SIZES } from '@layera/constants';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE, DEVICE_FRAME_COLORS, CSS_DESIGN_TOKENS, FONT_SIZES, IPHONE_14_PRO_MAX_SPECS } from '@layera/constants';
 
 export type DeviceModel =
   | 'iPhone X'
@@ -52,7 +52,7 @@ const deviceSpecs: Record<DeviceModel, DeviceSpecs> = {
   'iPhone 8': { width: 375, height: 667, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 25, frameColor: DEVICE_FRAME_COLORS.SILVER },
   'iPhone 8 Plus': { width: 414, height: 736, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 25, frameColor: DEVICE_FRAME_COLORS.SILVER },
   'iPhone 12 Pro': { width: 390, height: 844, scale: 1, hasNotch: true, hasHomeBar: true, borderRadius: 45, frameColor: DEVICE_FRAME_COLORS.SPACE_GRAY },
-  'iPhone 14 Pro Max': { width: 430, height: 932, scale: 1, hasNotch: true, hasHomeBar: true, borderRadius: 50, frameColor: DEVICE_FRAME_COLORS.SPACE_GRAY },
+  'iPhone 14 Pro Max': { width: IPHONE_14_PRO_MAX_SPECS.VIEWPORT_WIDTH, height: IPHONE_14_PRO_MAX_SPECS.VIEWPORT_HEIGHT, scale: 1, hasNotch: true, hasHomeBar: true, borderRadius: 50, frameColor: DEVICE_FRAME_COLORS.SPACE_GRAY },
   'Samsung Galaxy S21': { width: 384, height: 854, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: DEVICE_FRAME_COLORS.BLACK },
   'Samsung Galaxy S22': { width: 390, height: 844, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: DEVICE_FRAME_COLORS.SPACE_GRAY },
   'Samsung Galaxy S22 Ultra': { width: 412, height: 908, scale: 1, hasNotch: false, hasHomeBar: false, borderRadius: 35, frameColor: DEVICE_FRAME_COLORS.BLACK },

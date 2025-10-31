@@ -8,7 +8,7 @@ import { ThemeSwitcher } from '@layera/theme-switcher';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, FlexCenter, Box, Flex } from '@layera/layout';
 import { DashboardCard } from '@layera/cards';
 import { FORM_TYPES, FORM_SIZES, SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
-import { Text } from '@layera/typography';
+// import { Text } from '@layera/typography'; // Temporarily disabled until package is fixed
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -81,9 +81,7 @@ const Login = () => {
           >
           {error && (
             <Box
-              backgroundColor="custom"
               color="danger"
-              padding="custom"
               borderRadius="input"
               marginBottom="md"
               fontSize="sm"
@@ -92,7 +90,7 @@ const Login = () => {
               background="var(--la-bg-danger-subtle, color-mix(in srgb, var(--la-bg-danger) 10%, transparent))"
               borderColor="var(--la-border-danger-subtle, 1px solid color-mix(in srgb, var(--la-bg-danger) 30%, transparent))"
             >
-              <Text size="sm" color="danger">{error}</Text>
+              <span style={{ fontSize: 'var(--la-font-size-sm)', color: 'var(--la-color-danger)' }}>{error}</span>
             </Box>
           )}
 
@@ -147,7 +145,6 @@ const Login = () => {
           </form>
 
           <Box
-            margin="custom"
             textAlign="center"
             position="relative"
             color="secondary"
@@ -156,27 +153,24 @@ const Login = () => {
           >
             <Box
               position="absolute"
-              top="custom"
               left="0"
               right="0"
-              height="custom"
               backgroundColor="border"
               zIndex="1"
               top="50%"
               height="1px"
               background="var(--la-border-primary)"
             />
-            <Text
-              as="span"
-              backgroundColor="primary"
-              padding="custom"
-              position="relative"
-              zIndex="2"
-              background="var(--la-bg-primary)"
-              padding={`0 ${SPACING_SCALE.MD - SPACING_SCALE.XS}px`}
+            <span
+              style={{
+                backgroundColor: 'var(--la-bg-primary)',
+                padding: `0 ${SPACING_SCALE.MD - SPACING_SCALE.XS}px`,
+                position: 'relative',
+                zIndex: 2
+              }}
             >
               ή
-            </Text>
+            </span>
           </Box>
 
           <GoogleSignInButton
@@ -204,22 +198,24 @@ const Login = () => {
             >
               {t('auth.forgotPassword')}
             </Link>
-            <Text
-              as="p"
-              margin="custom"
-              color="secondary"
-              margin={`${SPACING_SCALE.SM}px 0`}
+            <p
+              style={{
+                margin: `${SPACING_SCALE.SM}px 0`,
+                color: 'var(--la-text-secondary)'
+              }}
             >
               {t('auth.noAccount')} {' '}
               <Link
                 to="/register"
-                color="var(--la-color-info, var(--la-bg-info))"
-                textDecoration="var(--la-text-decoration-none, none)"
-                fontWeight="var(--la-font-weight-medium, 500)"
+                style={{
+                  color: 'var(--la-color-info, var(--la-bg-info))',
+                  textDecoration: 'none',
+                  fontWeight: 500
+                }}
               >
                 {t('auth.register')}
               </Link>
-            </Text>
+            </p>
           </Box>
         </DashboardCard>
         </FlexCenter>

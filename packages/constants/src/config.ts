@@ -145,6 +145,50 @@ export const LOCAL_URLS = {
 } as const;
 
 // ============================================================================
+// DEVICE SPECIFICATIONS - Hardware & Viewport Dimensions
+// ============================================================================
+
+/**
+ * iPhone 14 Pro Max Specifications - Single Source of Truth
+ */
+export const IPHONE_14_PRO_MAX_SPECS = {
+  VIEWPORT_WIDTH: 430,
+  VIEWPORT_HEIGHT: 932,
+  FRAME_WIDTH_MIN: 412,
+  FRAME_WIDTH_MAX: 416,
+  FRAME_HEIGHT_MIN: 914,
+  FRAME_HEIGHT_MAX: 920,
+  EXACT_FRAME_WIDTH: 414,
+  EXACT_FRAME_HEIGHT: 916,
+} as const;
+
+/**
+ * Responsive Breakpoints - Single Source of Truth
+ */
+export const DEVICE_BREAKPOINTS = {
+  MOBILE: 768,    // 0-767px = mobile
+  TABLET: 1024,   // 768-1023px = tablet
+  DESKTOP: 1025,  // 1024px+ = desktop
+  MOBILE_MAX: 480, // Pure mobile detection
+} as const;
+
+/**
+ * Common Device Viewport Sizes
+ */
+export const DEVICE_VIEWPORTS = {
+  // iPhone Models
+  IPHONE_6_7_8: { width: 375, height: 667 },
+  IPHONE_11_XR: { width: 414, height: 896 },
+  IPHONE_14_PRO_MAX: { width: IPHONE_14_PRO_MAX_SPECS.VIEWPORT_WIDTH, height: IPHONE_14_PRO_MAX_SPECS.VIEWPORT_HEIGHT },
+  IPHONE_12_13_14: { width: 390, height: 844 },
+
+  // Tablet Models
+  IPAD_MINI: { width: 768, height: 1024 },
+  IPAD_AIR: { width: 820, height: 1180 },
+  IPAD_PRO: { width: 1024, height: 1366 },
+} as const;
+
+// ============================================================================
 // CSS VIEWPORT DIMENSIONS - Responsive Design
 // ============================================================================
 

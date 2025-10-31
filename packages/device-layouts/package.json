@@ -19,8 +19,8 @@
   },
   "keywords": ["layera", "device-layouts", "responsive", "orchestrator", "enterprise"],
   "dependencies": {
-    "@layera/device-detection": "workspace:*",
-    "@layera/layout": "workspace:*"
+    "@layera/layout": "workspace:*",
+    "@layera/viewport": "workspace:*"
   },
   "peerDependencies": {
     "react": "^18.0.0"

@@ -40,8 +40,11 @@ export type {
   FileUploaderProps
 } from './types';
 
+// Import for internal use
+import type { FileUploadConfig } from './types';
+
 // Default configurations
-export const DEFAULT_UPLOAD_CONFIG = {
+export const DEFAULT_UPLOAD_CONFIG: FileUploadConfig = {
   maxFileSize: 100 * 1024 * 1024, // 100MB
   maxTotalSize: 500 * 1024 * 1024, // 500MB
   enableChunking: true,
@@ -49,6 +52,7 @@ export const DEFAULT_UPLOAD_CONFIG = {
   maxConcurrent: 3,
   autoUpload: false,
   enableDragDrop: true,
+  uploadUrl: '/api/upload', // Default upload endpoint
   acceptedTypes: [
     'image/jpeg', 'image/png', 'image/gif', 'image/webp',
     'application/pdf',

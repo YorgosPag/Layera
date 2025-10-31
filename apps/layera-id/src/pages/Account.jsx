@@ -9,7 +9,7 @@ import { Button } from '@layera/buttons';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, Box, FlexColumn } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
 import { SPACING_SCALE } from '@layera/constants';
-import { UserIcon, SettingsIcon, LockIcon, ChartIcon, UnlockIcon, WarningIcon } from '@layera/icons';
+// import { UserIcon, SettingsIcon, LockIcon, ChartIcon, UnlockIcon, WarningIcon } from '@layera/icons'; // DISABLED: Export issues
 import './Account.css';
 
 export default function Account() {
@@ -98,12 +98,12 @@ export default function Account() {
               <FlexColumn gap="lg">
                 {!user.emailVerified && (
                   <Box className="warning-message" color="warning" fontSize="sm">
-                    <WarningIcon size="sm" theme="warning" /> {t('account.messages.emailNotVerified')}
+                    <span style={{fontSize: '16px'}}>⚠️</span> {t('account.messages.emailNotVerified')}
                   </Box>
                 )}
                 {!user.layeraClaims?.mfa_verified && (
                   <Box className="info-message" color="info" fontSize="sm">
-                    <LockIcon size="sm" theme="info" /> {t('account.messages.mfaRecommendation')}
+                    <span style={{fontSize: '16px'}}>🔒</span> {t('account.messages.mfaRecommendation')}
                   </Box>
                 )}
               </FlexColumn>
@@ -123,7 +123,7 @@ export default function Account() {
                   clickable
                   onClick={() => navigate('/mfa-enroll')}
                 >
-                  <LockIcon size="lg" theme="info" />
+                  <span style={{fontSize: '24px'}}>🔒</span>
                 </DashboardCard>
               </DashboardGrid>
             </DashboardSection>

@@ -5,6 +5,9 @@ import path from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  define: {
+    'process.env': {}
+  },
   resolve: {
     alias: {
       '@layera/styles': path.resolve(__dirname, '../../packages/styles/index.css'),

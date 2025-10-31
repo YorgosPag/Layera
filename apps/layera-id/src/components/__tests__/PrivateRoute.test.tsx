@@ -40,7 +40,7 @@ describe('PrivateRoute', () => {
   it('wraps content with RoleGuard when role is specified', () => {
     render(
       <TestWrapper>
-        <PrivateRoute requiredRole="admin">
+        <PrivateRoute requirePro={true}>
           <Box>Admin content</Box>
         </PrivateRoute>
       </TestWrapper>

@@ -39,7 +39,6 @@ export default defineConfig({
       // 🔥 ΚΡΙΣΙΜΑ ALIASES ΓΙΑ FAB DRAG FUNCTIONALITY - ΜΗΝ ΑΦΑΙΡΕΣΕΙΣ ΠΟΤΕ!
       '@layera/floating-action-buttons': resolve(__dirname, '../../packages/floating-action-buttons/src'),
       '@layera/draggable-fab': resolve(__dirname, '../../packages/draggable-fab/src'),
-      '@layera/device-detection': resolve(__dirname, '../../packages/device-detection/src'),
       '@layera/device-layouts': resolve(__dirname, '../../packages/device-layouts/src'),
       '@layera/navigation-handlers': resolve(__dirname, '../../packages/navigation-handlers/src'),
     },

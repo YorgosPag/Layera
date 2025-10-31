@@ -7,7 +7,11 @@ export type {
   Orientation,
   ViewportInfo,
   ViewportBreakpoints,
-  ResponsiveConfig
+  ResponsiveConfig,
+  // 🍎 ENHANCED: iPhone-specific types (absorbed from @layera/device-detection)
+  DeviceFrame,
+  DeviceSpecs,
+  iPhoneDetectionOptions
 } from './types';
 
 // Hooks
@@ -16,7 +20,9 @@ export {
   useIsMobile,
   useIsTablet,
   useIsDesktop,
-  useOrientation
+  useOrientation,
+  // 🍎 ENHANCED: iPhone detection (absorbed from @layera/device-detection)
+  useIPhone14ProMaxDetection
 } from './hooks/useViewport';
 
 // Components

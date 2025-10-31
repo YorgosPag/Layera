@@ -24,7 +24,7 @@ export interface BaseIconProps {
   theme?: IconTheme;
   className?: string;
   style?: React.CSSProperties;
-  onClick?: () => void;
+  onClick?: (event?: React.MouseEvent<SVGSVGElement>) => void;
   'aria-label'?: string;
   title?: string;
 }

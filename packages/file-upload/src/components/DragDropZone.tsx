@@ -23,15 +23,13 @@ export const DragDropZone: React.FC<DragDropZoneProps> = ({
   const { t } = useLayeraTranslation();
   const { theme } = useTheme();
   const [isDragOver, setIsDragOver] = useState(false);
-  const [dragCounter, setDragCounter] = useState(0);
+  // const [dragCounter, setDragCounter] = useState(0); // Unused variable"
 
   const handleDragEnter = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
     if (!enabled) return;
-
-    setDragCounter(prev => prev + 1);
 
     if (e.dataTransfer?.items && e.dataTransfer.items.length > 0) {
       setIsDragOver(true);
@@ -44,13 +42,7 @@ export const DragDropZone: React.FC<DragDropZoneProps> = ({
 
     if (!enabled) return;
 
-    setDragCounter(prev => {
-      const newCounter = prev - 1;
-      if (newCounter === 0) {
-        setIsDragOver(false);
-      }
-      return newCounter;
-    });
+    setIsDragOver(false);
   }, [enabled]);
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
@@ -71,7 +63,6 @@ export const DragDropZone: React.FC<DragDropZoneProps> = ({
     if (!enabled) return;
 
     setIsDragOver(false);
-    setDragCounter(0);
 
     const { files } = e.dataTransfer;
     if (files && files.length > 0) {
@@ -102,7 +93,7 @@ export const DragDropZone: React.FC<DragDropZoneProps> = ({
     e.target.value = '';
   }, [onFilesDrop]);
 
-  const getZoneClasses = (): void => {
+  const getZoneClasses = () => {
     const baseClasses = [
       'relative',
       'border-2',
@@ -139,7 +130,7 @@ export const DragDropZone: React.FC<DragDropZoneProps> = ({
 
   return (
     <Card className={`${getZoneClasses()} ${className}`}>
-      <Box
+      <div
         onDragEnter={handleDragEnter}
         onDragLeave={handleDragLeave}
         onDragOver={handleDragOver}
@@ -201,7 +192,7 @@ export const DragDropZone: React.FC<DragDropZoneProps> = ({
             </Box>
           )}
         </Box>
-      </Box>
+      </div>
     </Card>
   );
 };

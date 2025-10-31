@@ -18,7 +18,6 @@
     "@layera/constants": "workspace:^",
     "@layera/cursors": "workspace:^",
     "@layera/database-core": "file:../../packages/database-core",
-    "@layera/device-detection": "workspace:^",
     "@layera/device-layouts": "workspace:^",
     "@layera/draggable": "file:../../packages/draggable",
     "@layera/draggable-fab": "file:../../packages/draggable-fab",

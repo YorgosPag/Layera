@@ -5,7 +5,7 @@
  * Usage: import { APP_CONFIG, DEVICE_CONFIG, UI_CONFIG } from '@/constants';
  */
 
-import { BORDER_RADIUS_SCALE, SPACING_SCALE } from '@layera/constants';
+import { BORDER_RADIUS_SCALE, SPACING_SCALE, IPHONE_14_PRO_MAX_SPECS } from '@layera/constants';
 
 // Application Configuration
 export const APP_CONFIG = {
@@ -22,16 +22,16 @@ export const APP_CONFIG = {
   }
 } as const;
 
-// Device Configuration - iPhone 14 Pro Max Specifications
+// 🚀 ENTERPRISE: Device Configuration - Single Source of Truth από @layera/constants
 export const DEVICE_CONFIG = {
   iPhone14ProMax: {
-    width: 414,
-    height: 916,
+    width: IPHONE_14_PRO_MAX_SPECS.VIEWPORT_WIDTH,
+    height: IPHONE_14_PRO_MAX_SPECS.VIEWPORT_HEIGHT,
     tolerance: {
-      widthMin: 412,
-      widthMax: 416,
-      heightMin: 914,
-      heightMax: 920
+      widthMin: IPHONE_14_PRO_MAX_SPECS.FRAME_WIDTH_MIN,
+      widthMax: IPHONE_14_PRO_MAX_SPECS.FRAME_WIDTH_MAX,
+      heightMin: IPHONE_14_PRO_MAX_SPECS.FRAME_HEIGHT_MIN,
+      heightMax: IPHONE_14_PRO_MAX_SPECS.FRAME_HEIGHT_MAX
     },
     viewport: {
       id: 'layera-device-simulator-viewport'

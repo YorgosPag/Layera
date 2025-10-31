@@ -202,8 +202,8 @@ export const ResponsiveFAB: React.FC<ResponsiveFABProps> = ({
 
     const width = window.innerWidth;
 
-    // iPhone detection (θα μπορούσε να χρησιμοποιήσει @layera/device-detection)
-    if (width <= 430) {
+    // 🚀 ENTERPRISE: Single Source of Truth - Enhanced @layera/viewport
+    if (width <= 480) {
       return 'mobile';
     } else if (width <= 768) {
       return 'tablet';

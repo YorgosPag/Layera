@@ -1,11 +1,8 @@
 /* Enterprise LEGO Central Styles Import */
-/* This file imports and aggregates all LEGO component styles */
+/* This file provides base styles that complement LEGO components */
 
-/* Import the official LEGO layout styles */
-@import '../layout/dist/styles.css';
-
-/* Import the official LEGO card styles */
-@import '../cards/dist/styles.css';
+/* Note: Individual LEGO component styles are imported via their respective packages */
+/* @layera/layout, @layera/cards, etc. handle their own CSS via JavaScript imports */
 
 /* Additional utility classes that complement LEGO components */
 .layera-mb-2 { margin-bottom: var(--la-space-2); }

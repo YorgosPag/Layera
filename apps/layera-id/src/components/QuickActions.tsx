@@ -2,42 +2,49 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
-import { HomeIcon, SettingsIcon, SaveIcon, GlobeIcon } from '@layera/icons';
+// import { UserIcon, SettingsIcon } from '@layera/icons'; // DISABLED: Export issues
+
+interface PageItem {
+  key: string;
+  title: string;
+  path: string;
+  icon: React.ReactNode;
+}
 
 /**
  * QuickActions - Κοινό component για γρήγορες ενέργειες navigation
  * Περιλαμβάνει όλες τις κύριες σελίδες της εφαρμογής
  */
-export default function QuickActions() {
+const QuickActions: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useLayeraTranslation();
 
   // Λίστα όλων των διαθέσιμων σελίδων
-  const pages = [
+  const pages: PageItem[] = [
     {
       key: 'dashboard',
       title: t('navigation.backToDashboard'),
       path: '/dashboard',
-      icon: <GlobeIcon size="lg" theme="neutral" />
+      icon: <span style={{fontSize: '24px'}}>👤</span>
     },
     {
       key: 'account',
       title: t('navigation.account'),
       path: '/account',
-      icon: <HomeIcon size="lg" theme="neutral" />
+      icon: <span style={{fontSize: '24px'}}>👤</span>
     },
     {
       key: 'settings',
       title: t('navigation.settings'),
       path: '/settings',
-      icon: <SettingsIcon size="lg" theme="neutral" />
+      icon: <span style={{fontSize: '24px'}}>⚙️</span>
     },
     {
       key: 'data',
       title: t('navigation.data'),
       path: '/data',
-      icon: <SaveIcon size="lg" theme="neutral" />
+      icon: <span style={{fontSize: '24px'}}>⚙️</span>
     }
   ];
 
@@ -61,4 +68,6 @@ export default function QuickActions() {
       </DashboardGrid>
     </DashboardSection>
   );
-}
+};
+
+export default QuickActions;

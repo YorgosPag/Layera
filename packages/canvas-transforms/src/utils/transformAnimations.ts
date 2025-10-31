@@ -238,7 +238,7 @@ export const animations = {
       easing,
       from: { scale: 1 },
       to: { scale: targetScale },
-      onUpdate: (transform) => {
+      onUpdate: () => {
         // This would be handled by the viewport manager
       }
     });
@@ -257,7 +257,7 @@ export const animations = {
       easing,
       from: { translation: { x: 0, y: 0 } },
       to: { translation: targetPosition },
-      onUpdate: (transform) => {
+      onUpdate: () => {
       }
     });
   },
@@ -275,7 +275,7 @@ export const animations = {
       easing,
       from: { rotation: 0 },
       to: { rotation: targetRotation },
-      onUpdate: (transform) => {
+      onUpdate: () => {
       }
     });
   },
@@ -294,7 +294,7 @@ export const animations = {
       easing,
       from: fromTransform,
       to: toTransform,
-      onUpdate: (transform) => {
+      onUpdate: () => {
       }
     });
   }

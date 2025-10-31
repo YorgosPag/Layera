@@ -7,13 +7,16 @@
 
 import React from 'react';
 import { Box } from '@layera/layout';
-import { useIPhone14ProMaxDetection } from '@layera/device-detection';
+// 🚀 ENTERPRISE: Single Source of Truth - Enhanced @layera/viewport
+import { useIPhone14ProMaxDetection } from '@layera/viewport';
+// 🚀 ENTERPRISE: Single Source of Truth - Device specs from @layera/constants
+import { IPHONE_14_PRO_MAX_SPECS, DEVICE_BREAKPOINTS } from '@layera/constants';
 import { DeviceLayoutRendererProps, ResponsiveLayoutConfig, DeviceType } from './types';
 
 const DEFAULT_LAYOUT_CONFIG: ResponsiveLayoutConfig = {
   iphone: {
-    width: 430,
-    height: 932,
+    width: IPHONE_14_PRO_MAX_SPECS.VIEWPORT_WIDTH,
+    height: IPHONE_14_PRO_MAX_SPECS.VIEWPORT_HEIGHT,
     containerStyle: {
       position: 'relative',
       overflow: 'hidden'
@@ -55,7 +58,7 @@ export const DeviceLayoutRenderer: React.FC<DeviceLayoutRendererProps> = ({
   showCategoryElements = false,
   fab
 }) => {
-  // 🚀 ENTERPRISE SINGLE SOURCE OF TRUTH: @layera/device-detection
+  // 🚀 ENTERPRISE SINGLE SOURCE OF TRUTH: Enhanced @layera/viewport
   const isIPhone14ProMax = useIPhone14ProMaxDetection({
     frameSelector: '.device-frame-wrapper',
     enableWindowFallback: true,
@@ -83,7 +86,7 @@ export const DeviceLayoutRenderer: React.FC<DeviceLayoutRendererProps> = ({
     }
 
     const width = window.innerWidth;
-    if (width <= 768) {
+    if (width <= DEVICE_BREAKPOINTS.MOBILE) {
       return 'tablet';
     } else {
       return 'desktop';

@@ -12,7 +12,7 @@ import { NotificationProvider, useNotifications } from '@layera/notifications';
 import { ThemeProvider, ThemeSwitcher } from '@layera/theme-switcher';
 import { useLayeraTranslation, LanguageSwitcher } from '@layera/tolgee';
 import { Text, Heading } from '@layera/typography';
-import { useViewportWithOverride, DeviceOverrideProvider } from '@layera/viewport';
+import { useViewportWithOverride, DeviceOverrideProvider, useIPhone14ProMaxDetection } from '@layera/viewport';
 
 // Simple Error Boundary component
 class SimpleErrorBoundary extends React.Component<
@@ -43,7 +43,7 @@ class SimpleErrorBoundary extends React.Component<
 }
 
 // Local application imports
-import { APP_CONFIG, DEVICE_CONFIG, ANIMATION_CONFIG } from './constants';
+import { APP_CONFIG } from './constants';
 import { GeoHeader } from './components/GeoHeader';
 import { GeoMap } from './components/GeoMapNew';
 import { DeviceFrameWrapper } from './components/DeviceFrameWrapper';
@@ -188,63 +188,17 @@ function App() {
   const [isMapMode, setIsMapMode] = useState(false);
   const [showCategoryElements, setShowCategoryElements] = useState(false);
 
-  // iPhone 14 Pro Max detection - immediate check
-  const deviceFrameElement = document.getElementById(DEVICE_CONFIG.iPhone14ProMax.viewport.id);
-  const isInDeviceFrame = !!deviceFrameElement;
-  let frameWidth = 0;
-  let frameHeight = 0;
-
-  if (isInDeviceFrame && deviceFrameElement) {
-    const rect = deviceFrameElement.getBoundingClientRect();
-    frameWidth = rect.width;
-    frameHeight = rect.height;
-  }
-
-  const isIPhone14ProMaxDevice = isInDeviceFrame &&
-    ((frameWidth === DEVICE_CONFIG.iPhone14ProMax.width && frameHeight === DEVICE_CONFIG.iPhone14ProMax.height) ||
-     (frameWidth >= DEVICE_CONFIG.iPhone14ProMax.tolerance.widthMin &&
-      frameWidth <= DEVICE_CONFIG.iPhone14ProMax.tolerance.widthMax &&
-      frameHeight >= DEVICE_CONFIG.iPhone14ProMax.tolerance.heightMin &&
-      frameHeight <= DEVICE_CONFIG.iPhone14ProMax.tolerance.heightMax));
-
-  // State για re-render αν αλλάξει
-  const [deviceDetected, setDeviceDetected] = useState(isIPhone14ProMaxDevice);
+  // 🚀 ENTERPRISE: Single Source of Truth - iPhone detection από @layera/viewport
+  const finalIsIPhone = useIPhone14ProMaxDetection({
+    frameSelector: '.device-frame-wrapper',
+    enableWindowFallback: true,
+    enableUserAgentFallback: true
+  });
   const [, setSavedAreas] = useState<DrawnArea[]>([]);
 
   // State για responsive mode detection από DeviceFrameWrapper
   const [isResponsiveMode, setIsResponsiveMode] = useState(true); // true = responsive, false = device frame
   // REMOVED: Legacy unified pipeline state - replaced by modular step system
-
-  // Use detected iPhone mode
-  const finalIsIPhone = deviceDetected || isIPhone14ProMaxDevice;
-
-  useEffect(() => {
-    const checkDevice = (): void => {
-      const deviceFrameElement = document.getElementById(DEVICE_CONFIG.iPhone14ProMax.viewport.id);
-      const isInDeviceFrame = !!deviceFrameElement;
-
-      if (isInDeviceFrame && deviceFrameElement) {
-        const rect = deviceFrameElement.getBoundingClientRect();
-        const frameWidth = rect.width;
-        const frameHeight = rect.height;
-
-        const isIPhone14ProMax = ((frameWidth === DEVICE_CONFIG.iPhone14ProMax.width && frameHeight === DEVICE_CONFIG.iPhone14ProMax.height) ||
-                                 (frameWidth >= DEVICE_CONFIG.iPhone14ProMax.tolerance.widthMin &&
-                                  frameWidth <= DEVICE_CONFIG.iPhone14ProMax.tolerance.widthMax &&
-                                  frameHeight >= DEVICE_CONFIG.iPhone14ProMax.tolerance.heightMin &&
-                                  frameHeight <= DEVICE_CONFIG.iPhone14ProMax.tolerance.heightMax));
-
-        if (process.env.NODE_ENV === 'development') {}
-
-        setDeviceDetected(isIPhone14ProMax);
-      }
-    };
-
-    // Έλεγχος μετά από λίγο για DOM updates
-    const timer = setTimeout(checkDevice, ANIMATION_CONFIG.delays.deviceCheck);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   const handleAreaCreated = (area: DrawnArea) => {
     setSavedAreas(prev => [...prev, area]);

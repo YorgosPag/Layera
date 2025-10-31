@@ -5,10 +5,10 @@ import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { Button } from '@layera/buttons';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, FlexCenter, Box } from '@layera/layout';
-import { Text } from '@layera/typography';
+// import { Text } from '@layera/typography'; // Temporarily disabled until package is fixed
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
 import { SPACING_SCALE } from '@layera/constants';
-import { SettingsIcon, UserIcon, ShieldIcon, ChartIcon, FolderIcon, BellIcon, PaletteIcon, WarningIcon } from '@layera/icons';
+// import { SettingsIcon, UserIcon, ShieldIcon, ChartIcon, FolderIcon, BellIcon, PaletteIcon, WarningIcon } from '@layera/icons'; // DISABLED: Export issues
 import QuickActions from '../components/QuickActions';
 
 export default function Settings() {
@@ -79,7 +79,7 @@ export default function Settings() {
         <Box padding="lg">
           <DashboardSection
           title={t('settings.sections.security')}
-          icon={<ShieldIcon size="md" theme="neutral" />}
+          icon={<span style={{fontSize: '20px'}}>🛡️</span>}
         >
           <DashboardGrid columns={{ xs: 1, sm: 1, md: 2, lg: 3 }}>
             <DashboardCard
@@ -137,7 +137,7 @@ export default function Settings() {
         <Box padding="lg">
           <DashboardSection
           title={t('settings.sections.notifications')}
-          icon={<BellIcon size="md" theme="neutral" />}
+          icon={<span style={{fontSize: '20px'}}>🔔</span>}
         >
           <DashboardGrid columns={{ xs: 1, sm: 1, md: 2, lg: 3 }}>
             <DashboardCard
@@ -171,7 +171,7 @@ export default function Settings() {
         <Box padding="lg">
           <DashboardSection
           title={t('settings.sections.appearance')}
-          icon={<PaletteIcon size="md" theme="neutral" />}
+          icon={<span style={{fontSize: '20px'}}>🎨</span>}
         >
           <DashboardGrid columns={{ xs: 1, sm: 1, md: 2, lg: 3 }}>
             <DashboardCard

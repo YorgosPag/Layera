@@ -12,7 +12,7 @@ export type SupportedFileType =
   | 'application/vnd.ms-excel' | 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
   | 'application/msword' | 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
   | 'application/zip' | 'application/x-rar-compressed'
-  | 'image/vnd.dxf' | 'application/dxf'
+  | 'image/vnd.dxf' | 'application/dxf' | 'application/dwg'
   | 'application/json' | 'application/xml';
 
 export interface FileUploadConfig {

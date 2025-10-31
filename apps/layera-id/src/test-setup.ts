@@ -1,4 +1,7 @@
 import '@testing-library/jest-dom';
+import { vi } from 'vitest';
+import { render } from '@testing-library/react';
+import React from 'react';
 
 // Mock Firebase Auth
 const mockAuth = {
@@ -41,6 +44,10 @@ Object.defineProperty(import.meta, 'env', {
 });
 
 // Global test utilities
+declare global {
+  var renderWithProviders: (ui: React.ReactElement, options?: any) => any;
+}
+
 global.renderWithProviders = (ui: React.ReactElement, options = {}) => {
   // Helper function για rendering με providers
   return render(ui, options);

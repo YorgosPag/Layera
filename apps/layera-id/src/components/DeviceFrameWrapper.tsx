@@ -3,7 +3,7 @@ import { useViewportWithOverride } from '@layera/viewport';
 import { DeviceModelSelector, DeviceModel, getDeviceSpecs } from '@layera/viewport';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
-import { Box } from '@layera/layout';
+import { Box, Flex } from '@layera/layout';
 
 interface DeviceFrameWrapperProps {
   children: React.ReactNode;
@@ -14,7 +14,8 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
   children,
   enabled = true
 }) => {
-  const { deviceType, isMobile, isTablet, isDesktop } = useViewportWithOverride();
+  // const { deviceType, isMobile, isTablet, isDesktop } = useViewportWithOverride();
+  useViewportWithOverride(); // Hook call required but variables not used
   const [selectedModel, setSelectedModel] = useState<DeviceModel | null>(null);
 
   if (!enabled) {
