@@ -156,12 +156,13 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
   const handleStepComplete = useCallback((stepId: StepId, data?: unknown) => {
     onStepComplete?.(stepId, data);
 
-    // Auto-advance to next step αν δεν είναι το τελευταίο
+    // ✅ ΣΩΣΤΟ: Auto-advance to next step - αυτό ΠΡΕΠΕΙ να μείνει
+    // Το πρόβλημα ήταν ότι το CategoryStep ΕΠΙΣΗΣ καλούσε onNext()
+    // Τώρα μόνο το StepOrchestrator κάνει navigation - Single Source of Truth!
     const currentIndex = availableSteps.findIndex(step => step.id === stepId);
     const nextStep = availableSteps[currentIndex + 1];
 
     if (nextStep) {
-
       setTimeout((): void => {
         if (onStepChange) {
           onStepChange(nextStep.id);
@@ -169,8 +170,8 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
           console.warn(`🎼 ORCHESTRATOR: onStepChange is not defined!`);
         }
       }, 500); // Small delay για UX
-    } else {
     }
+
   }, [availableSteps, onStepChange, onStepComplete]);
 
   // 🎨 Render step cards

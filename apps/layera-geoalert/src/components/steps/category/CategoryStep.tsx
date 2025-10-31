@@ -84,6 +84,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
     }
 
     // 1. StepOrchestrator notification με selected category data
+    // ΣΗΜΕΙΩΣΗ: Το onStepComplete ήδη κάνει auto-advance στο επόμενο step
     if (onStepComplete) {
       onStepComplete('category', {
         selectedCategory: category
@@ -93,10 +94,10 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
     // 2. Legacy callback για backward compatibility
     onCategorySelected?.(category);
 
-    // 3. ✅ CLEAN ENTERPRISE NAVIGATION: Auto-advance στο επόμενο step
-    onNext?.();
+    // 3. ❌ REMOVED: Διπλό onNext() προκαλούσε NavigationError
+    // Το onStepComplete ήδη κάνει auto-advance, δεν χρειάζεται επιπλέον onNext()
 
-  }, [onStepComplete, onCategorySelected, onNext]);
+  }, [onStepComplete, onCategorySelected]);
 
   if (!isVisible) {
     return null;

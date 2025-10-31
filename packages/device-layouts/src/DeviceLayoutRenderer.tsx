@@ -167,8 +167,14 @@ export const DeviceLayoutRenderer: React.FC<DeviceLayoutRendererProps> = ({
             onStepComplete: async (stepId, data) => {
               // Ειδική λογική για category step - χρειάζεται selectCategory πρώτα
               if (stepId === 'category' && data && typeof data === 'object' && 'selectedCategory' in data) {
-                // Εδώ θα χρειαστούμε access στο navigation service
-                // Προς το παρόν, η auto-advance θα γίνει από το StepOrchestrator
+                // ✅ ΥΛΟΠΟΙΗΣΗ: Καλούμε selectCategory πρώτα, μετά το StepOrchestrator κάνει το navigation
+                try {
+                  if (navigationHandlers?.selectCategory) {
+                    await navigationHandlers.selectCategory(data.selectedCategory as string);
+                  }
+                } catch (error) {
+                  console.error('❌ DeviceLayoutRenderer: selectCategory failed:', error);
+                }
               }
             },
             deviceProps: { isIPhone14ProMaxDevice: true, isMobile: true },
