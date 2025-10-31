@@ -42,8 +42,15 @@
   --layera-card-uniform-hover-shadow: var(--la-shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
 
   /* Global Card Padding & Spacing */
-  --layera-card-uniform-padding: var(--la-space-4, 1rem);
-  --layera-card-uniform-gap: var(--la-space-3, 0.75rem);
+  --layera-card-uniform-padding: var(--la-space-4);
+  --layera-card-uniform-gap: var(--la-space-3);
+
+  /* ============= ΚΑΘΟΛΙΚΟ GRID LAYOUT SYSTEM ============= */
+  /* Cards σε διάδες - 2 κάρτες ανά σειρά που καταλαμβάνουν όλο το πλάτος */
+  --layera-grid-columns: 2;
+  --layera-grid-gap: var(--la-space-3);
+  --layera-grid-min-width: calc(var(--la-space-32) + var(--la-space-16));
+  --layera-grid-max-width: 1fr;
 }
 
 /* =============== ΚΑΘΟΛΙΚΟ CARD STYLING SYSTEM - ΑΠΟΛΥΤΟΣ ΕΛΕΓΧΟΣ =============== */
@@ -165,4 +172,147 @@ body {
 .layera-focus-ring:focus {
   outline: 0.125rem solid var(--la-bg-info);
   outline-offset: 0.125rem;
+}
+
+/* =============== ΚΑΘΟΛΙΚΟ GRID LAYOUT SYSTEM =============== */
+/* SINGLE SOURCE OF TRUTH για card layout σε όλη την εφαρμογή */
+
+/* Grid Container - ΑΥΤΟΜΑΤΑ 2 κάρτες ανά σειρά */
+.layera-cards-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: var(--layera-grid-gap) !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 var(--la-space-2) !important;
+  box-sizing: border-box !important;
+}
+
+/* Mobile Responsive - 1 κάρτα ανά σειρά σε μικρές οθόνες */
+@media (max-width: 480px) {
+  .layera-cards-grid {
+    grid-template-columns: 1fr !important;
+    padding: 0 var(--la-space-1) !important;
+    gap: var(--la-space-2) !important;
+  }
+}
+
+/* Tablet - 2 κάρτες ανά σειρά */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .layera-cards-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    padding: 0 var(--la-space-3) !important;
+  }
+}
+
+/* Large Desktop - 3 κάρτες ανά σειρά σε μεγάλες οθόνες */
+@media (min-width: 1200px) {
+  .layera-cards-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    padding: 0 var(--la-space-4) !important;
+  }
+}
+
+/* Grid Card Item - κάθε κάρτα στο grid */
+.layera-cards-grid .layera-card-uniform {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+/* Ειδική κλάση για 2x2 Grid (4 κάρτες) */
+.layera-cards-grid-2x2 {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: var(--layera-grid-gap) !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 var(--la-space-2) !important;
+  box-sizing: border-box !important;
+}
+
+/* Mobile 2x2 - 1 κάρτα ανά σειρά */
+@media (max-width: 480px) {
+  .layera-cards-grid-2x2 {
+    grid-template-columns: 1fr !important;
+    padding: 0 var(--la-space-1) !important;
+    gap: var(--la-space-2) !important;
+  }
+}
+
+/* Tablet 2x2 - 2 κάρτες ανά σειρά */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .layera-cards-grid-2x2 {
+    grid-template-columns: repeat(2, 1fr) !important;
+    padding: 0 var(--la-space-3) !important;
+  }
+}
+
+/* Large Desktop 2x2 - 4 κάρτες σε μία σειρά */
+@media (min-width: 1200px) {
+  .layera-cards-grid-2x2 {
+    grid-template-columns: repeat(4, 1fr) !important;
+    padding: 0 var(--la-space-4) !important;
+  }
+}
+
+/* =============== ΚΑΘΟΛΙΚΟ TEXT OVERFLOW & TYPOGRAPHY SYSTEM =============== */
+/* SINGLE SOURCE OF TRUTH για text behavior σε cards */
+
+/* Card Text Content - Αποφυγή overflow */
+.layera-card-uniform * {
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  hyphens: auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Card Descriptions - Μικρότερα fonts για descriptions */
+.layera-card-uniform [data-description],
+.layera-card-uniform .description,
+.layera-card-uniform p:not(:first-child),
+.layera-card-uniform .subtitle {
+  font-size: var(--la-text-xs) !important;
+  line-height: var(--la-line-height-tight, 1.25) !important;
+  color: var(--la-text-muted, #6b7280) !important;
+  margin-top: var(--la-space-1) !important;
+  margin-bottom: 0 !important;
+  max-height: calc(var(--la-text-xs) * var(--la-line-height-tight, 1.25) * 2) !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+}
+
+/* Card Titles - Consistent sizing */
+.layera-card-uniform h1,
+.layera-card-uniform h2,
+.layera-card-uniform h3,
+.layera-card-uniform .title {
+  font-size: var(--la-text-sm) !important;
+  line-height: var(--la-line-height-snug, 1.375) !important;
+  font-weight: var(--la-font-weight-medium, 500) !important;
+  margin: 0 !important;
+  color: var(--la-text-primary) !important;
+}
+
+/* Mobile Typography Adjustments */
+@media (max-width: 480px) {
+  .layera-card-uniform [data-description],
+  .layera-card-uniform .description,
+  .layera-card-uniform p:not(:first-child),
+  .layera-card-uniform .subtitle {
+    font-size: var(--la-text-2xs) !important;
+    -webkit-line-clamp: 1 !important;
+  }
+
+  .layera-card-uniform h1,
+  .layera-card-uniform h2,
+  .layera-card-uniform h3,
+  .layera-card-uniform .title {
+    font-size: var(--la-text-xs) !important;
+  }
 }

@@ -109,7 +109,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
 
   return (
     <>
-    <Box style={containerStyles} className={containerClass}>
+    <Box style={containerStyles} className={`${containerClass} layera-cards-grid`}>
       {/* Ακίνητα Card */}
       <BaseCard
         variant="property"

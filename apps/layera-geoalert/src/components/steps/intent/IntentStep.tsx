@@ -138,7 +138,7 @@ export const IntentStep: React.FC<IntentStepProps> = ({
 
   return (
     <>
-      <Box style={containerStyles} className={containerClass}>
+      <Box style={containerStyles} className={`${containerClass} layera-cards-grid`}>
         {intentCards.map((cardConfig: CardConfig) => (
           <BaseCard
             key={cardConfig.id}

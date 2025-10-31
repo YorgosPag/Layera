@@ -154,7 +154,7 @@ export const AreaMethodStep: React.FC<AreaMethodStepProps> = ({
   }
 
   return (
-    <Box style={containerStyles}>
+    <Box style={containerStyles} className="layera-cards-grid-2x2">
       {areaMethods.map((method: AreaMethodOption) => (
         <AreaMethodCard
           key={method.id}
