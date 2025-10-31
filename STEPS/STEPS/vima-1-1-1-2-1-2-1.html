@@ -1,0 +1,66 @@
+<!doctype html><html lang="el"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Βήμα 1.1.1.2.1.2.1 · Φόρμα Ακινήτου</title><style>
+  :root{--w:390px;--r1:36px;--r2:28px;--p:#2563eb;--ink:#0f172a;--bg1:#f8fafc;--bg2:#f1f5f9;--bg3:#eef2ff}
+  *{box-sizing:border-box}html,body{height:100%}
+  body{margin:0;background:radial-gradient(1200px 600px at 10% -10%,#1f2937 0%,#0b1020 40%,#050814 100%);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;display:grid;place-items:center;color:var(--ink)}
+  .device{width:min(var(--w),calc(100vw - 24px));aspect-ratio:390/844;background:linear-gradient(145deg,#1f2438,#0a0d1a);border-radius:var(--r1);padding:14px;box-shadow:0 20px 70px rgba(0,0,0,.35);position:relative}
+  .screen{width:100%;height:100%;border-radius:var(--r2);overflow:hidden;background:var(--bg1);display:grid;grid-template-rows:auto 1fr auto}
+  .camera-hole{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:16px;height:16px;background:#0b0f1a;border-radius:50%;box-shadow:inset 0 0 0 2px rgba(255,255,255,.08)}
+  .appbar{display:flex;align-items:center;gap:8px;padding:12px 14px 8px;background:rgba(255,255,255,.75);border-bottom:1px solid #e5e7eb}
+  .dots{display:inline-grid;grid-auto-flow:column;gap:6px;margin-right:8px}.dot{width:8px;height:8px;border-radius:50%;background:#cbd5e1}.dot.active{background:var(--p)}
+  .title{font-weight:600;font-size:14px}.spacer{flex:1}.btn-ghost{border:1px solid #e5e7eb;background:#fff;border-radius:999px;padding:6px 10px;font-size:12px;cursor:pointer}
+  .content{padding:16px;background:linear-gradient(180deg,var(--bg1),var(--bg2) 60%,var(--bg3));overflow:auto}
+  .card{background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:16px;box-shadow:0 4px 20px rgba(2,8,23,.05)}
+  .h1{font-size:18px;font-weight:700;margin:0 0 8px}.p{margin:0 0 12px;color:#334155;font-size:14px}
+  .grid2{display:grid;gap:10px;grid-template-columns:1fr 1fr}.field{display:grid;gap:6px;margin:12px 0}
+  input,select,textarea{width:100%;padding:12px;border-radius:12px;border:1px solid #cbd5e1;background:#fff;font-size:14px}
+  textarea{min-height:90px;resize:vertical}
+  .mapbox{height:360px;border-radius:16px;border:1px dashed #cbd5e1;background:
+    linear-gradient(0deg,rgba(148,163,184,.15) 1px,transparent 1px) 0 0/100% 24px,
+    linear-gradient(90deg,rgba(148,163,184,.15) 1px,transparent 1px) 0 0/24px 100%,
+    linear-gradient(180deg,#e2e8f0 0%,#f8fafc 100%);display:grid;place-items:center;color:#475569}
+  .actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
+  a.buttonlike{text-decoration:none}
+  .btn-primary{background:var(--p);color:#fff;border:none;border-radius:14px;padding:12px 16px;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 6px 16px rgba(37,99,235,.25);display:inline-block}
+  .btn-secondary{background:#e2e8f0;color:#0f172a;border:none;border-radius:14px;padding:12px 16px;font-weight:600;font-size:14px;cursor:pointer;display:inline-block}
+  .footer{display:flex;justify-content:center;align-items:center;padding:8px;color:#64748b;font-size:11px}
+</style></head>
+<body>
+  <div class="device" role="img" aria-label="Samsung Galaxy A35 mock">
+    <div class="screen">
+      <div class="camera-hole" aria-hidden="true"></div>
+      <header class="appbar">
+        <div class="dots" aria-hidden="true"><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
+        <div class="title">Βήμα 1.1.1.2.1.2.1 · Φόρμα Ακινήτου</div>
+        <div class="spacer"></div>
+        <button class="btn-ghost" onclick="window.location.href='vima-1-1-1-2-1-2.html'">Πίσω</button>
+      </header>
+      <main class="content">
+        
+  <form class="card" onsubmit="event.preventDefault();window.location.href='vima-1-1-1-2-1-2-1-1.html'">
+    <div class="h1">Φόρμα Ακινήτου</div>
+    
+  <div class="grid2">
+    <div class="field"><label>Τίτλος</label><input placeholder="π.χ. Διαμέρισμα 80τμ στο κέντρο"></div>
+    <div class="field"><label>Τιμή (€)</label><input type="number" placeholder="π.χ. 750"></div>
+    <div class="field"><label>Τετρ. μέτρα</label><input type="number" placeholder="π.χ. 80"></div>
+    <div class="field"><label>Όροφος</label><input type="number" placeholder="π.χ. 3"></div>
+    <div class="field"><label>Υπνοδωμάτια</label><input type="number" placeholder="π.χ. 2"></div>
+    <div class="field"><label>Μπάνια</label><input type="number" placeholder="π.χ. 1"></div>
+  </div>
+  <div class="field"><label>Περιγραφή</label><textarea placeholder="Περιγραφή ακινήτου..."></textarea></div>
+  <div class="field"><label>Φωτογραφίες</label><input type="file" multiple></div>
+  <div class="field"><label>Επικοινωνία</label><input type="email" placeholder="email@domain.com"></div>
+
+    <div class="actions">
+      <a class="buttonlike btn-secondary" href="vima-1-1-1-2-1-2.html">Πίσω</a>
+      <button class="btn-primary" type="submit">Δημοσίευση</button>
+    </div>
+  </form>
+  
+      </main>
+      <div style="height:10px"></div>
+      <footer class="footer">1.1.1.2.1.2 → 1.1.1.2.1.2.1</footer>
+    </div>
+  </div>
+</body></html>

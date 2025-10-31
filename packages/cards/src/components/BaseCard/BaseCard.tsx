@@ -3,7 +3,7 @@ import { BaseCardProps } from '../../types';
 import { getEnhancedCardTheme, getCardTextColor } from '../../utils/cardThemes';
 
 // Enterprise LEGO Design System imports
-import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE, GEO_DRAWING_INTERACTION } from '@layera/constants';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { getCursorVar } from '@layera/cursors';
 import { Flex, Box } from '@layera/layout';
@@ -178,7 +178,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
   };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
-    if ((clickable || onClick) && onClick && (event.key === 'Enter' || event.key === ' ')) {
+    if ((clickable || onClick) && onClick && (event.key === GEO_DRAWING_INTERACTION.KEY_CODES.ENTER || event.key === GEO_DRAWING_INTERACTION.KEY_CODES.SPACE)) {
       event.preventDefault();
       onClick();
     }
@@ -191,7 +191,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
     ? {
         onClick: handleClick,
         onKeyDown: handleKeyDown,
-        tabIndex: 0,
+        tabIndex: GEO_DRAWING_INTERACTION.ACCESSIBILITY.TAB_INDEX_FOCUSABLE,
         role: 'button',
         'aria-pressed': false
       }
@@ -238,21 +238,30 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
 
         {/* Info Button - Mobile optimized */}
         {onInfoClick && (
-          <button
+          <div
             onClick={handleInfoClick}
+            role="button"
+            tabIndex={GEO_DRAWING_INTERACTION.ACCESSIBILITY.TAB_INDEX_FOCUSABLE}
+            onKeyDown={(e) => {
+              if (e.key === GEO_DRAWING_INTERACTION.KEY_CODES.ENTER || e.key === GEO_DRAWING_INTERACTION.KEY_CODES.SPACE) {
+                e.preventDefault();
+                handleInfoClick();
+              }
+            }}
             style={{
               ...infoButtonStyles,
               display: 'var(--la-display-flex, flex)',
               alignItems: 'var(--la-align-center, center)',
-              justifyContent: 'var(--la-justify-center, center)'
+              justifyContent: 'var(--la-justify-center, center)',
+              cursor: getCursorVar('pointer')
             }}
-            onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
+            onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => {
               if (window.matchMedia('(hover: hover)').matches) {
                 e.currentTarget.style.color = 'var(--color-text-primary)';
                 e.currentTarget.style.transform = 'var(--la-transform-scale-110, scale(1.1))';
               }
             }}
-            onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
+            onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => {
               if (window.matchMedia('(hover: hover)').matches) {
                 e.currentTarget.style.color = 'var(--color-text-secondary)';
                 e.currentTarget.style.transform = 'var(--la-transform-scale-100, scale(1))';
@@ -263,7 +272,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
             data-testid={`${testId || 'card'}-info-button`}
           >
             i
-          </button>
+          </div>
         )}
       </Box>
     );
@@ -319,21 +328,30 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
 
       {/* Info Button για LEGO mode */}
       {onInfoClick && (
-        <button
+        <div
           onClick={handleInfoClick}
+          role="button"
+          tabIndex={GEO_DRAWING_INTERACTION.ACCESSIBILITY.TAB_INDEX_FOCUSABLE}
+          onKeyDown={(e) => {
+            if (e.key === GEO_DRAWING_INTERACTION.KEY_CODES.ENTER || e.key === GEO_DRAWING_INTERACTION.KEY_CODES.SPACE) {
+              e.preventDefault();
+              handleInfoClick();
+            }
+          }}
           style={{
             ...infoButtonStyles,
             display: 'var(--la-display-flex, flex)',
             alignItems: 'var(--la-align-center, center)',
-            justifyContent: 'var(--la-justify-center, center)'
+            justifyContent: 'var(--la-justify-center, center)',
+            cursor: 'pointer'
           }}
-          onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
+          onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => {
             if (window.matchMedia('(hover: hover)').matches) {
               e.currentTarget.style.color = 'var(--color-text-primary)';
               e.currentTarget.style.transform = 'var(--la-transform-scale-110, scale(1.1))';
             }
           }}
-          onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => {
+          onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => {
             if (window.matchMedia('(hover: hover)').matches) {
               e.currentTarget.style.color = 'var(--color-text-secondary)';
               e.currentTarget.style.transform = 'scale(1)';
@@ -344,7 +362,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
           data-testid={`${testId || 'card'}-info-button`}
         >
           i
-        </button>
+        </div>
       )}
     </CardElement>
   );

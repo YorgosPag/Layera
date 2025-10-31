@@ -77,6 +77,7 @@ export const GEO_DRAWING_INTERACTION = {
   KEY_CODES: {
     ESCAPE: 'Escape',
     ENTER: 'Enter',
+    SPACE: ' ',
     DELETE: 'Delete',
     BACKSPACE: 'Backspace'
   },
@@ -86,6 +87,12 @@ export const GEO_DRAWING_INTERACTION = {
     LEFT: 0,
     MIDDLE: 1,
     RIGHT: 2
+  },
+
+  /** Accessibility constants */
+  ACCESSIBILITY: {
+    TAB_INDEX_FOCUSABLE: 0,
+    TAB_INDEX_SKIP: -1
   }
 } as const;
 

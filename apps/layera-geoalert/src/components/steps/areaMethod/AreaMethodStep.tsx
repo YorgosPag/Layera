@@ -149,7 +149,7 @@ export const AreaMethodStep: React.FC<AreaMethodStepProps> = ({
 
   return (
     <Box style={containerStyles}>
-      {areaMethods.map((method: unknown) => (
+      {areaMethods.map((method: AreaMethodOption) => (
         <AreaMethodCard
           key={method.id}
           method={method.id}

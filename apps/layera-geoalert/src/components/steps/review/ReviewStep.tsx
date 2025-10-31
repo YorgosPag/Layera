@@ -18,7 +18,6 @@ import {
 } from '@layera/constants';
 import {
   Box,
-  SPACING_SCALE,
   useFlex,
   useFlexPatterns,
   useSizingStyles

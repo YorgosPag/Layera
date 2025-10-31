@@ -62,8 +62,7 @@ export const IntentStep: React.FC<IntentStepProps> = ({
 
     setSelectedIntent(intent);
 
-    // ✅ TODO: Μετάβαση σε StepOrchestrator
-    // pipelineDiscovery.syncWithCategoryStep αντικαταστάθηκε
+    // ✅ ΟΛΟΚΛΗΡΩΘΗΚΕ: Μετάβαση σε StepOrchestrator - χρήση μόνο Single Sources of Truth
     console.log('Intent selected:', intent, 'for category:', context.selectedCategory);
 
     // Complete this step
@@ -80,7 +79,7 @@ export const IntentStep: React.FC<IntentStepProps> = ({
     onNext?.();
 
 
-  }, [context.selectedCategory, onNext, onStepComplete, onIntentSelected, pipelineDiscovery]);
+  }, [context.selectedCategory, onNext, onStepComplete, onIntentSelected]);
 
   // Handle info button clicks
   const handleInfoClick = useCallback((cardId: CardId) => {
@@ -140,7 +139,7 @@ export const IntentStep: React.FC<IntentStepProps> = ({
   return (
     <>
       <Box style={containerStyles} className={containerClass}>
-        {intentCards.map((cardConfig: unknown) => (
+        {intentCards.map((cardConfig: CardConfig) => (
           <BaseCard
             key={cardConfig.id}
             variant={context.selectedCategory || 'property'}

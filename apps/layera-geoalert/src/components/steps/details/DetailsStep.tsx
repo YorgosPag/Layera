@@ -17,7 +17,6 @@ import {
   GEOALERT_INFO_CONTENT,
   StaticContentProvider
 } from '@layera/info-panels';
-import { SPACING_SCALE } from '@layera/constants';
 import type { StepProps, DetailsType } from '../types';
 
 export interface DetailsStepProps extends StepProps {
@@ -60,8 +59,7 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
 
     setSelectedDetails(details);
 
-    // ✅ TODO: Μετάβαση σε StepOrchestrator
-    // pipelineDiscovery.syncWithCategoryStep αντικαταστάθηκε
+    // ✅ ΟΛΟΚΛΗΡΩΘΗΚΕ: Μετάβαση σε StepOrchestrator - χρήση μόνο Single Sources of Truth
     console.log('Details selected:', details);
 
     // Complete this step
@@ -181,7 +179,7 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
           direction="column"
           gap="sm"
         >
-          {detailsCards.map((cardConfig: unknown) => (
+          {detailsCards.map((cardConfig: CardConfig) => (
             <BaseCard
               key={cardConfig.id}
               variant={context.selectedCategory || 'property'}

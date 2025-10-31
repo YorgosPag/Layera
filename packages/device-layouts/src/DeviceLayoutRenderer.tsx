@@ -148,20 +148,15 @@ export const DeviceLayoutRenderer: React.FC<DeviceLayoutRendererProps> = ({
             ...(navigationHandlers?.onNext ? { onNext: navigationHandlers.onNext } : {}),
             ...(navigationHandlers?.onPrevious ? { onPrevious: navigationHandlers.onPrevious } : {}),
             onStepChange: (stepId) => {
-              // ΔΙΟΡΘΩΣΗ: Intelligent step navigation για occupation step
-              const currentStep = navigation?.currentStep;
+              // ✅ ΚΡΙΣΙΜΗ ΔΙΟΡΘΩΣΗ: Το onStepChange πρέπει να αλλάζει το currentStepId!
+              // Αντί να καλεί απλά onNext(), πρέπει να κάνει actual step change
+              console.log(`🎼 DeviceLayoutRenderer: Changing to step: ${stepId}`);
 
-              if (stepId === 'occupation' && currentStep === 'employmentType') {
-                // Ειδικό handling για occupation step - θα χρησιμοποιήσουμε goNext()
-                // αλλά με debug info για να δούμε αν φτάνει στο σωστό step
-                if (navigationHandlers?.onNext) {
-                  navigationHandlers.onNext();
-                }
+              if (navigationHandlers?.onStepChange) {
+                // Καλώ το πραγματικό onStepChange που αλλάζει το state
+                navigationHandlers.onStepChange(stepId);
               } else {
-                // Για όλα τα άλλα steps, κανονικό goNext()
-                if (navigationHandlers?.onNext) {
-                  navigationHandlers.onNext();
-                }
+                console.warn(`⚠️ DeviceLayoutRenderer: onStepChange handler missing!`);
               }
             },
             onStepComplete: async (stepId, data) => {

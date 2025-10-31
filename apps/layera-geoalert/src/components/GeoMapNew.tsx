@@ -42,6 +42,9 @@ import './steps/location';
 import './steps/employmentType';
 import './steps/occupation';
 import './steps/availabilityDetails';
+import './steps/details';
+import './steps/pricing';
+import './steps/review';
 import './steps/complete';
 import { DesktopGeoMap } from './device-specific/DesktopGeoMap';
 import { TabletGeoMap } from './device-specific/TabletGeoMap';
@@ -154,10 +157,35 @@ export const GeoMap: React.FC<GeoMapProps> = ({
     }
   };
 
+  // 🎯 onStepComplete handler για StepOrchestrator - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
+  const handleStepComplete = (stepId: StepId, data?: unknown) => {
+    // ✅ StepContext update pattern από CategoryStep
+    if (stepId === 'category' && data && typeof data === 'object' && 'selectedCategory' in data) {
+      setStepContext(prev => ({
+        ...prev,
+        selectedCategory: data.selectedCategory as CategoryType,
+        completedSteps: new Set([...prev.completedSteps, stepId])
+      }));
+    } else if (stepId === 'intent' && data && typeof data === 'object' && 'selectedIntent' in data) {
+      setStepContext(prev => ({
+        ...prev,
+        selectedIntent: data.selectedIntent as IntentType,
+        completedSteps: new Set([...prev.completedSteps, stepId])
+      }));
+    } else {
+      // Generic completion tracking - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
+      setStepContext(prev => ({
+        ...prev,
+        completedSteps: new Set([...prev.completedSteps, stepId])
+      }));
+    }
+  };
+
   // 🎮 Navigation handlers που χρειάζονται από DeviceLayoutRenderer
+  // ✅ ΜΟΝΑΔΙΚΕΣ ΠΗΓΕΣ ΑΛΗΘΕΙΑΣ: StepOrchestrator + DeviceLayoutRenderer pattern
   const navigationHandlersProps = {
     onNext: () => {
-      // Navigate to next step using StepOrchestrator logic
+      // ✅ StepOrchestrator navigation logic - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
       const nextStep = navigationState.nextStep;
       if (nextStep) {
         setStepContext(prev => ({
@@ -167,7 +195,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
       }
     },
     onPrevious: () => {
-      // Navigate to previous step using StepOrchestrator logic
+      // ✅ StepOrchestrator navigation logic - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
       const previousStep = navigationState.previousStep;
       if (previousStep) {
         setStepContext(prev => ({
@@ -178,20 +206,29 @@ export const GeoMap: React.FC<GeoMapProps> = ({
     },
     onReset: navigation.reset,
     onStepClick: (stepId: StepId) => {
-      // Direct step navigation
+      // ✅ Direct step navigation - DeviceLayoutRenderer pattern
+      setStepContext(prev => ({
+        ...prev,
+        currentStepId: stepId
+      }));
+    },
+    onStepChange: (stepId: StepId) => {
+      // ✅ ΚΡΙΣΙΜΗ ΠΡΟΣΘΗΚΗ: StepOrchestrator auto-advance navigation
+      console.log(`🎯 GeoMapNew: Changing step to: ${stepId}`);
       setStepContext(prev => ({
         ...prev,
         currentStepId: stepId
       }));
     },
     selectCategory: async (categoryId: string) => {
-      // Update selected category in context
+      // ✅ CategoryStep completion pattern - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
       setStepContext(prev => ({
         ...prev,
         selectedCategory: categoryId as CategoryType,
         completedSteps: new Set([...prev.completedSteps, 'category'])
       }));
-    }
+    },
+    onStepComplete: handleStepComplete // ✅ StepOrchestrator integration - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
   };
 
   const handleNewEntryClick = () => { onNewEntryClick?.(); };

@@ -38,7 +38,8 @@
       "Bash(taskkill:*)",
       "Bash(netstat:*)",
       "Bash(kill:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(grep:*)"
     ],
     "deny": [],
     "ask": []
