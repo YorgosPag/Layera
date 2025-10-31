@@ -53,7 +53,7 @@ Consolidation of multiple `currentStepId` state management systems into a **Sing
 - **Timeline**: *Auto-calculated based on analysis results*
 
 ### Phase 3: CONTEXT INTEGRATION
-**Target**: PipelineDiscovery → StepOrchestrator consumer
+**Target**:  → StepOrchestrator consumer
 - **Scope**: *Runtime discovery via filePatterns and import analysis*
 - **Risk Level**: *References `RISK_LEVEL.MEDIUM` from types.ts*
 - **Strategy**: Dependency injection με gradual rollout
@@ -103,7 +103,7 @@ Consolidation of multiple `currentStepId` state management systems into a **Sing
 ### Implementation Files
 - **StepOrchestrator**: `apps/layera-geoalert/src/components/steps/StepOrchestrator.tsx`
 - **NavigationService**: `apps/layera-geoalert/src/services/navigation/NavigationService.ts`
-- **PipelineDiscovery**: `packages/pipelines/src/context/PipelineDiscovery.ts`
+
 
 ### Related Policies
 - **LEGO Systems**: `.claude/CLAUDE.md`

@@ -1,7 +1,7 @@
 /**
  * @layera/pipelines - Enterprise Pipeline Management System
  *
- * 🚨 DEPRECATED: PipelineDiscovery system removed.
+ * 🚨 DEPRECATED: Pipeline system removed.
  * Use @layera/steps/StepOrchestrator as the single source of truth.
  */
 

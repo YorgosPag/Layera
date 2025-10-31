@@ -39,7 +39,8 @@
       "Bash(netstat:*)",
       "Bash(kill:*)",
       "Bash(find:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(node:*)"
     ],
     "deny": [],
     "ask": []

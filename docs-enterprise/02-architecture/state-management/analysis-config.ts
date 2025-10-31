@@ -22,13 +22,6 @@ export const NAVIGATION_SYSTEM_PATTERNS = {
     enterpriseLevel: 'MEDIUM' as keyof typeof ENTERPRISE_LEVEL,
     migrationPriority: 'HIGH' as keyof typeof MIGRATION_PRIORITY
   },
-  PipelineDiscovery: {
-    imports: ['PipelineDiscovery', 'usePipelineDiscovery'],
-    filePatterns: ['**/PipelineDiscovery.ts', '**/pipelines/**/context/*.ts'],
-    status: 'LEGACY' as keyof typeof SYSTEM_STATUS,
-    enterpriseLevel: 'HIGH' as keyof typeof ENTERPRISE_LEVEL,
-    migrationPriority: 'MEDIUM' as keyof typeof MIGRATION_PRIORITY
-  },
   LegacyGeoMapNew: {
     imports: ['useState.*currentStep', 'useState.*stepId'],
     filePatterns: ['**/GeoMapNew.tsx', '**/components/Geo*.tsx'],
@@ -61,11 +54,6 @@ export const ANALYSIS_PATTERNS = {
     'NavigationService',
     'useNavigation.*NavigationService',
     'new NavigationService'
-  ],
-  PIPELINE_DISCOVERY: [
-    'PipelineDiscovery',
-    'usePipelineDiscovery',
-    'PipelineDiscoveryContext'
   ],
   LEGACY_USE_STATE: [
     'useState.*currentStep',

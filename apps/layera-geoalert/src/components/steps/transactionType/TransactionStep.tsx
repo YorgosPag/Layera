@@ -7,7 +7,7 @@
 
 import React, { useState, useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
-// ✅ PipelineDiscovery ΔΙΑΓΡΑΦΗΚΕ - χρησιμοποιούμε StepOrchestrator μόνο
+//χρησιμοποιούμε StepOrchestrator μόνο
 import { BaseCard } from '@layera/cards';
 import { Box } from '@layera/layout';
 import { cardData, getCardsForStep, type CardConfig, type CardId } from '../../device-specific/mobile/iphone-14-pro-max/components/cardData';
@@ -89,7 +89,6 @@ export const TransactionStep: React.FC<TransactionStepProps> = ({
     onTransactionSelected?.(transactionType);
 
     // ✅ TODO: Μετάβαση σε StepOrchestrator
-    // PipelineDiscovery.markStepCompleted αντικαταστάθηκε
     console.log('Transaction step completed');
 
     // Auto-advance to next step

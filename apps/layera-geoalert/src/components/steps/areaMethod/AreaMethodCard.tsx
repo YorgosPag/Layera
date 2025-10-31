@@ -6,8 +6,9 @@
  */
 
 import React from 'react';
-import { UnifiedCard, createSelectionCard } from '@layera/cards';
+import { BaseCard } from '@layera/cards';
 import { EditIcon, MapIcon, CheckIcon as ImageIcon, CheckIcon as CalculatorIcon } from '@layera/icons';
+import { useLayeraTranslation } from '@layera/tolgee';
 import type { AreaMethodType } from './types';
 
 interface AreaMethodCardProps {
@@ -16,6 +17,7 @@ interface AreaMethodCardProps {
   description?: string;
   isRecommended?: boolean;
   onClick: () => void;
+  variant?: 'property' | 'job';
   'data-testid'?: string;
 }
 
@@ -29,8 +31,11 @@ export const AreaMethodCard: React.FC<AreaMethodCardProps> = ({
   description,
   isRecommended = false,
   onClick,
+  variant = 'property',
   'data-testid': testId
 }) => {
+  const { t } = useLayeraTranslation();
+
   // Skip rendering for invalid method
   if (!method) {
     return null;
@@ -52,40 +57,25 @@ export const AreaMethodCard: React.FC<AreaMethodCardProps> = ({
   };
 
   const enhancedDescription = isRecommended && description
-    ? `${description} (Προτεινόμενο)`
+    ? `${description} (${t('common.recommended', 'Προτεινόμενο')})`
     : description;
 
-  const handleMethodSelect = React.useCallback((areaMethod: unknown) => {
+  const handleClick = React.useCallback(() => {
     if ('vibrate' in navigator) {
       navigator.vibrate(20);
     }
     onClick();
   }, [onClick]);
 
-  // Create unified card configuration
-  const cardConfig = createSelectionCard({
-    id: `area-method-${method}`,
-    title,
-    description: enhancedDescription,
-    icon: getIcon(),
-    selectionValue: method,
-    category: 'property',
-    theme: 'property',
-    onClick: () => handleMethodSelect(method),
-    testId: testId || `area-method-${method}-card`
-  });
-
-  // Create card context
-  const cardContext = {
-    currentStep: 'areaMethod',
-    category: 'property' as const,
-    viewMode: 'mobile' as const
-  };
-
   return (
-    <UnifiedCard
-      config={cardConfig}
-      context={cardContext}
+    <BaseCard
+      title={title}
+      description={enhancedDescription}
+      icon={getIcon()}
+      variant={variant}
+      clickable
+      onClick={handleClick}
+      data-testid={testId || `area-method-${method}-card`}
     />
   );
 };

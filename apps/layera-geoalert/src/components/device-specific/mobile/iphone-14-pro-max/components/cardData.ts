@@ -52,7 +52,7 @@ export const cardData = {
   property: [
     {
       id: 'offer' as CardId,
-      titleKey: 'intent.property.offer',
+      titleKey: 'Θέλω να Προσφέρω',
       icon: CommercialIcon,
       variant: 'property' as CardVariant,
       category: 'property' as const,
@@ -60,7 +60,7 @@ export const cardData = {
     },
     {
       id: 'search' as CardId,
-      titleKey: 'intent.property.search',
+      titleKey: 'Θέλω να Αναζητήσω (Geo-Alert)',
       icon: HomeIcon,
       variant: 'property' as CardVariant,
       category: 'property' as const,
@@ -72,7 +72,7 @@ export const cardData = {
   job: [
     {
       id: 'offer' as CardId,
-      titleKey: 'intent.job.offer',
+      titleKey: 'Θέλω να Προσφέρω Θέση',
       icon: WorkIcon,
       variant: 'job' as CardVariant,
       category: 'job' as const,
@@ -80,7 +80,7 @@ export const cardData = {
     },
     {
       id: 'search' as CardId,
-      titleKey: 'intent.job.search',
+      titleKey: 'Αναζητώ Εργασία',
       icon: ToolIcon,
       variant: 'job' as CardVariant,
       category: 'job' as const,

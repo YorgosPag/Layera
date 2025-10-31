@@ -14,7 +14,6 @@ import React, { useEffect } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { Flex, Box } from '@layera/layout';
-// ✅ PipelineDiscovery ΔΙΑΓΡΑΦΗΚΕ - χρησιμοποιούμε StepOrchestrator μόνο
 import { SPACING_SCALE, BORDER_RADIUS_SCALE, useDesignTokens } from '@layera/constants';
 import { Text } from '@layera/typography';
 import { getCursorVar } from '@layera/cursors';
@@ -62,37 +61,22 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   const [opacityMode, setOpacityMode] = React.useState<OpacityMode>('transparent');
   const { t } = useLayeraTranslation();
 
-  // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
-  const pipelineDiscovery = null;
 
-  // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
-  React.useEffect(() => {
-    if (!pipelineDiscovery || typeof pipelineDiscovery.syncWithCategoryStep !== 'function') {
-      return;
-    }
-    try {
-      pipelineDiscovery.syncWithCategoryStep({
-        selectedCategory,
-        selectedIntent,
-        showTransactionStep,
-        currentStep
-      });
-    } catch (error) {
-      // Silent error handling
-    }
-  }, [selectedCategory, selectedIntent, showTransactionStep, currentStep, pipelineDiscovery]);
-
-  // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
+  // Mock steps για UI fallback
   const discoveredSteps = React.useMemo(() => {
-    if (!pipelineDiscovery || typeof pipelineDiscovery.getAvailableStepsForUI !== 'function') {
-      return [];
-    }
-    try {
-      return pipelineDiscovery.getAvailableStepsForUI();
-    } catch (error) {
-      return [];
-    }
-  }, [pipelineDiscovery]);
+    // Simple fallback steps based on category
+    const baseSteps = [
+      { id: 'category', title: 'Κατηγορία', shortTitle: 'Κατ.' },
+      { id: 'intent', title: 'Πρόθεση', shortTitle: 'Πρόθ.' },
+      { id: 'location', title: 'Τοποθεσία', shortTitle: 'Τοπ.' },
+      { id: 'areaMethod', title: 'Μέθοδος Εμβαδού', shortTitle: 'Εμβ.' },
+      { id: 'details', title: 'Λεπτομέρειες', shortTitle: 'Λεπτ.' },
+      { id: 'pricing', title: 'Τιμολόγηση', shortTitle: 'Τιμή' },
+      { id: 'review', title: 'Επισκόπηση', shortTitle: 'Επισκ.' },
+      { id: 'complete', title: 'Ολοκλήρωση', shortTitle: 'Τέλος' }
+    ];
+    return baseSteps;
+  }, [selectedCategory, selectedIntent]);
 
   // Mapping των discovered steps σε UI format με @layera/tolgee
   const steps = discoveredSteps.map(step => ({
@@ -101,17 +85,24 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     shortTitle: t(`pipeline.steps.${step.id}.short`, step.shortTitle)
   }));
 
-  // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
+  // Simple state fallback
   const pipelineState = React.useMemo(() => {
-    if (!pipelineDiscovery || typeof pipelineDiscovery.getCurrentState !== 'function') {
-      return { currentStepIndex: 0, totalSteps: 0 };
-    }
-    try {
-      return pipelineDiscovery.getCurrentState();
-    } catch (error) {
-      return { currentStepIndex: 0, totalSteps: 0 };
-    }
-  }, [pipelineDiscovery]);
+    // Map current step to index
+    const stepMap: Record<string, number> = {
+      'category': 0,
+      'intent': 1,
+      'location': 2,
+      'areaMethod': 3,
+      'details': 4,
+      'pricing': 5,
+      'review': 6,
+      'complete': 7
+    };
+    return {
+      currentStepIndex: stepMap[currentStep] || 0,
+      totalSteps: steps.length
+    };
+  }, [currentStep, steps.length]);
   const effectiveStepIndex = pipelineState.currentStepIndex;
   const currentStepData = steps[effectiveStepIndex] || steps[0];
 
@@ -191,10 +182,8 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   };
 
   const getProgressDotStyle = (index: number): React.CSSProperties => {
-    // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
     const stepId = steps[index]?.id;
-    const isCompleted = stepId && pipelineDiscovery && typeof pipelineDiscovery.isStepCompleted === 'function'
-      ? pipelineDiscovery.isStepCompleted(stepId) : false;
+    const isCompleted = index < effectiveStepIndex;
     const isActive = index === effectiveStepIndex;
     const isVisited = index <= effectiveStepIndex;
 
@@ -239,10 +228,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     WebkitTapHighlightColor: 'var(--la-webkit-tap-highlight-color, transparent)'
   };
 
-  // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
-  const canActuallyGoPrevious = (pipelineDiscovery && typeof pipelineDiscovery.canGoToPrevious === 'function'
-    ? pipelineDiscovery.canGoToPrevious()
-    : false) || canGoPrevious;
+  const canActuallyGoPrevious = canGoPrevious || effectiveStepIndex > 0;
 
   const previousButtonStyles: React.CSSProperties = {
     ...buttonStyles,
@@ -296,12 +282,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
       if ('vibrate' in navigator) {
         navigator.vibrate(30); // Subtle haptic feedback
       }
-      // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
-      const targetStepId = steps[index].id;
-      if (pipelineDiscovery && typeof pipelineDiscovery.navigateToStep === 'function') {
-        pipelineDiscovery.navigateToStep(targetStepId);
-      }
-
+  
       // Fallback στο παλιό API αν υπάρχει
       if (onStepClick) {
         onStepClick(index);
@@ -315,20 +296,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
       navigator.vibrate(50);
     }
 
-    // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
-    let success = false;
-    if (pipelineDiscovery && typeof pipelineDiscovery.goToPreviousStep === 'function') {
-      success = pipelineDiscovery.goToPreviousStep();
-
-      // 🚀 ENTERPRISE: Ειδοποίηση του parent component για την αλλαγή βήματος
-      if (success && onStepClick && typeof pipelineDiscovery.getCurrentState === 'function') {
-        const newState = pipelineDiscovery.getCurrentState();
-        onStepClick(newState.currentStepIndex);
-      }
-    }
-
-    // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
-    if (!success && onPrevious && canGoPrevious) {
+    if (onPrevious && canGoPrevious) {
       onPrevious();
     }
   };
@@ -340,10 +308,6 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
       navigator.vibrate(50);
     }
 
-    // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
-    if (pipelineDiscovery && typeof pipelineDiscovery.reset === 'function') {
-      pipelineDiscovery.reset();
-    }
 
     // Fallback στο παλιό API
     if (onReset) {

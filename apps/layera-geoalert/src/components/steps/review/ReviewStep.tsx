@@ -23,7 +23,7 @@ import {
   useSizingStyles
 } from '@layera/layout';
 import type { StepProps, ReviewType } from '../types';
-// ✅ PipelineDiscovery ΔΙΑΓΡΑΦΗΚΕ - χρησιμοποιούμε StepOrchestrator μόνο
+//χρησιμοποιούμε StepOrchestrator μόνο
 import { getCardsForStep, type CardConfig } from '../../device-specific/mobile/iphone-14-pro-max/components/cardData';
 
 export interface ReviewStepProps extends StepProps {

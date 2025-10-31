@@ -16,6 +16,7 @@
 import React, { useCallback, useState } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Box } from '@layera/layout';
+import { SPACING_SCALE } from '@layera/constants';
 import { AreaMethodCard } from './AreaMethodCard';
 import { InteractiveAreaMeasurement } from './InteractiveAreaMeasurement';
 import type { StepProps } from '../types';
@@ -126,13 +127,13 @@ export const AreaMethodStep: React.FC<AreaMethodStepProps> = ({
 
   const containerStyles: React.CSSProperties = {
     position: 'fixed',
-    top: 'var(--la-cards-top)',
-    left: 'var(--la-side-margins)',
-    right: 'var(--la-side-margins)',
+    top: `${SPACING_SCALE.LAYOUT_XXL}px`, // Equivalent to 120px
+    left: `${SPACING_SCALE.LG}px`,        // Equivalent to 20px
+    right: `${SPACING_SCALE.LG}px`,       // Equivalent to 20px
     zIndex: 10002,
     display: 'flex',
     flexDirection: 'column',
-    gap: 'var(--la-cards-gap)',
+    gap: `${SPACING_SCALE.MD}px`,         // Equivalent to 16px
     padding: '0'
   };
 
@@ -156,6 +157,7 @@ export const AreaMethodStep: React.FC<AreaMethodStepProps> = ({
           title={method.title}
           description={method.description}
           isRecommended={method.isRecommended}
+          variant={context.selectedCategory || 'property'}
           onClick={(): void => handleAreaMethodSelection(method.id)}
           data-testid={`area-method-card-${method.id}`}
         />

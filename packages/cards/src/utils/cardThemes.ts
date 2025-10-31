@@ -38,16 +38,16 @@ export const getEnhancedCardTheme = (
 
     // Local BaseCard variants (από device-specific implementation)
     property: {
-      baseColor: 'var(--color-semantic-success-rgb)', // emerald από design tokens
-      borderColor: 'var(--color-semantic-success-border)',
-      semanticColor: 'var(--color-semantic-success-text)',
-      titleShadow: '0 0 25px var(--color-semantic-success-shadow)'
+      baseColor: 'var(--la-bg-success-light)', // emerald από design tokens
+      borderColor: 'var(--la-color-success)',
+      semanticColor: 'var(--la-text-on-success)',
+      titleShadow: 'var(--la-shadow-success)'
     },
     job: {
-      baseColor: 'var(--color-interactive-primary-rgb)', // blue από design tokens
-      borderColor: 'var(--color-interactive-primary)',
-      semanticColor: 'var(--color-interactive-primary-text)',
-      titleShadow: '0 0 25px var(--color-interactive-primary-shadow)'
+      baseColor: 'var(--la-color-primary-light)', // blue από design tokens
+      borderColor: 'var(--la-color-primary)',
+      semanticColor: 'var(--la-text-primary)',
+      titleShadow: '0 0 25px var(--la-color-primary)'
     },
 
     // Semantic variants
@@ -101,7 +101,7 @@ export const getEnhancedCardTheme = (
         titleBackground: 'transparent', // Χωρίς δεύτερο στρώμα στον τίτλο
         titleShadow: 'none', // Χωρίς shadow για καθαρότητα
         backdropFilter: 'none', // Χωρίς blur - κείμενα και εικονίδια καθαρά
-        opacity: 0.8
+        opacity: 1 // ΚΕΙΜΕΝΟ ΠΑΡΑΜΕΝΕΙ ΠΛΗΡΩΣ ΟΡΑΤΟ
       };
 
     case 'opaque':
@@ -111,7 +111,7 @@ export const getEnhancedCardTheme = (
         titleBackground: 'transparent', // Χωρίς δεύτερο στρώμα στον τίτλο
         titleShadow: titleShadow, // Μπορεί να έχει shadow στο opaque mode
         backdropFilter: 'none',
-        opacity: 0.95
+        opacity: 1 // ΚΕΙΜΕΝΟ ΠΑΡΑΜΕΝΕΙ ΠΛΗΡΩΣ ΟΡΑΤΟ
       };
 
     default:

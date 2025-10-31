@@ -9,7 +9,7 @@ import React, { useState, useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Flex } from '@layera/layout';
 import { SPACING_SCALE } from '@layera/constants';
-// ✅ PipelineDiscovery ΔΙΑΓΡΑΦΗΚΕ - χρησιμοποιούμε StepOrchestrator μόνο
+// ✅ χρησιμοποιούμε StepOrchestrator μόνο
 import { BaseCard } from '@layera/cards';
 import { cardData, getCardsForStep, type CardConfig, type CardId } from '../../device-specific/mobile/iphone-14-pro-max/components/cardData';
 import { InfoPanel } from '@layera/info-panels';
@@ -51,7 +51,7 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
     []
   );
 
-  // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
+  // - χρησιμοποιούμε StepOrchestrator μόνο
 
   // Handle details card click
   const handleDetailsClick = useCallback((cardConfig: CardConfig) => {
@@ -156,6 +156,7 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
   const detailsCards = getDetailsCards();
 
 
+
   // Early return αν δεν είναι visible ή δεν έχει τα απαραίτητα context
   if (!isVisible || !context.selectedCategory || !context.selectedIntent || !context.selectedLocation) {
     return null;
@@ -183,7 +184,7 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
             <BaseCard
               key={cardConfig.id}
               variant={context.selectedCategory || 'property'}
-              title={t(cardConfig.titleKey)}
+              title={cardConfig.titleKey}
               icon={cardConfig.icon}
               onClick={(): void => handleDetailsClick(cardConfig)}
               onInfoClick={() => handleInfoClick(cardConfig.id)}
