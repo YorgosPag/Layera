@@ -12,7 +12,8 @@ import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { BaseCard } from '@layera/cards';
 import type { StepProps, PricingType } from '../types';
-import { getCardsForStep, type CardConfig } from '../../../pipeline/PipelineDiscovery';
+// ✅ PipelineDiscovery ΔΙΑΓΡΑΦΗΚΕ - χρησιμοποιούμε StepOrchestrator μόνο
+import { getCardsForStep, type CardConfig } from '../../device-specific/mobile/iphone-14-pro-max/components/cardData';
 
 export interface PricingStepProps extends StepProps {
   /** Custom pricing selection handler */

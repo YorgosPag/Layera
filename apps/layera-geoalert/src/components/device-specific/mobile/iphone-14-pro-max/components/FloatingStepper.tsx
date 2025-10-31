@@ -65,7 +65,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
   const pipelineDiscovery = null;
 
-  // 🚀 ENTERPRISE AUTO-DISCOVERY: Χρήση του PipelineDiscovery για αυτόματη ανακάλυψη steps
+  // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
   React.useEffect(() => {
     if (!pipelineDiscovery || typeof pipelineDiscovery.syncWithCategoryStep !== 'function') {
       return;
@@ -82,7 +82,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     }
   }, [selectedCategory, selectedIntent, showTransactionStep, currentStep, pipelineDiscovery]);
 
-  // Χρήση του auto-discovered steps από το PipelineDiscovery με null checks
+  // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
   const discoveredSteps = React.useMemo(() => {
     if (!pipelineDiscovery || typeof pipelineDiscovery.getAvailableStepsForUI !== 'function') {
       return [];
@@ -101,7 +101,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     shortTitle: t(`pipeline.steps.${step.id}.short`, step.shortTitle)
   }));
 
-  // 🚀 ENTERPRISE AUTO-DISCOVERY: Χρήση του PipelineDiscovery για step index με null check
+  // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
   const pipelineState = React.useMemo(() => {
     if (!pipelineDiscovery || typeof pipelineDiscovery.getCurrentState !== 'function') {
       return { currentStepIndex: 0, totalSteps: 0 };
@@ -191,7 +191,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   };
 
   const getProgressDotStyle = (index: number): React.CSSProperties => {
-    // 🚀 ENTERPRISE: Χρήση του PipelineDiscovery για step completion status
+    // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
     const stepId = steps[index]?.id;
     const isCompleted = stepId && pipelineDiscovery && typeof pipelineDiscovery.isStepCompleted === 'function'
       ? pipelineDiscovery.isStepCompleted(stepId) : false;
@@ -239,7 +239,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
     WebkitTapHighlightColor: 'var(--la-webkit-tap-highlight-color, transparent)'
   };
 
-  // 🚀 ENTERPRISE: Χρήση του PipelineDiscovery για button states
+  // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
   const canActuallyGoPrevious = (pipelineDiscovery && typeof pipelineDiscovery.canGoToPrevious === 'function'
     ? pipelineDiscovery.canGoToPrevious()
     : false) || canGoPrevious;
@@ -296,7 +296,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
       if ('vibrate' in navigator) {
         navigator.vibrate(30); // Subtle haptic feedback
       }
-      // 🚀 ENTERPRISE: Χρήση του PipelineDiscovery για έξυπνη πλοήγηση
+      // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
       const targetStepId = steps[index].id;
       if (pipelineDiscovery && typeof pipelineDiscovery.navigateToStep === 'function') {
         pipelineDiscovery.navigateToStep(targetStepId);
@@ -315,7 +315,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
       navigator.vibrate(50);
     }
 
-    // 🚀 ENTERPRISE: Χρήση του PipelineDiscovery για σωστή πλοήγηση ένα βήμα πίσω
+    // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
     let success = false;
     if (pipelineDiscovery && typeof pipelineDiscovery.goToPreviousStep === 'function') {
       success = pipelineDiscovery.goToPreviousStep();
@@ -327,7 +327,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
       }
     }
 
-    // Fallback στο παλιό API αν το PipelineDiscovery αποτύχει
+    // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
     if (!success && onPrevious && canGoPrevious) {
       onPrevious();
     }
@@ -340,7 +340,7 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
       navigator.vibrate(50);
     }
 
-    // 🚀 ENTERPRISE: Χρήση του PipelineDiscovery για reset
+    // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
     if (pipelineDiscovery && typeof pipelineDiscovery.reset === 'function') {
       pipelineDiscovery.reset();
     }

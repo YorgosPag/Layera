@@ -9,7 +9,7 @@ import React, { useState, useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Flex } from '@layera/layout';
 import { SPACING_SCALE } from '@layera/constants';
-import { PipelineDiscovery } from '@layera/pipelines';
+// ✅ PipelineDiscovery ΔΙΑΓΡΑΦΗΚΕ - χρησιμοποιούμε StepOrchestrator μόνο
 import { BaseCard } from '@layera/cards';
 import { cardData, getCardsForStep, type CardConfig, type CardId } from '../../device-specific/mobile/iphone-14-pro-max/components/cardData';
 import { InfoPanel } from '@layera/info-panels';
@@ -52,8 +52,7 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
     []
   );
 
-  // PipelineDiscovery integration
-  const pipelineDiscovery = React.useMemo(() => PipelineDiscovery.getInstance(), []);
+  // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
 
   // Handle details card click
   const handleDetailsClick = useCallback((cardConfig: CardConfig) => {
@@ -61,15 +60,9 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
 
     setSelectedDetails(details);
 
-    // Update pipeline
-    pipelineDiscovery.syncWithCategoryStep({
-      selectedCategory: context.selectedCategory,
-      selectedIntent: context.selectedIntent,
-      selectedLocation: context.selectedLocation,
-      selectedDetails: details,
-      showTransactionStep: context.selectedCategory === 'property' && context.selectedIntent === 'offer',
-      currentStep: 'details'
-    });
+    // ✅ TODO: Μετάβαση σε StepOrchestrator
+    // pipelineDiscovery.syncWithCategoryStep αντικαταστάθηκε
+    console.log('Details selected:', details);
 
     // Complete this step
     onStepComplete?.('details', {
@@ -86,7 +79,7 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
     onNext?.();
 
 
-  }, [context.selectedCategory, context.selectedIntent, context.selectedLocation, onNext, onStepComplete, onDetailsSelected, pipelineDiscovery]);
+  }, [context.selectedCategory, context.selectedIntent, context.selectedLocation, onNext, onStepComplete, onDetailsSelected]);
 
   // Handle info button clicks
   const handleInfoClick = useCallback((cardId: CardId) => {

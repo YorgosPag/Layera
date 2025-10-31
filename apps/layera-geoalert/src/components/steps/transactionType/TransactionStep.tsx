@@ -7,7 +7,7 @@
 
 import React, { useState, useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
-import { PipelineDiscovery } from '@layera/pipelines';
+// ✅ PipelineDiscovery ΔΙΑΓΡΑΦΗΚΕ - χρησιμοποιούμε StepOrchestrator μόνο
 import { BaseCard } from '@layera/cards';
 import { Box } from '@layera/layout';
 import { cardData, getCardsForStep, type CardConfig, type CardId } from '../../device-specific/mobile/iphone-14-pro-max/components/cardData';
@@ -88,11 +88,9 @@ export const TransactionStep: React.FC<TransactionStepProps> = ({
     // Legacy callback
     onTransactionSelected?.(transactionType);
 
-    // Pipeline discovery
-    if (typeof PipelineDiscovery !== 'undefined') {
-      const pipelineDiscovery = new PipelineDiscovery();
-      pipelineDiscovery.markStepCompleted('transactionType');
-    }
+    // ✅ TODO: Μετάβαση σε StepOrchestrator
+    // PipelineDiscovery.markStepCompleted αντικαταστάθηκε
+    console.log('Transaction step completed');
 
     // Auto-advance to next step
     setTimeout((): void => {

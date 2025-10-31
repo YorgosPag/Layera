@@ -5,13 +5,14 @@
  * Χρησιμοποιεί @layera/map-core και @layera/geo-drawing packages.
  */
 
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { useViewportWithOverride } from '@layera/viewport';
 // 🚀 ENTERPRISE: Single Source of Truth - Enhanced @layera/viewport
 import { useIPhone14ProMaxDetection } from '@layera/viewport';
 // 🚀 ENTERPRISE: StepOrchestrator - ΜΟΝΑΔΙΚΗ Single Source of Truth
-import { useStepNavigation, useStepRegistry, getAvailableSteps } from './steps';
-import type { StepId, CategoryType, IntentType } from './steps/types';
+import type { StepId, CategoryType, IntentType, StepContext } from './steps/types';
+import { stepRegistry } from './steps/StepRegistry';
+import { useStepNavigation } from './steps/StepOrchestrator';
 import { ResponsiveMapLayout, MapComponentProps } from '@layera/device-layouts';
 import { MapContainer } from './map/MapContainer';
 import { PlusIcon } from '@layera/icons';
@@ -100,21 +101,99 @@ export const GeoMap: React.FC<GeoMapProps> = ({
   // Hybrid approach: χρησιμοποιώ το prop από App.tsx αλλά με fallback το LEGO detection
   const finalIPhone14ProMaxDecision = isIPhone14ProMaxDevice || isDetectedIPhone14ProMax;
 
-  // 🚀 ENTERPRISE NAVIGATION: Placeholder για StepOrchestrator integration
-  // TODO: Το StepOrchestrator θα παρέχει το navigation state μέσω context ή props
-  const navigation = {
-    currentStep: PIPELINE_STEP.CATEGORY,
-    stepIndex: 0,
-    totalSteps: 1,
+  // ✅ ENTERPRISE NAVIGATION: StepOrchestrator integration - SINGLE SOURCE OF TRUTH
+  // 🎯 StepContext state - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
+  const [stepContext, setStepContext] = useState<StepContext>({
+    currentStepId: 'category',
     selectedCategory: null,
-    canGoNext: false,
-    canGoBack: false,
-    reset: () => {}
+    selectedIntent: null,
+    selectedTransactionType: null,
+    selectedEmploymentType: null,
+    selectedOccupation: null,
+    selectedLocation: null,
+    selectedDetails: null,
+    selectedPricing: null,
+    selectedReview: null,
+    completedSteps: new Set(),
+    featureFlags: {},
+    customData: {}
+  });
+
+  // 🎯 Get available steps από stepRegistry - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
+  const availableSteps = useMemo(() => {
+    return stepRegistry.getAvailableSteps(stepContext);
+  }, [stepContext]);
+
+  // 🎮 Navigation state από useStepNavigation hook - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
+  const navigationState = useStepNavigation(availableSteps, stepContext.currentStepId);
+
+  // Build navigation object βάσει DeviceLayoutRenderer requirements
+  const navigation = {
+    currentStep: stepContext.currentStepId,
+    stepIndex: navigationState.stepIndex,
+    totalSteps: navigationState.totalSteps,
+    selectedCategory: stepContext.selectedCategory,
+    canGoNext: navigationState.canGoNext,
+    canGoBack: navigationState.canGoPrevious,
+    reset: () => {
+      setStepContext({
+        currentStepId: 'category',
+        selectedCategory: null,
+        selectedIntent: null,
+        selectedTransactionType: null,
+        selectedEmploymentType: null,
+        selectedOccupation: null,
+        selectedLocation: null,
+        selectedDetails: null,
+        selectedPricing: null,
+        selectedReview: null,
+        completedSteps: new Set(),
+        featureFlags: {},
+        customData: {}
+      });
+    }
   };
 
-  const handleStepNext = () => {};
-  const handleStepPrevious = () => {};
-  const handleStepReset = () => {};
+  // 🎮 Navigation handlers που χρειάζονται από DeviceLayoutRenderer
+  const navigationHandlersProps = {
+    onNext: () => {
+      // Navigate to next step using StepOrchestrator logic
+      const nextStep = navigationState.nextStep;
+      if (nextStep) {
+        setStepContext(prev => ({
+          ...prev,
+          currentStepId: nextStep.id
+        }));
+      }
+    },
+    onPrevious: () => {
+      // Navigate to previous step using StepOrchestrator logic
+      const previousStep = navigationState.previousStep;
+      if (previousStep) {
+        setStepContext(prev => ({
+          ...prev,
+          currentStepId: previousStep.id
+        }));
+      }
+    },
+    onReset: navigation.reset,
+    onStepClick: (stepId: StepId) => {
+      // Direct step navigation
+      setStepContext(prev => ({
+        ...prev,
+        currentStepId: stepId
+      }));
+    },
+    selectCategory: async (categoryId: string) => {
+      // Update selected category in context
+      setStepContext(prev => ({
+        ...prev,
+        selectedCategory: categoryId as CategoryType,
+        completedSteps: new Set([...prev.completedSteps, 'category'])
+      }));
+    }
+  };
+
   const handleNewEntryClick = () => { onNewEntryClick?.(); };
 
   const handleFabClick = (): void => {
@@ -165,34 +244,12 @@ export const GeoMap: React.FC<GeoMapProps> = ({
     orchestrator: StepOrchestrator
   };
 
-  const navigationProps = {
-    currentStep: navigation.currentStep,
-    totalSteps: navigation.totalSteps,
-    stepIndex: navigation.stepIndex,
-    selectedCategory: navigation.selectedCategory,
-    canGoNext: navigation.canGoNext,
-    canGoBack: navigation.canGoBack
-  };
+  // 🚫 Διαγραφή navigationProps - είναι duplicate του navigation object
 
-  // 🚀 ENTERPRISE STEP CLICK HANDLER: Back button synchronization με κάρτες
-  const handleStepClick = (stepIndex: number) => {
-    if (process.env.NODE_ENV === 'development') {
-    }
+  // 🚫 Διαγραφή handleStepClick - υλοποιείται στο navigationHandlersProps.onStepClick
 
-    // Το PipelineDiscovery έχει ήδη ενημερωθεί από το FloatingStepper
-    // Εδώ μπορούμε να προσθέσουμε επιπλέον logic αν χρειάζεται
-
-    // FIXME: Μελλοντικά μπορεί να χρειαστεί συγχρονισμός με cards state
-    // Για τώρα το PipelineDiscovery αναλαμβάνει τον συγχρονισμό
-  };
-
-  const navigationHandlersProps = {
-    onNext: handleStepNext,
-    onPrevious: handleStepPrevious,
-    onReset: handleStepReset,
-    onStepClick: handleStepClick,
-    onNewEntryClick: handleNewEntryClick
-  };
+  // 🚫 Διαγραφή παλιού navigationHandlersProps που αναφέρεται σε ανύπαρκτα handles
+  // Χρησιμοποιούμε το νέο που βασίζεται στις υπάρχουσες μοναδικές πηγές αλήθειας
 
   return (
     <Box position="relative" width="full" height="full">
@@ -202,7 +259,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
         map={mapProps}
         mapComponents={mapComponents}
         iPhoneComponents={iPhoneComponents}
-        navigation={navigationProps}
+        navigation={navigation}
         navigationHandlers={navigationHandlersProps}
         showCategoryElements={showCatEls}
       />

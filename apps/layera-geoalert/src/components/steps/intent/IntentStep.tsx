@@ -7,7 +7,7 @@
 
 import React, { useState, useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
-import { PipelineDiscovery } from '@layera/pipelines';
+// ✅ PipelineDiscovery ΔΙΑΓΡΑΦΗΚΕ - χρησιμοποιούμε StepOrchestrator μόνο
 import { BaseCard } from '@layera/cards';
 import { Box } from '@layera/layout';
 import { cardData, getCardsForStep, type CardConfig, type CardId } from '../../device-specific/mobile/iphone-14-pro-max/components/cardData';
@@ -54,8 +54,7 @@ export const IntentStep: React.FC<IntentStepProps> = ({
     []
   );
 
-  // PipelineDiscovery integration
-  const pipelineDiscovery = React.useMemo(() => PipelineDiscovery.getInstance(), []);
+  // ✅ ΔΙΑΓΡΑΦΗΚΕ: PipelineDiscovery - χρησιμοποιούμε StepOrchestrator μόνο
 
   // Handle intent card click
   const handleIntentClick = useCallback((cardConfig: CardConfig) => {
@@ -63,13 +62,9 @@ export const IntentStep: React.FC<IntentStepProps> = ({
 
     setSelectedIntent(intent);
 
-    // Update pipeline
-    pipelineDiscovery.syncWithCategoryStep({
-      selectedCategory: context.selectedCategory,
-      selectedIntent: intent,
-      showTransactionStep: context.selectedCategory === 'property' && intent === 'offer',
-      currentStep: 'intent'
-    });
+    // ✅ TODO: Μετάβαση σε StepOrchestrator
+    // pipelineDiscovery.syncWithCategoryStep αντικαταστάθηκε
+    console.log('Intent selected:', intent, 'for category:', context.selectedCategory);
 
     // Complete this step
     onStepComplete?.('intent', {
