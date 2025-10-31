@@ -118,6 +118,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
         onClick={(): void => handleCategorySelection('property')}
         onInfoClick={() => handleInfoClick('property')}
         data-testid="category-card-property"
+        className="layera-card-uniform"
       />
 
       {/* Εργασία Card */}
@@ -128,6 +129,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
         onClick={(): void => handleCategorySelection('job')}
         onInfoClick={() => handleInfoClick('job')}
         data-testid="category-card-job"
+        className="layera-card-uniform"
       />
     </Box>
 

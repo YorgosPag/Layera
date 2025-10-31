@@ -16,6 +16,120 @@
 /* Enterprise CSS Variables for LEGO System */
 /* Όλα τα tokens διαχειρίζονται από packages/tokens/ - Single Source of Truth */
 
+/* ============= GLOBAL CARD STYLING SYSTEM ============= */
+/* Καθολικό σύστημα για uniform card appearance σε όλη την εφαρμογή */
+:root {
+  /* Global Card Dimensions - SINGLE SOURCE OF TRUTH */
+  --layera-card-uniform-height: 80px;
+  --layera-card-uniform-min-height: 80px;
+  --layera-card-uniform-max-height: 80px;
+
+  /* Global Card Typography - ENTERPRISE STANDARD */
+  --layera-card-uniform-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --layera-card-uniform-font-size: var(--la-text-base, 1rem);
+  --layera-card-uniform-font-weight: var(--la-font-weight-normal, 400);
+  --layera-card-uniform-line-height: var(--la-line-height-normal, 1.5);
+
+  /* Global Card Colors & Borders - UNIFORM APPEARANCE */
+  --layera-card-uniform-border: 2px solid var(--la-color-border, #e5e7eb);
+  --layera-card-uniform-border-radius: var(--la-radius-lg, 8px);
+  --layera-card-uniform-background: var(--la-color-surface, #ffffff);
+  --layera-card-uniform-shadow: var(--la-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
+
+  /* Global Card Active/Hover States */
+  --layera-card-uniform-active-border: 2px solid var(--la-color-primary-border, #3b82f6);
+  --layera-card-uniform-active-background: var(--la-color-primary-bg, #eff6ff);
+  --layera-card-uniform-hover-shadow: var(--la-shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
+
+  /* Global Card Padding & Spacing */
+  --layera-card-uniform-padding: var(--la-space-4, 1rem);
+  --layera-card-uniform-gap: var(--la-space-3, 0.75rem);
+}
+
+/* =============== ΚΑΘΟΛΙΚΟ CARD STYLING SYSTEM - ΑΠΟΛΥΤΟΣ ΕΛΕΓΧΟΣ =============== */
+/* Ισχυρότεροι selectors για override όλων των υπαρχόντων styles */
+
+/* Level 1: Base uniform class */
+.layera-card-uniform,
+[class*="layera-card-uniform"] {
+  height: var(--layera-card-uniform-height) !important;
+  min-height: var(--layera-card-uniform-min-height) !important;
+  max-height: var(--layera-card-uniform-max-height) !important;
+  border: var(--layera-card-uniform-border) !important;
+  border-radius: var(--layera-card-uniform-border-radius) !important;
+  background-color: var(--layera-card-uniform-background) !important;
+  box-shadow: var(--layera-card-uniform-shadow) !important;
+  padding: var(--layera-card-uniform-padding) !important;
+  font-family: var(--layera-card-uniform-font-family) !important;
+  font-size: var(--layera-card-uniform-font-size) !important;
+  font-weight: var(--layera-card-uniform-font-weight) !important;
+  line-height: var(--layera-card-uniform-line-height) !important;
+  flex: none !important;
+  box-sizing: border-box !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Level 2: ALL BaseCard variants override */
+.la-card.layera-card-uniform,
+div[class*="la-card"].layera-card-uniform,
+div[class*="BaseCard"].layera-card-uniform {
+  height: var(--layera-card-uniform-height) !important;
+  min-height: var(--layera-card-uniform-min-height) !important;
+  max-height: var(--layera-card-uniform-max-height) !important;
+  border: var(--layera-card-uniform-border) !important;
+  border-radius: var(--layera-card-uniform-border-radius) !important;
+  background-color: var(--layera-card-uniform-background) !important;
+  box-shadow: var(--layera-card-uniform-shadow) !important;
+  padding: var(--layera-card-uniform-padding) !important;
+  font-family: var(--layera-card-uniform-font-family) !important;
+  font-size: var(--layera-card-uniform-font-size) !important;
+  font-weight: var(--layera-card-uniform-font-weight) !important;
+  line-height: var(--layera-card-uniform-line-height) !important;
+  flex: none !important;
+  box-sizing: border-box !important;
+}
+
+/* Level 3: Typography override for ALL text inside cards */
+.layera-card-uniform *,
+.layera-card-uniform h1,
+.layera-card-uniform h2,
+.layera-card-uniform h3,
+.layera-card-uniform p,
+.layera-card-uniform div,
+.layera-card-uniform span {
+  font-family: var(--layera-card-uniform-font-family) !important;
+  font-size: var(--layera-card-uniform-font-size) !important;
+  font-weight: var(--layera-card-uniform-font-weight) !important;
+  line-height: var(--layera-card-uniform-line-height) !important;
+}
+
+/* Level 4: Hover states */
+.layera-card-uniform:hover,
+.la-card.layera-card-uniform:hover {
+  box-shadow: var(--layera-card-uniform-hover-shadow) !important;
+}
+
+/* Level 5: Active states */
+.layera-card-uniform.active,
+.layera-card-uniform[data-active="true"],
+.la-card.layera-card-uniform.active {
+  border: var(--layera-card-uniform-active-border) !important;
+  background-color: var(--layera-card-uniform-active-background) !important;
+}
+
+/* Level 6: NUCLEAR OVERRIDE - For any stubborn components */
+body .layera-card-uniform,
+html body .layera-card-uniform,
+html body div.layera-card-uniform {
+  height: var(--layera-card-uniform-height) !important;
+  min-height: var(--layera-card-uniform-min-height) !important;
+  border: var(--layera-card-uniform-border) !important;
+  background-color: var(--layera-card-uniform-background) !important;
+  font-family: var(--layera-card-uniform-font-family) !important;
+  font-size: var(--layera-card-uniform-font-size) !important;
+  flex: none !important;
+}
+
 /* Dark Theme Support - διαχειρίζεται από packages/tokens/ */
 
 /* Enterprise Base Styles */

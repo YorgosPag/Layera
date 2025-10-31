@@ -229,7 +229,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
       </Flex>
 
       {/* 📊 Review Summary */}
-      <BaseCard title={t('review.summary')} variant="outline">
+      <BaseCard title={t('review.summary')} variant="outline" className="layera-card-uniform">
         <Stack spacing="md">
           {Object.entries(reviewSummary).map(([key, item]) => (
             <Flex
@@ -269,6 +269,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
               key={card.id}
               title={card.title}
               variant="outline"
+              className="layera-card-uniform"
               opacity={reviewMode === 'confirm' ? 0.7 : 1}
             >
               <Stack spacing="sm" align="center">

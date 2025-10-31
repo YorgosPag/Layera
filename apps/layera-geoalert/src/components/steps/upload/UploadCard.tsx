@@ -53,7 +53,7 @@ export const UploadCard: React.FC<UploadCardProps> = ({
         config={uploadConfig}
         onUploadComplete={handleUploadComplete}
         onUploadError={handleUploadError}
-        className="layera-upload-card"
+        className="layera-upload-card layera-card-uniform"
         disabled={false}
       />
     </Box>

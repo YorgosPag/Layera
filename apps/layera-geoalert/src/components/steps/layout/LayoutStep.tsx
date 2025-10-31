@@ -6,7 +6,6 @@
 
 import React, { useCallback, useState } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
-import { LayoutToolCard } from './LayoutToolCard';
 import { BaseCard } from '@layera/cards';
 import { CheckIcon } from '@layera/icons';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
@@ -37,26 +36,26 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({
   const layoutTools: LayoutToolOption[] = [
     {
       id: 'positioning',
-      title: t('placementTools.title'),
-      description: t('placementTools.description'),
+      title: 'Τοποθέτηση',
+      description: 'Εργαλείο τοποθέτησης ακινήτου στον χάρτη',
       isActive: selectedTools.includes('positioning')
     },
     {
       id: 'scale',
-      title: t('placementTools.scale'),
-      description: t('placementTools.scale'),
+      title: 'Κλίμακα',
+      description: 'Προσαρμογή μεγέθους και κλίμακας',
       isActive: selectedTools.includes('scale')
     },
     {
       id: 'rotation',
-      title: t('placementTools.rotation'),
-      description: t('placementTools.rotation'),
+      title: 'Περιστροφή',
+      description: 'Περιστροφή του ακινήτου',
       isActive: selectedTools.includes('rotation')
     },
     {
       id: 'dimensions',
-      title: t('placementTools.description'),
-      description: t('placementTools.description'),
+      title: 'Διαστάσεις',
+      description: 'Καθορισμός διαστάσεων ακινήτου',
       isActive: selectedTools.includes('dimensions')
     }
   ];
@@ -99,34 +98,40 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({
     }
   }, [selectedTools, onStepComplete, onLayoutConfigured, onNext]);
 
+  console.log('🎼 LayoutStep: Rendering with isVisible:', isVisible, 'selectedTools:', selectedTools);
+
   if (!isVisible) {
+    console.log('🎼 LayoutStep: Not visible, returning null');
     return null;
   }
 
   const containerStyles: React.CSSProperties = {
     position: 'fixed',
-    top: 'var(--la-cards-top)',
-    left: 'var(--la-side-margins)',
-    right: 'var(--la-side-margins)',
-    zIndex: 'var(--la-z-popover)', // Enterprise CSS Custom Property - Single Source of Truth
+    top: 'var(--la-cards-top, 120px)', // Fallback value
+    left: `${SPACING_SCALE.LG}px`,        // Left margin consistent με AreaMethodStep
+    right: `${SPACING_SCALE.LG}px`,       // Right margin consistent με AreaMethodStep
+    zIndex: 1000,
     display: 'flex',
     flexDirection: 'column',
-    gap: 'var(--la-cards-gap)',
-    padding: '0'
+    gap: `${SPACING_SCALE.MD}px`,
+    padding: '0',                         // No extra padding - margins handle spacing
+    boxSizing: 'border-box'
   };
+
 
   return (
     <Box style={containerStyles}>
       {/* Layout Tools */}
-      {layoutTools.map((tool: unknown) => (
-        <LayoutToolCard
+      {layoutTools.map((tool: LayoutToolOption) => (
+        <BaseCard
           key={tool.id}
-          tool={tool.id}
+          variant="property"
           title={tool.title}
           description={tool.description}
-          isActive={tool.isActive}
+          clickable
           onClick={(): void => handleToolToggle(tool.id)}
           data-testid={`layout-tool-${tool.id}`}
+          className={`layera-card-uniform ${tool.isActive ? 'active' : ''}`}
         />
       ))}
 
@@ -139,7 +144,7 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({
           color="var(--color-semantic-success-text)"
         >
           <Text size="sm" color="inherit">
-            {t('layout.selected.count', { count: selectedTools.length })}
+            {selectedTools.length} εργαλεία επιλεγμένα
           </Text>
         </Box>
       )}
@@ -147,11 +152,13 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({
       {/* Complete Card */}
       <BaseCard
         variant={selectedTools.length > 0 ? "success" : "neutral"}
-        title={t('actions.complete')}
-        description={selectedTools.length > 0 ? t('layout.complete.withTools') : t('layout.complete.withoutTools')}
+        title="Ολοκλήρωση"
+        description={selectedTools.length > 0 ? 'Ολοκλήρωση με επιλεγμένα εργαλεία κάτοψης' : 'Ολοκλήρωση χωρίς εργαλεία κάτοψης'}
         icon={<CheckIcon size="sm" theme="neutral" />}
+        clickable
         onClick={handleComplete}
         data-testid="layout-complete-card"
+        className="layera-card-uniform"
       />
     </Box>
   );

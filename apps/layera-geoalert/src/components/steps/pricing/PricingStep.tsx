@@ -115,7 +115,7 @@ export const PricingStep: React.FC<PricingStepProps> = ({
 
       {/* 🎯 Context Display για debugging */}
       {process.env.NODE_ENV === 'development' && (
-        <BaseCard title="🔍 Context Debug" variant="outline">
+        <BaseCard title="🔍 Context Debug" variant="outline" className="layera-card-uniform">
           <Text size="sm" color="neutral-500">
             Category: {context.selectedCategory} | Intent: {context.selectedIntent} |
             Location: {context.selectedLocation} | Details: {context.selectedDetails}
@@ -134,6 +134,7 @@ export const PricingStep: React.FC<PricingStepProps> = ({
             key={card.id}
             title={card.title}
             variant={selectedPricing === card.value ? 'filled' : 'outline'}
+            className="layera-card-uniform"
             onClick={(): void => handlePricingSelect(card.value as PricingType)}
           >
             <Stack spacing="sm" align="center">

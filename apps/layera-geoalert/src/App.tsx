@@ -14,6 +14,9 @@ import { useLayeraTranslation, LanguageSwitcher } from '@layera/tolgee';
 import { Text, Heading } from '@layera/typography';
 import { useViewportWithOverride, DeviceOverrideProvider, useIPhone14ProMaxDetection } from '@layera/viewport';
 
+// Global Styles Import - CRITICAL για uniform card styling
+import '@layera/styles';
+
 // Simple Error Boundary component
 class SimpleErrorBoundary extends React.Component<
   { children: React.ReactNode; level?: string; onError?: (error: Error, errorInfo: { componentStack: string; errorBoundary?: React.ComponentType<React.SVGProps<SVGSVGElement>> | null; errorBoundaryStack?: string | null }) => void },

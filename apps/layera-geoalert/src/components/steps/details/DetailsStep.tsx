@@ -185,6 +185,7 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
               key={cardConfig.id}
               variant={context.selectedCategory || 'property'}
               title={cardConfig.titleKey}
+              className="layera-card-uniform"
               icon={cardConfig.icon}
               onClick={(): void => handleDetailsClick(cardConfig)}
               onInfoClick={() => handleInfoClick(cardConfig.id)}

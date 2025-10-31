@@ -81,8 +81,8 @@ export const FloatingStepper: React.FC<FloatingStepperProps> = ({
   // Mapping των discovered steps σε UI format με @layera/tolgee
   const steps = discoveredSteps.map(step => ({
     id: step.id,
-    title: t(`pipeline.steps.${step.id}.title`, step.title),
-    shortTitle: t(`pipeline.steps.${step.id}.short`, step.shortTitle)
+    title: step.title,
+    shortTitle: step.shortTitle
   }));
 
   // Simple state fallback

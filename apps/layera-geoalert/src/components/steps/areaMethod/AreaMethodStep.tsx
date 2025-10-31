@@ -89,12 +89,15 @@ export const AreaMethodStep: React.FC<AreaMethodStepProps> = ({
 
   const completeStep = useCallback(async (method: AreaMethodType, measuredArea: number | null) => {
     try {
+      console.log('🚀 AreaMethodStep: Completing step with method:', method, 'area:', measuredArea);
+
       // Ενημερώνουμε το StepOrchestrator
       if (onStepComplete) {
         const stepData: AreaMethodStepData = {
           selectedMethod: method,
           calculatedArea: measuredArea || undefined
         };
+        console.log('🚀 AreaMethodStep: Calling onStepComplete with data:', stepData);
         onStepComplete('areaMethod', stepData);
       }
 
@@ -102,7 +105,9 @@ export const AreaMethodStep: React.FC<AreaMethodStepProps> = ({
       onAreaMethodSelected?.(method);
 
       // Auto-advance
+      console.log('🚀 AreaMethodStep: Auto-advancing to next step in 300ms...');
       setTimeout((): void => {
+        console.log('🚀 AreaMethodStep: Calling onNext()');
         onNext?.();
       }, 300);
 

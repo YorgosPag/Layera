@@ -151,6 +151,7 @@ export const UploadStep: React.FC<UploadStepProps> = React.memo(({
           {/* Show Upload Card */}
           <BaseCard
             variant="info"
+            className="layera-card-uniform"
             title={t('upload.title', 'Ανέβασμα Αρχείων')}
             description={t('upload.description', 'Προσθέστε φωτογραφίες και έγγραφα')}
             icon={<CheckIcon size="sm" theme="neutral" />}
@@ -161,6 +162,7 @@ export const UploadStep: React.FC<UploadStepProps> = React.memo(({
           {/* Skip Card */}
           <BaseCard
             variant="neutral"
+            className="layera-card-uniform"
             title={t('upload.skip', 'Παράλειψη')}
             description={t('upload.skipDescription', 'Συνέχεια χωρίς αρχεία')}
             icon={<ArrowRightIcon size="sm" theme="neutral" />}
@@ -192,6 +194,7 @@ export const UploadStep: React.FC<UploadStepProps> = React.memo(({
           {uploadedFiles.length > 0 && (
             <BaseCard
               variant="success"
+              className="layera-card-uniform"
               padding="sm"
               marginBottom="sm"
             >
@@ -205,6 +208,7 @@ export const UploadStep: React.FC<UploadStepProps> = React.memo(({
           {uploadedFiles.length > 0 && (
             <BaseCard
               variant="success"
+              className="layera-card-uniform"
               title={t('upload.continue', 'Συνέχεια')}
               description={t('upload.continueDescription', 'Συνέχεια με τα επιλεγμένα αρχεία')}
               icon={<CheckIcon size="sm" theme="neutral" />}
@@ -216,6 +220,7 @@ export const UploadStep: React.FC<UploadStepProps> = React.memo(({
           {/* Skip Card */}
           <BaseCard
             variant="neutral"
+            className="layera-card-uniform"
             title={t('upload.skip', 'Παράλειψη')}
             description={t('upload.skipDescription', 'Συνέχεια χωρίς αρχεία')}
             icon={<ArrowRightIcon size="sm" theme="neutral" />}
@@ -226,6 +231,7 @@ export const UploadStep: React.FC<UploadStepProps> = React.memo(({
           {/* Back Card */}
           <BaseCard
             variant="neutral"
+            className="layera-card-uniform"
             title={t('actions.back')}
             description={t('actions.backToMenu')}
             onClick={(): void => setShowFileUploader(false)}

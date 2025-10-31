@@ -144,6 +144,7 @@ export const IntentStep: React.FC<IntentStepProps> = ({
             key={cardConfig.id}
             variant={context.selectedCategory || 'property'}
             title={t(cardConfig.titleKey)}
+            className="layera-card-uniform"
             icon={React.createElement(cardConfig.icon, { size: 'sm', theme: 'neutral' })}
             onClick={(): void => handleIntentClick(cardConfig)}
             onInfoClick={() => handleInfoClick(cardConfig.id)}

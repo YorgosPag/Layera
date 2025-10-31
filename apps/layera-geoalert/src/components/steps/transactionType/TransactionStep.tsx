@@ -124,6 +124,7 @@ export const TransactionStep: React.FC<TransactionStepProps> = ({
           variant={context.selectedCategory}
           title={option.title}
           subtitle={option.description}
+          className="layera-card-uniform"
           icon={null}
           onClick={(): void => handleTransactionSelection(option.type)}
           onInfoClick={() => handleInfoClick(`transaction-${option.type}` as CardId)}

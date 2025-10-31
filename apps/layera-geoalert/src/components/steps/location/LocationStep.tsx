@@ -106,6 +106,7 @@ const SearchInputCard: React.FC<{
   return (
     <BaseCard
       variant="job"
+      className="layera-card-uniform"
       title={
         <Box width="100%">
           <Text size="xs" weight="medium" color={getLabelColor()}>
@@ -380,6 +381,7 @@ export const LocationStep: React.FC<LocationStepProps> = ({
             {/* Location Search Card */}
             <BaseCard
               variant="job"
+              className="layera-card-uniform"
               title={t('location.search-title')}
               description={t('location.search-description')}
               icon={<SearchIcon size="sm" theme="neutral" />}
@@ -392,6 +394,7 @@ export const LocationStep: React.FC<LocationStepProps> = ({
               // Αν έχουμε 3 κάρτες: Upload στην πρώτη σειρά
               <BaseCard
                 variant="job"
+                className="layera-card-uniform"
                 title={t('location.upload-floorplan')}
                 description={t('location.upload-floorplan-description')}
                 icon={<UploadIcon size="sm" theme="neutral" />}
@@ -403,6 +406,7 @@ export const LocationStep: React.FC<LocationStepProps> = ({
               // Αν έχουμε 2 κάρτες: Drawing στην πρώτη σειρά
               <BaseCard
                 variant="job"
+                className="layera-card-uniform"
                 title={t('location.drawing.title')}
                 description={t('location.drawing.description')}
                 icon={<MapIcon size="sm" theme="neutral" />}
@@ -418,6 +422,7 @@ export const LocationStep: React.FC<LocationStepProps> = ({
             <Flex gap="md" wrap="wrap">
               <BaseCard
                 variant="job"
+                className="layera-card-uniform"
                 title={t('location.drawing.title')}
                 description={t('location.drawing.description')}
                 icon={<MapIcon size="sm" theme="neutral" />}
@@ -431,6 +436,7 @@ export const LocationStep: React.FC<LocationStepProps> = ({
           {uploadedFile && (
             <BaseCard
               variant="success"
+              className="layera-card-uniform"
               padding="sm"
               marginBottom="sm">
               <Stack spacing="xs" align="center">
@@ -483,6 +489,7 @@ export const LocationStep: React.FC<LocationStepProps> = ({
           {selectedLocation && (
             <BaseCard
               variant="success"
+              className="layera-card-uniform"
               padding="sm"
               marginBottom="sm">
               <Text size="sm" color="success">

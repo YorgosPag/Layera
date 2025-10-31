@@ -25,6 +25,7 @@ import {
   MapIcon,
   CheckIcon as InformationIcon
 } from '@layera/icons';
+import { SPACING_SCALE } from '@layera/constants';
 
 // LEGO Geo System imports - ΔΙΑΓΡΑΦΗ DUPLICATES
 import type { MeasurementMode, MeasurementResult } from '@layera/geo-drawing';
@@ -79,7 +80,7 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
       window.removeEventListener('measurementMapClick', handleMapClick);
       window.removeEventListener('measurementMapDoubleClick', handleMapDoubleClick);
     };
-  }, [isDrawing, drawingPoints, snapEngine, addPoint]);
+  }, [isDrawing, drawingPoints]);
 
   // ΔΙΑΓΡΑΦΗ: Area calculation θα γίνει με πραγματικό LEGO system
   useEffect(() => {
@@ -103,7 +104,7 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
       detail: { mode: 'polygon', snapEnabled: true }
     });
     window.dispatchEvent(startEvent);
-  }, [startMeasurement]);
+  }, []);
 
   const finishMeasurement = useCallback(() => {
 
@@ -117,7 +118,7 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
       detail: { area: currentArea, points: drawingPoints }
     });
     window.dispatchEvent(completeEvent);
-  }, [currentArea, drawingPoints, completeMeasurement]);
+  }, [currentArea, drawingPoints]);
 
   const handleComplete = useCallback(() => {
     if (currentArea > 0) {
@@ -135,51 +136,53 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
     window.dispatchEvent(cancelEvent);
 
     onCancel();
-  }, [clearMeasurement, onCancel]);
+  }, [onCancel]);
 
-  const getInstructions = (): void => {
+  const getInstructions = (): string => {
     if (!isDrawing && !measurementComplete) {
-      return t('areaMeasurement.instructions.start');
+      return 'Πατήστε "Ξεκίνα Σχεδίαση" για να αρχίσετε';
     }
 
     if (isDrawing) {
       if (drawingPoints.length === 0) {
-        return t('areaMeasurement.instructions.firstClick');
+        return 'Κάντε κλικ στον χάρτη για να ξεκινήσετε το σχήμα';
       }
       if (drawingPoints.length < 3) {
-        return t('areaMeasurement.instructions.morePoints', { count: 3 - drawingPoints.length });
+        return `Χρειάζεστε ${3 - drawingPoints.length} ακόμη σημεία για να ολοκληρώσετε το σχήμα`;
       }
-      return t('areaMeasurement.instructions.doubleClick');
+      return 'Διπλό κλικ για να ολοκληρώσετε το σχήμα';
     }
 
-    return t('areaMeasurement.instructions.completed', { area: currentArea });
+    return `Μέτρηση ολοκληρώθηκε: ${currentArea} τ.μ.`;
   };
 
   return (
     <Box style={style}>
       <BaseCard
-        variant="outlined"
-        size="lg"
-        padding="lg"
-        backgroundColor="surface-strong"
+        variant="property"
+        padding={`${SPACING_SCALE.LG}px`}
       >
-        <Stack spacing="md">
+        <Stack spacing={`${SPACING_SCALE.MD}px`}>
           {/* Header */}
-          <Flex align="center" gap="md">
+          <Flex align="center" gap={`${SPACING_SCALE.MD}px`}>
             <MapIcon size="lg" theme="primary" />
             <Box>
               <Heading as="h3" size="lg" color="primary">
-                {t('areaMeasurement.title')}
+                Μέτρηση Εμβαδού
               </Heading>
               <Text size="sm" color="secondary">
-                {t('areaMeasurement.subtitle')}
+                Σχεδιάστε την περιοχή στον χάρτη
               </Text>
             </Box>
           </Flex>
 
           {/* Instructions */}
-          <BaseCard variant="info" size="sm" padding="sm">
-            <Flex align="start" gap="sm">
+          <BaseCard
+            variant="property"
+            className="layera-card-uniform"
+            style={{ backgroundColor: 'var(--la-color-info-bg)', border: '2px solid var(--la-color-info-border)' }}
+          >
+            <Flex align="start" gap={`${SPACING_SCALE.SM}px`}>
               <InformationIcon size="sm" theme="info" />
               <Text size="sm" color="info">
                 {getInstructions()}
@@ -189,20 +192,24 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
 
           {/* Area Display */}
           {currentArea > 0 && (
-            <BaseCard variant="success" size="md" padding="md">
-              <Stack spacing="xs" align="center">
+            <BaseCard
+              variant="property"
+              className="layera-card-uniform"
+              style={{ backgroundColor: 'var(--la-color-success-bg)', border: '2px solid var(--la-color-success-border)' }}
+            >
+              <Stack spacing={`${SPACING_SCALE.XS}px`} align="center">
                 <Text size="lg" weight="bold" color="success">
-                  {t('areaMeasurement.area.value', { area: currentArea })}
+                  {currentArea} τ.μ.
                 </Text>
                 <Text size="sm" color="secondary">
-                  {t('areaMeasurement.area.points', { count: drawingPoints.length })}
+                  {drawingPoints.length} σημεία
                 </Text>
               </Stack>
             </BaseCard>
           )}
 
           {/* Action Buttons */}
-          <Stack spacing="sm">
+          <Stack spacing={`${SPACING_SCALE.SM}px`}>
             {!isDrawing && !measurementComplete && (
               <Button
                 variant="primary"
@@ -211,7 +218,7 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
                 fullWidth
               >
                 <MapIcon size="sm" />
-                {t('areaMeasurement.buttons.start')}
+                Ξεκίνα Σχεδίαση
               </Button>
             )}
 
@@ -223,7 +230,7 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
                 fullWidth
               >
                 <CheckIcon size="sm" />
-                {t('areaMeasurement.buttons.finish')}
+                Ολοκλήρωση
               </Button>
             )}
 
@@ -235,7 +242,7 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
                 fullWidth
               >
                 <CheckIcon size="sm" />
-                {t('areaMeasurement.buttons.confirm', { area: currentArea })}
+                Επιβεβαίωση ({currentArea} τ.μ.)
               </Button>
             )}
 
@@ -246,7 +253,7 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
               width="full"
             >
               <CloseIcon size="sm" />
-              {t('areaMeasurement.buttons.cancel')}
+              Ακύρωση
             </Button>
           </Stack>
 

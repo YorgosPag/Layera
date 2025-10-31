@@ -76,6 +76,7 @@ export const AreaMethodCard: React.FC<AreaMethodCardProps> = ({
       clickable
       onClick={handleClick}
       data-testid={testId || `area-method-${method}-card`}
+      className="layera-card-uniform"
     />
   );
 };

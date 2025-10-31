@@ -132,6 +132,7 @@ export const CompleteStep: React.FC<CompleteStepProps> = ({
       {/* Success Card */}
       <BaseCard
         variant="job"
+        className="layera-card-uniform"
         title={t('complete.success.title', 'Επιτυχής Ολοκλήρωση!')}
         description={completionSummary.successMessage}
         icon={<CheckIcon size="sm" theme="neutral" />}
@@ -167,6 +168,7 @@ export const CompleteStep: React.FC<CompleteStepProps> = ({
       {/* Complete Button */}
       <BaseCard
         variant="job"
+        className="layera-card-uniform"
         title={t('complete.finish.title', 'Τέλος')}
         description={t('complete.finish.description', 'Ολοκλήρωση διαδικασίας')}
         icon={<HomeIcon size="sm" theme="neutral" />}
@@ -177,6 +179,7 @@ export const CompleteStep: React.FC<CompleteStepProps> = ({
       {/* Back Button */}
       <BaseCard
         variant="job"
+        className="layera-card-uniform"
         title={t('complete.back.title', 'Πίσω για Αλλαγές')}
         description={t('complete.back.description', 'Επιστροφή για τροποποιήσεις')}
         onClick={handleGoBack}
