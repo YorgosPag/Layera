@@ -151,9 +151,9 @@ export function AddressBreakdownCard({
           key={component.id}
           {...componentProps}
           variant={isClickable ? 'outline' : 'secondary'}
-          icon={isClickable ? <MapIcon /> : <LocationIcon />}
           loading={isLoading}
         >
+          {isClickable ? <MapIcon /> : <LocationIcon />}
           {component.label}
           {isLoading && (
             <Text
@@ -267,7 +267,7 @@ export function AddressBreakdownCard({
 
   return (
     <BaseCard
-      title={title || t('addressDetails')}
+      title={title || String(t('addressDetails'))}
       actions={cardActions}
       className={`address-breakdown-card ${finalConfig.className || ''}`}
       onClick={onClick ? () => onClick({} as React.MouseEvent<HTMLDivElement>) : undefined}

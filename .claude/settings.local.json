@@ -40,7 +40,8 @@
       "Bash(kill:*)",
       "Bash(find:*)",
       "Bash(grep:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(move firebase.js firebase.ts)"
     ],
     "deny": [],
     "ask": []

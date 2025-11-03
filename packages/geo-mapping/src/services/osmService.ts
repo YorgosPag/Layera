@@ -181,7 +181,9 @@ interface OSMElement {
 
 /**
  * Convert OSM geometry to GeoJSON geometry
+ * NOTE: Future use - currently unused but preserved for upcoming features
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function convertOSMGeometry(element: unknown): unknown {
   const osmElement = element as OSMElement;
   if (!osmElement.geometry) return null;

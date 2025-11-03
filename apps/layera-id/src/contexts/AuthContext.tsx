@@ -70,6 +70,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   // Ενημέρωση προφίλ
   const updateUserProfile = async (displayName: string, photoURL: string) => {
+    if (!auth.currentUser) {
+      throw new Error('No authenticated user');
+    }
     return updateProfile(auth.currentUser, {
       displayName: displayName,
       photoURL: photoURL
@@ -78,11 +81,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   // Ενημέρωση email
   const updateUserEmail = async (email: string) => {
+    if (!auth.currentUser) {
+      throw new Error('No authenticated user');
+    }
     return updateEmail(auth.currentUser, email);
   };
 
   // Ενημέρωση κωδικού
   const updateUserPassword = async (password: string) => {
+    if (!auth.currentUser) {
+      throw new Error('No authenticated user');
+    }
     return updatePassword(auth.currentUser, password);
   };
 

@@ -1,0 +1,82 @@
+
+> @layera/layera-id@1.0.0 typecheck
+> tsc --noEmit
+
+src/components/DeviceFrameWrapper.tsx(2,41): error TS2307: Cannot find module '@layera/viewport' or its corresponding type declarations.
+src/components/DeviceFrameWrapper.tsx(3,66): error TS2307: Cannot find module '@layera/viewport' or its corresponding type declarations.
+src/components/DeviceFrameWrapper.tsx(112,9): error TS2322: Type '{ children: Element; justify: string; align: string; minHeight: string; backgroundColor: string; padding: string; overflow: string; }' is not assignable to type 'IntrinsicAttributes & CommonProps'.
+  Property 'justify' does not exist on type 'IntrinsicAttributes & CommonProps'.
+src/components/DeviceFrameWrapper.tsx(120,16): error TS2322: Type '{ children: (ReactNode | Element)[]; id: string; style: CSSProperties; }' is not assignable to type 'IntrinsicAttributes & BoxProps'.
+  Property 'id' does not exist on type 'IntrinsicAttributes & BoxProps'.
+src/components/NewDashboard.tsx(6,24): error TS7016: Could not find a declaration file for module '@layera/buttons'. 'C:/layera/packages/buttons/dist/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/layera__buttons` if it exists or add a new declaration (.d.ts) file containing `declare module '@layera/buttons';`
+src/components/NewDashboard.tsx(34,22): error TS2322: Type '{ variant: string; size: string; }' is not assignable to type 'IntrinsicAttributes & ThemeSwitcherProps'.
+  Property 'variant' does not exist on type 'IntrinsicAttributes & ThemeSwitcherProps'.
+src/components/NewDashboard.tsx(52,7): error TS2322: Type '{ children: Element; layout: string; header: Element; }' is not assignable to type 'IntrinsicAttributes & CommonProps'.
+  Property 'layout' does not exist on type 'IntrinsicAttributes & CommonProps'.
+src/components/NewDashboard.tsx(55,11): error TS2322: Type '{ title: string; subtitle: string; variant: string; actions: Element; }' is not assignable to type 'IntrinsicAttributes & CommonProps'.
+  Property 'title' does not exist on type 'IntrinsicAttributes & CommonProps'.
+src/components/NewDashboard.tsx(62,22): error TS2322: Type '{ children: (Element | null)[]; maxWidth: string; padding: string; }' is not assignable to type 'IntrinsicAttributes & CommonProps'.
+  Property 'maxWidth' does not exist on type 'IntrinsicAttributes & CommonProps'.
+src/components/NewDashboard.tsx(63,14): error TS2322: Type '{ children: Element; padding: string; }' is not assignable to type 'IntrinsicAttributes & BoxProps'.
+  Property 'padding' does not exist on type 'IntrinsicAttributes & BoxProps'.
+src/components/NewDashboard.tsx(65,13): error TS2322: Type '{ title: string; subtitle: string; }' is not assignable to type 'IntrinsicAttributes & CommonProps'.
+  Property 'title' does not exist on type 'IntrinsicAttributes & CommonProps'.
+src/components/NewDashboard.tsx(73,18): error TS2322: Type '{ children: Element; padding: string; }' is not assignable to type 'IntrinsicAttributes & BoxProps'.
+  Property 'padding' does not exist on type 'IntrinsicAttributes & BoxProps'.
+src/components/NewDashboard.tsx(75,17): error TS2322: Type '{ children: Element; title: string; subtitle: string; }' is not assignable to type 'IntrinsicAttributes & CardGridProps'.
+  Property 'title' does not exist on type 'IntrinsicAttributes & CardGridProps'.
+src/components/NewDashboard.tsx(78,30): error TS2322: Type '{ xs: number; sm: number; md: number; lg: number; }' is not assignable to type 'number'.
+src/components/NewDashboard.tsx(82,19): error TS2322: Type '{ children: Element; title: string; variant: string; metric: { value: string; label: string; }; }' is not assignable to type 'IntrinsicAttributes & BaseCardProps'.
+  Property 'metric' does not exist on type 'IntrinsicAttributes & BaseCardProps'.
+src/components/NewDashboard.tsx(87,24): error TS2322: Type '{ children: Element; textAlign: string; padding: string; }' is not assignable to type 'IntrinsicAttributes & BoxProps'.
+  Property 'textAlign' does not exist on type 'IntrinsicAttributes & BoxProps'.
+src/components/NewDashboard.tsx(99,19): error TS2322: Type '{ children: Element; title: string; variant: string; metric: { value: string; label: string; }; }' is not assignable to type 'IntrinsicAttributes & BaseCardProps'.
+  Property 'metric' does not exist on type 'IntrinsicAttributes & BaseCardProps'.
+src/components/NewDashboard.tsx(104,24): error TS2322: Type '{ children: Element; textAlign: string; padding: string; }' is not assignable to type 'IntrinsicAttributes & BoxProps'.
+  Property 'textAlign' does not exist on type 'IntrinsicAttributes & BoxProps'.
+src/components/NewDashboard.tsx(116,19): error TS2322: Type '{ title: string; variant: string; metric: { value: string; label: string; }; }' is not assignable to type 'IntrinsicAttributes & BaseCardProps'.
+  Property 'metric' does not exist on type 'IntrinsicAttributes & BaseCardProps'.
+src/components/NewDashboard.tsx(125,19): error TS2322: Type '{ title: string; variant: string; metric: { value: number; label: string; }; }' is not assignable to type 'IntrinsicAttributes & BaseCardProps'.
+  Property 'metric' does not exist on type 'IntrinsicAttributes & BaseCardProps'.
+src/components/NewDashboard.tsx(137,18): error TS2322: Type '{ children: Element; padding: string; }' is not assignable to type 'IntrinsicAttributes & BoxProps'.
+  Property 'padding' does not exist on type 'IntrinsicAttributes & BoxProps'.
+src/components/NewDashboard.tsx(138,33): error TS2322: Type '{ children: Element; title: string; }' is not assignable to type 'IntrinsicAttributes & CardGridProps'.
+  Property 'title' does not exist on type 'IntrinsicAttributes & CardGridProps'.
+src/components/NewDashboard.tsx(139,32): error TS2322: Type '{ xs: number; sm: number; md: number; lg: number; }' is not assignable to type 'number'.
+src/components/NewDashboard.tsx(145,31): error TS2322: Type '{ children: ("" | Element | null)[]; gap: string; }' is not assignable to type 'IntrinsicAttributes & CommonProps'.
+  Property 'gap' does not exist on type 'IntrinsicAttributes & CommonProps'.
+src/components/NewDashboard.tsx(180,20): error TS2322: Type '{ children: Element; padding: string; }' is not assignable to type 'IntrinsicAttributes & BoxProps'.
+  Property 'padding' does not exist on type 'IntrinsicAttributes & BoxProps'.
+src/components/NewDashboard.tsx(181,35): error TS2322: Type '{ children: Element; title: string; }' is not assignable to type 'IntrinsicAttributes & CardGridProps'.
+  Property 'title' does not exist on type 'IntrinsicAttributes & CardGridProps'.
+src/components/NewDashboard.tsx(182,34): error TS2322: Type '{ xs: number; sm: number; md: number; lg: number; }' is not assignable to type 'number'.
+src/components/NewDashboard.tsx(186,21): error TS2322: Type '{ children: Element[]; title: string; variant: string; clickable: true; onClick: () => void | Promise<void>; }' is not assignable to type 'IntrinsicAttributes & BaseCardProps'.
+  Property 'clickable' does not exist on type 'IntrinsicAttributes & BaseCardProps'.
+src/components/NewDashboard.tsx(199,20): error TS2322: Type '{ children: Element; padding: string; }' is not assignable to type 'IntrinsicAttributes & BoxProps'.
+  Property 'padding' does not exist on type 'IntrinsicAttributes & BoxProps'.
+src/components/NewDashboard.tsx(200,35): error TS2322: Type '{ children: Element; title: string; }' is not assignable to type 'IntrinsicAttributes & CardGridProps'.
+  Property 'title' does not exist on type 'IntrinsicAttributes & CardGridProps'.
+src/components/NewDashboard.tsx(201,34): error TS2322: Type '{ xs: number; sm: number; md: number; lg: number; }' is not assignable to type 'number'.
+src/components/NewDashboard.tsx(205,21): error TS2322: Type '{ children: Element[]; title: string; variant: string; clickable: true; onClick: () => void | Promise<void>; }' is not assignable to type 'IntrinsicAttributes & BaseCardProps'.
+  Property 'clickable' does not exist on type 'IntrinsicAttributes & BaseCardProps'.
+src/components/NewDashboard.tsx(217,18): error TS2322: Type '{ children: Element; padding: string; }' is not assignable to type 'IntrinsicAttributes & BoxProps'.
+  Property 'padding' does not exist on type 'IntrinsicAttributes & BoxProps'.
+src/components/QuickActions.tsx(55,23): error TS2322: Type '{ children: Element; title: string; }' is not assignable to type 'IntrinsicAttributes & CardGridProps'.
+  Property 'title' does not exist on type 'IntrinsicAttributes & CardGridProps'.
+src/components/QuickActions.tsx(56,22): error TS2322: Type '{ xs: number; sm: number; md: number; lg: number; }' is not assignable to type 'number'.
+src/components/QuickActions.tsx(62,13): error TS2322: Type '{ children: ReactNode; key: string; title: string; variant: string; clickable: true; onClick: () => void | Promise<void>; }' is not assignable to type 'IntrinsicAttributes & BaseCardProps'.
+  Property 'clickable' does not exist on type 'IntrinsicAttributes & BaseCardProps'.
+src/firebase.ts(5,27): error TS4111: Property 'VITE_FIREBASE_API_KEY' comes from an index signature, so it must be accessed with ['VITE_FIREBASE_API_KEY'].
+src/firebase.ts(6,31): error TS4111: Property 'VITE_FIREBASE_AUTH_DOMAIN' comes from an index signature, so it must be accessed with ['VITE_FIREBASE_AUTH_DOMAIN'].
+src/firebase.ts(7,30): error TS4111: Property 'VITE_FIREBASE_PROJECT_ID' comes from an index signature, so it must be accessed with ['VITE_FIREBASE_PROJECT_ID'].
+src/firebase.ts(8,34): error TS4111: Property 'VITE_FIREBASE_STORAGE_BUCKET' comes from an index signature, so it must be accessed with ['VITE_FIREBASE_STORAGE_BUCKET'].
+src/firebase.ts(9,38): error TS4111: Property 'VITE_FIREBASE_MESSAGING_SENDER_ID' comes from an index signature, so it must be accessed with ['VITE_FIREBASE_MESSAGING_SENDER_ID'].
+src/firebase.ts(10,26): error TS4111: Property 'VITE_FIREBASE_APP_ID' comes from an index signature, so it must be accessed with ['VITE_FIREBASE_APP_ID'].
+npm error Lifecycle script `typecheck` failed with error:
+npm error code 2
+npm error path C:\layera\apps\layera-id
+npm error workspace @layera/layera-id@1.0.0
+npm error location C:\layera\apps\layera-id
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe /d /s /c tsc --noEmit
