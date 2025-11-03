@@ -146,7 +146,7 @@ async function fetchLocalBoundary(
     const fallbackBoundary = findFallbackBoundary(searchTerms);
 
     if (fallbackBoundary) {
-      return fallbackBoundary;
+      return fallbackBoundary as OSMAdminCollection;
     }
   } catch (fallbackError) {
     console.warn('⚠️ Fallback system not available:', fallbackError);

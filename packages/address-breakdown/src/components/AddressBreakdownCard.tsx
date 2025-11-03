@@ -151,7 +151,7 @@ export function AddressBreakdownCard({
           key={component.id}
           {...componentProps}
           variant={isClickable ? 'outline' : 'secondary'}
-          startIcon={isClickable ? <MapIcon /> : <LocationIcon />}
+          icon={isClickable ? <MapIcon /> : <LocationIcon />}
           loading={isLoading}
         >
           {component.label}
@@ -193,22 +193,6 @@ export function AddressBreakdownCard({
             }
           })
         }}
-        onMouseEnter={(e: React.FormEvent<HTMLFormElement>) => {
-          if (isClickable && !isLoading) {
-            e.currentTarget.style.backgroundColor = 'var(--la-bg-hover)';
-            e.currentTarget.style.borderColor = 'var(--la-border-hover)';
-            e.currentTarget.style.transform = 'translateY(-1px)';
-            e.currentTarget.style.boxShadow = BOX_SHADOW_SCALE.cardHover;
-          }
-        }}
-        onMouseLeave={(e: React.FormEvent<HTMLFormElement>) => {
-          if (isClickable && !isLoading) {
-            e.currentTarget.style.backgroundColor = 'var(--la-bg-primary)';
-            e.currentTarget.style.borderColor = 'var(--la-border-default)';
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = BOX_SHADOW_SCALE.none;
-          }
-        }}
       >
         <Box className="list-item-content" style={{
           display: 'var(--la-display-flex, flex)',
@@ -220,17 +204,9 @@ export function AddressBreakdownCard({
           {isLoading ? (
             <Spinner size="sm" />
           ) : isClickable ? (
-            <MapIcon style={{
-              width: 'var(--la-icon-size-md)',
-              height: 'var(--la-icon-size-md)',
-              color: 'var(--la-color-primary)'
-            }} />
+            <MapIcon />
           ) : (
-            <LocationIcon style={{
-              width: 'var(--la-icon-size-md)',
-              height: 'var(--la-icon-size-md)',
-              color: 'var(--la-text-secondary)'
-            }} />
+            <LocationIcon />
           )}
           <span className="list-label" style={{
             flex: 'var(--la-flex-1, 1)',
@@ -294,7 +270,7 @@ export function AddressBreakdownCard({
       title={title || t('addressDetails')}
       actions={cardActions}
       className={`address-breakdown-card ${finalConfig.className || ''}`}
-      onClick={onClick}
+      onClick={onClick ? () => onClick({} as React.MouseEvent<HTMLDivElement>) : undefined}
       style={style}
     >
       {error && (
