@@ -212,14 +212,13 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
       />
       <Flex
         justify="center"
-        align="flex-start"
-        minHeight="full"
-        backgroundColor="surface"
-        padding="custom"
-        overflow="auto"
+        align="start"
         style={{
+          minHeight: '100vh',
+          backgroundColor: 'var(--la-bg-surface)',
           paddingTop: `${SPACING_SCALE.LG}px`,
           paddingBottom: `${SPACING_SCALE.LG}px`,
+          overflow: 'auto',
         }}
         className="device-frame-container">
         <Box
