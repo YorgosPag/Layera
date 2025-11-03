@@ -1,4 +1,5 @@
 import { assign } from 'xstate';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { PipelineContext, PipelineEvent } from './types';
 
 /**

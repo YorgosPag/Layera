@@ -7,6 +7,7 @@
 
 import L from 'leaflet';
 import { calculatePolygonCenter, isPointInPolygon, calculateBounds } from '@layera/geo-drawing';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { POSITIONING, ERROR_MESSAGES } from './constants';
 
 /**

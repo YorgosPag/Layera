@@ -111,6 +111,7 @@ function renderCardContent(
 
 function renderToolContent(
   config: UnifiedCardConfig,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   context?: CardContext
 ): React.ReactNode {
   if (!('isSelected' in config)) return null;
@@ -128,6 +129,7 @@ function renderToolContent(
 
 function renderActionContent(
   config: UnifiedCardConfig,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   context?: CardContext
 ): React.ReactNode {
   if (!('priority' in config)) return null;

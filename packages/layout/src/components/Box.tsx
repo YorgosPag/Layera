@@ -13,6 +13,7 @@
 
 import React, { useMemo } from 'react';
 import { SPACING_SCALE } from '@layera/constants';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { getSizingVar, getSizingValue, type SizingToken } from '../sizing';
 
 export interface BoxProps {

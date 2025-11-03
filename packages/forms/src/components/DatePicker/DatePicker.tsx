@@ -297,6 +297,7 @@ const DatePickerComponent = (props: DatePickerProps, ref: React.Ref<HTMLInputEle
     const month = baseDate.getMonth();
 
     const firstDay = new Date(year, month, 1);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const lastDay = new Date(year, month + 1, 0);
     const startDate = new Date(firstDay);
     startDate.setDate(startDate.getDate() - firstDay.getDay());

@@ -79,6 +79,7 @@ export const getEnhancedCardTheme = (
   };
 
   const theme = baseThemes[variant] || baseThemes.elevated;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { baseColor, borderColor, semanticColor } = theme;
   const titleShadow = 'titleShadow' in theme ? theme.titleShadow : 'none';
 

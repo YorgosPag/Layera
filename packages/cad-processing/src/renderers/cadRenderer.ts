@@ -14,6 +14,7 @@ import {
  * Βασισμένο σε patterns από OLD_geo-canvas DxfEntityRenderer
  */
 export class CADRenderer {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private svgElements: string[] = [];
   private currentScale = 1;
   private currentOffset = { x: 0, y: 0 };

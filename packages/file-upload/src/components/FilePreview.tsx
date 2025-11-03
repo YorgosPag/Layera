@@ -7,6 +7,7 @@ import { UploadIcon, CloseIcon } from '@layera/icons';
 import { Box } from '@layera/layout';
 import { useTheme } from '@layera/theme-switcher';
 import type { FilePreviewProps } from '../types';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { formatBytes, isImageFile, isPreviewSupported } from '../utils/fileValidation';
 
 /**

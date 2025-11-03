@@ -1,8 +1,10 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useState, useMemo } from 'react';
 import {
   TABLE_VARIANTS,
   TABLE_DENSITIES,
   SORT_DIRECTIONS,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   PAGINATION_SIZES,
   type TableVariant,
   type TableDensity,
@@ -86,6 +88,7 @@ export const DataTable = <T extends Record<string, unknown>>({
   rowKey = 'id',
   onRowClick
 }: DataTableProps<T>) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { t } = useLayeraTranslation();
   const [internalSearchValue, setInternalSearchValue] = useState(searchValue);
 

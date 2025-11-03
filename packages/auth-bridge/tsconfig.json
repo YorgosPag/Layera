@@ -19,7 +19,6 @@
     "declaration": true,
     "declarationMap": true,
     "outDir": "./dist",
-    "rootDir": "./src",
     "jsx": "react-jsx",
     "composite": true
   },

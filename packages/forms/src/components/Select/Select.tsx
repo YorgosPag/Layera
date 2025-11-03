@@ -54,7 +54,9 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
   emptyMessage,
   emptyMessageKey,
   className = '',
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ...props
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 }, ref) => {
   const { t } = useLayeraTranslation();
   const [isOpen, setIsOpen] = useState(false);

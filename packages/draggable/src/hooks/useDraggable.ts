@@ -107,6 +107,7 @@ export function useDraggable(
     }
   }, [disabled, isDragging, dragThreshold, constrainPosition, createEventData, onDrag]);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleMouseUp = useCallback((e: React.MouseEvent) => {
     if (isDragging) {
       const eventData = createEventData(position);

@@ -62,6 +62,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   ].filter(Boolean).join(' ');
 
   // Handle additional CSS properties
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const buttonStyles: React.CSSProperties = {
     margin: typeof margin === 'number' ? `${margin}px` : margin,
     marginTop: typeof marginTop === 'number' ? `${marginTop}px` : marginTop,

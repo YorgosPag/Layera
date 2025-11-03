@@ -81,6 +81,7 @@ function resolveSelectionVariant(
 
 function resolveToolVariant(
   config: UnifiedCardConfig,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   context?: CardContext
 ): CardVariant {
   // Selected/active tool
@@ -122,6 +123,7 @@ function resolveDataVariant(
 
 function resolveActionVariant(
   config: UnifiedCardConfig,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   context?: CardContext
 ): CardVariant {
   // Priority-based
@@ -151,6 +153,7 @@ function resolveActionVariant(
  */
 export const resolveOpacityMode = (
   config: UnifiedCardConfig,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   context?: CardContext
 ): 'transparent' | 'semi-transparent' | 'opaque' => {
   if (config.disabled) return 'transparent';
@@ -163,6 +166,7 @@ export const resolveOpacityMode = (
  */
 export const shouldShowInfoButton = (
   config: UnifiedCardConfig,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   context?: CardContext
 ): boolean => {
   return Boolean(config.onInfoClick);

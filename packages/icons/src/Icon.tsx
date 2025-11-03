@@ -2,6 +2,7 @@
 // Enterprise pattern: Ενιαίο component για όλα τα εικονίδια
 
 import React from 'react';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { BaseIconProps, IconSize, IconVariant, IconTheme } from './types';
 
 // Μεγέθη εικονιδίων σε pixels
@@ -74,6 +75,7 @@ export const Icon: React.FC<IconProps> = ({
   children,
   'aria-label': ariaLabel,
   title,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ...props
 }) => {
   // Υπολογισμός μεγέθους

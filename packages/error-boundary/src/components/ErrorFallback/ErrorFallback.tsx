@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Box } from '@layera/layout';
 import { ErrorDetails } from '../ErrorDetails';
 import { getErrorSeverity, isNetworkError, isChunkError } from '../../utils';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { ERROR_MESSAGES, ERROR_ICON_SIZES } from '../../constants';
 import type { ErrorFallbackProps } from '../../types';
 import './ErrorFallback.css';

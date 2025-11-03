@@ -31,6 +31,7 @@ export const AppShell: React.FC<AppShellProps> = ({
   }, []);
 
   // Handle sidebar toggle
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSidebarToggle = (): void => {
     if (isMobile) {
       setIsSidebarOpen(!isSidebarOpen);

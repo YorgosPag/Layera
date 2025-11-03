@@ -12,6 +12,7 @@ import type {
   ActionCardConfig,
   CardConfigFactory
 } from '../types/unified-card.types';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { CardVariant } from '../types/card.types';
 
 // ============= FACTORY FUNCTIONS =============

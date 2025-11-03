@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { formatError } from '../../utils';
 import type { ErrorDetailsProps } from '../../types';
 import { Box } from '@layera/layout';

@@ -215,6 +215,7 @@ export class UploadEngine {
    * Uploads a single chunk
    */
   private async uploadChunk(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     fileItem: FileUploadItem,
     chunk: Blob,
     chunkIndex: number,

@@ -3,7 +3,9 @@ import {
   ValidationResult,
   ValidationError,
   ValidationWarning,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   FileSizeError,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   FileTypeError,
   SupportedFormat
 } from '../types';

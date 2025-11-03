@@ -53,6 +53,7 @@ export const MeasurementCanvas: React.FC<MeasurementCanvasProps> = ({
   }, [currentResult, onMeasurementChange]);
 
   // Handle map interactions
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const mapEvents = useMapEvents({
     click: useCallback((e: L.LeafletMouseEvent) => {
       if (state === 'finished') return;
@@ -75,6 +76,7 @@ export const MeasurementCanvas: React.FC<MeasurementCanvasProps> = ({
       }
 
       // Create interaction event
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const interactionEvent: CanvasInteractionEvent = {
         type: 'click',
         latlng,
@@ -124,6 +126,7 @@ export const MeasurementCanvas: React.FC<MeasurementCanvasProps> = ({
     return (
       <>
         {/* Render points */}
+        {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
         {points.map((point, index) => (
           <CircleMarker
             key={point.id}

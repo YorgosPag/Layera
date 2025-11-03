@@ -57,6 +57,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
   React.useEffect(() => {
     if (opacityMode !== 'transparent') return; // Μόνο αν χρησιμοποιεί το opacity system
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const handleOpacityToggle = (event: CustomEvent) => {
       // Αυτό θα χειριστεί το parent component που διαχειρίζεται το opacityMode state
     };

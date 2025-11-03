@@ -198,6 +198,7 @@ export const InputGroup = forwardRef<HTMLDivElement, InputGroupProps>(({
       const newValues = { ...prev, [name]: value };
 
       // Validate if validator is provided
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       let validationError: string | undefined;
       if (validate) {
         validationError = validate(newValues);

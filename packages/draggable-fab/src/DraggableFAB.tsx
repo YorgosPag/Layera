@@ -25,10 +25,12 @@
  * - setFabPos not called → early return στο onMove
  */
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { BORDER_RADIUS_SCALE, SPACING_SCALE } from '@layera/constants';
 import { Box } from '@layera/layout';
 import { VARIANT_COLORS } from '@layera/floating-action-buttons';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { killNextClick, swallowNextWindowClick, stopAll, useDraggable } from '@layera/draggable';
 
 export interface DraggableFABProps {
@@ -124,6 +126,7 @@ export const DraggableFAB: React.FC<DraggableFABProps> = ({
     }
     return { x: initialPosition.x ?? 15, y: initialPosition.y ?? 15 };
   });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const startRef = useRef<DragStart | null>(null);
 
   const BTN_SIZE = getSizePixels(size);

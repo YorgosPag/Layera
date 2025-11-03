@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { Polygon, Polyline, CircleMarker, Popup } from 'react-leaflet';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import L from 'leaflet';
 import { useTheme } from '@layera/theme-switcher';
 import { Typography } from '@layera/typography';
@@ -32,6 +33,7 @@ export const GeometryRenderer: React.FC<GeometryRendererProps> = ({
 }) => {
   const { theme } = useTheme();
   const { t } = useLayeraTranslation();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { formatDistanceWithLabels, formatAreaWithLabels } = useMeasurementFormatter();
 
   // Get theme-aware colors

@@ -163,6 +163,7 @@ export class LayeraDXFParser {
    */
   private extractTables(
     parsedDxf: Record<string, unknown>,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     options: CADParseOptions
   ): CADTables {
     const tables = parsedDxf.tables as Record<string, unknown> || {};
@@ -194,6 +195,7 @@ export class LayeraDXFParser {
   /**
    * Extracts line type definitions
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private extractLineTypes(lineTypeData: Record<string, unknown>[]): never[] {
     // Simplified για τώρα - θα υλοποιηθεί πλήρως στο επόμενο στάδιο
     return [];
@@ -202,6 +204,7 @@ export class LayeraDXFParser {
   /**
    * Extracts text style definitions
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private extractTextStyles(styleData: Record<string, unknown>[]): never[] {
     // Simplified για τώρα - θα υλοποιηθεί πλήρως στο επόμενο στάδιο
     return [];
@@ -216,6 +219,7 @@ export class LayeraDXFParser {
   ): CADBlock[] {
     if (!options.preserveBlockStructure) return [];
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const blocks = parsedDxf.blocks as Record<string, unknown> || {};
     // Simplified για τώρα - θα υλοποιηθεί πλήρως στο επόμενο στάδιο
     return [];
@@ -226,6 +230,7 @@ export class LayeraDXFParser {
    */
   private extractEntities(
     parsedDxf: Record<string, unknown>,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     options: CADParseOptions
   ): CADEntity[] {
     const entities = parsedDxf.entities as Record<string, unknown>[] || [];
@@ -455,6 +460,7 @@ export class LayeraDXFParser {
    * Calculates metadata and statistics
    */
   private calculateMetadata(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     header: CADHeader,
     tables: CADTables,
     blocks: CADBlock[],
