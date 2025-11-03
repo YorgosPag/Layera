@@ -6,12 +6,25 @@ declare module '@layera/layout' {
     children?: ReactNode;
     className?: string;
     style?: CSSProperties;
+    role?: string;
+    // Additional properties from existing patterns
+    padding?: string;
+    textAlign?: 'left' | 'center' | 'right' | string;
+    [key: string]: unknown; // Allow any additional props
   }
 
   export interface CommonProps {
     children?: ReactNode;
-    className?: string;
-    style?: CSSProperties;
+    layout?: string;
+    header?: ReactNode;
+    title?: string;
+    subtitle?: string;
+    variant?: string;
+    actions?: ReactNode;
+    maxWidth?: string;
+    padding?: string;
+    gap?: string;
+    [key: string]: unknown; // Allow any additional props
   }
 
   export const Box: React.FC<BoxProps>;
@@ -26,21 +39,61 @@ declare module '@layera/layout' {
 }
 
 declare module '@layera/theme-switcher' {
-  import { ReactNode } from 'react';
-
   export interface ThemeSwitcherProps {
-    className?: string;
-    children?: ReactNode;
+    [key: string]: unknown; // Allow any additional props
   }
 
   export const ThemeSwitcher: React.FC<ThemeSwitcherProps>;
+  export const ThemeProvider: React.FC<{ children: React.ReactNode }>;
+}
+
+declare module '@layera/viewport' {
+  export interface DeviceModel {
+    id: string;
+    name: string;
+    category: string;
+    width: number;
+    height: number;
+    scale: number;
+    frameColor: string;
+    hasNotch?: boolean;
+    hasHomeBar?: boolean;
+  }
+
+  export function useViewportWithOverride(): {
+    isMobile: boolean;
+    isTablet: boolean;
+    isDesktop: boolean;
+    deviceModel: DeviceModel | null;
+    setDeviceModel: (model: DeviceModel | null) => void;
+  };
+
+  export function getDeviceSpecs(model: DeviceModel): DeviceModel;
+  export const DeviceModelSelector: React.FC<{
+    currentModel: DeviceModel | null;
+    onModelSelect: (model: DeviceModel | null) => void;
+  }>;
+}
+
+declare module '@layera/buttons' {
+  import { ReactNode } from 'react';
+
+  export interface ButtonProps {
+    children?: ReactNode;
+    onClick?: () => void | Promise<void>;
+    variant?: 'primary' | 'secondary' | 'outline';
+    className?: string;
+    disabled?: boolean;
+  }
+
+  export const Button: React.FC<ButtonProps>;
 }
 
 declare module '@layera/cards' {
   import { ReactNode } from 'react';
 
   export interface BaseCardProps {
-    title?: string;
+    title?: ReactNode;
     children?: ReactNode;
     variant?: string;
     onClick?: () => void;
@@ -54,23 +107,17 @@ declare module '@layera/cards' {
 
   export interface CardGridProps {
     children?: ReactNode;
-    className?: string;
-    columns?: number | { xs?: number; sm?: number; md?: number; lg?: number; };
+    title?: string;
+    subtitle?: string;
+    [key: string]: unknown; // Allow any additional props
   }
 
-  export interface DashboardCardProps extends BaseCardProps {
-    variant?: 'stats' | 'chart' | 'status' | 'actions' | 'info';
-    loading?: boolean;
-    error?: string | null;
-    metric?: {
-      value: string | number;
-      label: string;
-      change?: {
-        value: number;
-        direction: 'up' | 'down' | 'neutral';
-        period?: string;
-      };
-    };
+  export interface DashboardCardProps {
+    children?: ReactNode;
+    title?: string;
+    variant?: string;
+    onClick?: () => void | Promise<void>;
+    [key: string]: unknown; // Allow any additional props
   }
 
   export const BaseCard: React.FC<BaseCardProps>;

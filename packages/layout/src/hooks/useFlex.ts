@@ -54,7 +54,7 @@ export const useFlex = (options: {
 /**
  * Hook για flex utilities και common patterns
  */
-export const useFlexPatterns = (): void => {
+export const useFlexPatterns = () => {
   return useMemo(() => ({
     // Basic layouts
     row: useFlex({ direction: 'row' }),
@@ -169,7 +169,7 @@ export const useFlexItem = (options: {
 /**
  * Hook για complete flex system access
  */
-export const useFlexSystem = (): void => {
+export const useFlexSystem = () => {
   return useMemo(() => ({
     // Scale access
     scale: FLEX_SCALE,
@@ -199,7 +199,7 @@ export const useFlexSystem = (): void => {
 /**
  * Hook για responsive flex patterns (μελλοντική χρήση με breakpoints)
  */
-export const useResponsiveFlex = (): void => {
+export const useResponsiveFlex = () => {
   return useMemo(() => ({
     // Mobile patterns
     mobile: {

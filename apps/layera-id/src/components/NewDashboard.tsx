@@ -39,7 +39,7 @@ const NewDashboard: React.FC = () => {
             size="medium"
             onClick={() => navigate('/account')}
           />
-          <Button variant="ghost" size="sm" onClick={handleLogout}>
+          <Button variant="outline" onClick={handleLogout}>
             {t('navigation.logout')}
           </Button>
         </>

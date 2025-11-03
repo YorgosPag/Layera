@@ -439,8 +439,8 @@ export class LayeraDXFParser {
     return { type: 'index', value: 7 }; // Default white
   }
 
-  private mapDXFUnits(unitsCode: number): 'mm' | 'cm' | 'm' | 'in' | 'ft' | 'units' {
-    const unitsMap: Record<number, 'mm' | 'cm' | 'm' | 'in' | 'ft' | 'units'> = {
+  private mapDXFUnits(unitsCode: number): 'mm' | 'cm' | 'm' | 'in' | 'ft' | 'mil' | 'units' {
+    const unitsMap: Record<number, 'mm' | 'cm' | 'm' | 'in' | 'ft' | 'mil' | 'units'> = {
       0: 'units',
       1: 'in',
       2: 'ft',

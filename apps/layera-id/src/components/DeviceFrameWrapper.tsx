@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useViewportWithOverride } from '@layera/viewport';
-import { DeviceModelSelector, DeviceModel, getDeviceSpecs } from '@layera/viewport';
+import { DeviceModelSelector, getDeviceSpecs } from '@layera/viewport';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import { Box, Flex } from '@layera/layout';
@@ -14,9 +14,8 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
   children,
   enabled = true
 }) => {
-  // const { deviceType, isMobile, isTablet, isDesktop } = useViewportWithOverride();
-  useViewportWithOverride(); // Hook call required but variables not used
-  const [selectedModel, setSelectedModel] = useState<DeviceModel | null>(null);
+  useViewportWithOverride();
+  const [selectedModel, setSelectedModel] = useState(null);
 
   if (!enabled) {
     return <>{children}</>;
@@ -109,18 +108,28 @@ export const DeviceFrameWrapper: React.FC<DeviceFrameWrapperProps> = ({
         onModelSelect={setSelectedModel}
       />
       <Flex
-        justify="center"
-        align="flex-start"
-        minHeight="100vh"
-        backgroundColor="var(--la-color-neutral-100)"
-        padding={`100px ${SPACING_SCALE.LG}px ${SPACING_SCALE.LG}px ${SPACING_SCALE.LG}px`}
-        overflow="auto"
+        style={{
+          justifyContent: 'center',
+          alignItems: 'flex-start',
+          minHeight: '100vh',
+          backgroundColor: 'var(--la-bg-surface)',
+          paddingTop: `${SPACING_SCALE.LG}px`,
+          paddingBottom: `${SPACING_SCALE.LG}px`,
+          overflow: 'auto',
+        }}
+        className="device-frame-container"
       >
-        <Box style={getFrameStyles()}>
-          <Box id="layera-device-simulator-viewport" style={getScreenStyles()}>
-            <Box style={getNotchStyles()} />
+        <Box
+          className="device-frame"
+          style={getFrameStyles()}
+        >
+          <Box
+            className="device-screen"
+            style={getScreenStyles()}
+          >
+            <Box className="device-notch" style={getNotchStyles()} />
             {children}
-            <Box style={getHomeIndicatorStyles()} />
+            <Box className="device-home-indicator" style={getHomeIndicatorStyles()} />
           </Box>
         </Box>
       </Flex>

@@ -49,7 +49,7 @@ export interface BoxProps {
   gap?: string;
   fontSize?: string;
   opacity?: number;
-  position?: string;
+  position?: 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky' | string;
   top?: string;
   right?: string;
   bottom?: string;

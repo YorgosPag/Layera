@@ -1,6 +1,6 @@
 import React from 'react';
 import { SPACING_SCALE } from '@layera/constants';
-import { FLEX_SCALE, type FlexWrap, type FlexGap } from '../flex';
+import { FLEX_SCALE } from '../flex';
 
 export interface FlexProps {
   children: React.ReactNode;

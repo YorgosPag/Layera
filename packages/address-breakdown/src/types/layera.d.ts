@@ -3,14 +3,17 @@ declare module '@layera/cards' {
   import { ReactNode } from 'react';
 
   export interface BaseCardProps {
-    title?: string;
+    title?: ReactNode;
     children?: ReactNode;
     variant?: string;
-    onClick?: () => void;
-    onInfoClick?: () => void;
-    className?: string;
+    onClick?: (() => void) | undefined;
+    onInfoClick?: (() => void) | undefined;
+    className?: string | undefined;
     'data-testid'?: string;
     icon?: ReactNode;
+    actions?: ReactNode; // ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ από cards/src/types/card.types.ts:34
+    style?: React.CSSProperties | undefined;
+    [key: string]: unknown; // Allow any additional props
   }
 
   export const BaseCard: React.FC<BaseCardProps>;
@@ -21,10 +24,11 @@ declare module '@layera/buttons' {
 
   export interface ButtonProps {
     children?: ReactNode;
-    onClick?: () => void;
+    onClick?: () => void | Promise<void>;
     variant?: 'primary' | 'secondary' | 'outline';
     className?: string;
     disabled?: boolean;
+    loading?: boolean; // ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ από buttons interface patterns
   }
 
   export const Button: React.FC<ButtonProps>;
@@ -84,7 +88,7 @@ declare module '@layera/loading' {
 
 declare module '@layera/tolgee' {
   export interface TranslationResult {
-    t: (key: string) => string;
+    t: (key: string) => string | number | bigint | true | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | Promise<React.AwaitedReactNode>;
   }
 
   export function useLayeraTranslation(): TranslationResult;
