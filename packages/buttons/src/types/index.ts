@@ -89,7 +89,7 @@ export interface ButtonProps extends BaseButtonProps, Omit<ComponentPropsWithout
   fontWeight?: string;
   transition?: string;
   color?: string;
-  position?: string;
+  position?: 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky'; // ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ από box-model CSS values
   top?: string;
   right?: string;
   bottom?: string;

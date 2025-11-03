@@ -122,7 +122,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
     }
 
     if (iconPosition === 'only') {
-      return renderIcon();
+      return renderIcon() || <span></span>; // ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ - fallback για null case
     }
 
     // Default: left ή no icon

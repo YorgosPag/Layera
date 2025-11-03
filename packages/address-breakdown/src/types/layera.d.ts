@@ -24,11 +24,14 @@ declare module '@layera/buttons' {
 
   export interface ButtonProps {
     children?: ReactNode;
-    onClick?: () => void | Promise<void>;
-    variant?: 'primary' | 'secondary' | 'outline';
-    className?: string;
-    disabled?: boolean;
-    loading?: boolean; // ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ από buttons interface patterns
+    onClick?: (() => void | Promise<void>) | undefined;
+    variant?: 'primary' | 'secondary' | 'outline' | undefined;
+    className?: string | undefined;
+    disabled?: boolean | undefined;
+    loading?: boolean | undefined; // ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ από buttons interface patterns
+    style?: React.CSSProperties | undefined;
+    key?: string | undefined;
+    [key: string]: unknown; // Allow any additional props
   }
 
   export const Button: React.FC<ButtonProps>;
