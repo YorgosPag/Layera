@@ -77,7 +77,7 @@ export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(({
     }
 
     if (iconPosition === 'only') {
-      return renderIcon();
+      return renderIcon() || <span></span>; // ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ - fallback για null case
     }
 
     // Default: left ή no icon
