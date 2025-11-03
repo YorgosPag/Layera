@@ -12,7 +12,7 @@
  * @version 1.0
  */
 
-import { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -22,7 +22,8 @@ import {
   updateProfile,
   updateEmail,
   updatePassword,
-  getIdTokenResult
+  getIdTokenResult,
+  User
 } from 'firebase/auth';
 import { auth } from '../firebase';
 
@@ -42,18 +43,18 @@ export const useAuth = () => useContext(AuthContext);
  *
  * @see {@link ../../../../docs/SECURITY.md#rbac} - Role-based access control
  */
-export const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [claims, setClaims] = useState({ role: 'private', mfa: false });
 
   // Εγγραφή νέου χρήστη
-  const signup = async (email, password) => {
+  const signup = async (email: string, password: string) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   // Σύνδεση χρήστη
-  const login = async (email, password) => {
+  const login = async (email: string, password: string) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
@@ -63,12 +64,12 @@ export const AuthProvider = ({ children }) => {
   };
 
   // Επαναφορά κωδικού
-  const resetPassword = async (email) => {
+  const resetPassword = async (email: string) => {
     return sendPasswordResetEmail(auth, email);
   };
 
   // Ενημέρωση προφίλ
-  const updateUserProfile = async (displayName, photoURL) => {
+  const updateUserProfile = async (displayName: string, photoURL: string) => {
     return updateProfile(auth.currentUser, {
       displayName: displayName,
       photoURL: photoURL
@@ -76,12 +77,12 @@ export const AuthProvider = ({ children }) => {
   };
 
   // Ενημέρωση email
-  const updateUserEmail = async (email) => {
+  const updateUserEmail = async (email: string) => {
     return updateEmail(auth.currentUser, email);
   };
 
   // Ενημέρωση κωδικού
-  const updateUserPassword = async (password) => {
+  const updateUserPassword = async (password: string) => {
     return updatePassword(auth.currentUser, password);
   };
 
@@ -98,8 +99,8 @@ export const AuthProvider = ({ children }) => {
         const token = await getIdTokenResult(user, true);
         setCurrentUser(user);
         setClaims({
-          role: token.claims.role || 'private',
-          mfa: token.claims.mfa === true,
+          role: (typeof token.claims['role'] === 'string' ? token.claims['role'] : 'private'),
+          mfa: token.claims['mfa'] === true,
         });
       } catch (error) {
         console.error('Error getting token claims:', error);
