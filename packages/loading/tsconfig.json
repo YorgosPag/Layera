@@ -14,7 +14,6 @@
     "isolatedModules": true,
     "noEmit": false,
     "jsx": "react",
-    "rootDir": "./src",
     "outDir": "./dist",
     "declaration": true,
     "declarationMap": true
