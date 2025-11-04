@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { Box } from '@layera/layout'
 import { RoleGuard, useAuthContext } from '@layera/auth-bridge'
 import { ThemeProvider } from '@layera/theme-switcher'
-import { DeviceOverrideProvider, DeviceSimulator } from '@layera/viewport'
+import { DeviceOverrideProvider } from '@layera/viewport'
 import { TolgeeProvider } from '@layera/tolgee'
 // Enterprise LEGO Styles - Central Import
 import '@layera/styles'
@@ -17,7 +17,6 @@ import Settings from './pages/Settings'
 import Data from './pages/Data'
 import AdminRoles from './pages/AdminRoles'
 import Support from './components/Support'
-import { DeviceFrameWrapper } from './components/DeviceFrameWrapper'
 import './App.css'
 
 // Protected Route wrapper που χρησιμοποιεί το νέο RoleGuard
@@ -57,8 +56,6 @@ function App() {
     <TolgeeProvider language="el">
       <ThemeProvider defaultTheme="system" storageKey="layera-id-theme">
         <DeviceOverrideProvider>
-          <DeviceSimulator>
-          <DeviceFrameWrapper enabled={true}>
             <Router>
             <Routes>
             <Route path="/" element={<Navigate to="/dashboard" />} />
@@ -117,9 +114,6 @@ function App() {
             <Route path="/support" element={<Support />} />
             </Routes>
           </Router>
-
-          </DeviceFrameWrapper>
-        </DeviceSimulator>
       </DeviceOverrideProvider>
     </ThemeProvider>
     </TolgeeProvider>

@@ -1,65 +1,36 @@
-Πάλι δεν βλέπω τα επόμενα δύο βήματα της εφαρμόγησης. Βλέπω κάτι άλλο.
-Ο/η Ask Your PDF είπε:
-Εξαιρετική παρατήρηση — και έχεις δίκιο: τα commits που μου έδειξες (σε PropertyTypeStep.tsx) αφορούν layout αναβάθμιση με χρήση useGeoAlertLayout (LEGO system), όχι όμως το routing/flow του pipeline.
+● 🔍 ΒΡΗΚΑ ΤΑ ΔΥΟ ΔΙΑΦΟΡΕΤΙΚΑ ΣΥΣΤΗΜΑΤΑ!
 
-Για να δεις τα επόμενα βήματα που έπονται της επιλογής "Ακίνητα", πρέπει να εντοπίσουμε πού ορίζεται το pipeline flow (το πώς "δένονται" τα βήματα μεταξύ τους). Πιθανότατα βρίσκεται σε:
+  📋 ΠΛΗΡΗ ΑΝΑΛΥΣΗ CARD SYSTEMS:
 
-stepper.config.ts
+  1️⃣ @layera/cards BaseCard System ✅
 
-step-flow.ts
+  Κάρτες που έγιναν ΠΡΑΣΙΝΕΣ (χρησιμοποιούν το @layera/cards):
 
-pipeline.ts
+  - Dashboard main cards: "Ο Geo Canvas είναι έτοιμος", "Έλεγχος Κατάστασης"
+  - Category cards: CategoryCard.tsx - χρησιμοποιεί variant="property"/"job"
+  - Employment cards: EmploymentTypeCard.tsx - χρησιμοποιεί variant="job"   
+  - Property cards: PropertyTypeCard.tsx
+  - Occupation cards: ESCOSearchComponent
 
-geoalertPipeline.ts
+  2️⃣ App.tsx Custom BaseCard Usage ❌
 
-routes.tsx
+  Κάρτες που έμειναν ΑΣΠΡΕΣ (έχουν λάθος variants):
 
-ή StepOrchestrator.tsx
+  Στο App.tsx γραμμές 115-120:
+  <BaseCard
+    variant="secondary"      // ❌ ΔΕΝ ΥΠΑΡΧΕΙ στο CardVariant type!
+    padding="lg"
+    margin="md"              // ❌ Λάθος props που δεν υπάρχουν!
+    borderWidth="md"         // ❌ Λάθος props!
+    borderColor="success">   // ❌ Λάθος props!
 
-✅ Εσύ τώρα τι βλέπεις;
-Όπως λες, δεν εμφανίζονται τα σωστά δύο επόμενα βήματα μετά την επιλογή "Ακίνητα". Άρα, πρέπει να:
+  Γραμμή 166:
+  <BaseCard variant="warning" padding="md">  // ✅ Σωστό variant
 
-✅ 1. Βεβαιωθούμε ότι το pipeline σου περιέχει τα σωστά βήματα:
-Για παράδειγμα, στο configuration σου πρέπει να έχεις:
+  🎯 ΣΥΜΠΕΡΑΣΜΑ:
 
-{
-  id: 'property-type',
-  component: PropertyTypeStep,
-  condition: (data) => data.selectedCategory === 'property',
-},
-{
-  id: 'property-location',
-  component: PropertyLocationStep,
-  condition: (data) => data.selectedCategory === 'property',
-}
-Αν το property-location λείπει ή δεν πληροί τη condition, δεν θα εμφανιστεί ποτέ.
+  ❌ ΌΧΙ - ΔΕΝ έχουμε πλήρη Single Source of Truth επειδή:
 
-✅ 2. Ελέγξουμε τι αποθηκεύεται στο context μετά το CategoryStep
-Το CategoryStep.tsx πρέπει να κάνει:
-
-onStepComplete('category', { selectedCategory: 'property' })
-Ώστε τα επόμενα βήματα με condition: selectedCategory === 'property' να ενεργοποιηθούν.
-
-✅ 3. Βεβαιωθούμε ότι το orchestrator ή το StepEngine χρησιμοποιεί τα δεδομένα σωστά
-Μήπως γίνεται override του stepData ή δεν περνάει καθόλου στο StepOrchestrator;
-
-💡 Τι σου προτείνω:
-Αν μου ανεβάσεις το αρχείο pipeline flow (π.χ. geoalertPipeline.ts ή stepper.config.ts), μπορώ:
-
-να επιβεβαιώσω αν λείπουν τα βήματα
-
-να σου δώσω έτοιμο patch
-
-Θες να μου ανεβάσεις ένα από τα παρακάτω;
-
-geoalertPipeline.ts
-
-stepper.config.ts
-
-StepOrchestrator.tsx
-
-ή το useStepFlow.ts (αν υπάρχει)
-
-Με ένα απ’ αυτά μπορώ να σου πω ακριβώς γιατί δεν φορτώνεται το δεύτερο βήμα.
-
-
+  1. Οι Test Panel κάρτες χρησιμοποιούν λάθος variant properties που δεν υπάρχουν
+  2. Οι TypeScript errors στο BaseCard εμποδίζουν τη σωστή λειτουργία
+  3. Fallback λειτουργία: Όταν το variant δεν υπάρχει, η κάρτα πιθανόν παίρνει default styling

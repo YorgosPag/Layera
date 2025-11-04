@@ -130,6 +130,40 @@ export const enTranslations = {
       "land": "Land for construction",
       "studio": "Small residence"
     }
+  },
+  "occupation": {
+    "title": "Occupation Selection",
+    "subtitle": "Search and select your occupation from the official EU ESCO database",
+    "search": {
+      "placeholder": "Search occupation... (e.g. doctor, engineer, lawyer)"
+    },
+    "selected": {
+      "prefix": "✅ Selected"
+    },
+    "skills": {
+      "count": "💼 Related skills"
+    },
+    "success": {
+      "title": "🎉 Success!",
+      "message": "The occupation \"{{occupation}}\" was selected successfully.",
+      "nextStep": "Moving to next step..."
+    },
+    "help": {
+      "tip": "💡 Tip: Use Greek or English terms for better results"
+    }
+  },
+  "esco": {
+    "search": {
+      "error": "Error searching ESCO database",
+      "searching": "Searching occupations...",
+      "noResults": "No results found for: {{query}}"
+    },
+    "connection": {
+      "connecting": "Connecting to ESCO database..."
+    },
+    "skills": {
+      "count": "Related skills: {{count}}"
+    }
   }
 } as const;
 

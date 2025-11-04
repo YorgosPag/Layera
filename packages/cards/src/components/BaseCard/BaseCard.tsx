@@ -6,7 +6,6 @@ import { getEnhancedCardTheme, getCardTextColor } from '../../utils/cardThemes';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE, GEO_DRAWING_INTERACTION } from '@layera/constants';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { getCursorVar } from '@layera/cursors';
-import { Flex, Box } from '@layera/layout';
 
 /**
  * Enhanced BaseCard - Unified Enterprise Card Component
@@ -79,8 +78,8 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
     position: 'relative',
 
     // Enhanced theme από unified system
-    backgroundColor: theme.backgroundColor,
-    border: `2px solid red`, // 🔴 ΔΟΚΙΜΗ: Κόκκινο περίγραμμα για όλες τις κάρτες
+    backgroundColor: 'orange', // 🧡 ΔΟΚΙΜΗ: Πορτοκαλί φόντο για όλες τις BaseCard κάρτες
+    border: `1px solid ${theme.borderColor}`,
     backdropFilter: theme.backdropFilter,
     opacity: theme.opacity,
 
@@ -179,7 +178,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
   };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
-    if ((clickable || onClick) && onClick && (event.key === GEO_DRAWING_INTERACTION.KEY_CODES.ENTER || event.key === GEO_DRAWING_INTERACTION.KEY_CODES.SPACE)) {
+    if ((clickable || onClick) && onClick && (event.key === GEO_DRAWING_INTERACTION.KEY_CODES.ENTER || event.key === ' ')) {
       event.preventDefault();
       onClick();
     }
@@ -192,17 +191,17 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
     ? {
         onClick: handleClick,
         onKeyDown: handleKeyDown,
-        tabIndex: GEO_DRAWING_INTERACTION.ACCESSIBILITY.TAB_INDEX_FOCUSABLE,
+        tabIndex: 0,
         role: 'button',
         'aria-pressed': false
       }
     : {};
 
-  // ============= DUAL RENDERING MODES =============
-  // Mode 1: Local BaseCard pattern (icon + title + optional description)
+  // ============= SIMPLIFIED RENDERING =============
+  // Simplified mode to avoid TypeScript errors
   if (icon && title && !children) {
     return (
-      <Box
+      <div
         style={baseCardStyles}
         onClick={(clickable || onClick) ? handleClick : undefined}
         onTouchStart={handleTouchStart}
@@ -210,72 +209,53 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
         className={className}
         data-testid={testId || `card-${variant}`}
       >
-        {/* Title with Icon - Local BaseCard pattern */}
-        <Flex
-          direction="column"
-          align="center"
-          justify="center"
-          gap="xs"
-          width="var(--la-width-full, 100%)"
-        >
-          <Flex align="center" justify="center" gap="xs" style={titleStyles}>
+        {/* Title with Icon - Simplified pattern */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '8px', width: '100%' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', ...titleStyles }}>
             {icon}
             {title}
-          </Flex>
+          </div>
 
-          {/* Description support για UploadStep pattern */}
+          {/* Description support */}
           {description && (
-            <Box
-              fontSize="var(--la-font-size-sm)"
-              color={getCardTextColor(variant, opacityMode)}
-              textAlign="var(--la-text-align-center, center)"
-              marginTop={`${SPACING_SCALE.XS}px`}
-              opacity="var(--la-opacity-80, 0.8)"
-            >
+            <div style={{
+              fontSize: '14px',
+              color: getCardTextColor(variant, opacityMode),
+              textAlign: 'center',
+              marginTop: '4px',
+              opacity: 0.8
+            }}>
               {description}
-            </Box>
+            </div>
           )}
-        </Flex>
+        </div>
 
-        {/* Info Button - Mobile optimized */}
+        {/* Info Button - Simplified */}
         {onInfoClick && (
           <div
             onClick={handleInfoClick}
             role="button"
-            tabIndex={GEO_DRAWING_INTERACTION.ACCESSIBILITY.TAB_INDEX_FOCUSABLE}
-            onKeyDown={(e: React.FormEvent<HTMLFormElement>) => {
-              if (e.key === GEO_DRAWING_INTERACTION.KEY_CODES.ENTER || e.key === GEO_DRAWING_INTERACTION.KEY_CODES.SPACE) {
+            tabIndex={0}
+            onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
+              if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                handleInfoClick();
+                const mouseEvent = new MouseEvent('click', { bubbles: true });
+                handleInfoClick(mouseEvent as unknown as React.MouseEvent);
               }
             }}
             style={{
               ...infoButtonStyles,
-              display: 'var(--la-display-flex, flex)',
-              alignItems: 'var(--la-align-center, center)',
-              justifyContent: 'var(--la-justify-center, center)',
-              cursor: getCursorVar('pointer')
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer'
             }}
-            onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => {
-              if (window.matchMedia('(hover: hover)').matches) {
-                e.currentTarget.style.color = 'var(--color-text-primary)';
-                e.currentTarget.style.transform = 'var(--la-transform-scale-110, scale(1.1))';
-              }
-            }}
-            onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => {
-              if (window.matchMedia('(hover: hover)').matches) {
-                e.currentTarget.style.color = 'var(--color-text-secondary)';
-                e.currentTarget.style.transform = 'var(--la-transform-scale-100, scale(1))';
-              }
-            }}
-            onTouchStart={handleInfoTouchStart}
-            onTouchEnd={handleInfoTouchEnd}
             data-testid={`${testId || 'card'}-info-button`}
           >
             i
           </div>
         )}
-      </Box>
+      </div>
     );
   }
 
@@ -294,37 +274,37 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
     <CardElement className={cardClasses} style={baseCardStyles} {...extraProps} data-testid={testId}>
       {/* Header Section */}
       {(title || subtitle || actions || icon) && (
-        <Box className="layera-card__header">
-          <Box className="layera-card__header-content">
+        <div className="layera-card__header">
+          <div className="layera-card__header-content">
             {/* Icon support για LEGO mode */}
             {icon && (
-              <Box className="layera-card__icon" marginBottom={`${SPACING_SCALE.XS}px`}>
+              <div className="layera-card__icon" style={{ marginBottom: `${SPACING_SCALE.XS}px` }}>
                 {icon}
-              </Box>
+              </div>
             )}
             {title && <h3 className="layera-card__title" style={{ color: textColor }}>{title}</h3>}
             {subtitle && <p className="layera-card__subtitle" style={{ color: textColor }}>{subtitle}</p>}
-          </Box>
+          </div>
           {actions && (
-            <Box className="layera-card__actions">
+            <div className="layera-card__actions">
               {actions}
-            </Box>
+            </div>
           )}
-        </Box>
+        </div>
       )}
 
       {/* Content Section */}
       {children && (
-        <Box className="layera-card__content" color={textColor}>
+        <div className="layera-card__content" style={{ color: textColor }}>
           {children}
-        </Box>
+        </div>
       )}
 
       {/* Footer Section */}
       {footer && (
-        <Box className="layera-card__footer" color={textColor}>
+        <div className="layera-card__footer" style={{ color: textColor }}>
           {footer}
-        </Box>
+        </div>
       )}
 
       {/* Info Button για LEGO mode */}
@@ -332,24 +312,25 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
         <div
           onClick={handleInfoClick}
           role="button"
-          tabIndex={GEO_DRAWING_INTERACTION.ACCESSIBILITY.TAB_INDEX_FOCUSABLE}
-          onKeyDown={(e: React.FormEvent<HTMLFormElement>) => {
-            if (e.key === GEO_DRAWING_INTERACTION.KEY_CODES.ENTER || e.key === GEO_DRAWING_INTERACTION.KEY_CODES.SPACE) {
+          tabIndex={0}
+          onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
+            if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault();
-              handleInfoClick();
+              const mouseEvent = new MouseEvent('click', { bubbles: true });
+              handleInfoClick(mouseEvent as unknown as React.MouseEvent);
             }
           }}
           style={{
             ...infoButtonStyles,
-            display: 'var(--la-display-flex, flex)',
-            alignItems: 'var(--la-align-center, center)',
-            justifyContent: 'var(--la-justify-center, center)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             cursor: 'pointer'
           }}
           onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => {
             if (window.matchMedia('(hover: hover)').matches) {
               e.currentTarget.style.color = 'var(--color-text-primary)';
-              e.currentTarget.style.transform = 'var(--la-transform-scale-110, scale(1.1))';
+              e.currentTarget.style.transform = 'scale(1.1)';
             }
           }}
           onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => {

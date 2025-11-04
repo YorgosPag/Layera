@@ -160,20 +160,59 @@ export const GeoMap: React.FC<GeoMapProps> = ({
 
   // 🎯 onStepComplete handler για StepOrchestrator - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
   const handleStepComplete = (stepId: StepId, data?: unknown) => {
+    // 🔍 DEBUG LOGGING για context changes
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🎯 GeoMapNew.handleStepComplete CALLED:', {
+        stepId,
+        data,
+        currentSelectedCategory: stepContext.selectedCategory,
+        timestamp: new Date().toISOString()
+      });
+    }
+
     // ✅ StepContext update pattern από CategoryStep
     if (stepId === 'category' && data && typeof data === 'object' && 'selectedCategory' in data) {
+      const newCategory = data.selectedCategory as CategoryType;
+
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🏠 GeoMapNew.handleStepComplete - CATEGORY UPDATE:', {
+          from: stepContext.selectedCategory,
+          to: newCategory,
+          stepId,
+          timestamp: new Date().toISOString()
+        });
+      }
+
       setStepContext(prev => ({
         ...prev,
-        selectedCategory: data.selectedCategory as CategoryType,
+        selectedCategory: newCategory,
         completedSteps: new Set([...prev.completedSteps, stepId])
       }));
     } else if (stepId === 'intent' && data && typeof data === 'object' && 'selectedIntent' in data) {
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🎯 GeoMapNew.handleStepComplete - INTENT UPDATE:', {
+          selectedIntent: data.selectedIntent,
+          currentCategory: stepContext.selectedCategory,
+          stepId,
+          timestamp: new Date().toISOString()
+        });
+      }
+
       setStepContext(prev => ({
         ...prev,
         selectedIntent: data.selectedIntent as IntentType,
         completedSteps: new Set([...prev.completedSteps, stepId])
       }));
     } else if (stepId === 'propertyType' && data && typeof data === 'object' && 'selectedPropertyType' in data) {
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🏢 GeoMapNew.handleStepComplete - PROPERTY TYPE UPDATE:', {
+          selectedPropertyType: data.selectedPropertyType,
+          currentCategory: stepContext.selectedCategory,
+          stepId,
+          timestamp: new Date().toISOString()
+        });
+      }
+
       setStepContext(prev => ({
         ...prev,
         customData: {
@@ -184,6 +223,15 @@ export const GeoMap: React.FC<GeoMapProps> = ({
       }));
     } else {
       // Generic completion tracking - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
+      if (process.env.NODE_ENV === 'development') {
+        console.log('📋 GeoMapNew.handleStepComplete - GENERIC COMPLETION:', {
+          stepId,
+          data,
+          currentCategory: stepContext.selectedCategory,
+          timestamp: new Date().toISOString()
+        });
+      }
+
       setStepContext(prev => ({
         ...prev,
         completedSteps: new Set([...prev.completedSteps, stepId])
@@ -233,6 +281,16 @@ export const GeoMap: React.FC<GeoMapProps> = ({
       }));
     },
     selectCategory: async (categoryId: string) => {
+      // 🔍 DEBUG LOGGING για selectCategory calls
+      if (process.env.NODE_ENV === 'development') {
+        console.log('📂 GeoMapNew.selectCategory CALLED:', {
+          categoryId,
+          currentSelectedCategory: stepContext.selectedCategory,
+          timestamp: new Date().toISOString(),
+          stack: new Error().stack?.slice(0, 500) // First 500 chars of stack trace
+        });
+      }
+
       // ✅ CategoryStep completion pattern - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
       setStepContext(prev => ({
         ...prev,

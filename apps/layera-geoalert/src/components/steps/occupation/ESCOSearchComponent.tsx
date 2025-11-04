@@ -12,16 +12,16 @@ import { Stack, Box } from '@layera/layout';
 import { SPACING_SCALE, TABLE_COLUMN_WIDTHS, CSS_DESIGN_TOKENS } from '@layera/constants';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { BaseCard } from '@layera/cards';
-// Firebase imports temporarily disabled
-// import { initializeApp } from 'firebase/app';
-// import {
-//   getFirestore,
-//   collection,
-//   query,
-//   where,
-//   limit,
-//   getDocs
-// } from 'firebase/firestore';
+// Firebase imports
+import { initializeApp } from 'firebase/app';
+import {
+  getFirestore,
+  collection,
+  query,
+  where,
+  limit,
+  getDocs
+} from 'firebase/firestore';
 import type { ESCOOccupation, ESCOSearchProps, OccupationSearchState } from './types';
 
 // Firebase Configuration με environment variables
@@ -225,10 +225,10 @@ export const ESCOSearchComponent: React.FC<ESCOSearchProps> = ({
           )}
 
           {/* Results */}
-          {!searchState.isLoading && !searchState.error && searchState.results.map((occupation: unknown) => (
+          {!searchState.isLoading && !searchState.error && searchState.results.map((occupation: ESCOOccupation) => (
             <BaseCard
               key={occupation.id}
-              variant="job"
+              variant="default"
               title={occupation.preferredLabel}
               description={occupation.description ?
                 `${occupation.description.slice(0, 100)}${occupation.description.length > 100 ? '...' : ''}` :
@@ -236,6 +236,7 @@ export const ESCOSearchComponent: React.FC<ESCOSearchProps> = ({
               }
               onClick={(): void => handleOccupationSelect(occupation)}
               marginBottom="xs"
+              className="layera-card-uniform"
               data-testid={`esco-result-${occupation.id}`}
             >
               {occupation.skillsCount > 0 && (

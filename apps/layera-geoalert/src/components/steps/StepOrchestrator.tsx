@@ -102,21 +102,36 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
   }, [flowConfig]);
 
   // 🎯 Build step context
-  const stepContext: StepContext = useMemo(() => ({
-    currentStepId,
-    selectedCategory,
-    selectedIntent,
-    selectedTransactionType: selectedTransactionType || null,
-    selectedEmploymentType: selectedEmploymentType || null,
-    selectedOccupation: selectedOccupation || { id: '', title: '' },
-    selectedLocation: selectedLocation || null,
-    selectedDetails: selectedDetails || null,
-    selectedPricing: selectedPricing || null,
-    selectedReview: selectedReview || null,
-    completedSteps,
-    featureFlags,
-    customData: {}
-  }), [currentStepId, selectedCategory, selectedIntent, selectedTransactionType, selectedEmploymentType, selectedOccupation, selectedLocation, selectedDetails, selectedPricing, selectedReview, completedSteps, featureFlags]);
+  const stepContext: StepContext = useMemo(() => {
+    const context = {
+      currentStepId,
+      selectedCategory,
+      selectedIntent,
+      selectedTransactionType: selectedTransactionType || null,
+      selectedEmploymentType: selectedEmploymentType || null,
+      selectedOccupation: selectedOccupation || { id: '', title: '' },
+      selectedLocation: selectedLocation || null,
+      selectedDetails: selectedDetails || null,
+      selectedPricing: selectedPricing || null,
+      selectedReview: selectedReview || null,
+      completedSteps,
+      featureFlags,
+      customData: {}
+    };
+
+    // 🔍 DEBUG LOGGING για context changes
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🎯 StepOrchestrator.stepContext BUILT:', {
+        currentStepId: context.currentStepId,
+        selectedCategory: context.selectedCategory,
+        selectedIntent: context.selectedIntent,
+        completedSteps: Array.from(context.completedSteps),
+        timestamp: new Date().toISOString()
+      });
+    }
+
+    return context;
+  }, [currentStepId, selectedCategory, selectedIntent, selectedTransactionType, selectedEmploymentType, selectedOccupation, selectedLocation, selectedDetails, selectedPricing, selectedReview, completedSteps, featureFlags]);
 
   // 📋 Get available steps για current context
   const availableSteps = useMemo(() => {
@@ -130,6 +145,17 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
     if (pendingNavigation) {
       const currentIndex = availableSteps.findIndex(step => step.id === pendingNavigation);
       const nextStep = availableSteps[currentIndex + 1];
+
+      // 🔍 DEBUG LOGGING για auto-navigation
+      if (process.env.NODE_ENV === 'development') {
+        console.log('🚀 StepOrchestrator.AUTO-NAVIGATION:', {
+          pendingNavigation,
+          currentIndex,
+          nextStepId: nextStep?.id,
+          availableStepsIds: availableSteps.map(s => s.id),
+          timestamp: new Date().toISOString()
+        });
+      }
 
       if (nextStep && onStepChange) {
         onStepChange(nextStep.id);

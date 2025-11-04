@@ -113,11 +113,9 @@ function TestNotificationsComponent() {
 
   return (
     <BaseCard
-      variant="secondary"
+      variant="info"
       padding="lg"
-      margin="md"
-      borderWidth="md"
-      borderColor="success">
+      className="layera-card-uniform">
       <Heading as="h3" size="lg" color="primary" className="layera-mb-4">
         🧪 LEGO Systems Test Panel
       </Heading>

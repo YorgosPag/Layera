@@ -66,31 +66,13 @@ declare module '@layera/layout' {
 }
 
 declare module '@layera/viewport' {
-  export interface DeviceModel {
-    id: string;
-    name: string;
-    category: string;
-    width: number;
-    height: number;
-    scale: number;
-    frameColor: string;
-    hasNotch?: boolean;
-    hasHomeBar?: boolean;
-  }
-
   export function useViewportWithOverride(): {
     isMobile: boolean;
     isTablet: boolean;
     isDesktop: boolean;
-    deviceModel: DeviceModel | null;
-    setDeviceModel: (model: DeviceModel | null) => void;
+    deviceType: string;
   };
 
-  export function getDeviceSpecs(model: DeviceModel): DeviceModel;
-  export const DeviceModelSelector: React.FC<{
-    currentModel: DeviceModel | null;
-    onModelSelect: (model: DeviceModel | null) => void;
-  }>;
   export const DeviceOverrideProvider: React.FC<{ children: React.ReactNode }>;
   export const useIPhone14ProMaxDetection: () => boolean;
 }

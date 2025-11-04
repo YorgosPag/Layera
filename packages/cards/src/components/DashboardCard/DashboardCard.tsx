@@ -14,7 +14,7 @@ export const DashboardCard: React.FC<DashboardCardProps> = ({
   metric,
   ...baseProps
 }) => {
-  const renderContent = (): void => {
+  const renderContent = (): React.ReactNode => {
     if (loading) {
       return (
         <Box className="layera-dashboard-card__loading">
@@ -77,6 +77,10 @@ export const DashboardCard: React.FC<DashboardCardProps> = ({
     <BaseCard
       {...baseProps}
       className={`${cardClasses} ${baseProps.className || ''}`}
+      style={{
+        ...baseProps.style,
+        backgroundColor: 'lightblue' // 🔵 ΔΟΚΙΜΗ: Γαλάζιο φόντο για όλες τις DashboardCard κάρτες
+      }}
     >
       {renderContent()}
     </BaseCard>

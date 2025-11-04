@@ -8,10 +8,6 @@ export type {
   ViewportInfo,
   ViewportBreakpoints,
   ResponsiveConfig,
-  // 🍎 ENHANCED: iPhone-specific types (absorbed from @layera/device-detection)
-  DeviceFrame,
-  DeviceSpecs,
-  iPhoneDetectionOptions
 } from './types';
 
 // Hooks

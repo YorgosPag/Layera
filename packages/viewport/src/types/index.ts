@@ -2,29 +2,9 @@
 // Enterprise pattern: Consistent device detection across all apps
 // 🚀 ENHANCED: Absorbed iPhone detection from @layera/device-detection
 
-export type DeviceType = 'mobile' | 'tablet' | 'desktop' | 'iphone';
+export type DeviceType = 'mobile' | 'tablet' | 'desktop';
 export type Orientation = 'portrait' | 'landscape';
 
-// 🆕 ABSORBED: iPhone-specific types from device-detection
-export interface DeviceFrame {
-  width: number;
-  height: number;
-  element?: Element;
-}
-
-export interface DeviceSpecs {
-  width: number;
-  height: number;
-  aspectRatio: number;
-  orientation: Orientation;
-}
-
-export interface iPhoneDetectionOptions {
-  frameSelector?: string;
-  enableWindowFallback?: boolean;
-  enableUserAgentFallback?: boolean;
-  debugMode?: boolean;
-}
 
 export interface ViewportInfo {
   deviceType: DeviceType;
@@ -38,10 +18,6 @@ export interface ViewportInfo {
   isLandscape: boolean;
   // 🆕 ENHANCED: iPhone 14 Pro Max detection
   isIPhone14ProMax: boolean;
-  isFrameBased?: boolean;
-  isWindowBased?: boolean;
-  specs?: DeviceSpecs;
-  frame?: DeviceFrame;
 }
 
 export interface ViewportBreakpoints {

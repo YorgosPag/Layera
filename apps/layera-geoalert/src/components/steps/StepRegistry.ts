@@ -117,6 +117,17 @@ export class StepRegistry implements StepRegistryInterface {
   }
 
   private isStepAvailable(step: StepDefinition, context: StepContext): boolean {
+    // Debug logging για step availability
+    if (process.env.NODE_ENV === 'development' && ['propertyType', 'occupation'].includes(step.id)) {
+      console.log(`🔍 Checking step availability: ${step.id}`, {
+        stepId: step.id,
+        order: step.order,
+        isVisible: step.isVisible,
+        selectedCategory: context.selectedCategory,
+        conditions: step.conditions
+      });
+    }
+
     // 1. Visibility check
     if (!step.isVisible) {
       return false;
@@ -144,6 +155,17 @@ export class StepRegistry implements StepRegistryInterface {
 
   private evaluateCondition(condition: StepCondition, context: StepContext): boolean {
     const { type, value, operator = 'equals' } = condition;
+
+    // Debug logging για condition evaluation
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🔍 Evaluating condition:', {
+        type,
+        value,
+        operator,
+        selectedCategory: context.selectedCategory,
+        currentStepId: context.currentStepId
+      });
+    }
 
     let contextValue: unknown;
 

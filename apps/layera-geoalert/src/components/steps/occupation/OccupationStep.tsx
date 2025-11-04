@@ -100,9 +100,15 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
         <Heading level={2} size="lg" color="primary" align="center">
           {t('occupation.title', 'Επιλογή Επαγγέλματος')}
         </Heading>
-        <Text size="md" color="secondary" align="center" className="subtitle">
-          {t('occupation.subtitle', 'Αναζητήστε και επιλέξτε το επάγγελμά σας από την επίσημη ESCO βάση δεδομένων της ΕΕ')}
-        </Text>
+        <BaseCard
+          variant="info"
+          padding="md"
+          marginTop="sm"
+          className="layera-card-uniform">
+          <Text size="md" color="secondary" align="center" className="subtitle">
+            {t('occupation.subtitle', 'Αναζητήστε και επιλέξτε το επάγγελμά σας από την επίσημη ESCO βάση δεδομένων της ΕΕ')}
+          </Text>
+        </BaseCard>
       </Stack>
 
       {/* ESCO Search Component */}
