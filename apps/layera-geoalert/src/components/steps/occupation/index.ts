@@ -20,6 +20,7 @@ if (stepRegistry && typeof stepRegistry.register === 'function') {
   order: 6, // After employment type step (order 5)
   isVisible: true,
   // Αφαιρώ dependencies για να εμφανίζεται αμέσως μετά το employmentType
+  dependencies: ['employmentType'], // Εμφανίζεται μετά το employmentType
   conditions: [
     {
       type: 'category',

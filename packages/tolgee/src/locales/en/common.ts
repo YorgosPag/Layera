@@ -66,6 +66,16 @@ export const enTranslations = {
     "submit": "Submit",
     "confirm": "Confirm"
   },
+  "actions": {
+    "skip": "Skip"
+  },
+  "propertyDetails": {
+    "title": "Property Details"
+  },
+  "property-details": {
+    "fill-details": "Fill in property details",
+    "continue-without-details": "Continue without details"
+  },
   "alerts": {
     "success": "Success",
     "error": "Error",
@@ -97,6 +107,28 @@ export const enTranslations = {
         "title": "Jobs",
         "description": "Offer a job position or declare your availability in a specific area."
       }
+    }
+  },
+  "propertyType": {
+    "title": "Property Type",
+    "subtitle": "Select the type of property you want to register",
+    "apartment": "Apartment",
+    "house": "House",
+    "office": "Office",
+    "store": "Store",
+    "warehouse": "Warehouse",
+    "factory": "Factory",
+    "land": "Land",
+    "studio": "Studio",
+    "descriptions": {
+      "apartment": "Residence in a complex",
+      "house": "Independent residence",
+      "office": "Professional space",
+      "store": "Commercial space",
+      "warehouse": "Storage space",
+      "factory": "Industrial space",
+      "land": "Land for construction",
+      "studio": "Small residence"
     }
   }
 } as const;

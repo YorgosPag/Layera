@@ -119,7 +119,8 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
           backgroundColor="var(--color-semantic-info-bg)"
           border="var(--la-border-accent-primary, 2px solid var(--la-color-primary))"
           padding="md"
-          marginTop="md">
+          marginTop="md"
+          className="layera-card-uniform">
           <Stack spacing="xs">
             <Text weight="bold" color="primary">
               {t('occupation.selected.prefix', '✅ Επιλεγμένο')}: {selectedOccupation.preferredLabel}
@@ -144,7 +145,8 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
           backgroundColor="var(--color-semantic-success-bg)"
           border="var(--la-border-success, 1px solid var(--la-color-success))"
           padding="md"
-          marginTop="md">
+          marginTop="md"
+          className="layera-card-uniform">
           <Stack spacing="xs" align="center">
             <Text size="md" weight="bold" color="success">
               {t('occupation.success.title', '🎉 Επιτυχία!')}
@@ -164,7 +166,8 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
         <BaseCard
           variant="info"
           padding="md"
-          marginTop="lg">
+          marginTop="lg"
+          className="layera-card-uniform">
           <Text size="sm" color="secondary" align="center">
             {t('occupation.help.tip', '💡 Συμβουλή: Χρησιμοποιήστε ελληνικούς ή αγγλικούς όρους για καλύτερα αποτελέσματα')}
           </Text>

@@ -16,6 +16,7 @@
 import React, { useCallback, useState } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Box } from '@layera/layout';
+import { useGeoAlertLayout } from '@layera/layout';
 import { SPACING_SCALE } from '@layera/constants';
 import { AreaMethodCard } from './AreaMethodCard';
 import { InteractiveAreaMeasurement } from './InteractiveAreaMeasurement';
@@ -41,6 +42,11 @@ export const AreaMethodStep: React.FC<AreaMethodStepProps> = ({
   const { t } = useLayeraTranslation();
   const [selectedMethod, setSelectedMethod] = useState<AreaMethodType | null>(null);
   const [showInteractiveMeasurement, setShowInteractiveMeasurement] = useState(false);
+
+  // Enterprise LEGO Layout με CSS variables - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
+  const { utils } = useGeoAlertLayout();
+  const containerStyles = utils.getCardStyles('vertical');
+  const containerClass = utils.getCardContainerClass('vertical');
 
   const areaMethods: AreaMethodOption[] = [
     {
@@ -125,18 +131,6 @@ export const AreaMethodStep: React.FC<AreaMethodStepProps> = ({
     return null;
   }
 
-  const containerStyles: React.CSSProperties = {
-    position: 'fixed',
-    top: `${SPACING_SCALE.LAYOUT_XXL}px`, // Equivalent to 120px
-    left: `${SPACING_SCALE.LG}px`,        // Equivalent to 20px
-    right: `${SPACING_SCALE.LG}px`,       // Equivalent to 20px
-    zIndex: 10002,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: `${SPACING_SCALE.MD}px`,         // Equivalent to 16px
-    padding: '0'
-  };
-
   // Αν δείχνουμε interactive measurement, δείχνουμε μόνο αυτό
   if (showInteractiveMeasurement) {
     return (
@@ -149,7 +143,7 @@ export const AreaMethodStep: React.FC<AreaMethodStepProps> = ({
   }
 
   return (
-    <Box style={containerStyles} className="layera-cards-grid-2x2">
+    <Box style={containerStyles} className={containerClass}>
       {areaMethods.map((method: AreaMethodOption) => (
         <AreaMethodCard
           key={method.id}

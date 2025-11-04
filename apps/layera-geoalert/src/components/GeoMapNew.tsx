@@ -42,7 +42,6 @@ import './steps/location';
 import './steps/employmentType';
 import './steps/occupation';
 import './steps/availabilityDetails';
-import './steps/details';
 import './steps/pricing';
 import './steps/review';
 import './steps/complete';
@@ -75,6 +74,7 @@ interface DrawnArea {
 interface GeoMapProps {
   onAreaCreated?: (area: DrawnArea) => void;
   onNewEntryClick?: () => void;
+  onStepNavigationReady?: (navProps: { onPrevious: () => void; canGoBack: boolean }) => void; // 🧡 ΠΡΟΣΩΡΙΝΟ: Εξαγωγή step navigation
   // REMOVED: Legacy unified pipeline props
   isIPhone14ProMaxDevice?: boolean;
   onCategoryElementsChange?: (show: boolean) => void;
@@ -85,6 +85,7 @@ interface GeoMapProps {
 export const GeoMap: React.FC<GeoMapProps> = ({
   onAreaCreated,
   onNewEntryClick,
+  onStepNavigationReady, // 🧡 ΠΡΟΣΩΡΙΝΟ: Step navigation callback
   // REMOVED: Legacy unified pipeline destructuring
   isIPhone14ProMaxDevice = false,
   onCategoryElementsChange,
@@ -190,6 +191,18 @@ export const GeoMap: React.FC<GeoMapProps> = ({
     }
   };
 
+  // 🧡 ΠΡΟΣΩΡΙΝΟ: Stable onPrevious callback για step navigation
+  const onPreviousCallback = React.useCallback(() => {
+    // ✅ StepOrchestrator navigation logic - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
+    const previousStep = navigationState.previousStep;
+    if (previousStep) {
+      setStepContext(prev => ({
+        ...prev,
+        currentStepId: previousStep.id
+      }));
+    }
+  }, [navigationState.previousStep]);
+
   // 🎮 Navigation handlers που χρειάζονται από DeviceLayoutRenderer
   // ✅ ΜΟΝΑΔΙΚΕΣ ΠΗΓΕΣ ΑΛΗΘΕΙΑΣ: StepOrchestrator + DeviceLayoutRenderer pattern
   const navigationHandlersProps = {
@@ -203,16 +216,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
         }));
       }
     },
-    onPrevious: () => {
-      // ✅ StepOrchestrator navigation logic - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
-      const previousStep = navigationState.previousStep;
-      if (previousStep) {
-        setStepContext(prev => ({
-          ...prev,
-          currentStepId: previousStep.id
-        }));
-      }
-    },
+    onPrevious: onPreviousCallback,
     onReset: navigation.reset,
     onStepClick: (stepId: StepId) => {
       // ✅ Direct step navigation - DeviceLayoutRenderer pattern
@@ -238,6 +242,16 @@ export const GeoMap: React.FC<GeoMapProps> = ({
     },
     onStepComplete: handleStepComplete // ✅ StepOrchestrator integration - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
   };
+
+  // 🧡 ΠΡΟΣΩΡΙΝΟ: Update step navigation when it changes
+  React.useEffect(() => {
+    if (onStepNavigationReady) {
+      onStepNavigationReady({
+        onPrevious: onPreviousCallback,
+        canGoBack: navigation.canGoBack
+      });
+    }
+  }, [onStepNavigationReady, navigation.canGoBack]); // Αφαίρεσα το onPreviousCallback για να αποφύγω infinite loop
 
   const handleNewEntryClick = (): void => { onNewEntryClick?.(); };
 

@@ -180,7 +180,6 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
           <BaseCard
             variant="property"
             className="layera-card-uniform"
-            style={{ backgroundColor: 'var(--la-color-info-bg)', border: '2px solid var(--la-color-info-border)' }}
           >
             <Flex align="start" gap={`${SPACING_SCALE.SM}px`}>
               <InformationIcon size="sm" theme="info" />
@@ -195,7 +194,6 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
             <BaseCard
               variant="property"
               className="layera-card-uniform"
-              style={{ backgroundColor: 'var(--la-color-success-bg)', border: '2px solid var(--la-color-success-border)' }}
             >
               <Stack spacing={`${SPACING_SCALE.XS}px`} align="center">
                 <Text size="lg" weight="bold" color="success">

@@ -66,6 +66,16 @@ export const elTranslations = {
     "submit": "Υποβολή",
     "confirm": "Επιβεβαίωση"
   },
+  "actions": {
+    "skip": "Παράλειψη"
+  },
+  "propertyDetails": {
+    "title": "Λεπτομέρειες Ακινήτου"
+  },
+  "property-details": {
+    "fill-details": "Συμπληρώστε τις λεπτομέρειες του ακινήτου",
+    "continue-without-details": "Συνέχεια χωρίς λεπτομέρειες"
+  },
   "alerts": {
     "success": "Επιτυχία",
     "error": "Σφάλμα",
@@ -147,6 +157,28 @@ export const elTranslations = {
     "back": {
       "title": "Πίσω για Αλλαγές",
       "description": "Επιστροφή για τροποποιήσεις"
+    }
+  },
+  "propertyType": {
+    "title": "Τύπος Ακινήτου",
+    "subtitle": "Επιλέξτε τον τύπο του ακινήτου που θέλετε να καταχωρήσετε",
+    "apartment": "Διαμέρισμα",
+    "house": "Μονοκατοικία",
+    "office": "Γραφείο",
+    "store": "Κατάστημα",
+    "warehouse": "Αποθήκη",
+    "factory": "Εργοστάσιο",
+    "land": "Οικόπεδο",
+    "studio": "Studio",
+    "descriptions": {
+      "apartment": "Κατοικία σε συγκρότημα",
+      "house": "Ανεξάρτητη κατοικία",
+      "office": "Επαγγελματικός χώρος",
+      "store": "Εμπορικός χώρος",
+      "warehouse": "Χώρος αποθήκευσης",
+      "factory": "Βιομηχανικός χώρος",
+      "land": "Γη για οικοδόμηση",
+      "studio": "Μικρή κατοικία"
     }
   }
 } as const;

@@ -80,7 +80,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
 
     // Enhanced theme από unified system
     backgroundColor: theme.backgroundColor,
-    border: `2px solid ${theme.borderColor}`,
+    border: `2px solid red`, // 🔴 ΔΟΚΙΜΗ: Κόκκινο περίγραμμα για όλες τις κάρτες
     backdropFilter: theme.backdropFilter,
     opacity: theme.opacity,
 

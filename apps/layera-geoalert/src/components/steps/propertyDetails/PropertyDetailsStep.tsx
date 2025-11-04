@@ -192,6 +192,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
             description={t('property-details.fill-details')}
             icon={<FormIcon size="sm" theme="neutral" />}
             onClick={handleShowForm}
+            className="layera-card-uniform"
             data-testid="property-details-show-form"
           />
 
@@ -202,6 +203,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
             description={t('property-details.continue-without-details')}
             icon={<CheckIcon size="sm" theme="neutral" />}
             onClick={handleSkip}
+            className="layera-card-uniform"
             data-testid="property-details-skip"
           />
         </>
@@ -221,6 +223,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
             description={hasRequiredFields ? t('property-details.save-details') : t('property-details.fill-price-and-sqm')}
             icon={<CheckIcon size="sm" theme="neutral" />}
             onClick={handleSubmit}
+            className="layera-card-uniform"
             data-testid="property-details-submit"
           />
 
@@ -230,6 +233,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
             title={t('actions.back')}
             description={t('actions.back-to-menu')}
             onClick={(): void => setShowForm(false)}
+            className="layera-card-uniform"
             data-testid="property-details-back"
           />
         </>

@@ -25,7 +25,7 @@
 7. CategoryStep.tsx
 8. CompleteStep.tsx
 9. DetailsCard.tsx
-10. DetailsStep.tsx
+10. PropertyDetailsStep.tsx
 11. EmploymentTypeCard.tsx
 12. IntentCard.tsx
 13. IntentStep.tsx

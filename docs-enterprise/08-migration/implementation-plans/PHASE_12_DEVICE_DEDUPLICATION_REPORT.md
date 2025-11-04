@@ -18,7 +18,7 @@
 | CategoryStep.tsx | 162 | `../../device-specific/mobile/iphone-14-pro-max/components/InfoPanel` | `@layera/info-panels` | ✅ |
 | IntentStep.tsx | 177 | `../../device-specific/mobile/iphone-14-pro-max/components/InfoPanel` | `@layera/info-panels` | ✅ |
 | LocationStep.tsx | 304 | `../../device-specific/mobile/iphone-14-pro-max/components/InfoPanel` | `@layera/info-panels` | ✅ |
-| DetailsStep.tsx | 223 | `../../device-specific/mobile/iphone-14-pro-max/components/InfoPanel` | `@layera/info-panels` | ✅ |
+| PropertyDetailsStep.tsx | 223 | `../../device-specific/mobile/iphone-14-pro-max/components/InfoPanel` | `@layera/info-panels` | ✅ |
 | TransactionStep.tsx | 150 | `../../device-specific/mobile/iphone-14-pro-max/components/InfoPanel` | `@layera/info-panels` | ✅ |
 
 **Total Production Lines Affected**: 1,016 lines
@@ -81,7 +81,7 @@ import { InfoPanel } from '@layera/info-panels';
 - **CategoryStep**: ✅ Updated successfully
 - **IntentStep**: ✅ Updated successfully
 - **LocationStep**: ✅ Updated successfully
-- **DetailsStep**: ✅ Updated successfully
+- **PropertyDetailsStep**: ✅ Updated successfully
 - **TransactionStep**: ✅ Updated successfully
 
 ### Runtime Validation

@@ -416,7 +416,7 @@ This report's success will be measured against existing enterprise KPIs:
 5. `components/ViewportFrame.tsx` - SIZING_SCALE.FULL → '100%'
 6. `components/DeviceFrameWrapper.tsx` - Comprehensive SIZING_SCALE conversion
 7. `components/SimpleMap.tsx` - Import source correction
-8. `components/steps/details/DetailsStep.tsx` - Split import statements
+8. `components/steps/details/PropertyDetailsStep.tsx` - Split import statements
 9. `components/steps/review/ReviewStep.tsx` - SIZING_SCALE replacement
 10. `components/steps/occupation/OccupationStep.tsx` - Duplicate import resolution + LAYOUT_XXXL fix
 11. `components/device-specific/.../GeoMap.tsx` - Import source correction

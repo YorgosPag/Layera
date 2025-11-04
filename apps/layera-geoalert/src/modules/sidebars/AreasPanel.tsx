@@ -99,7 +99,7 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
               <BaseCard
                 variant={editingAreaId === area.id ? 'info' : 'outlined'}
                 opacityMode="semi-transparent"
-                className="mb-0 border-0"
+                className="mb-0"
                 style={{
                   transition: 'all 0.2s ease',
                   cursor: 'move'

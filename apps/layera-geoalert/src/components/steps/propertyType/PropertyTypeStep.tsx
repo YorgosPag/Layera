@@ -38,43 +38,43 @@ export const PropertyTypeStep: React.FC<PropertyTypeStepProps> = ({
   const propertyTypes: PropertyTypeOption[] = [
     {
       id: 'apartment',
-      title: 'Διαμέρισμα',
-      description: 'Κατοικία σε συγκρότημα'
+      title: t('propertyType.apartment'),
+      description: t('propertyType.descriptions.apartment')
     },
     {
       id: 'house',
-      title: 'Μονοκατοικία',
-      description: 'Ανεξάρτητη κατοικία'
+      title: t('propertyType.house'),
+      description: t('propertyType.descriptions.house')
     },
     {
       id: 'office',
-      title: 'Γραφείο',
-      description: 'Επαγγελματικός χώρος'
+      title: t('propertyType.office'),
+      description: t('propertyType.descriptions.office')
     },
     {
       id: 'store',
-      title: 'Κατάστημα',
-      description: 'Εμπορικός χώρος'
+      title: t('propertyType.store'),
+      description: t('propertyType.descriptions.store')
     },
     {
       id: 'warehouse',
-      title: 'Αποθήκη',
-      description: 'Χώρος αποθήκευσης'
+      title: t('propertyType.warehouse'),
+      description: t('propertyType.descriptions.warehouse')
     },
     {
       id: 'factory',
-      title: 'Εργοστάσιο',
-      description: 'Βιομηχανικός χώρος'
+      title: t('propertyType.factory'),
+      description: t('propertyType.descriptions.factory')
     },
     {
       id: 'land',
-      title: 'Οικόπεδο',
-      description: 'Γη για οικοδόμηση'
+      title: t('propertyType.land'),
+      description: t('propertyType.descriptions.land')
     },
     {
       id: 'studio',
-      title: 'Studio',
-      description: 'Μικρή κατοικία'
+      title: t('propertyType.studio'),
+      description: t('propertyType.descriptions.studio')
     }
   ];
 

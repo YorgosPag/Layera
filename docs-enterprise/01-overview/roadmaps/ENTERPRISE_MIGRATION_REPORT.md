@@ -170,7 +170,7 @@
 - **12.4**: Desktop compatibility restoration and validation
 
 #### 🎯 Achievements:
-- **5 Production Steps Migrated**: CategoryStep, IntentStep, LocationStep, DetailsStep, TransactionStep
+- **5 Production Steps Migrated**: CategoryStep, IntentStep, LocationStep, PropertyDetailsStep, TransactionStep
 - **Universal InfoPanel Created**: Device-agnostic responsive design
 - **Desktop Compatibility Restored**: No more iPhone-specific paths
 - **Zero Breaking Changes**: Full backwards compatibility maintained

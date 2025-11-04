@@ -212,7 +212,7 @@ curl -s http://localhost:3001 || echo "GeoAlert app not running"
 ### ✅ PHASE 12: Device-Specific Deduplication + InfoPanel Universal Migration
 **Status**: COMPLETED
 **Achievement**: Πλήρης εξάλειψη device-specific anti-patterns
-- **5/5 Production Steps Migrated**: CategoryStep, IntentStep, LocationStep, DetailsStep, TransactionStep
+- **5/5 Production Steps Migrated**: CategoryStep, IntentStep, LocationStep, PropertyDetailsStep, TransactionStep
 - **Desktop Compatibility Restored**: Universal responsive design
 - **Universal InfoPanel**: Created @layera/info-panels/src/components/InfoPanel.tsx
 - **Zero Breaking Changes**: Full backwards compatibility maintained
@@ -272,7 +272,7 @@ curl -s http://localhost:3001 || echo "GeoAlert app not running"
 6. `apps/layera-geoalert/src/components/ViewportFrame.tsx` - SIZING_SCALE.FULL → '100%'
 7. `apps/layera-geoalert/src/components/DeviceFrameWrapper.tsx` - Comprehensive conversion + added SPACING_SCALE import
 8. `apps/layera-geoalert/src/components/SimpleMap.tsx` - Import source @layera/layout → @layera/constants
-9. `apps/layera-geoalert/src/components/steps/details/DetailsStep.tsx` - Split imports properly
+9. `apps/layera-geoalert/src/components/steps/details/PropertyDetailsStep.tsx` - Split imports properly
 10. `apps/layera-geoalert/src/components/steps/review/ReviewStep.tsx` - SIZING_SCALE replacement
 11. `apps/layera-geoalert/src/components/steps/occupation/OccupationStep.tsx` - Duplicate import + LAYOUT_XXXL fix
 12. `apps/layera-geoalert/src/components/device-specific/.../GeoMap.tsx` - Import source correction

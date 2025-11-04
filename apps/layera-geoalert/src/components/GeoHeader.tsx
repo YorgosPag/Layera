@@ -9,6 +9,7 @@ import { SPACING_SCALE } from '@layera/constants';
 
 interface GeoHeaderProps {
   onBackClick?: () => void;
+  onStepBackClick?: () => void; // 🧡 ΠΡΟΣΩΡΙΝΟ: Κουμπί για πηγαίνω πίσω στα steps
   isIPhone14ProMax?: boolean;
   onNewEntryClick?: () => void;
 }
@@ -16,7 +17,7 @@ interface GeoHeaderProps {
 /**
  * GeoHeader - Standardized header for GeoAlert app
  */
-export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, isIPhone14ProMax = false, onNewEntryClick }) => {
+export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, onStepBackClick, isIPhone14ProMax = false, onNewEntryClick }) => {
   // Εμφάνιση εικονιδίων μόνο για iPhone
   const showIcons = isIPhone14ProMax;
   const { t } = useLayeraTranslation();
@@ -61,6 +62,26 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, isIPhone14Pro
             title={t('header.backButton.title')}
             style={{ color: 'var(--la-color-white)fff' }}
           />
+        )}
+
+        {/* 🧡 ΠΡΟΣΩΡΙΝΟ: Πορτοκαλί κουμπί για navigation στα steps */}
+        {onStepBackClick && (
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={onStepBackClick}
+            icon={<ArrowLeftIcon size="sm" theme="neutral" />}
+            title="Πίσω στο προηγούμενο step"
+            style={{
+              backgroundColor: '#ff8c00', // 🧡 Πορτοκαλί για προσωρινό
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              padding: '6px 12px'
+            }}
+          >
+            {!showIcons && "Πίσω"}
+          </Button>
         )}
         <span style={{
           color: 'var(--la-color-white)fff',

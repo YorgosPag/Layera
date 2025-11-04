@@ -103,6 +103,7 @@ export const AvailabilityDetailsStep: React.FC<AvailabilityDetailsStepProps> = (
             description={t('availabilityDetails.description', 'Καθορίστε πότε θα είστε διαθέσιμοι')}
             icon={<CalendarIcon size="sm" theme="neutral" />}
             onClick={handleShowForm}
+            className="layera-card-uniform"
             data-testid="availability-details-show-form"
           />
         </>
@@ -121,6 +122,7 @@ export const AvailabilityDetailsStep: React.FC<AvailabilityDetailsStepProps> = (
             description={hasRequiredFields ? t('availabilityDetails.saveDetails', 'Αποθήκευση λεπτομερειών') : t('availabilityDetails.fillAllFields', 'Συμπληρώστε όλα τα πεδία')}
             icon={<CheckIcon size="sm" theme="neutral" />}
             onClick={handleSubmit}
+            className="layera-card-uniform"
             data-testid="availability-details-submit"
           />
 
@@ -130,6 +132,7 @@ export const AvailabilityDetailsStep: React.FC<AvailabilityDetailsStepProps> = (
             title={t('actions.back')}
             description={t('actions.backToMenu')}
             onClick={(): void => setShowForm(false)}
+            className="layera-card-uniform"
             data-testid="availability-details-back"
           />
         </>

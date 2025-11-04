@@ -189,6 +189,8 @@ function App() {
   const { } = useViewportWithOverride(); // Keep hook call for side effects
   const [isMapMode, setIsMapMode] = useState(false);
   const [showCategoryElements, setShowCategoryElements] = useState(false);
+  // 🧡 ΠΡΟΣΩΡΙΝΟ: State για πορτοκαλί κουμπί step navigation
+  const [stepNavigation, setStepNavigation] = useState<{ onPrevious: () => void; canGoBack: boolean } | null>(null);
 
   // 🚀 ENTERPRISE: Single Source of Truth - iPhone detection από @layera/viewport
   const finalIsIPhone = useIPhone14ProMaxDetection({
@@ -211,6 +213,11 @@ function App() {
     // Ενεργοποίηση του modular step system (CategoryStep)
     setShowCategoryElements(true);
   };
+
+  // 🧡 ΠΡΟΣΩΡΙΝΟ: Handler για step navigation από GeoMap
+  const handleStepNavigationReady = React.useCallback((navProps: { onPrevious: () => void; canGoBack: boolean }) => {
+    setStepNavigation(navProps);
+  }, []);
 
   // REMOVED: handleResponsiveModeChange - δεν χρειάζεται πλέον
 
@@ -257,6 +264,7 @@ function App() {
               header={
                 <GeoHeader
                   onBackClick={() => setIsMapMode(false)}
+                  onStepBackClick={stepNavigation?.canGoBack ? stepNavigation.onPrevious : undefined} // 🧡 ΠΡΟΣΩΡΙΝΟ: Πορτοκαλί κουμπί
                   isIPhone14ProMax={finalIsIPhone}
                   onNewEntryClick={handleNewEntryClick}
                 />
@@ -267,6 +275,7 @@ function App() {
                 <GeoMap
                   onAreaCreated={handleAreaCreated}
                   onNewEntryClick={handleNewEntryClick}
+                  onStepNavigationReady={handleStepNavigationReady} // 🧡 ΠΡΟΣΩΡΙΝΟ: Step navigation callback
                   isIPhone14ProMaxDevice={finalIsIPhone}
                   onCategoryElementsChange={setShowCategoryElements}
                   showCategoryElements={showCategoryElements}
