@@ -36,7 +36,7 @@ export const LayoutToolCard: React.FC<LayoutToolCardProps> = ({
     return null;
   }
 
-  const getIcon = () => {
+  const getIcon = (): void => {
     switch (tool) {
       case 'positioning':
         return <MoveIcon size="sm" theme="neutral" />;

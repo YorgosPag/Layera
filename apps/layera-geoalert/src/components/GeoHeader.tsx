@@ -38,8 +38,8 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, isIPhone14Pro
 
   return (
     <div style={{
-      backgroundColor: '#000000',
-      color: '#ffffff',
+      backgroundColor: 'var(--la-color-black)000',
+      color: 'var(--la-color-white)fff',
       padding: '8px 16px',
       display: 'flex',
       alignItems: 'center',
@@ -59,11 +59,11 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, isIPhone14Pro
             icon={<ArrowLeftIcon size="sm" theme="neutral" />}
             iconPosition="only"
             title={t('header.backButton.title')}
-            style={{ color: '#ffffff' }}
+            style={{ color: 'var(--la-color-white)fff' }}
           />
         )}
         <span style={{
-          color: '#ffffff',
+          color: 'var(--la-color-white)fff',
           fontSize: '16px',
           fontWeight: '600',
           marginLeft: '8px'
@@ -80,14 +80,13 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, isIPhone14Pro
             variant="primary"
             size="sm"
             icon={<PlusIcon size="sm" theme="neutral" />}
-            onClick={() => {
-              console.log('🔥 GeoHeader button clicked!');
+            onClick={(): void => {
               onNewEntryClick?.();
             }}
             title="Νέα Καταχώρηση"
             style={{
               backgroundColor: '#0066cc',
-              color: '#ffffff',
+              color: 'var(--la-color-white)fff',
               border: 'none',
               borderRadius: '4px',
               padding: '6px 12px'

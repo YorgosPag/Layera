@@ -89,8 +89,6 @@ export const TransactionStep: React.FC<TransactionStepProps> = ({
     onTransactionSelected?.(transactionType);
 
     // ✅ TODO: Μετάβαση σε StepOrchestrator
-    console.log('Transaction step completed');
-
     // Auto-advance to next step
     setTimeout((): void => {
       onNext?.();

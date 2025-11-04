@@ -80,7 +80,6 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
   // ✅ ENTERPRISE CLEAN: Single Source of Truth - μόνο StepOrchestrator navigation
   const handleCategorySelection = useCallback((category: CategoryType) => {
     if (process.env.NODE_ENV === 'development') {
-      console.log(`CategoryStep: Selecting category: ${category}`);
     }
 
     // 1. StepOrchestrator notification με selected category data

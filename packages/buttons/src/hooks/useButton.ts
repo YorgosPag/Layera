@@ -8,7 +8,7 @@ import { SPACING_SCALE } from '@layera/constants';
  * Επιστρέφει τα button design tokens και utility functions
  * για programmatic χρήση των button standards
  */
-export const useButton = () => {
+export const useButton = (): void => {
   const buttonTokens: ButtonTokens = useMemo(() => ({
     sizes: {
       xs: {

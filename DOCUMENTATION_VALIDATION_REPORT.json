@@ -1,0 +1,53 @@
+{
+  "timestamp": "2025-11-04T20:41:41.064Z",
+  "summary": {
+    "filesScanned": 241,
+    "violationsFound": 4,
+    "violationsFixed": 3,
+    "criticalViolations": 0,
+    "highViolations": 2,
+    "mediumViolations": 0,
+    "lowViolations": 2
+  },
+  "violations": [
+    {
+      "file": "docs\\enterprise\\TERMINOLOGY_CONVENTIONS.md",
+      "pattern": "Custom components → LEGO imports",
+      "match": "const GeoAlertCard = (",
+      "severity": "HIGH",
+      "replacement": "// ✅ Import from @layera packages",
+      "line": 112
+    },
+    {
+      "file": "docs\\MONOREPO_MIGRATION_PLAN.md",
+      "pattern": "Inline pixel values → design tokens",
+      "match": "style={{maxWidth:'420px', margin: 'var(--la-space-md) auto', padding:'var(--la-space-4)', border:'1px solid var(--la-color-primary)', borderRadius:'var(--la-radius-md)'}}",
+      "severity": "LOW",
+      "replacement": "style={{ padding: 'var(--la-space-md)' }}",
+      "line": 544
+    },
+    {
+      "file": "docs\\MONOREPO_MIGRATION_PLAN.md",
+      "pattern": "Inline pixel values → design tokens",
+      "match": "style={{maxWidth:'420px', margin: 'var(--la-space-md) auto', padding:'var(--la-space-4)', border:'1px solid var(--la-color-primary)', borderRadius:'var(--la-radius-md)'}}",
+      "severity": "LOW",
+      "replacement": "style={{ padding: 'var(--la-space-md)' }}",
+      "line": 544
+    },
+    {
+      "file": "docs-enterprise\\04-guides\\enterprise-standards\\TERMINOLOGY_CONVENTIONS.md",
+      "pattern": "Custom components → LEGO imports",
+      "match": "const GeoAlertCard = (",
+      "severity": "HIGH",
+      "replacement": "// ✅ Import from @layera packages",
+      "line": 112
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "HIGH",
+      "action": "Migration σε LEGO components από custom implementations",
+      "impact": "Technical debt και inconsistency"
+    }
+  ]
+}

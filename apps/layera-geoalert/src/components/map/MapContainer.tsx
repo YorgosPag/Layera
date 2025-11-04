@@ -190,7 +190,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
           style.setAttribute('data-mobile-leaflet', 'true');
           style.textContent = `
             .leaflet-map-mobile .leaflet-container {
-              background: #fff !important;
+              background: var(--la-color-white) !important;
             }
             .leaflet-map-mobile .leaflet-tile-pane {
               opacity: 1 !important;
@@ -408,7 +408,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
     setDrawingModeState(mode);
   };
 
-  const clearAreas = () => {
+  const clearAreas = (): void => {
     setDrawnAreas([]);
   };
 
@@ -425,7 +425,6 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
   // Render device-specific UI
   // Add debugging to see device detection
   if (process.env.NODE_ENV === 'development') {
-    console.log('🔍 Device Detection:', { isDesktop, isTablet, isMobile });
   }
 
   if (isMobile) {

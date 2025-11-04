@@ -243,7 +243,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
             onClick={handleInfoClick}
             role="button"
             tabIndex={GEO_DRAWING_INTERACTION.ACCESSIBILITY.TAB_INDEX_FOCUSABLE}
-            onKeyDown={(e) => {
+            onKeyDown={(e: React.FormEvent<HTMLFormElement>) => {
               if (e.key === GEO_DRAWING_INTERACTION.KEY_CODES.ENTER || e.key === GEO_DRAWING_INTERACTION.KEY_CODES.SPACE) {
                 e.preventDefault();
                 handleInfoClick();
@@ -333,7 +333,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
           onClick={handleInfoClick}
           role="button"
           tabIndex={GEO_DRAWING_INTERACTION.ACCESSIBILITY.TAB_INDEX_FOCUSABLE}
-          onKeyDown={(e) => {
+          onKeyDown={(e: React.FormEvent<HTMLFormElement>) => {
             if (e.key === GEO_DRAWING_INTERACTION.KEY_CODES.ENTER || e.key === GEO_DRAWING_INTERACTION.KEY_CODES.SPACE) {
               e.preventDefault();
               handleInfoClick();

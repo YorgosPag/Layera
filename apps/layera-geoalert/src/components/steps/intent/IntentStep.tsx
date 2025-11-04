@@ -63,8 +63,6 @@ export const IntentStep: React.FC<IntentStepProps> = ({
     setSelectedIntent(intent);
 
     // ✅ ΟΛΟΚΛΗΡΩΘΗΚΕ: Μετάβαση σε StepOrchestrator - χρήση μόνο Single Sources of Truth
-    console.log('Intent selected:', intent, 'for category:', context.selectedCategory);
-
     // Complete this step
     onStepComplete?.('intent', {
       selectedIntent: intent,
@@ -77,7 +75,6 @@ export const IntentStep: React.FC<IntentStepProps> = ({
     // ΔΙΟΡΘΩΣΗ: Επαναφέρω το auto-advance για navigation
     // Το StepOrchestrator χρειάζεται το onNext() για να προχωρήσει στο επόμενο step
     onNext?.();
-
 
   }, [context.selectedCategory, onNext, onStepComplete, onIntentSelected]);
 

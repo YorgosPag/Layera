@@ -31,15 +31,15 @@
   --layera-card-uniform-line-height: var(--la-line-height-normal, 1.5);
 
   /* Global Card Colors & Borders - UNIFORM APPEARANCE */
-  --layera-card-uniform-border: 2px solid var(--la-color-border, #e5e7eb);
+  --layera-card-uniform-border: 2px solid var(--la-color-border, var(--la-color-border-primary));
   --layera-card-uniform-border-radius: var(--la-radius-lg, 8px);
-  --layera-card-uniform-background: var(--la-color-surface, #ffffff);
-  --layera-card-uniform-shadow: var(--la-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
+  --layera-card-uniform-background: var(--la-color-surface, var(--la-color-white)fff);
+  --layera-card-uniform-shadow: var(--la-shadow-md, 0 4px 6px -1px var(--la-shadow-sm));
 
   /* Global Card Active/Hover States */
-  --layera-card-uniform-active-border: 2px solid var(--la-color-primary-border, #3b82f6);
+  --layera-card-uniform-active-border: 2px solid var(--la-color-primary-border, var(--la-color-brand));
   --layera-card-uniform-active-background: var(--la-color-primary-bg, #eff6ff);
-  --layera-card-uniform-hover-shadow: var(--la-shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
+  --layera-card-uniform-hover-shadow: var(--la-shadow-lg, 0 10px 15px -3px var(--la-shadow-sm));
 
   /* Global Card Padding & Spacing */
   --layera-card-uniform-padding: var(--la-space-4);
@@ -276,7 +276,7 @@ body {
 .layera-card-uniform .subtitle {
   font-size: var(--la-text-xs) !important;
   line-height: var(--la-line-height-tight, 1.25) !important;
-  color: var(--la-text-muted, #6b7280) !important;
+  color: var(--la-text-muted, var(--la-text-secondary)) !important;
   margin-top: var(--la-space-1) !important;
   margin-bottom: 0 !important;
   max-height: calc(var(--la-text-xs) * var(--la-line-height-tight, 1.25) * 2) !important;

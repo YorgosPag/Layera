@@ -221,7 +221,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
     setIsUploading(false);
   }, []);
 
-  const getUploadSummary = () => {
+  const getUploadSummary = (): void => {
     const total = files.length;
     const completed = files.filter(f => f.status === 'completed').length;
     const uploading = files.filter(f => f.status === 'uploading').length;

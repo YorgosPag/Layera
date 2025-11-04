@@ -91,7 +91,6 @@ export const GeoMap: React.FC<GeoMapProps> = ({
   showCategoryElements: showCatEls = false
   // REMOVED: isResponsiveMode parameter
 }) => {
-  console.log('🗺️ GeoMapNew render - showCatEls:', showCatEls);
   const { isDesktop, isTablet, isMobile } = useViewportWithOverride();
   const { t } = useLayeraTranslation();
 
@@ -224,7 +223,6 @@ export const GeoMap: React.FC<GeoMapProps> = ({
     },
     onStepChange: (stepId: StepId) => {
       // ✅ ΚΡΙΣΙΜΗ ΠΡΟΣΘΗΚΗ: StepOrchestrator auto-advance navigation
-      console.log(`🎯 GeoMapNew: Changing step to: ${stepId}`);
       setStepContext(prev => ({
         ...prev,
         currentStepId: stepId
@@ -241,7 +239,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
     onStepComplete: handleStepComplete // ✅ StepOrchestrator integration - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
   };
 
-  const handleNewEntryClick = () => { onNewEntryClick?.(); };
+  const handleNewEntryClick = (): void => { onNewEntryClick?.(); };
 
   // REMOVED: handleFabClick - button moved to header
 

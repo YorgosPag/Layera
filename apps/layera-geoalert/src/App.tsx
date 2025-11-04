@@ -208,11 +208,8 @@ function App() {
   };
 
   const handleNewEntryClick = (): void => {
-    console.log('🎯 handleNewEntryClick called!');
-    console.log('🔵 showCategoryElements before:', showCategoryElements);
     // Ενεργοποίηση του modular step system (CategoryStep)
     setShowCategoryElements(true);
-    console.log('🟢 setShowCategoryElements(true) called');
   };
 
   // REMOVED: handleResponsiveModeChange - δεν χρειάζεται πλέον

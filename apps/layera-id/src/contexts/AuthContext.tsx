@@ -29,7 +29,7 @@ import { auth } from '../firebase';
 
 const AuthContext = createContext({});
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = (): void => useContext(AuthContext);
 
 /**
  * Authentication Provider Component

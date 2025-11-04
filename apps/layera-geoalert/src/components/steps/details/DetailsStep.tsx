@@ -60,8 +60,6 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
     setSelectedDetails(details);
 
     // ✅ ΟΛΟΚΛΗΡΩΘΗΚΕ: Μετάβαση σε StepOrchestrator - χρήση μόνο Single Sources of Truth
-    console.log('Details selected:', details);
-
     // Complete this step
     onStepComplete?.('details', {
       selectedDetails: details,
@@ -75,7 +73,6 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
 
     // Auto-advance to next step
     onNext?.();
-
 
   }, [context.selectedCategory, context.selectedIntent, context.selectedLocation, onNext, onStepComplete, onDetailsSelected]);
 
@@ -154,8 +151,6 @@ export const DetailsStep: React.FC<DetailsStepProps> = ({
   };
 
   const detailsCards = getDetailsCards();
-
-
 
   // Early return αν δεν είναι visible ή δεν έχει τα απαραίτητα context
   if (!isVisible || !context.selectedCategory || !context.selectedIntent || !context.selectedLocation) {

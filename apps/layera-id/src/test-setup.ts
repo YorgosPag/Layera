@@ -45,7 +45,7 @@ Object.defineProperty(import.meta, 'env', {
 
 // Global test utilities
 declare global {
-  var renderWithProviders: (ui: React.ReactElement, options?: any) => any;
+  var renderWithProviders: (ui: React.ReactElement, options?: unknown) => any;
 }
 
 global.renderWithProviders = (ui: React.ReactElement, options = {}) => {

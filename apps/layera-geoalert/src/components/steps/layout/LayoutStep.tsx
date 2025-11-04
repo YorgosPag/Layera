@@ -97,11 +97,7 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({
       console.error('Layout step completion failed:', error);
     }
   }, [selectedTools, onStepComplete, onLayoutConfigured, onNext]);
-
-  console.log('🎼 LayoutStep: Rendering with isVisible:', isVisible, 'selectedTools:', selectedTools);
-
   if (!isVisible) {
-    console.log('🎼 LayoutStep: Not visible, returning null');
     return null;
   }
 
@@ -117,7 +113,6 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({
     padding: '0',                         // No extra padding - margins handle spacing
     boxSizing: 'border-box'
   };
-
 
   return (
     <Box style={containerStyles}>

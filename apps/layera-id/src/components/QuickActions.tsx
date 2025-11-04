@@ -60,7 +60,7 @@ const QuickActions: React.FC = () => {
             title={page.title}
             variant="actions"
             clickable
-            onClick={() => navigate(page.path)}
+            onClick={(): void => navigate(page.path)}
           >
             {page.icon}
           </DashboardCard>

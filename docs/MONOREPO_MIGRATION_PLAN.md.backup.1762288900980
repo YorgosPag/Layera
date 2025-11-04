@@ -541,7 +541,7 @@ export default function Register() {
   }
 
   return (
-    <div style={{ padding: 'var(--la-space-md)' }}>
+    <div style={{maxWidth:'420px', margin: 'var(--la-space-md) auto', padding:'var(--la-space-4)', border:'1px solid var(--la-color-primary)', borderRadius:'var(--la-radius-md)'}}>
       <h1>Δημιουργία λογαριασμού</h1>
       <form onSubmit={onSubmit} style={{display:"grid", gap:12}}>
         <label>
@@ -598,7 +598,7 @@ export default function Reset() {
   }
 
   return (
-    <div style={{ padding: 'var(--la-space-md)' }}>
+    <div style={{maxWidth:'420px', margin: 'var(--la-space-md) auto', padding:'var(--la-space-4)', border:'1px solid var(--la-color-primary)', borderRadius:'var(--la-radius-md)'}}>
       <h1>Επαναφορά κωδικού</h1>
       <form onSubmit={onSubmit} style={{display:"grid", gap:12}}>
         <label>

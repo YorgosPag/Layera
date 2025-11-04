@@ -150,8 +150,6 @@ export const DeviceLayoutRenderer: React.FC<DeviceLayoutRendererProps> = ({
             onStepChange: (stepId) => {
               // ✅ ΚΡΙΣΙΜΗ ΔΙΟΡΘΩΣΗ: Το onStepChange πρέπει να αλλάζει το currentStepId!
               // Αντί να καλεί απλά onNext(), πρέπει να κάνει actual step change
-              console.log(`🎼 DeviceLayoutRenderer: Changing to step: ${stepId}`);
-
               if (navigationHandlers?.onStepChange) {
                 // Καλώ το πραγματικό onStepChange που αλλάζει το state
                 navigationHandlers.onStepChange(stepId);

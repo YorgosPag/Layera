@@ -164,7 +164,7 @@ export function TotpSetup({
               <Box className="key-display">
                 <code>{setupData.manualEntryKey}</code>
                 <button
-                  onClick={() => handleCopyClick(setupData.secret)}
+                  onClick={(): void => handleCopyClick(setupData.secret)}
                   className="copy-btn"
                   title="Αντιγραφή"
                 >
@@ -215,7 +215,7 @@ export function TotpSetup({
               ))}
             </Box>
             <button
-              onClick={() => handleCopyClick(setupData.backupCodes.join('\n'))}
+              onClick={(): void => handleCopyClick(setupData.backupCodes.join('\n'))}
               className="copy-backup-btn"
             >
               Αντιγραφή όλων των backup codes
