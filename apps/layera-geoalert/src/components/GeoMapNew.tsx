@@ -173,6 +173,15 @@ export const GeoMap: React.FC<GeoMapProps> = ({
         selectedIntent: data.selectedIntent as IntentType,
         completedSteps: new Set([...prev.completedSteps, stepId])
       }));
+    } else if (stepId === 'propertyType' && data && typeof data === 'object' && 'selectedPropertyType' in data) {
+      setStepContext(prev => ({
+        ...prev,
+        customData: {
+          ...prev.customData,
+          selectedPropertyType: data.selectedPropertyType
+        },
+        completedSteps: new Set([...prev.completedSteps, stepId])
+      }));
     } else {
       // Generic completion tracking - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
       setStepContext(prev => ({

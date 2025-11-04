@@ -185,41 +185,59 @@
 .layera-geoalert-card-container {
   position: fixed;
   top: var(--la-cards-top);
-  left: var(--la-side-margins);
-  right: var(--la-side-margins);
+  left: 0;
+  right: 0;
   z-index: var(--la-z-fixed);
-  padding: var(--la-size-0);
+  padding: 0 var(--la-size-2); /* Minimal padding instead of large margins */
   display: flex;
   gap: var(--la-cards-gap);
   transition: all var(--la-transition-normal);
+  width: 100vw; /* Full viewport width */
+  box-sizing: border-box;
 }
 
 /* Horizontal layout for card pairs */
-.layera-geoalert-card-container-horizontal {
+.layera-geoalert-card-container--horizontal {
   flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch; /* Cards same height */
+  width: 100%; /* Full width */
+}
+
+.layera-geoalert-card-container--horizontal > * {
+  flex: 1;
+  min-width: 0; /* Allows flex items to shrink below content size */
+  max-width: calc(50% - var(--la-cards-gap) / 2); /* Half width minus gap */
+}
+
+/* Override για layera-card-uniform στο horizontal layout */
+.layera-geoalert-card-container--horizontal .layera-card-uniform {
+  flex: 1;
+  width: auto;
+  max-width: none;
 }
 
 /* Vertical layout (fallback) */
-.layera-geoalert-card-container-vertical {
+.layera-geoalert-card-container--vertical {
   flex-direction: column;
 }
 
 /* Smart layout for 3 cards: 2+1 arrangement */
-.layera-geoalert-card-container-smart-triple {
+.layera-geoalert-card-container--smart-triple {
   flex-direction: column;
   gap: var(--la-cards-gap);
 }
 
-.layera-geoalert-card-container-smart-triple .layera-card-row {
+.layera-geoalert-card-container--smart-triple .layera-card-row {
   display: flex;
   gap: var(--la-cards-gap);
 }
 
-.layera-geoalert-card-container-smart-triple .layera-card-row:first-child {
+.layera-geoalert-card-container--smart-triple .layera-card-row:first-child {
   /* Top row with 2 cards */
 }
 
-.layera-geoalert-card-container-smart-triple .layera-card-row:last-child {
+.layera-geoalert-card-container--smart-triple .layera-card-row:last-child {
   /* Bottom row with 1 card */
   justify-content: center;
 }

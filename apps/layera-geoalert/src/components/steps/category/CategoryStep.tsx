@@ -103,13 +103,25 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
     return null;
   }
 
-  // Enterprise LEGO Layout με CSS variables
-  const containerStyles = utils.getCardStyles('horizontal');
+  // Enterprise LEGO Layout με CSS variables + Force full width
+  const containerStyles = {
+    ...utils.getCardStyles('horizontal'),
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    gap: '8px',
+    width: '100vw',
+    left: 0,
+    right: 0,
+    paddingLeft: '8px',
+    paddingRight: '8px',
+    boxSizing: 'border-box'
+  };
   const containerClass = utils.getCardContainerClass('horizontal');
 
   return (
     <>
-    <Box style={containerStyles} className={`${containerClass} layera-cards-grid`}>
+    <Box style={containerStyles} className={containerClass}>
       {/* Ακίνητα Card */}
       <BaseCard
         variant="property"
@@ -119,6 +131,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
         onInfoClick={() => handleInfoClick('property')}
         data-testid="category-card-property"
         className="layera-card-uniform"
+        style={{ flex: 1, minWidth: 0, maxWidth: 'none' }}
       />
 
       {/* Εργασία Card */}
@@ -130,6 +143,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
         onInfoClick={() => handleInfoClick('job')}
         data-testid="category-card-job"
         className="layera-card-uniform"
+        style={{ flex: 1, minWidth: 0, maxWidth: 'none' }}
       />
     </Box>
 
