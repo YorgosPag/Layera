@@ -173,23 +173,11 @@
 
 /* ============ ACCESSIBILITY ============ */
 
+/* REMOVED: Skip to content styles για καθαρότερο UI
 .layera-skip-to-content {
-  position: absolute;
-  top: -624.938rem;
-  left: -624.938rem;
-  z-index: 1000;
-  padding: var(--la-space-md);
-  background-color: var(--la-header-bg);
-  color: var(--la-inherit);
-  text-decoration: none;
-  border: 0.125rem solid var(--la-layout-border);
-  border-radius: var(--la-radius-md);
+  display: none !important;
 }
-
-.layera-skip-to-content:focus {
-  top: var(--la-space-md);
-  left: var(--la-space-md);
-}
+*/
 
 /* ============ GEOALERT STEP LAYOUT SYSTEM ============ */
 

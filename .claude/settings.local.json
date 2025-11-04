@@ -42,7 +42,8 @@
       "Bash(grep:*)",
       "Bash(node:*)",
       "Bash(move firebase.js firebase.ts)",
-      "Bash(iconv:*)"
+      "Bash(iconv:*)",
+      "Bash(vercel:*)"
     ],
     "deny": [],
     "ask": []

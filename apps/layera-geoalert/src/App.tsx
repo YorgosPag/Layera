@@ -1,5 +1,5 @@
 // React imports
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 // Enterprise LEGO Design System imports
 import { Button } from '@layera/buttons';
@@ -49,7 +49,6 @@ class SimpleErrorBoundary extends React.Component<
 import { APP_CONFIG } from './constants';
 import { GeoHeader } from './components/GeoHeader';
 import { GeoMap } from './components/GeoMapNew';
-import { DeviceFrameWrapper } from './components/DeviceFrameWrapper';
 import { ViewportFrame } from './components/ViewportFrame';
 
 /**
@@ -199,8 +198,7 @@ function App() {
   });
   const [, setSavedAreas] = useState<DrawnArea[]>([]);
 
-  // State για responsive mode detection από DeviceFrameWrapper
-  const [isResponsiveMode, setIsResponsiveMode] = useState(true); // true = responsive, false = device frame
+  // REMOVED: Device frame wrapper - πλέον πάντοτε responsive mode
   // REMOVED: Legacy unified pipeline state - replaced by modular step system
 
   const handleAreaCreated = (area: DrawnArea) => {
@@ -210,15 +208,14 @@ function App() {
   };
 
   const handleNewEntryClick = (): void => {
+    console.log('🎯 handleNewEntryClick called!');
+    console.log('🔵 showCategoryElements before:', showCategoryElements);
     // Ενεργοποίηση του modular step system (CategoryStep)
     setShowCategoryElements(true);
+    console.log('🟢 setShowCategoryElements(true) called');
   };
 
-  const handleResponsiveModeChange = (isResponsive: boolean) => {
-    setIsResponsiveMode(isResponsive);
-    if (process.env.NODE_ENV === 'development') {
-    }
-  };
+  // REMOVED: handleResponsiveModeChange - δεν χρειάζεται πλέον
 
   // REMOVED: Legacy unified pipeline submit handler
 
@@ -258,29 +255,27 @@ function App() {
                 background-color: transparent !important;
               }
             `}</style>
-            <DeviceFrameWrapper
-              enabled={true}
-              onResponsiveModeChange={handleResponsiveModeChange}
+            <AppShell
+              layout="fullscreen"
+              header={
+                <GeoHeader
+                  onBackClick={() => setIsMapMode(false)}
+                  isIPhone14ProMax={finalIsIPhone}
+                  onNewEntryClick={handleNewEntryClick}
+                />
+              }
+              className={`geo-map-shell ${showCategoryElements && finalIsIPhone ? 'hide-header' : ''}`}
             >
-              <AppShell
-                layout="fullscreen"
-                header={(!showCategoryElements || !finalIsIPhone) ?
-                  <GeoHeader onBackClick={() => setIsMapMode(false)} isIPhone14ProMax={finalIsIPhone} /> :
-                  null}
-                className={`geo-map-shell ${showCategoryElements && finalIsIPhone ? 'hide-header' : ''}`}
-              >
-                <ViewportFrame id="layera-device-simulator-viewport">
-                  <GeoMap
-                    onAreaCreated={handleAreaCreated}
-                    onNewEntryClick={handleNewEntryClick}
-                    isIPhone14ProMaxDevice={finalIsIPhone}
-                    onCategoryElementsChange={setShowCategoryElements}
-                    showCategoryElements={showCategoryElements}
-                    isResponsiveMode={isResponsiveMode}
-                  />
-                </ViewportFrame>
-              </AppShell>
-            </DeviceFrameWrapper>
+              <ViewportFrame id="layera-device-simulator-viewport">
+                <GeoMap
+                  onAreaCreated={handleAreaCreated}
+                  onNewEntryClick={handleNewEntryClick}
+                  isIPhone14ProMaxDevice={finalIsIPhone}
+                  onCategoryElementsChange={setShowCategoryElements}
+                  showCategoryElements={showCategoryElements}
+                />
+              </ViewportFrame>
+            </AppShell>
           </DeviceOverrideProvider>
         </NotificationProvider>
         </ThemeProvider>

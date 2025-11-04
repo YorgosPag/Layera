@@ -75,10 +75,7 @@ export const AppShell: React.FC<AppShellProps> = ({
 
   return (
     <Box className={shellClasses}>
-      {/* Skip to content link για accessibility */}
-      <a href="#main-content" className="layera-skip-to-content">
-        Skip to main content
-      </a>
+      {/* REMOVED: Skip to content link για καθαρότερο UI */}
 
       {/* Header */}
       {header && (

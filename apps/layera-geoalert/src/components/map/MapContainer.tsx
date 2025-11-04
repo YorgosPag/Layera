@@ -169,6 +169,51 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
     if (!map && !initializingRef.current && mapContainerRef.current) {
       initializingRef.current = true;
 
+      // Force Leaflet CSS load for mobile
+      const ensureLeafletCSS = (): void => {
+        if (!document.querySelector('link[href*="leaflet.css"]')) {
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+          link.integrity = 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=';
+          link.crossOrigin = '';
+          document.head.appendChild(link);
+        }
+      };
+
+      ensureLeafletCSS();
+
+      // Add mobile-specific CSS fixes
+      const addMobileCSS = (): void => {
+        if (!document.querySelector('style[data-mobile-leaflet]')) {
+          const style = document.createElement('style');
+          style.setAttribute('data-mobile-leaflet', 'true');
+          style.textContent = `
+            .leaflet-map-mobile .leaflet-container {
+              background: #fff !important;
+            }
+            .leaflet-map-mobile .leaflet-tile-pane {
+              opacity: 1 !important;
+            }
+            .leaflet-map-mobile .leaflet-tile {
+              opacity: 1 !important;
+            }
+            .leaflet-control-attribution {
+              display: none !important;
+            }
+            @media (max-width: 768px) {
+              .leaflet-container {
+                height: 100% !important;
+                width: 100% !important;
+              }
+            }
+          `;
+          document.head.appendChild(style);
+        }
+      };
+
+      addMobileCSS();
+
       // Wait for Leaflet CSS to be loaded and container to have dimensions
       const initMap = (): void => {
         if (!mapContainerRef.current) {
@@ -222,23 +267,26 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
             window.leafletIconsFixed = true;
           }
 
-          // Create the map directly with Leaflet
-          const mapInstance = L.map('geo-map', {
+          // Create the map directly with Leaflet using the container reference
+          const mapInstance = L.map(mapContainerRef.current, {
             zoomControl: false,
+            preferCanvas: true, // Better mobile performance
+            touchZoom: true,
+            scrollWheelZoom: true,
+            doubleClickZoom: true
           }).setView([37.9755, 23.7348], 13);
 
-          // Add tile layer
+          // Add tile layer with mobile optimizations
           const tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors',
             maxZoom: 18,
-            minZoom: 8
+            minZoom: 8,
+            tileSize: 256,
+            zoomOffset: 0,
+            detectRetina: true // Better for mobile devices
           });
 
           tileLayer.addTo(mapInstance);
-
-          // Add debugging
-          if (process.env.NODE_ENV === 'development') {
-          }
 
           // Force resize and tile loading
           setTimeout((): void => {
@@ -375,11 +423,20 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
   };
 
   // Render device-specific UI
-  // Debug log removed to prevent console flooding
+  // Add debugging to see device detection
+  if (process.env.NODE_ENV === 'development') {
+    console.log('🔍 Device Detection:', { isDesktop, isTablet, isMobile });
+  }
 
   if (isMobile) {
     return (
-      <div className="mobile-map-container">
+      <div className="mobile-map-container" style={{
+        width: '100%',
+        height: '100vh',
+        position: 'relative',
+        marginTop: '0',
+        overflow: 'hidden'
+      }}>
         {/*
           ΚΡΙΣΙΜΗ ΣΗΜΕΙΩΣΗ: ΜΗΝ ΑΛΛΑΞΕΙΣ ΣΕ BOX COMPONENT!
           Το Leaflet map engine χρειάζεται native DOM elements με refs.
@@ -389,10 +446,12 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
         */}
         <div
           ref={mapContainerRef}
-          id="geo-map"
+          className="leaflet-map-mobile"
           style={{
-            position: 'absolute',
-            inset: 0
+            width: '100%',
+            height: '100%',
+            display: 'block',
+            position: 'relative'
           }}
         />
 
@@ -476,13 +535,15 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
       */}
       <div
         ref={mapContainerRef}
-        id="geo-map"
         style={{
           position: 'absolute',
           top: 0,
           left: 0,
           right: 0,
-          bottom: 0
+          bottom: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: 1
         }}
       />
 

@@ -42,10 +42,4 @@ export {
   useViewportWithOverride
 } from './components/DeviceOverrideProvider';
 
-export { DeviceSimulator } from './components/DeviceSimulator';
-
-export {
-  DeviceModelSelector,
-  getDeviceSpecs,
-  type DeviceModel
-} from './components/DeviceModelSelector';
+// REMOVED: Device simulation components - simplified to pure responsive

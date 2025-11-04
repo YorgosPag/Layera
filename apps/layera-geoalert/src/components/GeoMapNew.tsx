@@ -13,12 +13,12 @@ import { useIPhone14ProMaxDetection } from '@layera/viewport';
 import type { StepId, CategoryType, IntentType, StepContext } from './steps/types';
 import { stepRegistry } from './steps/StepRegistry';
 import { useStepNavigation } from './steps/StepOrchestrator';
-import { ResponsiveMapLayout, MapComponentProps } from '@layera/device-layouts';
+// REMOVED: device-layouts package - simplified to pure responsive
 import { MapContainer } from './map/MapContainer';
 import { PlusIcon } from '@layera/icons';
 import { Box } from '@layera/layout';
 import { UnifiedFAB } from '@layera/floating-action-buttons';
-import { DraggableFAB } from '@layera/draggable-fab';
+// REMOVED: DraggableFAB - simplified to UnifiedFAB only
 import { CONFIG, SPACING_SCALE, PIPELINE_STEP } from '@layera/constants';
 import { COLORS } from '../constants';
 import { useLayeraTranslation } from '@layera/tolgee';
@@ -79,7 +79,7 @@ interface GeoMapProps {
   isIPhone14ProMaxDevice?: boolean;
   onCategoryElementsChange?: (show: boolean) => void;
   showCategoryElements?: boolean;
-  isResponsiveMode?: boolean; // true = responsive fullscreen, false = device frame
+  // REMOVED: isResponsiveMode - always responsive now
 }
 
 export const GeoMap: React.FC<GeoMapProps> = ({
@@ -88,9 +88,10 @@ export const GeoMap: React.FC<GeoMapProps> = ({
   // REMOVED: Legacy unified pipeline destructuring
   isIPhone14ProMaxDevice = false,
   onCategoryElementsChange,
-  showCategoryElements: showCatEls = false,
-  isResponsiveMode = false
+  showCategoryElements: showCatEls = false
+  // REMOVED: isResponsiveMode parameter
 }) => {
+  console.log('🗺️ GeoMapNew render - showCatEls:', showCatEls);
   const { isDesktop, isTablet, isMobile } = useViewportWithOverride();
   const { t } = useLayeraTranslation();
 
@@ -233,9 +234,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
 
   const handleNewEntryClick = () => { onNewEntryClick?.(); };
 
-  const handleFabClick = (): void => {
-    handleNewEntryClick();
-  };
+  // REMOVED: handleFabClick - button moved to header
 
   // 🚀 ΦΑΣΗ 6: Enterprise Device Layout LEGO Package - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
   // CRITICAL FIX: Removing all useMemo to stop infinite loops
@@ -290,16 +289,29 @@ export const GeoMap: React.FC<GeoMapProps> = ({
 
   return (
     <Box position="relative" width="full" height="full">
+      {/* Simplified responsive layout - removed device-specific layouts */}
+      <Box width="full" height="full">
+        <MapContainer {...mapProps} />
+      </Box>
 
-      <ResponsiveMapLayout
-        deviceType={deviceType}
-        map={mapProps}
-        mapComponents={mapComponents}
-        iPhoneComponents={iPhoneComponents}
-        navigation={navigation}
-        navigationHandlers={navigationHandlersProps}
-        showCategoryElements={showCatEls}
-      />
+      {/* StepOrchestrator - διαχειρίζεται όλα τα steps */}
+      {showCatEls && (
+        <StepOrchestrator
+          currentStepId={stepContext.currentStepId}
+          selectedCategory={stepContext.selectedCategory}
+          selectedIntent={stepContext.selectedIntent}
+          selectedTransactionType={stepContext.selectedTransactionType}
+          selectedEmploymentType={stepContext.selectedEmploymentType}
+          selectedOccupation={stepContext.selectedOccupation}
+          selectedLocation={stepContext.selectedLocation}
+          selectedDetails={stepContext.selectedDetails}
+          selectedPricing={stepContext.selectedPricing}
+          selectedReview={stepContext.selectedReview}
+          completedSteps={stepContext.completedSteps}
+          onStepChange={navigationHandlersProps.onStepChange}
+          onStepComplete={navigationHandlersProps.onStepComplete}
+        />
+      )}
 
       {/*
         ΚΡΙΣΙΜΗ ΛΥΣΗ ΓΙΑ FAB VISIBILITY & POSITIONING - ΜΗΝ ΠΕΙΡΑΞΕΙΣ:
@@ -388,29 +400,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
 
         🏅 SUCCESS EVIDENCE: localhost.log με 76 "FrameRef is null" → ΛΥΘΗΚΕ με body selector
       */}
-      {!showCatEls && (
-        isResponsiveMode ? (
-          <UnifiedFAB
-            onClick={handleFabClick}
-            icon={<PlusIcon size="md" theme="neutral" />}
-            spacing={{ right: CONFIG.map.fabHalfWidth, bottom: CONFIG.map.fabBottomOffset }}
-            ariaLabel={t('fab.new-entry')}
-            data-testid="unified-fab"
-          />
-        ) : (
-          <DraggableFAB
-            onClick={handleFabClick}
-            position="viewport-relative"
-            initialPosition={{ x: SPACING_SCALE.LG, y: SPACING_SCALE.LG }}
-            viewportSelector="body"
-            constrainToViewport={true}
-            aria-label={t('fab.new-entry')}
-            data-testid="draggable-fab"
-          >
-            <PlusIcon size="md" theme="neutral" />
-          </DraggableFAB>
-        )
-      )}
+      {/* REMOVED: FAB button - moved to header */}
     </Box>
   );
 };
