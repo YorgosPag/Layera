@@ -13,6 +13,13 @@ stepRegistry.register({
   order: 17,
   isVisible: true,
   cards: [],
+  // ΔΙΟΡΘΩΣΗ: Προσθήκη conditions για σωστή ροή
+  conditions: [{
+    type: 'category',
+    value: 'property',
+    operator: 'equals'
+  }],
+  dependencies: ['location'], // Μετά το location step
   metadata: {
     isOptional: false
   }

@@ -61,7 +61,14 @@ export function createGeoAlertCardStyles(
     case 'horizontal':
       return {
         ...baseStyles,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        left: 0,
+        right: 0,
+        paddingLeft: pos.gap,
+        paddingRight: pos.gap,
+        justifyContent: 'stretch',
+        width: '100vw',
+        boxSizing: 'border-box'
       };
 
     case 'vertical':

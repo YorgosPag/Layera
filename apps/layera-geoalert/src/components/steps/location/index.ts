@@ -13,6 +13,13 @@ stepRegistry.register({
   order: 14,
   isVisible: true,
   cards: [],
+  // ΔΙΟΡΘΩΣΗ: Προσθήκη conditions για σωστή ροή
+  conditions: [{
+    type: 'category',
+    value: 'property',
+    operator: 'equals'
+  }],
+  dependencies: ['transactionType'], // Μετά το transaction type
   metadata: {
     isOptional: false
   }

@@ -7,7 +7,8 @@
 import React, { useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { PropertyTypeCard } from './PropertyTypeCard';
-import { Flex } from '@layera/layout';
+import { Box, Flex } from '@layera/layout';
+import { useGeoAlertLayout } from '@layera/layout';
 import type { StepProps } from '../types';
 import type { PropertyType, PropertyTypeStepData, PropertyTypeOption } from './types';
 
@@ -28,6 +29,11 @@ export const PropertyTypeStep: React.FC<PropertyTypeStepProps> = ({
   deviceProps = {}
 }) => {
   const { t } = useLayeraTranslation();
+
+  // Enterprise LEGO Layout με CSS variables
+  const { utils } = useGeoAlertLayout();
+  const containerStyles = utils.getCardStyles('vertical');
+  const containerClass = utils.getCardContainerClass('vertical');
 
   const propertyTypes: PropertyTypeOption[] = [
     {
@@ -100,18 +106,8 @@ export const PropertyTypeStep: React.FC<PropertyTypeStepProps> = ({
   }
 
   return (
-    // LEGO:JUSTIFIED(reason=MOBILE_STEP_OVERLAY_FIXED; owner=@team-geo; expires=2026-01-31)
-    <Box
-      position="fixed"
-      top="var(--la-overlay-top, var(--la-cards-top, 64px))"
-      left="var(--la-side-margins, 16px)"
-      right="var(--la-side-margins, 16px)"
-      zIndex="var(--la-z-overlay)"
-      maxHeight="var(--la-height-calc-max, calc(100vh - var(--la-overlay-vertical-offset, 200px)))"
-      overflow="var(--la-overflow-auto, auto)"
-    >
-      <Flex direction="column" gap="xs" padding="none">
-      {propertyTypes.map((type: unknown) => (
+    <Box style={containerStyles} className={containerClass}>
+      {propertyTypes.map((type: PropertyTypeOption) => (
         <PropertyTypeCard
           key={type.id}
           propertyType={type.id}
@@ -121,7 +117,6 @@ export const PropertyTypeStep: React.FC<PropertyTypeStepProps> = ({
           data-testid={`property-type-card-${type.id}`}
         />
       ))}
-      </Flex>
     </Box>
   );
 };

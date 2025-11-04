@@ -13,6 +13,12 @@ stepRegistry.register({
   order: 13,
   isVisible: true,
   cards: [],
+  // ΔΙΟΡΘΩΣΗ: Προσθήκη conditions για να εμφανίζεται μόνο όταν πρέπει
+  conditions: [{
+    type: 'custom',
+    value: 'hasCompletedUpload'
+  }],
+  dependencies: ['upload'], // Εμφανίζεται μετά το upload step
   metadata: {
     isOptional: false
   }

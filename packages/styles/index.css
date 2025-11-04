@@ -71,7 +71,7 @@
   font-size: var(--layera-card-uniform-font-size) !important;
   font-weight: var(--layera-card-uniform-font-weight) !important;
   line-height: var(--layera-card-uniform-line-height) !important;
-  flex: none !important;
+  /* flex: none !important; - REMOVED to allow flex layouts */
   box-sizing: border-box !important;
   transition: all 0.2s ease !important;
 }
@@ -92,7 +92,7 @@ div[class*="BaseCard"].layera-card-uniform {
   font-size: var(--layera-card-uniform-font-size) !important;
   font-weight: var(--layera-card-uniform-font-weight) !important;
   line-height: var(--layera-card-uniform-line-height) !important;
-  flex: none !important;
+  /* flex: none !important; - REMOVED to allow flex layouts */
   box-sizing: border-box !important;
 }
 
@@ -134,7 +134,7 @@ html body div.layera-card-uniform {
   background-color: var(--layera-card-uniform-background) !important;
   font-family: var(--layera-card-uniform-font-family) !important;
   font-size: var(--layera-card-uniform-font-size) !important;
-  flex: none !important;
+  /* flex: none !important; - REMOVED to allow flex layouts */
 }
 
 /* Dark Theme Support - διαχειρίζεται από packages/tokens/ */

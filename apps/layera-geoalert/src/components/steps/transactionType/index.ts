@@ -16,7 +16,7 @@ stepRegistry.register({
   name: 'Τύπος Συναλλαγής',
   shortName: 'Τύπος',
   component: TransactionStep,
-  order: 3,
+  order: 4, // Μετά το IntentStep
   isVisible: true,
   dependencies: ['category', 'intent'], // Depends on category and intent selection
   conditions: [
