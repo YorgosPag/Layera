@@ -16,7 +16,7 @@ stepRegistry.register({
   name: 'Πρόθεση',
   shortName: 'Σκοπός',
   component: IntentStep,
-  order: 3, // Μετά το PropertyTypeStep στο property flow
+  order: 2, // Δεύτερο βήμα - μετά το Category
   isVisible: true,
   // ΔΙΟΡΘΩΣΗ: Χρησιμοποιώ conditions μόνο, όχι dependencies για να αποφύγω το completedSteps issue
   conditions: [

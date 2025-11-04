@@ -1,12 +1,12 @@
 /**
  * ReviewCard.tsx - Enterprise Review Card Component
  *
- * Configuration-driven UnifiedCard implementation για review operations
- * Enterprise approach: Smart extension of UnifiedCard system
+ * BaseCard implementation για review operations
+ * Enterprise approach: Single Source of Truth με BaseCard system
  */
 
 import React from 'react';
-import { UnifiedCard, createReviewCard } from '@layera/cards';
+import { BaseCard } from '@layera/cards';
 import type { StepCardProps, ReviewType } from '../types';
 
 export interface ReviewCardProps extends StepCardProps {
@@ -42,7 +42,7 @@ export interface ReviewCardProps extends StepCardProps {
 
 /**
  * Enterprise ReviewCard implementation
- * Configuration-driven approach με smart UnifiedCard extension
+ * Single Source of Truth approach με BaseCard enterprise system
  */
 export const ReviewCard: React.FC<ReviewCardProps> = ({
   context,
@@ -61,43 +61,35 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({
     return null;
   }
 
-  const handleReviewAction = React.useCallback((action: unknown, stepId: unknown) => {
+  const handleClick = React.useCallback(() => {
     if ('vibrate' in navigator) {
       navigator.vibrate(20);
     }
-    onReviewAction?.(action as ReviewType, stepId as string);
-  }, [onReviewAction]);
+    onReviewAction?.(reviewType, reviewData.stepId);
+  }, [onReviewAction, reviewType, reviewData.stepId]);
 
-  const handleEdit = React.useCallback((stepId: unknown) => {
+  const handleInfoClick = React.useCallback(() => {
     if ('vibrate' in navigator) {
       navigator.vibrate(20);
     }
-    onEdit?.(stepId as string);
-  }, [onEdit]);
+    onEdit?.(reviewData.stepId);
+  }, [onEdit, reviewData.stepId]);
 
-  // Create unified card configuration
-  const cardConfig = createReviewCard({
-    reviewType,
-    reviewData,
-    category,
-    title,
-    icon,
-    onReviewAction: handleReviewAction,
-    onEdit: handleEdit,
-    reviewMode
-  });
-
-  // Create card context
-  const cardContext = {
-    currentStep: 'review',
-    category: category || 'property' as const,
-    viewMode: 'mobile' as const
-  };
+  // Generate title and description from review data
+  const cardTitle = title || `${reviewData.stepName}: ${reviewData.selectedValue}`;
+  const cardDescription = reviewData.isValid ? 'Εγκυρο' : 'Χρειάζεται επιβεβαίωση';
 
   return (
-    <UnifiedCard
-      config={cardConfig}
-      context={cardContext}
+    <BaseCard
+      title={cardTitle}
+      description={cardDescription}
+      icon={icon}
+      variant={category || 'property'}
+      clickable
+      onClick={handleClick}
+      onInfoClick={handleInfoClick}
+      data-testid={`review-card-${reviewType}-${reviewData.stepId}`}
+      className="layera-card-uniform"
     />
   );
 };

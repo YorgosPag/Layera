@@ -10,7 +10,7 @@ stepRegistry.register({
   id: 'propertyType',
   name: 'Τύπος Ακινήτου',
   component: PropertyTypeStep,
-  order: 2, // Αμέσως μετά το CategoryStep για property flow
+  order: 3, // Μετά το Intent Step για property flow
   isVisible: true,
   cards: [],
   conditions: [{

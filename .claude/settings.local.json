@@ -43,7 +43,9 @@
       "Bash(node:*)",
       "Bash(move firebase.js firebase.ts)",
       "Bash(iconv:*)",
-      "Bash(vercel:*)"
+      "Bash(vercel:*)",
+      "Bash(start:*)",
+      "Bash(sort:*)"
     ],
     "deny": [],
     "ask": []

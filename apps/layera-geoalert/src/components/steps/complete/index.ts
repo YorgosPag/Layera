@@ -13,6 +13,8 @@ stepRegistry.register({
   order: 100,
   isVisible: true,
   cards: [],
+  // ✅ ΔΙΟΡΘΩΣΗ: Complete Step εμφανίζεται μόνο μετά από τουλάχιστον έναν κύκλο
+  dependencies: ['category'], // Απαιτεί τουλάχιστον να έχει ολοκληρωθεί το category step
   metadata: {
     isOptional: false
   }

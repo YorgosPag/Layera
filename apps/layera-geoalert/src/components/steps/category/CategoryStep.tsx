@@ -84,7 +84,6 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
     }
 
     // 1. StepOrchestrator notification με selected category data
-    // ΣΗΜΕΙΩΣΗ: Το onStepComplete ήδη κάνει auto-advance στο επόμενο step
     if (onStepComplete) {
       onStepComplete('category', {
         selectedCategory: category
@@ -103,20 +102,8 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
     return null;
   }
 
-  // Enterprise LEGO Layout με CSS variables + Force full width
-  const containerStyles = {
-    ...utils.getCardStyles('horizontal'),
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    gap: '8px',
-    width: '100vw',
-    left: 0,
-    right: 0,
-    paddingLeft: '8px',
-    paddingRight: '8px',
-    boxSizing: 'border-box'
-  };
+  // ✅ SINGLE SOURCE OF TRUTH: Χρήση μόνο του LEGO Layout hook
+  const containerStyles = utils.getCardStyles('horizontal');
   const containerClass = utils.getCardContainerClass('horizontal');
 
   return (

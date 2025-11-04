@@ -122,9 +122,8 @@ export class StepRegistry implements StepRegistryInterface {
       return false;
     }
 
-    // 2. Dependencies check - ΔΙΟΡΘΩΣΗ: Αγνοώ dependencies αν completedSteps είναι άδειο
-    // Αυτό επιτρέπει την εμφάνιση όλων των steps όταν δεν έχουμε step completion tracking
-    if (step.dependencies && context.completedSteps.size > 0) {
+    // 2. Dependencies check - ✅ ΔΙΟΡΘΩΣΗ: Σεβασμός dependencies πάντα
+    if (step.dependencies && step.dependencies.length > 0) {
       const missingDeps = step.dependencies.filter(depId =>
         !context.completedSteps.has(depId)
       );

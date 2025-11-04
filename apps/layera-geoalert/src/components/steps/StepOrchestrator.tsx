@@ -123,6 +123,22 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
     return stepRegistry.getAvailableSteps(stepContext);
   }, [stepContext]);
 
+  // ✅ Auto-navigation όταν το context ενημερωθεί
+  const [pendingNavigation, setPendingNavigation] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    if (pendingNavigation) {
+      const currentIndex = availableSteps.findIndex(step => step.id === pendingNavigation);
+      const nextStep = availableSteps[currentIndex + 1];
+
+      if (nextStep && onStepChange) {
+        onStepChange(nextStep.id);
+      }
+
+      setPendingNavigation(null);
+    }
+  }, [availableSteps, pendingNavigation, onStepChange]);
+
   // 🎯 Find current step definition
   const currentStep = useMemo(() => {
     const found = availableSteps.find(step => step.id === currentStepId);
@@ -154,25 +170,10 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
   }, [availableSteps, currentStepId, onStepChange, onPrevious]);
 
   const handleStepComplete = useCallback((stepId: StepId, data?: unknown) => {
+    // ✅ ΚΑΘΑΡΗ ΛΥΣΗ: Ενημέρωση context + pending navigation
     onStepComplete?.(stepId, data);
-
-    // ✅ ΣΩΣΤΟ: Auto-advance to next step - αυτό ΠΡΕΠΕΙ να μείνει
-    // Το πρόβλημα ήταν ότι το CategoryStep ΕΠΙΣΗΣ καλούσε onNext()
-    // Τώρα μόνο το StepOrchestrator κάνει navigation - Single Source of Truth!
-    const currentIndex = availableSteps.findIndex(step => step.id === stepId);
-    const nextStep = availableSteps[currentIndex + 1];
-
-    if (nextStep) {
-      setTimeout((): void => {
-        if (onStepChange) {
-          onStepChange(nextStep.id);
-        } else {
-          console.warn(`🎼 ORCHESTRATOR: onStepChange is not defined!`);
-        }
-      }, 500); // Small delay για UX
-    }
-
-  }, [availableSteps, onStepChange, onStepComplete]);
+    setPendingNavigation(stepId); // Trigger navigation μετά το context update
+  }, [onStepComplete]);
 
   // 🎨 Render step cards
   const renderStepCards = useCallback((step: StepDefinition) => {

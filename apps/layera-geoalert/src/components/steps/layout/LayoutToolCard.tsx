@@ -1,12 +1,12 @@
 /**
  * LayoutToolCard.tsx - Reusable Layout Tool Card
  *
- * Unified Card implementation για layout tool selection
- * Migrated από BaseCard wrapper στο νέο UnifiedCard system
+ * BaseCard implementation για layout tool selection
+ * Migrated πίσω στο BaseCard system ως Single Source of Truth
  */
 
 import React from 'react';
-import { UnifiedCard, createLayoutToolCard } from '@layera/cards';
+import { BaseCard } from '@layera/cards';
 import { CheckIcon as MoveIcon, CheckIcon as ResizeIcon, RotateIcon, RulerIcon } from '@layera/icons';
 import type { LayoutTool } from './types';
 
@@ -21,7 +21,7 @@ interface LayoutToolCardProps {
 
 /**
  * Layout Tool Card
- * Powered by UnifiedCard configuration system
+ * Powered by BaseCard enterprise system
  */
 export const LayoutToolCard: React.FC<LayoutToolCardProps> = ({
   tool,
@@ -36,7 +36,7 @@ export const LayoutToolCard: React.FC<LayoutToolCardProps> = ({
     return null;
   }
 
-  const getIcon = (): void => {
+  const getIcon = () => {
     switch (tool) {
       case 'positioning':
         return <MoveIcon size="sm" theme="neutral" />;
@@ -51,39 +51,23 @@ export const LayoutToolCard: React.FC<LayoutToolCardProps> = ({
     }
   };
 
-  const handleToolSelect = React.useCallback((toolValue: string) => {
+  const handleClick = React.useCallback(() => {
     if ('vibrate' in navigator) {
       navigator.vibrate(20);
     }
     onClick();
   }, [onClick]);
 
-  // Create unified card configuration
-  const cardConfig = createLayoutToolCard({
-    toolType: tool,
-    title,
-    description,
-    icon: getIcon(),
-    isSelected: isActive,
-    onToolSelect: handleToolSelect
-  });
-
-  // Override testId if provided
-  const enhancedConfig = {
-    ...cardConfig,
-    ...(testId && { testId })
-  };
-
-  // Create card context
-  const cardContext = {
-    currentStep: 'layout',
-    viewMode: 'mobile' as const
-  };
-
   return (
-    <UnifiedCard
-      config={enhancedConfig}
-      context={cardContext}
+    <BaseCard
+      title={title}
+      description={description}
+      icon={getIcon()}
+      variant="property"
+      clickable
+      onClick={handleClick}
+      data-testid={testId || `layout-tool-${tool}-card`}
+      className="layera-card-uniform"
     />
   );
 };

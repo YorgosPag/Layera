@@ -1,12 +1,12 @@
 /**
  * EmploymentTypeCard.tsx - Reusable Employment Type Option Card
  *
- * Unified Card implementation για employment type selection
- * Migrated από BaseCard wrapper στο νέο UnifiedCard system
+ * BaseCard implementation για employment type selection
+ * Migrated πίσω στο BaseCard system ως Single Source of Truth
  */
 
 import React from 'react';
-import { UnifiedCard, createSelectionCard } from '@layera/cards';
+import { BaseCard } from '@layera/cards';
 import { ToolIcon, HospitalIcon, TruckIcon, StoreIcon } from '@layera/icons';
 import type { EmploymentType } from './types';
 
@@ -20,7 +20,7 @@ interface EmploymentTypeCardProps {
 
 /**
  * Employment Type Selection Card
- * Powered by UnifiedCard configuration system
+ * Powered by BaseCard enterprise system
  */
 export const EmploymentTypeCard: React.FC<EmploymentTypeCardProps> = ({
   employmentType,
@@ -34,7 +34,7 @@ export const EmploymentTypeCard: React.FC<EmploymentTypeCardProps> = ({
     return null;
   }
 
-  const getIcon = (): void => {
+  const getIcon = () => {
     switch (employmentType) {
       case 'full_time':
         return <ToolIcon size="sm" theme="neutral" />;
@@ -49,37 +49,23 @@ export const EmploymentTypeCard: React.FC<EmploymentTypeCardProps> = ({
     }
   };
 
-  const handleEmploymentSelect = React.useCallback((employment: unknown) => {
+  const handleClick = React.useCallback(() => {
     if ('vibrate' in navigator) {
       navigator.vibrate(20);
     }
     onClick();
   }, [onClick]);
 
-  // Create unified card configuration
-  const cardConfig = createSelectionCard({
-    id: `employment-type-${employmentType}`,
-    title,
-    description,
-    icon: getIcon(),
-    selectionValue: employmentType,
-    category: 'job',
-    theme: 'job',
-    onClick: () => handleEmploymentSelect(employmentType),
-    testId: testId || `employment-type-${employmentType}-card`
-  });
-
-  // Create card context
-  const cardContext = {
-    currentStep: 'employmentType',
-    category: 'job' as const,
-    viewMode: 'mobile' as const
-  };
-
   return (
-    <UnifiedCard
-      config={cardConfig}
-      context={cardContext}
+    <BaseCard
+      title={title}
+      description={description}
+      icon={getIcon()}
+      variant="job"
+      clickable
+      onClick={handleClick}
+      data-testid={testId || `employment-type-${employmentType}-card`}
+      className="layera-card-uniform"
     />
   );
 };

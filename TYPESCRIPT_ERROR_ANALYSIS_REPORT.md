@@ -17,7 +17,7 @@
 - **Αποτέλεσμα**: 180 → 0 errors (**180 errors ΠΛΗΡΗΣ ΕΞΑΛΕΙΨΗ - 100% επιτυχία**)
 - **Μέθοδος**: Προσθήκη `// eslint-disable-next-line @typescript-eslint/no-unused-vars` σε όλα τα unused variables
 - **Status**: ✅ ΠΛΗΡΩΣ ΟΛΟΚΛΗΡΩΘΗΚΕ με τη ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ pattern από osmService.ts
-- **Packages Fixed**: cad-processing (dxfParser, cadRenderer), layout (AppShell, Box, useFlex), floating-action-buttons (UnifiedFAB), draggable-fab (DraggableFAB), buttons (Button), cards (BaseCard, UnifiedCard, themes, resolver), error-boundary (ErrorDetails, ErrorFallback), file-upload (FilePreview, uploadEngine), icons (Icon), forms (DatePicker, InputGroup, Select), geo-drawing (GeometryRenderer, MeasurementCanvas, useGeometrySnap), pipelines (actions), tables (DataTable), map-labels (positioning)
+- **Packages Fixed**: cad-processing (dxfParser, cadRenderer), layout (AppShell, Box, useFlex), floating-action-buttons (UnifiedFAB), draggable-fab (DraggableFAB), buttons (Button), cards (BaseCard, BaseCard, themes, resolver), error-boundary (ErrorDetails, ErrorFallback), file-upload (FilePreview, uploadEngine), icons (Icon), forms (DatePicker, InputGroup, Select), geo-drawing (GeometryRenderer, MeasurementCanvas, useGeometrySnap), pipelines (actions), tables (DataTable), map-labels (positioning)
 
 #### **✅ ΦΑΣΗ 2: TS6059 rootDir Configuration - ΠΛΗΡΗΣ ΟΛΟΚΛΗΡΩΣΗ**
 - **Στόχος**: 291 → 0 errors

@@ -1,12 +1,12 @@
 /**
  * CategoryCard.tsx - Category Selection Card Component
  *
- * Unified Card implementation για category selection
- * Migrated από BaseCard wrapper στο νέο UnifiedCard system
+ * BaseCard implementation για category selection
+ * Migrated πίσω στο BaseCard system ως Single Source of Truth
  */
 
 import React from 'react';
-import { UnifiedCard, createCategoryCard } from '@layera/cards';
+import { BaseCard } from '@layera/cards';
 import type { StepCardProps, CategoryType } from '../types';
 
 export interface CategoryCardProps extends StepCardProps {
@@ -28,7 +28,7 @@ export interface CategoryCardProps extends StepCardProps {
 
 /**
  * Category Selection Card
- * Powered by UnifiedCard configuration system
+ * Powered by BaseCard enterprise system
  */
 export const CategoryCard: React.FC<CategoryCardProps> = ({
   context,
@@ -59,33 +59,20 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
     onInfoClick?.();
   }, [onInfoClick]);
 
-  // Create unified card configuration
-  const cardConfig = createCategoryCard({
-    categoryType,
-    title,
-    icon,
-    onCategorySelect: handleCategorySelect,
-    onInfoClick: handleInfoClick
-  });
-
-  // Enhance config with step context
-  const enhancedConfig = {
-    ...cardConfig,
-    selected: context.selectedCategory === categoryType,
-    className: context.selectedCategory === categoryType ? 'selected' : ''
-  };
-
-  // Create card context
-  const cardContext = {
-    currentStep: 'category',
-    category: categoryType,
-    viewMode: 'mobile' as const
-  };
+  const handleClick = React.useCallback(() => {
+    handleCategorySelect(categoryType);
+  }, [categoryType, handleCategorySelect]);
 
   return (
-    <UnifiedCard
-      config={enhancedConfig}
-      context={cardContext}
+    <BaseCard
+      title={title}
+      icon={icon}
+      variant={categoryType}
+      clickable
+      onClick={handleClick}
+      onInfoClick={handleInfoClick}
+      data-testid={`category-card-${categoryType}`}
+      className="layera-card-uniform"
     />
   );
 };

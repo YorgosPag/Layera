@@ -17,7 +17,7 @@ stepRegistry.register({
   name: 'Λεπτομέρειες',
   shortName: 'Στοιχεία',
   component: DetailsStep,
-  order: 5, // Μετά το TransactionTypeStep
+  order: 9, // Στη θέση λεπτομερειών
   isVisible: true,
   dependencies: ['category', 'intent', 'location'], // Depends on all previous steps
   conditions: [

@@ -17,7 +17,7 @@ stepRegistry.register({
   name: 'Τιμολόγηση',
   shortName: 'Τιμή',
   component: PricingStep,
-  order: 5,
+  order: 16, // Τιμολόγηση στα τελικά βήματα
   isVisible: true,
   dependencies: ['category', 'intent', 'location', 'details'], // Depends on all previous steps
   conditions: [

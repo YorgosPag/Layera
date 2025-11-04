@@ -1,12 +1,12 @@
 /**
  * PropertyTypeCard.tsx - Reusable Property Type Option Card
  *
- * Unified Card implementation για property type selection
- * Migrated από BaseCard wrapper στο νέο UnifiedCard system
+ * BaseCard implementation για property type selection
+ * Migrated πίσω στο BaseCard system ως Single Source of Truth
  */
 
 import React from 'react';
-import { UnifiedCard, createSelectionCard } from '@layera/cards';
+import { BaseCard } from '@layera/cards';
 import { VillaIcon, BuildingIcon, IndustrialIcon as FactoryIcon, IndustrialIcon as WarehouseIcon, StoreIcon, BuildingIcon as LandIcon } from '@layera/icons';
 import type { PropertyType } from './types';
 
@@ -20,7 +20,7 @@ interface PropertyTypeCardProps {
 
 /**
  * Property Type Selection Card
- * Powered by UnifiedCard configuration system
+ * Powered by BaseCard enterprise system
  */
 export const PropertyTypeCard: React.FC<PropertyTypeCardProps> = ({
   propertyType,
@@ -34,7 +34,7 @@ export const PropertyTypeCard: React.FC<PropertyTypeCardProps> = ({
     return null;
   }
 
-  const getIcon = (): void => {
+  const getIcon = () => {
     switch (propertyType) {
       case 'apartment':
         return <BuildingIcon size="sm" theme="neutral" />;
@@ -57,37 +57,23 @@ export const PropertyTypeCard: React.FC<PropertyTypeCardProps> = ({
     }
   };
 
-  const handlePropertySelect = React.useCallback((property: unknown) => {
+  const handleClick = React.useCallback(() => {
     if ('vibrate' in navigator) {
       navigator.vibrate(20);
     }
     onClick();
   }, [onClick]);
 
-  // Create unified card configuration
-  const cardConfig = createSelectionCard({
-    id: `property-type-${propertyType}`,
-    title,
-    description,
-    icon: getIcon(),
-    selectionValue: propertyType,
-    category: 'property',
-    theme: 'property',
-    onClick: () => handlePropertySelect(propertyType),
-    testId: testId || `property-type-${propertyType}-card`
-  });
-
-  // Create card context
-  const cardContext = {
-    currentStep: 'propertyType',
-    category: 'property' as const,
-    viewMode: 'mobile' as const
-  };
-
   return (
-    <UnifiedCard
-      config={cardConfig}
-      context={cardContext}
+    <BaseCard
+      title={title}
+      description={description}
+      icon={getIcon()}
+      variant="property"
+      clickable
+      onClick={handleClick}
+      data-testid={testId || `property-type-${propertyType}-card`}
+      className="layera-card-uniform"
     />
   );
 };

@@ -541,7 +541,7 @@ interface UnifiedBaseCardProps {
 #### **🎯 Unified Card Pattern Strategy**:
 ```typescript
 // Configuration-driven approach
-interface UnifiedCardConfig {
+interface BaseCardConfig {
   type: 'category' | 'pricing' | 'detail' | 'intent' | 'availability';
   data: CategoryData | PricingData | DetailData | IntentData | AvailabilityData;
   theme: 'property' | 'job' | 'neutral' | 'success' | 'warning';

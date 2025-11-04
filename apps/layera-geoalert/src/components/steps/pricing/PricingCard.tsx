@@ -1,12 +1,12 @@
 /**
  * PricingCard.tsx - Reusable Pricing Card Component
  *
- * Unified Card implementation για pricing selection
- * Migrated από BaseCard wrapper στο νέο UnifiedCard system
+ * BaseCard implementation για pricing selection
+ * Migrated πίσω στο BaseCard system ως Single Source of Truth
  */
 
 import React from 'react';
-import { UnifiedCard, createPricingCard } from '@layera/cards';
+import { BaseCard } from '@layera/cards';
 import type { StepCardProps, PricingType } from '../types';
 
 export interface PricingCardProps extends StepCardProps {
@@ -44,41 +44,22 @@ export const PricingCard: React.FC<PricingCardProps> = ({
     return null;
   }
 
-  const handlePricingSelect = React.useCallback((pricing: unknown) => {
+  const handleClick = React.useCallback(() => {
     if ('vibrate' in navigator) {
       navigator.vibrate(20);
     }
-    onPricingSelect?.(pricing as PricingType);
-  }, [onPricingSelect]);
-
-  // Create unified card configuration
-  const cardConfig = createPricingCard({
-    pricingType,
-    title,
-    icon,
-    category,
-    onPricingSelect: () => handlePricingSelect(pricingType),
-    isSelected
-  });
-
-  // Enhance config with step context
-  const enhancedConfig = {
-    ...cardConfig,
-    selected: context.selectedPricing === pricingType || isSelected,
-    className: (context.selectedPricing === pricingType || isSelected) ? 'selected' : ''
-  };
-
-  // Create card context
-  const cardContext = {
-    currentStep: 'pricing',
-    category,
-    viewMode: 'mobile' as const
-  };
+    onPricingSelect?.(pricingType);
+  }, [onPricingSelect, pricingType]);
 
   return (
-    <UnifiedCard
-      config={enhancedConfig}
-      context={cardContext}
+    <BaseCard
+      title={title}
+      icon={icon}
+      variant={category}
+      clickable
+      onClick={handleClick}
+      data-testid={`pricing-card-${pricingType}-${category}`}
+      className="layera-card-uniform"
     />
   );
 };

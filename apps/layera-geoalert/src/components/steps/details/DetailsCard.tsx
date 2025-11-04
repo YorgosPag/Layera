@@ -1,12 +1,12 @@
 /**
  * DetailsCard.tsx - Details Collection Card Component
  *
- * Unified Card implementation για details collection
- * Migrated από BaseCard wrapper στο νέο UnifiedCard system
+ * BaseCard implementation για details collection
+ * Migrated πίσω στο BaseCard system ως Single Source of Truth
  */
 
 import React from 'react';
-import { UnifiedCard, createSelectionCard } from '@layera/cards';
+import { BaseCard } from '@layera/cards';
 import type { StepCardProps, DetailsType, CategoryType } from '../types';
 
 export interface DetailsCardProps extends StepCardProps {
@@ -31,7 +31,7 @@ export interface DetailsCardProps extends StepCardProps {
 
 /**
  * Details Collection Card
- * Powered by UnifiedCard configuration system
+ * Powered by BaseCard enterprise system
  */
 export const DetailsCard: React.FC<DetailsCardProps> = ({
   context,
@@ -62,37 +62,20 @@ export const DetailsCard: React.FC<DetailsCardProps> = ({
     onInfoClick?.();
   }, [onInfoClick]);
 
-  // Create unified card configuration
-  const cardConfig = createSelectionCard({
-    id: `details-${detailsType}`,
-    title,
-    icon,
-    selectionValue: detailsType,
-    category,
-    theme: category,
-    onClick: () => handleDetailsSelect(detailsType),
-    onInfoClick: handleInfoClick,
-    testId: `details-card-${detailsType}-${category}`
-  });
-
-  // Enhance config with step context
-  const enhancedConfig = {
-    ...cardConfig,
-    selected: context.selectedDetails === detailsType,
-    className: context.selectedDetails === detailsType ? 'selected' : ''
-  };
-
-  // Create card context
-  const cardContext = {
-    currentStep: 'details',
-    category,
-    viewMode: 'mobile' as const
-  };
+  const handleClick = React.useCallback(() => {
+    handleDetailsSelect(detailsType);
+  }, [detailsType, handleDetailsSelect]);
 
   return (
-    <UnifiedCard
-      config={enhancedConfig}
-      context={cardContext}
+    <BaseCard
+      title={title}
+      icon={icon}
+      variant={category}
+      clickable
+      onClick={handleClick}
+      onInfoClick={handleInfoClick}
+      data-testid={`details-card-${detailsType}-${category}`}
+      className="layera-card-uniform"
     />
   );
 };

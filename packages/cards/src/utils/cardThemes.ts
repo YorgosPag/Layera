@@ -1,5 +1,5 @@
 /**
- * Enhanced Card Themes - Unified theme system που συνδυάζει LEGO και Local BaseCard approaches
+ * Enhanced Card Themes - Enterprise BaseCard theme system ως Single Source of Truth
  *
  * Supports:
  * - Original LEGO variants (elevated, outlined, filled)

@@ -1,12 +1,12 @@
 /**
  * IntentCard.tsx - Intent Selection Card Component
  *
- * Unified Card implementation για intent selection (offer/search)
- * Migrated από BaseCard wrapper στο νέο UnifiedCard system
+ * BaseCard implementation για intent selection (offer/search)
+ * Migrated πίσω στο BaseCard system ως Single Source of Truth
  */
 
 import React from 'react';
-import { UnifiedCard, createIntentCard } from '@layera/cards';
+import { BaseCard } from '@layera/cards';
 import type { StepCardProps, IntentType, CategoryType } from '../types';
 
 export interface IntentCardProps extends StepCardProps {
@@ -31,7 +31,7 @@ export interface IntentCardProps extends StepCardProps {
 
 /**
  * Intent Selection Card
- * Powered by UnifiedCard configuration system
+ * Powered by BaseCard enterprise system
  */
 export const IntentCard: React.FC<IntentCardProps> = ({
   context,
@@ -62,35 +62,20 @@ export const IntentCard: React.FC<IntentCardProps> = ({
     onInfoClick?.();
   }, [onInfoClick]);
 
-  // Create unified card configuration
-  const cardConfig = createIntentCard({
-    intentType,
-    title,
-    icon,
-    category,
-    onIntentSelect: handleIntentSelect,
-    onInfoClick: handleInfoClick
-  });
-
-  // Enhance config with step context
-  const enhancedConfig = {
-    ...cardConfig,
-    selected: context.selectedIntent === intentType,
-    className: context.selectedIntent === intentType ? 'selected' : ''
-  };
-
-  // Create card context
-  const cardContext = {
-    currentStep: 'intent',
-    category,
-    intent: intentType,
-    viewMode: 'mobile' as const
-  };
+  const handleClick = React.useCallback(() => {
+    handleIntentSelect(intentType);
+  }, [intentType, handleIntentSelect]);
 
   return (
-    <UnifiedCard
-      config={enhancedConfig}
-      context={cardContext}
+    <BaseCard
+      title={title}
+      icon={icon}
+      variant={category}
+      clickable
+      onClick={handleClick}
+      onInfoClick={handleInfoClick}
+      data-testid={`intent-card-${intentType}-${category}`}
+      className="layera-card-uniform"
     />
   );
 };

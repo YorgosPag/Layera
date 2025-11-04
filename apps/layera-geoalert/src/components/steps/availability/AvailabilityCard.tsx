@@ -1,12 +1,12 @@
 /**
  * AvailabilityCard.tsx - Reusable Availability Option Card
  *
- * Unified Card implementation για availability selection
- * Migrated από BaseCard wrapper στο νέο UnifiedCard system
+ * BaseCard implementation για availability selection
+ * Migrated πίσω στο BaseCard system ως Single Source of Truth
  */
 
 import React from 'react';
-import { UnifiedCard, createAvailabilityCard } from '@layera/cards';
+import { BaseCard } from '@layera/cards';
 import { CheckIcon, CheckIcon as ClockIcon, CheckIcon as CalendarIcon } from '@layera/icons';
 import type { AvailabilityType } from './types';
 
@@ -20,7 +20,7 @@ interface AvailabilityCardProps {
 
 /**
  * Availability Selection Card
- * Powered by UnifiedCard configuration system
+ * Powered by BaseCard enterprise system
  */
 export const AvailabilityCard: React.FC<AvailabilityCardProps> = ({
   availability,
@@ -34,7 +34,7 @@ export const AvailabilityCard: React.FC<AvailabilityCardProps> = ({
     return null;
   }
 
-  const getIcon = (): void => {
+  const getIcon = () => {
     switch (availability) {
       case 'now':
         return <ClockIcon size="sm" theme="neutral" />;
@@ -45,38 +45,23 @@ export const AvailabilityCard: React.FC<AvailabilityCardProps> = ({
     }
   };
 
-  const handleAvailabilitySelect = React.useCallback((availabilityValue: string) => {
+  const handleClick = React.useCallback(() => {
     if ('vibrate' in navigator) {
       navigator.vibrate(20);
     }
     onClick();
   }, [onClick]);
 
-  // Create unified card configuration
-  const cardConfig = createAvailabilityCard({
-    availability,
-    title,
-    description,
-    icon: getIcon(),
-    onAvailabilitySelect: handleAvailabilitySelect
-  });
-
-  // Override testId if provided
-  const enhancedConfig = {
-    ...cardConfig,
-    ...(testId && { testId })
-  };
-
-  // Create card context
-  const cardContext = {
-    currentStep: 'availability',
-    viewMode: 'mobile' as const
-  };
-
   return (
-    <UnifiedCard
-      config={enhancedConfig}
-      context={cardContext}
+    <BaseCard
+      title={title}
+      description={description}
+      icon={getIcon()}
+      variant="property"
+      clickable
+      onClick={handleClick}
+      data-testid={testId || `availability-${availability}-card`}
+      className="layera-card-uniform"
     />
   );
 };

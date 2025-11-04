@@ -1,8 +1,8 @@
 # CategoryCard Migration Validation Report
 
-## ✅ Migration Στόχος: CategoryCard → UnifiedCard
+## ✅ Migration Στόχος: CategoryCard → BaseCard
 
-Επιτυχής μετατροπή του CategoryCard component από BaseCard wrapper σε UnifiedCard configuration-driven implementation.
+Επιτυχής μετατροπή του CategoryCard component από BaseCard wrapper σε BaseCard configuration-driven implementation.
 
 ## 📊 Migration Summary
 
@@ -38,7 +38,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
 
 ### Μετά (Unified CategoryCard):
 ```typescript
-// Configuration-driven με UnifiedCard system
+// Configuration-driven με BaseCard system
 export const CategoryCard: React.FC<CategoryCardProps> = ({
   context,
   categoryType,
@@ -48,7 +48,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
   onInfoClick
 }) => {
   // Factory-based configuration
-  const cardConfig = createCategoryCard({
+  const cardConfig = BaseCard({
     categoryType,
     title,
     icon,
@@ -63,7 +63,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
   };
 
   return (
-    <UnifiedCard
+    <BaseCard
       config={enhancedConfig}
       context={cardContext}
     />
@@ -82,7 +82,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
 - ❌ Manual variant handling → ✅ Automatic variant resolution
 
 ### 3. **Reusability**
-- ❌ Single-purpose component → ✅ UnifiedCard powers multiple card types
+- ❌ Single-purpose component → ✅ BaseCard powers multiple card types
 - ❌ Duplicated logic → ✅ Shared configuration system
 
 ### 4. **Maintainability**
@@ -91,9 +91,9 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
 
 ## 🔧 Technical Implementation
 
-### createCategoryCard Factory:
+### BaseCard Factory:
 ```typescript
-export function createCategoryCard(data: {
+export function BaseCard(data: {
   categoryType: 'property' | 'job';
   title: string;
   icon: React.ReactNode;
@@ -111,7 +111,7 @@ export function createCategoryCard(data: {
     testId: `category-${data.categoryType}-card`
   } as const;
 
-  return createSelectionCard(
+  return BaseCard(
     data.onInfoClick
       ? { ...baseConfig, onInfoClick: data.onInfoClick }
       : baseConfig
@@ -141,7 +141,7 @@ const cardContext = {
 - Automatic variant resolution
 
 ### Performance:
-- React.memo optimization in UnifiedCard
+- React.memo optimization in BaseCard
 - Callback memoization
 - Context-aware rendering
 
@@ -165,7 +165,7 @@ const cardContext = {
 
 **CategoryCard**: ✅ **COMPLETED**
 - Legacy wrapper removed
-- UnifiedCard system integrated
+- BaseCard system integrated
 - Factory configuration implemented
 - Type safety maintained
 - Performance optimized

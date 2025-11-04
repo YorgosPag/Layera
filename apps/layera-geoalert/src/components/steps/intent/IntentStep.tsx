@@ -127,9 +127,9 @@ export const IntentStep: React.FC<IntentStepProps> = ({
 
   const intentCards = getIntentCards();
 
-  // Enterprise LEGO Layout - CSS Variables
-  const containerStyles = utils.getCardStyles('vertical'); // Vertical για intent cards
-  const containerClass = utils.getCardContainerClass('vertical');
+  // ✅ SINGLE SOURCE OF TRUTH: Χρήση μόνο του LEGO Layout hook
+  const containerStyles = utils.getCardStyles('horizontal');
+  const containerClass = utils.getCardContainerClass('horizontal');
 
   // Early return αν δεν είναι visible ή δεν έχει category
   if (!isVisible || !context.selectedCategory) {
@@ -138,7 +138,7 @@ export const IntentStep: React.FC<IntentStepProps> = ({
 
   return (
     <>
-      <Box style={containerStyles} className={`${containerClass} layera-cards-grid`}>
+      <Box style={containerStyles} className={containerClass}>
         {intentCards.map((cardConfig: CardConfig) => (
           <BaseCard
             key={cardConfig.id}
@@ -149,6 +149,7 @@ export const IntentStep: React.FC<IntentStepProps> = ({
             onClick={(): void => handleIntentClick(cardConfig)}
             onInfoClick={() => handleInfoClick(cardConfig.id)}
             data-testid={`intent-card-${cardConfig.id}`}
+            style={{ flex: 1, minWidth: 0, maxWidth: 'none' }}
           />
         ))}
       </Box>

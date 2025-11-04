@@ -1,8 +1,8 @@
 /**
  * AreaMethodCard.tsx - Reusable Area Method Option Card
  *
- * Unified Card implementation για area method selection
- * Migrated από BaseCard wrapper στο νέο UnifiedCard system
+ * BaseCard implementation για area method selection
+ * Migrated πίσω στο BaseCard system ως Single Source of Truth
  */
 
 import React from 'react';
@@ -23,7 +23,7 @@ interface AreaMethodCardProps {
 
 /**
  * Area Method Selection Card
- * Powered by UnifiedCard configuration system
+ * Powered by BaseCard enterprise system
  */
 export const AreaMethodCard: React.FC<AreaMethodCardProps> = ({
   method,

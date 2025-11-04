@@ -128,7 +128,7 @@ interface ActionCardProps {
 ### 🧩 **Core Card Configuration Interface**
 ```typescript
 // Unified Card Configuration που καλύπτει όλα τα patterns
-export interface UnifiedCardConfig {
+export interface BaseCardConfig {
   // ============= CORE IDENTIFICATION =============
   id: string;
   type: 'selection' | 'tool' | 'data' | 'action';
@@ -156,23 +156,23 @@ export interface UnifiedCardConfig {
 }
 
 // Context-specific configurations
-export interface SelectionCardConfig extends UnifiedCardConfig {
+export interface SelectionCardConfig extends BaseCardConfig {
   type: 'selection';
   selectionValue: unknown; // CategoryType, IntentType, etc.
 }
 
-export interface ToolCardConfig extends UnifiedCardConfig {
+export interface ToolCardConfig extends BaseCardConfig {
   type: 'tool';
   toolValue: unknown;
   isSelected?: boolean;
 }
 
-export interface DataCardConfig extends UnifiedCardConfig {
+export interface DataCardConfig extends BaseCardConfig {
   type: 'data';
   content: React.ReactNode;
 }
 
-export interface ActionCardConfig extends UnifiedCardConfig {
+export interface ActionCardConfig extends BaseCardConfig {
   type: 'action';
   actionValue: unknown;
   priority?: 'primary' | 'secondary';
@@ -182,8 +182,8 @@ export interface ActionCardConfig extends UnifiedCardConfig {
 ### 🏗️ **Unified Card Component Architecture**
 ```typescript
 // Single Unified Card Component που αντικαθιστά όλα τα 13 Cards
-export interface UnifiedCardProps {
-  config: UnifiedCardConfig;
+export interface BaseCardProps {
+  config: BaseCardConfig;
   context?: {
     category?: 'property' | 'job';
     step?: string;
@@ -191,7 +191,7 @@ export interface UnifiedCardProps {
   };
 }
 
-export const UnifiedCard: React.FC<UnifiedCardProps> = ({ config, context }) => {
+export const BaseCard: React.FC<BaseCardProps> = ({ config, context }) => {
   // Dynamic variant resolution
   const variant = getCardVariant(config, context);
 
@@ -224,7 +224,7 @@ export const UnifiedCard: React.FC<UnifiedCardProps> = ({ config, context }) => 
 
 ### ✅ **Code Reduction**
 - **Before**: 13 διαφορετικά Card components (13 files)
-- **After**: 1 UnifiedCard + Configuration objects (1 file + configs)
+- **After**: 1 BaseCard + Configuration objects (1 file + configs)
 - **Reduction**: ~85% λιγότερος duplicate code
 
 ### ✅ **Consistency**
@@ -246,8 +246,8 @@ export const UnifiedCard: React.FC<UnifiedCardProps> = ({ config, context }) => 
 
 ## 🚀 MIGRATION STRATEGY
 
-### 📋 **Phase 1: UnifiedCard Component Creation**
-1. Create UnifiedCard component στο @layera/cards
+### 📋 **Phase 1: BaseCard Component Creation**
+1. Create BaseCard component στο @layera/cards
 2. Implement configuration system
 3. Add variant resolution logic
 4. Add content rendering system
@@ -259,7 +259,7 @@ export const UnifiedCard: React.FC<UnifiedCardProps> = ({ config, context }) => 
 4. Convert remaining cards to appropriate configs
 
 ### 📋 **Phase 3: Component Replacement**
-1. Replace Card components με UnifiedCard usage
+1. Replace Card components με BaseCard usage
 2. Update imports στα Step components
 3. Remove duplicate Card files
 4. Update tests
@@ -274,7 +274,7 @@ export const UnifiedCard: React.FC<UnifiedCardProps> = ({ config, context }) => 
 
 ## 🎯 IMMEDIATE NEXT ACTIONS
 
-1. **Create UnifiedCard component** στο @layera/cards package
+1. **Create BaseCard component** στο @layera/cards package
 2. **Implement configuration interfaces** με TypeScript
 3. **Test με 2-3 existing Cards** για validation
 4. **Begin systematic migration** των υπόλοιπων Cards
