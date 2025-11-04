@@ -1,5 +1,5 @@
 // React imports
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 // Enterprise LEGO Design System imports
 import { Button } from '@layera/buttons';
@@ -113,15 +113,13 @@ function TestNotificationsComponent() {
   };
 
   return (
-    <BaseCard
-      variant="secondary"
-      padding="lg"
-      margin="md"
-      borderWidth="md"
-      borderColor="success">
-      <Heading as="h3" size="lg" color="primary" className="layera-mb-4">
-        🧪 LEGO Systems Test Panel
-      </Heading>
+    <Box margin={`${SPACING_SCALE.MD}px`}>
+      <BaseCard
+        variant="info"
+        padding="lg">
+        <Heading as="h3" size="lg" color="primary" className="layera-mb-4">
+          🧪 LEGO Systems Test Panel
+        </Heading>
 
       <Box
         display="grid"
@@ -181,7 +179,8 @@ function TestNotificationsComponent() {
           ✅ Integration Testing: Όλα τα LEGO components λειτουργούν μαζί!
         </Text>
       </Box>
-    </BaseCard>
+      </BaseCard>
+    </Box>
   );
 }
 
@@ -340,17 +339,19 @@ function App() {
 
                 <TestNotificationsComponent />
 
-                <BaseCard
-                  variant="secondary"
-                  padding="lg"
-                  marginY="xl"
+                <Box
+                  marginY={`${SPACING_SCALE.XL}px`}
                   maxWidth={`${SPACING_SCALE.XXXL * 8}px`}
                   marginLeft="auto"
                   marginRight="auto"
                 >
-                  <Heading as="h3" size="lg" color="primary" className="layera-mb-4 layera-flex layera-items-center layera-gap-2">
-                    <CheckIcon size="xs" theme="success" /> {t('geoalert.statusCheck')}
-                  </Heading>
+                  <BaseCard
+                    variant="info"
+                    padding="lg"
+                  >
+                    <Heading as="h3" size="lg" color="primary" className="layera-mb-4 layera-flex layera-items-center layera-gap-2">
+                      <CheckIcon size="xs" theme="success" /> {t('geoalert.statusCheck')}
+                    </Heading>
                   <Box>
                     <Text size="base" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
                       <CheckIcon size="xs" theme="success" /> {t('geoalert.port')}: 3003
@@ -377,7 +378,8 @@ function App() {
                       <CheckIcon size="xs" theme="success" /> Unified Layout System με fullscreen-map layout
                     </Text>
                   </Box>
-                </BaseCard>
+                  </BaseCard>
+                </Box>
 
                 <Button
                   onClick={(): void => {
