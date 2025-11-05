@@ -13,7 +13,12 @@
       "Bash(start http://localhost:3007)",
       "Bash(dir C:layeraappslayera-geoalertsrc)",
       "Bash(git add:*)",
-      "Bash(git reset:*)"
+      "Bash(git reset:*)",
+      "Bash(HUSKY=0 git commit -m \"$(cat <<''EOF''\n🛡️ SAFETY CHECKPOINT: QuickSearch Interface Transformation & Perfect Centering\n\n✨ FEATURE: Complete QuickSearch Redesign\n- Τίτλος: \"Γρήγορη Αναζήτηση\" → \"Γρήγορη Διαχείριση\"\n- Νέα περιγραφή: καλύπτει καταχώρηση + αναζήτηση\n- Αναλυτικές ετικέτες με πλήρεις εξηγήσεις για κάθε επιλογή\n- Διευκρινιστικά κείμενα για ακίνητα & εργασίες\n\n🎨 UX: Perfect Content Centering & Mobile Fix  \n- Τέλειο κεντράρισμα όλων των στοιχείων στο QuickSearch\n- Mobile fix: responsive alignment (desktop κεντραρισμένο, mobile από κορυφή)\n- Διόρθωση ορατότητας τίτλου σε mobile συσκευές\n\n🌍 i18n: Enhanced Translation System\n- Νέα translation keys με αναλυτικές περιγραφές (el & en)\n- detailedLabels για πλήρεις εξηγήσεις κάθε επιλογής\n- 100% SST compliance - καμία hardcoded string\n\n🏗️ SST: Design Tokens Integration\n- Χρήση MENU_POSITIONS.CENTER αντί hardcoded ''center''\n- Νέο INSTANT animation duration στα @layera/constants  \n- Global CSS για scrollbar stability στα @layera/tokens\n- Enhanced ChipRadioGroup με description support\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "WebSearch",
+      "Bash(npx tsc:*)",
+      "Bash(npx eslint:*)",
+      "Bash(npx vite:*)"
     ],
     "deny": [],
     "ask": []

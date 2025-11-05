@@ -28,6 +28,33 @@ export type StepId =
 export type CategoryType = 'property' | 'job' | null;
 export type IntentType = 'offer' | 'search' | null;
 export type TransactionType = 'rent' | 'sale' | 'full_time' | 'part_time' | 'freelance' | 'internship' | null;
+
+// 🚀 QUICK SEARCH TYPES - Single Source of Truth για quick search functionality
+export type QuickSearchKind = 'property' | 'job' | null;
+export type QuickSearchIntent = 'offer' | 'search' | null;
+export type QuickSearchPurpose = 'sell' | 'rent' | null;
+export type QuickSearchTimeframe = 'now' | 'future' | null;
+
+// 🎯 QUICK SEARCH STATE INTERFACE - Enterprise SST
+export interface QuickSearchState {
+  /** Θέλω να: Προσφέρω/Αναζητώ */
+  intent: QuickSearchIntent;
+  /** Τι: Ακίνητο/Εργασία */
+  kind: QuickSearchKind;
+  /** Αν Ακίνητο: Πώληση/Ενοικίαση (null όταν kind='job') */
+  purpose: QuickSearchPurpose;
+  /** Πότε: Άμεσα/Για το μέλλον */
+  timeframe: QuickSearchTimeframe;
+}
+
+// 🔧 QUICK SEARCH DEFAULTS - Single Source of Truth
+// ⚠️ FIX: Αλλάζω σε null values για να ξεκινάει από το πρώτο βήμα
+export const QUICK_SEARCH_DEFAULTS: QuickSearchState = {
+  intent: null,     // ✅ Ξεκινάει κενό για Progressive Disclosure
+  kind: null,       // ✅ Ξεκινάει κενό για Progressive Disclosure
+  purpose: null,    // ✅ Ξεκινάει κενό για Progressive Disclosure
+  timeframe: null   // ✅ Ξεκινάει κενό για Progressive Disclosure
+};
 export type EmploymentType = 'full_time' | 'part_time' | 'freelance' | 'internship' | 'contract' | null;
 export type LocationType = 'map' | 'area' | 'address' | null;
 export type DetailsType = 'form' | 'quick' | 'advanced' | null;
@@ -216,4 +243,14 @@ export interface StepRegistryInterface {
 
   /** Set flow configuration */
   setFlow(flowConfig: StepFlowConfig): void;
+}
+
+
+
+// ✅ Card Option για chip interfaces
+export interface CardOption<T extends string> {
+  value: T;
+  label: string;
+  icon?: React.ReactNode;
+  disabled?: boolean;
 }

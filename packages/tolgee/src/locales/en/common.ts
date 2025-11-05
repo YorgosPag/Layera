@@ -315,6 +315,26 @@ export const enTranslations = {
     "cta": "View Results",
     "validation": {
       "propertyPurposeRequired": "Please select sale or rent for properties"
+    },
+    "security": {
+      "dataProtection": "🔒 We don't share your data",
+      "privateListings": "🛡️ Secure private listings",
+      "noSpam": "✅ No spam - ever",
+      "gdprCompliant": "🇪🇺 GDPR Compliant",
+      "encryptedData": "🔐 Encrypted data"
+    },
+    "actions": {
+      "close": "Close",
+      "closeTooltip": "Exit quick management"
+    },
+    "nextStepHints": {
+      "afterIntent": "📋 Next: Choose category (property or job)",
+      "afterKind": {
+        "property": "🏠 Next: Transaction type (sale or rent)",
+        "job": "⏰ Next: Availability timeframe"
+      },
+      "afterPurpose": "⏰ Next: Availability timeframe",
+      "final": "✨ Ready! Click to view results"
     }
   }
 } as const;

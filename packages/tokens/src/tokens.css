@@ -302,3 +302,15 @@ html {
 :root {
   scrollbar-gutter: stable both-edges; /* cross-element σταθερό κέντρο */
 }
+
+/* Progressive Disclosure Animations - Research-backed UX Enhancement */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

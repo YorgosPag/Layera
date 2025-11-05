@@ -203,8 +203,9 @@ function App() {
   };
 
   const handleNewEntryClick = (): void => {
-    // Ενεργοποίηση του modular step system (CategoryStep)
-    setShowCategoryElements(true);
+    // Ενεργοποίηση του QuickSearch interface αντί για κάρτες
+    // Το QuickSearch interface θα εμφανιστεί μέσω quickSearchMode=true στο StepOrchestrator
+    setShowCategoryElements(true); // Αυτό θα πυροδοτήσει το GeoMapNew που έχει quickSearchMode=true
   };
 
   // 🧡 ΠΡΟΣΩΡΙΝΟ: Handler για step navigation από GeoMap
@@ -262,7 +263,7 @@ function App() {
                   onNewEntryClick={handleNewEntryClick}
                 />
               }
-              className={`geo-map-shell ${showCategoryElements ? 'hide-header' : ''}`}
+              className="geo-map-shell"
             >
               <ViewportFrame id="layera-device-simulator-viewport">
                 <GeoMap

@@ -23,6 +23,7 @@ import { Button } from '@layera/buttons';
 import { Text, Heading } from '@layera/typography';
 import { BaseCard } from '@layera/cards';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
+import { CloseIcon } from '@layera/icons';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { stepRegistry } from './StepRegistry';
 import {
@@ -90,6 +91,7 @@ export interface StepOrchestratorProps {
 // ✅ INLINE QUICK SEARCH COMPONENT - Ενσωματωμένο στο StepOrchestrator για SST compliance
 interface InlineQuickSearchPanelProps {
   onSearch?: (state: QuickSearchState) => void;
+  onClose?: () => void;
   initialState?: Partial<QuickSearchState>;
 }
 
@@ -190,9 +192,11 @@ function ChipRadioGroup<T extends string>({
 
 const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
   onSearch,
+  onClose,
   initialState = {}
 }) => {
   const { t } = useLayeraTranslation();
+
   // Removed theme dependency due to provider issue - using static colors
 
   // ✅ State με προεπιλογές από το έγγραφο
@@ -201,8 +205,33 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
     ...initialState
   });
 
+  // 🎯 Progressive Disclosure State - Research-backed UX enhancement
+  const [visibleSteps, setVisibleSteps] = useState<number>(1); // Start με step 1 μόνο
+
+
   // ✅ Validation logic από το έγγραφο
   const isValid = state.kind === 'job' || (state.kind === 'property' && state.purpose !== null);
+
+  // ✅ Research-backed next-step hints για uncertainty reduction
+  const getNextStepHint = (): string => {
+    if (state.intent && state.kind && state.timeframe && isValid) {
+      return t('quickSearch.nextStepHints.final');
+    }
+    if (state.intent && state.kind && (state.kind === 'job' || state.purpose)) {
+      return t('quickSearch.nextStepHints.afterPurpose');
+    }
+    if (state.intent && state.kind) {
+      if (state.kind === 'job') {
+        return t('quickSearch.nextStepHints.afterKind.job');
+      } else {
+        return t('quickSearch.nextStepHints.afterKind.property');
+      }
+    }
+    if (state.intent) {
+      return t('quickSearch.nextStepHints.afterIntent');
+    }
+    return '';
+  };
 
   // ✅ Handler για αλλαγή kind - αν επιλέξει "job", purpose γίνεται null
   const handleKindChange = (kind: QuickSearchKind) => {
@@ -211,7 +240,24 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
       kind,
       purpose: kind === 'job' ? null : prev.purpose || 'rent'
     }));
+
+    // 🎯 Progressive Disclosure: Show step 3 after kind selection
+    if (visibleSteps < 3) {
+      setTimeout(() => setVisibleSteps(3), ANIMATION_DURATIONS.FAST);
+    }
   };
+
+  // 🎯 Progressive Disclosure: Auto-reveal handlers με SST animations
+  React.useEffect(() => {
+    // Step 2 appears after Intent selection
+    if (state.intent && visibleSteps < 2) {
+      setTimeout(() => setVisibleSteps(2), ANIMATION_DURATIONS.FAST);
+    }
+    // Step 4 appears after Purpose/Kind completion
+    if (state.intent && state.kind && (state.kind === 'job' || state.purpose) && visibleSteps < 4) {
+      setTimeout(() => setVisibleSteps(4), ANIMATION_DURATIONS.FAST);
+    }
+  }, [state.intent, state.kind, state.purpose, visibleSteps]);
 
   // ✅ Options για κάθε ομάδα chips
   const intentOptions: CardOption<QuickSearchIntent>[] = [
@@ -245,19 +291,45 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
         padding: `${SPACING_SCALE.LG}px`,
         display: 'block',
         width: '100%',
-        maxWidth: `${SPACING_SCALE.CONTAINER_MD}px`, // 520px equivalent από SST
-        margin: '0 auto'
+        maxWidth: `${SPACING_SCALE.CONTAINER_MD}px`,
+        margin: '0 auto',
+        position: 'relative'
       }}
     >
+      {/* Close Button - Research-backed anxiety reduction */}
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => {
+          // Reset form state and provide clear exit
+          setState({ intent: null, kind: null, purpose: null, timeframe: null });
+          setVisibleSteps(1);
+          onClose?.();
+        }}
+        style={{
+          position: 'absolute',
+          top: `var(--${CSS_DESIGN_TOKENS.spacing['spacing-sm']})`,
+          right: `var(--${CSS_DESIGN_TOKENS.spacing['spacing-sm']})`,
+          padding: `var(--${CSS_DESIGN_TOKENS.spacing['spacing-xs']})`,
+          minWidth: 'auto',
+          color: `var(--${CSS_DESIGN_TOKENS.colors['color-text-secondary']})`,
+          zIndex: CSS_DESIGN_TOKENS.zIndex['z-index-elevated']
+        }}
+        title={t('quickSearch.actions.closeTooltip')}
+        aria-label={t('quickSearch.actions.close')}
+      >
+        <CloseIcon size="sm" />
+      </Button>
+
       <Flex direction="column" gap="xl" style={{ minWidth: 'initial', alignItems: 'center' }}>
         <Box textAlign="center">
           <Heading size="lg" marginBottom="sm" style={{
-            color: 'var(--color-text-primary)'
+            color: `var(--${CSS_DESIGN_TOKENS.colors['color-text-primary']})`
           }}>
             {t('quickSearch.title')}
           </Heading>
           <Text size="md" style={{
-            color: 'var(--color-text-secondary)'
+            color: `var(--${CSS_DESIGN_TOKENS.colors['color-text-secondary']})`
           }}>
             {t('quickSearch.subtitle')}
           </Text>
@@ -266,16 +338,16 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
         {/* Main Selection Grid */}
         <Box
           style={{
-            backgroundColor: 'var(--color-bg-elevated)',
-            borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
-            padding: `${SPACING_SCALE.MD}px`,
-            border: `${SPACING_SCALE.XXS}px solid var(--color-border-solid)`,
+            backgroundColor: `var(--${CSS_DESIGN_TOKENS.colors['color-bg-surface']})`,
+            borderRadius: `var(--${CSS_DESIGN_TOKENS.borderRadius['border-radius-lg']})`,
+            padding: `var(--${CSS_DESIGN_TOKENS.spacing['spacing-md']})`,
+            border: `1px solid var(--${CSS_DESIGN_TOKENS.colors['color-border-default']})`,
             alignSelf: 'center',
             width: '100%'
           }}
         >
           <Flex direction="column" gap="lg" style={{ alignItems: 'center' }}>
-          {/* 1. Θέλω να: Προσφέρω | Αναζητώ */}
+          {/* 1. Θέλω να: Προσφέρω | Αναζητώ - Always visible */}
           <ChipRadioGroup
             name="intent"
             value={state.intent}
@@ -285,36 +357,63 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
             description={t('quickSearch.labels.intentDescription')}
           />
 
-          {/* 2. Τι: Ακίνητο | Εργασία */}
-          <ChipRadioGroup
-            name="kind"
-            value={state.kind}
-            onChange={handleKindChange}
-            options={kindOptions}
-            label={t('quickSearch.labels.kindQuestion')}
-            description={t('quickSearch.labels.kindDescription')}
-          />
+          {/* 2. Τι: Ακίνητο | Εργασία - Progressive reveal */}
+          {visibleSteps >= 2 && (
+            <div style={{
+              animation: `slideIn ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`,
+              opacity: visibleSteps >= 2 ? 1 : 0,
+              transform: visibleSteps >= 2 ? 'translateY(0)' : 'translateY(10px)',
+              transition: `all ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`
+            }}>
+              <ChipRadioGroup
+                name="kind"
+                value={state.kind}
+                onChange={handleKindChange}
+                options={kindOptions}
+                label={t('quickSearch.labels.kindQuestion')}
+                description={t('quickSearch.labels.kindDescription')}
+              />
+            </div>
+          )}
 
-          {/* 3. Αν Ακίνητο: Πώληση | Ενοικίαση (disabled όταν kind=job) */}
-          <ChipRadioGroup
-            name="purpose"
-            value={state.purpose || 'rent'}
-            onChange={(purpose) => setState(prev => ({ ...prev, purpose }))}
-            options={purposeOptions}
-            disabled={state.kind === 'job'}
-            label={t('quickSearch.labels.purposeQuestion')}
-            description={t('quickSearch.labels.purposeDescription')}
-          />
+          {/* 3. Αν Ακίνητο: Πώληση | Ενοικίαση - Progressive reveal */}
+          {visibleSteps >= 3 && state.kind === 'property' && (
+            <div style={{
+              animation: `slideIn ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`,
+              opacity: visibleSteps >= 3 ? 1 : 0,
+              transform: visibleSteps >= 3 ? 'translateY(0)' : 'translateY(10px)',
+              transition: `all ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`
+            }}>
+              <ChipRadioGroup
+                name="purpose"
+                value={state.purpose || 'rent'}
+                onChange={(purpose) => setState(prev => ({ ...prev, purpose }))}
+                options={purposeOptions}
+                disabled={state.kind === 'job'}
+                label={t('quickSearch.labels.purposeQuestion')}
+                description={t('quickSearch.labels.purposeDescription')}
+              />
+            </div>
+          )}
 
-          {/* 4. Πότε: Άμεσα | Για το μέλλον */}
-          <ChipRadioGroup
-            name="timeframe"
-            value={state.timeframe}
-            onChange={(timeframe) => setState(prev => ({ ...prev, timeframe }))}
-            options={timeframeOptions}
-            label={t('quickSearch.labels.timeframeQuestion')}
-            description={t('quickSearch.labels.timeframeDescription')}
-          />
+          {/* 4. Πότε: Άμεσα | Για το μέλλον - Progressive reveal */}
+          {visibleSteps >= 4 && (
+            <div style={{
+              animation: `slideIn ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`,
+              opacity: visibleSteps >= 4 ? 1 : 0,
+              transform: visibleSteps >= 4 ? 'translateY(0)' : 'translateY(10px)',
+              transition: `all ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`
+            }}>
+              <ChipRadioGroup
+                name="timeframe"
+                value={state.timeframe}
+                onChange={(timeframe) => setState(prev => ({ ...prev, timeframe }))}
+                options={timeframeOptions}
+                label={t('quickSearch.labels.timeframeQuestion')}
+                description={t('quickSearch.labels.timeframeDescription')}
+              />
+            </div>
+          )}
           </Flex>
         </Box>
 
@@ -354,15 +453,51 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
             </Text>
           )}
 
+          {/* Security Indicators - Research-backed trust building */}
+          <Flex
+            direction="row"
+            gap="sm"
+            justifyContent="center"
+            style={{
+              marginTop: `${SPACING_SCALE.MD}px`,
+              marginBottom: `${SPACING_SCALE.XS}px`,
+              flexWrap: 'wrap'
+            }}
+          >
+            <Text size="xs" style={{ color: 'var(--color-text-secondary)' }}>
+              {t('quickSearch.security.dataProtection')}
+            </Text>
+            <Text size="xs" style={{ color: 'var(--color-text-secondary)' }}>
+              {t('quickSearch.security.noSpam')}
+            </Text>
+          </Flex>
+
+          {/* Next-Step Preview - Research-backed uncertainty reduction */}
+          {getNextStepHint() && (
+            <Text
+              size="sm"
+              textAlign="center"
+              style={{
+                color: 'var(--color-interactive-primary)',
+                marginTop: `${SPACING_SCALE.SM}px`,
+                marginBottom: `${SPACING_SCALE.XS}px`,
+                fontWeight: 'var(--la-font-weight-medium)',
+                animation: `slideIn ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`
+              }}
+            >
+              {getNextStepHint()}
+            </Text>
+          )}
+
           <Text
             size="xs"
             textAlign="center"
             style={{
               color: 'var(--color-text-tertiary)',
-              marginTop: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`
+              marginTop: `${SPACING_SCALE.XS}px`
             }}
           >
-{t('quickSearch.helpText')}
+            {t('quickSearch.helpText')}
           </Text>
         </Box>
       </Flex>
@@ -428,16 +563,6 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
       customData: {}
     };
 
-    // 🔍 DEBUG LOGGING για context changes
-    if (process.env.NODE_ENV === 'development') {
-      console.log('🎯 StepOrchestrator.stepContext BUILT:', {
-        currentStepId: context.currentStepId,
-        selectedCategory: context.selectedCategory,
-        selectedIntent: context.selectedIntent,
-        completedSteps: Array.from(context.completedSteps),
-        timestamp: new Date().toISOString()
-      });
-    }
 
     return context;
   }, [currentStepId, selectedCategory, selectedIntent, selectedTransactionType, selectedEmploymentType, selectedOccupation, selectedLocation, selectedDetails, selectedPricing, selectedReview, completedSteps, featureFlags]);
@@ -451,20 +576,15 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
   const [pendingNavigation, setPendingNavigation] = React.useState<string | null>(null);
 
   React.useEffect(() => {
+    // 🚫 DISABLE AUTO-NAVIGATION σε quickSearchMode
+    if (quickSearchMode) {
+      return;
+    }
+
     if (pendingNavigation) {
       const currentIndex = availableSteps.findIndex(step => step.id === pendingNavigation);
       const nextStep = availableSteps[currentIndex + 1];
 
-      // 🔍 DEBUG LOGGING για auto-navigation
-      if (process.env.NODE_ENV === 'development') {
-        console.log('🚀 StepOrchestrator.AUTO-NAVIGATION:', {
-          pendingNavigation,
-          currentIndex,
-          nextStepId: nextStep?.id,
-          availableStepsIds: availableSteps.map(s => s.id),
-          timestamp: new Date().toISOString()
-        });
-      }
 
       if (nextStep && onStepChange) {
         onStepChange(nextStep.id);
@@ -472,7 +592,7 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
 
       setPendingNavigation(null);
     }
-  }, [availableSteps, pendingNavigation, onStepChange]);
+  }, [availableSteps, pendingNavigation, onStepChange, quickSearchMode]);
 
   // 🎯 Find current step definition
   const currentStep = useMemo(() => {
@@ -507,8 +627,12 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
   const handleStepComplete = useCallback((stepId: StepId, data?: unknown) => {
     // ✅ ΚΑΘΑΡΗ ΛΥΣΗ: Ενημέρωση context + pending navigation
     onStepComplete?.(stepId, data);
-    setPendingNavigation(stepId); // Trigger navigation μετά το context update
-  }, [onStepComplete]);
+
+    // 🚫 DISABLE AUTO-NAVIGATION σε quickSearchMode
+    if (!quickSearchMode) {
+      setPendingNavigation(stepId); // Trigger navigation μετά το context update
+    }
+  }, [onStepComplete, quickSearchMode]);
 
   // 🎨 Render step cards
   const renderStepCards = useCallback((step: StepDefinition) => {
@@ -557,19 +681,18 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
     return renderCardsContainer ? renderCardsContainer(cardElements) : cardElements;
   }, [stepContext, selectedCategory, selectedIntent, renderCardsContainer]);
 
-  // ✅ QUICK SEARCH MODE - Inline implementation χωρίς external component
+
+  // ✅ QUICK SEARCH MODE - ΠΡΙΝ ΑΠΟ ΟΛΑ ΤΑ ΑΛΛΑ CHECKS - HIGHEST PRIORITY
   if (quickSearchMode) {
     return (
       <InlineQuickSearchPanel
         onSearch={(quickSearchState) => {
-          // ✅ Convert QuickSearch state to StepContext
-          console.log('🔍 QuickSearch completed:', quickSearchState);
-
-          // TODO: Convert quickSearchState to proper step navigation
-          // For now, just trigger onStepComplete with the data
-          handleStepComplete('category', {
-            selectedCategory: quickSearchState.kind === 'property' ? 'property' : 'job'
-          });
+          // Handle QuickSearch selection and transition to normal step flow
+          if (onStepComplete && quickSearchState.kind) {
+            onStepComplete('category', {
+              selectedCategory: quickSearchState.kind === 'property' ? 'property' : 'job'
+            });
+          }
         }}
       />
     );
