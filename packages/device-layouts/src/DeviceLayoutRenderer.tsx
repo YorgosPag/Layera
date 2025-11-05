@@ -8,20 +8,11 @@
 import React from 'react';
 import { Box } from '@layera/layout';
 // 🚀 ENTERPRISE: Single Source of Truth - Enhanced @layera/viewport
-import { useIPhone14ProMaxDetection } from '@layera/viewport';
 // 🚀 ENTERPRISE: Single Source of Truth - Device specs from @layera/constants
-import { IPHONE_14_PRO_MAX_SPECS, DEVICE_BREAKPOINTS } from '@layera/constants';
+import { DEVICE_BREAKPOINTS } from '@layera/constants';
 import { DeviceLayoutRendererProps, ResponsiveLayoutConfig, DeviceType } from './types';
 
 const DEFAULT_LAYOUT_CONFIG: ResponsiveLayoutConfig = {
-  iphone: {
-    width: IPHONE_14_PRO_MAX_SPECS.VIEWPORT_WIDTH,
-    height: IPHONE_14_PRO_MAX_SPECS.VIEWPORT_HEIGHT,
-    containerStyle: {
-      position: 'relative',
-      overflow: 'hidden'
-    }
-  },
   tablet: {
     containerStyle: {
       width: '100%',
@@ -58,12 +49,6 @@ export const DeviceLayoutRenderer: React.FC<DeviceLayoutRendererProps> = ({
   showCategoryElements = false,
   fab
 }) => {
-  // 🚀 ENTERPRISE SINGLE SOURCE OF TRUTH: Enhanced @layera/viewport
-  const isIPhone14ProMax = useIPhone14ProMaxDetection({
-    frameSelector: '.device-frame-wrapper',
-    enableWindowFallback: true,
-    enableUserAgentFallback: true
-  });
 
   // Auto-detect device type αν δεν δίνεται - ENTERPRISE EDITION
   const detectedDeviceType = React.useMemo((): DeviceType => {
@@ -75,10 +60,6 @@ export const DeviceLayoutRenderer: React.FC<DeviceLayoutRendererProps> = ({
       return propDeviceType;
     }
 
-    // 🏆 ENTERPRISE: Χρήση της επίσημης Single Source of Truth
-    if (isIPhone14ProMax) {
-      return 'iphone';
-    }
 
     // Fallback για άλλες συσκευές
     if (typeof window === 'undefined') {
@@ -91,7 +72,7 @@ export const DeviceLayoutRenderer: React.FC<DeviceLayoutRendererProps> = ({
     } else {
       return 'desktop';
     }
-  }, [propDeviceType, forceDeviceType, isIPhone14ProMax]);
+  }, [propDeviceType, forceDeviceType]);
 
   // Merge configuration
   const finalConfig = {
@@ -99,84 +80,6 @@ export const DeviceLayoutRenderer: React.FC<DeviceLayoutRendererProps> = ({
     ...layoutConfig
   };
 
-  // iPhone rendering
-  // ΣΗΜΑΝΤΙΚΟ: Αφαιρέθηκαν τα console.log για αποφυγή infinite render loops
-  // που προκαλούσαν εξαφάνιση του FAB στο iPhone 14 Pro Max
-
-  if (detectedDeviceType === 'iphone') {
-    const config = finalConfig.iphone;
-    const iPhoneComponents = components?.iphone || {};
-
-    return (
-      <Box
-        style={{
-          width: config.width,
-          height: config.height,
-          ...config.containerStyle
-        }}
-      >
-        {/* Main device component */}
-        {iPhoneComponents.map && React.createElement(iPhoneComponents.map, {
-          ...commonProps,
-          isIPhone14ProMaxDevice: true
-        })}
-
-        {/* Conditional stepper rendering */}
-        {showCategoryElements && iPhoneComponents.stepper && navigation && (
-          React.createElement(iPhoneComponents.stepper, {
-            currentStep: navigation.currentStep,
-            totalSteps: navigation.totalSteps,
-            stepIndex: navigation.stepIndex,
-            selectedCategory: navigation.selectedCategory,
-            onNext: navigationHandlers?.onNext,
-            onPrevious: navigationHandlers?.onPrevious,
-            onReset: navigationHandlers?.onReset,
-            onStepClick: navigationHandlers?.onStepClick,
-            canGoNext: navigation.canGoNext,
-            canGoPrevious: navigation.canGoBack
-          })
-        )}
-
-        {/* 🚀 UNIFIED STEP ORCHESTRATOR: Handles ALL steps including category */}
-        {showCategoryElements && iPhoneComponents.orchestrator && navigation && (
-          React.createElement(iPhoneComponents.orchestrator, {
-            currentStepId: navigation.currentStep!,
-            selectedCategory: navigation.selectedCategory ?? 'property',
-            // selectedIntent: TO DO: Add to navigation service
-            // Removed unsupported props that cause TypeScript errors
-            // πέρασε μόνο όσα handlers υπάρχουν
-            ...(navigationHandlers?.onNext ? { onNext: navigationHandlers.onNext } : {}),
-            ...(navigationHandlers?.onPrevious ? { onPrevious: navigationHandlers.onPrevious } : {}),
-            onStepChange: (stepId) => {
-              // ✅ ΚΡΙΣΙΜΗ ΔΙΟΡΘΩΣΗ: Το onStepChange πρέπει να αλλάζει το currentStepId!
-              // Αντί να καλεί απλά onNext(), πρέπει να κάνει actual step change
-              if (navigationHandlers?.onStepChange) {
-                // Καλώ το πραγματικό onStepChange που αλλάζει το state
-                navigationHandlers.onStepChange(stepId);
-              } else {
-                console.warn(`⚠️ DeviceLayoutRenderer: onStepChange handler missing!`);
-              }
-            },
-            onStepComplete: async (stepId, data) => {
-              // Ειδική λογική για category step - χρειάζεται selectCategory πρώτα
-              if (stepId === 'category' && data && typeof data === 'object' && 'selectedCategory' in data) {
-                // ✅ ΥΛΟΠΟΙΗΣΗ: Καλούμε selectCategory πρώτα, μετά το StepOrchestrator κάνει το navigation
-                try {
-                  if (navigationHandlers?.selectCategory) {
-                    await navigationHandlers.selectCategory(data.selectedCategory as string);
-                  }
-                } catch (error) {
-                  console.error('❌ DeviceLayoutRenderer: selectCategory failed:', error);
-                }
-              }
-            },
-            deviceProps: { isIPhone14ProMaxDevice: true, isMobile: true },
-          })
-        )}
-
-      </Box>
-    );
-  }
 
   // Desktop rendering
   if (detectedDeviceType === 'desktop') {

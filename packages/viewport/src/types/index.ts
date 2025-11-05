@@ -16,8 +16,6 @@ export interface ViewportInfo {
   isDesktop: boolean;
   isPortrait: boolean;
   isLandscape: boolean;
-  // 🆕 ENHANCED: iPhone 14 Pro Max detection
-  isIPhone14ProMax: boolean;
 }
 
 export interface ViewportBreakpoints {

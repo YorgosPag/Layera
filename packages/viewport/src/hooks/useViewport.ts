@@ -13,12 +13,6 @@ const DEVICE_BREAKPOINTS = {
   DESKTOP: 1024
 };
 
-const DEVICE_VIEWPORTS = {
-  IPHONE_6_7_8: { width: 375, height: 667 },
-  IPHONE_11_XR: { width: 414, height: 896 },
-  IPHONE_14_PRO_MAX: { width: 430, height: 932 },
-  IPHONE_12_13_14: { width: 390, height: 844 }
-};
 import { ViewportInfo, DeviceType, Orientation } from '../types';
 
 // 🚀 ENTERPRISE: All constants moved to @layera/constants - Single Source of Truth
@@ -42,7 +36,6 @@ export const useViewport = (): ViewportInfo => {
         isDesktop: true,
         isPortrait: false,
         isLandscape: true,
-        isIPhone14ProMax: false
       };
     }
 
@@ -62,7 +55,6 @@ export const useViewport = (): ViewportInfo => {
       isDesktop: deviceType === 'desktop',
       isPortrait: orientation === 'portrait',
       isLandscape: orientation === 'landscape',
-      isIPhone14ProMax: false
     };
   });
 
@@ -89,8 +81,7 @@ export const useViewport = (): ViewportInfo => {
           isDesktop: deviceType === 'desktop',
           isPortrait: orientation === 'portrait',
           isLandscape: orientation === 'landscape',
-          isIPhone14ProMax: false
-        });
+          });
       }, 100);
     };
 
@@ -121,11 +112,6 @@ function getDeviceType(width: number): DeviceType {
       navigator.userAgent.includes('iPad') ||
       // Browser simulator detection - όταν το viewport είναι μικρό αλλά το screen μεγάλο
       (width <= 430 && window.screen.width > 1000) ||
-      // Specific mobile simulator sizes
-      (width === DEVICE_VIEWPORTS.IPHONE_6_7_8.width && window.innerHeight === DEVICE_VIEWPORTS.IPHONE_6_7_8.height) || // iPhone 6/7/8
-      (width === DEVICE_VIEWPORTS.IPHONE_11_XR.width && window.innerHeight === DEVICE_VIEWPORTS.IPHONE_11_XR.height) || // iPhone 11/XR
-      (width === DEVICE_VIEWPORTS.IPHONE_14_PRO_MAX.width && window.innerHeight === DEVICE_VIEWPORTS.IPHONE_14_PRO_MAX.height) || // iPhone 14 Pro Max
-      (width === DEVICE_VIEWPORTS.IPHONE_12_13_14.width && window.innerHeight === DEVICE_VIEWPORTS.IPHONE_12_13_14.height) || // iPhone 12/13/14
       // DevTools mobile simulation indicators
       window.orientation !== undefined ||
       'ontouchstart' in window ||
@@ -187,12 +173,4 @@ export const useOrientation = (): Orientation => {
   return orientation;
 };
 
-/**
- * 🍎 ABSORBED: iPhone 14 Pro Max detection from @layera/device-detection
- * ENTERPRISE Single Source of Truth implementation
- */
-export const useIPhone14ProMaxDetection = (): boolean => {
-  const { isIPhone14ProMax } = useViewport();
-  return isIPhone14ProMax;
-};
 

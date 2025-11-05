@@ -16,10 +16,10 @@
 
 | Issue ID | Depends On | Blocks | Parallel Safe | Risk Level |
 |----------|------------|--------|---------------|------------|
-| **[MOB-001](../mobile/IPHONE_14_PRO_MAX_PIPELINE_AUDIT.md#console-log-elimination)** | None | MOB-004, PKG-002 | ✅ Yes | 🚨 HIGH |
-| **[MOB-002](../mobile/IPHONE_14_PRO_MAX_PIPELINE_AUDIT.md#hardcoded-magic-values)** | I18N-002 | MOB-003 | ⚠️ Partial | 🚨 HIGH |
-| **[MOB-003](../mobile/IPHONE_14_PRO_MAX_PIPELINE_AUDIT.md#massive-inline-styling)** | MOB-002 | PERF-001 | ❌ No | 🚨 HIGH |
-| **[MOB-004](../mobile/IPHONE_14_PRO_MAX_PIPELINE_AUDIT.md#component-size-violations)** | HOOK-002 | None | ✅ Yes | 🔶 MEDIUM |
+| **[MOB-001](../mobile/-.md#console-log-elimination)** | None | MOB-004, PKG-002 | ✅ Yes | 🚨 HIGH |
+| **[MOB-002](../mobile/-.md#hardcoded-magic-values)** | I18N-002 | MOB-003 | ⚠️ Partial | 🚨 HIGH |
+| **[MOB-003](../mobile/-.md#massive-inline-styling)** | MOB-002 | PERF-001 | ❌ No | 🚨 HIGH |
+| **[MOB-004](../mobile/-.md#component-size-violations)** | HOOK-002 | None | ✅ Yes | 🔶 MEDIUM |
 | **[PKG-001](../packages/PACKAGE_BUILD_ISSUES.md#pkg-001)** | None | I18N-001 | ✅ Yes | ✅ RESOLVED |
 | **[PKG-002](../packages/PACKAGE_BUILD_ISSUES.md#pkg-002)** | PKG-001 | MOB-001, HOOK-003 | ❌ No | 🔶 MEDIUM |
 | **[PKG-003](../packages/PACKAGE_BUILD_ISSUES.md#pkg-003)** | PKG-002 | All Development | ❌ No | 🔶 MEDIUM |
@@ -305,7 +305,7 @@ Phase 3 Success:
 
 ### **Issue Cross-References**
 - **[ISSUES_INDEX.md](../ISSUES_INDEX.md)**: Master tracking document
-- **[Mobile Issues](../mobile/)**: iPhone 14 Pro Max pipeline problems
+- **[Mobile Issues](../mobile/)**: - pipeline problems
 - **[Package Issues](../packages/)**: Build and dependency problems
 - **[Architecture Issues](../architecture/)**: React patterns and hooks
 

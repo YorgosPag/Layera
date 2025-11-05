@@ -105,13 +105,13 @@ import { useLayeraTranslation } from '@layera/i18n';
 ```mermaid
 graph LR
     A[@layera/viewport] --> B[DeviceSimulator]
-    B --> C[iPhone components]
+    B --> C[- components]
     C --> A
 ```
 
 **Files Involved:**
 - `packages/viewport/src/components/DeviceSimulator.tsx`
-- `apps/layera-geoalert/src/components/device-specific/mobile/iphone-14-pro-max/`
+- `apps/layera-geoalert/src/components/device-specific/mobile/-/`
 
 ##### **B) @layera/tolgee ↔ @layera/i18n**
 **Πρόβλημα:** Overlapping functionality μεταξύ i18n packages
@@ -335,7 +335,7 @@ tsc --noEmit --skipLibCheck packages/*/dist/index.d.ts
 
 **Related Issues:**
 - **[I18N-001, I18N-002](I18N_SYSTEM_AUDIT.md)**: Provider configuration depends on package exports
-- **[MOB-001, MOB-002](../mobile/IPHONE_14_PRO_MAX_PIPELINE_AUDIT.md)**: Mobile components rely on LEGO packages
+- **[MOB-001, MOB-002](../mobile/-.md)**: Mobile components rely on LEGO packages
 - **[HOOK-001](../architecture/REACT_HOOKS_VIOLATIONS.md)**: React violations relate to component dependencies
 
 **Dependencies:**

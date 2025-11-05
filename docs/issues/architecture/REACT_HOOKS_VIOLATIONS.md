@@ -2,7 +2,7 @@
 **📅 Ημερομηνία:** 22 Οκτωβρίου 2025
 **👨‍💼 Επιβλέπων Αρχιτέκτονας:** Γιώργος Παγώνης
 **🔍 Αναλυτής:** Claude Code Enterprise Analysis
-**🔗 Cross-Reference:** [ISSUES_INDEX.md](../ISSUES_INDEX.md) | [IPHONE_14_PRO_MAX_PIPELINE_AUDIT.md](../mobile/IPHONE_14_PRO_MAX_PIPELINE_AUDIT.md)
+**🔗 Cross-Reference:** [ISSUES_INDEX.md](../ISSUES_INDEX.md) | [-.md](../mobile/-.md)
 
 ---
 
@@ -29,7 +29,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({...}) => {
 
   // Device detection logic...
 
-  if (isIPhone14ProMaxDevice) {
+  if (is-) {
     // ❌ HOOKS VIOLATION - useRef inside conditional
     const screenRef = useRef<HTMLDivElement>(null);
 
@@ -54,7 +54,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({...}) => {
 
   // Device detection logic...
 
-  if (isIPhone14ProMaxDevice) {
+  if (is-) {
     // ✅ CORRECT - Use pre-declared ref
     return (
       <div ref={screenRef}>
@@ -500,7 +500,7 @@ const useErrorReporting = () => {
 ## 🔗 **CROSS-REFERENCES**
 
 **Related Issues:**
-- **[MOB-004](../mobile/IPHONE_14_PRO_MAX_PIPELINE_AUDIT.md#component-size-violations)**: Large components → more hooks complexity
+- **[MOB-004](../mobile/-.md#component-size-violations)**: Large components → more hooks complexity
 - **[PKG-002](../packages/PACKAGE_BUILD_ISSUES.md#pkg-002)**: Build issues affect hooks testing
 - **[I18N-001](../packages/I18N_SYSTEM_AUDIT.md#i18n-001)**: Provider hooks configurations
 

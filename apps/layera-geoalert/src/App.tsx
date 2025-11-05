@@ -12,7 +12,7 @@ import { NotificationProvider, useNotifications } from '@layera/notifications';
 import { ThemeProvider, ThemeSwitcher } from '@layera/theme-switcher';
 import { useLayeraTranslation, LanguageSwitcher } from '@layera/tolgee';
 import { Text, Heading } from '@layera/typography';
-import { useViewportWithOverride, DeviceOverrideProvider, useIPhone14ProMaxDetection } from '@layera/viewport';
+import { useViewportWithOverride, DeviceOverrideProvider } from '@layera/viewport';
 
 // Global Styles Import - CRITICAL για uniform card styling
 import '@layera/styles';
@@ -190,12 +190,6 @@ function App() {
   // 🧡 ΠΡΟΣΩΡΙΝΟ: State για πορτοκαλί κουμπί step navigation
   const [stepNavigation, setStepNavigation] = useState<{ onPrevious: () => void; canGoBack: boolean } | null>(null);
 
-  // 🚀 ENTERPRISE: Single Source of Truth - iPhone detection από @layera/viewport
-  const finalIsIPhone = useIPhone14ProMaxDetection({
-    frameSelector: '.device-frame-wrapper',
-    enableWindowFallback: true,
-    enableUserAgentFallback: true
-  });
   const [, setSavedAreas] = useState<DrawnArea[]>([]);
 
   // REMOVED: Device frame wrapper - πλέον πάντοτε responsive mode
@@ -263,18 +257,17 @@ function App() {
                 <GeoHeader
                   onBackClick={() => setIsMapMode(false)}
                   onStepBackClick={stepNavigation?.canGoBack ? stepNavigation.onPrevious : undefined} // 🧡 ΠΡΟΣΩΡΙΝΟ: Πορτοκαλί κουμπί
-                  isIPhone14ProMax={finalIsIPhone}
+                  isMobileDevice={false}
                   onNewEntryClick={handleNewEntryClick}
                 />
               }
-              className={`geo-map-shell ${showCategoryElements && finalIsIPhone ? 'hide-header' : ''}`}
+              className={`geo-map-shell ${showCategoryElements ? 'hide-header' : ''}`}
             >
               <ViewportFrame id="layera-device-simulator-viewport">
                 <GeoMap
                   onAreaCreated={handleAreaCreated}
                   onNewEntryClick={handleNewEntryClick}
                   onStepNavigationReady={handleStepNavigationReady} // 🧡 ΠΡΟΣΩΡΙΝΟ: Step navigation callback
-                  isIPhone14ProMaxDevice={finalIsIPhone}
                   onCategoryElementsChange={setShowCategoryElements}
                   showCategoryElements={showCategoryElements}
                 />

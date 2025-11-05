@@ -157,7 +157,6 @@ export interface StepProps {
 
   /** Device-specific props */
   deviceProps?: {
-    isIPhone14ProMaxDevice?: boolean;
     isMobile?: boolean;
     isTablet?: boolean;
     isDesktop?: boolean;

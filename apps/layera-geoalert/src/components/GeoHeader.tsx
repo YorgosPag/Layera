@@ -10,16 +10,16 @@ import { SPACING_SCALE } from '@layera/constants';
 interface GeoHeaderProps {
   onBackClick?: () => void;
   onStepBackClick?: () => void; // 🧡 ΠΡΟΣΩΡΙΝΟ: Κουμπί για πηγαίνω πίσω στα steps
-  isIPhone14ProMax?: boolean;
+  isMobileDevice?: boolean;
   onNewEntryClick?: () => void;
 }
 
 /**
  * GeoHeader - Standardized header for GeoAlert app
  */
-export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, onStepBackClick, isIPhone14ProMax = false, onNewEntryClick }) => {
-  // Εμφάνιση εικονιδίων μόνο για iPhone
-  const showIcons = isIPhone14ProMax;
+export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, onStepBackClick, isMobileDevice = false, onNewEntryClick }) => {
+  // Εμφάνιση εικονιδίων για mobile συσκευές
+  const showIcons = isMobileDevice;
   const { t } = useLayeraTranslation();
 
   // Safe theme hook usage με fallback

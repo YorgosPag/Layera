@@ -1,6 +1,6 @@
 /**
- * AppHeader.tsx - iPhone app header με back button και τίτλος
- * Render μέσω FixedTopChrome για σταθερή εμφάνιση στο iOS
+ * AppHeader.tsx - Mobile app header με back button και τίτλος
+ * Render μέσω FixedTopChrome για σταθερή εμφάνιση σε mobile συσκευές
  */
 
 // React imports

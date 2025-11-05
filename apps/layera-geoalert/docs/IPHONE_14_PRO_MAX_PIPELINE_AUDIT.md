@@ -1,4 +1,4 @@
-# iPhone 14 Pro Max Pipeline System - Enterprise Code Audit Report
+# ΧΩΡΙΣ ΑΝΑΦΟΡΑ ΣΕ ΚΙΝΗΤΟ Pipeline System - Enterprise Code Audit Report
 
 **📋 Αναφορά:** Ανάλυση κώδικα και προτάσεις βελτίωσης
 **📅 Ημερομηνία:** 22 Οκτωβρίου 2025
@@ -9,7 +9,7 @@
 
 ## 🎯 **EXECUTIVE SUMMARY**
 
-Το iPhone 14 Pro Max Pipeline System αποτελεί ένα εξειδικευμένο mobile-first UI system που λειτουργεί αποκλειστικά στη device simulation του iPhone 14 Pro Max. Το σύστημα περιλαμβάνει:
+Το ΧΩΡΙΣ ΑΝΑΦΟΡΑ ΣΕ ΚΙΝΗΤΟ Pipeline System αποτελεί ένα εξειδικευμένο mobile-first UI system που λειτουργεί αποκλειστικά στη device simulation του ΧΩΡΙΣ ΑΝΑΦΟΡΑ ΣΕ ΚΙΝΗΤΟ. Το σύστημα περιλαμβάνει:
 
 - **FloatingStepper**: Κύρια navigation interface (370 γραμμές κώδικα)
 - **CategoryStep**: Κάρτες επιλογής κατηγοριών (278 γραμμές κώδικα)
@@ -24,7 +24,7 @@
 
 ### Κύρια Components
 ```
-apps/layera-geoalert/src/components/device-specific/mobile/iphone-14-pro-max/components/
+apps/layera-geoalert/src/components/device-specific/mobile/ΧΩΡΙΣ ΑΝΑΦΟΡΑ ΣΕ ΚΙΝΗΤΟ/components/
 ├── FloatingStepper.tsx         (370 γραμμές)
 ├── CategoryStep.tsx            (278 γραμμές)
 ├── BaseCard.tsx               (168 γραμμές)
@@ -97,11 +97,11 @@ const nextStepContainerStyles = { /* same styles */ };
 
 #### **F) Mobile-Specific Hardcoding**
 **Τοποθεσία:** FloatingStepper.tsx:153,156
-**Πρόβλημα:** iPhone-specific dimensions
+**Πρόβλημα:** ΧΩΡΙΣ ΑΝΑΦΟΡΑ ΣΕ ΚΙΝΗΤΟ-specific dimensions
 ```typescript
 // ❌ ΛΑΘΟΣ - Device-specific hardcoding
-const frameWidth = 430;  // iPhone 14 Pro Max only
-const frameHeight = 932; // iPhone 14 Pro Max only
+const frameWidth = 430;  // ΧΩΡΙΣ ΑΝΑΦΟΡΑ ΣΕ ΚΙΝΗΤΟ only
+const frameHeight = 932; // ΧΩΡΙΣ ΑΝΑΦΟΡΑ ΣΕ ΚΙΝΗΤΟ only
 ```
 
 ---
@@ -286,7 +286,7 @@ describe('FloatingStepper', () => {
 - LEGO package dependencies
 
 ### **Visual Regression Testing**
-- iPhone 14 Pro Max specific layouts
+- ΧΩΡΙΣ ΑΝΑΦΟΡΑ ΣΕ ΚΙΝΗΤΟ specific layouts
 - Dark/light theme variations
 - Animation state testing
 
@@ -309,7 +309,7 @@ describe('FloatingStepper', () => {
 
 ## 🏁 **CONCLUSION & NEXT STEPS**
 
-Το iPhone 14 Pro Max Pipeline System αποτελεί ένα **λειτουργικό αλλά χρήζει βελτίωσης** σύστημα. Η αρχιτεκτονική βάση είναι σωστή (TypeScript, LEGO integration, component composition) αλλά η υλοποίηση χρειάζεται **άμεση refactoring** για να συμμορφωθεί με enterprise standards.
+Το ΧΩΡΙΣ ΑΝΑΦΟΡΑ ΣΕ ΚΙΝΗΤΟ Pipeline System αποτελεί ένα **λειτουργικό αλλά χρήζει βελτίωσης** σύστημα. Η αρχιτεκτονική βάση είναι σωστή (TypeScript, LEGO integration, component composition) αλλά η υλοποίηση χρειάζεται **άμεση refactoring** για να συμμορφωθεί με enterprise standards.
 
 ### **Άμεσες Ενέργειες (Αυτή την εβδομάδα):**
 1. 🚨 **Αφαίρεση όλων των console.log**
@@ -338,7 +338,7 @@ describe('FloatingStepper', () => {
 - **[DEPENDENCY_MATRIX.md](../../docs/issues/cross-cutting/DEPENDENCY_MATRIX.md)**: Issue dependencies
 
 ### **Issue Cross-Mapping**
-| iPhone Pipeline Issue | Enterprise Issue ID | Status | Priority |
+| ΧΩΡΙΣ ΑΝΑΦΟΡΑ ΣΕ ΚΙΝΗΤΟ Pipeline Issue | Enterprise Issue ID | Status | Priority |
 |----------------------|-------------------|--------|----------|
 | Console Logging | [MOB-001](../../docs/issues/ISSUES_INDEX.md#mobile-issues) | 🔴 OPEN | 🚨 HIGH |
 | Hardcoded Values | [MOB-002](../../docs/issues/ISSUES_INDEX.md#mobile-issues) | 🔴 OPEN | 🚨 HIGH |

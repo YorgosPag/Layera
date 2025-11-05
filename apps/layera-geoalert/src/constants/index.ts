@@ -2,10 +2,10 @@
  * Constants for Layera GeoAlert Application
  * Centralized configuration to eliminate hardcoded values
  *
- * Usage: import { APP_CONFIG, DEVICE_CONFIG, UI_CONFIG } from '@/constants';
+ * Usage: import { APP_CONFIG, UI_CONFIG } from '@/constants';
  */
 
-import { BORDER_RADIUS_SCALE, SPACING_SCALE, IPHONE_14_PRO_MAX_SPECS } from '@layera/constants';
+import { BORDER_RADIUS_SCALE, SPACING_SCALE } from '@layera/constants';
 
 // Application Configuration
 export const APP_CONFIG = {
@@ -22,22 +22,6 @@ export const APP_CONFIG = {
   }
 } as const;
 
-// 🚀 ENTERPRISE: Device Configuration - Single Source of Truth από @layera/constants
-export const DEVICE_CONFIG = {
-  iPhone14ProMax: {
-    width: IPHONE_14_PRO_MAX_SPECS.VIEWPORT_WIDTH,
-    height: IPHONE_14_PRO_MAX_SPECS.VIEWPORT_HEIGHT,
-    tolerance: {
-      widthMin: IPHONE_14_PRO_MAX_SPECS.FRAME_WIDTH_MIN,
-      widthMax: IPHONE_14_PRO_MAX_SPECS.FRAME_WIDTH_MAX,
-      heightMin: IPHONE_14_PRO_MAX_SPECS.FRAME_HEIGHT_MIN,
-      heightMax: IPHONE_14_PRO_MAX_SPECS.FRAME_HEIGHT_MAX
-    },
-    viewport: {
-      id: 'layera-device-simulator-viewport'
-    }
-  }
-} as const;
 
 // UI Block Configuration - Unified positioning system
 // Μοναδική πηγή αλήθειας για το positioning του stepper + κάρτες block
@@ -293,7 +277,6 @@ export { BORDER_RADIUS_SCALE, SPACING_SCALE };
 // Export all as default for convenience
 export default {
   APP_CONFIG,
-  DEVICE_CONFIG,
   UI_CONFIG,
   COLORS,
   ANIMATION_CONFIG,

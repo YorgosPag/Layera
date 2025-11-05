@@ -13,7 +13,12 @@ import { Button } from '@layera/buttons';
 import { BaseCard } from '@layera/cards';
 import type { StepProps, PricingType } from '../types';
 // χρησιμοποιούμε StepOrchestrator μόνο
-import { getCardsForStep, type CardConfig } from '../../device-specific/mobile/iphone-14-pro-max/components/cardData';
+// Removed device-specific card data imports
+type CardConfig = {
+  id: string;
+  titleKey: string;
+  icon?: React.ComponentType;
+};
 
 export interface PricingStepProps extends StepProps {
   /** Custom pricing selection handler */
@@ -39,44 +44,14 @@ export const PricingStep: React.FC<PricingStepProps> = ({
     return null;
   }
 
-  // 🎯 Context-aware card selection based on πλήρης pipeline
+  // Simplified pricing cards - removed device-specific logic
   const getPricingCards = (): readonly CardConfig[] => {
-    // Enhanced context-aware logic για pricing cards
-    if (context.selectedCategory === 'property') {
-      if (context.selectedIntent === 'offer') {
-        if (context.selectedLocation === 'map' && context.selectedDetails === 'form') {
-          return getCardsForStep('property-offer-map-form-pricing');
-        }
-        if (context.selectedLocation === 'area' && context.selectedDetails === 'quick') {
-          return getCardsForStep('property-offer-area-quick-pricing');
-        }
-        // Fallback για property-offer
-        return getCardsForStep('property-offer-pricing');
-      }
-      if (context.selectedIntent === 'search') {
-        if (context.selectedLocation === 'address' && context.selectedDetails === 'advanced') {
-          return getCardsForStep('property-search-address-advanced-pricing');
-        }
-        // Fallback για property-search
-        return getCardsForStep('property-search-pricing');
-      }
-      // Fallback για property
-      return getCardsForStep('property-pricing');
-    }
-
-    if (context.selectedCategory === 'job') {
-      if (context.selectedIntent === 'offer') {
-        return getCardsForStep('job-offer-pricing');
-      }
-      if (context.selectedIntent === 'search') {
-        return getCardsForStep('job-search-pricing');
-      }
-      // Fallback για job
-      return getCardsForStep('job-pricing');
-    }
-
-    // Final fallback
-    return getCardsForStep('pricing');
+    // Basic pricing options for all categories
+    return [
+      { id: 'budget', titleKey: 'pricing.budget' },
+      { id: 'premium', titleKey: 'pricing.premium' },
+      { id: 'custom', titleKey: 'pricing.custom' }
+    ];
   };
 
   // 🎮 Handle pricing selection

@@ -248,7 +248,7 @@ import { DrawnArea } from '@layera/geo-drawing';
 1. **LayeraIcons.jsx** - ✅ **ELIMINATED** (Phase 10+ Complete)
 2. **Custom styled components** - Multiple files with styled.* patterns
 3. **Inline CSS styles** - Heavy usage in mobile components
-4. **Device-specific duplicates** - iPhone-specific components
+4. **Device-specific duplicates** - --specific components
 
 #### **Non-LEGO Import Patterns**
 ```typescript
@@ -331,7 +331,7 @@ curl -s http://localhost:3001 > /dev/null && echo "✅ GeoAlert app OK"
 - **Impact**: Massive consistency improvement
 
 ### **Phase 12: Device-Specific Deduplication**
-- **Target**: iPhone-specific components → Universal LEGO
+- **Target**: --specific components → Universal LEGO
 - **Focus**: Mobile component consolidation
 - **Timeline**: 2-3 hours
 - **Impact**: Code maintainability boost

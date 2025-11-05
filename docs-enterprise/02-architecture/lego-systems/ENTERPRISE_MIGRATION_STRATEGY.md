@@ -480,7 +480,7 @@ echo "After migration:" && cat build-stats-after.json | jq '.size'
 # Δύο διαφορετικές πηγές για το ίδιο component:
 
 # 1. Local BaseCard (20+ αρχεία το χρησιμοποιούν)
-apps/layera-geoalert/src/components/device-specific/mobile/iphone-14-pro-max/components/BaseCard.tsx
+apps/layera-geoalert/src/components/device-specific/mobile/-/components/BaseCard.tsx
 
 # 2. LEGO BaseCard (4 αρχεία το χρησιμοποιούν)
 @layera/cards
@@ -497,7 +497,7 @@ apps/layera-geoalert/src/components/device-specific/mobile/iphone-14-pro-max/com
 **4.1.1 - Ανάλυση Διαφορών**:
 ```bash
 # Σύγκριση των δύο BaseCard implementations
-diff apps/layera-geoalert/src/components/device-specific/mobile/iphone-14-pro-max/components/BaseCard.tsx packages/cards/src/BaseCard.tsx
+diff apps/layera-geoalert/src/components/device-specific/mobile/-/components/BaseCard.tsx packages/cards/src/BaseCard.tsx
 
 # Ανάλυση dependencies κάθε έκδοσης
 grep -r "from.*BaseCard" apps/ packages/

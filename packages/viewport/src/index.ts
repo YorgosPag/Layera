@@ -16,9 +16,7 @@ export {
   useIsMobile,
   useIsTablet,
   useIsDesktop,
-  useOrientation,
-  // 🍎 ENHANCED: iPhone detection (absorbed from @layera/device-detection)
-  useIPhone14ProMaxDetection
+  useOrientation
 } from './hooks/useViewport';
 
 // Components

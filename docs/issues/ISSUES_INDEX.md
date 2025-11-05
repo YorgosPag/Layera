@@ -36,10 +36,10 @@
 ### 📱 **MOBILE ISSUES**
 | ID | Τίτλος | Κριτικότητα | Αρχείο | Κατάσταση |
 |----|--------|-------------|---------|-----------|
-| [MOB-001](mobile/IPHONE_14_PRO_MAX_PIPELINE_AUDIT.md#console-log-elimination) | Production Console Logging | 🚨 HIGH | FloatingStepper.tsx | OPEN |
-| [MOB-002](mobile/IPHONE_14_PRO_MAX_PIPELINE_AUDIT.md#hardcoded-magic-values) | Hardcoded Magic Values | 🚨 HIGH | Multiple files | OPEN |
-| [MOB-003](mobile/IPHONE_14_PRO_MAX_PIPELINE_AUDIT.md#massive-inline-styling) | Massive Inline Styling | 🚨 HIGH | BaseCard.tsx | OPEN |
-| [MOB-004](mobile/IPHONE_14_PRO_MAX_PIPELINE_AUDIT.md#component-size-violations) | Component Size Violations | 🔶 MED | FloatingStepper.tsx | OPEN |
+| [MOB-001](mobile/ΧΩΡΙΣ ΑΝΑΦΟΡΑ ΣΕ ΚΙΝΗΤΟ_PIPELINE_AUDIT.md#console-log-elimination) | Production Console Logging | 🚨 HIGH | FloatingStepper.tsx | OPEN |
+| [MOB-002](mobile/ΧΩΡΙΣ ΑΝΑΦΟΡΑ ΣΕ ΚΙΝΗΤΟ_PIPELINE_AUDIT.md#hardcoded-magic-values) | Hardcoded Magic Values | 🚨 HIGH | Multiple files | OPEN |
+| [MOB-003](mobile/ΧΩΡΙΣ ΑΝΑΦΟΡΑ ΣΕ ΚΙΝΗΤΟ_PIPELINE_AUDIT.md#massive-inline-styling) | Massive Inline Styling | 🚨 HIGH | BaseCard.tsx | OPEN |
+| [MOB-004](mobile/ΧΩΡΙΣ ΑΝΑΦΟΡΑ ΣΕ ΚΙΝΗΤΟ_PIPELINE_AUDIT.md#component-size-violations) | Component Size Violations | 🔶 MED | FloatingStepper.tsx | OPEN |
 
 ### 📦 **PACKAGE BUILD ISSUES**
 | ID | Τίτλος | Κριτικότητα | Package | Κατάσταση |
@@ -82,8 +82,8 @@ graph TD
 ## 📁 **ΑΝΑΛΥΤΙΚΕΣ ΑΝΑΦΟΡΕΣ**
 
 ### 📱 **Mobile Platform Issues**
-- **[iPhone 14 Pro Max Pipeline Audit](mobile/IPHONE_14_PRO_MAX_PIPELINE_AUDIT.md)**
-  - Comprehensive analysis του iPhone pipeline system
+- **[ΧΩΡΙΣ ΑΝΑΦΟΡΑ ΣΕ ΚΙΝΗΤΟ - Pipeline Audit](mobile/ΧΩΡΙΣ ΑΝΑΦΟΡΑ ΣΕ ΚΙΝΗΤΟ_PIPELINE_AUDIT.md)**
+  - Comprehensive analysis του ΧΩΡΙΣ ΑΝΑΦΟΡΑ ΣΕ ΚΙΝΗΤΟ pipeline system
   - 15+ console.log statements in production
   - Hardcoded mobile-specific dimensions
   - Inline styling violations

@@ -21,10 +21,10 @@
 - ✅ Data-driven card configuration system
 - ✅ BaseCard component με enterprise theming
 - ✅ LEGO Info Panels system integration
-- ✅ Responsive iPhone 14 Pro Max specific styling
+- ✅ Responsive - specific styling
 
 ### 3. **Device-Specific Architecture**
-- ✅ iPhone 14 Pro Max component isolation
+- ✅ - component isolation
 - ✅ Clean device detection system
 - ✅ Reusable BaseCard component
 - ✅ Unified cardData configuration
@@ -114,7 +114,7 @@ const infoContentProvider = React.useMemo(() =>
 
 ## 📱 Device-Specific Features
 
-### **iPhone 14 Pro Max Optimization**
+### **- Optimization**
 - ✅ Fixed positioning: `top: '161px'` για proper header clearance
 - ✅ Touch-optimized card sizing και spacing
 - ✅ Responsive gap system: `gap: '8px'`

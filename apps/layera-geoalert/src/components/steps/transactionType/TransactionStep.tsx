@@ -10,7 +10,6 @@ import { useLayeraTranslation } from '@layera/tolgee';
 //χρησιμοποιούμε StepOrchestrator μόνο
 import { BaseCard } from '@layera/cards';
 import { Box } from '@layera/layout';
-import { cardData, getCardsForStep, type CardConfig, type CardId } from '../../device-specific/mobile/iphone-14-pro-max/components/cardData';
 import { InfoPanel } from '@layera/info-panels';
 import {
   GEOALERT_INFO_CONTENT,
@@ -18,6 +17,9 @@ import {
 } from '@layera/info-panels';
 import type { StepProps, CategoryType } from '../types';
 import type { TransactionType } from './types';
+
+// Local types
+type CardId = string;
 
 export interface TransactionStepProps extends StepProps {
   /** Legacy compatibility */
@@ -112,7 +114,7 @@ export const TransactionStep: React.FC<TransactionStepProps> = ({
   }
 
   const transactionOptions = getTransactionOptions(context.selectedCategory);
-  const stepCards = getCardsForStep('transactionType');
+  // Simplified card data logic
 
   return (
     <Box className="transaction-step">

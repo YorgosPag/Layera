@@ -36,10 +36,10 @@ interface MapContainerProps {
   onAreaCreated?: (area: { id: string; type: string; coordinates: number[][]; name: string; category: string }) => void;
   onNewEntryClick?: () => void;
   hideDrawingControls?: boolean;
-  isIPhone14ProMaxDevice?: boolean;
+  isMobileDevice?: boolean;
 }
 
-const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClick, hideDrawingControls = false, isIPhone14ProMaxDevice = false }) => {
+const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClick, hideDrawingControls = false, isMobileDevice = false }) => {
   const { t } = useLayeraTranslation();
   const { isDesktop, isTablet, isMobile } = useViewportWithOverride();
   const mapContainerRef = useRef<HTMLDivElement>(null);

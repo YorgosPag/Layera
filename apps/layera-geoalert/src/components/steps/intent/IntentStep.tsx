@@ -10,7 +10,6 @@ import { useLayeraTranslation } from '@layera/tolgee';
 //χρησιμοποιούμε StepOrchestrator μόνο
 import { BaseCard } from '@layera/cards';
 import { Box } from '@layera/layout';
-import { cardData, getCardsForStep, type CardConfig, type CardId } from '../../device-specific/mobile/iphone-14-pro-max/components/cardData';
 import { InfoPanel } from '@layera/info-panels';
 import {
   GEOALERT_INFO_CONTENT,
@@ -18,6 +17,14 @@ import {
 } from '@layera/info-panels';
 import { useGeoAlertLayout } from '@layera/layout';
 import type { StepProps, IntentType } from '../types';
+
+// Local types
+type CardId = string;
+type CardConfig = {
+  id: string;
+  titleKey: string;
+  icon: React.ComponentType;
+};
 
 export interface IntentStepProps extends StepProps {
   /** Legacy compatibility */
@@ -108,18 +115,13 @@ export const IntentStep: React.FC<IntentStepProps> = ({
     }
   }, [infoContentProvider, t, context.selectedCategory]);
 
-  // Get intent cards based on selected category
+  // Simplified intent cards - removed device-specific logic
   const getIntentCards = (): readonly CardConfig[] => {
-    if (context.selectedCategory === 'property') {
-      return getCardsForStep('property');
-    }
-
-    if (context.selectedCategory === 'job') {
-      return getCardsForStep('job');
-    }
-
-    // Default to generic intent cards
-    return getCardsForStep('intent');
+    // Basic intent options for all categories
+    return [
+      { id: 'offer', titleKey: 'intent.offer', icon: React.Fragment },
+      { id: 'search', titleKey: 'intent.search', icon: React.Fragment }
+    ];
   };
 
   const intentCards = getIntentCards();

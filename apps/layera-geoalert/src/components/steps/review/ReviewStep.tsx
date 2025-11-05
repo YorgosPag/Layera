@@ -24,7 +24,12 @@ import {
 } from '@layera/layout';
 import type { StepProps, ReviewType } from '../types';
 //χρησιμοποιούμε StepOrchestrator μόνο
-import { getCardsForStep, type CardConfig } from '../../device-specific/mobile/iphone-14-pro-max/components/cardData';
+// Removed device-specific card data imports
+type CardConfig = {
+  id: string;
+  titleKey: string;
+  icon?: React.ComponentType;
+};
 
 export interface ReviewStepProps extends StepProps {
   /** Custom review action handler */
@@ -120,27 +125,14 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
     };
   }, [context, t]);
 
-  // 🎯 Context-aware card selection
+  // Simplified review cards - removed device-specific logic
   const getReviewCards = (): readonly CardConfig[] => {
-    // Enhanced logic για review cards based on complete pipeline
-    const fullPipeline = `${context.selectedCategory}-${context.selectedIntent}-${context.selectedLocation}-${context.selectedDetails}-${context.selectedPricing}`;
-
-    // Try specific pipeline first
-    const specificCards = getCardsForStep(`${fullPipeline}-review`);
-    if (specificCards.length > 0) {
-      return specificCards;
-    }
-
-    // Fallback to category-based review
-    if (context.selectedCategory === 'property') {
-      return getCardsForStep('property-review');
-    }
-    if (context.selectedCategory === 'job') {
-      return getCardsForStep('job-review');
-    }
-
-    // Final fallback
-    return getCardsForStep('review');
+    // Basic review options for all categories
+    return [
+      { id: 'edit', titleKey: 'review.edit' },
+      { id: 'confirm', titleKey: 'review.confirm' },
+      { id: 'restart', titleKey: 'review.restart' }
+    ];
   };
 
   // 🎮 Handle review mode changes

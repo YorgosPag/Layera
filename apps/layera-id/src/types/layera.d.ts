@@ -56,7 +56,6 @@ declare module '@layera/viewport' {
   };
 
   export const DeviceOverrideProvider: React.FC<{ children: React.ReactNode }>;
-  export const useIPhone14ProMaxDetection: () => boolean;
 }
 
 declare module '@layera/buttons' {

@@ -5,7 +5,6 @@
 
 import {
   APP_CONFIG,
-  DEVICE_CONFIG,
   UI_CONFIG,
   COLORS,
   ANIMATION_CONFIG,
@@ -19,7 +18,6 @@ import {
 
 // Extract types from const assertions
 export type AppConfig = typeof APP_CONFIG;
-export type DeviceConfig = typeof DEVICE_CONFIG;
 export type UIConfig = typeof UI_CONFIG;
 export type Colors = typeof COLORS;
 export type AnimationConfig = typeof ANIMATION_CONFIG;
@@ -35,7 +33,6 @@ export type CategoryType = 'property' | 'job';
 export type StepId = keyof typeof STEP_CONFIG.stepIds;
 
 // Device types
-export type DeviceViewport = typeof DEVICE_CONFIG.iPhone14ProMax.viewport.id;
 
 // Color scheme types
 export type CategoryColorScheme = keyof typeof COLORS.categories;
@@ -43,7 +40,6 @@ export type CategoryColorScheme = keyof typeof COLORS.categories;
 // Combined configuration type
 export interface LayeraConfig {
   app: AppConfig;
-  device: DeviceConfig;
   ui: UIConfig;
   colors: Colors;
   animation: AnimationConfig;

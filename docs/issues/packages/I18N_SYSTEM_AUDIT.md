@@ -59,7 +59,7 @@ import { TolgeeProvider } from '@layera/tolgee';
 // ❌ HARDCODED - Greek text
 <p className="mt-4 text-gray-600">Φόρτωση...</p>
 
-// apps/layera-geoalert/src/components/device-specific/mobile/iphone-14-pro-max/components/CategoryStep.tsx
+// apps/layera-geoalert/src/components/device-specific/mobile/-/components/CategoryStep.tsx
 // ❌ MULTIPLE HARDCODED - Category names
 "Ακίνητα", "Εργασία", "Real Estate", "Jobs"
 ```
@@ -378,7 +378,7 @@ npm run analyze:bundle
 
 **Related Issues:**
 - **[PKG-001](PACKAGE_BUILD_ISSUES.md#pkg-001)**: Tolgee export issues επηρεάζουν i18n setup
-- **[MOB-002](../mobile/IPHONE_14_PRO_MAX_PIPELINE_AUDIT.md#hardcoded-magic-values)**: Mobile hardcoded values include text
+- **[MOB-002](../mobile/-.md#hardcoded-magic-values)**: Mobile hardcoded values include text
 - **[PKG-003](PACKAGE_BUILD_ISSUES.md#pkg-003)**: Circular dependencies μεταξύ i18n packages
 
 **Dependencies:**

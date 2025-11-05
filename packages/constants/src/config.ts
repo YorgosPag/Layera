@@ -85,7 +85,7 @@ export const ESCO_NAMESPACES = {
 // ============================================================================
 
 /**
- * Device Frame Colors για Device Simulator
+ * Device Frame Colors - Design System
  */
 export const DEVICE_FRAME_COLORS = {
   SPACE_GRAY: '#1c1c1e',
@@ -149,9 +149,9 @@ export const LOCAL_URLS = {
 // ============================================================================
 
 /**
- * iPhone 14 Pro Max Specifications - Single Source of Truth
+ * Mobile Device Specifications - Single Source of Truth
  */
-export const IPHONE_14_PRO_MAX_SPECS = {
+export const MOBILE_DEVICE_SPECS = {
   VIEWPORT_WIDTH: 430,
   VIEWPORT_HEIGHT: 932,
   FRAME_WIDTH_MIN: 412,
@@ -176,16 +176,16 @@ export const DEVICE_BREAKPOINTS = {
  * Common Device Viewport Sizes
  */
 export const DEVICE_VIEWPORTS = {
-  // iPhone Models
-  IPHONE_6_7_8: { width: 375, height: 667 },
-  IPHONE_11_XR: { width: 414, height: 896 },
-  IPHONE_14_PRO_MAX: { width: IPHONE_14_PRO_MAX_SPECS.VIEWPORT_WIDTH, height: IPHONE_14_PRO_MAX_SPECS.VIEWPORT_HEIGHT },
-  IPHONE_12_13_14: { width: 390, height: 844 },
+  // Mobile Models
+  MOBILE_SMALL: { width: 375, height: 667 },
+  MOBILE_MEDIUM: { width: 414, height: 896 },
+  MOBILE_LARGE: { width: MOBILE_DEVICE_SPECS.VIEWPORT_WIDTH, height: MOBILE_DEVICE_SPECS.VIEWPORT_HEIGHT },
+  MOBILE_STANDARD: { width: 390, height: 844 },
 
   // Tablet Models
-  IPAD_MINI: { width: 768, height: 1024 },
-  IPAD_AIR: { width: 820, height: 1180 },
-  IPAD_PRO: { width: 1024, height: 1366 },
+  TABLET_MINI: { width: 768, height: 1024 },
+  TABLET_AIR: { width: 820, height: 1180 },
+  TABLET_PRO: { width: 1024, height: 1366 },
 } as const;
 
 // ============================================================================

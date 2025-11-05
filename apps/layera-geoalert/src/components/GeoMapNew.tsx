@@ -7,8 +7,6 @@
 
 import React, { useState, useMemo } from 'react';
 import { useViewportWithOverride } from '@layera/viewport';
-// 🚀 ENTERPRISE: Single Source of Truth - Enhanced @layera/viewport
-import { useIPhone14ProMaxDetection } from '@layera/viewport';
 // 🚀 ENTERPRISE: StepOrchestrator - ΜΟΝΑΔΙΚΗ Single Source of Truth
 import type { StepId, CategoryType, IntentType, StepContext } from './steps/types';
 import { stepRegistry } from './steps/StepRegistry';
@@ -22,10 +20,6 @@ import { UnifiedFAB } from '@layera/floating-action-buttons';
 import { CONFIG, SPACING_SCALE, PIPELINE_STEP } from '@layera/constants';
 import { COLORS } from '../constants';
 import { useLayeraTranslation } from '@layera/tolgee';
-import {
-  GeoMap as iPhone14ProMaxGeoMap,
-  FloatingStepper as iPhone14ProMaxFloatingStepper
-} from './device-specific/mobile/iphone-14-pro-max';
 import { CategoryStep } from './steps/category/CategoryStep';
 import { StepOrchestrator } from './steps/StepOrchestrator';
 // Import για auto-registration των modular steps
@@ -76,7 +70,6 @@ interface GeoMapProps {
   onNewEntryClick?: () => void;
   onStepNavigationReady?: (navProps: { onPrevious: () => void; canGoBack: boolean }) => void; // 🧡 ΠΡΟΣΩΡΙΝΟ: Εξαγωγή step navigation
   // REMOVED: Legacy unified pipeline props
-  isIPhone14ProMaxDevice?: boolean;
   onCategoryElementsChange?: (show: boolean) => void;
   showCategoryElements?: boolean;
   // REMOVED: isResponsiveMode - always responsive now
@@ -87,7 +80,6 @@ export const GeoMap: React.FC<GeoMapProps> = ({
   onNewEntryClick,
   onStepNavigationReady, // 🧡 ΠΡΟΣΩΡΙΝΟ: Step navigation callback
   // REMOVED: Legacy unified pipeline destructuring
-  isIPhone14ProMaxDevice = false,
   onCategoryElementsChange,
   showCategoryElements: showCatEls = false
   // REMOVED: isResponsiveMode parameter
@@ -95,15 +87,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
   const { isDesktop, isTablet, isMobile } = useViewportWithOverride();
   const { t } = useLayeraTranslation();
 
-  // 🚀 ENTERPRISE DEVICE DETECTION: @layera/viewport LEGO package - Single Source of Truth
-  const isDetectedIPhone14ProMax = useIPhone14ProMaxDetection({
-    frameSelector: '.device-frame-wrapper',
-    enableWindowFallback: true,
-    enableUserAgentFallback: true
-  });
 
-  // Hybrid approach: χρησιμοποιώ το prop από App.tsx αλλά με fallback το LEGO detection
-  const finalIPhone14ProMaxDecision = isIPhone14ProMaxDevice || isDetectedIPhone14ProMax;
 
   // ✅ ENTERPRISE NAVIGATION: StepOrchestrator integration - SINGLE SOURCE OF TRUTH
   // 🎯 StepContext state - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
@@ -317,14 +301,14 @@ export const GeoMap: React.FC<GeoMapProps> = ({
 
   // 🚀 ΦΑΣΗ 6: Enterprise Device Layout LEGO Package - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
   // CRITICAL FIX: Removing all useMemo to stop infinite loops
-  // 🔧 TEMPORARY: Force iPhone mode για testing IntentStep migration
-  const deviceType = 'iphone'; // finalIPhone14ProMaxDecision ? 'iphone' : (isDesktop ? 'desktop' : (isTablet ? 'tablet' : 'mobile'));
+  // Mobile device detection για responsive layout
+  const deviceType = isDesktop ? 'desktop' : (isTablet ? 'tablet' : 'mobile');
 
   const mapProps = {
     onAreaCreated,
     onNewEntryClick,
-    isIPhone14ProMaxDevice: finalIPhone14ProMaxDecision,
-    hideDrawingControls: finalIPhone14ProMaxDecision
+    isMobileDevice: false,
+    hideDrawingControls: false
   };
 
   // ΣΤΑΘΕΡΑ Components για αποφυγή re-render loops
@@ -347,17 +331,11 @@ export const GeoMap: React.FC<GeoMapProps> = ({
   ), []);
 
   const mapComponents = {
-    iPhone: iPhone14ProMaxGeoMap,
     desktop: DesktopMapComponent,
     tablet: TabletMapComponent,
     mobile: MobileMapComponent
   };
 
-  const iPhoneComponents = {
-    stepper: iPhone14ProMaxFloatingStepper,
-    category: CategoryStep, // ENABLED: Καθαρό enterprise CategoryStep
-    orchestrator: StepOrchestrator
-  };
 
   // 🚫 Διαγραφή navigationProps - είναι duplicate του navigation object
 
@@ -398,7 +376,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
         1. FAB VISIBILITY ISSUE FIX:
            Το FAB renderάρεται ΕΞΩ από το ResponsiveMapLayout για αποφυγή
            infinite re-rendering cycles που προκαλούσαν εξαφάνιση του FAB
-           στο iPhone 14 Pro Max. Αυτή η αρχιτεκτονική λύνει το πρόβλημα
+           στις mobile συσκευές. Αυτή η αρχιτεκτονική λύνει το πρόβλημα
            με τη χωριστή απόδοση ευθυνών:
            - ResponsiveMapLayout: Device layout orchestration
            - Parent component: FAB rendering και positioning

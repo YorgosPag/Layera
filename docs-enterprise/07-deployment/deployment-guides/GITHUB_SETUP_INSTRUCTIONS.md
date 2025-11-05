@@ -96,7 +96,7 @@ npm run dev:geo     # Port 3001 - GeoAlert app
 
 ## 📱 Device Support
 
-- ✅ iPhone 14 Pro Max optimization
+- ✅ - optimization
 - ✅ Responsive mobile-first design
 - ✅ Touch-optimized interactions
 

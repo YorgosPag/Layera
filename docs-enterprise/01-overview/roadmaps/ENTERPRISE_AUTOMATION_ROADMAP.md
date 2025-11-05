@@ -54,7 +54,7 @@ mv validate-snap-packages.js scripts/domains/validation/
 mv check-translations.js scripts/domains/i18n/
 
 # Cleanup legacy
-rm "C:Layeradebug-iphone.js"  # Delete unused debug script
+rm "C:Layeradebug--.js"  # Delete unused debug script
 ```
 
 #### **1.2 Package.json Integration Update**
