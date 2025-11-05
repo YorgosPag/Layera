@@ -263,6 +263,59 @@ export const enTranslations = {
     "title": "Title",
     "subtitle": "Subtitle",
     "newEntry": "New Entry"
+  },
+  "quickSearch": {
+    "title": "Quick Management",
+    "subtitle": "List or search for properties and jobs easily",
+    "helpText": "Quick selection with only 3-4 clicks",
+    "intent": {
+      "offer": "Offer",
+      "search": "Search"
+    },
+    "kind": {
+      "property": "Property",
+      "job": "Job"
+    },
+    "purpose": {
+      "sell": "Sale",
+      "rent": "Rent"
+    },
+    "timeframe": {
+      "now": "Now",
+      "future": "Future"
+    },
+    "labels": {
+      "intentQuestion": "What do you want to do?",
+      "intentDescription": "Choose whether you want to offer (list) or search",
+      "kindQuestion": "What type of listing?",
+      "kindDescription": "Properties for sale/rent or job positions",
+      "purposeQuestion": "Property transaction type:",
+      "purposeDescription": "Sale or rental of property (shown only for properties)",
+      "timeframeQuestion": "Timeframe:",
+      "timeframeDescription": "Immediately available/needed or for future use"
+    },
+    "detailedLabels": {
+      "intentOptions": {
+        "offer": "Offer - List a property or job position I have available",
+        "search": "Search - Look for a property or job I need"
+      },
+      "kindOptions": {
+        "property": "Property - Houses, apartments, offices, stores",
+        "job": "Job - Employment positions and career opportunities"
+      },
+      "purposeOptions": {
+        "sell": "Sale - Transfer of ownership with payment",
+        "rent": "Rent - Lease agreement with monthly payments"
+      },
+      "timeframeOptions": {
+        "now": "Now - Available or needed immediately",
+        "future": "Future - Planned for later"
+      }
+    },
+    "cta": "View Results",
+    "validation": {
+      "propertyPurposeRequired": "Please select sale or rent for properties"
+    }
   }
 } as const;
 

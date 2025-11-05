@@ -279,6 +279,7 @@ export const FONT_WEIGHTS = {
  * Animation Durations (in milliseconds)
  */
 export const ANIMATION_DURATIONS = {
+  INSTANT: 50,  // For instant button feedback
   FAST: 150,
   NORMAL: 300,
   SLOW: 500,

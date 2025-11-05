@@ -16,7 +16,7 @@ import { MapContainer } from './map/MapContainer';
 import { PlusIcon } from '@layera/icons';
 import { Box } from '@layera/layout';
 // REMOVED: UnifiedFAB - FAB functionality moved to header button
-import { CONFIG, SPACING_SCALE, PIPELINE_STEP } from '@layera/constants';
+import { CONFIG, SPACING_SCALE, PIPELINE_STEP, CSS_DESIGN_TOKENS } from '@layera/constants';
 import { COLORS } from '../constants';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { CategoryStep } from './steps/category/CategoryStep';
@@ -64,6 +64,13 @@ interface DrawnArea {
   };
 }
 
+interface MapComponentProps {
+  onAreaCreated?: (area: DrawnArea) => void;
+  onNewEntryClick?: () => void;
+  isMobileDevice: boolean;
+  hideDrawingControls: boolean;
+}
+
 interface GeoMapProps {
   onAreaCreated?: (area: DrawnArea) => void;
   onNewEntryClick?: () => void;
@@ -85,6 +92,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
 }) => {
   const { isDesktop, isTablet, isMobile } = useViewportWithOverride();
   const { t } = useLayeraTranslation();
+
 
 
 
@@ -270,7 +278,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
           categoryId,
           currentSelectedCategory: stepContext.selectedCategory,
           timestamp: new Date().toISOString(),
-          stack: new Error().stack?.slice(0, 500) // First 500 chars of stack trace
+          stack: new Error().stack?.slice(0, CONFIG.debug?.stackTraceLength ?? 500) // SST-based debug config
         });
       }
 
@@ -306,8 +314,8 @@ export const GeoMap: React.FC<GeoMapProps> = ({
   const mapProps = {
     onAreaCreated,
     onNewEntryClick,
-    isMobileDevice: false,
-    hideDrawingControls: false
+    isMobileDevice: !isDesktop && !isTablet, // SST-based device detection
+    hideDrawingControls: !CONFIG.features?.drawingControls ?? false
   };
 
   // ΣΤΑΘΕΡΑ Components για αποφυγή re-render loops
@@ -352,21 +360,39 @@ export const GeoMap: React.FC<GeoMapProps> = ({
 
       {/* StepOrchestrator - διαχειρίζεται όλα τα steps */}
       {showCatEls && (
-        <StepOrchestrator
-          currentStepId={stepContext.currentStepId}
-          selectedCategory={stepContext.selectedCategory}
-          selectedIntent={stepContext.selectedIntent}
-          selectedTransactionType={stepContext.selectedTransactionType}
-          selectedEmploymentType={stepContext.selectedEmploymentType}
-          selectedOccupation={stepContext.selectedOccupation}
-          selectedLocation={stepContext.selectedLocation}
-          selectedDetails={stepContext.selectedDetails}
-          selectedPricing={stepContext.selectedPricing}
-          selectedReview={stepContext.selectedReview}
-          completedSteps={stepContext.completedSteps}
-          onStepChange={navigationHandlersProps.onStepChange}
-          onStepComplete={navigationHandlersProps.onStepComplete}
-        />
+        <Box
+          position="fixed"
+          style={{
+            inset: 0, // σωστό πλήρες κάλυμμα
+            backgroundColor: 'var(--color-bg-overlay)',
+            backdropFilter: `blur(${SPACING_SCALE.XS}px)`,
+            zIndex: CSS_DESIGN_TOKENS.zIndex['z-index-map-modal'],
+            padding: CSS_DESIGN_TOKENS.spacing['spacing-lg'],
+            overflowY: CSS_DESIGN_TOKENS.positioning['overflow-auto'],
+            scrollbarGutter: 'stable both-edges', // αποφεύγει οπτικό drift
+            display: 'flex',
+            alignItems: isMobile ? 'flex-start' : 'center',
+            justifyContent: 'center',
+            boxSizing: 'border-box'
+          }}
+        >
+          <StepOrchestrator
+            currentStepId={stepContext.currentStepId}
+            selectedCategory={stepContext.selectedCategory}
+            selectedIntent={stepContext.selectedIntent}
+            quickSearchMode={true}
+            selectedTransactionType={stepContext.selectedTransactionType}
+            selectedEmploymentType={stepContext.selectedEmploymentType}
+            selectedOccupation={stepContext.selectedOccupation}
+            selectedLocation={stepContext.selectedLocation}
+            selectedDetails={stepContext.selectedDetails}
+            selectedPricing={stepContext.selectedPricing}
+            selectedReview={stepContext.selectedReview}
+            completedSteps={stepContext.completedSteps}
+            onStepChange={navigationHandlersProps.onStepChange}
+            onStepComplete={navigationHandlersProps.onStepComplete}
+          />
+        </Box>
       )}
 
       {/* FAB functionality moved to header button */}

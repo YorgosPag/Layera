@@ -182,6 +182,22 @@
   --la-gradient-stepped-horizontal: linear-gradient(90deg, hsl(217deg 91% 60%) 25%, hsl(217deg 91% 55%) 50%, hsl(217deg 83% 47%) 75%);
   --la-gradient-stepped-vertical: linear-gradient(180deg, hsl(217deg 91% 60%) 25%, hsl(217deg 91% 55%) 50%, hsl(217deg 83% 47%) 75%);
 
+  /* QuickSearch Solid Containers - No transparency */
+  --color-bg-solid: hsl(0deg 0% 100%);
+  --color-bg-elevated: hsl(210deg 40% 98%);
+  --color-border-solid: hsl(214deg 32% 91%);
+
+  /* QuickSearch Interactive States - Light Mode */
+  --color-interactive-primary: hsl(217deg 91% 60%);
+  --color-interactive-primary-hover: hsl(217deg 91% 55%);
+  --color-bg-interactive: hsl(214deg 95% 93%);
+  --color-text-interactive: hsl(222deg 84% 5%);
+  --color-text-inverse: hsl(0deg 0% 100%);
+  --color-text-primary: hsl(222deg 84% 5%);
+  --color-text-secondary: hsl(215deg 16% 47%);
+  --color-border-interactive: hsl(217deg 91% 60%);
+  --color-border-strong: hsl(215deg 16% 47%);
+
   /* Legacy aliases for backward compatibility - These will be deprecated */
   --color-bg-surface-overlay-light: var(--la-color-surface-overlay);
   --color-bg-surface-overlay-medium: var(--la-color-surface-disabled);
@@ -260,4 +276,29 @@
   --la-bg-info: hsl(217deg 91% 60%);
   --la-bg-warning: hsl(21deg 90% 48%);
   --la-bg-danger: hsl(0deg 84% 60%);
+
+  /* QuickSearch Dark Solid Containers - No transparency */
+  --color-bg-solid: hsl(222deg 84% 5%);
+  --color-bg-elevated: hsl(221deg 39% 11%);
+  --color-border-solid: hsl(217deg 32% 17%);
+
+  /* QuickSearch Interactive States - Dark Mode */
+  --color-interactive-primary: hsl(217deg 91% 60%);
+  --color-interactive-primary-hover: hsl(217deg 91% 65%);
+  --color-bg-interactive: hsl(217deg 32% 17%);
+  --color-text-interactive: hsl(210deg 40% 98%);
+  --color-text-inverse: hsl(222deg 84% 5%);
+  --color-text-primary: hsl(210deg 40% 98%);
+  --color-text-secondary: hsl(214deg 32% 83%);
+  --color-border-interactive: hsl(217deg 91% 60%);
+  --color-border-strong: hsl(214deg 32% 83%);
+}
+
+/* Global Layout Rules - Scrollbar Stability for Perfect Centering */
+html {
+  overflow-y: scroll; /* πάντα δεσμεύει χώρο για τη μπάρα */
+}
+
+:root {
+  scrollbar-gutter: stable both-edges; /* cross-element σταθερό κέντρο */
 }
