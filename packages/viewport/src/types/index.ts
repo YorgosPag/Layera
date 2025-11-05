@@ -1,6 +1,6 @@
 // Layera Shared - Viewport Detection Types
 // Enterprise pattern: Consistent device detection across all apps
-// 🚀 ENHANCED: Absorbed iPhone detection from @layera/device-detection
+// 🚀 ENHANCED: Absorbed mobile detection from @layera/device-detection
 
 export type DeviceType = 'mobile' | 'tablet' | 'desktop';
 export type Orientation = 'portrait' | 'landscape';

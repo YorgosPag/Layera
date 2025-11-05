@@ -16,7 +16,7 @@ export const VARIANT_COLORS: Record<FABVariant, string> = {
   warning: 'var(--la-bg-warning, var(--la-color-warning))'
 };
 export type FABPosition = 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left' | 'center';
-export type DeviceType = 'mobile' | 'tablet' | 'desktop' | 'iphone';
+export type DeviceType = 'mobile' | 'tablet' | 'desktop';
 
 export interface FABProps {
   /** Click handler για το FAB button */
@@ -100,10 +100,6 @@ export interface ResponsiveFABConfig {
     spacing: { right: number; bottom: number; };
   };
   desktop: {
-    size: number;
-    spacing: { right: number; bottom: number; };
-  };
-  iphone: {
     size: number;
     spacing: { right: number; bottom: number; };
   };

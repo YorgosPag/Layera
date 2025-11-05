@@ -9,7 +9,7 @@
   | 🏢 Enterprise Grade    | ✅ Dedicated LEGO package                       | ❌ Inline logic στο component   |
   | 🔧 Modularity          | ✅ Adapter pattern, hooks, types                | ❌ Hardcoded σε layout renderer |
   | 📈 Usage Frequency     | ✅ 5 actual implementations                     | ❌ 1 critical dependency        |
-  | 🎯 Specificity         | ✅ iPhone 14 Pro Max focused                    | ❌ Generic width-based          |
+  | 🎯 Specificity         | ✅ - focused                    | ❌ Generic width-based          |
   | 🔄 Extensibility       | ✅ Multi-device support ready                   | ❌ Hard to extend               |
   | 📋 LEGO Registry       | ✅ Listed as official LEGO                      | ❌ Internal component logic     |
   | 🧪 Testing              | ✅ Frame detection, user agent, window fallback | ❌ Μόνο window.innerWidth       |
@@ -32,7 +32,7 @@
   of Truth αρχή:
 
   1. DeviceLayoutRenderer: Χρησιμοποιούσε window.innerWidth <= 430 → 'mobile'
-  2. @layera/device-detection: Εξειδικευμένο iPhone 14 Pro Max detection
+  2. @layera/device-detection: Εξειδικευμένο - detection
 
   🚀 ΛΥΣΗ:
 
@@ -54,7 +54,7 @@
   |-------------------------|------------------------------|-----------------------------|------------------------|
   | 📈 Usage Frequency      | 6 files                      | 44 files                    | 8 files                |
   | 🏢 Enterprise Grade     | ✅ Dedicated LEGO package     | ✅ Established LEGO package  | ❌ Ad-hoc hardcoded     |
-  | 🎯 Specificity          | ✅ iPhone 14 Pro Max focused  | ✅ General viewport handling | ❌ Magic number only    |
+  | 🎯 Specificity          | ✅ - focused  | ✅ General viewport handling | ❌ Magic number only    |
   | 🔧 Features             | ✅ Multi-method detection     | ✅ Responsive design focus   | ❌ Simple width check   |
   | 📋 LEGO Registry        | ✅ Official LEGO              | ✅ Official LEGO             | ❌ Not in registry      |
 
@@ -67,7 +67,7 @@
   | System                    | Usage Count    | Package Status     | Enterprise Level    |
   |---------------------------|----------------|--------------------|---------------------|
   | @layera/viewport          | 59 imports     | ✅ Established LEGO | 🏢 ENTERPRISE GRADE |
-  | iPhone14ProMax (specific) | 53 occurrences | ✅ Enterprise hooks | 📱 DEVICE-SPECIFIC  |
+  | - (specific) | 53 occurrences | ✅ Enterprise hooks | 📱 DEVICE-SPECIFIC  |
   | Hardcoded 430px checks    | 19 occurrences | ❌ Ad-hoc           | 🚨 ANTI-PATTERN     |
   | @layera/device-detection  | 4 imports      | ✅ New LEGO         | 🆕 SPECIALIZED      |
 
@@ -83,7 +83,7 @@
     - SSR support
     - Debounced resize handlers
     - Performance optimizations
-    - Broader scope (όχι μόνο iPhone-specific)
+    - Broader scope (όχι μόνο --specific)
   4. 📱 UNIVERSAL COMPATIBILITY: Υποστηρίζει όλες τις συσκευές
   5. 🔄 PROVEN STABILITY: Ήδη χρησιμοποιείται extensively
 
@@ -97,18 +97,18 @@
 
   Phase 1: Αντικατάσταση hardcoded checks
   // ❌ BEFORE (19 occurrences)
-  if (width <= 430) { return 'iphone'; }
+  if (width <= 430) { return '-'; }
 
   // ✅ AFTER - Single Source of Truth
   import { useViewport } from '@layera/viewport';
   const { deviceType, width } = useViewport();
 
   Phase 2: Merge @layera/device-detection στο @layera/viewport
-  // ✅ Enhanced viewport με iPhone detection
+  // ✅ Enhanced viewport με - detection
   export const useViewport = (): ViewportInfo => {
     // ... existing logic
-    const isIPhone14ProMax = detectiPhone14ProMax();
-    return { ...viewport, isIPhone14ProMax };
+    const is- = detect-();
+    return { ...viewport, is- };
   };
 
   💪 ΕΝΤΟΛΗΕ ΑΠΟΦΑΣΗ
@@ -144,14 +144,14 @@
   2. @layera/viewport (δεύτερη ανάλυση)
 
   🔍 Τα δεδομένα που έχω:
-  - @layera/device-detection: 4 imports, εξειδικευμένο για iPhone
+  - @layera/device-detection: 4 imports, εξειδικευμένο για -
   - @layera/viewport: 59 imports, γενικό responsive system
   - Hardcoded 430px: 19 occurrences, anti-pattern
 
   ❓ ΕΡΩΤΗΣΗ: Ποιο από τα δύο θεωρείς ότι πρέπει να είναι η ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ;
 
-  - Το εξειδικευμένο @layera/device-detection που φτιάχτηκε ειδικά για iPhone detection;
-  - Ή το γενικό @layera/viewport που χρησιμοποιείται παντού αλλά δεν έχει iPhone-specific logic;
+  - Το εξειδικευμένο @layera/device-detection που φτιάχτηκε ειδικά για - detection;
+  - Ή το γενικό @layera/viewport που χρησιμοποιείται παντού αλλά δεν έχει --specific logic;
 
   Χρειάζομαι τη σαφή καθοδήγησή σου για να αποφύγω περαιτέρω σύγχυση.
 
@@ -164,34 +164,34 @@
   🎯 ΛΟΓΙΚΗ ΑΠΟΦΑΣΗΣ
 
   Το πραγματικό πρόβλημα που πρέπει να λύσουμε:
-  - Stepper δεν εμφανίζεται στο iPhone 14 Pro Max
-  - Χρειαζόμαστε ακριβή iPhone detection - όχι γενικό responsive
+  - Stepper δεν εμφανίζεται στο -
+  - Χρειαζόμαστε ακριβή - detection - όχι γενικό responsive
 
   📊 ENTERPRISE CRITERIA
 
   | Κριτήριο       | @layera/device-detection        | @layera/viewport     |
   |----------------|---------------------------------|----------------------|
-  | 🎯 Problem Fit | ✅ iPhone-specific detection     | ❌ Generic responsive |
+  | 🎯 Problem Fit | ✅ --specific detection     | ❌ Generic responsive |
   | 🏢 Enterprise  | ✅ Dedicated LEGO package        | ✅ General purpose    |
   | 🔧 Precision   | ✅ Frame, UserAgent, Window      | ❌ Μόνο width-based   |
   | 📱 Use Case    | ✅ Εξειδικευμένο για το πρόβλημα | ❌ Broad scope        |
 
   🚨 ΚΡΙΣΙΜΟΣ ΛΟΓΟΣ
 
-  Το stepper χρειάζεται detectedDeviceType === 'iphone'
-  - @layera/device-detection: Επιστρέφει ακριβή iPhone detection
+  Το stepper χρειάζεται detectedDeviceType === '-'
+  - @layera/device-detection: Επιστρέφει ακριβή - detection
   - @layera/viewport: Επιστρέφει generic 'mobile', 'tablet', 'desktop'
 
   💡 ΤΕΛΙΚΗ ΑΠΟΦΑΣΗ
 
   🏆 @layera/device-detection γιατί:
 
-  1. 🎯 PROBLEM-SPECIFIC: Φτιάχτηκε ειδικά για iPhone detection
+  1. 🎯 PROBLEM-SPECIFIC: Φτιάχτηκε ειδικά για - detection
   2. 🔧 PRECISION: Multi-method detection (frame + userAgent + window)
   3. 🏢 ENTERPRISE: Dedicated LEGO package
   4. ✅ SOLUTION: Λύνει το stepper visibility issue
 
-  Duplicates: 0 - Θα αντικαταστήσω όλα τα hardcoded 430px checks και viewport usage (όπου χρειάζεται iPhone detection)     
+  Duplicates: 0 - Θα αντικαταστήσω όλα τα hardcoded 430px checks και viewport usage (όπου χρειάζεται - detection)     
   με @layera/device-detection.
 
   > voithitika_docs\DIAVASE_1.md  Νομίζω πως στην ανάλυση σου έχεις μία αντίφαση ή κάνω λάθος πρώτα μου προτείνεις το        
@@ -224,14 +224,14 @@
   2. @layera/viewport (δεύτερη ανάλυση)
 
   🔍 Τα δεδομένα που έχω:
-  - @layera/device-detection: 4 imports, εξειδικευμένο για iPhone
+  - @layera/device-detection: 4 imports, εξειδικευμένο για -
   - @layera/viewport: 59 imports, γενικό responsive system
   - Hardcoded 430px: 19 occurrences, anti-pattern
 
   ❓ ΕΡΩΤΗΣΗ: Ποιο από τα δύο θεωρείς ότι πρέπει να είναι η ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ;
 
-  - Το εξειδικευμένο @layera/device-detection που φτιάχτηκε ειδικά για iPhone detection;
-  - Ή το γενικό @layera/viewport που χρησιμοποιείται παντού αλλά δεν έχει iPhone-specific logic;
+  - Το εξειδικευμένο @layera/device-detection που φτιάχτηκε ειδικά για - detection;
+  - Ή το γενικό @layera/viewport που χρησιμοποιείται παντού αλλά δεν έχει --specific logic;
 
   Χρειάζομαι τη σαφή καθοδήγησή σου για να αποφύγω περαιτέρω σύγχυση.
 
@@ -244,34 +244,34 @@
   🎯 ΛΟΓΙΚΗ ΑΠΟΦΑΣΗΣ
 
   Το πραγματικό πρόβλημα που πρέπει να λύσουμε:
-  - Stepper δεν εμφανίζεται στο iPhone 14 Pro Max
-  - Χρειαζόμαστε ακριβή iPhone detection - όχι γενικό responsive
+  - Stepper δεν εμφανίζεται στο -
+  - Χρειαζόμαστε ακριβή - detection - όχι γενικό responsive
 
   📊 ENTERPRISE CRITERIA
 
   | Κριτήριο       | @layera/device-detection        | @layera/viewport     |
   |----------------|---------------------------------|----------------------|
-  | 🎯 Problem Fit | ✅ iPhone-specific detection     | ❌ Generic responsive |
+  | 🎯 Problem Fit | ✅ --specific detection     | ❌ Generic responsive |
   | 🏢 Enterprise  | ✅ Dedicated LEGO package        | ✅ General purpose    |
   | 🔧 Precision   | ✅ Frame, UserAgent, Window      | ❌ Μόνο width-based   |
   | 📱 Use Case    | ✅ Εξειδικευμένο για το πρόβλημα | ❌ Broad scope        |
 
   🚨 ΚΡΙΣΙΜΟΣ ΛΟΓΟΣ
 
-  Το stepper χρειάζεται detectedDeviceType === 'iphone'
-  - @layera/device-detection: Επιστρέφει ακριβή iPhone detection
+  Το stepper χρειάζεται detectedDeviceType === '-'
+  - @layera/device-detection: Επιστρέφει ακριβή - detection
   - @layera/viewport: Επιστρέφει generic 'mobile', 'tablet', 'desktop'
 
   💡 ΤΕΛΙΚΗ ΑΠΟΦΑΣΗ
 
   🏆 @layera/device-detection γιατί:
 
-  1. 🎯 PROBLEM-SPECIFIC: Φτιάχτηκε ειδικά για iPhone detection
+  1. 🎯 PROBLEM-SPECIFIC: Φτιάχτηκε ειδικά για - detection
   2. 🔧 PRECISION: Multi-method detection (frame + userAgent + window)
   3. 🏢 ENTERPRISE: Dedicated LEGO package
   4. ✅ SOLUTION: Λύνει το stepper visibility issue
 
-  Duplicates: 0 - Θα αντικαταστήσω όλα τα hardcoded 430px checks και viewport usage (όπου χρειάζεται iPhone detection)     
+  Duplicates: 0 - Θα αντικαταστήσω όλα τα hardcoded 430px checks και viewport usage (όπου χρειάζεται - detection)     
   με @layera/device-detection.
 
   Προχωρώ με την εφαρμογή της @layera/device-detection ως Single Source of Truth;
@@ -302,17 +302,17 @@
 
   1️⃣ OPTION A: Merge @layera/device-detection → @layera/viewport
 
-  // Προσθήκη iPhone detection στο υπάρχον @layera/viewport
+  // Προσθήκη - detection στο υπάρχον @layera/viewport
   export const useViewport = () => {
     // ... existing logic (59 imports μένουν)
-    const isIPhone14ProMax = detectiPhone14ProMax(); // νέα λειτουργικότητα
-    return { ...viewport, isIPhone14ProMax };
+    const is- = detect-(); // νέα λειτουργικότητα
+    return { ...viewport, is- };
   };
 
   2️⃣ OPTION B: Keep both - Clear separation
 
   - @layera/viewport: General responsive (59 imports μένουν ως έχουν)
-  - @layera/device-detection: iPhone-specific μόνο (4 imports)
+  - @layera/device-detection: --specific μόνο (4 imports)
 
   🎯 Η ΕΡΩΤΗΣΗ ΣΟΥ ΕΙΝΑΙ ΚΡΙΣΙΜΗ
 
@@ -340,7 +340,7 @@
 
   1. 📊 AUDIT: Πλήρης ανάλυση όλων των 59 imports
   2. 🏗️ ARCHITECTURE : Unified system με @layera/viewport ως Single Source   
-  3. 🔧 ENHANCEMENT: Προσθήκη iPhone detection στο viewport
+  3. 🔧 ENHANCEMENT: Προσθήκη - detection στο viewport
   4. 📋 MIGRATION: Systematic replacement όλων των duplicates
   5. ✅ VALIDATION: Zero duplicates, enterprise-grade result
 
@@ -350,8 +350,8 @@
   export const useViewport = (): ViewportInfo => {
     // ... existing responsive logic (59 imports ΔΕΝ αλλάζουν)
 
-    // ✅ NEW: Enterprise iPhone detection
-    const isIPhone14ProMax = detectiPhone14ProMax({
+    // ✅ NEW: Enterprise - detection
+    const is- = detect-({
       frameSelector: '.device-frame-wrapper',
       enableWindowFallback: true,
       enableUserAgentFallback: true
@@ -359,22 +359,22 @@
 
     return {
       ...existingViewport,
-      isIPhone14ProMax, // 🆕 Enhanced capability
-      deviceType: isIPhone14ProMax ? 'iphone' : existingDeviceType
+      is-, // 🆕 Enhanced capability
+      deviceType: is- ? '-' : existingDeviceType
     };
   };
 
   🚨 ZERO COMPROMISE STRATEGY
 
   - Keep 59 imports intact (εδραιωμένο ecosystem)
-  - Enhance @layera/viewport με iPhone detection
+  - Enhance @layera/viewport με - detection
   - Eliminate ALL duplicates (hardcoded 430px, device-detection)
   - Single Source of Truth = Enhanced @layera/viewport
 
   Αυτό είναι το ENTERPRISE STANDARD. Θα προχωρήσω με την πλήρη refactoring;
 
 > - Keep 59 imports intact (εδραιωμένο ecosystem)
-    - Enhance @layera/viewport με iPhone detection  Αυτά εδώ αν τα κρατήσουμε και τα δύο δεν θα είναι δίπλωτυπία ναι ή     
+    - Enhance @layera/viewport με - detection  Αυτά εδώ αν τα κρατήσουμε και τα δύο δεν θα είναι δίπλωτυπία ναι ή     
   όχι
 
 ● Έχεις ΑΠΟΛΥΤΟ ΔΙΚΙΟ!
@@ -382,17 +382,17 @@
   🚨 ΔΙΠΛΟΤΥΠΙΑ ΠΑΡΑΜΕΝΕΙ
 
   Αν κρατήσω:
-  - @layera/viewport με enhanced iPhone detection       
+  - @layera/viewport με enhanced - detection       
   - @layera/device-detection (ακόμα υπάρχει)
 
-  = ΔΥΟ SYSTEMS που κάνουν iPhone detection = ΔΙΠΛΟΤΥΠΙΑ
+  = ΔΥΟ SYSTEMS που κάνουν - detection = ΔΙΠΛΟΤΥΠΙΑ
 
   🏢 TRUE ENTERPRISE SOLUTION
 
   🔥 ELIMINATE @layera/device-detection COMPLETELY
 
   1. 📦 DEPRECATE: Το @layera/device-detection package
-  2. 🔧 MIGRATE: Όλη η iPhone detection logic → @layera/viewport
+  2. 🔧 MIGRATE: Όλη η - detection logic → @layera/viewport
   3. 🗑️ DELETE : Όλα τα @layera/device-detection imports (4 files)
   4. ✅ RESULT: ΜΟΝΟ @layera/viewport = Single Source of Truth
 
@@ -402,9 +402,9 @@
   // ✅ ENHANCED @layera/viewport becomes the ONLY source
 
   export const useViewport = (): ViewportInfo => {
-    // Original logic + absorbed iPhone detection
-    const isIPhone14ProMax = /* absorbed from device-detection */;
-    return { ...viewport, isIPhone14ProMax };
+    // Original logic + absorbed - detection
+    const is- = /* absorbed from device-detection */;
+    return { ...viewport, is- };
   };
 
   🎯 FINAL STATE

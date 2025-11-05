@@ -1,7 +1,7 @@
 // Layera Shared - Viewport Detection Hook
 // Enterprise pattern: Single source of truth για viewport detection
 // Usage: Όλες οι εφαρμογές χρησιμοποιούν το ίδιο hook
-// 🚀 ENHANCED: Absorbed iPhone detection from @layera/device-detection - ZERO DUPLICATES
+// 🚀 ENHANCED: Absorbed mobile detection from @layera/device-detection - ZERO DUPLICATES
 
 import { useState, useEffect, useMemo } from 'react';
 // 🚀 ENTERPRISE: Single Source of Truth - Device specs from @layera/constants
@@ -20,7 +20,7 @@ import { ViewportInfo, DeviceType, Orientation } from '../types';
 /**
  * Enterprise Viewport Hook
  * Provides real-time device type detection with SSR support
- * 🚀 ENHANCED: Single Source of Truth με iPhone 14 Pro Max detection
+ * 🚀 ENHANCED: Single Source of Truth για responsive device detection
  */
 export const useViewport = (): ViewportInfo => {
   const [viewport, setViewport] = useState<ViewportInfo>(() => {
@@ -108,7 +108,7 @@ function getDeviceType(width: number): DeviceType {
     const isSimulator =
       navigator.userAgent.includes('Mobile') ||
       navigator.userAgent.includes('Android') ||
-      navigator.userAgent.includes('iPhone') ||
+      navigator.userAgent.includes('Mobile') ||
       navigator.userAgent.includes('iPad') ||
       // Browser simulator detection - όταν το viewport είναι μικρό αλλά το screen μεγάλο
       (width <= 430 && window.screen.width > 1000) ||

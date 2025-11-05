@@ -34,10 +34,6 @@ const DEFAULT_CONFIG: ResponsiveFABConfig = {
   desktop: {
     size: 56,
     spacing: { right: 20, bottom: 20 }
-  },
-  iphone: {
-    size: 56,
-    spacing: { right: 20, bottom: 20 }
   }
 };
 
