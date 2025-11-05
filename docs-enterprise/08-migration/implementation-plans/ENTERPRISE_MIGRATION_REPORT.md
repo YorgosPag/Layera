@@ -172,7 +172,7 @@
 #### 🎯 Achievements:
 - **5 Production Steps Migrated**: CategoryStep, IntentStep, LocationStep, PropertyDetailsStep, TransactionStep
 - **Universal InfoPanel Created**: Device-agnostic responsive design
-- **Desktop Compatibility Restored**: No more iPhone-specific paths
+- **Desktop Compatibility Restored**: No more --specific paths
 - **Zero Breaking Changes**: Full backwards compatibility maintained
 - **HMR Validation**: Real-time development server confirmation
 

@@ -21,7 +21,7 @@
 **Κρίσιμο Πρόβλημα**: Δύο διαφορετικές πηγές για το ίδιο component
 
 #### 📊 Κατανομή Χρήσης:
-- **Local BaseCard**: `device-specific/mobile/iphone-14-pro-max/components/BaseCard`
+- **Local BaseCard**: `device-specific/mobile/-/components/BaseCard`
   - **20+ αρχεία** χρησιμοποιούν αυτή την έκδοση
   - Files: CategoryCard, DetailsCard, IntentCard, TransactionCard, κλπ
 

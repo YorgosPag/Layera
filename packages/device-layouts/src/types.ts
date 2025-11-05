@@ -1,10 +1,12 @@
 /**
- * Device Layout Types - Enterprise Single Source of Truth
+ * Enterprise Responsive Layout Types - LEGO Systems Compliant
  *
- * Καθαροί domain types για device layout orchestration χωρίς vendor dependencies
+ * ✅ Simplified responsive types χωρίς device simulation complexity
+ * Single Source of Truth για responsive layout orchestration
  */
 
-export type DeviceType = 'iphone' | 'tablet' | 'desktop' | 'mobile';
+// Simplified Device Categories (removed iPhone-specific)
+export type DeviceType = 'mobile' | 'tablet' | 'desktop';
 
 // Domain types για component props (NO any!)
 export interface DrawnArea {
@@ -30,158 +32,48 @@ export interface DrawnArea {
   };
 }
 
-export interface MapComponentProps {
-  onAreaCreated?: (area: DrawnArea) => void;
-  onNewEntryClick?: () => void;
-  isIPhone14ProMaxDevice?: boolean;
-  hideDrawingControls?: boolean;
+// Generic component props interface
+export interface ComponentProps {
+  [key: string]: unknown;
 }
 
-export interface StepperComponentProps {
-  currentStep?: string | undefined;
-  totalSteps?: number | undefined;
-  stepIndex?: number | undefined;
-  selectedCategory?: string | undefined;
-  onNext?: (() => void) | undefined;
-  onPrevious?: (() => void) | undefined;
-  onReset?: (() => void) | undefined;
-  onStepClick?: ((stepIndex: number) => void) | undefined;
-  canGoNext?: boolean | undefined;
-  canGoPrevious?: boolean | undefined;
-}
-
-export interface CategoryComponentProps {
-  isVisible?: boolean | undefined;
-  currentStepId?: string | undefined;
-  onNext?: ((category: unknown) => Promise<void>) | undefined;
-}
-
-export interface DeviceLayoutProps {
-  /** Device type για conditional rendering */
-  deviceType: DeviceType;
-
-  /** Main content component να render για κάθε device */
-  children?: React.ReactNode;
-
-  /** Device-specific component να render */
-  deviceComponent?: React.ReactNode;
-
-  /** Navigation-related props */
-  navigation?: {
-    currentStep?: string;
-    totalSteps?: number;
-    stepIndex?: number;
-    selectedCategory?: string;
-    canGoNext?: boolean;
-    canGoBack?: boolean;
-  };
-
-  /** Handlers για navigation actions */
-  navigationHandlers?: {
-    onNext?: () => void;
-    onPrevious?: () => void;
-    onReset?: () => void;
-    onStepClick?: (stepIndex: number) => void;
-    onNewEntryClick?: () => void;
-  };
-
-  /** Show/hide stepper και category elements */
-  showCategoryElements?: boolean;
-
-  /** Stepper component να render (για iPhone mode) */
-  stepperComponent?: React.ReactNode;
-
-  /** Category component να render (για iPhone mode) */
-  categoryComponent?: React.ReactNode;
-
-  /** FAB component να render */
-  fabComponent?: React.ReactNode;
-
-  /** Custom container styles */
-  containerStyle?: React.CSSProperties;
-
-  /** Container className */
-  containerClassName?: string;
-}
-
+// Responsive Layout Configuration
 export interface ResponsiveLayoutConfig {
-  iphone: {
-    width: number;
-    height: number;
-    containerStyle: React.CSSProperties;
+  mobile: {
+    layout: 'stacked' | 'overlay';
+    direction: 'column';
   };
   tablet: {
-    containerStyle: React.CSSProperties;
-    containerClassName: string;
+    layout: 'split' | 'sidebar';
+    direction: 'row';
   };
   desktop: {
-    containerStyle: React.CSSProperties;
-  };
-  mobile: {
-    containerStyle: React.CSSProperties;
-    containerClassName: string;
+    layout: 'split' | 'sidebar' | 'fullscreen';
+    direction: 'row';
   };
 }
 
-export interface DeviceLayoutRendererProps {
-  /** Auto-detected ή forced device type */
-  deviceType?: DeviceType | undefined;
+// Navigation interfaces
+export interface NavigationState {
+  currentStep?: string;
+  totalSteps?: number;
+  stepIndex?: number;
+  selectedCategory?: string;
+  canGoNext?: boolean;
+  canGoBack?: boolean;
+}
 
-  /** Override auto-detection */
-  forceDeviceType?: DeviceType | undefined;
+export interface NavigationHandlers {
+  onNext?: () => void;
+  onPrevious?: () => void;
+  onReset?: () => void;
+  onStepClick?: (stepIndex: number) => void;
+  onNewEntryClick?: () => void;
+}
 
-  /** Layout configuration per device */
-  layoutConfig?: Partial<ResponsiveLayoutConfig>;
-
-  /** Common props που περνούν σε όλα τα devices */
-  commonProps?: {
-    onAreaCreated?: (area: DrawnArea) => void;
-    onNewEntryClick?: () => void;
-    isIPhone14ProMaxDevice?: boolean;
-    hideDrawingControls?: boolean;
-  };
-
-  /** Device-specific components */
-  components?: {
-    iphone?: {
-      map?: React.ComponentType<MapComponentProps> | undefined;
-      stepper?: React.ComponentType<StepperComponentProps> | undefined;
-      category?: React.ComponentType<CategoryComponentProps> | undefined;
-      orchestrator?: React.ComponentType<{
-        currentStepId: string;
-        selectedCategory: string;
-        selectedIntent?: string;
-        onStepChange?: ((stepId: string) => void) | undefined;
-        onStepComplete?: ((stepId: string, data?: unknown) => void) | undefined;
-        onNext?: (() => void) | undefined;
-        onPrevious?: (() => void) | undefined;
-        deviceProps?: {
-          isIPhone14ProMaxDevice?: boolean;
-          isMobile?: boolean;
-        };
-      }> | undefined;
-    };
-    tablet?: {
-      map?: React.ComponentType<MapComponentProps> | undefined;
-    };
-    desktop?: {
-      map?: React.ComponentType<MapComponentProps> | undefined;
-    };
-    mobile?: {
-      map?: React.ComponentType<MapComponentProps> | undefined;
-    };
-  };
-
-  /** Navigation state και handlers */
-  navigation?: DeviceLayoutProps['navigation'];
-  navigationHandlers?: DeviceLayoutProps['navigationHandlers'];
-  showCategoryElements?: boolean;
-
-  /** FAB configuration */
-  fab?: {
-    component?: React.ReactNode | undefined;
-    onClick?: (() => void) | undefined;
-    icon?: React.ReactNode | undefined;
-    hidden?: boolean | undefined;
-  } | undefined;
+// FAB Configuration
+export interface FABConfig {
+  onClick?: () => void;
+  icon?: React.ReactNode;
+  hidden?: boolean;
 }

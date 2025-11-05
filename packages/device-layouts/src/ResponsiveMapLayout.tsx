@@ -1,41 +1,29 @@
 /**
- * ResponsiveMapLayout.tsx - High-Level Responsive Map Layout Component
+ * ResponsiveMapLayout.tsx - Enterprise Responsive Map Layout Component
  *
- * Simplified API για common map layout patterns.
- * Wrapper γύρω από το DeviceLayoutRenderer για εύκολη χρήση.
+ * ✅ LEGO SYSTEMS COMPLIANT - χρησιμοποιεί μόνο @layera packages
+ * Simplified responsive design χωρίς device simulation complexity
  */
 
 import React from 'react';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
-import { BORDER_RADIUS_SCALE } from '@layera/constants';
-import { Box } from '@layera/layout';
-import { DeviceLayoutRenderer } from './DeviceLayoutRenderer';
-import { DeviceType, MapComponentProps, StepperComponentProps, CategoryComponentProps } from './types';
+import { BORDER_RADIUS_SCALE, SPACING_SCALE } from '@layera/constants';
+import { Box, Flex, useResponsiveFlex } from '@layera/layout';
+import { MobileOnly, TabletOnly, DesktopOnly, useViewport } from '@layera/viewport';
 
 export interface ResponsiveMapLayoutProps {
-  /** Auto-detected ή forced device type */
-  deviceType?: DeviceType;
-
-  /** Override auto-detection */
-  forceDeviceType?: DeviceType;
-
-  /** Map-related props */
-  map?: MapComponentProps;
+  /** Map component για responsive rendering */
+  mapComponent?: React.ComponentType<unknown>;
 
   /** Device-specific map components */
   mapComponents?: {
-    iPhone?: React.ComponentType<MapComponentProps>;
-    tablet?: React.ComponentType<MapComponentProps>;
-    desktop?: React.ComponentType<MapComponentProps>;
-    mobile?: React.ComponentType<MapComponentProps>;
+    mobile?: React.ComponentType<unknown>;
+    tablet?: React.ComponentType<unknown>;
+    desktop?: React.ComponentType<unknown>;
   };
 
-  /** iPhone-specific components (stepper, category, orchestrator) */
-  iPhoneComponents?: {
-    stepper?: React.ComponentType<StepperComponentProps>;
-    category?: React.ComponentType<CategoryComponentProps>;
-    orchestrator?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-  };
+  /** Child components για complex layouts */
+  children?: React.ReactNode;
 
   /** Navigation state */
   navigation?: {
@@ -56,86 +44,91 @@ export interface ResponsiveMapLayoutProps {
     onNewEntryClick?: () => void;
   };
 
-  /** Show category elements (για iPhone stepper) */
-  showCategoryElements?: boolean;
-
   /** FAB configuration */
   fab?: {
     onClick?: () => void;
     icon?: React.ReactNode;
     hidden?: boolean;
-    deviceType?: DeviceType;
   };
 
 }
 
 export const ResponsiveMapLayout: React.FC<ResponsiveMapLayoutProps> = ({
-  deviceType,
-  forceDeviceType,
-  map = {},
+  mapComponent: MapComponent,
   mapComponents = {},
-  iPhoneComponents = {},
+  children,
   navigation,
   navigationHandlers,
-  showCategoryElements = false,
   fab
 }) => {
+  // 🎯 Enterprise Responsive Detection
+  const { isMobile, isTablet, isDesktop } = useViewport();
+  const responsiveFlex = useResponsiveFlex();
 
-  // Prepare FAB component αν υπάρχει
+  // 🎨 Enterprise FAB με LEGO Design Tokens
   const fabComponent = fab && !fab.hidden ? (
     <Box
       onClick={fab.onClick}
-      position="absolute"
+      position="fixed"
       right={`${SPACING_SCALE.LG}px`}
       bottom={`${SPACING_SCALE.LG}px`}
-      width="var(--la-size-fab, 56px)"
-      height="var(--la-size-fab, 56px)"
+      width="56px"
+      height="56px"
       borderRadius={BORDER_RADIUS_SCALE.CIRCLE}
-      background="var(--la-bg-success, var(--la-color-success))"
-      border="var(--la-border-fab, 2px solid white)"
+      background="var(--la-color-primary)"
+      border="2px solid var(--la-color-surface)"
       boxShadow={BOX_SHADOW_SCALE.cardDefault}
-      display="var(--la-display-flex, flex)"
-      alignItems="var(--la-align-center, center)"
-      justifyContent="var(--la-justify-center, center)"
-      cursor="var(--la-cursor-pointer, pointer)"
-      zIndex="var(--la-z-index-fab, 9999)"
-      userSelect="var(--la-user-select-none, none)"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      cursor="pointer"
+      zIndex="9999"
+      userSelect="none"
     >
       {fab.icon}
     </Box>
   ) : null;
 
   return (
-    <DeviceLayoutRenderer
-      deviceType={deviceType}
-      forceDeviceType={forceDeviceType}
-      commonProps={map}
-      components={{
-        iphone: {
-          map: mapComponents.iPhone,
-          stepper: iPhoneComponents.stepper,
-          category: iPhoneComponents.category,
-          orchestrator: iPhoneComponents.orchestrator
-        },
-        tablet: {
-          map: mapComponents.tablet
-        },
-        desktop: {
-          map: mapComponents.desktop
-        },
-        mobile: {
-          map: mapComponents.mobile
-        }
-      }}
-      navigation={navigation}
-      navigationHandlers={navigationHandlers}
-      showCategoryElements={showCategoryElements}
-      fab={fab ? {
-        component: fabComponent,
-        onClick: fab.onClick,
-        icon: fab.icon,
-        hidden: fab.hidden
-      } : undefined}
-    />
+    <Box position="relative" width="100%" height="100%">
+      {/* 📱 Mobile Layout */}
+      <MobileOnly>
+        <Flex direction="column" height="100%">
+          {mapComponents.mobile ? (
+            React.createElement(mapComponents.mobile)
+          ) : MapComponent ? (
+            React.createElement(MapComponent)
+          ) : null}
+          {children}
+        </Flex>
+      </MobileOnly>
+
+      {/* 📟 Tablet Layout */}
+      <TabletOnly>
+        <Flex direction="row" height="100%">
+          {mapComponents.tablet ? (
+            React.createElement(mapComponents.tablet)
+          ) : MapComponent ? (
+            React.createElement(MapComponent)
+          ) : null}
+          {children}
+        </Flex>
+      </TabletOnly>
+
+      {/* 🖥️ Desktop Layout */}
+      <DesktopOnly>
+        <Flex direction="row" height="100%" gap={`${SPACING_SCALE.MD}px`}>
+          {mapComponents.desktop ? (
+            React.createElement(mapComponents.desktop)
+          ) : MapComponent ? (
+            React.createElement(MapComponent)
+          ) : null}
+          {children}
+        </Flex>
+      </DesktopOnly>
+
+      {/* 🎯 FAB Overlay */}
+      {fabComponent}
+    </Box>
   );
 };

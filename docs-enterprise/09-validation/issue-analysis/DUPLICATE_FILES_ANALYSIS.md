@@ -34,7 +34,7 @@
 
 ### 4. **InfoPanel.tsx** (3 αρχεία)
 ```
-📁 ./apps/layera-geoalert/src/components/device-specific/mobile/iphone-14-pro-max/components/InfoPanel.tsx
+📁 ./apps/layera-geoalert/src/components/device-specific/mobile/-/components/InfoPanel.tsx
 📁 ./packages/info-panels/dist-manual/components/InfoPanel.tsx
 📁 ./packages/info-panels/src/components/InfoPanel.tsx
 ```
@@ -135,9 +135,9 @@
 - ❌ **Build Artifact**: Manual dist file, not source
 - ❌ **Maintenance Issue**: Duplicate distribution file
 
-#### 📁 **EVALUATE: apps/layera-geoalert/src/components/device-specific/mobile/iphone-14-pro-max/components/InfoPanel.tsx**
+#### 📁 **EVALUATE: apps/layera-geoalert/src/components/device-specific/mobile/-/components/InfoPanel.tsx**
 **Αιτιολόγηση**:
-- 🟡 **Device-Specific**: Specialized για iPhone 14 Pro Max
+- 🟡 **Device-Specific**: Specialized για -
 - 🟡 **App Context**: Μπορεί να έχει specific functionality
 - 📋 **ACTION**: Merge unique features στο main package ή refactor σε extension
 

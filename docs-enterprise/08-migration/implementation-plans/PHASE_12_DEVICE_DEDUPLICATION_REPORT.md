@@ -15,11 +15,11 @@
 
 | File | Lines | Before Import | After Import | Status |
 |------|-------|---------------|--------------|--------|
-| CategoryStep.tsx | 162 | `../../device-specific/mobile/iphone-14-pro-max/components/InfoPanel` | `@layera/info-panels` | ✅ |
-| IntentStep.tsx | 177 | `../../device-specific/mobile/iphone-14-pro-max/components/InfoPanel` | `@layera/info-panels` | ✅ |
-| LocationStep.tsx | 304 | `../../device-specific/mobile/iphone-14-pro-max/components/InfoPanel` | `@layera/info-panels` | ✅ |
-| PropertyDetailsStep.tsx | 223 | `../../device-specific/mobile/iphone-14-pro-max/components/InfoPanel` | `@layera/info-panels` | ✅ |
-| TransactionStep.tsx | 150 | `../../device-specific/mobile/iphone-14-pro-max/components/InfoPanel` | `@layera/info-panels` | ✅ |
+| CategoryStep.tsx | 162 | `../../device-specific/mobile/-/components/InfoPanel` | `@layera/info-panels` | ✅ |
+| IntentStep.tsx | 177 | `../../device-specific/mobile/-/components/InfoPanel` | `@layera/info-panels` | ✅ |
+| LocationStep.tsx | 304 | `../../device-specific/mobile/-/components/InfoPanel` | `@layera/info-panels` | ✅ |
+| PropertyDetailsStep.tsx | 223 | `../../device-specific/mobile/-/components/InfoPanel` | `@layera/info-panels` | ✅ |
+| TransactionStep.tsx | 150 | `../../device-specific/mobile/-/components/InfoPanel` | `@layera/info-panels` | ✅ |
 
 **Total Production Lines Affected**: 1,016 lines
 **Zero Breaking Changes**: All migrations maintained 100% API compatibility
@@ -27,7 +27,7 @@
 ## 🔍 Discovery Insights
 
 ### Critical Architecture Issue Resolved
-- **Problem**: Production steps were importing από iPhone-specific paths
+- **Problem**: Production steps were importing από --specific paths
 - **Impact**: Broken desktop/tablet compatibility
 - **Solution**: Universal @layera/info-panels με responsive design
 
@@ -41,7 +41,7 @@
 
 ### Identified Components: **12 files (2,451 lines)**
 ```
-device-specific/mobile/iphone-14-pro-max/components/
+device-specific/mobile/-/components/
 ├── InfoPanel.tsx (326 lines) → REPLACED με @layera/info-panels
 ├── cardData.ts (891 lines) → RETAINED (card configuration)
 ├── SearchOverlay.tsx (157 lines) → RETAINED (search-specific)
@@ -69,7 +69,7 @@ device-specific/mobile/iphone-14-pro-max/components/
 ### Import Path Transformations
 ```typescript
 // BEFORE (Device-Specific Anti-Pattern)
-import { InfoPanel } from '../../device-specific/mobile/iphone-14-pro-max/components/InfoPanel';
+import { InfoPanel } from '../../device-specific/mobile/-/components/InfoPanel';
 
 // AFTER (Universal LEGO System)
 import { InfoPanel } from '@layera/info-panels';
@@ -94,7 +94,7 @@ import { InfoPanel } from '@layera/info-panels';
 
 ### Before Phase 12
 ```
-Production Steps → iPhone-specific components → Broken desktop
+Production Steps → --specific components → Broken desktop
 ```
 
 ### After Phase 12

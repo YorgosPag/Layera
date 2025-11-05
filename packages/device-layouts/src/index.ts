@@ -1,14 +1,12 @@
 /**
- * @layera/device-layouts - Enterprise Device Layout LEGO Package
+ * @layera/device-layouts - Enterprise Responsive Layout LEGO Package
  *
- * Single source of truth για device-specific layout orchestration στο Layera ecosystem.
- * Εξαχθέν από GeoMapNew.tsx για reusability και modularity.
+ * ✅ LEGO SYSTEMS COMPLIANT - Single source of truth για responsive layout orchestration
+ * Χρησιμοποιεί @layera/layout και @layera/viewport ΜΟΝΟ
  */
 
 export * from './types';
-export * from './DeviceLayoutRenderer';
 export * from './ResponsiveMapLayout';
 
 // Convenience re-exports για common usage patterns
-export { DeviceLayoutRenderer as DeviceRenderer } from './DeviceLayoutRenderer';
 export { ResponsiveMapLayout as MapLayout } from './ResponsiveMapLayout';

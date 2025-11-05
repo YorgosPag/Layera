@@ -8,7 +8,7 @@
 ### 📊 Κατάσταση
 Υπάρχουν **ΔΥΟ διαφορετικές πηγές** για το BaseCard component:
 
-1. **Local BaseCard**: `device-specific/mobile/iphone-14-pro-max/components/BaseCard`
+1. **Local BaseCard**: `device-specific/mobile/-/components/BaseCard`
    - **20+ αρχεία** χρησιμοποιούν αυτή την έκδοση
    - Advanced features: opacity modes, info button, theme variants
 
@@ -31,10 +31,10 @@
 #### **A.1.1 - Comparison των δύο BaseCard implementations**
 ```bash
 # Αναλυτική σύγκριση κώδικα
-diff -u apps/layera-geoalert/src/components/device-specific/mobile/iphone-14-pro-max/components/BaseCard.tsx packages/cards/src/BaseCard.tsx
+diff -u apps/layera-geoalert/src/components/device-specific/mobile/-/components/BaseCard.tsx packages/cards/src/BaseCard.tsx
 
 # Export analysis
-grep -n "export" apps/layera-geoalert/src/components/device-specific/mobile/iphone-14-pro-max/components/BaseCard.tsx
+grep -n "export" apps/layera-geoalert/src/components/device-specific/mobile/-/components/BaseCard.tsx
 grep -n "export" packages/cards/src/BaseCard.tsx
 ```
 
@@ -51,7 +51,7 @@ grep -r "from.*@layera/cards" apps/ packages/ | grep BaseCard
 #### **A.1.3 - Interface Analysis**
 ```bash
 # Props comparison
-grep -A 20 "interface.*BaseCardProps" apps/layera-geoalert/src/components/device-specific/mobile/iphone-14-pro-max/components/BaseCard.tsx
+grep -A 20 "interface.*BaseCardProps" apps/layera-geoalert/src/components/device-specific/mobile/-/components/BaseCard.tsx
 grep -A 20 "interface.*BaseCardProps" packages/cards/src/BaseCard.tsx
 ```
 
@@ -252,7 +252,7 @@ cp -r apps/layera-geoalert/src/components/ apps/layera-geoalert/src/components.b
 # Phase 1: Update imports
 echo "🔄 Phase 1: Updating imports..."
 find apps/layera-geoalert/src -name "*.tsx" -type f -exec sed -i \
-  's|from.*device-specific/mobile/iphone-14-pro-max/components/BaseCard|from "@layera/cards"|g' {} \;
+  's|from.*device-specific/mobile/-/components/BaseCard|from "@layera/cards"|g' {} \;
 
 # Phase 2: Update interface usage
 echo "🔄 Phase 2: Checking interface compatibility..."
@@ -295,7 +295,7 @@ grep -r "from.*@layera/cards" apps/ packages/ | grep BaseCard | cut -d: -f1 | so
 #### **C.2.2 - Migration Pattern για κάθε αρχείο**
 ```typescript
 // ΠΡΙΝ:
-import { BaseCard } from '../../device-specific/mobile/iphone-14-pro-max/components/BaseCard';
+import { BaseCard } from '../../device-specific/mobile/-/components/BaseCard';
 
 // ΜΕΤΑ:
 import { BaseCard } from '@layera/cards';
@@ -345,7 +345,7 @@ pnpm build:geoalert
 ```bash
 # Έλεγχος ότι κανένα αρχείο δεν χρησιμοποιεί πια το Local BaseCard
 echo "🔍 Final Local BaseCard usage check..."
-grep -r "device-specific/mobile/iphone-14-pro-max/components/BaseCard" apps/layera-geoalert/src/
+grep -r "device-specific/mobile/-/components/BaseCard" apps/layera-geoalert/src/
 
 # Expected: No results (empty output)
 ```
@@ -355,7 +355,7 @@ grep -r "device-specific/mobile/iphone-14-pro-max/components/BaseCard" apps/laye
 # Αφαίρεση μόνο αν δεν υπάρχουν references
 if [ $? -eq 1 ]; then
   echo "✅ No references found. Safe to remove."
-  rm apps/layera-geoalert/src/components/device-specific/mobile/iphone-14-pro-max/components/BaseCard.tsx
+  rm apps/layera-geoalert/src/components/device-specific/mobile/-/components/BaseCard.tsx
   echo "🗑️ Local BaseCard removed successfully"
 else
   echo "❌ Still has references. Migration incomplete."
@@ -366,7 +366,7 @@ fi
 #### **D.1.3 - Cleanup Empty Directories**
 ```bash
 # Καθαρισμός άδειων directories αν δεν χρησιμοποιούνται
-find apps/layera-geoalert/src/components/device-specific/mobile/iphone-14-pro-max/components/ -type d -empty -delete
+find apps/layera-geoalert/src/components/device-specific/mobile/-/components/ -type d -empty -delete
 ```
 
 ### 🎯 **Βήμα D.2**: Final System Verification
