@@ -5,7 +5,7 @@
  * Single Source of Truth για responsive layout orchestration
  */
 
-// Simplified Device Categories (removed iPhone-specific)
+// Simplified Device Categories (mobile, tablet, desktop)
 export type DeviceType = 'mobile' | 'tablet' | 'desktop';
 
 // Domain types για component props (NO any!)
