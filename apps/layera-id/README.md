@@ -81,8 +81,8 @@
 
 ### Namespace Organization
 ```
-common.json       # Shared translations (navigation, auth, errors, etc.)
-dashboard.json    # Dashboard-specific translations
+common.ts       # Shared translations (navigation, auth, errors, etc.)
+common.ts    # Dashboard-specific translations
 ```
 
 ### Translation Keys Structure

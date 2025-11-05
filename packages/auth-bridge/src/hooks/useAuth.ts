@@ -134,7 +134,15 @@ export function useAuth(callbacks?: AuthCallbacks) {
       provider.addScope('email');
       provider.addScope('profile');
 
+      // Add custom parameters for better popup handling
+      provider.setCustomParameters({
+        prompt: 'select_account' // Always show account selection
+      });
+
+      console.log('🔵 Starting Google sign-in popup...');
       const userCredential = await signInWithPopup(auth, provider);
+      console.log('🟢 Google sign-in successful:', userCredential.user?.email);
+
       const layeraUser = await createLayeraUser(userCredential.user);
 
       return {
@@ -142,7 +150,24 @@ export function useAuth(callbacks?: AuthCallbacks) {
         data: layeraUser
       };
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Google sign in failed';
+      let errorMessage = 'Google sign in failed';
+
+      if (error instanceof Error) {
+        console.log('🔴 Google sign-in error details:', {
+          code: error.name,
+          message: error.message,
+          stack: error.stack
+        });
+
+        // Pass through Firebase error codes for UI layer translation
+        errorMessage = error.message;
+
+        // Special handling for popup closed error in development
+        if (error.message.includes('popup-closed-by-user')) {
+          console.log('ℹ️ This is normal in development - popup security restrictions');
+        }
+      }
+
       updateState({ loading: false, error: errorMessage });
 
       return {

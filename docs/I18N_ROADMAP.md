@@ -8,7 +8,7 @@ Create a comprehensive, enterprise-grade internationalization system for the Lay
 ### Core Package Architecture
 - ✅ **@layera/i18n Package**: Standalone modular package
 - ✅ **TypeScript First**: Full type safety implementation
-- ✅ **Namespace Support**: Organized translation files (`common.json`, `dashboard.json`)
+- ✅ **Namespace Support**: Organized translation files (`common.ts`, `common.ts`)
 - ✅ **Enterprise Configuration**: Advanced i18next setup with detection and persistence
 
 ### Translation Infrastructure

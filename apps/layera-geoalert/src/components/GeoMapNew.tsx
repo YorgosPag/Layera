@@ -15,8 +15,7 @@ import { useStepNavigation } from './steps/StepOrchestrator';
 import { MapContainer } from './map/MapContainer';
 import { PlusIcon } from '@layera/icons';
 import { Box } from '@layera/layout';
-import { UnifiedFAB } from '@layera/floating-action-buttons';
-// REMOVED: DraggableFAB - simplified to UnifiedFAB only
+// REMOVED: UnifiedFAB - FAB functionality moved to header button
 import { CONFIG, SPACING_SCALE, PIPELINE_STEP } from '@layera/constants';
 import { COLORS } from '../constants';
 import { useLayeraTranslation } from '@layera/tolgee';
@@ -370,94 +369,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
         />
       )}
 
-      {/*
-        ΚΡΙΣΙΜΗ ΛΥΣΗ ΓΙΑ FAB VISIBILITY & POSITIONING - ΜΗΝ ΠΕΙΡΑΞΕΙΣ:
-
-        1. FAB VISIBILITY ISSUE FIX:
-           Το FAB renderάρεται ΕΞΩ από το ResponsiveMapLayout για αποφυγή
-           infinite re-rendering cycles που προκαλούσαν εξαφάνιση του FAB
-           στις mobile συσκευές. Αυτή η αρχιτεκτονική λύνει το πρόβλημα
-           με τη χωριστή απόδοση ευθυνών:
-           - ResponsiveMapLayout: Device layout orchestration
-           - Parent component: FAB rendering και positioning
-
-        2. FAB POSITIONING LOGIC - ΤΕΛΙΚΗ ΛΥΣΗ:
-           RESPONSIVE MODE (isResponsiveMode=true):
-           - Χρησιμοποιεί spacing prop: { right: SPACING_SCALE.LG, bottom: SPACING_SCALE.XXXL }
-           - FAB κεντραρισμένο στο κάτω μέρος της οθόνης
-           - draggable=false, positionType='fixed' (σταθερή θέση)
-
-           DEVICE FRAME MODE (isResponsiveMode=false):
-           - Χρησιμοποιεί initialPosition: { x: 24, y: 24 }
-           - FAB στην ΠΑΝΩ ΑΡΙΣΤΕΡΗ ΓΩΝΙΑ της οθόνης του κινητού
-           - draggable=true, positionType='viewport-relative' (συρόμενο)
-           - Το style prop ως fallback για την αρχική θέση
-
-        3. 🔥 ENTERPRISE DRAGGABLE FUNCTIONALITY - ΤΕΛΙΚΗ WORKING SOLUTION:
-           ⭐ RESPONSIVE MODE: UnifiedFAB από @layera/floating-action-buttons
-           ⭐ DEVICE FRAME MODE: DraggableFAB από @layera/draggable-fab με:
-              - position="viewport-relative" (ΚΡΙΣΙΜΟ!)
-              - initialPosition={{ x: 24, y: 24 }}
-              - viewportSelector=".device-screen"
-              - constrainToViewport={true}
-           ⭐ Viewport constraints: το DraggableFAB παραμένει μέσα στα όρια
-           ⭐ Conditional rendering: διαφορετικό component ανά mode
-           ⭐ Single Sources of Truth: δύο ειδικά LEGO components
-
-        🚨🚨🚨 ΑΥΣΤΗΡΗ ΑΠΑΓΟΡΕΥΣΗ - ΜΗΝ ΑΓΓΙΞΕΙΣ ΠΟΤΕ ΞΑΝΑ! 🚨🚨🚨
-        ❌ ΜΗΝ αντικαταστήσεις DraggableFAB με UnifiedFAB στο device mode
-        ❌ ΜΗΝ αφαιρέσεις το position="viewport-relative" prop
-        ❌ ΜΗΝ αλλάξεις το viewportSelector=".device-screen"
-        ❌ ΜΗΝ προσθέσεις style={{ position: 'absolute' }} που σπάει το dragging
-        ❌ ΜΗΝ αφαιρέσεις το constrainToViewport={true}
-
-        ✅ ΤΕΛΙΚΗ ΛΕΙΤΟΥΡΓΟΥΣΑ ΚΑΤΑΣΤΑΣΗ - TESTED & WORKING:
-        📱 Device Frame Mode → DraggableFAB (DRAGGABLE + VISIBLE)
-        🖥️ Responsive Mode → UnifiedFAB (FIXED POSITIONING)
-
-        🏆 ΕΠΙΤΕΥΓΜΑΤΑ: FAB εμφανίζεται στην πάνω αριστερή γωνία ΚΑΙ είναι draggable!
-
-        🔥🔥🔥 ΤΕΛΙΚΗ WORKING SOLUTION - TESTED & WORKING (28 Oct 2025) 🔥🔥🔥
-
-        ✅ ΚΡΙΣΙΜΑ REQUIREMENTS ΓΙΑ WORKING DRAG FUNCTIONALITY:
-
-        1. 🎯 VITE ALIASES - ΑΠΑΡΑΙΤΗΤΑ ΓΙΑ HMR:
-           vite.config.ts ΠΡΕΠΕΙ να περιέχει:
-           '@layera/floating-action-buttons': resolve(__dirname, '../../packages/floating-action-buttons/src'),
-           '@layera/draggable-fab': resolve(__dirname, '../../packages/draggable-fab/src'),
-           ΧΩΡΙΣ αυτά το Vite διαβάζει old built versions!
-
-        2. 🎯 MODE CONFIGURATION - ΚΡΙΣΙΜΟ:
-           isResponsiveMode = false  // ← ΑΥΤΟ ΕΝΕΡΓΟΠΟΙΕΙ ΤΟ DraggableFAB
-           isResponsiveMode = true   // ← ΑΥΤΟ ΕΝΕΡΓΟΠΟΙΕΙ ΤΟ UnifiedFAB (fixed positioning)
-
-        3. 🎯 VIEWPORT SELECTOR - ΛΥΣΗ ΤΟΥ NULL FRAMEREF:
-           viewportSelector="body"  // ← WORKING! Υπάρχει πάντα
-           viewportSelector=".device-screen"  // ← BROKEN! Δεν υπάρχει στη σελίδα
-
-        4. 🎯 DRAGGABLE FAB CONFIGURATION:
-           <DraggableFAB
-             position="viewport-relative"        // ← ΚΡΙΣΙΜΟ για movement
-             viewportSelector="body"             // ← ΚΡΙΣΙΜΟ selector που υπάρχει
-             constrainToViewport={true}          // ← Περιορίζει στα όρια
-             initialPosition={{ x: 24, y: 24 }} // ← Αρχική θέση
-           />
-
-        🚨🚨🚨 ΑΠΟΛΥΤΗ ΑΠΑΓΟΡΕΥΣΗ - ΜΗΝ ΑΛΛΑΞΕΙΣ ΠΟΤΕ! 🚨🚨🚨
-        ❌ ΜΗΝ αφαιρέσεις τα vite aliases για @layera/draggable-fab
-        ❌ ΜΗΝ αλλάξεις isResponsiveMode = false σε true
-        ❌ ΜΗΝ αλλάξεις viewportSelector="body" σε άλλο selector
-        ❌ ΜΗΝ αλλάξεις position="viewport-relative"
-        ❌ ΜΗΝ αφαιρέσεις constrainToViewport={true}
-
-        ✅ ΤΕΛΙΚΗ WORKING STATE - PROVEN WORKING:
-        📍 FAB Drag: Πορτοκαλί χρώμα + μετακίνηση + NO click
-        📍 FAB Click: Πράσινο χρώμα + navigation + NO drag
-        📍 Event Separation: 100% σωστό με capture phase + synthetic click suppression
-
-        🏅 SUCCESS EVIDENCE: localhost.log με 76 "FrameRef is null" → ΛΥΘΗΚΕ με body selector
-      */}
-      {/* REMOVED: FAB button - moved to header */}
+      {/* FAB functionality moved to header button */}
     </Box>
   );
 };

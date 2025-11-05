@@ -57,13 +57,13 @@ import { ICON_SIZES, BUTTON_WIDTHS } from '@layera/constants';
 // Structure
 packages/i18n/src/locales/
 ├── el/
-│   ├── common.json          # Κοινά κείμενα
+│   ├── common.ts          # Κοινά κείμενα
 │   ├── forms.json           # Form labels & errors
 │   ├── tables.json          # Table headers & actions
 │   ├── navigation.json      # Menu items & breadcrumbs
 │   └── components.json      # Component-specific text
 └── en/
-    ├── common.json
+    ├── common.ts
     ├── forms.json
     ├── tables.json
     ├── navigation.json

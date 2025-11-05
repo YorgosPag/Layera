@@ -104,7 +104,7 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, onStepBackCli
             onClick={(): void => {
               onNewEntryClick?.();
             }}
-            title="Νέα Καταχώρηση"
+            title={t('common.newEntry')}
             style={{
               backgroundColor: '#0066cc',
               color: 'var(--la-color-white)fff',
@@ -113,14 +113,22 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, onStepBackCli
               padding: '6px 12px'
             }}
           >
-            {!showIcons && "Νέα Καταχώρηση"}
+            {!showIcons && t('common.newEntry')}
           </Button>
         )}
 
         {/* Language & Theme Controls */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <LanguageSwitcher />
-          <ThemeSwitcher variant="icon" size="md" />
+          <ThemeSwitcher
+            variant="icon"
+            size="md"
+            labels={{
+              light: t('settings.items.theme.light'),
+              dark: t('settings.items.theme.dark'),
+              system: t('settings.items.theme.system')
+            }}
+          />
         </div>
       </Flex>
     </div>

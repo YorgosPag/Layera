@@ -167,9 +167,9 @@ const TOLGEE_CONFIG = {
 # Current structure (assumed):
 public/locales/
 ├── el/
-│   └── common.json          # Main Greek translations
+│   └── common.ts          # Main Greek translations
 ├── en/
-│   └── common.json          # Main English translations
+│   └── common.ts          # Main English translations
 └── index.js                 # Translation loader
 
 # ❌ MISSING - Advanced structure:

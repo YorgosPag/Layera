@@ -131,7 +131,15 @@ export default function AdminRoles() {
   const headerActions = (
     <HeaderActionsGroup>
       <LanguageSwitcher variant="toggle" showFlags={true} />
-      <ThemeSwitcher variant="icon" size="md" />
+      <ThemeSwitcher
+        variant="icon"
+        size="md"
+        labels={{
+          light: t('settings.items.theme.light'),
+          dark: t('settings.items.theme.dark'),
+          system: t('settings.items.theme.system')
+        }}
+      />
       {user && (
         <>
           <UserAvatar

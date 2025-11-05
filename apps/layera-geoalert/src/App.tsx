@@ -71,6 +71,7 @@ interface DrawnArea {
 }
 
 function TestNotificationsComponent() {
+  const { t } = useLayeraTranslation();
   const { addNotification } = useNotifications();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -117,7 +118,7 @@ function TestNotificationsComponent() {
       padding="lg"
       className="layera-card-uniform">
       <Heading as="h3" size="lg" color="primary" className="layera-mb-4">
-        🧪 LEGO Systems Test Panel
+        {t('test.panel.title')}
       </Heading>
 
       <Box
@@ -131,7 +132,7 @@ function TestNotificationsComponent() {
           size="md"
           onClick={testSuccessNotification}
         >
-          Test Success 🎉
+          {t('test.panel.success')}
         </Button>
 
         <Button
@@ -139,7 +140,7 @@ function TestNotificationsComponent() {
           size="md"
           onClick={testErrorNotification}
         >
-          Test Error ⚠️
+          {t('test.panel.error')}
         </Button>
 
         <Button
@@ -147,7 +148,7 @@ function TestNotificationsComponent() {
           size="md"
           onClick={testInfoNotification}
         >
-          Test Info 📦
+          {t('test.panel.info')}
         </Button>
 
         <Button
@@ -156,7 +157,7 @@ function TestNotificationsComponent() {
           onClick={testLoadingSpinner}
           disabled={isLoading}
         >
-          {isLoading ? <LoadingSpinner size="sm" /> : 'Test Loading 🔄'}
+          {isLoading ? <LoadingSpinner size="sm" /> : t('test.panel.loading')}
         </Button>
       </Box>
 
@@ -298,7 +299,15 @@ function App() {
                   {t('geoalert.title')}
                 </Heading>
                 <Flex align="center" justify="center" gap="sm">
-                  <ThemeSwitcher variant="icon" size="md" />
+                  <ThemeSwitcher
+                    variant="icon"
+                    size="md"
+                    labels={{
+                      light: t('settings.items.theme.light'),
+                      dark: t('settings.items.theme.dark'),
+                      system: t('settings.items.theme.system')
+                    }}
+                  />
                   <LanguageSwitcher />
                 </Flex>
               </Flex>

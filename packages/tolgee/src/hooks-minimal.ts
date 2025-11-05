@@ -3,7 +3,7 @@
  * Hooks που χρησιμοποιούν το minimal context
  */
 
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { useMinimalTolgee } from './provider-minimal';
 
 /**
@@ -15,6 +15,8 @@ export function useLayeraTranslation() {
 
   return {
     t,
+    currentLanguage: language,
+    language, // Add this for compatibility
     i18n: {
       language,
       changeLanguage,

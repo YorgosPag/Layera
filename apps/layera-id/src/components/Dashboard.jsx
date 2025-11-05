@@ -64,20 +64,20 @@ const Dashboard = () => {
 
       <Box className="dashboard-content">
         <BaseCard
-          title={t('dashboard:welcome', { name: user?.displayName || user?.email })}
+          title={t('dashboard.welcome', { name: user?.displayName || user?.email })}
           variant="welcome"
           className="welcome-card-replacement"
         >
           {user && (
             <>
-              <p>{t('dashboard:user.successfulLogin', { email: user.email })}</p>
+              <p>{t('dashboard.user.successfulLogin', { email: user.email })}</p>
 
               {user.displayName && (
-                <p>{t('dashboard:user.usernameDisplay', { name: user.displayName })}</p>
+                <p>{t('dashboard.user.usernameDisplay', { name: user.displayName })}</p>
               )}
 
               <Box className="user-info">
-                <h3>{t('dashboard:user.info')}</h3>
+                <h3>{t('dashboard.user.info')}</h3>
 
                 <Box className="user-details">
                   <Box className="user-field">
@@ -111,34 +111,34 @@ const Dashboard = () => {
               </Box>
 
           <Box className="dashboard-actions">
-            <h3>{t('dashboard:quickActions.title')}</h3>
+            <h3>{t('dashboard.quickActions.title')}</h3>
             <Stack direction="vertical" spacing="sm" className="action-buttons-replacement">
               <Link to="/account">
                 <Button variant="secondary" size="md" fullWidth>
-                  {t('dashboard:cards.account.title')}
+                  {t('dashboard.cards.account.title')}
                 </Button>
               </Link>
               <Link to="/settings">
                 <Button variant="secondary" size="md" fullWidth>
-                  {t('dashboard:cards.settings.title')}
+                  {t('dashboard.cards.settings.title')}
                 </Button>
               </Link>
               <Link to="/data">
                 <Button variant="secondary" size="md" fullWidth>
-                  {t('dashboard:cards.data.title')}
+                  {t('dashboard.cards.data.title')}
                 </Button>
               </Link>
               {!user?.layeraClaims?.mfa_verified && (
                 <Link to="/mfa-enroll">
                   <Button variant="primary" size="md" fullWidth>
-                    {t('dashboard:cards.mfa.title')}
+                    {t('dashboard.cards.mfa.title')}
                   </Button>
                 </Link>
               )}
               {user?.layeraClaims?.role === 'admin' && (
                 <Link to="/admin/roles">
                   <Button variant="danger" size="md" fullWidth>
-                    {t('dashboard:admin.roleManagement')}
+                    {t('dashboard.admin.roleManagement')}
                   </Button>
                 </Link>
               )}

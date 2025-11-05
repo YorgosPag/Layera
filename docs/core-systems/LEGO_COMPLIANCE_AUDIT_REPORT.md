@@ -256,7 +256,7 @@ find . -name "*.css" -o -name "*.scss" -exec grep -l "welcome-card\|auth-card\|s
 
 #### **3.2 i18n Keys Addition**
 ```json
-// public/locales/el/common.json
+// public/locales/el/common.ts
 {
   "map": {
     "controls": {
@@ -286,7 +286,7 @@ find . -name "*.css" -o -name "*.scss" -exec grep -l "welcome-card\|auth-card\|s
   }
 }
 
-// public/locales/en/common.json
+// public/locales/en/common.ts
 {
   "map": {
     "controls": {

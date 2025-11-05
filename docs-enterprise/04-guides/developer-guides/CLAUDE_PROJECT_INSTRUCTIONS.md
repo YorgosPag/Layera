@@ -325,7 +325,7 @@ grep -r "[^a-zA-Z][2-9][0-9]*[^a-zA-Z]" src/
 
 ### 📋 Translation File Structure
 ```json
-// public/locales/el/common.json
+// public/locales/el/common.ts
 {
   "auth": {
     "login": {
@@ -345,7 +345,7 @@ grep -r "[^a-zA-Z][2-9][0-9]*[^a-zA-Z]" src/
   }
 }
 
-// public/locales/en/common.json
+// public/locales/en/common.ts
 {
   "auth": {
     "login": {

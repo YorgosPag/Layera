@@ -16,7 +16,7 @@ git reset --hard d6a819c
 
 echo Restoring from backup files...
 copy "safety-backups\20251022_115150_working_navigation\GeoMapNew.tsx" "apps\layera-geoalert\src\components\GeoMapNew.tsx"
-copy "safety-backups\20251022_115150_working_navigation\FloatingStepper.tsx" "apps\layera-geoalert\src\components\device-specific\mobile\iphone-14-pro-max\components\FloatingStepper.tsx"
+copy "safety-backups\20251022_115150_working_navigation\FloatingStepper.tsx" "apps\layera-geoalert\src\components\mobile\FloatingStepper.tsx"
 
 echo.
 echo ✅ NAVIGATION SYSTEM RESTORED TO WORKING STATE

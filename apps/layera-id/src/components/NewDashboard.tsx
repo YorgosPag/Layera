@@ -31,7 +31,15 @@ const NewDashboard: React.FC = () => {
   const headerActions = (
     <HeaderActionsGroup>
       <LanguageSwitcher />
-      <ThemeSwitcher variant="icon" size="md" />
+      <ThemeSwitcher
+        variant="icon"
+        size="md"
+        labels={{
+          light: t('settings.items.theme.light'),
+          dark: t('settings.items.theme.dark'),
+          system: t('settings.items.theme.system')
+        }}
+      />
       {user && (
         <>
           <UserAvatar
@@ -62,8 +70,8 @@ const NewDashboard: React.FC = () => {
       <PageContainer maxWidth="full" padding="none">
         <Box padding="lg">
           <PageHeader
-            title={t('dashboard:welcome', { name: user?.displayName || user?.email })}
-            subtitle={user ? t('dashboard:user.successfulLogin', { email: user.email }) : ''}
+            title={t('dashboard.welcome', { name: user?.displayName || user?.email })}
+            subtitle={user ? t('dashboard.user.successfulLogin', { email: user.email }) : ''}
           />
         </Box>
 
@@ -72,7 +80,7 @@ const NewDashboard: React.FC = () => {
             {/* User Status Cards */}
             <Box padding="lg">
               <DashboardSection
-                title={t('dashboard:user.info')}
+                title={t('dashboard.user.info')}
                 subtitle={t('dashboard.overview')}
               >
               <DashboardGrid columns={{ xs: 1, sm: 2, md: 2, lg: 4 }}>
@@ -181,7 +189,7 @@ const NewDashboard: React.FC = () => {
                 <DashboardSection title={t('account.security')}>
                   <DashboardGrid columns={{ xs: 1, sm: 1, md: 1, lg: 1 }}>
                   <DashboardCard
-                    title={t('dashboard:cards.mfa.title')}
+                    title={t('dashboard.cards.mfa.title')}
                     variant="stats"
                     clickable
                     onClick={(): void => navigate('/mfa-enroll')}
@@ -197,10 +205,10 @@ const NewDashboard: React.FC = () => {
             {/* Admin Actions */}
             {user?.layeraClaims?.role === 'admin' && (
               <Box padding="lg">
-                <DashboardSection title={t('dashboard:admin.roleManagement')}>
+                <DashboardSection title={t('dashboard.admin.roleManagement')}>
                   <DashboardGrid columns={{ xs: 1, sm: 1, md: 1, lg: 1 }}>
                   <DashboardCard
-                    title={t('dashboard:admin.roleManagement')}
+                    title={t('dashboard.admin.roleManagement')}
                     variant="chart"
                     clickable
                     onClick={(): void => navigate('/admin/roles')}

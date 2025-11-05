@@ -1,14 +1,9 @@
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import { Box } from '@layera/layout';
-
-const LABELS = {
-  admin: "Διαχειριστής",
-  broker: "Μεσίτης",
-  builder: "Κατασκευαστής",
-  private: "Ιδιώτης"
-};
+import { useLayeraTranslation } from '@layera/tolgee';
 
 export default function RoleBadge({ role = "private" }) {
+  const { t } = useLayeraTranslation();
   return (
     <Box
       as="span"
@@ -18,7 +13,7 @@ export default function RoleBadge({ role = "private" }) {
       fontSize="var(--la-font-size-xs)"
       backgroundColor={role === 'admin' ? 'var(--la-bg-info)' : role === 'broker' ? 'var(--la-bg-warning)' : role === 'builder' ? 'var(--la-bg-success)' : 'var(--la-bg-tertiary)'}
     >
-      {LABELS[role] ?? LABELS.private}
+      {t(`roles.${role}`) || t('roles.private')}
     </Box>
   );
 }

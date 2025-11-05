@@ -77,11 +77,7 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
   variant = 'icon',
   size = 'md',
   className = '',
-  labels = {
-    light: 'Φωτεινό θέμα',
-    dark: 'Σκοτεινό θέμα',
-    system: 'Σύστημα'
-  },
+  labels,
   showLabels = false,
   icons = {
     light: <SunIcon />,

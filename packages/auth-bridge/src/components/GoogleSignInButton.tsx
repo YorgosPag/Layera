@@ -34,7 +34,7 @@ export interface GoogleSignInButtonProps {
  * ```
  */
 export function GoogleSignInButton({
-  children = 'Σύνδεση με Google',
+  children,
   className = '',
   style,
   onSuccess,

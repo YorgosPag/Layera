@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box } from '@layera/layout';
+import { useLayeraTranslation } from '@layera/tolgee';
 import type { LayeraUser, UserRole } from '../types/auth.js';
 
 /**
@@ -25,13 +26,10 @@ interface UserDisplayProps {
 }
 
 /**
- * Mapping ρόλων σε εμφανίσιμα labels
+ * Utility function to get role label using translation
  */
-const ROLE_LABELS: Record<UserRole, string> = {
-  private: 'Ιδιώτης',
-  broker: 'Μεσίτης',
-  builder: 'Κατασκευαστής',
-  admin: 'Διαχειριστής'
+const getRoleLabel = (role: UserRole, t: (key: string) => string): string => {
+  return t(`roles.${role}`) || t('roles.private');
 };
 
 /**
@@ -82,6 +80,7 @@ export function UserDisplay({
   roleFormat = 'badge',
   size = 'medium'
 }: UserDisplayProps) {
+  const { t } = useLayeraTranslation();
   const sizeClasses = {
     small: 'text-sm space-y-1',
     medium: 'text-base space-y-2',
@@ -99,7 +98,7 @@ export function UserDisplay({
    */
   const renderRole = (): React.ReactElement | null => {
     const role = user.layeraClaims.role;
-    const label = ROLE_LABELS[role];
+    const label = getRoleLabel(role, t);
 
     switch (roleFormat) {
       case 'badge':
@@ -165,7 +164,7 @@ export function UserDisplay({
       {/* Role */}
       {showRole && (
         <Box className="flex items-center">
-          <span className="text-gray-600 mr-2">Ρόλος:</span>
+          <span className="text-gray-600 mr-2">{t('data.fields.role')}:</span>
           {renderRole()}
         </Box>
       )}
@@ -176,8 +175,8 @@ export function UserDisplay({
           <span className="text-gray-600">Email:</span>
           {renderStatusBadge(
             user.emailVerified,
-            'Επαληθευμένο',
-            'Μη επαληθευμένο'
+            t('status.verified'),
+            t('settings.items.emailVerification.statusUnverified')
           )}
         </Box>
       )}
@@ -189,14 +188,14 @@ export function UserDisplay({
           {user.mfaStatus.required ? (
             renderStatusBadge(
               user.mfaStatus.verified,
-              'Ενεργοποιημένο',
-              'Απαιτείται'
+              t('account.badges.mfaActive'),
+              t('mfa.required')
             )
           ) : (
             renderStatusBadge(
               user.mfaStatus.enabled,
-              'Ενεργοποιημένο',
-              'Προαιρετικό',
+              t('account.badges.mfaActive'),
+              t('mfa.optional'),
               'bg-blue-100 text-blue-800',
               'bg-gray-100 text-gray-800'
             )
@@ -219,6 +218,7 @@ export function UserAvatar({
   size?: 'small' | 'medium' | 'large';
   onClick?: () => void;
 }) {
+  const { t } = useLayeraTranslation();
   const sizeClasses = {
     small: 'w-8 h-8 text-xs',
     medium: 'w-10 h-10 text-sm',
@@ -234,12 +234,13 @@ export function UserAvatar({
     : user.email?.charAt(0).toUpperCase() || '?';
 
   const roleColor = ROLE_COLORS[user.layeraClaims.role];
+  const roleLabel = getRoleLabel(user.layeraClaims.role, t);
 
   return (
     <button
       onClick={onClick}
       className={`inline-flex items-center justify-center rounded-full font-medium ${roleColor} ${sizeClasses[size]} hover:opacity-80 transition-opacity`}
-      title={`${user.displayName || user.email} (${ROLE_LABELS[user.layeraClaims.role]})`}
+      title={`${user.displayName || user.email} (${roleLabel})`}
     >
       {initials}
     </button>

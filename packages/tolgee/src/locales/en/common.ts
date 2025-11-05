@@ -1,117 +1,191 @@
 /**
- * English translations for Layera
- * Automatically generated from common.json
+ * 🇺🇸 SINGLE SOURCE OF TRUTH - English translations
+ * ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ - Αγγλικές μεταφράσεις
+ * Enterprise TypeScript translations for Layera ecosystem
  */
 
 export const enTranslations = {
+  // App & Dashboard - Application and Dashboard
   "app": {
     "name": "Layera",
-    "subtitle": "Enterprise Identity Management",
-    "welcome": "Welcome to Layera!",
-    "loading": "Loading...",
-    "languageSwitch": "Language",
-    "title": {
-      "geoAlert": "Layera GeoAlert",
-      "layeraId": "Layera ID"
+    "subtitle": "Real Estate & Employment Platform"
+  },
+  "dashboard": {
+    "welcome": "Welcome",
+    "user": {
+      "successfulLogin": "Successful login",
+      "info": "User Information"
+    },
+    "overview": "Overview",
+    "emailStatus": "Email Status",
+    "mfaStatus": "MFA Status",
+    "accountAge": "Account Age",
+    "accountRole": "Account Role",
+    "daysSinceCreated": "days since created",
+    "accountDetails": "Account Details",
+    "personalInformation": "Personal Information",
+    "quickActions": {
+      "title": "Quick Actions"
+    },
+    "cards": {
+      "mfa": {
+        "title": "Account Security"
+      }
+    },
+    "actionDescriptions": {
+      "enableMfa": "Enable multi-factor authentication"
+    }
+  },
+  "data": {
+    "title": "Account Data",
+    "subtitle": "Manage and export your personal data",
+    "personalInfo": "Personal Information",
+    "security": "Security",
+    "fields": {
+      "email": "georgios.pagonis@gmail.com",
+      "displayName": "Georgios Pagonis",
+      "emailVerified": "Verified",
+      "mfaEnabled": "Disabled",
+      "role": "Private",
+      "userId": "Z55xqJg38uRapVrvUlgwkf1",
+      "accountCreated": "17/10/2025, 12:04:9 p.m.",
+      "lastSignIn": "5/11/2025, 12:41:2 p.m."
+    },
+    "export": "Data Export",
+    "exportDescription": "Download all your personal data in various formats",
+    "exportFormats": {
+      "pdf": "PDF Report",
+      "json": "JSON Data",
+      "csv": "CSV Spreadsheet"
+    },
+    "privacy": "Data Privacy Protection",
+    "privacyPoints": {
+      "title": "Privacy Commitments",
+      "encryption": "Data encryption",
+      "noSharing": "No sharing with third parties",
+      "deleteAnytime": "Delete anytime",
+      "compliance": "GDPR/CCPA compliance"
     }
   },
   "navigation": {
-    "dashboard": "Dashboard",
-    "account": "My Account",
+    "logout": "Logout",
+    "account": "Account",
     "settings": "Settings",
     "data": "Data",
-    "logout": "Logout",
-    "back": "Back",
     "backToDashboard": "Back to Dashboard"
   },
-  "auth": {
-    "login": "Login",
-    "register": "Register",
-    "email": "Email",
-    "password": "Password",
-    "confirmPassword": "Confirm Password",
-    "signInWithGoogle": "Sign in with Google",
-    "forgotPassword": "Forgot password?",
-    "noAccount": "Don't have an account?",
-    "hasAccount": "Already have an account?",
-    "signOut": "Sign Out"
+  "account": {
+    "title": "Account",
+    "info": "Account Information",
+    "security": "Account Security",
+    "actions": {
+      "settings": "Settings",
+      "enable2fa": "Enable 2FA"
+    },
+    "messages": {
+      "mfaRecommendation": "Multi-factor authentication is recommended for enhanced security"
+    },
+    "badges": {
+      "mfaInactive": "MFA Inactive"
+    }
   },
+  "status": {
+    "verified": "Verified",
+    "disabled": "Disabled"
+  },
+  "roles": {
+    "private": "Private"
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your account preferences",
+    "sections": {
+      "security": "Security",
+      "notifications": "Notifications",
+      "appearance": "Appearance"
+    },
+    "items": {
+      "changePassword": {
+        "title": "Change Password",
+        "description": "Update your account password"
+      },
+      "twoFactor": {
+        "title": "Two-Factor Authentication",
+        "description": "Add an extra layer of security"
+      },
+      "emailVerification": {
+        "title": "Email Verification",
+        "description": "Verify your email address"
+      },
+      "emailNotifications": {
+        "title": "Email Notifications",
+        "description": "Manage email notifications"
+      },
+      "smsNotifications": {
+        "title": "SMS Notifications",
+        "description": "Manage SMS notifications"
+      },
+      "theme": {
+        "title": "App Theme",
+        "description": "Choose light or dark theme",
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System (Auto)"
+      },
+      "language": {
+        "title": "Language",
+        "description": "Select your preferred language"
+      }
+    }
+  },
+  "actions": {
+    "change": "Change",
+    "enable": "Enable",
+    "manage": "Manage",
+    "skip": "Skip"
+  },
+  "mfa": {
+    "title": "Multi-Factor Authentication (MFA)",
+    "subtitle": "Protect your account with an additional layer of security",
+    "whyNeeded": {
+      "title": "Why do you need MFA?",
+      "description": "MFA adds extra protection to your account",
+      "benefits": {
+        "passwordProtection": "Protection from stolen passwords",
+        "secureAccess": "Secure access from anywhere",
+        "unauthorizedAlert": "Alert for unauthorized access attempts"
+      }
+    },
+    "form": {
+      "enableButton": "Enable MFA",
+      "phoneLabel": "Phone Number",
+      "phoneHint": "Enter your phone number to receive SMS verification codes"
+    }
+  },
+
+  // GeoAlert Application - GeoAlert Application
   "geoalert": {
-    "title": "Layera GeoAlert",
-    "subtitle": "Advanced Geographic Notifications System",
-    "geoCanvasReady": "Geo Canvas is Ready",
-    "professionalArchitecture": "Professional architecture with LEGO systems",
-    "enterGeoCanvas": "Enter Geo Canvas",
+    "title": "GeoAlert - Mapping Platform",
+    "subtitle": "Advanced mapping application with professional architecture",
+    "geoCanvasReady": "GeoCanvas Ready",
+    "professionalArchitecture": "Professional Architecture",
+    "enterGeoCanvas": "Enter GeoCanvas",
     "statusCheck": "Status Check",
     "port": "Port",
-    "reactReady": "React 19 Ready",
-    "typescriptStrict": "TypeScript Strict Mode",
-    "independentApp": "Independent Application",
+    "reactReady": "React Ready",
+    "typescriptStrict": "TypeScript Strict",
+    "independentApp": "Independent App",
     "enterpriseArchitecture": "Enterprise Architecture",
     "navigateToLayeraId": "Navigate to Layera ID",
     "modularMicroservice": "Modular Microservice",
     "crossAppNavigation": "Cross-App Navigation",
     "readyForImplementation": "Ready for Implementation"
   },
-  "buttons": {
-    "save": "Save",
-    "cancel": "Cancel",
-    "delete": "Delete",
-    "edit": "Edit",
-    "create": "Create",
-    "update": "Update",
-    "close": "Close",
-    "open": "Open",
-    "search": "Search",
-    "submit": "Submit",
-    "confirm": "Confirm"
-  },
-  "actions": {
-    "skip": "Skip"
-  },
-  "propertyDetails": {
-    "title": "Property Details"
-  },
-  "property-details": {
-    "fill-details": "Fill in property details",
-    "continue-without-details": "Continue without details"
-  },
-  "alerts": {
-    "success": "Success",
-    "error": "Error",
-    "warning": "Warning",
-    "info": "Information",
-    "loading": "Loading...",
-    "completed": "Completed",
-    "failed": "Failed"
-  },
-  "common": {
-    "error": "Error",
-    "processing": "Processing...",
-    "title": "Title",
-    "subtitle": "Subtitle"
-  },
-  "pipeline": {
-    "newEntry": {
-      "title": "New Entry"
-    },
-    "category": {
-      "selection": {
-        "title": "Category Selection"
-      },
-      "property": {
-        "title": "Properties",
-        "description": "List a property for sale, rent or create a search alert."
-      },
-      "job": {
-        "title": "Jobs",
-        "description": "Offer a job position or declare your availability in a specific area."
-      }
-    }
-  },
+
+  // Core sections - main categories needed for GeoAlert
   "propertyType": {
     "title": "Property Type",
-    "subtitle": "Select the type of property you want to register",
+    "subtitle": "Select the type of property you want to list",
     "apartment": "Apartment",
     "house": "House",
     "office": "Office",
@@ -121,7 +195,7 @@ export const enTranslations = {
     "land": "Land",
     "studio": "Studio",
     "descriptions": {
-      "apartment": "Residence in a complex",
+      "apartment": "Residential unit in complex",
       "house": "Independent residence",
       "office": "Professional space",
       "store": "Commercial space",
@@ -133,37 +207,62 @@ export const enTranslations = {
   },
   "occupation": {
     "title": "Occupation Selection",
-    "subtitle": "Search and select your occupation from the official EU ESCO database",
+    "subtitle": "Search and select your profession from the European ESCO database",
     "search": {
-      "placeholder": "Search occupation... (e.g. doctor, engineer, lawyer)"
+      "placeholder": "Search occupation (e.g. programmer, engineer...)"
     },
-    "selected": {
-      "prefix": "✅ Selected"
-    },
-    "skills": {
-      "count": "💼 Related skills"
-    },
-    "success": {
-      "title": "🎉 Success!",
-      "message": "The occupation \"{{occupation}}\" was selected successfully.",
-      "nextStep": "Moving to next step..."
-    },
-    "help": {
-      "tip": "💡 Tip: Use Greek or English terms for better results"
+    "noResults": "No results found",
+    "loading": "Loading occupations...",
+    "selectOccupation": "Select occupation"
+  },
+  "intent": {
+    "offer": "Offer",
+    "search": "Search"
+  },
+  "pipeline": {
+    "category": {
+      "job": {
+        "title": "Job"
+      },
+      "property": {
+        "title": "Property"
+      }
     }
   },
-  "esco": {
-    "search": {
-      "error": "Error searching ESCO database",
-      "searching": "Searching occupations...",
-      "noResults": "No results found for: {{query}}"
+  "complete": {
+    "finish": {
+      "title": "Complete",
+      "description": "Process completed successfully"
     },
-    "connection": {
-      "connecting": "Connecting to ESCO database..."
+    "success": {
+      "title": "Success"
     },
-    "skills": {
-      "count": "Related skills: {{count}}"
+    "back": {
+      "title": "Back"
     }
+  },
+  "propertyDetails": {
+    "title": "Property Details"
+  },
+  "property-details": {
+    "fill-details": "Fill in the details",
+    "continue-without-details": "Continue without details"
+  },
+  "test": {
+    "panel": {
+      "title": "🧪 LEGO Systems Test Panel",
+      "success": "Test Success 🎉",
+      "error": "Test Error ⚠️",
+      "info": "Test Info 📦",
+      "loading": "Test Loading 🔄"
+    }
+  },
+  "common": {
+    "error": "Error",
+    "processing": "Processing...",
+    "title": "Title",
+    "subtitle": "Subtitle",
+    "newEntry": "New Entry"
   }
 } as const;
 

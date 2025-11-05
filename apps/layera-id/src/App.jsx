@@ -53,7 +53,7 @@ function ProtectedRoute({ children, requiredRole, allowedRoles }) {
 
 function App() {
   return (
-    <TolgeeProvider language="el">
+    <TolgeeProvider>
       <ThemeProvider defaultTheme="system" storageKey="layera-id-theme">
         <DeviceOverrideProvider>
             <Router>

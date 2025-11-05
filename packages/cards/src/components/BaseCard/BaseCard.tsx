@@ -86,7 +86,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
     // Interaction
     cursor: (clickable || onClick) ? getCursorVar('pointer') : 'default',
     transition: 'var(--la-transition-normal)',
-    userSelect: 'none',
+    userSelect: 'text', // ✅ ΕΠΙΤΡΕΠΕΙ αντιγραφή κειμένου από όλες τις κάρτες
     WebkitTapHighlightColor: 'transparent',
 
     // Shadow system

@@ -34,9 +34,9 @@ export default function Settings() {
         variant="icon"
         size="md"
         labels={{
-          light: currentLanguage === 'el' ? 'Φωτεινό θέμα' : 'Light',
-          dark: currentLanguage === 'el' ? 'Σκοτεινό θέμα' : 'Dark',
-          system: currentLanguage === 'el' ? 'Σύστημα' : 'System'
+          light: t('settings.items.theme.light'),
+          dark: t('settings.items.theme.dark'),
+          system: t('settings.items.theme.system')
         }}
       />
       <LanguageSwitcher variant="toggle" showFlags={true} />
@@ -86,9 +86,9 @@ export default function Settings() {
               title={t('settings.items.changePassword.title')}
               variant="actions"
             >
-              <Text color="secondary" marginBottom="md">
+              <Box color="secondary" marginBottom="md" style={{ fontSize: 'var(--la-font-size-sm)', color: 'var(--la-text-secondary)' }}>
                 {t('settings.items.changePassword.description')}
-              </Text>
+              </Box>
               <Button variant="secondary" size="sm">
                 {t('actions.change')}
               </Button>
@@ -98,11 +98,11 @@ export default function Settings() {
               title={t('settings.items.twoFactor.title')}
               variant="actions"
             >
-              <Text color="secondary" marginBottom="md">
+              <Box color="secondary" marginBottom="md" style={{ fontSize: 'var(--la-font-size-sm)', color: 'var(--la-text-secondary)' }}>
                 {t('settings.items.twoFactor.description', {
                   status: user.layeraClaims?.mfa_verified ? t('settings.items.twoFactor.statusActive') : t('settings.items.twoFactor.statusInactive')
                 })}
-              </Text>
+              </Box>
               {!user.layeraClaims?.mfa_verified ? (
                 <Button variant="primary" size="sm" onClick={() => navigate('/mfa-enroll')}>
                   {t('actions.enable')}
@@ -118,11 +118,11 @@ export default function Settings() {
               title={t('settings.items.emailVerification.title')}
               variant="info"
             >
-              <Text color="secondary" marginBottom="md">
+              <Box color="secondary" marginBottom="md" style={{ fontSize: 'var(--la-font-size-sm)', color: 'var(--la-text-secondary)' }}>
                 {t('settings.items.emailVerification.description', {
                   status: user.emailVerified ? t('settings.items.emailVerification.statusVerified') : t('settings.items.emailVerification.statusUnverified')
                 })}
-              </Text>
+              </Box>
               {!user.emailVerified && (
                 <Button variant="primary" size="sm">
                   {t('actions.verify')}
@@ -144,9 +144,9 @@ export default function Settings() {
               title={t('settings.items.emailNotifications.title')}
               variant="actions"
             >
-              <Text color="secondary" marginBottom="md">
+              <Box color="secondary" marginBottom="md" style={{ fontSize: 'var(--la-font-size-sm)', color: 'var(--la-text-secondary)' }}>
                 {t('settings.items.emailNotifications.description')}
-              </Text>
+              </Box>
               <Button variant="secondary" size="sm">
                 {t('actions.manage')}
               </Button>
@@ -156,9 +156,9 @@ export default function Settings() {
               title={t('settings.items.smsNotifications.title')}
               variant="actions"
             >
-              <Text color="secondary" marginBottom="md">
+              <Box color="secondary" marginBottom="md" style={{ fontSize: 'var(--la-font-size-sm)', color: 'var(--la-text-secondary)' }}>
                 {t('settings.items.smsNotifications.description')}
-              </Text>
+              </Box>
               <Button variant="secondary" size="sm">
                 {t('actions.manage')}
               </Button>
@@ -179,18 +179,18 @@ export default function Settings() {
               variant="actions"
               className="layera-card--dropdown-container"
             >
-              <Text color="secondary" marginBottom="md">
+              <Box color="secondary" marginBottom="md" style={{ fontSize: 'var(--la-font-size-sm)', color: 'var(--la-text-secondary)' }}>
                 {t('settings.items.theme.description')}
-              </Text>
+              </Box>
               <FlexCenter width="full">
                 <ThemeSwitcher
                   variant="dropdown"
                   size="md"
                   align="center"
                   labels={{
-                    light: currentLanguage === 'el' ? 'Φωτεινό θέμα' : 'Light',
-                    dark: currentLanguage === 'el' ? 'Σκοτεινό θέμα' : 'Dark',
-                    system: currentLanguage === 'el' ? 'Σύστημα' : 'System'
+                    light: t('settings.items.theme.light'),
+                    dark: t('settings.items.theme.dark'),
+                    system: t('settings.items.theme.system')
                   }}
                 />
               </FlexCenter>
@@ -201,9 +201,9 @@ export default function Settings() {
               variant="actions"
               className="layera-card--dropdown-container"
             >
-              <Text color="secondary" marginBottom="md">
+              <Box color="secondary" marginBottom="md" style={{ fontSize: 'var(--la-font-size-sm)', color: 'var(--la-text-secondary)' }}>
                 {t('settings.items.language.description')}
-              </Text>
+              </Box>
               <FlexCenter width="full">
                 <LanguageSwitcher variant="dropdown" showFlags={true} align="center" />
               </FlexCenter>

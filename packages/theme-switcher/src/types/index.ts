@@ -46,8 +46,8 @@ export interface ThemeSwitcherProps {
   size?: 'sm' | 'md' | 'lg';
   /** Additional CSS class */
   className?: string;
-  /** Custom labels για τα themes */
-  labels?: {
+  /** Custom labels για τα themes - REQUIRED for i18n compliance */
+  labels: {
     light: string;
     dark: string;
     system: string;

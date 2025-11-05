@@ -52,7 +52,7 @@ const QuickActions: React.FC = () => {
   const availablePages = pages.filter(page => location.pathname !== page.path);
 
   return (
-    <DashboardSection title={t('dashboard:quickActions.title')}>
+    <DashboardSection title={t('dashboard.quickActions.title')}>
       <DashboardGrid columns={{ xs: 1, sm: 1, md: 2, lg: 4 }}>
         {availablePages.map(page => (
           <DashboardCard

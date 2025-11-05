@@ -14,7 +14,12 @@ import './Account.css';
 
 export default function Account() {
   const { user, signOut } = useAuthContext();
-  const { t, formatters } = useLayeraTranslation();
+  const { t } = useLayeraTranslation();
+
+  // Role formatting function using translations
+  const formatRole = (role) => {
+    return t(`roles.${role}`) || t('roles.private');
+  };
   const navigate = useNavigate();
 
   if (!user) return null;
@@ -32,7 +37,15 @@ export default function Account() {
   const headerActions = (
     <HeaderActionsGroup>
       <LanguageSwitcher variant="toggle" showFlags={true} />
-      <ThemeSwitcher variant="icon" size="md" />
+      <ThemeSwitcher
+        variant="icon"
+        size="md"
+        labels={{
+          light: t('settings.items.theme.light'),
+          dark: t('settings.items.theme.dark'),
+          system: t('settings.items.theme.system')
+        }}
+      />
       {user && (
         <>
           <UserAvatar
@@ -80,7 +93,7 @@ export default function Account() {
                   <strong>{t('data.fields.email')}:</strong> {user.email}
                 </Box>
                 <Box>
-                  <strong>{t('data.fields.role')}:</strong> {formatters.role(user.layeraClaims?.role || "private")}
+                  <strong>{t('data.fields.role')}:</strong> {formatRole(user.layeraClaims?.role || "private")}
                 </Box>
                 <Box>
                   <strong>{t('data.fields.emailVerified')}:</strong> {user.emailVerified ? t('status.verified') : t('status.unverified')}

@@ -15,6 +15,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Box } from '@layera/layout';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { BORDER_RADIUS_SCALE, SPACING_SCALE } from '@layera/constants';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FABProps, ResponsiveFABConfig, DeviceType, FABVariant, VARIANT_COLORS } from './types';
@@ -57,8 +58,8 @@ export const UnifiedFAB: React.FC<FABProps> = ({
   deviceType = 'desktop',
   spacing,
   hidden = false,
-  'aria-label': ariaLabel = 'Νέα Καταχώρηση',
-  title = 'Νέα Καταχώρηση',
+  'aria-label': ariaLabel,
+  title,
   'data-testid': testId,
   style,
   zIndex = 9999,
@@ -74,6 +75,12 @@ export const UnifiedFAB: React.FC<FABProps> = ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   positionType = 'fixed'
 }) => {
+  const { t } = useLayeraTranslation();
+
+  // Use translation fallbacks for default values
+  const finalAriaLabel = ariaLabel || t('common.newEntry');
+  const finalTitle = title || t('common.newEntry');
+
   // 🎯 ΕΞΑΛΕΙΨΗ ΔΙΠΛΟΤΥΠΩΝ - Click Suppression από @layera/draggable LEGO system
   // Utilities εισαχθέντα από @layera/draggable - Single Source of Truth
 
@@ -182,8 +189,8 @@ export const UnifiedFAB: React.FC<FABProps> = ({
       onClick={onClick}
       size={deviceType === 'mobile' ? 'sm' : 'md'}
       initialPosition={{ right: finalSpacing.right, bottom: finalSpacing.bottom }}
-      aria-label={ariaLabel}
-      title={title}
+      aria-label={finalAriaLabel}
+      title={finalTitle}
       data-testid={testId}
       style={style}
     >

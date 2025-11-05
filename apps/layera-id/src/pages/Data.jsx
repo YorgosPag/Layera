@@ -7,6 +7,20 @@ import { Button } from '@layera/buttons';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, Flex, FlexColumn, Box } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
 // import { Text, Heading } from '@layera/typography'; // Temporarily disabled until package is fixed
+
+// Temporary local Text component
+const Text = ({ children, size = 'base', color = 'primary', weight = 'normal', font = 'sans', marginTop, wordBreak, ...props }) => {
+  const styles = {
+    fontSize: size === 'sm' ? 'var(--la-font-size-sm)' : size === 'base' ? 'var(--la-font-size-base)' : 'var(--la-font-size-base)',
+    color: color === 'primary' ? 'var(--la-color-primary)' : color === 'secondary' ? 'var(--la-color-secondary)' : color === 'success' ? 'var(--la-color-success)' : color === 'warning' ? 'var(--la-color-warning)' : color === 'error' ? 'var(--la-color-error)' : 'var(--la-color-primary)',
+    fontWeight: weight === 'semibold' ? '600' : weight === 'bold' ? '700' : '400',
+    fontFamily: font === 'mono' ? 'monospace' : 'inherit',
+    marginTop: marginTop === 'sm' ? 'var(--la-space-sm)' : marginTop === 'xs' ? 'var(--la-space-xs)' : marginTop || '0',
+    wordBreak: wordBreak || 'normal',
+    margin: '0'
+  };
+  return <span style={styles} {...props}>{children}</span>;
+};
 import { SPACING_SCALE } from '@layera/constants';
 // import { SmartphoneIcon, CheckIcon, SettingsIcon, ChartIcon, ShieldIcon, FolderIcon, LockIcon, UserIcon, FileIcon, XIcon } from '@layera/icons';
 // ΠΡΟΣΩΡΙΝΟ: Σχολιασμένα όλα τα icons μέχρι να λυθεί το export problem
@@ -37,7 +51,15 @@ export default function Data() {
   const headerActions = (
     <HeaderActionsGroup>
       <LanguageSwitcher variant="toggle" showFlags={true} />
-      <ThemeSwitcher variant="icon" size="md" />
+      <ThemeSwitcher
+        variant="icon"
+        size="md"
+        labels={{
+          light: t('settings.items.theme.light'),
+          dark: t('settings.items.theme.dark'),
+          system: t('settings.items.theme.system')
+        }}
+      />
       {user && (
         <>
           <UserAvatar
@@ -82,19 +104,19 @@ export default function Data() {
               title={t('data.fields.email')}
               variant="info"
             >
-              <Heading level={4} color="primary">
+              <h4 style={{ margin: 0, color: 'var(--la-color-primary)', fontSize: 'var(--la-font-size-lg)' }}>
                 {user.email}
-              </Heading>
+              </h4>
               <Flex align="center" gap="sm" marginTop="sm">
                 {user.emailVerified ? (
                   <>
                     <span>✓</span> {/* <CheckIcon size="sm" theme="success" /> */}
-                    <Text color="success">{t('status.verified')}</Text>
+                    <span style={{ color: 'var(--la-color-success)' }}>{t('status.verified')}</span>
                   </>
                 ) : (
                   <>
                     <span>✗</span> {/* <XIcon size="sm" theme="danger" /> */}
-                    <Text color="error">{t('status.unverified')}</Text>
+                    <span style={{ color: 'var(--la-color-error)' }}>{t('status.unverified')}</span>
                   </>
                 )}
               </Flex>
@@ -104,12 +126,12 @@ export default function Data() {
               title={t('data.fields.displayName')}
               variant="info"
             >
-              <Heading level={4} color="primary">
+              <h4 style={{ margin: 0, color: 'var(--la-color-primary)', fontSize: 'var(--la-font-size-lg)' }}>
                 {user.displayName || t('data.fields.notAvailable')}
-              </Heading>
-              <Text size="sm" color="secondary" marginTop="sm">
+              </h4>
+              <p style={{ fontSize: 'var(--la-font-size-sm)', color: 'var(--la-color-secondary)', margin: '0.5rem 0 0 0' }}>
                 {user.displayName ? 'Διαθέσιμο' : 'Μη διαθέσιμο'}
-              </Text>
+              </p>
             </DashboardCard>
 
             <DashboardCard
@@ -128,9 +150,9 @@ export default function Data() {
               title={t('data.fields.role')}
               variant="info"
             >
-              <Heading level={4} color="primary">
+              <h4 style={{ margin: 0, color: 'var(--la-color-primary)', fontSize: 'var(--la-font-size-lg)' }}>
                 {t(`roles.${user.layeraClaims?.role || 'private'}`)}
-              </Heading>
+              </h4>
               <Text size="sm" color="secondary" marginTop="sm">
                 Τύπος λογαριασμού
               </Text>

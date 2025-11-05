@@ -92,15 +92,9 @@ importers:
       '@layera/draggable':
         specifier: file:../../packages/draggable
         version: link:../../packages/draggable
-      '@layera/draggable-fab':
-        specifier: file:../../packages/draggable-fab
-        version: file:packages/draggable-fab(react@19.2.0)
       '@layera/error-boundary':
         specifier: file:..\..\packages\error-boundary
         version: link:../../packages/error-boundary
-      '@layera/floating-action-buttons':
-        specifier: workspace:^
-        version: link:../../packages/floating-action-buttons
       '@layera/forms':
         specifier: file:../../packages/forms
         version: file:packages/forms(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -3362,11 +3356,6 @@ packages:
     resolution: {directory: packages/box-shadows, type: directory}
     peerDependencies:
       react: '>=18.0.0'
-
-  '@layera/draggable-fab@file:packages/draggable-fab':
-    resolution: {directory: packages/draggable-fab, type: directory}
-    peerDependencies:
-      react: ^18.2.0
 
   '@layera/forms@file:packages/forms':
     resolution: {directory: packages/forms, type: directory}
@@ -10470,10 +10459,6 @@ snapshots:
       - '@react-native-async-storage/async-storage'
 
   '@layera/box-shadows@file:packages/box-shadows(react@19.2.0)':
-    dependencies:
-      react: 19.2.0
-
-  '@layera/draggable-fab@file:packages/draggable-fab(react@19.2.0)':
     dependencies:
       react: 19.2.0
 

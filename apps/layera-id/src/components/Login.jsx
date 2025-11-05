@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuthContext, GoogleSignInButton } from '@layera/auth-bridge';
 import { useNavigate, Link } from 'react-router-dom';
 import { FormField, FormSection, FormActions, Input } from '@layera/forms';
@@ -18,6 +18,13 @@ const Login = () => {
   const { signIn, loading } = useAuthContext();
   const { t, currentLanguage } = useLayeraTranslation();
   const navigate = useNavigate();
+
+  // Clear error when language changes
+  useEffect(() => {
+    if (error) {
+      setError(''); // Clear any existing errors when language changes
+    }
+  }, [currentLanguage, error]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,9 +54,9 @@ const Login = () => {
         variant="icon"
         size="md"
         labels={{
-          light: currentLanguage === 'el' ? 'Φωτεινό θέμα' : 'Light',
-          dark: currentLanguage === 'el' ? 'Σκοτεινό θέμα' : 'Dark',
-          system: currentLanguage === 'el' ? 'Σύστημα' : 'System'
+          light: t('settings.items.theme.light'),
+          dark: t('settings.items.theme.dark'),
+          system: t('settings.items.theme.system')
         }}
       />
       <LanguageSwitcher variant="toggle" showFlags={true} />
@@ -85,10 +92,11 @@ const Login = () => {
               borderRadius="input"
               marginBottom="md"
               fontSize="sm"
-              border="danger"
               padding={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px`}
-              background="var(--la-bg-danger-subtle, color-mix(in srgb, var(--la-bg-danger) 10%, transparent))"
-              borderColor="var(--la-border-danger-subtle, 1px solid color-mix(in srgb, var(--la-bg-danger) 30%, transparent))"
+              style={{
+                background: "var(--la-bg-danger-subtle, color-mix(in srgb, var(--la-bg-danger) 10%, transparent))",
+                border: "1px solid var(--la-border-danger-subtle, color-mix(in srgb, var(--la-bg-danger) 30%, transparent))"
+              }}
             >
               <span style={{ fontSize: 'var(--la-font-size-sm)', color: 'var(--la-color-danger)' }}>{error}</span>
             </Box>
@@ -105,7 +113,7 @@ const Login = () => {
                   size={FORM_SIZES.MEDIUM}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholderKey="forms.placeholders.email"
+                  placeholder={t('forms.placeholders.email')}
                   disabled={isLoading || loading}
                   fullWidth
                   autoComplete="email"
@@ -121,7 +129,7 @@ const Login = () => {
                   size={FORM_SIZES.MEDIUM}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholderKey="forms.placeholders.password"
+                  placeholder={t('forms.placeholders.password')}
                   disabled={isLoading || loading}
                   fullWidth
                   autoComplete="current-password"
@@ -156,10 +164,12 @@ const Login = () => {
               left="0"
               right="0"
               backgroundColor="border"
-              zIndex="1"
               top="50%"
               height="1px"
-              background="var(--la-border-primary)"
+              style={{
+                background: 'var(--la-border-primary)',
+                zIndex: 1
+              }}
             />
             <span
               style={{
@@ -179,11 +189,36 @@ const Login = () => {
             }}
             onError={(error) => {
               console.error('Google sign-in error:', error);
-              setError(error);
+              console.log('Current language:', currentLanguage);
+
+              // ALWAYS translate error messages based on current language
+              let translatedError;
+              if (error.includes('auth/popup-closed-by-user')) {
+                translatedError = t('errors.googleSignInCancelled');
+
+                // In development, show additional helpful information
+                if (process.env.NODE_ENV === 'development') {
+                  console.log('💡 Development Tip: Google popup cancellation is common in localhost environments');
+                  console.log('💡 This typically works normally in production environments');
+                }
+              } else if (error.includes('auth/popup-blocked')) {
+                translatedError = t('errors.popupBlocked');
+              } else if (error.includes('auth/')) {
+                translatedError = t('errors.authError');
+              } else {
+                // Force translation for any unhandled errors
+                translatedError = t('errors.authError');
+              }
+
+              console.log('Translated error:', translatedError);
+              console.log('Should be in language:', currentLanguage);
+              setError(translatedError);
             }}
             marginBottom="md"
             width="full"
-          />
+          >
+            {t('auth.signInWithGoogle')}
+          </GoogleSignInButton>
 
           <Box
             marginTop="xl"

@@ -31,7 +31,7 @@
 
 | Script | Location | Size | Purpose | Status | Recommendation |
 |--------|----------|------|---------|--------|----------------|
-| `C:Layeradebug-iphone.js` | `root/` | 135B | Device selector debug | ⚠️ Legacy | 🗑️ **DELETE** |
+| `C:Layeradebug-mobile.js` | `root/` | 135B | Device selector debug | ⚠️ Legacy | 🗑️ **DELETE** |
 
 ---
 
@@ -107,7 +107,7 @@ scripts/
 ```
 
 #### **1B. Cleanup Actions**
-- 🗑️ **DELETE**: `C:Layeradebug-iphone.js` (legacy debug)
+- 🗑️ **DELETE**: `C:Layeradebug-mobile.js` (legacy debug)
 - 📦 **UPDATE**: package.json paths after moves
 - 🔧 **STANDARDIZE**: All scripts follow same conventions
 
