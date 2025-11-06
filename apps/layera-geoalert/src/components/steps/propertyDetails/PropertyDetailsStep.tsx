@@ -10,6 +10,7 @@ import { useLayeraTranslation } from '@layera/tolgee';
 import { PropertyDetailsForm } from './PropertyDetailsForm';
 import { BaseCard } from '@layera/cards';
 import { CheckIcon, CheckIcon as FormIcon } from '@layera/icons';
+import { getCardInfoColor } from '@layera/constants';
 import type { StepProps } from '../types';
 import type { PropertyDetails, PropertyDetailsStepData, PropertyDetailsFormField } from './types';
 
@@ -187,11 +188,11 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
         <>
           {/* Show Form Card */}
           <BaseCard
-            variant="info"
             title={t('propertyDetails.title')}
             description={t('property-details.fill-details')}
             icon={<FormIcon size="sm" theme="neutral" />}
             onClick={handleShowForm}
+            style={{ backgroundColor: getCardInfoColor() }} // 🔴 SST: Info card color από μοναδική πηγή αλήθειας
             className="layera-card-uniform"
             data-testid="property-details-show-form"
           />

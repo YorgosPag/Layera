@@ -15,17 +15,25 @@ import {
   FONT_SIZES,
   FONT_WEIGHTS,
   ANIMATION_DURATIONS,
+  ANIMATION_DISTANCES,
   EASING_FUNCTIONS,
-  MENU_POSITIONS
+  MENU_POSITIONS,
+  GEO_DRAWING_STYLES,
+  getWorkflowCardContainerStyle,
+  getWorkflowCardModalStyle,
+  getWorkflowCardStepStyle,
+  getWorkflowCardStepContainerStyle,
+  getCardPrimaryColor
 } from '@layera/constants';
 import { Box, Flex, FlexCenter } from '@layera/layout';
 import { Button } from '@layera/buttons';
 import { Text, Heading } from '@layera/typography';
 import { BaseCard } from '@layera/cards';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
-import { CloseIcon } from '@layera/icons';
+import { CloseIcon, ShieldIcon, LockIcon, QuickIcon } from '@layera/icons';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { stepRegistry } from './StepRegistry';
+import { WorkflowPlaceholder } from './WorkflowPlaceholder';
 import {
   StepContext,
   StepDefinition,
@@ -139,7 +147,7 @@ function ChipRadioGroup<T extends string>({
             color: 'var(--color-text-secondary)',
             fontSize: `${FONT_SIZES.XS}px`,
             display: 'block',
-            lineHeight: '1.4'
+            lineHeight: CSS_DESIGN_TOKENS.typography['line-height-normal']
           }}
         >
           {description}
@@ -153,8 +161,7 @@ function ChipRadioGroup<T extends string>({
             onClick={() => !disabled && !option.disabled && onChange(option.value)}
             disabled={disabled || option.disabled}
             style={{
-              padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS + SPACING_SCALE.XXS}px ${SPACING_SCALE.LG - SPACING_SCALE.XS}px`,
-              borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
+              ...getWorkflowCardStepStyle(),
               flex: '0 1 auto', // να μην τεντώνουν άνισα
               minWidth: `${SPACING_SCALE.LAYOUT_SM + SPACING_SCALE.XXL - SPACING_SCALE.XS}px`,
               maxWidth: `${SPACING_SCALE.LAYOUT_MD + SPACING_SCALE.XXL - SPACING_SCALE.XS}px`,
@@ -163,16 +170,18 @@ function ChipRadioGroup<T extends string>({
               fontWeight: `${FONT_WEIGHTS.SEMIBOLD}`,
               transition: `background-color ${ANIMATION_DURATIONS.INSTANT}ms ${EASING_FUNCTIONS.EASE_OUT}, border-color ${ANIMATION_DURATIONS.INSTANT}ms ${EASING_FUNCTIONS.EASE_OUT}, box-shadow ${ANIMATION_DURATIONS.INSTANT}ms ${EASING_FUNCTIONS.EASE_OUT}`,
               cursor: disabled || option.disabled ? 'not-allowed' : 'pointer',
-              opacity: disabled || option.disabled ? 0.5 : 1,
-              background: value === option.value
-                ? 'var(--color-interactive-primary)'
-                : 'var(--color-bg-elevated)',
-              color: value === option.value
-                ? 'var(--color-text-inverse)'
-                : 'var(--color-text-primary)',
+              opacity: disabled || option.disabled ? GEO_DRAWING_STYLES.OPACITY.DISABLED : GEO_DRAWING_STYLES.OPACITY.FINISHED,
+              // Selected state - only change text color, keep SST background
+              ...(value === option.value && {
+                color: 'var(--color-text-inverse)'
+              }),
+              // Non-selected state uses SST background (brown)
+              ...(value !== option.value && {
+                color: 'var(--color-text-primary)'
+              }),
               border: value === option.value
-                ? `${SPACING_SCALE.XXS}px solid var(--color-interactive-primary)`
-                : `${SPACING_SCALE.XXS / 2}px solid var(--color-border-strong)`,
+                ? `${SPACING_SCALE.XXS}px solid ${BRAND_COLORS.PRIMARY}`
+                : `${SPACING_SCALE.XXS}px solid ${BRAND_COLORS.PRIMARY}`,
               boxShadow: value === option.value
                 ? 'var(--elevation-lg)'
                 : 'var(--elevation-md)',
@@ -259,6 +268,44 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
     }
   }, [state.intent, state.kind, state.purpose, visibleSteps]);
 
+  // 🎯 AUTO-NAVIGATION: Όταν όλα τα πεδία είναι συμπληρωμένα, πήγαινε στο WorkflowPlaceholder
+  const [hasAutoNavigated, setHasAutoNavigated] = React.useState(false);
+  const onSearchRef = React.useRef(onSearch);
+  onSearchRef.current = onSearch; // Κρατάμε το latest onSearch reference
+
+  // Έλεγχος αν όλα τα απαραίτητα πεδία είναι συμπληρωμένα
+  const allFieldsCompleted = Boolean(
+    state.intent &&
+    state.kind &&
+    state.timeframe &&
+    (state.kind === 'job' || (state.kind === 'property' && state.purpose))
+  );
+
+  // 🎯 FIXED AUTO-NAVIGATION: Correct timing without re-render conflicts
+  const autoNavigateTimerRef = React.useRef<NodeJS.Timeout | null>(null);
+  const stateRef = React.useRef(state);
+  React.useEffect(() => { stateRef.current = state; }, [state]);
+
+  React.useEffect(() => {
+    const ready = allFieldsCompleted && isValid && visibleSteps >= 4 && !hasAutoNavigated;
+    if (!ready) return;
+
+    autoNavigateTimerRef.current = setTimeout(() => {
+      if (onSearchRef.current) {
+        onSearchRef.current(stateRef.current);
+      }
+      setHasAutoNavigated(true);
+      autoNavigateTimerRef.current = null;
+    }, 1500);
+
+    return () => {
+      if (autoNavigateTimerRef.current) {
+        clearTimeout(autoNavigateTimerRef.current);
+        autoNavigateTimerRef.current = null;
+      }
+    };
+  }, [allFieldsCompleted, isValid, visibleSteps, hasAutoNavigated]);
+
   // ✅ Options για κάθε ομάδα chips
   const intentOptions: CardOption<QuickSearchIntent>[] = [
     { value: 'offer', label: t('quickSearch.intent.offer') },
@@ -283,17 +330,11 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
   return (
     <div
       style={{
-        backgroundColor: 'var(--color-bg-solid)',
+        ...getWorkflowCardContainerStyle(),
         backdropFilter: 'none',
-        border: `${SPACING_SCALE.XXS}px solid var(--color-border-solid)`,
-        borderRadius: `${BORDER_RADIUS_SCALE.LG}px`,
         boxShadow: `var(--la-shadow-xl)`,
-        padding: `${SPACING_SCALE.LG}px`,
         display: 'block',
-        width: '100%',
-        maxWidth: `${SPACING_SCALE.CONTAINER_MD}px`,
-        margin: '0 auto',
-        position: 'relative'
+        width: SPACING_SCALE.FULL
       }}
     >
       {/* Close Button - Research-backed anxiety reduction */}
@@ -339,11 +380,12 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
         <Box
           style={{
             backgroundColor: `var(--${CSS_DESIGN_TOKENS.colors['color-bg-surface']})`,
-            borderRadius: `var(--${CSS_DESIGN_TOKENS.borderRadius['border-radius-lg']})`,
-            padding: `var(--${CSS_DESIGN_TOKENS.spacing['spacing-md']})`,
-            border: `1px solid var(--${CSS_DESIGN_TOKENS.colors['color-border-default']})`,
+            borderRadius: `${BORDER_RADIUS_SCALE.LG}px`,
+            paddingTop: `${SPACING_SCALE.LG}px`,
+            paddingBottom: `${SPACING_SCALE.XL}px`,
+            border: `${SPACING_SCALE.XXS}px solid ${BRAND_COLORS.PRIMARY}`,
             alignSelf: 'center',
-            width: '100%'
+            width: SPACING_SCALE.FULL
           }}
         >
           <Flex direction="column" gap="lg" style={{ alignItems: 'center' }}>
@@ -362,7 +404,7 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
             <div style={{
               animation: `slideIn ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`,
               opacity: visibleSteps >= 2 ? 1 : 0,
-              transform: visibleSteps >= 2 ? 'translateY(0)' : 'translateY(10px)',
+              transform: visibleSteps >= 2 ? 'translateY(0)' : `translateY(${ANIMATION_DISTANCES.SLIDE_NORMAL}px)`,
               transition: `all ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`
             }}>
               <ChipRadioGroup
@@ -381,7 +423,7 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
             <div style={{
               animation: `slideIn ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`,
               opacity: visibleSteps >= 3 ? 1 : 0,
-              transform: visibleSteps >= 3 ? 'translateY(0)' : 'translateY(10px)',
+              transform: visibleSteps >= 3 ? 'translateY(0)' : `translateY(${ANIMATION_DISTANCES.SLIDE_NORMAL}px)`,
               transition: `all ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`
             }}>
               <ChipRadioGroup
@@ -401,7 +443,7 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
             <div style={{
               animation: `slideIn ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`,
               opacity: visibleSteps >= 4 ? 1 : 0,
-              transform: visibleSteps >= 4 ? 'translateY(0)' : 'translateY(10px)',
+              transform: visibleSteps >= 4 ? 'translateY(0)' : `translateY(${ANIMATION_DISTANCES.SLIDE_NORMAL}px)`,
               transition: `all ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`
             }}>
               <ChipRadioGroup
@@ -418,6 +460,7 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
         </Box>
 
         {/* Action Section */}
+
         <Box textAlign="center">
           <Button
             variant="primary"
@@ -425,14 +468,15 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
             disabled={!isValid}
             onClick={() => onSearch?.(state)}
             style={{
-              minWidth: `${SPACING_SCALE.LAYOUT_MD + SPACING_SCALE.LAYOUT_SM}px`,
+              minWidth: `${SPACING_SCALE.LAYOUT_SM + SPACING_SCALE.LG}px`,
+              minHeight: `${SPACING_SCALE.XXL}px`,
               padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.LG}px`,
-              background: 'var(--color-interactive-primary)',
+              background: getCardPrimaryColor(), // 🔴 SST: Χρώμα από μοναδική πηγή αλήθειας
               borderRadius: `${BORDER_RADIUS_SCALE.SM + SPACING_SCALE.XXS}px`,
               fontSize: `${FONT_SIZES.LG - SPACING_SCALE.XXS - 1}px`,
               fontWeight: `${FONT_WEIGHTS.MEDIUM}`,
               color: 'var(--color-text-inverse)',
-              border: `${SPACING_SCALE.XXS / 2}px solid var(--color-interactive-primary)`,
+              border: `${SPACING_SCALE.XXS / 2}px solid ${getCardPrimaryColor()}`, // 🔴 SST: Border από μοναδική πηγή αλήθειας
               boxShadow: `var(--elevation-md)`,
               transition: `all ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`
             }}
@@ -464,29 +508,39 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
               flexWrap: 'wrap'
             }}
           >
-            <Text size="xs" style={{ color: 'var(--color-text-secondary)' }}>
-              {t('quickSearch.security.dataProtection')}
-            </Text>
-            <Text size="xs" style={{ color: 'var(--color-text-secondary)' }}>
-              {t('quickSearch.security.noSpam')}
-            </Text>
+            <Flex gap="xs" align="center">
+              <ShieldIcon size="xs" style={{ color: 'var(--color-text-secondary)' }} />
+              <Text size="xs" style={{ color: 'var(--color-text-secondary)' }}>
+                {t('quickSearch.security.dataProtection') || 'Δεν μοιραζόμαστε τα στοιχεία σας'}
+              </Text>
+            </Flex>
+            <Flex gap="xs" align="center">
+              <LockIcon size="xs" style={{ color: 'var(--color-text-secondary)' }} />
+              <Text size="xs" style={{ color: 'var(--color-text-secondary)' }}>
+                {t('quickSearch.security.noSpam') || 'Χωρίς spam - ποτέ'}
+              </Text>
+            </Flex>
           </Flex>
 
           {/* Next-Step Preview - Research-backed uncertainty reduction */}
           {getNextStepHint() && (
-            <Text
-              size="sm"
-              textAlign="center"
-              style={{
-                color: 'var(--color-interactive-primary)',
-                marginTop: `${SPACING_SCALE.SM}px`,
-                marginBottom: `${SPACING_SCALE.XS}px`,
-                fontWeight: 'var(--la-font-weight-medium)',
-                animation: `slideIn ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`
-              }}
-            >
-              {getNextStepHint()}
-            </Text>
+            <Flex gap="xs" align="center" justifyContent="center" style={{
+              marginTop: `${SPACING_SCALE.SM}px`,
+              marginBottom: `${SPACING_SCALE.XS}px`,
+            }}>
+              <QuickIcon size="sm" style={{ color: getCardPrimaryColor() }} /> {/* 🔴 SST: Icon color από μοναδική πηγή αλήθειας */}
+              <Text
+                size="sm"
+                textAlign="center"
+                style={{
+                  color: getCardPrimaryColor(), // 🔴 SST: Text color από μοναδική πηγή αλήθειας
+                  fontWeight: 'var(--la-font-weight-medium)',
+                  animation: `slideIn ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`
+                }}
+              >
+                {getNextStepHint() || 'Έτοιμο! Κλικ για προβολή αποτελεσμάτων'}
+              </Text>
+            </Flex>
           )}
 
           <Text
@@ -528,15 +582,9 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
   renderStepContainer,
   renderCardsContainer
 }) => {
-  // Debug log για occupation step tracking
-  React.useEffect(() => {
-    if (currentStepId === 'occupation') {}
-  }, [currentStepId]);
-  // 🎯 ONE-TIME LOG: StepOrchestrator mounted για συγκεκριμένο step
-  React.useEffect(() => {
-    if (currentStepId === 'intent') {
-    }
-  }, [currentStepId]); // Τρέχει μόνο όταν αλλάζει το step, όχι το category
+  // 🎯 State για workflow management
+  const [showWorkflowPlaceholder, setShowWorkflowPlaceholder] = React.useState(false);
+  const [completedQuickSearch, setCompletedQuickSearch] = React.useState<QuickSearchState | null>(null);
 
   // 🎮 Apply flow configuration if provided
   React.useEffect(() => {
@@ -682,21 +730,44 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
   }, [stepContext, selectedCategory, selectedIntent, renderCardsContainer]);
 
 
-  // ✅ QUICK SEARCH MODE - ΠΡΙΝ ΑΠΟ ΟΛΑ ΤΑ ΑΛΛΑ CHECKS - HIGHEST PRIORITY
-  if (quickSearchMode) {
+  // ✅ WORKFLOW PLACEHOLDER MODE - ΠΡΩΤΑ PRIORITY!
+  if (showWorkflowPlaceholder && completedQuickSearch) {
     return (
-      <InlineQuickSearchPanel
-        onSearch={(quickSearchState) => {
-          // Handle QuickSearch selection and transition to normal step flow
-          if (onStepComplete && quickSearchState.kind) {
+      <WorkflowPlaceholder
+        quickSearchState={completedQuickSearch}
+        onStartWorkflow={() => {
+          // Navigate to actual workflow
+          setShowWorkflowPlaceholder(false);
+
+          if (onStepComplete && completedQuickSearch.kind) {
             onStepComplete('category', {
-              selectedCategory: quickSearchState.kind === 'property' ? 'property' : 'job'
+              selectedCategory: completedQuickSearch.kind === 'property' ? 'property' : 'job'
             });
           }
+        }}
+        onBackToQuickSearch={() => {
+          // Go back to QuickSearch
+          setShowWorkflowPlaceholder(false);
+          setCompletedQuickSearch(null);
         }}
       />
     );
   }
+
+  // ✅ QUICK SEARCH MODE - Μόνο αν ΔΕΝ δείχνουμε το placeholder
+  if (quickSearchMode && !showWorkflowPlaceholder) {
+    return (
+      <InlineQuickSearchPanel
+        onSearch={(quickSearchState) => {
+          // 🎯 Auto-advance to WorkflowPlaceholder
+          setCompletedQuickSearch(quickSearchState);
+          setShowWorkflowPlaceholder(true);
+        }}
+      />
+    );
+  }
+
+  // 📝 DUPLICATE REMOVED - χρησιμοποιούμε το πρώτο block
 
   // 🚫 Early return αν δεν υπάρχει current step
   if (!currentStep) {
@@ -745,7 +816,7 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
       <Box className="step-content">
         {stepElement}
       </Box>
-      <Box className="step-cards">
+      <Box className="step-cards" style={getWorkflowCardStepContainerStyle()}>
         {cardsElement}
       </Box>
     </Box>

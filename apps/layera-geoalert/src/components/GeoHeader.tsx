@@ -5,7 +5,7 @@ import { ThemeSwitcher, useTheme } from '@layera/theme-switcher';
 import { LanguageSwitcher } from '@layera/tolgee';
 import { Button } from '@layera/buttons';
 import { ArrowLeftIcon, GlobeIcon, SettingsIcon, PlusIcon } from '@layera/icons';
-import { SPACING_SCALE } from '@layera/constants';
+import { SPACING_SCALE, getCardOrangeColor } from '@layera/constants';
 
 interface GeoHeaderProps {
   onBackClick?: () => void;
@@ -73,7 +73,7 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, onStepBackCli
             icon={<ArrowLeftIcon size="sm" theme="neutral" />}
             title="Πίσω στο προηγούμενο step"
             style={{
-              backgroundColor: '#ff8c00', // 🧡 Πορτοκαλί για προσωρινό
+              backgroundColor: getCardOrangeColor(), // 🔴 SST: Χρώμα από μοναδική πηγή αλήθειας
               color: 'white',
               border: 'none',
               borderRadius: '4px',

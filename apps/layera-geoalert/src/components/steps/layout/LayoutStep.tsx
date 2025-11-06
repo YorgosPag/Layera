@@ -8,7 +8,7 @@ import React, { useCallback, useState } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { BaseCard } from '@layera/cards';
 import { CheckIcon } from '@layera/icons';
-import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE, getCardSuccessColor } from '@layera/constants';
 import { Text } from '@layera/typography';
 import { Box } from '@layera/layout';
 import type { StepProps } from '../types';
@@ -134,7 +134,7 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({
       {selectedTools.length > 0 && (
         <Box
           padding="sm md"
-          background="var(--color-semantic-success-bg)"
+          background={getCardSuccessColor()} // 🔴 SST: Success color από μοναδική πηγή αλήθειας
           borderRadius="sm"
           color="var(--color-semantic-success-text)"
         >

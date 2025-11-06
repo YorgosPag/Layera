@@ -37,7 +37,7 @@ export const MinimalTolgeeProvider: React.FC<MinimalTolgeeProviderProps> = ({
 }) => {
   const [currentLang, setCurrentLang] = React.useState(() => {
     // EXTREME CACHE BUSTING: Check for translation updates
-    const currentVersion = '2025-11-05-v8-MFA-CARDS'; // Update this when translations change
+    const currentVersion = '2025-11-06-v9-LOGIN-FORMS'; // Update this when translations change
     const lastVersion = localStorage.getItem('layera_translation_version');
 
     if (lastVersion !== currentVersion) {

@@ -122,7 +122,8 @@ export const GEO_DRAWING_STYLES = {
     FINISHED: 1.0,
     BUILDING_FILL: 0.1,
     BUILDING_HOVER: 0.3,
-    MEASUREMENT_FILL: 0.3
+    MEASUREMENT_FILL: 0.3,
+    DISABLED: 0.5
   }
 } as const;
 

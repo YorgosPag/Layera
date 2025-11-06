@@ -7,7 +7,7 @@ import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, FlexCenter, Box, Flex } from '@layera/layout';
 import { DashboardCard } from '@layera/cards';
-import { FORM_TYPES, FORM_SIZES, SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+import { FORM_TYPES, FORM_SIZES, SPACING_SCALE, BORDER_RADIUS_SCALE, getCardInfoColor } from '@layera/constants';
 // import { Text } from '@layera/typography'; // Temporarily disabled until package is fixed
 
 const Login = () => {
@@ -82,9 +82,9 @@ const Login = () => {
         >
           <DashboardCard
             title={t('auth.login')}
-            variant="form"
             width="full"
             maxWidth="450px"
+            style={{ backgroundColor: getCardInfoColor() }} // 🔴 SST: Login form color από μοναδική πηγή αλήθειας
           >
           {error && (
             <Box

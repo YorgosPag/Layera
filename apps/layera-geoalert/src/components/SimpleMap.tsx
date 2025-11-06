@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { SPACING_SCALE } from '@layera/constants';
-import { BORDER_RADIUS_SCALE } from '@layera/constants';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE, getCardOrangeColor } from '@layera/constants';
 
 const SimpleMap: React.FC = () => {
   const mapInitialized = useRef(false);
@@ -60,7 +59,7 @@ const SimpleMap: React.FC = () => {
         style={{
           height: `${SPACING_SCALE.CONTAINER_SM}px`,
           width: SPACING_SCALE.FULL,
-          backgroundColor: 'var(--la-bg-secondary)',
+          backgroundColor: getCardOrangeColor(), // 🔴 SST: Map background από μοναδική πηγή αλήθειας
           border: '1px solid var(--la-border-primary)',
           borderRadius: `${BORDER_RADIUS_SCALE.SM}px`
         }}

@@ -2,6 +2,7 @@ import React from 'react';
 import { DashboardCardProps } from '../../types';
 import { BaseCard } from '../BaseCard';
 import { Box } from '@layera/layout';
+import { getCardInfoColor } from '@layera/constants';
 
 /**
  * DashboardCard - Specialized card για dashboard widgets με metrics και status
@@ -79,7 +80,7 @@ export const DashboardCard: React.FC<DashboardCardProps> = ({
       className={`${cardClasses} ${baseProps.className || ''}`}
       style={{
         ...baseProps.style,
-        backgroundColor: 'lightblue' // 🔵 ΔΟΚΙΜΗ: Γαλάζιο φόντο για όλες τις DashboardCard κάρτες
+        backgroundColor: baseProps.style?.backgroundColor || getCardInfoColor() // 🔴 SST: Καφέ χρώμα από μοναδική πηγή αλήθειας
       }}
     >
       {renderContent()}

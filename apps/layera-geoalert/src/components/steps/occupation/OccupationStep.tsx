@@ -8,7 +8,7 @@ import React, { useState, useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Heading, Text } from '@layera/typography';
 import { Stack, Box } from '@layera/layout';
-import { SPACING_SCALE } from '@layera/constants';
+import { SPACING_SCALE, getCardInfoColor, getCardSuccessColor } from '@layera/constants';
 import { BaseCard } from '@layera/cards';
 import { ESCOSearchComponent } from './ESCOSearchComponent';
 import type { StepProps } from '../types';
@@ -101,10 +101,10 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
           {t('occupation.title', 'Επιλογή Επαγγέλματος')}
         </Heading>
         <BaseCard
-          variant="info"
           padding="md"
           marginTop="sm"
-          className="layera-card-uniform">
+          className="layera-card-uniform"
+          style={{ backgroundColor: getCardInfoColor() }}> {/* 🔴 SST: Info card color από μοναδική πηγή αλήθειας */}
           <Text size="md" color="secondary" align="center" className="subtitle">
             {t('occupation.subtitle', 'Αναζητήστε και επιλέξτε το επάγγελμά σας από την επίσημη ESCO βάση δεδομένων της ΕΕ')}
           </Text>
@@ -122,7 +122,7 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
       {/* Selected Occupation Display */}
       {selectedOccupation && !isConfirming && (
         <BaseCard
-          backgroundColor="var(--color-semantic-info-bg)"
+          backgroundColor={getCardInfoColor()} // 🔴 SST: Info color από μοναδική πηγή αλήθειας
           border="var(--la-border-accent-primary, 2px solid var(--la-color-primary))"
           padding="md"
           marginTop="md"
@@ -148,7 +148,7 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
       {/* Confirmation Message */}
       {isConfirming && selectedOccupation && (
         <BaseCard
-          backgroundColor="var(--color-semantic-success-bg)"
+          backgroundColor={getCardSuccessColor()} // 🔴 SST: Success color από μοναδική πηγή αλήθειας
           border="var(--la-border-success, 1px solid var(--la-color-success))"
           padding="md"
           marginTop="md"
@@ -170,10 +170,10 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
       {/* Help Text */}
       {!selectedOccupation && (
         <BaseCard
-          variant="info"
           padding="md"
           marginTop="lg"
-          className="layera-card-uniform">
+          className="layera-card-uniform"
+          style={{ backgroundColor: getCardInfoColor() }}> {/* 🔴 SST: Help card color από μοναδική πηγή αλήθειας */}
           <Text size="sm" color="secondary" align="center">
             {t('occupation.help.tip', '💡 Συμβουλή: Χρησιμοποιήστε ελληνικούς ή αγγλικούς όρους για καλύτερα αποτελέσματα')}
           </Text>

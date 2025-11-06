@@ -14,7 +14,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { MapProvider, useMap } from '@layera/map-core';
 // ✅ ENTERPRISE APPROACH: Βραχυπρόθεσμη λύση - χρήση local implementation until @layera/geo-drawing build succeeds
 // import { useDrawing, DrawingMode } from '@layera/geo-drawing';
-import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE, getCardSuccessColor } from '@layera/constants';
 import { Flex, FlexCenter } from '@layera/layout';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { useLayeraTranslation } from '@layera/tolgee';
@@ -498,7 +498,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
               right: `${SPACING_SCALE.LG}px`,
               width: `${SPACING_SCALE.XXXL}px`,
               height: `${SPACING_SCALE.XXXL}px`,
-              backgroundColor: 'var(--color-semantic-success-bg)',
+              backgroundColor: getCardSuccessColor(), // 🔴 SST: Success color από μοναδική πηγή αλήθειας
               borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
               boxShadow: BOX_SHADOW_SCALE.shadowSuccess,
               cursor: 'pointer',

@@ -5,6 +5,24 @@
  */
 
 export const enTranslations = {
+  // Authentication - Login and Registration
+  "auth": {
+    "login": "Login",
+    "signInWithGoogle": "Sign in with Google",
+    "forgotPassword": "Forgot Password",
+    "noAccount": "Don't have an account?",
+    "register": "Register"
+  },
+  "forms": {
+    "labels": {
+      "email": "Email",
+      "password": "Password"
+    },
+    "placeholders": {
+      "email": "Enter your email",
+      "password": "Enter your password"
+    }
+  },
   // App & Dashboard - Application and Dashboard
   "app": {
     "name": "Layera",
@@ -250,11 +268,11 @@ export const enTranslations = {
   },
   "test": {
     "panel": {
-      "title": "🧪 LEGO Systems Test Panel",
-      "success": "Test Success 🎉",
-      "error": "Test Error ⚠️",
-      "info": "Test Info 📦",
-      "loading": "Test Loading 🔄"
+      "title": "LEGO Systems Test Panel",
+      "success": "Test Success",
+      "error": "Test Error",
+      "info": "Test Info",
+      "loading": "Test Loading"
     }
   },
   "common": {
@@ -317,24 +335,169 @@ export const enTranslations = {
       "propertyPurposeRequired": "Please select sale or rent for properties"
     },
     "security": {
-      "dataProtection": "🔒 We don't share your data",
-      "privateListings": "🛡️ Secure private listings",
-      "noSpam": "✅ No spam - ever",
-      "gdprCompliant": "🇪🇺 GDPR Compliant",
-      "encryptedData": "🔐 Encrypted data"
+      "dataProtection": "We don't share your data",
+      "privateListings": "Secure private listings",
+      "noSpam": "No spam - ever",
+      "gdprCompliant": "GDPR Compliant",
+      "encryptedData": "Encrypted data"
     },
     "actions": {
       "close": "Close",
       "closeTooltip": "Exit quick management"
     },
     "nextStepHints": {
-      "afterIntent": "📋 Next: Choose category (property or job)",
+      "afterIntent": "Next: Choose category (property or job)",
       "afterKind": {
-        "property": "🏠 Next: Transaction type (sale or rent)",
-        "job": "⏰ Next: Availability timeframe"
+        "property": "Next: Transaction type (sale or rent)",
+        "job": "Next: Availability timeframe"
       },
-      "afterPurpose": "⏰ Next: Availability timeframe",
-      "final": "✨ Ready! Click to view results"
+      "afterPurpose": "Next: Availability timeframe",
+      "final": "Ready! Click to view results"
+    }
+  },
+  "workflow": {
+    "titles": {
+      "property": {
+        "offer": {
+          "sell": "Property Listing for Sale",
+          "rent": "Property Listing for Rent"
+        },
+        "search": {
+          "buy": "Property Search for Purchase",
+          "rent": "Property Search for Rent"
+        }
+      },
+      "job": {
+        "offer": "Job Position Listing",
+        "search": "Job Search"
+      },
+      "default": "Next Steps"
+    },
+    "subtitles": {
+      "urgency": {
+        "now": "immediate",
+        "future": "future"
+      },
+      "template": "Manage your {{urgency}} need quickly and easily"
+    },
+    "preview": {
+      "title": "Next Steps",
+      "steps": "steps"
+    },
+    "property": {
+      "offer": {
+        "propertyType": {
+          "title": "Property Type",
+          "description": "Select your property type",
+          "duration": "~1 min"
+        },
+        "location": {
+          "title": "Location",
+          "description": "Mark the location on the map",
+          "duration": "~2 mins"
+        },
+        "photos": {
+          "title": "Photos",
+          "description": "Upload property photos",
+          "duration": "~3 mins"
+        },
+        "details": {
+          "title": "Details",
+          "description": "Fill in property characteristics",
+          "duration": "~2 mins"
+        },
+        "description": {
+          "title": "Description",
+          "description": "Write property description",
+          "duration": "~3 mins"
+        },
+        "pricing": {
+          "title": "Price",
+          "description": "Set sale/rental price",
+          "duration": "~1 min"
+        }
+      },
+      "search": {
+        "location": {
+          "title": "Search Area",
+          "description": "Select areas of interest",
+          "duration": "~2 mins"
+        },
+        "basics": {
+          "title": "Basic Criteria",
+          "description": "Property type and characteristics",
+          "duration": "~2 mins"
+        },
+        "budget": {
+          "title": "Budget",
+          "description": "Set your price range",
+          "duration": "~1 min"
+        },
+        "timeframe": {
+          "title": "Timeframe",
+          "description": "When do you need to find a property",
+          "duration": "~1 min"
+        }
+      }
+    },
+    "job": {
+      "offer": {
+        "jobType": {
+          "title": "Job Type",
+          "description": "Describe the job position",
+          "duration": "~2 mins"
+        },
+        "company": {
+          "title": "Company",
+          "description": "Company details and work environment",
+          "duration": "~3 mins"
+        },
+        "requirements": {
+          "title": "Requirements",
+          "description": "Qualifications and experience needed",
+          "duration": "~3 mins"
+        },
+        "description": {
+          "title": "Job Description",
+          "description": "Detailed description of responsibilities",
+          "duration": "~4 mins"
+        },
+        "salary": {
+          "title": "Compensation",
+          "description": "Salary and benefits",
+          "duration": "~2 mins"
+        }
+      },
+      "search": {
+        "profile": {
+          "title": "Profile",
+          "description": "Profile details and career goals",
+          "duration": "~3 mins"
+        },
+        "cv": {
+          "title": "CV",
+          "description": "Upload and process CV",
+          "duration": "~5 mins"
+        },
+        "experience": {
+          "title": "Experience",
+          "description": "Previous work experience",
+          "duration": "~4 mins"
+        },
+        "availability": {
+          "title": "Availability",
+          "description": "When can you start working",
+          "duration": "~1 min"
+        }
+      }
+    },
+    "actions": {
+      "backToQuickSearch": "← Back to Search",
+      "startWorkflow": "Start Now"
+    },
+    "security": {
+      "dataProtection": "Data Protection",
+      "encrypted": "Encrypted"
     }
   }
 } as const;

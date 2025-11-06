@@ -6,7 +6,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Button } from '@layera/buttons';
 import { Box } from '@layera/layout';
-import { SPACING_SCALE } from '@layera/constants';
+import { SPACING_SCALE, getCardInfoColor } from '@layera/constants';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 
 // Micro-modules imports
@@ -148,10 +148,9 @@ const MapCanvas: React.FC<MapCanvasProps> = ({
         <Button
           onClick={handleFindLocation}
           disabled={!mapInstance || isLoadingLocation}
-          variant="secondary"
           size="sm"
           title={t('findMyLocation')}
-          backgroundColor="white"
+          style={{ backgroundColor: getCardInfoColor() }} // 🔴 SST: Location button color από μοναδική πηγή αλήθειας
           boxShadow="elevation4"
           padding="md"
         >

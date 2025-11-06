@@ -10,7 +10,7 @@
 import React, { useCallback, useState } from 'react';
 
 // Enterprise LEGO Design System imports
-import { SPACING_SCALE } from '@layera/constants';
+import { SPACING_SCALE, getCardInfoColor } from '@layera/constants';
 import { FileUploader, DEFAULT_UPLOAD_CONFIG } from '@layera/file-upload';
 import { CheckIcon, ArrowRightIcon } from '@layera/icons';
 import { Flex } from '@layera/layout';
@@ -150,12 +150,12 @@ export const UploadStep: React.FC<UploadStepProps> = React.memo(({
         <>
           {/* Show Upload Card */}
           <BaseCard
-            variant="info"
             className="layera-card-uniform"
             title={t('upload.title', 'Ανέβασμα Αρχείων')}
             description={t('upload.description', 'Προσθέστε φωτογραφίες και έγγραφα')}
             icon={<CheckIcon size="sm" theme="neutral" />}
             onClick={handleShowUploader}
+            style={{ backgroundColor: getCardInfoColor() }} // 🔴 SST: Upload card color από μοναδική πηγή αλήθειας
             data-testid="upload-show-card"
           />
 

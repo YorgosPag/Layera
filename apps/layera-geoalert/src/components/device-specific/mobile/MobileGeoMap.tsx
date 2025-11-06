@@ -6,7 +6,7 @@
 import React from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { UI_CONFIG, COLORS } from '../../../constants';
-import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE, getCardInfoColor } from '@layera/constants';
 import { Text } from '@layera/typography';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { getCursorVar } from '@layera/cursors';
@@ -38,15 +38,14 @@ export const MobileGeoMap: React.FC<MobileGeoMapProps> = () => {
       >
         {/* Ακίνητα Button - Green */}
         <Button
-          variant="secondary"
           size="md"
           flex={1}
-          backgroundColor={COLORS.categories.property.light}
           border={`1px solid ${COLORS.categories.property.dark}`}
           borderRadius="sm"
           padding={`${UI_CONFIG.mobileGeoMap.button.padding}px`}
           cursor="pointer"
           boxShadow="shadowSuccess"
+          style={{ backgroundColor: getCardInfoColor() }} // 🔴 SST: Mobile button color από μοναδική πηγή αλήθειας
           minHeight={`${UI_CONFIG.mobileGeoMap.button.minHeight}px`}
         onClick={(): void => {
         }}

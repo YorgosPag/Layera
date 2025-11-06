@@ -8,7 +8,7 @@ import React, { useCallback, useMemo } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Text } from '@layera/typography';
 import { Stack, Flex, Box } from '@layera/layout';
-import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE, getCardInfoColor } from '@layera/constants';
 import { BaseCard } from '@layera/cards';
 import { CheckIcon, AlertTriangleIcon, HomeIcon } from '@layera/icons';
 import type { StepProps } from '../types';
@@ -142,7 +142,7 @@ export const CompleteStep: React.FC<CompleteStepProps> = ({
       {/* Next Steps Card */}
       <Box
         padding="md"
-        background="var(--color-semantic-info-bg)"
+        background={getCardInfoColor()} // 🔴 SST: Info color από μοναδική πηγή αλήθειας
         borderRadius="card"
         border="1px solid var(--color-semantic-info-border)"
       >

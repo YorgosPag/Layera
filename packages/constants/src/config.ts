@@ -287,6 +287,16 @@ export const ANIMATION_DURATIONS = {
 } as const;
 
 /**
+ * Animation Distances (in pixels)
+ */
+export const ANIMATION_DISTANCES = {
+  SLIDE_SMALL: 5,   // Small slide animation
+  SLIDE_NORMAL: 10, // Normal slide animation
+  SLIDE_LARGE: 20,  // Large slide animation
+  SLIDE_EXTRA: 50   // Extra large slide animation
+} as const;
+
+/**
  * Transition Timing Functions
  */
 export const EASING_FUNCTIONS = {

@@ -5,6 +5,24 @@
  */
 
 export const elTranslations = {
+  // Authentication - Είσοδος και Εγγραφή
+  "auth": {
+    "login": "Σύνδεση",
+    "signInWithGoogle": "Σύνδεση με Google",
+    "forgotPassword": "Ξέχασα τον κωδικό",
+    "noAccount": "Δεν έχετε λογαριασμό;",
+    "register": "Εγγραφή"
+  },
+  "forms": {
+    "labels": {
+      "email": "Email",
+      "password": "Κωδικός"
+    },
+    "placeholders": {
+      "email": "Εισάγετε το email σας",
+      "password": "Εισάγετε τον κωδικό σας"
+    }
+  },
   // App & Dashboard - Εφαρμογή και Dashboard
   "app": {
     "name": "Layera",
@@ -250,11 +268,11 @@ export const elTranslations = {
   },
   "test": {
     "panel": {
-      "title": "🧪 Πάνελ Δοκιμών LEGO Systems",
-      "success": "Επιτυχής Δοκιμή 🎉",
-      "error": "Σφάλμα Δοκιμής ⚠️",
-      "info": "Πληροφορίες Δοκιμής 📦",
-      "loading": "Φόρτωση Δοκιμής 🔄"
+      "title": "Πάνελ Δοκιμών LEGO Systems",
+      "success": "Επιτυχής Δοκιμή",
+      "error": "Σφάλμα Δοκιμής",
+      "info": "Πληροφορίες Δοκιμής",
+      "loading": "Φόρτωση Δοκιμής"
     }
   },
   "common": {
@@ -317,24 +335,169 @@ export const elTranslations = {
       "propertyPurposeRequired": "Παρακαλώ επιλέξτε πώληση ή ενοικίαση για ακίνητα"
     },
     "security": {
-      "dataProtection": "🔒 Δεν μοιραζόμαστε τα στοιχεία σας",
-      "privateListings": "🛡️ Ασφαλείς ιδιωτικές καταχωρήσεις",
-      "noSpam": "✅ Χωρίς spam - ποτέ",
-      "gdprCompliant": "🇪🇺 Συμμόρφωση GDPR",
-      "encryptedData": "🔐 Κρυπτογραφημένα δεδομένα"
+      "dataProtection": "Δεν μοιραζόμαστε τα στοιχεία σας",
+      "privateListings": "Ασφαλείς ιδιωτικές καταχωρήσεις",
+      "noSpam": "Χωρίς spam - ποτέ",
+      "gdprCompliant": "Συμμόρφωση GDPR",
+      "encryptedData": "Κρυπτογραφημένα δεδομένα"
     },
     "actions": {
       "close": "Κλείσιμο",
       "closeTooltip": "Έξοδος από τη γρήγορη διαχείριση"
     },
     "nextStepHints": {
-      "afterIntent": "📋 Επόμενο: Επιλογή κατηγορίας (ακίνητο ή εργασία)",
+      "afterIntent": "Επόμενο: Επιλογή κατηγορίας (ακίνητο ή εργασία)",
       "afterKind": {
-        "property": "🏠 Επόμενο: Τύπος συναλλαγής (πώληση ή ενοικίαση)",
-        "job": "⏰ Επόμενο: Χρονικό πλαίσιο διαθεσιμότητας"
+        "property": "Επόμενο: Τύπος συναλλαγής (πώληση ή ενοικίαση)",
+        "job": "Επόμενο: Χρονικό πλαίσιο διαθεσιμότητας"
       },
-      "afterPurpose": "⏰ Επόμενο: Χρονικό πλαίσιο διαθεσιμότητας",
-      "final": "✨ Έτοιμο! Κλικ για προβολή αποτελεσμάτων"
+      "afterPurpose": "Επόμενο: Χρονικό πλαίσιο διαθεσιμότητας",
+      "final": "Έτοιμο! Κλικ για προβολή αποτελεσμάτων"
+    }
+  },
+  "workflow": {
+    "titles": {
+      "property": {
+        "offer": {
+          "sell": "Καταχώρηση Ακινήτου για Πώληση",
+          "rent": "Καταχώρηση Ακινήτου για Ενοικίαση"
+        },
+        "search": {
+          "buy": "Αναζήτηση Ακινήτου για Αγορά",
+          "rent": "Αναζήτηση Ακινήτου για Ενοικίαση"
+        }
+      },
+      "job": {
+        "offer": "Καταχώρηση Θέσης Εργασίας",
+        "search": "Αναζήτηση Εργασίας"
+      },
+      "default": "Επόμενα Βήματα"
+    },
+    "subtitles": {
+      "urgency": {
+        "now": "άμεση",
+        "future": "μελλοντική"
+      },
+      "template": "Διαχειριστείτε την {{urgency}} σας ανάγκη γρήγορα και εύκολα"
+    },
+    "preview": {
+      "title": "Επόμενα Βήματα",
+      "steps": "βήματα"
+    },
+    "property": {
+      "offer": {
+        "propertyType": {
+          "title": "Τύπος Ακινήτου",
+          "description": "Επιλέξτε τον τύπο του ακινήτου σας",
+          "duration": "~1 λεπτό"
+        },
+        "location": {
+          "title": "Τοποθεσία",
+          "description": "Σημειώστε την τοποθεσία στο χάρτη",
+          "duration": "~2 λεπτά"
+        },
+        "photos": {
+          "title": "Φωτογραφίες",
+          "description": "Ανεβάστε φωτογραφίες του ακινήτου",
+          "duration": "~3 λεπτά"
+        },
+        "details": {
+          "title": "Στοιχεία",
+          "description": "Συμπληρώστε τα χαρακτηριστικά",
+          "duration": "~2 λεπτά"
+        },
+        "description": {
+          "title": "Περιγραφή",
+          "description": "Γράψτε περιγραφή του ακινήτου",
+          "duration": "~3 λεπτά"
+        },
+        "pricing": {
+          "title": "Τιμή",
+          "description": "Ορίστε την τιμή πώλησης/ενοικίασης",
+          "duration": "~1 λεπτό"
+        }
+      },
+      "search": {
+        "location": {
+          "title": "Περιοχή Αναζήτησης",
+          "description": "Επιλέξτε περιοχές που σας ενδιαφέρουν",
+          "duration": "~2 λεπτά"
+        },
+        "basics": {
+          "title": "Βασικά Κριτήρια",
+          "description": "Τύπος ακινήτου και χαρακτηριστικά",
+          "duration": "~2 λεπτά"
+        },
+        "budget": {
+          "title": "Προϋπολογισμός",
+          "description": "Ορίστε το εύρος τιμών που σας ενδιαφέρει",
+          "duration": "~1 λεπτό"
+        },
+        "timeframe": {
+          "title": "Χρονικό Πλαίσιο",
+          "description": "Πότε θέλετε να βρείτε ακίνητο",
+          "duration": "~1 λεπτό"
+        }
+      }
+    },
+    "job": {
+      "offer": {
+        "jobType": {
+          "title": "Τύπος Θέσης",
+          "description": "Περιγράψτε τη θέση εργασίας",
+          "duration": "~2 λεπτά"
+        },
+        "company": {
+          "title": "Εταιρία",
+          "description": "Στοιχεία εταιρίας και εργασιακό περιβάλλον",
+          "duration": "~3 λεπτά"
+        },
+        "requirements": {
+          "title": "Απαιτήσεις",
+          "description": "Προσόντα και εμπειρία που ζητάτε",
+          "duration": "~3 λεπτά"
+        },
+        "description": {
+          "title": "Περιγραφή Θέσης",
+          "description": "Αναλυτική περιγραφή καθηκόντων",
+          "duration": "~4 λεπτά"
+        },
+        "salary": {
+          "title": "Αποδοχές",
+          "description": "Μισθός και παροχές",
+          "duration": "~2 λεπτά"
+        }
+      },
+      "search": {
+        "profile": {
+          "title": "Προφίλ",
+          "description": "Στοιχεία προφίλ και στόχοι καριέρας",
+          "duration": "~3 λεπτά"
+        },
+        "cv": {
+          "title": "Βιογραφικό",
+          "description": "Ανέβασμα και επεξεργασία CV",
+          "duration": "~5 λεπτά"
+        },
+        "experience": {
+          "title": "Εμπειρία",
+          "description": "Προηγούμενη εργασιακή εμπειρία",
+          "duration": "~4 λεπτά"
+        },
+        "availability": {
+          "title": "Διαθεσιμότητα",
+          "description": "Πότε μπορείτε να ξεκινήσετε εργασία",
+          "duration": "~1 λεπτό"
+        }
+      }
+    },
+    "actions": {
+      "backToQuickSearch": "← Πίσω στην Αναζήτηση",
+      "startWorkflow": "Ξεκινήστε Τώρα"
+    },
+    "security": {
+      "dataProtection": "Προστασία Δεδομένων",
+      "encrypted": "Κρυπτογραφημένα"
     }
   }
 } as const;

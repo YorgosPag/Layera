@@ -5,7 +5,7 @@
  * Usage: import { APP_CONFIG, UI_CONFIG } from '@/constants';
  */
 
-import { BORDER_RADIUS_SCALE, SPACING_SCALE } from '@layera/constants';
+import { BORDER_RADIUS_SCALE, SPACING_SCALE, getCardOrangeColor } from '@layera/constants';
 
 // Application Configuration
 export const APP_CONFIG = {
@@ -155,8 +155,8 @@ export const COLORS = {
       dark: 'var(--la-color-blue-600, var(--la-color-brand-hover))'
     },
     initial: {
-      primary: 'var(--la-color-orange-500-alpha-95, var(--la-color-warning-alpha-95))',
-      border: 'var(--la-color-orange-500-alpha-30, var(--la-color-warning-alpha-30))'
+      primary: getCardOrangeColor(), // 🔴 SST: Orange color από μοναδική πηγή αλήθειας
+      border: getCardOrangeColor()   // 🔴 SST: Orange border από μοναδική πηγή αλήθειας
     }
   },
   common: {

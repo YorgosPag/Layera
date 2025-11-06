@@ -9,7 +9,7 @@ import { Button } from '@layera/buttons';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, Box } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
 import { FormField, FormSection, FormActions, Input, Select } from '@layera/forms';
-import { USER_ROLES, FORM_TYPES, FORM_SIZES, SPACING_SCALE } from '@layera/constants';
+import { USER_ROLES, FORM_TYPES, FORM_SIZES, SPACING_SCALE, getCardInfoColor } from '@layera/constants';
 import { Alert } from '@layera/notifications';
 import QuickActions from '../components/QuickActions';
 
@@ -181,7 +181,7 @@ export default function AdminRoles() {
             title={t('admin.roleManagement.form.title')}
             icon={<span>👤</span>}
           >
-            <DashboardCard variant="form">
+            <DashboardCard style={{ backgroundColor: getCardInfoColor() }}>
               <FormSection>
                 <FormField
                   labelKey="forms.labels.email"
@@ -261,7 +261,7 @@ export default function AdminRoles() {
             title={t('admin.roleManagement.info.title')}
             icon={<span>ℹ️</span>}
           >
-            <DashboardCard variant="info">
+            <DashboardCard style={{ backgroundColor: getCardInfoColor() }}>
               <Box as="ul" margin="0" paddingLeft="xl">
                 <li>{t('admin.roleManagement.info.adminOnly')}</li>
                 <li>{t('admin.roleManagement.info.clientRestrictions')}</li>
