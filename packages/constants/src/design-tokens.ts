@@ -33,6 +33,22 @@ export const buttonPadding = 'var(--la-space-3) var(--la-space-4)' as const;
  * @deprecated Use tokens from '@layera/tokens/dist/ts' instead
  * These constants will be removed in a future version
  */
+
+// Base scale configuration for legacy calculations
+const DESIGN_TOKEN_SCALE = {
+  BASE_UNIT: 4, // 4px base unit
+  SCALE_FACTORS: {
+    XXS: 1,   // 4px
+    XS: 2,    // 8px
+    SM: 3,    // 12px
+    MD: 4,    // 16px
+    LG: 6,    // 24px
+    XL: 8,    // 32px
+    XXL: 12,  // 48px
+    XXXL: 16, // 64px
+  }
+} as const;
+
 export const CSS_DESIGN_TOKENS = {
   // === SPACING TOKENS ===
   spacing: {
@@ -70,7 +86,7 @@ export const CSS_DESIGN_TOKENS = {
     'color-semantic-success-border': 'light-dark(var(--la-color-success), #4ade80)',
     'color-semantic-success-text': 'light-dark(#166534, #bbf7d0)',
 
-    'color-semantic-warning-bg': 'light-dark(var(--la-color-white)beb, #92400e)',
+    'color-semantic-warning-bg': 'light-dark(#fef3c7, #92400e)',
     'color-semantic-warning-border': 'light-dark(var(--la-color-warning), #fbbf24)',
     'color-semantic-warning-text': 'light-dark(var(--la-color-warning-dark), #fef3c7)',
 
