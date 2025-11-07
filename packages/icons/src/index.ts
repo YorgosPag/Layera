@@ -52,6 +52,8 @@ export {
   SmartphoneIcon,
   WatchIcon,
   TvIcon,
+  SunIcon,
+  MoonIcon,
   RotateIcon
 } from './icons/DeviceIcons';
 

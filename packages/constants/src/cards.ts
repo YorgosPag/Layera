@@ -25,12 +25,22 @@ export const WORKFLOW_CARD_STYLES = {
 
   // 🌐 GLOBAL CARD COLORS - Single Source of Truth για ΟΛΕΣ τις κάρτες
   COLORS: {
-    PRIMARY: '#2994c6',        // 🔴 Κύριο χρώμα κάρτας (ενιαίο #2994c6 παντού)
+    PRIMARY: '#8B4513',        // 🟤 Κύριο χρώμα κάρτας (καφέ παντού)
     SUCCESS: '#2994c6',        // 🟢 Success κάρτες (ενιαίο #2994c6 παντού)
     INFO: '#2994c6',           // 🔵 Info κάρτες (ενιαίο #2994c6 παντού)
     WARNING: '#2994c6',        // 🟡 Warning κάρτες (ενιαίο #2994c6 παντού)
     ERROR: '#2994c6',          // 🔴 Error κάρτες (ενιαίο #2994c6 παντού)
     ORANGE: '#2994c6'          // 🟠 Πορτοκαλί κάρτες (ενιαίο #2994c6 παντού)
+  },
+
+  // 🔲 GLOBAL CARD BORDERS - Single Source of Truth για ΟΛΕΣ τις κάρτες
+  BORDERS: {
+    PRIMARY: '#c5c722',        // 🔴 Κύριο περίγραμμα κάρτας (ενιαίο #c5c722 παντού)
+    SUCCESS: '#c5c722',        // 🟢 Success περίγραμμα (ενιαίο #c5c722 παντού)
+    INFO: '#c5c722',           // 🔵 Info περίγραμμα (ενιαίο #c5c722 παντού)
+    WARNING: '#c5c722',        // 🟡 Warning περίγραμμα (ενιαίο #c5c722 παντού)
+    ERROR: '#c5c722',          // 🔴 Error περίγραμμα (ενιαίο #c5c722 παντού)
+    ORANGE: '#c5c722'          // 🟠 Πορτοκαλί περίγραμμα (ενιαίο #c5c722 παντού)
   },
 
   // Modal content styles (for StepOrchestrator modal)
@@ -98,3 +108,13 @@ export const getCardInfoColor = () => WORKFLOW_CARD_STYLES.COLORS.INFO;
 export const getCardWarningColor = () => WORKFLOW_CARD_STYLES.COLORS.WARNING;
 export const getCardErrorColor = () => WORKFLOW_CARD_STYLES.COLORS.ERROR;
 export const getCardOrangeColor = () => WORKFLOW_CARD_STYLES.COLORS.ORANGE;
+
+/**
+ * 🔲 GLOBAL BORDER UTILITIES - Single Source of Truth για ΟΛΕΣ τις κάρτες
+ */
+export const getCardPrimaryBorder = () => WORKFLOW_CARD_STYLES.BORDERS.PRIMARY;
+export const getCardSuccessBorder = () => WORKFLOW_CARD_STYLES.BORDERS.SUCCESS;
+export const getCardInfoBorder = () => WORKFLOW_CARD_STYLES.BORDERS.INFO;
+export const getCardWarningBorder = () => WORKFLOW_CARD_STYLES.BORDERS.WARNING;
+export const getCardErrorBorder = () => WORKFLOW_CARD_STYLES.BORDERS.ERROR;
+export const getCardOrangeBorder = () => WORKFLOW_CARD_STYLES.BORDERS.ORANGE;

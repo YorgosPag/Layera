@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { Button } from '@layera/buttons';
+import { Select } from '@layera/forms';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, FlexCenter, Box } from '@layera/layout';
 // import { Text } from '@layera/typography'; // Temporarily disabled until package is fixed
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
@@ -89,7 +90,7 @@ export default function Settings() {
               <Box color="secondary" marginBottom="md" style={{ fontSize: 'var(--la-font-size-sm)', color: 'var(--la-text-secondary)' }}>
                 {t('settings.items.changePassword.description')}
               </Box>
-              <Button variant="secondary" size="sm">
+              <Button variant="primary" size="sm">
                 {t('actions.change')}
               </Button>
             </DashboardCard>
@@ -108,7 +109,7 @@ export default function Settings() {
                   {t('actions.enable')}
                 </Button>
               ) : (
-                <Button variant="secondary" size="sm">
+                <Button variant="primary" size="sm">
                   {t('actions.manage')}
                 </Button>
               )}
@@ -147,7 +148,7 @@ export default function Settings() {
               <Box color="secondary" marginBottom="md" style={{ fontSize: 'var(--la-font-size-sm)', color: 'var(--la-text-secondary)' }}>
                 {t('settings.items.emailNotifications.description')}
               </Box>
-              <Button variant="secondary" size="sm">
+              <Button variant="primary" size="sm">
                 {t('actions.manage')}
               </Button>
             </DashboardCard>
@@ -159,7 +160,7 @@ export default function Settings() {
               <Box color="secondary" marginBottom="md" style={{ fontSize: 'var(--la-font-size-sm)', color: 'var(--la-text-secondary)' }}>
                 {t('settings.items.smsNotifications.description')}
               </Box>
-              <Button variant="secondary" size="sm">
+              <Button variant="primary" size="sm">
                 {t('actions.manage')}
               </Button>
             </DashboardCard>
@@ -183,15 +184,15 @@ export default function Settings() {
                 {t('settings.items.theme.description')}
               </Box>
               <FlexCenter width="full">
-                <ThemeSwitcher
-                  variant="dropdown"
-                  size="md"
-                  align="center"
-                  labels={{
-                    light: t('settings.items.theme.light'),
-                    dark: t('settings.items.theme.dark'),
-                    system: t('settings.items.theme.system')
-                  }}
+                <Select
+                  options={[
+                    { value: 'light', label: t('settings.items.theme.light') },
+                    { value: 'dark', label: t('settings.items.theme.dark') },
+                    { value: 'system', label: t('settings.items.theme.system') }
+                  ]}
+                  placeholder={t('settings.items.theme.title')}
+                  size="medium"
+                  fullWidth
                 />
               </FlexCenter>
             </DashboardCard>
@@ -205,7 +206,15 @@ export default function Settings() {
                 {t('settings.items.language.description')}
               </Box>
               <FlexCenter width="full">
-                <LanguageSwitcher variant="dropdown" showFlags={true} align="center" />
+                <Select
+                  options={[
+                    { value: 'el', label: '🇬🇷 Ελληνικά' },
+                    { value: 'en', label: '🇺🇸 English' }
+                  ]}
+                  placeholder={t('settings.items.language.title')}
+                  size="medium"
+                  fullWidth
+                />
               </FlexCenter>
             </DashboardCard>
           </DashboardGrid>

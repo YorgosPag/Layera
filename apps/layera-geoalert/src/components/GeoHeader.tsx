@@ -95,7 +95,7 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, onStepBackCli
 
       {/* Right side - Actions */}
       <Flex align="center" gap="sm">
-        {/* Νέα Καταχώρηση Button */}
+        {/* Νέα Καταχώρηση Button - SST Compliance */}
         {onNewEntryClick && (
           <Button
             variant="primary"
@@ -105,13 +105,6 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, onStepBackCli
               onNewEntryClick?.();
             }}
             title={t('common.newEntry')}
-            style={{
-              backgroundColor: '#0066cc',
-              color: 'var(--la-color-white)fff',
-              border: 'none',
-              borderRadius: '4px',
-              padding: '6px 12px'
-            }}
           >
             {!showIcons && t('common.newEntry')}
           </Button>

@@ -1,44 +1,45 @@
 /**
  * @layera/tolgee - Language Switcher Component
- * Dropdown component για αλλαγή γλώσσας
+ * Dropdown component για αλλαγή γλώσσας με SST Select integration
  */
 
 import React from 'react';
 import { useLayeraTranslation, useDetectedLanguage } from '../hooks-minimal';
 import { LANGUAGES } from '../index';
+import { Select } from '@layera/forms';
 
 interface LanguageSwitcherProps {
   className?: string;
+  variant?: 'toggle' | 'dropdown';
+  showFlags?: boolean;
 }
 
-export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className }) => {
+export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({
+  className,
+  variant = 'dropdown',
+  showFlags = false
+}) => {
   const { i18n } = useLayeraTranslation();
   const currentLang = useDetectedLanguage();
 
-  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newLang = e.target.value;
-    i18n.changeLanguage(newLang);
+  const handleLanguageChange = (value: string) => {
+    i18n.changeLanguage(value);
   };
 
+  // Convert LANGUAGES object to Select options format
+  const languageOptions = Object.entries(LANGUAGES).map(([code, label]) => ({
+    value: code,
+    label: showFlags ? `${code === 'el' ? '🇬🇷' : '🇺🇸'} ${label}` : label
+  }));
+
   return (
-    <select
+    <Select
       value={currentLang}
       onChange={handleLanguageChange}
-      className={`
-        px-3 py-1.5 rounded-lg border border-gray-300 dark:border-gray-600
-        bg-white dark:bg-gray-800
-        text-sm font-medium text-gray-700 dark:text-gray-200
-        hover:bg-gray-50 dark:hover:bg-gray-700
-        focus:outline-none focus:ring-2 focus:ring-blue-500
-        cursor-pointer transition-colors
-        ${className || ''}
-      `}
-    >
-      {Object.entries(LANGUAGES).map(([code, label]) => (
-        <option key={code} value={code}>
-          {label}
-        </option>
-      ))}
-    </select>
+      options={languageOptions}
+      className={className}
+      size="medium"
+      variant="outline"
+    />
   );
 };

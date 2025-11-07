@@ -1,30 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "Bash(HUSKY=0 git commit -m \"📝 Claude settings update with completed translation system commands\n\n- Updated .claude/settings.local.json with all successful commands\n- Tracked complete translation system debugging and fixes\n- Documented hardcoded text elimination process\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\")",
-      "Bash(npm run typecheck:*)",
-      "Bash(cmd /c:*)",
-      "Bash(start http://localhost:3001)",
-      "Bash(start http://localhost:3005)",
-      "Read(//c/Users/user/Downloads/**)",
-      "Bash(npm run dev:*)",
-      "Bash(start http://localhost:3006)",
-      "Bash(npm run build:*)",
-      "Bash(start http://localhost:3007)",
-      "Bash(dir C:layeraappslayera-geoalertsrc)",
-      "Bash(git add:*)",
-      "Bash(git reset:*)",
-      "Bash(HUSKY=0 git commit -m \"$(cat <<''EOF''\n🛡️ SAFETY CHECKPOINT: QuickSearch Interface Transformation & Perfect Centering\n\n✨ FEATURE: Complete QuickSearch Redesign\n- Τίτλος: \"Γρήγορη Αναζήτηση\" → \"Γρήγορη Διαχείριση\"\n- Νέα περιγραφή: καλύπτει καταχώρηση + αναζήτηση\n- Αναλυτικές ετικέτες με πλήρεις εξηγήσεις για κάθε επιλογή\n- Διευκρινιστικά κείμενα για ακίνητα & εργασίες\n\n🎨 UX: Perfect Content Centering & Mobile Fix  \n- Τέλειο κεντράρισμα όλων των στοιχείων στο QuickSearch\n- Mobile fix: responsive alignment (desktop κεντραρισμένο, mobile από κορυφή)\n- Διόρθωση ορατότητας τίτλου σε mobile συσκευές\n\n🌍 i18n: Enhanced Translation System\n- Νέα translation keys με αναλυτικές περιγραφές (el & en)\n- detailedLabels για πλήρεις εξηγήσεις κάθε επιλογής\n- 100% SST compliance - καμία hardcoded string\n\n🏗️ SST: Design Tokens Integration\n- Χρήση MENU_POSITIONS.CENTER αντί hardcoded ''center''\n- Νέο INSTANT animation duration στα @layera/constants  \n- Global CSS για scrollbar stability στα @layera/tokens\n- Enhanced ChipRadioGroup με description support\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
-      "WebSearch",
-      "Bash(npx tsc:*)",
-      "Bash(npx eslint:*)",
-      "Bash(npx vite:*)",
-      "Bash(HUSKY=0 git commit -m \"$(cat <<''EOF''\n🛡️ SAFETY CHECKPOINT: QuickSearch Interface Transformation & Perfect Debug Cleanup\n\n✨ ΚΡΙΣΙΜΗ ΔΙΟΡΘΩΣΗ: QuickSearch Interface Fix\n- Διόρθωση Progressive Disclosure logic που προκαλούσε auto-navigation\n- Αλλαγή QUICK_SEARCH_DEFAULTS από populated σε null values  \n- Fix Critical ReferenceError: showCategoryElements → showCatEls\n- Τέλεια λειτουργία QuickSearch mode με stable display\n\n🧹 ΠΛΗΡΗΣ DEBUG CLEANUP: Καθαρή Κονσόλα\n- Αφαίρεση 16 debug console.log statements από όλη την εφαρμογή\n- StepOrchestrator.tsx: 5 debug logs removed\n- GeoMapNew.tsx: 7 debug logs removed  \n- App.tsx: 2 debug logs removed\n- StepRegistry.ts: 2 debug logs removed\n- Επαναφορά κανονικής onSearch λειτουργικότητας\n\n🎯 ENTERPRISE ARCHITECTURE: LEGO Systems Integration  \n- TypeScript union types με null support για Progressive Disclosure\n- Enhanced translation keys για QuickSearch interface\n- Perfect MENU_POSITIONS.CENTER integration\n- Zero hardcoded values - 100% SST compliance\n\n🔧 TECHNICAL IMPROVEMENTS:\n- Progressive Disclosure UX pattern με proper null state handling\n- Auto-navigation disabled σε quickSearchMode για stability\n- Clean separation of concerns: debugging vs production code\n- Enhanced type safety με strict null checking\n\n🏗️ ENTERPRISE STANDARDS COMPLIANCE:\n- 100% @layera packages usage - zero custom implementations\n- Perfect i18n coverage με el/en translation pairs\n- Strict TypeScript compliance - zero any types\n- LEGO Systems architecture maintained throughout\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
-      "Bash(grep:*)",
-      "Bash(findstr:*)",
-      "Bash(start http://localhost:3002)",
-      "Bash(dir:*)",
-      "Bash(start http://localhost:3000)"
+      "Bash(start http://localhost:3003)",
+      "Bash(start http://localhost:3004)",
+      "WebFetch(domain:www.sliderrevolution.com)",
+      "WebFetch(domain:uicookies.com)",
+      "Bash(del \"C:\\layera\\apps\\layera-geoalert\\src\\debug-buttons.css\")",
+      "Bash(awk:*)",
+      "Bash(del \"C:\\layera\\apps\\layera-geoalert\\src\\components\\device-specific\\mobile\\MobileGeoMap.tsx\")"
     ],
     "deny": [],
     "ask": []

@@ -53,9 +53,13 @@
   --la-color-text-muted: hsl(214deg 20% 69%);
   --la-color-text-disabled: hsl(214deg 32% 83%);
   --la-color-text-on-dark: hsl(0deg 0% 100%);
+  --la-color-text-special: #a6a474;
+  --la-color-accent-cyan: #0feedc;
+  --la-color-accent-orange: #e5a129;
+  --la-color-accent-red: #b43b3b;
 
   /* Colors - Brand */
-  --la-color-brand: hsl(217deg 91% 60%);
+  --la-color-brand: hsl(25deg 95% 53%);
   --la-color-brand-hover: hsl(217deg 91% 55%);
   --la-color-brand-active: hsl(217deg 83% 47%);
   --la-color-brand-light: hsl(214deg 95% 93%);
@@ -76,6 +80,7 @@
   --la-color-success-light: hsl(138deg 76% 97%);
   --la-color-warning: hsl(21deg 90% 48%);
   --la-color-warning-light: hsl(34deg 96% 84%);
+  --la-color-info: #0303f3;
 
   /* Colors - Background */
   --la-color-bg-app: hsl(210deg 40% 98%);
@@ -229,7 +234,7 @@
   --la-text-on-success: hsl(0deg 0% 100%);
 
   /* Info Colors */
-  --la-bg-info: hsl(217deg 91% 60%);
+  --la-bg-info: hsl(30deg 40% 40%);
   --la-text-on-info: hsl(0deg 0% 100%);
 
   /* Warning Colors */
@@ -273,7 +278,7 @@
   /* Dark theme για success/info/warning/danger */
   --la-bg-success: hsl(142deg 76% 36%);
   --la-bg-success-light: hsl(138deg 50% 20%);
-  --la-bg-info: hsl(217deg 91% 60%);
+  --la-bg-info: hsl(30deg 40% 40%);
   --la-bg-warning: hsl(21deg 90% 48%);
   --la-bg-danger: hsl(0deg 84% 60%);
 

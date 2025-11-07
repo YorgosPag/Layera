@@ -19,11 +19,15 @@ import {
   EASING_FUNCTIONS,
   MENU_POSITIONS,
   GEO_DRAWING_STYLES,
+  BUTTON_STATES,
+  BUTTON_SIZES,
+  CSS_DIMENSIONS,
   getWorkflowCardContainerStyle,
   getWorkflowCardModalStyle,
   getWorkflowCardStepStyle,
   getWorkflowCardStepContainerStyle,
-  getCardPrimaryColor
+  getCardPrimaryColor,
+  getCardInfoBorder
 } from '@layera/constants';
 import { Box, Flex, FlexCenter } from '@layera/layout';
 import { Button } from '@layera/buttons';
@@ -155,44 +159,15 @@ function ChipRadioGroup<T extends string>({
       )}
       <Flex gap="sm" wrap="wrap" role="radiogroup" aria-labelledby={`${name}-label`} style={{ justifyContent: 'center' }}>
         {options.map((option) => (
-          <Box
+          <Button
             key={option.value}
-            as="button"
+            variant="primary"
+            size={BUTTON_SIZES.LG}
             onClick={() => !disabled && !option.disabled && onChange(option.value)}
             disabled={disabled || option.disabled}
-            style={{
-              ...getWorkflowCardStepStyle(),
-              flex: '0 1 auto', // να μην τεντώνουν άνισα
-              minWidth: `${SPACING_SCALE.LAYOUT_SM + SPACING_SCALE.XXL - SPACING_SCALE.XS}px`,
-              maxWidth: `${SPACING_SCALE.LAYOUT_MD + SPACING_SCALE.XXL - SPACING_SCALE.XS}px`,
-              minHeight: `${SPACING_SCALE.XXL + SPACING_SCALE.XS}px`,
-              fontSize: `${FONT_SIZES.LG - SPACING_SCALE.XXS - 1}px`,
-              fontWeight: `${FONT_WEIGHTS.SEMIBOLD}`,
-              transition: `background-color ${ANIMATION_DURATIONS.INSTANT}ms ${EASING_FUNCTIONS.EASE_OUT}, border-color ${ANIMATION_DURATIONS.INSTANT}ms ${EASING_FUNCTIONS.EASE_OUT}, box-shadow ${ANIMATION_DURATIONS.INSTANT}ms ${EASING_FUNCTIONS.EASE_OUT}`,
-              cursor: disabled || option.disabled ? 'not-allowed' : 'pointer',
-              opacity: disabled || option.disabled ? GEO_DRAWING_STYLES.OPACITY.DISABLED : GEO_DRAWING_STYLES.OPACITY.FINISHED,
-              // Selected state - only change text color, keep SST background
-              ...(value === option.value && {
-                color: 'var(--color-text-inverse)'
-              }),
-              // Non-selected state uses SST background (brown)
-              ...(value !== option.value && {
-                color: 'var(--color-text-primary)'
-              }),
-              border: value === option.value
-                ? `${SPACING_SCALE.XXS}px solid ${BRAND_COLORS.PRIMARY}`
-                : `${SPACING_SCALE.XXS}px solid ${BRAND_COLORS.PRIMARY}`,
-              boxShadow: value === option.value
-                ? 'var(--elevation-lg)'
-                : 'var(--elevation-md)',
-              textAlign: 'center',
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis'
-            }}
           >
             {option.label}
-          </Box>
+          </Button>
         ))}
       </Flex>
     </Box>
@@ -334,32 +309,24 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
         backdropFilter: 'none',
         boxShadow: `var(--la-shadow-xl)`,
         display: 'block',
-        width: SPACING_SCALE.FULL
+        width: SPACING_SCALE.FULL,
+        border: `${SPACING_SCALE.XS}px solid ${getCardInfoBorder()}` // SST: 4px border
       }}
     >
-      {/* Close Button - Research-backed anxiety reduction */}
+      {/* Close Button - Research-backed anxiety reduction με SST */}
       <Button
-        variant="ghost"
-        size="sm"
+        variant="primary"
+        size={BUTTON_SIZES.LG}
         onClick={() => {
           // Reset form state and provide clear exit
           setState({ intent: null, kind: null, purpose: null, timeframe: null });
           setVisibleSteps(1);
           onClose?.();
         }}
-        style={{
-          position: 'absolute',
-          top: `var(--${CSS_DESIGN_TOKENS.spacing['spacing-sm']})`,
-          right: `var(--${CSS_DESIGN_TOKENS.spacing['spacing-sm']})`,
-          padding: `var(--${CSS_DESIGN_TOKENS.spacing['spacing-xs']})`,
-          minWidth: 'auto',
-          color: `var(--${CSS_DESIGN_TOKENS.colors['color-text-secondary']})`,
-          zIndex: CSS_DESIGN_TOKENS.zIndex['z-index-elevated']
-        }}
         title={t('quickSearch.actions.closeTooltip')}
         aria-label={t('quickSearch.actions.close')}
       >
-        <CloseIcon size="sm" />
+        <CloseIcon size="lg" />
       </Button>
 
       <Flex direction="column" gap="xl" style={{ minWidth: 'initial', alignItems: 'center' }}>
@@ -383,9 +350,9 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
             borderRadius: `${BORDER_RADIUS_SCALE.LG}px`,
             paddingTop: `${SPACING_SCALE.LG}px`,
             paddingBottom: `${SPACING_SCALE.XL}px`,
-            border: `${SPACING_SCALE.XXS}px solid ${BRAND_COLORS.PRIMARY}`,
+            border: `${SPACING_SCALE.XS}px solid ${getCardInfoBorder()}`, // SST: 4px border από μοναδική πηγή αλήθειας
             alignSelf: 'center',
-            width: SPACING_SCALE.FULL
+            width: CSS_DIMENSIONS.FULL_PERCENT
           }}
         >
           <Flex direction="column" gap="lg" style={{ alignItems: 'center' }}>
@@ -464,22 +431,9 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
         <Box textAlign="center">
           <Button
             variant="primary"
-            size="lg"
+            size={BUTTON_SIZES.XL}
             disabled={!isValid}
             onClick={() => onSearch?.(state)}
-            style={{
-              minWidth: `${SPACING_SCALE.LAYOUT_SM + SPACING_SCALE.LG}px`,
-              minHeight: `${SPACING_SCALE.XXL}px`,
-              padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.LG}px`,
-              background: getCardPrimaryColor(), // 🔴 SST: Χρώμα από μοναδική πηγή αλήθειας
-              borderRadius: `${BORDER_RADIUS_SCALE.SM + SPACING_SCALE.XXS}px`,
-              fontSize: `${FONT_SIZES.LG - SPACING_SCALE.XXS - 1}px`,
-              fontWeight: `${FONT_WEIGHTS.MEDIUM}`,
-              color: 'var(--color-text-inverse)',
-              border: `${SPACING_SCALE.XXS / 2}px solid ${getCardPrimaryColor()}`, // 🔴 SST: Border από μοναδική πηγή αλήθειας
-              boxShadow: `var(--elevation-md)`,
-              transition: `all ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`
-            }}
           >
             {t('quickSearch.cta')}
           </Button>
@@ -524,23 +478,14 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
 
           {/* Next-Step Preview - Research-backed uncertainty reduction */}
           {getNextStepHint() && (
-            <Flex gap="xs" align="center" justifyContent="center" style={{
-              marginTop: `${SPACING_SCALE.SM}px`,
-              marginBottom: `${SPACING_SCALE.XS}px`,
-            }}>
-              <QuickIcon size="sm" style={{ color: getCardPrimaryColor() }} /> {/* 🔴 SST: Icon color από μοναδική πηγή αλήθειας */}
-              <Text
-                size="sm"
-                textAlign="center"
-                style={{
-                  color: getCardPrimaryColor(), // 🔴 SST: Text color από μοναδική πηγή αλήθειας
-                  fontWeight: 'var(--la-font-weight-medium)',
-                  animation: `slideIn ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`
-                }}
-              >
-                {getNextStepHint() || 'Έτοιμο! Κλικ για προβολή αποτελεσμάτων'}
-              </Text>
-            </Flex>
+            <Button
+              variant="primary"
+              size={BUTTON_SIZES.LG}
+              onClick={() => onSearch?.(state)}
+            >
+              <QuickIcon size="sm" />
+              {getNextStepHint() || 'Έτοιμο! Κλικ για προβολή αποτελεσμάτων'}
+            </Button>
           )}
 
           <Text
@@ -798,7 +743,9 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
   // 🎨 Render με custom container αν υπάρχει
   if (renderStepContainer) {
     return (
-      <Box className="step-orchestrator">
+      <Box className="step-orchestrator" style={{
+        border: `${SPACING_SCALE.XS}px solid ${getCardInfoBorder()}` // SST: 4px border από μοναδική πηγή αλήθειας
+      }}>
         {renderStepContainer(currentStep, (
           <>
             {stepElement}
@@ -812,11 +759,16 @@ export const StepOrchestrator: React.FC<StepOrchestratorProps> = ({
 
   // 🎨 Default sequential rendering
   return (
-    <Box className="step-orchestrator">
+    <Box className="step-orchestrator" style={{
+      border: `${SPACING_SCALE.XS}px solid ${getCardInfoBorder()}` // 🔲 SST: 4px περίγραμμα από μοναδική πηγή αλήθειας
+    }}>
       <Box className="step-content">
         {stepElement}
       </Box>
-      <Box className="step-cards" style={getWorkflowCardStepContainerStyle()}>
+      <Box className="step-cards" style={{
+        ...getWorkflowCardStepContainerStyle(),
+        border: `${SPACING_SCALE.XS}px solid ${getCardInfoBorder()}` // SST: 4px border από μοναδική πηγή αλήθειας
+      }}>
         {cardsElement}
       </Box>
     </Box>

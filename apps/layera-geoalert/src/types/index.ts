@@ -2,6 +2,7 @@
 // Inspired by geo-canvas(8) patterns but simplified για GeoAlert needs
 
 import L from 'leaflet';
+import type { PropertyType } from './components/steps/propertyType/types';
 
 // Core Drawing Types (από geo-canvas reference)
 export type DrawingShape = 'polygon' | 'marker' | 'circle';
@@ -20,7 +21,7 @@ export interface GeoAlertArea {
   filters: {
     priceMin?: number;
     priceMax?: number;
-    propertyType?: 'apartment' | 'house' | 'studio' | 'office';
+    propertyType?: PropertyType;
     bedrooms?: number;
   };
   active: boolean;

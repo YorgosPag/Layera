@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 // Enterprise LEGO Design System imports
 import { Button } from '@layera/buttons';
 import { BaseCard } from '@layera/cards';
-import { SPACING_SCALE, BORDER_RADIUS, getCardOrangeColor, getCardWarningColor, getCardInfoColor } from '@layera/constants';
+import { SPACING_SCALE, BORDER_RADIUS, getCardOrangeColor, getCardInfoColor, getCardInfoBorder } from '@layera/constants';
 import { MapIcon, ShareIcon, LayersIcon, AlertTriangleIcon, CheckIcon, MoreIcon, WarningIcon, FileIcon, RefreshIcon } from '@layera/icons';
 import { AppShell, Flex, Box } from '@layera/layout';
 import { LoadingSpinner } from '@layera/loading';
@@ -137,77 +137,37 @@ function TestNotificationsComponent() {
         marginBottom="md"
       >
         <Button
-          variant="success"
+          variant="primary"
           size="sm"
           onClick={testSuccessNotification}
-          style={{
-            fontSize: '12px',
-            padding: '8px 10px',
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            minWidth: 0,
-            width: '100%'
-          }}
         >
           <CheckIcon size="xs" style={{ marginRight: '4px' }} />
           {t('test.panel.success')}
         </Button>
 
         <Button
-          variant="error"
+          variant="primary"
           size="sm"
           onClick={testErrorNotification}
-          style={{
-            fontSize: '12px',
-            padding: '8px 10px',
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            minWidth: 0,
-            width: '100%'
-          }}
         >
           <WarningIcon size="xs" style={{ marginRight: '4px' }} />
           {t('test.panel.error')}
         </Button>
 
         <Button
+          variant="primary"
           size="sm"
           onClick={testInfoNotification}
-          style={{
-            backgroundColor: getCardInfoColor(), // 🔴 SST: Info color από μοναδική πηγή αλήθειας
-            border: 'none',
-            color: 'white',
-            fontSize: '12px',
-            padding: '8px 10px',
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            minWidth: 0,
-            width: '100%'
-          }}
         >
           <FileIcon size="xs" style={{ marginRight: '4px' }} />
           {t('test.panel.info')}
         </Button>
 
         <Button
+          variant="primary"
           size="sm"
           onClick={testLoadingSpinner}
           disabled={isLoading}
-          style={{
-            backgroundColor: getCardWarningColor(), // 🔴 SST: Warning color από μοναδική πηγή αλήθειας
-            border: 'none',
-            color: 'white',
-            fontSize: '12px',
-            padding: '8px 10px',
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            minWidth: 0,
-            width: '100%'
-          }}
         >
           {isLoading ? <LoadingSpinner size="xs" /> : (
             <>
@@ -318,6 +278,7 @@ function App() {
               div[style*="display: grid"] {
                 background: ${getCardInfoColor()} !important;
                 background-color: ${getCardInfoColor()} !important;
+                border: 3px solid ${getCardInfoBorder()} !important;
               }
 
               /* Map containers transparent για consistency */
@@ -420,7 +381,10 @@ function App() {
                   maxWidth={`${SPACING_SCALE.XXXL * 8}px`}
                   marginLeft="auto"
                   marginRight="auto"
-                  style={{ backgroundColor: getCardInfoColor() }} // 🔴 SST: Secondary card color από μοναδική πηγή αλήθειας
+                  style={{
+                    backgroundColor: getCardInfoColor(), // 🔴 SST: Secondary card color από μοναδική πηγή αλήθειας
+                    border: `3px solid ${getCardInfoBorder()}` // 🔲 SST: Περίγραμμα από μοναδική πηγή αλήθειας #b929c6
+                  }}
                 >
                   <Heading as="h3" size="lg" color="primary" className="layera-mb-4 layera-flex layera-items-center layera-gap-2">
                     <CheckIcon size="xs" theme="success" /> {t('geoalert.statusCheck')}
@@ -464,14 +428,8 @@ function App() {
                       alert('Layera ID δεν είναι διαθέσιμο αυτή τη στιγμή. Παρακαλώ ξεκινήστε την εφαρμογή στο port 3000.');
                     }
                   }}
-                  variant="outline"
+                  variant="primary"
                   size="md"
-                  color="info"
-                  padding={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.LG}px`}
-                  border={`${SPACING_SCALE.XXS}px solid var(--la-bg-info)`}
-                  borderRadius={`${BORDER_RADIUS.MD}px`}
-                  fontWeight="bold"
-                  transition="all 0.2s"
                 >
                   {t('geoalert.navigateToLayeraId')}
                 </Button>

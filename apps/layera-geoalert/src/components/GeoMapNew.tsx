@@ -16,7 +16,7 @@ import { MapContainer } from './map/MapContainer';
 import { PlusIcon } from '@layera/icons';
 import { Box } from '@layera/layout';
 // REMOVED: UnifiedFAB - FAB functionality moved to header button
-import { CONFIG, SPACING_SCALE, PIPELINE_STEP, CSS_DESIGN_TOKENS } from '@layera/constants';
+import { CONFIG, SPACING_SCALE, PIPELINE_STEP, CSS_DESIGN_TOKENS, getCardInfoBorder } from '@layera/constants';
 import { COLORS } from '../constants';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { CategoryStep } from './steps/category/CategoryStep';
@@ -324,7 +324,8 @@ export const GeoMap: React.FC<GeoMapProps> = ({
             display: 'flex',
             alignItems: isMobile ? 'flex-start' : 'center',
             justifyContent: 'center',
-            boxSizing: 'border-box'
+            boxSizing: 'border-box',
+            border: `3px solid ${getCardInfoBorder()}`
           }}
         >
           <StepOrchestrator

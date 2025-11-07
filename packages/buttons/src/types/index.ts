@@ -19,7 +19,12 @@ export type ButtonVariant =
   | 'danger'       // Καταστροφική δράση - error state
   | 'success'      // Επιτυχής δράση - success state
   | 'warning'      // Προειδοποίηση - warning state
-  | 'info';        // Πληροφοριακό - info state
+  | 'info'         // Πληροφοριακό - info state
+  | 'elevated'     // 🆕 Modern elevated design with shadow depth
+  | 'neumorphic'   // 🆕 Subtle neumorphic design for premium feel
+  | 'gradient'     // 🆕 Modern gradient background for highlights
+  | 'flat'         // 🆕 Completely flat design for minimalist UIs
+  | 'soft';        // 🆕 Soft rounded design with subtle colors
 
 /**
  * Button loading state variants

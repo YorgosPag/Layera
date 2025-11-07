@@ -9,7 +9,7 @@ import { Button } from '@layera/buttons';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, Box } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
 import { FormField, FormSection, FormActions, Input, Select } from '@layera/forms';
-import { USER_ROLES, FORM_TYPES, FORM_SIZES, SPACING_SCALE, getCardInfoColor } from '@layera/constants';
+import { USER_ROLES, FORM_TYPES, FORM_SIZES, SPACING_SCALE, getCardInfoColor, getCardInfoBorder } from '@layera/constants';
 import { Alert } from '@layera/notifications';
 import QuickActions from '../components/QuickActions';
 
@@ -181,7 +181,10 @@ export default function AdminRoles() {
             title={t('admin.roleManagement.form.title')}
             icon={<span>👤</span>}
           >
-            <DashboardCard style={{ backgroundColor: getCardInfoColor() }}>
+            <DashboardCard style={{
+              backgroundColor: getCardInfoColor(), // 🔴 SST: Card color από μοναδική πηγή αλήθειας
+              border: `3px solid ${getCardInfoBorder()}` // 🔲 SST: Περίγραμμα από μοναδική πηγή αλήθειας #b929c6
+            }}>
               <FormSection>
                 <FormField
                   labelKey="forms.labels.email"
@@ -261,7 +264,10 @@ export default function AdminRoles() {
             title={t('admin.roleManagement.info.title')}
             icon={<span>ℹ️</span>}
           >
-            <DashboardCard style={{ backgroundColor: getCardInfoColor() }}>
+            <DashboardCard style={{
+              backgroundColor: getCardInfoColor(), // 🔴 SST: Card color από μοναδική πηγή αλήθειας
+              border: `3px solid ${getCardInfoBorder()}` // 🔲 SST: Περίγραμμα από μοναδική πηγή αλήθειας #b929c6
+            }}>
               <Box as="ul" margin="0" paddingLeft="xl">
                 <li>{t('admin.roleManagement.info.adminOnly')}</li>
                 <li>{t('admin.roleManagement.info.clientRestrictions')}</li>

@@ -70,3 +70,27 @@ export const RotateIcon: React.FC<Omit<IconProps, 'name' | 'children'>> = (props
     <path d="M3.51 15a9 9 0 0 0 14.85 3.36L23 14" />
   </Icon>
 );
+
+// Theme Icons - για ThemeSwitcher SST compliance
+
+// Sun Icon - Light theme
+export const SunIcon: React.FC<Omit<IconProps, 'name' | 'children'>> = (props) => (
+  <Icon name="sun" {...props}>
+    <circle cx="12" cy="12" r="5"/>
+    <path d="M12 1v2"/>
+    <path d="M12 21v2"/>
+    <path d="m4.22 4.22 1.42 1.42"/>
+    <path d="m18.36 18.36 1.42 1.42"/>
+    <path d="M1 12h2"/>
+    <path d="M21 12h2"/>
+    <path d="m4.22 19.78 1.42-1.42"/>
+    <path d="m18.36 5.64 1.42-1.42"/>
+  </Icon>
+);
+
+// Moon Icon - Dark theme
+export const MoonIcon: React.FC<Omit<IconProps, 'name' | 'children'>> = (props) => (
+  <Icon name="moon" {...props}>
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </Icon>
+);

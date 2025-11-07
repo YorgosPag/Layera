@@ -2,6 +2,7 @@
 
 import React, { forwardRef } from 'react';
 import { Box } from '@layera/layout';
+import { SunIcon, MoonIcon, MonitorIcon } from '@layera/icons';
 import { useTheme } from '../hooks/useTheme';
 import type { ThemeSwitcherProps, Theme } from '../types';
 
@@ -17,61 +18,7 @@ import type { ThemeSwitcherProps, Theme } from '../types';
  * - Enterprise styling που integrate με άλλα Layera components
  */
 
-// Default icons (SVG-based για consistency)
-const SunIcon = (): void => (
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <circle cx="12" cy="12" r="5"/>
-    <path d="M12 1v2"/>
-    <path d="M12 21v2"/>
-    <path d="m4.22 4.22 1.42 1.42"/>
-    <path d="m18.36 18.36 1.42 1.42"/>
-    <path d="M1 12h2"/>
-    <path d="M21 12h2"/>
-    <path d="m4.22 19.78 1.42-1.42"/>
-    <path d="m18.36 5.64 1.42-1.42"/>
-  </svg>
-);
-
-const MoonIcon = (): void => (
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-  </svg>
-);
-
-const SystemIcon = (): void => (
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-    <line x1="8" y1="21" x2="16" y2="21"/>
-    <line x1="12" y1="17" x2="12" y2="21"/>
-  </svg>
-);
+// SST Icons από @layera/icons - Enterprise-grade consistency
 
 export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>(({
   variant = 'icon',
@@ -80,9 +27,9 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
   labels,
   showLabels = false,
   icons = {
-    light: <SunIcon />,
-    dark: <MoonIcon />,
-    system: <SystemIcon />
+    light: <SunIcon size="md" theme="neutral" />,
+    dark: <MoonIcon size="md" theme="neutral" />,
+    system: <MonitorIcon size="md" theme="neutral" />
   },
   align = 'right',
   ...props
@@ -132,18 +79,18 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
   };
 
   // Current theme display
-  const getCurrentIcon = (): void => {
+  const getCurrentIcon = (): React.ReactElement => {
     if (theme === 'system') {
       return icons.system;
     }
     return resolvedTheme === 'light' ? icons.light : icons.dark;
   };
 
-  const getCurrentLabel = (): void => {
+  const getCurrentLabel = (): string => {
     if (theme === 'system') {
-      return labels.system;
+      return labels?.system || 'System';
     }
-    return resolvedTheme === 'light' ? labels.light : labels.dark;
+    return resolvedTheme === 'light' ? (labels?.light || 'Light') : (labels?.dark || 'Dark');
   };
 
   // Handle click based on variant

@@ -5,7 +5,7 @@
  * βασισμένο στις επιλογές του QuickSearch
  */
 
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   SPACING_SCALE,
   BORDER_RADIUS_SCALE,
@@ -18,10 +18,13 @@ import {
   getWorkflowCardButtonStyle,
   getWorkflowCardStepStyle,
   getWorkflowCardStepContainerStyle,
-  getCardPrimaryColor
+  getCardPrimaryColor,
+  getCardInfoBorder
 } from '@layera/constants';
 import { Box, Flex, FlexCenter } from '@layera/layout';
 import { Text, Heading } from '@layera/typography';
+import { Button } from '@layera/buttons';
+import { Select } from '@layera/forms';
 import {
   HomeIcon,
   WorkIcon,
@@ -35,7 +38,9 @@ import {
   LockIcon
 } from '@layera/icons';
 import { useLayeraTranslation } from '@layera/tolgee';
+import type { PropertyType } from '../../../types';
 import { QuickSearchState } from './types';
+import { PropertyDetailsStep } from './PropertyDetailsStep';
 
 export interface WorkflowPlaceholderProps {
   /** QuickSearch state που επέλεξε ο χρήστης */
@@ -55,19 +60,57 @@ interface WorkflowStep {
   order: number;
 }
 
+/**
+ * Property Types Configuration - i18n Integration με tolgee
+ * Ολική αντικατάσταση hardcoded strings με translation keys
+ */
+const PROPERTY_TYPE_KEYS = [
+  // Κατοικίες
+  'apartment', 'studio', 'maisonette', 'house', 'villa', 'cottage', 'penthouse', 'loft',
+  // Εμπορικά
+  'store', 'office', 'warehouse', 'factory',
+  // Οικόπεδα & Γη
+  'residential_plot', 'commercial_plot', 'agricultural_land', 'forest_land', 'land',
+  // Ειδικά
+  'garage', 'parking_space', 'storage_unit', 'basement', 'rooftop'
+] as const;
+
 export const WorkflowPlaceholder: React.FC<WorkflowPlaceholderProps> = ({
   quickSearchState,
   onStartWorkflow,
   onBackToQuickSearch
 }) => {
   const { t } = useLayeraTranslation();
+  const [selectedPropertyType, setSelectedPropertyType] = useState<PropertyType | ''>('');
+  const [showPropertyDetails, setShowPropertyDetails] = useState(false);
+
+  // 🌍 Generate property type options με i18n translations
+  const getPropertyTypeOptions = () => {
+    return PROPERTY_TYPE_KEYS.map(typeKey => ({
+      value: typeKey,
+      label: t(`propertyType.${typeKey}`) || typeKey // fallback σε key αν δεν υπάρχει translation
+    }));
+  };
+
+  // 🏠 Property Type Selection Handler - SST Integration
+  const handlePropertyTypeChange = useCallback(async (value: string) => {
+    const propertyType = value as PropertyType;
+    setSelectedPropertyType(propertyType);
+
+    try {
+      console.log('🏠 Selected Property Type:', propertyType);
+      // Future: Μπορεί να προστεθεί integration με workflow context
+    } catch (error) {
+      console.error('Property type selection failed:', error);
+    }
+  }, []);
 
   // 🎯 Generate workflow steps based on QuickSearch selection
   const getWorkflowSteps = (): WorkflowStep[] => {
     const { intent, kind, purpose, timeframe } = quickSearchState;
 
     if (intent === 'offer' && kind === 'property') {
-      // Property Listing Workflow (QUICKSEARCH_WORKFLOW_EVOLUTION.md lines 78-124)
+      // Property Listing Workflow - Phase 1: Property Type + Details Only
       return [
         {
           id: 'propertyType',
@@ -78,44 +121,12 @@ export const WorkflowPlaceholder: React.FC<WorkflowPlaceholderProps> = ({
           order: 1
         },
         {
-          id: 'propertyLocation',
-          icon: MapIcon,
-          titleKey: 'workflow.property.offer.location.title',
-          descriptionKey: 'workflow.property.offer.location.description',
-          durationKey: 'workflow.property.offer.location.duration',
-          order: 2
-        },
-        {
-          id: 'propertyPhotos',
-          icon: FileIcon,
-          titleKey: 'workflow.property.offer.photos.title',
-          descriptionKey: 'workflow.property.offer.photos.description',
-          durationKey: 'workflow.property.offer.photos.duration',
-          order: 3
-        },
-        {
           id: 'propertyDetails',
           icon: EditIcon,
           titleKey: 'workflow.property.offer.details.title',
           descriptionKey: 'workflow.property.offer.details.description',
           durationKey: 'workflow.property.offer.details.duration',
-          order: 4
-        },
-        {
-          id: 'propertyDescription',
-          icon: FileIcon,
-          titleKey: 'workflow.property.offer.description.title',
-          descriptionKey: 'workflow.property.offer.description.description',
-          durationKey: 'workflow.property.offer.description.duration',
-          order: 5
-        },
-        {
-          id: 'propertyPricing',
-          icon: EuroIcon,
-          titleKey: 'workflow.property.offer.pricing.title',
-          descriptionKey: 'workflow.property.offer.pricing.description',
-          durationKey: 'workflow.property.offer.pricing.duration',
-          order: 6
+          order: 2
         }
       ];
     }
@@ -285,6 +296,34 @@ export const WorkflowPlaceholder: React.FC<WorkflowPlaceholderProps> = ({
     return t('workflow.subtitles.template', { urgency }) || `Διαχειριστείτε την ${urgency} σας ανάγκη γρήγορα και εύκολα`;
   };
 
+  // 🎯 Handle "Start Workflow" - Αν επιλέχθηκε property type, δείξε τη φόρμα
+  const handleStartWorkflow = () => {
+    if (selectedPropertyType && selectedPropertyType !== '') {
+      setShowPropertyDetails(true);
+    } else {
+      onStartWorkflow?.();
+    }
+  };
+
+  // ✅ Αν είμαστε σε PropertyDetails mode, δείξε τη φόρμα
+  if (showPropertyDetails && selectedPropertyType) {
+    return (
+      <PropertyDetailsStep
+        selectedPropertyType={selectedPropertyType as PropertyType}
+        quickSearchState={quickSearchState}
+        onBack={() => setShowPropertyDetails(false)}
+        onNext={() => {
+          // Future: Navigate to PropertyCompletionStep
+          console.log('PropertyDetails completed, would navigate to next step');
+        }}
+        onDetailsComplete={(details) => {
+          console.log('Property details completed:', details);
+          // Future: Handle details completion
+        }}
+      />
+    );
+  }
+
   return (
     <div
       style={{
@@ -293,7 +332,8 @@ export const WorkflowPlaceholder: React.FC<WorkflowPlaceholderProps> = ({
         boxShadow: `var(--la-shadow-xl)`,
         display: 'block',
         width: SPACING_SCALE.FULL,
-        animation: `slideIn ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`
+        animation: `slideIn ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`,
+        border: `3px solid ${getCardInfoBorder()}` // 🔲 SST: Περίγραμμα από μοναδική πηγή αλήθειας #b929c6
       }}
     >
       <Flex direction="column" gap="xl" style={{ alignItems: 'center' }}>
@@ -329,6 +369,93 @@ export const WorkflowPlaceholder: React.FC<WorkflowPlaceholderProps> = ({
             {workflowSteps.map((step, index) => {
               const IconComponent = step.icon;
 
+              // 🏠 ΚΡΙΣΙΜΟ: PropertyType Step με SST ComboBox Integration
+              if (step.id === 'propertyType') {
+                return (
+                  <Flex
+                    key={step.id}
+                    direction="column"
+                    gap="md"
+                    style={{
+                      ...getWorkflowCardStepStyle(),
+                      transition: `all ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`,
+                      minHeight: `${SPACING_SCALE.XXL * 2}px`, // Περισσότερος χώρος για combo box
+                      width: SPACING_SCALE.FULL,
+                      boxSizing: 'border-box',
+                      border: `3px solid ${getCardInfoBorder()}`, // 🔲 SST: Περίγραμμα από μοναδική πηγή αλήθειας #b929c6
+                      padding: `${SPACING_SCALE.MD}px`
+                    }}
+                  >
+                    {/* Header Row με Step Number + Icon + Title */}
+                    <Flex align="center" gap="md" style={{ width: SPACING_SCALE.FULL }}>
+                      {/* Step Number */}
+                      <FlexCenter
+                        style={{
+                          width: `${SPACING_SCALE.LG}px`,
+                          height: `${SPACING_SCALE.LG}px`,
+                          color: 'var(--color-text-inverse)',
+                          borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
+                          fontSize: `${SPACING_SCALE.SM}px`,
+                          fontWeight: 'bold',
+                          flexShrink: 0
+                        }}
+                      >
+                        {index + 1}
+                      </FlexCenter>
+
+                      {/* Icon */}
+                      <Box style={{ color: getCardPrimaryColor(), flexShrink: 0 }}> {/* 🔴 SST: Color από μοναδική πηγή αλήθειας */}
+                        <IconComponent size="md" />
+                      </Box>
+
+                      {/* Title */}
+                      <Text size="sm" weight="medium" style={{
+                        color: 'var(--color-text-primary)',
+                        lineHeight: CSS_DESIGN_TOKENS.typography['line-height-tight'],
+                        flex: 1
+                      }}>
+                        {t(step.titleKey) || 'Τύπος Ακινήτου'}
+                      </Text>
+
+                      {/* Duration */}
+                      <Text size="xs" style={{
+                        color: 'var(--color-text-tertiary)',
+                        flexShrink: 0,
+                        minWidth: `${SPACING_SCALE.XXL}px`,
+                        textAlign: 'right'
+                      }}>
+                        {t(step.durationKey) || '~1 λεπτό'}
+                      </Text>
+                    </Flex>
+
+                    {/* Property Type Combo Box - SST Select Integration */}
+                    <Box style={{ width: SPACING_SCALE.FULL }}>
+                      <Select
+                        value={selectedPropertyType}
+                        onChange={handlePropertyTypeChange}
+                        options={getPropertyTypeOptions()}
+                        placeholder={t('propertyType.placeholder')}
+                        size="large"
+                        variant="outline"
+                        fullWidth
+                        searchable={true}
+                        clearable={true}
+                      />
+                    </Box>
+
+                    {/* Description */}
+                    <Text size="xs" style={{
+                      color: 'var(--color-text-secondary)',
+                      lineHeight: CSS_DESIGN_TOKENS.typography['line-height-normal'],
+                      textAlign: 'left'
+                    }}>
+                      {t(step.descriptionKey) || 'Επιλέξτε από την παραπάνω λίστα τον τύπο του ακινήτου που θέλετε να καταχωρήσετε'}
+                    </Text>
+                  </Flex>
+                );
+              }
+
+              // 📝 Default Step Layout για τα υπόλοιπα steps
               return (
                 <Flex
                   key={step.id}
@@ -340,7 +467,8 @@ export const WorkflowPlaceholder: React.FC<WorkflowPlaceholderProps> = ({
                     minHeight: `${SPACING_SCALE.XXL + SPACING_SCALE.LG}px`,
                     width: SPACING_SCALE.FULL,
                     justifyContent: 'flex-start',
-                    boxSizing: 'border-box'
+                    boxSizing: 'border-box',
+                    border: `3px solid ${getCardInfoBorder()}` // 🔲 SST: Περίγραμμα από μοναδική πηγή αλήθειας #b929c6
                   }}
                 >
                   {/* Step Number */}
@@ -404,43 +532,25 @@ export const WorkflowPlaceholder: React.FC<WorkflowPlaceholderProps> = ({
         {/* Actions */}
         <Box textAlign={MENU_POSITIONS.CENTER}>
           <Flex gap="lg" justifyContent="center" wrap="wrap" style={{ alignItems: 'center' }}>
-            <Box
-              as="button"
+            <Button
+              variant="primary"
+              size="lg"
               onClick={onBackToQuickSearch}
-              style={{
-                ...getWorkflowCardButtonStyle(),
-                color: 'var(--color-text-primary)',
-                border: `${SPACING_SCALE.XXS}px solid var(--color-border-strong)`,
-                cursor: 'pointer',
-                transition: `all ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`,
-                fontSize: `${SPACING_SCALE.MD + SPACING_SCALE.XS}px`,
-                fontWeight: 'bold',
-                minHeight: `${SPACING_SCALE.XXL}px`,
-                minWidth: `${SPACING_SCALE.LAYOUT_SM + SPACING_SCALE.LG}px`,
-                boxShadow: 'var(--elevation-sm)'
-              }}
             >
               {t('workflow.actions.backToQuickSearch') || '← Πίσω στην Αναζήτηση'}
-            </Box>
+            </Button>
 
-            <Box
-              as="button"
-              onClick={onStartWorkflow}
-              style={{
-                ...getWorkflowCardButtonStyle(),
-                color: 'var(--color-text-inverse)',
-                border: `${SPACING_SCALE.XXS}px solid ${getCardPrimaryColor()}`, // 🔴 SST: Border από μοναδική πηγή αλήθειας
-                cursor: 'pointer',
-                transition: `all ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`,
-                fontSize: `${SPACING_SCALE.MD + SPACING_SCALE.XS}px`,
-                fontWeight: 'bold',
-                minHeight: `${SPACING_SCALE.XXL}px`,
-                minWidth: `${SPACING_SCALE.LAYOUT_SM + SPACING_SCALE.LG}px`,
-                boxShadow: 'var(--elevation-lg)'
-              }}
+            <Button
+              variant="primary"
+              size="lg"
+              onClick={handleStartWorkflow}
+              disabled={!selectedPropertyType}
             >
-              {t('workflow.actions.startWorkflow') || 'Ξεκινήστε Τώρα'} →
-            </Box>
+              {selectedPropertyType
+                ? `${t('workflow.actions.startWorkflow') || 'Ξεκινήστε'} → Στοιχεία Ακινήτου`
+                : (t('workflow.actions.selectPropertyFirst') || 'Επιλέξτε πρώτα τύπο ακινήτου')
+              }
+            </Button>
           </Flex>
         </Box>
 

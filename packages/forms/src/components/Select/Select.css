@@ -1,26 +1,76 @@
 /* Select Component Styles */
+
+:root {
+  /* Select Background Color - Single Source of Truth */
+  --la-select-bg-primary: #25cc77;
+
+  /* Select Width - Single Source of Truth */
+  --la-select-uniform-width: 200px;
+
+  /* Select Dropdown Z-Index - Single Source of Truth */
+  --la-select-dropdown-z-index: 9999;
+
+  /* Select Dropdown Position - Single Source of Truth */
+  --la-select-dropdown-position: fixed;
+
+  /* Select Dropdown Background - Single Source of Truth */
+  --la-select-dropdown-bg: #ff69b4; /* Pink color */
+
+  /* Select Dropdown Width - Single Source of Truth */
+  --la-select-dropdown-width: var(--la-select-uniform-width);
+
+  /* Select Control Border - Single Source of Truth */
+  --la-select-control-border: var(--la-color-info);
+
+  /* Select Text Color - Single Source of Truth */
+  --la-select-text-color: var(--la-color-accent-red);
+
+  /* Select Font Size - Single Source of Truth */
+  --la-select-font-size: var(--la-font-size-base);
+
+  /* Dropdown List Border - Single Source of Truth */
+  --la-select-dropdown-border: var(--la-color-accent-cyan);
+
+  /* Dropdown List Font Size - Single Source of Truth */
+  --la-select-dropdown-font-size: var(--la-font-size-sm);
+
+  /* Dropdown List Text Color - Single Source of Truth */
+  --la-select-dropdown-text-color: var(--la-color-accent-orange);
+
+  /* 🔍 Search Input Styling - SST Design Tokens */
+  --la-select-search-bg: #ffffff;
+  --la-select-search-border: var(--la-color-primary);
+  --la-select-search-placeholder-color: var(--la-text-tertiary);
+  --la-select-search-font-size: var(--la-font-size-sm);
+  --la-select-search-padding: var(--la-space-2) var(--la-space-3);
+  --la-select-search-border-radius: var(--la-radius-md);
+}
 .la-select {
   position: relative;
   display: inline-block;
   cursor: var(--la-cursor-pointer);
   outline: none;
+  width: var(--la-select-uniform-width);
 }
 
-.la-select-control {
+.la-select-control,
+.layera-select__control {
   display: flex;
   align-items: center;
-  background: var(--la-color-background-primary);
-  border: 0.063rem solid var(--la-color-border-primary);
+  background: var(--la-select-bg-primary);
+  border: 0.063rem solid var(--la-select-control-border);
   border-radius: var(--la-radius-md);
   transition: all 0.2s ease-in-out;
   min-height: var(--la-btn-md-height);
+  width: var(--la-select-uniform-width);
 }
 
-.la-select-value {
+.la-select-value,
+.layera-select__value {
   flex: var(--la-flex-1);
   padding: var(--la-space-3) var(--la-space-4);
-  font-size: var(--la-font-size-base);
-  color: var(--la-color-text-primary);
+  font-size: var(--la-select-font-size);
+  color: var(--la-select-text-color);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -189,27 +239,61 @@
   transform: rotate(180deg);
 }
 
-/* Dropdown */
-.la-select-dropdown {
-  position: absolute;
-  top: 100%;
-  left: var(--la-left-0);
-  right: var(--la-right-0);
-  z-index: var(--la-z-index-dropdown);
+/* Dropdown - External floating dropdown */
+.la-select-dropdown,
+.layera-select__dropdown {
+  position: var(--la-select-dropdown-position);
+  z-index: var(--la-select-dropdown-z-index);
   margin-top: 0.25rem;
-  background: var(--la-color-background-primary);
-  border: 0.063rem solid var(--la-color-border-primary);
+  background: var(--la-select-dropdown-bg);
+  border: 0.063rem solid var(--la-select-dropdown-border);
   border-radius: var(--la-radius-md);
   box-shadow: var(--la-shadow-lg);
   max-height: 16rem;
   overflow-y: auto;
+  width: var(--la-select-dropdown-width);
+  min-width: var(--la-select-dropdown-width);
+  pointer-events: auto;
 }
 
-.la-select-option {
+/* Ensure select container doesn't change size when opened */
+.la-select-open,
+.layera-select--open {
+  width: var(--la-select-uniform-width);
+  overflow: visible;
+}
+
+.la-select-open .la-select-control,
+.la-select-open .layera-select__control,
+.layera-select--open .layera-select__control {
+  width: var(--la-select-uniform-width);
+  min-height: var(--la-btn-md-height);
+}
+
+/* Prevent parent containers from expanding */
+.la-select,
+.layera-select {
+  overflow: visible;
+}
+
+/* Ensure dropdown doesn't affect layout flow */
+.la-select-dropdown,
+.layera-select__dropdown {
+  position: var(--la-select-dropdown-position) !important;
+  z-index: var(--la-select-dropdown-z-index) !important;
+  width: var(--la-select-dropdown-width) !important;
+  min-width: var(--la-select-dropdown-width) !important;
+  max-width: var(--la-select-dropdown-width) !important;
+}
+
+.la-select-option,
+.layera-select__option {
   padding: var(--la-space-3) var(--la-space-4);
   cursor: var(--la-cursor-pointer);
   transition: background-color 0.2s ease-in-out;
-  border-bottom: 0.063rem solid var(--la-color-border-primary);
+  border-bottom: 0.063rem solid var(--la-select-dropdown-border);
+  font-size: var(--la-select-dropdown-font-size);
+  color: var(--la-select-dropdown-text-color);
 }
 
 .layera-select-option:last-child {
@@ -246,6 +330,48 @@
 /* Full width */
 .la-select-full-width {
   width: 100%;
+}
+
+.la-select-full-width .la-select-control,
+.la-select-full-width .layera-select__control {
+  width: 100%;
+}
+
+/* 🔍 Search Input - SST Styling για όλα τα combo boxes */
+.layera-select__search {
+  border: none;
+  outline: none;
+  background: var(--la-select-search-bg);
+  font-size: var(--la-select-search-font-size);
+  padding: var(--la-select-search-padding);
+  width: 100%;
+  border-radius: var(--la-select-search-border-radius);
+}
+
+.layera-select__search::placeholder {
+  color: var(--la-select-search-placeholder-color);
+  font-style: italic;
+}
+
+.layera-select__search:focus {
+  border: 2px solid var(--la-select-search-border);
+  background: #f8f9fa;
+}
+
+/* 🔍 Search Empty State */
+.layera-select__empty {
+  padding: var(--la-space-4);
+  text-align: center;
+  color: var(--la-color-text-secondary);
+  font-style: italic;
+  font-size: var(--la-font-size-sm);
+}
+
+.la-select-full-width .la-select-dropdown,
+.layera-select--full-width .layera-select__dropdown {
+  width: var(--la-select-dropdown-width);
+  min-width: var(--la-select-dropdown-width);
+  max-width: var(--la-select-dropdown-width);
 }
 
 /* Responsive adjustments */

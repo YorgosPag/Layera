@@ -197,10 +197,10 @@ export const Select = forwardRef<HTMLDivElement, SelectProps>(({
               ref={inputRef}
               type="text"
               value={searchTerm}
-              onChange={(e: React.FormEvent<HTMLFormElement>) => setSearchTerm(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
               className="layera-select__search"
               placeholder={selectedOption?.label || resolvedPlaceholder}
-              onClick={(e: React.FormEvent<HTMLFormElement>) => e.stopPropagation()}
+              onClick={(e: React.MouseEvent<HTMLInputElement>) => e.stopPropagation()}
             />
           ) : (
             <span className={selectedOption ? '' : 'layera-select__placeholder'}>

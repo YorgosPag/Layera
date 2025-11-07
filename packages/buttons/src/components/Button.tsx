@@ -7,7 +7,7 @@ import { ButtonProps } from '../types';
  *
  * Features:
  * - WCAG 2.1 Compliant (44x44px minimum για touch targets)
- * - Enterprise design variants (primary, secondary, outline, ghost, danger, success, warning, info)
+ * - Enterprise design variants (primary, secondary, outline, ghost, danger, success, warning, info, elevated, neumorphic, gradient, flat, soft)
  * - 5 responsive sizes (xs, sm, md, lg, xl)
  * - Loading states με spinner/dots/pulse animations
  * - Icon support με configurable positioning
@@ -52,12 +52,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
 }, ref) => {
   // Υπολογισμός CSS classes
   const classes = [
-    'layera-btn',
-    `layera-btn--${variant}`,
-    `layera-btn--${size}`,
-    fullWidth && 'layera-btn--full-width',
-    loading && 'layera-btn--loading',
-    icon && !children && 'layera-btn--icon-only',
+    'la-btn',
+    `la-btn-${variant}`,
+    `la-btn-${size}`,
+    fullWidth && 'la-btn-full-width',
+    loading && 'la-btn-loading',
+    icon && !children && 'la-btn-icon-only',
     className
   ].filter(Boolean).join(' ');
 
@@ -139,6 +139,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
       ref={ref}
       type={type}
       className={classes}
+      style={buttonStyles}
       disabled={disabled || loading}
       aria-disabled={disabled || loading}
       aria-busy={loading}

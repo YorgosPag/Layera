@@ -6,7 +6,7 @@ import { Button } from '@layera/buttons';
 import { BaseCard } from '@layera/cards';
 import { Box } from '@layera/layout';
 import { useLayeraTranslation } from '@layera/tolgee';
-import { FORM_TYPES, FORM_SIZES, getCardInfoColor } from '@layera/constants';
+import { FORM_TYPES, FORM_SIZES, getCardInfoColor, getCardInfoBorder } from '@layera/constants';
 import './Auth.css';
 
 const Register = () => {
@@ -80,7 +80,10 @@ const Register = () => {
       <BaseCard
         title={t('auth.register')}
         className="auth-card-replacement"
-        style={{ backgroundColor: getCardInfoColor() }} // 🔴 SST: Register form color από μοναδική πηγή αλήθειας
+        style={{
+          backgroundColor: getCardInfoColor(), // 🔴 SST: Register form color από μοναδική πηγή αλήθειας
+          border: `3px solid ${getCardInfoBorder()}` // 🔲 SST: Περίγραμμα από μοναδική πηγή αλήθειας #b929c6
+        }}
       >
         {error && <Box className="error-message">{error}</Box>}
 

@@ -260,15 +260,15 @@ export default function Data() {
           >
             <Flex direction="column" gap="lg">
               <Flex gap="lg" wrap={true}>
-                <Button variant="secondary" size="sm">
+                <Button variant="primary" size="sm">
                   <span>📄</span> {/* <FileIcon size="sm" theme="neutral" /> */}
                   {t('data.exportFormats.pdf')}
                 </Button>
-                <Button variant="secondary" size="sm">
+                <Button variant="primary" size="sm">
                   <span>📄</span> {/* <FileIcon size="sm" theme="neutral" /> */}
                   {t('data.exportFormats.json')}
                 </Button>
-                <Button variant="secondary" size="sm">
+                <Button variant="primary" size="sm">
                   <span>📄</span> {/* <FileIcon size="sm" theme="neutral" /> */}
                   {t('data.exportFormats.csv')}
                 </Button>

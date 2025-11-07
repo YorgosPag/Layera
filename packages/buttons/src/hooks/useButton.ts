@@ -8,7 +8,7 @@ import { SPACING_SCALE } from '@layera/constants';
  * Επιστρέφει τα button design tokens και utility functions
  * για programmatic χρήση των button standards
  */
-export const useButton = (): void => {
+export const useButton = () => {
   const buttonTokens: ButtonTokens = useMemo(() => ({
     sizes: {
       xs: {
@@ -233,6 +233,126 @@ export const useButton = (): void => {
         focus: {
           outline: '2px solid color-mix(in srgb, var(--la-bg-info) 50%, transparent 50%)',
           ring: '0 0 0 2px color-mix(in srgb, var(--la-bg-info) 30%, transparent 70%)'
+        },
+        disabled: {
+          background: 'var(--la-bg-tertiary)',
+          color: 'var(--la-text-tertiary)',
+          border: 'var(--la-border-primary)'
+        }
+      },
+      elevated: {
+        background: 'linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)',
+        color: 'var(--la-text-primary)',
+        border: '1px solid rgba(0, 0, 0, 0.08)',
+        hover: {
+          background: 'linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%)',
+          color: 'var(--la-text-primary)',
+          border: '1px solid rgba(0, 0, 0, 0.08)'
+        },
+        active: {
+          background: 'linear-gradient(145deg, #f1f5f9 0%, #e2e8f0 100%)',
+          color: 'var(--la-text-primary)',
+          border: '1px solid rgba(0, 0, 0, 0.12)'
+        },
+        focus: {
+          outline: '2px solid var(--la-bg-primary)',
+          ring: '0 0 0 2px rgba(59, 130, 246, 0.1)'
+        },
+        disabled: {
+          background: 'var(--la-bg-tertiary)',
+          color: 'var(--la-text-tertiary)',
+          border: 'var(--la-border-primary)'
+        }
+      },
+      neumorphic: {
+        background: '#e2e8f0',
+        color: 'var(--la-text-primary)',
+        border: 'none',
+        hover: {
+          background: '#e2e8f0',
+          color: 'var(--la-text-primary)',
+          border: 'none'
+        },
+        active: {
+          background: '#e2e8f0',
+          color: 'var(--la-text-primary)',
+          border: 'none'
+        },
+        focus: {
+          outline: '2px solid var(--la-bg-primary)',
+          ring: '0 0 0 2px rgba(59, 130, 246, 0.1)'
+        },
+        disabled: {
+          background: 'var(--la-bg-tertiary)',
+          color: 'var(--la-text-tertiary)',
+          border: 'var(--la-border-primary)'
+        }
+      },
+      gradient: {
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        color: 'white',
+        border: 'none',
+        hover: {
+          background: 'linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%)',
+          color: 'white',
+          border: 'none'
+        },
+        active: {
+          background: 'linear-gradient(135deg, #4c51bf 0%, #553c9a 100%)',
+          color: 'white',
+          border: 'none'
+        },
+        focus: {
+          outline: '2px solid rgba(102, 126, 234, 0.5)',
+          ring: '0 0 0 2px rgba(102, 126, 234, 0.2)'
+        },
+        disabled: {
+          background: 'var(--la-bg-tertiary)',
+          color: 'var(--la-text-tertiary)',
+          border: 'var(--la-border-primary)'
+        }
+      },
+      flat: {
+        background: 'var(--la-bg-info)',
+        color: 'var(--la-text-on-info)',
+        border: 'none',
+        hover: {
+          background: 'color-mix(in srgb, var(--la-bg-info) 90%, black 10%)',
+          color: 'var(--la-text-on-info)',
+          border: 'none'
+        },
+        active: {
+          background: 'color-mix(in srgb, var(--la-bg-info) 80%, black 20%)',
+          color: 'var(--la-text-on-info)',
+          border: 'none'
+        },
+        focus: {
+          outline: 'inset 0 0 0 2px var(--la-bg-primary)',
+          ring: 'none'
+        },
+        disabled: {
+          background: 'var(--la-bg-tertiary)',
+          color: 'var(--la-text-tertiary)',
+          border: 'var(--la-border-primary)'
+        }
+      },
+      soft: {
+        background: 'rgba(59, 130, 246, 0.1)',
+        color: 'var(--la-bg-info)',
+        border: 'none',
+        hover: {
+          background: 'rgba(59, 130, 246, 0.15)',
+          color: 'color-mix(in srgb, var(--la-bg-info) 80%, black 20%)',
+          border: 'none'
+        },
+        active: {
+          background: 'rgba(59, 130, 246, 0.2)',
+          color: 'color-mix(in srgb, var(--la-bg-info) 70%, black 30%)',
+          border: 'none'
+        },
+        focus: {
+          outline: '2px solid var(--la-bg-info)',
+          ring: '0 0 0 2px rgba(59, 130, 246, 0.1)'
         },
         disabled: {
           background: 'var(--la-bg-tertiary)',

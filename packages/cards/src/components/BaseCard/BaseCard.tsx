@@ -3,7 +3,7 @@ import { BaseCardProps } from '../../types';
 import { getEnhancedCardTheme, getCardTextColor } from '../../utils/cardThemes';
 
 // Enterprise LEGO Design System imports
-import { SPACING_SCALE, BORDER_RADIUS_SCALE, GEO_DRAWING_INTERACTION, getCardPrimaryColor } from '@layera/constants';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE, GEO_DRAWING_INTERACTION, getCardPrimaryColor, getCardInfoBorder } from '@layera/constants';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { getCursorVar } from '@layera/cursors';
 
@@ -79,7 +79,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
 
     // Enhanced theme από unified system
     backgroundColor: getCardPrimaryColor(), // 🔴 SST: Card background από μοναδική πηγή αλήθειας
-    border: `1px solid ${theme.borderColor}`,
+    border: `3px solid ${getCardInfoBorder()}`, // 🔲 SST: Περίγραμμα από μοναδική πηγή αλήθειας #b929c6
     backdropFilter: theme.backdropFilter,
     opacity: theme.opacity,
 

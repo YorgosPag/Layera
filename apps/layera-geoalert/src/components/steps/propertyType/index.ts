@@ -26,4 +26,5 @@ stepRegistry.register({
 
 export { PropertyTypeStep } from './PropertyTypeStep';
 export { PropertyTypeCard } from './PropertyTypeCard';
+export { PropertyTypeSelector } from './PropertyTypeSelector';
 export type { PropertyType, PropertyTypeStepData, PropertyTypeOption } from './types';
