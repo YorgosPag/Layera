@@ -51,3 +51,6 @@ pnpm -w --filter @layera/layout    run api:check || true
 
 # 12: secrets
 pnpm -w exec gitleaks protect --staged --redact
+
+# 13: lint-staged for tokens validation
+npx --no-install lint-staged

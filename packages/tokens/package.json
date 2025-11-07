@@ -5,7 +5,8 @@
   "files": ["dist/**", "src/tokens.json"],
   "exports": {
     "./css": "./dist/css/tokens.css",
-    "./dist/css/tokens.css": "./dist/css/tokens.css"
+    "./dist/css/tokens.css": "./dist/css/tokens.css",
+    "./dist/ts/*": "./dist/ts/*"
   },
   "sideEffects": false,
   "scripts": {

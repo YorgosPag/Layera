@@ -49,7 +49,7 @@
     "tokens:smoke": "node scripts/tokens-smoke-test.mjs",
     "tokens:check-diff": "git diff --quiet -- packages/tokens/dist/css/tokens.css || (echo \"Tokens CSS changed. Ensure tokens.json updated.\" && exit 1)",
     "lint:tokens": "node scripts/no-literals-check.mjs",
-    "verify": "npm run typecheck && npm run lint && npm run policy:check && npm run dup:check && npm run enterprise:validate && npm run tokens:build && npm run tokens:diff && npm run tokens:smoke && npm run lint:tokens",
+    "verify": "npm run typecheck && npm run lint && npm run policy:check && npm run dup:check && npm run enterprise:validate && npm run tokens:build && npm run tokens:check-diff && npm run tokens:diff && npm run tokens:smoke && npm run lint:tokens",
     "clean": "npm run clean --workspaces --if-present && rimraf node_modules",
     "fresh-install": "npm run clean && npm install",
     "prepare": "husky",
@@ -93,7 +93,7 @@
   "author": "Layera Team",
   "license": "ISC",
   "lint-staged": {
-    "packages/tokens/src/*": [
+    "packages/tokens/src/**": [
       "pnpm -w run tokens:build",
       "pnpm -w run tokens:diff",
       "pnpm -w run tokens:smoke"
