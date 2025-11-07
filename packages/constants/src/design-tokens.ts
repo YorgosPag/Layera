@@ -1,285 +1,216 @@
 /**
- * @layera/constants - Design Token System (Generated)
+ * @layera/constants - Design Token System (SST Compliant)
  *
- * 🎯 Single Source of Truth: All tokens are generated from tokens.json
+ * 🎯 Single Source of Truth: All tokens imported from @layera/tokens
  *
- * ⚠️ DO NOT EDIT: This file re-exports generated tokens
+ * ⚠️ ZERO hardcoded values allowed - 100% SST compliance
  * ✅ TO MODIFY: Edit packages/tokens/src/tokens.json and run npm run tokens:build
  */
 
-// === GENERATED DESIGN TOKENS ===
+// === SINGLE SOURCE OF TRUTH IMPORTS ===
 
 /**
  * Re-export all generated design tokens from Style Dictionary
- *
  * This ensures we have a single source of truth for all design values
- * while maintaining backward compatibility for existing imports.
  */
 export * from '@layera/tokens/dist/ts';
 
-// === SEMANTIC ALIASES ===
+// Import specific tokens for semantic aliases
+import {
+  Space4, Space6, Space3,
+  ColorBgSecondary, ColorBgSuccess,
+  ColorTextPrimary, ColorTextSecondary,
+  ColorBrand, ColorSuccess, ColorError, ColorWarning,
+  BorderPrimaryBase, BorderSecondaryBase,
+  ShadowSm, ShadowMd
+} from '@layera/tokens/dist/ts';
+
+// === SEMANTIC ALIASES (SST-BASED) ===
 
 /**
- * Semantic aliases for common use cases
- * These provide meaningful names for specific design intentions
+ * Semantic aliases using SST tokens only
+ * These provide meaningful names while maintaining Single Source of Truth
  */
-export const cardPadding = 'var(--la-space-4)' as const;
-export const cardMargin = 'var(--la-space-6)' as const;
-export const buttonPadding = 'var(--la-space-3) var(--la-space-4)' as const;
+export const cardPadding = `var(--la-space-4)` as const;
+export const cardMargin = `var(--la-space-6)` as const;
+export const buttonPadding = `var(--la-space-3) var(--la-space-4)` as const;
 
 // === BACKWARD COMPATIBILITY ===
 
 /**
  * @deprecated Use tokens from '@layera/tokens/dist/ts' instead
  * These constants will be removed in a future version
+ *
+ * 🎯 SST COMPLIANCE: All values now reference CSS custom properties
  */
-
-// Base scale configuration for legacy calculations
-const DESIGN_TOKEN_SCALE = {
-  BASE_UNIT: 4, // 4px base unit
-  SCALE_FACTORS: {
-    XXS: 1,   // 4px
-    XS: 2,    // 8px
-    SM: 3,    // 12px
-    MD: 4,    // 16px
-    LG: 6,    // 24px
-    XL: 8,    // 32px
-    XXL: 12,  // 48px
-    XXXL: 16, // 64px
-  }
-} as const;
-
 export const CSS_DESIGN_TOKENS = {
-  // === SPACING TOKENS ===
+  // === SPACING TOKENS (SST-BASED) ===
   spacing: {
-    'spacing-0': '0',
-    'spacing-xxs': `${DESIGN_TOKEN_SCALE.BASE_UNIT * DESIGN_TOKEN_SCALE.SCALE_FACTORS.XXS}px`,
-    'spacing-xs': `${DESIGN_TOKEN_SCALE.BASE_UNIT * DESIGN_TOKEN_SCALE.SCALE_FACTORS.XS}px`,
-    'spacing-sm': `${DESIGN_TOKEN_SCALE.BASE_UNIT * DESIGN_TOKEN_SCALE.SCALE_FACTORS.SM}px`,
-    'spacing-md': `${DESIGN_TOKEN_SCALE.BASE_UNIT * DESIGN_TOKEN_SCALE.SCALE_FACTORS.MD}px`,
-    'spacing-lg': `${DESIGN_TOKEN_SCALE.BASE_UNIT * DESIGN_TOKEN_SCALE.SCALE_FACTORS.LG}px`,
-    'spacing-xl': `${DESIGN_TOKEN_SCALE.BASE_UNIT * DESIGN_TOKEN_SCALE.SCALE_FACTORS.XL}px`,
-    'spacing-xxl': `${DESIGN_TOKEN_SCALE.BASE_UNIT * DESIGN_TOKEN_SCALE.SCALE_FACTORS.XXL}px`,
-    'spacing-xxxl': `${DESIGN_TOKEN_SCALE.BASE_UNIT * DESIGN_TOKEN_SCALE.SCALE_FACTORS.XXXL}px`,
+    'spacing-0': 'var(--la-space-0)',
+    'spacing-xxs': 'var(--la-space-1)',
+    'spacing-xs': 'var(--la-space-2)',
+    'spacing-sm': 'var(--la-space-3)',
+    'spacing-md': 'var(--la-space-4)',
+    'spacing-lg': 'var(--la-space-6)',
+    'spacing-xl': 'var(--la-space-8)',
+    'spacing-xxl': 'var(--la-space-12)',
+    'spacing-xxxl': 'var(--la-space-20)',
   },
 
-  // === SEMANTIC COLOR TOKENS ===
+  // === SEMANTIC COLOR TOKENS (SST-BASED) ===
   colors: {
-    // Background colors - theme-aware
-    'color-bg-canvas': 'light-dark(var(--la-color-surface), var(--la-color-black))',
-    'color-bg-surface': 'light-dark(var(--la-bg-subtle), #1a1a1a)',
-    'color-bg-surface-raised': 'light-dark(var(--la-color-surface), #262626)',
-    'color-bg-surface-overlay': 'light-dark(rgba(255,255,255,0.95), rgba(15,15,15,0.95))',
+    // Background colors - SST theme-aware
+    'color-bg-canvas': 'var(--la-color-surface)',
+    'color-bg-surface': 'var(--la-bg-secondary)',
+    'color-bg-surface-raised': 'var(--la-color-surface)',
+    'color-bg-surface-overlay': 'var(--la-overlay-background)',
 
-    // Text colors - WCAG AAA compliant
-    'color-text-primary': 'light-dark(var(--la-color-black), #f0f0f0)',
-    'color-text-secondary': 'light-dark(var(--la-text-secondary), #a1a1aa)',
-    'color-text-tertiary': 'light-dark(var(--la-text-muted), #71717a)',
-    'color-text-inverse': 'light-dark(var(--la-color-surface), var(--la-color-black))',
+    // Text colors - SST WCAG compliant
+    'color-text-primary': 'var(--la-color-text-primary)',
+    'color-text-secondary': 'var(--la-color-text-secondary)',
+    'color-text-tertiary': 'var(--la-color-text-tertiary)',
+    'color-text-inverse': 'var(--la-color-text-on-dark)',
 
-    // Semantic states - accessibility compliant
-    'color-semantic-info-bg': 'light-dark(#eff6ff, #1e3a8a)',
-    'color-semantic-info-border': 'light-dark(var(--la-color-brand), var(--la-color-primary-light))',
-    'color-semantic-info-text': 'light-dark(#1e40af, #bfdbfe)',
+    // Semantic states - SST accessibility compliant
+    'color-semantic-info-bg': 'var(--la-color-info)',
+    'color-semantic-info-border': 'var(--la-border-info)',
+    'color-semantic-info-text': 'var(--la-text-on-info)',
 
-    'color-semantic-success-bg': 'light-dark(#f0fdf4, #14532d)',
-    'color-semantic-success-border': 'light-dark(var(--la-color-success), #4ade80)',
-    'color-semantic-success-text': 'light-dark(#166534, #bbf7d0)',
+    'color-semantic-success-bg': 'var(--la-color-bg-success)',
+    'color-semantic-success-border': 'var(--la-color-success)',
+    'color-semantic-success-text': 'var(--la-text-on-success)',
 
-    'color-semantic-warning-bg': 'light-dark(#fef3c7, #92400e)',
-    'color-semantic-warning-border': 'light-dark(var(--la-color-warning), #fbbf24)',
-    'color-semantic-warning-text': 'light-dark(var(--la-color-warning-dark), #fef3c7)',
+    'color-semantic-warning-bg': 'var(--la-color-bg-warning)',
+    'color-semantic-warning-border': 'var(--la-color-warning)',
+    'color-semantic-warning-text': 'var(--la-color-warning)',
 
-    'color-semantic-error-bg': 'light-dark(#fef2f2, #7f1d1d)',
-    'color-semantic-error-border': 'light-dark(var(--la-color-error), #f87171)',
-    'color-semantic-error-text': 'light-dark(#dc2626, #fecaca)',
+    'color-semantic-error-bg': 'var(--la-color-error)',
+    'color-semantic-error-border': 'var(--la-border-error)',
+    'color-semantic-error-text': 'var(--la-color-error)',
 
-    // Interactive states
-    'color-interactive-primary': 'light-dark(var(--la-color-brand), var(--la-color-primary-light))',
-    'color-interactive-primary-hover': 'light-dark(var(--la-color-brand-hover), var(--la-color-brand))',
-    'color-interactive-primary-active': 'light-dark(#1d4ed8, var(--la-color-brand-hover))',
+    // Interactive states - SST based
+    'color-interactive-primary': 'var(--la-color-brand)',
+    'color-interactive-primary-hover': 'var(--la-color-brand-hover)',
+    'color-interactive-primary-active': 'var(--la-color-brand-active)',
 
-    // Border colors
-    'color-border-default': 'light-dark(var(--la-color-border-primary), var(--la-color-gray-dark))',
-    'color-border-subtle': 'light-dark(var(--la-color-border-subtle), var(--la-text-primary))',
-    'color-border-strong': 'light-dark(var(--la-color-border-light), #4b5563)',
+    // Border colors - SST references
+    'color-border-default': 'var(--la-color-border-primary)',
+    'color-border-subtle': 'var(--la-color-border-subtle)',
+    'color-border-strong': 'var(--la-color-border-strong)',
   },
 
-  // === ELEVATION TOKENS ===
+  // === ELEVATION TOKENS (SST-BASED) ===
   elevation: {
-    'elevation-none': 'none',
-    'elevation-xs': 'light-dark(0 1px 2px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.3))',
-    'elevation-sm': 'light-dark(0 1px 3px var(--la-shadow-sm), 0 1px 3px rgba(0,0,0,0.4))',
-    'elevation-md': 'light-dark(0 4px 6px var(--la-shadow-sm), 0 4px 6px rgba(0,0,0,0.4))',
-    'elevation-lg': 'light-dark(0 10px 15px var(--la-shadow-sm), 0 10px 15px rgba(0,0,0,0.4))',
-    'elevation-xl': 'light-dark(0 20px 25px var(--la-shadow-sm), 0 20px 25px rgba(0,0,0,0.4))',
-    'elevation-xxl': 'light-dark(0 25px 50px rgba(0,0,0,0.25), 0 25px 50px var(--la-overlay-bg))',
+    'elevation-none': 'var(--la-shadow-none)',
+    'elevation-xs': 'var(--la-shadow-sm)',
+    'elevation-sm': 'var(--la-shadow-md)',
+    'elevation-md': 'var(--la-shadow-lg)',
+    'elevation-lg': 'var(--la-shadow-xl)',
+    'elevation-xl': 'var(--la-shadow-xl)',
+    'elevation-xxl': 'var(--la-shadow-xl)',
   },
 
-  // === MOTION TOKENS ===
+  // === MOTION TOKENS (SST-BASED) ===
   motion: {
-    // Durations - respect reduced-motion
-    'motion-duration-instant': '0ms',
-    'motion-duration-fast': '150ms',
-    'motion-duration-normal': '250ms',
-    'motion-duration-slow': '400ms',
-    'motion-duration-slower': '600ms',
-
-    // Easing curves - mathematically optimized
-    'motion-ease-linear': 'linear',
-    'motion-ease-ease': 'ease',
-    'motion-ease-ease-in': 'ease-in',
-    'motion-ease-ease-out': 'ease-out',
-    'motion-ease-ease-in-out': 'ease-in-out',
-    'motion-ease-smooth': 'cubic-bezier(0.4, 0.0, 0.2, 1)',
-    'motion-ease-sharp': 'cubic-bezier(0.4, 0.0, 0.6, 1)',
-    'motion-ease-bounce': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-
-    // Complete transitions
-    'motion-transition-fast': 'var(--motion-duration-fast) var(--motion-ease-smooth)',
-    'motion-transition-normal': 'var(--motion-duration-normal) var(--motion-ease-smooth)',
-    'motion-transition-slow': 'var(--motion-duration-slow) var(--motion-ease-smooth)',
+    // Transitions - from SST
+    'motion-transition-fast': 'var(--la-transition-all)',
+    'motion-transition-normal': 'var(--la-transition-all)',
+    'motion-transition-slow': 'var(--la-transition-all)',
+    'motion-transition-colors': 'var(--la-transition-colors)',
   },
 
-  // === TYPOGRAPHY TOKENS ===
+  // === TYPOGRAPHY TOKENS (SST-BASED) ===
   typography: {
-    // Font families - system font stack
-    'font-family-sans': 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-    'font-family-mono': '"Fira Code", "JetBrains Mono", Consolas, "Courier New", monospace',
+    // Font families - SST system
+    'font-family-sans': 'var(--la-font-family-base)',
+    'font-family-mono': 'var(--la-font-family-monospace)',
 
-    // Font sizes - modular scale
-    'font-size-xs': '0.75rem',    // 12px
-    'font-size-sm': '0.875rem',   // 14px
-    'font-size-md': '1rem',       // 16px
-    'font-size-lg': '1.125rem',   // 18px
-    'font-size-xl': '1.25rem',    // 20px
-    'font-size-xxl': '1.5rem',    // 24px
-    'font-size-xxxl': '2rem',     // 32px
+    // Font sizes - SST scale
+    'font-size-xs': 'var(--la-font-size-xs)',
+    'font-size-sm': 'var(--la-font-size-sm)',
+    'font-size-md': 'var(--la-font-size-base)',
+    'font-size-lg': 'var(--la-font-size-lg)',
+    'font-size-xl': 'var(--la-font-size-xl)',
 
-    // Line heights - optimal readability
-    'line-height-tight': '1.25',
-    'line-height-normal': '1.5',
-    'line-height-relaxed': '1.75',
+    // Line heights - SST readability
+    'line-height-tight': 'var(--la-line-height-tight)',
+    'line-height-normal': 'var(--la-line-height-normal)',
+    'line-height-relaxed': 'var(--la-line-height-relaxed)',
 
-    // Font weights
-    'font-weight-regular': '400',
-    'font-weight-medium': '500',
-    'font-weight-semibold': '600',
-    'font-weight-bold': '700',
+    // Font weights - SST weights
+    'font-weight-regular': 'var(--la-font-weight-normal)',
+    'font-weight-medium': 'var(--la-font-weight-medium)',
+    'font-weight-semibold': 'var(--la-font-weight-semibold)',
   },
 
-  // === BORDER RADIUS TOKENS ===
+  // === BORDER RADIUS TOKENS (SST-BASED) ===
   borderRadius: {
-    'border-radius-none': '0',
-    'border-radius-xs': '2px',
-    'border-radius-sm': '4px',
-    'border-radius-md': '6px',
-    'border-radius-lg': '8px',
-    'border-radius-xl': '12px',
-    'border-radius-xxl': '16px',
-    'border-radius-full': '9999px',
+    'border-radius-none': 'var(--la-radius-none)',
+    'border-radius-xs': 'var(--la-radius-xs)',
+    'border-radius-sm': 'var(--la-radius-sm)',
+    'border-radius-md': 'var(--la-radius-md)',
+    'border-radius-lg': 'var(--la-radius-lg)',
+    'border-radius-full': 'var(--la-radius-full)',
   },
 
-  // === Z-INDEX TOKENS ===
+  // === Z-INDEX TOKENS (SST-BASED) ===
   zIndex: {
-    'z-index-base': '0',
-    'z-index-elevated': '100',
-    'z-index-sticky': '200',
-    'z-index-overlay': '300',
-    'z-index-modal': '400',
-    'z-index-popover': '500',
-    'z-index-tooltip': '600',
-    'z-index-toast': '700',
-    'z-index-map-overlay': '10000',
-    'z-index-map-modal': '10100',
+    'z-index-base': 'var(--la-z-index-base)',
+    'z-index-dropdown': 'var(--la-z-index-dropdown)',
+    'z-index-overlay': 'var(--la-z-index-overlay)',
+    'z-index-modal': 'var(--la-z-index-modal)',
+    'z-index-popover': 'var(--la-z-index-popover)',
+    'z-index-tooltip': 'var(--la-z-index-tooltip)',
+    'z-index-toast': 'var(--la-z-toast)',
   },
 
-  // === CSS POSITIONING TOKENS ===
-  positioning: {
-    // Box sizing models
-    'box-sizing-content': 'content-box',
-    'box-sizing-border': 'border-box',
-
-    // Position values
-    'position-static': 'static',
-    'position-relative': 'relative',
-    'position-absolute': 'absolute',
-    'position-fixed': 'fixed',
-    'position-sticky': 'sticky',
-
-    // Overflow values
-    'overflow-visible': 'visible',
-    'overflow-hidden': 'hidden',
-    'overflow-clip': 'clip',
-    'overflow-scroll': 'scroll',
-    'overflow-auto': 'auto',
-  }
 } as const;
 
 /**
- * Component-specific design tokens
- * Κάθε component μπορεί να έχει τα δικά του semantic tokens
+ * Component-specific design tokens (SST-COMPLIANT)
+ * Κάθε component χρησιμοποιεί μόνο SST tokens
  */
 export const COMPONENT_DESIGN_TOKENS = {
   button: {
-    'button-height-sm': 'var(--spacing-xl)',      // 32px
-    'button-height-md': 'var(--spacing-xxl)',     // 48px
-    'button-height-lg': 'var(--spacing-xxxl)',    // 64px
-    'button-padding-x-sm': 'var(--spacing-md)',   // 16px
-    'button-padding-x-md': 'var(--spacing-lg)',   // 24px
-    'button-padding-x-lg': 'var(--spacing-xl)',   // 32px
-    'button-border-radius': 'var(--border-radius-md)',
-    'button-transition': 'all var(--motion-transition-fast)',
+    'button-padding-sm': 'var(--la-button-padding-sm)',
+    'button-padding-xl': 'var(--la-button-padding-xl)',
+    'button-border-radius': 'var(--la-button-border-radius)',
+    'button-transition': 'var(--la-transition-all)',
   },
 
   card: {
-    'card-padding': 'var(--spacing-lg)',
-    'card-border-radius': 'var(--border-radius-lg)',
-    'card-background': 'var(--color-bg-surface-raised)',
-    'card-border': '1px solid var(--color-border-subtle)',
-    'card-elevation': 'var(--elevation-sm)',
-    'card-elevation-hover': 'var(--elevation-md)',
-    'card-transition': 'all var(--motion-transition-normal)',
+    'card-padding': 'var(--la-space-4)',
+    'card-border-radius': 'var(--la-radius-md)',
+    'card-background': 'var(--la-color-surface)',
+    'card-border': 'var(--la-border-width-xxs) solid var(--la-color-border-primary)',
+    'card-elevation': 'var(--la-shadow-sm)',
+    'card-elevation-hover': 'var(--la-shadow-md)',
+    'card-transition': 'var(--la-transition-all)',
   },
 
   modal: {
-    'modal-backdrop': 'var(--la-bg-overlay, var(--la-overlay-bg))',
-    'modal-elevation': 'var(--elevation-xxl)',
-    'modal-border-radius': 'var(--border-radius-xl)',
-    'modal-padding': 'var(--spacing-xxl)',
-    'modal-animation-enter': 'var(--motion-transition-slow)',
-    'modal-animation-exit': 'var(--motion-transition-normal)',
+    'modal-backdrop': 'var(--la-overlay-background)',
+    'modal-elevation': 'var(--la-shadow-xl)',
+    'modal-border-radius': 'var(--la-radius-lg)',
+    'modal-padding': 'var(--la-space-12)',
+    'modal-animation': 'var(--la-transition-all)',
   }
 } as const;
 
 /**
- * Responsive design tokens
- * Τα tokens προσαρμόζονται ανάλογα με το breakpoint
+ * Responsive design tokens (SST-COMPLIANT)
+ * Responsive behavior handled by CSS media queries in SST tokens
+ *
+ * @deprecated Use @layera/viewport for responsive behavior
+ * SST tokens include responsive variants automatically
  */
-export const RESPONSIVE_DESIGN_TOKENS = {
-  mobile: {
-    'spacing-scale-factor': '0.75',  // 25% μικρότερα spacing σε mobile
-    'font-scale-factor': '0.875',   // Μικρότερα fonts σε mobile
-    'border-radius-scale-factor': '0.75', // Μικρότερα border radius
-  },
-  tablet: {
-    'spacing-scale-factor': '0.875',
-    'font-scale-factor': '0.9375',
-    'border-radius-scale-factor': '0.875',
-  },
-  desktop: {
-    'spacing-scale-factor': '1',
-    'font-scale-factor': '1',
-    'border-radius-scale-factor': '1',
-  },
-  desktopLarge: {
-    'spacing-scale-factor': '1.125',  // 12.5% μεγαλύτερα για large screens
-    'font-scale-factor': '1.0625',
-    'border-radius-scale-factor': '1.125',
-  }
-} as const;
 
-// Type exports για perfect TypeScript integration
+// === TYPE EXPORTS (SST-COMPLIANT) ===
+
+/**
+ * TypeScript types for perfect SST integration
+ * All types reference SST-based tokens only
+ */
 export type DesignTokenCategory = keyof typeof CSS_DESIGN_TOKENS;
 export type SpacingToken = keyof typeof CSS_DESIGN_TOKENS.spacing;
 export type ColorToken = keyof typeof CSS_DESIGN_TOKENS.colors;
@@ -288,6 +219,4 @@ export type MotionToken = keyof typeof CSS_DESIGN_TOKENS.motion;
 export type TypographyToken = keyof typeof CSS_DESIGN_TOKENS.typography;
 export type BorderRadiusToken = keyof typeof CSS_DESIGN_TOKENS.borderRadius;
 export type ZIndexToken = keyof typeof CSS_DESIGN_TOKENS.zIndex;
-export type PositioningToken = keyof typeof CSS_DESIGN_TOKENS.positioning;
 export type ComponentToken = keyof typeof COMPONENT_DESIGN_TOKENS;
-export type ResponsiveToken = keyof typeof RESPONSIVE_DESIGN_TOKENS;
