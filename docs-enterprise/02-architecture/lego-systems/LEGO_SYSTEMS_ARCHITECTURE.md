@@ -101,7 +101,7 @@ packages/layout/
 </FlexColumn>
 ```
 
-**ΣΗΜΕΙΩΣΗ**: Το spacing-utilities package αφαιρέθηκε γιατί είναι διπλότυπο του υπάρχοντος @layera/constants SPACING_SCALE system.
+**ΣΗΜΕΙΩΣΗ**: Το spacing-utilities package αφαιρέθηκε γιατί είναι διπλότυπο του υπάρχοντος @layera/constants ΒΛΕΠΕ packages\tokens\src\tokens.css system.
 
 ---
 
@@ -112,8 +112,8 @@ packages/layout/
 | New LEGO System | Dependencies | Integration Points |
 |-----------------|--------------|-------------------|
 | **@layera/semantic-colors** | @layera/constants | CSS custom properties, theme system |
-| **@layera/layout-patterns** | @layera/constants | SPACING_SCALE για gaps |
-| **@layera/spacing-utilities** | @layera/constants | SPACING_SCALE για όλα τα values |
+| **@layera/layout-patterns** | @layera/constants | ΒΛΕΠΕ packages\tokens\src\tokens.css για gaps |
+| **@layera/spacing-utilities** | @layera/constants | ΒΛΕΠΕ packages\tokens\src\tokens.css για όλα τα values |
 
 ### **🏗️ Enhanced Existing Systems:**
 

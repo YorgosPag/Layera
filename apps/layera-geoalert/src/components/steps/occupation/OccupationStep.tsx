@@ -85,9 +85,9 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
     top: 'var(--la-cards-top)',
     left: '50%',
     transform: 'translateX(-50%)',
-    width: `${SPACING_SCALE.XXXL * 2}px`,
+    width: 'var(--la-occupation-width)', // 🎯 SST: Occupation step width token
     zIndex: 10003,
-    padding: `0 ${SPACING_SCALE.LG + SPACING_SCALE.XS}px`,
+    padding: '0 var(--la-space-lg-plus-xs)', // 🎯 SST: Complex spacing token
     boxSizing: 'border-box'
   };
 

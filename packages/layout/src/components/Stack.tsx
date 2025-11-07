@@ -12,11 +12,11 @@ export interface StackProps {
 }
 
 const SPACING_VALUES = {
-  xs: `${SPACING_SCALE.XS}px`,
+  xs: 'var(--la-space-1)', // 🎯 SST: XS spacing token
   sm: `${SPACING_SCALE.SM}px`,
   md: `${SPACING_SCALE.MD}px`,
-  lg: `${SPACING_SCALE.LG}px`,
-  xl: `${SPACING_SCALE.XL}px`
+  lg: 'var(--la-space-6)', // 🎯 SST: LG spacing (24px)
+  xl: 'var(--la-space-layout-xl)' // 🎯 SST: XL spacing token
 } as const;
 
 export const Stack: React.FC<StackProps> = ({

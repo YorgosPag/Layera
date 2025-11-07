@@ -5,7 +5,7 @@ export default function MfaStatus({ mfa }) {
   return (
     <Box
       as="span"
-      padding={`${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`}
+      padding="var(--la-space-xs-sm-padding)" // 🎯 SST: XS SM padding token
       border="1px solid var(--la-border-primary)"
       borderRadius={8}
       fontSize="var(--la-font-size-xs)"

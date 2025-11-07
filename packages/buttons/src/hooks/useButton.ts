@@ -13,35 +13,35 @@ export const useButton = () => {
     sizes: {
       xs: {
         height: '2rem',
-        padding: `${SPACING_SCALE.SM}px 0.75rem`,
+        padding: 'var(--la-space-2) 0.75rem', // 🎯 SST: SM spacing
         fontSize: '0.75rem',
         iconSize: '0.875rem',
         gap: '0.375rem'
       },
       sm: {
         height: '2.25rem',
-        padding: `${SPACING_SCALE.SM}px 1rem`,
+        padding: 'var(--la-space-2) 1rem', // 🎯 SST: SM spacing
         fontSize: '0.875rem',
         iconSize: '1rem',
-        gap: `${SPACING_SCALE.SM}px`
+        gap: 'var(--la-space-2)' // 🎯 SST: SM spacing
       },
       md: {
         height: '2.75rem',
-        padding: `${SPACING_SCALE.MD}px 1.25rem`,
+        padding: 'var(--la-space-4) 1.25rem', // 🎯 SST: MD spacing
         fontSize: '1rem',
         iconSize: '1.125rem',
-        gap: `${SPACING_SCALE.SM}px`
+        gap: 'var(--la-space-2)' // 🎯 SST: SM spacing
       },
       lg: {
         height: '3rem',
-        padding: `${SPACING_SCALE.MD - SPACING_SCALE.XS / 2}px ${SPACING_SCALE.XL - SPACING_SCALE.SM}px`,
+        padding: 'var(--la-space-md-minus-xs-half-xl-minus-sm-padding)', // 🎯 SST: Complex button padding
         fontSize: '1.125rem',
         iconSize: '1.25rem',
-        gap: `${SPACING_SCALE.SM}px`
+        gap: 'var(--la-space-2)' // 🎯 SST: SM spacing
       },
       xl: {
         height: '3.5rem',
-        padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XXL}px`,
+        padding: 'var(--la-button-padding-xl)', // 🎯 SST: Button padding token
         fontSize: '1.25rem',
         iconSize: '1.5rem',
         gap: '0.75rem'
@@ -370,7 +370,7 @@ export const useButton = () => {
       none: '0',
       sm: '0.25rem',
       md: '0.375rem',
-      lg: `${SPACING_SCALE.SM}px`,
+      lg: 'var(--la-space-2)', // 🎯 SST: SM spacing
       full: '9999px'
     }
   }), []);

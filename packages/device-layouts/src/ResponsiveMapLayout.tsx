@@ -70,8 +70,8 @@ export const ResponsiveMapLayout: React.FC<ResponsiveMapLayoutProps> = ({
     <Box
       onClick={fab.onClick}
       position="fixed"
-      right={`${SPACING_SCALE.LG}px`}
-      bottom={`${SPACING_SCALE.LG}px`}
+      right="var(--la-space-6)" // 🎯 SST: LG spacing (24px)
+      bottom="var(--la-space-6)" // 🎯 SST: LG spacing (24px)
       width="56px"
       height="56px"
       borderRadius={BORDER_RADIUS_SCALE.CIRCLE}

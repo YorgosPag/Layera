@@ -38,7 +38,7 @@ export const PageContainer: React.FC<PageContainerProps> = ({
     ...(padding === 'none' && { padding: '0' }),
     ...(padding === 'sm' && { padding: `${SPACING_SCALE.SM}px` }),
     ...(padding === 'md' && { padding: `${SPACING_SCALE.MD}px` }),
-    ...(padding === 'lg' && { padding: `${SPACING_SCALE.LG}px` })
+    ...(padding === 'lg' && { padding: 'var(--la-space-6)' }) // 🎯 SST: LG padding (24px)
   };
 
   return (

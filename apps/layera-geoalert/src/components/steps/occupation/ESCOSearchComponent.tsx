@@ -217,7 +217,7 @@ export const ESCOSearchComponent: React.FC<ESCOSearchProps> = ({
 
           {/* Error */}
           {searchState.error && (
-            <Box padding={`${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`} textAlign="center">
+            <Box padding="var(--la-space-3) var(--la-space-4)" textAlign="center"> {/* 🎯 SST: SM + MD padding (8px 16px) */}
               <Text size="sm" color="error" align="center">
                 ❌ {searchState.error}
               </Text>
@@ -249,7 +249,7 @@ export const ESCOSearchComponent: React.FC<ESCOSearchProps> = ({
 
           {/* No Results */}
           {!searchState.isLoading && !searchState.error && searchState.query.length >= 3 && searchState.results.length === 0 && (
-            <Box padding={`${SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px`} textAlign="center">
+            <Box padding="var(--la-space-3) var(--la-space-4)" textAlign="center"> {/* 🎯 SST: SM + MD padding (8px 16px) */}
               🔍 {t('esco.search.noResults', { query: searchState.query })}
             </Box>
           )}

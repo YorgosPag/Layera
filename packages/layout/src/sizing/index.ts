@@ -43,14 +43,14 @@ export type SizingCategory =
 export const SIZING_CSS_VARS = {
   // Width tokens
   width: {
-    'sizing-width-xxs': `${SPACING_SCALE.XXS}px`,
-    'sizing-width-xs': `${SPACING_SCALE.XS}px`,
+    'sizing-width-xxs': 'var(--la-space-1)', // 🎯 SST: XXS spacing token
+    'sizing-width-xs': 'var(--la-space-1)', // 🎯 SST: XS spacing token
     'sizing-width-sm': `${SPACING_SCALE.SM}px`,
     'sizing-width-md': `${SPACING_SCALE.MD}px`,
-    'sizing-width-lg': `${SPACING_SCALE.LG}px`,
-    'sizing-width-xl': `${SPACING_SCALE.XL}px`,
-    'sizing-width-xxl': `${SPACING_SCALE.XXL}px`,
-    'sizing-width-xxxl': `${SPACING_SCALE.XXXL}px`,
+    'sizing-width-lg': 'var(--la-space-6)', // 🎯 SST: LG width (24px)
+    'sizing-width-xl': 'var(--la-space-layout-xl)', // 🎯 SST: XL spacing token
+    'sizing-width-xxl': 'var(--la-space-12)', // 🎯 SST: XXL spacing token
+    'sizing-width-xxxl': 'var(--la-space-16)', // 🎯 SST: XXXL spacing token
     'sizing-width-layout-sm': `${SPACING_SCALE.LAYOUT_SM}px`,
     'sizing-width-layout-md': `${SPACING_SCALE.LAYOUT_MD}px`,
     'sizing-width-layout-lg': `${SPACING_SCALE.LAYOUT_LG}px`,
@@ -62,7 +62,7 @@ export const SIZING_CSS_VARS = {
     'sizing-width-container-lg': `${SPACING_SCALE.CONTAINER_LG}px`,
     'sizing-width-container-xl': `${SPACING_SCALE.CONTAINER_XL}px`,
     'sizing-width-container-xxl': `${SPACING_SCALE.CONTAINER_XXL}px`,
-    'sizing-width-full': SPACING_SCALE.FULL,
+    'sizing-width-full': 'var(--la-width-full)', // 🎯 SST: Full width
     'sizing-width-viewport': SPACING_SCALE.VIEWPORT_WIDTH,
     'sizing-width-min-content': SPACING_SCALE.MIN_CONTENT,
     'sizing-width-max-content': SPACING_SCALE.MAX_CONTENT,
@@ -71,14 +71,14 @@ export const SIZING_CSS_VARS = {
 
   // Height tokens (mirror width tokens)
   height: {
-    'sizing-height-xxs': `${SPACING_SCALE.XXS}px`,
-    'sizing-height-xs': `${SPACING_SCALE.XS}px`,
+    'sizing-height-xxs': 'var(--la-space-1)', // 🎯 SST: XXS spacing token
+    'sizing-height-xs': 'var(--la-space-1)', // 🎯 SST: XS spacing token
     'sizing-height-sm': `${SPACING_SCALE.SM}px`,
     'sizing-height-md': `${SPACING_SCALE.MD}px`,
-    'sizing-height-lg': `${SPACING_SCALE.LG}px`,
-    'sizing-height-xl': `${SPACING_SCALE.XL}px`,
-    'sizing-height-xxl': `${SPACING_SCALE.XXL}px`,
-    'sizing-height-xxxl': `${SPACING_SCALE.XXXL}px`,
+    'sizing-height-lg': 'var(--la-space-6)', // 🎯 SST: LG height (24px)
+    'sizing-height-xl': 'var(--la-space-layout-xl)', // 🎯 SST: XL spacing token
+    'sizing-height-xxl': 'var(--la-space-12)', // 🎯 SST: XXL spacing token
+    'sizing-height-xxxl': 'var(--la-space-16)', // 🎯 SST: XXXL spacing token
     'sizing-height-layout-sm': `${SPACING_SCALE.LAYOUT_SM}px`,
     'sizing-height-layout-md': `${SPACING_SCALE.LAYOUT_MD}px`,
     'sizing-height-layout-lg': `${SPACING_SCALE.LAYOUT_LG}px`,
@@ -90,7 +90,7 @@ export const SIZING_CSS_VARS = {
     'sizing-height-container-lg': `${SPACING_SCALE.CONTAINER_LG}px`,
     'sizing-height-container-xl': `${SPACING_SCALE.CONTAINER_XL}px`,
     'sizing-height-container-xxl': `${SPACING_SCALE.CONTAINER_XXL}px`,
-    'sizing-height-full': SPACING_SCALE.FULL,
+    'sizing-height-full': 'var(--la-height-full)', // 🎯 SST: Full height
     'sizing-height-viewport': SPACING_SCALE.VIEWPORT_HEIGHT,
     'sizing-height-min-content': SPACING_SCALE.MIN_CONTENT,
     'sizing-height-max-content': SPACING_SCALE.MAX_CONTENT,

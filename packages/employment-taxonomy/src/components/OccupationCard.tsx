@@ -153,7 +153,7 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
             {occupation.category && (
               <Box style={{
                 backgroundColor: 'var(--la-bg-secondary)',
-                padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
+                padding: 'var(--la-space-xs-sm-padding)', // 🎯 SST: XS SM padding
                 borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
                 fontSize: 'var(--la-font-size-xs)',
                 color: 'var(--la-text-primary)'
@@ -166,7 +166,7 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
             <Box style={{
               backgroundColor: getExperienceLevelColor(occupation.experienceLevel),
               color: 'var(--la-color-white, white)',
-              padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
+              padding: 'var(--la-space-xs-sm-padding)', // 🎯 SST: XS SM padding
               borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
               fontSize: 'var(--la-font-size-xs)',
               fontWeight: 'var(--la-font-weight-medium, 500)'
@@ -229,7 +229,7 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
         {/* Employment Types */}
         {showEmploymentTypes && occupation.employmentTypes.length > 0 && (
           <Box>
-            <Text size="sm" weight="medium" marginBottom={`${SPACING_SCALE.XS}px`}>
+            <Text size="sm" weight="medium" marginBottom="var(--la-space-1)"> {/* 🎯 SST: XS spacing */}
               {t('employment.card.employmentTypes', 'Τύποι Απασχόλησης')}:
             </Text>
             <Flex gap="xs" wrap="wrap">
@@ -239,7 +239,7 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
                   style={{
                     backgroundColor: 'var(--la-bg-info-subtle)',
                     color: 'var(--la-color-info)',
-                    padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
+                    padding: 'var(--la-space-xs-sm-padding)', // 🎯 SST: XS SM padding
                     borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
                     fontSize: 'var(--la-font-size-xs)',
                     fontWeight: 'var(--la-font-weight-medium, 500)'
@@ -255,7 +255,7 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
         {/* Skills */}
         {showSkills && occupation.skills.length > 0 && (
           <Box>
-            <Text size="sm" weight="medium" marginBottom={`${SPACING_SCALE.XS}px`}>
+            <Text size="sm" weight="medium" marginBottom="var(--la-space-1)"> {/* 🎯 SST: XS spacing */}
               {t('employment.card.skills', 'Δεξιότητες')}:
             </Text>
             <Flex gap="xs" wrap="wrap">
@@ -265,7 +265,7 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
                   style={{
                     backgroundColor: 'var(--la-bg-success-subtle)',
                     color: 'var(--la-color-success)',
-                    padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`,
+                    padding: 'var(--la-space-xs-sm-padding)', // 🎯 SST: XS SM padding
                     borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
                     fontSize: 'var(--la-font-size-xs)'
                   }}

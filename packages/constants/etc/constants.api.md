@@ -1053,7 +1053,7 @@ export const SORT_DIRECTIONS: {
 export type SortDirection = typeof SORT_DIRECTIONS[keyof typeof SORT_DIRECTIONS];
 
 // @public (undocumented)
-export const SPACING_SCALE: {
+export const ΒΛΕΠΕ packages\tokens\src\tokens.css: {
     readonly NONE: 0;
     readonly XXS: 2;
     readonly XS: 4;
@@ -1066,7 +1066,7 @@ export const SPACING_SCALE: {
 };
 
 // @public (undocumented)
-export type SpacingScale = typeof SPACING_SCALE[keyof typeof SPACING_SCALE];
+export type SpacingScale = typeof ΒΛΕΠΕ packages\tokens\src\tokens.css[keyof typeof ΒΛΕΠΕ packages\tokens\src\tokens.css];
 
 // @public (undocumented)
 export type SpacingToken = keyof typeof CSS_DESIGN_TOKENS.spacing;

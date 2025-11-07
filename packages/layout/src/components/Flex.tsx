@@ -35,14 +35,14 @@ export interface FlexProps {
 
 // Enterprise gap values aligned με @layera/constants SPACING_SCALE
 const GAP_VALUES = {
-  xxs: `${SPACING_SCALE.XXS}px`,  // 2px
-  xs: `${SPACING_SCALE.XS}px`,    // 4px
+  xxs: 'var(--la-space-1)',  // 🎯 SST: XXS spacing token
+  xs: 'var(--la-space-1)',    // 🎯 SST: XS spacing token
   sm: `${SPACING_SCALE.SM}px`,    // 8px
   md: `${SPACING_SCALE.MD}px`,    // 16px
-  lg: `${SPACING_SCALE.LG}px`,    // 24px
-  xl: `${SPACING_SCALE.XL}px`,    // 32px
-  xxl: `${SPACING_SCALE.XXL}px`,  // 48px
-  xxxl: `${SPACING_SCALE.XXXL}px` // 64px
+  lg: 'var(--la-space-6)',    // 🎯 SST: LG spacing (24px)
+  xl: 'var(--la-space-layout-xl)',    // 🎯 SST: XL spacing token
+  xxl: 'var(--la-space-12)',  // 🎯 SST: XXL spacing token
+  xxxl: 'var(--la-space-16)' // 🎯 SST: XXXL spacing token
 } as const;
 
 export const Flex: React.FC<FlexProps> = ({

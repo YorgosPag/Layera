@@ -13,63 +13,63 @@ import { BRAND_COLORS } from './config';
 export const WORKFLOW_CARD_STYLES = {
   // Main container styles
   CONTAINER: {
-    border: `${SPACING_SCALE.XXS}px solid var(--color-border-strong)`,
+    border: `var(--la-border-width-xxs) solid var(--color-border-strong)`, // 🎯 SST: Border width token
     borderRadius: `${BORDER_RADIUS_SCALE.LG}px`,
-    padding: `${SPACING_SCALE.LG}px`,
+    padding: 'var(--la-space-6)', // 🎯 SST: LG padding (24px)
     margin: '0 auto',
     position: 'relative' as const,
     maxWidth: `${SPACING_SCALE.CONTAINER_MD}px`,
     boxSizing: 'border-box' as const,
-    backgroundColor: '#2994c6' // 🔴 SST: Ενιαίο χρώμα φόντο παντού
+    backgroundColor: 'var(--la-card-background)' // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
   },
 
   // 🌐 GLOBAL CARD COLORS - Single Source of Truth για ΟΛΕΣ τις κάρτες
   COLORS: {
-    PRIMARY: '#8B4513',        // 🟤 Κύριο χρώμα κάρτας (καφέ παντού)
-    SUCCESS: '#2994c6',        // 🟢 Success κάρτες (ενιαίο #2994c6 παντού)
-    INFO: '#2994c6',           // 🔵 Info κάρτες (ενιαίο #2994c6 παντού)
-    WARNING: '#2994c6',        // 🟡 Warning κάρτες (ενιαίο #2994c6 παντού)
-    ERROR: '#2994c6',          // 🔴 Error κάρτες (ενιαίο #2994c6 παντού)
-    ORANGE: '#2994c6'          // 🟠 Πορτοκαλί κάρτες (ενιαίο #2994c6 παντού)
+    PRIMARY: 'var(--la-card-background)',   // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
+    SUCCESS: 'var(--la-card-background)',   // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
+    INFO: 'var(--la-card-background)',      // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
+    WARNING: 'var(--la-card-background)',   // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
+    ERROR: 'var(--la-card-background)',     // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
+    ORANGE: 'var(--la-card-background)'     // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
   },
 
   // 🔲 GLOBAL CARD BORDERS - Single Source of Truth για ΟΛΕΣ τις κάρτες
   BORDERS: {
-    PRIMARY: '#c5c722',        // 🔴 Κύριο περίγραμμα κάρτας (ενιαίο #c5c722 παντού)
-    SUCCESS: '#c5c722',        // 🟢 Success περίγραμμα (ενιαίο #c5c722 παντού)
-    INFO: '#c5c722',           // 🔵 Info περίγραμμα (ενιαίο #c5c722 παντού)
-    WARNING: '#c5c722',        // 🟡 Warning περίγραμμα (ενιαίο #c5c722 παντού)
-    ERROR: '#c5c722',          // 🔴 Error περίγραμμα (ενιαίο #c5c722 παντού)
-    ORANGE: '#c5c722'          // 🟠 Πορτοκαλί περίγραμμα (ενιαίο #c5c722 παντού)
+    PRIMARY: 'var(--la-card-border-color)',    // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
+    SUCCESS: 'var(--la-card-border-color)',    // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
+    INFO: 'var(--la-card-border-color)',       // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
+    WARNING: 'var(--la-card-border-color)',    // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
+    ERROR: 'var(--la-card-border-color)',      // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
+    ORANGE: 'var(--la-card-border-color)'      // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
   },
 
   // Modal content styles (for StepOrchestrator modal)
   MODAL_CONTENT: {
     borderRadius: `${BORDER_RADIUS_SCALE.LG}px`,
-    paddingTop: `${SPACING_SCALE.LG}px`,
+    paddingTop: 'var(--la-space-6)', // 🎯 SST: LG padding (24px)
     paddingBottom: `${SPACING_SCALE.XL}px`,
-    paddingLeft: `${SPACING_SCALE.LG}px`,
-    paddingRight: `${SPACING_SCALE.LG}px`,
-    border: `${SPACING_SCALE.XXS}px solid ${BRAND_COLORS.PRIMARY}`,
+    paddingLeft: 'var(--la-space-6)', // 🎯 SST: LG padding (24px)
+    paddingRight: 'var(--la-space-6)', // 🎯 SST: LG padding (24px)
+    border: `var(--la-border-width-xxs) solid ${BRAND_COLORS.PRIMARY}`, // 🎯 SST: Border width token
     position: 'relative' as const,
     maxWidth: `${SPACING_SCALE.CONTAINER_MD}px`,
-    backgroundColor: '#2994c6' // 🔴 SST: Ενιαίο χρώμα φόντο παντού
+    backgroundColor: 'var(--la-card-background)' // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
   },
 
   // Button container styles
   BUTTON_CONTAINER: {
     padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XL}px`,
-    border: `${SPACING_SCALE.XXS}px solid var(--color-border-strong)`,
+    border: `var(--la-border-width-xxs) solid var(--color-border-strong)`, // 🎯 SST: Border width token
     borderRadius: `${BORDER_RADIUS_SCALE.MD}px`,
-    backgroundColor: '#2994c6' // 🔴 SST: Ενιαίο χρώμα φόντο παντού
+    backgroundColor: 'var(--la-card-background)' // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
   },
 
   // Internal step card styles
   STEP_CARD: {
     padding: `${SPACING_SCALE.MD}px`,
     borderRadius: `${BORDER_RADIUS_SCALE.MD}px`,
-    border: `${SPACING_SCALE.XXS}px solid ${BRAND_COLORS.PRIMARY}`,
-    backgroundColor: '#2994c6', // 🔴 SST: Ενιαίο χρώμα φόντο παντού
+    border: `var(--la-border-width-xxs) solid ${BRAND_COLORS.PRIMARY}`, // 🎯 SST: Border width token
+    backgroundColor: '#800000', // 🔴 SST: Ενιαίο χρώμα φόντο παντού
     // Browser button reset για να εξασφαλίσουμε SST compliance
     appearance: 'none' as const,
     outline: 'none',
@@ -86,7 +86,7 @@ export const WORKFLOW_CARD_STYLES = {
     width: '100%',
     maxWidth: `${SPACING_SCALE.CONTAINER_MD}px`,
     alignSelf: 'center' as const,
-    backgroundColor: '#2994c6' // 🔴 SST: Ενιαίο χρώμα φόντο παντού
+    backgroundColor: 'var(--la-card-background)' // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
   }
 } as const;
 

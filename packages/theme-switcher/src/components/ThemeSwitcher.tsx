@@ -2,7 +2,8 @@
 
 import React, { forwardRef } from 'react';
 import { Box } from '@layera/layout';
-import { SunIcon, MoonIcon, MonitorIcon } from '@layera/icons';
+// Προσωρινή λύση - χρήση text αντί για icons μέχρι να λυθεί το cache πρόβλημα
+// import { HomeIcon, UserIcon, SettingsIcon } from '@layera/icons';
 import { useTheme } from '../hooks/useTheme';
 import type { ThemeSwitcherProps, Theme } from '../types';
 
@@ -27,9 +28,9 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
   labels,
   showLabels = false,
   icons = {
-    light: <SunIcon size="md" theme="neutral" />,
-    dark: <MoonIcon size="md" theme="neutral" />,
-    system: <MonitorIcon size="md" theme="neutral" />
+    light: <span>☀️</span>,
+    dark: <span>🌙</span>,
+    system: <span>⚙️</span>
   },
   align = 'right',
   ...props

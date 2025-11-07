@@ -1,7 +1,7 @@
 /* Layera Typography System - Enterprise Font Standards */
 
 /* Import base design tokens first */
-@import '@layera/tokens/dist/tokens.css';
+@import '@layera/tokens/dist/css/tokens.css';
 
 /* Font Imports - Χρησιμοποιούμε system fonts για καλύτερη απόδοση */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');

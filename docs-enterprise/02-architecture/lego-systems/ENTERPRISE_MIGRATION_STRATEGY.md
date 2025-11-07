@@ -75,7 +75,7 @@ find packages/ -name "index.ts" -exec echo "=== {} ===" \; -exec cat {} \;
 ✅ @layera/typography - Text, Heading
 ✅ @layera/buttons - Button variants
 ✅ @layera/cards - BaseCard
-✅ @layera/constants - SPACING_SCALE, COLORS
+✅ @layera/constants - ΒΛΕΠΕ packages\tokens\src\tokens.css, COLORS
 
 ## Υπάρχοντα LEGO Systems που χρειάζονται επέκταση:
 ✅ @layera/constants - Έχει ήδη design-tokens με semantic χρώματα
@@ -139,7 +139,7 @@ export const FlexCenter: React.FC<FlexCenterProps> = ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: gap ? SPACING_SCALE[gap.toUpperCase()] : undefined
+        gap: gap ? ΒΛΕΠΕ packages\tokens\src\tokens.css[gap.toUpperCase()] : undefined
       }}
       {...props}
     >

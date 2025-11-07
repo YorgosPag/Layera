@@ -82,6 +82,21 @@
   --la-color-warning-light: hsl(34deg 96% 84%);
   --la-color-info: #0303f3;
 
+  /* Colors - Card System (Single Source of Truth) */
+  --la-card-background: #98bd52;
+  --la-card-border-color: #00ff00;
+  --la-card-border-width: 20px;
+  --la-card-border: var(--la-card-border-width) solid var(--la-card-border-color);
+
+  /* Themed Border Colors - Single Source of Truth for themed cards */
+  --la-border-brand: #7c3aed;     /* Purple border for job cards */
+  --la-border-warning: #d97706;   /* Orange border for warning cards */
+  --la-border-error: #dc2626;     /* Red border for error cards */
+  --la-border-info: #0891b2;      /* Cyan border for info cards */
+  --la-border-neutral: #4b5563;   /* Gray border for neutral cards */
+  --la-border-subtle-gray: #d1d5db; /* Light gray for outlined cards */
+  --la-border-light: #e5e7eb;     /* Very light gray for filled cards */
+
   /* Colors - Background */
   --la-color-bg-app: hsl(210deg 40% 98%);
   --la-color-bg-secondary: hsl(210deg 40% 96%);
@@ -92,6 +107,129 @@
 
   /* Overlay & Modal Specific */
   --la-overlay-bg: rgb(0 0 0 / 60%);
+  --la-overlay-background: rgb(0 0 0 / 50%); /* 🎯 SST: Overlay background for modals */
+
+  /* Blur Effects */
+  --la-blur-xs: 4px; /* 🎯 SST: Small blur for backdrop filters */
+  --la-blur-sm: 8px; /* 🎯 SST: Medium blur for backdrop filters */
+
+  /* Z-Index System */
+  --la-z-index-modal: 1000; /* 🎯 SST: Modal z-index */
+  --la-z-index-tooltip: 1010; /* 🎯 SST: Tooltip z-index */
+  --la-z-index-overlay: 999; /* 🎯 SST: Overlay z-index */
+
+  /* Enhanced Border System */
+  --la-border-width-xxs: 1px; /* 🎯 SST: Extra small border width */
+  --la-border-width-sm: 2px; /* 🎯 SST: Small border width */
+  --la-border-width-md: 3px; /* 🎯 SST: Medium border width */
+
+  /* Icon Sizes */
+  --la-icon-lg: 32px; /* 🎯 SST: Large icon size */
+  --la-icon-sm: 16px; /* 🎯 SST: Small icon size */
+
+  /* Component Dimensions */
+  --la-min-height-xxl: 128px; /* 🎯 SST: Extra large minimum height */
+  --la-min-height-double: 192px; /* 🎯 SST: Double height for combo boxes */
+  --la-min-width-xxl: 128px; /* 🎯 SST: Extra large minimum width */
+
+  /* Complex Component Sizes */
+  --la-fab-position-bottom: 216px; /* 🎯 SST: FAB bottom position (XXXL * 3 + LG) */
+  --la-fab-size: 64px; /* 🎯 SST: Standard FAB size (XXXL) */
+  --la-occupation-width: 128px; /* 🎯 SST: Occupation step width (XXXL * 2) */
+  --la-review-min-width: 256px; /* 🎯 SST: Review step minimum width (XXXXXL) */
+  --la-max-content-width: 512px; /* 🎯 SST: Maximum content width (XXXL * 8) */
+
+  /* Border Sizes */
+  --la-border-width-xxs: 1px; /* 🎯 SST: Extra small border width */
+
+  /* Typography System */
+  --la-font-semibold: 600; /* 🎯 SST: Semibold font weight */
+  --la-font-bold: 700; /* 🎯 SST: Bold font weight */
+  --la-font-size-sm: 14px; /* 🎯 SST: Small font size */
+  --la-line-height-tight: 1.2; /* 🎯 SST: Tight line height */
+
+  /* Spacing for Gaps and Margins */
+  --la-gap-xs: 4px; /* 🎯 SST: Extra small gap */
+  --la-gap-sm: 8px; /* 🎯 SST: Small gap */
+
+  /* Opacity System */
+  --la-opacity-low: 0.01; /* 🎯 SST: Very low opacity */
+  --la-opacity-medium: 0.08; /* 🎯 SST: Medium opacity */
+  --la-opacity-high: 0.8; /* 🎯 SST: High opacity */
+
+  /* Transform System */
+  --la-scale-down: scale(0.98); /* 🎯 SST: Slight scale down for touch */
+  --la-scale-normal: scale(1); /* 🎯 SST: Normal scale */
+  --la-scale-up: scale(1.1); /* 🎯 SST: Slight scale up for hover */
+
+  /* Grid Template System */
+  --la-grid-1fr: 1fr; /* 🎯 SST: Single fraction grid */
+  --la-grid-2cols: repeat(2, 1fr); /* 🎯 SST: Two column grid */
+  --la-grid-4cols: repeat(4, 1fr); /* 🎯 SST: Four column grid */
+
+  /* Border System - Colors */
+  --la-border-gray: #ccc; /* 🎯 SST: Light gray border */
+
+  /* Margin System */
+  --la-margin-0-8: 0 8px; /* 🎯 SST: Horizontal margin 8px */
+
+  /* Shadow System */
+  --la-shadow-sm: rgba(0, 0, 0, 0.1); /* 🎯 SST: Small shadow color */
+  --la-box-shadow-card: 0 2px 4px var(--la-shadow-sm); /* 🎯 SST: Card shadow */
+
+  /* Header System */
+  --la-header-height: 48px; /* 🎯 SST: Standard header height */
+  --la-header-padding: 8px 16px; /* 🎯 SST: Header padding */
+  --la-header-bg: rgba(0, 0, 0, 0.9); /* 🎯 SST: Header background */
+  --la-header-text: #ffffff; /* 🎯 SST: Header text color */
+  --la-header-border: 1px solid #333; /* 🎯 SST: Header border */
+  --la-header-z-index: 10; /* 🎯 SST: Header z-index */
+
+  /* Font System */
+  --la-font-size-md: 16px; /* 🎯 SST: Medium font size */
+  --la-font-weight-semibold: 600; /* 🎯 SST: Semibold font weight */
+
+  /* Button System */
+  --la-button-padding-sm: 6px 12px; /* 🎯 SST: Small button padding */
+  --la-button-padding-xl: 16px 48px; /* 🎯 SST: Extra large button padding */
+  --la-button-border-radius: 4px; /* 🎯 SST: Button border radius */
+
+  /* Input System */
+  --la-input-padding-complex: 12px 52px 12px 12px; /* 🎯 SST: Complex input padding with search icon */
+
+  /* Additional Spacing Tokens για υπόλοιπες hardcoded τιμές */
+  --la-space-layout-lg: 24px; /* 🎯 SST: Large layout spacing */
+  --la-space-layout-xl: 32px; /* 🎯 SST: Extra large layout spacing */
+
+  /* Complex Spacing Calculations */
+  --la-space-xs-minus-2: 2px; /* 🎯 SST: XS - 2px calculation */
+  --la-space-xs-plus-2: 6px; /* 🎯 SST: XS + 2px calculation */
+  --la-space-xs-plus-2-sm-padding: 6px 8px; /* 🎯 SST: XS+2 SM padding */
+  --la-space-lg-plus-xs: 28px; /* 🎯 SST: LG + XS calculation */
+  --la-space-sm-plus-xs: 12px; /* 🎯 SST: SM + XS calculation */
+  --la-space-xl-margin: 32px; /* 🎯 SST: XL margin calculation */
+  --la-space-md-minus-xs-half: 14px; /* 🎯 SST: MD - XS/2 calculation */
+  --la-space-xl-minus-sm: 24px; /* 🎯 SST: XL - SM calculation */
+  --la-space-md-xl-padding: 16px 32px; /* 🎯 SST: MD XL padding */
+  --la-space-xl-md-padding: 32px 16px; /* 🎯 SST: XL MD padding */
+  --la-space-xs-sm-padding: 4px 8px; /* 🎯 SST: XS SM padding */
+  --la-space-sm-plus-xs-half-md-padding: 10px 16px; /* 🎯 SST: SM + XS/2, MD padding */
+  --la-space-md-minus-xs-half-xl-minus-sm-padding: 14px 24px; /* 🎯 SST: MD - XS/2, XL - SM padding */
+  --la-space-xs-minus-4: 0px; /* 🎯 SST: XS - 4px calculation */
+  --la-space-xs-minus-4-xs-padding: 0px 4px; /* 🎯 SST: XS-4 XS padding */
+  --la-space-xs-xs-double-padding: 4px 8px; /* 🎯 SST: XS XS*2 padding */
+  --la-space-border-radius-xs-minus-4: 0px; /* 🎯 SST: XS - 4 border radius */
+  --la-space-margin-xs-0: 4px 0 0 0; /* 🎯 SST: XS 0 0 0 margin */
+
+  /* Complex Border Radius */
+  --la-space-xs-plus-2-radius: 6px; /* 🎯 SST: XS + 2 for border radius */
+  --la-space-sm-plus-xs-radius: 12px; /* 🎯 SST: SM + XS for border radius */
+
+  /* Additional Border Radius Tokens */
+  --la-radius-xs: 2px; /* 🎯 SST: Extra small border radius */
+  --la-radius-input: 4px; /* 🎯 SST: Input border radius */
+  --la-radius-circle: 50%; /* 🎯 SST: Circle border radius */
+
   --la-color-primary-light: hsl(214deg 95% 93%);
 
   /* Modal Sizing */
@@ -132,6 +270,7 @@
 
   /* Transitions */
   --la-transition-colors: background-color 0.2s ease, border-color 0.2s ease;
+  --la-transition-all: all 0.2s ease;
 
   /* Dark Mode Colors */
   --la-bg-dark: hsl(222deg 84% 5%);

@@ -123,9 +123,9 @@ export const OccupationSearch: React.FC<OccupationSearchProps> = ({
                 placeholder={placeholder || t('employment.search.placeholder', 'π.χ. Προγραμματιστής, Δικηγόρος, Γιατρός...')}
                 style={{
                   width: 'var(--la-width-full, 100%)',
-                  padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.XXL + SPACING_SCALE.SM}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px ${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+                  padding: 'var(--la-input-padding-complex)', // 🎯 SST: Complex input padding token
                   border: 'var(--la-border-default-style, 1px solid var(--la-border-default))',
-                  borderRadius: `${BORDER_RADIUS_SCALE.INPUT}px`,
+                  borderRadius: 'var(--la-radius-sm)', // 🎯 SST: Border radius token
                   fontSize: 'var(--la-font-size-base)',
                   backgroundColor: 'var(--la-bg-primary)'
                 }}
@@ -164,9 +164,9 @@ export const OccupationSearch: React.FC<OccupationSearchProps> = ({
 
         {/* Loading State */}
         {isLoading && (
-          <Flex align="center" justify="center" padding={`${SPACING_SCALE.LG}px`}>
+          <Flex align="center" justify="center" padding="var(--la-space-6)"> {/* 🎯 SST: LG padding (24px) */}
             <Spinner size="lg" variant="primary" />
-            <Text marginLeft={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px`}>
+            <Text marginLeft="var(--la-space-sm-plus-xs)"> {/* 🎯 SST: SM + XS spacing */}
               {t('employment.search.loading', 'Αναζήτηση επαγγελμάτων...')}
             </Text>
           </Flex>

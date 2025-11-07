@@ -430,12 +430,12 @@ Works seamlessly με άλλα @layera packages:
 ```typescript
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { Z_INDEX } from '@layera/constants';
-import { SPACING_SCALE } from '@layera/constants';
+import { ΒΛΕΠΕ packages\tokens\src\tokens.css } from '@layera/constants';
 
 const modalStyles = {
   boxShadow: BOX_SHADOW_SCALE.modalDefault,
   zIndex: Z_INDEX.modal,
-  padding: SPACING_SCALE.LG
+  padding: ΒΛΕΠΕ packages\tokens\src\tokens.css.LG
 };
 ```
 

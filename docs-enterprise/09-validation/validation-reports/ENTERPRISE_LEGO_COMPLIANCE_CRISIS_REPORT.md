@@ -102,7 +102,7 @@ style={{ flex: 1 }}
 #### **Category 3: Spacing Inconsistencies**
 ```typescript
 // MIXED IMPLEMENTATION (Partially LEGO-compliant):
-marginTop: `${SPACING_SCALE.MD}px`  // ✅ Good
+marginTop: `${ΒΛΕΠΕ packages\tokens\src\tokens.css.MD}px`  // ✅ Good
 margin: var(--la-space-md)                      // ❌ Hardcoded
 padding: var(--la-space-md)'                     // ✅ Standard
 ```
@@ -123,7 +123,7 @@ padding: var(--la-space-md)'                     // ✅ Standard
    - Document compliance enforcement policy
 
 2. **Quick Wins Implementation** (Day 3-5)
-   - Convert spacing violations to SPACING_SCALE
+   - Convert spacing violations to ΒΛΕΠΕ packages\tokens\src\tokens.css
    - Replace common flex patterns with Flex components
    - Target reduction: 194 → 120 inline styles (-38%)
 
@@ -288,7 +288,7 @@ Daily KPIs:
 3. **Component Migration Patterns**:
    - Custom divs → BaseCard variants
    - Inline styles → LEGO props
-   - Magic numbers → SPACING_SCALE tokens
+   - Magic numbers → ΒΛΕΠΕ packages\tokens\src\tokens.css tokens
 
 ### 💼 **BUSINESS IMPACT:**
 
@@ -406,11 +406,11 @@ This report's success will be measured against existing enterprise KPIs:
 #### **📦 Import Dependencies Cleanup:**
 - **SIZING_SCALE Elimination**: Αφαίρεση όλων των αναφορών στο μη-υπάρχον SIZING_SCALE
 - **Affected Files**: 12 αρχεία διορθώθηκαν
-- **Proper Imports**: Όλα τα imports τώρα χρησιμοποιούν `SPACING_SCALE` από `@layera/constants`
+- **Proper Imports**: Όλα τα imports τώρα χρησιμοποιούν `ΒΛΕΠΕ packages\tokens\src\tokens.css` από `@layera/constants`
 
 #### **🎯 Files Successfully Updated:**
 1. `constants/index.ts` - Αφαίρεση SIZING_SCALE import/export
-2. `components/map/MapContainer.tsx` - SIZING_SCALE → SPACING_SCALE
+2. `components/map/MapContainer.tsx` - SIZING_SCALE → ΒΛΕΠΕ packages\tokens\src\tokens.css
 3. `components/device-specific/.../FloatingStepper.tsx` - Import cleanup
 4. `components/device-specific/.../LayoutStepCard.tsx` - Complete SIZING_SCALE replacement
 5. `components/ViewportFrame.tsx` - SIZING_SCALE.FULL → '100%'
@@ -435,7 +435,7 @@ This report's success will be measured against existing enterprise KPIs:
 #### **🔧 Technical Excellence:**
 - **Zero Compilation Errors**: Complete elimination of JSX and import issues
 - **Perfect LEGO Integration**: All components use correct @layera packages
-- **Consistent Imports**: SPACING_SCALE exclusively from @layera/constants
+- **Consistent Imports**: ΒΛΕΠΕ packages\tokens\src\tokens.css exclusively from @layera/constants
 - **Clean Architecture**: No duplicate imports or undefined dependencies
 
 #### **🚀 Business Continuity:**

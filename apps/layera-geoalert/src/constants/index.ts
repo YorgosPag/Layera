@@ -228,8 +228,8 @@ export const NOTIFICATION_CONFIG = {
     long: 8000
   },
   position: {
-    top: `${SPACING_SCALE.MD}px`,
-    right: `${SPACING_SCALE.MD}px`
+    top: 'var(--la-space-4)', // 🎯 SST: MD spacing (16px)
+    right: 'var(--la-space-4)' // 🎯 SST: MD spacing (16px)
   }
 } as const;
 

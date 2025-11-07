@@ -70,7 +70,7 @@ export function GoogleSignInButton({
     alignItems: 'var(--la-align-center, center)',
     justifyContent: 'var(--la-justify-center, center)',
     gap: 'var(--la-gap-sm, 8px)',
-    padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS / 2}px ${SPACING_SCALE.MD}px`,
+    padding: 'var(--la-space-sm-plus-xs-half-md-padding)', // 🎯 SST: Complex spacing calculation
     border: '1px solid var(--la-border-default, var(--la-color-border-subtle))',
     borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
     backgroundColor: 'var(--la-bg-primary)',

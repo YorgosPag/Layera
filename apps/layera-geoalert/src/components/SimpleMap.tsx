@@ -53,12 +53,12 @@ const SimpleMap: React.FC = () => {
   }, []);
 
   return (
-    <div style={{ height: SPACING_SCALE.FULL, width: SPACING_SCALE.FULL }}>
+    <div style={{ height: 'var(--la-width-full)', width: 'var(--la-width-full)' }}>
       <div
         id="simple-map"
         style={{
           height: `${SPACING_SCALE.CONTAINER_SM}px`,
-          width: SPACING_SCALE.FULL,
+          width: 'var(--la-width-full)',
           backgroundColor: getCardOrangeColor(), // 🔴 SST: Map background από μοναδική πηγή αλήθειας
           border: '1px solid var(--la-border-primary)',
           borderRadius: `${BORDER_RADIUS_SCALE.SM}px`
@@ -68,7 +68,7 @@ const SimpleMap: React.FC = () => {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          height: SPACING_SCALE.FULL,
+          height: 'var(--la-width-full)',
           color: 'var(--la-text-secondary)'
         }}>
           🗺️ Loading Map...

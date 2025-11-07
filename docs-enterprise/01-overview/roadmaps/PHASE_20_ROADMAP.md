@@ -136,7 +136,7 @@ export const OptimizationTester = {
       this.testLoginWorkflow(),        // FlexCenter usage
       this.testGeoAlertWorkflow(),     // useGeoAlertLayout usage
       this.testComponentFunctionality(), // FLEX_SCALE usage
-      this.testSingleSourceTruth()     // SPACING_SCALE consistency
+      this.testSingleSourceTruth()     // ΒΛΕΠΕ packages\tokens\src\tokens.css consistency
     ]);
   },
 
@@ -289,7 +289,7 @@ export const AdvancedPatternDetector = {
 ### **✅ Prerequisites (COMPLETED):**
 - **Phase 19**: Bundle optimization insights και lessons learned
 - **LEGO Systems**: 100% compliance framework
-- **Single Source of Truth**: SPACING_SCALE cleanup
+- **Single Source of Truth**: ΒΛΕΠΕ packages\tokens\src\tokens.css cleanup
 - **Enterprise Architecture**: Modular exports structure
 
 ### **🔧 Technical Requirements:**

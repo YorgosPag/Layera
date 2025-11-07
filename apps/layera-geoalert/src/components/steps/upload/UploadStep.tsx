@@ -175,7 +175,7 @@ export const UploadStep: React.FC<UploadStepProps> = React.memo(({
           {/* Enterprise LEGO FileUploader */}
           <Box
             background="var(--color-bg-surface-strong)"
-            borderRadius={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px`}
+            borderRadius="var(--la-space-sm-plus-xs-radius)" // 🎯 SST: Complex border radius token
             padding="md"
             marginBottom="sm"
           >

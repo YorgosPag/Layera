@@ -1,1 +1,12 @@
-@import '@layera/tokens/dist/tokens.css';
+/**
+ * ⚠️ DEPRECATED: This file has been replaced by JSON-based generation
+ *
+ * 🎯 NEW LOCATION: @layera/tokens/dist/css/tokens.css (generated from tokens.json)
+ * 🔧 TO MODIFY: Edit packages/tokens/src/tokens.json and run npm run tokens:build
+ *
+ * This file is kept for migration reference only.
+ * All imports should use: @layera/tokens/dist/css/tokens.css
+ */
+
+/* Re-export generated tokens for backward compatibility */
+@import '@layera/tokens/dist/css/tokens.css';

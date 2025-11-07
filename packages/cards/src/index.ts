@@ -20,6 +20,9 @@ export {
   legoCardThemes
 } from './utils/cardThemes';
 
+// SST Configuration - Single Source of Truth
+export { SST_DATA_CONFIG, SST_CARD_CONFIG } from './styles/sst-config';
+
 // Legacy cleanup - Διπλότυπα helpers αφαιρέθηκαν για Single Source of Truth
 // Όλα τα components χρησιμοποιούν BaseCard απευθείας
 

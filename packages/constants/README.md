@@ -108,7 +108,7 @@ const ExampleComponent = () => {
 
 ### Layout & Spacing Constants
 ```typescript
-import { SPACING_SCALE } from '@layera/constants';
+import { ΒΛΕΠΕ packages\tokens\src\tokens.css } from '@layera/constants';
 import { useViewportWithOverride } from '@layera/viewport';
 
 // Responsive layout with design tokens
@@ -118,9 +118,9 @@ const ResponsiveLayout = () => {
   return (
     <div
       style={{
-        padding: SPACING_SCALE.MD,
-        margin: SPACING_SCALE.LG,
-        gap: SPACING_SCALE.SM
+        padding: ΒΛΕΠΕ packages\tokens\src\tokens.css.MD,
+        margin: ΒΛΕΠΕ packages\tokens\src\tokens.css.LG,
+        gap: ΒΛΕΠΕ packages\tokens\src\tokens.css.SM
       }}
     >
       {/* Responsive content */}

@@ -1,52 +1,37 @@
 /**
- * @layera/constants - World-Class Design Token System
+ * @layera/constants - Design Token System (Generated)
  *
- * 🌟 Enterprise-grade design tokens inspired by:
- * - Adobe Spectrum Design System
- * - Microsoft Fluent Design
- * - Google Material Design 3
- * - Shopify Polaris
- * - Salesforce Lightning Design System
+ * 🎯 Single Source of Truth: All tokens are generated from tokens.json
  *
- * 🚀 Features:
- * - CSS Custom Properties με semantic naming
- * - Theme-aware με automatic light/dark/system detection
- * - Responsive scaling με breakpoint awareness
- * - Accessibility compliance (WCAG 2.1 AAA)
- * - Performance-optimized για mobile devices
- * - TypeScript strict safety
- * - Hot-swappable themes
- * - Component-specific design tokens
- * - Motion design με reduced-motion respect
+ * ⚠️ DO NOT EDIT: This file re-exports generated tokens
+ * ✅ TO MODIFY: Edit packages/tokens/src/tokens.json and run npm run tokens:build
  */
 
-// === CORE DESIGN TOKEN ARCHITECTURE ===
+// === GENERATED DESIGN TOKENS ===
 
 /**
- * Base scale system - πυρήνας όλων των measurements
- * Inspired by 8px grid system αλλά advanced με mathematical precision
+ * Re-export all generated design tokens from Style Dictionary
+ *
+ * This ensures we have a single source of truth for all design values
+ * while maintaining backward compatibility for existing imports.
  */
-export const DESIGN_TOKEN_SCALE = {
-  // Fundamental base unit (4px) - όλα τα άλλα είναι multiple αυτού
-  BASE_UNIT: 4,
+export * from '@layera/tokens/dist/ts';
 
-  // Scale factors based on golden ratio και fibonacci sequence
-  SCALE_FACTORS: {
-    XXS: 0.5,   // 2px
-    XS: 1,      // 4px
-    SM: 2,      // 8px
-    MD: 4,      // 16px
-    LG: 6,      // 24px
-    XL: 8,      // 32px
-    XXL: 12,    // 48px
-    XXXL: 16,   // 64px
-    XXXXL: 24   // 96px
-  }
-} as const;
+// === SEMANTIC ALIASES ===
 
 /**
- * CSS Custom Properties Registry
- * Αυτά τα CSS variables θα γίνουν inject στο :root
+ * Semantic aliases for common use cases
+ * These provide meaningful names for specific design intentions
+ */
+export const cardPadding = 'var(--la-space-4)' as const;
+export const cardMargin = 'var(--la-space-6)' as const;
+export const buttonPadding = 'var(--la-space-3) var(--la-space-4)' as const;
+
+// === BACKWARD COMPATIBILITY ===
+
+/**
+ * @deprecated Use tokens from '@layera/tokens/dist/ts' instead
+ * These constants will be removed in a future version
  */
 export const CSS_DESIGN_TOKENS = {
   // === SPACING TOKENS ===

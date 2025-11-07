@@ -71,15 +71,15 @@ const isDesktop = useIsDesktop();    // boolean
 Auto-adaptive container με device-specific configuration.
 
 ```tsx
-import { SPACING_SCALE, BREAKPOINTS } from '@layera/constants';
+import { ΒΛΕΠΕ packages\tokens\src\tokens.css, BREAKPOINTS } from '@layera/constants';
 
 <ResponsiveContainer
   enablePadding={true}      // Auto device padding
   enableMaxWidth={true}     // Responsive max-width
   config={{                 // Custom breakpoints
-    mobile: { padding: SPACING_SCALE.SM, maxWidth: '100%' },
-    tablet: { padding: SPACING_SCALE.MD, maxWidth: BREAKPOINTS.TABLET },
-    desktop: { padding: SPACING_SCALE.LG, maxWidth: BREAKPOINTS.DESKTOP }
+    mobile: { padding: ΒΛΕΠΕ packages\tokens\src\tokens.css.SM, maxWidth: '100%' },
+    tablet: { padding: ΒΛΕΠΕ packages\tokens\src\tokens.css.MD, maxWidth: BREAKPOINTS.TABLET },
+    desktop: { padding: ΒΛΕΠΕ packages\tokens\src\tokens.css.LG, maxWidth: BREAKPOINTS.DESKTOP }
   }}
 >
   <YourContent />

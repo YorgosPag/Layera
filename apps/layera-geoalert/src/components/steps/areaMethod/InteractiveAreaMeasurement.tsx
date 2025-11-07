@@ -160,11 +160,11 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
     <Box style={style}>
       <BaseCard
         variant="property"
-        padding={`${SPACING_SCALE.LG}px`}
+        padding="var(--la-space-6)" // 🎯 SST: LG spacing (24px)
       >
-        <Stack spacing={`${SPACING_SCALE.MD}px`}>
+        <Stack spacing="var(--la-space-4)"> {/* 🎯 SST: MD spacing (16px) */}
           {/* Header */}
-          <Flex align="center" gap={`${SPACING_SCALE.MD}px`}>
+          <Flex align="center" gap="var(--la-space-4)"> {/* 🎯 SST: MD gap (16px) */}
             <MapIcon size="lg" theme="primary" />
             <Box>
               <Heading as="h3" size="lg" color="primary">
@@ -181,7 +181,7 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
             variant="property"
             className="layera-card-uniform"
           >
-            <Flex align="start" gap={`${SPACING_SCALE.SM}px`}>
+            <Flex align="start" gap="var(--la-space-3)"> {/* 🎯 SST: SM gap (8px) */}
               <InformationIcon size="sm" theme="info" />
               <Text size="sm" color="info">
                 {getInstructions()}
@@ -195,7 +195,7 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
               variant="property"
               className="layera-card-uniform"
             >
-              <Stack spacing={`${SPACING_SCALE.XS}px`} align="center">
+              <Stack spacing="var(--la-space-1)" align="center"> {/* 🎯 SST: XS spacing token */}
                 <Text size="lg" weight="bold" color="success">
                   {currentArea} τ.μ.
                 </Text>
@@ -207,7 +207,7 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
           )}
 
           {/* Action Buttons */}
-          <Stack spacing={`${SPACING_SCALE.SM}px`}>
+          <Stack spacing="var(--la-space-3)"> {/* 🎯 SST: SM spacing (8px) */}
             {!isDrawing && !measurementComplete && (
               <Button
                 variant="primary"

@@ -1,9 +1,10 @@
 import React from 'react';
 import { BaseCardProps } from '../../types';
 import { getEnhancedCardTheme, getCardTextColor } from '../../utils/cardThemes';
+import { SST_CARD_CONFIG } from '../../styles/sst-config';
 
 // Enterprise LEGO Design System imports
-import { SPACING_SCALE, BORDER_RADIUS_SCALE, GEO_DRAWING_INTERACTION, getCardPrimaryColor, getCardInfoBorder } from '@layera/constants';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE, GEO_DRAWING_INTERACTION } from '@layera/constants';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { getCursorVar } from '@layera/cursors';
 
@@ -48,6 +49,33 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
   style,
   'data-testid': testId
 }) => {
+  // 🔥 DEBUG: SST System Console Logs
+  console.log('🎯 BaseCard Debug:', {
+    variant,
+    title,
+    className: `layera-card--${variant}`,
+    timestamp: new Date().toLocaleTimeString()
+  });
+
+  // 🔥 DEBUG: SST Config Analysis
+  const sstStyles = SST_CARD_CONFIG.getCardStyles(variant as string);
+  const hasSST = Object.keys(sstStyles).length > 0;
+  console.log('🎨 SST Debug:', {
+    variant,
+    sstStyles,
+    hasSST,
+    backgroundColor: sstStyles.backgroundColor,
+    fullConfig: SST_CARD_CONFIG[variant as keyof typeof SST_CARD_CONFIG]
+  });
+
+  // 🔥 DEBUG: Final computed styles
+  console.log('🖼️ Final Styles:', {
+    variant,
+    willUseSST: hasSST,
+    finalBackgroundColor: hasSST ? sstStyles.backgroundColor : 'fallback',
+    sstKeys: Object.keys(sstStyles),
+    sstConfigKeys: Object.keys(SST_CARD_CONFIG)
+  });
   // ============= ENHANCED THEME SYSTEM =============
   const theme = getEnhancedCardTheme(variant, opacityMode);
   const textColor = getCardTextColor(variant, opacityMode);
@@ -68,20 +96,29 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
     };
   }, [opacityMode]);
 
-  // ============= BASE CARD STYLES με LEGO Design Tokens =============
+  // ============= UNIVERSAL SST SYSTEM - SINGLE SOURCE OF TRUTH =============
+  // (sstStyles already defined above in debug section)
+
   const baseCardStyles: React.CSSProperties = {
     // Layout
     flex: 1,
-    height: size === 'sm' ? `${SPACING_SCALE.LG + SPACING_SCALE.SM}px` : undefined,
-    borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
-    padding: `${SPACING_SCALE[padding.toUpperCase() as keyof typeof SPACING_SCALE] || SPACING_SCALE.SM}px`,
+    height: size === 'sm' ? 'calc(var(--la-space-6) + var(--la-space-3))' : undefined, // 🎯 SST: LG + SM = 24px + 12px
     position: 'relative',
 
-    // Enhanced theme από unified system
-    backgroundColor: getCardPrimaryColor(), // 🔴 SST: Card background από μοναδική πηγή αλήθειας
-    border: `3px solid ${getCardInfoBorder()}`, // 🔲 SST: Περίγραμμα από μοναδική πηγή αλήθειας #b929c6
-    backdropFilter: theme.backdropFilter,
-    opacity: theme.opacity,
+    // 🎯 UNIVERSAL SST SYSTEM - Works for ALL variants
+    ...(hasSST ? sstStyles : {
+      // Fallback for unknown variants
+      backgroundColor: 'var(--la-color-surface)',
+      border: 'var(--la-border-width-md) solid var(--la-color-info)', // 🎯 SST: Border width token
+      borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
+      padding: `${SPACING_SCALE[padding.toUpperCase() as keyof typeof SPACING_SCALE] || SPACING_SCALE.SM}px`
+    }),
+
+    // Theme system (only if no SST)
+    ...(hasSST ? {} : {
+      backdropFilter: theme.backdropFilter,
+      opacity: theme.opacity
+    }),
 
     // Interaction
     cursor: (clickable || onClick) ? getCursorVar('pointer') : 'default',
@@ -89,25 +126,34 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
     userSelect: 'text', // ✅ ΕΠΙΤΡΕΠΕΙ αντιγραφή κειμένου από όλες τις κάρτες
     WebkitTapHighlightColor: 'transparent',
 
-    // Shadow system
-    boxShadow: hoverable ? BOX_SHADOW_SCALE.elevation1 : BOX_SHADOW_SCALE.none,
+    // Shadow system (only if no SST boxShadow)
+    boxShadow: sstStyles.boxShadow || (hoverable ? BOX_SHADOW_SCALE.elevation1 : BOX_SHADOW_SCALE.none),
 
     // Custom style override
     ...style
   };
 
-  // ============= TITLE STYLES (Local BaseCard pattern) =============
+  // ============= UNIVERSAL SST TITLE SYSTEM =============
+  const sstTitleStyles = SST_CARD_CONFIG.getTitleStyles(variant as string);
+  const hasSSTTitle = Object.keys(sstTitleStyles).length > 0;
+
   const titleStyles: React.CSSProperties = {
-    padding: `${SPACING_SCALE.XS + 2}px ${SPACING_SCALE.SM}px`,
-    borderRadius: `${SPACING_SCALE.XS + 2}px`,
-    fontWeight: 'var(--la-font-semibold)',
-    color: textColor,
+    // Base layout (always applied)
+    fontWeight: 'var(--la-font-semibold)', // 🎯 SST: Font weight token
     textAlign: 'center',
-    lineHeight: '1.2',
-    backgroundColor: theme.titleBackground,
-    boxShadow: theme.titleShadow,
+    lineHeight: 'var(--la-line-height-tight)', // 🎯 SST: Line height token
     position: 'relative',
-    zIndex: 2
+    zIndex: 2,
+
+    // 🎯 UNIVERSAL SST TITLE SYSTEM - Works for ALL variants
+    ...(hasSSTTitle ? sstTitleStyles : {
+      // Fallback for unknown variants
+      padding: 'var(--la-space-xs-plus-2-sm-padding)', // 🎯 SST: XS+2 SM padding
+      borderRadius: 'var(--la-space-xs-plus-2-radius)', // 🎯 SST: XS+2 border radius
+      color: textColor,
+      backgroundColor: theme.titleBackground,
+      boxShadow: theme.titleShadow
+    })
   };
 
   // ============= INFO BUTTON STYLES =============
@@ -115,12 +161,12 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
     position: 'absolute',
     bottom: `${SPACING_SCALE.SM}px`,
     right: `${SPACING_SCALE.SM}px`,
-    width: `${SPACING_SCALE.LG}px`,
-    height: `${SPACING_SCALE.LG}px`,
+    width: 'var(--la-space-6)', // 🎯 SST: LG size (24px)
+    height: 'var(--la-space-6)', // 🎯 SST: LG size (24px)
     borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
     backgroundColor: 'transparent',
     border: 'none',
-    fontWeight: 'var(--la-font-bold)',
+    fontWeight: 'var(--la-font-bold)', // 🎯 SST: Font weight token
     color: 'var(--color-text-secondary)',
     cursor: getCursorVar('pointer'),
     transition: 'var(--la-transition-fast)',
@@ -133,13 +179,13 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
   // ============= TOUCH HANDLERS για Mobile UX =============
   const handleTouchStart = onTouchStart || ((e: React.TouchEvent) => {
     const target = e.currentTarget as HTMLElement;
-    target.style.transform = 'scale(0.98)';
-    target.style.backgroundColor = theme.backgroundColor.replace('0.01', '0.08');
+    target.style.transform = 'var(--la-scale-down)'; // 🎯 SST: Transform token
+    target.style.backgroundColor = theme.backgroundColor.replace('var(--la-opacity-low)', 'var(--la-opacity-medium)'); // 🎯 SST: Opacity tokens
   });
 
   const handleTouchEnd = onTouchEnd || ((e: React.TouchEvent) => {
     const target = e.currentTarget as HTMLElement;
-    target.style.transform = 'scale(1)';
+    target.style.transform = 'var(--la-scale-normal)'; // 🎯 SST: Transform token
     target.style.backgroundColor = theme.backgroundColor;
   });
 
@@ -157,7 +203,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
     e.stopPropagation();
     const target = e.currentTarget as HTMLElement;
     target.style.color = 'var(--color-text-primary)';
-    target.style.transform = 'scale(1.1)';
+    target.style.transform = 'var(--la-scale-up)'; // 🎯 SST: Transform token
     if ('vibrate' in navigator) {
       navigator.vibrate(10);
     }
@@ -167,7 +213,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
     e.stopPropagation();
     const target = e.currentTarget as HTMLElement;
     target.style.color = 'var(--color-text-secondary)';
-    target.style.transform = 'scale(1)';
+    target.style.transform = 'var(--la-scale-normal)'; // 🎯 SST: Transform token
   };
 
   // ============= CLICK HANDLERS =============
@@ -210,20 +256,27 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
         data-testid={testId || `card-${variant}`}
       >
         {/* Title with Icon - Simplified pattern */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '8px', width: '100%' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', ...titleStyles }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 'var(--la-gap-sm)', width: '100%' }}> {/* 🎯 SST: Gap token */}
+          <div
+            className="layera-card__title"
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'var(--la-gap-sm)', ...titleStyles }} // 🎯 SST: Gap token
+          >
             {icon}
             {title}
           </div>
 
-          {/* Description support */}
+          {/* Description support - Universal SST */}
           {description && (
             <div style={{
-              fontSize: '14px',
-              color: getCardTextColor(variant, opacityMode),
-              textAlign: 'center',
-              marginTop: '4px',
-              opacity: 0.8
+              ...SST_CARD_CONFIG.getDescriptionStyles(variant as string),
+              // Fallback if no SST description styles
+              ...(Object.keys(SST_CARD_CONFIG.getDescriptionStyles(variant as string)).length === 0 ? {
+                fontSize: 'var(--la-font-size-sm)', // 🎯 SST: Font size token
+                color: getCardTextColor(variant, opacityMode),
+                textAlign: 'center',
+                marginTop: 'var(--la-gap-xs)', // 🎯 SST: Gap token
+                opacity: 'var(--la-opacity-high)' // 🎯 SST: Opacity token
+              } : {})
             }}>
               {description}
             </div>
@@ -278,11 +331,11 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
           <div className="layera-card__header-content">
             {/* Icon support για LEGO mode */}
             {icon && (
-              <div className="layera-card__icon" style={{ marginBottom: `${SPACING_SCALE.XS}px` }}>
+              <div className="layera-card__icon" style={{ marginBottom: 'var(--la-space-1)' /* 🎯 SST: XS spacing */ }}>
                 {icon}
               </div>
             )}
-            {title && <h3 className="layera-card__title" style={{ color: textColor }}>{title}</h3>}
+            {title && <h3 className="layera-card__title" style={{ color: hasSSTTitle ? sstTitleStyles.color : textColor }}>{title}</h3>}
             {subtitle && <p className="layera-card__subtitle" style={{ color: textColor }}>{subtitle}</p>}
           </div>
           {actions && (

@@ -102,7 +102,7 @@ export const PricingStep: React.FC<PricingStepProps> = ({
       <Box
         display="grid"
         gridTemplateColumns={deviceProps?.isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))'}
-        gap={`${SPACING_SCALE.MD}px`}
+        gap="var(--la-space-4)" // 🎯 SST: MD gap (16px)
       >
         {cards.map((card: unknown) => (
           <BaseCard

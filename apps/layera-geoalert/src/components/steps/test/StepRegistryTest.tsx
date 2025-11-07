@@ -29,15 +29,15 @@ export const StepRegistryTest: React.FC = () => {
   const registryStatus = stepRegistry.getRegistryStatus();
 
   return (
-    <Box padding={`${SPACING_SCALE.LG}px`} fontFamily="var(--la-font-family-mono)">
+    <Box padding="var(--la-space-6)" fontFamily="var(--la-font-family-mono)"> {/* 🎯 SST: LG spacing (24px) */}
       <Heading level={2}>🧪 Step Registry Test</Heading>
 
-      <Box marginBottom={`${SPACING_SCALE.LG}px`}>
+      <Box marginBottom="var(--la-space-6)"> {/* 🎯 SST: LG spacing (24px) */}
         <Heading level={3}>Registry Status:</Heading>
         <pre>{JSON.stringify(registryStatus, null, 2)}</pre>
       </Box>
 
-      <Box marginBottom={`${SPACING_SCALE.LG}px`}>
+      <Box marginBottom="var(--la-space-6)"> {/* 🎯 SST: LG spacing (24px) */}
         <Heading level={3}>Current Context:</Heading>
         <pre>{JSON.stringify(context, (key, value) => {
           if (value instanceof Set) {

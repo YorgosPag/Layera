@@ -157,7 +157,7 @@ export function AddressBreakdownCard({
           {isLoading && (
             <Text
               as="span"
-              marginLeft={`${SPACING_SCALE.SM}px`}
+              marginLeft="var(--la-space-2)" /* 🎯 SST: SM spacing */
               fontSize="var(--la-font-size-xs)"
               color="var(--la-text-secondary)"
             >
@@ -176,9 +176,9 @@ export function AddressBreakdownCard({
         className={`list-item ${componentProps.className}`}
         style={{
           ...componentProps.style,
-          padding: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+          padding: 'var(--la-space-sm-plus-xs)', // 🎯 SST: Complex spacing token
           borderRadius: `${BORDER_RADIUS_SCALE.INPUT}px`,
-          marginBottom: `${SPACING_SCALE.SM}px`,
+          marginBottom: 'var(--la-space-2)', // 🎯 SST: SM spacing
           border: 'var(--la-border-default-style, 1px solid var(--la-border-default))',
           transition: 'var(--la-transition-smooth, all 0.2s ease-in-out)',
           backgroundColor: isClickable ? 'var(--la-bg-primary)' : 'var(--la-bg-secondary)',
@@ -197,7 +197,7 @@ export function AddressBreakdownCard({
           display: 'var(--la-display-flex, flex)',
           alignItems: 'var(--la-align-center, center)',
           justifyContent: 'var(--la-justify-start, flex-start)', // Ευθυγράμμιση προς τα αριστερά
-          gap: `${SPACING_SCALE.SM}px`,
+          gap: 'var(--la-space-2)', // 🎯 SST: SM spacing
           width: 'var(--la-width-full, 100%)'
         }}>
           {isLoading ? (
@@ -222,7 +222,7 @@ export function AddressBreakdownCard({
         </Box>
         {isLoading && (
           <Box className="loading-indicator" style={{
-            marginTop: `${SPACING_SCALE.XS}px`,
+            marginTop: 'var(--la-space-1)', // 🎯 SST: XS spacing token
             fontSize: 'var(--la-font-size-xs)',
             color: 'var(--la-text-secondary)',
             display: 'var(--la-display-flex, flex)',
@@ -289,7 +289,7 @@ export function AddressBreakdownCard({
         <Box style={{
           fontSize: 'var(--la-font-size-sm)',
           color: 'var(--la-text-secondary)',
-          marginBottom: `${SPACING_SCALE.SM + SPACING_SCALE.XS}px`,
+          marginBottom: 'var(--la-space-sm-plus-xs)', // 🎯 SST: Complex spacing token
           fontStyle: 'var(--la-font-style-italic, italic)'
         }}>
           {t('clickToShowBoundary')}

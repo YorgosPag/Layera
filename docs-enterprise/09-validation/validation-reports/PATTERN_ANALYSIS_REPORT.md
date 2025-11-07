@@ -150,9 +150,9 @@ SEMANTIC_COLORS = {
 #### **3. @layera/spacing-utilities** ❌
 ```typescript
 // Χρειάζονται για τα 2,184 spacing instances
-<Padded size="md">        // padding: SPACING_SCALE.MD
-<Margined size="sm">      // margin: SPACING_SCALE.SM
-<Gapped size="lg">        // gap: SPACING_SCALE.LG
+<Padded size="md">        // padding: ΒΛΕΠΕ packages\tokens\src\tokens.css.MD
+<Margined size="sm">      // margin: ΒΛΕΠΕ packages\tokens\src\tokens.css.SM
+<Gapped size="lg">        // gap: ΒΛΕΠΕ packages\tokens\src\tokens.css.LG
 ```
 
 #### **4. @layera/typography-utilities** ❌

@@ -102,8 +102,8 @@ export const ViewportDebugger: React.FC<ViewportDebuggerProps> = ({
           variant="ghost"
           size="xs"
           position="absolute"
-          top={`${SPACING_SCALE.XS}px`}
-          right={`${SPACING_SCALE.XS}px`}
+          top="var(--la-space-1)" /* 🎯 SST: XS spacing */
+          right="var(--la-space-1)" /* 🎯 SST: XS spacing */
           color="var(--la-text-primary)"
           fontSize="var(--la-font-size-xs)"
           title="Hide Debugger"
@@ -117,7 +117,7 @@ export const ViewportDebugger: React.FC<ViewportDebuggerProps> = ({
           display="flex"
           alignItems="center"
           gap={`${SPACING_SCALE.SM}px`}
-          marginBottom={compact ? `${SPACING_SCALE.XS}px` : `${SPACING_SCALE.SM}px`}
+          marginBottom={compact ? 'var(--la-space-1)' : 'var(--la-space-2)'} /* 🎯 SST: XS/SM conditional spacing */
         >
           <span>{getDeviceIcon()}</span>
           <strong>{viewport.deviceType.toUpperCase()}</strong>

@@ -170,7 +170,7 @@ export const UnifiedFAB: React.FC<FABProps> = ({
     height: BTN_SIZE,
     borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
     background: bg,
-    border: `${SPACING_SCALE.XXS}px solid var(--color-bg-canvas)`,
+    border: `var(--la-border-width-xxs) solid var(--color-bg-canvas)`, // 🎯 SST: Border width token
     boxShadow: 'var(--elevation-md)',
     display: 'flex',
     alignItems: 'center',

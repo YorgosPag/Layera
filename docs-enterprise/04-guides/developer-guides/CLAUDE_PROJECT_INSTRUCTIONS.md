@@ -411,7 +411,7 @@ import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader,
          Flex, FlexColumn, FlexCenter, Box } from '@layera/layout';
 
 // Design Constants (41 imports)
-import { SPACING_SCALE, BORDER_RADIUS_SCALE, USER_ROLES, FORM_TYPES,
+import { ΒΛΕΠΕ packages\tokens\src\tokens.css, BORDER_RADIUS_SCALE, USER_ROLES, FORM_TYPES,
          Z_INDEX, COLOR_TOKENS } from '@layera/constants';
 
 // Design Tokens - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ (1 import)
@@ -589,7 +589,7 @@ import { BaseCard } from '@layera/cards';
 
 // ✅ ΣΩΣΤΟ - LEGO System// ✅ ΥΠΟΧΡΕΩΤΙΚΕΣ ΜΟΝΑΔΙΚΕΣ ΠΗΓΕΣ ΑΛΗΘΕΙΑΣ
 import { AppShell, LayeraHeader, PageContainer, Flex, FlexColumn, Box } from '@layera/layout';        // 43 imports
-import { SPACING_SCALE, BORDER_RADIUS_SCALE, USER_ROLES, FORM_TYPES } from '@layera/constants';      // 41 imports
+import { ΒΛΕΠΕ packages\tokens\src\tokens.css, BORDER_RADIUS_SCALE, USER_ROLES, FORM_TYPES } from '@layera/constants';      // 41 imports
 import { DashboardGrid, DashboardSection, DashboardCard, BaseCard } from '@layera/cards';             // 37 imports
 import { HomeIcon, UserIcon, SettingsIcon, WorkIcon, TrashIcon } from '@layera/icons';               // 33 imports - 100% PERFECT
 import { useLayeraTranslation, LanguageSwitcher } from '@layera/tolgee';                             // 32 imports
@@ -642,13 +642,13 @@ const timeout = 5000;
 import { Button } from '@layera/buttons';
 import { BaseCard } from '@layera/cards';
 import { HomeIcon } from '@layera/icons';
-import { SPACING_SCALE, MAX_ITEMS } from '@layera/constants';
+import { ΒΛΕΠΕ packages\tokens\src\tokens.css, MAX_ITEMS } from '@layera/constants';
 
 // ✅ ΥΠΟΧΡΕΩΤΙΚΟ - Design Tokens από @layera/tokens
 <div style={{ padding: 'var(--la-space-4)', borderRadius: 'var(--la-radius-md)' }}>
 
 // ✅ ΥΠΟΧΡΕΩΤΙΚΟ - Constants από LEGO
-<div style={{ padding: `${SPACING_SCALE.MD}px` }}>
+<div style={{ padding: `${ΒΛΕΠΕ packages\tokens\src\tokens.css.MD}px` }}>
 
 // ✅ ΥΠΟΧΡΕΩΤΙΚΟ - Single Source components
 <BaseCard title={t('card.title')}>

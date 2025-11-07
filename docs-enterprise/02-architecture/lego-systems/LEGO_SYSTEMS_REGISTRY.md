@@ -59,7 +59,7 @@ import '@layera/styles';
 **Usage**: 41 imports | **Status**: ✅ ENTERPRISE READY
 ```typescript
 // Single Source of Truth για Constants
-import { SPACING_SCALE, BORDER_RADIUS_SCALE, USER_ROLES, FORM_TYPES } from '@layera/constants';
+import { ΒΛΕΠΕ packages\tokens\src\tokens.css, BORDER_RADIUS_SCALE, USER_ROLES, FORM_TYPES } from '@layera/constants';
 ```
 **Categories**: Spacing, Colors, Borders, User roles, Form configurations
 
@@ -283,8 +283,8 @@ const MyIcon = <span>🏠</span>;
 #### **RULE 2: Zero Inline Styling**
 ```typescript
 // ✅ MANDATORY - Use LEGO constants
-import { SPACING_SCALE } from '@layera/constants';
-<div style={{ padding: `${SPACING_SCALE.MD}px` }}>
+import { ΒΛΕΠΕ packages\tokens\src\tokens.css } from '@layera/constants';
+<div style={{ padding: `${ΒΛΕΠΕ packages\tokens\src\tokens.css.MD}px` }}>
 
 // ❌ FORBIDDEN - Magic numbers
 <div style={{ padding: var(--la-space-md) }}>

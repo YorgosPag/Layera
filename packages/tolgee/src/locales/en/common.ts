@@ -388,6 +388,19 @@ export const enTranslations = {
       "final": "Ready! Click to view results"
     }
   },
+  "categorySelection": {
+    "title": "Category Selection"
+  },
+  "categories": {
+    "properties": {
+      "title": "Properties",
+      "description": "List a property for sale or rent, or search for a property to buy or rent"
+    },
+    "jobs": {
+      "title": "Jobs",
+      "description": "Offer a job position or create a listing to search for employment"
+    }
+  },
   "workflow": {
     "titles": {
       "property": {

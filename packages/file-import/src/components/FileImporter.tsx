@@ -234,8 +234,8 @@ export const FileImporter: React.FC<FileImporterProps> = ({
 
           {/* Progress display */}
           {showProgress && isProcessing && (
-            <Box marginTop={`${SPACING_SCALE.MD}px`} padding={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px`} backgroundColor="var(--la-bg-secondary)" borderRadius={`${BORDER_RADIUS_SCALE.XS}px`}>
-              <Box fontSize="var(--la-font-size-sm)" marginBottom={`${SPACING_SCALE.XS - 4}px`}>
+            <Box marginTop="var(--la-space-4)" padding="var(--la-space-sm-plus-xs)" backgroundColor="var(--la-bg-secondary)" borderRadius="var(--la-radius-xs)"> {/* 🎯 SST: MD spacing, SM+XS padding, XS radius */}
+              <Box fontSize="var(--la-font-size-sm)" marginBottom="var(--la-space-xs-minus-4)"> {/* 🎯 SST: XS-4 spacing */}
                 {t('file.import.progress')}: {Math.round(progress)}%
               </Box>
               <Box width="100%" height="var(--la-spacing-xs)" backgroundColor="var(--la-bg-tertiary)" borderRadius={`${BORDER_RADIUS_SCALE.XXS}px`}>
@@ -260,7 +260,7 @@ export const FileImporter: React.FC<FileImporterProps> = ({
           {/* File list */}
           {files.length > 0 && (
             <Box marginTop={`${SPACING_SCALE.MD}px`}>
-              <Box display="flex" justifyContent="space-between" alignItems="center" marginBottom={`${SPACING_SCALE.XS}px`}>
+              <Box display="flex" justifyContent="space-between" alignItems="center" marginBottom="var(--la-space-1)"> {/* 🎯 SST: XS spacing */}
                 <Text size="base" weight="medium">
                   {t('file.import.files.selected', { count: files.length })}
                 </Text>

@@ -104,12 +104,12 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({
   const containerStyles: React.CSSProperties = {
     position: 'fixed',
     top: 'var(--la-cards-top, 120px)', // Fallback value
-    left: `${SPACING_SCALE.LG}px`,        // Left margin consistent με AreaMethodStep
-    right: `${SPACING_SCALE.LG}px`,       // Right margin consistent με AreaMethodStep
+    left: 'var(--la-space-6)',        // 🎯 SST: LG margin (24px) consistent με AreaMethodStep
+    right: 'var(--la-space-6)',       // 🎯 SST: LG margin (24px) consistent με AreaMethodStep
     zIndex: 1000,
     display: 'flex',
     flexDirection: 'column',
-    gap: `${SPACING_SCALE.MD}px`,
+    gap: 'var(--la-space-4)', // 🎯 SST: MD gap (16px)
     padding: '0',                         // No extra padding - margins handle spacing
     boxSizing: 'border-box'
   };

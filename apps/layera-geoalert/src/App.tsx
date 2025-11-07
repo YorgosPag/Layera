@@ -115,11 +115,11 @@ function TestNotificationsComponent() {
   return (
     <div
       style={{
-        margin: '0 8px',
-        padding: `${SPACING_SCALE.MD}px`, // 🔴 SST: Spacing από μοναδική πηγή αλήθειας
+        margin: 'var(--la-margin-0-8)', // 🎯 SST: Margin token
+        padding: 'var(--la-space-4)', // 🎯 SST: Spacing token από μοναδική πηγή αλήθειας
         backgroundColor: getCardOrangeColor(), // 🔴 SST: Background color από μοναδική πηγή αλήθειας
-        border: '1px solid #ccc',
-        borderRadius: '8px'
+        border: 'var(--la-border-width-1) solid var(--la-border-gray)', // 🎯 SST: Border tokens
+        borderRadius: 'var(--la-gap-sm)' // 🎯 SST: Border radius token
       }}
     >
       <Heading as="h3" size="lg" color="primary" className="layera-mb-4">
@@ -129,9 +129,9 @@ function TestNotificationsComponent() {
       <Box
         display="grid"
         gridTemplateColumns={{
-          base: '1fr',
-          sm: 'repeat(2, 1fr)',
-          md: 'repeat(4, 1fr)'
+          base: 'var(--la-grid-1fr)', // 🎯 SST: Grid tokens
+          sm: 'var(--la-grid-2cols)', // 🎯 SST: Grid tokens
+          md: 'var(--la-grid-4cols)' // 🎯 SST: Grid tokens
         }}
         gap="md"
         marginBottom="md"
@@ -141,7 +141,7 @@ function TestNotificationsComponent() {
           size="sm"
           onClick={testSuccessNotification}
         >
-          <CheckIcon size="xs" style={{ marginRight: '4px' }} />
+          <CheckIcon size="xs" style={{ marginRight: 'var(--la-gap-xs)' }} /> {/* 🎯 SST: Margin token */}
           {t('test.panel.success')}
         </Button>
 
@@ -150,7 +150,7 @@ function TestNotificationsComponent() {
           size="sm"
           onClick={testErrorNotification}
         >
-          <WarningIcon size="xs" style={{ marginRight: '4px' }} />
+          <WarningIcon size="xs" style={{ marginRight: 'var(--la-gap-xs)' }} /> {/* 🎯 SST: Margin token */}
           {t('test.panel.error')}
         </Button>
 
@@ -159,7 +159,7 @@ function TestNotificationsComponent() {
           size="sm"
           onClick={testInfoNotification}
         >
-          <FileIcon size="xs" style={{ marginRight: '4px' }} />
+          <FileIcon size="xs" style={{ marginRight: 'var(--la-gap-xs)' }} /> {/* 🎯 SST: Margin token */}
           {t('test.panel.info')}
         </Button>
 
@@ -171,7 +171,7 @@ function TestNotificationsComponent() {
         >
           {isLoading ? <LoadingSpinner size="xs" /> : (
             <>
-              <RefreshIcon size="xs" style={{ marginRight: '4px' }} />
+              <RefreshIcon size="xs" style={{ marginRight: 'var(--la-gap-xs)' }} /> {/* 🎯 SST: Margin token */}
               {t('test.panel.loading')}
             </>
           )}
@@ -278,7 +278,7 @@ function App() {
               div[style*="display: grid"] {
                 background: ${getCardInfoColor()} !important;
                 background-color: ${getCardInfoColor()} !important;
-                border: 3px solid ${getCardInfoBorder()} !important;
+                border: var(--la-border-width-md) solid ${getCardInfoBorder()} !important; /* 🎯 SST: Border width token */
               }
 
               /* Map containers transparent για consistency */
@@ -370,7 +370,7 @@ function App() {
                   className="layera-mb-8"
                   margin="auto"
                   marginBottom="xl"
-                  style={{ boxShadow: '0 2px 4px var(--la-shadow-sm)' }}
+                  style={{ boxShadow: 'var(--la-box-shadow-card)' }} // 🎯 SST: Box shadow token
                 >
                   {t('geoalert.enterGeoCanvas')}
                 </Button>
@@ -378,12 +378,12 @@ function App() {
                 <BaseCard
                   padding="lg"
                   marginY="xl"
-                  maxWidth={`${SPACING_SCALE.XXXL * 8}px`}
+                  maxWidth="var(--la-max-content-width)" // 🎯 SST: Maximum content width token
                   marginLeft="auto"
                   marginRight="auto"
                   style={{
                     backgroundColor: getCardInfoColor(), // 🔴 SST: Secondary card color από μοναδική πηγή αλήθειας
-                    border: `3px solid ${getCardInfoBorder()}` // 🔲 SST: Περίγραμμα από μοναδική πηγή αλήθειας #b929c6
+                    border: `var(--la-border-width-md) solid ${getCardInfoBorder()}` // 🎯 SST: Border width token + 🔲 SST: Περίγραμμα από μοναδική πηγή αλήθειας
                   }}
                 >
                   <Heading as="h3" size="lg" color="primary" className="layera-mb-4 layera-flex layera-items-center layera-gap-2">

@@ -34,7 +34,7 @@ const DEFAULT_CONFIG: ResponsiveConfig = {
   desktop: {
     breakpoint: 1025,
     maxWidth: '1200px',
-    padding: `${SPACING_SCALE.XXL}px`,
+    padding: 'var(--la-space-12)', // 🎯 SST: XXL spacing token
     gridColumns: 3
   }
 };

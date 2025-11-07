@@ -331,9 +331,9 @@ export const WorkflowPlaceholder: React.FC<WorkflowPlaceholderProps> = ({
         backdropFilter: 'none',
         boxShadow: `var(--la-shadow-xl)`,
         display: 'block',
-        width: SPACING_SCALE.FULL,
+        width: 'var(--la-width-full)', // 🎯 SST: Full width
         animation: `slideIn ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`,
-        border: `3px solid ${getCardInfoBorder()}` // 🔲 SST: Περίγραμμα από μοναδική πηγή αλήθειας #b929c6
+        border: `var(--la-border-width-md) solid ${getCardInfoBorder()}` // 🎯 SST: Border width token + 🔲 SST: Περίγραμμα από μοναδική πηγή αλήθειας
       }}
     >
       <Flex direction="column" gap="xl" style={{ alignItems: 'center' }}>
@@ -365,7 +365,7 @@ export const WorkflowPlaceholder: React.FC<WorkflowPlaceholderProps> = ({
             {t('workflow.preview.title') || 'Επόμενα Βήματα'} ({workflowSteps.length} {t('workflow.preview.steps') || 'βήματα'})
           </Text>
 
-          <Flex direction="column" gap="md" style={{ width: SPACING_SCALE.FULL, alignSelf: 'stretch' }}>
+          <Flex direction="column" gap="md" style={{ width: 'var(--la-width-full)' /* 🎯 SST: Full width */, alignSelf: 'stretch' }}>
             {workflowSteps.map((step, index) => {
               const IconComponent = step.icon;
 
@@ -379,20 +379,20 @@ export const WorkflowPlaceholder: React.FC<WorkflowPlaceholderProps> = ({
                     style={{
                       ...getWorkflowCardStepStyle(),
                       transition: `all ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`,
-                      minHeight: `${SPACING_SCALE.XXL * 2}px`, // Περισσότερος χώρος για combo box
-                      width: SPACING_SCALE.FULL,
+                      minHeight: 'var(--la-min-height-double)', // 🎯 SST: Double height token για combo box
+                      width: 'var(--la-width-full)', // 🎯 SST: Full width
                       boxSizing: 'border-box',
-                      border: `3px solid ${getCardInfoBorder()}`, // 🔲 SST: Περίγραμμα από μοναδική πηγή αλήθειας #b929c6
-                      padding: `${SPACING_SCALE.MD}px`
+                      border: `var(--la-border-width-md) solid ${getCardInfoBorder()}`, // 🎯 SST: Border width token + 🔲 SST: Περίγραμμα από μοναδική πηγή αλήθειας
+                      padding: 'var(--la-space-4)' // 🎯 SST: Spacing token
                     }}
                   >
                     {/* Header Row με Step Number + Icon + Title */}
-                    <Flex align="center" gap="md" style={{ width: SPACING_SCALE.FULL }}>
+                    <Flex align="center" gap="md" style={{ width: 'var(--la-width-full)' /* 🎯 SST: Full width */ }}>
                       {/* Step Number */}
                       <FlexCenter
                         style={{
-                          width: `${SPACING_SCALE.LG}px`,
-                          height: `${SPACING_SCALE.LG}px`,
+                          width: 'var(--la-space-6)', // 🎯 SST: LG size (24px)
+                          height: 'var(--la-space-6)', // 🎯 SST: LG size (24px)
                           color: 'var(--color-text-inverse)',
                           borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
                           fontSize: `${SPACING_SCALE.SM}px`,
@@ -421,7 +421,7 @@ export const WorkflowPlaceholder: React.FC<WorkflowPlaceholderProps> = ({
                       <Text size="xs" style={{
                         color: 'var(--color-text-tertiary)',
                         flexShrink: 0,
-                        minWidth: `${SPACING_SCALE.XXL}px`,
+                        minWidth: 'var(--la-min-width-xxl)', // 🎯 SST: Component width token
                         textAlign: 'right'
                       }}>
                         {t(step.durationKey) || '~1 λεπτό'}
@@ -429,7 +429,7 @@ export const WorkflowPlaceholder: React.FC<WorkflowPlaceholderProps> = ({
                     </Flex>
 
                     {/* Property Type Combo Box - SST Select Integration */}
-                    <Box style={{ width: SPACING_SCALE.FULL }}>
+                    <Box style={{ width: 'var(--la-width-full)' /* 🎯 SST: Full width */ }}>
                       <Select
                         value={selectedPropertyType}
                         onChange={handlePropertyTypeChange}
@@ -464,18 +464,18 @@ export const WorkflowPlaceholder: React.FC<WorkflowPlaceholderProps> = ({
                   style={{
                     ...getWorkflowCardStepStyle(),
                     transition: `all ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`,
-                    minHeight: `${SPACING_SCALE.XXL + SPACING_SCALE.LG}px`,
-                    width: SPACING_SCALE.FULL,
+                    minHeight: 'var(--la-min-height-xxl)', // 🎯 SST: Component height token
+                    width: 'var(--la-width-full)', // 🎯 SST: Full width
                     justifyContent: 'flex-start',
                     boxSizing: 'border-box',
-                    border: `3px solid ${getCardInfoBorder()}` // 🔲 SST: Περίγραμμα από μοναδική πηγή αλήθειας #b929c6
+                    border: `var(--la-border-width-md) solid ${getCardInfoBorder()}` // 🎯 SST: Border width token + 🔲 SST: Περίγραμμα από μοναδική πηγή αλήθειας
                   }}
                 >
                   {/* Step Number */}
                   <FlexCenter
                     style={{
-                      width: `${SPACING_SCALE.LG}px`,
-                      height: `${SPACING_SCALE.LG}px`,
+                      width: 'var(--la-space-6)', // 🎯 SST: LG size (24px)
+                      height: 'var(--la-space-6)', // 🎯 SST: LG size (24px)
                       color: 'var(--color-text-inverse)',
                       borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
                       fontSize: `${SPACING_SCALE.SM}px`,
@@ -518,7 +518,7 @@ export const WorkflowPlaceholder: React.FC<WorkflowPlaceholderProps> = ({
                   <Text size="xs" style={{
                     color: 'var(--color-text-tertiary)',
                     flexShrink: 0,
-                    minWidth: `${SPACING_SCALE.XXL}px`,
+                    minWidth: 'var(--la-min-width-xxl)', // 🎯 SST: Component width token
                     textAlign: 'right'
                   }}>
                     {t(step.durationKey) || '~2 λεπτά'}

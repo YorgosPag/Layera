@@ -95,7 +95,7 @@ const Login = () => {
               borderRadius="input"
               marginBottom="md"
               fontSize="sm"
-              padding={`${SPACING_SCALE.SM + SPACING_SCALE.XS}px`}
+              padding="var(--la-space-sm-plus-xs)" // 🎯 SST: Complex spacing token
               style={{
                 background: "var(--la-bg-danger-subtle, color-mix(in srgb, var(--la-bg-danger) 10%, transparent))",
                 border: "1px solid var(--la-border-danger-subtle, color-mix(in srgb, var(--la-bg-danger) 30%, transparent))"
@@ -177,7 +177,7 @@ const Login = () => {
             <span
               style={{
                 backgroundColor: 'var(--la-bg-primary)',
-                padding: `0 ${SPACING_SCALE.MD - SPACING_SCALE.XS}px`,
+                padding: '0 var(--la-space-md-minus-xs-half)', // 🎯 SST: Complex spacing token
                 position: 'relative',
                 zIndex: 2
               }}

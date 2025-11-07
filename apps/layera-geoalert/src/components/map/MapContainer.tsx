@@ -71,8 +71,8 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
     // Create a div element with just the LocationIcon
     const iconDiv = document.createElement('div');
     iconDiv.style.cssText = `
-      width: ${SPACING_SCALE.XL}px;
-      height: ${SPACING_SCALE.XL}px;
+      width: var(--la-space-layout-xl); /* 🎯 SST: Layout spacing token */
+      height: var(--la-space-layout-xl); /* 🎯 SST: Layout spacing token */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -461,7 +461,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
             padding="sm"
             style={{
               position: 'absolute',
-              bottom: `${SPACING_SCALE.XXXL * 3 + SPACING_SCALE.LG}px`,
+              bottom: 'var(--la-fab-position-bottom)', // 🎯 SST: FAB position token
               left: '50%',
               transform: 'translateX(-50%)',
               zIndex: 1000,
@@ -494,10 +494,10 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
             onClick={onNewEntryClick}
             style={{
               position: 'absolute',
-              bottom: `${SPACING_SCALE.LG}px`,
-              right: `${SPACING_SCALE.LG}px`,
-              width: `${SPACING_SCALE.XXXL}px`,
-              height: `${SPACING_SCALE.XXXL}px`,
+              bottom: 'var(--la-space-layout-lg)', // 🎯 SST: Layout spacing token
+              right: 'var(--la-space-layout-lg)', // 🎯 SST: Layout spacing token
+              width: 'var(--la-fab-size)', // 🎯 SST: FAB size token
+              height: 'var(--la-fab-size)', // 🎯 SST: FAB size token
               backgroundColor: getCardSuccessColor(), // 🔴 SST: Success color από μοναδική πηγή αλήθειας
               borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
               boxShadow: BOX_SHADOW_SCALE.shadowSuccess,
@@ -549,29 +549,29 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
       {/* Areas List - ΑΦΑΙΡΕΘΗΚΕ για dark mode compatibility */}
       {false && drawnAreas.length > 0 && (
         <div style={{
-          marginTop: `${SPACING_SCALE.MD}px`,
-          padding: `${SPACING_SCALE.MD}px`,
+          marginTop: 'var(--la-space-4)', // 🎯 SST: Spacing token
+          padding: 'var(--la-space-4)', // 🎯 SST: Spacing token
           backgroundColor: 'var(--color-bg-surface)',
-          borderRadius: `${BORDER_RADIUS_SCALE.SM}px`,
+          borderRadius: 'var(--la-radius-sm)', // 🎯 SST: Border radius token
           boxShadow: BOX_SHADOW_SCALE.cardSubtle
         }}>
           <Text size="sm" weight="bold" style={{
-            margin: `0 0 ${SPACING_SCALE.SM}px 0`,
+            margin: '0 0 var(--la-space-2) 0', // 🎯 SST: Spacing token
             color: 'var(--color-text-primary)',
             display: 'block'
           }}>
             Σχεδιασμένες Περιοχές ({drawnAreas.length})
           </Text>
-          <Flex direction="column" style={{ gap: `${SPACING_SCALE.SM}px` }}>
+          <Flex direction="column" style={{ gap: 'var(--la-space-2)' }}> {/* 🎯 SST: Spacing token */}
             {drawnAreas.map(area => (
               <Flex
                 key={area.id}
                 justify="space-between"
                 align="center"
                 style={{
-                  padding: `${SPACING_SCALE.SM}px ${SPACING_SCALE.SM}px`,
+                  padding: 'var(--la-space-2) var(--la-space-2)', // 🎯 SST: Spacing token
                   backgroundColor: 'white',
-                  borderRadius: `${BORDER_RADIUS_SCALE.INPUT}px`,
+                  borderRadius: 'var(--la-radius-input)', // 🎯 SST: Border radius token
                   border: '1px solid var(--color-border-default)',
                   // fontSize handled by Text component
                 }}
@@ -587,8 +587,8 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
                   <Text size="xs" style={{
                     color: 'var(--color-text-secondary)',
                     backgroundColor: 'var(--color-bg-surface)',
-                    padding: `${SPACING_SCALE.XS - 2}px ${SPACING_SCALE.XS + 2}px`,
-                    borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
+                    padding: 'var(--la-space-xs-minus-2) var(--la-space-xs-plus-2)', // 🎯 SST: Complex spacing tokens
+                    borderRadius: 'var(--la-radius-xs)', // 🎯 SST: Border radius token
                     display: 'inline-block'
                   }}>
                     {Math.round(area.area)} m²

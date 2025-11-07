@@ -5,7 +5,7 @@ import React, { ReactNode } from 'react';
  */
 
 // Enhanced Card Variants - supports both LEGO and Local patterns
-export type CardVariant = 'elevated' | 'outlined' | 'filled' | 'property' | 'job' | 'info' | 'success' | 'warning' | 'error' | 'neutral';
+export type CardVariant = 'elevated' | 'outlined' | 'filled' | 'property' | 'job' | 'info' | 'success' | 'warning' | 'error' | 'neutral' | 'category-selection';
 export type CardSize = 'sm' | 'md' | 'lg' | 'xl';
 export type CardPadding = 'none' | 'sm' | 'md' | 'lg';
 

@@ -1,0 +1,11 @@
+/**
+ * ⚠️ DEPRECATED: This file has been moved to JSON-based generation
+ *
+ * 🎯 NEW LOCATION: packages/tokens/dist/css/tokens.css (generated)
+ * 🔧 TO MODIFY: Edit packages/tokens/src/tokens.json and run npm run tokens:build
+ *
+ * This file is kept for migration reference only.
+ * All imports should use: @layera/tokens/dist/css/tokens.css
+ */
+
+/* This content has been migrated to tokens.json */

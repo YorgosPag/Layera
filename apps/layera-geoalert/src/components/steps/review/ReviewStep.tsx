@@ -299,7 +299,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
               variant="success"
               onClick={handleSubmit}
               disabled={isSubmitting}
-              minWidth={`${SPACING_SCALE.XXXXXL}px`}
+              minWidth="var(--la-review-min-width)" // 🎯 SST: Review button min width token
             >
               {isSubmitting ? 'Υποβολή...' : 'Υποβολή 🚀'}
             </Button>

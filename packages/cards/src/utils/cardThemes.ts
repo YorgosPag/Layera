@@ -75,6 +75,14 @@ export const getEnhancedCardTheme = (
       baseColor: 'var(--color-bg-surface)',
       borderColor: 'var(--color-border-subtle)',
       semanticColor: 'var(--color-text-secondary)'
+    },
+
+    // Category Selection variant - uses CSS Variables
+    'category-selection': {
+      baseColor: 'var(--la-card-category-bg)',
+      borderColor: 'var(--la-card-category-border)',
+      semanticColor: 'var(--la-card-category-title-color)',
+      titleShadow: 'var(--la-card-category-hover-shadow)'
     }
   };
 
@@ -146,7 +154,8 @@ export const legoCardThemes = {
   success: getEnhancedCardTheme('success'),
   warning: getEnhancedCardTheme('warning'),
   error: getEnhancedCardTheme('error'),
-  neutral: getEnhancedCardTheme('neutral')
+  neutral: getEnhancedCardTheme('neutral'),
+  'category-selection': getEnhancedCardTheme('category-selection')
 } as const;
 
 /**

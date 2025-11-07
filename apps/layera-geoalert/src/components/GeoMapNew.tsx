@@ -315,17 +315,17 @@ export const GeoMap: React.FC<GeoMapProps> = ({
           position="fixed"
           style={{
             inset: 0, // σωστό πλήρες κάλυμμα
-            backgroundColor: 'var(--color-bg-overlay)',
-            backdropFilter: `blur(${SPACING_SCALE.XS}px)`,
-            zIndex: CSS_DESIGN_TOKENS.zIndex['z-index-map-modal'],
-            padding: CSS_DESIGN_TOKENS.spacing['spacing-lg'],
-            overflowY: CSS_DESIGN_TOKENS.positioning['overflow-auto'],
+            backgroundColor: 'var(--la-overlay-background)', // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
+            backdropFilter: `blur(var(--la-blur-xs))`, // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
+            zIndex: 'var(--la-z-index-modal)', // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
+            padding: 'var(--la-space-lg)', // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
+            overflowY: 'auto',
             scrollbarGutter: 'stable both-edges', // αποφεύγει οπτικό drift
             display: 'flex',
             alignItems: isMobile ? 'flex-start' : 'center',
             justifyContent: 'center',
             boxSizing: 'border-box',
-            border: `3px solid ${getCardInfoBorder()}`
+            border: 'var(--la-border-width-md) solid var(--la-card-border-color)' // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
           }}
         >
           <StepOrchestrator

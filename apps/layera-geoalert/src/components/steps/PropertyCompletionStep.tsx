@@ -165,9 +165,9 @@ export const PropertyCompletionStep: React.FC<PropertyCompletionStepProps> = ({
         backdropFilter: 'none',
         boxShadow: `var(--la-shadow-xl)`,
         display: 'block',
-        width: SPACING_SCALE.FULL,
+        width: 'var(--la-width-full)', // 🎯 SST: Full width
         animation: `slideIn ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`,
-        border: `3px solid ${getCardInfoBorder()}`
+        border: `var(--la-border-width-md) solid ${getCardInfoBorder()}` // 🎯 SST: Border width token
       }}
     >
       <Flex direction="column" gap="xl" style={{ alignItems: 'center' }}>
@@ -189,9 +189,9 @@ export const PropertyCompletionStep: React.FC<PropertyCompletionStepProps> = ({
         <Box
           style={{
             backgroundColor: 'var(--la-color-bg-elevated)',
-            padding: `${SPACING_SCALE.MD}px`,
-            borderRadius: `${BORDER_RADIUS_SCALE.LG}px`,
-            border: `2px solid ${getCardInfoBorder()}`,
+            padding: 'var(--la-space-4)', // 🎯 SST: Spacing token
+            borderRadius: 'var(--la-radius-lg)', // 🎯 SST: Border radius token
+            border: `var(--la-border-width-sm) solid ${getCardInfoBorder()}`, // 🎯 SST: Border width token
             width: '100%'
           }}
         >
@@ -226,7 +226,7 @@ export const PropertyCompletionStep: React.FC<PropertyCompletionStepProps> = ({
             {t('workflow.completion.remainingSteps') || 'Υπομένουν'} ({completionSteps.length} {t('workflow.preview.steps') || 'βήματα'})
           </Text>
 
-          <Flex direction="column" gap="md" style={{ width: SPACING_SCALE.FULL, alignSelf: 'stretch' }}>
+          <Flex direction="column" gap="md" style={{ width: 'var(--la-width-full)', alignSelf: 'stretch' }}> {/* 🎯 SST: Full width */}
             {completionSteps.map((step, index) => {
               const IconComponent = step.icon;
 
@@ -238,21 +238,21 @@ export const PropertyCompletionStep: React.FC<PropertyCompletionStepProps> = ({
                   style={{
                     ...getWorkflowCardStepStyle(),
                     transition: `all ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`,
-                    minHeight: `${SPACING_SCALE.XXL + SPACING_SCALE.LG}px`,
-                    width: SPACING_SCALE.FULL,
+                    minHeight: 'var(--la-min-height-xxl)', // 🎯 SST: Component height token
+                    width: 'var(--la-width-full)', // 🎯 SST: Full width
                     justifyContent: 'flex-start',
                     boxSizing: 'border-box',
-                    border: `3px solid ${getCardInfoBorder()}`
+                    border: `var(--la-border-width-md) solid ${getCardInfoBorder()}` // 🎯 SST: Border width token
                   }}
                 >
                   {/* Step Number */}
                   <FlexCenter
                     style={{
-                      width: `${SPACING_SCALE.LG}px`,
-                      height: `${SPACING_SCALE.LG}px`,
+                      width: 'var(--la-icon-lg)', // 🎯 SST: Icon size token
+                      height: 'var(--la-icon-lg)', // 🎯 SST: Icon size token
                       color: 'var(--color-text-inverse)',
                       borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
-                      fontSize: `${SPACING_SCALE.SM}px`,
+                      fontSize: 'var(--la-icon-sm)', // 🎯 SST: Icon font size token
                       fontWeight: 'bold',
                       flexShrink: 0
                     }}
@@ -292,7 +292,7 @@ export const PropertyCompletionStep: React.FC<PropertyCompletionStepProps> = ({
                   <Text size="xs" style={{
                     color: 'var(--color-text-tertiary)',
                     flexShrink: 0,
-                    minWidth: `${SPACING_SCALE.XXL}px`,
+                    minWidth: 'var(--la-min-width-xxl)', // 🎯 SST: Component width token
                     textAlign: 'right'
                   }}>
                     {t(step.durationKey) || '~2 λεπτά'}

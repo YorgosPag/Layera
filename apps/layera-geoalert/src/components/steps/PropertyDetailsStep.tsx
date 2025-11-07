@@ -228,13 +228,13 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
             {/* 📐 ΒΑΣΙΚΑ ΣΤΟΙΧΕΙΑ */}
             <Box style={{
               backgroundColor: 'var(--la-color-bg-elevated)',
-              padding: `${SPACING_SCALE.MD}px`,
-              borderRadius: `${BORDER_RADIUS_SCALE.MD}px`,
-              marginBottom: `${SPACING_SCALE.LG}px`
+              padding: 'var(--la-space-4)', // 🎯 SST: Spacing token
+              borderRadius: 'var(--la-radius-md)', // 🎯 SST: Border radius token
+              marginBottom: 'var(--la-space-8)' // 🎯 SST: Spacing token
             }}>
               <Text size="sm" weight="medium" style={{
                 color: 'var(--la-text-primary)',
-                marginBottom: `${SPACING_SCALE.MD}px`,
+                marginBottom: 'var(--la-space-4)', // 🎯 SST: Spacing token
                 display: 'block'
               }}>
                 📐 Βασικά Χαρακτηριστικά
@@ -439,13 +439,13 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
             {/* 🏢 ΧΑΡΑΚΤΗΡΙΣΤΙΚΑ ΚΤΙΡΙΟΥ */}
             <Box style={{
               backgroundColor: 'var(--la-color-bg-elevated)',
-              padding: `${SPACING_SCALE.MD}px`,
-              borderRadius: `${BORDER_RADIUS_SCALE.MD}px`,
-              marginBottom: `${SPACING_SCALE.LG}px`
+              padding: 'var(--la-space-4)', // 🎯 SST: Spacing token
+              borderRadius: 'var(--la-radius-md)', // 🎯 SST: Border radius token
+              marginBottom: 'var(--la-space-8)' // 🎯 SST: Spacing token
             }}>
               <Text size="sm" weight="medium" style={{
                 color: 'var(--la-text-primary)',
-                marginBottom: `${SPACING_SCALE.MD}px`,
+                marginBottom: 'var(--la-space-4)', // 🎯 SST: Spacing token
                 display: 'block'
               }}>
                 🏢 Χαρακτηριστικά Κτιρίου
@@ -569,13 +569,13 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
             {/* 🌟 ΕΠΙΠΛΕΟΝ ΧΑΡΑΚΤΗΡΙΣΤΙΚΑ */}
             <Box style={{
               backgroundColor: 'var(--la-color-bg-elevated)',
-              padding: `${SPACING_SCALE.MD}px`,
-              borderRadius: `${BORDER_RADIUS_SCALE.MD}px`,
-              marginBottom: `${SPACING_SCALE.LG}px`
+              padding: 'var(--la-space-4)', // 🎯 SST: Spacing token
+              borderRadius: 'var(--la-radius-md)', // 🎯 SST: Border radius token
+              marginBottom: 'var(--la-space-8)' // 🎯 SST: Spacing token
             }}>
               <Text size="sm" weight="medium" style={{
                 color: 'var(--la-text-primary)',
-                marginBottom: `${SPACING_SCALE.MD}px`,
+                marginBottom: 'var(--la-space-4)', // 🎯 SST: Spacing token
                 display: 'block'
               }}>
                 🌟 Επιπλέον Χαρακτηριστικά
@@ -692,12 +692,12 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
             {/* 💰 ΟΙΚΟΝΟΜΙΚΑ ΣΤΟΙΧΕΙΑ */}
             <Box style={{
               backgroundColor: 'var(--la-color-bg-elevated)',
-              padding: `${SPACING_SCALE.MD}px`,
-              borderRadius: `${BORDER_RADIUS_SCALE.MD}px`
+              padding: 'var(--la-space-4)', // 🎯 SST: Spacing token
+              borderRadius: 'var(--la-radius-md)' // 🎯 SST: Border radius token
             }}>
               <Text size="sm" weight="medium" style={{
                 color: 'var(--la-text-primary)',
-                marginBottom: `${SPACING_SCALE.MD}px`,
+                marginBottom: 'var(--la-space-4)', // 🎯 SST: Spacing token
                 display: 'block'
               }}>
                 💰 Οικονομικά Στοιχεία
@@ -979,16 +979,16 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
         backdropFilter: 'none',
         boxShadow: `var(--la-shadow-xl)`,
         display: 'block',
-        width: SPACING_SCALE.FULL,
+        width: 'var(--la-width-full)', // 🎯 SST: Full width
         animation: `slideIn ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`,
-        border: `3px solid ${getCardInfoBorder()}`,
-        padding: `${SPACING_SCALE.LG}px`
+        border: `var(--la-border-width-md) solid ${getCardInfoBorder()}`, // 🎯 SST: Border width token
+        padding: 'var(--la-space-8)' // 🎯 SST: Spacing token
       }}
     >
       <Flex direction="column" gap="xl" style={{ alignItems: 'stretch' }}>
         {/* Header */}
         <Box textAlign={MENU_POSITIONS.CENTER}>
-          <Flex align="center" gap="md" style={{ justifyContent: 'center', marginBottom: `${SPACING_SCALE.MD}px` }}>
+          <Flex align="center" gap="md" style={{ justifyContent: 'center', marginBottom: 'var(--la-space-4)' }}> {/* 🎯 SST: Spacing token */}
             <Box style={{ color: getCardPrimaryColor() }}>
               <EditIcon size="lg" />
             </Box>

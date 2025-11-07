@@ -142,7 +142,7 @@ export const SnapSettingsPanel: React.FC<SnapSettingsPanelProps> = ({
       <FormField
         key={type}
         label={
-          <Stack direction="row" spacing={`${SPACING_SCALE.XS}px`} align="center">
+          <Stack direction="row" spacing="var(--la-space-1)" align="center"> {/* 🎯 SST: XS spacing */}
             <Icon name={info.icon} size={16} />
             <Text variant="body2" weight="medium">
               {t(`snap.types.${type}`)}
@@ -189,7 +189,7 @@ export const SnapSettingsPanel: React.FC<SnapSettingsPanelProps> = ({
 
   // Card title με close button
   const cardTitle = (
-    <Stack direction="row" spacing={`${SPACING_SCALE.XS}px`} align="center">
+    <Stack direction="row" spacing="var(--la-space-1)" /* 🎯 SST: XS spacing */ align="center">
       <Icon name="settings" size={20} />
       <Heading level={compact ? 4 : 3}>
         {t('snap.settings.title')}
@@ -221,7 +221,7 @@ export const SnapSettingsPanel: React.FC<SnapSettingsPanelProps> = ({
               label={t('snap.settings.tolerance.label')}
               description={!compact ? t('snap.settings.tolerance.description') : undefined}
             >
-              <Stack spacing={`${SPACING_SCALE.XS}px`}>
+              <Stack spacing="var(--la-space-1)" /* 🎯 SST: XS spacing */>
                 <Slider
                   min={1}
                   max={50}
@@ -243,7 +243,7 @@ export const SnapSettingsPanel: React.FC<SnapSettingsPanelProps> = ({
           <FormSection title={t('snap.settings.types.title')}>
             {/* Category Navigation για non-compact mode */}
             {!compact && (
-              <Stack direction="row" spacing={`${SPACING_SCALE.XS}px`} marginBottom={`${SPACING_SCALE.MD}px`}>
+              <Stack direction="row" spacing="var(--la-space-1)" /* 🎯 SST: XS spacing */ marginBottom={`${SPACING_SCALE.MD}px`}>
                 {(['basic', 'advanced', 'precision'] as const).map(category => (
                   <Button
                     key={category}
@@ -261,7 +261,7 @@ export const SnapSettingsPanel: React.FC<SnapSettingsPanelProps> = ({
             {/* Render categories */}
             {compact ? (
               // Compact mode - show all in grid
-              <Grid columns={2} spacing={`${SPACING_SCALE.XS}px`}>
+              <Grid columns={2} spacing="var(--la-space-1)" /* 🎯 SST: XS spacing */>
                 {Object.keys(SNAP_TYPE_INFO).map(type =>
                   renderSnapTypeToggle(type as SnapType)
                 )}
@@ -282,7 +282,7 @@ export const SnapSettingsPanel: React.FC<SnapSettingsPanelProps> = ({
               label={t('snap.settings.performance.label')}
               description={!compact ? t('snap.settings.performance.description') : undefined}
             >
-              <Stack direction="row" spacing={`${SPACING_SCALE.XS}px`}>
+              <Stack direction="row" spacing="var(--la-space-1)" /* 🎯 SST: XS spacing */>
                 {(['low', 'medium', 'high'] as const).map(level => (
                   <Button
                     key={level}
@@ -305,12 +305,12 @@ export const SnapSettingsPanel: React.FC<SnapSettingsPanelProps> = ({
               onClick={handleResetToDefaults}
               disabled={disabled}
             >
-              <Icon name="refresh" size={16} marginRight={`${SPACING_SCALE.XS}px`} />
+              <Icon name="refresh" size={16} marginRight="var(--la-space-1)" /* 🎯 SST: XS spacing */ />
               {t('snap.settings.reset_defaults')}
             </Button>
 
             {!compact && (
-              <Stack direction="row" spacing={`${SPACING_SCALE.XS}px`}>
+              <Stack direction="row" spacing="var(--la-space-1)" /* 🎯 SST: XS spacing */>
                 <Text variant="caption" color="muted">
                   {t('snap.settings.enabled_count', {
                     count: configuration.enabledTypes.size
@@ -349,14 +349,14 @@ export const SnapToolbar: React.FC<SnapToolbarProps> = ({
   const quickTypes: SnapType[] = ['endpoint', 'midpoint', 'center', 'vertex'];
 
   return (
-    <Stack direction="row" spacing={`${SPACING_SCALE.XS}px`} align="center">
+    <Stack direction="row" spacing="var(--la-space-1)" /* 🎯 SST: XS spacing */ align="center">
       {/* Master Enable/Disable */}
       <ToggleButton
         active={enabled}
         onClick={(): void => onToggleEnabled(!enabled)}
         variant="primary"
       >
-        <Icon name="magnet" size={16} marginRight={`${SPACING_SCALE.XXS}px`} />
+        <Icon name="magnet" size={16} marginRight="var(--la-space-1)" /> {/* 🎯 SST: XXS spacing token */}
         {t('snap.toolbar.snap')}
       </ToggleButton>
 

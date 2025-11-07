@@ -3,5 +3,5 @@
  */
 
 /* Import order matters - tokens first, then components */
-@import '@layera/tokens/dist/tokens.css';
+@import '@layera/tokens/dist/css/tokens.css';
 @import url('./layout.css');

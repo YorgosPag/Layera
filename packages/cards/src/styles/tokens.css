@@ -1,6 +1,44 @@
 /**
- * Layera Cards System - Design Tokens
+ * ⚠️ DEPRECATED: This file has been replaced by JSON-based generation
+ *
+ * 🎯 NEW LOCATION: @layera/tokens/dist/css/tokens.css (generated from tokens.json)
+ * 🔧 TO MODIFY: Edit packages/tokens/src/tokens.json and run npm run tokens:build
+ *
+ * This file is kept for migration reference only.
+ * All imports should use: @layera/tokens/dist/css/tokens.css
  */
+
+/* Re-export generated tokens for backward compatibility */
+@import '@layera/tokens/dist/css/tokens.css';
+
+/* Legacy tokens kept for reference */
+:root {
+  /* Category Selection Card Variables - Single Source of Truth */
+  --la-card-category-title-color: #ffffff;
+  --la-card-category-title-bg: rgba(37, 204, 119, 0.1);
+  --la-card-category-title-border: var(--la-color-primary);
+  --la-card-category-title-font-weight: 600;
+  --la-card-category-title-font-size: var(--la-font-size-lg);
+
+  /* Category Description Variables - Single Source of Truth */
+  --la-card-category-description-color: var(--la-color-text-secondary);
+  --la-card-category-description-font-size: var(--la-font-size-sm);
+  --la-card-category-description-line-height: 1.4;
+  --la-card-category-description-opacity: 0.8;
+
+  /* Category Card Background Variables - Single Source of Truth */
+  --la-card-category-bg: #25de43;
+  --la-card-category-border: 3px solid #ffffff;
+  --la-card-category-border-radius: var(--la-radius-lg);
+  --la-card-category-hover-transform: translateY(-2px);
+  --la-card-category-hover-shadow: var(--la-shadow-lg);
+
+  /* Category Card Spacing Variables - Single Source of Truth */
+  --la-card-category-padding: var(--la-space-6);
+  --la-card-category-gap: var(--la-space-4);
+  --la-card-category-title-padding: var(--la-space-3) var(--la-space-4);
+  --la-card-category-title-margin-bottom: var(--la-space-3);
+}
 
 .la-card {
   /* Card padding options */

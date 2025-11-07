@@ -75,14 +75,14 @@ export const FLEX_SCALE = {
   // Gap values (aligned με @layera/constants SPACING_SCALE)
   gap: {
     NONE: '0',
-    XXS: `${SPACING_SCALE.XXS}px`,  // 2px
-    XS: `${SPACING_SCALE.XS}px`,    // 4px
+    XXS: 'var(--la-space-1)',  // 🎯 SST: XXS spacing token
+    XS: 'var(--la-space-1)',    // 🎯 SST: XS spacing token
     SM: `${SPACING_SCALE.SM}px`,    // 8px
     MD: `${SPACING_SCALE.MD}px`,    // 16px
-    LG: `${SPACING_SCALE.LG}px`,    // 24px
-    XL: `${SPACING_SCALE.XL}px`,    // 32px
-    XXL: `${SPACING_SCALE.XXL}px`,  // 48px
-    XXXL: `${SPACING_SCALE.XXXL}px` // 64px
+    LG: 'var(--la-space-6)',    // 🎯 SST: LG spacing (24px)
+    XL: 'var(--la-space-layout-xl)',    // 🎯 SST: XL spacing token
+    XXL: 'var(--la-space-12)',  // 🎯 SST: XXL spacing token
+    XXXL: 'var(--la-space-16)' // 🎯 SST: XXXL spacing token
   }
 } as const;
 

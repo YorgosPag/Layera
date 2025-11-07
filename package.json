@@ -41,7 +41,15 @@
     "naming:fix-preview": "node scripts/domains/docs/fix-naming-violations.js --dry-run",
     "fix:colors": "node scripts/domains/design/fix-hardcoded-colors.js",
     "fix:console-logs": "node scripts/domains/production/fix-console-logs.js",
-    "verify": "npm run typecheck && npm run lint && npm run policy:check && npm run dup:check && npm run enterprise:validate",
+    "tokens:build": "style-dictionary build --config packages/tokens/style-dictionary.config.mjs",
+    "tokens:build:pkg": "pnpm -F @layera/tokens run build",
+    "tokens:clean": "rimraf packages/tokens/dist",
+    "tokens:migrate": "node scripts/css-vars-to-json.mjs && npm run tokens:clean && npm run tokens:build",
+    "tokens:diff": "node scripts/tokens-diff.mjs",
+    "tokens:smoke": "node scripts/tokens-smoke-test.mjs",
+    "tokens:check-diff": "git diff --quiet -- packages/tokens/dist/css/tokens.css || (echo \"Tokens CSS changed. Ensure tokens.json updated.\" && exit 1)",
+    "lint:tokens": "node scripts/no-literals-check.mjs",
+    "verify": "npm run typecheck && npm run lint && npm run policy:check && npm run dup:check && npm run enterprise:validate && npm run tokens:build && npm run tokens:diff && npm run tokens:smoke && npm run lint:tokens",
     "clean": "npm run clean --workspaces --if-present && rimraf node_modules",
     "fresh-install": "npm run clean && npm install",
     "prepare": "husky",
@@ -61,14 +69,17 @@
     "jscpd": "^4.0.5",
     "lint-staged": "^16.2.6",
     "rimraf": "^6.0.1",
+    "style-dictionary": "4.4.0",
+    "globby": "^14.0.0",
     "stylelint": "^16.25.0",
     "stylelint-config-standard": "^39.0.1",
     "svelte": "^5.0.0",
     "typescript": "^5.9.3",
     "vite": "^6.0.0"
   },
+  "packageManager": "pnpm@9.15.9",
   "engines": {
-    "node": ">=18.0.0",
+    "node": "20.17.x",
     "npm": ">=9.0.0"
   },
   "keywords": [
@@ -80,5 +91,12 @@
     "enterprise"
   ],
   "author": "Layera Team",
-  "license": "ISC"
+  "license": "ISC",
+  "lint-staged": {
+    "packages/tokens/src/*": [
+      "pnpm -w run tokens:build",
+      "pnpm -w run tokens:diff",
+      "pnpm -w run tokens:smoke"
+    ]
+  }
 }

@@ -226,10 +226,10 @@ export const InfoPanel = React.memo<InfoPanelProps>(({
         aria-label="Close"
         style={{
           position: 'absolute',
-          top: `${SPACING_SCALE.XS}px`,
-          right: `${SPACING_SCALE.XS}px`,
-          width: `${SPACING_SCALE.LG}px`,
-          height: `${SPACING_SCALE.LG}px`,
+          top: 'var(--la-space-1)', // 🎯 SST: XS spacing
+          right: 'var(--la-space-1)', // 🎯 SST: XS spacing
+          width: 'var(--la-space-6)', // 🎯 SST: LG size (24px)
+          height: 'var(--la-space-6)', // 🎯 SST: LG size (24px)
           border: 'var(--la-border-none, none)',
           borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
           backgroundColor: 'var(--color-bg-surface-overlay)',

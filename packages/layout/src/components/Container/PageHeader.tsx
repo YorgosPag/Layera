@@ -43,7 +43,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
   };
 
   const subtitleStyles: React.CSSProperties = {
-    margin: `${SPACING_SCALE.XS}px 0 0 0`,
+    margin: 'var(--la-space-margin-xs-0)', // 🎯 SST: XS 0 0 0 margin
     fontSize: '1rem',
     color: 'var(--la-text-secondary)'
   };

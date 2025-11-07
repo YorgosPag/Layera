@@ -260,7 +260,7 @@ export const DraggableFAB: React.FC<DraggableFABProps> = ({
     width: BTN_SIZE,
     height: BTN_SIZE,
     borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
-    border: `${SPACING_SCALE.XXS}px solid var(--color-bg-canvas)`,
+    border: `var(--la-border-width-xxs) solid var(--color-bg-canvas)`, // 🎯 SST: Border width token
     boxShadow: 'var(--elevation-md)',
     display: 'flex',
     alignItems: 'center',

@@ -21,6 +21,10 @@
   box-shadow: var(--la-shadow-none);
 }
 
+/* ============ CATEGORY SELECTION VARIANT ============ */
+/* NOTE: Category selection cards now use SST_CARD_CONFIG for all styling */
+/* No hardcoded CSS overrides - pure SST system */
+
 /* ============ CARD SIZES ============ */
 
 .la-card-sm {

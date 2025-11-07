@@ -103,12 +103,12 @@ export const SnapIndicator: React.FC<SnapIndicatorProps> = ({
     bottom: '100%',
     left: '50%',
     transform: 'translateX(-50%)',
-    marginBottom: `${SPACING_SCALE.XS}px`,
-    padding: `${SPACING_SCALE.XS - 4}px ${SPACING_SCALE.XS}px`,
+    marginBottom: 'var(--la-space-1)', // 🎯 SST: XS spacing
+    padding: 'var(--la-space-xs-minus-4-xs-padding)', // 🎯 SST: XS-4 XS padding
     backgroundColor: theme === 'dark' ? 'var(--la-color-slate-700, var(--la-color-dark))' : 'var(--la-color-gray-100, var(--la-bg-light))',
     color: theme === 'dark' ? 'var(--la-color-gray-100, var(--la-bg-light))' : 'var(--la-color-slate-700, var(--la-color-dark))',
     border: `1px solid ${theme === 'dark' ? 'var(--la-color-slate-600, var(--la-color-slate))' : 'var(--la-color-gray-300, var(--la-color-gray-light))'}`,
-    borderRadius: `${SPACING_SCALE.XS - 4}px`,
+    borderRadius: 'var(--la-space-border-radius-xs-minus-4)', // 🎯 SST: XS-4 border radius
     fontSize: 'var(--la-font-size-xs)',
     fontWeight: 500,
     whiteSpace: 'nowrap',
@@ -265,7 +265,7 @@ export const SnapGuidelines: React.FC<SnapGuidelinesProps> = ({
     left: midPointX,
     top: midPointY - 20,
     transform: 'translateX(-50%)',
-    padding: `${SPACING_SCALE.XS}px ${SPACING_SCALE.XS + SPACING_SCALE.XS}px`,
+    padding: 'var(--la-space-xs-xs-double-padding)', // 🎯 SST: XS XS*2 padding
     backgroundColor: theme === 'dark' ? 'var(--la-color-slate-700, var(--la-color-dark))' : 'var(--la-color-gray-100, var(--la-bg-light))',
     color: theme === 'dark' ? 'var(--la-color-gray-100, var(--la-bg-light))' : 'var(--la-color-slate-700, var(--la-color-dark))',
     border: `1px solid ${theme === 'dark' ? 'var(--la-color-slate-600, var(--la-color-slate))' : 'var(--la-color-gray-300, var(--la-color-gray-light))'}`,

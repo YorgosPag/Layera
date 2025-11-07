@@ -2,8 +2,14 @@
   "name": "@layera/tokens",
   "version": "0.0.1",
   "private": true,
-  "files": ["dist"],
+  "files": ["dist/**", "src/tokens.json"],
+  "exports": {
+    "./css": "./dist/css/tokens.css",
+    "./dist/css/tokens.css": "./dist/css/tokens.css"
+  },
+  "sideEffects": false,
   "scripts": {
-    "build": "xcopy src\\tokens.css dist\\ /Y > nul || copy src\\tokens.css dist\\tokens.css"
+    "build": "style-dictionary build --config style-dictionary.config.mjs",
+    "prepack": "pnpm run build"
   }
 }

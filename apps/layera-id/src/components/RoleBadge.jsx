@@ -7,9 +7,9 @@ export default function RoleBadge({ role = "private" }) {
   return (
     <Box
       as="span"
-      padding={`${SPACING_SCALE.XS}px ${SPACING_SCALE.SM}px`}
+      padding="var(--la-space-xs-sm-padding)" // 🎯 SST: XS SM padding token
       border="1px solid var(--la-border-primary)"
-      borderRadius={`${BORDER_RADIUS_SCALE.SM}px`}
+      borderRadius="var(--la-radius-sm)" // 🎯 SST: Border radius token
       fontSize="var(--la-font-size-xs)"
       backgroundColor={role === 'admin' ? 'var(--la-bg-info)' : role === 'broker' ? 'var(--la-bg-warning)' : role === 'builder' ? 'var(--la-bg-success)' : 'var(--la-bg-tertiary)'}
     >
