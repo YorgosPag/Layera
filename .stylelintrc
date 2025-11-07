@@ -1,0 +1,42 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "rules": {
+    "comment-empty-line-before": null,
+    "value-keyword-case": null,
+    "declaration-property-value-allowed-list": {
+      "/^(color|background(-color|-image)?|border(-.*)?color|outline(-.*)?color|text-decoration-color|caret-color|column-rule-color|fill|stroke|mask|filter)$/": [
+        "/.*var\\(--la-.*/",
+        "transparent",
+        "inherit",
+        "currentColor",
+        "none"
+      ],
+      "/^(margin|padding|gap|row-gap|column-gap|border-radius|box-shadow|text-shadow|font-size|line-height|letter-spacing|z-index|width|height|min-width|min-height|max-width|max-height|inset|top|right|bottom|left)$/": [
+        "/.*var\\(--la-.*/",
+        "^0$",
+        "^auto$",
+        "none"
+      ],
+      "/^(border|outline)$/": [
+        "/.*var\\(--la-.*/",
+        "^0$",
+        "^none$"
+      ]
+    },
+    "declaration-property-unit-disallowed-list": {
+      "/^(color|background(-color)?|border(-.*)?color|outline(-.*)?color|text-decoration-color|caret-color|column-rule-color|fill|stroke|margin|padding|gap|row-gap|column-gap|border-radius|font-size|line-height|letter-spacing)$/": [
+        "px", "rem", "em", "%", "vh", "vw"
+      ]
+    },
+    "declaration-property-value-disallowed-list": {
+      "/^(background|background-image|mask|filter)$/": [
+        "/#([0-9a-fA-F]{3,8})/",
+        "/rgb\\s*\\(/",
+        "/rgba\\s*\\(/",
+        "/hsl\\s*\\(/",
+        "/hsla\\s*\\(/"
+      ],
+      "/.*/": ["/var\\(--layera-/"]
+    }
+  }
+}

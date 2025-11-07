@@ -101,7 +101,7 @@ export const createInfoPanelTheme = (
 // Common Themes - Χρήση του ήπιου emerald για καλύτερη αναγνωσιμότητα
 export const INFO_PANEL_THEMES = {
   property: createInfoPanelTheme('16, 185, 129'), // Ήπιο emerald για ευχάριστη ανάγνωση
-  job: createInfoPanelTheme('59, 130, 246'),      // Ίδιο με stepper blue-500
+  job: createInfoPanelTheme('var(--la-color-primary)'),      // Primary theme
   success: createInfoPanelTheme('16, 185, 129'),  // Ήπιο πράσινο success
   warning: createInfoPanelTheme('245, 158, 11'), // Πορτοκαλί warning
   error: createInfoPanelTheme('239, 68, 68'),    // Κόκκινο error
@@ -126,7 +126,7 @@ export const DEFAULT_INFO_PANEL_STYLES = {
       right: 'var(--la-space-6)' // 24px από design tokens
     },
     zIndex: 10000,
-    maxHeight: '400px',
+    maxHeight: 'var(--la-height-96)', // 384px design token,
     overflow: 'auto'
   }
 } as const;

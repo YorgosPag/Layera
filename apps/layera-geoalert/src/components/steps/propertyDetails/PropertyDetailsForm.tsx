@@ -80,7 +80,7 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
   };
 
   return (
-    <Stack spacing="md" className="bg-gray-50 p-4 rounded-lg">
+    <Stack spacing="md" className="layera-property-form-container p-4 rounded-lg">
       {fields.map((field: unknown) => (
         <FormField
           key={field.id}

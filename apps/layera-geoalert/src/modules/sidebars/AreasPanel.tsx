@@ -6,6 +6,7 @@ import { Button } from '@layera/buttons';
 import { DrawnArea } from '@layera/geo-drawing';
 import { SearchIcon, TrashIcon, EyeIcon, EyeOffIcon, EditIcon } from '@layera/icons';
 import { BaseCard } from '@layera/cards';
+import './AreasPanel.css';
 
 interface AreasPanelProps {
   isOpen: boolean;
@@ -62,7 +63,7 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
   return (
     <aside className={`bg-white border-r border-gray-200 flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out z-20 overflow-hidden ${isOpen ? 'w-80' : 'w-0'}`}>
       <Box className="flex flex-col flex-grow min-w-0 w-80">
-        <Box className="p-4 border-b border-gray-200 flex justify-between items-center">
+        <Box className="layera-areas-panel-border p-4 border-b flex justify-between items-center">
           <Heading as="h2" size="lg" weight="bold" color="primary">{t('areas')}</Heading>
           <Button
             onClick={onTogglePanel}
@@ -94,16 +95,13 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
               onDragEnter={(e: React.FormEvent<HTMLFormElement>) => handleDragEnter(e, index)}
               onDragEnd={handleDragEnd}
               onDragOver={(e: React.FormEvent<HTMLFormElement>) => e.preventDefault()}
-              className="border-b border-gray-200 cursor-move"
+              className="layera-areas-panel-border border-b cursor-move"
             >
               <BaseCard
                 variant={editingAreaId === area.id ? 'info' : 'outlined'}
                 opacityMode="semi-transparent"
                 className="mb-0"
-                style={{
-                  transition: 'all 0.2s ease',
-                  cursor: 'move'
-                }}
+                className="layera-areas-panel-drag-item"
               >
                 <Box className="flex items-center justify-between p-2">
                 <Text size="sm" weight="semibold" className="truncate pr-2" title={area.name}>
@@ -158,7 +156,7 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
                 step="0.05"
                 value={area.opacity || 1}
                 onChange={(e: React.FormEvent<HTMLFormElement>) => onUpdateAreaOpacity(area.id, parseFloat(e.target.value))}
-                className="w-full mt-1 h-1 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                className="layera-areas-panel-slider w-full mt-1 h-1 rounded-lg appearance-none cursor-pointer"
               />
             </li>
           ))}

@@ -93,43 +93,49 @@ export const DragDropZone: React.FC<DragDropZoneProps> = ({
     e.target.value = '';
   }, [onFilesDrop]);
 
-  const getZoneClasses = (): void => {
-    const baseClasses = [
-      'relative',
-      'border-2',
-      'border-dashed',
-      'rounded-lg',
-      'p-8',
-      'text-center',
-      'transition-all',
-      'duration-200',
-      'cursor-pointer'
-    ];
+  const getZoneStyles = (): React.CSSProperties => {
+    const baseStyle: React.CSSProperties = {
+      position: 'relative',
+      borderWidth: '2px',
+      borderStyle: 'dashed',
+      borderRadius: 'var(--la-radius-lg)',
+      padding: 'var(--la-space-8)',
+      textAlign: 'center',
+      transition: 'all 0.2s ease',
+      cursor: 'pointer'
+    };
 
     if (!enabled) {
-      baseClasses.push('opacity-50', 'cursor-not-allowed');
-    } else if (isDragOver) {
-      baseClasses.push(
-        'border-blue-500',
-        'bg-blue-50',
-        theme === 'dark' ? 'bg-blue-900/20' : 'bg-blue-50',
-        'scale-105'
-      );
-    } else {
-      baseClasses.push(
-        'border-gray-300',
-        'hover:border-gray-400',
-        theme === 'dark' ? 'border-gray-600 hover:border-gray-500' : 'border-gray-300 hover:border-gray-400'
-      );
+      return {
+        ...baseStyle,
+        opacity: 0.5,
+        cursor: 'not-allowed',
+        borderColor: 'var(--la-color-border-subtle)'
+      };
     }
 
-    return baseClasses.join(' ');
+    if (isDragOver) {
+      return {
+        ...baseStyle,
+        borderColor: 'var(--la-color-info)',
+        backgroundColor: theme === 'dark' ? 'var(--la-color-bg-info)' : 'var(--la-color-bg-info)',
+        transform: 'scale(1.05)'
+      };
+    }
+
+    return {
+      ...baseStyle,
+      borderColor: theme === 'dark' ? 'var(--la-color-border-secondary)' : 'var(--la-color-border-primary)',
+      ':hover': {
+        borderColor: theme === 'dark' ? 'var(--la-color-border-strong)' : 'var(--la-color-border-secondary)'
+      }
+    };
   };
 
   const acceptAttribute = acceptedTypes.length > 0 ? acceptedTypes.join(',') : undefined;
 
   return (
-    <Card className={`${getZoneClasses()} ${className}`}>
+    <Card className={className} style={getZoneStyles()}>
       <div
         onDragEnter={handleDragEnter}
         onDragLeave={handleDragLeave}
@@ -147,13 +153,21 @@ export const DragDropZone: React.FC<DragDropZoneProps> = ({
         />
 
         <Box className="flex flex-col items-center justify-center space-y-4">
-          <Box className={`p-4 rounded-full ${
-            isDragOver
-              ? 'bg-blue-100 text-blue-600'
-              : theme === 'dark'
-              ? 'bg-gray-700 text-gray-300'
-              : 'bg-gray-100 text-gray-500'
-          }`}>
+          <Box
+            className="p-4 rounded-full"
+            style={{
+              backgroundColor: isDragOver
+                ? 'var(--la-color-bg-info)'
+                : theme === 'dark'
+                ? 'var(--la-color-gray-700)'
+                : 'var(--la-color-gray-100)',
+              color: isDragOver
+                ? 'var(--la-color-info)'
+                : theme === 'dark'
+                ? 'var(--la-color-gray-300)'
+                : 'var(--la-color-gray-500)'
+            }}
+          >
             <UploadIcon className="w-8 h-8" />
           </Box>
 
@@ -166,7 +180,10 @@ export const DragDropZone: React.FC<DragDropZoneProps> = ({
               )}
             </Typography>
 
-            <Typography size="sm" className={theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}>
+            <Typography
+              size="sm"
+              style={{ color: theme === 'dark' ? 'var(--la-color-gray-400)' : 'var(--la-color-text-muted)' }}
+            >
               {acceptedTypes.length > 0 && (
                 <>
                   {t('file-upload.accepted-types')}: {acceptedTypes.join(', ')}
@@ -184,7 +201,10 @@ export const DragDropZone: React.FC<DragDropZoneProps> = ({
           </Box>
 
           {isDragOver && (
-            <Box className="flex items-center space-x-2 text-blue-600">
+            <Box
+              className="flex items-center space-x-2"
+              style={{ color: 'var(--la-color-info)' }}
+            >
               <UploadIcon className="w-5 h-5" />
               <Typography size="base" weight="medium" className="">
                 {t('file-upload.release-to-upload')}

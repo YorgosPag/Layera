@@ -69,7 +69,7 @@ export const WORKFLOW_CARD_STYLES = {
     padding: `${SPACING_SCALE.MD}px`,
     borderRadius: `${BORDER_RADIUS_SCALE.MD}px`,
     border: `var(--la-border-width-xxs) solid ${BRAND_COLORS.PRIMARY}`, // 🎯 SST: Border width token
-    backgroundColor: '#800000', // 🔴 SST: Ενιαίο χρώμα φόντο παντού
+    backgroundColor: 'var(--la-color-error)', // 🎯 SST: Error color token
     // Browser button reset για να εξασφαλίσουμε SST compliance
     appearance: 'none' as const,
     outline: 'none',
@@ -107,7 +107,7 @@ export const getCardSuccessColor = () => WORKFLOW_CARD_STYLES.COLORS.SUCCESS;
 export const getCardInfoColor = () => WORKFLOW_CARD_STYLES.COLORS.INFO;
 export const getCardWarningColor = () => WORKFLOW_CARD_STYLES.COLORS.WARNING;
 export const getCardErrorColor = () => WORKFLOW_CARD_STYLES.COLORS.ERROR;
-export const getCardOrangeColor = () => WORKFLOW_CARD_STYLES.COLORS.ORANGE;
+export const getCardOrangeColor = () => WORKFLOW_CARD_STYLES.COLORS.WARNING; // Uses warning color token
 
 /**
  * 🔲 GLOBAL BORDER UTILITIES - Single Source of Truth για ΟΛΕΣ τις κάρτες
@@ -117,4 +117,4 @@ export const getCardSuccessBorder = () => WORKFLOW_CARD_STYLES.BORDERS.SUCCESS;
 export const getCardInfoBorder = () => WORKFLOW_CARD_STYLES.BORDERS.INFO;
 export const getCardWarningBorder = () => WORKFLOW_CARD_STYLES.BORDERS.WARNING;
 export const getCardErrorBorder = () => WORKFLOW_CARD_STYLES.BORDERS.ERROR;
-export const getCardOrangeBorder = () => WORKFLOW_CARD_STYLES.BORDERS.ORANGE;
+export const getCardOrangeBorder = () => WORKFLOW_CARD_STYLES.BORDERS.WARNING; // Uses warning border token

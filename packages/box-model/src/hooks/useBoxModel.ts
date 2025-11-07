@@ -270,11 +270,11 @@ export const useAccessibilityPatterns = (): void => {
     // Skip link
     skipLink: {
       position: 'absolute' as const,
-      top: '-40px',
-      left: '6px',
+      top: 'calc(-1 * var(--la-space-10))', // -40px
+      left: 'var(--la-space-1_5)', // 6px
       boxSizing: 'border-box' as const,
       '&:focus': {
-        top: '6px'
+        top: 'var(--la-space-1_5)' // 6px
       }
     }
   }), []);

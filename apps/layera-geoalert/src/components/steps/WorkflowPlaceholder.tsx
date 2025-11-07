@@ -325,28 +325,20 @@ export const WorkflowPlaceholder: React.FC<WorkflowPlaceholderProps> = ({
   }
 
   return (
-    <div
-      style={{
-        ...getWorkflowCardContainerStyle(),
-        backdropFilter: 'none',
-        boxShadow: `var(--la-shadow-xl)`,
-        display: 'block',
-        width: 'var(--la-width-full)', // 🎯 SST: Full width
-        animation: `slideIn ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`,
-        border: `var(--la-border-width-md) solid ${getCardInfoBorder()}` // 🎯 SST: Border width token + 🔲 SST: Περίγραμμα από μοναδική πηγή αλήθειας
-      }}
+    <Box
+      width="full"
+      borderRadius="lg"
+      boxShadow="xl"
+      padding="xl"
+      backgroundColor="surface"
     >
-      <Flex direction="column" gap="xl" style={{ alignItems: 'center' }}>
+      <Flex direction="column" gap="xl" align="center">
         {/* Header */}
         <Box textAlign={MENU_POSITIONS.CENTER}>
-          <Heading size="lg" marginBottom="sm" style={{
-            color: 'var(--color-text-primary)'
-          }}>
+          <Heading size="lg" marginBottom="sm">
             {getWorkflowTitle()}
           </Heading>
-          <Text size="md" style={{
-            color: 'var(--color-text-secondary)'
-          }}>
+          <Text size="md" variant="secondary">
             {getWorkflowSubtitle()}
           </Text>
         </Box>
@@ -357,15 +349,11 @@ export const WorkflowPlaceholder: React.FC<WorkflowPlaceholderProps> = ({
             size="sm"
             weight="medium"
             marginBottom="md"
-            style={{
-              color: 'var(--color-text-primary)',
-              textAlign: MENU_POSITIONS.CENTER
-            }}
           >
             {t('workflow.preview.title') || 'Επόμενα Βήματα'} ({workflowSteps.length} {t('workflow.preview.steps') || 'βήματα'})
           </Text>
 
-          <Flex direction="column" gap="md" style={{ width: 'var(--la-width-full)' /* 🎯 SST: Full width */, alignSelf: 'stretch' }}>
+          <Flex direction="column" gap="md" width="full">
             {workflowSteps.map((step, index) => {
               const IconComponent = step.icon;
 
@@ -376,60 +364,44 @@ export const WorkflowPlaceholder: React.FC<WorkflowPlaceholderProps> = ({
                     key={step.id}
                     direction="column"
                     gap="md"
-                    style={{
-                      ...getWorkflowCardStepStyle(),
-                      transition: `all ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`,
-                      minHeight: 'var(--la-min-height-double)', // 🎯 SST: Double height token για combo box
-                      width: 'var(--la-width-full)', // 🎯 SST: Full width
-                      boxSizing: 'border-box',
-                      border: `var(--la-border-width-md) solid ${getCardInfoBorder()}`, // 🎯 SST: Border width token + 🔲 SST: Περίγραμμα από μοναδική πηγή αλήθειας
-                      padding: 'var(--la-space-4)' // 🎯 SST: Spacing token
-                    }}
+                    width="full"
+                    padding="4"
+                    borderRadius="md"
+                    backgroundColor="surface"
+                    border="md"
                   >
                     {/* Header Row με Step Number + Icon + Title */}
-                    <Flex align="center" gap="md" style={{ width: 'var(--la-width-full)' /* 🎯 SST: Full width */ }}>
+                    <Flex align="center" gap="md" width="full">
                       {/* Step Number */}
                       <FlexCenter
-                        style={{
-                          width: 'var(--la-space-6)', // 🎯 SST: LG size (24px)
-                          height: 'var(--la-space-6)', // 🎯 SST: LG size (24px)
-                          color: 'var(--color-text-inverse)',
-                          borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
-                          fontSize: `${SPACING_SCALE.SM}px`,
-                          fontWeight: 'bold',
-                          flexShrink: 0
-                        }}
+                        width="6"
+                        height="6"
+                        borderRadius="circle"
+                        fontSize="sm"
+                        fontWeight="bold"
+                        flexShrink={0}
                       >
                         {index + 1}
                       </FlexCenter>
 
                       {/* Icon */}
-                      <Box style={{ color: getCardPrimaryColor(), flexShrink: 0 }}> {/* 🔴 SST: Color από μοναδική πηγή αλήθειας */}
+                      <Box flexShrink={0}>
                         <IconComponent size="md" />
                       </Box>
 
                       {/* Title */}
-                      <Text size="sm" weight="medium" style={{
-                        color: 'var(--color-text-primary)',
-                        lineHeight: CSS_DESIGN_TOKENS.typography['line-height-tight'],
-                        flex: 1
-                      }}>
+                      <Text size="sm" weight="medium" flex={1} lineHeight="tight">
                         {t(step.titleKey) || 'Τύπος Ακινήτου'}
                       </Text>
 
                       {/* Duration */}
-                      <Text size="xs" style={{
-                        color: 'var(--color-text-tertiary)',
-                        flexShrink: 0,
-                        minWidth: 'var(--la-min-width-xxl)', // 🎯 SST: Component width token
-                        textAlign: 'right'
-                      }}>
+                      <Text size="xs" variant="tertiary" flexShrink={0} textAlign="right">
                         {t(step.durationKey) || '~1 λεπτό'}
                       </Text>
                     </Flex>
 
                     {/* Property Type Combo Box - SST Select Integration */}
-                    <Box style={{ width: 'var(--la-width-full)' /* 🎯 SST: Full width */ }}>
+                    <Box width="full">
                       <Select
                         value={selectedPropertyType}
                         onChange={handlePropertyTypeChange}
@@ -444,11 +416,7 @@ export const WorkflowPlaceholder: React.FC<WorkflowPlaceholderProps> = ({
                     </Box>
 
                     {/* Description */}
-                    <Text size="xs" style={{
-                      color: 'var(--color-text-secondary)',
-                      lineHeight: CSS_DESIGN_TOKENS.typography['line-height-normal'],
-                      textAlign: 'left'
-                    }}>
+                    <Text size="xs" variant="secondary" lineHeight="normal" textAlign="left">
                       {t(step.descriptionKey) || 'Επιλέξτε από την παραπάνω λίστα τον τύπο του ακινήτου που θέλετε να καταχωρήσετε'}
                     </Text>
                   </Flex>
@@ -461,66 +429,42 @@ export const WorkflowPlaceholder: React.FC<WorkflowPlaceholderProps> = ({
                   key={step.id}
                   align="center"
                   gap="md"
-                  style={{
-                    ...getWorkflowCardStepStyle(),
-                    transition: `all ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`,
-                    minHeight: 'var(--la-min-height-xxl)', // 🎯 SST: Component height token
-                    width: 'var(--la-width-full)', // 🎯 SST: Full width
-                    justifyContent: 'flex-start',
-                    boxSizing: 'border-box',
-                    border: `var(--la-border-width-md) solid ${getCardInfoBorder()}` // 🎯 SST: Border width token + 🔲 SST: Περίγραμμα από μοναδική πηγή αλήθειας
-                  }}
+                  width="full"
+                  padding="4"
+                  borderRadius="md"
+                  backgroundColor="surface"
+                  border="md"
+                  justify="flex-start"
                 >
                   {/* Step Number */}
                   <FlexCenter
-                    style={{
-                      width: 'var(--la-space-6)', // 🎯 SST: LG size (24px)
-                      height: 'var(--la-space-6)', // 🎯 SST: LG size (24px)
-                      color: 'var(--color-text-inverse)',
-                      borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
-                      fontSize: `${SPACING_SCALE.SM}px`,
-                      fontWeight: 'bold',
-                      flexShrink: 0
-                    }}
+                    width="6"
+                    height="6"
+                    borderRadius="circle"
+                    fontSize="sm"
+                    fontWeight="bold"
+                    flexShrink={0}
                   >
                     {index + 1}
                   </FlexCenter>
 
                   {/* Icon */}
-                  <Box style={{ color: getCardPrimaryColor(), flexShrink: 0 }}> {/* 🔴 SST: Color από μοναδική πηγή αλήθειας */}
+                  <Box flexShrink={0}>
                     <IconComponent size="md" />
                   </Box>
 
                   {/* Content */}
-                  <Flex direction="column" gap="xs" style={{
-                    flex: 1,
-                    minWidth: 0,
-                    alignItems: 'flex-start',
-                    justifyContent: 'center'
-                  }}>
-                    <Text size="sm" weight="medium" style={{
-                      color: 'var(--color-text-primary)',
-                      lineHeight: CSS_DESIGN_TOKENS.typography['line-height-tight'],
-                      textAlign: 'left'
-                    }}>
+                  <Flex direction="column" gap="xs" flex={1} align="flex-start" justify="center">
+                    <Text size="sm" weight="medium" lineHeight="tight" textAlign="left">
                       {t(step.titleKey) || `Step ${index + 1}: ${step.id}`}
                     </Text>
-                    <Text size="xs" style={{
-                      color: 'var(--color-text-secondary)',
-                      lineHeight: CSS_DESIGN_TOKENS.typography['line-height-normal'],
-                      textAlign: 'left'
-                    }}>
+                    <Text size="xs" variant="secondary" lineHeight="normal" textAlign="left">
                       {t(step.descriptionKey) || 'Step description'}
                     </Text>
                   </Flex>
 
                   {/* Duration */}
-                  <Text size="xs" style={{
-                    color: 'var(--color-text-tertiary)',
-                    flexShrink: 0,
-                    minWidth: 'var(--la-min-width-xxl)', // 🎯 SST: Component width token
-                    textAlign: 'right'
-                  }}>
+                  <Text size="xs" variant="tertiary" flexShrink={0} textAlign="right">
                     {t(step.durationKey) || '~2 λεπτά'}
                   </Text>
                 </Flex>
@@ -531,7 +475,7 @@ export const WorkflowPlaceholder: React.FC<WorkflowPlaceholderProps> = ({
 
         {/* Actions */}
         <Box textAlign={MENU_POSITIONS.CENTER}>
-          <Flex gap="lg" justifyContent="center" wrap="wrap" style={{ alignItems: 'center' }}>
+          <Flex gap="lg" justify="center" wrap="wrap" align="center">
             <Button
               variant="primary"
               size="lg"
@@ -557,19 +501,19 @@ export const WorkflowPlaceholder: React.FC<WorkflowPlaceholderProps> = ({
         {/* Security Footer */}
         <Flex gap="md" justifyContent="center" wrap="wrap">
           <Flex gap="xs" align="center">
-            <ShieldIcon size="xs" style={{ color: 'var(--color-text-tertiary)' }} />
-            <Text size="xs" style={{ color: 'var(--color-text-tertiary)' }}>
+            <ShieldIcon size="xs" color="tertiary" />
+            <Text size="xs" variant="tertiary">
               {t('workflow.security.dataProtection') || 'Προστασία Δεδομένων'}
             </Text>
           </Flex>
           <Flex gap="xs" align="center">
-            <LockIcon size="xs" style={{ color: 'var(--color-text-tertiary)' }} />
-            <Text size="xs" style={{ color: 'var(--color-text-tertiary)' }}>
+            <LockIcon size="xs" color="tertiary" />
+            <Text size="xs" variant="tertiary">
               {t('workflow.security.encrypted') || 'Κρυπτογραφημένα'}
             </Text>
           </Flex>
         </Flex>
       </Flex>
-    </div>
+    </Box>
   );
 };

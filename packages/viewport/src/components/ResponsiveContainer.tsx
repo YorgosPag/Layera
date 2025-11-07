@@ -33,7 +33,7 @@ const DEFAULT_CONFIG: ResponsiveConfig = {
   },
   desktop: {
     breakpoint: 1025,
-    maxWidth: '1200px',
+    maxWidth: 'var(--la-width-container-lg)', // 1200px
     padding: 'var(--la-space-12)', // 🎯 SST: XXL spacing token
     gridColumns: 3
   }

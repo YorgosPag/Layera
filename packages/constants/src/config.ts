@@ -88,13 +88,13 @@ export const ESCO_NAMESPACES = {
  * Device Frame Colors - Design System
  */
 export const DEVICE_FRAME_COLORS = {
-  SPACE_GRAY: '#1c1c1e',
-  SILVER: '#f0f0f0',
-  BLACK: 'var(--la-color-black)000',
-  WHITE: '#e5e5e7',
-  GOLD: '#e5e5e7',
-  GOOGLE_CHARCOAL: '#202124',
-  GRAPHITE: '#202124',
+  SPACE_GRAY: 'var(--la-bg-dark)',
+  SILVER: 'var(--la-color-surface-secondary)',
+  BLACK: 'var(--la-bg-dark)',
+  WHITE: 'var(--la-color-surface)',
+  GOLD: 'var(--la-color-surface-tertiary)',
+  GOOGLE_CHARCOAL: 'var(--la-bg-dark)',
+  GRAPHITE: 'var(--la-bg-dark)',
 } as const;
 
 // ============================================================================
@@ -209,6 +209,7 @@ export const CSS_DIMENSIONS = {
 export const FIXED_DIMENSIONS = {
   DROPDOWN_MAX_HEIGHT: 400,
   MIN_BUTTON_WIDTH: 200,
+  MIN_CARD_WIDTH: 280,
   ICON_CONTAINER_SIZE: 32,
   MAP_ZOOM_DEFAULT: 13,
   MAP_ZOOM_MIN: 8,
@@ -224,24 +225,24 @@ export const FIXED_DIMENSIONS = {
  * Brand Colors - Primary Palette
  */
 export const BRAND_COLORS = {
-  PRIMARY: '#4F46E5',
-  SECONDARY: 'var(--la-text-secondary)',
+  PRIMARY: 'var(--la-color-brand)',
+  SECONDARY: 'var(--la-color-text-secondary)',
   WHITE: 'var(--la-color-surface)',
-  BLACK: 'var(--la-color-black)000',
+  BLACK: 'var(--la-bg-dark)',
 } as const;
 
 /**
  * UI State Colors
  */
 export const UI_COLORS = {
-  INFO_SUBTLE: '#EBF5FF',
+  INFO_SUBTLE: 'var(--la-color-brand-background)',
   INFO_DEFAULT: 'var(--la-color-primary)',
-  NEUTRAL_LIGHT: '#F3F4F6',
-  NEUTRAL_DEFAULT: 'var(--la-text-secondary)',
-  NEUTRAL_DARK: 'var(--la-color-gray-dark)',
-  BORDER_DEFAULT: '#E5E7EB',
-  SURFACE_DEFAULT: '#F9FAFB',
-  TEXT_TERTIARY: 'var(--la-text-muted)',
+  NEUTRAL_LIGHT: 'var(--la-color-surface-secondary)',
+  NEUTRAL_DEFAULT: 'var(--la-color-text-secondary)',
+  NEUTRAL_DARK: 'var(--la-color-text-primary)',
+  BORDER_DEFAULT: 'var(--la-border-primary)',
+  SURFACE_DEFAULT: 'var(--la-color-surface-hover)',
+  TEXT_TERTIARY: 'var(--la-color-text-muted)',
 } as const;
 
 
@@ -366,7 +367,7 @@ export const CONFIG = {
     debounceMs: 500,
     measurementPrecision: 2,
     defaultStrokeColor: 'var(--la-color-primary)',
-    defaultFillColor: 'rgba(59, 130, 246, 0.1)',
+    defaultFillColor: 'var(--la-color-brand-light)',
     defaultStrokeWidth: 2,
   },
   osm: {

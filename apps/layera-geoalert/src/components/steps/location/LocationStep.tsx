@@ -14,7 +14,7 @@ import React, { useCallback, useState, useEffect } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Text } from '@layera/typography';
 import { Stack, Box, Flex } from '@layera/layout';
-import { SPACING_SCALE, CSS_DESIGN_TOKENS } from '@layera/constants';
+import { SPACING_SCALE, CSS_DESIGN_TOKENS, FIXED_DIMENSIONS } from '@layera/constants';
 // import { useGeocode } from '@layera/geocoding';
 import { Input } from '@layera/forms';
 import { BaseCard } from '@layera/cards';
@@ -467,7 +467,7 @@ export const LocationStep: React.FC<LocationStepProps> = ({
           {/* Search Results */}
           {results.length > 0 && (
             <Box
-              maxHeight="calc(100vh - 400px)"
+              maxHeight={`calc(100vh - ${FIXED_DIMENSIONS.DROPDOWN_MAX_HEIGHT}px)`}
               overflow={CSS_DESIGN_TOKENS.positioning['overflow-auto']}
               marginBottom="sm"
             >

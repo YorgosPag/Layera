@@ -37,8 +37,8 @@ export interface FlexProps {
 const GAP_VALUES = {
   xxs: 'var(--la-space-1)',  // 🎯 SST: XXS spacing token
   xs: 'var(--la-space-1)',    // 🎯 SST: XS spacing token
-  sm: `${SPACING_SCALE.SM}px`,    // 8px
-  md: `${SPACING_SCALE.MD}px`,    // 16px
+  sm: 'var(--la-space-2)',    // 8px
+  md: 'var(--la-space-4)',    // 16px
   lg: 'var(--la-space-6)',    // 🎯 SST: LG spacing (24px)
   xl: 'var(--la-space-layout-xl)',    // 🎯 SST: XL spacing token
   xxl: 'var(--la-space-12)',  // 🎯 SST: XXL spacing token

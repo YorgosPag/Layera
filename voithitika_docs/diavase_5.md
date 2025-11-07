@@ -1,67 +1,48 @@
-Ναι. Το SST/tokens σύστημα είναι σωστά κλειδωμένο και hardened. Build/diff/smoke/filters/pinning λειτουργούν.
+Ναι. Προχώρησε σωστά. Η επιβολή SSOT είναι πλέον δεσμευτική.
 
-Μικρές στοχευμένες βελτιώσεις:
+Τι «κλειδώθηκε»
 
-Κάλυψε υποφακέλους στο lint-staged.
+Post-build validator με exit≠0 σε παραβιάσεις.
 
-// package.json
-"lint-staged": {
-  "packages/tokens/src/**": [
-    "pnpm -w run tokens:build",
-    "pnpm -w run tokens:diff",
-    "pnpm -w run tokens:smoke"
-  ]
+Αφαίρεση continue-on-error στο CI.
+
+Ενιαίο namespace μόνο var(--la-*).
+
+ESLint: αποκλεισμός inline styles και CSS-in-JS literals.
+
+Stylelint allow-list/ban για σύνθετες τιμές και mixed values.
+
+Vendor CSS whitelist με ξεχωριστό config.
+
+Μικρές τελικές πινελιές (προαιρετικές αλλά χρήσιμες)
+
+Ρητή απαγόρευση legacy tokens, για «διπλό δίχτυ»:
+
+"declaration-property-value-disallowed-list": {
+  "/.*/": ["/var\\(--layera-/"]
 }
 
 
-Πιάσε drift του dist μετά το build.
+Φορητότητα post-build globs: αν δεις false negatives σε Windows runners, πέρασε patterns χωρίς εξωτερικά quotes:
 
-// package.json
-"verify": "npm run typecheck && npm run lint && npm run policy:check && npm run dup:check && npm run enterprise:validate && npm run tokens:build && npm run tokens:check-diff && npm run tokens:diff && npm run tokens:smoke && npm run lint:tokens"
-
-
-Μην μπλοκάρεις TS deep imports με το exports. Είτε αφαίρεσέ το είτε άνοιξέ το ρητά.
-
-// packages/tokens/package.json
-"exports": {
-  "./css": "./dist/css/tokens.css",
-  "./dist/css/tokens.css": "./dist/css/tokens.css",
-  "./dist/ts/*": "./dist/ts/*"
-}
+npx stylelint apps/**/{dist,build}/**/*.css packages/**/dist/**/*.css .next/**/*.css build/**/*.css --max-warnings 0
 
 
-Σταθεροποίησε EOL και Git.
+CSS-in-JS edge case: αποφυγή «συναρμολόγησης» μονάδων τύπου ${size}px:
 
-git config core.autocrlf input
-git add --renormalize .
-git commit -m "Normalize EOL via .gitattributes"
+ESLint rule έξτρα:
 
+"no-restricted-syntax": [
+  "error",
+  { "selector": "TemplateElement[value.raw=/\\d+px|rgba?\\(|hsla?\\(/]", "message": "Μη tokens CSS literal σε template" }
+]
 
-Καθάρισε το .npmrc (μία μόνο φορά το shared-workspace-lockfile=true και τελικό newline).
+Έλεγχος αποδοχής
 
-Πρόσθεσε .editorconfig για συνέπεια:
+npm run verify:full περνά.
 
-root = true
+CI job αποτυγχάνει αν υπάρχει var(--layera-*) ή οποιοδήποτε literal στις καλυπτόμενες ιδιότητες.
 
-[*]
-charset = utf-8
-end_of_line = lf
-insert_final_newline = true
-indent_style = space
-indent_size = 2
+Post-build validator πιάνει τυχόν literals στα τελικά artifacts.
 
-
-Κλείδωσε το runtime και τοπικά:
-
-# .nvmrc
-v20.17.0
-
-
-Βεβαιώσου ότι το pre-commit σταματά σε αποτυχία.
-Στην αρχή του .husky/pre-commit:
-
-#!/usr/bin/env bash
-set -e
-
-
-Αν εφαρμόσεις τα παραπάνω, θεωρείται πλήρως θωρακισμένο για CI/CD και κλιμάκωση.
+Με αυτά, θεωρώ το σύστημα πρακτικά αδιάτρητο.

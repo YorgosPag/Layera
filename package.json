@@ -19,7 +19,10 @@
     "test": "npm run test --workspaces --if-present",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
-    "lint:css": "stylelint \"**/*.{css,scss}\"",
+    "lint:css": "stylelint \"**/*.{css,scss}\" --allow-empty-input --max-warnings 0",
+    "lint:css:ci": "stylelint \"**/*.{css,scss}\" --allow-empty-input --max-warnings 0 --formatter json --output-file stylelint-report.json || true",
+    "lint:css:vendor": "stylelint \"node_modules/{leaflet,react-select,tippy.js}/**/*.css\" --config .stylelintrc.vendor --allow-empty-input",
+    "fix:css": "stylelint \"**/*.{css,scss}\" --fix --allow-empty-input",
     "policy:check": "echo '✅ TIER 1 Rules handled by pre-commit hooks'",
     "dup:check": "jscpd --pattern \"**/*.{ts,tsx,js,jsx,css,scss}\" -t 0 --ignore \"**/dist/**,**/node_modules/**,packages/tokens/**,packages/styles/**,**/*.svg\"",
     "validation:critical": "node scripts/domains/validation/critical-validation.js",
@@ -49,7 +52,19 @@
     "tokens:smoke": "node scripts/tokens-smoke-test.mjs",
     "tokens:check-diff": "git diff --quiet -- packages/tokens/dist/css/tokens.css || (echo \"Tokens CSS changed. Ensure tokens.json updated.\" && exit 1)",
     "lint:tokens": "node scripts/no-literals-check.mjs",
-    "verify": "npm run typecheck && npm run lint && npm run policy:check && npm run dup:check && npm run enterprise:validate && npm run tokens:build && npm run tokens:check-diff && npm run tokens:diff && npm run tokens:smoke && npm run lint:tokens",
+    "audit:css-origin": "node scripts/audit-css-origin.mjs",
+    "validate:post-build": "node scripts/post-build-css-validation.mjs",
+    "codemod:css-tokens": "node scripts/css-tokens-codemod.mjs",
+    "codemod:css-tokens:ci": "node scripts/css-tokens-codemod.mjs --json > codemod-report.json",
+    "ssot:check": "node scripts/ssot-compliance-check.mjs",
+    "ssot:brief": "node scripts/ssot-compliance-brief.mjs",
+    "ssot:file": "node scripts/ssot-compliance-file.mjs",
+    "ssot:validate": "npm run ssot:check",
+    "ssot:enforce": "npm run ssot:check && echo '✅ SSOT Compliance verified'",
+    "verify": "npm run typecheck && npm run lint && npm run policy:check && npm run dup:check && npm run enterprise:validate && npm run tokens:build && npm run tokens:check-diff && npm run tokens:diff && npm run tokens:smoke && npm run lint:tokens && npm run lint:css && npm run audit:css-origin && npm run ssot:check",
+    "verify:full": "npm run verify && npm run build && npm run validate:post-build",
+    "ci:compliance": "node scripts/ci-compliance-check.mjs",
+    "ci:full": "npm run lint:css && npm run audit:css-origin && npm run build && npm run validate:post-build",
     "clean": "npm run clean --workspaces --if-present && rimraf node_modules",
     "fresh-install": "npm run clean && npm install",
     "prepare": "husky",
@@ -82,6 +97,9 @@
     "node": "20.17.x",
     "npm": ">=9.0.0"
   },
+  "overrides": {
+    "style-dictionary": "4.4.0"
+  },
   "keywords": [
     "monorepo",
     "authentication",
@@ -97,6 +115,9 @@
       "pnpm -w run tokens:build",
       "pnpm -w run tokens:diff",
       "pnpm -w run tokens:smoke"
+    ],
+    "**/*.{css,scss}": [
+      "npm run lint:css"
     ]
   }
 }

@@ -7,7 +7,7 @@ import { Button } from '@layera/buttons';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, FlexColumn, Box } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
-// import { CheckIcon, SettingsIcon, CloseIcon } from '@layera/icons'; // DISABLED: Export issues
+import { CheckIcon, SettingsIcon, CloseIcon } from '@layera/icons';
 import QuickActions from './QuickActions';
 
 /**
@@ -94,9 +94,9 @@ const NewDashboard: React.FC = () => {
                 >
                   <Box textAlign="center" padding="md">
                     {user.emailVerified ? (
-                      <span style={{fontSize: '24px'}}>✅</span>
+                      <CheckIcon />
                     ) : (
-                      <span style={{fontSize: '24px'}}>❌</span>
+                      <CloseIcon />
                     )}
                   </Box>
                 </DashboardCard>
@@ -111,9 +111,9 @@ const NewDashboard: React.FC = () => {
                 >
                   <Box textAlign="center" padding="md">
                     {user.layeraClaims?.mfaVerified ? (
-                      <span style={{fontSize: '24px'}}>✅</span>
+                      <CheckIcon />
                     ) : (
-                      <span style={{fontSize: '24px'}}>❌</span>
+                      <CloseIcon />
                     )}
                   </Box>
                 </DashboardCard>
@@ -161,15 +161,9 @@ const NewDashboard: React.FC = () => {
                     )}
                     <Box>
                       <strong>{t('data.fields.userId')}:</strong>
-                      <span
-                        style={{
-                          fontSize: 'var(--la-font-size-sm)',
-                          color: 'var(--la-text-secondary)',
-                          fontFamily: 'var(--la-font-family-mono)'
-                        }}
-                      >
+                      <Box as="code" fontSize="sm" color="text.secondary">
                         {user.uid}
-                      </span>
+                      </Box>
                     </Box>
                     <Box>
                       <strong>{t('data.fields.accountCreated')}:</strong> {user.metadata?.creationTime ? new Date(user.metadata.creationTime).toLocaleString('el-GR') : t('data.fields.notAvailable')}
@@ -194,7 +188,7 @@ const NewDashboard: React.FC = () => {
                     clickable
                     onClick={(): void => navigate('/mfa-enroll')}
                   >
-                    <span style={{fontSize: '24px'}}>⚙️</span>
+                    <SettingsIcon />
                     <span>{t('dashboard.actionDescriptions.enableMfa')}</span>
                   </DashboardCard>
                 </DashboardGrid>
@@ -213,8 +207,8 @@ const NewDashboard: React.FC = () => {
                     clickable
                     onClick={(): void => navigate('/admin/roles')}
                   >
-                    <span style={{fontSize: '24px'}}>⚙️</span>
-                    <span>Manage user roles and permissions</span>
+                    <SettingsIcon />
+                    <span>{t('dashboard.admin.manageRoles')}</span>
                   </DashboardCard>
                 </DashboardGrid>
                 </DashboardSection>

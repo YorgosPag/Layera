@@ -75,6 +75,35 @@ module.exports = {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn"
   },
+  overrides: [
+    {
+      files: ["**/*.{tsx,jsx}"],
+      plugins: ["react"],
+      rules: {
+        "react/forbid-dom-props": ["error", { "forbid": ["style"] }],
+        "react/forbid-component-props": ["error", { "forbid": ["style"] }],
+        "no-restricted-syntax": [
+          "error",
+          {
+            "selector": "TaggedTemplateExpression[tag.name='styled'] TemplateLiteral",
+            "message": "Απαγόρευση literals σε styled-components. Χρησιμοποίησε design tokens var(--la-*)"
+          },
+          {
+            "selector": "TaggedTemplateExpression[tag.object.name='styled'] TemplateLiteral",
+            "message": "Απαγόρευση literals σε styled-components. Χρησιμοποίησε design tokens var(--la-*)"
+          },
+          {
+            "selector": "CallExpression[callee.name='css'] TemplateLiteral",
+            "message": "Απαγόρευση literals σε Emotion css. Χρησιμοποίησε design tokens var(--la-*)"
+          },
+          {
+            "selector": "TemplateElement[value.raw=/\\d+px|rgba?\\(|hsla?\\(/]",
+            "message": "Μη tokens CSS literal σε template"
+          }
+        ]
+      }
+    }
+  ],
   settings: {
     react: {
       version: "detect"

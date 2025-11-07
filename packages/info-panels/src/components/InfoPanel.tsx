@@ -14,6 +14,7 @@ import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { Text } from '@layera/typography';
 import { Box } from '@layera/layout';
 import type { CategoryType } from '../hooks/useCategoryTheming';
+import '../styles/InfoPanel.css';
 
 export interface InfoPanelProps {
   /** Unique identifier for the panel */
@@ -204,41 +205,14 @@ export const InfoPanel = React.memo<InfoPanelProps>(({
   return (
     <Box
       ref={panelRef}
-      className="info-panel-stable"
-      style={{
-        position: 'fixed',
-        ...mobileStyles.position,
-        backgroundColor: categoryTheme.backgroundColor,
-        border: `var(--la-border-width-default, 1px) solid ${categoryTheme.borderColor}`,
-        boxShadow: BOX_SHADOW_SCALE.cardDefault,
-        borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
-        padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XL + SPACING_SCALE.SM}px ${SPACING_SCALE.MD}px ${SPACING_SCALE.MD}px`,
-        minHeight: 'var(--la-min-height-auto, auto)',
-        maxHeight: mobileStyles.maxHeight,
-        overflow: mobileStyles.overflow as 'auto',
-        zIndex: mobileStyles.zIndex
-      }}
+      className="info-panel-stable layera-info-panel-container"
       onClick={(e: React.FormEvent<HTMLFormElement>) => e.stopPropagation()}
     >
       {/* Close button */}
       <button
         type="button"
         aria-label="Close"
-        style={{
-          position: 'absolute',
-          top: 'var(--la-space-1)', // 🎯 SST: XS spacing
-          right: 'var(--la-space-1)', // 🎯 SST: XS spacing
-          width: 'var(--la-space-6)', // 🎯 SST: LG size (24px)
-          height: 'var(--la-space-6)', // 🎯 SST: LG size (24px)
-          border: 'var(--la-border-none, none)',
-          borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
-          backgroundColor: 'var(--color-bg-surface-overlay)',
-          color: 'var(--la-color-white, var(--la-color-white))',
-          fontWeight: 'var(--la-font-bold)',
-          lineHeight: 'var(--la-line-height-none, 1)',
-          zIndex: mobileStyles.zIndex + 1,
-          cursor: 'var(--la-cursor-pointer, pointer)'
-        }}
+        className="layera-info-panel-close-button"
         onClick={onClose}
       >
         ×

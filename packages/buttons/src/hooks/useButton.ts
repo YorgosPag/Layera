@@ -241,22 +241,22 @@ export const useButton = () => {
         }
       },
       elevated: {
-        background: 'linear-gradient(145deg, #ffffff 0%, #f8fafc 100%)',
+        background: 'var(--la-color-surface)',
         color: 'var(--la-text-primary)',
-        border: '1px solid rgba(0, 0, 0, 0.08)',
+        border: 'var(--la-border-primary)',
         hover: {
-          background: 'linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%)',
+          background: 'var(--la-color-surface-hover)',
           color: 'var(--la-text-primary)',
-          border: '1px solid rgba(0, 0, 0, 0.08)'
+          border: 'var(--la-border-primary)'
         },
         active: {
-          background: 'linear-gradient(145deg, #f1f5f9 0%, #e2e8f0 100%)',
+          background: 'var(--la-color-surface-active)',
           color: 'var(--la-text-primary)',
-          border: '1px solid rgba(0, 0, 0, 0.12)'
+          border: 'var(--la-border-strong)'
         },
         focus: {
-          outline: '2px solid var(--la-bg-primary)',
-          ring: '0 0 0 2px rgba(59, 130, 246, 0.1)'
+          outline: 'var(--la-border-width-xs) solid var(--la-bg-primary)',
+          ring: '0 0 0 var(--la-border-width-xs) var(--la-color-focus-ring)'
         },
         disabled: {
           background: 'var(--la-bg-tertiary)',
@@ -265,22 +265,22 @@ export const useButton = () => {
         }
       },
       neumorphic: {
-        background: '#e2e8f0',
+        background: 'var(--la-color-surface-secondary)',
         color: 'var(--la-text-primary)',
         border: 'none',
         hover: {
-          background: '#e2e8f0',
+          background: 'var(--la-color-surface-secondary)',
           color: 'var(--la-text-primary)',
           border: 'none'
         },
         active: {
-          background: '#e2e8f0',
+          background: 'var(--la-color-surface-secondary)',
           color: 'var(--la-text-primary)',
           border: 'none'
         },
         focus: {
-          outline: '2px solid var(--la-bg-primary)',
-          ring: '0 0 0 2px rgba(59, 130, 246, 0.1)'
+          outline: 'var(--la-border-width-xs) solid var(--la-bg-primary)',
+          ring: '0 0 0 var(--la-border-width-xs) var(--la-color-focus-ring)'
         },
         disabled: {
           background: 'var(--la-bg-tertiary)',
@@ -289,22 +289,22 @@ export const useButton = () => {
         }
       },
       gradient: {
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        color: 'white',
+        background: 'var(--la-color-gradient-primary)',
+        color: 'var(--la-color-white)',
         border: 'none',
         hover: {
-          background: 'linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%)',
-          color: 'white',
+          background: 'var(--la-color-gradient-primary-hover)',
+          color: 'var(--la-color-white)',
           border: 'none'
         },
         active: {
-          background: 'linear-gradient(135deg, #4c51bf 0%, #553c9a 100%)',
-          color: 'white',
+          background: 'var(--la-color-gradient-primary-active)',
+          color: 'var(--la-color-white)',
           border: 'none'
         },
         focus: {
-          outline: '2px solid rgba(102, 126, 234, 0.5)',
-          ring: '0 0 0 2px rgba(102, 126, 234, 0.2)'
+          outline: 'var(--la-border-width-xs) solid var(--la-color-focus)',
+          ring: '0 0 0 var(--la-border-width-xs) var(--la-color-focus-ring)'
         },
         disabled: {
           background: 'var(--la-bg-tertiary)',
@@ -337,22 +337,22 @@ export const useButton = () => {
         }
       },
       soft: {
-        background: 'rgba(59, 130, 246, 0.1)',
+        background: 'var(--la-color-info-soft)',
         color: 'var(--la-bg-info)',
         border: 'none',
         hover: {
-          background: 'rgba(59, 130, 246, 0.15)',
-          color: 'color-mix(in srgb, var(--la-bg-info) 80%, black 20%)',
+          background: 'var(--la-color-info-soft-hover)',
+          color: 'var(--la-color-info-dark)',
           border: 'none'
         },
         active: {
-          background: 'rgba(59, 130, 246, 0.2)',
-          color: 'color-mix(in srgb, var(--la-bg-info) 70%, black 30%)',
+          background: 'var(--la-color-info-soft-active)',
+          color: 'var(--la-color-info-darker)',
           border: 'none'
         },
         focus: {
-          outline: '2px solid var(--la-bg-info)',
-          ring: '0 0 0 2px rgba(59, 130, 246, 0.1)'
+          outline: 'var(--la-border-width-xs) solid var(--la-bg-info)',
+          ring: '0 0 0 var(--la-border-width-xs) var(--la-color-focus-ring)'
         },
         disabled: {
           background: 'var(--la-bg-tertiary)',
@@ -371,7 +371,7 @@ export const useButton = () => {
       sm: '0.25rem',
       md: '0.375rem',
       lg: 'var(--la-space-2)', // 🎯 SST: SM spacing
-      full: '9999px'
+      full: 'var(--la-radius-full)'
     }
   }), []);
 

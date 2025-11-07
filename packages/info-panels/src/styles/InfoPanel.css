@@ -1,0 +1,59 @@
+/**
+ * InfoPanel CSS - Enterprise SSOT Compliant Styles
+ * Replaces inline styles with design token based CSS
+ */
+
+.layera-info-panel-container {
+  position: fixed;
+  bottom: var(--la-space-4); /* 16px */
+  left: var(--la-space-4); /* 16px */
+  right: var(--la-space-4); /* 16px */
+  background-color: var(--la-color-surface);
+  border: var(--la-border-width-default) solid var(--la-color-border-primary);
+  box-shadow: var(--la-shadow-lg);
+  border-radius: var(--la-radius-card);
+  padding: var(--la-space-4) var(--la-space-8) var(--la-space-4) var(--la-space-4);
+  min-height: auto;
+  max-height: calc(100vh - var(--la-space-32)); /* 512px max */
+  overflow: auto;
+  z-index: 1000;
+}
+
+.layera-info-panel-close-button {
+  position: absolute;
+  top: var(--la-space-1); /* 4px */
+  right: var(--la-space-1); /* 4px */
+  width: var(--la-space-6); /* 24px */
+  height: var(--la-space-6); /* 24px */
+  border: none;
+  border-radius: var(--la-radius-full);
+  background-color: var(--la-color-surface-overlay);
+  color: var(--la-color-white);
+  font-weight: var(--la-font-weight-bold);
+  line-height: 1;
+  z-index: 1001;
+  cursor: pointer;
+  transition: background-color var(--la-transition-fast);
+}
+
+.layera-info-panel-close-button:hover {
+  background-color: var(--la-color-error);
+}
+
+.layera-info-panel-close-button:focus {
+  outline: var(--la-border-width-xs) solid var(--la-color-focus);
+  outline-offset: var(--la-space-1);
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .layera-info-panel-container {
+    position: fixed;
+    bottom: var(--la-space-6);
+    left: var(--la-space-6);
+    right: auto;
+    width: auto;
+    min-width: var(--la-space-64); /* 256px */
+    max-width: var(--la-space-96); /* 384px */
+  }
+}

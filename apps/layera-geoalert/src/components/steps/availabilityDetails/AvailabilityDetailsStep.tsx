@@ -86,14 +86,14 @@ export const AvailabilityDetailsStep: React.FC<AvailabilityDetailsStepProps> = (
     flexDirection: 'column',
     gap: 'var(--la-cards-gap)',
     padding: '0',
-    maxHeight: 'calc(100vh - 200px)',
+    maxHeight: 'calc(100vh - var(--la-space-50))', // 200px replacement
     overflowY: 'auto'
   };
 
   const hasRequiredFields = Boolean(details.date && details.duration > 0);
 
   return (
-    <Box style={containerStyles}>
+    <Box className="layera-availability-details-container">
       {!showForm ? (
         <>
           {/* Show Form Card */}

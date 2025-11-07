@@ -4,7 +4,7 @@
 }
 
 .dashboard-nav {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--la-color-primary) 0%, var(--la-color-secondary) 100%);
   padding: 15px 30px;
   display: flex;
   justify-content: space-between;
@@ -120,12 +120,12 @@
 }
 
 .status-verified {
-  color: #28a745;
+  color: var(--la-color-success);
   font-weight: 500;
 }
 
 .status-unverified {
-  color: #dc3545;
+  color: var(--la-color-error);
   font-weight: 500;
 }
 

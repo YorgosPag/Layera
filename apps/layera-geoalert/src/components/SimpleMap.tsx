@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE, getCardOrangeColor } from '@layera/constants';
+import { Box, FlexCenter } from '@layera/layout';
 
 const SimpleMap: React.FC = () => {
   const mapInitialized = useRef(false);
@@ -53,28 +54,20 @@ const SimpleMap: React.FC = () => {
   }, []);
 
   return (
-    <div style={{ height: 'var(--la-width-full)', width: 'var(--la-width-full)' }}>
-      <div
+    <Box width="full" height="full">
+      <Box
         id="simple-map"
-        style={{
-          height: `${SPACING_SCALE.CONTAINER_SM}px`,
-          width: 'var(--la-width-full)',
-          backgroundColor: getCardOrangeColor(), // 🔴 SST: Map background από μοναδική πηγή αλήθειας
-          border: '1px solid var(--la-border-primary)',
-          borderRadius: `${BORDER_RADIUS_SCALE.SM}px`
-        }}
+        width="full"
+        height="container-sm"
+        backgroundColor="warning"
+        border="primary"
+        borderRadius="sm"
       >
-        <div style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: 'var(--la-width-full)',
-          color: 'var(--la-text-secondary)'
-        }}>
+        <FlexCenter height="full" color="secondary">
           🗺️ Loading Map...
-        </div>
-      </div>
-    </div>
+        </FlexCenter>
+      </Box>
+    </Box>
   );
 };
 

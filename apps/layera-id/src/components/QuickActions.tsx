@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
-// import { UserIcon, SettingsIcon } from '@layera/icons'; // DISABLED: Export issues
+import { UserIcon, SettingsIcon } from '@layera/icons';
 
 interface PageItem {
   key: string;
@@ -26,25 +26,25 @@ const QuickActions: React.FC = () => {
       key: 'dashboard',
       title: t('navigation.backToDashboard'),
       path: '/dashboard',
-      icon: <span style={{fontSize: '24px'}}>👤</span>
+      icon: <UserIcon />
     },
     {
       key: 'account',
       title: t('navigation.account'),
       path: '/account',
-      icon: <span style={{fontSize: '24px'}}>👤</span>
+      icon: <UserIcon />
     },
     {
       key: 'settings',
       title: t('navigation.settings'),
       path: '/settings',
-      icon: <span style={{fontSize: '24px'}}>⚙️</span>
+      icon: <SettingsIcon />
     },
     {
       key: 'data',
       title: t('navigation.data'),
       path: '/data',
-      icon: <span style={{fontSize: '24px'}}>⚙️</span>
+      icon: <SettingsIcon />
     }
   ];
 

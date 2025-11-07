@@ -240,13 +240,13 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
     <Box className={`layera-file-uploader ${className}`}>
         {/* Upload Controls */}
         {hasFiles && (
-          <Box className={`mb-6 p-4 rounded-lg ${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-50'}`}>
+          <Box className={`mb-6 p-4 rounded-lg ${theme === 'dark' ? 'layera-file-uploader-container-dark' : 'layera-file-uploader-container'}`}>
             <Box className="flex items-center justify-between mb-4">
               <Box>
                 <Typography size="lg" className="mb-1">
                   {t('file-upload.upload-summary')}
                 </Typography>
-                <Typography size="sm" className="text-gray-500">
+                <Typography size="sm" className="layera-file-uploader-text-muted">
                   {t('file-upload.files-summary', {
                     total: summary.total,
                     completed: summary.completed,
@@ -311,7 +311,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
 
             {/* Overall Progress */}
             {isUploading && summary.total > 0 && (
-              <Box className="w-full bg-gray-200 rounded-full h-2">
+              <Box className="layera-file-uploader-progress-bg w-full rounded-full h-2">
                 <Box
                   className="bg-blue-500 h-2 rounded-full transition-all duration-300"
                   width={`${(summary.completed / summary.total) * 100}%`}

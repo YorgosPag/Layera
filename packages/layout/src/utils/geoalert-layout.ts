@@ -116,11 +116,11 @@ export function createGeoAlertInfoPanelStyles(
     // Desktop: fixed width, top-right corner
     return {
       position: 'fixed',
-      top: '24px',
-      right: '24px',
-      width: '320px',
+      top: 'var(--la-space-6)', // 24px
+      right: 'var(--la-space-6)', // 24px
+      width: 'var(--la-width-80)', // 320px
       zIndex: 10000,
-      maxHeight: '400px',
+      maxHeight: 'var(--la-height-96)', // 400px
       overflow: 'auto',
       transition: 'all 250ms ease-in-out'
     };

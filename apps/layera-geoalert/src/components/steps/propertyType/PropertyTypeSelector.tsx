@@ -104,34 +104,37 @@ export const PropertyTypeSelector: React.FC<PropertyTypeSelectorProps> = ({
       <Flex direction="column" gap="md">
         {/* Τίτλος */}
         <Box textAlign="center">
-          <h2 style={{
-            fontSize: 'var(--la-font-size-xl)',
-            fontWeight: 'var(--la-font-weight-semibold)',
-            color: 'var(--la-text-primary)',
-            margin: '0 0 var(--la-space-2) 0'
-          }}>
+          <Heading
+            size="xl"
+            weight="semibold"
+            color="primary"
+            marginBottom="2"
+            margin="0"
+          >
             {t('propertyType.title', { defaultValue: 'Καταχώρηση Ακινήτου για Ενοικίαση' })}
-          </h2>
-          <p style={{
-            fontSize: 'var(--la-font-size-sm)',
-            color: 'var(--la-text-secondary)',
-            margin: '0 0 var(--la-space-4) 0'
-          }}>
+          </Heading>
+          <Text
+            size="sm"
+            color="secondary"
+            margin="0"
+            marginBottom="4"
+          >
             {t('propertyType.selectType', { defaultValue: 'Επιλέξτε τον τύπο του ακινήτου από την παρακάτω λίστα' })}
-          </p>
+          </Text>
         </Box>
 
         {/* Property Type Combo Box - SST Select Integration */}
         <Box>
-          <label style={{
-            display: 'block',
-            fontSize: 'var(--la-font-size-base)',
-            fontWeight: 'var(--la-font-weight-medium)',
-            color: 'var(--la-text-primary)',
-            marginBottom: 'var(--la-space-2)'
-          }}>
+          <Text
+            as="label"
+            display="block"
+            fontSize="base"
+            fontWeight="medium"
+            color="primary"
+            marginBottom="2"
+          >
             {t('propertyType.label', { defaultValue: 'Τύπος Ακινήτου' })}
-          </label>
+          </Text>
 
           <Select
             value={selectedPropertyType}
@@ -149,15 +152,15 @@ export const PropertyTypeSelector: React.FC<PropertyTypeSelectorProps> = ({
 
         {/* Helper Text */}
         <Box textAlign="center">
-          <p style={{
-            fontSize: 'var(--la-font-size-xs)',
-            color: 'var(--la-text-tertiary)',
-            margin: 0
-          }}>
+          <Text
+            fontSize="xs"
+            color="tertiary"
+            margin="0"
+          >
             {t('propertyType.helper', {
               defaultValue: 'Η επιλογή σας θα καθορίσει τα επόμενα βήματα της καταχώρησης'
             })}
-          </p>
+          </Text>
         </Box>
       </Flex>
     </Box>

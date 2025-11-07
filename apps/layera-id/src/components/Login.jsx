@@ -6,9 +6,9 @@ import { Button } from '@layera/buttons';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, FlexCenter, Box, Flex } from '@layera/layout';
+import { Text } from '@layera/typography';
 import { DashboardCard } from '@layera/cards';
 import { FORM_TYPES, FORM_SIZES, SPACING_SCALE, BORDER_RADIUS_SCALE, getCardInfoColor, getCardInfoBorder } from '@layera/constants';
-// import { Text } from '@layera/typography'; // Temporarily disabled until package is fixed
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -82,12 +82,9 @@ const Login = () => {
         >
           <DashboardCard
             title={t('auth.login')}
+            variant="info"
             width="full"
             maxWidth="450px"
-            style={{
-              backgroundColor: getCardInfoColor(), // 🔴 SST: Login form color από μοναδική πηγή αλήθειας
-              border: `3px solid ${getCardInfoBorder()}` // 🔲 SST: Περίγραμμα από μοναδική πηγή αλήθειας #b929c6
-            }}
           >
           {error && (
             <Box
@@ -96,12 +93,10 @@ const Login = () => {
               marginBottom="md"
               fontSize="sm"
               padding="var(--la-space-sm-plus-xs)" // 🎯 SST: Complex spacing token
-              style={{
-                background: "var(--la-bg-danger-subtle, color-mix(in srgb, var(--la-bg-danger) 10%, transparent))",
-                border: "1px solid var(--la-border-danger-subtle, color-mix(in srgb, var(--la-bg-danger) 30%, transparent))"
-              }}
+              background="danger-subtle"
+              border="danger-subtle"
             >
-              <span style={{ fontSize: 'var(--la-font-size-sm)', color: 'var(--la-color-danger)' }}>{error}</span>
+              <Text size="sm" color="danger">{error}</Text>
             </Box>
           )}
 
@@ -169,21 +164,18 @@ const Login = () => {
               backgroundColor="border"
               top="50%"
               height="1px"
-              style={{
-                background: 'var(--la-border-primary)',
-                zIndex: 1
-              }}
+              background="border-primary"
+              zIndex="1"
             />
-            <span
-              style={{
-                backgroundColor: 'var(--la-bg-primary)',
-                padding: '0 var(--la-space-md-minus-xs-half)', // 🎯 SST: Complex spacing token
-                position: 'relative',
-                zIndex: 2
-              }}
+            <Box
+              as="span"
+              backgroundColor="primary"
+              paddingX="md-minus-xs-half"
+              position="relative"
+              zIndex="2"
             >
               ή
-            </span>
+            </Box>
           </Box>
 
           <Button
@@ -199,7 +191,7 @@ const Login = () => {
                 setError(t('errors.authError'));
               }
             }}
-            style={{ marginBottom: `${SPACING_SCALE.MD}px` }}
+            marginBottom="md"
           >
             {t('auth.signInWithGoogle')}
           </Button>
@@ -209,32 +201,31 @@ const Login = () => {
             textAlign="center"
             fontSize="sm"
           >
-            <Link
+            <Text
+              as={Link}
               to="/forgot-password"
-              color="var(--la-color-info, var(--la-bg-info))"
-              textDecoration="var(--la-text-decoration-none, none)"
-              fontWeight="var(--la-font-weight-medium, 500)"
+              color="info"
+              textDecoration="none"
+              fontWeight="medium"
             >
               {t('auth.forgotPassword')}
-            </Link>
-            <p
-              style={{
-                margin: `${SPACING_SCALE.SM}px 0`,
-                color: 'var(--la-text-secondary)'
-              }}
+            </Text>
+            <Text
+              as="p"
+              marginY="sm"
+              color="secondary"
             >
               {t('auth.noAccount')} {' '}
-              <Link
+              <Text
+                as={Link}
                 to="/register"
-                style={{
-                  color: 'var(--la-color-info, var(--la-bg-info))',
-                  textDecoration: 'none',
-                  fontWeight: 500
-                }}
+                color="info"
+                textDecoration="none"
+                fontWeight="medium"
               >
                 {t('auth.register')}
-              </Link>
-            </p>
+              </Text>
+            </Text>
           </Box>
         </DashboardCard>
         </FlexCenter>

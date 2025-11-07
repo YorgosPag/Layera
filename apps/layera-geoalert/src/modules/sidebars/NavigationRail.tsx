@@ -2,6 +2,7 @@ import React from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Button } from '@layera/buttons';
 import { BUTTON_VARIANTS, BUTTON_SIZES } from '@layera/constants';
+import './NavigationRail.css';
 import { HomeIcon, SearchIcon, SettingsIcon } from '@layera/icons';
 import { Box } from '@layera/layout';
 
@@ -44,7 +45,7 @@ const NavigationRail: React.FC<NavigationRailProps> = ({
   const { t } = useLayeraTranslation();
 
   return (
-    <aside className="w-16 bg-gray-800 text-white flex flex-col items-center py-4 space-y-6 flex-shrink-0 z-30">
+    <aside className="layera-navigation-rail w-16 flex flex-col items-center py-4 space-y-6 flex-shrink-0 z-30">
       {/* Main Action Button */}
       <Button
         variant={BUTTON_VARIANTS.PRIMARY}

@@ -1,0 +1,5 @@
+/* MapCore Component Styles - SSOT Design Tokens */
+
+.layera-mapcore-container {
+  background-color: var(--la-color-gray-400);
+}

@@ -313,20 +313,17 @@ export const GeoMap: React.FC<GeoMapProps> = ({
       {showCatEls && (
         <Box
           position="fixed"
-          style={{
-            inset: 0, // σωστό πλήρες κάλυμμα
-            backgroundColor: 'var(--la-overlay-background)', // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
-            backdropFilter: `blur(var(--la-blur-xs))`, // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
-            zIndex: 'var(--la-z-index-modal)', // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
-            padding: 'var(--la-space-lg)', // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
-            overflowY: 'auto',
-            scrollbarGutter: 'stable both-edges', // αποφεύγει οπτικό drift
-            display: 'flex',
-            alignItems: isMobile ? 'flex-start' : 'center',
-            justifyContent: 'center',
-            boxSizing: 'border-box',
-            border: 'var(--la-border-width-md) solid var(--la-card-border-color)' // 🎯 SST: CSS Token - Μοναδική πηγή αλήθειας
-          }}
+          inset="0"
+          backgroundColor="overlay"
+          backdropFilter="blur-xs"
+          zIndex="modal"
+          padding="lg"
+          overflowY="auto"
+          display="flex"
+          alignItems={isMobile ? 'flex-start' : 'center'}
+          justifyContent="center"
+          boxSizing="border-box"
+          border="md"
         >
           <StepOrchestrator
             currentStepId={stepContext.currentStepId}

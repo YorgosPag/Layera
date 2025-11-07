@@ -10,7 +10,7 @@ import { useLayeraTranslation } from '@layera/tolgee';
 import { PropertyDetailsForm } from './PropertyDetailsForm';
 import { BaseCard } from '@layera/cards';
 import { CheckIcon, CheckIcon as FormIcon } from '@layera/icons';
-import { getCardInfoColor } from '@layera/constants';
+import { getCardInfoColor, FIXED_DIMENSIONS } from '@layera/constants';
 import type { StepProps } from '../types';
 import type { PropertyDetails, PropertyDetailsStepData, PropertyDetailsFormField } from './types';
 
@@ -176,7 +176,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
     flexDirection: 'column',
     gap: 'var(--la-cards-gap)',
     padding: '0',
-    maxHeight: 'calc(100vh - 200px)',
+    maxHeight: `calc(100vh - ${FIXED_DIMENSIONS.MIN_BUTTON_WIDTH}px)`,
     overflowY: 'auto'
   };
 

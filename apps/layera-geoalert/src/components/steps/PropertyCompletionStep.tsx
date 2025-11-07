@@ -159,52 +159,46 @@ export const PropertyCompletionStep: React.FC<PropertyCompletionStepProps> = ({
   };
 
   return (
-    <div
+    <Box
       style={{
         ...getWorkflowCardContainerStyle(),
-        backdropFilter: 'none',
-        boxShadow: `var(--la-shadow-xl)`,
-        display: 'block',
-        width: 'var(--la-width-full)', // 🎯 SST: Full width
-        animation: `slideIn ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`,
-        border: `var(--la-border-width-md) solid ${getCardInfoBorder()}` // 🎯 SST: Border width token
+        animation: `slideIn ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`
       }}
+      backdropFilter="none"
+      boxShadow="xl"
+      display="block"
+      width="full"
+      border={`var(--la-border-width-md) solid ${getCardInfoBorder()}`}
     >
-      <Flex direction="column" gap="xl" style={{ alignItems: 'center' }}>
+      <Flex direction="column" gap="xl" alignItems="center">
         {/* Header */}
         <Box textAlign={MENU_POSITIONS.CENTER}>
-          <Heading size="lg" marginBottom="sm" style={{
-            color: 'var(--color-text-primary)'
-          }}>
+          <Heading size="lg" marginBottom="sm" color="primary">
             {getWorkflowTitle()}
           </Heading>
-          <Text size="md" style={{
-            color: 'var(--color-text-secondary)'
-          }}>
+          <Text size="md" color="secondary">
             {getWorkflowSubtitle()}
           </Text>
         </Box>
 
         {/* Property Summary */}
         <Box
-          style={{
-            backgroundColor: 'var(--la-color-bg-elevated)',
-            padding: 'var(--la-space-4)', // 🎯 SST: Spacing token
-            borderRadius: 'var(--la-radius-lg)', // 🎯 SST: Border radius token
-            border: `var(--la-border-width-sm) solid ${getCardInfoBorder()}`, // 🎯 SST: Border width token
-            width: '100%'
-          }}
+          backgroundColor="elevated"
+          padding="4"
+          borderRadius="lg"
+          border={`var(--la-border-width-sm) solid ${getCardInfoBorder()}`}
+          width="full"
         >
-          <Flex align="center" gap="md" style={{ justifyContent: 'center' }}>
-            <Box style={{ color: getCardPrimaryColor() }}>
+          <Flex align="center" gap="md" justifyContent="center">
+            <Box color={getCardPrimaryColor()}>
               <EditIcon size="md" />
             </Box>
             <Box textAlign="center">
-              <Text size="sm" weight="medium" style={{ color: 'var(--color-text-primary)' }}>
+              <Text size="sm" weight="medium" color="primary">
                 {t(`propertyType.${selectedPropertyType}`) || selectedPropertyType}
               </Text>
               {getPropertySummary() && (
-                <Text size="xs" style={{ color: 'var(--color-text-secondary)' }}>
+                <Text size="xs" color="secondary">
                   {getPropertySummary()}
                 </Text>
               )}
@@ -226,7 +220,7 @@ export const PropertyCompletionStep: React.FC<PropertyCompletionStepProps> = ({
             {t('workflow.completion.remainingSteps') || 'Υπομένουν'} ({completionSteps.length} {t('workflow.preview.steps') || 'βήματα'})
           </Text>
 
-          <Flex direction="column" gap="md" style={{ width: 'var(--la-width-full)', alignSelf: 'stretch' }}> {/* 🎯 SST: Full width */}
+          <Flex direction="column" gap="md" width="full" alignSelf="stretch"> {/* 🎯 SST: Full width */}
             {completionSteps.map((step, index) => {
               const IconComponent = step.icon;
 
@@ -261,26 +255,16 @@ export const PropertyCompletionStep: React.FC<PropertyCompletionStepProps> = ({
                   </FlexCenter>
 
                   {/* Icon */}
-                  <Box style={{ color: getCardPrimaryColor(), flexShrink: 0 }}>
+                  <Box color={getCardPrimaryColor()} flexShrink="0">
                     <IconComponent size="md" />
                   </Box>
 
                   {/* Content */}
-                  <Flex direction="column" gap="xs" style={{
-                    flex: 1,
-                    minWidth: 0,
-                    alignItems: 'flex-start',
-                    justifyContent: 'center'
-                  }}>
-                    <Text size="sm" weight="medium" style={{
-                      color: 'var(--color-text-primary)',
-                      lineHeight: CSS_DESIGN_TOKENS.typography['line-height-tight'],
-                      textAlign: 'left'
-                    }}>
+                  <Flex direction="column" gap="xs" flex="1" minWidth="0" alignItems="flex-start" justifyContent="center">
+                    <Text size="sm" weight="medium" color="primary" lineHeight="tight" textAlign="left">
                       {t(step.titleKey) || `Step ${index + 3}: ${step.id}`}
                     </Text>
-                    <Text size="xs" style={{
-                      color: 'var(--color-text-secondary)',
+                    <Text size="xs" color="secondary"
                       lineHeight: CSS_DESIGN_TOKENS.typography['line-height-normal'],
                       textAlign: 'left'
                     }}>
@@ -305,7 +289,7 @@ export const PropertyCompletionStep: React.FC<PropertyCompletionStepProps> = ({
 
         {/* Actions */}
         <Box textAlign={MENU_POSITIONS.CENTER}>
-          <Flex gap="lg" justifyContent="center" wrap="wrap" style={{ alignItems: 'center' }}>
+          <Flex gap="lg" justifyContent="center" wrap="wrap" alignItems="center">
             <Button
               variant="secondary"
               size="lg"
@@ -327,19 +311,19 @@ export const PropertyCompletionStep: React.FC<PropertyCompletionStepProps> = ({
         {/* Security Footer */}
         <Flex gap="md" justifyContent="center" wrap="wrap">
           <Flex gap="xs" align="center">
-            <ShieldIcon size="xs" style={{ color: 'var(--color-text-tertiary)' }} />
-            <Text size="xs" style={{ color: 'var(--color-text-tertiary)' }}>
+            <ShieldIcon size="xs" color="tertiary" />
+            <Text size="xs" color="tertiary">
               {t('workflow.security.dataProtection') || 'Προστασία Δεδομένων'}
             </Text>
           </Flex>
           <Flex gap="xs" align="center">
-            <LockIcon size="xs" style={{ color: 'var(--color-text-tertiary)' }} />
-            <Text size="xs" style={{ color: 'var(--color-text-tertiary)' }}>
+            <LockIcon size="xs" color="tertiary" />
+            <Text size="xs" color="tertiary">
               {t('workflow.security.encrypted') || 'Κρυπτογραφημένα'}
             </Text>
           </Flex>
         </Flex>
       </Flex>
-    </div>
+    </Box>
   );
 };

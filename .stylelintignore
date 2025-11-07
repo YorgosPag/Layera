@@ -1,7 +1,11 @@
 packages/tokens/**
-packages/styles/**
-**/*.svg
+packages/styles/src/tokens.css
+packages/styles/dist/**
 **/dist/**
+**/build/**
+**/*normalize*.css
+**/*reset*.css
+**/*.svg
 **/node_modules/**
 STEPS/**
 voithitika_docs/**

@@ -13,6 +13,7 @@ import { Button } from '@layera/buttons';
 import { BaseCard } from '@layera/cards';
 import {
   SPACING_SCALE,
+  FIXED_DIMENSIONS,
   useLayeraDesignSystem,
   LayeraThemeProvider
 } from '@layera/constants';
@@ -253,7 +254,7 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({
       {cards.length > 0 && (
         <Box
           display="grid"
-          gridTemplateColumns={deviceProps?.isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))'}
+          gridTemplateColumns={deviceProps?.isMobile ? '1fr' : `repeat(auto-fit, minmax(${FIXED_DIMENSIONS.MIN_CARD_WIDTH}px, 1fr))`}
           gap="md"
         >
           {cards.map((card: unknown) => (

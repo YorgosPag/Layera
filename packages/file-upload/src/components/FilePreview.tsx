@@ -65,12 +65,12 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
     // Enhanced file type detection with CAD support
     switch (category) {
       case 'cad':
-        return <UploadIcon className="w-8 h-8 text-blue-600" />; // CAD files in blue
+        return <UploadIcon className="layera-file-icon-cad w-8 h-8" />; // CAD files
       case 'document':
-        return <UploadIcon className="w-8 h-8 text-red-600" />; // Documents in red
+        return <UploadIcon className="layera-file-icon-document w-8 h-8" />; // Documents
       case 'image':
       case 'vector':
-        return <UploadIcon className="w-8 h-8 text-green-600" />; // Images in green
+        return <UploadIcon className="layera-file-icon-image w-8 h-8" />; // Images
       default:
         return <UploadIcon className="w-8 h-8" />; // Generic icon
     }
@@ -79,17 +79,17 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
   const getStatusColor = (): void => {
     switch (file.status) {
       case 'completed':
-        return 'border-green-500';
+        return 'layera-file-border-image';
       case 'error':
-        return 'border-red-500';
+        return 'layera-file-border-document';
       case 'uploading':
-        return 'border-blue-500';
+        return 'layera-file-border-cad';
       case 'cancelled':
-        return 'border-gray-500';
+        return 'layera-file-border-other';
       case 'paused':
-        return 'border-yellow-500';
+        return 'layera-file-border-compressed';
       default:
-        return theme === 'dark' ? 'border-gray-600' : 'border-gray-300';
+        return theme === 'dark' ? 'layera-file-border-default-dark' : 'layera-file-border-default';
     }
   };
 
@@ -97,7 +97,7 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
     if (file.status !== 'uploading') return null;
 
     return (
-      <Box className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+      <Box className="absolute inset-0 flex items-center justify-center" style={{ backgroundColor: 'var(--la-overlay-bg)' }}>
         <Box className="text-center text-white">
           <UploadIcon className="w-6 h-6 mx-auto mb-2 animate-pulse" />
           <Typography variant="caption" className="text-white">
@@ -125,7 +125,7 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
     }`}>
       <Box onClick={handleClick} className="relative">
         {/* Preview Area */}
-        <Box className="aspect-square bg-gray-50 dark:bg-gray-800 flex items-center justify-center">
+        <Box className="aspect-square flex items-center justify-center" style={{ backgroundColor: theme === 'dark' ? 'var(--la-color-gray-800)' : 'var(--la-color-gray-50)' }}>
           {showPreview && previewUrl && !previewError ? (
             <img
               src={previewUrl}
@@ -134,7 +134,7 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
               onError={handleImageError}
             />
           ) : (
-            <Box className={`text-gray-400 ${theme === 'dark' ? 'text-gray-500' : 'text-gray-400'}`}>
+            <Box style={{ color: theme === 'dark' ? 'var(--la-color-gray-500)' : 'var(--la-color-gray-400)' }}>
               {getFileIcon()}
             </Box>
           )}
@@ -145,17 +145,17 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
           {/* Status Badge */}
           <Box className="absolute top-2 left-2">
             {file.status === 'completed' && (
-              <Box className="bg-green-500 text-white rounded-full p-1">
+              <Box className="rounded-full p-1" style={{ backgroundColor: 'var(--la-color-success)', color: 'var(--la-text-on-success)' }}>
                 <UploadIcon className="w-3 h-3" />
               </Box>
             )}
             {file.status === 'error' && (
-              <Box className="bg-red-500 text-white rounded-full p-1">
+              <Box className="rounded-full p-1" style={{ backgroundColor: 'var(--la-color-error)', color: 'var(--la-text-on-dark)' }}>
                 <CloseIcon className="w-3 h-3" />
               </Box>
             )}
             {file.status === 'uploading' && (
-              <Box className="bg-blue-500 text-white rounded-full p-1">
+              <Box className="rounded-full p-1" style={{ backgroundColor: 'var(--la-color-info)', color: 'var(--la-text-on-info)' }}>
                 <UploadIcon className="w-3 h-3 animate-pulse" />
               </Box>
             )}
@@ -170,7 +170,7 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
                 e.stopPropagation();
                 onRemove(file.id);
               }}
-              className="bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-600 hover:text-red-600 border-0 p-1 w-6 h-6"
+              className="border-0 p-1 w-6 h-6" style={{ backgroundColor: 'rgba(255, 255, 255, 0.9)', color: 'var(--la-color-gray-600)' }}
             >
               <CloseIcon className="w-3 h-3" />
             </Button>
@@ -188,18 +188,18 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
           </Typography>
 
           <Box className="flex items-center justify-between">
-            <Typography variant="caption" className="text-gray-500">
+            <Typography variant="caption" style={{ color: 'var(--la-color-text-muted)' }}>
               {formatBytes(file.file.size)}
             </Typography>
 
             {file.status === 'uploading' && (
-              <Typography variant="caption" className="text-blue-600">
+              <Typography variant="caption" style={{ color: 'var(--la-color-info)' }}>
                 {Math.round(file.progress)}%
               </Typography>
             )}
 
             {file.status === 'error' && (
-              <Typography variant="caption" className="text-red-600" title={file.error}>
+              <Typography variant="caption" style={{ color: 'var(--la-color-error)' }} title={file.error}>
                 {t('file-upload.status.error')}
               </Typography>
             )}
@@ -209,8 +209,8 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
           <Box className="mt-2">
             <span className={`inline-block px-2 py-1 text-xs rounded ${
               theme === 'dark'
-                ? 'bg-gray-700 text-gray-300'
-                : 'bg-gray-100 text-gray-600'
+                ? 'layera-file-container-dark'
+                : 'layera-file-container'
             }`}>
               {file.file.type || t('file-upload.unknown-type')}
             </span>
@@ -219,7 +219,7 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
           {/* Upload Speed & ETA */}
           {file.status === 'uploading' && file.speed && (
             <Box className="mt-2 space-y-1">
-              <Box className="flex items-center justify-between text-xs text-gray-500">
+              <Box className="flex items-center justify-between text-xs layera-file-text-muted">
                 <span>{formatBytes(file.speed)}/s</span>
                 {file.eta && (
                   <span>

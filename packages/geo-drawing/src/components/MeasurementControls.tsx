@@ -40,7 +40,7 @@ export const MeasurementControls: React.FC<MeasurementControlsProps> = ({
   const { t } = useLayeraTranslation();
 
   return (
-    <Card variant="floating" className="min-w-[200px]">
+    <Card variant="floating" className="min-w-[var(--la-space-50)]">
       <Typography variant="h6" className="text-center mb-3">
         {t('geo-drawing.measurement-title')}
       </Typography>
@@ -84,7 +84,7 @@ export const MeasurementControls: React.FC<MeasurementControlsProps> = ({
       </Layout>
 
       {/* Current Measurement Display */}
-      <Card variant="inner" className="mb-3 p-2 min-h-[60px] flex items-center justify-center">
+      <Card variant="inner" className="mb-3 p-2 min-h-[var(--la-space-15)] flex items-center justify-center">
         <Typography variant="body" className="text-center">
           {displayValue || (
             mode === 'distance'

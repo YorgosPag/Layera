@@ -30,10 +30,10 @@ export const PageContainer: React.FC<PageContainerProps> = ({
     width: '100%',
     marginLeft: 'auto',
     marginRight: 'auto',
-    ...(maxWidth === 'sm' && { maxWidth: '640px' }),
-    ...(maxWidth === 'md' && { maxWidth: '768px' }),
-    ...(maxWidth === 'lg' && { maxWidth: '1024px' }),
-    ...(maxWidth === 'xl' && { maxWidth: '1280px' }),
+    ...(maxWidth === 'sm' && { maxWidth: 'var(--la-width-container-sm)' }), // 640px
+    ...(maxWidth === 'md' && { maxWidth: 'var(--la-width-container-md)' }), // 768px
+    ...(maxWidth === 'lg' && { maxWidth: 'var(--la-width-container-lg)' }), // 1024px
+    ...(maxWidth === 'xl' && { maxWidth: 'var(--la-width-container-xl)' }), // 1280px
     ...(maxWidth === 'full' && { maxWidth: '100%' }),
     ...(padding === 'none' && { padding: '0' }),
     ...(padding === 'sm' && { padding: `${SPACING_SCALE.SM}px` }),

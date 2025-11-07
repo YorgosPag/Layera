@@ -1,0 +1,110 @@
+name: SSOT Compliance Check
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  ssot-compliance:
+    name: SSOT Compliance Verification
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.17.x'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run comprehensive compliance check
+      run: npm run ci:compliance
+      continue-on-error: true
+
+    - name: Build applications
+      run: npm run build
+
+    - name: Post-build CSS validation
+      run: npm run validate:post-build
+
+    - name: Vendor CSS validation
+      run: npm run lint:css:vendor
+
+    - name: Upload Stylelint report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: stylelint-report
+        path: stylelint-report.json
+        retention-days: 30
+
+    - name: Upload Codemod analysis
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: codemod-analysis
+        path: codemod-report.json
+        retention-days: 30
+
+    - name: Upload CI compliance report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: ci-compliance-report
+        path: ci-compliance-report.json
+        retention-days: 30
+
+    - name: Comment PR with compliance status
+      uses: actions/github-script@v7
+      if: github.event_name == 'pull_request'
+      with:
+        script: |
+          const fs = require('fs');
+
+          try {
+            const report = JSON.parse(fs.readFileSync('ci-compliance-report.json', 'utf8'));
+
+            const status = report.summary.status === 'pass' ? '✅ PASS' : '❌ FAIL';
+            const violations = report.summary.totalViolations;
+
+            const body = `## 🔒 SSOT Compliance Check
+
+            **Status**: ${status}
+            **Total Violations**: ${violations}
+            **Timestamp**: ${report.timestamp}
+
+            ### Details:
+            - **Stylelint**: ${report.compliance.stylelint.status} (${report.compliance.stylelint.violations} violations)
+            - **Codemod**: ${report.compliance.codemod.status} (${report.compliance.codemod.missingTokens} missing tokens)
+            - **ESLint**: ${report.compliance.eslint.status}
+            - **Tokens**: ${report.compliance.tokens.status}
+
+            ${violations > 0 ? '⚠️ **Action Required**: Fix SSOT violations before merging.' : '🎉 **All checks passed!** Ready for production.'}
+            `;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });
+          } catch (error) {
+            console.log('Could not read compliance report:', error.message);
+          }
+
+    - name: Fail job on violations
+      run: |
+        if [ -f ci-compliance-report.json ]; then
+          STATUS=$(cat ci-compliance-report.json | jq -r '.summary.status')
+          if [ "$STATUS" = "fail" ]; then
+            echo "❌ SSOT Compliance violations detected!"
+            exit 1
+          fi
+        fi

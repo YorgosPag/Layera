@@ -7,7 +7,7 @@
 
 import React, { useState } from 'react';
 import { Stack, Box } from '@layera/layout';
-import { SPACING_SCALE } from '@layera/constants';
+import { SPACING_SCALE, FIXED_DIMENSIONS } from '@layera/constants';
 import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { BaseCard } from '@layera/cards';
@@ -101,7 +101,7 @@ export const PricingStep: React.FC<PricingStepProps> = ({
       {/* 📋 Cards Grid */}
       <Box
         display="grid"
-        gridTemplateColumns={deviceProps?.isMobile ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))'}
+        gridTemplateColumns={deviceProps?.isMobile ? '1fr' : `repeat(auto-fit, minmax(${FIXED_DIMENSIONS.MIN_CARD_WIDTH}px, 1fr))`}
         gap="var(--la-space-4)" // 🎯 SST: MD gap (16px)
       >
         {cards.map((card: unknown) => (

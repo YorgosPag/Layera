@@ -6,6 +6,8 @@
   "exports": {
     "./css": "./dist/css/tokens.css",
     "./dist/css/tokens.css": "./dist/css/tokens.css",
+    "./dist/tokens.css": "./dist/css/tokens.css",
+    "./dist/ts": "./dist/ts/index.ts",
     "./dist/ts/*": "./dist/ts/*"
   },
   "sideEffects": false,

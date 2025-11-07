@@ -1,0 +1,14 @@
+/* AreasPanel Component Styles - SSOT Design Tokens */
+
+.layera-areas-panel-border {
+  border-color: var(--la-color-gray-200);
+}
+
+.layera-areas-panel-drag-item {
+  transition: all 0.2s ease;
+  cursor: move;
+}
+
+.layera-areas-panel-slider {
+  background-color: var(--la-color-gray-200);
+}

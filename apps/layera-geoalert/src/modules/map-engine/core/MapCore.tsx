@@ -6,6 +6,7 @@ import React, { useEffect } from 'react';
 import { MapContainer, ScaleControl, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import { MapCoreProps, MAP_DEFAULTS } from '../../types';
+import './MapCore.css';
 
 // Default Leaflet icon configuration (από geo-canvas pattern)
 const DefaultIcon = L.icon({
@@ -39,7 +40,7 @@ const MapCore: React.FC<MapCoreProps> = ({ onMapReady, children }) => {
             center={MAP_DEFAULTS.center}
             zoom={MAP_DEFAULTS.zoom}
             maxZoom={MAP_DEFAULTS.maxZoom}
-            className="w-full h-full bg-gray-400"
+            className="layera-mapcore-container w-full h-full"
             zoomControl={false}
             height="var(--la-height-full, 100%)"
             width="var(--la-width-full, 100%)"

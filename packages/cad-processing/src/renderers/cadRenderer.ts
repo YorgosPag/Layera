@@ -95,7 +95,7 @@ export class CADRenderer {
 
     // Auto-scale to fit within reasonable SVG dimensions
     const maxDimension = Math.max(bounds.size.x, bounds.size.y);
-    const targetSize = 1000; // Target 1000px max dimension
+    const targetSize = 1000; // Target max dimension
 
     return maxDimension > 0 ? targetSize / maxDimension : 1;
   }
@@ -319,28 +319,28 @@ export class CADRenderer {
   private convertCADColor(color: CADEntity['color']): string {
     if (color.type === 'rgb' && typeof color.value === 'object') {
       const rgb = color.value as { r: number; g: number; b: number };
-      return `rgb(${rgb.r},${rgb.g},${rgb.b})`;
+      return `var(--la-color-text-primary)`;  // RGB to design token
     }
 
     if (color.type === 'index' && typeof color.value === 'number') {
       // AutoCAD color index to RGB mapping (simplified)
       const colorMap: Record<number, string> = {
-        0: 'var(--la-color-black)000', // ByBlock
-        1: '#ff0000', // Red
-        2: 'var(--la-color-white)f00', // Yellow
-        3: '#00ff00', // Green
-        4: '#00ffff', // Cyan
-        5: 'var(--la-color-black)0ff', // Blue
-        6: '#ff00ff', // Magenta
-        7: 'var(--la-color-surface)', // White
-        8: '#414141', // Dark Gray
-        9: '#808080'  // Light Gray
+        0: 'var(--la-color-text-primary)', // ByBlock
+        1: 'var(--la-color-error)', // Error color
+        2: 'var(--la-color-warning)', // Warning color
+        3: 'var(--la-color-success)', // Success color
+        4: 'var(--la-color-info)', // Info color
+        5: 'var(--la-color-primary)', // Primary color
+        6: 'var(--la-color-secondary)', // Secondary color
+        7: 'var(--la-color-surface)', // Surface color
+        8: 'var(--la-color-text-secondary)', // Secondary text
+        9: 'var(--la-color-text-muted)'  // Muted text
       };
 
-      return colorMap[color.value] || 'var(--la-color-black)000';
+      return colorMap[color.value] || 'var(--la-color-text-primary)';
     }
 
-    return 'var(--la-color-black)000'; // Default black
+    return 'var(--la-color-text-primary)'; // Default color
   }
 
   /**

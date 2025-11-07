@@ -1,0 +1,6 @@
+/* NavigationRail Component Styles - SSOT Design Tokens */
+
+.layera-navigation-rail {
+  background-color: var(--la-color-gray-800);
+  color: var(--la-color-primary);
+}

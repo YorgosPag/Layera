@@ -109,37 +109,37 @@ export const PERFORMANCE = {
 export const DEFAULT_STYLES = {
   /** Default background colors */
   BACKGROUNDS: {
-    transparent: 'rgba(255, 255, 255, 0)',
-    'semi-transparent': 'rgba(255, 255, 255, 0.85)',
-    solid: 'rgba(255, 255, 255, 0.95)'
+    transparent: 'transparent',
+    'semi-transparent': 'var(--la-color-surface-overlay)',
+    solid: 'var(--la-color-surface)'
   },
 
   /** Default text colors */
   TEXT_COLORS: {
-    primary: '#1F2937',
+    primary: 'var(--la-color-text-primary)',
     secondary: 'var(--la-text-secondary)',
     muted: 'var(--la-text-muted)',
     success: 'var(--la-color-success-dark)',
     warning: 'var(--la-color-warning-dark)',
-    error: '#DC2626'
+    error: 'var(--la-color-error)'
   },
 
   /** Default border colors */
   BORDER_COLORS: {
     light: 'var(--la-shadow-sm)',
-    medium: 'rgba(0, 0, 0, 0.2)',
-    dark: 'rgba(0, 0, 0, 0.3)'
+    medium: 'var(--la-color-border-primary)',
+    dark: 'var(--la-color-border-strong)'
   },
 
   /** Default shadows */
   SHADOWS: {
     light: '0 1px 3px var(--la-shadow-sm)',
     medium: '0 2px 4px var(--la-shadow-sm)',
-    strong: '0 4px 8px rgba(0, 0, 0, 0.15)'
+    strong: 'var(--la-shadow-lg)'
   },
 
   /** Default border radius */
-  BORDER_RADIUS: '4px',
+  BORDER_RADIUS: 'var(--la-radius-input)',
 
   /** Default padding values */
   PADDING: {

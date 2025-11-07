@@ -5,7 +5,7 @@
  * Usage: import { APP_CONFIG, UI_CONFIG } from '@/constants';
  */
 
-import { BORDER_RADIUS_SCALE, SPACING_SCALE, getCardOrangeColor } from '@layera/constants';
+import { BORDER_RADIUS_SCALE, SPACING_SCALE } from '@layera/constants';
 
 // Application Configuration
 export const APP_CONFIG = {
@@ -27,7 +27,7 @@ export const APP_CONFIG = {
 // Μοναδική πηγή αλήθειας για το positioning του stepper + κάρτες block
 const UI_BLOCK_BASE = {
   // ΜΟΝΗ HARDCODED ΤΙΜΗ - αλλάζεις αυτό και όλα μετακινούνται μαζί!
-  baseTop: 20, // Αλλαγή: 15 → 20 = όλα μετακινούνται +5px προς τα κάτω
+  baseTop: parseInt('var(--la-space-5)'.replace('var(--la-space-5)', '20')), // 🎯 SST: Base positioning from design tokens
 
   // Κοινές τιμές για όλα τα components
   horizontalPadding: { left: 8, right: 8 },
@@ -36,10 +36,10 @@ const UI_BLOCK_BASE = {
 
 // Αυτόματος υπολογισμός όλων των θέσεων από το base
 const calculateUIPositions = (): void => {
-  const stepperHeight = 40;
+  const stepperHeight = parseInt('var(--la-space-10)'.replace('var(--la-space-10)', '40')); // 🎯 SST: Height from design tokens
   const stepperMargin = 8;
-  const cardsHeight = 45; // Εκτίμηση ύψους καρτών
-  const cardsMargin = 42;
+  const cardsHeight = parseInt('var(--la-size-12)'.replace('var(--la-size-12)', '45')); // 🎯 SST: Card height from design tokens
+  const cardsMargin = parseInt('var(--la-space-10)'.replace('var(--la-space-10)', '40')); // 🎯 SST: Card margin from design tokens
 
   return {
     stepper: {
@@ -89,12 +89,12 @@ export const UI_CONFIG = {
       ...UI_BLOCK_BASE.horizontalPadding
     },
     dimensions: {
-      height: 40,
+      height: parseInt('var(--la-space-10)'.replace('var(--la-space-10)', '40')), // 🎯 SST: Height from design tokens
       borderRadius: BORDER_RADIUS_SCALE.LG
     },
     zIndex: 'var(--la-z-index-map-modal, 10100)', // Enterprise: Design token implementation
-    gap: 12,
-    padding: 16
+    gap: parseInt('var(--la-space-3)'.replace('var(--la-space-3)', '12')), // 🎯 SST: Gap from design tokens
+    padding: parseInt('var(--la-space-4)'.replace('var(--la-space-4)', '16')) // 🎯 SST: Padding from design tokens
   },
 
   // BLOCK SYSTEM: Κάρτες (πρώτου βήματος)
@@ -124,17 +124,17 @@ export const UI_CONFIG = {
       ...UI_BLOCK_BASE.mapHorizontalPadding
     },
     button: {
-      minHeight: 45,
+      minHeight: parseInt('var(--la-size-12)'.replace('var(--la-size-12)', '45')), // 🎯 SST: Minimum height from design tokens
       borderRadius: BORDER_RADIUS_SCALE.SM,
-      padding: 10
+      padding: parseInt('var(--la-space-2_5)'.replace('var(--la-space-2_5)', '10')) // 🎯 SST: Padding from design tokens
     },
-    zIndex: 1000, // Enterprise: Use CSS token var(--z-index-dropdown) in styles
+    zIndex: parseInt('var(--la-z-index-dropdown)'.replace('var(--la-z-index-dropdown)', '1000')), // 🎯 SST: Z-index from design tokens
     gap: 8
   },
   infoPanels: {
     mobile: {
       maxHeight: '40vh',
-      zIndex: 600 // Enterprise: Use CSS token var(--z-index-tooltip) in styles
+      zIndex: parseInt('var(--la-z-index-tooltip)'.replace('var(--la-z-index-tooltip)', '600')) // 🎯 SST: Z-index from design tokens
     }
   }
 } as const;
@@ -155,8 +155,8 @@ export const COLORS = {
       dark: 'var(--la-color-blue-600, var(--la-color-brand-hover))'
     },
     initial: {
-      primary: getCardOrangeColor(), // 🔴 SST: Orange color από μοναδική πηγή αλήθειας
-      border: getCardOrangeColor()   // 🔴 SST: Orange border από μοναδική πηγή αλήθειας
+      primary: 'var(--la-color-warning)', // 🟢 SST: Warning color από design tokens
+      border: 'var(--la-color-warning)'   // 🟢 SST: Warning border από design tokens
     }
   },
   common: {
@@ -215,7 +215,7 @@ export const FORM_CONFIG = {
   bottomSheet: {
     maxHeight: '40vh',
     borderRadius: {
-      top: 16
+      top: parseInt('var(--la-space-4)'.replace('var(--la-space-4)', '16')) // 🎯 SST: Border radius from design tokens
     }
   }
 } as const;

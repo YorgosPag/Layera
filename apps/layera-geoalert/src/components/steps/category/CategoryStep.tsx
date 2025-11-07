@@ -107,7 +107,7 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
 
   return (
     <>
-    <Box style={containerStyles} className={containerClass}>
+    <Box className={containerClass}>
       {/* Ακίνητα Card */}
       <BaseCard
         variant="property"

@@ -127,10 +127,10 @@ const MapCanvas: React.FC<MapCanvasProps> = ({
 
   if (!isMapReady) {
     return (
-      <Box className={`flex items-center justify-center h-64 bg-gray-100 ${className}`}>
+      <Box className={`flex items-center justify-center h-64 ${className}`} style={{ backgroundColor: 'var(--la-color-gray-100)' }}>
         <Box className="text-center">
           <Box className="animate-spin rounded-full h-8 w-8 border-b-2 border-brand mx-auto mb-2"></Box>
-          <p className="text-sm text-gray-600">{t('loadingMap')}</p>
+          <p className="text-sm" style={{ color: 'var(--la-color-gray-600)' }}>{t('loadingMap')}</p>
         </Box>
       </Box>
     );
@@ -159,7 +159,8 @@ const MapCanvas: React.FC<MapCanvasProps> = ({
           ) : (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 text-gray-700"
+              className="h-5 w-5"
+              style={{ color: 'var(--la-color-gray-700)' }}
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -176,11 +177,12 @@ const MapCanvas: React.FC<MapCanvasProps> = ({
       {/* Guest Mode Overlay */}
       {isGuest && (
         <Box className="absolute bottom-4 left-4 right-4 z-[1000]">
-          <Box className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 shadow-lg">
+          <Box className="layera-guest-warning-box rounded-lg p-3 shadow-lg">
             <Box className="flex items-center space-x-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-yellow-600"
+                className="h-5 w-5"
+                style={{ color: 'var(--la-color-warning-600)' }}
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
@@ -190,7 +192,7 @@ const MapCanvas: React.FC<MapCanvasProps> = ({
                   clipRule="evenodd"
                 />
               </svg>
-              <p className="text-sm text-yellow-800 font-medium">
+              <p className="text-sm font-medium" style={{ color: 'var(--la-color-warning-800)' }}>
                 {t('guestModeNote')}
               </p>
             </Box>

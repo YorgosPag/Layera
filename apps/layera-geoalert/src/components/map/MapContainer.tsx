@@ -14,14 +14,15 @@ import React, { useEffect, useRef, useState } from 'react';
 import { MapProvider, useMap } from '@layera/map-core';
 // ✅ ENTERPRISE APPROACH: Βραχυπρόθεσμη λύση - χρήση local implementation until @layera/geo-drawing build succeeds
 // import { useDrawing, DrawingMode } from '@layera/geo-drawing';
-import { SPACING_SCALE, BORDER_RADIUS_SCALE, getCardSuccessColor } from '@layera/constants';
-import { Flex, FlexCenter } from '@layera/layout';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE, DEVICE_BREAKPOINTS, getCardSuccessColor } from '@layera/constants';
+import { Flex, FlexCenter, Box } from '@layera/layout';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { useViewportWithOverride } from '@layera/viewport';
 import { Button } from '@layera/buttons';
 import { Text } from '@layera/typography';
 import { MarkerIcon, PolygonIcon, TrashIcon, PlusIcon, LocationIcon } from '@layera/icons';
+import { FAB } from '@layera/floating-action-buttons';
 import { BaseCard } from '@layera/cards';
 import L from 'leaflet';
 
@@ -201,7 +202,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
             .leaflet-control-attribution {
               display: none !important;
             }
-            @media (max-width: 768px) {
+            @media (max-width: ${DEVICE_BREAKPOINTS.MOBILE - 1}px) {
               .leaflet-container {
                 height: 100% !important;
                 width: 100% !important;
@@ -429,13 +430,14 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
 
   if (isMobile) {
     return (
-      <div className="mobile-map-container" style={{
-        width: '100%',
-        height: '100vh',
-        position: 'relative',
-        marginTop: '0',
-        overflow: 'hidden'
-      }}>
+      <Box
+        className="mobile-map-container"
+        width="full"
+        height="screen"
+        position="relative"
+        marginTop="0"
+        overflow="hidden"
+      >
         {/*
           ΚΡΙΣΙΜΗ ΣΗΜΕΙΩΣΗ: ΜΗΝ ΑΛΛΑΞΕΙΣ ΣΕ BOX COMPONENT!
           Το Leaflet map engine χρειάζεται native DOM elements με refs.
@@ -447,8 +449,8 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
           ref={mapContainerRef}
           className="leaflet-map-mobile"
           style={{
-            width: '100%',
-            height: '100%',
+            width: 'var(--la-width-full)',
+            height: 'var(--la-height-full)',
             display: 'block',
             position: 'relative'
           }}
@@ -459,19 +461,17 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
           <BaseCard
             variant="overlay"
             padding="sm"
-            style={{
-              position: 'absolute',
-              bottom: 'var(--la-fab-position-bottom)', // 🎯 SST: FAB position token
-              left: '50%',
-              transform: 'translateX(-50%)',
-              zIndex: 1000,
-              maxWidth: '80%'
-            }}>
+            position="absolute"
+            bottom="fab-position-bottom"
+            left="position-center"
+            transform="transform-center-x"
+            zIndex="overlay"
+            maxWidth="width-4-5">
             <FlexCenter gap="xs">
             {drawingMode === 'marker' && (
               <>
                 <MarkerIcon size="sm" theme="neutral" />
-                <Text size="xs" color="white">
+                <Text size="xs" color="on-dark">
                   Κάντε κλικ στον χάρτη
                 </Text>
               </>
@@ -479,7 +479,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
             {drawingMode === 'polygon' && (
               <>
                 <PolygonIcon size="sm" theme="neutral" />
-                <Text size="xs" color="white">
+                <Text size="xs" color="on-dark">
                   Κάντε κλικ για προσθήκη σημείων
                 </Text>
               </>
@@ -490,41 +490,32 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
 
         {/* Floating Action Button for New Entry */}
         {onNewEntryClick && (
-          <FlexCenter
+          <FAB
+            variant="success"
+            position="bottom-right"
             onClick={onNewEntryClick}
-            style={{
-              position: 'absolute',
-              bottom: 'var(--la-space-layout-lg)', // 🎯 SST: Layout spacing token
-              right: 'var(--la-space-layout-lg)', // 🎯 SST: Layout spacing token
-              width: 'var(--la-fab-size)', // 🎯 SST: FAB size token
-              height: 'var(--la-fab-size)', // 🎯 SST: FAB size token
-              backgroundColor: getCardSuccessColor(), // 🔴 SST: Success color από μοναδική πηγή αλήθειας
-              borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
-              boxShadow: BOX_SHADOW_SCALE.shadowSuccess,
-              cursor: 'pointer',
-              zIndex: 10001,
-            }}
+            size="standard"
+            shadow="success"
           >
             <PlusIcon size="md" theme="neutral" />
-          </FlexCenter>
+          </FAB>
         )}
-      </div>
+      </Box>
     );
   }
 
   // Desktop/Tablet layout
   return (
-    <div
+    <Box
       className="desktop-map-container"
-      style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        width: '100%',
-        height: '100vh'
-      }}>
+      position="absolute"
+      top="0"
+      left="0"
+      right="0"
+      bottom="0"
+      width="full"
+      height="screen"
+    >
       {/*
         ΚΡΙΣΙΜΗ ΣΗΜΕΙΩΣΗ: ΜΗΝ ΑΛΛΑΞΕΙΣ ΣΕ BOX COMPONENT!
         Το Leaflet map engine χρειάζεται native DOM elements με refs.
@@ -536,45 +527,44 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
         ref={mapContainerRef}
         style={{
           position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          width: '100%',
-          height: '100%',
-          zIndex: 1
+          top: 'var(--la-space-0)',
+          left: 'var(--la-space-0)',
+          right: 'var(--la-space-0)',
+          bottom: 'var(--la-space-0)',
+          width: 'var(--la-size-full)',
+          height: 'var(--la-size-full)',
+          zIndex: 'var(--la-z-index-base)'
         }}
       />
 
       {/* Areas List - ΑΦΑΙΡΕΘΗΚΕ για dark mode compatibility */}
       {false && drawnAreas.length > 0 && (
-        <div style={{
-          marginTop: 'var(--la-space-4)', // 🎯 SST: Spacing token
-          padding: 'var(--la-space-4)', // 🎯 SST: Spacing token
-          backgroundColor: 'var(--color-bg-surface)',
-          borderRadius: 'var(--la-radius-sm)', // 🎯 SST: Border radius token
-          boxShadow: BOX_SHADOW_SCALE.cardSubtle
-        }}>
-          <Text size="sm" weight="bold" style={{
-            margin: '0 0 var(--la-space-2) 0', // 🎯 SST: Spacing token
-            color: 'var(--color-text-primary)',
-            display: 'block'
-          }}>
+        <Box
+          marginTop="4"
+          padding="4"
+          backgroundColor="surface"
+          borderRadius="sm"
+          boxShadow="cardSubtle"
+        >
+          <Text
+            as="div"
+            size="sm"
+            weight="bold"
+            marginBottom="2"
+            color="primary"
+          >
             Σχεδιασμένες Περιοχές ({drawnAreas.length})
           </Text>
-          <Flex direction="column" style={{ gap: 'var(--la-space-2)' }}> {/* 🎯 SST: Spacing token */}
+          <Flex direction="column" gap="2">
             {drawnAreas.map(area => (
               <Flex
                 key={area.id}
                 justify="space-between"
                 align="center"
-                style={{
-                  padding: 'var(--la-space-2) var(--la-space-2)', // 🎯 SST: Spacing token
-                  backgroundColor: 'white',
-                  borderRadius: 'var(--la-radius-input)', // 🎯 SST: Border radius token
-                  border: '1px solid var(--color-border-default)',
-                  // fontSize handled by Text component
-                }}
+                padding="2"
+                backgroundColor="surface"
+                borderRadius="input"
+                border="default"
               >
                 <Flex align="center" gap="xs">
                   {area.type === 'marker' ?
@@ -584,20 +574,23 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
                   <Text size="xs" weight="medium">{area.name}</Text>
                 </Flex>
                 {area.area && (
-                  <Text size="xs" style={{
-                    color: 'var(--color-text-secondary)',
-                    backgroundColor: 'var(--color-bg-surface)',
-                    padding: 'var(--la-space-xs-minus-2) var(--la-space-xs-plus-2)', // 🎯 SST: Complex spacing tokens
-                    borderRadius: 'var(--la-radius-xs)', // 🎯 SST: Border radius token
-                    display: 'inline-block'
-                  }}>
+                  <Text
+                    as="span"
+                    size="xs"
+                    color="secondary"
+                    backgroundColor="surface"
+                    paddingX="xs-plus-2"
+                    paddingY="xs-minus-2"
+                    borderRadius="xs"
+                    display="inline-block"
+                  >
                     {Math.round(area.area)} m²
                   </Text>
                 )}
               </Flex>
             ))}
           </Flex>
-        </div>
+        </Box>
       )}
     </div>
   );

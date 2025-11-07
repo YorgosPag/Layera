@@ -8,6 +8,7 @@ import { Box } from '@layera/layout';
 import { useLayeraTranslation } from '@layera/tolgee';
 import type { MeasurementResult, OSMBuildingFeature } from '../types';
 import { extractOSMGeometry } from '../utils/geometry';
+import './GeometryRenderer.css';
 import { useMeasurementFormatter } from '../utils/formatters';
 
 interface GeometryRendererProps {
@@ -42,12 +43,12 @@ export const GeometryRenderer: React.FC<GeometryRendererProps> = ({
     return {
       // Measurement colors
       measurementLine: isDark ? 'var(--la-color-success)' : 'var(--la-color-success-dark)',
-      measurementFill: isDark ? 'rgba(16, 185, 129, 0.2)' : 'rgba(5, 150, 105, 0.2)',
+      measurementFill: isDark ? 'rgba(var(--la-color-success-rgb), 0.2)' : 'rgba(var(--la-color-success-rgb), 0.2)',
       measurementPoint: isDark ? 'var(--la-color-warning)' : 'var(--la-color-warning-dark)',
 
       // OSM building colors
       buildingLine: isDark ? 'var(--la-text-secondary)' : 'var(--la-text-muted)',
-      buildingFill: isDark ? 'rgba(107, 114, 128, 0.1)' : 'rgba(156, 163, 175, 0.1)',
+      buildingFill: isDark ? 'rgba(var(--la-color-gray-rgb), 0.1)' : 'rgba(var(--la-color-gray-rgb), 0.1)',
       buildingHover: isDark ? 'var(--la-color-gray-dark)' : 'var(--la-color-border-light)',
 
       // Border colors
@@ -99,12 +100,12 @@ export const GeometryRenderer: React.FC<GeometryRendererProps> = ({
                     {feature.properties.name}
                   </Typography>
                   {feature.properties.building && (
-                    <Typography variant="caption" className="text-gray-600">
+                    <Typography variant="caption" className="layera-geo-text-muted">
                       {t('geo-drawing.building-type')}: {feature.properties.building}
                     </Typography>
                   )}
                   {feature.properties['addr:street'] && (
-                    <Typography variant="caption" className="text-gray-600">
+                    <Typography variant="caption" className="layera-geo-text-muted">
                       {feature.properties['addr:street']} {feature.properties['addr:housenumber']}
                     </Typography>
                   )}
@@ -177,7 +178,7 @@ export const GeometryRenderer: React.FC<GeometryRendererProps> = ({
                   <Typography variant="body">
                     {measurement.displayValue}
                   </Typography>
-                  <Typography variant="caption" className="text-gray-600">
+                  <Typography variant="caption" className="layera-geo-text-muted">
                     {new Date(measurement.timestamp).toLocaleString()}
                   </Typography>
                 </Box>
@@ -207,7 +208,7 @@ export const GeometryRenderer: React.FC<GeometryRendererProps> = ({
                   <Typography variant="body">
                     {measurement.area && formatAreaWithLabels(measurement.area)}
                   </Typography>
-                  <Typography variant="caption" className="text-gray-600">
+                  <Typography variant="caption" className="layera-geo-text-muted">
                     {t('geo-drawing.points-count', { count: measurement.points.length })}
                   </Typography>
                 </Box>

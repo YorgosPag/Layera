@@ -226,32 +226,35 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
         return (
           <>
             {/* 📐 ΒΑΣΙΚΑ ΣΤΟΙΧΕΙΑ */}
-            <Box style={{
-              backgroundColor: 'var(--la-color-bg-elevated)',
-              padding: 'var(--la-space-4)', // 🎯 SST: Spacing token
-              borderRadius: 'var(--la-radius-md)', // 🎯 SST: Border radius token
-              marginBottom: 'var(--la-space-8)' // 🎯 SST: Spacing token
-            }}>
-              <Text size="sm" weight="medium" style={{
-                color: 'var(--la-text-primary)',
-                marginBottom: 'var(--la-space-4)', // 🎯 SST: Spacing token
-                display: 'block'
-              }}>
+            <Box
+              backgroundColor="elevated"
+              padding="4"
+              borderRadius="md"
+              marginBottom="8"
+            >
+              <Text
+                size="sm"
+                weight="medium"
+                color="primary"
+                marginBottom="4"
+                display="block"
+              >
                 📐 Βασικά Χαρακτηριστικά
               </Text>
 
               <Flex direction="column" gap="md">
                 {/* Τετραγωνικά */}
                 <Box>
-                  <label style={{
-                    display: 'block',
-                    fontSize: 'var(--la-font-size-sm)',
-                    fontWeight: 'var(--la-font-weight-medium)',
-                    color: validationErrors.squareMeters ? 'var(--la-color-error)' : 'var(--la-text-primary)',
-                    marginBottom: 'var(--la-space-2)'
-                  }}>
+                  <Text
+                    as="label"
+                    display="block"
+                    fontSize="sm"
+                    fontWeight="medium"
+                    color={validationErrors.squareMeters ? 'error' : 'primary'}
+                    marginBottom="2"
+                  >
                     {t('propertyDetails.squareMeters') || 'Τετραγωνικά μέτρα (τ.μ.) *'}
-                  </label>
+                  </Text>
                   <Input
                     name="squareMeters"
                     type="number"
@@ -260,16 +263,15 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
                     placeholder="π.χ. 85"
                     size="large"
                     fullWidth
-                    style={{
-                      borderColor: validationErrors.squareMeters ? 'var(--la-color-error)' : undefined
-                    }}
+                    variant={validationErrors.squareMeters ? 'error' : 'default'}
                   />
                   {validationErrors.squareMeters && (
-                    <Text size="xs" style={{
-                      color: 'var(--la-color-error)',
-                      marginTop: 'var(--la-space-1)',
-                      display: 'block'
-                    }}>
+                    <Text
+                      size="xs"
+                      color="error"
+                      marginTop="1"
+                      display="block"
+                    >
                       {validationErrors.squareMeters}
                     </Text>
                   )}
@@ -277,16 +279,17 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
 
                 <Flex gap="md">
                   {/* Δωμάτια */}
-                  <Box style={{ flex: 1 }}>
-                    <label style={{
-                      display: 'block',
-                      fontSize: 'var(--la-font-size-sm)',
-                      fontWeight: 'var(--la-font-weight-medium)',
-                      color: validationErrors.bedrooms ? 'var(--la-color-error)' : 'var(--la-text-primary)',
-                      marginBottom: 'var(--la-space-2)'
-                    }}>
+                  <Box flex="1">
+                    <Text
+                      as="label"
+                      display="block"
+                      fontSize="sm"
+                      fontWeight="medium"
+                      color={validationErrors.bedrooms ? 'error' : 'primary'}
+                      marginBottom="2"
+                    >
                       {t('propertyDetails.bedrooms') || 'Υπνοδωμάτια *'}
-                    </label>
+                    </Text>
                     <Select
                       name="bedrooms"
                       value={details.bedrooms || ''}
@@ -301,32 +304,32 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
                       placeholder="Δωμάτια"
                       size="large"
                       fullWidth
-                      style={{
-                        borderColor: validationErrors.bedrooms ? 'var(--la-color-error)' : undefined
-                      }}
+                      variant={validationErrors.bedrooms ? 'error' : 'default'}
                     />
                     {validationErrors.bedrooms && (
-                      <Text size="xs" style={{
-                        color: 'var(--la-color-error)',
-                        marginTop: 'var(--la-space-1)',
-                        display: 'block'
-                      }}>
+                      <Text
+                        size="xs"
+                        color="error"
+                        marginTop="1"
+                        display="block"
+                      >
                         {validationErrors.bedrooms}
                       </Text>
                     )}
                   </Box>
 
                   {/* Μπάνια */}
-                  <Box style={{ flex: 1 }}>
-                    <label style={{
-                      display: 'block',
-                      fontSize: 'var(--la-font-size-sm)',
-                      fontWeight: 'var(--la-font-weight-medium)',
-                      color: validationErrors.bathrooms ? 'var(--la-color-error)' : 'var(--la-text-primary)',
-                      marginBottom: 'var(--la-space-2)'
-                    }}>
+                  <Box flex="1">
+                    <Text
+                      as="label"
+                      display="block"
+                      fontSize="sm"
+                      fontWeight="medium"
+                      color={validationErrors.bathrooms ? 'error' : 'primary'}
+                      marginBottom="2"
+                    >
                       {t('propertyDetails.bathrooms') || 'Μπάνια/WC *'}
-                    </label>
+                    </Text>
                     <Select
                       name="bathrooms"
                       value={details.bathrooms || ''}
@@ -339,16 +342,15 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
                       placeholder="Μπάνια"
                       size="large"
                       fullWidth
-                      style={{
-                        borderColor: validationErrors.bathrooms ? 'var(--la-color-error)' : undefined
-                      }}
+                      variant={validationErrors.bathrooms ? 'error' : 'default'}
                     />
                     {validationErrors.bathrooms && (
-                      <Text size="xs" style={{
-                        color: 'var(--la-color-error)',
-                        marginTop: 'var(--la-space-1)',
-                        display: 'block'
-                      }}>
+                      <Text
+                        size="xs"
+                        color="error"
+                        marginTop="1"
+                        display="block"
+                      >
                         {validationErrors.bathrooms}
                       </Text>
                     )}
@@ -357,16 +359,17 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
 
                 <Flex gap="md">
                   {/* Όροφος */}
-                  <Box style={{ flex: 1 }}>
-                    <label style={{
-                      display: 'block',
-                      fontSize: 'var(--la-font-size-sm)',
-                      fontWeight: 'var(--la-font-weight-medium)',
-                      color: validationErrors.floor ? 'var(--la-color-error)' : 'var(--la-text-primary)',
-                      marginBottom: 'var(--la-space-2)'
-                    }}>
+                  <Box flex="1">
+                    <Text
+                      as="label"
+                      display="block"
+                      fontSize="sm"
+                      fontWeight="medium"
+                      color={validationErrors.floor ? 'error' : 'primary'}
+                      marginBottom="2"
+                    >
                       {t('propertyDetails.floor') || 'Όροφος *'}
-                    </label>
+                    </Text>
                     <Select
                       name="floor"
                       value={details.floor !== undefined ? String(details.floor) : ''}
@@ -384,32 +387,32 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
                       placeholder="Όροφος"
                       size="large"
                       fullWidth
-                      style={{
-                        borderColor: validationErrors.floor ? 'var(--la-color-error)' : undefined
-                      }}
+                      variant={validationErrors.floor ? 'error' : 'default'}
                     />
                     {validationErrors.floor && (
-                      <Text size="xs" style={{
-                        color: 'var(--la-color-error)',
-                        marginTop: 'var(--la-space-1)',
-                        display: 'block'
-                      }}>
+                      <Text
+                        size="xs"
+                        color="error"
+                        marginTop="1"
+                        display="block"
+                      >
                         {validationErrors.floor}
                       </Text>
                     )}
                   </Box>
 
                   {/* Έτος κατασκευής */}
-                  <Box style={{ flex: 1 }}>
-                    <label style={{
-                      display: 'block',
-                      fontSize: 'var(--la-font-size-sm)',
-                      fontWeight: 'var(--la-font-weight-medium)',
+                  <Box flex="1">
+                    <Text
+                      as="label"
+                      display="block"
+                      fontSize="sm"
+                      fontWeight="medium"
                       color: validationErrors.yearBuilt ? 'var(--la-color-error)' : 'var(--la-text-primary)',
-                      marginBottom: 'var(--la-space-2)'
-                    }}>
+                      marginBottom="2"
+                    >
                       {t('propertyDetails.yearBuilt') || 'Έτος κατασκευής'}
-                    </label>
+                    </Text>
                     <Input
                       name="yearBuilt"
                       type="number"
@@ -418,16 +421,15 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
                       placeholder="π.χ. 2005"
                       size="large"
                       fullWidth
-                      style={{
-                        borderColor: validationErrors.yearBuilt ? 'var(--la-color-error)' : undefined
-                      }}
+                      variant={validationErrors.yearBuilt ? 'error' : 'default'}
                     />
                     {validationErrors.yearBuilt && (
-                      <Text size="xs" style={{
-                        color: 'var(--la-color-error)',
-                        marginTop: 'var(--la-space-1)',
-                        display: 'block'
-                      }}>
+                      <Text
+                        size="xs"
+                        color="error"
+                        marginTop="1"
+                        display="block"
+                      >
                         {validationErrors.yearBuilt}
                       </Text>
                     )}
@@ -437,33 +439,36 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
             </Box>
 
             {/* 🏢 ΧΑΡΑΚΤΗΡΙΣΤΙΚΑ ΚΤΙΡΙΟΥ */}
-            <Box style={{
-              backgroundColor: 'var(--la-color-bg-elevated)',
-              padding: 'var(--la-space-4)', // 🎯 SST: Spacing token
-              borderRadius: 'var(--la-radius-md)', // 🎯 SST: Border radius token
-              marginBottom: 'var(--la-space-8)' // 🎯 SST: Spacing token
-            }}>
-              <Text size="sm" weight="medium" style={{
-                color: 'var(--la-text-primary)',
-                marginBottom: 'var(--la-space-4)', // 🎯 SST: Spacing token
-                display: 'block'
-              }}>
+            <Box
+              backgroundColor="elevated"
+              padding="4"
+              borderRadius="md"
+              marginBottom="8"
+            >
+              <Text
+                size="sm"
+                weight="medium"
+                color="primary"
+                marginBottom="4"
+                display="block"
+              >
                 🏢 Χαρακτηριστικά Κτιρίου
               </Text>
 
               <Flex direction="column" gap="md">
                 <Flex gap="md">
                   {/* Ασανσέρ */}
-                  <Box style={{ flex: 1 }}>
-                    <label style={{
-                      display: 'block',
-                      fontSize: 'var(--la-font-size-sm)',
-                      fontWeight: 'var(--la-font-weight-medium)',
+                  <Box flex="1">
+                    <Text
+                      as="label"
+                      display="block"
+                      fontSize="sm"
+                      fontWeight="medium"
                       color: 'var(--la-text-primary)',
-                      marginBottom: 'var(--la-space-2)'
-                    }}>
+                      marginBottom="2"
+                    >
                       {t('propertyDetails.hasElevator') || 'Ασανσέρ'}
-                    </label>
+                    </Text>
                     <Select
                       value={details.hasElevator ? 'yes' : details.hasElevator === false ? 'no' : ''}
                       onChange={(value) => updateDetail('hasElevator', value === 'yes')}
@@ -478,16 +483,17 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
                   </Box>
 
                   {/* Θέρμανση */}
-                  <Box style={{ flex: 1 }}>
-                    <label style={{
-                      display: 'block',
-                      fontSize: 'var(--la-font-size-sm)',
-                      fontWeight: 'var(--la-font-weight-medium)',
+                  <Box flex="1">
+                    <Text
+                      as="label"
+                      display="block"
+                      fontSize="sm"
+                      fontWeight="medium"
                       color: 'var(--la-text-primary)',
-                      marginBottom: 'var(--la-space-2)'
-                    }}>
+                      marginBottom="2"
+                    >
                       {t('propertyDetails.heating') || 'Θέρμανση'}
-                    </label>
+                    </Text>
                     <Select
                       value={details.heating || ''}
                       onChange={(value) => updateDetail('heating', value)}
@@ -507,16 +513,17 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
 
                 <Flex gap="md">
                   {/* Ενεργειακή κλάση */}
-                  <Box style={{ flex: 1 }}>
-                    <label style={{
-                      display: 'block',
-                      fontSize: 'var(--la-font-size-sm)',
-                      fontWeight: 'var(--la-font-weight-medium)',
+                  <Box flex="1">
+                    <Text
+                      as="label"
+                      display="block"
+                      fontSize="sm"
+                      fontWeight="medium"
                       color: 'var(--la-text-primary)',
-                      marginBottom: 'var(--la-space-2)'
-                    }}>
+                      marginBottom="2"
+                    >
                       {t('propertyDetails.energyClass') || 'Ενεργειακή κλάση'}
-                    </label>
+                    </Text>
                     <Select
                       value={details.energyClass || ''}
                       onChange={(value) => updateDetail('energyClass', value)}
@@ -537,16 +544,17 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
                   </Box>
 
                   {/* Κατάσταση ακινήτου */}
-                  <Box style={{ flex: 1 }}>
-                    <label style={{
-                      display: 'block',
-                      fontSize: 'var(--la-font-size-sm)',
-                      fontWeight: 'var(--la-font-weight-medium)',
+                  <Box flex="1">
+                    <Text
+                      as="label"
+                      display="block"
+                      fontSize="sm"
+                      fontWeight="medium"
                       color: 'var(--la-text-primary)',
-                      marginBottom: 'var(--la-space-2)'
-                    }}>
+                      marginBottom="2"
+                    >
                       {t('propertyDetails.condition') || 'Κατάσταση ακινήτου'}
-                    </label>
+                    </Text>
                     <Select
                       value={details.condition || ''}
                       onChange={(value) => updateDetail('condition', value)}
@@ -567,33 +575,36 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
             </Box>
 
             {/* 🌟 ΕΠΙΠΛΕΟΝ ΧΑΡΑΚΤΗΡΙΣΤΙΚΑ */}
-            <Box style={{
-              backgroundColor: 'var(--la-color-bg-elevated)',
-              padding: 'var(--la-space-4)', // 🎯 SST: Spacing token
-              borderRadius: 'var(--la-radius-md)', // 🎯 SST: Border radius token
-              marginBottom: 'var(--la-space-8)' // 🎯 SST: Spacing token
-            }}>
-              <Text size="sm" weight="medium" style={{
-                color: 'var(--la-text-primary)',
-                marginBottom: 'var(--la-space-4)', // 🎯 SST: Spacing token
-                display: 'block'
-              }}>
+            <Box
+              backgroundColor="elevated"
+              padding="4"
+              borderRadius="md"
+              marginBottom="8"
+            >
+              <Text
+                size="sm"
+                weight="medium"
+                color="primary"
+                marginBottom="4"
+                display="block"
+              >
                 🌟 Επιπλέον Χαρακτηριστικά
               </Text>
 
               <Flex direction="column" gap="md">
                 <Flex gap="md">
                   {/* Μπαλκόνι */}
-                  <Box style={{ flex: 1 }}>
-                    <label style={{
-                      display: 'block',
-                      fontSize: 'var(--la-font-size-sm)',
-                      fontWeight: 'var(--la-font-weight-medium)',
+                  <Box flex="1">
+                    <Text
+                      as="label"
+                      display="block"
+                      fontSize="sm"
+                      fontWeight="medium"
                       color: 'var(--la-text-primary)',
-                      marginBottom: 'var(--la-space-2)'
-                    }}>
+                      marginBottom="2"
+                    >
                       {t('propertyDetails.hasBalcony') || 'Μπαλκόνι/Βεράντα'}
-                    </label>
+                    </Text>
                     <Select
                       value={details.hasBalcony ? 'yes' : details.hasBalcony === false ? 'no' : ''}
                       onChange={(value) => updateDetail('hasBalcony', value === 'yes')}
@@ -608,16 +619,17 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
                   </Box>
 
                   {/* Θέση στάθμευσης */}
-                  <Box style={{ flex: 1 }}>
-                    <label style={{
-                      display: 'block',
-                      fontSize: 'var(--la-font-size-sm)',
-                      fontWeight: 'var(--la-font-weight-medium)',
+                  <Box flex="1">
+                    <Text
+                      as="label"
+                      display="block"
+                      fontSize="sm"
+                      fontWeight="medium"
                       color: 'var(--la-text-primary)',
-                      marginBottom: 'var(--la-space-2)'
-                    }}>
+                      marginBottom="2"
+                    >
                       {t('propertyDetails.hasParking') || 'Θέση στάθμευσης'}
-                    </label>
+                    </Text>
                     <Select
                       value={details.hasParking ? 'yes' : details.hasParking === false ? 'no' : ''}
                       onChange={(value) => updateDetail('hasParking', value === 'yes')}
@@ -634,16 +646,17 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
 
                 <Flex gap="md">
                   {/* Επιπλωμένο */}
-                  <Box style={{ flex: 1 }}>
-                    <label style={{
-                      display: 'block',
-                      fontSize: 'var(--la-font-size-sm)',
-                      fontWeight: 'var(--la-font-weight-medium)',
+                  <Box flex="1">
+                    <Text
+                      as="label"
+                      display="block"
+                      fontSize="sm"
+                      fontWeight="medium"
                       color: 'var(--la-text-primary)',
-                      marginBottom: 'var(--la-space-2)'
-                    }}>
+                      marginBottom="2"
+                    >
                       {t('propertyDetails.furnished') || 'Επίπλωση'}
-                    </label>
+                    </Text>
                     <Select
                       value={details.furnished || ''}
                       onChange={(value) => updateDetail('furnished', value)}
@@ -659,16 +672,17 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
                   </Box>
 
                   {/* Προσανατολισμός */}
-                  <Box style={{ flex: 1 }}>
-                    <label style={{
-                      display: 'block',
-                      fontSize: 'var(--la-font-size-sm)',
-                      fontWeight: 'var(--la-font-weight-medium)',
+                  <Box flex="1">
+                    <Text
+                      as="label"
+                      display="block"
+                      fontSize="sm"
+                      fontWeight="medium"
                       color: 'var(--la-text-primary)',
-                      marginBottom: 'var(--la-space-2)'
-                    }}>
+                      marginBottom="2"
+                    >
                       {t('propertyDetails.orientation') || 'Προσανατολισμός'}
-                    </label>
+                    </Text>
                     <Select
                       value={details.orientation || ''}
                       onChange={(value) => updateDetail('orientation', value)}
@@ -695,27 +709,30 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
               padding: 'var(--la-space-4)', // 🎯 SST: Spacing token
               borderRadius: 'var(--la-radius-md)' // 🎯 SST: Border radius token
             }}>
-              <Text size="sm" weight="medium" style={{
-                color: 'var(--la-text-primary)',
-                marginBottom: 'var(--la-space-4)', // 🎯 SST: Spacing token
-                display: 'block'
-              }}>
+              <Text
+                size="sm"
+                weight="medium"
+                color="primary"
+                marginBottom="4"
+                display="block"
+              >
                 💰 Οικονομικά Στοιχεία
               </Text>
 
               <Flex direction="column" gap="md">
                 <Flex gap="md">
                   {/* Κοινόχρηστα */}
-                  <Box style={{ flex: 1 }}>
-                    <label style={{
-                      display: 'block',
-                      fontSize: 'var(--la-font-size-sm)',
-                      fontWeight: 'var(--la-font-weight-medium)',
+                  <Box flex="1">
+                    <Text
+                      as="label"
+                      display="block"
+                      fontSize="sm"
+                      fontWeight="medium"
                       color: 'var(--la-text-primary)',
-                      marginBottom: 'var(--la-space-2)'
-                    }}>
+                      marginBottom="2"
+                    >
                       {t('propertyDetails.commonExpenses') || 'Κοινόχρηστα (€/μήνα)'}
-                    </label>
+                    </Text>
                     <Input
                       type="number"
                       value={details.commonExpenses || ''}
@@ -727,16 +744,17 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
                   </Box>
 
                   {/* ΔΕΗ */}
-                  <Box style={{ flex: 1 }}>
-                    <label style={{
-                      display: 'block',
-                      fontSize: 'var(--la-font-size-sm)',
-                      fontWeight: 'var(--la-font-weight-medium)',
+                  <Box flex="1">
+                    <Text
+                      as="label"
+                      display="block"
+                      fontSize="sm"
+                      fontWeight="medium"
                       color: 'var(--la-text-primary)',
-                      marginBottom: 'var(--la-space-2)'
-                    }}>
+                      marginBottom="2"
+                    >
                       {t('propertyDetails.autonomousHeating') || 'Αυτόνομη θέρμανση'}
-                    </label>
+                    </Text>
                     <Select
                       value={details.autonomousHeating ? 'yes' : details.autonomousHeating === false ? 'no' : ''}
                       onChange={(value) => updateDetail('autonomousHeating', value === 'yes')}
@@ -764,15 +782,16 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
           <>
             {/* Τετραγωνικά οικοπέδου */}
             <Box>
-              <label style={{
-                display: 'block',
-                fontSize: 'var(--la-font-size-sm)',
-                fontWeight: 'var(--la-font-weight-medium)',
-                color: 'var(--la-text-primary)',
-                marginBottom: 'var(--la-space-2)'
-              }}>
+              <Text
+                as="label"
+                display="block"
+                fontSize="sm"
+                fontWeight="medium"
+                color="primary"
+                marginBottom="2"
+              >
                 {t('propertyDetails.plotSquareMeters') || 'Εμβαδόν οικοπέδου (τ.μ.)'}
-              </label>
+              </Text>
               <Input
                 type="number"
                 value={details.squareMeters || ''}
@@ -785,15 +804,16 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
 
             {/* Δομήσιμο */}
             <Box>
-              <label style={{
-                display: 'block',
-                fontSize: 'var(--la-font-size-sm)',
-                fontWeight: 'var(--la-font-weight-medium)',
-                color: 'var(--la-text-primary)',
-                marginBottom: 'var(--la-space-2)'
-              }}>
+              <Text
+                as="label"
+                display="block"
+                fontSize="sm"
+                fontWeight="medium"
+                color="primary"
+                marginBottom="2"
+              >
                 {t('propertyDetails.buildable') || 'Δομήσιμο'}
-              </label>
+              </Text>
               <Select
                 value={details.buildable ? 'yes' : details.buildable === false ? 'no' : ''}
                 onChange={(value) => updateDetail('buildable', value === 'yes')}
@@ -809,15 +829,16 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
 
             {/* Πρόσοψη */}
             <Box>
-              <label style={{
-                display: 'block',
-                fontSize: 'var(--la-font-size-sm)',
-                fontWeight: 'var(--la-font-weight-medium)',
-                color: 'var(--la-text-primary)',
-                marginBottom: 'var(--la-space-2)'
-              }}>
+              <Text
+                as="label"
+                display="block"
+                fontSize="sm"
+                fontWeight="medium"
+                color="primary"
+                marginBottom="2"
+              >
                 {t('propertyDetails.frontage') || 'Πρόσοψη (μέτρα)'}
-              </label>
+              </Text>
               <Input
                 type="number"
                 value={details.frontage || ''}
@@ -838,15 +859,16 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
           <>
             {/* Τετραγωνικά */}
             <Box>
-              <label style={{
-                display: 'block',
-                fontSize: 'var(--la-font-size-sm)',
-                fontWeight: 'var(--la-font-weight-medium)',
-                color: 'var(--la-text-primary)',
-                marginBottom: 'var(--la-space-2)'
-              }}>
+              <Text
+                as="label"
+                display="block"
+                fontSize="sm"
+                fontWeight="medium"
+                color="primary"
+                marginBottom="2"
+              >
                 {t('propertyDetails.squareMeters') || 'Τετραγωνικά μέτρα (τ.μ.)'}
-              </label>
+              </Text>
               <Input
                 type="number"
                 value={details.squareMeters || ''}
@@ -859,15 +881,16 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
 
             {/* Κλιματισμός */}
             <Box>
-              <label style={{
-                display: 'block',
-                fontSize: 'var(--la-font-size-sm)',
-                fontWeight: 'var(--la-font-weight-medium)',
-                color: 'var(--la-text-primary)',
-                marginBottom: 'var(--la-space-2)'
-              }}>
+              <Text
+                as="label"
+                display="block"
+                fontSize="sm"
+                fontWeight="medium"
+                color="primary"
+                marginBottom="2"
+              >
                 {t('propertyDetails.airConditioning') || 'Κλιματισμός'}
-              </label>
+              </Text>
               <Select
                 value={details.hasAirConditioning ? 'yes' : details.hasAirConditioning === false ? 'no' : ''}
                 onChange={(value) => updateDetail('hasAirConditioning', value === 'yes')}
@@ -883,15 +906,16 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
 
             {/* Θέσεις στάθμευσης */}
             <Box>
-              <label style={{
-                display: 'block',
-                fontSize: 'var(--la-font-size-sm)',
-                fontWeight: 'var(--la-font-weight-medium)',
-                color: 'var(--la-text-primary)',
-                marginBottom: 'var(--la-space-2)'
-              }}>
+              <Text
+                as="label"
+                display="block"
+                fontSize="sm"
+                fontWeight="medium"
+                color="primary"
+                marginBottom="2"
+              >
                 {t('propertyDetails.parkingSpaces') || 'Θέσεις στάθμευσης'}
-              </label>
+              </Text>
               <Select
                 value={details.parkingSpaces || ''}
                 onChange={(value) => updateDetail('parkingSpaces', Number(value))}
@@ -918,15 +942,16 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
           <>
             {/* Διαστάσεις */}
             <Box>
-              <label style={{
-                display: 'block',
-                fontSize: 'var(--la-font-size-sm)',
-                fontWeight: 'var(--la-font-weight-medium)',
-                color: 'var(--la-text-primary)',
-                marginBottom: 'var(--la-space-2)'
-              }}>
+              <Text
+                as="label"
+                display="block"
+                fontSize="sm"
+                fontWeight="medium"
+                color="primary"
+                marginBottom="2"
+              >
                 {t('propertyDetails.dimensions') || 'Διαστάσεις'}
-              </label>
+              </Text>
               <Input
                 value={details.dimensions || ''}
                 onChange={(e) => updateDetail('dimensions', e.target.value)}
@@ -938,15 +963,16 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
 
             {/* Προσβασιμότητα */}
             <Box>
-              <label style={{
-                display: 'block',
-                fontSize: 'var(--la-font-size-sm)',
-                fontWeight: 'var(--la-font-weight-medium)',
-                color: 'var(--la-text-primary)',
-                marginBottom: 'var(--la-space-2)'
-              }}>
+              <Text
+                as="label"
+                display="block"
+                fontSize="sm"
+                fontWeight="medium"
+                color="primary"
+                marginBottom="2"
+              >
                 {t('propertyDetails.accessibility') || 'Πρόσβαση'}
-              </label>
+              </Text>
               <Select
                 value={details.accessibility || ''}
                 onChange={(value) => updateDetail('accessibility', value)}
@@ -985,22 +1011,18 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
         padding: 'var(--la-space-8)' // 🎯 SST: Spacing token
       }}
     >
-      <Flex direction="column" gap="xl" style={{ alignItems: 'stretch' }}>
+      <Flex direction="column" gap="xl" alignItems="stretch">
         {/* Header */}
         <Box textAlign={MENU_POSITIONS.CENTER}>
-          <Flex align="center" gap="md" style={{ justifyContent: 'center', marginBottom: 'var(--la-space-4)' }}> {/* 🎯 SST: Spacing token */}
-            <Box style={{ color: getCardPrimaryColor() }}>
+          <Flex align="center" gap="md" justifyContent="center" marginBottom="4"> {/* 🎯 SST: Spacing token */}
+            <Box color={getCardPrimaryColor()}>
               <EditIcon size="lg" />
             </Box>
-            <Heading size="lg" style={{
-              color: 'var(--color-text-primary)'
-            }}>
+            <Heading size="lg" color="primary">
               {t('propertyDetails.title') || 'Στοιχεία Ακινήτου'}
             </Heading>
           </Flex>
-          <Text size="md" style={{
-            color: 'var(--color-text-secondary)'
-          }}>
+          <Text size="md" color="secondary">
             {t('propertyDetails.subtitle') || `Συμπληρώστε τα χαρακτηριστικά για ${t(`propertyType.${selectedPropertyType}`) || selectedPropertyType}`}
           </Text>
         </Box>
@@ -1012,7 +1034,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
 
         {/* Actions */}
         <Box textAlign={MENU_POSITIONS.CENTER}>
-          <Flex gap="lg" justifyContent="center" wrap="wrap" style={{ alignItems: 'center' }}>
+          <Flex gap="lg" justifyContent="center" wrap="wrap" alignItems="center">
             <Button
               variant="secondary"
               size="lg"

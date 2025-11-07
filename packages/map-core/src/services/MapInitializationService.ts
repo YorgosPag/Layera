@@ -40,7 +40,7 @@ export class MapInitializationService {
       overlayStyles.setAttribute('data-geomap-overlay', 'true');
       overlayStyles.textContent = `
         .leaflet-overlay-pane { z-index: 400 !important; }
-        .floor-plan-overlay { outline: 2px dashed red; }
+        .floor-plan-overlay { outline: var(--la-border-width-sm, 2px) dashed var(--la-color-danger, #ef4444); }
       `;
       document.head.appendChild(overlayStyles);
     }

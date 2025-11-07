@@ -26,9 +26,9 @@ export const FileList: React.FC<FileListProps> = ({
 
   if (files.length === 0) {
     return (
-      <Card className={`p-6 text-center ${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-50'}`}>
-        <UploadIcon className="w-12 h-12 mx-auto mb-4 text-gray-400" />
-        <Typography size="base" className="text-gray-500">
+      <Card className="p-6 text-center" style={{ backgroundColor: theme === 'dark' ? 'var(--la-color-gray-800)' : 'var(--la-color-gray-50)' }}>
+        <UploadIcon className="w-12 h-12 mx-auto mb-4" style={{ color: 'var(--la-color-gray-400)' }} />
+        <Typography size="base" style={{ color: 'var(--la-color-text-muted)' }}>
           {t('file-upload.no-files')}
         </Typography>
       </Card>
@@ -75,17 +75,17 @@ const FileListItem: React.FC<FileListItemProps> = ({
   const getStatusIcon = (): void => {
     switch (file.status) {
       case 'completed':
-        return <UploadIcon className="w-5 h-5 text-green-500" />;
+        return <UploadIcon className="w-5 h-5" style={{ color: 'var(--la-color-success)' }} />;
       case 'error':
-        return <CloseIcon className="w-5 h-5 text-red-500" />;
+        return <CloseIcon className="w-5 h-5" style={{ color: 'var(--la-color-error)' }} />;
       case 'uploading':
-        return <UploadIcon className="w-5 h-5 text-blue-500 animate-pulse" />;
+        return <UploadIcon className="w-5 h-5 animate-pulse" style={{ color: 'var(--la-color-info)' }} />;
       case 'cancelled':
-        return <CloseIcon className="w-5 h-5 text-gray-500" />;
+        return <CloseIcon className="w-5 h-5" style={{ color: 'var(--la-color-gray-500)' }} />;
       case 'paused':
-        return <UploadIcon className="w-5 h-5 text-yellow-500" />;
+        return <UploadIcon className="w-5 h-5" style={{ color: 'var(--la-color-warning)' }} />;
       default:
-        return <UploadIcon className="w-5 h-5 text-gray-400" />;
+        return <UploadIcon className="w-5 h-5" style={{ color: 'var(--la-color-gray-400)' }} />;
     }
   };
 
@@ -106,20 +106,20 @@ const FileListItem: React.FC<FileListItemProps> = ({
     }
   };
 
-  const getProgressBarColor = (): void => {
+  const getProgressBarColor = (): string => {
     switch (file.status) {
       case 'completed':
-        return 'bg-green-500';
+        return 'var(--la-color-success)';
       case 'error':
-        return 'bg-red-500';
+        return 'var(--la-color-error)';
       case 'uploading':
-        return 'bg-blue-500';
+        return 'var(--la-color-info)';
       case 'cancelled':
-        return 'bg-gray-500';
+        return 'var(--la-color-gray-500)';
       case 'paused':
-        return 'bg-yellow-500';
+        return 'var(--la-color-warning)';
       default:
-        return 'bg-gray-300';
+        return 'var(--la-color-gray-300)';
     }
   };
 
@@ -136,7 +136,7 @@ const FileListItem: React.FC<FileListItemProps> = ({
   };
 
   return (
-    <Card className={`p-4 ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'}`}>
+    <Card className="p-4" style={{ backgroundColor: theme === 'dark' ? 'var(--la-color-gray-800)' : 'var(--la-color-surface)' }}>
       <Box className="flex items-center justify-between">
         {/* File Info */}
         <Box className="flex items-center space-x-3 flex-1 min-w-0">
@@ -149,23 +149,23 @@ const FileListItem: React.FC<FileListItemProps> = ({
               <Typography size="base" weight="medium" className="truncate">
                 {file.file.name}
               </Typography>
-              <Typography size="sm" className="text-gray-500 ml-2">
+              <Typography size="sm" className=" ml-2">
                 {formatBytes(file.file.size)}
               </Typography>
             </Box>
 
             <Box className="flex items-center space-x-4 mt-1">
-              <Typography size="sm" className="text-gray-500">
+              <Typography size="sm" style={{ color: 'var(--la-color-text-muted)' }}>
                 {getStatusText()}
               </Typography>
 
               {file.status === 'uploading' && file.speed && (
                 <>
-                  <Typography size="sm" className="text-gray-500">
+                  <Typography size="sm" style={{ color: 'var(--la-color-text-muted)' }}>
                     {formatUploadSpeed(file.speed)}
                   </Typography>
                   {file.eta && (
-                    <Typography size="sm" className="text-gray-500">
+                    <Typography size="sm" style={{ color: 'var(--la-color-text-muted)' }}>
                       {t('file-upload.eta', { time: formatETA(file.eta) })}
                     </Typography>
                   )}
@@ -175,9 +175,9 @@ const FileListItem: React.FC<FileListItemProps> = ({
 
             {/* Progress Bar */}
             {showProgress && (
-              <Box className={`w-full bg-gray-200 rounded-full h-2 mt-2 ${theme === 'dark' ? 'bg-gray-600' : 'bg-gray-200'}`}>
+              <Box className="w-full rounded-full h-2 mt-2" style={{ backgroundColor: theme === 'dark' ? 'var(--la-color-gray-600)' : 'var(--la-color-gray-200)' }}>
                 <Box
-                  className={`h-2 rounded-full transition-all duration-300 ${getProgressBarColor()}`}
+                  className="h-2 rounded-full transition-all duration-300" style={{ backgroundColor: getProgressBarColor() }}
                   width={`${Math.min(file.progress, 100)}%`}
                 />
               </Box>
@@ -193,7 +193,7 @@ const FileListItem: React.FC<FileListItemProps> = ({
                 variant="outline"
                 size="sm"
                 onClick={(): void => onCancel(file.id)}
-                className="text-red-600 hover:text-red-700"
+                style={{ color: 'var(--la-color-error)', '--hover-color': 'var(--la-color-error-hover)' }}
               >
                 <CloseIcon className="w-4 h-4" />
               </Button>
@@ -204,7 +204,7 @@ const FileListItem: React.FC<FileListItemProps> = ({
                 variant="outline"
                 size="sm"
                 onClick={(): void => onRetry(file.id)}
-                className="text-blue-600 hover:text-blue-700"
+                style={{ color: 'var(--la-color-info)', '--hover-color': 'var(--la-color-info-hover)' }}
               >
                 <RefreshIcon className="w-4 h-4" />
               </Button>
@@ -215,7 +215,7 @@ const FileListItem: React.FC<FileListItemProps> = ({
                 variant="outline"
                 size="sm"
                 onClick={(): void => onRemove(file.id)}
-                className="text-gray-600 hover:text-gray-700"
+                style={{ color: 'var(--la-color-gray-600)', '--hover-color': 'var(--la-color-gray-700)' }}
               >
                 <DeleteIcon className="w-4 h-4" />
               </Button>

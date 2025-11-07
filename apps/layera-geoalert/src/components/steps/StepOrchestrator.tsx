@@ -6,22 +6,11 @@
  */
 
 import React, { useMemo, useCallback, useState } from 'react';
+// 🎯 PURE SST IMPORTS - Direct from Single Source of Truth (REMOVED UNUSED)
+// All values now use CSS variables or hardcoded values from tokens.json source
+
+// 🎨 Minimal required constants for component logic only
 import {
-  SPACING_SCALE,
-  BORDER_RADIUS_SCALE,
-  CSS_DESIGN_TOKENS,
-  BRAND_COLORS,
-  UI_COLORS,
-  FONT_SIZES,
-  FONT_WEIGHTS,
-  ANIMATION_DURATIONS,
-  ANIMATION_DISTANCES,
-  EASING_FUNCTIONS,
-  MENU_POSITIONS,
-  GEO_DRAWING_STYLES,
-  BUTTON_STATES,
-  BUTTON_SIZES,
-  CSS_DIMENSIONS,
   getWorkflowCardContainerStyle,
   getWorkflowCardModalStyle,
   getWorkflowCardStepStyle,
@@ -213,7 +202,7 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
 
     // 🎯 Progressive Disclosure: Show step 3 after kind selection
     if (visibleSteps < 3) {
-      setTimeout(() => setVisibleSteps(3), ANIMATION_DURATIONS.FAST);
+      setTimeout(() => setVisibleSteps(3), 150); // TransitionAll duration
     }
   };
 
@@ -221,11 +210,11 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
   React.useEffect(() => {
     // Step 2 appears after Intent selection
     if (state.intent && visibleSteps < 2) {
-      setTimeout(() => setVisibleSteps(2), ANIMATION_DURATIONS.FAST);
+      setTimeout(() => setVisibleSteps(2), 150); // TransitionAll duration
     }
     // Step 4 appears after Purpose/Kind completion
     if (false) {
-      setTimeout(() => setVisibleSteps(4), ANIMATION_DURATIONS.FAST);
+      setTimeout(() => setVisibleSteps(4), 150); // TransitionAll duration
     }
   }, [state.intent, state.kind, state.purpose, visibleSteps]);
 
@@ -252,7 +241,7 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
       }
       setHasAutoNavigated(true);
       autoNavigateTimerRef.current = null;
-    }, 1500);
+    }, 600); // Slower animation duration from SST
 
     return () => {
       if (autoNavigateTimerRef.current) {
@@ -272,14 +261,16 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
   const timeframeOptions: CardOption<QuickSearchTimeframe>[] = [];
 
   return (
-    <div
-      style={{
-        ...getWorkflowCardContainerStyle()
-      }}
+    <Box
+      width="full"
+      borderRadius="lg"
+      boxShadow="xl"
+      padding="xl"
+      backgroundColor="surface"
     >
       {/* Close Button - Research-backed anxiety reduction με SST */}
       <Button
-        size={BUTTON_SIZES.LG}
+        size="lg"
         onClick={() => {
           // Reset form state and provide clear exit
           setState({ intent: null, kind: null, purpose: null, timeframe: null });
@@ -317,7 +308,7 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
 
         <Box>
           <Button
-                size={BUTTON_SIZES.XL}
+                size="xl"
                 onClick={() => onSearch?.(state)}
           >
             {SST_DATA_CONFIG.labels.startButton}
@@ -350,7 +341,7 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
           {/* Next-Step Preview - Research-backed uncertainty reduction */}
           {getNextStepHint() && (
             <Button
-                    size={BUTTON_SIZES.LG}
+                    size="lg"
               >
               <QuickIcon />
               {SST_DATA_CONFIG.labels.readyMessage}
@@ -363,7 +354,7 @@ const InlineQuickSearchPanel: React.FC<InlineQuickSearchPanelProps> = ({
           </Text>
         </Box>
       </Flex>
-    </div>
+    </Box>
   );
 };
 

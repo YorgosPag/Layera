@@ -38,18 +38,18 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, onStepBackCli
   // Debug logs removed for production optimization
 
   return (
-    <div style={{
-      backgroundColor: 'var(--la-header-bg)', // 🎯 SST: Header background token
-      color: 'var(--la-header-text)', // 🎯 SST: Header text token
-      padding: 'var(--la-header-padding)', // 🎯 SST: Header padding token
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      height: 'var(--la-header-height)', // 🎯 SST: Header height token
-      borderBottom: 'var(--la-header-border)', // 🎯 SST: Header border token
-      position: 'relative',
-      zIndex: 'var(--la-header-z-index)' // 🎯 SST: Header z-index token
-    }}>
+    <Box
+      backgroundColor="header-bg"
+      color="header-text"
+      padding="header"
+      display="flex"
+      alignItems="center"
+      justifyContent="space-between"
+      height="header"
+      borderBottom="header"
+      position="relative"
+      zIndex="header"
+    >
       {/* Left side - Back button + Title */}
       <Flex align="center" gap="sm">
         {onBackClick && (
@@ -66,31 +66,30 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, onStepBackCli
 
         {/* 🧡 ΠΡΟΣΩΡΙΝΟ: Πορτοκαλί κουμπί για navigation στα steps */}
         {onStepBackClick && (
-          <Button
+          <Box
+            as={Button}
             variant="primary"
             size="sm"
             onClick={onStepBackClick}
             icon={<ArrowLeftIcon size="sm" theme="neutral" />}
             title="Πίσω στο προηγούμενο step"
-            style={{
-              backgroundColor: getCardOrangeColor(), // 🔴 SST: Χρώμα από μοναδική πηγή αλήθειας
-              color: 'var(--la-header-text)', // 🎯 SST: Header text token
-              border: 'none',
-              borderRadius: 'var(--la-button-border-radius)', // 🎯 SST: Button border radius token
-              padding: 'var(--la-button-padding-sm)' // 🎯 SST: Button padding token
-            }}
+            backgroundColor="orange"
+            color="header-text"
+            border="none"
+            borderRadius="button"
+            padding="button-sm"
           >
             {!showIcons && "Πίσω"}
-          </Button>
+          </Box>
         )}
-        <span style={{
-          color: 'var(--la-header-text)', // 🎯 SST: Header text token
-          fontSize: 'var(--la-font-size-md)', // 🎯 SST: Font size token
-          fontWeight: 'var(--la-font-weight-semibold)', // 🎯 SST: Font weight token
-          marginLeft: 'var(--la-gap-sm)' // 🎯 SST: Gap token
-        }}>
+        <Text
+          color="header-text"
+          fontSize="md"
+          fontWeight="semibold"
+          marginLeft="sm"
+        >
           Geo-Canvas
-        </span>
+        </Text>
       </Flex>
 
       {/* Right side - Actions */}
@@ -124,6 +123,6 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, onStepBackCli
           />
         </div>
       </Flex>
-    </div>
+    </Box>
   );
 };

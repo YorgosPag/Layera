@@ -113,14 +113,10 @@ function TestNotificationsComponent() {
   };
 
   return (
-    <div
-      style={{
-        margin: 'var(--la-margin-0-8)', // 🎯 SST: Margin token
-        padding: 'var(--la-space-4)', // 🎯 SST: Spacing token από μοναδική πηγή αλήθειας
-        backgroundColor: getCardOrangeColor(), // 🔴 SST: Background color από μοναδική πηγή αλήθειας
-        border: 'var(--la-border-width-1) solid var(--la-border-gray)', // 🎯 SST: Border tokens
-        borderRadius: 'var(--la-gap-sm)' // 🎯 SST: Border radius token
-      }}
+    <BaseCard
+      variant="warning"
+      padding="md"
+      className="layera-test-panel"
     >
       <Heading as="h3" size="lg" color="primary" className="layera-mb-4">
         {t('test.panel.title')}
@@ -141,7 +137,7 @@ function TestNotificationsComponent() {
           size="sm"
           onClick={testSuccessNotification}
         >
-          <CheckIcon size="xs" style={{ marginRight: 'var(--la-gap-xs)' }} /> {/* 🎯 SST: Margin token */}
+          <CheckIcon size="xs" marginRight="xs" />
           {t('test.panel.success')}
         </Button>
 
@@ -150,7 +146,7 @@ function TestNotificationsComponent() {
           size="sm"
           onClick={testErrorNotification}
         >
-          <WarningIcon size="xs" style={{ marginRight: 'var(--la-gap-xs)' }} /> {/* 🎯 SST: Margin token */}
+          <WarningIcon size="xs" marginRight="xs" />
           {t('test.panel.error')}
         </Button>
 
@@ -159,7 +155,7 @@ function TestNotificationsComponent() {
           size="sm"
           onClick={testInfoNotification}
         >
-          <FileIcon size="xs" style={{ marginRight: 'var(--la-gap-xs)' }} /> {/* 🎯 SST: Margin token */}
+          <FileIcon size="xs" marginRight="xs" />
           {t('test.panel.info')}
         </Button>
 
@@ -171,7 +167,7 @@ function TestNotificationsComponent() {
         >
           {isLoading ? <LoadingSpinner size="xs" /> : (
             <>
-              <RefreshIcon size="xs" style={{ marginRight: 'var(--la-gap-xs)' }} /> {/* 🎯 SST: Margin token */}
+              <RefreshIcon size="xs" marginRight="xs" />
               {t('test.panel.loading')}
             </>
           )}
@@ -179,7 +175,7 @@ function TestNotificationsComponent() {
       </Box>
 
       {isLoading && (
-        <BaseCard padding="md" style={{ backgroundColor: getCardWarningColor() }}>
+        <BaseCard variant="warning" padding="md">
           <Flex align="center" justify="center" gap="sm">
             <LoadingSpinner size="md" />
             <Text size="base" color="neutral">
@@ -196,7 +192,7 @@ function TestNotificationsComponent() {
           ✅ Integration Testing: Όλα τα LEGO components λειτουργούν μαζί!
         </Text>
       </Box>
-    </div>
+    </BaseCard>
   );
 }
 
@@ -370,21 +366,18 @@ function App() {
                   className="layera-mb-8"
                   margin="auto"
                   marginBottom="xl"
-                  style={{ boxShadow: 'var(--la-box-shadow-card)' }} // 🎯 SST: Box shadow token
+                  shadow="card"
                 >
                   {t('geoalert.enterGeoCanvas')}
                 </Button>
 
                 <BaseCard
+                  variant="info"
                   padding="lg"
                   marginY="xl"
                   maxWidth="var(--la-max-content-width)" // 🎯 SST: Maximum content width token
                   marginLeft="auto"
                   marginRight="auto"
-                  style={{
-                    backgroundColor: getCardInfoColor(), // 🔴 SST: Secondary card color από μοναδική πηγή αλήθειας
-                    border: `var(--la-border-width-md) solid ${getCardInfoBorder()}` // 🎯 SST: Border width token + 🔲 SST: Περίγραμμα από μοναδική πηγή αλήθειας
-                  }}
                 >
                   <Heading as="h3" size="lg" color="primary" className="layera-mb-4 layera-flex layera-items-center layera-gap-2">
                     <CheckIcon size="xs" theme="success" /> {t('geoalert.statusCheck')}
