@@ -30,7 +30,8 @@ export default {
         return dictionary.allTokens
           .map(token => {
             const safeName = token.name.replace(/[^a-z0-9_]/gi, '_');
-            return `export const ${safeName} = '${token.value}' as const;`;
+            const escapedValue = token.value.replace(/'/g, "\\'");
+            return `export const ${safeName} = '${escapedValue}' as const;`;
           })
           .join('\n');
       },
