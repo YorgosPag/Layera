@@ -139,7 +139,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
       ref={ref}
       type={type}
       className={classes}
-      style={buttonStyles}
+      {...(buttonStyles && { style: buttonStyles })}
       disabled={disabled || loading}
       aria-disabled={disabled || loading}
       aria-busy={loading}

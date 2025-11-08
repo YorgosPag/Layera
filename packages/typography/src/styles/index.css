@@ -1,7 +1,7 @@
 /* Layera Typography System - Enterprise Font Standards */
 
 /* Import base design tokens first */
-@import '@layera/tokens/dist/css/tokens.css';
+@import url('@layera/tokens/dist/css/tokens.css');
 
 /* Font Imports - Χρησιμοποιούμε system fonts για καλύτερη απόδοση */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -11,13 +11,13 @@
   --la-font-family-sans: system-ui, -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, 'Helvetica Neue', arial, sans-serif;
 
   /* Typography-specific sizes (extending base tokens) */
-  --la-text-lg: 1.125rem;
-  --la-text-xl: 1.25rem;
-  --la-text-2xl: 1.5rem;
-  --la-text-3xl: 1.875rem;
-  --la-text-4xl: 2.25rem;
+  --la-text-lg: 1.125rem 1.125rem;
+  --la-text-xl: var(--la-space-4);
+  --la-text-2xl: var(--la-space-4);
+  --la-text-3xl: 1.875rem 1.875rem;
+  --la-text-4xl: 2.25rem 2.25rem;
   --la-text-5xl: 3rem;
-  --la-text-6xl: 3.75rem;
+  --la-text-6xl: 3.75rem 3.75rem;
 
   /* Font Weights - Typography-specific additions */
   --la-font-light: 300;
@@ -30,11 +30,11 @@
   --la-leading-loose: 2;
 
   /* Letter Spacing */
-  --la-tracking-xs: -0.025em;
-  --la-tracking-sm: -0.0125em;
-  --la-tracking-base: 0em;
-  --la-tracking-lg: 0.0125em;
-  --la-tracking-xl: 0.025em;
+  --la-tracking-xs: -0.025em 0.025em;
+  --la-tracking-sm: -0.0125em 0.0125em;
+  --la-tracking-base: 0em 0em;
+  --la-tracking-lg: 0.0125em 0.0125em;
+  --la-tracking-xl: 0.025em 0.025em;
 
   /* Text Colors - Typography-specific aliases (using base tokens) */
   --la-text-muted: var(--la-color-text-tertiary);
@@ -190,15 +190,15 @@
 /* Layout Utility Classes */
 .la-flex { display: flex; }
 .la-items-center { align-items: center; }
-.la-gap-1 { gap: 0.25rem; }
-.la-gap-2 { gap: 0.5rem; }
-.la-gap-3 { gap: 0.75rem; }
-.la-gap-4 { gap: 1rem; }
+.la-gap-1 { gap: var(--la-space-4); }
+.la-gap-2 { gap: var(--la-space-4); }
+.la-gap-3 { gap: var(--la-space-4); }
+.la-gap-4 { gap: var(--la-space-4); }
 
 /* Margin Utility Classes */
-.la-mb-2 { margin-bottom: 0.5rem; }
-.la-mb-4 { margin-bottom: 1rem; }
-.la-mb-8 { margin-bottom: 2rem; }
+.la-mb-2 { margin-bottom: var(--la-space-4); }
+.la-mb-4 { margin-bottom: var(--la-space-4); }
+.la-mb-8 { margin-bottom: var(--la-space-4); }
 
 /* Responsive Typography - Mobile First */
 @media (width <= 40rem) {

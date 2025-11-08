@@ -13,6 +13,7 @@ import {
   ANIMATION_DURATIONS,
   EASING_FUNCTIONS,
   MENU_POSITIONS,
+  PROPERTY_VALIDATION,
   getWorkflowCardStepStyle,
   getCardInfoBorder,
   getCardPrimaryColor
@@ -163,7 +164,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
       errors.squareMeters = t('validation.minValue') || 'Τα τετραγωνικά πρέπει να είναι μεγαλύτερα από 0';
     }
 
-    if (details.yearBuilt && (details.yearBuilt < 1800 || details.yearBuilt > new Date().getFullYear())) {
+    if (details.yearBuilt && (details.yearBuilt < PROPERTY_VALIDATION.MIN_BUILDING_YEAR || details.yearBuilt > new Date().getFullYear())) {
       errors.yearBuilt = t('validation.validYear') || 'Παρακαλώ εισάγετε έγκυρο έτος κατασκευής';
     }
 
@@ -171,7 +172,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
   }, [details, selectedPropertyType, t]);
 
   // 🏠 Update detail field με validation clear
-  const updateDetail = useCallback((field: keyof PropertyDetailsData, value: any) => {
+  const updateDetail = useCallback((field: keyof PropertyDetailsData, value: string | number | boolean) => {
     setDetails(prev => ({
       ...prev,
       [field]: value
@@ -408,7 +409,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
                       display="block"
                       fontSize="sm"
                       fontWeight="medium"
-                      color: validationErrors.yearBuilt ? 'var(--la-color-error)' : 'var(--la-text-primary)',
+                      color={validationErrors.yearBuilt ? 'error' : 'primary'}
                       marginBottom="2"
                     >
                       {t('propertyDetails.yearBuilt') || 'Έτος κατασκευής'}
@@ -464,7 +465,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
                       display="block"
                       fontSize="sm"
                       fontWeight="medium"
-                      color: 'var(--la-text-primary)',
+                      color="primary"
                       marginBottom="2"
                     >
                       {t('propertyDetails.hasElevator') || 'Ασανσέρ'}
@@ -489,7 +490,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
                       display="block"
                       fontSize="sm"
                       fontWeight="medium"
-                      color: 'var(--la-text-primary)',
+                      color="primary"
                       marginBottom="2"
                     >
                       {t('propertyDetails.heating') || 'Θέρμανση'}
@@ -519,7 +520,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
                       display="block"
                       fontSize="sm"
                       fontWeight="medium"
-                      color: 'var(--la-text-primary)',
+                      color="primary"
                       marginBottom="2"
                     >
                       {t('propertyDetails.energyClass') || 'Ενεργειακή κλάση'}
@@ -550,7 +551,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
                       display="block"
                       fontSize="sm"
                       fontWeight="medium"
-                      color: 'var(--la-text-primary)',
+                      color="primary"
                       marginBottom="2"
                     >
                       {t('propertyDetails.condition') || 'Κατάσταση ακινήτου'}
@@ -600,7 +601,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
                       display="block"
                       fontSize="sm"
                       fontWeight="medium"
-                      color: 'var(--la-text-primary)',
+                      color="primary"
                       marginBottom="2"
                     >
                       {t('propertyDetails.hasBalcony') || 'Μπαλκόνι/Βεράντα'}
@@ -625,7 +626,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
                       display="block"
                       fontSize="sm"
                       fontWeight="medium"
-                      color: 'var(--la-text-primary)',
+                      color="primary"
                       marginBottom="2"
                     >
                       {t('propertyDetails.hasParking') || 'Θέση στάθμευσης'}
@@ -652,7 +653,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
                       display="block"
                       fontSize="sm"
                       fontWeight="medium"
-                      color: 'var(--la-text-primary)',
+                      color="primary"
                       marginBottom="2"
                     >
                       {t('propertyDetails.furnished') || 'Επίπλωση'}
@@ -678,7 +679,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
                       display="block"
                       fontSize="sm"
                       fontWeight="medium"
-                      color: 'var(--la-text-primary)',
+                      color="primary"
                       marginBottom="2"
                     >
                       {t('propertyDetails.orientation') || 'Προσανατολισμός'}
@@ -704,11 +705,11 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
             </Box>
 
             {/* 💰 ΟΙΚΟΝΟΜΙΚΑ ΣΤΟΙΧΕΙΑ */}
-            <Box style={{
-              backgroundColor: 'var(--la-color-bg-elevated)',
-              padding: 'var(--la-space-4)', // 🎯 SST: Spacing token
-              borderRadius: 'var(--la-radius-md)' // 🎯 SST: Border radius token
-            }}>
+            <Box
+              backgroundColor="elevated"
+              padding="4" // 🎯 SST: Spacing token
+              borderRadius="md" // 🎯 SST: Border radius token
+            >
               <Text
                 size="sm"
                 weight="medium"
@@ -728,7 +729,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
                       display="block"
                       fontSize="sm"
                       fontWeight="medium"
-                      color: 'var(--la-text-primary)',
+                      color="primary"
                       marginBottom="2"
                     >
                       {t('propertyDetails.commonExpenses') || 'Κοινόχρηστα (€/μήνα)'}
@@ -750,7 +751,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
                       display="block"
                       fontSize="sm"
                       fontWeight="medium"
-                      color: 'var(--la-text-primary)',
+                      color="primary"
                       marginBottom="2"
                     >
                       {t('propertyDetails.autonomousHeating') || 'Αυτόνομη θέρμανση'}
@@ -999,17 +1000,14 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
   };
 
   return (
-    <div
-      style={{
-        ...getWorkflowCardStepStyle(),
-        backdropFilter: 'none',
-        boxShadow: `var(--la-shadow-xl)`,
-        display: 'block',
-        width: 'var(--la-width-full)', // 🎯 SST: Full width
-        animation: `slideIn ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`,
-        border: `var(--la-border-width-md) solid ${getCardInfoBorder()}`, // 🎯 SST: Border width token
-        padding: 'var(--la-space-8)' // 🎯 SST: Spacing token
-      }}
+    <Box
+      backdropFilter="none"
+      boxShadow="xl"
+      display="block"
+      width="full"
+      border={`var(--la-border-width-md) solid ${getCardInfoBorder()}`}
+      padding="8"
+      className="workflow-card-step-animated"
     >
       <Flex direction="column" gap="xl" alignItems="stretch">
         {/* Header */}
@@ -1048,10 +1046,8 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
               size="lg"
               onClick={handleComplete}
               disabled={!isFormValid}
-              style={{
-                opacity: isFormValid ? 1 : 0.6,
-                cursor: isFormValid ? 'pointer' : 'not-allowed'
-              }}
+              opacity={isFormValid ? '1' : '0.6'}
+              cursor={isFormValid ? 'pointer' : 'not-allowed'}
             >
               {isFormValid
                 ? (t('workflow.actions.continueToLocation') || 'Συνέχεια στην Τοποθεσία →')
@@ -1061,6 +1057,6 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
           </Flex>
         </Box>
       </Flex>
-    </div>
+    </Box>
   );
 };

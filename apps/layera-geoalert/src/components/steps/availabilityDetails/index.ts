@@ -4,13 +4,14 @@
 
 import { stepRegistry } from '../StepRegistry';
 import { AvailabilityDetailsStep } from './AvailabilityDetailsStep';
+import { WORKFLOW_ORDER } from '@layera/constants';
 
 // 🚀 AUTO-REGISTRATION: Καταχώρηση του availabilityDetails step στο StepRegistry
 stepRegistry.register({
   id: 'availabilityDetails',
   name: 'Λεπτομέρειες Διαθεσιμότητας',
   component: AvailabilityDetailsStep,
-  order: 12,
+  order: WORKFLOW_ORDER.AVAILABILITY_DETAILS,
   isVisible: true,
   cards: [],
   conditions: [{

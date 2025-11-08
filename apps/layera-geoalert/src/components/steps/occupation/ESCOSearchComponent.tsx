@@ -13,7 +13,7 @@ import { SPACING_SCALE, TABLE_COLUMN_WIDTHS, CSS_DESIGN_TOKENS } from '@layera/c
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { BaseCard } from '@layera/cards';
 // Firebase imports
-import { initializeApp } from 'firebase/app';
+import { initializeApp, getApps, getApp } from 'firebase/app';
 import {
   getFirestore,
   collection,
@@ -56,6 +56,10 @@ export const ESCOSearchComponent: React.FC<ESCOSearchProps> = ({
   // Firebase Connection
   const firebaseApp = useMemo(() => {
     try {
+      // Check if Firebase app is already initialized
+      if (getApps().length > 0) {
+        return getApp();
+      }
       return initializeApp(firebaseConfig);
     } catch (error) {
       console.error('Firebase initialization failed:', error);

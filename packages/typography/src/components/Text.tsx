@@ -18,6 +18,20 @@ export const Text: React.FC<TextProps> = ({
   children,
   ...props
 }) => {
+  // Filter out React-specific layout props that shouldn't go to DOM
+  const {
+    marginTop,
+    marginBottom,
+    marginLeft,
+    marginRight,
+    paddingTop,
+    paddingBottom,
+    paddingLeft,
+    paddingRight,
+    alignItems,
+    gap,
+    ...domProps
+  } = props;
   const classes = [
     'layera-text',
     `layera-text-${size}`,
@@ -29,7 +43,7 @@ export const Text: React.FC<TextProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <Component className={classes} {...props}>
+    <Component className={classes} {...domProps}>
       {children}
     </Component>
   );

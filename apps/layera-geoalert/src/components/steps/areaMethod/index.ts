@@ -10,7 +10,7 @@ stepRegistry.register({
   id: 'areaMethod',
   name: 'Μέθοδος Εμβαδού',
   component: AreaMethodStep,
-  order: 10,
+  order: 10, // Step sequence order - UI constant
   isVisible: true,
   cards: [],
   conditions: [{

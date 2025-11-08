@@ -6,7 +6,7 @@ import { Button } from '@layera/buttons';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, FlexCenter, Box, Flex } from '@layera/layout';
-import { Text } from '@layera/typography';
+// import { Text } from '@layera/typography'; // Temporarily disabled due to build issues
 import { DashboardCard } from '@layera/cards';
 import { FORM_TYPES, FORM_SIZES, SPACING_SCALE, BORDER_RADIUS_SCALE, getCardInfoColor, getCardInfoBorder } from '@layera/constants';
 
@@ -96,7 +96,7 @@ const Login = () => {
               background="danger-subtle"
               border="danger-subtle"
             >
-              <Text size="sm" color="danger">{error}</Text>
+              <Box as="span" fontSize="sm" color="danger">{error}</Box>
             </Box>
           )}
 
@@ -201,31 +201,34 @@ const Login = () => {
             textAlign="center"
             fontSize="sm"
           >
-            <Text
+            <Box
               as={Link}
               to="/forgot-password"
+              fontSize="sm"
               color="info"
-              textDecoration="none"
               fontWeight="medium"
+              textDecoration="none"
             >
               {t('auth.forgotPassword')}
-            </Text>
-            <Text
-              as="p"
-              marginY="sm"
+            </Box>
+
+            <Box
+              fontSize="sm"
               color="secondary"
+              marginY="sm"
             >
               {t('auth.noAccount')} {' '}
-              <Text
+              <Box
                 as={Link}
                 to="/register"
+                fontSize="sm"
                 color="info"
-                textDecoration="none"
                 fontWeight="medium"
+                textDecoration="none"
               >
                 {t('auth.register')}
-              </Text>
-            </Text>
+              </Box>
+            </Box>
           </Box>
         </DashboardCard>
         </FlexCenter>

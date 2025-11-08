@@ -137,7 +137,7 @@ export const IntentStep: React.FC<IntentStepProps> = ({
 
   return (
     <>
-      <Box style={containerStyles} className={containerClass}>
+      <Box className={containerClass}>
         {intentCards.map((cardConfig: CardConfig) => (
           <BaseCard
             key={cardConfig.id}
@@ -148,7 +148,9 @@ export const IntentStep: React.FC<IntentStepProps> = ({
             onClick={(): void => handleIntentClick(cardConfig)}
             onInfoClick={() => handleInfoClick(cardConfig.id)}
             data-testid={`intent-card-${cardConfig.id}`}
-            style={{ flex: 1, minWidth: 0, maxWidth: 'none' }}
+            flex="1"
+            minWidth="0"
+            maxWidth="none"
           />
         ))}
       </Box>

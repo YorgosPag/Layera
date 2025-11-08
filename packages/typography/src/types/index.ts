@@ -27,14 +27,14 @@ export interface TypographyProps {
   color?: TextColor;
   lineHeight?: LineHeight;
   className?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export interface HeadingProps extends TypographyProps {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
 
-export interface TextProps extends TypographyProps, React.HTMLAttributes<HTMLElement> {
+export interface TextProps extends TypographyProps, Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   as?: 'p' | 'span' | 'div' | 'label';
 }
 

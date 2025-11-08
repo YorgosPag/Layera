@@ -6,6 +6,12 @@ import {
   CADFormat
 } from '../types';
 
+// CAD Validation Constants
+const CAD_COMPLEXITY_THRESHOLDS = {
+  MEDIUM_ENTITY_COUNT: 1000,
+  HIGH_ENTITY_COUNT: 10000
+} as const;
+
 /**
  * Validates CAD files before processing
  */
@@ -335,10 +341,10 @@ export async function estimateCADComplexity(file: File): Promise<{
     const layerCount = new Set(layerMatches.map(m => m.trim())).size;
 
     // Determine complexity
-    if (entityCount > 10000) {
+    if (entityCount > CAD_COMPLEXITY_THRESHOLDS.HIGH_ENTITY_COUNT) {
       complexity = 'high';
       factors.push('Υψηλός αριθμός entities (>10k)');
-    } else if (entityCount > 1000) {
+    } else if (entityCount > CAD_COMPLEXITY_THRESHOLDS.MEDIUM_ENTITY_COUNT) {
       complexity = 'medium';
       factors.push('Μέτριος αριθμός entities (>1k)');
     }

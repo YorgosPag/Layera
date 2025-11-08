@@ -13,7 +13,11 @@ export const COMPONENT_SIZES = {
 export const FORM_SIZES = {
   SMALL: 'sm',
   MEDIUM: 'md',
-  LARGE: 'lg'
+  LARGE: 'lg',
+  SM: 'sm',
+  MD: 'md',
+  LG: 'lg',
+  XL: 'xl'
 } as const;
 
 export const BUTTON_SIZES = {
@@ -22,6 +26,17 @@ export const BUTTON_SIZES = {
   MD: 'md',
   LG: 'lg',
   XL: 'xl'
+} as const;
+
+/**
+ * Button Size Scale - tokens.json ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
+ */
+export const BUTTON_SIZE_SCALE = {
+  xs: 'var(--la-button-padding-sm)',
+  sm: 'var(--la-xs-plus-2-sm-padding)',
+  md: 'var(--la-sm-plus-xs-half-md-padding)',
+  lg: 'var(--la-md-xl-padding)',
+  xl: 'var(--la-button-padding-xl)'
 } as const;
 
 export const ICON_SIZES = {

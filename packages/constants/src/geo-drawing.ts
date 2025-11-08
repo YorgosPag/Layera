@@ -4,6 +4,24 @@
  */
 
 /**
+ * 🌍 EPSG Coordinate Reference System Codes - SINGLE SOURCE OF TRUTH
+ * Για χρήση σε coordinate transformations, map projections
+ */
+export const EPSG_CODES = {
+  /** WGS84 - World Geodetic System 1984 (GPS coordinates) */
+  WGS84: 4326,
+
+  /** ΕΓΣΑ87 - Ελληνικό Γεωδαιτικό Σύστημα Αναφοράς 1987 */
+  EGSA87: 2100,
+
+  /** Web Mercator - Google Maps, OpenStreetMap standard */
+  WEB_MERCATOR: 3857,
+
+  /** UTM Zone 34 North - Universal Transverse Mercator for Greece */
+  UTM_ZONE_34N: 32634
+} as const;
+
+/**
  * Snap-to-geometry configuration
  */
 export const GEO_DRAWING_SNAP = {
@@ -145,6 +163,37 @@ export const GEO_DRAWING_SUCCESS = {
   MEASUREMENT_COMPLETED: 'geo-drawing.success.measurement-completed',
   MEASUREMENT_SAVED: 'geo-drawing.success.measurement-saved',
   MEASUREMENT_CLEARED: 'geo-drawing.success.measurement-cleared'
+} as const;
+
+/**
+ * Coordinate System Information Mapping
+ * Σύνδεση EPSG codes με metadata
+ */
+export const COORDINATE_SYSTEMS = {
+  [EPSG_CODES.WGS84]: {
+    name: 'WGS84',
+    description: 'World Geodetic System 1984 - GPS coordinates',
+    type: 'geographic' as const,
+    units: 'degrees'
+  },
+  [EPSG_CODES.EGSA87]: {
+    name: 'ΕΓΣΑ87',
+    description: 'Ελληνικό Γεωδαιτικό Σύστημα Αναφοράς 1987',
+    type: 'projected' as const,
+    units: 'meters'
+  },
+  [EPSG_CODES.WEB_MERCATOR]: {
+    name: 'Web Mercator',
+    description: 'Web Mercator - Google Maps, OpenStreetMap',
+    type: 'projected' as const,
+    units: 'meters'
+  },
+  [EPSG_CODES.UTM_ZONE_34N]: {
+    name: 'UTM Zone 34N',
+    description: 'Universal Transverse Mercator Zone 34 North',
+    type: 'projected' as const,
+    units: 'meters'
+  }
 } as const;
 
 // Geo-drawing configuration integrated into main CONFIG in config.ts

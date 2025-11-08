@@ -4,13 +4,14 @@
 
 import { stepRegistry } from '../StepRegistry';
 import { PropertyDetailsStep } from './PropertyDetailsStep';
+import { WORKFLOW_ORDER } from '@layera/constants';
 
 // 🚀 AUTO-REGISTRATION: Καταχώρηση του propertyDetails step στο StepRegistry
 stepRegistry.register({
   id: 'propertyDetails',
   name: 'Στοιχεία',
   component: PropertyDetailsStep,
-  order: 15,
+  order: WORKFLOW_ORDER.PROPERTY_DETAILS,
   isVisible: true,
   cards: [],
   conditions: [{

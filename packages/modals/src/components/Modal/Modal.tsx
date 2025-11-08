@@ -107,24 +107,30 @@ export const Modal: React.FC<BaseModalProps> = ({
       aria-modal="true"
       aria-labelledby={ariaLabelledBy}
       aria-describedby={ariaDescribedBy}
-      style={{
-        ...(overlayPadding !== undefined && {
+      {...(overlayPadding !== undefined && {
+        style: {
           padding: typeof overlayPadding === 'number' ? `${overlayPadding}px` : overlayPadding
-        })
-      }}
+        } as React.CSSProperties
+      })}
     >
       <Box
         ref={modalRef}
-        className={modalClasses}
+        className={`${modalClasses} ${
+          contentPadding !== undefined ? 'la-modal-padding-custom' : ''
+        } ${
+          panelPadding !== undefined ? 'la-modal-panel-padding-custom' : ''
+        }`.trim()}
         role="document"
-        style={{
-          ...(contentPadding !== undefined && {
-            padding: typeof contentPadding === 'number' ? `${contentPadding}px` : contentPadding
-          }),
-          ...(panelPadding !== undefined && {
+        {...(contentPadding !== undefined && {
+          style: {
+            '--la-modal-content-padding': typeof contentPadding === 'number' ? `${contentPadding}px` : contentPadding
+          } as React.CSSProperties
+        })}
+        {...(panelPadding !== undefined && {
+          style: {
             '--la-modal-inner-padding': typeof panelPadding === 'number' ? `${panelPadding}px` : panelPadding
-          })
-        } as React.CSSProperties}
+          } as React.CSSProperties
+        })}
       >
         {showCloseButton && (
           <button
@@ -137,8 +143,10 @@ export const Modal: React.FC<BaseModalProps> = ({
           </button>
         )}
         <Box
-          className={`layera-modal-content ${contentClassName}`.trim()}
-          style={contentStyle}
+          className={`layera-modal-content ${contentClassName} ${
+            contentStyle ? 'la-modal-content-styled' : ''
+          }`.trim()}
+          {...(contentStyle && { style: contentStyle })}
         >
           {children}
         </Box>

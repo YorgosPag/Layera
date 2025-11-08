@@ -62,15 +62,14 @@ export interface MapEvents {
 }
 
 // Constants
+// Import από @layera/constants για SSOT
+import { MAP_DEFAULTS as LAYERA_MAP_DEFAULTS, DRAWING_LIMITS as LAYERA_DRAWING_LIMITS } from '@layera/constants';
+
 export const MAP_DEFAULTS: MapConfig = {
-  center: [38.246639, 21.734573], // Πάτρα (από geo-canvas reference)
-  zoom: 13,
-  maxZoom: 25,
-  defaultRadius: 250 // 250 meters default
+  center: LAYERA_MAP_DEFAULTS.CENTER,
+  zoom: LAYERA_MAP_DEFAULTS.ZOOM,
+  maxZoom: LAYERA_MAP_DEFAULTS.MAX_ZOOM,
+  defaultRadius: LAYERA_MAP_DEFAULTS.DEFAULT_RADIUS
 };
 
-export const DRAWING_LIMITS = {
-  MIN_RADIUS: 50, // meters
-  MAX_RADIUS: 2000, // meters
-  MAX_POLYGON_POINTS: 20
-};
+export const DRAWING_LIMITS = LAYERA_DRAWING_LIMITS;

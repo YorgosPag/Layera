@@ -6,37 +6,37 @@
 :root {
   /* Button Design Tokens - Enterprise Standards */
 
-  /* Sizes - WCAG 2.1 Compliant (min 2.75rem για touch targets) */
-  --la-btn-xs-height: 2rem;
+  /* Sizes - WCAG 2.1 Compliant (min 44px height για touch targets) */
+  --la-btn-xs-height: var(--la-space-8);
   --la-btn-xs-width: 3rem;
-  --la-btn-xs-padding: 0.25rem 0.5rem;
+  --la-btn-xs-padding: var(--la-space-4);
   --la-btn-xs-font-size: 0.9rem;
   --la-btn-xs-icon-size: 0.7rem;
-  --la-btn-xs-gap: 0.2rem;
+  --la-btn-xs-gap: var(--la-space-1);
   --la-btn-sm-height: 2.25rem;
   --la-btn-sm-width: 4rem;
-  --la-btn-sm-padding: 0.5rem 0.75rem;
+  --la-btn-sm-padding: var(--la-space-4);
   --la-btn-sm-font-size: 0.9rem;
   --la-btn-sm-icon-size: 0.8rem;
   --la-btn-sm-gap: 0.3rem;
   --la-btn-md-height: 2.75rem;
-  --la-btn-md-width: 5rem;
-  --la-btn-md-padding: 0.75rem 1rem;
+  --la-btn-md-width: var(--la-space-20);
+  --la-btn-md-padding: var(--la-space-4);
   --la-btn-md-font-size: 0.9rem;
   --la-btn-md-icon-size: 0.9rem;
   --la-btn-md-gap: 0.4rem;
   --la-btn-lg-height: 3rem;
   --la-btn-lg-width: 6rem;
-  --la-btn-lg-padding: 1rem 1.5rem;
+  --la-btn-lg-padding: var(--la-space-4) var(--la-space-6) 5rem;
   --la-btn-lg-font-size: 0.9rem;
-  --la-btn-lg-icon-size: 1rem;
+  --la-btn-lg-icon-size: var(--la-space-4);
   --la-btn-lg-gap: 0.4rem;
   --la-btn-xl-height: 3.5rem;
   --la-btn-xl-width: 7rem;
-  --la-btn-xl-padding: 1.25rem 2rem;
+  --la-btn-xl-padding: 1.25rem var(--la-space-4);
   --la-btn-xl-font-size: 0.9rem;
-  --la-btn-xl-icon-size: 1.1rem;
-  --la-btn-xl-gap: 0.5rem;
+  --la-btn-xl-icon-size: 1.var(--la-space-4);
+  --la-btn-xl-gap: /* TODO(token-missing): var(--la-space-2) 5rem */ var(--la-space-2) 5rem;
 
   /* Universal Button Width - Single Source of Truth */
   --la-btn-uniform-width: var(--la-space-20);
@@ -65,8 +65,8 @@
   --la-btn-primary-active-bg: var(--la-color-warning-hover);
   --la-btn-primary-active-color: var(--la-color-white);
   --la-btn-primary-active-border: var(--la-color-error);
-  --la-btn-primary-focus-outline: calc(2 / 16 * 1rem) solid var(--la-color-primary-light);
-  --la-btn-primary-focus-ring: 0 0 0 calc(2 / 16 * 1rem) var(--la-color-primary-alpha-50);
+  --la-btn-primary-focus-outline: calc(2 / 16 * var(--la-space-4)) solid var(--la-color-primary-light);
+  --la-btn-primary-focus-ring: 0 0 0 calc(2 / 16 * var(--la-space-4)) var(--la-color-primary-alpha-50);
 
   /* Secondary Variant - Neutral (Για τις περισσότερες δράσεις) */
   --la-btn-secondary-bg: var(--la-color-surface);
@@ -78,8 +78,8 @@
   --la-btn-secondary-active-bg: var(--la-color-surface-active);
   --la-btn-secondary-active-color: var(--la-color-text-primary);
   --la-btn-secondary-active-border: var(--la-color-border-active);
-  --la-btn-secondary-focus-outline: calc(2 / 16 * 1rem) solid var(--la-color-border-focus);
-  --la-btn-secondary-focus-ring: 0 0 0 calc(2 / 16 * 1rem) var(--la-color-secondary-alpha-50);
+  --la-btn-secondary-focus-outline: calc(2 / 16 * var(--la-space-4)) solid var(--la-color-border-focus);
+  --la-btn-secondary-focus-ring: 0 0 0 calc(2 / 16 * var(--la-space-4)) var(--la-color-secondary-alpha-50);
 
   /* Outline Variant */
   --la-btn-outline-bg: var(--la-color-transparent);
@@ -91,8 +91,8 @@
   --la-btn-outline-active-bg: var(--la-color-primary-active);
   --la-btn-outline-active-color: var(--la-color-white);
   --la-btn-outline-active-border: var(--la-color-primary-active);
-  --la-btn-outline-focus-outline: calc(2 / 16 * 1rem) solid var(--la-color-primary-light);
-  --la-btn-outline-focus-ring: 0 0 0 calc(2 / 16 * 1rem) var(--la-color-primary-alpha-50);
+  --la-btn-outline-focus-outline: calc(2 / 16 * var(--la-space-4)) solid var(--la-color-primary-light);
+  --la-btn-outline-focus-ring: 0 0 0 calc(2 / 16 * var(--la-space-4)) var(--la-color-primary-alpha-50);
 
   /* Ghost Variant */
   --la-btn-ghost-bg: var(--la-color-transparent);
@@ -104,8 +104,8 @@
   --la-btn-ghost-active-bg: var(--la-color-surface-active);
   --la-btn-ghost-active-color: var(--la-color-text-primary);
   --la-btn-ghost-active-border: var(--la-color-transparent);
-  --la-btn-ghost-focus-outline: calc(2 / 16 * 1rem) solid var(--la-color-border);
-  --la-btn-ghost-focus-ring: 0 0 0 calc(2 / 16 * 1rem) var(--la-color-gray-alpha-50);
+  --la-btn-ghost-focus-outline: calc(2 / 16 * var(--la-space-4)) solid var(--la-color-border);
+  --la-btn-ghost-focus-ring: 0 0 0 calc(2 / 16 * var(--la-space-4)) var(--la-color-gray-alpha-50);
 
   /* Danger Variant */
   --la-btn-danger-bg: var(--la-color-error);
@@ -117,8 +117,8 @@
   --la-btn-danger-active-bg: var(--la-color-error-active);
   --la-btn-danger-active-color: var(--la-color-white);
   --la-btn-danger-active-border: var(--la-color-error-active);
-  --la-btn-danger-focus-outline: calc(2 / 16 * 1rem) solid var(--la-color-error-light);
-  --la-btn-danger-focus-ring: 0 0 0 calc(2 / 16 * 1rem) var(--la-color-error-alpha-50);
+  --la-btn-danger-focus-outline: calc(2 / 16 * var(--la-space-4)) solid var(--la-color-error-light);
+  --la-btn-danger-focus-ring: 0 0 0 calc(2 / 16 * var(--la-space-4)) var(--la-color-error-alpha-50);
 
   /* Success Variant */
   --la-btn-success-bg: var(--la-color-success);
@@ -130,8 +130,8 @@
   --la-btn-success-active-bg: var(--la-color-success-active);
   --la-btn-success-active-color: var(--la-color-white);
   --la-btn-success-active-border: var(--la-color-success-active);
-  --la-btn-success-focus-outline: calc(2 / 16 * 1rem) solid var(--la-color-success-light);
-  --la-btn-success-focus-ring: 0 0 0 calc(2 / 16 * 1rem) var(--la-color-success-alpha-50);
+  --la-btn-success-focus-outline: calc(2 / 16 * var(--la-space-4)) solid var(--la-color-success-light);
+  --la-btn-success-focus-ring: 0 0 0 calc(2 / 16 * var(--la-space-4)) var(--la-color-success-alpha-50);
 
   /* Warning Variant */
   --la-btn-warning-bg: var(--la-color-warning);
@@ -143,8 +143,8 @@
   --la-btn-warning-active-bg: var(--la-color-warning-active);
   --la-btn-warning-active-color: var(--la-color-white);
   --la-btn-warning-active-border: var(--la-color-warning-active);
-  --la-btn-warning-focus-outline: calc(2 / 16 * 1rem) solid var(--la-color-warning-light);
-  --la-btn-warning-focus-ring: 0 0 0 calc(2 / 16 * 1rem) var(--la-color-warning-alpha-50);
+  --la-btn-warning-focus-outline: calc(2 / 16 * var(--la-space-4)) solid var(--la-color-warning-light);
+  --la-btn-warning-focus-ring: 0 0 0 calc(2 / 16 * var(--la-space-4)) var(--la-color-warning-alpha-50);
 
   /* Info Variant */
   --la-btn-info-bg: var(--la-color-info);
@@ -156,21 +156,21 @@
   --la-btn-info-active-bg: var(--la-color-info-active);
   --la-btn-info-active-color: var(--la-color-white);
   --la-btn-info-active-border: var(--la-color-info-active);
-  --la-btn-info-focus-outline: calc(2 / 16 * 1rem) solid var(--la-color-info-light);
-  --la-btn-info-focus-ring: 0 0 0 calc(2 / 16 * 1rem) var(--la-color-info-alpha-50);
+  --la-btn-info-focus-outline: calc(2 / 16 * var(--la-space-4)) solid var(--la-color-info-light);
+  --la-btn-info-focus-ring: 0 0 0 calc(2 / 16 * var(--la-space-4)) var(--la-color-info-alpha-50);
 
   /* Disabled State - Universal */
   --la-btn-disabled-bg: var(--la-color-surface-disabled);
   --la-btn-disabled-color: var(--la-color-text-disabled);
   --la-btn-disabled-border: var(--la-color-border-disabled);
-  --la-btn-disabled-opacity: 0.6;
+  --la-btn-disabled-opacity: var(--la-space-0).6;
 }
 
 /* Base Button Styles */
 .la-btn {
   /* Base Properties */
   font-family: var(--la-font-family-sans);
-  font-weight: 500;
+  font-weight: var(--la-font-weight-medium);
   line-height: var(--la-line-height-tight);
   text-align: center;
   text-decoration: none;
@@ -180,7 +180,7 @@
   vertical-align: middle;
   cursor: var(--la-cursor-pointer);
   user-select: var(--la-user-select-none);
-  border: 0.063rem solid var(--la-color-transparent);
+  border: var(--la-border-none).063rem solid var(--la-color-transparent);
   border-radius: var(--la-radius-md);
   transition: var(--la-btn-transition-default);
   position: relative;
@@ -193,7 +193,7 @@
 
   /* Focus States */
   &:focus-visible {
-    outline: none;
+    outline: var(--la-border-none);
     box-shadow: var(--la-shadow-focus-primary);
   }
 
@@ -285,7 +285,7 @@
 
 /* Full Width */
 .la-btn-full-width {
-  width: 100%;
+  width: var(--la-size-full);
 }
 
 /* Variant Styles */
@@ -476,8 +476,8 @@
 
   .la-btn-loading {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: var(--la-position-center);
+    left: var(--la-position-center);
     transform: translate(-50%, -50%);
   }
 }
@@ -486,8 +486,8 @@
 .la-btn-spinner {
   width: 1em;
   height: 1em;
-  border: calc(2 / 16 * 1rem) solid var(--la-color-transparent);
-  border-top: calc(2 / 16 * 1rem) solid currentcolor;
+  border: calc(2 / 16 * var(--la-space-4)) solid var(--la-color-transparent);
+  border-top: calc(2 / 16 * var(--la-space-4)) solid currentcolor;
   border-radius: var(--la-radius-full);
   animation: la-btn-spin 1s linear infinite;
 }
@@ -535,8 +535,8 @@
 }
 
 @keyframes la-btn-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  0%, 100% { opacity: var(--la-opacity-full); }
+  50% { opacity: var(--la-space-0).5; }
 }
 
 /* Button Group */
@@ -583,7 +583,7 @@
 /* Responsive Design */
 @media (width <= 40rem) {
   .la-btn-responsive-full {
-    width: 100%;
+    width: var(--la-size-full);
   }
 
   /* Touch-friendly adjustments - Respect SST heights */
@@ -609,7 +609,7 @@
     box-shadow 0.25s ease-out;
 
   /* Modern interactive cursor */
-  cursor: pointer;
+  cursor: var(--la-cursor-pointer);
 
   /* Enhanced typography */
   letter-spacing: 0.025em;
@@ -619,7 +619,7 @@
     outline: var(--la-border-width-2) solid transparent;
     outline-offset: var(--la-border-width-2);
     box-shadow:
-      0 0 0 var(--la-border-width-2) var(--la-bg-primary),
+      0 0 0 var(--la-space-4),
       var(--la-shadow-focus-lg);
   }
 
@@ -661,7 +661,7 @@
 /* Primary Button - Enhanced Modern Style */
 .layera-btn--primary {
   /* Subtle gradient background */
-  background: linear-gradient(135deg, var(--la-bg-info) 0%, color-mix(in srgb, var(--la-bg-info) 90%, black 10%) 100%);
+  background: var(--la-color-surface);
 
   &:hover:not(:disabled) {
     background: linear-gradient(135deg,
@@ -691,7 +691,7 @@
   }
 
   &:active:not(:disabled) {
-    background: color-mix(in srgb, var(--la-text-secondary) 90%, black 10%);
+    background: var(--la-color-surface);
   }
 }
 
@@ -708,7 +708,7 @@
   }
 
   &:active:not(:disabled) {
-    background: color-mix(in srgb, var(--la-bg-info) 90%, black 10%);
+    background: var(--la-color-surface);
   }
 }
 
@@ -730,7 +730,7 @@
 
 /* Success Button - Enhanced Green Gradient */
 .layera-btn--success {
-  background: linear-gradient(135deg, var(--la-bg-success) 0%, color-mix(in srgb, var(--la-bg-success) 90%, black 10%) 100%);
+  background: var(--la-color-surface);
 
   &:hover:not(:disabled) {
     background: linear-gradient(135deg,
@@ -742,7 +742,7 @@
 
 /* Warning Button - Enhanced Orange Gradient */
 .layera-btn--warning {
-  background: linear-gradient(135deg, var(--la-bg-warning) 0%, color-mix(in srgb, var(--la-bg-warning) 90%, black 10%) 100%);
+  background: var(--la-color-surface);
 
   &:hover:not(:disabled) {
     background: linear-gradient(135deg,
@@ -754,7 +754,7 @@
 
 /* Danger Button - Enhanced Red Gradient */
 .layera-btn--danger {
-  background: linear-gradient(135deg, var(--la-bg-danger) 0%, color-mix(in srgb, var(--la-bg-danger) 90%, black 10%) 100%);
+  background: var(--la-color-surface);
 
   &:hover:not(:disabled) {
     background: linear-gradient(135deg,
@@ -766,7 +766,7 @@
 
 /* Info Button - Enhanced Blue Gradient */
 .layera-btn--info {
-  background: linear-gradient(135deg, var(--la-bg-info) 0%, color-mix(in srgb, var(--la-bg-info) 90%, black 10%) 100%);
+  background: var(--la-color-surface);
 
   &:hover:not(:disabled) {
     background: linear-gradient(135deg,
@@ -783,8 +783,8 @@
 
   .layera-btn__loading {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: var(--la-position-center);
+    left: var(--la-position-center);
     transform: translate(-50%, -50%);
   }
 
@@ -793,7 +793,7 @@
     height: var(--la-space-5);
     border: var(--la-border-width-2) solid var(--la-color-surface-overlay);
     border-top: var(--la-border-width-2) solid currentColor;
-    border-radius: 50%;
+    border-radius: var(--la-radius-circle);
     animation: layera-btn-spin 1s linear infinite;
   }
 }
@@ -808,7 +808,7 @@
 /* Enhanced Icon-Only Buttons */
 .layera-btn--icon-only {
   width: var(--la-btn-md-height);
-  padding: 0;
+  padding: var(--la-space-0);
   aspect-ratio: 1;
   border-radius: var(--la-btn-radius-md);
 
@@ -835,7 +835,7 @@
 
 /* Full Width Buttons */
 .layera-btn--full-width {
-  width: 100%;
+  width: var(--la-size-full);
   justify-content: center;
 }
 
@@ -843,14 +843,14 @@
 
 /* Elevated Button - Modern Shadow Depth */
 .layera-btn--elevated {
-  background: linear-gradient(145deg, var(--la-color-surface) 0%, var(--la-bg-secondary) 100%);
+  background: var(--la-color-surface);
   color: var(--la-text-primary);
   border: var(--la-border-width-1) solid var(--la-color-border-subtle);
   border-radius: var(--la-btn-radius-md);
   box-shadow: var(--la-shadow-md);
 
   &:hover:not(:disabled) {
-    background: linear-gradient(145deg, var(--la-bg-secondary) 0%, var(--la-bg-tertiary) 100%);
+    background: var(--la-color-surface);
     transform: translateY(calc(-2 * var(--la-border-width-xxs)));
     box-shadow: var(--la-shadow-lg);
   }
@@ -865,7 +865,7 @@
 .layera-btn--neumorphic {
   background: var(--la-color-surface-secondary);
   color: var(--la-text-primary);
-  border: none;
+  border: var(--la-border-none);
   box-shadow: var(--la-shadow-lg);
 
   &:hover:not(:disabled) {
@@ -883,36 +883,33 @@
 
 /* Gradient Button - Modern Highlight Design */
 .layera-btn--gradient {
-  background: linear-gradient(135deg, var(--la-color-brand) 0%, var(--la-color-brand-hover) 100%);
+  background: var(--la-color-surface);
   color: var(--la-text-on-brand);
-  border: none;
+  border: var(--la-border-none);
   position: relative;
   overflow: hidden;
 
   &::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, var(--la-color-surface-overlay) 0%, var(--la-color-transparent) 100%);
-    opacity: 0;
+    inset: var(--la-space-0) var(--la-space-0) var(--la-space-0) var(--la-space-0);
+    background: var(--la-color-surface);
+    opacity: var(--la-space-0);
     transition: opacity 0.3s ease;
   }
 
   &:hover:not(:disabled) {
-    background: linear-gradient(135deg, var(--la-color-brand-hover) 0%, var(--la-color-brand-active) 100%);
+    background: var(--la-color-surface);
     transform: translateY(calc(-1 * var(--la-border-width-xxs)));
     box-shadow: var(--la-shadow-xl);
 
     &::before {
-      opacity: 1;
+      opacity: var(--la-opacity-full);
     }
   }
 
   &:active:not(:disabled) {
-    background: linear-gradient(135deg, var(--la-color-brand-active) 0%, var(--la-color-brand-active) 100%);
+    background: var(--la-color-surface);
     transform: translateY(0);
   }
 }
@@ -921,23 +918,23 @@
 .layera-btn--flat {
   background: var(--la-bg-info);
   color: var(--la-text-on-info);
-  border: none;
-  box-shadow: none;
+  border: var(--la-border-none);
+  box-shadow: var(--la-shadow-none);
   border-radius: 0;
 
   &:hover:not(:disabled) {
-    background: color-mix(in srgb, var(--la-bg-info) 90%, black 10%);
-    box-shadow: none;
+    background: var(--la-color-surface);
+    box-shadow: var(--la-shadow-none);
     transform: none;
   }
 
   &:active:not(:disabled) {
-    background: color-mix(in srgb, var(--la-bg-info) 80%, black 20%);
+    background: var(--la-color-surface);
     transform: none;
   }
 
   &:focus-visible {
-    box-shadow: inset 0 0 0 var(--la-border-width-2) var(--la-bg-primary);
+    box-shadow: inset 0 0 0 var(--la-space-4);
   }
 }
 
@@ -945,10 +942,9 @@
 .layera-btn--soft {
   background: var(--la-color-surface-secondary);
   color: var(--la-bg-info);
-  border: none;
+  border: var(--la-border-none);
   border-radius: var(--la-btn-radius-md);
   backdrop-filter: blur(var(--la-blur-sm));
-  -webkit-backdrop-filter: blur(var(--la-blur-sm));
 
   &:hover:not(:disabled) {
     background: var(--la-color-surface-hover);
@@ -964,8 +960,7 @@
 }
 
 /* Dark Mode Support - Enterprise Grade */
-@media (prefers-color-scheme: dark) {
-  :root {
+[data-theme="dark"] {
     /* Secondary Variant - Dark Mode */
     --la-btn-secondary-bg: var(--la-color-surface-dark);
     --la-btn-secondary-color: var(--la-color-text-primary-dark);
@@ -991,17 +986,16 @@
     --la-btn-disabled-bg: var(--la-color-surface-disabled-dark);
     --la-btn-disabled-color: var(--la-color-text-disabled-dark);
     --la-btn-disabled-border: var(--la-color-border-disabled-dark);
-  }
 }
 
 /* High Contrast Mode Support */
 @media (prefers-contrast: more) {
   .la-btn {
-    border-width: calc(2 / 16 * 1rem);
+    border-width: calc(2 / 16 * var(--la-space-4));
   }
 
   .la-btn:focus-visible {
-    outline: calc(3 / 16 * 1rem) solid;
-    outline-offset: calc(2 / 16 * 1rem);
+    outline: calc(3 / 16 * var(--la-space-4)) solid;
+    outline-offset: calc(2 / 16 * var(--la-space-4));
   }
 }

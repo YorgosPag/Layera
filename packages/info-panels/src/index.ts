@@ -5,7 +5,7 @@
  * Μπορεί να χρησιμοποιηθεί σε οποιοδήποτε React project χωρίς dependencies.
  */
 
-import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE, SEMANTIC_RGB_COLORS } from '@layera/constants';
 
 // Core Types
 export type {
@@ -89,7 +89,7 @@ export const createInfoPanelTheme = (
 
   return {
     backgroundColor: `rgba(${baseColor}, ${opacity})`,
-    color: 'white',
+    color: 'var(--la-color-text-on-primary)',
     borderColor: `rgba(${baseColor}, ${borderOpacity})`,
     boxShadow: 'var(--la-shadow-card-default)',
     borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
@@ -100,12 +100,12 @@ export const createInfoPanelTheme = (
 
 // Common Themes - Χρήση του ήπιου emerald για καλύτερη αναγνωσιμότητα
 export const INFO_PANEL_THEMES = {
-  property: createInfoPanelTheme('16, 185, 129'), // Ήπιο emerald για ευχάριστη ανάγνωση
+  property: createInfoPanelTheme(SEMANTIC_RGB_COLORS.SUCCESS_PRIMARY), // Ήπιο emerald για ευχάριστη ανάγνωση
   job: createInfoPanelTheme('var(--la-color-primary)'),      // Primary theme
-  success: createInfoPanelTheme('16, 185, 129'),  // Ήπιο πράσινο success
-  warning: createInfoPanelTheme('245, 158, 11'), // Πορτοκαλί warning
-  error: createInfoPanelTheme('239, 68, 68'),    // Κόκκινο error
-  info: createInfoPanelTheme('99, 102, 241')     // Μοβ info
+  success: createInfoPanelTheme(SEMANTIC_RGB_COLORS.SUCCESS_PRIMARY),  // Ήπιο πράσινο success
+  warning: createInfoPanelTheme(SEMANTIC_RGB_COLORS.WARNING_PRIMARY), // Πορτοκαλί warning
+  error: createInfoPanelTheme(SEMANTIC_RGB_COLORS.ERROR_PRIMARY),    // Κόκκινο error
+  info: createInfoPanelTheme(SEMANTIC_RGB_COLORS.INFO_PRIMARY)     // Μοβ info
 } as const;
 
 // Enterprise LEGO Layout Integration - CSS Variables
@@ -116,7 +116,7 @@ export const DEFAULT_INFO_PANEL_STYLES = {
       left: 'var(--la-side-margins)',
       right: 'var(--la-side-margins)'
     },
-    zIndex: 10000,
+    zIndex: 1000, // Enterprise standard z-index for panels
     maxHeight: '60vh',
     overflow: 'auto'
   },
@@ -125,7 +125,7 @@ export const DEFAULT_INFO_PANEL_STYLES = {
       top: 'var(--la-space-6)', // 24px από design tokens
       right: 'var(--la-space-6)' // 24px από design tokens
     },
-    zIndex: 10000,
+    zIndex: 1000, // Enterprise standard z-index for panels
     maxHeight: 'var(--la-height-96)', // 384px design token,
     overflow: 'auto'
   }

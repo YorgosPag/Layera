@@ -5,16 +5,20 @@ import {
   BoundingBox
 } from '../types';
 
-// Common Greek coordinate systems που χρησιμοποιούνται στο Layera
+// 🎯 IMPORT SINGLE SOURCE OF TRUTH - από @layera/constants
+import { EPSG_CODES, GEOGRAPHIC_BOUNDS } from '@layera/constants';
+
+// 🛡️ ENTERPRISE LEGO SYSTEM: Coordinate Reference Systems
+// SSOT για όλα τα EPSG codes και definitions
 const GREEK_CRS_DEFINITIONS = {
   // ΕΓΣΑ87 - Ελληνικό Γεωδαιτικό Σύστημα Αναφοράς 1987
-  'EPSG:2100': '+proj=tmerc +lat_0=0 +lon_0=24 +k=0.9996 +x_0=500000 +y_0=0 +ellps=GRS80 +towgs84=-199.87,74.79,246.62,0,0,0,0 +units=m +no_defs',
+  [EPSG_CODES.EGSA87]: '+proj=tmerc +lat_0=0 +lon_0=24 +k=0.9996 +x_0=500000 +y_0=0 +ellps=GRS80 +towgs84=-199.87,74.79,246.62,0,0,0,0 +units=m +no_defs',
 
   // WGS84 - World Geodetic System 1984 (GPS)
-  'EPSG:4326': '+proj=longlat +datum=WGS84 +no_defs',
+  [EPSG_CODES.WGS84]: '+proj=longlat +datum=WGS84 +no_defs',
 
   // Web Mercator (Google Maps, OpenStreetMap)
-  'EPSG:3857': '+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs',
+  [EPSG_CODES.WEB_MERCATOR]: '+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs',
 
   // Greek Grid (παλιό σύστημα)
   'EPSG:2154': '+proj=lcc +lat_1=49 +lat_2=44 +lat_0=46.5 +lon_0=3 +x_0=700000 +y_0=6600000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs',
@@ -50,11 +54,11 @@ export class CoordinateTransformer {
 
       // Precompile common transformations
       const commonTransformations = [
-        ['EPSG:4326', 'EPSG:2100'], // WGS84 to EGSA87
-        ['EPSG:2100', 'EPSG:4326'], // EGSA87 to WGS84
-        ['EPSG:4326', 'EPSG:3857'], // WGS84 to Web Mercator
-        ['EPSG:3857', 'EPSG:4326'], // Web Mercator to WGS84
-        ['EPSG:2100', 'EPSG:3857']  // EGSA87 to Web Mercator
+        [EPSG_CODES.WGS84, EPSG_CODES.EGSA87], // WGS84 to EGSA87
+        [EPSG_CODES.EGSA87, EPSG_CODES.WGS84], // EGSA87 to WGS84
+        [EPSG_CODES.WGS84, EPSG_CODES.WEB_MERCATOR], // WGS84 to Web Mercator
+        [EPSG_CODES.WEB_MERCATOR, EPSG_CODES.WGS84], // Web Mercator to WGS84
+        [EPSG_CODES.EGSA87, EPSG_CODES.WEB_MERCATOR]  // EGSA87 to Web Mercator
       ];
 
       commonTransformations.forEach(([source, target]) => {
@@ -258,7 +262,7 @@ export class CoordinateTransformer {
       // Test transformation με γνωστό σημείο
       const testPoint = { x: 24.0, y: 38.0 }; // Κέντρο Αθήνας περίπου
 
-      if (transform.sourceEPSG === 'EPSG:4326') {
+      if (transform.sourceEPSG === EPSG_CODES.WGS84) {
         await this.transformPoint(testPoint.x, testPoint.y, transform);
       } else {
         // Use a test point σε meters για projected systems
@@ -284,15 +288,15 @@ export class CoordinateTransformer {
   private getTransformationAccuracy(sourceEPSG: string, targetEPSG: string): number {
     // Simplified accuracy estimation βασισμένο σε γνωστές transformations
     const accuracyMatrix: Record<string, Record<string, number>> = {
-      'EPSG:4326': {
-        'EPSG:2100': 0.5,  // WGS84 to EGSA87: ~0.5m accuracy
-        'EPSG:3857': 0.1,  // WGS84 to Web Mercator: ~0.1m accuracy
+      [EPSG_CODES.WGS84]: {
+        [EPSG_CODES.EGSA87]: 0.5,  // WGS84 to EGSA87: ~0.5m accuracy
+        [EPSG_CODES.WEB_MERCATOR]: 0.1,  // WGS84 to Web Mercator: ~0.1m accuracy
         'EPSG:32634': 0.3, // WGS84 to UTM34N: ~0.3m accuracy
         'EPSG:32635': 0.3  // WGS84 to UTM35N: ~0.3m accuracy
       },
-      'EPSG:2100': {
-        'EPSG:4326': 0.5,  // EGSA87 to WGS84: ~0.5m accuracy
-        'EPSG:3857': 0.6   // EGSA87 to Web Mercator: ~0.6m accuracy
+      [EPSG_CODES.EGSA87]: {
+        [EPSG_CODES.WGS84]: 0.5,  // EGSA87 to WGS84: ~0.5m accuracy
+        [EPSG_CODES.WEB_MERCATOR]: 0.6   // EGSA87 to Web Mercator: ~0.6m accuracy
       }
     };
 
@@ -314,19 +318,19 @@ export class CoordinateTransformer {
       type: 'geographic' | 'projected';
       description: string;
     }> = {
-      'EPSG:4326': {
+      [EPSG_CODES.WGS84]: {
         name: 'WGS84',
         units: 'degrees',
         type: 'geographic',
         description: 'World Geodetic System 1984 - GPS coordinates'
       },
-      'EPSG:2100': {
+      [EPSG_CODES.EGSA87]: {
         name: 'ΕΓΣΑ87',
         units: 'meters',
         type: 'projected',
         description: 'Ελληνικό Γεωδαιτικό Σύστημα Αναφοράς 1987'
       },
-      'EPSG:3857': {
+      [EPSG_CODES.WEB_MERCATOR]: {
         name: 'Web Mercator',
         units: 'meters',
         type: 'projected',
@@ -360,7 +364,7 @@ export class CoordinateTransformer {
   } {
     if (samplePoints.length === 0) {
       return {
-        likelyEPSG: 'EPSG:4326',
+        likelyEPSG: EPSG_CODES.WGS84,
         confidence: 0,
         reasoning: 'No sample points provided'
       };
@@ -375,37 +379,42 @@ export class CoordinateTransformer {
     const maxY = Math.max(...ys);
 
     // Check for geographic coordinates (lat/lon)
-    if (minX >= -180 && maxX <= 180 && minY >= -90 && maxY <= 90) {
+    if (minX >= GEOGRAPHIC_BOUNDS.WGS84_GLOBAL.MIN_X && maxX <= GEOGRAPHIC_BOUNDS.WGS84_GLOBAL.MAX_X &&
+        minY >= GEOGRAPHIC_BOUNDS.WGS84_GLOBAL.MIN_Y && maxY <= GEOGRAPHIC_BOUNDS.WGS84_GLOBAL.MAX_Y) {
       // Check if coordinates are in Greece area
-      if (minX >= 19 && maxX <= 30 && minY >= 34 && maxY <= 42) {
+      if (minX >= GEOGRAPHIC_BOUNDS.GREECE_WGS84.MIN_X && maxX <= GEOGRAPHIC_BOUNDS.GREECE_WGS84.MAX_X &&
+          minY >= GEOGRAPHIC_BOUNDS.GREECE_WGS84.MIN_Y && maxY <= GEOGRAPHIC_BOUNDS.GREECE_WGS84.MAX_Y) {
         return {
-          likelyEPSG: 'EPSG:4326',
+          likelyEPSG: EPSG_CODES.WGS84,
           confidence: 0.9,
           reasoning: 'Coordinates within Greece geographic bounds (WGS84)'
         };
       }
 
       return {
-        likelyEPSG: 'EPSG:4326',
+        likelyEPSG: EPSG_CODES.WGS84,
         confidence: 0.8,
         reasoning: 'Coordinates within geographic bounds (lat/lon)'
       };
     }
 
-    // Check for EGSA87 (Greek Grid)
-    if (minX >= 100000 && maxX <= 900000 && minY >= 3800000 && maxY <= 4700000) {
+    // Check for EGSA87 (Greek Grid) - coordinate system bounds constants
+    if (minX >= GEOGRAPHIC_BOUNDS.EGSA87.MIN_X && maxX <= GEOGRAPHIC_BOUNDS.EGSA87.MAX_X &&
+        minY >= GEOGRAPHIC_BOUNDS.EGSA87.MIN_Y && maxY <= GEOGRAPHIC_BOUNDS.EGSA87.MAX_Y) {
       return {
-        likelyEPSG: 'EPSG:2100',
+        likelyEPSG: EPSG_CODES.EGSA87,
         confidence: 0.9,
         reasoning: 'Coordinates within EGSA87 bounds (Greek Grid)'
       };
     }
 
     // Check for Web Mercator
-    if (Math.abs(minX) <= 20037508 && Math.abs(maxX) <= 20037508 &&
-        Math.abs(minY) <= 20037508 && Math.abs(maxY) <= 20037508) {
+    if (Math.abs(minX) <= Math.abs(GEOGRAPHIC_BOUNDS.WEB_MERCATOR.MIN_X) &&
+        Math.abs(maxX) <= Math.abs(GEOGRAPHIC_BOUNDS.WEB_MERCATOR.MAX_X) &&
+        Math.abs(minY) <= Math.abs(GEOGRAPHIC_BOUNDS.WEB_MERCATOR.MIN_Y) &&
+        Math.abs(maxY) <= Math.abs(GEOGRAPHIC_BOUNDS.WEB_MERCATOR.MAX_Y)) {
       return {
-        likelyEPSG: 'EPSG:3857',
+        likelyEPSG: EPSG_CODES.WEB_MERCATOR,
         confidence: 0.7,
         reasoning: 'Coordinates within Web Mercator bounds'
       };
@@ -413,7 +422,7 @@ export class CoordinateTransformer {
 
     // Default fallback
     return {
-      likelyEPSG: 'EPSG:4326',
+      likelyEPSG: EPSG_CODES.WGS84,
       confidence: 0.3,
       reasoning: 'Could not determine coordinate system, defaulting to WGS84'
     };

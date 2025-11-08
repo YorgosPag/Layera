@@ -3,6 +3,7 @@
 // Enterprise pattern: Promise-based geolocation service
 
 import { Coordinate } from '../geometry/coordinate-utils';
+import { EARTH_CONSTANTS } from '@layera/constants';
 
 /**
  * Location service result interfaces
@@ -167,7 +168,7 @@ export const getDistanceFromUser = async (target: Coordinate): Promise<number | 
   }
 
   // Simple distance calculation (Haversine formula)
-  const R = 6371000; // Earth's radius in meters
+  const R = EARTH_CONSTANTS.RADIUS_METERS;
   const dLat = toRadians(target.lat - userLocation.coordinate.lat);
   const dLng = toRadians(target.lng - userLocation.coordinate.lng);
 

@@ -6,8 +6,8 @@
   display: flex;
   align-items: center;
   gap: var(--la-space-3);
-  padding: var(--la-space-3) var(--la-space-4) var(--la-space-4);
-  border-top: 0.063rem solid var(--la-color-border-primary);
+  padding: var(--la-space-4) var(--la-space-4);
+  border-top: var(--la-space-4) solid var(--la-color-border-primary);
   background-color: var(--la-color-surface);
   border-radius: var(--la-radius-md);
 }
@@ -55,7 +55,7 @@
   }
 
   .la-modal-footer-actions {
-    width: 100%;
+    width: var(--la-size-full);
     justify-content: stretch;
   }
 

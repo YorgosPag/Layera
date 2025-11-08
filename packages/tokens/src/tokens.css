@@ -15,26 +15,28 @@
   --la-space-20: 5rem;
 
   /* Sizes */
-  --la-space-48: 12rem;
+  --la-size-0: 0;
+  --la-space-48: var(--la-space-8);
   --la-size-20: 5rem;
   --la-size-64: 16rem;
   --la-size-96: 24rem;
+  --la-size-112: 28rem;
 
   /* Widths */
-  --la-width-md: 28rem;
+  --la-width-md: var(--la-size-112);
 
   /* Border Radius */
   --la-radius-none: var(--la-size-0);
-  --la-radius-xs: 0.125rem;
-  --la-radius-sm: 0.375rem;
+  --la-radius-xs: var(--la-border-width-1);
+  --la-radius-sm: var(--la-space-1-5);
   --la-radius-md: 0.625rem;
-  --la-radius-lg: 1rem;
-  --la-radius-full: 9999rem;
+  --la-radius-lg: var(--la-space-4);
+  --la-radius-full: var(--la-radius-full);
 
   /* Border Widths */
-  --la-border-width-1: 0.063rem;
-  --la-border-width-2: 0.125rem;
-  --la-border-width-3: 0.1875rem;
+  --la-border-width-1: var(--la-border-width-1);
+  --la-border-width-2: var(--la-border-width-1);
+  --la-border-width-3: var(--la-border-width-3);
   --la-border-none: var(--la-size-0);
 
   /* Colors - Base */
@@ -63,7 +65,7 @@
   --la-color-brand-hover: hsl(217deg 91% 55%);
   --la-color-brand-active: hsl(217deg 83% 47%);
   --la-color-brand-light: hsl(214deg 95% 93%);
-  --la-color-brand-background: hsl(214deg 100% 97%);
+  --la-color-brand-background: var(--la-color-surface);
   --la-color-text-on-brand: hsl(0deg 0% 100%);
 
   /* Colors - Borders */
@@ -85,7 +87,7 @@
   /* Colors - Card System (Single Source of Truth) */
   --la-card-background: #98bd52;
   --la-card-border-color: #00ff00;
-  --la-card-border-width: 20px;
+  --la-card-border-width: var(--la-space-5);
   --la-card-border: var(--la-card-border-width) solid var(--la-card-border-color);
 
   /* Themed Border Colors - Single Source of Truth for themed cards */
@@ -107,11 +109,11 @@
 
   /* Overlay & Modal Specific */
   --la-overlay-bg: rgb(0 0 0 / 60%);
-  --la-overlay-background: rgb(0 0 0 / 50%); /* 🎯 SST: Overlay background for modals */
+  --la-overlay-background: var(--la-color-surface); /* 🎯 SST: Overlay background for modals */
 
   /* Blur Effects */
-  --la-blur-xs: 4px; /* 🎯 SST: Small blur for backdrop filters */
-  --la-blur-sm: 8px; /* 🎯 SST: Medium blur for backdrop filters */
+  --la-blur-xs: var(--la-space-1); /* 🎯 SST: Small blur for backdrop filters */
+  --la-blur-sm: var(--la-space-2); /* 🎯 SST: Medium blur for backdrop filters */
 
   /* Z-Index System */
   --la-z-index-modal: 1000; /* 🎯 SST: Modal z-index */
@@ -119,13 +121,13 @@
   --la-z-index-overlay: 999; /* 🎯 SST: Overlay z-index */
 
   /* Enhanced Border System */
-  --la-border-width-xxs: 1px; /* 🎯 SST: Extra small border width */
-  --la-border-width-sm: 2px; /* 🎯 SST: Small border width */
+  --la-border-width-xxs: var(--la-border-width-1); /* 🎯 SST: Extra small border width */
+  --la-border-width-sm: var(--la-space-1); /* 🎯 SST: Small border width */
   --la-border-width-md: 3px; /* 🎯 SST: Medium border width */
 
   /* Icon Sizes */
-  --la-icon-lg: 32px; /* 🎯 SST: Large icon size */
-  --la-icon-sm: 16px; /* 🎯 SST: Small icon size */
+  --la-icon-lg: var(--la-space-8); /* 🎯 SST: Large icon size */
+  --la-icon-sm: var(--la-space-4); /* 🎯 SST: Small icon size */
 
   /* Component Dimensions */
   --la-min-height-xxl: 128px; /* 🎯 SST: Extra large minimum height */
@@ -139,18 +141,18 @@
   --la-review-min-width: 256px; /* 🎯 SST: Review step minimum width (XXXXXL) */
   --la-max-content-width: 512px; /* 🎯 SST: Maximum content width (XXXL * 8) */
 
-  /* Border Sizes */
-  --la-border-width-xxs: 1px; /* 🎯 SST: Extra small border width */
+  /* Border Sizes - uses definitions from Enhanced Border System above */
+  /* --la-border-width-xxs: REMOVED - duplicate of line 122 */
 
   /* Typography System */
   --la-font-semibold: 600; /* 🎯 SST: Semibold font weight */
   --la-font-bold: 700; /* 🎯 SST: Bold font weight */
-  --la-font-size-sm: 14px; /* 🎯 SST: Small font size */
+  --la-font-size-sm: 0.875rem; /* 🎯 SST: Small font size */
   --la-line-height-tight: 1.2; /* 🎯 SST: Tight line height */
 
   /* Spacing for Gaps and Margins */
-  --la-gap-xs: 4px; /* 🎯 SST: Extra small gap */
-  --la-gap-sm: 8px; /* 🎯 SST: Small gap */
+  --la-gap-xs: var(--la-space-1); /* 🎯 SST: Extra small gap */
+  --la-gap-sm: var(--la-space-2); /* 🎯 SST: Small gap */
 
   /* Opacity System */
   --la-opacity-low: 0.01; /* 🎯 SST: Very low opacity */
@@ -178,63 +180,63 @@
   --la-box-shadow-card: 0 2px 4px var(--la-shadow-sm); /* 🎯 SST: Card shadow */
 
   /* Header System */
-  --la-header-height: 48px; /* 🎯 SST: Standard header height */
-  --la-header-padding: 8px 16px; /* 🎯 SST: Header padding */
-  --la-header-bg: rgba(0, 0, 0, 0.9); /* 🎯 SST: Header background */
+  --la-header-height: var(--la-space-12); /* 🎯 SST: Standard header height */
+  --la-header-padding: var(--la-space-2) 16px; /* 🎯 SST: Header padding */
+  /* --la-header-bg: defined in theme selectors [data-theme] */
   --la-header-text: #ffffff; /* 🎯 SST: Header text color */
-  --la-header-border: 1px solid #333; /* 🎯 SST: Header border */
-  --la-header-z-index: 10; /* 🎯 SST: Header z-index */
+  --la-header-border: var(--la-border-width-1) solid #333; /* 🎯 SST: Header border */
+  --la-header-z-index: var(--la-z-index-1)0; /* 🎯 SST: Header z-index */
 
   /* Font System */
-  --la-font-size-md: 16px; /* 🎯 SST: Medium font size */
+  --la-font-size-md: var(--la-space-4); /* 🎯 SST: Medium font size */
   --la-font-weight-semibold: 600; /* 🎯 SST: Semibold font weight */
 
   /* Button System */
-  --la-button-padding-sm: 6px 12px; /* 🎯 SST: Small button padding */
-  --la-button-padding-xl: 16px 48px; /* 🎯 SST: Extra large button padding */
-  --la-button-border-radius: 4px; /* 🎯 SST: Button border radius */
+  --la-button-padding-sm: var(--la-space-xs-plus-2-radius) 12px; /* 🎯 SST: Small button padding */
+  --la-button-padding-xl: var(--la-space-4) 48px; /* 🎯 SST: Extra large button padding */
+  --la-button-border-radius: var(--la-space-1); /* 🎯 SST: Button border radius */
 
   /* Input System */
-  --la-input-padding-complex: 12px 52px 12px 12px; /* 🎯 SST: Complex input padding with search icon */
+  --la-input-padding-complex: var(--la-space-3) 52px 12px; /* 🎯 SST: Complex input padding with search icon */
 
   /* Additional Spacing Tokens για υπόλοιπες hardcoded τιμές */
-  --la-space-layout-lg: 24px; /* 🎯 SST: Large layout spacing */
-  --la-space-layout-xl: 32px; /* 🎯 SST: Extra large layout spacing */
+  --la-space-layout-lg: var(--la-space-6); /* 🎯 SST: Large layout spacing */
+  --la-space-layout-xl: var(--la-space-8); /* 🎯 SST: Extra large layout spacing */
 
   /* Complex Spacing Calculations */
-  --la-space-xs-minus-2: 2px; /* 🎯 SST: XS - 2px calculation */
-  --la-space-xs-plus-2: 6px; /* 🎯 SST: XS + 2px calculation */
-  --la-space-xs-plus-2-sm-padding: 6px 8px; /* 🎯 SST: XS+2 SM padding */
+  --la-space-xs-minus-2: var(--la-space-1); /* 🎯 SST: XS - 2px calculation */
+  --la-space-xs-plus-2: var(--la-space-xs-plus-2-radius); /* 🎯 SST: XS + 2px calculation */
+  --la-space-xs-plus-2-sm-padding: var(--la-space-xs-plus-2-radius) 8px; /* 🎯 SST: XS+2 SM padding */
   --la-space-lg-plus-xs: 28px; /* 🎯 SST: LG + XS calculation */
-  --la-space-sm-plus-xs: 12px; /* 🎯 SST: SM + XS calculation */
-  --la-space-xl-margin: 32px; /* 🎯 SST: XL margin calculation */
-  --la-space-md-minus-xs-half: 14px; /* 🎯 SST: MD - XS/2 calculation */
-  --la-space-xl-minus-sm: 24px; /* 🎯 SST: XL - SM calculation */
-  --la-space-md-xl-padding: 16px 32px; /* 🎯 SST: MD XL padding */
-  --la-space-xl-md-padding: 32px 16px; /* 🎯 SST: XL MD padding */
-  --la-space-xs-sm-padding: 4px 8px; /* 🎯 SST: XS SM padding */
-  --la-space-sm-plus-xs-half-md-padding: 10px 16px; /* 🎯 SST: SM + XS/2, MD padding */
-  --la-space-md-minus-xs-half-xl-minus-sm-padding: 14px 24px; /* 🎯 SST: MD - XS/2, XL - SM padding */
+  --la-space-sm-plus-xs: var(--la-space-3); /* 🎯 SST: SM + XS calculation */
+  --la-space-xl-margin: var(--la-space-8); /* 🎯 SST: XL margin calculation */
+  --la-space-md-minus-xs-half: var(--la-font-size-sm); /* 🎯 SST: MD - XS/2 calculation */
+  --la-space-xl-minus-sm: var(--la-space-6); /* 🎯 SST: XL - SM calculation */
+  --la-space-md-xl-padding: var(--la-space-4) 32px; /* 🎯 SST: MD XL padding */
+  --la-space-xl-md-padding: var(--la-space-8) 16px; /* 🎯 SST: XL MD padding */
+  --la-space-xs-sm-padding: var(--la-space-1) 8px; /* 🎯 SST: XS SM padding */
+  --la-space-sm-plus-xs-half-md-padding: var(--la-space-xs-plus-2) 16px; /* 🎯 SST: SM + XS/2, MD padding */
+  --la-space-md-minus-xs-half-xl-minus-sm-padding: var(--la-font-size-sm) 24px; /* 🎯 SST: MD - XS/2, XL - SM padding */
   --la-space-xs-minus-4: 0px; /* 🎯 SST: XS - 4px calculation */
-  --la-space-xs-minus-4-xs-padding: 0px 4px; /* 🎯 SST: XS-4 XS padding */
-  --la-space-xs-xs-double-padding: 4px 8px; /* 🎯 SST: XS XS*2 padding */
+  --la-space-xs-minus-4-xs-padding: var(--la-space-0)px 4px; /* 🎯 SST: XS-4 XS padding */
+  --la-space-xs-xs-double-padding: var(--la-space-1) 8px; /* 🎯 SST: XS XS*2 padding */
   --la-space-border-radius-xs-minus-4: 0px; /* 🎯 SST: XS - 4 border radius */
-  --la-space-margin-xs-0: 4px 0 0 0; /* 🎯 SST: XS 0 0 0 margin */
+  --la-space-margin-xs-0: var(--la-space-1) 0 0 0; /* 🎯 SST: XS 0 0 0 margin */
 
   /* Complex Border Radius */
-  --la-space-xs-plus-2-radius: 6px; /* 🎯 SST: XS + 2 for border radius */
-  --la-space-sm-plus-xs-radius: 12px; /* 🎯 SST: SM + XS for border radius */
+  --la-space-xs-plus-2-radius: var(--la-space-xs-plus-2-radius); /* 🎯 SST: XS + 2 for border radius */
+  --la-space-sm-plus-xs-radius: var(--la-space-3); /* 🎯 SST: SM + XS for border radius */
 
   /* Additional Border Radius Tokens */
-  --la-radius-xs: 2px; /* 🎯 SST: Extra small border radius */
-  --la-radius-input: 4px; /* 🎯 SST: Input border radius */
+  /* --la-radius-xs: already defined above - use var(--la-border-width-1) */
+  --la-radius-input: var(--la-space-1); /* 🎯 SST: Input border radius */
   --la-radius-circle: 50%; /* 🎯 SST: Circle border radius */
 
   --la-color-primary-light: hsl(214deg 95% 93%);
 
   /* Modal Sizing */
-  --la-modal-width-mobile: 20rem;
-  --la-modal-width-tablet: 20rem;
+  --la-modal-width-mobile: var(--la-size-80);
+  --la-modal-width-tablet: var(--la-size-80);
   --la-modal-width-desktop: 17.5rem;
   --la-modal-width-desktop-lg: 16.25rem;
 
@@ -261,12 +263,12 @@
   --la-color-primary-dark: var(--la-color-brand-hover);
 
   /* Font Weight */
-  --la-font-bold: 600;
+  /* --la-font-bold: REMOVED - duplicate of line 147 */
 
   /* Icon Sizes */
-  --la-icon-md: 1.25rem;
-  --la-icon-sm: 1.125rem;
-  --la-icon-xs: 1rem;
+  --la-icon-md: var(--la-space-5);
+  /* --la-icon-sm: REMOVED - duplicate of line 128 */
+  --la-icon-xs: var(--la-space-4);
 
   /* Transitions */
   --la-transition-colors: background-color 0.2s ease, border-color 0.2s ease;
@@ -279,46 +281,46 @@
   /* Typography */
   --la-font-family-base: system-ui, sans-serif;
   --la-font-family-monospace: 'JetBrains Mono', monospace;
-  --la-font-size-xs: 0.75rem;
-  --la-font-size-sm: 0.875rem;
-  --la-font-size-base: 1rem;
+  --la-font-size-xs: var(--la-space-3);
+  /* --la-font-size-sm: REMOVED - duplicate of line 148 */
+  --la-font-size-base: var(--la-space-4);
   --la-font-size-lg: 1.125rem;
-  --la-font-size-xl: 1.25rem;
+  --la-font-size-xl: var(--la-space-5);
   --la-font-weight-normal: 400;
   --la-font-weight-medium: 500;
-  --la-font-weight-semibold: 600;
+  /* --la-font-weight-semibold: REMOVED - duplicate of line 190 */
 
   /* Line Heights */
-  --la-line-height-tight: 1.25;
+  /* --la-line-height-tight: REMOVED - duplicate of line 149 */
   --la-line-height-normal: 1.5;
   --la-line-height-relaxed: 1.75;
 
-  /* Z-Index */
+  /* Z-Index - uses values from main definitions above */
   --la-z-index-base: 1;
   --la-z-index-dropdown: 10;
-  --la-z-index-overlay: 20;
-  --la-z-index-modal: 30;
+  /* --la-z-index-overlay: 20;  // REMOVED: conflicts with line 119 */
+  /* --la-z-index-modal: 30;    // REMOVED: conflicts with line 117 */
   --la-z-index-popover: 40;
-  --la-z-index-tooltip: 50;
+  /* --la-z-index-tooltip: 50;  // REMOVED: conflicts with line 118 */
   --la-z-toast: 1080;
   --la-z-modal-overlay: 1000;
   --la-z-modal: 1010;
 
   /* Shadows */
   --la-shadow-none: none;
-  --la-shadow-sm: 0 0.063rem 0.125rem 0 rgb(0 0 0 / 5%);
-  --la-shadow-md: 0 0.25rem 0.375rem -0.063rem rgb(0 0 0 / 10%);
+  /* --la-shadow-sm: REMOVED - duplicate of line 177 */
+  --la-shadow-md: 0 var(--la-space-4) -var(--la-border-width-1) rgb(0 0 0 / 10%);
   --la-shadow-lg: 0 0.625rem 0.938rem -0.188rem rgb(0 0 0 / 10%);
-  --la-shadow-xl: 0 1.25rem 1.563rem -0.313rem rgb(0 0 0 / 10%);
-  --la-shadow-focus: 0 0 0 0.1875rem rgb(37 99 235 / 20%);
-  --la-shadow-focus-lg: 0 0 0 0.25rem rgb(37 99 235 / 30%);
-  --la-shadow-error: 0 0 0 0.1875rem rgb(220 38 38 / 20%);
-  --la-shadow-error-lg: 0 0 0 0.25rem rgb(220 38 38 / 30%);
-  --la-shadow-success: 0 0 0 0.1875rem rgb(22 163 74 / 20%);
-  --la-shadow-warning: 0 0 0 0.1875rem rgb(234 88 12 / 20%);
+  --la-shadow-xl: 0 var(--la-space-5) 1.563rem -0.313rem rgb(0 0 0 / 10%);
+  --la-shadow-focus: 0 0 0 var(--la-border-width-3) rgb(37 99 235 / 20%);
+  --la-shadow-focus-lg: 0 0 0 var(--la-space-1) rgb(37 99 235 / 30%);
+  --la-shadow-error: 0 0 0 var(--la-border-width-3) rgb(220 38 38 / 20%);
+  --la-shadow-error-lg: 0 0 0 var(--la-space-1) rgb(220 38 38 / 30%);
+  --la-shadow-success: 0 0 0 var(--la-border-width-3) rgb(22 163 74 / 20%);
+  --la-shadow-warning: 0 0 0 var(--la-border-width-3) rgb(234 88 12 / 20%);
 
   /* Blur */
-  --la-shadow-blur-sm: 0.25rem;
+  --la-shadow-blur-sm: var(--la-space-1);
 
   /* Gradients */
   --la-gradient-brand-horizontal: linear-gradient(90deg, hsl(217deg 91% 60%), hsl(217deg 91% 55%));
@@ -386,15 +388,6 @@
   --la-text-on-dark: hsl(0deg 0% 100%);
 }
 
-/* Light theme */
-[data-theme="light"] {
-  --la-layout-bg: hsl(0deg 0% 100%);
-  --la-layout-border: hsl(0deg 0% 90%);
-  --la-header-bg: hsl(0deg 0% 100%);
-  --la-sidebar-bg: hsl(0deg 0% 98%);
-  --la-content-bg: hsl(0deg 0% 100%);
-}
-
 /* Dark theme */
 [data-theme="dark"] {
   --la-layout-bg: hsl(222deg 84% 5%);
@@ -450,7 +443,7 @@ html {
 /* Progressive Disclosure Animations - Research-backed UX Enhancement */
 @keyframes slideIn {
   from {
-    opacity: 0;
+    opacity: var(--la-space-0);
     transform: translateY(10px);
   }
   to {

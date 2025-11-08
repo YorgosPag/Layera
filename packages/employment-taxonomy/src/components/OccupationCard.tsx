@@ -11,6 +11,7 @@ import { Text, Heading } from '@layera/typography';
 import { Stack, Flex, Box } from '@layera/layout';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import type { Occupation } from '../types/occupation';
+import './OccupationCard.css';
 
 export interface OccupationCardProps {
   /** Occupation data */
@@ -94,11 +95,7 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
     return (
       <BaseCard
         onClick={handleClick}
-        style={{
-          cursor: onClick ? 'var(--la-cursor-pointer, pointer)' : 'var(--la-cursor-default, default)',
-          border: isSelected ? '2px solid var(--la-color-primary)' : '1px solid var(--la-border-default)',
-          ...style
-        }}
+        className={`la-occupation-card-minimal ${isSelected ? 'la-selected' : ''} ${onClick ? 'la-clickable' : ''} ${style ? 'la-occupation-card-custom' : ''}`}
       >
         <Flex align="center" gap="sm">
           <BriefcaseIcon size="sm" theme="primary" />
@@ -117,12 +114,7 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
     return (
       <BaseCard
         onClick={handleClick}
-        style={{
-          cursor: onClick ? 'var(--la-cursor-pointer, pointer)' : 'var(--la-cursor-default, default)',
-          border: isSelected ? '2px solid var(--la-color-primary)' : '1px solid var(--la-border-default)',
-          backgroundColor: isSelected ? 'var(--la-bg-primary-subtle)' : 'var(--la-bg-primary)',
-          ...style
-        }}
+        className={`la-occupation-card-compact ${isSelected ? 'la-selected' : ''} ${onClick ? 'la-clickable' : ''} ${style ? 'la-occupation-card-custom' : ''}`}
       >
         <Stack spacing="sm">
           <Flex align="start" gap="sm">
@@ -138,12 +130,7 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
           </Flex>
 
           {occupation.description && (
-            <Text size="sm" color="secondary" style={{
-              display: 'var(--la-display-webkit-box, -webkit-box)',
-              WebkitLineClamp: 'var(--la-webkit-line-clamp-2, 2)',
-              WebkitBoxOrient: 'var(--la-webkit-box-orient-vertical, vertical)',
-              overflow: 'var(--la-overflow-hidden, hidden)'
-            }}>
+            <Text size="sm" color="secondary" className="la-occupation-description-clamp">
               {occupation.description}
             </Text>
           )}
@@ -151,26 +138,16 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
           <Flex align="center" gap="xs" wrap="wrap">
             {/* Category */}
             {occupation.category && (
-              <Box style={{
-                backgroundColor: 'var(--la-bg-secondary)',
-                padding: 'var(--la-space-xs-sm-padding)', // 🎯 SST: XS SM padding
-                borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
-                fontSize: 'var(--la-font-size-xs)',
-                color: 'var(--la-text-primary)'
-              }}>
+              <Box className="occupation-category-badge">
                 {occupation.category.name}
               </Box>
             )}
 
             {/* Experience Level */}
-            <Box style={{
-              backgroundColor: getExperienceLevelColor(occupation.experienceLevel),
-              color: 'var(--la-color-white, white)',
-              padding: 'var(--la-space-xs-sm-padding)', // 🎯 SST: XS SM padding
-              borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
-              fontSize: 'var(--la-font-size-xs)',
-              fontWeight: 'var(--la-font-weight-medium, 500)'
-            }}>
+            <Box
+              className="occupation-experience-badge"
+              data-level={occupation.experienceLevel}
+            >
               {getExperienceLevelLabel(occupation.experienceLevel)}
             </Box>
           </Flex>
@@ -183,12 +160,7 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
   return (
     <BaseCard
       onClick={handleClick}
-      style={{
-        cursor: onClick ? 'var(--la-cursor-pointer, pointer)' : 'var(--la-cursor-default, default)',
-        border: isSelected ? '2px solid var(--la-color-primary)' : '1px solid var(--la-border-default)',
-        backgroundColor: isSelected ? 'var(--la-bg-primary-subtle)' : 'var(--la-bg-primary)',
-        ...style
-      }}
+      className={`la-occupation-card-full ${isSelected ? 'la-selected' : ''} ${onClick ? 'la-clickable' : ''} ${style ? 'la-occupation-card-custom' : ''}`}
     >
       <Stack spacing="md">
         {/* Header */}
@@ -236,14 +208,7 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
               {occupation.employmentTypes.map((type, index) => (
                 <Box
                   key={index}
-                  style={{
-                    backgroundColor: 'var(--la-bg-info-subtle)',
-                    color: 'var(--la-color-info)',
-                    padding: 'var(--la-space-xs-sm-padding)', // 🎯 SST: XS SM padding
-                    borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
-                    fontSize: 'var(--la-font-size-xs)',
-                    fontWeight: 'var(--la-font-weight-medium, 500)'
-                  }}
+                  className="la-employment-type-badge"
                 >
                   {getEmploymentTypeLabel(type)}
                 </Box>
@@ -262,13 +227,7 @@ export const OccupationCard: React.FC<OccupationCardProps> = ({
               {occupation.skills.slice(0, 6).map((skill, index) => (
                 <Box
                   key={index}
-                  style={{
-                    backgroundColor: 'var(--la-bg-success-subtle)',
-                    color: 'var(--la-color-success)',
-                    padding: 'var(--la-space-xs-sm-padding)', // 🎯 SST: XS SM padding
-                    borderRadius: `${BORDER_RADIUS_SCALE.XS}px`,
-                    fontSize: 'var(--la-font-size-xs)'
-                  }}
+                  className="la-skill-badge"
                 >
                   {skill.name}
                 </Box>

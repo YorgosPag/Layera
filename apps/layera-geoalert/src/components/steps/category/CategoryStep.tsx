@@ -117,7 +117,9 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
         onInfoClick={() => handleInfoClick('property')}
         data-testid="category-card-property"
         className="layera-card-uniform"
-        style={{ flex: 1, minWidth: 0, maxWidth: 'none' }}
+        flex="1"
+        minWidth="0"
+        maxWidth="none"
       />
 
       {/* Εργασία Card */}
@@ -129,7 +131,9 @@ export const CategoryStep: React.FC<CategoryStepProps> = ({
         onInfoClick={() => handleInfoClick('job')}
         data-testid="category-card-job"
         className="layera-card-uniform"
-        style={{ flex: 1, minWidth: 0, maxWidth: 'none' }}
+        flex="1"
+        minWidth="0"
+        maxWidth="none"
       />
     </Box>
 

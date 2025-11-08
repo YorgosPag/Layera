@@ -1,0 +1,94 @@
+/**
+ * @layera/auth-bridge - UserDisplay Component Styles
+ * SSOT Compliance - All inline styles replaced με design tokens
+ */
+
+/* Role Badge Styles με design tokens */
+.user-role-badge-private {
+  background-color: var(--la-color-gray-100);
+  color: var(--la-color-gray-800);
+}
+
+.user-role-badge-broker {
+  background-color: var(--la-color-bg-info);
+  color: var(--la-color-info);
+}
+
+.user-role-badge-builder {
+  background-color: var(--la-color-bg-success);
+  color: var(--la-color-success);
+}
+
+.user-role-badge-admin {
+  background-color: var(--la-color-bg-danger);
+  color: var(--la-color-danger);
+}
+
+/* Status Badge Styles */
+.user-status-success {
+  background-color: var(--la-color-bg-success);
+  color: var(--la-color-success);
+}
+
+.user-status-danger {
+  background-color: var(--la-color-bg-danger);
+  color: var(--la-color-danger);
+}
+
+.user-status-info {
+  background-color: var(--la-color-bg-info);
+  color: var(--la-color-info);
+}
+
+.user-status-secondary {
+  background-color: var(--la-color-surface-secondary);
+  color: var(--la-color-text-primary);
+}
+
+/* Text Colors με design tokens */
+.user-email-secondary {
+  color: var(--la-color-text-secondary);
+}
+
+.user-label-secondary {
+  color: var(--la-color-text-secondary);
+}
+
+/* Icon Sizes με design tokens */
+.icon-size-6 {
+  width: var(--la-size-6);
+  height: var(--la-size-6);
+}
+
+.icon-size-5 {
+  width: var(--la-size-5);
+  height: var(--la-size-5);
+}
+
+/* Width utilities για dynamic sizing */
+.width-80 {
+  width: var(--la-width-80);
+}
+
+.width-0 {
+  width: 0;
+}
+
+/* Avatar size classes */
+.avatar-small {
+  width: var(--la-size-8);
+  height: var(--la-size-8);
+  font-size: var(--la-font-size-xs);
+}
+
+.avatar-medium {
+  width: var(--la-size-10);
+  height: var(--la-size-10);
+  font-size: var(--la-font-size-sm);
+}
+
+.avatar-large {
+  width: var(--la-size-12);
+  height: var(--la-size-12);
+  font-size: var(--la-font-size-base);
+}

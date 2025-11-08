@@ -1,12 +1,10 @@
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  line-height: var(--la-line-height-relaxed);
   font-weight: 400;
-
   color-scheme: light dark;
   color: var(--la-text-primary);
   background-color: var(--la-bg-primary);
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -14,45 +12,48 @@
 }
 
 a {
-  font-weight: 500;
+  font-weight: var(--la-font-weight-medium);
   color: var(--la-bg-info);
   text-decoration: inherit;
 }
+
 a:hover {
-  color: color-mix(in srgb, var(--la-bg-info) 80%, black 20%);
+  color: color-mix(in srgb, var(--la-bg-info) var(--la-opacity-high), black var(--la-opacity-low));
 }
 
 body {
-  margin: 0;
+  margin: var(--la-space-0);
   display: flex;
   place-items: center;
-  min-width: 20rem;
-  min-height: 100vh;
+  min-width: var(--la-size-80);
+  min-height: var(--la-size-screen-h);
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: var(--la-font-size-xl);
+  line-height: var(--la-line-height-tight);
 }
 
 button {
-  border-radius: 0.5rem;
-  border: 0.0625rem solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
+  border-radius: var(--la-space-2);
+  border: var(--la-border-width-1) solid transparent;
+  padding: var(--la-space-4);
+  font-size: var(--la-font-size-base);
+  font-weight: var(--la-font-weight-medium);
   font-family: inherit;
   background-color: var(--la-bg-secondary);
   color: var(--la-text-primary);
-  cursor: pointer;
+  cursor: var(--la-cursor-pointer);
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: var(--la-bg-info);
 }
+
 button:focus,
 button:focus-visible {
-  outline: 0.25rem auto -webkit-focus-ring-color;
+  outline: var(--la-border-width-1) auto -webkit-focus-ring-color;
 }
 
 @media (prefers-color-scheme: light) {
@@ -60,9 +61,11 @@ button:focus-visible {
     color: var(--la-text-primary);
     background-color: var(--la-bg-primary);
   }
+
   a:hover {
-    color: color-mix(in srgb, var(--la-bg-info) 80%, black 20%);
+    color: color-mix(in srgb, var(--la-bg-info) var(--la-opacity-high), black var(--la-opacity-low));
   }
+
   button {
     background-color: var(--la-bg-tertiary);
   }

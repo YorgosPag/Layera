@@ -5,7 +5,8 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Button } from '@layera/buttons';
-import { Box } from '@layera/layout';
+import { Box, Flex } from '@layera/layout';
+import { Text } from '@layera/typography';
 import { SPACING_SCALE, getCardInfoColor } from '@layera/constants';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 
@@ -127,40 +128,40 @@ const MapCanvas: React.FC<MapCanvasProps> = ({
 
   if (!isMapReady) {
     return (
-      <Box className={`flex items-center justify-center h-64 ${className}`} style={{ backgroundColor: 'var(--la-color-gray-100)' }}>
-        <Box className="text-center">
-          <Box className="animate-spin rounded-full h-8 w-8 border-b-2 border-brand mx-auto mb-2"></Box>
-          <p className="text-sm" style={{ color: 'var(--la-color-gray-600)' }}>{t('loadingMap')}</p>
+      <Flex alignItems="center" justifyContent="center" height="64" className={className} backgroundColor="gray-100">
+        <Box textAlign="center">
+          <Box width="8" height="8" borderRadius="full" marginX="auto" marginBottom="2" className="animate-spin border-b-2 border-brand"></Box>
+          <Text as="p" size="sm" color="gray-600">{t('loadingMap')}</Text>
         </Box>
-      </Box>
+      </Flex>
     );
   }
 
   return (
-    <Box className={`relative w-full h-full ${className}`}>
+    <Box position="relative" width="full" height="full" className={className}>
       {/* Main Map */}
       <MapCore onMapReady={handleMapReady}>
         {/* Drawing Tools migrated to @layera/geo-drawing */}
       </MapCore>
 
       {/* Location Button */}
-      <Box className="absolute top-20 left-4 z-[1000]">
+      <Box position="absolute" top={MAP_CONFIG.controls.location.top} left={MAP_CONFIG.controls.location.left} zIndex={MAP_CONFIG.controls.location.zIndex}>
         <Button
           onClick={handleFindLocation}
           disabled={!mapInstance || isLoadingLocation}
           size="sm"
           title={t('findMyLocation')}
-          style={{ backgroundColor: getCardInfoColor() }} // 🔴 SST: Location button color από μοναδική πηγή αλήθειας
+          backgroundColor="card-info" // 🎯 SST: Location button color από design tokens
           boxShadow="elevation4"
           padding="md"
         >
           {isLoadingLocation ? (
-            <Box className="animate-spin rounded-full h-5 w-5 border-b-2 border-brand"></Box>
+            <Box className="animate-spin border-b-2 border-brand" borderRadius="full" height="5" width="5"></Box>
           ) : (
             <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              style={{ color: 'var(--la-color-gray-700)' }}
+              xmlns={MAP_CONFIG.icons.default.xmlns}
+              height="5" width="5"
+              color="gray-700"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -176,13 +177,13 @@ const MapCanvas: React.FC<MapCanvasProps> = ({
 
       {/* Guest Mode Overlay */}
       {isGuest && (
-        <Box className="absolute bottom-4 left-4 right-4 z-[1000]">
-          <Box className="layera-guest-warning-box rounded-lg p-3 shadow-lg">
-            <Box className="flex items-center space-x-2">
+        <Box position="absolute" bottom={MAP_CONFIG.controls.layers.bottom} left={MAP_CONFIG.controls.layers.left} right={MAP_CONFIG.controls.layers.right} zIndex={MAP_CONFIG.controls.layers.zIndex}>
+          <Box className="layera-guest-warning-box" borderRadius="lg" padding="3" boxShadow="lg">
+            <Flex alignItems="center" gap="2">
               <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                style={{ color: 'var(--la-color-warning-600)' }}
+                xmlns={MAP_CONFIG.icons.default.xmlns}
+                height="5" width="5"
+                color="warning-600"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
@@ -192,10 +193,10 @@ const MapCanvas: React.FC<MapCanvasProps> = ({
                   clipRule="evenodd"
                 />
               </svg>
-              <p className="text-sm font-medium" style={{ color: 'var(--la-color-warning-800)' }}>
+              <Text as="p" size="sm" fontWeight="medium" color="warning-800">
                 {t('guestModeNote')}
-              </p>
-            </Box>
+              </Text>
+            </Flex>
           </Box>
         </Box>
       )}

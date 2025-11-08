@@ -10,7 +10,7 @@ import { useLayeraTranslation } from '@layera/tolgee';
 import { PropertyDetailsForm } from './PropertyDetailsForm';
 import { BaseCard } from '@layera/cards';
 import { CheckIcon, CheckIcon as FormIcon } from '@layera/icons';
-import { getCardInfoColor, FIXED_DIMENSIONS } from '@layera/constants';
+import { getCardInfoColor, FIXED_DIMENSIONS, DEMO_PROPERTY_DATA, ANIMATION_DURATIONS } from '@layera/constants';
 import type { StepProps } from '../types';
 import type { PropertyDetails, PropertyDetailsStepData, PropertyDetailsFormField } from './types';
 
@@ -40,47 +40,47 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
       label: 'Τιμή (€)',
       type: 'number',
       required: true,
-      placeholder: 'π.χ. 150000',
-      min: 0
+      placeholder: `π.χ. ${DEMO_PROPERTY_DATA.PRICE}`,
+      min: DEMO_PROPERTY_DATA.MIN_PRICE  // SSOT για minimum price
     },
     {
       id: 'squareMeters',
       label: 'Τετραγωνικά Μέτρα',
       type: 'number',
       required: true,
-      placeholder: 'π.χ. 85',
-      min: 1
+      placeholder: `π.χ. ${DEMO_PROPERTY_DATA.SQUARE_METERS}`,
+      min: DEMO_PROPERTY_DATA.MIN_SQUARE_METERS  // SSOT για minimum square meters
     },
     {
       id: 'rooms',
       label: 'Δωμάτια',
       type: 'number',
-      placeholder: 'π.χ. 3',
-      min: 1,
-      max: 20
+      placeholder: `π.χ. ${DEMO_PROPERTY_DATA.DEFAULT_ROOMS_PLACEHOLDER}`,  // SSOT placeholder
+      min: DEMO_PROPERTY_DATA.MIN_ROOMS,  // SSOT validation
+      max: DEMO_PROPERTY_DATA.MAX_BEDROOMS
     },
     {
       id: 'bathrooms',
       label: 'Μπάνια',
       type: 'number',
-      placeholder: 'π.χ. 2',
-      min: 1,
-      max: 10
+      placeholder: `π.χ. ${DEMO_PROPERTY_DATA.DEFAULT_BATHROOMS_PLACEHOLDER}`,  // SSOT placeholder
+      min: DEMO_PROPERTY_DATA.MIN_BATHROOMS,  // SSOT validation
+      max: DEMO_PROPERTY_DATA.MAX_BATHROOMS
     },
     {
       id: 'floor',
       label: 'Όροφος',
       type: 'number',
-      placeholder: 'π.χ. 3',
-      min: -2,
-      max: 50
+      placeholder: `π.χ. ${DEMO_PROPERTY_DATA.DEFAULT_FLOOR_PLACEHOLDER}`,  // SSOT placeholder
+      min: DEMO_PROPERTY_DATA.MIN_FLOOR,  // SSOT basement levels validation
+      max: DEMO_PROPERTY_DATA.MAX_PARKING_SPACES
     },
     {
       id: 'yearBuilt',
       label: 'Έτος Κατασκευής',
       type: 'number',
-      placeholder: 'π.χ. 2005',
-      min: 1800,
+      placeholder: `π.χ. ${DEMO_PROPERTY_DATA.BUILDING_YEAR_PLACEHOLDER}`,
+      min: DEMO_PROPERTY_DATA.BUILDING_YEAR_MIN, // Earliest reasonable building year
       max: new Date().getFullYear()
     },
     {
@@ -134,7 +134,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
       // Auto-advance
       setTimeout((): void => {
         onNext?.();
-      }, 300);
+      }, ANIMATION_DURATIONS.NORMAL);  // SSOT για animation timing
 
     } catch (error) {
       console.error('Property details submission failed:', error);
@@ -155,7 +155,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
       // Auto-advance
       setTimeout((): void => {
         onNext?.();
-      }, 300);
+      }, ANIMATION_DURATIONS.NORMAL);  // SSOT για animation timing
 
     } catch (error) {
       console.error('Property details skip failed:', error);
@@ -171,7 +171,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
     top: 'var(--la-cards-top)',
     left: 'var(--la-side-margins)',
     right: 'var(--la-side-margins)',
-    zIndex: 10002,
+    zIndex: 'var(--la-z-index-modal)', // Enterprise z-index system
     display: 'flex',
     flexDirection: 'column',
     gap: 'var(--la-cards-gap)',
@@ -183,7 +183,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
   const hasRequiredFields = Boolean(details.price && details.squareMeters);
 
   return (
-    <Box style={containerStyles}>
+    <Box>
       {!showForm ? (
         <>
           {/* Show Form Card */}
@@ -192,7 +192,7 @@ export const PropertyDetailsStep: React.FC<PropertyDetailsStepProps> = ({
             description={t('property-details.fill-details')}
             icon={<FormIcon size="sm" theme="neutral" />}
             onClick={handleShowForm}
-            style={{ backgroundColor: getCardInfoColor() }} // 🔴 SST: Info card color από μοναδική πηγή αλήθειας
+            backgroundColor="card-info" // 🎯 SST: Info card color από design tokens
             className="layera-card-uniform"
             data-testid="property-details-show-form"
           />

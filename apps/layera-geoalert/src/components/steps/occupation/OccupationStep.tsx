@@ -8,9 +8,10 @@ import React, { useState, useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Heading, Text } from '@layera/typography';
 import { Stack, Box } from '@layera/layout';
-import { SPACING_SCALE, getCardInfoColor, getCardSuccessColor } from '@layera/constants';
+import { SPACING_SCALE, getCardInfoColor, getCardSuccessColor, ANIMATION_DURATIONS } from '@layera/constants';
 import { BaseCard } from '@layera/cards';
 import { ESCOSearchComponent } from './ESCOSearchComponent';
+import { STEP_CONFIG, FORM_CONFIG } from '../../../constants';
 import type { StepProps } from '../types';
 import type { ESCOOccupation, OccupationStepData } from './types';
 
@@ -67,7 +68,7 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
       setTimeout((): void => {
         onNext?.();
         setIsConfirming(false);
-      }, 1500);
+      }, ANIMATION_DURATIONS.OCCUPATION_SEARCH);
 
     } catch (error) {
       console.error('Occupation selection failed:', error);
@@ -86,7 +87,7 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
     left: '50%',
     transform: 'translateX(-50%)',
     width: 'var(--la-occupation-width)', // 🎯 SST: Occupation step width token
-    zIndex: 10003,
+    zIndex: FORM_CONFIG.zIndex.modalOverlay,
     padding: '0 var(--la-space-lg-plus-xs)', // 🎯 SST: Complex spacing token
     boxSizing: 'border-box'
   };
@@ -94,7 +95,7 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
   // All styles converted to LEGO BaseCard components
 
   return (
-    <Box style={containerStyles}>
+    <Box>
       {/* Header */}
       <Stack spacing="sm" align="center" className="occupation-header">
         <Heading level={2} size="lg" color="primary" align="center">
@@ -104,7 +105,8 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
           padding="md"
           marginTop="sm"
           className="layera-card-uniform"
-          style={{ backgroundColor: getCardInfoColor() }}> {/* 🔴 SST: Info card color από μοναδική πηγή αλήθειας */}
+          backgroundColor="card-info" // 🎯 SST: Info card color από design tokens
+          >
           <Text size="md" color="secondary" align="center" className="subtitle">
             {t('occupation.subtitle', 'Αναζητήστε και επιλέξτε το επάγγελμά σας από την επίσημη ESCO βάση δεδομένων της ΕΕ')}
           </Text>
@@ -115,7 +117,7 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
       <ESCOSearchComponent
         onOccupationSelected={handleOccupationSelection}
         placeholder={t('occupation.search.placeholder', 'Αναζήτηση επαγγέλματος... (π.χ. γιατρός, μηχανικός, δικηγόρος)')}
-        maxResults={10}
+        maxResults={STEP_CONFIG.searchLimits.maxOccupationResults}
         variant="default"
       />
 
@@ -173,7 +175,8 @@ export const OccupationStep: React.FC<OccupationStepProps> = ({
           padding="md"
           marginTop="lg"
           className="layera-card-uniform"
-          style={{ backgroundColor: getCardInfoColor() }}> {/* 🔴 SST: Help card color από μοναδική πηγή αλήθειας */}
+          backgroundColor="card-info" // 🎯 SST: Help card color από design tokens
+          >
           <Text size="sm" color="secondary" align="center">
             {t('occupation.help.tip', '💡 Συμβουλή: Χρησιμοποιήστε ελληνικούς ή αγγλικούς όρους για καλύτερα αποτελέσματα')}
           </Text>

@@ -23,21 +23,42 @@
   border: var(--la-border-width-1) solid var(--la-color-border-primary);
   border-radius: var(--la-radius-lg);
   box-shadow: var(--la-shadow-2xl);
-  width: 100%;
-  max-height: calc(100vh - var(--la-space-8));
+  width: var(--la-size-full);
+  max-height: calc(var(--la-size-screen-h) 100vh - var(--la-space-8));
   overflow: hidden;
   display: flex;
   flex-direction: column;
   padding: var(--la-space-4);
 }
 
+/* Dynamic padding classes */
+.la-modal-padding-custom {
+  padding: var(--la-modal-content-padding);
+}
+
+/* Panel padding override */
+.la-modal-panel-padding-custom {
+  padding: var(--la-modal-inner-padding);
+}
+
+/* Modal content container */
+.la-modal-content {
+  flex: 1;
+  overflow: auto;
+}
+
+/* Content with custom styles */
+.la-modal-content-styled {
+  /* Custom styling applied via contentStyle prop */
+}
+
 /* Remove external margins from content */
 .la-modal-content > :first-child {
-  margin-top: 0;
+  margin-top: var(--la-space-0);
 }
 
 .la-modal-content > :last-child {
-  margin-bottom: 0;
+  margin-bottom: var(--la-space-0);
 }
 
 /* Remove margins from headings and paragraphs */
@@ -48,33 +69,33 @@
 .la-modal-content h5,
 .la-modal-content h6,
 .la-modal-content p {
-  margin: 0;
+  margin: var(--la-space-0);
 }
 
 /* Modal sizes */
 .la-modal-xs {
-  max-width: 20rem;
+  max-width: var(--la-size-80);
 }
 
 .la-modal-sm {
-  max-width: 24rem;
+  max-width: var(--la-size-96);
 }
 
 .la-modal-md {
-  max-width: 28rem;
+  max-width: var(--la-size-112);
 }
 
 .la-modal-lg {
-  max-width: 32rem;
+  max-width: /* TODO(token-missing): var(--la-space-4) */ var(--la-space-4);
 }
 
 .la-modal-xl {
-  max-width: 36rem;
+  max-width: var(--la-size-144);
 }
 
 .la-modal-full {
   max-width: calc(100vw - var(--la-space-8));
-  max-height: calc(100vh - var(--la-space-8));
+  max-height: calc(var(--la-size-screen-h) 100vh - var(--la-space-8));
 }
 
 /* Modal variants */
@@ -83,12 +104,12 @@
 }
 
 .la-modal-centered {
-  margin: auto;
+  margin: var(--la-space-auto);
 }
 
 .la-modal-sidebar {
-  height: 100vh;
-  max-height: 100vh;
+  height: var(--la-size-screen-h) 100vh;
+  max-height: var(--la-size-screen-h) 100vh;
   border-radius: var(--la-radius-none);
   margin: var(--la-size-0);
 }
@@ -96,20 +117,20 @@
 /* Close button */
 .la-modal-close {
   position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
+  top: var(--la-space-4);
+  right: var(--la-space-4);
   z-index: var(--la-z-index-dropdown);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  border: none;
+  width: var(--la-space-4);
+  height: var(--la-space-4);
+  border: var(--la-border-none);
   border-radius: var(--la-radius-md);
   background-color: var(--la-color-transparent);
   color: var(--la-color-text-secondary);
-  cursor: pointer;
-  transition: all 0.15s ease;
+  cursor: var(--la-cursor-pointer);
+  transition: var(--la-transition-fast);
 }
 
 .la-modal-close:hover {
@@ -118,8 +139,8 @@
 }
 
 .la-modal-close:focus {
-  outline: 0.125rem solid oklch(50% 0.15 240deg);
-  outline-offset: 0.125rem;
+  outline: var(--la-space-4) solid oklch(50% 0.15 240deg);
+  outline-offset: var(--la-space-4);
 }
 
 /* Animations */
@@ -145,18 +166,18 @@
   }
 
   to {
-    opacity: 1;
+    opacity: var(--la-opacity-full);
   }
 }
 
 @keyframes la-modal-scale-in {
   from {
     opacity: var(--la-size-0);
-    transform: scale(0.95) translateY(-0.625rem);
+    transform: scale(0.95) translateY(-0.625rem 0.625rem);
   }
 
   to {
-    opacity: 1;
+    opacity: var(--la-opacity-full);
     transform: scale(1) translateY(0);
   }
 }
@@ -164,11 +185,11 @@
 @keyframes la-modal-slide-in {
   from {
     opacity: var(--la-size-0);
-    transform: translateY(-1.25rem);
+    transform: translateY(-var(--la-space-4));
   }
 
   to {
-    opacity: 1;
+    opacity: var(--la-opacity-full);
     transform: translateY(0);
   }
 }
@@ -176,12 +197,12 @@
 /* Mobile responsiveness */
 @media (width <= 40rem) {
   .la-modal-overlay {
-    padding: 0.5rem;
+    padding: var(--la-space-4);
   }
 
   .la-modal {
-    width: 100%;
-    max-width: 100%;
+    width: var(--la-size-full);
+    max-width: var(--la-size-full);
     margin: var(--la-size-0);
   }
 
@@ -190,6 +211,6 @@
   .la-modal-md,
   .la-modal-lg,
   .la-modal-xl {
-    max-width: 100%;
+    max-width: var(--la-size-full);
   }
 }

@@ -6,7 +6,7 @@
 /* ============ BASE LAYOUT UTILITIES ============ */
 
 .layera-layout-container {
-  width: 100%;
+  width: var(--la-size-full);
   height: var(--la-height-screen);
   overflow: hidden;
   background-color: var(--la-layout-bg);
@@ -16,7 +16,7 @@
 
 .layera-app-shell {
   display: grid;
-  width: 100%;
+  width: var(--la-size-full);
   height: var(--la-height-screen);
   background-color: var(--la-layout-bg);
 }
@@ -67,14 +67,14 @@
 .layera-layout-header {
   grid-area: header;
   z-index: var(--la-z-header);
-  border-bottom: 0.063rem solid var(--la-layout-border);
+  border-bottom: var(--la-space-4) solid var(--la-layout-border);
   background-color: var(--la-header-bg);
 }
 
 .layera-layout-sidebar {
   grid-area: sidebar;
   z-index: var(--la-z-sidebar);
-  border-right: 0.063rem solid var(--la-layout-border);
+  border-right: var(--la-space-4) solid var(--la-layout-border);
   background-color: var(--la-sidebar-bg);
   overflow-y: auto;
 }
@@ -82,14 +82,14 @@
 .layera-layout-sidebar-left {
   grid-area: sidebar-left;
   z-index: var(--la-z-sidebar);
-  border-right: 0.063rem solid var(--la-layout-border);
+  border-right: var(--la-space-4) solid var(--la-layout-border);
   background-color: var(--la-sidebar-bg);
 }
 
 .layera-layout-sidebar-right {
   grid-area: sidebar-right;
   z-index: var(--la-z-sidebar);
-  border-left: 0.063rem solid var(--la-layout-border);
+  border-left: var(--la-space-4) solid var(--la-layout-border);
   background-color: var(--la-sidebar-bg);
 }
 
@@ -98,13 +98,13 @@
   background-color: var(--la-content-bg);
   overflow-y: auto;
   position: relative;
-  width: 100%;
+  width: var(--la-size-full);
   max-width: var(--la-width-full);
 }
 
 .layera-layout-footer {
   grid-area: footer;
-  border-top: 0.063rem solid var(--la-layout-border);
+  border-top: var(--la-space-4) solid var(--la-layout-border);
   background-color: var(--la-header-bg);
 }
 
@@ -122,7 +122,7 @@
     top: var(--la-header-height);
     left: var(--la-left-0);
     width: var(--la-sidebar-width);
-    height: calc(100vh - var(--la-header-height));
+    height: calc(var(--la-size-screen-h) 100vh - var(--la-header-height));
     transform: translateX(-100%);
     transition: transform var(--la-transition-normal);
   }
@@ -135,17 +135,17 @@
     position: fixed;
     top: var(--la-top-0);
     left: var(--la-left-0);
-    width: 100%;
+    width: var(--la-size-full);
     height: var(--la-height-full);
     background-color: var(--la-color-overlay);
-    z-index: 999;
+    z-index: var(--la-z-index-overlay);
     opacity: var(--la-size-0);
     visibility: hidden;
     transition: all var(--la-transition-normal);
   }
 
   .layera-layout-sidebar-backdrop.active {
-    opacity: 1;
+    opacity: var(--la-opacity-full);
     visibility: visible;
   }
 }
@@ -185,10 +185,10 @@
 .layera-geoalert-card-container {
   position: fixed;
   top: var(--la-cards-top);
-  left: 0;
-  right: 0;
+  left: var(--la-space-0);
+  right: var(--la-space-0);
   z-index: var(--la-z-fixed);
-  padding: 0 var(--la-size-2); /* Minimal padding instead of large margins */
+  padding: var(--la-space-4); /* Minimal padding instead of large margins */
   display: flex;
   gap: var(--la-cards-gap);
   transition: all var(--la-transition-normal);
@@ -201,12 +201,12 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: stretch; /* Cards same height */
-  width: 100%; /* Full width */
+  width: var(--la-size-full); /* Full width */
 }
 
 .layera-geoalert-card-container--horizontal > * {
   flex: 1;
-  min-width: 0; /* Allows flex items to shrink below content size */
+  min-width: var(--la-space-0); /* Allows flex items to shrink below content size */
   max-width: calc(50% - var(--la-cards-gap) / 2); /* Half width minus gap */
 }
 
@@ -258,10 +258,10 @@
 @media (width >= 48rem) {
   .layera-geoalert-info-panel {
     position: fixed;
-    top: var(--la-space-6); /* 1.5rem */
-    right: var(--la-space-6); /* 1.5rem */
+    top: var(--la-space-6); /* var(--la-space-4) */
+    right: var(--la-space-6); /* var(--la-space-4) */
     left: auto;
-    width: 20rem;
+    width: var(--la-size-80);
     max-height: 25rem;
   }
 }

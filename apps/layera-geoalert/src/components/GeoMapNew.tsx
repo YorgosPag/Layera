@@ -5,7 +5,7 @@
  * Χρησιμοποιεί @layera/map-core και @layera/geo-drawing packages.
  */
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { useViewportWithOverride } from '@layera/viewport';
 // 🚀 ENTERPRISE: StepOrchestrator - ΜΟΝΑΔΙΚΗ Single Source of Truth
 import type { StepId, CategoryType, IntentType, StepContext } from './steps/types';
@@ -13,13 +13,10 @@ import { stepRegistry } from './steps/StepRegistry';
 import { useStepNavigation } from './steps/StepOrchestrator';
 // REMOVED: device-layouts package - simplified to pure responsive
 import { MapContainer } from './map/MapContainer';
-import { PlusIcon } from '@layera/icons';
-import { Box } from '@layera/layout';
+import { Box, Flex } from '@layera/layout';
 // REMOVED: UnifiedFAB - FAB functionality moved to header button
-import { CONFIG, SPACING_SCALE, PIPELINE_STEP, CSS_DESIGN_TOKENS, getCardInfoBorder } from '@layera/constants';
-import { COLORS } from '../constants';
+import { CONFIG, PIPELINE_STEP } from '@layera/constants';
 import { useLayeraTranslation } from '@layera/tolgee';
-import { CategoryStep } from './steps/category/CategoryStep';
 import { StepOrchestrator } from './steps/StepOrchestrator';
 // Import για auto-registration των modular steps
 import './steps/category';
@@ -150,28 +147,23 @@ export const GeoMap: React.FC<GeoMapProps> = ({
   };
 
   // 🎯 onStepComplete handler για StepOrchestrator - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
-  const handleStepComplete = (stepId: StepId, data?: unknown) => {
+  const handleStepComplete = useCallback((stepId: StepId, data?: Record<string, unknown>) => {
 
-    // ✅ StepContext update pattern από CategoryStep
-    if (stepId === 'category' && data && typeof data === 'object' && 'selectedCategory' in data) {
+    if (stepId === 'category' && data && 'selectedCategory' in data) {
       const newCategory = data.selectedCategory as CategoryType;
-
-
-      setStepContext(prev => ({
+      setStepContext((prev: StepContext) => ({
         ...prev,
         selectedCategory: newCategory,
         completedSteps: new Set([...prev.completedSteps, stepId])
       }));
-    } else if (stepId === 'intent' && data && typeof data === 'object' && 'selectedIntent' in data) {
-
-      setStepContext(prev => ({
+    } else if (stepId === 'intent' && data && 'selectedIntent' in data) {
+      setStepContext((prev: StepContext) => ({
         ...prev,
         selectedIntent: data.selectedIntent as IntentType,
         completedSteps: new Set([...prev.completedSteps, stepId])
       }));
-    } else if (stepId === 'propertyType' && data && typeof data === 'object' && 'selectedPropertyType' in data) {
-
-      setStepContext(prev => ({
+    } else if (stepId === 'propertyType' && data && 'selectedPropertyType' in data) {
+      setStepContext((prev: StepContext) => ({
         ...prev,
         customData: {
           ...prev.customData,
@@ -180,14 +172,12 @@ export const GeoMap: React.FC<GeoMapProps> = ({
         completedSteps: new Set([...prev.completedSteps, stepId])
       }));
     } else {
-      // Generic completion tracking - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
-
-      setStepContext(prev => ({
+      setStepContext((prev: StepContext) => ({
         ...prev,
         completedSteps: new Set([...prev.completedSteps, stepId])
       }));
     }
-  };
+  }, []);
 
   // 🧡 ΠΡΟΣΩΡΙΝΟ: Stable onPrevious callback για step navigation
   const onPreviousCallback = React.useCallback(() => {
@@ -311,19 +301,18 @@ export const GeoMap: React.FC<GeoMapProps> = ({
 
       {/* StepOrchestrator - διαχειρίζεται όλα τα steps */}
       {showCatEls && (
-        <Box
+        <Flex
           position="fixed"
           inset="0"
-          backgroundColor="overlay"
-          backdropFilter="blur-xs"
+          backgroundColor="overlay-bg"
+          backdropFilter="blur(var(--la-blur-xs))"
           zIndex="modal"
-          padding="lg"
+          padding="6"
           overflowY="auto"
-          display="flex"
           alignItems={isMobile ? 'flex-start' : 'center'}
           justifyContent="center"
           boxSizing="border-box"
-          border="md"
+          borderRadius="md"
         >
           <StepOrchestrator
             currentStepId={stepContext.currentStepId}
@@ -341,7 +330,7 @@ export const GeoMap: React.FC<GeoMapProps> = ({
             onStepChange={undefined} // 🚫 DISABLE onStepChange σε quickSearchMode
             onStepComplete={navigationHandlersProps.onStepComplete}
           />
-        </Box>
+        </Flex>
       )}
 
       {/* FAB functionality moved to header button */}

@@ -63,6 +63,9 @@ export const FIELD_SIZES = {
   FULL: 'full'
 } as const;
 
+// Note: FORM_SIZES and FORM_STATES are exported from sizes.ts and states.ts respectively
+// to avoid duplicates
+
 /**
  * Form Validation Constants
  */
@@ -82,3 +85,4 @@ export type InputVariant = typeof INPUT_VARIANTS[keyof typeof INPUT_VARIANTS];
 export type ValidationRule = typeof VALIDATION_RULES[keyof typeof VALIDATION_RULES];
 export type AutocompleteValue = typeof AUTOCOMPLETE_VALUES[keyof typeof AUTOCOMPLETE_VALUES];
 export type FieldSize = typeof FIELD_SIZES[keyof typeof FIELD_SIZES];
+// Note: FormSize and FormState types are exported from sizes.ts and states.ts respectively

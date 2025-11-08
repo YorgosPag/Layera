@@ -7,6 +7,9 @@ import {
   CompressionFormat
 } from '../types';
 
+// 🎯 IMPORT SINGLE SOURCE OF TRUTH - από @layera/constants
+import { COMPRESSION_SETTINGS } from '@layera/constants';
+
 const SUPPORTED_FORMATS = ['jpeg', 'webp', 'avif', 'png', 'original'] as const;
 
 /**
@@ -31,13 +34,13 @@ export function validateCompressionOptions(
       warnings.push({
         code: 'LOW_QUALITY',
         message: 'Χαμηλή ποιότητα μπορεί να επηρεάσει την εμφάνιση της εικόνας',
-        suggestion: 'Σκεφτείτε να χρησιμοποιήσετε ποιότητα 60-85 για καλύτερα αποτελέσματα'
+        suggestion: `Σκεφτείτε να χρησιμοποιήσετε ποιότητα 60-${COMPRESSION_SETTINGS.WEBP_HIGH_QUALITY} για καλύτερα αποτελέσματα`
       });
     } else if (options.quality > 95) {
       warnings.push({
         code: 'HIGH_QUALITY',
         message: 'Υψηλή ποιότητα μπορεί να δημιουργήσει μεγάλα αρχεία',
-        suggestion: 'Ποιότητα 80-90 συνήθως παρέχει καλή ισορροπία μεγέθους/ποιότητας'
+        suggestion: `Ποιότητα ${COMPRESSION_SETTINGS.WEBP_MEDIUM_QUALITY}-${COMPRESSION_SETTINGS.WEBP_MAX_SAVINGS_PERCENT + 60} συνήθως παρέχει καλή ισορροπία μεγέθους/ποιότητας`
       });
     }
   }
@@ -91,9 +94,9 @@ export function validateCompressionOptions(
   if (!options.format || options.format === 'jpeg') {
     recommendations.push({
       type: 'format',
-      message: 'WebP μπορεί να παρέχει 25-30% καλύτερη συμπίεση από JPEG',
+      message: `WebP μπορεί να παρέχει ${COMPRESSION_SETTINGS.WEBP_SAVINGS_PERCENT}-${COMPRESSION_SETTINGS.WEBP_MAX_SAVINGS_PERCENT}% καλύτερη συμπίεση από JPEG`,
       impact: 'high',
-      estimatedSavings: 25
+      estimatedSavings: COMPRESSION_SETTINGS.WEBP_SAVINGS_PERCENT
     });
   }
 
@@ -132,41 +135,42 @@ export async function recommendOptimizations(file: File): Promise<CompressionOpt
     // Format recommendations
     if (fileType.includes('png') && fileName.includes('photo')) {
       recommendations.format = 'webp';
-      recommendations.quality = 85;
+      recommendations.quality = COMPRESSION_SETTINGS.WEBP_HIGH_QUALITY;
     } else if (fileType.includes('jpeg')) {
       recommendations.format = 'webp';
-      recommendations.quality = 80;
+      recommendations.quality = COMPRESSION_SETTINGS.WEBP_MEDIUM_QUALITY;
     } else if (fileType.includes('png')) {
       // Keep PNG για graphics/icons με transparency
       recommendations.format = 'png';
-      recommendations.quality = 90;
+      recommendations.quality = COMPRESSION_SETTINGS.PNG_HIGH_QUALITY;
     } else {
       recommendations.format = 'webp';
-      recommendations.quality = 80;
+      recommendations.quality = COMPRESSION_SETTINGS.WEBP_MEDIUM_QUALITY;
     }
 
     // Size-based recommendations
     if (fileSize > 5 * 1024 * 1024) { // > 5MB
-      recommendations.quality = 70;
+      recommendations.quality = COMPRESSION_SETTINGS.LARGE_FILE_QUALITY;
       if (dimensions) {
-        recommendations.maxWidth = Math.min(dimensions.width, 2000);
-        recommendations.maxHeight = Math.min(dimensions.height, 2000);
+        recommendations.maxWidth = Math.min(dimensions.width, COMPRESSION_SETTINGS.MAX_LARGE_WIDTH);
+        recommendations.maxHeight = Math.min(dimensions.height, COMPRESSION_SETTINGS.MAX_LARGE_HEIGHT);
       }
     } else if (fileSize > 2 * 1024 * 1024) { // > 2MB
-      recommendations.quality = 75;
+      recommendations.quality = COMPRESSION_SETTINGS.MEDIUM_FILE_QUALITY;
       if (dimensions) {
-        recommendations.maxWidth = Math.min(dimensions.width, 2500);
-        recommendations.maxHeight = Math.min(dimensions.height, 2500);
+        recommendations.maxWidth = Math.min(dimensions.width, COMPRESSION_SETTINGS.MAX_MEDIUM_WIDTH);
+        recommendations.maxHeight = Math.min(dimensions.height, COMPRESSION_SETTINGS.MAX_MEDIUM_HEIGHT);
       }
     } else if (fileSize > 1 * 1024 * 1024) { // > 1MB
-      recommendations.quality = 80;
+      recommendations.quality = COMPRESSION_SETTINGS.WEBP_MEDIUM_QUALITY;
     }
 
     // Dimension-based recommendations
     if (dimensions) {
-      if (dimensions.width > 3000 || dimensions.height > 3000) {
-        recommendations.maxWidth = 2500;
-        recommendations.maxHeight = 2500;
+      if (dimensions.width > COMPRESSION_SETTINGS.LARGE_DIMENSION_THRESHOLD ||
+          dimensions.height > COMPRESSION_SETTINGS.LARGE_DIMENSION_THRESHOLD) {
+        recommendations.maxWidth = COMPRESSION_SETTINGS.RECOMMENDED_MAX_WIDTH;
+        recommendations.maxHeight = COMPRESSION_SETTINGS.RECOMMENDED_MAX_HEIGHT;
         recommendations.maintainAspectRatio = true;
       }
     }
@@ -179,7 +183,7 @@ export async function recommendOptimizations(file: File): Promise<CompressionOpt
     console.warn('Failed to analyze image dimensions:', error);
     // Fallback recommendations
     recommendations.format = 'webp';
-    recommendations.quality = 80;
+    recommendations.quality = COMPRESSION_SETTINGS.WEBP_MEDIUM_QUALITY;
     recommendations.stripMetadata = true;
   }
 
@@ -213,7 +217,7 @@ export function calculateCompressionScore(
   targetQuality: number
 ): number {
   const compressionRatio = (originalSize - compressedSize) / originalSize;
-  const qualityPenalty = targetQuality < 70 ? (70 - targetQuality) / 100 : 0;
+  const qualityPenalty = targetQuality < COMPRESSION_SETTINGS.LARGE_FILE_QUALITY ? (COMPRESSION_SETTINGS.LARGE_FILE_QUALITY - targetQuality) / 100 : 0;
 
   return Math.max(0, Math.min(100, (compressionRatio * 100) - (qualityPenalty * 20)));
 }

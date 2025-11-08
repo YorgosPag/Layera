@@ -20,7 +20,7 @@ const NavButton: React.FC<NavButtonProps> = ({ title, onClick, isActive, childre
     onClick={onClick}
     icon={children}
     iconPosition="only"
-    className="w-12 h-12"
+    className="nav-rail-button"
     aria-label={title}
   />
 );
@@ -45,7 +45,7 @@ const NavigationRail: React.FC<NavigationRailProps> = ({
   const { t } = useLayeraTranslation();
 
   return (
-    <aside className="layera-navigation-rail w-16 flex flex-col items-center py-4 space-y-6 flex-shrink-0 z-30">
+    <aside className="layera-navigation-rail nav-rail-layout">
       {/* Main Action Button */}
       <Button
         variant={BUTTON_VARIANTS.PRIMARY}
@@ -53,11 +53,11 @@ const NavigationRail: React.FC<NavigationRailProps> = ({
         onClick={onNewAlert}
         icon={<SearchIcon size="md" />}
         iconPosition="only"
-        className="w-12 h-12 rounded-full shadow-lg"
+        className="nav-rail-main-action"
         aria-label={t('newAlert')}
       />
 
-      <Box className="flex-grow flex flex-col items-center space-y-4">
+      <Box className="nav-rail-content">
         <NavButton
           onClick={(): void => onViewChange('dashboard')}
           title={t('dashboard')}

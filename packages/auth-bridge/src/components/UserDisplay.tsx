@@ -2,6 +2,7 @@ import React from 'react';
 import { Box } from '@layera/layout';
 import { useLayeraTranslation } from '@layera/tolgee';
 import type { LayeraUser, UserRole } from '../types/auth.js';
+import './UserDisplay.css';
 
 /**
  * Props για UserDisplay component
@@ -33,25 +34,13 @@ const getRoleLabel = (role: UserRole, t: (key: string) => string): string => {
 };
 
 /**
- * Mapping ρόλων σε design tokens
+ * Mapping ρόλων σε CSS classes με design tokens
  */
-const ROLE_STYLES: Record<UserRole, React.CSSProperties> = {
-  private: {
-    backgroundColor: 'var(--la-color-gray-100)',
-    color: 'var(--la-color-gray-800)'
-  },
-  broker: {
-    backgroundColor: 'var(--la-color-bg-info)',
-    color: 'var(--la-color-info)'
-  },
-  builder: {
-    backgroundColor: 'var(--la-color-bg-success)',
-    color: 'var(--la-color-success)'
-  },
-  admin: {
-    backgroundColor: 'var(--la-color-bg-danger)',
-    color: 'var(--la-color-danger)'
-  }
+const ROLE_CLASSES: Record<UserRole, string> = {
+  private: 'user-role-badge-private',
+  broker: 'user-role-badge-broker',
+  builder: 'user-role-badge-builder',
+  admin: 'user-role-badge-admin'
 };
 
 /**
@@ -116,8 +105,7 @@ export function UserDisplay({
       case 'badge':
         return (
           <span
-            className={`inline-flex items-center rounded-full font-medium ${badgeClasses[size]}`}
-            style={ROLE_STYLES[role]}
+            className={`inline-flex items-center rounded-full font-medium ${badgeClasses[size]} ${ROLE_CLASSES[role]}`}
           >
             {label}
           </span>
@@ -129,8 +117,7 @@ export function UserDisplay({
       case 'icon':
         return (
           <span
-            className="inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold"
-            style={ROLE_STYLES[role]}
+            className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${ROLE_CLASSES[role]}`}
             title={label}
           >
             {label.charAt(0).toUpperCase()}
@@ -149,18 +136,11 @@ export function UserDisplay({
     status: boolean,
     trueLabel: string,
     falseLabel: string,
-    trueStyle: React.CSSProperties = {
-      backgroundColor: 'var(--la-color-bg-success)',
-      color: 'var(--la-color-success)'
-    },
-    falseStyle: React.CSSProperties = {
-      backgroundColor: 'var(--la-color-bg-danger)',
-      color: 'var(--la-color-danger)'
-    }
+    trueClass: string = 'user-status-success',
+    falseClass: string = 'user-status-danger'
   ) => (
     <span
-      className={`inline-flex items-center rounded-full font-medium ${badgeClasses[size]}`}
-      style={status ? trueStyle : falseStyle}
+      className={`inline-flex items-center rounded-full font-medium ${badgeClasses[size]} ${status ? trueClass : falseClass}`}
     >
       {status ? trueLabel : falseLabel}
     </span>
@@ -174,7 +154,7 @@ export function UserDisplay({
           <span className="font-semibold">{user.displayName}</span>
         )}
         {showEmail && (
-          <span className={user.displayName ? '' : 'font-semibold'} style={{ color: user.displayName ? 'var(--la-color-text-secondary)' : 'inherit' }}>
+          <span className={`${user.displayName ? 'user-email-secondary' : 'font-semibold'}`}>
             {user.email}
           </span>
         )}
@@ -183,7 +163,7 @@ export function UserDisplay({
       {/* Role */}
       {showRole && (
         <Box className="flex items-center">
-          <span className="mr-2" style={{ color: 'var(--la-color-text-secondary)' }}>{t('data.fields.role')}:</span>
+          <span className="mr-2 user-label-secondary">{t('data.fields.role')}:</span>
           {renderRole()}
         </Box>
       )}
@@ -191,7 +171,7 @@ export function UserDisplay({
       {/* Email Verification Status */}
       {showEmailVerification && (
         <Box className="flex items-center space-x-2">
-          <span style={{ color: 'var(--la-color-text-secondary)' }}>Email:</span>
+          <span className="user-label-secondary">Email:</span>
           {renderStatusBadge(
             user.emailVerified,
             t('status.verified'),
@@ -203,7 +183,7 @@ export function UserDisplay({
       {/* MFA Status */}
       {showMfaStatus && (
         <Box className="flex items-center space-x-2">
-          <span style={{ color: 'var(--la-color-text-secondary)' }}>MFA:</span>
+          <span className="user-label-secondary">MFA:</span>
           {user.mfaStatus.required ? (
             renderStatusBadge(
               user.mfaStatus.verified,
@@ -215,8 +195,8 @@ export function UserDisplay({
               user.mfaStatus.enabled,
               t('account.badges.mfaActive'),
               t('mfa.optional'),
-              { backgroundColor: 'var(--la-color-bg-info)', color: 'var(--la-color-info)' },
-              { backgroundColor: 'var(--la-color-gray-100)', color: 'var(--la-color-gray-800)' }
+              'user-status-info',
+              'user-status-secondary'
             )
           )}
         </Box>
@@ -239,9 +219,9 @@ export function UserAvatar({
 }) {
   const { t } = useLayeraTranslation();
   const sizeClasses = {
-    small: 'w-8 h-8 text-xs',
-    medium: 'w-10 h-10 text-sm',
-    large: 'w-12 h-12 text-base'
+    small: 'avatar-small',
+    medium: 'avatar-medium',
+    large: 'avatar-large'
   };
 
   const initials = user.displayName
@@ -252,14 +232,13 @@ export function UserAvatar({
         .toUpperCase()
     : user.email?.charAt(0).toUpperCase() || '?';
 
-  const roleStyle = ROLE_STYLES[user.layeraClaims.role];
+  const roleClass = ROLE_CLASSES[user.layeraClaims.role];
   const roleLabel = getRoleLabel(user.layeraClaims.role, t);
 
   return (
     <button
       onClick={onClick}
-      className={`inline-flex items-center justify-center rounded-full font-medium ${sizeClasses[size]} hover:opacity-80 transition-opacity`}
-      style={roleStyle}
+      className={`inline-flex items-center justify-center rounded-full font-medium ${sizeClasses[size]} hover:opacity-80 transition-opacity ${roleClass}`}
       title={`${user.displayName || user.email} (${roleLabel})`}
     >
       {initials}

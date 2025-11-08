@@ -34,10 +34,10 @@ export class ViewportManager {
     initialViewport: Viewport,
     constraints: CanvasConstraints = {
       minScale: 0.1,
-      maxScale: 10,
+      maxScale: 10, // Maximum zoom scale - canvas constraint constant
       lockAspectRatio: false,
       snapToGrid: false,
-      gridSize: 10
+      gridSize: 10 // Grid snap size in pixels - canvas constraint constant
     }
   ) {
     this.viewport = { ...initialViewport };

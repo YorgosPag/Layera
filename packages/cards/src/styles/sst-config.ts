@@ -334,14 +334,16 @@ export const SST_CARD_CONFIG = {
     const mappedVariant = variantMap[variant] || variant as keyof typeof SST_CARD_CONFIG;
     const config = SST_CARD_CONFIG[mappedVariant];
 
-    console.log('🎯 SST getCardStyles Debug:', {
-      inputVariant: variant,
-      mappedVariant,
-      configExists: !!config,
-      configType: typeof config,
-      configBorder: (config as { border?: string })?.border,
-      allKeys: Object.keys(SST_CARD_CONFIG)
-    });
+    // if (process.env.NODE_ENV === 'development') {
+    //   console.log('🎯 SST getCardStyles Debug:', {
+    //     inputVariant: variant,
+    //     mappedVariant,
+    //     configExists: !!config,
+    //     configType: typeof config,
+    //     configBorder: (config as { border?: string })?.border,
+    //     allKeys: Object.keys(SST_CARD_CONFIG)
+    //   });
+    // }
 
     if (!config || typeof config !== 'object') return {};
 
@@ -393,7 +395,9 @@ export const SST_CARD_CONFIG = {
 
     if (!config || typeof config !== 'object' || !config.title) return {};
 
-    console.log(`🎯 SST getTitleStyles called for ${variant} → ${mappedVariant} with color:`, config.title.color);
+    // if (process.env.NODE_ENV === 'development') {
+    //   console.log(`🎯 SST getTitleStyles called for ${variant} → ${mappedVariant} with color:`, config.title.color);
+    // }
     return {
       color: config.title.color,
       fontSize: config.title.fontSize,

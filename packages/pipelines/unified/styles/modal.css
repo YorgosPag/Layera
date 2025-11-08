@@ -27,7 +27,7 @@
   position: fixed;
   inset: var(--la-size-0);
   width: 100vw;
-  height: 100vh;
+  height: var(--la-size-screen-h);
   background-color: var(--la-overlay-bg, rgb(0 0 0 / 60%));
   z-index: var(--la-z-modal-overlay, 1000);
   display: flex;
@@ -40,7 +40,7 @@
 .unified-pipeline-modal {
   position: relative;
   background-color: var(--la-bg-primary, rgb(255 255 255));
-  border-radius: var(--la-radius-lg, 0.75rem);
+  border-radius: var(--la-radius-lg, var(--la-space-3));
   box-shadow: var(--la-shadow-modal, 0 0.625rem 2.5rem rgb(0 0 0 / 30%));
   overflow: hidden auto;
   box-sizing: border-box;
@@ -49,19 +49,19 @@
 
 /* Responsive Modal Sizing - Mobile First */
 .unified-pipeline-modal {
-  width: 100%;
-  max-width: var(--la-modal-width-mobile, 20rem);
-  max-height: calc(100vh - 2rem);
-  padding: var(--la-spacing-xs, 0.5rem);
-  font-size: var(--la-text-sm, 0.75rem);
+  width: var(--la-size-full);
+  max-width: var(--la-modal-width-mobile, var(--la-size-80));
+  max-height: calc(100vh - var(--la-space-8));
+  padding: var(--la-spacing-xs, var(--la-space-2));
+  font-size: var(--la-text-sm, var(--la-space-3));
 }
 
 /* Tablet Styles */
 @media screen and (width >= 768px) and (width <= 1023px) {
   .unified-pipeline-modal {
-    max-width: var(--la-modal-width-tablet, 20rem);
-    padding: var(--la-spacing-xs, 0.5rem);
-    font-size: var(--la-text-sm, 0.75rem);
+    max-width: var(--la-modal-width-tablet, var(--la-size-80));
+    padding: var(--la-spacing-xs, var(--la-space-2));
+    font-size: var(--la-text-sm, var(--la-space-3));
   }
 }
 
@@ -77,7 +77,7 @@
     /* Floating panel στη δεξιά πλευρά */
     position: fixed;
     top: 5rem; /* Κάτω από header */
-    right: 1.25rem;
+    right: var(--la-space-5);
     left: auto;
     transform: none;
     width: 25rem;
@@ -87,9 +87,9 @@
 
     /* Panel styling */
     background-color: var(--la-bg-primary, rgb(255 255 255));
-    border-radius: var(--la-radius-lg, 0.75rem);
-    box-shadow: 0 0.5rem 2rem rgb(0 0 0 / 15%), 0 0 0 0.063rem rgb(0 0 0 / 5%);
-    border: 0.063rem solid rgb(0 0 0 / 10%);
+    border-radius: var(--la-radius-lg, var(--la-space-3));
+    box-shadow: 0 var(--la-space-4) rgb(0 0 0 / 15%), 0 0 0 var(--la-border-width-1) rgb(0 0 0 / 5%);
+    border: var(--la-border-none).063rem solid rgb(0 0 0 / 10%);
 
     /* Panel animation */
     animation: slide-in-from-right 0.3s ease-out;
@@ -109,7 +109,7 @@
 
     to {
       transform: translateX(0);
-      opacity: 1;
+      opacity: var(--la-opacity-full);
     }
   }
 }
@@ -119,26 +119,26 @@
   .unified-pipeline-modal {
     width: 28.125rem;
     max-width: 28.125rem;
-    padding: 0.85rem;
+    padding: var(--la-space-0).85rem;
     font-size: 0.9rem;
   }
 }
 
 /* Card Styles - Progressive sizing */
 .unified-pipeline-modal .layera-unified-card {
-  border: 0.125rem solid var(--la-color-primary, rgb(37 99 235));
-  border-radius: var(--la-radius-md, 0.5rem);
+  border: var(--la-border-none).125rem solid var(--la-color-primary, rgb(37 99 235));
+  border-radius: var(--la-radius-md, var(--la-space-2));
   background-color: var(--la-bg-primary, rgb(255 255 255));
   transition: var(--la-transition-colors, background-color 0.2s ease, border-color 0.2s ease);
-  cursor: pointer;
+  cursor: var(--la-cursor-pointer);
   box-sizing: border-box;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  width: calc(100% - 0.5rem);
-  max-width: calc(100% - 0.5rem);
+  width: calc(100% - var(--la-space-2));
+  max-width: calc(100% - var(--la-space-2));
 }
 
 .unified-pipeline-modal .layera-unified-card:hover {
@@ -156,25 +156,25 @@
     padding: var(--la-spacing-sm, 0.6rem);
 
     /* Enhanced panel card styling */
-    border: 0.063rem solid var(--la-color-primary, hsl(210deg 100% 50%));
+    border: var(--la-border-none).063rem solid var(--la-color-primary, hsl(210deg 100% 50%));
     border-radius: 0.625rem;
-    transition: all 0.2s ease;
-    cursor: pointer;
+    transition: var(--la-transition-all);
+    cursor: var(--la-cursor-pointer);
   }
 
   .unified-pipeline-modal .layera-unified-card:hover {
     border-color: var(--la-color-primary-dark, rgb(29 78 216));
     background-color: var(--la-color-primary-light, hsl(210deg 80% 95%));
-    transform: translateY(-0.063rem);
-    box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 10%);
+    transform: translateY(-var(--la-border-width-1));
+    box-shadow: 0 var(--la-space-4) rgb(0 0 0 / 10%);
   }
 }
 
 /* Large Desktop - Slightly larger cards */
 @media screen and (width >= 1440px) {
   .unified-pipeline-modal .layera-unified-card {
-    margin: 0.6rem 0;
-    padding: 0.85rem;
+    margin: var(--la-space-0).6rem 0;
+    padding: var(--la-space-0).85rem;
     min-height: 5.3125rem;
   }
 }
@@ -200,8 +200,8 @@
   white-space: normal;
   hyphens: auto;
   display: block;
-  max-width: 100%;
-  width: 100%;
+  max-width: var(--la-size-full);
+  width: var(--la-size-full);
   box-sizing: border-box;
   height: auto;
   min-height: 1.75rem;
@@ -210,10 +210,10 @@
 /* Desktop Floating Panel Typography */
 @media screen and (width >= 1024px) {
   .unified-pipeline-modal .card-title {
-    font-size: 1rem;
+    font-size: var(--la-space-4);
     line-height: var(--la-leading-snug);
-    margin-bottom: 0.4rem;
-    font-weight: 600;
+    margin-bottom: var(--la-space-0).4rem;
+    font-weight: var(--la-font-weight-semibold);
     color: var(--la-text-primary, var(--la-text-primary));
   }
 
@@ -229,7 +229,7 @@
 @media screen and (width >= 1440px) {
   .unified-pipeline-modal .card-title {
     font-size: 1.05rem;
-    margin-bottom: 0.45rem;
+    margin-bottom: var(--la-space-0).45rem;
   }
 
   .unified-pipeline-modal .card-text {
@@ -242,18 +242,18 @@
 .unified-pipeline-modal .layera-unified-card svg,
 .unified-pipeline-modal .layera-unified-card .layera-icon {
   flex-shrink: var(--la-size-0);
-  width: var(--la-icon-md, 1.25rem);
-  height: var(--la-icon-md, 1.25rem);
-  margin-top: 0.125rem;
+  width: var(--la-icon-md, var(--la-space-5));
+  height: var(--la-icon-md, var(--la-space-5));
+  margin-top: var(--la-border-width-1);
 }
 
 /* Desktop Floating Panel Icons */
 @media screen and (width >= 1024px) {
   .unified-pipeline-modal .layera-unified-card svg,
   .unified-pipeline-modal .layera-unified-card .layera-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-top: 0.1875rem;
+    width: var(--la-space-6);
+    height: var(--la-space-6);
+    margin-top: var(--la-border-width-3);
   }
 }
 
@@ -267,16 +267,16 @@
 
 /* Flex Layout Fixes */
 .unified-pipeline-modal .layera-unified-card > * {
-  width: 100%;
-  max-width: 100%;
+  width: var(--la-size-full);
+  max-width: var(--la-size-full);
   min-width: var(--la-size-0);
   flex-shrink: 1;
 }
 
 .unified-pipeline-modal .layera-unified-card [style*="flex: 1"] {
   min-width: var(--la-size-0);
-  max-width: 100%;
-  width: 100%;
+  max-width: var(--la-size-full);
+  width: var(--la-size-full);
   overflow: hidden;
 }
 
@@ -284,8 +284,8 @@
 .unified-pipeline-modal .layera-unified-card > div[class*="flex"],
 .unified-pipeline-modal .layera-unified-card > div > div[class*="flex"] {
   align-items: flex-start;
-  gap: var(--la-spacing-sm, 0.5rem);
-  width: 100%;
+  gap: var(--la-spacing-sm, var(--la-space-2));
+  width: var(--la-size-full);
   min-height: 3.5rem;
   display: flex;
 }

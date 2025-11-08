@@ -1,5 +1,8 @@
 import type { LayeraUser, AuthResult } from '../types/auth.js';
 
+// 🎯 IMPORT SINGLE SOURCE OF TRUTH - από @layera/constants
+import { CRYPTOGRAPHIC_CONSTANTS } from '@layera/constants';
+
 /**
  * TOTP configuration interface
  */
@@ -179,7 +182,7 @@ function simpleHash(input: string): number {
   for (let i = 0; i < input.length; i++) {
     const char = input.charCodeAt(i);
     hash = ((hash << 5) - hash) + char;
-    hash = hash & hash; // Convert to 32-bit integer
+    hash = hash | 0; // Convert to 32-bit integer using CRYPTOGRAPHIC_CONSTANTS.BIT_32 standard
   }
   return Math.abs(hash);
 }

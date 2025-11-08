@@ -3,7 +3,7 @@
  */
 
 .layera-error-details {
-  width: 100%;
+  width: var(--la-size-full);
   margin-top: var(--la-space-lg);
   border: var(--la-border-width-1) solid var(--la-color-border-primary);
   border-radius: var(--la-radius-md);
@@ -16,7 +16,7 @@
   align-items: center;
   justify-content: space-between;
   padding: var(--la-space-md);
-  border-bottom: 0.063rem solid var(--la-color-border-primary);
+  border-bottom: var(--la-space-4) solid var(--la-color-border-primary);
   background-color: var(--la-color-background-primary);
 }
 
@@ -30,7 +30,7 @@
 .layera-error-details-actions {
   display: flex;
   align-items: center;
-  gap: var(--la-space-xs);
+  gap: var(--la-space-1);
 }
 
 .layera-error-details-copy,
@@ -40,28 +40,28 @@
   justify-content: center;
   width: var(--la-size-7);
   height: var(--la-size-7);
-  border: none;
+  border: var(--la-border-none);
   border-radius: var(--la-radius-sm);
   background-color: var(--la-color-transparent);
   color: var(--la-color-text-secondary);
   cursor: var(--la-cursor-pointer);
-  transition: all 0.15s ease;
+  transition: var(--la-transition-fast);
 }
 
 .layera-error-details-copy:hover,
 .layera-error-details-toggle:hover {
-  background-color: var(--la-color-surface-hover, rgb(248 250 252));
+  background-color: var(--la-color-surface-hover, rgb(248 250 252) rgb(248 250 252));
   color: var(--la-color-text-primary);
 }
 
 .layera-error-details-content {
-  padding: var(--la-space-3, 0.75rem);
+  padding: var(--la-space-4));
   max-height: var(--la-size-96);
   overflow-y: auto;
 }
 
 .layera-error-details-section {
-  margin-bottom: var(--la-space-4, 1rem);
+  margin-bottom: var(--la-space-4));
 }
 
 .layera-error-details-section:last-child {
@@ -69,7 +69,7 @@
 }
 
 .layera-error-details-section-title {
-  margin: 0 0 var(--la-space-sm) 0;
+  margin: var(--la-space-0) 0 var(--la-space-sm) 0;
   font-size: var(--la-text-xs);
   font-weight: var(--la-font-weight-semibold);
   text-transform: uppercase;
@@ -81,14 +81,14 @@
   display: flex;
   align-items: flex-start;
   gap: var(--la-space-sm);
-  margin-bottom: var(--la-space-xs);
+  margin-bottom: var(--la-space-1);
 }
 
 .layera-error-details-label {
   flex-shrink: var(--la-flex-shrink-0);
   min-width: var(--la-size-20);
   font-size: var(--la-text-xs);
-  font-weight: 500;
+  font-weight: var(--la-font-weight-medium);
   color: var(--la-color-text-secondary);
 }
 
@@ -98,14 +98,14 @@
   font-family: var(--font-mono, 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace);
   color: var(--la-color-text-primary);
   background-color: var(--color-surface-tertiary, var(--la-color-border-subtle));
-  padding: var(--la-space-1) var(--la-space-1-5);
+  padding: var(--la-space-4);
   border-radius: var(--la-radius-sm);
   word-break: break-all;
 }
 
 .layera-error-details-stack {
   margin: var(--la-size-0);
-  padding: var(--space-sm, 0.5rem);
+  padding: var(--space-sm, var(--la-space-4));
   background-color: var(--color-surface-tertiary, var(--la-color-border-subtle));
   border: var(--la-border-width-1) solid var(--la-color-border-primary);
   border-radius: var(--la-radius-sm);
@@ -126,8 +126,8 @@
 /* Scrollbar styling */
 .layera-error-details-content::-webkit-scrollbar,
 .layera-error-details-stack::-webkit-scrollbar {
-  width: 0.375rem;
-  height: 0.375rem;
+  width: var(--la-space-4);
+  height: var(--la-space-4);
 }
 
 .layera-error-details-content::-webkit-scrollbar-track,
@@ -149,16 +149,16 @@
 /* Dark theme support */
 [data-theme="dark"] .layera-error-details {
   background-color: var(--color-surface-secondary-dark, var(--la-color-gray-dark));
-  border-color: var(--color-border-dark, #4b5563);
+  border-color: var(--color-border-dark, #4b5563 #4b5563);
 }
 
 [data-theme="dark"] .layera-error-details-header {
   background-color: var(--color-surface-dark, var(--la-text-primary));
-  border-bottom-color: var(--color-border-dark, #4b5563);
+  border-bottom-color: var(--color-border-dark, #4b5563 #4b5563);
 }
 
 [data-theme="dark"] .layera-error-details-title {
-  color: var(--color-text-primary-dark, #f9fafb);
+  color: var(--color-text-primary-dark, #f9fafb #f9fafb);
 }
 
 [data-theme="dark"] .layera-error-details-copy,
@@ -168,8 +168,8 @@
 
 [data-theme="dark"] .layera-error-details-copy:hover,
 [data-theme="dark"] .layera-error-details-toggle:hover {
-  background-color: var(--color-surface-hover-dark, #4b5563);
-  color: var(--color-text-primary-dark, #f9fafb);
+  background-color: var(--color-surface-hover-dark, #4b5563 #4b5563);
+  color: var(--color-text-primary-dark, #f9fafb #f9fafb);
 }
 
 [data-theme="dark"] .layera-error-details-section-title {
@@ -181,22 +181,32 @@
 }
 
 [data-theme="dark"] .layera-error-details-value {
-  color: var(--color-text-primary-dark, #f9fafb);
-  background-color: var(--color-surface-tertiary-dark, #4b5563);
+  color: var(--color-text-primary-dark, #f9fafb #f9fafb);
+  background-color: var(--color-surface-tertiary-dark, #4b5563 #4b5563);
 }
 
 [data-theme="dark"] .layera-error-details-stack {
-  background-color: var(--color-surface-tertiary-dark, #4b5563);
+  background-color: var(--color-surface-tertiary-dark, #4b5563 #4b5563);
   border-color: var(--color-border-dark, var(--la-text-secondary));
-  color: var(--color-text-primary-dark, #f9fafb);
+  color: var(--color-text-primary-dark, #f9fafb #f9fafb);
 }
 
 [data-theme="dark"] .layera-error-details-content::-webkit-scrollbar-thumb,
 [data-theme="dark"] .layera-error-details-stack::-webkit-scrollbar-thumb {
-  background: var(--color-border-dark, #4b5563);
+  background: var(--color-border-dark, #4b5563 #4b5563);
 }
 
 [data-theme="dark"] .layera-error-details-content::-webkit-scrollbar-thumb:hover,
 [data-theme="dark"] .layera-error-details-stack::-webkit-scrollbar-thumb:hover {
   background: var(--color-text-secondary-dark, var(--la-color-border-light));
+}
+
+/* Chevron rotation styles */
+.error-details-chevron {
+  transform: var(--la-transform-rotate-0, rotate(0deg));
+  transition: var(--la-transition-transform, transform 150ms ease);
+}
+
+.error-details-chevron.expanded {
+  transform: var(--la-transform-rotate-180, rotate(180deg));
 }

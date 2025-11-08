@@ -3,6 +3,7 @@
 // Enterprise pattern: Pure functions για coordinate operations
 
 import L from 'leaflet';
+import { EARTH_CONFIG } from '../../constants';
 
 /**
  * Coordinate utility functions
@@ -40,7 +41,7 @@ export const coordinateToLatLng = (coord: Coordinate): L.LatLng =>
  * Returns distance in meters
  */
 export const calculateDistance = (coord1: Coordinate, coord2: Coordinate): number => {
-  const R = 6371000; // Earth's radius in meters
+  const R = EARTH_CONFIG.radiusMeters;
   const dLat = toRadians(coord2.lat - coord1.lat);
   const dLng = toRadians(coord2.lng - coord1.lng);
 
@@ -71,8 +72,7 @@ export const calculatePolygonArea = (coordinates: Coordinate[]): number => {
   area = Math.abs(area) / 2;
 
   // Convert to square meters (approximate)
-  const metersPerDegree = 111319.9; // at equator
-  return area * metersPerDegree * metersPerDegree;
+  return area * EARTH_CONFIG.metersPerDegree * EARTH_CONFIG.metersPerDegree;
 };
 
 /**
@@ -117,8 +117,8 @@ export const isCoordinateInBounds = (coord: Coordinate, bounds: BoundingBox): bo
  * Validate coordinate values
  */
 export const isValidCoordinate = (coord: Coordinate): boolean => {
-  return coord.lat >= -90 && coord.lat <= 90 &&
-         coord.lng >= -180 && coord.lng <= 180 &&
+  return coord.lat >= EARTH_CONFIG.minLatitude && coord.lat <= EARTH_CONFIG.maxLatitude &&
+         coord.lng >= EARTH_CONFIG.minLongitude && coord.lng <= EARTH_CONFIG.maxLongitude &&
          !isNaN(coord.lat) && !isNaN(coord.lng);
 };
 

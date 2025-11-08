@@ -3,31 +3,33 @@
 // Enterprise pattern: Factory pattern για icon creation
 
 import L from 'leaflet';
+import { LEAFLET_INFRASTRUCTURE, LEAFLET_MARKER_DIMENSIONS } from '@layera/constants';
+import { MAP_CONFIG } from '@/constants';
 
 /**
  * Icon factory για consistent Leaflet icons
  * Centralized icon management
  */
 
-// Icon configurations - centralized config
+// Icon configurations - centralized config using SSOT from MAP_CONFIG
 const ICON_CONFIG = {
   default: {
-    iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-    shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-    iconSize: [25, 41] as [number, number],
-    iconAnchor: [12, 41] as [number, number],
-    popupAnchor: [1, -34] as [number, number],
-    tooltipAnchor: [16, -28] as [number, number],
-    shadowSize: [41, 41] as [number, number]
+    iconUrl: LEAFLET_INFRASTRUCTURE.MARKER_ICON,
+    shadowUrl: LEAFLET_INFRASTRUCTURE.MARKER_SHADOW,
+    iconSize: [LEAFLET_MARKER_DIMENSIONS.DEFAULT.width, LEAFLET_MARKER_DIMENSIONS.DEFAULT.height] as [number, number],
+    iconAnchor: [LEAFLET_MARKER_DIMENSIONS.DEFAULT.width / 2, LEAFLET_MARKER_DIMENSIONS.DEFAULT.height] as [number, number],
+    popupAnchor: MAP_CONFIG.icons.default.popupAnchor as [number, number],
+    tooltipAnchor: MAP_CONFIG.icons.default.tooltipAnchor as [number, number],
+    shadowSize: [LEAFLET_MARKER_DIMENSIONS.SHADOW.width, LEAFLET_MARKER_DIMENSIONS.SHADOW.height] as [number, number]
   },
   alert: {
     iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
     shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-    iconSize: [30, 48] as [number, number],
-    iconAnchor: [15, 48] as [number, number],
-    popupAnchor: [1, -42] as [number, number],
-    tooltipAnchor: [16, -28] as [number, number],
-    shadowSize: [48, 48] as [number, number]
+    iconSize: MAP_CONFIG.icons.alert.iconSize as [number, number],
+    iconAnchor: MAP_CONFIG.icons.alert.iconAnchor as [number, number],
+    popupAnchor: MAP_CONFIG.icons.alert.popupAnchor as [number, number],
+    tooltipAnchor: MAP_CONFIG.icons.alert.tooltipAnchor as [number, number],
+    shadowSize: MAP_CONFIG.icons.alert.shadowSize as [number, number]
   }
 } as const;
 

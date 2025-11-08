@@ -4,6 +4,16 @@
  * Enterprise TypeScript translations for Layera ecosystem
  */
 
+// 🎯 IMPORT SINGLE SOURCE OF TRUTH - from @layera/constants
+import { DEMO_ACCOUNT_DATA } from '@layera/constants';
+
+// Helper function for English month formatting
+const getEnglishMonth = (monthNumber: number): string => {
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  return months[monthNumber - 1];
+};
+
 export const enTranslations = {
   // Authentication - Login and Registration
   "auth": {
@@ -60,14 +70,14 @@ export const enTranslations = {
     "personalInfo": "Personal Information",
     "security": "Security",
     "fields": {
-      "email": "georgios.pagonis@gmail.com",
-      "displayName": "Georgios Pagonis",
+      "email": DEMO_ACCOUNT_DATA.USER_INFO.EMAIL,
+      "displayName": DEMO_ACCOUNT_DATA.USER_INFO.DISPLAY_NAME,
       "emailVerified": "Verified",
       "mfaEnabled": "Disabled",
       "role": "Private",
-      "userId": "Z55xqJg38uRapVrvUlgwkf1",
-      "accountCreated": "17/10/2025, 12:04:9 p.m.",
-      "lastSignIn": "5/11/2025, 12:41:2 p.m."
+      "userId": DEMO_ACCOUNT_DATA.USER_INFO.USER_ID,
+      "accountCreated": `${getEnglishMonth(DEMO_ACCOUNT_DATA.ACCOUNT_CREATION.MONTH)} ${DEMO_ACCOUNT_DATA.ACCOUNT_CREATION.DAY}, ${DEMO_ACCOUNT_DATA.ACCOUNT_CREATION.YEAR}, ${DEMO_ACCOUNT_DATA.ACCOUNT_CREATION.HOUR}:${String(DEMO_ACCOUNT_DATA.ACCOUNT_CREATION.MINUTE).padStart(2, '0')}:${String(DEMO_ACCOUNT_DATA.ACCOUNT_CREATION.SECOND).padStart(2, '0')} PM`,
+      "lastSignIn": `${getEnglishMonth(DEMO_ACCOUNT_DATA.LAST_SIGNIN.MONTH)} ${DEMO_ACCOUNT_DATA.LAST_SIGNIN.DAY}, ${DEMO_ACCOUNT_DATA.LAST_SIGNIN.YEAR}, ${DEMO_ACCOUNT_DATA.LAST_SIGNIN.HOUR}:${DEMO_ACCOUNT_DATA.LAST_SIGNIN.MINUTE}:${String(DEMO_ACCOUNT_DATA.LAST_SIGNIN.SECOND).padStart(2, '0')} PM`
     },
     "export": "Data Export",
     "exportDescription": "Download all your personal data in various formats",

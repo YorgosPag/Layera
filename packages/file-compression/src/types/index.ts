@@ -1,6 +1,9 @@
+// 🎯 IMPORT SINGLE SOURCE OF TRUTH - από @layera/constants
+import { COMPRESSION_SETTINGS } from '@layera/constants';
+
 // Core compression types
 export interface CompressionOptions {
-  quality?: number; // 0-100 for lossy formats
+  quality?: number; // MIN_QUALITY-MAX_QUALITY για lossy formats (0-100)
   format?: CompressionFormat;
   maxWidth?: number;
   maxHeight?: number;

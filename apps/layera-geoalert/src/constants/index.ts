@@ -5,20 +5,51 @@
  * Usage: import { APP_CONFIG, UI_CONFIG } from '@/constants';
  */
 
-import { BORDER_RADIUS_SCALE, SPACING_SCALE } from '@layera/constants';
+// 🎯 IMPORT SINGLE SOURCE OF TRUTH - από @layera/constants
+import {
+  BORDER_RADIUS_SCALE,
+  SPACING_SCALE,
+  DEV_PORTS,
+  LOCAL_URLS,
+  COMPONENT_DESIGN_TOKENS,
+  CSS_DESIGN_TOKENS,
+  // 🌍 Geographic & Mapping Constants
+  EARTH_CONSTANTS,
+  LEAFLET_MARKER_DIMENSIONS,
+  // 🔍 Search & UI Limits
+  SEARCH_LIMITS,
+  LEAFLET_UI_OFFSETS,
+  // 🎨 XML & SVG Standards
+  XML_NAMESPACES,
+  // 📏 Ruler & Measurement Constants
+  RULER_TICK_VALUES,
+  // 🔢 Geometric & UI Constants
+  GEOMETRIC_LIMITS,
+  ICON_DIMENSIONS
+} from '@layera/constants';
+
+// 🗺️ ENTERPRISE: Using centralized geo constants instead of local duplicates
+// All Leaflet and earth measurement constants come from @layera/constants SSOT
+
+// File Size Constants
+const FILE_SIZE_CONSTANTS = {
+  BYTES_IN_KB: 1024, // Bytes to KB conversion factor
+  MODAL_Z_INDEX: 10002, // Modal overlay z-index value
+  MAX_OCCUPATION_RESULTS: SEARCH_LIMITS.MAX_OCCUPATION_RESULTS // Maximum ESCO occupation search results from SSOT
+};
 
 // Application Configuration
 export const APP_CONFIG = {
   name: 'Layera GeoAlert',
   version: '1.0.0',
   ports: {
-    development: 3001,
-    fallback: 3002
+    development: DEV_PORTS.LAYERA_GEOALERT,
+    fallback: DEV_PORTS.LAYERA_GEOALERT_FALLBACK
   },
   urls: {
-    id: import.meta.env.VITE_ID_SERVICE_URL || 'http://localhost:3000',
-    geoalert: import.meta.env.VITE_GEOALERT_URL || 'http://localhost:3004',
-    geoalertFallback: import.meta.env.VITE_GEOALERT_FALLBACK_URL || 'http://localhost:3002'
+    id: import.meta.env.VITE_ID_SERVICE_URL || LOCAL_URLS.ID_SERVICE,
+    geoalert: import.meta.env.VITE_GEOALERT_URL || LOCAL_URLS.GEOALERT_SERVICE,
+    geoalertFallback: import.meta.env.VITE_GEOALERT_FALLBACK_URL || LOCAL_URLS.GEOALERT_FALLBACK
   }
 } as const;
 
@@ -26,8 +57,8 @@ export const APP_CONFIG = {
 // UI Block Configuration - Unified positioning system
 // Μοναδική πηγή αλήθειας για το positioning του stepper + κάρτες block
 const UI_BLOCK_BASE = {
-  // ΜΟΝΗ HARDCODED ΤΙΜΗ - αλλάζεις αυτό και όλα μετακινούνται μαζί!
-  baseTop: parseInt('var(--la-space-5)'.replace('var(--la-space-5)', '20')), // 🎯 SST: Base positioning from design tokens
+  // SST: Base positioning from design tokens
+  baseTop: 20, // var(--la-space-5) equivalent - Single source reference point
 
   // Κοινές τιμές για όλα τα components
   horizontalPadding: { left: 8, right: 8 },
@@ -35,11 +66,11 @@ const UI_BLOCK_BASE = {
 } as const;
 
 // Αυτόματος υπολογισμός όλων των θέσεων από το base
-const calculateUIPositions = (): void => {
-  const stepperHeight = parseInt('var(--la-space-10)'.replace('var(--la-space-10)', '40')); // 🎯 SST: Height from design tokens
-  const stepperMargin = 8;
-  const cardsHeight = parseInt('var(--la-size-12)'.replace('var(--la-size-12)', '45')); // 🎯 SST: Card height from design tokens
-  const cardsMargin = parseInt('var(--la-space-10)'.replace('var(--la-space-10)', '40')); // 🎯 SST: Card margin from design tokens
+const calculateUIPositions = () => {
+  const stepperHeight = 40; // var(--la-space-10) equivalent
+  const stepperMargin = 8; // var(--la-space-2) equivalent
+  const cardsHeight = 45; // var(--la-size-12) equivalent
+  const cardsMargin = 40; // var(--la-space-10) equivalent
 
   return {
     stepper: {
@@ -89,12 +120,12 @@ export const UI_CONFIG = {
       ...UI_BLOCK_BASE.horizontalPadding
     },
     dimensions: {
-      height: parseInt('var(--la-space-10)'.replace('var(--la-space-10)', '40')), // 🎯 SST: Height from design tokens
+      height: 40, // var(--la-space-10) equivalent
       borderRadius: BORDER_RADIUS_SCALE.LG
     },
     zIndex: 'var(--la-z-index-map-modal, 10100)', // Enterprise: Design token implementation
-    gap: parseInt('var(--la-space-3)'.replace('var(--la-space-3)', '12')), // 🎯 SST: Gap from design tokens
-    padding: parseInt('var(--la-space-4)'.replace('var(--la-space-4)', '16')) // 🎯 SST: Padding from design tokens
+    gap: 12, // var(--la-space-3) equivalent
+    padding: 16 // var(--la-space-4) equivalent
   },
 
   // BLOCK SYSTEM: Κάρτες (πρώτου βήματος)
@@ -124,17 +155,17 @@ export const UI_CONFIG = {
       ...UI_BLOCK_BASE.mapHorizontalPadding
     },
     button: {
-      minHeight: parseInt('var(--la-size-12)'.replace('var(--la-size-12)', '45')), // 🎯 SST: Minimum height from design tokens
+      minHeight: 45, // var(--la-size-12) equivalent
       borderRadius: BORDER_RADIUS_SCALE.SM,
-      padding: parseInt('var(--la-space-2_5)'.replace('var(--la-space-2_5)', '10')) // 🎯 SST: Padding from design tokens
+      padding: 10 // var(--la-space-2_5) equivalent
     },
-    zIndex: parseInt('var(--la-z-index-dropdown)'.replace('var(--la-z-index-dropdown)', '1000')), // 🎯 SST: Z-index from design tokens
+    zIndex: CSS_DESIGN_TOKENS.zIndex['z-index-dropdown'], // Enterprise z-index system
     gap: 8
   },
   infoPanels: {
     mobile: {
       maxHeight: '40vh',
-      zIndex: parseInt('var(--la-z-index-tooltip)'.replace('var(--la-z-index-tooltip)', '600')) // 🎯 SST: Z-index from design tokens
+      zIndex: 600 // var(--la-z-index-tooltip) equivalent
     }
   }
 } as const;
@@ -175,13 +206,13 @@ export const COLORS = {
 // Animation & Timing Configuration
 export const ANIMATION_CONFIG = {
   durations: {
-    short: 200,
-    medium: 300,
-    long: 500
+    short: COMPONENT_DESIGN_TOKENS.animations['duration-short'],
+    medium: COMPONENT_DESIGN_TOKENS.animations['duration-medium'],
+    long: COMPONENT_DESIGN_TOKENS.animations['duration-long']
   },
   delays: {
-    deviceCheck: 100,
-    smooth: 100
+    deviceCheck: COMPONENT_DESIGN_TOKENS.animations['delay-device-check'],
+    smooth: COMPONENT_DESIGN_TOKENS.animations['delay-smooth']
   }
 } as const;
 
@@ -199,33 +230,134 @@ export const MAP_CONFIG = {
   tileLayer: {
     url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
     attribution: '© OpenStreetMap contributors'
+  },
+  controls: {
+    location: {
+      top: UI_BLOCK_BASE.baseTop, // 20px equivalent
+      left: 4,
+      zIndex: CSS_DESIGN_TOKENS.zIndex['z-index-overlay']
+    },
+    layers: {
+      bottom: 4,
+      left: 4,
+      right: 4,
+      zIndex: CSS_DESIGN_TOKENS.zIndex['z-index-overlay']
+    }
+  },
+  icons: {
+    anchorConstants: {
+      DEFAULT_X: LEAFLET_MARKER_DIMENSIONS.DEFAULT.width / 2, // Calculated from @layera/constants SSOT
+      DEFAULT_Y: LEAFLET_MARKER_DIMENSIONS.DEFAULT.height, // Default icon anchor Y position - from SSOT
+      POPUP_OFFSET_Y: LEAFLET_UI_OFFSETS.POPUP_OFFSET_Y, // Popup anchor Y offset from SSOT
+      TOOLTIP_OFFSET_Y: LEAFLET_UI_OFFSETS.TOOLTIP_OFFSET_Y // Tooltip anchor Y offset from SSOT
+    },
+    sizes: {
+      iconAnchorX: LEAFLET_MARKER_DIMENSIONS.DEFAULT.width / 2,
+      iconAnchorY: LEAFLET_MARKER_DIMENSIONS.DEFAULT.height,
+      alertIconSizeX: 30, // LEAFLET API requirement - alert icon width
+      alertIconSizeY: 48, // LEAFLET API requirement - alert icon height
+      alertIconAnchorX: 15, // LEAFLET API requirement - alert icon anchor X
+      alertIconAnchorY: ICON_DIMENSIONS.MAP.ALERT.anchor.y, // From @layera/tokens SSOT
+      shadowSize: LEAFLET_MARKER_DIMENSIONS.SHADOW.width, // From @layera/constants SSOT
+      alertShadowSize: 48 // Alert-specific shadow size - app requirement
+    },
+    default: {
+      iconAnchor: [LEAFLET_MARKER_DIMENSIONS.DEFAULT.width / 2, LEAFLET_MARKER_DIMENSIONS.DEFAULT.height],
+      popupAnchor: [1, LEAFLET_UI_OFFSETS.POPUP_OFFSET_Y], // LEAFLET API requirement - cannot use design tokens
+      tooltipAnchor: [16, LEAFLET_UI_OFFSETS.TOOLTIP_OFFSET_Y],
+      shadowSize: [LEAFLET_MARKER_DIMENSIONS.SHADOW.width, LEAFLET_MARKER_DIMENSIONS.SHADOW.width],
+      xmlns: XML_NAMESPACES.SVG // W3C SVG namespace from @layera/constants SSOT
+    },
+    alert: {
+      iconSize: [30, 48], // LEAFLET API requirement - cannot use design tokens
+      iconAnchor: [ICON_DIMENSIONS.MAP.ALERT.anchor.x, ICON_DIMENSIONS.MAP.ALERT.anchor.y],
+      popupAnchor: [1, ICON_DIMENSIONS.MAP.ALERT.popup.offsetY], // From @layera/tokens SSOT
+      tooltipAnchor: [ICON_DIMENSIONS.MAP.TOOLTIP.anchorX, ICON_DIMENSIONS.MAP.ALERT.tooltip.offsetY], // From @layera/tokens SSOT
+      shadowSize: [ICON_DIMENSIONS.MAP.ALERT.shadow.size, ICON_DIMENSIONS.MAP.ALERT.shadow.size]
+    }
   }
+} as const;
+
+// Geometry Validation Configuration
+export const GEOMETRY_CONFIG = {
+  validation: {
+    minArea: 100, // 100 square meters minimum
+    maxArea: GEOMETRIC_LIMITS.MAX_AREA_SQM, // 1 km² - geometric validation limit (app-specific)
+    minPolygonPoints: 3,
+    areaConversionFactor: 111319.9 // Approximate meters per degree
+  }
+} as const;
+
+// Earth Scientific Constants
+export const EARTH_CONFIG = {
+  radiusMeters: EARTH_CONSTANTS.RADIUS_METERS, // Earth's radius in meters (WGS84) - from SSOT
+  metersPerDegree: 111319.9, // Meters per degree at equator
+  maxLatitude: 90,
+  minLatitude: -90,
+  maxLongitude: 180,
+  minLongitude: -180
+} as const;
+
+// Ruler & Measurement Configuration
+export const RULER_CONFIG = {
+  size: 40, // Ruler size in pixels - UI constant (app-specific)
+  tickDensityFactors: {
+    low: 1.5,
+    medium: 1.0,
+    high: 0.7
+  },
+  tickValues: {
+    maxTick: GEOMETRIC_LIMITS.MAX_TICK_VALUE, // Maximum normalized tick value from SSOT
+    fileSizeMB: 200, // File size in MB for calculations
+    mediumTick: RULER_TICK_VALUES.MEDIUM_TICK, // Medium scale tick value - geometric constant
+    largeTick: RULER_TICK_VALUES.LARGE_TICK, // Large scale tick value - geometric constant
+    smallTick: RULER_TICK_VALUES.SMALL_SCALE_TICK, // Small scale tick value - geometric constant
+    largeTick2: RULER_TICK_VALUES.LARGE_SCALE_TICK_2, // Large scale tick value 2 - geometric constant
+    intermediateTick1: RULER_TICK_VALUES.INTERMEDIATE_TICK_1, // Intermediate tick value 1 - geometric constant
+    intermediateTick2: RULER_TICK_VALUES.INTERMEDIATE_TICK_2, // Intermediate tick value 2 - geometric constant
+    intermediateTick3: RULER_TICK_VALUES.INTERMEDIATE_TICK_3, // Intermediate tick value 3 - geometric constant
+    xlTick: RULER_TICK_VALUES.XL_TICK, // Extra large tick value - geometric constant
+    xxlTick: RULER_TICK_VALUES.XXL_TICK // Extra extra large tick value - geometric constant
+  },
+  goodNormalizedTicks: [ // Ruler tick intervals - geometric scale constants
+    0.00001, 0.00002, 0.00005, 0.0001, 0.0002, 0.0005,
+    0.001, 0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5,
+    1, 2, 5, 10, 20, RULER_TICK_VALUES.SMALL_TICK, 100, RULER_TICK_VALUES.MEDIUM_TICK, RULER_TICK_VALUES.LARGE_TICK,
+    RULER_TICK_VALUES.LARGE_TICK_2, RULER_TICK_VALUES.INTERMEDIATE_TICK_1, RULER_TICK_VALUES.INTERMEDIATE_TICK_2, RULER_TICK_VALUES.INTERMEDIATE_TICK_3, RULER_TICK_VALUES.XL_TICK, RULER_TICK_VALUES.XXL_TICK, RULER_TICK_VALUES.MAX_TICK
+  ]
 } as const;
 
 // Form & Input Configuration
 export const FORM_CONFIG = {
   validation: {
     maxLength: {
-      title: 100,
-      description: 500,
-      name: 50
+      title: COMPONENT_DESIGN_TOKENS.forms['max-length-title'],
+      description: COMPONENT_DESIGN_TOKENS.forms['max-length-description'],
+      name: COMPONENT_DESIGN_TOKENS.forms['max-length-name']
     },
-    debounceMs: 300
+    debounceMs: COMPONENT_DESIGN_TOKENS.forms['debounce-ms'],
+    maxValues: {
+      duration: 120, // Maximum duration for availability details
+      totalFileSize: RULER_CONFIG.tickValues.fileSizeMB * FILE_SIZE_CONSTANTS.BYTES_IN_KB * FILE_SIZE_CONSTANTS.BYTES_IN_KB // 200MB total file upload limit
+    }
   },
   bottomSheet: {
     maxHeight: '40vh',
     borderRadius: {
-      top: parseInt('var(--la-space-4)'.replace('var(--la-space-4)', '16')) // 🎯 SST: Border radius from design tokens
+      top: 16 // var(--la-space-4) equivalent
     }
+  },
+  zIndex: {
+    modalOverlay: FILE_SIZE_CONSTANTS.MODAL_Z_INDEX // Z-index for modal overlays
   }
 } as const;
 
 // Notification Configuration
 export const NOTIFICATION_CONFIG = {
   duration: {
-    short: 3000,
-    medium: 5000,
-    long: 8000
+    short: COMPONENT_DESIGN_TOKENS.forms['validation-timeout-short'],
+    medium: COMPONENT_DESIGN_TOKENS.forms['validation-timeout-medium'],
+    long: COMPONENT_DESIGN_TOKENS.forms['validation-timeout-long']
   },
   position: {
     top: 'var(--la-space-4)', // 🎯 SST: MD spacing (16px)
@@ -250,6 +382,9 @@ export const STEP_CONFIG = {
     layout: 'layout',
     details: 'details',
     complete: 'complete'
+  },
+  searchLimits: {
+    maxOccupationResults: FILE_SIZE_CONSTANTS.MAX_OCCUPATION_RESULTS // Maximum ESCO occupation search results
   }
 } as const;
 

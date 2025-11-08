@@ -27,7 +27,7 @@
 
 .la-notification-container-top-center {
   top: var(--la-space-6);
-  left: 50%;
+  left: var(--la-space-0);
   transform: translateX(-50%);
   align-items: center;
 }
@@ -46,7 +46,7 @@
 
 .la-notification-container-bottom-center {
   bottom: var(--la-space-6);
-  left: 50%;
+  left: var(--la-space-0);
   transform: translateX(-50%);
   flex-direction: column-reverse;
   align-items: center;

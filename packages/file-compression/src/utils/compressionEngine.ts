@@ -8,6 +8,9 @@ import {
   CompressionQualityError
 } from '../types';
 
+// 🎯 IMPORT SINGLE SOURCE OF TRUTH - από @layera/constants
+import { COMPRESSION_SETTINGS } from '@layera/constants';
+
 // Supported formats configuration
 const SUPPORTED_FORMATS: Record<string, {
   mimeType: string;
@@ -16,22 +19,22 @@ const SUPPORTED_FORMATS: Record<string, {
 }> = {
   jpeg: {
     mimeType: 'image/jpeg',
-    quality: { min: 10, max: 100, default: 85 },
+    quality: { min: 10, max: 100, default: COMPRESSION_SETTINGS.JPEG_HIGH_QUALITY },
     supportsTransparency: false
   },
   webp: {
     mimeType: 'image/webp',
-    quality: { min: 10, max: 100, default: 80 },
+    quality: { min: 10, max: 100, default: COMPRESSION_SETTINGS.WEBP_MEDIUM_QUALITY },
     supportsTransparency: true
   },
   avif: {
     mimeType: 'image/avif',
-    quality: { min: 10, max: 100, default: 75 },
+    quality: { min: 10, max: 100, default: COMPRESSION_SETTINGS.MEDIUM_FILE_QUALITY },
     supportsTransparency: true
   },
   png: {
     mimeType: 'image/png',
-    quality: { min: 10, max: 100, default: 100 },
+    quality: { min: 10, max: 100, default: COMPRESSION_SETTINGS.PNG_LOSSLESS_QUALITY },
     supportsTransparency: true
   }
 };
@@ -403,7 +406,7 @@ export class CompressionEngine {
   }
 
   private getDefaultQuality(format?: CompressionFormat): number {
-    return SUPPORTED_FORMATS[format || 'jpeg']?.quality.default || 85;
+    return SUPPORTED_FORMATS[format || 'jpeg']?.quality.default || COMPRESSION_SETTINGS.JPEG_HIGH_QUALITY;
   }
 
   private calculateCompressionRatio(originalSize: number, compressedSize: number): number {

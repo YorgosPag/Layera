@@ -38,7 +38,7 @@ export const DashboardGrid: React.FC<DashboardGridProps> = ({
   } as React.CSSProperties;
 
   return (
-    <Box className={gridClasses} style={gridStyle}>
+    <Box className={gridClasses} {...(gridStyle && { style: gridStyle })}>
       {children}
     </Box>
   );

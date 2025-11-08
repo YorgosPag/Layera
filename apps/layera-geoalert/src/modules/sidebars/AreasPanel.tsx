@@ -5,8 +5,10 @@ import { Text, Heading } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { DrawnArea } from '@layera/geo-drawing';
 import { SearchIcon, TrashIcon, EyeIcon, EyeOffIcon, EditIcon } from '@layera/icons';
+import { UI_DIMENSIONS } from '@layera/constants';
 import { BaseCard } from '@layera/cards';
 import './AreasPanel.css';
+import '@layera/auth-bridge/src/components/UserDisplay.css';
 
 interface AreasPanelProps {
   isOpen: boolean;
@@ -61,9 +63,9 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
   };
 
   return (
-    <aside className={`bg-white border-r border-gray-200 flex flex-col flex-shrink-0 transition-all duration-300 ease-in-out z-20 overflow-hidden ${isOpen ? 'w-80' : 'w-0'}`}>
-      <Box className="flex flex-col flex-grow min-w-0 w-80">
-        <Box className="layera-areas-panel-border p-4 border-b flex justify-between items-center">
+    <aside className={`areas-panel-layout ${isOpen ? `width-${UI_DIMENSIONS.SIDEBAR.AREAS_PANEL_WIDTH}` : `width-${UI_DIMENSIONS.SIDEBAR.COLLAPSED_WIDTH}`}`}>
+      <Box className="areas-panel-content">
+        <Box className="areas-panel-header layera-areas-panel-border">
           <Heading as="h2" size="lg" weight="bold" color="primary">{t('areas')}</Heading>
           <Button
             onClick={onTogglePanel}
@@ -71,14 +73,14 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
             size="xs"
             title={t('close')}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+            <svg xmlns="http://www.w3.org/2000/svg" className="icon-size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </Button>
         </Box>
 
         {areas.length === 0 && (
-          <Box className="flex-grow flex items-center justify-center p-4">
+          <Box className="areas-panel-empty">
             <Text size="sm" color="secondary" align="center">
               {t('noAreas')} <br />
               {t('clickPlusCreate')}
@@ -86,7 +88,7 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
           </Box>
         )}
 
-        <ul className="flex-grow overflow-y-auto">
+        <ul className="areas-panel-list">
           {areas.map((area, index) => (
             <li
               key={area.id}
@@ -103,18 +105,18 @@ const AreasPanel: React.FC<AreasPanelProps> = ({
                 className="mb-0"
                 className="layera-areas-panel-drag-item"
               >
-                <Box className="flex items-center justify-between p-2">
+                <Box className="areas-panel-item-controls">
                 <Text size="sm" weight="semibold" className="truncate pr-2" title={area.name}>
                   {area.name}
                 </Text>
-                <Box className="flex items-center space-x-2">
+                <Box className="areas-panel-buttons">
                   <Button
                     onMouseDown={(e: React.FormEvent<HTMLFormElement>) => { e.preventDefault(); e.stopPropagation(); onEditArea(area); }}
                     title={t('editArea')}
                     variant="ghost"
                     size="xs"
                   >
-                    <EditIcon className="h-5 w-5" />
+                    <EditIcon className="icon-size-5" />
                   </Button>
 
                   <Button

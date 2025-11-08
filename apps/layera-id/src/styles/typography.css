@@ -1,2 +1,2 @@
 /* Import Layera Typography Styles */
-@import '@layera/typography/dist/styles.css';
+@import url('@layera/typography/dist/styles.css');

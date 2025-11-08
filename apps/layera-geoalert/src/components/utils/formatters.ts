@@ -10,14 +10,20 @@ export const formatCoord = (coord: number, isLat: boolean, decimals: number = 3)
     return `${Math.abs(coord).toFixed(decimals)}° ${direction}`;
 };
 
+// Distance formatting constants - Single Source of Truth
+const DISTANCE_CONSTANTS = {
+  METERS_PER_KM: 1000,
+  KM_DECIMAL_PLACES: 1
+} as const;
+
 /**
  * Formats a distance in meters into a readable string, switching to kilometers for large distances.
  * @param distance The distance in meters.
  * @returns A formatted string like "500 m" or "1.2 km".
  */
 export const formatDistance = (distance: number): string => {
-    if (distance >= 1000) {
-        return `${(distance / 1000).toFixed(1)} km`;
+    if (distance >= DISTANCE_CONSTANTS.METERS_PER_KM) {
+        return `${(distance / DISTANCE_CONSTANTS.METERS_PER_KM).toFixed(DISTANCE_CONSTANTS.KM_DECIMAL_PLACES)} km`;
     }
     return `${Math.round(distance)} m`;
 };

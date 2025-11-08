@@ -4,13 +4,14 @@
 
 import { stepRegistry } from '../StepRegistry';
 import { LocationStep } from './LocationStep';
+import { WORKFLOW_ORDER } from '@layera/constants';
 
 // 🚀 AUTO-REGISTRATION: Καταχώρηση του location step στο StepRegistry
 stepRegistry.register({
   id: 'location',
   name: 'Τοποθεσία',
   component: LocationStep,
-  order: 14,
+  order: WORKFLOW_ORDER.LOCATION,
   isVisible: true,
   cards: [],
   // ΔΙΟΡΘΩΣΗ: Προσθήκη conditions για σωστή ροή

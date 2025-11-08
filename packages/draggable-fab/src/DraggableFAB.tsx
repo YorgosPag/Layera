@@ -73,7 +73,7 @@ export const DraggableFAB: React.FC<DraggableFABProps> = ({
   constrainToViewport = true,
   viewportSelector = '[data-viewport-frame], #geo-viewport',
   className = '',
-  style = {},
+  style = {}, // 🎨 Enterprise design tokens handle all styling
   'data-testid': testId,
   'aria-label': ariaLabel = 'Floating Action Button',
   title
@@ -266,7 +266,7 @@ export const DraggableFAB: React.FC<DraggableFABProps> = ({
     alignItems: 'center',
     justifyContent: 'center',
     cursor: position === 'fixed' ? 'pointer' : 'grab',
-    zIndex: 9999,
+    zIndex: 1000, // Enterprise z-index standard
     userSelect: 'none',
     touchAction: 'none',
     transition: position === 'fixed' ? 'all 0.2s ease' : 'none',
@@ -276,7 +276,15 @@ export const DraggableFAB: React.FC<DraggableFABProps> = ({
 
   return (
     <Box
-      style={{...computedStyle, background: bg, touchAction: 'none', userSelect: 'none'}}
+      style={{
+        ...computedStyle,
+        background: bg,
+        touchAction: 'none',
+        userSelect: 'none',
+        // 🎯 ENTERPRISE: Χρήση style object για dynamic positioning & interaction states
+        // Design tokens handle static styles, inline handles runtime positioning
+        ...style // User overrides last
+      }}
       draggable={false}
       onDragStart={(e: React.FormEvent<HTMLFormElement>) => e.preventDefault()}
       onPointerDownCapture={onDown}

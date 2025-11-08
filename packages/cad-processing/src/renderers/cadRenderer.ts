@@ -9,6 +9,11 @@ import {
   CADRenderingError
 } from '../types';
 
+// CAD Rendering Constants
+const CAD_RENDER_CONFIG = {
+  TARGET_MAX_DIMENSION: 1000
+} as const;
+
 /**
  * CAD renderer που μετατρέπει CAD data σε SVG
  * Βασισμένο σε patterns από OLD_geo-canvas DxfEntityRenderer
@@ -95,9 +100,8 @@ export class CADRenderer {
 
     // Auto-scale to fit within reasonable SVG dimensions
     const maxDimension = Math.max(bounds.size.x, bounds.size.y);
-    const targetSize = 1000; // Target max dimension
 
-    return maxDimension > 0 ? targetSize / maxDimension : 1;
+    return maxDimension > 0 ? CAD_RENDER_CONFIG.TARGET_MAX_DIMENSION / maxDimension : 1;
   }
 
   /**

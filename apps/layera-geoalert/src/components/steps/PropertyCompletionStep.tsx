@@ -160,15 +160,12 @@ export const PropertyCompletionStep: React.FC<PropertyCompletionStepProps> = ({
 
   return (
     <Box
-      style={{
-        ...getWorkflowCardContainerStyle(),
-        animation: `slideIn ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`
-      }}
       backdropFilter="none"
       boxShadow="xl"
       display="block"
       width="full"
       border={`var(--la-border-width-md) solid ${getCardInfoBorder()}`}
+      className="workflow-card-container-animated"
     >
       <Flex direction="column" gap="xl" alignItems="center">
         {/* Header */}
@@ -212,10 +209,8 @@ export const PropertyCompletionStep: React.FC<PropertyCompletionStepProps> = ({
             size="sm"
             weight="medium"
             marginBottom="md"
-            style={{
-              color: 'var(--color-text-primary)',
-              textAlign: MENU_POSITIONS.CENTER
-            }}
+            color="primary"
+            textAlign="center"
           >
             {t('workflow.completion.remainingSteps') || 'Υπομένουν'} ({completionSteps.length} {t('workflow.preview.steps') || 'βήματα'})
           </Text>
@@ -229,27 +224,22 @@ export const PropertyCompletionStep: React.FC<PropertyCompletionStepProps> = ({
                   key={step.id}
                   align="center"
                   gap="md"
-                  style={{
-                    ...getWorkflowCardStepStyle(),
-                    transition: `all ${ANIMATION_DURATIONS.FAST}ms ${EASING_FUNCTIONS.EASE_OUT}`,
-                    minHeight: 'var(--la-min-height-xxl)', // 🎯 SST: Component height token
-                    width: 'var(--la-width-full)', // 🎯 SST: Full width
-                    justifyContent: 'flex-start',
-                    boxSizing: 'border-box',
-                    border: `var(--la-border-width-md) solid ${getCardInfoBorder()}` // 🎯 SST: Border width token
-                  }}
+                  minHeight="xxl"
+                  width="full"
+                  justifyContent="flex-start"
+                  boxSizing="border-box"
+                  border={`var(--la-border-width-md) solid ${getCardInfoBorder()}`}
+                  className="workflow-card-step-animated"
                 >
                   {/* Step Number */}
                   <FlexCenter
-                    style={{
-                      width: 'var(--la-icon-lg)', // 🎯 SST: Icon size token
-                      height: 'var(--la-icon-lg)', // 🎯 SST: Icon size token
-                      color: 'var(--color-text-inverse)',
-                      borderRadius: BORDER_RADIUS_SCALE.CIRCLE,
-                      fontSize: 'var(--la-icon-sm)', // 🎯 SST: Icon font size token
-                      fontWeight: 'bold',
-                      flexShrink: 0
-                    }}
+                    width="icon-lg" // 🎯 SST: Icon size token
+                    height="icon-lg" // 🎯 SST: Icon size token
+                    color="text-inverse"
+                    borderRadius="circle"
+                    fontSize="icon-sm" // 🎯 SST: Icon font size token
+                    fontWeight="bold"
+                    flexShrink="0"
                   >
                     {index + 3} {/* Συνεχίζουμε από 3 αφού είχαμε 1=PropertyType, 2=Details */}
                   </FlexCenter>
@@ -265,20 +255,20 @@ export const PropertyCompletionStep: React.FC<PropertyCompletionStepProps> = ({
                       {t(step.titleKey) || `Step ${index + 3}: ${step.id}`}
                     </Text>
                     <Text size="xs" color="secondary"
-                      lineHeight: CSS_DESIGN_TOKENS.typography['line-height-normal'],
-                      textAlign: 'left'
-                    }}>
+                      lineHeight="normal"
+                      textAlign="left"
+                    >
                       {t(step.descriptionKey) || 'Step description'}
                     </Text>
                   </Flex>
 
                   {/* Duration */}
-                  <Text size="xs" style={{
-                    color: 'var(--color-text-tertiary)',
-                    flexShrink: 0,
-                    minWidth: 'var(--la-min-width-xxl)', // 🎯 SST: Component width token
-                    textAlign: 'right'
-                  }}>
+                  <Text size="xs"
+                    color="tertiary"
+                    flexShrink="0"
+                    minWidth="xxl" // 🎯 SST: Component width token
+                    textAlign="right"
+                  >
                     {t(step.durationKey) || '~2 λεπτά'}
                   </Text>
                 </Flex>

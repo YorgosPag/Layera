@@ -4,7 +4,7 @@ import { getEnhancedCardTheme, getCardTextColor } from '../../utils/cardThemes';
 import { SST_CARD_CONFIG } from '../../styles/sst-config';
 
 // Enterprise LEGO Design System imports
-import { SPACING_SCALE, BORDER_RADIUS_SCALE, GEO_DRAWING_INTERACTION } from '@layera/constants';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE, GEO_DRAWING_INTERACTION, COMPONENT_DESIGN_TOKENS } from '@layera/constants';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { getCursorVar } from '@layera/cursors';
 
@@ -49,33 +49,38 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
   style,
   'data-testid': testId
 }) => {
-  // 🔥 DEBUG: SST System Console Logs
-  console.log('🎯 BaseCard Debug:', {
-    variant,
-    title,
-    className: `layera-card--${variant}`,
-    timestamp: new Date().toLocaleTimeString()
-  });
+  // 🔥 DEBUG: SST System Console Logs (disabled for cleaner console)
+  // if (process.env.NODE_ENV === 'development') {
+  //   console.log('🎯 BaseCard Debug:', {
+  //     variant,
+  //     title,
+  //     className: `layera-card--${variant}`,
+  //     timestamp: new Date().toLocaleTimeString()
+  //   });
+  // }
 
   // 🔥 DEBUG: SST Config Analysis
   const sstStyles = SST_CARD_CONFIG.getCardStyles(variant as string);
   const hasSST = Object.keys(sstStyles).length > 0;
-  console.log('🎨 SST Debug:', {
-    variant,
-    sstStyles,
-    hasSST,
-    backgroundColor: sstStyles.backgroundColor,
-    fullConfig: SST_CARD_CONFIG[variant as keyof typeof SST_CARD_CONFIG]
-  });
 
-  // 🔥 DEBUG: Final computed styles
-  console.log('🖼️ Final Styles:', {
-    variant,
-    willUseSST: hasSST,
-    finalBackgroundColor: hasSST ? sstStyles.backgroundColor : 'fallback',
-    sstKeys: Object.keys(sstStyles),
-    sstConfigKeys: Object.keys(SST_CARD_CONFIG)
-  });
+  // if (process.env.NODE_ENV === 'development') {
+  //   console.log('🎨 SST Debug:', {
+  //     variant,
+  //     sstStyles,
+  //     hasSST,
+  //     backgroundColor: sstStyles.backgroundColor,
+  //     fullConfig: SST_CARD_CONFIG[variant as keyof typeof SST_CARD_CONFIG]
+  //   });
+
+  //   // 🔥 DEBUG: Final computed styles
+  //   console.log('🖼️ Final Styles:', {
+  //     variant,
+  //     willUseSST: hasSST,
+  //     finalBackgroundColor: hasSST ? sstStyles.backgroundColor : 'fallback',
+  //     sstKeys: Object.keys(sstStyles),
+  //     sstConfigKeys: Object.keys(SST_CARD_CONFIG)
+  //   });
+  // }
   // ============= ENHANCED THEME SYSTEM =============
   const theme = getEnhancedCardTheme(variant, opacityMode);
   const textColor = getCardTextColor(variant, opacityMode);
@@ -193,7 +198,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
   const handleInfoClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     if ('vibrate' in navigator) {
-      navigator.vibrate(20);
+      navigator.vibrate(COMPONENT_DESIGN_TOKENS.haptic['haptic-medium']);
     }
     onInfoClick?.();
   };
@@ -205,7 +210,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
     target.style.color = 'var(--color-text-primary)';
     target.style.transform = 'var(--la-scale-up)'; // 🎯 SST: Transform token
     if ('vibrate' in navigator) {
-      navigator.vibrate(10);
+      navigator.vibrate(COMPONENT_DESIGN_TOKENS.haptic['haptic-light']);
     }
   };
 
@@ -248,18 +253,16 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
   if (icon && title && !children) {
     return (
       <div
-        style={baseCardStyles}
+        className={`la-card-base ${className}`}
         onClick={(clickable || onClick) ? handleClick : undefined}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
-        className={className}
         data-testid={testId || `card-${variant}`}
       >
         {/* Title with Icon - Simplified pattern */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 'var(--la-gap-sm)', width: '100%' }}> {/* 🎯 SST: Gap token */}
+        <div className="la-card-title-container">
           <div
-            className="layera-card__title"
-            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'var(--la-gap-sm)', ...titleStyles }} // 🎯 SST: Gap token
+            className="layera-card__title la-card-title-with-icon"
           >
             {icon}
             {title}
@@ -267,17 +270,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
 
           {/* Description support - Universal SST */}
           {description && (
-            <div style={{
-              ...SST_CARD_CONFIG.getDescriptionStyles(variant as string),
-              // Fallback if no SST description styles
-              ...(Object.keys(SST_CARD_CONFIG.getDescriptionStyles(variant as string)).length === 0 ? {
-                fontSize: 'var(--la-font-size-sm)', // 🎯 SST: Font size token
-                color: getCardTextColor(variant, opacityMode),
-                textAlign: 'center',
-                marginTop: 'var(--la-gap-xs)', // 🎯 SST: Gap token
-                opacity: 'var(--la-opacity-high)' // 🎯 SST: Opacity token
-              } : {})
-            }}>
+            <div className="la-card-description">
               {description}
             </div>
           )}
@@ -296,13 +289,7 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
                 handleInfoClick(mouseEvent as unknown as React.MouseEvent);
               }
             }}
-            style={{
-              ...infoButtonStyles,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer'
-            }}
+            className="la-card-info-button la-card-info-button-positioned"
             data-testid={`${testId || 'card'}-info-button`}
           >
             i
@@ -324,19 +311,19 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
   ].filter(Boolean).join(' ');
 
   return (
-    <CardElement className={cardClasses} style={baseCardStyles} {...extraProps} data-testid={testId}>
+    <CardElement className={cardClasses} {...extraProps} data-testid={testId}>
       {/* Header Section */}
       {(title || subtitle || actions || icon) && (
         <div className="layera-card__header">
           <div className="layera-card__header-content">
             {/* Icon support για LEGO mode */}
             {icon && (
-              <div className="layera-card__icon" style={{ marginBottom: 'var(--la-space-1)' /* 🎯 SST: XS spacing */ }}>
+              <div className="layera-card__icon la-card-icon">
                 {icon}
               </div>
             )}
-            {title && <h3 className="layera-card__title" style={{ color: hasSSTTitle ? sstTitleStyles.color : textColor }}>{title}</h3>}
-            {subtitle && <p className="layera-card__subtitle" style={{ color: textColor }}>{subtitle}</p>}
+            {title && <h3 className="layera-card__title la-card-title-with-color">{title}</h3>}
+            {subtitle && <p className="layera-card__subtitle la-card-title-with-color">{subtitle}</p>}
           </div>
           {actions && (
             <div className="layera-card__actions">
@@ -348,14 +335,14 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
 
       {/* Content Section */}
       {children && (
-        <div className="layera-card__content" style={{ color: textColor }}>
+        <div className="layera-card__content la-card-content-with-color">
           {children}
         </div>
       )}
 
       {/* Footer Section */}
       {footer && (
-        <div className="layera-card__footer" style={{ color: textColor }}>
+        <div className="layera-card__footer la-card-footer-with-color">
           {footer}
         </div>
       )}
@@ -373,23 +360,17 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
               handleInfoClick(mouseEvent as unknown as React.MouseEvent);
             }
           }}
-          style={{
-            ...infoButtonStyles,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer'
-          }}
+          className="la-card-info-button la-card-info-button-positioned"
           onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => {
             if (window.matchMedia('(hover: hover)').matches) {
               e.currentTarget.style.color = 'var(--color-text-primary)';
-              e.currentTarget.style.transform = 'scale(1.1)';
+              e.currentTarget.style.transform = 'var(--la-scale-up)';
             }
           }}
           onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => {
             if (window.matchMedia('(hover: hover)').matches) {
               e.currentTarget.style.color = 'var(--color-text-secondary)';
-              e.currentTarget.style.transform = 'scale(1)';
+              e.currentTarget.style.transform = 'var(--la-scale-normal)';
             }
           }}
           onTouchStart={handleInfoTouchStart}

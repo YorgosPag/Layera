@@ -1,0 +1,67 @@
+/**
+ * DragDropZone Styles - LEGO Design System Compliance
+ * All values from tokens.json SSOT
+ */
+
+/* Base drag-drop zone styles */
+.la-drag-drop-zone {
+  position: relative;
+  border-width: var(--la-border-width-2);
+  border-style: dashed;
+  border-radius: var(--la-radius-lg);
+  padding: var(--la-space-8);
+  text-align: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border-color: var(--la-color-border-primary);
+}
+
+.la-drag-drop-zone:hover {
+  border-color: var(--la-color-border-secondary);
+}
+
+.la-drag-drop-zone--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: var(--la-color-border-subtle);
+}
+
+.la-drag-drop-zone--drag-over {
+  border-color: var(--la-color-info);
+  background-color: var(--la-color-bg-info);
+  transform: scale(1.05);
+}
+
+/* Icon container states */
+.la-drag-drop-icon-container {
+  padding: var(--la-space-4);
+  border-radius: var(--la-radius-circle);
+}
+
+.la-drag-drop-icon-container--normal {
+  background-color: var(--la-color-gray-100);
+  color: var(--la-color-gray-500);
+}
+
+.la-drag-drop-icon-container--normal-dark {
+  background-color: var(--la-color-gray-700);
+  color: var(--la-color-gray-300);
+}
+
+.la-drag-drop-icon-container--drag-over {
+  background-color: var(--la-color-bg-info);
+  color: var(--la-color-info);
+}
+
+/* Text styling */
+.la-file-info-text {
+  color: var(--la-color-text-muted);
+}
+
+.la-file-info-text--dark {
+  color: var(--la-color-gray-400);
+}
+
+.la-file-size-hint {
+  color: var(--la-color-info);
+}

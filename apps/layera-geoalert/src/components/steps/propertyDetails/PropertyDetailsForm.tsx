@@ -80,13 +80,13 @@ export const PropertyDetailsForm: React.FC<PropertyDetailsFormProps> = ({
   };
 
   return (
-    <Stack spacing="md" className="layera-property-form-container p-4 rounded-lg">
+    <Stack spacing="md" padding="4" borderRadius="lg" className="layera-property-form-container">
       {fields.map((field: unknown) => (
         <FormField
           key={field.id}
           label={field.type !== 'boolean' ? field.label : undefined}
           required={field.required}
-          className="w-full"
+          width="full"
         >
           {renderField(field)}
         </FormField>

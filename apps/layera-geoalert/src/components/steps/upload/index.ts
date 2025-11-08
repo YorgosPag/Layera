@@ -4,13 +4,14 @@
 
 import { stepRegistry } from '../StepRegistry';
 import { UploadStep } from './UploadStep';
+import { WORKFLOW_ORDER } from '@layera/constants';
 
 // 🚀 AUTO-REGISTRATION: Καταχώρηση του upload step στο StepRegistry
 stepRegistry.register({
   id: 'upload',
   name: 'Ανέβασμα',
   component: UploadStep,
-  order: 17,
+  order: WORKFLOW_ORDER.UPLOAD,
   isVisible: true,
   cards: [],
   // ΔΙΟΡΘΩΣΗ: Προσθήκη conditions για σωστή ροή

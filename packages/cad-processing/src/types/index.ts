@@ -1,3 +1,6 @@
+// CAD Encoding Constants
+const CAD_ENCODING_ISO_8859_1 = 8859;
+
 // Core CAD processing types
 export interface CADProcessingOptions {
   format: CADFormat;
@@ -16,7 +19,7 @@ export interface CADParseOptions {
   preserveLineTypes?: boolean;
   preserveColors?: boolean;
   parseCustomEntities?: boolean;
-  encoding?: 'utf-8' | 'cp1252' | 'iso-8859-1';
+  encoding?: 'utf-8' | 'cp1252' | `iso-${typeof CAD_ENCODING_ISO_8859_1}-1`;
   toleranceMode?: 'strict' | 'lenient';
 }
 

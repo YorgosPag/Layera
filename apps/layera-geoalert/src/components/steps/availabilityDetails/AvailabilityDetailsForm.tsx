@@ -9,6 +9,7 @@ import React from 'react';
 import { DatePicker, NumericInput, Select, FormField } from '@layera/forms';
 import { Stack } from '@layera/layout';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { FORM_CONFIG } from '../../../constants';
 import type { AvailabilityDetails } from './types';
 
 interface AvailabilityDetailsFormProps {
@@ -50,7 +51,7 @@ export const AvailabilityDetailsForm: React.FC<AvailabilityDetailsFormProps> = (
           onChange={(e: React.FormEvent<HTMLFormElement>) => onChange('duration', e.target.value ? Number(e.target.value) : 0)}
           placeholder={t('availabilityDetails.durationPlaceholder', 'π.χ. 12')}
           min={1}
-          max={120}
+          max={FORM_CONFIG.validation.maxValues.duration}
           size="md"
           variant="outline"
           fullWidth

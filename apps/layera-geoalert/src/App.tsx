@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 // Enterprise LEGO Design System imports
 import { Button } from '@layera/buttons';
 import { BaseCard } from '@layera/cards';
-import { SPACING_SCALE, BORDER_RADIUS, getCardOrangeColor, getCardInfoColor, getCardInfoBorder } from '@layera/constants';
+import { getCardOrangeColor, getCardInfoColor, getCardInfoBorder } from '@layera/constants';
 import { MapIcon, ShareIcon, LayersIcon, AlertTriangleIcon, CheckIcon, MoreIcon, WarningIcon, FileIcon, RefreshIcon } from '@layera/icons';
 import { AppShell, Flex, Box } from '@layera/layout';
 import { LoadingSpinner } from '@layera/loading';
@@ -16,6 +16,13 @@ import { useViewportWithOverride, DeviceOverrideProvider } from '@layera/viewpor
 
 // Global Styles Import - CRITICAL για uniform card styling
 import '@layera/styles';
+
+// LEGO System Package Count - Single Source of Truth
+const LEGO_PACKAGES = [
+  '@layera/buttons', '@layera/cards', '@layera/constants', '@layera/icons',
+  '@layera/layout', '@layera/loading', '@layera/notifications', '@layera/theme-switcher',
+  '@layera/tolgee', '@layera/typography', '@layera/viewport', '@layera/styles'
+] as const;
 
 // Simple Error Boundary component
 class SimpleErrorBoundary extends React.Component<
@@ -92,7 +99,7 @@ function TestNotificationsComponent() {
   const testInfoNotification = (): void => {
     addNotification({
       type: 'info',
-      message: 'LEGO Architecture: 13 Packages Successfully Integrated!'
+      message: `LEGO Architecture: ${LEGO_PACKAGES.length} Packages Successfully Integrated!`
     });
   };
 
@@ -118,7 +125,7 @@ function TestNotificationsComponent() {
       padding="md"
       className="layera-test-panel"
     >
-      <Heading as="h3" size="lg" color="primary" className="layera-mb-4">
+      <Heading as="h3" size="lg" color="primary" marginBottom="4">
         {t('test.panel.title')}
       </Heading>
 
@@ -326,10 +333,12 @@ function App() {
             color="var(--la-text-primary)"
             minHeight="100vh">
               <Flex justify="space-between" align="center" marginBottom="md">
-                <Heading as="h1" size="2xl" color="primary" className="layera-flex layera-items-center layera-gap-2">
-                  <MapIcon size="md" theme="primary" />
-                  {t('geoalert.title')}
-                </Heading>
+                <Flex alignItems="center" gap="sm">
+                  <Heading as="h1" size="2xl" color="primary">
+                    <MapIcon size="md" theme="primary" />
+                    {t('geoalert.title')}
+                  </Heading>
+                </Flex>
                 <Flex align="center" justify="center" gap="sm">
                   <ThemeSwitcher
                     variant="icon"
@@ -344,7 +353,7 @@ function App() {
                 </Flex>
               </Flex>
 
-              <Text size="lg" color="secondary" className="layera-mb-8">{t('geoalert.subtitle')}</Text>
+              <Text size="lg" color="secondary" marginBottom="8">{t('geoalert.subtitle')}</Text>
 
               <Box margin="xl 0">
                 <Box marginBottom="xl">
@@ -363,7 +372,6 @@ function App() {
                   size="xl"
                   onClick={(): void => setIsMapMode(true)}
                   icon={<MapIcon size="lg" theme="neutral" />}
-                  className="layera-mb-8"
                   margin="auto"
                   marginBottom="xl"
                   shadow="card"
@@ -379,34 +387,52 @@ function App() {
                   marginLeft="auto"
                   marginRight="auto"
                 >
-                  <Heading as="h3" size="lg" color="primary" className="layera-mb-4 layera-flex layera-items-center layera-gap-2">
-                    <CheckIcon size="xs" theme="success" /> {t('geoalert.statusCheck')}
-                  </Heading>
+                  <Flex alignItems="center" gap="sm" marginBottom="4">
+                    <Heading as="h3" size="lg" color="primary">
+                      <CheckIcon size="xs" theme="success" /> {t('geoalert.statusCheck')}
+                    </Heading>
+                  </Flex>
                   <Box>
-                    <Text size="base" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
+                    <Flex alignItems="center" gap="sm" marginBottom="2">
+                      <Text size="base">
                       <CheckIcon size="xs" theme="success" /> {t('geoalert.port')}: 3003
-                    </Text>
-                    <Text size="base" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
+                      </Text>
+                    </Flex>
+                    <Flex alignItems="center" gap="sm" marginBottom="2">
+                      <Text size="base">
                       <CheckIcon size="xs" theme="success" /> {t('geoalert.reactReady')}
-                    </Text>
-                    <Text size="base" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
+                      </Text>
+                    </Flex>
+                    <Flex alignItems="center" gap="sm" marginBottom="2">
+                      <Text size="base">
                       <CheckIcon size="xs" theme="success" /> {t('geoalert.typescriptStrict')}
-                    </Text>
-                    <Text size="base" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
+                      </Text>
+                    </Flex>
+                    <Flex alignItems="center" gap="sm" marginBottom="2">
+                      <Text size="base">
                       <CheckIcon size="xs" theme="success" /> {t('geoalert.independentApp')}
-                    </Text>
-                    <Text size="base" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
+                      </Text>
+                    </Flex>
+                    <Flex alignItems="center" gap="sm" marginBottom="2">
+                      <Text size="base">
                       <CheckIcon size="xs" theme="success" /> {t('geoalert.enterpriseArchitecture')}
-                    </Text>
-                    <Text size="base" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
+                      </Text>
+                    </Flex>
+                    <Flex alignItems="center" gap="sm" marginBottom="2">
+                      <Text size="base">
                       <CheckIcon size="xs" theme="success" /> @layera/layout Integration: AppShell + LayeraHeader
-                    </Text>
-                    <Text size="base" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
+                      </Text>
+                    </Flex>
+                    <Flex alignItems="center" gap="sm" marginBottom="2">
+                      <Text size="base">
                       <CheckIcon size="xs" theme="success" /> @layera/notifications Integration: NotificationProvider
-                    </Text>
-                    <Text size="base" className="layera-flex layera-items-center layera-gap-2">
-                      <CheckIcon size="xs" theme="success" /> Unified Layout System με fullscreen-map layout
-                    </Text>
+                      </Text>
+                    </Flex>
+                    <Flex alignItems="center" gap="sm">
+                      <Text size="base">
+                        <CheckIcon size="xs" theme="success" /> Unified Layout System με fullscreen-map layout
+                      </Text>
+                    </Flex>
                   </Box>
                 </BaseCard>
 
@@ -429,19 +455,19 @@ function App() {
               </Box>
 
               <Box marginTop="xl">
-                <Text size="sm" color="secondary" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
+                <Text size="sm" color="secondary" alignItems="center" gap="sm" marginBottom="2">
                   <CheckIcon size="sm" theme="success" /> {t('geoalert.layeraSystemsIntegration')}
                 </Text>
-                <Text size="sm" color="secondary" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
+                <Text size="sm" color="secondary" alignItems="center" gap="sm" marginBottom="2">
                   <FileIcon size="sm" theme="info" /> {t('geoalert.enterpriseStandards')}
                 </Text>
-                <Text size="sm" color="secondary" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
+                <Text size="sm" color="secondary" alignItems="center" gap="sm" marginBottom="2">
                   <ShareIcon size="sm" theme="info" /> {t('geoalert.crossAppNavigation')}
                 </Text>
-                <Text size="sm" color="secondary" className="layera-flex layera-items-center layera-gap-2 layera-mb-2">
+                <Text size="sm" color="secondary" alignItems="center" gap="sm" marginBottom="2">
                   <LayersIcon size="sm" theme="info" /> Unified Layout System: @layera/layout
                 </Text>
-                <Text size="sm" color="secondary" className="layera-flex layera-items-center layera-gap-2">
+                <Text size="sm" color="secondary" alignItems="center" gap="sm">
                   <AlertTriangleIcon size="sm" theme="warning" /> {t('geoalert.readyForImplementation')}
                 </Text>
               </Box>

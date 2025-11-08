@@ -4,13 +4,14 @@
 
 import { stepRegistry } from '../StepRegistry';
 import { LayoutStep } from './LayoutStep';
+import { WORKFLOW_ORDER } from '@layera/constants';
 
 // 🚀 AUTO-REGISTRATION: Καταχώρηση του layout step στο StepRegistry
 stepRegistry.register({
   id: 'layout',
   name: 'Κάτοψη',
   component: LayoutStep,
-  order: 13,
+  order: WORKFLOW_ORDER.LAYOUT,
   isVisible: true,
   cards: [],
   // ΔΙΟΡΘΩΣΗ: Προσθήκη conditions για να εμφανίζεται μόνο όταν πρέπει

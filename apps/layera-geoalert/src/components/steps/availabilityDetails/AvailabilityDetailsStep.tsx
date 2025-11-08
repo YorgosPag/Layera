@@ -10,6 +10,7 @@ import { Box } from '@layera/layout';
 import { AvailabilityDetailsForm } from './AvailabilityDetailsForm';
 import { BaseCard } from '@layera/cards';
 import { CheckIcon, CheckIcon as FormIcon, CheckIcon as CalendarIcon } from '@layera/icons';
+import { FORM_CONFIG } from '../../../constants';
 import type { StepProps } from '../types';
 import type { AvailabilityDetails, AvailabilityDetailsStepData } from './types';
 
@@ -81,7 +82,7 @@ export const AvailabilityDetailsStep: React.FC<AvailabilityDetailsStepProps> = (
     top: 'var(--la-cards-top)',
     left: 'var(--la-side-margins)',
     right: 'var(--la-side-margins)',
-    zIndex: 10002,
+    zIndex: FORM_CONFIG.zIndex.modalOverlay,
     display: 'flex',
     flexDirection: 'column',
     gap: 'var(--la-cards-gap)',

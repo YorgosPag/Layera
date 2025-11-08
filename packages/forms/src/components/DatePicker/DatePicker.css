@@ -8,7 +8,7 @@
 }
 
 .la-datepicker-full-width {
-  width: 100%;
+  width: var(--la-size-full);
 }
 
 .la-datepicker-disabled {
@@ -50,7 +50,7 @@
   display: flex;
   align-items: center;
   position: relative;
-  border: 0.125rem solid var(--la-color-border-primary);
+  border: var(--la-space-4) solid var(--la-color-border-primary);
   border-radius: var(--la-radius-md);
   background: var(--la-color-background-primary);
   transition: all var(--la-transition-default);
@@ -103,14 +103,14 @@
 /* Input element */
 .la-datepicker-input {
   flex: var(--la-flex-1);
-  border: none;
-  outline: none;
+  border: var(--la-border-none);
+  outline: var(--la-border-none);
   background: var(--la-color-transparent);
   color: var(--la-color-text-primary);
   font-family: var(--la-font-family-primary);
   font-size: var(--la-font-size-base);
   line-height: var(--la-line-height-normal);
-  padding: var(--la-space-2) var(--la-space-3);
+  padding: var(--la-space-4);
   min-width: var(--la-size-0);
 }
 
@@ -126,12 +126,12 @@
 /* Size variants for input */
 .la-datepicker-sm .la-datepicker-input {
   font-size: var(--la-font-size-sm);
-  padding: var(--la-space-1-5) var(--la-space-2-5);
+  padding: var(--la-space-4);
 }
 
 .la-datepicker-lg .la-datepicker-input {
   font-size: var(--la-font-size-lg);
-  padding: var(--la-space-3) var(--la-space-4);
+  padding: var(--la-space-4);
 }
 
 /* Focus states */
@@ -151,7 +151,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
+  border: var(--la-border-none);
   background: var(--la-color-transparent);
   color: var(--la-color-text-secondary);
   cursor: var(--la-cursor-pointer);
@@ -189,7 +189,7 @@
 .la-datepicker-loading-state {
   position: absolute;
   right: var(--la-size-10);
-  top: 50%;
+  top: var(--la-position-center);
   transform: translateY(-50%);
   pointer-events: var(--la-pointer-events-none);
 }
@@ -197,8 +197,8 @@
 .la-datepicker-spinner {
   width: var(--la-size-4);
   height: var(--la-size-4);
-  border: 0.125rem solid var(--la-color-border-primary);
-  border-top: 0.125rem solid var(--la-color-primary-500);
+  border: var(--la-space-4) solid var(--la-color-border-primary);
+  border-top: var(--la-space-4) solid var(--la-color-primary-500);
   border-radius: var(--la-radius-full);
   animation: la-datepicker-spin var(--la-duration-1000) linear infinite;
 }
@@ -206,7 +206,7 @@
 .la-datepicker-sm .la-datepicker-spinner {
   width: var(--la-size-3-5);
   height: var(--la-size-3-5);
-  border-width: 0.063rem;
+  border-width: var(--la-space-4);
 }
 
 .la-datepicker-lg .la-datepicker-spinner {
@@ -227,7 +227,7 @@
   right: var(--la-right-0);
   z-index: var(--la-z-dropdown);
   background: var(--la-color-background-primary);
-  border: 0.125rem solid var(--la-color-border-primary);
+  border: var(--la-space-4) solid var(--la-color-border-primary);
   border-radius: var(--la-radius-lg);
   box-shadow: var(--la-shadow-lg);
   padding: var(--la-space-4);
@@ -259,7 +259,7 @@
   justify-content: center;
   width: var(--la-size-8);
   height: var(--la-size-8);
-  border: none;
+  border: var(--la-border-none);
   background: var(--la-color-transparent);
   color: var(--la-color-text-secondary);
   cursor: var(--la-cursor-pointer);
@@ -301,7 +301,7 @@
 
 .la-datepicker-weekday {
   text-align: center;
-  padding: var(--la-space-2) var(--la-space-1);
+  padding: var(--la-space-4);
   font-size: var(--la-font-size-sm);
   font-weight: var(--la-font-medium);
   color: var(--la-color-text-secondary);
@@ -309,12 +309,12 @@
 
 .la-datepicker-sm .la-datepicker-weekday {
   font-size: var(--la-font-size-xs);
-  padding: var(--la-space-1-5) var(--la-space-1);
+  padding: var(--la-space-4);
 }
 
 .la-datepicker-lg .la-datepicker-weekday {
   font-size: var(--la-font-size-base);
-  padding: var(--la-space-2-5) var(--la-space-1-5);
+  padding: var(--la-space-4);
 }
 
 /* Days grid */
@@ -330,7 +330,7 @@
   justify-content: center;
   width: var(--la-size-8);
   height: var(--la-size-8);
-  border: none;
+  border: var(--la-border-none);
   background: var(--la-color-transparent);
   color: var(--la-color-text-tertiary);
   cursor: var(--la-cursor-pointer);
@@ -389,14 +389,14 @@
   justify-content: space-between;
   margin-top: var(--la-space-4);
   padding-top: var(--la-space-3);
-  border-top: 0.063rem solid var(--la-color-border-primary);
+  border-top: var(--la-space-4) solid var(--la-color-border-primary);
   gap: var(--la-space-2);
 }
 
 .la-datepicker-today,
 .la-datepicker-clear {
-  padding: var(--la-space-1-5) var(--la-space-3);
-  border: 0.063rem solid var(--la-color-border-primary);
+  padding: var(--la-space-4);
+  border: var(--la-space-4) solid var(--la-color-border-primary);
   background: var(--la-color-background-secondary);
   color: var(--la-color-text-primary);
   font-size: var(--la-font-size-sm);
@@ -445,11 +445,11 @@
 @media (prefers-contrast: more) {
   .la-datepicker-input-wrapper,
   .la-datepicker-calendar {
-    border-width: 0.1875rem;
+    border-width: var(--la-space-4);
   }
 
   .la-datepicker-day-selected {
-    border: 0.125rem solid var(--la-color-primary-contrast);
+    border: var(--la-space-4) solid var(--la-color-primary-contrast);
   }
 }
 
@@ -471,8 +471,8 @@
 @media (width <= 30rem) {
   .la-datepicker-calendar {
     position: fixed;
-    top: 50%;
-    left: 50%;
+    top: var(--la-position-center);
+    left: var(--la-position-center);
     right: auto;
     transform: translate(-50%, -50%);
     width: 90vw;

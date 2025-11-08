@@ -18,9 +18,10 @@ import { LocationIcon, MapIcon } from '@layera/icons';
 import { Spinner } from '@layera/loading';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
-import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE, UI_TIMING } from '@layera/constants';
 // Fixed import - χρησιμοποιούμε το νέο working osmService από geo-mapping
 import { fetchBoundaryByAddressComponent } from '../../../geo-mapping/src/services/osmService';
+import './AddressBreakdownCard.css';
 
 import type {
   AddressBreakdownCardProps,
@@ -57,7 +58,7 @@ export function AddressBreakdownCard({
       setLoadingTimer(0);
       interval = setInterval((): void => {
         setLoadingTimer(prev => prev + 1);
-      }, 1000);
+      }, UI_TIMING.DEBOUNCE_LONG);
     } else {
       setLoadingTimer(0);
     }
@@ -73,7 +74,7 @@ export function AddressBreakdownCard({
   const finalConfig = {
     layout: 'list' as const,
     enableBoundarySearch: true,
-    maxComponents: 10,
+    maxComponents: 10, // Maximum number of address components to display - UI limitation constant
     ...config
   };
 
@@ -136,13 +137,8 @@ export function AddressBreakdownCard({
     const isClickable = component.clickable && finalConfig.enableBoundarySearch;
 
     const componentProps = {
-      className: `address-component ${component.className || ''} ${isClickable ? 'clickable' : ''}`,
       onClick: isClickable ? () => handleComponentClick(component) : undefined,
-      disabled: isLoading || !!boundaryLoading,
-      style: {
-        cursor: isClickable ? 'pointer' : 'default',
-        opacity: isLoading ? 0.6 : 1
-      }
+      disabled: isLoading || !!boundaryLoading
     };
 
     if (finalConfig.layout === 'tags') {
@@ -169,37 +165,15 @@ export function AddressBreakdownCard({
     }
 
     // List layout - ΙΕΡΑΡΧΙΚΗ ΕΜΦΑΝΙΣΗ
-    return (
-      <Box
-        key={component.id}
-        {...componentProps}
-        className={`list-item ${componentProps.className}`}
-        style={{
-          ...componentProps.style,
-          padding: 'var(--la-space-sm-plus-xs)', // 🎯 SST: Complex spacing token
-          borderRadius: `${BORDER_RADIUS_SCALE.INPUT}px`,
-          marginBottom: 'var(--la-space-2)', // 🎯 SST: SM spacing
-          border: 'var(--la-border-default-style, 1px solid var(--la-border-default))',
-          transition: 'var(--la-transition-smooth, all 0.2s ease-in-out)',
-          backgroundColor: isClickable ? 'var(--la-bg-primary)' : 'var(--la-bg-secondary)',
-          textAlign: 'left' as const, // Ευθυγράμμιση προς τα αριστερά
-          ...(isClickable && {
-            ':hover': {
-              backgroundColor: 'var(--la-bg-secondary)',
-              borderColor: 'var(--la-border-hover)',
-              transform: 'translateY(-1px)',
-              boxShadow: BOX_SHADOW_SCALE.cardHover
-            }
-          })
-        }}
-      >
-        <Box className="list-item-content" style={{
-          display: 'var(--la-display-flex, flex)',
-          alignItems: 'var(--la-align-center, center)',
-          justifyContent: 'var(--la-justify-start, flex-start)', // Ευθυγράμμιση προς τα αριστερά
-          gap: 'var(--la-space-2)', // 🎯 SST: SM spacing
-          width: 'var(--la-width-full, 100%)'
-        }}>
+    if (isClickable) {
+      return (
+        <Button
+          key={component.id}
+          variant="outline"
+          {...componentProps}
+          className={`address-breakdown-list-item ${isLoading ? 'loading' : ''}`}
+        >
+        <Box className="list-item-content">
           {isLoading ? (
             <Spinner size="sm" />
           ) : isClickable ? (
@@ -207,28 +181,12 @@ export function AddressBreakdownCard({
           ) : (
             <LocationIcon />
           )}
-          <span className="list-label" style={{
-            flex: 'var(--la-flex-1, 1)',
-            fontSize: 'var(--la-font-size-sm)',
-            color: isClickable ? 'var(--la-text-primary)' : 'var(--la-text-secondary)',
-            fontWeight: isClickable ? 'var(--la-font-weight-medium, 500)' : 'var(--la-font-weight-normal, 400)',
-            textAlign: 'left' as const, // Ευθυγράμμιση κειμένου προς τα αριστερά
-            whiteSpace: 'var(--la-white-space-nowrap, nowrap)',
-            overflow: 'var(--la-overflow-hidden, hidden)',
-            textOverflow: 'var(--la-text-overflow-ellipsis, ellipsis)'
-          }}>
+          <span className={`list-label ${isClickable ? 'clickable' : 'not-clickable'}`}>
             {component.label}
           </span>
         </Box>
         {isLoading && (
-          <Box className="loading-indicator" style={{
-            marginTop: 'var(--la-space-1)', // 🎯 SST: XS spacing token
-            fontSize: 'var(--la-font-size-xs)',
-            color: 'var(--la-text-secondary)',
-            display: 'var(--la-display-flex, flex)',
-            alignItems: 'var(--la-align-center, center)',
-            gap: `${SPACING_SCALE.SM}px`
-          }}>
+          <Box className="loading-indicator">
             <span>Αναζήτηση περιγράμματος...</span>
             <Text
               as="span"
@@ -240,7 +198,7 @@ export function AddressBreakdownCard({
             </Text>
           </Box>
         )}
-      </Box>
+      </Button>
     );
   };
 
@@ -270,7 +228,7 @@ export function AddressBreakdownCard({
       actions={cardActions}
       className={`address-breakdown-card ${finalConfig.className || ''}`}
       onClick={onClick ? () => onClick({} as React.MouseEvent<HTMLDivElement>) : undefined}
-      style={style}
+      {...(style && { style })}
     >
       {error && (
         <Box className="error-message">
@@ -286,12 +244,7 @@ export function AddressBreakdownCard({
 
       {/* Instruction text μία φορά στην κορυφή */}
       {!isLoading && visibleComponents.some(c => c.clickable) && finalConfig.enableBoundarySearch && (
-        <Box style={{
-          fontSize: 'var(--la-font-size-sm)',
-          color: 'var(--la-text-secondary)',
-          marginBottom: 'var(--la-space-sm-plus-xs)', // 🎯 SST: Complex spacing token
-          fontStyle: 'var(--la-font-style-italic, italic)'
-        }}>
+        <Box className="la-instruction-text">
           {t('clickToShowBoundary')}
         </Box>
       )}

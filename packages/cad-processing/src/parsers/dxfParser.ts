@@ -102,7 +102,9 @@ export class LayeraDXFParser {
     }
 
     // Check file size
-    if (content.length > 50 * 1024 * 1024) { // 50MB
+    const MAX_FILE_SIZE_MB = 50;
+    const BYTES_PER_MB = 1024 * 1024;
+    if (content.length > MAX_FILE_SIZE_MB * BYTES_PER_MB) { // 50MB limit
       this.warnings.push({
         code: 'LARGE_FILE',
         message: 'Large DXF file detected - processing may take time',
@@ -436,7 +438,7 @@ export class LayeraDXFParser {
     if (typeof colorValue === 'number') {
       return { type: 'index', value: colorValue };
     }
-    return { type: 'index', value: 7 }; // Default white
+    return { type: 'index', value: 7 }; // Default color index
   }
 
   private mapDXFUnits(unitsCode: number): 'mm' | 'cm' | 'm' | 'in' | 'ft' | 'mil' | 'units' {

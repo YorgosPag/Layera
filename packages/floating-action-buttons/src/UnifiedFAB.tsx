@@ -16,7 +16,7 @@ import React, { useState, useRef, useEffect } from 'react';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Box } from '@layera/layout';
 import { useLayeraTranslation } from '@layera/tolgee';
-import { BORDER_RADIUS_SCALE, SPACING_SCALE } from '@layera/constants';
+import { BORDER_RADIUS_SCALE, SPACING_SCALE, CSS_DESIGN_TOKENS } from '@layera/constants';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FABProps, ResponsiveFABConfig, DeviceType, FABVariant, VARIANT_COLORS } from './types';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -62,7 +62,7 @@ export const UnifiedFAB: React.FC<FABProps> = ({
   title,
   'data-testid': testId,
   style,
-  zIndex = 9999,
+  zIndex = 1000, // Design token equivalent - enterprise z-index system
   // ENTERPRISE: Draggable props
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   draggable = false,
@@ -192,7 +192,7 @@ export const UnifiedFAB: React.FC<FABProps> = ({
       aria-label={finalAriaLabel}
       title={finalTitle}
       data-testid={testId}
-      style={style}
+      {...(style && { style })}
     >
       {icon}
     </DraggableFAB>

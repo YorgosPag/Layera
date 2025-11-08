@@ -18,7 +18,7 @@
 }
 
 .la-form-section-collapsible .la-form-section-header {
-  cursor: pointer;
+  cursor: var(--la-cursor-pointer);
   padding: var(--la-space-2);
   border-radius: var(--la-radius-md);
   transition: background-color 0.15s ease;
@@ -29,8 +29,8 @@
 }
 
 .la-form-section-collapsible .la-form-section-header:focus {
-  outline: 0.125rem solid var(--la-color-brand);
-  outline-offset: 0.125rem;
+  outline: var(--la-space-4) solid var(--la-color-brand);
+  outline-offset: var(--la-space-4);
 }
 
 .la-form-section-icon {
@@ -50,7 +50,7 @@
 .la-form-section-title {
   margin: var(--la-size-0);
   font-size: var(--la-font-size-xl);
-  font-weight: 600;
+  font-weight: var(--la-font-weight-semibold);
   color: var(--la-color-text-primary);
   line-height: var(--la-line-height-relaxed);
 }
@@ -80,7 +80,7 @@
 }
 
 .la-form-section-content {
-  transition: all 0.15s ease;
+  transition: var(--la-transition-fast);
 }
 
 .la-form-section-collapsed .la-form-section-content {

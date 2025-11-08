@@ -15,6 +15,7 @@ import { useOccupationSearch } from '../hooks/useOccupationSearch';
 import { OccupationCard } from './OccupationCard';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import type { Occupation } from '../types/occupation';
+import './OccupationSearch.css';
 
 export interface OccupationSearchProps {
   /** Search placeholder text */
@@ -109,11 +110,7 @@ export const OccupationSearch: React.FC<OccupationSearchProps> = ({
         </Flex>
 
         {/* Search Input */}
-        <Box style={{
-          background: 'var(--color-bg-surface-strong)',
-          borderRadius: `${BORDER_RADIUS_SCALE.CARD}px`,
-          padding: `${SPACING_SCALE.MD}px`
-        }}>
+        <Box className="la-occupation-search-container">
           <Stack spacing="sm">
             <Box position="relative">
               <input
@@ -121,14 +118,7 @@ export const OccupationSearch: React.FC<OccupationSearchProps> = ({
                 value={searchInput}
                 onChange={handleSearchInputChange}
                 placeholder={placeholder || t('employment.search.placeholder', 'π.χ. Προγραμματιστής, Δικηγόρος, Γιατρός...')}
-                style={{
-                  width: 'var(--la-width-full, 100%)',
-                  padding: 'var(--la-input-padding-complex)', // 🎯 SST: Complex input padding token
-                  border: 'var(--la-border-default-style, 1px solid var(--la-border-default))',
-                  borderRadius: 'var(--la-radius-sm)', // 🎯 SST: Border radius token
-                  fontSize: 'var(--la-font-size-base)',
-                  backgroundColor: 'var(--la-bg-primary)'
-                }}
+                className="la-occupation-search-input"
               />
 
               {hasQuery && (
@@ -136,12 +126,7 @@ export const OccupationSearch: React.FC<OccupationSearchProps> = ({
                   variant="ghost"
                   size="sm"
                   onClick={handleClear}
-                  style={{
-                    position: 'absolute',
-                    right: `${SPACING_SCALE.SM}px`,
-                    top: 'var(--la-position-center-y, 50%)',
-                    transform: 'var(--la-transform-center-y, translateY(-50%))'
-                  }}
+                  className="la-occupation-search-clear-button"
                 >
                   <CloseIcon size="sm" />
                 </Button>

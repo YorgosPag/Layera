@@ -8,7 +8,7 @@
 
   /* Base Properties */
   --la-theme-switcher-font-family: system-ui, -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, sans-serif;
-  --la-theme-switcher-font-weight: 500;
+  --la-theme-switcher-font-weight: var(--la-font-weight-medium);
   --la-theme-switcher-border-radius: var(--la-radius-md);
   --la-theme-switcher-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -37,20 +37,7 @@
 }
 
 /* Dark Theme Support */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --la-theme-switcher-bg: var(--la-color-slate-800);
-    --la-theme-switcher-color: var(--la-color-slate-100);
-    --la-theme-switcher-border: var(--la-color-slate-700);
-    --la-theme-switcher-hover-bg: var(--la-color-slate-700);
-    --la-theme-switcher-hover-color: var(--la-color-slate-50);
-    --la-theme-switcher-hover-border: var(--la-color-slate-600);
-    --la-theme-switcher-active-bg: var(--la-color-slate-600);
-    --la-theme-switcher-dropdown-bg: var(--la-color-slate-800);
-    --la-theme-switcher-dropdown-shadow: var(--la-shadow-lg-dark);
-    --la-theme-switcher-dropdown-border: var(--la-color-gray-600);
-  }
-}
+/* Dark theme handled by .dark class below */
 
 /* Manual Dark Theme (με class) */
 .dark {
@@ -76,7 +63,7 @@
   justify-content: center;
   cursor: var(--la-cursor-pointer);
   user-select: var(--la-user-select-none);
-  border: 0.063rem solid var(--la-theme-switcher-border);
+  border: var(--la-space-4) solid var(--la-theme-switcher-border);
   border-radius: var(--la-radius-md);
   background-color: var(--la-theme-switcher-bg);
   color: var(--la-theme-switcher-color);
@@ -98,12 +85,12 @@
   }
 
   &:focus-visible {
-    outline: none;
+    outline: var(--la-border-none);
     box-shadow: var(--la-shadow-focus);
   }
 
   &:disabled {
-    opacity: 0.6;
+    opacity: var(--la-space-0).6;
     cursor: var(--la-cursor-not-allowed);
   }
 }
@@ -155,7 +142,7 @@
 /* Button Variant */
 .layera-theme-switcher-button {
   width: auto;
-  padding: var(--la-space-2) var(--la-space-4);
+  padding: var(--la-space-4);
   gap: var(--la-space-2);
 }
 
@@ -173,10 +160,10 @@
 
 .layera-theme-switcher-trigger {
   width: auto;
-  padding: var(--la-space-3) var(--la-space-4);
+  padding: var(--la-space-4);
   gap: var(--la-space-2);
   background-color: var(--la-theme-switcher-bg);
-  border: 0.063rem solid var(--la-theme-switcher-border);
+  border: var(--la-space-4) solid var(--la-theme-switcher-border);
   border-radius: var(--la-radius-md);
   cursor: var(--la-cursor-pointer);
   display: flex;
@@ -192,7 +179,7 @@
   }
 
   &:focus-visible {
-    outline: none;
+    outline: var(--la-border-none);
     box-shadow: var(--la-shadow-focus);
   }
 }
@@ -216,8 +203,8 @@
   border-radius: var(--la-radius-md);
   box-shadow: var(--la-theme-switcher-dropdown-shadow);
   z-index: var(--la-z-dropdown);
-  min-width: 100%;
-  opacity: 1;
+  min-width: var(--la-size-full);
+  opacity: var(--la-opacity-full);
   visibility: visible;
   transform: translateY(0);
   transition: var(--la-theme-switcher-transition);
@@ -240,13 +227,13 @@
 }
 
 .layera-theme-switcher-option {
-  width: 100%;
+  width: var(--la-size-full);
   display: flex;
   align-items: center;
   gap: var(--la-space-3);
-  padding: var(--la-space-3) var(--la-space-4);
+  padding: var(--la-space-4);
   background: var(--la-bg-transparent);
-  border: none;
+  border: var(--la-border-none);
   text-align: left;
   cursor: var(--la-cursor-pointer);
   font-family: var(--la-font-family-sans);
@@ -259,7 +246,7 @@
   }
 
   &:focus-visible {
-    outline: none;
+    outline: var(--la-border-none);
     background-color: var(--la-theme-switcher-hover-bg);
   }
 
@@ -276,7 +263,7 @@
 
 .layera-theme-switcher-option-active {
   background-color: var(--la-theme-switcher-active-bg);
-  font-weight: 600;
+  font-weight: var(--la-font-weight-semibold);
 }
 
 .layera-theme-switcher-option-icon {
@@ -309,11 +296,11 @@
 /* High Contrast Mode Support */
 @media (prefers-contrast: more) {
   .layera-theme-switcher {
-    border-width: 0.125rem;
+    border-width: var(--la-space-4);
   }
 
   .layera-theme-switcher:focus-visible {
-    outline: 0.1875rem solid;
+    outline: var(--la-space-4) solid;
     outline-offset: var(--la-space-0-5);
   }
 }

@@ -2,6 +2,9 @@
  * Address parsing utilities που χρησιμοποιούν το @layera/geocoding
  */
 
+// 🎯 IMPORT SINGLE SOURCE OF TRUTH - από @layera/constants
+import { ADDRESS_PARSING } from '@layera/constants';
+
 // Temporarily inline GeocodeResult to avoid build dependency issues
 interface Coordinates {
   latitude: number;
@@ -218,6 +221,7 @@ export function parseFullAddress(result: GeocodeResult): AddressComponent[] {
       'country': 7
     };
 
-    return (typePriority[a.type] || 999) - (typePriority[b.type] || 999);
+    const DEFAULT_PRIORITY = ADDRESS_PARSING.DEFAULT_PRIORITY; // Default priority for unknown address types - sorting constant
+    return (typePriority[a.type] || DEFAULT_PRIORITY) - (typePriority[b.type] || DEFAULT_PRIORITY);
   });
 }

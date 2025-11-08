@@ -86,7 +86,8 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
   useEffect(() => {
     if (drawingPoints.length >= 3) {
       // NOTE: Χρήση @layera/geo-drawing calculateProjectedArea - Pending LEGO system integration
-      const area = 1000; // Temporary placeholder
+      const TEMP_AREA_PLACEHOLDER = 1000; // Temporary placeholder for @layera/geo-drawing integration
+      const area = TEMP_AREA_PLACEHOLDER;
       setCurrentArea(area);
     }
   }, [drawingPoints]);
@@ -157,7 +158,7 @@ export const InteractiveAreaMeasurement: React.FC<InteractiveAreaMeasurementProp
   };
 
   return (
-    <Box style={style}>
+    <Box>
       <BaseCard
         variant="property"
         padding="var(--la-space-6)" // 🎯 SST: LG spacing (24px)

@@ -8,7 +8,7 @@ import React, { useCallback, useState } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { BaseCard } from '@layera/cards';
 import { CheckIcon } from '@layera/icons';
-import { SPACING_SCALE, BORDER_RADIUS_SCALE, getCardSuccessColor } from '@layera/constants';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE, getCardSuccessColor, Z_INDEX_LAYERS } from '@layera/constants';
 import { Text } from '@layera/typography';
 import { Box } from '@layera/layout';
 import type { StepProps } from '../types';
@@ -106,7 +106,7 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({
     top: 'var(--la-cards-top, 120px)', // Fallback value
     left: 'var(--la-space-6)',        // 🎯 SST: LG margin (24px) consistent με AreaMethodStep
     right: 'var(--la-space-6)',       // 🎯 SST: LG margin (24px) consistent με AreaMethodStep
-    zIndex: 1000,
+    zIndex: Z_INDEX_LAYERS.STEPS_OVERLAY,
     display: 'flex',
     flexDirection: 'column',
     gap: 'var(--la-space-4)', // 🎯 SST: MD gap (16px)
@@ -115,7 +115,7 @@ export const LayoutStep: React.FC<LayoutStepProps> = ({
   };
 
   return (
-    <Box style={containerStyles}>
+    <Box>
       {/* Layout Tools */}
       {layoutTools.map((tool: LayoutToolOption) => (
         <BaseCard

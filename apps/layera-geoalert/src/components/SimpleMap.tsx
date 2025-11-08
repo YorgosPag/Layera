@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { SPACING_SCALE, BORDER_RADIUS_SCALE, getCardOrangeColor } from '@layera/constants';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE, getCardOrangeColor, CONFIG, ANIMATION_DURATIONS } from '@layera/constants';
 import { Box, FlexCenter } from '@layera/layout';
 
 const SimpleMap: React.FC = () => {
@@ -31,7 +31,7 @@ const SimpleMap: React.FC = () => {
           // Καθαρίζουμε το container πρώτα
           mapContainer.innerHTML = '';
 
-          const map = L.default.map('simple-map').setView([37.9755, 23.7348], 13);
+          const map = L.default.map('simple-map').setView(CONFIG.map.defaultCenter, CONFIG.map.defaultZoom);
 
           L.default.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
@@ -45,7 +45,7 @@ const SimpleMap: React.FC = () => {
     };
 
     // Περιμένουμε λίγο για να φορτωθεί το CSS
-    setTimeout(initMap, 1000);
+    setTimeout(initMap, ANIMATION_DURATIONS.EXTRA_SLOW);
 
     return () => {
       // Cleanup function

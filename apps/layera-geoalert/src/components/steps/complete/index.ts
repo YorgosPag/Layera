@@ -4,13 +4,14 @@
 
 import { stepRegistry } from '../StepRegistry';
 import { CompleteStep } from './CompleteStep';
+import { WORKFLOW_ORDER } from '@layera/constants';
 
 // 🚀 AUTO-REGISTRATION: Καταχώρηση του complete step στο StepRegistry
 stepRegistry.register({
   id: 'complete',
   name: 'Ολοκλήρωση',
   component: CompleteStep,
-  order: 100,
+  order: WORKFLOW_ORDER.COMPLETION,
   isVisible: true,
   cards: [],
   // ✅ ΔΙΟΡΘΩΣΗ: Complete Step εμφανίζεται μόνο μετά από τουλάχιστον έναν κύκλο

@@ -8,6 +8,7 @@ import React, { useState, useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Select } from '@layera/forms';
 import { Box, Flex } from '@layera/layout';
+import { ANIMATION_DURATIONS } from '@layera/constants';
 import type { PropertyType, PropertyTypeStepData } from './types';
 import type { StepProps } from '../types';
 
@@ -83,7 +84,7 @@ export const PropertyTypeSelector: React.FC<PropertyTypeSelectorProps> = ({
       // Auto-advance μετά από μικρή καθυστέρηση
       setTimeout((): void => {
         onNext?.();
-      }, 500);
+      }, ANIMATION_DURATIONS.PROPERTY_TYPE_SELECTION);
 
     } catch (error) {
       console.error('Property type selection failed:', error);

@@ -44,12 +44,12 @@ export default {
       }
     }
   },
-  source: ['packages/tokens/src/tokens.json'],
+  source: ['src/tokens.json'],
   platforms: {
     css: {
       // ΜΗΝ χρησιμοποιείς group
       transforms: ['attribute/cti', 'name/kebab-restore', 'color/css'],
-      buildPath: 'packages/tokens/dist/css/',
+      buildPath: 'dist/css/',
       prefix: 'la',
       files: [{
         destination: 'tokens.css',
@@ -60,7 +60,7 @@ export default {
     },
     ts: {
       transformGroup: 'js',
-      buildPath: 'packages/tokens/dist/ts/',
+      buildPath: 'dist/ts/',
       files: [
         {
           destination: 'index.ts',

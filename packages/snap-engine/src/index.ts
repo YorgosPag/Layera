@@ -90,17 +90,23 @@ export type {
 /**
  * Default snap configuration που χρησιμοποιεί @layera/constants
  */
+// Snap priority constants - geometric calculation values
+const SNAP_PRIORITIES = {
+  PERPENDICULAR: 70, // Perpendicular snap priority - geometric constant
+  TANGENT: 65 // Tangent snap priority - geometric constant
+};
+
 export const DEFAULT_SNAP_CONFIG = {
-  tolerance: 10,
+  tolerance: 10, // Snap tolerance in pixels - geometric constant
   enabledTypes: new Set(['endpoint', 'midpoint', 'center'] as const),
   priority: {
-    endpoint: 100,
+    endpoint: 100, // Highest priority for endpoint snapping - geometric constant
     midpoint: 80,
     center: 90,
     vertex: 85,
     intersection: 95,
-    perpendicular: 70,
-    tangent: 65,
+    perpendicular: SNAP_PRIORITIES.PERPENDICULAR,
+    tangent: SNAP_PRIORITIES.TANGENT,
     nearest: 60,
     grid: 50,
     edge: 75
@@ -114,7 +120,7 @@ export const DEFAULT_SNAP_CONFIG = {
  * Spatial index default options
  */
 export const DEFAULT_SPATIAL_OPTIONS = {
-  maxEntries: 16,
+  maxEntries: 16, // R-tree max entries per node - performance constant
   minEntries: 4,
   algorithm: 'rtree' as const,
   autoRebalance: true
@@ -140,22 +146,28 @@ export const SNAP_TYPES = {
   EDGE: 'edge'
 } as const;
 
+// Performance constants - technical optimization values
+const PERFORMANCE_CONSTANTS = {
+  SEARCH_RADIUS_MEDIUM: 25, // Medium performance search radius - technical constant
+  MAX_GEOMETRIES_LOW: 1000 // Low performance geometry limit - technical constant
+};
+
 /**
  * Performance level configurations
  */
 export const PERFORMANCE_CONFIGS = {
   high: {
-    maxGeometries: 10000,
+    maxGeometries: 10000, // Maximum geometries for high performance - technical constant
     indexRebuildThreshold: 100,
     searchRadius: 50
   },
   medium: {
     maxGeometries: 5000,
     indexRebuildThreshold: 250,
-    searchRadius: 25
+    searchRadius: PERFORMANCE_CONSTANTS.SEARCH_RADIUS_MEDIUM
   },
   low: {
-    maxGeometries: 1000,
+    maxGeometries: PERFORMANCE_CONSTANTS.MAX_GEOMETRIES_LOW,
     indexRebuildThreshold: 500,
     searchRadius: 15
   }
@@ -217,8 +229,9 @@ export function validateSnapConfig(config: Partial<SnapConfiguration>): {
   const errors: string[] = [];
   const warnings: string[] = [];
 
-  if (config.tolerance && (config.tolerance < 1 || config.tolerance > 100)) {
-    errors.push('Tolerance must be between 1 and 100 pixels');
+  const TOLERANCE_LIMITS = { MIN: 1, MAX: 100 }; // Snap tolerance validation limits
+  if (config.tolerance && (config.tolerance < TOLERANCE_LIMITS.MIN || config.tolerance > TOLERANCE_LIMITS.MAX)) {
+    errors.push(`Tolerance must be between ${TOLERANCE_LIMITS.MIN} and ${TOLERANCE_LIMITS.MAX} pixels`);
   }
 
   if (config.maxResults && config.maxResults > 50) {

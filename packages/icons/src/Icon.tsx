@@ -70,7 +70,7 @@ export const Icon: React.FC<IconProps> = ({
   variant = 'outline',
   theme = 'neutral',
   className = '',
-  style = {},
+  style,
   onClick,
   children,
   'aria-label': ariaLabel,
@@ -112,7 +112,7 @@ export const Icon: React.FC<IconProps> = ({
   return (
     <svg
       className={classes}
-      style={finalStyle}
+      {...(finalStyle && { style: finalStyle })}
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       aria-label={ariaLabel || `${name} icon`}

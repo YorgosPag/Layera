@@ -9,7 +9,9 @@
       "types": "./dist/index.d.ts",
       "require": "./dist/index.js",
       "default": "./dist/index.js"
-    }
+    },
+    "./src/icons/*": "./src/icons/*",
+    "./dist/icons/*": "./dist/icons/*"
   },
   "files": [
     "dist",

@@ -33,15 +33,21 @@ export const ERROR_MESSAGES = {
   HIDE_DETAILS: 'Απόκρυψη λεπτομερειών'
 } as const;
 
+// 🎯 IMPORT SINGLE SOURCE OF TRUTH - από @layera/constants
+import { ICON_SIZES } from '@layera/constants';
+
 export const ERROR_ICON_SIZES = {
-  small: 24,
-  medium: 32,
-  large: 48,
-  xl: 64
+  small: ICON_SIZES.SMALL,
+  medium: ICON_SIZES.MEDIUM,
+  large: ICON_SIZES.LARGE,
+  xl: ICON_SIZES.XL
 } as const;
 
+// 🎯 IMPORT ANIMATION CONSTANTS - από @layera/constants
+import { ANIMATION_DURATIONS } from '@layera/constants';
+
 export const ERROR_ANIMATION_DURATIONS = {
-  fast: 150,
-  normal: 300,
-  slow: 500
+  fast: ANIMATION_DURATIONS.FAST,
+  normal: ANIMATION_DURATIONS.NORMAL,
+  slow: ANIMATION_DURATIONS.SLOW
 } as const;

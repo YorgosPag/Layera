@@ -5,6 +5,8 @@
  * που προκαλεί cursor flickering/conflicts.
  */
 
+import { CONFIG } from '@layera/constants';
+
 export interface CursorDebugOptions {
   panelSelector: string;
   mapSelector?: string;
@@ -22,7 +24,7 @@ declare global {
  * Εγκαθιστά comprehensive cursor debugging για ανίχνευση conflicts
  */
 export function installCursorDebug(opts: CursorDebugOptions) {
-  const { panelSelector, mapSelector = '.leaflet-container', throttleMs = 120 } = opts;
+  const { panelSelector, mapSelector = '.leaflet-container', throttleMs = CONFIG.debug.cursorThrottleMs } = opts;
 
   const log = (...args: unknown[]) => {
     // Debug logging disabled in production
@@ -43,7 +45,7 @@ export function installCursorDebug(opts: CursorDebugOptions) {
 
     // Get element stack at cursor position
     const elementStack = document.elementsFromPoint(e.clientX, e.clientY)
-      .slice(0, 6)
+      .slice(0, CONFIG.debug.maxElementStackSize)
       .map(el => {
         const element = el as HTMLElement;
         return element.className || element.id || element.tagName;
@@ -126,7 +128,7 @@ export function installCursorDebug(opts: CursorDebugOptions) {
   // Install helper function για manual debugging
   window.__who = (x: number, y: number) =>
     document.elementsFromPoint(x, y)
-      .map(element => (element as HTMLElement).outerHTML.slice(0, 80));
+      .map(element => (element as HTMLElement).outerHTML.slice(0, CONFIG.debug.maxHTMLSliceLength));
 
   // Cleanup function
   return () => {
@@ -153,7 +155,7 @@ export function installLiveStackDebug() {
     if (!window.__LAYERA_DEBUG_CURSOR) return;
 
     const stack = document.elementsFromPoint(e.clientX, e.clientY)
-      .slice(0, 5)
+      .slice(0, CONFIG.debug.maxLiveStackSize)
       .map(node => {
         const element = node as HTMLElement;
         return element.className || element.nodeName;

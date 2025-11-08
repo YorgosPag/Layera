@@ -10,12 +10,13 @@
 import React, { useCallback, useState } from 'react';
 
 // Enterprise LEGO Design System imports
-import { SPACING_SCALE, getCardInfoColor } from '@layera/constants';
+import { SPACING_SCALE, getCardInfoColor, FILE_SIZE_CONSTANTS } from '@layera/constants';
 import { FileUploader, DEFAULT_UPLOAD_CONFIG } from '@layera/file-upload';
 import { CheckIcon, ArrowRightIcon } from '@layera/icons';
 import { Flex } from '@layera/layout';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Text } from '@layera/typography';
+import { FORM_CONFIG } from '../../../constants';
 
 // Enhanced LEGO BaseCard με unified features
 import { BaseCard } from '@layera/cards';
@@ -47,8 +48,8 @@ export const UploadStep: React.FC<UploadStepProps> = React.memo(({
   // Enterprise Upload Configuration
   const uploadConfig: FileUploadConfig = {
     ...DEFAULT_UPLOAD_CONFIG,
-    maxFileSize: 50 * 1024 * 1024, // 50MB για real estate files
-    maxTotalSize: 200 * 1024 * 1024, // 200MB total
+    maxFileSize: 50 * FILE_SIZE_CONSTANTS.BYTES_IN_KB * FILE_SIZE_CONSTANTS.BYTES_IN_KB, // 50MB για real estate files
+    maxTotalSize: FORM_CONFIG.validation.maxValues.totalFileSize, // 200MB total
     maxConcurrent: 2, // Mobile-optimized
     autoUpload: false, // User-controlled upload
     acceptedTypes: [
@@ -142,7 +143,7 @@ export const UploadStep: React.FC<UploadStepProps> = React.memo(({
       top="var(--la-cards-top)"
       left="var(--la-side-margins)"
       right="var(--la-side-margins)"
-      zIndex={10002}
+      zIndex={FORM_CONFIG.zIndex.modalOverlay}
       gap="var(--la-cards-gap)"
       padding="none"
     >
@@ -155,7 +156,7 @@ export const UploadStep: React.FC<UploadStepProps> = React.memo(({
             description={t('upload.description', 'Προσθέστε φωτογραφίες και έγγραφα')}
             icon={<CheckIcon size="sm" theme="neutral" />}
             onClick={handleShowUploader}
-            style={{ backgroundColor: getCardInfoColor() }} // 🔴 SST: Upload card color από μοναδική πηγή αλήθειας
+            backgroundColor="card-info" // 🎯 SST: Upload card color από design tokens
             data-testid="upload-show-card"
           />
 

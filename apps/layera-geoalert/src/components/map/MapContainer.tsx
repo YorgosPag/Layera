@@ -14,7 +14,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { MapProvider, useMap } from '@layera/map-core';
 // ✅ ENTERPRISE APPROACH: Βραχυπρόθεσμη λύση - χρήση local implementation until @layera/geo-drawing build succeeds
 // import { useDrawing, DrawingMode } from '@layera/geo-drawing';
-import { SPACING_SCALE, BORDER_RADIUS_SCALE, DEVICE_BREAKPOINTS, getCardSuccessColor } from '@layera/constants';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE, DEVICE_BREAKPOINTS, getCardSuccessColor, LEAFLET_MARKER_DIMENSIONS, LEAFLET_ICON_SIZES } from '@layera/constants';
+import { MAP_CONFIG } from '../../constants';
 import { Flex, FlexCenter, Box } from '@layera/layout';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { useLayeraTranslation } from '@layera/tolgee';
@@ -80,12 +81,12 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
       position: relative;
       animation: pulse-location 2s infinite;
       transform-origin: center bottom;
-      filter: drop-shadow(0 2px 4px var(--color-shadow-default));
+      filter: drop-shadow(0 var(--la-space-half) var(--la-space-1) var(--color-shadow-default)); // 🎯 SST: 2px → space-half, 4px → space-1
     `;
 
     // Add the LocationIcon SVG with proper styling
     iconDiv.innerHTML = `
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg width="${LEAFLET_ICON_SIZES.STANDARD}" height="${LEAFLET_ICON_SIZES.STANDARD}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="var(--color-semantic-success-border)" stroke="var(--color-text-on-primary)" stroke-width="1"/>
       </svg>
     `;
@@ -98,15 +99,15 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
         @keyframes pulse-location {
           0% {
             transform: scale(1);
-            filter: drop-shadow(0 2px 4px var(--color-shadow-default));
+            filter: drop-shadow(0 var(--la-space-half) var(--la-space-1) var(--color-shadow-default)); // 🎯 SST: 2px → space-half, 4px → space-1
           }
           50% {
             transform: scale(1.15);
-            filter: drop-shadow(0 4px 8px var(--color-semantic-success-shadow));
+            filter: drop-shadow(0 var(--la-space-1) var(--la-space-2) var(--color-semantic-success-shadow)); // 🎯 SST: 4px → space-1, 8px → space-2
           }
           100% {
             transform: scale(1);
-            filter: drop-shadow(0 2px 4px var(--color-shadow-default));
+            filter: drop-shadow(0 var(--la-space-half) var(--la-space-1) var(--color-shadow-default)); // 🎯 SST: 2px → space-half, 4px → space-1
           }
         }
 
@@ -131,8 +132,8 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
     return L.divIcon({
       html: iconDiv.outerHTML,
       className: 'user-location-marker',
-      iconSize: [32, 32],
-      iconAnchor: [16, 32] // Η μύτη του marker να είναι στο σημείο της θέσης
+      iconSize: [LEAFLET_MARKER_DIMENSIONS.DEFAULT.width, LEAFLET_MARKER_DIMENSIONS.DEFAULT.height], // From @layera/constants SSOT
+      iconAnchor: [LEAFLET_MARKER_DIMENSIONS.DEFAULT.width / 2, LEAFLET_MARKER_DIMENSIONS.DEFAULT.height] // Calculated from SSOT dimensions
     });
   };
 
@@ -190,8 +191,30 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
           const style = document.createElement('style');
           style.setAttribute('data-mobile-leaflet', 'true');
           style.textContent = `
+            /* Map container base styles */
+            .leaflet-map-absolute {
+              position: absolute !important;
+              top: 0 !important;
+              left: 0 !important;
+              right: 0 !important;
+              bottom: 0 !important;
+              width: 100% !important;
+              height: 100% !important;
+              min-height: 400px !important;
+            }
+
+            .leaflet-map-styled,
+            .leaflet-map-mobile {
+              width: 100% !important;
+              height: 100% !important;
+              min-height: 400px !important;
+              position: relative !important;
+            }
+
             .leaflet-map-mobile .leaflet-container {
               background: var(--la-color-white) !important;
+              width: 100% !important;
+              height: 100% !important;
             }
             .leaflet-map-mobile .leaflet-tile-pane {
               opacity: 1 !important;
@@ -216,6 +239,9 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
       addMobileCSS();
 
       // Wait for Leaflet CSS to be loaded and container to have dimensions
+      let retryCount = 0;
+      const maxRetries = 50; // Maximum 5 seconds of retrying
+
       const initMap = (): void => {
         if (!mapContainerRef.current) {
           initializingRef.current = false;
@@ -224,11 +250,16 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
 
         const hasValidSize = mapContainerRef.current.offsetWidth > 0 && mapContainerRef.current.offsetHeight > 0;
 
-        if (process.env.NODE_ENV === 'development') {}
-
         if (!hasValidSize) {
-          if (process.env.NODE_ENV === 'development') {
-            console.warn('⚠️ Container has zero dimensions, retrying...');
+          retryCount++;
+          if (retryCount >= maxRetries) {
+            console.error('❌ Map container never gained valid dimensions after 5 seconds');
+            initializingRef.current = false;
+            return;
+          }
+
+          if (process.env.NODE_ENV === 'development' && retryCount <= 3) {
+            console.warn(`⚠️ Container has zero dimensions, retrying... (${retryCount}/${maxRetries})`);
           }
           setTimeout(initMap, 100);
           return;
@@ -275,7 +306,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
             touchZoom: true,
             scrollWheelZoom: true,
             doubleClickZoom: true
-          }).setView([37.9755, 23.7348], 13);
+          }).setView([MAP_CONFIG.center.athens.lat, MAP_CONFIG.center.athens.lng], MAP_CONFIG.defaultZoom);
 
           // Add tile layer with mobile optimizations
           const tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -447,13 +478,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
         */}
         <div
           ref={mapContainerRef}
-          className="leaflet-map-mobile"
-          style={{
-            width: 'var(--la-width-full)',
-            height: 'var(--la-height-full)',
-            display: 'block',
-            position: 'relative'
-          }}
+          className="leaflet-map-mobile leaflet-map-styled"
         />
 
         {/* Drawing Status Indicator */}
@@ -525,16 +550,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
       */}
       <div
         ref={mapContainerRef}
-        style={{
-          position: 'absolute',
-          top: 'var(--la-space-0)',
-          left: 'var(--la-space-0)',
-          right: 'var(--la-space-0)',
-          bottom: 'var(--la-space-0)',
-          width: 'var(--la-size-full)',
-          height: 'var(--la-size-full)',
-          zIndex: 'var(--la-z-index-base)'
-        }}
+        className="leaflet-map-absolute"
       />
 
       {/* Areas List - ΑΦΑΙΡΕΘΗΚΕ για dark mode compatibility */}
@@ -592,7 +608,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
           </Flex>
         </Box>
       )}
-    </div>
+    </Box>
   );
 };
 

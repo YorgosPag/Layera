@@ -8,6 +8,7 @@
 import React from 'react';
 import { stepRegistry } from '../StepRegistry';
 import { OccupationStep } from './OccupationStep';
+import { SEARCH_LIMITS } from '@layera/constants';
 
 
 // 🚀 AUTO-REGISTRATION: Register this step in the registry
@@ -35,7 +36,7 @@ if (stepRegistry && typeof stepRegistry.register === 'function') {
     features: [
       'Real-time ESCO search',
       'EU official occupation taxonomy',
-      '3,007 available occupations',
+      `${SEARCH_LIMITS.TOTAL_ESCO_OCCUPATIONS.toLocaleString()} available occupations`,  // SSOT for ESCO count
       'Skills mapping integration'
     ]
   }

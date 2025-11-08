@@ -1,17 +1,15 @@
+import { RULER_CONFIG } from '../../constants';
+
 // Type for ruler mode
 export type RulerMode = 'degrees' | 'meters';
 export type TickDensity = 'low' | 'medium' | 'high';
 
-// Constants for styling and behavior
-export const RULER_SIZE = 40; // in pixels
+// Constants for styling and behavior - Using SSOT from constants
+export const RULER_SIZE = RULER_CONFIG.size;
 export const TICK_COLOR = 'var(--la-color-gray-600, var(--color-text-secondary))';
 export const RULER_BG = 'var(--la-bg-surface, var(--color-bg-surface))';
 export const GRID_COLOR = 'var(--la-text-secondary, var(--color-text-secondary))';
-export const DENSITY_FACTORS: Record<TickDensity, number> = {
-    low: 1.5,
-    medium: 1.0,
-    high: 0.7
-};
+export const DENSITY_FACTORS: Record<TickDensity, number> = RULER_CONFIG.tickDensityFactors;
 
 /**
  * Generates an array of "nice" numbers for ruler ticks within a given range.
@@ -25,13 +23,8 @@ export const getTicks = (min: number, max: number, maxTicks: number): number[] =
     if (range <= 0 || !isFinite(range) || maxTicks <= 0) return [];
 
     const roughTickSize = range / Math.max(maxTicks - 1, 1);
-    // A predefined list of "human-friendly" numbers for tick intervals
-    const goodNormalizedTicks = [
-        0.00001, 0.00002, 0.00005, 0.0001, 0.0002, 0.0005,
-        0.001, 0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5,
-        1, 2, 5, 10, 20, 50, 100, 200, 500,
-        1000, 2000, 5000, 10000, 20000, 50000, 100000
-    ];
+    // A predefined list of "human-friendly" numbers from SSOT configuration
+    const goodNormalizedTicks = RULER_CONFIG.goodNormalizedTicks;
     // Find the smallest "good" tick size that is larger than the rough calculated size
     const tickSize = goodNormalizedTicks.find(n => n > roughTickSize) ?? goodNormalizedTicks[goodNormalizedTicks.length - 1];
 

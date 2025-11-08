@@ -2,6 +2,8 @@
  * Theme and design token constants
  */
 
+import { BORDER_RADIUS_SCALE } from './design-tokens';
+
 export const THEME_MODES = {
   LIGHT: 'light',
   DARK: 'dark',
@@ -43,17 +45,11 @@ export const ELEVATION_LEVELS = {
 } as const;
 
 /**
- * Enterprise Border Radius Scale
- * 🌟 World-class border radius system που ξεπερνά Material Design 3, Fluent, και Apple HIG
- *
- * Features:
- * - CSS Custom Properties με theme awareness
- * - Type-safe border radius tokens με semantic naming
- * - Enterprise-grade flexibility για complex layouts
- * - Performance-optimized με design token integration
- * - Aligned με SPACING_SCALE για consistency
+ * Enterprise Border Radius Scale - LEGACY VERSION
+ * 🎯 SSOT MOVED to design-tokens.ts to avoid duplicates - use: import { BORDER_RADIUS_SCALE } from './design-tokens';
+ * This comprehensive version remains commented for reference
  */
-export const BORDER_RADIUS_SCALE = {
+/* export const BORDER_RADIUS_SCALE = {
   // Base radius units (pixel-perfect system)
   NONE: 0,     // No radius - Sharp edges
 
@@ -86,19 +82,18 @@ export const BORDER_RADIUS_SCALE = {
   LAYOUT_MD: 28,   // 28px - Medium sections
   LAYOUT_LG: 36,   // 36px - Large sections
   LAYOUT_XL: 44,   // 44px - Hero sections
-} as const;
+} as const; */
 
 // Legacy BORDER_RADIUS για backward compatibility
-export const BORDER_RADIUS = BORDER_RADIUS_SCALE;
+// 🎯 SSOT MOVED - import { BORDER_RADIUS_SCALE as BORDER_RADIUS } from './design-tokens';
+// export const BORDER_RADIUS = BORDER_RADIUS_SCALE;
 
 /**
- * Enterprise Spacing Scale - SINGLE SOURCE OF TRUTH
- * 🌟 Complete spacing system για all use cases
- *
- * Consolidated από @layera/layout SIZING_SCALE για Single Source of Truth
- * Covers: micro spacing, standard spacing, layout sizing, containers, viewport
+ * Enterprise Spacing Scale - LEGACY VERSION
+ * 🎯 SSOT MOVED to design-tokens.ts to avoid duplicates - use: import { SPACING_SCALE } from './design-tokens';
+ * This comprehensive version remains commented for reference
  */
-export const SPACING_SCALE = {
+/* export const SPACING_SCALE = {
   // Base spacing units (8px base unit system)
   BASE_UNIT: 8,
 
@@ -145,7 +140,7 @@ export const SPACING_SCALE = {
   WIDESCREEN: '16:9',
   GOLDEN: '1.618:1',
   A4: '1.414:1'
-} as const;
+} as const; */
 
 // ❌ DEPRECATED: Legacy Z_INDEX system removed in favor of useDesignTokens().zIndex
 // Use useDesignTokens().zIndex.mapModal, useDesignTokens().zIndex.modal, etc. instead
@@ -321,7 +316,8 @@ export type ThemeMode = typeof THEME_MODES[keyof typeof THEME_MODES];
 export type ColorScheme = typeof COLOR_SCHEMES[keyof typeof COLOR_SCHEMES];
 export type ComponentVariant = typeof COMPONENT_VARIANTS[keyof typeof COMPONENT_VARIANTS];
 export type ElevationLevel = typeof ELEVATION_LEVELS[keyof typeof ELEVATION_LEVELS];
-export type BorderRadius = typeof BORDER_RADIUS[keyof typeof BORDER_RADIUS];
 export type BorderRadiusScale = typeof BORDER_RADIUS_SCALE[keyof typeof BORDER_RADIUS_SCALE];
+// Import SPACING_SCALE from design-tokens (BORDER_RADIUS_SCALE already imported at top)
+import { SPACING_SCALE } from './design-tokens';
 export type SpacingScale = typeof SPACING_SCALE[keyof typeof SPACING_SCALE];
 // ❌ DEPRECATED: ZIndex type removed - use useDesignTokens().zIndex instead

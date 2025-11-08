@@ -8,6 +8,7 @@ import React, { useCallback } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { EmploymentTypeCard } from './EmploymentTypeCard';
 import { Box } from '@layera/layout';
+import { CONFIG } from '@layera/constants';
 import type { StepProps } from '../types';
 import type { EmploymentType, EmploymentTypeStepData, EmploymentTypeOption } from './types';
 
@@ -33,12 +34,12 @@ export const EmploymentTypeStep: React.FC<EmploymentTypeStepProps> = ({
     {
       id: 'full_time',
       title: 'Πλήρης Απασχόληση',
-      description: '40+ ώρες την εβδομάδα'
+      description: `${DEMO_PROPERTY_DATA.FULL_TIME_HOURS_THRESHOLD}+ ώρες την εβδομάδα`
     },
     {
       id: 'part_time',
       title: 'Μερική Απασχόληση',
-      description: 'Λιγότερες από 40 ώρες την εβδομάδα'
+      description: `Λιγότερες από ${DEMO_PROPERTY_DATA.FULL_TIME_HOURS_THRESHOLD} ώρες την εβδομάδα`
     },
     {
       id: 'freelance',
@@ -84,7 +85,7 @@ export const EmploymentTypeStep: React.FC<EmploymentTypeStepProps> = ({
     top: 'var(--la-cards-top)',
     left: 'var(--la-side-margins)',
     right: 'var(--la-side-margins)',
-    zIndex: 10002,
+    zIndex: 'var(--la-z-index-modal)', // Enterprise z-index system
     display: 'flex',
     flexDirection: 'column',
     gap: 'var(--la-cards-gap)',
@@ -92,7 +93,7 @@ export const EmploymentTypeStep: React.FC<EmploymentTypeStepProps> = ({
   };
 
   return (
-    <Box style={containerStyles}>
+    <Box>
       {employmentTypes.map((type: unknown) => (
         <EmploymentTypeCard
           key={type.id}

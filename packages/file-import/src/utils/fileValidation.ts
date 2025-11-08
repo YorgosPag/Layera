@@ -10,6 +10,9 @@ import {
   SupportedFormat
 } from '../types';
 
+// 🎯 IMPORT SINGLE SOURCE OF TRUTH - από @layera/constants
+import { FILE_SIZE_LIMITS, FILE_SYSTEM_LIMITS } from '@layera/constants';
+
 // Supported file types με metadata
 export const SUPPORTED_FILE_TYPES: Record<SupportedFormat, {
   mimeTypes: string[];
@@ -20,13 +23,13 @@ export const SUPPORTED_FILE_TYPES: Record<SupportedFormat, {
   // CAD files
   dxf: {
     mimeTypes: ['application/dxf', 'image/vnd.dxf', 'text/plain'],
-    maxSize: 500 * 1024 * 1024, // 500MB
+    maxSize: FILE_SIZE_LIMITS.CAD_MAX_MB * 1024 * 1024, // 500MB
     description: 'AutoCAD Drawing Exchange Format',
     category: 'cad'
   },
   dwg: {
     mimeTypes: ['application/acad', 'application/dwg', 'application/x-dwg'],
-    maxSize: 500 * 1024 * 1024, // 500MB
+    maxSize: FILE_SIZE_LIMITS.CAD_MAX_MB * 1024 * 1024, // 500MB
     description: 'AutoCAD Drawing',
     category: 'cad'
   },
@@ -34,7 +37,7 @@ export const SUPPORTED_FILE_TYPES: Record<SupportedFormat, {
   // Documents
   pdf: {
     mimeTypes: ['application/pdf'],
-    maxSize: 200 * 1024 * 1024, // 200MB
+    maxSize: FILE_SIZE_LIMITS.DOCUMENT_MAX_MB * 1024 * 1024, // 200MB
     description: 'Portable Document Format',
     category: 'document'
   },
@@ -42,37 +45,37 @@ export const SUPPORTED_FILE_TYPES: Record<SupportedFormat, {
   // Images
   jpg: {
     mimeTypes: ['image/jpeg'],
-    maxSize: 50 * 1024 * 1024, // 50MB
+    maxSize: FILE_SIZE_LIMITS.IMAGE_MAX_MB * 1024 * 1024, // 50MB
     description: 'JPEG Image',
     category: 'image'
   },
   jpeg: {
     mimeTypes: ['image/jpeg'],
-    maxSize: 50 * 1024 * 1024, // 50MB
+    maxSize: FILE_SIZE_LIMITS.IMAGE_MAX_MB * 1024 * 1024, // 50MB
     description: 'JPEG Image',
     category: 'image'
   },
   png: {
     mimeTypes: ['image/png'],
-    maxSize: 50 * 1024 * 1024, // 50MB
+    maxSize: FILE_SIZE_LIMITS.IMAGE_MAX_MB * 1024 * 1024, // 50MB
     description: 'PNG Image',
     category: 'image'
   },
   webp: {
     mimeTypes: ['image/webp'],
-    maxSize: 50 * 1024 * 1024, // 50MB
+    maxSize: FILE_SIZE_LIMITS.IMAGE_MAX_MB * 1024 * 1024, // 50MB
     description: 'WebP Image',
     category: 'image'
   },
   tiff: {
     mimeTypes: ['image/tiff', 'image/tif'],
-    maxSize: 100 * 1024 * 1024, // 100MB
+    maxSize: FILE_SIZE_LIMITS.IMAGE_LARGE_MB * 1024 * 1024, // 100MB
     description: 'TIFF Image',
     category: 'image'
   },
   bmp: {
     mimeTypes: ['image/bmp'],
-    maxSize: 25 * 1024 * 1024, // 25MB
+    maxSize: FILE_SIZE_LIMITS.IMAGE_SMALL_MB * 1024 * 1024, // 25MB
     description: 'Bitmap Image',
     category: 'image'
   },
@@ -80,7 +83,7 @@ export const SUPPORTED_FILE_TYPES: Record<SupportedFormat, {
   // Vector graphics
   svg: {
     mimeTypes: ['image/svg+xml'],
-    maxSize: 10 * 1024 * 1024, // 10MB
+    maxSize: FILE_SIZE_LIMITS.VECTOR_MAX_MB * 1024 * 1024, // 10MB
     description: 'Scalable Vector Graphics',
     category: 'vector'
   }
@@ -262,7 +265,7 @@ function formatFileSize(bytes: number): string {
 function isValidFileName(filename: string): boolean {
   // Allow letters, numbers, spaces, hyphens, underscores, and dots
   const validPattern = /^[a-zA-Z0-9\s._-]+$/;
-  return validPattern.test(filename) && filename.length <= 255;
+  return validPattern.test(filename) && filename.length <= FILE_SYSTEM_LIMITS.MAX_FILENAME_LENGTH;
 }
 
 function detectMimeTypeFromExtension(filename: string): string {

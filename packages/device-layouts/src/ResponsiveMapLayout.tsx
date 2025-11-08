@@ -82,7 +82,7 @@ export const ResponsiveMapLayout: React.FC<ResponsiveMapLayoutProps> = ({
       alignItems="center"
       justifyContent="center"
       cursor="pointer"
-      zIndex="9999"
+      zIndex="var(--la-z-index-popover)"
       userSelect="none"
     >
       {fab.icon}

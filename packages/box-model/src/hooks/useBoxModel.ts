@@ -10,6 +10,12 @@
  * - Enterprise-grade layout patterns
  */
 
+// 🎯 IMPORT SINGLE SOURCE OF TRUTH - από @layera/constants
+import { UI_Z_INDEX_LAYERS } from '@layera/constants';
+
+/**
+ */
+
 import { useMemo, useCallback } from 'react';
 import {
   BOX_MODEL_SCALE,
@@ -173,7 +179,7 @@ export const useLayoutPatterns = (): void => {
     stickyHeader: {
       position: 'sticky' as const,
       top: 0,
-      zIndex: 100,
+      zIndex: UI_Z_INDEX_LAYERS.OVERLAY,
       boxSizing: 'border-box' as const
     },
 

@@ -21,4 +21,4 @@ export { Text, Heading } from './components';
 export { useTypography } from './hooks';
 
 // CSS Styles - Αυτόματα import όταν χρησιμοποιείται το package
-import './styles/index.css';
+// import './styles/index.css'; // Temporarily disabled due to build issues

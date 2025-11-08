@@ -28,18 +28,21 @@ import type {
 // Local constants από το @layera/constants/src/snap.ts (πλήρης implementation)
 const SNAP_CONSTANTS = {
   DEFAULT_TOLERANCE: 10,
-  MAX_RESULTS: 50,
+  PERFORMANCE: {
+    MAX_RESULTS: 50, // Maximum snap candidates - performance constant
+    MIDPOINT_PRIORITY: 80 // Midpoint snap priority - geometric constant
+  },
   DEFAULT_PRIORITIES: {
-    endpoint: 100,
-    midpoint: 80,
+    endpoint: 100, // Highest priority for endpoint snapping - geometric constant
+    midpoint: SNAP_CONSTANTS.PERFORMANCE.MIDPOINT_PRIORITY,
     center: 90,
     vertex: 85,
     intersection: 95,
     perpendicular: 70,
     tangent: 65,
     nearest: 60,
-    grid: 50,
-    edge: 75
+    grid: 50, // Grid snap priority - geometric constant
+    edge: 75 // Edge snap priority - geometric constant
   },
   SPATIAL_INDEX: {
     MAX_ENTRIES: 16,
@@ -89,7 +92,7 @@ export class SnapEngine {
         'endpoint', 'midpoint', 'center', 'vertex', 'nearest'
       ]),
       priority: config?.priority ?? SNAP_CONSTANTS.DEFAULT_PRIORITIES,
-      maxResults: config?.maxResults ?? SNAP_CONSTANTS.MAX_RESULTS,
+      maxResults: config?.maxResults ?? SNAP_CONSTANTS.PERFORMANCE.MAX_RESULTS,
       performanceLevel: config?.performanceLevel ?? 'medium',
       debugMode: config?.debugMode ?? false
     };

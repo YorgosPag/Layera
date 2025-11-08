@@ -87,7 +87,22 @@ export const Flex: React.FC<FlexProps> = ({
     ...style
   };
 
-  // Only safe DOM props
+  // Only safe DOM props - filter out React-specific layout props
+  const {
+    alignItems,
+    justifyContent,
+    flexDirection,
+    flexWrap,
+    backdropFilter,
+    zIndex,
+    overflowY,
+    boxSizing,
+    borderRadius,
+    inset,
+    position,
+    ...filteredRestProps
+  } = restProps;
+
   const domProps = {
     id,
     role,
@@ -97,7 +112,7 @@ export const Flex: React.FC<FlexProps> = ({
     onClick,
     onMouseEnter,
     onMouseLeave,
-    ...restProps
+    ...filteredRestProps
   };
 
   const Component = as;

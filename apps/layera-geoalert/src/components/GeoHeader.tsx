@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
-import { LayeraHeader, HeaderActionsGroup, Flex } from '@layera/layout';
+import { LayeraHeader, HeaderActionsGroup, Flex, Box } from '@layera/layout';
+import { Text } from '@layera/typography';
 import { ThemeSwitcher, useTheme } from '@layera/theme-switcher';
 import { LanguageSwitcher } from '@layera/tolgee';
 import { Button } from '@layera/buttons';
@@ -60,7 +61,7 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, onStepBackCli
             icon={<ArrowLeftIcon size="sm" theme="neutral" />}
             iconPosition="only"
             title={t('header.backButton.title')}
-            style={{ color: 'var(--la-header-text)' }} // 🎯 SST: Header text token
+            color="header-text" // 🎯 SST: Header text token
           />
         )}
 
@@ -110,7 +111,7 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, onStepBackCli
         )}
 
         {/* Language & Theme Controls */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--la-gap-sm)' }}> {/* 🎯 SST: Gap token */}
+        <Flex alignItems="center" gap="sm"> {/* 🎯 SST: Gap token */}
           <LanguageSwitcher />
           <ThemeSwitcher
             variant="icon"
@@ -121,7 +122,7 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, onStepBackCli
               system: t('settings.items.theme.system')
             }}
           />
-        </div>
+        </Flex>
       </Flex>
     </Box>
   );

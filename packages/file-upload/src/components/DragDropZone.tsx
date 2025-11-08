@@ -6,6 +6,7 @@ import { Text as Typography } from '@layera/typography';
 import { UploadIcon } from '@layera/icons';
 import { useTheme } from '@layera/theme-switcher';
 import type { DragDropZoneProps } from '../types';
+import './DragDropZone.css';
 
 /**
  * Drag & Drop zone component με enterprise-grade functionality
@@ -93,49 +94,12 @@ export const DragDropZone: React.FC<DragDropZoneProps> = ({
     e.target.value = '';
   }, [onFilesDrop]);
 
-  const getZoneStyles = (): React.CSSProperties => {
-    const baseStyle: React.CSSProperties = {
-      position: 'relative',
-      borderWidth: '2px',
-      borderStyle: 'dashed',
-      borderRadius: 'var(--la-radius-lg)',
-      padding: 'var(--la-space-8)',
-      textAlign: 'center',
-      transition: 'all 0.2s ease',
-      cursor: 'pointer'
-    };
-
-    if (!enabled) {
-      return {
-        ...baseStyle,
-        opacity: 0.5,
-        cursor: 'not-allowed',
-        borderColor: 'var(--la-color-border-subtle)'
-      };
-    }
-
-    if (isDragOver) {
-      return {
-        ...baseStyle,
-        borderColor: 'var(--la-color-info)',
-        backgroundColor: theme === 'dark' ? 'var(--la-color-bg-info)' : 'var(--la-color-bg-info)',
-        transform: 'scale(1.05)'
-      };
-    }
-
-    return {
-      ...baseStyle,
-      borderColor: theme === 'dark' ? 'var(--la-color-border-secondary)' : 'var(--la-color-border-primary)',
-      ':hover': {
-        borderColor: theme === 'dark' ? 'var(--la-color-border-strong)' : 'var(--la-color-border-secondary)'
-      }
-    };
-  };
+  // Styles are now handled by CSS classes and design tokens
 
   const acceptAttribute = acceptedTypes.length > 0 ? acceptedTypes.join(',') : undefined;
 
   return (
-    <Card className={className} style={getZoneStyles()}>
+    <Card className={`${className} la-drag-drop-zone ${!enabled ? 'la-drag-drop-zone--disabled' : ''} ${isDragOver ? 'la-drag-drop-zone--drag-over' : ''}`}>
       <div
         onDragEnter={handleDragEnter}
         onDragLeave={handleDragLeave}
@@ -154,19 +118,13 @@ export const DragDropZone: React.FC<DragDropZoneProps> = ({
 
         <Box className="flex flex-col items-center justify-center space-y-4">
           <Box
-            className="p-4 rounded-full"
-            style={{
-              backgroundColor: isDragOver
-                ? 'var(--la-color-bg-info)'
+            className={`la-drag-drop-icon-container ${
+              isDragOver
+                ? 'la-drag-drop-icon-container--drag-over'
                 : theme === 'dark'
-                ? 'var(--la-color-gray-700)'
-                : 'var(--la-color-gray-100)',
-              color: isDragOver
-                ? 'var(--la-color-info)'
-                : theme === 'dark'
-                ? 'var(--la-color-gray-300)'
-                : 'var(--la-color-gray-500)'
-            }}
+                ? 'la-drag-drop-icon-container--normal-dark'
+                : 'la-drag-drop-icon-container--normal'
+            }`}
           >
             <UploadIcon className="w-8 h-8" />
           </Box>
@@ -182,7 +140,7 @@ export const DragDropZone: React.FC<DragDropZoneProps> = ({
 
             <Typography
               size="sm"
-              style={{ color: theme === 'dark' ? 'var(--la-color-gray-400)' : 'var(--la-color-text-muted)' }}
+              className={theme === 'dark' ? 'la-file-info-text--dark' : 'la-file-info-text'}
             >
               {acceptedTypes.length > 0 && (
                 <>
@@ -202,8 +160,7 @@ export const DragDropZone: React.FC<DragDropZoneProps> = ({
 
           {isDragOver && (
             <Box
-              className="flex items-center space-x-2"
-              style={{ color: 'var(--la-color-info)' }}
+              className="flex items-center space-x-2 la-file-size-hint"
             >
               <UploadIcon className="w-5 h-5" />
               <Typography size="base" weight="medium" className="">

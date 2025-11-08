@@ -4,3 +4,36 @@
   background-color: var(--la-color-gray-800);
   color: var(--la-color-primary);
 }
+
+/* SSOT Compliance Classes για utility class replacement */
+.nav-rail-button {
+  width: var(--la-size-12);
+  height: var(--la-size-12);
+}
+
+.nav-rail-main-action {
+  width: var(--la-size-12);
+  height: var(--la-size-12);
+  border-radius: var(--la-radius-full);
+  box-shadow: var(--la-shadow-lg);
+}
+
+.nav-rail-layout {
+  width: var(--la-size-16);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: var(--la-space-4);
+  padding-bottom: var(--la-space-4);
+  gap: var(--la-space-6);
+  flex-shrink: 0;
+  z-index: var(--la-z-index-navigation);
+}
+
+.nav-rail-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--la-space-4);
+}

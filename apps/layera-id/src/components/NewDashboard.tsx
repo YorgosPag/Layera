@@ -7,7 +7,7 @@ import { Button } from '@layera/buttons';
 import { ThemeSwitcher } from '@layera/theme-switcher';
 import { AppShell, LayeraHeader, HeaderActionsGroup, PageContainer, PageHeader, FlexColumn, Box } from '@layera/layout';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
-import { CheckIcon, SettingsIcon, CloseIcon } from '@layera/icons';
+// import { CheckIcon, SettingsIcon, CloseIcon } from '@layera/icons'; // Προσωρινά disabled - χτυπάνε
 import QuickActions from './QuickActions';
 
 /**
@@ -45,7 +45,7 @@ const NewDashboard: React.FC = () => {
           <UserAvatar
             user={user}
             size="medium"
-            onClick={(): void => navigate('/account')}
+            onClick={() => navigate('/account')}
           />
           <Button variant="outline" onClick={handleLogout}>
             {t('navigation.logout')}
@@ -94,9 +94,9 @@ const NewDashboard: React.FC = () => {
                 >
                   <Box textAlign="center" padding="md">
                     {user.emailVerified ? (
-                      <CheckIcon />
+                      <Box fontSize="xl" color="success">✓</Box>
                     ) : (
-                      <CloseIcon />
+                      <Box fontSize="xl" color="danger">✗</Box>
                     )}
                   </Box>
                 </DashboardCard>
@@ -111,9 +111,9 @@ const NewDashboard: React.FC = () => {
                 >
                   <Box textAlign="center" padding="md">
                     {user.layeraClaims?.mfaVerified ? (
-                      <CheckIcon />
+                      <Box fontSize="xl" color="success">✓</Box>
                     ) : (
-                      <CloseIcon />
+                      <Box fontSize="xl" color="danger">✗</Box>
                     )}
                   </Box>
                 </DashboardCard>
@@ -186,9 +186,9 @@ const NewDashboard: React.FC = () => {
                     title={t('dashboard.cards.mfa.title')}
                     variant="stats"
                     clickable
-                    onClick={(): void => navigate('/mfa-enroll')}
+                    onClick={() => navigate('/mfa-enroll')}
                   >
-                    <SettingsIcon />
+                    <Box fontSize="xl" color="info">⚙</Box>
                     <span>{t('dashboard.actionDescriptions.enableMfa')}</span>
                   </DashboardCard>
                 </DashboardGrid>
@@ -205,9 +205,9 @@ const NewDashboard: React.FC = () => {
                     title={t('dashboard.admin.roleManagement')}
                     variant="chart"
                     clickable
-                    onClick={(): void => navigate('/admin/roles')}
+                    onClick={() => navigate('/admin/roles')}
                   >
-                    <SettingsIcon />
+                    <Box fontSize="xl" color="info">⚙</Box>
                     <span>{t('dashboard.admin.manageRoles')}</span>
                   </DashboardCard>
                 </DashboardGrid>

@@ -13,13 +13,13 @@
 
 /* Spacing Variants */
 .la-skeleton-text-spacing-sm {
-  gap: 0.5rem;
+  gap: var(--la-space-4);
 }
 
 .la-skeleton-text-spacing-md {
-  gap: 0.75rem;
+  gap: var(--la-space-4);
 }
 
 .la-skeleton-text-spacing-lg {
-  gap: 1rem;
+  gap: var(--la-space-4);
 }

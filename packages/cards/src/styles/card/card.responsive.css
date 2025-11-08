@@ -5,7 +5,7 @@
 
 /* ============ RESPONSIVE ADJUSTMENTS ============ */
 
-@media (width <= 47.938rem) {
+@media (width <= 47.938rem 47.938rem) {
   .la-card-header {
     flex-direction: column;
     align-items: stretch;

@@ -17,7 +17,7 @@
 /* Shape Variants */
 .la-skeleton-text {
   border-radius: var(--la-radius-sm);
-  height: 1em;
+  height: 1em 1em;
 }
 
 .la-skeleton-rectangular {
@@ -59,15 +59,15 @@
 
 @keyframes la-skeleton-pulse {
   0% {
-    opacity: 1;
+    opacity: var(--la-opacity-full);
   }
 
   50% {
-    opacity: 0.5;
+    opacity: var(--la-space-0).5;
   }
 
   100% {
-    opacity: 1;
+    opacity: var(--la-opacity-full);
   }
 }
 

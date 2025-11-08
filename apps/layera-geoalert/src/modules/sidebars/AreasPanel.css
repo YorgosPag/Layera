@@ -12,3 +12,57 @@
 .layera-areas-panel-slider {
   background-color: var(--la-color-gray-200);
 }
+
+/* SSOT Compliance Classes για Tailwind replacement */
+.areas-panel-layout {
+  background-color: var(--la-color-surface);
+  border-right: var(--la-border-width-1) solid var(--la-color-border-secondary);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  transition: var(--la-transition-all);
+  z-index: var(--la-z-index-sidebar);
+  overflow: hidden;
+}
+
+.areas-panel-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 0;
+  width: var(--la-width-80);
+}
+
+.areas-panel-header {
+  padding: var(--la-space-4);
+  border-bottom: var(--la-border-width-1) solid var(--la-color-border-primary);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.areas-panel-empty {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--la-space-4);
+}
+
+.areas-panel-list {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.areas-panel-item-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--la-space-2);
+}
+
+.areas-panel-buttons {
+  display: flex;
+  align-items: center;
+  gap: var(--la-space-2);
+}

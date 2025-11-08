@@ -1,0 +1,77 @@
+/**
+ * AddressBreakdownCard - Styles
+ */
+
+/* Address breakdown list layout */
+.address-breakdown-list-item {
+  justify-content: flex-start;
+  text-align: left;
+  margin-bottom: var(--la-space-sm);
+  opacity: 1;
+}
+
+.address-breakdown-list-item.loading {
+  opacity: 0.6;
+}
+
+/* Address components layout */
+.address-components.layout-list .list-item-content {
+  display: flex;
+  align-items: center;
+  gap: var(--la-space-sm);
+}
+
+.address-components.layout-list .list-label {
+  flex: 1;
+  text-align: left;
+}
+
+.address-components.layout-list .loading-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--la-space-xs);
+  margin-left: auto;
+}
+
+/* Error states */
+.error-message {
+  color: var(--la-color-error);
+  background-color: var(--la-bg-error-subtle);
+  padding: var(--la-space-sm);
+  border-radius: var(--la-radius-sm);
+  margin-bottom: var(--la-space-md);
+}
+
+.boundary-error {
+  color: var(--la-color-warning);
+  background-color: var(--la-bg-warning-subtle);
+  padding: var(--la-space-sm);
+  border-radius: var(--la-radius-sm);
+  margin-bottom: var(--la-space-md);
+}
+
+/* Instruction text */
+.la-instruction-text {
+  color: var(--la-text-secondary);
+  font-size: var(--la-font-size-sm);
+  margin-bottom: var(--la-space-md);
+}
+
+/* Loading state */
+.loading-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--la-space-lg);
+  color: var(--la-text-secondary);
+}
+
+/* Components overflow */
+.components-overflow {
+  color: var(--la-text-secondary);
+  font-size: var(--la-font-size-sm);
+  text-align: center;
+  margin-top: var(--la-space-md);
+  padding-top: var(--la-space-md);
+  border-top: 1px solid var(--la-border-subtle);
+}

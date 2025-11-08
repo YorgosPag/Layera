@@ -16,14 +16,8 @@
 export * from '@layera/tokens/dist/ts';
 
 // Import specific tokens for semantic aliases
-import {
-  Space4, Space6, Space3,
-  ColorBgSecondary, ColorBgSuccess,
-  ColorTextPrimary, ColorTextSecondary,
-  ColorBrand, ColorSuccess, ColorError, ColorWarning,
-  BorderPrimaryBase, BorderSecondaryBase,
-  ShadowSm, ShadowMd
-} from '@layera/tokens/dist/ts';
+// Note: These imports are currently disabled due to missing tokens in @layera/tokens
+// TODO: Re-enable when tokens are properly generated
 
 // === SEMANTIC ALIASES (SST-BASED) ===
 
@@ -43,6 +37,61 @@ export const buttonPadding = `var(--la-space-3) var(--la-space-4)` as const;
  *
  * 🎯 SST COMPLIANCE: All values now reference CSS custom properties
  */
+/**
+ * Spacing Scale - SINGLE SOURCE OF TRUTH
+ * Used by components for consistent spacing
+ */
+export const SPACING_SCALE = {
+  XS: 'var(--la-space-1)',
+  SM: 'var(--la-space-2)',
+  MD: 'var(--la-space-4)',
+  LG: 'var(--la-space-6)',
+  XL: 'var(--la-space-8)',
+  XXL: 'var(--la-space-12)',
+  // Container width for cards (numeric value for px calculations)
+  CONTAINER_MD: 768, // 🎯 SST: Medium container width (768px)
+} as const;
+
+/**
+ * Border Radius Scale - SINGLE SOURCE OF TRUTH
+ */
+export const BORDER_RADIUS_SCALE = {
+  NONE: 'var(--la-radius-none)',
+  XXS: 'var(--la-radius-xxs)', // 🎯 SST: Extra extra small border radius
+  XS: 'var(--la-radius-xs)',
+  SM: 'var(--la-radius-sm)',
+  MD: 'var(--la-radius-md)',
+  LG: 'var(--la-radius-lg)',
+  XL: 'var(--la-radius-xl)', // 🎯 SST: Extra large border radius
+  XXL: 'var(--la-radius-xxl)', // 🎯 SST: Extra extra large border radius
+  XXXL: 'var(--la-radius-xxxl)', // 🎯 SST: Extra extra extra large border radius
+  FULL: 'var(--la-radius-full)',
+
+  // Semantic border radius tokens for components
+  PILL: 'var(--la-radius-pill)', // 🎯 SST: Pill shape (fully rounded)
+  CIRCLE: 'var(--la-radius-circle)', // 🎯 SST: Circle shape
+
+  // Component-specific border radius
+  BUTTON: 'var(--la-radius-button)', // 🎯 SST: Button border radius
+  CARD: 'var(--la-radius-card)', // 🎯 SST: Card border radius
+  INPUT: 'var(--la-radius-input)', // 🎯 SST: Input border radius
+  BADGE: 'var(--la-radius-badge)', // 🎯 SST: Badge border radius
+  MODAL: 'var(--la-radius-modal)', // 🎯 SST: Modal border radius
+  TOOLTIP: 'var(--la-radius-tooltip)', // 🎯 SST: Tooltip border radius
+
+  // Layout-specific border radius
+  LAYOUT_SM: 'var(--la-radius-layout-sm)', // 🎯 SST: Small layout border radius
+  LAYOUT_MD: 'var(--la-radius-layout-md)', // 🎯 SST: Medium layout border radius
+  LAYOUT_LG: 'var(--la-radius-layout-lg)', // 🎯 SST: Large layout border radius
+  LAYOUT_XL: 'var(--la-radius-layout-xl)', // 🎯 SST: Extra large layout border radius
+} as const;
+
+/**
+ * Fixed Dimensions - Common component sizes
+ */
+// 🎯 SSOT MOVED to config.ts to avoid duplicates - use: import { FIXED_DIMENSIONS } from './config';
+// export const FIXED_DIMENSIONS = { ... } - consolidated in config.ts with additional properties
+
 export const CSS_DESIGN_TOKENS = {
   // === SPACING TOKENS (SST-BASED) ===
   spacing: {
@@ -194,6 +243,30 @@ export const COMPONENT_DESIGN_TOKENS = {
     'modal-border-radius': 'var(--la-radius-lg)',
     'modal-padding': 'var(--la-space-12)',
     'modal-animation': 'var(--la-transition-all)',
+  },
+
+  haptic: {
+    'haptic-light': 10, // Light touch feedback
+    'haptic-medium': 20, // Medium touch feedback
+    'haptic-heavy': 50, // Strong touch feedback
+  },
+
+  animations: {
+    'duration-short': 200, // ms - Quick animations
+    'duration-medium': 300, // ms - Standard animations
+    'duration-long': 500, // ms - Slow animations
+    'delay-device-check': 100, // ms - Device detection delay
+    'delay-smooth': 100, // ms - Smooth transition delay
+  },
+
+  forms: {
+    'max-length-title': 100, // characters
+    'max-length-description': 500, // characters
+    'max-length-name': 50, // characters
+    'debounce-ms': 300, // milliseconds
+    'validation-timeout-short': 3000, // ms
+    'validation-timeout-medium': 5000, // ms
+    'validation-timeout-long': 8000, // ms
   }
 } as const;
 
@@ -220,3 +293,5 @@ export type TypographyToken = keyof typeof CSS_DESIGN_TOKENS.typography;
 export type BorderRadiusToken = keyof typeof CSS_DESIGN_TOKENS.borderRadius;
 export type ZIndexToken = keyof typeof CSS_DESIGN_TOKENS.zIndex;
 export type ComponentToken = keyof typeof COMPONENT_DESIGN_TOKENS;
+export type SpacingScale = typeof SPACING_SCALE[keyof typeof SPACING_SCALE];
+export type BorderRadiusScale = typeof BORDER_RADIUS_SCALE[keyof typeof BORDER_RADIUS_SCALE];

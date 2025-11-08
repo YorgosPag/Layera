@@ -19,7 +19,7 @@ export const Heading: React.FC<HeadingProps> = ({
   ...props
 }) => {
   // Προκαθορισμένα styles βάσει του heading level
-  const getDefaultStylesForLevel = (): void => {
+  const getDefaultStylesForLevel = () => {
     switch (Component) {
       case 'h1':
         return {
@@ -77,8 +77,21 @@ export const Heading: React.FC<HeadingProps> = ({
     className
   ].filter(Boolean).join(' ');
 
+  // Filter out React-specific layout props that shouldn't go to DOM
+  const {
+    marginTop,
+    marginBottom,
+    marginLeft,
+    marginRight,
+    paddingTop,
+    paddingBottom,
+    paddingLeft,
+    paddingRight,
+    ...domProps
+  } = props;
+
   return (
-    <Component className={classes} {...props}>
+    <Component className={classes} {...domProps}>
       {children}
     </Component>
   );

@@ -194,6 +194,17 @@ export const Box: React.FC<BoxProps> = ({
     };
   }, [width, height, minWidth, minHeight, maxWidth, maxHeight, margin, marginTop, marginBottom, marginLeft, marginRight, padding, paddingTop, paddingBottom, paddingLeft, paddingRight, backgroundColor, borderRadius, textAlign, boxSizing, animationDuration, gridTemplateColumns, display, alignItems, gap, fontSize, opacity, position, top, right, bottom, left, color, style]);
 
+  // Filter out React-specific props that shouldn't go to DOM
+  const {
+    justifyContent,
+    flexDirection,
+    flexWrap,
+    borderBottom,
+    zIndex,
+    boxShadow,
+    ...filteredRest
+  } = rest;
+
   // Only safe DOM props
   const domProps = {
     id,
@@ -204,7 +215,7 @@ export const Box: React.FC<BoxProps> = ({
     onClick,
     onMouseEnter,
     onMouseLeave,
-    ...rest
+    ...filteredRest
   };
 
   return (

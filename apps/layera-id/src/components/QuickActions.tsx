@@ -2,7 +2,8 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { DashboardGrid, DashboardSection, DashboardCard } from '@layera/cards';
-import { UserIcon, SettingsIcon } from '@layera/icons';
+import { Box } from '@layera/layout';
+// Προσωρινά απλά εικονίδια αντί για @layera/icons που χτυπάνε
 
 interface PageItem {
   key: string;
@@ -26,25 +27,25 @@ const QuickActions: React.FC = () => {
       key: 'dashboard',
       title: t('navigation.backToDashboard'),
       path: '/dashboard',
-      icon: <UserIcon />
+      icon: <Box fontSize="xl" fontWeight="bold">👤</Box>
     },
     {
       key: 'account',
       title: t('navigation.account'),
       path: '/account',
-      icon: <UserIcon />
+      icon: <Box fontSize="xl" fontWeight="bold">👤</Box>
     },
     {
       key: 'settings',
       title: t('navigation.settings'),
       path: '/settings',
-      icon: <SettingsIcon />
+      icon: <Box fontSize="xl" fontWeight="bold">⚙️</Box>
     },
     {
       key: 'data',
       title: t('navigation.data'),
       path: '/data',
-      icon: <SettingsIcon />
+      icon: <Box fontSize="xl" fontWeight="bold">⚙️</Box>
     }
   ];
 
@@ -60,7 +61,7 @@ const QuickActions: React.FC = () => {
             title={page.title}
             variant="actions"
             clickable
-            onClick={(): void => navigate(page.path)}
+            onClick={() => navigate(page.path)}
           >
             {page.icon}
           </DashboardCard>

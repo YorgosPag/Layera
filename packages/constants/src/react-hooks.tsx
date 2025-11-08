@@ -227,7 +227,7 @@ export const useComponentTokens = (componentName: ComponentToken): Record<string
 /**
  * Advanced hook που επιστρέφει CSS-in-JS object με όλα τα tokens
  */
-export const useLayeraDesignSystem = (): void => {
+export const useLayeraDesignSystem = () => {
   const { state, isReady } = useLayeraTheme();
 
   return useMemo(() => ({
@@ -396,7 +396,7 @@ export const useLayeraDesignSystem = (): void => {
 /**
  * Hook για responsive design tokens (θα επεκταθεί μελλοντικά)
  */
-export const useResponsiveDesignTokens = (): void => {
+export const useResponsiveDesignTokens = () => {
   // Placeholder για μελλοντική υλοποίηση responsive tokens
   return useMemo(() => ({
     // Responsive spacing scaling
@@ -456,7 +456,7 @@ function getSSRFallback(tokenName: string): string {
 /**
  * Development-only hook για debugging design tokens
  */
-export const useDesignTokenDebugger = (): void => {
+export const useDesignTokenDebugger = () => {
   const { state, engine } = useLayeraTheme();
 
   if (process.env.NODE_ENV !== 'development') {

@@ -28,8 +28,9 @@ export const Skeleton: React.FC<SkeletonProps> = ({
   return (
     <Box
       className={skeletonClasses}
-      style={skeletonStyle}
       aria-hidden="true"
+      width={width}
+      height={height}
     />
   );
 };

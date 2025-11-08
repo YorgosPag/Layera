@@ -45,14 +45,14 @@
 
 .la-dashboard-card-metric-value {
   font-size: var(--la-text-2xl);
-  font-weight: 700;
+  font-weight: var(--la-font-weight-bold);
   line-height: var(--la-line-height-none);
   color: var(--la-color-text-primary);
 }
 
 .la-dashboard-card-metric-label {
   font-size: var(--la-text-sm);
-  font-weight: 500;
+  font-weight: var(--la-font-weight-medium);
   color: var(--la-color-text-secondary);
 }
 
@@ -61,7 +61,7 @@
   align-items: center;
   gap: var(--la-space-1);
   font-size: var(--la-text-xs);
-  font-weight: 500;
+  font-weight: var(--la-font-weight-medium);
 }
 
 .la-dashboard-card-metric-change-up {
@@ -98,7 +98,7 @@
 
 .la-skeleton-text {
   height: var(--la-space-4);
-  width: 100%;
+  width: var(--la-size-full);
 }
 
 .la-skeleton-sm {
@@ -121,7 +121,7 @@
 
 .la-dashboard-card-error-icon {
   font-size: var(--la-text-2xl);
-  opacity: 0.6;
+  opacity: var(--la-space-0).6;
 }
 
 .la-dashboard-card-error-message {

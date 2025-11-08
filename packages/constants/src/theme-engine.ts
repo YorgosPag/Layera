@@ -326,11 +326,12 @@ export class LayeraThemeEngine {
 
     Object.entries(CSS_DESIGN_TOKENS.motion).forEach(([key, value]) => {
       // Reduced motion adjustments
+      let finalValue: string = value;
       if (this.state.prefersReducedMotion && key.includes('duration')) {
-        value = '0ms'; // Disable animations
+        finalValue = '0ms'; // Disable animations
       }
 
-      root.style.setProperty(`--${key}`, value);
+      root.style.setProperty(`--${key}`, finalValue);
     });
   }
 

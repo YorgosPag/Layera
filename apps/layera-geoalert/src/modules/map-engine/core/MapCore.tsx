@@ -6,16 +6,17 @@ import React, { useEffect } from 'react';
 import { MapContainer, ScaleControl, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import { MapCoreProps, MAP_DEFAULTS } from '../../types';
+import { MAP_CONFIG } from '../../../constants';
 import './MapCore.css';
 
 // Default Leaflet icon configuration (από geo-canvas pattern)
 const DefaultIcon = L.icon({
     iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
     shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    tooltipAnchor: [16, -28],
-    shadowSize: [41, 41]
+    iconAnchor: MAP_CONFIG.icons.default.iconAnchor,
+    popupAnchor: MAP_CONFIG.icons.default.popupAnchor,
+    tooltipAnchor: MAP_CONFIG.icons.default.tooltipAnchor,
+    shadowSize: MAP_CONFIG.icons.default.shadowSize
 });
 
 L.Marker.prototype.options.icon = DefaultIcon;

@@ -15,7 +15,7 @@
 }
 
 .la-slider-full-width {
-  width: 100%;
+  width: var(--la-size-full);
 }
 
 .la-slider-disabled {
@@ -37,12 +37,12 @@
 .la-slider-vertical .la-slider-container {
   flex-direction: row;
   align-items: center;
-  height: 100%;
+  height: var(--la-size-full);
   width: auto;
 }
 
 .la-slider-vertical .la-slider-track-container {
-  height: 100%;
+  height: var(--la-size-full);
   width: auto;
 }
 
@@ -101,7 +101,7 @@
 .la-slider-value {
   color: var(--la-color-text-primary);
   background: var(--la-color-surface-secondary);
-  padding: var(--la-space-1) var(--la-space-2);
+  padding: var(--la-space-4);
   border-radius: var(--la-radius-sm);
   font-family: var(--la-font-family-monospace);
 }
@@ -121,7 +121,7 @@
 /* Track container */
 .la-slider-track-container {
   position: relative;
-  width: 100%;
+  width: var(--la-size-full);
   height: var(--la-space-8);
 }
 
@@ -136,7 +136,7 @@
 /* Vertical track container */
 .la-slider-vertical .la-slider-track-container {
   width: var(--la-space-8);
-  height: 100%;
+  height: var(--la-size-full);
 }
 
 .la-slider-vertical.la-slider-sm .la-slider-track-container {
@@ -150,14 +150,14 @@
 /* Track */
 .la-slider-track {
   position: absolute;
-  cursor: pointer;
+  cursor: var(--la-cursor-pointer);
   user-select: none;
   touch-action: none;
 }
 
 /* Horizontal track */
 .la-slider:not(.la-slider-vertical) .la-slider-track {
-  top: 50%;
+  top: var(--la-position-center);
   left: var(--la-size-0);
   right: var(--la-size-0);
   height: var(--la-space-2);
@@ -174,7 +174,7 @@
 
 /* Vertical track */
 .la-slider-vertical .la-slider-track {
-  left: 50%;
+  left: var(--la-position-center);
   top: var(--la-size-0);
   bottom: var(--la-size-0);
   width: var(--la-space-2);
@@ -199,7 +199,7 @@
   inset: var(--la-size-0);
   background: var(--la-color-surface-tertiary);
   border-radius: var(--la-radius-full);
-  border: 0.063rem solid var(--la-color-border-subtle);
+  border: var(--la-space-4) solid var(--la-color-border-subtle);
 }
 
 /* Track fill */
@@ -209,7 +209,7 @@
   bottom: var(--la-size-0);
   background: var(--la-color-brand);
   border-radius: var(--la-radius-full);
-  transition: all 0.2s ease-in-out;
+  transition: var(--la-transition-all)-in-out;
 }
 
 /* State variants for track fill */
@@ -260,10 +260,10 @@
   width: var(--la-space-5);
   height: var(--la-space-5);
   background: var(--la-color-surface);
-  border: 0.125rem solid var(--la-color-brand);
+  border: var(--la-space-4) solid var(--la-color-brand);
   border-radius: var(--la-radius-full);
   cursor: grab;
-  transition: all 0.2s ease-in-out;
+  transition: var(--la-transition-all)-in-out;
   touch-action: none;
   user-select: none;
   z-index: var(--la-z-index-overlay);
@@ -271,13 +271,13 @@
 
 /* Horizontal thumb positioning */
 .la-slider:not(.la-slider-vertical) .la-slider-thumb {
-  top: 50%;
+  top: var(--la-position-center);
   transform: translate(-50%, -50%);
 }
 
 /* Vertical thumb positioning */
 .la-slider-vertical .la-slider-thumb {
-  left: 50%;
+  left: var(--la-position-center);
   transform: translate(-50%, 50%);
 }
 
@@ -292,7 +292,7 @@
   cursor: grabbing;
   border-color: var(--la-color-brand-active);
   box-shadow: var(--la-shadow-focus-lg);
-  outline: none;
+  outline: var(--la-border-none);
 }
 
 .la-slider-error .la-slider-thumb {
@@ -322,7 +322,7 @@
 /* Horizontal tooltip positioning */
 .la-slider:not(.la-slider-vertical) .la-slider-tooltip {
   bottom: calc(100% + var(--la-space-2));
-  left: 50%;
+  left: var(--la-position-center);
   transform: translateX(-50%);
 }
 
@@ -330,7 +330,7 @@
   content: '';
   position: absolute;
   top: 100%;
-  left: 50%;
+  left: var(--la-position-center);
   transform: translateX(-50%);
   border: var(--la-space-1) solid var(--la-color-transparent);
   border-top-color: var(--la-color-surface-tooltip);
@@ -341,7 +341,7 @@
   position: absolute;
   background: var(--la-color-surface-tooltip);
   color: var(--la-color-text-on-dark);
-  padding: var(--la-space-1) var(--la-space-2);
+  padding: var(--la-space-4);
   border-radius: var(--la-radius-sm);
   font-size: var(--la-font-size-xs);
   font-weight: var(--la-font-weight-medium);
@@ -354,7 +354,7 @@
 /* Vertical tooltip positioning */
 .la-slider-vertical .la-slider-tooltip {
   left: calc(100% + var(--la-space-2));
-  top: 50%;
+  top: var(--la-position-center);
   transform: translateY(-50%);
 }
 
@@ -362,7 +362,7 @@
   content: '';
   position: absolute;
   right: 100%;
-  top: 50%;
+  top: var(--la-position-center);
   transform: translateY(-50%);
   border: var(--la-space-1) solid var(--la-color-transparent);
   border-right-color: var(--la-color-surface-tooltip);
@@ -385,13 +385,13 @@
 
 /* Horizontal marks */
 .la-slider:not(.la-slider-vertical) .la-slider-mark {
-  top: 50%;
+  top: var(--la-position-center);
   transform: translate(-50%, -50%);
 }
 
 /* Vertical marks */
 .la-slider-vertical .la-slider-mark {
-  left: 50%;
+  left: var(--la-position-center);
   transform: translate(-50%, 50%);
   flex-direction: row;
   justify-content: center;
@@ -442,8 +442,8 @@
 /* Loading */
 .la-slider-loading-indicator {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: var(--la-position-center);
+  left: var(--la-position-center);
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: var(--la-z-index-modal);
@@ -452,8 +452,8 @@
 .la-slider-spinner {
   width: var(--la-space-5);
   height: var(--la-space-5);
-  border: 0.125rem solid var(--la-color-border-subtle);
-  border-top: 0.125rem solid var(--la-color-brand);
+  border: var(--la-space-4) solid var(--la-color-border-subtle);
+  border-top: var(--la-space-4) solid var(--la-color-brand);
   border-radius: var(--la-radius-full);
   animation: la-slider-spin 1s linear infinite;
 }
@@ -461,7 +461,7 @@
 .la-slider-sm .la-slider-spinner {
   width: var(--la-space-4);
   height: var(--la-space-4);
-  border-width: 0.063rem;
+  border-width: var(--la-space-4);
 }
 
 .la-slider-lg .la-slider-spinner {
@@ -498,11 +498,11 @@
 @media (prefers-contrast: more) {
   .la-slider-track-background,
   .la-slider-thumb {
-    border-width: 0.1875rem;
+    border-width: var(--la-space-4);
   }
 
   .la-slider-mark-dot {
-    border: 0.063rem solid var(--la-color-border-strong);
+    border: var(--la-space-4) solid var(--la-color-border-strong);
   }
 }
 

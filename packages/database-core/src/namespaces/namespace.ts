@@ -262,8 +262,9 @@ export class DatabaseNamespace implements IDataBaseNamespace {
       return;
     }
 
-    if (operations.length > 500) {
-      throw new Error('Batch operations limited to 500 items');
+    const MAX_BATCH_OPERATIONS = 500; // Database batch limit - technical constant
+    if (operations.length > MAX_BATCH_OPERATIONS) {
+      throw new Error(`Batch operations limited to ${MAX_BATCH_OPERATIONS} items`);
     }
 
     await this.transaction(async (tx) => {

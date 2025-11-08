@@ -1,121 +1,121 @@
 .auth-container {
-  min-height: 100vh;
+  min-height: var(--la-size-screen-h);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--la-color-primary) 0%, var(--la-color-secondary) 100%);
-  padding: 20px;
+  background: linear-gradient(135deg, var(--la-color-primary) var(--la-position-none), var(--la-color-secondary) var(--la-position-full));
+  padding: var(--la-space-5);
 }
 
 /* Legacy auth-card removed - now using @layera/cards BaseCard */
 .auth-card-replacement {
-  width: 100%;
-  max-width: 450px;
+  width: var(--la-size-full);
+  max-width: var(--la-size-xl);
 }
 
 .error-message {
   background: color-mix(in srgb, var(--la-bg-danger) 10%, transparent);
   color: var(--la-bg-danger);
-  padding: 12px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-  font-size: 14px;
-  border: 1px solid color-mix(in srgb, var(--la-bg-danger) 30%, transparent);
+  padding: var(--la-space-3);
+  border-radius: var(--la-radius-sm);
+  margin-bottom: var(--la-space-5);
+  font-size: var(--la-font-size-sm);
+  border: var(--la-border-width-1) solid color-mix(in srgb, var(--la-bg-danger) 30%, transparent);
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: var(--la-space-5);
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: var(--la-space-2);
   color: var(--la-text-secondary);
-  font-weight: 500;
-  font-size: 14px;
+  font-weight: var(--la-font-weight-medium);
+  font-size: var(--la-font-size-sm);
 }
 
 .form-group input {
-  width: 100%;
-  padding: 12px;
+  width: var(--la-size-full);
+  padding: var(--la-space-3);
   border: 1px solid var(--la-border-primary);
-  border-radius: 6px;
-  font-size: 16px;
+  border-radius: var(--la-radius-sm);
+  font-size: var(--la-font-size-base);
   transition: border-color 0.3s, box-shadow 0.3s;
   box-sizing: border-box;
 }
 
 .form-group input:focus {
-  outline: none;
+  outline: var(--la-border-none);
   border-color: var(--la-color-primary);
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  box-shadow: var(--la-shadow-focus);
 }
 
 .submit-button {
-  width: 100%;
-  padding: 14px;
+  width: var(--la-size-full);
+  padding: var(--la-space-4);
   background: var(--la-bg-info);
   color: var(--la-text-on-info);
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
+  border: var(--la-border-none);
+  border-radius: var(--la-radius-sm);
+  font-size: var(--la-font-size-base);
+  font-weight: var(--la-font-weight-semibold);
+  cursor: var(--la-cursor-pointer);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .submit-button:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px -5px rgba(102, 126, 234, 0.3);
+  box-shadow: var(--la-shadow-lg);
 }
 
 .submit-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+  opacity: var(--la-opacity-medium);
+  cursor: var(--la-cursor-not-allowed);
 }
 
 .divider {
-  margin: 25px 0;
+  margin: var(--la-space-6) 0;
   text-align: center;
   position: relative;
   color: var(--la-text-secondary);
-  font-size: 14px;
+  font-size: var(--la-font-size-sm);
 }
 
 .divider::before {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 1px;
+  top: var(--la-position-center);
+  left: var(--la-position-none);
+  right: var(--la-position-none);
+  height: var(--la-border-width-1);
   background: var(--la-border-primary);
-  z-index: 1;
+  z-index: var(--la-z-index-base);
 }
 
 .divider span {
   background: var(--la-bg-primary);
-  padding: 0 15px;
+  padding: var(--la-space-0) var(--la-space-4);
   position: relative;
-  z-index: 2;
+  z-index: var(--la-z-index-dropdown);
 }
 
 .auth-links {
-  margin-top: 25px;
+  margin-top: var(--la-space-6);
   text-align: center;
-  font-size: 14px;
+  font-size: var(--la-font-size-sm);
 }
 
 .auth-links p {
-  margin: 10px 0;
+  margin: var(--la-space-3) 0;
   color: var(--la-text-secondary);
 }
 
 .auth-links a {
   color: var(--la-color-primary);
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s;
+  font-weight: var(--la-font-weight-medium);
+  transition: var(--la-transition-fast);
 }
 
 .auth-links a:hover {

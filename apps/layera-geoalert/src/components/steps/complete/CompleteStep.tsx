@@ -8,7 +8,7 @@ import React, { useCallback, useMemo } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { Text } from '@layera/typography';
 import { Stack, Flex, Box } from '@layera/layout';
-import { SPACING_SCALE, BORDER_RADIUS_SCALE, getCardInfoColor } from '@layera/constants';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE, getCardInfoColor, ANIMATION_DURATIONS } from '@layera/constants';
 import { BaseCard } from '@layera/cards';
 import { CheckIcon, AlertTriangleIcon, HomeIcon } from '@layera/icons';
 import type { StepProps } from '../types';
@@ -100,7 +100,7 @@ export const CompleteStep: React.FC<CompleteStepProps> = ({
       setTimeout((): void => {
 
         // Reset ή navigate away
-      }, 500);
+      }, ANIMATION_DURATIONS.COMPLETE_STEP);
 
     } catch (error) {
       console.error('Completion failed:', error);
@@ -120,7 +120,7 @@ export const CompleteStep: React.FC<CompleteStepProps> = ({
     top: 'var(--la-cards-top)',
     left: 'var(--la-side-margins)',
     right: 'var(--la-side-margins)',
-    zIndex: 10002,
+    zIndex: Z_INDEX_LAYERS.COMPLETION_OVERLAY,
     display: 'flex',
     flexDirection: 'column',
     gap: `${SPACING_SCALE.SM}px`,
@@ -128,7 +128,7 @@ export const CompleteStep: React.FC<CompleteStepProps> = ({
   };
 
   return (
-    <Box style={containerStyles}>
+    <Box>
       {/* Success Card */}
       <BaseCard
         variant="job"

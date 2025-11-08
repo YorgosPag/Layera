@@ -4,6 +4,7 @@
 
 import { Coordinate, isValidCoordinate } from './coordinate-utils';
 import { DRAWING_LIMITS } from '../../types';
+import { GEOMETRY_CONFIG } from '../../constants';
 
 /**
  * Validation results interface
@@ -52,8 +53,8 @@ export const validatePolygon = (coordinates: Coordinate[]): ValidationResult => 
 
   // Check polygon area (minimum size)
   const area = calculateSimplePolygonArea(coordinates);
-  if (area < 100) { // 100 square meters minimum
-    result.warnings.push('Polygon area is very small (< 100 m²)');
+  if (area < GEOMETRY_CONFIG.validation.minArea) {
+    result.warnings.push(`Polygon area is very small (< ${GEOMETRY_CONFIG.validation.minArea} m²)`);
   }
 
   return result;
@@ -89,8 +90,9 @@ export const validateMarker = (coordinate: Coordinate, radius?: number): Validat
 
     // Warning για very large areas
     const area = Math.PI * radius * radius;
-    if (area > 1000000) { // 1 km²
-      result.warnings.push('Alert area is very large (> 1 km²)');
+    if (area > GEOMETRY_CONFIG.validation.maxArea) {
+      const KM_CONVERSION_FACTOR = 1000000; // Square meters to square kilometers
+      result.warnings.push(`Alert area is very large (> ${GEOMETRY_CONFIG.validation.maxArea / KM_CONVERSION_FACTOR} km²)`);
     }
   }
 
@@ -206,5 +208,5 @@ const calculateSimplePolygonArea = (coordinates: Coordinate[]): number => {
     area -= coordinates[j].lng * coordinates[i].lat;
   }
 
-  return Math.abs(area) / 2 * 111319.9 * 111319.9; // Approximate m²
+  return Math.abs(area) / 2 * GEOMETRY_CONFIG.validation.areaConversionFactor * GEOMETRY_CONFIG.validation.areaConversionFactor; // Approximate m²
 };

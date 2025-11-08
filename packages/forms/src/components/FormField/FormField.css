@@ -2,14 +2,14 @@
 .la-form-field {
   display: flex;
   flex-direction: column;
-  gap: var(--la-space-xs);
+  gap: var(--la-space-1);
   margin-bottom: var(--la-space-md);
 }
 
 .la-form-field-label {
   display: flex;
   align-items: center;
-  gap: var(--la-space-xs);
+  gap: var(--la-space-1);
   font-weight: var(--la-font-semibold);
   font-size: var(--la-font-size-sm);
   color: var(--la-color-text-primary);
@@ -37,7 +37,7 @@
   line-height: var(--la-line-height-relaxed);
   display: flex;
   align-items: center;
-  gap: var(--la-space-xs);
+  gap: var(--la-space-1);
 }
 
 .la-form-field-hint {

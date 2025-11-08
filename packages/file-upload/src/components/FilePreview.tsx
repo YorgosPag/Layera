@@ -98,9 +98,9 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
 
     return (
       <Box className="absolute inset-0 flex items-center justify-center" style={{ backgroundColor: 'var(--la-overlay-bg)' }}>
-        <Box className="text-center text-white">
+        <Box className="text-center">
           <UploadIcon className="w-6 h-6 mx-auto mb-2 animate-pulse" />
-          <Typography variant="caption" className="text-white">
+          <Typography variant="caption" style={{ color: 'var(--la-color-text-on-primary)' }}>
             {Math.round(file.progress)}%
           </Typography>
         </Box>

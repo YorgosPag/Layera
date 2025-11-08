@@ -61,7 +61,7 @@ export const AvailabilityStep: React.FC<AvailabilityStepProps> = ({
     top: 'var(--la-cards-top)',
     left: 'var(--la-side-margins)',
     right: 'var(--la-side-margins)',
-    zIndex: 10002,
+    zIndex: Z_INDEX_LAYERS.COMPLETION_OVERLAY,
     display: 'flex',
     flexDirection: 'column',
     gap: 'var(--la-cards-gap)',
@@ -69,7 +69,7 @@ export const AvailabilityStep: React.FC<AvailabilityStepProps> = ({
   };
 
   return (
-    <Box style={containerStyles}>
+    <Box>
       {/* Τώρα Card */}
       <AvailabilityCard
         availability="now"

@@ -4,6 +4,9 @@
  * Enterprise TypeScript translations for Layera ecosystem
  */
 
+// 🎯 IMPORT SINGLE SOURCE OF TRUTH - από @layera/constants
+import { DEMO_ACCOUNT_DATA } from '@layera/constants';
+
 export const elTranslations = {
   // Authentication - Είσοδος και Εγγραφή
   "auth": {
@@ -60,14 +63,14 @@ export const elTranslations = {
     "personalInfo": "Προσωπικές Πληροφορίες",
     "security": "Ασφάλεια",
     "fields": {
-      "email": "georgios.pagonis@gmail.com",
-      "displayName": "Georgios Pagonis",
-      "emailVerified": "Επαληθευμένο",
-      "mfaEnabled": "Απενεργοποιημένο",
-      "role": "Ιδιωτικός",
-      "userId": "Z55xqJg38uRapVrvUlgwkf1",
-      "accountCreated": "17/10/2025, 12:04:9 μ.μ.",
-      "lastSignIn": "5/11/2025, 12:41:2 μ.μ."
+      "email": DEMO_ACCOUNT_DATA.USER_INFO.EMAIL,
+      "displayName": DEMO_ACCOUNT_DATA.USER_INFO.DISPLAY_NAME,
+      "emailVerified": DEMO_ACCOUNT_DATA.USER_INFO.EMAIL_VERIFIED,
+      "mfaEnabled": DEMO_ACCOUNT_DATA.USER_INFO.MFA_ENABLED,
+      "role": DEMO_ACCOUNT_DATA.USER_INFO.ROLE,
+      "userId": DEMO_ACCOUNT_DATA.USER_INFO.USER_ID,
+      "accountCreated": `${DEMO_ACCOUNT_DATA.ACCOUNT_CREATION.DAY}/${DEMO_ACCOUNT_DATA.ACCOUNT_CREATION.MONTH}/${DEMO_ACCOUNT_DATA.ACCOUNT_CREATION.YEAR}, ${DEMO_ACCOUNT_DATA.ACCOUNT_CREATION.HOUR}:${String(DEMO_ACCOUNT_DATA.ACCOUNT_CREATION.MINUTE).padStart(2, '0')}:${String(DEMO_ACCOUNT_DATA.ACCOUNT_CREATION.SECOND).padStart(2, '0')} ${DEMO_ACCOUNT_DATA.ACCOUNT_CREATION.PERIOD}`,
+      "lastSignIn": `${DEMO_ACCOUNT_DATA.LAST_SIGNIN.DAY}/${DEMO_ACCOUNT_DATA.LAST_SIGNIN.MONTH}/${DEMO_ACCOUNT_DATA.LAST_SIGNIN.YEAR}, ${DEMO_ACCOUNT_DATA.LAST_SIGNIN.HOUR}:${DEMO_ACCOUNT_DATA.LAST_SIGNIN.MINUTE}:${DEMO_ACCOUNT_DATA.LAST_SIGNIN.SECOND} ${DEMO_ACCOUNT_DATA.LAST_SIGNIN.PERIOD}`
     },
     "export": "Εξαγωγή Δεδομένων",
     "exportDescription": "Κατεβάστε όλα τα προσωπικά σας δεδομένα σε διάφορες μορφές",

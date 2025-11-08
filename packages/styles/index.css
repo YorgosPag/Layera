@@ -4,6 +4,23 @@
 /* Note: Individual LEGO component styles are imported via their respective packages */
 /* @layera/layout, @layera/cards, etc. handle their own CSS via JavaScript imports */
 
+/* Enterprise Base Styles - Global Reset */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--la-bg-primary);
+  color: var(--la-text-primary);
+  margin: var(--la-size-0);
+  padding: var(--la-size-0);
+}
+
 /* Additional utility classes that complement LEGO components */
 .layera-mb-2 { margin-bottom: var(--la-space-2); }
 .layera-mb-4 { margin-bottom: var(--la-space-4); }
@@ -26,18 +43,18 @@
 
   /* Global Card Typography - ENTERPRISE STANDARD */
   --layera-card-uniform-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  --layera-card-uniform-font-size: var(--la-text-base, 1rem);
+  --layera-card-uniform-font-size: var(--la-text-base, var(--la-space-4));
   --layera-card-uniform-font-weight: var(--la-font-weight-normal, 400);
   --layera-card-uniform-line-height: var(--la-line-height-normal, 1.5);
 
   /* Global Card Colors & Borders - UNIFORM APPEARANCE */
-  --layera-card-uniform-border: 2px solid var(--la-color-border, var(--la-color-border-primary));
+  --layera-card-uniform-border: var(--la-space-1) solid var(--la-color-border, var(--la-color-border-primary));
   --layera-card-uniform-border-radius: var(--la-radius-lg, 8px);
   --layera-card-uniform-background: var(--la-color-surface, var(--la-color-white)fff);
   --layera-card-uniform-shadow: var(--la-shadow-md, 0 4px 6px -1px var(--la-shadow-sm));
 
   /* Global Card Active/Hover States */
-  --layera-card-uniform-active-border: 2px solid var(--la-color-primary-border, var(--la-color-brand));
+  --layera-card-uniform-active-border: var(--la-space-1) solid var(--la-color-primary-border, var(--la-color-brand));
   --layera-card-uniform-active-background: var(--la-color-primary-bg, #eff6ff);
   --layera-card-uniform-hover-shadow: var(--la-shadow-lg, 0 10px 15px -3px var(--la-shadow-sm));
 
@@ -59,39 +76,39 @@
 /* Level 1: Base uniform class */
 .layera-card-uniform,
 [class*="layera-card-uniform"] {
-  height: var(--layera-card-uniform-height) !important;
-  min-height: var(--layera-card-uniform-min-height) !important;
-  max-height: var(--layera-card-uniform-max-height) !important;
-  border: var(--layera-card-uniform-border) !important;
-  border-radius: var(--layera-card-uniform-border-radius) !important;
-  background-color: var(--layera-card-uniform-background) !important;
-  box-shadow: var(--layera-card-uniform-shadow) !important;
-  padding: var(--layera-card-uniform-padding) !important;
-  font-family: var(--layera-card-uniform-font-family) !important;
-  font-size: var(--layera-card-uniform-font-size) !important;
-  font-weight: var(--layera-card-uniform-font-weight) !important;
-  line-height: var(--layera-card-uniform-line-height) !important;
+  height: var(--la-card-uniform-height) !important;
+  min-height: var(--la-card-uniform-min-height) !important;
+  max-height: var(--la-card-uniform-max-height) !important;
+  border: var(--la-card-uniform-border) !important;
+  border-radius: var(--la-card-uniform-border-radius) !important;
+  background-color: var(--la-card-uniform-background) !important;
+  box-shadow: var(--la-card-uniform-shadow) !important;
+  padding: var(--la-card-uniform-padding) !important;
+  font-family: var(--la-card-uniform-font-family) !important;
+  font-size: var(--la-card-uniform-font-size) !important;
+  font-weight: var(--la-card-uniform-font-weight) !important;
+  line-height: var(--la-card-uniform-line-height) !important;
   /* flex: none !important; - REMOVED to allow flex layouts */
   box-sizing: border-box !important;
-  transition: all 0.2s ease !important;
+  transition: var(--la-transition-all) !important;
 }
 
 /* Level 2: ALL BaseCard variants override */
 .la-card.layera-card-uniform,
 div[class*="la-card"].layera-card-uniform,
 div[class*="BaseCard"].layera-card-uniform {
-  height: var(--layera-card-uniform-height) !important;
-  min-height: var(--layera-card-uniform-min-height) !important;
-  max-height: var(--layera-card-uniform-max-height) !important;
-  border: var(--layera-card-uniform-border) !important;
-  border-radius: var(--layera-card-uniform-border-radius) !important;
-  background-color: var(--layera-card-uniform-background) !important;
-  box-shadow: var(--layera-card-uniform-shadow) !important;
-  padding: var(--layera-card-uniform-padding) !important;
-  font-family: var(--layera-card-uniform-font-family) !important;
-  font-size: var(--layera-card-uniform-font-size) !important;
-  font-weight: var(--layera-card-uniform-font-weight) !important;
-  line-height: var(--layera-card-uniform-line-height) !important;
+  height: var(--la-card-uniform-height) !important;
+  min-height: var(--la-card-uniform-min-height) !important;
+  max-height: var(--la-card-uniform-max-height) !important;
+  border: var(--la-card-uniform-border) !important;
+  border-radius: var(--la-card-uniform-border-radius) !important;
+  background-color: var(--la-card-uniform-background) !important;
+  box-shadow: var(--la-card-uniform-shadow) !important;
+  padding: var(--la-card-uniform-padding) !important;
+  font-family: var(--la-card-uniform-font-family) !important;
+  font-size: var(--la-card-uniform-font-size) !important;
+  font-weight: var(--la-card-uniform-font-weight) !important;
+  line-height: var(--la-card-uniform-line-height) !important;
   /* flex: none !important; - REMOVED to allow flex layouts */
   box-sizing: border-box !important;
 }
@@ -104,74 +121,57 @@ div[class*="BaseCard"].layera-card-uniform {
 .layera-card-uniform p,
 .layera-card-uniform div,
 .layera-card-uniform span {
-  font-family: var(--layera-card-uniform-font-family) !important;
-  font-size: var(--layera-card-uniform-font-size) !important;
-  font-weight: var(--layera-card-uniform-font-weight) !important;
-  line-height: var(--layera-card-uniform-line-height) !important;
+  font-family: var(--la-card-uniform-font-family) !important;
+  font-size: var(--la-card-uniform-font-size) !important;
+  font-weight: var(--la-card-uniform-font-weight) !important;
+  line-height: var(--la-card-uniform-line-height) !important;
 }
 
-/* Level 4: Hover states */
-.layera-card-uniform:hover,
-.la-card.layera-card-uniform:hover {
-  box-shadow: var(--layera-card-uniform-hover-shadow) !important;
-}
-
-/* Level 5: Active states */
-.layera-card-uniform.active,
-.layera-card-uniform[data-active="true"],
-.la-card.layera-card-uniform.active {
-  border: var(--layera-card-uniform-active-border) !important;
-  background-color: var(--layera-card-uniform-active-background) !important;
-}
-
-/* Level 6: NUCLEAR OVERRIDE - For any stubborn components */
+/* Level 4: NUCLEAR OVERRIDE - For any stubborn components (highest specificity) */
 body .layera-card-uniform,
 html body .layera-card-uniform,
 html body div.layera-card-uniform {
-  height: var(--layera-card-uniform-height) !important;
-  min-height: var(--layera-card-uniform-min-height) !important;
-  border: var(--layera-card-uniform-border) !important;
-  background-color: var(--layera-card-uniform-background) !important;
-  font-family: var(--layera-card-uniform-font-family) !important;
-  font-size: var(--layera-card-uniform-font-size) !important;
+  height: var(--la-card-uniform-height) !important;
+  min-height: var(--la-card-uniform-min-height) !important;
+  border: var(--la-card-uniform-border) !important;
+  background-color: var(--la-card-uniform-background) !important;
+  font-family: var(--la-card-uniform-font-family) !important;
+  font-size: var(--la-card-uniform-font-size) !important;
   /* flex: none !important; - REMOVED to allow flex layouts */
+}
+
+/* Level 5: Hover states */
+.layera-card-uniform:hover,
+.la-card.layera-card-uniform:hover {
+  box-shadow: var(--la-card-uniform-hover-shadow) !important;
+}
+
+/* Level 6: Active states */
+.layera-card-uniform.active,
+.layera-card-uniform[data-active="true"],
+.la-card.layera-card-uniform.active {
+  border: var(--la-card-uniform-active-border) !important;
+  background-color: var(--la-card-uniform-active-background) !important;
 }
 
 /* Dark Theme Support - διαχειρίζεται από packages/tokens/ */
 
-/* Enterprise Base Styles */
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: var(--la-bg-primary);
-  color: var(--la-text-primary);
-  margin: var(--la-size-0);
-  padding: var(--la-size-0);
-}
-
 /* Global Enterprise Utilities */
 .layera-sr-only {
   position: absolute;
-  width: 0.063rem;
-  height: 0.063rem;
+  width: var(--la-border-width-1);
+  height: var(--la-border-width-1);
   padding: var(--la-size-0);
-  margin: -0.063rem;
+  margin: calc(-1 * var(--la-border-width-1));
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
   white-space: nowrap;
   border: var(--la-size-0);
 }
 
 .layera-focus-ring:focus {
-  outline: 0.125rem solid var(--la-bg-info);
-  outline-offset: 0.125rem;
+  outline: var(--la-border-width-1) solid var(--la-bg-info);
+  outline-offset: var(--la-border-width-1);
 }
 
 /* =============== ΚΑΘΟΛΙΚΟ GRID LAYOUT SYSTEM =============== */
@@ -181,80 +181,80 @@ body {
 .layera-cards-grid {
   display: grid !important;
   grid-template-columns: repeat(2, 1fr) !important;
-  gap: var(--layera-grid-gap) !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  margin: 0 auto !important;
-  padding: 0 var(--la-space-2) !important;
+  gap: var(--la-grid-gap) !important;
+  width: var(--la-size-full) !important;
+  max-width: var(--la-size-full) !important;
+  margin: var(--la-space-0) auto !important;
+  padding: var(--la-space-4) !important;
   box-sizing: border-box !important;
 }
 
 /* Mobile Responsive - 1 κάρτα ανά σειρά σε μικρές οθόνες */
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .layera-cards-grid {
     grid-template-columns: 1fr !important;
-    padding: 0 var(--la-space-1) !important;
+    padding: var(--la-space-4) !important;
     gap: var(--la-space-2) !important;
   }
 }
 
 /* Tablet - 2 κάρτες ανά σειρά */
-@media (min-width: 481px) and (max-width: 1024px) {
+@media (width >= 481px) and (width <= 1024px) {
   .layera-cards-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    padding: 0 var(--la-space-3) !important;
+    padding: var(--la-space-4) !important;
   }
 }
 
 /* Large Desktop - 3 κάρτες ανά σειρά σε μεγάλες οθόνες */
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
   .layera-cards-grid {
     grid-template-columns: repeat(3, 1fr) !important;
-    padding: 0 var(--la-space-4) !important;
+    padding: var(--la-space-4) !important;
   }
 }
 
 /* Grid Card Item - κάθε κάρτα στο grid */
 .layera-cards-grid .layera-card-uniform {
-  width: 100% !important;
+  width: var(--la-size-full) !important;
   max-width: none !important;
-  margin: 0 !important;
+  margin: var(--la-space-0) !important;
 }
 
 /* Ειδική κλάση για 2x2 Grid (4 κάρτες) */
 .layera-cards-grid-2x2 {
   display: grid !important;
   grid-template-columns: repeat(2, 1fr) !important;
-  gap: var(--layera-grid-gap) !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  margin: 0 auto !important;
-  padding: 0 var(--la-space-2) !important;
+  gap: var(--la-grid-gap) !important;
+  width: var(--la-size-full) !important;
+  max-width: var(--la-size-full) !important;
+  margin: var(--la-space-0) auto !important;
+  padding: var(--la-space-4) !important;
   box-sizing: border-box !important;
 }
 
 /* Mobile 2x2 - 1 κάρτα ανά σειρά */
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .layera-cards-grid-2x2 {
     grid-template-columns: 1fr !important;
-    padding: 0 var(--la-space-1) !important;
+    padding: var(--la-space-4) !important;
     gap: var(--la-space-2) !important;
   }
 }
 
 /* Tablet 2x2 - 2 κάρτες ανά σειρά */
-@media (min-width: 481px) and (max-width: 1024px) {
+@media (width >= 481px) and (width <= 1024px) {
   .layera-cards-grid-2x2 {
     grid-template-columns: repeat(2, 1fr) !important;
-    padding: 0 var(--la-space-3) !important;
+    padding: var(--la-space-4) !important;
   }
 }
 
 /* Large Desktop 2x2 - 4 κάρτες σε μία σειρά */
-@media (min-width: 1200px) {
+@media (width >= 1200px) {
   .layera-cards-grid-2x2 {
     grid-template-columns: repeat(4, 1fr) !important;
-    padding: 0 var(--la-space-4) !important;
+    padding: var(--la-space-4) !important;
   }
 }
 
@@ -263,7 +263,6 @@ body {
 
 /* Card Text Content - Αποφυγή overflow */
 .layera-card-uniform * {
-  word-wrap: break-word !important;
   overflow-wrap: break-word !important;
   hyphens: auto !important;
   box-sizing: border-box !important;
@@ -278,7 +277,7 @@ body {
   line-height: var(--la-line-height-tight, 1.25) !important;
   color: var(--la-text-muted, var(--la-text-secondary)) !important;
   margin-top: var(--la-space-1) !important;
-  margin-bottom: 0 !important;
+  margin-bottom: var(--la-space-0) !important;
   max-height: calc(var(--la-text-xs) * var(--la-line-height-tight, 1.25) * 2) !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
@@ -295,12 +294,12 @@ body {
   font-size: var(--la-text-sm) !important;
   line-height: var(--la-line-height-snug, 1.375) !important;
   font-weight: var(--la-font-weight-medium, 500) !important;
-  margin: 0 !important;
+  margin: var(--la-space-0) !important;
   color: var(--la-text-primary) !important;
 }
 
 /* Mobile Typography Adjustments */
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .layera-card-uniform [data-description],
   .layera-card-uniform .description,
   .layera-card-uniform p:not(:first-child),

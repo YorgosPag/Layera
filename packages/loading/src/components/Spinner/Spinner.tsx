@@ -27,7 +27,7 @@ export const Spinner: React.FC<SpinnerProps> = ({
     switch (variant) {
       case 'dots':
         return (
-          <Box className={spinnerClasses} style={spinnerStyle}>
+          <Box className={spinnerClasses}>
             <Box className="layera-spinner__dot" />
             <Box className="layera-spinner__dot" />
             <Box className="layera-spinner__dot" />
@@ -36,14 +36,14 @@ export const Spinner: React.FC<SpinnerProps> = ({
 
       case 'pulse':
         return (
-          <Box className={spinnerClasses} style={spinnerStyle}>
+          <Box className={spinnerClasses}>
             <Box className="layera-spinner__pulse" />
           </Box>
         );
 
       case 'ring':
         return (
-          <Box className={spinnerClasses} style={spinnerStyle}>
+          <Box className={spinnerClasses}>
             <Box className="layera-spinner__ring">
               <Box />
               <Box />
@@ -55,7 +55,7 @@ export const Spinner: React.FC<SpinnerProps> = ({
 
       case 'bars':
         return (
-          <Box className={spinnerClasses} style={spinnerStyle}>
+          <Box className={spinnerClasses}>
             <Box className="layera-spinner__bars">
               <Box />
               <Box />
@@ -68,7 +68,7 @@ export const Spinner: React.FC<SpinnerProps> = ({
 
       default:
         return (
-          <Box className={spinnerClasses} style={spinnerStyle}>
+          <Box className={spinnerClasses}>
             <svg
               className="layera-spinner__circle"
               viewBox="0 0 50 50"

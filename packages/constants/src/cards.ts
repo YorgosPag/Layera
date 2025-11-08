@@ -3,7 +3,7 @@
  * Single Source of Truth για τα στυλ των καρτών σε StepOrchestrator και WorkflowPlaceholder
  */
 
-import { SPACING_SCALE, BORDER_RADIUS_SCALE } from './themes';
+import { SPACING_SCALE, BORDER_RADIUS_SCALE } from './design-tokens';
 import { BRAND_COLORS } from './config';
 
 /**

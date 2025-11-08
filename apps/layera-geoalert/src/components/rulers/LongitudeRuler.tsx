@@ -76,7 +76,7 @@ const LongitudeRuler: React.FC<RulerProps> = ({ bounds, mapSize, tickDensity = '
             right={0}
             bottom={0}
             height={`${RULER_SIZE}px`}
-            zIndex={1000}
+            zIndex="var(--la-z-index-overlay)"
             pointerEvents="none"
         >
             <Box as="canvas" ref={canvasRef} width="full" height="full" />

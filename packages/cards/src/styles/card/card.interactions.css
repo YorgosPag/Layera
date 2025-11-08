@@ -15,12 +15,12 @@
 }
 
 .la-card-clickable {
-  cursor: pointer;
-  border: none;
+  cursor: var(--la-cursor-pointer);
+  border: var(--la-border-none);
   background: var(--la-color-surface);
   font: var(--la-inherit);
   text-align: var(--la-inherit);
-  width: 100%;
+  width: var(--la-size-full);
 }
 
 .la-card-clickable:hover {

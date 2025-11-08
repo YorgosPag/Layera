@@ -18,7 +18,7 @@
 .la-error-fallback-page {
   min-height: var(--la-size-100);
   width: var(--la-width-full);
-  border: none;
+  border: var(--la-border-none);
   border-radius: var(--la-radius-none);
 }
 
@@ -76,7 +76,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.7;
+  opacity: var(--la-space-0).7;
 }
 
 .la-error-fallback-critical .la-error-fallback-icon {
@@ -130,8 +130,8 @@
   align-items: center;
   justify-content: center;
   height: var(--la-size-10);
-  padding: var(--la-size-0) var(--la-space-lg);
-  border: none;
+  padding: var(--la-space-4);
+  border: var(--la-border-none);
   border-radius: var(--la-radius-md);
   background-color: var(--la-color-primary-500);
   color: var(--la-color-primary-contrast);
@@ -146,22 +146,22 @@
 }
 
 .la-error-fallback-retry:focus {
-  outline: 0.125rem solid var(--la-color-primary);
-  outline-offset: 0.125rem;
+  outline: var(--la-space-4) solid var(--la-color-primary);
+  outline-offset: var(--la-space-4);
 }
 
 .la-error-fallback-details-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 2rem;
-  padding: 0 var(--la-space-4);
+  height: var(--la-space-4);
+  padding: var(--la-space-4);
   border: var(--la-border-width-1) solid var(--la-color-border-primary);
   border-radius: var(--la-radius-md);
   background-color: var(--la-color-transparent);
   color: var(--la-color-text-secondary);
   font-size: var(--la-font-size-xs);
-  font-weight: 500;
+  font-weight: var(--la-font-weight-medium);
   cursor: var(--la-cursor-pointer);
   transition: all 150ms ease;
 }
@@ -176,25 +176,25 @@
 [data-theme="dark"] .la-error-fallback {
   background-color: var(--color-surface-dark, var(--la-text-primary));
   border-color: var(--la-color-border-dark);
-  color: var(--color-text-primary-dark, #f9fafb);
+  color: var(--color-text-primary-dark, #f9fafb #f9fafb);
 }
 
 [data-theme="dark"] .la-error-fallback-critical {
-  background-color: rgb(239 68 68 / 10%);
+  background-color: rgb(239 68 68 / 10%) rgb(239 68 68 / 10%);
 }
 
 [data-theme="dark"] .la-error-fallback-high,
 [data-theme="dark"] .la-error-fallback-network {
-  background-color: rgb(245 158 11 / 10%);
+  background-color: rgb(245 158 11 / 10%) rgb(245 158 11 / 10%);
 }
 
 [data-theme="dark"] .la-error-fallback-medium,
 [data-theme="dark"] .la-error-fallback-chunk {
-  background-color: rgb(59 130 246 / 10%);
+  background-color: rgb(59 130 246 / 10%) rgb(59 130 246 / 10%);
 }
 
 [data-theme="dark"] .la-error-fallback-title {
-  color: var(--color-text-primary-dark, #f9fafb);
+  color: var(--color-text-primary-dark, #f9fafb #f9fafb);
 }
 
 [data-theme="dark"] .la-error-fallback-message {
@@ -208,34 +208,34 @@
 
 [data-theme="dark"] .la-error-fallback-details-toggle:hover {
   background-color: var(--color-surface-hover-dark, var(--la-color-gray-dark));
-  border-color: var(--color-border-hover-dark, #4b5563);
-  color: var(--color-text-primary-dark, #f9fafb);
+  border-color: var(--color-border-hover-dark, #4b5563 #4b5563);
+  color: var(--color-text-primary-dark, #f9fafb #f9fafb);
 }
 
 /* Mobile responsiveness */
 @media (width <= 640px) {
   .la-error-fallback {
-    padding: var(--space-md, 1rem);
-    min-height: 9.375rem;
+    padding: var(--space-md, var(--la-space-4));
+    min-height: 9.375rem 9.375rem;
   }
 
   .la-error-fallback-page {
-    min-height: 18.75rem;
+    min-height: 18.75rem 18.75rem;
   }
 
   .la-error-fallback-section {
-    min-height: 12.5rem;
+    min-height: 12.5rem 12.5rem;
   }
 
   .la-error-fallback-content {
-    gap: var(--space-md, 1rem);
+    gap: var(--space-md, var(--la-space-4));
   }
 
   .la-error-fallback-title {
-    font-size: 1.125rem;
+    font-size: 1.125rem 1.125rem;
   }
 
   .la-error-fallback-message {
-    font-size: 0.875rem;
+    font-size: 0.875rem 0.875rem;
   }
 }

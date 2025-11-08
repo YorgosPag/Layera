@@ -1,0 +1,40 @@
+/**
+ * OccupationSearch - Styles
+ */
+
+/* Search container */
+.la-occupation-search-container {
+  background: var(--color-bg-surface-strong);
+  border-radius: var(--la-radius-card);
+  padding: var(--la-space-md);
+}
+
+/* Search input styling */
+.la-occupation-search-input {
+  width: var(--la-width-full, 100%);
+  padding: var(--la-input-padding-complex);
+  border: var(--la-border-default-style, 1px solid var(--la-border-default));
+  border-radius: var(--la-radius-sm);
+  font-size: var(--la-font-size-base);
+  background-color: var(--la-bg-primary);
+  color: var(--la-text-primary);
+  outline: none;
+  transition: var(--la-transition-fast);
+}
+
+.la-occupation-search-input:focus {
+  border-color: var(--la-color-primary);
+  box-shadow: 0 0 0 2px var(--la-color-primary-subtle);
+}
+
+.la-occupation-search-input::placeholder {
+  color: var(--la-text-secondary);
+}
+
+/* Clear button positioning */
+.la-occupation-search-clear-button {
+  position: absolute;
+  right: var(--la-space-sm);
+  top: 50%;
+  transform: translateY(-50%);
+}

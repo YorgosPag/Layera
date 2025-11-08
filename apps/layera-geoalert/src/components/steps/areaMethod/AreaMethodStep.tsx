@@ -137,13 +137,12 @@ export const AreaMethodStep: React.FC<AreaMethodStepProps> = ({
       <InteractiveAreaMeasurement
         onComplete={handleMeasurementComplete}
         onCancel={handleMeasurementCancel}
-        style={containerStyles}
       />
     );
   }
 
   return (
-    <Box style={containerStyles} className={containerClass}>
+    <Box className={containerClass}>
       {areaMethods.map((method: AreaMethodOption) => (
         <AreaMethodCard
           key={method.id}

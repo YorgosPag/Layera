@@ -77,12 +77,7 @@ export const DashboardCard: React.FC<DashboardCardProps> = ({
   return (
     <BaseCard
       {...baseProps}
-      className={`${cardClasses} ${baseProps.className || ''}`}
-      style={{
-        ...baseProps.style,
-        backgroundColor: baseProps.style?.backgroundColor || 'var(--la-color-surface)', // 🔴 SST: Χρώμα από μοναδική πηγή αλήθειας
-        border: '3px solid var(--la-color-info)' // 🔲 SST: Περίγραμμα από μοναδική πηγή αλήθειας
-      }}
+      className={`${cardClasses} ${baseProps.className || ''} la-dashboard-card-info-variant`}
     >
       {renderContent()}
     </BaseCard>

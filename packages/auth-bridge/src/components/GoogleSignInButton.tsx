@@ -4,6 +4,7 @@ import { Box } from '@layera/layout';
 import { BOX_SHADOW_SCALE } from '@layera/box-shadows';
 import { SPACING_SCALE, BORDER_RADIUS_SCALE } from '@layera/constants';
 import type { AuthResult, LayeraUser } from '../types/auth.js';
+import './GoogleSignInButton.css';
 
 export interface GoogleSignInButtonProps {
   /** Text που εμφανίζεται στο button */
@@ -92,7 +93,7 @@ export function GoogleSignInButton({
     <button
       type="button"
       className={`google-sign-in-button ${className}`}
-      style={defaultStyle}
+      {...(defaultStyle && { style: defaultStyle })}
       onClick={handleClick}
       disabled={loading || externalDisabled}
       onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => {
@@ -108,15 +109,7 @@ export function GoogleSignInButton({
     >
       {loading ? (
         <>
-          <Box
-            style={{
-              width: "var(--la-icon-size-md)",
-              height: "var(--la-icon-size-md)",
-              border: "2px solid var(--la-border-default)",
-              borderTop: "2px solid var(--la-color-primary)",
-              borderRadius: `${BORDER_RADIUS_SCALE.CIRCLE}px`
-            }}
-          />
+          <Box className="google-signin-spinner" />
           <span>Σύνδεση...</span>
         </>
       ) : (

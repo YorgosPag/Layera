@@ -14,11 +14,11 @@
 }
 
 .la-modal-content-sm {
-  padding: var(--la-space-3) var(--la-space-4);
+  padding: var(--la-space-4);
 }
 
 .la-modal-content-md {
-  padding: var(--la-space-4) var(--la-space-4);
+  padding: var(--la-space-4);
 }
 
 .la-modal-content-lg {

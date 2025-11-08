@@ -1,0 +1,18 @@
+/**
+ * GoogleSignInButton - Styles
+ */
+
+/* Loading spinner for Google Sign In */
+.google-signin-spinner {
+  width: var(--la-icon-size-md);
+  height: var(--la-icon-size-md);
+  border: 2px solid var(--la-border-default);
+  border-top: 2px solid var(--la-color-primary);
+  border-radius: var(--la-radius-circle);
+  animation: google-signin-spin 1s linear infinite;
+}
+
+@keyframes google-signin-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
