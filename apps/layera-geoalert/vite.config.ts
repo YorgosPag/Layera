@@ -29,7 +29,7 @@ export default defineConfig({
       '@layera/layout': resolve(__dirname, '../../packages/layout/src/index.ts'),
       '@layera/forms': resolve(__dirname, '../../packages/forms/src/index.ts'),
       '@layera/cards': resolve(__dirname, '../../packages/cards/src/index.ts'),
-      '@layera/constants': resolve(__dirname, '../../packages/constants/src'),
+      '@layera/constants': resolve(__dirname, '../../packages/constants/src/index.ts'),
       '@layera/viewport': resolve(__dirname, '../../packages/viewport/src'),
       '@layera/notifications': resolve(__dirname, '../../packages/notifications/src'),
       '@layera/loading': resolve(__dirname, '../../packages/loading/src'),

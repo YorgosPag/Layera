@@ -14,7 +14,7 @@ import type { AvailabilityDetails } from './types';
 
 interface AvailabilityDetailsFormProps {
   details: AvailabilityDetails;
-  onChange: (field: keyof AvailabilityDetails, value: unknown) => void;
+  onChange: (field: keyof AvailabilityDetails, value: unknown) => React.ReactNode;
 }
 
 export const AvailabilityDetailsForm: React.FC<AvailabilityDetailsFormProps> = ({

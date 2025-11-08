@@ -35,7 +35,7 @@ import { DragDropZone, FileList, FilePreview } from '@layera/file-upload';
 
 export interface FileImporterProps {
   // Core functionality
-  onFileImported: (files: ImportedFile[]) => void;
+  onFileImported: (files: ImportedFile[]) => React.ReactNode;
   acceptedFormats: SupportedFormat[];
 
   // Customization

@@ -26,7 +26,7 @@ import type { SnapType, SnapConfiguration } from '@layera/snap-engine';
 
 export interface SnapSettingsPanelProps {
   configuration: SnapConfiguration;
-  onConfigChange: (config: Partial<SnapConfiguration>) => void;
+  onConfigChange: (config: Partial<SnapConfiguration>) => React.ReactNode;
   onClose?: () => void;
   compact?: boolean;
   disabled?: boolean;
@@ -330,10 +330,10 @@ export const SnapSettingsPanel: React.FC<SnapSettingsPanelProps> = ({
 
 export interface SnapToolbarProps {
   configuration: SnapConfiguration;
-  onConfigChange: (config: Partial<SnapConfiguration>) => void;
+  onConfigChange: (config: Partial<SnapConfiguration>) => React.ReactNode;
   onOpenSettings?: () => void;
   enabled: boolean;
-  onToggleEnabled: (enabled: boolean) => void;
+  onToggleEnabled: (enabled: boolean) => React.ReactNode;
 }
 
 export const SnapToolbar: React.FC<SnapToolbarProps> = ({

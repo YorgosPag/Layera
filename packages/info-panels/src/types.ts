@@ -1,3 +1,4 @@
+import React from "react";
 /**
  * Info Panels Types - Enterprise LEGO System
  *
@@ -75,13 +76,13 @@ export interface InfoPanelState {
 
 // Hook Return Type
 export interface UseInfoPanelReturn {
-  showPanel: (id: InfoPanelId) => void;
-  hidePanel: (id: InfoPanelId) => void;
-  togglePanel: (id: InfoPanelId) => void;
+  showPanel: (id: InfoPanelId) => React.ReactNode;
+  hidePanel: (id: InfoPanelId) => React.ReactNode;
+  togglePanel: (id: InfoPanelId) => React.ReactNode;
   isVisible: (id: InfoPanelId) => boolean;
   getContent: (id: InfoPanelId) => Promise<InfoPanelContent>;
-  registerPanel: (config: InfoPanelConfig) => void;
-  unregisterPanel: (id: InfoPanelId) => void;
+  registerPanel: (config: InfoPanelConfig) => React.ReactNode;
+  unregisterPanel: (id: InfoPanelId) => React.ReactNode;
 }
 
 // Provider Props

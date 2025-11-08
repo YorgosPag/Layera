@@ -1,6 +1,7 @@
 // Layera GeoAlert V1 - Enterprise Type Definitions
 // Inspired by geo-canvas(8) patterns but simplified για GeoAlert needs
 
+import React from "react";
 import L from 'leaflet';
 import type { PropertyType } from './components/steps/propertyType/types';
 
@@ -56,9 +57,9 @@ export interface MapCoreProps {
 
 // Event Types
 export interface MapEvents {
-  onDrawingStart: (shape: DrawingShape) => void;
-  onDrawingComplete: (geometry: GeoAlertArea['geometry']) => void;
-  onAreaClick: (areaId: string) => void;
+  onDrawingStart: (shape: DrawingShape) => React.ReactNode;
+  onDrawingComplete: (geometry: GeoAlertArea['geometry']) => React.ReactNode;
+  onAreaClick: (areaId: string) => React.ReactNode;
 }
 
 // Constants

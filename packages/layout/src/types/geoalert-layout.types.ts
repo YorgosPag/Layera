@@ -1,3 +1,4 @@
+import React from "react";
 /**
  * GeoAlert Layout System Types
  * Enterprise layout types για GeoAlert step system

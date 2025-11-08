@@ -47,6 +47,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   left,
   fontSize,
   title,
+  shadow,
   style,
   ...props
 }, ref) => {
@@ -82,6 +83,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
     bottom,
     left,
     fontSize,
+    boxShadow: shadow,
     ...style
   };
 

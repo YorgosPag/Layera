@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["index.ts"],"names":[],"mappings":"AAAA;;GAEG;AAEH,OAAO,EAAE,YAAY,EAAE,MAAM,gBAAgB,CAAC","sourcesContent":["/**\r\n * SkeletonText Component Export\r\n */\r\n\r\nexport { SkeletonText } from './SkeletonText';"]}

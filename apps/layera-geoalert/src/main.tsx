@@ -1,8 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import '../../../packages/buttons/src/styles/index.css'
-import '../../../packages/cards/src/styles/index.css'
-import '@layera/tokens/dist/tokens.css'
+// TODO: Fix cards CSS import - temporarily disabled due to @import issues
+// import '../../../packages/cards/src/styles/index.css'
+// TODO: Re-enable when @layera/tokens CSS is properly set up
+// import '@layera/tokens/dist/tokens.css'
 import App from './App.tsx'
 import { TolgeeProvider } from '@layera/tolgee'
 
@@ -15,8 +17,9 @@ const loadLeafletCSS = (): void => {
   link.crossOrigin = '';
   document.head.appendChild(link);
 
-  if (process.env.NODE_ENV === 'development') {
-    link.onload = () =>link.onerror = () => console.error('❌ Failed to load Leaflet CSS');
+  if (import.meta.env.MODE === 'development') {
+    link.onload = () => console.info('✅ Leaflet CSS loaded successfully');
+    link.onerror = () => console.error('❌ Failed to load Leaflet CSS');
   }
 };
 

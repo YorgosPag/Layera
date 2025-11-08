@@ -71,7 +71,7 @@ interface MapComponentProps {
 interface GeoMapProps {
   onAreaCreated?: (area: DrawnArea) => void;
   onNewEntryClick?: () => void;
-  onStepNavigationReady?: (navProps: { onPrevious: () => void; canGoBack: boolean }) => void; // 🧡 ΠΡΟΣΩΡΙΝΟ: Εξαγωγή step navigation
+  onStepNavigationReady?: (navProps: { onPrevious: () => React.ReactNode; canGoBack: boolean }) => void; // 🧡 ΠΡΟΣΩΡΙΝΟ: Εξαγωγή step navigation
   // REMOVED: Legacy unified pipeline props
   onCategoryElementsChange?: (show: boolean) => void;
   showCategoryElements?: boolean;

@@ -4,7 +4,7 @@ import { ArrowLeftIcon, PlusIcon } from '@layera/icons';
 import { Flex } from '@layera/layout';
 
 interface SimpleNavigationRailProps {
-  onBackClick: () => void;
+  onBackClick: () => React.ReactNode;
   onNewEntryClick?: () => void;
 }
 

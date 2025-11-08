@@ -16,7 +16,7 @@ import { SPACING_SCALE } from '@layera/constants';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { getSizingVar, getSizingValue, type SizingToken } from '../sizing';
 
-export interface BoxProps {
+export interface BoxProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
 
   // Sizing properties (enterprise-grade)
@@ -49,13 +49,36 @@ export interface BoxProps {
   gap?: string;
   fontSize?: string;
   opacity?: number;
-  position?: 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky' | string;
+  position?: React.CSSProperties['position'];
   top?: string;
   right?: string;
   bottom?: string;
   left?: string;
   color?: string;
-  minHeight?: string | number;
+
+  // Flex properties (needed for layout components)
+  justifyContent?: React.CSSProperties['justifyContent'];
+  flexDirection?: React.CSSProperties['flexDirection'];
+  flexWrap?: React.CSSProperties['flexWrap'];
+
+  // Z-index and overflow properties
+  zIndex?: number | string;
+  overflowY?: React.CSSProperties['overflowY'];
+  overflowX?: React.CSSProperties['overflowX'];
+  overflow?: React.CSSProperties['overflow'];
+
+  // Border properties
+  borderBottom?: string;
+  border?: string;
+  borderColor?: string;
+  borderWidth?: string;
+
+  // Box shadow
+  boxShadow?: string;
+
+  // Additional layout properties
+  cursor?: string;
+  background?: string;
 
   // Common CSS properties
   className?: string;
@@ -98,7 +121,7 @@ const resolveSizingValue = (value: SizingToken | string | number | undefined): s
   return value;
 };
 
-export const Box: React.FC<BoxProps> = ({
+export const Box = React.forwardRef<HTMLDivElement, BoxProps>(({
   children,
   width,
   height,
@@ -133,6 +156,20 @@ export const Box: React.FC<BoxProps> = ({
   bottom,
   left,
   color,
+  justifyContent,
+  flexDirection,
+  flexWrap,
+  zIndex,
+  overflowY,
+  overflowX,
+  overflow,
+  borderBottom,
+  border,
+  borderColor,
+  borderWidth,
+  boxShadow,
+  cursor,
+  background,
   className,
   style,
   as: Component = 'div',
@@ -145,7 +182,7 @@ export const Box: React.FC<BoxProps> = ({
   onMouseEnter,
   onMouseLeave,
   ...rest
-}) => {
+}, ref) => {
   // Memoized styles για performance
   const boxStyles = useMemo((): React.CSSProperties => {
     return {
@@ -188,20 +225,29 @@ export const Box: React.FC<BoxProps> = ({
       bottom,
       left,
       color,
+      justifyContent,
+      flexDirection,
+      flexWrap,
+      zIndex,
+      overflowY,
+      overflowX,
+      overflow,
+      borderBottom,
+      border,
+      borderColor,
+      borderWidth,
+      boxShadow,
+      cursor,
+      background,
 
       // Merge με user styles
       ...style
     };
-  }, [width, height, minWidth, minHeight, maxWidth, maxHeight, margin, marginTop, marginBottom, marginLeft, marginRight, padding, paddingTop, paddingBottom, paddingLeft, paddingRight, backgroundColor, borderRadius, textAlign, boxSizing, animationDuration, gridTemplateColumns, display, alignItems, gap, fontSize, opacity, position, top, right, bottom, left, color, style]);
+  }, [width, height, minWidth, minHeight, maxWidth, maxHeight, margin, marginTop, marginBottom, marginLeft, marginRight, padding, paddingTop, paddingBottom, paddingLeft, paddingRight, backgroundColor, borderRadius, textAlign, boxSizing, animationDuration, gridTemplateColumns, display, alignItems, gap, fontSize, opacity, position, top, right, bottom, left, color, justifyContent, flexDirection, flexWrap, zIndex, overflowY, overflowX, overflow, borderBottom, border, borderColor, borderWidth, boxShadow, cursor, background, style]);
 
   // Filter out React-specific props that shouldn't go to DOM
+  // Note: All layout props are now handled explicitly in BoxProps interface
   const {
-    justifyContent,
-    flexDirection,
-    flexWrap,
-    borderBottom,
-    zIndex,
-    boxShadow,
     ...filteredRest
   } = rest;
 
@@ -220,6 +266,7 @@ export const Box: React.FC<BoxProps> = ({
 
   return (
     <Component
+      ref={ref}
       className={className}
       style={boxStyles}
       {...domProps}
@@ -227,4 +274,6 @@ export const Box: React.FC<BoxProps> = ({
       {children}
     </Component>
   );
-};
+});
+
+Box.displayName = 'Box';

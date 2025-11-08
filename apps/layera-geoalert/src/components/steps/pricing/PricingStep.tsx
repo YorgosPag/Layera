@@ -89,7 +89,7 @@ export const PricingStep: React.FC<PricingStepProps> = ({
       </Stack>
 
       {/* 🎯 Context Display για debugging */}
-      {process.env.NODE_ENV === 'development' && (
+      {import.meta.env.MODE === 'development' && (
         <BaseCard title="🔍 Context Debug" variant="outline" className="layera-card-uniform">
           <Text size="sm" color="neutral-500">
             Category: {context.selectedCategory} | Intent: {context.selectedIntent} |

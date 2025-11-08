@@ -101,6 +101,7 @@ export interface ButtonProps extends BaseButtonProps, Omit<ComponentPropsWithout
   left?: string;
   fontSize?: string;
   title?: string;
+  shadow?: string; // Box shadow property
 }
 
 /**

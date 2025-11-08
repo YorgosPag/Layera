@@ -1,5 +1,6 @@
 // Temporary type definitions for @layera packages using EXISTING PATTERNS
 declare module '@layera/layout' {
+import React from "react";
   import { ReactNode, CSSProperties } from 'react';
 
   export interface BoxProps {

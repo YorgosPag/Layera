@@ -14,7 +14,7 @@ interface EmploymentTypeCardProps {
   employmentType: EmploymentType;
   title: string;
   description?: string;
-  onClick: () => void;
+  onClick: () => React.ReactNode;
   'data-testid'?: string;
 }
 
@@ -34,7 +34,7 @@ export const EmploymentTypeCard: React.FC<EmploymentTypeCardProps> = ({
     return null;
   }
 
-  const getIcon = (): void => {
+  const getIcon = () => {
     switch (employmentType) {
       case 'full_time':
         return <ToolIcon size="sm" theme="neutral" />;

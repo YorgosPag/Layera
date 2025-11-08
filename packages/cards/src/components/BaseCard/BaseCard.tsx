@@ -47,7 +47,15 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
   onClick,
   className = '',
   style,
-  'data-testid': testId
+  'data-testid': testId,
+
+  // ============= ADDITIONAL LAYOUT PROPERTIES =============
+  marginY,
+  marginLeft,
+  marginRight,
+  maxWidth,
+  borderWidth,
+  borderColor
 }) => {
   // 🔥 DEBUG: SST System Console Logs (disabled for cleaner console)
   // if (process.env.NODE_ENV === 'development') {
@@ -133,6 +141,15 @@ export const BaseCard: React.FC<BaseCardProps> = React.memo(({
 
     // Shadow system (only if no SST boxShadow)
     boxShadow: sstStyles.boxShadow || (hoverable ? BOX_SHADOW_SCALE.elevation1 : BOX_SHADOW_SCALE.none),
+
+    // Additional layout properties
+    marginTop: marginY,
+    marginBottom: marginY,
+    marginLeft: marginLeft,
+    marginRight: marginRight,
+    maxWidth: maxWidth,
+    borderWidth: borderWidth,
+    borderColor: borderColor,
 
     // Custom style override
     ...style

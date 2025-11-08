@@ -32,7 +32,7 @@ export const GeoHeader: React.FC<GeoHeaderProps> = ({ onBackClick, onStepBackCli
     theme = themeHook.theme;
     toggleTheme = themeHook.toggleTheme;
   } catch (error) {
-    if (process.env.NODE_ENV === 'development') {
+    if (import.meta.env.MODE === 'development') {
     }
   }
 

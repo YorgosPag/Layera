@@ -20,7 +20,7 @@ export interface InfoPanelProps {
   /** Unique identifier for the panel */
   cardId: string;
   /** Close handler */
-  onClose: () => void;
+  onClose: () => React.ReactNode;
   /** Content to display */
   content?: {
     title: string;

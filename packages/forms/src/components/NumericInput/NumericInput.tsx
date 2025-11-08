@@ -192,7 +192,7 @@ export const NumericInput = forwardRef<HTMLInputElement, NumericInputProps>(({
   }, [enableWheel, disabled, loading, incrementValue, decrementValue]);
 
   // Long press functionality
-  const startLongPress = useCallback((action: () => void) => {
+  const startLongPress = useCallback((action: () => React.ReactNode) => {
     if (!enableLongPress) return;
 
     // Clear any existing timers

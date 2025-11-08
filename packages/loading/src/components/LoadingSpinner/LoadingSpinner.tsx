@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spinner } from '../Spinner';
+import { Spinner } from '../spinner';
 import type { LoadingSpinnerProps } from '../../types';
 import { Box } from '@layera/layout';
 import './LoadingSpinner.css';

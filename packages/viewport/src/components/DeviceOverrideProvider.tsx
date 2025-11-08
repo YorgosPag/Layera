@@ -8,7 +8,7 @@ import { useViewport as useOriginalViewport } from '../hooks/useViewport';
 
 interface DeviceOverrideContextType {
   overrideDevice: DeviceType | null;
-  setOverrideDevice: (device: DeviceType | null) => void;
+  setOverrideDevice: (device: DeviceType | null) => React.ReactNode;
 }
 
 export const DeviceOverrideContext = createContext<DeviceOverrideContextType>({

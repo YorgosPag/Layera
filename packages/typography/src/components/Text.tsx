@@ -1,5 +1,6 @@
 import React from 'react';
 import { TextProps } from '../types';
+import type { StyleProps } from '../types';
 
 /**
  * Text Component - Βασικό text component για το Layera Design System
@@ -30,6 +31,11 @@ export const Text: React.FC<TextProps> = ({
     paddingRight,
     alignItems,
     gap,
+    justifyContent,
+    flexDirection,
+    fontSize,
+    minWidth,
+    textAlign: cssTextAlign,
     ...domProps
   } = props;
   const classes = [
@@ -43,7 +49,28 @@ export const Text: React.FC<TextProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <Component className={classes} {...domProps}>
+    <Component
+      className={classes}
+      style={{
+        marginTop,
+        marginBottom,
+        marginLeft,
+        marginRight,
+        paddingTop,
+        paddingBottom,
+        paddingLeft,
+        paddingRight,
+        alignItems,
+        gap,
+        justifyContent,
+        flexDirection,
+        fontSize,
+        minWidth,
+        textAlign: cssTextAlign || align, // Use CSS prop if provided, otherwise semantic prop
+        ...(domProps as any).style
+      }}
+      {...domProps}
+    >
       {children}
     </Component>
   );

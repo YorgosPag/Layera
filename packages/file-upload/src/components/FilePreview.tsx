@@ -38,7 +38,7 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
     };
   }, [file.file, showPreview]);
 
-  const getFileCategory = (): void => {
+  const getFileCategory = (): React.ReactNode => {
     const extension = file.file.name.split('.').pop()?.toLowerCase();
     switch (extension) {
       case 'dxf':
@@ -60,7 +60,7 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
     }
   };
 
-  const getFileIcon = (): void => {
+  const getFileIcon = () => {
     const category = getFileCategory();
     // Enhanced file type detection with CAD support
     switch (category) {

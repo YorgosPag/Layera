@@ -1,3 +1,4 @@
+import React from "react";
 /**
  * occupation/types.ts - Enterprise Occupation Step Types με ESCO Integration
  */
@@ -41,13 +42,13 @@ export interface OccupationSearchState {
 // Component Props
 export interface OccupationCardProps {
   occupation: ESCOOccupation;
-  onClick: (occupation: ESCOOccupation) => void;
+  onClick: (occupation: ESCOOccupation) => React.ReactNode;
   isSelected?: boolean;
   variant?: 'default' | 'compact' | 'detailed';
 }
 
 export interface ESCOSearchProps {
-  onOccupationSelected: (occupation: ESCOOccupation) => void;
+  onOccupationSelected: (occupation: ESCOOccupation) => React.ReactNode;
   placeholder?: string;
   maxResults?: number;
   variant?: 'default' | 'modal' | 'inline';

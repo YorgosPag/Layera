@@ -1,3 +1,4 @@
+import React from "react";
 import { ReactNode } from 'react';
 
 /**
@@ -10,7 +11,7 @@ export type ModalAnimation = 'fade' | 'slide' | 'scale' | 'none';
 
 export interface BaseModalProps {
   open: boolean;
-  onClose: () => void;
+  onClose: () => React.ReactNode;
   children: ReactNode;
   size?: ModalSize;
   variant?: ModalVariant;
@@ -74,8 +75,8 @@ export interface DrawerProps extends BaseModalProps {
 export interface ModalContextState {
   modals: ModalInstance[];
   openModal: (modal: Omit<ModalInstance, 'id'>) => string;
-  closeModal: (id: string) => void;
-  closeAllModals: () => void;
+  closeModal: (id: string) => React.ReactNode;
+  closeAllModals: () => React.ReactNode;
 }
 
 export interface ModalInstance {

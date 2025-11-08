@@ -1,3 +1,4 @@
+import React from "react";
 /**
  * availability/types.ts - Enterprise Availability Step Types
  */

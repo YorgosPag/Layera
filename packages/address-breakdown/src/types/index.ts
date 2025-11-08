@@ -2,6 +2,7 @@
  * @layera/address-breakdown - Types για interactive address breakdown
  */
 
+import React from "react";
 import type React from 'react';
 
 // Temporarily inline GeocodeResult to avoid build dependency issues

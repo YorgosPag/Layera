@@ -12,7 +12,7 @@ interface UploadCardProps {
   title: string;
   description?: string;
   options?: UploadOptions;
-  onFilesSelected: (files: FileUploadItem[]) => void;
+  onFilesSelected: (files: FileUploadItem[]) => React.ReactNode;
   'data-testid'?: string;
 }
 

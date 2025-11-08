@@ -20,6 +20,13 @@ export type TextColor =
 
 export type LineHeight = 'tight' | 'snug' | 'normal' | 'relaxed' | 'loose';
 
+export type StyleProps = Pick<React.CSSProperties,
+  | "marginTop" | "marginBottom" | "marginLeft" | "marginRight"
+  | "paddingTop" | "paddingBottom" | "paddingLeft" | "paddingRight"
+  | "alignItems" | "gap" | "justifyContent" | "flexDirection"
+  | "fontSize" | "minWidth" | "textAlign"
+>;
+
 export interface TypographyProps {
   size?: FontSize;
   weight?: FontWeight;
@@ -30,11 +37,11 @@ export interface TypographyProps {
   children?: React.ReactNode;
 }
 
-export interface HeadingProps extends TypographyProps {
+export interface HeadingProps extends TypographyProps, StyleProps {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
 
-export interface TextProps extends TypographyProps, Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
+export interface TextProps extends TypographyProps, StyleProps, Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
   as?: 'p' | 'span' | 'div' | 'label';
 }
 

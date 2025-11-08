@@ -5,7 +5,7 @@ import { useLayeraTranslation } from '@layera/tolgee';
 interface TableToolbarProps {
   searchable: boolean;
   searchValue: string;
-  onSearch: (value: string) => void;
+  onSearch: (value: string) => React.ReactNode;
   selectedCount: number;
   totalCount: number;
   bulkActions?: React.ReactNode;

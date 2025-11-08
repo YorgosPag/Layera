@@ -1,3 +1,4 @@
+import React from "react";
 /**
  * Canvas transformation types για @layera/canvas-transforms
  * Enterprise-grade transformation και coordinate system types
@@ -97,7 +98,7 @@ export interface CoordinateMapping {
   /** Get current transformation matrix */
   getMatrix: () => TransformationMatrix;
   /** Update coordinate system */
-  updateSystem: (system: Partial<CoordinateSystem>) => void;
+  updateSystem: (system: Partial<CoordinateSystem>) => React.ReactNode;
 }
 
 /**
@@ -170,11 +171,11 @@ export interface TransformContext {
   /** Current transformation state */
   transform: CanvasTransform;
   /** Apply transformation to context */
-  applyTransform: () => void;
+  applyTransform: () => React.ReactNode;
   /** Reset transformation */
-  resetTransform: () => void;
+  resetTransform: () => React.ReactNode;
   /** Save current state */
-  save: () => void;
+  save: () => React.ReactNode;
   /** Restore previous state */
-  restore: () => void;
+  restore: () => React.ReactNode;
 }

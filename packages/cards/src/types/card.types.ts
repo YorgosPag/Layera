@@ -57,6 +57,14 @@ export interface BaseCardProps {
   className?: string;
   style?: React.CSSProperties;
   'data-testid'?: string; // NEW: Test ID support
+
+  // ============= ADDITIONAL LAYOUT PROPERTIES =============
+  marginY?: string;
+  marginLeft?: string;
+  marginRight?: string;
+  maxWidth?: string;
+  borderWidth?: string;
+  borderColor?: string;
 }
 
 export interface CardHeaderProps {

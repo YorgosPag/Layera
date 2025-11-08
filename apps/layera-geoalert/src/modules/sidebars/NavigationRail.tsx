@@ -8,7 +8,7 @@ import { Box } from '@layera/layout';
 
 interface NavButtonProps {
   title: string;
-  onClick: () => void;
+  onClick: () => React.ReactNode;
   isActive?: boolean;
   children: React.ReactNode;
 }
@@ -28,10 +28,10 @@ const NavButton: React.FC<NavButtonProps> = ({ title, onClick, isActive, childre
 interface NavigationRailProps {
   activeView: 'dashboard' | 'map';
   isLayersPanelOpen: boolean;
-  onViewChange: (view: 'dashboard' | 'map') => void;
-  onToggleLayersPanel: () => void;
-  onNewAlert: () => void;
-  onFlyToUserLocation: () => void;
+  onViewChange: (view: 'dashboard' | 'map') => React.ReactNode;
+  onToggleLayersPanel: () => React.ReactNode;
+  onNewAlert: () => React.ReactNode;
+  onFlyToUserLocation: () => React.ReactNode;
 }
 
 const NavigationRail: React.FC<NavigationRailProps> = ({

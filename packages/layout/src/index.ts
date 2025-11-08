@@ -20,9 +20,9 @@ export { Stack } from './components/Stack';
 export { Flex } from './components/Flex';
 export { Box } from './components/Box';
 
-// Layout Shortcuts (Φάση 2.2 - Αντικαθιστά hardcoded patterns)
+// Layout Shortcuts (Φάση 2.2 - Available via '@layera/layout/shortcuts')
+// Note: Import shortcuts via '@layera/layout/shortcuts' for better tree-shaking
 export {
-  FlexCenter,
   FlexBetween,
   FlexColumn,
   FlexRow,

@@ -5,6 +5,7 @@
  * Multi-provider fallback και intelligent caching
  */
 
+import React from "react";
 import { DatabaseNamespace, FirestoreCache } from '@layera/database-core';
 import type { GeoJSONFeatureCollection } from '@layera/geo-core';
 import type {
@@ -139,7 +140,7 @@ export class BoundaryService {
    */
   subscribeToBoundary(
     query: string,
-    callback: (result: BoundaryResult | null) => void,
+    callback: (result: BoundaryResult | null) => React.ReactNode,
     options: BoundaryOptions = {}
   ): () => void {
     // Immediate result από cache ή null
@@ -325,7 +326,7 @@ export class BoundaryService {
   private async queueBackgroundFetch(
     query: string,
     options: BoundaryOptions,
-    callback: (result: BoundaryResult | null) => void
+    callback: (result: BoundaryResult | null) => React.ReactNode
   ): Promise<void> {
     // Background fetch implementation
     setTimeout(async () => {

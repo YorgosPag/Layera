@@ -86,15 +86,15 @@ export interface UseDraggableReturn {
   readonly position: DraggablePosition;
   readonly isDragging: boolean;
   readonly dragHandlers: {
-    readonly onMouseDown: (e: React.MouseEvent) => void;
-    readonly onMouseMove: (e: React.MouseEvent) => void;
-    readonly onMouseUp: (e: React.MouseEvent) => void;
-    readonly onTouchStart: (e: React.TouchEvent) => void;
-    readonly onTouchMove: (e: React.TouchEvent) => void;
-    readonly onTouchEnd: (e: React.TouchEvent) => void;
+    readonly onMouseDown: (e: React.MouseEvent) => React.ReactNode;
+    readonly onMouseMove: (e: React.MouseEvent) => React.ReactNode;
+    readonly onMouseUp: (e: React.MouseEvent) => React.ReactNode;
+    readonly onTouchStart: (e: React.TouchEvent) => React.ReactNode;
+    readonly onTouchMove: (e: React.TouchEvent) => React.ReactNode;
+    readonly onTouchEnd: (e: React.TouchEvent) => React.ReactNode;
   };
-  readonly setPosition: (position: DraggablePosition) => void;
-  readonly resetPosition: () => void;
+  readonly setPosition: (position: DraggablePosition) => React.ReactNode;
+  readonly resetPosition: () => React.ReactNode;
 }
 
 /**
@@ -104,12 +104,12 @@ export interface UseDraggableRightBottomReturn {
   readonly position: DraggablePositionRightBottom;
   readonly isDragging: boolean;
   readonly dragHandlers: {
-    readonly onPointerDown: (e: React.PointerEvent) => void;
-    readonly onPointerMove: (e: React.PointerEvent) => void;
-    readonly onPointerUp: (e: React.PointerEvent) => void;
+    readonly onPointerDown: (e: React.PointerEvent) => React.ReactNode;
+    readonly onPointerMove: (e: React.PointerEvent) => React.ReactNode;
+    readonly onPointerUp: (e: React.PointerEvent) => React.ReactNode;
   };
-  readonly setPosition: (position: DraggablePositionRightBottom) => void;
-  readonly resetPosition: () => void;
+  readonly setPosition: (position: DraggablePositionRightBottom) => React.ReactNode;
+  readonly resetPosition: () => React.ReactNode;
 }
 
 // ===============================

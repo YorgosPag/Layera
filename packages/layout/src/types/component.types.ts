@@ -54,3 +54,9 @@ export interface HeaderActionsGroupProps {
   children: ReactNode;
   className?: string;
 }
+
+// Box Component Types
+export type BoxStyleProps = Pick<React.CSSProperties,
+  | 'minHeight' | 'position'
+  | 'justifyContent' | 'flexDirection' | 'flexWrap' | 'borderBottom' | 'zIndex' | 'boxShadow'
+>;

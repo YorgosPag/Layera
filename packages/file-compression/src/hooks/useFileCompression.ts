@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useNotifications } from '@layera/notifications';
 import { useLayeraTranslation } from '@layera/tolgee';
@@ -32,8 +33,8 @@ export interface UseFileCompressionReturn {
   // Actions
   compressFile: (file: File, options?: CompressionOptions) => Promise<CompressionResult>;
   compressFiles: (files: File[], options?: BatchCompressionOptions) => Promise<BatchCompressionResult>;
-  cancelCompression: () => void;
-  clearResults: () => void;
+  cancelCompression: () => React.ReactNode;
+  clearResults: () => React.ReactNode;
 
   // Validation & optimization
   validateOptions: (options: CompressionOptions) => CompressionValidationResult;

@@ -1,13 +1,13 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 import { Box } from '@layera/layout';
-import { Toast } from '../Toast';
+import { Toast } from '../toast';
 import type { Notification, NotificationPosition } from '../../types';
 import './NotificationContainer.css';
 
 interface NotificationContainerProps {
   notifications: Notification[];
-  onDismiss: (id: string) => void;
+  onDismiss: (id: string) => React.ReactNode;
   position: NotificationPosition;
   maxNotifications: number;
   className?: string;

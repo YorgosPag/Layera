@@ -16,7 +16,7 @@ interface AreaMethodCardProps {
   title: string;
   description?: string;
   isRecommended?: boolean;
-  onClick: () => void;
+  onClick: () => React.ReactNode;
   variant?: 'property' | 'job';
   'data-testid'?: string;
 }
@@ -41,7 +41,7 @@ export const AreaMethodCard: React.FC<AreaMethodCardProps> = ({
     return null;
   }
 
-  const getIcon = (): void => {
+  const getIcon = () => {
     switch (method) {
       case 'manual':
         return <EditIcon size="sm" theme="neutral" />;

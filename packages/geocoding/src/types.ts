@@ -187,12 +187,12 @@ export interface UseGeocodeReturn {
   /** Actions */
   actions: {
     /** Ενημέρωση query */
-    setQuery: (query: string) => void;
+    setQuery: (query: string) => React.ReactNode;
     /** Εκτέλεση αναζήτησης */
     search: (query?: string) => Promise<void>;
     /** Επιλογή αποτελέσματος */
-    selectResult: (result: GeocodeResult) => void;
+    selectResult: (result: GeocodeResult) => React.ReactNode;
     /** Καθαρισμός αποτελεσμάτων */
-    clear: () => void;
+    clear: () => React.ReactNode;
   };
 }

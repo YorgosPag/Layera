@@ -32,7 +32,7 @@ import {
 /**
  * Theme Context για React integration
  */
-interface LayeraThemeContext {
+export interface LayeraThemeContext {
   engine: LayeraThemeEngine | null;
   state: ThemeState | null;
   setTheme: (theme: 'light' | 'dark' | 'system') => void;

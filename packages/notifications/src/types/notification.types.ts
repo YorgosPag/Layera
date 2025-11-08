@@ -1,3 +1,4 @@
+import React from "react";
 import { ReactNode } from 'react';
 
 /**
@@ -23,7 +24,7 @@ export interface NotificationOptions {
   dismissible?: boolean;
   action?: {
     label: string;
-    onClick: () => void;
+    onClick: () => React.ReactNode;
   };
   icon?: ReactNode;
   className?: string;
@@ -39,7 +40,7 @@ export interface Notification extends Required<Omit<NotificationOptions, 'icon' 
 
 export interface ToastProps {
   notification: Notification;
-  onDismiss: (id: string) => void;
+  onDismiss: (id: string) => React.ReactNode;
   position?: NotificationPosition;
 }
 
@@ -54,9 +55,9 @@ export interface NotificationProviderProps {
 export interface NotificationContextState {
   notifications: Notification[];
   addNotification: (options: NotificationOptions) => string;
-  removeNotification: (id: string) => void;
-  clearAllNotifications: () => void;
-  updateNotification: (id: string, updates: Partial<NotificationOptions>) => void;
+  removeNotification: (id: string) => React.ReactNode;
+  clearAllNotifications: () => React.ReactNode;
+  updateNotification: (id: string, updates: Partial<NotificationOptions>) => React.ReactNode;
 }
 
 export interface AlertProps {
@@ -67,7 +68,7 @@ export interface AlertProps {
   onDismiss?: () => void;
   action?: {
     label: string;
-    onClick: () => void;
+    onClick: () => React.ReactNode;
   };
   icon?: ReactNode;
   className?: string;

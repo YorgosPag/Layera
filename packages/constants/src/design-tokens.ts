@@ -13,11 +13,20 @@
  * Re-export all generated design tokens from Style Dictionary
  * This ensures we have a single source of truth for all design values
  */
-export * from '@layera/tokens/dist/ts';
+// TODO: Re-enable when @layera/tokens package is properly set up
+// export * from '@layera/tokens/dist/ts';
 
 // Import specific tokens for semantic aliases
 // Note: These imports are currently disabled due to missing tokens in @layera/tokens
 // TODO: Re-enable when tokens are properly generated
+
+// === LEGACY COMPATIBILITY LAYER ===
+import {
+  LEGACY_LAYOUT_ALIASES,
+  LEGACY_CONTAINER_ALIASES,
+  LEGACY_VIEWPORT_ALIASES,
+  CRYPTOGRAPHIC_CONSTANTS
+} from './legacy-aliases';
 
 // === SEMANTIC ALIASES (SST-BASED) ===
 
@@ -42,15 +51,21 @@ export const buttonPadding = `var(--la-space-3) var(--la-space-4)` as const;
  * Used by components for consistent spacing
  */
 export const SPACING_SCALE = {
+  /* base tokens */
   XS: 'var(--la-space-1)',
   SM: 'var(--la-space-2)',
   MD: 'var(--la-space-4)',
   LG: 'var(--la-space-6)',
   XL: 'var(--la-space-8)',
   XXL: 'var(--la-space-12)',
-  // Container width for cards (numeric value for px calculations)
-  CONTAINER_MD: 768, // 🎯 SST: Medium container width (768px)
+  /* legacy συμβατότητα */
+  ...LEGACY_LAYOUT_ALIASES,
+  ...LEGACY_CONTAINER_ALIASES,
+  ...LEGACY_VIEWPORT_ALIASES,
 } as const;
+
+// Export crypto constants για auth-bridge
+export { CRYPTOGRAPHIC_CONSTANTS };
 
 /**
  * Border Radius Scale - SINGLE SOURCE OF TRUTH

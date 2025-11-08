@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useCallback } from 'react';
 import { StepConfig } from '../types';
 
@@ -11,13 +12,13 @@ export interface UseProgressStepperReturn {
   activeStep: number;
   isFirstStep: boolean;
   isLastStep: boolean;
-  nextStep: () => void;
-  previousStep: () => void;
-  goToStep: (stepIndex: number) => void;
-  completeStep: (stepIndex: number, completed?: boolean) => void;
-  setStepError: (stepIndex: number, error?: boolean) => void;
-  resetStepper: () => void;
-  updateStep: (stepIndex: number, updates: Partial<StepConfig>) => void;
+  nextStep: () => React.ReactNode;
+  previousStep: () => React.ReactNode;
+  goToStep: (stepIndex: number) => React.ReactNode;
+  completeStep: (stepIndex: number, completed?: boolean) => React.ReactNode;
+  setStepError: (stepIndex: number, error?: boolean) => React.ReactNode;
+  resetStepper: () => React.ReactNode;
+  updateStep: (stepIndex: number, updates: Partial<StepConfig>) => React.ReactNode;
 }
 
 /**

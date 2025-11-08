@@ -69,7 +69,7 @@ export interface InputGroupContextValue {
   direction: 'horizontal' | 'vertical';
   disabled: boolean;
   loading: boolean;
-  onItemChange: (name: string, value: unknown) => void;
+  onItemChange: (name: string, value: unknown) => React.ReactNode;
   values: Record<string, unknown>;
 }
 

@@ -1,3 +1,4 @@
+import React from "react";
 /**
  * Enterprise Responsive Layout Types - LEGO Systems Compliant
  *

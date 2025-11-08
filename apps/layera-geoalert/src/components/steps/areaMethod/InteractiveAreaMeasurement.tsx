@@ -31,8 +31,8 @@ import { SPACING_SCALE } from '@layera/constants';
 import type { MeasurementMode, MeasurementResult } from '@layera/geo-drawing';
 
 interface InteractiveAreaMeasurementProps {
-  onComplete: (area: number) => void;
-  onCancel: () => void;
+  onComplete: (area: number) => React.ReactNode;
+  onCancel: () => React.ReactNode;
   style?: React.CSSProperties;
 }
 

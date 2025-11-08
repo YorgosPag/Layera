@@ -3,6 +3,7 @@
  * Χρησιμοποιεί ESCO API με caching, debouncing και error handling
  */
 
+import React from "react";
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { escoProvider } from '../providers/esco';
 import type { Occupation, OccupationSearchFilters, OccupationSearchResult } from '../types/occupation';
@@ -37,15 +38,15 @@ export interface UseOccupationSearchReturn {
   /** Search actions */
   actions: {
     /** Set search query */
-    setQuery: (query: string) => void;
+    setQuery: (query: string) => React.ReactNode;
     /** Execute search */
     search: (query?: string, filters?: Partial<OccupationSearchFilters>) => Promise<void>;
     /** Select occupation */
-    selectOccupation: (occupation: Occupation) => void;
+    selectOccupation: (occupation: Occupation) => React.ReactNode;
     /** Update filters */
-    setFilters: (filters: Partial<OccupationSearchFilters>) => void;
+    setFilters: (filters: Partial<OccupationSearchFilters>) => React.ReactNode;
     /** Clear search */
-    clear: () => void;
+    clear: () => React.ReactNode;
   };
   /** Search metadata */
   meta: {

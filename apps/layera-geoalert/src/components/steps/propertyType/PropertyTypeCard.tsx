@@ -14,7 +14,7 @@ interface PropertyTypeCardProps {
   propertyType: PropertyType;
   title: string;
   description?: string;
-  onClick: () => void;
+  onClick: () => React.ReactNode;
   'data-testid'?: string;
 }
 
@@ -34,7 +34,7 @@ export const PropertyTypeCard: React.FC<PropertyTypeCardProps> = ({
     return null;
   }
 
-  const getIcon = (): void => {
+  const getIcon = () => {
     switch (propertyType) {
       case 'apartment':
         return <BuildingIcon size="sm" theme="neutral" />;

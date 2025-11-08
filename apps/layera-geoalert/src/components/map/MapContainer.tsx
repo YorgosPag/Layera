@@ -35,7 +35,7 @@ declare global {
 }
 
 interface MapContainerProps {
-  onAreaCreated?: (area: { id: string; type: string; coordinates: number[][]; name: string; category: string }) => void;
+  onAreaCreated?: (area: { id: string; type: 'polygon' | 'marker'; coordinates: number[][]; name: string; category: string }) => void;
   onNewEntryClick?: () => void;
   hideDrawingControls?: boolean;
   isMobileDevice?: boolean;
@@ -52,7 +52,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
 
   // MapProvider context validation (development only)
   useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
+    if (import.meta.env.MODE === 'development') {
       // Debug context availability for development
       const debugInfo = {
         hasContext: !!mapContext,
@@ -258,14 +258,14 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
             return;
           }
 
-          if (process.env.NODE_ENV === 'development' && retryCount <= 3) {
+          if (import.meta.env.MODE === 'development' && retryCount <= 3) {
             console.warn(`⚠️ Container has zero dimensions, retrying... (${retryCount}/${maxRetries})`);
           }
           setTimeout(initMap, 100);
           return;
         }
 
-        if (process.env.NODE_ENV === 'development') {
+        if (import.meta.env.MODE === 'development') {
           if (initializeMap && typeof initializeMap === 'function') {
           }
         }
@@ -281,7 +281,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
         }
 
         try {
-          if (process.env.NODE_ENV === 'development') {
+          if (import.meta.env.MODE === 'development') {
           }
 
           // DIRECT LEAFLET IMPLEMENTATION - BYPASS MOCK
@@ -323,7 +323,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
           // Force resize and tile loading
           setTimeout((): void => {
             mapInstance.invalidateSize();
-            if (process.env.NODE_ENV === 'development') {
+            if (import.meta.env.MODE === 'development') {
             }
           }, 100);
 
@@ -344,7 +344,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
   useEffect(() => {
     const handleCenterMapToLocation = (event: CustomEvent) => {
       if (!map) {
-        if (process.env.NODE_ENV === 'development') {
+        if (import.meta.env.MODE === 'development') {
           console.warn('Map not initialized yet, cannot center to location');
         }
         return;
@@ -374,7 +374,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
 
     const handleFocusMapOnLocation = (event: CustomEvent) => {
       if (!map) {
-        if (process.env.NODE_ENV === 'development') {
+        if (import.meta.env.MODE === 'development') {
           console.warn('🗺️ MapContainer: Map not initialized yet, cannot focus on location');
         }
         return;
@@ -456,7 +456,7 @@ const MapContent: React.FC<MapContainerProps> = ({ onAreaCreated, onNewEntryClic
 
   // Render device-specific UI
   // Add debugging to see device detection
-  if (process.env.NODE_ENV === 'development') {
+  if (import.meta.env.MODE === 'development') {
   }
 
   if (isMobile) {

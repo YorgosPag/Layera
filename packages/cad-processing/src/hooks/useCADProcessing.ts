@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useNotifications } from '@layera/notifications';
 import {
@@ -37,7 +38,7 @@ export interface UseCADProcessingReturn {
   processCADFile: (file: File, options?: Partial<CADProcessingOptions>) => Promise<CADProcessingResult>;
   renderCAD: (cadData: CADData, options?: CADProcessingOptions['renderOptions']) => Promise<CADRenderData>;
   exportCAD: (cadData: CADData, exportOptions: CADExportOptions) => Promise<Blob>;
-  clearResult: () => void;
+  clearResult: () => React.ReactNode;
 
   // Validation & utilities
   validateFile: (file: File) => Promise<CADValidationResult>;

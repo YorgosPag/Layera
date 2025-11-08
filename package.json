@@ -18,6 +18,7 @@
     "build": "npm run build --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
     "typecheck": "npm run typecheck --workspaces --if-present",
+    "typecheck:report": "pnpm -w tsc --noEmit --pretty false > typecheck-report.txt 2>&1 || true",
     "lint": "npm run lint --workspaces --if-present",
     "lint:css": "stylelint \"**/*.{css,scss}\" --allow-empty-input --max-warnings 0",
     "lint:css:ci": "stylelint \"**/*.{css,scss}\" --allow-empty-input --max-warnings 0 --formatter json --output-file stylelint-report.json || true",
@@ -70,6 +71,11 @@
     "prepare": "husky",
     "imports:check": "pnpm -w exec depcruise --config .dependency-cruiser.cjs --include-only \"^(apps|packages)/\" ."
   },
+  "pnpm": {
+    "overrides": {
+      "eslint": "8.57.1"
+    }
+  },
   "devDependencies": {
     "@changesets/cli": "^2.29.7",
     "@microsoft/api-extractor": "^7.53.3",
@@ -119,5 +125,15 @@
     "**/*.{css,scss}": [
       "npm run lint:css"
     ]
+  },
+  "typesVersions": {
+    "*": {
+      ".": [
+        "src/index.ts"
+      ],
+      "*": [
+        "src/*"
+      ]
+    }
   }
 }

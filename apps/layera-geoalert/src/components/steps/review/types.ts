@@ -4,6 +4,7 @@
  * Specific types για review step functionality
  */
 
+import React from "react";
 import type { StepProps, StepCardProps, ReviewType } from '../types';
 
 // 🎯 REVIEW STEP SPECIFIC PROPS

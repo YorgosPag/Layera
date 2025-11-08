@@ -22,7 +22,7 @@ const DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 // Map Instance Grabber (pattern από geo-canvas)
-const MapInstanceGrabber: React.FC<{ onMapReady: (map: L.Map) => void }> = ({ onMapReady }) => {
+const MapInstanceGrabber: React.FC<{ onMapReady: (map: L.Map) => React.ReactNode }> = ({ onMapReady }) => {
     const map = useMap();
 
     useEffect(() => {

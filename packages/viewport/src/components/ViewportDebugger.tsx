@@ -33,7 +33,7 @@ export const ViewportDebugger: React.FC<ViewportDebuggerProps> = ({
     return null;
   }
 
-  const getPositionStyles = (): void => {
+  const getPositionStyles = (): React.ReactNode => {
     const baseStyles: React.CSSProperties = {
       position: 'fixed',
       zIndex: 'var(--la-z-modal)', // Enterprise CSS Custom Property - Single Source of Truth
@@ -61,7 +61,7 @@ export const ViewportDebugger: React.FC<ViewportDebuggerProps> = ({
     }
   };
 
-  const getDeviceIcon = (): void => {
+  const getDeviceIcon = () => {
     switch (viewport.deviceType) {
       case 'mobile':
         return <MobileIcon size="xs" theme="neutral" />;

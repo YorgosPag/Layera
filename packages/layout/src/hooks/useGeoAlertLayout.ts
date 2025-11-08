@@ -3,6 +3,7 @@
  * Enterprise hook για GeoAlert layout management
  */
 
+import React from "react";
 import { useCallback, useMemo } from 'react';
 import type {
   GeoAlertLayoutConfig,
@@ -39,7 +40,7 @@ export interface UseGeoAlertLayoutReturn {
     getInfoPanelStyles: () => React.CSSProperties;
 
     /** Update layout configuration dynamically */
-    updateConfig: (newConfig: Partial<GeoAlertLayoutConfig>) => void;
+    updateConfig: (newConfig: Partial<GeoAlertLayoutConfig>) => React.ReactNode;
 
     /** Get CSS class names for variants */
     getCardContainerClass: (variant?: GeoAlertCardLayoutVariant) => string;

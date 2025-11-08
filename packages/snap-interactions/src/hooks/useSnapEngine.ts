@@ -4,6 +4,7 @@
  * Χρησιμοποιεί existing LEGO systems για state management
  */
 
+import React from "react";
 import { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 
 // Import από @layera/snap-engine - ΜΗΝ αναδημιουργήσεις
@@ -49,12 +50,12 @@ export interface UseSnapEngineReturn {
   addGeometry: (geometry: GeometryEntity) => boolean;
   addGeometries: (geometries: GeometryEntity[]) => SnapPerformanceMetrics;
   removeGeometry: (id: string) => boolean;
-  clearGeometries: () => void;
+  clearGeometries: () => React.ReactNode;
 
   // Configuration
-  updateConfig: (config: Partial<SnapConfiguration>) => void;
-  setEnabled: (enabled: boolean) => void;
-  setTolerance: (tolerance: number) => void;
+  updateConfig: (config: Partial<SnapConfiguration>) => React.ReactNode;
+  setEnabled: (enabled: boolean) => React.ReactNode;
+  setTolerance: (tolerance: number) => React.ReactNode;
 
   // Performance & metrics
   performanceMetrics: SnapPerformanceMetrics;

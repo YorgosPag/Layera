@@ -11,8 +11,8 @@ interface MeasurementControlsProps {
   mode: MeasurementMode;
   distance: number;
   area: number;
-  onModeChange: (mode: MeasurementMode) => void;
-  onReset: () => void;
+  onModeChange: (mode: MeasurementMode) => React.ReactNode;
+  onReset: () => React.ReactNode;
   onFinish?: () => void;
   onCancel?: () => void;
   isDrawing: boolean;

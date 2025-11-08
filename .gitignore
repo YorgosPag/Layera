@@ -39,3 +39,7 @@ coverage/
 Thumbs.db
 desktop.ini
 nul
+**/dist/
+packages/*/src/**/*.d.ts
+packages/*/src/**/*.js
+packages/*/src/**/*.jsx

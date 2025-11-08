@@ -28,7 +28,7 @@ export function installCursorDebug(opts: CursorDebugOptions) {
 
   const log = (...args: unknown[]) => {
     // Debug logging disabled in production
-    if (process.env.NODE_ENV === 'development') {
+    if (import.meta.env.MODE === 'development') {
       console.debug('[cursor-debug]', ...args);
     }
   };
@@ -101,7 +101,7 @@ export function installCursorDebug(opts: CursorDebugOptions) {
     value: string,
     priority?: string
   ) {
-    if (name === 'cursor' && process.env.NODE_ENV === 'development') {
+    if (name === 'cursor' && import.meta.env.MODE === 'development') {
       console.debug('[cursor-setprop]', { value, priority });
     }
     return originalSetProperty.call(this, name, value, priority as any);
@@ -114,7 +114,7 @@ export function installCursorDebug(opts: CursorDebugOptions) {
       configurable: true,
       get: cursorDescriptor.get.bind(this),
       set: function(value: unknown) {
-        if (process.env.NODE_ENV === 'development') {
+        if (import.meta.env.MODE === 'development') {
           console.debug('[cursor-direct]', { value });
         }
         return cursorDescriptor.set!.call(this, value);
@@ -161,7 +161,7 @@ export function installLiveStackDebug() {
         return element.className || element.nodeName;
       });
 
-    if (process.env.NODE_ENV === 'development') {
+    if (import.meta.env.MODE === 'development') {
       console.debug('[cursor-stack]', stack);
     }
   };

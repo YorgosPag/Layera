@@ -1,3 +1,4 @@
+import React from "react";
 import type {
   Viewport,
   CanvasTransform,
@@ -74,14 +75,14 @@ export class ViewportManager {
   /**
    * Sets viewport change callback
    */
-  onViewportChange(callback: (viewport: Viewport) => void): void {
+  onViewportChange(callback: (viewport: Viewport) => React.ReactNode): void {
     this.callbacks.onViewportChange = callback;
   }
 
   /**
    * Sets transform change callback
    */
-  onTransformChange(callback: (transform: CanvasTransform) => void): void {
+  onTransformChange(callback: (transform: CanvasTransform) => React.ReactNode): void {
     this.callbacks.onTransformChange = callback;
   }
 

@@ -5,6 +5,7 @@
  * Strict typing compliance - ΚΑΜΙΑ ΧΡΗΣΗ any types.
  */
 
+import React from "react";
 import type { LatLng } from 'leaflet';
 
 /**
@@ -300,7 +301,7 @@ export interface UseAreaCalculationReturn {
   error: string | null;
 
   /** Recalculate area */
-  recalculate: () => void;
+  recalculate: () => React.ReactNode;
 }
 
 /**
@@ -325,16 +326,16 @@ export interface UseMapLabelReturn {
  */
 export interface MapLabelEvents {
   /** Label was clicked */
-  onClick: (label: MapLabelProps) => void;
+  onClick: (label: MapLabelProps) => React.ReactNode;
 
   /** Label became visible */
-  onVisible: (label: MapLabelProps) => void;
+  onVisible: (label: MapLabelProps) => React.ReactNode;
 
   /** Label became hidden */
-  onHidden: (label: MapLabelProps) => void;
+  onHidden: (label: MapLabelProps) => React.ReactNode;
 
   /** Label position changed */
-  onPositionChange: (label: MapLabelProps, newPosition: LatLng) => void;
+  onPositionChange: (label: MapLabelProps, newPosition: LatLng) => React.ReactNode;
 }
 
 /**

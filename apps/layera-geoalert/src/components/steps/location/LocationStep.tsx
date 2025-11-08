@@ -32,7 +32,7 @@ import type { LocationMethodType, LocationDetails, LocationStepData } from './ty
 // Smart SearchInputCard component που ανταποκρίνεται στο opacity toggle
 const SearchInputCard: React.FC<{
   searchInput: string;
-  onSearchInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSearchInputChange: (e: React.ChangeEvent<HTMLInputElement>) => React.ReactNode;
   isLoading: boolean;
   error: string | null;
 }> = ({ searchInput, onSearchInputChange, isLoading, error }) => {
@@ -441,7 +441,9 @@ export const LocationStep: React.FC<LocationStepProps> = ({
               marginBottom="sm">
               <Stack spacing="xs" align="center">
                 <Text size="sm" color="success" align="center">
-                  <CheckIcon size="sm" theme="success" marginRight="sm" />
+                  <Box style={{ marginRight: 'var(--spacing-sm)' }}>
+                    <CheckIcon size="sm" theme="success" />
+                  </Box>
                   {uploadedFile.name} ({getFileType(uploadedFile).toUpperCase()})
                 </Text>
                 <Text size="xs" color="success" align="center">
@@ -493,7 +495,9 @@ export const LocationStep: React.FC<LocationStepProps> = ({
               padding="sm"
               marginBottom="sm">
               <Text size="sm" color="success">
-                <LocationIcon size="sm" theme="success" marginRight="sm" />
+                <Box style={{ marginRight: 'var(--spacing-sm)' }}>
+                  <LocationIcon size="sm" theme="success" />
+                </Box>
                 Επιλεγμένη τοποθεσία: Placeholder location
               </Text>
             </BaseCard>

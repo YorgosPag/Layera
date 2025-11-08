@@ -4,6 +4,7 @@
  * Enterprise-grade snapping system για Layera LEGO architecture
  */
 
+import React from "react";
 import { RTreeSpatialIndex } from './spatial/RTreeIndex';
 import { SnapCalculator } from './algorithms/SnapCalculator';
 import { GeometryUtils } from './utils/GeometryUtils';
@@ -366,7 +367,7 @@ export class SnapEngine {
 
   public addEventListener<K extends keyof SnapEngineEvents>(
     event: K,
-    listener: (data: SnapEngineEvents[K]) => void
+    listener: (data: SnapEngineEvents[K]) => React.ReactNode
   ): void {
     if (!this.eventListeners.has(event)) {
       this.eventListeners.set(event, new Set());
@@ -376,7 +377,7 @@ export class SnapEngine {
 
   public removeEventListener<K extends keyof SnapEngineEvents>(
     event: K,
-    listener: (data: SnapEngineEvents[K]) => void
+    listener: (data: SnapEngineEvents[K]) => React.ReactNode
   ): void {
     this.eventListeners.get(event)?.delete(listener);
   }

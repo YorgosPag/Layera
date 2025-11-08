@@ -9,7 +9,7 @@ interface TableBodyProps<T = unknown> {
   loading: boolean;
   selectable: boolean;
   selectedRows: string[];
-  onRowSelect: (rowKey: string, checked: boolean) => void;
+  onRowSelect: (rowKey: string, checked: boolean) => React.ReactNode;
   onRowClick?: (row: T, index: number) => void;
   getRowKey: (row: T, index: number) => string;
   emptyState?: React.ReactNode;

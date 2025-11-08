@@ -1,0 +1,20 @@
+packages/geocoding/src/types.ts(100,1): error TS1131: Property or signature expected.
+packages/geocoding/src/types.ts(101,16): error TS1109: Expression expected.
+packages/geocoding/src/types.ts(103,13): error TS1109: Expression expected.
+packages/geocoding/src/types.ts(104,3): error TS1128: Declaration or statement expected.
+packages/geocoding/src/types.ts(106,12): error TS1109: Expression expected.
+packages/geocoding/src/types.ts(107,37): error TS1005: ',' expected.
+packages/geocoding/src/types.ts(108,25): error TS1011: An element access expression should take an argument.
+packages/geocoding/src/types.ts(108,27): error TS1011: An element access expression should take an argument.
+packages/geocoding/src/types.ts(108,29): error TS1011: An element access expression should take an argument.
+packages/geocoding/src/types.ts(108,40): error TS1011: An element access expression should take an argument.
+packages/geocoding/src/types.ts(108,42): error TS1011: An element access expression should take an argument.
+packages/geocoding/src/types.ts(108,44): error TS1011: An element access expression should take an argument.
+packages/geocoding/src/types.ts(108,46): error TS1011: An element access expression should take an argument.
+packages/geocoding/src/types.ts(108,47): error TS1005: ',' expected.
+packages/geocoding/src/types.ts(111,15): error TS1109: Expression expected.
+packages/geocoding/src/types.ts(113,13): error TS1109: Expression expected.
+packages/geocoding/src/types.ts(115,15): error TS1109: Expression expected.
+packages/geocoding/src/types.ts(116,1): error TS1128: Declaration or statement expected.
+undefined
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 2: tsc --noEmit --pretty false

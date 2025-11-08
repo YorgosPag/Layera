@@ -14,13 +14,13 @@ interface AreasPanelProps {
   isOpen: boolean;
   areas: DrawnArea[];
   editingAreaId: string | null;
-  onTogglePanel: () => void;
-  onEditArea: (area: DrawnArea) => void;
-  onZoomToArea: (areaId: string) => void;
-  onToggleAreaVisibility: (areaId: string) => void;
-  onRemoveArea: (areaId: string) => void;
-  onUpdateAreaOpacity: (areaId: string, opacity: number) => void;
-  onReorderAreas: (newAreas: DrawnArea[]) => void;
+  onTogglePanel: () => React.ReactNode;
+  onEditArea: (area: DrawnArea) => React.ReactNode;
+  onZoomToArea: (areaId: string) => React.ReactNode;
+  onToggleAreaVisibility: (areaId: string) => React.ReactNode;
+  onRemoveArea: (areaId: string) => React.ReactNode;
+  onUpdateAreaOpacity: (areaId: string, opacity: number) => React.ReactNode;
+  onReorderAreas: (newAreas: DrawnArea[]) => React.ReactNode;
 }
 
 const AreasPanel: React.FC<AreasPanelProps> = ({

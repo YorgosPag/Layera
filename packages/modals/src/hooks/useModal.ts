@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useCallback } from 'react';
 
 /**
@@ -5,9 +6,9 @@ import { useState, useCallback } from 'react';
  */
 export interface UseModalReturn {
   isOpen: boolean;
-  open: () => void;
-  close: () => void;
-  toggle: () => void;
+  open: () => React.ReactNode;
+  close: () => React.ReactNode;
+  toggle: () => React.ReactNode;
 }
 
 export const useModal = (initialState = false): UseModalReturn => {

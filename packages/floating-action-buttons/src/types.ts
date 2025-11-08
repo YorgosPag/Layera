@@ -1,3 +1,4 @@
+import React from "react";
 /**
  * Floating Action Button Types - Enterprise Single Source of Truth
  *
@@ -20,7 +21,7 @@ export type DeviceType = 'mobile' | 'tablet' | 'desktop';
 
 export interface FABProps {
   /** Click handler για το FAB button */
-  onClick: () => void;
+  onClick: () => React.ReactNode;
 
   /** Mouse down handler για visual feedback */
   onMouseDown?: (e: React.MouseEvent) => void;

@@ -1,3 +1,4 @@
+import React from "react";
 /**
  * areaMethod/types.ts - Enterprise Area Method Step Types
  */

@@ -1,0 +1,11 @@
+src/hooks/useBoxShadow.ts(391,3): error TS2322: Type '{ readonly css: { readonly none: "none"; readonly elevation0: "none"; readonly elevation1: "var(--la-shadow-subtle, 0 1px 2px 0 rgba(0, 0, 0, 0.05))"; readonly elevation2: "var(--la-shadow-card, 0 1px 3px 0 var(--la-shadow-sm), 0 1px 2px 0 rgba(0, 0, 0, 0.06))"; ... 37 more ...; readonly textStrong: "0 2px 4px rgba(...' is not assignable to type 'void'.
+src/components/AuthProvider.tsx(73,22): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: { error: string; retry: () => ReactNode; }, context?: any): string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | ... 4 more ... | undefined', gave the following error.
+    Type 'void' is not assignable to type 'ReactNode'.
+  Overload 2 of 2, '(props: { error: string; retry: () => ReactNode; }): string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | ... 4 more ... | undefined', gave the following error.
+    Type 'void' is not assignable to type 'ReactNode'.
+src/utils/totp.ts(4,10): error TS2305: Module '"@layera/constants"' has no exported member 'CRYPTOGRAPHIC_CONSTANTS'.
+undefined
+C:\layera\packages\box-shadows:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 2: tsc --noEmit --pretty false
+undefined

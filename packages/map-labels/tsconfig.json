@@ -9,7 +9,6 @@
     "noImplicitAny": true,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
-    "jsx": "react-jsx"
   },
   "include": [
     "src/**/*"

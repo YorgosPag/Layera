@@ -1,5 +1,6 @@
 import React from 'react';
 import { HeadingProps } from '../types';
+import type { StyleProps } from '../types';
 
 /**
  * Heading Component - Enterprise heading component για το Layera Design System
@@ -91,7 +92,11 @@ export const Heading: React.FC<HeadingProps> = ({
   } = props;
 
   return (
-    <Component className={classes} {...domProps}>
+    <Component
+      className={classes}
+      style={{ marginTop, marginBottom, marginLeft, marginRight, paddingTop, paddingBottom, paddingLeft, paddingRight, ...(domProps as any).style }}
+      {...domProps}
+    >
       {children}
     </Component>
   );

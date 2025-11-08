@@ -9,7 +9,7 @@ import type { PropertyDetails, PropertyDetailsFormField } from './types';
 
 interface PropertyDetailsFormProps {
   details: PropertyDetails;
-  onChange: (field: keyof PropertyDetails, value: unknown) => void;
+  onChange: (field: keyof PropertyDetails, value: unknown) => React.ReactNode;
   fields: PropertyDetailsFormField[];
 }
 

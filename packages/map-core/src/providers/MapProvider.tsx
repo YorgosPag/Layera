@@ -8,7 +8,7 @@ interface MapContextValue {
   mapSize: { width: number; height: number };
   isLoading: boolean;
   initializeMap: (containerId: string, config?: Partial<MapConfig>) => Promise<void>;
-  cleanupMap: () => void;
+  cleanupMap: () => React.ReactNode;
 }
 
 const MapContext = createContext<MapContextValue | undefined>(undefined);

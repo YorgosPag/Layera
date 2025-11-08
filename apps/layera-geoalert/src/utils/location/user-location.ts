@@ -2,6 +2,7 @@
 // Single Responsibility: Handle user location detection and management
 // Enterprise pattern: Promise-based geolocation service
 
+import React from "react";
 import { Coordinate } from '../geometry/coordinate-utils';
 import { EARTH_CONSTANTS } from '@layera/constants';
 
@@ -72,7 +73,7 @@ export const getCurrentLocation = (options: LocationOptions = {}): Promise<Locat
  * Watch user location changes
  */
 export const watchLocation = (
-  callback: (result: LocationResult) => void,
+  callback: (result: LocationResult) => React.ReactNode,
   options: LocationOptions = {}
 ): number | null => {
   if (!navigator.geolocation) {

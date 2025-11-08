@@ -14,7 +14,7 @@ interface AvailabilityCardProps {
   availability: AvailabilityType;
   title: string;
   description?: string;
-  onClick: () => void;
+  onClick: () => React.ReactNode;
   'data-testid'?: string;
 }
 
@@ -34,7 +34,7 @@ export const AvailabilityCard: React.FC<AvailabilityCardProps> = ({
     return null;
   }
 
-  const getIcon = (): void => {
+  const getIcon = () => {
     switch (availability) {
       case 'now':
         return <ClockIcon size="sm" theme="neutral" />;

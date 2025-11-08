@@ -1,0 +1,50 @@
+======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/App.tsx'. ========
+'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+Module name '@layera/constants', matched pattern '@layera/constants'.
+Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+Found 'package.json' at 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/package.json'.
+File 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants.ts' does not exist.
+File 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants.tsx' does not exist.
+File 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants.d.ts' does not exist.
+'package.json' has 'types' field 'dist/index.d.ts' that references 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/dist/index.d.ts'.
+File 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/dist/index.d.ts' does not exist.
+Loading module as file / folder, candidate module location 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/dist/index.d.ts', target file types: TypeScript, Declaration.
+File name 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/dist/index.d.ts' has a '.d.ts' extension - stripping it.
+File 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/dist/index.ts' does not exist.
+File 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/dist/index.tsx' does not exist.
+File 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/dist/index.d.ts' does not exist.
+File 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/dist/index.d.ts.ts' does not exist.
+File 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/dist/index.d.ts.tsx' does not exist.
+File 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/dist/index.d.ts.d.ts' does not exist.
+Directory 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/dist/index.d.ts' does not exist, skipping all lookups in it.
+File 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/index.ts' does not exist.
+File 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/index.tsx' does not exist.
+File 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/index.d.ts' does not exist.
+Found 'package.json' at 'C:/layera/node_modules/@layera/constants/package.json'.
+File 'C:/layera/node_modules/@layera/constants.ts' does not exist.
+File 'C:/layera/node_modules/@layera/constants.tsx' does not exist.
+File 'C:/layera/node_modules/@layera/constants.d.ts' does not exist.
+'package.json' has 'types' field 'dist/index.d.ts' that references 'C:/layera/node_modules/@layera/constants/dist/index.d.ts'.
+File 'C:/layera/node_modules/@layera/constants/dist/index.d.ts' does not exist.
+Loading module as file / folder, candidate module location 'C:/layera/node_modules/@layera/constants/dist/index.d.ts', target file types: TypeScript, Declaration.
+File name 'C:/layera/node_modules/@layera/constants/dist/index.d.ts' has a '.d.ts' extension - stripping it.
+File 'C:/layera/node_modules/@layera/constants/dist/index.ts' does not exist.
+File 'C:/layera/node_modules/@layera/constants/dist/index.tsx' does not exist.
+File 'C:/layera/node_modules/@layera/constants/dist/index.d.ts' does not exist.
+File 'C:/layera/node_modules/@layera/constants/dist/index.d.ts.ts' does not exist.
+File 'C:/layera/node_modules/@layera/constants/dist/index.d.ts.tsx' does not exist.
+File 'C:/layera/node_modules/@layera/constants/dist/index.d.ts.d.ts' does not exist.
+Directory 'C:/layera/node_modules/@layera/constants/dist/index.d.ts' does not exist, skipping all lookups in it.
+File 'C:/layera/node_modules/@layera/constants/index.ts' does not exist.
+File 'C:/layera/node_modules/@layera/constants/index.tsx' does not exist.
+File 'C:/layera/node_modules/@layera/constants/index.d.ts' does not exist.
+File 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/package.json' exists according to earlier cached lookups.
+File 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants.js' does not exist.
+File 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants.jsx' does not exist.
+'package.json' has 'main' field 'dist/index.js' that references 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/dist/index.js'.
+File name 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/dist/index.js' has a '.js' extension - stripping it.
+File 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/dist/index.js' exists - use it as a name resolution result.
+Resolving real path for 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants', result 'C:/layera/packages/constants'.
+'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+'paths' option is specified, looking for a pattern to match module name '@layera/constants'.

@@ -13,7 +13,7 @@ import { enTranslations } from './locales/en/common';
 interface MinimalTolgeeContextType {
   t: (key: string, params?: Record<string, unknown>) => string;
   language: string;
-  changeLanguage: (newLang: string) => void;
+  changeLanguage: (newLang: string) => React.ReactNode;
 }
 
 const MinimalTolgeeContext = createContext<MinimalTolgeeContextType | null>(null);

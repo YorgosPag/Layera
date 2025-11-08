@@ -51,8 +51,8 @@ export interface DataTableProps<T = unknown> {
     page: number;
     pageSize: PaginationSize;
     total: number;
-    onPageChange: (page: number) => void;
-    onPageSizeChange: (pageSize: PaginationSize) => void;
+    onPageChange: (page: number) => React.ReactNode;
+    onPageSizeChange: (pageSize: PaginationSize) => React.ReactNode;
   };
   searchable?: boolean;
   searchValue?: string;

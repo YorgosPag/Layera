@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useNotifications } from '@layera/notifications';
 import { useLayeraTranslation } from '@layera/tolgee';
@@ -33,8 +34,8 @@ export interface UseFileTransformationReturn {
   // Actions
   transformFile: (file: File, options: TransformationOptions) => Promise<TransformationResult>;
   transformFiles: (files: File[], options: BatchTransformationOptions) => Promise<BatchTransformationResult>;
-  cancelTransformation: () => void;
-  clearResults: () => void;
+  cancelTransformation: () => React.ReactNode;
+  clearResults: () => React.ReactNode;
 
   // Validation & utilities
   validateOptions: (options: TransformationOptions) => TransformationValidationResult;

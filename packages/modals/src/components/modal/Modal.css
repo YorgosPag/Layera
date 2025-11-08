@@ -1,0 +1,216 @@
+/**
+ * Layera Modal - Styles
+ */
+
+
+
+/* Overlay */
+.la-modal-overlay {
+  position: fixed;
+  inset: var(--la-size-0);
+  z-index: var(--la-z-index-modal);
+  background-color: var(--la-color-surface-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--la-space-4);
+}
+
+/* Modal container */
+.la-modal {
+  position: relative;
+  background-color: var(--la-color-surface);
+  border: var(--la-border-width-1) solid var(--la-color-border-primary);
+  border-radius: var(--la-radius-lg);
+  box-shadow: var(--la-shadow-2xl);
+  width: var(--la-size-full);
+  max-height: calc(var(--la-size-screen-h) 100vh - var(--la-space-8));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: var(--la-space-4);
+}
+
+/* Dynamic padding classes */
+.la-modal-padding-custom {
+  padding: var(--la-modal-content-padding);
+}
+
+/* Panel padding override */
+.la-modal-panel-padding-custom {
+  padding: var(--la-modal-inner-padding);
+}
+
+/* Modal content container */
+.la-modal-content {
+  flex: 1;
+  overflow: auto;
+}
+
+/* Content with custom styles */
+.la-modal-content-styled {
+  /* Custom styling applied via contentStyle prop */
+}
+
+/* Remove external margins from content */
+.la-modal-content > :first-child {
+  margin-top: var(--la-space-0);
+}
+
+.la-modal-content > :last-child {
+  margin-bottom: var(--la-space-0);
+}
+
+/* Remove margins from headings and paragraphs */
+.la-modal-content h1,
+.la-modal-content h2,
+.la-modal-content h3,
+.la-modal-content h4,
+.la-modal-content h5,
+.la-modal-content h6,
+.la-modal-content p {
+  margin: var(--la-space-0);
+}
+
+/* Modal sizes */
+.la-modal-xs {
+  max-width: var(--la-size-80);
+}
+
+.la-modal-sm {
+  max-width: var(--la-size-96);
+}
+
+.la-modal-md {
+  max-width: var(--la-size-112);
+}
+
+.la-modal-lg {
+  max-width: /* TODO(token-missing): var(--la-space-4) */ var(--la-space-4);
+}
+
+.la-modal-xl {
+  max-width: var(--la-size-144);
+}
+
+.la-modal-full {
+  max-width: calc(100vw - var(--la-space-8));
+  max-height: calc(var(--la-size-screen-h) 100vh - var(--la-space-8));
+}
+
+/* Modal variants */
+.la-modal-elevated {
+  box-shadow: var(--la-shadow-2xl);
+}
+
+.la-modal-centered {
+  margin: var(--la-space-auto);
+}
+
+.la-modal-sidebar {
+  height: var(--la-size-screen-h) 100vh;
+  max-height: var(--la-size-screen-h) 100vh;
+  border-radius: var(--la-radius-none);
+  margin: var(--la-size-0);
+}
+
+/* Close button */
+.la-modal-close {
+  position: absolute;
+  top: var(--la-space-4);
+  right: var(--la-space-4);
+  z-index: var(--la-z-index-dropdown);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--la-space-4);
+  height: var(--la-space-4);
+  border: var(--la-border-none);
+  border-radius: var(--la-radius-md);
+  background-color: var(--la-color-transparent);
+  color: var(--la-color-text-secondary);
+  cursor: var(--la-cursor-pointer);
+  transition: var(--la-transition-fast);
+}
+
+.la-modal-close:hover {
+  background-color: var(--la-color-surface-secondary);
+  color: var(--la-color-text-primary);
+}
+
+.la-modal-close:focus {
+  outline: var(--la-space-4) solid oklch(50% 0.15 240deg);
+  outline-offset: var(--la-space-4);
+}
+
+/* Animations */
+.la-modal-overlay-fade {
+  animation: la-modal-fade-in 0.3s ease-in-out;
+}
+
+.la-modal-fade {
+  animation: la-modal-scale-in 0.3s ease-in-out;
+}
+
+.la-modal-slide {
+  animation: la-modal-slide-in 0.3s ease-in-out;
+}
+
+.la-modal-scale {
+  animation: la-modal-scale-in 0.3s ease-in-out;
+}
+
+@keyframes la-modal-fade-in {
+  from {
+    opacity: var(--la-size-0);
+  }
+
+  to {
+    opacity: var(--la-opacity-full);
+  }
+}
+
+@keyframes la-modal-scale-in {
+  from {
+    opacity: var(--la-size-0);
+    transform: scale(0.95) translateY(-0.625rem 0.625rem);
+  }
+
+  to {
+    opacity: var(--la-opacity-full);
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes la-modal-slide-in {
+  from {
+    opacity: var(--la-size-0);
+    transform: translateY(-var(--la-space-4));
+  }
+
+  to {
+    opacity: var(--la-opacity-full);
+    transform: translateY(0);
+  }
+}
+
+/* Mobile responsiveness */
+@media (width <= 40rem) {
+  .la-modal-overlay {
+    padding: var(--la-space-4);
+  }
+
+  .la-modal {
+    width: var(--la-size-full);
+    max-width: var(--la-size-full);
+    margin: var(--la-size-0);
+  }
+
+  .la-modal-xs,
+  .la-modal-sm,
+  .la-modal-md,
+  .la-modal-lg,
+  .la-modal-xl {
+    max-width: var(--la-size-full);
+  }
+}

@@ -1,3 +1,4 @@
+import React from "react";
 /**
  * File upload types για @layera/file-upload
  * Βασισμένο στην enterprise documentation και best practices
@@ -112,7 +113,7 @@ export interface DragDropZoneProps {
   /** Custom drop zone text */
   dropZoneText?: string;
   /** Called when files are dropped */
-  onFilesDrop: (files: File[]) => void;
+  onFilesDrop: (files: File[]) => React.ReactNode;
   /** Custom CSS classes */
   className?: string;
   /** Whether multiple files are allowed */
@@ -125,7 +126,7 @@ export interface FilePreviewProps {
   /** Whether preview is enabled */
   showPreview: boolean;
   /** Called when file is removed */
-  onRemove: (fileId: string) => void;
+  onRemove: (fileId: string) => React.ReactNode;
   /** Called when file is clicked */
   onClick?: (file: FileUploadItem) => void;
 }
@@ -138,11 +139,11 @@ export interface FileListProps {
   /** Whether to show file actions */
   showActions: boolean;
   /** Called when file is removed */
-  onRemove: (fileId: string) => void;
+  onRemove: (fileId: string) => React.ReactNode;
   /** Called when upload is cancelled */
-  onCancel: (fileId: string) => void;
+  onCancel: (fileId: string) => React.ReactNode;
   /** Called when upload is retried */
-  onRetry: (fileId: string) => void;
+  onRetry: (fileId: string) => React.ReactNode;
 }
 
 export interface FileUploaderProps extends UploadEventCallbacks {

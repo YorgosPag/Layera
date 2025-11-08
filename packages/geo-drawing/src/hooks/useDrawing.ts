@@ -5,6 +5,7 @@
  * Προσφέρει simple drawing interface που χρησιμοποιούνταν στο παλιό σύστημα.
  */
 
+import React from "react";
 import { useState, useCallback } from 'react';
 import type { DrawnArea } from '@layera/map-core';
 
@@ -19,13 +20,13 @@ export interface UseDrawingOptions {
 
 export interface UseDrawingReturn {
   drawingMode: DrawingMode;
-  setDrawingMode: (mode: DrawingMode) => void;
+  setDrawingMode: (mode: DrawingMode) => React.ReactNode;
   drawnAreas: DrawnArea[];
-  addArea: (area: DrawnArea) => void;
-  removeArea: (areaId: string) => void;
-  clearAreas: () => void;
+  addArea: (area: DrawnArea) => React.ReactNode;
+  removeArea: (areaId: string) => React.ReactNode;
+  clearAreas: () => React.ReactNode;
   isDrawing: boolean;
-  toggleDrawing: () => void;
+  toggleDrawing: () => React.ReactNode;
 }
 
 /**

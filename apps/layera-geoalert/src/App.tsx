@@ -144,7 +144,9 @@ function TestNotificationsComponent() {
           size="sm"
           onClick={testSuccessNotification}
         >
-          <CheckIcon size="xs" marginRight="xs" />
+          <Box style={{ marginRight: 'var(--spacing-xs)' }}>
+            <CheckIcon size="xs" />
+          </Box>
           {t('test.panel.success')}
         </Button>
 
@@ -153,7 +155,9 @@ function TestNotificationsComponent() {
           size="sm"
           onClick={testErrorNotification}
         >
-          <WarningIcon size="xs" marginRight="xs" />
+          <Box style={{ marginRight: 'var(--spacing-xs)' }}>
+            <WarningIcon size="xs" />
+          </Box>
           {t('test.panel.error')}
         </Button>
 
@@ -162,7 +166,9 @@ function TestNotificationsComponent() {
           size="sm"
           onClick={testInfoNotification}
         >
-          <FileIcon size="xs" marginRight="xs" />
+          <Box style={{ marginRight: 'var(--spacing-xs)' }}>
+            <FileIcon size="xs" />
+          </Box>
           {t('test.panel.info')}
         </Button>
 
@@ -174,7 +180,9 @@ function TestNotificationsComponent() {
         >
           {isLoading ? <LoadingSpinner size="xs" /> : (
             <>
-              <RefreshIcon size="xs" marginRight="xs" />
+              <Box style={{ marginRight: 'var(--spacing-xs)' }}>
+                <RefreshIcon size="xs" />
+              </Box>
               {t('test.panel.loading')}
             </>
           )}
@@ -209,7 +217,7 @@ function App() {
   const [isMapMode, setIsMapMode] = useState(false);
   const [showCategoryElements, setShowCategoryElements] = useState(false);
   // 🧡 ΠΡΟΣΩΡΙΝΟ: State για πορτοκαλί κουμπί step navigation
-  const [stepNavigation, setStepNavigation] = useState<{ onPrevious: () => void; canGoBack: boolean } | null>(null);
+  const [stepNavigation, setStepNavigation] = useState<{ onPrevious: () => React.ReactNode; canGoBack: boolean } | null>(null);
 
   const [, setSavedAreas] = useState<DrawnArea[]>([]);
 
@@ -218,7 +226,7 @@ function App() {
 
   const handleAreaCreated = (area: DrawnArea) => {
     setSavedAreas(prev => [...prev, area]);
-    if (process.env.NODE_ENV === 'development') {
+    if (import.meta.env.MODE === 'development') {
     }
   };
 
@@ -229,7 +237,7 @@ function App() {
   };
 
   // 🧡 ΠΡΟΣΩΡΙΝΟ: Handler για step navigation από GeoMap
-  const handleStepNavigationReady = React.useCallback((navProps: { onPrevious: () => void; canGoBack: boolean }) => {
+  const handleStepNavigationReady = React.useCallback((navProps: { onPrevious: () => React.ReactNode; canGoBack: boolean }) => {
     setStepNavigation(navProps);
   }, []);
 

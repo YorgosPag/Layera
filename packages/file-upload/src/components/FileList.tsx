@@ -56,9 +56,9 @@ interface FileListItemProps {
   file: FileUploadItem;
   showProgress: boolean;
   showActions: boolean;
-  onRemove: (fileId: string) => void;
-  onCancel: (fileId: string) => void;
-  onRetry: (fileId: string) => void;
+  onRemove: (fileId: string) => React.ReactNode;
+  onCancel: (fileId: string) => React.ReactNode;
+  onRetry: (fileId: string) => React.ReactNode;
 }
 
 const FileListItem: React.FC<FileListItemProps> = ({
@@ -72,7 +72,7 @@ const FileListItem: React.FC<FileListItemProps> = ({
   const { t } = useLayeraTranslation();
   const { theme } = useTheme();
 
-  const getStatusIcon = (): void => {
+  const getStatusIcon = () => {
     switch (file.status) {
       case 'completed':
         return <UploadIcon className="w-5 h-5" style={{ color: 'var(--la-color-success)' }} />;

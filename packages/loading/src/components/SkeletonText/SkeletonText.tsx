@@ -1,5 +1,5 @@
 import React from 'react';
-import { Skeleton } from '../Skeleton';
+import { Skeleton } from '../skeleton';
 import type { SkeletonTextProps } from '../../types';
 import { Box } from '@layera/layout';
 import './SkeletonText.css';

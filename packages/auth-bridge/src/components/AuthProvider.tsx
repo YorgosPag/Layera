@@ -29,7 +29,7 @@ interface AuthProviderProps {
   /** Loading component */
   LoadingComponent?: React.ComponentType;
   /** Error component */
-  ErrorComponent?: React.ComponentType<{ error: string; retry: () => void }>;
+  ErrorComponent?: React.ComponentType<{ error: string; retry: () => React.ReactNode }>;
 }
 
 /**

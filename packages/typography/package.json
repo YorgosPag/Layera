@@ -2,8 +2,8 @@
   "name": "@layera/typography",
   "version": "1.0.0",
   "description": "Enterprise Typography System for Layera ecosystem",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

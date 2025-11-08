@@ -1,3 +1,4 @@
+import React from "react";
 /**
  * types.ts - Enterprise Step Management Domain Types
  *

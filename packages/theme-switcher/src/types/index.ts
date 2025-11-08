@@ -1,3 +1,4 @@
+import React from "react";
 /**
  * Theme Switcher Types - Enterprise Theme System για Layera
  *
@@ -17,7 +18,7 @@ export interface ThemeContextValue {
   /** Το επίλυτο theme (αν system, θα είναι light ή dark) */
   resolvedTheme: 'light' | 'dark';
   /** Function για αλλαγή theme */
-  setTheme: (theme: Theme) => void;
+  setTheme: (theme: Theme) => React.ReactNode;
   /** Boolean αν το system υποστηρίζει dark mode */
   systemSupportsDarkMode: boolean;
   /** Boolean αν το theme έχει φορτώσει (για SSR compatibility) */
@@ -66,9 +67,9 @@ export interface ThemeSwitcherProps {
 
 export interface UseThemeReturn extends Omit<ThemeContextValue, 'isThemeLoaded'> {
   /** Function για toggle μεταξύ light/dark (ignores system) */
-  toggleTheme: () => void;
+  toggleTheme: () => React.ReactNode;
   /** Function για cycle μεταξύ όλων των themes */
-  cycleTheme: () => void;
+  cycleTheme: () => React.ReactNode;
 }
 
 export interface ThemeConfig {

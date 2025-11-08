@@ -4,6 +4,7 @@
  * Specific types για pricing step functionality
  */
 
+import React from "react";
 import type { StepProps, StepCardProps, PricingType } from '../types';
 
 // 🎯 PRICING STEP SPECIFIC PROPS

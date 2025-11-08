@@ -15,7 +15,7 @@ interface LayoutToolCardProps {
   title: string;
   description?: string;
   isActive?: boolean;
-  onClick: () => void;
+  onClick: () => React.ReactNode;
   'data-testid'?: string;
 }
 
@@ -36,7 +36,7 @@ export const LayoutToolCard: React.FC<LayoutToolCardProps> = ({
     return null;
   }
 
-  const getIcon = (): void => {
+  const getIcon = () => {
     switch (tool) {
       case 'positioning':
         return <MoveIcon size="sm" theme="neutral" />;

@@ -30,10 +30,11 @@
     /* Path mapping for workspace packages */
     "baseUrl": ".",
     "paths": {
-      "@layera/*": ["packages/*/src", "packages/*/dist"]
+      "@layera/*": ["packages/*/src"]
     }
   },
   "include": [
+    "types/vendor-shims.d.ts",
     "apps/**/*",
     "packages/**/*"
   ],
@@ -41,5 +42,17 @@
     "node_modules",
     "**/dist",
     "**/build"
+  ],
+  "references": [
+    { "path": "./packages/constants" },
+    { "path": "./packages/loading" },
+    { "path": "./packages/notifications" },
+    { "path": "./packages/typography" },
+    { "path": "./packages/buttons" },
+    { "path": "./packages/cards" },
+    { "path": "./packages/icons" },
+    { "path": "./packages/layout" },
+    { "path": "./apps/layera-geoalert" },
+    { "path": "./apps/layera-id" }
   ]
 }

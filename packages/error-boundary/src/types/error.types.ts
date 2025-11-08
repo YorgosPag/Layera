@@ -1,3 +1,4 @@
+import React from "react";
 import { ReactNode, ErrorInfo } from 'react';
 
 /**
@@ -13,7 +14,7 @@ export interface ErrorBoundaryState {
 
 export interface ErrorBoundaryProps {
   children: ReactNode;
-  fallback?: ReactNode | ((error: Error, errorInfo: ErrorInfo, retry: () => void) => ReactNode);
+  fallback?: ReactNode | ((error: Error, errorInfo: ErrorInfo, retry: () => React.ReactNode) => ReactNode);
   onError?: (error: Error, errorInfo: ErrorInfo) => void;
   onRetry?: () => void;
   resetOnPropsChange?: boolean;
@@ -26,7 +27,7 @@ export interface ErrorBoundaryProps {
 export interface ErrorFallbackProps {
   error: Error;
   errorInfo: ErrorInfo;
-  retry: () => void;
+  retry: () => React.ReactNode;
   level?: 'page' | 'section' | 'component';
   className?: string;
 }

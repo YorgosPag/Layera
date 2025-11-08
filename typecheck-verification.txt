@@ -1,0 +1,532 @@
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/App.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/App.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/GeoHeader.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/GeoHeader.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/GeoMapNew.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/GeoMapNew.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/MapCanvas.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/MapCanvas.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/SimpleMap.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/SimpleMap.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/SimpleNavigationRail.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/SimpleNavigationRail.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/ViewportFrame.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/ViewportFrame.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/device-specific/DesktopGeoMap.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/device-specific/DesktopGeoMap.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/device-specific/TabletGeoMap.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/device-specific/TabletGeoMap.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/map/MapContainer.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/map/MapContainer.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/map/index.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/map/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/rulers/LatitudeRuler.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/rulers/LatitudeRuler.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/rulers/LongitudeRuler.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/rulers/LongitudeRuler.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/PropertyCompletionStep.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/PropertyCompletionStep.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/PropertyDetailsStep.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/PropertyDetailsStep.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/StepOrchestrator.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/StepOrchestrator.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/StepRegistry.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/StepRegistry.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/WorkflowPlaceholder.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/WorkflowPlaceholder.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/areaMethod/AreaMethodCard.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/areaMethod/AreaMethodCard.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/areaMethod/AreaMethodStep.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/areaMethod/AreaMethodStep.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/areaMethod/InteractiveAreaMeasurement.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/areaMethod/InteractiveAreaMeasurement.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/areaMethod/index.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/areaMethod/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/areaMethod/types.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/areaMethod/types.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/availability/AvailabilityCard.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/availability/AvailabilityCard.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/availability/AvailabilityStep.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/availability/AvailabilityStep.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/availability/index.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/availability/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/availability/types.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/availability/types.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/availabilityDetails/AvailabilityDetailsForm.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/availabilityDetails/AvailabilityDetailsForm.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/availabilityDetails/AvailabilityDetailsStep.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/availabilityDetails/AvailabilityDetailsStep.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/availabilityDetails/index.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/availabilityDetails/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/availabilityDetails/types.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/availabilityDetails/types.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/category/CategoryCard.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/category/CategoryCard.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/category/CategoryStep.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/category/CategoryStep.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/category/index.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/category/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/category/types.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/category/types.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/complete/CompleteStep.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/complete/CompleteStep.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/complete/index.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/complete/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/complete/types.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/complete/types.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/employmentType/EmploymentTypeCard.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/employmentType/EmploymentTypeCard.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/employmentType/EmploymentTypeStep.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/employmentType/EmploymentTypeStep.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/employmentType/index.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/employmentType/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/employmentType/types.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/employmentType/types.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/flows/stepFlows.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/flows/stepFlows.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/index.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/intent/IntentCard.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/intent/IntentCard.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/intent/IntentStep.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/intent/IntentStep.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/intent/index.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/intent/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/intent/types.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/intent/types.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/layout/LayoutStep.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/layout/LayoutStep.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/layout/LayoutToolCard.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/layout/LayoutToolCard.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/layout/index.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/layout/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/layout/types.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/layout/types.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/location/LocationStep.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/location/LocationStep.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/location/index.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/location/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/location/types.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/location/types.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/occupation/ESCOSearchComponent.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/occupation/ESCOSearchComponent.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/occupation/OccupationStep.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/occupation/OccupationStep.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/occupation/index.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/occupation/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/occupation/test-index.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/occupation/test-index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/occupation/types.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/occupation/types.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/pricing/PricingCard.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/pricing/PricingCard.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/pricing/PricingStep.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/pricing/PricingStep.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/pricing/index.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/pricing/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/pricing/types.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/pricing/types.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/propertyDetails/PropertyDetailsForm.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/propertyDetails/PropertyDetailsForm.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/propertyDetails/PropertyDetailsStep.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/propertyDetails/PropertyDetailsStep.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/propertyDetails/index.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/propertyDetails/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/propertyDetails/types.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/propertyDetails/types.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/propertyType/PropertyTypeCard.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/propertyType/PropertyTypeCard.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/propertyType/PropertyTypeSelector.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/propertyType/PropertyTypeSelector.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/propertyType/PropertyTypeStep.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/propertyType/PropertyTypeStep.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/propertyType/index.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/propertyType/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/propertyType/types.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/propertyType/types.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/review/ReviewCard.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/review/ReviewCard.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/review/ReviewStep.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/review/ReviewStep.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/review/index.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/review/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/review/types.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/review/types.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/test/StepRegistryTest.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/test/StepRegistryTest.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/transactionType/TransactionCard.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/transactionType/TransactionCard.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/transactionType/TransactionStep.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/transactionType/TransactionStep.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/transactionType/index.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/transactionType/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/transactionType/types.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/transactionType/types.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/types.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/types.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/upload/UploadCard.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/upload/UploadCard.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/upload/UploadStep.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/upload/UploadStep.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/upload/index.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/upload/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/steps/upload/types.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/steps/upload/types.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/utils/formatters.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/utils/formatters.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/components/utils/rulerUtils.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/components/utils/rulerUtils.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/constants/index.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/constants/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/constants/types.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/constants/types.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/debug/cursorDebug.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/debug/cursorDebug.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/main.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/main.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/modules/map-engine/core/MapCore.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/modules/map-engine/core/MapCore.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/modules/sidebars/AreasPanel.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/modules/sidebars/AreasPanel.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/modules/sidebars/NavigationRail.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/modules/sidebars/NavigationRail.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/services/logging/logger.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/services/logging/logger.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/types/index.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/types/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/utils/events/event-bus.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/utils/events/event-bus.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/utils/geometry/coordinate-utils.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/utils/geometry/coordinate-utils.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/utils/geometry/validator.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/utils/geometry/validator.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/utils/leaflet/css-loader.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/utils/leaflet/css-loader.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/utils/leaflet/icon-factory.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/utils/leaflet/icon-factory.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-geoalert/src/utils/location/user-location.d.ts' has not been built from source file 'C:/layera/apps/layera-geoalert/src/utils/location/user-location.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-id/src/components/NewDashboard.d.ts' has not been built from source file 'C:/layera/apps/layera-id/src/components/NewDashboard.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-id/src/components/PrivateRoute.d.ts' has not been built from source file 'C:/layera/apps/layera-id/src/components/PrivateRoute.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-id/src/components/QuickActions.d.ts' has not been built from source file 'C:/layera/apps/layera-id/src/components/QuickActions.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-id/src/components/__tests__/PrivateRoute.test.d.ts' has not been built from source file 'C:/layera/apps/layera-id/src/components/__tests__/PrivateRoute.test.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-id/src/contexts/AuthContext.d.ts' has not been built from source file 'C:/layera/apps/layera-id/src/contexts/AuthContext.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-id/src/firebase.d.ts' has not been built from source file 'C:/layera/apps/layera-id/src/firebase.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/apps/layera-id/src/test-setup.d.ts' has not been built from source file 'C:/layera/apps/layera-id/src/test-setup.ts'.
+  The file is in the program because:
+    Matched by include pattern 'apps/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/buttons/dist/components/Button.d.ts' has not been built from source file 'C:/layera/packages/buttons/src/components/Button.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/buttons/dist/components/ButtonGroup.d.ts' has not been built from source file 'C:/layera/packages/buttons/src/components/ButtonGroup.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/buttons/dist/components/LinkButton.d.ts' has not been built from source file 'C:/layera/packages/buttons/src/components/LinkButton.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/buttons/dist/components/index.d.ts' has not been built from source file 'C:/layera/packages/buttons/src/components/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/buttons/dist/hooks/index.d.ts' has not been built from source file 'C:/layera/packages/buttons/src/hooks/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/buttons/dist/hooks/useButton.d.ts' has not been built from source file 'C:/layera/packages/buttons/src/hooks/useButton.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/buttons/dist/types/index.d.ts' has not been built from source file 'C:/layera/packages/buttons/src/types/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/cards/dist/components/BaseCard/BaseCard.d.ts' has not been built from source file 'C:/layera/packages/cards/src/components/BaseCard/BaseCard.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/cards/dist/components/BaseCard/index.d.ts' has not been built from source file 'C:/layera/packages/cards/src/components/BaseCard/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/cards/dist/components/DashboardCard/DashboardCard.d.ts' has not been built from source file 'C:/layera/packages/cards/src/components/DashboardCard/DashboardCard.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/cards/dist/components/DashboardCard/index.d.ts' has not been built from source file 'C:/layera/packages/cards/src/components/DashboardCard/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/cards/dist/layouts/DashboardGrid.d.ts' has not been built from source file 'C:/layera/packages/cards/src/layouts/DashboardGrid.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/cards/dist/layouts/index.d.ts' has not been built from source file 'C:/layera/packages/cards/src/layouts/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/cards/dist/styles/sst-config.d.ts' has not been built from source file 'C:/layera/packages/cards/src/styles/sst-config.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/cards/dist/types/card.types.d.ts' has not been built from source file 'C:/layera/packages/cards/src/types/card.types.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/cards/dist/types/index.d.ts' has not been built from source file 'C:/layera/packages/cards/src/types/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/cards/dist/utils/cardThemes.d.ts' has not been built from source file 'C:/layera/packages/cards/src/utils/cardThemes.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/components/AppShell/AppShell.d.ts' has not been built from source file 'C:/layera/packages/layout/src/components/AppShell/AppShell.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/components/AppShell/index.d.ts' has not been built from source file 'C:/layera/packages/layout/src/components/AppShell/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/components/Box.d.ts' has not been built from source file 'C:/layera/packages/layout/src/components/Box.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/components/Flex.d.ts' has not been built from source file 'C:/layera/packages/layout/src/components/Flex.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/components/Stack.d.ts' has not been built from source file 'C:/layera/packages/layout/src/components/Stack.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/components/container/PageContainer.d.ts' has not been built from source file 'C:/layera/packages/layout/src/components/container/PageContainer.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/components/container/PageHeader.d.ts' has not been built from source file 'C:/layera/packages/layout/src/components/container/PageHeader.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/components/container/index.d.ts' has not been built from source file 'C:/layera/packages/layout/src/components/container/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/components/header/HeaderActionsGroup.d.ts' has not been built from source file 'C:/layera/packages/layout/src/components/header/HeaderActionsGroup.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/components/header/LayeraHeader.d.ts' has not been built from source file 'C:/layera/packages/layout/src/components/header/LayeraHeader.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/components/header/index.d.ts' has not been built from source file 'C:/layera/packages/layout/src/components/header/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/exports/shortcuts.d.ts' has not been built from source file 'C:/layera/packages/layout/src/exports/shortcuts.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/exports/sizing.d.ts' has not been built from source file 'C:/layera/packages/layout/src/exports/sizing.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/flex/index.d.ts' has not been built from source file 'C:/layera/packages/layout/src/flex/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/hooks/useFlex.d.ts' has not been built from source file 'C:/layera/packages/layout/src/hooks/useFlex.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/hooks/useGeoAlertLayout.d.ts' has not been built from source file 'C:/layera/packages/layout/src/hooks/useGeoAlertLayout.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/hooks/useSizing.d.ts' has not been built from source file 'C:/layera/packages/layout/src/hooks/useSizing.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/index.d.ts' has not been built from source file 'C:/layera/packages/layout/src/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/index.minimal.d.ts' has not been built from source file 'C:/layera/packages/layout/src/index.minimal.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/sizing/index.d.ts' has not been built from source file 'C:/layera/packages/layout/src/sizing/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/types/component.types.d.ts' has not been built from source file 'C:/layera/packages/layout/src/types/component.types.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/types/geoalert-layout.types.d.ts' has not been built from source file 'C:/layera/packages/layout/src/types/geoalert-layout.types.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/types/index.d.ts' has not been built from source file 'C:/layera/packages/layout/src/types/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/types/layout.types.d.ts' has not been built from source file 'C:/layera/packages/layout/src/types/layout.types.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/utils/geoalert-layout.d.ts' has not been built from source file 'C:/layera/packages/layout/src/utils/geoalert-layout.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/layout/dist/utils/shortcuts.d.ts' has not been built from source file 'C:/layera/packages/layout/src/utils/shortcuts.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/loading/src/components/LoadingSpinner/LoadingSpinner.d.ts' has not been built from source file 'C:/layera/packages/loading/src/components/LoadingSpinner/LoadingSpinner.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/loading/src/components/LoadingSpinner/index.d.ts' has not been built from source file 'C:/layera/packages/loading/src/components/LoadingSpinner/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/loading/src/components/SkeletonText/SkeletonText.d.ts' has not been built from source file 'C:/layera/packages/loading/src/components/SkeletonText/SkeletonText.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/loading/src/components/SkeletonText/index.d.ts' has not been built from source file 'C:/layera/packages/loading/src/components/SkeletonText/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/loading/src/components/index.d.ts' has not been built from source file 'C:/layera/packages/loading/src/components/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/loading/src/components/skeleton/Skeleton.d.ts' has not been built from source file 'C:/layera/packages/loading/src/components/skeleton/Skeleton.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/loading/src/components/skeleton/index.d.ts' has not been built from source file 'C:/layera/packages/loading/src/components/skeleton/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/loading/src/components/spinner/Spinner.d.ts' has not been built from source file 'C:/layera/packages/loading/src/components/spinner/Spinner.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/loading/src/components/spinner/index.d.ts' has not been built from source file 'C:/layera/packages/loading/src/components/spinner/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/loading/src/index.d.ts' has not been built from source file 'C:/layera/packages/loading/src/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/loading/src/types/index.d.ts' has not been built from source file 'C:/layera/packages/loading/src/types/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/loading/src/types/loading.types.d.ts' has not been built from source file 'C:/layera/packages/loading/src/types/loading.types.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/typography/dist/components/Heading.d.ts' has not been built from source file 'C:/layera/packages/typography/src/components/Heading.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/typography/dist/components/Text.d.ts' has not been built from source file 'C:/layera/packages/typography/src/components/Text.tsx'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/typography/dist/components/index.d.ts' has not been built from source file 'C:/layera/packages/typography/src/components/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/typography/dist/hooks/index.d.ts' has not been built from source file 'C:/layera/packages/typography/src/hooks/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/typography/dist/hooks/useTypography.d.ts' has not been built from source file 'C:/layera/packages/typography/src/hooks/useTypography.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+error TS6305: Output file 'C:/layera/packages/typography/dist/types/index.d.ts' has not been built from source file 'C:/layera/packages/typography/src/types/index.ts'.
+  The file is in the program because:
+    Matched by include pattern 'packages/**/*' in 'C:/layera/tsconfig.json'
+tsconfig.json(49,5): error TS6306: Referenced project 'C:/layera/packages/notifications' must have setting "composite": true.
+tsconfig.json(50,5): error TS6306: Referenced project 'C:/layera/packages/typography' must have setting "composite": true.
+tsconfig.json(50,5): error TS6310: Referenced project 'C:/layera/packages/typography' may not disable emit.
+tsconfig.json(51,5): error TS6306: Referenced project 'C:/layera/packages/buttons' must have setting "composite": true.
+tsconfig.json(51,5): error TS6310: Referenced project 'C:/layera/packages/buttons' may not disable emit.
+tsconfig.json(52,5): error TS6306: Referenced project 'C:/layera/packages/cards' must have setting "composite": true.
+tsconfig.json(52,5): error TS6310: Referenced project 'C:/layera/packages/cards' may not disable emit.
+tsconfig.json(53,5): error TS6306: Referenced project 'C:/layera/packages/icons' must have setting "composite": true.
+tsconfig.json(54,5): error TS6306: Referenced project 'C:/layera/packages/layout' must have setting "composite": true.
+tsconfig.json(54,5): error TS6310: Referenced project 'C:/layera/packages/layout' may not disable emit.
+tsconfig.json(55,5): error TS6306: Referenced project 'C:/layera/apps/layera-geoalert' must have setting "composite": true.
+tsconfig.json(55,5): error TS6310: Referenced project 'C:/layera/apps/layera-geoalert' may not disable emit.
+tsconfig.json(56,5): error TS6306: Referenced project 'C:/layera/apps/layera-id' must have setting "composite": true.
+tsconfig.json(56,5): error TS6310: Referenced project 'C:/layera/apps/layera-id' may not disable emit.
+undefined
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 2: tsc --noEmit --pretty false

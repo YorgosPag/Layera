@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useCallback, useRef } from 'react';
 import { useNotifications } from '@layera/notifications';
 import { useLayeraTranslation } from '@layera/tolgee';
@@ -31,8 +32,8 @@ export interface UseFileImportReturn {
   // Actions
   importFiles: (fileList: FileList | File[]) => Promise<ImportedFile[]>;
   importSingleFile: (file: File) => Promise<ImportedFile>;
-  removeFile: (fileId: string) => void;
-  clearFiles: () => void;
+  removeFile: (fileId: string) => React.ReactNode;
+  clearFiles: () => React.ReactNode;
   retryFile: (fileId: string) => Promise<void>;
 
   // Validation

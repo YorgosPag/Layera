@@ -1,0 +1,1426 @@
+262-Directory 'C:/node_modules' does not exist, skipping all lookups in it.
+263-======== Module name '@layera/cards' was not resolved. ========
+264:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/App.tsx'. ========
+265-Explicitly specified module resolution kind: 'Bundler'.
+266-Resolving in CJS mode with conditions 'import', 'types'.
+267:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+268:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+269:Module name '@layera/constants', matched pattern '@layera/constants'.
+270-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+271-File 'C:/packages/constants/src/index.ts' does not exist.
+272-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+273-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+274-File 'C:/layera/apps/layera-geoalert/src/package.json' does not exist according to earlier cached lookups.
+275-File 'C:/layera/apps/layera-geoalert/package.json' exists according to earlier cached lookups.
+276:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+277-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+278-Directory 'C:/layera/apps/layera-geoalert/src/node_modules' does not exist, skipping all lookups in it.
+279-Scoped package detected, looking in 'layera__constants'
+280:Found 'package.json' at 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/package.json'.
+281:File 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants.ts' does not exist.
+282:File 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants.tsx' does not exist.
+283:File 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants.d.ts' does not exist.
+284-'package.json' has a 'typesVersions' field with version-specific path mappings.
+285-'package.json' does not have a 'typings' field.
+286:'package.json' has 'types' field 'dist/index.d.ts' that references 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/dist/index.d.ts'.
+287-'package.json' has a 'typesVersions' entry '*' that matches compiler version '5.9.3', looking for a pattern to match module name 'dist/index.d.ts'.
+288-Module name 'dist/index.d.ts', matched pattern '*'.
+289-Trying substitution 'src/*', candidate module location: 'src/dist/index.d.ts'.
+290:Loading module as file / folder, candidate module location 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/src/dist/index.d.ts', target file types: TypeScript, Declaration.
+291:File name 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/src/dist/index.d.ts' has a '.d.ts' extension - stripping it.
+292-Scoped package detected, looking in 'layera__constants'
+293-File 'C:/layera/apps/layera-geoalert/node_modules/@types/layera__constants.d.ts' does not exist.
+294-Directory 'C:/layera/apps/node_modules' does not exist, skipping all lookups in it.
+295-Scoped package detected, looking in 'layera__constants'
+296:Found 'package.json' at 'C:/layera/node_modules/@layera/constants/package.json'.
+297:File 'C:/layera/node_modules/@layera/constants.ts' does not exist.
+298:File 'C:/layera/node_modules/@layera/constants.tsx' does not exist.
+299:File 'C:/layera/node_modules/@layera/constants.d.ts' does not exist.
+300-'package.json' has a 'typesVersions' field with version-specific path mappings.
+301-'package.json' does not have a 'typings' field.
+302:'package.json' has 'types' field 'dist/index.d.ts' that references 'C:/layera/node_modules/@layera/constants/dist/index.d.ts'.
+303-'package.json' has a 'typesVersions' entry '*' that matches compiler version '5.9.3', looking for a pattern to match module name 'dist/index.d.ts'.
+304-Module name 'dist/index.d.ts', matched pattern '*'.
+305-Trying substitution 'src/*', candidate module location: 'src/dist/index.d.ts'.
+306:Loading module as file / folder, candidate module location 'C:/layera/node_modules/@layera/constants/src/dist/index.d.ts', target file types: TypeScript, Declaration.
+307:File name 'C:/layera/node_modules/@layera/constants/src/dist/index.d.ts' has a '.d.ts' extension - stripping it.
+308-Scoped package detected, looking in 'layera__constants'
+309-File 'C:/layera/node_modules/@types/layera__constants.d.ts' does not exist.
+310-Directory 'C:/node_modules' does not exist, skipping all lookups in it.
+311-Scoped package detected, looking in 'layera__constants'
+312-Searching all ancestor node_modules directories for fallback extensions: JavaScript, JSON.
+313-Directory 'C:/layera/apps/layera-geoalert/src/node_modules' does not exist, skipping all lookups in it.
+314:File 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/package.json' exists according to earlier cached lookups.
+315:File 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants.js' does not exist.
+316:File 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants.jsx' does not exist.
+317:'package.json' has 'main' field 'dist/index.js' that references 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/dist/index.js'.
+318-'package.json' has a 'typesVersions' entry '*' that matches compiler version '5.9.3', looking for a pattern to match module name 'dist/index.js'.
+319-Module name 'dist/index.js', matched pattern '*'.
+320-Trying substitution 'src/*', candidate module location: 'src/dist/index.js'.
+321:File name 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/src/dist/index.js' has a '.js' extension - stripping it.
+322:Loading module as file / folder, candidate module location 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/src/dist/index.js', target file types: JavaScript, JSON.
+323:File name 'C:/layera/apps/layera-geoalert/node_modules/@layera/constants/src/dist/index.js' has a '.js' extension - stripping it.
+324-Directory 'C:/layera/apps/node_modules' does not exist, skipping all lookups in it.
+325:File 'C:/layera/node_modules/@layera/constants/package.json' exists according to earlier cached lookups.
+326:File 'C:/layera/node_modules/@layera/constants.js' does not exist.
+327:File 'C:/layera/node_modules/@layera/constants.jsx' does not exist.
+328:'package.json' has 'main' field 'dist/index.js' that references 'C:/layera/node_modules/@layera/constants/dist/index.js'.
+329-'package.json' has a 'typesVersions' entry '*' that matches compiler version '5.9.3', looking for a pattern to match module name 'dist/index.js'.
+330-Module name 'dist/index.js', matched pattern '*'.
+331-Trying substitution 'src/*', candidate module location: 'src/dist/index.js'.
+332:File name 'C:/layera/node_modules/@layera/constants/src/dist/index.js' has a '.js' extension - stripping it.
+333:Loading module as file / folder, candidate module location 'C:/layera/node_modules/@layera/constants/src/dist/index.js', target file types: JavaScript, JSON.
+334:File name 'C:/layera/node_modules/@layera/constants/src/dist/index.js' has a '.js' extension - stripping it.
+335-Directory 'C:/node_modules' does not exist, skipping all lookups in it.
+336:======== Module name '@layera/constants' was not resolved. ========
+337-======== Resolving module '@layera/icons' from 'C:/layera/apps/layera-geoalert/src/App.tsx'. ========
+338-Explicitly specified module resolution kind: 'Bundler'.
+339-Resolving in CJS mode with conditions 'import', 'types'.
+340-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/icons'.
+341-'paths' option is specified, looking for a pattern to match module name '@layera/icons'.
+342-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/icons'.
+--
+2448-Resolution for module 'react/jsx-runtime' was found in cache from location 'C:/layera/apps/layera-geoalert/src'.
+2449-======== Module name 'react/jsx-runtime' was successfully resolved to 'C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/jsx-runtime.d.ts' with Package ID '@types/react/jsx-runtime.d.ts@19.2.2'. ========
+2450:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/constants/index.ts'. ========
+2451-Explicitly specified module resolution kind: 'Bundler'.
+2452-Resolving in CJS mode with conditions 'import', 'types'.
+2453:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+2454:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+2455:Module name '@layera/constants', matched pattern '@layera/constants'.
+2456-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+2457-File 'C:/packages/constants/src/index.ts' does not exist.
+2458-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+2459-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+2460-File 'C:/layera/apps/layera-geoalert/src/constants/package.json' does not exist according to earlier cached lookups.
+2461-File 'C:/layera/apps/layera-geoalert/src/package.json' does not exist according to earlier cached lookups.
+2462-File 'C:/layera/apps/layera-geoalert/package.json' exists according to earlier cached lookups.
+2463:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+2464-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+2465-Directory 'C:/layera/apps/layera-geoalert/src/constants/node_modules' does not exist, skipping all lookups in it.
+2466-Scoped package detected, looking in 'layera__constants'
+2467:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src'.
+2468:======== Module name '@layera/constants' was not resolved. ========
+2469-======== Resolving module 'react/jsx-runtime' from 'C:/layera/apps/layera-geoalert/src/components/GeoHeader.tsx'. ========
+2470-Explicitly specified module resolution kind: 'Bundler'.
+2471-Resolving in CJS mode with conditions 'import', 'types'.
+2472-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name 'react/jsx-runtime'.
+2473-'paths' option is specified, looking for a pattern to match module name 'react/jsx-runtime'.
+2474-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name 'react/jsx-runtime'.
+--
+2609-Resolution for module '@layera/icons' was found in cache from location 'C:/layera/apps/layera-geoalert/src'.
+2610-======== Module name '@layera/icons' was successfully resolved to 'C:/layera/packages/icons/dist/index.d.ts' with Package ID '@layera/icons/dist/index.d.ts@1.0.0'. ========
+2611:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/GeoHeader.tsx'. ========
+2612-Explicitly specified module resolution kind: 'Bundler'.
+2613-Resolving in CJS mode with conditions 'import', 'types'.
+2614:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+2615:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+2616:Module name '@layera/constants', matched pattern '@layera/constants'.
+2617-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+2618-File 'C:/packages/constants/src/index.ts' does not exist.
+2619-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+2620-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+2621-File 'C:/layera/apps/layera-geoalert/src/components/package.json' does not exist according to earlier cached lookups.
+2622-File 'C:/layera/apps/layera-geoalert/src/package.json' does not exist according to earlier cached lookups.
+2623-File 'C:/layera/apps/layera-geoalert/package.json' exists according to earlier cached lookups.
+2624:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+2625-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+2626-Directory 'C:/layera/apps/layera-geoalert/src/components/node_modules' does not exist, skipping all lookups in it.
+2627-Scoped package detected, looking in 'layera__constants'
+2628:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src'.
+2629:======== Module name '@layera/constants' was not resolved. ========
+2630-======== Resolving module 'react/jsx-runtime' from 'C:/layera/apps/layera-geoalert/src/components/GeoMapNew.tsx'. ========
+2631-Resolution for module 'react/jsx-runtime' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components'.
+2632-======== Module name 'react/jsx-runtime' was successfully resolved to 'C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/jsx-runtime.d.ts' with Package ID '@types/react/jsx-runtime.d.ts@19.2.2'. ========
+2633-======== Resolving module 'react' from 'C:/layera/apps/layera-geoalert/src/components/GeoMapNew.tsx'. ========
+2634-Resolution for module 'react' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components'.
+2635-======== Module name 'react' was successfully resolved to 'C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index.d.ts' with Package ID '@types/react/index.d.ts@19.2.2'. ========
+--
+2680-Resolution for module '@layera/layout' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components'.
+2681-======== Module name '@layera/layout' was successfully resolved to 'C:/layera/node_modules/.pnpm/@layera+layout@file+packages+layout_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@layera/layout/dist/index.js' with Package ID '@layera/layout/dist/index.js@1.0.0+react@19.2.0+react-dom@19.2.0'. ========
+2682:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/GeoMapNew.tsx'. ========
+2683:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components'.
+2684:======== Module name '@layera/constants' was not resolved. ========
+2685-======== Resolving module '@layera/tolgee' from 'C:/layera/apps/layera-geoalert/src/components/GeoMapNew.tsx'. ========
+2686-Resolution for module '@layera/tolgee' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components'.
+2687-======== Module name '@layera/tolgee' was successfully resolved to 'C:/layera/node_modules/.pnpm/@layera+tolgee@file+packages+tolgee_react@19.2.0/node_modules/@layera/tolgee/dist/index.d.mts' with Package ID '@layera/tolgee/dist/index.d.mts@1.0.0+react@19.2.0'. ========
+2688-======== Resolving module './steps/category' from 'C:/layera/apps/layera-geoalert/src/components/GeoMapNew.tsx'. ========
+2689-Explicitly specified module resolution kind: 'Bundler'.
+2690-Resolving in CJS mode with conditions 'import', 'types'.
+--
+2947-Resolution for module 'react' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+2948-======== Module name 'react' was successfully resolved to 'C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index.d.ts' with Package ID '@types/react/index.d.ts@19.2.2'. ========
+2949:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/StepOrchestrator.tsx'. ========
+2950-Explicitly specified module resolution kind: 'Bundler'.
+2951-Resolving in CJS mode with conditions 'import', 'types'.
+2952:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+2953:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+2954:Module name '@layera/constants', matched pattern '@layera/constants'.
+2955-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+2956-File 'C:/packages/constants/src/index.ts' does not exist.
+2957-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+2958-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+2959-File 'C:/layera/apps/layera-geoalert/src/components/steps/package.json' does not exist according to earlier cached lookups.
+2960-File 'C:/layera/apps/layera-geoalert/src/components/package.json' does not exist according to earlier cached lookups.
+2961-File 'C:/layera/apps/layera-geoalert/src/package.json' does not exist according to earlier cached lookups.
+2962-File 'C:/layera/apps/layera-geoalert/package.json' exists according to earlier cached lookups.
+2963:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+2964-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+2965-Directory 'C:/layera/apps/layera-geoalert/src/components/steps/node_modules' does not exist, skipping all lookups in it.
+2966-Scoped package detected, looking in 'layera__constants'
+2967:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components'.
+2968:======== Module name '@layera/constants' was not resolved. ========
+2969-======== Resolving module '@layera/layout' from 'C:/layera/apps/layera-geoalert/src/components/steps/StepOrchestrator.tsx'. ========
+2970-Explicitly specified module resolution kind: 'Bundler'.
+2971-Resolving in CJS mode with conditions 'import', 'types'.
+2972-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/layout'.
+2973-'paths' option is specified, looking for a pattern to match module name '@layera/layout'.
+2974-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/layout'.
+--
+3136-Resolution for module 'react' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+3137-======== Module name 'react' was successfully resolved to 'C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index.d.ts' with Package ID '@types/react/index.d.ts@19.2.2'. ========
+3138:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/WorkflowPlaceholder.tsx'. ========
+3139:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+3140:======== Module name '@layera/constants' was not resolved. ========
+3141-======== Resolving module '@layera/layout' from 'C:/layera/apps/layera-geoalert/src/components/steps/WorkflowPlaceholder.tsx'. ========
+3142-Resolution for module '@layera/layout' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+3143-======== Module name '@layera/layout' was successfully resolved to 'C:/layera/node_modules/.pnpm/@layera+layout@file+packages+layout_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@layera/layout/dist/index.js' with Package ID '@layera/layout/dist/index.js@1.0.0+react@19.2.0+react-dom@19.2.0'. ========
+3144-======== Resolving module '@layera/typography' from 'C:/layera/apps/layera-geoalert/src/components/steps/WorkflowPlaceholder.tsx'. ========
+3145-Resolution for module '@layera/typography' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+3146-======== Module name '@layera/typography' was not resolved. ========
+--
+3325-Resolution for module 'react' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+3326-======== Module name 'react' was successfully resolved to 'C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index.d.ts' with Package ID '@types/react/index.d.ts@19.2.2'. ========
+3327:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/PropertyDetailsStep.tsx'. ========
+3328:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+3329:======== Module name '@layera/constants' was not resolved. ========
+3330-======== Resolving module '@layera/layout' from 'C:/layera/apps/layera-geoalert/src/components/steps/PropertyDetailsStep.tsx'. ========
+3331-Resolution for module '@layera/layout' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+3332-======== Module name '@layera/layout' was successfully resolved to 'C:/layera/node_modules/.pnpm/@layera+layout@file+packages+layout_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@layera/layout/dist/index.js' with Package ID '@layera/layout/dist/index.js@1.0.0+react@19.2.0+react-dom@19.2.0'. ========
+3333-======== Resolving module '@layera/typography' from 'C:/layera/apps/layera-geoalert/src/components/steps/PropertyDetailsStep.tsx'. ========
+3334-Resolution for module '@layera/typography' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+3335-======== Module name '@layera/typography' was not resolved. ========
+--
+3460-Directory 'C:/layera/apps/layera-geoalert/src/types/components/steps/propertyType' does not exist, skipping all lookups in it.
+3461-======== Module name './components/steps/propertyType/types' was not resolved. ========
+3462:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/types/index.ts'. ========
+3463-Explicitly specified module resolution kind: 'Bundler'.
+3464-Resolving in CJS mode with conditions 'import', 'types'.
+3465:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+3466:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+3467:Module name '@layera/constants', matched pattern '@layera/constants'.
+3468-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+3469-File 'C:/packages/constants/src/index.ts' does not exist.
+3470-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+3471-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+3472-File 'C:/layera/apps/layera-geoalert/src/types/package.json' does not exist according to earlier cached lookups.
+3473-File 'C:/layera/apps/layera-geoalert/src/package.json' does not exist according to earlier cached lookups.
+3474-File 'C:/layera/apps/layera-geoalert/package.json' exists according to earlier cached lookups.
+3475:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+3476-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+3477-Directory 'C:/layera/apps/layera-geoalert/src/types/node_modules' does not exist, skipping all lookups in it.
+3478-Scoped package detected, looking in 'layera__constants'
+3479:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src'.
+3480:======== Module name '@layera/constants' was not resolved. ========
+3481-Found 'package.json' at 'C:/layera/node_modules/.pnpm/@types+leaflet@1.9.21/node_modules/@types/leaflet/package.json'.
+3482-======== Resolving module 'geojson' from 'C:/layera/node_modules/.pnpm/@types+leaflet@1.9.21/node_modules/@types/leaflet/index.d.ts'. ========
+3483-Explicitly specified module resolution kind: 'Bundler'.
+3484-Resolving in CJS mode with conditions 'import', 'types'.
+3485-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name 'geojson'.
+3486-'paths' option is specified, looking for a pattern to match module name 'geojson'.
+--
+3586-Resolving real path for 'C:/layera/apps/layera-geoalert/node_modules/@layera/map-core/dist/index.d.ts', result 'C:/layera/node_modules/.pnpm/@layera+map-core@file+packages+map-core_react@19.2.0/node_modules/@layera/map-core/dist/index.d.ts'.
+3587-======== Module name '@layera/map-core' was successfully resolved to 'C:/layera/node_modules/.pnpm/@layera+map-core@file+packages+map-core_react@19.2.0/node_modules/@layera/map-core/dist/index.d.ts' with Package ID '@layera/map-core/dist/index.d.ts@1.0.0+react@19.2.0'. ========
+3588:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/map/MapContainer.tsx'. ========
+3589-Explicitly specified module resolution kind: 'Bundler'.
+3590-Resolving in CJS mode with conditions 'import', 'types'.
+3591:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+3592:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+3593:Module name '@layera/constants', matched pattern '@layera/constants'.
+3594-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+3595-File 'C:/packages/constants/src/index.ts' does not exist.
+3596-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+3597-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+3598-File 'C:/layera/apps/layera-geoalert/src/components/map/package.json' does not exist according to earlier cached lookups.
+3599-File 'C:/layera/apps/layera-geoalert/src/components/package.json' does not exist according to earlier cached lookups.
+3600-File 'C:/layera/apps/layera-geoalert/src/package.json' does not exist according to earlier cached lookups.
+3601-File 'C:/layera/apps/layera-geoalert/package.json' exists according to earlier cached lookups.
+3602:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+3603-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+3604-Directory 'C:/layera/apps/layera-geoalert/src/components/map/node_modules' does not exist, skipping all lookups in it.
+3605-Scoped package detected, looking in 'layera__constants'
+3606:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components'.
+3607:======== Module name '@layera/constants' was not resolved. ========
+3608-======== Resolving module '../../constants' from 'C:/layera/apps/layera-geoalert/src/components/map/MapContainer.tsx'. ========
+3609-Explicitly specified module resolution kind: 'Bundler'.
+3610-Resolving in CJS mode with conditions 'import', 'types'.
+3611-Loading module as file / folder, candidate module location 'C:/layera/apps/layera-geoalert/src/constants', target file types: TypeScript, JavaScript, Declaration, JSON.
+3612-File 'C:/layera/apps/layera-geoalert/src/constants.ts' does not exist.
+3613-File 'C:/layera/apps/layera-geoalert/src/constants.tsx' does not exist.
+--
+4206-Resolving real path for 'C:/layera/packages/info-panels/node_modules/@types/react/jsx-runtime.d.ts', result 'C:/layera/node_modules/.pnpm/@types+react@18.3.26/node_modules/@types/react/jsx-runtime.d.ts'.
+4207-======== Module name 'react/jsx-runtime' was successfully resolved to 'C:/layera/node_modules/.pnpm/@types+react@18.3.26/node_modules/@types/react/jsx-runtime.d.ts' with Package ID '@types/react/jsx-runtime.d.ts@18.3.26'. ========
+4208:======== Resolving module '@layera/constants' from 'C:/layera/packages/info-panels/src/index.ts'. ========
+4209-Explicitly specified module resolution kind: 'Bundler'.
+4210-Resolving in CJS mode with conditions 'import', 'types'.
+4211:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+4212:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+4213:Module name '@layera/constants', matched pattern '@layera/constants'.
+4214-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+4215-File 'C:/packages/constants/src/index.ts' does not exist.
+4216-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+4217-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+4218-File 'C:/layera/packages/info-panels/src/package.json' does not exist according to earlier cached lookups.
+4219-File 'C:/layera/packages/info-panels/package.json' exists according to earlier cached lookups.
+4220:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+4221-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+4222-Directory 'C:/layera/packages/info-panels/src/node_modules' does not exist, skipping all lookups in it.
+4223-Scoped package detected, looking in 'layera__constants'
+4224-Scoped package detected, looking in 'layera__constants'
+4225-File 'C:/layera/packages/info-panels/node_modules/@types/layera__constants.d.ts' does not exist.
+4226-Directory 'C:/layera/packages/node_modules' does not exist, skipping all lookups in it.
+4227-Scoped package detected, looking in 'layera__constants'
+4228:Resolution for module '@layera/constants' was found in cache from location 'C:/layera'.
+4229:======== Module name '@layera/constants' was not resolved. ========
+4230-======== Resolving module './types' from 'C:/layera/packages/info-panels/src/index.ts'. ========
+4231-Explicitly specified module resolution kind: 'Bundler'.
+4232-Resolving in CJS mode with conditions 'import', 'types'.
+4233-Loading module as file / folder, candidate module location 'C:/layera/packages/info-panels/src/types', target file types: TypeScript, JavaScript, Declaration, JSON.
+4234-File 'C:/layera/packages/info-panels/src/types.ts' exists - use it as a name resolution result.
+4235-======== Module name './types' was successfully resolved to 'C:/layera/packages/info-panels/src/types.ts'. ========
+--
+4372-File 'C:/layera/packages/info-panels/src/index.ts' exists - use it as a name resolution result.
+4373-======== Module name '../' was successfully resolved to 'C:/layera/packages/info-panels/src/index.ts'. ========
+4374:======== Resolving module '@layera/constants' from 'C:/layera/packages/info-panels/src/components/InfoPanel.tsx'. ========
+4375-Explicitly specified module resolution kind: 'Bundler'.
+4376-Resolving in CJS mode with conditions 'import', 'types'.
+4377:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+4378:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+4379:Module name '@layera/constants', matched pattern '@layera/constants'.
+4380-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+4381-File 'C:/packages/constants/src/index.ts' does not exist.
+4382-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+4383-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+4384-File 'C:/layera/packages/info-panels/src/components/package.json' does not exist according to earlier cached lookups.
+4385-File 'C:/layera/packages/info-panels/src/package.json' does not exist according to earlier cached lookups.
+4386-File 'C:/layera/packages/info-panels/package.json' exists according to earlier cached lookups.
+4387:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+4388-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+4389-Directory 'C:/layera/packages/info-panels/src/components/node_modules' does not exist, skipping all lookups in it.
+4390-Scoped package detected, looking in 'layera__constants'
+4391:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/packages/info-panels/src'.
+4392:======== Module name '@layera/constants' was not resolved. ========
+4393-======== Resolving module '@layera/box-shadows' from 'C:/layera/packages/info-panels/src/components/InfoPanel.tsx'. ========
+4394-Explicitly specified module resolution kind: 'Bundler'.
+4395-Resolving in CJS mode with conditions 'import', 'types'.
+4396-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/box-shadows'.
+4397-'paths' option is specified, looking for a pattern to match module name '@layera/box-shadows'.
+4398-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/box-shadows'.
+--
+5242-File 'C:/layera/apps/layera-geoalert/src/components/steps/upload/UploadStep.tsx' exists - use it as a name resolution result.
+5243-======== Module name './UploadStep' was successfully resolved to 'C:/layera/apps/layera-geoalert/src/components/steps/upload/UploadStep.tsx'. ========
+5244:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/upload/index.ts'. ========
+5245-Explicitly specified module resolution kind: 'Bundler'.
+5246-Resolving in CJS mode with conditions 'import', 'types'.
+5247:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+5248:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+5249:Module name '@layera/constants', matched pattern '@layera/constants'.
+5250-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+5251-File 'C:/packages/constants/src/index.ts' does not exist.
+5252-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+5253-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+5254-File 'C:/layera/apps/layera-geoalert/src/components/steps/upload/package.json' does not exist according to earlier cached lookups.
+5255-File 'C:/layera/apps/layera-geoalert/src/components/steps/package.json' does not exist according to earlier cached lookups.
+--
+5257-File 'C:/layera/apps/layera-geoalert/src/package.json' does not exist according to earlier cached lookups.
+5258-File 'C:/layera/apps/layera-geoalert/package.json' exists according to earlier cached lookups.
+5259:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+5260-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+5261-Directory 'C:/layera/apps/layera-geoalert/src/components/steps/upload/node_modules' does not exist, skipping all lookups in it.
+5262-Scoped package detected, looking in 'layera__constants'
+5263:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+5264:======== Module name '@layera/constants' was not resolved. ========
+5265-======== Resolving module './UploadCard' from 'C:/layera/apps/layera-geoalert/src/components/steps/upload/index.ts'. ========
+5266-Explicitly specified module resolution kind: 'Bundler'.
+5267-Resolving in CJS mode with conditions 'import', 'types'.
+5268-Loading module as file / folder, candidate module location 'C:/layera/apps/layera-geoalert/src/components/steps/upload/UploadCard', target file types: TypeScript, JavaScript, Declaration, JSON.
+5269-File 'C:/layera/apps/layera-geoalert/src/components/steps/upload/UploadCard.ts' does not exist.
+5270-File 'C:/layera/apps/layera-geoalert/src/components/steps/upload/UploadCard.tsx' exists - use it as a name resolution result.
+--
+5303-Resolution for module 'react' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+5304-======== Module name 'react' was successfully resolved to 'C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index.d.ts' with Package ID '@types/react/index.d.ts@19.2.2'. ========
+5305:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/upload/UploadStep.tsx'. ========
+5306:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps/upload'.
+5307:======== Module name '@layera/constants' was not resolved. ========
+5308-======== Resolving module '@layera/file-upload' from 'C:/layera/apps/layera-geoalert/src/components/steps/upload/UploadStep.tsx'. ========
+5309-Explicitly specified module resolution kind: 'Bundler'.
+5310-Resolving in CJS mode with conditions 'import', 'types'.
+5311-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/file-upload'.
+5312-'paths' option is specified, looking for a pattern to match module name '@layera/file-upload'.
+5313-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/file-upload'.
+--
+5599-File 'C:/layera/apps/layera-geoalert/src/components/steps/layout/LayoutStep.tsx' exists - use it as a name resolution result.
+5600-======== Module name './LayoutStep' was successfully resolved to 'C:/layera/apps/layera-geoalert/src/components/steps/layout/LayoutStep.tsx'. ========
+5601:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/layout/index.ts'. ========
+5602-Explicitly specified module resolution kind: 'Bundler'.
+5603-Resolving in CJS mode with conditions 'import', 'types'.
+5604:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+5605:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+5606:Module name '@layera/constants', matched pattern '@layera/constants'.
+5607-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+5608-File 'C:/packages/constants/src/index.ts' does not exist.
+5609-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+5610-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+5611-File 'C:/layera/apps/layera-geoalert/src/components/steps/layout/package.json' does not exist according to earlier cached lookups.
+5612-File 'C:/layera/apps/layera-geoalert/src/components/steps/package.json' does not exist according to earlier cached lookups.
+--
+5614-File 'C:/layera/apps/layera-geoalert/src/package.json' does not exist according to earlier cached lookups.
+5615-File 'C:/layera/apps/layera-geoalert/package.json' exists according to earlier cached lookups.
+5616:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+5617-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+5618-Directory 'C:/layera/apps/layera-geoalert/src/components/steps/layout/node_modules' does not exist, skipping all lookups in it.
+5619-Scoped package detected, looking in 'layera__constants'
+5620:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+5621:======== Module name '@layera/constants' was not resolved. ========
+5622-======== Resolving module './LayoutToolCard' from 'C:/layera/apps/layera-geoalert/src/components/steps/layout/index.ts'. ========
+5623-Explicitly specified module resolution kind: 'Bundler'.
+5624-Resolving in CJS mode with conditions 'import', 'types'.
+5625-Loading module as file / folder, candidate module location 'C:/layera/apps/layera-geoalert/src/components/steps/layout/LayoutToolCard', target file types: TypeScript, JavaScript, Declaration, JSON.
+5626-File 'C:/layera/apps/layera-geoalert/src/components/steps/layout/LayoutToolCard.ts' does not exist.
+5627-File 'C:/layera/apps/layera-geoalert/src/components/steps/layout/LayoutToolCard.tsx' exists - use it as a name resolution result.
+--
+5717-Resolution for module '@layera/icons' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+5718-======== Module name '@layera/icons' was successfully resolved to 'C:/layera/packages/icons/dist/index.d.ts' with Package ID '@layera/icons/dist/index.d.ts@1.0.0'. ========
+5719:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/layout/LayoutStep.tsx'. ========
+5720:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps/layout'.
+5721:======== Module name '@layera/constants' was not resolved. ========
+5722-======== Resolving module '@layera/typography' from 'C:/layera/apps/layera-geoalert/src/components/steps/layout/LayoutStep.tsx'. ========
+5723-Explicitly specified module resolution kind: 'Bundler'.
+5724-Resolving in CJS mode with conditions 'import', 'types'.
+5725-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/typography'.
+5726-'paths' option is specified, looking for a pattern to match module name '@layera/typography'.
+5727-Module name '@layera/typography', matched pattern '@layera/typography'.
+--
+5949-Resolution for module '@layera/layout' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps/propertyType'.
+5950-======== Module name '@layera/layout' was successfully resolved to 'C:/layera/node_modules/.pnpm/@layera+layout@file+packages+layout_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@layera/layout/dist/index.js' with Package ID '@layera/layout/dist/index.js@1.0.0+react@19.2.0+react-dom@19.2.0'. ========
+5951:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/propertyType/PropertyTypeSelector.tsx'. ========
+5952-Explicitly specified module resolution kind: 'Bundler'.
+5953-Resolving in CJS mode with conditions 'import', 'types'.
+5954:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+5955:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+5956:Module name '@layera/constants', matched pattern '@layera/constants'.
+5957-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+5958-File 'C:/packages/constants/src/index.ts' does not exist.
+5959-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+5960-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+5961-File 'C:/layera/apps/layera-geoalert/src/components/steps/propertyType/package.json' does not exist according to earlier cached lookups.
+5962-File 'C:/layera/apps/layera-geoalert/src/components/steps/package.json' does not exist according to earlier cached lookups.
+--
+5964-File 'C:/layera/apps/layera-geoalert/src/package.json' does not exist according to earlier cached lookups.
+5965-File 'C:/layera/apps/layera-geoalert/package.json' exists according to earlier cached lookups.
+5966:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+5967-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+5968-Directory 'C:/layera/apps/layera-geoalert/src/components/steps/propertyType/node_modules' does not exist, skipping all lookups in it.
+5969-Scoped package detected, looking in 'layera__constants'
+5970:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+5971:======== Module name '@layera/constants' was not resolved. ========
+5972-======== Resolving module './types' from 'C:/layera/apps/layera-geoalert/src/components/steps/propertyType/PropertyTypeSelector.tsx'. ========
+5973-Resolution for module './types' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps/propertyType'.
+5974-======== Module name './types' was successfully resolved to 'C:/layera/apps/layera-geoalert/src/components/steps/propertyType/types.ts'. ========
+5975-======== Resolving module '../types' from 'C:/layera/apps/layera-geoalert/src/components/steps/propertyType/PropertyTypeSelector.tsx'. ========
+5976-Resolution for module '../types' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps/propertyType'.
+5977-======== Module name '../types' was successfully resolved to 'C:/layera/apps/layera-geoalert/src/components/steps/types.ts'. ========
+--
+6060-File 'C:/layera/apps/layera-geoalert/src/components/steps/propertyDetails/PropertyDetailsStep.tsx' exists - use it as a name resolution result.
+6061-======== Module name './PropertyDetailsStep' was successfully resolved to 'C:/layera/apps/layera-geoalert/src/components/steps/propertyDetails/PropertyDetailsStep.tsx'. ========
+6062:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/propertyDetails/index.ts'. ========
+6063-Explicitly specified module resolution kind: 'Bundler'.
+6064-Resolving in CJS mode with conditions 'import', 'types'.
+6065:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+6066:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+6067:Module name '@layera/constants', matched pattern '@layera/constants'.
+6068-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+6069-File 'C:/packages/constants/src/index.ts' does not exist.
+6070-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+6071-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+6072-File 'C:/layera/apps/layera-geoalert/src/components/steps/propertyDetails/package.json' does not exist according to earlier cached lookups.
+6073-File 'C:/layera/apps/layera-geoalert/src/components/steps/package.json' does not exist according to earlier cached lookups.
+--
+6075-File 'C:/layera/apps/layera-geoalert/src/package.json' does not exist according to earlier cached lookups.
+6076-File 'C:/layera/apps/layera-geoalert/package.json' exists according to earlier cached lookups.
+6077:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+6078-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+6079-Directory 'C:/layera/apps/layera-geoalert/src/components/steps/propertyDetails/node_modules' does not exist, skipping all lookups in it.
+6080-Scoped package detected, looking in 'layera__constants'
+6081:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+6082:======== Module name '@layera/constants' was not resolved. ========
+6083-======== Resolving module './PropertyDetailsForm' from 'C:/layera/apps/layera-geoalert/src/components/steps/propertyDetails/index.ts'. ========
+6084-Explicitly specified module resolution kind: 'Bundler'.
+6085-Resolving in CJS mode with conditions 'import', 'types'.
+6086-Loading module as file / folder, candidate module location 'C:/layera/apps/layera-geoalert/src/components/steps/propertyDetails/PropertyDetailsForm', target file types: TypeScript, JavaScript, Declaration, JSON.
+6087-File 'C:/layera/apps/layera-geoalert/src/components/steps/propertyDetails/PropertyDetailsForm.ts' does not exist.
+6088-File 'C:/layera/apps/layera-geoalert/src/components/steps/propertyDetails/PropertyDetailsForm.tsx' exists - use it as a name resolution result.
+--
+6200-Resolution for module '@layera/icons' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+6201-======== Module name '@layera/icons' was successfully resolved to 'C:/layera/packages/icons/dist/index.d.ts' with Package ID '@layera/icons/dist/index.d.ts@1.0.0'. ========
+6202:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/propertyDetails/PropertyDetailsStep.tsx'. ========
+6203:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps/propertyDetails'.
+6204:======== Module name '@layera/constants' was not resolved. ========
+6205-======== Resolving module '../types' from 'C:/layera/apps/layera-geoalert/src/components/steps/propertyDetails/PropertyDetailsStep.tsx'. ========
+6206-Explicitly specified module resolution kind: 'Bundler'.
+6207-Resolving in CJS mode with conditions 'import', 'types'.
+6208-Loading module as file / folder, candidate module location 'C:/layera/apps/layera-geoalert/src/components/steps/types', target file types: TypeScript, JavaScript, Declaration, JSON.
+6209-File 'C:/layera/apps/layera-geoalert/src/components/steps/types.ts' exists - use it as a name resolution result.
+6210-======== Module name '../types' was successfully resolved to 'C:/layera/apps/layera-geoalert/src/components/steps/types.ts'. ========
+--
+6355-Resolution for module '@layera/layout' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+6356-======== Module name '@layera/layout' was successfully resolved to 'C:/layera/node_modules/.pnpm/@layera+layout@file+packages+layout_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@layera/layout/dist/index.js' with Package ID '@layera/layout/dist/index.js@1.0.0+react@19.2.0+react-dom@19.2.0'. ========
+6357:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/areaMethod/AreaMethodStep.tsx'. ========
+6358-Explicitly specified module resolution kind: 'Bundler'.
+6359-Resolving in CJS mode with conditions 'import', 'types'.
+6360:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+6361:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+6362:Module name '@layera/constants', matched pattern '@layera/constants'.
+6363-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+6364-File 'C:/packages/constants/src/index.ts' does not exist.
+6365-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+6366-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+6367-File 'C:/layera/apps/layera-geoalert/src/components/steps/areaMethod/package.json' does not exist according to earlier cached lookups.
+6368-File 'C:/layera/apps/layera-geoalert/src/components/steps/package.json' does not exist according to earlier cached lookups.
+--
+6370-File 'C:/layera/apps/layera-geoalert/src/package.json' does not exist according to earlier cached lookups.
+6371-File 'C:/layera/apps/layera-geoalert/package.json' exists according to earlier cached lookups.
+6372:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+6373-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+6374-Directory 'C:/layera/apps/layera-geoalert/src/components/steps/areaMethod/node_modules' does not exist, skipping all lookups in it.
+6375-Scoped package detected, looking in 'layera__constants'
+6376:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+6377:======== Module name '@layera/constants' was not resolved. ========
+6378-======== Resolving module './AreaMethodCard' from 'C:/layera/apps/layera-geoalert/src/components/steps/areaMethod/AreaMethodStep.tsx'. ========
+6379-Resolution for module './AreaMethodCard' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps/areaMethod'.
+6380-======== Module name './AreaMethodCard' was successfully resolved to 'C:/layera/apps/layera-geoalert/src/components/steps/areaMethod/AreaMethodCard.tsx'. ========
+6381-======== Resolving module './InteractiveAreaMeasurement' from 'C:/layera/apps/layera-geoalert/src/components/steps/areaMethod/AreaMethodStep.tsx'. ========
+6382-Explicitly specified module resolution kind: 'Bundler'.
+6383-Resolving in CJS mode with conditions 'import', 'types'.
+--
+6509-Resolution for module '@layera/icons' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps/areaMethod'.
+6510-======== Module name '@layera/icons' was successfully resolved to 'C:/layera/packages/icons/dist/index.d.ts' with Package ID '@layera/icons/dist/index.d.ts@1.0.0'. ========
+6511:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/areaMethod/InteractiveAreaMeasurement.tsx'. ========
+6512:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps/areaMethod'.
+6513:======== Module name '@layera/constants' was not resolved. ========
+6514-======== Resolving module '@layera/geo-drawing' from 'C:/layera/apps/layera-geoalert/src/components/steps/areaMethod/InteractiveAreaMeasurement.tsx'. ========
+6515-Explicitly specified module resolution kind: 'Bundler'.
+6516-Resolving in CJS mode with conditions 'import', 'types'.
+6517-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/geo-drawing'.
+6518-'paths' option is specified, looking for a pattern to match module name '@layera/geo-drawing'.
+6519-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/geo-drawing'.
+--
+6692-File 'C:/layera/apps/layera-geoalert/src/components/steps/location/LocationStep.tsx' exists - use it as a name resolution result.
+6693-======== Module name './LocationStep' was successfully resolved to 'C:/layera/apps/layera-geoalert/src/components/steps/location/LocationStep.tsx'. ========
+6694:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/location/index.ts'. ========
+6695-Explicitly specified module resolution kind: 'Bundler'.
+6696-Resolving in CJS mode with conditions 'import', 'types'.
+6697:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+6698:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+6699:Module name '@layera/constants', matched pattern '@layera/constants'.
+6700-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+6701-File 'C:/packages/constants/src/index.ts' does not exist.
+6702-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+6703-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+6704-File 'C:/layera/apps/layera-geoalert/src/components/steps/location/package.json' does not exist according to earlier cached lookups.
+6705-File 'C:/layera/apps/layera-geoalert/src/components/steps/package.json' does not exist according to earlier cached lookups.
+--
+6707-File 'C:/layera/apps/layera-geoalert/src/package.json' does not exist according to earlier cached lookups.
+6708-File 'C:/layera/apps/layera-geoalert/package.json' exists according to earlier cached lookups.
+6709:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+6710-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+6711-Directory 'C:/layera/apps/layera-geoalert/src/components/steps/location/node_modules' does not exist, skipping all lookups in it.
+6712-Scoped package detected, looking in 'layera__constants'
+6713:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+6714:======== Module name '@layera/constants' was not resolved. ========
+6715-======== Resolving module './types' from 'C:/layera/apps/layera-geoalert/src/components/steps/location/index.ts'. ========
+6716-Explicitly specified module resolution kind: 'Bundler'.
+6717-Resolving in CJS mode with conditions 'import', 'types'.
+6718-Loading module as file / folder, candidate module location 'C:/layera/apps/layera-geoalert/src/components/steps/location/types', target file types: TypeScript, JavaScript, Declaration, JSON.
+6719-File 'C:/layera/apps/layera-geoalert/src/components/steps/location/types.ts' exists - use it as a name resolution result.
+6720-======== Module name './types' was successfully resolved to 'C:/layera/apps/layera-geoalert/src/components/steps/location/types.ts'. ========
+--
+6805-Resolution for module '@layera/layout' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+6806-======== Module name '@layera/layout' was successfully resolved to 'C:/layera/node_modules/.pnpm/@layera+layout@file+packages+layout_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@layera/layout/dist/index.js' with Package ID '@layera/layout/dist/index.js@1.0.0+react@19.2.0+react-dom@19.2.0'. ========
+6807:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/location/LocationStep.tsx'. ========
+6808:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps/location'.
+6809:======== Module name '@layera/constants' was not resolved. ========
+6810-======== Resolving module '@layera/forms' from 'C:/layera/apps/layera-geoalert/src/components/steps/location/LocationStep.tsx'. ========
+6811-Explicitly specified module resolution kind: 'Bundler'.
+6812-Resolving in CJS mode with conditions 'import', 'types'.
+6813-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/forms'.
+6814-'paths' option is specified, looking for a pattern to match module name '@layera/forms'.
+6815-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/forms'.
+--
+7095-Resolution for module '@layera/layout' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+7096-======== Module name '@layera/layout' was successfully resolved to 'C:/layera/node_modules/.pnpm/@layera+layout@file+packages+layout_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@layera/layout/dist/index.js' with Package ID '@layera/layout/dist/index.js@1.0.0+react@19.2.0+react-dom@19.2.0'. ========
+7097:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/employmentType/EmploymentTypeStep.tsx'. ========
+7098-Explicitly specified module resolution kind: 'Bundler'.
+7099-Resolving in CJS mode with conditions 'import', 'types'.
+7100:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+7101:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+7102:Module name '@layera/constants', matched pattern '@layera/constants'.
+7103-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+7104-File 'C:/packages/constants/src/index.ts' does not exist.
+7105-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+7106-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+7107-File 'C:/layera/apps/layera-geoalert/src/components/steps/employmentType/package.json' does not exist according to earlier cached lookups.
+7108-File 'C:/layera/apps/layera-geoalert/src/components/steps/package.json' does not exist according to earlier cached lookups.
+--
+7110-File 'C:/layera/apps/layera-geoalert/src/package.json' does not exist according to earlier cached lookups.
+7111-File 'C:/layera/apps/layera-geoalert/package.json' exists according to earlier cached lookups.
+7112:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+7113-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+7114-Directory 'C:/layera/apps/layera-geoalert/src/components/steps/employmentType/node_modules' does not exist, skipping all lookups in it.
+7115-Scoped package detected, looking in 'layera__constants'
+7116:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+7117:======== Module name '@layera/constants' was not resolved. ========
+7118-======== Resolving module '../types' from 'C:/layera/apps/layera-geoalert/src/components/steps/employmentType/EmploymentTypeStep.tsx'. ========
+7119-Explicitly specified module resolution kind: 'Bundler'.
+7120-Resolving in CJS mode with conditions 'import', 'types'.
+7121-Loading module as file / folder, candidate module location 'C:/layera/apps/layera-geoalert/src/components/steps/types', target file types: TypeScript, JavaScript, Declaration, JSON.
+7122-File 'C:/layera/apps/layera-geoalert/src/components/steps/types.ts' exists - use it as a name resolution result.
+7123-======== Module name '../types' was successfully resolved to 'C:/layera/apps/layera-geoalert/src/components/steps/types.ts'. ========
+--
+7233-File 'C:/layera/apps/layera-geoalert/src/components/steps/occupation/OccupationStep.tsx' exists - use it as a name resolution result.
+7234-======== Module name './OccupationStep' was successfully resolved to 'C:/layera/apps/layera-geoalert/src/components/steps/occupation/OccupationStep.tsx'. ========
+7235:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/occupation/index.ts'. ========
+7236-Explicitly specified module resolution kind: 'Bundler'.
+7237-Resolving in CJS mode with conditions 'import', 'types'.
+7238:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+7239:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+7240:Module name '@layera/constants', matched pattern '@layera/constants'.
+7241-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+7242-File 'C:/packages/constants/src/index.ts' does not exist.
+7243-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+7244-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+7245-File 'C:/layera/apps/layera-geoalert/src/components/steps/occupation/package.json' does not exist according to earlier cached lookups.
+7246-File 'C:/layera/apps/layera-geoalert/src/components/steps/package.json' does not exist according to earlier cached lookups.
+--
+7248-File 'C:/layera/apps/layera-geoalert/src/package.json' does not exist according to earlier cached lookups.
+7249-File 'C:/layera/apps/layera-geoalert/package.json' exists according to earlier cached lookups.
+7250:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+7251-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+7252-Directory 'C:/layera/apps/layera-geoalert/src/components/steps/occupation/node_modules' does not exist, skipping all lookups in it.
+7253-Scoped package detected, looking in 'layera__constants'
+7254:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+7255:======== Module name '@layera/constants' was not resolved. ========
+7256-======== Resolving module './ESCOSearchComponent' from 'C:/layera/apps/layera-geoalert/src/components/steps/occupation/index.ts'. ========
+7257-Explicitly specified module resolution kind: 'Bundler'.
+7258-Resolving in CJS mode with conditions 'import', 'types'.
+7259-Loading module as file / folder, candidate module location 'C:/layera/apps/layera-geoalert/src/components/steps/occupation/ESCOSearchComponent', target file types: TypeScript, JavaScript, Declaration, JSON.
+7260-File 'C:/layera/apps/layera-geoalert/src/components/steps/occupation/ESCOSearchComponent.ts' does not exist.
+7261-File 'C:/layera/apps/layera-geoalert/src/components/steps/occupation/ESCOSearchComponent.tsx' exists - use it as a name resolution result.
+--
+7332-Resolution for module '@layera/layout' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+7333-======== Module name '@layera/layout' was successfully resolved to 'C:/layera/node_modules/.pnpm/@layera+layout@file+packages+layout_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@layera/layout/dist/index.js' with Package ID '@layera/layout/dist/index.js@1.0.0+react@19.2.0+react-dom@19.2.0'. ========
+7334:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/occupation/OccupationStep.tsx'. ========
+7335:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps/occupation'.
+7336:======== Module name '@layera/constants' was not resolved. ========
+7337-======== Resolving module '@layera/cards' from 'C:/layera/apps/layera-geoalert/src/components/steps/occupation/OccupationStep.tsx'. ========
+7338-Explicitly specified module resolution kind: 'Bundler'.
+7339-Resolving in CJS mode with conditions 'import', 'types'.
+7340-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/cards'.
+7341-'paths' option is specified, looking for a pattern to match module name '@layera/cards'.
+7342-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/cards'.
+--
+7412-Resolution for module '@layera/layout' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps/occupation'.
+7413-======== Module name '@layera/layout' was successfully resolved to 'C:/layera/node_modules/.pnpm/@layera+layout@file+packages+layout_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@layera/layout/dist/index.js' with Package ID '@layera/layout/dist/index.js@1.0.0+react@19.2.0+react-dom@19.2.0'. ========
+7414:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/occupation/ESCOSearchComponent.tsx'. ========
+7415:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps/occupation'.
+7416:======== Module name '@layera/constants' was not resolved. ========
+7417-======== Resolving module '@layera/box-shadows' from 'C:/layera/apps/layera-geoalert/src/components/steps/occupation/ESCOSearchComponent.tsx'. ========
+7418-Explicitly specified module resolution kind: 'Bundler'.
+7419-Resolving in CJS mode with conditions 'import', 'types'.
+7420-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/box-shadows'.
+7421-'paths' option is specified, looking for a pattern to match module name '@layera/box-shadows'.
+7422-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/box-shadows'.
+--
+7895-File 'C:/layera/apps/layera-geoalert/src/components/steps/availabilityDetails/AvailabilityDetailsStep.tsx' exists - use it as a name resolution result.
+7896-======== Module name './AvailabilityDetailsStep' was successfully resolved to 'C:/layera/apps/layera-geoalert/src/components/steps/availabilityDetails/AvailabilityDetailsStep.tsx'. ========
+7897:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/availabilityDetails/index.ts'. ========
+7898-Explicitly specified module resolution kind: 'Bundler'.
+7899-Resolving in CJS mode with conditions 'import', 'types'.
+7900:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+7901:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+7902:Module name '@layera/constants', matched pattern '@layera/constants'.
+7903-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+7904-File 'C:/packages/constants/src/index.ts' does not exist.
+7905-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+7906-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+7907-File 'C:/layera/apps/layera-geoalert/src/components/steps/availabilityDetails/package.json' does not exist according to earlier cached lookups.
+7908-File 'C:/layera/apps/layera-geoalert/src/components/steps/package.json' does not exist according to earlier cached lookups.
+--
+7910-File 'C:/layera/apps/layera-geoalert/src/package.json' does not exist according to earlier cached lookups.
+7911-File 'C:/layera/apps/layera-geoalert/package.json' exists according to earlier cached lookups.
+7912:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+7913-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+7914-Directory 'C:/layera/apps/layera-geoalert/src/components/steps/availabilityDetails/node_modules' does not exist, skipping all lookups in it.
+7915-Scoped package detected, looking in 'layera__constants'
+7916:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+7917:======== Module name '@layera/constants' was not resolved. ========
+7918-======== Resolving module './AvailabilityDetailsForm' from 'C:/layera/apps/layera-geoalert/src/components/steps/availabilityDetails/index.ts'. ========
+7919-Explicitly specified module resolution kind: 'Bundler'.
+7920-Resolving in CJS mode with conditions 'import', 'types'.
+7921-Loading module as file / folder, candidate module location 'C:/layera/apps/layera-geoalert/src/components/steps/availabilityDetails/AvailabilityDetailsForm', target file types: TypeScript, JavaScript, Declaration, JSON.
+7922-File 'C:/layera/apps/layera-geoalert/src/components/steps/availabilityDetails/AvailabilityDetailsForm.ts' does not exist.
+7923-File 'C:/layera/apps/layera-geoalert/src/components/steps/availabilityDetails/AvailabilityDetailsForm.tsx' exists - use it as a name resolution result.
+--
+8208-Resolution for module '@layera/layout' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+8209-======== Module name '@layera/layout' was successfully resolved to 'C:/layera/node_modules/.pnpm/@layera+layout@file+packages+layout_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@layera/layout/dist/index.js' with Package ID '@layera/layout/dist/index.js@1.0.0+react@19.2.0+react-dom@19.2.0'. ========
+8210:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/pricing/PricingStep.tsx'. ========
+8211-Explicitly specified module resolution kind: 'Bundler'.
+8212-Resolving in CJS mode with conditions 'import', 'types'.
+8213:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+8214:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+8215:Module name '@layera/constants', matched pattern '@layera/constants'.
+8216-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+8217-File 'C:/packages/constants/src/index.ts' does not exist.
+8218-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+8219-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+8220-File 'C:/layera/apps/layera-geoalert/src/components/steps/pricing/package.json' does not exist according to earlier cached lookups.
+8221-File 'C:/layera/apps/layera-geoalert/src/components/steps/package.json' does not exist according to earlier cached lookups.
+--
+8223-File 'C:/layera/apps/layera-geoalert/src/package.json' does not exist according to earlier cached lookups.
+8224-File 'C:/layera/apps/layera-geoalert/package.json' exists according to earlier cached lookups.
+8225:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+8226-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+8227-Directory 'C:/layera/apps/layera-geoalert/src/components/steps/pricing/node_modules' does not exist, skipping all lookups in it.
+8228-Scoped package detected, looking in 'layera__constants'
+8229:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+8230:======== Module name '@layera/constants' was not resolved. ========
+8231-======== Resolving module '@layera/typography' from 'C:/layera/apps/layera-geoalert/src/components/steps/pricing/PricingStep.tsx'. ========
+8232-Explicitly specified module resolution kind: 'Bundler'.
+8233-Resolving in CJS mode with conditions 'import', 'types'.
+8234-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/typography'.
+8235-'paths' option is specified, looking for a pattern to match module name '@layera/typography'.
+8236-Module name '@layera/typography', matched pattern '@layera/typography'.
+--
+8505-Resolution for module '@layera/cards' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+8506-======== Module name '@layera/cards' was not resolved. ========
+8507:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/review/ReviewStep.tsx'. ========
+8508-Explicitly specified module resolution kind: 'Bundler'.
+8509-Resolving in CJS mode with conditions 'import', 'types'.
+8510:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+8511:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+8512:Module name '@layera/constants', matched pattern '@layera/constants'.
+8513-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+8514-File 'C:/packages/constants/src/index.ts' does not exist.
+8515-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+8516-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+8517-File 'C:/layera/apps/layera-geoalert/src/components/steps/review/package.json' does not exist according to earlier cached lookups.
+8518-File 'C:/layera/apps/layera-geoalert/src/components/steps/package.json' does not exist according to earlier cached lookups.
+--
+8520-File 'C:/layera/apps/layera-geoalert/src/package.json' does not exist according to earlier cached lookups.
+8521-File 'C:/layera/apps/layera-geoalert/package.json' exists according to earlier cached lookups.
+8522:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+8523-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+8524-Directory 'C:/layera/apps/layera-geoalert/src/components/steps/review/node_modules' does not exist, skipping all lookups in it.
+8525-Scoped package detected, looking in 'layera__constants'
+8526:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+8527:======== Module name '@layera/constants' was not resolved. ========
+8528-======== Resolving module '../types' from 'C:/layera/apps/layera-geoalert/src/components/steps/review/ReviewStep.tsx'. ========
+8529-Explicitly specified module resolution kind: 'Bundler'.
+8530-Resolving in CJS mode with conditions 'import', 'types'.
+8531-Loading module as file / folder, candidate module location 'C:/layera/apps/layera-geoalert/src/components/steps/types', target file types: TypeScript, JavaScript, Declaration, JSON.
+8532-File 'C:/layera/apps/layera-geoalert/src/components/steps/types.ts' exists - use it as a name resolution result.
+8533-======== Module name '../types' was successfully resolved to 'C:/layera/apps/layera-geoalert/src/components/steps/types.ts'. ========
+--
+8584-File 'C:/layera/apps/layera-geoalert/src/components/steps/complete/CompleteStep.tsx' exists - use it as a name resolution result.
+8585-======== Module name './CompleteStep' was successfully resolved to 'C:/layera/apps/layera-geoalert/src/components/steps/complete/CompleteStep.tsx'. ========
+8586:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/complete/index.ts'. ========
+8587-Explicitly specified module resolution kind: 'Bundler'.
+8588-Resolving in CJS mode with conditions 'import', 'types'.
+8589:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+8590:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+8591:Module name '@layera/constants', matched pattern '@layera/constants'.
+8592-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+8593-File 'C:/packages/constants/src/index.ts' does not exist.
+8594-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+8595-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+8596-File 'C:/layera/apps/layera-geoalert/src/components/steps/complete/package.json' does not exist according to earlier cached lookups.
+8597-File 'C:/layera/apps/layera-geoalert/src/components/steps/package.json' does not exist according to earlier cached lookups.
+--
+8599-File 'C:/layera/apps/layera-geoalert/src/package.json' does not exist according to earlier cached lookups.
+8600-File 'C:/layera/apps/layera-geoalert/package.json' exists according to earlier cached lookups.
+8601:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+8602-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+8603-Directory 'C:/layera/apps/layera-geoalert/src/components/steps/complete/node_modules' does not exist, skipping all lookups in it.
+8604-Scoped package detected, looking in 'layera__constants'
+8605:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+8606:======== Module name '@layera/constants' was not resolved. ========
+8607-======== Resolving module './types' from 'C:/layera/apps/layera-geoalert/src/components/steps/complete/index.ts'. ========
+8608-Explicitly specified module resolution kind: 'Bundler'.
+8609-Resolving in CJS mode with conditions 'import', 'types'.
+8610-Loading module as file / folder, candidate module location 'C:/layera/apps/layera-geoalert/src/components/steps/complete/types', target file types: TypeScript, JavaScript, Declaration, JSON.
+8611-File 'C:/layera/apps/layera-geoalert/src/components/steps/complete/types.ts' exists - use it as a name resolution result.
+8612-======== Module name './types' was successfully resolved to 'C:/layera/apps/layera-geoalert/src/components/steps/complete/types.ts'. ========
+--
+8697-Resolution for module '@layera/layout' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+8698-======== Module name '@layera/layout' was successfully resolved to 'C:/layera/node_modules/.pnpm/@layera+layout@file+packages+layout_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@layera/layout/dist/index.js' with Package ID '@layera/layout/dist/index.js@1.0.0+react@19.2.0+react-dom@19.2.0'. ========
+8699:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/complete/CompleteStep.tsx'. ========
+8700:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps/complete'.
+8701:======== Module name '@layera/constants' was not resolved. ========
+8702-======== Resolving module '@layera/cards' from 'C:/layera/apps/layera-geoalert/src/components/steps/complete/CompleteStep.tsx'. ========
+8703-Explicitly specified module resolution kind: 'Bundler'.
+8704-Resolving in CJS mode with conditions 'import', 'types'.
+8705-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/cards'.
+8706-'paths' option is specified, looking for a pattern to match module name '@layera/cards'.
+8707-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/cards'.
+--
+8802-Resolution for module 'react' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components'.
+8803-======== Module name 'react' was successfully resolved to 'C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index.d.ts' with Package ID '@types/react/index.d.ts@19.2.2'. ========
+8804:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/ViewportFrame.tsx'. ========
+8805:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components'.
+8806:======== Module name '@layera/constants' was not resolved. ========
+8807-======== Resolving module '@layera/layout' from 'C:/layera/apps/layera-geoalert/src/components/ViewportFrame.tsx'. ========
+8808-Resolution for module '@layera/layout' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components'.
+8809-======== Module name '@layera/layout' was successfully resolved to 'C:/layera/node_modules/.pnpm/@layera+layout@file+packages+layout_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@layera/layout/dist/index.js' with Package ID '@layera/layout/dist/index.js@1.0.0+react@19.2.0+react-dom@19.2.0'. ========
+8810-======== Resolving module 'react/jsx-runtime' from 'C:/layera/apps/layera-geoalert/src/main.tsx'. ========
+8811-Resolution for module 'react/jsx-runtime' was found in cache from location 'C:/layera/apps/layera-geoalert/src'.
+8812-======== Module name 'react/jsx-runtime' was successfully resolved to 'C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/jsx-runtime.d.ts' with Package ID '@types/react/jsx-runtime.d.ts@19.2.2'. ========
+--
+8936-Resolution for module '@layera/typography' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components'.
+8937-======== Module name '@layera/typography' was not resolved. ========
+8938:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/MapCanvas.tsx'. ========
+8939:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components'.
+8940:======== Module name '@layera/constants' was not resolved. ========
+8941-======== Resolving module '@layera/box-shadows' from 'C:/layera/apps/layera-geoalert/src/components/MapCanvas.tsx'. ========
+8942-Explicitly specified module resolution kind: 'Bundler'.
+8943-Resolving in CJS mode with conditions 'import', 'types'.
+8944-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/box-shadows'.
+8945-'paths' option is specified, looking for a pattern to match module name '@layera/box-shadows'.
+8946-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/box-shadows'.
+--
+9077-Resolution for module 'leaflet' was found in cache from location 'C:/layera/apps/layera-geoalert/src'.
+9078-======== Module name 'leaflet' was successfully resolved to 'C:/layera/node_modules/.pnpm/@types+leaflet@1.9.21/node_modules/@types/leaflet/index.d.ts' with Package ID '@types/leaflet/index.d.ts@1.9.21'. ========
+9079:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/utils/leaflet/icon-factory.ts'. ========
+9080-Explicitly specified module resolution kind: 'Bundler'.
+9081-Resolving in CJS mode with conditions 'import', 'types'.
+9082:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+9083:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+9084:Module name '@layera/constants', matched pattern '@layera/constants'.
+9085-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+9086-File 'C:/packages/constants/src/index.ts' does not exist.
+9087-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+9088-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+9089-File 'C:/layera/apps/layera-geoalert/src/utils/leaflet/package.json' does not exist according to earlier cached lookups.
+9090-File 'C:/layera/apps/layera-geoalert/src/utils/package.json' does not exist according to earlier cached lookups.
+9091-File 'C:/layera/apps/layera-geoalert/src/package.json' does not exist according to earlier cached lookups.
+9092-File 'C:/layera/apps/layera-geoalert/package.json' exists according to earlier cached lookups.
+9093:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+9094-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+9095-Directory 'C:/layera/apps/layera-geoalert/src/utils/leaflet/node_modules' does not exist, skipping all lookups in it.
+9096-Scoped package detected, looking in 'layera__constants'
+9097-Directory 'C:/layera/apps/layera-geoalert/src/utils/node_modules' does not exist, skipping all lookups in it.
+9098-Scoped package detected, looking in 'layera__constants'
+9099:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src'.
+9100:======== Module name '@layera/constants' was not resolved. ========
+9101-======== Resolving module '@/constants' from 'C:/layera/apps/layera-geoalert/src/utils/leaflet/icon-factory.ts'. ========
+9102-Explicitly specified module resolution kind: 'Bundler'.
+9103-Resolving in CJS mode with conditions 'import', 'types'.
+9104-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@/constants'.
+9105-'paths' option is specified, looking for a pattern to match module name '@/constants'.
+9106-Module name '@/constants', matched pattern '@/*'.
+--
+9181-File 'C:/layera/apps/layera-geoalert/src/utils/geometry/coordinate-utils.ts' exists - use it as a name resolution result.
+9182-======== Module name '../geometry/coordinate-utils' was successfully resolved to 'C:/layera/apps/layera-geoalert/src/utils/geometry/coordinate-utils.ts'. ========
+9183:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/utils/location/user-location.ts'. ========
+9184-Explicitly specified module resolution kind: 'Bundler'.
+9185-Resolving in CJS mode with conditions 'import', 'types'.
+9186:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+9187:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+9188:Module name '@layera/constants', matched pattern '@layera/constants'.
+9189-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+9190-File 'C:/packages/constants/src/index.ts' does not exist.
+9191-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+9192-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+9193-File 'C:/layera/apps/layera-geoalert/src/utils/location/package.json' does not exist according to earlier cached lookups.
+9194-File 'C:/layera/apps/layera-geoalert/src/utils/package.json' does not exist according to earlier cached lookups.
+9195-File 'C:/layera/apps/layera-geoalert/src/package.json' does not exist according to earlier cached lookups.
+9196-File 'C:/layera/apps/layera-geoalert/package.json' exists according to earlier cached lookups.
+9197:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+9198-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+9199-Directory 'C:/layera/apps/layera-geoalert/src/utils/location/node_modules' does not exist, skipping all lookups in it.
+9200-Scoped package detected, looking in 'layera__constants'
+9201:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/utils'.
+9202:======== Module name '@layera/constants' was not resolved. ========
+9203-======== Resolving module 'react/jsx-runtime' from 'C:/layera/apps/layera-geoalert/src/utils/geometry/coordinate-utils.ts'. ========
+9204-Explicitly specified module resolution kind: 'Bundler'.
+9205-Resolving in CJS mode with conditions 'import', 'types'.
+9206-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name 'react/jsx-runtime'.
+9207-'paths' option is specified, looking for a pattern to match module name 'react/jsx-runtime'.
+9208-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name 'react/jsx-runtime'.
+--
+9294-Resolution for module 'react' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components'.
+9295-======== Module name 'react' was successfully resolved to 'C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index.d.ts' with Package ID '@types/react/index.d.ts@19.2.2'. ========
+9296:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/SimpleMap.tsx'. ========
+9297:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components'.
+9298:======== Module name '@layera/constants' was not resolved. ========
+9299-======== Resolving module '@layera/layout' from 'C:/layera/apps/layera-geoalert/src/components/SimpleMap.tsx'. ========
+9300-Resolution for module '@layera/layout' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components'.
+9301-======== Module name '@layera/layout' was successfully resolved to 'C:/layera/node_modules/.pnpm/@layera+layout@file+packages+layout_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@layera/layout/dist/index.js' with Package ID '@layera/layout/dist/index.js@1.0.0+react@19.2.0+react-dom@19.2.0'. ========
+9302-======== Resolving module 'leaflet' from 'C:/layera/apps/layera-geoalert/src/components/SimpleMap.tsx'. ========
+9303-Resolution for module 'leaflet' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components'.
+9304-======== Module name 'leaflet' was successfully resolved to 'C:/layera/node_modules/.pnpm/@types+leaflet@1.9.21/node_modules/@types/leaflet/index.d.ts' with Package ID '@types/leaflet/index.d.ts@1.9.21'. ========
+--
+9477-Resolution for module 'react' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+9478-======== Module name 'react' was successfully resolved to 'C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/index.d.ts' with Package ID '@types/react/index.d.ts@19.2.2'. ========
+9479:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/PropertyCompletionStep.tsx'. ========
+9480:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+9481:======== Module name '@layera/constants' was not resolved. ========
+9482-======== Resolving module '@layera/layout' from 'C:/layera/apps/layera-geoalert/src/components/steps/PropertyCompletionStep.tsx'. ========
+9483-Resolution for module '@layera/layout' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+9484-======== Module name '@layera/layout' was successfully resolved to 'C:/layera/node_modules/.pnpm/@layera+layout@file+packages+layout_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/@layera/layout/dist/index.js' with Package ID '@layera/layout/dist/index.js@1.0.0+react@19.2.0+react-dom@19.2.0'. ========
+9485-======== Resolving module '@layera/typography' from 'C:/layera/apps/layera-geoalert/src/components/steps/PropertyCompletionStep.tsx'. ========
+9486-Resolution for module '@layera/typography' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+9487-======== Module name '@layera/typography' was not resolved. ========
+--
+9811-File 'C:/layera/apps/layera-geoalert/src/components/steps/StepOrchestrator.tsx' exists - use it as a name resolution result.
+9812-======== Module name '../StepOrchestrator' was successfully resolved to 'C:/layera/apps/layera-geoalert/src/components/steps/StepOrchestrator.tsx'. ========
+9813:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/components/steps/test/StepRegistryTest.tsx'. ========
+9814-Explicitly specified module resolution kind: 'Bundler'.
+9815-Resolving in CJS mode with conditions 'import', 'types'.
+9816:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+9817:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+9818:Module name '@layera/constants', matched pattern '@layera/constants'.
+9819-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+9820-File 'C:/packages/constants/src/index.ts' does not exist.
+9821-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+9822-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+9823-File 'C:/layera/apps/layera-geoalert/src/components/steps/test/package.json' does not exist according to earlier cached lookups.
+9824-File 'C:/layera/apps/layera-geoalert/src/components/steps/package.json' does not exist according to earlier cached lookups.
+--
+9826-File 'C:/layera/apps/layera-geoalert/src/package.json' does not exist according to earlier cached lookups.
+9827-File 'C:/layera/apps/layera-geoalert/package.json' exists according to earlier cached lookups.
+9828:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+9829-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+9830-Directory 'C:/layera/apps/layera-geoalert/src/components/steps/test/node_modules' does not exist, skipping all lookups in it.
+9831-Scoped package detected, looking in 'layera__constants'
+9832:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/components/steps'.
+9833:======== Module name '@layera/constants' was not resolved. ========
+9834-======== Resolving module '@layera/layout' from 'C:/layera/apps/layera-geoalert/src/components/steps/test/StepRegistryTest.tsx'. ========
+9835-Explicitly specified module resolution kind: 'Bundler'.
+9836-Resolving in CJS mode with conditions 'import', 'types'.
+9837-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/layout'.
+9838-'paths' option is specified, looking for a pattern to match module name '@layera/layout'.
+9839-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/layout'.
+--
+9903-Resolution for module 'react/jsx-runtime' was found in cache from location 'C:/layera/apps/layera-geoalert/src'.
+9904-======== Module name 'react/jsx-runtime' was successfully resolved to 'C:/layera/node_modules/.pnpm/@types+react@19.2.2/node_modules/@types/react/jsx-runtime.d.ts' with Package ID '@types/react/jsx-runtime.d.ts@19.2.2'. ========
+9905:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/debug/cursorDebug.ts'. ========
+9906-Explicitly specified module resolution kind: 'Bundler'.
+9907-Resolving in CJS mode with conditions 'import', 'types'.
+9908:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+9909:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+9910:Module name '@layera/constants', matched pattern '@layera/constants'.
+9911-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+9912-File 'C:/packages/constants/src/index.ts' does not exist.
+9913-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+9914-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+9915-File 'C:/layera/apps/layera-geoalert/src/debug/package.json' does not exist according to earlier cached lookups.
+9916-File 'C:/layera/apps/layera-geoalert/src/package.json' does not exist according to earlier cached lookups.
+9917-File 'C:/layera/apps/layera-geoalert/package.json' exists according to earlier cached lookups.
+9918:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+9919-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+9920-Directory 'C:/layera/apps/layera-geoalert/src/debug/node_modules' does not exist, skipping all lookups in it.
+9921-Scoped package detected, looking in 'layera__constants'
+9922:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src'.
+9923:======== Module name '@layera/constants' was not resolved. ========
+9924-======== Resolving module 'react/jsx-runtime' from 'C:/layera/apps/layera-geoalert/src/modules/map-engine/core/MapCore.tsx'. ========
+9925-Explicitly specified module resolution kind: 'Bundler'.
+9926-Resolving in CJS mode with conditions 'import', 'types'.
+9927-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name 'react/jsx-runtime'.
+9928-'paths' option is specified, looking for a pattern to match module name 'react/jsx-runtime'.
+9929-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name 'react/jsx-runtime'.
+--
+11274-Resolution for module '@layera/icons' was found in cache from location 'C:/layera/apps/layera-geoalert/src'.
+11275-======== Module name '@layera/icons' was successfully resolved to 'C:/layera/packages/icons/dist/index.d.ts' with Package ID '@layera/icons/dist/index.d.ts@1.0.0'. ========
+11276:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/modules/sidebars/AreasPanel.tsx'. ========
+11277-Explicitly specified module resolution kind: 'Bundler'.
+11278-Resolving in CJS mode with conditions 'import', 'types'.
+11279:'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/constants'.
+11280:'paths' option is specified, looking for a pattern to match module name '@layera/constants'.
+11281:Module name '@layera/constants', matched pattern '@layera/constants'.
+11282-Trying substitution '../../packages/constants/src/index.ts', candidate module location: '../../packages/constants/src/index.ts'.
+11283-File 'C:/packages/constants/src/index.ts' does not exist.
+11284-Loading module as file / folder, candidate module location 'C:/packages/constants/src/index.ts', target file types: TypeScript, JavaScript, Declaration, JSON.
+11285-File name 'C:/packages/constants/src/index.ts' has a '.ts' extension - stripping it.
+11286-File 'C:/layera/apps/layera-geoalert/src/modules/sidebars/package.json' does not exist according to earlier cached lookups.
+11287-File 'C:/layera/apps/layera-geoalert/src/modules/package.json' does not exist according to earlier cached lookups.
+11288-File 'C:/layera/apps/layera-geoalert/src/package.json' does not exist according to earlier cached lookups.
+11289-File 'C:/layera/apps/layera-geoalert/package.json' exists according to earlier cached lookups.
+11290:Loading module '@layera/constants' from 'node_modules' folder, target file types: TypeScript, JavaScript, Declaration, JSON.
+11291-Searching all ancestor node_modules directories for preferred extensions: TypeScript, Declaration.
+11292-Directory 'C:/layera/apps/layera-geoalert/src/modules/sidebars/node_modules' does not exist, skipping all lookups in it.
+11293-Scoped package detected, looking in 'layera__constants'
+11294-Directory 'C:/layera/apps/layera-geoalert/src/modules/node_modules' does not exist, skipping all lookups in it.
+11295-Scoped package detected, looking in 'layera__constants'
+11296:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src'.
+11297:======== Module name '@layera/constants' was not resolved. ========
+11298-======== Resolving module '@layera/cards' from 'C:/layera/apps/layera-geoalert/src/modules/sidebars/AreasPanel.tsx'. ========
+11299-Explicitly specified module resolution kind: 'Bundler'.
+11300-Resolving in CJS mode with conditions 'import', 'types'.
+11301-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/cards'.
+11302-'paths' option is specified, looking for a pattern to match module name '@layera/cards'.
+11303-'baseUrl' option is set to 'C:/layera', using this value to resolve non-relative module name '@layera/cards'.
+--
+11398-Resolution for module '@layera/buttons' was found in cache from location 'C:/layera/apps/layera-geoalert/src/modules/sidebars'.
+11399-======== Module name '@layera/buttons' was not resolved. ========
+11400:======== Resolving module '@layera/constants' from 'C:/layera/apps/layera-geoalert/src/modules/sidebars/NavigationRail.tsx'. ========
+11401:Resolution for module '@layera/constants' was found in cache from location 'C:/layera/apps/layera-geoalert/src/modules/sidebars'.
+11402:======== Module name '@layera/constants' was not resolved. ========
+11403-======== Resolving module './NavigationRail.css' from 'C:/layera/apps/layera-geoalert/src/modules/sidebars/NavigationRail.tsx'. ========
+11404-Explicitly specified module resolution kind: 'Bundler'.
+11405-Resolving in CJS mode with conditions 'import', 'types'.
+11406-Loading module as file / folder, candidate module location 'C:/layera/apps/layera-geoalert/src/modules/sidebars/NavigationRail.css', target file types: TypeScript, JavaScript, Declaration, JSON.
+11407-File name 'C:/layera/apps/layera-geoalert/src/modules/sidebars/NavigationRail.css' has a '.css' extension - stripping it.
+11408-File 'C:/layera/apps/layera-geoalert/src/modules/sidebars/NavigationRail.d.css.ts' does not exist.
+--
+17158-File 'C:/layera/node_modules/.pnpm/typescript@5.9.3/node_modules/typescript/lib/package.json' does not exist according to earlier cached lookups.
+17159-File 'C:/layera/node_modules/.pnpm/typescript@5.9.3/node_modules/typescript/package.json' exists according to earlier cached lookups.
+17160:src/App.tsx(7,10): error TS2305: Module '"@layera/constants"' has no exported member 'getCardOrangeColor'.
+17161:src/App.tsx(7,30): error TS2305: Module '"@layera/constants"' has no exported member 'getCardInfoColor'.
+17162:src/App.tsx(7,48): error TS2305: Module '"@layera/constants"' has no exported member 'getCardInfoBorder'.
+17163-src/App.tsx(10,10): error TS2305: Module '"@layera/loading"' has no exported member 'LoadingSpinner'.
+17164-src/App.tsx(11,10): error TS2724: '"@layera/notifications"' has no exported member named 'NotificationProvider'. Did you mean 'NotificationProps'?
+17165-src/App.tsx(11,32): error TS2305: Module '"@layera/notifications"' has no exported member 'useNotifications'.
+17166-src/App.tsx(14,16): error TS2305: Module '"@layera/typography"' has no exported member 'Heading'.
+17167-src/App.tsx(33,11): error TS2345: Argument of type 'Record<string, unknown>' is not assignable to parameter of type '{ children: ReactNode; level?: string | undefined; onError?: ((error: Error, errorInfo: { componentStack: string; errorBoundary?: ComponentType<SVGProps<SVGSVGElement>> | null | undefined; errorBoundaryStack?: string | ... 1 more ... | undefined; }) => void) | undefined; }'.
+17168-  Property 'children' is missing in type 'Record<string, unknown>' but required in type '{ children: ReactNode; level?: string | undefined; onError?: ((error: Error, errorInfo: { componentStack: string; errorBoundary?: ComponentType<SVGProps<SVGSVGElement>> | null | undefined; errorBoundaryStack?: string | ... 1 more ... | undefined; }) => void) | undefined; }'.
+--
+17191-src/components/GeoHeader.tsx(8,36): error TS6133: 'SettingsIcon' is declared but its value is never read.
+17192-src/components/GeoHeader.tsx(9,1): error TS6192: All imports in import declaration are unused.
+17193:src/components/GeoHeader.tsx(9,10): error TS2305: Module '"@layera/constants"' has no exported member 'SPACING_SCALE'.
+17194:src/components/GeoHeader.tsx(9,25): error TS2305: Module '"@layera/constants"' has no exported member 'getCardOrangeColor'.
+17195-src/components/GeoHeader.tsx(27,7): error TS6133: 'theme' is declared but its value is never read.
+17196-src/components/GeoHeader.tsx(28,7): error TS6133: 'toggleTheme' is declared but its value is never read.
+17197-src/components/GeoHeader.tsx(58,13): error TS2322: Type '"ghost"' is not assignable to type '"primary" | "secondary" | "outline" | undefined'.
+17198-src/components/GeoHeader.tsx(102,13): error TS2322: Type '{ children: string | false; variant: "primary"; size: string; icon: Element; onClick: () => void; title: string; }' is not assignable to type 'IntrinsicAttributes & ButtonProps'.
+17199-  Property 'size' does not exist on type 'IntrinsicAttributes & ButtonProps'.
+17200-src/components/GeoMapNew.tsx(8,49): error TS6133: 'useEffect' is declared but its value is never read.
+17201:src/components/GeoMapNew.tsx(18,10): error TS2305: Module '"@layera/constants"' has no exported member 'CONFIG'.
+17202:src/components/GeoMapNew.tsx(18,18): error TS2305: Module '"@layera/constants"' has no exported member 'PIPELINE_STEP'.
+17203-src/components/GeoMapNew.tsx(18,18): error TS6133: 'PIPELINE_STEP' is declared but its value is never read.
+17204-src/components/GeoMapNew.tsx(86,3): error TS6133: 'onCategoryElementsChange' is declared but its value is never read.
+17205-src/components/GeoMapNew.tsx(91,9): error TS6133: 't' is declared but its value is never read.
+17206-src/components/GeoMapNew.tsx(104,5): error TS2322: Type 'null' is not assignable to type 'ESCOOccupation'.
+17207-src/components/GeoMapNew.tsx(137,9): error TS2322: Type 'null' is not assignable to type 'ESCOOccupation'.
+17208-src/components/GeoMapNew.tsx(239,9): error TS2322: Type '() => void' is not assignable to type '() => ReactNode'.
+--
+17247-  Types of parameters 'data' and 'data' are incompatible.
+17248-    Type 'unknown' is not assignable to type 'Record<string, unknown> | undefined'.
+17249:src/components/map/MapContainer.tsx(17,10): error TS2305: Module '"@layera/constants"' has no exported member 'SPACING_SCALE'.
+17250-src/components/map/MapContainer.tsx(17,10): error TS6133: 'SPACING_SCALE' is declared but its value is never read.
+17251:src/components/map/MapContainer.tsx(17,25): error TS2305: Module '"@layera/constants"' has no exported member 'BORDER_RADIUS_SCALE'.
+17252-src/components/map/MapContainer.tsx(17,25): error TS6133: 'BORDER_RADIUS_SCALE' is declared but its value is never read.
+17253:src/components/map/MapContainer.tsx(17,46): error TS2305: Module '"@layera/constants"' has no exported member 'DEVICE_BREAKPOINTS'.
+17254:src/components/map/MapContainer.tsx(17,66): error TS2305: Module '"@layera/constants"' has no exported member 'getCardSuccessColor'.
+17255-src/components/map/MapContainer.tsx(17,66): error TS6133: 'getCardSuccessColor' is declared but its value is never read.
+17256:src/components/map/MapContainer.tsx(17,87): error TS2305: Module '"@layera/constants"' has no exported member 'LEAFLET_MARKER_DIMENSIONS'.
+17257:src/components/map/MapContainer.tsx(17,114): error TS2305: Module '"@layera/constants"' has no exported member 'LEAFLET_ICON_SIZES'.
+17258-src/components/map/MapContainer.tsx(19,16): error TS2305: Module '"@layera/layout"' has no exported member 'FlexCenter'.
+17259-src/components/map/MapContainer.tsx(20,1): error TS6133: 'BOX_SHADOW_SCALE' is declared but its value is never read.
+17260-src/components/map/MapContainer.tsx(23,1): error TS6133: 'Button' is declared but its value is never read.
+17261-src/components/map/MapContainer.tsx(25,35): error TS6133: 'TrashIcon' is declared but its value is never read.
+17262-src/components/map/MapContainer.tsx(25,56): error TS6133: 'LocationIcon' is declared but its value is never read.
+17263-src/components/map/MapContainer.tsx(44,52): error TS6133: 'onAreaCreated' is declared but its value is never read.
+--
+17277-src/components/map/MapContainer.tsx(603,38): error TS2339: Property 'area' does not exist on type '{ id: string; type: string; coordinates: number[][]; name: string; category: string; }'.
+17278-src/components/MapCanvas.tsx(10,1): error TS6192: All imports in import declaration are unused.
+17279:src/components/MapCanvas.tsx(10,10): error TS2305: Module '"@layera/constants"' has no exported member 'SPACING_SCALE'.
+17280:src/components/MapCanvas.tsx(10,25): error TS2305: Module '"@layera/constants"' has no exported member 'getCardInfoColor'.
+17281-src/components/MapCanvas.tsx(11,1): error TS6133: 'BOX_SHADOW_SCALE' is declared but its value is never read.
+17282-src/components/MapCanvas.tsx(14,21): error TS2307: Cannot find module '../map/core/MapCore' or its corresponding type declarations.
+17283-src/components/MapCanvas.tsx(18,1): error TS6192: All imports in import declaration are unused.
+17284-src/components/MapCanvas.tsx(18,10): error TS2305: Module '"@layera/geo-drawing"' has no exported member 'formatArea'.
+17285-src/components/MapCanvas.tsx(18,22): error TS2305: Module '"@layera/geo-drawing"' has no exported member 'formatDistance'.
+17286-src/components/MapCanvas.tsx(73,9): error TS6133: 'handleAreaCreated' is declared but its value is never read.
+--
+17298-src/components/MapCanvas.tsx(182,39): error TS2322: Type '"2"' is not assignable to type '"sm" | "xxs" | "xs" | "md" | "lg" | "xl" | "xxl" | "xxxl" | undefined'.
+17299-src/components/MapCanvas.tsx(184,24): error TS2304: Cannot find name 'MAP_CONFIG'.
+17300:src/components/SimpleMap.tsx(2,10): error TS2305: Module '"@layera/constants"' has no exported member 'SPACING_SCALE'.
+17301-src/components/SimpleMap.tsx(2,10): error TS6133: 'SPACING_SCALE' is declared but its value is never read.
+17302:src/components/SimpleMap.tsx(2,25): error TS2305: Module '"@layera/constants"' has no exported member 'BORDER_RADIUS_SCALE'.
+17303-src/components/SimpleMap.tsx(2,25): error TS6133: 'BORDER_RADIUS_SCALE' is declared but its value is never read.
+17304:src/components/SimpleMap.tsx(2,46): error TS2305: Module '"@layera/constants"' has no exported member 'getCardOrangeColor'.
+17305-src/components/SimpleMap.tsx(2,46): error TS6133: 'getCardOrangeColor' is declared but its value is never read.
+17306:src/components/SimpleMap.tsx(2,66): error TS2305: Module '"@layera/constants"' has no exported member 'CONFIG'.
+17307:src/components/SimpleMap.tsx(2,74): error TS2305: Module '"@layera/constants"' has no exported member 'ANIMATION_DURATIONS'.
+17308-src/components/SimpleMap.tsx(3,15): error TS2305: Module '"@layera/layout"' has no exported member 'FlexCenter'.
+17309-src/components/SimpleNavigationRail.tsx(2,1): error TS6133: 'Button' is declared but its value is never read.
+17310-src/components/SimpleNavigationRail.tsx(3,1): error TS6192: All imports in import declaration are unused.
+17311-src/components/SimpleNavigationRail.tsx(14,75): error TS6198: All destructured elements are unused.
+17312-src/components/SimpleNavigationRail.tsx(19,6): error TS2741: Property 'children' is missing in type '{ direction: "column"; align: "center"; padding: string; height: string; width: string; }' but required in type 'FlexProps'.
+17313-src/components/steps/areaMethod/AreaMethodCard.tsx(60,50): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, unknown>'.
+17314-src/components/steps/areaMethod/AreaMethodStep.tsx(19,10): error TS2305: Module '"@layera/layout"' has no exported member 'useGeoAlertLayout'.
+17315-src/components/steps/areaMethod/AreaMethodStep.tsx(20,1): error TS6133: 'SPACING_SCALE' is declared but its value is never read.
+17316:src/components/steps/areaMethod/AreaMethodStep.tsx(20,10): error TS2305: Module '"@layera/constants"' has no exported member 'SPACING_SCALE'.
+17317-src/components/steps/areaMethod/AreaMethodStep.tsx(40,3): error TS6133: 'deviceProps' is declared but its value is never read.
+17318-src/components/steps/areaMethod/AreaMethodStep.tsx(42,9): error TS6133: 't' is declared but its value is never read.
+17319-src/components/steps/areaMethod/AreaMethodStep.tsx(43,10): error TS6133: 'selectedMethod' is declared but its value is never read.
+17320-src/components/steps/areaMethod/AreaMethodStep.tsx(48,9): error TS6133: 'containerStyles' is declared but its value is never read.
+17321-src/components/steps/areaMethod/AreaMethodStep.tsx(138,9): error TS2322: Type '(area: number) => void' is not assignable to type '(area: number) => ReactNode'.
+17322-  Type 'void' is not assignable to type 'ReactNode'.
+--
+17327-src/components/steps/areaMethod/InteractiveAreaMeasurement.tsx(19,16): error TS2305: Module '"@layera/typography"' has no exported member 'Heading'.
+17328-src/components/steps/areaMethod/InteractiveAreaMeasurement.tsx(28,1): error TS6133: 'SPACING_SCALE' is declared but its value is never read.
+17329:src/components/steps/areaMethod/InteractiveAreaMeasurement.tsx(28,10): error TS2305: Module '"@layera/constants"' has no exported member 'SPACING_SCALE'.
+17330-src/components/steps/areaMethod/InteractiveAreaMeasurement.tsx(31,1): error TS6192: All imports in import declaration are unused.
+17331-src/components/steps/areaMethod/InteractiveAreaMeasurement.tsx(31,15): error TS2305: Module '"@layera/geo-drawing"' has no exported member 'MeasurementMode'.
+17332-src/components/steps/areaMethod/InteractiveAreaMeasurement.tsx(31,32): error TS2305: Module '"@layera/geo-drawing"' has no exported member 'MeasurementResult'.
+17333-src/components/steps/areaMethod/InteractiveAreaMeasurement.tsx(46,3): error TS6133: 'style' is declared but its value is never read.
+17334-src/components/steps/areaMethod/InteractiveAreaMeasurement.tsx(48,9): error TS6133: 't' is declared but its value is never read.
+17335-src/components/steps/areaMethod/InteractiveAreaMeasurement.tsx(63,15): error TS2339: Property 'latlng' does not exist on type 'MouseEvent<HTMLElement, MouseEvent>'.
+--
+17396-src/components/steps/availabilityDetails/AvailabilityDetailsStep.tsx(123,83): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, unknown>'.
+17397-src/components/steps/availabilityDetails/AvailabilityDetailsStep.tsx(123,151): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, unknown>'.
+17398:src/components/steps/availabilityDetails/index.ts(7,10): error TS2305: Module '"@layera/constants"' has no exported member 'WORKFLOW_ORDER'.
+17399-src/components/steps/category/CategoryCard.tsx(34,3): error TS6133: 'context' is declared but its value is never read.
+17400-src/components/steps/category/CategoryCard.tsx(40,3): error TS6133: 'variant' is declared but its value is never read.
+17401-src/components/steps/category/CategoryCard.tsx(41,3): error TS6133: 'opacity' is declared but its value is never read.
+17402-src/components/steps/category/CategoryStep.tsx(20,10): error TS2305: Module '"@layera/layout"' has no exported member 'useGeoAlertLayout'.
+17403-src/components/steps/category/CategoryStep.tsx(32,3): error TS6133: 'context' is declared but its value is never read.
+17404-src/components/steps/category/CategoryStep.tsx(33,3): error TS6133: 'onNext' is declared but its value is never read.
+--
+17419-src/components/steps/category/index.ts(11,1): error TS6133: 'CategoryCard' is declared but its value is never read.
+17420-src/components/steps/category/index.ts(12,1): error TS6192: All imports in import declaration are unused.
+17421:src/components/steps/complete/CompleteStep.tsx(11,10): error TS2305: Module '"@layera/constants"' has no exported member 'SPACING_SCALE'.
+17422:src/components/steps/complete/CompleteStep.tsx(11,25): error TS2305: Module '"@layera/constants"' has no exported member 'BORDER_RADIUS_SCALE'.
+17423-src/components/steps/complete/CompleteStep.tsx(11,25): error TS6133: 'BORDER_RADIUS_SCALE' is declared but its value is never read.
+17424:src/components/steps/complete/CompleteStep.tsx(11,46): error TS2305: Module '"@layera/constants"' has no exported member 'getCardInfoColor'.
+17425:src/components/steps/complete/CompleteStep.tsx(11,64): error TS2305: Module '"@layera/constants"' has no exported member 'ANIMATION_DURATIONS'.
+17426-src/components/steps/complete/CompleteStep.tsx(27,3): error TS6133: 'onNext' is declared but its value is never read.
+17427-src/components/steps/complete/CompleteStep.tsx(31,3): error TS6133: 'deviceProps' is declared but its value is never read.
+17428-src/components/steps/complete/CompleteStep.tsx(118,9): error TS6133: 'containerStyles' is declared but its value is never read.
+17429-src/components/steps/complete/CompleteStep.tsx(123,13): error TS2304: Cannot find name 'Z_INDEX_LAYERS'.
+17430-src/components/steps/complete/CompleteStep.tsx(136,44): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, unknown>'.
+17431-src/components/steps/complete/CompleteStep.tsx(151,11): error TS2322: Type '"var(--la-cards-gap)"' is not assignable to type '"sm" | "xxs" | "xs" | "md" | "lg" | "xl" | "xxl" | "xxxl" | undefined'.
+--
+17435-src/components/steps/complete/CompleteStep.tsx(183,41): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, unknown>'.
+17436-src/components/steps/complete/CompleteStep.tsx(184,53): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, unknown>'.
+17437:src/components/steps/complete/index.ts(7,10): error TS2305: Module '"@layera/constants"' has no exported member 'WORKFLOW_ORDER'.
+17438-src/components/steps/employmentType/EmploymentTypeStep.tsx(11,1): error TS6133: 'CONFIG' is declared but its value is never read.
+17439:src/components/steps/employmentType/EmploymentTypeStep.tsx(11,10): error TS2305: Module '"@layera/constants"' has no exported member 'CONFIG'.
+17440-src/components/steps/employmentType/EmploymentTypeStep.tsx(24,3): error TS6133: 'context' is declared but its value is never read.
+17441-src/components/steps/employmentType/EmploymentTypeStep.tsx(29,3): error TS6133: 'deviceProps' is declared but its value is never read.
+17442-src/components/steps/employmentType/EmploymentTypeStep.tsx(31,9): error TS6133: 't' is declared but its value is never read.
+17443-src/components/steps/employmentType/EmploymentTypeStep.tsx(37,23): error TS2304: Cannot find name 'DEMO_PROPERTY_DATA'.
+17444-src/components/steps/employmentType/EmploymentTypeStep.tsx(42,37): error TS2304: Cannot find name 'DEMO_PROPERTY_DATA'.
+17445-src/components/steps/employmentType/EmploymentTypeStep.tsx(83,9): error TS6133: 'containerStyles' is declared but its value is never read.
+--
+17477-src/components/steps/intent/IntentStep.tsx(168,52): error TS2339: Property 'type' does not exist on type 'Promise<InfoPanelContent> | { title: string; content: string; type: "info"; }'.
+17478-  Property 'type' does not exist on type 'Promise<InfoPanelContent>'.
+17479:src/components/steps/layout/index.ts(7,10): error TS2305: Module '"@layera/constants"' has no exported member 'WORKFLOW_ORDER'.
+17480:src/components/steps/layout/LayoutStep.tsx(11,10): error TS2305: Module '"@layera/constants"' has no exported member 'SPACING_SCALE'.
+17481-src/components/steps/layout/LayoutStep.tsx(11,10): error TS6133: 'SPACING_SCALE' is declared but its value is never read.
+17482:src/components/steps/layout/LayoutStep.tsx(11,25): error TS2305: Module '"@layera/constants"' has no exported member 'BORDER_RADIUS_SCALE'.
+17483-src/components/steps/layout/LayoutStep.tsx(11,25): error TS6133: 'BORDER_RADIUS_SCALE' is declared but its value is never read.
+17484:src/components/steps/layout/LayoutStep.tsx(11,46): error TS2305: Module '"@layera/constants"' has no exported member 'getCardSuccessColor'.
+17485:src/components/steps/layout/LayoutStep.tsx(11,67): error TS2305: Module '"@layera/constants"' has no exported member 'Z_INDEX_LAYERS'.
+17486-src/components/steps/layout/LayoutStep.tsx(26,3): error TS6133: 'context' is declared but its value is never read.
+17487-src/components/steps/layout/LayoutStep.tsx(31,3): error TS6133: 'deviceProps' is declared but its value is never read.
+17488-src/components/steps/layout/LayoutStep.tsx(33,9): error TS6133: 't' is declared but its value is never read.
+17489-src/components/steps/layout/LayoutStep.tsx(104,9): error TS6133: 'containerStyles' is declared but its value is never read.
+17490-src/components/steps/layout/LayoutToolCard.tsx(30,3): error TS6133: 'isActive' is declared but its value is never read.
+17491:src/components/steps/location/index.ts(7,10): error TS2305: Module '"@layera/constants"' has no exported member 'WORKFLOW_ORDER'.
+17492-src/components/steps/location/LocationStep.tsx(13,40): error TS6133: 'useEffect' is declared but its value is never read.
+17493:src/components/steps/location/LocationStep.tsx(17,10): error TS2305: Module '"@layera/constants"' has no exported member 'SPACING_SCALE'.
+17494-src/components/steps/location/LocationStep.tsx(17,10): error TS6133: 'SPACING_SCALE' is declared but its value is never read.
+17495:src/components/steps/location/LocationStep.tsx(17,25): error TS2305: Module '"@layera/constants"' has no exported member 'CSS_DESIGN_TOKENS'.
+17496:src/components/steps/location/LocationStep.tsx(17,44): error TS2305: Module '"@layera/constants"' has no exported member 'FIXED_DIMENSIONS'.
+17497-src/components/steps/location/LocationStep.tsx(27,10): error TS2305: Module '"@layera/layout"' has no exported member 'useGeoAlertLayout'.
+17498-src/components/steps/location/LocationStep.tsx(29,15): error TS6196: 'LocationMethodType' is declared but never used.
+17499-src/components/steps/location/LocationStep.tsx(59,9): error TS2322: Type '{ backgroundColor: string; border: string; color: string; '::placeholder': { color: string; }; }' is not assignable to type 'void'.
+17500-src/components/steps/location/LocationStep.tsx(66,9): error TS2322: Type '{ backgroundColor: string; border: string; color: string; '::placeholder': { color: string; }; }' is not assignable to type 'void'.
+17501-src/components/steps/location/LocationStep.tsx(73,9): error TS2322: Type '{ backgroundColor: string; border: string; color: string; '::placeholder': { color: string; }; }' is not assignable to type 'void'.
+17502-src/components/steps/location/LocationStep.tsx(82,9): error TS6133: 'inputStyles' is declared but its value is never read.
+--
+17536-src/components/steps/location/types.ts(7,36): error TS2307: Cannot find module '@layera/geocoding' or its corresponding type declarations.
+17537-src/components/steps/occupation/ESCOSearchComponent.tsx(11,10): error TS6133: 'Stack' is declared but its value is never read.
+17538:src/components/steps/occupation/ESCOSearchComponent.tsx(12,10): error TS2305: Module '"@layera/constants"' has no exported member 'SPACING_SCALE'.
+17539:src/components/steps/occupation/ESCOSearchComponent.tsx(12,25): error TS2305: Module '"@layera/constants"' has no exported member 'TABLE_COLUMN_WIDTHS'.
+17540:src/components/steps/occupation/ESCOSearchComponent.tsx(12,46): error TS2305: Module '"@layera/constants"' has no exported member 'CSS_DESIGN_TOKENS'.
+17541-src/components/steps/occupation/index.ts(8,1): error TS6133: 'React' is declared but its value is never read.
+17542:src/components/steps/occupation/index.ts(11,10): error TS2305: Module '"@layera/constants"' has no exported member 'SEARCH_LIMITS'.
+17543-src/components/steps/occupation/index.ts(35,5): error TS2353: Object literal may only specify known properties, and 'description' does not exist in type '{ category?: CategoryType | undefined; intent?: IntentType | undefined; isOptional?: boolean | undefined; estimatedTime?: number | undefined; }'.
+17544-src/components/steps/occupation/OccupationStep.tsx(9,10): error TS2305: Module '"@layera/typography"' has no exported member 'Heading'.
+17545:src/components/steps/occupation/OccupationStep.tsx(11,10): error TS2305: Module '"@layera/constants"' has no exported member 'SPACING_SCALE'.
+17546-src/components/steps/occupation/OccupationStep.tsx(11,10): error TS6133: 'SPACING_SCALE' is declared but its value is never read.
+17547:src/components/steps/occupation/OccupationStep.tsx(11,25): error TS2305: Module '"@layera/constants"' has no exported member 'getCardInfoColor'.
+17548:src/components/steps/occupation/OccupationStep.tsx(11,43): error TS2305: Module '"@layera/constants"' has no exported member 'getCardSuccessColor'.
+17549:src/components/steps/occupation/OccupationStep.tsx(11,64): error TS2305: Module '"@layera/constants"' has no exported member 'ANIMATION_DURATIONS'.
+17550-src/components/steps/occupation/OccupationStep.tsx(32,3): error TS6133: 'deviceProps' is declared but its value is never read.
+17551-src/components/steps/occupation/OccupationStep.tsx(38,5): error TS2345: Argument of type 'ESCOOccupation' is not assignable to parameter of type 'ESCOOccupation | (() => ESCOOccupation | null) | null'.
+17552-  Type 'ESCOOccupation' is missing the following properties from type 'ESCOOccupation': preferredLabel, alternativeLabels, description, iscoGroupCode, and 3 more.
+17553-src/components/steps/occupation/OccupationStep.tsx(84,9): error TS6133: 'containerStyles' is declared but its value is never read.
+17554-src/components/steps/occupation/OccupationStep.tsx(102,34): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, unknown>'.
+17555-src/components/steps/occupation/OccupationStep.tsx(111,39): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, unknown>'.
+--
+17573-src/components/steps/pricing/PricingCard.tsx(39,3): error TS6133: 'isSelected' is declared but its value is never read.
+17574-src/components/steps/pricing/PricingCard.tsx(40,3): error TS6133: 'opacity' is declared but its value is never read.
+17575:src/components/steps/pricing/PricingStep.tsx(10,10): error TS2305: Module '"@layera/constants"' has no exported member 'SPACING_SCALE'.
+17576-src/components/steps/pricing/PricingStep.tsx(10,10): error TS6133: 'SPACING_SCALE' is declared but its value is never read.
+17577:src/components/steps/pricing/PricingStep.tsx(10,25): error TS2305: Module '"@layera/constants"' has no exported member 'FIXED_DIMENSIONS'.
+17578-src/components/steps/pricing/PricingStep.tsx(11,16): error TS2305: Module '"@layera/typography"' has no exported member 'Heading'.
+17579-src/components/steps/pricing/PricingStep.tsx(109,18): error TS18046: 'card' is of type 'unknown'.
+17580-src/components/steps/pricing/PricingStep.tsx(110,20): error TS18046: 'card' is of type 'unknown'.
+17581-src/components/steps/pricing/PricingStep.tsx(111,42): error TS18046: 'card' is of type 'unknown'.
+17582-src/components/steps/pricing/PricingStep.tsx(113,54): error TS18046: 'card' is of type 'unknown'.
+17583-src/components/steps/pricing/PricingStep.tsx(116,16): error TS18046: 'card' is of type 'unknown'.
+17584-src/components/steps/pricing/PricingStep.tsx(116,35): error TS18046: 'card' is of type 'unknown'.
+17585-src/components/steps/pricing/PricingStep.tsx(118,18): error TS18046: 'card' is of type 'unknown'.
+17586:src/components/steps/PropertyCompletionStep.tsx(10,3): error TS2305: Module '"@layera/constants"' has no exported member 'SPACING_SCALE'.
+17587-src/components/steps/PropertyCompletionStep.tsx(10,3): error TS6133: 'SPACING_SCALE' is declared but its value is never read.
+17588:src/components/steps/PropertyCompletionStep.tsx(11,3): error TS2305: Module '"@layera/constants"' has no exported member 'BORDER_RADIUS_SCALE'.
+17589-src/components/steps/PropertyCompletionStep.tsx(11,3): error TS6133: 'BORDER_RADIUS_SCALE' is declared but its value is never read.
+17590:src/components/steps/PropertyCompletionStep.tsx(12,3): error TS2305: Module '"@layera/constants"' has no exported member 'CSS_DESIGN_TOKENS'.
+17591-src/components/steps/PropertyCompletionStep.tsx(12,3): error TS6133: 'CSS_DESIGN_TOKENS' is declared but its value is never read.
+17592:src/components/steps/PropertyCompletionStep.tsx(13,3): error TS2305: Module '"@layera/constants"' has no exported member 'ANIMATION_DURATIONS'.
+17593-src/components/steps/PropertyCompletionStep.tsx(13,3): error TS6133: 'ANIMATION_DURATIONS' is declared but its value is never read.
+17594:src/components/steps/PropertyCompletionStep.tsx(14,3): error TS2305: Module '"@layera/constants"' has no exported member 'EASING_FUNCTIONS'.
+17595-src/components/steps/PropertyCompletionStep.tsx(14,3): error TS6133: 'EASING_FUNCTIONS' is declared but its value is never read.
+17596:src/components/steps/PropertyCompletionStep.tsx(15,3): error TS2305: Module '"@layera/constants"' has no exported member 'MENU_POSITIONS'.
+17597:src/components/steps/PropertyCompletionStep.tsx(16,3): error TS2305: Module '"@layera/constants"' has no exported member 'getWorkflowCardContainerStyle'.
+17598-src/components/steps/PropertyCompletionStep.tsx(16,3): error TS6133: 'getWorkflowCardContainerStyle' is declared but its value is never read.
+17599:src/components/steps/PropertyCompletionStep.tsx(17,3): error TS2305: Module '"@layera/constants"' has no exported member 'getWorkflowCardStepStyle'.
+17600-src/components/steps/PropertyCompletionStep.tsx(17,3): error TS6133: 'getWorkflowCardStepStyle' is declared but its value is never read.
+17601:src/components/steps/PropertyCompletionStep.tsx(18,3): error TS2305: Module '"@layera/constants"' has no exported member 'getCardInfoBorder'.
+17602:src/components/steps/PropertyCompletionStep.tsx(19,3): error TS2305: Module '"@layera/constants"' has no exported member 'getCardPrimaryColor'.
+17603-src/components/steps/PropertyCompletionStep.tsx(21,21): error TS2305: Module '"@layera/layout"' has no exported member 'FlexCenter'.
+17604-src/components/steps/PropertyCompletionStep.tsx(22,16): error TS2305: Module '"@layera/typography"' has no exported member 'Heading'.
+17605-src/components/steps/PropertyCompletionStep.tsx(33,15): error TS2459: Module '"../../types"' declares 'PropertyType' locally, but it is not exported.
+17606-src/components/steps/PropertyCompletionStep.tsx(70,3): error TS6133: 'onBackToQuickSearch' is declared but its value is never read.
+17607-src/components/steps/PropertyCompletionStep.tsx(79,9): error TS2322: Type 'FC<Omit<IconProps, "children" | "name">>' is not assignable to type 'ComponentType<{ size?: string | undefined; }>'.
+17608-  Type 'FunctionComponent<Omit<IconProps, "children" | "name">>' is not assignable to type 'FunctionComponent<{ size?: string | undefined; }>'.
+--
+17641-src/components/steps/PropertyCompletionStep.tsx(310,33): error TS2322: Type '{ size: "xs"; color: string; }' is not assignable to type 'IntrinsicAttributes & Omit<IconProps, "children" | "name">'.
+17642-  Property 'color' does not exist on type 'IntrinsicAttributes & Omit<IconProps, "children" | "name">'.
+17643:src/components/steps/propertyDetails/index.ts(7,10): error TS2305: Module '"@layera/constants"' has no exported member 'WORKFLOW_ORDER'.
+17644-src/components/steps/propertyDetails/PropertyDetailsForm.tsx(6,27): error TS2305: Module '"@layera/forms"' has no exported member 'Checkbox'.
+17645-src/components/steps/propertyDetails/PropertyDetailsForm.tsx(30,13): error TS2322: Type '(e: React.FormEvent<HTMLFormElement>) => React.ReactNode' is not assignable to type '(e: ChangeEvent<HTMLInputElement>) => void'.
+17646-  Types of parameters 'e' and 'e' are incompatible.
+17647-    Type 'ChangeEvent<HTMLInputElement>' is not assignable to type 'FormEvent<HTMLFormElement>'.
+17648-      Types of property 'currentTarget' are incompatible.
+17649-        Type 'EventTarget & HTMLInputElement' is not assignable to type 'EventTarget & HTMLFormElement'.
+--
+17672-  Property 'width' does not exist on type 'IntrinsicAttributes & FormFieldProps'.
+17673-src/components/steps/propertyDetails/PropertyDetailsForm.tsx(91,24): error TS2345: Argument of type 'unknown' is not assignable to parameter of type 'PropertyDetailsFormField'.
+17674:src/components/steps/propertyDetails/PropertyDetailsStep.tsx(13,10): error TS2305: Module '"@layera/constants"' has no exported member 'getCardInfoColor'.
+17675-src/components/steps/propertyDetails/PropertyDetailsStep.tsx(13,10): error TS6133: 'getCardInfoColor' is declared but its value is never read.
+17676:src/components/steps/propertyDetails/PropertyDetailsStep.tsx(13,28): error TS2305: Module '"@layera/constants"' has no exported member 'FIXED_DIMENSIONS'.
+17677:src/components/steps/propertyDetails/PropertyDetailsStep.tsx(13,46): error TS2305: Module '"@layera/constants"' has no exported member 'DEMO_PROPERTY_DATA'.
+17678:src/components/steps/propertyDetails/PropertyDetailsStep.tsx(13,66): error TS2305: Module '"@layera/constants"' has no exported member 'ANIMATION_DURATIONS'.
+17679-src/components/steps/propertyDetails/PropertyDetailsStep.tsx(26,3): error TS6133: 'context' is declared but its value is never read.
+17680-src/components/steps/propertyDetails/PropertyDetailsStep.tsx(31,3): error TS6133: 'deviceProps' is declared but its value is never read.
+17681-src/components/steps/propertyDetails/PropertyDetailsStep.tsx(169,9): error TS6133: 'containerStyles' is declared but its value is never read.
+17682-src/components/steps/propertyDetails/PropertyDetailsStep.tsx(216,13): error TS2322: Type '(field: keyof PropertyDetails, value: unknown) => void' is not assignable to type '(field: keyof PropertyDetails, value: unknown) => ReactNode'.
+17683-  Type 'void' is not assignable to type 'ReactNode'.
+17684:src/components/steps/PropertyDetailsStep.tsx(10,3): error TS2305: Module '"@layera/constants"' has no exported member 'SPACING_SCALE'.
+17685-src/components/steps/PropertyDetailsStep.tsx(10,3): error TS6133: 'SPACING_SCALE' is declared but its value is never read.
+17686:src/components/steps/PropertyDetailsStep.tsx(11,3): error TS2305: Module '"@layera/constants"' has no exported member 'BORDER_RADIUS_SCALE'.
+17687-src/components/steps/PropertyDetailsStep.tsx(11,3): error TS6133: 'BORDER_RADIUS_SCALE' is declared but its value is never read.
+17688:src/components/steps/PropertyDetailsStep.tsx(12,3): error TS2305: Module '"@layera/constants"' has no exported member 'CSS_DESIGN_TOKENS'.
+17689-src/components/steps/PropertyDetailsStep.tsx(12,3): error TS6133: 'CSS_DESIGN_TOKENS' is declared but its value is never read.
+17690:src/components/steps/PropertyDetailsStep.tsx(13,3): error TS2305: Module '"@layera/constants"' has no exported member 'ANIMATION_DURATIONS'.
+17691-src/components/steps/PropertyDetailsStep.tsx(13,3): error TS6133: 'ANIMATION_DURATIONS' is declared but its value is never read.
+17692:src/components/steps/PropertyDetailsStep.tsx(14,3): error TS2305: Module '"@layera/constants"' has no exported member 'EASING_FUNCTIONS'.
+17693-src/components/steps/PropertyDetailsStep.tsx(14,3): error TS6133: 'EASING_FUNCTIONS' is declared but its value is never read.
+17694:src/components/steps/PropertyDetailsStep.tsx(15,3): error TS2305: Module '"@layera/constants"' has no exported member 'MENU_POSITIONS'.
+17695:src/components/steps/PropertyDetailsStep.tsx(16,3): error TS2305: Module '"@layera/constants"' has no exported member 'PROPERTY_VALIDATION'.
+17696:src/components/steps/PropertyDetailsStep.tsx(17,3): error TS2305: Module '"@layera/constants"' has no exported member 'getWorkflowCardStepStyle'.
+17697-src/components/steps/PropertyDetailsStep.tsx(17,3): error TS6133: 'getWorkflowCardStepStyle' is declared but its value is never read.
+17698:src/components/steps/PropertyDetailsStep.tsx(18,3): error TS2305: Module '"@layera/constants"' has no exported member 'getCardInfoBorder'.
+17699:src/components/steps/PropertyDetailsStep.tsx(19,3): error TS2305: Module '"@layera/constants"' has no exported member 'getCardPrimaryColor'.
+17700-src/components/steps/PropertyDetailsStep.tsx(21,21): error TS2305: Module '"@layera/layout"' has no exported member 'FlexCenter'.
+17701-src/components/steps/PropertyDetailsStep.tsx(21,21): error TS6133: 'FlexCenter' is declared but its value is never read.
+17702-src/components/steps/PropertyDetailsStep.tsx(22,16): error TS2305: Module '"@layera/typography"' has no exported member 'Heading'.
+17703-src/components/steps/PropertyDetailsStep.tsx(24,17): error TS2305: Module '"@layera/forms"' has no exported member 'Select'.
+17704-src/components/steps/PropertyDetailsStep.tsx(26,3): error TS6133: 'HomeIcon' is declared but its value is never read.
+17705-src/components/steps/PropertyDetailsStep.tsx(28,3): error TS6133: 'SettingsIcon' is declared but its value is never read.
+--
+17738-  Property 'size' does not exist on type 'IntrinsicAttributes & ButtonProps'.
+17739-src/components/steps/propertyType/PropertyTypeSelector.tsx(9,10): error TS2305: Module '"@layera/forms"' has no exported member 'Select'.
+17740:src/components/steps/propertyType/PropertyTypeSelector.tsx(11,10): error TS2305: Module '"@layera/constants"' has no exported member 'ANIMATION_DURATIONS'.
+17741-src/components/steps/propertyType/PropertyTypeSelector.tsx(59,3): error TS6133: 'context' is declared but its value is never read.
+17742-src/components/steps/propertyType/PropertyTypeSelector.tsx(108,12): error TS2304: Cannot find name 'Heading'.
+17743-src/components/steps/propertyType/PropertyTypeSelector.tsx(116,13): error TS2304: Cannot find name 'Heading'.
+17744-src/components/steps/propertyType/PropertyTypeSelector.tsx(117,11): error TS2607: JSX element class does not support attributes because it does not have a 'props' property.
+17745-src/components/steps/propertyType/PropertyTypeSelector.tsx(117,12): error TS2786: 'Text' cannot be used as a JSX component.
+17746-  Its type '{ new (data?: string | undefined): Text; prototype: Text; }' is not a valid JSX element type.
+--
+17774-src/components/steps/review/ReviewCard.tsx(57,3): error TS6133: 'opacity' is declared but its value is never read.
+17775-src/components/steps/review/ReviewStep.tsx(11,16): error TS2305: Module '"@layera/typography"' has no exported member 'Heading'.
+17776:src/components/steps/review/ReviewStep.tsx(15,3): error TS2305: Module '"@layera/constants"' has no exported member 'SPACING_SCALE'.
+17777-src/components/steps/review/ReviewStep.tsx(15,3): error TS6133: 'SPACING_SCALE' is declared but its value is never read.
+17778:src/components/steps/review/ReviewStep.tsx(16,3): error TS2305: Module '"@layera/constants"' has no exported member 'FIXED_DIMENSIONS'.
+17779:src/components/steps/review/ReviewStep.tsx(17,3): error TS2305: Module '"@layera/constants"' has no exported member 'useLayeraDesignSystem'.
+17780:src/components/steps/review/ReviewStep.tsx(18,3): error TS2305: Module '"@layera/constants"' has no exported member 'LayeraThemeProvider'.
+17781-src/components/steps/review/ReviewStep.tsx(22,3): error TS2305: Module '"@layera/layout"' has no exported member 'useFlex'.
+17782-src/components/steps/review/ReviewStep.tsx(23,3): error TS2305: Module '"@layera/layout"' has no exported member 'useFlexPatterns'.
+17783-src/components/steps/review/ReviewStep.tsx(24,3): error TS2305: Module '"@layera/layout"' has no exported member 'useSizingStyles'.
+17784-src/components/steps/review/ReviewStep.tsx(51,3): error TS6133: 'onNext' is declared but its value is never read.
+17785-src/components/steps/review/ReviewStep.tsx(66,9): error TS6133: 'designSystem' is declared but its value is never read.
+17786-src/components/steps/review/ReviewStep.tsx(69,9): error TS6133: 'flexPatterns' is declared but its value is never read.
+--
+17803-src/components/steps/review/ReviewStep.tsx(300,15): error TS2322: Type '"success"' is not assignable to type '"primary" | "secondary" | "outline" | undefined'.
+17804-src/components/steps/StepOrchestrator.tsx(13,1): error TS6192: All imports in import declaration are unused.
+17805:src/components/steps/StepOrchestrator.tsx(14,3): error TS2305: Module '"@layera/constants"' has no exported member 'getWorkflowCardContainerStyle'.
+17806:src/components/steps/StepOrchestrator.tsx(15,3): error TS2305: Module '"@layera/constants"' has no exported member 'getWorkflowCardModalStyle'.
+17807:src/components/steps/StepOrchestrator.tsx(16,3): error TS2305: Module '"@layera/constants"' has no exported member 'getWorkflowCardStepStyle'.
+17808:src/components/steps/StepOrchestrator.tsx(17,3): error TS2305: Module '"@layera/constants"' has no exported member 'getWorkflowCardStepContainerStyle'.
+17809:src/components/steps/StepOrchestrator.tsx(18,3): error TS2305: Module '"@layera/constants"' has no exported member 'getCardPrimaryColor'.
+17810-src/components/steps/StepOrchestrator.tsx(20,21): error TS2305: Module '"@layera/layout"' has no exported member 'FlexCenter'.
+17811-src/components/steps/StepOrchestrator.tsx(20,21): error TS6133: 'FlexCenter' is declared but its value is never read.
+17812-src/components/steps/StepOrchestrator.tsx(22,16): error TS2305: Module '"@layera/typography"' has no exported member 'Heading'.
+17813-src/components/steps/StepOrchestrator.tsx(24,10): error TS2305: Module '"@layera/cards"' has no exported member 'SST_DATA_CONFIG'.
+17814-src/components/steps/StepOrchestrator.tsx(25,1): error TS6133: 'BOX_SHADOW_SCALE' is declared but its value is never read.
+17815-src/components/steps/StepOrchestrator.tsx(111,3): error TS6133: 'name' is declared but its value is never read.
+--
+17856-src/components/steps/StepRegistry.ts(183,51): error TS6133: 'context' is declared but its value is never read.
+17857-src/components/steps/test/StepRegistryTest.tsx(10,1): error TS6133: 'SPACING_SCALE' is declared but its value is never read.
+17858:src/components/steps/test/StepRegistryTest.tsx(10,10): error TS2305: Module '"@layera/constants"' has no exported member 'SPACING_SCALE'.
+17859-src/components/steps/test/StepRegistryTest.tsx(12,10): error TS2305: Module '"@layera/typography"' has no exported member 'Heading'.
+17860-src/components/steps/test/StepRegistryTest.tsx(16,61): error TS2345: Argument of type '{ currentStepId: "category"; selectedCategory: null; selectedIntent: null; selectedLocation: null; selectedDetails: null; selectedPricing: null; selectedReview: null; completedSteps: Set<StepId>; featureFlags: {}; }' is not assignable to parameter of type 'StepContext | (() => StepContext)'.
+17861-  Type '{ currentStepId: "category"; selectedCategory: null; selectedIntent: null; selectedLocation: null; selectedDetails: null; selectedPricing: null; selectedReview: null; completedSteps: Set<StepId>; featureFlags: {}; }' is missing the following properties from type 'StepContext': selectedTransactionType, selectedEmploymentType, selectedOccupation
+17862-src/components/steps/test/StepRegistryTest.tsx(42,40): error TS6133: 'key' is declared but its value is never read.
+17863-src/components/steps/test/StepRegistryTest.tsx(68,36): error TS6133: 'data' is declared but its value is never read.
+17864-src/components/steps/transactionType/index.ts(24,7): error TS2322: Type '"hasSelectedCategory"' is not assignable to type '"category" | "intent" | "feature_flag" | "custom" | "hasSelectedEmploymentType" | "isJobCategory"'.
+--
+17912-  Type 'void' is not assignable to type 'ReactNode'.
+17913-src/components/steps/transactionType/TransactionStep.tsx(140,11): error TS2739: Type 'Promise<InfoPanelContent>' is missing the following properties from type '{ title: string; content: string; type?: "success" | "warning" | "info" | "error" | undefined; }': title, content
+17914:src/components/steps/upload/index.ts(7,10): error TS2305: Module '"@layera/constants"' has no exported member 'WORKFLOW_ORDER'.
+17915-src/components/steps/upload/types.ts(5,40): error TS7016: Could not find a declaration file for module '@layera/file-upload'. 'C:/layera/packages/file-upload/dist/index.mjs' implicitly has an 'any' type.
+17916-  Try `npm i --save-dev @types/layera__file-upload` if it exists or add a new declaration (.d.ts) file containing `declare module '@layera/file-upload';`
+17917-src/components/steps/upload/UploadCard.tsx(6,53): error TS7016: Could not find a declaration file for module '@layera/file-upload'. 'C:/layera/packages/file-upload/dist/index.mjs' implicitly has an 'any' type.
+17918-  Try `npm i --save-dev @types/layera__file-upload` if it exists or add a new declaration (.d.ts) file containing `declare module '@layera/file-upload';`
+17919-src/components/steps/upload/UploadCard.tsx(7,55): error TS7016: Could not find a declaration file for module '@layera/file-upload'. 'C:/layera/packages/file-upload/dist/index.mjs' implicitly has an 'any' type.
+17920-  Try `npm i --save-dev @types/layera__file-upload` if it exists or add a new declaration (.d.ts) file containing `declare module '@layera/file-upload';`
+--
+17925-  Type 'FileList' is missing the following properties from type 'FileUploadItem[]': pop, push, concat, join, and 27 more.
+17926-src/components/steps/upload/UploadCard.tsx(42,33): error TS6133: 'file' is declared but its value is never read.
+17927:src/components/steps/upload/UploadStep.tsx(13,10): error TS2305: Module '"@layera/constants"' has no exported member 'SPACING_SCALE'.
+17928-src/components/steps/upload/UploadStep.tsx(13,10): error TS6133: 'SPACING_SCALE' is declared but its value is never read.
+17929:src/components/steps/upload/UploadStep.tsx(13,25): error TS2305: Module '"@layera/constants"' has no exported member 'getCardInfoColor'.
+17930-src/components/steps/upload/UploadStep.tsx(13,25): error TS6133: 'getCardInfoColor' is declared but its value is never read.
+17931:src/components/steps/upload/UploadStep.tsx(13,43): error TS2305: Module '"@layera/constants"' has no exported member 'FILE_SIZE_CONSTANTS'.
+17932-src/components/steps/upload/UploadStep.tsx(14,53): error TS7016: Could not find a declaration file for module '@layera/file-upload'. 'C:/layera/packages/file-upload/dist/index.mjs' implicitly has an 'any' type.
+17933-  Try `npm i --save-dev @types/layera__file-upload` if it exists or add a new declaration (.d.ts) file containing `declare module '@layera/file-upload';`
+17934-src/components/steps/upload/UploadStep.tsx(26,55): error TS7016: Could not find a declaration file for module '@layera/file-upload'. 'C:/layera/packages/file-upload/dist/index.mjs' implicitly has an 'any' type.
+17935-  Try `npm i --save-dev @types/layera__file-upload` if it exists or add a new declaration (.d.ts) file containing `declare module '@layera/file-upload';`
+17936-src/components/steps/upload/UploadStep.tsx(37,3): error TS6133: 'context' is declared but its value is never read.
+17937-src/components/steps/upload/UploadStep.tsx(42,3): error TS6133: 'deviceProps' is declared but its value is never read.
+--
+17948-src/components/steps/upload/UploadStep.tsx(225,37): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, unknown>'.
+17949-src/components/steps/upload/UploadStep.tsx(226,54): error TS2345: Argument of type 'string' is not assignable to parameter of type 'Record<string, unknown>'.
+17950:src/components/steps/WorkflowPlaceholder.tsx(10,3): error TS2305: Module '"@layera/constants"' has no exported member 'SPACING_SCALE'.
+17951-src/components/steps/WorkflowPlaceholder.tsx(10,3): error TS6133: 'SPACING_SCALE' is declared but its value is never read.
+17952:src/components/steps/WorkflowPlaceholder.tsx(11,3): error TS2305: Module '"@layera/constants"' has no exported member 'BORDER_RADIUS_SCALE'.
+17953-src/components/steps/WorkflowPlaceholder.tsx(11,3): error TS6133: 'BORDER_RADIUS_SCALE' is declared but its value is never read.
+17954:src/components/steps/WorkflowPlaceholder.tsx(12,3): error TS2305: Module '"@layera/constants"' has no exported member 'CSS_DESIGN_TOKENS'.
+17955-src/components/steps/WorkflowPlaceholder.tsx(12,3): error TS6133: 'CSS_DESIGN_TOKENS' is declared but its value is never read.
+17956:src/components/steps/WorkflowPlaceholder.tsx(13,3): error TS2305: Module '"@layera/constants"' has no exported member 'ANIMATION_DURATIONS'.
+17957-src/components/steps/WorkflowPlaceholder.tsx(13,3): error TS6133: 'ANIMATION_DURATIONS' is declared but its value is never read.
+17958:src/components/steps/WorkflowPlaceholder.tsx(14,3): error TS2305: Module '"@layera/constants"' has no exported member 'EASING_FUNCTIONS'.
+17959-src/components/steps/WorkflowPlaceholder.tsx(14,3): error TS6133: 'EASING_FUNCTIONS' is declared but its value is never read.
+17960:src/components/steps/WorkflowPlaceholder.tsx(15,3): error TS2305: Module '"@layera/constants"' has no exported member 'MENU_POSITIONS'.
+17961:src/components/steps/WorkflowPlaceholder.tsx(16,3): error TS2305: Module '"@layera/constants"' has no exported member 'BRAND_COLORS'.
+17962-src/components/steps/WorkflowPlaceholder.tsx(16,3): error TS6133: 'BRAND_COLORS' is declared but its value is never read.
+17963:src/components/steps/WorkflowPlaceholder.tsx(17,3): error TS2305: Module '"@layera/constants"' has no exported member 'getWorkflowCardContainerStyle'.
+17964-src/components/steps/WorkflowPlaceholder.tsx(17,3): error TS6133: 'getWorkflowCardContainerStyle' is declared but its value is never read.
+17965:src/components/steps/WorkflowPlaceholder.tsx(18,3): error TS2305: Module '"@layera/constants"' has no exported member 'getWorkflowCardButtonStyle'.
+17966-src/components/steps/WorkflowPlaceholder.tsx(18,3): error TS6133: 'getWorkflowCardButtonStyle' is declared but its value is never read.
+17967:src/components/steps/WorkflowPlaceholder.tsx(19,3): error TS2305: Module '"@layera/constants"' has no exported member 'getWorkflowCardStepStyle'.
+17968-src/components/steps/WorkflowPlaceholder.tsx(19,3): error TS6133: 'getWorkflowCardStepStyle' is declared but its value is never read.
+17969:src/components/steps/WorkflowPlaceholder.tsx(20,3): error TS2305: Module '"@layera/constants"' has no exported member 'getWorkflowCardStepContainerStyle'.
+17970-src/components/steps/WorkflowPlaceholder.tsx(20,3): error TS6133: 'getWorkflowCardStepContainerStyle' is declared but its value is never read.
+17971:src/components/steps/WorkflowPlaceholder.tsx(21,3): error TS2305: Module '"@layera/constants"' has no exported member 'getCardPrimaryColor'.
+17972-src/components/steps/WorkflowPlaceholder.tsx(21,3): error TS6133: 'getCardPrimaryColor' is declared but its value is never read.
+17973:src/components/steps/WorkflowPlaceholder.tsx(22,3): error TS2305: Module '"@layera/constants"' has no exported member 'getCardInfoBorder'.
+17974-src/components/steps/WorkflowPlaceholder.tsx(22,3): error TS6133: 'getCardInfoBorder' is declared but its value is never read.
+17975-src/components/steps/WorkflowPlaceholder.tsx(24,21): error TS2305: Module '"@layera/layout"' has no exported member 'FlexCenter'.
+17976-src/components/steps/WorkflowPlaceholder.tsx(25,16): error TS2305: Module '"@layera/typography"' has no exported member 'Heading'.
+17977-src/components/steps/WorkflowPlaceholder.tsx(27,10): error TS2305: Module '"@layera/forms"' has no exported member 'Select'.
+17978-src/components/steps/WorkflowPlaceholder.tsx(41,35): error TS2307: Cannot find module '../../../types' or its corresponding type declarations.
+17979-src/components/steps/WorkflowPlaceholder.tsx(110,27): error TS6133: 'purpose' is declared but its value is never read.
+--
+18097-  Property 'color' does not exist on type 'IntrinsicAttributes & Omit<IconProps, "children" | "name">'.
+18098-src/components/ViewportFrame.tsx(2,1): error TS6133: 'CSS_DESIGN_TOKENS' is declared but its value is never read.
+18099:src/components/ViewportFrame.tsx(2,10): error TS2305: Module '"@layera/constants"' has no exported member 'CSS_DESIGN_TOKENS'.
+18100:src/constants/index.ts(10,3): error TS2305: Module '"@layera/constants"' has no exported member 'BORDER_RADIUS_SCALE'.
+18101:src/constants/index.ts(11,3): error TS2305: Module '"@layera/constants"' has no exported member 'SPACING_SCALE'.
+18102:src/constants/index.ts(12,3): error TS2305: Module '"@layera/constants"' has no exported member 'DEV_PORTS'.
+18103:src/constants/index.ts(13,3): error TS2305: Module '"@layera/constants"' has no exported member 'LOCAL_URLS'.
+18104:src/constants/index.ts(14,3): error TS2305: Module '"@layera/constants"' has no exported member 'COMPONENT_DESIGN_TOKENS'.
+18105:src/constants/index.ts(15,3): error TS2305: Module '"@layera/constants"' has no exported member 'CSS_DESIGN_TOKENS'.
+18106:src/constants/index.ts(17,3): error TS2305: Module '"@layera/constants"' has no exported member 'EARTH_CONSTANTS'.
+18107:src/constants/index.ts(18,3): error TS2305: Module '"@layera/constants"' has no exported member 'LEAFLET_MARKER_DIMENSIONS'.
+18108:src/constants/index.ts(20,3): error TS2305: Module '"@layera/constants"' has no exported member 'SEARCH_LIMITS'.
+18109:src/constants/index.ts(21,3): error TS2305: Module '"@layera/constants"' has no exported member 'LEAFLET_UI_OFFSETS'.
+18110:src/constants/index.ts(23,3): error TS2305: Module '"@layera/constants"' has no exported member 'XML_NAMESPACES'.
+18111:src/constants/index.ts(25,3): error TS2305: Module '"@layera/constants"' has no exported member 'RULER_TICK_VALUES'.
+18112:src/constants/index.ts(27,3): error TS2305: Module '"@layera/constants"' has no exported member 'GEOMETRIC_LIMITS'.
+18113:src/constants/index.ts(28,3): error TS2305: Module '"@layera/constants"' has no exported member 'ICON_DIMENSIONS'.
+18114:src/debug/cursorDebug.ts(8,10): error TS2305: Module '"@layera/constants"' has no exported member 'CONFIG'.
+18115-src/debug/cursorDebug.ts(27,11): error TS6133: 'panelSelector' is declared but its value is never read.
+18116-src/debug/cursorDebug.ts(115,12): error TS18048: 'cursorDescriptor.get' is possibly 'undefined'.
+18117-src/debug/cursorDebug.ts(115,38): error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.
+18118-src/modules/map-engine/core/MapCore.tsx(8,44): error TS2307: Cannot find module '../../types' or its corresponding type declarations.
+18119-src/modules/map-engine/core/MapCore.tsx(16,5): error TS2322: Type 'readonly [number, any]' is not assignable to type 'PointExpression | undefined'.
+18120-  The type 'readonly [number, any]' is 'readonly' and cannot be assigned to the mutable type 'PointTuple'.
+--
+18128-  Property 'height' does not exist on type 'IntrinsicAttributes & MapContainerProps & RefAttributes<Map>'.
+18129-src/modules/sidebars/AreasPanel.tsx(4,16): error TS2305: Module '"@layera/typography"' has no exported member 'Heading'.
+18130:src/modules/sidebars/AreasPanel.tsx(8,10): error TS2305: Module '"@layera/constants"' has no exported member 'UI_DIMENSIONS'.
+18131-src/modules/sidebars/AreasPanel.tsx(50,28): error TS6133: 'e' is declared but its value is never read.
+18132-src/modules/sidebars/AreasPanel.tsx(71,13): error TS2322: Type '() => ReactNode' is not assignable to type '() => void | Promise<void>'.
+18133-  Type 'ReactNode' is not assignable to type 'void | Promise<void>'.
+18134-    Type 'null' is not assignable to type 'void | Promise<void>'.
+18135-src/modules/sidebars/AreasPanel.tsx(72,13): error TS2322: Type '"ghost"' is not assignable to type '"primary" | "secondary" | "outline" | undefined'.
+18136-src/modules/sidebars/AreasPanel.tsx(96,15): error TS2322: Type '(e: React.FormEvent<HTMLFormElement>) => void' is not assignable to type 'DragEventHandler<HTMLLIElement>'.
+--
+18168-          Type 'EventTarget & HTMLInputElement' is missing the following properties from type 'HTMLFormElement': acceptCharset, action, elements, encoding, and 11 more.
+18169-src/modules/sidebars/AreasPanel.tsx(160,117): error TS2339: Property 'value' does not exist on type 'EventTarget'.
+18170:src/modules/sidebars/NavigationRail.tsx(4,27): error TS2305: Module '"@layera/constants"' has no exported member 'BUTTON_SIZES'.
+18171-src/modules/sidebars/NavigationRail.tsx(18,5): error TS2322: Type 'string' is not assignable to type '"primary" | "secondary" | "outline" | undefined'.
+18172-src/modules/sidebars/NavigationRail.tsx(20,5): error TS2322: Type '() => ReactNode' is not assignable to type '() => void | Promise<void>'.
+18173-  Type 'ReactNode' is not assignable to type 'void | Promise<void>'.
+18174-    Type 'null' is not assignable to type 'void | Promise<void>'.
+18175-src/modules/sidebars/NavigationRail.tsx(51,9): error TS2322: Type 'string' is not assignable to type '"primary" | "secondary" | "outline" | undefined'.
+18176-src/modules/sidebars/NavigationRail.tsx(53,9): error TS2322: Type '() => ReactNode' is not assignable to type '() => void | Promise<void>'.
+--
+18183-  Type 'void' is not assignable to type 'ReactNode'.
+18184-src/types/index.ts(6,35): error TS2307: Cannot find module './components/steps/propertyType/types' or its corresponding type declarations.
+18185:src/types/index.ts(67,10): error TS2305: Module '"@layera/constants"' has no exported member 'MAP_DEFAULTS'.
+18186:src/types/index.ts(67,47): error TS2305: Module '"@layera/constants"' has no exported member 'DRAWING_LIMITS'.
+18187-src/utils/events/event-bus.ts(124,3): error TS2322: Type '{ on: <T extends EventName>(eventName: T, handler: EventHandler<T>) => () => void; once: <T extends EventName>(eventName: T, handler: EventHandler<T>) => void; off: <T extends EventName>(eventName: T, handler: EventHandler<T>) => void; emit: <T extends EventName>(eventName: T, data: MapEvents[T]) => void; }' is not assignable to type 'void'.
+18188:src/utils/leaflet/icon-factory.ts(6,10): error TS2305: Module '"@layera/constants"' has no exported member 'LEAFLET_INFRASTRUCTURE'.
+18189:src/utils/leaflet/icon-factory.ts(6,34): error TS2305: Module '"@layera/constants"' has no exported member 'LEAFLET_MARKER_DIMENSIONS'.
+18190-src/utils/leaflet/icon-factory.ts(7,28): error TS2307: Cannot find module '@/constants' or its corresponding type declarations.
+18191-src/utils/leaflet/icon-factory.ts(67,35): error TS6133: 'color' is declared but its value is never read.
+18192:src/utils/location/user-location.ts(7,10): error TS2305: Module '"@layera/constants"' has no exported member 'EARTH_CONSTANTS'.
+18193:../../packages/info-panels/src/components/InfoPanel.tsx(12,10): error TS2305: Module '"@layera/constants"' has no exported member 'SPACING_SCALE'.
+18194:../../packages/info-panels/src/components/InfoPanel.tsx(12,25): error TS2305: Module '"@layera/constants"' has no exported member 'BORDER_RADIUS_SCALE'.
+18195-../../packages/info-panels/src/components/InfoPanel.tsx(12,25): error TS6133: 'BORDER_RADIUS_SCALE' is declared but its value is never read.
+18196-../../packages/info-panels/src/components/InfoPanel.tsx(13,1): error TS6133: 'BOX_SHADOW_SCALE' is declared but its value is never read.
+18197-../../packages/info-panels/src/components/InfoPanel.tsx(56,3): error TS6133: 'variant' is declared but its value is never read.
+18198-../../packages/info-panels/src/components/InfoPanel.tsx(203,9): error TS6133: 'mobileStyles' is declared but its value is never read.
+18199-../../packages/info-panels/src/components/InfoPanel.tsx(206,6): error TS2786: 'Box' cannot be used as a JSX component.
+18200-  Its type 'FC<BoxProps>' is not a valid JSX element type.
+--
+18217-      Type 'ReactNode | Promise<ReactNode>' is not assignable to type 'ReactNode'.
+18218-        Type 'bigint' is not assignable to type 'ReactNode'.
+18219:../../packages/info-panels/src/index.ts(8,10): error TS2305: Module '"@layera/constants"' has no exported member 'SPACING_SCALE'.
+18220:../../packages/info-panels/src/index.ts(8,25): error TS2305: Module '"@layera/constants"' has no exported member 'BORDER_RADIUS_SCALE'.
+18221:../../packages/info-panels/src/index.ts(8,46): error TS2305: Module '"@layera/constants"' has no exported member 'SEMANTIC_RGB_COLORS'.
+18222-../../packages/info-panels/src/index.ts(88,9): error TS6133: 'shadowOpacity' is declared but its value is never read.
+18223-../../packages/info-panels/src/InfoPanelContext.tsx(156,5): error TS2322: Type '(id: InfoPanelId) => void' is not assignable to type '(id: string) => ReactNode'.
+18224-  Type 'void' is not assignable to type 'ReactNode'.
+18225-../../packages/info-panels/src/InfoPanelContext.tsx(157,5): error TS2322: Type '(id: InfoPanelId) => void' is not assignable to type '(id: string) => ReactNode'.
+18226-  Type 'void' is not assignable to type 'ReactNode'.
+18227-../../packages/info-panels/src/InfoPanelContext.tsx(158,5): error TS2322: Type '(id: InfoPanelId) => void' is not assignable to type '(id: string) => ReactNode'.

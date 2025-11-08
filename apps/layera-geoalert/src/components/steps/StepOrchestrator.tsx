@@ -99,7 +99,7 @@ interface InlineQuickSearchPanelProps {
 interface ChipRadioGroupProps<T extends string> {
   name: string;
   value: T;
-  onChange: (value: T) => void;
+  onChange: (value: T) => React.ReactNode;
   options: (CardOption<T> & { description?: string })[];
   disabled?: boolean;
   label: string;

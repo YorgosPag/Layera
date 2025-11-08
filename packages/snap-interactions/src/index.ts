@@ -1,3 +1,4 @@
+import React from "react";
 /**
  * 🎨 @layera/snap-interactions
  *
@@ -237,9 +238,9 @@ export interface SnapContextValue {
   enabled: boolean;
   tolerance: number;
   enabledTypes: Set<string>;
-  setEnabled: (enabled: boolean) => void;
-  setTolerance: (tolerance: number) => void;
-  toggleSnapType: (type: string, enabled: boolean) => void;
+  setEnabled: (enabled: boolean) => React.ReactNode;
+  setTolerance: (tolerance: number) => React.ReactNode;
+  toggleSnapType: (type: string, enabled: boolean) => React.ReactNode;
 }
 
 // Note: Full context implementation θα ήταν εδώ

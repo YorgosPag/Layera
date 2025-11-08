@@ -9,10 +9,10 @@ interface TableHeaderProps<T = unknown> {
   selectable: boolean;
   allSelected: boolean;
   someSelected: boolean;
-  onSelectAll: (checked: boolean) => void;
+  onSelectAll: (checked: boolean) => React.ReactNode;
   sortBy?: string;
   sortDirection: SortDirection;
-  onSort: (key: string) => void;
+  onSort: (key: string) => React.ReactNode;
 }
 
 export const TableHeader = <T,>({
