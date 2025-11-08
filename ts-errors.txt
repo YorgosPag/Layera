@@ -1,0 +1,14 @@
+packages/address-breakdown/src/components/AddressBreakdownCard.tsx(269,2): error TS1005: '}' expected.
+packages/osm/src/types/result.ts(30,4): error TS1161: Unterminated regular expression literal.
+packages/osm/src/types/result.ts(31,4): error TS1109: Expression expected.
+packages/osm/src/types/result.ts(31,6): error TS1128: Declaration or statement expected.
+packages/osm/src/types/result.ts(32,2): error TS1109: Expression expected.
+packages/osm/src/types/result.ts(33,2): error TS1109: Expression expected.
+packages/osm/src/types/result.ts(33,4): error TS1109: Expression expected.
+packages/osm/src/types/result.ts(34,2): error TS1109: Expression expected.
+packages/osm/src/types/result.ts(58,7): error TS1005: ';' expected.
+packages/osm/src/types/result.ts(59,9): error TS1005: ';' expected.
+packages/osm/src/types/result.ts(60,2): error TS1109: Expression expected.
+packages/osm/src/types/result.ts(60,9): error TS1005: ';' expected.
+packages/osm/src/types/result.ts(61,2): error TS1109: Expression expected.
+packages/osm/src/types/result.ts(243,2): error TS1160: Unterminated template literal.

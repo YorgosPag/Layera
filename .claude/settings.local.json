@@ -32,7 +32,18 @@
       "Bash(start http://localhost:3003)",
       "Read(//c//**)",
       "Bash(move:*)",
-      "Bash(start http://localhost:3006)"
+      "Bash(start http://localhost:3006)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)",
+      "Bash(git tag:*)",
+      "Bash(pnpm -w run tokens:build)",
+      "Bash(npx json-syntax-check:*)",
+      "Bash(python:*)",
+      "Bash(pnpm -w eslint \"packages/address-breakdown/src/components/AddressBreakdownCard.tsx\" --fix)",
+      "Bash(git commit:*)",
+      "Bash(tasklist:*)",
+      "Bash(pnpm:*)",
+      "Bash(npx prettier:*)"
     ],
     "deny": [],
     "ask": []

@@ -55,7 +55,6 @@ export default {
         destination: 'tokens.css',
         format: 'css/variables',
         options: { selector: ':root', outputReferences: true },
-        filter: 'exclude/direct'
       }]
     },
     ts: {
@@ -65,14 +64,12 @@ export default {
         {
           destination: 'index.ts',
           format: 'javascript/named-exports',
-          filter: 'exclude/direct'
-        },
+          },
         {
           destination: 'cssvars.ts',
           format: 'javascript/css-var-exports',
           options: { prefix: 'la' },
-          filter: 'exclude/direct'
-        }
+          }
       ]
     }
   }

@@ -22,6 +22,10 @@
   --la-size-96: 24rem;
   --la-size-112: 28rem;
 
+  /* Content Sizes */
+  --la-size-content-max-60pct: 60%;
+  --la-size-content-full-100pct: 100%;
+
   /* Widths */
   --la-width-md: var(--la-size-112);
 
@@ -110,6 +114,9 @@
   /* Overlay & Modal Specific */
   --la-overlay-bg: rgb(0 0 0 / 60%);
   --la-overlay-background: var(--la-color-surface); /* 🎯 SST: Overlay background for modals */
+
+  /* Background Gradients */
+  --la-bg-gradient-primary: linear-gradient(var(--la-color-primary), var(--la-color-primary-600));
 
   /* Blur Effects */
   --la-blur-xs: var(--la-space-1); /* 🎯 SST: Small blur for backdrop filters */

@@ -24,7 +24,7 @@
       ]
     },
     "declaration-property-unit-disallowed-list": {
-      "/^(color|background(-color)?|border(-.*)?color|outline(-.*)?color|text-decoration-color|caret-color|column-rule-color|fill|stroke|margin|padding|gap|row-gap|column-gap|border-radius|font-size|line-height|letter-spacing)$/": [
+      "/^(margin|padding|gap|row-gap|column-gap|border-radius|font-size|line-height|letter-spacing)$/": [
         "px", "rem", "em", "%", "vh", "vw"
       ]
     },
