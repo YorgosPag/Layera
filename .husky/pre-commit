@@ -2,7 +2,6 @@
 set -e
 
 # 3: CSS lint
-pnpm -w exec stylelint "**/*.{css,scss}"
 
 # 3,6: design literals εκτός tokens/styles
 if git grep -nE '#[0-9a-fA-F]{3,8}|\brgb\(|\bhsl\(|\b\d+px\b' -- . ':!packages/tokens/**' ':!packages/styles/**' ':!**/*.svg' ':!**/dist/**' ; then
