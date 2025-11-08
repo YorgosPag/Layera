@@ -165,6 +165,7 @@
   box-shadow: var(--la-shadow-md);
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .mfa-button:disabled {
   opacity: var(--la-opacity-medium);
   cursor: var(--la-cursor-not-allowed);

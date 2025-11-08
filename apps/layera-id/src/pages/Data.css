@@ -151,8 +151,8 @@
   color: var(--la-text-secondary);
   font-size: var(--la-font-size-sm);
   text-align: right;
-  max-width: 60%;
-  word-break: break-word;
+  max-width: var(--la-size-content-max-60pct);
+  word-break: break-all;
 }
 
 .data-value.verified {

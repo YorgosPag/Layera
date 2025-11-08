@@ -69,6 +69,7 @@
   box-shadow: var(--la-shadow-lg);
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .submit-button:disabled {
   opacity: var(--la-opacity-medium);
   cursor: var(--la-cursor-not-allowed);
