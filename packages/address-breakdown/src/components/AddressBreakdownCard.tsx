@@ -200,6 +200,19 @@ export function AddressBreakdownCard({
         )}
       </Button>
     );
+    }
+
+    // Non-clickable list item
+    return (
+      <Box key={component.id} className="address-breakdown-list-item non-clickable">
+        <Box className="list-item-content">
+          <LocationIcon />
+          <span className="list-label not-clickable">
+            {component.label}
+          </span>
+        </Box>
+      </Box>
+    );
   };
 
   // Card actions
