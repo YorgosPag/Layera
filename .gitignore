@@ -42,4 +42,4 @@ nul
 **/dist/
 packages/*/src/**/*.d.ts
 packages/*/src/**/*.js
-packages/*/src/**/*.jsx
+packages/*/src/**/*.jsxlayera_OLD/
