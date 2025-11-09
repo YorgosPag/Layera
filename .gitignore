@@ -18,10 +18,8 @@ build/
 
 # Claude settings (local only)
 .claude/settings.local.json
-.claude/_KADOS/
 
 # IDE
-.vscode/
 .idea/
 *.swp
 *.swo

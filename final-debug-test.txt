@@ -1,0 +1,7 @@
+🔬 ΤΕΛΙΚΗ ΔΟΚΙΜΗ ΜΕΤΑ ΤΟ ΚΛΕΙΣΙΜΟ ΤΩΝ GIT TOOLS
+
+Αν αυτό το αρχείο εξαφανιστεί, τότε:
+- Έχεις VS Code extension για auto-commit
+- Ή background Windows service
+
+ΕΛΕΓΞΕ EXTENSIONS ΤΩΡΑ!
