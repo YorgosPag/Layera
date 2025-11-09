@@ -1,0 +1,73 @@
+{
+  "iconAdvanced": {
+    "comment": "🚀 Performance & Optimization Tokens - Used by high-scale applications",
+    "performance": {
+      "rendering": {
+        "willChange": {
+          "value": "transform",
+          "comment": "Optimize for transform animations"
+        },
+        "backfaceVisibility": {
+          "value": "hidden",
+          "comment": "Prevent flickering during animations"
+        },
+        "forceLayerCreation": {
+          "value": "translateZ(0)",
+          "comment": "Force GPU layer for smooth animations"
+        }
+      },
+      "loading": {
+        "lazy": {
+          "threshold": {
+            "value": "0.1",
+            "comment": "Intersection observer threshold for lazy loading"
+          },
+          "rootMargin": {
+            "value": "50px",
+            "comment": "Margin for early loading trigger"
+          }
+        },
+        "preload": {
+          "critical": {
+            "value": "true",
+            "comment": "Preload critical icons"
+          },
+          "priority": {
+            "value": "high",
+            "comment": "Loading priority for important icons"
+          }
+        }
+      },
+      "caching": {
+        "svgSprite": {
+          "enabled": {
+            "value": "true",
+            "comment": "Use SVG sprite for better caching"
+          },
+          "chunking": {
+            "value": "domain",
+            "comment": "Chunk icons by domain for optimal loading"
+          }
+        }
+      },
+      "optimization": {
+        "vectorEffects": {
+          "nonScalingStroke": {
+            "value": "non-scaling-stroke",
+            "comment": "Prevent stroke scaling for crisp lines"
+          }
+        },
+        "shapeRendering": {
+          "crisp": {
+            "value": "crispEdges",
+            "comment": "Crisp pixel-aligned rendering"
+          },
+          "smooth": {
+            "value": "geometricPrecision",
+            "comment": "Smooth anti-aliased rendering"
+          }
+        }
+      }
+    }
+  }
+}

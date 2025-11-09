@@ -1,0 +1,97 @@
+{
+  "icon": {
+    "comment": "🎯 Core Icon Tokens - Essential properties used by ALL companies globally",
+    "xs": {
+      "value": "1rem",
+      "comment": "16px - Standard mobile size"
+    },
+    "smBase": {
+      "value": "1rem",
+      "comment": "16px - Base small size"
+    },
+    "md": {
+      "value": "1.25rem",
+      "comment": "20px - Default icon size for desktop"
+    },
+    "lg": {
+      "value": "2rem",
+      "comment": "32px - Large interactive elements"
+    },
+    "xl": {
+      "value": "2rem",
+      "comment": "32px - Same as lg for consistency"
+    },
+    "xxl": {
+      "value": "3rem",
+      "comment": "48px - Hero icons"
+    },
+    "xxxl": {
+      "value": "4rem",
+      "comment": "64px - Ultra large icons"
+    },
+    "leafletSmall": {
+      "value": "12px",
+      "comment": "Map leaflet small icons"
+    },
+    "leafletMedium": {
+      "value": "16px",
+      "comment": "Map leaflet medium icons"
+    },
+    "leafletStandard": {
+      "value": "20px",
+      "comment": "Map leaflet standard icons"
+    },
+    "leafletLarge": {
+      "value": "24px",
+      "comment": "Map leaflet large icons"
+    },
+    "leafletXl": {
+      "value": "32px",
+      "comment": "Map leaflet extra large icons"
+    },
+    "strokeThin": {
+      "value": "1",
+      "comment": "Thin stroke width"
+    },
+    "strokeLight": {
+      "value": "1.5",
+      "comment": "Light stroke width - Enterprise default"
+    },
+    "strokeNormal": {
+      "value": "2",
+      "comment": "Normal stroke width"
+    },
+    "strokeBold": {
+      "value": "2.5",
+      "comment": "Bold stroke width"
+    },
+    "colorPrimary": {
+      "value": "#7c3aed",
+      "comment": "Primary brand color for icons"
+    },
+    "colorSecondary": {
+      "value": "#6b7280",
+      "comment": "Secondary color for supporting icons"
+    },
+    "colorSuccess": {
+      "value": "#10b981",
+      "comment": "Green for success states"
+    },
+    "colorWarning": {
+      "value": "#f59e0b",
+      "comment": "Orange for warning states"
+    },
+    "colorDanger": {
+      "value": "#ef4444",
+      "comment": "Red for danger/error states"
+    },
+    "colorInfo": {
+      "value": "#3b82f6",
+      "comment": "Blue for informational states"
+    },
+    "colorNeutral": {
+      "value": "#6b7280",
+      "comment": "Neutral gray for standard icons"
+    }
+  }
+}

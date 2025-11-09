@@ -1,0 +1,53 @@
+{
+  "name": "@layera/icons",
+  "version": "1.0.0",
+  "description": "Layera Icons - Enterprise icon system για όλες τις Layera εφαρμογές",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./src/icons/*": "./src/icons/*",
+    "./dist/icons/*": "./dist/icons/*"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@layera/tokens": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "tsup": "^7.2.0",
+    "typescript": "^5.0.0"
+  },
+  "keywords": [
+    "layera",
+    "icons",
+    "react",
+    "typescript",
+    "enterprise",
+    "ui"
+  ],
+  "author": "Layera Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/layera/layera-monorepo",
+    "directory": "packages/icons"
+  }
+}

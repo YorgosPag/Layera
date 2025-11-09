@@ -1,0 +1,8 @@
+ Τι δημιουργήθηκε:
+
+  1. C:\layera\scripts\check-duplicates.js - Απλό script που ελέγχει:
+    - Διπλότυπα React components
+    - Διπλότυπες functions
+    - Διπλότυπα CSS classes
+    - Άχρηστα duplicate imports
+  2. npm run check:duplicates - Νέο npm script στο package.json     

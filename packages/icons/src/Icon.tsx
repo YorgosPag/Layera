@@ -1,0 +1,275 @@
+// Layera Icons - Main Icon Component
+// Enterprise pattern: Ενιαίο component για όλα τα εικονίδια
+
+import React from 'react';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { BaseIconProps, IconSize, IconVariant, IconTheme } from './types';
+
+// 🏢 ENTERPRISE ARCHITECTURE - Single Source of Truth με fallback constants
+
+// 🏢 ENTERPRISE ARCHITECTURE - 100% SSOT Tokens με fallback
+const ENTERPRISE_TOKENS = {
+  sizes: {
+    xs: 16, // 1rem = 16px από SSOT
+    sm: 16, // 16px από SSOT
+    md: 20, // 1.25rem = 20px από SSOT
+    lg: 32, // 32px από SSOT
+    xl: 32, // Same as lg (no xl in SSOT)
+    xxl: 48, // 48px από SSOT
+    xxxl: 64 // 64px από SSOT
+  },
+  strokes: {
+    thin: 1,    // από SSOT
+    light: 1.5,  // από SSOT - DEFAULT
+    normal: 2, // από SSOT
+    bold: 2.5     // από SSOT
+  },
+  colors: {
+    primary: '#7c3aed',   // από SSOT
+    secondary: '#6b7280', // από SSOT
+    success: '#10b981',   // από SSOT
+    warning: '#f59e0b',   // από SSOT
+    danger: '#ef4444',     // από SSOT
+    info: '#3b82f6',         // από SSOT
+    neutral: '#6b7280'    // από SSOT
+  },
+  // 🌙 Dark theme colors
+  darkColors: {
+    primary: '#a78bfa',
+    secondary: '#9ca3af',
+    neutral: '#9ca3af',
+    success: '#34d399',
+    warning: '#fbbf24',
+    danger: '#f87171',
+    info: '#60a5fa'
+  },
+  // 🎯 Interactive states
+  interactive: {
+    opacity: {
+      default: 1,
+      hover: 0.8,
+      active: 0.6,
+      disabled: 0.4
+    },
+    scale: {
+      default: 1,
+      hover: 1.1,
+      active: 0.95
+    },
+    transition: {
+      fast: '0.1s ease-out',
+      normal: '0.2s ease-out',
+      slow: '0.3s ease-out'
+    }
+  },
+  // ♿ Accessibility
+  accessibility: {
+    focusRing: {
+      width: '2px',
+      color: '#3b82f6'
+    },
+    contrast: {
+      normal: 4.5,
+      large: 3
+    }
+  },
+  // 📱 Touch targets
+  touchTarget: {
+    mobile: 44,
+    desktop: 32
+  }
+};
+
+// Μεγέθη εικονιδίων σε pixels - 100% SSOT values
+const ICON_SIZES = {
+  xs: ENTERPRISE_TOKENS.sizes.xs,     // όλα από SSOT
+  sm: ENTERPRISE_TOKENS.sizes.sm,     // όλα από SSOT
+  md: ENTERPRISE_TOKENS.sizes.md,     // όλα από SSOT
+  lg: ENTERPRISE_TOKENS.sizes.lg,     // όλα από SSOT
+  xl: ENTERPRISE_TOKENS.sizes.xl,     // όλα από SSOT
+  xxl: ENTERPRISE_TOKENS.sizes.xxl,   // όλα από SSOT
+  xxxl: ENTERPRISE_TOKENS.sizes.xxxl  // όλα από SSOT
+};
+
+// Χρώματα θεμάτων - Enterprise SSOT colors 🏢
+const THEME_COLORS = {
+  primary: ENTERPRISE_TOKENS.colors.primary,     // από SSOT
+  secondary: ENTERPRISE_TOKENS.colors.secondary, // από SSOT
+  success: ENTERPRISE_TOKENS.colors.success,     // από SSOT
+  warning: ENTERPRISE_TOKENS.colors.warning,     // από SSOT
+  danger: ENTERPRISE_TOKENS.colors.danger,       // από SSOT
+  info: ENTERPRISE_TOKENS.colors.info,           // από SSOT
+  neutral: ENTERPRISE_TOKENS.colors.neutral      // από SSOT
+};
+
+// Στυλ για κάθε variant - Enterprise stroke widths από SSOT 🎯
+const VARIANT_STYLES = {
+  solid: {
+    fill: 'currentColor',
+    stroke: 'none'
+  },
+  outline: {
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: ENTERPRISE_TOKENS.strokes.normal // από SSOT
+  },
+  light: {
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: ENTERPRISE_TOKENS.strokes.light // DEFAULT από SSOT
+  },
+  duotone: {
+    fill: 'currentColor',
+    stroke: 'currentColor',
+    strokeWidth: ENTERPRISE_TOKENS.strokes.thin, // από SSOT
+    opacity: 0.8
+  },
+  bold: {
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: ENTERPRISE_TOKENS.strokes.bold // Bold από SSOT
+  }
+};
+
+export interface IconProps extends BaseIconProps {
+  name: string;
+  children?: React.ReactNode; // SVG path content
+}
+
+/**
+ * Layera Icon Component
+ *
+ * Ενιαίο component για όλα τα εικονίδια στο Layera ecosystem
+ * Υποστηρίζει διαφορετικά μεγέθη, variants και θέματα
+ *
+ * @example
+ * <Icon name="home" size="md" variant="outline" theme="primary" />
+ * <Icon name="map" size={24} variant="solid" theme="success" />
+ */
+export const Icon: React.FC<IconProps> = ({
+  name,
+  size = 'md',
+  variant = 'light', // SST default από design tokens
+  theme = 'neutral',
+  className = '',
+  style,
+  onClick,
+  children,
+  'aria-label': ariaLabel,
+  title,
+  // 🏢 Enterprise features
+  darkMode = false,
+  interactive = false,
+  disabled = false,
+  focusable = true,
+  touchTarget = 'desktop',
+  contrast = 'normal',
+  transition = 'normal',
+  ...props
+}) => {
+  // 🏢 Enterprise size calculation με touch target support
+  let iconSize = typeof size === 'number' ? size : ICON_SIZES[size];
+
+  // Touch target override
+  if (onClick && touchTarget === 'mobile') {
+    iconSize = Math.max(iconSize, ENTERPRISE_TOKENS.touchTarget.mobile);
+  } else if (onClick && touchTarget === 'desktop') {
+    iconSize = Math.max(iconSize, ENTERPRISE_TOKENS.touchTarget.desktop);
+  }
+
+  // 🌙 Dark mode color calculation
+  const colorTheme = darkMode ? ENTERPRISE_TOKENS.darkColors : ENTERPRISE_TOKENS.colors;
+  const color = colorTheme[theme] || THEME_COLORS[theme];
+
+  // ♿ Accessibility opacity based on state
+  const currentOpacity = disabled
+    ? ENTERPRISE_TOKENS.interactive.opacity.disabled
+    : ENTERPRISE_TOKENS.interactive.opacity.default;
+
+  // Στυλ για το variant
+  const variantStyle = VARIANT_STYLES[variant];
+
+  // 🏢 Enterprise final style με όλα τα advanced features
+  const finalStyle: React.CSSProperties = {
+    width: iconSize,
+    height: iconSize,
+    color: color,
+    opacity: currentOpacity,
+    display: 'inline-block',
+    verticalAlign: 'middle',
+    flexShrink: 0,
+    // 🎯 Interactive states
+    transition: interactive ? ENTERPRISE_TOKENS.interactive.transition[transition] : 'none',
+    cursor: onClick && !disabled ? 'pointer' : 'default',
+    // ♿ Accessibility
+    outline: focusable ? `${ENTERPRISE_TOKENS.accessibility.focusRing.width} solid transparent` : 'none',
+    outlineOffset: ENTERPRISE_TOKENS.accessibility.focusRing.width,
+    // 📱 Touch targets
+    minWidth: onClick ? iconSize : 'auto',
+    minHeight: onClick ? iconSize : 'auto',
+    ...style
+  };
+
+  // 🏢 Enterprise CSS κλάσεις με advanced features
+  const classes = [
+    'layera-icon',
+    `layera-icon--${name}`,
+    `layera-icon--${variant}`,
+    `layera-icon--${theme}`,
+    `layera-icon--size-${typeof size === 'string' ? size : 'custom'}`,
+    onClick ? 'layera-icon--clickable' : '',
+    // 🏢 Enterprise states
+    darkMode ? 'layera-icon--dark' : '',
+    interactive ? 'layera-icon--interactive' : '',
+    disabled ? 'layera-icon--disabled' : '',
+    focusable ? 'layera-icon--focusable' : '',
+    `layera-icon--touch-${touchTarget}`,
+    `layera-icon--contrast-${contrast}`,
+    className
+  ].filter(Boolean).join(' ');
+
+  return (
+    <svg
+      className={classes}
+      {...(finalStyle && { style: finalStyle })}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      // ♿ Enhanced accessibility
+      aria-label={ariaLabel || `${name} icon`}
+      aria-disabled={disabled}
+      aria-hidden={!focusable && !onClick}
+      // 🎯 Interactive handling με disabled support
+      onClick={onClick && !disabled ? onClick : undefined}
+      role={onClick ? 'button' : 'img'}
+      tabIndex={focusable && onClick && !disabled ? 0 : -1}
+      onKeyDown={onClick && focusable && !disabled ? (e: React.KeyboardEvent<SVGSVGElement>) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onClick();
+        }
+      } : undefined}
+      // 🎯 Interactive states με SSOT values
+      onMouseEnter={interactive ? (e: React.MouseEvent<SVGSVGElement>) => {
+        e.currentTarget.style.opacity = ENTERPRISE_TOKENS.interactive.opacity.hover.toString();
+        e.currentTarget.style.transform = `scale(${ENTERPRISE_TOKENS.interactive.scale.hover})`;
+      } : undefined}
+      onMouseLeave={interactive ? (e: React.MouseEvent<SVGSVGElement>) => {
+        e.currentTarget.style.opacity = currentOpacity.toString();
+        e.currentTarget.style.transform = `scale(${ENTERPRISE_TOKENS.interactive.scale.default})`;
+      } : undefined}
+      onFocus={focusable ? (e: React.FocusEvent<SVGSVGElement>) => {
+        e.currentTarget.style.outline = `${ENTERPRISE_TOKENS.accessibility.focusRing.width} solid ${ENTERPRISE_TOKENS.accessibility.focusRing.color}`;
+      } : undefined}
+      onBlur={focusable ? (e: React.FocusEvent<SVGSVGElement>) => {
+        e.currentTarget.style.outline = 'none';
+      } : undefined}
+      {...variantStyle}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      {children}
+    </svg>
+  );
+};
+
+export default Icon;

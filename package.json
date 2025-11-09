@@ -1,0 +1,36 @@
+{
+  "name": "layera",
+  "version": "1.0.0",
+  "description": "Layera - Geo-Location Alert Platform για Ακίνητα και Εργασία",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter @layera/layera dev",
+    "build": "pnpm --recursive build",
+    "test": "pnpm --recursive test",
+    "typecheck": "pnpm --recursive typecheck",
+    "lint": "pnpm --recursive lint",
+    "check:duplicates": "node scripts/check-duplicates.js",
+    "install:all": "pnpm install"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "vite": "^6.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.15.9",
+  "keywords": [
+    "layera",
+    "geo-location",
+    "real-estate",
+    "jobs",
+    "alerts",
+    "maps",
+    "react",
+    "mobile-app"
+  ],
+  "author": "Layera Development Team",
+  "license": "PROPRIETARY"
+}

@@ -1,0 +1,151 @@
+{
+  "iconAdvanced": {
+    "comment": "🤖 AI/ML & Analytics Tokens - Enterprise intelligence features",
+    "ai": {
+      "smartSizing": {
+        "enabled": {
+          "value": "true",
+          "comment": "Enable AI-based size optimization"
+        },
+        "contextAware": {
+          "value": "true",
+          "comment": "Adjust size based on usage context"
+        },
+        "algorithm": {
+          "value": "neural-adaptive",
+          "comment": "AI algorithm for size optimization"
+        }
+      },
+      "semanticGrouping": {
+        "enabled": {
+          "value": "true",
+          "comment": "Enable semantic icon grouping"
+        },
+        "threshold": {
+          "value": "0.8",
+          "comment": "Similarity threshold for grouping"
+        }
+      },
+      "adaptiveTheming": {
+        "enabled": {
+          "value": "true",
+          "comment": "AI-driven theme adaptation"
+        },
+        "learningRate": {
+          "value": "0.1",
+          "comment": "Learning rate for theme adaptation"
+        }
+      },
+      "predictiveLoading": {
+        "enabled": {
+          "value": "true",
+          "comment": "Predict which icons user will need"
+        },
+        "confidence": {
+          "value": "0.7",
+          "comment": "Confidence threshold for predictions"
+        }
+      }
+    },
+    "metrics": {
+      "usage": {
+        "tracking": {
+          "enabled": {
+            "value": "true",
+            "comment": "Track icon usage patterns"
+          },
+          "frequency": {
+            "value": "realtime",
+            "comment": "Tracking frequency"
+          },
+          "granularity": {
+            "value": "detailed",
+            "comment": "Level of detail in tracking"
+          }
+        },
+        "heatmap": {
+          "enabled": {
+            "value": "true",
+            "comment": "Generate usage heatmaps"
+          },
+          "resolution": {
+            "value": "pixel",
+            "comment": "Heatmap resolution level"
+          }
+        }
+      },
+      "performance": {
+        "renderTime": {
+          "target": {
+            "value": "16",
+            "comment": "Target render time in milliseconds (60fps)"
+          },
+          "warning": {
+            "value": "32",
+            "comment": "Warning threshold for render time"
+          }
+        },
+        "memoryUsage": {
+          "limit": {
+            "value": "50MB",
+            "comment": "Memory usage limit for icon cache"
+          },
+          "cleanup": {
+            "value": "auto",
+            "comment": "Automatic memory cleanup strategy"
+          }
+        }
+      },
+      "accessibility": {
+        "auditLevel": {
+          "value": "WCAG-AAA",
+          "comment": "Accessibility audit standard"
+        },
+        "autoFix": {
+          "enabled": {
+            "value": "true",
+            "comment": "Auto-fix accessibility issues"
+          },
+          "severity": {
+            "value": "error",
+            "comment": "Minimum severity level for auto-fix"
+          }
+        }
+      }
+    },
+    "analytics": {
+      "userBehavior": {
+        "clickTracking": {
+          "enabled": {
+            "value": "true",
+            "comment": "Track icon click interactions"
+          },
+          "heatmaps": {
+            "value": "true",
+            "comment": "Generate click heatmaps"
+          }
+        },
+        "dwellTime": {
+          "enabled": {
+            "value": "true",
+            "comment": "Track hover/focus duration"
+          },
+          "threshold": {
+            "value": "500",
+            "comment": "Minimum dwell time in milliseconds"
+          }
+        }
+      },
+      "contextAnalysis": {
+        "enabled": {
+          "value": "true",
+          "comment": "Analyze icon usage context"
+        },
+        "sentiment": {
+          "value": "true",
+          "comment": "Analyze user sentiment with icons"
+        }
+      }
+    }
+  }
+}

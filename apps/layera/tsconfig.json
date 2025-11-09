@@ -1,0 +1,26 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "types": ["vite/client", "node"],
+
+    /* Use root baseUrl and paths from base config - no @layera overrides */
+    "baseUrl": "../..",
+    "paths": {
+      "@layera/constants": ["packages/constants/src"],
+      "@layera/*": ["packages/*/src"],
+      "@layera/layout/shortcuts": ["packages/layout/src/exports/shortcuts.ts"],
+      "@/*": ["./apps/layera-geoalert/src/*"]
+    }
+  },
+  "include": ["src", "src/types"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@layera/tokens",
+  "version": "0.0.1",
+  "private": true,
+  "files": ["dist/**", "src/domains/**"],
+  "main": "./dist/ts/index.ts",
+  "module": "./dist/ts/index.ts",
+  "types": "./dist/ts/index.ts",
+  "exports": {
+    ".": "./dist/ts/index.ts",
+    "./css": "./dist/css/tokens.css",
+    "./dist/css/tokens.css": "./dist/css/tokens.css",
+    "./dist/tokens.css": "./dist/css/tokens.css",
+    "./dist/ts": "./dist/ts/index.ts",
+    "./dist/ts/*": "./dist/ts/*"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "style-dictionary build --config style-dictionary.config.mjs",
+    "prepack": "pnpm run build"
+  },
+  "devDependencies": {
+    "style-dictionary": "^4.0.0"
+  }
+}

@@ -1,0 +1,83 @@
+/**
+ * 🎯 Style Dictionary Config - Perfect 1:1 CSS Generation with --la-* prefix
+ *
+ * Generates CSS custom properties with exact same names and values
+ * as the original tokens.css file using 'la' prefix.
+ * Uses custom transform groups to prevent value transformation.
+ */
+
+export default {
+  hooks: {
+    filters: {
+      'exclude/direct': (token) => !token.path.includes('_direct'),
+    },
+    transforms: {
+      // Convert underscores back to dashes in CSS variable names with prefix
+      'name/kebab-restore': {
+        type: 'name',
+        filter: () => true,
+        transform: (token, config) => {
+          const name = token.path.join('-')
+            .replace(/_/g, '-') // Convert underscores to dashes
+            .replace(/--base$/, ''); // Remove --base suffix to restore original names
+          const prefix = config.prefix ? `${config.prefix}-` : '';
+          return prefix + name;
+        }
+      }
+    },
+    formats: {
+      'javascript/named-exports': function({dictionary}) {
+        return dictionary.allTokens
+          .map(token => {
+            const safeName = token.name.replace(/[^a-z0-9_]/gi, '_');
+            const escapedValue = token.value.replace(/'/g, "\\'");
+            return `export const ${safeName} = '${escapedValue}' as const;`;
+          })
+          .join('\n');
+      },
+      'javascript/css-var-exports': ({dictionary, options}) => {
+        const prefix = options.prefix ? `--${options.prefix}-` : '--';
+        return dictionary.allTokens.map(token => {
+          const kebab = token.path.join('-');
+          return `export const ${token.name}_var = 'var(${prefix}${kebab})' as const;`;
+        }).join('\n');
+      }
+    }
+  },
+  source: [
+    'src/domains/icons-core.json',
+    'src/domains/icons-advanced-interactive.json',
+    'src/domains/icons-performance.json',
+    'src/domains/icons-i18n.json',
+    'src/domains/icons-ai-analytics.json',
+    'src/domains/icons-security.json'
+  ],
+  platforms: {
+    css: {
+      // ΜΗΝ χρησιμοποιείς group
+      transforms: ['attribute/cti', 'name/kebab-restore', 'color/css'],
+      buildPath: 'dist/css/',
+      prefix: 'la',
+      files: [{
+        destination: 'tokens.css',
+        format: 'css/variables',
+        options: { selector: ':root', outputReferences: true },
+      }]
+    },
+    ts: {
+      transformGroup: 'js',
+      buildPath: 'dist/ts/',
+      files: [
+        {
+          destination: 'index.ts',
+          format: 'javascript/named-exports',
+          },
+        {
+          destination: 'cssvars.ts',
+          format: 'javascript/css-var-exports',
+          options: { prefix: 'la' },
+          }
+      ]
+    }
+  }
+};
