@@ -42,4 +42,7 @@ nul
 **/dist/
 packages/*/src/**/*.d.ts
 packages/*/src/**/*.js
-packages/*/src/**/*.jsxlayera_OLD/
+packages/*/src/**/*.jsx
+
+# Old project copy
+layera_OLD/
