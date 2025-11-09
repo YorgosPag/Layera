@@ -16,6 +16,10 @@ build/
 .env.test.local
 .env.production.local
 
+# Claude settings (local only)
+.claude/settings.local.json
+.claude/_KADOS/
+
 # IDE
 .vscode/
 .idea/
