@@ -1,0 +1,70 @@
+{
+  "color": {
+    "background": {
+      "primary": {
+        "value": "#ffffff",
+        "comment": "Κύριο χρώμα φόντου - άσπρο"
+      },
+      "secondary": {
+        "value": "#f8fafc",
+        "comment": "Δευτερεύον χρώμα φόντου - ανοιχτό γκρι"
+      },
+      "accent": {
+        "blue": {
+          "value": "#3b82f6",
+          "comment": "Μπλε accent για κουμπιά και links"
+        },
+        "green": {
+          "value": "#10b981",
+          "comment": "Πράσινο accent για success actions"
+        },
+        "purple": {
+          "value": "#8b5cf6",
+          "comment": "Μωβ accent για ειδικές ενέργειες"
+        }
+      },
+      "surface": {
+        "light": {
+          "value": "#f9fafb",
+          "comment": "Ανοιχτό φόντο για cards"
+        },
+        "medium": {
+          "value": "#f3f4f6",
+          "comment": "Μεσαίο φόντο για διαχωρισμούς"
+        }
+      }
+    },
+    "text": {
+      "primary": {
+        "value": "#374151",
+        "comment": "Κύριο χρώμα κειμένου"
+      },
+      "secondary": {
+        "value": "#6b7280",
+        "comment": "Δευτερεύον χρώμα κειμένου"
+      },
+      "tertiary": {
+        "value": "#9ca3af",
+        "comment": "Τριτεύον χρώμα κειμένου"
+      },
+      "inverse": {
+        "value": "#ffffff",
+        "comment": "Αντίστροφο χρώμα κειμένου για σκούρα φόντα"
+      }
+    },
+    "border": {
+      "default": {
+        "value": "#d1d5db",
+        "comment": "Προεπιλεγμένο χρώμα περιγράμματος"
+      },
+      "light": {
+        "value": "#e5e7eb",
+        "comment": "Ανοιχτό χρώμα περιγράμματος"
+      },
+      "focus": {
+        "value": "#3b82f6",
+        "comment": "Χρώμα περιγράμματος για focus state"
+      }
+    }
+  }
+}

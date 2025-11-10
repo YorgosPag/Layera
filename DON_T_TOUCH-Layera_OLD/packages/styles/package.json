@@ -1,0 +1,14 @@
+{
+  "name": "@layera/styles",
+  "version": "0.0.1",
+  "private": true,
+  "files": ["dist"],
+  "main": "dist/tokens.css",
+  "exports": {
+    ".": "./dist/tokens.css",
+    "./dist/tokens.css": "./dist/tokens.css"
+  },
+  "scripts": {
+    "build": "xcopy src\\tokens.css dist\\ /Y > nul || copy src\\tokens.css dist\\tokens.css"
+  }
+}

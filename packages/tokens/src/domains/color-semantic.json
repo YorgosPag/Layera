@@ -1,0 +1,80 @@
+{
+  "color": {
+    "semantic": {
+      "error": {
+        "primary": {
+          "value": "#ef4444",
+          "comment": "Primary error color (red-500) - replaces hardcoded RGB"
+        },
+        "light": {
+          "value": "#f87171",
+          "comment": "Light error variant (red-400) - replaces hardcoded RGB"
+        },
+        "dark": {
+          "value": "#dc2626",
+          "comment": "Dark error variant (red-600) - replaces hardcoded RGB"
+        }
+      },
+      "warning": {
+        "primary": {
+          "value": "#f59e0b",
+          "comment": "Primary warning color (amber-500)"
+        },
+        "light": {
+          "value": "#fbbf24",
+          "comment": "Light warning variant (amber-400)"
+        },
+        "dark": {
+          "value": "#d97706",
+          "comment": "Dark warning variant (amber-600)"
+        }
+      },
+      "info": {
+        "primary": {
+          "value": "#6366f1",
+          "comment": "Primary info color (indigo-500)"
+        },
+        "light": {
+          "value": "#818cf8",
+          "comment": "Light info variant (indigo-400)"
+        },
+        "dark": {
+          "value": "#4f46e5",
+          "comment": "Dark info variant (indigo-600)"
+        }
+      },
+      "neutral": {
+        "light": {
+          "value": "#f3f4f6",
+          "comment": "Light neutral (gray-100) - replaces hardcoded RGB"
+        },
+        "medium": {
+          "value": "#9ca3af",
+          "comment": "Medium neutral (gray-400) - replaces hardcoded RGB"
+        },
+        "dark": {
+          "value": "#374151",
+          "comment": "Dark neutral (gray-700) - replaces hardcoded RGB"
+        }
+      }
+    },
+    "transition": {
+      "fast": {
+        "value": "0.1s ease",
+        "comment": "Fast transitions for micro-interactions"
+      },
+      "normal": {
+        "value": "0.2s ease",
+        "comment": "Standard transition speed - replaces hardcoded 0.25s"
+      },
+      "slow": {
+        "value": "0.3s ease",
+        "comment": "Slow transitions for emphasis"
+      },
+      "border": {
+        "value": "0.25s ease",
+        "comment": "Border color transition timing"
+      }
+    }
+  }
+}

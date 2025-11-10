@@ -1,0 +1,66 @@
+{
+  "name": "@layera/snap-interactions",
+  "version": "1.0.0",
+  "description": "Interactive snap UI components and visual feedback system for Layera LEGO architecture",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "test": "vitest",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "layera",
+    "lego",
+    "snap",
+    "ui",
+    "interactions",
+    "visual-feedback",
+    "cursor",
+    "magnetic",
+    "gis",
+    "cad",
+    "typescript",
+    "react"
+  ],
+  "author": "Layera Team",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@layera/snap-engine": "workspace:*",
+    "@layera/theme-switcher": "workspace:*",
+    "@layera/notifications": "workspace:*",
+    "@layera/buttons": "workspace:*",
+    "@layera/forms": "workspace:*",
+    "@layera/cards": "workspace:*",
+    "@layera/modals": "workspace:*",
+    "@layera/icons": "workspace:*",
+    "@layera/typography": "workspace:*",
+    "@layera/layout": "workspace:*",
+    "@layera/loading": "workspace:*",
+    "@layera/error-boundary": "workspace:*",
+    "@layera/viewport": "workspace:*",
+    "@layera/constants": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "typescript": "^5.0.0",
+    "tsup": "^8.0.0",
+    "eslint": "^8.0.0",
+    "vitest": "^1.0.0"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

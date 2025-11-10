@@ -1,10 +1,67 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
+import { readFileSync, existsSync } from 'fs'
+
+// 🏢 Enterprise Workspace Resolution Plugin
+// Handles ALL workspace imports without aliases
+function enterpriseWorkspaceResolver() {
+  return {
+    name: 'enterprise-workspace-resolver',
+    enforce: 'pre', // Run before other resolvers
+    resolveId(id: string) {
+      console.log(`🔍 Resolving: ${id}`)
+
+      // Handle all @layera/ workspace packages
+      if (id.startsWith('@layera/')) {
+        const parts = id.split('/')
+        const packageName = parts[1] // e.g., 'tokens', 'buttons', etc.
+        const subpath = parts.slice(2).join('/') || '' // e.g., 'css', 'src/index', etc.
+
+        const packageDir = resolve(__dirname, `../../packages/${packageName}`)
+        const packageJsonPath = resolve(packageDir, 'package.json')
+
+        console.log(`🏢 Processing: ${id} -> package: ${packageName}, subpath: "${subpath}"`)
+
+        if (!existsSync(packageJsonPath)) {
+          console.warn(`❌ Package not found: ${id}`)
+          return null
+        }
+
+        try {
+          // 🏢 ENTERPRISE PRIORITY: Always src for development
+          if (subpath === '' || subpath === 'index') {
+            const srcPath = resolve(packageDir, 'src/index.ts')
+            if (existsSync(srcPath)) {
+              console.log(`✅ Enterprise SRC resolved: ${id} -> ${srcPath}`)
+              return srcPath
+            }
+          }
+
+          // Handle CSS exports specifically
+          if (subpath === 'css') {
+            const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf-8'))
+            const exportPath = packageJson.exports?.['./css']
+            if (exportPath) {
+              const resolvedPath = resolve(packageDir, exportPath.replace('./', ''))
+              console.log(`✅ Enterprise CSS resolved: ${id} -> ${resolvedPath}`)
+              return resolvedPath
+            }
+          }
+
+        } catch (error) {
+          console.warn(`❌ Error resolving workspace package ${id}:`, error)
+        }
+      }
+
+      return null
+    }
+  }
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), enterpriseWorkspaceResolver()],
   assetsInclude: ['**/*.json'],
   define: {
     'process.env': {},
@@ -16,30 +73,8 @@ export default defineConfig({
   },
   resolve: {
     alias: {
+      // 🏢 ENTERPRISE: Μόνο local app alias, όλα τα workspace packages μέσω plugin
       '@': resolve(__dirname, './src'),
-      // Enterprise LEGO Styles
-      '@layera/styles': resolve(__dirname, '../../packages/styles/index.css'),
-      // LEGO Component Aliases
-      '@layera/auth-bridge': resolve(__dirname, '../../packages/auth-bridge/src/index.ts'),
-      '@layera/tolgee': resolve(__dirname, '../../packages/tolgee/src/index.ts'),
-      '@layera/tolgee/locales': resolve(__dirname, '../../packages/tolgee/src/locales'),
-      '@layera/buttons': resolve(__dirname, '../../packages/buttons/src/index.ts'),
-      '@layera/typography': resolve(__dirname, '../../packages/typography/src/index.ts'),
-      '@layera/theme-switcher': resolve(__dirname, '../../packages/theme-switcher/src/index.ts'),
-      '@layera/layout': resolve(__dirname, '../../packages/layout/src/index.ts'),
-      '@layera/forms': resolve(__dirname, '../../packages/forms/src/index.ts'),
-      '@layera/cards': resolve(__dirname, '../../packages/cards/src/index.ts'),
-      '@layera/constants': resolve(__dirname, '../../packages/constants/dist/index.js'),
-      '@layera/viewport': resolve(__dirname, '../../packages/viewport/src'),
-      '@layera/notifications': resolve(__dirname, '../../packages/notifications/src'),
-      '@layera/loading': resolve(__dirname, '../../packages/loading/src'),
-      '@layera/icons': resolve(__dirname, '../../packages/icons/src'),
-      '@layera/osm': resolve(__dirname, '../../packages/osm/src'),
-      '@layera/geo-mapping': resolve(__dirname, '../../packages/geo-mapping/src'),
-      // 🔥 ΚΡΙΣΙΜΑ ALIASES ΓΙΑ FAB DRAG FUNCTIONALITY - ΜΗΝ ΑΦΑΙΡΕΣΕΙΣ ΠΟΤΕ!
-      '@layera/floating-action-buttons': resolve(__dirname, '../../packages/floating-action-buttons/src'),
-      '@layera/draggable-fab': resolve(__dirname, '../../packages/draggable-fab/src'),
-      '@layera/device-layouts': resolve(__dirname, '../../packages/device-layouts/src'),
     },
   },
 })

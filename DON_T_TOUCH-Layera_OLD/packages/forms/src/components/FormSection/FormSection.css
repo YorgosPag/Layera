@@ -1,0 +1,115 @@
+/**
+ * @layera/forms - FormSection Component Styles
+ *
+ * Enterprise CSS για form section system.
+ * Consistent με Layera design tokens.
+ */
+
+/* Base FormSection */
+.la-form-section {
+  margin-bottom: var(--la-space-6);
+}
+
+.la-form-section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--la-space-2);
+  margin-bottom: var(--la-space-4);
+}
+
+.la-form-section-collapsible .la-form-section-header {
+  cursor: pointer;
+  padding: var(--la-space-2);
+  border-radius: var(--la-radius-md);
+  transition: background-color 0.15s ease;
+}
+
+.la-form-section-collapsible .la-form-section-header:hover {
+  background: var(--la-color-surface-hover);
+}
+
+.la-form-section-collapsible .la-form-section-header:focus {
+  outline: 0.125rem solid var(--la-color-brand);
+  outline-offset: 0.125rem;
+}
+
+.la-form-section-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: var(--la-size-0);
+  margin-top: var(--la-space-1);
+  color: var(--la-color-brand);
+}
+
+.la-form-section-header-content {
+  flex: 1;
+  min-width: var(--la-size-0);
+}
+
+.la-form-section-title {
+  margin: var(--la-size-0);
+  font-size: var(--la-font-size-xl);
+  font-weight: 600;
+  color: var(--la-color-text-primary);
+  line-height: var(--la-line-height-relaxed);
+}
+
+.la-form-section-description {
+  margin: var(--la-space-1) 0 0 0;
+  font-size: var(--la-font-size-sm);
+  color: var(--la-color-text-secondary);
+  line-height: var(--la-line-height-relaxed);
+}
+
+.la-form-section-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: var(--la-size-0);
+  color: var(--la-color-text-secondary);
+  transition: transform 0.15s ease;
+}
+
+.la-form-section-chevron {
+  transition: transform 0.15s ease;
+}
+
+.la-form-section-collapsed .la-form-section-chevron {
+  transform: rotate(-90deg);
+}
+
+.la-form-section-content {
+  transition: all 0.15s ease;
+}
+
+.la-form-section-collapsed .la-form-section-content {
+  height: var(--la-size-0);
+  overflow: hidden;
+  opacity: var(--la-size-0);
+}
+
+/* Responsive Design */
+@media (width <= 48rem) {
+  .la-form-section {
+    margin-bottom: var(--la-space-4);
+  }
+
+  .la-form-section-header {
+    margin-bottom: var(--la-space-2);
+  }
+
+  .la-form-section-title {
+    font-size: var(--la-font-size-lg);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .la-form-section-collapsible .la-form-section-header,
+  .la-form-section-toggle,
+  .la-form-section-chevron,
+  .la-form-section-content {
+    transition: none;
+  }
+}

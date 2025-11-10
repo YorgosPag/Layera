@@ -1,0 +1,216 @@
+/* Layera Typography System - Enterprise Font Standards */
+
+/* Font Imports - Χρησιμοποιούμε system fonts για καλύτερη απόδοση */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* Primary Font Family */
+  --la-font-family-sans: system-ui, -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, 'Helvetica Neue', arial, sans-serif;
+  --la-font-family-monospace: 'SF Mono', monaco, 'Cascadia Code', 'Roboto Mono', consolas, 'Courier New', monospace;
+
+  /* Font Sizes - Enterprise Scale */
+  --la-text-xs: 0.75rem;
+  --la-text-sm: 0.875rem;
+  --la-text-base: 1rem;
+  --la-text-lg: 1.125rem;
+  --la-text-xl: 1.25rem;
+  --la-text-2xl: 1.5rem;
+  --la-text-3xl: 1.875rem;
+  --la-text-4xl: 2.25rem;
+  --la-text-5xl: 3rem;
+  --la-text-6xl: 3.75rem;
+
+  /* Font Weights */
+  --la-font-light: 300;
+  --la-font-normal: 400;
+  --la-font-medium: 500;
+  --la-font-semibold: 600;
+  --la-font-bold: 700;
+  --la-font-extrabold: 800;
+
+  /* Line Heights */
+  --la-leading-tight: 1.25;
+  --la-leading-snug: 1.375;
+  --la-leading-normal: 1.5;
+  --la-leading-relaxed: 1.625;
+  --la-leading-loose: 2;
+
+  /* Letter Spacing */
+  --la-tracking-xs: -0.025em;
+  --la-tracking-sm: -0.0125em;
+  --la-tracking-base: 0em;
+  --la-tracking-lg: 0.0125em;
+  --la-tracking-xl: 0.025em;
+
+  /* Text Colors - Συνδεδεμένα με το Layera color system */
+  --la-text-primary: var(--la-color-text-primary);
+  --la-text-secondary: var(--la-color-text-secondary);
+  --la-text-muted: var(--la-color-text-tertiary);
+  --la-text-accent: var(--la-color-primary);
+  --la-text-success: var(--la-color-success);
+  --la-text-warning: var(--la-color-warning);
+  --la-text-danger: var(--la-color-danger);
+  --la-text-info: var(--la-color-info);
+}
+
+/* Base Typography Classes */
+.la-text {
+  font-family: var(--la-font-family-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Font Size Classes */
+.la-text-xs {
+  font-size: var(--la-text-xs);
+  letter-spacing: var(--la-tracking-xs);
+}
+
+.la-text-sm {
+  font-size: var(--la-text-sm);
+  letter-spacing: var(--la-tracking-sm);
+}
+
+.la-text-base {
+  font-size: var(--la-text-base);
+  letter-spacing: var(--la-tracking-base);
+}
+
+.la-text-lg {
+  font-size: var(--la-text-lg);
+  letter-spacing: var(--la-tracking-base);
+}
+
+.la-text-xl {
+  font-size: var(--la-text-xl);
+  letter-spacing: var(--la-tracking-lg);
+}
+
+.la-text-2xl {
+  font-size: var(--la-text-2xl);
+  letter-spacing: var(--la-tracking-lg);
+}
+
+.la-text-3xl {
+  font-size: var(--la-text-3xl);
+  letter-spacing: var(--la-tracking-xl);
+}
+
+.la-text-4xl {
+  font-size: var(--la-text-4xl);
+  letter-spacing: var(--la-tracking-xl);
+}
+
+.la-text-5xl {
+  font-size: var(--la-text-5xl);
+  letter-spacing: var(--la-tracking-xl);
+}
+
+.la-text-6xl {
+  font-size: var(--la-text-6xl);
+  letter-spacing: var(--la-tracking-xl);
+}
+
+/* Font Weight Classes */
+.la-font-light { font-weight: var(--la-font-light); }
+.la-font-normal { font-weight: var(--la-font-normal); }
+.la-font-medium { font-weight: var(--la-font-medium); }
+.la-font-semibold { font-weight: var(--la-font-semibold); }
+.la-font-bold { font-weight: var(--la-font-bold); }
+.la-font-extrabold { font-weight: var(--la-font-extrabold); }
+
+/* Line Height Classes */
+.la-leading-tight { line-height: var(--la-leading-tight); }
+.la-leading-snug { line-height: var(--la-leading-snug); }
+.la-leading-normal { line-height: var(--la-leading-normal); }
+.layera-leading-relaxed { line-height: var(--la-leading-relaxed); }
+.layera-leading-loose { line-height: var(--la-leading-loose); }
+
+/* Text Color Classes */
+.la-text-primary { color: var(--la-text-primary); }
+.la-text-secondary { color: var(--la-text-secondary); }
+.la-text-muted { color: var(--la-text-muted); }
+.la-text-accent { color: var(--la-text-accent); }
+.la-text-success { color: var(--la-text-success); }
+.la-text-warning { color: var(--la-text-warning); }
+.la-text-danger { color: var(--la-text-danger); }
+.la-text-info { color: var(--la-text-info); }
+
+/* Text Alignment Classes */
+.la-text-left { text-align: left; }
+.la-text-center { text-align: center; }
+.la-text-right { text-align: right; }
+.la-text-justify { text-align: justify; }
+
+/* Enterprise Typography Combinations */
+.layera-heading-1 {
+  font-size: var(--la-text-4xl);
+  font-weight: var(--la-font-extrabold);
+  line-height: var(--la-leading-tight);
+  letter-spacing: var(--la-tracking-xl);
+  color: var(--la-text-primary);
+}
+
+.layera-heading-2 {
+  font-size: var(--la-text-3xl);
+  font-weight: var(--la-font-bold);
+  line-height: var(--la-leading-tight);
+  letter-spacing: var(--la-tracking-lg);
+  color: var(--la-text-primary);
+}
+
+.layera-heading-3 {
+  font-size: var(--la-text-2xl);
+  font-weight: var(--la-font-semibold);
+  line-height: var(--la-leading-snug);
+  letter-spacing: var(--la-tracking-lg);
+  color: var(--la-text-primary);
+}
+
+.la-body-large {
+  font-size: var(--la-text-lg);
+  font-weight: var(--la-font-normal);
+  line-height: var(--la-leading-relaxed);
+  color: var(--la-text-secondary);
+}
+
+.la-body {
+  font-size: var(--la-text-base);
+  font-weight: var(--la-font-normal);
+  line-height: var(--la-leading-normal);
+  color: var(--la-text-secondary);
+}
+
+.la-body-small {
+  font-size: var(--la-text-sm);
+  font-weight: var(--la-font-normal);
+  line-height: var(--la-leading-normal);
+  color: var(--la-text-muted);
+}
+
+.la-caption {
+  font-size: var(--la-text-xs);
+  font-weight: var(--la-font-medium);
+  line-height: var(--la-leading-tight);
+  color: var(--la-text-muted);
+}
+
+/* Layout Utility Classes */
+.la-flex { display: flex; }
+.la-items-center { align-items: center; }
+.la-gap-1 { gap: 0.25rem; }
+.la-gap-2 { gap: 0.5rem; }
+.la-gap-3 { gap: 0.75rem; }
+.la-gap-4 { gap: 1rem; }
+
+/* Margin Utility Classes */
+.la-mb-2 { margin-bottom: 0.5rem; }
+.la-mb-4 { margin-bottom: 1rem; }
+.la-mb-8 { margin-bottom: 2rem; }
+
+/* Responsive Typography - Mobile First */
+@media (width <= 40rem) {
+  .layera-heading-1 { font-size: var(--la-text-3xl); }
+  .layera-heading-2 { font-size: var(--la-text-2xl); }
+  .layera-heading-3 { font-size: var(--la-text-xl); }
+}

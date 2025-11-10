@@ -1,0 +1,6 @@
+/**
+ * Layera Error Boundary - Main Styles Import
+ */
+
+@import url('../components/ErrorFallback/ErrorFallback.css');
+@import url('../components/ErrorDetails/ErrorDetails.css');

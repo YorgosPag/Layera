@@ -1,0 +1,255 @@
+/**
+ * @layera/forms - Checkbox Component Styles
+ *
+ * Enterprise CSS για checkbox form component.
+ * Consistent με Layera design tokens.
+ */
+
+/* Base Checkbox */
+.la-checkbox {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--la-space-3);
+  position: relative;
+  cursor: pointer;
+  font-family: var(--la-font-family-base);
+}
+
+.la-checkbox-full-width {
+  width: 100%;
+}
+
+.la-checkbox-disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.la-checkbox-loading {
+  cursor: wait;
+}
+
+/* Control Container */
+.la-checkbox-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: var(--la-size-0);
+}
+
+/* Hidden Input */
+.la-checkbox-input {
+  position: absolute;
+  opacity: var(--la-size-0);
+  width: 100%;
+  height: 100%;
+  margin: var(--la-size-0);
+  cursor: pointer;
+}
+
+.la-checkbox-input:disabled {
+  cursor: not-allowed;
+}
+
+/* Checkbox Box */
+.la-checkbox-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--la-space-5);
+  height: var(--la-space-5);
+  background: var(--la-color-surface);
+  border: 0.125rem solid var(--la-color-border-primary);
+  border-radius: var(--la-radius-sm);
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+/* Size Variants */
+.la-checkbox-sm .la-checkbox-box {
+  width: var(--la-space-4);
+  height: var(--la-space-4);
+}
+
+.la-checkbox-lg .la-checkbox-box {
+  width: var(--la-space-6);
+  height: var(--la-space-6);
+}
+
+/* States */
+.la-checkbox-input:checked + .la-checkbox-box {
+  background: var(--la-color-brand);
+  border-color: var(--la-color-brand);
+}
+
+.la-checkbox-input:indeterminate + .la-checkbox-box {
+  background: var(--la-color-brand);
+  border-color: var(--la-color-brand);
+}
+
+.la-checkbox-input:focus + .la-checkbox-box {
+  outline: 0.125rem solid var(--la-color-brand);
+  outline-offset: 0.125rem;
+}
+
+.la-checkbox-input:hover:not(:disabled) + .la-checkbox-box {
+  border-color: var(--la-color-brand);
+}
+
+/* Error State */
+.la-checkbox-error .la-checkbox-box {
+  border-color: var(--la-color-destructive);
+}
+
+.la-checkbox-error .la-checkbox-input:checked + .la-checkbox-box {
+  background: var(--la-color-destructive);
+  border-color: var(--la-color-destructive);
+}
+
+.la-checkbox-error .la-checkbox-input:focus + .la-checkbox-box {
+  outline-color: var(--la-color-destructive);
+}
+
+/* Success State */
+.la-checkbox-success .la-checkbox-box {
+  border-color: var(--la-color-success);
+}
+
+.la-checkbox-success .la-checkbox-input:checked + .la-checkbox-box {
+  background: var(--la-color-success);
+  border-color: var(--la-color-success);
+}
+
+/* Warning State */
+.la-checkbox-warning .la-checkbox-box {
+  border-color: var(--la-color-warning);
+}
+
+.la-checkbox-warning .la-checkbox-input:checked + .la-checkbox-box {
+  background: var(--la-color-warning);
+  border-color: var(--la-color-warning);
+}
+
+/* Disabled State */
+.la-checkbox-disabled .la-checkbox-box {
+  background: var(--la-color-surface-disabled);
+  border-color: var(--la-color-border-disabled);
+}
+
+.la-checkbox-disabled .la-checkbox-input:checked + .la-checkbox-box {
+  background: var(--la-color-surface-disabled);
+}
+
+/* Checkbox Icon */
+.la-checkbox-icon {
+  color: var(--la-color-surface);
+  opacity: var(--la-size-0);
+  transition: opacity 0.15s ease;
+  width: var(--la-space-3);
+  height: var(--la-space-3);
+}
+
+.la-checkbox-sm .la-checkbox-icon {
+  width: var(--la-space-2-5);
+  height: var(--la-space-2-5);
+}
+
+.la-checkbox-lg .la-checkbox-icon {
+  width: var(--la-space-4);
+  height: var(--la-space-4);
+}
+
+.la-checkbox-input:checked + .la-checkbox-box .la-checkbox-icon,
+.la-checkbox-input:indeterminate + .la-checkbox-box .la-checkbox-icon {
+  opacity: 1;
+}
+
+/* Label */
+.la-checkbox-label {
+  flex: 1;
+  color: var(--la-color-text-primary);
+  font-size: var(--la-font-size-base);
+  line-height: var(--la-line-height-normal);
+  user-select: none;
+  cursor: pointer;
+}
+
+.la-checkbox-sm .la-checkbox-label {
+  font-size: var(--la-font-size-sm);
+}
+
+.la-checkbox-lg .la-checkbox-label {
+  font-size: var(--la-font-size-lg);
+}
+
+.la-checkbox-disabled .la-checkbox-label {
+  color: var(--la-color-text-disabled);
+  cursor: not-allowed;
+}
+
+/* Required Indicator */
+.la-checkbox-required {
+  color: var(--la-color-destructive);
+  margin-left: var(--la-space-1);
+}
+
+/* Description */
+.la-checkbox-description {
+  display: block;
+  margin-top: var(--la-space-1);
+  font-size: var(--la-font-size-sm);
+  color: var(--la-color-text-secondary);
+  line-height: var(--la-line-height-normal);
+}
+
+.la-checkbox-error .la-checkbox-description {
+  color: var(--la-color-destructive);
+}
+
+/* Loading State */
+.la-checkbox-loading .la-checkbox-box {
+  position: relative;
+}
+
+.la-checkbox-loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--la-space-3);
+  height: var(--la-space-3);
+  border: 0.063rem solid var(--la-color-border-primary);
+  border-top: 0.063rem solid var(--la-color-brand);
+  border-radius: var(--la-radius-full);
+  animation: la-checkbox-spin 1s linear infinite;
+}
+
+@keyframes la-checkbox-spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: more) {
+  .la-checkbox-box {
+    border-width: 0.1875rem;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .la-checkbox-box,
+  .la-checkbox-icon,
+  .la-checkbox-loading-spinner {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Dark Theme Support */
+@media (prefers-color-scheme: dark) {
+  .la-checkbox-input:checked + .la-checkbox-box {
+    background: var(--la-color-brand);
+    border-color: var(--la-color-brand);
+  }
+}

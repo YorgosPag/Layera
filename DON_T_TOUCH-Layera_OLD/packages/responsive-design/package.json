@@ -1,0 +1,22 @@
+{
+  "name": "@layera/responsive-design",
+  "version": "1.0.0",
+  "description": "Enterprise LEGO System for Responsive Design & Viewport Management",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch"
+  },
+  "keywords": ["layera", "responsive", "breakpoints", "viewport", "lego"],
+  "author": "Layera Team",
+  "license": "MIT",
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0"
+  }
+}

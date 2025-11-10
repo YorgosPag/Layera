@@ -1,0 +1,48 @@
+/**
+ * Layera ModalContent - Styles
+ */
+
+.la-modal-content {
+  flex: 1;
+  min-height: var(--la-size-0);
+  background-color: var(--la-color-surface);
+}
+
+/* Padding variants */
+.la-modal-content-none {
+  padding: var(--la-size-0);
+}
+
+.la-modal-content-sm {
+  padding: var(--la-space-3) var(--la-space-4);
+}
+
+.la-modal-content-md {
+  padding: var(--la-space-4) var(--la-space-4);
+}
+
+.la-modal-content-lg {
+  padding: var(--la-space-4);
+}
+
+/* Scrollable content */
+.la-modal-content-scrollable {
+  overflow: auto;
+}
+
+.la-modal-content-scrollable::-webkit-scrollbar {
+  width: var(--la-space-1);
+}
+
+.la-modal-content-scrollable::-webkit-scrollbar-track {
+  background: var(--la-color-transparent);
+}
+
+.la-modal-content-scrollable::-webkit-scrollbar-thumb {
+  background: var(--la-color-border-primary);
+  border-radius: var(--la-radius-xs);
+}
+
+.la-modal-content-scrollable::-webkit-scrollbar-thumb:hover {
+  background: var(--la-color-text-secondary);
+}

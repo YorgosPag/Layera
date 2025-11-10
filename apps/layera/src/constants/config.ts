@@ -423,13 +423,16 @@ export const MOBILE_DEVICE_SPECS = {
 } as const;
 
 /**
- * Responsive Breakpoints - Single Source of Truth
+ * Responsive Breakpoints - MOVED TO STYLE DICTIONARY
+ * Use CSS variables: var(--la-spacing-breakpoint-mobile), var(--la-spacing-breakpoint-tablet), var(--la-spacing-breakpoint-desktop)
+ * @see packages/tokens/src/domains/spacing-dimensions.json
  */
 export const DEVICE_BREAKPOINTS = {
-  MOBILE: 768,    // 0-767px = mobile
-  TABLET: 1024,   // 768-1023px = tablet
-  DESKTOP: 1025,  // 1024px+ = desktop
-  MOBILE_MAX: 480, // Pure mobile detection
+  // Main breakpoints moved to Style Dictionary tokens
+  // MOBILE: 768 → var(--la-spacing-breakpoint-mobile)
+  // TABLET: 1024 → var(--la-spacing-breakpoint-tablet)
+  // DESKTOP: 1025 → var(--la-spacing-breakpoint-desktop)
+  MOBILE_MAX: 480, // Pure mobile detection - Business logic ✅
 } as const;
 
 /**
@@ -464,7 +467,7 @@ export const CSS_DIMENSIONS = {
 } as const;
 
 /**
- * Fixed Pixel Dimensions
+ * Fixed Pixel Dimensions - PARTIAL DEPRECATION: Card/Button/Input dimensions moved to Style Dictionary
  */
 export const FIXED_DIMENSIONS = {
   DROPDOWN_MAX_HEIGHT: 400,
@@ -474,10 +477,10 @@ export const FIXED_DIMENSIONS = {
   MAP_ZOOM_DEFAULT: 13,
   MAP_ZOOM_MIN: 8,
   MAP_ZOOM_MAX: 18,
-  CARD_WIDTH: '320px',
-  CARD_HEIGHT: '480px',
-  BUTTON_HEIGHT: '40px',
-  INPUT_HEIGHT: '40px',
+  // UI dimensions moved to Style Dictionary tokens:
+  // - Card: var(--la-spacing-component-card-width), var(--la-spacing-component-card-height)
+  // - Button: var(--la-spacing-component-button-height)
+  // - Input: var(--la-spacing-component-input-height)
 } as const;
 
 
@@ -831,36 +834,17 @@ export const UI_Z_INDEX_LAYERS = {
   DEBUG: 9999                      // Debug overlays (development only)
 } as const;
 
+// ============================================================================
+// SEMANTIC COLORS MOVED TO STYLE DICTIONARY
+// ============================================================================
+
 /**
- * 🎨 SEMANTIC COLOR RGB VALUES
- * Standard RGB color values για semantic UI states - SINGLE SOURCE OF TRUTH
+ * 🎨 SEMANTIC COLORS
+ * Όλες οι semantic color values μεταφέρθηκαν στο Style Dictionary
+ * Χρησιμοποιήστε: var(--la-color-semantic-error-primary), κλπ
+ *
+ * @see packages/tokens/src/domains/color-semantic.json
  */
-export const SEMANTIC_RGB_COLORS = {
-  // Success colors (Green spectrum)
-  SUCCESS_PRIMARY: '16, 185, 129',     // Primary success color (emerald-500)
-  SUCCESS_LIGHT: '52, 211, 153',       // Light success variant (emerald-400)
-  SUCCESS_DARK: '5, 150, 105',         // Dark success variant (emerald-600)
-
-  // Warning colors (Orange/Amber spectrum)
-  WARNING_PRIMARY: '245, 158, 11',     // Primary warning color (amber-500)
-  WARNING_LIGHT: '251, 191, 36',       // Light warning variant (amber-400)
-  WARNING_DARK: '217, 119, 6',         // Dark warning variant (amber-600)
-
-  // Error colors (Red spectrum)
-  ERROR_PRIMARY: '239, 68, 68',        // Primary error color (red-500)
-  ERROR_LIGHT: '248, 113, 113',        // Light error variant (red-400)
-  ERROR_DARK: '220, 38, 38',           // Dark error variant (red-600)
-
-  // Info colors (Blue/Indigo spectrum)
-  INFO_PRIMARY: '99, 102, 241',        // Primary info color (indigo-500)
-  INFO_LIGHT: '129, 140, 248',         // Light info variant (indigo-400)
-  INFO_DARK: '79, 70, 229',            // Dark info variant (indigo-600)
-
-  // Neutral colors
-  NEUTRAL_LIGHT: '243, 244, 246',      // Light neutral (gray-100)
-  NEUTRAL_MEDIUM: '156, 163, 175',     // Medium neutral (gray-400)
-  NEUTRAL_DARK: '55, 65, 81'           // Dark neutral (gray-700)
-} as const;
 
 // ============================================================================
 // DEMO DATA CONSTANTS - Sample Data & Test Values

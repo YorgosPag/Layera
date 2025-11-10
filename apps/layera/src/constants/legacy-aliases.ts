@@ -23,12 +23,12 @@ export const DRAWING_LIMITS = {
 // UI dimensions legacy alias - maps to ICON_DIMENSIONS
 export const UI_DIMENSIONS = ICON_DIMENSIONS;
 
-// Legacy layout aliases
+// Legacy layout aliases - NOW USING CSS VARIABLES FROM STYLE DICTIONARY
 export const LEGACY_LAYOUT_ALIASES = {
-  CONTAINER_SM: '540px',
-  CONTAINER_MD: '720px',
-  CONTAINER_LG: '960px',
-  CONTAINER_XL: '1140px'
+  CONTAINER_SM: 'var(--la-spacing-container-sm)',
+  CONTAINER_MD: 'var(--la-spacing-container-md)',
+  CONTAINER_LG: 'var(--la-spacing-container-lg)',
+  CONTAINER_XL: 'var(--la-spacing-container-xl)'
 };
 
 // Legacy container aliases

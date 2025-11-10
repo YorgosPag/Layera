@@ -1,0 +1,47 @@
+{
+  "name": "@layera/tables",
+  "version": "1.0.0",
+  "description": "Enterprise data table components with sorting, filtering, pagination, and bulk actions",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "files": [
+    "dist",
+    "styles"
+  ],
+  "keywords": [
+    "layera",
+    "tables",
+    "data-grid",
+    "design-system",
+    "enterprise",
+    "sorting",
+    "filtering",
+    "pagination"
+  ],
+  "author": "Layera Team",
+  "license": "ISC",
+  "dependencies": {
+    "@layera/constants": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

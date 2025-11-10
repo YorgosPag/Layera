@@ -9,7 +9,9 @@
   "exports": {
     ".": "./dist/ts/index.ts",
     "./css": "./dist/css/tokens.css",
+    "./css/utilities": "./dist/css/utilities.css",
     "./dist/css/tokens.css": "./dist/css/tokens.css",
+    "./dist/css/utilities.css": "./dist/css/utilities.css",
     "./dist/tokens.css": "./dist/css/tokens.css",
     "./dist/ts": "./dist/ts/index.ts",
     "./dist/ts/*": "./dist/ts/*"

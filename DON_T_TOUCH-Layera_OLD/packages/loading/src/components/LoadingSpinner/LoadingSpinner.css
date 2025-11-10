@@ -1,0 +1,42 @@
+/**
+ * @layera/loading - LoadingSpinner Component Styles
+ *
+ * Enterprise CSS για loading spinner system.
+ * Consistent με Layera design tokens.
+ */
+
+/* Base LoadingSpinner */
+.la-loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.la-loading-spinner-centered {
+  min-height: var(--la-space-48);
+}
+
+/* Overlay Variant */
+.la-loading-spinner-overlay {
+  position: fixed;
+  inset: var(--la-size-0);
+  z-index: var(--la-z-index-modal);
+  background-color: var(--la-color-surface-overlay);
+  backdrop-filter: blur(var(--la-shadow-blur-sm));
+}
+
+/* Content Container */
+.la-loading-spinner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--la-space-4);
+}
+
+/* Message Text */
+.la-loading-spinner-message {
+  font-size: var(--la-font-size-sm);
+  color: var(--la-color-text-secondary);
+  text-align: center;
+  max-width: var(--la-size-96);
+}

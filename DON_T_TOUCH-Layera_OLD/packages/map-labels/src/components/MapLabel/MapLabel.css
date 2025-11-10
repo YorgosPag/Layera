@@ -1,0 +1,307 @@
+/**
+ * @layera/map-labels - MapLabel Component Styles
+ *
+ * Enterprise CSS για map label system.
+ * Consistent με Layera design tokens.
+ */
+
+/* Base MapLabel Styles */
+.la-map-label {
+  position: absolute;
+  z-index: var(--la-z-index-overlay);
+  font-family: var(--la-font-family-base);
+  pointer-events: auto;
+  user-select: none;
+  transition: all 0.15s ease;
+}
+
+/* Visibility States */
+.la-map-label-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.la-map-label-hidden {
+  opacity: var(--la-size-0);
+  transform: scale(0.8);
+  pointer-events: none;
+}
+
+.la-map-label-animating {
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Background Variants */
+.la-map-label-bg-transparent {
+  background: var(--la-color-transparent);
+  border: var(--la-border-none);
+  box-shadow: var(--la-shadow-none);
+}
+
+.la-map-label-bg-semi {
+  background: var(--la-color-surface-secondary);
+  border: var(--la-border-width-1) solid var(--la-color-border-primary);
+  box-shadow: var(--la-shadow-sm);
+  backdrop-filter: blur(var(--la-shadow-blur-sm));
+}
+
+.la-map-label-bg-solid {
+  background: var(--la-color-surface);
+  border: var(--la-border-width-1) solid var(--la-color-border-primary);
+  box-shadow: var(--la-shadow-sm);
+}
+
+/* Label Variants */
+
+/* Title variant - για boundary names */
+.la-map-label-title {
+  font-size: var(--la-font-size-lg);
+  font-weight: var(--la-font-weight-semibold);
+  color: var(--la-color-text-primary);
+  padding: var(--la-space-2) var(--la-space-3);
+  border-radius: var(--la-radius-sm);
+  line-height: var(--la-line-height-tight);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Subtitle variant - για secondary information */
+.la-map-label-subtitle {
+  font-size: var(--la-font-size-base);
+  font-weight: var(--la-font-weight-medium);
+  color: var(--la-color-text-primary);
+  padding: var(--la-space-3) var(--la-space-5);
+  border-radius: var(--la-radius-sm);
+  line-height: var(--la-line-height-normal);
+  text-align: center;
+}
+
+/* Area variant - για area calculations */
+.la-map-label-area {
+  font-size: var(--la-font-size-sm);
+  font-weight: var(--la-font-weight-medium);
+  color: var(--la-color-text-secondary);
+  padding: var(--la-space-1) var(--la-space-2);
+  border-radius: var(--la-radius-xs);
+  line-height: var(--la-line-height-normal);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Distance variant - για distance measurements */
+.la-map-label-distance {
+  font-size: var(--la-font-size-sm);
+  font-weight: var(--la-font-weight-medium);
+  color: var(--la-color-text-secondary);
+  padding: var(--la-space-1) var(--la-space-2);
+  border-radius: var(--la-radius-xs);
+  line-height: var(--la-line-height-normal);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Info variant - για general information */
+.la-map-label-info {
+  font-size: var(--la-font-size-xs);
+  font-weight: var(--la-font-weight-normal);
+  color: var(--la-color-text-tertiary);
+  padding: var(--la-space-1) var(--la-space-2);
+  border-radius: var(--la-radius-xs);
+  line-height: var(--la-line-height-normal);
+  text-align: center;
+}
+
+/* Warning variant - για warning messages */
+.la-map-label-warning {
+  font-size: var(--la-font-size-sm);
+  font-weight: var(--la-font-weight-medium);
+  color: var(--la-color-warning);
+  padding: var(--la-space-1) var(--la-space-2);
+  border-radius: var(--la-radius-sm);
+  line-height: var(--la-line-height-normal);
+  text-align: center;
+  background: var(--la-color-warning-light);
+  border: 0.063rem solid var(--la-color-warning);
+}
+
+/* Success variant - για success states */
+.la-map-label-success {
+  font-size: var(--la-font-size-sm);
+  font-weight: var(--la-font-weight-medium);
+  color: var(--la-color-success);
+  padding: var(--la-space-1) var(--la-space-2);
+  border-radius: var(--la-radius-sm);
+  line-height: var(--la-line-height-normal);
+  text-align: center;
+  background: var(--la-color-success-light);
+  border: 0.063rem solid var(--la-color-success);
+}
+
+/* Text Alignment */
+.la-map-label-align-left {
+  text-align: left;
+}
+
+.la-map-label-align-center {
+  text-align: center;
+}
+
+.la-map-label-align-right {
+  text-align: right;
+}
+
+/* Interactive States */
+.la-map-label-clickable {
+  cursor: pointer;
+}
+
+.la-map-label-clickable:hover {
+  z-index: var(--la-z-index-tooltip);
+  box-shadow: var(--la-shadow-md);
+  transform: translateY(-0.125rem);
+}
+
+.la-map-label-clickable:active {
+  z-index: var(--la-z-index-popover);
+  transform: translateY(0);
+}
+
+.la-map-label-hover {
+  z-index: var(--la-z-index-tooltip);
+  box-shadow: var(--la-shadow-md);
+}
+
+.la-map-label-active {
+  z-index: var(--la-z-index-popover);
+  box-shadow: var(--la-shadow-md);
+  background: var(--la-color-brand-light);
+  border-color: var(--la-color-brand);
+}
+
+/* Animation Classes */
+.la-map-label-fade-in {
+  animation: la-label-fade-in 0.3s ease-out forwards;
+}
+
+.la-map-label-fade-out {
+  animation: la-label-fade-out 0.3s ease-in forwards;
+}
+
+.la-map-label-scale-in {
+  animation: la-label-scale-in 0.3s ease-out forwards;
+}
+
+.la-map-label-scale-out {
+  animation: la-label-scale-out 0.3s ease-in forwards;
+}
+
+/* Keyframe Animations */
+@keyframes la-label-fade-in {
+  from {
+    opacity: var(--la-size-0);
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes la-label-fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: var(--la-size-0);
+  }
+}
+
+@keyframes la-label-scale-in {
+  from {
+    opacity: var(--la-size-0);
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes la-label-scale-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: var(--la-size-0);
+    transform: scale(0.8);
+  }
+}
+
+/* Responsive Design */
+@media (width <= 48rem) {
+  .la-map-label-title {
+    font-size: var(--la-font-size-base);
+    padding: var(--la-space-3) var(--la-space-5);
+  }
+
+  .la-map-label-subtitle {
+    font-size: var(--la-font-size-sm);
+    padding: var(--la-space-1) var(--la-space-2);
+  }
+
+  .la-map-label-area,
+  .la-map-label-distance {
+    font-size: var(--la-font-size-xs);
+    padding: var(--la-space-1) var(--la-space-3);
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: more) {
+  .la-map-label {
+    border-width: 0.125rem;
+  }
+
+  .la-map-label-bg-semi {
+    background: var(--la-color-surface);
+  }
+
+  .la-map-label-bg-solid {
+    background: var(--la-color-surface);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .la-map-label,
+  .la-map-label-animating {
+    transition: none;
+  }
+
+  .la-map-label-fade-in,
+  .la-map-label-fade-out,
+  .la-map-label-scale-in,
+  .la-map-label-scale-out {
+    animation: none;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .la-map-label-bg-transparent {
+    background: var(--la-color-transparent);
+  }
+
+  .la-map-label-bg-semi {
+    background: var(--la-color-surface-secondary);
+    border-color: var(--la-color-border-primary);
+  }
+
+  .la-map-label-bg-solid {
+    background: var(--la-color-surface);
+    border-color: var(--la-color-border-primary);
+  }
+}

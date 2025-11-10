@@ -1,0 +1,64 @@
+{
+  "name": "@layera/osm",
+  "version": "1.0.0",
+  "description": "Layera OSM - Enterprise-grade OpenStreetMap services for buildings and administrative boundaries",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"src/**/*.{ts,tsx}\" --max-warnings=0",
+    "test": "vitest",
+    "test:ui": "vitest --ui"
+  },
+  "dependencies": {
+    "@layera/geo-core": "workspace:*",
+    "@layera/constants": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "tsup": "^8.5.0",
+    "vitest": "^1.6.0",
+    "@vitest/ui": "^1.6.0",
+    "eslint": "^8.57.0"
+  },
+  "peerDependencies": {
+    "leaflet": "^1.9.4"
+  },
+  "publishConfig": {
+    "access": "restricted",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/layera/layera.git",
+    "directory": "packages/osm"
+  },
+  "keywords": [
+    "layera",
+    "osm",
+    "openstreetmap",
+    "overpass",
+    "buildings",
+    "boundaries",
+    "gis",
+    "enterprise",
+    "lego"
+  ],
+  "author": "Layera Team",
+  "license": "MIT"
+}

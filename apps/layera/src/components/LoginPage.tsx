@@ -3,57 +3,57 @@ import { Link } from 'react-router-dom';
 
 const LoginPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <div className="max-w-md w-full bg-white rounded-lg shadow-md p-8">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Είσοδος</h1>
-          <p className="text-gray-600">Συνδεθείτε στο λογαριασμό σας</p>
+    <div className="min-h-screen flex items-center justify-center la-bg-surface-light">
+      <div className="la-auth-card la-bg-primary">
+        <div className="text-center la-mb-8">
+          <h1 className="la-text-3xl la-font-bold la-text-primary la-leading-tight la-mb-2">Είσοδος</h1>
+          <p className="la-text-base la-text-secondary la-leading-normal">Συνδεθείτε στο λογαριασμό σας</p>
         </div>
 
         <form className="space-y-6">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="email" className="la-form-label la-text-sm la-font-medium la-text-primary">
               Email
             </label>
             <input
               type="email"
               id="email"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="la-form-input"
               placeholder="example@email.com"
             />
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="password" className="la-form-label la-text-sm la-font-medium la-text-primary">
               Κωδικός
             </label>
             <input
               type="password"
               id="password"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="la-form-input"
               placeholder="Εισάγετε τον κωδικό σας"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
+            className="w-full py-2 px-4 rounded-lg la-btn-primary"
           >
             Είσοδος
           </button>
         </form>
 
-        <div className="mt-6 text-center">
-          <p className="text-gray-600">
+        <div className="la-mt-6 text-center">
+          <p className="la-text-secondary">
             Δεν έχετε λογαριασμό;{' '}
-            <a href="#" className="text-blue-600 hover:text-blue-700">
+            <a href="#" className="la-text-primary la-transition-opacity la-hover-opacity">
               Εγγραφείτε εδώ
             </a>
           </p>
         </div>
 
-        <div className="mt-8 text-center">
-          <Link to="/" className="text-blue-600 hover:text-blue-700">
+        <div className="la-mt-8 text-center">
+          <Link to="/" className="la-text-primary la-transition-opacity la-hover-opacity">
             ← Επιστροφή στην Αρχική
           </Link>
         </div>

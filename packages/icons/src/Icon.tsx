@@ -10,13 +10,13 @@ import { BaseIconProps, IconSize, IconVariant, IconTheme } from './types';
 // 🏢 ENTERPRISE ARCHITECTURE - 100% SSOT Tokens με fallback
 const ENTERPRISE_TOKENS = {
   sizes: {
-    xs: 16, // 1rem = 16px από SSOT
-    sm: 16, // 16px από SSOT
-    md: 20, // 1.25rem = 20px από SSOT
-    lg: 32, // 32px από SSOT
-    xl: 32, // Same as lg (no xl in SSOT)
-    xxl: 48, // 48px από SSOT
-    xxxl: 64 // 64px από SSOT
+    xs: 'var(--la-icon-xs)', // CSS Variable από SSOT
+    sm: 'var(--la-icon-smBase)', // CSS Variable από SSOT
+    md: 'var(--la-icon-md)', // CSS Variable από SSOT
+    lg: 'var(--la-icon-lg)', // CSS Variable από SSOT
+    xl: 'var(--la-icon-xl)', // CSS Variable από SSOT
+    xxl: 'var(--la-icon-xxl)', // CSS Variable από SSOT
+    xxxl: 'var(--la-icon-xxxl)' // CSS Variable από SSOT
   },
   strokes: {
     thin: 1,    // από SSOT
@@ -25,58 +25,58 @@ const ENTERPRISE_TOKENS = {
     bold: 2.5     // από SSOT
   },
   colors: {
-    primary: '#7c3aed',   // από SSOT
-    secondary: '#6b7280', // από SSOT
-    success: '#10b981',   // από SSOT
-    warning: '#f59e0b',   // από SSOT
-    danger: '#ef4444',     // από SSOT
-    info: '#3b82f6',         // από SSOT
-    neutral: '#6b7280'    // από SSOT
+    primary: 'var(--la-icon-colorPrimary)',   // CSS Variable από SSOT
+    secondary: 'var(--la-icon-colorSecondary)', // CSS Variable από SSOT
+    success: 'var(--la-icon-colorSuccess)',   // CSS Variable από SSOT
+    warning: 'var(--la-icon-colorWarning)',   // CSS Variable από SSOT
+    danger: 'var(--la-icon-colorDanger)',     // CSS Variable από SSOT
+    info: 'var(--la-icon-colorInfo)',         // CSS Variable από SSOT
+    neutral: 'var(--la-icon-colorNeutral)'    // CSS Variable από SSOT
   },
   // 🌙 Dark theme colors
   darkColors: {
-    primary: '#a78bfa',
-    secondary: '#9ca3af',
-    neutral: '#9ca3af',
-    success: '#34d399',
-    warning: '#fbbf24',
-    danger: '#f87171',
-    info: '#60a5fa'
+    primary: 'var(--la-iconAdvanced-theming-darkPrimary)',
+    secondary: 'var(--la-iconAdvanced-theming-darkSecondary)',
+    neutral: 'var(--la-iconAdvanced-theming-darkNeutral)',
+    success: 'var(--la-iconAdvanced-theming-darkSuccess)',
+    warning: 'var(--la-iconAdvanced-theming-darkWarning)',
+    danger: 'var(--la-iconAdvanced-theming-darkDanger)',
+    info: 'var(--la-iconAdvanced-theming-darkInfo)'
   },
   // 🎯 Interactive states
   interactive: {
     opacity: {
-      default: 1,
-      hover: 0.8,
-      active: 0.6,
-      disabled: 0.4
+      default: 'var(--la-iconAdvanced-interactive-opacity-default)',
+      hover: 'var(--la-iconAdvanced-interactive-opacity-hover)',
+      active: 'var(--la-iconAdvanced-interactive-opacity-active)',
+      disabled: 'var(--la-iconAdvanced-interactive-opacity-disabled)'
     },
     scale: {
-      default: 1,
-      hover: 1.1,
-      active: 0.95
+      default: 'var(--la-iconAdvanced-interactive-scale-default)',
+      hover: 'var(--la-iconAdvanced-interactive-scale-hover)',
+      active: 'var(--la-iconAdvanced-interactive-scale-active)'
     },
     transition: {
-      fast: '0.1s ease-out',
-      normal: '0.2s ease-out',
-      slow: '0.3s ease-out'
+      fast: 'var(--la-iconAdvanced-interactive-transition-fast)',
+      normal: 'var(--la-iconAdvanced-interactive-transition-normal)',
+      slow: 'var(--la-iconAdvanced-interactive-transition-slow)'
     }
   },
   // ♿ Accessibility
   accessibility: {
     focusRing: {
-      width: '2px',
-      color: '#3b82f6'
+      width: 'var(--la-iconAdvanced-accessibility-focusRing-width)',
+      color: 'var(--la-iconAdvanced-accessibility-focusRing-color)'
     },
     contrast: {
-      normal: 4.5,
-      large: 3
+      normal: 'var(--la-iconAdvanced-accessibility-contrast-normal)',
+      large: 'var(--la-iconAdvanced-accessibility-contrast-large)'
     }
   },
   // 📱 Touch targets
   touchTarget: {
-    mobile: 44,
-    desktop: 32
+    mobile: 'var(--la-iconAdvanced-sizing-touchTargetMobile)',
+    desktop: 'var(--la-iconAdvanced-sizing-touchTargetDesktop)'
   }
 };
 
@@ -150,7 +150,7 @@ export const Icon: React.FC<IconProps> = ({
   name,
   size = 'md',
   variant = 'light', // SST default από design tokens
-  theme = 'neutral',
+  theme = 'primary',
   className = '',
   style,
   onClick,
@@ -167,15 +167,15 @@ export const Icon: React.FC<IconProps> = ({
   transition = 'normal',
   ...props
 }) => {
-  // 🏢 Enterprise size calculation με touch target support
-  let iconSize = typeof size === 'number' ? size : ICON_SIZES[size];
+  // 🏢 Enterprise size calculation με CSS Variables SSOT
+  const iconSize = typeof size === 'number' ? `${size}px` : ICON_SIZES[size];
 
-  // Touch target override
-  if (onClick && touchTarget === 'mobile') {
-    iconSize = Math.max(iconSize, ENTERPRISE_TOKENS.touchTarget.mobile);
-  } else if (onClick && touchTarget === 'desktop') {
-    iconSize = Math.max(iconSize, ENTERPRISE_TOKENS.touchTarget.desktop);
-  }
+  // Touch target με CSS calc() για enterprise support
+  const minTouchTarget = onClick && touchTarget === 'mobile'
+    ? `max(${iconSize}, var(--la-iconAdvanced-sizing-touchTargetMobile))`
+    : onClick && touchTarget === 'desktop'
+    ? `max(${iconSize}, var(--la-iconAdvanced-sizing-touchTargetDesktop))`
+    : iconSize;
 
   // 🌙 Dark mode color calculation
   const colorTheme = darkMode ? ENTERPRISE_TOKENS.darkColors : ENTERPRISE_TOKENS.colors;
@@ -191,8 +191,8 @@ export const Icon: React.FC<IconProps> = ({
 
   // 🏢 Enterprise final style με όλα τα advanced features
   const finalStyle: React.CSSProperties = {
-    width: iconSize,
-    height: iconSize,
+    width: minTouchTarget,
+    height: minTouchTarget,
     color: color,
     opacity: currentOpacity,
     display: 'inline-block',
@@ -205,8 +205,8 @@ export const Icon: React.FC<IconProps> = ({
     outline: focusable ? `${ENTERPRISE_TOKENS.accessibility.focusRing.width} solid transparent` : 'none',
     outlineOffset: ENTERPRISE_TOKENS.accessibility.focusRing.width,
     // 📱 Touch targets
-    minWidth: onClick ? iconSize : 'auto',
-    minHeight: onClick ? iconSize : 'auto',
+    minWidth: onClick ? minTouchTarget : 'auto',
+    minHeight: onClick ? minTouchTarget : 'auto',
     ...style
   };
 

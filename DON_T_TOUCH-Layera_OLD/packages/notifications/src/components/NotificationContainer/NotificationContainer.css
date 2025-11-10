@@ -1,0 +1,85 @@
+/**
+ * @layera/notifications - NotificationContainer Component Styles
+ *
+ * Enterprise CSS για notification container system.
+ * Consistent με Layera design tokens.
+ */
+
+/* Base Container */
+.la-notification-container {
+  position: fixed;
+  z-index: var(--la-z-index-modal);
+  display: flex;
+  flex-direction: column;
+  gap: var(--la-space-2);
+  pointer-events: none;
+}
+
+.la-notification-container > * {
+  pointer-events: auto;
+}
+
+/* Position Variants */
+.la-notification-container-top-left {
+  top: var(--la-space-6);
+  left: var(--la-space-6);
+}
+
+.la-notification-container-top-center {
+  top: var(--la-space-6);
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
+}
+
+.la-notification-container-top-right {
+  top: var(--la-space-6);
+  right: var(--la-space-6);
+  align-items: flex-end;
+}
+
+.la-notification-container-bottom-left {
+  bottom: var(--la-space-6);
+  left: var(--la-space-6);
+  flex-direction: column-reverse;
+}
+
+.la-notification-container-bottom-center {
+  bottom: var(--la-space-6);
+  left: 50%;
+  transform: translateX(-50%);
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.la-notification-container-bottom-right {
+  bottom: var(--la-space-6);
+  right: var(--la-space-6);
+  flex-direction: column-reverse;
+  align-items: flex-end;
+}
+
+/* Mobile Responsiveness */
+@media (width <= 40rem) {
+  .la-notification-container-top-left,
+  .la-notification-container-bottom-left {
+    left: var(--la-space-2);
+  }
+
+  .la-notification-container-top-right,
+  .la-notification-container-bottom-right {
+    right: var(--la-space-2);
+  }
+
+  .la-notification-container-top-left,
+  .la-notification-container-top-center,
+  .la-notification-container-top-right {
+    top: var(--la-space-2);
+  }
+
+  .la-notification-container-bottom-left,
+  .la-notification-container-bottom-center,
+  .la-notification-container-bottom-right {
+    bottom: var(--la-space-2);
+  }
+}

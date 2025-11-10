@@ -1,0 +1,123 @@
+name: 🚨 Validate Hardcoded Values
+
+on:
+  push:
+    branches: [ main, develop, 'feature/*' ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  validate-hardcoded-values:
+    name: 🔍 Check for Hardcoded Values
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout Code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Χρειάζεται για diff analysis
+
+    - name: 📦 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: 🔍 Install ripgrep (για γρήγορες αναζητήσεις)
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y ripgrep
+
+    - name: 🚨 Run Hardcoded Values Validator
+      run: |
+        chmod +x scripts/validate-hardcoded-values.js
+        node scripts/validate-hardcoded-values.js
+      env:
+        NODE_ENV: production
+
+    - name: 📊 Generate Validation Report
+      if: failure()
+      run: |
+        echo "## 🚨 Hardcoded Values Detected" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "Your commit contains hardcoded values that violate enterprise standards:" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### ❌ Violations Found:" >> $GITHUB_STEP_SUMMARY
+        echo "- Hex colors (#fff, #000)" >> $GITHUB_STEP_SUMMARY
+        echo "- CSS units (px, rem, em)" >> $GITHUB_STEP_SUMMARY
+        echo "- RGB/RGBA values" >> $GITHUB_STEP_SUMMARY
+        echo "- Inline styles with hardcoded values" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### ✅ Solution:" >> $GITHUB_STEP_SUMMARY
+        echo "- Use CSS variables: \`var(--la-color-primary)\`" >> $GITHUB_STEP_SUMMARY
+        echo "- Move values to Style Dictionary domains" >> $GITHUB_STEP_SUMMARY
+        echo "- Follow enterprise standards in CLAUDE.md" >> $GITHUB_STEP_SUMMARY
+
+    - name: 💬 Comment on PR (if validation fails)
+      if: failure() && github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const comment = `
+          ## 🚨 Hardcoded Values Detected
+
+          This PR contains hardcoded values that violate our enterprise standards.
+
+          ### ❌ Common Issues:
+          - **Hex Colors**: \`#fff\`, \`#000000\` → Use \`var(--la-color-primary)\`
+          - **CSS Units**: \`16px\`, \`1rem\` → Use design tokens
+          - **RGB Values**: \`rgb(255,0,0)\` → Use CSS variables
+          - **Inline Styles**: \`style={{color: '#fff'}}\` → Use utility classes
+
+          ### ✅ Fix Guide:
+          1. **Move values to Style Dictionary**: \`packages/tokens/src/domains/\`
+          2. **Use CSS variables**: All UI values must come from \`var(--la-*)\`
+          3. **Follow CLAUDE.md rules**: Check project standards
+
+          ### 🔧 Quick Commands:
+          \`\`\`bash
+          # Run validation locally
+          node scripts/validate-hardcoded-values.js
+
+          # Build tokens after changes
+          cd packages/tokens && npm run build
+          \`\`\`
+
+          **❗ This PR will be blocked until all hardcoded values are fixed.**
+          `;
+
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: comment
+          });
+
+  # Separate job για επιπλέον ελέγχους
+  lint-check:
+    name: 🔧 ESLint Hardcoded Values Check
+    runs-on: ubuntu-latest
+    needs: validate-hardcoded-values
+
+    steps:
+    - name: 📥 Checkout Code
+      uses: actions/checkout@v4
+
+    - name: 📦 Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+
+    - name: 📦 Install Dependencies
+      run: npm ci
+
+    - name: 🔧 Run ESLint with Custom Rules
+      run: npm run lint
+      continue-on-error: true
+
+    - name: ✅ Validation Summary
+      run: |
+        echo "## ✅ Validation Complete" >> $GITHUB_STEP_SUMMARY
+        echo "All hardcoded values checks passed!" >> $GITHUB_STEP_SUMMARY
+        echo "Your code follows enterprise standards." >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,63 @@
+/* FormActions Styles */
+.la-form-actions {
+  margin-top: var(--la-space-lg);
+  padding-top: var(--la-space-md);
+  border-top: 0.063rem solid var(--la-color-border-primary);
+}
+
+.la-form-actions-content {
+  display: flex;
+  align-items: center;
+  gap: var(--la-space-sm);
+  flex-wrap: wrap;
+}
+
+/* Alignment options */
+.la-form-actions-left .la-form-actions-content {
+  justify-content: flex-start;
+}
+
+.la-form-actions-center .la-form-actions-content {
+  justify-content: center;
+}
+
+.la-form-actions-right .la-form-actions-content {
+  justify-content: flex-end;
+}
+
+.la-form-actions-space-between .la-form-actions-content {
+  justify-content: space-between;
+}
+
+/* Sticky actions */
+.la-form-actions-sticky {
+  position: sticky;
+  bottom: var(--la-bottom-0);
+  background: var(--la-color-background-primary);
+  border-top: 0.063rem solid var(--la-color-border-primary);
+  box-shadow: var(--la-shadow-lg);
+  z-index: var(--la-z-sticky);
+  margin-top: var(--la-space-xl);
+  margin-left: calc(-1 * var(--la-space-lg));
+  margin-right: calc(-1 * var(--la-space-lg));
+  padding: var(--la-space-md) var(--la-space-lg);
+}
+
+/* Responsive adjustments */
+@media (width <= 48rem) {
+  .la-form-actions-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .la-form-actions-space-between .la-form-actions-content {
+    flex-direction: column;
+    justify-content: stretch;
+  }
+
+  .la-form-actions-sticky {
+    margin-left: calc(-1 * var(--la-space-md));
+    margin-right: calc(-1 * var(--la-space-md));
+    padding: var(--la-space-sm) var(--la-space-md);
+  }
+}

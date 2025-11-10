@@ -1,0 +1,23 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isVerified() { return request.auth.token.email_verified == true; }
+    function role(r) { return request.auth.token.role == r; }
+    function hasMfa() { return request.auth.token.mfa == true; }
+
+    match /users/{uid} {
+      allow read: if isVerified() && request.auth.uid == uid;
+      allow write: if isVerified() && request.auth.uid == uid;
+    }
+
+    // Παραδείγματα συλλογών που απαιτούν επαγγελματίες + 2FA για write
+    match /projects/{id} {
+      allow read:  if isVerified();
+      allow write: if isVerified() && hasMfa() && (role('admin') || role('broker') || role('builder'));
+    }
+
+    match /admin/{document=**} {
+      allow read, write: if isVerified() && hasMfa() && role('admin');
+    }
+  }
+}

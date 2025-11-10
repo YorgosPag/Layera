@@ -1,0 +1,186 @@
+/**
+ * @layera/notifications - Alert Component Styles
+ *
+ * Enterprise CSS για alert notification system.
+ * Consistent με Layera design tokens.
+ */
+
+/* Base Alert */
+.la-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--la-space-3);
+  padding: var(--la-space-4);
+  border: var(--la-border-width-1) solid;
+  border-radius: var(--la-radius-md);
+  font-size: var(--la-font-size-sm);
+  line-height: var(--la-line-height-normal);
+}
+
+/* Type Variants */
+.la-alert-info {
+  background-color: var(--la-color-info-light);
+  border-color: var(--la-color-info);
+  color: var(--la-color-info-dark);
+}
+
+.la-alert-success {
+  background-color: var(--la-color-success-light);
+  border-color: var(--la-color-success);
+  color: var(--la-color-success-dark);
+}
+
+.la-alert-warning {
+  background-color: var(--la-color-warning-light);
+  border-color: var(--la-color-warning);
+  color: var(--la-color-warning-dark);
+}
+
+.la-alert-error {
+  background-color: var(--la-color-error-light);
+  border-color: var(--la-color-error);
+  color: var(--la-color-error-dark);
+}
+
+/* Alert Icon */
+.la-alert-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: var(--la-size-0);
+  width: var(--la-space-6);
+  height: var(--la-space-6);
+  margin-top: var(--la-space-1);
+}
+
+/* Icon Colors */
+.la-alert-info .la-alert-icon {
+  color: var(--la-color-info);
+}
+
+.la-alert-success .la-alert-icon {
+  color: var(--la-color-success);
+}
+
+.la-alert-warning .la-alert-icon {
+  color: var(--la-color-warning);
+}
+
+.la-alert-error .la-alert-icon {
+  color: var(--la-color-error);
+}
+
+/* Alert Content */
+.la-alert-content {
+  flex: 1;
+  min-width: var(--la-size-0);
+}
+
+.la-alert-title {
+  font-weight: var(--la-font-weight-semibold);
+  margin: 0 0 var(--la-space-1) 0;
+  color: var(--la-color-text-primary);
+}
+
+.la-alert-description {
+  margin: var(--la-size-0);
+  color: var(--la-color-text-primary);
+}
+
+/* Close Button */
+.la-alert-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--la-space-6);
+  height: var(--la-space-6);
+  padding: var(--la-space-3);
+  border: 0.063rem solid var(--la-color-text-primary);
+  border-radius: var(--la-radius-sm);
+  background-color: var(--la-color-transparent);
+  font-size: var(--la-font-size-sm);
+  line-height: var(--la-line-height-tight);
+  color: var(--la-color-text-primary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin-top: var(--la-space-1);
+  flex-shrink: var(--la-size-0);
+}
+
+.la-alert-close:hover {
+  background-color: var(--la-color-surface-secondary);
+}
+
+/* Additional Close Button */
+.la-alert-dismiss {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--la-space-6);
+  height: var(--la-space-6);
+  margin-left: var(--la-space-3);
+  border-radius: var(--la-radius-xs);
+  background-color: var(--la-color-transparent);
+  color: var(--la-color-text-primary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 0;
+  padding: 0;
+  flex-shrink: var(--la-size-0);
+}
+
+.la-alert-dismiss:hover {
+  background-color: var(--la-color-surface-secondary);
+}
+
+/* Action Variants */
+.la-alert-action {
+  margin-top: var(--la-space-2);
+}
+
+/* Dark Theme Variants */
+@media (prefers-color-scheme: dark) {
+  .la-alert-info {
+    background-color: var(--la-color-info-light);
+    border-color: var(--la-color-info);
+    color: var(--la-color-info-dark);
+  }
+
+  .la-alert-success {
+    background-color: var(--la-color-success-light);
+    border-color: var(--la-color-success);
+    color: var(--la-color-success-dark);
+  }
+
+  .la-alert-warning {
+    background-color: var(--la-color-warning-light);
+    border-color: var(--la-color-warning);
+    color: var(--la-color-warning-dark);
+  }
+
+  .la-alert-error {
+    background-color: var(--la-color-error-light);
+    border-color: var(--la-color-error);
+    color: var(--la-color-error-dark);
+  }
+
+  .la-alert-close:hover,
+  .la-alert-dismiss:hover {
+    background-color: var(--la-color-surface-secondary);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .la-alert-close,
+  .la-alert-dismiss {
+    transition: none;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: more) {
+  .la-alert {
+    border-width: 0.125rem;
+  }
+}

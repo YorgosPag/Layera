@@ -1,0 +1,196 @@
+/**
+ * Layera Dialog - Styles
+ */
+
+.la-dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--la-space-4);
+}
+
+.la-dialog-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--la-space-12);
+  height: var(--la-space-12);
+  border-radius: var(--la-radius-full);
+  margin-bottom: var(--la-space-3);
+}
+
+.la-dialog-icon {
+  width: var(--la-space-6);
+  height: var(--la-space-6);
+}
+
+.la-dialog-icon-info {
+  color: var(--la-color-brand);
+}
+
+.la-dialog-icon-success {
+  color: var(--la-color-brand);
+}
+
+.la-dialog-icon-warning {
+  color: var(--la-color-brand);
+}
+
+.la-dialog-icon-error {
+  color: var(--la-color-brand);
+}
+
+.la-dialog-icon-question {
+  color: var(--la-color-brand);
+}
+
+/* Icon backgrounds */
+.la-dialog-info .la-dialog-icon-container {
+  background-color: var(--la-color-surface-secondary);
+}
+
+.la-dialog-success .la-dialog-icon-container {
+  background-color: var(--la-color-surface-secondary);
+}
+
+.la-dialog-warning .la-dialog-icon-container {
+  background-color: var(--la-color-surface-secondary);
+}
+
+.la-dialog-error .la-dialog-icon-container {
+  background-color: var(--la-color-surface-secondary);
+}
+
+.la-dialog-question .la-dialog-icon-container {
+  background-color: var(--la-color-surface-secondary);
+}
+
+.la-dialog-message {
+  margin: var(--la-size-0);
+  font-size: var(--la-font-size-base);
+  line-height: var(--la-line-height-normal);
+  color: var(--la-color-text-primary);
+  max-width: var(--la-space-96);
+}
+
+.la-dialog-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Button styles */
+.la-dialog-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--la-space-2);
+  height: var(--la-space-10);
+  padding: 0 1rem;
+  border: 0.063rem solid var(--la-color-transparent);
+  border-radius: var(--la-radius-md);
+  font-size: var(--la-font-size-sm);
+  font-weight: 500;
+  line-height: var(--la-line-height-tight);
+  cursor: pointer;
+  transition: all 150ms ease;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.la-dialog-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.la-dialog-button-ghost {
+  background-color: var(--la-color-transparent);
+  border-color: var(--la-color-border-primary);
+  color: var(--la-color-text-secondary);
+}
+
+.la-dialog-button-ghost:hover:not(:disabled) {
+  background-color: var(--la-color-surface-secondary);
+  border-color: var(--la-color-text-primary);
+  color: var(--la-color-text-primary);
+}
+
+.la-dialog-button-primary {
+  background-color: var(--la-color-brand);
+  color: var(--la-color-text-on-brand);
+}
+
+.la-dialog-button-primary:hover:not(:disabled) {
+  background-color: var(--la-color-brand);
+}
+
+.la-dialog-button-success {
+  background-color: var(--la-color-brand);
+  color: var(--la-color-text-on-brand);
+}
+
+.la-dialog-button-success:hover:not(:disabled) {
+  background-color: var(--la-color-brand);
+}
+
+.la-dialog-button-warning {
+  background-color: var(--la-color-brand);
+  color: var(--la-color-text-on-brand);
+}
+
+.la-dialog-button-warning:hover:not(:disabled) {
+  background-color: var(--la-color-brand);
+}
+
+.la-dialog-button-danger {
+  background-color: var(--la-color-brand);
+  color: var(--la-color-text-on-brand);
+}
+
+.la-dialog-button-danger:hover:not(:disabled) {
+  background-color: var(--la-color-brand);
+}
+
+.la-dialog-spinner {
+  animation: layera-dialog-spin 1s linear infinite;
+}
+
+@keyframes layera-dialog-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dark theme support */
+[data-theme="dark"] .la-dialog-message {
+  color: var(--la-color-text-primary);
+}
+
+[data-theme="dark"] .la-dialog-button-ghost {
+  border-color: var(--la-color-text-tertiary);
+  color: var(--la-color-text-secondary);
+}
+
+[data-theme="dark"] .la-dialog-button-ghost:hover:not(:disabled) {
+  background-color: var(--la-color-surface-secondary);
+  border-color: var(--la-color-text-primary);
+  color: var(--la-color-text-primary);
+}
+
+/* Mobile responsiveness */
+@media (width <= 40rem) {
+  .la-dialog-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .la-dialog-button {
+    width: 100%;
+  }
+}

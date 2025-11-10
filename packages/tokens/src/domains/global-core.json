@@ -1,0 +1,97 @@
+{
+  "global": {
+    "comment": "🌐 Global Base Tokens - Enterprise Foundation",
+    "reset": {
+      "comment": "CSS Reset and base styles",
+      "margin": {
+        "value": "0",
+        "comment": "Reset margin for all elements"
+      },
+      "padding": {
+        "value": "0",
+        "comment": "Reset padding for all elements"
+      }
+    },
+    "layout": {
+      "comment": "Layout foundation tokens",
+      "minWidth": {
+        "value": "320px",
+        "comment": "Minimum width for mobile"
+      },
+      "minHeight": {
+        "value": "100vh",
+        "comment": "Full viewport height"
+      },
+      "display": {
+        "flex": {
+          "value": "flex",
+          "comment": "Flexbox layout"
+        }
+      },
+      "placeItems": {
+        "center": {
+          "value": "center",
+          "comment": "Center items in grid/flex"
+        }
+      }
+    },
+    "fontFamily": {
+      "comment": "Enterprise font families",
+      "system": {
+        "value": "system-ui, -apple-system, sans-serif",
+        "comment": "System font stack for performance"
+      },
+      "inter": {
+        "value": "'Inter', system-ui, -apple-system, sans-serif",
+        "comment": "Inter font with fallbacks"
+      }
+    },
+    "fontImport": {
+      "comment": "Font import declarations",
+      "inter": {
+        "value": "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');",
+        "comment": "Google Fonts Inter import"
+      }
+    },
+    "textDecoration": {
+      "comment": "Text decoration tokens",
+      "inherit": {
+        "value": "inherit",
+        "comment": "Inherit parent decoration"
+      },
+      "none": {
+        "value": "none",
+        "comment": "No text decoration"
+      }
+    },
+    "cursor": {
+      "comment": "Cursor interaction tokens",
+      "pointer": {
+        "value": "pointer",
+        "comment": "Pointer cursor for interactive elements"
+      },
+      "default": {
+        "value": "default",
+        "comment": "Default cursor"
+      }
+    },
+    "transition": {
+      "comment": "Animation and transition tokens",
+      "border": {
+        "value": "border-color 0.15s ease-in-out",
+        "comment": "Smooth border color transitions"
+      },
+      "color": {
+        "value": "color 0.15s ease-in-out",
+        "comment": "Smooth color transitions"
+      }
+    },
+    "outline": {
+      "comment": "Focus outline tokens",
+      "focus": {
+        "value": "2px auto -webkit-focus-ring-color",
+        "comment": "Standard focus outline"
+      }
+    }
+  }
+}

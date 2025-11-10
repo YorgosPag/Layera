@@ -1,0 +1,186 @@
+/**
+ * @layera/forms - TextArea Component Styles
+ *
+ * Enterprise CSS για textarea system.
+ * Consistent με Layera design tokens.
+ */
+
+/* Base TextArea Wrapper */
+.la-textarea-wrapper {
+  position: relative;
+  display: inline-flex;
+  background: var(--la-color-surface);
+  border: 0.063rem solid var(--la-color-border-primary);
+  border-radius: var(--la-radius-md);
+  transition: all 0.15s ease;
+}
+
+/* Base TextArea */
+.la-textarea {
+  flex: 1;
+  border: none;
+  background: var(--la-color-transparent);
+  outline: none;
+  font-family: var(--la-font-family-base);
+  font-size: var(--la-font-size-base);
+  color: var(--la-color-text-primary);
+  padding: var(--la-space-3) var(--la-space-4);
+  transition: all 0.15s ease;
+  line-height: var(--la-line-height-normal);
+  resize: vertical;
+}
+
+.la-textarea::placeholder {
+  color: var(--la-color-text-tertiary);
+}
+
+/* Resize Options */
+.la-textarea-resize-none {
+  resize: none;
+}
+
+.la-textarea-resize-vertical {
+  resize: vertical;
+}
+
+.la-textarea-resize-horizontal {
+  resize: horizontal;
+}
+
+.la-textarea-resize-both {
+  resize: both;
+}
+
+/* Size Variants */
+.la-textarea-sm,
+.la-textarea-wrapper-sm .la-textarea {
+  padding: var(--la-space-2) var(--la-space-3);
+  font-size: var(--la-font-size-sm);
+  line-height: var(--la-line-height-tight);
+}
+
+.la-textarea-wrapper-sm {
+  border-radius: var(--la-radius-sm);
+}
+
+.la-textarea-lg,
+.la-textarea-wrapper-lg .la-textarea {
+  padding: var(--la-space-4) var(--la-space-5);
+  font-size: var(--la-font-size-lg);
+  line-height: var(--la-line-height-relaxed);
+}
+
+.la-textarea-wrapper-lg {
+  border-radius: var(--la-radius-lg);
+}
+
+/* Style Variants */
+.la-textarea-wrapper-outline {
+  background: var(--la-color-transparent);
+  border: 0.125rem solid var(--la-color-border-primary);
+}
+
+.la-textarea-wrapper-filled {
+  background: var(--la-color-surface-secondary);
+  border: 0.063rem solid var(--la-color-transparent);
+}
+
+.la-textarea-wrapper-ghost {
+  background: var(--la-color-transparent);
+  border: 0.063rem solid var(--la-color-transparent);
+}
+
+.la-textarea-wrapper-underline {
+  background: var(--la-color-transparent);
+  border: none;
+  border-bottom: 0.125rem solid var(--la-color-border-primary);
+  border-radius: var(--la-radius-none);
+}
+
+/* Focus States */
+.la-textarea-wrapper:focus-within {
+  border-color: var(--la-color-brand);
+  box-shadow: var(--la-shadow-focus);
+}
+
+/* State Variants */
+.la-textarea-wrapper-error {
+  border-color: var(--la-color-error);
+}
+
+.la-textarea-wrapper-error:focus-within {
+  border-color: var(--la-color-error);
+  box-shadow: var(--la-shadow-error);
+}
+
+.la-textarea-wrapper-success {
+  border-color: var(--la-color-success);
+}
+
+.la-textarea-wrapper-success:focus-within {
+  border-color: var(--la-color-success);
+  box-shadow: var(--la-shadow-success);
+}
+
+.la-textarea-wrapper-warning {
+  border-color: var(--la-color-warning);
+}
+
+.la-textarea-wrapper-warning:focus-within {
+  border-color: var(--la-color-warning);
+  box-shadow: var(--la-shadow-warning);
+}
+
+.la-textarea-wrapper-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: var(--la-color-surface-disabled);
+}
+
+.la-textarea-disabled {
+  cursor: not-allowed;
+  color: var(--la-color-text-disabled);
+}
+
+/* Layout Options */
+.la-textarea-wrapper-full-width {
+  width: 100%;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .la-textarea-wrapper:focus-within {
+    box-shadow: var(--la-shadow-focus);
+  }
+
+  .la-textarea-wrapper-error:focus-within {
+    box-shadow: var(--la-shadow-error);
+  }
+
+  .la-textarea-wrapper-success:focus-within {
+    box-shadow: var(--la-shadow-success);
+  }
+
+  .la-textarea-wrapper-warning:focus-within {
+    box-shadow: var(--la-shadow-warning);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .la-textarea-wrapper,
+  .la-textarea {
+    transition: none;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: more) {
+  .la-textarea-wrapper {
+    border-width: 0.125rem;
+  }
+
+  .la-textarea-wrapper-outline {
+    border-width: 0.1875rem;
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "name": "layera",
+  "version": "1.0.0",
+  "description": "Layera Enterprise Authentication Platform - Monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "functions"
+  ],
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "npm run dev --workspace=@layera/layera-id",
+    "dev:geoalert": "npm run dev --workspace=@layera/geoalert",
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "lint:css": "stylelint \"**/*.{css,scss}\"",
+    "policy:check": "echo '✅ TIER 1 Rules handled by pre-commit hooks'",
+    "dup:check": "jscpd --pattern \"**/*.{ts,tsx,js,jsx,css,scss}\" -t 0 --ignore \"**/dist/**,**/node_modules/**,packages/tokens/**,packages/styles/**,**/*.svg\"",
+    "enterprise:validate": "node validate-duplicates.js",
+    "enterprise:protocol": "echo '📋 DUPLICATE_PREVENTION_PROTOCOL.md enforced by pre-commit hooks'",
+    "verify": "npm run typecheck && npm run lint && npm run policy:check && npm run dup:check && npm run enterprise:validate",
+    "clean": "npm run clean --workspaces --if-present && rimraf node_modules",
+    "fresh-install": "npm run clean && npm install",
+    "prepare": "husky",
+    "imports:check": "pnpm -w exec depcruise --config .dependency-cruiser.cjs --include-only \"^(apps|packages)/\" ."
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.7",
+    "@microsoft/api-extractor": "^7.53.3",
+    "@rollup/rollup-win32-x64-msvc": "^4.52.5",
+    "dependency-cruiser": "^17.1.0",
+    "eslint-plugin-import": "^2.32.0",
+    "gitleaks": "^1.0.0",
+    "husky": "^9.1.7",
+    "jscpd": "^4.0.5",
+    "lint-staged": "^16.2.6",
+    "rimraf": "^6.0.1",
+    "stylelint": "^16.25.0",
+    "stylelint-config-standard": "^39.0.1",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "keywords": [
+    "monorepo",
+    "authentication",
+    "rbac",
+    "mfa",
+    "firebase",
+    "enterprise"
+  ],
+  "author": "Layera Team",
+  "license": "ISC"
+}

@@ -1,0 +1,207 @@
+/**
+ * @layera/notifications - Toast Component Styles
+ *
+ * Enterprise CSS για toast notification system.
+ * Consistent με Layera design tokens.
+ */
+
+/* Base Toast */
+.la-toast {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--la-space-3);
+  width: var(--la-size-96);
+  max-width: calc(100vw - var(--la-space-8));
+  padding: var(--la-space-4);
+  background-color: var(--la-color-surface);
+  border: var(--la-border-width-1) solid var(--la-color-border-primary);
+  border-radius: var(--la-radius-lg);
+  box-shadow: var(--la-shadow-lg);
+  transition: all 0.2s ease;
+}
+
+/* Toast Content */
+.la-toast-content {
+  flex: 1;
+  min-width: var(--la-size-0);
+}
+
+/* Toast Icon */
+.la-toast-icon {
+  flex-shrink: var(--la-size-0);
+  width: var(--la-space-5);
+  height: var(--la-space-5);
+  margin-top: var(--la-space-1);
+}
+
+/* Type Variants */
+.la-toast-info {
+  border-left: var(--la-border-width-3) solid var(--la-color-brand);
+}
+
+.la-toast-info .la-toast-icon {
+  color: var(--la-color-brand);
+}
+
+.la-toast-success {
+  border-left: var(--la-border-width-3) solid var(--la-color-success);
+}
+
+.la-toast-success .la-toast-icon {
+  color: var(--la-color-success);
+}
+
+.la-toast-warning {
+  border-left: var(--la-border-width-3) solid var(--la-color-warning);
+}
+
+.la-toast-warning .la-toast-icon {
+  color: var(--la-color-warning);
+}
+
+.la-toast-error {
+  border-left: var(--la-border-width-3) solid var(--la-color-error);
+}
+
+.la-toast-error .la-toast-icon {
+  color: var(--la-color-error);
+}
+
+/* Toast Title */
+.la-toast-title {
+  margin: 0 0 var(--la-space-1) 0;
+  font-size: var(--la-font-size-base);
+  font-weight: 600;
+  line-height: var(--la-line-height-normal);
+  color: var(--la-color-text-primary);
+}
+
+/* Toast Description */
+.la-toast-description {
+  margin: var(--la-size-0);
+  font-size: var(--la-font-size-base);
+  line-height: var(--la-line-height-normal);
+  color: var(--la-color-text-secondary);
+}
+
+/* Toast Actions */
+.la-toast-actions {
+  display: flex;
+  gap: var(--la-space-2);
+  margin-top: var(--la-space-3);
+}
+
+.la-toast-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--la-space-8);
+  padding: 0 var(--la-space-3);
+  border: var(--la-border-width-1) solid var(--la-color-border-primary);
+  border-radius: var(--la-radius-sm);
+  background-color: var(--la-color-transparent);
+  font-size: var(--la-font-size-base);
+  font-weight: 500;
+  color: var(--la-color-text-primary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.la-toast-action:hover {
+  background-color: var(--la-color-surface-secondary);
+  color: var(--la-color-text-primary);
+}
+
+/* Close Button */
+.la-toast-close {
+  position: absolute;
+  top: var(--la-space-2);
+  right: var(--la-space-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--la-space-6);
+  height: var(--la-space-6);
+  border: none;
+  border-radius: var(--la-radius-xs);
+  background-color: var(--la-color-transparent);
+  color: var(--la-color-text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.la-toast-close:hover {
+  background-color: var(--la-color-surface-secondary);
+  color: var(--la-color-text-primary);
+}
+
+/* Progress Bar */
+.la-toast-progress {
+  position: absolute;
+  bottom: var(--la-size-0);
+  left: var(--la-size-0);
+  height: var(--la-space-1);
+  background-color: var(--la-color-brand);
+  border-radius: var(--la-radius-sm);
+  transition: width 0.1s linear;
+}
+
+.la-toast-info .la-toast-progress {
+  background-color: var(--la-color-brand);
+}
+
+.la-toast-success .la-toast-progress {
+  background-color: var(--la-color-success);
+}
+
+.la-toast-warning .la-toast-progress {
+  background-color: var(--la-color-warning);
+}
+
+.la-toast-error .la-toast-progress {
+  background-color: var(--la-color-error);
+}
+
+/* Dark Theme Support */
+@media (prefers-color-scheme: dark) {
+  .la-toast {
+    background-color: var(--la-color-surface);
+    border-color: var(--la-color-border-primary);
+  }
+
+  .la-toast-title {
+    color: var(--la-color-text-primary);
+  }
+
+  .la-toast-description {
+    color: var(--la-color-text-secondary);
+  }
+}
+
+/* Mobile Responsiveness */
+@media (width <= 40rem) {
+  .la-toast {
+    width: calc(100vw - var(--la-space-6));
+    margin: 0 var(--la-space-3);
+  }
+
+  .la-toast-actions {
+    flex-direction: column;
+  }
+
+  .la-toast-action {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .la-toast,
+  .la-toast-action,
+  .la-toast-close,
+  .la-toast-progress {
+    transition: none;
+  }
+}

@@ -1,0 +1,11 @@
+/**
+ * @layera/forms CSS
+ * Import all form component styles
+ */
+
+@import url('../src/components/FormField/FormField.css');
+@import url('../src/components/Input/Input.css');
+@import url('../src/components/Select/Select.css');
+@import url('../src/components/FormSection/FormSection.css');
+@import url('../src/components/FormActions/FormActions.css');
+@import url('../src/components/TextArea/TextArea.css');

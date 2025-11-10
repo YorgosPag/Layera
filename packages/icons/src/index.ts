@@ -1,6 +1,9 @@
 // Layera Icons - Main Export File
 // Enterprise pattern: Centralized exports για όλο το icon system
 
+// 🎯 ENTERPRISE SSOT: Import design tokens CSS για icon colors
+import '@layera/tokens/css';
+
 // Core Components
 export { Icon } from './Icon';
 export type {

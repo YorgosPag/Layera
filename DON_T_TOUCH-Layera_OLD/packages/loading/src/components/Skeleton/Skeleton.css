@@ -1,0 +1,96 @@
+/**
+ * @layera/loading - Skeleton Component Styles
+ *
+ * Enterprise CSS για skeleton loading system.
+ * Consistent με Layera design tokens.
+ */
+
+/* Base Skeleton */
+.la-skeleton {
+  display: block;
+  background-color: var(--la-color-surface-secondary);
+  border-radius: var(--la-radius-md);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Shape Variants */
+.la-skeleton-text {
+  border-radius: var(--la-radius-sm);
+  height: 1em;
+}
+
+.la-skeleton-rectangular {
+  border-radius: var(--la-radius-md);
+}
+
+.la-skeleton-circular {
+  border-radius: var(--la-radius-full);
+  width: var(--la-space-10);
+  height: var(--la-space-10);
+}
+
+/* Animation Variants */
+.la-skeleton-wave {
+  background: linear-gradient(
+    90deg,
+    var(--la-color-surface-secondary),
+    var(--la-color-surface-tertiary),
+    var(--la-color-surface-secondary)
+  );
+  background-size: 200% 100%;
+  animation: la-skeleton-wave 1.5s ease-in-out infinite;
+}
+
+.la-skeleton-pulse {
+  animation: la-skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+/* Keyframe Animations */
+@keyframes la-skeleton-wave {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes la-skeleton-pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Dark Theme Support */
+@media (prefers-color-scheme: dark) {
+  .la-skeleton {
+    background-color: var(--la-color-surface-secondary);
+  }
+
+  .la-skeleton-wave {
+    background: linear-gradient(
+    90deg,
+    var(--la-color-surface-secondary),
+    var(--la-color-surface-tertiary),
+    var(--la-color-surface-secondary)
+  );
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .la-skeleton-wave,
+  .la-skeleton-pulse {
+    animation: none;
+  }
+}

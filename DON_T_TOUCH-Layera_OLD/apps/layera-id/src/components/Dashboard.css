@@ -1,0 +1,166 @@
+.dashboard-container {
+  min-height: 100vh;
+  background: var(--la-bg-secondary);
+}
+
+.dashboard-nav {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-brand h1 {
+  color: white;
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.language-switcher-nav {
+  background: var(--color-bg-surface-overlay-light);
+  color: white;
+  border: 1px solid var(--color-border-primary-overlay);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.language-switcher-nav:hover {
+  background: var(--color-bg-surface-overlay-medium);
+}
+
+.user-email {
+  color: white;
+  font-size: 14px;
+}
+
+.logout-button {
+  background: var(--color-bg-surface-overlay-light);
+  color: white;
+  border: 1px solid var(--color-border-primary-overlay);
+  padding: 8px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.logout-button:hover {
+  background: var(--color-bg-surface-overlay-medium);
+}
+
+.dashboard-content {
+  padding: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - 80px);
+}
+
+/* Legacy welcome-card removed - now using @layera/cards BaseCard */
+.welcome-card-replacement {
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+.user-info {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid var(--la-border-primary);
+}
+
+.user-info h3 {
+  color: var(--la-text-primary);
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.user-details {
+  background: var(--la-bg-tertiary);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.user-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--la-border-primary);
+  font-size: 14px;
+}
+
+.user-field:last-child {
+  border-bottom: none;
+}
+
+.user-field strong {
+  color: var(--la-text-secondary);
+  font-weight: 600;
+  min-width: 120px;
+}
+
+.status-verified {
+  color: #28a745;
+  font-weight: 500;
+}
+
+.status-unverified {
+  color: #dc3545;
+  font-weight: 500;
+}
+
+.dashboard-actions {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid var(--la-border-primary);
+}
+
+.dashboard-actions h3 {
+  color: var(--la-text-primary);
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+/* Legacy action-buttons removed - now using @layera/layout Stack */
+.action-buttons-replacement {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.action-button {
+  background: var(--la-bg-info);
+  color: var(--la-text-on-info);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legacy White Cards Pipeline - Live Exploration</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .step {
+            margin: 20px 0;
+            padding: 15px;
+            background: #ecf0f1;
+            border-left: 4px solid #3498db;
+            border-radius: 5px;
+        }
+        .step-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .tree {
+            font-family: 'Courier New', monospace;
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            white-space: pre;
+        }
+        .branch {
+            color: #3498db;
+        }
+        .card-info {
+            color: #e74c3c;
+        }
+        .pending {
+            color: #f39c12;
+            font-style: italic;
+        }
+        .completed {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .status {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status.exploring {
+            background: #f39c12;
+            color: white;
+        }
+        .status.found {
+            background: #27ae60;
+            color: white;
+        }
+        .status.pending {
+            background: #95a5a6;
+            color: white;
+        }
+        .update-time {
+            text-align: right;
+            color: #7f8c8d;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚶‍♂️ Legacy White Cards Pipeline - Live Exploration</h1>
+        <p><strong>Μέθοδος:</strong> Χειροκίνητη step-by-step εξερεύνηση με πραγματικό χρόνο ενημέρωση</p>
+        <p><strong>Στόχος:</strong> Καταγραφή κάθε βήματος, κάθε κάρτας, κάθε επιλογής όπως ακριβώς εμφανίζεται</p>
+        <p><strong>🔄 Αμφίδρομη σύνδεση με:</strong> <code>C:\layera\LEGACY_WHITE_CARDS_PIPELINE_GUIDE.md</code></p>
+        <p><strong>📊 Διανομή:</strong> Δενδροειδής οπτικοποίηση (εδώ) + Λεπτομερή κείμενα καρτών (MD αρχείο)</p>
+
+        <div class="step">
+            <div class="step-title">🌳 ΕΝΙΑΙΟ ΔΕΝΤΡΟ - Legacy White Cards Pipeline <span class="status found">ΟΛΟΚΛΗΡΩΘΗΚΕ</span></div>
+            <div class="tree">📁 ROOT PIPELINE - CategoryStep.tsx
+│
+├── 🏠 ΑΚΙΝΗΤΑ <span class="completed">✅ ("Ακίνητα" + VillaIcon + λευκή κάρτα)</span>
+│   │
+│   ├── 🏭 ΠΡΟΣΦΟΡΑ <span class="completed">✅ ("offer" + IndustrialIcon + λευκή κάρτα)</span>
+│   │   │
+│   │   ├── 🏪 ΠΩΛΗΣΗ <span class="completed">✅ ("sale" + CommercialIcon + λευκή κάρτα)</span>
+│   │   │   │
+│   │   │   ├── ✅ ΤΩΡΑ <span class="completed">✅ ("now" + CheckIcon + λευκή κάρτα)</span>
+│   │   │   │   │
+│   │   │   │   ├── 📤 UPLOAD <span class="completed">✅ (File upload + UploadIcon + λευκή κάρτα)</span>
+│   │   │   │   │   │
+│   │   │   │   │   └── 🔧 LAYOUT CONTROLS <span class="completed">✅ (Location + Rotation + Scale)</span>
+│   │   │   │   │       │
+│   │   │   │   │       └── 📋 DETAILS FORM <span class="completed">✅ (Title + Description + Price + Contact)</span>
+│   │   │   │   │           │
+│   │   │   │   │           └── ✅ SUCCESS <span class="completed">✅ (Completion + CheckIcon)</span>
+│   │   │   │   │
+│   │   │   │   └── 🗺️ DRAWING <span class="completed">✅ (Map drawing + MapIcon + λευκή κάρτα)</span>
+│   │   │   │       │
+│   │   │   │       └── 🔧 LAYOUT CONTROLS <span class="completed">✅ (Location + Rotation + Scale)</span>
+│   │   │   │           │
+│   │   │   │           └── 📋 DETAILS FORM <span class="completed">✅ (Title + Description + Price + Contact)</span>
+│   │   │   │               │
+│   │   │   │               └── ✅ SUCCESS <span class="completed">✅ (Completion + CheckIcon)</span>
+│   │   │   │
+│   │   │   └── 🔄 ΜΕΛΛΟΝΤΙΚΑ <span class="completed">✅ ("future" + RefreshIcon + λευκή κάρτα)</span>
+│   │   │       │
+│   │   │       └── 🗺️ DRAWING <span class="completed">✅ (Map drawing + MapIcon + λευκή κάρτα)</span>
+│   │   │           │
+│   │   │           └── 🔧 LAYOUT CONTROLS <span class="completed">✅ (Location + Rotation + Scale)</span>
+│   │   │               │
+│   │   │               └── 📋 DETAILS FORM <span class="completed">✅ (Title + Description + Price + Contact)</span>
+│   │   │                   │
+│   │   │                   └── ✅ SUCCESS <span class="completed">✅ (Completion + CheckIcon)</span>
+│   │   │
+│   │   └── 🏢 ΕΝΟΙΚΙΑΣΗ <span class="completed">✅ ("rent" + BuildingIcon + λευκή κάρτα)</span>
+│   │       │
+│   │       ├── ✅ ΤΩΡΑ <span class="completed">✅ ("now" + CheckIcon + λευκή κάρτα)</span>
+│   │       │   │
+│   │       │   ├── 📤 UPLOAD <span class="completed">✅ (File upload + UploadIcon + λευκή κάρτα)</span>
+│   │       │   │   │
+│   │       │   │   └── 🔧 LAYOUT CONTROLS → 📋 DETAILS FORM → ✅ SUCCESS
+│   │       │   │
+│   │       │   └── 🗺️ DRAWING <span class="completed">✅ (Map drawing + MapIcon + λευκή κάρτα)</span>
+│   │       │       │
+│   │       │       └── 🔧 LAYOUT CONTROLS → 📋 DETAILS FORM → ✅ SUCCESS
+│   │       │
+│   │       └── 🔄 ΜΕΛΛΟΝΤΙΚΑ <span class="completed">✅ ("future" + RefreshIcon + λευκή κάρτα)</span>
+│   │           │
+│   │           └── 🗺️ DRAWING → 🔧 LAYOUT CONTROLS → 📋 DETAILS FORM → ✅ SUCCESS
+│   │
+│   └── 🍴 ΑΝΑΖΗΤΗΣΗ <span class="completed">✅ ("search" + RestaurantIcon + λευκή κάρτα)</span>
+│       │
+│       ├── ✅ ΤΩΡΑ <span class="completed">✅ ("now" + CheckIcon + λευκή κάρτα)</span>
+│       │   │
+│       │   └── 🗺️ DRAWING → 🔧 LAYOUT CONTROLS → 📋 DETAILS FORM → ✅ SUCCESS
+│       │
+│       └── 🔄 ΜΕΛΛΟΝΤΙΚΑ <span class="completed">✅ ("future" + RefreshIcon + λευκή κάρτα)</span>
+│           │
+│           └── 🗺️ DRAWING → 🔧 LAYOUT CONTROLS → 📋 DETAILS FORM → ✅ SUCCESS
+│
+└── 💼 ΕΡΓΑΣΙΑ <span class="completed">✅ ("Εργασία" + BriefcaseIcon + λευκή κάρτα)</span>
+    │
+    ├── 💼 ΠΡΟΣΦΟΡΑ ΘΕΣΗΣ <span class="completed">✅ ("offer" + WorkIcon + λευκή κάρτα)</span>
+    │   │
+    │   └── <span class="card-info">⚠️ ΣΤΟΠ - ΔΕΝ ΥΠΑΡΧΟΥΝ ΠΕΡΙΣΣΟΤΕΡΑ ΒΗΜΑΤΑ ΣΤΟ LEGACY!</span>
+    │
+    └── 🔧 ΑΝΑΖΗΤΗΣΗ ΕΡΓΑΣΙΑΣ <span class="completed">✅ ("search" + ToolIcon + λευκή κάρτα)</span>
+        │
+        └── <span class="card-info">⚠️ ΣΤΟΠ - ΔΕΝ ΥΠΑΡΧΟΥΝ ΠΕΡΙΣΣΟΤΕΡΑ ΒΗΜΑΤΑ ΣΤΟ LEGACY!</span></div>
+        </div>
+
+        <div class="step">
+            <div class="step-title">📊 ΣΤΑΤΙΣΤΙΚΑ ΔΕΝΤΡΟΥ</div>
+            <div class="tree"><span class="completed">🎯 ΟΛΟΚΛΗΡΩΜΕΝΟ ΔΕΝΤΡΟ - LEGACY WHITE CARDS PIPELINE ✅</span>
+
+<span class="card-info">🌳 ΔΟΜΗ:</span>
+├── 🏠 ΑΚΙΝΗΤΑ: 6 πλήρη μονοπάτια (Property → Intent → Transaction → Availability → Location → Layout → Details → Complete)
+├── 💼 ΕΡΓΑΣΙΑ: 2 ανολοκλήρωτα μονοπάτια (Job → Intent → ΣΤΟΠ)
+
+<span class="card-info">📏 ΜΗΚΟΣ ΜΟΝΟΠΑΤΙΩΝ:</span>
+├── Property + Offer + Sale/Rent + Now + Upload: 8 βήματα
+├── Property + Offer + Sale/Rent + Now + Drawing: 8 βήματα
+├── Property + Offer + Sale/Rent + Future: 7 βήματα
+├── Property + Search + Now/Future: 6 βήματα
+└── Job + Offer/Search: 2 βήματα ΜΟΝΟ
+
+<span class="card-info">🧩 ΣΥΝΟΛΙΚΕΣ ΚΑΡΤΕΣ: ~12-14 λευκές κάρτες</span>
+<span class="card-info">🔀 CONDITIONAL LOGIC: Ναι (LocationStep ανάλογα με path)</span>
+<span class="card-info">⚠️ ΑΝΟΛΟΚΛΗΡΩΤΑ: Job pipeline (μόνο 2 βήματα)</span></div>
+        </div>
+
+        <div class="update-time">Τελευταία ενημέρωση: <span id="timestamp">-</span></div>
+    </div>
+
+    <script>
+        // Ενημέρωση timestamp
+        function updateTimestamp() {
+            document.getElementById('timestamp').textContent = new Date().toLocaleString('el-GR');
+        }
+        updateTimestamp();
+
+        // Auto-refresh κάθε 5 δευτερόλεπτα για live updates
+        setInterval(() => {
+            window.location.reload();
+        }, 5000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+{
+  "name": "@layera/auth-bridge",
+  "version": "1.0.0",
+  "description": "Reusable authentication bridge for Layera applications",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./components": {
+      "import": "./dist/components/index.js",
+      "types": "./dist/components/index.d.ts"
+    },
+    "./hooks": {
+      "import": "./dist/hooks/index.js",
+      "types": "./dist/hooks/index.d.ts"
+    }
+  },
+  "files": [
+    "dist/**/*",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"src/**/*.{ts,tsx}\" --max-warnings=0",
+    "verify": "npm run typecheck && npm run lint",
+    "clean": "rimraf dist",
+    "dev": "npm run build:watch"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "firebase": "^12.4.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.1",
+    "@types/react-dom": "^19.1.1",
+    "@typescript-eslint/eslint-plugin": "^8.18.5",
+    "@typescript-eslint/parser": "^8.18.5",
+    "eslint": "^9.19.0",
+    "eslint-plugin-react": "^7.37.3",
+    "eslint-plugin-react-hooks": "^5.1.1",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.7.3"
+  },
+  "keywords": [
+    "authentication",
+    "rbac",
+    "mfa",
+    "firebase",
+    "react",
+    "typescript",
+    "layera"
+  ],
+  "author": "Layera Team",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/layera/layera.git",
+    "directory": "packages/auth-bridge"
+  }
+}

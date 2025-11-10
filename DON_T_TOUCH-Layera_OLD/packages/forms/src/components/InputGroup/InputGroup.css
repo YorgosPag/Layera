@@ -1,0 +1,393 @@
+/**
+ * @layera/forms - InputGroup Component Styles
+ *
+ * Enterprise CSS για input group form component.
+ * Consistent με Layera design tokens.
+ */
+
+/* Base InputGroup */
+.la-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--la-space-2);
+  font-family: var(--la-font-family-base);
+  position: relative;
+}
+
+.la-input-group-full-width {
+  width: 100%;
+}
+
+.la-input-group-disabled {
+  opacity: 0.6;
+}
+
+.la-input-group-loading {
+  pointer-events: none;
+}
+
+/* Label */
+.la-input-group-label {
+  color: var(--la-color-text-primary);
+  font-size: var(--la-font-size-base);
+  font-weight: 500;
+  line-height: var(--la-line-height-normal);
+  margin: var(--la-size-0);
+}
+
+.la-input-group-sm .la-input-group-label {
+  font-size: var(--la-font-size-sm);
+}
+
+.la-input-group-lg .la-input-group-label {
+  font-size: var(--la-font-size-lg);
+}
+
+.la-input-group-disabled .la-input-group-label {
+  color: var(--la-color-text-disabled);
+}
+
+.la-input-group-required {
+  color: var(--la-color-destructive);
+  margin-left: var(--la-space-1);
+}
+
+/* Container Base Styles */
+.la-input-group-container {
+  display: flex;
+  position: relative;
+  align-items: stretch;
+}
+
+/* Direction Variants */
+.la-input-group-container-horizontal {
+  flex-direction: row;
+}
+
+.la-input-group-container-vertical {
+  flex-direction: column;
+}
+
+/* Distribution Modes */
+.la-input-group-equal .la-input-group-item {
+  flex: 1;
+}
+
+.la-input-group-auto .la-input-group-item {
+  flex: 0 1 auto;
+}
+
+.la-input-group-custom .la-input-group-item {
+  /* Flex properties set by individual items */
+}
+
+/* Connected Variant */
+.la-input-group-connected .la-input-group-container {
+  border: 0.125rem solid var(--la-color-border-primary);
+  border-radius: var(--la-radius-md);
+  background: var(--la-color-surface);
+  overflow: hidden;
+  transition: all 0.15s ease;
+}
+
+.la-input-group-connected.la-input-group-sm .la-input-group-container {
+  border-radius: var(--la-radius-sm);
+}
+
+.la-input-group-connected.la-input-group-lg .la-input-group-container {
+  border-radius: var(--la-radius-lg);
+}
+
+/* Connected State Variants */
+.la-input-group-connected.la-input-group-default .la-input-group-container {
+  border-color: var(--la-color-border-primary);
+}
+
+.la-input-group-connected.la-input-group-focus .la-input-group-container {
+  border-color: var(--la-color-brand);
+  box-shadow: var(--la-shadow-focus);
+}
+
+.la-input-group-connected.la-input-group-error .la-input-group-container {
+  border-color: var(--la-color-destructive);
+}
+
+.la-input-group-connected.la-input-group-success .la-input-group-container {
+  border-color: var(--la-color-success);
+}
+
+.la-input-group-connected.la-input-group-warning .la-input-group-container {
+  border-color: var(--la-color-warning);
+}
+
+.la-input-group-connected.la-input-group-disabled .la-input-group-container {
+  border-color: var(--la-color-border-disabled);
+  background: var(--la-color-surface-disabled);
+}
+
+/* Connected Items */
+.la-input-group-connected .la-input-group-item {
+  border: var(--la-size-0);
+  background: var(--la-color-transparent);
+}
+
+.la-input-group-connected.la-input-group-container-horizontal .la-input-group-item:not(:last-child) {
+  border-right: 0.063rem solid var(--la-color-border-primary);
+}
+
+.la-input-group-connected.la-input-group-container-vertical .la-input-group-item:not(:last-child) {
+  border-bottom: 0.063rem solid var(--la-color-border-primary);
+}
+
+/* Remove borders and shadows from child inputs in connected mode */
+.la-input-group-connected .la-input-group-item > * {
+  border: 0;
+  box-shadow: var(--la-shadow-none);
+  border-radius: var(--la-radius-none);
+}
+
+/* Outlined Variant */
+.la-input-group-outlined .la-input-group-container {
+  gap: var(--la-space-px);
+  padding: var(--la-space-px);
+  border-radius: var(--la-radius-md);
+  background: var(--la-color-border-primary);
+}
+
+.la-input-group-outlined.la-input-group-sm .la-input-group-container {
+  border-radius: var(--la-radius-sm);
+}
+
+.la-input-group-outlined.la-input-group-lg .la-input-group-container {
+  border-radius: var(--la-radius-lg);
+}
+
+.la-input-group-outlined .la-input-group-item {
+  background: var(--la-color-surface);
+}
+
+.la-input-group-outlined.la-input-group-container-horizontal .la-input-group-item:first-child {
+  border-top-left-radius: var(--la-radius-md);
+  border-bottom-left-radius: var(--la-radius-md);
+}
+
+.la-input-group-outlined.la-input-group-container-horizontal .la-input-group-item:last-child {
+  border-top-right-radius: var(--la-radius-md);
+  border-bottom-right-radius: var(--la-radius-md);
+}
+
+.la-input-group-outlined.la-input-group-container-vertical .la-input-group-item:first-child {
+  border-top-left-radius: var(--la-radius-md);
+  border-top-right-radius: var(--la-radius-md);
+}
+
+.la-input-group-outlined.la-input-group-container-vertical .la-input-group-item:last-child {
+  border-bottom-left-radius: var(--la-radius-md);
+  border-bottom-right-radius: var(--la-radius-md);
+}
+
+/* Filled Variant */
+.la-input-group-filled .la-input-group-container {
+  background: var(--la-color-surface-secondary);
+  border-radius: var(--la-radius-md);
+  padding: var(--la-space-1);
+  gap: var(--la-space-1);
+}
+
+.la-input-group-filled.la-input-group-sm .la-input-group-container {
+  border-radius: var(--la-radius-sm);
+}
+
+.la-input-group-filled.la-input-group-lg .la-input-group-container {
+  border-radius: var(--la-radius-lg);
+}
+
+.la-input-group-filled .la-input-group-item {
+  background: var(--la-color-surface);
+  border-radius: var(--la-radius-sm);
+}
+
+/* Separate Variant */
+.la-input-group-separate .la-input-group-container {
+  /* Gap set by containerStyle */
+}
+
+.la-input-group-separate .la-input-group-item {
+  /* Individual styling maintained */
+}
+
+/* Item Base Styles */
+.la-input-group-item {
+  display: flex;
+  align-items: stretch;
+  min-width: var(--la-size-0);
+  position: relative;
+}
+
+.la-input-group-item-grow {
+  flex-grow: 1;
+}
+
+/* Size Variants for Items */
+.la-input-group-sm .la-input-group-item {
+  min-height: var(--la-space-8);
+}
+
+.la-input-group-md .la-input-group-item {
+  min-height: var(--la-space-10);
+}
+
+.la-input-group-lg .la-input-group-item {
+  min-height: var(--la-space-12);
+}
+
+/* Ensure child inputs fill the item */
+.la-input-group-item > * {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+}
+
+/* Special handling for different input types */
+.la-input-group-item > .la-input,
+.la-input-group-item > .la-select,
+.la-input-group-item > .la-textarea,
+.la-input-group-item > .la-numeric-input,
+.la-input-group-item > .la-datepicker {
+  margin: var(--la-size-0);
+}
+
+/* Remove margins from wrapped components */
+.la-input-group-item > * > .la-input-wrapper,
+.la-input-group-item > * > .la-select-wrapper,
+.la-input-group-item > * > .la-textarea-wrapper,
+.la-input-group-item > * > .la-numeric-input-input-wrapper,
+.la-input-group-item > * > .la-datepicker-input-wrapper {
+  margin: var(--la-size-0);
+}
+
+/* Loading */
+.la-input-group-loading-indicator {
+  position: absolute;
+  top: 50%;
+  right: var(--la-space-2);
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: var(--la-z-index-overlay);
+}
+
+.la-input-group-spinner {
+  width: var(--la-space-5);
+  height: var(--la-space-5);
+  border: 0.125rem solid var(--la-color-border-primary);
+  border-top: 0.125rem solid var(--la-color-brand);
+  border-radius: var(--la-radius-full);
+  animation: la-input-group-spin 1s linear infinite;
+}
+
+.la-input-group-sm .la-input-group-spinner {
+  width: var(--la-space-4);
+  height: var(--la-space-4);
+  border-width: 0.063rem;
+}
+
+.la-input-group-lg .la-input-group-spinner {
+  width: var(--la-space-6);
+  height: var(--la-space-6);
+}
+
+@keyframes la-input-group-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Footer */
+.la-input-group-footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--la-space-1);
+}
+
+.la-input-group-description {
+  color: var(--la-color-text-secondary);
+  font-size: var(--la-font-size-sm);
+  line-height: var(--la-line-height-relaxed);
+}
+
+.la-input-group-error {
+  color: var(--la-color-destructive);
+  font-size: var(--la-font-size-sm);
+  font-weight: 500;
+  line-height: var(--la-line-height-relaxed);
+}
+
+/* Focus states for connected variant */
+.la-input-group-connected .la-input-group-item:focus-within ~ .la-input-group-container,
+.la-input-group-connected .la-input-group-container:focus-within {
+  border-color: var(--la-color-brand);
+  box-shadow: var(--la-shadow-focus);
+}
+
+.la-input-group-connected.la-input-group-error .la-input-group-container:focus-within {
+  border-color: var(--la-color-destructive);
+  box-shadow: var(--la-shadow-focus-destructive);
+}
+
+/* Hover states */
+.la-input-group-connected:hover:not(.la-input-group-disabled) .la-input-group-container {
+  border-color: var(--la-color-brand);
+}
+
+.la-input-group-error:hover .la-input-group-container {
+  border-color: var(--la-color-destructive);
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: more) {
+  .la-input-group-container {
+    border-width: 0.1875rem;
+  }
+
+  .la-input-group-connected .la-input-group-item:not(:last-child) {
+    border-width: 0.125rem;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .la-input-group-container,
+  .la-input-group-spinner {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Responsive Design */
+@media (width <= 48rem) {
+  /* Force vertical layout on mobile for better UX */
+  .la-input-group-container-horizontal {
+    flex-direction: column;
+  }
+
+  .la-input-group-connected.la-input-group-container-horizontal .la-input-group-item:not(:last-child) {
+    border-right: var(--la-size-0);
+    border-bottom: 0.063rem solid var(--la-color-border-primary);
+  }
+
+  /* Adjust radius for vertical mobile layout */
+  .la-input-group-outlined.la-input-group-container-horizontal .la-input-group-item:first-child {
+    border-radius: var(--la-radius-md) var(--la-radius-md) 0 0;
+  }
+
+  .la-input-group-outlined.la-input-group-container-horizontal .la-input-group-item:last-child {
+    border-radius: var(--la-radius-none) var(--la-radius-none) var(--la-radius-md) var(--la-radius-md);
+  }
+}
+
+/* Dark Theme Support */
+@media (prefers-color-scheme: dark) {
+  .la-input-group-connected .la-input-group-container {
+    background: var(--la-color-surface);
+    border-color: var(--la-color-border-primary);
+  }
+}

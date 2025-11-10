@@ -1,0 +1,41 @@
+# Local agent policy (ΜΗΝ ανεβαίνει ποτέ!)
+.claude/
+.agent/
+ops/agent-policy.md
+
+# Secrets
+.env*
+*.pem
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+pglite-debug.log
+
+# Archives
+*.zip
+
+# Node
+**/node_modules/
+.pnp/
+.pnp.js
+
+# Build / cache / coverage
+dist/
+build/
+.next/
+out/
+coverage/
+.vitest/
+.cache/
+.parcel-cache/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+nul

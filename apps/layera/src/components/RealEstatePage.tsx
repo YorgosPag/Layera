@@ -4,19 +4,19 @@ import { BuildingIcon, SearchIcon, EuroIcon, StoreIcon, MapIcon } from '@layera/
 
 const RealEstatePage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen la-bg-surface-light">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      <header className="la-header la-bg-primary">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
-            <Link to="/" className="text-2xl font-bold text-blue-600">
+            <Link to="/" className="la-text-2xl la-font-bold la-text-primary la-no-underline">
               Layera
             </Link>
             <nav className="flex space-x-6">
-              <Link to="/jobs" className="text-gray-600 hover:text-green-600">
+              <Link to="/jobs" className="la-text-secondary la-no-underline">
                 Εργασία
               </Link>
-              <Link to="/login" className="text-gray-600 hover:text-blue-600">
+              <Link to="/login" className="la-text-secondary la-no-underline">
                 Είσοδος
               </Link>
             </nav>
@@ -27,69 +27,69 @@ const RealEstatePage: React.FC = () => {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4 flex items-center justify-center gap-3">
-            <BuildingIcon size="xl" />
+          <h1 className="la-text-4xl la-font-bold la-text-primary la-leading-tight la-mb-4 la-page-title">
+            <BuildingIcon size="xxl" />
             Ακίνητα
           </h1>
-          <p className="text-xl text-gray-600">
+          <p className="la-text-xl la-text-secondary la-leading-normal">
             Βρείτε το ιδανικό ακίνητο με γεωγραφικό εντοπισμό
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Search Card */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <div className="text-3xl mb-4">
-              <SearchIcon size="lg" />
+          <div className="la-card la-bg-primary">
+            <div className="la-text-3xl la-mb-4">
+              <SearchIcon size="md" />
             </div>
-            <h3 className="text-xl font-semibold mb-3">Αναζήτηση</h3>
-            <p className="text-gray-600 mb-4">
+            <h3 className="la-text-xl la-font-semibold la-text-primary la-leading-snug la-mb-3">Αναζήτηση</h3>
+            <p className="la-text-base la-text-secondary la-leading-normal la-mb-4">
               Ψάξτε για ακίνητα βάσει τοποθεσίας και κριτηρίων
             </p>
-            <button className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors">
+            <button className="w-full py-2 px-4 rounded transition-colors la-bg-accent-blue la-text-white">
               Ξεκινήστε Αναζήτηση
             </button>
           </div>
 
           {/* Sell Card */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <div className="text-3xl mb-4">
-              <EuroIcon size="lg" />
+          <div className="la-card la-bg-primary">
+            <div className="la-text-3xl la-mb-4">
+              <EuroIcon size="md" />
             </div>
-            <h3 className="text-xl font-semibold mb-3">Πώληση</h3>
-            <p className="text-gray-600 mb-4">
+            <h3 className="la-text-xl la-font-semibold la-text-primary la-leading-snug la-mb-3">Πώληση</h3>
+            <p className="la-text-base la-text-secondary la-leading-normal la-mb-4">
               Καταχωρήστε το ακίνητό σας για πώληση
             </p>
-            <button className="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition-colors">
+            <button className="w-full py-2 px-4 rounded transition-colors la-bg-accent-green la-text-white">
               Καταχώρηση Πώλησης
             </button>
           </div>
 
           {/* Rent Card */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <div className="text-3xl mb-4">
-              <StoreIcon size="lg" />
+          <div className="la-card la-bg-primary">
+            <div className="la-text-3xl la-mb-4">
+              <StoreIcon size="md" />
             </div>
-            <h3 className="text-xl font-semibold mb-3">Ενοικίαση</h3>
-            <p className="text-gray-600 mb-4">
+            <h3 className="la-text-xl la-font-semibold la-text-primary la-leading-snug la-mb-3">Ενοικίαση</h3>
+            <p className="la-text-base la-text-secondary la-leading-normal la-mb-4">
               Βρείτε ή προσφέρετε ακίνητα προς ενοικίαση
             </p>
-            <button className="w-full bg-purple-600 text-white py-2 px-4 rounded hover:bg-purple-700 transition-colors">
+            <button className="w-full py-2 px-4 rounded transition-colors la-bg-accent-purple la-text-white">
               Ενοικίαση
             </button>
           </div>
         </div>
 
         {/* Map Section */}
-        <div className="mt-12 bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+        <div className="mt-12 la-card la-bg-primary">
+          <h2 className="la-text-2xl la-font-bold la-text-primary la-leading-snug la-mb-4 la-section-title">
             <MapIcon size="md" />
             Χάρτης Περιοχών
           </h2>
-          <div className="h-96 bg-gray-200 rounded-lg flex items-center justify-center">
-            <div className="text-center text-gray-500">
+          <div className="la-map-placeholder la-bg-surface-medium">
+            <div className="text-center la-text-tertiary">
               <p>Ο χάρτης θα εμφανιστεί εδώ</p>
-              <p className="text-sm">(Leaflet integration coming soon)</p>
+              <p className="la-text-sm la-text-tertiary la-leading-normal">(Leaflet integration coming soon)</p>
             </div>
           </div>
         </div>

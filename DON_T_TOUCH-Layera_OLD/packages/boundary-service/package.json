@@ -1,0 +1,62 @@
+{
+  "name": "@layera/boundary-service",
+  "version": "1.0.0",
+  "description": "Enterprise boundary service με καθολική υποστήριξη περιοχών παγκοσμίως",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts",
+    "dev": "tsup src/index.ts --dts --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "verify": "npm run typecheck && npm run lint --max-warnings=0"
+  },
+  "keywords": [
+    "boundary",
+    "map",
+    "administrative",
+    "osm",
+    "nominatim",
+    "enterprise",
+    "global"
+  ],
+  "author": "Layera Development Team",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@layera/database-core": "workspace:*",
+    "@layera/geo-core": "workspace:*",
+    "firebase": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "tsup": "^8.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "import": "./dist/react/index.js",
+      "require": "./dist/react/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ]
+}

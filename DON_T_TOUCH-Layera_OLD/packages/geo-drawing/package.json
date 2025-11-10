@@ -1,0 +1,51 @@
+{
+  "name": "@layera/geo-drawing",
+  "version": "1.0.0",
+  "description": "Geo drawing components and utilities for Layera Design System",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "layera",
+    "design-system",
+    "geo-drawing",
+    "maps",
+    "typescript"
+  ],
+  "author": "Layera Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "react": "^18.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/layera/layera.git",
+    "directory": "packages/geo-drawing"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

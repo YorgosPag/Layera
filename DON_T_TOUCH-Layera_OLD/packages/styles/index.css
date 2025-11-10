@@ -1,0 +1,57 @@
+/* Enterprise LEGO Central Styles Import */
+/* This file imports and aggregates all LEGO component styles */
+
+/* Import the official LEGO layout styles */
+@import '../layout/dist/styles.css';
+
+/* Import the official LEGO card styles */
+@import '../cards/dist/styles.css';
+
+/* Additional utility classes that complement LEGO components */
+.layera-mb-2 { margin-bottom: var(--la-space-2); }
+.layera-mb-4 { margin-bottom: var(--la-space-4); }
+.layera-mb-8 { margin-bottom: var(--la-space-8); }
+
+.layera-items-center { align-items: center; }
+.layera-gap-2 { gap: var(--la-space-2); }
+.layera-flex { display: flex; }
+
+/* Enterprise CSS Variables for LEGO System */
+/* Όλα τα tokens διαχειρίζονται από packages/tokens/ - Single Source of Truth */
+
+/* Dark Theme Support - διαχειρίζεται από packages/tokens/ */
+
+/* Enterprise Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--la-bg-primary);
+  color: var(--la-text-primary);
+  margin: var(--la-size-0);
+  padding: var(--la-size-0);
+}
+
+/* Global Enterprise Utilities */
+.layera-sr-only {
+  position: absolute;
+  width: 0.063rem;
+  height: 0.063rem;
+  padding: var(--la-size-0);
+  margin: -0.063rem;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: var(--la-size-0);
+}
+
+.layera-focus-ring:focus {
+  outline: 0.125rem solid var(--la-bg-info);
+  outline-offset: 0.125rem;
+}

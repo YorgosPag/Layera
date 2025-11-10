@@ -1,0 +1,46 @@
+{
+  "name": "@layera/address-breakdown",
+  "version": "1.0.0",
+  "description": "🏗️ LEGO Address Breakdown - Interactive clickable address components with boundary search",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@layera/cards": "file:../cards",
+    "@layera/buttons": "file:../buttons",
+    "@layera/icons": "file:../icons",
+    "@layera/tolgee": "file:../tolgee",
+    "@layera/geocoding": "file:../geocoding",
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "typescript": "^5.2.2",
+    "tsup": "^8.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  },
+  "keywords": [
+    "address",
+    "breakdown",
+    "clickable",
+    "geography",
+    "boundaries",
+    "lego",
+    "layera"
+  ]
+}

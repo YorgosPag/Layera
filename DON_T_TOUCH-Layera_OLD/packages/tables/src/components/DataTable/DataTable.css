@@ -1,0 +1,483 @@
+/**
+ * @layera/tables - DataTable Component Styles
+ *
+ * Enterprise CSS για data table system.
+ * Consistent με Layera design tokens.
+ */
+
+/* Base DataTable */
+.la-data-table {
+  display: flex;
+  flex-direction: column;
+  background: var(--la-color-surface);
+  border: var(--la-border-width-1) solid var(--la-color-border-primary);
+  border-radius: var(--la-radius-md);
+  overflow: hidden;
+}
+
+.la-data-table-container {
+  position: relative;
+  overflow: auto;
+  flex: 1;
+}
+
+.la-data-table-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+/* Variants */
+.la-data-table-striped .la-table-body-row:nth-child(even) {
+  background: var(--la-color-surface-secondary);
+}
+
+.la-data-table-bordered .la-table-header-cell,
+.la-data-table-bordered .la-table-body-cell {
+  border-right: var(--la-border-width-1) solid var(--la-color-border-primary);
+}
+
+.la-data-table-bordered .la-table-header-cell:last-child,
+.la-data-table-bordered .la-table-body-cell:last-child {
+  border-right: var(--la-size-0);
+}
+
+.la-data-table-borderless {
+  border: var(--la-size-0);
+}
+
+.la-data-table-borderless .la-table-header-row,
+.la-data-table-borderless .la-table-body-row {
+  border-bottom: var(--la-size-0);
+}
+
+/* Density Variants */
+.la-data-table-compact .la-table-header-cell,
+.la-data-table-compact .la-table-body-cell {
+  padding: var(--la-space-1) var(--la-space-2);
+}
+
+.la-data-table-normal .la-table-header-cell,
+.la-data-table-normal .la-table-body-cell {
+  padding: var(--la-space-2) var(--la-space-4);
+}
+
+.la-data-table-comfortable .la-table-header-cell,
+.la-data-table-comfortable .la-table-body-cell {
+  padding: var(--la-space-4) var(--la-space-6);
+}
+
+/* Loading State */
+.la-data-table-loading .la-data-table-container {
+  position: relative;
+  min-height: var(--la-size-64);
+}
+
+.la-data-table-loading-overlay {
+  position: absolute;
+  inset: var(--la-size-0);
+  background: var(--la-color-surface-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--la-z-index-overlay);
+}
+
+.la-data-table-loading-spinner .layera-spinner {
+  width: var(--la-space-8);
+  height: var(--la-space-8);
+  border: 0.125rem solid var(--la-color-border-primary);
+  border-top: 0.125rem solid var(--la-color-brand);
+  border-radius: var(--la-radius-full);
+  animation: la-table-spin 1s linear infinite;
+}
+
+@keyframes la-table-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Table Header */
+.la-table-header {
+  background: var(--la-color-surface-secondary);
+  border-bottom: 0.125rem solid var(--la-color-border-primary);
+}
+
+.la-table-header-row {
+  border-bottom: 0.063rem solid var(--la-color-border-primary);
+}
+
+.la-table-header-cell {
+  text-align: left;
+  font-weight: var(--la-font-weight-semibold);
+  color: var(--la-color-text-primary);
+  border-bottom: 0.063rem solid var(--la-color-border-primary);
+  background: var(--la-color-surface-secondary);
+  position: relative;
+}
+
+.la-table-header-cell-sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.15s ease;
+}
+
+.la-table-header-cell-sortable:hover {
+  background: var(--la-color-surface-hover);
+}
+
+.la-table-header-cell-center {
+  text-align: center;
+}
+
+.la-table-header-cell-right {
+  text-align: right;
+}
+
+.la-table-header-cell-checkbox {
+  width: var(--la-space-8);
+  text-align: center;
+}
+
+.la-table-header-content {
+  display: flex;
+  align-items: center;
+  gap: var(--la-space-1);
+}
+
+.la-table-header-title {
+  flex: 1;
+  min-width: var(--la-size-0);
+}
+
+.la-table-header-sort-icon {
+  flex-shrink: var(--la-size-0);
+  color: var(--la-color-text-secondary);
+  transition: color 0.15s ease;
+}
+
+.la-table-header-sort-icon-active {
+  color: var(--la-color-brand);
+}
+
+.la-table-header-checkbox {
+  cursor: pointer;
+}
+
+/* Table Body */
+.la-table-body-row {
+  border-bottom: 0.063rem solid var(--la-color-border-primary);
+  transition: background-color 0.15s ease;
+}
+
+.la-table-body-row:hover {
+  background: var(--la-color-surface-hover);
+}
+
+.la-table-body-row-selected {
+  background: var(--la-color-brand-background);
+}
+
+.la-table-body-row-clickable {
+  cursor: pointer;
+}
+
+.la-table-body-cell {
+  color: var(--la-color-text-primary);
+  border-bottom: 0.063rem solid var(--la-color-border-primary);
+  vertical-align: top;
+}
+
+.la-table-body-cell-center {
+  text-align: center;
+}
+
+.la-table-body-cell-right {
+  text-align: right;
+}
+
+.la-table-body-cell-checkbox {
+  width: var(--la-space-8);
+  text-align: center;
+}
+
+.la-table-body-content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.la-table-body-checkbox {
+  cursor: pointer;
+}
+
+/* Empty State */
+.la-table-body-empty-row {
+  border-bottom: var(--la-size-0);
+}
+
+.la-table-body-empty-cell {
+  padding: var(--la-space-8);
+  text-align: center;
+  border-bottom: var(--la-size-0);
+}
+
+.la-table-body-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--la-space-4);
+  color: var(--la-color-text-secondary);
+}
+
+.la-table-body-empty-icon {
+  opacity: 0.5;
+}
+
+.la-table-body-empty-title {
+  font-size: var(--la-font-size-xl);
+  font-weight: var(--la-font-weight-semibold);
+  margin: var(--la-size-0);
+}
+
+.la-table-body-empty-description {
+  font-size: var(--la-font-size-base);
+  margin: var(--la-size-0);
+  max-width: var(--la-size-96);
+}
+
+/* Table Toolbar */
+.la-table-toolbar {
+  padding: var(--la-space-4);
+  border-bottom: 0.063rem solid var(--la-color-border-primary);
+  background: var(--la-color-surface);
+}
+
+.la-table-toolbar-primary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--la-space-4);
+}
+
+.la-table-toolbar-selection {
+  display: flex;
+  align-items: center;
+  gap: var(--la-space-4);
+  flex: 1;
+}
+
+.la-table-toolbar-selection-text {
+  font-weight: var(--la-font-weight-semibold);
+  color: var(--la-color-brand);
+}
+
+.la-table-toolbar-bulk-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--la-space-2);
+}
+
+.la-table-toolbar-search {
+  position: relative;
+  max-width: var(--la-size-96);
+  flex: 1;
+}
+
+.la-table-toolbar-search-input {
+  width: 100%;
+  padding: var(--la-space-2) var(--la-space-4);
+  padding-left: var(--la-space-8);
+  border: var(--la-border-width-1) solid var(--la-color-border-primary);
+  border-radius: var(--la-radius-md);
+  background: var(--la-color-surface);
+  font-size: var(--la-font-size-base);
+  transition: border-color 0.15s ease;
+}
+
+.la-table-toolbar-search-input:focus {
+  outline: var(--la-size-0);
+  border-color: var(--la-color-brand);
+  box-shadow: var(--la-shadow-focus);
+}
+
+.la-table-toolbar-search-icon {
+  position: absolute;
+  left: var(--la-space-2);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--la-color-text-secondary);
+  pointer-events: none;
+}
+
+.la-table-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--la-space-2);
+}
+
+/* Table Pagination */
+.la-table-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--la-space-4);
+  border-top: 0.063rem solid var(--la-color-border-primary);
+  background: var(--la-color-surface);
+  gap: var(--la-space-4);
+}
+
+.la-table-pagination-info {
+  display: flex;
+  align-items: center;
+  gap: var(--la-space-6);
+  flex: 1;
+}
+
+.la-table-pagination-results {
+  font-size: var(--la-font-size-base);
+  color: var(--la-color-text-secondary);
+}
+
+.la-table-pagination-page-size {
+  display: flex;
+  align-items: center;
+  gap: var(--la-space-1);
+}
+
+.la-table-pagination-page-size-label {
+  font-size: var(--la-font-size-base);
+  color: var(--la-color-text-secondary);
+}
+
+.la-table-pagination-page-size-select {
+  padding: var(--la-space-1) var(--la-space-2);
+  border: var(--la-border-width-1) solid var(--la-color-border-primary);
+  border-radius: var(--la-radius-sm);
+  background: var(--la-color-surface);
+  font-size: var(--la-font-size-base);
+}
+
+.la-table-pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--la-space-1);
+}
+
+.la-table-pagination-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--la-space-8);
+  height: var(--la-space-8);
+  border: var(--la-border-width-1) solid var(--la-color-border-primary);
+  border-radius: var(--la-radius-sm);
+  background: var(--la-color-surface);
+  color: var(--la-color-text-primary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.la-table-pagination-button:hover:not(:disabled) {
+  background: var(--la-color-surface-hover);
+  border-color: var(--la-color-brand);
+}
+
+.la-table-pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.la-table-pagination-pages {
+  display: flex;
+  align-items: center;
+  gap: var(--la-space-1);
+}
+
+.la-table-pagination-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--la-space-8);
+  height: var(--la-space-8);
+  padding: 0 var(--la-space-2);
+  border: var(--la-border-width-1) solid var(--la-color-border-primary);
+  border-radius: var(--la-radius-sm);
+  background: var(--la-color-surface);
+  color: var(--la-color-text-primary);
+  cursor: pointer;
+  font-size: var(--la-font-size-base);
+  transition: all 0.15s ease;
+}
+
+.la-table-pagination-page:hover {
+  background: var(--la-color-surface-hover);
+  border-color: var(--la-color-brand);
+}
+
+.la-table-pagination-page-active {
+  background: var(--la-color-brand);
+  border-color: var(--la-color-brand);
+  color: var(--la-color-text-on-brand);
+}
+
+.la-table-pagination-ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--la-space-8);
+  height: var(--la-space-8);
+  color: var(--la-color-text-secondary);
+  font-size: var(--la-font-size-sm);
+}
+
+/* Responsive Design */
+@media (width <= 48rem) {
+  .la-table-pagination {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--la-space-2);
+  }
+
+  .la-table-pagination-info {
+    justify-content: center;
+  }
+
+  .la-table-pagination-controls {
+    justify-content: center;
+  }
+
+  .la-table-toolbar-primary {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .la-table-toolbar-search {
+    max-width: none;
+  }
+}
+
+/* Dark Theme Support */
+@media (prefers-color-scheme: dark) {
+  .la-table-body-row-selected {
+    background: var(--la-color-brand-background);
+  }
+
+  .la-table-toolbar-search-input:focus {
+    box-shadow: var(--la-shadow-focus);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .la-table-header-cell-sortable,
+  .la-table-body-row,
+  .la-table-pagination-button,
+  .la-table-pagination-page,
+  .la-table-toolbar-search-input {
+    transition: none;
+  }
+
+  .la-data-table-loading-spinner .layera-spinner {
+    animation: none;
+  }
+}

@@ -1,0 +1,195 @@
+/**
+ * Layera Modal - Styles
+ */
+
+
+
+/* Overlay */
+.la-modal-overlay {
+  position: fixed;
+  inset: var(--la-size-0);
+  z-index: var(--la-z-index-modal);
+  background-color: var(--la-color-surface-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--la-space-4);
+}
+
+/* Modal container */
+.la-modal {
+  position: relative;
+  background-color: var(--la-color-surface);
+  border: var(--la-border-width-1) solid var(--la-color-border-primary);
+  border-radius: var(--la-radius-lg);
+  box-shadow: var(--la-shadow-2xl);
+  width: 100%;
+  max-height: calc(100vh - var(--la-space-8));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: var(--la-space-4);
+}
+
+/* Remove external margins from content */
+.la-modal-content > :first-child {
+  margin-top: 0;
+}
+
+.la-modal-content > :last-child {
+  margin-bottom: 0;
+}
+
+/* Remove margins from headings and paragraphs */
+.la-modal-content h1,
+.la-modal-content h2,
+.la-modal-content h3,
+.la-modal-content h4,
+.la-modal-content h5,
+.la-modal-content h6,
+.la-modal-content p {
+  margin: 0;
+}
+
+/* Modal sizes */
+.la-modal-xs {
+  max-width: 20rem;
+}
+
+.la-modal-sm {
+  max-width: 24rem;
+}
+
+.la-modal-md {
+  max-width: 28rem;
+}
+
+.la-modal-lg {
+  max-width: 32rem;
+}
+
+.la-modal-xl {
+  max-width: 36rem;
+}
+
+.la-modal-full {
+  max-width: calc(100vw - var(--la-space-8));
+  max-height: calc(100vh - var(--la-space-8));
+}
+
+/* Modal variants */
+.la-modal-elevated {
+  box-shadow: var(--la-shadow-2xl);
+}
+
+.la-modal-centered {
+  margin: auto;
+}
+
+.la-modal-sidebar {
+  height: 100vh;
+  max-height: 100vh;
+  border-radius: var(--la-radius-none);
+  margin: var(--la-size-0);
+}
+
+/* Close button */
+.la-modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: var(--la-z-index-dropdown);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: var(--la-radius-md);
+  background-color: var(--la-color-transparent);
+  color: var(--la-color-text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.la-modal-close:hover {
+  background-color: var(--la-color-surface-secondary);
+  color: var(--la-color-text-primary);
+}
+
+.la-modal-close:focus {
+  outline: 0.125rem solid oklch(50% 0.15 240deg);
+  outline-offset: 0.125rem;
+}
+
+/* Animations */
+.la-modal-overlay-fade {
+  animation: la-modal-fade-in 0.3s ease-in-out;
+}
+
+.la-modal-fade {
+  animation: la-modal-scale-in 0.3s ease-in-out;
+}
+
+.la-modal-slide {
+  animation: la-modal-slide-in 0.3s ease-in-out;
+}
+
+.la-modal-scale {
+  animation: la-modal-scale-in 0.3s ease-in-out;
+}
+
+@keyframes la-modal-fade-in {
+  from {
+    opacity: var(--la-size-0);
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes la-modal-scale-in {
+  from {
+    opacity: var(--la-size-0);
+    transform: scale(0.95) translateY(-0.625rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes la-modal-slide-in {
+  from {
+    opacity: var(--la-size-0);
+    transform: translateY(-1.25rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile responsiveness */
+@media (width <= 40rem) {
+  .la-modal-overlay {
+    padding: 0.5rem;
+  }
+
+  .la-modal {
+    width: 100%;
+    max-width: 100%;
+    margin: var(--la-size-0);
+  }
+
+  .la-modal-xs,
+  .la-modal-sm,
+  .la-modal-md,
+  .la-modal-lg,
+  .la-modal-xl {
+    max-width: 100%;
+  }
+}

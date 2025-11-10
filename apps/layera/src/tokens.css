@@ -1,0 +1,137 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --la-icon-xs: 1rem; /** 16px - Standard mobile size */
+  --la-icon-smBase: 1rem; /** 16px - Base small size */
+  --la-icon-md: 1.25rem; /** 20px - Default icon size for desktop */
+  --la-icon-lg: 2rem; /** 32px - Large interactive elements */
+  --la-icon-xl: 2rem; /** 32px - Same as lg for consistency */
+  --la-icon-xxl: 3rem; /** 48px - Hero icons */
+  --la-icon-xxxl: 4rem; /** 64px - Ultra large icons */
+  --la-icon-leafletSmall: 12px; /** Map leaflet small icons */
+  --la-icon-leafletMedium: 16px; /** Map leaflet medium icons */
+  --la-icon-leafletStandard: 20px; /** Map leaflet standard icons */
+  --la-icon-leafletLarge: 24px; /** Map leaflet large icons */
+  --la-icon-leafletXl: 32px; /** Map leaflet extra large icons */
+  --la-icon-strokeThin: 1; /** Thin stroke width */
+  --la-icon-strokeLight: 1.5; /** Light stroke width - Enterprise default */
+  --la-icon-strokeNormal: 2; /** Normal stroke width */
+  --la-icon-strokeBold: 2.5; /** Bold stroke width */
+  --la-icon-colorPrimary: #7c3aed; /** Primary brand color for icons */
+  --la-icon-colorSecondary: #6b7280; /** Secondary color for supporting icons */
+  --la-icon-colorSuccess: #10b981; /** Green for success states */
+  --la-icon-colorWarning: #f59e0b; /** Orange for warning states */
+  --la-icon-colorDanger: #ef4444; /** Red for danger/error states */
+  --la-icon-colorInfo: #3b82f6; /** Blue for informational states */
+  --la-icon-colorNeutral: #6b7280; /** Neutral gray for standard icons */
+  --la-iconAdvanced-interactive-opacity-default: 1; /** Default opacity state */
+  --la-iconAdvanced-interactive-opacity-hover: 0.8; /** Hover opacity for interactive icons */
+  --la-iconAdvanced-interactive-opacity-active: 0.6; /** Active/pressed opacity state */
+  --la-iconAdvanced-interactive-opacity-disabled: 0.4; /** Disabled state opacity */
+  --la-iconAdvanced-interactive-scale-default: 1; /** Default scale state */
+  --la-iconAdvanced-interactive-scale-hover: 1.1; /** Hover scale for micro-interactions */
+  --la-iconAdvanced-interactive-scale-active: 0.95; /** Active/pressed scale state */
+  --la-iconAdvanced-interactive-transition-fast: 0.1s ease-out; /** Fast transitions for micro-interactions */
+  --la-iconAdvanced-interactive-transition-normal: 0.2s ease-out; /** Standard transition speed */
+  --la-iconAdvanced-interactive-transition-slow: 0.3s ease-out; /** Slow transitions for emphasis */
+  --la-iconAdvanced-accessibility-focusRing-width: 2px; /** Focus ring width for keyboard navigation */
+  --la-iconAdvanced-accessibility-focusRing-color: #3b82f6; /** Focus ring color for visibility */
+  --la-iconAdvanced-accessibility-contrast-normal: 4.5; /** WCAG AA contrast ratio */
+  --la-iconAdvanced-accessibility-contrast-large: 3; /** WCAG AA large text contrast ratio */
+  --la-iconAdvanced-accessibility-contrast-enhanced: 7; /** WCAG AAA contrast ratio */
+  --la-iconAdvanced-sizing-touchTargetMobile: 44; /** iOS/Android minimum touch target (44px) */
+  --la-iconAdvanced-sizing-touchTargetDesktop: 32; /** Desktop minimum touch target (32px) */
+  --la-iconAdvanced-sizing-padding-xs: 2px; /** Extra small padding */
+  --la-iconAdvanced-sizing-padding-sm: 4px; /** Small padding */
+  --la-iconAdvanced-sizing-padding-md: 8px; /** Medium padding */
+  --la-iconAdvanced-sizing-padding-lg: 12px; /** Large padding */
+  --la-iconAdvanced-sizing-padding-xl: 16px; /** Extra large padding */
+  --la-iconAdvanced-sizing-margin-xs: 2px; /** Extra small margin */
+  --la-iconAdvanced-sizing-margin-sm: 4px; /** Small margin */
+  --la-iconAdvanced-sizing-margin-md: 8px; /** Medium margin */
+  --la-iconAdvanced-sizing-margin-lg: 12px; /** Large margin */
+  --la-iconAdvanced-sizing-margin-xl: 16px; /** Extra large margin */
+  --la-iconAdvanced-theming-darkPrimary: #a78bfa; /** Primary color adapted for dark theme */
+  --la-iconAdvanced-theming-darkSecondary: #9ca3af; /** Secondary color for dark theme */
+  --la-iconAdvanced-theming-darkNeutral: #9ca3af; /** Neutral color for dark theme */
+  --la-iconAdvanced-theming-darkSuccess: #34d399; /** Success color for dark theme */
+  --la-iconAdvanced-theming-darkWarning: #fbbf24; /** Warning color for dark theme */
+  --la-iconAdvanced-theming-darkDanger: #f87171; /** Danger color for dark theme */
+  --la-iconAdvanced-theming-darkInfo: #60a5fa; /** Info color for dark theme */
+  --la-iconAdvanced-performance-rendering-willChange: transform; /** Optimize for transform animations */
+  --la-iconAdvanced-performance-rendering-backfaceVisibility: hidden; /** Prevent flickering during animations */
+  --la-iconAdvanced-performance-rendering-forceLayerCreation: translateZ(0); /** Force GPU layer for smooth animations */
+  --la-iconAdvanced-performance-loading-lazy-threshold: 0.1; /** Intersection observer threshold for lazy loading */
+  --la-iconAdvanced-performance-loading-lazy-rootMargin: 50px; /** Margin for early loading trigger */
+  --la-iconAdvanced-performance-loading-preload-critical: true; /** Preload critical icons */
+  --la-iconAdvanced-performance-loading-preload-priority: high; /** Loading priority for important icons */
+  --la-iconAdvanced-performance-caching-svgSprite-enabled: true; /** Use SVG sprite for better caching */
+  --la-iconAdvanced-performance-caching-svgSprite-chunking: domain; /** Chunk icons by domain for optimal loading */
+  --la-iconAdvanced-performance-optimization-vectorEffects-nonScalingStroke: non-scaling-stroke; /** Prevent stroke scaling for crisp lines */
+  --la-iconAdvanced-performance-optimization-shapeRendering-crisp: crispEdges; /** Crisp pixel-aligned rendering */
+  --la-iconAdvanced-performance-optimization-shapeRendering-smooth: geometricPrecision; /** Smooth anti-aliased rendering */
+  --la-iconAdvanced-i18n-direction-ltr: ltr; /** Left-to-right text direction */
+  --la-iconAdvanced-i18n-direction-rtl: rtl; /** Right-to-left text direction (Arabic, Hebrew) */
+  --la-iconAdvanced-i18n-direction-auto: auto; /** Auto-detect text direction */
+  --la-iconAdvanced-i18n-locale-spacing-cjk: 0.05em; /** Character spacing for CJK languages */
+  --la-iconAdvanced-i18n-locale-spacing-latin: 0; /** Standard spacing for Latin scripts */
+  --la-iconAdvanced-i18n-locale-spacing-arabic: 0.02em; /** Spacing for Arabic script */
+  --la-iconAdvanced-i18n-mirroring-enabled: true; /** Enable icon mirroring for RTL */
+  --la-iconAdvanced-i18n-mirroring-exceptions: ["clock", "progress", "loading"]; /** Icons that should never be mirrored */
+  --la-iconAdvanced-i18n-cultural-colorMeaning-danger-western: #ef4444; /** Red for danger in Western cultures */
+  --la-iconAdvanced-i18n-cultural-colorMeaning-danger-eastern: #f59e0b; /** Orange/Yellow for caution in Eastern cultures */
+  --la-iconAdvanced-i18n-cultural-colorMeaning-success-western: #10b981; /** Green for success in Western cultures */
+  --la-iconAdvanced-i18n-cultural-colorMeaning-success-eastern: #10b981; /** Green also positive in Eastern cultures */
+  --la-iconAdvanced-i18n-textDirection-iconAlignment-start: flex-start; /** Align to text start (left in LTR, right in RTL) */
+  --la-iconAdvanced-i18n-textDirection-iconAlignment-end: flex-end; /** Align to text end (right in LTR, left in RTL) */
+  --la-iconAdvanced-i18n-textDirection-margin-inline-start: 0.25rem; /** Margin at text start */
+  --la-iconAdvanced-i18n-textDirection-margin-inline-end: 0.25rem; /** Margin at text end */
+  --la-iconAdvanced-ai-smartSizing-enabled: true; /** Enable AI-based size optimization */
+  --la-iconAdvanced-ai-smartSizing-contextAware: true; /** Adjust size based on usage context */
+  --la-iconAdvanced-ai-smartSizing-algorithm: neural-adaptive; /** AI algorithm for size optimization */
+  --la-iconAdvanced-ai-semanticGrouping-enabled: true; /** Enable semantic icon grouping */
+  --la-iconAdvanced-ai-semanticGrouping-threshold: 0.8; /** Similarity threshold for grouping */
+  --la-iconAdvanced-ai-adaptiveTheming-enabled: true; /** AI-driven theme adaptation */
+  --la-iconAdvanced-ai-adaptiveTheming-learningRate: 0.1; /** Learning rate for theme adaptation */
+  --la-iconAdvanced-ai-predictiveLoading-enabled: true; /** Predict which icons user will need */
+  --la-iconAdvanced-ai-predictiveLoading-confidence: 0.7; /** Confidence threshold for predictions */
+  --la-iconAdvanced-metrics-usage-tracking-enabled: true; /** Track icon usage patterns */
+  --la-iconAdvanced-metrics-usage-tracking-frequency: realtime; /** Tracking frequency */
+  --la-iconAdvanced-metrics-usage-tracking-granularity: detailed; /** Level of detail in tracking */
+  --la-iconAdvanced-metrics-usage-heatmap-enabled: true; /** Generate usage heatmaps */
+  --la-iconAdvanced-metrics-usage-heatmap-resolution: pixel; /** Heatmap resolution level */
+  --la-iconAdvanced-metrics-performance-renderTime-target: 16; /** Target render time in milliseconds (60fps) */
+  --la-iconAdvanced-metrics-performance-renderTime-warning: 32; /** Warning threshold for render time */
+  --la-iconAdvanced-metrics-performance-memoryUsage-limit: 50MB; /** Memory usage limit for icon cache */
+  --la-iconAdvanced-metrics-performance-memoryUsage-cleanup: auto; /** Automatic memory cleanup strategy */
+  --la-iconAdvanced-metrics-accessibility-auditLevel: WCAG-AAA; /** Accessibility audit standard */
+  --la-iconAdvanced-metrics-accessibility-autoFix-enabled: true; /** Auto-fix accessibility issues */
+  --la-iconAdvanced-metrics-accessibility-autoFix-severity: error; /** Minimum severity level for auto-fix */
+  --la-iconAdvanced-analytics-userBehavior-clickTracking-enabled: true; /** Track icon click interactions */
+  --la-iconAdvanced-analytics-userBehavior-clickTracking-heatmaps: true; /** Generate click heatmaps */
+  --la-iconAdvanced-analytics-userBehavior-dwellTime-enabled: true; /** Track hover/focus duration */
+  --la-iconAdvanced-analytics-userBehavior-dwellTime-threshold: 500; /** Minimum dwell time in milliseconds */
+  --la-iconAdvanced-analytics-contextAnalysis-enabled: true; /** Analyze icon usage context */
+  --la-iconAdvanced-analytics-contextAnalysis-sentiment: true; /** Analyze user sentiment with icons */
+  --la-iconAdvanced-security-encryption-level: AES-256; /** Encryption standard for sensitive icon data */
+  --la-iconAdvanced-security-encryption-keyRotation: 7d; /** Key rotation interval */
+  --la-iconAdvanced-security-integrity-checksums-enabled: true; /** Enable integrity checksums */
+  --la-iconAdvanced-security-integrity-checksums-algorithm: SHA-256; /** Checksum algorithm */
+  --la-iconAdvanced-security-integrity-validation-runtime: true; /** Runtime integrity validation */
+  --la-iconAdvanced-security-integrity-validation-build: true; /** Build-time integrity checks */
+  --la-iconAdvanced-security-access-authentication-required: false; /** Auth required for icon access */
+  --la-iconAdvanced-security-access-authentication-method: JWT; /** Authentication method */
+  --la-iconAdvanced-security-access-authorization-rbac-enabled: true; /** Role-based access control */
+  --la-iconAdvanced-security-access-authorization-rbac-granularity: icon-level; /** Permission granularity */
+  --la-iconAdvanced-security-audit-logging-enabled: true; /** Enable security audit logging */
+  --la-iconAdvanced-security-audit-logging-level: detailed; /** Audit log detail level */
+  --la-iconAdvanced-security-audit-logging-retention: 1y; /** Audit log retention period */
+  --la-iconAdvanced-security-audit-compliance-standards: ["SOX", "GDPR", "HIPAA"]; /** Compliance standards to meet */
+  --la-iconAdvanced-security-audit-compliance-reporting: automatic; /** Compliance reporting mode */
+  --la-iconAdvanced-security-privacy-dataMinimization-enabled: true; /** Minimize data collection */
+  --la-iconAdvanced-security-privacy-dataMinimization-anonymization: true; /** Anonymize user data */
+  --la-iconAdvanced-security-privacy-consent-required: false; /** User consent required */
+  --la-iconAdvanced-security-privacy-consent-granular: true; /** Granular consent options */
+}

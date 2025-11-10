@@ -1,0 +1,139 @@
+/**
+ * Layera Cards System - Design Tokens
+ */
+
+.la-card {
+  /* Card padding options */
+  padding: var(--la-space-4);
+
+  /* Card background and borders */
+  background-color: var(--la-color-surface);
+  border: 0.063rem solid var(--la-color-border-primary);
+  border-radius: var(--la-radius-lg);
+
+  /* Card shadows */
+  box-shadow: var(--la-shadow-md);
+
+  /* Transitions */
+  transition: all 0.2s ease;
+}
+
+.la-card-sm {
+  max-width: 12.5rem;
+}
+
+.la-card-md {
+  max-width: 17.5rem;
+}
+
+.la-card-lg {
+  max-width: 22.5rem;
+}
+
+.la-card-xl {
+  max-width: 30rem;
+}
+
+.la-card-padding-none {
+  padding: var(--la-size-0);
+}
+
+.la-card-padding-sm {
+  padding: var(--la-space-3);
+}
+
+.la-card-padding-md {
+  padding: var(--la-space-4);
+}
+
+.la-card-padding-lg {
+  padding: var(--la-space-6);
+}
+
+.la-card-elevated {
+  box-shadow: var(--la-shadow-xl);
+}
+
+.la-card-hoverable:hover {
+  box-shadow: var(--la-shadow-lg);
+  transform: translateY(-0.125rem);
+}
+
+.la-card-clickable {
+  cursor: pointer;
+}
+
+.la-card-clickable:focus {
+  outline: 0.125rem solid var(--la-color-brand);
+  outline-offset: 0.125rem;
+}
+
+.la-card-stats {
+  background-color: var(--la-color-surface);
+}
+
+.la-card-chart {
+  background-color: var(--la-color-bg-secondary);
+}
+
+.la-card-status {
+  background-color: var(--la-color-surface);
+}
+
+.la-card-info {
+  background-color: var(--la-color-bg-secondary);
+}
+
+.la-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--la-space-3);
+  padding: var(--la-space-4);
+  padding-bottom: var(--la-space-3);
+  border-bottom: 0.063rem solid var(--la-color-border-primary);
+}
+
+.la-card-header-content {
+  flex: 1;
+  min-width: var(--la-size-0);
+}
+
+.la-card-title {
+  margin: var(--la-size-0);
+  font-size: var(--la-font-size-lg);
+  font-weight: 600;
+  line-height: var(--la-font-size-lg);
+  color: var(--la-color-text-primary);
+}
+
+.la-card-subtitle {
+  margin: var(--la-space-1) 0 0 0;
+  font-size: var(--la-font-size-sm);
+  font-weight: 400;
+  line-height: var(--la-line-height-normal);
+  color: var(--la-color-text-secondary);
+}
+
+.la-card-actions {
+  display: flex;
+  align-items: center;
+  background-color: var(--la-color-surface);
+  gap: var(--la-space-2);
+  flex-shrink: var(--la-size-0);
+}
+
+.la-card-content {
+  flex: 1;
+  min-width: var(--la-size-0);
+  padding: var(--la-space-4);
+}
+
+.la-card-footer {
+  padding: var(--la-space-4) var(--la-space-4) var(--la-space-4);
+  padding-top: var(--la-space-4);
+  border-top: 0.063rem solid var(--la-color-border-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--la-space-2);
+}

@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔍 LAYERA PRE-COMMIT VALIDATION"
+echo "================================"
+
+# Έλεγχος για σκληρές τιμές (γρήγορη έκδοση)
+echo "🚨 Checking staged files for hardcoded values..."
+node scripts/validate-staged.js
+
+# Έλεγχος μόνο αν πέρασε το validation
+if [ $? -eq 0 ]; then
+  echo "🔧 Running linter..."
+  npm run lint
+
+  echo "🧪 Running type checking..."
+  npm run typecheck
+fi

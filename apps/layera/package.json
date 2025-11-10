@@ -13,6 +13,7 @@
   "dependencies": {
     "@layera/icons": "workspace:*",
     "@layera/tokens": "workspace:*",
+    "@layera/typography": "workspace:*",
     "firebase": "^12.4.0",
     "leaflet": "^1.9.4",
     "react": "^19.1.1",

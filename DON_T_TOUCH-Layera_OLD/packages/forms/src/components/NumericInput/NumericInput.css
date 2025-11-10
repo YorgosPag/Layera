@@ -1,0 +1,444 @@
+/* NumericInput Component Styles */
+.layera-numeric-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--la-space-1-5);
+  font-family: var(--la-font-family-primary);
+}
+
+.layera-numeric-input-full-width {
+  width: 100%;
+}
+
+.layera-numeric-input-disabled {
+  opacity: var(--la-opacity-60);
+}
+
+.layera-numeric-input-loading {
+  pointer-events: var(--la-pointer-events-none);
+}
+
+/* Label */
+.layera-numeric-input-label {
+  color: var(--la-color-text-primary);
+  font-size: var(--la-font-size-base);
+  font-weight: var(--la-font-weight-medium);
+  line-height: var(--la-line-height-body);
+  margin: var(--la-size-0);
+}
+
+.layera-numeric-input-sm .layera-numeric-input-label {
+  font-size: var(--la-font-size-sm);
+}
+
+.layera-numeric-input-lg .layera-numeric-input-label {
+  font-size: var(--la-font-size-lg);
+}
+
+.layera-numeric-input-disabled .layera-numeric-input-label {
+  color: var(--la-color-text-disabled);
+}
+
+.layera-numeric-input-required {
+  color: var(--la-color-error);
+  margin-left: var(--la-space-0-5);
+}
+
+/* Control container */
+.layera-numeric-input-control {
+  display: flex;
+  align-items: center;
+  gap: var(--la-space-2);
+  position: relative;
+}
+
+.layera-numeric-input-steppers-separate .layera-numeric-input-control {
+  gap: var(--la-space-1);
+}
+
+/* Input wrapper */
+.layera-numeric-input-input-wrapper {
+  display: flex;
+  align-items: center;
+  flex: var(--la-flex-1);
+  position: relative;
+  border: 0.125rem solid var(--la-color-border-primary);
+  border-radius: var(--la-radius-md);
+  background: var(--la-color-background-primary);
+  transition: all var(--la-transition-default);
+  overflow: hidden;
+}
+
+/* Size variants for wrapper */
+.layera-numeric-input-sm .layera-numeric-input-input-wrapper {
+  min-height: var(--la-size-8);
+  border-radius: var(--la-radius-sm);
+}
+
+.layera-numeric-input-md .layera-numeric-input-input-wrapper {
+  min-height: var(--la-size-10);
+}
+
+.layera-numeric-input-lg .layera-numeric-input-input-wrapper {
+  min-height: var(--la-size-12);
+  border-radius: var(--la-radius-lg);
+}
+
+/* State variants for wrapper */
+.layera-numeric-input-default .layera-numeric-input-input-wrapper {
+  border-color: var(--la-color-border-default);
+}
+
+.layera-numeric-input-focus .layera-numeric-input-input-wrapper {
+  border-color: var(--la-color-primary);
+  box-shadow: 0 0 0 0.125rem var(--la-color-primary-alpha-20);
+}
+
+.layera-numeric-input-error .layera-numeric-input-input-wrapper {
+  border-color: var(--la-color-error);
+}
+
+.layera-numeric-input-success .layera-numeric-input-input-wrapper {
+  border-color: var(--la-color-success);
+}
+
+.layera-numeric-input-warning .layera-numeric-input-input-wrapper {
+  border-color: var(--la-color-warning);
+}
+
+.layera-numeric-input-disabled .layera-numeric-input-input-wrapper {
+  border-color: var(--la-color-border-disabled);
+  background: var(--la-color-bg-disabled);
+}
+
+/* Input element */
+.layera-numeric-input-input {
+  flex: var(--la-flex-1);
+  border: none;
+  outline: none;
+  background: var(--la-color-transparent);
+  color: var(--la-color-text-primary);
+  font-family: var(--la-font-family-primary);
+  font-size: var(--la-font-size-base);
+  line-height: var(--la-line-height-body);
+  padding: var(--la-space-2) var(--la-space-3);
+  min-width: var(--la-size-0);
+  text-align: left;
+}
+
+.layera-numeric-input-input::placeholder {
+  color: var(--la-color-text-placeholder);
+}
+
+.layera-numeric-input-input:disabled {
+  color: var(--la-color-text-disabled);
+  cursor: var(--la-cursor-not-allowed);
+}
+
+/* Size variants for input */
+.layera-numeric-input-sm .layera-numeric-input-input {
+  font-size: var(--la-font-size-sm);
+  padding: var(--la-space-1-5) var(--la-space-2-5);
+}
+
+.layera-numeric-input-lg .layera-numeric-input-input {
+  font-size: var(--la-font-size-lg);
+  padding: var(--la-space-3) var(--la-space-4);
+}
+
+/* Focus states */
+.layera-numeric-input-input:focus + * + .layera-numeric-input-input-wrapper,
+.layera-numeric-input-input:focus-within ~ .layera-numeric-input-input-wrapper,
+.layera-numeric-input-input-wrapper:focus-within {
+  border-color: var(--la-color-primary);
+  box-shadow: 0 0 0 0.125rem var(--la-color-primary-alpha-20);
+}
+
+.layera-numeric-input-error .layera-numeric-input-input-wrapper:focus-within {
+  border-color: var(--la-color-error);
+  box-shadow: 0 0 0 0.125rem var(--la-color-error-alpha-20);
+}
+
+/* Prefix and Suffix */
+.layera-numeric-input-prefix,
+.layera-numeric-input-suffix {
+  color: var(--la-color-text-secondary);
+  font-size: var(--la-font-size-base);
+  padding: 0 0.5rem;
+  white-space: nowrap;
+  user-select: var(--la-user-select-none);
+}
+
+.layera-numeric-input-sm .layera-numeric-input-prefix,
+.layera-numeric-input-sm .layera-numeric-input-suffix {
+  font-size: var(--la-font-size-sm);
+  padding: 0 0.375rem;
+}
+
+.layera-numeric-input-lg .layera-numeric-input-prefix,
+.layera-numeric-input-lg .layera-numeric-input-suffix {
+  font-size: var(--la-font-size-lg);
+  padding: 0 0.625rem;
+}
+
+.layera-numeric-input-prefix {
+  border-right: 0.063rem solid var(--la-color-border-subtle);
+}
+
+.layera-numeric-input-suffix {
+  border-left: 0.063rem solid var(--la-color-border-subtle);
+}
+
+/* Loading spinner */
+.layera-numeric-input-loading {
+  position: absolute;
+  right: var(--la-space-2);
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: var(--la-pointer-events-none);
+}
+
+.layera-numeric-input-spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 0.125rem solid var(--la-color-border-subtle);
+  border-top: 0.125rem solid var(--la-color-primary);
+  border-radius: var(--la-radius-full);
+  animation: layera-numeric-input-spin 1s linear infinite;
+}
+
+.layera-numeric-input-sm .layera-numeric-input-spinner {
+  width: 0.875rem;
+  height: 0.875rem;
+  border-width: 0.063rem;
+}
+
+.layera-numeric-input-lg .layera-numeric-input-spinner {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+@keyframes layera-numeric-input-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Stepper Buttons */
+.layera-numeric-input-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.063rem solid var(--la-color-border-default);
+  background: var(--la-color-bg-secondary);
+  color: var(--la-color-text-primary);
+  cursor: var(--la-cursor-pointer);
+  transition: all var(--la-transition-default);
+  user-select: var(--la-user-select-none);
+  padding: var(--la-size-0);
+  outline: none;
+}
+
+.layera-numeric-input-stepper:hover:not(:disabled) {
+  background: var(--la-color-bg-hover);
+  border-color: var(--la-color-primary);
+}
+
+.layera-numeric-input-stepper:active:not(:disabled) {
+  background: var(--la-color-bg-active);
+  transform: translateY(var(--la-space-px));
+}
+
+.layera-numeric-input-stepper:focus-visible {
+  border-color: var(--la-color-primary);
+  box-shadow: 0 0 0 0.125rem var(--la-color-primary-alpha-20);
+}
+
+.layera-numeric-input-stepper:disabled {
+  opacity: 0.4;
+  cursor: var(--la-cursor-not-allowed);
+  background: var(--la-color-bg-disabled);
+  border-color: var(--la-color-border-disabled);
+}
+
+.layera-numeric-input-stepper-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: var(--la-flex-shrink-0);
+}
+
+/* Right positioned steppers */
+.layera-numeric-input-steppers-right {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--la-radius-md);
+  overflow: hidden;
+  border: 0.125rem solid var(--la-color-border-primary);
+}
+
+.layera-numeric-input-sm .layera-numeric-input-steppers-right {
+  border-radius: var(--la-radius-sm);
+}
+
+.layera-numeric-input-lg .layera-numeric-input-steppers-right {
+  border-radius: var(--la-radius-lg);
+}
+
+.layera-numeric-input-steppers-right .layera-numeric-input-stepper {
+  width: 1.5rem;
+  height: 1.25rem;
+  border: none;
+  border-radius: var(--la-size-0);
+}
+
+.layera-numeric-input-sm .layera-numeric-input-steppers-right .layera-numeric-input-stepper {
+  width: 1.25rem;
+  height: 1rem;
+}
+
+.layera-numeric-input-lg .layera-numeric-input-steppers-right .layera-numeric-input-stepper {
+  width: 1.75rem;
+  height: 1.5rem;
+}
+
+.layera-numeric-input-steppers-right .layera-numeric-input-stepper:first-child {
+  border-bottom: 0.063rem solid var(--la-color-border-subtle);
+}
+
+.layera-numeric-input-steppers-right .layera-numeric-input-stepper-icon {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.layera-numeric-input-sm .layera-numeric-input-steppers-right .layera-numeric-input-stepper-icon {
+  width: 0.625rem;
+  height: 0.625rem;
+}
+
+.layera-numeric-input-lg .layera-numeric-input-steppers-right .layera-numeric-input-stepper-icon {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+/* Inline steppers */
+.layera-numeric-input-steppers-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+  padding: 0 0.5rem;
+  border-left: 0.063rem solid var(--la-color-border-subtle);
+}
+
+.layera-numeric-input-steppers-inline .layera-numeric-input-stepper {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: var(--la-radius-sm);
+  border: 0.063rem solid var(--la-color-border-subtle);
+}
+
+.layera-numeric-input-sm .layera-numeric-input-steppers-inline .layera-numeric-input-stepper {
+  width: 1rem;
+  height: 1rem;
+}
+
+.layera-numeric-input-lg .layera-numeric-input-steppers-inline .layera-numeric-input-stepper {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.layera-numeric-input-steppers-inline .layera-numeric-input-stepper-icon {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.layera-numeric-input-sm .layera-numeric-input-steppers-inline .layera-numeric-input-stepper-icon {
+  width: 0.625rem;
+  height: 0.625rem;
+}
+
+.layera-numeric-input-lg .layera-numeric-input-steppers-inline .layera-numeric-input-stepper-icon {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+/* Separate steppers */
+.layera-numeric-input-steppers-separate .layera-numeric-input-stepper {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--la-radius-md);
+  flex-shrink: var(--la-flex-shrink-0);
+}
+
+.layera-numeric-input-sm.layera-numeric-input-steppers-separate .layera-numeric-input-stepper {
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--la-radius-sm);
+}
+
+.layera-numeric-input-lg.layera-numeric-input-steppers-separate .layera-numeric-input-stepper {
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--la-radius-lg);
+}
+
+.layera-numeric-input-steppers-separate .layera-numeric-input-stepper-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.layera-numeric-input-sm.layera-numeric-input-steppers-separate .layera-numeric-input-stepper-icon {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.layera-numeric-input-lg.layera-numeric-input-steppers-separate .layera-numeric-input-stepper-icon {
+  width: 1.375rem;
+  height: 1.375rem;
+}
+
+/* Footer */
+.layera-numeric-input-footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--la-space-1);
+}
+
+.layera-numeric-input-description {
+  color: var(--la-color-text-secondary);
+  font-size: var(--la-font-size-sm);
+  line-height: var(--la-line-height-sm);
+}
+
+.layera-numeric-input-error {
+  color: var(--la-color-error);
+  font-size: var(--la-font-size-sm);
+  font-weight: var(--la-font-weight-medium);
+  line-height: var(--la-line-height-sm);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  .layera-numeric-input-input-wrapper,
+  .layera-numeric-input-stepper,
+  .layera-numeric-input-steppers-right {
+    border-width: 0.1875rem;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .layera-numeric-input-input-wrapper,
+  .layera-numeric-input-stepper,
+  .layera-numeric-input-spinner {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .layera-numeric-input-stepper,
+  .layera-numeric-input-steppers-right,
+  .layera-numeric-input-steppers-inline {
+    display: none;
+  }
+}

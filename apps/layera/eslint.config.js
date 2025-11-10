@@ -6,6 +6,9 @@ import react from 'eslint-plugin-react'
 import tseslint from '@typescript-eslint/eslint-plugin'
 import parser from '@typescript-eslint/parser'
 
+// 🚨 LAYERA CUSTOM RULES - Hardcoded Values Protection
+import noHardcodedValues from '../../eslint-rules/no-hardcoded-values.js'
+
 export default [
   {
     ignores: ['dist', 'vite.config.ts', 'eslint.config.js']
@@ -30,6 +33,11 @@ export default [
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
       'react': react,
+      'layera-custom': {
+        rules: {
+          'no-hardcoded-values': noHardcodedValues
+        }
+      }
     },
     rules: {
       ...js.configs.recommended.rules,
@@ -53,6 +61,10 @@ export default [
 
       // 🚫 LAYERA ANTI-ANY RULE - ΑΥΣΤΗΡΗ ΑΠΑΓΟΡΕΥΣΗ!
       '@typescript-eslint/no-explicit-any': 'error',
+
+      // 🚨 LAYERA HARDCODED VALUES PROTECTION
+      'layera-custom/no-hardcoded-values': 'error',
+
       // Απενεργοποιημένα rules για τώρα
       'no-undef': 'off',
       'no-unused-vars': 'off',

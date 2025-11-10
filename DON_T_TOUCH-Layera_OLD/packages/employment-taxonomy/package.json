@@ -1,0 +1,59 @@
+{
+  "name": "@layera/employment-taxonomy",
+  "version": "1.0.0",
+  "description": "Enterprise employment and occupation taxonomy system based on ESCO EU standard",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "lint": "eslint \"src/**/*.{ts,tsx}\" --max-warnings 0",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "employment",
+    "occupation",
+    "taxonomy",
+    "esco",
+    "isco",
+    "jobs",
+    "skills",
+    "enterprise",
+    "eu",
+    "classification"
+  ],
+  "author": "Layera",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0",
+    "@layera/tolgee": "workspace:*",
+    "@layera/cards": "workspace:*",
+    "@layera/buttons": "workspace:*",
+    "@layera/icons": "workspace:*",
+    "@layera/typography": "workspace:*",
+    "@layera/layout": "workspace:*",
+    "@layera/loading": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "typescript": "^5.0.0",
+    "tsup": "^7.0.0",
+    "eslint": "^8.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  }
+}

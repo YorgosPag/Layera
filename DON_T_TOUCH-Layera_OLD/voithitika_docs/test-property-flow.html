@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ΠΡΑΓΜΑΤΙΚΗ ΔΟΚΙΜΗ - Κλάδος Ακινήτων</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-frame {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .step-log {
+            border-left: 4px solid #2196F3;
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .action {
+            background: #e8f5e8;
+            border-left: 4px solid #4caf50;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        .observation {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .instructions {
+            background: #e3f2fd;
+            border-left: 4px solid #1976d2;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🏠 ΠΡΑΓΜΑΤΙΚΗ ΔΟΚΙΜΗ - ΚΛΑΔΟΣ ΑΚΙΝΗΤΩΝ</h1>
+
+    <div class="instructions">
+        <h3>📋 ΟΔΗΓΙΕΣ ΔΟΚΙΜΗΣ</h3>
+        <ol>
+            <li><strong>Κλικ στο πράσινο FAB</strong> → Τι εμφανίζεται;</li>
+            <li><strong>Επιλογή "Ακίνητα"</strong> → Ποιο είναι το επόμενο βήμα;</li>
+            <li><strong>Κάθε κλικ</strong> → Καταγραφή του αποτελέσματος</li>
+            <li><strong>Συνέχεια μέχρι το τέλος</strong> → Όλη η ροή ακινήτων</li>
+        </ol>
+    </div>
+
+    <div class="test-frame">
+        <h2>🌐 ΕΦΑΡΜΟΓΗ</h2>
+        <iframe src="http://localhost:3001" frameborder="0"></iframe>
+    </div>
+
+    <div class="test-frame">
+        <h2>📝 ΚΑΤΑΓΡΑΦΗ ΒΗΜΑΤΩΝ</h2>
+
+        <div class="step-log">
+            <h3>🎯 ΒΗΜΑ 1: ΑΡΧΙΚΗ ΟΘΟΝΗ</h3>
+            <div class="observation">
+                <strong>ΠΑΡΑΤΗΡΗΣΗ:</strong>
+                <ul>
+                    <li>Χάρτης φορτώνει</li>
+                    <li>Πράσινο FAB button διαθέσιμο</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="step-log">
+            <h3>🎯 ΒΗΜΑ 2: ΚΛΙΚ ΣΤΟ FAB</h3>
+            <div class="action">
+                <strong>ΕΝΕΡΓΕΙΑ:</strong> Κλικ στο πράσινο FAB
+            </div>
+            <div class="observation">
+                <strong>ΑΠΟΤΕΛΕΣΜΑ:</strong>
+                <input type="text" placeholder="Γράψε τι εμφανίζεται..." style="width: 100%; padding: 8px;">
+            </div>
+        </div>
+
+        <div class="step-log">
+            <h3>🎯 ΒΗΜΑ 3: ΕΠΙΛΟΓΗ ΑΚΙΝΗΤΩΝ</h3>
+            <div class="action">
+                <strong>ΕΝΕΡΓΕΙΑ:</strong> Κλικ στο "Ακίνητα"
+            </div>
+            <div class="observation">
+                <strong>ΑΠΟΤΕΛΕΣΜΑ:</strong>
+                <input type="text" placeholder="Γράψε τι εμφανίζεται μετά..." style="width: 100%; padding: 8px;">
+            </div>
+        </div>
+
+        <div class="step-log">
+            <h3>🎯 ΒΗΜΑ 4+: ΣΥΝΕΧΕΙΑ ΡΟΗΣ</h3>
+            <div class="observation">
+                <strong>ΠΑΡΑΤΗΡΗΣΕΙΣ:</strong>
+                <textarea placeholder="Γράψε όλα τα επόμενα βήματα που βλέπεις..." style="width: 100%; height: 150px; padding: 8px;"></textarea>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="test-frame">
+        <h2>🌳 ΑΠΟΤΕΛΕΣΜΑ - ΔΕΝΔΡΟΕΙΔΗΣ ΔΟΜΗ</h2>
+        <div style="background: #f8f9fa; padding: 15px; border-radius: 4px;">
+            <pre id="tree-result">
+🏠 ΚΛΑΔΟΣ ΑΚΙΝΗΤΩΝ - ΠΡΑΓΜΑΤΙΚΗ ΡΟΗH:
+│
+├── 🎯 ΒΗΜΑ 1: Αρχική οθόνη + FAB
+├── 🎯 ΒΗΜΑ 2: [ΘΑ ΣΥΜΠΛΗΡΩΘΕΙ]
+├── 🎯 ΒΗΜΑ 3: [ΘΑ ΣΥΜΠΛΗΡΩΘΕΙ]
+└── ...
+            </pre>
+        </div>
+    </div>
+
+</body>
+</html>

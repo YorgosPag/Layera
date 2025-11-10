@@ -4,38 +4,38 @@ import { BuildingIcon, BriefcaseIcon } from '@layera/icons';
 
 const HomePage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center la-bg-gradient-primary">
       <div className="text-center p-8">
-        <h1 className="text-5xl font-bold text-blue-600 mb-6">
+        <h1 className="la-text-5xl la-font-bold la-text-primary la-leading-tight">
           Layera
         </h1>
-        <p className="text-xl text-gray-600 mb-12">
+        <p className="la-text-xl la-text-secondary la-leading-relaxed la-mb-12">
           Ενοποιημένη πλατφόρμα για Ακίνητα και Εργασία με Geo-Location
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
           <Link
             to="/marketplace"
-            className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow border-l-4 border-blue-500"
+            className="p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow border-l-4 la-bg-primary la-card-accent-primary"
           >
-            <div className="text-4xl mb-4">
-              <BuildingIcon size="xl" />
+            <div className="la-text-4xl la-mb-4">
+              <BuildingIcon size="xxl" />
             </div>
-            <h2 className="text-2xl font-semibold text-blue-600 mb-3">Ακίνητα</h2>
-            <p className="text-gray-600">
+            <h2 className="la-text-2xl la-font-semibold la-text-primary la-leading-snug la-mb-3">Ακίνητα</h2>
+            <p className="la-text-base la-text-secondary la-leading-normal">
               Αναζήτηση και καταχώρηση ακινήτων με γεωγραφικό εντοπισμό
             </p>
           </Link>
 
           <Link
             to="/jobs"
-            className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow border-l-4 border-green-500"
+            className="p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow border-l-4 la-bg-primary la-card-accent-green"
           >
-            <div className="text-4xl mb-4">
-              <BriefcaseIcon size="xl" />
+            <div className="la-text-4xl la-mb-4">
+              <BriefcaseIcon size="xxl" />
             </div>
-            <h2 className="text-2xl font-semibold text-green-600 mb-3">Εργασία</h2>
-            <p className="text-gray-600">
+            <h2 className="la-text-2xl la-font-semibold la-text-primary la-leading-snug la-mb-3">Εργασία</h2>
+            <p className="la-text-base la-text-secondary la-leading-normal">
               Αναζήτηση και προσφορά εργασίας με τοπική στόχευση
             </p>
           </Link>
@@ -44,7 +44,7 @@ const HomePage: React.FC = () => {
         <div className="mt-12">
           <Link
             to="/login"
-            className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+            className="px-8 py-3 rounded-lg la-text-lg la-font-semibold la-btn-primary"
           >
             Είσοδος / Εγγραφή
           </Link>
