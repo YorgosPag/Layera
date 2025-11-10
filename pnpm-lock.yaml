@@ -20,12 +20,21 @@ importers:
       '@layera/icons':
         specifier: workspace:*
         version: link:../../packages/icons
+      '@layera/layout':
+        specifier: workspace:*
+        version: link:../../packages/layout
+      '@layera/theme-switcher':
+        specifier: workspace:*
+        version: link:../../packages/theme-switcher
       '@layera/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
       '@layera/typography':
         specifier: workspace:*
         version: link:../../packages/typography
+      '@layera/viewport':
+        specifier: workspace:*
+        version: link:../../packages/viewport
       firebase:
         specifier: ^12.4.0
         version: 12.5.0
@@ -183,6 +192,34 @@ importers:
         specifier: ^5.0.0
         version: 5.9.3
 
+  packages/theme-switcher:
+    dependencies:
+      '@layera/layout':
+        specifier: workspace:*
+        version: link:../layout
+      react:
+        specifier: ^18.0.0 || ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^18.0.0 || ^19.0.0
+        version: 19.2.0(react@19.2.0)
+    devDependencies:
+      '@types/react':
+        specifier: ^18.2.0
+        version: 18.3.26
+      '@types/react-dom':
+        specifier: ^18.2.0
+        version: 18.3.7(@types/react@18.3.26)
+      eslint:
+        specifier: ^8.0.0
+        version: 8.57.1
+      tsup:
+        specifier: ^7.2.0
+        version: 7.3.0(postcss@8.5.6)(typescript@5.9.3)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
   packages/tokens:
     devDependencies:
       style-dictionary:
@@ -234,6 +271,52 @@ importers:
       postcss-cli:
         specifier: ^10.1.0
         version: 10.1.0(postcss@8.5.6)
+      tsup:
+        specifier: ^7.2.0
+        version: 7.3.0(postcss@8.5.6)(typescript@5.9.3)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
+  packages/viewport:
+    dependencies:
+      react:
+        specifier: ^18.0.0 || ^19.0.0
+        version: 19.2.0
+      react-dom:
+        specifier: ^18.0.0 || ^19.0.0
+        version: 19.2.0(react@19.2.0)
+    devDependencies:
+      '@eslint/js':
+        specifier: ^9.0.0
+        version: 9.39.1
+      '@types/react':
+        specifier: ^18.2.0
+        version: 18.3.26
+      '@types/react-dom':
+        specifier: ^18.2.0
+        version: 18.3.7(@types/react@18.3.26)
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^8.0.0
+        version: 8.46.3(@typescript-eslint/parser@8.46.3(eslint@9.39.1)(typescript@5.9.3))(eslint@9.39.1)(typescript@5.9.3)
+      '@typescript-eslint/parser':
+        specifier: ^8.0.0
+        version: 8.46.3(eslint@9.39.1)(typescript@5.9.3)
+      eslint:
+        specifier: ^9.0.0
+        version: 9.39.1
+      eslint-plugin-react:
+        specifier: ^7.0.0
+        version: 7.37.5(eslint@9.39.1)
+      eslint-plugin-react-hooks:
+        specifier: ^5.0.0
+        version: 5.2.0(eslint@9.39.1)
+      eslint-plugin-react-refresh:
+        specifier: ^0.4.0
+        version: 0.4.24(eslint@9.39.1)
+      globals:
+        specifier: ^15.0.0
+        version: 15.15.0
       tsup:
         specifier: ^7.2.0
         version: 7.3.0(postcss@8.5.6)(typescript@5.9.3)

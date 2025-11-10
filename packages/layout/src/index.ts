@@ -1,19 +1,10 @@
 /**
  * Layera Layout System - Main Entry Point
- *
- * 🌟 Enterprise layout system που ξεπερνά Material Design 3, Chakra UI, και Ant Design
- *
- * Features:
- * - Complete sizing system με type-safe tokens
- * - Advanced flex system με CSS custom properties
- * - Universal layout primitives (Box, Stack, Flex)
- * - GeoAlert-specific enterprise utilities
- * - Performance-optimized με memoization
+ * KADOS Compliant - Enterprise CSS με design tokens μόνο
  */
 
-// Core Components
-export { AppShell } from './components/AppShell';
-export { LayeraHeader, HeaderActionsGroup } from './components/Header';
+// CSS Import για layout classes
+import './styles/layout.css';
 
 // Layout Primitives (Enterprise)
 export { Stack } from './components/Stack';
@@ -31,6 +22,9 @@ export {
 
 // Container Components
 export { PageContainer, PageHeader } from './components/Container';
+
+// Header Components (KADOS Compliant)
+export { LayeraHeader, HeaderActionsGroup } from './components/Header';
 
 // Hooks
 export { useGeoAlertLayout } from './hooks/useGeoAlertLayout';

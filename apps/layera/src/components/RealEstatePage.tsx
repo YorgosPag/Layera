@@ -1,32 +1,38 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BuildingIcon, SearchIcon, EuroIcon, StoreIcon, MapIcon } from '@layera/icons';
+import { BuildingIcon, SearchIcon, EuroIcon, StoreIcon, MapIcon } from '../../../../packages/icons/src';
+import { Box, Flex, Stack, LayeraHeader, HeaderActionsGroup } from '../../../../packages/layout/src';
+import { ThemeSwitcher } from '@layera/theme-switcher';
 
 const RealEstatePage: React.FC = () => {
+  const navigation = (
+    <>
+      <Link to="/jobs" className="la-text-secondary la-no-underline">
+        Εργασία
+      </Link>
+      <Link to="/login" className="la-text-secondary la-no-underline">
+        Είσοδος
+      </Link>
+    </>
+  );
+
   return (
-    <div className="min-h-screen la-bg-surface-light">
-      {/* Header */}
-      <header className="la-header la-bg-primary">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
-            <Link to="/" className="la-text-2xl la-font-bold la-text-primary la-no-underline">
-              Layera
-            </Link>
-            <nav className="flex space-x-6">
-              <Link to="/jobs" className="la-text-secondary la-no-underline">
-                Εργασία
-              </Link>
-              <Link to="/login" className="la-text-secondary la-no-underline">
-                Είσοδος
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </header>
+    <Box className="layera-full-height la-bg-surface-light">
+      <LayeraHeader
+        title="Layera"
+        subtitle="Ακίνητα - Βρείτε το ιδανικό ακίνητο"
+        variant="standard"
+        navigation={navigation}
+        actions={
+          <HeaderActionsGroup>
+            <ThemeSwitcher variant="icon" size="md" />
+          </HeaderActionsGroup>
+        }
+      />
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 py-8">
-        <div className="text-center mb-12">
+      <Box as="main" className="layera-container--fullscreen layera-padding--lg">
+        <Box className="layera-text-center layera-margin-bottom--xl">
           <h1 className="la-text-4xl la-font-bold la-text-primary la-leading-tight la-mb-4 la-page-title">
             <BuildingIcon size="xxl" />
             Ακίνητα
@@ -34,67 +40,67 @@ const RealEstatePage: React.FC = () => {
           <p className="la-text-xl la-text-secondary la-leading-normal">
             Βρείτε το ιδανικό ακίνητο με γεωγραφικό εντοπισμό
           </p>
-        </div>
+        </Box>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <Box className="layera-grid layera-grid--cols-1 layera-grid--tablet-cols-2 layera-grid--desktop-cols-3 layera-grid--gap-lg">
           {/* Search Card */}
-          <div className="la-card la-bg-primary">
-            <div className="la-text-3xl la-mb-4">
+          <Box className="la-card la-bg-primary">
+            <Box className="la-text-3xl la-mb-4">
               <SearchIcon size="md" />
-            </div>
+            </Box>
             <h3 className="la-text-xl la-font-semibold la-text-primary la-leading-snug la-mb-3">Αναζήτηση</h3>
             <p className="la-text-base la-text-secondary la-leading-normal la-mb-4">
               Ψάξτε για ακίνητα βάσει τοποθεσίας και κριτηρίων
             </p>
-            <button className="w-full py-2 px-4 rounded transition-colors la-bg-accent-blue la-text-white">
+            <Box as="button" className="layera-full-width layera-padding--md la-bg-accent-blue la-text-white">
               Ξεκινήστε Αναζήτηση
-            </button>
-          </div>
+            </Box>
+          </Box>
 
           {/* Sell Card */}
-          <div className="la-card la-bg-primary">
-            <div className="la-text-3xl la-mb-4">
+          <Box className="la-card la-bg-primary">
+            <Box className="la-text-3xl la-mb-4">
               <EuroIcon size="md" />
-            </div>
+            </Box>
             <h3 className="la-text-xl la-font-semibold la-text-primary la-leading-snug la-mb-3">Πώληση</h3>
             <p className="la-text-base la-text-secondary la-leading-normal la-mb-4">
               Καταχωρήστε το ακίνητό σας για πώληση
             </p>
-            <button className="w-full py-2 px-4 rounded transition-colors la-bg-accent-green la-text-white">
+            <Box as="button" className="layera-full-width layera-padding--md la-bg-accent-green la-text-white">
               Καταχώρηση Πώλησης
-            </button>
-          </div>
+            </Box>
+          </Box>
 
           {/* Rent Card */}
-          <div className="la-card la-bg-primary">
-            <div className="la-text-3xl la-mb-4">
+          <Box className="la-card la-bg-primary">
+            <Box className="la-text-3xl la-mb-4">
               <StoreIcon size="md" />
-            </div>
+            </Box>
             <h3 className="la-text-xl la-font-semibold la-text-primary la-leading-snug la-mb-3">Ενοικίαση</h3>
             <p className="la-text-base la-text-secondary la-leading-normal la-mb-4">
               Βρείτε ή προσφέρετε ακίνητα προς ενοικίαση
             </p>
-            <button className="w-full py-2 px-4 rounded transition-colors la-bg-accent-purple la-text-white">
+            <Box as="button" className="layera-full-width layera-padding--md la-bg-accent-purple la-text-white">
               Ενοικίαση
-            </button>
-          </div>
-        </div>
+            </Box>
+          </Box>
+        </Box>
 
         {/* Map Section */}
-        <div className="mt-12 la-card la-bg-primary">
+        <Box className="layera-margin-top--xl la-card la-bg-primary">
           <h2 className="la-text-2xl la-font-bold la-text-primary la-leading-snug la-mb-4 la-section-title">
             <MapIcon size="md" />
             Χάρτης Περιοχών
           </h2>
-          <div className="la-map-placeholder la-bg-surface-medium">
-            <div className="text-center la-text-tertiary">
+          <Box className="la-map-placeholder la-bg-surface-medium">
+            <Box className="layera-text-center la-text-tertiary">
               <p>Ο χάρτης θα εμφανιστεί εδώ</p>
               <p className="la-text-sm la-text-tertiary la-leading-normal">(Leaflet integration coming soon)</p>
-            </div>
-          </div>
-        </div>
-      </main>
-    </div>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

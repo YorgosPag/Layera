@@ -12,8 +12,11 @@
   },
   "dependencies": {
     "@layera/icons": "workspace:*",
+    "@layera/layout": "workspace:*",
+    "@layera/theme-switcher": "workspace:*",
     "@layera/tokens": "workspace:*",
     "@layera/typography": "workspace:*",
+    "@layera/viewport": "workspace:*",
     "firebase": "^12.4.0",
     "leaflet": "^1.9.4",
     "react": "^19.1.1",

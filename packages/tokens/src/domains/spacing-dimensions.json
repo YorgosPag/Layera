@@ -12,6 +12,10 @@
       "desktop": {
         "value": "1025px",
         "comment": "Desktop breakpoint - replaces hardcoded 1025"
+      },
+      "desktop-large": {
+        "value": "1440px",
+        "comment": "Large desktop breakpoint - replaces hardcoded 1440"
       }
     },
     "viewport": {

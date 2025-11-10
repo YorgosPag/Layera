@@ -16,8 +16,13 @@ import React from 'react';
 export interface BoxProps {
   children?: React.ReactNode;
   className?: string;
+  as?: 'section' | 'article' | 'main' | 'aside' | 'nav' | 'header' | 'footer' | 'div' | 'span' | 'button';
+  style?: React.CSSProperties;
+
+  // Safe DOM attributes
   id?: string;
   role?: string;
+  type?: 'button' | 'submit' | 'reset';
   'aria-label'?: string;
   'aria-labelledby'?: string;
   'aria-describedby'?: string;
@@ -28,15 +33,18 @@ export interface BoxProps {
 
 export const Box: React.FC<BoxProps> = ({
   children,
-  className,
-  ...rest
+  className = '',
+  as = 'section',
+  ...restProps
 }) => {
+  const Component = as;
+
   return (
-    <section
-      className={className || 'layera-box'}
-      {...rest}
+    <Component
+      className={`layera-box ${className}`.trim()}
+      {...restProps}
     >
       {children}
-    </section>
+    </Component>
   );
 };

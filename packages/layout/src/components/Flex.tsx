@@ -1,16 +1,15 @@
 import React from 'react';
-import { FLEX_SCALE, type FlexDirection, type FlexAlign, type FlexJustify, type FlexWrap, type FlexGap } from '../flex';
 
 export interface FlexProps {
   children: React.ReactNode;
+  className?: string;
+  as?: 'section' | 'article' | 'main' | 'aside' | 'nav' | 'header' | 'footer' | 'button' | 'span';
+
+  // Flex-specific props
   direction?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
   align?: 'start' | 'center' | 'end' | 'stretch' | 'baseline';
   justify?: 'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'space-evenly';
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
-  gap?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl';
-
-  className?: string;
-  as?: 'section' | 'article' | 'main' | 'aside' | 'nav' | 'header' | 'footer' | 'button' | 'span';
 
   // Safe DOM attributes
   id?: string;
@@ -26,52 +25,29 @@ export interface FlexProps {
 
 export const Flex: React.FC<FlexProps> = ({
   children,
-  direction = 'row',
-  align = 'start',
-  justify = 'start',
-  wrap = 'nowrap',
-  gap,
-  className,
+  className = '',
   as = 'section',
-  id,
-  role,
-  'aria-label': ariaLabel,
-  'aria-labelledby': ariaLabelledby,
-  'aria-describedby': ariaDescribedby,
-  onClick,
-  onMouseEnter,
-  onMouseLeave,
+  direction,
+  align,
+  justify,
+  wrap,
   ...restProps
 }) => {
-  // Only safe DOM props
-  const domProps = {
-    id,
-    role,
-    'aria-label': ariaLabel,
-    'aria-labelledby': ariaLabelledby,
-    'aria-describedby': ariaDescribedby,
-    onClick,
-    onMouseEnter,
-    onMouseLeave,
-    ...restProps
-  };
-
   const Component = as;
 
   const classes = [
     'layera-flex',
-    `layera-flex--${direction}`,
-    `layera-flex--align-${align}`,
-    `layera-flex--justify-${justify}`,
-    `layera-flex--wrap-${wrap}`,
-    gap && `layera-flex--gap-${gap}`,
+    direction && `layera-flex--${direction}`,
+    align && `layera-flex--align-${align}`,
+    justify && `layera-flex--justify-${justify}`,
+    wrap && `layera-flex--wrap-${wrap}`,
     className
   ].filter(Boolean).join(' ');
 
   return (
     <Component
       className={classes}
-      {...domProps}
+      {...restProps}
     >
       {children}
     </Component>

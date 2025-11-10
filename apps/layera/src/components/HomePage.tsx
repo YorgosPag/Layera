@@ -1,27 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BuildingIcon, BriefcaseIcon } from '@layera/icons';
+import { BuildingIcon, BriefcaseIcon } from '../../../../packages/icons/src';
+import { Box, Flex, Stack, LayeraHeader, HeaderActionsGroup } from '../../../../packages/layout/src';
+import { ResponsiveContainer, useViewport } from '../../../../packages/viewport/src';
+import { ThemeSwitcher } from '@layera/theme-switcher';
 
 const HomePage: React.FC = () => {
+  const { deviceType } = useViewport();
+
   return (
-    <div className="min-h-screen flex items-center justify-center la-bg-gradient-primary">
-      <div className="text-center p-8">
+    <Box className="layera-full-height layera-container--fullscreen">
+      <LayeraHeader
+        title="Layera"
+        subtitle="Ενοποιημένη πλατφόρμα για Ακίνητα και Εργασία"
+        variant="rich"
+        actions={
+          <HeaderActionsGroup>
+            <ThemeSwitcher variant="icon" size="md" />
+          </HeaderActionsGroup>
+        }
+      />
+
+      <ResponsiveContainer
+        className="layera-full-height la-bg-gradient-primary layera-container--fullscreen"
+        enableMaxWidth={false}
+      >
+        <Stack className="layera-text-center layera-responsive-container--with-padding layera-stack--spacing-lg">
         <h1 className="la-text-5xl la-font-bold la-text-primary la-leading-tight">
           Layera
         </h1>
-        <p className="la-text-xl la-text-secondary la-leading-relaxed la-mb-12">
+        <p className="la-text-xl la-text-secondary la-leading-relaxed">
           Ενοποιημένη πλατφόρμα για Ακίνητα και Εργασία με Geo-Location
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+        <Flex className="layera-grid layera-grid--cols-1 layera-grid--tablet-cols-2 layera-grid--gap-lg">
           <Link
             to="/marketplace"
-            className="p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow border-l-4 la-bg-primary la-card-accent-primary"
+            className="layera-padding--lg la-bg-primary la-card-accent-primary"
           >
-            <div className="la-text-4xl la-mb-4">
+            <Box className="la-text-4xl layera-margin-bottom--md">
               <BuildingIcon size="xxl" />
-            </div>
-            <h2 className="la-text-2xl la-font-semibold la-text-primary la-leading-snug la-mb-3">Ακίνητα</h2>
+            </Box>
+            <h2 className="la-text-2xl la-font-semibold la-text-primary la-leading-snug layera-margin-bottom--md">Ακίνητα</h2>
             <p className="la-text-base la-text-secondary la-leading-normal">
               Αναζήτηση και καταχώρηση ακινήτων με γεωγραφικό εντοπισμό
             </p>
@@ -29,28 +49,29 @@ const HomePage: React.FC = () => {
 
           <Link
             to="/jobs"
-            className="p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow border-l-4 la-bg-primary la-card-accent-green"
+            className="layera-padding--lg la-bg-primary la-card-accent-green"
           >
-            <div className="la-text-4xl la-mb-4">
+            <Box className="la-text-4xl layera-margin-bottom--md">
               <BriefcaseIcon size="xxl" />
-            </div>
-            <h2 className="la-text-2xl la-font-semibold la-text-primary la-leading-snug la-mb-3">Εργασία</h2>
+            </Box>
+            <h2 className="la-text-2xl la-font-semibold la-text-primary la-leading-snug layera-margin-bottom--md">Εργασία</h2>
             <p className="la-text-base la-text-secondary la-leading-normal">
               Αναζήτηση και προσφορά εργασίας με τοπική στόχευση
             </p>
           </Link>
-        </div>
+        </Flex>
 
-        <div className="mt-12">
+        <Box className="layera-margin-top--xl">
           <Link
             to="/login"
-            className="px-8 py-3 rounded-lg la-text-lg la-font-semibold la-btn-primary"
+            className="layera-padding--lg la-text-lg la-font-semibold la-btn-primary"
           >
             Είσοδος / Εγγραφή
           </Link>
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Stack>
+    </ResponsiveContainer>
+    </Box>
   );
 };
 

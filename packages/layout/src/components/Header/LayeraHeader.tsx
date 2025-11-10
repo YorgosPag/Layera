@@ -3,8 +3,8 @@ import { Box } from '../Box';
 import { LayeraHeaderProps } from '../../types';
 
 /**
- * LayeraHeader - Standardized header component με flexible variants
- * για διαφορετικούς τύπους εφαρμογών
+ * LayeraHeader - KADOS Compliant Header με προκαθορισμένες κλάσεις
+ * Χρησιμοποιεί μόνο layout classes με design tokens
  */
 export const LayeraHeader: React.FC<LayeraHeaderProps> = ({
   title,
@@ -16,45 +16,72 @@ export const LayeraHeader: React.FC<LayeraHeaderProps> = ({
   sticky = true,
   className = ''
 }) => {
+  // KADOS Compliant: μόνο προκαθορισμένες κλάσεις
+  const headerBaseClasses = [
+    'layera-flex',
+    'layera-flex--align-center',
+    'layera-padding--md',
+    'layera-full-width'
+  ];
+
+  // Sticky positioning με inline style (επιτρέπεται για functional properties)
+  const stickyStyle = sticky ? { position: 'sticky' as const, top: 0, zIndex: 10 } : {};
+
+  // Variant-specific background
+  const variantClasses = {
+    minimal: 'la-bg-surface-light',
+    standard: 'la-bg-primary',
+    rich: 'la-bg-gradient-primary'
+  };
+
   const headerClasses = [
-    'layera-header',
-    `layera-header--${variant}`,
-    sticky ? 'layera-header--sticky' : '',
+    ...headerBaseClasses,
+    variantClasses[variant],
     className
   ].filter(Boolean).join(' ');
 
   return (
-    <Box className={headerClasses}>
-      <Box className="layera-header__container">
+    <Box className={headerClasses} style={stickyStyle}>
+      <Box className="layera-flex layera-full-width layera-flex--space-between layera-flex--align-center">
         {/* Left section - Logo + Title */}
-        <Box className="layera-header__left">
+        <Box className="layera-flex layera-flex--align-center layera-flex--gap-md">
           {logo && (
-            <Box className="layera-header__logo">
+            <Box className="layera-flex layera-flex--center">
               {logo}
             </Box>
           )}
 
-          <Box className="layera-header__title-section">
-            <h1 className="layera-header__title">{title}</h1>
+          <Box className="layera-stack">
+            <h1 className="la-text-2xl la-font-bold la-text-primary la-leading-tight">{title}</h1>
             {subtitle && variant !== 'minimal' && (
-              <p className="layera-header__subtitle">{subtitle}</p>
+              <p className="la-text-base la-text-secondary la-leading-normal">{subtitle}</p>
             )}
           </Box>
         </Box>
 
         {/* Center section - Navigation (για rich variant) */}
         {navigation && variant === 'rich' && (
-          <nav className="layera-header__navigation" role="navigation">
+          <Box as="nav" className="layera-flex layera-flex--center layera-flex--gap-lg" role="navigation">
             {navigation}
-          </nav>
-        )}
-
-        {/* Right section - Actions */}
-        {actions && (
-          <Box className="layera-header__actions">
-            {actions}
           </Box>
         )}
+
+        {/* Right section - Navigation + Actions */}
+        <Box className="layera-flex layera-flex--align-center layera-flex--gap-md">
+          {/* Navigation για standard variant */}
+          {navigation && variant === 'standard' && (
+            <Box as="nav" className="layera-flex layera-flex--align-center layera-flex--gap-md" role="navigation">
+              {navigation}
+            </Box>
+          )}
+
+          {/* Actions */}
+          {actions && (
+            <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm">
+              {actions}
+            </Box>
+          )}
+        </Box>
       </Box>
     </Box>
   );

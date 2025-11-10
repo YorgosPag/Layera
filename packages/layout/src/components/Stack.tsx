@@ -2,28 +2,35 @@ import React from 'react';
 
 export interface StackProps {
   children: React.ReactNode;
-  spacing?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  direction?: 'vertical' | 'horizontal';
-  align?: 'start' | 'center' | 'end' | 'stretch';
   className?: string;
+  as?: 'section' | 'article' | 'main' | 'aside' | 'nav' | 'header' | 'footer' | 'div' | 'span' | 'form';
+
+  // Safe DOM attributes
+  id?: string;
+  role?: string;
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
+  'aria-describedby'?: string;
+  onClick?: React.MouseEventHandler<HTMLElement>;
+  onMouseEnter?: React.MouseEventHandler<HTMLElement>;
+  onMouseLeave?: React.MouseEventHandler<HTMLElement>;
 }
 
 
 export const Stack: React.FC<StackProps> = ({
   children,
-  spacing = 'md',
-  direction = 'vertical',
-  align = 'stretch',
-  className
+  className = '',
+  as = 'section',
+  ...restProps
 }) => {
+  const Component = as;
+
   return (
-    <section
-      className={`layera-stack layera-stack--${direction} layera-stack--${align} layera-stack--${spacing} ${className || ''}`.trim()}
-      data-direction={direction}
-      data-align={align}
-      data-spacing={spacing}
+    <Component
+      className={`layera-stack ${className}`.trim()}
+      {...restProps}
     >
       {children}
-    </section>
+    </Component>
   );
 };

@@ -2,68 +2,68 @@
   "color": {
     "background": {
       "primary": {
-        "value": "#ffffff",
-        "comment": "Κύριο χρώμα φόντου - άσπρο"
+        "value": "#1e293b",
+        "comment": "Κύριο χρώμα φόντου - modern dark slate"
       },
       "secondary": {
-        "value": "#f8fafc",
-        "comment": "Δευτερεύον χρώμα φόντου - ανοιχτό γκρι"
+        "value": "#0f172a",
+        "comment": "Δευτερεύον χρώμα φόντου - deep midnight"
       },
       "accent": {
         "blue": {
-          "value": "#3b82f6",
-          "comment": "Μπλε accent για κουμπιά και links"
+          "value": "#06b6d4",
+          "comment": "Cyan accent - modern vibrant"
         },
         "green": {
-          "value": "#10b981",
-          "comment": "Πράσινο accent για success actions"
+          "value": "#22c55e",
+          "comment": "Emerald accent - fresh success"
         },
         "purple": {
-          "value": "#8b5cf6",
-          "comment": "Μωβ accent για ειδικές ενέργειες"
+          "value": "#a855f7",
+          "comment": "Purple accent - electric violet"
         }
       },
       "surface": {
         "light": {
-          "value": "#f9fafb",
-          "comment": "Ανοιχτό φόντο για cards"
+          "value": "#334155",
+          "comment": "Light surface - elevated slate"
         },
         "medium": {
-          "value": "#f3f4f6",
-          "comment": "Μεσαίο φόντο για διαχωρισμούς"
+          "value": "#475569",
+          "comment": "Medium surface - refined gray"
         }
       }
     },
     "text": {
       "primary": {
-        "value": "#374151",
-        "comment": "Κύριο χρώμα κειμένου"
+        "value": "#f1f5f9",
+        "comment": "Primary text - clean white"
       },
       "secondary": {
-        "value": "#6b7280",
-        "comment": "Δευτερεύον χρώμα κειμένου"
+        "value": "#cbd5e1",
+        "comment": "Secondary text - soft silver"
       },
       "tertiary": {
-        "value": "#9ca3af",
-        "comment": "Τριτεύον χρώμα κειμένου"
+        "value": "#94a3b8",
+        "comment": "Tertiary text - muted slate"
       },
       "inverse": {
-        "value": "#ffffff",
-        "comment": "Αντίστροφο χρώμα κειμένου για σκούρα φόντα"
+        "value": "#1e293b",
+        "comment": "Inverse text για bright backgrounds"
       }
     },
     "border": {
       "default": {
-        "value": "#d1d5db",
-        "comment": "Προεπιλεγμένο χρώμα περιγράμματος"
+        "value": "#475569",
+        "comment": "Default border - subtle definition"
       },
       "light": {
-        "value": "#e5e7eb",
-        "comment": "Ανοιχτό χρώμα περιγράμματος"
+        "value": "#334155",
+        "comment": "Light border - minimal separation"
       },
       "focus": {
-        "value": "#3b82f6",
-        "comment": "Χρώμα περιγράμματος για focus state"
+        "value": "#06b6d4",
+        "comment": "Focus border - bright cyan highlight"
       }
     }
   }
