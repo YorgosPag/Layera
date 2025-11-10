@@ -1,0 +1,22 @@
+/**
+ * Layera Cards System - Responsive Design
+ * Mobile and responsive adjustments
+ */
+
+/* ============ RESPONSIVE ADJUSTMENTS ============ */
+
+@media (width <= 47.938rem) {
+  .la-card-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--la-space-2);
+  }
+
+  .la-card-actions {
+    justify-content: flex-end;
+  }
+
+  .la-dashboard-card-metric-value {
+    font-size: var(--la-font-size-xl);
+  }
+}

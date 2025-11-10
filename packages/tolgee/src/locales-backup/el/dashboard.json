@@ -1,0 +1,47 @@
+{
+  "title": "Dashboard",
+  "welcome": "Καλώς ήρθες, {{name}}!",
+  "quickActions": {
+    "title": "Γρήγορες Ενέργειες",
+    "subtitle": "Πρόσβαση στις πιο σημαντικές λειτουργίες"
+  },
+  "cards": {
+    "account": {
+      "title": "Ο λογαριασμός μου",
+      "description": "Διαχειριστείτε τις πληροφορίες του λογαριασμού σας",
+      "action": "Προβολή προφίλ"
+    },
+    "settings": {
+      "title": "Ρυθμίσεις",
+      "description": "Προσαρμόστε τις προτιμήσεις και τις ρυθμίσεις ασφαλείας",
+      "action": "Άνοιγμα ρυθμίσεων"
+    },
+    "data": {
+      "title": "Δεδομένα",
+      "description": "Διαχειριστείτε και εξάγετε τα προσωπικά σας δεδομένα",
+      "action": "Προβολή δεδομένων"
+    },
+    "mfa": {
+      "title": "Ενεργοποίηση 2FA",
+      "description": "Βελτιώστε την ασφάλεια με διπλή ταυτοποίηση",
+      "action": "Ρύθμιση 2FA"
+    }
+  },
+  "user": {
+    "role": "Ρόλος: {{role}}",
+    "lastLogin": "Τελευταία σύνδεση: {{date}}",
+    "successfulLogin": "Συνδεθήκατε επιτυχώς με το email: {{email}}",
+    "username": "Όνομα χρήστη",
+    "usernameDisplay": "Όνομα χρήστη: {{name}}",
+    "info": "Πληροφορίες Χρήστη",
+    "security": {
+      "emailVerified": "Email επιβεβαιωμένο",
+      "emailNotVerified": "Email μη επιβεβαιωμένο",
+      "mfaEnabled": "2FA ενεργό",
+      "mfaDisabled": "2FA ανενεργό"
+    }
+  },
+  "admin": {
+    "roleManagement": "Διαχείριση ρόλων"
+  }
+}

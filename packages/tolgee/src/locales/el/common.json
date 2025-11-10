@@ -1,0 +1,791 @@
+{
+  "app": {
+    "name": "Layera",
+    "subtitle": "Επιχειρησιακή Διαχείριση Ταυτότητας",
+    "welcome": "Καλώς ήρθατε στο Layera!",
+    "loading": "Φόρτωση...",
+    "languageSwitch": "Γλώσσα",
+    "title": {
+      "geoAlert": "Layera GeoAlert",
+      "layeraId": "Layera ID"
+    }
+  },
+  "navigation": {
+    "dashboard": "Πίνακας Ελέγχου",
+    "account": "Ο λογαριασμός μου",
+    "settings": "Ρυθμίσεις",
+    "data": "Δεδομένα",
+    "logout": "Αποσύνδεση",
+    "back": "Επιστροφή",
+    "backToDashboard": "Επιστροφή στον Πίνακα Ελέγχου"
+  },
+  "auth": {
+    "login": "Σύνδεση",
+    "register": "Εγγραφή",
+    "email": "Email",
+    "password": "Κωδικός",
+    "confirmPassword": "Επιβεβαίωση Κωδικού",
+    "signInWithGoogle": "Σύνδεση με Google",
+    "forgotPassword": "Ξεχάσατε τον κωδικό;",
+    "noAccount": "Δεν έχετε λογαριασμό;",
+    "hasAccount": "Έχετε ήδη λογαριασμό;",
+    "signOut": "Αποσύνδεση"
+  },
+  "mfa": {
+    "title": "Ενεργοποίηση 2FA",
+    "subtitle": "Προστατέψτε τον λογαριασμό σας με διπλή ταυτοποίηση μέσω SMS. Θα λαμβάνετε έναν κωδικό στο κινητό σας κάθε φορά που συνδέεστε.",
+    "whyNeeded": {
+      "title": "Γιατί χρειάζεται το 2FA;",
+      "description": "Η διπλή ταυτοποίηση προσθέτει ένα επιπλέον επίπεδο ασφαλείας:",
+      "benefits": {
+        "passwordProtection": "Προστασία από κλοπή κωδικών πρόσβασης",
+        "secureAccess": "Ασφαλής πρόσβαση ακόμα και από άγνωστες συσκευές",
+        "unauthorizedAlert": "Ειδοποίηση σε περίπτωση μη εξουσιοδοτημένης πρόσβασης"
+      }
+    },
+    "form": {
+      "phoneLabel": "Αριθμός Κινητού Τηλεφώνου",
+      "phoneHint": "Εισάγετε τον αριθμό με διεθνή κωδικό (π.χ. +30 για Ελλάδα)",
+      "enableButton": "Ενεργοποίηση 2FA"
+    },
+    "prompts": {
+      "enterSmsCode": "Εισάγετε τον κωδικό SMS:"
+    },
+    "success": {
+      "enrollmentComplete": "2FA εγγραφή επιτυχής!"
+    },
+    "errors": {
+      "enterPhone": "Εισάγετε αριθμό τηλεφώνου",
+      "operationNotAllowed": "Το SMS-based MFA δεν είναι ενεργοποιημένο στο Firebase Console. Παρακαλούμε επικοινωνήστε με τον διαχειριστή.",
+      "tooManyRequests": "Πάρα πολλές προσπάθειες. Δοκιμάστε ξανά αργότερα.",
+      "invalidPhoneNumber": "Μη έγκυρος αριθμός τηλεφώνου. Χρησιμοποιήστε τη μορφή +30xxxxxxxxxx",
+      "requiresRecentLogin": "Για λόγους ασφαλείας, χρειάζεται πρόσφατη σύνδεση. Παρακαλούμε κάντε logout και login ξανά."
+    }
+  },
+  "account": {
+    "title": "Ο λογαριασμός μου",
+    "info": "Πληροφορίες λογαριασμού",
+    "security": "Ασφάλεια",
+    "messages": {
+      "emailNotVerified": "Το email σας δεν είναι επιβεβαιωμένο. Παρακαλούμε ελέγξτε τα εισερχόμενά σας.",
+      "mfaRecommendation": "Προτείνουμε να ενεργοποιήσετε την διπλή ταυτοποίηση (2FA) για επιπλέον ασφάλεια."
+    },
+    "badges": {
+      "mfaActive": "2FA: Ενεργό",
+      "mfaInactive": "2FA: Ανενεργό"
+    },
+    "actions": {
+      "enable2fa": "Ενεργοποίηση 2FA",
+      "settings": "Ρυθμίσεις"
+    }
+  },
+  "settings": {
+    "title": "Ρυθμίσεις",
+    "subtitle": "Προσαρμόστε τις προτιμήσεις και τις ρυθμίσεις του λογαριασμού σας",
+    "sections": {
+      "security": "Ασφάλεια & Προσωπικά Δεδομένα",
+      "notifications": "Ειδοποιήσεις",
+      "appearance": "Εμφάνιση",
+      "dangerZone": "Επικίνδυνη Ζώνη"
+    },
+    "items": {
+      "changePassword": {
+        "title": "Αλλαγή Κωδικού",
+        "description": "Ενημερώστε τον κωδικό πρόσβασης"
+      },
+      "twoFactor": {
+        "title": "Διπλή Ταυτοποίηση (2FA)",
+        "description": "Κατάσταση: {{status}}",
+        "statusActive": "Ενεργή",
+        "statusInactive": "Ανενεργή"
+      },
+      "emailVerification": {
+        "title": "Επιβεβαίωση Email",
+        "description": "Κατάσταση: {{status}}",
+        "statusVerified": "Επιβεβαιωμένο",
+        "statusUnverified": "Μη επιβεβαιωμένο"
+      },
+      "emailNotifications": {
+        "title": "Email Ειδοποιήσεις",
+        "description": "Λάβετε ειδοποιήσεις για σημαντικές ενέργειες"
+      },
+      "smsNotifications": {
+        "title": "SMS Ειδοποιήσεις",
+        "description": "Λάβετε SMS για σημαντικές ενέργειες ασφαλείας"
+      },
+      "theme": {
+        "title": "Θέμα Εφαρμογής",
+        "description": "Επιλέξτε φωτεινό ή σκοτεινό θέμα",
+        "options": {
+          "light": "Φωτεινό",
+          "dark": "Σκοτεινό",
+          "auto": "Αυτόματο"
+        }
+      },
+      "language": {
+        "title": "Γλώσσα",
+        "description": "Επιλέξτε την προτιμώμενη γλώσσα",
+        "options": {
+          "el": "Ελληνικά",
+          "en": "English"
+        }
+      },
+      "deleteAccount": {
+        "title": "Διαγραφή Λογαριασμού",
+        "description": "Διαγράψτε οριστικά τον λογαριασμό σας"
+      }
+    }
+  },
+  "data": {
+    "title": "Τα Δεδομένα Μου",
+    "subtitle": "Δείτε και διαχειριστείτε όλα τα προσωπικά σας δεδομένα",
+    "personalInfo": "Προσωπικές Πληροφορίες",
+    "security": "Ασφάλεια",
+    "devices": "Συσκευές & Συνδέσεις",
+    "export": "Εξαγωγή Δεδομένων",
+    "privacy": "Προστασία Δεδομένων",
+    "fields": {
+      "email": "Email",
+      "name": "Όνομα",
+      "displayName": "Όνομα Χρήστη",
+      "userId": "User ID",
+      "role": "Ρόλος",
+      "emailVerified": "Email Επιβεβαιωμένο",
+      "mfaEnabled": "2FA Ενεργοποιημένο",
+      "lastSignIn": "Τελευταία Σύνδεση",
+      "accountCreated": "Δημιουργία Λογαριασμού",
+      "currentDevice": "Τρέχουσα Συσκευή",
+      "ipAddress": "IP Address",
+      "connectionProvider": "Provider Σύνδεσης",
+      "notAvailable": "Μη διαθέσιμο",
+      "encrypted": "Κρυπτογραφημένο",
+      "webBrowser": "Web Browser"
+    },
+    "exportFormats": {
+      "pdf": "Εξαγωγή σε PDF",
+      "json": "Εξαγωγή σε JSON",
+      "csv": "Εξαγωγή σε CSV"
+    },
+    "exportDescription": "Μπορείτε να εξάγετε όλα τα προσωπικά σας δεδομένα σε διάφορες μορφές:",
+    "privacyPoints": {
+      "title": "Η προστασία των δεδομένων σας είναι προτεραιότητά μας.",
+      "encryption": "Όλα τα δεδομένα κρυπτογραφούνται κατά τη μετάδοση και αποθήκευση",
+      "noSharing": "Δεν μοιραζόμαστε προσωπικά δεδομένα με τρίτους",
+      "deleteAnytime": "Μπορείτε να διαγράψετε τον λογαριασμό σας ανά πάσα στιγμή",
+      "compliance": "Συμμορφώνεται με GDPR και τις ελληνικές νομοθεσίες"
+    }
+  },
+  "roles": {
+    "admin": "Διαχειριστής",
+    "broker": "Μεσίτης",
+    "builder": "Κατασκευαστής",
+    "private": "Ιδιώτης"
+  },
+  "admin": {
+    "roleManagement": {
+      "title": "Διαχείριση Ρόλων",
+      "subtitle": "Διαχείριση ρόλων χρηστών και ρυθμίσεων ασφαλείας",
+      "form": {
+        "title": "Ορισμός Ρόλου Χρήστη",
+        "description": "Εισάγετε τα στοιχεία του χρήστη για τροποποίηση του ρόλου του",
+        "emailHint": "Το email του χρήστη που θέλετε να τροποποιήσετε",
+        "roleHint": "Επιλέξτε το νέο ρόλο που θα ανατεθεί στον χρήστη"
+      },
+      "info": {
+        "title": "Πληροφορίες Διαχείρισης",
+        "adminOnly": "Μόνο admin μπορεί να καλέσει τα functions διαχείρισης",
+        "clientRestrictions": "Ο πελάτης δεν γράφει claims απευθείας",
+        "mfaRefresh": "Η ανανέωση 2FA ελέγχει την τρέχουσα κατάσταση του χρήστη"
+      }
+    },
+    "actions": {
+      "setRole": "Ορισμός Ρόλου",
+      "refreshMfa": "Ανανέωση 2FA"
+    },
+    "errors": {
+      "enterEmail": "Εισάγετε email χρήστη",
+      "roleSetFailed": "❌ Σφάλμα ορισμού ρόλου: {{error}}",
+      "mfaRefreshFailed": "❌ Σφάλμα ανανέωσης 2FA: {{error}}"
+    },
+    "success": {
+      "roleSet": "✅ Ρόλος ορίστηκε: {{uid}} → {{role}}",
+      "mfaRefreshed": "✅ 2FA ανανεώθηκε: {{uid}} → {{status}}"
+    },
+    "checking2FA": "Έλεγχος κατάστασης 2FA..."
+  },
+  "status": {
+    "active": "Ενεργό",
+    "inactive": "Ανενεργό",
+    "verified": "Επιβεβαιωμένο",
+    "unverified": "Μη επιβεβαιωμένο",
+    "enabled": "Ενεργοποιημένο",
+    "disabled": "Απενεργοποιημένο"
+  },
+  "actions": {
+    "save": "Αποθήκευση",
+    "cancel": "Ακύρωση",
+    "edit": "Επεξεργασία",
+    "delete": "Διαγραφή",
+    "enable": "Ενεργοποίηση",
+    "disable": "Απενεργοποίηση",
+    "change": "Αλλαγή",
+    "manage": "Διαχείριση",
+    "verify": "Επιβεβαίωση"
+  },
+  "errors": {
+    "required": "Αυτό το πεδίο είναι υποχρεωτικό",
+    "invalidEmail": "Μη έγκυρη διεύθυνση email",
+    "invalidPhone": "Μη έγκυρος αριθμός τηλεφώνου",
+    "passwordTooShort": "Ο κωδικός πρέπει να έχει τουλάχιστον 6 χαρακτήρες",
+    "passwordMismatch": "Οι κωδικοί δεν ταιριάζουν",
+    "authError": "Σφάλμα αυθεντικοποίησης",
+    "networkError": "Σφάλμα δικτύου",
+    "unknownError": "Άγνωστο σφάλμα",
+    "adminRequired": {
+      "title": "Απαιτείται Δικαίωμα Admin",
+      "description": "Απαγορεύεται. Μόνο admin μπορεί να δει αυτή τη σελίδα."
+    }
+  },
+  "geoalert": {
+    "title": "Layera GeoAlert",
+    "subtitle": "Προηγμένο σύστημα γεωγραφικών ειδοποιήσεων",
+    "geoCanvasReady": "Ο Geo Canvas είναι έτοιμος",
+    "professionalArchitecture": "Επαγγελματική αρχιτεκτονική με LEGO systems",
+    "enterGeoCanvas": "Είσοδος στον Geo Canvas",
+    "statusCheck": "Έλεγχος Κατάστασης",
+    "port": "Πόρτα",
+    "reactReady": "React 19 Έτοιμο",
+    "typescriptStrict": "TypeScript Strict Mode",
+    "independentApp": "Ανεξάρτητη Εφαρμογή",
+    "enterpriseArchitecture": "Enterprise Architecture",
+    "navigateToLayeraId": "Μετάβαση στο Layera ID",
+    "modularMicroservice": "Modular Microservice",
+    "crossAppNavigation": "Cross-App Navigation",
+    "readyForImplementation": "Έτοιμο για υλοποίηση"
+  },
+  "map": {
+    "title": "Χάρτης",
+    "loading": "Φόρτωση χάρτη...",
+    "center": "Κεντράρισμα",
+    "zoom": "Ζουμ",
+    "fullscreen": "Πλήρης οθόνη",
+    "layers": "Επίπεδα",
+    "drawing": "Σχεδίαση"
+  },
+  "buttons": {
+    "save": "Αποθήκευση",
+    "cancel": "Ακύρωση",
+    "delete": "Διαγραφή",
+    "edit": "Επεξεργασία",
+    "create": "Δημιουργία",
+    "update": "Ενημέρωση",
+    "close": "Κλείσιμο",
+    "open": "Άνοιγμα",
+    "search": "Αναζήτηση",
+    "filter": "Φίλτρο",
+    "export": "Εξαγωγή",
+    "import": "Εισαγωγή",
+    "download": "Λήψη",
+    "upload": "Μεταφόρτωση",
+    "submit": "Υποβολή",
+    "reset": "Επαναφορά",
+    "clear": "Καθαρισμός",
+    "apply": "Εφαρμογή",
+    "confirm": "Επιβεβαίωση",
+    "reject": "Απόρριψη"
+  },
+  "alerts": {
+    "success": "Επιτυχία",
+    "error": "Σφάλμα",
+    "warning": "Προειδοποίηση",
+    "info": "Πληροφορία",
+    "loading": "Φόρτωση...",
+    "saving": "Αποθήκευση...",
+    "deleting": "Διαγραφή...",
+    "updating": "Ενημέρωση...",
+    "processing": "Επεξεργασία...",
+    "completed": "Ολοκληρώθηκε",
+    "failed": "Απέτυχε"
+  },
+  "forms": {
+    "required": "Υποχρεωτικό πεδίο",
+    "invalid": "Μη έγκυρη τιμή",
+    "tooShort": "Πολύ σύντομο",
+    "tooLong": "Πολύ μακρύ",
+    "invalidEmail": "Μη έγκυρο email",
+    "invalidPhone": "Μη έγκυρος αριθμός τηλεφώνου",
+    "passwordMismatch": "Οι κωδικοί δεν ταιριάζουν",
+    "weakPassword": "Αδύναμος κωδικός",
+    "validation": {
+      "required": "Αυτό το πεδίο είναι υποχρεωτικό"
+    },
+    "labels": {
+      "email": "Διεύθυνση Email",
+      "name": "Όνομα",
+      "phone": "Τηλέφωνο",
+      "password": "Κωδικός Πρόσβασης",
+      "confirmPassword": "Επιβεβαίωση Κωδικού",
+      "role": "Ρόλος",
+      "status": "Κατάσταση"
+    },
+    "placeholders": {
+      "email": "user@example.com",
+      "password": "Εισάγετε τον κωδικό σας",
+      "confirmPassword": "Επιβεβαιώστε τον κωδικό σας",
+      "displayName": "Εισάγετε το όνομά σας",
+      "enterValue": "Εισάγετε τιμή",
+      "selectRole": "Επιλέξτε ρόλο",
+      "search": "Αναζήτηση..."
+    },
+    "hints": {
+      "emailPrivacy": "Δεν θα μοιραστούμε το email σας ποτέ",
+      "passwordRequirements": "Τουλάχιστον 8 χαρακτήρες, πεζά και κεφαλαία γράμματα",
+      "displayName": "Αυτό θα είναι το εμφανιζόμενο όνομά σας (προαιρετικό)"
+    },
+    "select": {
+      "noOptions": "Δεν υπάρχουν επιλογές",
+      "clear": "Καθαρισμός",
+      "loading": "Φόρτωση..."
+    }
+  },
+  "realEstate": {
+    "newListing": "Νέα Καταχώρηση",
+    "categorySelection": "Επιλογή Κατηγορίας",
+    "properties": "Ακίνητα",
+    "propertyDescription": "Καταχωρήστε ένα ακίνητο προς πώληση, ενοικίαση ή δημιουργήστε μια ειδοποίηση αναζήτησης.",
+    "jobs": "Εργασία",
+    "jobDescription": "Προσφέρετε μια θέση εργασίας ή δηλώστε τη διαθεσιμότητά σας σε μια συγκεκριμένη περιοχή.",
+    "wantToOffer": "Θέλω να Προσφέρω",
+    "offerDescription": "Καταχωρήστε ένα ακίνητο προς πώληση ή ενοικίαση.",
+    "wantToSearch": "Θέλω να Αναζητήσω (Geo-Alert)",
+    "searchDescription": "Δημιουργήστε μια ειδοποίηση για μελλοντικά ακίνητα σε μια περιοχή.",
+    "transactionType": "Ακίνητα - Είδος Συναλλαγής",
+    "sale": "Πώληση",
+    "saleDescription": "Μόνιμη μεταβίβαση της ιδιοκτησίας του ακινήτου",
+    "rental": "Ενοικίαση",
+    "rentalDescription": "Παραχώρηση χρήσης του ακινήτου για συγκεκριμένο χρόνο"
+  },
+  "availability": {
+    "whenAvailable": "Πότε είστε διαθέσιμοι;",
+    "selectPeriod": "Επιλέξτε την περίοδο διαθεσιμότητάς σας",
+    "now": "Τώρα",
+    "nowDescription": "Είμαι διαθέσιμος άμεσα για συνεργασία",
+    "future": "Στο Μέλλον",
+    "futureDescription": "Θα είμαι διαθέσιμος σε συγκεκριμένη μελλοντική ημερομηνία",
+    "details": "Λεπτομέρειες Διαθεσιμότητας",
+    "pleaseSetDateAndDuration": "Παρακαλώ ορίστε την ημερομηνία και διάρκεια διαθεσιμότητας",
+    "startDate": "Ημερομηνία Έναρξης",
+    "datePlaceholder": "ηη/μμ/εεεε",
+    "duration": "Διάρκεια",
+    "durationExample": "12",
+    "unit": "Μονάδα",
+    "months": "Μήνες"
+  },
+  "location": {
+    "locationAndFloorplan": "Τοποθεσία & Κάτοψη",
+    "uploadFloorplan": "Φορτώστε το αρχείο με την κάτοψη του ακινήτου:",
+    "selectFile": "Επιλογή Αρχείου",
+    "clickToUpload": "Κάντε κλικ για να ανεβάσετε την κάτοψη",
+    "or": "ή",
+    "searchLocation": "Αναζήτηση Τοποθεσίας",
+    "locationExample": "π.χ. Ερμού 10, Αθήνα"
+  },
+  "jobs": {
+    "listingType": "Εργασία - Τύπος Καταχώρησης",
+    "wantToOfferPosition": "Θέλω να Προσφέρω Θέση",
+    "offerPositionDescription": "Δημοσιεύστε μια αγγελία για μια διαθέσιμη θέση εργασίας.",
+    "lookingForJob": "Αναζητώ Εργασία",
+    "lookingForJobDescription": "Δηλώστε τη διαθεσιμότητά σας και τις δεξιότητές σας σε μια περιοχή.",
+    "employmentType": "Εργασία - Είδος Απασχόλησης",
+    "fullTime": "Πλήρης Απασχόληση",
+    "fullTimeDescription": "40 ώρες την εβδομάδα με πλήρη παροχές",
+    "partTime": "Μερική Απασχόληση",
+    "partTimeDescription": "Λιγότερες από 40 ώρες την εβδομάδα",
+    "freelance": "Freelance",
+    "freelanceDescription": "Ανεξάρτητος συνεργάτης με ευελιξία",
+    "seasonal": "Εποχιακή",
+    "seasonalDescription": "Προσωρινή εργασία για ορισμένη περίοδο",
+    "drawingArea": "Σχεδιάστε την περιοχή του ακινήτου/εργασίας:",
+    "drawingSearchArea": "Σχεδιάστε την περιοχή αναζήτησης:",
+    "openDrawingTool": "Ανοίγμα Εργαλείου Σχεδίασης",
+    "clickToDrawOnMap": "Κάντε κλικ για να σχεδιάσετε στον χάρτη",
+    "jobDetails": "Λεπτομέρειες Εργασίας",
+    "fillSearchDetails": "Συμπληρώστε τις λεπτομέρειες για την αναζήτησή σας",
+    "title": "Τίτλος",
+    "titleExample": "π.χ. Frontend Developer με React",
+    "description": "Περιγραφή",
+    "descriptionPlaceholder": "Περιγράψτε αναλυτικά...",
+    "salary": "Μισθός (€)",
+    "salaryExample": "π.χ. 2500",
+    "contactInfo": "Στοιχεία Επικοινωνίας",
+    "contactExample": "π.χ. email@example.com ή +30 6912345678",
+    "required": "*"
+  },
+  "common": {
+    "error": "Σφάλμα",
+    "processing": "Επεξεργασία...",
+    "addressDetails": "Στοιχεία Διεύθυνσης",
+    "showOnMap": "Εμφάνιση στο Χάρτη",
+    "clickToShowBoundary": "Κλικ για εμφάνιση ορίων",
+    "title": "Τίτλος",
+    "subtitle": "Υπότιτλος",
+    "realEstate": "Ακίνητα",
+    "job": "Εργασία",
+    "marker": "Σημείο",
+    "polygon": "Πολύγωνο",
+    "clear": "Καθαρισμός",
+    "auto": "Αυτόματο",
+    "mobile": "Κινητό",
+    "tablet": "Tablet",
+    "desktop": "Desktop",
+    "overrideActive": "Παράκαμψη Ενεργού"
+  },
+  "addressDetails": "Στοιχεία Διεύθυνσης",
+  "showOnMap": "Εμφάνιση στο Χάρτη",
+  "clickToShowBoundary": "Κλικ για εμφάνιση ορίων",
+  "notifications": {
+    "loading": "Φόρτωση...",
+    "retry": "Επανάληψη",
+    "tryAgain": "Δοκιμάστε ξανά",
+    "somethingWentWrong": "Κάτι πήγε στραβά",
+    "dismiss": "Απόρριψη",
+    "ok": "ΟΚ",
+    "cancel": "Ακύρωση",
+    "types": {
+      "success": "Επιτυχία",
+      "warning": "Προειδοποίηση",
+      "error": "Σφάλμα",
+      "info": "Πληροφορία"
+    },
+    "messages": {
+      "generalError": "Παρουσιάστηκε ένα απροσδόκητο σφάλμα",
+      "networkError": "Σφάλμα σύνδεσης δικτύου",
+      "operationComplete": "Η ενέργεια ολοκληρώθηκε επιτυχώς",
+      "operationFailed": "Η ενέργεια απέτυχε"
+    }
+  },
+  "tables": {
+    "selectAll": "Επιλογή όλων",
+    "selectNone": "Καθαρισμός επιλογών",
+    "selectRow": "Επιλογή γραμμής {{index}}",
+    "selectedCount": "{{count}} από {{total}} επιλεγμένα",
+    "noData": {
+      "title": "Δεν υπάρχουν δεδομένα",
+      "description": "Δεν βρέθηκαν εγγραφές για εμφάνιση"
+    },
+    "search": {
+      "placeholder": "Αναζήτηση..."
+    },
+    "pagination": {
+      "showing": "Εμφάνιση {{start}}-{{end}} από {{total}}",
+      "itemsPerPage": "Στοιχεία ανά σελίδα",
+      "previous": "Προηγούμενη",
+      "next": "Επόμενη"
+    },
+    "headers": {
+      "name": "Όνομα",
+      "email": "Email",
+      "role": "Ρόλος",
+      "status": "Κατάσταση",
+      "actions": "Ενέργειες",
+      "createdAt": "Δημιουργήθηκε",
+      "updatedAt": "Ενημερώθηκε"
+    }
+  },
+  "pipeline": {
+    "newEntry": {
+      "title": "Νέα Καταχώριση"
+    },
+    "category": {
+      "selection": {
+        "title": "Επιλογή Κατηγορίας"
+      },
+      "property": {
+        "title": "Ακίνητα",
+        "description": "Καταχωρήστε ένα ακίνητο προς πώληση, ενοικίαση ή δημιουργήστε μια ειδοποίηση αναζήτησης."
+      },
+      "job": {
+        "title": "Εργασία",
+        "description": "Προσφέρετε μια θέση εργασίας ή δηλώστε τη διαθεσιμότητά σας σε μια συγκεκριμένη περιοχή."
+      }
+    },
+    "intent": {
+      "selection": {
+        "title": "{{category}} - Τύπος Καταχώρησης"
+      },
+      "offer": {
+        "property": {
+          "title": "Θέλω να Προσφέρω",
+          "description": "Καταχωρήστε ένα ακίνητο προς πώληση ή ενοικίαση."
+        },
+        "job": {
+          "title": "Θέλω να Προσφέρω Θέση",
+          "description": "Δημοσιεύστε μια αγγελία για μια διαθέσιμη θέση εργασίας."
+        }
+      },
+      "search": {
+        "property": {
+          "title": "Θέλω να Αναζητήσω (Geo-Alert)",
+          "description": "Δημιουργήστε μια ειδοποίηση για μελλοντικά ακίνητα σε μια περιοχή."
+        },
+        "job": {
+          "title": "Αναζητώ Εργασία",
+          "description": "Δηλώστε τη διαθεσιμότητά σας και τις δεξιότητές σας σε μια περιοχή."
+        }
+      }
+    },
+    "preview": {
+      "ready": {
+        "title": "Έτοιμο για Αποθήκευση",
+        "description": "Η καταχώρισή σας είναι έτοιμη"
+      },
+      "continue": "Συνέχεια"
+    },
+    "steps": {
+      "category": {
+        "title": "Κατηγορία",
+        "short": "Κατηγορία"
+      },
+      "intent": {
+        "title": "Σκοπός",
+        "short": "Δράση"
+      },
+      "transactionType": {
+        "title": "Συναλλαγή",
+        "short": "Τύπος"
+      },
+      "employmentType": {
+        "title": "Εργασία",
+        "short": "Τύπος"
+      },
+      "availability": {
+        "title": "Διαθεσιμότητα",
+        "short": "Πότε"
+      },
+      "availabilityDetails": {
+        "title": "Λεπτομέρειες",
+        "short": "Ημερομηνίες"
+      },
+      "location": {
+        "title": "Τοποθεσία",
+        "short": "Χάρτης",
+        "job": {
+          "short": "Περιοχή"
+        }
+      },
+      "layout": {
+        "title": "Κάτοψη",
+        "short": "Διάταξη"
+      },
+      "details": {
+        "title": "Στοιχεία",
+        "short": "Περιγραφή"
+      },
+      "complete": {
+        "title": "Τέλος",
+        "short": "Επιβεβαίωση"
+      }
+    },
+    "actions": {
+      "reset": {
+        "tooltip": "Επαναφορά - Εμφάνιση πλήκτρου προσθήκης"
+      }
+    },
+    "forms": {
+      "details": {
+        "title": "Φόρμα Λεπτομερειών",
+        "placeholder": "Θα προστεθεί το form περιεχόμενο εδώ..."
+      }
+    }
+  },
+  "dashboard": {
+    "overview": "Επισκόπηση κατάστασης λογαριασμού",
+    "userInfo": "Πληροφορίες Χρήστη",
+    "accountDetails": "Λεπτομέρειες Λογαριασμού",
+    "personalInformation": "Προσωπικές Πληροφορίες",
+    "quickActions": "Γρήγορες Ενέργειες",
+    "accountAge": "Ηλικία Λογαριασμού",
+    "daysSinceCreated": "Ημέρες από τη δημιουργία",
+    "emailStatus": "Κατάσταση Email",
+    "mfaStatus": "Κατάσταση MFA",
+    "accountRole": "Ρόλος Λογαριασμού",
+    "descriptions": {
+      "account": "Διαχειριστείτε τις ρυθμίσεις και τις πληροφορίες του προφίλ σας",
+      "settings": "Διαμορφώστε τις προτιμήσεις εφαρμογής και τις ρυθμίσεις ασφαλείας",
+      "data": "Δείτε και διαχειριστείτε τα δεδομένα και τις ρυθμίσεις απορρήτου σας",
+      "mfa": "Ενεργοποίηση πολυπαραγοντικής ταυτοποίησης για ενισχυμένη ασφάλεια"
+    },
+    "actionDescriptions": {
+      "manageAccount": "Διαχειριστείτε τις ρυθμίσεις και τις πληροφορίες του προφίλ σας",
+      "configureSettings": "Διαμορφώστε τις προτιμήσεις εφαρμογής και τις ρυθμίσεις ασφαλείας",
+      "manageData": "Δείτε και διαχειριστείτε τα δεδομένα και τις ρυθμίσεις απορρήτου σας",
+      "enableMfa": "Ενεργοποίηση πολυπαραγοντικής ταυτοποίησης για ενισχυμένη ασφάλεια"
+    },
+    "theme": {
+      "light": "Φωτεινό θέμα",
+      "dark": "Σκοτεινό θέμα",
+      "system": "Σύστημα"
+    }
+  },
+  "pipelines": {
+    "steps": {
+      "details": {
+        "title": "Λεπτομέρειες {{type}}",
+        "subtitle": "Συμπληρώστε τις λεπτομέρειες για {{intent}}",
+        "property": "Ακινήτου",
+        "job": "Εργασίας",
+        "offer": "την προσφορά σας",
+        "search": "την αναζήτησή σας",
+        "fields": {
+          "title": "Τίτλος",
+          "description": "Περιγραφή",
+          "price": "Τιμή (€)",
+          "salary": "Μισθός (€)",
+          "contactInfo": "Στοιχεία Επικοινωνίας"
+        },
+        "placeholders": {
+          "propertyTitle": "π.χ. Διαμέρισμα 85τμ στο Κολωνάκι",
+          "jobTitle": "π.χ. Frontend Developer με React",
+          "description": "Περιγράψτε αναλυτικά...",
+          "price": "π.χ. 250000",
+          "salary": "π.χ. 2500",
+          "contact": "π.χ. email@example.com ή +30 6912345678"
+        }
+      },
+      "transaction": {
+        "title": "Ακίνητα - Είδος Συναλλαγής",
+        "sale": {
+          "title": "Πώληση",
+          "description": "Μόνιμη μεταβίβαση της ιδιοκτησίας του ακινήτου"
+        },
+        "rent": {
+          "title": "Ενοικίαση",
+          "description": "Παραχώρηση χρήσης του ακινήτου για συγκεκριμένο χρόνο"
+        }
+      },
+      "layout": {
+        "title": "Τοποθεσία & Κάτοψη",
+        "findMyLocation": "Βρες τη θέση μου",
+        "or": "ή",
+        "searchLocation": "Αναζήτηση Τοποθεσίας",
+        "locationPlaceholder": "π.χ. Ερμού 10, Αθήνα",
+        "results": "Αποτελέσματα ({{count}})",
+        "locationPin": "Τοποθεσία",
+        "placementTools": {
+          "title": "Εργαλεία Τοποθέτησης",
+          "description": "Τοποθετήστε το σχέδιο σας επάνω στον χάρτη για να δείτε ακριβώς την θέση του στο πραγματικό περιβάλλον. Τα εργαλεία παρακάτω σας επιτρέπουν να αλλάξετε μέγεθος της κάτοψης για να ταιριάξει με τις πραγματικές διαστάσεις του ακινήτου σας.",
+          "rotation": "Περιστροφή",
+          "scale": "Κλίμακα",
+          "units": {
+            "cmToM": "cm - m",
+            "mmToM": "mm - m",
+            "mToM": "m - m"
+          }
+        },
+        "floorPlan": {
+          "title": "Φορτώστε το αρχείο με την κάτοψη του ακινήτου",
+          "description": "Κάντε κλικ για να ανεβάσετε την κάτοψη",
+          "selectFile": "Επιλογή Αρχείου",
+          "uploaded": "Κάτοψη φορτώθηκε",
+          "supportedTypes": "Υποστηρίζονται: Εικόνες (JPG, PNG, GIF), PDF, CAD (DXF, DWG)"
+        },
+        "actions": {
+          "back": "Πίσω",
+          "saveLocation": "Αποθήκευση Τοποθεσίας & Συνέχεια"
+        },
+        "addressBreakdown": {
+          "title": "Ανάλυση Διεύθυνσης"
+        }
+      },
+      "employmentType": {
+        "title": "Εργασία - Είδος Απασχόλησης",
+        "fullTime": {
+          "title": "Πλήρης Απασχόληση",
+          "description": "40 ώρες την εβδομάδα με πλήρη παροχές"
+        },
+        "partTime": {
+          "title": "Μερική Απασχόληση",
+          "description": "Λιγότερες από 40 ώρες την εβδομάδα"
+        },
+        "freelance": {
+          "title": "Freelance",
+          "description": "Ανεξάρτητος συνεργάτης με ευελιξία"
+        },
+        "seasonal": {
+          "title": "Εποχιακή",
+          "description": "Προσωρινή εργασία για ορισμένη περίοδο"
+        }
+      },
+      "availability": {
+        "title": "Λεπτομέρειες Διαθεσιμότητας",
+        "subtitle": "Παρακαλώ ορίστε την ημερομηνία και διάρκεια διαθεσιμότητας",
+        "fields": {
+          "startDate": "Ημερομηνία Έναρξης",
+          "duration": "Διάρκεια",
+          "unit": "Μονάδα"
+        },
+        "units": {
+          "months": "Μήνες",
+          "years": "Χρόνια"
+        },
+        "placeholders": {
+          "duration": "12",
+          "datePlaceholder": "ηη/μμ/εεεε"
+        },
+        "question": {
+          "title": "Πότε είστε διαθέσιμοι;",
+          "subtitle": "Επιλέξτε την περίοδο διαθεσιμότητάς σας"
+        },
+        "options": {
+          "now": {
+            "title": "Τώρα",
+            "description": "Είμαι διαθέσιμος άμεσα για συνεργασία"
+          },
+          "future": {
+            "title": "Στο Μέλλον",
+            "description": "Θα είμαι διαθέσιμος σε συγκεκριμένη μελλοντική ημερομηνία"
+          }
+        }
+      }
+    },
+    "actions": {
+      "back": "Πίσω",
+      "continue": "Συνέχεια",
+      "save": "Αποθήκευση",
+      "cancel": "Ακύρωση"
+    }
+  },
+  "progress": {
+    "stepper": {
+      "optional": "Προαιρετικό",
+      "labels": {
+        "category": "Κατηγορία",
+        "intent": "Σκοπός",
+        "transactionType": "Συναλλαγή",
+        "employmentType": "Εργασία",
+        "availability": "Διαθεσιμότητα",
+        "availabilityDetails": "Λεπτομέρειες",
+        "location": "Τοποθεσία",
+        "layout": "Κάτοψη",
+        "details": "Στοιχεία",
+        "complete": "Τέλος"
+      },
+      "descriptions": {
+        "category": "Τύπος",
+        "intent": "Δράση",
+        "transactionType": "Τύπος",
+        "employmentType": "Τύπος",
+        "availability": "Πότε",
+        "availabilityDetails": "Ημερομηνίες",
+        "location": "Χάρτης",
+        "layout": "Διάταξη",
+        "details": "Περιγραφή",
+        "complete": "Επιβεβαίωση"
+      }
+    }
+  },
+  "rulers": {
+    "showRulers": "Εμφάνιση Χαρακών",
+    "hideRulers": "Απόκρυψη Χαρακών"
+  }
+}
