@@ -13,25 +13,285 @@
       }
     },
     "layout": {
-      "comment": "Layout foundation tokens",
-      "minWidth": {
-        "value": "320px",
-        "comment": "Minimum width for mobile"
-      },
-      "minHeight": {
-        "value": "100vh",
-        "comment": "Full viewport height"
-      },
+      "comment": "🏗️ Enterprise Layout System - Flexbox & Grid Utilities",
       "display": {
         "flex": {
           "value": "flex",
           "comment": "Flexbox layout"
+        },
+        "grid": {
+          "value": "grid",
+          "comment": "Grid layout"
+        },
+        "block": {
+          "value": "block",
+          "comment": "Block display"
         }
       },
-      "placeItems": {
-        "center": {
+      "minHeight": {
+        "viewport": {
+          "value": "100vh",
+          "comment": "Full viewport height"
+        },
+        "screen": {
+          "value": "100vh",
+          "comment": "Full screen height"
+        }
+      },
+      "flex": {
+        "alignCenter": {
           "value": "center",
-          "comment": "Center items in grid/flex"
+          "comment": "Align items center"
+        },
+        "spaceBetween": {
+          "value": "space-between",
+          "comment": "Justify content space-between"
+        },
+        "gap": {
+          "sm": {
+            "value": "0.5rem",
+            "comment": "Small flex gap - 8px"
+          },
+          "md": {
+            "value": "1rem",
+            "comment": "Medium flex gap - 16px"
+          },
+          "lg": {
+            "value": "1.5rem",
+            "comment": "Large flex gap - 24px"
+          }
+        }
+      },
+      "width": {
+        "full": {
+          "value": "100%",
+          "comment": "Full width utility"
+        },
+        "viewport": {
+          "value": "100vw",
+          "comment": "Full viewport width"
+        }
+      },
+      "height": {
+        "full": {
+          "value": "100%",
+          "comment": "Full height utility"
+        },
+        "viewport": {
+          "value": "100vh",
+          "comment": "Full viewport height"
+        }
+      },
+      "position": {
+        "fixed": {
+          "value": "fixed",
+          "comment": "Fixed positioning"
+        },
+        "relative": {
+          "value": "relative",
+          "comment": "Relative positioning"
+        },
+        "absolute": {
+          "value": "absolute",
+          "comment": "Absolute positioning"
+        }
+      },
+      "overflow": {
+        "hidden": {
+          "value": "hidden",
+          "comment": "Hide overflow"
+        },
+        "auto": {
+          "value": "auto",
+          "comment": "Auto overflow"
+        }
+      }
+    },
+    "components": {
+      "comment": "🧩 Component-specific tokens",
+      "app": {
+        "height": {
+          "value": "100vh",
+          "comment": "App container height"
+        },
+        "width": {
+          "value": "100vw",
+          "comment": "App container width"
+        },
+        "headerOffset": {
+          "value": "64px",
+          "comment": "Header height offset"
+        }
+      },
+      "header": {
+        "height": {
+          "value": "64px",
+          "comment": "Header height"
+        },
+        "zIndex": {
+          "value": "1000",
+          "comment": "Header z-index"
+        },
+        "backdrop": {
+          "filter": {
+            "value": "blur(8px)",
+            "comment": "Header backdrop filter"
+          },
+          "background": {
+            "value": "rgba(255, 255, 255, 0.95)",
+            "comment": "Header backdrop background"
+          }
+        },
+        "shadow": {
+          "value": "0 2px 8px rgba(0, 0, 0, 0.1)",
+          "comment": "Header shadow"
+        }
+      },
+      "navigation": {
+        "button": {
+          "padding": {
+            "value": "var(--la-space-xs) var(--la-space-sm)",
+            "comment": "Navigation button padding"
+          },
+          "borderRadius": {
+            "value": "var(--la-radius-md)",
+            "comment": "Navigation button border radius"
+          },
+          "fontSize": {
+            "value": "0.875rem",
+            "comment": "Navigation button font size"
+          },
+          "fontWeight": {
+            "value": "500",
+            "comment": "Navigation button font weight"
+          },
+          "gap": {
+            "value": "var(--la-space-xs)",
+            "comment": "Navigation button icon gap"
+          },
+          "transition": {
+            "value": "all 0.2s ease",
+            "comment": "Navigation button transition"
+          },
+          "hover": {
+            "transform": {
+              "value": "translateY(-1px)",
+              "comment": "Navigation button hover transform"
+            },
+            "shadow": {
+              "value": "0 4px 8px rgba(0, 0, 0, 0.1)",
+              "comment": "Navigation button hover shadow"
+            }
+          }
+        },
+        "login": {
+          "size": {
+            "value": "var(--la-space-xl)",
+            "comment": "Login button size"
+          },
+          "borderRadius": {
+            "value": "50%",
+            "comment": "Login button border radius"
+          },
+          "hover": {
+            "transform": {
+              "value": "scale(1.05)",
+              "comment": "Login button hover scale"
+            },
+            "shadow": {
+              "value": "0 4px 12px rgba(0, 0, 0, 0.15)",
+              "comment": "Login button hover shadow"
+            }
+          }
+        }
+      },
+      "map": {
+        "zIndex": {
+          "value": "1",
+          "comment": "Map container z-index"
+        },
+        "position": {
+          "value": "fixed",
+          "comment": "Map position"
+        },
+        "inset": {
+          "value": "0",
+          "comment": "Map full inset"
+        },
+        "container": {
+          "height": {
+            "value": "calc(100vh - var(--la-global-components-header-height))",
+            "comment": "Map height minus header"
+          },
+          "width": {
+            "value": "100vw",
+            "comment": "Full viewport width"
+          },
+          "top": {
+            "value": "var(--la-global-components-header-height)",
+            "comment": "Position below header"
+          },
+          "left": {
+            "value": "0",
+            "comment": "Align to left edge"
+          }
+        }
+      }
+    },
+    "responsive": {
+      "comment": "📱 Enterprise Responsive Breakpoints",
+      "breakpoints": {
+        "mobile": {
+          "value": "480px",
+          "comment": "Mobile breakpoint"
+        },
+        "tablet": {
+          "value": "768px",
+          "comment": "Tablet breakpoint"
+        },
+        "desktop": {
+          "value": "1024px",
+          "comment": "Desktop breakpoint"
+        }
+      },
+      "mobile": {
+        "navigation": {
+          "button": {
+            "padding": {
+              "value": "var(--la-space-xs)",
+              "comment": "Mobile nav button padding"
+            },
+            "fontSize": {
+              "value": "0.75rem",
+              "comment": "Mobile nav button font size"
+            },
+            "minWidth": {
+              "value": "44px",
+              "comment": "Mobile touch target minimum"
+            }
+          },
+          "login": {
+            "size": {
+              "value": "var(--la-space-md)",
+              "comment": "Mobile login button size"
+            }
+          }
+        }
+      },
+      "tablet": {
+        "navigation": {
+          "button": {
+            "fontSize": {
+              "value": "0.875rem",
+              "comment": "Tablet nav button font size"
+            }
+          },
+          "login": {
+            "size": {
+              "value": "var(--la-space-lg)",
+              "comment": "Tablet login button size"
+            }
+          }
         }
       }
     },
@@ -44,13 +304,6 @@
       "inter": {
         "value": "'Inter', system-ui, -apple-system, sans-serif",
         "comment": "Inter font with fallbacks"
-      }
-    },
-    "fontImport": {
-      "comment": "Font import declarations",
-      "inter": {
-        "value": "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');",
-        "comment": "Google Fonts Inter import"
       }
     },
     "textDecoration": {
@@ -91,6 +344,669 @@
       "focus": {
         "value": "2px auto -webkit-focus-ring-color",
         "comment": "Standard focus outline"
+      }
+    },
+    "zIndex": {
+      "comment": "Z-index layering tokens",
+      "modal": {
+        "value": "1000",
+        "comment": "Modal overlay z-index"
+      },
+      "dropdown": {
+        "value": "1001",
+        "comment": "Dropdown z-index (above modals)"
+      }
+    },
+    "colors": {
+      "comment": "🎨 Enterprise Theme System - Light/Dark Mode Colors",
+      "theme": {
+        "light": {
+          "comment": "Light theme color palette",
+          "background": {
+            "primary": {
+              "value": "#ffffff",
+              "comment": "Κύριο φόντο - άσπρο για light mode"
+            },
+            "secondary": {
+              "value": "#f8fafc",
+              "comment": "Δευτερεύον φόντο - ελαφρύ γκρι"
+            }
+          },
+          "surface": {
+            "primary": {
+              "value": "#ffffff",
+              "comment": "Primary surface για cards/modals"
+            },
+            "secondary": {
+              "value": "#f8fafc",
+              "comment": "Secondary surface για cards"
+            },
+            "overlay": {
+              "value": "rgba(0, 0, 0, 0.5)",
+              "comment": "Modal overlay background"
+            }
+          },
+          "text": {
+            "primary": {
+              "value": "#1e293b",
+              "comment": "Primary text - σκούρο για contrast"
+            },
+            "secondary": {
+              "value": "#475569",
+              "comment": "Secondary text - medium gray"
+            },
+            "onAccent": {
+              "value": "#ffffff",
+              "comment": "Text πάνω σε accent buttons"
+            }
+          },
+          "border": {
+            "primary": {
+              "value": "#e2e8f0",
+              "comment": "Primary borders"
+            },
+            "secondary": {
+              "value": "#cbd5e1",
+              "comment": "Secondary borders"
+            }
+          },
+          "header": {
+            "background": {
+              "value": "#ffffff",
+              "comment": "Header background"
+            },
+            "text": {
+              "value": "#1e293b",
+              "comment": "Header text color"
+            },
+            "border": {
+              "value": "#e2e8f0",
+              "comment": "Header border"
+            }
+          },
+          "accent": {
+            "blue": {
+              "value": "#3b82f6",
+              "comment": "Blue accent color"
+            },
+            "green": {
+              "value": "#10b981",
+              "comment": "Green accent color"
+            },
+            "purple": {
+              "value": "#8b5cf6",
+              "comment": "Purple accent color"
+            }
+          }
+        },
+        "dark": {
+          "comment": "Dark theme color palette",
+          "background": {
+            "primary": {
+              "value": "#0f172a",
+              "comment": "Κύριο φόντο - deep midnight"
+            },
+            "secondary": {
+              "value": "#1e293b",
+              "comment": "Δευτερεύον φόντο - dark slate"
+            }
+          },
+          "surface": {
+            "primary": {
+              "value": "#1e293b",
+              "comment": "Primary surface για cards/modals"
+            },
+            "secondary": {
+              "value": "#334155",
+              "comment": "Secondary surface για cards"
+            },
+            "overlay": {
+              "value": "rgba(0, 0, 0, 0.75)",
+              "comment": "Modal overlay background - πιο σκούρο για dark mode"
+            }
+          },
+          "text": {
+            "primary": {
+              "value": "#f1f5f9",
+              "comment": "Primary text - clean white"
+            },
+            "secondary": {
+              "value": "#cbd5e1",
+              "comment": "Secondary text - soft silver"
+            },
+            "onAccent": {
+              "value": "#0f172a",
+              "comment": "Text πάνω σε accent buttons - σκούρο"
+            }
+          },
+          "border": {
+            "primary": {
+              "value": "#475569",
+              "comment": "Primary borders dark"
+            },
+            "secondary": {
+              "value": "#64748b",
+              "comment": "Secondary borders dark"
+            }
+          },
+          "header": {
+            "background": {
+              "value": "#1e293b",
+              "comment": "Header background"
+            },
+            "text": {
+              "value": "#f1f5f9",
+              "comment": "Header text color"
+            },
+            "border": {
+              "value": "#475569",
+              "comment": "Header border"
+            }
+          },
+          "accent": {
+            "blue": {
+              "value": "#60a5fa",
+              "comment": "Blue accent color - πιο ζωντανό για dark mode"
+            },
+            "green": {
+              "value": "#34d399",
+              "comment": "Green accent color - πιο ζωντανό για dark mode"
+            },
+            "purple": {
+              "value": "#a78bfa",
+              "comment": "Purple accent color - πιο ζωντανό για dark mode"
+            }
+          }
+        }
+      },
+      "surface": {
+        "overlay": {
+          "value": "var(--la-color-surface-overlay, rgba(0, 0, 0, 0.5))",
+          "comment": "Modal overlay background - theme aware"
+        },
+        "primary": {
+          "value": "var(--la-color-surface-primary, #ffffff)",
+          "comment": "Primary surface color - theme aware"
+        },
+        "secondary": {
+          "value": "var(--la-color-surface-secondary, #f8fafc)",
+          "comment": "Secondary surface color - theme aware"
+        }
+      },
+      "border": {
+        "primary": {
+          "value": "var(--la-color-border-primary, #e5e5e5)",
+          "comment": "Primary border color - theme aware"
+        }
+      },
+      "text": {
+        "primary": {
+          "value": "var(--la-color-text-primary, #1f2937)",
+          "comment": "Primary text color - theme aware"
+        },
+        "secondary": {
+          "value": "var(--la-color-text-secondary, #6b7280)",
+          "comment": "Secondary text color - theme aware"
+        }
+      },
+      "transparent": {
+        "value": "transparent",
+        "comment": "Transparent color"
+      }
+    },
+    "spacing": {
+      "comment": "Spacing scale tokens",
+      "0": {
+        "value": "0",
+        "comment": "Zero spacing"
+      },
+      "1": {
+        "value": "0.25rem",
+        "comment": "4px spacing"
+      },
+      "2": {
+        "value": "0.5rem",
+        "comment": "8px spacing"
+      },
+      "3": {
+        "value": "0.75rem",
+        "comment": "12px spacing"
+      },
+      "4": {
+        "value": "1rem",
+        "comment": "16px spacing"
+      },
+      "6": {
+        "value": "1.5rem",
+        "comment": "24px spacing"
+      },
+      "8": {
+        "value": "2rem",
+        "comment": "32px spacing"
+      },
+      "10": {
+        "value": "2.5rem",
+        "comment": "40px spacing"
+      },
+      "12": {
+        "value": "3rem",
+        "comment": "48px spacing"
+      },
+      "96": {
+        "value": "24rem",
+        "comment": "384px spacing"
+      }
+    },
+    "borderRadius": {
+      "comment": "Border radius tokens",
+      "none": {
+        "value": "0",
+        "comment": "No border radius"
+      },
+      "xs": {
+        "value": "0.125rem",
+        "comment": "2px border radius"
+      },
+      "md": {
+        "value": "0.375rem",
+        "comment": "6px border radius"
+      },
+      "lg": {
+        "value": "0.5rem",
+        "comment": "8px border radius"
+      },
+      "full": {
+        "value": "9999px",
+        "comment": "Full border radius"
+      }
+    },
+    "borderWidth": {
+      "comment": "Border width tokens",
+      "1": {
+        "value": "1px",
+        "comment": "1px border width"
+      }
+    },
+    "boxShadow": {
+      "comment": "Box shadow tokens",
+      "2xl": {
+        "value": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+        "comment": "Extra large shadow"
+      }
+    },
+    "fontSize": {
+      "comment": "Font size tokens",
+      "sm": {
+        "value": "0.875rem",
+        "comment": "14px font size"
+      },
+      "base": {
+        "value": "1rem",
+        "comment": "16px font size"
+      },
+      "lg": {
+        "value": "1.125rem",
+        "comment": "18px font size"
+      }
+    },
+    "lineHeight": {
+      "comment": "Line height tokens",
+      "normal": {
+        "value": "1.5",
+        "comment": "Normal line height"
+      },
+      "tight": {
+        "value": "1.25",
+        "comment": "Tight line height"
+      }
+    },
+    "appLayout": {
+      "comment": "🗺️ Application Layout Tokens",
+      "body": {
+        "minHeight": {
+          "value": "100vh",
+          "comment": "Full viewport height for body"
+        },
+        "overflow": {
+          "value": "hidden",
+          "comment": "Hide overflow for map app"
+        }
+      },
+      "app": {
+        "minHeight": {
+          "value": "100vh",
+          "comment": "Full viewport height for app"
+        },
+        "width": {
+          "value": "100vw",
+          "comment": "Full viewport width for app"
+        },
+        "position": {
+          "value": "relative",
+          "comment": "Relative positioning for app container"
+        },
+        "overflow": {
+          "value": "hidden",
+          "comment": "Hide overflow for app container"
+        }
+      },
+      "header": {
+        "position": {
+          "value": "fixed",
+          "comment": "Fixed positioning for header"
+        },
+        "top": {
+          "value": "0",
+          "comment": "Stick to top"
+        },
+        "left": {
+          "value": "0",
+          "comment": "Stick to left"
+        },
+        "right": {
+          "value": "0",
+          "comment": "Stick to right"
+        },
+        "width": {
+          "value": "100%",
+          "comment": "Full width for header"
+        },
+        "zIndex": {
+          "value": "1000",
+          "comment": "Header z-index above map"
+        }
+      },
+      "mapContainer": {
+        "position": {
+          "value": "fixed",
+          "comment": "Fixed positioning for map"
+        },
+        "top": {
+          "value": "64px",
+          "comment": "Position below header"
+        },
+        "left": {
+          "value": "0",
+          "comment": "Align to left"
+        },
+        "width": {
+          "value": "100vw",
+          "comment": "Full viewport width"
+        },
+        "height": {
+          "value": "calc(100vh - 64px)",
+          "comment": "Full height minus header"
+        },
+        "zIndex": {
+          "value": "1",
+          "comment": "Below header"
+        }
+      },
+      "mapFullscreen": {
+        "width": {
+          "value": "100%",
+          "comment": "Full width of container"
+        },
+        "height": {
+          "value": "100%",
+          "comment": "Full height of container"
+        }
+      }
+    },
+    "layoutSystem": {
+      "comment": "🏗️ Layout System Classes and Components",
+      "flex": {
+        "base": {
+          "value": "flex",
+          "comment": "Base flex display"
+        },
+        "alignCenter": {
+          "value": "center",
+          "comment": "Align items center"
+        },
+        "spaceBetween": {
+          "value": "space-between",
+          "comment": "Justify content space between"
+        },
+        "center": {
+          "value": "center",
+          "comment": "Center justify content"
+        },
+        "gap": {
+          "sm": {
+            "value": "0.5rem",
+            "comment": "Small flex gap"
+          },
+          "md": {
+            "value": "1rem",
+            "comment": "Medium flex gap"
+          },
+          "lg": {
+            "value": "1.5rem",
+            "comment": "Large flex gap"
+          }
+        }
+      },
+      "stack": {
+        "direction": {
+          "value": "column",
+          "comment": "Column flex direction"
+        },
+        "gap": {
+          "value": "0.25rem",
+          "comment": "Stack gap"
+        }
+      },
+      "padding": {
+        "xs": {
+          "value": "0.5rem 1rem",
+          "comment": "Extra small padding"
+        },
+        "sm": {
+          "value": "1rem 1.5rem",
+          "comment": "Small padding"
+        }
+      },
+      "button": {
+        "outline": {
+          "background": {
+            "value": "transparent",
+            "comment": "Transparent background"
+          },
+          "border": {
+            "value": "1px solid var(--la-color-border-default)",
+            "comment": "Default border"
+          },
+          "padding": {
+            "value": "0.5rem 1rem",
+            "comment": "Button padding"
+          },
+          "borderRadius": {
+            "value": "0.375rem",
+            "comment": "Button border radius"
+          },
+          "fontSize": {
+            "value": "0.875rem",
+            "comment": "Button font size"
+          },
+          "fontWeight": {
+            "value": "500",
+            "comment": "Button font weight"
+          },
+          "gap": {
+            "value": "0.5rem",
+            "comment": "Button icon gap"
+          }
+        },
+        "icon": {
+          "background": {
+            "value": "transparent",
+            "comment": "Icon button background"
+          },
+          "border": {
+            "value": "none",
+            "comment": "No border"
+          },
+          "padding": {
+            "value": "0.5rem",
+            "comment": "Icon padding"
+          },
+          "borderRadius": {
+            "value": "50%",
+            "comment": "Circular border radius"
+          },
+          "size": {
+            "value": "2.5rem",
+            "comment": "Icon button size"
+          }
+        },
+        "themeSwitcher": {
+          "size": {
+            "value": "2.5rem",
+            "comment": "Theme switcher button size"
+          },
+          "borderRadius": {
+            "value": "50%",
+            "comment": "Circular theme switcher"
+          },
+          "padding": {
+            "value": "0.5rem",
+            "comment": "Theme switcher padding"
+          },
+          "background": {
+            "value": "transparent",
+            "comment": "Transparent background"
+          },
+          "transition": {
+            "value": "all 0.2s ease",
+            "comment": "Smooth theme transitions"
+          },
+          "hover": {
+            "background": {
+              "value": "var(--la-color-background-surface-light)",
+              "comment": "Theme switcher hover background"
+            },
+            "transform": {
+              "value": "scale(1.05)",
+              "comment": "Theme switcher hover scale"
+            }
+          }
+        }
+      },
+      "header": {
+        "height": {
+          "value": "80px",
+          "comment": "Fixed header height"
+        },
+        "shadow": {
+          "value": "0 1px 3px 0 rgba(0, 0, 0, 0.1)",
+          "comment": "Header shadow"
+        },
+        "borderBottom": {
+          "value": "1px solid var(--la-color-border-light)",
+          "comment": "Header bottom border"
+        }
+      },
+      "map": {
+        "zIndex": {
+          "value": "1",
+          "comment": "Map z-index"
+        },
+        "controls": {
+          "zIndex": {
+            "value": "10",
+            "comment": "Map controls z-index"
+          }
+        }
+      }
+    }
+  },
+  "color": {
+    "comment": "🎨 Color System - Light/Dark Theme Support",
+    "light": {
+      "comment": "Light theme colors",
+      "background": {
+        "primary": {
+          "value": "#ffffff",
+          "comment": "Primary background - pure white"
+        },
+        "secondary": {
+          "value": "#f8fafc",
+          "comment": "Secondary background - light gray"
+        },
+        "surface": {
+          "light": {
+            "value": "#f1f5f9",
+            "comment": "Light surface color"
+          },
+          "medium": {
+            "value": "#e2e8f0",
+            "comment": "Medium surface color"
+          }
+        }
+      },
+      "text": {
+        "primary": {
+          "value": "#1e293b",
+          "comment": "Primary text - dark slate"
+        },
+        "secondary": {
+          "value": "#64748b",
+          "comment": "Secondary text - slate gray"
+        }
+      },
+      "border": {
+        "default": {
+          "value": "#e2e8f0",
+          "comment": "Default border color"
+        },
+        "light": {
+          "value": "#f1f5f9",
+          "comment": "Light border color"
+        }
+      }
+    },
+    "dark": {
+      "comment": "Dark theme colors",
+      "background": {
+        "primary": {
+          "value": "#0f172a",
+          "comment": "Primary background - deep midnight"
+        },
+        "secondary": {
+          "value": "#1e293b",
+          "comment": "Secondary background - dark slate"
+        },
+        "surface": {
+          "light": {
+            "value": "#334155",
+            "comment": "Light surface color"
+          },
+          "medium": {
+            "value": "#475569",
+            "comment": "Medium surface color"
+          }
+        }
+      },
+      "text": {
+        "primary": {
+          "value": "#f8fafc",
+          "comment": "Primary text - light slate"
+        },
+        "secondary": {
+          "value": "#cbd5e1",
+          "comment": "Secondary text - light gray"
+        }
+      },
+      "border": {
+        "default": {
+          "value": "#475569",
+          "comment": "Default border color"
+        },
+        "light": {
+          "value": "#64748b",
+          "comment": "Light border color"
+        }
       }
     }
   }

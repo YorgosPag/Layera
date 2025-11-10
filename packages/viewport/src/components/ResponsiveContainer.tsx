@@ -20,19 +20,19 @@ interface ResponsiveContainerProps {
 const DEFAULT_CONFIG: ResponsiveConfig = {
   mobile: {
     breakpoint: 768,
-    maxWidth: '100%',
+    maxWidth: 'var(--la-global-spacing-full)',
     padding: 'var(--la-space-md)',
     gridColumns: 1
   },
   tablet: {
     breakpoint: 1024,
-    maxWidth: '100%',
+    maxWidth: 'var(--la-global-spacing-full)',
     padding: 'var(--la-space-xl)',
     gridColumns: 2
   },
   desktop: {
     breakpoint: 1025,
-    maxWidth: '1200px',
+    maxWidth: 'var(--la-global-spacing-desktop-max)',
     padding: 'var(--la-space-xxl)',
     gridColumns: 3
   }

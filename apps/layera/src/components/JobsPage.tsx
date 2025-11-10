@@ -1,48 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { BriefcaseIcon, SearchIcon, EditIcon, FolderIcon, MapIcon } from '../../../../packages/icons/src';
-import { Box, Flex, Stack, LayeraHeader, HeaderActionsGroup, FlexCenter } from '../../../../packages/layout/src';
-import { ResponsiveContainer } from '../../../../packages/viewport/src';
-import { ThemeSwitcher } from '@layera/theme-switcher';
+import { BriefcaseIcon, SearchIcon, EditIcon, FolderIcon } from '../../../../packages/icons/src';
+import { Box } from '../../../../packages/layout/src';
 
 const JobsPage: React.FC = () => {
-  const navigation = (
-    <>
-      <Link to="/marketplace" className="la-text-secondary la-no-underline">
-        Ακίνητα
-      </Link>
-      <Link to="/login" className="la-text-secondary la-no-underline">
-        Είσοδος
-      </Link>
-    </>
-  );
 
   return (
-    <Box className="layera-full-height layera-container--fullscreen">
-      <LayeraHeader
-        title="Layera"
-        subtitle="Εργασία - Βρείτε ή προσφέρετε εργασία"
-        variant="rich"
-        navigation={navigation}
-        actions={
-          <HeaderActionsGroup>
-            <ThemeSwitcher variant="icon" size="md" />
-          </HeaderActionsGroup>
-        }
-      />
-
-      {/* Main Content */}
-      <Box className="layera-full-height la-bg-surface-light layera-flex layera-flex--center layera-flex--align-center">
-        <Box className="la-card la-bg-primary layera-padding--xl layera-container--constrained">
-          <Box className="layera-text-center layera-margin-bottom--xl">
-            <h1 className="la-text-4xl la-font-bold la-text-primary la-leading-tight la-mb-4 la-page-title">
-              <BriefcaseIcon size="xxl" />
-              Εργασία
-            </h1>
-            <p className="la-text-xl la-text-secondary la-leading-normal">
-              Βρείτε ή προσφέρετε εργασία με τοπική στόχευση
-            </p>
-          </Box>
+    <Box className="layera-padding--lg">
+      <Box className="layera-text-center layera-margin-bottom--lg">
+        <p className="la-text-lg la-text-secondary la-leading-normal">
+          Βρείτε ή προσφέρετε εργασία με τοπική στόχευση
+        </p>
+      </Box>
 
           <Box className="layera-grid layera-grid--cols-1 layera-grid--tablet-cols-2 layera-grid--desktop-cols-3 layera-grid--gap-lg">
             {/* Search Jobs Card */}
@@ -86,23 +54,8 @@ const JobsPage: React.FC = () => {
                 Κατηγορίες
               </Box>
             </Box>
-          </Box>
-
-          {/* Map Section */}
-          <Box className="layera-margin-top--xl la-card la-bg-surface-medium">
-            <h2 className="la-text-2xl la-font-bold la-text-primary la-leading-snug la-mb-4 la-section-title">
-              <MapIcon size="md" />
-              Χάρτης Θέσεων Εργασίας
-            </h2>
-            <Box className="la-map-placeholder la-bg-surface-light">
-              <Box className="layera-text-center la-text-tertiary">
-                <p>Ο χάρτης θέσεων εργασίας θα εμφανιστεί εδώ</p>
-                <p className="la-text-sm la-text-tertiary la-leading-normal">(Leaflet integration coming soon)</p>
-              </Box>
-            </Box>
-          </Box>
-        </Box>
       </Box>
+
     </Box>
   );
 };

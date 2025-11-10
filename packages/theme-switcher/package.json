@@ -20,7 +20,8 @@
     "src"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts && cp src/styles/index.css dist/styles.css",
+    "build": "tsup src/index.ts --format cjs,esm --dts && npm run build:css",
+    "build:css": "postcss src/styles/index.css -o dist/styles.css",
     "dev": "npm run build -- --watch",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"src/**/*.{ts,tsx}\" --max-warnings 0"
@@ -39,17 +40,19 @@
   ],
   "author": "Layera",
   "license": "MIT",
+  "dependencies": {
+    "@layera/layout": "workspace:*"
+  },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0"
   },
-  "dependencies": {
-    "@layera/layout": "workspace:*"
-  },
   "devDependencies": {
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
+    "@types/react": "^19.1.16",
+    "@types/react-dom": "^19.1.9",
     "eslint": "^8.0.0",
+    "postcss": "^8.4.0",
+    "postcss-cli": "^10.1.0",
     "tsup": "^7.2.0",
     "typescript": "^5.0.0"
   }

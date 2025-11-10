@@ -1,8 +1,15 @@
-// Types
-export * from './types';
+/**
+ * @layera/map-core - Enterprise OpenStreetMap Components
+ *
+ * KADOS Compliant map components για enterprise εφαρμογές
+ */
 
-// Services
-export { MapInitializationService } from './services/MapInitializationService';
+// Components
+export { MapContainer } from './components/MapContainer';
+export type { MapContainerProps } from './components/MapContainer';
 
-// Providers & Hooks
-export { MapProvider, useMap } from './providers/MapProvider';
+// Constants
+export { DEFAULT_MAP_CONFIG, MAP_EVENTS } from './constants/map.constants';
+
+// Utilities
+export { IconFix } from './utils/icon-fix.utils';

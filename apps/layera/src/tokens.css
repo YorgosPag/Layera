@@ -134,4 +134,7 @@
   --la-iconAdvanced-security-privacy-dataMinimization-anonymization: true; /** Anonymize user data */
   --la-iconAdvanced-security-privacy-consent-required: false; /** User consent required */
   --la-iconAdvanced-security-privacy-consent-granular: true; /** Granular consent options */
+  --la-map-container-height-default: 25rem; /** 400px - Default map container height */
+  --la-map-container-height-compact: 18.75rem; /** 300px - Compact map height for mobile */
+  --la-map-container-height-expanded: 31.25rem; /** 500px - Expanded map height for detail views */
 }

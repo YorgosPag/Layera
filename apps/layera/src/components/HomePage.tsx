@@ -1,12 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BuildingIcon, BriefcaseIcon } from '../../../../packages/icons/src';
-import { Box, Flex, Stack, LayeraHeader, HeaderActionsGroup, FlexCenter } from '../../../../packages/layout/src';
-import { ResponsiveContainer, useViewport } from '../../../../packages/viewport/src';
-import { ThemeSwitcher } from '@layera/theme-switcher';
+import { Box, Flex, Stack, LayeraHeader, HeaderActionsGroup } from '../../../../packages/layout/src';
 
 const HomePage: React.FC = () => {
-  const { deviceType } = useViewport();
 
   return (
     <Box className="layera-full-height layera-container--fullscreen">
@@ -16,7 +13,7 @@ const HomePage: React.FC = () => {
         variant="rich"
         actions={
           <HeaderActionsGroup>
-            <ThemeSwitcher variant="icon" size="md" />
+            {null}
           </HeaderActionsGroup>
         }
       />

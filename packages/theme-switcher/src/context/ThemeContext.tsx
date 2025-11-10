@@ -29,6 +29,7 @@ export function ThemeProvider({
   value
 }: ThemeProviderProps) {
   const [theme, setThemeState] = useState<Theme>(() => {
+    // SSR compatibility - θα φορτώσει από localStorage στο useEffect
     if (typeof window === 'undefined') return defaultTheme;
 
     try {
@@ -46,6 +47,7 @@ export function ThemeProvider({
   const [systemSupportsDarkMode, setSystemSupportsDarkMode] = useState(false);
   const [isThemeLoaded, setIsThemeLoaded] = useState(false);
 
+  // Υπολογισμός του resolved theme
   const resolvedTheme: 'light' | 'dark' = React.useMemo(() => {
     if (theme === 'system') {
       return systemSupportsDarkMode ? 'dark' : 'light';
@@ -53,6 +55,7 @@ export function ThemeProvider({
     return theme as 'light' | 'dark';
   }, [theme, systemSupportsDarkMode]);
 
+  // System theme detection
   useEffect(() => {
     if (disableSystemTheme) return;
 
@@ -67,18 +70,21 @@ export function ThemeProvider({
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, [disableSystemTheme]);
 
+  // Theme application στο DOM
   useEffect(() => {
     const root = document.documentElement;
     const themeValue = value?.[resolvedTheme] || resolvedTheme;
 
     root.setAttribute(attribute, themeValue);
 
+    // Προσθήκη class για CSS compatibility
     root.classList.remove('light', 'dark');
     root.classList.add(resolvedTheme);
 
     setIsThemeLoaded(true);
   }, [resolvedTheme, attribute, value]);
 
+  // Storage persistence
   useEffect(() => {
     try {
       localStorage.setItem(storageKey, theme);

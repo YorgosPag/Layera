@@ -17,6 +17,7 @@ import type { ThemeSwitcherProps, Theme } from '../types';
  * - Enterprise styling που integrate με άλλα Layera components
  */
 
+// Default icons (SVG-based για consistency)
 const SunIcon = () => (
   <svg
     width="20"
@@ -92,8 +93,10 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
 }, ref) => {
   const { theme, resolvedTheme, setTheme, cycleTheme, toggleTheme } = useTheme();
 
+  // State για dropdown variant - πρέπει να είναι στην αρχή του component
   const [isOpen, setIsOpen] = React.useState(false);
 
+  // Dropdown functions
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
@@ -103,6 +106,7 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
     setIsOpen(false);
   };
 
+  // Close dropdown when clicking outside
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
@@ -117,18 +121,21 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
     }
   }, [isOpen]);
 
+  // Size classes
   const sizeClasses = {
     sm: 'layera-theme-switcher--sm',
     md: 'layera-theme-switcher--md',
     lg: 'layera-theme-switcher--lg'
   };
 
+  // Variant classes
   const variantClasses = {
     icon: 'layera-theme-switcher--icon',
     button: 'layera-theme-switcher--button',
     dropdown: 'layera-theme-switcher--dropdown'
   };
 
+  // Current theme display
   const getCurrentIcon = () => {
     if (theme === 'system') {
       return icons.system;
@@ -143,21 +150,25 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
     return resolvedTheme === 'light' ? labels.light : labels.dark;
   };
 
+  // Handle click based on variant
   const handleClick = () => {
     if (variant === 'icon') {
-      toggleTheme();
+      toggleTheme(); // Simple toggle για icon variant
     } else {
-      cycleTheme();
+      cycleTheme(); // Cycle για button/dropdown variants
     }
   };
 
+  // Base classes
   const classes = [
     'layera-theme-switcher',
     variantClasses[variant],
     sizeClasses[size],
+    'layera-theme-switcher--icon', // Προσθήκη specific class για icon variant
     className
   ].filter(Boolean).join(' ');
 
+  // Icon-only variant (για headers)
   if (variant === 'icon') {
     return (
       <button
@@ -176,6 +187,7 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
     );
   }
 
+  // Button variant
   if (variant === 'button') {
     return (
       <button
@@ -198,7 +210,9 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
     );
   }
 
+  // Dropdown variant (advanced - για settings pages)
   if (variant === 'dropdown') {
+
     return (
       <Box className={`layera-theme-switcher--dropdown-container ${classes} ${isOpen ? 'layera-theme-switcher--open' : ''}`}>
         <button

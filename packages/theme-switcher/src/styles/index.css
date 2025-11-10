@@ -1,268 +1,288 @@
-/**
- * @layera/theme-switcher - Enterprise CSS
- * KADOS Compliant - Design tokens μόνο, όχι σκληρές τιμές
- */
+/* Layera Theme Switcher - Enterprise Design System */
+
+/* Import font για consistency με το typography system */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Theme Switcher Base Properties */
-  --la-theme-switcher-font-family: var(--la-font-family-sans);
+  /* Theme Switcher Design Tokens - Enterprise Standards */
+
+  /* Base Properties */
+  --la-theme-switcher-font-family: system-ui, -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, sans-serif;
   --la-theme-switcher-font-weight: 500;
   --la-theme-switcher-border-radius: var(--la-radius-md);
   --la-theme-switcher-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Sizes - WCAG 2.1 Compliant */
-  --la-theme-switcher-sm-size: var(--la-spacing-component-button-height);
-  --la-theme-switcher-md-size: var(--la-iconAdvanced-sizing-touchTargetMobile);
-  --la-theme-switcher-lg-size: var(--la-fontSize-5xl);
-  --la-theme-switcher-sm-icon: var(--la-icon-xs);
-  --la-theme-switcher-md-icon: var(--la-icon-md);
-  --la-theme-switcher-lg-icon: var(--la-icon-md);
+  --la-theme-switcher-sm-size: var(--la-btn-sm-height);
+  --la-theme-switcher-md-size: var(--la-btn-md-height); /* WCAG compliant */
+  --la-theme-switcher-lg-size: var(--la-btn-lg-height);
+  --la-theme-switcher-sm-icon: var(--la-space-4);
+  --la-theme-switcher-md-icon: var(--la-space-5);
+  --la-theme-switcher-lg-icon: var(--la-space-5);
 
-  /* Light Theme Colors */
-  --la-theme-switcher-bg: var(--la-color-surface-light);
+  /* Theme-aware Colors */
+  --la-theme-switcher-bg: var(--la-color-background-secondary);
   --la-theme-switcher-color: var(--la-color-text-primary);
   --la-theme-switcher-border: var(--la-color-border-primary);
-  --la-theme-switcher-hover-bg: var(--la-color-surface-secondary);
+  --la-theme-switcher-hover-bg: var(--la-color-background-primary);
   --la-theme-switcher-hover-color: var(--la-color-text-primary);
   --la-theme-switcher-hover-border: var(--la-color-border-secondary);
-  --la-theme-switcher-active-bg: var(--la-color-surface-tertiary);
-  --la-theme-switcher-focus-ring: var(--la-color-primary-600);
+  --la-theme-switcher-active-bg: var(--la-color-background-primary);
 
   /* Dropdown specific */
-  --la-theme-switcher-dropdown-bg: var(--la-color-surface-light);
-  --la-theme-switcher-dropdown-shadow: var(--la-shadow-lg);
+  --la-theme-switcher-dropdown-bg: var(--la-color-background-primary);
   --la-theme-switcher-dropdown-border: var(--la-color-border-primary);
 }
 
-/* Dark Theme Support */
-.dark {
-  --la-theme-switcher-bg: var(--la-color-surface-dark);
-  --la-theme-switcher-color: var(--la-color-text-primary-dark);
-  --la-theme-switcher-border: var(--la-color-border-primary-dark);
-  --la-theme-switcher-hover-bg: var(--la-color-surface-secondary-dark);
-  --la-theme-switcher-hover-color: var(--la-color-text-primary-dark);
-  --la-theme-switcher-hover-border: var(--la-color-border-secondary-dark);
-  --la-theme-switcher-active-bg: var(--la-color-surface-tertiary-dark);
-  --la-theme-switcher-dropdown-bg: var(--la-color-surface-dark);
-  --la-theme-switcher-dropdown-border: var(--la-color-border-primary-dark);
-}
+/* Themes are handled by theme-aware CSS variables */
 
 /* Base Theme Switcher Styles */
 .layera-theme-switcher {
-  font-family: var(--la-theme-switcher-font-family);
+  font-family: var(--la-font-family-sans);
   font-weight: var(--la-theme-switcher-font-weight);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  user-select: none;
-  border: var(--la-iconAdvanced-sizing-padding-xs) solid var(--la-theme-switcher-border);
-  border-radius: var(--la-theme-switcher-border-radius);
+  cursor: var(--la-cursor-pointer);
+  user-select: var(--la-user-select-none);
+  border: 0.063rem solid var(--la-theme-switcher-border);
+  border-radius: var(--la-radius-md);
   background-color: var(--la-theme-switcher-bg);
   color: var(--la-theme-switcher-color);
   transition: var(--la-theme-switcher-transition);
   position: relative;
+
+  /* Accessibility */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
 
-.layera-theme-switcher:hover:not(:disabled) {
-  background-color: var(--la-theme-switcher-hover-bg);
-  color: var(--la-theme-switcher-hover-color);
-  border-color: var(--la-theme-switcher-hover-border);
-}
+  &:hover:not(:disabled) {
+    background-color: var(--la-theme-switcher-hover-bg);
+    color: var(--la-theme-switcher-hover-color);
+    border-color: var(--la-theme-switcher-hover-border);
+  }
 
-.layera-theme-switcher:active:not(:disabled) {
-  background-color: var(--la-theme-switcher-active-bg);
-}
+  &:active:not(:disabled) {
+    background-color: var(--la-theme-switcher-active-bg);
+  }
 
-.layera-theme-switcher:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 var(--la-iconAdvanced-sizing-padding-md) var(--la-theme-switcher-focus-ring);
-}
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--la-shadow-focus);
+  }
 
-.layera-theme-switcher:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+  &:disabled {
+    opacity: 0.6;
+    cursor: var(--la-cursor-not-allowed);
+  }
 }
 
 /* Size Variants */
-.layera-theme-switcher--sm {
+.layera-theme-switcher-sm {
   width: var(--la-theme-switcher-sm-size);
   height: var(--la-theme-switcher-sm-size);
+
+  .layera-theme-switcher-icon {
+    width: var(--la-theme-switcher-sm-icon);
+    height: var(--la-theme-switcher-sm-icon);
+  }
 }
 
-.layera-theme-switcher--sm .layera-theme-switcher__icon {
-  width: var(--la-theme-switcher-sm-icon);
-  height: var(--la-theme-switcher-sm-icon);
-}
-
-.layera-theme-switcher--md {
+.layera-theme-switcher-md {
   width: var(--la-theme-switcher-md-size);
   height: var(--la-theme-switcher-md-size);
+
+  .layera-theme-switcher-icon {
+    width: var(--la-theme-switcher-md-icon);
+    height: var(--la-theme-switcher-md-icon);
+  }
 }
 
-.layera-theme-switcher--md .layera-theme-switcher__icon {
-  width: var(--la-theme-switcher-md-icon);
-  height: var(--la-theme-switcher-md-icon);
-}
-
-.layera-theme-switcher--lg {
+.layera-theme-switcher-lg {
   width: var(--la-theme-switcher-lg-size);
   height: var(--la-theme-switcher-lg-size);
+
+  .layera-theme-switcher-icon {
+    width: var(--la-theme-switcher-lg-icon);
+    height: var(--la-theme-switcher-lg-icon);
+  }
 }
 
-.layera-theme-switcher--lg .layera-theme-switcher__icon {
-  width: var(--la-theme-switcher-lg-icon);
-  height: var(--la-theme-switcher-lg-icon);
-}
-
-/* Variant Styles */
-.layera-theme-switcher--icon {
+/* Icon Variant (για headers) */
+.layera-theme-switcher-icon-variant {
   aspect-ratio: 1;
-  padding: 0;
+  padding: var(--la-size-0);
 }
 
-.layera-theme-switcher--button {
-  width: auto;
-  padding: var(--la-iconAdvanced-sizing-padding-sm) var(--la-iconAdvanced-sizing-padding-md);
-  gap: var(--la-iconAdvanced-sizing-padding-sm);
-}
-
-.layera-theme-switcher--dropdown {
-  width: auto;
-}
-
-.layera-theme-switcher__icon {
+.layera-theme-switcher-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  flex-shrink: var(--la-flex-shrink-0);
 }
 
-.layera-theme-switcher__label {
+/* Button Variant */
+.layera-theme-switcher-button {
+  width: auto;
+  padding: var(--la-space-2) var(--la-space-4);
+  gap: var(--la-space-2);
+}
+
+.layera-theme-switcher-label {
   font-size: var(--la-font-size-sm);
   line-height: var(--la-line-height-tight);
   white-space: nowrap;
 }
 
 /* Dropdown Variant */
-.layera-theme-switcher--dropdown-container {
+.layera-theme-switcher-dropdown-container {
   position: relative;
   display: inline-block;
 }
 
-.layera-theme-switcher__trigger {
+.layera-theme-switcher-trigger {
   width: auto;
-  padding: var(--la-iconAdvanced-sizing-padding-md);
-  gap: var(--la-iconAdvanced-sizing-padding-sm);
+  padding: var(--la-space-3) var(--la-space-4);
+  gap: var(--la-space-2);
   background-color: var(--la-theme-switcher-bg);
-  border: var(--la-iconAdvanced-sizing-padding-xs) solid var(--la-theme-switcher-border);
-  border-radius: var(--la-theme-switcher-border-radius);
-  cursor: pointer;
+  border: 0.063rem solid var(--la-theme-switcher-border);
+  border-radius: var(--la-radius-md);
+  cursor: var(--la-cursor-pointer);
   display: flex;
   align-items: center;
-  font-family: var(--la-theme-switcher-font-family);
+  font-family: var(--la-font-family-sans);
   font-weight: var(--la-theme-switcher-font-weight);
   color: var(--la-theme-switcher-color);
   transition: var(--la-theme-switcher-transition);
+
+  &:hover {
+    background-color: var(--la-theme-switcher-hover-bg);
+    border-color: var(--la-theme-switcher-hover-border);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--la-shadow-focus);
+  }
 }
 
-.layera-theme-switcher__trigger:hover {
-  background-color: var(--la-theme-switcher-hover-bg);
-  border-color: var(--la-theme-switcher-hover-border);
-}
-
-.layera-theme-switcher__trigger:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 var(--la-iconAdvanced-sizing-padding-md) var(--la-theme-switcher-focus-ring);
-}
-
-.layera-theme-switcher__arrow {
-  font-size: var(--la-font-size-xs);
-  margin-left: var(--la-iconAdvanced-sizing-margin-xs);
+.layera-theme-switcher-arrow {
+  font-size: var(--la-text-xs);
+  margin-left: var(--la-space-1);
   transition: transform 0.2s;
 }
 
-.layera-theme-switcher--open .layera-theme-switcher__arrow {
+.layera-theme-switcher-dropdown-container.layera-theme-switcher-open .layera-theme-switcher-arrow {
   transform: rotate(180deg);
 }
 
-.layera-theme-switcher__dropdown {
+.layera-theme-switcher-dropdown {
   position: absolute;
   top: 100%;
-  margin-top: var(--la-iconAdvanced-sizing-margin-xs);
+  margin-top: var(--la-space-1);
   background-color: var(--la-theme-switcher-dropdown-bg);
-  border: var(--la-iconAdvanced-sizing-padding-xs) solid var(--la-theme-switcher-dropdown-border);
-  border-radius: var(--la-theme-switcher-border-radius);
+  border: var(--la-border-width) solid var(--la-theme-switcher-dropdown-border);
+  border-radius: var(--la-radius-md);
   box-shadow: var(--la-theme-switcher-dropdown-shadow);
-  z-index: 50;
+  z-index: var(--la-z-dropdown);
   min-width: 100%;
-}
-
-.layera-theme-switcher__dropdown--left {
-  left: 0;
-}
-
-.layera-theme-switcher__dropdown--right {
-  right: 0;
-}
-
-.layera-theme-switcher__dropdown--center {
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.layera-theme-switcher__option {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: var(--la-iconAdvanced-sizing-padding-md);
-  padding: var(--la-iconAdvanced-sizing-padding-md);
-  background: transparent;
-  border: none;
-  text-align: left;
-  cursor: pointer;
-  font-family: var(--la-theme-switcher-font-family);
-  font-size: var(--la-font-size-sm);
-  color: var(--la-theme-switcher-color);
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
   transition: var(--la-theme-switcher-transition);
 }
 
-.layera-theme-switcher__option:hover {
-  background-color: var(--la-theme-switcher-hover-bg);
+.layera-theme-switcher-dropdown-left {
+  left: var(--la-left-0);
 }
 
-.layera-theme-switcher__option:focus-visible {
-  outline: none;
-  background-color: var(--la-theme-switcher-hover-bg);
+.layera-theme-switcher-dropdown-right {
+  right: var(--la-right-0);
 }
 
-.layera-theme-switcher__option:first-child {
-  border-top-left-radius: calc(var(--la-theme-switcher-border-radius) - var(--la-iconAdvanced-sizing-padding-xs));
-  border-top-right-radius: calc(var(--la-theme-switcher-border-radius) - var(--la-iconAdvanced-sizing-padding-xs));
+.layera-theme-switcher-dropdown-center {
+  left: var(--la-left-0);
+  right: var(--la-right-0);
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
 }
 
-.layera-theme-switcher__option:last-child {
-  border-bottom-left-radius: calc(var(--la-theme-switcher-border-radius) - var(--la-iconAdvanced-sizing-padding-xs));
-  border-bottom-right-radius: calc(var(--la-theme-switcher-border-radius) - var(--la-iconAdvanced-sizing-padding-xs));
+.layera-theme-switcher-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--la-space-3);
+  padding: var(--la-space-3) var(--la-space-4);
+  background: var(--la-bg-transparent);
+  border: none;
+  text-align: left;
+  cursor: var(--la-cursor-pointer);
+  font-family: var(--la-font-family-sans);
+  font-size: var(--la-font-size-sm);
+  color: var(--la-theme-switcher-color);
+  transition: var(--la-theme-switcher-transition);
+
+  &:hover {
+    background-color: var(--la-theme-switcher-hover-bg);
+  }
+
+  &:focus-visible {
+    outline: none;
+    background-color: var(--la-theme-switcher-hover-bg);
+  }
+
+  &:first-child {
+    border-top-left-radius: calc(var(--la-theme-switcher-border-radius) - var(--la-border-width));
+    border-top-right-radius: calc(var(--la-theme-switcher-border-radius) - var(--la-border-width));
+  }
+
+  &:last-child {
+    border-bottom-left-radius: calc(var(--la-theme-switcher-border-radius) - var(--la-border-width));
+    border-bottom-right-radius: calc(var(--la-theme-switcher-border-radius) - var(--la-border-width));
+  }
 }
 
-.layera-theme-switcher__option--active {
+.layera-theme-switcher-option-active {
   background-color: var(--la-theme-switcher-active-bg);
   font-weight: 600;
 }
 
-.layera-theme-switcher__option-icon {
+.layera-theme-switcher-option-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--la-icon-xs);
-  height: var(--la-icon-xs);
-  flex-shrink: 0;
+  width: var(--la-size-4);
+  height: var(--la-size-4);
+  flex-shrink: var(--la-flex-shrink-0);
 }
 
-.layera-theme-switcher__option-label {
-  flex: 1;
+.layera-theme-switcher-option-label {
+  flex: var(--la-flex-1);
   white-space: nowrap;
+}
+
+/* Responsive Design */
+@media (width <= 640px) {
+  .layera-theme-switcher-sm,
+  .layera-theme-switcher-md {
+    width: var(--la-theme-switcher-md-size);
+    height: var(--la-theme-switcher-md-size);
+  }
+
+  .layera-theme-switcher-dropdown {
+    min-width: var(--la-size-38);
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: more) {
+  .layera-theme-switcher {
+    border-width: 0.125rem;
+  }
+
+  .layera-theme-switcher:focus-visible {
+    outline: 0.1875rem solid;
+    outline-offset: var(--la-space-0-5);
+  }
 }

@@ -3,8 +3,9 @@
  * KADOS Compliant - Enterprise CSS με design tokens μόνο
  */
 
+// Enterprise: Using @layera/tokens CSS system instead of manual .css imports
 // CSS Import για layout classes
-import './styles/layout.css';
+// import './styles/layout.css';
 
 // Layout Primitives (Enterprise)
 export { Stack } from './components/Stack';

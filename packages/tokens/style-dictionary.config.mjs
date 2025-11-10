@@ -193,6 +193,21 @@ export default {
         output += `/* Component Classes */\n`;
         output += `.${prefix}-card-accent-primary { border-left-color: var(--${prefix}-text-primary); }\n`;
         output += `.${prefix}-card-accent-green { border-left-color: var(--${prefix}-color-background-accent-green); }\n`;
+
+        // Theme-aware background classes για cards
+        output += `.${prefix}-bg-surface-medium { background-color: var(--${prefix}-color-background-surface-medium); }\n`;
+
+        // Theme-aware text classes
+        output += `.${prefix}-text-primary { color: var(--${prefix}-color-text-primary); }\n`;
+        output += `.${prefix}-text-secondary { color: var(--${prefix}-color-text-secondary); }\n`;
+
+        // Theme-aware card class
+        output += `.${prefix}-card {\n`;
+        output += `  padding: 1.5rem;\n`;
+        output += `  border-radius: 0.5rem;\n`;
+        output += `  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);\n`;
+        output += `  background-color: var(--${prefix}-color-background-surface-medium);\n`;
+        output += `}\n`;
         output += `.${prefix}-btn-primary {\n`;
         output += `  background-color: var(--${prefix}-text-primary);\n`;
         output += `  color: white;\n`;
@@ -272,6 +287,207 @@ export default {
 
         // Interactive states
         output += `.${prefix}-hover-opacity:hover { opacity: 0.8; }\n\n`;
+
+        // Layout System Classes - Generated from layoutSystem tokens
+        const layoutTokens = dictionary.allTokens.filter(token => token.path[0] === 'global' && token.path[1] === 'layoutSystem');
+        if (layoutTokens.length) {
+          output += `/* Layout System Classes */\n`;
+
+          // Flex utilities
+          output += `.layera-flex {\n`;
+          output += `  display: var(--${prefix}-global-layoutSystem-flex-base);\n`;
+          output += `}\n\n`;
+
+          output += `.layera-flex--align-center {\n`;
+          output += `  align-items: var(--${prefix}-global-layoutSystem-flex-alignCenter);\n`;
+          output += `}\n\n`;
+
+          output += `.layera-flex--space-between {\n`;
+          output += `  justify-content: var(--${prefix}-global-layoutSystem-flex-spaceBetween);\n`;
+          output += `}\n\n`;
+
+          output += `.layera-flex--center {\n`;
+          output += `  justify-content: var(--${prefix}-global-layoutSystem-flex-center);\n`;
+          output += `  align-items: var(--${prefix}-global-layoutSystem-flex-center);\n`;
+          output += `}\n\n`;
+
+          output += `.layera-flex--gap-sm {\n`;
+          output += `  gap: var(--${prefix}-global-layoutSystem-flex-gap-sm);\n`;
+          output += `}\n\n`;
+
+          output += `.layera-flex--gap-md {\n`;
+          output += `  gap: var(--${prefix}-global-layoutSystem-flex-gap-md);\n`;
+          output += `}\n\n`;
+
+          output += `.layera-flex--gap-lg {\n`;
+          output += `  gap: var(--${prefix}-global-layoutSystem-flex-gap-lg);\n`;
+          output += `}\n\n`;
+
+          output += `.layera-full-width {\n`;
+          output += `  width: 100%;\n`;
+          output += `}\n\n`;
+
+          output += `.layera-padding--2xs {\n`;
+          output += `  padding: var(--${prefix}-global-layoutSystem-padding-xs);\n`;
+          output += `}\n\n`;
+
+          output += `.layera-padding--sm {\n`;
+          output += `  padding: var(--${prefix}-global-layoutSystem-padding-sm);\n`;
+          output += `}\n\n`;
+
+          output += `.layera-stack {\n`;
+          output += `  display: flex;\n`;
+          output += `  flex-direction: var(--${prefix}-global-layoutSystem-stack-direction);\n`;
+          output += `  gap: var(--${prefix}-global-layoutSystem-stack-gap);\n`;
+          output += `}\n\n`;
+
+          output += `.layera-header {\n`;
+          output += `  height: var(--${prefix}-global-layoutSystem-header-height);\n`;
+          output += `  box-shadow: var(--${prefix}-global-layoutSystem-header-shadow);\n`;
+          output += `  border-bottom: var(--${prefix}-global-layoutSystem-header-borderBottom);\n`;
+          output += `  background-color: var(--${prefix}-color-background-primary);\n`;
+          output += `}\n\n`;
+
+          // Button utilities
+          output += `.layera-nav-button {\n`;
+          output += `  background-color: var(--${prefix}-global-layoutSystem-button-outline-background);\n`;
+          output += `  border: var(--${prefix}-global-layoutSystem-button-outline-border);\n`;
+          output += `  color: var(--${prefix}-text-primary);\n`;
+          output += `  padding: var(--${prefix}-global-layoutSystem-button-outline-padding);\n`;
+          output += `  border-radius: var(--${prefix}-global-layoutSystem-button-outline-borderRadius);\n`;
+          output += `  display: flex;\n`;
+          output += `  align-items: center;\n`;
+          output += `  gap: var(--${prefix}-global-layoutSystem-button-outline-gap);\n`;
+          output += `  font-size: var(--${prefix}-global-layoutSystem-button-outline-fontSize);\n`;
+          output += `  font-weight: var(--${prefix}-global-layoutSystem-button-outline-fontWeight);\n`;
+          output += `  transition: all 0.2s ease;\n`;
+          output += `  cursor: pointer;\n`;
+          output += `}\n\n`;
+
+          output += `.layera-nav-button:hover {\n`;
+          output += `  background-color: var(--${prefix}-color-background-surface-light);\n`;
+          output += `  border-color: var(--${prefix}-text-primary);\n`;
+          output += `  transform: translateY(-1px);\n`;
+          output += `}\n\n`;
+
+          output += `.layera-login-button {\n`;
+          output += `  background-color: var(--${prefix}-global-layoutSystem-button-icon-background);\n`;
+          output += `  border: var(--${prefix}-global-layoutSystem-button-icon-border);\n`;
+          output += `  color: var(--${prefix}-text-primary);\n`;
+          output += `  padding: var(--${prefix}-global-layoutSystem-button-icon-padding);\n`;
+          output += `  border-radius: var(--${prefix}-global-layoutSystem-button-icon-borderRadius);\n`;
+          output += `  display: flex;\n`;
+          output += `  align-items: center;\n`;
+          output += `  justify-content: center;\n`;
+          output += `  width: var(--${prefix}-global-layoutSystem-button-icon-size);\n`;
+          output += `  height: var(--${prefix}-global-layoutSystem-button-icon-size);\n`;
+          output += `  transition: all 0.2s ease;\n`;
+          output += `  cursor: pointer;\n`;
+          output += `}\n\n`;
+
+          output += `.layera-login-button:hover {\n`;
+          output += `  background-color: var(--${prefix}-color-background-surface-light);\n`;
+          output += `  transform: scale(1.05);\n`;
+          output += `}\n\n`;
+
+          // Theme switcher button
+          output += `.layera-theme-switcher {\n`;
+          output += `  background-color: var(--${prefix}-global-layoutSystem-button-themeSwitcher-background);\n`;
+          output += `  border: none;\n`;
+          output += `  color: var(--${prefix}-text-primary);\n`;
+          output += `  padding: var(--${prefix}-global-layoutSystem-button-themeSwitcher-padding);\n`;
+          output += `  border-radius: var(--${prefix}-global-layoutSystem-button-themeSwitcher-borderRadius);\n`;
+          output += `  display: flex;\n`;
+          output += `  align-items: center;\n`;
+          output += `  justify-content: center;\n`;
+          output += `  width: var(--${prefix}-global-layoutSystem-button-themeSwitcher-size);\n`;
+          output += `  height: var(--${prefix}-global-layoutSystem-button-themeSwitcher-size);\n`;
+          output += `  transition: var(--${prefix}-global-layoutSystem-button-themeSwitcher-transition);\n`;
+          output += `  cursor: pointer;\n`;
+          output += `}\n\n`;
+
+          output += `.layera-theme-switcher:hover {\n`;
+          output += `  background-color: var(--${prefix}-global-layoutSystem-button-themeSwitcher-hover-background);\n`;
+          output += `  transform: var(--${prefix}-global-layoutSystem-button-themeSwitcher-hover-transform);\n`;
+          output += `}\n\n`;
+
+          // Map fullscreen class
+          output += `.layera-map--fullscreen {\n`;
+          output += `  width: 100% !important;\n`;
+          output += `  height: 100% !important;\n`;
+          output += `  position: absolute !important;\n`;
+          output += `  top: 0 !important;\n`;
+          output += `  left: 0 !important;\n`;
+          output += `  right: 0 !important;\n`;
+          output += `  bottom: 0 !important;\n`;
+          output += `  z-index: 1 !important;\n`;
+          output += `}\n\n`;
+
+          // Map styling
+          output += `/* Leaflet Map Styling */\n`;
+          output += `.leaflet-container {\n`;
+          output += `  width: 100% !important;\n`;
+          output += `  height: 100% !important;\n`;
+          output += `  z-index: var(--${prefix}-global-layoutSystem-map-zIndex);\n`;
+          output += `}\n\n`;
+
+          output += `.leaflet-tile-container {\n`;
+          output += `  pointer-events: auto;\n`;
+          output += `}\n\n`;
+
+          output += `.leaflet-control-container {\n`;
+          output += `  z-index: var(--${prefix}-global-layoutSystem-map-controls-zIndex);\n`;
+          output += `}\n\n`;
+
+          output += `.leaflet-control-zoom {\n`;
+          output += `  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);\n`;
+          output += `  border: none;\n`;
+          output += `}\n\n`;
+        }
+
+        // Theme-specific CSS variables
+        const lightTokens = dictionary.allTokens.filter(token => token.path[0] === 'color' && token.path[1] === 'light');
+        const darkTokens = dictionary.allTokens.filter(token => token.path[0] === 'color' && token.path[1] === 'dark');
+
+        if (lightTokens.length > 0 || darkTokens.length > 0) {
+          output += `/* Theme Variables */\n`;
+
+          // Light theme variables
+          output += `:root.light {\n`;
+          lightTokens.forEach(token => {
+            const path = token.path.slice(2).join('-'); // Remove 'color.light' prefix
+            output += `  --la-color-${path}: ${token.value};\n`;
+          });
+          // Add modal-specific variables για light theme
+          output += `  --la-global-colors-surface-primary: #ffffff;\n`;
+          output += `  --la-global-colors-surface-overlay: rgba(0, 0, 0, 0.5);\n`;
+          output += `  --la-global-colors-transparent: transparent;\n`;
+          output += `}\n\n`;
+
+          // Dark theme variables
+          output += `:root.dark {\n`;
+          darkTokens.forEach(token => {
+            const path = token.path.slice(2).join('-'); // Remove 'color.dark' prefix
+            output += `  --la-color-${path}: ${token.value};\n`;
+          });
+          // Add modal-specific variables για dark theme
+          output += `  --la-global-colors-surface-primary: #0f172a;\n`;
+          output += `  --la-global-colors-surface-overlay: rgba(0, 0, 0, 0.8);\n`;
+          output += `  --la-global-colors-transparent: transparent;\n`;
+          output += `}\n\n`;
+
+          // Default to light theme variables in :root
+          output += `:root {\n`;
+          lightTokens.forEach(token => {
+            const path = token.path.slice(2).join('-'); // Remove 'color.light' prefix
+            output += `  --la-color-${path}: ${token.value};\n`;
+          });
+          // Add modal-specific variables για default
+          output += `  --la-global-colors-surface-primary: #ffffff;\n`;
+          output += `  --la-global-colors-surface-overlay: rgba(0, 0, 0, 0.5);\n`;
+          output += `  --la-global-colors-transparent: transparent;\n`;
+          output += `}\n\n`;
+        }
 
         return output;
       }

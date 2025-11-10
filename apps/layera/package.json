@@ -13,7 +13,8 @@
   "dependencies": {
     "@layera/icons": "workspace:*",
     "@layera/layout": "workspace:*",
-    "@layera/theme-switcher": "workspace:*",
+    "@layera/map-core": "workspace:*",
+    "@layera/modals": "workspace:*",
     "@layera/tokens": "workspace:*",
     "@layera/typography": "workspace:*",
     "@layera/viewport": "workspace:*",

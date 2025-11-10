@@ -13,19 +13,15 @@ export const LayeraHeader: React.FC<LayeraHeaderProps> = ({
   navigation,
   actions,
   variant = 'standard',
-  sticky = true,
   className = ''
 }) => {
   // KADOS Compliant: μόνο προκαθορισμένες κλάσεις
   const headerBaseClasses = [
     'layera-flex',
     'layera-flex--align-center',
-    'layera-padding--md',
+    'layera-padding--sm',
     'layera-full-width'
   ];
-
-  // Sticky positioning με inline style (επιτρέπεται για functional properties)
-  const stickyStyle = sticky ? { position: 'sticky' as const, top: 0, zIndex: 10 } : {};
 
   // Variant-specific background
   const variantClasses = {
@@ -35,16 +31,17 @@ export const LayeraHeader: React.FC<LayeraHeaderProps> = ({
   };
 
   const headerClasses = [
+    'layera-header',
     ...headerBaseClasses,
     variantClasses[variant],
     className
   ].filter(Boolean).join(' ');
 
   return (
-    <Box className={headerClasses} style={stickyStyle}>
+    <Box className={headerClasses}>
       <Box className="layera-flex layera-full-width layera-flex--space-between layera-flex--align-center">
         {/* Left section - Logo + Title */}
-        <Box className="layera-flex layera-flex--align-center layera-flex--gap-md">
+        <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm">
           {logo && (
             <Box className="layera-flex layera-flex--center">
               {logo}
@@ -67,7 +64,7 @@ export const LayeraHeader: React.FC<LayeraHeaderProps> = ({
         )}
 
         {/* Right section - Navigation + Actions */}
-        <Box className="layera-flex layera-flex--align-center layera-flex--gap-md">
+        <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm">
           {/* Navigation για standard variant */}
           {navigation && variant === 'standard' && (
             <Box as="nav" className="layera-flex layera-flex--align-center layera-flex--gap-md" role="navigation">

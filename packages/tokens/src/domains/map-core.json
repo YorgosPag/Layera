@@ -1,0 +1,20 @@
+{
+  "map": {
+    "container": {
+      "height": {
+        "default": {
+          "value": "25rem",
+          "comment": "400px - Default map container height"
+        },
+        "compact": {
+          "value": "18.75rem",
+          "comment": "300px - Compact map height for mobile"
+        },
+        "expanded": {
+          "value": "31.25rem",
+          "comment": "500px - Expanded map height for detail views"
+        }
+      }
+    }
+  }
+}

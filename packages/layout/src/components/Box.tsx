@@ -13,8 +13,11 @@
 
 import React from 'react';
 
+// Enterprise type alias για consistent ReactNode
+type LayeraReactNode = React.ReactNode;
+
 export interface BoxProps {
-  children?: React.ReactNode;
+  children?: LayeraReactNode;
   className?: string;
   as?: 'section' | 'article' | 'main' | 'aside' | 'nav' | 'header' | 'footer' | 'div' | 'span' | 'button';
   style?: React.CSSProperties;
@@ -26,6 +29,7 @@ export interface BoxProps {
   'aria-label'?: string;
   'aria-labelledby'?: string;
   'aria-describedby'?: string;
+  'aria-modal'?: boolean;
   onClick?: React.MouseEventHandler<HTMLElement>;
   onMouseEnter?: React.MouseEventHandler<HTMLElement>;
   onMouseLeave?: React.MouseEventHandler<HTMLElement>;
@@ -34,7 +38,7 @@ export interface BoxProps {
 export const Box: React.FC<BoxProps> = ({
   children,
   className = '',
-  as = 'section',
+  as = 'div',
   ...restProps
 }) => {
   const Component = as;
