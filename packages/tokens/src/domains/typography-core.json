@@ -2,16 +2,16 @@
   "text": {
     "comment": "🎯 Typography Core Tokens - Text colors and properties",
     "primary": {
-      "value": "#374151",
-      "comment": "Primary text color - ΓΚΡΙ ΣΚΟΥΡΟ για single source test"
+      "value": "#1e293b",
+      "comment": "Primary text color - σκούρο γκρι για καλή αντίθεση"
     },
     "secondary": {
-      "value": "#6b7280",
-      "comment": "Secondary text color - ΓΚΡΙ ΣΚΟΥΡΟ για single source test"
+      "value": "#475569",
+      "comment": "Secondary text color - μεσαίο γκρι για secondary text"
     },
     "tertiary": {
-      "value": "#9ca3af",
-      "comment": "Tertiary text color - ΓΚΡΙ ΣΚΟΥΡΟ για single source test"
+      "value": "#64748b",
+      "comment": "Tertiary text color - ανοιχτό γκρι για tertiary text"
     },
     "inverted": {
       "value": "#ffffff",
@@ -132,25 +132,6 @@
     "wider": {
       "value": "0.05em",
       "comment": "Wider for small caps"
-    }
-  },
-  "bg": {
-    "comment": "🎯 Background Core Tokens",
-    "primary": {
-      "value": "#ffffff",
-      "comment": "Primary background color"
-    },
-    "secondary": {
-      "value": "#f8fafc",
-      "comment": "Secondary background color"
-    },
-    "tertiary": {
-      "value": "#f1f5f9",
-      "comment": "Tertiary background color"
-    },
-    "info": {
-      "value": "#3b82f6",
-      "comment": "Info background color"
     }
   }
 }

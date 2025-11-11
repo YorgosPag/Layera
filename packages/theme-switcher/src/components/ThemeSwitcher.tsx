@@ -2,6 +2,7 @@
 
 import React, { forwardRef } from 'react';
 import { Box } from '@layera/layout';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { useTheme } from '../hooks/useTheme';
 import type { ThemeSwitcherProps, Theme } from '../types';
 
@@ -77,11 +78,7 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
   variant = 'icon',
   size = 'md',
   className = '',
-  labels = {
-    light: 'Φωτεινό θέμα',
-    dark: 'Σκοτεινό θέμα',
-    system: 'Σύστημα'
-  },
+  labels,
   showLabels = false,
   icons = {
     light: <SunIcon />,
@@ -92,6 +89,16 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
   ...props
 }, ref) => {
   const { theme, resolvedTheme, setTheme, cycleTheme, toggleTheme } = useTheme();
+  const { t } = useLayeraTranslation();
+
+  // Use translations as default labels if not provided
+  const translatedLabels = {
+    light: t('theme.light') + ' ' + t('theme.theme'),
+    dark: t('theme.dark') + ' ' + t('theme.theme'),
+    system: t('theme.system')
+  };
+
+  const finalLabels = labels || translatedLabels;
 
   // State για dropdown variant - πρέπει να είναι στην αρχή του component
   const [isOpen, setIsOpen] = React.useState(false);
@@ -145,9 +152,9 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
 
   const getCurrentLabel = () => {
     if (theme === 'system') {
-      return labels.system;
+      return finalLabels.system;
     }
-    return resolvedTheme === 'light' ? labels.light : labels.dark;
+    return resolvedTheme === 'light' ? finalLabels.light : finalLabels.dark;
   };
 
   // Handle click based on variant
@@ -176,7 +183,7 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
         type="button"
         className={classes}
         onClick={handleClick}
-        aria-label={`Αλλαγή σε ${resolvedTheme === 'light' ? 'σκοτεινό' : 'φωτεινό'} θέμα`}
+        aria-label={`${t('theme.changeTo')} ${resolvedTheme === 'light' ? t('theme.dark') : t('theme.light')} ${t('theme.theme')}`}
         title={getCurrentLabel()}
         {...props}
       >
@@ -195,7 +202,7 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
         type="button"
         className={classes}
         onClick={handleClick}
-        aria-label={`Τρέχον θέμα: ${getCurrentLabel()}. Κλικ για αλλαγή.`}
+        aria-label={`${t('theme.current')}: ${getCurrentLabel()}. ${t('theme.clickToChange')}.`}
         {...props}
       >
         <span className="layera-theme-switcher__icon" aria-hidden="true">
@@ -220,7 +227,7 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
           type="button"
           className="layera-theme-switcher__trigger"
           onClick={handleToggle}
-          aria-label={`Επιλογή θέματος. Τρέχον: ${getCurrentLabel()}`}
+          aria-label={`${t('theme.select')}. ${t('theme.current')}: ${getCurrentLabel()}`}
           aria-expanded={isOpen}
           aria-haspopup="menu"
           {...props}
@@ -248,7 +255,7 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
                 {icons.light}
               </span>
               <span className="layera-theme-switcher__option-label">
-                {labels.light}
+                {finalLabels.light}
               </span>
             </button>
 
@@ -262,7 +269,7 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
                 {icons.dark}
               </span>
               <span className="layera-theme-switcher__option-label">
-                {labels.dark}
+                {finalLabels.dark}
               </span>
             </button>
 
@@ -276,7 +283,7 @@ export const ThemeSwitcher = forwardRef<HTMLButtonElement, ThemeSwitcherProps>((
                 {icons.system}
               </span>
               <span className="layera-theme-switcher__option-label">
-                {labels.system}
+                {finalLabels.system}
               </span>
             </button>
           </Box>

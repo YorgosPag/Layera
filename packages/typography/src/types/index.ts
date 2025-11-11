@@ -30,8 +30,9 @@ export interface TypographyProps {
   children: React.ReactNode;
 }
 
-export interface HeadingProps extends TypographyProps {
+export interface HeadingProps extends Omit<TypographyProps, 'children'>, Omit<React.HTMLAttributes<HTMLElement>, 'children' | 'color'> {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  children?: React.ReactNode;
 }
 
 export interface TextProps extends Omit<TypographyProps, 'children'>, Omit<React.HTMLAttributes<HTMLElement>, 'children' | 'color'> {

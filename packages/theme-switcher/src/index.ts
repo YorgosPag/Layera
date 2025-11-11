@@ -19,9 +19,10 @@
 export { ThemeSwitcher } from './components/ThemeSwitcher';
 
 // Context & Providers
-export { ThemeProvider, useThemeContext } from './context/ThemeContext';
+export { ThemeProvider } from './context/ThemeContext';
 
 // Hooks
+export { useThemeContext } from './hooks/useThemeContext';
 export { useTheme } from './hooks/useTheme';
 
 // Types

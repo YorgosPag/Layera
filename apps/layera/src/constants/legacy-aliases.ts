@@ -25,10 +25,10 @@ export const UI_DIMENSIONS = ICON_DIMENSIONS;
 
 // Legacy layout aliases - NOW USING CSS VARIABLES FROM STYLE DICTIONARY
 export const LEGACY_LAYOUT_ALIASES = {
-  CONTAINER_SM: 'var(--la-spacing-container-sm)',
-  CONTAINER_MD: 'var(--la-spacing-container-md)',
-  CONTAINER_LG: 'var(--la-spacing-container-lg)',
-  CONTAINER_XL: 'var(--la-spacing-container-xl)'
+  CONTAINER_SM: 'var(--layera-spacing-container-sm)',
+  CONTAINER_MD: 'var(--layera-spacing-container-md)',
+  CONTAINER_LG: 'var(--layera-spacing-container-lg)',
+  CONTAINER_XL: 'var(--layera-spacing-container-xl)'
 };
 
 // Legacy container aliases

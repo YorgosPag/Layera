@@ -1,7 +1,7 @@
 /**
  * icon-fix.utils.ts - Enterprise Leaflet Icon Fix Utility
  *
- * KADOS Compliant utility για Leaflet icon compatibility
+ * ARXES Compliant utility για Leaflet icon compatibility
  * - Proper TypeScript typing
  * - No any types
  * - Enterprise error handling

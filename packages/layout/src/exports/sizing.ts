@@ -2,11 +2,11 @@
  * @layera/layout/sizing - MODULAR SIZING SYSTEM
  *
  * 🎯 Enterprise sizing system με design tokens
- * Χρησιμοποιεί var(--la-size-*) CSS variables από το design token system
+ * Χρησιμοποιεί var(--layera-size-*) CSS variables από το design token system
  */
 
 // 🚀 ENTERPRISE SIZING SYSTEM - DESIGN TOKEN INTEGRATION
-// Σημείωση: Χρησιμοποίησε var(--la-size-*) CSS variables για Single Source of Truth
+// Σημείωση: Χρησιμοποίησε var(--layera-size-*) CSS variables για Single Source of Truth
 // SIZING SYSTEM TEMPORARILY DISABLED - Missing ../sizing module
 // Enterprise sizing με design tokens θα γίνει integrate αργότερα
 

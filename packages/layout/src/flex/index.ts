@@ -74,14 +74,14 @@ export const FLEX_SCALE = {
   // Gap values (aligned με design tokens)
   gap: {
     NONE: '0',
-    XXS: 'var(--la-size-1)',   // 4px
-    XS: 'var(--la-size-2)',    // 8px
-    SM: 'var(--la-size-4)',    // 16px
-    MD: 'var(--la-size-6)',    // 24px
-    LG: 'var(--la-size-8)',    // 32px
-    XL: 'var(--la-size-12)',   // 48px
-    XXL: 'var(--la-size-16)',  // 64px
-    XXXL: 'var(--la-size-20)'  // 80px
+    XXS: 'var(--layera-size-1)',   // 4px
+    XS: 'var(--layera-size-2)',    // 8px
+    SM: 'var(--layera-size-4)',    // 16px
+    MD: 'var(--layera-size-6)',    // 24px
+    LG: 'var(--layera-size-8)',    // 32px
+    XL: 'var(--layera-size-12)',   // 48px
+    XXL: 'var(--layera-size-16)',  // 64px
+    XXXL: 'var(--layera-size-20)'  // 80px
   }
 } as const;
 
@@ -294,13 +294,13 @@ export const FLEX_UTILITIES = {
     }
   },
 
-  // Responsive patterns (για μελλοντική χρήση με breakpoints)
+  // Responsive patterns (με unified @layera/viewport breakpoints)
   responsive: {
     stackOnMobile: {
       // Desktop: row, Mobile: column
       display: 'flex',
       flexDirection: getFlexVar('direction', 'row'),
-      '@media (max-width: var(--la-breakpoint-md))': {
+      '@media screen and (max-width: 767px)': {
         flexDirection: getFlexVar('direction', 'column')
       }
     },
@@ -308,8 +308,16 @@ export const FLEX_UTILITIES = {
       // Desktop: normal order, Mobile: reverse
       display: 'flex',
       flexDirection: getFlexVar('direction', 'row'),
-      '@media (max-width: var(--la-breakpoint-md))': {
+      '@media screen and (max-width: 767px)': {
         flexDirection: getFlexVar('direction', 'row-reverse')
+      }
+    },
+    stackOnTablet: {
+      // Desktop: row, Tablet και κάτω: column
+      display: 'flex',
+      flexDirection: getFlexVar('direction', 'row'),
+      '@media screen and (max-width: 1199px)': {
+        flexDirection: getFlexVar('direction', 'column')
       }
     }
   }

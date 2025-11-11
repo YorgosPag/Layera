@@ -29,7 +29,7 @@ export type { StackProps } from './components/Stack';
 export type { AppShellProps } from './types/component.types';
 
 // 🚫 ELIMINATED FROM MINIMAL VERSION:
-// - Advanced sizing system (χρήση var(--la-size-*) design tokens)
+// - Advanced sizing system (χρήση var(--layera-size-*) design tokens)
 // - Complex flex system (FLEX_SCALE exports)
 // - Layout shortcuts (FlexCenter, FlexBetween)
 // - Advanced hooks (useSizing, useFlex)

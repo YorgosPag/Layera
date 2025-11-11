@@ -10,7 +10,8 @@ export {
   ModalHeader,
   ModalContent,
   ModalFooter,
-  Dialog
+  Dialog,
+  Drawer
 } from './components';
 
 // Hooks

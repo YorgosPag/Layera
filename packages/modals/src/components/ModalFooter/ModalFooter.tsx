@@ -10,22 +10,16 @@ import type { ModalFooterProps } from '../../types';
 export const ModalFooter: React.FC<ModalFooterProps> = ({
   children,
   actions,
-  align = 'right',
-  className = ''
+  align: _align = 'right',  // Enterprise: Prefixed with _ to mark as intentionally unused
+  className: _className = ''  // Enterprise: Prefixed with _ to mark as intentionally unused
 }) => {
-  const footerClasses = [
-    'layera-modal-footer',
-    `layera-modal-footer--${align}`,
-    className
-  ].filter(Boolean).join(' ');
-
   return (
-    <footer className={footerClasses}>
-      <Box as="div" className="layera-modal-footer__content">
+    <footer>
+      <Box>
         {children}
       </Box>
       {actions && (
-        <Box as="div" className="layera-modal-footer__actions">
+        <Box>
           {actions}
         </Box>
       )}

@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import '../../../packages/tokens/dist/css/tokens.css'
-import '../../../packages/tokens/dist/css/utilities.css'
+import '@layera/tokens/css'
+import '@layera/tokens/css/utilities'
 import 'leaflet/dist/leaflet.css'
 import App from './App.tsx'
 

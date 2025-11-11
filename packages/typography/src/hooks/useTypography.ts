@@ -10,43 +10,43 @@ import { FontSize, FontWeight, LineHeight, TypographyScale } from '../types';
 export const useTypography = () => {
   const typographyScale: TypographyScale = useMemo(() => ({
     fontSizes: {
-      xs: 'var(--la-fontSize-xs)',
-      sm: 'var(--la-fontSize-sm)',
-      base: 'var(--la-fontSize-base)',
-      lg: 'var(--la-fontSize-lg)',
-      xl: 'var(--la-fontSize-xl)',
-      '2xl': 'var(--la-fontSize-2xl)',
-      '3xl': 'var(--la-fontSize-3xl)',
-      '4xl': 'var(--la-fontSize-4xl)',
-      '5xl': 'var(--la-fontSize-5xl)',
-      '6xl': 'var(--la-fontSize-6xl)'
+      xs: 'var(--layera-fontSize-xs)',
+      sm: 'var(--layera-fontSize-sm)',
+      base: 'var(--layera-fontSize-base)',
+      lg: 'var(--layera-fontSize-lg)',
+      xl: 'var(--layera-fontSize-xl)',
+      '2xl': 'var(--layera-fontSize-2xl)',
+      '3xl': 'var(--layera-fontSize-3xl)',
+      '4xl': 'var(--layera-fontSize-4xl)',
+      '5xl': 'var(--layera-fontSize-5xl)',
+      '6xl': 'var(--layera-fontSize-6xl)'
     },
     fontWeights: {
-      light: 'var(--la-fontWeight-light)',
-      normal: 'var(--la-fontWeight-normal)',
-      medium: 'var(--la-fontWeight-medium)',
-      semibold: 'var(--la-fontWeight-semibold)',
-      bold: 'var(--la-fontWeight-bold)',
-      extrabold: 'var(--la-fontWeight-extrabold)'
+      light: 'var(--layera-fontWeight-light)',
+      normal: 'var(--layera-fontWeight-normal)',
+      medium: 'var(--layera-fontWeight-medium)',
+      semibold: 'var(--layera-fontWeight-semibold)',
+      bold: 'var(--layera-fontWeight-bold)',
+      extrabold: 'var(--layera-fontWeight-extrabold)'
     },
     lineHeights: {
-      tight: 'var(--la-lineHeight-tight)',
-      snug: 'var(--la-lineHeight-snug)',
-      normal: 'var(--la-lineHeight-normal)',
-      relaxed: 'var(--la-lineHeight-relaxed)',
-      loose: 'var(--la-lineHeight-loose)'
+      tight: 'var(--layera-lineHeight-tight)',
+      snug: 'var(--layera-lineHeight-snug)',
+      normal: 'var(--layera-lineHeight-normal)',
+      relaxed: 'var(--layera-lineHeight-relaxed)',
+      loose: 'var(--layera-lineHeight-loose)'
     },
     letterSpacing: {
-      xs: 'var(--la-letterSpacing-tight)',
-      sm: 'var(--la-letterSpacing-tight)',
-      base: 'var(--la-letterSpacing-normal)',
-      lg: 'var(--la-letterSpacing-wide)',
-      xl: 'var(--la-letterSpacing-wider)',
-      '2xl': 'var(--la-letterSpacing-wider)',
-      '3xl': 'var(--la-letterSpacing-wider)',
-      '4xl': 'var(--la-letterSpacing-wider)',
-      '5xl': 'var(--la-letterSpacing-wider)',
-      '6xl': 'var(--la-letterSpacing-wider)'
+      xs: 'var(--layera-letterSpacing-tight)',
+      sm: 'var(--layera-letterSpacing-tight)',
+      base: 'var(--layera-letterSpacing-normal)',
+      lg: 'var(--layera-letterSpacing-wide)',
+      xl: 'var(--layera-letterSpacing-wider)',
+      '2xl': 'var(--layera-letterSpacing-wider)',
+      '3xl': 'var(--layera-letterSpacing-wider)',
+      '4xl': 'var(--layera-letterSpacing-wider)',
+      '5xl': 'var(--layera-letterSpacing-wider)',
+      '6xl': 'var(--layera-letterSpacing-wider)'
     }
   }), []);
 
@@ -67,7 +67,7 @@ export const useTypography = () => {
       fontWeight: typographyScale.fontWeights[weight],
       lineHeight: typographyScale.lineHeights[lineHeight],
       letterSpacing: typographyScale.letterSpacing[size],
-      fontFamily: 'var(--la-font-family-sans)'
+      fontFamily: 'var(--layera-font-family-sans)'
     };
   };
 
@@ -102,23 +102,23 @@ export const useTypography = () => {
    */
   const getCSSCustomProperties = () => {
     return {
-      '--la-font-family-sans': 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-      '--la-font-family-mono': '"SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace',
+      '--layera-font-family-sans': 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+      '--layera-font-family-mono': '"SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace',
       ...Object.fromEntries(
         Object.entries(typographyScale.fontSizes).map(([key, value]) => [
-          `--la-text-${key}`,
+          `--layera-text-${key}`,
           value
         ])
       ),
       ...Object.fromEntries(
         Object.entries(typographyScale.fontWeights).map(([key, value]) => [
-          `--la-font-${key}`,
+          `--layera-font-${key}`,
           value
         ])
       ),
       ...Object.fromEntries(
         Object.entries(typographyScale.lineHeights).map(([key, value]) => [
-          `--la-leading-${key}`,
+          `--layera-leading-${key}`,
           value
         ])
       )

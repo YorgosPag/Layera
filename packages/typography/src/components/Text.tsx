@@ -19,17 +19,17 @@ export const Text: React.FC<TextProps> = ({
   ...props
 }) => {
   const classes = [
-    'layera-text',
     `layera-text-${size}`,
     `layera-font-${weight}`,
-    `layera-text-${align}`,
-    `layera-text-${color}`,
     `layera-leading-${lineHeight}`,
     className
   ].filter(Boolean).join(' ');
 
+  const colorVar = `var(--layera-text-${color})`;
+  const style = { color: colorVar, ...(props.style || {}) };
+
   return (
-    <Component className={classes} {...props}>
+    <Component className={classes} style={style} {...props}>
       {children}
     </Component>
   );

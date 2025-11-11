@@ -1,0 +1,81 @@
+/* HomePage specific styles using design tokens */
+
+.container {
+  min-height: 100vh;
+}
+
+.gradientBackground {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--layera-color-brand) 0%, var(--layera-bg-accent-purple) 100%);
+}
+
+.mainCard {
+  padding: var(--layera-global-spacing-8);
+  background-color: var(--layera-color-surface-primary);
+  border-radius: var(--layera-global-borderRadius-lg);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: var(--layera-global-spacing-6);
+}
+
+.cardsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: var(--layera-global-spacing-6);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.featureCard {
+  padding: var(--layera-global-spacing-6);
+  background-color: var(--layera-color-surface-secondary);
+  border-radius: var(--layera-global-borderRadius-lg);
+  text-decoration: none;
+  flex: 1;
+  min-width: 250px;
+  transition: var(--layera-transition-all);
+}
+
+.featureCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--layera-shadow-md);
+}
+
+.featureCardBlue {
+  border: 2px solid var(--layera-color-brand);
+}
+
+.featureCardGreen {
+  border: 2px solid var(--layera-bg-accent-green);
+}
+
+.iconContainer {
+  font-size: var(--layera-fontSize-3xl);
+  margin-bottom: var(--layera-global-spacing-4);
+  text-align: center;
+}
+
+.cardHeading {
+  margin-bottom: var(--layera-global-spacing-4);
+}
+
+.loginSection {
+  margin-top: var(--layera-global-spacing-6);
+}
+
+.addButton {
+  font-size: var(--layera-fontSize-xl);
+}
+
+.linkClean {
+  text-decoration: none;
+}

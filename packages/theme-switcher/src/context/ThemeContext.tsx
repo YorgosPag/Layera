@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import type { Theme, ThemeContextValue, ThemeProviderProps } from '../types';
+import { MEDIA_QUERY, DEFAULT_STORAGE_KEY, DEFAULT_ATTRIBUTE } from '../constants';
 
 /**
  * Theme Context - Enterprise Theme Management για Layera
@@ -14,11 +15,8 @@ import type { Theme, ThemeContextValue, ThemeProviderProps } from '../types';
  * - Performance optimized με useCallback
  */
 
-const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
-
-const MEDIA_QUERY = '(prefers-color-scheme: dark)';
-const DEFAULT_STORAGE_KEY = 'layera-theme';
-const DEFAULT_ATTRIBUTE = 'data-theme';
+// eslint-disable-next-line react-refresh/only-export-components
+export const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
 export function ThemeProvider({
   children,
@@ -112,10 +110,3 @@ export function ThemeProvider({
   );
 }
 
-export function useThemeContext(): ThemeContextValue {
-  const context = useContext(ThemeContext);
-  if (context === undefined) {
-    throw new Error('useThemeContext must be used within a ThemeProvider');
-  }
-  return context;
-}

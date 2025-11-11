@@ -1,44 +1,71 @@
 /**
  * @layera/viewport - Enterprise Types
- * KADOS Compliant - Clean TypeScript types, no any
+ * ARXES Compliant - Clean TypeScript types, no any
+ * UNIFIED BREAKPOINT SYSTEM - Single Source of Truth
  */
 
+// Legacy DeviceType για backward compatibility
 export type DeviceType = 'mobile' | 'tablet' | 'desktop';
 export type Orientation = 'portrait' | 'landscape';
 
+// UNIFIED BREAKPOINT SYSTEM
+export type BreakpointKey = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export type DeviceCategory = 'mobile' | 'tablet' | 'desktop' | 'desktopLarge';
+
+export interface BreakpointDefinition {
+  min: number;
+  max: number;
+  mediaQuery: string;
+  device: DeviceCategory;
+  containerMaxWidth?: string;
+  gridColumns?: number;
+}
+
+export interface UnifiedBreakpoints {
+  sm: BreakpointDefinition;   // mobile: 0-767px
+  md: BreakpointDefinition;   // tablet: 768-1023px
+  lg: BreakpointDefinition;   // tablet large: 1024-1199px
+  xl: BreakpointDefinition;   // desktop: 1200-1439px
+  '2xl': BreakpointDefinition; // desktop large: 1440px+
+}
+
 export interface ViewportInfo {
-  deviceType: DeviceType;
-  orientation: Orientation;
+  // Current viewport state
   width: number;
   height: number;
+  orientation: Orientation;
+
+  // Device detection (unified)
+  currentBreakpoint: BreakpointKey;
+  deviceCategory: DeviceCategory;
+
+  // Boolean helpers
   isMobile: boolean;
   isTablet: boolean;
   isDesktop: boolean;
   isPortrait: boolean;
   isLandscape: boolean;
+
+  // Breakpoint helpers
+  isBreakpoint: (_bp: BreakpointKey) => boolean;
+  isBreakpointOrLarger: (_bp: BreakpointKey) => boolean;
+  isBreakpointOrSmaller: (_bp: BreakpointKey) => boolean;
+
+  // Legacy compatibility
+  deviceType: DeviceType;
 }
 
+// Legacy interface για backward compatibility
 export interface ViewportBreakpoints {
   mobile: number;
   tablet: number;
   desktop: number;
 }
 
+// Enhanced responsive config με unified system
 export interface ResponsiveConfig {
-  mobile: {
-    breakpoint: number;
-    maxWidth?: string;
-    padding?: string;
-    gridColumns?: number;
-  };
-  tablet: {
-    breakpoint: number;
-    maxWidth?: string;
-    padding?: string;
-    gridColumns?: number;
-  };
-  desktop: {
-    breakpoint: number;
+  [key: string]: {
+    breakpoint: BreakpointKey;
     maxWidth?: string;
     padding?: string;
     gridColumns?: number;

@@ -1,0 +1,54 @@
+{
+  "timestamp": "2025-11-11T19:49:20.794Z",
+  "total_variables": 552,
+  "total_duplicates": 2,
+  "critical_count": 2,
+  "warning_count": 0,
+  "critical_duplicates": [
+    {
+      "name": "--layera-color-surface-primary",
+      "data": {
+        "type": "CRITICAL",
+        "occurrences": [
+          {
+            "value": "var(--layera-color-light-surface-primary, #ffffff)",
+            "line": 543,
+            "file": "apps\\layera\\src\\tokens.css"
+          },
+          {
+            "value": "var(--layera-color-dark-surface-primary, #1e293b)",
+            "line": 548,
+            "file": "apps\\layera\\src\\tokens.css"
+          }
+        ],
+        "values": [
+          "var(--layera-color-light-surface-primary, #ffffff)",
+          "var(--layera-color-dark-surface-primary, #1e293b)"
+        ]
+      }
+    },
+    {
+      "name": "--layera-color-text-primary",
+      "data": {
+        "type": "CRITICAL",
+        "occurrences": [
+          {
+            "value": "var(--layera-color-light-text-primary, #1e293b)",
+            "line": 544,
+            "file": "apps\\layera\\src\\tokens.css"
+          },
+          {
+            "value": "var(--layera-color-dark-text-primary, #f1f5f9)",
+            "line": 549,
+            "file": "apps\\layera\\src\\tokens.css"
+          }
+        ],
+        "values": [
+          "var(--layera-color-light-text-primary, #1e293b)",
+          "var(--layera-color-dark-text-primary, #f1f5f9)"
+        ]
+      }
+    }
+  ],
+  "warning_duplicates": []
+}

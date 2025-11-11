@@ -10,13 +10,13 @@ import { BaseIconProps, IconSize, IconVariant, IconTheme } from './types';
 // 🏢 ENTERPRISE ARCHITECTURE - 100% SSOT Tokens με fallback
 const ENTERPRISE_TOKENS = {
   sizes: {
-    xs: 'var(--la-icon-xs)', // CSS Variable από SSOT
-    sm: 'var(--la-icon-smBase)', // CSS Variable από SSOT
-    md: 'var(--la-icon-md)', // CSS Variable από SSOT
-    lg: 'var(--la-icon-lg)', // CSS Variable από SSOT
-    xl: 'var(--la-icon-xl)', // CSS Variable από SSOT
-    xxl: 'var(--la-icon-xxl)', // CSS Variable από SSOT
-    xxxl: 'var(--la-icon-xxxl)' // CSS Variable από SSOT
+    xs: 'var(--layera-icon-xs)', // CSS Variable από SSOT
+    sm: 'var(--layera-icon-smBase)', // CSS Variable από SSOT
+    md: 'var(--layera-icon-md)', // CSS Variable από SSOT
+    lg: 'var(--layera-icon-lg)', // CSS Variable από SSOT
+    xl: 'var(--layera-icon-xl)', // CSS Variable από SSOT
+    xxl: 'var(--layera-icon-xxl)', // CSS Variable από SSOT
+    xxxl: 'var(--layera-icon-xxxl)' // CSS Variable από SSOT
   },
   strokes: {
     thin: 1,    // από SSOT
@@ -25,58 +25,58 @@ const ENTERPRISE_TOKENS = {
     bold: 2.5     // από SSOT
   },
   colors: {
-    primary: 'var(--la-icon-colorPrimary)',   // CSS Variable από SSOT
-    secondary: 'var(--la-icon-colorSecondary)', // CSS Variable από SSOT
-    success: 'var(--la-icon-colorSuccess)',   // CSS Variable από SSOT
-    warning: 'var(--la-icon-colorWarning)',   // CSS Variable από SSOT
-    danger: 'var(--la-icon-colorDanger)',     // CSS Variable από SSOT
-    info: 'var(--la-icon-colorInfo)',         // CSS Variable από SSOT
-    neutral: 'var(--la-icon-colorNeutral)'    // CSS Variable από SSOT
+    primary: 'var(--layera-icon-colorPrimary)',   // CSS Variable από SSOT
+    secondary: 'var(--layera-icon-colorSecondary)', // CSS Variable από SSOT
+    success: 'var(--layera-icon-colorSuccess)',   // CSS Variable από SSOT
+    warning: 'var(--layera-icon-colorWarning)',   // CSS Variable από SSOT
+    danger: 'var(--layera-icon-colorDanger)',     // CSS Variable από SSOT
+    info: 'var(--layera-icon-colorInfo)',         // CSS Variable από SSOT
+    neutral: 'var(--layera-icon-colorNeutral)'    // CSS Variable από SSOT
   },
   // 🌙 Dark theme colors
   darkColors: {
-    primary: 'var(--la-iconAdvanced-theming-darkPrimary)',
-    secondary: 'var(--la-iconAdvanced-theming-darkSecondary)',
-    neutral: 'var(--la-iconAdvanced-theming-darkNeutral)',
-    success: 'var(--la-iconAdvanced-theming-darkSuccess)',
-    warning: 'var(--la-iconAdvanced-theming-darkWarning)',
-    danger: 'var(--la-iconAdvanced-theming-darkDanger)',
-    info: 'var(--la-iconAdvanced-theming-darkInfo)'
+    primary: 'var(--layera-iconAdvanced-theming-darkPrimary)',
+    secondary: 'var(--layera-iconAdvanced-theming-darkSecondary)',
+    neutral: 'var(--layera-iconAdvanced-theming-darkNeutral)',
+    success: 'var(--layera-iconAdvanced-theming-darkSuccess)',
+    warning: 'var(--layera-iconAdvanced-theming-darkWarning)',
+    danger: 'var(--layera-iconAdvanced-theming-darkDanger)',
+    info: 'var(--layera-iconAdvanced-theming-darkInfo)'
   },
   // 🎯 Interactive states
   interactive: {
     opacity: {
-      default: 'var(--la-iconAdvanced-interactive-opacity-default)',
-      hover: 'var(--la-iconAdvanced-interactive-opacity-hover)',
-      active: 'var(--la-iconAdvanced-interactive-opacity-active)',
-      disabled: 'var(--la-iconAdvanced-interactive-opacity-disabled)'
+      default: 'var(--layera-iconAdvanced-interactive-opacity-default)',
+      hover: 'var(--layera-iconAdvanced-interactive-opacity-hover)',
+      active: 'var(--layera-iconAdvanced-interactive-opacity-active)',
+      disabled: 'var(--layera-iconAdvanced-interactive-opacity-disabled)'
     },
     scale: {
-      default: 'var(--la-iconAdvanced-interactive-scale-default)',
-      hover: 'var(--la-iconAdvanced-interactive-scale-hover)',
-      active: 'var(--la-iconAdvanced-interactive-scale-active)'
+      default: 'var(--layera-iconAdvanced-interactive-scale-default)',
+      hover: 'var(--layera-iconAdvanced-interactive-scale-hover)',
+      active: 'var(--layera-iconAdvanced-interactive-scale-active)'
     },
     transition: {
-      fast: 'var(--la-iconAdvanced-interactive-transition-fast)',
-      normal: 'var(--la-iconAdvanced-interactive-transition-normal)',
-      slow: 'var(--la-iconAdvanced-interactive-transition-slow)'
+      fast: 'var(--layera-iconAdvanced-interactive-transition-fast)',
+      normal: 'var(--layera-iconAdvanced-interactive-transition-normal)',
+      slow: 'var(--layera-iconAdvanced-interactive-transition-slow)'
     }
   },
   // ♿ Accessibility
   accessibility: {
     focusRing: {
-      width: 'var(--la-iconAdvanced-accessibility-focusRing-width)',
-      color: 'var(--la-iconAdvanced-accessibility-focusRing-color)'
+      width: 'var(--layera-iconAdvanced-accessibility-focusRing-width)',
+      color: 'var(--layera-iconAdvanced-accessibility-focusRing-color)'
     },
     contrast: {
-      normal: 'var(--la-iconAdvanced-accessibility-contrast-normal)',
-      large: 'var(--la-iconAdvanced-accessibility-contrast-large)'
+      normal: 'var(--layera-iconAdvanced-accessibility-contrast-normal)',
+      large: 'var(--layera-iconAdvanced-accessibility-contrast-large)'
     }
   },
   // 📱 Touch targets
   touchTarget: {
-    mobile: 'var(--la-iconAdvanced-sizing-touchTargetMobile)',
-    desktop: 'var(--la-iconAdvanced-sizing-touchTargetDesktop)'
+    mobile: 'var(--layera-iconAdvanced-sizing-touchTargetMobile)',
+    desktop: 'var(--layera-iconAdvanced-sizing-touchTargetDesktop)'
   }
 };
 
@@ -172,9 +172,9 @@ export const Icon: React.FC<IconProps> = ({
 
   // Touch target με CSS calc() για enterprise support
   const minTouchTarget = onClick && touchTarget === 'mobile'
-    ? `max(${iconSize}, var(--la-iconAdvanced-sizing-touchTargetMobile))`
+    ? `max(${iconSize}, var(--layera-iconAdvanced-sizing-touchTargetMobile))`
     : onClick && touchTarget === 'desktop'
-    ? `max(${iconSize}, var(--la-iconAdvanced-sizing-touchTargetDesktop))`
+    ? `max(${iconSize}, var(--layera-iconAdvanced-sizing-touchTargetDesktop))`
     : iconSize;
 
   // 🌙 Dark mode color calculation

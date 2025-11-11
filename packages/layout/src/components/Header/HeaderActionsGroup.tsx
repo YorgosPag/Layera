@@ -3,14 +3,14 @@ import { HeaderActionsGroupProps } from '../../types';
 import { Box } from '../Box';
 
 /**
- * HeaderActionsGroup - KADOS Compliant Actions Container
+ * HeaderActionsGroup - ARXES Compliant Actions Container
  * Χρησιμοποιεί μόνο προκαθορισμένες layout κλάσεις
  */
 export const HeaderActionsGroup: React.FC<HeaderActionsGroupProps> = ({
   children,
   className = ''
 }) => {
-  // KADOS Compliant: μόνο προκαθορισμένες κλάσεις με design tokens
+  // ARXES Compliant: μόνο προκαθορισμένες κλάσεις με design tokens
   const classes = [
     'layera-flex',
     'layera-flex--align-center',

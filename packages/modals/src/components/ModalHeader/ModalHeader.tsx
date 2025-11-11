@@ -14,23 +14,18 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
   subtitle,
   onClose,
   showCloseButton = true,
-  className = ''
+  className: _className = ''  // Enterprise: Prefixed with _ to mark as intentionally unused
 }) => {
-  const headerClasses = [
-    'layera-modal-header',
-    className
-  ].filter(Boolean).join(' ');
-
   return (
-    <header className={headerClasses}>
-      <Box as="div" className="layera-modal-header__content">
+    <header>
+      <Box>
         {title && (
-          <h2 className="layera-modal-header__title" id="modal-title">
+          <h2 id="modal-title">
             {title}
           </h2>
         )}
         {subtitle && (
-          <p className="layera-modal-header__subtitle">
+          <p>
             {subtitle}
           </p>
         )}
@@ -40,7 +35,6 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
       {showCloseButton && onClose && (
         <button
           type="button"
-          className="layera-modal-header__close"
           onClick={onClose}
           aria-label="Close modal"
         >

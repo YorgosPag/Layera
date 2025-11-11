@@ -1,5 +1,5 @@
 /**
- * ESLint Configuration - KADOS Compliant
+ * ESLint Configuration - ARXES Compliant
  * @layera/viewport package
  */
 
@@ -36,9 +36,11 @@ export default [
       'react-refresh': reactRefresh,
     },
     rules: {
-      // KADOS Required Rules
+      // ARXES Required Rules
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/ban-ts-comment': 'error',
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': ['error', { 'argsIgnorePattern': '^_', 'varsIgnorePattern': '^_' }],
 
       // No restricted imports
       'no-restricted-imports': ['error', {

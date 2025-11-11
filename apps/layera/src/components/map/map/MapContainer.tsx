@@ -60,7 +60,7 @@ export const MapContainer: React.FC = () => {
   return (
     <section
       ref={containerRef}
-      className="la-map-container la-bg-surface-light"
+      className="layera-map-container layera-bg-surface-light"
     />
   );
 };

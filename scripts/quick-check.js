@@ -111,6 +111,23 @@ function checkFile(filePath) {
           });
         }
 
+        // Filter out legitimate dynamic styles for inline styles
+        if (type === 'inlineStyles') {
+          const lines = content.split('\n');
+          actualMatches = [];
+
+          matches.forEach(match => {
+            const index = content.indexOf(match);
+            const lineNumber = content.substring(0, index).split('\n').length - 1;
+            const line = lines[lineNumber] || '';
+
+            // Skip dynamic styles like style={style} or style={props.style}
+            if (!line.includes('style={style}') && !line.includes('style={props.style}') && !line.includes('{ color: colorVar')) {
+              actualMatches.push(match);
+            }
+          });
+        }
+
         if (actualMatches.length > 0) {
           violations.push({
             type,

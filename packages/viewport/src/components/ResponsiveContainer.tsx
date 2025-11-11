@@ -1,6 +1,6 @@
 /**
  * @layera/viewport - Enterprise Responsive Container
- * KADOS Compliant - No inline styles, CSS classes only, semantic HTML
+ * ARXES Compliant - No inline styles, CSS classes only, semantic HTML
  * Single source of truth responsive behavior
  */
 
@@ -19,21 +19,21 @@ interface ResponsiveContainerProps {
 
 const DEFAULT_CONFIG: ResponsiveConfig = {
   mobile: {
-    breakpoint: 768,
-    maxWidth: 'var(--la-global-spacing-full)',
-    padding: 'var(--la-space-md)',
+    breakpoint: 'sm',
+    maxWidth: 'var(--layera-global-spacing-full)',
+    padding: 'var(--layera-space-md)',
     gridColumns: 1
   },
   tablet: {
-    breakpoint: 1024,
-    maxWidth: 'var(--la-global-spacing-full)',
-    padding: 'var(--la-space-xl)',
+    breakpoint: 'md',
+    maxWidth: 'var(--layera-global-spacing-full)',
+    padding: 'var(--layera-space-xl)',
     gridColumns: 2
   },
   desktop: {
-    breakpoint: 1025,
-    maxWidth: 'var(--la-global-spacing-desktop-max)',
-    padding: 'var(--la-space-xxl)',
+    breakpoint: 'xl',
+    maxWidth: 'var(--layera-global-spacing-desktop-max)',
+    padding: 'var(--layera-space-xxl)',
     gridColumns: 3
   }
 };
@@ -46,13 +46,18 @@ export const ResponsiveContainer: React.FC<ResponsiveContainerProps> = ({
   enableMaxWidth = true,
   as = 'section'
 }) => {
-  const { deviceType, width } = useViewport();
+  const { deviceCategory, width } = useViewport();
   const mergedConfig = { ...DEFAULT_CONFIG, ...config };
-  const currentConfig = mergedConfig[deviceType];
+
+  // Map deviceCategory to config key
+  const configKey = deviceCategory === 'mobile' ? 'mobile' :
+                    deviceCategory === 'tablet' || deviceCategory === 'desktop' ? 'tablet' : 'desktop';
+
+  const currentConfig = mergedConfig[configKey];
 
   const responsiveClasses = [
     'layera-responsive-container',
-    `layera-responsive-container--${deviceType}`,
+    `layera-responsive-container--${deviceCategory}`,
     enablePadding ? 'layera-responsive-container--with-padding' : '',
     enableMaxWidth ? 'layera-responsive-container--with-max-width' : '',
     className
@@ -63,9 +68,9 @@ export const ResponsiveContainer: React.FC<ResponsiveContainerProps> = ({
   return (
     <Component
       className={responsiveClasses}
-      data-device-type={deviceType}
+      data-device-category={deviceCategory}
       data-viewport-width={width}
-      data-grid-columns={currentConfig.gridColumns}
+      data-grid-columns={currentConfig?.gridColumns}
     >
       {children}
     </Component>

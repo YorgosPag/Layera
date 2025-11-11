@@ -1,0 +1,272 @@
+{
+  "layout": {
+    "unified": {
+      "value": {
+        "display": "flex",
+        "flexDirection": "column",
+        "width": "100%",
+        "minHeight": "100vh"
+      },
+      "comment": "Unified layout system - main container properties"
+    },
+    "header": {
+      "value": {
+        "width": "100%",
+        "padding": "1rem",
+        "backgroundColor": "white",
+        "borderBottom": "1px solid #e5e7eb",
+        "boxShadow": "0 1px 3px 0 rgba(0, 0, 0, 0.1)"
+      },
+      "comment": "Header layout properties - full width with shadow"
+    },
+    "sidebar": {
+      "value": {
+        "position": "fixed",
+        "top": "0",
+        "left": "0",
+        "width": "280px",
+        "height": "100vh",
+        "backgroundColor": "var(--layera-color-surface-primary)",
+        "borderRight": "1px solid var(--layera-color-border-primary)",
+        "zIndex": "1000"
+      },
+      "comment": "Sidebar layout for AppShell component"
+    },
+    "content": {
+      "value": {
+        "flex": "1",
+        "padding": "1rem",
+        "overflow": "auto"
+      },
+      "comment": "Main content area layout"
+    },
+    "footer": {
+      "value": {
+        "width": "100%",
+        "padding": "1rem",
+        "backgroundColor": "var(--layera-color-surface-secondary)",
+        "borderTop": "1px solid var(--layera-color-border-primary)",
+        "textAlign": "center"
+      },
+      "comment": "Footer layout properties"
+    }
+  },
+  "typography": {
+    "base": {
+      "value": {
+        "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif",
+        "fontSize": "1rem",
+        "fontWeight": "400",
+        "lineHeight": "1.5",
+        "color": "var(--layera-color-text-primary)",
+        "textDecoration": "inherit"
+      },
+      "comment": "Base typography settings"
+    }
+  },
+  "spacing": {
+    "utilities": {
+      "value": {
+        "margin": "var(--layera-global-spacing-4)",
+        "padding": "var(--layera-global-spacing-4)",
+        "gap": "var(--layera-global-spacing-4)"
+      },
+      "comment": "Standard spacing utilities"
+    }
+  },
+  "header": {
+    "simple": {
+      "value": {
+        "width": "100%",
+        "padding": "1rem",
+        "backgroundColor": "white",
+        "borderBottom": "1px solid #e5e7eb",
+        "boxShadow": "0 1px 3px 0 rgba(0, 0, 0, 0.1)"
+      },
+      "comment": "Simple header class - legacy compatibility"
+    }
+  },
+  "utilities": {
+    "padding": {
+      "value": {
+        "padding": "var(--layera-global-spacing-4)"
+      },
+      "variants": {
+        "size": {
+          "sm": { "padding": "var(--layera-global-spacing-2)" },
+          "md": { "padding": "var(--layera-global-spacing-4)" },
+          "lg": { "padding": "var(--layera-global-spacing-6)" },
+          "xl": { "padding": "var(--layera-global-spacing-8)" }
+        }
+      }
+    },
+    "margin": {
+      "value": {
+        "margin": "var(--layera-global-spacing-4)"
+      },
+      "variants": {
+        "direction": {
+          "bottom": { "marginBottom": "var(--layera-global-spacing-4)" }
+        },
+        "size": {
+          "lg": { "margin": "var(--layera-global-spacing-6)" },
+          "sm": { "marginBottom": "var(--layera-global-spacing-2)" },
+          "md": { "marginBottom": "var(--layera-global-spacing-4)" }
+        },
+        "top": {
+          "lg": { "marginTop": "var(--layera-global-spacing-6)" }
+        }
+      }
+    },
+    "stack": {
+      "value": {
+        "display": "flex",
+        "flexDirection": "column"
+      },
+      "variants": {
+        "spacing": {
+          "lg": { "gap": "var(--layera-global-spacing-6)" }
+        }
+      }
+    }
+  },
+  "map": {
+    "container": {
+      "value": {
+        "width": "100%",
+        "height": "400px",
+        "position": "relative"
+      },
+      "variants": {
+        "fullscreen": {
+          "true": {
+            "position": "fixed",
+            "top": "0",
+            "left": "0",
+            "width": "100vw",
+            "height": "100vh",
+            "zIndex": "1000"
+          }
+        }
+      }
+    }
+  },
+  "grid": {
+    "base": {
+      "value": {
+        "display": "grid"
+      },
+      "variants": {
+        "cols": {
+          "1": { "gridTemplateColumns": "repeat(1, 1fr)" },
+          "2": { "gridTemplateColumns": "repeat(2, 1fr)" },
+          "3": { "gridTemplateColumns": "repeat(3, 1fr)" }
+        },
+        "gap": {
+          "lg": { "gap": "var(--layera-global-spacing-6)" }
+        },
+        "tablet": {
+          "cols-2": { "@media (min-width: 768px)": { "gridTemplateColumns": "repeat(2, 1fr)" } }
+        },
+        "desktop": {
+          "cols-3": { "@media (min-width: 1024px)": { "gridTemplateColumns": "repeat(3, 1fr)" } }
+        }
+      }
+    }
+  },
+  "width": {
+    "full": {
+      "value": {
+        "width": "100%"
+      }
+    }
+  },
+  "text": {
+    "left": {
+      "value": {
+        "textAlign": "left"
+      }
+    },
+    "center": {
+      "value": {
+        "textAlign": "center"
+      }
+    },
+    "right": {
+      "value": {
+        "textAlign": "right"
+      }
+    },
+    "white": {
+      "value": {
+        "color": "white"
+      }
+    },
+    "3xl": {
+      "value": {
+        "fontSize": "var(--layera-fontSize-3xl)"
+      }
+    }
+  },
+  "flex": {
+    "base": {
+      "value": {
+        "display": "flex"
+      },
+      "variants": {
+        "align": {
+          "center": { "alignItems": "center" }
+        },
+        "gap": {
+          "sm": { "gap": "var(--layera-global-spacing-2)" }
+        }
+      }
+    }
+  },
+  "form": {
+    "label": {
+      "value": {
+        "display": "block",
+        "marginBottom": "0.5rem",
+        "fontSize": "var(--layera-fontSize-sm)",
+        "fontWeight": "var(--layera-fontWeight-medium)",
+        "color": "var(--layera-color-text-primary)"
+      }
+    },
+    "input": {
+      "value": {
+        "width": "100%",
+        "padding": "0.5rem 1rem",
+        "border": "1px solid var(--layera-color-border-primary)",
+        "borderRadius": "0.375rem",
+        "fontSize": "var(--layera-fontSize-base)"
+      }
+    }
+  },
+  "btn": {
+    "primary": {
+      "value": {
+        "backgroundColor": "var(--layera-text-primary)",
+        "color": "white",
+        "border": "1px solid var(--layera-text-primary)",
+        "borderRadius": "0.375rem",
+        "padding": "0.5rem 1rem",
+        "fontSize": "var(--layera-fontSize-base)",
+        "fontWeight": "var(--layera-fontWeight-medium)",
+        "cursor": "pointer"
+      }
+    }
+  },
+  "card": {
+    "base": {
+      "value": {
+        "backgroundColor": "var(--layera-color-surface-primary)",
+        "borderRadius": "0.5rem",
+        "padding": "1rem",
+        "border": "1px solid var(--layera-color-border-primary)",
+        "boxShadow": "0 1px 3px 0 rgba(0, 0, 0, 0.1)"
+      },
+      "comment": "Base card component"
+    }
+  }
+}

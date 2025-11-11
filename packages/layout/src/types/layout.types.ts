@@ -16,7 +16,17 @@ export type ContainerMaxWidth = 'sm' | 'md' | 'lg' | 'xl' | 'full' | number;
 
 export type SpacingSize = 'none' | 'sm' | 'md' | 'lg';
 
+/**
+ * UNIFIED BREAKPOINT SYSTEM - Import από @layera/viewport
+ * Deprecation warning: χρησιμοποίησε BreakpointKey από @layera/viewport
+ */
 export type BreakpointSize = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+
+/**
+ * @deprecated Use BreakpointKey from @layera/viewport instead
+ * Μετεγκατάσταση σε unified breakpoint system
+ */
+export type LegacyBreakpointSize = BreakpointSize;
 
 
 

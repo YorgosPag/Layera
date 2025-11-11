@@ -15,6 +15,7 @@
     "@layera/layout": "workspace:*",
     "@layera/map-core": "workspace:*",
     "@layera/modals": "workspace:*",
+    "@layera/tolgee": "workspace:*",
     "@layera/tokens": "workspace:*",
     "@layera/typography": "workspace:*",
     "@layera/viewport": "workspace:*",

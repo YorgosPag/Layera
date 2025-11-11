@@ -1,11 +1,10 @@
 /**
  * Layera Layout System - Main Entry Point
- * KADOS Compliant - Enterprise CSS με design tokens μόνο
+ * ARXES Compliant - Enterprise CSS με design tokens μόνο
  */
 
-// Enterprise: Using @layera/tokens CSS system instead of manual .css imports
-// CSS Import για layout classes
-// import './styles/layout.css';
+// Enterprise: CSS classes γεννιούνται από το unified style-dictionary system
+// CSS imported στην εφαρμογή: import '@layera/tokens/dist/css/utilities.css'
 
 // Layout Primitives (Enterprise)
 export { Stack } from './components/Stack';
@@ -24,11 +23,15 @@ export {
 // Container Components
 export { PageContainer, PageHeader } from './components/Container';
 
-// Header Components (KADOS Compliant)
+// Header Components (ARXES Compliant)
 export { LayeraHeader, HeaderActionsGroup } from './components/Header';
 
 // Hooks
 export { useGeoAlertLayout } from './hooks/useGeoAlertLayout';
+
+// Responsive Layout Hooks (με unified @layera/viewport integration)
+export { useResponsive, useBreakpointMatches } from './hooks/useResponsive';
+export type { ResponsiveLayoutInfo, BreakpointMatches } from './hooks/useResponsive';
 
 // Enterprise Layout Hooks (useSizing removed - missing file)
 

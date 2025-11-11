@@ -1,9 +1,10 @@
 import React from 'react';
 import { Box } from '../Box';
 import { LayeraHeaderProps } from '../../types';
+import { Text, Heading } from '@layera/typography';
 
 /**
- * LayeraHeader - KADOS Compliant Header με προκαθορισμένες κλάσεις
+ * LayeraHeader - ARXES Compliant Header με προκαθορισμένες κλάσεις
  * Χρησιμοποιεί μόνο layout classes με design tokens
  */
 export const LayeraHeader: React.FC<LayeraHeaderProps> = ({
@@ -15,66 +16,54 @@ export const LayeraHeader: React.FC<LayeraHeaderProps> = ({
   variant = 'standard',
   className = ''
 }) => {
-  // KADOS Compliant: μόνο προκαθορισμένες κλάσεις
-  const headerBaseClasses = [
-    'layera-flex',
-    'layera-flex--align-center',
-    'layera-padding--sm',
-    'layera-full-width'
-  ];
-
-  // Variant-specific background
-  const variantClasses = {
-    minimal: 'la-bg-surface-light',
-    standard: 'la-bg-primary',
-    rich: 'la-bg-gradient-primary'
-  };
-
+  // ARXES Compliant: μόνο προκαθορισμένες κλάσεις - Enterprise CSS
   const headerClasses = [
     'layera-header',
-    ...headerBaseClasses,
-    variantClasses[variant],
     className
   ].filter(Boolean).join(' ');
 
   return (
     <Box className={headerClasses}>
-      <Box className="layera-flex layera-full-width layera-flex--space-between layera-flex--align-center">
+      <Box className="layera-layout" style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
         {/* Left section - Logo + Title */}
-        <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm">
+        <Box className="layera-layout" style={{flexDirection: 'row', alignItems: 'center', gap: '0.5rem'}}>
           {logo && (
-            <Box className="layera-flex layera-flex--center">
+            <Box className="layera-layout" style={{alignItems: 'center', justifyContent: 'center'}}>
               {logo}
             </Box>
           )}
 
-          <Box className="layera-stack">
-            <h1 className="la-text-2xl la-font-bold la-text-primary la-leading-tight">{title}</h1>
+          <Box className="layera-layout">
+            <Heading as="h1" className="layera-typography" data-size="2xl" data-weight="bold" data-color="primary" data-leading="tight" style={{margin: 0}}>
+              {title}
+            </Heading>
             {subtitle && variant !== 'minimal' && (
-              <p className="la-text-base la-text-secondary la-leading-normal">{subtitle}</p>
+              <Text className="layera-typography" data-size="base" data-color="secondary" data-leading="normal" style={{margin: 0}}>
+                {subtitle}
+              </Text>
             )}
           </Box>
         </Box>
 
         {/* Center section - Navigation (για rich variant) */}
         {navigation && variant === 'rich' && (
-          <Box as="nav" className="layera-flex layera-flex--center layera-flex--gap-lg" role="navigation">
+          <Box as="nav" className="layera-layout" style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: '1rem'}} role="navigation">
             {navigation}
           </Box>
         )}
 
         {/* Right section - Navigation + Actions */}
-        <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm">
+        <Box className="layera-layout" style={{flexDirection: 'row', alignItems: 'center', gap: '0.5rem'}}>
           {/* Navigation για standard variant */}
           {navigation && variant === 'standard' && (
-            <Box as="nav" className="layera-flex layera-flex--align-center layera-flex--gap-md" role="navigation">
+            <Box as="nav" className="layera-layout" style={{flexDirection: 'row', alignItems: 'center', gap: '0.75rem'}} role="navigation">
               {navigation}
             </Box>
           )}
 
           {/* Actions */}
           {actions && (
-            <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm">
+            <Box className="layera-layout" style={{flexDirection: 'row', alignItems: 'center', gap: '0.5rem'}}>
               {actions}
             </Box>
           )}

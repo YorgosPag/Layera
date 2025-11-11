@@ -109,11 +109,11 @@ export function createGeoAlertInfoPanelStyles(
     // Desktop: fixed width, top-right corner
     return {
       position: 'fixed',
-      top: 'var(--la-size-6)',
-      right: 'var(--la-size-6)',
-      width: 'var(--la-size-80)',
+      top: 'var(--layera-size-6)',
+      right: 'var(--layera-size-6)',
+      width: 'var(--layera-size-80)',
       zIndex: 10000,
-      maxHeight: 'var(--la-size-100)',
+      maxHeight: 'var(--layera-size-100)',
       overflow: 'auto',
       transition: 'all 250ms ease-in-out'
     };
@@ -145,13 +145,13 @@ export function updateGeoAlertLayoutVariables(
   const positions = calculateGeoAlertPositions(fullConfig);
 
   // Update CSS custom properties
-  root.style.setProperty('--la-stepper-height', `${fullConfig.stepperHeight}px`);
-  root.style.setProperty('--la-stepper-to-cards-gap', `${fullConfig.stepperToCardsGap}px`);
-  root.style.setProperty('--la-cards-gap', `${fullConfig.cardsGap}px`);
-  root.style.setProperty('--la-cards-height', `${fullConfig.cardHeight}px`);
-  root.style.setProperty('--la-side-margins', `${fullConfig.sideMargins}px`);
+  root.style.setProperty('--layera-stepper-height', `${fullConfig.stepperHeight}px`);
+  root.style.setProperty('--layera-stepper-to-cards-gap', `${fullConfig.stepperToCardsGap}px`);
+  root.style.setProperty('--layera-cards-gap', `${fullConfig.cardsGap}px`);
+  root.style.setProperty('--layera-cards-height', `${fullConfig.cardHeight}px`);
+  root.style.setProperty('--layera-side-margins', `${fullConfig.sideMargins}px`);
 
   // Update calculated positions
-  root.style.setProperty('--la-cards-top', positions.cardsTop);
-  root.style.setProperty('--la-info-panel-top', positions.infoPanelTop);
+  root.style.setProperty('--layera-cards-top', positions.cardsTop);
+  root.style.setProperty('--layera-info-panel-top', positions.infoPanelTop);
 }

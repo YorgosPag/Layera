@@ -9,7 +9,7 @@ export default {
     format: 'es',
     sourcemap: true
   },
-  external: ['react', 'react-dom'],
+  external: ['react', 'react-dom', '@layera/layout', '@layera/icons'],
   plugins: [
     resolve(),
     typescript({

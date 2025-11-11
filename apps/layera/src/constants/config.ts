@@ -267,13 +267,13 @@ export const ESCO_NAMESPACES = {
  * Device Frame Colors - Design System
  */
 export const DEVICE_FRAME_COLORS = {
-  SPACE_GRAY: 'var(--la-bg-dark)',
-  SILVER: 'var(--la-color-surface-secondary)',
-  BLACK: 'var(--la-bg-dark)',
-  WHITE: 'var(--la-color-surface)',
-  GOLD: 'var(--la-color-surface-tertiary)',
-  GOOGLE_CHARCOAL: 'var(--la-bg-dark)',
-  GRAPHITE: 'var(--la-bg-dark)',
+  SPACE_GRAY: 'var(--layera-bg-dark)',
+  SILVER: 'var(--layera-color-surface-secondary)',
+  BLACK: 'var(--layera-bg-dark)',
+  WHITE: 'var(--layera-color-surface)',
+  GOLD: 'var(--layera-color-surface-tertiary)',
+  GOOGLE_CHARCOAL: 'var(--layera-bg-dark)',
+  GRAPHITE: 'var(--layera-bg-dark)',
 } as const;
 
 // ============================================================================
@@ -424,14 +424,14 @@ export const MOBILE_DEVICE_SPECS = {
 
 /**
  * Responsive Breakpoints - MOVED TO STYLE DICTIONARY
- * Use CSS variables: var(--la-spacing-breakpoint-mobile), var(--la-spacing-breakpoint-tablet), var(--la-spacing-breakpoint-desktop)
+ * Use CSS variables: var(--layera-spacing-breakpoint-mobile), var(--layera-spacing-breakpoint-tablet), var(--layera-spacing-breakpoint-desktop)
  * @see packages/tokens/src/domains/spacing-dimensions.json
  */
 export const DEVICE_BREAKPOINTS = {
   // Main breakpoints moved to Style Dictionary tokens
-  // MOBILE: 768 → var(--la-spacing-breakpoint-mobile)
-  // TABLET: 1024 → var(--la-spacing-breakpoint-tablet)
-  // DESKTOP: 1025 → var(--la-spacing-breakpoint-desktop)
+  // MOBILE: 768 → var(--layera-spacing-breakpoint-mobile)
+  // TABLET: 1024 → var(--layera-spacing-breakpoint-tablet)
+  // DESKTOP: 1025 → var(--layera-spacing-breakpoint-desktop)
   MOBILE_MAX: 480, // Pure mobile detection - Business logic ✅
 } as const;
 
@@ -478,9 +478,9 @@ export const FIXED_DIMENSIONS = {
   MAP_ZOOM_MIN: 8,
   MAP_ZOOM_MAX: 18,
   // UI dimensions moved to Style Dictionary tokens:
-  // - Card: var(--la-spacing-component-card-width), var(--la-spacing-component-card-height)
-  // - Button: var(--la-spacing-component-button-height)
-  // - Input: var(--la-spacing-component-input-height)
+  // - Card: var(--layera-spacing-component-card-width), var(--layera-spacing-component-card-height)
+  // - Button: var(--layera-spacing-component-button-height)
+  // - Input: var(--layera-spacing-component-input-height)
 } as const;
 
 
@@ -492,24 +492,24 @@ export const FIXED_DIMENSIONS = {
  * Brand Colors - Primary Palette
  */
 export const BRAND_COLORS = {
-  PRIMARY: 'var(--la-color-brand)',
-  SECONDARY: 'var(--la-color-text-secondary)',
-  WHITE: 'var(--la-color-surface)',
-  BLACK: 'var(--la-bg-dark)',
+  PRIMARY: 'var(--layera-color-brand)',
+  SECONDARY: 'var(--layera-color-text-secondary)',
+  WHITE: 'var(--layera-color-surface)',
+  BLACK: 'var(--layera-bg-dark)',
 } as const;
 
 /**
  * UI State Colors
  */
 export const UI_COLORS = {
-  INFO_SUBTLE: 'var(--la-color-brand-background)',
-  INFO_DEFAULT: 'var(--la-color-primary)',
-  NEUTRAL_LIGHT: 'var(--la-color-surface-secondary)',
-  NEUTRAL_DEFAULT: 'var(--la-color-text-secondary)',
-  NEUTRAL_DARK: 'var(--la-color-text-primary)',
-  BORDER_DEFAULT: 'var(--la-border-primary)',
-  SURFACE_DEFAULT: 'var(--la-color-surface-hover)',
-  TEXT_TERTIARY: 'var(--la-color-text-muted)',
+  INFO_SUBTLE: 'var(--layera-color-brand-background)',
+  INFO_DEFAULT: 'var(--layera-color-primary)',
+  NEUTRAL_LIGHT: 'var(--layera-color-surface-secondary)',
+  NEUTRAL_DEFAULT: 'var(--layera-color-text-secondary)',
+  NEUTRAL_DARK: 'var(--layera-color-text-primary)',
+  BORDER_DEFAULT: 'var(--layera-border-primary)',
+  SURFACE_DEFAULT: 'var(--layera-color-surface-hover)',
+  TEXT_TERTIARY: 'var(--layera-color-text-muted)',
 } as const;
 
 
@@ -841,7 +841,7 @@ export const UI_Z_INDEX_LAYERS = {
 /**
  * 🎨 SEMANTIC COLORS
  * Όλες οι semantic color values μεταφέρθηκαν στο Style Dictionary
- * Χρησιμοποιήστε: var(--la-color-semantic-error-primary), κλπ
+ * Χρησιμοποιήστε: var(--layera-color-semantic-error-primary), κλπ
  *
  * @see packages/tokens/src/domains/color-semantic.json
  */
@@ -913,8 +913,8 @@ export const CONFIG = {
     minSnapZoom: 16,
     debounceMs: 500,
     measurementPrecision: 2,
-    defaultStrokeColor: 'var(--la-color-primary)',
-    defaultFillColor: 'var(--la-color-brand-light)',
+    defaultStrokeColor: 'var(--layera-color-primary)',
+    defaultFillColor: 'var(--layera-color-brand-light)',
     defaultStrokeWidth: 2,
   },
   osm: {

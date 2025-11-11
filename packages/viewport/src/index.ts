@@ -1,6 +1,6 @@
 /**
  * @layera/viewport - Enterprise Responsive System
- * KADOS Compliant Export
+ * ARXES Compliant Export
  */
 
 export * from './types';

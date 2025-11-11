@@ -1,56 +1,61 @@
 import React from 'react';
 import { Box, Stack } from '../../../../packages/layout/src';
+import { Text } from '../../../../packages/typography/src';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 const LoginPage: React.FC = () => {
+  const { t } = useLayeraTranslation();
+
   return (
     <Box className="layera-padding--lg">
       <Box className="layera-text-center layera-margin-bottom--lg">
-        <p className="la-text-lg la-text-secondary la-leading-normal">
-          Συνδεθείτε στο λογαριασμό σας
-        </p>
+        <Text size="lg" color="secondary" lineHeight="normal">
+          {t('auth.subtitle')}
+        </Text>
       </Box>
 
           <Stack as="form" className="layera-stack--spacing-lg">
             <Box>
-              <label htmlFor="email" className="la-form-label la-text-sm la-font-medium la-text-primary">
-                Email
+              <label htmlFor="email" className="layera-form-label">
+                <Text size="sm" weight="medium" color="primary">
+                  {t('auth.email')}
+                </Text>
               </label>
               <input
                 type="email"
                 id="email"
-                className="la-form-input"
-                placeholder="example@email.com"
+                className="layera-form-input"
+                placeholder={t('auth.emailPlaceholder')}
               />
             </Box>
 
             <Box>
-              <label htmlFor="password" className="la-form-label la-text-sm la-font-medium la-text-primary">
-                Κωδικός
+              <label htmlFor="password" className="layera-form-label">
+                <Text size="sm" weight="medium" color="primary">
+                  {t('auth.password')}
+                </Text>
               </label>
               <input
                 type="password"
                 id="password"
-                className="la-form-input"
-                placeholder="Εισάγετε τον κωδικό σας"
+                className="layera-form-input"
+                placeholder={t('auth.passwordPlaceholder')}
               />
             </Box>
 
             <Box
               as="button"
               type="submit"
-              className="layera-full-width layera-padding--md la-btn-primary"
+              className="layera-full-width layera-padding--md layera-btn-primary"
             >
-              Είσοδος
+              {t('auth.login')}
             </Box>
           </Stack>
 
-          <Box className="la-mt-6 layera-text-center">
-            <p className="la-text-secondary">
-              Δεν έχετε λογαριασμό;{' '}
-              <a href="#" className="la-text-primary la-transition-opacity la-hover-opacity">
-                Εγγραφείτε εδώ
-              </a>
-            </p>
+          <Box className="layera-margin-top--lg layera-text-center">
+            <Text color="secondary">
+              {t('auth.noAccount')}
+            </Text>
           </Box>
 
 

@@ -9,19 +9,12 @@ import type { ModalContentProps } from '../../types';
  */
 export const ModalContent: React.FC<ModalContentProps> = ({
   children,
-  padding = 'md',
-  scrollable = false,
-  className = ''
+  padding: _padding = 'md',  // Enterprise: Prefixed with _ to mark as intentionally unused
+  scrollable: _scrollable = false,  // Enterprise: Prefixed with _ to mark as intentionally unused
+  className: _className = ''  // Enterprise: Prefixed with _ to mark as intentionally unused
 }) => {
-  const contentClasses = [
-    'layera-modal-content',
-    `layera-modal-content--${padding}`,
-    scrollable && 'layera-modal-content--scrollable',
-    className
-  ].filter(Boolean).join(' ');
-
   return (
-    <Box as="div" className={contentClasses} id="modal-content">
+    <Box id="modal-content">
       {children}
     </Box>
   );

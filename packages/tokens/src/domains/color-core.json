@@ -1,48 +1,7 @@
 {
   "color": {
-    "background": {
-      "primary": {
-        "value": "#1e293b",
-        "comment": "Κύριο χρώμα φόντου - modern dark slate"
-      },
-      "secondary": {
-        "value": "#0f172a",
-        "comment": "Δευτερεύον χρώμα φόντου - deep midnight"
-      },
-      "accent": {
-        "blue": {
-          "value": "#06b6d4",
-          "comment": "Cyan accent - modern vibrant"
-        },
-        "green": {
-          "value": "#22c55e",
-          "comment": "Emerald accent - fresh success"
-        },
-        "purple": {
-          "value": "#a855f7",
-          "comment": "Purple accent - electric violet"
-        }
-      },
-      "surface": {
-        "light": {
-          "value": "#334155",
-          "comment": "Light surface - elevated slate"
-        },
-        "medium": {
-          "value": "#475569",
-          "comment": "Medium surface - refined gray"
-        }
-      }
-    },
     "text": {
-      "primary": {
-        "value": "#f1f5f9",
-        "comment": "Primary text - clean white"
-      },
-      "secondary": {
-        "value": "#cbd5e1",
-        "comment": "Secondary text - soft silver"
-      },
+      "comment": "REMOVED: primary, secondary (now managed by theme-colors.json for light/dark switching)",
       "tertiary": {
         "value": "#94a3b8",
         "comment": "Tertiary text - muted slate"

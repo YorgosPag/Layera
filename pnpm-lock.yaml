@@ -32,6 +32,9 @@ importers:
       '@layera/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
+      '@layera/tolgee':
+        specifier: workspace:*
+        version: link:../../packages/tolgee
       '@layera/typography':
         specifier: workspace:*
         version: link:../../packages/typography
@@ -155,6 +158,15 @@ importers:
 
   packages/layout:
     dependencies:
+      '@layera/tokens':
+        specifier: workspace:*
+        version: link:../tokens
+      '@layera/typography':
+        specifier: workspace:*
+        version: link:../typography
+      '@layera/viewport':
+        specifier: workspace:*
+        version: link:../viewport
       react:
         specifier: ^18.0.0 || ^19.0.0
         version: 19.2.0
@@ -253,6 +265,9 @@ importers:
       '@layera/layout':
         specifier: workspace:*
         version: link:../layout
+      '@layera/tokens':
+        specifier: workspace:*
+        version: link:../tokens
       react:
         specifier: '>=18.0.0'
         version: 19.2.0
@@ -260,6 +275,9 @@ importers:
         specifier: '>=18.0.0'
         version: 19.2.0(react@19.2.0)
     devDependencies:
+      '@eslint/js':
+        specifier: ^9.0.0
+        version: 9.39.1
       '@rollup/plugin-node-resolve':
         specifier: ^15.3.0
         version: 15.3.1(rollup@4.53.1)
@@ -272,6 +290,27 @@ importers:
       '@types/react-dom':
         specifier: ^19.1.9
         version: 19.2.2(@types/react@19.2.2)
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^8.0.0
+        version: 8.46.3(@typescript-eslint/parser@8.46.3(eslint@9.39.1)(typescript@5.9.3))(eslint@9.39.1)(typescript@5.9.3)
+      '@typescript-eslint/parser':
+        specifier: ^8.0.0
+        version: 8.46.3(eslint@9.39.1)(typescript@5.9.3)
+      eslint:
+        specifier: ^9.0.0
+        version: 9.39.1
+      eslint-plugin-react:
+        specifier: ^7.0.0
+        version: 7.37.5(eslint@9.39.1)
+      eslint-plugin-react-hooks:
+        specifier: ^5.0.0
+        version: 5.2.0(eslint@9.39.1)
+      eslint-plugin-react-refresh:
+        specifier: ^0.4.0
+        version: 0.4.24(eslint@9.39.1)
+      globals:
+        specifier: ^15.0.0
+        version: 15.15.0
       postcss:
         specifier: ^8.5.6
         version: 8.5.6
@@ -293,6 +332,12 @@ importers:
       '@layera/layout':
         specifier: workspace:*
         version: link:../layout
+      '@layera/tokens':
+        specifier: workspace:*
+        version: link:../tokens
+      '@layera/tolgee':
+        specifier: workspace:*
+        version: link:../tolgee
       react:
         specifier: ^18.0.0 || ^19.0.0
         version: 19.2.0
@@ -300,15 +345,36 @@ importers:
         specifier: ^18.0.0 || ^19.0.0
         version: 19.2.0(react@19.2.0)
     devDependencies:
+      '@eslint/js':
+        specifier: ^9.0.0
+        version: 9.39.1
       '@types/react':
         specifier: ^19.1.16
         version: 19.2.2
       '@types/react-dom':
         specifier: ^19.1.9
         version: 19.2.2(@types/react@19.2.2)
-      eslint:
+      '@typescript-eslint/eslint-plugin':
         specifier: ^8.0.0
-        version: 8.57.1
+        version: 8.46.3(@typescript-eslint/parser@8.46.3(eslint@9.39.1)(typescript@5.9.3))(eslint@9.39.1)(typescript@5.9.3)
+      '@typescript-eslint/parser':
+        specifier: ^8.0.0
+        version: 8.46.3(eslint@9.39.1)(typescript@5.9.3)
+      eslint:
+        specifier: ^9.0.0
+        version: 9.39.1
+      eslint-plugin-react:
+        specifier: ^7.0.0
+        version: 7.37.5(eslint@9.39.1)
+      eslint-plugin-react-hooks:
+        specifier: ^5.0.0
+        version: 5.2.0(eslint@9.39.1)
+      eslint-plugin-react-refresh:
+        specifier: ^0.4.0
+        version: 0.4.24(eslint@9.39.1)
+      globals:
+        specifier: ^15.0.0
+        version: 15.15.0
       postcss:
         specifier: ^8.4.0
         version: 8.5.6
@@ -328,8 +394,39 @@ importers:
         specifier: ^4.0.0
         version: 4.4.0
 
+  packages/tolgee:
+    dependencies:
+      '@tolgee/format-icu':
+        specifier: ^5.20.3
+        version: 5.33.2
+      '@tolgee/react':
+        specifier: ^5.20.3
+        version: 5.33.2(react@18.3.1)
+      react:
+        specifier: ^18.2.0
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.3.1(react@18.3.1)
+    devDependencies:
+      '@types/node':
+        specifier: ^18.0.0
+        version: 18.19.130
+      '@types/react':
+        specifier: ^18.2.0
+        version: 18.3.26
+      tsup:
+        specifier: ^8.5.0
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
   packages/typography:
     dependencies:
+      '@layera/tokens':
+        specifier: workspace:*
+        version: link:../tokens
       react:
         specifier: ^18.0.0 || ^19.0.0
         version: 19.2.0
@@ -382,6 +479,9 @@ importers:
 
   packages/viewport:
     dependencies:
+      '@layera/tokens':
+        specifier: workspace:*
+        version: link:../tokens
       react:
         specifier: ^18.0.0 || ^19.0.0
         version: 19.2.0
@@ -1523,6 +1623,20 @@ packages:
   '@sinclair/typebox@0.34.41':
     resolution: {integrity: sha512-6gS8pZzSXdyRHTIqoqSVknxolr1kzfy4/CeDnrzsVz8TTIWUbOBr6gnzOmTYJ3eXQNh4IYHIGi5aIL7sOZ2G/g==}
 
+  '@tolgee/core@5.33.2':
+    resolution: {integrity: sha512-iuqbvFB9En8rfnKLIoEDdX3H2ubVuDHEZZ4OSOnixSzkbMukVMqIzt6SjDTzfpMeTn3O0b5M8hNPYN+RyRLrPA==}
+
+  '@tolgee/format-icu@5.33.2':
+    resolution: {integrity: sha512-3RyoAaiLHhaHZ3HpG7XbF3RwWiHM5X+c3PZSD2Y+k9BgbYVd73DEm38T0EjUOb+px8cRIMZJIqd/XFZPZ9o4ew==}
+
+  '@tolgee/react@5.33.2':
+    resolution: {integrity: sha512-CFIL7j24sXmQcpAXcvJK53Qu2MfgPRu/4U0wLNo0b9F2gtT1LPZp6Bn/lF28RR7KjJi7qBVjB41TiaIQF2mSAg==}
+    peerDependencies:
+      react: ^16.14.0 || ^17.0.1 || ^18.1.0 || ^19
+
+  '@tolgee/web@5.33.2':
+    resolution: {integrity: sha512-pmiLbw0seAONwOEhuOYj3ckfg97GGqaQSi2upJkj1a8A7/vZNGt4X2bEpBn6hXR9c/HNkLbEVJK+HWQVWWmXIg==}
+
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
@@ -1562,6 +1676,9 @@ packages:
 
   '@types/leaflet@1.9.21':
     resolution: {integrity: sha512-TbAd9DaPGSnzp6QvtYngntMZgcRk+igFELwR2N99XZn7RXUdKgsXMR+28bUO0rPsWp8MIu/f47luLIQuSLYv/w==}
+
+  '@types/node@18.19.130':
+    resolution: {integrity: sha512-GRaXQx6jGfL8sKfaIDD6OupbIHBr9jv7Jnaml9tB7l4v068PAOXqfcujMMo5PhbIs6ggR1XODELqahT2R8v0fg==}
 
   '@types/node@24.10.0':
     resolution: {integrity: sha512-qzQZRBqkFsYyaSWXuEHc2WR9c0a0CXwiE5FWUvn7ZM+vdy1uZLfCunD38UzhuB7YN/J11ndbDBcTmOdxJo9Q7A==}
@@ -3426,6 +3543,11 @@ packages:
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
+  react-dom@18.3.1:
+    resolution: {integrity: sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==}
+    peerDependencies:
+      react: ^18.3.1
+
   react-dom@19.2.0:
     resolution: {integrity: sha512-UlbRu4cAiGaIewkPyiRGJk0imDN2T3JjieT6spoL2UeSf5od4n5LB/mQ4ejmxhCFT1tYe8IvaFulzynWovsEFQ==}
     peerDependencies:
@@ -3464,6 +3586,10 @@ packages:
     peerDependenciesMeta:
       react-dom:
         optional: true
+
+  react@18.3.1:
+    resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
+    engines: {node: '>=0.10.0'}
 
   react@19.2.0:
     resolution: {integrity: sha512-tmbWg6W31tQLeB5cdIBOicJDJRR2KzXsV7uSK9iNfLWQ5bIZfxuPEHp7M8wiHyHnn0DD1i7w3Zmin0FtkrwoCQ==}
@@ -3575,6 +3701,9 @@ packages:
   safe-regex-test@1.1.0:
     resolution: {integrity: sha512-x/+Cz4YrimQxQccJf5mKEbIa1NzeCRNI5Ecl/ekmlYaampdNLPalVyIcCZNNH3MvmqBugV5TMYZXv0ljslUlaw==}
     engines: {node: '>= 0.4'}
+
+  scheduler@0.23.2:
+    resolution: {integrity: sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ==}
 
   scheduler@0.27.0:
     resolution: {integrity: sha512-eNv+WrVbKu1f3vbYJT/xtiF5syA5HPIMtf9IgY/nKg0sWqzAUEvqY/xm7OcZc/qafLx/iO9FgOmeSAp4v5ti/Q==}
@@ -3902,6 +4031,9 @@ packages:
   unbox-primitive@1.1.0:
     resolution: {integrity: sha512-nWJ91DjeOkej/TA8pXQ3myruKpKEYgqvpw9lz4OPHj/NWFNluYrjbz9j01CJ8yKQd2g4jFoOkINCTW2I5LEEyw==}
     engines: {node: '>= 0.4'}
+
+  undici-types@5.26.5:
+    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
 
   undici-types@7.16.0:
     resolution: {integrity: sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==}
@@ -5097,6 +5229,19 @@ snapshots:
 
   '@sinclair/typebox@0.34.41': {}
 
+  '@tolgee/core@5.33.2': {}
+
+  '@tolgee/format-icu@5.33.2': {}
+
+  '@tolgee/react@5.33.2(react@18.3.1)':
+    dependencies:
+      '@tolgee/web': 5.33.2
+      react: 18.3.1
+
+  '@tolgee/web@5.33.2':
+    dependencies:
+      '@tolgee/core': 5.33.2
+
   '@trysound/sax@0.2.0': {}
 
   '@types/babel__core@7.20.5':
@@ -5144,6 +5289,10 @@ snapshots:
   '@types/leaflet@1.9.21':
     dependencies:
       '@types/geojson': 7946.0.16
+
+  '@types/node@18.19.130':
+    dependencies:
+      undici-types: 5.26.5
 
   '@types/node@24.10.0':
     dependencies:
@@ -7385,6 +7534,12 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
+  react-dom@18.3.1(react@18.3.1):
+    dependencies:
+      loose-envify: 1.4.0
+      react: 18.3.1
+      scheduler: 0.23.2
+
   react-dom@19.2.0(react@19.2.0):
     dependencies:
       react: 19.2.0
@@ -7416,6 +7571,10 @@ snapshots:
       set-cookie-parser: 2.7.2
     optionalDependencies:
       react-dom: 19.2.0(react@19.2.0)
+
+  react@18.3.1:
+    dependencies:
+      loose-envify: 1.4.0
 
   react@19.2.0: {}
 
@@ -7568,6 +7727,10 @@ snapshots:
       call-bound: 1.0.4
       es-errors: 1.3.0
       is-regex: 1.2.1
+
+  scheduler@0.23.2:
+    dependencies:
+      loose-envify: 1.4.0
 
   scheduler@0.27.0: {}
 
@@ -7947,6 +8110,8 @@ snapshots:
       has-bigints: 1.1.0
       has-symbols: 1.1.0
       which-boxed-primitive: 1.1.1
+
+  undici-types@5.26.5: {}
 
   undici-types@7.16.0: {}
 

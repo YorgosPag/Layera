@@ -1,7 +1,7 @@
 /**
  * map.constants.ts - Enterprise Map Configuration Constants
  *
- * KADOS Compliant configuration - όλες οι τιμές σε named constants
+ * ARXES Compliant configuration - όλες οι τιμές σε named constants
  */
 
 import type { ControlPosition } from 'leaflet';

@@ -1,7 +1,7 @@
 /**
  * MapContainer.tsx - Enterprise OpenStreetMap Container
  *
- * KADOS Compliant OpenStreetMap component για enterprise χρήση
+ * ARXES Compliant OpenStreetMap component για enterprise χρήση
  * - Semantic HTML (section)
  * - Proper TypeScript typing
  * - No hardcoded values

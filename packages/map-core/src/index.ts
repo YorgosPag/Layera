@@ -1,7 +1,7 @@
 /**
  * @layera/map-core - Enterprise OpenStreetMap Components
  *
- * KADOS Compliant map components για enterprise εφαρμογές
+ * ARXES Compliant map components για enterprise εφαρμογές
  */
 
 // Components

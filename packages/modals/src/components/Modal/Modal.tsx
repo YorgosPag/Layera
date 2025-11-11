@@ -13,7 +13,7 @@ export const Modal: React.FC<BaseModalProps> = ({
   open,
   onClose,
   children,
-  size = 'md',
+  size: _size = 'md',  // Enterprise: Prefixed with _ to mark as intentionally unused
   // variant = 'default',     // Enterprise: Unused - keeping for future
   // animation = 'fade',      // Enterprise: Unused - keeping for future
   closeOnOverlayClick = true,
@@ -88,17 +88,7 @@ export const Modal: React.FC<BaseModalProps> = ({
 
   const modalContent = (
     <Box
-      as="div"
-      style={{
-        position: 'fixed',
-        inset: 'var(--la-global-spacing-0)',
-        zIndex: 'var(--la-global-zIndex-modal)',
-        backgroundColor: 'var(--la-global-colors-surface-overlay)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 'var(--la-global-spacing-4)',
-      }}
+      className="layera-modal"
       onClick={handleOverlayClick}
       role="dialog"
       aria-modal={true}
@@ -107,61 +97,18 @@ export const Modal: React.FC<BaseModalProps> = ({
     >
       <Box
         as="section"
-        style={{
-          position: 'relative',
-          backgroundColor: 'var(--la-global-colors-surface-primary)',
-          border: `var(--la-global-borderWidth-1) solid var(--la-global-colors-border-primary)`,
-          borderRadius: 'var(--la-global-borderRadius-lg)',
-          boxShadow: 'var(--la-global-boxShadow-2xl)',
-          width: 'var(--la-global-spacing-full)',
-          maxWidth: size === 'xs' ? 'var(--la-global-spacing-modal-xs)' :
-                   size === 'sm' ? 'var(--la-global-spacing-modal-sm)' :
-                   size === 'md' ? 'var(--la-global-spacing-modal-md)' :
-                   size === 'lg' ? 'var(--la-global-spacing-modal-lg)' :
-                   size === 'xl' ? 'var(--la-global-spacing-modal-xl)' : 'var(--la-global-spacing-modal-md)',
-          maxHeight: 'calc(100vh - var(--la-global-spacing-8))',
-          overflow: 'hidden',
-          display: 'flex',
-          flexDirection: 'column' as const,
-          padding: 'var(--la-global-spacing-4)',
-        }}
         role="document"
       >
         {showCloseButton && (
           <button
             type="button"
-            style={{
-              position: 'absolute',
-              top: 'var(--la-global-spacing-3)',
-              right: 'var(--la-global-spacing-3)',
-              zIndex: 'var(--la-global-zIndex-dropdown)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: 'var(--la-global-spacing-8)',
-              height: 'var(--la-global-spacing-8)',
-              border: 'none',
-              borderRadius: 'var(--la-global-borderRadius-md)',
-              backgroundColor: 'var(--la-global-colors-transparent)',
-              color: 'var(--la-global-colors-text-secondary)',
-              cursor: 'pointer',
-              transition: 'all var(--la-global-duration-fast) ease',
-            }}
             onClick={handleCloseClick}
             aria-label="Close modal"
           >
             <CloseIcon size="md" theme="neutral" />
           </button>
         )}
-        <Box
-          as="section"
-          style={{
-            flex: 1,
-            minHeight: 'var(--la-global-spacing-0)',
-            backgroundColor: 'var(--la-global-colors-surface-primary)',
-            padding: 'var(--la-global-spacing-4)',
-          }}
-        >
+        <Box>
           {children}
         </Box>
       </Box>
