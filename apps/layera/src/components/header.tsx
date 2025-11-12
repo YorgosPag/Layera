@@ -16,7 +16,7 @@ export const Header: React.FC = () => {
         display: 'var(--layera-global-display-flex)',
         alignItems: 'var(--layera-global-alignItems-center)',
         justifyContent: 'var(--layera-global-justifyContent-spaceBetween)',
-        padding: '0 var(--layera-global-spacing-4)',
+        padding: 'var(--layera-global-reset-padding) var(--layera-global-spacing-4)',
         borderBottom: 'var(--layera-global-borderWidth-1) var(--layera-global-borderStyle-solid) var(--layera-color-border-light)'
       }}
     >
