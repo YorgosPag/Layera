@@ -41,6 +41,14 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
   onSelectJob
 }) => {
   const { t } = useLayeraTranslation();
+  const [currentView, setCurrentView] = React.useState<'main' | 'property' | 'job'>('main');
+
+  // Reset view when modal closes
+  React.useEffect(() => {
+    if (!isOpen) {
+      setCurrentView('main');
+    }
+  }, [isOpen]);
 
   // Enterprise card configurations using factory pattern
   const propertyCard = React.useMemo(() => cardFactory.selection({
@@ -50,9 +58,9 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
     icon: <BuildingIcon size="lg" />,
     selectionValue: 'property',
     theme: 'property',
-    onClick: onSelectProperty,
+    onClick: () => setCurrentView('property'),
     testId: 'add-content-property-card'
-  }), [onSelectProperty]);
+  }), []);
 
   const jobCard = React.useMemo(() => cardFactory.selection({
     id: 'add-content-job',
@@ -61,9 +69,32 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
     icon: <BriefcaseIcon size="lg" />,
     selectionValue: 'job',
     theme: 'job',
-    onClick: onSelectJob,
+    onClick: () => setCurrentView('job'),
     testId: 'add-content-job-card'
-  }), [onSelectJob]);
+  }), []);
+
+  // Property sub-cards
+  const propertyOfferCard = React.useMemo(() => cardFactory.selection({
+    id: 'property-offer',
+    title: 'Θέλω να Προσφέρω',
+    description: 'Καταχωρίστε ένα ακίνητο προς πώληση ή ενοικίαση.',
+    icon: <BuildingIcon size="lg" />,
+    selectionValue: 'property-offer',
+    theme: 'property',
+    onClick: onSelectProperty,
+    testId: 'property-offer-card'
+  }), [onSelectProperty]);
+
+  const propertySearchCard = React.useMemo(() => cardFactory.selection({
+    id: 'property-search',
+    title: 'Θέλω να Αναζητήσω (Geo-Alert)',
+    description: 'Δημιουργήστε μια ειδοποίηση για μελλοντικά ακίνητα σε μια περιοχή.',
+    icon: <BuildingIcon size="lg" />,
+    selectionValue: 'property-search',
+    theme: 'property',
+    onClick: onSelectProperty,
+    testId: 'property-search-card'
+  }), [onSelectProperty]);
 
   return (
     <Modal
@@ -74,13 +105,42 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
       showCloseButton={false}
       aria-labelledby="add-content-title"
     >
-      <ModalHeader title="Επιλογή κατηγορίας" onClose={onClose} />
+      <ModalHeader
+        title={currentView === 'main' ? "Επιλογή κατηγορίας" : "Τύπος Καταχώρησης"}
+        onClose={onClose}
+      />
       <ModalContent>
         <Box className="layera-padding--lg">
           <Box className="layera-grid layera-grid--cols-1 layera-grid--gap-lg">
-            <UnifiedCard config={propertyCard} />
-            <UnifiedCard config={jobCard} />
+            {currentView === 'main' && (
+              <>
+                <UnifiedCard config={propertyCard} />
+                <UnifiedCard config={jobCard} />
+              </>
+            )}
+            {currentView === 'property' && (
+              <>
+                <UnifiedCard config={propertyOfferCard} />
+                <UnifiedCard config={propertySearchCard} />
+              </>
+            )}
+            {currentView === 'job' && (
+              <>
+                <UnifiedCard config={jobCard} />
+              </>
+            )}
           </Box>
+          {currentView !== 'main' && (
+            <Box className="layera-spacing" data-type="margin" data-direction="top" data-size="lg" style={{ textAlign: 'center' }}>
+              <button
+                onClick={() => setCurrentView('main')}
+                className="layera-button"
+                data-variant="nav"
+              >
+                Πίσω
+              </button>
+            </Box>
+          )}
         </Box>
       </ModalContent>
     </Modal>
