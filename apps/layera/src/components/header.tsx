@@ -35,34 +35,34 @@ export const Header: React.FC = () => {
             cursor: 'var(--layera-global-cursor-pointer)'
           }}
         >
-          <PlusIcon size="sm" style={{ color: 'var(--layera-icon-colorWhite)' }} />
+          <PlusIcon size="sm" style={{ color: 'var(--layera-icon-colorWhite)', pointerEvents: 'none' }} />
         </button>
         <span style={{ color: 'var(--layera-colorUtilities-utilities-text-neutral-white)', fontSize: 'var(--layera-fontSize-base)', fontWeight: 'var(--layera-fontWeight-semibold)' }}>Geo-Canvas</span>
       </Box>
 
       {/* Κέντρο: 3 εικονίδια */}
       <Box style={{ display: 'var(--layera-global-display-flex)', alignItems: 'var(--layera-global-alignItems-center)', gap: 'var(--layera-global-spacing-2)' }}>
-        <button style={{ padding: 'var(--layera-btn-action-padding)', backgroundColor: 'var(--layera-global-color-transparent)', border: 'var(--layera-global-border-none)', cursor: 'var(--layera-global-cursor-pointer)' }}>
-          <SearchIcon size="md" style={{ color: 'var(--layera-icon-colorWhite)' }} />
+        <button style={{ width: 'var(--layera-global-spacing-8)', height: 'var(--layera-global-spacing-8)', backgroundColor: 'var(--layera-global-color-transparent)', border: 'var(--layera-global-border-none)', display: 'var(--layera-global-display-flex)', alignItems: 'var(--layera-global-alignItems-center)', justifyContent: 'var(--layera-global-justifyContent-center)', cursor: 'var(--layera-global-cursor-pointer)' }}>
+          <SearchIcon size="md" style={{ color: 'var(--layera-icon-colorWhite)', pointerEvents: 'none' }} />
         </button>
-        <button style={{ padding: 'var(--layera-btn-action-padding)', backgroundColor: 'var(--layera-global-color-transparent)', border: 'var(--layera-global-border-none)', cursor: 'var(--layera-global-cursor-pointer)' }}>
-          <LocationIcon size="md" style={{ color: 'var(--layera-icon-colorWhite)' }} />
+        <button style={{ width: 'var(--layera-global-spacing-8)', height: 'var(--layera-global-spacing-8)', backgroundColor: 'var(--layera-global-color-transparent)', border: 'var(--layera-global-border-none)', display: 'var(--layera-global-display-flex)', alignItems: 'var(--layera-global-alignItems-center)', justifyContent: 'var(--layera-global-justifyContent-center)', cursor: 'var(--layera-global-cursor-pointer)' }}>
+          <LocationIcon size="md" style={{ color: 'var(--layera-icon-colorWhite)', pointerEvents: 'none' }} />
         </button>
-        <button style={{ padding: 'var(--layera-btn-action-padding)', backgroundColor: 'var(--layera-global-color-transparent)', border: 'var(--layera-global-border-none)', cursor: 'var(--layera-global-cursor-pointer)' }}>
-          <MenuIcon size="md" style={{ color: 'var(--layera-icon-colorWhite)' }} />
+        <button style={{ width: 'var(--layera-global-spacing-8)', height: 'var(--layera-global-spacing-8)', backgroundColor: 'var(--layera-global-color-transparent)', border: 'var(--layera-global-border-none)', display: 'var(--layera-global-display-flex)', alignItems: 'var(--layera-global-alignItems-center)', justifyContent: 'var(--layera-global-justifyContent-center)', cursor: 'var(--layera-global-cursor-pointer)' }}>
+          <MenuIcon size="md" style={{ color: 'var(--layera-icon-colorWhite)', pointerEvents: 'none' }} />
         </button>
       </Box>
 
       {/* Δεξιά: 3 εικονίδια */}
       <Box style={{ display: 'var(--layera-global-display-flex)', alignItems: 'var(--layera-global-alignItems-center)', gap: 'var(--layera-global-spacing-2)' }}>
-        <button style={{ padding: 'var(--layera-btn-action-padding)', backgroundColor: 'var(--layera-global-color-transparent)', border: 'var(--layera-global-border-none)', cursor: 'var(--layera-global-cursor-pointer)' }}>
-          <SettingsIcon size="md" style={{ color: 'var(--layera-icon-colorWhite)' }} />
+        <button style={{ width: 'var(--layera-global-spacing-8)', height: 'var(--layera-global-spacing-8)', backgroundColor: 'var(--layera-global-color-transparent)', border: 'var(--layera-global-border-none)', display: 'var(--layera-global-display-flex)', alignItems: 'var(--layera-global-alignItems-center)', justifyContent: 'var(--layera-global-justifyContent-center)', cursor: 'var(--layera-global-cursor-pointer)' }}>
+          <SettingsIcon size="md" style={{ color: 'var(--layera-icon-colorWhite)', pointerEvents: 'none' }} />
         </button>
-        <button style={{ padding: 'var(--layera-btn-action-padding)', backgroundColor: 'var(--layera-global-color-transparent)', border: 'var(--layera-global-border-none)', cursor: 'var(--layera-global-cursor-pointer)' }}>
-          <LocationIcon size="md" style={{ color: 'var(--layera-icon-colorWhite)' }} />
+        <button style={{ width: 'var(--layera-global-spacing-8)', height: 'var(--layera-global-spacing-8)', backgroundColor: 'var(--layera-global-color-transparent)', border: 'var(--layera-global-border-none)', display: 'var(--layera-global-display-flex)', alignItems: 'var(--layera-global-alignItems-center)', justifyContent: 'var(--layera-global-justifyContent-center)', cursor: 'var(--layera-global-cursor-pointer)' }}>
+          <LocationIcon size="md" style={{ color: 'var(--layera-icon-colorWhite)', pointerEvents: 'none' }} />
         </button>
-        <button style={{ padding: 'var(--layera-btn-action-padding)', backgroundColor: 'var(--layera-global-color-transparent)', border: 'var(--layera-global-border-none)', cursor: 'var(--layera-global-cursor-pointer)' }}>
-          <UserIcon size="md" style={{ color: 'var(--layera-icon-colorWhite)' }} />
+        <button style={{ width: 'var(--layera-global-spacing-8)', height: 'var(--layera-global-spacing-8)', backgroundColor: 'var(--layera-global-color-transparent)', border: 'var(--layera-global-border-none)', display: 'var(--layera-global-display-flex)', alignItems: 'var(--layera-global-alignItems-center)', justifyContent: 'var(--layera-global-justifyContent-center)', cursor: 'var(--layera-global-cursor-pointer)' }}>
+          <UserIcon size="md" style={{ color: 'var(--layera-icon-colorWhite)', pointerEvents: 'none' }} />
         </button>
       </Box>
     </Box>
