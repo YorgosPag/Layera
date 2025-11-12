@@ -112,7 +112,7 @@ function renderCardContent(
 
 function renderToolContent(
   config: UnifiedCardConfig,
-  context?: CardContext
+  _context?: CardContext
 ): React.ReactNode {
   if (config.type !== 'tool') return null;
 
@@ -131,7 +131,7 @@ function renderToolContent(
 
 function renderActionContent(
   config: UnifiedCardConfig,
-  context?: CardContext
+  _context?: CardContext
 ): React.ReactNode {
   if (!('priority' in config)) return null;
 

@@ -81,7 +81,7 @@ function resolveSelectionVariant(
 
 function resolveToolVariant(
   config: UnifiedCardConfig,
-  context?: CardContext
+  _context?: CardContext
 ): CardVariant {
   // Selected/active tool
   if (config.selected || 'isSelected' in config && config.isSelected) {
@@ -122,7 +122,7 @@ function resolveDataVariant(
 
 function resolveActionVariant(
   config: UnifiedCardConfig,
-  context?: CardContext
+  _context?: CardContext
 ): CardVariant {
   // Priority-based
   if ('priority' in config && config.priority === 'primary') {
@@ -151,7 +151,7 @@ function resolveActionVariant(
  */
 export const resolveOpacityMode = (
   config: UnifiedCardConfig,
-  context?: CardContext
+  _context?: CardContext
 ): 'transparent' | 'semi-transparent' | 'opaque' => {
   if (config.disabled) return 'transparent';
   if (config.selected) return 'opaque';
@@ -163,7 +163,7 @@ export const resolveOpacityMode = (
  */
 export const shouldShowInfoButton = (
   config: UnifiedCardConfig,
-  context?: CardContext
+  _context?: CardContext
 ): boolean => {
   return Boolean(config.onInfoClick);
 };

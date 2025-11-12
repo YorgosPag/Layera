@@ -1,7 +1,20 @@
+/**
+ * AddContentModal - Enterprise Modal για προσθήκη περιεχομένου
+ *
+ * ARXES Compliant implementation:
+ * - @layera/cards UnifiedCard system
+ * - @layera/tolgee i18n
+ * - @layera/layout primitives
+ * - Zero hardcoded values
+ * - Zero inline styles
+ */
+
 import React from 'react';
-import { Box } from '@layera/layout';
+import { Box, Flex } from '@layera/layout';
 import { BuildingIcon, BriefcaseIcon } from '@layera/icons';
 import { Modal, ModalHeader, ModalContent } from '@layera/modals';
+import { UnifiedCard, cardFactory } from '@layera/cards';
+import { useLayeraTranslation } from '@layera/tolgee';
 
 interface AddContentModalProps {
   isOpen: boolean;
@@ -11,9 +24,13 @@ interface AddContentModalProps {
 }
 
 /**
- * AddContentModal - Ξεχωριστό Modal για προσθήκη περιεχομένου
+ * AddContentModal - Enterprise Modal για προσθήκη περιεχομένου
  *
- * Separated από το Header για καλύτερη αρχιτεκτονική και reusability
+ * ARXES Compliant:
+ * - Configuration-driven με UnifiedCard
+ * - i18n integration
+ * - Zero hardcoded values
+ * - Separation of concerns
  */
 export const AddContentModal: React.FC<AddContentModalProps> = ({
   isOpen,
@@ -21,15 +38,30 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
   onSelectProperty,
   onSelectJob
 }) => {
-  // Enterprise-compliant styles using design tokens ONLY
-  const modalStyles = {
-    blueIcon: {
-      color: 'var(--layera-color-accent-blue)'
-    },
-    greenIcon: {
-      color: 'var(--layera-color-accent-green)'
-    }
-  };
+  const { t } = useLayeraTranslation();
+
+  // Enterprise card configurations using factory pattern
+  const propertyCard = React.useMemo(() => cardFactory.selection({
+    id: 'add-content-property',
+    title: t('modal.addContent.property.title'),
+    description: t('modal.addContent.property.subtitle'),
+    icon: <BuildingIcon size="lg" />,
+    selectionValue: 'property',
+    theme: 'property',
+    onClick: onSelectProperty,
+    testId: 'add-content-property-card'
+  }), [t, onSelectProperty]);
+
+  const jobCard = React.useMemo(() => cardFactory.selection({
+    id: 'add-content-job',
+    title: t('modal.addContent.job.title'),
+    description: t('modal.addContent.job.subtitle'),
+    icon: <BriefcaseIcon size="lg" />,
+    selectionValue: 'job',
+    theme: 'job',
+    onClick: onSelectJob,
+    testId: 'add-content-job-card'
+  }), [t, onSelectJob]);
 
   return (
     <Modal
@@ -38,39 +70,12 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
       size="md"
       aria-labelledby="add-content-title"
     >
-      <ModalHeader title="Προσθήκη νέου περιεχομένου" />
+      <ModalHeader title={t('modal.addContent.title')} />
       <ModalContent>
         <Box className="layera-padding--lg">
           <Box className="layera-grid layera-grid--cols-1 layera-grid--tablet-cols-2 layera-grid--gap-lg">
-            <Box
-              className="layera-card layera-card--clickable layera-padding--md"
-              onClick={onSelectProperty}
-            >
-              <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm layera-margin-bottom--sm">
-                <BuildingIcon size="lg" style={modalStyles.blueIcon} />
-                <Box className="layera-typography" data-size="lg" data-weight="semibold" data-color="primary">
-                  Ακίνητα
-                </Box>
-              </Box>
-              <Box className="layera-typography" data-size="sm" data-color="secondary">
-                Προσθήκη νέου ακινήτου στην πλατφόρμα
-              </Box>
-            </Box>
-
-            <Box
-              className="layera-card layera-card--clickable layera-padding--md"
-              onClick={onSelectJob}
-            >
-              <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm layera-margin-bottom--sm">
-                <BriefcaseIcon size="lg" style={modalStyles.greenIcon} />
-                <Box className="layera-typography" data-size="lg" data-weight="semibold" data-color="primary">
-                  Εργασία
-                </Box>
-              </Box>
-              <Box className="layera-typography" data-size="sm" data-color="secondary">
-                Προσθήκη νέας αγγελίας εργασίας
-              </Box>
-            </Box>
+            <UnifiedCard config={propertyCard} />
+            <UnifiedCard config={jobCard} />
           </Box>
         </Box>
       </ModalContent>
