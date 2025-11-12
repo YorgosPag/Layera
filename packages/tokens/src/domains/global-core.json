@@ -361,8 +361,12 @@
             "comment": "Close button right spacing"
           },
           "size": {
-            "value": "2rem",
-            "comment": "Close button size"
+            "value": "1.5rem",
+            "comment": "Close button size - optimized for large icons"
+          },
+          "padding": {
+            "value": "0.25rem",
+            "comment": "Close button padding - minimal for large icons"
           },
           "background": {
             "value": "transparent",
