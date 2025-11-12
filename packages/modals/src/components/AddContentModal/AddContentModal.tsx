@@ -76,7 +76,7 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
       <ModalHeader title="Προσθήκη νέου περιεχομένου" />
       <ModalContent>
         <Box className="layera-padding--lg">
-          <Box className="layera-grid layera-grid--cols-1 layera-grid--tablet-cols-2 layera-grid--gap-lg">
+          <Box className="layera-grid layera-grid--cols-1 layera-grid--gap-lg">
             <UnifiedCard config={propertyCard} />
             <UnifiedCard config={jobCard} />
           </Box>

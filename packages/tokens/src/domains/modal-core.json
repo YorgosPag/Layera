@@ -20,8 +20,8 @@
           "comment": "Modal overlay background"
         },
         "primary": {
-          "value": "#ffffff",
-          "comment": "Primary surface color"
+          "value": "var(--layera-global-colors-theme-light-header-background)",
+          "comment": "Primary surface color - matches header"
         },
         "secondary": {
           "value": "#f5f5f5",

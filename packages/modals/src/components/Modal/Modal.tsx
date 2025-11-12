@@ -99,11 +99,14 @@ export const Modal: React.FC<BaseModalProps> = ({
       style={noOverlay ? {
         background: 'var(--layera-global-components-drawer-pinnedOverlay-background, transparent)',
         pointerEvents: 'var(--layera-global-components-drawer-pinnedOverlay-pointerEvents, none)'
-      } : undefined}
+      } : {
+        background: 'var(--layera-global-colors-theme-light-header-background, #ffffff)'
+      }}
     >
       <Box
         as="section"
         role="document"
+        style={noOverlay ? { pointerEvents: 'auto' } : undefined}
       >
         {showCloseButton && (
           <button

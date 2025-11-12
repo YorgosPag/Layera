@@ -5,34 +5,34 @@
 
 /* ============ INTERACTIVE STATES ============ */
 
-.la-card-hoverable:hover {
-  box-shadow: var(--la-shadow-lg);
-  transform: translateY(calc(-1 * var(--la-border-width-1)));
+.layera-card--hoverable:hover {
+  box-shadow: var(--layera-shadow-lg);
+  transform: translateY(calc(-1 * var(--layera-border-width-1)));
 }
 
-.la-card-elevated.la-card-hoverable:hover {
-  box-shadow: var(--la-shadow-xl);
+.layera-card--elevated.layera-card--hoverable:hover {
+  box-shadow: var(--layera-shadow-xl);
 }
 
-.la-card-clickable {
+.layera-card--clickable {
   cursor: pointer;
   border: none;
-  background: var(--la-color-surface);
-  font: var(--la-inherit);
-  text-align: var(--la-inherit);
+  background: var(--layera-global-colors-theme-light-header-background);
+  font: var(--layera-inherit);
+  text-align: var(--layera-inherit);
   width: 100%;
 }
 
-.la-card-clickable:hover {
-  box-shadow: var(--la-shadow-lg);
-  transform: translateY(calc(-1 * var(--la-border-width-1)));
+.layera-card--clickable:hover {
+  box-shadow: var(--layera-shadow-lg);
+  transform: translateY(calc(-1 * var(--layera-border-width-1)));
 }
 
-.la-card-clickable:focus-visible {
-  outline: var(--la-border-width-2) solid var(--la-color-brand);
-  outline-offset: var(--la-border-width-2);
+.layera-card--clickable:focus-visible {
+  outline: var(--layera-border-width-2) solid var(--layera-color-brand);
+  outline-offset: var(--layera-border-width-2);
 }
 
-.la-card-clickable:active {
+.layera-card--clickable:active {
   transform: translateY(0);
 }

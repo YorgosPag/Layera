@@ -16,7 +16,7 @@ export const headerStyles = {
     right: 'var(--layera-header-fixed-right)',
     zIndex: 'var(--layera-header-fixed-zIndex)',
     height: 'var(--layera-header-fixed-height)',
-    backgroundColor: 'var(--layera-color-text-inverse)',
+    backgroundColor: 'var(--layera-global-colors-theme-light-header-background)',
     display: 'var(--layera-global-display-flex)',
     alignItems: 'var(--layera-global-alignItems-center)',
     justifyContent: 'var(--layera-global-justifyContent-spaceBetween)',

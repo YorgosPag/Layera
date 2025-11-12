@@ -6,17 +6,17 @@
 /* ============ RESPONSIVE ADJUSTMENTS ============ */
 
 @media (width <= 47.938rem) {
-  .la-card-header {
+  .layera-card__header {
     flex-direction: column;
     align-items: stretch;
-    gap: var(--la-space-2);
+    gap: var(--layera-spacing-2);
   }
 
-  .la-card-actions {
+  .layera-card__actions {
     justify-content: flex-end;
   }
 
-  .la-dashboard-card-metric-value {
-    font-size: var(--la-font-size-xl);
+  .layera-dashboard-card-metric-value {
+    font-size: var(--layera-font-size-xl);
   }
 }
