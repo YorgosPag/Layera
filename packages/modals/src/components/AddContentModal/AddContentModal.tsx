@@ -41,7 +41,7 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
   onSelectJob
 }) => {
   const { t } = useLayeraTranslation();
-  const [currentView, setCurrentView] = React.useState<'main' | 'property' | 'job' | 'property-offer' | 'property-search' | 'sale-timing' | 'location-method' | 'job-offer-type'>('main');
+  const [currentView, setCurrentView] = React.useState<'main' | 'property' | 'job' | 'property-offer' | 'property-search' | 'sale-timing' | 'location-method' | 'job-offer-type' | 'job-timing'>('main');
 
   // Reset view when modal closes
   React.useEffect(() => {
@@ -115,7 +115,7 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
     icon: <BriefcaseIcon size="lg" />,
     selectionValue: 'job-search',
     theme: 'job',
-    onClick: onSelectJob,
+    onClick: () => setCurrentView('job-timing'),
     testId: 'job-search-card'
   }), [onSelectJob]);
 
@@ -196,7 +196,7 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
     icon: <BriefcaseIcon size="lg" />,
     selectionValue: 'fulltime',
     theme: 'job',
-    onClick: onSelectJob,
+    onClick: () => setCurrentView('job-timing'),
     testId: 'employment-fulltime-card'
   }), [onSelectJob]);
 
@@ -207,7 +207,7 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
     icon: <BriefcaseIcon size="lg" />,
     selectionValue: 'parttime',
     theme: 'job',
-    onClick: onSelectJob,
+    onClick: () => setCurrentView('job-timing'),
     testId: 'employment-parttime-card'
   }), [onSelectJob]);
 
@@ -218,7 +218,7 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
     icon: <BriefcaseIcon size="lg" />,
     selectionValue: 'freelance',
     theme: 'job',
-    onClick: onSelectJob,
+    onClick: () => setCurrentView('job-timing'),
     testId: 'employment-freelance-card'
   }), [onSelectJob]);
 
@@ -229,7 +229,7 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
     icon: <BriefcaseIcon size="lg" />,
     selectionValue: 'seasonal',
     theme: 'job',
-    onClick: onSelectJob,
+    onClick: () => setCurrentView('job-timing'),
     testId: 'employment-seasonal-card'
   }), [onSelectJob]);
 
@@ -240,8 +240,31 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
     icon: <BriefcaseIcon size="lg" />,
     selectionValue: 'internship',
     theme: 'job',
-    onClick: onSelectJob,
+    onClick: () => setCurrentView('job-timing'),
     testId: 'employment-internship-card'
+  }), []);
+
+  // Job timing cards (fourth level - shared by all employment types)
+  const jobImmediateCard = React.useMemo(() => cardFactory.selection({
+    id: 'job-timing-immediate',
+    title: 'Άμεση Διαθεσιμότητα',
+    description: 'Η θέση εργασίας είναι διαθέσιμη για άμεση έναρξη.',
+    icon: <BriefcaseIcon size="lg" />,
+    selectionValue: 'immediate',
+    theme: 'job',
+    onClick: onSelectJob,
+    testId: 'job-timing-immediate-card'
+  }), [onSelectJob]);
+
+  const jobFutureCard = React.useMemo(() => cardFactory.selection({
+    id: 'job-timing-future',
+    title: 'Μελλοντική Διαθεσιμότητα',
+    description: 'Η θέση εργασίας θα είναι διαθέσιμη σε μελλοντική ημερομηνία.',
+    icon: <BriefcaseIcon size="lg" />,
+    selectionValue: 'future',
+    theme: 'job',
+    onClick: onSelectJob,
+    testId: 'job-timing-future-card'
   }), [onSelectJob]);
 
   return (
@@ -260,6 +283,7 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
           currentView === 'sale-timing' ? "Χρόνος Διαθεσιμότητας" :
           currentView === 'location-method' ? "Μέθοδος Τοποθεσίας" :
           currentView === 'job-offer-type' ? "Είδος Απασχόλησης" :
+          currentView === 'job-timing' ? "Χρόνος Διαθεσιμότητας" :
           "Τύπος Καταχώρησης"
         }
         onClose={onClose}
@@ -312,12 +336,20 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
                 <UnifiedCard config={internshipCard} />
               </>
             )}
+            {currentView === 'job-timing' && (
+              <>
+                <UnifiedCard config={jobImmediateCard} />
+                <UnifiedCard config={jobFutureCard} />
+              </>
+            )}
           </Box>
           {currentView !== 'main' && (
             <Box className="layera-card__modalBackButtonContainer">
               <button
                 onClick={() => {
-                  if (currentView === 'job-offer-type') {
+                  if (currentView === 'job-timing') {
+                    setCurrentView('job-offer-type');
+                  } else if (currentView === 'job-offer-type') {
                     setCurrentView('job');
                   } else if (currentView === 'location-method') {
                     setCurrentView('sale-timing');
