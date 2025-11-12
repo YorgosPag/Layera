@@ -37,8 +37,19 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
           type="button"
           onClick={onClose}
           aria-label="Close modal"
+          style={{
+            padding: '4px',
+            border: 'none',
+            background: 'transparent',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            minWidth: 'auto',
+            minHeight: 'auto'
+          }}
         >
-          <CloseIcon size="sm" theme="neutral" />
+          <CloseIcon size="lg" theme="neutral" />
         </button>
       )}
     </header>

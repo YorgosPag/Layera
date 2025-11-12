@@ -118,8 +118,19 @@ export const Modal: React.FC<BaseModalProps> = ({
             type="button"
             onClick={handleCloseClick}
             aria-label="Close modal"
+            style={{
+              padding: '4px',
+              border: 'none',
+              background: 'transparent',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              minWidth: 'auto',
+              minHeight: 'auto'
+            }}
           >
-            <CloseIcon size="md" theme="neutral" />
+            <CloseIcon size="lg" theme="neutral" />
           </button>
         )}
         <Box>

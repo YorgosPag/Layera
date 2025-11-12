@@ -106,8 +106,19 @@ export const Drawer: React.FC<DrawerProps> = ({
             type="button"
             onClick={handleCloseClick}
             aria-label="Close drawer"
+            style={{
+              padding: '4px',
+              border: 'none',
+              background: 'transparent',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              minWidth: 'auto',
+              minHeight: 'auto'
+            }}
           >
-            <CloseIcon size="md" theme="neutral" />
+            <CloseIcon size="lg" theme="neutral" />
           </button>
         )}
         <Box as="section">
