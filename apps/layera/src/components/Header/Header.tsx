@@ -28,28 +28,28 @@ export const Header: React.FC = () => {
       >
         <ModalHeader title="Προσθήκη νέου περιεχομένου" />
         <ModalContent>
-          <Box className="layera-padding--lg">
-            <Box className="layera-grid layera-grid--cols-1 layera-grid--tablet-cols-2 layera-grid--gap-lg">
-              <Box className="layera-card layera-card--clickable layera-padding--md">
-                <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm layera-margin-bottom--sm">
+          <Box style={headerStyles.paddingLarge}>
+            <Box style={{...headerStyles.gridContainer, ...headerStyles.gridTablet}}>
+              <Box style={headerStyles.cardClickable}>
+                <Box style={{...headerStyles.flexContainer, gap: 'var(--layera-global-spacing-2)', ...headerStyles.marginBottomSmall}}>
                   <BuildingIcon size={HEADER_CONSTANTS.ICON_SIZES.LARGE} style={headerStyles.blueIcon} />
-                  <Box className="layera-typography" data-size={HEADER_CONSTANTS.TYPOGRAPHY.DATA_SIZE.LARGE} data-weight={HEADER_CONSTANTS.TYPOGRAPHY.DATA_WEIGHT.SEMIBOLD} data-color={HEADER_CONSTANTS.TYPOGRAPHY.DATA_COLOR.PRIMARY}>
+                  <Box style={headerStyles.typographyLarge}>
                     Ακίνητα
                   </Box>
                 </Box>
-                <Box className="layera-typography" data-size={HEADER_CONSTANTS.TYPOGRAPHY.DATA_SIZE.SMALL} data-color={HEADER_CONSTANTS.TYPOGRAPHY.DATA_COLOR.SECONDARY}>
+                <Box style={headerStyles.typographySmall}>
                   Προσθήκη νέου ακινήτου στην πλατφόρμα
                 </Box>
               </Box>
 
-              <Box className="layera-card layera-card--clickable layera-padding--md">
-                <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm layera-margin-bottom--sm">
+              <Box style={headerStyles.cardClickable}>
+                <Box style={{...headerStyles.flexContainer, gap: 'var(--layera-global-spacing-2)', ...headerStyles.marginBottomSmall}}>
                   <BriefcaseIcon size={HEADER_CONSTANTS.ICON_SIZES.LARGE} style={headerStyles.greenIcon} />
-                  <Box className="layera-typography" data-size={HEADER_CONSTANTS.TYPOGRAPHY.DATA_SIZE.LARGE} data-weight={HEADER_CONSTANTS.TYPOGRAPHY.DATA_WEIGHT.SEMIBOLD} data-color={HEADER_CONSTANTS.TYPOGRAPHY.DATA_COLOR.PRIMARY}>
+                  <Box style={headerStyles.typographyLarge}>
                     Εργασία
                   </Box>
                 </Box>
-                <Box className="layera-typography" data-size={HEADER_CONSTANTS.TYPOGRAPHY.DATA_SIZE.SMALL} data-color={HEADER_CONSTANTS.TYPOGRAPHY.DATA_COLOR.SECONDARY}>
+                <Box style={headerStyles.typographySmall}>
                   Προσθήκη νέας αγγελίας εργασίας
                 </Box>
               </Box>

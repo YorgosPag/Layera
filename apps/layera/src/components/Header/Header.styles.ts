@@ -68,6 +68,44 @@ export const headerStyles = {
   },
   greenIcon: {
     color: 'var(--layera-color-accent-green)'
+  },
+  paddingLarge: {
+    padding: 'var(--layera-global-spacing-6)'
+  },
+  gridContainer: {
+    display: 'var(--layera-global-display-grid)',
+    gridTemplateColumns: 'var(--layera-grid-cols-1)',
+    gap: 'var(--layera-global-spacing-6)'
+  },
+  gridTablet: {
+    '@media (min-width: var(--layera-global-breakpoint-md))': {
+      gridTemplateColumns: 'var(--layera-grid-cols-2)'
+    }
+  },
+  cardClickable: {
+    backgroundColor: 'var(--layera-color-surface-primary)',
+    borderRadius: 'var(--layera-global-borderRadius-lg)',
+    padding: 'var(--layera-global-spacing-4)',
+    border: 'var(--layera-global-borderWidth-1) var(--layera-global-borderStyle-solid) var(--layera-color-border-primary)',
+    boxShadow: 'var(--layera-global-shadow-sm)',
+    cursor: 'var(--layera-global-cursor-pointer)',
+    transition: 'var(--layera-global-transition-all)'
+  },
+  typography: {
+    fontFamily: 'var(--layera-global-fontFamily-system)',
+    color: 'var(--layera-color-text-primary)'
+  },
+  typographyLarge: {
+    fontSize: 'var(--layera-fontSize-lg)',
+    fontWeight: 'var(--layera-fontWeight-semibold)',
+    color: 'var(--layera-color-text-primary)'
+  },
+  typographySmall: {
+    fontSize: 'var(--layera-fontSize-sm)',
+    color: 'var(--layera-color-text-secondary)'
+  },
+  marginBottomSmall: {
+    marginBottom: 'var(--layera-global-spacing-2)'
   }
 } as const;
 
