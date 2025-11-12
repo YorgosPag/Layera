@@ -6,7 +6,7 @@ import { ThemeSwitcher } from '../../../../packages/theme-switcher/src';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 import { PlusIcon, UserIcon, BuildingIcon, BriefcaseIcon, ArrowLeftIcon } from '../../../../packages/icons/src';
 import { Text, Heading } from '../../../../packages/typography/src';
-import { Header } from './header';
+import { Header } from './Header';
 import RealEstateContent from './RealEstatePage';
 import JobsContent from './JobsPage';
 import LoginContent from './LoginPage';
