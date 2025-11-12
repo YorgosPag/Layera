@@ -106,7 +106,7 @@
     "dark": { "value": "#0f172a", "comment": "Dark background" },
     "secondary": { "value": "#f8fafc", "comment": "Secondary background" },
     "surface": {
-      "light": { "value": "var(--layera-global-colors-theme-light-header-background)", "comment": "Light surface background - matches header" },
+      "light": { "value": "var(--layera-color-surface-primary)", "comment": "Light surface background - matches header" },
       "medium": { "value": "#f1f5f9", "comment": "Medium surface background" }
     },
     "accent": {

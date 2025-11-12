@@ -661,7 +661,7 @@
           "comment": "Modal overlay background - theme aware"
         },
         "primary": {
-          "value": "var(--layera-global-colors-theme-light-header-background, #ffffff)",
+          "value": "var(--layera-color-surface-primary, #ffffff)",
           "comment": "Primary surface color - matches header background"
         },
         "secondary": {

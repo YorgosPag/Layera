@@ -8,7 +8,7 @@
         "comment": "Info background using blue accent"
       },
       "primary": {
-        "value": "var(--layera-global-colors-theme-light-header-background)",
+        "value": "var(--layera-color-surface-primary)",
         "comment": "Primary background - unified with header"
       },
       "secondary": {

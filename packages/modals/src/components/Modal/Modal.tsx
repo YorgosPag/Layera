@@ -100,7 +100,7 @@ export const Modal: React.FC<BaseModalProps> = ({
         background: 'var(--layera-global-components-drawer-pinnedOverlay-background, transparent)',
         pointerEvents: 'var(--layera-global-components-drawer-pinnedOverlay-pointerEvents, none)'
       } : {
-        background: 'var(--layera-global-colors-theme-light-header-background, #ffffff)'
+        background: 'var(--layera-color-surface-primary, #ffffff)'
       }}
     >
       <Box
