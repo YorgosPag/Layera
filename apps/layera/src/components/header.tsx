@@ -11,7 +11,7 @@ export const Header: React.FC = () => {
         left: 0,
         right: 0,
         zIndex: 9999,
-        height: '48px',
+        height: 'var(--layera-header-fixed-height)',
         backgroundColor: '#1e293b',
         display: 'flex',
         alignItems: 'center',
