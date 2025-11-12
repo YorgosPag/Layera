@@ -25,37 +25,37 @@ export const Header: React.FC<HeaderProps> = ({ onAddContentClick, onTestPanelCl
         {/* Αριστερά: Πλήκτρο με + και κείμενο Geo-Canvas */}
         <Box style={headerStyles.flexContainer}>
           <button onClick={onAddContentClick} style={headerStyles.actionButton}>
-            <PlusIcon size="sm" style={headerStyles.whiteIcon} />
+            <PlusIcon size="sm" />
           </button>
           <span style={headerStyles.headerTitle}>Geo-Canvas</span>
           <button onClick={onTestPanelClick} style={headerStyles.ghostButton}>
-            <SettingsIcon size="sm" style={headerStyles.whiteIcon} />
+            <SettingsIcon size="sm" />
           </button>
         </Box>
 
         {/* Κέντρο: 3 εικονίδια */}
         <Box style={headerStyles.flexNavigation}>
           <button style={headerStyles.ghostButton}>
-            <SearchIcon size="md" style={headerStyles.whiteIcon} />
+            <SearchIcon size="md" />
           </button>
           <button style={headerStyles.ghostButton}>
-            <LocationIcon size="md" style={headerStyles.whiteIcon} />
+            <LocationIcon size="md" />
           </button>
           <button style={headerStyles.ghostButton}>
-            <MenuIcon size="md" style={headerStyles.whiteIcon} />
+            <MenuIcon size="md" />
           </button>
         </Box>
 
         {/* Δεξιά: 3 εικονίδια */}
         <Box style={headerStyles.flexNavigation}>
           <button style={headerStyles.ghostButton}>
-            <SettingsIcon size="md" style={headerStyles.whiteIcon} />
+            <SettingsIcon size="md" />
           </button>
           <button style={headerStyles.ghostButton}>
-            <LocationIcon size="md" style={headerStyles.whiteIcon} />
+            <LocationIcon size="md" />
           </button>
           <button style={headerStyles.ghostButton}>
-            <UserIcon size="md" style={headerStyles.whiteIcon} />
+            <UserIcon size="md" />
           </button>
         </Box>
       </Box>

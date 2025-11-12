@@ -66,8 +66,8 @@
       "comment": "Bold stroke width"
     },
     "colorPrimary": {
-      "value": "#3b82f6",
-      "comment": "Primary brand color for icons - ΓΑΛΑΖΙΟ για single source test"
+      "value": "#fbbf24",
+      "comment": "Primary brand color for icons - ΚΙΤΡΙΝΟ για single source test"
     },
     "colorSecondary": {
       "value": "#6b7280",
