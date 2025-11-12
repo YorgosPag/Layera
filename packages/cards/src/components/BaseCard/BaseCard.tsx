@@ -75,12 +75,12 @@ export const BaseCard: React.FC<BaseCardProps> = ({
       {/* Header Section */}
       {(title || subtitle || actions || icon) && (
         <Box className="layera-card__header">
-          <Box className="layera-card__header-content">
-            {icon && (
-              <Box className="layera-card__icon">
-                {icon}
-              </Box>
-            )}
+          {icon && (
+            <Box className="layera-card__icon">
+              {icon}
+            </Box>
+          )}
+          <Box className="layera-card__headerContent">
             {title && (
               <Box as="header" className="layera-card__title">
                 {title}

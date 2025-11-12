@@ -1,0 +1,26 @@
+{
+  "cardTitleFontSize": {
+    "value": "1.125rem",
+    "comment": "Card title font size - 18px πιο μικρό γράμμα"
+  },
+  "cardTitleFontWeight": {
+    "value": "700",
+    "comment": "Card title font weight - bold για έμφαση"
+  },
+  "cardTitleLineHeight": {
+    "value": "1.2",
+    "comment": "Card title line height - tight για compact look"
+  },
+  "cardTitleColor": {
+    "value": "var(--layera-color-text-primary)",
+    "comment": "Card title color - κληρονομεί από text primary"
+  },
+  "modalHeaderFontSize": {
+    "value": "1.5rem",
+    "comment": "Modal header font size - 24px μεγαλύτερο από card titles"
+  },
+  "modalHeaderFontWeight": {
+    "value": "700",
+    "comment": "Modal header font weight - bold για έμφαση"
+  }
+}

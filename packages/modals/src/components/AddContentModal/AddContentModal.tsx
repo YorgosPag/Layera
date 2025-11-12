@@ -73,7 +73,7 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
       noOverlay={true}
       aria-labelledby="add-content-title"
     >
-      <ModalHeader title="Προσθήκη νέου περιεχομένου" />
+      <ModalHeader title="Επιλογή κατηγορίας" />
       <ModalContent>
         <Box className="layera-padding--lg">
           <Box className="layera-grid layera-grid--cols-1 layera-grid--gap-lg">

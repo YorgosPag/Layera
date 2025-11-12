@@ -53,6 +53,45 @@
             "boxShadow": "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
             "padding": "2rem"
           }
+        },
+        "element": {
+          "title": {
+            "fontSize": "var(--layera-cardTitleFontSize)",
+            "fontWeight": "var(--layera-cardTitleFontWeight)",
+            "lineHeight": "var(--layera-cardTitleLineHeight)",
+            "color": "var(--layera-cardTitleColor)",
+            "margin": "0",
+            "display": "flex",
+            "alignItems": "center"
+          },
+          "header": {
+            "display": "flex",
+            "alignItems": "flex-start",
+            "gap": "var(--layera-global-spacing-3)"
+          },
+          "headerContent": {
+            "display": "flex",
+            "flexDirection": "column",
+            "alignItems": "flex-start",
+            "flex": "1"
+          },
+          "icon": {
+            "flexShrink": "0",
+            "marginTop": "2px"
+          },
+          "description": {
+            "fontSize": "var(--layera-fontSize-sm)",
+            "color": "var(--layera-color-text-secondary)",
+            "marginTop": "var(--layera-global-spacing-1)",
+            "textAlign": "left"
+          },
+          "modalHeader": {
+            "fontSize": "var(--layera-modalHeaderFontSize)",
+            "fontWeight": "var(--layera-modalHeaderFontWeight)",
+            "color": "var(--layera-color-text-primary)",
+            "margin": "0",
+            "lineHeight": "1.3"
+          }
         }
       }
     },

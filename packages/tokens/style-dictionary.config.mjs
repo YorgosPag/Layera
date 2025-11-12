@@ -909,6 +909,19 @@ export default {
             }
 
             if (componentType === 'card') {
+              output += `/* Card BEM Element Classes */\n`;
+              if (componentUnified.variants && componentUnified.variants.element) {
+                Object.entries(componentUnified.variants.element).forEach(([elementName, elementStyles]) => {
+                  output += `.layera-card__${elementName} {\n`;
+                  Object.entries(elementStyles).forEach(([prop, val]) => {
+                    const cssProp = prop.replace(/([A-Z])/g, '-$1').toLowerCase();
+                    output += `  ${cssProp}: ${val};\n`;
+                  });
+                  output += `}\n`;
+                });
+                output += `\n`;
+              }
+
               output += `/* Card Hover Effects */\n`;
               output += `.layera-card[data-clickable="true"]:hover {\n`;
               output += `  border-color: var(--layera-color-border-primary);\n`;
@@ -1219,7 +1232,8 @@ export default {
     'src/domains/spacing-unified.json',
     'src/domains/components-unified.json',
     'src/domains/theme-switcher-unified.json',
-    'src/domains/responsive-unified.json'
+    'src/domains/responsive-unified.json',
+    'src/domains/card-typography.json'
   ],
   platforms: {
     css: {
