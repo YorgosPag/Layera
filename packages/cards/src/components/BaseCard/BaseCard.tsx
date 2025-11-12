@@ -28,14 +28,9 @@ export const BaseCard: React.FC<BaseCardProps> = ({
   className = '',
   'data-testid': testId
 }) => {
-  // Build CSS classes based on props
+  // Build CSS classes based on props using data attributes (Enterprise compliant)
   const cardClasses = [
     'layera-card',
-    `layera-card--${variant}`,
-    `layera-card--${size}`,
-    `layera-card--padding-${padding}`,
-    hoverable ? 'layera-card--hoverable' : '',
-    (clickable || onClick) ? 'layera-card--clickable' : '',
     className
   ].filter(Boolean).join(' ');
 
@@ -69,6 +64,11 @@ export const BaseCard: React.FC<BaseCardProps> = ({
     <Box
       as={CardElement}
       className={cardClasses}
+      data-variant={variant}
+      data-size={size}
+      data-padding={padding}
+      data-hoverable={hoverable ? 'true' : 'false'}
+      data-clickable={(clickable || onClick) ? 'true' : 'false'}
       data-testid={testId}
       {...extraProps}
     >

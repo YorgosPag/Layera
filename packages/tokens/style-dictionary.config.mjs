@@ -924,7 +924,7 @@ export default {
           output += `  padding: var(--layera-space-md, 16px);\n\n`;
           output += `  /* Content */\n`;
           output += `  > * {\n`;
-          output += `    background: var(--layera-color-surface-primary, #ffffff);\n`;
+          output += `    background: var(--layera-global-colors-theme-light-header-background, #ffffff);\n`;
           output += `    border-radius: var(--layera-radius-lg, 8px);\n`;
           output += `    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);\n`;
           output += `    max-width: 90vw;\n`;

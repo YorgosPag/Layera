@@ -3,7 +3,7 @@
     "comment": "🎯 ΜΟΝΑΔΙΚΕΣ Enterprise Component Κλάσεις - Αντικαθιστούν 20+ κλάσεις",
     "card": {
       "value": {
-        "backgroundColor": "var(--layera-color-surface-primary)",
+        "backgroundColor": "var(--layera-global-colors-theme-light-header-background)",
         "border": "1px solid var(--layera-color-border-primary)",
         "borderRadius": "var(--layera-global-borderRadius-lg)",
         "padding": "var(--layera-global-spacing-4)",
@@ -164,7 +164,7 @@
     "drawer": {
       "value": {
         "position": "fixed",
-        "backgroundColor": "var(--layera-color-surface-primary)",
+        "backgroundColor": "var(--layera-global-colors-theme-light-header-background)",
         "border": "var(--layera-global-components-drawer-panel-border)",
         "boxShadow": "var(--layera-global-components-drawer-panel-shadow)",
         "color": "var(--layera-color-text-primary)",
