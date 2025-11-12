@@ -153,7 +153,7 @@ export const CSS_DESIGN_TOKENS = {
     'color-semantic-error-text': 'var(--layera-color-error)',
 
     // Interactive states - SST based
-    'color-interactive-primary': 'var(--layera-text-primary)',
+    'color-interactive-primary': 'var(--layera-color-text-primary)',
     'color-interactive-primary-hover': 'var(--layera-color-surface-secondary)',
     'color-interactive-primary-active': 'var(--layera-color-text-secondary)',
 

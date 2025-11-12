@@ -864,13 +864,13 @@ export default {
               output += `/* Form Focus Effects */\n`;
               output += `.layera-form[data-element="input"]:focus {\n`;
               output += `  outline: none;\n`;
-              output += `  box-shadow: 0 0 0 2px var(--layera-text-primary);\n`;
-              output += `  border-color: var(--layera-text-primary);\n`;
+              output += `  box-shadow: 0 0 0 2px var(--layera-color-text-primary);\n`;
+              output += `  border-color: var(--layera-color-text-primary);\n`;
               output += `}\n`;
               output += `.layera-form[data-element="textarea"]:focus {\n`;
               output += `  outline: none;\n`;
-              output += `  box-shadow: 0 0 0 2px var(--layera-text-primary);\n`;
-              output += `  border-color: var(--layera-text-primary);\n`;
+              output += `  box-shadow: 0 0 0 2px var(--layera-color-text-primary);\n`;
+              output += `  border-color: var(--layera-color-text-primary);\n`;
               output += `}\n\n`;
             }
 

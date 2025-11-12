@@ -1,23 +1,4 @@
 {
-  "text": {
-    "comment": "🎯 Typography Core Tokens - Text colors and properties",
-    "primary": {
-      "value": "#1e293b",
-      "comment": "Primary text color - σκούρο γκρι για καλή αντίθεση"
-    },
-    "secondary": {
-      "value": "#475569",
-      "comment": "Secondary text color - μεσαίο γκρι για secondary text"
-    },
-    "tertiary": {
-      "value": "#64748b",
-      "comment": "Tertiary text color - ανοιχτό γκρι για tertiary text"
-    },
-    "inverted": {
-      "value": "#ffffff",
-      "comment": "Inverted text color for dark backgrounds"
-    }
-  },
   "fontSize": {
     "comment": "🎯 Font Size Tokens - Responsive typography scale",
     "xs": {

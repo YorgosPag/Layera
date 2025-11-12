@@ -15,7 +15,7 @@
       "variants": {
         "accent": {
           "primary": {
-            "borderLeft": "4px solid var(--layera-text-primary)"
+            "borderLeft": "4px solid var(--layera-color-text-primary)"
           },
           "green": {
             "borderLeft": "4px solid var(--layera-color-background-accent-green)"
@@ -75,18 +75,18 @@
       "variants": {
         "variant": {
           "primary": {
-            "backgroundColor": "var(--layera-text-primary)",
+            "backgroundColor": "var(--layera-color-text-primary)",
             "color": "white",
-            "borderColor": "var(--layera-text-primary)"
+            "borderColor": "var(--layera-color-text-primary)"
           },
           "secondary": {
             "backgroundColor": "transparent",
-            "color": "var(--layera-text-primary)",
+            "color": "var(--layera-color-text-primary)",
             "borderColor": "var(--layera-color-border-primary)"
           },
           "nav": {
             "backgroundColor": "transparent",
-            "color": "var(--layera-text-primary)",
+            "color": "var(--layera-color-text-primary)",
             "border": "none",
             "padding": "var(--layera-global-spacing-2)"
           },
@@ -149,8 +149,8 @@
         "state": {
           "focus": {
             "outline": "none",
-            "boxShadow": "0 0 0 2px var(--layera-text-primary)",
-            "borderColor": "var(--layera-text-primary)"
+            "boxShadow": "0 0 0 2px var(--layera-color-text-primary)",
+            "borderColor": "var(--layera-color-text-primary)"
           },
           "error": {
             "borderColor": "var(--layera-color-semantic-error-primary)"

@@ -1,7 +1,15 @@
 {
   "color": {
     "text": {
-      "comment": "REMOVED: primary, secondary (now managed by theme-colors.json for light/dark switching)",
+      "comment": "Text colors - default + theme-specific overrides από theme-colors.json",
+      "primary": {
+        "value": "#1e293b",
+        "comment": "Primary text - σκούρο γκρι για καλή αντίθεση με λευκό φόντο"
+      },
+      "secondary": {
+        "value": "#475569",
+        "comment": "Secondary text - μεσαίο γκρι για secondary content"
+      },
       "tertiary": {
         "value": "#94a3b8",
         "comment": "Tertiary text - muted slate"

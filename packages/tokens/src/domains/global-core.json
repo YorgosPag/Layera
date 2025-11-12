@@ -534,20 +534,6 @@
               "comment": "Modal overlay background"
             }
           },
-          "text": {
-            "primary": {
-              "value": "#1e293b",
-              "comment": "Primary text - σκούρο για contrast"
-            },
-            "secondary": {
-              "value": "#475569",
-              "comment": "Secondary text - medium gray"
-            },
-            "onAccent": {
-              "value": "#ffffff",
-              "comment": "Text πάνω σε accent buttons"
-            }
-          },
           "border": {
             "primary": {
               "value": "#e2e8f0",
