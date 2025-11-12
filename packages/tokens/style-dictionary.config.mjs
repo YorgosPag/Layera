@@ -6,6 +6,24 @@
  * Uses custom transform groups to prevent value transformation.
  */
 
+import fs from 'fs';
+import path from 'path';
+
+// 🧪 George Testing Panel - Check for test colors
+let testConfig = null;
+const testFilePath = path.join(process.cwd(), '../../tests-george/theme-test-george.json');
+if (fs.existsSync(testFilePath)) {
+  try {
+    const testFile = fs.readFileSync(testFilePath, 'utf8');
+    testConfig = JSON.parse(testFile);
+    if (testConfig.testMode) {
+      console.log('🧪 George Test Mode ACTIVE - Using custom colors!');
+    }
+  } catch (error) {
+    console.log('⚠️ Test file exists but cannot parse:', error.message);
+  }
+}
+
 export default {
   hooks: {
     filters: {
@@ -32,8 +50,24 @@ export default {
         const prefix = options?.prefix || 'layera';
 
         dictionary.allTokens.forEach(token => {
-          // Το token.name ήδη έχει prefix, δεν χρειάζεται διπλό
-          output += `  --${token.name}: ${token.value};`;
+          let finalValue = token.value;
+
+          // 🧪 George Test Mode Override
+          if (testConfig?.testMode) {
+            // Override surface primary
+            if (token.name === 'layera-color-light-surface-primary') {
+              finalValue = testConfig.colors.cards.value;
+            }
+            // Override text colors
+            if (token.name === 'layera-color-light-text-primary') {
+              finalValue = testConfig.colors.text.primary.value;
+            }
+            if (token.name === 'layera-color-light-text-secondary') {
+              finalValue = testConfig.colors.text.secondary.value;
+            }
+          }
+
+          output += `  --${token.name}: ${finalValue};`;
           if (token.comment) output += ` /** ${token.comment} */`;
           output += '\n';
         });

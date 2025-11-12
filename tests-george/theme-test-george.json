@@ -1,0 +1,45 @@
+{
+  "comment": "🧪 Πίνακας Ελέγχου Χρωμάτων - George Testing Panel",
+  "testMode": true,
+  "colors": {
+    "cards": {
+      "value": "#1c7d60",
+      "comment": "Φόντο καρτών - Αλλάζω εδώ για δοκιμές"
+    },
+    "modal": {
+      "value": "#1c7d60",
+      "comment": "Φόντο modal - Αλλάζω εδώ για δοκιμές"
+    },
+    "header": {
+      "value": "#1c7d60",
+      "comment": "Φόντο επικεφαλίδας - Αλλάζω εδώ για δοκιμές"
+    },
+    "text": {
+      "primary": {
+        "value": "#1e293b",
+        "comment": "Κύριο κείμενο - Αλλάζω εδώ για δοκιμές"
+      },
+      "secondary": {
+        "value": "#475569",
+        "comment": "Δευτερεύον κείμενο - Αλλάζω εδώ για δοκιμές"
+      }
+    }
+  },
+  "instructions": {
+    "how_to_use": [
+      "1. Άλλαξε τα χρώματα εδώ πάνω",
+      "2. Τρέξε: pnpm build στο φάκελο tokens",
+      "3. Δες τις αλλαγές στην εφαρμογή",
+      "4. Για να επιστρέψεις στα κανονικά: βάλε testMode: false"
+    ],
+    "color_examples": {
+      "green": "#22c55e",
+      "blue": "#3b82f6",
+      "red": "#ef4444",
+      "purple": "#8b5cf6",
+      "orange": "#f97316",
+      "white": "#ffffff",
+      "black": "#000000"
+    }
+  }
+}

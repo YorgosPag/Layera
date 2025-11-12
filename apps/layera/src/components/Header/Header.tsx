@@ -15,9 +15,10 @@ import { headerStyles } from './Header.styles';
 
 interface HeaderProps {
   onAddContentClick?: () => void;
+  onTestPanelClick?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onAddContentClick }) => {
+export const Header: React.FC<HeaderProps> = ({ onAddContentClick, onTestPanelClick }) => {
 
   return (
     <Box style={headerStyles.container}>
@@ -27,6 +28,9 @@ export const Header: React.FC<HeaderProps> = ({ onAddContentClick }) => {
             <PlusIcon size="sm" style={headerStyles.whiteIcon} />
           </button>
           <span style={headerStyles.headerTitle}>Geo-Canvas</span>
+          <button onClick={onTestPanelClick} style={headerStyles.ghostButton}>
+            <SettingsIcon size="sm" style={headerStyles.whiteIcon} />
+          </button>
         </Box>
 
         {/* Κέντρο: 3 εικονίδια */}

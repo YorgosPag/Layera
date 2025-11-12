@@ -7,6 +7,7 @@ import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 import { PlusIcon, UserIcon, ArrowLeftIcon } from '../../../../packages/icons/src';
 import { Text, Heading } from '../../../../packages/typography/src';
 import { Header } from './Header';
+import { TestPanel } from './TestPanel';
 import RealEstateContent from './RealEstatePage';
 import JobsContent from './JobsPage';
 import LoginContent from './LoginPage';
@@ -20,8 +21,32 @@ const MAP_DEFAULTS = {
 
 export const AppContent: React.FC = () => {
   const [activeDrawer, setActiveDrawer] = useState<'propertyTypeSelection' | null>(null);
-  const [activeModal, setActiveModal] = useState<'login' | 'addContent' | null>(null);
+  const [activeModal, setActiveModal] = useState<'login' | 'addContent' | 'testPanel' | null>(null);
   const { t } = useLayeraTranslation();
+
+  // Listen για αλλαγές χρώματος από το TestPanel
+  useEffect(() => {
+    const handleColorChange = async (event: any) => {
+      const newColor = event.detail.color;
+      console.log('🎨 Changing color to:', newColor);
+
+      try {
+        // Κλείσιμο του modal
+        setActiveModal(null);
+
+        // Εκτέλεση των script για αλλαγή
+        await changeTestColor(newColor);
+      } catch (error) {
+        console.error('Error in color change:', error);
+      }
+    };
+
+    window.addEventListener('changeTestColor', handleColorChange);
+
+    return () => {
+      window.removeEventListener('changeTestColor', handleColorChange);
+    };
+  }, []);
 
   const closeDrawer = () => {
     setActiveDrawer(null);
@@ -40,6 +65,47 @@ export const AppContent: React.FC = () => {
     setActiveModal('addContent');
   };
 
+  const openTestPanel = () => {
+    setActiveModal('testPanel');
+  };
+
+  const changeTestColor = async (color: string) => {
+    try {
+      console.log(`🎨 Changing test color to: ${color}`);
+
+      // Εμφάνιση οδηγιών για γρήγορη αλλαγή
+      const command = `node C:\\layera\\tests-george\\change-color.js ${color}`;
+
+      alert(
+        `🧪 George's Automatic Color Changer\n\n` +
+        `🎨 Χρώμα: ${color}\n\n` +
+        `Για ΑΥΤΟΜΑΤΗ αλλαγή, τρέξτε στο terminal:\n\n` +
+        `${command}\n\n` +
+        `Αυτό θα:\n` +
+        `✅ Αλλάξει το theme-test-george.json\n` +
+        `✅ Κάνει rebuild τα CSS tokens\n` +
+        `✅ Προετοιμάσει την εφαρμογή για refresh\n\n` +
+        `Μετά ανανεώστε την εφαρμογή (F5) για να δείτε τις αλλαγές!`
+      );
+
+      // Copy στο clipboard αν είναι διαθέσιμο
+      if (navigator.clipboard) {
+        try {
+          await navigator.clipboard.writeText(command);
+          console.log('📋 Command copied to clipboard!');
+        } catch (err) {
+          console.log('📋 Could not copy to clipboard, but command is displayed above');
+        }
+      }
+
+      console.log('📋 Copy this command to terminal:\n', command);
+
+    } catch (error) {
+      console.error('Error changing test color:', error);
+      alert('❌ Σφάλμα κατά την αλλαγή χρώματος');
+    }
+  };
+
   const handleSelectProperty = () => {
     closeModal();
     // TODO: Εδώ θα μπει η επόμενη φάση του flow για τα Ακίνητα
@@ -53,7 +119,7 @@ export const AppContent: React.FC = () => {
 
   return (
     <Box className="layera-layout">
-      <Header onAddContentClick={openAddContentModal} />
+      <Header onAddContentClick={openAddContentModal} onTestPanelClick={openTestPanel} />
 
       <Box className="layera-map-container layera-margin-top--lg">
         <MapContainer
@@ -157,6 +223,12 @@ export const AppContent: React.FC = () => {
           <LoginContent />
         </ModalContent>
       </Modal>
+
+      {/* Test Panel Modal */}
+      <TestPanel
+        isOpen={activeModal === 'testPanel'}
+        onClose={closeModal}
+      />
     </Box>
   );
 };
