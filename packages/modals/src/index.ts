@@ -11,7 +11,8 @@ export {
   ModalContent,
   ModalFooter,
   Dialog,
-  Drawer
+  Drawer,
+  AddContentModal
 } from './components';
 
 // Hooks

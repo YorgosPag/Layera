@@ -33,6 +33,22 @@
         "height": "100%"
       },
       "comment": "Map fullscreen styling"
+    },
+    "defaults": {
+      "initial": {
+        "latitude": {
+          "value": 37.9755,
+          "comment": "Default latitude for Athens, Greece center"
+        },
+        "longitude": {
+          "value": 23.7348,
+          "comment": "Default longitude for Athens, Greece center"
+        },
+        "zoom": {
+          "value": 13,
+          "comment": "Default zoom level for city view"
+        }
+      }
     }
   }
 }

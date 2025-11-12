@@ -8,3 +8,4 @@ export { ModalContent } from './ModalContent';
 export { ModalFooter } from './ModalFooter';
 export { Dialog } from './Dialog';
 export { Drawer } from './Drawer';
+export { AddContentModal } from './AddContentModal';

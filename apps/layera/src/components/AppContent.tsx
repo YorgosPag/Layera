@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Box, LayeraHeader, HeaderActionsGroup } from '../../../../packages/layout/src';
 import { MapContainer } from '@layera/map-core';
-import { Drawer, Modal, ModalHeader, ModalContent } from '@layera/modals';
+import { Drawer, Modal, ModalHeader, ModalContent, AddContentModal } from '@layera/modals';
 import { ThemeSwitcher } from '../../../../packages/theme-switcher/src';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 import { PlusIcon, UserIcon, ArrowLeftIcon } from '../../../../packages/icons/src';
 import { Text, Heading } from '../../../../packages/typography/src';
 import { Header } from './Header';
-import { AddContentModal } from './AddContentModal';
 import RealEstateContent from './RealEstatePage';
 import JobsContent from './JobsPage';
 import LoginContent from './LoginPage';
+
+// Map defaults from tokens system
+const MAP_DEFAULTS = {
+  INITIAL_LAT: 37.9755,  // From --layera-map-defaults-initial-latitude
+  INITIAL_LNG: 23.7348,  // From --layera-map-defaults-initial-longitude
+  INITIAL_ZOOM: 13       // From --layera-map-defaults-initial-zoom
+} as const;
 
 export const AppContent: React.FC = () => {
   const [activeDrawer, setActiveDrawer] = useState<'propertyTypeSelection' | null>(null);
@@ -52,9 +58,9 @@ export const AppContent: React.FC = () => {
       <Box className="layera-map-container layera-margin-top--lg">
         <MapContainer
           className="layera-map--fullscreen"
-          initialLat={37.9755}
-          initialLng={23.7348}
-          initialZoom={13}
+          initialLat={MAP_DEFAULTS.INITIAL_LAT}
+          initialLng={MAP_DEFAULTS.INITIAL_LNG}
+          initialZoom={MAP_DEFAULTS.INITIAL_ZOOM}
         />
       </Box>
 

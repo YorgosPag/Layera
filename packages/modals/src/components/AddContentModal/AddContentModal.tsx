@@ -12,11 +12,13 @@
 import React from 'react';
 import { Box, Flex } from '@layera/layout';
 import { BuildingIcon, BriefcaseIcon } from '@layera/icons';
-import { Modal, ModalHeader, ModalContent } from '@layera/modals';
+import { Modal } from '../Modal/Modal';
+import { ModalHeader } from '../ModalHeader/ModalHeader';
+import { ModalContent } from '../ModalContent/ModalContent';
 import { UnifiedCard, cardFactory } from '@layera/cards';
 import { useLayeraTranslation } from '@layera/tolgee';
 
-interface AddContentModalProps {
+export interface AddContentModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSelectProperty?: () => void;
