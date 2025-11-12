@@ -55,6 +55,5 @@ export const Header: React.FC<HeaderProps> = ({ onAddContentClick }) => {
           </button>
         </Box>
       </Box>
-    </>
   );
 };

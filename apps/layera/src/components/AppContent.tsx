@@ -7,13 +7,14 @@ import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 import { PlusIcon, UserIcon, BuildingIcon, BriefcaseIcon, ArrowLeftIcon } from '../../../../packages/icons/src';
 import { Text, Heading } from '../../../../packages/typography/src';
 import { Header } from './Header';
+import { AddContentModal } from './AddContentModal';
 import RealEstateContent from './RealEstatePage';
 import JobsContent from './JobsPage';
 import LoginContent from './LoginPage';
 
 export const AppContent: React.FC = () => {
   const [activeDrawer, setActiveDrawer] = useState<'categorySelection' | 'propertyTypeSelection' | null>(null);
-  const [activeModal, setActiveModal] = useState<'login' | null>(null);
+  const [activeModal, setActiveModal] = useState<'login' | 'addContent' | null>(null);
   const { t } = useLayeraTranslation();
 
   const closeDrawer = () => {
@@ -36,13 +37,27 @@ export const AppContent: React.FC = () => {
     setActiveModal(null);
   };
 
-  const openModal = (modalType: 'login') => {
+  const openModal = (modalType: 'login' | 'addContent') => {
     setActiveModal(modalType);
+  };
+
+  const openAddContentModal = () => {
+    setActiveModal('addContent');
+  };
+
+  const handleSelectProperty = () => {
+    closeModal();
+    openDrawer(); // Ανοίγει το category selection drawer
+  };
+
+  const handleSelectJob = () => {
+    closeModal();
+    alert('Ανοίγει flow Εργασίας');
   };
 
   return (
     <Box className="layera-layout">
-      <Header />
+      <Header onAddContentClick={openAddContentModal} />
 
       <Box className="layera-map-container" style={{ marginTop: 'var(--layera-header-fixed-height)' }}>
         <MapContainer
@@ -186,6 +201,15 @@ export const AppContent: React.FC = () => {
         </Box>
       </Drawer>
 
+      {/* Add Content Modal */}
+      <AddContentModal
+        isOpen={activeModal === 'addContent'}
+        onClose={closeModal}
+        onSelectProperty={handleSelectProperty}
+        onSelectJob={handleSelectJob}
+      />
+
+      {/* Login Modal */}
       <Modal
         open={activeModal === 'login'}
         onClose={closeModal}
