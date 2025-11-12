@@ -111,6 +111,12 @@
             "maxWidth": "420px",
             "margin": "var(--layera-global-spacing-2)",
             "padding": "var(--layera-global-spacing-3)"
+          },
+          "modalBackButtonContainer": {
+            "marginTop": "var(--layera-global-spacing-6)",
+            "display": "flex",
+            "justifyContent": "flex-end",
+            "paddingRight": "0"
           }
         }
       }
