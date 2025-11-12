@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@layera/cards": "workspace:*",
+    "@layera/draggable": "workspace:*",
     "@layera/icons": "workspace:*",
     "@layera/layout": "workspace:*",
     "@layera/tokens": "workspace:*"

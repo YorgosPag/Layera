@@ -354,6 +354,9 @@ importers:
       '@layera/cards':
         specifier: workspace:*
         version: link:../cards
+      '@layera/draggable':
+        specifier: workspace:*
+        version: link:../draggable
       '@layera/icons':
         specifier: workspace:*
         version: link:../icons

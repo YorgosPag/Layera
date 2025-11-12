@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { Box } from '@layera/layout';
 import { CloseIcon } from '@layera/icons';
+import { useDraggable, createDraggableConfig } from '@layera/draggable';
 import type { BaseModalProps } from '../../types';
 // Enterprise: Using @layera/tokens CSS system instead of manual .css imports
 // import './Modal.css';
@@ -35,16 +36,22 @@ export const Modal: React.FC<BaseModalProps> = ({
   'aria-labelledby': ariaLabelledBy,
   'aria-describedby': ariaDescribedBy
 }) => {
-  const modalRef = useRef<HTMLDivElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
-  const dragRef = useRef<HTMLDivElement>(null);
+  const [modalElement, setModalElement] = useState<HTMLElement | null>(null);
+  const [overlayElement, setOverlayElement] = useState<HTMLElement | null>(null);
+  const modalId = `modal-${Math.random().toString(36).substr(2, 9)}`;
+  const overlayId = `overlay-${Math.random().toString(36).substr(2, 9)}`;
 
-  // Draggable state
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
-  const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
+  // Get elements by ID after render
+  useEffect(() => {
+    if (open) {
+      const modal = document.getElementById(modalId);
+      const overlay = document.getElementById(overlayId);
+      setModalElement(modal);
+      setOverlayElement(overlay);
+    }
+  }, [open, modalId, overlayId]);
 
-  // Check if device supports touch and is mobile
+  // Mobile detection helpers
   const isTouchDevice = useCallback(() => {
     return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   }, []);
@@ -57,37 +64,13 @@ export const Modal: React.FC<BaseModalProps> = ({
     return window.innerWidth < breakpointValue;
   }, []);
 
-  // Draggable logic
-  const handleMouseDown = useCallback((e: React.MouseEvent) => {
-    if (!draggable || isMobile() || !modalRef.current) return;
 
-    setIsDragging(true);
-    const rect = modalRef.current.getBoundingClientRect();
-    setDragOffset({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
-    });
-    e.preventDefault();
-  }, [draggable, isMobile]);
-
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    if (!isDragging || !draggable || isMobile()) return;
-
-    setModalPosition({
-      x: e.clientX - dragOffset.x,
-      y: e.clientY - dragOffset.y
-    });
-  }, [isDragging, draggable, dragOffset, isMobile]);
-
-  const handleMouseUp = useCallback(() => {
-    setIsDragging(false);
-  }, []);
 
   // Calculate initial position based on initialPosition prop
   const calculateInitialPosition = useCallback(() => {
-    if (isMobile() || !modalRef.current) return { x: 0, y: 0 };
+    if (isMobile() || !modalElement) return { x: 0, y: 0 };
 
-    const modalRect = modalRef.current.getBoundingClientRect();
+    const modalRect = modalElement.getBoundingClientRect();
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
 
@@ -99,8 +82,8 @@ export const Modal: React.FC<BaseModalProps> = ({
     switch (initialPosition) {
       case 'top-right':
         return {
-          x: windowWidth - modalRect.width - marginFromEdge, // Margin left from right edge
-          y: headerHeight + marginFromEdge // Margin below header
+          x: windowWidth - modalRect.width - marginFromEdge,
+          y: headerHeight + marginFromEdge
         };
       case 'top-left':
         return {
@@ -124,32 +107,31 @@ export const Modal: React.FC<BaseModalProps> = ({
           y: (windowHeight - modalRect.height) / 2
         };
     }
-  }, [initialPosition, isMobile]);
+  }, [initialPosition, isMobile, modalElement]);
 
-  // Handle dragging events
-  useEffect(() => {
-    if (!draggable || isTouchDevice() || isMobile()) return;
+  // Enterprise draggable hook configuration
+  const dragConfig = createDraggableConfig({
+    disabled: !draggable || isMobile() || isTouchDevice(),
+    dragThreshold: 5,
+    axis: 'both'
+  });
 
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseup', handleMouseUp);
-
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-    };
-  }, [handleMouseMove, handleMouseUp, draggable, isTouchDevice, isMobile]);
+  // Use enterprise draggable hook
+  const { position: modalPosition, isDragging, dragHandlers, setPosition } = useDraggable(
+    calculateInitialPosition(),
+    dragConfig
+  );
 
   // Set initial position when modal opens
   useEffect(() => {
-    if (open && modalRef.current) {
+    if (open && modalElement) {
       // Use setTimeout to ensure modal is rendered and has dimensions
       setTimeout(() => {
         const position = calculateInitialPosition();
-        setModalPosition(position);
-        setIsDragging(false);
+        setPosition(position);
       }, 0);
     }
-  }, [open, calculateInitialPosition]);
+  }, [open, calculateInitialPosition, setPosition, modalElement]);
 
   // Handle ESC key
   useEffect(() => {
@@ -179,19 +161,19 @@ export const Modal: React.FC<BaseModalProps> = ({
 
   // Handle focus management
   useEffect(() => {
-    if (!open) return;
+    if (!open || !modalElement) return;
 
-    const focusableElements = modalRef.current?.querySelectorAll(
+    const focusableElements = modalElement.querySelectorAll(
       'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
     );
 
     if (focusableElements && focusableElements.length > 0) {
       (focusableElements[0] as HTMLElement).focus();
     }
-  }, [open]);
+  }, [open, modalElement]);
 
   const handleOverlayClick = (event: React.MouseEvent) => {
-    if (!noOverlay && closeOnOverlayClick && event.target === overlayRef.current) {
+    if (!noOverlay && closeOnOverlayClick && event.target === overlayElement) {
       onClose();
     }
   };
@@ -204,7 +186,8 @@ export const Modal: React.FC<BaseModalProps> = ({
 
   const modalContent = (
     <Box
-      ref={overlayRef}
+      as="main"
+      id={overlayId}
       className={`layera-modal ${noOverlay ? 'layera-modal--no-overlay' : ''}`}
       onClick={handleOverlayClick}
       role="dialog"
@@ -213,29 +196,33 @@ export const Modal: React.FC<BaseModalProps> = ({
       aria-describedby={ariaDescribedBy}
       style={noOverlay ? {
         background: 'var(--layera-global-components-drawer-pinnedOverlay-background, transparent)',
-        pointerEvents: 'var(--layera-global-components-drawer-pinnedOverlay-pointerEvents, none)'
+        pointerEvents: 'none' as const
       } : {
         background: 'var(--layera-color-surface-primary, #ffffff)'
       }}
     >
       <Box
-        ref={modalRef}
         as="section"
+        id={modalId}
         role="document"
-        onMouseDown={draggable && !isMobile() ? handleMouseDown : undefined}
+        className="layera-modal-content"
+        {...(draggable && !isMobile() && !isTouchDevice() ? {
+          onMouseDown: dragHandlers.onMouseDown,
+          onTouchStart: dragHandlers.onTouchStart
+        } : {})}
         style={{
           ...(noOverlay ? {
-            pointerEvents: 'auto',
+            pointerEvents: 'auto' as const,
             background: 'var(--layera-color-surface-primary, #ffffff)'
           } : {
             background: 'var(--layera-color-surface-primary, #ffffff)'
           }),
           ...(draggable && !isMobile() && !isTouchDevice() ? {
-            position: 'fixed',
+            position: 'fixed' as const,
             left: modalPosition.x,
             top: modalPosition.y,
-            cursor: isDragging ? 'grabbing' : 'grab',
-            userSelect: 'none',
+            cursor: isDragging ? ('grabbing' as const) : ('grab' as const),
+            userSelect: 'none' as const,
             transform: 'none'
           } : {}),
           transition: isDragging ? 'none' : 'all 0.2s ease'
