@@ -59,7 +59,7 @@ export const headerStyles = {
     pointerEvents: 'none' as const
   },
   headerTitle: {
-    color: 'var(--layera-colorUtilities-utilities-text-neutral-white)',
+    color: 'var(--layera-color-text-primary)',
     fontSize: 'var(--layera-fontSize-base)',
     fontWeight: 'var(--layera-fontWeight-semibold)'
   },
