@@ -91,8 +91,20 @@
         "comment": "Fixed header height for navigation bar"
       },
       "zIndex": {
-        "value": "1000",
+        "value": "10000",
         "comment": "Header z-index above map (zIndex: 1) and other content"
+      },
+      "top": {
+        "value": "0",
+        "comment": "Header top position - stick to viewport top"
+      },
+      "left": {
+        "value": "0",
+        "comment": "Header left position - stick to viewport left"
+      },
+      "right": {
+        "value": "0",
+        "comment": "Header right position - stick to viewport right"
       }
     }
   },

@@ -767,6 +767,20 @@
         "comment": "1px border width"
       }
     },
+    "border": {
+      "comment": "Border style tokens",
+      "none": {
+        "value": "none",
+        "comment": "No border"
+      }
+    },
+    "cursor": {
+      "comment": "Cursor style tokens",
+      "pointer": {
+        "value": "pointer",
+        "comment": "Pointer cursor for interactive elements"
+      }
+    },
     "boxShadow": {
       "comment": "Box shadow tokens",
       "2xl": {
