@@ -49,7 +49,7 @@ export const AppContent: React.FC = () => {
     <Box className="layera-layout">
       <Header onAddContentClick={openAddContentModal} />
 
-      <Box className="layera-map-container" style={{ marginTop: 'var(--layera-header-fixed-height)' }}>
+      <Box className="layera-map-container layera-margin-top--lg">
         <MapContainer
           className="layera-map--fullscreen"
           initialLat={37.9755}

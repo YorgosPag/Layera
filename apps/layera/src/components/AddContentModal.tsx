@@ -68,6 +68,7 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
       open={isOpen}
       onClose={onClose}
       size="md"
+      noOverlay={true}
       aria-labelledby="add-content-title"
     >
       <ModalHeader title="Προσθήκη νέου περιεχομένου" />

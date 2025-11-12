@@ -22,6 +22,7 @@ export interface BaseModalProps {
   closeOnEscape?: boolean;
   showCloseButton?: boolean;
   preventBodyScroll?: boolean;
+  noOverlay?: boolean;
   className?: string;
   overlayClassName?: string;
   contentClassName?: string;

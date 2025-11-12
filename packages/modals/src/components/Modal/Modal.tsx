@@ -20,6 +20,7 @@ export const Modal: React.FC<BaseModalProps> = ({
   closeOnEscape = true,
   showCloseButton = true,
   preventBodyScroll = true,
+  noOverlay = false,
   // className = '',          // Enterprise: Unused - keeping for future
   // overlayClassName = '',   // Enterprise: Unused - keeping for future
   // contentClassName = '',   // Enterprise: Unused - keeping for future
@@ -75,7 +76,7 @@ export const Modal: React.FC<BaseModalProps> = ({
   }, [open]);
 
   const handleOverlayClick = (event: React.MouseEvent) => {
-    if (closeOnOverlayClick && event.target === overlayRef.current) {
+    if (!noOverlay && closeOnOverlayClick && event.target === overlayRef.current) {
       onClose();
     }
   };
@@ -88,6 +89,7 @@ export const Modal: React.FC<BaseModalProps> = ({
 
   const modalContent = (
     <Box
+      ref={overlayRef}
       className="layera-modal"
       onClick={handleOverlayClick}
       role="dialog"
