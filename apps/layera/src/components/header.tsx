@@ -12,23 +12,23 @@ export const Header: React.FC = () => {
         right: 0,
         zIndex: 9999,
         height: 'var(--layera-header-fixed-height)',
-        backgroundColor: '#1e293b',
+        backgroundColor: 'var(--layera-color-text-inverse)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '0 16px',
-        borderBottom: '1px solid #334155'
+        padding: '0 var(--layera-global-spacing-4)',
+        borderBottom: '1px solid var(--layera-color-border-light)'
       }}
     >
       {/* Αριστερά: Πλήκτρο με + και κείμενο Geo-Canvas */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--layera-global-spacing-3)' }}>
         <button
           style={{
-            width: '32px',
-            height: '32px',
-            backgroundColor: '#3b82f6',
+            width: 'var(--layera-global-spacing-8)',
+            height: 'var(--layera-global-spacing-8)',
+            backgroundColor: 'var(--layera-btn-action-backgroundColor)',
             border: 'none',
-            borderRadius: '6px',
+            borderRadius: 'var(--layera-btn-action-borderRadius)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',

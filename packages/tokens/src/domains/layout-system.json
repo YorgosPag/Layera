@@ -261,6 +261,16 @@
         "fontWeight": "var(--layera-fontWeight-medium)",
         "cursor": "pointer"
       }
+    },
+    "action": {
+      "backgroundColor": {
+        "value": "#3b82f6",
+        "comment": "Blue action button background"
+      },
+      "borderRadius": {
+        "value": "6px",
+        "comment": "Action button border radius"
+      }
     }
   },
   "card": {
