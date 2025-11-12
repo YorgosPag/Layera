@@ -920,6 +920,29 @@ export default {
                   output += `}\n`;
                 });
                 output += `\n`;
+
+                // Generate responsive modal container
+                if (componentUnified.variants.element.modalContainer) {
+                  output += `/* Modal Responsive Container - Desktop */\n`;
+                  output += `.layera-modal > * {\n`;
+                  Object.entries(componentUnified.variants.element.modalContainer).forEach(([prop, val]) => {
+                    const cssProp = prop.replace(/([A-Z])/g, '-$1').toLowerCase();
+                    output += `  ${cssProp}: ${val};\n`;
+                  });
+                  output += `}\n\n`;
+
+                  if (componentUnified.variants.element.modalContainerMobile) {
+                    output += `/* Modal Responsive Container - Mobile */\n`;
+                    output += `@media screen and (max-width: 768px) {\n`;
+                    output += `  .layera-modal > * {\n`;
+                    Object.entries(componentUnified.variants.element.modalContainerMobile).forEach(([prop, val]) => {
+                      const cssProp = prop.replace(/([A-Z])/g, '-$1').toLowerCase();
+                      output += `    ${cssProp}: ${val};\n`;
+                    });
+                    output += `  }\n`;
+                    output += `}\n\n`;
+                  }
+                }
               }
 
               output += `/* Card Hover Effects */\n`;
@@ -1001,7 +1024,7 @@ export default {
           output += `    background: var(--layera-global-colors-theme-light-header-background, #ffffff);\n`;
           output += `    border-radius: var(--layera-radius-lg, 8px);\n`;
           output += `    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);\n`;
-          output += `    max-width: 90vw;\n`;
+          output += `    max-width: 350px;\n`;
           output += `    max-height: 90vh;\n`;
           output += `    overflow: auto;\n`;
           output += `    padding: var(--layera-space-lg, 24px);\n`;

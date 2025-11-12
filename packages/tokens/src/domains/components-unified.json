@@ -99,6 +99,18 @@
             "gap": "var(--layera-global-spacing-3)",
             "padding": "var(--layera-global-spacing-3)",
             "borderBottom": "1px solid var(--layera-color-border-primary)"
+          },
+          "modalContainer": {
+            "width": "100%",
+            "maxWidth": "350px",
+            "margin": "0 auto",
+            "padding": "var(--layera-global-spacing-4)"
+          },
+          "modalContainerMobile": {
+            "width": "95vw",
+            "maxWidth": "420px",
+            "margin": "var(--layera-global-spacing-2)",
+            "padding": "var(--layera-global-spacing-3)"
           }
         }
       }
