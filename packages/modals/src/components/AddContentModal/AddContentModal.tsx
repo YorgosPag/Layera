@@ -41,7 +41,7 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
   onSelectJob
 }) => {
   const { t } = useLayeraTranslation();
-  const [currentView, setCurrentView] = React.useState<'main' | 'property' | 'job' | 'property-offer' | 'property-search' | 'sale-timing' | 'location-method' | 'job-offer-type' | 'job-timing'>('main');
+  const [currentView, setCurrentView] = React.useState<'main' | 'property' | 'job' | 'property-offer' | 'property-search' | 'property-search-type' | 'sale-timing' | 'location-method' | 'job-offer-type' | 'job-timing'>('main');
 
   // Reset view when modal closes
   React.useEffect(() => {
@@ -92,7 +92,7 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
     icon: <BuildingIcon size="lg" />,
     selectionValue: 'property-search',
     theme: 'property',
-    onClick: () => setCurrentView('property-search'),
+    onClick: () => setCurrentView('property-search-type'),
     testId: 'property-search-card'
   }), []);
 
@@ -267,6 +267,29 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
     testId: 'job-timing-future-card'
   }), [onSelectJob]);
 
+  // Property search transaction type cards (third level for geo-alert)
+  const searchBuyCard = React.useMemo(() => cardFactory.selection({
+    id: 'search-buy',
+    title: 'Για Αγορά',
+    description: 'Δημιουργία ειδοποίησης για ακίνητα προς αγορά.',
+    icon: <BuildingIcon size="lg" />,
+    selectionValue: 'buy',
+    theme: 'property',
+    onClick: onSelectProperty,
+    testId: 'search-buy-card'
+  }), [onSelectProperty]);
+
+  const searchRentCard = React.useMemo(() => cardFactory.selection({
+    id: 'search-rent',
+    title: 'Για Ενοικίαση',
+    description: 'Δημιουργία ειδοποίησης για ακίνητα προς ενοικίαση.',
+    icon: <BuildingIcon size="lg" />,
+    selectionValue: 'rent',
+    theme: 'property',
+    onClick: onSelectProperty,
+    testId: 'search-rent-card'
+  }), [onSelectProperty]);
+
   return (
     <Modal
       open={isOpen}
@@ -284,6 +307,7 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
           currentView === 'location-method' ? "Μέθοδος Τοποθεσίας" :
           currentView === 'job-offer-type' ? "Είδος Απασχόλησης" :
           currentView === 'job-timing' ? "Χρόνος Διαθεσιμότητας" :
+          currentView === 'property-search-type' ? "Είδος Συναλλαγής" :
           "Τύπος Καταχώρησης"
         }
         onClose={onClose}
@@ -342,6 +366,12 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
                 <UnifiedCard config={jobFutureCard} />
               </>
             )}
+            {currentView === 'property-search-type' && (
+              <>
+                <UnifiedCard config={searchBuyCard} />
+                <UnifiedCard config={searchRentCard} />
+              </>
+            )}
           </Box>
           {currentView !== 'main' && (
             <Box className="layera-card__modalBackButtonContainer">
@@ -355,6 +385,8 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
                     setCurrentView('sale-timing');
                   } else if (currentView === 'sale-timing') {
                     setCurrentView('property-offer');
+                  } else if (currentView === 'property-search-type') {
+                    setCurrentView('property');
                   } else if (currentView === 'property-offer' || currentView === 'property-search') {
                     setCurrentView('property');
                   } else if (currentView === 'property' || currentView === 'job') {
