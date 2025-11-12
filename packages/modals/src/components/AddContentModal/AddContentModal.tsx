@@ -41,7 +41,7 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
   onSelectJob
 }) => {
   const { t } = useLayeraTranslation();
-  const [currentView, setCurrentView] = React.useState<'main' | 'property' | 'job'>('main');
+  const [currentView, setCurrentView] = React.useState<'main' | 'property' | 'job' | 'property-offer' | 'property-search'>('main');
 
   // Reset view when modal closes
   React.useEffect(() => {
@@ -81,9 +81,9 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
     icon: <BuildingIcon size="lg" />,
     selectionValue: 'property-offer',
     theme: 'property',
-    onClick: onSelectProperty,
+    onClick: () => setCurrentView('property-offer'),
     testId: 'property-offer-card'
-  }), [onSelectProperty]);
+  }), []);
 
   const propertySearchCard = React.useMemo(() => cardFactory.selection({
     id: 'property-search',
@@ -92,8 +92,31 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
     icon: <BuildingIcon size="lg" />,
     selectionValue: 'property-search',
     theme: 'property',
-    onClick: onSelectProperty,
+    onClick: () => setCurrentView('property-search'),
     testId: 'property-search-card'
+  }), []);
+
+  // Transaction type cards (third level)
+  const saleCard = React.useMemo(() => cardFactory.selection({
+    id: 'transaction-sale',
+    title: 'Προς Πώληση',
+    description: 'Το ακίνητο είναι διαθέσιμο για αγορά.',
+    icon: <BuildingIcon size="lg" />,
+    selectionValue: 'sale',
+    theme: 'property',
+    onClick: onSelectProperty,
+    testId: 'transaction-sale-card'
+  }), [onSelectProperty]);
+
+  const rentalCard = React.useMemo(() => cardFactory.selection({
+    id: 'transaction-rental',
+    title: 'Προς Ενοικίαση',
+    description: 'Το ακίνητο είναι διαθέσιμο για ενοικίαση.',
+    icon: <BuildingIcon size="lg" />,
+    selectionValue: 'rental',
+    theme: 'property',
+    onClick: onSelectProperty,
+    testId: 'transaction-rental-card'
   }), [onSelectProperty]);
 
   return (
@@ -106,7 +129,11 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
       aria-labelledby="add-content-title"
     >
       <ModalHeader
-        title={currentView === 'main' ? "Επιλογή κατηγορίας" : "Τύπος Καταχώρησης"}
+        title={
+          currentView === 'main' ? "Επιλογή κατηγορίας" :
+          currentView === 'property-offer' ? "Είδος Συναλλαγής" :
+          "Τύπος Καταχώρησης"
+        }
         onClose={onClose}
       />
       <ModalContent>
@@ -129,11 +156,23 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
                 <UnifiedCard config={jobCard} />
               </>
             )}
+            {currentView === 'property-offer' && (
+              <>
+                <UnifiedCard config={saleCard} />
+                <UnifiedCard config={rentalCard} />
+              </>
+            )}
           </Box>
           {currentView !== 'main' && (
             <Box className="layera-card__modalBackButtonContainer">
               <button
-                onClick={() => setCurrentView('main')}
+                onClick={() => {
+                  if (currentView === 'property-offer' || currentView === 'property-search') {
+                    setCurrentView('property');
+                  } else if (currentView === 'property' || currentView === 'job') {
+                    setCurrentView('main');
+                  }
+                }}
                 className="layera-button"
                 data-variant="secondary"
                 data-size="md"
