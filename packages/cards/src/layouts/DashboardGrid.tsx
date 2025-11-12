@@ -29,16 +29,15 @@ export const DashboardGrid: React.FC<DashboardGridProps> = ({
     className
   ].filter(Boolean).join(' ');
 
-  const gridStyle = {
-    '--grid-cols-xs': columns.xs || 1,
-    '--grid-cols-sm': columns.sm || columns.xs || 1,
-    '--grid-cols-md': columns.md || columns.sm || columns.xs || 2,
-    '--grid-cols-lg': columns.lg || columns.md || columns.sm || 3,
-    '--grid-cols-xl': columns.xl || columns.lg || columns.md || 4
-  } as React.CSSProperties;
-
   return (
-    <Box className={gridClasses} style={gridStyle}>
+    <Box
+      className={gridClasses}
+      data-cols-xs={columns.xs || 1}
+      data-cols-sm={columns.sm || columns.xs || 1}
+      data-cols-md={columns.md || columns.sm || columns.xs || 2}
+      data-cols-lg={columns.lg || columns.md || columns.sm || 3}
+      data-cols-xl={columns.xl || columns.lg || columns.md || 4}
+    >
       {children}
     </Box>
   );

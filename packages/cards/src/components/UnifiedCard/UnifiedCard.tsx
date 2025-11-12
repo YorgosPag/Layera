@@ -11,7 +11,8 @@ import { BaseCard } from '../BaseCard/BaseCard';
 import type {
   UnifiedCardProps,
   UnifiedCardConfig,
-  CardContext
+  CardContext,
+  ToolCardConfig
 } from '../../types/unified-card.types';
 import {
   resolveThemeVariant,
@@ -113,11 +114,13 @@ function renderToolContent(
   config: UnifiedCardConfig,
   context?: CardContext
 ): React.ReactNode {
-  if (!('isSelected' in config)) return null;
+  if (config.type !== 'tool') return null;
+
+  const toolConfig = config as ToolCardConfig;
 
   return (
     <Box className="unified-card__tool-status">
-      {config.isSelected && (
+      {toolConfig.isSelected && (
         <Box className="unified-card__tool-selected">
           Active
         </Box>

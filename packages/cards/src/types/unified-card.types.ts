@@ -23,26 +23,26 @@ export interface UnifiedCardConfig {
 
   // Content
   title: string;
-  description?: string;
-  icon?: React.ReactNode;
-  content?: React.ReactNode; // For complex data cards
+  description?: string | undefined;
+  icon?: React.ReactNode | undefined;
+  content?: React.ReactNode | undefined; // For complex data cards
 
   // Appearance
-  variant?: CardVariant;
-  theme?: CardTheme;
+  variant?: CardVariant | undefined;
+  theme?: CardTheme | undefined;
 
   // State
-  selectable?: boolean;
-  selected?: boolean;
-  disabled?: boolean;
+  selectable?: boolean | undefined;
+  selected?: boolean | undefined;
+  disabled?: boolean | undefined;
 
   // Interaction
-  onClick?: () => void;
-  onInfoClick?: () => void;
+  onClick?: (() => void) | undefined;
+  onInfoClick?: (() => void) | undefined;
 
   // Metadata
-  testId?: string;
-  className?: string;
+  testId?: string | undefined;
+  className?: string | undefined;
 }
 
 // ============= SPECIFIC CARD CONFIGURATIONS =============
@@ -50,27 +50,27 @@ export interface UnifiedCardConfig {
 export interface SelectionCardConfig extends UnifiedCardConfig {
   type: 'selection';
   selectionValue: unknown; // CategoryType, IntentType, AvailabilityType, etc.
-  category?: 'property' | 'job'; // For category-aware styling
+  category?: 'property' | 'job' | undefined; // For category-aware styling
 }
 
 export interface ToolCardConfig extends UnifiedCardConfig {
   type: 'tool';
   toolValue: unknown; // ToolType, LayoutToolType, etc.
-  isSelected?: boolean;
-  toolCategory?: 'layout' | 'measurement' | 'drawing';
+  isSelected?: boolean | undefined;
+  toolCategory?: 'layout' | 'measurement' | 'drawing' | undefined;
 }
 
 export interface DataCardConfig extends UnifiedCardConfig {
   type: 'data';
   content: React.ReactNode; // Complex forms, summaries, etc.
-  dataType?: 'pricing' | 'review' | 'summary';
+  dataType?: 'pricing' | 'review' | 'summary' | undefined;
 }
 
 export interface ActionCardConfig extends UnifiedCardConfig {
   type: 'action';
   actionValue: unknown; // UploadAction, etc.
-  priority?: 'primary' | 'secondary';
-  actionCategory?: 'upload' | 'submit' | 'navigation';
+  priority?: 'primary' | 'secondary' | undefined;
+  actionCategory?: 'upload' | 'submit' | 'navigation' | undefined;
 }
 
 // ============= CONTEXT TYPES =============

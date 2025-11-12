@@ -47,7 +47,7 @@ export const Header: React.FC = () => {
     </Modal>
     <Box
       style={{
-        position: 'var(--layera-global-position-fixed)',
+        position: 'fixed',
         top: 'var(--layera-header-fixed-top)',
         left: 'var(--layera-header-fixed-left)',
         right: 'var(--layera-header-fixed-right)',

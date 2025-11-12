@@ -318,16 +318,6 @@ export function createReviewCard(data: {
       }
     },
     testId: `review-card-${data.reviewData.stepId}-${data.reviewType}`,
-    metadata: {
-      reviewType: data.reviewType,
-      reviewMode: data.reviewMode,
-      validationState: data.reviewData.isValid ? 'valid' : 'invalid',
-      stepContext: {
-        stepId: data.reviewData.stepId,
-        stepName: data.reviewData.stepName,
-        selectedValue: data.reviewData.selectedValue
-      }
-    }
   });
 }
 

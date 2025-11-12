@@ -23,40 +23,28 @@ export interface EnhancedCardTheme {
 }
 
 export interface BaseCardProps {
-  // ============= FLEXIBLE CONTENT (LEGO + Local compatibility) =============
-  children?: ReactNode; // Optional για Local BaseCard compatibility
-  title?: string;       // Enhanced για Local BaseCard compatibility
-  icon?: ReactNode;     // NEW: Icon support από Local BaseCard
-  description?: string; // NEW: Description support (from UploadStep usage)
-
-  // ============= LEGO FEATURES (existing) =============
+  // ============= CONTENT =============
+  children?: ReactNode;
+  title?: string;
+  icon?: ReactNode;
+  description?: string;
   subtitle?: string;
   actions?: ReactNode;
   footer?: ReactNode;
+
+  // ============= APPEARANCE =============
   size?: CardSize;
   padding?: CardPadding;
+  variant?: CardVariant;
+
+  // ============= BEHAVIOR =============
   hoverable?: boolean;
   clickable?: boolean;
-
-  // ============= ENHANCED VARIANTS =============
-  variant?: CardVariant; // Extended για property/job support
-
-  // ============= MOBILE UX FEATURES (από Local BaseCard) =============
-  // Opacity system για stepper integration
-  opacityMode?: OpacityMode;
-
-  // Info button με mobile interactions
-  onInfoClick?: () => void;
-
-  // Touch events για mobile feedback
-  onTouchStart?: (e: React.TouchEvent) => void;
-  onTouchEnd?: (e: React.TouchEvent) => void;
-
-  // ============= COMMON FEATURES =============
   onClick?: () => void;
-  className?: string;
-  style?: React.CSSProperties;
-  'data-testid'?: string; // NEW: Test ID support
+
+  // ============= SYSTEM =============
+  className?: string | undefined;
+  'data-testid'?: string | undefined;
 }
 
 export interface CardHeaderProps {
