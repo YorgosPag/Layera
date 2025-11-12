@@ -6,7 +6,7 @@
       "surface": {
         "primary": {
           "value": "#22c55e",
-          "comment": "Primary surface για cards/modals - ΤΕΣΤ SST UNIFIED!"
+          "comment": "Primary surface για cards/modals"
         },
         "secondary": {
           "value": "#f8fafc",
