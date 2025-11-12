@@ -197,11 +197,16 @@ export default {
 
         // Global base styles for body, html, and common elements
         output += `/* Global Base Styles */\n`;
+        output += `/* Force light theme by default - Override dark theme */\n`;
+        output += `html {\n`;
+        output += `  color-scheme: light;\n`;
+        output += `}\n\n`;
         output += `body {\n`;
         output += `  font-family: var(--${prefix}-global-fontFamily-system);\n`;
         output += `  margin: var(--${prefix}-global-reset-margin);\n`;
         output += `  padding: var(--${prefix}-global-reset-padding);\n`;
-        output += `  color: var(--${prefix}-text-primary);\n`;
+        output += `  color: var(--${prefix}-color-text-primary);\n`;
+        output += `  background-color: white;\n`;
         output += `  display: var(--${prefix}-global-layout-display-flex);\n`;
         output += `  place-items: var(--${prefix}-global-layout-placeItems-center);\n`;
         output += `  min-width: var(--${prefix}-global-layout-minWidth);\n`;
@@ -218,7 +223,7 @@ export default {
         output += `h1 {\n`;
         output += `  font-size: var(--${prefix}-fontSize-xl);\n`;
         output += `  line-height: var(--${prefix}-lineHeight-tight);\n`;
-        output += `  color: var(--${prefix}-text-primary);\n`;
+        output += `  color: var(--${prefix}-color-text-primary);\n`;
         output += `}\n\n`;
         output += `button {\n`;
         output += `  border-radius: var(--${prefix}-size-2);\n`;
@@ -228,7 +233,7 @@ export default {
         output += `  font-weight: var(--${prefix}-fontWeight-medium);\n`;
         output += `  font-family: inherit;\n`;
         output += `  background-color: var(--${prefix}-bg-secondary);\n`;
-        output += `  color: var(--${prefix}-text-primary);\n`;
+        output += `  color: var(--${prefix}-color-text-primary);\n`;
         output += `  cursor: var(--${prefix}-global-cursor-pointer);\n`;
         output += `  transition: var(--${prefix}-global-transition-border);\n`;
         output += `}\n\n`;
