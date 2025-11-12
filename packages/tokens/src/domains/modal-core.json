@@ -158,6 +158,21 @@
         "value": "1.25",
         "comment": "Tight line height"
       }
+    },
+    "positioning": {
+      "comment": "Modal positioning tokens",
+      "headerOffset": {
+        "value": "var(--layera-global-layoutSystem-header-height)",
+        "comment": "Header height for modal positioning below header"
+      },
+      "marginFromEdge": {
+        "value": "var(--layera-global-spacing-1)",
+        "comment": "5px margin from screen edges (4px from spacing-1)"
+      },
+      "mobileBreakpoint": {
+        "value": "var(--layera-global-breakpoint-tablet)",
+        "comment": "768px breakpoint for mobile detection"
+      }
     }
   }
 }

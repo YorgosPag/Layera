@@ -50,7 +50,11 @@ export const Modal: React.FC<BaseModalProps> = ({
   }, []);
 
   const isMobile = useCallback(() => {
-    return window.innerWidth < 768; // Mobile breakpoint
+    // Get breakpoint from CSS variable
+    const rootStyles = getComputedStyle(document.documentElement);
+    const mobileBreakpoint = rootStyles.getPropertyValue('--layera-modal-positioning-mobileBreakpoint').trim();
+    const breakpointValue = parseInt(mobileBreakpoint) || 768;
+    return window.innerWidth < breakpointValue;
   }, []);
 
   // Draggable logic
@@ -86,28 +90,32 @@ export const Modal: React.FC<BaseModalProps> = ({
     const modalRect = modalRef.current.getBoundingClientRect();
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
-    const headerHeight = 52; // Height of the header - from layout-system.json
+
+    // Get values from CSS variables
+    const rootStyles = getComputedStyle(document.documentElement);
+    const headerHeight = parseInt(rootStyles.getPropertyValue('--layera-modal-positioning-headerOffset').trim()) || 52;
+    const marginFromEdge = parseInt(rootStyles.getPropertyValue('--layera-modal-positioning-marginFromEdge').trim()) || 5;
 
     switch (initialPosition) {
       case 'top-right':
         return {
-          x: windowWidth - modalRect.width - 5, // 5px left from right edge
-          y: headerHeight + 5 // 5px below header
+          x: windowWidth - modalRect.width - marginFromEdge, // Margin left from right edge
+          y: headerHeight + marginFromEdge // Margin below header
         };
       case 'top-left':
         return {
-          x: 0,
-          y: headerHeight
+          x: marginFromEdge,
+          y: headerHeight + marginFromEdge
         };
       case 'bottom-right':
         return {
-          x: windowWidth - modalRect.width,
-          y: windowHeight - modalRect.height
+          x: windowWidth - modalRect.width - marginFromEdge,
+          y: windowHeight - modalRect.height - marginFromEdge
         };
       case 'bottom-left':
         return {
-          x: 0,
-          y: windowHeight - modalRect.height
+          x: marginFromEdge,
+          y: windowHeight - modalRect.height - marginFromEdge
         };
       case 'center':
       default:
