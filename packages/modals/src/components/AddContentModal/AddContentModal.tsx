@@ -131,11 +131,16 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
             )}
           </Box>
           {currentView !== 'main' && (
-            <Box className="layera-spacing" data-type="margin" data-direction="top" data-size="lg" style={{ textAlign: 'center' }}>
+            <Box style={{
+              marginTop: 'var(--layera-global-spacing-4)',
+              display: 'flex',
+              justifyContent: 'flex-end'
+            }}>
               <button
                 onClick={() => setCurrentView('main')}
                 className="layera-button"
-                data-variant="nav"
+                data-variant="secondary"
+                data-size="md"
               >
                 Πίσω
               </button>
