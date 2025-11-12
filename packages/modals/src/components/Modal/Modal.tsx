@@ -22,6 +22,7 @@ export const Modal: React.FC<BaseModalProps> = ({
   preventBodyScroll = true,
   noOverlay = false,
   draggable = false,
+  initialPosition = 'center',
   // className = '',          // Enterprise: Unused - keeping for future
   // overlayClassName = '',   // Enterprise: Unused - keeping for future
   // contentClassName = '',   // Enterprise: Unused - keeping for future
@@ -78,6 +79,45 @@ export const Modal: React.FC<BaseModalProps> = ({
     setIsDragging(false);
   }, []);
 
+  // Calculate initial position based on initialPosition prop
+  const calculateInitialPosition = useCallback(() => {
+    if (isMobile() || !modalRef.current) return { x: 0, y: 0 };
+
+    const modalRect = modalRef.current.getBoundingClientRect();
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    const margin = 20; // Margin from screen edges
+
+    switch (initialPosition) {
+      case 'top-right':
+        return {
+          x: windowWidth - modalRect.width - margin,
+          y: margin
+        };
+      case 'top-left':
+        return {
+          x: margin,
+          y: margin
+        };
+      case 'bottom-right':
+        return {
+          x: windowWidth - modalRect.width - margin,
+          y: windowHeight - modalRect.height - margin
+        };
+      case 'bottom-left':
+        return {
+          x: margin,
+          y: windowHeight - modalRect.height - margin
+        };
+      case 'center':
+      default:
+        return {
+          x: (windowWidth - modalRect.width) / 2,
+          y: (windowHeight - modalRect.height) / 2
+        };
+    }
+  }, [initialPosition, isMobile]);
+
   // Handle dragging events
   useEffect(() => {
     if (!draggable || isTouchDevice() || isMobile()) return;
@@ -91,13 +131,17 @@ export const Modal: React.FC<BaseModalProps> = ({
     };
   }, [handleMouseMove, handleMouseUp, draggable, isTouchDevice, isMobile]);
 
-  // Reset position when modal opens
+  // Set initial position when modal opens
   useEffect(() => {
-    if (open) {
-      setModalPosition({ x: 0, y: 0 });
-      setIsDragging(false);
+    if (open && modalRef.current) {
+      // Use setTimeout to ensure modal is rendered and has dimensions
+      setTimeout(() => {
+        const position = calculateInitialPosition();
+        setModalPosition(position);
+        setIsDragging(false);
+      }, 0);
     }
-  }, [open]);
+  }, [open, calculateInitialPosition]);
 
   // Handle ESC key
   useEffect(() => {

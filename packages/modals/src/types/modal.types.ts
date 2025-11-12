@@ -24,6 +24,7 @@ export interface BaseModalProps {
   preventBodyScroll?: boolean;
   noOverlay?: boolean;
   draggable?: boolean;
+  initialPosition?: 'center' | 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
   className?: string;
   overlayClassName?: string;
   contentClassName?: string;
