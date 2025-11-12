@@ -781,6 +781,103 @@
         "comment": "Pointer cursor for interactive elements"
       }
     },
+    "display": {
+      "comment": "Display style tokens",
+      "flex": {
+        "value": "flex",
+        "comment": "Flexbox display"
+      }
+    },
+    "flexDirection": {
+      "comment": "Flex direction tokens",
+      "row": {
+        "value": "row",
+        "comment": "Flex row direction"
+      },
+      "column": {
+        "value": "column",
+        "comment": "Flex column direction"
+      }
+    },
+    "alignItems": {
+      "comment": "Flex align items tokens",
+      "center": {
+        "value": "center",
+        "comment": "Center align items"
+      },
+      "start": {
+        "value": "flex-start",
+        "comment": "Start align items"
+      },
+      "end": {
+        "value": "flex-end",
+        "comment": "End align items"
+      }
+    },
+    "justifyContent": {
+      "comment": "Flex justify content tokens",
+      "center": {
+        "value": "center",
+        "comment": "Center justify content"
+      },
+      "spaceBetween": {
+        "value": "space-between",
+        "comment": "Space between justify content"
+      },
+      "spaceAround": {
+        "value": "space-around",
+        "comment": "Space around justify content"
+      }
+    },
+    "position": {
+      "comment": "Position style tokens",
+      "fixed": {
+        "value": "fixed",
+        "comment": "Fixed positioning"
+      },
+      "relative": {
+        "value": "relative",
+        "comment": "Relative positioning"
+      },
+      "absolute": {
+        "value": "absolute",
+        "comment": "Absolute positioning"
+      }
+    },
+    "borderStyle": {
+      "comment": "Border style tokens",
+      "solid": {
+        "value": "solid",
+        "comment": "Solid border style"
+      },
+      "dashed": {
+        "value": "dashed",
+        "comment": "Dashed border style"
+      },
+      "dotted": {
+        "value": "dotted",
+        "comment": "Dotted border style"
+      }
+    },
+    "iconSize": {
+      "comment": "Icon size tokens for consistent sizing",
+      "sm": {
+        "value": "sm",
+        "comment": "Small icon size"
+      },
+      "md": {
+        "value": "md",
+        "comment": "Medium icon size"
+      },
+      "lg": {
+        "value": "lg",
+        "comment": "Large icon size"
+      },
+      "xl": {
+        "value": "xl",
+        "comment": "Extra large icon size"
+      }
+    },
     "boxShadow": {
       "comment": "Box shadow tokens",
       "2xl": {
