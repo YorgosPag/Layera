@@ -275,9 +275,9 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
     icon: <BuildingIcon size="lg" />,
     selectionValue: 'buy',
     theme: 'property',
-    onClick: onSelectProperty,
+    onClick: () => setCurrentView('sale-timing'),
     testId: 'search-buy-card'
-  }), [onSelectProperty]);
+  }), []);
 
   const searchRentCard = React.useMemo(() => cardFactory.selection({
     id: 'search-rent',
@@ -286,9 +286,9 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
     icon: <BuildingIcon size="lg" />,
     selectionValue: 'rent',
     theme: 'property',
-    onClick: onSelectProperty,
+    onClick: () => setCurrentView('sale-timing'),
     testId: 'search-rent-card'
-  }), [onSelectProperty]);
+  }), []);
 
   return (
     <Modal
