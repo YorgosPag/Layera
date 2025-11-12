@@ -1,0 +1,58 @@
+{
+  "name": "@layera/cards",
+  "version": "1.0.0",
+  "description": "Layera Cards System - Standardized card components για dashboard widgets και data display",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles": "./dist/styles.css"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts && npm run build:css",
+    "build:css": "postcss src/styles/index.css -o dist/styles.css",
+    "dev": "npm run build -- --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"src/**/*.{ts,tsx}\" --max-warnings 0"
+  },
+  "keywords": [
+    "cards",
+    "components",
+    "dashboard",
+    "widgets",
+    "data-display",
+    "ui",
+    "design-system",
+    "layera",
+    "enterprise",
+    "react",
+    "typescript"
+  ],
+  "author": "Layera",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "eslint": "^8.0.0",
+    "postcss": "^8.4.0",
+    "postcss-cli": "^10.1.0",
+    "postcss-import": "^15.1.0",
+    "autoprefixer": "^10.4.0",
+    "tsup": "^7.2.0",
+    "typescript": "^5.0.0"
+  }
+}

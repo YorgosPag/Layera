@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@layera/layout';
-import { PlusIcon, LocationIcon, MenuIcon, UserIcon, SettingsIcon, SearchIcon } from '@layera/icons';
+import { PlusIcon, LocationIcon, MenuIcon, UserIcon, SettingsIcon, SearchIcon, BuildingIcon, BriefcaseIcon } from '@layera/icons';
 import { Modal, ModalHeader, ModalContent, useModal } from '@layera/modals';
 
 export const Header: React.FC = () => {
@@ -17,7 +17,31 @@ export const Header: React.FC = () => {
       <ModalHeader title="Προσθήκη νέου περιεχομένου" />
       <ModalContent>
         <Box className="layera-padding--lg">
-          Εδώ θα προστεθεί το περιεχόμενο του modal
+          <Box className="layera-grid layera-grid--cols-1 layera-grid--tablet-cols-2 layera-grid--gap-lg">
+            <Box className="layera-card layera-card--clickable layera-padding--md">
+              <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm layera-margin-bottom--sm">
+                <BuildingIcon size="lg" style={{ color: 'var(--layera-color-accent-blue)' }} />
+                <Box className="layera-typography" data-size="lg" data-weight="semibold" data-color="primary">
+                  Ακίνητα
+                </Box>
+              </Box>
+              <Box className="layera-typography" data-size="sm" data-color="secondary">
+                Προσθήκη νέου ακινήτου στην πλατφόρμα
+              </Box>
+            </Box>
+
+            <Box className="layera-card layera-card--clickable layera-padding--md">
+              <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm layera-margin-bottom--sm">
+                <BriefcaseIcon size="lg" style={{ color: 'var(--layera-color-accent-green)' }} />
+                <Box className="layera-typography" data-size="lg" data-weight="semibold" data-color="primary">
+                  Εργασία
+                </Box>
+              </Box>
+              <Box className="layera-typography" data-size="sm" data-color="secondary">
+                Προσθήκη νέας αγγελίας εργασίας
+              </Box>
+            </Box>
+          </Box>
         </Box>
       </ModalContent>
     </Modal>
