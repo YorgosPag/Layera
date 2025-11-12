@@ -106,7 +106,12 @@ export const Modal: React.FC<BaseModalProps> = ({
       <Box
         as="section"
         role="document"
-        style={noOverlay ? { pointerEvents: 'auto' } : undefined}
+        style={noOverlay ? {
+          pointerEvents: 'auto',
+          background: 'var(--layera-color-surface-primary, #ffffff)'
+        } : {
+          background: 'var(--layera-color-surface-primary, #ffffff)'
+        }}
       >
         {showCloseButton && (
           <button

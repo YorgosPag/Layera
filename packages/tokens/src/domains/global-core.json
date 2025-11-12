@@ -655,20 +655,6 @@
           }
         }
       },
-      "surface": {
-        "overlay": {
-          "value": "var(--layera-color-surface-overlay, rgba(0, 0, 0, 0.5))",
-          "comment": "Modal overlay background - theme aware"
-        },
-        "primary": {
-          "value": "var(--layera-color-surface-primary, #ffffff)",
-          "comment": "Primary surface color - matches header background"
-        },
-        "secondary": {
-          "value": "var(--layera-color-surface-secondary, #f8fafc)",
-          "comment": "Secondary surface color - theme aware"
-        }
-      },
       "border": {
         "primary": {
           "value": "var(--layera-color-border-primary, #e5e5e5)",
