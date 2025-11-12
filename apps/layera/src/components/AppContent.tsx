@@ -4,7 +4,7 @@ import { MapContainer } from '@layera/map-core';
 import { Drawer, Modal, ModalHeader, ModalContent } from '@layera/modals';
 import { ThemeSwitcher } from '../../../../packages/theme-switcher/src';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
-import { PlusIcon, UserIcon, BuildingIcon, BriefcaseIcon, ArrowLeftIcon } from '../../../../packages/icons/src';
+import { PlusIcon, UserIcon, ArrowLeftIcon } from '../../../../packages/icons/src';
 import { Text, Heading } from '../../../../packages/typography/src';
 import { Header } from './Header';
 import { AddContentModal } from './AddContentModal';
@@ -13,7 +13,7 @@ import JobsContent from './JobsPage';
 import LoginContent from './LoginPage';
 
 export const AppContent: React.FC = () => {
-  const [activeDrawer, setActiveDrawer] = useState<'categorySelection' | 'propertyTypeSelection' | null>(null);
+  const [activeDrawer, setActiveDrawer] = useState<'propertyTypeSelection' | null>(null);
   const [activeModal, setActiveModal] = useState<'login' | 'addContent' | null>(null);
   const { t } = useLayeraTranslation();
 
@@ -21,17 +21,6 @@ export const AppContent: React.FC = () => {
     setActiveDrawer(null);
   };
 
-  const openDrawer = () => {
-    setActiveDrawer('categorySelection');
-  };
-
-  const openPropertyTypeSelection = () => {
-    setActiveDrawer('propertyTypeSelection');
-  };
-
-  const goBackToCategorySelection = () => {
-    setActiveDrawer('categorySelection');
-  };
 
   const closeModal = () => {
     setActiveModal(null);
@@ -47,7 +36,8 @@ export const AppContent: React.FC = () => {
 
   const handleSelectProperty = () => {
     closeModal();
-    openDrawer(); // Ανοίγει το category selection drawer
+    // TODO: Εδώ θα μπει η επόμενη φάση του flow για τα Ακίνητα
+    console.log('Επιλέχθηκαν Ακίνητα - επόμενο βήμα προς υλοποίηση');
   };
 
   const handleSelectJob = () => {
@@ -68,66 +58,6 @@ export const AppContent: React.FC = () => {
         />
       </Box>
 
-      <Drawer
-        open={activeDrawer === 'categorySelection'}
-        onClose={closeDrawer}
-        position="right"
-        size="md"
-        closeOnOverlayClick={false}
-        closeOnEscape={false}
-        preventBodyScroll={false}
-        overlayClassName="pinned-overlay"
-        aria-labelledby="category-selection-title"
-      >
-        <Box className="layera-padding--lg">
-          <Box className="layera-margin-bottom--lg">
-            <Heading
-              id="category-selection-title"
-              as="h2"
-              size="xl"
-              weight="bold"
-              color="primary"
-            >
-              Επιλογή Κατηγορίας
-            </Heading>
-          </Box>
-
-          <Box className="layera-stack--spacing-lg">
-            {/* Κάρτα Ακινήτων */}
-            <Box
-              as="button"
-              className="layera-card layera-card--clickable layera-padding--md layera-text-left"
-              onClick={openPropertyTypeSelection}
-            >
-              <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm layera-margin-bottom--sm">
-                <BuildingIcon size="lg" />
-                <Heading as="h3" size="lg" weight="semibold" color="primary">Ακίνητα</Heading>
-              </Box>
-              <Text size="sm" color="secondary" lineHeight="normal">
-                Καταχωρήστε ένα ακίνητο προς πώληση, ενοικίαση ή δημιουργήστε μια ειδοποίηση αναζήτησης.
-              </Text>
-            </Box>
-
-            {/* Κάρτα Εργασίας */}
-            <Box
-              as="button"
-              className="layera-card layera-card--clickable layera-padding--md layera-text-left"
-              onClick={() => {
-                closeDrawer();
-                alert('Ανοίγει flow Εργασίας');
-              }}
-            >
-              <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm layera-margin-bottom--sm">
-                <BriefcaseIcon size="lg" />
-                <Heading as="h3" size="lg" weight="semibold" color="primary">Εργασία</Heading>
-              </Box>
-              <Text size="sm" color="secondary" lineHeight="normal">
-                Προσφέρετε μια θέση εργασίας ή δηλώστε τις διαθεσιμότητά σας σε μια συγκεκριμένη περιοχή.
-              </Text>
-            </Box>
-          </Box>
-        </Box>
-      </Drawer>
 
       {/* Property Type Selection Drawer */}
       <Drawer
@@ -147,7 +77,7 @@ export const AppContent: React.FC = () => {
             <Box
               as="button"
               className="layera-typography"
-              onClick={goBackToCategorySelection}
+              onClick={closeDrawer}
               aria-label={t('navigation.back')}
             >
               <ArrowLeftIcon size="md" />
