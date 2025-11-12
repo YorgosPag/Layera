@@ -1087,18 +1087,9 @@ export default {
           output += `\n`;
         }
 
-        // Card Base Classes από card.base token
-        const cardBase = dictionary.allTokens.find(token => token.path.join('.') === 'card.base');
-        if (cardBase && cardBase.value) {
-          const props = cardBase.value;
-          output += `/* Card base κλάση */\n`;
-          output += `.layera-card {\n`;
-          Object.entries(props).forEach(([prop, value]) => {
-            const cssProp = prop.replace(/([A-Z])/g, '-$1').toLowerCase();
-            output += `  ${cssProp}: ${value};\n`;
-          });
-          output += `}\n\n`;
-        }
+        // ❌ ΔΙΑΓΡΑΦΗΚΕ: Card Base Classes από card.base token - ΔΙΠΛΟΤΥΠΙΑ ΜΕ components.card
+        // Το components.card token (γραμμή ~797) είναι η ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ για card styles
+        // Αυτός ο κώδικας έψαχνε για card.base token που ΔΕΝ ΥΠΑΡΧΕΙ
 
         // Background Utility Classes από bg.* tokens
         const bgSurfaceLight = dictionary.allTokens.find(token => token.path.join('.') === 'bg.surface.light');

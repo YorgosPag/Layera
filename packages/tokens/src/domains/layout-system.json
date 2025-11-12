@@ -292,17 +292,5 @@
         "comment": "Small padding for icon buttons"
       }
     }
-  },
-  "card": {
-    "base": {
-      "value": {
-        "backgroundColor": "var(--layera-color-surface-primary)",
-        "borderRadius": "0.5rem",
-        "padding": "1rem",
-        "border": "1px solid var(--layera-color-border-primary)",
-        "boxShadow": "0 1px 3px 0 rgba(0, 0, 0, 0.1)"
-      },
-      "comment": "Base card component"
-    }
   }
 }
