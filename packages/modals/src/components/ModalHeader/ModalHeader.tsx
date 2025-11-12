@@ -20,7 +20,7 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
     <header>
       <Box>
         {title && (
-          <h2 id="modal-title">
+          <h2 id="modal-title" className="layera-typography">
             {title}
           </h2>
         )}
