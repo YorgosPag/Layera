@@ -326,6 +326,9 @@ importers:
 
   packages/modals:
     dependencies:
+      '@layera/cards':
+        specifier: workspace:*
+        version: link:../cards
       '@layera/icons':
         specifier: workspace:*
         version: link:../icons

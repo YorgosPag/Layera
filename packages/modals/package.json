@@ -24,6 +24,7 @@
     "clean": "rimraf dist"
   },
   "dependencies": {
+    "@layera/cards": "workspace:*",
     "@layera/icons": "workspace:*",
     "@layera/layout": "workspace:*",
     "@layera/tokens": "workspace:*"
