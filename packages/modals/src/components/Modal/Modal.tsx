@@ -86,28 +86,28 @@ export const Modal: React.FC<BaseModalProps> = ({
     const modalRect = modalRef.current.getBoundingClientRect();
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
-    const margin = 20; // Margin from screen edges
+    const headerHeight = 52; // Height of the header - from layout-system.json
 
     switch (initialPosition) {
       case 'top-right':
         return {
-          x: windowWidth - modalRect.width - margin,
-          y: margin
+          x: windowWidth - modalRect.width - 5, // 5px left from right edge
+          y: headerHeight + 5 // 5px below header
         };
       case 'top-left':
         return {
-          x: margin,
-          y: margin
+          x: 0,
+          y: headerHeight
         };
       case 'bottom-right':
         return {
-          x: windowWidth - modalRect.width - margin,
-          y: windowHeight - modalRect.height - margin
+          x: windowWidth - modalRect.width,
+          y: windowHeight - modalRect.height
         };
       case 'bottom-left':
         return {
-          x: margin,
-          y: windowHeight - modalRect.height - margin
+          x: 0,
+          y: windowHeight - modalRect.height
         };
       case 'center':
       default:
