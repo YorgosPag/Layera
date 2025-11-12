@@ -90,12 +90,16 @@ export const Modal: React.FC<BaseModalProps> = ({
   const modalContent = (
     <Box
       ref={overlayRef}
-      className="layera-modal"
+      className={`layera-modal ${noOverlay ? 'layera-modal--no-overlay' : ''}`}
       onClick={handleOverlayClick}
       role="dialog"
       aria-modal={true}
       aria-labelledby={ariaLabelledBy}
       aria-describedby={ariaDescribedBy}
+      style={noOverlay ? {
+        background: 'var(--layera-global-components-drawer-pinnedOverlay-background, transparent)',
+        pointerEvents: 'var(--layera-global-components-drawer-pinnedOverlay-pointerEvents, none)'
+      } : undefined}
     >
       <Box
         as="section"

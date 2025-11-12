@@ -47,6 +47,10 @@
       "transparent": {
         "value": "transparent",
         "comment": "Transparent color"
+      },
+      "noOverlay": {
+        "value": "transparent",
+        "comment": "No overlay - transparent for map interaction"
       }
     },
     "spacing": {
