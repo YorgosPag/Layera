@@ -65,6 +65,10 @@ export default {
             if (token.name === 'layera-color-text-secondary') {
               finalValue = testConfig.colors.text.secondary.value;
             }
+            // Override icon colors - ΕΙΚΟΝΙΔΙΑ
+            if (token.name === 'layera-icon-colorPrimary') {
+              finalValue = testConfig.colors.icons.primary.value;
+            }
           }
 
           output += `  --${token.name}: ${finalValue};`;
@@ -98,6 +102,9 @@ export default {
               }
               if (varName === 'layera-color-text-secondary') {
                 finalValue = testConfig.colors.text.secondary.value;
+              }
+              if (varName === 'layera-icon-colorPrimary') {
+                finalValue = testConfig.colors.icons.primary.value;
               }
             }
 

@@ -20,6 +20,7 @@ if (!targetType || !newColor) {
   console.log('  node change-color.js surface #3b82f6       (αλλάζει φόντα)');
   console.log('  node change-color.js text.primary #ff0000  (αλλάζει κύριο κείμενο)');
   console.log('  node change-color.js text.secondary #00ff00 (αλλάζει δευτερεύον κείμενο)');
+  console.log('  node change-color.js icons.primary #fbbf24 (αλλάζει όλα τα εικονίδια)');
   process.exit(1);
 }
 
@@ -52,9 +53,12 @@ try {
   } else if (targetType === 'text.secondary') {
     console.log('📝 Changing secondary text color...');
     testConfig.colors.text.secondary.value = newColor;
+  } else if (targetType === 'icons.primary') {
+    console.log('🎯 Changing all icon colors (7-8 icons in header + cards)...');
+    testConfig.colors.icons.primary.value = newColor;
   } else {
     console.log(`❌ Unknown target type: ${targetType}`);
-    console.log('Valid targets: surface, text.primary, text.secondary');
+    console.log('Valid targets: surface, text.primary, text.secondary, icons.primary');
     process.exit(1);
   }
 

@@ -49,6 +49,19 @@ const getDesignSystemStructure = () => ({
         variable: "--layera-color-text-secondary"
       }
     }
+  },
+  icons: {
+    title: "🎯 Εικονίδια (Icons)",
+    description: "Χρώματα όλων των εικονιδίων (7-8 εικονίδια σε επικεφαλίδα + κάρτες)",
+    items: {
+      primary: {
+        name: "Primary Icons",
+        description: "Όλα τα εικονίδια (επικεφαλίδα + κάρτες)",
+        currentValue: "#fbbf24", // Θα την κάνω dynamic
+        sourceOfTruth: "packages/tokens/src/domains/icons-core.json → icon.colorPrimary",
+        variable: "--layera-icon-colorPrimary"
+      }
+    }
   }
 });
 
@@ -59,7 +72,8 @@ export const TestPanel: React.FC<TestPanelProps> = ({ isOpen, onClose }) => {
   const [colorValues, setColorValues] = useState({
     'surfaces.primary': '#482323',
     'texts.primary': '#e718ba',
-    'texts.secondary': '#0eb419'
+    'texts.secondary': '#0eb419',
+    'icons.primary': '#fbbf24'
   });
   const commandRef = useRef<HTMLTextAreaElement>(null);
 
@@ -81,6 +95,8 @@ export const TestPanel: React.FC<TestPanelProps> = ({ isOpen, onClose }) => {
       targetType = 'text.primary';
     } else if (itemKey === 'texts.secondary') {
       targetType = 'text.secondary';
+    } else if (itemKey === 'icons.primary') {
+      targetType = 'icons.primary';
     }
 
     // Δημιουργία του command για αυτό το συγκεκριμένο item
