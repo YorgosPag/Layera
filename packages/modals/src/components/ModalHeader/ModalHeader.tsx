@@ -17,7 +17,7 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
   className: _className = ''  // Enterprise: Prefixed with _ to mark as intentionally unused
 }) => {
   return (
-    <header>
+    <header className="layera-card__modalHeaderContainer">
       <Box>
         {title && (
           <h2 id="modal-title" className="layera-card__modalHeader">

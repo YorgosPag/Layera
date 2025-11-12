@@ -16,8 +16,8 @@
     "comment": "Card title color - κληρονομεί από text primary"
   },
   "modalHeaderFontSize": {
-    "value": "1.5rem",
-    "comment": "Modal header font size - 24px μεγαλύτερο από card titles"
+    "value": "1.25rem",
+    "comment": "Modal header font size - 20px για mobile optimization"
   },
   "modalHeaderFontWeight": {
     "value": "700",

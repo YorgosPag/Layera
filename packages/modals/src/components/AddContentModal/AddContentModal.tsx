@@ -46,7 +46,7 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
   const propertyCard = React.useMemo(() => cardFactory.selection({
     id: 'add-content-property',
     title: 'Ακίνητα',
-    description: 'Προσθήκη νέου ακινήτου στην πλατφόρμα',
+    description: 'Καταχωρήστε ένα ακίνητο προς πώληση, ενοικίαση ή δημιουργήστε μια ειδοποίηση αναζήτησης.',
     icon: <BuildingIcon size="lg" />,
     selectionValue: 'property',
     theme: 'property',
@@ -57,7 +57,7 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
   const jobCard = React.useMemo(() => cardFactory.selection({
     id: 'add-content-job',
     title: 'Εργασία',
-    description: 'Προσθήκη νέας αγγελίας εργασίας',
+    description: 'Προσφέρετε μια θέση εργασίας ή δηλώστε τη διαθεσιμότητά σας σε μια συγκεκριμένη περιοχή.',
     icon: <BriefcaseIcon size="lg" />,
     selectionValue: 'job',
     theme: 'job',
@@ -71,9 +71,10 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
       onClose={onClose}
       size="md"
       noOverlay={true}
+      showCloseButton={false}
       aria-labelledby="add-content-title"
     >
-      <ModalHeader title="Επιλογή κατηγορίας" />
+      <ModalHeader title="Επιλογή κατηγορίας" onClose={onClose} />
       <ModalContent>
         <Box className="layera-padding--lg">
           <Box className="layera-grid layera-grid--cols-1 layera-grid--gap-lg">

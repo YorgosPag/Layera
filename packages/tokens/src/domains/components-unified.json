@@ -91,6 +91,14 @@
             "color": "var(--layera-color-text-primary)",
             "margin": "0",
             "lineHeight": "1.3"
+          },
+          "modalHeaderContainer": {
+            "display": "flex",
+            "alignItems": "center",
+            "justifyContent": "space-between",
+            "gap": "var(--layera-global-spacing-3)",
+            "padding": "var(--layera-global-spacing-3)",
+            "borderBottom": "1px solid var(--layera-color-border-primary)"
           }
         }
       }
