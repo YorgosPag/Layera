@@ -43,25 +43,25 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
   // Enterprise card configurations using factory pattern
   const propertyCard = React.useMemo(() => cardFactory.selection({
     id: 'add-content-property',
-    title: t('modal.addContent.property.title'),
-    description: t('modal.addContent.property.subtitle'),
+    title: 'Ακίνητα',
+    description: 'Προσθήκη νέου ακινήτου στην πλατφόρμα',
     icon: <BuildingIcon size="lg" />,
     selectionValue: 'property',
     theme: 'property',
     onClick: onSelectProperty,
     testId: 'add-content-property-card'
-  }), [t, onSelectProperty]);
+  }), [onSelectProperty]);
 
   const jobCard = React.useMemo(() => cardFactory.selection({
     id: 'add-content-job',
-    title: t('modal.addContent.job.title'),
-    description: t('modal.addContent.job.subtitle'),
+    title: 'Εργασία',
+    description: 'Προσθήκη νέας αγγελίας εργασίας',
     icon: <BriefcaseIcon size="lg" />,
     selectionValue: 'job',
     theme: 'job',
     onClick: onSelectJob,
     testId: 'add-content-job-card'
-  }), [t, onSelectJob]);
+  }), [onSelectJob]);
 
   return (
     <Modal
@@ -70,7 +70,7 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
       size="md"
       aria-labelledby="add-content-title"
     >
-      <ModalHeader title={t('modal.addContent.title')} />
+      <ModalHeader title="Προσθήκη νέου περιεχομένου" />
       <ModalContent>
         <Box className="layera-padding--lg">
           <Box className="layera-grid layera-grid--cols-1 layera-grid--tablet-cols-2 layera-grid--gap-lg">
