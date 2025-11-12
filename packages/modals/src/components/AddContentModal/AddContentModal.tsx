@@ -41,7 +41,7 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
   onSelectJob
 }) => {
   const { t } = useLayeraTranslation();
-  const [currentView, setCurrentView] = React.useState<'main' | 'property' | 'job' | 'property-offer' | 'property-search' | 'sale-timing' | 'location-method'>('main');
+  const [currentView, setCurrentView] = React.useState<'main' | 'property' | 'job' | 'property-offer' | 'property-search' | 'sale-timing' | 'location-method' | 'job-offer-type'>('main');
 
   // Reset view when modal closes
   React.useEffect(() => {
@@ -95,6 +95,29 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
     onClick: () => setCurrentView('property-search'),
     testId: 'property-search-card'
   }), []);
+
+  // Job sub-cards (second level)
+  const jobOfferCard = React.useMemo(() => cardFactory.selection({
+    id: 'job-offer',
+    title: 'Θέλω να Προσφέρω Θέση',
+    description: 'Δημοσιεύστε μια αγγελία για μια διαθέσιμη θέση εργασίας.',
+    icon: <BriefcaseIcon size="lg" />,
+    selectionValue: 'job-offer',
+    theme: 'job',
+    onClick: () => setCurrentView('job-offer-type'),
+    testId: 'job-offer-card'
+  }), []);
+
+  const jobSearchCard = React.useMemo(() => cardFactory.selection({
+    id: 'job-search',
+    title: 'Αναζητώ Εργασία',
+    description: 'Δηλώστε τη διαθεσιμότητά σας και τις δεξιότητές σας σε μια περιοχή.',
+    icon: <BriefcaseIcon size="lg" />,
+    selectionValue: 'job-search',
+    theme: 'job',
+    onClick: onSelectJob,
+    testId: 'job-search-card'
+  }), [onSelectJob]);
 
   // Transaction type cards (third level)
   const saleCard = React.useMemo(() => cardFactory.selection({
@@ -165,6 +188,62 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
     testId: 'location-draw-card'
   }), [onSelectProperty]);
 
+  // Employment type cards (job offer third level)
+  const fullTimeCard = React.useMemo(() => cardFactory.selection({
+    id: 'employment-fulltime',
+    title: 'Πλήρης Απασχόληση',
+    description: 'Μόνιμη θέση πλήρους ωραρίου.',
+    icon: <BriefcaseIcon size="lg" />,
+    selectionValue: 'fulltime',
+    theme: 'job',
+    onClick: onSelectJob,
+    testId: 'employment-fulltime-card'
+  }), [onSelectJob]);
+
+  const partTimeCard = React.useMemo(() => cardFactory.selection({
+    id: 'employment-parttime',
+    title: 'Μερική Απασχόληση',
+    description: 'Θέση με μειωμένο ωράριο.',
+    icon: <BriefcaseIcon size="lg" />,
+    selectionValue: 'parttime',
+    theme: 'job',
+    onClick: onSelectJob,
+    testId: 'employment-parttime-card'
+  }), [onSelectJob]);
+
+  const freelanceCard = React.useMemo(() => cardFactory.selection({
+    id: 'employment-freelance',
+    title: 'Freelance / Project',
+    description: 'Εργασία ανά έργο ή ως ελεύθερος επαγγελματίας.',
+    icon: <BriefcaseIcon size="lg" />,
+    selectionValue: 'freelance',
+    theme: 'job',
+    onClick: onSelectJob,
+    testId: 'employment-freelance-card'
+  }), [onSelectJob]);
+
+  const seasonalCard = React.useMemo(() => cardFactory.selection({
+    id: 'employment-seasonal',
+    title: 'Εποχιακή Εργασία',
+    description: 'Εργασία για συγκεκριμένη χρονική περίοδο.',
+    icon: <BriefcaseIcon size="lg" />,
+    selectionValue: 'seasonal',
+    theme: 'job',
+    onClick: onSelectJob,
+    testId: 'employment-seasonal-card'
+  }), [onSelectJob]);
+
+  const internshipCard = React.useMemo(() => cardFactory.selection({
+    id: 'employment-internship',
+    title: 'Πρακτική Άσκηση',
+    description: 'Θέση πρακτικής άσκησης ή μαθητείας.',
+    icon: <BriefcaseIcon size="lg" />,
+    selectionValue: 'internship',
+    theme: 'job',
+    onClick: onSelectJob,
+    testId: 'employment-internship-card'
+  }), [onSelectJob]);
+
   return (
     <Modal
       open={isOpen}
@@ -180,6 +259,7 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
           currentView === 'property-offer' ? "Είδος Συναλλαγής" :
           currentView === 'sale-timing' ? "Χρόνος Διαθεσιμότητας" :
           currentView === 'location-method' ? "Μέθοδος Τοποθεσίας" :
+          currentView === 'job-offer-type' ? "Είδος Απασχόλησης" :
           "Τύπος Καταχώρησης"
         }
         onClose={onClose}
@@ -201,7 +281,8 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
             )}
             {currentView === 'job' && (
               <>
-                <UnifiedCard config={jobCard} />
+                <UnifiedCard config={jobOfferCard} />
+                <UnifiedCard config={jobSearchCard} />
               </>
             )}
             {currentView === 'property-offer' && (
@@ -222,12 +303,23 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
                 <UnifiedCard config={drawOnMapCard} />
               </>
             )}
+            {currentView === 'job-offer-type' && (
+              <>
+                <UnifiedCard config={fullTimeCard} />
+                <UnifiedCard config={partTimeCard} />
+                <UnifiedCard config={freelanceCard} />
+                <UnifiedCard config={seasonalCard} />
+                <UnifiedCard config={internshipCard} />
+              </>
+            )}
           </Box>
           {currentView !== 'main' && (
             <Box className="layera-card__modalBackButtonContainer">
               <button
                 onClick={() => {
-                  if (currentView === 'location-method') {
+                  if (currentView === 'job-offer-type') {
+                    setCurrentView('job');
+                  } else if (currentView === 'location-method') {
                     setCurrentView('sale-timing');
                   } else if (currentView === 'sale-timing') {
                     setCurrentView('property-offer');
