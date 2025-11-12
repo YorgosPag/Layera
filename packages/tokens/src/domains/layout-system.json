@@ -89,6 +89,10 @@
       "height": {
         "value": "52px",
         "comment": "Fixed header height for navigation bar"
+      },
+      "zIndex": {
+        "value": "1000",
+        "comment": "Header z-index above map (zIndex: 1) and other content"
       }
     }
   },
@@ -270,6 +274,10 @@
       "borderRadius": {
         "value": "6px",
         "comment": "Action button border radius"
+      },
+      "padding": {
+        "value": "6px",
+        "comment": "Small padding for icon buttons"
       }
     }
   },

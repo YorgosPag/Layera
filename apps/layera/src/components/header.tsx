@@ -37,31 +37,31 @@ export const Header: React.FC = () => {
         >
           <PlusIcon size="sm" style={{ color: 'white' }} />
         </button>
-        <span style={{ color: 'white', fontSize: '16px', fontWeight: '600' }}>Geo-Canvas</span>
+        <span style={{ color: 'white', fontSize: 'var(--layera-fontSize-base)', fontWeight: 'var(--layera-fontWeight-semibold)' }}>Geo-Canvas</span>
       </div>
 
       {/* Κέντρο: 3 εικονίδια */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <button style={{ padding: '6px', backgroundColor: 'transparent', border: 'none', cursor: 'pointer' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--layera-global-spacing-2)' }}>
+        <button style={{ padding: 'var(--layera-btn-action-padding)', backgroundColor: 'transparent', border: 'none', cursor: 'pointer' }}>
           <SearchIcon size="md" style={{ color: 'white' }} />
         </button>
-        <button style={{ padding: '6px', backgroundColor: 'transparent', border: 'none', cursor: 'pointer' }}>
+        <button style={{ padding: 'var(--layera-btn-action-padding)', backgroundColor: 'transparent', border: 'none', cursor: 'pointer' }}>
           <LocationIcon size="md" style={{ color: 'white' }} />
         </button>
-        <button style={{ padding: '6px', backgroundColor: 'transparent', border: 'none', cursor: 'pointer' }}>
+        <button style={{ padding: 'var(--layera-btn-action-padding)', backgroundColor: 'transparent', border: 'none', cursor: 'pointer' }}>
           <MenuIcon size="md" style={{ color: 'white' }} />
         </button>
       </div>
 
       {/* Δεξιά: 3 εικονίδια */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <button style={{ padding: '6px', backgroundColor: 'transparent', border: 'none', cursor: 'pointer' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--layera-global-spacing-2)' }}>
+        <button style={{ padding: 'var(--layera-btn-action-padding)', backgroundColor: 'transparent', border: 'none', cursor: 'pointer' }}>
           <SettingsIcon size="md" style={{ color: 'white' }} />
         </button>
-        <button style={{ padding: '6px', backgroundColor: 'transparent', border: 'none', cursor: 'pointer' }}>
+        <button style={{ padding: 'var(--layera-btn-action-padding)', backgroundColor: 'transparent', border: 'none', cursor: 'pointer' }}>
           <LocationIcon size="md" style={{ color: 'white' }} />
         </button>
-        <button style={{ padding: '6px', backgroundColor: 'transparent', border: 'none', cursor: 'pointer' }}>
+        <button style={{ padding: 'var(--layera-btn-action-padding)', backgroundColor: 'transparent', border: 'none', cursor: 'pointer' }}>
           <UserIcon size="md" style={{ color: 'white' }} />
         </button>
       </div>
