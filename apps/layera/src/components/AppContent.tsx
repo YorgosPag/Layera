@@ -6,6 +6,7 @@ import { ThemeSwitcher } from '../../../../packages/theme-switcher/src';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 import { PlusIcon, UserIcon, BuildingIcon, BriefcaseIcon, ArrowLeftIcon } from '../../../../packages/icons/src';
 import { Text, Heading } from '../../../../packages/typography/src';
+import { Header } from './header';
 import RealEstateContent from './RealEstatePage';
 import JobsContent from './JobsPage';
 import LoginContent from './LoginPage';
@@ -41,54 +42,9 @@ export const AppContent: React.FC = () => {
 
   return (
     <Box className="layera-layout">
-      <LayeraHeader
-        title={t('app.name')}
-        subtitle={t('app.subtitle')}
-        variant="rich"
-        className="layera-header"
-        logo={
-          <Box
-            as="button"
-            className="layera-typography"
-            type="button"
-            aria-label="Layera Logo"
-          >
-            L
-          </Box>
-        }
-        navigation={
-          <HeaderActionsGroup>
-            <button
-              onClick={openDrawer}
-              className="layera-typography"
-              type="button"
-              aria-label="Επιλογή κατηγορίας"
-            >
-              <PlusIcon size="md" />
-            </button>
-          </HeaderActionsGroup>
-        }
-        actions={
-          <HeaderActionsGroup>
-            <LanguageSwitcher variant="compact" />
-            <ThemeSwitcher
-              variant="icon"
-              size="md"
-              aria-label={t('buttons.changeTheme')}
-            />
-            <button
-              onClick={() => openModal('login')}
-              className="layera-typography"
-              type="button"
-              aria-label={t('auth.loginRegister')}
-            >
-              <UserIcon size="lg" />
-            </button>
-          </HeaderActionsGroup>
-        }
-      />
+      <Header />
 
-      <Box className="layera-map-container">
+      <Box className="layera-map-container" style={{ marginTop: '48px' }}>
         <MapContainer
           className="layera-map--fullscreen"
           initialLat={37.9755}
