@@ -11,7 +11,7 @@
 
 import React from 'react';
 import { Box, Flex } from '@layera/layout';
-import { BuildingIcon, BriefcaseIcon } from '@layera/icons';
+import { BuildingIcon, BriefcaseIcon, UploadIcon, MapIcon } from '@layera/icons';
 import { Modal } from '../Modal/Modal';
 import { ModalHeader } from '../ModalHeader/ModalHeader';
 import { ModalContent } from '../ModalContent/ModalContent';
@@ -41,7 +41,7 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
   onSelectJob
 }) => {
   const { t } = useLayeraTranslation();
-  const [currentView, setCurrentView] = React.useState<'main' | 'property' | 'job' | 'property-offer' | 'property-search'>('main');
+  const [currentView, setCurrentView] = React.useState<'main' | 'property' | 'job' | 'property-offer' | 'property-search' | 'sale-timing' | 'location-method'>('main');
 
   // Reset view when modal closes
   React.useEffect(() => {
@@ -104,9 +104,9 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
     icon: <BuildingIcon size="lg" />,
     selectionValue: 'sale',
     theme: 'property',
-    onClick: onSelectProperty,
+    onClick: () => setCurrentView('sale-timing'),
     testId: 'transaction-sale-card'
-  }), [onSelectProperty]);
+  }), []);
 
   const rentalCard = React.useMemo(() => cardFactory.selection({
     id: 'transaction-rental',
@@ -117,6 +117,52 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
     theme: 'property',
     onClick: onSelectProperty,
     testId: 'transaction-rental-card'
+  }), [onSelectProperty]);
+
+  // Availability timing cards (fourth level)
+  const immediateCard = React.useMemo(() => cardFactory.selection({
+    id: 'timing-immediate',
+    title: 'Άμεσα Διαθέσιμο',
+    description: 'Το ακίνητο είναι διαθέσιμο τώρα.',
+    icon: <BuildingIcon size="lg" />,
+    selectionValue: 'immediate',
+    theme: 'property',
+    onClick: () => setCurrentView('location-method'),
+    testId: 'timing-immediate-card'
+  }), []);
+
+  const futureCard = React.useMemo(() => cardFactory.selection({
+    id: 'timing-future',
+    title: 'Διαθέσιμο στο Μέλλον',
+    description: 'Το ακίνητο θα είναι διαθέσιμο σε μελλοντική ημερομηνία.',
+    icon: <BuildingIcon size="lg" />,
+    selectionValue: 'future',
+    theme: 'property',
+    onClick: onSelectProperty,
+    testId: 'timing-future-card'
+  }), [onSelectProperty]);
+
+  // Location method cards (fifth level)
+  const uploadFloorplanCard = React.useMemo(() => cardFactory.selection({
+    id: 'location-upload',
+    title: 'Καταχώρηση Κάτοψης',
+    description: 'Ανεβάστε ένα αρχείο (DXF, PNG, JPG) για να το τοποθετήσετε στον χάρτη.',
+    icon: <UploadIcon size="lg" />,
+    selectionValue: 'upload',
+    theme: 'property',
+    onClick: onSelectProperty,
+    testId: 'location-upload-card'
+  }), [onSelectProperty]);
+
+  const drawOnMapCard = React.useMemo(() => cardFactory.selection({
+    id: 'location-draw',
+    title: 'Σχεδίαση στον Χάρτη',
+    description: 'Τοποθετήστε μια πινέζα ή σχεδιάστε ένα περίγραμμα για να ορίσετε την τοποθεσία.',
+    icon: <MapIcon size="lg" />,
+    selectionValue: 'draw',
+    theme: 'property',
+    onClick: onSelectProperty,
+    testId: 'location-draw-card'
   }), [onSelectProperty]);
 
   return (
@@ -132,6 +178,8 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
         title={
           currentView === 'main' ? "Επιλογή κατηγορίας" :
           currentView === 'property-offer' ? "Είδος Συναλλαγής" :
+          currentView === 'sale-timing' ? "Χρόνος Διαθεσιμότητας" :
+          currentView === 'location-method' ? "Μέθοδος Τοποθεσίας" :
           "Τύπος Καταχώρησης"
         }
         onClose={onClose}
@@ -162,12 +210,28 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
                 <UnifiedCard config={rentalCard} />
               </>
             )}
+            {currentView === 'sale-timing' && (
+              <>
+                <UnifiedCard config={immediateCard} />
+                <UnifiedCard config={futureCard} />
+              </>
+            )}
+            {currentView === 'location-method' && (
+              <>
+                <UnifiedCard config={uploadFloorplanCard} />
+                <UnifiedCard config={drawOnMapCard} />
+              </>
+            )}
           </Box>
           {currentView !== 'main' && (
             <Box className="layera-card__modalBackButtonContainer">
               <button
                 onClick={() => {
-                  if (currentView === 'property-offer' || currentView === 'property-search') {
+                  if (currentView === 'location-method') {
+                    setCurrentView('sale-timing');
+                  } else if (currentView === 'sale-timing') {
+                    setCurrentView('property-offer');
+                  } else if (currentView === 'property-offer' || currentView === 'property-search') {
                     setCurrentView('property');
                   } else if (currentView === 'property' || currentView === 'job') {
                     setCurrentView('main');
