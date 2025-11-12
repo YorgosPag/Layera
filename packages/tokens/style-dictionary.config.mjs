@@ -58,11 +58,11 @@ export default {
             if (token.name === 'layera-color-light-surface-primary') {
               finalValue = testConfig.colors.cards.value;
             }
-            // Override text colors
-            if (token.name === 'layera-color-light-text-primary') {
+            // Override text colors - ΣΩΣΤΑ TOKENS NAMES
+            if (token.name === 'layera-color-text-primary') {
               finalValue = testConfig.colors.text.primary.value;
             }
-            if (token.name === 'layera-color-light-text-secondary') {
+            if (token.name === 'layera-color-text-secondary') {
               finalValue = testConfig.colors.text.secondary.value;
             }
           }
@@ -86,7 +86,22 @@ export default {
           output += `\n/* ✅ DYNAMIC: Light theme από JSON tokens */\n:root.light {\n`;
           lightTokens.forEach(token => {
             const varName = token.name.replace('light-', '');
-            output += `  --${varName}: var(--${token.name}, ${token.value});\n`;
+            let finalValue = token.value;
+
+            // 🧪 George Test Mode Override για light theme
+            if (testConfig?.testMode) {
+              if (varName === 'layera-color-surface-primary') {
+                finalValue = testConfig.colors.cards.value;
+              }
+              if (varName === 'layera-color-text-primary') {
+                finalValue = testConfig.colors.text.primary.value;
+              }
+              if (varName === 'layera-color-text-secondary') {
+                finalValue = testConfig.colors.text.secondary.value;
+              }
+            }
+
+            output += `  --${varName}: var(--${token.name}, ${finalValue});\n`;
           });
           output += `}\n\n`;
         }

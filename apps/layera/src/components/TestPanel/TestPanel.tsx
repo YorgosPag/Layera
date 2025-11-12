@@ -15,7 +15,8 @@ interface TestPanelProps {
 }
 
 // Design System Structure με Single Source of Truth paths
-const designSystemStructure = {
+// Θα φτιάξω dynamic structure που διαβάζει τις τρέχουσες τιμές
+const getDesignSystemStructure = () => ({
   surfaces: {
     title: "🎨 Φόντα (Surfaces)",
     description: "Φόντα καρτών, modal, header",
@@ -23,7 +24,7 @@ const designSystemStructure = {
       primary: {
         name: "Primary Surface",
         description: "Κάρτες, Modal, Header φόντο",
-        currentValue: "#ef4444", // Τρέχουσα τιμή
+        currentValue: "#482323", // Θα την κάνω dynamic
         sourceOfTruth: "packages/tokens/src/domains/theme-colors.json → color.light.surface.primary",
         variable: "--layera-color-light-surface-primary"
       }
@@ -36,30 +37,54 @@ const designSystemStructure = {
       primary: {
         name: "Primary Text",
         description: "Κύρια κείμενα",
-        currentValue: "#1e293b",
+        currentValue: "#e718ba",
         sourceOfTruth: "packages/tokens/src/domains/color-core.json → text.primary",
         variable: "--layera-color-text-primary"
       },
       secondary: {
         name: "Secondary Text",
         description: "Δευτερεύοντα κείμενα",
-        currentValue: "#475569",
+        currentValue: "#0eb419",
         sourceOfTruth: "packages/tokens/src/domains/color-core.json → text.secondary",
         variable: "--layera-color-text-secondary"
       }
     }
   }
-};
+});
 
 export const TestPanel: React.FC<TestPanelProps> = ({ isOpen, onClose }) => {
   const [showCommand, setShowCommand] = useState(false);
   const [currentCommand, setCurrentCommand] = useState('');
   const [editingItem, setEditingItem] = useState<string | null>(null);
+  const [colorValues, setColorValues] = useState({
+    'surfaces.primary': '#482323',
+    'texts.primary': '#e718ba',
+    'texts.secondary': '#0eb419'
+  });
   const commandRef = useRef<HTMLTextAreaElement>(null);
 
+  // Get current structure with updated values
+  const designSystemStructure = getDesignSystemStructure();
+
   const handleColorChange = (itemKey: string, color: string) => {
+    // Ενημέρωση local state για άμεση προεπισκόπηση
+    setColorValues(prev => ({
+      ...prev,
+      [itemKey]: color
+    }));
+
+    // Μετάφραση του itemKey σε target type για το script
+    let targetType = '';
+    if (itemKey === 'surfaces.primary') {
+      targetType = 'surface';
+    } else if (itemKey === 'texts.primary') {
+      targetType = 'text.primary';
+    } else if (itemKey === 'texts.secondary') {
+      targetType = 'text.secondary';
+    }
+
     // Δημιουργία του command για αυτό το συγκεκριμένο item
-    const command = `node "C:\\layera\\tests-george\\change-color.js" "${color}"`;
+    const command = `node "C:\\layera\\tests-george\\change-color.js" ${targetType} "${color}"`;
     setCurrentCommand(command);
     setEditingItem(itemKey);
     setShowCommand(true);
@@ -277,12 +302,12 @@ export const TestPanel: React.FC<TestPanelProps> = ({ isOpen, onClose }) => {
                           <Box style={{
                             width: '40px',
                             height: '40px',
-                            backgroundColor: item.currentValue,
+                            backgroundColor: colorValues[`${categoryKey}.${itemKey}`] || item.currentValue,
                             border: '2px solid #dee2e6',
                             borderRadius: '8px'
                           }} />
                           <Text size="xs" style={{ fontFamily: 'monospace', color: '#666' }}>
-                            {item.currentValue}
+                            {colorValues[`${categoryKey}.${itemKey}`] || item.currentValue}
                           </Text>
                         </Box>
 
@@ -290,8 +315,8 @@ export const TestPanel: React.FC<TestPanelProps> = ({ isOpen, onClose }) => {
                         <Box style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                           <input
                             type="color"
-                            defaultValue={item.currentValue}
-                            onBlur={(e) => handleColorChange(`${categoryKey}.${itemKey}`, e.target.value)}
+                            value={colorValues[`${categoryKey}.${itemKey}`] || item.currentValue}
+                            onChange={(e) => handleColorChange(`${categoryKey}.${itemKey}`, e.target.value)}
                             style={{
                               width: '50px',
                               height: '40px',

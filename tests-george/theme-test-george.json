@@ -3,24 +3,24 @@
   "testMode": true,
   "colors": {
     "cards": {
-      "value": "#1c7d60",
+      "value": "#83a97e",
       "comment": "Φόντο καρτών - Αλλάζω εδώ για δοκιμές"
     },
     "modal": {
-      "value": "#1c7d60",
+      "value": "#83a97e",
       "comment": "Φόντο modal - Αλλάζω εδώ για δοκιμές"
     },
     "header": {
-      "value": "#1c7d60",
+      "value": "#83a97e",
       "comment": "Φόντο επικεφαλίδας - Αλλάζω εδώ για δοκιμές"
     },
     "text": {
       "primary": {
-        "value": "#1e293b",
+        "value": "#811d6b",
         "comment": "Κύριο κείμενο - Αλλάζω εδώ για δοκιμές"
       },
       "secondary": {
-        "value": "#475569",
+        "value": "#2b502d",
         "comment": "Δευτερεύον κείμενο - Αλλάζω εδώ για δοκιμές"
       }
     }

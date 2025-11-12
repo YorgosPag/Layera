@@ -10,11 +10,16 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-// Πάρε το χρώμα από command line argument
-const newColor = process.argv[2];
+// Πάρε τα arguments από command line
+const targetType = process.argv[2]; // π.χ. 'surface', 'text.primary', 'text.secondary'
+const newColor = process.argv[3];
 
-if (!newColor) {
-  console.log('❌ Παρακαλώ δώστε χρώμα! Παράδειγμα: node change-color.js #3b82f6');
+if (!targetType || !newColor) {
+  console.log('❌ Παρακαλώ δώστε target και χρώμα!');
+  console.log('Παραδείγματα:');
+  console.log('  node change-color.js surface #3b82f6       (αλλάζει φόντα)');
+  console.log('  node change-color.js text.primary #ff0000  (αλλάζει κύριο κείμενο)');
+  console.log('  node change-color.js text.secondary #00ff00 (αλλάζει δευτερεύον κείμενο)');
   process.exit(1);
 }
 
@@ -26,7 +31,8 @@ if (!/^#[0-9A-F]{6}$/i.test(newColor)) {
 
 try {
   console.log(`🧪 George's Color Changer Started!`);
-  console.log(`🎨 Changing to color: ${newColor}`);
+  console.log(`🎯 Target: ${targetType}`);
+  console.log(`🎨 Color: ${newColor}`);
 
   // Βήμα 1: Διάβασε το current test config
   const testFilePath = path.join(__dirname, 'theme-test-george.json');
@@ -34,10 +40,23 @@ try {
 
   const testConfig = JSON.parse(fs.readFileSync(testFilePath, 'utf8'));
 
-  // Βήμα 2: Άλλαξε τα χρώματα
-  testConfig.colors.cards.value = newColor;
-  testConfig.colors.modal.value = newColor;
-  testConfig.colors.header.value = newColor;
+  // Βήμα 2: Άλλαξε τα χρώματα βάσει του target type
+  if (targetType === 'surface') {
+    console.log('🎨 Changing surface colors (cards, modal, header)...');
+    testConfig.colors.cards.value = newColor;
+    testConfig.colors.modal.value = newColor;
+    testConfig.colors.header.value = newColor;
+  } else if (targetType === 'text.primary') {
+    console.log('📝 Changing primary text color...');
+    testConfig.colors.text.primary.value = newColor;
+  } else if (targetType === 'text.secondary') {
+    console.log('📝 Changing secondary text color...');
+    testConfig.colors.text.secondary.value = newColor;
+  } else {
+    console.log(`❌ Unknown target type: ${targetType}`);
+    console.log('Valid targets: surface, text.primary, text.secondary');
+    process.exit(1);
+  }
 
   // Βήμα 3: Γράψε το αρχείο πίσω
   console.log(`💾 Writing updated config...`);
