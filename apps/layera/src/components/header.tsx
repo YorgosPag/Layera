@@ -1,9 +1,26 @@
 import React from 'react';
 import { Box } from '@layera/layout';
 import { PlusIcon, LocationIcon, MenuIcon, UserIcon, SettingsIcon, SearchIcon } from '@layera/icons';
+import { Modal, ModalHeader, ModalContent, useModal } from '@layera/modals';
 
 export const Header: React.FC = () => {
+  const { isOpen, open, close } = useModal();
+
   return (
+    <>
+    <Modal
+      open={isOpen}
+      onClose={close}
+      size="md"
+      aria-labelledby="add-content-title"
+    >
+      <ModalHeader title="Προσθήκη νέου περιεχομένου" />
+      <ModalContent>
+        <Box className="layera-padding--lg">
+          Εδώ θα προστεθεί το περιεχόμενο του modal
+        </Box>
+      </ModalContent>
+    </Modal>
     <Box
       style={{
         position: 'var(--layera-global-position-fixed)',
@@ -23,6 +40,7 @@ export const Header: React.FC = () => {
       {/* Αριστερά: Πλήκτρο με + και κείμενο Geo-Canvas */}
       <Box style={{ display: 'var(--layera-global-display-flex)', alignItems: 'var(--layera-global-alignItems-center)', gap: 'var(--layera-global-spacing-3)' }}>
         <button
+          onClick={open}
           style={{
             width: 'var(--layera-global-spacing-8)',
             height: 'var(--layera-global-spacing-8)',
@@ -66,5 +84,6 @@ export const Header: React.FC = () => {
         </button>
       </Box>
     </Box>
+    </>
   );
 };
