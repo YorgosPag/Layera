@@ -10,7 +10,7 @@
 
 export const headerStyles = {
   container: {
-    position: 'fixed' as const,
+    position: 'var(--layera-global-position-fixed)',
     top: 'var(--layera-header-fixed-top)',
     left: 'var(--layera-header-fixed-left)',
     right: 'var(--layera-header-fixed-right)',
@@ -56,7 +56,7 @@ export const headerStyles = {
   },
   whiteIcon: {
     color: 'var(--layera-icon-colorWhite)',
-    pointerEvents: 'none' as const
+    pointerEvents: 'var(--layera-global-pointerEvents-none)'
   },
   headerTitle: {
     color: 'var(--layera-colorUtilities-utilities-text-neutral-white)',
