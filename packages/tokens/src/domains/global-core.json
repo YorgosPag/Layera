@@ -1166,6 +1166,32 @@
       "borderDisabled": {
         "value": "var(--layera-color-border-primary)",
         "comment": "Καθολικό button disabled border"
+      },
+      "borderWidth": {
+        "value": "1px",
+        "comment": "Καθολικό button border πλάτος"
+      },
+      "height": {
+        "xs": {
+          "value": "1.75rem",
+          "comment": "Extra small button height - χωράει στην επικεφαλίδα"
+        },
+        "sm": {
+          "value": "2rem",
+          "comment": "Small button height - χωράει στην επικεφαλίδα"
+        },
+        "md": {
+          "value": "2.25rem",
+          "comment": "Medium button height - χωράει στην επικεφαλίδα"
+        },
+        "lg": {
+          "value": "2.5rem",
+          "comment": "Large button height"
+        },
+        "xl": {
+          "value": "2.75rem",
+          "comment": "Extra large button height"
+        }
       }
     }
   },

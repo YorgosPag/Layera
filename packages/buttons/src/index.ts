@@ -11,12 +11,13 @@ export type {
   ButtonProps,
   LinkButtonProps,
   BackButtonProps,
+  SquareButtonProps,
   ButtonGroupProps,
   ButtonTokens
 } from './types';
 
 // Components
-export { Button, LinkButton, BackButton, ButtonGroup } from './components';
+export { Button, LinkButton, BackButton, SquareButton, ButtonGroup } from './components';
 
 // Hooks - Currently disabled due to dependency issues
 // export { useButton } from './hooks';

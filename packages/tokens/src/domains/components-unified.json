@@ -277,7 +277,8 @@
         "borderRadius": "var(--layera-global-borderRadius-lg) !important",
         "backgroundColor": "var(--layera-global-button-background)",
         "color": "var(--layera-global-button-text)",
-        "border": "1px solid var(--layera-global-button-border)",
+        "border": "var(--layera-global-button-borderWidth) solid var(--layera-global-button-border)",
+        "height": "var(--layera-global-button-height-md)",
         "transition": "all 0.2s ease"
       },
       "comment": "Enterprise button κλάση - ΚΑΘΟΛΙΚΟ styling ΓΙΑ ΟΛΟΥΣ - Single Source of Truth",
@@ -287,48 +288,53 @@
             "borderRadius": "var(--layera-global-borderRadius-lg) !important",
             "backgroundColor": "var(--layera-global-button-background)",
             "color": "var(--layera-global-button-text)",
-            "border": "1px solid var(--layera-global-button-border)"
+            "border": "var(--layera-global-button-borderWidth) solid var(--layera-global-button-border)",
+            "height": "var(--layera-global-button-height-xs)"
           },
           "sm": {
             "borderRadius": "var(--layera-global-borderRadius-lg) !important",
             "backgroundColor": "var(--layera-global-button-background)",
             "color": "var(--layera-global-button-text)",
-            "border": "1px solid var(--layera-global-button-border)"
+            "border": "var(--layera-global-button-borderWidth) solid var(--layera-global-button-border)",
+            "height": "var(--layera-global-button-height-sm)"
           },
           "md": {
             "borderRadius": "var(--layera-global-borderRadius-lg) !important",
             "backgroundColor": "var(--layera-global-button-background)",
             "color": "var(--layera-global-button-text)",
-            "border": "1px solid var(--layera-global-button-border)"
+            "border": "var(--layera-global-button-borderWidth) solid var(--layera-global-button-border)",
+            "height": "var(--layera-global-button-height-md)"
           },
           "lg": {
             "borderRadius": "var(--layera-global-borderRadius-lg) !important",
             "backgroundColor": "var(--layera-global-button-background)",
             "color": "var(--layera-global-button-text)",
-            "border": "1px solid var(--layera-global-button-border)"
+            "border": "var(--layera-global-button-borderWidth) solid var(--layera-global-button-border)",
+            "height": "var(--layera-global-button-height-lg)"
           },
           "xl": {
             "borderRadius": "var(--layera-global-borderRadius-lg) !important",
             "backgroundColor": "var(--layera-global-button-background)",
             "color": "var(--layera-global-button-text)",
-            "border": "1px solid var(--layera-global-button-border)"
+            "border": "var(--layera-global-button-borderWidth) solid var(--layera-global-button-border)",
+            "height": "var(--layera-global-button-height-xl)"
           }
         },
         "state": {
           "hover": {
             "backgroundColor": "var(--layera-global-button-background-hover)",
             "color": "var(--layera-global-button-text-hover)",
-            "border": "1px solid var(--layera-global-button-border-hover)"
+            "border": "var(--layera-global-button-borderWidth) solid var(--layera-global-button-border-hover)"
           },
           "active": {
             "backgroundColor": "var(--layera-global-button-background-active)",
             "color": "var(--layera-global-button-text-active)",
-            "border": "1px solid var(--layera-global-button-border-active)"
+            "border": "var(--layera-global-button-borderWidth) solid var(--layera-global-button-border-active)"
           },
           "disabled": {
             "backgroundColor": "var(--layera-global-button-background-disabled)",
             "color": "var(--layera-global-button-text-disabled)",
-            "border": "1px solid var(--layera-global-button-border-disabled)",
+            "border": "var(--layera-global-button-borderWidth) solid var(--layera-global-button-border-disabled)",
             "cursor": "not-allowed",
             "opacity": "0.6"
           }

@@ -127,6 +127,20 @@ export interface BackButtonProps extends Omit<ButtonProps, 'children' | 'icon' |
 }
 
 /**
+ * SquareButton component props - Τετράγωνα buttons για επικεφαλίδες και toolbars
+ */
+export interface SquareButtonProps extends Omit<ButtonProps, 'children' | 'iconPosition'> {
+  /** Εικονίδιο που θα εμφανίζεται (υποχρεωτικό) */
+  icon: React.ReactNode;
+
+  /** Aria label για accessibility (υποχρεωτικό για screen readers) */
+  'aria-label': string;
+
+  /** Tooltip text που εμφανίζεται στο hover */
+  tooltip?: string;
+}
+
+/**
  * Button design tokens interface
  */
 export interface ButtonTokens {
