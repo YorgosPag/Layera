@@ -3,6 +3,7 @@ import { Box } from '../Box';
 import { LayeraHeaderProps } from '../../types';
 import { Text, Heading } from '@layera/typography';
 import { PlusIcon, LocationIcon, MenuIcon, UserIcon, SettingsIcon, SearchIcon } from '@layera/icons';
+import { SquareButton } from '@layera/buttons';
 
 /**
  * LayeraHeader - UNIFIED ARXES Compliant Header Component
@@ -33,39 +34,65 @@ export const LayeraHeader: React.FC<LayeraHeaderProps> = ({
       <Box data-layout="header-fixed">
         {/* Αριστερά: Πλήκτρο με + και κείμενο Geo-Canvas */}
         <Box className="layera-flex layera-flex--align-center layera-flex--gap-md">
-          <button onClick={onAddContentClick} className="layera-btn-action">
-            <PlusIcon size="sm" />
-          </button>
+          <SquareButton
+            icon={<PlusIcon size="sm" />}
+            onClick={onAddContentClick}
+            aria-label="Προσθήκη περιεχομένου"
+            tooltip="Προσθήκη νέου περιεχομένου"
+            size="md"
+          />
           <span className="layera-typography" data-size="base" data-weight="semibold" data-color="primary">Geo-Canvas</span>
-          <button onClick={onTestPanelClick} className="layera-button" data-variant="nav">
-            <SettingsIcon size="sm" />
-          </button>
+          <SquareButton
+            icon={<SettingsIcon size="sm" />}
+            onClick={onTestPanelClick}
+            aria-label="Πάνελ δοκιμών"
+            tooltip="Άνοιγμα πάνελ δοκιμών"
+            size="md"
+          />
         </Box>
 
         {/* Κέντρο: 3 εικονίδια */}
         <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm">
-          <button className="layera-button" data-variant="nav">
-            <SearchIcon size="md" />
-          </button>
-          <button className="layera-button" data-variant="nav">
-            <LocationIcon size="md" />
-          </button>
-          <button className="layera-button" data-variant="nav">
-            <MenuIcon size="md" />
-          </button>
+          <SquareButton
+            icon={<SearchIcon size="md" />}
+            aria-label="Αναζήτηση"
+            tooltip="Αναζήτηση"
+            size="md"
+          />
+          <SquareButton
+            icon={<LocationIcon size="md" />}
+            aria-label="Τοποθεσία"
+            tooltip="Ενεργοποίηση τοποθεσίας"
+            size="md"
+          />
+          <SquareButton
+            icon={<MenuIcon size="md" />}
+            aria-label="Μενού"
+            tooltip="Άνοιγμα μενού"
+            size="md"
+          />
         </Box>
 
         {/* Δεξιά: 3 εικονίδια */}
         <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm">
-          <button className="layera-button" data-variant="nav">
-            <SettingsIcon size="md" />
-          </button>
-          <button className="layera-button" data-variant="nav">
-            <LocationIcon size="md" />
-          </button>
-          <button className="layera-button" data-variant="nav">
-            <UserIcon size="md" />
-          </button>
+          <SquareButton
+            icon={<SettingsIcon size="md" />}
+            aria-label="Ρυθμίσεις"
+            tooltip="Ρυθμίσεις εφαρμογής"
+            size="md"
+          />
+          <SquareButton
+            icon={<LocationIcon size="md" />}
+            aria-label="Τοποθεσία"
+            tooltip="Διαχείριση τοποθεσίας"
+            size="md"
+          />
+          <SquareButton
+            icon={<UserIcon size="md" />}
+            aria-label="Χρήστης"
+            tooltip="Προφίλ χρήστη"
+            size="md"
+          />
         </Box>
       </Box>
     );
