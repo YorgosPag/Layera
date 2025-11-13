@@ -1,16 +1,30 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 // Mock notifications hook since @layera/notifications doesn't exist
+interface Notification {
+  message: string;
+  type?: 'success' | 'error' | 'warning' | 'info';
+  title?: string;
+}
+
 const useNotifications = () => ({
-  addNotification: (notification: any) => {
+  addNotification: (notification: Notification) => {
     console.log('Notification:', notification.message);
   }
 });
 // Mock ErrorBoundary since @layera/error-boundary doesn't exist
-const ErrorBoundary: React.FC<any> = ({ children }) => <>{children}</>;
+interface ErrorBoundaryProps {
+  children: React.ReactNode;
+}
+
+const ErrorBoundary: React.FC<ErrorBoundaryProps> = ({ children }) => <>{children}</>;
 import { Text as Typography } from '@layera/typography';
 // Mock Button component since @layera/buttons doesn't exist
-const Button: React.FC<any> = ({ children, onClick, className, ...props }) => (
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children: React.ReactNode;
+}
+
+const Button: React.FC<ButtonProps> = ({ children, onClick, className, ...props }) => (
   <button onClick={onClick} className={className} {...props}>{children}</button>
 );
 import { Box } from '@layera/layout';

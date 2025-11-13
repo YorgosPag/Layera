@@ -49,7 +49,13 @@ export function useFileCompression(
 ): UseFileCompressionReturn {
   const { t } = useLayeraTranslation();
   // const { addNotification } = useNotifications(); // TODO: Implement notifications system
-  const addNotification = (notification: any) => { console.log('Notification:', notification); };
+  interface Notification {
+    message: string;
+    type?: 'success' | 'error' | 'warning' | 'info';
+    title?: string;
+  }
+
+  const addNotification = (notification: Notification) => { console.log('Notification:', notification); };
   const [isCompressing, setIsCompressing] = useState(false);
   const [progress, setProgress] = useState(0);
   const [results, setResults] = useState<CompressionResult[]>([]);
