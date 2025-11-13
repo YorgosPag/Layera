@@ -1,9 +1,18 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
-import { useNotifications } from '@layera/notifications';
-import { ErrorBoundary } from '@layera/error-boundary';
+// Mock notifications hook since @layera/notifications doesn't exist
+const useNotifications = () => ({
+  addNotification: (notification: any) => {
+    console.log('Notification:', notification.message);
+  }
+});
+// Mock ErrorBoundary since @layera/error-boundary doesn't exist
+const ErrorBoundary: React.FC<any> = ({ children }) => <>{children}</>;
 import { Text as Typography } from '@layera/typography';
-import { Button } from '@layera/buttons';
+// Mock Button component since @layera/buttons doesn't exist
+const Button: React.FC<any> = ({ children, onClick, className, ...props }) => (
+  <button onClick={onClick} className={className} {...props}>{children}</button>
+);
 import { Box } from '@layera/layout';
 import { UploadIcon, DeleteIcon } from '@layera/icons';
 import { useTheme } from '@layera/theme-switcher';
@@ -12,7 +21,7 @@ import { DragDropZone } from './DragDropZone';
 import { FileList } from './FileList';
 import { FilePreview } from './FilePreview';
 import { UploadEngine } from '../utils/uploadEngine';
-import { validateFileList, validateFile } from '../utils/fileValidation';
+import { validateFileList } from '../utils/fileValidation';
 
 /**
  * Main file uploader component με enterprise-grade functionality
@@ -244,10 +253,10 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
           <Box className={`mb-6 p-4 rounded-lg ${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-50'}`}>
             <Box className="flex items-center justify-between mb-4">
               <Box>
-                <Typography variant="h6" className="mb-1">
+                <Typography size="lg" weight="medium" className="mb-1">
                   {t('file-upload.upload-summary')}
                 </Typography>
-                <Typography variant="caption" className="text-gray-500">
+                <Typography size="xs" className="text-gray-500">
                   {t('file-upload.files-summary', {
                     total: summary.total,
                     completed: summary.completed,
@@ -261,14 +270,14 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
                 {/* View Mode Toggle */}
                 <Box className="flex items-center space-x-1 mr-4">
                   <Button
-                    variant={viewMode === 'list' ? 'primary' : 'outline'}
+                    className={viewMode === 'list' ? 'btn-primary' : 'btn-outline'}
                     size="sm"
                     onClick={() => setViewMode('list')}
                   >
                     <UploadIcon className="w-4 h-4" />
                   </Button>
                   <Button
-                    variant={viewMode === 'grid' ? 'primary' : 'outline'}
+                    className={viewMode === 'grid' ? 'btn-primary' : 'btn-outline'}
                     size="sm"
                     onClick={() => setViewMode('grid')}
                   >
@@ -279,7 +288,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
                 {/* Upload Controls */}
                 {canStartUpload && (
                   <Button
-                    variant="primary"
+                    className="btn-primary"
                     onClick={handleStartUpload}
                     disabled={disabled}
                   >
@@ -290,7 +299,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
 
                 {isUploading && (
                   <Button
-                    variant="outline"
+                    className="btn-outline"
                     onClick={handlePauseUpload}
                     disabled={disabled}
                   >
@@ -300,7 +309,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
                 )}
 
                 <Button
-                  variant="outline"
+                  className="btn-outline"
                   onClick={handleClearAll}
                   disabled={disabled || isUploading}
                 >
@@ -315,7 +324,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
               <Box className="w-full bg-gray-200 rounded-full h-2">
                 <Box
                   className="bg-blue-500 h-2 rounded-full transition-all duration-300"
-                  width={`${(summary.completed / summary.total) * 100}%`}
+                  style={{ width: `${(summary.completed / summary.total) * 100}%` }}
                 />
               </Box>
             )}

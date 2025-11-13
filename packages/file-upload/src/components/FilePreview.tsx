@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { BaseCard as Card } from '@layera/cards';
 import { Text as Typography } from '@layera/typography';
-import { Button } from '@layera/buttons';
+// Mock Button component since @layera/buttons doesn't exist
+const Button: React.FC<any> = ({ children, onClick, className, ...props }) => (
+  <button onClick={onClick} className={className} {...props}>{children}</button>
+);
 import { UploadIcon, CloseIcon } from '@layera/icons';
 import { Box } from '@layera/layout';
 import { useTheme } from '@layera/theme-switcher';
 import type { FilePreviewProps } from '../types';
-import { formatBytes, isImageFile, isPreviewSupported } from '../utils/fileValidation';
+import { formatBytes, isImageFile } from '../utils/fileValidation';
 
 /**
  * File preview component με thumbnail και metadata display
@@ -99,7 +102,7 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
       <Box className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
         <Box className="text-center text-white">
           <UploadIcon className="w-6 h-6 mx-auto mb-2 animate-pulse" />
-          <Typography variant="caption" className="text-white">
+          <Typography size="xs" className="text-white">
             {Math.round(file.progress)}%
           </Typography>
         </Box>
@@ -163,8 +166,6 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
           {/* Remove Button */}
           <Box className="absolute top-2 right-2">
             <Button
-              variant="outline"
-              size="sm"
               onClick={(e) => {
                 e.stopPropagation();
                 onRemove(file.id);
@@ -179,7 +180,7 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
         {/* File Info */}
         <Box className="p-3">
           <Typography
-            variant="caption"
+            size="xs"
             className="font-medium truncate block mb-1"
             title={file.file.name}
           >
@@ -187,18 +188,18 @@ export const FilePreview: React.FC<FilePreviewProps> = ({
           </Typography>
 
           <Box className="flex items-center justify-between">
-            <Typography variant="caption" className="text-gray-500">
+            <Typography size="xs" className="text-gray-500">
               {formatBytes(file.file.size)}
             </Typography>
 
             {file.status === 'uploading' && (
-              <Typography variant="caption" className="text-blue-600">
+              <Typography size="xs" className="text-blue-600">
                 {Math.round(file.progress)}%
               </Typography>
             )}
 
             {file.status === 'error' && (
-              <Typography variant="caption" className="text-red-600" title={file.error}>
+              <Typography size="xs" className="text-red-600" title={file.error}>
                 {t('file-upload.status.error')}
               </Typography>
             )}

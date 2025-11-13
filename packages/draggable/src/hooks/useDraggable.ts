@@ -113,7 +113,7 @@ export function useDraggable(
     }
   }, [disabled, dragThreshold, constrainPosition, createEventData, onDrag]);
 
-  const handleMouseUp = useCallback((e: React.MouseEvent) => {
+  const handleMouseUp = useCallback((_e: React.MouseEvent) => {
     if (isDraggingRef.current) {
       const eventData = createEventData(position);
       onDragEnd?.(eventData);
@@ -288,7 +288,7 @@ export function useDraggableRightBottom(
     });
   }, [dragThreshold, clamp, onDrag, createRightBottomEventData]);
 
-  const onPointerUp = useCallback((e: React.PointerEvent) => {
+  const onPointerUp = useCallback((_e: React.PointerEvent) => {
     const eventData = createRightBottomEventData(position);
     draggingRef.current = false;
     startPtRef.current = null;

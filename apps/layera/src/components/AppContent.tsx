@@ -164,9 +164,9 @@ export const AppContent: React.FC = () => {
           fontSize: '12px',
           zIndex: 1000
         }}>
-          <div>🚀 Pipeline: {pipelineState.selectedCategory}</div>
-          <div>📍 Step: {pipelineState.currentStepId}</div>
-          <div>📊 Progress: {pipelineState.currentStepIndex + 1}/{pipelineState.totalSteps}</div>
+          <Text size="sm">🚀 Pipeline: {pipelineState.selectedCategory}</Text>
+          <Text size="sm">📍 Step: {pipelineState.currentStepId}</Text>
+          <Text size="sm">📊 Progress: {pipelineState.currentStepIndex + 1}/{pipelineState.totalSteps}</Text>
         </Box>
       )}
 

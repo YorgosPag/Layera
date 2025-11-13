@@ -3,7 +3,7 @@
 
 import React from 'react';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { BaseIconProps, IconSize, IconVariant, IconTheme } from './types';
+import { BaseIconProps } from './types';
 
 // 🏢 ENTERPRISE ARCHITECTURE - Single Source of Truth με fallback constants
 

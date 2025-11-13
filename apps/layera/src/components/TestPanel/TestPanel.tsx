@@ -14,6 +14,15 @@ interface TestPanelProps {
   onClose: () => void;
 }
 
+// Type-safe interface για color values
+interface ColorValues {
+  [key: string]: string;
+  'surfaces.primary': string;
+  'texts.primary': string;
+  'texts.secondary': string;
+  'icons.primary': string;
+}
+
 // Design System Structure με Single Source of Truth paths
 // Θα φτιάξω dynamic structure που διαβάζει τις τρέχουσες τιμές
 const getDesignSystemStructure = () => ({
@@ -69,7 +78,7 @@ export const TestPanel: React.FC<TestPanelProps> = ({ isOpen, onClose }) => {
   const [showCommand, setShowCommand] = useState(false);
   const [currentCommand, setCurrentCommand] = useState('');
   const [editingItem, setEditingItem] = useState<string | null>(null);
-  const [colorValues, setColorValues] = useState({
+  const [colorValues, setColorValues] = useState<ColorValues>({
     'surfaces.primary': '#482323',
     'texts.primary': '#e718ba',
     'texts.secondary': '#0eb419',
@@ -133,18 +142,12 @@ export const TestPanel: React.FC<TestPanelProps> = ({ isOpen, onClose }) => {
     >
       <ModalHeader title="🎛️ Design System Control Panel - George's Testing Hub" />
       <ModalContent>
-        <Box style={{ padding: '24px', maxHeight: '80vh', overflowY: 'auto' }}>
+        <Box data-padding="lg" data-height="80vh" className="layera-overflow-y-auto">
 
           {/* Command Area */}
           {showCommand ? (
-            <Box style={{
-              backgroundColor: '#fff3cd',
-              padding: '20px',
-              borderRadius: '8px',
-              border: '1px solid #ffeaa7',
-              marginBottom: '24px'
-            }}>
-              <Heading as="h4" size="md" weight="semibold" color="primary" style={{ marginBottom: '12px' }}>
+            <Box data-variant="warning" data-padding="md" data-radius="md" data-spacing="bottom-lg">
+              <Heading as="h4" size="base" weight="semibold" color="primary" data-spacing="bottom-sm">
                 🧪 Copy και τρέξτε αυτό το command:
               </Heading>
 
@@ -152,21 +155,11 @@ export const TestPanel: React.FC<TestPanelProps> = ({ isOpen, onClose }) => {
                 ref={commandRef}
                 value={currentCommand}
                 readOnly
-                style={{
-                  width: '100%',
-                  height: '60px',
-                  padding: '12px',
-                  fontFamily: 'monospace',
-                  fontSize: '14px',
-                  border: '1px solid #ddd',
-                  borderRadius: '4px',
-                  backgroundColor: '#f8f9fa',
-                  resize: 'none'
-                }}
+                className="layera-textarea layera-font-mono layera-bg-neutral layera-border-sm"
                 onClick={(e) => e.currentTarget.select()}
               />
 
-              <Box style={{ display: 'flex', gap: '12px', marginTop: '12px' }}>
+              <Box className="layera-flex layera-gap-sm layera-margin-top-sm">
                 <Box
                   as="button"
                   onClick={copyCommand}
@@ -200,14 +193,14 @@ export const TestPanel: React.FC<TestPanelProps> = ({ isOpen, onClose }) => {
                 </Box>
               </Box>
 
-              <Text size="sm" color="secondary" style={{ marginTop: '12px', fontStyle: 'italic' }}>
+              <Text size="sm" color="secondary" className="layera-margin-top-sm layera-font-italic">
                 Βήμα 1: Copy το command • Βήμα 2: Paste στο terminal • Βήμα 3: Refresh τη σελίδα (F5)
               </Text>
             </Box>
           ) : (
             <>
               {/* Header με controls */}
-              <Box style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', borderBottom: '1px solid #e9ecef', paddingBottom: '16px' }}>
+              <Box className="layera-flex layera-justify-between layera-items-center layera-margin-bottom-lg layera-border-bottom layera-padding-bottom-md">
                 <Box>
                   <Heading as="h3" size="lg" weight="bold" color="primary">
                     🎨 Design System Control Panel
@@ -247,7 +240,7 @@ export const TestPanel: React.FC<TestPanelProps> = ({ isOpen, onClose }) => {
                     border: '1px solid #dee2e6',
                     borderBottom: 'none'
                   }}>
-                    <Heading as="h4" size="md" weight="semibold" color="primary">
+                    <Heading as="h4" size="base" weight="semibold" color="primary">
                       {category.title}
                     </Heading>
                     <Text size="sm" color="secondary" style={{ marginTop: '4px' }}>
@@ -273,7 +266,7 @@ export const TestPanel: React.FC<TestPanelProps> = ({ isOpen, onClose }) => {
 
                         {/* Item Info */}
                         <Box>
-                          <Text size="md" weight="semibold" color="primary" style={{ marginBottom: '4px' }}>
+                          <Text size="base" weight="semibold" color="primary" style={{ marginBottom: '4px' }}>
                             {item.name}
                           </Text>
                           <Text size="sm" color="secondary" style={{ marginBottom: '8px' }}>

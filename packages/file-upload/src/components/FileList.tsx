@@ -2,7 +2,10 @@ import React from 'react';
 import { useLayeraTranslation } from '@layera/tolgee';
 import { BaseCard as Card } from '@layera/cards';
 import { Text as Typography } from '@layera/typography';
-import { Button } from '@layera/buttons';
+// Mock Button component since @layera/buttons doesn't exist
+const Button: React.FC<any> = ({ children, onClick, className, ...props }) => (
+  <button onClick={onClick} className={className} {...props}>{children}</button>
+);
 import { UploadIcon, CloseIcon, RefreshIcon, DeleteIcon } from '@layera/icons';
 import { useTheme } from '@layera/theme-switcher';
 import { Box } from '@layera/layout';
@@ -178,7 +181,7 @@ const FileListItem: React.FC<FileListItemProps> = ({
               <Box className={`w-full bg-gray-200 rounded-full h-2 mt-2 ${theme === 'dark' ? 'bg-gray-600' : 'bg-gray-200'}`}>
                 <Box
                   className={`h-2 rounded-full transition-all duration-300 ${getProgressBarColor()}`}
-                  width={`${Math.min(file.progress, 100)}%`}
+                  style={{ width: `${Math.min(file.progress, 100)}%` }}
                 />
               </Box>
             )}

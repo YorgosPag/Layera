@@ -215,7 +215,7 @@ export class UploadEngine {
    * Uploads a single chunk
    */
   private async uploadChunk(
-    fileItem: FileUploadItem,
+    _fileItem: FileUploadItem,
     chunk: Blob,
     chunkIndex: number,
     totalChunks: number,

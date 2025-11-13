@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import React, { createContext, useEffect, useState, useCallback } from 'react';
 import type { Theme, ThemeContextValue, ThemeProviderProps } from '../types';
 import { MEDIA_QUERY, DEFAULT_STORAGE_KEY, DEFAULT_ATTRIBUTE } from '../constants';
 
