@@ -1,0 +1,623 @@
+/* Layera Button System - Enterprise Design Tokens */
+
+/* Import font για consistency με το typography system */
+
+:root {
+  /* Button Design Tokens - Enterprise Standards */
+
+  /* Sizes - WCAG 2.1 Compliant (min 2.75rem για touch targets) */
+  --layera-btn-xs-height: 2rem;
+  --layera-btn-xs-padding: 0.5rem 0.75rem;
+  --layera-btn-xs-font-size: 0.75rem;
+  --layera-btn-xs-icon-size: 0.875rem;
+  --layera-btn-xs-gap: 0.375rem;
+  --layera-btn-sm-height: 2.25rem;
+  --layera-btn-sm-padding: 0.5rem 1rem;
+  --layera-btn-sm-font-size: 0.875rem;
+  --layera-btn-sm-icon-size: 1rem;
+  --layera-btn-sm-gap: 0.5rem;
+  --layera-btn-md-height: 2.75rem;
+  --layera-btn-md-padding: 0.75rem 1.25rem;
+  --layera-btn-md-font-size: 1rem;
+  --layera-btn-md-icon-size: 1.125rem;
+  --layera-btn-md-gap: 0.5rem;
+  --layera-btn-lg-height: 3rem;
+  --layera-btn-lg-padding: 0.875rem 1.5rem;
+  --layera-btn-lg-font-size: 1.125rem;
+  --layera-btn-lg-icon-size: 1.25rem;
+  --layera-btn-lg-gap: 0.625rem;
+  --layera-btn-xl-height: 3.5rem;
+  --layera-btn-xl-padding: 1rem 2rem;
+  --layera-btn-xl-font-size: 1.25rem;
+  --layera-btn-xl-icon-size: 1.5rem;
+  --layera-btn-xl-gap: 0.75rem;
+
+  /* Border Radius */
+  --layera-btn-radius-none: var(--la-size-0);
+  --layera-btn-radius-sm: 0.25rem;
+  --layera-btn-radius-md: 0.375rem;
+  --layera-btn-radius-lg: 0.5rem;
+  --layera-btn-radius-full: var(--la-radius-full);
+
+  /* Transitions */
+  --layera-btn-transition-default: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --layera-btn-transition-fast: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  --layera-btn-transition-slow: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Colors - Enterprise Palette με 3:1 contrast ratio compliance & Dark Mode Ready */
+
+  /* Primary Variant - Brand Color (Μόνο για κύριες δράσεις) */
+  --layera-btn-primary-bg: var(--la-color-primary);
+  --layera-btn-primary-color: var(--la-color-white);
+  --layera-btn-primary-border: var(--la-color-primary);
+  --layera-btn-primary-hover-bg: var(--la-color-primary-hover);
+  --layera-btn-primary-hover-color: var(--la-color-white);
+  --layera-btn-primary-hover-border: var(--la-color-primary-hover);
+  --layera-btn-primary-active-bg: var(--la-color-primary-active);
+  --layera-btn-primary-active-color: var(--la-color-white);
+  --layera-btn-primary-active-border: var(--la-color-primary-active);
+  --layera-btn-primary-focus-outline: calc(2 / 16 * 1rem) solid var(--la-color-primary-light);
+  --layera-btn-primary-focus-ring: 0 0 0 calc(2 / 16 * 1rem) var(--la-color-primary-alpha-50);
+
+  /* Secondary Variant - Neutral (Για τις περισσότερες δράσεις) */
+  --layera-btn-secondary-bg: var(--la-color-surface);
+  --layera-btn-secondary-color: var(--la-color-text-primary);
+  --layera-btn-secondary-border: var(--la-color-border);
+  --layera-btn-secondary-hover-bg: var(--la-color-surface-hover);
+  --layera-btn-secondary-hover-color: var(--la-color-text-primary);
+  --layera-btn-secondary-hover-border: var(--la-color-border-hover);
+  --layera-btn-secondary-active-bg: var(--la-color-surface-active);
+  --layera-btn-secondary-active-color: var(--la-color-text-primary);
+  --layera-btn-secondary-active-border: var(--la-color-border-active);
+  --layera-btn-secondary-focus-outline: calc(2 / 16 * 1rem) solid var(--la-color-border-focus);
+  --layera-btn-secondary-focus-ring: 0 0 0 calc(2 / 16 * 1rem) var(--la-color-secondary-alpha-50);
+
+  /* Outline Variant */
+  --layera-btn-outline-bg: var(--la-color-transparent);
+  --layera-btn-outline-color: var(--la-color-primary);
+  --layera-btn-outline-border: var(--la-color-primary);
+  --layera-btn-outline-hover-bg: var(--la-color-primary);
+  --layera-btn-outline-hover-color: var(--la-color-white);
+  --layera-btn-outline-hover-border: var(--la-color-primary);
+  --layera-btn-outline-active-bg: var(--la-color-primary-active);
+  --layera-btn-outline-active-color: var(--la-color-white);
+  --layera-btn-outline-active-border: var(--la-color-primary-active);
+  --layera-btn-outline-focus-outline: calc(2 / 16 * 1rem) solid var(--la-color-primary-light);
+  --layera-btn-outline-focus-ring: 0 0 0 calc(2 / 16 * 1rem) var(--la-color-primary-alpha-50);
+
+  /* Ghost Variant */
+  --layera-btn-ghost-bg: var(--la-color-transparent);
+  --layera-btn-ghost-color: var(--la-color-text-secondary);
+  --layera-btn-ghost-border: var(--la-color-transparent);
+  --layera-btn-ghost-hover-bg: var(--la-color-surface-hover);
+  --layera-btn-ghost-hover-color: var(--la-color-text-primary);
+  --layera-btn-ghost-hover-border: var(--la-color-transparent);
+  --layera-btn-ghost-active-bg: var(--la-color-surface-active);
+  --layera-btn-ghost-active-color: var(--la-color-text-primary);
+  --layera-btn-ghost-active-border: var(--la-color-transparent);
+  --layera-btn-ghost-focus-outline: calc(2 / 16 * 1rem) solid var(--la-color-border);
+  --layera-btn-ghost-focus-ring: 0 0 0 calc(2 / 16 * 1rem) var(--la-color-gray-alpha-50);
+
+  /* Danger Variant */
+  --layera-btn-danger-bg: var(--la-color-error);
+  --layera-btn-danger-color: var(--la-color-white);
+  --layera-btn-danger-border: var(--la-color-error);
+  --layera-btn-danger-hover-bg: var(--la-color-error-hover);
+  --layera-btn-danger-hover-color: var(--la-color-white);
+  --layera-btn-danger-hover-border: var(--la-color-error-hover);
+  --layera-btn-danger-active-bg: var(--la-color-error-active);
+  --layera-btn-danger-active-color: var(--la-color-white);
+  --layera-btn-danger-active-border: var(--la-color-error-active);
+  --layera-btn-danger-focus-outline: calc(2 / 16 * 1rem) solid var(--la-color-error-light);
+  --layera-btn-danger-focus-ring: 0 0 0 calc(2 / 16 * 1rem) var(--la-color-error-alpha-50);
+
+  /* Success Variant */
+  --layera-btn-success-bg: var(--la-color-success);
+  --layera-btn-success-color: var(--la-color-white);
+  --layera-btn-success-border: var(--la-color-success);
+  --layera-btn-success-hover-bg: var(--la-color-success-hover);
+  --layera-btn-success-hover-color: var(--la-color-white);
+  --layera-btn-success-hover-border: var(--la-color-success-hover);
+  --layera-btn-success-active-bg: var(--la-color-success-active);
+  --layera-btn-success-active-color: var(--la-color-white);
+  --layera-btn-success-active-border: var(--la-color-success-active);
+  --layera-btn-success-focus-outline: calc(2 / 16 * 1rem) solid var(--la-color-success-light);
+  --layera-btn-success-focus-ring: 0 0 0 calc(2 / 16 * 1rem) var(--la-color-success-alpha-50);
+
+  /* Warning Variant */
+  --layera-btn-warning-bg: var(--la-color-warning);
+  --layera-btn-warning-color: var(--la-color-white);
+  --layera-btn-warning-border: var(--la-color-warning);
+  --layera-btn-warning-hover-bg: var(--la-color-warning-hover);
+  --layera-btn-warning-hover-color: var(--la-color-white);
+  --layera-btn-warning-hover-border: var(--la-color-warning-hover);
+  --layera-btn-warning-active-bg: var(--la-color-warning-active);
+  --layera-btn-warning-active-color: var(--la-color-white);
+  --layera-btn-warning-active-border: var(--la-color-warning-active);
+  --layera-btn-warning-focus-outline: calc(2 / 16 * 1rem) solid var(--la-color-warning-light);
+  --layera-btn-warning-focus-ring: 0 0 0 calc(2 / 16 * 1rem) var(--la-color-warning-alpha-50);
+
+  /* Info Variant */
+  --layera-btn-info-bg: var(--la-color-info);
+  --layera-btn-info-color: var(--la-color-white);
+  --layera-btn-info-border: var(--la-color-info);
+  --layera-btn-info-hover-bg: var(--la-color-info-hover);
+  --layera-btn-info-hover-color: var(--la-color-white);
+  --layera-btn-info-hover-border: var(--la-color-info-hover);
+  --layera-btn-info-active-bg: var(--la-color-info-active);
+  --layera-btn-info-active-color: var(--la-color-white);
+  --layera-btn-info-active-border: var(--la-color-info-active);
+  --layera-btn-info-focus-outline: calc(2 / 16 * 1rem) solid var(--la-color-info-light);
+  --layera-btn-info-focus-ring: 0 0 0 calc(2 / 16 * 1rem) var(--la-color-info-alpha-50);
+
+  /* Disabled State - Universal */
+  --layera-btn-disabled-bg: var(--la-color-surface-disabled);
+  --layera-btn-disabled-color: var(--la-color-text-disabled);
+  --layera-btn-disabled-border: var(--la-color-border-disabled);
+  --layera-btn-disabled-opacity: 0.6;
+}
+
+/* Base Button Styles */
+.layera-btn {
+  /* Base Properties */
+  font-family: var(--la-font-family-sans);
+  font-weight: 500;
+  line-height: var(--la-line-height-tight);
+  text-align: center;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  cursor: var(--la-cursor-pointer);
+  user-select: var(--la-user-select-none);
+  border: 0.063rem solid var(--la-color-transparent);
+  border-radius: var(--la-radius-md);
+  transition: var(--layera-btn-transition-default);
+  position: relative;
+  overflow: hidden;
+
+  /* Accessibility */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Focus States */
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--la-shadow-focus-primary);
+  }
+
+  /* Disabled State */
+  &:disabled,
+  &[aria-disabled="true"] {
+    background-color: var(--layera-btn-disabled-bg);
+    color: var(--layera-btn-disabled-color);
+    border-color: var(--layera-btn-disabled-border);
+    cursor: var(--la-cursor-not-allowed);
+    opacity: var(--layera-btn-disabled-opacity);
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--layera-btn-disabled-bg);
+      color: var(--layera-btn-disabled-color);
+      border-color: var(--layera-btn-disabled-border);
+    }
+  }
+}
+
+/* Removed - will be placed later */
+
+/* Size Variants */
+.layera-btn--xs {
+  height: var(--layera-btn-xs-height);
+  padding: var(--layera-btn-xs-padding);
+  font-size: var(--layera-btn-xs-font-size);
+  gap: var(--layera-btn-xs-gap);
+
+  .layera-btn-icon {
+    width: var(--layera-btn-xs-icon-size);
+    height: var(--layera-btn-xs-icon-size);
+  }
+}
+
+.layera-btn-sm {
+  height: var(--layera-btn-sm-height);
+  padding: var(--layera-btn-sm-padding);
+  font-size: var(--layera-btn-sm-font-size);
+  gap: var(--layera-btn-sm-gap);
+
+  .layera-btn-icon {
+    width: var(--layera-btn-sm-icon-size);
+    height: var(--layera-btn-sm-icon-size);
+  }
+}
+
+.layera-btn-md {
+  height: var(--layera-btn-md-height);
+  padding: var(--layera-btn-md-padding);
+  font-size: var(--layera-btn-md-font-size);
+  gap: var(--layera-btn-md-gap);
+
+  .layera-btn-icon {
+    width: var(--layera-btn-md-icon-size);
+    height: var(--layera-btn-md-icon-size);
+  }
+}
+
+.layera-btn-lg {
+  height: var(--layera-btn-lg-height);
+  padding: var(--layera-btn-lg-padding);
+  font-size: var(--layera-btn-lg-font-size);
+  gap: var(--layera-btn-lg-gap);
+
+  .layera-btn-icon {
+    width: var(--layera-btn-lg-icon-size);
+    height: var(--layera-btn-lg-icon-size);
+  }
+}
+
+.layera-btn-xl {
+  height: var(--layera-btn-xl-height);
+  padding: var(--layera-btn-xl-padding);
+  font-size: var(--layera-btn-xl-font-size);
+  gap: var(--layera-btn-xl-gap);
+
+  .layera-btn-icon {
+    width: var(--layera-btn-xl-icon-size);
+    height: var(--layera-btn-xl-icon-size);
+  }
+}
+
+/* Full Width */
+.layera-btn-full-width {
+  width: 100%;
+}
+
+/* Variant Styles */
+.layera-btn-primary {
+  background-color: var(--layera-btn-primary-bg);
+  color: var(--layera-btn-primary-color);
+  border-color: var(--layera-btn-primary-border);
+
+  &:focus-visible {
+    box-shadow: var(--la-shadow-focus-primary);
+  }
+
+  &:hover:not(:disabled, [aria-disabled="true"]) {
+    background-color: var(--layera-btn-primary-hover-bg);
+    color: var(--layera-btn-primary-hover-color);
+    border-color: var(--layera-btn-primary-hover-border);
+  }
+
+  &:active:not(:disabled, [aria-disabled="true"]) {
+    background-color: var(--layera-btn-primary-active-bg);
+    color: var(--layera-btn-primary-active-color);
+    border-color: var(--layera-btn-primary-active-border);
+  }
+}
+
+.layera-btn-secondary {
+  background-color: var(--layera-btn-secondary-bg);
+  color: var(--layera-btn-secondary-color);
+  border-color: var(--layera-btn-secondary-border);
+
+  &:focus-visible {
+    box-shadow: var(--la-shadow-focus-secondary);
+  }
+
+  &:hover:not(:disabled, [aria-disabled="true"]) {
+    background-color: var(--layera-btn-secondary-hover-bg);
+    color: var(--layera-btn-secondary-hover-color);
+    border-color: var(--layera-btn-secondary-hover-border);
+  }
+
+  &:active:not(:disabled, [aria-disabled="true"]) {
+    background-color: var(--layera-btn-secondary-active-bg);
+    color: var(--layera-btn-secondary-active-color);
+    border-color: var(--layera-btn-secondary-active-border);
+  }
+}
+
+.layera-btn-outline {
+  background-color: var(--layera-btn-outline-bg);
+  color: var(--layera-btn-outline-color);
+  border-color: var(--layera-btn-outline-border);
+
+  &:focus-visible {
+    box-shadow: var(--la-shadow-focus-primary);
+  }
+
+  &:hover:not(:disabled, [aria-disabled="true"]) {
+    background-color: var(--layera-btn-outline-hover-bg);
+    color: var(--layera-btn-outline-hover-color);
+    border-color: var(--layera-btn-outline-hover-border);
+  }
+
+  &:active:not(:disabled, [aria-disabled="true"]) {
+    background-color: var(--layera-btn-outline-active-bg);
+    color: var(--layera-btn-outline-active-color);
+    border-color: var(--layera-btn-outline-active-border);
+  }
+}
+
+.layera-btn-ghost {
+  background-color: var(--layera-btn-ghost-bg);
+  color: var(--layera-btn-ghost-color);
+  border-color: var(--layera-btn-ghost-border);
+
+  &:focus-visible {
+    box-shadow: var(--la-shadow-focus-secondary);
+  }
+
+  &:hover:not(:disabled, [aria-disabled="true"]) {
+    background-color: var(--layera-btn-ghost-hover-bg);
+    color: var(--layera-btn-ghost-hover-color);
+    border-color: var(--layera-btn-ghost-hover-border);
+  }
+
+  &:active:not(:disabled, [aria-disabled="true"]) {
+    background-color: var(--layera-btn-ghost-active-bg);
+    color: var(--layera-btn-ghost-active-color);
+    border-color: var(--layera-btn-ghost-active-border);
+  }
+}
+
+.layera-btn-danger {
+  background-color: var(--layera-btn-danger-bg);
+  color: var(--layera-btn-danger-color);
+  border-color: var(--layera-btn-danger-border);
+
+  &:focus-visible {
+    box-shadow: var(--la-shadow-focus-danger);
+  }
+
+  &:hover:not(:disabled, [aria-disabled="true"]) {
+    background-color: var(--layera-btn-danger-hover-bg);
+    color: var(--layera-btn-danger-hover-color);
+    border-color: var(--layera-btn-danger-hover-border);
+  }
+
+  &:active:not(:disabled, [aria-disabled="true"]) {
+    background-color: var(--layera-btn-danger-active-bg);
+    color: var(--layera-btn-danger-active-color);
+    border-color: var(--layera-btn-danger-active-border);
+  }
+}
+
+.layera-btn-success {
+  background-color: var(--layera-btn-success-bg);
+  color: var(--layera-btn-success-color);
+  border-color: var(--layera-btn-success-border);
+
+  &:focus-visible {
+    box-shadow: var(--la-shadow-focus-success);
+  }
+
+  &:hover:not(:disabled, [aria-disabled="true"]) {
+    background-color: var(--layera-btn-success-hover-bg);
+    color: var(--layera-btn-success-hover-color);
+    border-color: var(--layera-btn-success-hover-border);
+  }
+
+  &:active:not(:disabled, [aria-disabled="true"]) {
+    background-color: var(--layera-btn-success-active-bg);
+    color: var(--layera-btn-success-active-color);
+    border-color: var(--layera-btn-success-active-border);
+  }
+}
+
+.layera-btn-warning {
+  background-color: var(--layera-btn-warning-bg);
+  color: var(--layera-btn-warning-color);
+  border-color: var(--layera-btn-warning-border);
+
+  &:focus-visible {
+    box-shadow: var(--la-shadow-focus-warning);
+  }
+
+  &:hover:not(:disabled, [aria-disabled="true"]) {
+    background-color: var(--layera-btn-warning-hover-bg);
+    color: var(--layera-btn-warning-hover-color);
+    border-color: var(--layera-btn-warning-hover-border);
+  }
+
+  &:active:not(:disabled, [aria-disabled="true"]) {
+    background-color: var(--layera-btn-warning-active-bg);
+    color: var(--layera-btn-warning-active-color);
+    border-color: var(--layera-btn-warning-active-border);
+  }
+}
+
+.layera-btn-info {
+  background-color: var(--layera-btn-info-bg);
+  color: var(--layera-btn-info-color);
+  border-color: var(--layera-btn-info-border);
+
+  &:focus-visible {
+    box-shadow: var(--la-shadow-focus-info);
+  }
+
+  &:hover:not(:disabled, [aria-disabled="true"]) {
+    background-color: var(--layera-btn-info-hover-bg);
+    color: var(--layera-btn-info-hover-color);
+    border-color: var(--layera-btn-info-hover-border);
+  }
+
+  &:active:not(:disabled, [aria-disabled="true"]) {
+    background-color: var(--layera-btn-info-active-bg);
+    color: var(--layera-btn-info-active-color);
+    border-color: var(--layera-btn-info-active-border);
+  }
+}
+
+/* Loading States */
+.layera-btn-loading {
+  cursor: wait;
+  position: relative;
+
+  .layera-btn-content {
+    opacity: var(--la-size-0);
+  }
+
+  .layera-btn-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Loading Animations */
+.layera-btn-spinner {
+  width: 1em;
+  height: 1em;
+  border: calc(2 / 16 * 1rem) solid var(--la-color-transparent);
+  border-top: calc(2 / 16 * 1rem) solid currentcolor;
+  border-radius: var(--la-radius-full);
+  animation: layera-btn-spin 1s linear infinite;
+}
+
+.layera-btn-dots {
+  display: flex;
+  gap: 0.25em;
+
+  .dot {
+    width: 0.25em;
+    height: 0.25em;
+    background-color: var(--la-color-text-primary);
+    border-radius: var(--la-radius-full);
+    animation: layera-btn-bounce 1.4s ease-in-out infinite both;
+
+    &:nth-child(1) { animation-delay: -0.32s; }
+    &:nth-child(2) { animation-delay: -0.16s; }
+    &:nth-child(3) { animation-delay: 0s; }
+  }
+}
+
+.layera-btn-pulse {
+  width: 1em;
+  height: 1em;
+  background-color: var(--la-color-text-primary);
+  border-radius: var(--la-radius-full);
+  animation: layera-btn-pulse 1s ease-in-out infinite;
+}
+
+/* Icon Only Buttons */
+.layera-btn-icon-only {
+  padding: var(--la-size-0);
+  aspect-ratio: 1;
+  justify-content: center;
+}
+
+/* Animations */
+@keyframes layera-btn-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes layera-btn-bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+
+@keyframes layera-btn-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Button Group */
+.layera-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.layera-btn-group-horizontal {
+  flex-direction: row;
+}
+
+.layera-btn-group-horizontal .layera-btn:not(:first-child) {
+  border-top-left-radius: var(--la-size-0);
+  border-bottom-left-radius: var(--la-size-0);
+  border-left-width: var(--la-size-0);
+}
+
+.layera-btn-group-horizontal .layera-btn:not(:last-child) {
+  border-top-right-radius: var(--la-size-0);
+  border-bottom-right-radius: var(--la-size-0);
+}
+
+.layera-btn-group-vertical {
+  flex-direction: column;
+}
+
+.layera-btn-group-vertical .layera-btn:not(:first-child) {
+  border-top-left-radius: var(--la-size-0);
+  border-top-right-radius: var(--la-size-0);
+  border-top-width: var(--la-size-0);
+}
+
+.layera-btn-group-vertical .layera-btn:not(:last-child) {
+  border-bottom-left-radius: var(--la-size-0);
+  border-bottom-right-radius: var(--la-size-0);
+}
+
+/* Group uniform styling - placed here to resolve specificity conflict */
+.layera-btn-group-uniform .layera-btn {
+  flex: var(--la-flex-1);
+}
+
+/* Responsive Design */
+@media (width <= 40rem) {
+  .layera-btn-responsive-full {
+    width: 100%;
+  }
+
+  /* Touch-friendly adjustments */
+  .layera-btn-xs,
+  .layera-btn-sm {
+    height: var(--layera-btn-md-height);
+    padding: var(--layera-btn-md-padding);
+  }
+}
+
+/* Dark Mode Support - Enterprise Grade */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Secondary Variant - Dark Mode */
+    --layera-btn-secondary-bg: var(--la-color-surface-dark);
+    --layera-btn-secondary-color: var(--la-color-text-primary-dark);
+    --layera-btn-secondary-border: var(--la-color-border-dark);
+    --layera-btn-secondary-hover-bg: var(--la-color-surface-hover-dark);
+    --layera-btn-secondary-hover-color: var(--la-color-text-primary-dark);
+    --layera-btn-secondary-hover-border: var(--la-color-border-hover-dark);
+    --layera-btn-secondary-active-bg: var(--la-color-surface-active-dark);
+    --layera-btn-secondary-active-color: var(--la-color-white);
+    --layera-btn-secondary-active-border: var(--la-color-border-active-dark);
+
+    /* Ghost Variant - Dark Mode */
+    --layera-btn-ghost-color: var(--la-color-text-primary-dark);
+    --layera-btn-ghost-hover-bg: var(--la-color-surface-hover-dark);
+    --layera-btn-ghost-hover-color: var(--la-color-text-primary-dark);
+    --layera-btn-ghost-active-bg: var(--la-color-surface-active-dark);
+
+    /* Outline Variant - Dark Mode */
+    --layera-btn-outline-color: var(--la-color-primary-light);
+    --layera-btn-outline-border: var(--la-color-primary-light);
+
+    /* Disabled State - Dark Mode */
+    --layera-btn-disabled-bg: var(--la-color-surface-disabled-dark);
+    --layera-btn-disabled-color: var(--la-color-text-disabled-dark);
+    --layera-btn-disabled-border: var(--la-color-border-disabled-dark);
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: more) {
+  .layera-btn {
+    border-width: calc(2 / 16 * 1rem);
+  }
+
+  .layera-btn:focus-visible {
+    outline: calc(3 / 16 * 1rem) solid;
+    outline-offset: calc(2 / 16 * 1rem);
+  }
+}
