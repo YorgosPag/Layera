@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import React from 'react';
 import {
   LayoutVariant,
   HeaderVariant,
@@ -11,10 +11,10 @@ import {
  */
 
 export interface AppShellProps {
-  children: ReactNode;
-  header?: ReactNode;
-  sidebar?: ReactNode;
-  footer?: ReactNode;
+  children: React.ReactNode;
+  header?: React.ReactNode;
+  sidebar?: React.ReactNode;
+  footer?: React.ReactNode;
   layout?: LayoutVariant;
   className?: string;
   sidebarCollapsed?: boolean;
@@ -24,9 +24,9 @@ export interface AppShellProps {
 export interface LayeraHeaderProps {
   title: string;
   subtitle?: string;
-  logo?: ReactNode;
-  navigation?: ReactNode;
-  actions?: ReactNode;
+  logo?: React.ReactNode;
+  navigation?: React.ReactNode;
+  actions?: React.ReactNode;
   variant?: HeaderVariant;
   sticky?: boolean;
   className?: string;
@@ -36,7 +36,7 @@ export interface LayeraHeaderProps {
 
 
 export interface PageContainerProps {
-  children: ReactNode;
+  children: React.ReactNode;
   maxWidth?: ContainerMaxWidth;
   padding?: SpacingSize;
   className?: string;
@@ -45,12 +45,12 @@ export interface PageContainerProps {
 export interface PageHeaderProps {
   title: string;
   subtitle?: string;
-  actions?: ReactNode;
-  breadcrumbs?: ReactNode;
+  actions?: React.ReactNode;
+  breadcrumbs?: React.ReactNode;
   className?: string;
 }
 
 export interface HeaderActionsGroupProps {
-  children: ReactNode;
+  children: React.ReactNode;
   className?: string;
 }

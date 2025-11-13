@@ -20,7 +20,7 @@ export const FileImporter: React.FC<FileImporterProps> = ({
   onError,
   disabled = false,
   allowMultiple = true,
-  maxFileSize = 50 * 1024 * 1024, // 50MB
+  maxFileSize = 50 * 1024 * 1024, // 50MB - Used for validation
   compact = false
 }) => {
   const { t } = useLayeraTranslation();
@@ -72,7 +72,7 @@ export const FileImporter: React.FC<FileImporterProps> = ({
             disabled={disabled || isProcessing}
             className="layera-file-select-button"
           >
-            {isProcessing ? t('file.import.processing', 'Processing...') : t('file.import.select', 'Select Files')}
+{isProcessing ? t('file.import.processing') || 'Processing...' : t('file.import.select') || 'Select Files'}
           </button>
         </label>
       </Box>
@@ -97,8 +97,8 @@ export const FileImporter: React.FC<FileImporterProps> = ({
               <h3 className="layera-file-import-title">{t('file.import.title', 'Import Files')}</h3>
               <p className="layera-file-import-instruction">
                 {isProcessing
-                  ? t('file.import.processing', 'Processing...')
-                  : t('file.import.instruction', 'Click to select files or drag and drop')}
+                  ? t('file.import.processing') || 'Processing...'
+                  : t('file.import.instruction') || 'Click to select files or drag and drop'}
               </p>
               {acceptedFormats.length > 0 && (
                 <p className="layera-accepted-formats">

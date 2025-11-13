@@ -5,7 +5,7 @@
  * Ακολουθεί enterprise patterns και αρχές type safety
  */
 
-import React, { ReactNode, CSSProperties } from 'react';
+import React, { CSSProperties } from 'react';
 
 // ===============================
 // Core Draggable Types
@@ -120,7 +120,7 @@ export interface UseDraggableRightBottomReturn {
  * Base props for draggable wrapper components
  */
 export interface DraggableWrapperProps {
-  readonly children: ReactNode;
+  readonly children: React.ReactNode;
   readonly initialPosition?: DraggablePosition;
   readonly config?: DraggableConfig;
   readonly eventHandlers?: DragEventHandlers;
@@ -133,7 +133,7 @@ export interface DraggableWrapperProps {
  * Props for FAB (Floating Action Button) specific draggable component
  */
 export interface DraggableFABProps {
-  readonly icon: ReactNode;
+  readonly icon: React.ReactNode;
   readonly onClick?: () => void;
   readonly initialPosition?: DraggablePositionRightBottom;
   readonly config?: DraggableConfig;

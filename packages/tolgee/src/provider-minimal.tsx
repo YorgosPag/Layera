@@ -4,7 +4,7 @@
  * ARXES Compliant - No inline styles, enterprise architecture
  */
 
-import React, { createContext, useContext, ReactNode } from 'react';
+import React, { createContext, useContext } from 'react';
 
 // Import existing translations
 import { elTranslations } from './locales/el/common';
@@ -19,7 +19,7 @@ interface MinimalTolgeeContextType {
 const MinimalTolgeeContext = createContext<MinimalTolgeeContextType | null>(null);
 
 interface MinimalTolgeeProviderProps {
-  children: ReactNode;
+  children: React.ReactNode;
   language?: string;
 }
 

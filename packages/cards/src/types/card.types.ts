@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import React from 'react';
 
 /**
  * Card Types για το Layera Cards System
@@ -24,13 +24,13 @@ export interface EnhancedCardTheme {
 
 export interface BaseCardProps {
   // ============= CONTENT =============
-  children?: ReactNode;
+  children?: React.ReactNode;
   title?: string;
-  icon?: ReactNode;
+  icon?: React.ReactNode;
   description?: string;
   subtitle?: string;
-  actions?: ReactNode;
-  footer?: ReactNode;
+  actions?: React.ReactNode;
+  footer?: React.ReactNode;
 
   // ============= APPEARANCE =============
   size?: CardSize;
@@ -50,20 +50,20 @@ export interface BaseCardProps {
 export interface CardHeaderProps {
   title?: string;
   subtitle?: string;
-  actions?: ReactNode;
-  icon?: ReactNode;
+  actions?: React.ReactNode;
+  icon?: React.ReactNode;
   className?: string;
 }
 
 export interface CardContentProps {
-  children: ReactNode;
+  children: React.ReactNode;
   padding?: CardPadding;
   className?: string;
 }
 
 export interface CardFooterProps {
-  children: ReactNode;
-  actions?: ReactNode;
+  children: React.ReactNode;
+  actions?: React.ReactNode;
   className?: string;
 }
 

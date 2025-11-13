@@ -5,7 +5,7 @@
  * με sensible defaults και type safety.
  */
 
-import type { ReactNode } from 'react';
+import React from 'react';
 import type {
   SelectionCardConfig,
   ToolCardConfig,
@@ -64,7 +64,7 @@ export function createDataCard(
   data: Partial<DataCardConfig> & {
     id: string;
     title: string;
-    content: ReactNode;
+    content: React.ReactNode;
   }
 ): DataCardConfig {
   return {
@@ -113,7 +113,7 @@ export const cardFactory: CardConfigFactory = {
 export function createCategoryCard(data: {
   categoryType: 'property' | 'job';
   title: string;
-  icon: ReactNode;
+  icon: React.ReactNode;
   onCategorySelect: (category: 'property' | 'job') => void;
   onInfoClick?: () => void;
 }): SelectionCardConfig {
@@ -141,7 +141,7 @@ export function createCategoryCard(data: {
 export function createIntentCard(data: {
   intentType: 'offer' | 'search';
   title: string;
-  icon: ReactNode;
+  icon: React.ReactNode;
   category: 'property' | 'job';
   onIntentSelect: (intent: 'offer' | 'search') => void;
   onInfoClick?: () => void;
@@ -171,7 +171,7 @@ export function createAvailabilityCard(data: {
   availability: string;
   title: string;
   description?: string;
-  icon: ReactNode;
+  icon: React.ReactNode;
   onAvailabilitySelect: (availability: string) => void;
 }): SelectionCardConfig {
   const baseConfig = {
@@ -197,7 +197,7 @@ export function createLayoutToolCard(data: {
   toolType: string;
   title: string;
   description?: string;
-  icon: ReactNode;
+  icon: React.ReactNode;
   isSelected?: boolean;
   onToolSelect: (tool: string) => void;
 }): ToolCardConfig {
@@ -220,7 +220,7 @@ export function createLayoutToolCard(data: {
 export function createPricingDataCard(data: {
   pricingType: string;
   title: string;
-  content: ReactNode;
+  content: React.ReactNode;
   category: 'property' | 'job';
   onPricingSelect?: (pricing: string) => void;
 }): DataCardConfig {
@@ -241,7 +241,7 @@ export function createPricingDataCard(data: {
 export function createPricingCard(data: {
   pricingType: 'free' | 'budget' | 'premium' | 'negotiable';
   title: string;
-  icon: ReactNode;
+  icon: React.ReactNode;
   category: 'property' | 'job';
   onPricingSelect: (pricing: 'free' | 'budget' | 'premium' | 'negotiable') => void;
   isSelected?: boolean;
@@ -275,7 +275,7 @@ export function createReviewCard(data: {
   };
   category?: 'property' | 'job';
   title?: string;
-  icon?: ReactNode;
+  icon?: React.ReactNode;
   onReviewAction?: (action: 'preview' | 'edit' | 'confirm', stepId: string) => void;
   onEdit?: (stepId: string) => void;
   reviewMode?: 'preview' | 'edit' | 'confirm';
@@ -329,7 +329,7 @@ export function createUploadCard(data: {
   actionType: string;
   title: string;
   description?: string;
-  icon: ReactNode;
+  icon: React.ReactNode;
   priority?: 'primary' | 'secondary';
   onUploadAction: (action: string) => void;
 }): ActionCardConfig {
