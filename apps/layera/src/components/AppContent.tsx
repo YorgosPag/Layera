@@ -6,7 +6,7 @@ import { ThemeSwitcher } from '../../../../packages/theme-switcher/src';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 import { PlusIcon, UserIcon, ArrowLeftIcon } from '../../../../packages/icons/src';
 import { Text, Heading } from '../../../../packages/typography/src';
-import { PipelineDiscovery } from '@layera/pipelines';
+import { PipelineDiscovery, type PipelineState } from '@layera/pipelines';
 import { Header } from './Header';
 import { TestPanel } from './TestPanel';
 import RealEstateContent from './RealEstatePage';
@@ -23,8 +23,29 @@ const MAP_DEFAULTS = {
 export const AppContent: React.FC = () => {
   const [activeDrawer, setActiveDrawer] = useState<'propertyTypeSelection' | null>(null);
   const [activeModal, setActiveModal] = useState<'login' | 'addContent' | 'testPanel' | null>(null);
-  const [pipelineState, setPipelineState] = useState<{ currentFlow: string | null }>({ currentFlow: null });
+  const [pipelineState, setPipelineState] = useState<PipelineState | null>(null);
   const { t } = useLayeraTranslation();
+
+  // Enterprise Pipeline Discovery Instance
+  const pipelineDiscovery = PipelineDiscovery.getInstance();
+
+  // Pipeline State Listener - Full Integration
+  useEffect(() => {
+    const unsubscribe = pipelineDiscovery.subscribe((newState) => {
+      console.log('🚀 Pipeline State Updated:', {
+        category: newState.selectedCategory,
+        intent: newState.selectedIntent,
+        currentStep: newState.currentStepId,
+        totalSteps: newState.totalSteps,
+        progress: `${newState.currentStepIndex + 1}/${newState.totalSteps}`
+      });
+
+      // Update local state with full pipeline state
+      setPipelineState(newState);
+    });
+
+    return unsubscribe;
+  }, [pipelineDiscovery]);
 
   // Listen για αλλαγές χρώματος από το TestPanel
   useEffect(() => {
@@ -109,20 +130,45 @@ export const AppContent: React.FC = () => {
   };
 
   const handleSelectProperty = () => {
-    setPipelineState({ currentFlow: 'property' });
+    // Enterprise Pipeline Flow: Property selected
+    pipelineDiscovery.updatePipelineState({
+      selectedCategory: 'property',
+      currentStepId: 'intent'
+    });
     closeModal();
-    console.log('🏠 Pipeline Flow: Property selected');
   };
 
   const handleSelectJob = () => {
-    setPipelineState({ currentFlow: 'job' });
+    // Enterprise Pipeline Flow: Job selected
+    pipelineDiscovery.updatePipelineState({
+      selectedCategory: 'job',
+      currentStepId: 'intent'
+    });
     closeModal();
-    console.log('💼 Pipeline Flow: Job selected');
   };
 
   return (
     <Box className="layera-layout">
       <Header onAddContentClick={openAddContentModal} onTestPanelClick={openTestPanel} />
+
+      {/* Pipeline State Debug Info */}
+      {pipelineState && pipelineState.selectedCategory && (
+        <Box style={{
+          position: 'fixed',
+          top: '60px',
+          right: '20px',
+          background: 'rgba(0,0,0,0.8)',
+          color: 'white',
+          padding: '10px',
+          borderRadius: '8px',
+          fontSize: '12px',
+          zIndex: 1000
+        }}>
+          <div>🚀 Pipeline: {pipelineState.selectedCategory}</div>
+          <div>📍 Step: {pipelineState.currentStepId}</div>
+          <div>📊 Progress: {pipelineState.currentStepIndex + 1}/{pipelineState.totalSteps}</div>
+        </Box>
+      )}
 
       <Box className="layera-map-container layera-margin-top--lg">
         <MapContainer
