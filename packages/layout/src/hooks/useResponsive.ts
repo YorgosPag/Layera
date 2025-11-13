@@ -4,7 +4,7 @@
  * Compatible με @layera/layout responsive patterns
  */
 
-import { useViewport, type BreakpointKey, type DeviceCategory } from '@layera/viewport';
+import { useViewport } from '@layera/viewport';
 
 /**
  * Hook για responsive layout patterns

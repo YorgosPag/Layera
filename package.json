@@ -12,7 +12,6 @@
     "check:duplicates": "node scripts/check-duplicates.js",
     "check:css": "node scripts/check-css-cleanliness.js",
     "install:all": "pnpm install",
-
     "🚨 HARDCODED VALUES PROTECTION": "════════════════════════════════",
     "validate": "node scripts/validate-hardcoded-values.js",
     "validate:quick": "node scripts/quick-check.js",
@@ -40,5 +39,9 @@
     "mobile-app"
   ],
   "author": "Layera Development Team",
-  "license": "PROPRIETARY"
+  "license": "PROPRIETARY",
+  "overrides": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  }
 }

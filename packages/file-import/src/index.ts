@@ -1,6 +1,5 @@
 // Core components
 export { FileImporter } from './components/FileImporter';
-export type { FileImporterProps } from './components/FileImporter';
 
 // Note: DragDropZone, FileList, FilePreview have been consolidated into @layera/file-upload
 // Use @layera/file-upload for these components which provide enhanced enterprise features

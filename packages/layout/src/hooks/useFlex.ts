@@ -11,7 +11,7 @@
  */
 
 import { useMemo } from 'react';
-import { FLEX_SCALE, FLEX_UTILITIES, getFlexVar, type FlexDirection, type FlexJustify, type FlexAlign } from '../flex';
+import { FLEX_SCALE, FLEX_UTILITIES, getFlexVar } from '../flex';
 
 /**
  * Hook για flex container styling

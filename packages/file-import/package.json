@@ -30,8 +30,8 @@
     "react-dom": "^19.1.1"
   },
   "devDependencies": {
-    "@types/react": "^19.1.1",
-    "@types/react-dom": "^19.1.1",
+    "@types/react": "^19.1.16",
+    "@types/react-dom": "^19.1.9",
     "typescript": "^5.0.0",
     "tsup": "^8.0.0",
     "eslint": "^8.0.0",
@@ -39,8 +39,8 @@
     "@typescript-eslint/parser": "^6.0.0"
   },
   "peerDependencies": {
-    "react": ">=19.0.0",
-    "react-dom": ">=19.0.0"
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
   },
   "files": [
     "dist"

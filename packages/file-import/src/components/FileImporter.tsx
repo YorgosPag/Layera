@@ -20,7 +20,6 @@ export const FileImporter: React.FC<FileImporterProps> = ({
   onError,
   disabled = false,
   allowMultiple = true,
-  maxFileSize = 50 * 1024 * 1024, // 50MB - Used for validation
   compact = false
 }) => {
   const { t } = useLayeraTranslation();
@@ -94,7 +93,7 @@ export const FileImporter: React.FC<FileImporterProps> = ({
         <label htmlFor="file-input-full">
           <Box className="layera-file-drop-zone">
             <Box className="layera-drop-zone-content">
-              <h3 className="layera-file-import-title">{t('file.import.title', 'Import Files')}</h3>
+              <h3 className="layera-file-import-title">{t('file.import.title', { fallback: 'Import Files'})}</h3>
               <p className="layera-file-import-instruction">
                 {isProcessing
                   ? t('file.import.processing') || 'Processing...'
@@ -102,7 +101,7 @@ export const FileImporter: React.FC<FileImporterProps> = ({
               </p>
               {acceptedFormats.length > 0 && (
                 <p className="layera-accepted-formats">
-                  {t('file.import.accepted', 'Accepted formats')}: {acceptedFormats.join(', ')}
+                  {t('file.import.accepted', { fallback: 'Accepted formats'})}: {acceptedFormats.join(', ')}
                 </p>
               )}
             </Box>

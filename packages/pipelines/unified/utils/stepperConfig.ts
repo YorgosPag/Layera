@@ -1,5 +1,13 @@
-import type { StepConfig } from '@layera/progress-stepper';
-import type { Category } from '../../../domain/unified/types';
+import type { Category } from '../state/types';
+
+// Local type definition for StepConfig
+export interface StepConfig {
+  id: string;
+  label: string;
+  description: string;
+  optional?: boolean;
+  completed?: boolean;
+}
 
 export type PipelineStep = 'category' | 'intent' | 'transactionType' | 'employmentType' | 'availability' | 'availabilityDetails' | 'location' | 'layout' | 'details' | 'complete';
 

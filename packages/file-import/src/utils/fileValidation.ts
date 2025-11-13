@@ -3,8 +3,6 @@ import {
   ValidationResult,
   ValidationError,
   ValidationWarning,
-  FileSizeError,
-  FileTypeError,
   SupportedFormat
 } from '../types';
 

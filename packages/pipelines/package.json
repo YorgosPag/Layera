@@ -32,14 +32,17 @@
   ],
   "author": "Layera Team",
   "license": "MIT",
+  "dependencies": {
+    "xstate": "^5.0.0"
+  },
   "devDependencies": {
-    "@types/react": "^18.0.0",
-    "react": "^18.0.0",
+    "@types/react": "^19.1.16",
+    "react": "^19.1.1",
     "tsup": "^8.0.0",
     "typescript": "^5.0.0"
   },
   "peerDependencies": {
-    "react": ">=18.0.0"
+    "react": "^19.1.1"
   },
   "repository": {
     "type": "git",

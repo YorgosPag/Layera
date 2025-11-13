@@ -1,5 +1,5 @@
 import { assign } from 'xstate';
-import { PipelineContext, PipelineEvent } from './types';
+import { PipelineEvent } from './types';
 
 /**
  * Enterprise Actions - XState Machine

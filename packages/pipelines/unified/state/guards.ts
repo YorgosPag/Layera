@@ -1,4 +1,4 @@
-import type { PipelineContext } from './machine';
+import type { PipelineContext } from './types';
 
 /**
  * Enterprise Guards - XState Machine

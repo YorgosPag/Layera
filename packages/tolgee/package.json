@@ -20,16 +20,16 @@
   "dependencies": {
     "@tolgee/react": "^5.20.3",
     "@tolgee/format-icu": "^5.20.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
   },
   "devDependencies": {
-    "@types/react": "^18.2.0",
+    "@types/react": "^19.1.16",
     "@types/node": "^18.0.0",
     "tsup": "^8.5.0",
     "typescript": "^5.0.0"
   },
   "peerDependencies": {
-    "react": ">=18.0.0"
+    "react": "^19.1.1"
   }
 }

@@ -1,11 +1,16 @@
-import type { Category, Intent, TransactionType, EmploymentType, Availability } from '../../../domain/unified/types';
-
 /**
  * Enterprise State Types - XState Machine
  * Purpose: Type definitions for state machine
  * Complexity: Low (< 5)
  * Lines: < 50 (Enterprise Standard)
  */
+
+// Basic domain types
+export type Category = 'property' | 'job';
+export type Intent = 'offer' | 'demand';
+export type TransactionType = 'rent' | 'sale';
+export type EmploymentType = 'full-time' | 'part-time' | 'contract' | 'freelance';
+export type Availability = 'now' | 'future';
 
 // Events
 export type PipelineEvent =

@@ -1,5 +1,10 @@
 import { useState, useCallback, useRef } from 'react';
-import { useNotifications } from '@layera/notifications';
+// Mock notifications hook since @layera/notifications package doesn't exist yet
+const useNotifications = () => ({
+  addNotification: (notification: any) => {
+    console.log('Notification:', notification.message);
+  }
+});
 import { useLayeraTranslation } from '@layera/tolgee';
 import {
   ImportedFile,
