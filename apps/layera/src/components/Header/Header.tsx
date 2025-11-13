@@ -11,7 +11,6 @@
 import React from 'react';
 import { Box } from '@layera/layout';
 import { PlusIcon, LocationIcon, MenuIcon, UserIcon, SettingsIcon, SearchIcon } from '@layera/icons';
-import { headerStyles } from './Header.styles';
 
 interface HeaderProps {
   onAddContentClick?: () => void;
@@ -24,7 +23,7 @@ export const Header: React.FC<HeaderProps> = ({ onAddContentClick, onTestPanelCl
     <Box data-layout="header-fixed">
         {/* Αριστερά: Πλήκτρο με + και κείμενο Geo-Canvas */}
         <Box className="layera-flex layera-flex--align-center layera-flex--gap-md">
-          <button onClick={onAddContentClick} style={headerStyles.actionButton}>
+          <button onClick={onAddContentClick} className="layera-btn-action">
             <PlusIcon size="sm" />
           </button>
           <span className="layera-typography" data-size="base" data-weight="semibold" data-color="primary">Geo-Canvas</span>
