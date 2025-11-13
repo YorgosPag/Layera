@@ -274,26 +274,74 @@
     },
     "button": {
       "value": {
-        "borderRadius": "var(--layera-global-borderRadius-lg) !important"
+        "borderRadius": "var(--layera-global-borderRadius-lg) !important",
+        "backgroundColor": "var(--layera-global-button-background)",
+        "color": "var(--layera-global-button-text)",
+        "border": "1px solid var(--layera-global-button-border)",
+        "transition": "all 0.2s ease"
       },
-      "comment": "Enterprise button κλάση - ΕΝΟΠΟΙΗΜΕΝΟ border-radius ΓΙΑ ΟΛΟΥΣ",
+      "comment": "Enterprise button κλάση - ΚΑΘΟΛΙΚΟ styling ΓΙΑ ΟΛΟΥΣ - Single Source of Truth",
       "variants": {
         "size": {
           "xs": {
-            "borderRadius": "var(--layera-global-borderRadius-lg) !important"
+            "borderRadius": "var(--layera-global-borderRadius-lg) !important",
+            "backgroundColor": "var(--layera-global-button-background)",
+            "color": "var(--layera-global-button-text)",
+            "border": "1px solid var(--layera-global-button-border)"
           },
           "sm": {
-            "borderRadius": "var(--layera-global-borderRadius-lg) !important"
+            "borderRadius": "var(--layera-global-borderRadius-lg) !important",
+            "backgroundColor": "var(--layera-global-button-background)",
+            "color": "var(--layera-global-button-text)",
+            "border": "1px solid var(--layera-global-button-border)"
           },
           "md": {
-            "borderRadius": "var(--layera-global-borderRadius-lg) !important"
+            "borderRadius": "var(--layera-global-borderRadius-lg) !important",
+            "backgroundColor": "var(--layera-global-button-background)",
+            "color": "var(--layera-global-button-text)",
+            "border": "1px solid var(--layera-global-button-border)"
           },
           "lg": {
-            "borderRadius": "var(--layera-global-borderRadius-lg) !important"
+            "borderRadius": "var(--layera-global-borderRadius-lg) !important",
+            "backgroundColor": "var(--layera-global-button-background)",
+            "color": "var(--layera-global-button-text)",
+            "border": "1px solid var(--layera-global-button-border)"
           },
           "xl": {
-            "borderRadius": "var(--layera-global-borderRadius-lg) !important"
+            "borderRadius": "var(--layera-global-borderRadius-lg) !important",
+            "backgroundColor": "var(--layera-global-button-background)",
+            "color": "var(--layera-global-button-text)",
+            "border": "1px solid var(--layera-global-button-border)"
           }
+        },
+        "state": {
+          "hover": {
+            "backgroundColor": "var(--layera-global-button-background-hover)",
+            "color": "var(--layera-global-button-text-hover)",
+            "border": "1px solid var(--layera-global-button-border-hover)"
+          },
+          "active": {
+            "backgroundColor": "var(--layera-global-button-background-active)",
+            "color": "var(--layera-global-button-text-active)",
+            "border": "1px solid var(--layera-global-button-border-active)"
+          },
+          "disabled": {
+            "backgroundColor": "var(--layera-global-button-background-disabled)",
+            "color": "var(--layera-global-button-text-disabled)",
+            "border": "1px solid var(--layera-global-button-border-disabled)",
+            "cursor": "not-allowed",
+            "opacity": "0.6"
+          }
+        },
+        "hover": {
+          "backgroundColor": "var(--layera-global-button-background-hover) !important",
+          "color": "var(--layera-global-button-text-hover) !important",
+          "border": "1px solid var(--layera-global-button-border-hover) !important"
+        },
+        "active": {
+          "backgroundColor": "var(--layera-global-button-background-active) !important",
+          "color": "var(--layera-global-button-text-active) !important",
+          "border": "1px solid var(--layera-global-button-border-active) !important"
         }
       }
     },

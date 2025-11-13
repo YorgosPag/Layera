@@ -1116,6 +1116,57 @@
           }
         }
       }
+    },
+    "button": {
+      "comment": "🎯 ΚΑΘΟΛΙΚΑ Button Tokens - Single Source of Truth για όλα τα buttons",
+      "background": {
+        "value": "var(--layera-color-text-secondary)",
+        "comment": "Καθολικό button background - αλλάζει όλα τα buttons"
+      },
+      "text": {
+        "value": "var(--layera-color-text-on-dark)",
+        "comment": "Καθολικό button text color - αλλάζει όλα τα buttons"
+      },
+      "border": {
+        "value": "var(--layera-color-text-secondary)",
+        "comment": "Καθολικό button border - αλλάζει όλα τα buttons"
+      },
+      "backgroundHover": {
+        "value": "color-mix(in srgb, var(--layera-color-text-secondary) 80%, black 20%)",
+        "comment": "Καθολικό button hover background"
+      },
+      "textHover": {
+        "value": "var(--layera-color-text-on-dark)",
+        "comment": "Καθολικό button hover text"
+      },
+      "borderHover": {
+        "value": "color-mix(in srgb, var(--layera-color-text-secondary) 80%, black 20%)",
+        "comment": "Καθολικό button hover border"
+      },
+      "backgroundActive": {
+        "value": "color-mix(in srgb, var(--layera-color-text-secondary) 70%, black 30%)",
+        "comment": "Καθολικό button active background"
+      },
+      "textActive": {
+        "value": "var(--layera-color-text-on-dark)",
+        "comment": "Καθολικό button active text"
+      },
+      "borderActive": {
+        "value": "color-mix(in srgb, var(--layera-color-text-secondary) 70%, black 30%)",
+        "comment": "Καθολικό button active border"
+      },
+      "backgroundDisabled": {
+        "value": "var(--layera-color-background-tertiary)",
+        "comment": "Καθολικό button disabled background"
+      },
+      "textDisabled": {
+        "value": "var(--layera-color-text-tertiary)",
+        "comment": "Καθολικό button disabled text"
+      },
+      "borderDisabled": {
+        "value": "var(--layera-color-border-primary)",
+        "comment": "Καθολικό button disabled border"
+      }
     }
   },
 }
