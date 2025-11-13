@@ -1,11 +1,11 @@
-import { defineConfig } from 'vite'
+import { defineConfig, Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 import { readFileSync, existsSync } from 'fs'
 
 // 🏢 Enterprise Workspace Resolution Plugin
 // Handles ALL workspace imports without aliases
-function enterpriseWorkspaceResolver() {
+function enterpriseWorkspaceResolver(): Plugin {
   return {
     name: 'enterprise-workspace-resolver',
     enforce: 'pre', // Run before other resolvers

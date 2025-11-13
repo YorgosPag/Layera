@@ -3,7 +3,7 @@ import { ThemeProvider } from '../../../packages/theme-switcher/src';
 import { TolgeeProvider } from '@layera/tolgee';
 import { AppContent } from './components/AppContent';
 
-function App() {
+function App(): JSX.Element {
   return (
     <TolgeeProvider>
       <ThemeProvider>

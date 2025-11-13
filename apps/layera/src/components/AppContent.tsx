@@ -49,7 +49,7 @@ export const AppContent: React.FC = () => {
 
   // Listen για αλλαγές χρώματος από το TestPanel
   useEffect(() => {
-    const handleColorChange = async (event: any) => {
+    const handleColorChange = async (event: CustomEvent<{ color: string }>) => {
       const newColor = event.detail.color;
       console.log('🎨 Changing color to:', newColor);
 
