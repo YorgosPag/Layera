@@ -5,6 +5,7 @@ export interface PageContainerProps {
   className?: string;
   maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
   padding?: 'none' | 'sm' | 'md' | 'lg';
+  style?: React.CSSProperties;
 }
 
 /**
@@ -15,7 +16,8 @@ export const PageContainer: React.FC<PageContainerProps> = ({
   children,
   className = '',
   maxWidth = 'lg',
-  padding = 'md'
+  padding = 'md',
+  style
 }) => {
   const classes = [
     'layera-page-container',
@@ -25,7 +27,7 @@ export const PageContainer: React.FC<PageContainerProps> = ({
   ].filter(Boolean).join(' ');
 
   return (
-    <main className={classes}>
+    <main className={classes} style={style}>
       {children}
     </main>
   );

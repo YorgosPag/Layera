@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, PageContainer } from '@layera/layout';
 import { Text, Heading } from '@layera/typography';
 import { Button, SquareButton } from '@layera/buttons';
@@ -22,6 +22,25 @@ interface LivePlaygroundProps {
 }
 
 export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
+  console.log('🔍 LivePlayground component rendered!');
+
+  // Debug CSS tokens
+  useEffect(() => {
+    console.log('🎨 Checking CSS tokens...');
+
+    // Ελέγχω αν τα CSS custom properties λειτουργούν
+    const testElement = document.createElement('div');
+    testElement.style.color = 'var(--layera-color-text-primary)';
+    document.body.appendChild(testElement);
+    const computedColor = getComputedStyle(testElement).color;
+    document.body.removeChild(testElement);
+
+    if (computedColor !== 'var(--layera-color-text-primary)' && computedColor !== '') {
+      console.log('🎯 CSS tokens are working! Test color:', computedColor);
+    } else {
+      console.warn('⚠️ CSS tokens not working yet...');
+    }
+  }, []);
   const [activeSection, setActiveSection] = useState<'buttons' | 'colors' | 'tokens'>('buttons');
 
   // Button Settings
@@ -29,6 +48,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   const [buttonSize, setButtonSize] = useState<ButtonSize>('md');
   const [buttonText, setButtonText] = useState('Live Button');
   const [withIcon, setWithIcon] = useState(true);
+
+  console.log('🎛️ Current states:', { activeSection, buttonVariant, buttonSize, buttonText, withIcon });
 
   const variants: ButtonVariant[] = ['primary', 'secondary', 'outline', 'ghost', 'danger', 'success', 'warning', 'info'];
   const sizes: ButtonSize[] = ['xs', 'sm', 'md', 'lg', 'xl'];
@@ -42,16 +63,16 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
   return (
     <div
+      data-layera-playground="true"
       style={{
         position: 'fixed',
         top: '0',
         left: '0',
         width: '100vw',
         height: '100vh',
-        backgroundColor: '#ffffff',
-        zIndex: '9999',
-        overflow: 'auto',
-        fontFamily: 'Arial, sans-serif'
+        backgroundColor: 'var(--layera-color-surface-primary)',
+        zIndex: 9999,
+        overflow: 'auto'
       }}
     >
       {/* Header με κουμπί κλεισίματος */}
@@ -62,32 +83,22 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           alignItems: 'center',
           padding: '16px',
           borderBottom: '1px solid #ccc',
-          backgroundColor: '#f8f9fa',
+          backgroundColor: 'white',
           position: 'sticky',
           top: '0',
-          zIndex: '1001'
+          zIndex: 1001
         }}
       >
-        <h1
-          style={{
-            fontSize: '24px',
-            fontWeight: 'bold',
-            color: '#333',
-            margin: '0'
-          }}
-        >
+        <h1 style={{ fontSize: '24px', fontWeight: 'bold', color: '#333' }}>
           🎛️ Live Playground - Ζωντανές Ρυθμίσεις
         </h1>
         <button
           onClick={onClose}
           style={{
-            background: '#dc3545',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
             padding: '8px 16px',
-            cursor: 'pointer',
-            fontSize: '16px'
+            border: '1px solid #ccc',
+            backgroundColor: '#f5f5f5',
+            cursor: 'pointer'
           }}
         >
           ✕ Κλείσιμο
@@ -95,13 +106,19 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
       </div>
 
       {/* Main Content */}
-      <div style={{
-        padding: '20px',
-        height: 'calc(100vh - 80px)',
-        overflow: 'auto'
-      }}>
+      <div
+        style={{
+          backgroundColor: 'yellow',
+          color: '#000',
+          padding: '24px',
+          maxWidth: '1200px',
+          margin: '0 auto',
+          minHeight: 'calc(100vh - 100px)',
+          border: '5px solid red'
+        }}
+      >
         {/* TEST - Θα δεις αυτό το κείμενο */}
-        <h2 style={{color: '#333', fontSize: '24px'}}>
+        <h2 style={{ color: '#111', fontSize: '32px', fontWeight: 'bold', margin: '0 0 20px 0' }}>
           ✅ ΠΕΡΙΕΧΟΜΕΝΟ ΦΟΡΤΩΝΕΙ!
         </h2>
 
