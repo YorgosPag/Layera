@@ -163,15 +163,7 @@ export const TestPanel: React.FC<TestPanelProps> = ({ isOpen, onClose }) => {
                 <Box
                   as="button"
                   onClick={copyCommand}
-                  style={{
-                    backgroundColor: '#28a745',
-                    color: 'white',
-                    padding: '8px 16px',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    fontWeight: '500'
-                  }}
+                  className="layera-btn-primary"
                 >
                   📋 Copy Command
                 </Box>
@@ -179,15 +171,7 @@ export const TestPanel: React.FC<TestPanelProps> = ({ isOpen, onClose }) => {
                 <Box
                   as="button"
                   onClick={() => setShowCommand(false)}
-                  style={{
-                    backgroundColor: '#6c757d',
-                    color: 'white',
-                    padding: '8px 16px',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    fontWeight: '500'
-                  }}
+                  className="layera-btn-primary"
                 >
                   ← Επιστροφή στον Πίνακα
                 </Box>
@@ -205,7 +189,7 @@ export const TestPanel: React.FC<TestPanelProps> = ({ isOpen, onClose }) => {
                   <Heading as="h3" size="lg" weight="bold" color="primary">
                     🎨 Design System Control Panel
                   </Heading>
-                  <Text size="sm" color="secondary" style={{ marginTop: '4px' }}>
+                  <Text size="sm" color="secondary">
                     Πλήρης έλεγχος του Design System με Single Source of Truth
                   </Text>
                 </Box>
@@ -213,16 +197,7 @@ export const TestPanel: React.FC<TestPanelProps> = ({ isOpen, onClose }) => {
                 <Box
                   as="button"
                   onClick={resetTestMode}
-                  style={{
-                    backgroundColor: '#dc3545',
-                    color: 'white',
-                    padding: '8px 16px',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    fontWeight: '500',
-                    fontSize: '12px'
-                  }}
+                  className="layera-btn-primary"
                 >
                   🔄 Reset Test Mode
                 </Box>
@@ -243,7 +218,7 @@ export const TestPanel: React.FC<TestPanelProps> = ({ isOpen, onClose }) => {
                     <Heading as="h4" size="base" weight="semibold" color="primary">
                       {category.title}
                     </Heading>
-                    <Text size="sm" color="secondary" style={{ marginTop: '4px' }}>
+                    <Text size="sm" color="secondary">
                       {category.description}
                     </Text>
                   </Box>

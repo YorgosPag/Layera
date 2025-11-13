@@ -258,18 +258,7 @@ export const Modal: React.FC<BaseModalProps> = ({
             type="button"
             onClick={handleCloseClick}
             aria-label="Close modal"
-            style={{
-              padding: 'var(--layera-global-components-drawer-closeButton-padding)',
-              border: 'none',
-              background: 'var(--layera-global-components-drawer-closeButton-background)',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: 'var(--layera-global-components-drawer-closeButton-size)',
-              height: 'var(--layera-global-components-drawer-closeButton-size)',
-              borderRadius: 'var(--layera-global-components-drawer-closeButton-borderRadius)'
-            }}
+            className="layera-modal-close-button"
           >
             <CloseIcon size="lg" theme="neutral" />
           </button>
