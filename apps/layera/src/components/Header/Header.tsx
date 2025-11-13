@@ -28,33 +28,33 @@ export const Header: React.FC<HeaderProps> = ({ onAddContentClick, onTestPanelCl
             <PlusIcon size="sm" />
           </button>
           <span className="layera-typography" data-size="base" data-weight="semibold" data-color="primary">Geo-Canvas</span>
-          <button onClick={onTestPanelClick} style={headerStyles.ghostButton}>
+          <button onClick={onTestPanelClick} className="layera-button" data-variant="nav">
             <SettingsIcon size="sm" />
           </button>
         </Box>
 
         {/* Κέντρο: 3 εικονίδια */}
         <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm">
-          <button style={headerStyles.ghostButton}>
+          <button className="layera-button" data-variant="nav">
             <SearchIcon size="md" />
           </button>
-          <button style={headerStyles.ghostButton}>
+          <button className="layera-button" data-variant="nav">
             <LocationIcon size="md" />
           </button>
-          <button style={headerStyles.ghostButton}>
+          <button className="layera-button" data-variant="nav">
             <MenuIcon size="md" />
           </button>
         </Box>
 
         {/* Δεξιά: 3 εικονίδια */}
         <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm">
-          <button style={headerStyles.ghostButton}>
+          <button className="layera-button" data-variant="nav">
             <SettingsIcon size="md" />
           </button>
-          <button style={headerStyles.ghostButton}>
+          <button className="layera-button" data-variant="nav">
             <LocationIcon size="md" />
           </button>
-          <button style={headerStyles.ghostButton}>
+          <button className="layera-button" data-variant="nav">
             <UserIcon size="md" />
           </button>
         </Box>
