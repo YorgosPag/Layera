@@ -12,6 +12,7 @@
 import React from 'react';
 import { Box, Flex } from '@layera/layout';
 import { BuildingIcon, BriefcaseIcon, UploadIcon, MapIcon } from '@layera/icons';
+import { BackButton } from '@layera/buttons';
 import { Modal } from '../Modal/Modal';
 import { ModalHeader } from '../ModalHeader/ModalHeader';
 import { ModalContent } from '../ModalContent/ModalContent';
@@ -377,8 +378,8 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
           </Box>
           {currentView !== 'main' && (
             <Box className="layera-card__modalBackButtonContainer">
-              <button
-                onClick={() => {
+              <BackButton
+                onBack={() => {
                   if (currentView === 'job-timing') {
                     setCurrentView('job-offer-type');
                   } else if (currentView === 'job-offer-type') {
@@ -395,12 +396,8 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
                     setCurrentView('main');
                   }
                 }}
-                className="layera-button"
-                data-variant="secondary"
-                data-size="md"
-              >
-                Πίσω
-              </button>
+                size="md"
+              />
             </Box>
           )}
         </Box>

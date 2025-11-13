@@ -113,6 +113,20 @@ export interface ButtonGroupProps {
 }
 
 /**
+ * BackButton component props που εκτείνει το Button
+ */
+export interface BackButtonProps extends Omit<ButtonProps, 'children' | 'icon' | 'iconPosition' | 'variant'> {
+  /** Κείμενο πλήκτρου - default "Πίσω" */
+  text?: string;
+
+  /** Override default variant αν χρειάζεται */
+  variant?: ButtonVariant;
+
+  /** Callback όταν πατηθεί το πλήκτρο επιστροφής */
+  onBack?: () => void;
+}
+
+/**
  * Button design tokens interface
  */
 export interface ButtonTokens {

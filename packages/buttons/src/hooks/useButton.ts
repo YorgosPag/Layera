@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 import { ButtonSize, ButtonVariant, ButtonTokens } from '../types';
-import { SPACING_SCALE } from '@layera/constants';
 
 /**
  * useButton Hook - Παρέχει πρόσβαση στο Layera Button Design System
