@@ -428,6 +428,31 @@ export default {
           output += `}\n\n`;
         }
 
+        // Fixed Header Data-Attribute από header.fixed tokens
+        const headerFixedHeight = dictionary.allTokens.find(token => token.path.join('.') === 'header.fixed.height');
+        const headerFixedTop = dictionary.allTokens.find(token => token.path.join('.') === 'header.fixed.top');
+        const headerFixedLeft = dictionary.allTokens.find(token => token.path.join('.') === 'header.fixed.left');
+        const headerFixedRight = dictionary.allTokens.find(token => token.path.join('.') === 'header.fixed.right');
+        const headerFixedZIndex = dictionary.allTokens.find(token => token.path.join('.') === 'header.fixed.zIndex');
+
+        if (headerFixedHeight && headerFixedTop && headerFixedLeft && headerFixedRight && headerFixedZIndex) {
+          output += `/* Fixed Header Data-Attribute - Enterprise Layout */\n`;
+          output += `[data-layout="header-fixed"] {\n`;
+          output += `  position: fixed;\n`;
+          output += `  top: var(--layera-header-fixed-top);\n`;
+          output += `  left: var(--layera-header-fixed-left);\n`;
+          output += `  right: var(--layera-header-fixed-right);\n`;
+          output += `  height: var(--layera-header-fixed-height);\n`;
+          output += `  z-index: var(--layera-header-fixed-zIndex);\n`;
+          output += `  background-color: var(--layera-color-surface-primary);\n`;
+          output += `  display: var(--layera-global-display-flex);\n`;
+          output += `  align-items: var(--layera-global-alignItems-center);\n`;
+          output += `  justify-content: var(--layera-global-justifyContent-spaceBetween);\n`;
+          output += `  padding: var(--layera-global-reset-padding) var(--layera-global-spacing-4);\n`;
+          output += `  border-bottom: var(--layera-global-borderWidth-1) var(--layera-global-borderStyle-solid) var(--layera-color-border-light);\n`;
+          output += `}\n\n`;
+        }
+
         // Typography System Classes - Unified Generation από typography.unified token
         const typographyUnified = dictionary.allTokens.find(token => token.path.join('.') === 'typography.unified');
         if (typographyUnified && typographyUnified.value) {
@@ -665,6 +690,19 @@ export default {
           const props = btnPrimary.value;
           output += `/* Button primary κλάση */\n`;
           output += `.layera-btn-primary {\n`;
+          Object.entries(props).forEach(([prop, value]) => {
+            const cssProp = prop.replace(/([A-Z])/g, '-$1').toLowerCase();
+            output += `  ${cssProp}: ${value};\n`;
+          });
+          output += `}\n\n`;
+        }
+
+        // Button Action Class από btn.action token
+        const btnAction = dictionary.allTokens.find(token => token.path.join('.') === 'btn.action');
+        if (btnAction && btnAction.value) {
+          const props = btnAction.value;
+          output += `/* Button action κλάση - Square icon button */\n`;
+          output += `.layera-btn-action {\n`;
           Object.entries(props).forEach(([prop, value]) => {
             const cssProp = prop.replace(/([A-Z])/g, '-$1').toLowerCase();
             output += `  ${cssProp}: ${value};\n`;

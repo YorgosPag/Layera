@@ -21,20 +21,20 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ onAddContentClick, onTestPanelClick }) => {
 
   return (
-    <Box style={headerStyles.container}>
+    <Box data-layout="header-fixed">
         {/* Αριστερά: Πλήκτρο με + και κείμενο Geo-Canvas */}
-        <Box style={headerStyles.flexContainer}>
+        <Box className="layera-flex layera-flex--align-center layera-flex--gap-md">
           <button onClick={onAddContentClick} style={headerStyles.actionButton}>
             <PlusIcon size="sm" />
           </button>
-          <span style={headerStyles.headerTitle}>Geo-Canvas</span>
+          <span className="layera-typography" data-size="base" data-weight="semibold" data-color="primary">Geo-Canvas</span>
           <button onClick={onTestPanelClick} style={headerStyles.ghostButton}>
             <SettingsIcon size="sm" />
           </button>
         </Box>
 
         {/* Κέντρο: 3 εικονίδια */}
-        <Box style={headerStyles.flexNavigation}>
+        <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm">
           <button style={headerStyles.ghostButton}>
             <SearchIcon size="md" />
           </button>
@@ -47,7 +47,7 @@ export const Header: React.FC<HeaderProps> = ({ onAddContentClick, onTestPanelCl
         </Box>
 
         {/* Δεξιά: 3 εικονίδια */}
-        <Box style={headerStyles.flexNavigation}>
+        <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm">
           <button style={headerStyles.ghostButton}>
             <SettingsIcon size="md" />
           </button>

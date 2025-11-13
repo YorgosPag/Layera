@@ -240,7 +240,8 @@
           "center": { "alignItems": "center" }
         },
         "gap": {
-          "sm": { "gap": "var(--layera-global-spacing-2)" }
+          "sm": { "gap": "var(--layera-global-spacing-2)" },
+          "md": { "gap": "var(--layera-global-spacing-3)" }
         }
       }
     }
@@ -279,18 +280,19 @@
       }
     },
     "action": {
-      "backgroundColor": {
-        "value": "#3b82f6",
-        "comment": "Blue action button background"
+      "value": {
+        "width": "var(--layera-global-spacing-8)",
+        "height": "var(--layera-global-spacing-8)",
+        "backgroundColor": "var(--layera-btn-action-backgroundColor)",
+        "border": "var(--layera-global-border-none)",
+        "borderRadius": "var(--layera-btn-action-borderRadius)",
+        "display": "var(--layera-global-display-flex)",
+        "alignItems": "var(--layera-global-alignItems-center)",
+        "justifyContent": "var(--layera-global-justifyContent-center)",
+        "cursor": "var(--layera-global-cursor-pointer)",
+        "padding": "0"
       },
-      "borderRadius": {
-        "value": "6px",
-        "comment": "Action button border radius"
-      },
-      "padding": {
-        "value": "6px",
-        "comment": "Small padding for icon buttons"
-      }
+      "comment": "Square action button for icons - matches headerStyles.actionButton"
     }
   }
 }
