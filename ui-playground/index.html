@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎛️ Layera UI Playground</title>
+
+  <!-- Load Layera Design Tokens CSS -->
+  <link rel="stylesheet" href="../packages/tokens/dist/css/tokens.css">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--layera-fontFamily-sans);
+      background-color: var(--layera-color-background-surface-light);
+      color: var(--layera-color-text-primary);
+      line-height: var(--layera-lineHeight-normal);
+    }
+
+    #root {
+      min-height: 100vh;
+      padding: var(--layera-global-spacing-4);
+    }
+
+    .playground-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--layera-global-spacing-6);
+      background-color: var(--layera-color-surface-primary);
+      border-radius: var(--layera-global-borderRadius-xl);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .coming-soon {
+      text-align: center;
+      padding: var(--layera-global-spacing-8);
+      color: var(--layera-color-text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <div class="playground-container">
+      <div class="coming-soon">
+        <h1>🎛️ Layera UI Playground</h1>
+        <p>Enterprise Component Testing Interface - ARXES Compliant</p>
+        <p>🚧 Σε προετοιμασία για React integration</p>
+
+        <div style="margin-top: var(--layera-global-spacing-6);">
+          <h2>📁 Δομή που δημιουργήθηκε:</h2>
+          <div style="text-align: left; max-width: 400px; margin: 0 auto; background: var(--layera-color-surface-secondary); padding: var(--layera-global-spacing-4); border-radius: var(--layera-global-borderRadius-lg);">
+            <pre style="margin: 0; font-size: var(--layera-fontSize-sm);">
+ui-playground/
+├── index.tsx                 (Κύριο UI με καρτέλες)
+├── index.html               (Preview HTML)
+├── Buttons/
+│   ├── ButtonsPreview.tsx   (ARXES compliant)
+│   └── index.ts
+├── Cards/                   (Μελλοντικά)
+├── Modals/                  (Μελλοντικά)
+└── Layout/                  (Μελλοντικά)
+            </pre>
+          </div>
+        </div>
+
+        <div style="margin-top: var(--layera-global-spacing-6); font-size: var(--layera-fontSize-sm);">
+          <p>✅ <strong>ARXES Features:</strong></p>
+          <ul style="text-align: left; max-width: 500px; margin: 0 auto;">
+            <li>Μόνο @layera/* components (όχι &lt;div&gt;, όχι inline styles)</li>
+            <li>Όλες οι τιμές από @layera/tokens design system</li>
+            <li>TypeScript strict με React.ReactNode</li>
+            <li>Live preview παραμετροποίηση για Button & SquareButton</li>
+            <li>Enterprise-ready καρτέλες για διαφορετικούς component τύπους</li>
+          </ul>
+        </div>
+
+        <div style="margin-top: var(--layera-global-spacing-4); padding: var(--layera-global-spacing-3); background: var(--layera-color-background-accent-green); border-radius: var(--layera-global-borderRadius-md);">
+          <p>🎯 <strong>ButtonsPreview είναι έτοιμο!</strong></p>
+          <p>Περιέχει live testing για Button και SquareButton components</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -7,7 +7,7 @@ import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 import { PlusIcon, UserIcon, ArrowLeftIcon } from '../../../../packages/icons/src';
 import { Text, Heading } from '../../../../packages/typography/src';
 import { PipelineDiscovery, type PipelineState } from '@layera/pipelines';
-import { TestPanel } from './TestPanel';
+import { LivePlayground } from './LivePlayground';
 import RealEstateContent from './RealEstatePage';
 import JobsContent from './JobsPage';
 import LoginContent from './LoginPage';
@@ -21,7 +21,8 @@ const MAP_DEFAULTS = {
 
 export const AppContent: React.FC = () => {
   const [activeDrawer, setActiveDrawer] = useState<'propertyTypeSelection' | null>(null);
-  const [activeModal, setActiveModal] = useState<'login' | 'addContent' | 'testPanel' | null>(null);
+  const [activeModal, setActiveModal] = useState<'login' | 'addContent' | null>(null);
+  const [showPlayground, setShowPlayground] = useState(false);
   const [pipelineState, setPipelineState] = useState<PipelineState | null>(null);
   const { t } = useLayeraTranslation();
 
@@ -48,8 +49,9 @@ export const AppContent: React.FC = () => {
 
   // Listen για αλλαγές χρώματος από το TestPanel
   useEffect(() => {
-    const handleColorChange = async (event: CustomEvent<{ color: string }>) => {
-      const newColor = event.detail.color;
+    const handleColorChange = async (event: Event) => {
+      const customEvent = event as CustomEvent<{ color: string }>;
+      const newColor = customEvent.detail.color;
       console.log('🎨 Changing color to:', newColor);
 
       try {
@@ -87,8 +89,12 @@ export const AppContent: React.FC = () => {
     setActiveModal('addContent');
   };
 
-  const openTestPanel = () => {
-    setActiveModal('testPanel');
+  const openLivePlayground = () => {
+    setShowPlayground(true);
+  };
+
+  const closeLivePlayground = () => {
+    setShowPlayground(false);
   };
 
   const changeTestColor = async (color: string) => {
@@ -148,10 +154,15 @@ export const AppContent: React.FC = () => {
 
   return (
     <Box className="layera-layout">
+      {/* Live Playground Fullscreen */}
+      {showPlayground && (
+        <LivePlayground onClose={closeLivePlayground} />
+      )}
+
       <LayeraHeader
         variant="geo-canvas"
         onAddContentClick={openAddContentModal}
-        onTestPanelClick={openTestPanel}
+        onTestPanelClick={openLivePlayground}
       />
 
       {/* Pipeline State Debug Info */}
@@ -276,11 +287,6 @@ export const AppContent: React.FC = () => {
         </ModalContent>
       </Modal>
 
-      {/* Test Panel Modal */}
-      <TestPanel
-        isOpen={activeModal === 'testPanel'}
-        onClose={closeModal}
-      />
     </Box>
   );
 };
