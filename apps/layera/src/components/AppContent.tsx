@@ -6,6 +6,7 @@ import { ThemeSwitcher } from '../../../../packages/theme-switcher/src';
 import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 import { PlusIcon, UserIcon, ArrowLeftIcon } from '../../../../packages/icons/src';
 import { Text, Heading } from '../../../../packages/typography/src';
+import { PipelineDiscovery } from '@layera/pipelines';
 import { Header } from './Header';
 import { TestPanel } from './TestPanel';
 import RealEstateContent from './RealEstatePage';

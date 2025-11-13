@@ -30,7 +30,7 @@ export function useDraggable(
   eventHandlers: DragEventHandlers = {}
 ): UseDraggableReturn {
   const [position, setPosition] = useState<DraggablePosition>(initialPosition);
-  const [isDragging, setIsDragging] = useState(false);
+  const isDraggingRef = useRef(false);
   const dragStartRef = useRef<DraggablePosition>({ x: 0, y: 0 });
   const dragOffsetRef = useRef<DraggablePosition>({ x: 0, y: 0 });
 
@@ -44,7 +44,7 @@ export function useDraggable(
   const { onDragStart, onDrag, onDragEnd } = eventHandlers;
 
   // Utility για constraint checking
-  const constrainPosition = useCallback((newPosition: DraggablePosition): DraggablePosition => {
+  const constrainPosition = useCallback((newPosition: DraggablePosition, currentPosition: DraggablePosition): DraggablePosition => {
     let { x, y } = newPosition;
 
     if (bounds) {
@@ -54,12 +54,12 @@ export function useDraggable(
       if (bounds.maxY !== undefined) y = Math.min(y, bounds.maxY);
     }
 
-    // Axis constraints
-    if (axis === 'x') y = position.y;
-    if (axis === 'y') x = position.x;
+    // Axis constraints - use passed currentPosition instead of state
+    if (axis === 'x') y = currentPosition.y;
+    if (axis === 'y') x = currentPosition.x;
 
     return { x, y };
-  }, [bounds, axis, position]);
+  }, [bounds, axis]);
 
   // Helper για δημιουργία DragEventData
   const createEventData = useCallback((currentPos: DraggablePosition): DragEventData => ({
@@ -67,8 +67,8 @@ export function useDraggable(
     currentPosition: currentPos,
     deltaX: currentPos.x - dragStartRef.current.x,
     deltaY: currentPos.y - dragStartRef.current.y,
-    isDragging
-  }), [isDragging]);
+    isDragging: isDraggingRef.current
+  }), []);
 
   // Mouse Event Handlers
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
@@ -77,7 +77,7 @@ export function useDraggable(
     const startPos = { x: e.clientX, y: e.clientY };
     dragStartRef.current = position;
     dragOffsetRef.current = startPos;
-    setIsDragging(false); // Αρχικά δεν είμαστε σε drag mode
+    isDraggingRef.current = false; // Αρχικά δεν είμαστε σε drag mode
 
     const eventData = createEventData(position);
     onDragStart?.(eventData);
@@ -91,29 +91,32 @@ export function useDraggable(
     const deltaY = currentPos.y - dragOffsetRef.current.y;
 
     // Έλεγχος threshold πριν αρχίσει το dragging
-    if (!isDragging && (Math.abs(deltaX) > dragThreshold || Math.abs(deltaY) > dragThreshold)) {
-      setIsDragging(true);
+    if (!isDraggingRef.current && (Math.abs(deltaX) > dragThreshold || Math.abs(deltaY) > dragThreshold)) {
+      isDraggingRef.current = true;
     }
 
-    if (isDragging) {
-      const newPosition = constrainPosition({
+    if (isDraggingRef.current) {
+      const calculatedPosition = {
         x: dragStartRef.current.x + deltaX,
         y: dragStartRef.current.y + deltaY
-      });
+      };
 
-      setPosition(newPosition);
-      const eventData = createEventData(newPosition);
-      onDrag?.(eventData);
+      setPosition(currentPos => {
+        const newPosition = constrainPosition(calculatedPosition, currentPos);
+        const eventData = createEventData(newPosition);
+        onDrag?.(eventData);
+        return newPosition;
+      });
     }
-  }, [disabled, isDragging, dragThreshold, constrainPosition, createEventData, onDrag]);
+  }, [disabled, dragThreshold, constrainPosition, createEventData, onDrag]);
 
   const handleMouseUp = useCallback((e: React.MouseEvent) => {
-    if (isDragging) {
+    if (isDraggingRef.current) {
       const eventData = createEventData(position);
       onDragEnd?.(eventData);
     }
-    setIsDragging(false);
-  }, [isDragging, position, createEventData, onDragEnd]);
+    isDraggingRef.current = false;
+  }, [position, createEventData, onDragEnd]);
 
   // Touch Event Handlers
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
@@ -124,7 +127,7 @@ export function useDraggable(
     const startPos = { x: touch.clientX, y: touch.clientY };
     dragStartRef.current = position;
     dragOffsetRef.current = startPos;
-    setIsDragging(false);
+    isDraggingRef.current = false;
 
     const eventData = createEventData(position);
     onDragStart?.(eventData);
@@ -139,46 +142,52 @@ export function useDraggable(
     const deltaX = currentPos.x - dragOffsetRef.current.x;
     const deltaY = currentPos.y - dragOffsetRef.current.y;
 
-    if (!isDragging && (Math.abs(deltaX) > dragThreshold || Math.abs(deltaY) > dragThreshold)) {
-      setIsDragging(true);
+    if (!isDraggingRef.current && (Math.abs(deltaX) > dragThreshold || Math.abs(deltaY) > dragThreshold)) {
+      isDraggingRef.current = true;
       e.preventDefault(); // Prevent scrolling
     }
 
-    if (isDragging) {
+    if (isDraggingRef.current) {
       e.preventDefault();
-      const newPosition = constrainPosition({
+      const calculatedPosition = {
         x: dragStartRef.current.x + deltaX,
         y: dragStartRef.current.y + deltaY
-      });
+      };
 
-      setPosition(newPosition);
-      const eventData = createEventData(newPosition);
-      onDrag?.(eventData);
+      setPosition(currentPos => {
+        const newPosition = constrainPosition(calculatedPosition, currentPos);
+        const eventData = createEventData(newPosition);
+        onDrag?.(eventData);
+        return newPosition;
+      });
     }
-  }, [disabled, isDragging, dragThreshold, constrainPosition, createEventData, onDrag]);
+  }, [disabled, dragThreshold, constrainPosition, createEventData, onDrag]);
 
   const handleTouchEnd = useCallback((_e: React.TouchEvent) => {
-    if (isDragging) {
+    if (isDraggingRef.current) {
       const eventData = createEventData(position);
       onDragEnd?.(eventData);
     }
-    setIsDragging(false);
-  }, [isDragging, position, createEventData, onDragEnd]);
+    isDraggingRef.current = false;
+  }, [position, createEventData, onDragEnd]);
 
   // Reset function
   const resetPosition = useCallback(() => {
     setPosition(initialPosition);
-    setIsDragging(false);
+    isDraggingRef.current = false;
   }, [initialPosition]);
 
   // Manual position setter with constraints
   const setConstrainedPosition = useCallback((newPosition: DraggablePosition) => {
-    setPosition(constrainPosition(newPosition));
+    setPosition(currentPos => {
+      const constrained = constrainPosition(newPosition, currentPos);
+      return constrained;
+    });
   }, [constrainPosition]);
 
   return {
     position,
-    isDragging,
+    isDragging: isDraggingRef.current,
     dragHandlers: {
       onMouseDown: handleMouseDown,
       onMouseMove: handleMouseMove,
@@ -252,7 +261,7 @@ export function useDraggableRightBottom(
   }, [position, config.disabled, onDragStart, createRightBottomEventData]);
 
   const onPointerMove = useCallback((e: React.PointerEvent) => {
-    if (!draggingRef.current || !startPtRef.current) return;
+    if (!startPtRef.current) return;
     const dx = e.clientX - startPtRef.current.x;
     const dy = e.clientY - startPtRef.current.y;
 
