@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, HeaderActionsGroup } from '../../../../packages/layout/src';
+import { Box, HeaderActionsGroup, LayeraHeader } from '../../../../packages/layout/src';
 import { MapContainer } from '@layera/map-core';
 import { Drawer, Modal, ModalHeader, ModalContent, AddContentModal } from '@layera/modals';
 import { ThemeSwitcher } from '../../../../packages/theme-switcher/src';
@@ -7,7 +7,6 @@ import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
 import { PlusIcon, UserIcon, ArrowLeftIcon } from '../../../../packages/icons/src';
 import { Text, Heading } from '../../../../packages/typography/src';
 import { PipelineDiscovery, type PipelineState } from '@layera/pipelines';
-import { Header } from './Header';
 import { TestPanel } from './TestPanel';
 import RealEstateContent from './RealEstatePage';
 import JobsContent from './JobsPage';
@@ -149,7 +148,11 @@ export const AppContent: React.FC = () => {
 
   return (
     <Box className="layera-layout">
-      <Header onAddContentClick={openAddContentModal} onTestPanelClick={openTestPanel} />
+      <LayeraHeader
+        variant="geo-canvas"
+        onAddContentClick={openAddContentModal}
+        onTestPanelClick={openTestPanel}
+      />
 
       {/* Pipeline State Debug Info */}
       {pipelineState && pipelineState.selectedCategory && (
