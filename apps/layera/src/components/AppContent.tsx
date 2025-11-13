@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, LayeraHeader, HeaderActionsGroup } from '../../../../packages/layout/src';
+import { Box, HeaderActionsGroup } from '../../../../packages/layout/src';
 import { MapContainer } from '@layera/map-core';
 import { Drawer, Modal, ModalHeader, ModalContent, AddContentModal } from '@layera/modals';
 import { ThemeSwitcher } from '../../../../packages/theme-switcher/src';

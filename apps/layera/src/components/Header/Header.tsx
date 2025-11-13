@@ -13,12 +13,61 @@ import { Box } from '@layera/layout';
 import { PlusIcon, LocationIcon, MenuIcon, UserIcon, SettingsIcon, SearchIcon } from '@layera/icons';
 
 interface HeaderProps {
+  // Existing Geo-Canvas Mode Props (πρέπει να διατηρηθούν)
   onAddContentClick?: () => void;
   onTestPanelClick?: () => void;
+
+  // NEW - Enterprise Mode Props (για μελλοντική χρήση)
+  title?: string;
+  subtitle?: string;
+  logo?: React.ReactNode;
+  navigation?: React.ReactNode;
+  actions?: React.ReactNode;
+  variant?: 'geo-canvas' | 'enterprise';
 }
 
-export const Header: React.FC<HeaderProps> = ({ onAddContentClick, onTestPanelClick }) => {
+export const Header: React.FC<HeaderProps> = ({
+  onAddContentClick,
+  onTestPanelClick,
+  title,
+  subtitle,
+  logo,
+  navigation,
+  actions,
+  variant = 'geo-canvas' // Default: διατηρεί την τρέχουσα λειτουργικότητα
+}) => {
 
+  // Enterprise Mode Rendering
+  if (variant === 'enterprise') {
+    return (
+      <Box data-layout="header-fixed">
+        <Box className="layera-flex layera-flex--justify-between layera-flex--align-center layera-width--full">
+          {/* Left section - Logo + Title */}
+          <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm">
+            {logo && <Box className="layera-flex layera-flex--align-center">{logo}</Box>}
+            <Box>
+              <span className="layera-typography" data-size="2xl" data-weight="bold" data-color="primary">{title}</span>
+              {subtitle && <span className="layera-typography" data-size="base" data-color="secondary">{subtitle}</span>}
+            </Box>
+          </Box>
+
+          {/* Center section - Navigation */}
+          {navigation && (
+            <Box as="nav" className="layera-flex layera-flex--align-center layera-flex--justify-center layera-flex--gap-md" role="navigation">
+              {navigation}
+            </Box>
+          )}
+
+          {/* Right section - Actions */}
+          <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm">
+            {actions}
+          </Box>
+        </Box>
+      </Box>
+    );
+  }
+
+  // Default Geo-Canvas Mode Rendering (ΑΜΕΤΑΒΛΗΤΟ)
   return (
     <Box data-layout="header-fixed">
         {/* Αριστερά: Πλήκτρο με + και κείμενο Geo-Canvas */}

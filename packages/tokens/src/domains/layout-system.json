@@ -201,6 +201,9 @@
       "value": {
         "width": "100%"
       }
+    },
+    "variants": {
+      "full": { "width": "100%" }
     }
   },
   "text": {
@@ -238,6 +241,10 @@
       "variants": {
         "align": {
           "center": { "alignItems": "center" }
+        },
+        "justify": {
+          "center": { "justifyContent": "center" },
+          "between": { "justifyContent": "space-between" }
         },
         "gap": {
           "sm": { "gap": "var(--layera-global-spacing-2)" },
