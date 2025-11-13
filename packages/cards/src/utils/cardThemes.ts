@@ -79,7 +79,7 @@ export const getEnhancedCardTheme = (
   };
 
   const theme = baseThemes[variant] || baseThemes.elevated;
-  const { baseColor, borderColor, semanticColor } = theme;
+  const { baseColor, borderColor } = theme;
   const titleShadow = 'titleShadow' in theme ? theme.titleShadow : 'none';
 
   // Apply opacity mode (από Local BaseCard implementation)

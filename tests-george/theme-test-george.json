@@ -3,15 +3,15 @@
   "testMode": true,
   "colors": {
     "cards": {
-      "value": "#83a97e",
+      "value": "#b48d8d",
       "comment": "Φόντο καρτών - Αλλάζω εδώ για δοκιμές"
     },
     "modal": {
-      "value": "#83a97e",
+      "value": "#b48d8d",
       "comment": "Φόντο modal - Αλλάζω εδώ για δοκιμές"
     },
     "header": {
-      "value": "#83a97e",
+      "value": "#b48d8d",
       "comment": "Φόντο επικεφαλίδας - Αλλάζω εδώ για δοκιμές"
     },
     "text": {

@@ -1,0 +1,52 @@
+{
+  "name": "@layera/file-transformation",
+  "version": "1.0.0",
+  "description": "Advanced file format transformation and coordinate system conversion for Layera LEGO architecture",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "test": "vitest",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "layera",
+    "lego",
+    "transformation",
+    "coordinates",
+    "file-conversion",
+    "gis",
+    "cad",
+    "typescript"
+  ],
+  "author": "Layera Team",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@layera/layout": "workspace:*",
+    "@layera/tokens": "workspace:*",
+    "proj4": "^2.9.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/proj4": "^2.5.0",
+    "typescript": "^5.0.0",
+    "tsup": "^8.0.0",
+    "eslint": "^8.0.0",
+    "vitest": "^1.0.0"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}
