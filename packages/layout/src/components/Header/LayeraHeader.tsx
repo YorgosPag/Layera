@@ -84,11 +84,11 @@ export const LayeraHeader: React.FC<LayeraHeaderProps> = ({
         <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm">
           {logo && <Box className="layera-flex layera-flex--align-center">{logo}</Box>}
           <Box>
-            <Heading as="h1" className="layera-typography" data-size="2xl" data-weight="bold" data-color="primary" data-leading="tight" style={{margin: 0}}>
+            <Heading as="h1" className="layera-typography" data-size="2xl" data-weight="bold" data-color="primary" data-leading="tight">
               {title}
             </Heading>
             {subtitle && variant !== 'minimal' && (
-              <Text className="layera-typography" data-size="base" data-color="secondary" data-leading="normal" style={{margin: 0}}>
+              <Text className="layera-typography" data-size="base" data-color="secondary" data-leading="normal">
                 {subtitle}
               </Text>
             )}
