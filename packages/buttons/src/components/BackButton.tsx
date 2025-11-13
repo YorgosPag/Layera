@@ -47,9 +47,11 @@ export const BackButton = forwardRef<HTMLButtonElement, BackButtonProps>(({
       size={size}
       icon={<ArrowLeftIcon />}
       iconPosition="left"
-      className={`layera-back-btn ${className}`}
+      className={`layera-card layera-button layera-back-btn ${className}`}
       onClick={handleClick}
       aria-label={`Επιστροφή: ${text}`}
+      data-clickable="true"
+      data-size={size}
       {...props}
     >
       {text}

@@ -272,6 +272,31 @@
         }
       }
     },
+    "button": {
+      "value": {
+        "borderRadius": "var(--layera-global-borderRadius-lg) !important"
+      },
+      "comment": "Enterprise button κλάση - ΕΝΟΠΟΙΗΜΕΝΟ border-radius ΓΙΑ ΟΛΟΥΣ",
+      "variants": {
+        "size": {
+          "xs": {
+            "borderRadius": "var(--layera-global-borderRadius-lg) !important"
+          },
+          "sm": {
+            "borderRadius": "var(--layera-global-borderRadius-lg) !important"
+          },
+          "md": {
+            "borderRadius": "var(--layera-global-borderRadius-lg) !important"
+          },
+          "lg": {
+            "borderRadius": "var(--layera-global-borderRadius-lg) !important"
+          },
+          "xl": {
+            "borderRadius": "var(--layera-global-borderRadius-lg) !important"
+          }
+        }
+      }
+    },
     "map": {
       "value": {
         "position": "relative",
