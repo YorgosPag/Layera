@@ -425,6 +425,21 @@ importers:
         specifier: ^5.7.3
         version: 5.9.3
 
+  packages/pipelines:
+    devDependencies:
+      '@types/react':
+        specifier: ^18.0.0
+        version: 18.3.26
+      react:
+        specifier: ^18.0.0
+        version: 18.3.1
+      tsup:
+        specifier: ^8.0.0
+        version: 8.5.0(postcss@8.5.6)(typescript@5.9.3)(yaml@2.8.1)
+      typescript:
+        specifier: ^5.0.0
+        version: 5.9.3
+
   packages/theme-switcher:
     dependencies:
       '@layera/layout':
