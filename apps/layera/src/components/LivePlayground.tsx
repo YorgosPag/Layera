@@ -81,23 +81,23 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          padding: '16px',
-          borderBottom: '1px solid #ccc',
-          backgroundColor: 'white',
+          padding: 'var(--layera-global-spacing-4)',
+          borderBottom: '1px solid var(--layera-color-border-default)',
+          backgroundColor: 'var(--layera-color-surface-secondary)',
           position: 'sticky',
           top: '0',
           zIndex: 1001
         }}
       >
-        <h1 style={{ fontSize: '24px', fontWeight: 'bold', color: '#333' }}>
+        <h1 style={{ fontSize: 'var(--layera-global-font-size-xl)', fontWeight: 'var(--layera-global-font-weight-bold)', color: 'var(--layera-color-text-primary)' }}>
           🎛️ Live Playground - Ζωντανές Ρυθμίσεις
         </h1>
         <button
           onClick={onClose}
           style={{
-            padding: '8px 16px',
-            border: '1px solid #ccc',
-            backgroundColor: '#f5f5f5',
+            padding: 'var(--layera-global-spacing-2) var(--layera-global-spacing-4)',
+            border: '1px solid var(--layera-color-border-default)',
+            backgroundColor: 'var(--layera-color-semantic-neutral-light)',
             cursor: 'pointer'
           }}
         >
@@ -108,17 +108,16 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
       {/* Main Content */}
       <div
         style={{
-          backgroundColor: 'yellow',
-          color: '#000',
-          padding: '24px',
-          maxWidth: '1200px',
+          backgroundColor: 'var(--layera-color-surface-secondary)',
+          color: 'var(--layera-color-text-primary)',
+          padding: 'var(--layera-global-spacing-6)',
+          maxWidth: 'var(--layera-global-max-width-screen-xl)',
           margin: '0 auto',
-          minHeight: 'calc(100vh - 100px)',
-          border: '5px solid red'
+          minHeight: 'calc(100vh - 100px)'
         }}
       >
         {/* TEST - Θα δεις αυτό το κείμενο */}
-        <h2 style={{ color: '#111', fontSize: '32px', fontWeight: 'bold', margin: '0 0 20px 0' }}>
+        <h2 style={{ color: 'var(--layera-color-text-primary)', fontSize: 'var(--layera-global-font-size-2xl)', fontWeight: 'var(--layera-global-font-weight-bold)', margin: '0 0 var(--layera-global-spacing-5) 0' }}>
           ✅ ΠΕΡΙΕΧΟΜΕΝΟ ΦΟΡΤΩΝΕΙ!
         </h2>
 
@@ -126,11 +125,11 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         <div
           style={{
             display: 'flex',
-            gap: '8px',
-            marginBottom: '16px',
-            padding: '12px',
-            backgroundColor: '#f8f9fa',
-            borderRadius: '8px'
+            gap: 'var(--layera-global-spacing-2)',
+            marginBottom: 'var(--layera-global-spacing-4)',
+            padding: 'var(--layera-global-spacing-3)',
+            backgroundColor: 'var(--layera-color-semantic-neutral-light)',
+            borderRadius: 'var(--layera-global-border-radius-base)'
           }}
         >
           <Button
@@ -163,19 +162,19 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             <div
               style={{
                 textAlign: 'center',
-                padding: '30px',
-                backgroundColor: '#fff',
-                borderRadius: '12px',
-                border: '2px dashed #007bff',
-                marginBottom: '20px'
+                padding: 'var(--layera-global-spacing-8)',
+                backgroundColor: 'var(--layera-color-surface-primary)',
+                borderRadius: 'var(--layera-global-border-radius-lg)',
+                border: '2px dashed var(--layera-color-semantic-info-primary)',
+                marginBottom: 'var(--layera-global-spacing-5)'
               }}
             >
               <h3 style={{
-                fontSize: '20px',
-                fontWeight: 'bold',
-                color: '#333',
-                marginBottom: '20px',
-                margin: '0 0 20px 0'
+                fontSize: 'var(--layera-global-font-size-lg)',
+                fontWeight: 'var(--layera-global-font-weight-bold)',
+                color: 'var(--layera-color-text-primary)',
+                marginBottom: 'var(--layera-global-spacing-5)',
+                margin: '0 0 var(--layera-global-spacing-5) 0'
               }}>
                 🎯 Live Preview
               </h3>
@@ -183,7 +182,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               <div style={{
                 display: 'flex',
                 justifyContent: 'center',
-                gap: '20px',
+                gap: 'var(--layera-global-spacing-5)',
                 flexWrap: 'wrap'
               }}>
                 {/* Rectangle Button */}
@@ -212,24 +211,24 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                gap: '20px',
-                marginBottom: '20px'
+                gap: 'var(--layera-global-spacing-5)',
+                marginBottom: 'var(--layera-global-spacing-5)'
               }}
             >
               {/* Variant Control */}
               <div
                 style={{
-                  padding: '16px',
-                  backgroundColor: '#fff',
-                  borderRadius: '8px',
-                  border: '1px solid #ddd'
+                  padding: 'var(--layera-global-spacing-4)',
+                  backgroundColor: 'var(--layera-color-surface-primary)',
+                  borderRadius: 'var(--layera-global-border-radius-base)',
+                  border: '1px solid var(--layera-color-border-default)'
                 }}
               >
                 <h4 style={{
-                  fontSize: '16px',
-                  fontWeight: '600',
-                  color: '#333',
-                  margin: '0 0 12px 0'
+                  fontSize: 'var(--layera-global-font-size-base)',
+                  fontWeight: 'var(--layera-global-font-weight-semibold)',
+                  color: 'var(--layera-color-text-primary)',
+                  margin: '0 0 var(--layera-global-spacing-3) 0'
                 }}>
                   Variant
                 </h4>
@@ -237,7 +236,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   style={{
                     display: 'flex',
                     flexWrap: 'wrap',
-                    gap: '8px'
+                    gap: 'var(--layera-global-spacing-2)'
                   }}
                 >
                   {variants.map((variant) => (
@@ -256,17 +255,17 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               {/* Size Control */}
               <div
                 style={{
-                  padding: '16px',
-                  backgroundColor: '#fff',
-                  borderRadius: '8px',
-                  border: '1px solid #ddd'
+                  padding: 'var(--layera-global-spacing-4)',
+                  backgroundColor: 'var(--layera-color-surface-primary)',
+                  borderRadius: 'var(--layera-global-border-radius-base)',
+                  border: '1px solid var(--layera-color-border-default)'
                 }}
               >
                 <h4 style={{
-                  fontSize: '16px',
-                  fontWeight: '600',
-                  color: '#333',
-                  margin: '0 0 12px 0'
+                  fontSize: 'var(--layera-global-font-size-base)',
+                  fontWeight: 'var(--layera-global-font-weight-semibold)',
+                  color: 'var(--layera-color-text-primary)',
+                  margin: '0 0 var(--layera-global-spacing-3) 0'
                 }}>
                   Size
                 </h4>
@@ -292,17 +291,17 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               {/* Text & Icon Control */}
               <div
                 style={{
-                  padding: '16px',
-                  backgroundColor: '#fff',
-                  borderRadius: '8px',
-                  border: '1px solid #ddd'
+                  padding: 'var(--layera-global-spacing-4)',
+                  backgroundColor: 'var(--layera-color-surface-primary)',
+                  borderRadius: 'var(--layera-global-border-radius-base)',
+                  border: '1px solid var(--layera-color-border-default)'
                 }}
               >
                 <h4 style={{
-                  fontSize: '16px',
-                  fontWeight: '600',
-                  color: '#333',
-                  margin: '0 0 12px 0'
+                  fontSize: 'var(--layera-global-font-size-base)',
+                  fontWeight: 'var(--layera-global-font-weight-semibold)',
+                  color: 'var(--layera-color-text-primary)',
+                  margin: '0 0 var(--layera-global-spacing-3) 0'
                 }}>
                   Κείμενο & Εικονίδιο
                 </h4>
