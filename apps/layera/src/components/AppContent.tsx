@@ -23,6 +23,7 @@ const MAP_DEFAULTS = {
 export const AppContent: React.FC = () => {
   const [activeDrawer, setActiveDrawer] = useState<'propertyTypeSelection' | null>(null);
   const [activeModal, setActiveModal] = useState<'login' | 'addContent' | 'testPanel' | null>(null);
+  const [pipelineState, setPipelineState] = useState<{ currentFlow: string | null }>({ currentFlow: null });
   const { t } = useLayeraTranslation();
 
   // Listen για αλλαγές χρώματος από το TestPanel
@@ -108,14 +109,15 @@ export const AppContent: React.FC = () => {
   };
 
   const handleSelectProperty = () => {
+    setPipelineState({ currentFlow: 'property' });
     closeModal();
-    // TODO: Εδώ θα μπει η επόμενη φάση του flow για τα Ακίνητα
-    console.log('Επιλέχθηκαν Ακίνητα - επόμενο βήμα προς υλοποίηση');
+    console.log('🏠 Pipeline Flow: Property selected');
   };
 
   const handleSelectJob = () => {
+    setPipelineState({ currentFlow: 'job' });
     closeModal();
-    alert('Ανοίγει flow Εργασίας');
+    console.log('💼 Pipeline Flow: Job selected');
   };
 
   return (

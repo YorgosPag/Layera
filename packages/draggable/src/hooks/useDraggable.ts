@@ -30,6 +30,7 @@ export function useDraggable(
   eventHandlers: DragEventHandlers = {}
 ): UseDraggableReturn {
   const [position, setPosition] = useState<DraggablePosition>(initialPosition);
+  const [isDragging, setIsDragging] = useState(false);
   const isDraggingRef = useRef(false);
   const dragStartRef = useRef<DraggablePosition>({ x: 0, y: 0 });
   const dragOffsetRef = useRef<DraggablePosition>({ x: 0, y: 0 });
@@ -77,6 +78,7 @@ export function useDraggable(
     const startPos = { x: e.clientX, y: e.clientY };
     dragStartRef.current = position;
     dragOffsetRef.current = startPos;
+    setIsDragging(false);
     isDraggingRef.current = false; // Αρχικά δεν είμαστε σε drag mode
 
     const eventData = createEventData(position);
@@ -92,6 +94,7 @@ export function useDraggable(
 
     // Έλεγχος threshold πριν αρχίσει το dragging
     if (!isDraggingRef.current && (Math.abs(deltaX) > dragThreshold || Math.abs(deltaY) > dragThreshold)) {
+      setIsDragging(true);
       isDraggingRef.current = true;
     }
 
@@ -115,8 +118,9 @@ export function useDraggable(
       const eventData = createEventData(position);
       onDragEnd?.(eventData);
     }
+    setIsDragging(false);
     isDraggingRef.current = false;
-  }, [position, createEventData, onDragEnd]);
+  }, [isDragging, position, createEventData, onDragEnd]);
 
   // Touch Event Handlers
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
@@ -127,6 +131,7 @@ export function useDraggable(
     const startPos = { x: touch.clientX, y: touch.clientY };
     dragStartRef.current = position;
     dragOffsetRef.current = startPos;
+    setIsDragging(false);
     isDraggingRef.current = false;
 
     const eventData = createEventData(position);
@@ -143,6 +148,7 @@ export function useDraggable(
     const deltaY = currentPos.y - dragOffsetRef.current.y;
 
     if (!isDraggingRef.current && (Math.abs(deltaX) > dragThreshold || Math.abs(deltaY) > dragThreshold)) {
+      setIsDragging(true);
       isDraggingRef.current = true;
       e.preventDefault(); // Prevent scrolling
     }
@@ -168,12 +174,14 @@ export function useDraggable(
       const eventData = createEventData(position);
       onDragEnd?.(eventData);
     }
+    setIsDragging(false);
     isDraggingRef.current = false;
-  }, [position, createEventData, onDragEnd]);
+  }, [isDragging, position, createEventData, onDragEnd]);
 
   // Reset function
   const resetPosition = useCallback(() => {
     setPosition(initialPosition);
+    setIsDragging(false);
     isDraggingRef.current = false;
   }, [initialPosition]);
 
@@ -187,7 +195,7 @@ export function useDraggable(
 
   return {
     position,
-    isDragging: isDraggingRef.current,
+    isDragging,
     dragHandlers: {
       onMouseDown: handleMouseDown,
       onMouseMove: handleMouseMove,

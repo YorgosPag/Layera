@@ -128,6 +128,7 @@ export const TestPanel: React.FC<TestPanelProps> = ({ isOpen, onClose }) => {
       open={isOpen}
       onClose={onClose}
       size="lg"
+      draggable={true}
       aria-labelledby="design-system-control-panel"
     >
       <ModalHeader title="🎛️ Design System Control Panel - George's Testing Hub" />

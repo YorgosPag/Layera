@@ -133,6 +133,31 @@ export const Modal: React.FC<BaseModalProps> = ({
     }
   }, [open, calculateInitialPosition, setPosition, modalElement]);
 
+  // Add window event listeners for dragging
+  useEffect(() => {
+    if (!draggable || isMobile() || isTouchDevice() || !open) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (dragHandlers.onMouseMove) {
+        dragHandlers.onMouseMove(e as any);
+      }
+    };
+
+    const handleMouseUp = (e: MouseEvent) => {
+      if (dragHandlers.onMouseUp) {
+        dragHandlers.onMouseUp(e as any);
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [draggable, isMobile, isTouchDevice, open, dragHandlers]);
+
   // Handle ESC key
   useEffect(() => {
     if (!open || !closeOnEscape) return;
