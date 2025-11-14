@@ -12,35 +12,35 @@ export const useButton = () => {
     sizes: {
       xs: {
         height: '2rem',
-        padding: `${SPACING_SCALE.SM}px 0.75rem`,
+        padding: `var(--layera-global-spacing-2) 0.75rem`,
         fontSize: '0.75rem',
         iconSize: '0.875rem',
         gap: '0.375rem'
       },
       sm: {
         height: '2.25rem',
-        padding: `${SPACING_SCALE.SM}px 1rem`,
+        padding: `var(--layera-global-spacing-2) 1rem`,
         fontSize: '0.875rem',
         iconSize: '1rem',
-        gap: `${SPACING_SCALE.SM}px`
+        gap: `var(--layera-global-spacing-2)`
       },
       md: {
         height: '2.75rem',
-        padding: `${SPACING_SCALE.MD}px 1.25rem`,
+        padding: `var(--layera-global-spacing-4) 1.25rem`,
         fontSize: '1rem',
         iconSize: '1.125rem',
-        gap: `${SPACING_SCALE.SM}px`
+        gap: `var(--layera-global-spacing-2)`
       },
       lg: {
         height: '3rem',
-        padding: `${SPACING_SCALE.MD - SPACING_SCALE.XS / 2}px ${SPACING_SCALE.XL - SPACING_SCALE.SM}px`,
+        padding: `var(--layera-global-spacing-3) var(--layera-global-spacing-6)`,
         fontSize: '1.125rem',
         iconSize: '1.25rem',
-        gap: `${SPACING_SCALE.SM}px`
+        gap: `var(--layera-global-spacing-2)`
       },
       xl: {
         height: '3.5rem',
-        padding: `${SPACING_SCALE.MD}px ${SPACING_SCALE.XXL}px`,
+        padding: `var(--layera-global-spacing-4) var(--layera-global-spacing-12)`,
         fontSize: '1.25rem',
         iconSize: '1.5rem',
         gap: '0.75rem'
@@ -249,7 +249,7 @@ export const useButton = () => {
       none: '0',
       sm: '0.25rem',
       md: '0.375rem',
-      lg: `${SPACING_SCALE.SM}px`,
+      lg: `var(--layera-global-spacing-2)`,
       full: '9999px'
     }
   }), []);
