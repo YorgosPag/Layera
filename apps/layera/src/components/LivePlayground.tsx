@@ -299,10 +299,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           <div className="layera-flex layera-flex--direction-column layera-flex--justify-center layera-text-center layera-padding--2xl" style={{
               minHeight: 'var(--layera-spacing-component-card-height)'
             }}>
-            <h2 style={{
-              fontSize: 'var(--layera-global-spacing-8)',
-              color: 'var(--layera-color-semantic-neutral-medium)',
-              margin: '0 0 var(--layera-global-spacing-4) 0'
+            <h2 className="layera-typography layera-margin-bottom--lg" data-size="2xl" style={{
+              color: 'var(--layera-color-semantic-neutral-medium)'
             }}>
               🚧 Colors Playground
             </h2>
