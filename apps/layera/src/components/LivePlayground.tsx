@@ -63,8 +63,17 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
   return (
     <div
-      className="layera-modal-overlay"
       data-layera-playground="true"
+      style={{
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        width: 'var(--layera-spacing-viewport-full-width)',
+        height: 'var(--layera-spacing-viewport-full-height)',
+        backgroundColor: 'var(--layera-color-surface-primary)',
+        zIndex: 9999,
+        overflow: 'auto'
+      }}
     >
       {/* Header με κουμπί κλεισίματος */}
       <div
