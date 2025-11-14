@@ -304,10 +304,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             }}>
               🚧 Colors Playground
             </h2>
-            <p style={{
-              fontSize: 'var(--layera-fontSize-lg)',
-              color: 'var(--layera-color-semantic-neutral-medium)',
-              margin: 'var(--layera-global-spacing-0)'
+            <p className="layera-typography layera-margin--none" data-size="lg" style={{
+              color: 'var(--layera-color-semantic-neutral-medium)'
             }}>
               Σύντομα διαθέσιμο - Live color theme testing
             </p>
