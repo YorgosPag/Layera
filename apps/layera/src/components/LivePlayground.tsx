@@ -173,12 +173,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 🎯 Live Preview
               </h3>
 
-              <div style={{
-                display: 'var(--layera-global-display-flex)',
-                justifyContent: 'center',
-                gap: 'var(--layera-global-spacing-5)',
-                flexWrap: 'wrap'
-              }}>
+              <div className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-xl">
                 {/* Rectangle Button */}
                 <Button
                   variant={buttonVariant}
