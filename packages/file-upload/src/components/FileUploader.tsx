@@ -22,10 +22,14 @@ import { Text as Typography } from '@layera/typography';
 // Mock Button component since @layera/buttons doesn't exist
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
+  size?: string;
+  variant?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, onClick, className, ...props }) => (
-  <button onClick={onClick} className={className} {...props}>{children}</button>
+const Button: React.FC<ButtonProps> = ({ children, onClick, className, size, variant, ...props }) => (
+  <button onClick={onClick} className={className} data-size={size} data-variant={variant} {...props}>
+    {children}
+  </button>
 );
 import { Box } from '@layera/layout';
 import { UploadIcon, DeleteIcon } from '@layera/icons';
