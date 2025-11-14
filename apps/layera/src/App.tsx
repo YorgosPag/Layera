@@ -33,10 +33,10 @@ function App(): React.ReactElement {
       <ThemeProvider>
         <AuthProvider
           callbacks={{
-            onSignIn: (user) => {},
+            onSignIn: (_user) => {},
             onSignOut: () => {},
-            onRoleChange: (newRole, oldRole) => {},
-            onMfaChange: (status) => {}
+            onRoleChange: (_newRole, _oldRole) => {},
+            onMfaChange: (_status) => {}
           }}
         >
           <AppContent />

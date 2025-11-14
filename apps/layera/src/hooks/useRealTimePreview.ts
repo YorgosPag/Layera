@@ -27,7 +27,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 300 }: UseRealTimePr
     previewKey: null
   });
 
-  const debounceTimerRef = useRef<NodeJS.Timeout>();
+  const debounceTimerRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   /**
    * Εφαρμόζει live preview στα header buttons

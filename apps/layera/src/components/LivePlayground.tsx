@@ -41,7 +41,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
     onCommit: (key: string, value: string) => {
       // Update the actual color state when preview is committed
       if (key === 'secondaryColor') {
-        setCurrentSquareColors(prev => ({ ...prev, secondary: value }));
+        setSquareSecondaryColor(value);
       }
     },
     debounceMs: 300
@@ -393,7 +393,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
     if (hasRealFirebaseConfig) {
       try {
-        const themeId = await saveColorTheme(colorState, user, `${colorCategory}-theme-${Date.now()}`);
+        const themeId = await saveColorTheme(colorState, user || undefined, `${colorCategory}-theme-${Date.now()}`);
       } catch (error) {
         console.error('⚠️ Σφάλμα αποθήκευσης στο Firebase:', error);
       }
