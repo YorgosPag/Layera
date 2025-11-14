@@ -272,7 +272,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 <div
                   style={{
                     display: 'flex',
-                    gap: '8px'
+                    gap: 'var(--layera-global-spacing-2)'
                   }}
                 >
                   {sizes.map((size) => (
