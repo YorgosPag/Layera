@@ -89,7 +89,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           zIndex: 1001
         }}
       >
-        <h1 style={{ fontSize: 'var(--layera-global-font-size-xl)', fontWeight: 'var(--layera-global-font-weight-bold)', color: 'var(--layera-color-text-primary)' }}>
+        <h1 style={{ fontSize: 'var(--layera-global-font-size-xl)', fontWeight: 'var(--layera-fontWeight-bold)', color: 'var(--layera-color-text-primary)' }}>
           🎛️ Live Playground - Ζωντανές Ρυθμίσεις
         </h1>
         <button
@@ -117,7 +117,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         }}
       >
         {/* TEST - Θα δεις αυτό το κείμενο */}
-        <h2 style={{ color: 'var(--layera-color-text-primary)', fontSize: 'var(--layera-global-font-size-2xl)', fontWeight: 'var(--layera-global-font-weight-bold)', margin: '0 0 var(--layera-global-spacing-5) 0' }}>
+        <h2 style={{ color: 'var(--layera-color-text-primary)', fontSize: 'var(--layera-global-font-size-2xl)', fontWeight: 'var(--layera-fontWeight-bold)', margin: '0 0 var(--layera-global-spacing-5) 0' }}>
           ✅ ΠΕΡΙΕΧΟΜΕΝΟ ΦΟΡΤΩΝΕΙ!
         </h2>
 
@@ -171,7 +171,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             >
               <h3 style={{
                 fontSize: 'var(--layera-global-font-size-lg)',
-                fontWeight: 'var(--layera-global-font-weight-bold)',
+                fontWeight: 'var(--layera-fontWeight-bold)',
                 color: 'var(--layera-color-text-primary)',
                 marginBottom: 'var(--layera-global-spacing-5)',
                 margin: '0 0 var(--layera-global-spacing-5) 0'
@@ -226,7 +226,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               >
                 <h4 style={{
                   fontSize: 'var(--layera-global-font-size-base)',
-                  fontWeight: 'var(--layera-global-font-weight-semibold)',
+                  fontWeight: 'var(--layera-fontWeight-semibold)',
                   color: 'var(--layera-color-text-primary)',
                   margin: '0 0 var(--layera-global-spacing-3) 0'
                 }}>
@@ -263,7 +263,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               >
                 <h4 style={{
                   fontSize: 'var(--layera-global-font-size-base)',
-                  fontWeight: 'var(--layera-global-font-weight-semibold)',
+                  fontWeight: 'var(--layera-fontWeight-semibold)',
                   color: 'var(--layera-color-text-primary)',
                   margin: '0 0 var(--layera-global-spacing-3) 0'
                 }}>
@@ -299,7 +299,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               >
                 <h4 style={{
                   fontSize: 'var(--layera-global-font-size-base)',
-                  fontWeight: 'var(--layera-global-font-weight-semibold)',
+                  fontWeight: 'var(--layera-fontWeight-semibold)',
                   color: 'var(--layera-color-text-primary)',
                   margin: '0 0 var(--layera-global-spacing-3) 0'
                 }}>
