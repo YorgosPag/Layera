@@ -45,12 +45,12 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
             <Text className="layera-typography layera-margin-bottom--sm" data-size="sm" data-weight="medium" data-color="primary">
               Variant
             </Text>
-            <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
+            <Box className="layera-flex layera-flex--wrap layera-flex--gap-md">
               {(['primary', 'secondary', 'outline', 'ghost', 'danger', 'success', 'warning', 'info'] as ButtonVariant[]).map((variant) => (
                 <Button
                   key={variant}
-                  variant={buttonState.variant === variant ? 'primary' : 'outline'}
-                  size="xs"
+                  variant={buttonState.variant === variant ? 'primary' : 'secondary'}
+                  size="sm"
                   onClick={() => updateButtonState({ variant })}
                 >
                   {variant}
@@ -64,12 +64,12 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
             <Text className="layera-typography layera-margin-bottom--sm" data-size="sm" data-weight="medium" data-color="primary">
               Size
             </Text>
-            <Box className="layera-flex layera-flex--wrap layera-flex--gap-xs">
+            <Box className="layera-flex layera-flex--wrap layera-flex--gap-md">
               {(['xs', 'sm', 'md', 'lg', 'xl'] as ButtonSize[]).map((size) => (
                 <Button
                   key={size}
-                  variant={buttonState.size === size ? 'primary' : 'outline'}
-                  size="xs"
+                  variant={buttonState.size === size ? 'primary' : 'secondary'}
+                  size="sm"
                   onClick={() => updateButtonState({ size })}
                 >
                   {size}
