@@ -677,9 +677,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
             {/* Color Controls Grid */}
             <Box
-              className="layera-grid layera-grid--gap-xl layera-margin-bottom--xl"
+              className="layera-grid layera-margin-bottom--xl"
               style={{
-                gridTemplateColumns: 'var(--layera-global-gridTemplateColumns-autoFit)'
+                gridTemplateColumns: 'var(--layera-global-gridTemplateColumns-autoFit)',
+                gap: '2rem'
               } as React.CSSProperties}
             >
               {/* Primary Color Control */}
