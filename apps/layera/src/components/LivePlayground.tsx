@@ -234,9 +234,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
 
             {/* Current Settings Display */}
-            <div className="layera-card layera-padding--lg layera-typography" data-family="mono" data-size="sm" style={{
-                backgroundColor: 'var(--layera-color-semantic-neutral-light)',
-                border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-semantic-neutral-light)'
+            <div className="layera-card layera-padding--lg layera-typography layera-border--default" data-family="mono" data-size="sm" style={{
+                backgroundColor: 'var(--layera-color-semantic-neutral-light)'
               }}>
               <h4 className="layera-typography layera-margin-bottom--sm" data-size="base" data-weight="semibold" style={{
                 color: 'var(--layera-color-semantic-neutral-dark)'
