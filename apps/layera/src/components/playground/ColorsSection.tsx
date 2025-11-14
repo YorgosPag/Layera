@@ -114,7 +114,7 @@ export const ColorsSection: React.FC<SectionProps> = ({ className = '' }) => {
   }, [colorState.colorCategory, loadSavedThemes]);
 
   // Apply colors to application based on selected category
-  const applyColorsToApp = useCallback(() => {
+  const applyColorsToApp = useCallback(async () => {
     const root = document.documentElement;
 
     // Map categories to CSS variable prefixes
@@ -163,6 +163,17 @@ export const ColorsSection: React.FC<SectionProps> = ({ className = '' }) => {
     root.style.setProperty(categoryColors.danger, colorState.dangerColor);
     root.style.setProperty(categoryColors.info, colorState.infoColor);
 
+    // Auto-save to Firebase
+    try {
+      const autoSaveId = await saveColorTheme(colorState, user || undefined, `Auto-save ${colorState.colorCategory}`);
+      console.log(`🎨 Colors applied & auto-saved to Firebase: ${autoSaveId}`);
+    } catch (error) {
+      console.warn('⚠️ Auto-save failed, but colors applied to DOM:', error);
+    }
+
+    // Also save to localStorage
+    saveCurrentThemeToLocalStorage(colorState);
+
     console.log(`🎨 Colors applied to ${colorState.colorCategory}:`, {
       primary: colorState.primaryColor,
       secondary: colorState.secondaryColor,
@@ -171,7 +182,7 @@ export const ColorsSection: React.FC<SectionProps> = ({ className = '' }) => {
       danger: colorState.dangerColor,
       info: colorState.infoColor
     });
-  }, [colorState]);
+  }, [colorState, user]);
 
   return (
     <Box className={className}>
