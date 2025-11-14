@@ -811,12 +811,19 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               </Text>
             </Box>
 
-            {/* Current Color Values Display */}
-            <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--neutral-light" data-family="mono" data-size="sm">
-              <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="base" data-weight="semibold">
-                🎨 Παλέτα Χρωμάτων για {colorCategory.toUpperCase()}:
-              </h4>
-              <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">
+            {/* Color Values & CSS Variables - Side by Side */}
+            <Box
+              className="layera-grid layera-grid--gap-lg"
+              style={{
+                gridTemplateColumns: '1fr 1fr'
+              } as React.CSSProperties}
+            >
+              {/* Current Color Values Display */}
+              <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--neutral-light" data-family="mono" data-size="sm">
+                <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="base" data-weight="semibold">
+                  🎨 Παλέτα Χρωμάτων για {colorCategory.toUpperCase()}:
+                </h4>
+                <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">
 {`{
   primary: "${currentColors.primary}",
   secondary: "${currentColors.secondary}",
@@ -825,15 +832,15 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   danger: "${currentColors.danger}",
   info: "${currentColors.info}"
 }`}
-              </pre>
-            </Box>
+                </pre>
+              </Box>
 
-            {/* CSS Variables Display */}
-            <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--info-light" data-family="mono" data-size="sm">
-              <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="base" data-weight="semibold">
-                🔧 CSS Μεταβλητές για {colorCategory.toUpperCase()}{colorCategory === 'buttons' ? ` (${colorButtonShape})` : ''}:
-              </h4>
-              <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">
+              {/* CSS Variables Display */}
+              <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--info-light" data-family="mono" data-size="sm">
+                <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="base" data-weight="semibold">
+                  🔧 CSS Μεταβλητές για {colorCategory.toUpperCase()}{colorCategory === 'buttons' ? ` (${colorButtonShape})` : ''}:
+                </h4>
+                <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">
 {colorCategory === 'buttons' && colorButtonShape === 'rectangular' && `{
   --layera-color-button-primary: "${currentColors.primary}",
   --layera-color-button-secondary: "${currentColors.secondary}",
@@ -882,7 +889,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   --layera-color-border-danger: "${currentColors.danger}",
   --layera-color-border-info: "${currentColors.info}"
 }`}
-              </pre>
+                </pre>
+              </Box>
             </Box>
           </Box>
         )}
