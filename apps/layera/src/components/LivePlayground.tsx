@@ -494,80 +494,88 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         {/* Colors Section - ENTERPRISE COLOR MANAGEMENT */}
         {activeSection === 'colors' && (
           <Box>
-            {/* Color Category Selection */}
-            <Box className="layera-card layera-padding--lg layera-margin-bottom--xl">
-              <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
-                🎯 Επιλογή Κατηγορίας Αντικειμένων
-              </h3>
-              <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
-                <Button
-                  variant={colorCategory === 'buttons' ? 'primary' : 'outline'}
-                  size="sm"
-                  onClick={() => setColorCategory('buttons')}
-                >
-                  🔘 Buttons
-                </Button>
-                <Button
-                  variant={colorCategory === 'backgrounds' ? 'primary' : 'outline'}
-                  size="sm"
-                  onClick={() => setColorCategory('backgrounds')}
-                >
-                  🎨 Backgrounds
-                </Button>
-                <Button
-                  variant={colorCategory === 'text' ? 'primary' : 'outline'}
-                  size="sm"
-                  onClick={() => setColorCategory('text')}
-                >
-                  📝 Text
-                </Button>
-                <Button
-                  variant={colorCategory === 'borders' ? 'primary' : 'outline'}
-                  size="sm"
-                  onClick={() => setColorCategory('borders')}
-                >
-                  🔲 Borders
-                </Button>
-              </Box>
-              <Text className="layera-typography layera-margin-top--sm" data-size="sm" data-color="secondary">
-                Επιλέξτε ποια αντικείμενα θα επηρεάσουν οι αλλαγές χρωμάτων
-              </Text>
-            </Box>
-
-            {/* Button Shape Selection - Only for Buttons Category */}
-            {colorCategory === 'buttons' && (
-              <Box className="layera-card layera-padding--lg layera-margin-bottom--xl">
+            {/* Category and Shape Selection - Side by Side */}
+            <Box
+              className={`layera-grid layera-margin-bottom--xl ${colorCategory === 'buttons' ? 'layera-grid--gap-lg' : ''}`}
+              style={{
+                gridTemplateColumns: colorCategory === 'buttons' ? '1fr 1fr' : '1fr'
+              } as React.CSSProperties}
+            >
+              {/* Color Category Selection */}
+              <Box className="layera-card layera-padding--lg">
                 <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
-                  🔘 Σχήμα Πλήκτρων Preview
+                  🎯 Επιλογή Κατηγορίας Αντικειμένων
                 </h3>
                 <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
                   <Button
-                    variant={colorButtonShape === 'rectangular' ? 'primary' : 'outline'}
+                    variant={colorCategory === 'buttons' ? 'primary' : 'outline'}
                     size="sm"
-                    onClick={() => setColorButtonShape('rectangular')}
+                    onClick={() => setColorCategory('buttons')}
                   >
-                    📐 Παραλληλόγραμμα
+                    🔘 Buttons
                   </Button>
                   <Button
-                    variant={colorButtonShape === 'square' ? 'primary' : 'outline'}
+                    variant={colorCategory === 'backgrounds' ? 'primary' : 'outline'}
                     size="sm"
-                    onClick={() => setColorButtonShape('square')}
+                    onClick={() => setColorCategory('backgrounds')}
                   >
-                    ⬜ Τετράγωνα
+                    🎨 Backgrounds
                   </Button>
                   <Button
-                    variant={colorButtonShape === 'rounded' ? 'primary' : 'outline'}
+                    variant={colorCategory === 'text' ? 'primary' : 'outline'}
                     size="sm"
-                    onClick={() => setColorButtonShape('rounded')}
+                    onClick={() => setColorCategory('text')}
                   >
-                    🔵 Στρογγυλά
+                    📝 Text
+                  </Button>
+                  <Button
+                    variant={colorCategory === 'borders' ? 'primary' : 'outline'}
+                    size="sm"
+                    onClick={() => setColorCategory('borders')}
+                  >
+                    🔲 Borders
                   </Button>
                 </Box>
                 <Text className="layera-typography layera-margin-top--sm" data-size="sm" data-color="secondary">
-                  Επιλέξτε το σχήμα των πλήκτρων στην προεπισκόπηση χρωμάτων
+                  Επιλέξτε ποια αντικείμενα θα επηρεάσουν οι αλλαγές χρωμάτων
                 </Text>
               </Box>
-            )}
+
+              {/* Button Shape Selection - Only for Buttons Category */}
+              {colorCategory === 'buttons' && (
+                <Box className="layera-card layera-padding--lg">
+                  <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
+                    🔘 Σχήμα Πλήκτρων Preview
+                  </h3>
+                  <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
+                    <Button
+                      variant={colorButtonShape === 'rectangular' ? 'primary' : 'outline'}
+                      size="sm"
+                      onClick={() => setColorButtonShape('rectangular')}
+                    >
+                      📐 Παραλληλόγραμμα
+                    </Button>
+                    <Button
+                      variant={colorButtonShape === 'square' ? 'primary' : 'outline'}
+                      size="sm"
+                      onClick={() => setColorButtonShape('square')}
+                    >
+                      ⬜ Τετράγωνα
+                    </Button>
+                    <Button
+                      variant={colorButtonShape === 'rounded' ? 'primary' : 'outline'}
+                      size="sm"
+                      onClick={() => setColorButtonShape('rounded')}
+                    >
+                      🔵 Στρογγυλά
+                    </Button>
+                  </Box>
+                  <Text className="layera-typography layera-margin-top--sm" data-size="sm" data-color="secondary">
+                    Επιλέξτε το σχήμα των πλήκτρων στην προεπισκόπηση χρωμάτων
+                  </Text>
+                </Box>
+              )}
+            </Box>
 
             {/* Live Color Preview Area */}
             <Box className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
