@@ -49,6 +49,14 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   const [buttonText, setButtonText] = useState('Live Button');
   const [withIcon, setWithIcon] = useState(true);
 
+  // Color Settings - ENTERPRISE SINGLE SOURCE OF TRUTH
+  const [primaryColor, setPrimaryColor] = useState('#007bff');
+  const [secondaryColor, setSecondaryColor] = useState('#6c757d');
+  const [successColor, setSuccessColor] = useState('#28a745');
+  const [warningColor, setWarningColor] = useState('#ffc107');
+  const [dangerColor, setDangerColor] = useState('#dc3545');
+  const [infoColor, setInfoColor] = useState('#17a2b8');
+
   console.log('🎛️ Current states:', { activeSection, buttonVariant, buttonSize, buttonText, withIcon });
 
   const variants: ButtonVariant[] = ['primary', 'secondary', 'outline', 'ghost', 'danger', 'success', 'warning', 'info'];
@@ -58,6 +66,25 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
     console.log('🚀 Applied settings:', { buttonVariant, buttonSize, buttonText, withIcon });
     window.dispatchEvent(new CustomEvent('playgroundUpdate', {
       detail: { buttonVariant, buttonSize, buttonText, withIcon }
+    }));
+  };
+
+  // ENTERPRISE COLOR APPLICATION - GLOBAL CSS VARIABLES UPDATE
+  const applyColorsToApp = () => {
+    const root = document.documentElement;
+    root.style.setProperty('--layera-color-primary', primaryColor);
+    root.style.setProperty('--layera-color-secondary', secondaryColor);
+    root.style.setProperty('--layera-color-success', successColor);
+    root.style.setProperty('--layera-color-warning', warningColor);
+    root.style.setProperty('--layera-color-danger', dangerColor);
+    root.style.setProperty('--layera-color-info', infoColor);
+
+    console.log('🎨 Applied colors globally:', {
+      primaryColor, secondaryColor, successColor, warningColor, dangerColor, infoColor
+    });
+
+    window.dispatchEvent(new CustomEvent('colorsUpdate', {
+      detail: { primaryColor, secondaryColor, successColor, warningColor, dangerColor, infoColor }
     }));
   };
 
@@ -232,15 +259,166 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           </Box>
         )}
 
-        {/* Coming Soon Sections */}
+        {/* Colors Section - ENTERPRISE COLOR MANAGEMENT */}
         {activeSection === 'colors' && (
-          <Box className="layera-flex layera-flex--direction-column layera-flex--justify-center layera-text-center layera-padding--2xl layera-min-height--card">
-            <h2 className="layera-typography layera-margin-bottom--lg layera-text-color--neutral-medium" data-size="2xl">
-              🚧 Colors Playground
-            </h2>
-            <p className="layera-typography layera-margin--none layera-text-color--neutral-medium" data-size="lg">
-              Σύντομα διαθέσιμο - Live color theme testing
-            </p>
+          <Box>
+            {/* Live Color Preview Area */}
+            <Box className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
+              <h3 className="layera-typography layera-margin-bottom--xl" data-size="lg" data-weight="bold" data-color="primary">
+                🎨 Live Color Preview
+              </h3>
+
+              <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-xl">
+                <Button variant="primary" size={buttonSize}>
+                  Primary Color
+                </Button>
+                <Button variant="secondary" size={buttonSize}>
+                  Secondary Color
+                </Button>
+                <Button variant="success" size={buttonSize}>
+                  Success Color
+                </Button>
+                <Button variant="warning" size={buttonSize}>
+                  Warning Color
+                </Button>
+                <Button variant="danger" size={buttonSize}>
+                  Danger Color
+                </Button>
+              </Box>
+            </Box>
+
+            {/* Color Controls Grid */}
+            <Box
+              className="layera-grid layera-grid--gap-xl layera-margin-bottom--xl"
+              style={{
+                gridTemplateColumns: 'var(--layera-global-gridTemplateColumns-autoFit)'
+              } as React.CSSProperties}
+            >
+              {/* Primary Color Control */}
+              <Box className="layera-card layera-padding--lg">
+                <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
+                  Primary Color
+                </h4>
+                <input
+                  type="color"
+                  value={primaryColor}
+                  onChange={(e) => setPrimaryColor(e.target.value)}
+                  className="layera-input layera-width--full layera-margin-bottom--sm"
+                />
+                <Text className="layera-typography" data-size="sm" data-color="secondary">
+                  {primaryColor.toUpperCase()}
+                </Text>
+              </Box>
+
+              {/* Secondary Color Control */}
+              <Box className="layera-card layera-padding--lg">
+                <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
+                  Secondary Color
+                </h4>
+                <input
+                  type="color"
+                  value={secondaryColor}
+                  onChange={(e) => setSecondaryColor(e.target.value)}
+                  className="layera-input layera-width--full layera-margin-bottom--sm"
+                />
+                <Text className="layera-typography" data-size="sm" data-color="secondary">
+                  {secondaryColor.toUpperCase()}
+                </Text>
+              </Box>
+
+              {/* Success Color Control */}
+              <Box className="layera-card layera-padding--lg">
+                <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
+                  Success Color
+                </h4>
+                <input
+                  type="color"
+                  value={successColor}
+                  onChange={(e) => setSuccessColor(e.target.value)}
+                  className="layera-input layera-width--full layera-margin-bottom--sm"
+                />
+                <Text className="layera-typography" data-size="sm" data-color="secondary">
+                  {successColor.toUpperCase()}
+                </Text>
+              </Box>
+
+              {/* Warning Color Control */}
+              <Box className="layera-card layera-padding--lg">
+                <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
+                  Warning Color
+                </h4>
+                <input
+                  type="color"
+                  value={warningColor}
+                  onChange={(e) => setWarningColor(e.target.value)}
+                  className="layera-input layera-width--full layera-margin-bottom--sm"
+                />
+                <Text className="layera-typography" data-size="sm" data-color="secondary">
+                  {warningColor.toUpperCase()}
+                </Text>
+              </Box>
+
+              {/* Danger Color Control */}
+              <Box className="layera-card layera-padding--lg">
+                <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
+                  Danger Color
+                </h4>
+                <input
+                  type="color"
+                  value={dangerColor}
+                  onChange={(e) => setDangerColor(e.target.value)}
+                  className="layera-input layera-width--full layera-margin-bottom--sm"
+                />
+                <Text className="layera-typography" data-size="sm" data-color="secondary">
+                  {dangerColor.toUpperCase()}
+                </Text>
+              </Box>
+
+              {/* Info Color Control */}
+              <Box className="layera-card layera-padding--lg">
+                <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
+                  Info Color
+                </h4>
+                <input
+                  type="color"
+                  value={infoColor}
+                  onChange={(e) => setInfoColor(e.target.value)}
+                  className="layera-input layera-width--full layera-margin-bottom--sm"
+                />
+                <Text className="layera-typography" data-size="sm" data-color="secondary">
+                  {infoColor.toUpperCase()}
+                </Text>
+              </Box>
+            </Box>
+
+            {/* Apply Colors Button */}
+            <Box className="layera-text-center layera-margin-bottom--xl">
+              <Button
+                variant="primary"
+                size="lg"
+                onClick={applyColorsToApp}
+                className="layera-button layera-button--primary"
+              >
+                🚀 Εφαρμογή Χρωμάτων Καθολικά
+              </Button>
+            </Box>
+
+            {/* Current Color Values Display */}
+            <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--neutral-light" data-family="mono" data-size="sm">
+              <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="base" data-weight="semibold">
+                🎨 Τρέχουσα Παλέτα Χρωμάτων:
+              </h4>
+              <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">
+{`{
+  primary: "${primaryColor}",
+  secondary: "${secondaryColor}",
+  success: "${successColor}",
+  warning: "${warningColor}",
+  danger: "${dangerColor}",
+  info: "${infoColor}"
+}`}
+              </pre>
+            </Box>
           </Box>
         )}
 
