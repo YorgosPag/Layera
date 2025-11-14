@@ -31,12 +31,13 @@ export interface ButtonState {
 }
 
 /**
- * Props για το ColorPicker component
+ * Props για το ColorPicker component με Real-Time Preview
  */
 export interface ColorPickerProps {
   label: string;
   value: string;
   onChange: (value: string) => void;
+  onPreview?: (value: string) => void;  // Optional real-time preview callback
   className?: string;
 }
 

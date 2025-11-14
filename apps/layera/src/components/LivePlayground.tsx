@@ -7,6 +7,7 @@ import { ButtonsSection } from './playground/ButtonsSection';
 import { ColorsSection } from './playground/ColorsSection';
 import { saveColorTheme, loadCurrentThemeFromLocalStorage } from '../services/colorThemeService';
 import { useAuth } from '@layera/auth-bridge';
+import { useRealTimePreview } from '../hooks/useRealTimePreview';
 
 /**
  * Live Playground - Enterprise Component Testing Interface
@@ -30,10 +31,22 @@ interface LivePlaygroundProps {
 }
 
 export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
-  console.log('🎮 LivePlayground φορτώνει...');
+  // console.log('🎮 LivePlayground φορτώνει...');
 
   // Authentication
   const { user } = useAuth();
+
+  // Real-time preview hook for header buttons
+  const { startPreview, isPreviewActive } = useRealTimePreview({
+    onCommit: (key: string, value: string) => {
+      console.log(`🎯 Real-time preview committed: ${key} = ${value}`);
+      // Update the actual color state when preview is committed
+      if (key === 'secondaryColor') {
+        setCurrentSquareColors(prev => ({ ...prev, secondary: value }));
+      }
+    },
+    debounceMs: 300
+  });
   // ==============================
   // STATE MANAGEMENT
   // ==============================
@@ -875,9 +888,17 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 <input
                   type="color"
                   value={currentColors.secondary}
+                  onInput={(e) => {
+                    // Real-time preview while dragging
+                    const newColor = (e.target as HTMLInputElement).value;
+                    console.log(`🎨 Live preview: secondaryColor = ${newColor}`);
+                    startPreview('secondaryColor', newColor);
+                  }}
                   onChange={(e) => {
-                    console.log(`🎨 ΒΗΜΑ 4α: Αλλαγή secondary color από ${currentColors.secondary} σε ${e.target.value}`);
-                    currentSetters.setSecondary(e.target.value);
+                    // Final commit when color selection is done
+                    const newColor = e.target.value;
+                    console.log(`✅ Final commit: secondaryColor = ${newColor}`);
+                    currentSetters.setSecondary(newColor);
                   }}
                   className="layera-input layera-width--full layera-margin-bottom--sm"
                 />

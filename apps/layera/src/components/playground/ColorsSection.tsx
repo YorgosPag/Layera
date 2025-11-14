@@ -5,6 +5,7 @@ import { Button } from '@layera/buttons';
 import { ColorState, SectionProps, ColorCategory } from './shared/types';
 import { ColorPicker } from './shared/ColorPicker';
 import { useAuthContext } from '@layera/auth-bridge';
+import { useRealTimePreview } from '../../hooks/useRealTimePreview';
 import {
   saveColorTheme,
   loadColorTheme,
@@ -46,12 +47,38 @@ export const ColorsSection: React.FC<SectionProps> = ({ className = '' }) => {
   const [loading, setLoading] = useState(false);
   const [themeName, setThemeName] = useState('');
 
+  // Real-time preview hook
+  const { startPreview, isPreviewActive } = useRealTimePreview({
+    onCommit: (key: string, value: string) => {
+      // When preview is committed, update the actual state
+      const colorField = key as keyof ColorState;
+      const newState = { ...colorState, [colorField]: value };
+      setColorState(newState);
+      saveCurrentThemeToLocalStorage(newState);
+      console.log(`🎯 Color committed: ${key} = ${value}`);
+    },
+    debounceMs: 500 // Μισό δευτερόλεπτο debounce
+  });
+
   const updateColorState = (updates: Partial<ColorState>) => {
     const newState = { ...colorState, ...updates };
     setColorState(newState);
 
     // Auto-save to localStorage
     saveCurrentThemeToLocalStorage(newState);
+  };
+
+  // Handle live preview από color picker
+  const handleColorPreview = (colorKey: keyof ColorState, value: string) => {
+    console.log(`🎨 Live preview: ${colorKey} = ${value}`);
+    startPreview(colorKey, value);
+  };
+
+  // Handle final color commit από color picker
+  const handleColorCommit = (colorKey: keyof ColorState, value: string) => {
+    console.log(`✅ Color committed: ${colorKey} = ${value}`);
+    const updates = { [colorKey]: value } as Partial<ColorState>;
+    updateColorState(updates);
   };
 
   // Load saved themes για την τρέχουσα κατηγορία
@@ -275,39 +302,57 @@ export const ColorsSection: React.FC<SectionProps> = ({ className = '' }) => {
         <ColorPicker
           label="Primary Color"
           value={colorState.primaryColor}
-          onChange={(value) => updateColorState({ primaryColor: value })}
+          onChange={(value) => handleColorCommit('primaryColor', value)}
+          onPreview={(value) => handleColorPreview('primaryColor', value)}
         />
 
         <ColorPicker
           label="Secondary Color"
           value={colorState.secondaryColor}
-          onChange={(value) => updateColorState({ secondaryColor: value })}
+          onChange={(value) => handleColorCommit('secondaryColor', value)}
+          onPreview={(value) => handleColorPreview('secondaryColor', value)}
         />
 
         <ColorPicker
           label="Success Color"
           value={colorState.successColor}
-          onChange={(value) => updateColorState({ successColor: value })}
+          onChange={(value) => handleColorCommit('successColor', value)}
+          onPreview={(value) => handleColorPreview('successColor', value)}
         />
 
         <ColorPicker
           label="Warning Color"
           value={colorState.warningColor}
-          onChange={(value) => updateColorState({ warningColor: value })}
+          onChange={(value) => handleColorCommit('warningColor', value)}
+          onPreview={(value) => handleColorPreview('warningColor', value)}
         />
 
         <ColorPicker
           label="Danger Color"
           value={colorState.dangerColor}
-          onChange={(value) => updateColorState({ dangerColor: value })}
+          onChange={(value) => handleColorCommit('dangerColor', value)}
+          onPreview={(value) => handleColorPreview('dangerColor', value)}
         />
 
         <ColorPicker
           label="Info Color"
           value={colorState.infoColor}
-          onChange={(value) => updateColorState({ infoColor: value })}
+          onChange={(value) => handleColorCommit('infoColor', value)}
+          onPreview={(value) => handleColorPreview('infoColor', value)}
         />
       </Box>
+
+      {/* Live Preview Status */}
+      {isPreviewActive && (
+        <Box className="layera-text-center layera-margin-bottom--lg layera-padding--md layera-bg-semantic--info-light layera-border-radius--md">
+          <Text className="layera-typography" data-size="sm" data-color="info" data-weight="semibold">
+            🎨 Live Preview Active - Τα χρώματα αλλάζουν σε πραγματικό χρόνο!
+          </Text>
+          <Text className="layera-typography layera-margin-top--xs" data-size="xs" data-color="secondary">
+            Σταματήστε το drag για να κάνετε commit την αλλαγή
+          </Text>
+        </Box>
+      )}
 
       {/* Apply Colors Button */}
       <Box className="layera-text-center layera-margin-bottom--xl">
@@ -321,6 +366,7 @@ export const ColorsSection: React.FC<SectionProps> = ({ className = '' }) => {
         </Button>
         <Text className="layera-typography layera-margin-top--sm" data-size="xs" data-color="secondary">
           Θα επηρεαστούν όλα τα στοιχεία τύπου "{colorState.colorCategory}" στην εφαρμογή
+          {isPreviewActive && ' (Live Preview ενεργό)'}
         </Text>
       </Box>
 
