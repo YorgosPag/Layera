@@ -205,20 +205,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               }}
             >
               {/* Variant Control */}
-              <div
-                style={{
-                  padding: 'var(--layera-global-spacing-4)',
-                  backgroundColor: 'var(--layera-color-surface-primary)',
-                  borderRadius: 'var(--layera-radius-md)',
-                  border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-default)'
-                }}
-              >
-                <h4 style={{
-                  fontSize: 'var(--layera-fontSize-base)',
-                  fontWeight: 'var(--layera-fontWeight-semibold)',
-                  color: 'var(--layera-color-text-primary)',
-                  margin: '0 0 var(--layera-global-spacing-3) 0'
-                }}>
+              <div className="layera-card layera-padding--lg">
+                <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
                   Variant
                 </h4>
                 <div
