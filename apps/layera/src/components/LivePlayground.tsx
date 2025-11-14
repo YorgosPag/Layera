@@ -72,7 +72,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         height: 'var(--layera-spacing-viewport-full-height)',
         backgroundColor: 'var(--layera-color-surface-primary)',
         zIndex: 'var(--layera-z-index-overlay)',
-        overflow: 'auto'
+        overflow: 'var(--layera-global-overflow-auto)'
       }}
     >
       {/* Header με κουμπί κλεισίματος */}
