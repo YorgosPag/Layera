@@ -237,9 +237,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             <div className="layera-card layera-padding--lg layera-typography layera-border--default" data-family="mono" data-size="sm" style={{
                 backgroundColor: 'var(--layera-color-semantic-neutral-light)'
               }}>
-              <h4 className="layera-typography layera-margin-bottom--sm" data-size="base" data-weight="semibold" style={{
-                color: 'var(--layera-color-semantic-neutral-dark)'
-              }}>
+              <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="base" data-weight="semibold">
                 📝 Τρέχουσες Ρυθμίσεις:
               </h4>
               <pre className="layera-typography layera-margin--none" data-family="mono" style={{
