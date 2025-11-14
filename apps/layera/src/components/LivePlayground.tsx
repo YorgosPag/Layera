@@ -86,7 +86,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           backgroundColor: 'var(--layera-color-surface-secondary)',
           position: 'sticky',
           top: '0',
-          zIndex: 1001
+          zIndex: 'var(--layera-z-index-overlay)'
         }}
       >
         <h1 style={{ fontSize: 'var(--layera-fontSize-xl)', fontWeight: 'var(--layera-fontWeight-bold)', color: 'var(--layera-color-text-primary)' }}>
