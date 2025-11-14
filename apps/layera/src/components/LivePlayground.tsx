@@ -112,7 +112,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           color: 'var(--layera-color-text-primary)',
           padding: 'var(--layera-global-spacing-6)',
           maxWidth: 'var(--layera-spacing-container-xl)',
-          margin: '0 auto',
+          margin: 'var(--layera-global-spacing-0) auto',
           minHeight: 'calc(var(--layera-spacing-viewport-full-height) - var(--layera-global-spacing-10))'
         }}
       >
