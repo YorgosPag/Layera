@@ -175,11 +175,11 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               </Box>
 
               {/* Size Control */}
-              <div className="layera-card layera-padding--lg">
+              <Box className="layera-card layera-padding--lg">
                 <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
                   Size
                 </h4>
-                <div className="layera-flex layera-flex--gap-sm">
+                <Box className="layera-flex layera-flex--gap-sm">
                   {sizes.map((size) => (
                     <Button
                       key={size}
@@ -190,8 +190,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                       {size}
                     </Button>
                   ))}
-                </div>
-              </div>
+                </Box>
+              </Box>
 
               {/* Text & Icon Control */}
               <div className="layera-card layera-padding--lg">
