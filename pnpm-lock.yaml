@@ -126,6 +126,9 @@ importers:
       '@layera/layout':
         specifier: workspace:*
         version: link:../layout
+      '@layera/typography':
+        specifier: workspace:*
+        version: link:../typography
       firebase:
         specifier: ^12.4.0
         version: 12.5.0

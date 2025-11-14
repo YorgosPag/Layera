@@ -34,7 +34,8 @@
     "dev": "npm run build:watch"
   },
   "dependencies": {
-    "@layera/layout": "workspace:*"
+    "@layera/layout": "workspace:*",
+    "@layera/typography": "workspace:*"
   },
   "peerDependencies": {
     "react": "^19.0.0",
