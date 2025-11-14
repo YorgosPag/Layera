@@ -254,7 +254,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             </p>
           </div>
         )}
-      </div>
+      </Box>
     </div>
   );
 };
