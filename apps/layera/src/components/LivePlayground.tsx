@@ -85,9 +85,6 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
       {/* Main Content */}
       <div
         className="layera-bg-surface--secondary layera-text-color--primary layera-padding--2xl layera-max-width--container-xl layera-margin-x--auto"
-        style={{
-          minHeight: 'calc(var(--layera-spacing-viewport-full-height) - var(--layera-global-spacing-10))'
-        }}
       >
         {/* TEST - Θα δεις αυτό το κείμενο */}
         <h2 className="layera-typography layera-margin-bottom--xl" data-color="primary" data-size="2xl" data-weight="bold">
