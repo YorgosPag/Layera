@@ -77,7 +77,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
     >
       {/* Header με κουμπί κλεισίματος */}
       <div className="layera-flex layera-flex--justify-between layera-flex--align-center layera-padding--lg layera-border-bottom--default layera-bg-surface--secondary layera-position--sticky layera-top--0 layera-z-index--overlay">
-        <h1 style={{ fontSize: 'var(--layera-fontSize-xl)', fontWeight: 'var(--layera-fontWeight-bold)', color: 'var(--layera-color-text-primary)' }}>
+        <h1 className="layera-typography" data-size="xl" data-weight="bold" data-color="primary">
           🎛️ Live Playground - Ζωντανές Ρυθμίσεις
         </h1>
         <button
