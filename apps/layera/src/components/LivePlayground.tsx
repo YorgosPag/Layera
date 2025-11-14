@@ -98,7 +98,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             padding: 'var(--layera-global-spacing-2) var(--layera-global-spacing-4)',
             border: '1px solid var(--layera-color-border-default)',
             backgroundColor: 'var(--layera-color-semantic-neutral-light)',
-            cursor: 'pointer'
+            cursor: 'var(--layera-global-cursor-pointer)'
           }}
         >
           ✕ Κλείσιμο
