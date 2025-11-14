@@ -64,11 +64,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   return (
     <div
       data-layera-playground="true"
-      className="layera-position--fixed layera-top--0 layera-left--0"
+      className="layera-position--fixed layera-top--0 layera-left--0 layera-bg-surface-light"
       style={{
         width: 'var(--layera-spacing-viewport-full-width)',
         height: 'var(--layera-spacing-viewport-full-height)',
-        backgroundColor: 'var(--layera-color-surface-primary)',
         zIndex: 'var(--layera-z-index-overlay)',
         overflow: 'var(--layera-global-overflow-auto)'
       }}
