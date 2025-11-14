@@ -6,19 +6,14 @@ import { ColorState } from '../components/playground/shared/types';
  * Χρησιμοποιεί localStorage για persistence
  */
 export const useColorPersistence = () => {
-  console.log('🔧 useColorPersistence hook initializing...');
-
   useEffect(() => {
-    console.log('🔧 useColorPersistence useEffect running...');
     // Φόρτωση και εφαρμογή χρωμάτων από localStorage
     const loadAndApplyStoredColors = () => {
       try {
         const stored = localStorage.getItem('layera-current-theme');
-        console.log('🔍 Checking localStorage for saved theme:', stored);
 
         if (stored) {
           const savedState: ColorState = JSON.parse(stored);
-          console.log('🔄 Loading colors from localStorage:', savedState);
 
           // Εφαρμογή χρωμάτων στο DOM
           const root = document.documentElement;
@@ -73,13 +68,6 @@ export const useColorPersistence = () => {
             styleElement.textContent = emergencyStyle;
             document.head.appendChild(styleElement);
 
-            console.log('✅ Header button colors applied from localStorage:', {
-              bg: savedState.secondaryColor,
-              color: '#ffffff',
-              border: savedState.secondaryColor
-            });
-
-            console.log('🚨 EMERGENCY STARTUP: Δυνατό CSS override για HEADER buttons προστέθηκε για', savedState.secondaryColor);
           } else {
             // Εφαρμογή για άλλες κατηγορίες
             const colorMap = {
@@ -119,13 +107,11 @@ export const useColorPersistence = () => {
               root.style.setProperty(categoryColors.info, savedState.infoColor);
             }
 
-            console.log('✅ Colors automatically applied from localStorage');
           }
 
           return savedState;
         }
       } catch (error) {
-        console.warn('⚠️ Failed to load colors from localStorage:', error);
       }
       return null;
     };

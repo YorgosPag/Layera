@@ -30,13 +30,6 @@ export const AppContent: React.FC = () => {
   // Pipeline State Listener - Full Integration
   useEffect(() => {
     const unsubscribe = pipelineDiscovery.subscribe((newState) => {
-      console.log('🚀 Pipeline State Updated:', {
-        category: newState.selectedCategory,
-        intent: newState.selectedIntent,
-        currentStep: newState.currentStepId,
-        totalSteps: newState.totalSteps,
-        progress: `${newState.currentStepIndex + 1}/${newState.totalSteps}`
-      });
 
       // Update local state with full pipeline state
       setPipelineState(newState);
@@ -50,7 +43,6 @@ export const AppContent: React.FC = () => {
     const handleColorChange = async (event: Event) => {
       const customEvent = event as CustomEvent<{ color: string }>;
       const newColor = customEvent.detail.color;
-      console.log('🎨 Changing color to:', newColor);
 
       try {
         // Κλείσιμο του modal
@@ -88,7 +80,6 @@ export const AppContent: React.FC = () => {
   };
 
   const openLivePlayground = () => {
-    console.log('🔧 ΒΗΜΑ 1: Άνοιγμα LivePlayground - κλικ στο γρανάζι');
     setShowPlayground(true);
   };
 
@@ -98,7 +89,6 @@ export const AppContent: React.FC = () => {
 
   const changeTestColor = async (color: string) => {
     try {
-      console.log(`🎨 Changing test color to: ${color}`);
 
       // Εμφάνιση οδηγιών για γρήγορη αλλαγή
       const command = `node C:\\layera\\tests-george\\change-color.js ${color}`;
@@ -119,13 +109,10 @@ export const AppContent: React.FC = () => {
       if (navigator.clipboard) {
         try {
           await navigator.clipboard.writeText(command);
-          console.log('📋 Command copied to clipboard!');
         } catch (err) {
-          console.log('📋 Could not copy to clipboard, but command is displayed above');
         }
       }
 
-      console.log('📋 Copy this command to terminal:\n', command);
 
     } catch (error) {
       console.error('Error changing test color:', error);

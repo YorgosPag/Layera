@@ -35,11 +35,6 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 300 }: UseRealTimePr
   const applyHeaderButtonPreview = useCallback((color: string) => {
     const headerContainer = document.querySelector('[data-layout="header-fixed"]');
 
-    if (headerContainer) {
-      const allButtons = headerContainer.querySelectorAll('button');
-      console.log(`🔘 Found ${allButtons.length} buttons in header`);
-    }
-
     // Ακριβείς selectors για τα header SquareButton components
     const headerButtonSelectors = [
       '[data-layout="header-fixed"] .layera-square-btn.layera-button[data-variant="secondary"]',
@@ -73,8 +68,6 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 300 }: UseRealTimePr
 
     style.textContent = css;
     document.head.appendChild(style);
-
-    console.log(`🚨 HEADER BUTTON Live preview applied: ${color}`);
   }, []);
 
   /**
@@ -96,7 +89,6 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 300 }: UseRealTimePr
     const cssVariable = cssVariableMap[key];
     if (cssVariable) {
       root.style.setProperty(cssVariable, value);
-      console.log(`🎨 Live preview applied: ${cssVariable} = ${value}`);
 
       // Ειδική διαχείριση για header buttons (secondary color)
       if (key === 'secondaryColor') {
@@ -109,8 +101,6 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 300 }: UseRealTimePr
    * Ξεκινάει live preview για ένα συγκεκριμένο χρώμα
    */
   const startPreview = useCallback((key: string, value: string) => {
-    console.log(`🎨 startPreview called: ${key} = ${value}`);
-
     // Clear previous debounce timer
     if (debounceTimerRef.current) {
       clearTimeout(debounceTimerRef.current);
@@ -151,8 +141,6 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 300 }: UseRealTimePr
       isPreviewActive: false,
       previewKey: null
     }));
-
-    console.log(`🎯 Real-time preview committed: ${key} = ${value}`);
   }, [onCommit]);
 
   /**
@@ -177,8 +165,6 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 300 }: UseRealTimePr
     if (existingStyle) {
       existingStyle.remove();
     }
-
-    console.log('🧹 Live preview cleared');
   }, []);
 
   // Cleanup on unmount

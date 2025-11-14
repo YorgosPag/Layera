@@ -39,7 +39,6 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   // Real-time preview hook for header buttons
   const { startPreview, isPreviewActive } = useRealTimePreview({
     onCommit: (key: string, value: string) => {
-      console.log(`🎯 Real-time preview committed: ${key} = ${value}`);
       // Update the actual color state when preview is committed
       if (key === 'secondaryColor') {
         setCurrentSquareColors(prev => ({ ...prev, secondary: value }));
@@ -174,23 +173,19 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
   // Φόρτωση αποθηκευμένων χρωμάτων από localStorage
   useEffect(() => {
-    console.log('🔄 LivePlayground useEffect: Φόρτωση χρωμάτων από localStorage...');
 
     try {
       const stored = localStorage.getItem('layera-current-theme');
       if (stored) {
         const savedState = JSON.parse(stored);
-        console.log('📂 ΒΗΜΑ 6: Βρέθηκαν αποθηκευμένα χρώματα:', savedState);
 
         // Εφαρμογή των αποθηκευμένων χρωμάτων
         if (savedState.buttonShape && savedState.buttonShape !== colorButtonShape) {
           setColorButtonShape(savedState.buttonShape);
-          console.log(`🔄 Αλλαγή σχήματος σε: ${savedState.buttonShape}`);
         }
 
         if (savedState.colorCategory && savedState.colorCategory !== colorCategory) {
           setColorCategory(savedState.colorCategory);
-          console.log(`🔄 Αλλαγή κατηγορίας σε: ${savedState.colorCategory}`);
         }
 
         // Εφαρμογή χρωμάτων ανάλογα με το σχήμα
@@ -217,9 +212,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           setRoundedInfoColor(savedState.infoColor || roundedInfoColor);
         }
 
-        console.log('✅ ΒΗΜΑ 7: Χρώματα φορτώθηκαν επιτυχώς!');
       } else {
-        console.log('ℹ️ Δεν βρέθηκαν αποθηκευμένα χρώματα');
       }
     } catch (error) {
       console.error('⚠️ Σφάλμα φόρτωσης χρωμάτων:', error);
@@ -284,14 +277,12 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
    * Μοναδική πηγή αλήθειας για το styling των secondary buttons
    */
   const applySquareColorsToHeader = () => {
-    console.log('🎯 ΒΗΜΑ 4γ: Κλικ στο κουμπί "Εφαρμογή στην Επικεφαλίδα"');
     // Εξασφαλίζω ότι υπάρχουν οι CSS μεταβλητές και rules
     ensureCSSVariablesExist();
   };
 
   // ENTERPRISE COLOR APPLICATION - TARGETED CSS VARIABLES UPDATE
   const applyColorsToApp = async () => {
-    console.log('🚀 ΒΗΜΑ 4β: Κλικ στο κουμπί "Εφαρμογή Χρωμάτων" στο LivePlayground');
     const root = document.documentElement;
     const colorMap = {
       buttons: {
@@ -360,25 +351,13 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
       styleElement.textContent = emergencyStyle;
       document.head.appendChild(styleElement);
 
-      console.log('🚨 EMERGENCY: Δυνατό CSS override προστέθηκε για', currentColors.secondary);
 
       const newBg = root.style.getPropertyValue('--layera-btn-secondary-bg');
 
-      console.log('🎯 Εφαρμογή header button colors:', {
-        oldBg,
-        newBg,
-        bg: currentColors.secondary,
-        color: '#ffffff',
-        border: currentColors.secondary
-      });
 
       // Διπλός έλεγχος - ας δούμε αν το CSS variable υπάρχει στο DOM
       const computedStyle = getComputedStyle(document.documentElement);
       const computedBg = computedStyle.getPropertyValue('--layera-btn-secondary-bg');
-      console.log('🔍 CSS Variable check:', {
-        setProperty: currentColors.secondary,
-        computedStyle: computedBg.trim()
-      });
     } else {
       // Εφαρμογή για άλλες κατηγορίες (backgrounds, text, borders)
       root.style.setProperty(categoryColors.primary, currentColors.primary);
@@ -389,7 +368,6 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
       root.style.setProperty(categoryColors.info, currentColors.info);
     }
 
-    console.log(`🎨 Applied ${colorCategory} colors for ${colorButtonShape} shape:`, currentColors);
 
     // Αποθήκευση στο Firebase
     const colorState = {
@@ -406,7 +384,6 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
     // Αποθήκευση και στο localStorage για γρήγορη φόρτωση
     try {
       localStorage.setItem('layera-current-theme', JSON.stringify(colorState));
-      console.log('💾 ΒΗΜΑ 5α: Χρώματα αποθηκεύτηκαν στο localStorage για cache:', colorState);
     } catch (error) {
       console.warn('⚠️ Σφάλμα αποθήκευσης στο localStorage:', error);
     }
@@ -417,13 +394,11 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
     if (hasRealFirebaseConfig) {
       try {
         const themeId = await saveColorTheme(colorState, user, `${colorCategory}-theme-${Date.now()}`);
-        console.log('🔥 ΒΗΜΑ 5β: Χρώματα αποθηκεύτηκαν στο Firebase:', { themeId, user: user?.email || 'anonymous' });
       } catch (error) {
         console.error('⚠️ Σφάλμα αποθήκευσης στο Firebase:', error);
-        console.log('🔄 Συνεχίζουμε με localStorage μόνο');
       }
     } else {
-      console.log('ℹ️ ΒΗΜΑ 5β: Firebase disabled (demo credentials), χρησιμοποιούμε μόνο localStorage');
+      // Firebase disabled (demo credentials), χρησιμοποιούμε μόνο localStorage
     }
 
     window.dispatchEvent(new CustomEvent('colorsUpdate', {
@@ -475,7 +450,6 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             variant={activeSection === 'colors' ? 'primary' : 'ghost'}
             size="sm"
             onClick={() => {
-              console.log('🎨 ΒΗΜΑ 2: Μετάβαση στην καρτέλα χρώματα');
               setActiveSection('colors');
             }}
           >
@@ -729,7 +703,6 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                       variant={colorButtonShape === 'square' ? 'primary' : 'outline'}
                       size="sm"
                       onClick={() => {
-                        console.log('🔲 ΒΗΜΑ 3β: Επιλογή σχήματος "Square" για preview');
                         setColorButtonShape('square');
                       }}
                     >
@@ -891,13 +864,11 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   onInput={(e) => {
                     // Real-time preview while dragging
                     const newColor = (e.target as HTMLInputElement).value;
-                    console.log(`🎨 Live preview: secondaryColor = ${newColor}`);
                     startPreview('secondaryColor', newColor);
                   }}
                   onChange={(e) => {
                     // Final commit when color selection is done
                     const newColor = e.target.value;
-                    console.log(`✅ Final commit: secondaryColor = ${newColor}`);
                     currentSetters.setSecondary(newColor);
                   }}
                   className="layera-input layera-width--full layera-margin-bottom--sm"

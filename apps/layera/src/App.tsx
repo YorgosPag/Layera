@@ -18,33 +18,25 @@ try {
 
   // Έλεγχος αν έχουμε πραγματικά credentials
   if (firebaseConfig.apiKey === 'demo-api-key') {
-    console.log('🔧 Using demo Firebase credentials - database features disabled');
   } else {
     initializeFirebaseApp(firebaseConfig);
-    console.log('🔥 Firebase initialized successfully');
   }
 } catch (error) {
-  console.warn('⚠️ Firebase initialization failed:', error);
-  console.log('🔄 Application will continue without Firebase features');
 }
 
 function App(): React.ReactElement {
-  console.log('🚀 App component loading...');
-
   // Αυτόματη φόρτωση και εφαρμογή αποθηκευμένων χρωμάτων
   useColorPersistence();
-
-  console.log('🎨 useColorPersistence hook called');
 
   return (
     <TolgeeProvider>
       <ThemeProvider>
         <AuthProvider
           callbacks={{
-            onSignIn: (user) => console.log('🔐 User signed in:', user.email),
-            onSignOut: () => console.log('🔐 User signed out'),
-            onRoleChange: (newRole, oldRole) => console.log('👤 Role changed:', { newRole, oldRole }),
-            onMfaChange: (status) => console.log('🔒 MFA status:', status)
+            onSignIn: (user) => {},
+            onSignOut: () => {},
+            onRoleChange: (newRole, oldRole) => {},
+            onMfaChange: (status) => {}
           }}
         >
           <AppContent />
