@@ -45,6 +45,8 @@ export function initializeFirebaseApp(config: AuthConfig): FirebaseApp {
     apiKey: string;
     authDomain: string;
     storageBucket: string;
+    messagingSenderId?: string;
+    appId?: string;
   } = {
     projectId: config.projectId,
     apiKey: config.apiKey,

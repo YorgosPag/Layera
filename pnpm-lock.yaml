@@ -123,6 +123,9 @@ importers:
 
   packages/auth-bridge:
     dependencies:
+      '@layera/layout':
+        specifier: workspace:*
+        version: link:../layout
       firebase:
         specifier: ^12.4.0
         version: 12.5.0
