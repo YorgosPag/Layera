@@ -62,7 +62,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   };
 
   return (
-    <div
+    <Box
       data-layera-playground="true"
       className="layera-position--fixed layera-top--0 layera-left--0 layera-bg-surface-light layera-full-width layera-layout-content layera-map--fullscreen"
       style={{
@@ -255,7 +255,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           </div>
         )}
       </Box>
-    </div>
+    </Box>
   );
 };
 
