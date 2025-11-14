@@ -1,9 +1,18 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { ColorState, SectionProps, ColorCategory } from './shared/types';
 import { ColorPicker } from './shared/ColorPicker';
+import { useAuthContext } from '@layera/auth-bridge';
+import {
+  saveColorTheme,
+  loadColorTheme,
+  loadUserColorThemes,
+  saveCurrentThemeToLocalStorage,
+  loadCurrentThemeFromLocalStorage,
+  type ColorTheme
+} from '../../services/colorThemeService';
 
 /**
  * ColorsSection - Enterprise Color Management Section
@@ -15,6 +24,9 @@ import { ColorPicker } from './shared/ColorPicker';
  * - Πλήρης συμμόρφωση με enterprise standards
  */
 export const ColorsSection: React.FC<SectionProps> = ({ className = '' }) => {
+  // Auth context για user identification
+  const { user } = useAuthContext();
+
   // Color State Management
   const [colorState, setColorState] = useState<ColorState>({
     primaryColor: '#007bff',
@@ -26,9 +38,80 @@ export const ColorsSection: React.FC<SectionProps> = ({ className = '' }) => {
     colorCategory: 'buttons'
   });
 
+  // Firebase state management
+  const [savedThemes, setSavedThemes] = useState<ColorTheme[]>([]);
+  const [saving, setSaving] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [themeName, setThemeName] = useState('');
+
   const updateColorState = (updates: Partial<ColorState>) => {
-    setColorState(prev => ({ ...prev, ...updates }));
+    const newState = { ...colorState, ...updates };
+    setColorState(newState);
+
+    // Auto-save to localStorage
+    saveCurrentThemeToLocalStorage(newState);
   };
+
+  // Load saved themes για την τρέχουσα κατηγορία
+  const loadSavedThemes = useCallback(async () => {
+    setLoading(true);
+    try {
+      const themes = await loadUserColorThemes(colorState.colorCategory, user || undefined);
+      setSavedThemes(themes);
+    } catch (error) {
+      console.error('Failed to load saved themes:', error);
+    } finally {
+      setLoading(false);
+    }
+  }, [colorState.colorCategory, user]);
+
+  // Save current theme to Firebase
+  const saveCurrentTheme = useCallback(async () => {
+    if (!themeName.trim()) return;
+
+    setSaving(true);
+    try {
+      await saveColorTheme(colorState, user || undefined, themeName);
+      setThemeName('');
+      await loadSavedThemes(); // Refresh the list
+      console.log('🎨 Theme saved successfully!');
+    } catch (error) {
+      console.error('Failed to save theme:', error);
+    } finally {
+      setSaving(false);
+    }
+  }, [colorState, user, themeName, loadSavedThemes]);
+
+  // Load a theme from Firebase
+  const loadTheme = useCallback(async (themeId: string) => {
+    setLoading(true);
+    try {
+      const loadedState = await loadColorTheme(themeId, user || undefined);
+      if (loadedState) {
+        setColorState(loadedState);
+        saveCurrentThemeToLocalStorage(loadedState);
+        console.log('🎨 Theme loaded successfully!');
+      }
+    } catch (error) {
+      console.error('Failed to load theme:', error);
+    } finally {
+      setLoading(false);
+    }
+  }, [user]);
+
+  // Load από localStorage on mount
+  useEffect(() => {
+    const savedState = loadCurrentThemeFromLocalStorage();
+    if (savedState) {
+      setColorState(savedState);
+    }
+    loadSavedThemes();
+  }, [loadSavedThemes]);
+
+  // Reload themes όταν αλλάζει κατηγορία
+  useEffect(() => {
+    loadSavedThemes();
+  }, [colorState.colorCategory, loadSavedThemes]);
 
   // Apply colors to application based on selected category
   const applyColorsToApp = useCallback(() => {
@@ -221,6 +304,102 @@ export const ColorsSection: React.FC<SectionProps> = ({ className = '' }) => {
           Θα επηρεαστούν όλα τα στοιχεία τύπου "{colorState.colorCategory}" στην εφαρμογή
         </Text>
       </Box>
+
+      {/* Save Theme Section */}
+      <Box className="layera-card layera-padding--lg layera-margin-bottom--xl">
+        <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
+          💾 Αποθήκευση Θέματος
+        </h3>
+        <Box className="layera-flex layera-flex--gap-md layera-flex--align-center layera-margin-bottom--md">
+          <input
+            type="text"
+            placeholder="Όνομα θέματος..."
+            value={themeName}
+            onChange={(e) => setThemeName(e.target.value)}
+            className="layera-input layera-flex-1"
+            style={{
+              padding: 'var(--layera-spacing-sm)',
+              border: '1px solid var(--layera-color-border-default)',
+              borderRadius: 'var(--layera-border-radius-md)'
+            }}
+          />
+          <Button
+            variant="primary"
+            size="md"
+            onClick={saveCurrentTheme}
+            disabled={saving || !themeName.trim()}
+          >
+            {saving ? '💾 Αποθήκευση...' : '💾 Αποθήκευση'}
+          </Button>
+        </Box>
+        <Text className="layera-typography" data-size="sm" data-color="secondary">
+          Αποθηκεύστε την παρούσα παλέτα χρωμάτων για μελλοντική χρήση
+        </Text>
+      </Box>
+
+      {/* Saved Themes Section */}
+      {savedThemes.length > 0 && (
+        <Box className="layera-card layera-padding--lg layera-margin-bottom--xl">
+          <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
+            📚 Αποθηκευμένα Θέματα ({colorState.colorCategory})
+          </h3>
+          {loading ? (
+            <Box className="layera-text-center layera-padding--lg">
+              <Text className="layera-typography" data-size="sm" data-color="secondary">
+                🔄 Φόρτωση θεμάτων...
+              </Text>
+            </Box>
+          ) : (
+            <Box
+              className="layera-grid layera-grid--gap-md"
+              style={{
+                gridTemplateColumns: 'var(--layera-global-gridTemplateColumns-autoFit)'
+              } as React.CSSProperties}
+            >
+              {savedThemes.map((theme) => (
+                <Box
+                  key={theme.id}
+                  className="layera-card layera-padding--md layera-border--default"
+                  style={{ background: 'var(--layera-color-bg-subtle)' }}
+                >
+                  <Box className="layera-flex layera-flex--justify-between layera-flex--align-center layera-margin-bottom--sm">
+                    <h4 className="layera-typography layera-margin--none" data-size="base" data-weight="semibold">
+                      {theme.name}
+                    </h4>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => loadTheme(theme.id)}
+                    >
+                      📥 Φόρτωση
+                    </Button>
+                  </Box>
+
+                  {/* Theme Color Preview */}
+                  <Box className="layera-flex layera-flex--gap-xs layera-margin-bottom--sm">
+                    {Object.entries(theme.colors).map(([key, color]) => (
+                      <Box
+                        key={key}
+                        className="layera-border-radius--sm"
+                        style={{
+                          width: '16px',
+                          height: '16px',
+                          backgroundColor: color,
+                          border: '1px solid var(--layera-color-border-default)'
+                        }}
+                      />
+                    ))}
+                  </Box>
+
+                  <Text className="layera-typography" data-size="xs" data-color="secondary">
+                    {new Date(theme.createdAt).toLocaleDateString('el-GR')}
+                  </Text>
+                </Box>
+              ))}
+            </Box>
+          )}
+        </Box>
+      )}
 
       {/* Current Color Values Display */}
       <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--neutral-light" data-family="mono" data-size="sm">

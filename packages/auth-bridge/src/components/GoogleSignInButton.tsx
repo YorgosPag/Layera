@@ -10,8 +10,6 @@ export interface GoogleSignInButtonProps {
   children?: React.ReactNode;
   /** CSS class για styling */
   className?: string;
-  /** Style object */
-  style?: React.CSSProperties;
   /** Callback όταν η σύνδεση είναι επιτυχής */
   onSuccess?: (user: LayeraUser) => void;
   /** Callback όταν η σύνδεση αποτυγχάνει */
@@ -36,7 +34,6 @@ export interface GoogleSignInButtonProps {
 export function GoogleSignInButton({
   children = 'Σύνδεση με Google',
   className = '',
-  style,
   onSuccess,
   onError,
   disabled: externalDisabled = false
