@@ -230,14 +230,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               </div>
 
               {/* Size Control */}
-              <div
-                style={{
-                  padding: 'var(--layera-global-spacing-4)',
-                  backgroundColor: 'var(--layera-color-surface-primary)',
-                  borderRadius: 'var(--layera-radius-md)',
-                  border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-default)'
-                }}
-              >
+              <div className="layera-card layera-padding--lg">
                 <h4 style={{
                   fontSize: 'var(--layera-fontSize-base)',
                   fontWeight: 'var(--layera-fontWeight-semibold)',
@@ -246,12 +239,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 }}>
                   Size
                 </h4>
-                <div
-                  style={{
-                    display: 'var(--layera-global-display-flex)',
-                    gap: 'var(--layera-global-spacing-2)'
-                  }}
-                >
+                <div className="layera-flex layera-flex--gap-sm">
                   {sizes.map((size) => (
                     <Button
                       key={size}
