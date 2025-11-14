@@ -20,7 +20,6 @@ export const LayeraHeader: React.FC<LayeraHeaderProps> = ({
   navigation,
   actions,
   variant = 'standard',
-  sticky,
   className = '',
 
   // Geo-Canvas Mode Props

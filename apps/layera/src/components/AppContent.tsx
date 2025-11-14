@@ -8,8 +8,6 @@ import { PlusIcon, UserIcon, ArrowLeftIcon } from '../../../../packages/icons/sr
 import { Text, Heading } from '../../../../packages/typography/src';
 import { PipelineDiscovery, type PipelineState } from '@layera/pipelines';
 import { LivePlayground } from './LivePlayground';
-import RealEstateContent from './RealEstatePage';
-import JobsContent from './JobsPage';
 import LoginContent from './LoginPage';
 
 // Map defaults from tokens system

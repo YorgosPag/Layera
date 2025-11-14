@@ -29,7 +29,6 @@ export interface LayeraHeaderProps {
   navigation?: React.ReactNode;
   actions?: React.ReactNode;
   variant?: HeaderVariant | 'geo-canvas';
-  sticky?: boolean;
   className?: string;
 
   // Geo-Canvas Mode Props (για backward compatibility)
