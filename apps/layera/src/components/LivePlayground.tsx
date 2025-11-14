@@ -5,13 +5,17 @@ import { Button, SquareButton } from '@layera/buttons';
 import { PlusIcon, SearchIcon, UserIcon, SettingsIcon, CloseIcon } from '@layera/icons';
 
 /**
- * Live Playground - Ζωντανή δοκιμή components σε πραγματικό χρόνο
+ * Live Playground - Enterprise Component Testing Interface
  *
  * ARXES Compliant Live Testing Interface:
- * - Άμεση προεπισκόπηση αλλαγών στα buttons της εφαρμογής
- * - Live ρυθμίσεις που επηρεάζουν τα πραγματικά components
- * - Πλήρης συμμόρφωση με enterprise standards
- * - Fullscreen interface με καρτέλες
+ * - 🎯 Real-time component testing and configuration
+ * - 🏗️ Enterprise CSS Variables management (single source of truth)
+ * - 🎨 Live color palette system with multiple button shapes
+ * - 📱 Responsive fullscreen interface with organized sections
+ * - 🔧 Direct integration with header button styling
+ *
+ * @author Claude Code - Enterprise Development Assistant
+ * @version 2.0.0 - Refactored for clean enterprise architecture
  */
 
 type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'success' | 'warning' | 'info';
@@ -22,39 +26,33 @@ interface LivePlaygroundProps {
 }
 
 export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
-  console.log('🔍 LivePlayground component rendered!');
+  // ==============================
+  // STATE MANAGEMENT
+  // ==============================
 
-  // Debug CSS tokens
-  useEffect(() => {
-    console.log('🎨 Checking CSS tokens...');
-
-    // Ελέγχω αν τα CSS custom properties λειτουργούν
-    const testElement = document.createElement('div');
-    testElement.style.color = 'var(--layera-color-text-primary)';
-    document.body.appendChild(testElement);
-    const computedColor = getComputedStyle(testElement).color;
-    document.body.removeChild(testElement);
-
-    if (computedColor !== 'var(--layera-color-text-primary)' && computedColor !== '') {
-      console.log('🎯 CSS tokens are working! Test color:', computedColor);
-    } else {
-      console.warn('⚠️ CSS tokens not working yet...');
-    }
-  }, []);
+  /** Active section in the playground interface */
   const [activeSection, setActiveSection] = useState<'buttons' | 'colors' | 'tokens'>('buttons');
 
-  // Button Settings
+  // Button Configuration
+  /** Current button variant for testing */
   const [buttonVariant, setButtonVariant] = useState<ButtonVariant>('secondary');
+  /** Current button size for testing */
   const [buttonSize, setButtonSize] = useState<ButtonSize>('md');
+  /** Text displayed on test buttons */
   const [buttonText, setButtonText] = useState('Live Button');
+  /** Whether test buttons show icons */
   const [withIcon, setWithIcon] = useState(true);
+  /** Button shape for button testing section */
   const [buttonShape, setButtonShape] = useState<'rectangular' | 'square' | 'rounded'>('rectangular');
 
-  // Color Settings - ENTERPRISE SINGLE SOURCE OF TRUTH
-  const [colorButtonShape, setColorButtonShape] = useState<'rectangular' | 'square' | 'rounded'>('rectangular');
+  // Color Configuration
+  /** Button shape for color testing (connected to header buttons) */
+  const [colorButtonShape, setColorButtonShape] = useState<'rectangular' | 'square' | 'rounded'>('square');
+  /** Color category being modified */
   const [colorCategory, setColorCategory] = useState<'buttons' | 'backgrounds' | 'text' | 'borders'>('buttons');
 
-  // Rectangular Button Colors
+  // Color Palettes for Different Button Shapes
+  /** Rectangular button color palette */
   const [rectPrimaryColor, setRectPrimaryColor] = useState('#007bff');
   const [rectSecondaryColor, setRectSecondaryColor] = useState('#6c757d');
   const [rectSuccessColor, setRectSuccessColor] = useState('#28a745');
@@ -62,7 +60,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   const [rectDangerColor, setRectDangerColor] = useState('#dc3545');
   const [rectInfoColor, setRectInfoColor] = useState('#17a2b8');
 
-  // Square Button Colors
+  /** Square button color palette (connected to header buttons) */
   const [squarePrimaryColor, setSquarePrimaryColor] = useState('#FF4444');
   const [squareSecondaryColor, setSquareSecondaryColor] = useState('#44FF44');
   const [squareSuccessColor, setSquareSuccessColor] = useState('#4444FF');
@@ -70,7 +68,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   const [squareDangerColor, setSquareDangerColor] = useState('#AA00FF');
   const [squareInfoColor, setSquareInfoColor] = useState('#00AAFF');
 
-  // Rounded Button Colors
+  /** Rounded button color palette */
   const [roundedPrimaryColor, setRoundedPrimaryColor] = useState('#800080');
   const [roundedSecondaryColor, setRoundedSecondaryColor] = useState('#008080');
   const [roundedSuccessColor, setRoundedSuccessColor] = useState('#808000');
@@ -78,7 +76,14 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   const [roundedDangerColor, setRoundedDangerColor] = useState('#FF6347');
   const [roundedInfoColor, setRoundedInfoColor] = useState('#4169E1');
 
-  // Helper functions to get colors based on shape
+  // ==============================
+  // UTILITY FUNCTIONS
+  // ==============================
+
+  /**
+   * Gets the current color palette based on selected button shape
+   * @returns Color object with primary, secondary, success, warning, danger, info
+   */
   const getCurrentColors = () => {
     switch (colorButtonShape) {
       case 'rectangular':
@@ -129,209 +134,79 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
     }
   };
 
+  // ==============================
+  // COMPUTED VALUES
+  // ==============================
+
+  /** Current color palette based on selected button shape */
   const currentColors = getCurrentColors();
+  /** Current color setters based on selected button shape */
   const currentSetters = getCurrentSetters();
-
-  console.log('🎛️ Current states:', { activeSection, buttonVariant, buttonSize, buttonText, withIcon });
-
+  /** Available button variants for testing */
   const variants: ButtonVariant[] = ['primary', 'secondary', 'outline', 'ghost', 'danger', 'success', 'warning', 'info'];
+  /** Available button sizes for testing */
   const sizes: ButtonSize[] = ['xs', 'sm', 'md', 'lg', 'xl'];
 
+  // ==============================
+  // EVENT HANDLERS
+  // ==============================
+
+  /**
+   * Applies current button settings to the application
+   * Dispatches custom event for other components to listen
+   */
   const applyToApp = () => {
-    console.log('🚀 Applied settings:', { buttonVariant, buttonSize, buttonText, withIcon });
     window.dispatchEvent(new CustomEvent('playgroundUpdate', {
       detail: { buttonVariant, buttonSize, buttonText, withIcon }
     }));
   };
 
-  // 🏢 ENTERPRISE CSS ANALYSIS: ΕΎΡΕΣΗ ΠΡΑΓΜΑΤΙΚΩΝ CSS ΜΕΤΑΒΛΗΤΩΝ
-  const analyzeHeaderButtonStyles = () => {
-    console.log('🏢 ENTERPRISE ANALYSIS: Header Button CSS Architecture');
+  // ==============================
+  // CSS VARIABLES MANAGEMENT
+  // ==============================
 
-    const headerButtons = document.querySelectorAll('*[data-layout="header-fixed"] button');
-    console.log(`📊 Βρέθηκαν ${headerButtons.length} header buttons στο DOM`);
-
-    if (headerButtons.length > 0) {
-      const firstButton = headerButtons[0];
-
-      // STEP 1: CSS Classes που εφαρμόζονται
-      const classList = Array.from(firstButton.classList);
-      console.log('🎯 CSS Classes που εφαρμόζονται στο button:', classList);
-
-      // STEP 2: Computed styles ανάλυση
-      const computedStyles = window.getComputedStyle(firstButton);
-      console.log('🔍 Computed Styles (τρέχον αποτέλεσμα):', {
-        backgroundColor: computedStyles.backgroundColor,
-        borderColor: computedStyles.borderColor,
-        color: computedStyles.color
-      });
-
-      // STEP 3: CSS Variables που ΥΠΑΡΧΟΥΝ στο :root
-      const rootStyles = window.getComputedStyle(document.documentElement);
-      const allCSSVars = [
-        '--layera-btn-secondary-bg',
-        '--layera-btn-secondary-border',
-        '--layera-btn-secondary-color',
-        '--layera-btn-secondary-hover-bg',
-        '--layera-btn-secondary-hover-border',
-        '--la-color-surface',
-        '--la-color-surface-hover',
-        '--la-color-primary',
-        '--la-color-secondary',
-        '--layera-square-btn-bg',
-        '--layera-square-btn-secondary-bg'
-      ];
-
-      console.log('🔧 CSS Variables που ΥΠΑΡΧΟΥΝ στο :root:');
-      const existingVars = [];
-      allCSSVars.forEach(varName => {
-        const value = rootStyles.getPropertyValue(varName);
-        if (value && value.trim()) {
-          console.log(`  ✅ ${varName}: ${value.trim()}`);
-          existingVars.push({ name: varName, value: value.trim() });
-        } else {
-          console.log(`  ❌ ${varName}: δεν υπάρχει`);
-        }
-      });
-
-      console.log('🎯 ΕΠΟΜΕΝΟ ΒΗΜΑ: Θα δοκιμάσω να αλλάξω μόνο τις υπάρχουσες μεταβλητές');
-      return existingVars;
-    }
-    return [];
-  };
-
-  // 🏢 ENTERPRISE SOLUTION: CSS VARIABLES ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ
-  const applySquareColorsToHeader = () => {
-    console.log('🏢 ENTERPRISE: Εφαρμογή χρωμάτων μέσω CSS Variables');
-
-    // STEP 1: Ανάλυση των υπαρχουσών μεταβλητών
-    const existingVars = analyzeHeaderButtonStyles();
-
-    // STEP 2: Εφόσον δεν υπάρχουν CSS Variables, δημιουργώ enterprise λύση
-    if (existingVars.length === 0) {
-      console.log('🏢 ENTERPRISE: Δεν βρέθηκαν CSS Variables - δημιουργώ μοναδική πηγή αλήθειας');
-      findActualCSSVariable();
-      return; // Επιστρέφω γιατί η findActualCSSVariable θα κάνει όλη τη δουλειά
-    }
-
-    // Αν υπάρχουν μεταβλητές, τις χρησιμοποιώ
-    const root = document.documentElement;
-    const appliedVars = [];
-
-    existingVars.forEach(({ name, value }) => {
-      if (name.includes('secondary') || name.includes('surface')) {
-        const newValue = currentColors.secondary;
-        root.style.setProperty(name, newValue, 'important');
-        appliedVars.push({ name, oldValue: value, newValue });
-        console.log(`🎯 ΕΦΑΡΜΟΓΗ: ${name} = ${newValue}`);
-      }
-    });
-
-    // STEP 3: Έλεγχος αποτελέσματος μετά από 100ms
-    setTimeout(() => {
-      const headerButtons = document.querySelectorAll('*[data-layout="header-fixed"] button');
-      if (headerButtons.length > 0) {
-        const computedStyle = window.getComputedStyle(headerButtons[0]);
-        const currentBg = computedStyle.backgroundColor;
-
-        // Μετατροπή hex σε rgb για σύγκριση
-        const expectedRgb = hexToRgb(currentColors.secondary);
-        const isSuccess = currentBg.includes(expectedRgb.r) && currentBg.includes(expectedRgb.g) && currentBg.includes(expectedRgb.b);
-
-        if (isSuccess) {
-          console.log('🎉 SUCCESS: ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ ΕΠΙΤΥΧΗΣ!');
-          console.log('✅ CSS Variables λειτουργούν σωστά');
-        } else {
-          console.log('❌ FAILED: CSS Variables δεν επηρεάζουν τα header buttons');
-          console.log(`Expected RGB: ${expectedRgb.r}, ${expectedRgb.g}, ${expectedRgb.b}`);
-          console.log(`Actual background: ${currentBg}`);
-
-          console.log('🏢 ENTERPRISE SOLUTION: Δημιουργία μοναδικής πηγής αλήθειας...');
-          findActualCSSVariable();
-        }
-      }
-    }, 100);
-  };
-
-  // Helper function για hex to rgb
-  const hexToRgb = (hex: string) => {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16)
-    } : { r: 0, g: 0, b: 0 };
-  };
-
-  // Προχωρημένη ανάλυση για εύρεση της πραγματικής μεταβλητής
-  const findActualCSSVariable = () => {
-    console.log('🔍 ΠΡΟΧΩΡΗΜΕΝΗ ΑΝΑΛΥΣΗ: Εξερεύνηση CSS rules...');
-
-    // STEP 1: Ελέγχω όλες τις CSS μεταβλητές που υπάρχουν στο :root
-    const rootStyles = window.getComputedStyle(document.documentElement);
-    const allProps = Array.from(rootStyles);
-    const cssVariables = allProps.filter(prop => prop.startsWith('--'));
-
-    console.log(`🔍 ΒΡΕΘΗΚΑΝ ${cssVariables.length} CSS Variables στο :root:`);
-    cssVariables.forEach(varName => {
-      const value = rootStyles.getPropertyValue(varName);
-      if (varName.includes('btn') || varName.includes('button') || varName.includes('surface') || varName.includes('color')) {
-        console.log(`  🎯 ${varName}: ${value}`);
-      }
-    });
-
-    // STEP 2: Εφόσον δεν υπάρχουν, ας τις ΔΗΜΙΟΥΡΓΗΣΟΥΜΕ!
-    console.log('💡 ΛΥΣΗ: Δημιουργώ τις CSS μεταβλητές που λείπουν');
-
+  /**
+   * Enterprise CSS Variables Management
+   * Δημιουργεί και διαχειρίζεται CSS μεταβλητές για μοναδική πηγή αλήθειας
+   */
+  const ensureCSSVariablesExist = () => {
     const root = document.documentElement;
 
-    // Δημιουργώ τις βασικές μεταβλητές που ελέγχουν τα secondary buttons
+    // Δημιουργώ τις CSS μεταβλητές αν δεν υπάρχουν
     root.style.setProperty('--layera-btn-secondary-bg', currentColors.secondary);
     root.style.setProperty('--layera-btn-secondary-border', currentColors.secondary);
     root.style.setProperty('--layera-btn-secondary-color', '#ffffff');
     root.style.setProperty('--layera-btn-secondary-hover-bg', currentColors.secondary + 'CC');
     root.style.setProperty('--layera-btn-secondary-hover-border', currentColors.secondary + 'CC');
 
-    // Δημιουργώ τις βασικές color μεταβλητές
-    root.style.setProperty('--la-color-surface', currentColors.secondary);
-    root.style.setProperty('--la-color-surface-hover', currentColors.secondary + 'CC');
-
-    console.log('✅ ΔΗΜΙΟΥΡΓΗΘΗΚΑΝ οι CSS Variables. Τώρα ας τις συνδέσω με τα CSS rules...');
-
-    // STEP 3: Δημιουργώ CSS rules που χρησιμοποιούν αυτές τις μεταβλητές
-    createCSSRulesForButtons();
-  };
-
-  // Δημιουργία CSS rules που συνδέουν τις μεταβλητές με τα buttons
-  const createCSSRulesForButtons = () => {
-    console.log('🏗️ ENTERPRISE: Δημιουργία CSS Rules για μοναδική πηγή αλήθειας');
-
-    // Δημιουργώ ένα style element που θα περιέχει τα CSS rules
-    let customStyle = document.getElementById('layera-custom-css');
+    // Εξασφαλίζω ότι υπάρχουν τα CSS rules
+    let customStyle = document.getElementById('layera-css-variables');
     if (!customStyle) {
       customStyle = document.createElement('style');
-      customStyle.id = 'layera-custom-css';
+      customStyle.id = 'layera-css-variables';
       document.head.appendChild(customStyle);
+
+      customStyle.textContent = `
+        .layera-btn--secondary {
+          background-color: var(--layera-btn-secondary-bg) !important;
+          border-color: var(--layera-btn-secondary-border) !important;
+          color: var(--layera-btn-secondary-color) !important;
+        }
+        .layera-btn--secondary:hover {
+          background-color: var(--layera-btn-secondary-hover-bg) !important;
+          border-color: var(--layera-btn-secondary-hover-border) !important;
+        }
+      `;
     }
+  };
 
-    // CSS rules που συνδέουν τις μεταβλητές με τα buttons
-    const cssRules = `
-      .layera-btn--secondary {
-        background-color: var(--layera-btn-secondary-bg) !important;
-        border-color: var(--layera-btn-secondary-border) !important;
-        color: var(--layera-btn-secondary-color) !important;
-      }
-
-      .layera-btn--secondary:hover {
-        background-color: var(--layera-btn-secondary-hover-bg) !important;
-        border-color: var(--layera-btn-secondary-hover-border) !important;
-      }
-    `;
-
-    customStyle.textContent = cssRules;
-
-    console.log('🎉 SUCCESS: Δημιουργήθηκαν CSS Rules που συνδέουν τις μεταβλητές με τα buttons!');
-    console.log('🏢 ENTERPRISE: Τώρα έχουμε πραγματική μοναδική πηγή αλήθειας με CSS Variables!');
+  /**
+   * Εφαρμόζει χρώματα στα header buttons μέσω CSS Variables
+   * Μοναδική πηγή αλήθειας για το styling των secondary buttons
+   */
+  const applySquareColorsToHeader = () => {
+    // Εξασφαλίζω ότι υπάρχουν οι CSS μεταβλητές και rules
+    ensureCSSVariablesExist();
   };
 
   // ENTERPRISE COLOR APPLICATION - TARGETED CSS VARIABLES UPDATE
