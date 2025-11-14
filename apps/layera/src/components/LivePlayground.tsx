@@ -63,17 +63,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
   return (
     <div
+      className="layera-modal-overlay"
       data-layera-playground="true"
-      style={{
-        position: 'fixed',
-        top: '0',
-        left: '0',
-        width: '100vw',
-        height: '100vh',
-        backgroundColor: 'var(--layera-color-surface-primary)',
-        zIndex: 9999,
-        overflow: 'auto'
-      }}
     >
       {/* Header με κουμπί κλεισίματος */}
       <div
@@ -113,7 +104,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           padding: 'var(--layera-global-spacing-6)',
           maxWidth: 'var(--layera-spacing-container-xl)',
           margin: '0 auto',
-          minHeight: 'calc(100vh - 100px)'
+          minHeight: 'calc(var(--layera-spacing-viewport-full-height) - var(--layera-global-spacing-10))'
         }}
       >
         {/* TEST - Θα δεις αυτό το κείμενο */}
@@ -310,7 +301,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   value={buttonText}
                   onChange={(e) => setButtonText(e.target.value)}
                   style={{
-                    width: '100%',
+                    width: 'var(--layera-spacing-viewport-full-width)',
                     padding: 'var(--layera-global-spacing-2)',
                     border: '1px solid var(--layera-color-semantic-neutral-medium)',
                     borderRadius: 'var(--layera-border-radius-sm)',
@@ -350,7 +341,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               </h4>
               <pre style={{
                 color: 'var(--layera-color-semantic-neutral-dark)',
-                margin: '0',
+                margin: 'var(--layera-global-spacing-0)',
                 fontFamily: 'monospace'
               }}>
 {`{
@@ -386,7 +377,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             <p style={{
               fontSize: 'var(--layera-fontSize-lg)',
               color: 'var(--layera-color-semantic-neutral-medium)',
-              margin: '0'
+              margin: 'var(--layera-global-spacing-0)'
             }}>
               Σύντομα διαθέσιμο - Live color theme testing
             </p>
@@ -414,7 +405,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             <p style={{
               fontSize: 'var(--layera-fontSize-lg)',
               color: 'var(--layera-color-semantic-neutral-medium)',
-              margin: '0'
+              margin: 'var(--layera-global-spacing-0)'
             }}>
               Σύντομα διαθέσιμο - Live design token editing
             </p>
