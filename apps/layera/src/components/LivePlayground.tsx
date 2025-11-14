@@ -78,7 +78,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
       {/* Header με κουμπί κλεισίματος */}
       <div
         style={{
-          display: 'flex',
+          display: 'var(--layera-global-display-flex)',
           justifyContent: 'space-between',
           alignItems: 'center',
           padding: 'var(--layera-global-spacing-4)',
@@ -124,7 +124,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         {/* Navigation Tabs */}
         <div
           style={{
-            display: 'flex',
+            display: 'var(--layera-global-display-flex)',
             gap: 'var(--layera-global-spacing-2)',
             marginBottom: 'var(--layera-global-spacing-4)',
             padding: 'var(--layera-global-spacing-3)',
@@ -180,7 +180,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               </h3>
 
               <div style={{
-                display: 'flex',
+                display: 'var(--layera-global-display-flex)',
                 justifyContent: 'center',
                 gap: 'var(--layera-global-spacing-5)',
                 flexWrap: 'wrap'
@@ -234,7 +234,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 </h4>
                 <div
                   style={{
-                    display: 'flex',
+                    display: 'var(--layera-global-display-flex)',
                     flexWrap: 'wrap',
                     gap: 'var(--layera-global-spacing-2)'
                   }}
@@ -271,7 +271,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 </h4>
                 <div
                   style={{
-                    display: 'flex',
+                    display: 'var(--layera-global-display-flex)',
                     gap: 'var(--layera-global-spacing-2)'
                   }}
                 >
@@ -371,7 +371,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               textAlign: 'center',
               padding: 'var(--layera-global-spacing-12)',
               minHeight: 'var(--layera-spacing-component-card-height)',
-              display: 'flex',
+              display: 'var(--layera-global-display-flex)',
               flexDirection: 'column',
               justifyContent: 'center'
             }}
@@ -399,7 +399,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               textAlign: 'center',
               padding: 'var(--layera-global-spacing-12)',
               minHeight: 'var(--layera-spacing-component-card-height)',
-              display: 'flex',
+              display: 'var(--layera-global-display-flex)',
               flexDirection: 'column',
               justifyContent: 'center'
             }}
