@@ -146,15 +146,36 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
   // ΕΦΑΡΜΟΓΗ ΧΡΩΜΑΤΩΝ ΤΕΤΡΑΓΩΝΩΝ ΠΛΗΚΤΡΩΝ ΣΤΗΝ ΕΠΙΚΕΦΑΛΙΔΑ
   const applySquareColorsToHeader = () => {
-    const root = document.documentElement;
+    // Βρίσκουμε όλα τα πλήκτρα στην επικεφαλίδα απευθείας
+    const headerButtons = document.querySelectorAll('*[data-layout="header-fixed"] button');
 
-    // Εφαρμόζουμε τα χρώματα των square buttons στην επικεφαλίδα
-    // Όλα τα SquareButton της επικεφαλίδας είναι variant="secondary"
-    root.style.setProperty('--layera-color-button-secondary', currentColors.secondary);
+    console.log('🔍 Found header buttons:', headerButtons.length);
+
+    let appliedCount = 0;
+    headerButtons.forEach((button, index) => {
+      // Αλλάζουμε απευθείας το background-color
+      button.style.backgroundColor = currentColors.secondary;
+      button.style.setProperty('background-color', currentColors.secondary, 'important');
+      appliedCount++;
+
+      console.log(`🎨 Applied color to button ${index + 1}:`, {
+        element: button.tagName,
+        classes: button.className,
+        newColor: currentColors.secondary
+      });
+    });
+
+    // Επιπλέον: αλλάζουμε και τα CSS custom properties για μελλοντικά buttons
+    const root = document.documentElement;
+    root.style.setProperty('--layera-btn-secondary-bg', currentColors.secondary);
+    root.style.setProperty('--layera-btn-secondary-hover-bg', currentColors.secondary + 'CC');
+    root.style.setProperty('--layera-btn-secondary-active-bg', currentColors.secondary + 'AA');
 
     console.log('🎯 Square colors applied to header:', {
       secondary: currentColors.secondary,
-      shape: colorButtonShape
+      shape: colorButtonShape,
+      buttonsFound: headerButtons.length,
+      buttonsUpdated: appliedCount
     });
   };
 
