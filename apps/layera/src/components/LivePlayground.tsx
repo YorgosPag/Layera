@@ -827,6 +827,63 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 }`}
               </pre>
             </Box>
+
+            {/* CSS Variables Display */}
+            <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--info-light" data-family="mono" data-size="sm">
+              <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="base" data-weight="semibold">
+                🔧 CSS Μεταβλητές για {colorCategory.toUpperCase()}{colorCategory === 'buttons' ? ` (${colorButtonShape})` : ''}:
+              </h4>
+              <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">
+{colorCategory === 'buttons' && colorButtonShape === 'rectangular' && `{
+  --layera-color-button-primary: "${currentColors.primary}",
+  --layera-color-button-secondary: "${currentColors.secondary}",
+  --layera-color-button-success: "${currentColors.success}",
+  --layera-color-button-warning: "${currentColors.warning}",
+  --layera-color-button-danger: "${currentColors.danger}",
+  --layera-color-button-info: "${currentColors.info}"
+}`}
+{colorCategory === 'buttons' && colorButtonShape === 'square' && `{
+  --layera-color-button-square-primary: "${currentColors.primary}",
+  --layera-color-button-square-secondary: "${currentColors.secondary}",
+  --layera-color-button-square-success: "${currentColors.success}",
+  --layera-color-button-square-warning: "${currentColors.warning}",
+  --layera-color-button-square-danger: "${currentColors.danger}",
+  --layera-color-button-square-info: "${currentColors.info}"
+}`}
+{colorCategory === 'buttons' && colorButtonShape === 'rounded' && `{
+  --layera-color-button-rounded-primary: "${currentColors.primary}",
+  --layera-color-button-rounded-secondary: "${currentColors.secondary}",
+  --layera-color-button-rounded-success: "${currentColors.success}",
+  --layera-color-button-rounded-warning: "${currentColors.warning}",
+  --layera-color-button-rounded-danger: "${currentColors.danger}",
+  --layera-color-button-rounded-info: "${currentColors.info}"
+}`}
+{colorCategory === 'backgrounds' && `{
+  --layera-color-bg-primary: "${currentColors.primary}",
+  --layera-color-bg-secondary: "${currentColors.secondary}",
+  --layera-color-bg-success: "${currentColors.success}",
+  --layera-color-bg-warning: "${currentColors.warning}",
+  --layera-color-bg-danger: "${currentColors.danger}",
+  --layera-color-bg-info: "${currentColors.info}"
+}`}
+{colorCategory === 'text' && `{
+  --layera-color-text-primary: "${currentColors.primary}",
+  --layera-color-text-secondary: "${currentColors.secondary}",
+  --layera-color-text-success: "${currentColors.success}",
+  --layera-color-text-warning: "${currentColors.warning}",
+  --layera-color-text-danger: "${currentColors.danger}",
+  --layera-color-text-info: "${currentColors.info}"
+}`}
+{colorCategory === 'borders' && `{
+  --layera-color-border-primary: "${currentColors.primary}",
+  --layera-color-border-secondary: "${currentColors.secondary}",
+  --layera-color-border-success: "${currentColors.success}",
+  --layera-color-border-warning: "${currentColors.warning}",
+  --layera-color-border-danger: "${currentColors.danger}",
+  --layera-color-border-info: "${currentColors.info}"
+}`}
+              </pre>
+            </Box>
           </Box>
         )}
 
