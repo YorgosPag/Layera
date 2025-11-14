@@ -169,13 +169,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 marginBottom: 'var(--layera-global-spacing-5)'
               }}
             >
-              <h3 style={{
-                fontSize: 'var(--layera-fontSize-lg)',
-                fontWeight: 'var(--layera-fontWeight-bold)',
-                color: 'var(--layera-color-text-primary)',
-                marginBottom: 'var(--layera-global-spacing-5)',
-                margin: '0 0 var(--layera-global-spacing-5) 0'
-              }}>
+              <h3 className="layera-typography layera-margin-bottom--xl" data-size="lg" data-weight="bold" data-color="primary">
                 🎯 Live Preview
               </h3>
 
