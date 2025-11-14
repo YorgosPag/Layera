@@ -336,7 +336,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 backgroundColor: 'var(--layera-color-semantic-neutral-light)',
                 borderRadius: 'var(--layera-border-radius-md)',
                 border: '1px solid var(--layera-color-semantic-neutral-light)',
-                fontFamily: 'monospace',
+                fontFamily: 'var(--layera-global-fontFamily-mono)',
                 fontSize: 'var(--layera-fontSize-sm)'
               }}
             >
@@ -351,7 +351,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               <pre style={{
                 color: 'var(--layera-color-semantic-neutral-dark)',
                 margin: 'var(--layera-global-spacing-0)',
-                fontFamily: 'monospace'
+                fontFamily: 'var(--layera-global-fontFamily-mono)'
               }}>
 {`{
   variant: "${buttonVariant}",
