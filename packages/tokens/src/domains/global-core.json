@@ -1256,6 +1256,21 @@
           "comment": "Extra large button height"
         }
       }
+    },
+    "utilities": {
+      "comment": "🛠️ Utility Classes - Enterprise Helpers",
+      "zIndex": {
+        "overlay": {
+          "value": "var(--layera-z-index-overlay, 1000)",
+          "comment": "Z-index for overlay elements like modals and dropdowns"
+        }
+      },
+      "grid": {
+        "autoFit": {
+          "value": "repeat(auto-fit, minmax(250px, 1fr))",
+          "comment": "Auto-fit grid template for responsive cards"
+        }
+      }
     }
   },
 }
