@@ -269,9 +269,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             <h2 className="layera-typography layera-margin-bottom--lg layera-text-color--neutral-medium" data-size="2xl">
               🚧 Tokens Playground
             </h2>
-            <p className="layera-typography layera-margin--none" data-size="lg" style={{
-              color: 'var(--layera-color-semantic-neutral-medium)'
-            }}>
+            <p className="layera-typography layera-margin--none layera-text-color--neutral-medium" data-size="lg">
               Σύντομα διαθέσιμο - Live design token editing
             </p>
           </div>
