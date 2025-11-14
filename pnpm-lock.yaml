@@ -444,6 +444,9 @@ importers:
 
   packages/layout:
     dependencies:
+      '@layera/icons':
+        specifier: workspace:*
+        version: link:../icons
       '@layera/tokens':
         specifier: workspace:*
         version: link:../tokens
@@ -463,6 +466,9 @@ importers:
       '@eslint/js':
         specifier: ^9.0.0
         version: 9.39.1
+      '@layera/buttons':
+        specifier: workspace:*
+        version: link:../buttons
       '@types/react':
         specifier: ^19.1.16
         version: 19.2.2
