@@ -829,6 +829,10 @@
       "absolute": {
         "value": "absolute",
         "comment": "Absolute positioning"
+      },
+      "sticky": {
+        "value": "sticky",
+        "comment": "Sticky positioning"
       }
     },
     "borderStyle": {

@@ -84,7 +84,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           padding: 'var(--layera-global-spacing-4)',
           borderBottom: 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-default)',
           backgroundColor: 'var(--layera-color-surface-secondary)',
-          position: 'sticky',
+          position: 'var(--layera-global-position-sticky)',
           top: 'var(--layera-global-spacing-0)',
           zIndex: 'var(--layera-z-index-overlay)'
         }}
