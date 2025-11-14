@@ -96,7 +96,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         }}
       >
         {/* TEST - Θα δεις αυτό το κείμενο */}
-        <h2 style={{ color: 'var(--layera-color-text-primary)', fontSize: 'var(--layera-fontSize-2xl)', fontWeight: 'var(--layera-fontWeight-bold)', margin: '0 0 var(--layera-global-spacing-5) 0' }}>
+        <h2 className="layera-typography layera-margin-bottom--xl" data-color="primary" data-size="2xl" data-weight="bold">
           ✅ ΠΕΡΙΕΧΟΜΕΝΟ ΦΟΡΤΩΝΕΙ!
         </h2>
 
