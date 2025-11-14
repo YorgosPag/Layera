@@ -786,6 +786,20 @@
         "comment": "Flex column direction"
       }
     },
+    "flexWrap": {
+      "comment": "Flex wrap tokens",
+      "wrap": {
+        "value": "wrap",
+        "comment": "Flex wrap"
+      }
+    },
+    "gridTemplateColumns": {
+      "comment": "Grid template columns tokens",
+      "autoFit": {
+        "value": "repeat(auto-fit, minmax(var(--layera-spacing-component-card-width), 1fr))",
+        "comment": "Auto-fit grid columns with card width minimum"
+      }
+    },
     "alignItems": {
       "comment": "Flex align items tokens",
       "center": {
