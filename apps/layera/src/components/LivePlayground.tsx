@@ -82,12 +82,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         </h1>
         <button
           onClick={onClose}
-          style={{
-            padding: 'var(--layera-global-spacing-2) var(--layera-global-spacing-4)',
-            border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-default)',
-            backgroundColor: 'var(--layera-color-semantic-neutral-light)',
-            cursor: 'var(--layera-global-cursor-pointer)'
-          }}
+          className="layera-button layera-button--outline layera-padding-x--lg layera-padding-y--sm layera-cursor--pointer"
         >
           ✕ Κλείσιμο
         </button>
