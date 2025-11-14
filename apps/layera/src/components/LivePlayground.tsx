@@ -312,7 +312,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   style={{
                     width: 'var(--layera-spacing-viewport-full-width)',
                     padding: 'var(--layera-global-spacing-2)',
-                    border: '1px solid var(--layera-color-semantic-neutral-medium)',
+                    border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-semantic-neutral-medium)',
                     borderRadius: 'var(--layera-border-radius-sm)',
                     fontSize: 'var(--layera-fontSize-sm)',
                     marginBottom: 'var(--layera-global-spacing-2)'
