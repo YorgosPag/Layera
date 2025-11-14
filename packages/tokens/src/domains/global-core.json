@@ -747,6 +747,13 @@
         "comment": "2px border width"
       }
     },
+    "textAlign": {
+      "comment": "Text alignment tokens",
+      "center": {
+        "value": "center",
+        "comment": "Center text alignment"
+      }
+    },
     "border": {
       "comment": "Border style tokens",
       "none": {

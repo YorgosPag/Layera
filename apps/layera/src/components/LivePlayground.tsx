@@ -161,7 +161,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             {/* Live Preview Area */}
             <div
               style={{
-                textAlign: 'center',
+                textAlign: 'var(--layera-global-textAlign-center)',
                 padding: 'var(--layera-global-spacing-8)',
                 backgroundColor: 'var(--layera-color-surface-primary)',
                 borderRadius: 'var(--layera-radius-lg)',
@@ -368,7 +368,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         {activeSection === 'colors' && (
           <div
             style={{
-              textAlign: 'center',
+              textAlign: 'var(--layera-global-textAlign-center)',
               padding: 'var(--layera-global-spacing-12)',
               minHeight: 'var(--layera-spacing-component-card-height)',
               display: 'var(--layera-global-display-flex)',
@@ -396,7 +396,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         {activeSection === 'tokens' && (
           <div
             style={{
-              textAlign: 'center',
+              textAlign: 'var(--layera-global-textAlign-center)',
               padding: 'var(--layera-global-spacing-12)',
               minHeight: 'var(--layera-spacing-component-card-height)',
               display: 'var(--layera-global-display-flex)',
