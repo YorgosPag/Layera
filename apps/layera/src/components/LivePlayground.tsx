@@ -266,9 +266,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
         {activeSection === 'tokens' && (
           <div className="layera-flex layera-flex--direction-column layera-flex--justify-center layera-text-center layera-padding--2xl layera-min-height--card">
-            <h2 className="layera-typography layera-margin-bottom--lg" data-size="2xl" style={{
-              color: 'var(--layera-color-semantic-neutral-medium)'
-            }}>
+            <h2 className="layera-typography layera-margin-bottom--lg layera-text-color--neutral-medium" data-size="2xl">
               🚧 Tokens Playground
             </h2>
             <p className="layera-typography layera-margin--none" data-size="lg" style={{
