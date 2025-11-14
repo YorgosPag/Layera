@@ -312,8 +312,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   style={{
                     width: '100%',
                     padding: '8px',
-                    border: '1px solid #ccc',
-                    borderRadius: '4px',
+                    border: '1px solid var(--layera-color-semantic-neutral-medium)',
+                    borderRadius: 'var(--layera-border-radius-sm)',
                     fontSize: '14px',
                     marginBottom: '8px'
                   }}
@@ -333,9 +333,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             <div
               style={{
                 padding: 'var(--layera-global-spacing-4)',
-                backgroundColor: '#f8f9fa',
-                borderRadius: '8px',
-                border: '1px solid #ddd',
+                backgroundColor: 'var(--layera-color-semantic-neutral-light)',
+                borderRadius: 'var(--layera-border-radius-md)',
+                border: '1px solid var(--layera-color-semantic-neutral-light)',
                 fontFamily: 'monospace',
                 fontSize: '14px'
               }}
@@ -343,13 +343,13 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               <h4 style={{
                 fontSize: '16px',
                 fontWeight: '600',
-                color: '#333',
+                color: 'var(--layera-color-semantic-neutral-dark)',
                 margin: '0 0 8px 0'
               }}>
                 📝 Τρέχουσες Ρυθμίσεις:
               </h4>
               <pre style={{
-                color: '#333',
+                color: 'var(--layera-color-semantic-neutral-dark)',
                 margin: '0',
                 fontFamily: 'monospace'
               }}>
@@ -378,14 +378,14 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           >
             <h2 style={{
               fontSize: 'var(--layera-global-spacing-8)',
-              color: '#666',
+              color: 'var(--layera-color-semantic-neutral-medium)',
               margin: '0 0 16px 0'
             }}>
               🚧 Colors Playground
             </h2>
             <p style={{
               fontSize: '18px',
-              color: '#666',
+              color: 'var(--layera-color-semantic-neutral-medium)',
               margin: '0'
             }}>
               Σύντομα διαθέσιμο - Live color theme testing
@@ -406,14 +406,14 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           >
             <h2 style={{
               fontSize: 'var(--layera-global-spacing-8)',
-              color: '#666',
+              color: 'var(--layera-color-semantic-neutral-medium)',
               margin: '0 0 16px 0'
             }}>
               🚧 Tokens Playground
             </h2>
             <p style={{
               fontSize: '18px',
-              color: '#666',
+              color: 'var(--layera-color-semantic-neutral-medium)',
               margin: '0'
             }}>
               Σύντομα διαθέσιμο - Live design token editing
