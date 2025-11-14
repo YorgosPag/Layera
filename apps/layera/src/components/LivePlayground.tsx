@@ -101,9 +101,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         </h2>
 
         {/* Navigation Tabs */}
-        <div className="layera-flex layera-flex--gap-sm layera-margin-bottom--lg layera-padding--md layera-border-radius--md" style={{
-            backgroundColor: 'var(--layera-color-semantic-neutral-light)'
-          }}>
+        <div className="layera-flex layera-flex--gap-sm layera-margin-bottom--lg layera-padding--md layera-border-radius--md layera-bg-semantic--neutral-light">
           <Button
             variant={activeSection === 'buttons' ? 'primary' : 'ghost'}
             size="sm"
