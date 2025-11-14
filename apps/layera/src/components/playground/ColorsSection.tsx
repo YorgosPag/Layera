@@ -99,11 +99,62 @@ export const ColorsSection: React.FC<SectionProps> = ({ className = '' }) => {
     }
   }, [user]);
 
-  // Load από localStorage on mount
+  // Load από localStorage on mount και εφαρμογή χρωμάτων
   useEffect(() => {
     const savedState = loadCurrentThemeFromLocalStorage();
     if (savedState) {
       setColorState(savedState);
+      console.log('🔄 Loaded colors from localStorage:', savedState);
+
+      // Αυτόματη εφαρμογή των χρωμάτων που φόρτωσαν
+      setTimeout(() => {
+        const root = document.documentElement;
+        const colorMap = {
+          buttons: {
+            primary: `--layera-color-button-primary`,
+            secondary: `--layera-color-button-secondary`,
+            success: `--layera-color-button-success`,
+            warning: `--layera-color-button-warning`,
+            danger: `--layera-color-button-danger`,
+            info: `--layera-color-button-info`
+          },
+          backgrounds: {
+            primary: `--layera-color-bg-primary`,
+            secondary: `--layera-color-bg-secondary`,
+            success: `--layera-color-bg-success`,
+            warning: `--layera-color-bg-warning`,
+            danger: `--layera-color-bg-danger`,
+            info: `--layera-color-bg-info`
+          },
+          text: {
+            primary: `--layera-color-text-primary`,
+            secondary: `--layera-color-text-secondary`,
+            success: `--layera-color-text-success`,
+            warning: `--layera-color-text-warning`,
+            danger: `--layera-color-text-danger`,
+            info: `--layera-color-text-info`
+          },
+          borders: {
+            primary: `--layera-color-border-primary`,
+            secondary: `--layera-color-border-secondary`,
+            success: `--layera-color-border-success`,
+            warning: `--layera-color-border-warning`,
+            danger: `--layera-color-border-danger`,
+            info: `--layera-color-border-info`
+          }
+        };
+
+        const categoryColors = colorMap[savedState.colorCategory];
+        if (categoryColors) {
+          root.style.setProperty(categoryColors.primary, savedState.primaryColor);
+          root.style.setProperty(categoryColors.secondary, savedState.secondaryColor);
+          root.style.setProperty(categoryColors.success, savedState.successColor);
+          root.style.setProperty(categoryColors.warning, savedState.warningColor);
+          root.style.setProperty(categoryColors.danger, savedState.dangerColor);
+          root.style.setProperty(categoryColors.info, savedState.infoColor);
+          console.log('✅ Colors automatically applied from localStorage');
+        }
+      }, 100); // Μικρή καθυστέρηση για να σιγουρευτούμε ότι το DOM είναι έτοιμο
     }
     loadSavedThemes();
   }, [loadSavedThemes]);

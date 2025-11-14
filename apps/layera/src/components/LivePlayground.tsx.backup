@@ -3,8 +3,6 @@ import { Box, PageContainer } from '@layera/layout';
 import { Text, Heading } from '@layera/typography';
 import { Button, SquareButton } from '@layera/buttons';
 import { PlusIcon, SearchIcon, UserIcon, SettingsIcon, CloseIcon } from '@layera/icons';
-import { ButtonsSection } from './playground/ButtonsSection';
-import { ColorsSection } from './playground/ColorsSection';
 
 /**
  * Live Playground - Enterprise Component Testing Interface
@@ -852,7 +850,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   🔧 CSS Μεταβλητές για {colorCategory.toUpperCase()}{colorCategory === 'buttons' ? ` (${colorButtonShape})` : ''}:
                 </h4>
                 <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">
-                  {colorCategory === 'buttons' && colorButtonShape === 'rectangular' && `{
+{colorCategory === 'buttons' && colorButtonShape === 'rectangular' && `{
   --layera-color-button-primary: "${currentColors.primary}",
   --layera-color-button-secondary: "${currentColors.secondary}",
   --layera-color-button-success: "${currentColors.success}",
@@ -860,7 +858,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   --layera-color-button-danger: "${currentColors.danger}",
   --layera-color-button-info: "${currentColors.info}"
 }`}
-                  {colorCategory === 'buttons' && colorButtonShape === 'square' && `{
+{colorCategory === 'buttons' && colorButtonShape === 'square' && `{
   --layera-color-button-square-primary: "${currentColors.primary}",
   --layera-color-button-square-secondary: "${currentColors.secondary}",
   --layera-color-button-square-success: "${currentColors.success}",
@@ -868,7 +866,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   --layera-color-button-square-danger: "${currentColors.danger}",
   --layera-color-button-square-info: "${currentColors.info}"
 }`}
-                  {colorCategory === 'buttons' && colorButtonShape === 'rounded' && `{
+{colorCategory === 'buttons' && colorButtonShape === 'rounded' && `{
   --layera-color-button-rounded-primary: "${currentColors.primary}",
   --layera-color-button-rounded-secondary: "${currentColors.secondary}",
   --layera-color-button-rounded-success: "${currentColors.success}",
@@ -876,7 +874,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   --layera-color-button-rounded-danger: "${currentColors.danger}",
   --layera-color-button-rounded-info: "${currentColors.info}"
 }`}
-                  {colorCategory === 'backgrounds' && `{
+{colorCategory === 'backgrounds' && `{
   --layera-color-bg-primary: "${currentColors.primary}",
   --layera-color-bg-secondary: "${currentColors.secondary}",
   --layera-color-bg-success: "${currentColors.success}",
@@ -884,7 +882,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   --layera-color-bg-danger: "${currentColors.danger}",
   --layera-color-bg-info: "${currentColors.info}"
 }`}
-                  {colorCategory === 'text' && `{
+{colorCategory === 'text' && `{
   --layera-color-text-primary: "${currentColors.primary}",
   --layera-color-text-secondary: "${currentColors.secondary}",
   --layera-color-text-success: "${currentColors.success}",
@@ -892,7 +890,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   --layera-color-text-danger: "${currentColors.danger}",
   --layera-color-text-info: "${currentColors.info}"
 }`}
-                  {colorCategory === 'borders' && `{
+{colorCategory === 'borders' && `{
   --layera-color-border-primary: "${currentColors.primary}",
   --layera-color-border-secondary: "${currentColors.secondary}",
   --layera-color-border-success: "${currentColors.success}",
