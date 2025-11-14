@@ -234,25 +234,25 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
         {/* Coming Soon Sections */}
         {activeSection === 'colors' && (
-          <div className="layera-flex layera-flex--direction-column layera-flex--justify-center layera-text-center layera-padding--2xl layera-min-height--card">
+          <Box className="layera-flex layera-flex--direction-column layera-flex--justify-center layera-text-center layera-padding--2xl layera-min-height--card">
             <h2 className="layera-typography layera-margin-bottom--lg layera-text-color--neutral-medium" data-size="2xl">
               🚧 Colors Playground
             </h2>
             <p className="layera-typography layera-margin--none layera-text-color--neutral-medium" data-size="lg">
               Σύντομα διαθέσιμο - Live color theme testing
             </p>
-          </div>
+          </Box>
         )}
 
         {activeSection === 'tokens' && (
-          <div className="layera-flex layera-flex--direction-column layera-flex--justify-center layera-text-center layera-padding--2xl layera-min-height--card">
+          <Box className="layera-flex layera-flex--direction-column layera-flex--justify-center layera-text-center layera-padding--2xl layera-min-height--card">
             <h2 className="layera-typography layera-margin-bottom--lg layera-text-color--neutral-medium" data-size="2xl">
               🚧 Tokens Playground
             </h2>
             <p className="layera-typography layera-margin--none layera-text-color--neutral-medium" data-size="lg">
               Σύντομα διαθέσιμο - Live design token editing
             </p>
-          </div>
+          </Box>
         )}
       </Box>
     </Box>
