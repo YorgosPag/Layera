@@ -129,7 +129,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             marginBottom: 'var(--layera-global-spacing-4)',
             padding: 'var(--layera-global-spacing-3)',
             backgroundColor: 'var(--layera-color-semantic-neutral-light)',
-            borderRadius: 'var(--layera-global-border-radius-base)'
+            borderRadius: 'var(--layera-radius-md)'
           }}
         >
           <Button
@@ -220,7 +220,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 style={{
                   padding: 'var(--layera-global-spacing-4)',
                   backgroundColor: 'var(--layera-color-surface-primary)',
-                  borderRadius: 'var(--layera-global-border-radius-base)',
+                  borderRadius: 'var(--layera-radius-md)',
                   border: '1px solid var(--layera-color-border-default)'
                 }}
               >
@@ -257,7 +257,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 style={{
                   padding: 'var(--layera-global-spacing-4)',
                   backgroundColor: 'var(--layera-color-surface-primary)',
-                  borderRadius: 'var(--layera-global-border-radius-base)',
+                  borderRadius: 'var(--layera-radius-md)',
                   border: '1px solid var(--layera-color-border-default)'
                 }}
               >
@@ -293,7 +293,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 style={{
                   padding: 'var(--layera-global-spacing-4)',
                   backgroundColor: 'var(--layera-color-surface-primary)',
-                  borderRadius: 'var(--layera-global-border-radius-base)',
+                  borderRadius: 'var(--layera-radius-md)',
                   border: '1px solid var(--layera-color-border-default)'
                 }}
               >
