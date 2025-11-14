@@ -68,7 +68,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
       style={{
         '--layera-map-fullscreen-z-index': 'var(--layera-z-index-overlay)',
         zIndex: 'var(--layera-map-fullscreen-z-index, 1000)'
-      }}
+      } as React.CSSProperties}
     >
       {/* Header με κουμπί κλεισίματος */}
       <Box className="layera-flex layera-flex--justify-between layera-flex--align-center layera-padding--lg layera-border-bottom--default layera-bg-surface--secondary layera-position--sticky layera-top--0 layera-z-index--overlay">
