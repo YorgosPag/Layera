@@ -45,7 +45,7 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
             <Text className="layera-typography layera-margin-bottom--sm" data-size="sm" data-weight="medium" data-color="primary">
               Variant
             </Text>
-            <Box className="layera-flex layera-flex--wrap layera-flex--gap-xs">
+            <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
               {(['primary', 'secondary', 'outline', 'ghost', 'danger', 'success', 'warning', 'info'] as ButtonVariant[]).map((variant) => (
                 <Button
                   key={variant}
