@@ -129,9 +129,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         {activeSection === 'buttons' && (
           <div>
             {/* Live Preview Area */}
-            <div className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl" style={{
-                border: 'var(--layera-global-borderWidth-2) dashed var(--layera-color-semantic-info-primary)'
-              }}>
+            <div className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
               <h3 className="layera-typography layera-margin-bottom--xl" data-size="lg" data-weight="bold" data-color="primary">
                 🎯 Live Preview
               </h3>
