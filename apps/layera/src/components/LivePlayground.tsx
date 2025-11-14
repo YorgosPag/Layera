@@ -119,7 +119,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
         {/* Buttons Section */}
         {activeSection === 'buttons' && (
-          <div>
+          <Box>
             {/* Live Preview Area */}
             <div className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
               <h3 className="layera-typography layera-margin-bottom--xl" data-size="lg" data-weight="bold" data-color="primary">
@@ -229,7 +229,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 }`}
               </pre>
             </div>
-          </div>
+          </Box>
         )}
 
         {/* Coming Soon Sections */}
