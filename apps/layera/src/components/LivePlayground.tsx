@@ -50,6 +50,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   const [withIcon, setWithIcon] = useState(true);
 
   // Color Settings - ENTERPRISE SINGLE SOURCE OF TRUTH
+  const [colorCategory, setColorCategory] = useState<'buttons' | 'backgrounds' | 'text' | 'borders'>('buttons');
   const [primaryColor, setPrimaryColor] = useState('#007bff');
   const [secondaryColor, setSecondaryColor] = useState('#6c757d');
   const [successColor, setSuccessColor] = useState('#28a745');
@@ -69,22 +70,58 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
     }));
   };
 
-  // ENTERPRISE COLOR APPLICATION - GLOBAL CSS VARIABLES UPDATE
+  // ENTERPRISE COLOR APPLICATION - TARGETED CSS VARIABLES UPDATE
   const applyColorsToApp = () => {
     const root = document.documentElement;
-    root.style.setProperty('--layera-color-primary', primaryColor);
-    root.style.setProperty('--layera-color-secondary', secondaryColor);
-    root.style.setProperty('--layera-color-success', successColor);
-    root.style.setProperty('--layera-color-warning', warningColor);
-    root.style.setProperty('--layera-color-danger', dangerColor);
-    root.style.setProperty('--layera-color-info', infoColor);
+    const colorMap = {
+      buttons: {
+        primary: `--layera-color-button-primary`,
+        secondary: `--layera-color-button-secondary`,
+        success: `--layera-color-button-success`,
+        warning: `--layera-color-button-warning`,
+        danger: `--layera-color-button-danger`,
+        info: `--layera-color-button-info`
+      },
+      backgrounds: {
+        primary: `--layera-color-bg-primary`,
+        secondary: `--layera-color-bg-secondary`,
+        success: `--layera-color-bg-success`,
+        warning: `--layera-color-bg-warning`,
+        danger: `--layera-color-bg-danger`,
+        info: `--layera-color-bg-info`
+      },
+      text: {
+        primary: `--layera-color-text-primary`,
+        secondary: `--layera-color-text-secondary`,
+        success: `--layera-color-text-success`,
+        warning: `--layera-color-text-warning`,
+        danger: `--layera-color-text-danger`,
+        info: `--layera-color-text-info`
+      },
+      borders: {
+        primary: `--layera-color-border-primary`,
+        secondary: `--layera-color-border-secondary`,
+        success: `--layera-color-border-success`,
+        warning: `--layera-color-border-warning`,
+        danger: `--layera-color-border-danger`,
+        info: `--layera-color-border-info`
+      }
+    };
 
-    console.log('🎨 Applied colors globally:', {
+    const categoryColors = colorMap[colorCategory];
+    root.style.setProperty(categoryColors.primary, primaryColor);
+    root.style.setProperty(categoryColors.secondary, secondaryColor);
+    root.style.setProperty(categoryColors.success, successColor);
+    root.style.setProperty(categoryColors.warning, warningColor);
+    root.style.setProperty(categoryColors.danger, dangerColor);
+    root.style.setProperty(categoryColors.info, infoColor);
+
+    console.log(`🎨 Applied ${colorCategory} colors:`, {
       primaryColor, secondaryColor, successColor, warningColor, dangerColor, infoColor
     });
 
     window.dispatchEvent(new CustomEvent('colorsUpdate', {
-      detail: { primaryColor, secondaryColor, successColor, warningColor, dangerColor, infoColor }
+      detail: { category: colorCategory, primaryColor, secondaryColor, successColor, warningColor, dangerColor, infoColor }
     }));
   };
 
@@ -262,11 +299,57 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         {/* Colors Section - ENTERPRISE COLOR MANAGEMENT */}
         {activeSection === 'colors' && (
           <Box>
+            {/* Color Category Selection */}
+            <Box className="layera-card layera-padding--lg layera-margin-bottom--xl">
+              <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
+                🎯 Επιλογή Κατηγορίας Αντικειμένων
+              </h3>
+              <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
+                <Button
+                  variant={colorCategory === 'buttons' ? 'primary' : 'outline'}
+                  size="sm"
+                  onClick={() => setColorCategory('buttons')}
+                >
+                  🔘 Buttons
+                </Button>
+                <Button
+                  variant={colorCategory === 'backgrounds' ? 'primary' : 'outline'}
+                  size="sm"
+                  onClick={() => setColorCategory('backgrounds')}
+                >
+                  🎨 Backgrounds
+                </Button>
+                <Button
+                  variant={colorCategory === 'text' ? 'primary' : 'outline'}
+                  size="sm"
+                  onClick={() => setColorCategory('text')}
+                >
+                  📝 Text
+                </Button>
+                <Button
+                  variant={colorCategory === 'borders' ? 'primary' : 'outline'}
+                  size="sm"
+                  onClick={() => setColorCategory('borders')}
+                >
+                  🔲 Borders
+                </Button>
+              </Box>
+              <Text className="layera-typography layera-margin-top--sm" data-size="sm" data-color="secondary">
+                Επιλέξτε ποια αντικείμενα θα επηρεάσουν οι αλλαγές χρωμάτων
+              </Text>
+            </Box>
+
             {/* Live Color Preview Area */}
             <Box className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
-              <h3 className="layera-typography layera-margin-bottom--xl" data-size="lg" data-weight="bold" data-color="primary">
-                🎨 Live Color Preview
+              <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
+                🎨 Live Preview - {colorCategory.toUpperCase()}
               </h3>
+              <Text className="layera-typography layera-margin-bottom--lg" data-size="sm" data-color="secondary">
+                {colorCategory === 'buttons' && '🔘 Τα χρώματα θα επηρεάσουν όλα τα κουμπιά στην εφαρμογή'}
+                {colorCategory === 'backgrounds' && '🎨 Τα χρώματα θα επηρεάσουν τα φόντα στην εφαρμογή'}
+                {colorCategory === 'text' && '📝 Τα χρώματα θα επηρεάσουν τα κείμενα στην εφαρμογή'}
+                {colorCategory === 'borders' && '🔲 Τα χρώματα θα επηρεάσουν τα περιγράμματα στην εφαρμογή'}
+              </Text>
 
               <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-xl">
                 <Button variant="primary" size={buttonSize}>
@@ -399,14 +482,17 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 onClick={applyColorsToApp}
                 className="layera-button layera-button--primary"
               >
-                🚀 Εφαρμογή Χρωμάτων Καθολικά
+                🚀 Εφαρμογή Χρωμάτων για {colorCategory.toUpperCase()}
               </Button>
+              <Text className="layera-typography layera-margin-top--sm" data-size="xs" data-color="secondary">
+                Θα επηρεαστούν όλα τα στοιχεία τύπου "{colorCategory}" στην εφαρμογή
+              </Text>
             </Box>
 
             {/* Current Color Values Display */}
             <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--neutral-light" data-family="mono" data-size="sm">
               <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="base" data-weight="semibold">
-                🎨 Τρέχουσα Παλέτα Χρωμάτων:
+                🎨 Παλέτα Χρωμάτων για {colorCategory.toUpperCase()}:
               </h4>
               <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">
 {`{
