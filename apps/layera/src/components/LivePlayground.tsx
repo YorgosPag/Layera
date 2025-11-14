@@ -66,8 +66,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
       data-layera-playground="true"
       style={{
         position: 'fixed',
-        top: '0',
-        left: '0',
+        top: 'var(--layera-global-spacing-0)',
+        left: 'var(--layera-global-spacing-0)',
         width: 'var(--layera-spacing-viewport-full-width)',
         height: 'var(--layera-spacing-viewport-full-height)',
         backgroundColor: 'var(--layera-color-surface-primary)',
