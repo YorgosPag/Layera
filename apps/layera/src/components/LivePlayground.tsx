@@ -64,9 +64,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   return (
     <div
       data-layera-playground="true"
-      className="layera-position--fixed layera-top--0 layera-left--0 layera-bg-surface-light layera-full-width layera-layout-content"
+      className="layera-position--fixed layera-top--0 layera-left--0 layera-bg-surface-light layera-full-width layera-layout-content layera-map--fullscreen"
       style={{
-        height: 'var(--layera-spacing-viewport-full-height)',
         zIndex: 'var(--layera-z-index-overlay)'
       }}
     >
