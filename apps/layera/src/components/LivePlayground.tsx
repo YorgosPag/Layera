@@ -64,11 +64,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   return (
     <div
       data-layera-playground="true"
-      className="layera-position--fixed layera-top--0 layera-left--0 layera-bg-surface-light layera-full-width"
+      className="layera-position--fixed layera-top--0 layera-left--0 layera-bg-surface-light layera-full-width layera-layout-content"
       style={{
         height: 'var(--layera-spacing-viewport-full-height)',
-        zIndex: 'var(--layera-z-index-overlay)',
-        overflow: 'var(--layera-global-overflow-auto)'
+        zIndex: 'var(--layera-z-index-overlay)'
       }}
     >
       {/* Header με κουμπί κλεισίματος */}
