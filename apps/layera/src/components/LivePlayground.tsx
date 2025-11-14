@@ -162,11 +162,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
             {/* Controls Grid */}
             <div
+              className="layera-grid layera-grid--gap-xl layera-margin-bottom--xl"
               style={{
-                display: 'var(--layera-global-layout-display-grid)',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(var(--layera-spacing-component-card-width), 1fr))',
-                gap: 'var(--layera-global-spacing-5)',
-                marginBottom: 'var(--layera-global-spacing-5)'
+                gridTemplateColumns: 'repeat(auto-fit, minmax(var(--layera-spacing-component-card-width), 1fr))'
               }}
             >
               {/* Variant Control */}
