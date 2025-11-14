@@ -79,7 +79,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
       <div
         style={{
           display: 'var(--layera-global-display-flex)',
-          justifyContent: 'space-between',
+          justifyContent: 'var(--layera-global-justifyContent-space-between)',
           alignItems: 'center',
           padding: 'var(--layera-global-spacing-4)',
           borderBottom: '1px solid var(--layera-color-border-default)',
