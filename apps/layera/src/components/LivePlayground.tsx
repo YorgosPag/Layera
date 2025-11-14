@@ -275,11 +275,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 backgroundColor: 'var(--layera-color-semantic-neutral-light)',
                 border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-semantic-neutral-light)'
               }}>
-              <h4 style={{
-                fontSize: 'var(--layera-fontSize-base)',
-                fontWeight: '600',
-                color: 'var(--layera-color-semantic-neutral-dark)',
-                margin: '0 0 var(--layera-global-spacing-2) 0'
+              <h4 className="layera-typography layera-margin-bottom--sm" data-size="base" data-weight="semibold" style={{
+                color: 'var(--layera-color-semantic-neutral-dark)'
               }}>
                 📝 Τρέχουσες Ρυθμίσεις:
               </h4>
