@@ -115,6 +115,7 @@ function ProfessionalFeatures() {
 
 ```typescript
 import { UserDisplay, UserAvatar } from '@layera/auth-bridge';
+import { Box } from '@layera/layout';
 
 function UserProfile() {
   const { user } = useAuthContext();
@@ -122,8 +123,8 @@ function UserProfile() {
   if (!user) return null;
 
   return (
-    <div>
-      {/* Πλήρες user display */}
+    <Box>
+      {/* Πλήρες user display */
       <UserDisplay
         user={user}
         showEmail
@@ -139,7 +140,7 @@ function UserProfile() {
         size="medium"
         onClick={() => console.log('Profile clicked')}
       />
-    </div>
+    </Box>
   );
 }
 ```
@@ -148,13 +149,14 @@ function UserProfile() {
 
 ```typescript
 import { TotpSetup, TotpVerification, useTotp } from '@layera/auth-bridge';
+import { Box } from '@layera/layout';
 
 function MfaSetupPage() {
   const { user } = useAuthContext();
   const { isEnabled } = useTotp(user);
 
   if (isEnabled) {
-    return <div>TOTP ήδη ενεργοποιημένο</div>;
+    return <Box>TOTP ήδη ενεργοποιημένο</Box>;
   }
 
   return (
