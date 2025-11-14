@@ -156,11 +156,11 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               }}
             >
               {/* Variant Control */}
-              <div className="layera-card layera-padding--lg">
+              <Box className="layera-card layera-padding--lg">
                 <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
                   Variant
                 </h4>
-                <div className="layera-flex layera-flex--wrap layera-flex--gap-sm">
+                <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
                   {variants.map((variant) => (
                     <Button
                       key={variant}
@@ -171,8 +171,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                       {variant}
                     </Button>
                   ))}
-                </div>
-              </div>
+                </Box>
+              </Box>
 
               {/* Size Control */}
               <div className="layera-card layera-padding--lg">
