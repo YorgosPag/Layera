@@ -194,7 +194,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               </Box>
 
               {/* Text & Icon Control */}
-              <div className="layera-card layera-padding--lg">
+              <Box className="layera-card layera-padding--lg">
                 <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
                   Κείμενο & Εικονίδιο
                 </h4>
@@ -211,12 +211,12 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 >
                   {withIcon ? '✅ Με εικονίδιο' : '❌ Χωρίς εικονίδιο'}
                 </Button>
-              </div>
+              </Box>
             </Box>
 
 
             {/* Current Settings Display */}
-            <div className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--neutral-light" data-family="mono" data-size="sm">
+            <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--neutral-light" data-family="mono" data-size="sm">
               <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="base" data-weight="semibold">
                 📝 Τρέχουσες Ρυθμίσεις:
               </h4>
@@ -228,7 +228,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   withIcon: ${withIcon}
 }`}
               </pre>
-            </div>
+            </Box>
           </Box>
         )}
 
