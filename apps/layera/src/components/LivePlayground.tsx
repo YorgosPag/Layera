@@ -164,7 +164,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 textAlign: 'center',
                 padding: 'var(--layera-global-spacing-8)',
                 backgroundColor: 'var(--layera-color-surface-primary)',
-                borderRadius: 'var(--layera-global-border-radius-lg)',
+                borderRadius: 'var(--layera-radius-lg)',
                 border: '2px dashed var(--layera-color-semantic-info-primary)',
                 marginBottom: 'var(--layera-global-spacing-5)'
               }}
