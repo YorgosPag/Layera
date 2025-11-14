@@ -48,195 +48,195 @@ export const useButton = () => {
     },
     variants: {
       primary: {
-        background: 'var(--la-bg-info)',
-        color: 'var(--la-text-on-info)',
-        border: 'var(--la-bg-info)',
+        background: 'var(--layera-colorUtilities-utilities-background-semantic-info)',
+        color: 'var(--layera-text-on-info)',
+        border: 'var(--layera-colorUtilities-utilities-background-semantic-info)',
         hover: {
-          background: 'color-mix(in srgb, var(--la-bg-info) 80%, black 20%)',
-          color: 'var(--la-text-on-info)',
-          border: 'color-mix(in srgb, var(--la-bg-info) 80%, black 20%)'
+          background: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-info) 80%, black 20%)',
+          color: 'var(--layera-text-on-info)',
+          border: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-info) 80%, black 20%)'
         },
         active: {
-          background: 'color-mix(in srgb, var(--la-bg-info) 70%, black 30%)',
-          color: 'var(--la-text-on-info)',
-          border: 'color-mix(in srgb, var(--la-bg-info) 70%, black 30%)'
+          background: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-info) 70%, black 30%)',
+          color: 'var(--layera-text-on-info)',
+          border: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-info) 70%, black 30%)'
         },
         focus: {
-          outline: '2px solid color-mix(in srgb, var(--la-bg-info) 50%, transparent 50%)',
-          ring: '0 0 0 2px color-mix(in srgb, var(--la-bg-info) 30%, transparent 70%)'
+          outline: 'var(--layera-iconInteractive-accessibility-focusRing-width) solid color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-info) 50%, transparent 50%)',
+          ring: '0 0 0 var(--layera-iconInteractive-accessibility-focusRing-width) color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-info) 30%, transparent 70%)'
         },
         disabled: {
-          background: 'var(--la-bg-tertiary)',
-          color: 'var(--la-text-tertiary)',
-          border: 'var(--la-border-primary)'
+          background: 'var(--layera-colorUtilities-utilities-background-tertiary)',
+          color: 'var(--layera-colorUtilities-utilities-text-tertiary)',
+          border: 'var(--layera-colorUtilities-utilities-border-primary)'
         }
       },
       secondary: {
-        background: 'var(--la-text-secondary)',
-        color: 'var(--la-text-on-dark)',
-        border: 'var(--la-text-secondary)',
+        background: 'var(--layera-colorUtilities-utilities-text-secondary)',
+        color: 'var(--layera-colorUtilities-utilities-text-inverted)',
+        border: 'var(--layera-colorUtilities-utilities-text-secondary)',
         hover: {
-          background: 'color-mix(in srgb, var(--la-text-secondary) 80%, black 20%)',
-          color: 'var(--la-text-on-dark)',
-          border: 'color-mix(in srgb, var(--la-text-secondary) 80%, black 20%)'
+          background: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-text-secondary) 80%, black 20%)',
+          color: 'var(--layera-colorUtilities-utilities-text-inverted)',
+          border: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-text-secondary) 80%, black 20%)'
         },
         active: {
-          background: 'color-mix(in srgb, var(--la-text-secondary) 70%, black 30%)',
-          color: 'var(--la-text-on-dark)',
-          border: 'color-mix(in srgb, var(--la-text-secondary) 70%, black 30%)'
+          background: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-text-secondary) 70%, black 30%)',
+          color: 'var(--layera-colorUtilities-utilities-text-inverted)',
+          border: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-text-secondary) 70%, black 30%)'
         },
         focus: {
-          outline: '2px solid color-mix(in srgb, var(--la-text-secondary) 50%, transparent 50%)',
-          ring: '0 0 0 2px color-mix(in srgb, var(--la-text-secondary) 30%, transparent 70%)'
+          outline: 'var(--layera-iconInteractive-accessibility-focusRing-width) solid color-mix(in srgb, var(--layera-colorUtilities-utilities-text-secondary) 50%, transparent 50%)',
+          ring: '0 0 0 var(--layera-iconInteractive-accessibility-focusRing-width) color-mix(in srgb, var(--layera-colorUtilities-utilities-text-secondary) 30%, transparent 70%)'
         },
         disabled: {
-          background: 'var(--la-bg-tertiary)',
-          color: 'var(--la-text-tertiary)',
-          border: 'var(--la-border-primary)'
+          background: 'var(--layera-colorUtilities-utilities-background-tertiary)',
+          color: 'var(--layera-colorUtilities-utilities-text-tertiary)',
+          border: 'var(--layera-colorUtilities-utilities-border-primary)'
         }
       },
       outline: {
         background: 'transparent',
-        color: 'var(--la-bg-info)',
-        border: 'var(--la-bg-info)',
+        color: 'var(--layera-colorUtilities-utilities-background-semantic-info)',
+        border: 'var(--layera-colorUtilities-utilities-background-semantic-info)',
         hover: {
-          background: 'var(--la-bg-info)',
-          color: 'var(--la-text-on-info)',
-          border: 'var(--la-bg-info)'
+          background: 'var(--layera-colorUtilities-utilities-background-semantic-info)',
+          color: 'var(--layera-text-on-info)',
+          border: 'var(--layera-colorUtilities-utilities-background-semantic-info)'
         },
         active: {
-          background: 'color-mix(in srgb, var(--la-bg-info) 70%, black 30%)',
-          color: 'var(--la-text-on-info)',
-          border: 'color-mix(in srgb, var(--la-bg-info) 70%, black 30%)'
+          background: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-info) 70%, black 30%)',
+          color: 'var(--layera-text-on-info)',
+          border: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-info) 70%, black 30%)'
         },
         focus: {
-          outline: '2px solid color-mix(in srgb, var(--la-bg-info) 50%, transparent 50%)',
-          ring: '0 0 0 2px color-mix(in srgb, var(--la-bg-info) 30%, transparent 70%)'
+          outline: 'var(--layera-iconInteractive-accessibility-focusRing-width) solid color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-info) 50%, transparent 50%)',
+          ring: '0 0 0 var(--layera-iconInteractive-accessibility-focusRing-width) color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-info) 30%, transparent 70%)'
         },
         disabled: {
-          background: 'var(--la-bg-tertiary)',
-          color: 'var(--la-text-tertiary)',
-          border: 'var(--la-border-primary)'
+          background: 'var(--layera-colorUtilities-utilities-background-tertiary)',
+          color: 'var(--layera-colorUtilities-utilities-text-tertiary)',
+          border: 'var(--layera-colorUtilities-utilities-border-primary)'
         }
       },
       ghost: {
         background: 'transparent',
-        color: 'var(--la-text-primary)',
+        color: 'var(--layera-colorUtilities-utilities-text-primary)',
         border: 'transparent',
         hover: {
-          background: 'var(--la-bg-tertiary)',
-          color: 'var(--la-text-primary)',
+          background: 'var(--layera-colorUtilities-utilities-background-tertiary)',
+          color: 'var(--layera-colorUtilities-utilities-text-primary)',
           border: 'transparent'
         },
         active: {
-          background: 'var(--la-bg-secondary)',
-          color: 'var(--la-text-primary)',
+          background: 'var(--layera-colorUtilities-utilities-background-secondary)',
+          color: 'var(--layera-colorUtilities-utilities-text-primary)',
           border: 'transparent'
         },
         focus: {
-          outline: '2px solid var(--la-border-secondary)',
-          ring: '0 0 0 2px color-mix(in srgb, var(--la-border-primary) 30%, transparent 70%)'
+          outline: 'var(--layera-iconInteractive-accessibility-focusRing-width) solid var(--layera-colorUtilities-utilities-border-secondary)',
+          ring: '0 0 0 var(--layera-iconInteractive-accessibility-focusRing-width) color-mix(in srgb, var(--layera-colorUtilities-utilities-border-primary) 30%, transparent 70%)'
         },
         disabled: {
-          background: 'var(--la-bg-tertiary)',
-          color: 'var(--la-text-tertiary)',
-          border: 'var(--la-border-primary)'
+          background: 'var(--layera-colorUtilities-utilities-background-tertiary)',
+          color: 'var(--layera-colorUtilities-utilities-text-tertiary)',
+          border: 'var(--layera-colorUtilities-utilities-border-primary)'
         }
       },
       danger: {
-        background: 'var(--la-bg-danger)',
-        color: 'var(--la-text-on-dark)',
-        border: 'var(--la-bg-danger)',
+        background: 'var(--layera-colorUtilities-utilities-background-semantic-error)',
+        color: 'var(--layera-colorUtilities-utilities-text-inverted)',
+        border: 'var(--layera-colorUtilities-utilities-background-semantic-error)',
         hover: {
-          background: 'color-mix(in srgb, var(--la-bg-danger) 80%, black 20%)',
-          color: 'var(--la-text-on-dark)',
-          border: 'color-mix(in srgb, var(--la-bg-danger) 80%, black 20%)'
+          background: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-error) 80%, black 20%)',
+          color: 'var(--layera-colorUtilities-utilities-text-inverted)',
+          border: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-error) 80%, black 20%)'
         },
         active: {
-          background: 'color-mix(in srgb, var(--la-bg-danger) 70%, black 30%)',
-          color: 'var(--la-text-on-dark)',
-          border: 'color-mix(in srgb, var(--la-bg-danger) 70%, black 30%)'
+          background: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-error) 70%, black 30%)',
+          color: 'var(--layera-colorUtilities-utilities-text-inverted)',
+          border: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-error) 70%, black 30%)'
         },
         focus: {
-          outline: '2px solid color-mix(in srgb, var(--la-bg-danger) 50%, transparent 50%)',
-          ring: '0 0 0 2px color-mix(in srgb, var(--la-bg-danger) 30%, transparent 70%)'
+          outline: 'var(--layera-iconInteractive-accessibility-focusRing-width) solid color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-error) 50%, transparent 50%)',
+          ring: '0 0 0 var(--layera-iconInteractive-accessibility-focusRing-width) color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-error) 30%, transparent 70%)'
         },
         disabled: {
-          background: 'var(--la-bg-tertiary)',
-          color: 'var(--la-text-tertiary)',
-          border: 'var(--la-border-primary)'
+          background: 'var(--layera-colorUtilities-utilities-background-tertiary)',
+          color: 'var(--layera-colorUtilities-utilities-text-tertiary)',
+          border: 'var(--layera-colorUtilities-utilities-border-primary)'
         }
       },
       success: {
-        background: 'var(--la-bg-success)',
-        color: 'var(--la-text-on-success)',
-        border: 'var(--la-bg-success)',
+        background: 'var(--layera-colorUtilities-utilities-background-semantic-success)',
+        color: 'var(--layera-text-on-success)',
+        border: 'var(--layera-colorUtilities-utilities-background-semantic-success)',
         hover: {
-          background: 'color-mix(in srgb, var(--la-bg-success) 80%, black 20%)',
-          color: 'var(--la-text-on-success)',
-          border: 'color-mix(in srgb, var(--la-bg-success) 80%, black 20%)'
+          background: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-success) 80%, black 20%)',
+          color: 'var(--layera-text-on-success)',
+          border: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-success) 80%, black 20%)'
         },
         active: {
-          background: 'color-mix(in srgb, var(--la-bg-success) 70%, black 30%)',
-          color: 'var(--la-text-on-success)',
-          border: 'color-mix(in srgb, var(--la-bg-success) 70%, black 30%)'
+          background: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-success) 70%, black 30%)',
+          color: 'var(--layera-text-on-success)',
+          border: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-success) 70%, black 30%)'
         },
         focus: {
-          outline: '2px solid color-mix(in srgb, var(--la-bg-success) 50%, transparent 50%)',
-          ring: '0 0 0 2px color-mix(in srgb, var(--la-bg-success) 30%, transparent 70%)'
+          outline: 'var(--layera-iconInteractive-accessibility-focusRing-width) solid color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-success) 50%, transparent 50%)',
+          ring: '0 0 0 var(--layera-iconInteractive-accessibility-focusRing-width) color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-success) 30%, transparent 70%)'
         },
         disabled: {
-          background: 'var(--la-bg-tertiary)',
-          color: 'var(--la-text-tertiary)',
-          border: 'var(--la-border-primary)'
+          background: 'var(--layera-colorUtilities-utilities-background-tertiary)',
+          color: 'var(--layera-colorUtilities-utilities-text-tertiary)',
+          border: 'var(--layera-colorUtilities-utilities-border-primary)'
         }
       },
       warning: {
-        background: 'var(--la-bg-warning)',
-        color: 'var(--la-text-on-dark)',
-        border: 'var(--la-bg-warning)',
+        background: 'var(--layera-colorUtilities-utilities-background-semantic-warning)',
+        color: 'var(--layera-colorUtilities-utilities-text-inverted)',
+        border: 'var(--layera-colorUtilities-utilities-background-semantic-warning)',
         hover: {
-          background: 'color-mix(in srgb, var(--la-bg-warning) 80%, black 20%)',
-          color: 'var(--la-text-on-dark)',
-          border: 'color-mix(in srgb, var(--la-bg-warning) 80%, black 20%)'
+          background: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-warning) 80%, black 20%)',
+          color: 'var(--layera-colorUtilities-utilities-text-inverted)',
+          border: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-warning) 80%, black 20%)'
         },
         active: {
-          background: 'color-mix(in srgb, var(--la-bg-warning) 70%, black 30%)',
-          color: 'var(--la-text-on-dark)',
-          border: 'color-mix(in srgb, var(--la-bg-warning) 70%, black 30%)'
+          background: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-warning) 70%, black 30%)',
+          color: 'var(--layera-colorUtilities-utilities-text-inverted)',
+          border: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-warning) 70%, black 30%)'
         },
         focus: {
-          outline: '2px solid color-mix(in srgb, var(--la-bg-warning) 50%, transparent 50%)',
-          ring: '0 0 0 2px color-mix(in srgb, var(--la-bg-warning) 30%, transparent 70%)'
+          outline: 'var(--layera-iconInteractive-accessibility-focusRing-width) solid color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-warning) 50%, transparent 50%)',
+          ring: '0 0 0 var(--layera-iconInteractive-accessibility-focusRing-width) color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-warning) 30%, transparent 70%)'
         },
         disabled: {
-          background: 'var(--la-bg-tertiary)',
-          color: 'var(--la-text-tertiary)',
-          border: 'var(--la-border-primary)'
+          background: 'var(--layera-colorUtilities-utilities-background-tertiary)',
+          color: 'var(--layera-colorUtilities-utilities-text-tertiary)',
+          border: 'var(--layera-colorUtilities-utilities-border-primary)'
         }
       },
       info: {
-        background: 'var(--la-bg-info)',
-        color: 'var(--la-text-on-info)',
-        border: 'var(--la-bg-info)',
+        background: 'var(--layera-colorUtilities-utilities-background-semantic-info)',
+        color: 'var(--layera-text-on-info)',
+        border: 'var(--layera-colorUtilities-utilities-background-semantic-info)',
         hover: {
-          background: 'color-mix(in srgb, var(--la-bg-info) 80%, black 20%)',
-          color: 'var(--la-text-on-info)',
-          border: 'color-mix(in srgb, var(--la-bg-info) 80%, black 20%)'
+          background: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-info) 80%, black 20%)',
+          color: 'var(--layera-text-on-info)',
+          border: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-info) 80%, black 20%)'
         },
         active: {
-          background: 'color-mix(in srgb, var(--la-bg-info) 70%, black 30%)',
-          color: 'var(--la-text-on-info)',
-          border: 'color-mix(in srgb, var(--la-bg-info) 70%, black 30%)'
+          background: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-info) 70%, black 30%)',
+          color: 'var(--layera-text-on-info)',
+          border: 'color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-info) 70%, black 30%)'
         },
         focus: {
-          outline: '2px solid color-mix(in srgb, var(--la-bg-info) 50%, transparent 50%)',
-          ring: '0 0 0 2px color-mix(in srgb, var(--la-bg-info) 30%, transparent 70%)'
+          outline: 'var(--layera-iconInteractive-accessibility-focusRing-width) solid color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-info) 50%, transparent 50%)',
+          ring: '0 0 0 var(--layera-iconInteractive-accessibility-focusRing-width) color-mix(in srgb, var(--layera-colorUtilities-utilities-background-semantic-info) 30%, transparent 70%)'
         },
         disabled: {
-          background: 'var(--la-bg-tertiary)',
-          color: 'var(--la-text-tertiary)',
-          border: 'var(--la-border-primary)'
+          background: 'var(--layera-colorUtilities-utilities-background-tertiary)',
+          color: 'var(--layera-colorUtilities-utilities-text-tertiary)',
+          border: 'var(--layera-colorUtilities-utilities-border-primary)'
         }
       }
     },
@@ -250,7 +250,7 @@ export const useButton = () => {
       sm: '0.25rem',
       md: '0.375rem',
       lg: `var(--layera-global-spacing-2)`,
-      full: '9999px'
+      full: 'var(--layera-radius-pill)'
     }
   }), []);
 
@@ -273,7 +273,7 @@ export const useButton = () => {
       fontSize: sizeTokens.fontSize,
       backgroundColor: variantTokens.background,
       color: variantTokens.color,
-      border: `1px solid ${variantTokens.border}`,
+      border: `var(--layera-global-borderWidth-1) solid ${variantTokens.border}`,
       borderRadius: buttonTokens.radius.md,
       transition: buttonTokens.transitions.default,
       fontFamily: 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',

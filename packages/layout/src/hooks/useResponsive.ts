@@ -53,9 +53,9 @@ export const useResponsive = () => {
 
     // Container helpers
     containerMaxWidth: currentBreakpoint === 'sm' ? '100%' :
-                       currentBreakpoint === 'md' ? '750px' :
-                       currentBreakpoint === 'lg' ? '960px' :
-                       currentBreakpoint === 'xl' ? '1140px' : '1320px'
+                       currentBreakpoint === 'md' ? 'var(--layera-spacing-container-md)' :
+                       currentBreakpoint === 'lg' ? 'var(--layera-spacing-container-lg)' :
+                       currentBreakpoint === 'xl' ? 'var(--layera-spacing-container-xl)' : 'var(--layera-spacing-container-xl)'
   };
 };
 

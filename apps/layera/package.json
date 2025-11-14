@@ -11,6 +11,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
+    "@layera/auth-bridge": "workspace:*",
+    "@layera/database-core": "workspace:*",
     "@layera/icons": "workspace:*",
     "@layera/layout": "workspace:*",
     "@layera/map-core": "workspace:*",

@@ -1,0 +1,96 @@
+/**
+ * Google Sign-In Button - ARXES Compliant Styles
+ * Χρησιμοποιεί μόνο layera tokens - Single Source of Truth
+ */
+
+.layera-google-signin {
+  display: var(--layera-global-display-flex);
+  align-items: var(--layera-global-alignItems-center);
+  justify-content: var(--layera-global-justifyContent-center);
+  gap: var(--layera-iconInteractive-sizing-margin-md);
+
+  /* Spacing με layera tokens αντί για σκληρές τιμές */
+  padding: var(--layera-iconInteractive-sizing-padding-md) var(--layera-iconInteractive-sizing-padding-xl);
+
+  /* Border με layera tokens */
+  border: var(--layera-global-borderWidth-1) var(--layera-global-borderStyle-solid) var(--layera-colorUtilities-utilities-border-primary);
+  border-radius: var(--layera-radius-md);
+
+  /* Colors με theme awareness */
+  background-color: var(--layera-colorUtilities-utilities-background-primary);
+  color: var(--layera-colorUtilities-utilities-text-primary);
+
+  /* Typography με layera tokens */
+  font-family: var(--layera-fontFamily-system);
+  font-size: var(--layera-fontSize-sm);
+  font-weight: var(--layera-fontWeight-medium);
+
+  /* Interactive states */
+  cursor: var(--layera-global-cursor-pointer);
+  transition: var(--layera-transition-all);
+
+  /* Remove browser defaults */
+  border: var(--layera-global-border-none);
+  outline: var(--layera-global-border-none);
+}
+
+/* Hover state */
+.layera-google-signin:hover:not(.layera-google-signin--disabled) {
+  box-shadow: var(--layera-shadow-md);
+  transform: translateY(calc(-1 * var(--layera-global-spacing-1)));
+}
+
+/* Focus state με accessibility */
+.layera-google-signin:focus-visible {
+  outline: var(--layera-iconInteractive-accessibility-focusRing-width) solid var(--layera-iconInteractive-accessibility-focusRing-color);
+  outline-offset: var(--layera-global-spacing-1);
+}
+
+/* Disabled state */
+.layera-google-signin--disabled {
+  opacity: var(--layera-iconInteractive-interactive-opacity-disabled);
+  cursor: not-allowed;
+}
+
+/* Spinner animation για loading state */
+.layera-google-signin__spinner {
+  width: var(--layera-icon-md);
+  height: var(--layera-icon-md);
+  border: var(--layera-global-borderWidth-2) solid var(--layera-colorUtilities-utilities-border-primary);
+  border-top: var(--layera-global-borderWidth-2) solid var(--layera-color-primary);
+  border-radius: var(--layera-radius-circle);
+  animation: layera-spin 1s linear infinite;
+}
+
+@keyframes layera-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Google icon colors με layera tokens αντί για hex values */
+.layera-google-signin__icon {
+  flex-shrink: 0;
+}
+
+.layera-google-signin__icon-blue {
+  fill: var(--layera-colorUtilities-utilities-fill-accent-blue);
+}
+
+.layera-google-signin__icon-green {
+  fill: var(--layera-colorUtilities-utilities-fill-accent-green);
+}
+
+.layera-google-signin__icon-yellow {
+  fill: var(--layera-color-semantic-warning-primary);
+}
+
+.layera-google-signin__icon-red {
+  fill: var(--layera-color-semantic-error-primary);
+}
+
+/* Dark theme adjustments */
+:root.dark .layera-google-signin {
+  background-color: var(--layera-colorUtilities-utilities-background-surface-dark);
+  color: var(--layera-colorUtilities-utilities-text-inverted);
+  border-color: var(--layera-colorUtilities-utilities-border-primary);
+}

@@ -41,13 +41,13 @@ export const getEnhancedCardTheme = (
       baseColor: 'var(--color-semantic-success-rgb)', // emerald από design tokens
       borderColor: 'var(--color-semantic-success-border)',
       semanticColor: 'var(--color-semantic-success-text)',
-      titleShadow: '0 0 25px var(--color-semantic-success-shadow)'
+      titleShadow: '0 0 var(--layera-space-lg) var(--layera-colorUtilities-utilities-background-semantic-success)'
     },
     job: {
       baseColor: 'var(--color-interactive-primary-rgb)', // blue από design tokens
       borderColor: 'var(--color-interactive-primary)',
       semanticColor: 'var(--color-interactive-primary-text)',
-      titleShadow: '0 0 25px var(--color-interactive-primary-shadow)'
+      titleShadow: '0 0 var(--layera-space-lg) var(--layera-colorUtilities-utilities-background-semantic-info)'
     },
 
     // Semantic variants
