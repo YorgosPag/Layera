@@ -271,16 +271,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
 
             {/* Current Settings Display */}
-            <div
-              style={{
-                padding: 'var(--layera-global-spacing-4)',
+            <div className="layera-card layera-padding--lg layera-typography" data-family="mono" data-size="sm" style={{
                 backgroundColor: 'var(--layera-color-semantic-neutral-light)',
-                borderRadius: 'var(--layera-border-radius-md)',
-                border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-semantic-neutral-light)',
-                fontFamily: 'var(--layera-global-fontFamily-mono)',
-                fontSize: 'var(--layera-fontSize-sm)'
-              }}
-            >
+                border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-semantic-neutral-light)'
+              }}>
               <h4 style={{
                 fontSize: 'var(--layera-fontSize-base)',
                 fontWeight: '600',
