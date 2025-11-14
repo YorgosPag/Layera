@@ -90,12 +90,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
       {/* Main Content */}
       <div
+        className="layera-bg-surface--secondary layera-text-color--primary layera-padding--2xl layera-max-width--container-xl layera-margin-x--auto"
         style={{
-          backgroundColor: 'var(--layera-color-surface-secondary)',
-          color: 'var(--layera-color-text-primary)',
-          padding: 'var(--layera-global-spacing-6)',
-          maxWidth: 'var(--layera-spacing-container-xl)',
-          margin: 'var(--layera-global-spacing-0) auto',
           minHeight: 'calc(var(--layera-spacing-viewport-full-height) - var(--layera-global-spacing-10))'
         }}
       >
