@@ -254,9 +254,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
         {/* Coming Soon Sections */}
         {activeSection === 'colors' && (
-          <div className="layera-flex layera-flex--direction-column layera-flex--justify-center layera-text-center layera-padding--2xl" style={{
-              minHeight: 'var(--layera-spacing-component-card-height)'
-            }}>
+          <div className="layera-flex layera-flex--direction-column layera-flex--justify-center layera-text-center layera-padding--2xl layera-min-height--card">
             <h2 className="layera-typography layera-margin-bottom--lg" data-size="2xl" style={{
               color: 'var(--layera-color-semantic-neutral-medium)'
             }}>
