@@ -30,44 +30,29 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 300 }: UseRealTimePr
   const debounceTimerRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   /**
-   * Εφαρμόζει live preview στα header buttons
+   * Εφαρμόζει live preview στα header buttons - Optimized version
    */
   const applyHeaderButtonPreview = useCallback((color: string) => {
-    const headerContainer = document.querySelector('[data-layout="header-fixed"]');
+    // Optimize: Reuse existing style element instead of removing/creating
+    let style = document.getElementById('layera-live-preview-header-buttons') as HTMLStyleElement;
 
-    // Ακριβείς selectors για τα header SquareButton components
-    const headerButtonSelectors = [
-      '[data-layout="header-fixed"] .layera-square-btn.layera-button[data-variant="secondary"]',
-      '[data-layout="header-fixed"] .layera-square-btn.layera-button',
-      '[data-layout="header-fixed"] button.layera-square-btn',
-      '[data-layout="header-fixed"] button[class*="layera-button"]',
-      '[data-layout="header-fixed"] button[data-variant="secondary"]',
-      '[data-layout="header-fixed"] button[data-shape="square"]',
-      '[data-layout="header-fixed"] button',
-      '.layera-square-btn',
-      '.layera-button'
-    ];
-
-    const style = document.createElement('style');
-    style.id = 'layera-live-preview-header-buttons';
-
-    // Remove existing preview style
-    const existingStyle = document.getElementById('layera-live-preview-header-buttons');
-    if (existingStyle) {
-      existingStyle.remove();
+    if (!style) {
+      style = document.createElement('style');
+      style.id = 'layera-live-preview-header-buttons';
+      document.head.appendChild(style);
     }
 
-    // Create new live preview styles με ακριβή targeting
-    const css = headerButtonSelectors.map(selector =>
-      `${selector} {
+    // Optimized CSS with fewer selectors for better performance
+    const css = `
+      [data-layout="header-fixed"] button.layera-square-btn,
+      [data-layout="header-fixed"] .layera-button,
+      .layera-square-btn {
         background-color: ${color} !important;
         border-color: ${color} !important;
-        transition: all 0.15s ease !important;
-      }`
-    ).join('\n');
+        transition: none !important;
+      }`;
 
     style.textContent = css;
-    document.head.appendChild(style);
   }, []);
 
   /**

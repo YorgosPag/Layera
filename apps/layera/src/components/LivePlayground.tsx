@@ -36,16 +36,6 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   // Authentication
   const { user } = useAuth();
 
-  // Real-time preview hook for header buttons
-  const { startPreview, isPreviewActive } = useRealTimePreview({
-    onCommit: (key: string, value: string) => {
-      // Update the actual color state when preview is committed
-      if (key === 'secondaryColor') {
-        setSquareSecondaryColor(value);
-      }
-    },
-    debounceMs: 300
-  });
   // ==============================
   // STATE MANAGEMENT
   // ==============================
@@ -95,6 +85,17 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   const [roundedWarningColor, setRoundedWarningColor] = useState('#FFA500');
   const [roundedDangerColor, setRoundedDangerColor] = useState('#FF6347');
   const [roundedInfoColor, setRoundedInfoColor] = useState('#4169E1');
+
+  // Real-time preview hook for header buttons
+  const { startPreview, isPreviewActive } = useRealTimePreview({
+    onCommit: (key: string, value: string) => {
+      // Update the actual color state when preview is committed
+      if (key === 'secondaryColor') {
+        setSquareSecondaryColor(value);
+      }
+    },
+    debounceMs: 1000
+  });
 
   // ==============================
   // UTILITY FUNCTIONS
