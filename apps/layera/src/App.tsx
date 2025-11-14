@@ -3,6 +3,7 @@ import { ThemeProvider } from '../../../packages/theme-switcher/src';
 import { TolgeeProvider } from '@layera/tolgee';
 import { AuthProvider, initializeFirebaseApp } from '@layera/auth-bridge';
 import { AppContent } from './components/AppContent';
+import { useColorPersistence } from './hooks/useColorPersistence';
 
 // Initialize Firebase για auth-bridge
 try {
@@ -28,6 +29,13 @@ try {
 }
 
 function App(): React.ReactElement {
+  console.log('🚀 App component loading...');
+
+  // Αυτόματη φόρτωση και εφαρμογή αποθηκευμένων χρωμάτων
+  useColorPersistence();
+
+  console.log('🎨 useColorPersistence hook called');
+
   return (
     <TolgeeProvider>
       <ThemeProvider>

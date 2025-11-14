@@ -88,6 +88,7 @@ export const AppContent: React.FC = () => {
   };
 
   const openLivePlayground = () => {
+    console.log('🔧 ΒΗΜΑ 1: Άνοιγμα LivePlayground - κλικ στο γρανάζι');
     setShowPlayground(true);
   };
 

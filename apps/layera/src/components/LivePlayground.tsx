@@ -5,6 +5,8 @@ import { Button, SquareButton } from '@layera/buttons';
 import { PlusIcon, SearchIcon, UserIcon, SettingsIcon, CloseIcon } from '@layera/icons';
 import { ButtonsSection } from './playground/ButtonsSection';
 import { ColorsSection } from './playground/ColorsSection';
+import { saveColorTheme, loadCurrentThemeFromLocalStorage } from '../services/colorThemeService';
+import { useAuth } from '@layera/auth-bridge';
 
 /**
  * Live Playground - Enterprise Component Testing Interface
@@ -28,6 +30,10 @@ interface LivePlaygroundProps {
 }
 
 export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
+  console.log('🎮 LivePlayground φορτώνει...');
+
+  // Authentication
+  const { user } = useAuth();
   // ==============================
   // STATE MANAGEMENT
   // ==============================
@@ -150,6 +156,64 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   const sizes: ButtonSize[] = ['xs', 'sm', 'md', 'lg', 'xl'];
 
   // ==============================
+  // EFFECTS
+  // ==============================
+
+  // Φόρτωση αποθηκευμένων χρωμάτων από localStorage
+  useEffect(() => {
+    console.log('🔄 LivePlayground useEffect: Φόρτωση χρωμάτων από localStorage...');
+
+    try {
+      const stored = localStorage.getItem('layera-current-theme');
+      if (stored) {
+        const savedState = JSON.parse(stored);
+        console.log('📂 ΒΗΜΑ 6: Βρέθηκαν αποθηκευμένα χρώματα:', savedState);
+
+        // Εφαρμογή των αποθηκευμένων χρωμάτων
+        if (savedState.buttonShape && savedState.buttonShape !== colorButtonShape) {
+          setColorButtonShape(savedState.buttonShape);
+          console.log(`🔄 Αλλαγή σχήματος σε: ${savedState.buttonShape}`);
+        }
+
+        if (savedState.colorCategory && savedState.colorCategory !== colorCategory) {
+          setColorCategory(savedState.colorCategory);
+          console.log(`🔄 Αλλαγή κατηγορίας σε: ${savedState.colorCategory}`);
+        }
+
+        // Εφαρμογή χρωμάτων ανάλογα με το σχήμα
+        if (savedState.buttonShape === 'square') {
+          setSquarePrimaryColor(savedState.primaryColor || squarePrimaryColor);
+          setSquareSecondaryColor(savedState.secondaryColor || squareSecondaryColor);
+          setSquareSuccessColor(savedState.successColor || squareSuccessColor);
+          setSquareWarningColor(savedState.warningColor || squareWarningColor);
+          setSquareDangerColor(savedState.dangerColor || squareDangerColor);
+          setSquareInfoColor(savedState.infoColor || squareInfoColor);
+        } else if (savedState.buttonShape === 'rectangular') {
+          setRectPrimaryColor(savedState.primaryColor || rectPrimaryColor);
+          setRectSecondaryColor(savedState.secondaryColor || rectSecondaryColor);
+          setRectSuccessColor(savedState.successColor || rectSuccessColor);
+          setRectWarningColor(savedState.warningColor || rectWarningColor);
+          setRectDangerColor(savedState.dangerColor || rectDangerColor);
+          setRectInfoColor(savedState.infoColor || rectInfoColor);
+        } else if (savedState.buttonShape === 'rounded') {
+          setRoundedPrimaryColor(savedState.primaryColor || roundedPrimaryColor);
+          setRoundedSecondaryColor(savedState.secondaryColor || roundedSecondaryColor);
+          setRoundedSuccessColor(savedState.successColor || roundedSuccessColor);
+          setRoundedWarningColor(savedState.warningColor || roundedWarningColor);
+          setRoundedDangerColor(savedState.dangerColor || roundedDangerColor);
+          setRoundedInfoColor(savedState.infoColor || roundedInfoColor);
+        }
+
+        console.log('✅ ΒΗΜΑ 7: Χρώματα φορτώθηκαν επιτυχώς!');
+      } else {
+        console.log('ℹ️ Δεν βρέθηκαν αποθηκευμένα χρώματα');
+      }
+    } catch (error) {
+      console.error('⚠️ Σφάλμα φόρτωσης χρωμάτων:', error);
+    }
+  }, []);
+
+  // ==============================
   // EVENT HANDLERS
   // ==============================
 
@@ -207,21 +271,23 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
    * Μοναδική πηγή αλήθειας για το styling των secondary buttons
    */
   const applySquareColorsToHeader = () => {
+    console.log('🎯 ΒΗΜΑ 4γ: Κλικ στο κουμπί "Εφαρμογή στην Επικεφαλίδα"');
     // Εξασφαλίζω ότι υπάρχουν οι CSS μεταβλητές και rules
     ensureCSSVariablesExist();
   };
 
   // ENTERPRISE COLOR APPLICATION - TARGETED CSS VARIABLES UPDATE
-  const applyColorsToApp = () => {
+  const applyColorsToApp = async () => {
+    console.log('🚀 ΒΗΜΑ 4β: Κλικ στο κουμπί "Εφαρμογή Χρωμάτων" στο LivePlayground');
     const root = document.documentElement;
     const colorMap = {
       buttons: {
-        primary: `--layera-color-button-primary`,
-        secondary: `--layera-color-button-secondary`,
-        success: `--layera-color-button-success`,
-        warning: `--layera-color-button-warning`,
-        danger: `--layera-color-button-danger`,
-        info: `--layera-color-button-info`
+        primary: `--layera-btn-primary-bg`,
+        secondary: `--layera-btn-secondary-bg`,
+        success: `--layera-btn-success-bg`,
+        warning: `--layera-btn-warning-bg`,
+        danger: `--layera-btn-danger-bg`,
+        info: `--layera-btn-info-bg`
       },
       backgrounds: {
         primary: `--layera-color-bg-primary`,
@@ -250,19 +316,105 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
     };
 
     const categoryColors = colorMap[colorCategory];
-    root.style.setProperty(categoryColors.primary, rectPrimaryColor);
-    root.style.setProperty(categoryColors.secondary, rectSecondaryColor);
-    root.style.setProperty(categoryColors.success, rectSuccessColor);
-    root.style.setProperty(categoryColors.warning, rectWarningColor);
-    root.style.setProperty(categoryColors.danger, rectDangerColor);
-    root.style.setProperty(categoryColors.info, rectInfoColor);
+    const currentColors = getCurrentColors();
 
-    console.log(`🎨 Applied ${colorCategory} colors:`, {
-      rectPrimaryColor, rectSecondaryColor, rectSuccessColor, rectWarningColor, rectDangerColor, rectInfoColor
-    });
+    if (colorCategory === 'buttons') {
+      // Εφαρμογή χρωμάτων για buttons (background, color, border)
+      const oldBg = root.style.getPropertyValue('--layera-btn-secondary-bg') || 'not set';
+
+      root.style.setProperty('--layera-btn-secondary-bg', currentColors.secondary);
+      root.style.setProperty('--layera-btn-secondary-color', '#ffffff');
+      root.style.setProperty('--layera-btn-secondary-border', currentColors.secondary);
+
+      // EMERGENCY OVERRIDE - Δυνατό CSS injection για άμεση εφαρμογή
+      const emergencyStyle = `
+        .layera-btn-secondary {
+          background-color: ${currentColors.secondary} !important;
+          border-color: ${currentColors.secondary} !important;
+          color: #ffffff !important;
+        }
+      `;
+
+      // Αφαίρεση παλιού emergency style αν υπάρχει
+      const oldEmergencyStyle = document.getElementById('layera-emergency-button-style');
+      if (oldEmergencyStyle) {
+        oldEmergencyStyle.remove();
+      }
+
+      // Προσθήκη νέου emergency style
+      const styleElement = document.createElement('style');
+      styleElement.id = 'layera-emergency-button-style';
+      styleElement.textContent = emergencyStyle;
+      document.head.appendChild(styleElement);
+
+      console.log('🚨 EMERGENCY: Δυνατό CSS override προστέθηκε για', currentColors.secondary);
+
+      const newBg = root.style.getPropertyValue('--layera-btn-secondary-bg');
+
+      console.log('🎯 Εφαρμογή header button colors:', {
+        oldBg,
+        newBg,
+        bg: currentColors.secondary,
+        color: '#ffffff',
+        border: currentColors.secondary
+      });
+
+      // Διπλός έλεγχος - ας δούμε αν το CSS variable υπάρχει στο DOM
+      const computedStyle = getComputedStyle(document.documentElement);
+      const computedBg = computedStyle.getPropertyValue('--layera-btn-secondary-bg');
+      console.log('🔍 CSS Variable check:', {
+        setProperty: currentColors.secondary,
+        computedStyle: computedBg.trim()
+      });
+    } else {
+      // Εφαρμογή για άλλες κατηγορίες (backgrounds, text, borders)
+      root.style.setProperty(categoryColors.primary, currentColors.primary);
+      root.style.setProperty(categoryColors.secondary, currentColors.secondary);
+      root.style.setProperty(categoryColors.success, currentColors.success);
+      root.style.setProperty(categoryColors.warning, currentColors.warning);
+      root.style.setProperty(categoryColors.danger, currentColors.danger);
+      root.style.setProperty(categoryColors.info, currentColors.info);
+    }
+
+    console.log(`🎨 Applied ${colorCategory} colors for ${colorButtonShape} shape:`, currentColors);
+
+    // Αποθήκευση στο Firebase
+    const colorState = {
+      colorCategory,
+      buttonShape: colorButtonShape,
+      primaryColor: currentColors.primary,
+      secondaryColor: currentColors.secondary,
+      successColor: currentColors.success,
+      warningColor: currentColors.warning,
+      dangerColor: currentColors.danger,
+      infoColor: currentColors.info
+    };
+
+    // Αποθήκευση και στο localStorage για γρήγορη φόρτωση
+    try {
+      localStorage.setItem('layera-current-theme', JSON.stringify(colorState));
+      console.log('💾 ΒΗΜΑ 5α: Χρώματα αποθηκεύτηκαν στο localStorage για cache:', colorState);
+    } catch (error) {
+      console.warn('⚠️ Σφάλμα αποθήκευσης στο localStorage:', error);
+    }
+
+    // Αποθήκευση στο Firebase (μόνο αν είναι διαθέσιμο)
+    const hasRealFirebaseConfig = import.meta.env.VITE_FIREBASE_API_KEY && import.meta.env.VITE_FIREBASE_API_KEY !== 'demo-api-key';
+
+    if (hasRealFirebaseConfig) {
+      try {
+        const themeId = await saveColorTheme(colorState, user, `${colorCategory}-theme-${Date.now()}`);
+        console.log('🔥 ΒΗΜΑ 5β: Χρώματα αποθηκεύτηκαν στο Firebase:', { themeId, user: user?.email || 'anonymous' });
+      } catch (error) {
+        console.error('⚠️ Σφάλμα αποθήκευσης στο Firebase:', error);
+        console.log('🔄 Συνεχίζουμε με localStorage μόνο');
+      }
+    } else {
+      console.log('ℹ️ ΒΗΜΑ 5β: Firebase disabled (demo credentials), χρησιμοποιούμε μόνο localStorage');
+    }
 
     window.dispatchEvent(new CustomEvent('colorsUpdate', {
-      detail: { category: colorCategory, primaryColor: rectPrimaryColor, secondaryColor: rectSecondaryColor, successColor: rectSuccessColor, warningColor: rectWarningColor, dangerColor: rectDangerColor, infoColor: rectInfoColor }
+      detail: { category: colorCategory, ...currentColors }
     }));
   };
 
@@ -309,7 +461,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           <Button
             variant={activeSection === 'colors' ? 'primary' : 'ghost'}
             size="sm"
-            onClick={() => setActiveSection('colors')}
+            onClick={() => {
+              console.log('🎨 ΒΗΜΑ 2: Μετάβαση στην καρτέλα χρώματα');
+              setActiveSection('colors');
+            }}
           >
             🎨 Colors
           </Button>
@@ -560,7 +715,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                     <Button
                       variant={colorButtonShape === 'square' ? 'primary' : 'outline'}
                       size="sm"
-                      onClick={() => setColorButtonShape('square')}
+                      onClick={() => {
+                        console.log('🔲 ΒΗΜΑ 3β: Επιλογή σχήματος "Square" για preview');
+                        setColorButtonShape('square');
+                      }}
                     >
                       ⬜ Τετράγωνα
                     </Button>
@@ -717,7 +875,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 <input
                   type="color"
                   value={currentColors.secondary}
-                  onChange={(e) => currentSetters.setSecondary(e.target.value)}
+                  onChange={(e) => {
+                    console.log(`🎨 ΒΗΜΑ 4α: Αλλαγή secondary color από ${currentColors.secondary} σε ${e.target.value}`);
+                    currentSetters.setSecondary(e.target.value);
+                  }}
                   className="layera-input layera-width--full layera-margin-bottom--sm"
                 />
                 <Text className="layera-typography" data-size="sm" data-color="secondary">
