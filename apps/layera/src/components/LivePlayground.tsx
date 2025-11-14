@@ -311,11 +311,11 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   onChange={(e) => setButtonText(e.target.value)}
                   style={{
                     width: '100%',
-                    padding: '8px',
+                    padding: 'var(--layera-global-spacing-2)',
                     border: '1px solid var(--layera-color-semantic-neutral-medium)',
                     borderRadius: 'var(--layera-border-radius-sm)',
-                    fontSize: '14px',
-                    marginBottom: '8px'
+                    fontSize: 'var(--layera-fontSize-sm)',
+                    marginBottom: 'var(--layera-global-spacing-2)'
                   }}
                 />
                 <Button
@@ -337,14 +337,14 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 borderRadius: 'var(--layera-border-radius-md)',
                 border: '1px solid var(--layera-color-semantic-neutral-light)',
                 fontFamily: 'monospace',
-                fontSize: '14px'
+                fontSize: 'var(--layera-fontSize-sm)'
               }}
             >
               <h4 style={{
-                fontSize: '16px',
+                fontSize: 'var(--layera-fontSize-base)',
                 fontWeight: '600',
                 color: 'var(--layera-color-semantic-neutral-dark)',
-                margin: '0 0 8px 0'
+                margin: '0 0 var(--layera-global-spacing-2) 0'
               }}>
                 📝 Τρέχουσες Ρυθμίσεις:
               </h4>
@@ -379,12 +379,12 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             <h2 style={{
               fontSize: 'var(--layera-global-spacing-8)',
               color: 'var(--layera-color-semantic-neutral-medium)',
-              margin: '0 0 16px 0'
+              margin: '0 0 var(--layera-global-spacing-4) 0'
             }}>
               🚧 Colors Playground
             </h2>
             <p style={{
-              fontSize: '18px',
+              fontSize: 'var(--layera-fontSize-lg)',
               color: 'var(--layera-color-semantic-neutral-medium)',
               margin: '0'
             }}>
@@ -407,12 +407,12 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             <h2 style={{
               fontSize: 'var(--layera-global-spacing-8)',
               color: 'var(--layera-color-semantic-neutral-medium)',
-              margin: '0 0 16px 0'
+              margin: '0 0 var(--layera-global-spacing-4) 0'
             }}>
               🚧 Tokens Playground
             </h2>
             <p style={{
-              fontSize: '18px',
+              fontSize: 'var(--layera-fontSize-lg)',
               color: 'var(--layera-color-semantic-neutral-medium)',
               margin: '0'
             }}>
