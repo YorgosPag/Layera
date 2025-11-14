@@ -352,21 +352,24 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               </Text>
 
               <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-xl">
-                <Button variant="primary" size={buttonSize}>
+                <button style={{ backgroundColor: primaryColor, color: 'white', padding: '8px 16px', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>
                   Primary Color
-                </Button>
-                <Button variant="secondary" size={buttonSize}>
+                </button>
+                <button style={{ backgroundColor: secondaryColor, color: 'white', padding: '8px 16px', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>
                   Secondary Color
-                </Button>
-                <Button variant="success" size={buttonSize}>
+                </button>
+                <button style={{ backgroundColor: successColor, color: 'white', padding: '8px 16px', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>
                   Success Color
-                </Button>
-                <Button variant="warning" size={buttonSize}>
+                </button>
+                <button style={{ backgroundColor: warningColor, color: 'black', padding: '8px 16px', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>
                   Warning Color
-                </Button>
-                <Button variant="danger" size={buttonSize}>
+                </button>
+                <button style={{ backgroundColor: dangerColor, color: 'white', padding: '8px 16px', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>
                   Danger Color
-                </Button>
+                </button>
+                <button style={{ backgroundColor: infoColor, color: 'white', padding: '8px 16px', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>
+                  Info Color
+                </button>
               </Box>
             </Box>
 

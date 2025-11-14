@@ -145,15 +145,15 @@ export const ColorsSection: React.FC<SectionProps> = ({ className = '' }) => {
         </Text>
 
         <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-xl">
-          <Button variant="primary" size="md">
-            Primary Color
-          </Button>
-          <Button variant="secondary" size="md">
-            Secondary Color
-          </Button>
-          <Button variant="success" size="md">
-            Success Color
-          </Button>
+          <button style={{ backgroundColor: '#FF0000', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>
+            Primary Color - ΚΟΚΚΙΝΟ
+          </button>
+          <button style={{ backgroundColor: '#0000FF', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>
+            Secondary Color - ΜΠΛΕ
+          </button>
+          <button style={{ backgroundColor: '#00FF00', color: 'black', padding: '8px 16px', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>
+            Success Color - ΠΡΑΣΙΝΟ
+          </button>
           <Button variant="warning" size="md">
             Warning Color
           </Button>
