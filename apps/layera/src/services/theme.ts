@@ -6,7 +6,7 @@
  */
 
 import { doc, setDoc, getDoc, type DocumentSnapshot } from 'firebase/firestore';
-import { db } from '../firebase';
+import { getDb } from '../firebase';
 
 // Types
 export interface ThemeColors {
@@ -40,6 +40,12 @@ export async function saveTheme(
   userId: string = 'default'
 ): Promise<void> {
   try {
+    const db = getDb();
+    if (!db) {
+      console.warn('🔧 Firebase not initialized - using localStorage only');
+      return;
+    }
+
     const theme: UserTheme = {
       id: themeId,
       name: `${category}_theme_${buttonShape || 'default'}`,
@@ -64,6 +70,12 @@ export async function saveTheme(
  */
 export async function loadTheme(themeId: string): Promise<UserTheme | null> {
   try {
+    const db = getDb();
+    if (!db) {
+      console.warn('🔧 Firebase not initialized - cannot load from Firestore');
+      return null;
+    }
+
     const docRef = doc(db, 'themes', themeId);
     const docSnap: DocumentSnapshot = await getDoc(docRef);
 

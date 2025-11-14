@@ -29,9 +29,32 @@ export const useColorPersistence = () => {
             root.style.setProperty('--layera-btn-secondary-color', '#ffffff');
             root.style.setProperty('--layera-btn-secondary-border', savedState.secondaryColor);
 
-            // EMERGENCY OVERRIDE ΣΤΗΝ ΕΚΚΙΝΗΣΗ - Δυνατό CSS injection
+            // EMERGENCY OVERRIDE για HEADER BUTTONS - Στοχεύω SquareButton components
             const emergencyStyle = `
+              /* Στόχευση με BEM notation (.layera-btn--secondary) */
+              .layera-btn--secondary {
+                background-color: ${savedState.secondaryColor} !important;
+                border-color: ${savedState.secondaryColor} !important;
+                color: #ffffff !important;
+              }
+
+              /* Στόχευση με single dash (.layera-btn-secondary) αν υπάρχει */
               .layera-btn-secondary {
+                background-color: ${savedState.secondaryColor} !important;
+                border-color: ${savedState.secondaryColor} !important;
+                color: #ffffff !important;
+              }
+
+              /* Στόχευση συγκεκριμένα των header buttons με οποιαδήποτε κλάση */
+              [data-layout="header-fixed"] button.layera-btn--secondary,
+              [data-layout="header-fixed"] button.layera-btn-secondary {
+                background-color: ${savedState.secondaryColor} !important;
+                border-color: ${savedState.secondaryColor} !important;
+                color: #ffffff !important;
+              }
+
+              /* Στόχευση όλων των secondary variant buttons */
+              button[class*="layera-btn"][class*="secondary"] {
                 background-color: ${savedState.secondaryColor} !important;
                 border-color: ${savedState.secondaryColor} !important;
                 color: #ffffff !important;
@@ -39,14 +62,14 @@ export const useColorPersistence = () => {
             `;
 
             // Αφαίρεση παλιού emergency style αν υπάρχει
-            const oldEmergencyStyle = document.getElementById('layera-emergency-button-style');
+            const oldEmergencyStyle = document.getElementById('layera-emergency-header-button-style');
             if (oldEmergencyStyle) {
               oldEmergencyStyle.remove();
             }
 
             // Προσθήκη νέου emergency style
             const styleElement = document.createElement('style');
-            styleElement.id = 'layera-emergency-button-style';
+            styleElement.id = 'layera-emergency-header-button-style';
             styleElement.textContent = emergencyStyle;
             document.head.appendChild(styleElement);
 
@@ -56,7 +79,7 @@ export const useColorPersistence = () => {
               border: savedState.secondaryColor
             });
 
-            console.log('🚨 EMERGENCY STARTUP: Δυνατό CSS override προστέθηκε για', savedState.secondaryColor);
+            console.log('🚨 EMERGENCY STARTUP: Δυνατό CSS override για HEADER buttons προστέθηκε για', savedState.secondaryColor);
           } else {
             // Εφαρμογή για άλλες κατηγορίες
             const colorMap = {
@@ -107,8 +130,11 @@ export const useColorPersistence = () => {
       return null;
     };
 
-    // Καθυστέρηση για να σιγουρευτούμε ότι τα header buttons έχουν φορτώσει
-    const timeoutId = setTimeout(loadAndApplyStoredColors, 1000);
+    // ΑΜΕΣΗ εφαρμογή χρωμάτων - χωρίς καθυστέρηση
+    loadAndApplyStoredColors();
+
+    // Επιπλέον έλεγχος μετά από μικρό timeout για late-loading elements
+    const timeoutId = setTimeout(loadAndApplyStoredColors, 100);
 
     return () => clearTimeout(timeoutId);
   }, []);
