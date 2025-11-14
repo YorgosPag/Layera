@@ -71,7 +71,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
       }}
     >
       {/* Header με κουμπί κλεισίματος */}
-      <div className="layera-flex layera-flex--justify-between layera-flex--align-center layera-padding--lg layera-border-bottom--default layera-bg-surface--secondary layera-position--sticky layera-top--0 layera-z-index--overlay">
+      <Box className="layera-flex layera-flex--justify-between layera-flex--align-center layera-padding--lg layera-border-bottom--default layera-bg-surface--secondary layera-position--sticky layera-top--0 layera-z-index--overlay">
         <h1 className="layera-typography" data-size="xl" data-weight="bold" data-color="primary">
           🎛️ Live Playground - Ζωντανές Ρυθμίσεις
         </h1>
@@ -81,10 +81,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         >
           ✕ Κλείσιμο
         </button>
-      </div>
+      </Box>
 
       {/* Main Content */}
-      <div
+      <Box
         className="layera-bg-surface--secondary layera-text-color--primary layera-padding--2xl layera-max-width--container-xl layera-margin-x--auto"
       >
         {/* TEST - Θα δεις αυτό το κείμενο */}
