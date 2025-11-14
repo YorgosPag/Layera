@@ -53,12 +53,84 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   // Color Settings - ENTERPRISE SINGLE SOURCE OF TRUTH
   const [colorButtonShape, setColorButtonShape] = useState<'rectangular' | 'square' | 'rounded'>('rectangular');
   const [colorCategory, setColorCategory] = useState<'buttons' | 'backgrounds' | 'text' | 'borders'>('buttons');
-  const [primaryColor, setPrimaryColor] = useState('#007bff');
-  const [secondaryColor, setSecondaryColor] = useState('#6c757d');
-  const [successColor, setSuccessColor] = useState('#28a745');
-  const [warningColor, setWarningColor] = useState('#ffc107');
-  const [dangerColor, setDangerColor] = useState('#dc3545');
-  const [infoColor, setInfoColor] = useState('#17a2b8');
+
+  // Rectangular Button Colors
+  const [rectPrimaryColor, setRectPrimaryColor] = useState('#007bff');
+  const [rectSecondaryColor, setRectSecondaryColor] = useState('#6c757d');
+  const [rectSuccessColor, setRectSuccessColor] = useState('#28a745');
+  const [rectWarningColor, setRectWarningColor] = useState('#ffc107');
+  const [rectDangerColor, setRectDangerColor] = useState('#dc3545');
+  const [rectInfoColor, setRectInfoColor] = useState('#17a2b8');
+
+  // Square Button Colors
+  const [squarePrimaryColor, setSquarePrimaryColor] = useState('#FF4444');
+  const [squareSecondaryColor, setSquareSecondaryColor] = useState('#44FF44');
+  const [squareSuccessColor, setSquareSuccessColor] = useState('#4444FF');
+  const [squareWarningColor, setSquareWarningColor] = useState('#FFAA00');
+  const [squareDangerColor, setSquareDangerColor] = useState('#AA00FF');
+  const [squareInfoColor, setSquareInfoColor] = useState('#00AAFF');
+
+  // Rounded Button Colors
+  const [roundedPrimaryColor, setRoundedPrimaryColor] = useState('#800080');
+  const [roundedSecondaryColor, setRoundedSecondaryColor] = useState('#008080');
+  const [roundedSuccessColor, setRoundedSuccessColor] = useState('#808000');
+  const [roundedWarningColor, setRoundedWarningColor] = useState('#FFA500');
+  const [roundedDangerColor, setRoundedDangerColor] = useState('#FF6347');
+  const [roundedInfoColor, setRoundedInfoColor] = useState('#4169E1');
+
+  // Helper functions to get colors based on shape
+  const getCurrentColors = () => {
+    switch (colorButtonShape) {
+      case 'rectangular':
+        return {
+          primary: rectPrimaryColor, secondary: rectSecondaryColor, success: rectSuccessColor,
+          warning: rectWarningColor, danger: rectDangerColor, info: rectInfoColor
+        };
+      case 'square':
+        return {
+          primary: squarePrimaryColor, secondary: squareSecondaryColor, success: squareSuccessColor,
+          warning: squareWarningColor, danger: squareDangerColor, info: squareInfoColor
+        };
+      case 'rounded':
+        return {
+          primary: roundedPrimaryColor, secondary: roundedSecondaryColor, success: roundedSuccessColor,
+          warning: roundedWarningColor, danger: roundedDangerColor, info: roundedInfoColor
+        };
+      default:
+        return {
+          primary: rectPrimaryColor, secondary: rectSecondaryColor, success: rectSuccessColor,
+          warning: rectWarningColor, danger: rectDangerColor, info: rectInfoColor
+        };
+    }
+  };
+
+  const getCurrentSetters = () => {
+    switch (colorButtonShape) {
+      case 'rectangular':
+        return {
+          setPrimary: setRectPrimaryColor, setSecondary: setRectSecondaryColor, setSuccess: setRectSuccessColor,
+          setWarning: setRectWarningColor, setDanger: setRectDangerColor, setInfo: setRectInfoColor
+        };
+      case 'square':
+        return {
+          setPrimary: setSquarePrimaryColor, setSecondary: setSquareSecondaryColor, setSuccess: setSquareSuccessColor,
+          setWarning: setSquareWarningColor, setDanger: setSquareDangerColor, setInfo: setSquareInfoColor
+        };
+      case 'rounded':
+        return {
+          setPrimary: setRoundedPrimaryColor, setSecondary: setRoundedSecondaryColor, setSuccess: setRoundedSuccessColor,
+          setWarning: setRoundedWarningColor, setDanger: setRoundedDangerColor, setInfo: setRoundedInfoColor
+        };
+      default:
+        return {
+          setPrimary: setRectPrimaryColor, setSecondary: setRectSecondaryColor, setSuccess: setRectSuccessColor,
+          setWarning: setRectWarningColor, setDanger: setRectDangerColor, setInfo: setRectInfoColor
+        };
+    }
+  };
+
+  const currentColors = getCurrentColors();
+  const currentSetters = getCurrentSetters();
 
   console.log('🎛️ Current states:', { activeSection, buttonVariant, buttonSize, buttonText, withIcon });
 
@@ -446,7 +518,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
               <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-xl">
                 <button style={{
-                  backgroundColor: primaryColor,
+                  backgroundColor: currentColors.primary,
                   color: 'white',
                   padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
                   border: 'none',
@@ -461,7 +533,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   {colorButtonShape === 'square' ? 'P' : 'Primary Color'}
                 </button>
                 <button style={{
-                  backgroundColor: secondaryColor,
+                  backgroundColor: currentColors.secondary,
                   color: 'white',
                   padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
                   border: 'none',
@@ -476,7 +548,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   {colorButtonShape === 'square' ? 'S' : 'Secondary Color'}
                 </button>
                 <button style={{
-                  backgroundColor: successColor,
+                  backgroundColor: currentColors.success,
                   color: 'white',
                   padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
                   border: 'none',
@@ -491,7 +563,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   {colorButtonShape === 'square' ? 'Su' : 'Success Color'}
                 </button>
                 <button style={{
-                  backgroundColor: warningColor,
+                  backgroundColor: currentColors.warning,
                   color: 'black',
                   padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
                   border: 'none',
@@ -506,7 +578,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   {colorButtonShape === 'square' ? 'W' : 'Warning Color'}
                 </button>
                 <button style={{
-                  backgroundColor: dangerColor,
+                  backgroundColor: currentColors.danger,
                   color: 'white',
                   padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
                   border: 'none',
@@ -521,7 +593,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   {colorButtonShape === 'square' ? 'D' : 'Danger Color'}
                 </button>
                 <button style={{
-                  backgroundColor: infoColor,
+                  backgroundColor: currentColors.info,
                   color: 'white',
                   padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
                   border: 'none',
@@ -552,12 +624,12 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 </h4>
                 <input
                   type="color"
-                  value={primaryColor}
-                  onChange={(e) => setPrimaryColor(e.target.value)}
+                  value={currentColors.primary}
+                  onChange={(e) => currentSetters.setPrimary(e.target.value)}
                   className="layera-input layera-width--full layera-margin-bottom--sm"
                 />
                 <Text className="layera-typography" data-size="sm" data-color="secondary">
-                  {primaryColor.toUpperCase()}
+                  {currentColors.primary.toUpperCase()}
                 </Text>
               </Box>
 
@@ -568,12 +640,12 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 </h4>
                 <input
                   type="color"
-                  value={secondaryColor}
-                  onChange={(e) => setSecondaryColor(e.target.value)}
+                  value={currentColors.secondary}
+                  onChange={(e) => currentSetters.setSecondary(e.target.value)}
                   className="layera-input layera-width--full layera-margin-bottom--sm"
                 />
                 <Text className="layera-typography" data-size="sm" data-color="secondary">
-                  {secondaryColor.toUpperCase()}
+                  {currentColors.secondary.toUpperCase()}
                 </Text>
               </Box>
 
@@ -584,12 +656,12 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 </h4>
                 <input
                   type="color"
-                  value={successColor}
-                  onChange={(e) => setSuccessColor(e.target.value)}
+                  value={currentColors.success}
+                  onChange={(e) => currentSetters.setSuccess(e.target.value)}
                   className="layera-input layera-width--full layera-margin-bottom--sm"
                 />
                 <Text className="layera-typography" data-size="sm" data-color="secondary">
-                  {successColor.toUpperCase()}
+                  {currentColors.success.toUpperCase()}
                 </Text>
               </Box>
 
@@ -600,12 +672,12 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 </h4>
                 <input
                   type="color"
-                  value={warningColor}
-                  onChange={(e) => setWarningColor(e.target.value)}
+                  value={currentColors.warning}
+                  onChange={(e) => currentSetters.setWarning(e.target.value)}
                   className="layera-input layera-width--full layera-margin-bottom--sm"
                 />
                 <Text className="layera-typography" data-size="sm" data-color="secondary">
-                  {warningColor.toUpperCase()}
+                  {currentColors.warning.toUpperCase()}
                 </Text>
               </Box>
 
@@ -616,12 +688,12 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 </h4>
                 <input
                   type="color"
-                  value={dangerColor}
-                  onChange={(e) => setDangerColor(e.target.value)}
+                  value={currentColors.danger}
+                  onChange={(e) => currentSetters.setDanger(e.target.value)}
                   className="layera-input layera-width--full layera-margin-bottom--sm"
                 />
                 <Text className="layera-typography" data-size="sm" data-color="secondary">
-                  {dangerColor.toUpperCase()}
+                  {currentColors.danger.toUpperCase()}
                 </Text>
               </Box>
 
@@ -632,12 +704,12 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 </h4>
                 <input
                   type="color"
-                  value={infoColor}
-                  onChange={(e) => setInfoColor(e.target.value)}
+                  value={currentColors.info}
+                  onChange={(e) => currentSetters.setInfo(e.target.value)}
                   className="layera-input layera-width--full layera-margin-bottom--sm"
                 />
                 <Text className="layera-typography" data-size="sm" data-color="secondary">
-                  {infoColor.toUpperCase()}
+                  {currentColors.info.toUpperCase()}
                 </Text>
               </Box>
             </Box>
@@ -664,12 +736,12 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               </h4>
               <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">
 {`{
-  primary: "${primaryColor}",
-  secondary: "${secondaryColor}",
-  success: "${successColor}",
-  warning: "${warningColor}",
-  danger: "${dangerColor}",
-  info: "${infoColor}"
+  primary: "${currentColors.primary}",
+  secondary: "${currentColors.secondary}",
+  success: "${currentColors.success}",
+  warning: "${currentColors.warning}",
+  danger: "${currentColors.danger}",
+  info: "${currentColors.info}"
 }`}
               </pre>
             </Box>
