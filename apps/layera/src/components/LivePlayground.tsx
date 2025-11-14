@@ -209,7 +209,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             {/* Controls Grid */}
             <div
               style={{
-                display: 'var(--layera-global-display-grid)',
+                display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(var(--layera-spacing-component-card-width), 1fr))',
                 gap: 'var(--layera-global-spacing-5)',
                 marginBottom: 'var(--layera-global-spacing-5)'
