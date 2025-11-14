@@ -248,19 +248,19 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
     };
 
     const categoryColors = colorMap[colorCategory];
-    root.style.setProperty(categoryColors.primary, primaryColor);
-    root.style.setProperty(categoryColors.secondary, secondaryColor);
-    root.style.setProperty(categoryColors.success, successColor);
-    root.style.setProperty(categoryColors.warning, warningColor);
-    root.style.setProperty(categoryColors.danger, dangerColor);
-    root.style.setProperty(categoryColors.info, infoColor);
+    root.style.setProperty(categoryColors.primary, rectPrimaryColor);
+    root.style.setProperty(categoryColors.secondary, rectSecondaryColor);
+    root.style.setProperty(categoryColors.success, rectSuccessColor);
+    root.style.setProperty(categoryColors.warning, rectWarningColor);
+    root.style.setProperty(categoryColors.danger, rectDangerColor);
+    root.style.setProperty(categoryColors.info, rectInfoColor);
 
     console.log(`🎨 Applied ${colorCategory} colors:`, {
-      primaryColor, secondaryColor, successColor, warningColor, dangerColor, infoColor
+      rectPrimaryColor, rectSecondaryColor, rectSuccessColor, rectWarningColor, rectDangerColor, rectInfoColor
     });
 
     window.dispatchEvent(new CustomEvent('colorsUpdate', {
-      detail: { category: colorCategory, primaryColor, secondaryColor, successColor, warningColor, dangerColor, infoColor }
+      detail: { category: colorCategory, primaryColor: rectPrimaryColor, secondaryColor: rectSecondaryColor, successColor: rectSuccessColor, warningColor: rectWarningColor, dangerColor: rectDangerColor, infoColor: rectInfoColor }
     }));
   };
 
