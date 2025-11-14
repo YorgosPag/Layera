@@ -210,7 +210,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(var(--layera-spacing-component-card-width), 1fr))',
                 gap: 'var(--layera-global-spacing-5)',
                 marginBottom: 'var(--layera-global-spacing-5)'
               }}
@@ -332,7 +332,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             {/* Current Settings Display */}
             <div
               style={{
-                padding: '16px',
+                padding: 'var(--layera-global-spacing-4)',
                 backgroundColor: '#f8f9fa',
                 borderRadius: '8px',
                 border: '1px solid #ddd',
@@ -369,15 +369,15 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           <div
             style={{
               textAlign: 'center',
-              padding: '60px',
-              minHeight: '400px',
+              padding: 'var(--layera-global-spacing-12)',
+              minHeight: 'var(--layera-spacing-component-card-height)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center'
             }}
           >
             <h2 style={{
-              fontSize: '32px',
+              fontSize: 'var(--layera-global-spacing-8)',
               color: '#666',
               margin: '0 0 16px 0'
             }}>
@@ -397,15 +397,15 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           <div
             style={{
               textAlign: 'center',
-              padding: '60px',
-              minHeight: '400px',
+              padding: 'var(--layera-global-spacing-12)',
+              minHeight: 'var(--layera-spacing-component-card-height)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center'
             }}
           >
             <h2 style={{
-              fontSize: '32px',
+              fontSize: 'var(--layera-global-spacing-8)',
               color: '#666',
               margin: '0 0 16px 0'
             }}>
