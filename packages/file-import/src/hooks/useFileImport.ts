@@ -1,13 +1,18 @@
 import { useState, useCallback, useRef } from 'react';
 // Mock notifications hook since @layera/notifications package doesn't exist yet
-interface Notification {
+interface NotificationMessage {
   message: string;
   type?: 'success' | 'error' | 'warning' | 'info';
   title?: string;
+  duration?: number;
+  action?: {
+    label: string;
+    onClick: () => void;
+  };
 }
 
 const useNotifications = () => ({
-  addNotification: (notification: Notification) => {
+  addNotification: (notification: NotificationMessage) => {
     console.log('Notification:', notification.message);
   }
 });
