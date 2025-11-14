@@ -121,12 +121,12 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         {activeSection === 'buttons' && (
           <Box>
             {/* Live Preview Area */}
-            <div className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
+            <Box className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
               <h3 className="layera-typography layera-margin-bottom--xl" data-size="lg" data-weight="bold" data-color="primary">
                 🎯 Live Preview
               </h3>
 
-              <div className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-xl">
+              <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-xl">
                 {/* Rectangle Button */}
                 <Button
                   variant={buttonVariant}
@@ -145,11 +145,11 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   aria-label={`Τετράγωνο ${buttonVariant} πλήκτρο`}
                   tooltip={`Live ${buttonVariant} τετράγωνο`}
                 />
-              </div>
-            </div>
+              </Box>
+            </Box>
 
             {/* Controls Grid */}
-            <div
+            <Box
               className="layera-grid layera-grid--gap-xl layera-margin-bottom--xl"
               style={{
                 gridTemplateColumns: 'var(--layera-global-gridTemplateColumns-autoFit)'
@@ -212,7 +212,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   {withIcon ? '✅ Με εικονίδιο' : '❌ Χωρίς εικονίδιο'}
                 </Button>
               </div>
-            </div>
+            </Box>
 
 
             {/* Current Settings Display */}
