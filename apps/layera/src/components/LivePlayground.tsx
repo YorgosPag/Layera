@@ -71,7 +71,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         width: 'var(--layera-spacing-viewport-full-width)',
         height: 'var(--layera-spacing-viewport-full-height)',
         backgroundColor: 'var(--layera-color-surface-primary)',
-        zIndex: 9999,
+        zIndex: 'var(--layera-z-index-overlay)',
         overflow: 'auto'
       }}
     >
