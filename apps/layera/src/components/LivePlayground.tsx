@@ -96,7 +96,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           onClick={onClose}
           style={{
             padding: 'var(--layera-global-spacing-2) var(--layera-global-spacing-4)',
-            border: '1px solid var(--layera-color-border-default)',
+            border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-default)',
             backgroundColor: 'var(--layera-color-semantic-neutral-light)',
             cursor: 'var(--layera-global-cursor-pointer)'
           }}
@@ -221,7 +221,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   padding: 'var(--layera-global-spacing-4)',
                   backgroundColor: 'var(--layera-color-surface-primary)',
                   borderRadius: 'var(--layera-radius-md)',
-                  border: '1px solid var(--layera-color-border-default)'
+                  border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-default)'
                 }}
               >
                 <h4 style={{
@@ -258,7 +258,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   padding: 'var(--layera-global-spacing-4)',
                   backgroundColor: 'var(--layera-color-surface-primary)',
                   borderRadius: 'var(--layera-radius-md)',
-                  border: '1px solid var(--layera-color-border-default)'
+                  border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-default)'
                 }}
               >
                 <h4 style={{
@@ -294,7 +294,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   padding: 'var(--layera-global-spacing-4)',
                   backgroundColor: 'var(--layera-color-surface-primary)',
                   borderRadius: 'var(--layera-radius-md)',
-                  border: '1px solid var(--layera-color-border-default)'
+                  border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-default)'
                 }}
               >
                 <h4 style={{
