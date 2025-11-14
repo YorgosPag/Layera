@@ -250,26 +250,14 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
               {/* Text & Icon Control */}
               <div className="layera-card layera-padding--lg">
-                <h4 style={{
-                  fontSize: 'var(--layera-fontSize-base)',
-                  fontWeight: 'var(--layera-fontWeight-semibold)',
-                  color: 'var(--layera-color-text-primary)',
-                  margin: '0 0 var(--layera-global-spacing-3) 0'
-                }}>
+                <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
                   Κείμενο & Εικονίδιο
                 </h4>
                 <input
                   type="text"
                   value={buttonText}
                   onChange={(e) => setButtonText(e.target.value)}
-                  style={{
-                    width: 'var(--layera-spacing-viewport-full-width)',
-                    padding: 'var(--layera-global-spacing-2)',
-                    border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-semantic-neutral-medium)',
-                    borderRadius: 'var(--layera-border-radius-sm)',
-                    fontSize: 'var(--layera-fontSize-sm)',
-                    marginBottom: 'var(--layera-global-spacing-2)'
-                  }}
+                  className="layera-input layera-width--full layera-margin-bottom--sm"
                 />
                 <Button
                   variant={withIcon ? 'primary' : 'outline'}
