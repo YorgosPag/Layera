@@ -147,6 +147,40 @@
           "comment": "Header shadow"
         }
       },
+      "overlay": {
+        "position": {
+          "value": "var(--layera-global-position-fixed)",
+          "comment": "Fixed positioned overlay"
+        },
+        "top": {
+          "value": "var(--layera-global-spacing-0)",
+          "comment": "Overlay top position"
+        },
+        "left": {
+          "value": "var(--layera-global-spacing-0)",
+          "comment": "Overlay left position"
+        },
+        "width": {
+          "value": "var(--layera-spacing-viewport-full-width)",
+          "comment": "Full width overlay"
+        },
+        "height": {
+          "value": "var(--layera-spacing-viewport-full-height)",
+          "comment": "Full height overlay"
+        },
+        "backgroundColor": {
+          "value": "var(--layera-color-surface-primary)",
+          "comment": "Overlay background color"
+        },
+        "zIndex": {
+          "value": "var(--layera-z-index-overlay)",
+          "comment": "Overlay z-index"
+        },
+        "overflow": {
+          "value": "var(--layera-global-overflow-auto)",
+          "comment": "Overlay overflow behavior"
+        }
+      },
       "navigation": {
         "button": {
           "padding": {
