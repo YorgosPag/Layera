@@ -168,13 +168,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
                   Variant
                 </h4>
-                <div
-                  style={{
-                    display: 'var(--layera-global-display-flex)',
-                    flexWrap: 'wrap',
-                    gap: 'var(--layera-global-spacing-2)'
-                  }}
-                >
+                <div className="layera-flex layera-flex--wrap layera-flex--gap-sm">
                   {variants.map((variant) => (
                     <Button
                       key={variant}
