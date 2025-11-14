@@ -82,7 +82,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           justifyContent: 'var(--layera-global-justifyContent-space-between)',
           alignItems: 'var(--layera-global-alignItems-center)',
           padding: 'var(--layera-global-spacing-4)',
-          borderBottom: '1px solid var(--layera-color-border-default)',
+          borderBottom: 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-default)',
           backgroundColor: 'var(--layera-color-surface-secondary)',
           position: 'sticky',
           top: 'var(--layera-global-spacing-0)',
@@ -165,7 +165,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 padding: 'var(--layera-global-spacing-8)',
                 backgroundColor: 'var(--layera-color-surface-primary)',
                 borderRadius: 'var(--layera-radius-lg)',
-                border: '2px dashed var(--layera-color-semantic-info-primary)',
+                border: 'var(--layera-global-borderWidth-2) dashed var(--layera-color-semantic-info-primary)',
                 marginBottom: 'var(--layera-global-spacing-5)'
               }}
             >
@@ -335,7 +335,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 padding: 'var(--layera-global-spacing-4)',
                 backgroundColor: 'var(--layera-color-semantic-neutral-light)',
                 borderRadius: 'var(--layera-border-radius-md)',
-                border: '1px solid var(--layera-color-semantic-neutral-light)',
+                border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-semantic-neutral-light)',
                 fontFamily: 'var(--layera-global-fontFamily-mono)',
                 fontSize: 'var(--layera-fontSize-sm)'
               }}

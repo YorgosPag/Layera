@@ -741,6 +741,10 @@
       "1": {
         "value": "1px",
         "comment": "1px border width"
+      },
+      "2": {
+        "value": "2px",
+        "comment": "2px border width"
       }
     },
     "border": {
