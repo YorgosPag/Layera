@@ -372,7 +372,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               padding: 'var(--layera-global-spacing-12)',
               minHeight: 'var(--layera-spacing-component-card-height)',
               display: 'var(--layera-global-display-flex)',
-              flexDirection: 'column',
+              flexDirection: 'var(--layera-global-flexDirection-column)',
               justifyContent: 'center'
             }}
           >
@@ -400,7 +400,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               padding: 'var(--layera-global-spacing-12)',
               minHeight: 'var(--layera-spacing-component-card-height)',
               display: 'var(--layera-global-display-flex)',
-              flexDirection: 'column',
+              flexDirection: 'var(--layera-global-flexDirection-column)',
               justifyContent: 'center'
             }}
           >
