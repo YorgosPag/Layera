@@ -144,6 +144,20 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
     }));
   };
 
+  // ΕΦΑΡΜΟΓΗ ΧΡΩΜΑΤΩΝ ΤΕΤΡΑΓΩΝΩΝ ΠΛΗΚΤΡΩΝ ΣΤΗΝ ΕΠΙΚΕΦΑΛΙΔΑ
+  const applySquareColorsToHeader = () => {
+    const root = document.documentElement;
+
+    // Εφαρμόζουμε τα χρώματα των square buttons στην επικεφαλίδα
+    // Όλα τα SquareButton της επικεφαλίδας είναι variant="secondary"
+    root.style.setProperty('--layera-color-button-secondary', currentColors.secondary);
+
+    console.log('🎯 Square colors applied to header:', {
+      secondary: currentColors.secondary,
+      shape: colorButtonShape
+    });
+  };
+
   // ENTERPRISE COLOR APPLICATION - TARGETED CSS VARIABLES UPDATE
   const applyColorsToApp = () => {
     const root = document.documentElement;
@@ -714,18 +728,35 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               </Box>
             </Box>
 
-            {/* Apply Colors Button */}
+            {/* Apply Colors Buttons */}
             <Box className="layera-text-center layera-margin-bottom--xl">
-              <Button
-                variant="primary"
-                size="lg"
-                onClick={applyColorsToApp}
-                className="layera-button layera-button--primary"
-              >
-                🚀 Εφαρμογή Χρωμάτων για {colorCategory.toUpperCase()}
-              </Button>
+              <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-md">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  onClick={applyColorsToApp}
+                  className="layera-button layera-button--primary"
+                >
+                  🚀 Εφαρμογή Χρωμάτων για {colorCategory.toUpperCase()}
+                </Button>
+
+                {/* Κουμπί για εφαρμογή στην επικεφαλίδα - μόνο για buttons + square */}
+                {colorCategory === 'buttons' && colorButtonShape === 'square' && (
+                  <Button
+                    variant="success"
+                    size="lg"
+                    onClick={applySquareColorsToHeader}
+                    className="layera-button layera-button--success"
+                  >
+                    🎯 Εφαρμογή στην Επικεφαλίδα
+                  </Button>
+                )}
+              </Box>
               <Text className="layera-typography layera-margin-top--sm" data-size="xs" data-color="secondary">
-                Θα επηρεαστούν όλα τα στοιχεία τύπου "{colorCategory}" στην εφαρμογή
+                {colorCategory === 'buttons' && colorButtonShape === 'square'
+                  ? 'Εφαρμόστε τα χρώματα των τετράγωνων πλήκτρων στην επικεφαλίδα'
+                  : `Θα επηρεαστούν όλα τα στοιχεία τύπου "${colorCategory}" στην εφαρμογή`
+                }
               </Text>
             </Box>
 
