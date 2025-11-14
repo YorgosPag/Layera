@@ -240,9 +240,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="base" data-weight="semibold">
                 📝 Τρέχουσες Ρυθμίσεις:
               </h4>
-              <pre className="layera-typography layera-margin--none" data-family="mono" style={{
-                color: 'var(--layera-color-semantic-neutral-dark)'
-              }}>
+              <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">
 {`{
   variant: "${buttonVariant}",
   size: "${buttonSize}",
