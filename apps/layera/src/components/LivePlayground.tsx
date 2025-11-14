@@ -48,8 +48,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   const [buttonSize, setButtonSize] = useState<ButtonSize>('md');
   const [buttonText, setButtonText] = useState('Live Button');
   const [withIcon, setWithIcon] = useState(true);
+  const [buttonShape, setButtonShape] = useState<'rectangular' | 'square' | 'rounded'>('rectangular');
 
   // Color Settings - ENTERPRISE SINGLE SOURCE OF TRUTH
+  const [colorButtonShape, setColorButtonShape] = useState<'rectangular' | 'square' | 'rounded'>('rectangular');
   const [colorCategory, setColorCategory] = useState<'buttons' | 'backgrounds' | 'text' | 'borders'>('buttons');
   const [primaryColor, setPrimaryColor] = useState('#007bff');
   const [secondaryColor, setSecondaryColor] = useState('#6c757d');
@@ -191,24 +193,50 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               </h3>
 
               <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-xl">
-                {/* Rectangle Button */}
-                <Button
-                  variant={buttonVariant}
-                  size={buttonSize}
-                  icon={withIcon ? <PlusIcon size="sm" /> : undefined}
-                  iconPosition="left"
-                >
-                  {buttonText}
-                </Button>
+                {/* Rectangular Button */}
+                {buttonShape === 'rectangular' && (
+                  <Button
+                    variant={buttonVariant}
+                    size={buttonSize}
+                    icon={withIcon ? <PlusIcon size="sm" /> : undefined}
+                    iconPosition="left"
+                  >
+                    {buttonText}
+                  </Button>
+                )}
 
                 {/* Square Button */}
-                <SquareButton
-                  icon={<SearchIcon size="sm" />}
-                  variant={buttonVariant}
-                  size={buttonSize}
-                  aria-label={`Τετράγωνο ${buttonVariant} πλήκτρο`}
-                  tooltip={`Live ${buttonVariant} τετράγωνο`}
-                />
+                {buttonShape === 'square' && (
+                  <SquareButton
+                    icon={<SearchIcon size="sm" />}
+                    variant={buttonVariant}
+                    size={buttonSize}
+                    aria-label={`Τετράγωνο ${buttonVariant} πλήκτρο`}
+                    tooltip={`Live ${buttonVariant} τετράγωνο`}
+                  />
+                )}
+
+                {/* Rounded Button */}
+                {buttonShape === 'rounded' && (
+                  <button
+                    style={{
+                      backgroundColor: buttonVariant === 'primary' ? '#007bff' : buttonVariant === 'secondary' ? '#6c757d' : '#28a745',
+                      color: 'white',
+                      padding: buttonSize === 'xs' ? '4px 12px' : buttonSize === 'sm' ? '6px 16px' : buttonSize === 'md' ? '8px 20px' : buttonSize === 'lg' ? '12px 24px' : '16px 32px',
+                      border: 'none',
+                      borderRadius: '50px',
+                      cursor: 'pointer',
+                      fontSize: buttonSize === 'xs' ? '12px' : buttonSize === 'sm' ? '14px' : buttonSize === 'md' ? '16px' : buttonSize === 'lg' ? '18px' : '20px',
+                      fontWeight: '500',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px'
+                    }}
+                  >
+                    {withIcon && <span>⚪</span>}
+                    {buttonText}
+                  </button>
+                )}
               </Box>
             </Box>
 
@@ -276,6 +304,36 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   {withIcon ? '✅ Με εικονίδιο' : '❌ Χωρίς εικονίδιο'}
                 </Button>
               </Box>
+
+              {/* Shape Control */}
+              <Box className="layera-card layera-padding--lg">
+                <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
+                  Σχήμα Πλήκτρου
+                </h4>
+                <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
+                  <Button
+                    variant={buttonShape === 'rectangular' ? 'primary' : 'secondary'}
+                    size="sm"
+                    onClick={() => setButtonShape('rectangular')}
+                  >
+                    📐 Παραλληλόγραμμο
+                  </Button>
+                  <Button
+                    variant={buttonShape === 'square' ? 'primary' : 'secondary'}
+                    size="sm"
+                    onClick={() => setButtonShape('square')}
+                  >
+                    ⬜ Τετράγωνο
+                  </Button>
+                  <Button
+                    variant={buttonShape === 'rounded' ? 'primary' : 'secondary'}
+                    size="sm"
+                    onClick={() => setButtonShape('rounded')}
+                  >
+                    🔵 Στρογγυλό
+                  </Button>
+                </Box>
+              </Box>
             </Box>
 
 
@@ -339,6 +397,41 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               </Text>
             </Box>
 
+            {/* Button Shape Selection - Only for Buttons Category */}
+            {colorCategory === 'buttons' && (
+              <Box className="layera-card layera-padding--lg layera-margin-bottom--xl">
+                <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
+                  🔘 Σχήμα Πλήκτρων Preview
+                </h3>
+                <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
+                  <Button
+                    variant={colorButtonShape === 'rectangular' ? 'primary' : 'outline'}
+                    size="sm"
+                    onClick={() => setColorButtonShape('rectangular')}
+                  >
+                    📐 Παραλληλόγραμμα
+                  </Button>
+                  <Button
+                    variant={colorButtonShape === 'square' ? 'primary' : 'outline'}
+                    size="sm"
+                    onClick={() => setColorButtonShape('square')}
+                  >
+                    ⬜ Τετράγωνα
+                  </Button>
+                  <Button
+                    variant={colorButtonShape === 'rounded' ? 'primary' : 'outline'}
+                    size="sm"
+                    onClick={() => setColorButtonShape('rounded')}
+                  >
+                    🔵 Στρογγυλά
+                  </Button>
+                </Box>
+                <Text className="layera-typography layera-margin-top--sm" data-size="sm" data-color="secondary">
+                  Επιλέξτε το σχήμα των πλήκτρων στην προεπισκόπηση χρωμάτων
+                </Text>
+              </Box>
+            )}
+
             {/* Live Color Preview Area */}
             <Box className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
               <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
@@ -352,23 +445,95 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               </Text>
 
               <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-xl">
-                <button style={{ backgroundColor: primaryColor, color: 'white', padding: '8px 16px', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>
-                  Primary Color
+                <button style={{
+                  backgroundColor: primaryColor,
+                  color: 'white',
+                  padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
+                  border: 'none',
+                  borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
+                  cursor: 'pointer',
+                  minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
+                  height: colorButtonShape === 'square' ? '50px' : 'auto',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  {colorButtonShape === 'square' ? 'P' : 'Primary Color'}
                 </button>
-                <button style={{ backgroundColor: secondaryColor, color: 'white', padding: '8px 16px', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>
-                  Secondary Color
+                <button style={{
+                  backgroundColor: secondaryColor,
+                  color: 'white',
+                  padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
+                  border: 'none',
+                  borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
+                  cursor: 'pointer',
+                  minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
+                  height: colorButtonShape === 'square' ? '50px' : 'auto',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  {colorButtonShape === 'square' ? 'S' : 'Secondary Color'}
                 </button>
-                <button style={{ backgroundColor: successColor, color: 'white', padding: '8px 16px', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>
-                  Success Color
+                <button style={{
+                  backgroundColor: successColor,
+                  color: 'white',
+                  padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
+                  border: 'none',
+                  borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
+                  cursor: 'pointer',
+                  minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
+                  height: colorButtonShape === 'square' ? '50px' : 'auto',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  {colorButtonShape === 'square' ? 'Su' : 'Success Color'}
                 </button>
-                <button style={{ backgroundColor: warningColor, color: 'black', padding: '8px 16px', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>
-                  Warning Color
+                <button style={{
+                  backgroundColor: warningColor,
+                  color: 'black',
+                  padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
+                  border: 'none',
+                  borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
+                  cursor: 'pointer',
+                  minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
+                  height: colorButtonShape === 'square' ? '50px' : 'auto',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  {colorButtonShape === 'square' ? 'W' : 'Warning Color'}
                 </button>
-                <button style={{ backgroundColor: dangerColor, color: 'white', padding: '8px 16px', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>
-                  Danger Color
+                <button style={{
+                  backgroundColor: dangerColor,
+                  color: 'white',
+                  padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
+                  border: 'none',
+                  borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
+                  cursor: 'pointer',
+                  minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
+                  height: colorButtonShape === 'square' ? '50px' : 'auto',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  {colorButtonShape === 'square' ? 'D' : 'Danger Color'}
                 </button>
-                <button style={{ backgroundColor: infoColor, color: 'white', padding: '8px 16px', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>
-                  Info Color
+                <button style={{
+                  backgroundColor: infoColor,
+                  color: 'white',
+                  padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
+                  border: 'none',
+                  borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
+                  cursor: 'pointer',
+                  minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
+                  height: colorButtonShape === 'square' ? '50px' : 'auto',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  {colorButtonShape === 'square' ? 'I' : 'Info Color'}
                 </button>
               </Box>
             </Box>
