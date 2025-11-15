@@ -40,7 +40,7 @@ export const UIPlayground: React.FC = () => {
       label: 'Cards',
       emoji: '🗃️',
       component: (
-        <Box className="layera-layout" style={{ padding: 'var(--layera-global-spacing-8)', textAlign: 'center' }}>
+        <Box className="layera-layout layera-padding--2xl layera-text-center">
           <Text className="layera-typography" data-size="xl" data-color="secondary">
             🚧 Cards Playground - Σύντομα διαθέσιμο
           </Text>
@@ -53,7 +53,7 @@ export const UIPlayground: React.FC = () => {
       label: 'Modals',
       emoji: '🪟',
       component: (
-        <Box className="layera-layout" style={{ padding: 'var(--layera-global-spacing-8)', textAlign: 'center' }}>
+        <Box className="layera-layout layera-padding--2xl layera-text-center">
           <Text className="layera-typography" data-size="xl" data-color="secondary">
             🚧 Modals Playground - Σύντομα διαθέσιμο
           </Text>
@@ -66,7 +66,7 @@ export const UIPlayground: React.FC = () => {
       label: 'Layout',
       emoji: '📐',
       component: (
-        <Box className="layera-layout" style={{ padding: 'var(--layera-global-spacing-8)', textAlign: 'center' }}>
+        <Box className="layera-layout layera-padding--2xl layera-text-center">
           <Text className="layera-typography" data-size="xl" data-color="secondary">
             🚧 Layout Playground - Σύντομα διαθέσιμο
           </Text>
@@ -79,7 +79,7 @@ export const UIPlayground: React.FC = () => {
       label: 'Typography',
       emoji: '🔤',
       component: (
-        <Box className="layera-layout" style={{ padding: 'var(--layera-global-spacing-8)', textAlign: 'center' }}>
+        <Box className="layera-layout layera-padding--2xl layera-text-center">
           <Text className="layera-typography" data-size="xl" data-color="secondary">
             🚧 Typography Playground - Σύντομα διαθέσιμο
           </Text>
@@ -94,15 +94,7 @@ export const UIPlayground: React.FC = () => {
   return (
     <Container className="layera-layout">
       {/* Main Header */}
-      <Box
-        className="layera-layout"
-        style={{
-          textAlign: 'center',
-          padding: 'var(--layera-global-spacing-6)',
-          borderBottom: '1px solid var(--layera-color-border-primary)',
-          marginBottom: 'var(--layera-global-spacing-6)'
-        }}
-      >
+      <Box className="layera-layout layera-text-center layera-padding--xl layera-border-bottom layera-margin-bottom--xl">
         <Heading
           as="h1"
           className="layera-typography"
@@ -113,37 +105,23 @@ export const UIPlayground: React.FC = () => {
           🎛️ Layera UI Playground
         </Heading>
         <Text
-          className="layera-typography"
+          className="layera-typography layera-margin-top--sm"
           data-size="lg"
           data-color="secondary"
-          style={{ marginTop: 'var(--layera-global-spacing-2)' }}
         >
           Enterprise Component Testing & Development Interface
         </Text>
         <Text
-          className="layera-typography"
+          className="layera-typography layera-margin-top--xs"
           data-size="sm"
           data-color="secondary"
-          style={{ marginTop: 'var(--layera-global-spacing-1)' }}
         >
           ARXES Compliant | 100% @layera/* Components | Design Token Powered
         </Text>
       </Box>
 
       {/* Navigation Tabs */}
-      <Box
-        className="layera-layout"
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: 'var(--layera-global-spacing-2)',
-          marginBottom: 'var(--layera-global-spacing-6)',
-          padding: 'var(--layera-global-spacing-3)',
-          backgroundColor: 'var(--layera-color-surface-secondary)',
-          borderRadius: 'var(--layera-global-borderRadius-lg)',
-          border: '1px solid var(--layera-color-border-primary)'
-        }}
-      >
+      <Box className="layera-layout layera-flex layera-flex--wrap layera-flex--gap-sm layera-margin-bottom--xl layera-padding--md layera-bg-surface--secondary layera-border-radius--lg layera-border">
         {tabs.map((tab) => (
           <Button
             key={tab.id}
@@ -151,10 +129,7 @@ export const UIPlayground: React.FC = () => {
             size="md"
             onClick={() => setActiveTab(tab.id)}
             disabled={!tab.available}
-            style={{
-              opacity: tab.available ? '1' : '0.5',
-              cursor: tab.available ? 'pointer' : 'not-allowed'
-            }}
+            className={tab.available ? 'layera-opacity--full layera-cursor--pointer' : 'layera-opacity--half layera-cursor--not-allowed'}
           >
             {tab.emoji} {tab.label}
             {!tab.available && ' (Σύντομα)'}
@@ -163,29 +138,12 @@ export const UIPlayground: React.FC = () => {
       </Box>
 
       {/* Tab Content Area */}
-      <Box
-        className="layera-layout"
-        style={{
-          minHeight: '600px',
-          backgroundColor: 'var(--layera-color-surface-primary)',
-          borderRadius: 'var(--layera-global-borderRadius-xl)',
-          border: '1px solid var(--layera-color-border-primary)',
-          overflow: 'hidden'
-        }}
-      >
+      <Box className="layera-layout layera-min-height--600 layera-bg-surface--primary layera-border-radius--xl layera-border layera-overflow--hidden">
         {currentTab?.component}
       </Box>
 
       {/* Footer Info */}
-      <Box
-        className="layera-layout"
-        style={{
-          textAlign: 'center',
-          padding: 'var(--layera-global-spacing-4)',
-          marginTop: 'var(--layera-global-spacing-6)',
-          borderTop: '1px solid var(--layera-color-border-primary)'
-        }}
-      >
+      <Box className="layera-layout layera-text-center layera-padding--lg layera-margin-top--xl layera-border-top">
         <Text
           className="layera-typography"
           data-size="xs"
@@ -197,7 +155,7 @@ export const UIPlayground: React.FC = () => {
           className="layera-typography"
           data-size="xs"
           data-color="secondary"
-          style={{ marginTop: 'var(--layera-global-spacing-1)' }}
+          className="layera-margin-top--xs"
         >
           🎨 Όλα τα χρώματα, spacing και typography προέρχονται από @layera/tokens
         </Text>
