@@ -5,6 +5,7 @@ import { Button, SquareButton } from '@layera/buttons';
 import { PlusIcon, SearchIcon, UserIcon, SettingsIcon, CloseIcon, PaletteIcon, LayersIcon, EditIcon, PolygonIcon, RulerIcon, CompassIcon, CheckIcon, RocketIcon } from '@layera/icons';
 import { ButtonsSection } from './playground/ButtonsSection';
 import { ColorsSection } from './playground/ColorsSection';
+import { PlaygroundHeader } from './playground/PlaygroundHeader';
 import { loadCurrentThemeFromLocalStorage } from '../services/colorThemeService';
 import { useAuth } from '@layera/auth-bridge';
 import { useRealTimePreview } from '../hooks/useRealTimePreview';
@@ -145,54 +146,11 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         zIndex: 'var(--layera-map-fullscreen-z-index, 1000)'
       } as React.CSSProperties}
     >
-      {/* Header με κουμπί κλεισίματος */}
-      <Box className="layera-flex layera-flex--justify-between layera-flex--align-center layera-padding--lg layera-border-bottom--default layera-bg-surface--secondary layera-position--sticky layera-top--0 layera-z-index--overlay">
-        <h1 className="layera-typography" data-size="xl" data-weight="bold" data-color="primary">
-          <SettingsIcon size="sm" /> Live Playground - Ζωντανές Ρυθμίσεις
-        </h1>
-        <button
-          onClick={onClose}
-          className="layera-button layera-button--outline layera-padding-x--lg layera-padding-y--sm layera-cursor--pointer"
-        >
-          ✕ Κλείσιμο
-        </button>
-      </Box>
-
-      {/* Main Content */}
-      <Box
-        className="layera-bg-surface--secondary layera-text-color--primary layera-padding--2xl layera-max-width--container-xl layera-margin-x--auto"
-      >
-        {/* TEST - Θα δεις αυτό το κείμενο */}
-        <h2 className="layera-typography layera-margin-bottom--xl" data-color="primary" data-size="2xl" data-weight="bold">
-          <CheckIcon size="sm" /> ΠΕΡΙΕΧΟΜΕΝΟ ΦΟΡΤΩΝΕΙ!
-        </h2>
-
-        {/* Navigation Tabs */}
-        <Box className="layera-flex layera-flex--gap-sm layera-margin-bottom--lg layera-padding--md layera-border-radius--md layera-bg-semantic--neutral-light">
-          <Button
-            variant={navigationState.activeSection === 'buttons' ? 'primary' : 'ghost'}
-            size="sm"
-            onClick={() => navigationActions.setActiveSection('buttons')}
-          >
-            <PaletteIcon size="sm" /> Buttons
-          </Button>
-          <Button
-            variant={navigationState.activeSection === 'colors' ? 'primary' : 'ghost'}
-            size="sm"
-            onClick={() => {
-              navigationActions.setActiveSection('colors');
-            }}
-          >
-            <PaletteIcon size="sm" /> Colors
-          </Button>
-          <Button
-            variant={navigationState.activeSection === 'tokens' ? 'primary' : 'ghost'}
-            size="sm"
-            onClick={() => navigationActions.setActiveSection('tokens')}
-          >
-            <SettingsIcon size="sm" /> Tokens
-          </Button>
-        </Box>
+      <PlaygroundHeader
+        onClose={onClose}
+        activeSection={navigationState.activeSection}
+        onSectionChange={navigationActions.setActiveSection}
+      />
 
         {/* Buttons Section */}
         {navigationState.activeSection === 'buttons' && (
@@ -1038,7 +996,6 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             </p>
           </Box>
         )}
-      </Box>
     </Box>
   );
 };
