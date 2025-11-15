@@ -3,6 +3,7 @@ import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { PaletteIcon, LayersIcon, EditIcon, PolygonIcon, RulerIcon, CompassIcon, CheckIcon, MonitorIcon, BuildingIcon, ChartIcon } from '@layera/icons';
+import { BorderWidthControl } from './shared/BorderWidthControl';
 
 /**
  * ColorCategorySelection Component
@@ -16,11 +17,15 @@ import type { UseColorStateReturn, ColorState, ColorStateActions } from '../../h
 interface ColorCategorySelectionProps {
   colorHookState: ColorState;
   colorActions: ColorStateActions;
+  borderWidth: number;
+  onBorderWidthChange: (value: number) => void;
 }
 
 export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
   colorHookState,
-  colorActions
+  colorActions,
+  borderWidth,
+  onBorderWidthChange
 }) => {
   // Hot reload trigger
   // Debug removed to reduce console noise
@@ -31,7 +36,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
     <Box
       className="layera-grid layera-margin-bottom--xl layera-grid--gap-lg"
       style={{
-        gridTemplateColumns: '1fr 1fr'
+        gridTemplateColumns: colorHookState.colorCategory === 'borders' ? '1fr 1fr 1fr' : '1fr 1fr'
       } as React.CSSProperties}
     >
       {/* Color Category Selection */}
@@ -120,6 +125,16 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           Επιλέξτε ποια στοιχεία θα επηρεάζονται από τα {colorHookState.colorCategory === 'backgrounds' ? 'background' : colorHookState.colorCategory === 'text' ? 'text' : 'border'} χρώματα
         </Text>
       </Box>
+
+      {/* Border Width Control - ΜΟΝΟ για borders category */}
+      {colorHookState.colorCategory === 'borders' && (
+        <BorderWidthControl
+          value={borderWidth}
+          onChange={onBorderWidthChange}
+          elementType={colorHookState.elementType}
+          className="layera-height--auto"
+        />
+      )}
     </Box>
   );
 };

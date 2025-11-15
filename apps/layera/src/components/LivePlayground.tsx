@@ -16,7 +16,6 @@ import { ColorPreviewArea } from './playground/ColorPreviewArea';
 import { ColorControlsGrid } from './playground/ColorControlsGrid';
 import { ColorActionsPanel } from './playground/ColorActionsPanel';
 import { ColorValueDisplay } from './playground/ColorValueDisplay';
-import { BorderWidthControl } from './playground/shared/BorderWidthControl';
 import { loadCurrentThemeFromLocalStorage } from '../services/colorThemeService';
 import { useAuth } from '@layera/auth-bridge';
 import { useRealTimePreview } from '../hooks/useRealTimePreview';
@@ -247,6 +246,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             <ColorCategorySelection
               colorHookState={colorHookState}
               colorActions={colorActions}
+              borderWidth={borderWidth}
+              onBorderWidthChange={setBorderWidth}
             />
           </Box>
 
@@ -356,17 +357,6 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               colorCategory={colorHookState.colorCategory}
             />
           </Box>
-
-          {/* Border Width Control - ΜΟΝΟ για borders category */}
-          {colorHookState.colorCategory === 'borders' && (
-            <Box className="layera-margin-bottom--lg">
-              <BorderWidthControl
-                value={borderWidth}
-                onChange={setBorderWidth}
-                elementType={colorHookState.elementType}
-              />
-            </Box>
-          )}
 
           {/* Apply Colors Buttons */}
           <Box className="layera-margin-bottom--lg">
