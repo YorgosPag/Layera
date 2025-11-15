@@ -53,30 +53,30 @@ export interface UseColorStateReturn {
 }
 
 const DEFAULT_RECTANGULAR_PALETTE: ColorPalette = {
-  primary: 'var(--layera-color-primary)',
-  secondary: 'var(--layera-color-secondary)',
-  success: 'var(--layera-color-success)',
-  warning: 'var(--layera-color-warning)',
-  danger: 'var(--layera-color-danger)',
-  info: 'var(--layera-color-info)'
+  primary: 'var(--layera-color-semantic-info-primary, #6366f1)',
+  secondary: 'var(--layera-color-text-secondary, #475569)',
+  success: 'var(--layera-color-semantic-success-primary, #10b981)',
+  warning: 'var(--layera-color-semantic-warning-primary, #f59e0b)',
+  danger: 'var(--layera-color-semantic-error-primary, #ef4444)',
+  info: 'var(--layera-color-semantic-info-primary, #6366f1)'
 };
 
 const DEFAULT_SQUARE_PALETTE: ColorPalette = {
-  primary: 'var(--layera-color-square-primary)',
-  secondary: 'var(--layera-color-square-secondary)',
-  success: 'var(--layera-color-square-success)',
-  warning: 'var(--layera-color-square-warning)',
-  danger: 'var(--layera-color-square-danger)',
-  info: 'var(--layera-color-square-info)'
+  primary: 'var(--layera-color-semantic-info-primary, #6366f1)',
+  secondary: 'var(--layera-color-text-secondary, #475569)',
+  success: 'var(--layera-color-semantic-success-primary, #10b981)',
+  warning: 'var(--layera-color-semantic-warning-primary, #f59e0b)',
+  danger: 'var(--layera-color-semantic-error-primary, #ef4444)',
+  info: 'var(--layera-color-semantic-info-primary, #6366f1)'
 };
 
 const DEFAULT_ROUNDED_PALETTE: ColorPalette = {
-  primary: 'var(--layera-color-rounded-primary)',
-  secondary: 'var(--layera-color-rounded-secondary)',
-  success: 'var(--layera-color-rounded-success)',
-  warning: 'var(--layera-color-rounded-warning)',
-  danger: 'var(--layera-color-rounded-danger)',
-  info: 'var(--layera-color-rounded-info)'
+  primary: 'var(--layera-color-semantic-info-primary, #6366f1)',
+  secondary: 'var(--layera-color-text-secondary, #475569)',
+  success: 'var(--layera-color-semantic-success-primary, #10b981)',
+  warning: 'var(--layera-color-semantic-warning-primary, #f59e0b)',
+  danger: 'var(--layera-color-semantic-error-primary, #ef4444)',
+  info: 'var(--layera-color-semantic-info-primary, #6366f1)'
 };
 
 const DEFAULT_COLOR_STATE: ColorState = {
