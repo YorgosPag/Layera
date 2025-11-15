@@ -1,4 +1,5 @@
 import React from 'react';
+import { Box } from '@layera/layout';
 
 /**
  * BordersPreview Component
@@ -23,7 +24,7 @@ export const BordersPreview: React.FC<BordersPreviewProps> = ({
 }) => {
   return (
     <>
-      <div style={{
+      <Box style={{
         border: `var(--layera-global-borderWidth-3, 3px) solid ${currentColors.primary}`,
         borderRadius: 'var(--layera-global-borderRadius-md, 8px)',
         padding: 'var(--layera-global-spacing-3, 15px)',
@@ -37,8 +38,8 @@ export const BordersPreview: React.FC<BordersPreviewProps> = ({
         backgroundColor: 'var(--layera-color-surface-primary, white)'
       }}>
         Primary<br/>Border
-      </div>
-      <div style={{
+      </Box>
+      <Box style={{
         border: `3px solid ${currentColors.secondary}`,
         borderRadius: '8px',
         padding: '15px',
@@ -52,8 +53,8 @@ export const BordersPreview: React.FC<BordersPreviewProps> = ({
         backgroundColor: 'white'
       }}>
         Secondary<br/>Border
-      </div>
-      <div style={{
+      </Box>
+      <Box style={{
         border: `3px solid ${currentColors.success}`,
         borderRadius: '8px',
         padding: '15px',
@@ -67,8 +68,8 @@ export const BordersPreview: React.FC<BordersPreviewProps> = ({
         backgroundColor: 'white'
       }}>
         Success<br/>Border
-      </div>
-      <div style={{
+      </Box>
+      <Box style={{
         border: `3px solid ${currentColors.warning}`,
         borderRadius: '8px',
         padding: '15px',
@@ -82,8 +83,8 @@ export const BordersPreview: React.FC<BordersPreviewProps> = ({
         backgroundColor: 'white'
       }}>
         Warning<br/>Border
-      </div>
-      <div style={{
+      </Box>
+      <Box style={{
         border: `3px solid ${currentColors.danger}`,
         borderRadius: '8px',
         padding: '15px',
@@ -97,8 +98,8 @@ export const BordersPreview: React.FC<BordersPreviewProps> = ({
         backgroundColor: 'white'
       }}>
         Danger<br/>Border
-      </div>
-      <div style={{
+      </Box>
+      <Box style={{
         border: `3px solid ${currentColors.info}`,
         borderRadius: '8px',
         padding: '15px',
@@ -112,7 +113,7 @@ export const BordersPreview: React.FC<BordersPreviewProps> = ({
         backgroundColor: 'white'
       }}>
         Info<br/>Border
-      </div>
+      </Box>
     </>
   );
 };
