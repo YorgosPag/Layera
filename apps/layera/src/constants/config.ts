@@ -15,6 +15,10 @@ import { DEMO_PROPERTY_DATA } from './demo-property-data';
 import { GEOMETRIC_LIMITS, ICON_DIMENSIONS, UI_DIMENSIONS } from './geometric-limits';
 // UI Layers, Workflow & Geospatial
 import { Z_INDEX_LAYERS, WORKFLOW_ORDER, GEOSPATIAL_SERVICES } from './ui-layers';
+// Design System & XML
+import { XML_NAMESPACES, ESCO_NAMESPACES, DEVICE_FRAME_COLORS, SVG_DIMENSIONS, ICON_SIZES, LEAFLET_MARKER_DIMENSIONS } from './design-system';
+// Development & Geo Configuration
+import { DEV_PORTS, LOCAL_URLS, MAP_DEFAULTS, DRAWING_LIMITS, EARTH_CONSTANTS, GEOGRAPHIC_BOUNDS } from './dev-config';
 
 // ============================================================================
 // EXTERNAL APIs & SERVICES - Imported from external-apis.ts
@@ -42,170 +46,14 @@ import { Z_INDEX_LAYERS, WORKFLOW_ORDER, GEOSPATIAL_SERVICES } from './ui-layers
 // UI layers, workflow & geospatial services now imported from ui-layers.ts for better organization
 
 // ============================================================================
-// XML NAMESPACES - W3C Standards
+// DESIGN SYSTEM & XML - Imported from design-system.ts
 // ============================================================================
-
-/**
- * Standard XML Namespaces
- */
-export const XML_NAMESPACES = {
-  SVG: 'http://www.w3.org/2000/svg',
-  XLINK: 'http://www.w3.org/1999/xlink',
-} as const;
-
-/**
- * EU ESCO Data Namespaces
- */
-export const ESCO_NAMESPACES = {
-  OCCUPATION: 'http://data.europa.eu/esco/occupation',
-  SKILL: 'http://data.europa.eu/esco/skill',
-  REGULATED_PROFESSIONS: 'http://data.europa.eu/esco/regulated-professions',
-} as const;
+// XML namespaces, device frame colors & SVG dimensions now imported from design-system.ts
 
 // ============================================================================
-// DEVICE FRAME COLORS - Design System
+// DEVELOPMENT & GEO CONFIGURATION - Imported from dev-config.ts
 // ============================================================================
-
-/**
- * Device Frame Colors - Design System
- */
-export const DEVICE_FRAME_COLORS = {
-  SPACE_GRAY: 'var(--layera-bg-dark)',
-  SILVER: 'var(--layera-color-surface-secondary)',
-  BLACK: 'var(--layera-bg-dark)',
-  WHITE: 'var(--layera-color-surface)',
-  GOLD: 'var(--layera-color-surface-tertiary)',
-  GOOGLE_CHARCOAL: 'var(--layera-bg-dark)',
-  GRAPHITE: 'var(--layera-bg-dark)',
-} as const;
-
-// ============================================================================
-// SVG DIMENSIONS - Standard Sizes
-// ============================================================================
-
-/**
- * Standard SVG Icon Dimensions
- */
-export const SVG_DIMENSIONS = {
-  ICON_SMALL: { width: 16, height: 16 },
-  ICON_MEDIUM: { width: 24, height: 24 },
-  ICON_LARGE: { width: 32, height: 32 },
-  ICON_XL: { width: 48, height: 48 },
-  ICON_XXL: { width: 64, height: 64 },
-} as const;
-
-/**
- * Icon Sizes - Unified Icon Size System
- * Single Source of Truth για icon dimensions across components
- */
-export const ICON_SIZES = {
-  SMALL: 24,
-  MEDIUM: 32,
-  LARGE: 48,
-  XL: 64
-} as const;
-
-/**
- * Leaflet Marker Dimensions
- */
-export const LEAFLET_MARKER_DIMENSIONS = {
-  DEFAULT: { width: 25, height: 41 },
-  RETINA: { width: 50, height: 82 },
-  SHADOW: { width: 41, height: 41 },
-} as const;
-
-// ============================================================================
-// DEVELOPMENT PORTS - Local Development
-// ============================================================================
-
-/**
- * Development Server Ports - ΣΤΑΘΕΡΕΣ ΠΟΡΤΕΣ
- */
-export const DEV_PORTS = {
-  LAYERA_ID: 3000,
-  LAYERA_GEOALERT_FALLBACK: 3002,
-  LAYERA_GEOALERT: 3004,
-  TEST_SERVER: 3008,
-} as const;
-
-/**
- * Local Development URLs
- */
-export const LOCAL_URLS = {
-  ID_SERVICE: `http://localhost:${DEV_PORTS.LAYERA_ID}`,
-  GEOALERT_SERVICE: `http://localhost:${DEV_PORTS.LAYERA_GEOALERT}`,
-  GEOALERT_FALLBACK: `http://localhost:${DEV_PORTS.LAYERA_GEOALERT_FALLBACK}`,
-  TEST_SERVER: `http://localhost:${DEV_PORTS.TEST_SERVER}`,
-} as const;
-
-// ============================================================================
-// GEO & MAPPING CONSTANTS - Geospatial Configuration
-// ============================================================================
-
-/**
- * Map Configuration Defaults
- */
-export const MAP_DEFAULTS = {
-  CENTER: [38.246639, 21.734573] as const, // Πάτρα coordinates
-  ZOOM: 13,
-  MAX_ZOOM: 25,
-  DEFAULT_RADIUS: 250, // meters
-} as const;
-
-/**
- * Drawing Limits & Constraints
- */
-export const DRAWING_LIMITS = {
-  MIN_RADIUS: 50, // meters minimum radius
-  MAX_RADIUS: 2000, // meters maximum radius
-  MAX_POLYGON_POINTS: 20, // maximum points per polygon
-} as const;
-
-/**
- * Earth Geospatial Constants
- */
-export const EARTH_CONSTANTS = {
-  RADIUS_METERS: 6371000, // Earth's radius in meters
-} as const;
-
-/**
- * EPSG Coordinate System Codes - Geospatial Standards
- * SSOT MOVED to geo-drawing.ts to avoid duplicates - use: import { EPSG_CODES } from './geo-drawing';
- */
-
-/**
- * Geographic Bounds - Coordinate System Constraints
- */
-export const GEOGRAPHIC_BOUNDS = {
-  // WGS84 Global bounds
-  WGS84_GLOBAL: {
-    MIN_X: -180,
-    MAX_X: 180,
-    MIN_Y: -90,
-    MAX_Y: 90
-  },
-  // Greece geographic bounds (WGS84)
-  GREECE_WGS84: {
-    MIN_X: 19,
-    MAX_X: 30,
-    MIN_Y: 34,
-    MAX_Y: 42
-  },
-  // EGSA87 (Greek Grid) projection bounds
-  EGSA87: {
-    MIN_X: 100000,
-    MAX_X: 900000,
-    MIN_Y: 3800000,
-    MAX_Y: 4700000
-  },
-  // Web Mercator bounds
-  WEB_MERCATOR: {
-    MIN_X: -20037508,
-    MAX_X: 20037508,
-    MIN_Y: -20037508,
-    MAX_Y: 20037508
-  }
-} as const;
+// Development ports, local URLs & geographic bounds now imported from dev-config.ts
 
 // ============================================================================
 // DEVICE SPECIFICATIONS - Hardware & Viewport Dimensions
@@ -746,3 +594,5 @@ export { ANIMATION_DURATIONS } from './animation-durations';
 export { DEMO_PROPERTY_DATA } from './demo-property-data';
 export { GEOMETRIC_LIMITS, ICON_DIMENSIONS, UI_DIMENSIONS } from './geometric-limits';
 export { Z_INDEX_LAYERS, WORKFLOW_ORDER, GEOSPATIAL_SERVICES } from './ui-layers';
+export { XML_NAMESPACES, ESCO_NAMESPACES, DEVICE_FRAME_COLORS, SVG_DIMENSIONS, ICON_SIZES, LEAFLET_MARKER_DIMENSIONS } from './design-system';
+export { DEV_PORTS, LOCAL_URLS, MAP_DEFAULTS, DRAWING_LIMITS, EARTH_CONSTANTS, GEOGRAPHIC_BOUNDS } from './dev-config';
