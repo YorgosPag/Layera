@@ -21,11 +21,14 @@ interface CardsPlaygroundProps {
   };
   /** Color category for proper styling */
   colorCategory: string;
+  /** Border width for borders category (1, 2, or 3) */
+  borderWidth?: number;
 }
 
 export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
   currentColors,
-  colorCategory
+  colorCategory,
+  borderWidth = 2
 }) => {
   // Determine the CSS property to apply based on category
   const getCSSPropertyForCategory = (category: string) => {
@@ -57,7 +60,10 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
 
   // Helper to get border style
   const getBorderStyle = (colorValue: string) => {
-    if (colorCategory === 'borders') return `2px solid ${colorValue}`;
+    if (colorCategory === 'borders') {
+      const borderWidthToken = `var(--layera-global-borderWidth-${borderWidth})`;
+      return `${borderWidthToken} solid ${colorValue}`;
+    }
     return '1px solid #e5e5e5'; // subtle border for others
   };
 

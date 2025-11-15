@@ -12,11 +12,14 @@ interface InputsPlaygroundProps {
     info: string;
   };
   colorCategory: string;
+  /** Border width for borders category (1, 2, or 3) */
+  borderWidth?: number;
 }
 
 export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
   currentColors,
-  colorCategory
+  colorCategory,
+  borderWidth = 2
 }) => {
   const getInputStyle = (colorValue: string) => {
     const baseStyle = {
@@ -47,7 +50,7 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
           ...baseStyle,
           backgroundColor: '#ffffff',
           color: '#333333',
-          border: `2px solid ${colorValue}`
+          border: `var(--layera-global-borderWidth-${borderWidth}) solid ${colorValue}`
         };
       default:
         return baseStyle;

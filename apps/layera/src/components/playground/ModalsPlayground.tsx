@@ -19,11 +19,14 @@ interface ModalsPlaygroundProps {
     info: string;
   };
   colorCategory: string;
+  /** Border width for borders category (1, 2, or 3) */
+  borderWidth?: number;
 }
 
 export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
   currentColors,
-  colorCategory
+  colorCategory,
+  borderWidth = 2
 }) => {
   // Helper functions same as CardsPlayground
   const getTextColor = (colorValue: string) => {
@@ -40,7 +43,10 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
   };
 
   const getBorderStyle = (colorValue: string) => {
-    if (colorCategory === 'borders') return `2px solid ${colorValue}`;
+    if (colorCategory === 'borders') {
+      const borderWidthToken = `var(--layera-global-borderWidth-${borderWidth})`;
+      return `${borderWidthToken} solid ${colorValue}`;
+    }
     return '1px solid #e5e5e5';
   };
 

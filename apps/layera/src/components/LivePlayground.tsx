@@ -16,6 +16,7 @@ import { ColorPreviewArea } from './playground/ColorPreviewArea';
 import { ColorControlsGrid } from './playground/ColorControlsGrid';
 import { ColorActionsPanel } from './playground/ColorActionsPanel';
 import { ColorValueDisplay } from './playground/ColorValueDisplay';
+import { BorderWidthControl } from './playground/shared/BorderWidthControl';
 import { loadCurrentThemeFromLocalStorage } from '../services/colorThemeService';
 import { useAuth } from '@layera/auth-bridge';
 import { useRealTimePreview } from '../hooks/useRealTimePreview';
@@ -81,7 +82,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   // STATE MANAGEMENT
   // ==============================
 
-
+  // Border width state for borders category
+  const [borderWidth, setBorderWidth] = useState<number>(2);
 
   // Real-time preview hook for header buttons
   const { startPreview, isPreviewActive } = useRealTimePreview({
@@ -176,6 +178,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 colorCategory={colorHookState.colorCategory}
                 elementType={colorHookState.elementType}
                 currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, string>}
+                borderWidth={borderWidth}
               />
             </Box>
           )}
@@ -185,6 +188,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               <CardsPlayground
                 currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
                 colorCategory={colorHookState.colorCategory}
+                borderWidth={borderWidth}
               />
             </Box>
           )}
@@ -194,6 +198,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               <ModalsPlayground
                 currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
                 colorCategory={colorHookState.colorCategory}
+                borderWidth={borderWidth}
               />
             </Box>
           )}
@@ -203,6 +208,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               <InputsPlayground
                 currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
                 colorCategory={colorHookState.colorCategory}
+                borderWidth={borderWidth}
               />
             </Box>
           )}
@@ -212,6 +218,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               <LayoutPlayground
                 currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
                 colorCategory={colorHookState.colorCategory}
+                borderWidth={borderWidth}
               />
             </Box>
           )}
@@ -221,6 +228,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               <TablesPlayground
                 currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
                 colorCategory={colorHookState.colorCategory}
+                borderWidth={borderWidth}
               />
             </Box>
           )}
@@ -348,6 +356,17 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               colorCategory={colorHookState.colorCategory}
             />
           </Box>
+
+          {/* Border Width Control - ΜΟΝΟ για borders category */}
+          {colorHookState.colorCategory === 'borders' && (
+            <Box className="layera-margin-bottom--lg">
+              <BorderWidthControl
+                value={borderWidth}
+                onChange={setBorderWidth}
+                elementType={colorHookState.elementType}
+              />
+            </Box>
+          )}
 
           {/* Apply Colors Buttons */}
           <Box className="layera-margin-bottom--lg">

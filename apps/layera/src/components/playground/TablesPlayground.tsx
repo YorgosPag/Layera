@@ -12,11 +12,14 @@ interface TablesPlaygroundProps {
     info: string;
   };
   colorCategory: string;
+  /** Border width for borders category (1, 2, or 3) */
+  borderWidth?: number;
 }
 
 export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
   currentColors,
-  colorCategory
+  colorCategory,
+  borderWidth = 2
 }) => {
   const getTableStyle = (colorValue: string) => {
     switch (colorCategory) {
@@ -34,7 +37,7 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
         return {
           backgroundColor: '#ffffff',
           color: '#333333',
-          border: `2px solid ${colorValue}`
+          border: `var(--layera-global-borderWidth-${borderWidth}) solid ${colorValue}`
         };
       default:
         return {};

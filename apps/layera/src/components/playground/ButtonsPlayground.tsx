@@ -34,6 +34,8 @@ interface ButtonsPlaygroundProps {
   elementType?: string;
   /** Current colors for live preview from color state */
   currentColors?: Record<string, string>;
+  /** Border width for borders category (1, 2, or 3) */
+  borderWidth?: number;
 }
 
 export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
@@ -43,7 +45,8 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
   buttonSizes,
   colorCategory = 'borders',
   elementType = 'buttons',
-  currentColors = {}
+  currentColors = {},
+  borderWidth = 2
 }) => {
 
   // Helper function για translation του shape
@@ -66,6 +69,11 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
     return match ? match[1] : fallback;
   };
 
+  // Helper function για border width token
+  const getBorderWidthToken = (width: number): string => {
+    return `var(--layera-global-borderWidth-${width})`;
+  };
+
   // Dynamic colors with fallbacks
   const colors = {
     primary: extractColor(currentColors.primary, '#6366f1'),
@@ -75,6 +83,9 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
     danger: extractColor(currentColors.danger, '#ef4444'),
     info: extractColor(currentColors.info, '#3b82f6')
   };
+
+  // Border width για outline button
+  const dynamicBorderWidth = getBorderWidthToken(borderWidth);
   return (
     <Box>
       {/* Live Preview Area - Ενοποιημένο με 6 χρωματιστά buttons */}
@@ -200,7 +211,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             backgroundColor: 'transparent', // outline
             color: colors.primary,
             padding: buttonState.shape === 'square' ? '16px' : '8px 16px',
-            border: `2px solid ${colors.primary}`,
+            border: `${dynamicBorderWidth} solid ${colors.primary}`,
             borderRadius: buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px',
             cursor: 'pointer',
             minWidth: buttonState.shape === 'square' ? '50px' : '120px',
