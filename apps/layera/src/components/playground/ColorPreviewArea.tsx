@@ -2,6 +2,7 @@ import React from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { PaletteIcon, LayersIcon, EditIcon, PolygonIcon } from '@layera/icons';
+import { ButtonsPreview } from './ButtonsPreview';
 
 interface ColorPreviewAreaProps {
   colorHookState: {
@@ -39,98 +40,10 @@ export const ColorPreviewArea: React.FC<ColorPreviewAreaProps> = ({
         <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-xl">
           {/* BUTTONS CATEGORY - Show actual buttons */}
           {colorHookState.colorCategory === 'buttons' && (
-            <>
-              <button style={{
-                backgroundColor: currentColors.primary,
-                color: 'white',
-                padding: colorHookState.colorButtonShape === 'square' ? '16px' : '8px 16px',
-                border: 'none',
-                borderRadius: colorHookState.colorButtonShape === 'rounded' ? '50px' : colorHookState.colorButtonShape === 'square' ? '6px' : '6px',
-                cursor: 'pointer',
-                minWidth: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
-                height: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                {colorHookState.colorButtonShape === 'square' ? 'P' : 'Primary Color'}
-              </button>
-              <button style={{
-                backgroundColor: currentColors.secondary,
-                color: 'white',
-                padding: colorHookState.colorButtonShape === 'square' ? '16px' : '8px 16px',
-                border: 'none',
-                borderRadius: colorHookState.colorButtonShape === 'rounded' ? '50px' : colorHookState.colorButtonShape === 'square' ? '6px' : '6px',
-                cursor: 'pointer',
-                minWidth: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
-                height: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                {colorHookState.colorButtonShape === 'square' ? 'S' : 'Secondary Color'}
-              </button>
-              <button style={{
-                backgroundColor: currentColors.success,
-                color: 'white',
-                padding: colorHookState.colorButtonShape === 'square' ? '16px' : '8px 16px',
-                border: 'none',
-                borderRadius: colorHookState.colorButtonShape === 'rounded' ? '50px' : colorHookState.colorButtonShape === 'square' ? '6px' : '6px',
-                cursor: 'pointer',
-                minWidth: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
-                height: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                {colorHookState.colorButtonShape === 'square' ? 'Su' : 'Success Color'}
-              </button>
-              <button style={{
-                backgroundColor: currentColors.warning,
-                color: 'black',
-                padding: colorHookState.colorButtonShape === 'square' ? '16px' : '8px 16px',
-                border: 'none',
-                borderRadius: colorHookState.colorButtonShape === 'rounded' ? '50px' : colorHookState.colorButtonShape === 'square' ? '6px' : '6px',
-                cursor: 'pointer',
-                minWidth: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
-                height: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                {colorHookState.colorButtonShape === 'square' ? 'W' : 'Warning Color'}
-              </button>
-              <button style={{
-                backgroundColor: currentColors.danger,
-                color: 'white',
-                padding: colorHookState.colorButtonShape === 'square' ? '16px' : '8px 16px',
-                border: 'none',
-                borderRadius: colorHookState.colorButtonShape === 'rounded' ? '50px' : colorHookState.colorButtonShape === 'square' ? '6px' : '6px',
-                cursor: 'pointer',
-                minWidth: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
-                height: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                {colorHookState.colorButtonShape === 'square' ? 'D' : 'Danger Color'}
-              </button>
-              <button style={{
-                backgroundColor: currentColors.info,
-                color: 'white',
-                padding: colorHookState.colorButtonShape === 'square' ? '16px' : '8px 16px',
-                border: 'none',
-                borderRadius: colorHookState.colorButtonShape === 'rounded' ? '50px' : colorHookState.colorButtonShape === 'square' ? '6px' : '6px',
-                cursor: 'pointer',
-                minWidth: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
-                height: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                {colorHookState.colorButtonShape === 'square' ? 'I' : 'Info Color'}
-              </button>
-            </>
+            <ButtonsPreview
+              colorHookState={colorHookState}
+              currentColors={currentColors}
+            />
           )}
 
           {/* BACKGROUNDS CATEGORY - Show colored background boxes */}
