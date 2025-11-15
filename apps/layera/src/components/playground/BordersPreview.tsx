@@ -24,17 +24,17 @@ export const BordersPreview: React.FC<BordersPreviewProps> = ({
   return (
     <>
       <div style={{
-        border: `3px solid ${currentColors.primary}`,
-        borderRadius: '8px',
-        padding: '15px',
-        minWidth: '100px',
-        height: '30px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '12px',
-        fontWeight: 'bold',
-        backgroundColor: 'white'
+        border: `var(--layera-global-borderWidth-3, 3px) solid ${currentColors.primary}`,
+        borderRadius: 'var(--layera-global-borderRadius-md, 8px)',
+        padding: 'var(--layera-global-spacing-3, 15px)',
+        minWidth: 'var(--layera-global-minWidth-100, 100px)',
+        height: 'var(--layera-global-height-30, 30px)',
+        display: 'var(--layera-global-display-flex, flex)',
+        alignItems: 'var(--layera-global-alignItems-center, center)',
+        justifyContent: 'var(--layera-global-justifyContent-center, center)',
+        fontSize: 'var(--layera-global-fontSize-xs, 12px)',
+        fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
+        backgroundColor: 'var(--layera-color-surface-primary, white)'
       }}>
         Primary<br/>Border
       </div>

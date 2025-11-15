@@ -23,29 +23,29 @@ export const TextPreview: React.FC<TextPreviewProps> = ({
 }) => {
   return (
     <>
-      <div style={{ textAlign: 'center', padding: '10px' }}>
-        <h4 style={{ color: currentColors.primary, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Primary Text</h4>
-        <p style={{ color: currentColors.primary, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
+      <div style={{ textAlign: 'var(--layera-global-textAlign-center, center)', padding: 'var(--layera-global-spacing-2, 10px)' }}>
+        <h4 style={{ color: currentColors.primary, margin: 'var(--layera-global-margin-0, 0) var(--layera-global-margin-0, 0) var(--layera-global-spacing-1, 5px) var(--layera-global-margin-0, 0)', fontSize: 'var(--layera-global-fontSize-base, 16px)', fontWeight: 'var(--layera-global-fontWeight-bold, bold)' }}>Primary Text</h4>
+        <p style={{ color: currentColors.primary, margin: 'var(--layera-global-margin-0, 0)', fontSize: 'var(--layera-global-fontSize-xs, 12px)' }}>Sample paragraph</p>
       </div>
-      <div style={{ textAlign: 'center', padding: '10px' }}>
-        <h4 style={{ color: currentColors.secondary, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Secondary Text</h4>
-        <p style={{ color: currentColors.secondary, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
+      <div style={{ textAlign: 'var(--layera-global-textAlign-center, center)', padding: 'var(--layera-global-spacing-2, 10px)' }}>
+        <h4 style={{ color: currentColors.secondary, margin: 'var(--layera-global-margin-0, 0) var(--layera-global-margin-0, 0) var(--layera-global-spacing-1, 5px) var(--layera-global-margin-0, 0)', fontSize: 'var(--layera-global-fontSize-base, 16px)', fontWeight: 'var(--layera-global-fontWeight-bold, bold)' }}>Secondary Text</h4>
+        <p style={{ color: currentColors.secondary, margin: 'var(--layera-global-margin-0, 0)', fontSize: 'var(--layera-global-fontSize-xs, 12px)' }}>Sample paragraph</p>
       </div>
-      <div style={{ textAlign: 'center', padding: '10px' }}>
-        <h4 style={{ color: currentColors.success, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Success Text</h4>
-        <p style={{ color: currentColors.success, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
+      <div style={{ textAlign: 'var(--layera-global-textAlign-center, center)', padding: 'var(--layera-global-spacing-2, 10px)' }}>
+        <h4 style={{ color: currentColors.success, margin: 'var(--layera-global-margin-0, 0) var(--layera-global-margin-0, 0) var(--layera-global-spacing-1, 5px) var(--layera-global-margin-0, 0)', fontSize: 'var(--layera-global-fontSize-base, 16px)', fontWeight: 'var(--layera-global-fontWeight-bold, bold)' }}>Success Text</h4>
+        <p style={{ color: currentColors.success, margin: 'var(--layera-global-margin-0, 0)', fontSize: 'var(--layera-global-fontSize-xs, 12px)' }}>Sample paragraph</p>
       </div>
-      <div style={{ textAlign: 'center', padding: '10px' }}>
-        <h4 style={{ color: currentColors.warning, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Warning Text</h4>
-        <p style={{ color: currentColors.warning, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
+      <div style={{ textAlign: 'var(--layera-global-textAlign-center, center)', padding: 'var(--layera-global-spacing-2, 10px)' }}>
+        <h4 style={{ color: currentColors.warning, margin: 'var(--layera-global-margin-0, 0) var(--layera-global-margin-0, 0) var(--layera-global-spacing-1, 5px) var(--layera-global-margin-0, 0)', fontSize: 'var(--layera-global-fontSize-base, 16px)', fontWeight: 'var(--layera-global-fontWeight-bold, bold)' }}>Warning Text</h4>
+        <p style={{ color: currentColors.warning, margin: 'var(--layera-global-margin-0, 0)', fontSize: 'var(--layera-global-fontSize-xs, 12px)' }}>Sample paragraph</p>
       </div>
-      <div style={{ textAlign: 'center', padding: '10px' }}>
-        <h4 style={{ color: currentColors.danger, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Danger Text</h4>
-        <p style={{ color: currentColors.danger, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
+      <div style={{ textAlign: 'var(--layera-global-textAlign-center, center)', padding: 'var(--layera-global-spacing-2, 10px)' }}>
+        <h4 style={{ color: currentColors.danger, margin: 'var(--layera-global-margin-0, 0) var(--layera-global-margin-0, 0) var(--layera-global-spacing-1, 5px) var(--layera-global-margin-0, 0)', fontSize: 'var(--layera-global-fontSize-base, 16px)', fontWeight: 'var(--layera-global-fontWeight-bold, bold)' }}>Danger Text</h4>
+        <p style={{ color: currentColors.danger, margin: 'var(--layera-global-margin-0, 0)', fontSize: 'var(--layera-global-fontSize-xs, 12px)' }}>Sample paragraph</p>
       </div>
-      <div style={{ textAlign: 'center', padding: '10px' }}>
-        <h4 style={{ color: currentColors.info, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Info Text</h4>
-        <p style={{ color: currentColors.info, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
+      <div style={{ textAlign: 'var(--layera-global-textAlign-center, center)', padding: 'var(--layera-global-spacing-2, 10px)' }}>
+        <h4 style={{ color: currentColors.info, margin: 'var(--layera-global-margin-0, 0) var(--layera-global-margin-0, 0) var(--layera-global-spacing-1, 5px) var(--layera-global-margin-0, 0)', fontSize: 'var(--layera-global-fontSize-base, 16px)', fontWeight: 'var(--layera-global-fontWeight-bold, bold)' }}>Info Text</h4>
+        <p style={{ color: currentColors.info, margin: 'var(--layera-global-margin-0, 0)', fontSize: 'var(--layera-global-fontSize-xs, 12px)' }}>Sample paragraph</p>
       </div>
     </>
   );
