@@ -9,6 +9,21 @@ import { Text } from '@layera/typography';
  * Γραμμές 184-295 από το αρχικό LivePlayground.tsx
  */
 
+/**
+ * Εξάγει την hex τιμή από CSS variable string
+ * π.χ. "var(--layera-color-primary, #6366f1)" -> "#6366f1"
+ */
+const extractHexFromCSSVar = (cssValue: string): string => {
+  // Αν είναι ήδη hex τιμή, επιστρέφει όπως είναι
+  if (cssValue.startsWith('#')) {
+    return cssValue;
+  }
+
+  // Αν είναι CSS variable, εξάγει το fallback hex value
+  const match = cssValue.match(/var\([^,]+,\s*(#[0-9a-fA-F]{6})\)/);
+  return match ? match[1] : cssValue;
+};
+
 interface ColorControlsGridProps {
   currentColors: Record<string, string>;
   currentSetters: Record<string, (value: string) => void>;
@@ -35,7 +50,7 @@ export const ColorControlsGrid: React.FC<ColorControlsGridProps> = ({
         </h4>
         <input
           type="color"
-          value={currentColors.primary}
+          value={extractHexFromCSSVar(currentColors.primary)}
           onChange={(e) => currentSetters.setPrimary(e.target.value)}
           className="layera-input layera-width--full layera-margin-bottom--sm"
         />
@@ -51,7 +66,7 @@ export const ColorControlsGrid: React.FC<ColorControlsGridProps> = ({
         </h4>
         <input
           type="color"
-          value={currentColors.secondary}
+          value={extractHexFromCSSVar(currentColors.secondary)}
           onInput={(e) => {
             // Real-time preview while dragging
             const newColor = (e.target as HTMLInputElement).value;
@@ -76,7 +91,7 @@ export const ColorControlsGrid: React.FC<ColorControlsGridProps> = ({
         </h4>
         <input
           type="color"
-          value={currentColors.success}
+          value={extractHexFromCSSVar(currentColors.success)}
           onChange={(e) => currentSetters.setSuccess(e.target.value)}
           className="layera-input layera-width--full layera-margin-bottom--sm"
         />
@@ -92,7 +107,7 @@ export const ColorControlsGrid: React.FC<ColorControlsGridProps> = ({
         </h4>
         <input
           type="color"
-          value={currentColors.warning}
+          value={extractHexFromCSSVar(currentColors.warning)}
           onChange={(e) => currentSetters.setWarning(e.target.value)}
           className="layera-input layera-width--full layera-margin-bottom--sm"
         />
@@ -108,7 +123,7 @@ export const ColorControlsGrid: React.FC<ColorControlsGridProps> = ({
         </h4>
         <input
           type="color"
-          value={currentColors.danger}
+          value={extractHexFromCSSVar(currentColors.danger)}
           onChange={(e) => currentSetters.setDanger(e.target.value)}
           className="layera-input layera-width--full layera-margin-bottom--sm"
         />
@@ -124,7 +139,7 @@ export const ColorControlsGrid: React.FC<ColorControlsGridProps> = ({
         </h4>
         <input
           type="color"
-          value={currentColors.info}
+          value={extractHexFromCSSVar(currentColors.info)}
           onChange={(e) => currentSetters.setInfo(e.target.value)}
           className="layera-input layera-width--full layera-margin-bottom--sm"
         />

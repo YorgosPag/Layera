@@ -24,15 +24,35 @@ interface ColorSetters {
   setInfo: (value: string) => void;
 }
 
+interface CategorySpecificColors {
+  buttons: ColorPalette;
+  backgrounds: ColorPalette;
+  text: ColorPalette;
+  borders: ColorPalette;
+}
+
+interface CategorySpecificSetters {
+  buttons: ColorSetters;
+  backgrounds: ColorSetters;
+  text: ColorSetters;
+  borders: ColorSetters;
+}
+
 export interface ColorHelpersActions {
   getCurrentColors: () => ColorPalette;
   getCurrentSetters: () => ColorSetters;
+  getColorsForCategory: (category: string) => ColorPalette;
+  getSettersForCategory: (category: string) => ColorSetters;
+  getAllCategoryColors: () => CategorySpecificColors;
+  getAllCategorySetters: () => CategorySpecificSetters;
 }
 
 export interface UseColorHelpersReturn {
   actions: ColorHelpersActions;
   currentColors: ColorPalette;
   currentSetters: ColorSetters;
+  categoryColors: CategorySpecificColors;
+  categorySetters: CategorySpecificSetters;
 }
 
 interface UseColorHelpersProps {

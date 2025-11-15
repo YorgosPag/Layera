@@ -27,12 +27,20 @@ export interface ColorPalette {
   info: string;
 }
 
+export interface CategoryColorPalettes {
+  buttons: ColorPalette;
+  backgrounds: ColorPalette;
+  text: ColorPalette;
+  borders: ColorPalette;
+}
+
 export interface ColorState {
   colorCategory: ColorCategory;
   colorButtonShape: ColorButtonShape;
   rectangularPalette: ColorPalette;
   squarePalette: ColorPalette;
   roundedPalette: ColorPalette;
+  categoryPalettes: CategoryColorPalettes;
 }
 
 export interface ColorStateActions {
@@ -41,6 +49,7 @@ export interface ColorStateActions {
   updateRectangularPalette: (key: keyof ColorPalette, value: string) => void;
   updateSquarePalette: (key: keyof ColorPalette, value: string) => void;
   updateRoundedPalette: (key: keyof ColorPalette, value: string) => void;
+  updateCategoryPalette: (category: ColorCategory, key: keyof ColorPalette, value: string) => void;
   resetToDefaults: () => void;
 }
 
@@ -50,6 +59,7 @@ export interface UseColorStateReturn {
   colorCategories: readonly ColorCategory[];
   colorButtonShapes: readonly ColorButtonShape[];
   getCurrentPalette: () => ColorPalette;
+  getCategoryPalette: (category: ColorCategory) => ColorPalette;
 }
 
 const DEFAULT_RECTANGULAR_PALETTE: ColorPalette = {
@@ -79,12 +89,48 @@ const DEFAULT_ROUNDED_PALETTE: ColorPalette = {
   info: 'var(--layera-color-semantic-info-primary, #6366f1)'
 };
 
+const DEFAULT_CATEGORY_PALETTES: CategoryColorPalettes = {
+  buttons: {
+    primary: 'var(--layera-color-semantic-info-primary, #6366f1)',
+    secondary: 'var(--layera-color-text-secondary, #475569)',
+    success: 'var(--layera-color-semantic-success-primary, #10b981)',
+    warning: 'var(--layera-color-semantic-warning-primary, #f59e0b)',
+    danger: 'var(--layera-color-semantic-error-primary, #ef4444)',
+    info: 'var(--layera-color-semantic-info-primary, #6366f1)'
+  },
+  backgrounds: {
+    primary: 'var(--layera-color-surface-primary, #ffffff)',
+    secondary: 'var(--layera-color-surface-secondary, #f8fafc)',
+    success: 'var(--layera-color-semantic-success-primary, #10b981)',
+    warning: 'var(--layera-color-semantic-warning-primary, #f59e0b)',
+    danger: 'var(--layera-color-semantic-error-primary, #ef4444)',
+    info: 'var(--layera-color-semantic-info-primary, #6366f1)'
+  },
+  text: {
+    primary: 'var(--layera-color-text-primary, #1f2937)',
+    secondary: 'var(--layera-color-text-secondary, #6b7280)',
+    success: 'var(--layera-color-semantic-success-primary, #10b981)',
+    warning: 'var(--layera-color-semantic-warning-primary, #f59e0b)',
+    danger: 'var(--layera-color-semantic-error-primary, #ef4444)',
+    info: 'var(--layera-color-semantic-info-primary, #6366f1)'
+  },
+  borders: {
+    primary: 'var(--layera-color-border-primary, #e5e5e5)',
+    secondary: 'var(--layera-color-border-secondary, #d1d5db)',
+    success: 'var(--layera-color-semantic-success-primary, #10b981)',
+    warning: 'var(--layera-color-semantic-warning-primary, #f59e0b)',
+    danger: 'var(--layera-color-semantic-error-primary, #ef4444)',
+    info: 'var(--layera-color-semantic-info-primary, #6366f1)'
+  }
+};
+
 const DEFAULT_COLOR_STATE: ColorState = {
   colorCategory: 'buttons',
   colorButtonShape: 'square',
   rectangularPalette: DEFAULT_RECTANGULAR_PALETTE,
   squarePalette: DEFAULT_SQUARE_PALETTE,
-  roundedPalette: DEFAULT_ROUNDED_PALETTE
+  roundedPalette: DEFAULT_ROUNDED_PALETTE,
+  categoryPalettes: DEFAULT_CATEGORY_PALETTES
 };
 
 const COLOR_CATEGORIES: readonly ColorCategory[] = [
@@ -133,6 +179,19 @@ export const useColorState = (): UseColorStateReturn => {
       }));
     },
 
+    updateCategoryPalette: (category: ColorCategory, key: keyof ColorPalette, value: string) => {
+      setState(prev => ({
+        ...prev,
+        categoryPalettes: {
+          ...prev.categoryPalettes,
+          [category]: {
+            ...prev.categoryPalettes[category],
+            [key]: value
+          }
+        }
+      }));
+    },
+
     resetToDefaults: () => {
       setState(DEFAULT_COLOR_STATE);
     }
@@ -151,11 +210,16 @@ export const useColorState = (): UseColorStateReturn => {
     }
   };
 
+  const getCategoryPalette = (category: ColorCategory): ColorPalette => {
+    return state.categoryPalettes[category];
+  };
+
   return {
     state,
     actions,
     colorCategories: COLOR_CATEGORIES,
     colorButtonShapes: COLOR_BUTTON_SHAPES,
-    getCurrentPalette
+    getCurrentPalette,
+    getCategoryPalette
   };
 };
