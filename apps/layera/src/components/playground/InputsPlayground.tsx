@@ -65,14 +65,14 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
           display: 'flex',
           flexDirection: 'row',
           flexWrap: 'nowrap',
-          gap: '16px',
+          gap: '24px',
           overflowX: 'auto',
           width: '100%',
           justifyContent: 'center',
           alignItems: 'center',
           padding: '16px 0'
         }}>
-          <div style={{ minWidth: '150px' }}>
+          <div style={{ minWidth: '150px', marginRight: '8px' }}>
             <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px', fontWeight: 'bold' }}>Primary Input</label>
             <input
               type="text"
@@ -81,7 +81,7 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
             />
           </div>
 
-          <div style={{ minWidth: '150px' }}>
+          <div style={{ minWidth: '150px', marginRight: '8px' }}>
             <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px', fontWeight: 'bold' }}>Secondary Input</label>
             <input
               type="text"
@@ -90,7 +90,7 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
             />
           </div>
 
-          <div style={{ minWidth: '150px' }}>
+          <div style={{ minWidth: '150px', marginRight: '8px' }}>
             <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px', fontWeight: 'bold' }}>Success Input</label>
             <input
               type="text"
@@ -99,7 +99,7 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
             />
           </div>
 
-          <div style={{ minWidth: '150px' }}>
+          <div style={{ minWidth: '150px', marginRight: '8px' }}>
             <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px', fontWeight: 'bold' }}>Warning Input</label>
             <input
               type="text"
@@ -108,7 +108,7 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
             />
           </div>
 
-          <div style={{ minWidth: '150px' }}>
+          <div style={{ minWidth: '150px', marginRight: '8px' }}>
             <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px', fontWeight: 'bold' }}>Danger Input</label>
             <input
               type="text"
