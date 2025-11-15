@@ -77,8 +77,10 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            gap: '6px',
             fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
           }}>
+            {buttonState.withIcon && <CheckIcon size="sm" />}
             {buttonState.shape === 'square' ? 'P' : 'Primary'}
           </button>
           <button style={{
@@ -93,8 +95,10 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            gap: '6px',
             fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
           }}>
+            {buttonState.withIcon && <SettingsIcon size="sm" />}
             {buttonState.shape === 'square' ? 'S' : 'Secondary'}
           </button>
           <button style={{
@@ -109,8 +113,10 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            gap: '6px',
             fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
           }}>
+            {buttonState.withIcon && <CheckIcon size="sm" />}
             {buttonState.shape === 'square' ? 'Su' : 'Success'}
           </button>
           <button style={{
@@ -125,8 +131,10 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            gap: '6px',
             fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
           }}>
+            {buttonState.withIcon && <CloseIcon size="sm" />}
             {buttonState.shape === 'square' ? 'W' : 'Warning'}
           </button>
           <button style={{
@@ -141,8 +149,10 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            gap: '6px',
             fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
           }}>
+            {buttonState.withIcon && <CloseIcon size="sm" />}
             {buttonState.shape === 'square' ? 'D' : 'Danger'}
           </button>
           <button style={{
@@ -157,8 +167,10 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            gap: '6px',
             fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
           }}>
+            {buttonState.withIcon && <SearchIcon size="sm" />}
             {buttonState.shape === 'square' ? 'I' : 'Info'}
           </button>
           <button style={{
@@ -173,8 +185,10 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            gap: '6px',
             fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
           }}>
+            {buttonState.withIcon && <PlusIcon size="sm" />}
             {buttonState.shape === 'square' ? 'O' : 'Outline'}
           </button>
           <button style={{
@@ -189,8 +203,10 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            gap: '6px',
             fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
           }}>
+            {buttonState.withIcon && <CompassIcon size="sm" />}
             {buttonState.shape === 'square' ? 'G' : 'Ghost'}
           </button>
         </Box>
