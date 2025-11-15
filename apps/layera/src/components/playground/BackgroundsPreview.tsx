@@ -26,102 +26,102 @@ export const BackgroundsPreview: React.FC<BackgroundsPreviewProps> = ({
       <div style={{
         backgroundColor: currentColors.primary,
         color: 'white',
-        padding: '20px',
-        border: '2px solid #ccc',
-        borderRadius: '8px',
-        minWidth: '120px',
-        height: '40px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontWeight: 'bold',
-        textAlign: 'center',
-        fontSize: '12px'
+        padding: 'var(--layera-global-spacing-5, 20px)',
+        border: 'var(--layera-global-borderWidth-2, 2px) solid var(--layera-color-border-default, #ccc)',
+        borderRadius: 'var(--layera-global-borderRadius-md, 8px)',
+        minWidth: 'var(--layera-global-minWidth-120, 120px)',
+        height: 'var(--layera-spacing-component-button-height, 40px)',
+        display: 'var(--layera-global-display-flex, flex)',
+        alignItems: 'var(--layera-global-alignItems-center, center)',
+        justifyContent: 'var(--layera-global-justifyContent-center, center)',
+        fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
+        textAlign: 'var(--layera-global-textAlign-center, center)',
+        fontSize: 'var(--layera-global-fontSize-xs, 12px)'
       }}>
         Primary<br/>Background
       </div>
       <div style={{
         backgroundColor: currentColors.secondary,
         color: 'white',
-        padding: '20px',
-        border: '2px solid #ccc',
-        borderRadius: '8px',
-        minWidth: '120px',
-        height: '40px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontWeight: 'bold',
-        textAlign: 'center',
-        fontSize: '12px'
+        padding: 'var(--layera-global-spacing-5, 20px)',
+        border: 'var(--layera-global-borderWidth-2, 2px) solid var(--layera-color-border-default, #ccc)',
+        borderRadius: 'var(--layera-global-borderRadius-md, 8px)',
+        minWidth: 'var(--layera-global-minWidth-120, 120px)',
+        height: 'var(--layera-spacing-component-button-height, 40px)',
+        display: 'var(--layera-global-display-flex, flex)',
+        alignItems: 'var(--layera-global-alignItems-center, center)',
+        justifyContent: 'var(--layera-global-justifyContent-center, center)',
+        fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
+        textAlign: 'var(--layera-global-textAlign-center, center)',
+        fontSize: 'var(--layera-global-fontSize-xs, 12px)'
       }}>
         Secondary<br/>Background
       </div>
       <div style={{
         backgroundColor: currentColors.success,
         color: 'white',
-        padding: '20px',
-        border: '2px solid #ccc',
-        borderRadius: '8px',
-        minWidth: '120px',
-        height: '40px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontWeight: 'bold',
-        textAlign: 'center',
-        fontSize: '12px'
+        padding: 'var(--layera-global-spacing-5, 20px)',
+        border: 'var(--layera-global-borderWidth-2, 2px) solid var(--layera-color-border-default, #ccc)',
+        borderRadius: 'var(--layera-global-borderRadius-md, 8px)',
+        minWidth: 'var(--layera-global-minWidth-120, 120px)',
+        height: 'var(--layera-spacing-component-button-height, 40px)',
+        display: 'var(--layera-global-display-flex, flex)',
+        alignItems: 'var(--layera-global-alignItems-center, center)',
+        justifyContent: 'var(--layera-global-justifyContent-center, center)',
+        fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
+        textAlign: 'var(--layera-global-textAlign-center, center)',
+        fontSize: 'var(--layera-global-fontSize-xs, 12px)'
       }}>
         Success<br/>Background
       </div>
       <div style={{
         backgroundColor: currentColors.warning,
         color: 'black',
-        padding: '20px',
-        border: '2px solid #ccc',
-        borderRadius: '8px',
-        minWidth: '120px',
-        height: '40px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontWeight: 'bold',
-        textAlign: 'center',
-        fontSize: '12px'
+        padding: 'var(--layera-global-spacing-5, 20px)',
+        border: 'var(--layera-global-borderWidth-2, 2px) solid var(--layera-color-border-default, #ccc)',
+        borderRadius: 'var(--layera-global-borderRadius-md, 8px)',
+        minWidth: 'var(--layera-global-minWidth-120, 120px)',
+        height: 'var(--layera-spacing-component-button-height, 40px)',
+        display: 'var(--layera-global-display-flex, flex)',
+        alignItems: 'var(--layera-global-alignItems-center, center)',
+        justifyContent: 'var(--layera-global-justifyContent-center, center)',
+        fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
+        textAlign: 'var(--layera-global-textAlign-center, center)',
+        fontSize: 'var(--layera-global-fontSize-xs, 12px)'
       }}>
         Warning<br/>Background
       </div>
       <div style={{
         backgroundColor: currentColors.danger,
         color: 'white',
-        padding: '20px',
-        border: '2px solid #ccc',
-        borderRadius: '8px',
-        minWidth: '120px',
-        height: '40px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontWeight: 'bold',
-        textAlign: 'center',
-        fontSize: '12px'
+        padding: 'var(--layera-global-spacing-5, 20px)',
+        border: 'var(--layera-global-borderWidth-2, 2px) solid var(--layera-color-border-default, #ccc)',
+        borderRadius: 'var(--layera-global-borderRadius-md, 8px)',
+        minWidth: 'var(--layera-global-minWidth-120, 120px)',
+        height: 'var(--layera-spacing-component-button-height, 40px)',
+        display: 'var(--layera-global-display-flex, flex)',
+        alignItems: 'var(--layera-global-alignItems-center, center)',
+        justifyContent: 'var(--layera-global-justifyContent-center, center)',
+        fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
+        textAlign: 'var(--layera-global-textAlign-center, center)',
+        fontSize: 'var(--layera-global-fontSize-xs, 12px)'
       }}>
         Danger<br/>Background
       </div>
       <div style={{
         backgroundColor: currentColors.info,
         color: 'white',
-        padding: '20px',
-        border: '2px solid #ccc',
-        borderRadius: '8px',
-        minWidth: '120px',
-        height: '40px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontWeight: 'bold',
-        textAlign: 'center',
-        fontSize: '12px'
+        padding: 'var(--layera-global-spacing-5, 20px)',
+        border: 'var(--layera-global-borderWidth-2, 2px) solid var(--layera-color-border-default, #ccc)',
+        borderRadius: 'var(--layera-global-borderRadius-md, 8px)',
+        minWidth: 'var(--layera-global-minWidth-120, 120px)',
+        height: 'var(--layera-spacing-component-button-height, 40px)',
+        display: 'var(--layera-global-display-flex, flex)',
+        alignItems: 'var(--layera-global-alignItems-center, center)',
+        justifyContent: 'var(--layera-global-justifyContent-center, center)',
+        fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
+        textAlign: 'var(--layera-global-textAlign-center, center)',
+        fontSize: 'var(--layera-global-fontSize-xs, 12px)'
       }}>
         Info<br/>Background
       </div>
