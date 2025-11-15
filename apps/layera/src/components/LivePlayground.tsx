@@ -5,12 +5,13 @@ import { Button, SquareButton } from '@layera/buttons';
 import { PlusIcon, SearchIcon, UserIcon, SettingsIcon, CloseIcon, PaletteIcon, LayersIcon, EditIcon, PolygonIcon, RulerIcon, CompassIcon, CheckIcon, RocketIcon } from '@layera/icons';
 import { ButtonsSection } from './playground/ButtonsSection';
 import { ColorsSection } from './playground/ColorsSection';
-import { saveColorTheme, loadCurrentThemeFromLocalStorage } from '../services/colorThemeService';
+import { loadCurrentThemeFromLocalStorage } from '../services/colorThemeService';
 import { useAuth } from '@layera/auth-bridge';
 import { useRealTimePreview } from '../hooks/useRealTimePreview';
 import { useButtonState } from '../hooks/useButtonState';
 import { useColorState } from '../hooks/useColorState';
 import { useCSSVariables } from '../hooks/useCSSVariables';
+import { useStorage } from '../hooks/useStorage';
 
 /**
  * Live Playground - Enterprise Component Testing Interface
@@ -49,6 +50,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
   // CSS Variables Management
   const { actions: cssActions } = useCSSVariables();
+
+  // Storage Management
+  const { actions: storageActions } = useStorage({ colorState: colorHookState, colorActions });
 
   // ==============================
   // STATE MANAGEMENT
@@ -131,57 +135,6 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   /** Current color setters based on selected button shape */
   const currentSetters = getCurrentSetters();
 
-  // ==============================
-  // EFFECTS
-  // ==============================
-
-  // Φόρτωση αποθηκευμένων χρωμάτων από localStorage
-  useEffect(() => {
-
-    try {
-      const stored = localStorage.getItem('layera-current-theme');
-      if (stored) {
-        const savedState = JSON.parse(stored);
-
-        // Εφαρμογή των αποθηκευμένων χρωμάτων
-        if (savedState.buttonState.shape && savedState.buttonState.shape !== colorHookState.colorButtonShape) {
-          colorActions.setColorButtonShape(savedState.buttonState.shape);
-        }
-
-        if (savedState.colorCategory && savedState.colorCategory !== colorHookState.colorCategory) {
-          colorActions.setColorCategory(savedState.colorCategory);
-        }
-
-        // Εφαρμογή χρωμάτων ανάλογα με το σχήμα
-        if (savedState.buttonState.shape === 'square') {
-          if (savedState.primaryColor) colorActions.updateSquarePalette('primary', savedState.primaryColor);
-          if (savedState.secondaryColor) colorActions.updateSquarePalette('secondary', savedState.secondaryColor);
-          if (savedState.successColor) colorActions.updateSquarePalette('success', savedState.successColor);
-          if (savedState.warningColor) colorActions.updateSquarePalette('warning', savedState.warningColor);
-          if (savedState.dangerColor) colorActions.updateSquarePalette('danger', savedState.dangerColor);
-          if (savedState.infoColor) colorActions.updateSquarePalette('info', savedState.infoColor);
-        } else if (savedState.buttonState.shape === 'rectangular') {
-          if (savedState.primaryColor) colorActions.updateRectangularPalette('primary', savedState.primaryColor);
-          if (savedState.secondaryColor) colorActions.updateRectangularPalette('secondary', savedState.secondaryColor);
-          if (savedState.successColor) colorActions.updateRectangularPalette('success', savedState.successColor);
-          if (savedState.warningColor) colorActions.updateRectangularPalette('warning', savedState.warningColor);
-          if (savedState.dangerColor) colorActions.updateRectangularPalette('danger', savedState.dangerColor);
-          if (savedState.infoColor) colorActions.updateRectangularPalette('info', savedState.infoColor);
-        } else if (savedState.buttonState.shape === 'rounded') {
-          if (savedState.primaryColor) colorActions.updateRoundedPalette('primary', savedState.primaryColor);
-          if (savedState.secondaryColor) colorActions.updateRoundedPalette('secondary', savedState.secondaryColor);
-          if (savedState.successColor) colorActions.updateRoundedPalette('success', savedState.successColor);
-          if (savedState.warningColor) colorActions.updateRoundedPalette('warning', savedState.warningColor);
-          if (savedState.dangerColor) colorActions.updateRoundedPalette('danger', savedState.dangerColor);
-          if (savedState.infoColor) colorActions.updateRoundedPalette('info', savedState.infoColor);
-        }
-
-      } else {
-      }
-    } catch (error) {
-      console.error('WARNING:Σφάλμα φόρτωσης χρωμάτων:', error);
-    }
-  }, []);
 
   // ==============================
   // EVENT HANDLERS
@@ -212,8 +165,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
     // Apply colors via CSS Variables hook
     await cssActions.applyColorsToApp(colorHookState.colorCategory, currentColors);
 
-    // Αποθήκευση στο Firebase
-    const colorData = {
+    // Save theme via Storage hook
+    const themeData = {
       colorCategory: colorHookState.colorCategory,
       shape: colorHookState.colorButtonShape,
       primaryColor: currentColors.primary,
@@ -224,25 +177,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
       infoColor: currentColors.info
     };
 
-    // Αποθήκευση και στο localStorage για γρήγορη φόρτωση
-    try {
-      localStorage.setItem('layera-current-theme', JSON.stringify(colorData));
-    } catch (error) {
-      console.warn('WARNING:Σφάλμα αποθήκευσης στο localStorage:', error);
-    }
-
-    // Αποθήκευση στο Firebase (μόνο αν είναι διαθέσιμο)
-    const hasRealFirebaseConfig = import.meta.env.VITE_FIREBASE_API_KEY && import.meta.env.VITE_FIREBASE_API_KEY !== 'demo-api-key';
-
-    if (hasRealFirebaseConfig) {
-      try {
-        const themeId = await saveColorTheme(colorData, user || undefined, `${colorHookState.colorCategory}-theme-${Date.now()}`);
-      } catch (error) {
-        console.error('WARNING:Σφάλμα αποθήκευσης στο Firebase:', error);
-      }
-    } else {
-      // Firebase disabled (demo credentials), χρησιμοποιούμε μόνο localStorage
-    }
+    await storageActions.saveToStorage(themeData, user);
 
     window.dispatchEvent(new CustomEvent('colorsUpdate', {
       detail: { category: colorHookState.colorCategory, ...currentColors }
