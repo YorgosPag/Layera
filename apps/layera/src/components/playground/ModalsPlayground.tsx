@@ -1,0 +1,164 @@
+import React from 'react';
+import { Box } from '@layera/layout';
+import { CheckIcon, CloseIcon } from '@layera/icons';
+
+/**
+ * ModalsPlayground Component
+ *
+ * Live Preview για modals με δυναμικά χρώματα
+ * Εμφανίζει 6 χρωματιστά modals (P, S, Su, W, D, I)
+ */
+
+interface ModalsPlaygroundProps {
+  currentColors: {
+    primary: string;
+    secondary: string;
+    success: string;
+    warning: string;
+    danger: string;
+    info: string;
+  };
+  colorCategory: string;
+}
+
+export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
+  currentColors,
+  colorCategory
+}) => {
+  // Helper functions same as CardsPlayground
+  const getTextColor = (colorValue: string) => {
+    if (colorCategory === 'text') return colorValue;
+    if (colorCategory === 'backgrounds') {
+      return colorValue === '#f59e0b' ? '#000000' : '#ffffff';
+    }
+    return '#333333';
+  };
+
+  const getBackgroundColor = (colorValue: string) => {
+    if (colorCategory === 'backgrounds') return colorValue;
+    return '#ffffff';
+  };
+
+  const getBorderStyle = (colorValue: string) => {
+    if (colorCategory === 'borders') return `2px solid ${colorValue}`;
+    return '1px solid #e5e5e5';
+  };
+
+  const modalStyle = {
+    minHeight: '100px',
+    borderRadius: '8px',
+    display: 'flex',
+    flexDirection: 'column' as const,
+    justifyContent: 'space-between',
+    position: 'relative' as const,
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+  };
+
+  return (
+    <Box>
+      <Box className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
+        <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
+          <CheckIcon size="sm" /> Live Preview: Modals
+        </h3>
+
+        <Box className="layera-grid layera-grid--gap-md" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
+          <Box
+            className="layera-padding--md"
+            style={{
+              ...modalStyle,
+              backgroundColor: getBackgroundColor(currentColors.primary),
+              color: getTextColor(currentColors.primary),
+              border: getBorderStyle(currentColors.primary)
+            }}
+          >
+            <Box style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h4 style={{ margin: 0, fontSize: '14px', fontWeight: 'bold' }}>Primary Modal</h4>
+              <CloseIcon size="sm" />
+            </Box>
+            <p style={{ margin: '8px 0', fontSize: '12px', opacity: 0.8 }}>Κύριο modal</p>
+          </Box>
+
+          <Box
+            className="layera-padding--md"
+            style={{
+              ...modalStyle,
+              backgroundColor: getBackgroundColor(currentColors.secondary),
+              color: getTextColor(currentColors.secondary),
+              border: getBorderStyle(currentColors.secondary)
+            }}
+          >
+            <Box style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h4 style={{ margin: 0, fontSize: '14px', fontWeight: 'bold' }}>Secondary Modal</h4>
+              <CloseIcon size="sm" />
+            </Box>
+            <p style={{ margin: '8px 0', fontSize: '12px', opacity: 0.8 }}>Δευτερεύον modal</p>
+          </Box>
+
+          <Box
+            className="layera-padding--md"
+            style={{
+              ...modalStyle,
+              backgroundColor: getBackgroundColor(currentColors.success),
+              color: getTextColor(currentColors.success),
+              border: getBorderStyle(currentColors.success)
+            }}
+          >
+            <Box style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h4 style={{ margin: 0, fontSize: '14px', fontWeight: 'bold' }}>Success Modal</h4>
+              <CloseIcon size="sm" />
+            </Box>
+            <p style={{ margin: '8px 0', fontSize: '12px', opacity: 0.8 }}>Modal επιτυχίας</p>
+          </Box>
+
+          <Box
+            className="layera-padding--md"
+            style={{
+              ...modalStyle,
+              backgroundColor: getBackgroundColor(currentColors.warning),
+              color: getTextColor(currentColors.warning),
+              border: getBorderStyle(currentColors.warning)
+            }}
+          >
+            <Box style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h4 style={{ margin: 0, fontSize: '14px', fontWeight: 'bold' }}>Warning Modal</h4>
+              <CloseIcon size="sm" />
+            </Box>
+            <p style={{ margin: '8px 0', fontSize: '12px', opacity: 0.8 }}>Modal προειδοποίησης</p>
+          </Box>
+
+          <Box
+            className="layera-padding--md"
+            style={{
+              ...modalStyle,
+              backgroundColor: getBackgroundColor(currentColors.danger),
+              color: getTextColor(currentColors.danger),
+              border: getBorderStyle(currentColors.danger)
+            }}
+          >
+            <Box style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h4 style={{ margin: 0, fontSize: '14px', fontWeight: 'bold' }}>Danger Modal</h4>
+              <CloseIcon size="sm" />
+            </Box>
+            <p style={{ margin: '8px 0', fontSize: '12px', opacity: 0.8 }}>Modal κινδύνου</p>
+          </Box>
+
+          <Box
+            className="layera-padding--md"
+            style={{
+              ...modalStyle,
+              backgroundColor: getBackgroundColor(currentColors.info),
+              color: getTextColor(currentColors.info),
+              border: getBorderStyle(currentColors.info)
+            }}
+          >
+            <Box style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h4 style={{ margin: 0, fontSize: '14px', fontWeight: 'bold' }}>Info Modal</h4>
+              <CloseIcon size="sm" />
+            </Box>
+            <p style={{ margin: '8px 0', fontSize: '12px', opacity: 0.8 }}>Modal πληροφοριών</p>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
+  );
+};

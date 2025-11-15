@@ -6,6 +6,11 @@ import { PlusIcon, SearchIcon, UserIcon, SettingsIcon, CloseIcon, PaletteIcon, L
 import { ButtonsSection } from './playground/ButtonsSection';
 import { PlaygroundHeader } from './playground/PlaygroundHeader';
 import { ButtonsPlayground } from './playground/ButtonsPlayground';
+import { CardsPlayground } from './playground/CardsPlayground';
+import { ModalsPlayground } from './playground/ModalsPlayground';
+import { InputsPlayground } from './playground/InputsPlayground';
+import { LayoutPlayground } from './playground/LayoutPlayground';
+import { TablesPlayground } from './playground/TablesPlayground';
 import { ColorCategorySelection } from './playground/ColorCategorySelection';
 import { ColorPreviewArea } from './playground/ColorPreviewArea';
 import { ColorControlsGrid } from './playground/ColorControlsGrid';
@@ -167,8 +172,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             colorActions={colorActions}
           />
 
-          {/* Dynamic Content Based on Category + Element Type Selection */}
-          {colorHookState.colorCategory === 'backgrounds' && colorHookState.elementType === 'buttons' && (
+          {/* Dynamic Content Based on Element Type Selection */}
+          {colorHookState.elementType === 'buttons' && (
             <ButtonsPlayground
               buttonState={buttonState}
               buttonActions={buttonActions}
@@ -177,21 +182,38 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             />
           )}
 
-          {colorHookState.colorCategory === 'text' && colorHookState.elementType === 'buttons' && (
-            <ButtonsPlayground
-              buttonState={buttonState}
-              buttonActions={buttonActions}
-              buttonVariants={buttonVariants}
-              buttonSizes={buttonSizes}
+          {colorHookState.elementType === 'cards' && (
+            <CardsPlayground
+              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
+              colorCategory={colorHookState.colorCategory}
             />
           )}
 
-          {colorHookState.colorCategory === 'borders' && colorHookState.elementType === 'buttons' && (
-            <ButtonsPlayground
-              buttonState={buttonState}
-              buttonActions={buttonActions}
-              buttonVariants={buttonVariants}
-              buttonSizes={buttonSizes}
+          {colorHookState.elementType === 'modals' && (
+            <ModalsPlayground
+              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
+              colorCategory={colorHookState.colorCategory}
+            />
+          )}
+
+          {colorHookState.elementType === 'inputs' && (
+            <InputsPlayground
+              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
+              colorCategory={colorHookState.colorCategory}
+            />
+          )}
+
+          {colorHookState.elementType === 'layout' && (
+            <LayoutPlayground
+              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
+              colorCategory={colorHookState.colorCategory}
+            />
+          )}
+
+          {colorHookState.elementType === 'tables' && (
+            <TablesPlayground
+              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
+              colorCategory={colorHookState.colorCategory}
             />
           )}
 

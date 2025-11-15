@@ -62,47 +62,6 @@ export const ColorPreviewArea: React.FC<ColorPreviewAreaProps> = ({
   const categoryName = getCategoryDisplayName(colorHookState.colorCategory);
   const elementName = getElementDisplayName(colorHookState.elementType);
 
-  return (
-    <>
-      {/* Live Color Preview Area */}
-      <Box className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
-        <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
-          <IconComponent size="md" /> Live Preview: {categoryName} για {elementName}
-        </h3>
-        <Text className="layera-typography layera-margin-bottom--lg" data-size="sm" data-color="secondary">
-          <IconComponent size="sm" /> Τα {categoryName.toLowerCase()} χρώματα θα επηρεάσουν τα {elementName.toLowerCase()} στην εφαρμογή
-        </Text>
-
-        <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-xl">
-          {/* ELEMENT TYPE BASED PREVIEWS */}
-          {colorHookState.elementType === 'buttons' && (
-            <ButtonsPreview
-              colorHookState={colorHookState}
-              currentColors={currentColors}
-            />
-          )}
-
-          {colorHookState.elementType === 'cards' && (
-            <BackgroundsPreview currentColors={currentColors} />
-          )}
-
-          {colorHookState.elementType === 'modals' && (
-            <BackgroundsPreview currentColors={currentColors} />
-          )}
-
-          {colorHookState.elementType === 'inputs' && (
-            <BordersPreview currentColors={currentColors} />
-          )}
-
-          {colorHookState.elementType === 'layout' && (
-            <BackgroundsPreview currentColors={currentColors} />
-          )}
-
-          {colorHookState.elementType === 'tables' && (
-            <BordersPreview currentColors={currentColors} />
-          )}
-        </Box>
-      </Box>
-    </>
-  );
+  // Αφαιρέθηκε - Το Live Preview τώρα είναι ενσωματωμένο στα element type contents
+  return null;
 };
