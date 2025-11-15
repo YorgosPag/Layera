@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, PageContainer } from '@layera/layout';
 import { Text, Heading } from '@layera/typography';
 import { Button, SquareButton } from '@layera/buttons';
-import { PlusIcon, SearchIcon, UserIcon, SettingsIcon, CloseIcon } from '@layera/icons';
+import { PlusIcon, SearchIcon, UserIcon, SettingsIcon, CloseIcon, PaletteIcon, LayersIcon, EditIcon, PolygonIcon, RulerIcon, CompassIcon, CheckIcon, RocketIcon } from '@layera/icons';
 import { ButtonsSection } from './playground/ButtonsSection';
 import { ColorsSection } from './playground/ColorsSection';
 import { saveColorTheme, loadCurrentThemeFromLocalStorage } from '../services/colorThemeService';
@@ -13,9 +13,9 @@ import { useRealTimePreview } from '../hooks/useRealTimePreview';
  * Live Playground - Enterprise Component Testing Interface
  *
  * ARXES Compliant Live Testing Interface:
- * - 🎯 Real-time component testing and configuration
+ * - Real-time component testing and configuration
  * - 🏗️ Enterprise CSS Variables management (single source of truth)
- * - 🎨 Live color palette system with multiple button shapes
+ * - Live color palette system with multiple button shapes
  * - 📱 Responsive fullscreen interface with organized sections
  * - 🔧 Direct integration with header button styling
  *
@@ -419,7 +419,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
       {/* Header με κουμπί κλεισίματος */}
       <Box className="layera-flex layera-flex--justify-between layera-flex--align-center layera-padding--lg layera-border-bottom--default layera-bg-surface--secondary layera-position--sticky layera-top--0 layera-z-index--overlay">
         <h1 className="layera-typography" data-size="xl" data-weight="bold" data-color="primary">
-          🎛️ Live Playground - Ζωντανές Ρυθμίσεις
+          <SettingsIcon size="sm" /> Live Playground - Ζωντανές Ρυθμίσεις
         </h1>
         <button
           onClick={onClose}
@@ -435,7 +435,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
       >
         {/* TEST - Θα δεις αυτό το κείμενο */}
         <h2 className="layera-typography layera-margin-bottom--xl" data-color="primary" data-size="2xl" data-weight="bold">
-          ✅ ΠΕΡΙΕΧΟΜΕΝΟ ΦΟΡΤΩΝΕΙ!
+          <CheckIcon size="sm" /> ΠΕΡΙΕΧΟΜΕΝΟ ΦΟΡΤΩΝΕΙ!
         </h2>
 
         {/* Navigation Tabs */}
@@ -445,7 +445,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             size="sm"
             onClick={() => setActiveSection('buttons')}
           >
-            🔘 Buttons
+            <PaletteIcon size="sm" /> Buttons
           </Button>
           <Button
             variant={activeSection === 'colors' ? 'primary' : 'ghost'}
@@ -454,14 +454,14 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               setActiveSection('colors');
             }}
           >
-            🎨 Colors
+            <PaletteIcon size="sm" /> Colors
           </Button>
           <Button
             variant={activeSection === 'tokens' ? 'primary' : 'ghost'}
             size="sm"
             onClick={() => setActiveSection('tokens')}
           >
-            ⚙️ Tokens
+            <SettingsIcon size="sm" /> Tokens
           </Button>
         </Box>
 
@@ -471,7 +471,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             {/* Live Preview Area */}
             <Box className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
               <h3 className="layera-typography layera-margin-bottom--xl" data-size="lg" data-weight="bold" data-color="primary">
-                🎯 Live Preview
+                <CheckIcon size="sm" /> Live Preview
               </h3>
 
               <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-xl">
@@ -583,7 +583,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   size="sm"
                   onClick={() => setWithIcon(!withIcon)}
                 >
-                  {withIcon ? '✅ Με εικονίδιο' : '❌ Χωρίς εικονίδιο'}
+                  {withIcon ? <><CheckIcon size="sm" /> Με εικονίδιο</> : <><CloseIcon size="sm" /> Χωρίς εικονίδιο</>}
                 </Button>
               </Box>
 
@@ -598,21 +598,21 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                     size="sm"
                     onClick={() => setButtonShape('rectangular')}
                   >
-                    📐 Παραλληλόγραμμο
+                    <RulerIcon size="sm" /> Παραλληλόγραμμο
                   </Button>
                   <Button
                     variant={buttonShape === 'square' ? 'primary' : 'secondary'}
                     size="sm"
                     onClick={() => setButtonShape('square')}
                   >
-                    ⬜ Τετράγωνο
+                    <PolygonIcon size="sm" /> Τετράγωνο
                   </Button>
                   <Button
                     variant={buttonShape === 'rounded' ? 'primary' : 'secondary'}
                     size="sm"
                     onClick={() => setButtonShape('rounded')}
                   >
-                    🔵 Στρογγυλό
+                    <CompassIcon size="sm" /> Στρογγυλό
                   </Button>
                 </Box>
               </Box>
@@ -622,7 +622,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             {/* Current Settings Display */}
             <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--neutral-light" data-family="mono" data-size="sm">
               <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="base" data-weight="semibold">
-                📝 Τρέχουσες Ρυθμίσεις:
+                <SettingsIcon size="sm" /> Τρέχουσες Ρυθμίσεις:
               </h4>
               <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">
 {`{
@@ -649,7 +649,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               {/* Color Category Selection */}
               <Box className="layera-card layera-padding--lg">
                 <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
-                  🎯 Επιλογή Κατηγορίας Αντικειμένων
+                  <CheckIcon size="sm" /> Επιλογή Κατηγορίας Αντικειμένων
                 </h3>
                 <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
                   <Button
@@ -657,28 +657,28 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                     size="sm"
                     onClick={() => setColorCategory('buttons')}
                   >
-                    🔘 Buttons
+                    <PaletteIcon size="sm" /> Buttons
                   </Button>
                   <Button
                     variant={colorCategory === 'backgrounds' ? 'primary' : 'outline'}
                     size="sm"
                     onClick={() => setColorCategory('backgrounds')}
                   >
-                    🎨 Backgrounds
+                    <LayersIcon size="sm" /> Backgrounds
                   </Button>
                   <Button
                     variant={colorCategory === 'text' ? 'primary' : 'outline'}
                     size="sm"
                     onClick={() => setColorCategory('text')}
                   >
-                    📝 Text
+                    <EditIcon size="sm" /> Text
                   </Button>
                   <Button
                     variant={colorCategory === 'borders' ? 'primary' : 'outline'}
                     size="sm"
                     onClick={() => setColorCategory('borders')}
                   >
-                    🔲 Borders
+                    <PolygonIcon size="sm" /> Borders
                   </Button>
                 </Box>
                 <Text className="layera-typography layera-margin-top--sm" data-size="sm" data-color="secondary">
@@ -690,7 +690,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               {colorCategory === 'buttons' && (
                 <Box className="layera-card layera-padding--lg">
                   <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
-                    🔘 Σχήμα Πλήκτρων Preview
+                    <PaletteIcon size="sm" /> Σχήμα Πλήκτρων Preview
                   </h3>
                   <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
                     <Button
@@ -698,7 +698,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                       size="sm"
                       onClick={() => setColorButtonShape('rectangular')}
                     >
-                      📐 Παραλληλόγραμμα
+                      <RulerIcon size="sm" /> Παραλληλόγραμμα
                     </Button>
                     <Button
                       variant={colorButtonShape === 'square' ? 'primary' : 'outline'}
@@ -707,14 +707,14 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                         setColorButtonShape('square');
                       }}
                     >
-                      ⬜ Τετράγωνα
+                      <PolygonIcon size="sm" /> Τετράγωνα
                     </Button>
                     <Button
                       variant={colorButtonShape === 'rounded' ? 'primary' : 'outline'}
                       size="sm"
                       onClick={() => setColorButtonShape('rounded')}
                     >
-                      🔵 Στρογγυλά
+                      <CompassIcon size="sm" /> Στρογγυλά
                     </Button>
                   </Box>
                   <Text className="layera-typography layera-margin-top--sm" data-size="sm" data-color="secondary">
@@ -727,13 +727,13 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             {/* Live Color Preview Area */}
             <Box className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
               <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
-                🎨 Live Preview - {colorCategory.toUpperCase()}
+                <PaletteIcon size="md" /> Live Preview - {colorCategory.toUpperCase()}
               </h3>
               <Text className="layera-typography layera-margin-bottom--lg" data-size="sm" data-color="secondary">
-                {colorCategory === 'buttons' && '🔘 Τα χρώματα θα επηρεάσουν όλα τα κουμπιά στην εφαρμογή'}
-                {colorCategory === 'backgrounds' && '🎨 Τα χρώματα θα επηρεάσουν τα φόντα στην εφαρμογή'}
-                {colorCategory === 'text' && '📝 Τα χρώματα θα επηρεάσουν τα κείμενα στην εφαρμογή'}
-                {colorCategory === 'borders' && '🔲 Τα χρώματα θα επηρεάσουν τα περιγράμματα στην εφαρμογή'}
+                {colorCategory === 'buttons' && <><PaletteIcon size="sm" /> Τα χρώματα θα επηρεάσουν όλα τα κουμπιά στην εφαρμογή</>}
+                {colorCategory === 'backgrounds' && <><LayersIcon size="sm" /> Τα χρώματα θα επηρεάσουν τα φόντα στην εφαρμογή</>}
+                {colorCategory === 'text' && <><EditIcon size="sm" /> Τα χρώματα θα επηρεάσουν τα κείμενα στην εφαρμογή</>}
+                {colorCategory === 'borders' && <><PolygonIcon size="sm" /> Τα χρώματα θα επηρεάσουν τα περιγράμματα στην εφαρμογή</>}
               </Text>
 
               <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-xl">
@@ -953,7 +953,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   onClick={applyColorsToApp}
                   className="layera-button layera-button--primary"
                 >
-                  🚀 Εφαρμογή Χρωμάτων για {colorCategory.toUpperCase()}
+                  <RocketIcon size="sm" /> Εφαρμογή Χρωμάτων για {colorCategory.toUpperCase()}
                 </Button>
 
                 {/* Κουμπί για εφαρμογή στην επικεφαλίδα - μόνο για buttons + square */}
@@ -964,7 +964,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                     onClick={applySquareColorsToHeader}
                     className="layera-button layera-button--success"
                   >
-                    🎯 Εφαρμογή στην Επικεφαλίδα
+                    <CheckIcon size="sm" /> Εφαρμογή στην Επικεφαλίδα
                   </Button>
                 )}
               </Box>
@@ -986,7 +986,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               {/* Current Color Values Display */}
               <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--neutral-light" data-family="mono" data-size="sm">
                 <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="base" data-weight="semibold">
-                  🎨 Παλέτα Χρωμάτων για {colorCategory.toUpperCase()}:
+                  <PaletteIcon size="sm" /> Παλέτα Χρωμάτων για {colorCategory.toUpperCase()}:
                 </h4>
                 <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">
 {`{
@@ -1063,7 +1063,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         {activeSection === 'tokens' && (
           <Box className="layera-flex layera-flex--direction-column layera-flex--justify-center layera-text-center layera-padding--2xl layera-min-height--card">
             <h2 className="layera-typography layera-margin-bottom--lg layera-text-color--neutral-medium" data-size="2xl">
-              🚧 Tokens Playground
+              <SettingsIcon size="sm" /> Tokens Playground
             </h2>
             <p className="layera-typography layera-margin--none layera-text-color--neutral-medium" data-size="lg">
               Σύντομα διαθέσιμο - Live design token editing
