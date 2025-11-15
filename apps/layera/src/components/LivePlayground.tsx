@@ -9,6 +9,7 @@ import { saveColorTheme, loadCurrentThemeFromLocalStorage } from '../services/co
 import { useAuth } from '@layera/auth-bridge';
 import { useRealTimePreview } from '../hooks/useRealTimePreview';
 import { useButtonState } from '../hooks/useButtonState';
+import { useColorState } from '../hooks/useColorState';
 
 /**
  * Live Playground - Enterprise Component Testing Interface
@@ -42,6 +43,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   // Button State Management
   const { state: buttonState, actions: buttonActions, variants: buttonVariants, sizes: buttonSizes } = useButtonState();
 
+  // Color State Management
+  const { state: colorHookState, actions: colorActions, colorCategories, colorButtonShapes, getCurrentPalette } = useColorState();
+
   // ==============================
   // STATE MANAGEMENT
   // ==============================
@@ -49,43 +53,13 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   /** Active section in the playground interface */
   const [activeSection, setActiveSection] = useState<'buttons' | 'colors' | 'tokens'>('buttons');
 
-  // Color Configuration
-  /** Button shape for color testing (connected to header buttons) */
-  const [colorButtonShape, setColorButtonShape] = useState<'rectangular' | 'square' | 'rounded'>('square');
-  /** Color category being modified */
-  const [colorCategory, setColorCategory] = useState<'buttons' | 'backgrounds' | 'text' | 'borders'>('buttons');
-
-  // Color Palettes for Different Button Shapes
-  /** Rectangular button color palette */
-  const [rectPrimaryColor, setRectPrimaryColor] = useState('#007bff');
-  const [rectSecondaryColor, setRectSecondaryColor] = useState('#6c757d');
-  const [rectSuccessColor, setRectSuccessColor] = useState('#28a745');
-  const [rectWarningColor, setRectWarningColor] = useState('#ffc107');
-  const [rectDangerColor, setRectDangerColor] = useState('#dc3545');
-  const [rectInfoColor, setRectInfoColor] = useState('#17a2b8');
-
-  /** Square button color palette (connected to header buttons) */
-  const [squarePrimaryColor, setSquarePrimaryColor] = useState('#FF4444');
-  const [squareSecondaryColor, setSquareSecondaryColor] = useState('#44FF44');
-  const [squareSuccessColor, setSquareSuccessColor] = useState('#4444FF');
-  const [squareWarningColor, setSquareWarningColor] = useState('#FFAA00');
-  const [squareDangerColor, setSquareDangerColor] = useState('#AA00FF');
-  const [squareInfoColor, setSquareInfoColor] = useState('#00AAFF');
-
-  /** Rounded button color palette */
-  const [roundedPrimaryColor, setRoundedPrimaryColor] = useState('#800080');
-  const [roundedSecondaryColor, setRoundedSecondaryColor] = useState('#008080');
-  const [roundedSuccessColor, setRoundedSuccessColor] = useState('#808000');
-  const [roundedWarningColor, setRoundedWarningColor] = useState('#FFA500');
-  const [roundedDangerColor, setRoundedDangerColor] = useState('#FF6347');
-  const [roundedInfoColor, setRoundedInfoColor] = useState('#4169E1');
 
   // Real-time preview hook for header buttons
   const { startPreview, isPreviewActive } = useRealTimePreview({
     onCommit: (key: string, value: string) => {
       // Update the actual color state when preview is committed
       if (key === 'secondaryColor') {
-        setSquareSecondaryColor(value);
+        colorActions.updateSquarePalette('secondary', value);
       }
     },
     debounceMs: 1000
@@ -100,51 +74,46 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
    * @returns Color object with primary, secondary, success, warning, danger, info
    */
   const getCurrentColors = () => {
-    switch (colorButtonShape) {
-      case 'rectangular':
-        return {
-          primary: rectPrimaryColor, secondary: rectSecondaryColor, success: rectSuccessColor,
-          warning: rectWarningColor, danger: rectDangerColor, info: rectInfoColor
-        };
-      case 'square':
-        return {
-          primary: squarePrimaryColor, secondary: squareSecondaryColor, success: squareSuccessColor,
-          warning: squareWarningColor, danger: squareDangerColor, info: squareInfoColor
-        };
-      case 'rounded':
-        return {
-          primary: roundedPrimaryColor, secondary: roundedSecondaryColor, success: roundedSuccessColor,
-          warning: roundedWarningColor, danger: roundedDangerColor, info: roundedInfoColor
-        };
-      default:
-        return {
-          primary: rectPrimaryColor, secondary: rectSecondaryColor, success: rectSuccessColor,
-          warning: rectWarningColor, danger: rectDangerColor, info: rectInfoColor
-        };
-    }
+    return getCurrentPalette();
   };
 
   const getCurrentSetters = () => {
-    switch (colorButtonShape) {
+    switch (colorHookState.colorButtonShape) {
       case 'rectangular':
         return {
-          setPrimary: setRectPrimaryColor, setSecondary: setRectSecondaryColor, setSuccess: setRectSuccessColor,
-          setWarning: setRectWarningColor, setDanger: setRectDangerColor, setInfo: setRectInfoColor
+          setPrimary: (value: string) => colorActions.updateRectangularPalette('primary', value),
+          setSecondary: (value: string) => colorActions.updateRectangularPalette('secondary', value),
+          setSuccess: (value: string) => colorActions.updateRectangularPalette('success', value),
+          setWarning: (value: string) => colorActions.updateRectangularPalette('warning', value),
+          setDanger: (value: string) => colorActions.updateRectangularPalette('danger', value),
+          setInfo: (value: string) => colorActions.updateRectangularPalette('info', value)
         };
       case 'square':
         return {
-          setPrimary: setSquarePrimaryColor, setSecondary: setSquareSecondaryColor, setSuccess: setSquareSuccessColor,
-          setWarning: setSquareWarningColor, setDanger: setSquareDangerColor, setInfo: setSquareInfoColor
+          setPrimary: (value: string) => colorActions.updateSquarePalette('primary', value),
+          setSecondary: (value: string) => colorActions.updateSquarePalette('secondary', value),
+          setSuccess: (value: string) => colorActions.updateSquarePalette('success', value),
+          setWarning: (value: string) => colorActions.updateSquarePalette('warning', value),
+          setDanger: (value: string) => colorActions.updateSquarePalette('danger', value),
+          setInfo: (value: string) => colorActions.updateSquarePalette('info', value)
         };
       case 'rounded':
         return {
-          setPrimary: setRoundedPrimaryColor, setSecondary: setRoundedSecondaryColor, setSuccess: setRoundedSuccessColor,
-          setWarning: setRoundedWarningColor, setDanger: setRoundedDangerColor, setInfo: setRoundedInfoColor
+          setPrimary: (value: string) => colorActions.updateRoundedPalette('primary', value),
+          setSecondary: (value: string) => colorActions.updateRoundedPalette('secondary', value),
+          setSuccess: (value: string) => colorActions.updateRoundedPalette('success', value),
+          setWarning: (value: string) => colorActions.updateRoundedPalette('warning', value),
+          setDanger: (value: string) => colorActions.updateRoundedPalette('danger', value),
+          setInfo: (value: string) => colorActions.updateRoundedPalette('info', value)
         };
       default:
         return {
-          setPrimary: setRectPrimaryColor, setSecondary: setRectSecondaryColor, setSuccess: setRectSuccessColor,
-          setWarning: setRectWarningColor, setDanger: setRectDangerColor, setInfo: setRectInfoColor
+          setPrimary: (value: string) => colorActions.updateRectangularPalette('primary', value),
+          setSecondary: (value: string) => colorActions.updateRectangularPalette('secondary', value),
+          setSuccess: (value: string) => colorActions.updateRectangularPalette('success', value),
+          setWarning: (value: string) => colorActions.updateRectangularPalette('warning', value),
+          setDanger: (value: string) => colorActions.updateRectangularPalette('danger', value),
+          setInfo: (value: string) => colorActions.updateRectangularPalette('info', value)
         };
     }
   };
@@ -171,36 +140,36 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         const savedState = JSON.parse(stored);
 
         // Εφαρμογή των αποθηκευμένων χρωμάτων
-        if (savedState.buttonState.shape && savedState.buttonState.shape !== colorButtonShape) {
-          setColorButtonShape(savedState.buttonState.shape);
+        if (savedState.buttonState.shape && savedState.buttonState.shape !== colorHookState.colorButtonShape) {
+          colorActions.setColorButtonShape(savedState.buttonState.shape);
         }
 
-        if (savedState.colorCategory && savedState.colorCategory !== colorCategory) {
-          setColorCategory(savedState.colorCategory);
+        if (savedState.colorCategory && savedState.colorCategory !== colorHookState.colorCategory) {
+          colorActions.setColorCategory(savedState.colorCategory);
         }
 
         // Εφαρμογή χρωμάτων ανάλογα με το σχήμα
         if (savedState.buttonState.shape === 'square') {
-          setSquarePrimaryColor(savedState.primaryColor || squarePrimaryColor);
-          setSquareSecondaryColor(savedState.secondaryColor || squareSecondaryColor);
-          setSquareSuccessColor(savedState.successColor || squareSuccessColor);
-          setSquareWarningColor(savedState.warningColor || squareWarningColor);
-          setSquareDangerColor(savedState.dangerColor || squareDangerColor);
-          setSquareInfoColor(savedState.infoColor || squareInfoColor);
+          if (savedState.primaryColor) colorActions.updateSquarePalette('primary', savedState.primaryColor);
+          if (savedState.secondaryColor) colorActions.updateSquarePalette('secondary', savedState.secondaryColor);
+          if (savedState.successColor) colorActions.updateSquarePalette('success', savedState.successColor);
+          if (savedState.warningColor) colorActions.updateSquarePalette('warning', savedState.warningColor);
+          if (savedState.dangerColor) colorActions.updateSquarePalette('danger', savedState.dangerColor);
+          if (savedState.infoColor) colorActions.updateSquarePalette('info', savedState.infoColor);
         } else if (savedState.buttonState.shape === 'rectangular') {
-          setRectPrimaryColor(savedState.primaryColor || rectPrimaryColor);
-          setRectSecondaryColor(savedState.secondaryColor || rectSecondaryColor);
-          setRectSuccessColor(savedState.successColor || rectSuccessColor);
-          setRectWarningColor(savedState.warningColor || rectWarningColor);
-          setRectDangerColor(savedState.dangerColor || rectDangerColor);
-          setRectInfoColor(savedState.infoColor || rectInfoColor);
+          if (savedState.primaryColor) colorActions.updateRectangularPalette('primary', savedState.primaryColor);
+          if (savedState.secondaryColor) colorActions.updateRectangularPalette('secondary', savedState.secondaryColor);
+          if (savedState.successColor) colorActions.updateRectangularPalette('success', savedState.successColor);
+          if (savedState.warningColor) colorActions.updateRectangularPalette('warning', savedState.warningColor);
+          if (savedState.dangerColor) colorActions.updateRectangularPalette('danger', savedState.dangerColor);
+          if (savedState.infoColor) colorActions.updateRectangularPalette('info', savedState.infoColor);
         } else if (savedState.buttonState.shape === 'rounded') {
-          setRoundedPrimaryColor(savedState.primaryColor || roundedPrimaryColor);
-          setRoundedSecondaryColor(savedState.secondaryColor || roundedSecondaryColor);
-          setRoundedSuccessColor(savedState.successColor || roundedSuccessColor);
-          setRoundedWarningColor(savedState.warningColor || roundedWarningColor);
-          setRoundedDangerColor(savedState.dangerColor || roundedDangerColor);
-          setRoundedInfoColor(savedState.infoColor || roundedInfoColor);
+          if (savedState.primaryColor) colorActions.updateRoundedPalette('primary', savedState.primaryColor);
+          if (savedState.secondaryColor) colorActions.updateRoundedPalette('secondary', savedState.secondaryColor);
+          if (savedState.successColor) colorActions.updateRoundedPalette('success', savedState.successColor);
+          if (savedState.warningColor) colorActions.updateRoundedPalette('warning', savedState.warningColor);
+          if (savedState.dangerColor) colorActions.updateRoundedPalette('danger', savedState.dangerColor);
+          if (savedState.infoColor) colorActions.updateRoundedPalette('info', savedState.infoColor);
         }
 
       } else {
@@ -315,10 +284,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
       }
     };
 
-    const categoryColors = colorMap[colorCategory];
+    const categoryColors = colorMap[colorHookState.colorCategory];
     const currentColors = getCurrentColors();
 
-    if (colorCategory === 'buttons') {
+    if (colorHookState.colorCategory === 'buttons') {
       // Εφαρμογή χρωμάτων για buttons (background, color, border)
       const oldBg = root.style.getPropertyValue('--layera-btn-secondary-bg') || 'not set';
 
@@ -366,9 +335,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
 
     // Αποθήκευση στο Firebase
-    const colorState = {
-      colorCategory,
-      shape: colorButtonShape,
+    const colorData = {
+      colorCategory: colorHookState.colorCategory,
+      shape: colorHookState.colorButtonShape,
       primaryColor: currentColors.primary,
       secondaryColor: currentColors.secondary,
       successColor: currentColors.success,
@@ -379,7 +348,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
     // Αποθήκευση και στο localStorage για γρήγορη φόρτωση
     try {
-      localStorage.setItem('layera-current-theme', JSON.stringify(colorState));
+      localStorage.setItem('layera-current-theme', JSON.stringify(colorData));
     } catch (error) {
       console.warn('WARNING:Σφάλμα αποθήκευσης στο localStorage:', error);
     }
@@ -389,7 +358,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
     if (hasRealFirebaseConfig) {
       try {
-        const themeId = await saveColorTheme(colorState, user || undefined, `${colorCategory}-theme-${Date.now()}`);
+        const themeId = await saveColorTheme(colorData, user || undefined, `${colorHookState.colorCategory}-theme-${Date.now()}`);
       } catch (error) {
         console.error('WARNING:Σφάλμα αποθήκευσης στο Firebase:', error);
       }
@@ -398,7 +367,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
     }
 
     window.dispatchEvent(new CustomEvent('colorsUpdate', {
-      detail: { category: colorCategory, ...currentColors }
+      detail: { category: colorHookState.colorCategory, ...currentColors }
     }));
   };
 
@@ -636,9 +605,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           <Box>
             {/* Category and Shape Selection - Side by Side */}
             <Box
-              className={`layera-grid layera-margin-bottom--xl ${colorCategory === 'buttons' ? 'layera-grid--gap-lg' : ''}`}
+              className={`layera-grid layera-margin-bottom--xl ${colorHookState.colorCategory === 'buttons' ? 'layera-grid--gap-lg' : ''}`}
               style={{
-                gridTemplateColumns: colorCategory === 'buttons' ? '1fr 1fr' : '1fr'
+                gridTemplateColumns: colorHookState.colorCategory === 'buttons' ? '1fr 1fr' : '1fr'
               } as React.CSSProperties}
             >
               {/* Color Category Selection */}
@@ -648,30 +617,30 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 </h3>
                 <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
                   <Button
-                    variant={colorCategory === 'buttons' ? 'primary' : 'outline'}
+                    variant={colorHookState.colorCategory === 'buttons' ? 'primary' : 'outline'}
                     size="sm"
-                    onClick={() => setColorCategory('buttons')}
+                    onClick={() => colorActions.setColorCategory('buttons')}
                   >
                     <PaletteIcon size="sm" /> Buttons
                   </Button>
                   <Button
-                    variant={colorCategory === 'backgrounds' ? 'primary' : 'outline'}
+                    variant={colorHookState.colorCategory === 'backgrounds' ? 'primary' : 'outline'}
                     size="sm"
-                    onClick={() => setColorCategory('backgrounds')}
+                    onClick={() => colorActions.setColorCategory('backgrounds')}
                   >
                     <LayersIcon size="sm" /> Backgrounds
                   </Button>
                   <Button
-                    variant={colorCategory === 'text' ? 'primary' : 'outline'}
+                    variant={colorHookState.colorCategory === 'text' ? 'primary' : 'outline'}
                     size="sm"
-                    onClick={() => setColorCategory('text')}
+                    onClick={() => colorActions.setColorCategory('text')}
                   >
                     <EditIcon size="sm" /> Text
                   </Button>
                   <Button
-                    variant={colorCategory === 'borders' ? 'primary' : 'outline'}
+                    variant={colorHookState.colorCategory === 'borders' ? 'primary' : 'outline'}
                     size="sm"
-                    onClick={() => setColorCategory('borders')}
+                    onClick={() => colorActions.setColorCategory('borders')}
                   >
                     <PolygonIcon size="sm" /> Borders
                   </Button>
@@ -682,32 +651,32 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               </Box>
 
               {/* Button Shape Selection - Only for Buttons Category */}
-              {colorCategory === 'buttons' && (
+              {colorHookState.colorCategory === 'buttons' && (
                 <Box className="layera-card layera-padding--lg">
                   <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
                     <PaletteIcon size="sm" /> Σχήμα Πλήκτρων Preview
                   </h3>
                   <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
                     <Button
-                      variant={colorButtonShape === 'rectangular' ? 'primary' : 'outline'}
+                      variant={colorHookState.colorButtonShape === 'rectangular' ? 'primary' : 'outline'}
                       size="sm"
-                      onClick={() => setColorButtonShape('rectangular')}
+                      onClick={() => colorActions.setColorButtonShape('rectangular')}
                     >
                       <RulerIcon size="sm" /> Παραλληλόγραμμα
                     </Button>
                     <Button
-                      variant={colorButtonShape === 'square' ? 'primary' : 'outline'}
+                      variant={colorHookState.colorButtonShape === 'square' ? 'primary' : 'outline'}
                       size="sm"
                       onClick={() => {
-                        setColorButtonShape('square');
+                        colorActions.setColorButtonShape('square');
                       }}
                     >
                       <PolygonIcon size="sm" /> Τετράγωνα
                     </Button>
                     <Button
-                      variant={colorButtonShape === 'rounded' ? 'primary' : 'outline'}
+                      variant={colorHookState.colorButtonShape === 'rounded' ? 'primary' : 'outline'}
                       size="sm"
-                      onClick={() => setColorButtonShape('rounded')}
+                      onClick={() => colorActions.setColorButtonShape('rounded')}
                     >
                       <CompassIcon size="sm" /> Στρογγυλά
                     </Button>
@@ -722,114 +691,114 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             {/* Live Color Preview Area */}
             <Box className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
               <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
-                <PaletteIcon size="md" /> Live Preview - {colorCategory.toUpperCase()}
+                <PaletteIcon size="md" /> Live Preview - {colorHookState.colorCategory.toUpperCase()}
               </h3>
               <Text className="layera-typography layera-margin-bottom--lg" data-size="sm" data-color="secondary">
-                {colorCategory === 'buttons' && <><PaletteIcon size="sm" /> Τα χρώματα θα επηρεάσουν όλα τα κουμπιά στην εφαρμογή</>}
-                {colorCategory === 'backgrounds' && <><LayersIcon size="sm" /> Τα χρώματα θα επηρεάσουν τα φόντα στην εφαρμογή</>}
-                {colorCategory === 'text' && <><EditIcon size="sm" /> Τα χρώματα θα επηρεάσουν τα κείμενα στην εφαρμογή</>}
-                {colorCategory === 'borders' && <><PolygonIcon size="sm" /> Τα χρώματα θα επηρεάσουν τα περιγράμματα στην εφαρμογή</>}
+                {colorHookState.colorCategory === 'buttons' && <><PaletteIcon size="sm" /> Τα χρώματα θα επηρεάσουν όλα τα κουμπιά στην εφαρμογή</>}
+                {colorHookState.colorCategory === 'backgrounds' && <><LayersIcon size="sm" /> Τα χρώματα θα επηρεάσουν τα φόντα στην εφαρμογή</>}
+                {colorHookState.colorCategory === 'text' && <><EditIcon size="sm" /> Τα χρώματα θα επηρεάσουν τα κείμενα στην εφαρμογή</>}
+                {colorHookState.colorCategory === 'borders' && <><PolygonIcon size="sm" /> Τα χρώματα θα επηρεάσουν τα περιγράμματα στην εφαρμογή</>}
               </Text>
 
               <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-xl">
                 {/* BUTTONS CATEGORY - Show actual buttons */}
-                {colorCategory === 'buttons' && (
+                {colorHookState.colorCategory === 'buttons' && (
                   <>
                     <button style={{
                       backgroundColor: currentColors.primary,
                       color: 'white',
-                      padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
+                      padding: colorHookState.colorButtonShape === 'square' ? '16px' : '8px 16px',
                       border: 'none',
-                      borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
+                      borderRadius: colorHookState.colorButtonShape === 'rounded' ? '50px' : colorHookState.colorButtonShape === 'square' ? '6px' : '6px',
                       cursor: 'pointer',
-                      minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
-                      height: colorButtonShape === 'square' ? '50px' : 'auto',
+                      minWidth: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
+                      height: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center'
                     }}>
-                      {colorButtonShape === 'square' ? 'P' : 'Primary Color'}
+                      {colorHookState.colorButtonShape === 'square' ? 'P' : 'Primary Color'}
                     </button>
                     <button style={{
                       backgroundColor: currentColors.secondary,
                       color: 'white',
-                      padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
+                      padding: colorHookState.colorButtonShape === 'square' ? '16px' : '8px 16px',
                       border: 'none',
-                      borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
+                      borderRadius: colorHookState.colorButtonShape === 'rounded' ? '50px' : colorHookState.colorButtonShape === 'square' ? '6px' : '6px',
                       cursor: 'pointer',
-                      minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
-                      height: colorButtonShape === 'square' ? '50px' : 'auto',
+                      minWidth: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
+                      height: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center'
                     }}>
-                      {colorButtonShape === 'square' ? 'S' : 'Secondary Color'}
+                      {colorHookState.colorButtonShape === 'square' ? 'S' : 'Secondary Color'}
                     </button>
                     <button style={{
                       backgroundColor: currentColors.success,
                       color: 'white',
-                      padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
+                      padding: colorHookState.colorButtonShape === 'square' ? '16px' : '8px 16px',
                       border: 'none',
-                      borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
+                      borderRadius: colorHookState.colorButtonShape === 'rounded' ? '50px' : colorHookState.colorButtonShape === 'square' ? '6px' : '6px',
                       cursor: 'pointer',
-                      minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
-                      height: colorButtonShape === 'square' ? '50px' : 'auto',
+                      minWidth: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
+                      height: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center'
                     }}>
-                      {colorButtonShape === 'square' ? 'Su' : 'Success Color'}
+                      {colorHookState.colorButtonShape === 'square' ? 'Su' : 'Success Color'}
                     </button>
                     <button style={{
                       backgroundColor: currentColors.warning,
                       color: 'black',
-                      padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
+                      padding: colorHookState.colorButtonShape === 'square' ? '16px' : '8px 16px',
                       border: 'none',
-                      borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
+                      borderRadius: colorHookState.colorButtonShape === 'rounded' ? '50px' : colorHookState.colorButtonShape === 'square' ? '6px' : '6px',
                       cursor: 'pointer',
-                      minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
-                      height: colorButtonShape === 'square' ? '50px' : 'auto',
+                      minWidth: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
+                      height: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center'
                     }}>
-                      {colorButtonShape === 'square' ? 'W' : 'Warning Color'}
+                      {colorHookState.colorButtonShape === 'square' ? 'W' : 'Warning Color'}
                     </button>
                     <button style={{
                       backgroundColor: currentColors.danger,
                       color: 'white',
-                      padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
+                      padding: colorHookState.colorButtonShape === 'square' ? '16px' : '8px 16px',
                       border: 'none',
-                      borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
+                      borderRadius: colorHookState.colorButtonShape === 'rounded' ? '50px' : colorHookState.colorButtonShape === 'square' ? '6px' : '6px',
                       cursor: 'pointer',
-                      minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
-                      height: colorButtonShape === 'square' ? '50px' : 'auto',
+                      minWidth: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
+                      height: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center'
                     }}>
-                      {colorButtonShape === 'square' ? 'D' : 'Danger Color'}
+                      {colorHookState.colorButtonShape === 'square' ? 'D' : 'Danger Color'}
                     </button>
                     <button style={{
                       backgroundColor: currentColors.info,
                       color: 'white',
-                      padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
+                      padding: colorHookState.colorButtonShape === 'square' ? '16px' : '8px 16px',
                       border: 'none',
-                      borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
+                      borderRadius: colorHookState.colorButtonShape === 'rounded' ? '50px' : colorHookState.colorButtonShape === 'square' ? '6px' : '6px',
                       cursor: 'pointer',
-                      minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
-                      height: colorButtonShape === 'square' ? '50px' : 'auto',
+                      minWidth: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
+                      height: colorHookState.colorButtonShape === 'square' ? '50px' : 'auto',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center'
                     }}>
-                      {colorButtonShape === 'square' ? 'I' : 'Info Color'}
+                      {colorHookState.colorButtonShape === 'square' ? 'I' : 'Info Color'}
                     </button>
                   </>
                 )}
 
                 {/* BACKGROUNDS CATEGORY - Show colored background boxes */}
-                {colorCategory === 'backgrounds' && (
+                {colorHookState.colorCategory === 'backgrounds' && (
                   <>
                     <div style={{
                       backgroundColor: currentColors.primary,
@@ -937,7 +906,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 )}
 
                 {/* TEXT CATEGORY - Show colored text samples */}
-                {colorCategory === 'text' && (
+                {colorHookState.colorCategory === 'text' && (
                   <>
                     <div style={{ textAlign: 'center', padding: '10px' }}>
                       <h4 style={{ color: currentColors.primary, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Primary Text</h4>
@@ -967,7 +936,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 )}
 
                 {/* BORDERS CATEGORY - Show colored border samples */}
-                {colorCategory === 'borders' && (
+                {colorHookState.colorCategory === 'borders' && (
                   <>
                     <div style={{
                       border: `3px solid ${currentColors.primary}`,
@@ -1187,11 +1156,11 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   onClick={applyColorsToApp}
                   className="layera-button layera-button--primary"
                 >
-                  <RocketIcon size="sm" /> Εφαρμογή Χρωμάτων για {colorCategory.toUpperCase()}
+                  <RocketIcon size="sm" /> Εφαρμογή Χρωμάτων για {colorHookState.colorCategory.toUpperCase()}
                 </Button>
 
                 {/* Κουμπί για εφαρμογή στην επικεφαλίδα - μόνο για buttons + square */}
-                {colorCategory === 'buttons' && colorButtonShape === 'square' && (
+                {colorHookState.colorCategory === 'buttons' && colorHookState.colorButtonShape === 'square' && (
                   <Button
                     variant="success"
                     size="lg"
@@ -1203,9 +1172,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 )}
               </Box>
               <Text className="layera-typography layera-margin-top--sm" data-size="xs" data-color="secondary">
-                {colorCategory === 'buttons' && colorButtonShape === 'square'
+                {colorHookState.colorCategory === 'buttons' && colorHookState.colorButtonShape === 'square'
                   ? 'Εφαρμόστε τα χρώματα των τετράγωνων πλήκτρων στην επικεφαλίδα'
-                  : `Θα επηρεαστούν όλα τα στοιχεία τύπου "${colorCategory}" στην εφαρμογή`
+                  : `Θα επηρεαστούν όλα τα στοιχεία τύπου "${colorHookState.colorCategory}" στην εφαρμογή`
                 }
               </Text>
             </Box>
@@ -1220,7 +1189,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               {/* Current Color Values Display */}
               <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--neutral-light" data-family="mono" data-size="sm">
                 <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="base" data-weight="semibold">
-                  <PaletteIcon size="sm" /> Παλέτα Χρωμάτων για {colorCategory.toUpperCase()}:
+                  <PaletteIcon size="sm" /> Παλέτα Χρωμάτων για {colorHookState.colorCategory.toUpperCase()}:
                 </h4>
                 <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">
 {`{
@@ -1237,10 +1206,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               {/* CSS Variables Display */}
               <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--info-light" data-family="mono" data-size="sm">
                 <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="base" data-weight="semibold">
-                  <SettingsIcon size="sm" /> CSS Μεταβλητές για {colorCategory.toUpperCase()}{colorCategory === 'buttons' ? ` (${colorButtonShape})` : ''}:
+                  <SettingsIcon size="sm" /> CSS Μεταβλητές για {colorHookState.colorCategory.toUpperCase()}{colorHookState.colorCategory === 'buttons' ? ` (${colorHookState.colorButtonShape})` : ''}:
                 </h4>
                 <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">
-                  {colorCategory === 'buttons' && colorButtonShape === 'rectangular' && `{
+                  {colorHookState.colorCategory === 'buttons' && colorHookState.colorButtonShape === 'rectangular' && `{
   --layera-color-button-primary: "${currentColors.primary}",
   --layera-color-button-secondary: "${currentColors.secondary}",
   --layera-color-button-success: "${currentColors.success}",
@@ -1248,7 +1217,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   --layera-color-button-danger: "${currentColors.danger}",
   --layera-color-button-info: "${currentColors.info}"
 }`}
-                  {colorCategory === 'buttons' && colorButtonShape === 'square' && `{
+                  {colorHookState.colorCategory === 'buttons' && colorHookState.colorButtonShape === 'square' && `{
   --layera-color-button-square-primary: "${currentColors.primary}",
   --layera-color-button-square-secondary: "${currentColors.secondary}",
   --layera-color-button-square-success: "${currentColors.success}",
@@ -1256,7 +1225,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   --layera-color-button-square-danger: "${currentColors.danger}",
   --layera-color-button-square-info: "${currentColors.info}"
 }`}
-                  {colorCategory === 'buttons' && colorButtonShape === 'rounded' && `{
+                  {colorHookState.colorCategory === 'buttons' && colorHookState.colorButtonShape === 'rounded' && `{
   --layera-color-button-rounded-primary: "${currentColors.primary}",
   --layera-color-button-rounded-secondary: "${currentColors.secondary}",
   --layera-color-button-rounded-success: "${currentColors.success}",
@@ -1264,7 +1233,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   --layera-color-button-rounded-danger: "${currentColors.danger}",
   --layera-color-button-rounded-info: "${currentColors.info}"
 }`}
-                  {colorCategory === 'backgrounds' && `{
+                  {colorHookState.colorCategory === 'backgrounds' && `{
   --layera-color-bg-primary: "${currentColors.primary}",
   --layera-color-bg-secondary: "${currentColors.secondary}",
   --layera-color-bg-success: "${currentColors.success}",
@@ -1272,7 +1241,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   --layera-color-bg-danger: "${currentColors.danger}",
   --layera-color-bg-info: "${currentColors.info}"
 }`}
-                  {colorCategory === 'text' && `{
+                  {colorHookState.colorCategory === 'text' && `{
   --layera-color-text-primary: "${currentColors.primary}",
   --layera-color-text-secondary: "${currentColors.secondary}",
   --layera-color-text-success: "${currentColors.success}",
@@ -1280,7 +1249,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   --layera-color-text-danger: "${currentColors.danger}",
   --layera-color-text-info: "${currentColors.info}"
 }`}
-                  {colorCategory === 'borders' && `{
+                  {colorHookState.colorCategory === 'borders' && `{
   --layera-color-border-primary: "${currentColors.primary}",
   --layera-color-border-secondary: "${currentColors.secondary}",
   --layera-color-border-success: "${currentColors.success}",
