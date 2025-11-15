@@ -7,6 +7,12 @@
 
 // External APIs & Services
 import { EXTERNAL_APIS, LEAFLET_INFRASTRUCTURE } from './external-apis';
+// Animation Durations
+import { ANIMATION_DURATIONS } from './animation-durations';
+// Demo Property Data
+import { DEMO_PROPERTY_DATA } from './demo-property-data';
+// Geometric & UI Constants
+import { GEOMETRIC_LIMITS, ICON_DIMENSIONS, UI_DIMENSIONS } from './geometric-limits';
 
 // ============================================================================
 // EXTERNAL APIs & SERVICES - Imported from external-apis.ts
@@ -14,134 +20,19 @@ import { EXTERNAL_APIS, LEAFLET_INFRASTRUCTURE } from './external-apis';
 // External services now imported from external-apis.ts for better organization
 
 // ============================================================================
-// UI ANIMATION & INTERACTION DURATIONS - Single Source of Truth
+// UI ANIMATION & INTERACTION DURATIONS - Imported from animation-durations.ts
 // ============================================================================
-
-/**
- * Animation Durations για UI Interactions
- */
-export const ANIMATION_DURATIONS = {
-  // Auto-advance timings
-  PROPERTY_TYPE_SELECTION: 500, // PropertyTypeSelector auto-advance delay
-  OCCUPATION_SEARCH: 1500, // OccupationStep search completion delay
-  COMPLETE_STEP: 500, // CompleteStep animation delay
-
-  // Form interaction timings
-  FORM_VALIDATION_DELAY: 300, // Form validation debounce
-  SEARCH_DEBOUNCE: 300, // Search input debounce
-  API_DEBOUNCE: 500, // API call debounce
-
-  // UI state transitions
-  MODAL_TRANSITION: 200, // Modal open/close animation
-  SIDEBAR_TRANSITION: 300, // Sidebar slide animation
-  TOOLTIP_DELAY: 500, // Tooltip appearance delay
-
-  // General animation durations
-  INSTANT: 50,  // For instant button feedback
-  FAST: 150,
-  NORMAL: 300,
-  SLOW: 500,
-  EXTRA_SLOW: 1000,
-} as const;
+// Animation durations now imported from animation-durations.ts for better organization
 
 // ============================================================================
-// DEMO & SAMPLE DATA - Single Source of Truth
+// DEMO & SAMPLE DATA - Imported from demo-property-data.ts
 // ============================================================================
-
-/**
- * Demo Property Data για Development & Testing
- */
-export const DEMO_PROPERTY_DATA = {
-  // Sample property details
-  PRICE: 150000, // Example property price in euros
-  SQUARE_METERS: 85, // Example property size in square meters
-
-  // Business logic constants - (FULL_TIME_HOURS_THRESHOLD moved to DEMO_PROPERTY_DATA to avoid duplicates)
-
-  // Form validation ranges
-  BUILDING_YEAR_MIN: 1800, // Earliest reasonable building year
-  BUILDING_YEAR_PLACEHOLDER: 2005, // Example year for placeholder
-
-  // Property limits
-  MAX_BEDROOMS: 20, // Maximum number of bedrooms
-  MAX_BATHROOMS: 10, // Maximum number of bathrooms
-  MAX_PARKING_SPACES: 50, // Maximum parking spaces
-
-  // Form placeholders & defaults - SSOT
-  DEFAULT_ROOMS_PLACEHOLDER: 3, // Default rooms placeholder
-  DEFAULT_BATHROOMS_PLACEHOLDER: 2, // Default bathrooms placeholder
-  DEFAULT_FLOOR_PLACEHOLDER: 3, // Default floor placeholder
-
-  // Validation minimums - SSOT
-  MIN_ROOMS: 1, // Minimum rooms allowed
-  MIN_BATHROOMS: 1, // Minimum bathrooms allowed
-  MIN_FLOOR: -2, // Minimum floor (basement levels)
-  MIN_PRICE: 0, // Minimum price allowed
-  MIN_SQUARE_METERS: 1, // Minimum square meters
-
-  // Employment constants
-  FULL_TIME_HOURS_THRESHOLD: 40, // Standard full-time employment threshold
-} as const;
+// Demo property data now imported from demo-property-data.ts for better organization
 
 // ============================================================================
-// GEOMETRIC & UI CONSTANTS - SSOT για geometric limits
+// GEOMETRIC & UI CONSTANTS - Imported from geometric-limits.ts
 // ============================================================================
-
-/**
- * Geometric Validation Limits - Single Source of Truth
- */
-export const GEOMETRIC_LIMITS = {
-  MAX_AREA_SQM: 1000000, // 1 km² - geometric validation limit
-  MIN_AREA_SQM: 100,     // 100 square meters minimum
-  MAX_TICK_VALUE: 100000, // Maximum normalized tick value for rulers
-  AREA_CONVERSION_FACTOR: 111319.9, // Meters per degree approximation
-  MIN_POLYGON_POINTS: 3   // Minimum points for valid polygon
-} as const;
-
-/**
- * Icon Dimensions από tokens.json - SSOT για icon positioning
- */
-export const ICON_DIMENSIONS = {
-  MAP: {
-    ALERT: {
-      width: 30,
-      height: 48,
-      anchor: {
-        x: 15,
-        y: 48
-      },
-      shadow: {
-        size: 48
-      },
-      popup: {
-        offsetY: -42
-      },
-      tooltip: {
-        offsetY: -28
-      }
-    },
-    TOOLTIP: {
-      anchorX: 16
-    },
-    POPUP: {
-      anchorX: 1
-    }
-  }
-} as const;
-
-/**
- * UI Component Dimensions - SSOT για component sizing
- */
-export const UI_DIMENSIONS = {
-  SIDEBAR: {
-    AREAS_PANEL_WIDTH: 80,  // Areas panel width percentage
-    MIN_WIDTH: 0,           // Collapsed width
-    COLLAPSED_WIDTH: 0      // Fully collapsed state
-  },
-  PANEL: {
-    Z_INDEX_MODAL: 10002    // Modal panel z-index
-  }
-} as const;
+// Geometric & UI constants now imported from geometric-limits.ts for better organization
 
 // ============================================================================
 // UI LAYER MANAGEMENT - Z-Index Constants
@@ -907,3 +798,6 @@ export const CONFIG = {
 // RE-EXPORTS για Backward Compatibility
 // ============================================================================
 export { EXTERNAL_APIS, LEAFLET_INFRASTRUCTURE } from './external-apis';
+export { ANIMATION_DURATIONS } from './animation-durations';
+export { DEMO_PROPERTY_DATA } from './demo-property-data';
+export { GEOMETRIC_LIMITS, ICON_DIMENSIONS, UI_DIMENSIONS } from './geometric-limits';
