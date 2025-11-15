@@ -13,6 +13,8 @@ import { ANIMATION_DURATIONS } from './animation-durations';
 import { DEMO_PROPERTY_DATA } from './demo-property-data';
 // Geometric & UI Constants
 import { GEOMETRIC_LIMITS, ICON_DIMENSIONS, UI_DIMENSIONS } from './geometric-limits';
+// UI Layers, Workflow & Geospatial
+import { Z_INDEX_LAYERS, WORKFLOW_ORDER, GEOSPATIAL_SERVICES } from './ui-layers';
 
 // ============================================================================
 // EXTERNAL APIs & SERVICES - Imported from external-apis.ts
@@ -35,67 +37,9 @@ import { GEOMETRIC_LIMITS, ICON_DIMENSIONS, UI_DIMENSIONS } from './geometric-li
 // Geometric & UI constants now imported from geometric-limits.ts for better organization
 
 // ============================================================================
-// UI LAYER MANAGEMENT - Z-Index Constants
+// UI LAYER MANAGEMENT, WORKFLOW & GEOSPATIAL - Imported from ui-layers.ts
 // ============================================================================
-
-/**
- * Z-Index Layer Management για UI Stacking
- */
-export const Z_INDEX_LAYERS = {
-  // Base layers (0-99)
-  BASE: 1,
-  CONTENT: 10,
-
-  // UI Components (100-999)
-  SIDEBAR: 100,
-  NAVIGATION: 200,
-  FORM_ELEMENTS: 300,
-
-  // Interactive Elements (1000-9999)
-  STEPS_OVERLAY: 1000, // LayoutStep overlay z-index
-  DROPDOWN: 1500,
-  TOOLTIP: 2000,
-
-  // Critical UI (10000+)
-  MODAL_BACKDROP: 10000,
-  MODAL_CONTENT: 10001,
-  COMPLETION_OVERLAY: 10002, // CompleteStep & AvailabilityStep final overlay
-  NOTIFICATION: 10003,
-  LOADING_OVERLAY: 10004,
-} as const;
-
-// ============================================================================
-// WORKFLOW STEP ORDERING - Single Source of Truth
-// ============================================================================
-
-/**
- * Workflow Step Order Constants
- */
-export const WORKFLOW_ORDER = {
-  // Step sequence numbers
-  AVAILABILITY_DETAILS: 12,
-  LAYOUT: 13,
-  LOCATION: 14,
-  PROPERTY_DETAILS: 15,
-  UPLOAD: 17,
-
-  // Special steps
-  COMPLETION: 100, // Always last step
-} as const;
-
-/**
- * OpenStreetMap & Geospatial Services
- */
-export const GEOSPATIAL_SERVICES = {
-  OSM_TILE_SERVER: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-  NOMINATIM_GEOCODING: 'https://nominatim.openstreetmap.org',
-
-  // Overpass API Endpoints (load-balanced)
-  OVERPASS_PRIMARY: 'https://overpass.kumi.systems/api/interpreter',
-  OVERPASS_SECONDARY: 'https://overpass-api.de/api/interpreter',
-  OVERPASS_TERTIARY: 'https://lz4.overpass-api.de/api/interpreter',
-  OVERPASS_FALLBACK: 'https://overpass.openstreetmap.ru/api/interpreter',
-} as const;
+// UI layers, workflow & geospatial services now imported from ui-layers.ts for better organization
 
 // ============================================================================
 // XML NAMESPACES - W3C Standards
@@ -801,3 +745,4 @@ export { EXTERNAL_APIS, LEAFLET_INFRASTRUCTURE } from './external-apis';
 export { ANIMATION_DURATIONS } from './animation-durations';
 export { DEMO_PROPERTY_DATA } from './demo-property-data';
 export { GEOMETRIC_LIMITS, ICON_DIMENSIONS, UI_DIMENSIONS } from './geometric-limits';
+export { Z_INDEX_LAYERS, WORKFLOW_ORDER, GEOSPATIAL_SERVICES } from './ui-layers';
