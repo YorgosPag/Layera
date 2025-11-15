@@ -188,46 +188,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
           marginBottom: '32px'
         }}
       >
-        {/* Size Control */}
-        <Box className="layera-card layera-padding--lg">
-          <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
-            Size
-          </h4>
-          <Box className="layera-flex layera-flex--gap-sm">
-            {buttonSizes.map((size) => (
-              <Button
-                key={size}
-                variant={buttonState.size === size ? 'primary' : 'secondary'}
-                size="sm"
-                onClick={() => buttonActions.setSize(size)}
-              >
-                {size}
-              </Button>
-            ))}
-          </Box>
-        </Box>
-
-        {/* Text & Icon Control */}
-        <Box className="layera-card layera-padding--lg">
-          <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
-            Κείμενο & Εικονίδιο
-          </h4>
-          <input
-            type="text"
-            value={buttonState.text}
-            onChange={(e) => buttonActions.setText(e.target.value)}
-            className="layera-input layera-width--full layera-margin-bottom--sm"
-          />
-          <Button
-            variant={buttonState.withIcon ? 'primary' : 'outline'}
-            size="sm"
-            onClick={() => buttonActions.setWithIcon(!buttonState.withIcon)}
-          >
-            {buttonState.withIcon ? <><CheckIcon size="sm" /> Με εικονίδιο</> : <><CloseIcon size="sm" /> Χωρίς εικονίδιο</>}
-          </Button>
-        </Box>
-
-        {/* Shape Control */}
+        {/* Shape Control - ΠΡΩΤΟ */}
         <Box className="layera-card layera-padding--lg">
           <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
             Σχήμα Πλήκτρου
@@ -253,6 +214,57 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
               onClick={() => buttonActions.setShape('rounded')}
             >
               <CompassIcon size="sm" /> Στρογγυλό
+            </Button>
+          </Box>
+        </Box>
+
+        {/* Size Control - ΔΕΥΤΕΡΟ */}
+        <Box className="layera-card layera-padding--lg">
+          <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
+            Size
+          </h4>
+          <Box className="layera-flex layera-flex--gap-sm">
+            {buttonSizes.map((size) => (
+              <Button
+                key={size}
+                variant={buttonState.size === size ? 'primary' : 'secondary'}
+                size="sm"
+                onClick={() => buttonActions.setSize(size)}
+              >
+                {size}
+              </Button>
+            ))}
+          </Box>
+        </Box>
+
+        {/* Text & Icon Control - ΤΡΙΤΟ */}
+        <Box className="layera-card layera-padding--lg">
+          <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
+            Κείμενο & Εικονίδιο
+          </h4>
+          <Box className="layera-flex layera-flex--gap-md layera-flex--align-center">
+            <input
+              type="text"
+              value={buttonState.text}
+              onChange={(e) => buttonActions.setText(e.target.value)}
+              style={{
+                padding: '12px',
+                borderRadius: '6px',
+                fontSize: '14px',
+                width: '100%',
+                outline: 'none',
+                backgroundColor: '#ffffff',
+                color: '#333333',
+                border: '1px solid #e5e5e5',
+                flex: '1'
+              }}
+            />
+            <Button
+              variant={buttonState.withIcon ? 'primary' : 'outline'}
+              size="sm"
+              onClick={() => buttonActions.setWithIcon(!buttonState.withIcon)}
+            >
+              {buttonState.withIcon ? <><CheckIcon size="sm" /> Με εικονίδιο</> : <><CloseIcon size="sm" /> Χωρίς εικονίδιο</>}
             </Button>
           </Box>
         </Box>
