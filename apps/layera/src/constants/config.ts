@@ -29,6 +29,8 @@ import { API_STATUS, API_TIMEOUTS, FILE_SIZE_LIMITS, FILE_SYSTEM_LIMITS, SEARCH_
 import { LEAFLET_UI_OFFSETS, RULER_TICK_VALUES, COMPRESSION_SETTINGS, PROPERTY_VALIDATION, LEAFLET_ICON_SIZES } from './ui-measurement';
 // UI Utilities
 import { UI_WIDTH_PERCENTAGES, ADDRESS_PARSING, UI_TIMING, CRYPTOGRAPHIC_CONSTANTS, UI_Z_INDEX_LAYERS } from './ui-utilities';
+// Demo & Legacy Configuration
+import { DEMO_ACCOUNT_DATA, CONFIG } from './demo-legacy-config';
 
 // ============================================================================
 // EXTERNAL APIs & SERVICES - Imported from external-apis.ts
@@ -94,105 +96,16 @@ import { UI_WIDTH_PERCENTAGES, ADDRESS_PARSING, UI_TIMING, CRYPTOGRAPHIC_CONSTAN
 // UI Z-index layers moved to ui-utilities.ts
 
 // ============================================================================
-// SEMANTIC COLORS MOVED TO STYLE DICTIONARY
+// SEMANTIC COLORS - Moved to Style Dictionary
 // ============================================================================
-
-/**
- * 🎨 SEMANTIC COLORS
- * Όλες οι semantic color values μεταφέρθηκαν στο Style Dictionary
- * Χρησιμοποιήστε: var(--layera-color-semantic-error-primary), κλπ
- *
- * @see packages/tokens/src/domains/color-semantic.json
- */
+// All semantic colors moved to @see packages/tokens/src/domains/color-semantic.json
+// Use CSS variables: var(--layera-color-semantic-error-primary), etc.
 
 // ============================================================================
-// DEMO DATA CONSTANTS - Sample Data & Test Values
+// DEMO DATA & LEGACY CONFIG - Imported from demo-legacy-config.ts
 // ============================================================================
 
-/**
- * Sample Account Data - Used in i18n templates and demo environments
- * SINGLE SOURCE OF TRUTH για δεδομένα παραδείγματος
- */
-export const DEMO_ACCOUNT_DATA = {
-  ACCOUNT_CREATION: {
-    YEAR: 2025,
-    MONTH: 10, // Οκτώβριος
-    DAY: 17,
-    HOUR: 12,
-    MINUTE: 4,
-    SECOND: 9,
-    PERIOD: 'μ.μ.' // Ελληνικό format
-  },
-  LAST_SIGNIN: {
-    YEAR: 2025,
-    MONTH: 11, // Νοέμβριος
-    DAY: 5,
-    HOUR: 12,
-    MINUTE: 41,
-    SECOND: 2,
-    PERIOD: 'μ.μ.'
-  },
-  USER_INFO: {
-    EMAIL: 'georgios.pagonis@gmail.com',
-    DISPLAY_NAME: 'Georgios Pagonis',
-    USER_ID: 'Z55xqJg38uRapVrvUlgwkf1',
-    ROLE: 'Ιδιωτικός',
-    EMAIL_VERIFIED: 'Επαληθευμένο',
-    MFA_ENABLED: 'Απενεργοποιημένο'
-  }
-} as const;
-
-// ============================================================================
-// DEFAULT EXPORTS - Backwards Compatibility
-// ============================================================================
-
-/**
- * Legacy Exports - Για backwards compatibility
- */
-export const CONFIG = {
-  api: {
-    baseUrl: process.env.API_BASE_URL || LOCAL_URLS.ID_SERVICE,
-    timeout: 10000,
-    retries: 3,
-  },
-  app: {
-    name: 'Layera',
-    version: process.env.APP_VERSION || '1.0.0',
-  },
-  map: {
-    defaultZoom: FIXED_DIMENSIONS.MAP_ZOOM_DEFAULT,
-    maxZoom: FIXED_DIMENSIONS.MAP_ZOOM_MAX,
-    minZoom: FIXED_DIMENSIONS.MAP_ZOOM_MIN,
-    fabBottomOffset: 80,
-    fabHalfWidth: 28,
-    defaultCenter: [37.9755, 23.7348] as const, // Athens
-  },
-  geoDrawing: {
-    snapTolerance: 10,
-    minSnapZoom: 16,
-    debounceMs: 500,
-    measurementPrecision: 2,
-    defaultStrokeColor: 'var(--layera-color-primary)',
-    defaultFillColor: 'var(--layera-color-brand-light)',
-    defaultStrokeWidth: 2,
-  },
-  osm: {
-    overpassApiUrl: 'https://overpass-api.de/api/interpreter',
-    requestTimeout: 10000,
-    maxCacheEntries: 100,
-    cacheTtl: 3600000, // 1 hour
-  },
-  search: {
-    maxResults: 100,
-    debounceMs: 300,
-  },
-  debug: {
-    cursorThrottleMs: 120,
-    maxElementStackSize: 6,
-    maxHTMLSliceLength: 80,
-    maxLiveStackSize: 5,
-  },
-} as const;
+// Demo account data and legacy CONFIG object now imported from demo-legacy-config.ts
 
 // ============================================================================
 // RE-EXPORTS για Backward Compatibility
@@ -209,3 +122,4 @@ export { BRAND_COLORS, UI_COLORS, FONT_SIZES, FONT_WEIGHTS, ANIMATION_DISTANCES,
 export { API_STATUS, API_TIMEOUTS, FILE_SIZE_LIMITS, FILE_SYSTEM_LIMITS, SEARCH_LIMITS } from './api-file-config';
 export { LEAFLET_UI_OFFSETS, RULER_TICK_VALUES, COMPRESSION_SETTINGS, PROPERTY_VALIDATION, LEAFLET_ICON_SIZES } from './ui-measurement';
 export { UI_WIDTH_PERCENTAGES, ADDRESS_PARSING, UI_TIMING, CRYPTOGRAPHIC_CONSTANTS, UI_Z_INDEX_LAYERS } from './ui-utilities';
+export { DEMO_ACCOUNT_DATA, CONFIG } from './demo-legacy-config';
