@@ -1,4 +1,4 @@
-import type { LayeraUser, AuthResult } from '../types/auth.js';
+import type { LayeraUser } from '../types/auth.js';
 
 /**
  * TOTP configuration interface

@@ -99,12 +99,12 @@ export function RoleGuard({
   const { user, loading, initialized } = useAuthContext();
 
   // Καθορισμός του ρόλου που απαιτείται
-  const roleToCheck = requiredRole || (allowedRoles ? allowedRoles[0] : undefined);
+  const roleToCheck = requiredRole || allowedRoles?.[0];
   const guardResult = useRoleGuard(user, roleToCheck);
 
   // Έλεγχος πολλαπλών ρόλων εάν έχουν οριστεί
   const hasAnyAllowedRole = allowedRoles
-    ? allowedRoles.some(role => useRoleGuard(user, role).hasAccess)
+    ? allowedRoles.some(role => user?.role === role || user?.customClaims?.roles?.includes(role))
     : guardResult.hasAccess;
 
   // Loading state

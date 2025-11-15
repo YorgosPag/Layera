@@ -15,7 +15,6 @@ import { MEDIA_QUERY, DEFAULT_STORAGE_KEY, DEFAULT_ATTRIBUTE } from '../constant
  * - Performance optimized με useCallback
  */
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
 export function ThemeProvider({

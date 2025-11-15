@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box } from '@layera/layout';
-import { Text } from '@layera/typography';
 import type { LayeraUser, UserRole } from '../types/auth.js';
 
 /**

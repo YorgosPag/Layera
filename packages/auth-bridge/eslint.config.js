@@ -13,7 +13,14 @@ export default [
     languageOptions: {
       ecmaVersion: 2020,
       sourceType: 'module',
-      parser: tsparser
+      parser: tsparser,
+      globals: {
+        console: 'readonly',
+        window: 'readonly',
+        navigator: 'readonly',
+        alert: 'readonly',
+        URLSearchParams: 'readonly'
+      }
     },
     plugins: {
       '@typescript-eslint': tseslint,
@@ -26,10 +33,7 @@ export default [
       ...reactHooks.configs.recommended.rules,
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true }
-      ]
+      'react-refresh/only-export-components': 'off'
     }
   }
 ];
