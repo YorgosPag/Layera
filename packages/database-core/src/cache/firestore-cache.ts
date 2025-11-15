@@ -237,7 +237,7 @@ export class FirestoreCache implements CacheStrategy {
    */
   private getCacheDocumentRef(key: string) {
     // Sanitize key για Firestore
-    const sanitizedKey = key.replace(/[/\\#\$\[\]]/g, '_');
+    const sanitizedKey = key.replace(/[/\\#$[\]]/g, '_');
     return this.namespace.doc(this.collectionName, sanitizedKey);
   }
 
