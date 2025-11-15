@@ -15,7 +15,8 @@ import { useState } from 'react';
  * - Single Responsibility Principle
  */
 
-export type ColorCategory = 'buttons' | 'backgrounds' | 'text' | 'borders';
+export type ColorCategory = 'backgrounds' | 'text' | 'borders';
+export type ElementType = 'buttons' | 'cards' | 'modals' | 'inputs' | 'layout' | 'tables';
 export type ColorButtonShape = 'rectangular' | 'square' | 'rounded';
 
 export interface ColorPalette {
@@ -28,7 +29,6 @@ export interface ColorPalette {
 }
 
 export interface CategoryColorPalettes {
-  buttons: ColorPalette;
   backgrounds: ColorPalette;
   text: ColorPalette;
   borders: ColorPalette;
@@ -36,6 +36,7 @@ export interface CategoryColorPalettes {
 
 export interface ColorState {
   colorCategory: ColorCategory;
+  elementType: ElementType;
   colorButtonShape: ColorButtonShape;
   rectangularPalette: ColorPalette;
   squarePalette: ColorPalette;
@@ -45,6 +46,7 @@ export interface ColorState {
 
 export interface ColorStateActions {
   setColorCategory: (category: ColorCategory) => void;
+  setElementType: (type: ElementType) => void;
   setColorButtonShape: (shape: ColorButtonShape) => void;
   updateRectangularPalette: (key: keyof ColorPalette, value: string) => void;
   updateSquarePalette: (key: keyof ColorPalette, value: string) => void;
@@ -57,6 +59,7 @@ export interface UseColorStateReturn {
   state: ColorState;
   actions: ColorStateActions;
   colorCategories: readonly ColorCategory[];
+  elementTypes: readonly ElementType[];
   colorButtonShapes: readonly ColorButtonShape[];
   getCurrentPalette: () => ColorPalette;
   getCategoryPalette: (category: ColorCategory) => ColorPalette;
@@ -90,14 +93,6 @@ const DEFAULT_ROUNDED_PALETTE: ColorPalette = {
 };
 
 const DEFAULT_CATEGORY_PALETTES: CategoryColorPalettes = {
-  buttons: {
-    primary: 'var(--layera-color-semantic-info-primary, #6366f1)',
-    secondary: 'var(--layera-color-text-secondary, #475569)',
-    success: 'var(--layera-color-semantic-success-primary, #10b981)',
-    warning: 'var(--layera-color-semantic-warning-primary, #f59e0b)',
-    danger: 'var(--layera-color-semantic-error-primary, #ef4444)',
-    info: 'var(--layera-color-semantic-info-primary, #6366f1)'
-  },
   backgrounds: {
     primary: 'var(--layera-color-surface-primary, #ffffff)',
     secondary: 'var(--layera-color-surface-secondary, #f8fafc)',
@@ -125,7 +120,8 @@ const DEFAULT_CATEGORY_PALETTES: CategoryColorPalettes = {
 };
 
 const DEFAULT_COLOR_STATE: ColorState = {
-  colorCategory: 'buttons',
+  colorCategory: 'backgrounds',
+  elementType: 'buttons',
   colorButtonShape: 'square',
   rectangularPalette: DEFAULT_RECTANGULAR_PALETTE,
   squarePalette: DEFAULT_SQUARE_PALETTE,
@@ -134,11 +130,15 @@ const DEFAULT_COLOR_STATE: ColorState = {
 };
 
 const COLOR_CATEGORIES: readonly ColorCategory[] = [
-  'buttons', 'backgrounds', 'text', 'borders'
+  'backgrounds', 'text', 'borders'
 ] as const;
 
 const COLOR_BUTTON_SHAPES: readonly ColorButtonShape[] = [
   'rectangular', 'square', 'rounded'
+] as const;
+
+const ELEMENT_TYPES: readonly ElementType[] = [
+  'buttons', 'cards', 'modals', 'inputs', 'layout', 'tables'
 ] as const;
 
 /**
@@ -156,6 +156,10 @@ export const useColorState = (): UseColorStateReturn => {
 
     setColorButtonShape: (shape: ColorButtonShape) => {
       setState(prev => ({ ...prev, colorButtonShape: shape }));
+    },
+
+    setElementType: (type: ElementType) => {
+      setState(prev => ({ ...prev, elementType: type }));
     },
 
     updateRectangularPalette: (key: keyof ColorPalette, value: string) => {
@@ -218,6 +222,7 @@ export const useColorState = (): UseColorStateReturn => {
     state,
     actions,
     colorCategories: COLOR_CATEGORIES,
+    elementTypes: ELEMENT_TYPES,
     colorButtonShapes: COLOR_BUTTON_SHAPES,
     getCurrentPalette,
     getCategoryPalette

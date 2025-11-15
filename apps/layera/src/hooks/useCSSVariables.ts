@@ -24,7 +24,7 @@ interface CSSVariableMap {
 export interface CSSVariablesActions {
   ensureCSSVariablesExist: () => void;
   applySquareColorsToHeader: () => void;
-  applyColorsToApp: (colorCategory: ColorCategory, currentColors: ColorPalette) => Promise<void>;
+  applyColorsToApp: (colorCategory: ColorCategory, currentColors: ColorPalette, elementType?: string) => Promise<void>;
 }
 
 export interface UseCSSVariablesReturn {
@@ -118,73 +118,97 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
   /**
    * Εφαρμόζει χρώματα στην εφαρμογή μέσω CSS variables
    */
-  const applyColorsToApp = async (colorCategory: ColorCategory, currentColors: ColorPalette) => {
+  const applyColorsToApp = async (colorCategory: ColorCategory, currentColors: ColorPalette, elementType: string = 'buttons') => {
     const root = document.documentElement;
     const categoryColors = CSS_VARIABLE_MAP[colorCategory];
 
-    if (colorCategory === 'buttons') {
-      // Εφαρμογή χρωμάτων για buttons (background, color, border)
-      const oldBg = root.style.getPropertyValue('--layera-btn-secondary-bg') || 'not set';
+    // Νέα αρχιτεκτονική: 3 κατηγορίες (backgrounds/text/borders) + element types
+    console.log(`🎯 CSS INJECTION - Category: ${colorCategory}, ElementType: ${elementType}, Colors:`, currentColors);
 
-      root.style.setProperty('--layera-btn-secondary-bg', currentColors.secondary);
-      root.style.setProperty('--layera-btn-secondary-color', '#ffffff');
-      root.style.setProperty('--layera-btn-secondary-border', currentColors.secondary);
+    // Set CSS variables για την επιλεγμένη κατηγορία
+    root.style.setProperty(categoryColors.primary, currentColors.primary);
+    root.style.setProperty(categoryColors.secondary, currentColors.secondary);
+    root.style.setProperty(categoryColors.success, currentColors.success);
+    root.style.setProperty(categoryColors.warning, currentColors.warning);
+    root.style.setProperty(categoryColors.danger, currentColors.danger);
+    root.style.setProperty(categoryColors.info, currentColors.info);
 
-      // EMERGENCY OVERRIDE - Δυνατό CSS injection για άμεση εφαρμογή
-      const emergencyStyle = `
-        .layera-btn-secondary {
-          background-color: ${currentColors.secondary} !important;
-          border-color: ${currentColors.secondary} !important;
-          color: #ffffff !important;
-        }
-      `;
+    // Δημιουργώ CSS selectors ανάλογα με το element type
+    const getSelectorsForElementType = (type: string) => {
+      const baseSelectors = {
+        'buttons': [
+          '[data-layout="header-fixed"] .layera-square-btn',
+          '[data-layout="header-fixed"] .layera-button',
+          '[data-layout="header-fixed"] .layera-btn--secondary',
+          '.layera-btn--secondary',
+          '.layera-button'
+        ],
+        'cards': [
+          '.layera-card',
+          '.layera-card--bordered',
+          '.card',
+          '.panel'
+        ],
+        'modals': [
+          '.layera-modal',
+          '.layera-dialog',
+          '.modal',
+          '.dialog'
+        ],
+        'inputs': [
+          '.layera-input',
+          '.layera-textarea',
+          'input[type="text"]',
+          'textarea'
+        ],
+        'layout': [
+          '.layera-header',
+          '.layera-sidebar',
+          'hr'
+        ],
+        'tables': [
+          '.layera-table',
+          'table'
+        ]
+      };
 
-      // Αφαίρεση παλιού emergency style αν υπάρχει
-      const oldEmergencyStyle = document.getElementById('layera-emergency-button-style');
-      if (oldEmergencyStyle) {
-        oldEmergencyStyle.remove();
+      const selectors = (baseSelectors as Record<string, string[]>)[type] || baseSelectors['buttons'];
+      return selectors.join(`, `);
+    };
+
+    // Δημιουργώ το CSS για την επιλεγμένη κατηγορία και element type
+    const getCSSPropertyForCategory = (category: string) => {
+      switch (category) {
+        case 'backgrounds': return 'background-color';
+        case 'text': return 'color';
+        case 'borders': return 'border-color';
+        default: return 'border-color';
       }
+    };
 
-      // Προσθήκη νέου emergency style
-      const styleElement = document.createElement('style');
-      styleElement.id = 'layera-emergency-button-style';
-      styleElement.textContent = emergencyStyle;
-      document.head.appendChild(styleElement);
+    const cssProperty = getCSSPropertyForCategory(colorCategory);
+    const selectors = getSelectorsForElementType(elementType);
+    const variableName = categoryColors.secondary; // χρησιμοποιούμε το secondary χρώμα για το injection
 
-      const newBg = root.style.getPropertyValue('--layera-btn-secondary-bg');
-
-      // Διπλός έλεγχος - ας δούμε αν το CSS variable υπάρχει στο DOM
-      const computedStyle = getComputedStyle(document.documentElement);
-      const computedBg = computedStyle.getPropertyValue('--layera-btn-secondary-bg');
-    } else {
-      // Εφαρμογή για άλλες κατηγορίες (backgrounds, text, borders)
-      // ΚΑΘΑΡΙΣΜΟΣ: Αφαιρώ παλιές CSS μεταβλητές που μπορεί να προκαλούν cross-contamination
-      if (colorCategory === 'borders') {
-        // Καθαρίζω τις παλιές border variables
-        root.style.removeProperty('--layera-color-border-primary');
-        root.style.removeProperty('--layera-color-border-secondary');
-        root.style.removeProperty('--layera-color-border-success');
-        root.style.removeProperty('--layera-color-border-warning');
-        root.style.removeProperty('--layera-color-border-danger');
-        root.style.removeProperty('--layera-color-border-info');
+    const style = `
+      /* ${colorCategory} colors για ${elementType} elements */
+      ${selectors} {
+        ${cssProperty}: var(${variableName}, #d1d5db) !important;
       }
+    `;
 
-      console.log(`🎯 Applying ${colorCategory} colors:`, {
-        categoryColors,
-        currentColors,
-        mapping: {
-          [`${categoryColors.primary} = ${currentColors.primary}`]: true,
-          [`${categoryColors.secondary} = ${currentColors.secondary}`]: true
-        }
-      });
-
-      root.style.setProperty(categoryColors.primary, currentColors.primary);
-      root.style.setProperty(categoryColors.secondary, currentColors.secondary);
-      root.style.setProperty(categoryColors.success, currentColors.success);
-      root.style.setProperty(categoryColors.warning, currentColors.warning);
-      root.style.setProperty(categoryColors.danger, currentColors.danger);
-      root.style.setProperty(categoryColors.info, currentColors.info);
+    // Αφαίρεση παλιού style αν υπάρχει
+    const styleId = `layera-${colorCategory}-${elementType}-style`;
+    const oldStyle = document.getElementById(styleId);
+    if (oldStyle) {
+      oldStyle.remove();
     }
+
+    // Προσθήκη νέου style
+    const styleElement = document.createElement('style');
+    styleElement.id = styleId;
+    styleElement.textContent = style;
+    document.head.appendChild(styleElement);
   };
 
   /**

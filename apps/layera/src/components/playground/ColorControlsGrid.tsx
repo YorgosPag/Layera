@@ -37,6 +37,59 @@ export const ColorControlsGrid: React.FC<ColorControlsGridProps> = ({
   startPreview,
   colorCategory
 }) => {
+
+  // Περιγραφές για κάθε κατηγορία χρωμάτων
+  const getColorDescriptions = () => {
+    switch(colorCategory) {
+      case 'borders':
+        return {
+          primary: 'Κύρια περιγράμματα - Γενικά στοιχεία UI',
+          secondary: 'Τετράγωνα κουμπιά header - Εικονίδια επικεφαλίδας',
+          success: 'Περιγράμματα επιτυχίας - Θετικές ενέργειες',
+          warning: 'Περιγράμματα προειδοποίησης - Ειδοποιήσεις',
+          danger: 'Περιγράμματα κινδύνου - Διαγραφές/Σφάλματα',
+          info: 'Περιγράμματα πληροφοριών - Ενημερώσεις'
+        };
+      case 'buttons':
+        return {
+          primary: 'Κουμπιά κύριας δράσης - Call-to-action',
+          secondary: 'Δευτερεύοντα κουμπιά - Γενικές ενέργειες',
+          success: 'Κουμπιά επιτυχίας - Αποθήκευση, Επιβεβαίωση',
+          warning: 'Κουμπιά προειδοποίησης - Προσοχή απαιτείται',
+          danger: 'Κουμπιά κινδύνου - Διαγραφή, Ακύρωση',
+          info: 'Κουμπιά πληροφοριών - Βοήθεια, Πληροφορίες'
+        };
+      case 'backgrounds':
+        return {
+          primary: 'Κύρια φόντα - Περιοχές περιεχομένου',
+          secondary: 'Δευτερεύοντα φόντα - Sidebars, panels',
+          success: 'Φόντα επιτυχίας - Θετικά μηνύματα',
+          warning: 'Φόντα προειδοποίησης - Alerts, notices',
+          danger: 'Φόντα κινδύνου - Σφάλματα, διαγραφές',
+          info: 'Φόντα πληροφοριών - Tips, οδηγίες'
+        };
+      case 'text':
+        return {
+          primary: 'Κυρίως κείμενο - Τίτλοι, περιεχόμενο',
+          secondary: 'Δευτερεύον κείμενο - Υπότιτλοι, περιγραφές',
+          success: 'Κείμενο επιτυχίας - Επιβεβαιώσεις',
+          warning: 'Κείμενο προειδοποίησης - Ειδοποιήσεις',
+          danger: 'Κείμενο κινδύνου - Σφάλματα',
+          info: 'Κείμενο πληροφοριών - Βοηθητικές πληροφορίες'
+        };
+      default:
+        return {
+          primary: 'Κύριο χρώμα',
+          secondary: 'Δευτερεύον χρώμα',
+          success: 'Χρώμα επιτυχίας',
+          warning: 'Χρώμα προειδοποίησης',
+          danger: 'Χρώμα κινδύνου',
+          info: 'Χρώμα πληροφοριών'
+        };
+    }
+  };
+
+  const descriptions = getColorDescriptions();
   return (
     <Box
       className="layera-grid layera-margin-bottom--xl"
@@ -50,6 +103,9 @@ export const ColorControlsGrid: React.FC<ColorControlsGridProps> = ({
         <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
           Primary Color
         </h4>
+        <Text className="layera-typography layera-margin-bottom--sm" data-size="sm" data-color="secondary">
+          {descriptions.primary}
+        </Text>
         <input
           type="color"
           value={extractHexFromCSSVar(currentColors.primary)}
@@ -66,6 +122,9 @@ export const ColorControlsGrid: React.FC<ColorControlsGridProps> = ({
         <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
           Secondary Color
         </h4>
+        <Text className="layera-typography layera-margin-bottom--sm" data-size="sm" data-color="secondary">
+          {descriptions.secondary}
+        </Text>
         <input
           type="color"
           value={extractHexFromCSSVar(currentColors.secondary)}
@@ -91,6 +150,9 @@ export const ColorControlsGrid: React.FC<ColorControlsGridProps> = ({
         <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
           Success Color
         </h4>
+        <Text className="layera-typography layera-margin-bottom--sm" data-size="sm" data-color="secondary">
+          {descriptions.success}
+        </Text>
         <input
           type="color"
           value={extractHexFromCSSVar(currentColors.success)}
@@ -107,6 +169,9 @@ export const ColorControlsGrid: React.FC<ColorControlsGridProps> = ({
         <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
           Warning Color
         </h4>
+        <Text className="layera-typography layera-margin-bottom--sm" data-size="sm" data-color="secondary">
+          {descriptions.warning}
+        </Text>
         <input
           type="color"
           value={extractHexFromCSSVar(currentColors.warning)}
@@ -123,6 +188,9 @@ export const ColorControlsGrid: React.FC<ColorControlsGridProps> = ({
         <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
           Danger Color
         </h4>
+        <Text className="layera-typography layera-margin-bottom--sm" data-size="sm" data-color="secondary">
+          {descriptions.danger}
+        </Text>
         <input
           type="color"
           value={extractHexFromCSSVar(currentColors.danger)}
@@ -139,6 +207,9 @@ export const ColorControlsGrid: React.FC<ColorControlsGridProps> = ({
         <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
           Info Color
         </h4>
+        <Text className="layera-typography layera-margin-bottom--sm" data-size="sm" data-color="secondary">
+          {descriptions.info}
+        </Text>
         <input
           type="color"
           value={extractHexFromCSSVar(currentColors.info)}

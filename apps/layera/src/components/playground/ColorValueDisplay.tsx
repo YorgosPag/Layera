@@ -9,10 +9,10 @@ import { PaletteIcon, SettingsIcon } from '@layera/icons';
  * Γραμμές 199-279 από το αρχικό LivePlayground.tsx
  */
 
-import type { UseColorStateReturn } from '../../hooks/useColorState.js';
+import type { ColorState } from '../../hooks/useColorState.js';
 
 interface ColorValueDisplayProps {
-  colorHookState: UseColorStateReturn;
+  colorHookState: ColorState;
   currentColors: Record<string, string>;
 }
 
@@ -47,56 +47,40 @@ export const ColorValueDisplay: React.FC<ColorValueDisplayProps> = ({
       {/* CSS Variables Display */}
       <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--info-light" data-family="mono" data-size="sm">
         <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="base" data-weight="semibold">
-          <SettingsIcon size="sm" /> CSS Μεταβλητές για {colorHookState.colorCategory.toUpperCase()}{colorHookState.colorCategory === 'buttons' ? ` (${colorHookState.colorButtonShape})` : ''}:
+          <SettingsIcon size="sm" /> CSS Μεταβλητές για {colorHookState.colorCategory.toUpperCase()} στα {colorHookState.elementType.toUpperCase()}{colorHookState.elementType === 'buttons' ? ` (${colorHookState.colorButtonShape})` : ''}:
         </h4>
         <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">
-          {colorHookState.colorCategory === 'buttons' && colorHookState.colorButtonShape === 'rectangular' && `{
-  --layera-color-button-primary: "${currentColors.primary}",
-  --layera-color-button-secondary: "${currentColors.secondary}",
-  --layera-color-button-success: "${currentColors.success}",
-  --layera-color-button-warning: "${currentColors.warning}",
-  --layera-color-button-danger: "${currentColors.danger}",
-  --layera-color-button-info: "${currentColors.info}"
+          {colorHookState.elementType === 'buttons' && colorHookState.colorButtonShape === 'rectangular' && `{
+  --layera-${colorHookState.colorCategory}-button-primary: "${currentColors.primary}",
+  --layera-${colorHookState.colorCategory}-button-secondary: "${currentColors.secondary}",
+  --layera-${colorHookState.colorCategory}-button-success: "${currentColors.success}",
+  --layera-${colorHookState.colorCategory}-button-warning: "${currentColors.warning}",
+  --layera-${colorHookState.colorCategory}-button-danger: "${currentColors.danger}",
+  --layera-${colorHookState.colorCategory}-button-info: "${currentColors.info}"
 }`}
-          {colorHookState.colorCategory === 'buttons' && colorHookState.colorButtonShape === 'square' && `{
-  --layera-color-button-square-primary: "${currentColors.primary}",
-  --layera-color-button-square-secondary: "${currentColors.secondary}",
-  --layera-color-button-square-success: "${currentColors.success}",
-  --layera-color-button-square-warning: "${currentColors.warning}",
-  --layera-color-button-square-danger: "${currentColors.danger}",
-  --layera-color-button-square-info: "${currentColors.info}"
+          {colorHookState.elementType === 'buttons' && colorHookState.colorButtonShape === 'square' && `{
+  --layera-${colorHookState.colorCategory}-button-square-primary: "${currentColors.primary}",
+  --layera-${colorHookState.colorCategory}-button-square-secondary: "${currentColors.secondary}",
+  --layera-${colorHookState.colorCategory}-button-square-success: "${currentColors.success}",
+  --layera-${colorHookState.colorCategory}-button-square-warning: "${currentColors.warning}",
+  --layera-${colorHookState.colorCategory}-button-square-danger: "${currentColors.danger}",
+  --layera-${colorHookState.colorCategory}-button-square-info: "${currentColors.info}"
 }`}
-          {colorHookState.colorCategory === 'buttons' && colorHookState.colorButtonShape === 'rounded' && `{
-  --layera-color-button-rounded-primary: "${currentColors.primary}",
-  --layera-color-button-rounded-secondary: "${currentColors.secondary}",
-  --layera-color-button-rounded-success: "${currentColors.success}",
-  --layera-color-button-rounded-warning: "${currentColors.warning}",
-  --layera-color-button-rounded-danger: "${currentColors.danger}",
-  --layera-color-button-rounded-info: "${currentColors.info}"
+          {colorHookState.elementType === 'buttons' && colorHookState.colorButtonShape === 'rounded' && `{
+  --layera-${colorHookState.colorCategory}-button-rounded-primary: "${currentColors.primary}",
+  --layera-${colorHookState.colorCategory}-button-rounded-secondary: "${currentColors.secondary}",
+  --layera-${colorHookState.colorCategory}-button-rounded-success: "${currentColors.success}",
+  --layera-${colorHookState.colorCategory}-button-rounded-warning: "${currentColors.warning}",
+  --layera-${colorHookState.colorCategory}-button-rounded-danger: "${currentColors.danger}",
+  --layera-${colorHookState.colorCategory}-button-rounded-info: "${currentColors.info}"
 }`}
-          {colorHookState.colorCategory === 'backgrounds' && `{
-  --layera-color-bg-primary: "${currentColors.primary}",
-  --layera-color-bg-secondary: "${currentColors.secondary}",
-  --layera-color-bg-success: "${currentColors.success}",
-  --layera-color-bg-warning: "${currentColors.warning}",
-  --layera-color-bg-danger: "${currentColors.danger}",
-  --layera-color-bg-info: "${currentColors.info}"
-}`}
-          {colorHookState.colorCategory === 'text' && `{
-  --layera-color-text-primary: "${currentColors.primary}",
-  --layera-color-text-secondary: "${currentColors.secondary}",
-  --layera-color-text-success: "${currentColors.success}",
-  --layera-color-text-warning: "${currentColors.warning}",
-  --layera-color-text-danger: "${currentColors.danger}",
-  --layera-color-text-info: "${currentColors.info}"
-}`}
-          {colorHookState.colorCategory === 'borders' && `{
-  --layera-color-border-primary: "${currentColors.primary}",
-  --layera-color-border-secondary: "${currentColors.secondary}",
-  --layera-color-border-success: "${currentColors.success}",
-  --layera-color-border-warning: "${currentColors.warning}",
-  --layera-color-border-danger: "${currentColors.danger}",
-  --layera-color-border-info: "${currentColors.info}"
+          {colorHookState.elementType !== 'buttons' && `{
+  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-primary: "${currentColors.primary}",
+  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-secondary: "${currentColors.secondary}",
+  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-success: "${currentColors.success}",
+  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-warning: "${currentColors.warning}",
+  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-danger: "${currentColors.danger}",
+  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-info: "${currentColors.info}"
 }`}
         </pre>
       </Box>

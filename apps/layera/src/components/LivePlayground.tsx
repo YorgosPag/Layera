@@ -15,7 +15,7 @@ import { loadCurrentThemeFromLocalStorage } from '../services/colorThemeService'
 import { useAuth } from '@layera/auth-bridge';
 import { useRealTimePreview } from '../hooks/useRealTimePreview';
 import { useButtonState } from '../hooks/useButtonState';
-import { useColorState } from '../hooks/useColorState';
+import { useColorState, ColorPalette } from '../hooks/useColorState';
 import { useCSSVariables } from '../hooks/useCSSVariables';
 import { useStorage } from '../hooks/useStorage';
 import { useNavigation } from '../hooks/useNavigation';
@@ -121,7 +121,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
     const categoryColors = colorHelpersActions.getColorsForCategory(colorHookState.colorCategory);
 
     // Apply colors via CSS Variables hook
-    await cssActions.applyColorsToApp(colorHookState.colorCategory, categoryColors);
+    await cssActions.applyColorsToApp(colorHookState.colorCategory, categoryColors as ColorPalette, colorHookState.elementType);
 
     // Save theme via Storage hook
     const themeData = {
@@ -135,7 +135,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
       infoColor: categoryColors.info
     };
 
-    await storageActions.saveToStorage(themeData, user);
+    await storageActions.saveToStorage(themeData, user || undefined);
 
     window.dispatchEvent(new CustomEvent('colorsUpdate', {
       detail: { category: colorHookState.colorCategory, ...categoryColors }
@@ -188,8 +188,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
             {/* Color Controls Grid */}
             <ColorControlsGrid
-              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
-              currentSetters={colorHelpersActions.getSettersForCategory(colorHookState.colorCategory)}
+              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, string>}
+              currentSetters={colorHelpersActions.getSettersForCategory(colorHookState.colorCategory) as unknown as Record<string, (value: string) => void>}
               startPreview={startPreview}
               colorCategory={colorHookState.colorCategory}
             />
@@ -204,7 +204,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             {/* Color Values & CSS Variables - Side by Side */}
             <ColorValueDisplay
               colorHookState={colorHookState}
-              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
+              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, string>}
             />
           </Box>
         )}

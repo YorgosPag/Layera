@@ -1,6 +1,7 @@
 import { useEffect, useCallback } from 'react';
 import { ColorStateActions, ColorState } from './useColorState';
 import { saveColorTheme } from '../services/colorThemeService';
+import type { LayeraUser } from '@layera/auth-bridge';
 
 /**
  * Storage Management Hook
@@ -23,7 +24,7 @@ interface SavedThemeState {
   };
   // Backward compatibility - παλιό format
   shape?: 'rectangular' | 'square' | 'rounded';
-  colorCategory: 'buttons' | 'backgrounds' | 'text' | 'borders';
+  colorCategory: 'backgrounds' | 'text' | 'borders';
   primaryColor?: string;
   secondaryColor?: string;
   successColor?: string;
@@ -33,7 +34,7 @@ interface SavedThemeState {
 }
 
 interface ThemeData {
-  colorCategory: 'buttons' | 'backgrounds' | 'text' | 'borders';
+  colorCategory: 'backgrounds' | 'text' | 'borders';
   shape: 'rectangular' | 'square' | 'rounded';
   primaryColor: string;
   secondaryColor: string;
@@ -45,7 +46,7 @@ interface ThemeData {
 
 export interface StorageActions {
   loadFromStorage: () => void;
-  saveToStorage: (themeData: ThemeData, user?: object) => Promise<void>;
+  saveToStorage: (themeData: ThemeData, user?: LayeraUser | null) => Promise<void>;
 }
 
 export interface UseStorageReturn {
@@ -114,7 +115,7 @@ export const useStorage = ({ colorState, colorActions }: UseStorageProps): UseSt
   /**
    * Αποθήκευση theme σε localStorage και Firebase
    */
-  const saveToStorage = async (themeData: ThemeData, user?: object) => {
+  const saveToStorage = async (themeData: ThemeData, user?: LayeraUser | null) => {
     // Αποθήκευση στο localStorage για γρήγορη φόρτωση
     try {
       localStorage.setItem('layera-current-theme', JSON.stringify(themeData));
@@ -128,7 +129,7 @@ export const useStorage = ({ colorState, colorActions }: UseStorageProps): UseSt
 
     if (hasRealFirebaseConfig) {
       try {
-        const themeId = await saveColorTheme(themeData, user || undefined, `${themeData.colorCategory}-theme-${Date.now()}`);
+        const themeId = await saveColorTheme(themeData, user ?? undefined, `${themeData.colorCategory}-theme-${Date.now()}`);
         console.log('Theme saved to Firebase with ID:', themeId);
       } catch (error) {
         console.error('WARNING:Σφάλμα αποθήκευσης στο Firebase:', error);

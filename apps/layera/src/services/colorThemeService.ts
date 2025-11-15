@@ -17,7 +17,7 @@ export interface ColorState {
   warningColor: string;
   dangerColor: string;
   infoColor: string;
-  colorCategory: 'buttons' | 'backgrounds' | 'text' | 'borders';
+  colorCategory: 'backgrounds' | 'text' | 'borders';
 }
 
 export interface ColorTheme {
@@ -103,7 +103,9 @@ export async function loadColorTheme(
       return null;
     }
 
-    const colorState = themeColorsToColorState(theme.colors, theme.category);
+    // Backward compatibility: map old "buttons" category to "borders"
+    const mappedCategory = theme.category === 'buttons' ? 'borders' : theme.category;
+    const colorState = themeColorsToColorState(theme.colors, mappedCategory as ColorState['colorCategory']);
     console.log(`🎨 Color theme loaded successfully: ${themeId}`);
     return colorState;
 

@@ -1,4 +1,4 @@
-import { ColorState, ColorStateActions, ColorPalette } from './useColorState';
+import { ColorState, ColorStateActions, ColorPalette, ColorCategory, CategoryColorPalettes } from './useColorState';
 
 /**
  * Color Helpers Hook
@@ -25,14 +25,12 @@ interface ColorSetters {
 }
 
 interface CategorySpecificColors {
-  buttons: ColorPalette;
   backgrounds: ColorPalette;
   text: ColorPalette;
   borders: ColorPalette;
 }
 
 interface CategorySpecificSetters {
-  buttons: ColorSetters;
   backgrounds: ColorSetters;
   text: ColorSetters;
   borders: ColorSetters;
@@ -69,7 +67,7 @@ export const useColorHelpers = ({
   colorState,
   colorActions,
   getCurrentPalette,
-  getCategoryPalette
+  getCategoryPalette: _getCategoryPalette
 }: UseColorHelpersProps): UseColorHelpersReturn => {
 
   /**
@@ -128,7 +126,7 @@ export const useColorHelpers = ({
    * Gets colors for a specific category (autonomous color system)
    */
   const getColorsForCategory = (category: string): ColorPalette => {
-    return colorState.categoryPalettes[category as keyof CategorySpecificColors];
+    return colorState.categoryPalettes[category as ColorCategory];
   };
 
   /**
@@ -136,12 +134,12 @@ export const useColorHelpers = ({
    */
   const getSettersForCategory = (category: string): ColorSetters => {
     return {
-      setPrimary: (value: string) => colorActions.updateCategoryPalette(category as any, 'primary', value),
-      setSecondary: (value: string) => colorActions.updateCategoryPalette(category as any, 'secondary', value),
-      setSuccess: (value: string) => colorActions.updateCategoryPalette(category as any, 'success', value),
-      setWarning: (value: string) => colorActions.updateCategoryPalette(category as any, 'warning', value),
-      setDanger: (value: string) => colorActions.updateCategoryPalette(category as any, 'danger', value),
-      setInfo: (value: string) => colorActions.updateCategoryPalette(category as any, 'info', value)
+      setPrimary: (value: string) => colorActions.updateCategoryPalette(category as ColorCategory, 'primary', value),
+      setSecondary: (value: string) => colorActions.updateCategoryPalette(category as ColorCategory, 'secondary', value),
+      setSuccess: (value: string) => colorActions.updateCategoryPalette(category as ColorCategory, 'success', value),
+      setWarning: (value: string) => colorActions.updateCategoryPalette(category as ColorCategory, 'warning', value),
+      setDanger: (value: string) => colorActions.updateCategoryPalette(category as ColorCategory, 'danger', value),
+      setInfo: (value: string) => colorActions.updateCategoryPalette(category as ColorCategory, 'info', value)
     };
   };
 
@@ -157,7 +155,6 @@ export const useColorHelpers = ({
    */
   const getAllCategorySetters = (): CategorySpecificSetters => {
     return {
-      buttons: getSettersForCategory('buttons'),
       backgrounds: getSettersForCategory('backgrounds'),
       text: getSettersForCategory('text'),
       borders: getSettersForCategory('borders')

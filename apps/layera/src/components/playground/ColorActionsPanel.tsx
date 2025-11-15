@@ -11,10 +11,10 @@ import { RocketIcon, CheckIcon } from '@layera/icons';
  * Γραμμές 191-221 από το αρχικό LivePlayground.tsx
  */
 
-import type { UseColorStateReturn } from '../../hooks/useColorState.js';
+import type { ColorState } from '../../hooks/useColorState.js';
 
 interface ColorActionsPanelProps {
-  colorHookState: UseColorStateReturn;
+  colorHookState: ColorState;
   applyColorsToApp: () => void;
   applySquareColorsToHeader: () => void;
 }
@@ -36,8 +36,8 @@ export const ColorActionsPanel: React.FC<ColorActionsPanelProps> = ({
           <RocketIcon size="sm" /> Εφαρμογή Χρωμάτων για {colorHookState.colorCategory.toUpperCase()}
         </Button>
 
-        {/* Κουμπί για εφαρμογή στην επικεφαλίδα - μόνο για buttons + square */}
-        {colorHookState.colorCategory === 'buttons' && colorHookState.colorButtonShape === 'square' && (
+        {/* Κουμπί για εφαρμογή στην επικεφαλίδα - μόνο για borders + buttons */}
+        {colorHookState.colorCategory === 'borders' && colorHookState.elementType === 'buttons' && colorHookState.colorButtonShape === 'square' && (
           <Button
             variant="success"
             size="lg"
@@ -49,9 +49,9 @@ export const ColorActionsPanel: React.FC<ColorActionsPanelProps> = ({
         )}
       </Box>
       <Text className="layera-typography layera-margin-top--sm" data-size="xs" data-color="secondary">
-        {colorHookState.colorCategory === 'buttons' && colorHookState.colorButtonShape === 'square'
+        {colorHookState.colorCategory === 'borders' && colorHookState.elementType === 'buttons' && colorHookState.colorButtonShape === 'square'
           ? 'Εφαρμόστε τα χρώματα των τετράγωνων πλήκτρων στην επικεφαλίδα'
-          : `Θα επηρεαστούν όλα τα στοιχεία τύπου "${colorHookState.colorCategory}" στην εφαρμογή`
+          : `Θα επηρεαστούν όλα τα "${colorHookState.elementType}" με "${colorHookState.colorCategory}" στην εφαρμογή`
         }
       </Text>
     </Box>

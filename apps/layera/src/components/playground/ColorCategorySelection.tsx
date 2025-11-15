@@ -11,11 +11,11 @@ import { PaletteIcon, LayersIcon, EditIcon, PolygonIcon, RulerIcon, CompassIcon,
  * Γραμμές 170-253 από το αρχικό LivePlayground.tsx
  */
 
-import type { UseColorStateReturn } from '../../hooks/useColorState.js';
+import type { UseColorStateReturn, ColorState, ColorStateActions } from '../../hooks/useColorState.js';
 
 interface ColorCategorySelectionProps {
-  colorHookState: UseColorStateReturn;
-  colorActions: UseColorStateReturn;
+  colorHookState: ColorState;
+  colorActions: ColorStateActions;
 }
 
 export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
@@ -24,9 +24,9 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
 }) => {
   return (
     <Box
-      className={`layera-grid layera-margin-bottom--xl ${colorHookState.colorCategory === 'buttons' ? 'layera-grid--gap-lg' : ''}`}
+      className="layera-grid layera-margin-bottom--xl layera-grid--gap-lg"
       style={{
-        gridTemplateColumns: colorHookState.colorCategory === 'buttons' ? '1fr 1fr' : '1fr'
+        gridTemplateColumns: '1fr 1fr'
       } as React.CSSProperties}
     >
       {/* Color Category Selection */}
@@ -35,13 +35,6 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           <CheckIcon size="sm" /> Επιλογή Κατηγορίας Αντικειμένων
         </h3>
         <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
-          <Button
-            variant={colorHookState.colorCategory === 'buttons' ? 'primary' : 'outline'}
-            size="sm"
-            onClick={() => colorActions.setColorCategory('buttons')}
-          >
-            <PaletteIcon size="sm" /> Buttons
-          </Button>
           <Button
             variant={colorHookState.colorCategory === 'backgrounds' ? 'primary' : 'outline'}
             size="sm"
@@ -69,42 +62,59 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
         </Text>
       </Box>
 
-      {/* Button Shape Selection - Only for Buttons Category */}
-      {colorHookState.colorCategory === 'buttons' && (
-        <Box className="layera-card layera-padding--lg">
-          <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
-            <PaletteIcon size="sm" /> Σχήμα Πλήκτρων Preview
-          </h3>
-          <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
-            <Button
-              variant={colorHookState.colorButtonShape === 'rectangular' ? 'primary' : 'outline'}
-              size="sm"
-              onClick={() => colorActions.setColorButtonShape('rectangular')}
-            >
-              <RulerIcon size="sm" /> Παραλληλόγραμμα
-            </Button>
-            <Button
-              variant={colorHookState.colorButtonShape === 'square' ? 'primary' : 'outline'}
-              size="sm"
-              onClick={() => {
-                colorActions.setColorButtonShape('square');
-              }}
-            >
-              <PolygonIcon size="sm" /> Τετράγωνα
-            </Button>
-            <Button
-              variant={colorHookState.colorButtonShape === 'rounded' ? 'primary' : 'outline'}
-              size="sm"
-              onClick={() => colorActions.setColorButtonShape('rounded')}
-            >
-              <CompassIcon size="sm" /> Στρογγυλά
-            </Button>
-          </Box>
-          <Text className="layera-typography layera-margin-top--sm" data-size="sm" data-color="secondary">
-            Επιλέξτε το σχήμα των πλήκτρων στην προεπισκόπηση χρωμάτων
-          </Text>
+      {/* Element Type Selection - For All Categories */}
+      <Box className="layera-card layera-padding--lg">
+        <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
+          <PolygonIcon size="sm" /> Τύπος Στοιχείων για {colorHookState.colorCategory === 'backgrounds' ? 'Φόντα' : colorHookState.colorCategory === 'text' ? 'Κείμενα' : 'Περιγράμματα'}
+        </h3>
+        <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
+          <Button
+            variant={colorHookState.elementType === 'buttons' ? 'primary' : 'outline'}
+            size="sm"
+            onClick={() => colorActions.setElementType('buttons')}
+          >
+            🔲 Πλήκτρα
+          </Button>
+          <Button
+            variant={colorHookState.elementType === 'cards' ? 'primary' : 'outline'}
+            size="sm"
+            onClick={() => colorActions.setElementType('cards')}
+          >
+            🃏 Κάρτες
+          </Button>
+          <Button
+            variant={colorHookState.elementType === 'modals' ? 'primary' : 'outline'}
+            size="sm"
+            onClick={() => colorActions.setElementType('modals')}
+          >
+            📱 Modals
+          </Button>
+          <Button
+            variant={colorHookState.elementType === 'inputs' ? 'primary' : 'outline'}
+            size="sm"
+            onClick={() => colorActions.setElementType('inputs')}
+          >
+            📝 Πεδία
+          </Button>
+          <Button
+            variant={colorHookState.elementType === 'layout' ? 'primary' : 'outline'}
+            size="sm"
+            onClick={() => colorActions.setElementType('layout')}
+          >
+            🏗️ Layout
+          </Button>
+          <Button
+            variant={colorHookState.elementType === 'tables' ? 'primary' : 'outline'}
+            size="sm"
+            onClick={() => colorActions.setElementType('tables')}
+          >
+            📊 Πίνακες
+          </Button>
         </Box>
-      )}
+        <Text className="layera-typography layera-margin-top--sm" data-size="sm" data-color="secondary">
+          Επιλέξτε ποια στοιχεία θα επηρεάζονται από τα {colorHookState.colorCategory === 'backgrounds' ? 'background' : colorHookState.colorCategory === 'text' ? 'text' : 'border'} χρώματα
+        </Text>
+      </Box>
     </Box>
   );
 };
