@@ -12,6 +12,7 @@ import { useButtonState } from '../hooks/useButtonState';
 import { useColorState } from '../hooks/useColorState';
 import { useCSSVariables } from '../hooks/useCSSVariables';
 import { useStorage } from '../hooks/useStorage';
+import { useNavigation } from '../hooks/useNavigation';
 
 /**
  * Live Playground - Enterprise Component Testing Interface
@@ -54,12 +55,13 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   // Storage Management
   const { actions: storageActions } = useStorage({ colorState: colorHookState, colorActions });
 
+  // Navigation Management
+  const { state: navigationState, actions: navigationActions } = useNavigation();
+
   // ==============================
   // STATE MANAGEMENT
   // ==============================
 
-  /** Active section in the playground interface */
-  const [activeSection, setActiveSection] = useState<'buttons' | 'colors' | 'tokens'>('buttons');
 
 
   // Real-time preview hook for header buttons
@@ -222,32 +224,32 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         {/* Navigation Tabs */}
         <Box className="layera-flex layera-flex--gap-sm layera-margin-bottom--lg layera-padding--md layera-border-radius--md layera-bg-semantic--neutral-light">
           <Button
-            variant={activeSection === 'buttons' ? 'primary' : 'ghost'}
+            variant={navigationState.activeSection === 'buttons' ? 'primary' : 'ghost'}
             size="sm"
-            onClick={() => setActiveSection('buttons')}
+            onClick={() => navigationActions.setActiveSection('buttons')}
           >
             <PaletteIcon size="sm" /> Buttons
           </Button>
           <Button
-            variant={activeSection === 'colors' ? 'primary' : 'ghost'}
+            variant={navigationState.activeSection === 'colors' ? 'primary' : 'ghost'}
             size="sm"
             onClick={() => {
-              setActiveSection('colors');
+              navigationActions.setActiveSection('colors');
             }}
           >
             <PaletteIcon size="sm" /> Colors
           </Button>
           <Button
-            variant={activeSection === 'tokens' ? 'primary' : 'ghost'}
+            variant={navigationState.activeSection === 'tokens' ? 'primary' : 'ghost'}
             size="sm"
-            onClick={() => setActiveSection('tokens')}
+            onClick={() => navigationActions.setActiveSection('tokens')}
           >
             <SettingsIcon size="sm" /> Tokens
           </Button>
         </Box>
 
         {/* Buttons Section */}
-        {activeSection === 'buttons' && (
+        {navigationState.activeSection === 'buttons' && (
           <Box>
             {/* Live Preview Area */}
             <Box className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
@@ -418,7 +420,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         )}
 
         {/* Colors Section - ENTERPRISE COLOR MANAGEMENT */}
-        {activeSection === 'colors' && (
+        {navigationState.activeSection === 'colors' && (
           <Box>
             {/* Category and Shape Selection - Side by Side */}
             <Box
@@ -1080,7 +1082,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           </Box>
         )}
 
-        {activeSection === 'tokens' && (
+        {navigationState.activeSection === 'tokens' && (
           <Box className="layera-flex layera-flex--direction-column layera-flex--justify-center layera-text-center layera-padding--2xl layera-min-height--card">
             <h2 className="layera-typography layera-margin-bottom--lg layera-text-color--neutral-medium" data-size="2xl">
               <SettingsIcon size="sm" /> Tokens Playground
