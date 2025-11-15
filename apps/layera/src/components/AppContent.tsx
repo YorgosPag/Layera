@@ -10,6 +10,8 @@ import { PipelineDiscovery, type PipelineState } from '@layera/pipelines';
 import { LivePlayground } from './LivePlayground';
 import LoginContent from './LoginPage';
 import { PropertyTypeDrawer } from './PropertyTypeDrawer';
+import { PipelineDebugInfo } from './PipelineDebugInfo';
+import { AppModals } from './AppModals';
 
 // Map defaults from tokens system
 const MAP_DEFAULTS = {
@@ -153,23 +155,7 @@ export const AppContent: React.FC = () => {
       />
 
       {/* Pipeline State Debug Info */}
-      {pipelineState && pipelineState.selectedCategory && (
-        <Box style={{
-          position: 'fixed',
-          top: '60px',
-          right: '20px',
-          background: 'rgba(0,0,0,0.8)',
-          color: 'white',
-          padding: '10px',
-          borderRadius: '8px',
-          fontSize: '12px',
-          zIndex: 1000
-        }}>
-          <Text size="sm">🚀 Pipeline: {pipelineState.selectedCategory}</Text>
-          <Text size="sm">📍 Step: {pipelineState.currentStepId}</Text>
-          <Text size="sm">📊 Progress: {pipelineState.currentStepIndex + 1}/{pipelineState.totalSteps}</Text>
-        </Box>
-      )}
+      <PipelineDebugInfo pipelineState={pipelineState} />
 
       <Box className="layera-map-container layera-margin-top--lg">
         <MapContainer
@@ -187,26 +173,13 @@ export const AppContent: React.FC = () => {
         onClose={closeDrawer}
       />
 
-      {/* Add Content Modal */}
-      <AddContentModal
-        isOpen={activeModal === 'addContent'}
-        onClose={closeModal}
-        onSelectProperty={handleSelectProperty}
-        onSelectJob={handleSelectJob}
+      {/* App Modals */}
+      <AppModals
+        activeModal={activeModal}
+        closeModal={closeModal}
+        handleSelectProperty={handleSelectProperty}
+        handleSelectJob={handleSelectJob}
       />
-
-      {/* Login Modal */}
-      <Modal
-        open={activeModal === 'login'}
-        onClose={closeModal}
-        size="md"
-        aria-labelledby="login-title"
-      >
-        <ModalHeader title={t('auth.loginRegister')} />
-        <ModalContent>
-          <LoginContent />
-        </ModalContent>
-      </Modal>
 
     </Box>
   );
