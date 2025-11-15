@@ -14,10 +14,10 @@ import { useRealTimePreview } from '../hooks/useRealTimePreview';
  *
  * ARXES Compliant Live Testing Interface:
  * - Real-time component testing and configuration
- * - 🏗️ Enterprise CSS Variables management (single source of truth)
+ * - Enterprise CSS Variables management (single source of truth)
  * - Live color palette system with multiple button shapes
- * - 📱 Responsive fullscreen interface with organized sections
- * - 🔧 Direct integration with header button styling
+ * - Responsive fullscreen interface with organized sections
+ * - Direct integration with header button styling
  *
  * @author Claude Code - Enterprise Development Assistant
  * @version 2.0.0 - Refactored for clean enterprise architecture
@@ -31,7 +31,7 @@ interface LivePlaygroundProps {
 }
 
 export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
-  // console.log('🎮 LivePlayground φορτώνει...');
+  // console.log('LivePlayground φορτώνει...');
 
   // Authentication
   const { user } = useAuth();
@@ -216,7 +216,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
       } else {
       }
     } catch (error) {
-      console.error('⚠️ Σφάλμα φόρτωσης χρωμάτων:', error);
+      console.error('WARNING:Σφάλμα φόρτωσης χρωμάτων:', error);
     }
   }, []);
 
@@ -386,7 +386,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
     try {
       localStorage.setItem('layera-current-theme', JSON.stringify(colorState));
     } catch (error) {
-      console.warn('⚠️ Σφάλμα αποθήκευσης στο localStorage:', error);
+      console.warn('WARNING:Σφάλμα αποθήκευσης στο localStorage:', error);
     }
 
     // Αποθήκευση στο Firebase (μόνο αν είναι διαθέσιμο)
@@ -396,7 +396,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
       try {
         const themeId = await saveColorTheme(colorState, user || undefined, `${colorCategory}-theme-${Date.now()}`);
       } catch (error) {
-        console.error('⚠️ Σφάλμα αποθήκευσης στο Firebase:', error);
+        console.error('WARNING:Σφάλμα αποθήκευσης στο Firebase:', error);
       }
     } else {
       // Firebase disabled (demo credentials), χρησιμοποιούμε μόνο localStorage
@@ -1003,7 +1003,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               {/* CSS Variables Display */}
               <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--info-light" data-family="mono" data-size="sm">
                 <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="base" data-weight="semibold">
-                  🔧 CSS Μεταβλητές για {colorCategory.toUpperCase()}{colorCategory === 'buttons' ? ` (${colorButtonShape})` : ''}:
+                  <SettingsIcon size="sm" /> CSS Μεταβλητές για {colorCategory.toUpperCase()}{colorCategory === 'buttons' ? ` (${colorButtonShape})` : ''}:
                 </h4>
                 <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">
                   {colorCategory === 'buttons' && colorButtonShape === 'rectangular' && `{
