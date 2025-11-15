@@ -59,6 +59,7 @@ interface UseColorHelpersProps {
   colorState: ColorState;
   colorActions: ColorStateActions;
   getCurrentPalette: () => ColorPalette;
+  getCategoryPalette: (category: ColorCategory) => ColorPalette;
 }
 
 /**
@@ -67,7 +68,8 @@ interface UseColorHelpersProps {
 export const useColorHelpers = ({
   colorState,
   colorActions,
-  getCurrentPalette
+  getCurrentPalette,
+  getCategoryPalette
 }: UseColorHelpersProps): UseColorHelpersReturn => {
 
   /**
@@ -122,18 +124,66 @@ export const useColorHelpers = ({
     }
   };
 
+  /**
+   * Gets colors for a specific category (autonomous color system)
+   */
+  const getColorsForCategory = (category: string): ColorPalette => {
+    return colorState.categoryPalettes[category as keyof CategorySpecificColors];
+  };
+
+  /**
+   * Gets setters for a specific category (autonomous color system)
+   */
+  const getSettersForCategory = (category: string): ColorSetters => {
+    return {
+      setPrimary: (value: string) => colorActions.updateCategoryPalette(category as any, 'primary', value),
+      setSecondary: (value: string) => colorActions.updateCategoryPalette(category as any, 'secondary', value),
+      setSuccess: (value: string) => colorActions.updateCategoryPalette(category as any, 'success', value),
+      setWarning: (value: string) => colorActions.updateCategoryPalette(category as any, 'warning', value),
+      setDanger: (value: string) => colorActions.updateCategoryPalette(category as any, 'danger', value),
+      setInfo: (value: string) => colorActions.updateCategoryPalette(category as any, 'info', value)
+    };
+  };
+
+  /**
+   * Gets all category-specific colors
+   */
+  const getAllCategoryColors = (): CategorySpecificColors => {
+    return colorState.categoryPalettes;
+  };
+
+  /**
+   * Gets all category-specific setters
+   */
+  const getAllCategorySetters = (): CategorySpecificSetters => {
+    return {
+      buttons: getSettersForCategory('buttons'),
+      backgrounds: getSettersForCategory('backgrounds'),
+      text: getSettersForCategory('text'),
+      borders: getSettersForCategory('borders')
+    };
+  };
+
   // Computed values
   const currentColors = getCurrentColors();
   const currentSetters = getCurrentSetters();
+  const categoryColors = getAllCategoryColors();
+  const categorySetters = getAllCategorySetters();
 
   const actions: ColorHelpersActions = {
     getCurrentColors,
-    getCurrentSetters
+    getCurrentSetters,
+    getColorsForCategory,
+    getSettersForCategory,
+    getAllCategoryColors,
+    getAllCategorySetters
   };
 
   return {
     actions,
     currentColors,
-    currentSetters
+    currentSetters,
+    categoryColors,
+    categorySetters
   };
 };

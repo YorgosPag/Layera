@@ -54,7 +54,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   const { state: buttonState, actions: buttonActions, variants: buttonVariants, sizes: buttonSizes } = useButtonState();
 
   // Color State Management
-  const { state: colorHookState, actions: colorActions, colorCategories, colorButtonShapes, getCurrentPalette } = useColorState();
+  const { state: colorHookState, actions: colorActions, colorCategories, colorButtonShapes, getCurrentPalette, getCategoryPalette } = useColorState();
 
   // CSS Variables Management
   const { actions: cssActions } = useCSSVariables();
@@ -66,10 +66,11 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   const { state: navigationState, actions: navigationActions } = useNavigation();
 
   // Color Helpers Management
-  const { currentColors, currentSetters } = useColorHelpers({
+  const { currentColors, currentSetters, categoryColors, categorySetters, actions: colorHelpersActions } = useColorHelpers({
     colorState: colorHookState,
     colorActions,
-    getCurrentPalette
+    getCurrentPalette,
+    getCategoryPalette
   });
 
   // ==============================
@@ -82,7 +83,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   const { startPreview, isPreviewActive } = useRealTimePreview({
     onCommit: (key: string, value: string) => {
       // Update the actual color state when preview is committed
-      if (key === 'secondaryColor') {
+      // ΜΟΝΟ για buttons category επηρεάζει τα header buttons
+      if (key === 'buttonsSecondaryColor') {
         colorActions.updateSquarePalette('secondary', value);
       }
     },
@@ -115,26 +117,28 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   // ==============================
 
   const applyColorsToApp = async () => {
+    // Get autonomous colors for current category
+    const categoryColors = colorHelpersActions.getColorsForCategory(colorHookState.colorCategory);
 
     // Apply colors via CSS Variables hook
-    await cssActions.applyColorsToApp(colorHookState.colorCategory, currentColors);
+    await cssActions.applyColorsToApp(colorHookState.colorCategory, categoryColors);
 
     // Save theme via Storage hook
     const themeData = {
       colorCategory: colorHookState.colorCategory,
       shape: colorHookState.colorButtonShape,
-      primaryColor: currentColors.primary,
-      secondaryColor: currentColors.secondary,
-      successColor: currentColors.success,
-      warningColor: currentColors.warning,
-      dangerColor: currentColors.danger,
-      infoColor: currentColors.info
+      primaryColor: categoryColors.primary,
+      secondaryColor: categoryColors.secondary,
+      successColor: categoryColors.success,
+      warningColor: categoryColors.warning,
+      dangerColor: categoryColors.danger,
+      infoColor: categoryColors.info
     };
 
     await storageActions.saveToStorage(themeData, user);
 
     window.dispatchEvent(new CustomEvent('colorsUpdate', {
-      detail: { category: colorHookState.colorCategory, ...currentColors }
+      detail: { category: colorHookState.colorCategory, ...categoryColors }
     }));
   };
 
@@ -179,14 +183,15 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             {/* Live Color Preview Area */}
             <ColorPreviewArea
               colorHookState={colorHookState}
-              currentColors={currentColors}
+              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
             />
 
             {/* Color Controls Grid */}
             <ColorControlsGrid
-              currentColors={currentColors}
-              currentSetters={currentSetters}
+              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
+              currentSetters={colorHelpersActions.getSettersForCategory(colorHookState.colorCategory)}
               startPreview={startPreview}
+              colorCategory={colorHookState.colorCategory}
             />
 
             {/* Apply Colors Buttons */}
@@ -199,7 +204,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             {/* Color Values & CSS Variables - Side by Side */}
             <ColorValueDisplay
               colorHookState={colorHookState}
-              currentColors={currentColors}
+              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
             />
           </Box>
         )}

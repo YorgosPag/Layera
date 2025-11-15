@@ -57,12 +57,12 @@ const CSS_VARIABLE_MAP: CSSVariableMap = {
     info: '--layera-color-text-info'
   },
   borders: {
-    primary: '--layera-color-border-primary',
-    secondary: '--layera-color-border-secondary',
-    success: '--layera-color-border-success',
-    warning: '--layera-color-border-warning',
-    danger: '--layera-color-border-danger',
-    info: '--layera-color-border-info'
+    primary: '--layera-playground-border-primary',
+    secondary: '--layera-playground-border-secondary',
+    success: '--layera-playground-border-success',
+    warning: '--layera-playground-border-warning',
+    danger: '--layera-playground-border-danger',
+    info: '--layera-playground-border-info'
   }
 };
 
@@ -158,6 +158,26 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
       const computedBg = computedStyle.getPropertyValue('--layera-btn-secondary-bg');
     } else {
       // Εφαρμογή για άλλες κατηγορίες (backgrounds, text, borders)
+      // ΚΑΘΑΡΙΣΜΟΣ: Αφαιρώ παλιές CSS μεταβλητές που μπορεί να προκαλούν cross-contamination
+      if (colorCategory === 'borders') {
+        // Καθαρίζω τις παλιές border variables
+        root.style.removeProperty('--layera-color-border-primary');
+        root.style.removeProperty('--layera-color-border-secondary');
+        root.style.removeProperty('--layera-color-border-success');
+        root.style.removeProperty('--layera-color-border-warning');
+        root.style.removeProperty('--layera-color-border-danger');
+        root.style.removeProperty('--layera-color-border-info');
+      }
+
+      console.log(`🎯 Applying ${colorCategory} colors:`, {
+        categoryColors,
+        currentColors,
+        mapping: {
+          [`${categoryColors.primary} = ${currentColors.primary}`]: true,
+          [`${categoryColors.secondary} = ${currentColors.secondary}`]: true
+        }
+      });
+
       root.style.setProperty(categoryColors.primary, currentColors.primary);
       root.style.setProperty(categoryColors.secondary, currentColors.secondary);
       root.style.setProperty(categoryColors.success, currentColors.success);

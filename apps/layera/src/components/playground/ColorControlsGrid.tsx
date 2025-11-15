@@ -28,12 +28,14 @@ interface ColorControlsGridProps {
   currentColors: Record<string, string>;
   currentSetters: Record<string, (value: string) => void>;
   startPreview: (key: string, value: string) => void;
+  colorCategory: string;
 }
 
 export const ColorControlsGrid: React.FC<ColorControlsGridProps> = ({
   currentColors,
   currentSetters,
-  startPreview
+  startPreview,
+  colorCategory
 }) => {
   return (
     <Box
@@ -70,7 +72,7 @@ export const ColorControlsGrid: React.FC<ColorControlsGridProps> = ({
           onInput={(e) => {
             // Real-time preview while dragging
             const newColor = (e.target as HTMLInputElement).value;
-            startPreview('secondaryColor', newColor);
+            startPreview(`${colorCategory}SecondaryColor`, newColor);
           }}
           onChange={(e) => {
             // Final commit when color selection is done

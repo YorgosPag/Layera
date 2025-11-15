@@ -18,9 +18,11 @@ import { saveColorTheme } from '../services/colorThemeService';
  */
 
 interface SavedThemeState {
-  buttonState: {
+  buttonState?: {
     shape: 'rectangular' | 'square' | 'rounded';
   };
+  // Backward compatibility - παλιό format
+  shape?: 'rectangular' | 'square' | 'rounded';
   colorCategory: 'buttons' | 'backgrounds' | 'text' | 'borders';
   primaryColor?: string;
   secondaryColor?: string;
@@ -69,9 +71,11 @@ export const useStorage = ({ colorState, colorActions }: UseStorageProps): UseSt
       if (stored) {
         const savedState: SavedThemeState = JSON.parse(stored);
 
-        // Εφαρμογή των αποθηκευμένων χρωμάτων
-        if (savedState.buttonState.shape && savedState.buttonState.shape !== colorState.colorButtonShape) {
-          colorActions.setColorButtonShape(savedState.buttonState.shape);
+        // Εφαρμογή των αποθηκευμένων χρωμάτων με safe guards
+        const buttonShape = savedState.buttonState?.shape || savedState.shape || 'square';
+
+        if (buttonShape && buttonShape !== colorState.colorButtonShape) {
+          colorActions.setColorButtonShape(buttonShape);
         }
 
         if (savedState.colorCategory && savedState.colorCategory !== colorState.colorCategory) {
@@ -79,21 +83,21 @@ export const useStorage = ({ colorState, colorActions }: UseStorageProps): UseSt
         }
 
         // Εφαρμογή χρωμάτων ανάλογα με το σχήμα
-        if (savedState.buttonState.shape === 'square') {
+        if (buttonShape === 'square') {
           if (savedState.primaryColor) colorActions.updateSquarePalette('primary', savedState.primaryColor);
           if (savedState.secondaryColor) colorActions.updateSquarePalette('secondary', savedState.secondaryColor);
           if (savedState.successColor) colorActions.updateSquarePalette('success', savedState.successColor);
           if (savedState.warningColor) colorActions.updateSquarePalette('warning', savedState.warningColor);
           if (savedState.dangerColor) colorActions.updateSquarePalette('danger', savedState.dangerColor);
           if (savedState.infoColor) colorActions.updateSquarePalette('info', savedState.infoColor);
-        } else if (savedState.buttonState.shape === 'rectangular') {
+        } else if (buttonShape === 'rectangular') {
           if (savedState.primaryColor) colorActions.updateRectangularPalette('primary', savedState.primaryColor);
           if (savedState.secondaryColor) colorActions.updateRectangularPalette('secondary', savedState.secondaryColor);
           if (savedState.successColor) colorActions.updateRectangularPalette('success', savedState.successColor);
           if (savedState.warningColor) colorActions.updateRectangularPalette('warning', savedState.warningColor);
           if (savedState.dangerColor) colorActions.updateRectangularPalette('danger', savedState.dangerColor);
           if (savedState.infoColor) colorActions.updateRectangularPalette('info', savedState.infoColor);
-        } else if (savedState.buttonState.shape === 'rounded') {
+        } else if (buttonShape === 'rounded') {
           if (savedState.primaryColor) colorActions.updateRoundedPalette('primary', savedState.primaryColor);
           if (savedState.secondaryColor) colorActions.updateRoundedPalette('secondary', savedState.secondaryColor);
           if (savedState.successColor) colorActions.updateRoundedPalette('success', savedState.successColor);
@@ -105,7 +109,7 @@ export const useStorage = ({ colorState, colorActions }: UseStorageProps): UseSt
     } catch (error) {
       console.error('WARNING:Σφάλμα φόρτωσης χρωμάτων:', error);
     }
-  }, [colorState.colorButtonShape, colorState.colorCategory, colorActions]);
+  }, []);
 
   /**
    * Αποθήκευση theme σε localStorage και Firebase
@@ -138,7 +142,7 @@ export const useStorage = ({ colorState, colorActions }: UseStorageProps): UseSt
   // Auto-load on mount
   useEffect(() => {
     loadFromStorage();
-  }, [loadFromStorage]);
+  }, []);
 
   const actions: StorageActions = {
     loadFromStorage,

@@ -62,7 +62,7 @@
   /* Secondary Variant - Neutral (Για τις περισσότερες δράσεις) */
   --layera-btn-secondary-bg: var(--layera-color-surface);
   --layera-btn-secondary-color: var(--layera-color-text-primary);
-  --layera-btn-secondary-border: var(--layera-color-border);
+  --layera-btn-secondary-border: var(--layera-color-border-primary);
   --layera-btn-secondary-hover-bg: var(--layera-color-surface-hover);
   --layera-btn-secondary-hover-color: var(--layera-color-text-primary);
   --layera-btn-secondary-hover-border: var(--layera-color-border-hover);
@@ -95,7 +95,7 @@
   --layera-btn-ghost-active-bg: var(--layera-color-surface-active);
   --layera-btn-ghost-active-color: var(--layera-color-text-primary);
   --layera-btn-ghost-active-border: var(--layera-color-transparent);
-  --layera-btn-ghost-focus-outline: calc(2 / 16 * 1rem) solid var(--layera-color-border);
+  --layera-btn-ghost-focus-outline: calc(2 / 16 * 1rem) solid var(--layera-color-border-primary);
   --layera-btn-ghost-focus-ring: 0 0 0 calc(2 / 16 * 1rem) var(--layera-color-gray-alpha-50);
 
   /* Danger Variant */
