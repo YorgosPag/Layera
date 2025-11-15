@@ -1,4 +1,5 @@
 import React from 'react';
+import { Box } from '@layera/layout';
 
 /**
  * BackgroundsPreview Component
@@ -23,7 +24,7 @@ export const BackgroundsPreview: React.FC<BackgroundsPreviewProps> = ({
 }) => {
   return (
     <>
-      <div style={{
+      <Box style={{
         backgroundColor: currentColors.primary,
         color: 'white',
         padding: 'var(--layera-global-spacing-5, 20px)',
@@ -39,8 +40,8 @@ export const BackgroundsPreview: React.FC<BackgroundsPreviewProps> = ({
         fontSize: 'var(--layera-global-fontSize-xs, 12px)'
       }}>
         Primary<br/>Background
-      </div>
-      <div style={{
+      </Box>
+      <Box style={{
         backgroundColor: currentColors.secondary,
         color: 'white',
         padding: 'var(--layera-global-spacing-5, 20px)',
@@ -56,8 +57,8 @@ export const BackgroundsPreview: React.FC<BackgroundsPreviewProps> = ({
         fontSize: 'var(--layera-global-fontSize-xs, 12px)'
       }}>
         Secondary<br/>Background
-      </div>
-      <div style={{
+      </Box>
+      <Box style={{
         backgroundColor: currentColors.success,
         color: 'white',
         padding: 'var(--layera-global-spacing-5, 20px)',
@@ -73,8 +74,8 @@ export const BackgroundsPreview: React.FC<BackgroundsPreviewProps> = ({
         fontSize: 'var(--layera-global-fontSize-xs, 12px)'
       }}>
         Success<br/>Background
-      </div>
-      <div style={{
+      </Box>
+      <Box style={{
         backgroundColor: currentColors.warning,
         color: 'black',
         padding: 'var(--layera-global-spacing-5, 20px)',
@@ -90,8 +91,8 @@ export const BackgroundsPreview: React.FC<BackgroundsPreviewProps> = ({
         fontSize: 'var(--layera-global-fontSize-xs, 12px)'
       }}>
         Warning<br/>Background
-      </div>
-      <div style={{
+      </Box>
+      <Box style={{
         backgroundColor: currentColors.danger,
         color: 'white',
         padding: 'var(--layera-global-spacing-5, 20px)',
@@ -107,8 +108,8 @@ export const BackgroundsPreview: React.FC<BackgroundsPreviewProps> = ({
         fontSize: 'var(--layera-global-fontSize-xs, 12px)'
       }}>
         Danger<br/>Background
-      </div>
-      <div style={{
+      </Box>
+      <Box style={{
         backgroundColor: currentColors.info,
         color: 'white',
         padding: 'var(--layera-global-spacing-5, 20px)',
@@ -124,7 +125,7 @@ export const BackgroundsPreview: React.FC<BackgroundsPreviewProps> = ({
         fontSize: 'var(--layera-global-fontSize-xs, 12px)'
       }}>
         Info<br/>Background
-      </div>
+      </Box>
     </>
   );
 };
