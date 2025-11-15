@@ -19,6 +19,10 @@ import { Z_INDEX_LAYERS, WORKFLOW_ORDER, GEOSPATIAL_SERVICES } from './ui-layers
 import { XML_NAMESPACES, ESCO_NAMESPACES, DEVICE_FRAME_COLORS, SVG_DIMENSIONS, ICON_SIZES, LEAFLET_MARKER_DIMENSIONS } from './design-system';
 // Development & Geo Configuration
 import { DEV_PORTS, LOCAL_URLS, MAP_DEFAULTS, DRAWING_LIMITS, EARTH_CONSTANTS, GEOGRAPHIC_BOUNDS } from './dev-config';
+// Device Specifications
+import { MOBILE_DEVICE_SPECS, DEVICE_BREAKPOINTS, DEVICE_VIEWPORTS, CSS_DIMENSIONS, FIXED_DIMENSIONS } from './device-specs';
+// Brand System
+import { BRAND_COLORS, UI_COLORS, FONT_SIZES, FONT_WEIGHTS, ANIMATION_DISTANCES, EASING_FUNCTIONS } from './brand-system';
 
 // ============================================================================
 // EXTERNAL APIs & SERVICES - Imported from external-apis.ts
@@ -56,163 +60,9 @@ import { DEV_PORTS, LOCAL_URLS, MAP_DEFAULTS, DRAWING_LIMITS, EARTH_CONSTANTS, G
 // Development ports, local URLs & geographic bounds now imported from dev-config.ts
 
 // ============================================================================
-// DEVICE SPECIFICATIONS - Hardware & Viewport Dimensions
+// DEVICE SPECIFICATIONS & BRAND SYSTEM - Imported from separate files
 // ============================================================================
-
-/**
- * Mobile Device Specifications - Single Source of Truth
- */
-export const MOBILE_DEVICE_SPECS = {
-  VIEWPORT_WIDTH: 430,
-  VIEWPORT_HEIGHT: 932,
-  FRAME_WIDTH_MIN: 412,
-  FRAME_WIDTH_MAX: 416,
-  FRAME_HEIGHT_MIN: 914,
-  FRAME_HEIGHT_MAX: 920,
-  EXACT_FRAME_WIDTH: 414,
-  EXACT_FRAME_HEIGHT: 916,
-} as const;
-
-/**
- * Responsive Breakpoints - MOVED TO STYLE DICTIONARY
- * Use CSS variables: var(--layera-spacing-breakpoint-mobile), var(--layera-spacing-breakpoint-tablet), var(--layera-spacing-breakpoint-desktop)
- * @see packages/tokens/src/domains/spacing-dimensions.json
- */
-export const DEVICE_BREAKPOINTS = {
-  // Main breakpoints moved to Style Dictionary tokens
-  // MOBILE: 768 → var(--layera-spacing-breakpoint-mobile)
-  // TABLET: 1024 → var(--layera-spacing-breakpoint-tablet)
-  // DESKTOP: 1025 → var(--layera-spacing-breakpoint-desktop)
-  MOBILE_MAX: 480, // Pure mobile detection - Business logic ✅
-} as const;
-
-/**
- * Common Device Viewport Sizes
- */
-export const DEVICE_VIEWPORTS = {
-  // Mobile Models
-  MOBILE_SMALL: { width: 375, height: 667 },
-  MOBILE_MEDIUM: { width: 414, height: 896 },
-  MOBILE_LARGE: { width: MOBILE_DEVICE_SPECS.VIEWPORT_WIDTH, height: MOBILE_DEVICE_SPECS.VIEWPORT_HEIGHT },
-  MOBILE_STANDARD: { width: 390, height: 844 },
-
-  // Tablet Models
-  TABLET_MINI: { width: 768, height: 1024 },
-  TABLET_AIR: { width: 820, height: 1180 },
-  TABLET_PRO: { width: 1024, height: 1366 },
-} as const;
-
-// ============================================================================
-// CSS VIEWPORT DIMENSIONS - Responsive Design
-// ============================================================================
-
-/**
- * CSS Dimension Values
- */
-export const CSS_DIMENSIONS = {
-  FULL_PERCENT: '100%',
-  FULL_VH: '100vh',
-  FULL_VW: '100vw',
-  FULL_VIEWPORT_HEIGHT: '100vh',
-  HALF_PERCENT: '50%',
-} as const;
-
-/**
- * Fixed Pixel Dimensions - PARTIAL DEPRECATION: Card/Button/Input dimensions moved to Style Dictionary
- */
-export const FIXED_DIMENSIONS = {
-  DROPDOWN_MAX_HEIGHT: 400,
-  MIN_BUTTON_WIDTH: 200,
-  MIN_CARD_WIDTH: 280,
-  ICON_CONTAINER_SIZE: 32,
-  MAP_ZOOM_DEFAULT: 13,
-  MAP_ZOOM_MIN: 8,
-  MAP_ZOOM_MAX: 18,
-  // UI dimensions moved to Style Dictionary tokens:
-  // - Card: var(--layera-spacing-component-card-width), var(--layera-spacing-component-card-height)
-  // - Button: var(--layera-spacing-component-button-height)
-  // - Input: var(--layera-spacing-component-input-height)
-} as const;
-
-
-// ============================================================================
-// COLORS - Design System Palette
-// ============================================================================
-
-/**
- * Brand Colors - Primary Palette
- */
-export const BRAND_COLORS = {
-  PRIMARY: 'var(--layera-color-brand)',
-  SECONDARY: 'var(--layera-color-text-secondary)',
-  WHITE: 'var(--layera-color-surface)',
-  BLACK: 'var(--layera-bg-dark)',
-} as const;
-
-/**
- * UI State Colors
- */
-export const UI_COLORS = {
-  INFO_SUBTLE: 'var(--layera-color-brand-background)',
-  INFO_DEFAULT: 'var(--layera-color-primary)',
-  NEUTRAL_LIGHT: 'var(--layera-color-surface-secondary)',
-  NEUTRAL_DEFAULT: 'var(--layera-color-text-secondary)',
-  NEUTRAL_DARK: 'var(--layera-color-text-primary)',
-  BORDER_DEFAULT: 'var(--layera-border-primary)',
-  SURFACE_DEFAULT: 'var(--layera-color-surface-hover)',
-  TEXT_TERTIARY: 'var(--layera-color-text-muted)',
-} as const;
-
-
-// ============================================================================
-// TYPOGRAPHY - Font System
-// ============================================================================
-
-/**
- * Font Sizes (in pixels)
- */
-export const FONT_SIZES = {
-  XS: 12,
-  SM: 14,
-  BASE: 16,
-  LG: 18,
-  XL: 20,
-  XXL: 24,
-} as const;
-
-/**
- * Font Weights
- */
-export const FONT_WEIGHTS = {
-  NORMAL: 400,
-  MEDIUM: 500,
-  SEMIBOLD: 600,
-  BOLD: 700,
-} as const;
-
-// ============================================================================
-// ANIMATION & TIMING - Motion Design
-// ============================================================================
-
-
-/**
- * Animation Distances (in pixels)
- */
-export const ANIMATION_DISTANCES = {
-  SLIDE_SMALL: 5,   // Small slide animation
-  SLIDE_NORMAL: 10, // Normal slide animation
-  SLIDE_LARGE: 20,  // Large slide animation
-  SLIDE_EXTRA: 50   // Extra large slide animation
-} as const;
-
-/**
- * Transition Timing Functions
- */
-export const EASING_FUNCTIONS = {
-  EASE_OUT: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-  EASE_IN_OUT: 'cubic-bezier(0.4, 0, 0.2, 1)',
-  BOUNCE: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-} as const;
+// Device specs, brand colors, typography & animations now imported from specialized files
 
 // ============================================================================
 // API & HTTP CONSTANTS - Enterprise HTTP/API Standards
@@ -596,3 +446,5 @@ export { GEOMETRIC_LIMITS, ICON_DIMENSIONS, UI_DIMENSIONS } from './geometric-li
 export { Z_INDEX_LAYERS, WORKFLOW_ORDER, GEOSPATIAL_SERVICES } from './ui-layers';
 export { XML_NAMESPACES, ESCO_NAMESPACES, DEVICE_FRAME_COLORS, SVG_DIMENSIONS, ICON_SIZES, LEAFLET_MARKER_DIMENSIONS } from './design-system';
 export { DEV_PORTS, LOCAL_URLS, MAP_DEFAULTS, DRAWING_LIMITS, EARTH_CONSTANTS, GEOGRAPHIC_BOUNDS } from './dev-config';
+export { MOBILE_DEVICE_SPECS, DEVICE_BREAKPOINTS, DEVICE_VIEWPORTS, CSS_DIMENSIONS, FIXED_DIMENSIONS } from './device-specs';
+export { BRAND_COLORS, UI_COLORS, FONT_SIZES, FONT_WEIGHTS, ANIMATION_DISTANCES, EASING_FUNCTIONS } from './brand-system';
