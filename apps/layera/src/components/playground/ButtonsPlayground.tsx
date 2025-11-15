@@ -142,39 +142,52 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
           }}>
             {buttonState.shape === 'square' ? 'I' : 'Info'}
           </button>
+          <button style={{
+            backgroundColor: 'transparent', // outline
+            color: '#6366f1',
+            padding: buttonState.shape === 'square' ? '16px' : '8px 16px',
+            border: '2px solid #6366f1',
+            borderRadius: buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px',
+            cursor: 'pointer',
+            minWidth: buttonState.shape === 'square' ? '50px' : '120px',
+            height: buttonState.shape === 'square' ? '50px' : 'auto',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
+          }}>
+            {buttonState.shape === 'square' ? 'O' : 'Outline'}
+          </button>
+          <button style={{
+            backgroundColor: 'transparent', // ghost
+            color: '#6b7280',
+            padding: buttonState.shape === 'square' ? '16px' : '8px 16px',
+            border: 'none',
+            borderRadius: buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px',
+            cursor: 'pointer',
+            minWidth: buttonState.shape === 'square' ? '50px' : '120px',
+            height: buttonState.shape === 'square' ? '50px' : 'auto',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
+          }}>
+            {buttonState.shape === 'square' ? 'G' : 'Ghost'}
+          </button>
         </Box>
       </Box>
 
-      {/* Controls Grid - 2x2 Layout */}
+      {/* Controls Grid - 1x3 Layout */}
       <Box
         className="layera-grid"
         style={{
-          gridTemplateColumns: 'repeat(2, 1fr)',
-          gridTemplateRows: 'repeat(2, auto)',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gridTemplateRows: 'auto',
           gap: '32px',
           marginTop: '48px',
           marginBottom: '32px'
         }}
       >
-        {/* Variant Control */}
-        <Box className="layera-card layera-padding--lg">
-          <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
-            Variant
-          </h4>
-          <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
-            {buttonVariants.map((variant) => (
-              <Button
-                key={variant}
-                variant={buttonState.variant === variant ? 'primary' : 'outline'}
-                size="sm"
-                onClick={() => buttonActions.setVariant(variant)}
-              >
-                {variant}
-              </Button>
-            ))}
-          </Box>
-        </Box>
-
         {/* Size Control */}
         <Box className="layera-card layera-padding--lg">
           <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
