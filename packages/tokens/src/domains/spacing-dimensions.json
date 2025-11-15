@@ -44,6 +44,22 @@
       "input-height": {
         "value": "40px",
         "comment": "Standard input height - replaces hardcoded value"
+      },
+      "preview-box-height": {
+        "value": "40px",
+        "comment": "Preview box height for background components"
+      },
+      "preview-border-height": {
+        "value": "30px",
+        "comment": "Preview box height for border components"
+      },
+      "preview-box-min-width": {
+        "value": "120px",
+        "comment": "Preview box minimum width for background components"
+      },
+      "preview-border-min-width": {
+        "value": "100px",
+        "comment": "Preview box minimum width for border components"
       }
     },
     "container": {

@@ -21,7 +21,7 @@ export const useColorPersistence = () => {
           if (savedState.colorCategory === 'buttons') {
             // Εφαρμογή για buttons - χρησιμοποιώ τα σωστά CSS variables
             root.style.setProperty('--layera-btn-secondary-bg', savedState.secondaryColor);
-            root.style.setProperty('--layera-btn-secondary-color', '#ffffff');
+            root.style.setProperty('--layera-btn-secondary-color', 'var(--layera-color-white)');
             root.style.setProperty('--layera-btn-secondary-border', savedState.secondaryColor);
 
             // EMERGENCY OVERRIDE για HEADER BUTTONS - Στοχεύω SquareButton components
@@ -30,14 +30,14 @@ export const useColorPersistence = () => {
               .layera-btn--secondary {
                 background-color: ${savedState.secondaryColor} !important;
                 border-color: ${savedState.secondaryColor} !important;
-                color: #ffffff !important;
+                color: var(--layera-color-white) !important;
               }
 
               /* Στόχευση με single dash (.layera-btn-secondary) αν υπάρχει */
               .layera-btn-secondary {
                 background-color: ${savedState.secondaryColor} !important;
                 border-color: ${savedState.secondaryColor} !important;
-                color: #ffffff !important;
+                color: var(--layera-color-white) !important;
               }
 
               /* Στόχευση συγκεκριμένα των header buttons με οποιαδήποτε κλάση */
@@ -45,14 +45,14 @@ export const useColorPersistence = () => {
               [data-layout="header-fixed"] button.layera-btn-secondary {
                 background-color: ${savedState.secondaryColor} !important;
                 border-color: ${savedState.secondaryColor} !important;
-                color: #ffffff !important;
+                color: var(--layera-color-white) !important;
               }
 
               /* Στόχευση όλων των secondary variant buttons */
               button[class*="layera-btn"][class*="secondary"] {
                 background-color: ${savedState.secondaryColor} !important;
                 border-color: ${savedState.secondaryColor} !important;
-                color: #ffffff !important;
+                color: var(--layera-color-white) !important;
               }
             `;
 
@@ -112,6 +112,7 @@ export const useColorPersistence = () => {
           return savedState;
         }
       } catch (error) {
+        console.error('Σφάλμα φόρτωσης χρωμάτων:', error);
       }
       return null;
     };

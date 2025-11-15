@@ -53,30 +53,30 @@ export interface UseColorStateReturn {
 }
 
 const DEFAULT_RECTANGULAR_PALETTE: ColorPalette = {
-  primary: '#007bff',
-  secondary: '#6c757d',
-  success: '#28a745',
-  warning: '#ffc107',
-  danger: '#dc3545',
-  info: '#17a2b8'
+  primary: 'var(--layera-color-primary)',
+  secondary: 'var(--layera-color-secondary)',
+  success: 'var(--layera-color-success)',
+  warning: 'var(--layera-color-warning)',
+  danger: 'var(--layera-color-danger)',
+  info: 'var(--layera-color-info)'
 };
 
 const DEFAULT_SQUARE_PALETTE: ColorPalette = {
-  primary: '#FF4444',
-  secondary: '#44FF44',
-  success: '#4444FF',
-  warning: '#FFAA00',
-  danger: '#AA00FF',
-  info: '#00AAFF'
+  primary: 'var(--layera-color-square-primary)',
+  secondary: 'var(--layera-color-square-secondary)',
+  success: 'var(--layera-color-square-success)',
+  warning: 'var(--layera-color-square-warning)',
+  danger: 'var(--layera-color-square-danger)',
+  info: 'var(--layera-color-square-info)'
 };
 
 const DEFAULT_ROUNDED_PALETTE: ColorPalette = {
-  primary: '#800080',
-  secondary: '#008080',
-  success: '#808000',
-  warning: '#FFA500',
-  danger: '#FF6347',
-  info: '#4169E1'
+  primary: 'var(--layera-color-rounded-primary)',
+  secondary: 'var(--layera-color-rounded-secondary)',
+  success: 'var(--layera-color-rounded-success)',
+  warning: 'var(--layera-color-rounded-warning)',
+  danger: 'var(--layera-color-rounded-danger)',
+  info: 'var(--layera-color-rounded-info)'
 };
 
 const DEFAULT_COLOR_STATE: ColorState = {

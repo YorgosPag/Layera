@@ -301,5 +301,33 @@
       },
       "comment": "Square action button for icons - matches headerStyles.actionButton"
     }
+  },
+  "height": {
+    "40": {
+      "value": {
+        "height": "var(--layera-spacing-component-preview-box-height, 40px)"
+      },
+      "comment": "Height 40px for preview boxes"
+    },
+    "30": {
+      "value": {
+        "height": "var(--layera-spacing-component-preview-border-height, 30px)"
+      },
+      "comment": "Height 30px for border preview boxes"
+    }
+  },
+  "min-width": {
+    "120": {
+      "value": {
+        "minWidth": "var(--layera-spacing-component-preview-box-min-width, 120px)"
+      },
+      "comment": "Min width 120px for preview boxes"
+    },
+    "100": {
+      "value": {
+        "minWidth": "var(--layera-spacing-component-preview-border-min-width, 100px)"
+      },
+      "comment": "Min width 100px for border preview boxes"
+    }
   }
 }

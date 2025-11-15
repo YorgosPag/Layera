@@ -24,106 +24,82 @@ export const BackgroundsPreview: React.FC<BackgroundsPreviewProps> = ({
 }) => {
   return (
     <>
-      <Box style={{
-        backgroundColor: currentColors.primary,
-        color: 'white',
-        padding: 'var(--layera-global-spacing-5, 20px)',
-        border: 'var(--layera-global-borderWidth-2, 2px) solid var(--layera-color-border-default, #ccc)',
-        borderRadius: 'var(--layera-global-borderRadius-md, 8px)',
-        minWidth: 'var(--layera-global-minWidth-120, 120px)',
-        height: 'var(--layera-spacing-component-button-height, 40px)',
-        display: 'var(--layera-global-display-flex, flex)',
-        alignItems: 'var(--layera-global-alignItems-center, center)',
-        justifyContent: 'var(--layera-global-justifyContent-center, center)',
-        fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
-        textAlign: 'var(--layera-global-textAlign-center, center)',
-        fontSize: 'var(--layera-global-fontSize-xs, 12px)'
-      }}>
+      <Box
+        className="layera-height--40 layera-min-width--120 flex--base align-center justify-center text-center"
+        style={{
+          backgroundColor: currentColors.primary,
+          color: 'var(--layera-color-white)',
+          padding: 'var(--layera-global-spacing-3, 15px)',
+          border: 'var(--layera-global-borderWidth-2) solid var(--layera-color-border-default)',
+          borderRadius: 'var(--layera-global-borderRadius-md)',
+          fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
+          fontSize: 'var(--layera-global-fontSize-xs, 12px)'
+        }}>
         Primary<br/>Background
       </Box>
-      <Box style={{
-        backgroundColor: currentColors.secondary,
-        color: 'white',
-        padding: 'var(--layera-global-spacing-5, 20px)',
-        border: 'var(--layera-global-borderWidth-2, 2px) solid var(--layera-color-border-default, #ccc)',
-        borderRadius: 'var(--layera-global-borderRadius-md, 8px)',
-        minWidth: 'var(--layera-global-minWidth-120, 120px)',
-        height: 'var(--layera-spacing-component-button-height, 40px)',
-        display: 'var(--layera-global-display-flex, flex)',
-        alignItems: 'var(--layera-global-alignItems-center, center)',
-        justifyContent: 'var(--layera-global-justifyContent-center, center)',
-        fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
-        textAlign: 'var(--layera-global-textAlign-center, center)',
-        fontSize: 'var(--layera-global-fontSize-xs, 12px)'
-      }}>
+      <Box
+        className="layera-height--40 layera-min-width--120 flex--base align-center justify-center text-center"
+        style={{
+          backgroundColor: currentColors.secondary,
+          color: 'var(--layera-color-white)',
+          padding: 'var(--layera-global-spacing-3, 15px)',
+          border: 'var(--layera-global-borderWidth-2) solid var(--layera-color-border-default)',
+          borderRadius: 'var(--layera-global-borderRadius-md)',
+          fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
+          fontSize: 'var(--layera-global-fontSize-xs, 12px)'
+        }}>
         Secondary<br/>Background
       </Box>
-      <Box style={{
-        backgroundColor: currentColors.success,
-        color: 'white',
-        padding: 'var(--layera-global-spacing-5, 20px)',
-        border: 'var(--layera-global-borderWidth-2, 2px) solid var(--layera-color-border-default, #ccc)',
-        borderRadius: 'var(--layera-global-borderRadius-md, 8px)',
-        minWidth: 'var(--layera-global-minWidth-120, 120px)',
-        height: 'var(--layera-spacing-component-button-height, 40px)',
-        display: 'var(--layera-global-display-flex, flex)',
-        alignItems: 'var(--layera-global-alignItems-center, center)',
-        justifyContent: 'var(--layera-global-justifyContent-center, center)',
-        fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
-        textAlign: 'var(--layera-global-textAlign-center, center)',
-        fontSize: 'var(--layera-global-fontSize-xs, 12px)'
-      }}>
+      <Box
+        className="layera-height--40 layera-min-width--120 flex--base align-center justify-center text-center"
+        style={{
+          backgroundColor: currentColors.success,
+          color: 'var(--layera-color-white)',
+          padding: 'var(--layera-global-spacing-3, 15px)',
+          border: 'var(--layera-global-borderWidth-2) solid var(--layera-color-border-default)',
+          borderRadius: 'var(--layera-global-borderRadius-md)',
+          fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
+          fontSize: 'var(--layera-global-fontSize-xs, 12px)'
+        }}>
         Success<br/>Background
       </Box>
-      <Box style={{
-        backgroundColor: currentColors.warning,
-        color: 'black',
-        padding: 'var(--layera-global-spacing-5, 20px)',
-        border: 'var(--layera-global-borderWidth-2, 2px) solid var(--layera-color-border-default, #ccc)',
-        borderRadius: 'var(--layera-global-borderRadius-md, 8px)',
-        minWidth: 'var(--layera-global-minWidth-120, 120px)',
-        height: 'var(--layera-spacing-component-button-height, 40px)',
-        display: 'var(--layera-global-display-flex, flex)',
-        alignItems: 'var(--layera-global-alignItems-center, center)',
-        justifyContent: 'var(--layera-global-justifyContent-center, center)',
-        fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
-        textAlign: 'var(--layera-global-textAlign-center, center)',
-        fontSize: 'var(--layera-global-fontSize-xs, 12px)'
-      }}>
+      <Box
+        className="layera-height--40 layera-min-width--120 flex--base align-center justify-center text-center"
+        style={{
+          backgroundColor: currentColors.warning,
+          color: 'var(--layera-color-black)',
+          padding: 'var(--layera-global-spacing-3, 15px)',
+          border: 'var(--layera-global-borderWidth-2) solid var(--layera-color-border-default)',
+          borderRadius: 'var(--layera-global-borderRadius-md)',
+          fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
+          fontSize: 'var(--layera-global-fontSize-xs, 12px)'
+        }}>
         Warning<br/>Background
       </Box>
-      <Box style={{
-        backgroundColor: currentColors.danger,
-        color: 'white',
-        padding: 'var(--layera-global-spacing-5, 20px)',
-        border: 'var(--layera-global-borderWidth-2, 2px) solid var(--layera-color-border-default, #ccc)',
-        borderRadius: 'var(--layera-global-borderRadius-md, 8px)',
-        minWidth: 'var(--layera-global-minWidth-120, 120px)',
-        height: 'var(--layera-spacing-component-button-height, 40px)',
-        display: 'var(--layera-global-display-flex, flex)',
-        alignItems: 'var(--layera-global-alignItems-center, center)',
-        justifyContent: 'var(--layera-global-justifyContent-center, center)',
-        fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
-        textAlign: 'var(--layera-global-textAlign-center, center)',
-        fontSize: 'var(--layera-global-fontSize-xs, 12px)'
-      }}>
+      <Box
+        className="layera-height--40 layera-min-width--120 flex--base align-center justify-center text-center"
+        style={{
+          backgroundColor: currentColors.danger,
+          color: 'var(--layera-color-white)',
+          padding: 'var(--layera-global-spacing-3, 15px)',
+          border: 'var(--layera-global-borderWidth-2) solid var(--layera-color-border-default)',
+          borderRadius: 'var(--layera-global-borderRadius-md)',
+          fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
+          fontSize: 'var(--layera-global-fontSize-xs, 12px)'
+        }}>
         Danger<br/>Background
       </Box>
-      <Box style={{
-        backgroundColor: currentColors.info,
-        color: 'white',
-        padding: 'var(--layera-global-spacing-5, 20px)',
-        border: 'var(--layera-global-borderWidth-2, 2px) solid var(--layera-color-border-default, #ccc)',
-        borderRadius: 'var(--layera-global-borderRadius-md, 8px)',
-        minWidth: 'var(--layera-global-minWidth-120, 120px)',
-        height: 'var(--layera-spacing-component-button-height, 40px)',
-        display: 'var(--layera-global-display-flex, flex)',
-        alignItems: 'var(--layera-global-alignItems-center, center)',
-        justifyContent: 'var(--layera-global-justifyContent-center, center)',
-        fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
-        textAlign: 'var(--layera-global-textAlign-center, center)',
-        fontSize: 'var(--layera-global-fontSize-xs, 12px)'
-      }}>
+      <Box
+        className="layera-height--40 layera-min-width--120 flex--base align-center justify-center text-center"
+        style={{
+          backgroundColor: currentColors.info,
+          color: 'var(--layera-color-white)',
+          padding: 'var(--layera-global-spacing-3, 15px)',
+          border: 'var(--layera-global-borderWidth-2) solid var(--layera-color-border-default)',
+          borderRadius: 'var(--layera-global-borderRadius-md)',
+          fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
+          fontSize: 'var(--layera-global-fontSize-xs, 12px)'
+        }}>
         Info<br/>Background
       </Box>
     </>

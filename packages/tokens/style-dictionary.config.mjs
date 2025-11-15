@@ -1222,9 +1222,37 @@ export default {
           output += `\n`;
         }
 
-        // ❌ ΔΙΑΓΡΑΦΗΚΕ: Card Base Classes από card.base token - ΔΙΠΛΟΤΥΠΙΑ ΜΕ components.card
-        // Το components.card token (γραμμή ~797) είναι η ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ για card styles
-        // Αυτός ο κώδικας έψαχνε για card.base token που ΔΕΝ ΥΠΑΡΧΕΙ
+        // Height Utility Classes από layout.height tokens
+        const heightTypes = ['40', '30'];
+        heightTypes.forEach(heightSize => {
+          const heightToken = dictionary.allTokens.find(token => token.path.join('.') === `height.${heightSize}`);
+          if (heightToken && heightToken.value) {
+            const props = heightToken.value;
+            output += `/* Height ${heightSize} utility class */\n`;
+            output += `.layera-height--${heightSize} {\n`;
+            Object.entries(props).forEach(([prop, value]) => {
+              const cssProp = prop.replace(/([A-Z])/g, '-$1').toLowerCase();
+              output += `  ${cssProp}: ${value};\n`;
+            });
+            output += `}\n\n`;
+          }
+        });
+
+        // Min-width Utility Classes από layout.min-width tokens
+        const minWidthTypes = ['120', '100'];
+        minWidthTypes.forEach(widthSize => {
+          const widthToken = dictionary.allTokens.find(token => token.path.join('.') === `min-width.${widthSize}`);
+          if (widthToken && widthToken.value) {
+            const props = widthToken.value;
+            output += `/* Min-width ${widthSize} utility class */\n`;
+            output += `.layera-min-width--${widthSize} {\n`;
+            Object.entries(props).forEach(([prop, value]) => {
+              const cssProp = prop.replace(/([A-Z])/g, '-$1').toLowerCase();
+              output += `  ${cssProp}: ${value};\n`;
+            });
+            output += `}\n\n`;
+          }
+        });
 
         // Background Utility Classes από bg.* tokens
         const bgSurfaceLight = dictionary.allTokens.find(token => token.path.join('.') === 'bg.surface.light');
