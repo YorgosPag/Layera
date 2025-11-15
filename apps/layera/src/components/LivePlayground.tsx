@@ -182,6 +182,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 buttonActions={buttonActions}
                 buttonVariants={buttonVariants}
                 buttonSizes={buttonSizes}
+                colorCategory={colorHookState.colorCategory}
+                elementType={colorHookState.elementType}
               />
             </Box>
           )}

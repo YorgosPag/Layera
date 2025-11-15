@@ -28,21 +28,40 @@ interface ButtonsPlaygroundProps {
   buttonVariants: readonly ButtonVariant[];
   /** Available button sizes */
   buttonSizes: readonly ButtonSize[];
+  /** Color category for description */
+  colorCategory?: string;
+  /** Element type for description */
+  elementType?: string;
 }
 
 export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
   buttonState,
   buttonActions,
   buttonVariants,
-  buttonSizes
+  buttonSizes,
+  colorCategory = 'borders',
+  elementType = 'buttons'
 }) => {
+
+  // Helper function για translation του shape
+  const getShapeInGreek = (shape: string) => {
+    switch(shape) {
+      case 'rectangular': return 'Παραλληλόγραμμο';
+      case 'square': return 'Τετράγωνο';
+      case 'rounded': return 'Στρογγυλό';
+      default: return shape;
+    }
+  };
   return (
     <Box>
       {/* Live Preview Area - Ενοποιημένο με 6 χρωματιστά buttons */}
       <Box className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
-        <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
+        <h3 className="layera-typography layera-margin-bottom--sm" data-size="lg" data-weight="bold" data-color="primary">
           <CheckIcon size="sm" /> Live Preview: Πλήκτρα
         </h3>
+        <p className="layera-typography layera-margin-bottom--md" data-size="sm" data-color="secondary">
+          {colorCategory.toUpperCase()} για πλήκτρα σχήματος {getShapeInGreek(buttonState.shape)} μεγέθους {buttonState.size} {buttonState.withIcon ? 'με εικονίδιο' : 'χωρίς εικονίδιο'}
+        </p>
 
         <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-md">
           {/* Τα 6 χρωματιστά buttons με δυναμικές τιμές */}
