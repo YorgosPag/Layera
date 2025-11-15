@@ -14,19 +14,43 @@ import type { ColorState } from '../../hooks/useColorState.js';
 interface ColorValueDisplayProps {
   colorHookState: ColorState;
   currentColors: Record<string, string>;
+  buttonState?: {
+    variant: string;
+    size: string;
+    text: string;
+    withIcon: boolean;
+  };
 }
 
 export const ColorValueDisplay: React.FC<ColorValueDisplayProps> = ({
   colorHookState,
-  currentColors
+  currentColors,
+  buttonState
 }) => {
   return (
     <Box
       className="layera-grid layera-grid--gap-lg"
       style={{
-        gridTemplateColumns: '1fr 1fr'
+        gridTemplateColumns: '1fr 1fr 1fr'
       } as React.CSSProperties}
     >
+      {/* Current Settings Display - για buttons */}
+      {colorHookState.elementType === 'buttons' && buttonState && (
+        <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--neutral-light" data-family="mono" data-size="sm">
+          <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="base" data-weight="semibold">
+            <SettingsIcon size="sm" /> Τρέχουσες Ρυθμίσεις:
+          </h4>
+          <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">
+{`{
+  variant: "${buttonState.variant}",
+  size: "${buttonState.size}",
+  text: "${buttonState.text}",
+  withIcon: ${buttonState.withIcon}
+}`}
+          </pre>
+        </Box>
+      )}
+
       {/* Current Color Values Display */}
       <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--neutral-light" data-family="mono" data-size="sm">
         <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="base" data-weight="semibold">

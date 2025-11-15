@@ -25,7 +25,7 @@ export const ColorActionsPanel: React.FC<ColorActionsPanelProps> = ({
   applySquareColorsToHeader
 }) => {
   return (
-    <Box className="layera-text-center layera-margin-bottom--xl">
+    <Box className="layera-text-center layera-margin-top--2xl layera-margin-bottom--xl">
       <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-md">
         <Button
           variant="primary"

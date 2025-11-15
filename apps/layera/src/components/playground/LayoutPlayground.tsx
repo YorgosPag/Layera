@@ -69,9 +69,8 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
         <div style={{
           display: 'flex',
           flexDirection: 'row',
-          flexWrap: 'nowrap',
+          flexWrap: 'wrap',
           gap: '8px',
-          overflowX: 'auto',
           width: '100%',
           justifyContent: 'center',
           alignItems: 'center',

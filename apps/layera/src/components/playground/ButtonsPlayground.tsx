@@ -147,12 +147,13 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
 
       {/* Controls Grid - 2x2 Layout */}
       <Box
-        className="layera-grid layera-margin-bottom--xl"
+        className="layera-grid"
         style={{
           gridTemplateColumns: 'repeat(2, 1fr)',
           gridTemplateRows: 'repeat(2, auto)',
           gap: '32px',
-          marginTop: '48px'
+          marginTop: '48px',
+          marginBottom: '32px'
         }}
       >
         {/* Variant Control */}
@@ -244,20 +245,6 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
         </Box>
       </Box>
 
-      {/* Current Settings Display */}
-      <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--neutral-light" data-family="mono" data-size="sm">
-        <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="base" data-weight="semibold">
-          <SettingsIcon size="sm" /> Τρέχουσες Ρυθμίσεις:
-        </h4>
-        <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">
-{`{
-  variant: "${buttonState.variant}",
-  size: "${buttonState.size}",
-  text: "${buttonState.text}",
-  buttonState.withIcon: ${buttonState.withIcon}
-}`}
-        </pre>
-      </Box>
     </Box>
   );
 };

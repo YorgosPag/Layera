@@ -167,82 +167,103 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         {/* Απευθείας εμφάνιση των Category/Element Selections */}
         <Box>
           {/* Category and Element Type Selection */}
-          <ColorCategorySelection
-            colorHookState={colorHookState}
-            colorActions={colorActions}
-          />
+          <Box className="layera-margin-bottom--lg">
+            <ColorCategorySelection
+              colorHookState={colorHookState}
+              colorActions={colorActions}
+            />
+          </Box>
 
           {/* Dynamic Content Based on Element Type Selection */}
           {colorHookState.elementType === 'buttons' && (
-            <ButtonsPlayground
-              buttonState={buttonState}
-              buttonActions={buttonActions}
-              buttonVariants={buttonVariants}
-              buttonSizes={buttonSizes}
-            />
+            <Box className="layera-margin-bottom--lg">
+              <ButtonsPlayground
+                buttonState={buttonState}
+                buttonActions={buttonActions}
+                buttonVariants={buttonVariants}
+                buttonSizes={buttonSizes}
+              />
+            </Box>
           )}
 
           {colorHookState.elementType === 'cards' && (
-            <CardsPlayground
-              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
-              colorCategory={colorHookState.colorCategory}
-            />
+            <Box className="layera-margin-bottom--lg">
+              <CardsPlayground
+                currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
+                colorCategory={colorHookState.colorCategory}
+              />
+            </Box>
           )}
 
           {colorHookState.elementType === 'modals' && (
-            <ModalsPlayground
-              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
-              colorCategory={colorHookState.colorCategory}
-            />
+            <Box className="layera-margin-bottom--lg">
+              <ModalsPlayground
+                currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
+                colorCategory={colorHookState.colorCategory}
+              />
+            </Box>
           )}
 
           {colorHookState.elementType === 'inputs' && (
-            <InputsPlayground
-              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
-              colorCategory={colorHookState.colorCategory}
-            />
+            <Box className="layera-margin-bottom--lg">
+              <InputsPlayground
+                currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
+                colorCategory={colorHookState.colorCategory}
+              />
+            </Box>
           )}
 
           {colorHookState.elementType === 'layout' && (
-            <LayoutPlayground
-              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
-              colorCategory={colorHookState.colorCategory}
-            />
+            <Box className="layera-margin-bottom--lg">
+              <LayoutPlayground
+                currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
+                colorCategory={colorHookState.colorCategory}
+              />
+            </Box>
           )}
 
           {colorHookState.elementType === 'tables' && (
-            <TablesPlayground
-              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
-              colorCategory={colorHookState.colorCategory}
-            />
+            <Box className="layera-margin-bottom--lg">
+              <TablesPlayground
+                currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
+                colorCategory={colorHookState.colorCategory}
+              />
+            </Box>
           )}
 
           {/* Always show color management sections */}
           {/* Live Color Preview Area */}
-          <ColorPreviewArea
-            colorHookState={colorHookState}
-            currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
-          />
+          <Box className="layera-margin-bottom--lg">
+            <ColorPreviewArea
+              colorHookState={colorHookState}
+              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
+            />
+          </Box>
 
           {/* Color Controls Grid */}
-          <ColorControlsGrid
-            currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, string>}
-            currentSetters={colorHelpersActions.getSettersForCategory(colorHookState.colorCategory) as unknown as Record<string, (value: string) => void>}
-            startPreview={startPreview}
-            colorCategory={colorHookState.colorCategory}
-          />
+          <Box className="layera-margin-bottom--lg">
+            <ColorControlsGrid
+              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, string>}
+              currentSetters={colorHelpersActions.getSettersForCategory(colorHookState.colorCategory) as unknown as Record<string, (value: string) => void>}
+              startPreview={startPreview}
+              colorCategory={colorHookState.colorCategory}
+            />
+          </Box>
 
           {/* Apply Colors Buttons */}
-          <ColorActionsPanel
-            colorHookState={colorHookState}
-            applyColorsToApp={applyColorsToApp}
-            applySquareColorsToHeader={applySquareColorsToHeader}
-          />
+          <Box className="layera-margin-bottom--lg">
+            <ColorActionsPanel
+              colorHookState={colorHookState}
+              applyColorsToApp={applyColorsToApp}
+              applySquareColorsToHeader={applySquareColorsToHeader}
+            />
+          </Box>
 
           {/* Color Values & CSS Variables */}
           <ColorValueDisplay
             colorHookState={colorHookState}
             currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, string>}
+            buttonState={buttonState}
           />
         </Box>
     </Box>

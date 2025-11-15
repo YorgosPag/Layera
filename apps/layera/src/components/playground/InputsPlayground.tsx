@@ -64,9 +64,8 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
         <div style={{
           display: 'flex',
           flexDirection: 'row',
-          flexWrap: 'nowrap',
+          flexWrap: 'wrap',
           gap: '24px',
-          overflowX: 'auto',
           width: '100%',
           justifyContent: 'center',
           alignItems: 'center',
