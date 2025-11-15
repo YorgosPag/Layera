@@ -13,6 +13,7 @@ import { useColorState } from '../hooks/useColorState';
 import { useCSSVariables } from '../hooks/useCSSVariables';
 import { useStorage } from '../hooks/useStorage';
 import { useNavigation } from '../hooks/useNavigation';
+import { useColorHelpers } from '../hooks/useColorHelpers';
 
 /**
  * Live Playground - Enterprise Component Testing Interface
@@ -58,6 +59,13 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   // Navigation Management
   const { state: navigationState, actions: navigationActions } = useNavigation();
 
+  // Color Helpers Management
+  const { currentColors, currentSetters } = useColorHelpers({
+    colorState: colorHookState,
+    colorActions,
+    getCurrentPalette
+  });
+
   // ==============================
   // STATE MANAGEMENT
   // ==============================
@@ -75,67 +83,6 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
     debounceMs: 1000
   });
 
-  // ==============================
-  // UTILITY FUNCTIONS
-  // ==============================
-
-  /**
-   * Gets the current color palette based on selected button shape
-   * @returns Color object with primary, secondary, success, warning, danger, info
-   */
-  const getCurrentColors = () => {
-    return getCurrentPalette();
-  };
-
-  const getCurrentSetters = () => {
-    switch (colorHookState.colorButtonShape) {
-      case 'rectangular':
-        return {
-          setPrimary: (value: string) => colorActions.updateRectangularPalette('primary', value),
-          setSecondary: (value: string) => colorActions.updateRectangularPalette('secondary', value),
-          setSuccess: (value: string) => colorActions.updateRectangularPalette('success', value),
-          setWarning: (value: string) => colorActions.updateRectangularPalette('warning', value),
-          setDanger: (value: string) => colorActions.updateRectangularPalette('danger', value),
-          setInfo: (value: string) => colorActions.updateRectangularPalette('info', value)
-        };
-      case 'square':
-        return {
-          setPrimary: (value: string) => colorActions.updateSquarePalette('primary', value),
-          setSecondary: (value: string) => colorActions.updateSquarePalette('secondary', value),
-          setSuccess: (value: string) => colorActions.updateSquarePalette('success', value),
-          setWarning: (value: string) => colorActions.updateSquarePalette('warning', value),
-          setDanger: (value: string) => colorActions.updateSquarePalette('danger', value),
-          setInfo: (value: string) => colorActions.updateSquarePalette('info', value)
-        };
-      case 'rounded':
-        return {
-          setPrimary: (value: string) => colorActions.updateRoundedPalette('primary', value),
-          setSecondary: (value: string) => colorActions.updateRoundedPalette('secondary', value),
-          setSuccess: (value: string) => colorActions.updateRoundedPalette('success', value),
-          setWarning: (value: string) => colorActions.updateRoundedPalette('warning', value),
-          setDanger: (value: string) => colorActions.updateRoundedPalette('danger', value),
-          setInfo: (value: string) => colorActions.updateRoundedPalette('info', value)
-        };
-      default:
-        return {
-          setPrimary: (value: string) => colorActions.updateRectangularPalette('primary', value),
-          setSecondary: (value: string) => colorActions.updateRectangularPalette('secondary', value),
-          setSuccess: (value: string) => colorActions.updateRectangularPalette('success', value),
-          setWarning: (value: string) => colorActions.updateRectangularPalette('warning', value),
-          setDanger: (value: string) => colorActions.updateRectangularPalette('danger', value),
-          setInfo: (value: string) => colorActions.updateRectangularPalette('info', value)
-        };
-    }
-  };
-
-  // ==============================
-  // COMPUTED VALUES
-  // ==============================
-
-  /** Current color palette based on selected button shape */
-  const currentColors = getCurrentColors();
-  /** Current color setters based on selected button shape */
-  const currentSetters = getCurrentSetters();
 
 
   // ==============================
@@ -162,7 +109,6 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   // ==============================
 
   const applyColorsToApp = async () => {
-    const currentColors = getCurrentColors();
 
     // Apply colors via CSS Variables hook
     await cssActions.applyColorsToApp(colorHookState.colorCategory, currentColors);
