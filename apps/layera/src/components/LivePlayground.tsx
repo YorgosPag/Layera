@@ -157,68 +157,72 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
     >
       <PlaygroundHeader
         onClose={onClose}
-        activeSection={navigationState.activeSection}
-        onSectionChange={navigationActions.setActiveSection}
       />
 
-        {/* Buttons Section */}
-        {navigationState.activeSection === 'buttons' && (
-          <ButtonsPlayground
-            buttonState={buttonState}
-            buttonActions={buttonActions}
-            buttonVariants={buttonVariants}
-            buttonSizes={buttonSizes}
+        {/* Απευθείας εμφάνιση των Category/Element Selections */}
+        <Box>
+          {/* Category and Element Type Selection */}
+          <ColorCategorySelection
+            colorHookState={colorHookState}
+            colorActions={colorActions}
           />
-        )}
 
-        {/* Colors Section - ENTERPRISE COLOR MANAGEMENT */}
-        {navigationState.activeSection === 'colors' && (
-          <Box>
-            {/* Category and Shape Selection - Side by Side */}
-            <ColorCategorySelection
-              colorHookState={colorHookState}
-              colorActions={colorActions}
+          {/* Dynamic Content Based on Category + Element Type Selection */}
+          {colorHookState.colorCategory === 'backgrounds' && colorHookState.elementType === 'buttons' && (
+            <ButtonsPlayground
+              buttonState={buttonState}
+              buttonActions={buttonActions}
+              buttonVariants={buttonVariants}
+              buttonSizes={buttonSizes}
             />
+          )}
 
-            {/* Live Color Preview Area */}
-            <ColorPreviewArea
-              colorHookState={colorHookState}
-              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
+          {colorHookState.colorCategory === 'text' && colorHookState.elementType === 'buttons' && (
+            <ButtonsPlayground
+              buttonState={buttonState}
+              buttonActions={buttonActions}
+              buttonVariants={buttonVariants}
+              buttonSizes={buttonSizes}
             />
+          )}
 
-            {/* Color Controls Grid */}
-            <ColorControlsGrid
-              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, string>}
-              currentSetters={colorHelpersActions.getSettersForCategory(colorHookState.colorCategory) as unknown as Record<string, (value: string) => void>}
-              startPreview={startPreview}
-              colorCategory={colorHookState.colorCategory}
+          {colorHookState.colorCategory === 'borders' && colorHookState.elementType === 'buttons' && (
+            <ButtonsPlayground
+              buttonState={buttonState}
+              buttonActions={buttonActions}
+              buttonVariants={buttonVariants}
+              buttonSizes={buttonSizes}
             />
+          )}
 
-            {/* Apply Colors Buttons */}
-            <ColorActionsPanel
-              colorHookState={colorHookState}
-              applyColorsToApp={applyColorsToApp}
-              applySquareColorsToHeader={applySquareColorsToHeader}
-            />
+          {/* Always show color management sections */}
+          {/* Live Color Preview Area */}
+          <ColorPreviewArea
+            colorHookState={colorHookState}
+            currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
+          />
 
-            {/* Color Values & CSS Variables - Side by Side */}
-            <ColorValueDisplay
-              colorHookState={colorHookState}
-              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, string>}
-            />
-          </Box>
-        )}
+          {/* Color Controls Grid */}
+          <ColorControlsGrid
+            currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, string>}
+            currentSetters={colorHelpersActions.getSettersForCategory(colorHookState.colorCategory) as unknown as Record<string, (value: string) => void>}
+            startPreview={startPreview}
+            colorCategory={colorHookState.colorCategory}
+          />
 
-        {navigationState.activeSection === 'tokens' && (
-          <Box className="layera-flex layera-flex--direction-column layera-flex--justify-center layera-text-center layera-padding--2xl layera-min-height--card">
-            <h2 className="layera-typography layera-margin-bottom--lg layera-text-color--neutral-medium" data-size="2xl">
-              <SettingsIcon size="sm" /> Tokens Playground
-            </h2>
-            <p className="layera-typography layera-margin--none layera-text-color--neutral-medium" data-size="lg">
-              Σύντομα διαθέσιμο - Live design token editing
-            </p>
-          </Box>
-        )}
+          {/* Apply Colors Buttons */}
+          <ColorActionsPanel
+            colorHookState={colorHookState}
+            applyColorsToApp={applyColorsToApp}
+            applySquareColorsToHeader={applySquareColorsToHeader}
+          />
+
+          {/* Color Values & CSS Variables */}
+          <ColorValueDisplay
+            colorHookState={colorHookState}
+            currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, string>}
+          />
+        </Box>
     </Box>
   );
 };
