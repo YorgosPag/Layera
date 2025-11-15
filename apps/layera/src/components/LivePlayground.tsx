@@ -9,6 +9,7 @@ import { PlaygroundHeader } from './playground/PlaygroundHeader';
 import { ButtonsPlayground } from './playground/ButtonsPlayground';
 import { ColorCategorySelection } from './playground/ColorCategorySelection';
 import { ColorPreviewArea } from './playground/ColorPreviewArea';
+import { ColorControlsGrid } from './playground/ColorControlsGrid';
 import { loadCurrentThemeFromLocalStorage } from '../services/colorThemeService';
 import { useAuth } from '@layera/auth-bridge';
 import { useRealTimePreview } from '../hooks/useRealTimePreview';
@@ -181,118 +182,11 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             />
 
             {/* Color Controls Grid */}
-            <Box
-              className="layera-grid layera-margin-bottom--xl"
-              style={{
-                gridTemplateColumns: 'var(--layera-global-gridTemplateColumns-autoFit)',
-                gap: '2rem'
-              } as React.CSSProperties}
-            >
-              {/* Primary Color Control */}
-              <Box className="layera-card layera-padding--lg">
-                <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
-                  Primary Color
-                </h4>
-                <input
-                  type="color"
-                  value={currentColors.primary}
-                  onChange={(e) => currentSetters.setPrimary(e.target.value)}
-                  className="layera-input layera-width--full layera-margin-bottom--sm"
-                />
-                <Text className="layera-typography" data-size="sm" data-color="secondary">
-                  {currentColors.primary.toUpperCase()}
-                </Text>
-              </Box>
-
-              {/* Secondary Color Control */}
-              <Box className="layera-card layera-padding--lg">
-                <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
-                  Secondary Color
-                </h4>
-                <input
-                  type="color"
-                  value={currentColors.secondary}
-                  onInput={(e) => {
-                    // Real-time preview while dragging
-                    const newColor = (e.target as HTMLInputElement).value;
-                    startPreview('secondaryColor', newColor);
-                  }}
-                  onChange={(e) => {
-                    // Final commit when color selection is done
-                    const newColor = e.target.value;
-                    currentSetters.setSecondary(newColor);
-                  }}
-                  className="layera-input layera-width--full layera-margin-bottom--sm"
-                />
-                <Text className="layera-typography" data-size="sm" data-color="secondary">
-                  {currentColors.secondary.toUpperCase()}
-                </Text>
-              </Box>
-
-              {/* Success Color Control */}
-              <Box className="layera-card layera-padding--lg">
-                <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
-                  Success Color
-                </h4>
-                <input
-                  type="color"
-                  value={currentColors.success}
-                  onChange={(e) => currentSetters.setSuccess(e.target.value)}
-                  className="layera-input layera-width--full layera-margin-bottom--sm"
-                />
-                <Text className="layera-typography" data-size="sm" data-color="secondary">
-                  {currentColors.success.toUpperCase()}
-                </Text>
-              </Box>
-
-              {/* Warning Color Control */}
-              <Box className="layera-card layera-padding--lg">
-                <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
-                  Warning Color
-                </h4>
-                <input
-                  type="color"
-                  value={currentColors.warning}
-                  onChange={(e) => currentSetters.setWarning(e.target.value)}
-                  className="layera-input layera-width--full layera-margin-bottom--sm"
-                />
-                <Text className="layera-typography" data-size="sm" data-color="secondary">
-                  {currentColors.warning.toUpperCase()}
-                </Text>
-              </Box>
-
-              {/* Danger Color Control */}
-              <Box className="layera-card layera-padding--lg">
-                <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
-                  Danger Color
-                </h4>
-                <input
-                  type="color"
-                  value={currentColors.danger}
-                  onChange={(e) => currentSetters.setDanger(e.target.value)}
-                  className="layera-input layera-width--full layera-margin-bottom--sm"
-                />
-                <Text className="layera-typography" data-size="sm" data-color="secondary">
-                  {currentColors.danger.toUpperCase()}
-                </Text>
-              </Box>
-
-              {/* Info Color Control */}
-              <Box className="layera-card layera-padding--lg">
-                <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
-                  Info Color
-                </h4>
-                <input
-                  type="color"
-                  value={currentColors.info}
-                  onChange={(e) => currentSetters.setInfo(e.target.value)}
-                  className="layera-input layera-width--full layera-margin-bottom--sm"
-                />
-                <Text className="layera-typography" data-size="sm" data-color="secondary">
-                  {currentColors.info.toUpperCase()}
-                </Text>
-              </Box>
-            </Box>
+            <ColorControlsGrid
+              currentColors={currentColors}
+              currentSetters={currentSetters}
+              startPreview={startPreview}
+            />
 
             {/* Apply Colors Buttons */}
             <Box className="layera-text-center layera-margin-bottom--xl">
