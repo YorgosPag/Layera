@@ -779,6 +779,10 @@
       "2": {
         "value": "2px",
         "comment": "2px border width"
+      },
+      "3": {
+        "value": "3px",
+        "comment": "3px border width"
       }
     },
     "textAlign": {
