@@ -128,16 +128,7 @@ export const ColorControlsGrid: React.FC<ColorControlsGridProps> = ({
         <input
           type="color"
           value={extractHexFromCSSVar(currentColors.secondary)}
-          onInput={(e) => {
-            // Real-time preview while dragging
-            const newColor = (e.target as HTMLInputElement).value;
-            startPreview(`${colorCategory}SecondaryColor`, newColor);
-          }}
-          onChange={(e) => {
-            // Final commit when color selection is done
-            const newColor = e.target.value;
-            currentSetters.setSecondary(newColor);
-          }}
+          onChange={(e) => currentSetters.setSecondary(e.target.value)}
           className="layera-input layera-width--full layera-margin-bottom--sm"
         />
         <Text className="layera-typography" data-size="sm" data-color="secondary">

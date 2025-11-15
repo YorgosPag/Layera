@@ -46,7 +46,6 @@ interface LivePlaygroundProps {
 }
 
 export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
-  // console.log('LivePlayground φορτώνει...');
 
   // Authentication
   const { user } = useAuth();
@@ -176,6 +175,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 buttonSizes={buttonSizes}
                 colorCategory={colorHookState.colorCategory}
                 elementType={colorHookState.elementType}
+                currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
               />
             </Box>
           )}

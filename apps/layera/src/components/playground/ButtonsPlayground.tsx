@@ -32,6 +32,8 @@ interface ButtonsPlaygroundProps {
   colorCategory?: string;
   /** Element type for description */
   elementType?: string;
+  /** Current colors for live preview from color state */
+  currentColors?: Record<string, string>;
 }
 
 export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
@@ -40,7 +42,8 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
   buttonVariants,
   buttonSizes,
   colorCategory = 'borders',
-  elementType = 'buttons'
+  elementType = 'buttons',
+  currentColors = {}
 }) => {
 
   // Helper function για translation του shape
@@ -51,6 +54,26 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
       case 'rounded': return 'Στρογγυλό';
       default: return shape;
     }
+  };
+
+  // Helper function για εξαγωγή hex χρώματος από CSS variable ή απλό string
+  const extractColor = (colorValue: string, fallback: string): string => {
+    if (!colorValue) return fallback;
+    if (colorValue.startsWith('#')) return colorValue;
+
+    // Αν είναι CSS variable, εξάγει το fallback hex value
+    const match = colorValue.match(/var\([^,]+,\s*(#[0-9a-fA-F]{6})\)/);
+    return match ? match[1] : fallback;
+  };
+
+  // Dynamic colors with fallbacks
+  const colors = {
+    primary: extractColor(currentColors.primary, '#6366f1'),
+    secondary: extractColor(currentColors.secondary, '#6b7280'),
+    success: extractColor(currentColors.success, '#10b981'),
+    warning: extractColor(currentColors.warning, '#f59e0b'),
+    danger: extractColor(currentColors.danger, '#ef4444'),
+    info: extractColor(currentColors.info, '#3b82f6')
   };
   return (
     <Box>
@@ -66,7 +89,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
         <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-md">
           {/* Τα 6 χρωματιστά buttons με δυναμικές τιμές */}
           <button style={{
-            backgroundColor: '#6366f1', // primary
+            backgroundColor: colors.primary, // primary - dynamic
             color: 'white',
             padding: buttonState.shape === 'square' ? '16px' : '8px 16px',
             border: 'none',
@@ -84,7 +107,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             {buttonState.shape === 'square' ? 'P' : 'Primary'}
           </button>
           <button style={{
-            backgroundColor: '#6b7280', // secondary
+            backgroundColor: colors.secondary, // secondary - dynamic
             color: 'white',
             padding: buttonState.shape === 'square' ? '16px' : '8px 16px',
             border: 'none',
@@ -102,7 +125,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             {buttonState.shape === 'square' ? 'S' : 'Secondary'}
           </button>
           <button style={{
-            backgroundColor: '#10b981', // success
+            backgroundColor: colors.success, // success - dynamic
             color: 'white',
             padding: buttonState.shape === 'square' ? '16px' : '8px 16px',
             border: 'none',
@@ -120,7 +143,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             {buttonState.shape === 'square' ? 'Su' : 'Success'}
           </button>
           <button style={{
-            backgroundColor: '#f59e0b', // warning
+            backgroundColor: colors.warning, // warning - dynamic
             color: 'black',
             padding: buttonState.shape === 'square' ? '16px' : '8px 16px',
             border: 'none',
@@ -138,7 +161,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             {buttonState.shape === 'square' ? 'W' : 'Warning'}
           </button>
           <button style={{
-            backgroundColor: '#ef4444', // danger
+            backgroundColor: colors.danger, // danger - dynamic
             color: 'white',
             padding: buttonState.shape === 'square' ? '16px' : '8px 16px',
             border: 'none',
@@ -156,7 +179,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             {buttonState.shape === 'square' ? 'D' : 'Danger'}
           </button>
           <button style={{
-            backgroundColor: '#3b82f6', // info
+            backgroundColor: colors.info, // info - dynamic
             color: 'white',
             padding: buttonState.shape === 'square' ? '16px' : '8px 16px',
             border: 'none',
@@ -175,9 +198,9 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
           </button>
           <button style={{
             backgroundColor: 'transparent', // outline
-            color: '#6366f1',
+            color: colors.primary,
             padding: buttonState.shape === 'square' ? '16px' : '8px 16px',
-            border: '2px solid #6366f1',
+            border: `2px solid ${colors.primary}`,
             borderRadius: buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px',
             cursor: 'pointer',
             minWidth: buttonState.shape === 'square' ? '50px' : '120px',
@@ -193,7 +216,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
           </button>
           <button style={{
             backgroundColor: 'transparent', // ghost
-            color: '#6b7280',
+            color: colors.secondary,
             padding: buttonState.shape === 'square' ? '16px' : '8px 16px',
             border: 'none',
             borderRadius: buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px',
