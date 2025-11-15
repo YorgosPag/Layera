@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
-import { PaletteIcon, LayersIcon, EditIcon, PolygonIcon, RulerIcon, CompassIcon, CheckIcon } from '@layera/icons';
+import { PaletteIcon, LayersIcon, EditIcon, PolygonIcon, RulerIcon, CompassIcon, CheckIcon, MonitorIcon, BuildingIcon, ChartIcon } from '@layera/icons';
 
 /**
  * ColorCategorySelection Component
@@ -120,42 +120,42 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
             size="sm"
             onClick={() => colorActions.setElementType('buttons')}
           >
-            🔲 Πλήκτρα
+            <CheckIcon size="sm" /> Πλήκτρα
           </Button>
           <Button
             variant={colorHookState.elementType === 'cards' ? 'primary' : 'outline'}
             size="sm"
             onClick={() => colorActions.setElementType('cards')}
           >
-            🃏 Κάρτες
+            <LayersIcon size="sm" /> Κάρτες
           </Button>
           <Button
             variant={colorHookState.elementType === 'modals' ? 'primary' : 'outline'}
             size="sm"
             onClick={() => colorActions.setElementType('modals')}
           >
-            📱 Modals
+            <MonitorIcon size="sm" /> Modals
           </Button>
           <Button
             variant={colorHookState.elementType === 'inputs' ? 'primary' : 'outline'}
             size="sm"
             onClick={() => colorActions.setElementType('inputs')}
           >
-            📝 Πεδία
+            <EditIcon size="sm" /> Πεδία
           </Button>
           <Button
             variant={colorHookState.elementType === 'layout' ? 'primary' : 'outline'}
             size="sm"
             onClick={() => colorActions.setElementType('layout')}
           >
-            🏗️ Layout
+            <BuildingIcon size="sm" /> Layout
           </Button>
           <Button
             variant={colorHookState.elementType === 'tables' ? 'primary' : 'outline'}
             size="sm"
             onClick={() => colorActions.setElementType('tables')}
           >
-            📊 Πίνακες
+            <ChartIcon size="sm" /> Πίνακες
           </Button>
         </Box>
         <Text className="layera-typography layera-margin-top--sm" data-size="sm" data-color="secondary">
