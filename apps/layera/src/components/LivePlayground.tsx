@@ -10,6 +10,7 @@ import { ButtonsPlayground } from './playground/ButtonsPlayground';
 import { ColorCategorySelection } from './playground/ColorCategorySelection';
 import { ColorPreviewArea } from './playground/ColorPreviewArea';
 import { ColorControlsGrid } from './playground/ColorControlsGrid';
+import { ColorActionsPanel } from './playground/ColorActionsPanel';
 import { loadCurrentThemeFromLocalStorage } from '../services/colorThemeService';
 import { useAuth } from '@layera/auth-bridge';
 import { useRealTimePreview } from '../hooks/useRealTimePreview';
@@ -189,36 +190,11 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             />
 
             {/* Apply Colors Buttons */}
-            <Box className="layera-text-center layera-margin-bottom--xl">
-              <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-md">
-                <Button
-                  variant="primary"
-                  size="lg"
-                  onClick={applyColorsToApp}
-                  className="layera-button layera-button--primary"
-                >
-                  <RocketIcon size="sm" /> Εφαρμογή Χρωμάτων για {colorHookState.colorCategory.toUpperCase()}
-                </Button>
-
-                {/* Κουμπί για εφαρμογή στην επικεφαλίδα - μόνο για buttons + square */}
-                {colorHookState.colorCategory === 'buttons' && colorHookState.colorButtonShape === 'square' && (
-                  <Button
-                    variant="success"
-                    size="lg"
-                    onClick={applySquareColorsToHeader}
-                    className="layera-button layera-button--success"
-                  >
-                    <CheckIcon size="sm" /> Εφαρμογή στην Επικεφαλίδα
-                  </Button>
-                )}
-              </Box>
-              <Text className="layera-typography layera-margin-top--sm" data-size="xs" data-color="secondary">
-                {colorHookState.colorCategory === 'buttons' && colorHookState.colorButtonShape === 'square'
-                  ? 'Εφαρμόστε τα χρώματα των τετράγωνων πλήκτρων στην επικεφαλίδα'
-                  : `Θα επηρεαστούν όλα τα στοιχεία τύπου "${colorHookState.colorCategory}" στην εφαρμογή`
-                }
-              </Text>
-            </Box>
+            <ColorActionsPanel
+              colorHookState={colorHookState}
+              applyColorsToApp={applyColorsToApp}
+              applySquareColorsToHeader={applySquareColorsToHeader}
+            />
 
             {/* Color Values & CSS Variables - Side by Side */}
             <Box
