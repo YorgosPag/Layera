@@ -10,8 +10,8 @@ import { Text } from '@layera/typography';
  */
 
 interface ColorControlsGridProps {
-  currentColors: any;
-  currentSetters: any;
+  currentColors: Record<string, string>;
+  currentSetters: Record<string, (value: string) => void>;
   startPreview: (key: string, value: string) => void;
 }
 

@@ -83,6 +83,27 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 300 }: UseRealTimePr
   }, [applyHeaderButtonPreview]);
 
   /**
+   * Σταματάει το preview και κάνει commit την τελική τιμή
+   */
+  const commitPreview = useCallback((key: string, value: string) => {
+    // Clear timer
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+      debounceTimerRef.current = undefined;
+    }
+
+    // Commit the change
+    onCommit(key, value);
+
+    // Clear preview state
+    setPreviewState(prev => ({
+      previewColors: { ...prev.previewColors, [key]: value },
+      isPreviewActive: false,
+      previewKey: null
+    }));
+  }, [onCommit]);
+
+  /**
    * Ξεκινάει live preview για ένα συγκεκριμένο χρώμα
    */
   const startPreview = useCallback((key: string, value: string) => {
@@ -105,28 +126,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 300 }: UseRealTimePr
     debounceTimerRef.current = setTimeout(() => {
       commitPreview(key, value);
     }, debounceMs);
-  }, [debounceMs, applyLivePreview]);
-
-  /**
-   * Σταματάει το preview και κάνει commit την τελική τιμή
-   */
-  const commitPreview = useCallback((key: string, value: string) => {
-    // Clear timer
-    if (debounceTimerRef.current) {
-      clearTimeout(debounceTimerRef.current);
-      debounceTimerRef.current = undefined;
-    }
-
-    // Commit the change
-    onCommit(key, value);
-
-    // Clear preview state
-    setPreviewState(prev => ({
-      previewColors: { ...prev.previewColors, [key]: value },
-      isPreviewActive: false,
-      previewKey: null
-    }));
-  }, [onCommit]);
+  }, [debounceMs, applyLivePreview, commitPreview]);
 
   /**
    * Καθαρίζει όλα τα preview effects

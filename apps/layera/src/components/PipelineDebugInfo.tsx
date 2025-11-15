@@ -22,17 +22,7 @@ export const PipelineDebugInfo: React.FC<PipelineDebugInfoProps> = ({
   }
 
   return (
-    <Box style={{
-      position: 'fixed',
-      top: '60px',
-      right: '20px',
-      background: 'rgba(0,0,0,0.8)',
-      color: 'white',
-      padding: '10px',
-      borderRadius: '8px',
-      fontSize: '12px',
-      zIndex: 1000
-    }}>
+    <Box className="layera-layout layera-debug-container">
       <Text size="sm">🚀 Pipeline: {pipelineState.selectedCategory}</Text>
       <Text size="sm">📍 Step: {pipelineState.currentStepId}</Text>
       <Text size="sm">📊 Progress: {pipelineState.currentStepIndex + 1}/{pipelineState.totalSteps}</Text>

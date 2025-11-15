@@ -1,5 +1,8 @@
 import { getFirebaseApp, getFirebaseAuth } from '@layera/auth-bridge';
 import { getFirestore } from 'firebase/firestore';
+import type { FirebaseApp } from 'firebase/app';
+import type { Auth } from 'firebase/auth';
+import type { Firestore } from 'firebase/firestore';
 
 // Lazy initialization functions για να αποφύγουμε errors κατά τη φόρτωση
 export const getApp = () => {
@@ -31,9 +34,9 @@ export const getDb = () => {
 };
 
 // Legacy exports για backward compatibility (DEPRECATED - use functions above)
-let app: any = null;
-let auth: any = null;
-let db: any = null;
+let app: FirebaseApp | null = null;
+let auth: Auth | null = null;
+let db: Firestore | null = null;
 
 try {
   app = getFirebaseApp();

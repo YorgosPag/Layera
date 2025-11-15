@@ -18,10 +18,12 @@ try {
 
   // Έλεγχος αν έχουμε πραγματικά credentials
   if (firebaseConfig.apiKey === 'demo-api-key') {
+    console.log('Using demo Firebase configuration');
   } else {
     initializeFirebaseApp(firebaseConfig);
   }
 } catch (error) {
+  console.error('Firebase initialization failed:', error);
 }
 
 function App(): React.ReactElement {

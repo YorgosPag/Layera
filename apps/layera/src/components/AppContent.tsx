@@ -41,6 +41,36 @@ export const AppContent: React.FC = () => {
     return unsubscribe;
   }, [pipelineDiscovery]);
 
+  const changeTestColor = async (color: string) => {
+    try {
+      // Εμφάνιση οδηγιών για γρήγορη αλλαγή
+      const command = `node C:\\layera\\tests-george\\change-color.js ${color}`;
+
+      alert(
+        `🧪 George's Automatic Color Changer\n\n` +
+        `🎨 Χρώμα: ${color}\n\n` +
+        `Για ΑΥΤΟΜΑΤΗ αλλαγή, τρέξτε στο terminal:\n\n` +
+        `${command}\n\n` +
+        `Αυτό θα:\n` +
+        `✅ Αλλάξει το theme-test-george.json\n` +
+        `✅ Κάνει rebuild τα CSS tokens\n` +
+        `✅ Προετοιμάσει την εφαρμογή για refresh\n\n` +
+        `Μετά ανανεώστε την εφαρμογή (F5) για να δείτε τις αλλαγές!`
+      );
+
+      // Copy στο clipboard αν είναι διαθέσιμο
+      if (navigator.clipboard) {
+        try {
+          await navigator.clipboard.writeText(command);
+        } catch (clipboardError) {
+          console.warn('Could not copy to clipboard:', clipboardError);
+        }
+      }
+    } catch (error) {
+      console.error('Error in changeTestColor:', error);
+    }
+  };
+
   // Listen για αλλαγές χρώματος από το TestPanel
   useEffect(() => {
     const handleColorChange = async (event: Event) => {
@@ -63,7 +93,7 @@ export const AppContent: React.FC = () => {
     return () => {
       window.removeEventListener('changeTestColor', handleColorChange);
     };
-  }, []);
+  }, [changeTestColor]);
 
   const closeDrawer = () => {
     setActiveDrawer(null);
@@ -88,39 +118,6 @@ export const AppContent: React.FC = () => {
 
   const closeLivePlayground = () => {
     setShowPlayground(false);
-  };
-
-  const changeTestColor = async (color: string) => {
-    try {
-
-      // Εμφάνιση οδηγιών για γρήγορη αλλαγή
-      const command = `node C:\\layera\\tests-george\\change-color.js ${color}`;
-
-      alert(
-        `🧪 George's Automatic Color Changer\n\n` +
-        `🎨 Χρώμα: ${color}\n\n` +
-        `Για ΑΥΤΟΜΑΤΗ αλλαγή, τρέξτε στο terminal:\n\n` +
-        `${command}\n\n` +
-        `Αυτό θα:\n` +
-        `✅ Αλλάξει το theme-test-george.json\n` +
-        `✅ Κάνει rebuild τα CSS tokens\n` +
-        `✅ Προετοιμάσει την εφαρμογή για refresh\n\n` +
-        `Μετά ανανεώστε την εφαρμογή (F5) για να δείτε τις αλλαγές!`
-      );
-
-      // Copy στο clipboard αν είναι διαθέσιμο
-      if (navigator.clipboard) {
-        try {
-          await navigator.clipboard.writeText(command);
-        } catch (err) {
-        }
-      }
-
-
-    } catch (error) {
-      console.error('Error changing test color:', error);
-      alert('❌ Σφάλμα κατά την αλλαγή χρώματος');
-    }
   };
 
   const handleSelectProperty = () => {

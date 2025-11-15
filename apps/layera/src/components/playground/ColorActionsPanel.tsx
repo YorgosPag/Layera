@@ -11,8 +11,10 @@ import { RocketIcon, CheckIcon } from '@layera/icons';
  * Γραμμές 191-221 από το αρχικό LivePlayground.tsx
  */
 
+import type { UseColorStateReturn } from '../../hooks/useColorState.js';
+
 interface ColorActionsPanelProps {
-  colorHookState: any;
+  colorHookState: UseColorStateReturn;
   applyColorsToApp: () => void;
   applySquareColorsToHeader: () => void;
 }

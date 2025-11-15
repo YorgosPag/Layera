@@ -151,10 +151,10 @@ function getCSSVariablePrefix(category: string, buttonShape?: string): string {
  * Default theme colors
  */
 export const DEFAULT_THEME_COLORS: ThemeColors = {
-  primary: '#007bff',
-  secondary: '#6c757d',
-  success: '#28a745',
-  warning: '#ffc107',
-  danger: '#dc3545',
-  info: '#17a2b8'
+  primary: 'var(--layera-icon-colorInfo)', // Blue color from tokens
+  secondary: 'var(--layera-color-semantic-neutral-medium)', // Gray from tokens
+  success: 'var(--layera-icon-colorSuccess)', // Green from tokens
+  warning: 'var(--layera-icon-colorWarning)', // Orange from tokens
+  danger: 'var(--layera-icon-colorDanger)', // Red from tokens
+  info: 'var(--layera-icon-colorInfo)' // Blue from tokens
 };

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { ColorStateActions, ColorState } from './useColorState';
 import { saveColorTheme } from '../services/colorThemeService';
 
@@ -43,7 +43,7 @@ interface ThemeData {
 
 export interface StorageActions {
   loadFromStorage: () => void;
-  saveToStorage: (themeData: ThemeData, user?: any) => Promise<void>;
+  saveToStorage: (themeData: ThemeData, user?: object) => Promise<void>;
 }
 
 export interface UseStorageReturn {
@@ -63,7 +63,7 @@ export const useStorage = ({ colorState, colorActions }: UseStorageProps): UseSt
   /**
    * Φόρτωση αποθηκευμένων settings από localStorage
    */
-  const loadFromStorage = () => {
+  const loadFromStorage = useCallback(() => {
     try {
       const stored = localStorage.getItem('layera-current-theme');
       if (stored) {
@@ -105,12 +105,12 @@ export const useStorage = ({ colorState, colorActions }: UseStorageProps): UseSt
     } catch (error) {
       console.error('WARNING:Σφάλμα φόρτωσης χρωμάτων:', error);
     }
-  };
+  }, [colorState.colorButtonShape, colorState.colorCategory, colorActions]);
 
   /**
    * Αποθήκευση theme σε localStorage και Firebase
    */
-  const saveToStorage = async (themeData: ThemeData, user?: any) => {
+  const saveToStorage = async (themeData: ThemeData, user?: object) => {
     // Αποθήκευση στο localStorage για γρήγορη φόρτωση
     try {
       localStorage.setItem('layera-current-theme', JSON.stringify(themeData));
@@ -138,7 +138,7 @@ export const useStorage = ({ colorState, colorActions }: UseStorageProps): UseSt
   // Auto-load on mount
   useEffect(() => {
     loadFromStorage();
-  }, []);
+  }, [loadFromStorage]);
 
   const actions: StorageActions = {
     loadFromStorage,

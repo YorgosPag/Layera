@@ -9,9 +9,11 @@ import { PaletteIcon, SettingsIcon } from '@layera/icons';
  * Γραμμές 199-279 από το αρχικό LivePlayground.tsx
  */
 
+import type { UseColorStateReturn } from '../../hooks/useColorState.js';
+
 interface ColorValueDisplayProps {
-  colorHookState: any;
-  currentColors: any;
+  colorHookState: UseColorStateReturn;
+  currentColors: Record<string, string>;
 }
 
 export const ColorValueDisplay: React.FC<ColorValueDisplayProps> = ({

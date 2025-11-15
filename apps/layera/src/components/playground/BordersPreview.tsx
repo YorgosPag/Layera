@@ -27,7 +27,7 @@ export const BordersPreview: React.FC<BordersPreviewProps> = ({
     <>
       <Box
         className="layera-layout layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-padding--md layera-border-radius--md layera-min-width--100 layera-height--60 layera-bg-surface--primary"
-        style={{ border: `3px solid ${currentColors.primary}` }}
+        style={{ border: `var(--layera-global-borderWidth-2) solid ${currentColors.primary}` }}
       >
         <Text className="layera-typography" data-size="xs" data-weight="bold">
           Primary<br/>Border
@@ -35,7 +35,7 @@ export const BordersPreview: React.FC<BordersPreviewProps> = ({
       </Box>
       <Box
         className="layera-layout layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-padding--md layera-border-radius--md layera-min-width--100 layera-height--60 layera-bg-surface--primary"
-        style={{ border: `3px solid ${currentColors.secondary}` }}
+        style={{ border: `var(--layera-global-borderWidth-2) solid ${currentColors.secondary}` }}
       >
         <Text className="layera-typography" data-size="xs" data-weight="bold">
           Secondary<br/>Border
@@ -43,7 +43,7 @@ export const BordersPreview: React.FC<BordersPreviewProps> = ({
       </Box>
       <Box
         className="layera-layout layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-padding--md layera-border-radius--md layera-min-width--100 layera-height--60 layera-bg-surface--primary"
-        style={{ border: `3px solid ${currentColors.success}` }}
+        style={{ border: `var(--layera-global-borderWidth-2) solid ${currentColors.success}` }}
       >
         <Text className="layera-typography" data-size="xs" data-weight="bold">
           Success<br/>Border
@@ -51,7 +51,7 @@ export const BordersPreview: React.FC<BordersPreviewProps> = ({
       </Box>
       <Box
         className="layera-layout layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-padding--md layera-border-radius--md layera-min-width--100 layera-height--60 layera-bg-surface--primary"
-        style={{ border: `3px solid ${currentColors.warning}` }}
+        style={{ border: `var(--layera-global-borderWidth-2) solid ${currentColors.warning}` }}
       >
         <Text className="layera-typography" data-size="xs" data-weight="bold">
           Warning<br/>Border
@@ -59,7 +59,7 @@ export const BordersPreview: React.FC<BordersPreviewProps> = ({
       </Box>
       <Box
         className="layera-layout layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-padding--md layera-border-radius--md layera-min-width--100 layera-height--60 layera-bg-surface--primary"
-        style={{ border: `3px solid ${currentColors.danger}` }}
+        style={{ border: `var(--layera-global-borderWidth-2) solid ${currentColors.danger}` }}
       >
         <Text className="layera-typography" data-size="xs" data-weight="bold">
           Danger<br/>Border
@@ -67,7 +67,7 @@ export const BordersPreview: React.FC<BordersPreviewProps> = ({
       </Box>
       <Box
         className="layera-layout layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-padding--md layera-border-radius--md layera-min-width--100 layera-height--60 layera-bg-surface--primary"
-        style={{ border: `3px solid ${currentColors.info}` }}
+        style={{ border: `var(--layera-global-borderWidth-2) solid ${currentColors.info}` }}
       >
         <Text className="layera-typography" data-size="xs" data-weight="bold">
           Info<br/>Border

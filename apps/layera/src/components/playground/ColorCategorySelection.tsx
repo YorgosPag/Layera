@@ -11,9 +11,11 @@ import { PaletteIcon, LayersIcon, EditIcon, PolygonIcon, RulerIcon, CompassIcon,
  * Γραμμές 170-253 από το αρχικό LivePlayground.tsx
  */
 
+import type { UseColorStateReturn } from '../../hooks/useColorState.js';
+
 interface ColorCategorySelectionProps {
-  colorHookState: any;
-  colorActions: any;
+  colorHookState: UseColorStateReturn;
+  colorActions: UseColorStateReturn;
 }
 
 export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
