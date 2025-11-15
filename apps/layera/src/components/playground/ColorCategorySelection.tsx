@@ -116,13 +116,6 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
         </h3>
         <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
           <Button
-            variant={colorHookState.elementType === 'buttons' ? 'primary' : 'outline'}
-            size="sm"
-            onClick={() => colorActions.setElementType('buttons')}
-          >
-            <CheckIcon size="sm" /> Πλήκτρα
-          </Button>
-          <Button
             variant={colorHookState.elementType === 'cards' ? 'primary' : 'outline'}
             size="sm"
             onClick={() => colorActions.setElementType('cards')}
@@ -137,18 +130,25 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
             <MonitorIcon size="sm" /> Modals
           </Button>
           <Button
-            variant={colorHookState.elementType === 'inputs' ? 'primary' : 'outline'}
-            size="sm"
-            onClick={() => colorActions.setElementType('inputs')}
-          >
-            <EditIcon size="sm" /> Πεδία
-          </Button>
-          <Button
             variant={colorHookState.elementType === 'layout' ? 'primary' : 'outline'}
             size="sm"
             onClick={() => colorActions.setElementType('layout')}
           >
             <BuildingIcon size="sm" /> Layout
+          </Button>
+          <Button
+            variant={colorHookState.elementType === 'buttons' ? 'primary' : 'outline'}
+            size="sm"
+            onClick={() => colorActions.setElementType('buttons')}
+          >
+            <CheckIcon size="sm" /> Πλήκτρα
+          </Button>
+          <Button
+            variant={colorHookState.elementType === 'inputs' ? 'primary' : 'outline'}
+            size="sm"
+            onClick={() => colorActions.setElementType('inputs')}
+          >
+            <EditIcon size="sm" /> Πεδία
           </Button>
           <Button
             variant={colorHookState.elementType === 'tables' ? 'primary' : 'outline'}

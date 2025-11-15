@@ -166,14 +166,6 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
         {/* Απευθείας εμφάνιση των Category/Element Selections */}
         <Box>
-          {/* Category and Element Type Selection */}
-          <Box className="layera-margin-bottom--lg">
-            <ColorCategorySelection
-              colorHookState={colorHookState}
-              colorActions={colorActions}
-            />
-          </Box>
-
           {/* Dynamic Content Based on Element Type Selection */}
           {colorHookState.elementType === 'buttons' && (
             <Box className="layera-margin-bottom--lg">
@@ -241,6 +233,111 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
             />
           </Box>
+
+          {/* Category and Element Type Selection - Πάνω από Button Controls */}
+          <Box className="layera-margin-bottom--lg">
+            <ColorCategorySelection
+              colorHookState={colorHookState}
+              colorActions={colorActions}
+            />
+          </Box>
+
+          {/* Button Controls Grid - ΜΟΝΟ για buttons elementType */}
+          {colorHookState.elementType === 'buttons' && (
+            <Box className="layera-margin-bottom--lg">
+              <Box
+                className="layera-grid"
+                style={{
+                  gridTemplateColumns: 'repeat(3, 1fr)',
+                  gridTemplateRows: 'auto',
+                  gap: '32px',
+                  marginTop: '24px',
+                  marginBottom: '32px'
+                }}
+              >
+                {/* Shape Control - ΠΡΩΤΟ */}
+                <Box className="layera-card layera-padding--lg">
+                  <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
+                    Σχήμα Πλήκτρου
+                  </h4>
+                  <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
+                    <Button
+                      variant={buttonState.shape === 'rectangular' ? 'primary' : 'secondary'}
+                      size="sm"
+                      onClick={() => buttonActions.setShape('rectangular')}
+                    >
+                      <RulerIcon size="sm" /> Παραλληλόγραμμο
+                    </Button>
+                    <Button
+                      variant={buttonState.shape === 'square' ? 'primary' : 'secondary'}
+                      size="sm"
+                      onClick={() => buttonActions.setShape('square')}
+                    >
+                      <PolygonIcon size="sm" /> Τετράγωνο
+                    </Button>
+                    <Button
+                      variant={buttonState.shape === 'rounded' ? 'primary' : 'secondary'}
+                      size="sm"
+                      onClick={() => buttonActions.setShape('rounded')}
+                    >
+                      <CompassIcon size="sm" /> Στρογγυλό
+                    </Button>
+                  </Box>
+                </Box>
+
+                {/* Size Control - ΔΕΥΤΕΡΟ */}
+                <Box className="layera-card layera-padding--lg">
+                  <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
+                    Size
+                  </h4>
+                  <Box className="layera-flex layera-flex--gap-sm">
+                    {buttonSizes.map((size) => (
+                      <Button
+                        key={size}
+                        variant={buttonState.size === size ? 'primary' : 'secondary'}
+                        size="sm"
+                        onClick={() => buttonActions.setSize(size)}
+                      >
+                        {size}
+                      </Button>
+                    ))}
+                  </Box>
+                </Box>
+
+                {/* Text & Icon Control - ΤΡΙΤΟ */}
+                <Box className="layera-card layera-padding--lg">
+                  <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
+                    Κείμενο & Εικονίδιο
+                  </h4>
+                  <Box className="layera-flex layera-flex--gap-md layera-flex--align-center">
+                    <input
+                      type="text"
+                      value={buttonState.text}
+                      onChange={(e) => buttonActions.setText(e.target.value)}
+                      style={{
+                        padding: '12px',
+                        borderRadius: '6px',
+                        fontSize: '14px',
+                        width: '100%',
+                        outline: 'none',
+                        backgroundColor: '#ffffff',
+                        color: '#333333',
+                        border: '1px solid #e5e5e5',
+                        flex: '1'
+                      }}
+                    />
+                    <Button
+                      variant={buttonState.withIcon ? 'primary' : 'outline'}
+                      size="sm"
+                      onClick={() => buttonActions.setWithIcon(!buttonState.withIcon)}
+                    >
+                      {buttonState.withIcon ? <><CheckIcon size="sm" /> Με εικονίδιο</> : <><CloseIcon size="sm" /> Χωρίς εικονίδιο</>}
+                    </Button>
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+          )}
 
           {/* Color Controls Grid */}
           <Box className="layera-margin-bottom--lg">
