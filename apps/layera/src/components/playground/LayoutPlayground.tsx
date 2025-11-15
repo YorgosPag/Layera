@@ -20,9 +20,13 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
 }) => {
   const getLayoutStyle = (colorValue: string) => {
     const baseStyle = {
-      padding: '16px',
+      padding: '12px',
       borderRadius: '8px',
-      minHeight: '80px',
+      height: 'var(--layera-fontSize-6xl)',
+      width: 'calc(var(--layera-fontSize-6xl) * 3)',
+      minWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
+      maxWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
+      flex: '0 0 calc(var(--layera-fontSize-6xl) * 3)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center'
@@ -62,7 +66,17 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
           <CheckIcon size="sm" /> Live Preview: Layout
         </h3>
 
-        <Box className="layera-grid layera-grid--gap-md" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'row',
+          flexWrap: 'nowrap',
+          gap: '8px',
+          overflowX: 'auto',
+          width: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: '16px 0'
+        }}>
           <Box style={getLayoutStyle(currentColors.primary)}>
             <div>
               <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold' }}>Primary</h4>
@@ -104,7 +118,7 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
               <p style={{ margin: 0, fontSize: '11px', opacity: 0.8 }}>Layout Section</p>
             </div>
           </Box>
-        </Box>
+        </div>
       </Box>
     </Box>
   );

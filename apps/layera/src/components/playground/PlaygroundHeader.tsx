@@ -45,10 +45,6 @@ export const PlaygroundHeader: React.FC<PlaygroundHeaderProps> = ({
       <Box
         className="layera-bg-surface--secondary layera-text-color--primary layera-padding--2xl layera-max-width--container-xl layera-margin-x--auto"
       >
-        {/* TEST - Θα δεις αυτό το κείμενο */}
-        <h2 className="layera-typography layera-margin-bottom--xl" data-color="primary" data-size="2xl" data-weight="bold">
-          <CheckIcon size="sm" /> ΠΕΡΙΕΧΟΜΕΝΟ ΦΟΡΤΩΝΕΙ!
-        </h2>
 
         {/* Navigation Tabs αφαιρέθηκαν - απευθείας εμφάνιση content */}
       </Box>

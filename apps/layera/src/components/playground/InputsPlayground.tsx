@@ -61,61 +61,71 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
           <CheckIcon size="sm" /> Live Preview: Πεδία
         </h3>
 
-        <Box className="layera-grid layera-grid--gap-md" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
-          <Box>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'row',
+          flexWrap: 'nowrap',
+          gap: '16px',
+          overflowX: 'auto',
+          width: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: '16px 0'
+        }}>
+          <div style={{ minWidth: '150px' }}>
             <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px', fontWeight: 'bold' }}>Primary Input</label>
             <input
               type="text"
               placeholder="Primary πεδίο"
               style={getInputStyle(currentColors.primary)}
             />
-          </Box>
+          </div>
 
-          <Box>
+          <div style={{ minWidth: '150px' }}>
             <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px', fontWeight: 'bold' }}>Secondary Input</label>
             <input
               type="text"
               placeholder="Secondary πεδίο"
               style={getInputStyle(currentColors.secondary)}
             />
-          </Box>
+          </div>
 
-          <Box>
+          <div style={{ minWidth: '150px' }}>
             <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px', fontWeight: 'bold' }}>Success Input</label>
             <input
               type="text"
               placeholder="Success πεδίο"
               style={getInputStyle(currentColors.success)}
             />
-          </Box>
+          </div>
 
-          <Box>
+          <div style={{ minWidth: '150px' }}>
             <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px', fontWeight: 'bold' }}>Warning Input</label>
             <input
               type="text"
               placeholder="Warning πεδίο"
               style={getInputStyle(currentColors.warning)}
             />
-          </Box>
+          </div>
 
-          <Box>
+          <div style={{ minWidth: '150px' }}>
             <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px', fontWeight: 'bold' }}>Danger Input</label>
             <input
               type="text"
               placeholder="Danger πεδίο"
               style={getInputStyle(currentColors.danger)}
             />
-          </Box>
+          </div>
 
-          <Box>
+          <div style={{ minWidth: '150px' }}>
             <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px', fontWeight: 'bold' }}>Info Input</label>
             <input
               type="text"
               placeholder="Info πεδίο"
               style={getInputStyle(currentColors.info)}
             />
-          </Box>
-        </Box>
+          </div>
+        </div>
       </Box>
     </Box>
   );
