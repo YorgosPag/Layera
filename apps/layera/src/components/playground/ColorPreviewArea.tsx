@@ -3,6 +3,9 @@ import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { PaletteIcon, LayersIcon, EditIcon, PolygonIcon } from '@layera/icons';
 import { ButtonsPreview } from './ButtonsPreview';
+import { BackgroundsPreview } from './BackgroundsPreview';
+import { TextPreview } from './TextPreview';
+import { BordersPreview } from './BordersPreview';
 
 interface ColorPreviewAreaProps {
   colorHookState: {
@@ -48,236 +51,17 @@ export const ColorPreviewArea: React.FC<ColorPreviewAreaProps> = ({
 
           {/* BACKGROUNDS CATEGORY - Show colored background boxes */}
           {colorHookState.colorCategory === 'backgrounds' && (
-            <>
-              <div style={{
-                backgroundColor: currentColors.primary,
-                color: 'white',
-                padding: '20px',
-                border: '2px solid #ccc',
-                borderRadius: '8px',
-                minWidth: '120px',
-                height: '80px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontWeight: 'bold',
-                textAlign: 'center',
-                fontSize: '12px'
-              }}>
-                Primary<br/>Background
-              </div>
-              <div style={{
-                backgroundColor: currentColors.secondary,
-                color: 'white',
-                padding: '20px',
-                border: '2px solid #ccc',
-                borderRadius: '8px',
-                minWidth: '120px',
-                height: '80px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontWeight: 'bold',
-                textAlign: 'center',
-                fontSize: '12px'
-              }}>
-                Secondary<br/>Background
-              </div>
-              <div style={{
-                backgroundColor: currentColors.success,
-                color: 'white',
-                padding: '20px',
-                border: '2px solid #ccc',
-                borderRadius: '8px',
-                minWidth: '120px',
-                height: '80px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontWeight: 'bold',
-                textAlign: 'center',
-                fontSize: '12px'
-              }}>
-                Success<br/>Background
-              </div>
-              <div style={{
-                backgroundColor: currentColors.warning,
-                color: 'black',
-                padding: '20px',
-                border: '2px solid #ccc',
-                borderRadius: '8px',
-                minWidth: '120px',
-                height: '80px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontWeight: 'bold',
-                textAlign: 'center',
-                fontSize: '12px'
-              }}>
-                Warning<br/>Background
-              </div>
-              <div style={{
-                backgroundColor: currentColors.danger,
-                color: 'white',
-                padding: '20px',
-                border: '2px solid #ccc',
-                borderRadius: '8px',
-                minWidth: '120px',
-                height: '80px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontWeight: 'bold',
-                textAlign: 'center',
-                fontSize: '12px'
-              }}>
-                Danger<br/>Background
-              </div>
-              <div style={{
-                backgroundColor: currentColors.info,
-                color: 'white',
-                padding: '20px',
-                border: '2px solid #ccc',
-                borderRadius: '8px',
-                minWidth: '120px',
-                height: '80px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontWeight: 'bold',
-                textAlign: 'center',
-                fontSize: '12px'
-              }}>
-                Info<br/>Background
-              </div>
-            </>
+            <BackgroundsPreview currentColors={currentColors} />
           )}
 
           {/* TEXT CATEGORY - Show colored text samples */}
           {colorHookState.colorCategory === 'text' && (
-            <>
-              <div style={{ textAlign: 'center', padding: '10px' }}>
-                <h4 style={{ color: currentColors.primary, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Primary Text</h4>
-                <p style={{ color: currentColors.primary, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
-              </div>
-              <div style={{ textAlign: 'center', padding: '10px' }}>
-                <h4 style={{ color: currentColors.secondary, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Secondary Text</h4>
-                <p style={{ color: currentColors.secondary, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
-              </div>
-              <div style={{ textAlign: 'center', padding: '10px' }}>
-                <h4 style={{ color: currentColors.success, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Success Text</h4>
-                <p style={{ color: currentColors.success, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
-              </div>
-              <div style={{ textAlign: 'center', padding: '10px' }}>
-                <h4 style={{ color: currentColors.warning, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Warning Text</h4>
-                <p style={{ color: currentColors.warning, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
-              </div>
-              <div style={{ textAlign: 'center', padding: '10px' }}>
-                <h4 style={{ color: currentColors.danger, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Danger Text</h4>
-                <p style={{ color: currentColors.danger, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
-              </div>
-              <div style={{ textAlign: 'center', padding: '10px' }}>
-                <h4 style={{ color: currentColors.info, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Info Text</h4>
-                <p style={{ color: currentColors.info, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
-              </div>
-            </>
+            <TextPreview currentColors={currentColors} />
           )}
 
           {/* BORDERS CATEGORY - Show colored border samples */}
           {colorHookState.colorCategory === 'borders' && (
-            <>
-              <div style={{
-                border: `3px solid ${currentColors.primary}`,
-                borderRadius: '8px',
-                padding: '15px',
-                minWidth: '100px',
-                height: '60px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '12px',
-                fontWeight: 'bold',
-                backgroundColor: 'white'
-              }}>
-                Primary<br/>Border
-              </div>
-              <div style={{
-                border: `3px solid ${currentColors.secondary}`,
-                borderRadius: '8px',
-                padding: '15px',
-                minWidth: '100px',
-                height: '60px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '12px',
-                fontWeight: 'bold',
-                backgroundColor: 'white'
-              }}>
-                Secondary<br/>Border
-              </div>
-              <div style={{
-                border: `3px solid ${currentColors.success}`,
-                borderRadius: '8px',
-                padding: '15px',
-                minWidth: '100px',
-                height: '60px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '12px',
-                fontWeight: 'bold',
-                backgroundColor: 'white'
-              }}>
-                Success<br/>Border
-              </div>
-              <div style={{
-                border: `3px solid ${currentColors.warning}`,
-                borderRadius: '8px',
-                padding: '15px',
-                minWidth: '100px',
-                height: '60px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '12px',
-                fontWeight: 'bold',
-                backgroundColor: 'white'
-              }}>
-                Warning<br/>Border
-              </div>
-              <div style={{
-                border: `3px solid ${currentColors.danger}`,
-                borderRadius: '8px',
-                padding: '15px',
-                minWidth: '100px',
-                height: '60px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '12px',
-                fontWeight: 'bold',
-                backgroundColor: 'white'
-              }}>
-                Danger<br/>Border
-              </div>
-              <div style={{
-                border: `3px solid ${currentColors.info}`,
-                borderRadius: '8px',
-                padding: '15px',
-                minWidth: '100px',
-                height: '60px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '12px',
-                fontWeight: 'bold',
-                backgroundColor: 'white'
-              }}>
-                Info<br/>Border
-              </div>
-            </>
+            <BordersPreview currentColors={currentColors} />
           )}
         </Box>
       </Box>
