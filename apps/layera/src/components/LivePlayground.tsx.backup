@@ -8,7 +8,6 @@ import { ColorsSection } from './playground/ColorsSection';
 import { saveColorTheme, loadCurrentThemeFromLocalStorage } from '../services/colorThemeService';
 import { useAuth } from '@layera/auth-bridge';
 import { useRealTimePreview } from '../hooks/useRealTimePreview';
-import { useButtonState } from '../hooks/useButtonState';
 
 /**
  * Live Playground - Enterprise Component Testing Interface
@@ -24,6 +23,8 @@ import { useButtonState } from '../hooks/useButtonState';
  * @version 2.0.0 - Refactored for clean enterprise architecture
  */
 
+type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'success' | 'warning' | 'info';
+type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 interface LivePlaygroundProps {
   onClose: () => void;
@@ -36,18 +37,23 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   const { user } = useAuth();
 
   // ==============================
-  // HOOK INTEGRATIONS
-  // ==============================
-
-  // Button State Management
-  const { state: buttonState, actions: buttonActions, variants: buttonVariants, sizes: buttonSizes } = useButtonState();
-
-  // ==============================
   // STATE MANAGEMENT
   // ==============================
 
   /** Active section in the playground interface */
   const [activeSection, setActiveSection] = useState<'buttons' | 'colors' | 'tokens'>('buttons');
+
+  // Button Configuration
+  /** Current button variant for testing */
+  const [buttonVariant, setButtonVariant] = useState<ButtonVariant>('secondary');
+  /** Current button size for testing */
+  const [buttonSize, setButtonSize] = useState<ButtonSize>('md');
+  /** Text displayed on test buttons */
+  const [buttonText, setButtonText] = useState('Live Button');
+  /** Whether test buttons show icons */
+  const [withIcon, setWithIcon] = useState(true);
+  /** Button shape for button testing section */
+  const [buttonShape, setButtonShape] = useState<'rectangular' | 'square' | 'rounded'>('rectangular');
 
   // Color Configuration
   /** Button shape for color testing (connected to header buttons) */
@@ -157,6 +163,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   const currentColors = getCurrentColors();
   /** Current color setters based on selected button shape */
   const currentSetters = getCurrentSetters();
+  /** Available button variants for testing */
+  const variants: ButtonVariant[] = ['primary', 'secondary', 'outline', 'ghost', 'danger', 'success', 'warning', 'info'];
+  /** Available button sizes for testing */
+  const sizes: ButtonSize[] = ['xs', 'sm', 'md', 'lg', 'xl'];
 
   // ==============================
   // EFFECTS
@@ -171,8 +181,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         const savedState = JSON.parse(stored);
 
         // Εφαρμογή των αποθηκευμένων χρωμάτων
-        if (savedState.buttonState.shape && savedState.buttonState.shape !== colorButtonShape) {
-          setColorButtonShape(savedState.buttonState.shape);
+        if (savedState.buttonShape && savedState.buttonShape !== colorButtonShape) {
+          setColorButtonShape(savedState.buttonShape);
         }
 
         if (savedState.colorCategory && savedState.colorCategory !== colorCategory) {
@@ -180,21 +190,21 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         }
 
         // Εφαρμογή χρωμάτων ανάλογα με το σχήμα
-        if (savedState.buttonState.shape === 'square') {
+        if (savedState.buttonShape === 'square') {
           setSquarePrimaryColor(savedState.primaryColor || squarePrimaryColor);
           setSquareSecondaryColor(savedState.secondaryColor || squareSecondaryColor);
           setSquareSuccessColor(savedState.successColor || squareSuccessColor);
           setSquareWarningColor(savedState.warningColor || squareWarningColor);
           setSquareDangerColor(savedState.dangerColor || squareDangerColor);
           setSquareInfoColor(savedState.infoColor || squareInfoColor);
-        } else if (savedState.buttonState.shape === 'rectangular') {
+        } else if (savedState.buttonShape === 'rectangular') {
           setRectPrimaryColor(savedState.primaryColor || rectPrimaryColor);
           setRectSecondaryColor(savedState.secondaryColor || rectSecondaryColor);
           setRectSuccessColor(savedState.successColor || rectSuccessColor);
           setRectWarningColor(savedState.warningColor || rectWarningColor);
           setRectDangerColor(savedState.dangerColor || rectDangerColor);
           setRectInfoColor(savedState.infoColor || rectInfoColor);
-        } else if (savedState.buttonState.shape === 'rounded') {
+        } else if (savedState.buttonShape === 'rounded') {
           setRoundedPrimaryColor(savedState.primaryColor || roundedPrimaryColor);
           setRoundedSecondaryColor(savedState.secondaryColor || roundedSecondaryColor);
           setRoundedSuccessColor(savedState.successColor || roundedSuccessColor);
@@ -220,12 +230,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
    */
   const applyToApp = () => {
     window.dispatchEvent(new CustomEvent('playgroundUpdate', {
-      detail: {
-        variant: buttonState.variant,
-        size: buttonState.size,
-        text: buttonState.text,
-        withIcon: buttonState.withIcon
-      }
+      detail: { buttonVariant, buttonSize, buttonText, withIcon }
     }));
   };
 
@@ -368,7 +373,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
     // Αποθήκευση στο Firebase
     const colorState = {
       colorCategory,
-      shape: colorButtonShape,
+      buttonShape: colorButtonShape,
       primaryColor: currentColors.primary,
       secondaryColor: currentColors.secondary,
       successColor: currentColors.success,
@@ -471,47 +476,47 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
               <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-xl">
                 {/* Rectangular Button */}
-                {buttonState.shape === 'rectangular' && (
+                {buttonShape === 'rectangular' && (
                   <Button
-                    variant={buttonState.variant}
-                    size={buttonState.size}
-                    icon={buttonState.withIcon ? <PlusIcon size="sm" /> : undefined}
+                    variant={buttonVariant}
+                    size={buttonSize}
+                    icon={withIcon ? <PlusIcon size="sm" /> : undefined}
                     iconPosition="left"
                   >
-                    {buttonState.text}
+                    {buttonText}
                   </Button>
                 )}
 
                 {/* Square Button */}
-                {buttonState.shape === 'square' && (
+                {buttonShape === 'square' && (
                   <SquareButton
                     icon={<SearchIcon size="sm" />}
-                    variant={buttonState.variant}
-                    size={buttonState.size}
-                    aria-label={`Τετράγωνο ${buttonState.variant} πλήκτρο`}
-                    tooltip={`Live ${buttonState.variant} τετράγωνο`}
+                    variant={buttonVariant}
+                    size={buttonSize}
+                    aria-label={`Τετράγωνο ${buttonVariant} πλήκτρο`}
+                    tooltip={`Live ${buttonVariant} τετράγωνο`}
                   />
                 )}
 
                 {/* Rounded Button */}
-                {buttonState.shape === 'rounded' && (
+                {buttonShape === 'rounded' && (
                   <button
                     style={{
-                      backgroundColor: buttonState.variant === 'primary' ? '#007bff' : buttonState.variant === 'secondary' ? '#6c757d' : '#28a745',
+                      backgroundColor: buttonVariant === 'primary' ? '#007bff' : buttonVariant === 'secondary' ? '#6c757d' : '#28a745',
                       color: 'white',
-                      padding: buttonState.size === 'xs' ? '4px 12px' : buttonState.size === 'sm' ? '6px 16px' : buttonState.size === 'md' ? '8px 20px' : buttonState.size === 'lg' ? '12px 24px' : '16px 32px',
+                      padding: buttonSize === 'xs' ? '4px 12px' : buttonSize === 'sm' ? '6px 16px' : buttonSize === 'md' ? '8px 20px' : buttonSize === 'lg' ? '12px 24px' : '16px 32px',
                       border: 'none',
                       borderRadius: '50px',
                       cursor: 'pointer',
-                      fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px',
+                      fontSize: buttonSize === 'xs' ? '12px' : buttonSize === 'sm' ? '14px' : buttonSize === 'md' ? '16px' : buttonSize === 'lg' ? '18px' : '20px',
                       fontWeight: '500',
                       display: 'flex',
                       alignItems: 'center',
                       gap: '8px'
                     }}
                   >
-                    {buttonState.withIcon && <span>⚪</span>}
-                    {buttonState.text}
+                    {withIcon && <span>⚪</span>}
+                    {buttonText}
                   </button>
                 )}
               </Box>
@@ -530,12 +535,12 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   Variant
                 </h4>
                 <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
-                  {buttonVariants.map((variant) => (
+                  {variants.map((variant) => (
                     <Button
                       key={variant}
-                      variant={buttonState.variant === variant ? 'primary' : 'outline'}
+                      variant={buttonVariant === variant ? 'primary' : 'outline'}
                       size="sm"
-                      onClick={() => buttonActions.setVariant(variant)}
+                      onClick={() => setButtonVariant(variant)}
                     >
                       {variant}
                     </Button>
@@ -549,12 +554,12 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   Size
                 </h4>
                 <Box className="layera-flex layera-flex--gap-sm">
-                  {buttonSizes.map((size) => (
+                  {sizes.map((size) => (
                     <Button
                       key={size}
-                      variant={buttonState.size === size ? 'primary' : 'secondary'}
+                      variant={buttonSize === size ? 'primary' : 'secondary'}
                       size="sm"
-                      onClick={() => buttonActions.setSize(size)}
+                      onClick={() => setButtonSize(size)}
                     >
                       {size}
                     </Button>
@@ -569,16 +574,16 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 </h4>
                 <input
                   type="text"
-                  value={buttonState.text}
-                  onChange={(e) => buttonActions.setText(e.target.value)}
+                  value={buttonText}
+                  onChange={(e) => setButtonText(e.target.value)}
                   className="layera-input layera-width--full layera-margin-bottom--sm"
                 />
                 <Button
-                  variant={buttonState.withIcon ? 'primary' : 'outline'}
+                  variant={withIcon ? 'primary' : 'outline'}
                   size="sm"
-                  onClick={() => buttonActions.setWithIcon(!buttonState.withIcon)}
+                  onClick={() => setWithIcon(!withIcon)}
                 >
-                  {buttonState.withIcon ? <><CheckIcon size="sm" /> Με εικονίδιο</> : <><CloseIcon size="sm" /> Χωρίς εικονίδιο</>}
+                  {withIcon ? <><CheckIcon size="sm" /> Με εικονίδιο</> : <><CloseIcon size="sm" /> Χωρίς εικονίδιο</>}
                 </Button>
               </Box>
 
@@ -589,23 +594,23 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 </h4>
                 <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
                   <Button
-                    variant={buttonState.shape === 'rectangular' ? 'primary' : 'secondary'}
+                    variant={buttonShape === 'rectangular' ? 'primary' : 'secondary'}
                     size="sm"
-                    onClick={() => buttonActions.setShape('rectangular')}
+                    onClick={() => setButtonShape('rectangular')}
                   >
                     <RulerIcon size="sm" /> Παραλληλόγραμμο
                   </Button>
                   <Button
-                    variant={buttonState.shape === 'square' ? 'primary' : 'secondary'}
+                    variant={buttonShape === 'square' ? 'primary' : 'secondary'}
                     size="sm"
-                    onClick={() => buttonActions.setShape('square')}
+                    onClick={() => setButtonShape('square')}
                   >
                     <PolygonIcon size="sm" /> Τετράγωνο
                   </Button>
                   <Button
-                    variant={buttonState.shape === 'rounded' ? 'primary' : 'secondary'}
+                    variant={buttonShape === 'rounded' ? 'primary' : 'secondary'}
                     size="sm"
-                    onClick={() => buttonActions.setShape('rounded')}
+                    onClick={() => setButtonShape('rounded')}
                   >
                     <CompassIcon size="sm" /> Στρογγυλό
                   </Button>
@@ -621,10 +626,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               </h4>
               <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">
 {`{
-  variant: "${buttonState.variant}",
-  size: "${buttonState.size}",
-  text: "${buttonState.text}",
-  buttonState.withIcon: ${buttonState.withIcon}
+  variant: "${buttonVariant}",
+  size: "${buttonSize}",
+  text: "${buttonText}",
+  withIcon: ${withIcon}
 }`}
               </pre>
             </Box>
