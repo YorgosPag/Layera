@@ -220,7 +220,7 @@
   }
 }
 
-.layera-btn-sm {
+.layera-btn--sm {
   height: var(--layera-btn-sm-height);
   padding: var(--layera-btn-sm-padding);
   font-size: var(--layera-btn-sm-font-size);
@@ -232,7 +232,7 @@
   }
 }
 
-.layera-btn-md {
+.layera-btn--md {
   height: var(--layera-btn-md-height);
   padding: var(--layera-btn-md-padding);
   font-size: var(--layera-btn-md-font-size);
@@ -244,7 +244,7 @@
   }
 }
 
-.layera-btn-lg {
+.layera-btn--lg {
   height: var(--layera-btn-lg-height);
   padding: var(--layera-btn-lg-padding);
   font-size: var(--layera-btn-lg-font-size);
@@ -256,7 +256,7 @@
   }
 }
 
-.layera-btn-xl {
+.layera-btn--xl {
   height: var(--layera-btn-xl-height);
   padding: var(--layera-btn-xl-padding);
   font-size: var(--layera-btn-xl-font-size);
@@ -269,12 +269,12 @@
 }
 
 /* Full Width */
-.layera-btn-full-width {
+.layera-btn--full-width {
   width: 100%;
 }
 
 /* Variant Styles */
-.layera-btn-primary {
+.layera-btn--primary {
   background-color: var(--layera-btn-primary-bg);
   color: var(--layera-btn-primary-color);
   border-color: var(--layera-btn-primary-border);
@@ -296,7 +296,7 @@
   }
 }
 
-.layera-btn-secondary {
+.layera-btn--secondary {
   background-color: var(--layera-btn-secondary-bg);
   color: var(--layera-btn-secondary-color);
   border-color: var(--layera-btn-secondary-border);
@@ -318,7 +318,7 @@
   }
 }
 
-.layera-btn-outline {
+.layera-btn--outline {
   background-color: var(--layera-btn-outline-bg);
   color: var(--layera-btn-outline-color);
   border-color: var(--layera-btn-outline-border);
@@ -340,7 +340,7 @@
   }
 }
 
-.layera-btn-ghost {
+.layera-btn--ghost {
   background-color: var(--layera-btn-ghost-bg);
   color: var(--layera-btn-ghost-color);
   border-color: var(--layera-btn-ghost-border);
@@ -362,7 +362,7 @@
   }
 }
 
-.layera-btn-danger {
+.layera-btn--danger {
   background-color: var(--layera-btn-danger-bg);
   color: var(--layera-btn-danger-color);
   border-color: var(--layera-btn-danger-border);
@@ -384,7 +384,7 @@
   }
 }
 
-.layera-btn-success {
+.layera-btn--success {
   background-color: var(--layera-btn-success-bg);
   color: var(--layera-btn-success-color);
   border-color: var(--layera-btn-success-border);
@@ -406,7 +406,7 @@
   }
 }
 
-.layera-btn-warning {
+.layera-btn--warning {
   background-color: var(--layera-btn-warning-bg);
   color: var(--layera-btn-warning-color);
   border-color: var(--layera-btn-warning-border);
@@ -428,7 +428,7 @@
   }
 }
 
-.layera-btn-info {
+.layera-btn--info {
   background-color: var(--layera-btn-info-bg);
   color: var(--layera-btn-info-color);
   border-color: var(--layera-btn-info-border);
@@ -451,7 +451,7 @@
 }
 
 /* Loading States */
-.layera-btn-loading {
+.layera-btn--loading {
   cursor: wait;
   position: relative;
 
@@ -459,7 +459,7 @@
     opacity: var(--layera-size-0);
   }
 
-  .layera-btn-loading {
+  .layera-btn--loading {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -503,7 +503,7 @@
 }
 
 /* Icon Only Buttons */
-.layera-btn-icon-only {
+.layera-btn--icon-only {
   padding: var(--layera-size-0);
   aspect-ratio: 1;
   justify-content: center;

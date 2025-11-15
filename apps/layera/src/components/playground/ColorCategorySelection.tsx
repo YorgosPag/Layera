@@ -22,6 +22,53 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
   colorHookState,
   colorActions
 }) => {
+  // Hot reload trigger
+  // Debug για να δούμε αν αλλάζει το state όταν αλλάζουμε χρώματα
+  console.log('🎯 ColorCategorySelection State:', {
+    colorCategory: colorHookState.colorCategory,
+    elementType: colorHookState.elementType,
+    backgroundsButtonVariant: colorHookState.colorCategory === 'backgrounds' ? 'primary' : 'outline',
+    textButtonVariant: colorHookState.colorCategory === 'text' ? 'primary' : 'outline',
+    bordersButtonVariant: colorHookState.colorCategory === 'borders' ? 'primary' : 'outline',
+    buttonsElementVariant: colorHookState.elementType === 'buttons' ? 'primary' : 'outline',
+    cardsElementVariant: colorHookState.elementType === 'cards' ? 'primary' : 'outline'
+  });
+
+  // Expose debug function to window for console testing
+  if (typeof window !== 'undefined') {
+    (window as any).debugColorState = () => {
+      console.group('🔍 Button State Debug');
+
+      // Find all category buttons
+      const categoryButtons = document.querySelectorAll('[data-testid^="category-"] button, .layera-button');
+      console.log('📍 Found Category Buttons:', categoryButtons.length);
+
+      categoryButtons.forEach((btn, index) => {
+        const btnElement = btn as HTMLElement;
+        const computedStyle = window.getComputedStyle(btnElement);
+        const classList = Array.from(btnElement.classList);
+        const text = btnElement.textContent?.trim();
+
+        console.log(`Button ${index + 1}: "${text}"`, {
+          classList,
+          backgroundColor: computedStyle.backgroundColor,
+          color: computedStyle.color,
+          border: computedStyle.border,
+          variant: classList.find(c => c.includes('primary') || c.includes('outline')) || 'unknown'
+        });
+      });
+
+      // State info
+      console.log('🎯 Current State:', {
+        colorCategory: colorHookState.colorCategory,
+        elementType: colorHookState.elementType
+      });
+
+      console.groupEnd();
+      return 'Debug completed - check above for button states';
+    };
+  }
+
   return (
     <Box
       className="layera-grid layera-margin-bottom--xl layera-grid--gap-lg"
