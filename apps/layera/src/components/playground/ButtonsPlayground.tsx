@@ -53,7 +53,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             border: 'none',
             borderRadius: buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px',
             cursor: 'pointer',
-            minWidth: buttonState.shape === 'square' ? '50px' : 'auto',
+            minWidth: buttonState.shape === 'square' ? '50px' : '120px',
             height: buttonState.shape === 'square' ? '50px' : 'auto',
             display: 'flex',
             alignItems: 'center',
@@ -69,7 +69,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             border: 'none',
             borderRadius: buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px',
             cursor: 'pointer',
-            minWidth: buttonState.shape === 'square' ? '50px' : 'auto',
+            minWidth: buttonState.shape === 'square' ? '50px' : '120px',
             height: buttonState.shape === 'square' ? '50px' : 'auto',
             display: 'flex',
             alignItems: 'center',
@@ -85,7 +85,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             border: 'none',
             borderRadius: buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px',
             cursor: 'pointer',
-            minWidth: buttonState.shape === 'square' ? '50px' : 'auto',
+            minWidth: buttonState.shape === 'square' ? '50px' : '120px',
             height: buttonState.shape === 'square' ? '50px' : 'auto',
             display: 'flex',
             alignItems: 'center',
@@ -101,7 +101,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             border: 'none',
             borderRadius: buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px',
             cursor: 'pointer',
-            minWidth: buttonState.shape === 'square' ? '50px' : 'auto',
+            minWidth: buttonState.shape === 'square' ? '50px' : '120px',
             height: buttonState.shape === 'square' ? '50px' : 'auto',
             display: 'flex',
             alignItems: 'center',
@@ -117,7 +117,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             border: 'none',
             borderRadius: buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px',
             cursor: 'pointer',
-            minWidth: buttonState.shape === 'square' ? '50px' : 'auto',
+            minWidth: buttonState.shape === 'square' ? '50px' : '120px',
             height: buttonState.shape === 'square' ? '50px' : 'auto',
             display: 'flex',
             alignItems: 'center',
@@ -133,7 +133,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             border: 'none',
             borderRadius: buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px',
             cursor: 'pointer',
-            minWidth: buttonState.shape === 'square' ? '50px' : 'auto',
+            minWidth: buttonState.shape === 'square' ? '50px' : '120px',
             height: buttonState.shape === 'square' ? '50px' : 'auto',
             display: 'flex',
             alignItems: 'center',
@@ -147,10 +147,12 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
 
       {/* Controls Grid - 2x2 Layout */}
       <Box
-        className="layera-grid layera-grid--gap-xl layera-margin-bottom--xl"
+        className="layera-grid layera-margin-bottom--xl"
         style={{
           gridTemplateColumns: 'repeat(2, 1fr)',
-          gridTemplateRows: 'repeat(2, auto)'
+          gridTemplateRows: 'repeat(2, auto)',
+          gap: '32px',
+          marginTop: '48px'
         }}
       >
         {/* Variant Control */}
