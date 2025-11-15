@@ -175,7 +175,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 buttonSizes={buttonSizes}
                 colorCategory={colorHookState.colorCategory}
                 elementType={colorHookState.elementType}
-                currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
+                currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, string>}
               />
             </Box>
           )}

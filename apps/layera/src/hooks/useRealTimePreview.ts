@@ -20,7 +20,7 @@ export interface UseRealTimePreviewProps {
   debounceMs?: number;
 }
 
-export const useRealTimePreview = ({ onCommit, debounceMs = 300 }: UseRealTimePreviewProps) => {
+export const useRealTimePreview = ({ onCommit, debounceMs = 500 }: UseRealTimePreviewProps) => {
   const [previewState, setPreviewState] = useState<PreviewState>({
     previewColors: {},
     isPreviewActive: false,
@@ -28,6 +28,9 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 300 }: UseRealTimePr
   });
 
   const debounceTimerRef = useRef<NodeJS.Timeout | undefined>(undefined);
+  const domUpdateTimerRef = useRef<NodeJS.Timeout | undefined>(undefined);
+  const pendingDOMUpdate = useRef<{ key: string; value: string } | null>(null);
+  const rafRef = useRef<number | null>(null);
 
   /**
    * Εφαρμόζει live preview στα header buttons - Optimized version
@@ -56,7 +59,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 300 }: UseRealTimePr
   }, []);
 
   /**
-   * Εφαρμόζει live preview στο DOM χωρίς save
+   * Εφαρμόζει live preview στο DOM χωρίς save - τώρα με throttling
    */
   const applyLivePreview = useCallback((key: string, value: string) => {
     const root = document.documentElement;
@@ -81,6 +84,34 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 300 }: UseRealTimePr
       }
     }
   }, [applyHeaderButtonPreview]);
+
+  /**
+   * Throttled version του DOM update - Μείωση DOM manipulations με requestAnimationFrame
+   */
+  const throttledDOMUpdate = useCallback((key: string, value: string) => {
+    // Αποθήκευση του pending update
+    pendingDOMUpdate.current = { key, value };
+
+    // Cancel previous RAF/timer
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
+    if (domUpdateTimerRef.current) {
+      clearTimeout(domUpdateTimerRef.current);
+    }
+
+    // Use requestAnimationFrame για smooth rendering + throttling
+    rafRef.current = requestAnimationFrame(() => {
+      domUpdateTimerRef.current = setTimeout(() => {
+        if (pendingDOMUpdate.current) {
+          applyLivePreview(pendingDOMUpdate.current.key, pendingDOMUpdate.current.value);
+          pendingDOMUpdate.current = null;
+        }
+        rafRef.current = null;
+      }, 60); // 60ms throttle με RAF = πολύ smooth
+    });
+  }, [applyLivePreview]);
 
   /**
    * Σταματάει το preview και κάνει commit την τελική τιμή
@@ -119,14 +150,14 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 300 }: UseRealTimePr
       previewKey: key
     }));
 
-    // Apply live preview to DOM instantly
-    applyLivePreview(key, value);
+    // Apply live preview to DOM με throttling για καλύτερη performance
+    throttledDOMUpdate(key, value);
 
     // Set debounced commit
     debounceTimerRef.current = setTimeout(() => {
       commitPreview(key, value);
     }, debounceMs);
-  }, [debounceMs, applyLivePreview, commitPreview]);
+  }, [debounceMs, throttledDOMUpdate, commitPreview]);
 
   /**
    * Καθαρίζει όλα τα preview effects
@@ -137,6 +168,21 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 300 }: UseRealTimePr
       clearTimeout(debounceTimerRef.current);
       debounceTimerRef.current = undefined;
     }
+
+    // Clear DOM update timer
+    if (domUpdateTimerRef.current) {
+      clearTimeout(domUpdateTimerRef.current);
+      domUpdateTimerRef.current = undefined;
+    }
+
+    // Clear RAF
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
+
+    // Clear pending DOM update
+    pendingDOMUpdate.current = null;
 
     // Clear preview state
     setPreviewState({
