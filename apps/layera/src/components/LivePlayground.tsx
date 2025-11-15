@@ -737,96 +737,335 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               </Text>
 
               <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-xl">
-                <button style={{
-                  backgroundColor: currentColors.primary,
-                  color: 'white',
-                  padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
-                  border: 'none',
-                  borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
-                  cursor: 'pointer',
-                  minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
-                  height: colorButtonShape === 'square' ? '50px' : 'auto',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  {colorButtonShape === 'square' ? 'P' : 'Primary Color'}
-                </button>
-                <button style={{
-                  backgroundColor: currentColors.secondary,
-                  color: 'white',
-                  padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
-                  border: 'none',
-                  borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
-                  cursor: 'pointer',
-                  minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
-                  height: colorButtonShape === 'square' ? '50px' : 'auto',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  {colorButtonShape === 'square' ? 'S' : 'Secondary Color'}
-                </button>
-                <button style={{
-                  backgroundColor: currentColors.success,
-                  color: 'white',
-                  padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
-                  border: 'none',
-                  borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
-                  cursor: 'pointer',
-                  minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
-                  height: colorButtonShape === 'square' ? '50px' : 'auto',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  {colorButtonShape === 'square' ? 'Su' : 'Success Color'}
-                </button>
-                <button style={{
-                  backgroundColor: currentColors.warning,
-                  color: 'black',
-                  padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
-                  border: 'none',
-                  borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
-                  cursor: 'pointer',
-                  minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
-                  height: colorButtonShape === 'square' ? '50px' : 'auto',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  {colorButtonShape === 'square' ? 'W' : 'Warning Color'}
-                </button>
-                <button style={{
-                  backgroundColor: currentColors.danger,
-                  color: 'white',
-                  padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
-                  border: 'none',
-                  borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
-                  cursor: 'pointer',
-                  minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
-                  height: colorButtonShape === 'square' ? '50px' : 'auto',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  {colorButtonShape === 'square' ? 'D' : 'Danger Color'}
-                </button>
-                <button style={{
-                  backgroundColor: currentColors.info,
-                  color: 'white',
-                  padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
-                  border: 'none',
-                  borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
-                  cursor: 'pointer',
-                  minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
-                  height: colorButtonShape === 'square' ? '50px' : 'auto',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  {colorButtonShape === 'square' ? 'I' : 'Info Color'}
-                </button>
+                {/* BUTTONS CATEGORY - Show actual buttons */}
+                {colorCategory === 'buttons' && (
+                  <>
+                    <button style={{
+                      backgroundColor: currentColors.primary,
+                      color: 'white',
+                      padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
+                      border: 'none',
+                      borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
+                      cursor: 'pointer',
+                      minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
+                      height: colorButtonShape === 'square' ? '50px' : 'auto',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
+                      {colorButtonShape === 'square' ? 'P' : 'Primary Color'}
+                    </button>
+                    <button style={{
+                      backgroundColor: currentColors.secondary,
+                      color: 'white',
+                      padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
+                      border: 'none',
+                      borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
+                      cursor: 'pointer',
+                      minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
+                      height: colorButtonShape === 'square' ? '50px' : 'auto',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
+                      {colorButtonShape === 'square' ? 'S' : 'Secondary Color'}
+                    </button>
+                    <button style={{
+                      backgroundColor: currentColors.success,
+                      color: 'white',
+                      padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
+                      border: 'none',
+                      borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
+                      cursor: 'pointer',
+                      minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
+                      height: colorButtonShape === 'square' ? '50px' : 'auto',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
+                      {colorButtonShape === 'square' ? 'Su' : 'Success Color'}
+                    </button>
+                    <button style={{
+                      backgroundColor: currentColors.warning,
+                      color: 'black',
+                      padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
+                      border: 'none',
+                      borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
+                      cursor: 'pointer',
+                      minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
+                      height: colorButtonShape === 'square' ? '50px' : 'auto',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
+                      {colorButtonShape === 'square' ? 'W' : 'Warning Color'}
+                    </button>
+                    <button style={{
+                      backgroundColor: currentColors.danger,
+                      color: 'white',
+                      padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
+                      border: 'none',
+                      borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
+                      cursor: 'pointer',
+                      minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
+                      height: colorButtonShape === 'square' ? '50px' : 'auto',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
+                      {colorButtonShape === 'square' ? 'D' : 'Danger Color'}
+                    </button>
+                    <button style={{
+                      backgroundColor: currentColors.info,
+                      color: 'white',
+                      padding: colorButtonShape === 'square' ? '16px' : '8px 16px',
+                      border: 'none',
+                      borderRadius: colorButtonShape === 'rounded' ? '50px' : colorButtonShape === 'square' ? '6px' : '6px',
+                      cursor: 'pointer',
+                      minWidth: colorButtonShape === 'square' ? '50px' : 'auto',
+                      height: colorButtonShape === 'square' ? '50px' : 'auto',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
+                      {colorButtonShape === 'square' ? 'I' : 'Info Color'}
+                    </button>
+                  </>
+                )}
+
+                {/* BACKGROUNDS CATEGORY - Show colored background boxes */}
+                {colorCategory === 'backgrounds' && (
+                  <>
+                    <div style={{
+                      backgroundColor: currentColors.primary,
+                      color: 'white',
+                      padding: '20px',
+                      border: '2px solid #ccc',
+                      borderRadius: '8px',
+                      minWidth: '120px',
+                      height: '80px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontWeight: 'bold',
+                      textAlign: 'center',
+                      fontSize: '12px'
+                    }}>
+                      Primary<br/>Background
+                    </div>
+                    <div style={{
+                      backgroundColor: currentColors.secondary,
+                      color: 'white',
+                      padding: '20px',
+                      border: '2px solid #ccc',
+                      borderRadius: '8px',
+                      minWidth: '120px',
+                      height: '80px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontWeight: 'bold',
+                      textAlign: 'center',
+                      fontSize: '12px'
+                    }}>
+                      Secondary<br/>Background
+                    </div>
+                    <div style={{
+                      backgroundColor: currentColors.success,
+                      color: 'white',
+                      padding: '20px',
+                      border: '2px solid #ccc',
+                      borderRadius: '8px',
+                      minWidth: '120px',
+                      height: '80px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontWeight: 'bold',
+                      textAlign: 'center',
+                      fontSize: '12px'
+                    }}>
+                      Success<br/>Background
+                    </div>
+                    <div style={{
+                      backgroundColor: currentColors.warning,
+                      color: 'black',
+                      padding: '20px',
+                      border: '2px solid #ccc',
+                      borderRadius: '8px',
+                      minWidth: '120px',
+                      height: '80px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontWeight: 'bold',
+                      textAlign: 'center',
+                      fontSize: '12px'
+                    }}>
+                      Warning<br/>Background
+                    </div>
+                    <div style={{
+                      backgroundColor: currentColors.danger,
+                      color: 'white',
+                      padding: '20px',
+                      border: '2px solid #ccc',
+                      borderRadius: '8px',
+                      minWidth: '120px',
+                      height: '80px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontWeight: 'bold',
+                      textAlign: 'center',
+                      fontSize: '12px'
+                    }}>
+                      Danger<br/>Background
+                    </div>
+                    <div style={{
+                      backgroundColor: currentColors.info,
+                      color: 'white',
+                      padding: '20px',
+                      border: '2px solid #ccc',
+                      borderRadius: '8px',
+                      minWidth: '120px',
+                      height: '80px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontWeight: 'bold',
+                      textAlign: 'center',
+                      fontSize: '12px'
+                    }}>
+                      Info<br/>Background
+                    </div>
+                  </>
+                )}
+
+                {/* TEXT CATEGORY - Show colored text samples */}
+                {colorCategory === 'text' && (
+                  <>
+                    <div style={{ textAlign: 'center', padding: '10px' }}>
+                      <h4 style={{ color: currentColors.primary, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Primary Text</h4>
+                      <p style={{ color: currentColors.primary, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
+                    </div>
+                    <div style={{ textAlign: 'center', padding: '10px' }}>
+                      <h4 style={{ color: currentColors.secondary, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Secondary Text</h4>
+                      <p style={{ color: currentColors.secondary, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
+                    </div>
+                    <div style={{ textAlign: 'center', padding: '10px' }}>
+                      <h4 style={{ color: currentColors.success, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Success Text</h4>
+                      <p style={{ color: currentColors.success, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
+                    </div>
+                    <div style={{ textAlign: 'center', padding: '10px' }}>
+                      <h4 style={{ color: currentColors.warning, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Warning Text</h4>
+                      <p style={{ color: currentColors.warning, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
+                    </div>
+                    <div style={{ textAlign: 'center', padding: '10px' }}>
+                      <h4 style={{ color: currentColors.danger, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Danger Text</h4>
+                      <p style={{ color: currentColors.danger, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
+                    </div>
+                    <div style={{ textAlign: 'center', padding: '10px' }}>
+                      <h4 style={{ color: currentColors.info, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Info Text</h4>
+                      <p style={{ color: currentColors.info, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
+                    </div>
+                  </>
+                )}
+
+                {/* BORDERS CATEGORY - Show colored border samples */}
+                {colorCategory === 'borders' && (
+                  <>
+                    <div style={{
+                      border: `3px solid ${currentColors.primary}`,
+                      borderRadius: '8px',
+                      padding: '15px',
+                      minWidth: '100px',
+                      height: '60px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '12px',
+                      fontWeight: 'bold',
+                      backgroundColor: 'white'
+                    }}>
+                      Primary<br/>Border
+                    </div>
+                    <div style={{
+                      border: `3px solid ${currentColors.secondary}`,
+                      borderRadius: '8px',
+                      padding: '15px',
+                      minWidth: '100px',
+                      height: '60px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '12px',
+                      fontWeight: 'bold',
+                      backgroundColor: 'white'
+                    }}>
+                      Secondary<br/>Border
+                    </div>
+                    <div style={{
+                      border: `3px solid ${currentColors.success}`,
+                      borderRadius: '8px',
+                      padding: '15px',
+                      minWidth: '100px',
+                      height: '60px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '12px',
+                      fontWeight: 'bold',
+                      backgroundColor: 'white'
+                    }}>
+                      Success<br/>Border
+                    </div>
+                    <div style={{
+                      border: `3px solid ${currentColors.warning}`,
+                      borderRadius: '8px',
+                      padding: '15px',
+                      minWidth: '100px',
+                      height: '60px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '12px',
+                      fontWeight: 'bold',
+                      backgroundColor: 'white'
+                    }}>
+                      Warning<br/>Border
+                    </div>
+                    <div style={{
+                      border: `3px solid ${currentColors.danger}`,
+                      borderRadius: '8px',
+                      padding: '15px',
+                      minWidth: '100px',
+                      height: '60px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '12px',
+                      fontWeight: 'bold',
+                      backgroundColor: 'white'
+                    }}>
+                      Danger<br/>Border
+                    </div>
+                    <div style={{
+                      border: `3px solid ${currentColors.info}`,
+                      borderRadius: '8px',
+                      padding: '15px',
+                      minWidth: '100px',
+                      height: '60px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '12px',
+                      fontWeight: 'bold',
+                      backgroundColor: 'white'
+                    }}>
+                      Info<br/>Border
+                    </div>
+                  </>
+                )}
               </Box>
             </Box>
 
