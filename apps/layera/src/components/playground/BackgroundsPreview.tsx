@@ -1,4 +1,6 @@
 import React from 'react';
+import { Box } from '@layera/layout';
+import { Text } from '@layera/typography';
 
 /**
  * BackgroundsPreview Component
@@ -23,108 +25,54 @@ export const BackgroundsPreview: React.FC<BackgroundsPreviewProps> = ({
 }) => {
   return (
     <>
-      <div style={{
-        backgroundColor: currentColors.primary,
-        color: 'white',
-        padding: '20px',
-        border: '2px solid #ccc',
-        borderRadius: '8px',
-        minWidth: '120px',
-        height: '80px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontWeight: 'bold',
-        textAlign: 'center',
-        fontSize: '12px'
-      }}>
-        Primary<br/>Background
-      </div>
-      <div style={{
-        backgroundColor: currentColors.secondary,
-        color: 'white',
-        padding: '20px',
-        border: '2px solid #ccc',
-        borderRadius: '8px',
-        minWidth: '120px',
-        height: '80px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontWeight: 'bold',
-        textAlign: 'center',
-        fontSize: '12px'
-      }}>
-        Secondary<br/>Background
-      </div>
-      <div style={{
-        backgroundColor: currentColors.success,
-        color: 'white',
-        padding: '20px',
-        border: '2px solid #ccc',
-        borderRadius: '8px',
-        minWidth: '120px',
-        height: '80px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontWeight: 'bold',
-        textAlign: 'center',
-        fontSize: '12px'
-      }}>
-        Success<br/>Background
-      </div>
-      <div style={{
-        backgroundColor: currentColors.warning,
-        color: 'black',
-        padding: '20px',
-        border: '2px solid #ccc',
-        borderRadius: '8px',
-        minWidth: '120px',
-        height: '80px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontWeight: 'bold',
-        textAlign: 'center',
-        fontSize: '12px'
-      }}>
-        Warning<br/>Background
-      </div>
-      <div style={{
-        backgroundColor: currentColors.danger,
-        color: 'white',
-        padding: '20px',
-        border: '2px solid #ccc',
-        borderRadius: '8px',
-        minWidth: '120px',
-        height: '80px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontWeight: 'bold',
-        textAlign: 'center',
-        fontSize: '12px'
-      }}>
-        Danger<br/>Background
-      </div>
-      <div style={{
-        backgroundColor: currentColors.info,
-        color: 'white',
-        padding: '20px',
-        border: '2px solid #ccc',
-        borderRadius: '8px',
-        minWidth: '120px',
-        height: '80px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontWeight: 'bold',
-        textAlign: 'center',
-        fontSize: '12px'
-      }}>
-        Info<br/>Background
-      </div>
+      <Box
+        className="layera-layout layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-padding--lg layera-border layera-border-radius--md layera-min-width--120 layera-height--80"
+        style={{ backgroundColor: currentColors.primary }}
+      >
+        <Text className="layera-typography" data-size="xs" data-weight="bold" style={{ color: 'white' }}>
+          Primary<br/>Background
+        </Text>
+      </Box>
+      <Box
+        className="layera-layout layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-padding--lg layera-border layera-border-radius--md layera-min-width--120 layera-height--80"
+        style={{ backgroundColor: currentColors.secondary }}
+      >
+        <Text className="layera-typography" data-size="xs" data-weight="bold" style={{ color: 'white' }}>
+          Secondary<br/>Background
+        </Text>
+      </Box>
+      <Box
+        className="layera-layout layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-padding--lg layera-border layera-border-radius--md layera-min-width--120 layera-height--80"
+        style={{ backgroundColor: currentColors.success }}
+      >
+        <Text className="layera-typography" data-size="xs" data-weight="bold" style={{ color: 'white' }}>
+          Success<br/>Background
+        </Text>
+      </Box>
+      <Box
+        className="layera-layout layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-padding--lg layera-border layera-border-radius--md layera-min-width--120 layera-height--80"
+        style={{ backgroundColor: currentColors.warning }}
+      >
+        <Text className="layera-typography" data-size="xs" data-weight="bold" style={{ color: 'black' }}>
+          Warning<br/>Background
+        </Text>
+      </Box>
+      <Box
+        className="layera-layout layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-padding--lg layera-border layera-border-radius--md layera-min-width--120 layera-height--80"
+        style={{ backgroundColor: currentColors.danger }}
+      >
+        <Text className="layera-typography" data-size="xs" data-weight="bold" style={{ color: 'white' }}>
+          Danger<br/>Background
+        </Text>
+      </Box>
+      <Box
+        className="layera-layout layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-padding--lg layera-border layera-border-radius--md layera-min-width--120 layera-height--80"
+        style={{ backgroundColor: currentColors.info }}
+      >
+        <Text className="layera-typography" data-size="xs" data-weight="bold" style={{ color: 'white' }}>
+          Info<br/>Background
+        </Text>
+      </Box>
     </>
   );
 };

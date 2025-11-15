@@ -1,4 +1,6 @@
 import React from 'react';
+import { Box } from '@layera/layout';
+import { Text } from '@layera/typography';
 
 /**
  * BordersPreview Component
@@ -23,96 +25,54 @@ export const BordersPreview: React.FC<BordersPreviewProps> = ({
 }) => {
   return (
     <>
-      <div style={{
-        border: `3px solid ${currentColors.primary}`,
-        borderRadius: '8px',
-        padding: '15px',
-        minWidth: '100px',
-        height: '60px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '12px',
-        fontWeight: 'bold',
-        backgroundColor: 'white'
-      }}>
-        Primary<br/>Border
-      </div>
-      <div style={{
-        border: `3px solid ${currentColors.secondary}`,
-        borderRadius: '8px',
-        padding: '15px',
-        minWidth: '100px',
-        height: '60px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '12px',
-        fontWeight: 'bold',
-        backgroundColor: 'white'
-      }}>
-        Secondary<br/>Border
-      </div>
-      <div style={{
-        border: `3px solid ${currentColors.success}`,
-        borderRadius: '8px',
-        padding: '15px',
-        minWidth: '100px',
-        height: '60px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '12px',
-        fontWeight: 'bold',
-        backgroundColor: 'white'
-      }}>
-        Success<br/>Border
-      </div>
-      <div style={{
-        border: `3px solid ${currentColors.warning}`,
-        borderRadius: '8px',
-        padding: '15px',
-        minWidth: '100px',
-        height: '60px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '12px',
-        fontWeight: 'bold',
-        backgroundColor: 'white'
-      }}>
-        Warning<br/>Border
-      </div>
-      <div style={{
-        border: `3px solid ${currentColors.danger}`,
-        borderRadius: '8px',
-        padding: '15px',
-        minWidth: '100px',
-        height: '60px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '12px',
-        fontWeight: 'bold',
-        backgroundColor: 'white'
-      }}>
-        Danger<br/>Border
-      </div>
-      <div style={{
-        border: `3px solid ${currentColors.info}`,
-        borderRadius: '8px',
-        padding: '15px',
-        minWidth: '100px',
-        height: '60px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '12px',
-        fontWeight: 'bold',
-        backgroundColor: 'white'
-      }}>
-        Info<br/>Border
-      </div>
+      <Box
+        className="layera-layout layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-padding--md layera-border-radius--md layera-min-width--100 layera-height--60 layera-bg-surface--primary"
+        style={{ border: `3px solid ${currentColors.primary}` }}
+      >
+        <Text className="layera-typography" data-size="xs" data-weight="bold">
+          Primary<br/>Border
+        </Text>
+      </Box>
+      <Box
+        className="layera-layout layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-padding--md layera-border-radius--md layera-min-width--100 layera-height--60 layera-bg-surface--primary"
+        style={{ border: `3px solid ${currentColors.secondary}` }}
+      >
+        <Text className="layera-typography" data-size="xs" data-weight="bold">
+          Secondary<br/>Border
+        </Text>
+      </Box>
+      <Box
+        className="layera-layout layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-padding--md layera-border-radius--md layera-min-width--100 layera-height--60 layera-bg-surface--primary"
+        style={{ border: `3px solid ${currentColors.success}` }}
+      >
+        <Text className="layera-typography" data-size="xs" data-weight="bold">
+          Success<br/>Border
+        </Text>
+      </Box>
+      <Box
+        className="layera-layout layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-padding--md layera-border-radius--md layera-min-width--100 layera-height--60 layera-bg-surface--primary"
+        style={{ border: `3px solid ${currentColors.warning}` }}
+      >
+        <Text className="layera-typography" data-size="xs" data-weight="bold">
+          Warning<br/>Border
+        </Text>
+      </Box>
+      <Box
+        className="layera-layout layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-padding--md layera-border-radius--md layera-min-width--100 layera-height--60 layera-bg-surface--primary"
+        style={{ border: `3px solid ${currentColors.danger}` }}
+      >
+        <Text className="layera-typography" data-size="xs" data-weight="bold">
+          Danger<br/>Border
+        </Text>
+      </Box>
+      <Box
+        className="layera-layout layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-padding--md layera-border-radius--md layera-min-width--100 layera-height--60 layera-bg-surface--primary"
+        style={{ border: `3px solid ${currentColors.info}` }}
+      >
+        <Text className="layera-typography" data-size="xs" data-weight="bold">
+          Info<br/>Border
+        </Text>
+      </Box>
     </>
   );
 };
