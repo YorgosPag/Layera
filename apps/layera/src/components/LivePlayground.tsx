@@ -4,7 +4,6 @@ import { Text, Heading } from '@layera/typography';
 import { Button, SquareButton } from '@layera/buttons';
 import { PlusIcon, SearchIcon, UserIcon, SettingsIcon, CloseIcon, PaletteIcon, LayersIcon, EditIcon, PolygonIcon, RulerIcon, CompassIcon, CheckIcon, RocketIcon } from '@layera/icons';
 import { ButtonsSection } from './playground/ButtonsSection';
-import { ColorsSection } from './playground/ColorsSection';
 import { PlaygroundHeader } from './playground/PlaygroundHeader';
 import { ButtonsPlayground } from './playground/ButtonsPlayground';
 import { ColorCategorySelection } from './playground/ColorCategorySelection';
