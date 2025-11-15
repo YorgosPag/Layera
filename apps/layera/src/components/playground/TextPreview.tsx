@@ -1,6 +1,4 @@
 import React from 'react';
-import { Box } from '@layera/layout';
-import { Text, Heading } from '@layera/typography';
 
 /**
  * TextPreview Component
@@ -25,30 +23,30 @@ export const TextPreview: React.FC<TextPreviewProps> = ({
 }) => {
   return (
     <>
-      <Box className="layera-layout layera-text-center layera-padding--sm">
-        <Heading as="h4" className="layera-typography layera-margin-bottom--xs" data-size="lg" data-weight="bold" style={{ color: currentColors.primary }}>Primary Text</Heading>
-        <Text className="layera-typography layera-margin--none" data-size="xs" style={{ color: currentColors.primary }}>Sample paragraph</Text>
-      </Box>
-      <Box className="layera-layout layera-text-center layera-padding--sm">
-        <Heading as="h4" className="layera-typography layera-margin-bottom--xs" data-size="lg" data-weight="bold" style={{ color: currentColors.secondary }}>Secondary Text</Heading>
-        <Text className="layera-typography layera-margin--none" data-size="xs" style={{ color: currentColors.secondary }}>Sample paragraph</Text>
-      </Box>
-      <Box className="layera-layout layera-text-center layera-padding--sm">
-        <Heading as="h4" className="layera-typography layera-margin-bottom--xs" data-size="lg" data-weight="bold" style={{ color: currentColors.success }}>Success Text</Heading>
-        <Text className="layera-typography layera-margin--none" data-size="xs" style={{ color: currentColors.success }}>Sample paragraph</Text>
-      </Box>
-      <Box className="layera-layout layera-text-center layera-padding--sm">
-        <Heading as="h4" className="layera-typography layera-margin-bottom--xs" data-size="lg" data-weight="bold" style={{ color: currentColors.warning }}>Warning Text</Heading>
-        <Text className="layera-typography layera-margin--none" data-size="xs" style={{ color: currentColors.warning }}>Sample paragraph</Text>
-      </Box>
-      <Box className="layera-layout layera-text-center layera-padding--sm">
-        <Heading as="h4" className="layera-typography layera-margin-bottom--xs" data-size="lg" data-weight="bold" style={{ color: currentColors.danger }}>Danger Text</Heading>
-        <Text className="layera-typography layera-margin--none" data-size="xs" style={{ color: currentColors.danger }}>Sample paragraph</Text>
-      </Box>
-      <Box className="layera-layout layera-text-center layera-padding--sm">
-        <Heading as="h4" className="layera-typography layera-margin-bottom--xs" data-size="lg" data-weight="bold" style={{ color: currentColors.info }}>Info Text</Heading>
-        <Text className="layera-typography layera-margin--none" data-size="xs" style={{ color: currentColors.info }}>Sample paragraph</Text>
-      </Box>
+      <div style={{ textAlign: 'center', padding: '10px' }}>
+        <h4 style={{ color: currentColors.primary, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Primary Text</h4>
+        <p style={{ color: currentColors.primary, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
+      </div>
+      <div style={{ textAlign: 'center', padding: '10px' }}>
+        <h4 style={{ color: currentColors.secondary, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Secondary Text</h4>
+        <p style={{ color: currentColors.secondary, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
+      </div>
+      <div style={{ textAlign: 'center', padding: '10px' }}>
+        <h4 style={{ color: currentColors.success, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Success Text</h4>
+        <p style={{ color: currentColors.success, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
+      </div>
+      <div style={{ textAlign: 'center', padding: '10px' }}>
+        <h4 style={{ color: currentColors.warning, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Warning Text</h4>
+        <p style={{ color: currentColors.warning, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
+      </div>
+      <div style={{ textAlign: 'center', padding: '10px' }}>
+        <h4 style={{ color: currentColors.danger, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Danger Text</h4>
+        <p style={{ color: currentColors.danger, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
+      </div>
+      <div style={{ textAlign: 'center', padding: '10px' }}>
+        <h4 style={{ color: currentColors.info, margin: '0 0 5px 0', fontSize: '16px', fontWeight: 'bold' }}>Info Text</h4>
+        <p style={{ color: currentColors.info, margin: '0', fontSize: '12px' }}>Sample paragraph</p>
+      </div>
     </>
   );
 };
