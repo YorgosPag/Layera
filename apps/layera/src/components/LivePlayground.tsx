@@ -171,8 +171,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
       data-layera-playground="true"
       className="layera-position--fixed layera-top--0 layera-left--0 layera-bg-surface-light layera-full-width layera-layout-content layera-map--fullscreen"
       style={{
-        '--layera-map-fullscreen-z-index': 'var(--layera-z-index-overlay)',
-        zIndex: 'var(--layera-map-fullscreen-z-index, 1000)'
+        zIndex: 'var(--layera-global-utilities-zIndex-overlay)'
       } as React.CSSProperties}
     >
       <PlaygroundHeader
@@ -300,9 +299,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 style={{
                   gridTemplateColumns: 'repeat(3, 1fr)',
                   gridTemplateRows: 'auto',
-                  gap: '32px',
-                  marginTop: '24px',
-                  marginBottom: '32px'
+                  gap: 'var(--layera-global-spacing-8)',
+                  marginTop: 'var(--layera-global-spacing-6)',
+                  marginBottom: 'var(--layera-global-spacing-8)'
                 }}
               >
                 {/* Shape Control - ΠΡΩΤΟ */}
@@ -365,14 +364,14 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                       value={buttonState.text}
                       onChange={(e) => buttonActions.setText(e.target.value)}
                       style={{
-                        padding: '12px',
-                        borderRadius: '6px',
-                        fontSize: '14px',
+                        padding: 'var(--layera-iconInteractive-sizing-padding-lg)',
+                        borderRadius: 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
+                        fontSize: 'var(--layera-la-fontSize-sm)',
                         width: '100%',
                         outline: 'none',
-                        backgroundColor: '#ffffff',
-                        color: '#333333',
-                        border: '1px solid #e5e5e5',
+                        backgroundColor: 'var(--layera-la-bg-primary)',
+                        color: 'var(--layera-la-text-primary)',
+                        border: '1px solid var(--layera-la-color-border-light)',
                         flex: '1'
                       }}
                     />

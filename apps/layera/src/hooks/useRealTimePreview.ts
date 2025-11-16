@@ -50,7 +50,9 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
     const css = `
       [data-layout="header-fixed"] button.layera-square-btn,
       [data-layout="header-fixed"] .layera-button,
-      .layera-square-btn {
+      .layera-square-btn,
+      [data-layera-playground="true"] .layera-button,
+      [data-layera-playground="true"] button {
         background-color: ${color} !important;
         border-color: ${color} !important;
         transition: none !important;
@@ -179,6 +181,14 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
       dangerColor: '--layera-color-button-danger',
       infoColor: '--layera-color-button-info',
 
+      // Button colors (without suffix for direct mapping)
+      primary: '--layera-color-button-primary',
+      secondary: '--layera-color-button-secondary',
+      success: '--layera-color-button-success',
+      warning: '--layera-color-button-warning',
+      danger: '--layera-color-button-danger',
+      info: '--layera-color-button-info',
+
       // Background colors
       backgroundPrimary: '--layera-color-background-primary',
       backgroundSecondary: '--layera-color-background-secondary',
@@ -216,8 +226,13 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
     if (cssVariable) {
       root.style.setProperty(cssVariable, value);
 
-      // Special header button handling - limited to specific cases
-      if (key === 'secondaryColor') {
+      // Special header button handling - για όλα τα button colors
+      if (key === 'secondaryColor' || key === 'secondary' ||
+          key === 'primaryColor' || key === 'primary' ||
+          key === 'successColor' || key === 'success' ||
+          key === 'warningColor' || key === 'warning' ||
+          key === 'dangerColor' || key === 'danger' ||
+          key === 'infoColor' || key === 'info') {
         applyHeaderButtonPreview(value);
       }
     } else {
