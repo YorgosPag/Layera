@@ -66,7 +66,7 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
               key={color.name}
               style={{
                 ...getTableStyle(color.value),
-                padding: 'var(--layera-iconInteractive-sizing-padding-lg) var(--layera-iconInteractive-sizing-padding-xl)',
+                padding: 'var(--layera-global-spacing-3) var(--layera-global-spacing-4)',
                 borderRadius: 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
                 display: 'flex',
                 justifyContent: 'space-between',
