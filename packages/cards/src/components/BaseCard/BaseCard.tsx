@@ -48,8 +48,8 @@ export const BaseCard: React.FC<BaseCardProps> = ({
     }
   }, [clickable, onClick]);
 
-  // Dynamic element based on interaction
-  const CardElement = (clickable || onClick) ? 'button' : 'div';
+  // Dynamic element based on interaction - using Box instead of div
+  const CardElement = (clickable || onClick) ? 'button' : 'section';
   const extraProps = (clickable || onClick)
     ? {
         onClick: handleClick,

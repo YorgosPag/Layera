@@ -205,8 +205,8 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
               background: 'transparent',
               outline: 'none',
               zIndex: 10,
-              margin: 0,
-              padding: 0
+              margin: 'var(--layera-global-reset-margin)',
+              padding: 'var(--layera-global-reset-padding)'
             }}
             onMouseDown={(e) => {
               e.currentTarget.style.cursor = 'grabbing';
@@ -232,10 +232,10 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
             .alpha-slider::-webkit-slider-thumb {
               appearance: none;
               -webkit-appearance: none;
-              width: 16px;
-              height: 16px;
+              width: var(--layera-icon-leaflet-medium);
+              height: var(--layera-icon-leaflet-medium);
               background: #fff;
-              border: 2px solid #007bff;
+              border: var(--layera-icon-interactive-accessibility-focus-ring-width) solid var(--layera-icon-interactive-accessibility-focus-ring-color);
               border-radius: 50%;
               cursor: grab;
               box-shadow: 0 2px 4px rgba(0,0,0,0.2);
@@ -256,10 +256,10 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
 
             /* Firefox */
             .alpha-slider::-moz-range-thumb {
-              width: 16px;
-              height: 16px;
+              width: var(--layera-icon-leaflet-medium);
+              height: var(--layera-icon-leaflet-medium);
               background: #fff;
-              border: 2px solid #007bff;
+              border: var(--layera-icon-interactive-accessibility-focus-ring-width) solid var(--layera-icon-interactive-accessibility-focus-ring-color);
               border-radius: 50%;
               cursor: grab;
               box-shadow: 0 2px 4px rgba(0,0,0,0.2);

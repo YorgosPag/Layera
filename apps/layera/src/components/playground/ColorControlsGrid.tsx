@@ -79,10 +79,9 @@ export const ColorControlsGrid: React.FC<ColorControlsGridProps> = React.memo(({
   const descriptions = getColorDescriptions();
   return (
     <Box
-      className="layera-grid layera-margin-bottom--xl"
+      className="layera-grid layera-margin-bottom--xl layera-grid--gap-2xl"
       style={{
-        gridTemplateColumns: 'var(--layera-global-gridTemplateColumns-autoFit)',
-        gap: '2rem'
+        gridTemplateColumns: 'var(--layera-global-gridTemplateColumns-autoFit)'
       } as React.CSSProperties}
     >
       {/* Primary Color Control */}

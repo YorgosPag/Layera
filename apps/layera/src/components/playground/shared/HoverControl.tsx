@@ -43,7 +43,7 @@ export const HoverControl: React.FC<HoverControlProps> = ({
       label: 'Χωρίς',
       description: 'Χωρίς hover effect',
       preview: {
-        opacity: '1',
+        opacity: 'var(--layera-icon-interactive-interactive-opacity-default)',
         transform: 'none',
         background: 'var(--layera-color-surface-primary)'
       }
@@ -145,7 +145,7 @@ export const HoverControl: React.FC<HoverControlProps> = ({
         }}
         onMouseLeave={(e) => {
           const target = e.currentTarget;
-          target.style.opacity = '1';
+          target.style.opacity = 'var(--layera-icon-interactive-interactive-opacity-default)';
           target.style.transform = 'none';
           target.style.backgroundColor = 'var(--layera-color-surface-primary)';
         }}
