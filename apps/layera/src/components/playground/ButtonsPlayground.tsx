@@ -99,114 +99,60 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
 
         <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-md">
           {/* Τα 6 χρωματιστά buttons με δυναμικές τιμές */}
-          <button style={{
-            backgroundColor: colors.primary, // primary - dynamic
-            color: 'white',
-            padding: buttonState.shape === 'square' ? 'var(--layera-iconInteractive-sizing-padding-xl)' : 'var(--layera-iconInteractive-sizing-padding-md) var(--layera-iconInteractive-sizing-padding-xl)',
-            border: 'none',
-            borderRadius: buttonState.shape === 'rounded' ? 'var(--layera-global-button-height-xl)' : 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
-            cursor: 'pointer',
-            minWidth: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : '120px',
-            height: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : 'auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 'var(--layera-iconInteractive-sizing-padding-sm)',
-            fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
-          }}>
-            {buttonState.withIcon && <CheckIcon size="sm" />}
+          <Button
+            variant="primary"
+            size={buttonState.size}
+            icon={buttonState.withIcon ? <CheckIcon size="sm" /> : undefined}
+            className="layera-button-dynamic-primary"
+            style={{ backgroundColor: colors.primary }}
+          >
             {buttonState.shape === 'square' ? 'P' : 'Primary'}
-          </button>
-          <button style={{
-            backgroundColor: colors.secondary, // secondary - dynamic
-            color: 'white',
-            padding: buttonState.shape === 'square' ? 'var(--layera-iconInteractive-sizing-padding-xl)' : 'var(--layera-iconInteractive-sizing-padding-md) var(--layera-iconInteractive-sizing-padding-xl)',
-            border: 'none',
-            borderRadius: buttonState.shape === 'rounded' ? 'var(--layera-global-button-height-xl)' : 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
-            cursor: 'pointer',
-            minWidth: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : '120px',
-            height: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : 'auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 'var(--layera-iconInteractive-sizing-padding-sm)',
-            fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
-          }}>
-            {buttonState.withIcon && <SettingsIcon size="sm" />}
+          </Button>
+          <Button
+            variant="secondary"
+            size={buttonState.size}
+            icon={buttonState.withIcon ? <SettingsIcon size="sm" /> : undefined}
+            className="layera-button-dynamic-secondary"
+            style={{ backgroundColor: colors.secondary }}
+          >
             {buttonState.shape === 'square' ? 'S' : 'Secondary'}
-          </button>
-          <button style={{
-            backgroundColor: colors.success, // success - dynamic
-            color: 'white',
-            padding: buttonState.shape === 'square' ? 'var(--layera-iconInteractive-sizing-padding-xl)' : 'var(--layera-iconInteractive-sizing-padding-md) var(--layera-iconInteractive-sizing-padding-xl)',
-            border: 'none',
-            borderRadius: buttonState.shape === 'rounded' ? 'var(--layera-global-button-height-xl)' : 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
-            cursor: 'pointer',
-            minWidth: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : '120px',
-            height: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : 'auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 'var(--layera-iconInteractive-sizing-padding-sm)',
-            fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
-          }}>
-            {buttonState.withIcon && <CheckIcon size="sm" />}
+          </Button>
+          <Button
+            variant="success"
+            size={buttonState.size}
+            icon={buttonState.withIcon ? <CheckIcon size="sm" /> : undefined}
+            className="layera-button-dynamic-success"
+            style={{ backgroundColor: colors.success }}
+          >
             {buttonState.shape === 'square' ? 'Su' : 'Success'}
-          </button>
-          <button style={{
-            backgroundColor: colors.warning, // warning - dynamic
-            color: 'black',
-            padding: buttonState.shape === 'square' ? 'var(--layera-iconInteractive-sizing-padding-xl)' : 'var(--layera-iconInteractive-sizing-padding-md) var(--layera-iconInteractive-sizing-padding-xl)',
-            border: 'none',
-            borderRadius: buttonState.shape === 'rounded' ? 'var(--layera-global-button-height-xl)' : 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
-            cursor: 'pointer',
-            minWidth: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : '120px',
-            height: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : 'auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 'var(--layera-iconInteractive-sizing-padding-sm)',
-            fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
-          }}>
-            {buttonState.withIcon && <CloseIcon size="sm" />}
+          </Button>
+          <Button
+            variant="warning"
+            size={buttonState.size}
+            icon={buttonState.withIcon ? <CloseIcon size="sm" /> : undefined}
+            className="layera-button-dynamic-warning"
+            style={{ backgroundColor: colors.warning }}
+          >
             {buttonState.shape === 'square' ? 'W' : 'Warning'}
-          </button>
-          <button style={{
-            backgroundColor: colors.danger, // danger - dynamic
-            color: 'white',
-            padding: buttonState.shape === 'square' ? 'var(--layera-iconInteractive-sizing-padding-xl)' : 'var(--layera-iconInteractive-sizing-padding-md) var(--layera-iconInteractive-sizing-padding-xl)',
-            border: 'none',
-            borderRadius: buttonState.shape === 'rounded' ? 'var(--layera-global-button-height-xl)' : 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
-            cursor: 'pointer',
-            minWidth: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : '120px',
-            height: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : 'auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 'var(--layera-iconInteractive-sizing-padding-sm)',
-            fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
-          }}>
-            {buttonState.withIcon && <CloseIcon size="sm" />}
+          </Button>
+          <Button
+            variant="danger"
+            size={buttonState.size}
+            icon={buttonState.withIcon ? <CloseIcon size="sm" /> : undefined}
+            className="layera-button-dynamic-danger"
+            style={{ backgroundColor: colors.danger }}
+          >
             {buttonState.shape === 'square' ? 'D' : 'Danger'}
-          </button>
-          <button style={{
-            backgroundColor: colors.info, // info - dynamic
-            color: 'white',
-            padding: buttonState.shape === 'square' ? 'var(--layera-iconInteractive-sizing-padding-xl)' : 'var(--layera-iconInteractive-sizing-padding-md) var(--layera-iconInteractive-sizing-padding-xl)',
-            border: 'none',
-            borderRadius: buttonState.shape === 'rounded' ? 'var(--layera-global-button-height-xl)' : 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
-            cursor: 'pointer',
-            minWidth: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : '120px',
-            height: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : 'auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 'var(--layera-iconInteractive-sizing-padding-sm)',
-            fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
-          }}>
-            {buttonState.withIcon && <SearchIcon size="sm" />}
+          </Button>
+          <Button
+            variant="info"
+            size={buttonState.size}
+            icon={buttonState.withIcon ? <SearchIcon size="sm" /> : undefined}
+            className="layera-button-dynamic-info"
+            style={{ backgroundColor: colors.info }}
+          >
             {buttonState.shape === 'square' ? 'I' : 'Info'}
-          </button>
+          </Button>
           <button style={{
             backgroundColor: 'transparent', // outline
             color: colors.primary,
