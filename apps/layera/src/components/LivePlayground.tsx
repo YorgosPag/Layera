@@ -16,6 +16,7 @@ import { ColorPreviewArea } from './playground/ColorPreviewArea';
 import { ColorControlsGridWithAlpha } from './playground/ColorControlsGridWithAlpha';
 import { ColorActionsPanel } from './playground/ColorActionsPanel';
 import { ColorValueDisplay } from './playground/ColorValueDisplay';
+import type { ColorWithAlpha } from './playground/shared/ColorPickerWithAlpha';
 import { loadCurrentThemeFromLocalStorage } from '../services/colorThemeService';
 import { useAuth } from '@layera/auth-bridge';
 import { useRealTimePreview } from '../hooks/useRealTimePreview';
@@ -362,9 +363,12 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {/* Color Controls Grid με Alpha Support */}
           <Box className="layera-margin-bottom--lg">
             <ColorControlsGridWithAlpha
-              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, string>}
-              currentSetters={colorHelpersActions.getSettersForCategory(colorHookState.colorCategory) as unknown as Record<string, (value: string) => void>}
-              startPreview={startPreview}
+              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, ColorWithAlpha | string>}
+              currentSetters={colorHelpersActions.getSettersForCategory(colorHookState.colorCategory) as unknown as Record<string, (value: ColorWithAlpha | string) => void>}
+              startPreview={(key: string, value: string | ColorWithAlpha) => {
+                const previewValue = typeof value === 'string' ? value : value.rgba;
+                startPreview(key, previewValue);
+              }}
               colorCategory={colorHookState.colorCategory}
             />
           </Box>

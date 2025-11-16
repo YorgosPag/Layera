@@ -24,7 +24,7 @@ interface ColorPickerWithAlphaProps {
   value: ColorWithAlpha | string; // Support για legacy HEX values
   onChange: (value: ColorWithAlpha) => void;
   className?: string;
-  throttleMs?: number;
+  throttleMs?: number; // Currently unused but kept for future use
 }
 
 export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
@@ -32,7 +32,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   value,
   onChange,
   className = '',
-  throttleMs = 50
+  throttleMs = 16 // Currently unused but kept for future use
 }) => {
   // Parse incoming value
   const parseValue = (val: ColorWithAlpha | string): ColorWithAlpha => {
@@ -60,10 +60,11 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     return val;
   };
 
-  const [localValue, setLocalValue] = useState<ColorWithAlpha>(parseValue(value));
-  const [isChanging, setIsChanging] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const lastUpdateRef = useRef<number>(0);
+  // Simplified state - no complex throttling (throttleMs available for future optimization)
+  const [internalValue, setInternalValue] = useState<ColorWithAlpha>(parseValue(value));
+
+  // Note: throttleMs parameter preserved for future performance optimizations
+  void throttleMs;
 
   // Helper function: HEX to RGBA
   const hexToRgba = (hex: string, alpha: number): string => {
@@ -83,73 +84,43 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     return match ? match[1] : '#ffffff';
   };
 
-  // Sync με external value όταν δεν κάνουμε changes
+  // Sync με external value
   useEffect(() => {
-    if (!isChanging) {
-      setLocalValue(parseValue(value));
-    }
-  }, [value, isChanging]);
+    setInternalValue(parseValue(value));
+  }, [value]);
 
-  // Throttled change handler
-  const handleChange = useCallback((newValue: ColorWithAlpha) => {
-    const now = Date.now();
+  // Enhanced handlers με safety checks
+  const handleHexChange = useCallback((newHex: string) => {
+    if (!newHex || !newHex.startsWith('#')) return;
 
-    // Update local state immediately
-    setLocalValue(newValue);
-    setIsChanging(true);
-
-    // Clear existing timeout
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    // Throttle external updates
-    const timeSinceLastUpdate = now - lastUpdateRef.current;
-
-    if (timeSinceLastUpdate >= throttleMs) {
-      onChange(newValue);
-      lastUpdateRef.current = now;
-      setIsChanging(false);
-    } else {
-      timeoutRef.current = setTimeout(() => {
-        onChange(newValue);
-        lastUpdateRef.current = Date.now();
-        setIsChanging(false);
-      }, throttleMs - timeSinceLastUpdate);
-    }
-  }, [onChange, throttleMs]);
-
-  // Handle HEX color change
-  const handleHexChange = (newHex: string) => {
+    const safeAlpha = internalValue?.alpha ?? 1.0;
     const newValue = {
       hex: newHex,
-      alpha: localValue.alpha,
-      rgba: hexToRgba(newHex, localValue.alpha)
+      alpha: safeAlpha,
+      rgba: hexToRgba(newHex, safeAlpha)
     };
-    handleChange(newValue);
-  };
+    setInternalValue(newValue);
+    onChange(newValue);
+  }, [internalValue?.alpha, onChange]);
 
-  // Handle Alpha change
-  const handleAlphaChange = (newAlpha: number) => {
+  const handleAlphaChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const newAlpha = parseFloat(e.target.value) / 100;
+    if (isNaN(newAlpha)) return;
+
+    const safeHex = internalValue?.hex || '#ffffff';
+    if (!safeHex.startsWith('#')) return;
+
     const newValue = {
-      hex: localValue.hex,
+      hex: safeHex,
       alpha: newAlpha,
-      rgba: hexToRgba(localValue.hex, newAlpha)
+      rgba: hexToRgba(safeHex, newAlpha)
     };
-    handleChange(newValue);
-  };
+    setInternalValue(newValue);
+    onChange(newValue);
+  }, [internalValue?.hex, onChange]);
 
-  // Cleanup
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, []);
-
-  const displayHex = extractHexFromValue(localValue.hex);
-  const alphaPercentage = Math.round(localValue.alpha * 100);
+  const displayHex = extractHexFromValue(internalValue?.hex || '#ffffff');
+  const alphaPercentage = Math.round((internalValue?.alpha ?? 1.0) * 100);
 
   return (
     <Box className={`layera-card layera-padding--lg ${className}`}>
@@ -170,8 +141,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
           style={{
             cursor: 'pointer',
             height: '40px',
-            transition: 'all 0.1s ease',
-            opacity: isChanging ? 0.8 : 1
+            transition: 'all 0.1s ease'
           }}
         />
       </Box>
@@ -181,21 +151,110 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
         <Text className="layera-typography layera-margin-bottom--xs" data-size="sm" data-weight="medium" data-color="secondary">
           Διαφάνεια: {alphaPercentage}%
         </Text>
-        <input
-          type="range"
-          min="0"
-          max="100"
-          value={alphaPercentage}
-          onChange={(e) => handleAlphaChange(parseInt(e.target.value) / 100)}
-          className="layera-input layera-width--full"
-          style={{
-            cursor: 'pointer',
-            height: '8px',
-            borderRadius: '4px',
-            transition: 'all 0.1s ease',
-            opacity: isChanging ? 0.8 : 1
-          }}
-        />
+        <Box style={{ position: 'relative' }}>
+          {/* Checkerboard background για transparency preview */}
+          <Box
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              height: '20px',
+              borderRadius: '10px',
+              backgroundImage: 'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)',
+              backgroundSize: '8px 8px',
+              backgroundPosition: '0 0, 0 4px, 4px -4px, -4px 0px',
+              border: '1px solid #e5e5e5'
+            }}
+          />
+
+          {/* Alpha gradient overlay */}
+          <Box
+            style={{
+              position: 'absolute',
+              top: 1,
+              left: 1,
+              right: 1,
+              bottom: 1,
+              height: '18px',
+              borderRadius: '9px',
+              background: `linear-gradient(to right,
+                rgba(${parseInt(displayHex.slice(1, 3), 16)}, ${parseInt(displayHex.slice(3, 5), 16)}, ${parseInt(displayHex.slice(5, 7), 16)}, 0) 0%,
+                rgba(${parseInt(displayHex.slice(1, 3), 16)}, ${parseInt(displayHex.slice(3, 5), 16)}, ${parseInt(displayHex.slice(5, 7), 16)}, 1) 100%)`
+            }}
+          />
+
+          {/* Range input */}
+          <input
+            type="range"
+            min="0"
+            max="100"
+            step="1"
+            value={alphaPercentage}
+            onChange={handleAlphaChange}
+            className="layera-width--full alpha-slider"
+            style={{
+              position: 'relative',
+              cursor: 'grab',
+              height: '20px',
+              borderRadius: '10px',
+              WebkitAppearance: 'none',
+              appearance: 'none',
+              background: 'transparent',
+              outline: 'none',
+              zIndex: 10
+            }}
+            onMouseDown={(e) => {
+              e.currentTarget.style.cursor = 'grabbing';
+            }}
+            onMouseUp={(e) => {
+              e.currentTarget.style.cursor = 'grab';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.cursor = 'grab';
+            }}
+          />
+
+          {/* Inline CSS για range input styling */}
+          <style>{`
+            .alpha-slider::-webkit-slider-thumb {
+              appearance: none;
+              -webkit-appearance: none;
+              width: 20px;
+              height: 20px;
+              background: #fff;
+              border: 2px solid #007bff;
+              border-radius: 50%;
+              cursor: pointer;
+              box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            }
+
+            .alpha-slider::-webkit-slider-thumb:hover {
+              background: #f8f9fa;
+              border-color: #0056b3;
+              box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+            }
+
+            .alpha-slider::-moz-range-thumb {
+              width: 20px;
+              height: 20px;
+              background: #fff;
+              border: 2px solid #007bff;
+              border-radius: 50%;
+              cursor: pointer;
+              box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+              appearance: none;
+              -moz-appearance: none;
+            }
+
+            .alpha-slider::-moz-range-thumb:hover {
+              background: #f8f9fa;
+              border-color: #0056b3;
+              box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+            }
+          `}</style>
+        </Box>
       </Box>
 
       {/* Live Preview */}
@@ -207,7 +266,6 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
           style={{
             width: '100%',
             height: '30px',
-            backgroundColor: localValue.rgba,
             borderRadius: '4px',
             border: '1px solid #e5e5e5',
             position: 'relative',
@@ -223,7 +281,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
               left: 0,
               right: 0,
               bottom: 0,
-              backgroundColor: localValue.rgba,
+              backgroundColor: internalValue?.rgba || `rgba(255, 255, 255, ${(internalValue?.alpha ?? 1.0)})`,
               borderRadius: '3px'
             }}
           />
@@ -236,8 +294,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
           <strong>HEX:</strong> {displayHex.toUpperCase()}
         </Text>
         <Text className="layera-typography" data-size="sm" data-color="secondary">
-          <strong>RGBA:</strong> {localValue.rgba}
-          {isChanging && ' (updating...)'}
+          <strong>RGBA:</strong> {internalValue?.rgba || `rgba(255, 255, 255, ${(internalValue?.alpha ?? 1.0)})`}
         </Text>
       </Box>
     </Box>

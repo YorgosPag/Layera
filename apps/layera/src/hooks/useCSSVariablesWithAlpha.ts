@@ -1,5 +1,6 @@
 import type { ColorWithAlpha } from '../components/playground/shared/ColorPickerWithAlpha';
-import type { ColorPaletteWithAlpha, ColorCategory } from './useColorStateWithAlpha';
+import type { ColorPaletteWithAlpha } from './useColorStateWithAlpha';
+import type { ColorCategory } from './useColorState';
 
 /**
  * Enhanced CSS Variables Management Hook με Alpha Channel Support
@@ -271,8 +272,8 @@ export const useCSSVariablesWithAlpha = (): UseCSSVariablesWithAlphaReturn => {
   const applyColorsToAppWithAlpha = async (
     colorCategory: ColorCategory,
     currentColors: ColorPaletteWithAlpha,
-    elementType: string = 'buttons',
-    alphaEnabled: boolean = true
+    _elementType: string = 'buttons',
+    _alphaEnabled: boolean = true
   ) => {
     ensureCSSVariablesExist();
 
@@ -300,16 +301,16 @@ export const useCSSVariablesWithAlpha = (): UseCSSVariablesWithAlphaReturn => {
   const applyColorsToApp = async (
     colorCategory: ColorCategory,
     currentColors: ColorPaletteWithAlpha,
-    elementType: string = 'buttons'
+    _elementType: string = 'buttons'
   ) => {
-    return applyColorsToAppWithAlpha(colorCategory, currentColors, elementType, true);
+    return applyColorsToAppWithAlpha(colorCategory, currentColors, _elementType, true);
   };
 
   // Legacy HEX support
   const applyColorsToAppLegacy = async (
     colorCategory: ColorCategory,
     currentColors: Record<string, string>,
-    elementType: string = 'buttons'
+    _elementType: string = 'buttons'
   ) => {
     ensureCSSVariablesExist();
 
