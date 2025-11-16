@@ -181,11 +181,11 @@ const hexToRgb = (hex: string): { r: number; g: number; b: number } => {
 
 // Helper function: Extract HEX από CSS variable
 const extractHexFromValue = (colorValue: string): string => {
-  if (!colorValue) return '#ffffff';
+  if (!colorValue) return 'var(--layera-icon-colorWhite)';
   if (colorValue.startsWith('#')) return colorValue;
 
   const match = colorValue.match(/var\([^,]+,\s*(#[0-9a-fA-F]{6})\)/);
-  return match ? match[1] : '#ffffff';
+  return match ? match[1] : 'var(--layera-icon-colorWhite)';
 };
 
 /**
@@ -215,7 +215,7 @@ export const useCSSVariablesWithAlpha = (): UseCSSVariablesWithAlphaReturn => {
         --layera-btn-secondary-bg-alpha: 1;
 
         /* Backgrounds */
-        --layera-color-bg-primary-hex: #ffffff;
+        --layera-color-bg-primary-hex: var(--layera-icon-colorWhite);
         --layera-color-bg-primary-rgba: rgba(255, 255, 255, 0.9);
         --layera-color-bg-primary-alpha: 0.9;
 
@@ -242,15 +242,15 @@ export const useCSSVariablesWithAlpha = (): UseCSSVariablesWithAlphaReturn => {
         --layera-color-border-secondary-alpha: 0.4;
 
         /* Success, Warning, Danger, Info - All categories */
-        --layera-btn-success-bg-hex: #10b981;
+        --layera-btn-success-bg-hex: var(--layera-icon-colorSuccess);
         --layera-btn-success-bg-rgba: rgba(16, 185, 129, 1);
         --layera-btn-success-bg-alpha: 1;
 
-        --layera-btn-warning-bg-hex: #f59e0b;
+        --layera-btn-warning-bg-hex: var(--layera-icon-colorWarning);
         --layera-btn-warning-bg-rgba: rgba(245, 158, 11, 1);
         --layera-btn-warning-bg-alpha: 1;
 
-        --layera-btn-danger-bg-hex: #ef4444;
+        --layera-btn-danger-bg-hex: var(--layera-icon-colorDanger);
         --layera-btn-danger-bg-rgba: rgba(239, 68, 68, 1);
         --layera-btn-danger-bg-alpha: 1;
 

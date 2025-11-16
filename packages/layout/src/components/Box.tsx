@@ -33,6 +33,8 @@ export interface BoxProps {
   onClick?: React.MouseEventHandler<HTMLElement>;
   onMouseEnter?: React.MouseEventHandler<HTMLElement>;
   onMouseLeave?: React.MouseEventHandler<HTMLElement>;
+  onMouseDown?: React.MouseEventHandler<HTMLElement>;
+  onMouseUp?: React.MouseEventHandler<HTMLElement>;
 }
 
 export const Box: React.FC<BoxProps> = ({

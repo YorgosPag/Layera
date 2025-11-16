@@ -87,9 +87,9 @@ export const PROPERTY_VALIDATION = {
  */
 export const LEAFLET_ICON_SIZES = {
   // Standard icon sizes για Leaflet markers
-  SMALL: 16,                       // Small marker icon size (16x16px)
-  MEDIUM: 24,                      // Medium marker icon size (24x24px)
-  STANDARD: 32,                    // Standard marker icon size (32x32px) - Leaflet default
+  SMALL: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-icon-leafletMedium')) || 16, // Small marker icon size (16px)
+  MEDIUM: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-icon-leafletLarge')) || 24, // Medium marker icon size (24px)
+  STANDARD: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-icon-leafletXl')) || 32, // Standard marker icon size (32px) - Leaflet default
   LARGE: 48,                       // Large marker icon size (48x48px)
   XL: 64,                          // Extra large marker icon size (64x64px)
 

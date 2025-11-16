@@ -23,8 +23,7 @@ interface ColorPreviewAreaProps {
 }
 
 export const ColorPreviewArea: React.FC<ColorPreviewAreaProps> = ({
-  colorHookState,
-  currentColors
+  colorHookState
 }) => {
   // Helper functions for Greek translations
   const getCategoryDisplayName = (category: string): string => {

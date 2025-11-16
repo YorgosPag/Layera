@@ -21,7 +21,6 @@ interface ColorControlsGridProps {
 export const ColorControlsGrid: React.FC<ColorControlsGridProps> = React.memo(({
   currentColors,
   currentSetters,
-  startPreview,
   colorCategory
 }) => {
 

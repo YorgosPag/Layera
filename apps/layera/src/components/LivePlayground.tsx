@@ -277,9 +277,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               onSettingsChange={(settings) => {
                 // Εφαρμόζει τις νέες ρυθμίσεις στο color state
                 Object.entries(settings).forEach(([key, value]) => {
-                  if (colorActions.updateColor && typeof colorActions.updateColor === 'function') {
-                    colorActions.updateColor(key, value);
-                  }
+                  colorActions.updateCategoryPalette(colorHookState.colorCategory, key as keyof typeof value, value);
                 });
               }}
               onPreview={startPreview}
@@ -356,7 +354,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                         padding: 'var(--layera-iconInteractive-sizing-padding-lg)',
                         borderRadius: 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
                         fontSize: 'var(--layera-la-fontSize-sm)',
-                        width: '100%',
+                        width: 'var(--layera-global-layout-width-full)',
                         outline: 'none',
                         backgroundColor: 'var(--layera-la-bg-primary)',
                         color: 'var(--layera-la-text-primary)',

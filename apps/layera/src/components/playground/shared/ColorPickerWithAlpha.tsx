@@ -160,7 +160,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
               left: 0,
               right: 0,
               bottom: 0,
-              height: '20px',
+              height: 'var(--layera-icon-leaflet-standard)',
               borderRadius: '10px',
               backgroundImage: 'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)',
               backgroundSize: '8px 8px',
@@ -198,7 +198,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
               position: 'relative',
               cursor: 'grab',
               height: 'var(--layera-iconInteractive-sizing-padding-xl)',
-              width: '100%',
+              width: 'var(--layera-global-layout-width-full)',
               borderRadius: 'var(--layera-iconInteractive-sizing-padding-md)',
               WebkitAppearance: 'none',
               appearance: 'none',
@@ -323,7 +323,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
         </Text>
         <Box
           style={{
-            width: '100%',
+            width: 'var(--layera-global-layout-width-full)',
             height: 'var(--layera-global-spacing-8)',
             borderRadius: 'var(--layera-iconInteractive-sizing-padding-sm)',
             border: '1px solid var(--layera-la-color-border-light)',
