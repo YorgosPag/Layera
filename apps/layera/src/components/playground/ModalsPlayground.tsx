@@ -72,112 +72,112 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
           <CheckIcon size="sm" /> Live Preview: Modals
         </h3>
 
-        <div style={{
+        <Box style={{
           display: 'flex',
           flexDirection: 'row',
           flexWrap: 'wrap',
-          gap: '8px',
+          gap: 'var(--layera-iconInteractive-sizing-padding-md)',
           width: '100%',
           justifyContent: 'center',
           alignItems: 'center',
-          padding: '16px 0'
+          padding: 'var(--layera-iconInteractive-sizing-padding-xl) 0'
         }}>
-          <div
+          <Box
             style={{
-              padding: '12px',
+              padding: 'var(--layera-iconInteractive-sizing-padding-lg)',
               ...modalStyle,
               backgroundColor: getBackgroundColor(currentColors.primary),
               color: getTextColor(currentColors.primary),
               border: getBorderStyle(currentColors.primary)
             }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h4 style={{ margin: 0, fontSize: '14px', fontWeight: 'bold' }}>Primary Modal</h4>
+            <Box style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h4 style={{ margin: 0, fontSize: 'var(--layera-la-fontSize-sm)', fontWeight: 'bold' }}>Primary Modal</h4>
               <CloseIcon size="sm" />
-            </div>
-            <p style={{ margin: '8px 0', fontSize: '12px', opacity: 0.8 }}>Κύριο modal</p>
-          </div>
+            </Box>
+            <p style={{ margin: 'var(--layera-iconInteractive-sizing-padding-md) 0', fontSize: 'var(--layera-la-fontSize-xs)', opacity: 0.8 }}>Κύριο modal</p>
+          </Box>
 
-          <div
+          <Box
             style={{
-              padding: '12px',
+              padding: 'var(--layera-iconInteractive-sizing-padding-lg)',
               ...modalStyle,
               backgroundColor: getBackgroundColor(currentColors.secondary),
               color: getTextColor(currentColors.secondary),
               border: getBorderStyle(currentColors.secondary)
             }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h4 style={{ margin: 0, fontSize: '14px', fontWeight: 'bold' }}>Secondary Modal</h4>
+            <Box style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h4 style={{ margin: 0, fontSize: 'var(--layera-la-fontSize-sm)', fontWeight: 'bold' }}>Secondary Modal</h4>
               <CloseIcon size="sm" />
-            </div>
-            <p style={{ margin: '8px 0', fontSize: '12px', opacity: 0.8 }}>Δευτερεύον modal</p>
-          </div>
+            </Box>
+            <p style={{ margin: 'var(--layera-iconInteractive-sizing-padding-md) 0', fontSize: 'var(--layera-la-fontSize-xs)', opacity: 0.8 }}>Δευτερεύον modal</p>
+          </Box>
 
-          <div
+          <Box
             style={{
-              padding: '12px',
+              padding: 'var(--layera-iconInteractive-sizing-padding-lg)',
               ...modalStyle,
               backgroundColor: getBackgroundColor(currentColors.success),
               color: getTextColor(currentColors.success),
               border: getBorderStyle(currentColors.success)
             }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h4 style={{ margin: 0, fontSize: '14px', fontWeight: 'bold' }}>Success Modal</h4>
+            <Box style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h4 style={{ margin: 0, fontSize: 'var(--layera-la-fontSize-sm)', fontWeight: 'bold' }}>Success Modal</h4>
               <CloseIcon size="sm" />
-            </div>
-            <p style={{ margin: '8px 0', fontSize: '12px', opacity: 0.8 }}>Modal επιτυχίας</p>
-          </div>
+            </Box>
+            <p style={{ margin: 'var(--layera-iconInteractive-sizing-padding-md) 0', fontSize: 'var(--layera-la-fontSize-xs)', opacity: 0.8 }}>Modal επιτυχίας</p>
+          </Box>
 
-          <div
+          <Box
             style={{
-              padding: '12px',
+              padding: 'var(--layera-iconInteractive-sizing-padding-lg)',
               ...modalStyle,
               backgroundColor: getBackgroundColor(currentColors.warning),
               color: getTextColor(currentColors.warning),
               border: getBorderStyle(currentColors.warning)
             }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h4 style={{ margin: 0, fontSize: '14px', fontWeight: 'bold' }}>Warning Modal</h4>
+            <Box style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h4 style={{ margin: 0, fontSize: 'var(--layera-la-fontSize-sm)', fontWeight: 'bold' }}>Warning Modal</h4>
               <CloseIcon size="sm" />
-            </div>
-            <p style={{ margin: '8px 0', fontSize: '12px', opacity: 0.8 }}>Modal προειδοποίησης</p>
-          </div>
+            </Box>
+            <p style={{ margin: 'var(--layera-iconInteractive-sizing-padding-md) 0', fontSize: 'var(--layera-la-fontSize-xs)', opacity: 0.8 }}>Modal προειδοποίησης</p>
+          </Box>
 
-          <div
+          <Box
             style={{
-              padding: '12px',
+              padding: 'var(--layera-iconInteractive-sizing-padding-lg)',
               ...modalStyle,
               backgroundColor: getBackgroundColor(currentColors.danger),
               color: getTextColor(currentColors.danger),
               border: getBorderStyle(currentColors.danger)
             }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h4 style={{ margin: 0, fontSize: '14px', fontWeight: 'bold' }}>Danger Modal</h4>
+            <Box style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h4 style={{ margin: 0, fontSize: 'var(--layera-la-fontSize-sm)', fontWeight: 'bold' }}>Danger Modal</h4>
               <CloseIcon size="sm" />
-            </div>
-            <p style={{ margin: '8px 0', fontSize: '12px', opacity: 0.8 }}>Modal κινδύνου</p>
-          </div>
+            </Box>
+            <p style={{ margin: 'var(--layera-iconInteractive-sizing-padding-md) 0', fontSize: 'var(--layera-la-fontSize-xs)', opacity: 0.8 }}>Modal κινδύνου</p>
+          </Box>
 
-          <div
+          <Box
             style={{
-              padding: '12px',
+              padding: 'var(--layera-iconInteractive-sizing-padding-lg)',
               ...modalStyle,
               backgroundColor: getBackgroundColor(currentColors.info),
               color: getTextColor(currentColors.info),
               border: getBorderStyle(currentColors.info)
             }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h4 style={{ margin: 0, fontSize: '14px', fontWeight: 'bold' }}>Info Modal</h4>
+            <Box style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h4 style={{ margin: 0, fontSize: 'var(--layera-la-fontSize-sm)', fontWeight: 'bold' }}>Info Modal</h4>
               <CloseIcon size="sm" />
-            </div>
-            <p style={{ margin: '8px 0', fontSize: '12px', opacity: 0.8 }}>Modal πληροφοριών</p>
-          </div>
-        </div>
+            </Box>
+            <p style={{ margin: 'var(--layera-iconInteractive-sizing-padding-md) 0', fontSize: 'var(--layera-la-fontSize-xs)', opacity: 0.8 }}>Modal πληροφοριών</p>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );
