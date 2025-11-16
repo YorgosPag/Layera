@@ -16,6 +16,7 @@
   background-color: var(--layera-color-light-surface-secondary);
 }
 
+/* Παλιές κλάσεις - πλέον unused μετά την απλοποίηση */
 .playgroundOverride {
   z-index: 7000 !important;
 }
@@ -23,6 +24,21 @@
 .playgroundContent {
   width: 100vw;
   height: calc(100vh - var(--layera-header-fixed-height) - 60px);
+  overflow: auto;
+  padding: var(--layera-global-spacing-4);
+  background-color: var(--layera-color-semantic-success-primary);
+}
+
+.playgroundUnified {
+  /* Συγχώνευση εξωτερικού + εσωτερικού container */
+  position: fixed;
+  top: var(--layera-header-fixed-height);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: calc(100vh - var(--layera-header-fixed-height));
+  z-index: 7000;
   overflow: auto;
   padding: var(--layera-global-spacing-4);
   background-color: var(--layera-color-semantic-success-primary);

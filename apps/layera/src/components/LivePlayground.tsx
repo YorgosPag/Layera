@@ -170,17 +170,12 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   return (
     <Box
       data-layera-playground="true"
-      className={`layera-map ${styles.playgroundOverride}`}
+      className={styles.playgroundUnified}
       data-type="fullscreen"
     >
       <PlaygroundHeader
         onClose={onClose}
       />
-
-        {/* Main Content με Scrolling */}
-        <Box
-          className={styles.playgroundContent}
-        >
           {/* Dynamic Content Based on Element Type Selection */}
           {colorHookState.elementType === 'buttons' && (
             <Box className="layera-margin-bottom--lg">
@@ -397,7 +392,6 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, string>}
             buttonState={buttonState}
           />
-        </Box>
     </Box>
   );
 };
