@@ -84,6 +84,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   // Border width state for borders category
   const [borderWidth, setBorderWidth] = useState<number>(2);
 
+  // Border radius state for borders category
+  const [borderRadius, setBorderRadius] = useState<string>('md');
+
   // Real-time preview hook for header buttons
   const { startPreview, isPreviewActive } = useRealTimePreview({
     onCommit: (key: string, value: string) => {
@@ -218,6 +221,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
+                borderRadius={borderRadius}
               />
             </Box>
           )}
@@ -248,6 +252,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               colorActions={colorActions}
               borderWidth={borderWidth}
               onBorderWidthChange={setBorderWidth}
+              borderRadius={borderRadius}
+              onBorderRadiusChange={setBorderRadius}
             />
           </Box>
 

@@ -4,6 +4,7 @@ import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { PaletteIcon, LayersIcon, EditIcon, PolygonIcon, RulerIcon, CompassIcon, CheckIcon, MonitorIcon, BuildingIcon, ChartIcon } from '@layera/icons';
 import { BorderWidthControl } from './shared/BorderWidthControl';
+import { BorderRadiusControl } from './shared/BorderRadiusControl';
 
 /**
  * ColorCategorySelection Component
@@ -19,13 +20,17 @@ interface ColorCategorySelectionProps {
   colorActions: ColorStateActions;
   borderWidth: number;
   onBorderWidthChange: (value: number) => void;
+  borderRadius?: string;
+  onBorderRadiusChange?: (value: string) => void;
 }
 
 export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
   colorHookState,
   colorActions,
   borderWidth,
-  onBorderWidthChange
+  onBorderWidthChange,
+  borderRadius = 'md',
+  onBorderRadiusChange
 }) => {
   // Hot reload trigger
   // Debug removed to reduce console noise
@@ -36,7 +41,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
     <Box
       className="layera-grid layera-margin-bottom--xl layera-grid--gap-lg"
       style={{
-        gridTemplateColumns: colorHookState.colorCategory === 'borders' ? '1fr 1fr 1fr' : '1fr 1fr'
+        gridTemplateColumns: colorHookState.colorCategory === 'borders' ? '1fr 1fr 1fr 1fr' : '1fr 1fr'
       } as React.CSSProperties}
     >
       {/* Color Category Selection */}
@@ -131,6 +136,16 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
         <BorderWidthControl
           value={borderWidth}
           onChange={onBorderWidthChange}
+          elementType={colorHookState.elementType}
+          className="layera-height--auto"
+        />
+      )}
+
+      {/* Border Radius Control - ΜΟΝΟ για borders category */}
+      {colorHookState.colorCategory === 'borders' && onBorderRadiusChange && (
+        <BorderRadiusControl
+          value={borderRadius}
+          onChange={onBorderRadiusChange}
           elementType={colorHookState.elementType}
           className="layera-height--auto"
         />

@@ -12,19 +12,22 @@ interface LayoutPlaygroundProps {
     info: string;
   };
   colorCategory: string;
-  /** Border width for borders category (1, 2, or 3) */
+  /** Border width for borders category (0, 1, 2, or 3) */
   borderWidth?: number;
+  /** Border radius for borders category ('none', 'xs', 'md', 'lg') */
+  borderRadius?: string;
 }
 
 export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
   currentColors,
   colorCategory,
-  borderWidth = 2
+  borderWidth = 2,
+  borderRadius = 'md'
 }) => {
   const getLayoutStyle = (colorValue: string) => {
     const baseStyle = {
       padding: '12px',
-      borderRadius: '8px',
+      borderRadius: `var(--layera-global-borderRadius-${borderRadius})`,
       height: 'var(--layera-fontSize-6xl)',
       width: 'calc(var(--layera-fontSize-6xl) * 3)',
       minWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
