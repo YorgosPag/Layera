@@ -13,7 +13,7 @@ import { LayoutPlayground } from './playground/LayoutPlayground';
 import { TablesPlayground } from './playground/TablesPlayground';
 import { ColorCategorySelection } from './playground/ColorCategorySelection';
 import { ColorPreviewArea } from './playground/ColorPreviewArea';
-import { ColorControlsGrid } from './playground/ColorControlsGrid';
+import { ColorControlsGridWithAlpha } from './playground/ColorControlsGridWithAlpha';
 import { ColorActionsPanel } from './playground/ColorActionsPanel';
 import { ColorValueDisplay } from './playground/ColorValueDisplay';
 import { loadCurrentThemeFromLocalStorage } from '../services/colorThemeService';
@@ -359,9 +359,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             </Box>
           )}
 
-          {/* Color Controls Grid */}
+          {/* Color Controls Grid με Alpha Support */}
           <Box className="layera-margin-bottom--lg">
-            <ColorControlsGrid
+            <ColorControlsGridWithAlpha
               currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, string>}
               currentSetters={colorHelpersActions.getSettersForCategory(colorHookState.colorCategory) as unknown as Record<string, (value: string) => void>}
               startPreview={startPreview}
