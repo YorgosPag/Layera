@@ -66,6 +66,15 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
     flex: '0 0 calc(var(--layera-fontSize-6xl) * 3)'
   };
 
+  const modalConfigs = [
+    { key: 'primary', title: 'Primary Modal', description: 'Κύριο modal', colorValue: currentColors.primary },
+    { key: 'secondary', title: 'Secondary Modal', description: 'Δευτερεύον modal', colorValue: currentColors.secondary },
+    { key: 'success', title: 'Success Modal', description: 'Modal επιτυχίας', colorValue: currentColors.success },
+    { key: 'warning', title: 'Warning Modal', description: 'Modal προειδοποίησης', colorValue: currentColors.warning },
+    { key: 'danger', title: 'Danger Modal', description: 'Modal κινδύνου', colorValue: currentColors.danger },
+    { key: 'info', title: 'Info Modal', description: 'Modal πληροφοριών', colorValue: currentColors.info }
+  ];
+
   return (
     <Box>
       <Box className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
@@ -74,197 +83,28 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
         </h3>
 
         <Box className="layera-flex layera-flex--wrap layera-flex--justify-center layera-flex--align-center layera-flex--gap-sm layera-padding-top--lg layera-padding-bottom--lg layera-width--full">
-          <Box
-            style={{
-              padding: 'var(--layera-global-spacing-3)',
-              ...modalStyle,
-              backgroundColor: getBackgroundColor(currentColors.primary),
-              color: getTextColor(currentColors.primary),
-              border: getBorderStyle(currentColors.primary)
-            }}
-          >
-            <Box style={{
-              display: 'flex',
-              justifyContent: 'var(--layera-global-justifyContent-spaceBetween)',
-              alignItems: 'var(--layera-global-alignItems-center)'
-            }}>
-              <h4 style={{
-                margin: 'var(--layera-global-spacing-0)',
-                fontSize: 'var(--layera-fontSize-sm)',
-                fontWeight: 'var(--layera-fontWeight-bold)'
-              }}>
-                Primary Modal
-              </h4>
-              <CloseIcon size="sm" />
+          {modalConfigs.map(({ key, title, description, colorValue }) => (
+            <Box
+              key={key}
+              className="layera-padding--md"
+              style={{
+                ...modalStyle,
+                backgroundColor: getBackgroundColor(colorValue),
+                color: getTextColor(colorValue),
+                border: getBorderStyle(colorValue)
+              }}
+            >
+              <Box className="layera-flex layera-flex--justify-between layera-flex--align-center">
+                <Text className="layera-typography" data-size="sm" data-weight="bold">
+                  {title}
+                </Text>
+                <CloseIcon size="sm" />
+              </Box>
+              <Text className="layera-typography layera-margin-top--sm layera-opacity--80" data-size="xs">
+                {description}
+              </Text>
             </Box>
-            <p style={{
-              margin: 'var(--layera-global-spacing-2) var(--layera-global-spacing-0)',
-              fontSize: 'var(--layera-fontSize-xs)',
-              opacity: '0.8'
-            }}>
-              Κύριο modal
-            </p>
-          </Box>
-
-          <Box
-            style={{
-              padding: 'var(--layera-global-spacing-3)',
-              ...modalStyle,
-              backgroundColor: getBackgroundColor(currentColors.secondary),
-              color: getTextColor(currentColors.secondary),
-              border: getBorderStyle(currentColors.secondary)
-            }}
-          >
-            <Box style={{
-              display: 'flex',
-              justifyContent: 'var(--layera-global-justifyContent-spaceBetween)',
-              alignItems: 'var(--layera-global-alignItems-center)'
-            }}>
-              <h4 style={{
-                margin: 'var(--layera-global-spacing-0)',
-                fontSize: 'var(--layera-fontSize-sm)',
-                fontWeight: 'var(--layera-fontWeight-bold)'
-              }}>
-                Secondary Modal
-              </h4>
-              <CloseIcon size="sm" />
-            </Box>
-            <p style={{
-              margin: 'var(--layera-global-spacing-2) var(--layera-global-spacing-0)',
-              fontSize: 'var(--layera-fontSize-xs)',
-              opacity: '0.8'
-            }}>
-              Δευτερεύον modal
-            </p>
-          </Box>
-
-          <Box
-            style={{
-              padding: 'var(--layera-global-spacing-3)',
-              ...modalStyle,
-              backgroundColor: getBackgroundColor(currentColors.success),
-              color: getTextColor(currentColors.success),
-              border: getBorderStyle(currentColors.success)
-            }}
-          >
-            <Box style={{
-              display: 'flex',
-              justifyContent: 'var(--layera-global-justifyContent-spaceBetween)',
-              alignItems: 'var(--layera-global-alignItems-center)'
-            }}>
-              <h4 style={{
-                margin: 'var(--layera-global-spacing-0)',
-                fontSize: 'var(--layera-fontSize-sm)',
-                fontWeight: 'var(--layera-fontWeight-bold)'
-              }}>
-                Success Modal
-              </h4>
-              <CloseIcon size="sm" />
-            </Box>
-            <p style={{
-              margin: 'var(--layera-global-spacing-2) var(--layera-global-spacing-0)',
-              fontSize: 'var(--layera-fontSize-xs)',
-              opacity: '0.8'
-            }}>
-              Modal επιτυχίας
-            </p>
-          </Box>
-
-          <Box
-            style={{
-              padding: 'var(--layera-global-spacing-3)',
-              ...modalStyle,
-              backgroundColor: getBackgroundColor(currentColors.warning),
-              color: getTextColor(currentColors.warning),
-              border: getBorderStyle(currentColors.warning)
-            }}
-          >
-            <Box style={{
-              display: 'flex',
-              justifyContent: 'var(--layera-global-justifyContent-spaceBetween)',
-              alignItems: 'var(--layera-global-alignItems-center)'
-            }}>
-              <h4 style={{
-                margin: 'var(--layera-global-spacing-0)',
-                fontSize: 'var(--layera-fontSize-sm)',
-                fontWeight: 'var(--layera-fontWeight-bold)'
-              }}>
-                Warning Modal
-              </h4>
-              <CloseIcon size="sm" />
-            </Box>
-            <p style={{
-              margin: 'var(--layera-global-spacing-2) var(--layera-global-spacing-0)',
-              fontSize: 'var(--layera-fontSize-xs)',
-              opacity: '0.8'
-            }}>
-              Modal προειδοποίησης
-            </p>
-          </Box>
-
-          <Box
-            style={{
-              padding: 'var(--layera-global-spacing-3)',
-              ...modalStyle,
-              backgroundColor: getBackgroundColor(currentColors.danger),
-              color: getTextColor(currentColors.danger),
-              border: getBorderStyle(currentColors.danger)
-            }}
-          >
-            <Box style={{
-              display: 'flex',
-              justifyContent: 'var(--layera-global-justifyContent-spaceBetween)',
-              alignItems: 'var(--layera-global-alignItems-center)'
-            }}>
-              <h4 style={{
-                margin: 'var(--layera-global-spacing-0)',
-                fontSize: 'var(--layera-fontSize-sm)',
-                fontWeight: 'var(--layera-fontWeight-bold)'
-              }}>
-                Danger Modal
-              </h4>
-              <CloseIcon size="sm" />
-            </Box>
-            <p style={{
-              margin: 'var(--layera-global-spacing-2) var(--layera-global-spacing-0)',
-              fontSize: 'var(--layera-fontSize-xs)',
-              opacity: '0.8'
-            }}>
-              Modal κινδύνου
-            </p>
-          </Box>
-
-          <Box
-            style={{
-              padding: 'var(--layera-global-spacing-3)',
-              ...modalStyle,
-              backgroundColor: getBackgroundColor(currentColors.info),
-              color: getTextColor(currentColors.info),
-              border: getBorderStyle(currentColors.info)
-            }}
-          >
-            <Box style={{
-              display: 'flex',
-              justifyContent: 'var(--layera-global-justifyContent-spaceBetween)',
-              alignItems: 'var(--layera-global-alignItems-center)'
-            }}>
-              <h4 style={{
-                margin: 'var(--layera-global-spacing-0)',
-                fontSize: 'var(--layera-fontSize-sm)',
-                fontWeight: 'var(--layera-fontWeight-bold)'
-              }}>
-                Info Modal
-              </h4>
-              <CloseIcon size="sm" />
-            </Box>
-            <p style={{
-              margin: 'var(--layera-global-spacing-2) var(--layera-global-spacing-0)',
-              fontSize: 'var(--layera-fontSize-xs)',
-              opacity: '0.8'
-            }}>
-              Modal πληροφοριών
-            </p>
-          </Box>
+          ))}
         </Box>
       </Box>
     </Box>
