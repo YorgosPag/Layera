@@ -21,10 +21,10 @@ const injectDynamicStyles = (colors: any, buttonState: any, dynamicBorderWidth: 
       color: ${colors.primary} !important;
       padding: ${buttonState.shape === 'square' ? '16px' : '8px 16px'} !important;
       border: ${dynamicBorderWidth} solid ${colors.primary} !important;
-      border-radius: ${buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px'} !important;
+      border-radius: ${buttonState.shape === 'rounded' ? 'var(--layera-icon-performance-performance-loading-lazy-root-margin)' : buttonState.shape === 'square' ? '6px' : '6px'} !important;
       cursor: pointer !important;
-      min-width: ${buttonState.shape === 'square' ? '50px' : '120px'} !important;
-      height: ${buttonState.shape === 'square' ? '50px' : 'auto'} !important;
+      min-width: ${buttonState.shape === 'square' ? 'var(--layera-icon-performance-performance-loading-lazy-root-margin)' : '120px'} !important;
+      height: ${buttonState.shape === 'square' ? 'var(--layera-icon-performance-performance-loading-lazy-root-margin)' : 'auto'} !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;

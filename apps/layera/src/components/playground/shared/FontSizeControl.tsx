@@ -74,10 +74,9 @@ export const FontSizeControl: React.FC<FontSizeControlProps> = ({
       {/* Preview του επιλεγμένου μεγέθους */}
       <Box className="layera-margin-top--md layera-padding--md layera-bg--transparent layera-border-radius--md layera-border--sm layera-border-color--primary">
         <Text
-          className="layera-typography"
+          className="layera-typography layera-line-height--snug layera-margin--0"
           data-size={fontSize}
           data-color="primary"
-          className="layera-line-height--snug layera-margin--0"
         >
           <EyeIcon size="xs" /> Παράδειγμα κειμένου με {fontSize} μέγεθος
         </Text>

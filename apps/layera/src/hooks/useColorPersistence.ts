@@ -140,12 +140,12 @@ export const useColorPersistence = () => {
     };
 
     window.addEventListener('storage', handleStorageChange);
-    window.addEventListener('layera-theme-changed', handleCustomThemeChange);
+    window.addEventListener('layera-theme-changed', handleCustomThemeChange as EventListener);
 
     return () => {
       clearTimeout(timeoutId);
       window.removeEventListener('storage', handleStorageChange);
-      window.removeEventListener('layera-theme-changed', handleCustomThemeChange);
+      window.removeEventListener('layera-theme-changed', handleCustomThemeChange as EventListener);
     };
   }, []);
 };

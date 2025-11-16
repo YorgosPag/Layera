@@ -277,7 +277,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               onSettingsChange={(settings) => {
                 // Εφαρμόζει τις νέες ρυθμίσεις στο color state
                 Object.entries(settings).forEach(([key, value]) => {
-                  colorActions.updateCategoryPalette(colorHookState.colorCategory, key as keyof typeof value, value);
+                  if (typeof key === 'string' && typeof value === 'string') {
+                    colorActions.updateCategoryPalette(colorHookState.colorCategory, key as any, value);
+                  }
                 });
               }}
               onPreview={startPreview}
