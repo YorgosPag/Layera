@@ -198,12 +198,15 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
               position: 'relative',
               cursor: 'grab',
               height: '20px',
+              width: '100%',
               borderRadius: '10px',
               WebkitAppearance: 'none',
               appearance: 'none',
               background: 'transparent',
               outline: 'none',
-              zIndex: 10
+              zIndex: 10,
+              margin: 0,
+              padding: 0
             }}
             onMouseDown={(e) => {
               e.currentTarget.style.cursor = 'grabbing';
@@ -216,18 +219,28 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
             }}
           />
 
-          {/* Inline CSS για range input styling */}
+          {/* Enhanced CSS για perfect range slider alignment */}
           <style>{`
+            .alpha-slider {
+              width: 100% !important;
+              margin: 0 !important;
+              padding: 0 !important;
+              box-sizing: border-box !important;
+            }
+
+            /* WebKit browsers (Chrome, Safari) */
             .alpha-slider::-webkit-slider-thumb {
               appearance: none;
               -webkit-appearance: none;
-              width: 20px;
-              height: 20px;
+              width: 16px;
+              height: 16px;
               background: #fff;
               border: 2px solid #007bff;
               border-radius: 50%;
-              cursor: pointer;
+              cursor: grab;
               box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+              margin-top: -8px; /* Centers 16px thumb on 4px track */
+              position: relative;
             }
 
             .alpha-slider::-webkit-slider-thumb:hover {
@@ -236,22 +249,68 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
               box-shadow: 0 3px 6px rgba(0,0,0,0.3);
             }
 
+            .alpha-slider::-webkit-slider-thumb:active {
+              cursor: grabbing;
+              transform: scale(1.1);
+            }
+
+            /* Firefox */
             .alpha-slider::-moz-range-thumb {
-              width: 20px;
-              height: 20px;
+              width: 16px;
+              height: 16px;
               background: #fff;
               border: 2px solid #007bff;
               border-radius: 50%;
-              cursor: pointer;
+              cursor: grab;
               box-shadow: 0 2px 4px rgba(0,0,0,0.2);
               appearance: none;
               -moz-appearance: none;
+              margin: 0;
+              border-radius: 50%;
             }
 
             .alpha-slider::-moz-range-thumb:hover {
               background: #f8f9fa;
               border-color: #0056b3;
               box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+            }
+
+            .alpha-slider::-moz-range-thumb:active {
+              cursor: grabbing;
+              transform: scale(1.1);
+            }
+
+            /* WebKit track styling */
+            .alpha-slider::-webkit-slider-track {
+              width: 100%;
+              height: 4px; /* Much thinner track */
+              background: transparent;
+              border-radius: 2px;
+              outline: none;
+              border: none;
+            }
+
+            /* Firefox track styling */
+            .alpha-slider::-moz-range-track {
+              width: 100%;
+              height: 4px; /* Much thinner track */
+              background: transparent;
+              border-radius: 2px;
+              border: none;
+              outline: none;
+            }
+
+            /* Remove default range styling completely */
+            .alpha-slider::-webkit-slider-runnable-track {
+              height: 4px;
+              background: transparent;
+              border: none;
+              border-radius: 2px;
+            }
+
+            .alpha-slider::-moz-range-progress {
+              background: transparent;
+              height: 4px;
             }
           `}</style>
         </Box>
