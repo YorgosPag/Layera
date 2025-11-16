@@ -23,6 +23,16 @@ export const getAuth = () => {
   }
 };
 
+export const getAuthCurrentUser = () => {
+  try {
+    const auth = getFirebaseAuth();
+    return auth?.currentUser || null;
+  } catch (error) {
+    console.warn('Firebase auth current user not available:', error);
+    return null;
+  }
+};
+
 export const getDb = () => {
   try {
     const app = getApp();
@@ -38,12 +48,5 @@ let app: FirebaseApp | null = null;
 let auth: Auth | null = null;
 let db: Firestore | null = null;
 
-try {
-  app = getFirebaseApp();
-  auth = getFirebaseAuth();
-  db = getFirestore(app);
-} catch (error) {
-  console.warn('⚠️ Firebase initialization skipped (demo mode)');
-}
-
+// Δεν αρχικοποιούμε κατά τη φόρτωση - περιμένουμε την εντολή από App.tsx
 export { app, auth, db };

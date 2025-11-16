@@ -6,40 +6,52 @@ import { AppContent } from './components/AppContent';
 import { useColorPersistence } from './hooks/useColorPersistence';
 import { FactorySettingsService } from './services/factorySettingsService';
 
-// Initialize Firebase για auth-bridge
-try {
-  const firebaseConfig = {
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || 'demo-project',
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY || 'demo-api-key',
-    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || 'demo-project.firebaseapp.com',
-    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || 'demo-project.appspot.com',
-    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || '123456789',
-    appId: import.meta.env.VITE_FIREBASE_APP_ID || '1:123456789:web:demo-app-id',
-  };
+// Initialize Firebase πρώτα
+const firebaseConfig = {
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
+};
 
-  // Έλεγχος αν έχουμε πραγματικά credentials
-  if (firebaseConfig.apiKey === 'demo-api-key') {
-    console.log('Using demo Firebase configuration');
-  } else {
+// Αρχικοποίηση Firebase
+if (firebaseConfig.apiKey && firebaseConfig.projectId) {
+  try {
     initializeFirebaseApp(firebaseConfig);
+    console.log('✅ Firebase αρχικοποιήθηκε επιτυχώς');
 
-    // Αρχικοποίηση εργοστασιακών ρυθμίσεων στο Firebase
-    FactorySettingsService.initializeFactorySettings()
-      .then(() => {
-        console.log('✅ Εργοστασιακές ρυθμίσεις αρχικοποιήθηκαν στο Firebase');
+    // Αρχικοποίηση εργοστασιακών ρυθμίσεων μόνο αν έχουμε authenticated user
+    setTimeout(async () => {
+      try {
+        // Ελέγχουμε authentication πρώτα
+        const { getAuthCurrentUser } = await import('./firebase');
+        const currentUser = getAuthCurrentUser();
 
-        // Διαγραφή όλων των υπαρχόντων ρυθμίσεων χρηστών
-        return FactorySettingsService.deleteAllUserSettings();
-      })
-      .then(() => {
-        console.log('✅ Όλες οι παλιές ρυθμίσεις χρηστών διαγράφηκαν');
-      })
-      .catch((error) => {
-        console.error('❌ Σφάλμα κατά την αρχικοποίηση εργοστασιακών ρυθμίσεων:', error);
-      });
+        if (currentUser) {
+          console.log('🚀 Αρχικοποίηση εργοστασιακών ρυθμίσεων στο Firebase...');
+          await FactorySettingsService.initializeFactorySettings();
+          console.log('✅ Εργοστασιακές ρυθμίσεις αρχικοποιήθηκαν επιτυχώς');
+
+          await FactorySettingsService.deleteAllUserSettings();
+          console.log('✅ Παλιές ρυθμίσεις χρηστών διαγράφηκαν');
+        } else {
+          console.log('🔐 Δεν υπάρχει authenticated user - παράλειψη Firebase initialization');
+          console.log('💡 Χρήση τοπικών εργοστασιακών ρυθμίσεων');
+        }
+
+      } catch (error: any) {
+        console.error('❌ Σφάλμα εργοστασιακών ρυθμίσεων:', error?.code || error?.message);
+        console.log('💡 Χρήση τοπικών εργοστασιακών ρυθμίσεων');
+      }
+    }, 1000);
+
+  } catch (error) {
+    console.error('❌ Firebase αρχικοποίηση απέτυχε:', error);
   }
-} catch (error) {
-  console.error('Firebase initialization failed:', error);
+} else {
+  console.log('🔧 Demo mode - δεν υπάρχουν Firebase credentials');
 }
 
 function App(): React.ReactElement {

@@ -39,6 +39,16 @@ service cloud.firestore {
                        resource.data.userId == 'anonymous');
     }
 
+    // Factory Color Settings - DEVELOPMENT ONLY: Όλοι μπορούν να διαβάζουν και γράφουν
+    match /factoryColorSettings/{settingId} {
+      allow read, write: if true; // Πλήρη πρόσβαση για development
+    }
+
+    // User Color Settings - DEVELOPMENT ONLY: Όλοι μπορούν να διαβάζουν και γράφουν
+    match /userColorSettings/{userId} {
+      allow read, write: if true; // Πλήρη πρόσβαση για development
+    }
+
     // Παραδείγματα συλλογών που απαιτούν επαγγελματίες + 2FA για write
     match /projects/{id} {
       allow read:  if isVerified();

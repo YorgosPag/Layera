@@ -17,7 +17,7 @@ import {
   where,
   Timestamp
 } from 'firebase/firestore';
-import { db } from '@layera/auth-bridge';
+import { getDb, getAuthCurrentUser } from '../firebase';
 import {
   FACTORY_COLOR_SETTINGS,
   AVAILABLE_PALETTES,
@@ -68,6 +68,25 @@ export class FactorySettingsService {
     try {
       console.log('🏭 Αρχικοποίηση εργοστασιακών ρυθμίσεων...');
 
+      // Έλεγχος αν έχουμε Firebase database
+      const db = getDb();
+      if (!db) {
+        console.log('⚠️ Firebase δεν είναι διαθέσιμο - χρήση local settings');
+        return;
+      }
+
+      console.log('🔐 Έλεγχος Firebase permissions...');
+
+      // Έλεγχος authentication
+      const currentUser = getAuthCurrentUser();
+      if (currentUser) {
+        console.log('👤 Χρήστης συνδεδεμένος:', currentUser.email);
+        // Μπορείς να ελέγξεις εδώ τον ρόλο του χρήστη αν χρειάζεται
+      } else {
+        console.log('🚫 Χρήστης δεν είναι συνδεδεμένος - απαιτείται authentication για Firebase write operations');
+        // Δοκιμάζουμε παρόλα αυτά - ίσως έχουν δημόσια read permissions
+      }
+
       // Ελέγχουμε αν υπάρχουν ήδη
       const existingSettings = await this.getFactorySettings();
       if (existingSettings.length > 0) {
@@ -97,9 +116,9 @@ export class FactorySettingsService {
         }
       ];
 
-      // Αποθήκευση στη Firebase
+      // Αποθήκευση στη Firebase - χρησιμοποιούμε την ήδη ελεγμένη db
       for (const setting of settingsToStore) {
-        const docRef = doc(db(), FACTORY_SETTINGS_COLLECTION, setting.id);
+        const docRef = doc(db, FACTORY_SETTINGS_COLLECTION, setting.id);
         await setDoc(docRef, {
           ...setting,
           createdAt: Timestamp.now(),
@@ -119,7 +138,13 @@ export class FactorySettingsService {
    */
   static async getFactorySettings(): Promise<StoredFactorySettings[]> {
     try {
-      const querySnapshot = await getDocs(collection(db(), FACTORY_SETTINGS_COLLECTION));
+      const db = getDb();
+      if (!db) {
+        console.log('Firebase δεν είναι διαθέσιμο - χρήση local settings');
+        return [];
+      }
+
+      const querySnapshot = await getDocs(collection(db, FACTORY_SETTINGS_COLLECTION));
       return querySnapshot.docs.map(doc => ({
         ...doc.data(),
         id: doc.id
@@ -136,7 +161,12 @@ export class FactorySettingsService {
    */
   static async getFactorySettingById(id: PaletteType): Promise<StoredFactorySettings | null> {
     try {
-      const docRef = doc(db(), FACTORY_SETTINGS_COLLECTION, id);
+      const db = getDb();
+      if (!db) {
+        console.log('Firebase δεν είναι διαθέσιμο - χρήση local settings');
+        return null;
+      }
+      const docRef = doc(db, FACTORY_SETTINGS_COLLECTION, id);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
@@ -162,7 +192,11 @@ export class FactorySettingsService {
    */
   static async saveUserSettings(userId: string, settings: UserColorSettings['settings'], paletteType?: PaletteType): Promise<void> {
     try {
-      const docRef = doc(db(), USER_SETTINGS_COLLECTION, userId);
+      const db = getDb();
+      if (!db) {
+        throw new Error('Firebase δεν είναι διαθέσιμο');
+      }
+      const docRef = doc(db, USER_SETTINGS_COLLECTION, userId);
       const userSettings: Omit<UserColorSettings, 'createdAt'> & { createdAt?: Timestamp } = {
         userId,
         settings,
@@ -194,7 +228,12 @@ export class FactorySettingsService {
    */
   static async getUserSettings(userId: string): Promise<UserColorSettings | null> {
     try {
-      const docRef = doc(db(), USER_SETTINGS_COLLECTION, userId);
+      const db = getDb();
+      if (!db) {
+        console.log('Firebase δεν είναι διαθέσιμο - χρήση local settings');
+        return null;
+      }
+      const docRef = doc(db, USER_SETTINGS_COLLECTION, userId);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
@@ -213,7 +252,11 @@ export class FactorySettingsService {
    */
   static async deleteUserSettings(userId: string): Promise<void> {
     try {
-      const docRef = doc(db(), USER_SETTINGS_COLLECTION, userId);
+      const db = getDb();
+      if (!db) {
+        throw new Error('Firebase δεν είναι διαθέσιμο');
+      }
+      const docRef = doc(db, USER_SETTINGS_COLLECTION, userId);
       await deleteDoc(docRef);
       console.log('✅ Ρυθμίσεις χρήστη διαγράφηκαν επιτυχώς');
     } catch (error) {
@@ -228,7 +271,11 @@ export class FactorySettingsService {
   static async deleteAllUserSettings(): Promise<void> {
     try {
       console.log('🗑️ Διαγραφή όλων των ρυθμίσεων χρηστών...');
-      const querySnapshot = await getDocs(collection(db(), USER_SETTINGS_COLLECTION));
+      const db = getDb();
+      if (!db) {
+        throw new Error('Firebase δεν είναι διαθέσιμο');
+      }
+      const querySnapshot = await getDocs(collection(db, USER_SETTINGS_COLLECTION));
 
       const deletePromises = querySnapshot.docs.map(doc => deleteDoc(doc.ref));
       await Promise.all(deletePromises);
@@ -248,6 +295,14 @@ export class FactorySettingsService {
    * Φορτώνει τις εργοστασιακές ρυθμίσεις (fallback σε local αν Firebase αποτύχει)
    */
   static async loadFactorySettingsWithFallback(paletteType: PaletteType = 'enterprise') {
+    // Ελέγχουμε αν έχουμε authenticated user πρώτα
+    const currentUser = getAuthCurrentUser();
+
+    if (!currentUser) {
+      console.log('🔐 Χρήση local factory settings (δεν υπάρχει authentication)');
+      return loadFactorySettings(paletteType);
+    }
+
     try {
       const firebaseSettings = await this.getFactorySettingById(paletteType);
       if (firebaseSettings) {
