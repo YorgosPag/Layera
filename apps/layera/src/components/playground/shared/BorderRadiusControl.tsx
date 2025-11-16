@@ -37,9 +37,9 @@ export const BorderRadiusControl: React.FC<BorderRadiusControlProps> = ({
   const borderRadiusOptions = [
     {
       value: 'none',
-      label: 'Κανονικές',
+      label: 'Χωρίς',
       token: 'var(--layera-global-borderRadius-none)',
-      description: 'Κανονικές γωνίες (0px)'
+      description: 'Χωρίς καμπυλότητα (0px - τετράγωνα)'
     },
     {
       value: 'xs',
