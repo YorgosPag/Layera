@@ -35,7 +35,7 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
         return {
           ...baseStyle,
           backgroundColor: colorValue,
-          color: colorValue === '#f59e0b' ? 'var(--layera-color-text-primary)' : 'var(--layera-color-text-on-dark)',
+          color: colorValue === 'var(--layera-icon-colorWarning)' ? 'var(--layera-color-text-primary)' : 'var(--layera-color-text-on-dark)',
           border: 'var(--layera-global-borderWidth-1) solid var(--layera-border-primary)'
         };
       case 'text':
