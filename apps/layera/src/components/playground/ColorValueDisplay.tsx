@@ -28,12 +28,7 @@ export const ColorValueDisplay: React.FC<ColorValueDisplayProps> = ({
   buttonState
 }) => {
   return (
-    <Box
-      className="layera-grid layera-grid--gap-lg"
-      style={{
-        gridTemplateColumns: 'repeat(3, 1fr)'
-      } as React.CSSProperties}
-    >
+    <Box className="layera-grid layera-grid--gap-lg layera-grid--cols-3">
       {/* Current Settings Display - για buttons */}
       {colorHookState.elementType === 'buttons' && buttonState && (
         <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--neutral-light" data-family="mono" data-size="sm">
