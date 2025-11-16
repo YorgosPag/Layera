@@ -75,18 +75,21 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
           <CheckIcon size="sm" /> Live Preview: Κάρτες
         </h3>
 
-        <div style={{
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          gap: '8px',
-          width: '100%',
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: '16px 0'
-        }}>
+        <Box
+          style={{
+            display: 'var(--layera-global-display-flex)',
+            flexDirection: 'var(--layera-global-flexDirection-row)',
+            flexWrap: 'var(--layera-global-flexWrap-wrap)',
+            gap: 'var(--layera-global-spacing-2)',
+            width: 'var(--layera-global-layout-width-full)',
+            justifyContent: 'var(--layera-global-justifyContent-center)',
+            alignItems: 'var(--layera-global-alignItems-center)',
+            paddingTop: 'var(--layera-global-spacing-4)',
+            paddingBottom: 'var(--layera-global-spacing-4)'
+          }}
+        >
           {/* Primary Card */}
-          <div
+          <Box
             style={{
               backgroundColor: getBackgroundColor(currentColors.primary),
               color: getTextColor(currentColors.primary),
@@ -96,20 +99,34 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
               minWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
               maxWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
               flex: '0 0 calc(var(--layera-fontSize-6xl) * 3)',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: '6px',
-              padding: '12px'
+              display: 'var(--layera-global-display-flex)',
+              flexDirection: 'var(--layera-global-flexDirection-column)',
+              alignItems: 'var(--layera-global-alignItems-center)',
+              justifyContent: 'var(--layera-global-justifyContent-center)',
+              borderRadius: 'var(--layera-radius-md)',
+              padding: 'var(--layera-global-spacing-3)'
             }}
           >
-            <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold', lineHeight: '1.2' }}>Primary</h4>
-            <p style={{ margin: 0, fontSize: '12px', opacity: 0.8, lineHeight: '1.1' }}>Κύρια κάρτα</p>
-          </div>
+            <h4 style={{
+              margin: '0 0 var(--layera-global-spacing-1) 0',
+              fontSize: 'var(--layera-fontSize-sm)',
+              fontWeight: 'var(--layera-fontWeight-bold)',
+              lineHeight: 'var(--layera-lineHeight-tight)'
+            }}>
+              Primary
+            </h4>
+            <p style={{
+              margin: 'var(--layera-global-spacing-0)',
+              fontSize: 'var(--layera-fontSize-xs)',
+              opacity: '0.8',
+              lineHeight: 'var(--layera-lineHeight-tight)'
+            }}>
+              Κύρια κάρτα
+            </p>
+          </Box>
 
           {/* Secondary Card */}
-          <div
+          <Box
             style={{
               backgroundColor: getBackgroundColor(currentColors.secondary),
               color: getTextColor(currentColors.secondary),
@@ -119,20 +136,34 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
               minWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
               maxWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
               flex: '0 0 calc(var(--layera-fontSize-6xl) * 3)',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: '6px',
-              padding: '12px'
+              display: 'var(--layera-global-display-flex)',
+              flexDirection: 'var(--layera-global-flexDirection-column)',
+              alignItems: 'var(--layera-global-alignItems-center)',
+              justifyContent: 'var(--layera-global-justifyContent-center)',
+              borderRadius: 'var(--layera-radius-md)',
+              padding: 'var(--layera-global-spacing-3)'
             }}
           >
-            <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold', lineHeight: '1.2' }}>Secondary</h4>
-            <p style={{ margin: 0, fontSize: '12px', opacity: 0.8, lineHeight: '1.1' }}>Δευτερεύουσα κάρτα</p>
-          </div>
+            <h4 style={{
+              margin: '0 0 var(--layera-global-spacing-1) 0',
+              fontSize: 'var(--layera-fontSize-sm)',
+              fontWeight: 'var(--layera-fontWeight-bold)',
+              lineHeight: 'var(--layera-lineHeight-tight)'
+            }}>
+              Secondary
+            </h4>
+            <p style={{
+              margin: 'var(--layera-global-spacing-0)',
+              fontSize: 'var(--layera-fontSize-xs)',
+              opacity: '0.8',
+              lineHeight: 'var(--layera-lineHeight-tight)'
+            }}>
+              Δευτερεύουσα κάρτα
+            </p>
+          </Box>
 
           {/* Success Card */}
-          <div
+          <Box
             style={{
               backgroundColor: getBackgroundColor(currentColors.success),
               color: getTextColor(currentColors.success),
@@ -142,20 +173,34 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
               minWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
               maxWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
               flex: '0 0 calc(var(--layera-fontSize-6xl) * 3)',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: '6px',
-              padding: '12px'
+              display: 'var(--layera-global-display-flex)',
+              flexDirection: 'var(--layera-global-flexDirection-column)',
+              alignItems: 'var(--layera-global-alignItems-center)',
+              justifyContent: 'var(--layera-global-justifyContent-center)',
+              borderRadius: 'var(--layera-radius-md)',
+              padding: 'var(--layera-global-spacing-3)'
             }}
           >
-            <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold', lineHeight: '1.2' }}>Success</h4>
-            <p style={{ margin: 0, fontSize: '12px', opacity: 0.8, lineHeight: '1.1' }}>Κάρτα επιτυχίας</p>
-          </div>
+            <h4 style={{
+              margin: '0 0 var(--layera-global-spacing-1) 0',
+              fontSize: 'var(--layera-fontSize-sm)',
+              fontWeight: 'var(--layera-fontWeight-bold)',
+              lineHeight: 'var(--layera-lineHeight-tight)'
+            }}>
+              Success
+            </h4>
+            <p style={{
+              margin: 'var(--layera-global-spacing-0)',
+              fontSize: 'var(--layera-fontSize-xs)',
+              opacity: '0.8',
+              lineHeight: 'var(--layera-lineHeight-tight)'
+            }}>
+              Κάρτα επιτυχίας
+            </p>
+          </Box>
 
           {/* Warning Card */}
-          <div
+          <Box
             style={{
               backgroundColor: getBackgroundColor(currentColors.warning),
               color: getTextColor(currentColors.warning),
@@ -165,20 +210,34 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
               minWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
               maxWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
               flex: '0 0 calc(var(--layera-fontSize-6xl) * 3)',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: '6px',
-              padding: '12px'
+              display: 'var(--layera-global-display-flex)',
+              flexDirection: 'var(--layera-global-flexDirection-column)',
+              alignItems: 'var(--layera-global-alignItems-center)',
+              justifyContent: 'var(--layera-global-justifyContent-center)',
+              borderRadius: 'var(--layera-radius-md)',
+              padding: 'var(--layera-global-spacing-3)'
             }}
           >
-            <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold', lineHeight: '1.2' }}>Warning</h4>
-            <p style={{ margin: 0, fontSize: '12px', opacity: 0.8, lineHeight: '1.1' }}>Κάρτα προειδοποίησης</p>
-          </div>
+            <h4 style={{
+              margin: '0 0 var(--layera-global-spacing-1) 0',
+              fontSize: 'var(--layera-fontSize-sm)',
+              fontWeight: 'var(--layera-fontWeight-bold)',
+              lineHeight: 'var(--layera-lineHeight-tight)'
+            }}>
+              Warning
+            </h4>
+            <p style={{
+              margin: 'var(--layera-global-spacing-0)',
+              fontSize: 'var(--layera-fontSize-xs)',
+              opacity: '0.8',
+              lineHeight: 'var(--layera-lineHeight-tight)'
+            }}>
+              Κάρτα προειδοποίησης
+            </p>
+          </Box>
 
           {/* Danger Card */}
-          <div
+          <Box
             style={{
               backgroundColor: getBackgroundColor(currentColors.danger),
               color: getTextColor(currentColors.danger),
@@ -188,20 +247,34 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
               minWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
               maxWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
               flex: '0 0 calc(var(--layera-fontSize-6xl) * 3)',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: '6px',
-              padding: '12px'
+              display: 'var(--layera-global-display-flex)',
+              flexDirection: 'var(--layera-global-flexDirection-column)',
+              alignItems: 'var(--layera-global-alignItems-center)',
+              justifyContent: 'var(--layera-global-justifyContent-center)',
+              borderRadius: 'var(--layera-radius-md)',
+              padding: 'var(--layera-global-spacing-3)'
             }}
           >
-            <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold', lineHeight: '1.2' }}>Danger</h4>
-            <p style={{ margin: 0, fontSize: '12px', opacity: 0.8, lineHeight: '1.1' }}>Κάρτα κινδύνου</p>
-          </div>
+            <h4 style={{
+              margin: '0 0 var(--layera-global-spacing-1) 0',
+              fontSize: 'var(--layera-fontSize-sm)',
+              fontWeight: 'var(--layera-fontWeight-bold)',
+              lineHeight: 'var(--layera-lineHeight-tight)'
+            }}>
+              Danger
+            </h4>
+            <p style={{
+              margin: 'var(--layera-global-spacing-0)',
+              fontSize: 'var(--layera-fontSize-xs)',
+              opacity: '0.8',
+              lineHeight: 'var(--layera-lineHeight-tight)'
+            }}>
+              Κάρτα κινδύνου
+            </p>
+          </Box>
 
           {/* Info Card */}
-          <div
+          <Box
             style={{
               backgroundColor: getBackgroundColor(currentColors.info),
               color: getTextColor(currentColors.info),
@@ -211,18 +284,32 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
               minWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
               maxWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
               flex: '0 0 calc(var(--layera-fontSize-6xl) * 3)',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: '6px',
-              padding: '12px'
+              display: 'var(--layera-global-display-flex)',
+              flexDirection: 'var(--layera-global-flexDirection-column)',
+              alignItems: 'var(--layera-global-alignItems-center)',
+              justifyContent: 'var(--layera-global-justifyContent-center)',
+              borderRadius: 'var(--layera-radius-md)',
+              padding: 'var(--layera-global-spacing-3)'
             }}
           >
-            <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold', lineHeight: '1.2' }}>Info</h4>
-            <p style={{ margin: 0, fontSize: '12px', opacity: 0.8, lineHeight: '1.1' }}>Κάρτα πληροφοριών</p>
-          </div>
-        </div>
+            <h4 style={{
+              margin: '0 0 var(--layera-global-spacing-1) 0',
+              fontSize: 'var(--layera-fontSize-sm)',
+              fontWeight: 'var(--layera-fontWeight-bold)',
+              lineHeight: 'var(--layera-lineHeight-tight)'
+            }}>
+              Info
+            </h4>
+            <p style={{
+              margin: 'var(--layera-global-spacing-0)',
+              fontSize: 'var(--layera-fontSize-xs)',
+              opacity: '0.8',
+              lineHeight: 'var(--layera-lineHeight-tight)'
+            }}>
+              Κάρτα πληροφοριών
+            </p>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );
