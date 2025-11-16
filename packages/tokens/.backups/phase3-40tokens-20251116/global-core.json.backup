@@ -734,9 +734,17 @@
         "value": "2rem",
         "comment": "32px spacing"
       },
+      "10": {
+        "value": "2.5rem",
+        "comment": "40px spacing"
+      },
       "12": {
         "value": "3rem",
         "comment": "48px spacing"
+      },
+      "96": {
+        "value": "24rem",
+        "comment": "384px spacing"
       }
     },
     "borderRadius": {
@@ -767,6 +775,14 @@
       "1": {
         "value": "1px",
         "comment": "1px border width - Λεπτό"
+      },
+      "2": {
+        "value": "3px",
+        "comment": "3px border width - Μεσαίο"
+      },
+      "3": {
+        "value": "5px",
+        "comment": "5px border width - Χοντρό"
       }
     },
     "textAlign": {
@@ -876,6 +892,10 @@
       "solid": {
         "value": "solid",
         "comment": "Solid border style"
+      },
+      "dashed": {
+        "value": "dashed",
+        "comment": "Dashed border style"
       },
       "dotted": {
         "value": "dotted",
@@ -1256,5 +1276,5 @@
         }
       }
     }
-  }
+  },
 }

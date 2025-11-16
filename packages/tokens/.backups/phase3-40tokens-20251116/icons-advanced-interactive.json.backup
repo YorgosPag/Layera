@@ -64,10 +64,26 @@
         "normal": {
           "value": "4.5",
           "comment": "WCAG AA contrast ratio"
+        },
+        "large": {
+          "value": "3",
+          "comment": "WCAG AA large text contrast ratio"
+        },
+        "enhanced": {
+          "value": "7",
+          "comment": "WCAG AAA contrast ratio"
         }
       }
     },
     "sizing": {
+      "touchTargetMobile": {
+        "value": "44",
+        "comment": "iOS/Android minimum touch target (44px)"
+      },
+      "touchTargetDesktop": {
+        "value": "32",
+        "comment": "Desktop minimum touch target (32px)"
+      },
       "padding": {
         "xs": {
           "value": "2px",
@@ -113,5 +129,35 @@
         }
       }
     },
+    "theming": {
+      "darkPrimary": {
+        "value": "#a78bfa",
+        "comment": "Primary color adapted for dark theme"
+      },
+      "darkSecondary": {
+        "value": "#9ca3af",
+        "comment": "Secondary color for dark theme"
+      },
+      "darkNeutral": {
+        "value": "#9ca3af",
+        "comment": "Neutral color for dark theme"
+      },
+      "darkSuccess": {
+        "value": "#34d399",
+        "comment": "Success color for dark theme"
+      },
+      "darkWarning": {
+        "value": "#fbbf24",
+        "comment": "Warning color for dark theme"
+      },
+      "darkDanger": {
+        "value": "#f87171",
+        "comment": "Danger color for dark theme"
+      },
+      "darkInfo": {
+        "value": "#60a5fa",
+        "comment": "Info color for dark theme"
+      }
+    }
   }
 }

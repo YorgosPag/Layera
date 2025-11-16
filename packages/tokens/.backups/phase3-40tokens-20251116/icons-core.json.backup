@@ -21,6 +21,18 @@
       "value": "2rem",
       "comment": "32px - Same as lg for consistency"
     },
+    "leafletStandard": {
+      "value": "20px",
+      "comment": "Map leaflet standard icons"
+    },
+    "strokeLight": {
+      "value": "1.5",
+      "comment": "Light stroke width - Enterprise default"
+    },
+    "strokeNormal": {
+      "value": "2",
+      "comment": "Normal stroke width"
+    },
     "colorPrimary": {
       "value": "#fbbf24",
       "comment": "Primary brand color for icons - ΚΙΤΡΙΝΟ για single source test"
@@ -49,5 +61,9 @@
       "value": "#6b7280",
       "comment": "Neutral gray for standard icons"
     },
+    "colorWhite": {
+      "value": "#ffffff",
+      "comment": "Pure white color for icons on dark backgrounds"
+    }
   }
 }
