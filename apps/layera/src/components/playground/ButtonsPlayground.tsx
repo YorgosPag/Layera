@@ -139,7 +139,6 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             padding: buttonState.shape === 'square' ? '16px' : '8px 16px',
             border: `${dynamicBorderWidth} solid ${colors.primary}`,
             borderRadius: buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px',
-            gap: '6px',
             fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
           }}>
             {buttonState.withIcon && <PlusIcon size="sm" />}
