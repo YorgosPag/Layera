@@ -139,7 +139,6 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             padding: buttonState.shape === 'square' ? '16px' : '8px 16px',
             border: `${dynamicBorderWidth} solid ${colors.primary}`,
             borderRadius: buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px',
-            cursor: 'pointer',
             minWidth: buttonState.shape === 'square' ? '50px' : '120px',
             height: buttonState.shape === 'square' ? '50px' : 'auto',
             display: 'flex',
