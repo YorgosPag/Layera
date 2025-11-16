@@ -108,7 +108,6 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             size={buttonState.size}
             icon={buttonState.withIcon ? <CheckIcon size="sm" /> : undefined}
             className="layera-button-dynamic-success"
-            style={{ backgroundColor: colors.success }}
           >
             {buttonState.shape === 'square' ? 'Su' : 'Success'}
           </Button>
