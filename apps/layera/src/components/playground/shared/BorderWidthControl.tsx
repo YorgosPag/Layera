@@ -15,7 +15,7 @@ import { RulerIcon } from '@layera/icons';
  */
 
 interface BorderWidthControlProps {
-  /** Current border width value (1, 2, or 3) */
+  /** Current border width value (0, 1, 2, or 3) */
   value: number;
   /** Callback when border width changes */
   onChange: (value: number) => void;
@@ -36,6 +36,12 @@ export const BorderWidthControl: React.FC<BorderWidthControlProps> = ({
   // Available border width options with their tokens
   const borderWidthOptions = [
     {
+      value: 0,
+      label: 'Χωρίς',
+      token: '0',
+      description: 'Χωρίς περίγραμμα'
+    },
+    {
       value: 1,
       label: 'Λεπτό',
       token: 'var(--layera-global-borderWidth-1)',
@@ -45,13 +51,13 @@ export const BorderWidthControl: React.FC<BorderWidthControlProps> = ({
       value: 2,
       label: 'Μεσαίο',
       token: 'var(--layera-global-borderWidth-2)',
-      description: '2px περίγραμμα'
+      description: '3px περίγραμμα'
     },
     {
       value: 3,
       label: 'Χοντρό',
       token: 'var(--layera-global-borderWidth-3)',
-      description: '3px περίγραμμα'
+      description: '5px περίγραμμα'
     }
   ];
 
@@ -102,7 +108,7 @@ export const BorderWidthControl: React.FC<BorderWidthControlProps> = ({
           padding: '12px',
           backgroundColor: 'var(--layera-color-surface-primary)',
           borderRadius: 'var(--layera-global-borderRadius-md)',
-          border: `${currentOption.token} solid var(--layera-color-border-primary)`,
+          border: value === 0 ? 'none' : `${currentOption.token} solid var(--layera-color-border-primary)`,
           textAlign: 'center',
           transition: 'all 0.2s ease',
           transform: isChanging ? 'scale(1.02)' : 'scale(1)'

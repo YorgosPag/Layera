@@ -55,7 +55,7 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
           ...baseStyle,
           backgroundColor: '#ffffff',
           color: '#333333',
-          border: `var(--layera-global-borderWidth-${borderWidth}) solid ${colorValue}`
+          border: borderWidth === 0 ? 'none' : `var(--layera-global-borderWidth-${borderWidth}) solid ${colorValue}`
         };
       default:
         return baseStyle;

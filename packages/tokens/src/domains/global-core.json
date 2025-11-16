@@ -774,15 +774,15 @@
       "comment": "Border width tokens",
       "1": {
         "value": "1px",
-        "comment": "1px border width"
+        "comment": "1px border width - Λεπτό"
       },
       "2": {
-        "value": "2px",
-        "comment": "2px border width"
+        "value": "3px",
+        "comment": "3px border width - Μεσαίο"
       },
       "3": {
-        "value": "3px",
-        "comment": "3px border width"
+        "value": "5px",
+        "comment": "5px border width - Χοντρό"
       }
     },
     "textAlign": {
