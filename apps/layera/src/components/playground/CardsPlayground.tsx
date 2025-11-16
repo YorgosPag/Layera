@@ -103,10 +103,13 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
               className="layera-flex layera-flex-column layera-flex--align-center layera-flex--justify-center layera-padding--md"
               style={{
                 ...cardStyle,
-                backgroundColor: getBackgroundColor(colorValue),
-                color: getTextColor(colorValue),
-                border: getBorderStyle(colorValue)
-              }}
+                '--layera-card-bg-color': getBackgroundColor(colorValue),
+                '--layera-card-text-color': getTextColor(colorValue),
+                '--layera-card-border': getBorderStyle(colorValue),
+                backgroundColor: 'var(--layera-card-bg-color)',
+                color: 'var(--layera-card-text-color)',
+                border: 'var(--layera-card-border)'
+              } as React.CSSProperties}
             >
               <Text
                 className="layera-typography layera-margin-bottom--xs layera-line-height--tight"
