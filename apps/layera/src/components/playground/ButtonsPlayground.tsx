@@ -74,14 +74,14 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
     return `var(--layera-global-borderWidth-${width})`;
   };
 
-  // Dynamic colors with fallbacks
+  // Dynamic colors with fallbacks using design tokens
   const colors = {
-    primary: extractColor(currentColors.primary, '#6366f1'),
-    secondary: extractColor(currentColors.secondary, '#6b7280'),
-    success: extractColor(currentColors.success, '#10b981'),
-    warning: extractColor(currentColors.warning, '#f59e0b'),
-    danger: extractColor(currentColors.danger, '#ef4444'),
-    info: extractColor(currentColors.info, '#3b82f6')
+    primary: extractColor(currentColors.primary, 'var(--layera-color-text-primary, #6366f1)'),
+    secondary: extractColor(currentColors.secondary, 'var(--layera-color-text-secondary, #6b7280)'),
+    success: extractColor(currentColors.success, 'var(--layera-color-semantic-success-primary, #10b981)'),
+    warning: extractColor(currentColors.warning, 'var(--layera-color-semantic-warning-primary, #f59e0b)'),
+    danger: extractColor(currentColors.danger, 'var(--layera-color-semantic-error-primary, #ef4444)'),
+    info: extractColor(currentColors.info, 'var(--layera-color-semantic-info-primary, #6366f1)')
   };
 
   // Border width για outline button
