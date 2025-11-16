@@ -76,7 +76,7 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
               }}
             >
               <span>{color.name} Row</span>
-              <span style={{ opacity: 0.8, fontSize: '12px' }}>
+              <span style={{ opacity: 0.8, fontSize: 'var(--layera-la-fontSize-xs)' }}>
                 Γραμμή {index + 1}
               </span>
             </Box>
