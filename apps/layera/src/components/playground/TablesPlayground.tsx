@@ -81,7 +81,7 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
                 alignItems: 'center',
                 fontSize: 'var(--layera-la-fontSize-sm)',
                 fontWeight: 'var(--layera-la-fontWeight-medium)',
-                marginBottom: index === colors.length - 1 ? '0' : '2px'
+                marginBottom: index === colors.length - 1 ? '0' : 'var(--layera-global-borderRadius-xs)'
               }}
             >
               <span>{color.name} Row</span>
