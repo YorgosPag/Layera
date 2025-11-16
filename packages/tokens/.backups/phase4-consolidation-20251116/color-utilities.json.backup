@@ -68,13 +68,13 @@
         },
         "neutral": {
           "white": {
-            "value": "var(--layera-color-neutral-white)",
-            "comment": "Pure white background - consolidated reference",
+            "value": "#ffffff",
+            "comment": "Pure white background",
             "type": "color"
           },
           "black": {
-            "value": "var(--layera-color-neutral-black)",
-            "comment": "Pure black background - consolidated reference",
+            "value": "#000000",
+            "comment": "Pure black background",
             "type": "color"
           },
           "transparent": {
@@ -125,13 +125,13 @@
         },
         "neutral": {
           "white": {
-            "value": "var(--layera-color-neutral-white)",
-            "comment": "Pure white text - consolidated reference",
+            "value": "#ffffff",
+            "comment": "Pure white text",
             "type": "color"
           },
           "black": {
-            "value": "var(--layera-color-neutral-black)",
-            "comment": "Pure black text - consolidated reference",
+            "value": "#000000",
+            "comment": "Pure black text",
             "type": "color"
           }
         },
@@ -204,13 +204,13 @@
         },
         "neutral": {
           "white": {
-            "value": "var(--layera-color-neutral-white)",
-            "comment": "Pure white border - consolidated reference",
+            "value": "#ffffff",
+            "comment": "Pure white border",
             "type": "color"
           },
           "black": {
-            "value": "var(--layera-color-neutral-black)",
-            "comment": "Pure black border - consolidated reference",
+            "value": "#000000",
+            "comment": "Pure black border",
             "type": "color"
           },
           "transparent": {
@@ -285,13 +285,13 @@
         },
         "neutral": {
           "white": {
-            "value": "var(--layera-color-neutral-white)",
-            "comment": "Pure white SVG fill - consolidated reference",
+            "value": "#ffffff",
+            "comment": "Pure white SVG fill",
             "type": "color"
           },
           "black": {
-            "value": "var(--layera-color-neutral-black)",
-            "comment": "Pure black SVG fill - consolidated reference",
+            "value": "#000000",
+            "comment": "Pure black SVG fill",
             "type": "color"
           },
           "currentColor": {

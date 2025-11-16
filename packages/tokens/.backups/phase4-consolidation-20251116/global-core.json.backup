@@ -550,18 +550,18 @@
           "comment": "Light theme color palette",
           "background": {
             "primary": {
-              "value": "var(--layera-color-neutral-white)",
-              "comment": "Κύριο φόντο - reference σε neutral white"
+              "value": "#ffffff",
+              "comment": "Κύριο φόντο - άσπρο για light mode"
             },
             "secondary": {
               "value": "#f8fafc",
-              "comment": "Δευτερεύον φόντο - ελαφρύ γκρι (master reference)"
+              "comment": "Δευτερεύον φόντο - ελαφρύ γκρι"
             }
           },
           "surface": {
             "primary": {
-              "value": "var(--layera-color-neutral-white)",
-              "comment": "Primary surface - reference σε neutral white"
+              "value": "#ffffff",
+              "comment": "Primary surface για cards/modals"
             },
             "secondary": {
               "value": "#f8fafc",
@@ -584,8 +584,8 @@
           },
           "header": {
             "background": {
-              "value": "var(--layera-color-neutral-white)",
-              "comment": "Header background - reference σε neutral white"
+              "value": "#ffffff",
+              "comment": "Header background"
             },
             "text": {
               "value": "#1e293b",
@@ -702,17 +702,6 @@
       "transparent": {
         "value": "transparent",
         "comment": "Transparent color"
-      },
-      "neutral": {
-        "comment": "🔲 Neutral Color System - Pure colors for maximum compatibility",
-        "white": {
-          "value": "#ffffff",
-          "comment": "Pure white - single source of truth for all white references"
-        },
-        "black": {
-          "value": "#000000",
-          "comment": "Pure black - single source of truth for all black references"
-        }
       }
     },
     "spacing": {
