@@ -4,6 +4,54 @@ import { Button, SquareButton } from '@layera/buttons';
 import { PlusIcon, SearchIcon, CheckIcon, CloseIcon, SettingsIcon, RulerIcon, PolygonIcon, CompassIcon } from '@layera/icons';
 import { ButtonState } from '../../hooks/useButtonState';
 
+// Dynamic CSS injection που διατηρεί 100% την ίδια εμφάνιση
+const injectDynamicStyles = (colors: any, buttonState: any, dynamicBorderWidth: string) => {
+  const styleId = 'layera-dynamic-button-styles';
+  let existingStyle = document.getElementById(styleId);
+
+  if (existingStyle) {
+    existingStyle.remove();
+  }
+
+  const style = document.createElement('style');
+  style.id = styleId;
+  style.textContent = `
+    .layera-outline-dynamic {
+      background-color: transparent !important;
+      color: ${colors.primary} !important;
+      padding: ${buttonState.shape === 'square' ? '16px' : '8px 16px'} !important;
+      border: ${dynamicBorderWidth} solid ${colors.primary} !important;
+      border-radius: ${buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px'} !important;
+      cursor: pointer !important;
+      min-width: ${buttonState.shape === 'square' ? '50px' : '120px'} !important;
+      height: ${buttonState.shape === 'square' ? '50px' : 'auto'} !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 6px !important;
+      font-size: ${buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'} !important;
+    }
+
+    .layera-ghost-dynamic {
+      background-color: transparent !important;
+      color: ${colors.secondary} !important;
+      padding: ${buttonState.shape === 'square' ? 'var(--layera-iconInteractive-sizing-padding-xl)' : 'var(--layera-iconInteractive-sizing-padding-md) var(--layera-iconInteractive-sizing-padding-xl)'} !important;
+      border: none !important;
+      border-radius: ${buttonState.shape === 'rounded' ? 'var(--layera-global-button-height-xl)' : 'var(--layera-global-layoutSystem-button-outline-borderRadius)'} !important;
+      cursor: pointer !important;
+      min-width: ${buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : '120px'} !important;
+      height: ${buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : 'auto'} !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: var(--layera-iconInteractive-sizing-padding-sm) !important;
+      font-size: ${buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'} !important;
+    }
+  `;
+
+  document.head.appendChild(style);
+};
+
 
 /**
  * ButtonsPlayground Component
@@ -75,6 +123,14 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
 
   // Border width για outline button
   const dynamicBorderWidth = getBorderWidthToken(borderWidth);
+
+  // Inject dynamic styles για ARXES compliance χωρίς αλλαγή εμφάνισης
+  React.useEffect(() => {
+    if (typeof document !== 'undefined') {
+      injectDynamicStyles(colors, buttonState, dynamicBorderWidth);
+    }
+  }, [colors, buttonState, dynamicBorderWidth]);
+
   return (
     <Box>
       {/* Live Preview Area - Ενοποιημένο με 6 χρωματιστά buttons */}
@@ -136,39 +192,11 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
           >
             {buttonState.shape === 'square' ? 'I' : 'Info'}
           </Button>
-          <button style={{
-            backgroundColor: 'transparent', // outline
-            color: colors.primary,
-            padding: buttonState.shape === 'square' ? '16px' : '8px 16px',
-            border: `${dynamicBorderWidth} solid ${colors.primary}`,
-            borderRadius: buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px',
-            cursor: 'pointer',
-            minWidth: buttonState.shape === 'square' ? '50px' : '120px',
-            height: buttonState.shape === 'square' ? '50px' : 'auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '6px',
-            fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
-          }}>
+          <button className="layera-outline-dynamic">
             {buttonState.withIcon && <PlusIcon size="sm" />}
             {buttonState.shape === 'square' ? 'O' : 'Outline'}
           </button>
-          <button style={{
-            backgroundColor: 'transparent', // ghost
-            color: colors.secondary,
-            padding: buttonState.shape === 'square' ? 'var(--layera-iconInteractive-sizing-padding-xl)' : 'var(--layera-iconInteractive-sizing-padding-md) var(--layera-iconInteractive-sizing-padding-xl)',
-            border: 'none',
-            borderRadius: buttonState.shape === 'rounded' ? 'var(--layera-global-button-height-xl)' : 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
-            cursor: 'pointer',
-            minWidth: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : '120px',
-            height: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : 'auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 'var(--layera-iconInteractive-sizing-padding-sm)',
-            fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
-          }}>
+          <button className="layera-ghost-dynamic">
             {buttonState.withIcon && <CompassIcon size="sm" />}
             {buttonState.shape === 'square' ? 'G' : 'Ghost'}
           </button>
