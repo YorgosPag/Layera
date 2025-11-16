@@ -60,7 +60,7 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
           <CheckIcon size="sm" /> Live Preview: Πίνακες
         </h3>
 
-        <Box style={{ display: 'flex', flexDirection: 'column', gap: 'var(--layera-global-spacing-2)' }}>
+        <Box style={{ display: 'flex', flexDirection: 'column', gap: 'var(--layera-global-spacing-1)' }}>
           {colors.map((color, index) => (
             <Box
               key={color.name}
