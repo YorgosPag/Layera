@@ -258,9 +258,10 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
                 width: 'var(--layera-iconInteractive-sizing-padding-lg)',
                 height: 'var(--layera-iconInteractive-sizing-padding-lg)',
                 borderRadius: 'var(--layera-iconInteractive-sizing-padding-xs)',
-                backgroundColor: color.hex,
+                '--layera-color-preview-bg': color.hex,
+                backgroundColor: 'var(--layera-color-preview-bg)',
                 border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-light)'
-              }}
+              } as React.CSSProperties}
               data-title={`${color.name}: ${color.hex}`}
             />
           ))}
