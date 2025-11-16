@@ -24,7 +24,14 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
   const getTableStyle = (colorValue: string) => {
     const baseStyle = {
       boxSizing: 'border-box' as const,
-      border: 'var(--layera-global-borderWidth-1) var(--layera-global-borderStyle-solid) transparent'
+      border: 'var(--layera-global-borderWidth-1) var(--layera-global-borderStyle-solid) transparent',
+      padding: 'var(--layera-global-spacing-3) var(--layera-global-spacing-4)',
+      borderRadius: 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      fontSize: 'var(--layera-la-fontSize-sm)',
+      fontWeight: 'var(--layera-la-fontWeight-medium)'
     };
 
     switch (colorCategory) {
@@ -74,13 +81,6 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
               key={color.name}
               style={{
                 ...getTableStyle(color.value),
-                padding: 'var(--layera-global-spacing-3) var(--layera-global-spacing-4)',
-                borderRadius: 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                fontSize: 'var(--layera-la-fontSize-sm)',
-                fontWeight: 'var(--layera-la-fontWeight-medium)',
                 marginBottom: index === colors.length - 1 ? '0' : 'var(--layera-global-borderRadius-xs)'
               }}
             >
