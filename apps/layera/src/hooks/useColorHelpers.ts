@@ -126,7 +126,12 @@ export const useColorHelpers = ({
    * Gets colors for a specific category (autonomous color system)
    */
   const getColorsForCategory = (category: string): ColorPalette => {
-    return colorState.categoryPalettes[category as ColorCategory];
+    const palette = colorState.categoryPalettes[category as ColorCategory];
+    if (!palette) {
+      // Fallback to current colors if category palette doesn't exist
+      return getCurrentPalette();
+    }
+    return palette;
   };
 
   /**

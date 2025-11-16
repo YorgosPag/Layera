@@ -60,23 +60,23 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
           <CheckIcon size="sm" /> Live Preview: Πίνακες
         </h3>
 
-        <Box style={{ display: 'flex', flexDirection: 'column', gap: 'var(--layera-iconInteractive-sizing-padding-md)' }}>
+        <Box style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
           {colors.map((color, index) => (
             <Box
               key={color.name}
               style={{
                 ...getTableStyle(color.value),
-                padding: 'var(--layera-iconInteractive-sizing-padding-lg) var(--layera-iconInteractive-sizing-padding-xl)',
-                borderRadius: 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
+                padding: '12px 16px',
+                borderRadius: '6px',
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                fontSize: 'var(--layera-la-fontSize-sm)',
-                fontWeight: 'var(--layera-la-fontWeight-medium)'
+                fontSize: '14px',
+                fontWeight: '500'
               }}
             >
               <span>{color.name} Row</span>
-              <span style={{ opacity: 0.8, fontSize: 'var(--layera-la-fontSize-xs)' }}>
+              <span style={{ opacity: 0.8, fontSize: '12px' }}>
                 Γραμμή {index + 1}
               </span>
             </Box>

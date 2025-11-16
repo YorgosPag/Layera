@@ -180,8 +180,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
       warningColor: '--layera-color-button-warning',
       dangerColor: '--layera-color-button-danger',
       infoColor: '--layera-color-button-info',
-
-      // Button colors (without suffix for direct mapping)
+      // Button colors (short format for color picker compatibility)
       primary: '--layera-color-button-primary',
       secondary: '--layera-color-button-secondary',
       success: '--layera-color-button-success',

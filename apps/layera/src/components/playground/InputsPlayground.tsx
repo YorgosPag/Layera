@@ -64,70 +64,70 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
           <CheckIcon size="sm" /> Live Preview: Πεδία
         </h3>
 
-        <Box style={{
+        <div style={{
           display: 'flex',
           flexDirection: 'row',
           flexWrap: 'wrap',
-          gap: 'var(--layera-global-spacing-6)',
+          gap: '24px',
           width: '100%',
           justifyContent: 'center',
           alignItems: 'center',
-          padding: 'var(--layera-iconInteractive-sizing-padding-xl) 0'
+          padding: '16px 0'
         }}>
-          <Box style={{ minWidth: '150px', marginRight: 'var(--layera-iconInteractive-sizing-padding-md)' }}>
-            <label style={{ display: 'block', marginBottom: 'var(--layera-iconInteractive-sizing-padding-sm)', fontSize: 'var(--layera-la-fontSize-xs)', fontWeight: 'bold' }}>Primary Input</label>
+          <div style={{ minWidth: '150px', marginRight: '8px' }}>
+            <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px', fontWeight: 'bold' }}>Primary Input</label>
             <input
               type="text"
               placeholder="Primary πεδίο"
               style={getInputStyle(currentColors.primary)}
             />
-          </Box>
+          </div>
 
-          <Box style={{ minWidth: '150px', marginRight: 'var(--layera-iconInteractive-sizing-padding-md)' }}>
-            <label style={{ display: 'block', marginBottom: 'var(--layera-iconInteractive-sizing-padding-sm)', fontSize: 'var(--layera-la-fontSize-xs)', fontWeight: 'bold' }}>Secondary Input</label>
+          <div style={{ minWidth: '150px', marginRight: '8px' }}>
+            <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px', fontWeight: 'bold' }}>Secondary Input</label>
             <input
               type="text"
               placeholder="Secondary πεδίο"
               style={getInputStyle(currentColors.secondary)}
             />
-          </Box>
+          </div>
 
-          <Box style={{ minWidth: '150px', marginRight: 'var(--layera-iconInteractive-sizing-padding-md)' }}>
-            <label style={{ display: 'block', marginBottom: 'var(--layera-iconInteractive-sizing-padding-sm)', fontSize: 'var(--layera-la-fontSize-xs)', fontWeight: 'bold' }}>Success Input</label>
+          <div style={{ minWidth: '150px', marginRight: '8px' }}>
+            <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px', fontWeight: 'bold' }}>Success Input</label>
             <input
               type="text"
               placeholder="Success πεδίο"
               style={getInputStyle(currentColors.success)}
             />
-          </Box>
+          </div>
 
-          <Box style={{ minWidth: '150px', marginRight: 'var(--layera-iconInteractive-sizing-padding-md)' }}>
-            <label style={{ display: 'block', marginBottom: 'var(--layera-iconInteractive-sizing-padding-sm)', fontSize: 'var(--layera-la-fontSize-xs)', fontWeight: 'bold' }}>Warning Input</label>
+          <div style={{ minWidth: '150px', marginRight: '8px' }}>
+            <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px', fontWeight: 'bold' }}>Warning Input</label>
             <input
               type="text"
               placeholder="Warning πεδίο"
               style={getInputStyle(currentColors.warning)}
             />
-          </Box>
+          </div>
 
-          <Box style={{ minWidth: '150px', marginRight: 'var(--layera-iconInteractive-sizing-padding-md)' }}>
-            <label style={{ display: 'block', marginBottom: 'var(--layera-iconInteractive-sizing-padding-sm)', fontSize: 'var(--layera-la-fontSize-xs)', fontWeight: 'bold' }}>Danger Input</label>
+          <div style={{ minWidth: '150px', marginRight: '8px' }}>
+            <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px', fontWeight: 'bold' }}>Danger Input</label>
             <input
               type="text"
               placeholder="Danger πεδίο"
               style={getInputStyle(currentColors.danger)}
             />
-          </Box>
+          </div>
 
-          <Box style={{ minWidth: '150px' }}>
-            <label style={{ display: 'block', marginBottom: 'var(--layera-iconInteractive-sizing-padding-sm)', fontSize: 'var(--layera-la-fontSize-xs)', fontWeight: 'bold' }}>Info Input</label>
+          <div style={{ minWidth: '150px' }}>
+            <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px', fontWeight: 'bold' }}>Info Input</label>
             <input
               type="text"
               placeholder="Info πεδίο"
               style={getInputStyle(currentColors.info)}
             />
-          </Box>
-        </Box>
+          </div>
+        </div>
       </Box>
     </Box>
   );

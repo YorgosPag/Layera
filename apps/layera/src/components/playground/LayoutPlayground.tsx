@@ -72,58 +72,58 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
           <CheckIcon size="sm" /> Live Preview: Layout
         </h3>
 
-        <Box style={{
+        <div style={{
           display: 'flex',
           flexDirection: 'row',
           flexWrap: 'wrap',
-          gap: 'var(--layera-iconInteractive-sizing-padding-md)',
+          gap: '8px',
           width: '100%',
           justifyContent: 'center',
           alignItems: 'center',
-          padding: 'var(--layera-iconInteractive-sizing-padding-xl) 0'
+          padding: '16px 0'
         }}>
           <Box style={getLayoutStyle(currentColors.primary)}>
-            <Box>
-              <h4 style={{ margin: '0 0 var(--layera-iconInteractive-sizing-padding-sm) 0', fontSize: 'var(--layera-la-fontSize-sm)', fontWeight: 'bold' }}>Primary</h4>
-              <p style={{ margin: 0, fontSize: 'var(--layera-la-fontSize-xs)', opacity: 0.8 }}>Layout Section</p>
-            </Box>
+            <div>
+              <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold' }}>Primary</h4>
+              <p style={{ margin: 0, fontSize: '11px', opacity: 0.8 }}>Layout Section</p>
+            </div>
           </Box>
 
           <Box style={getLayoutStyle(currentColors.secondary)}>
-            <Box>
-              <h4 style={{ margin: '0 0 var(--layera-iconInteractive-sizing-padding-sm) 0', fontSize: 'var(--layera-la-fontSize-sm)', fontWeight: 'bold' }}>Secondary</h4>
-              <p style={{ margin: 0, fontSize: 'var(--layera-la-fontSize-xs)', opacity: 0.8 }}>Layout Section</p>
-            </Box>
+            <div>
+              <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold' }}>Secondary</h4>
+              <p style={{ margin: 0, fontSize: '11px', opacity: 0.8 }}>Layout Section</p>
+            </div>
           </Box>
 
           <Box style={getLayoutStyle(currentColors.success)}>
-            <Box>
-              <h4 style={{ margin: '0 0 var(--layera-iconInteractive-sizing-padding-sm) 0', fontSize: 'var(--layera-la-fontSize-sm)', fontWeight: 'bold' }}>Success</h4>
-              <p style={{ margin: 0, fontSize: 'var(--layera-la-fontSize-xs)', opacity: 0.8 }}>Layout Section</p>
-            </Box>
+            <div>
+              <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold' }}>Success</h4>
+              <p style={{ margin: 0, fontSize: '11px', opacity: 0.8 }}>Layout Section</p>
+            </div>
           </Box>
 
           <Box style={getLayoutStyle(currentColors.warning)}>
-            <Box>
-              <h4 style={{ margin: '0 0 var(--layera-iconInteractive-sizing-padding-sm) 0', fontSize: 'var(--layera-la-fontSize-sm)', fontWeight: 'bold' }}>Warning</h4>
-              <p style={{ margin: 0, fontSize: 'var(--layera-la-fontSize-xs)', opacity: 0.8 }}>Layout Section</p>
-            </Box>
+            <div>
+              <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold' }}>Warning</h4>
+              <p style={{ margin: 0, fontSize: '11px', opacity: 0.8 }}>Layout Section</p>
+            </div>
           </Box>
 
           <Box style={getLayoutStyle(currentColors.danger)}>
-            <Box>
-              <h4 style={{ margin: '0 0 var(--layera-iconInteractive-sizing-padding-sm) 0', fontSize: 'var(--layera-la-fontSize-sm)', fontWeight: 'bold' }}>Danger</h4>
-              <p style={{ margin: 0, fontSize: 'var(--layera-la-fontSize-xs)', opacity: 0.8 }}>Layout Section</p>
-            </Box>
+            <div>
+              <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold' }}>Danger</h4>
+              <p style={{ margin: 0, fontSize: '11px', opacity: 0.8 }}>Layout Section</p>
+            </div>
           </Box>
 
           <Box style={getLayoutStyle(currentColors.info)}>
-            <Box>
-              <h4 style={{ margin: '0 0 var(--layera-iconInteractive-sizing-padding-sm) 0', fontSize: 'var(--layera-la-fontSize-sm)', fontWeight: 'bold' }}>Info</h4>
-              <p style={{ margin: 0, fontSize: 'var(--layera-la-fontSize-xs)', opacity: 0.8 }}>Layout Section</p>
-            </Box>
+            <div>
+              <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold' }}>Info</h4>
+              <p style={{ margin: 0, fontSize: '11px', opacity: 0.8 }}>Layout Section</p>
+            </div>
           </Box>
-        </Box>
+        </div>
       </Box>
     </Box>
   );

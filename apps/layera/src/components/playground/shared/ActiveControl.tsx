@@ -141,7 +141,7 @@ export const ActiveControl: React.FC<ActiveControlProps> = ({
           borderRadius: 'var(--layera-global-borderRadius-md)',
           border: '1px solid var(--layera-color-border-primary)',
           textAlign: 'center',
-          transition: 'var(--layera-iconInteractive-interactive-transition-fast)',
+          transition: 'all 0.1s ease',
           cursor: 'pointer',
           userSelect: 'none',
           ...(isPressed && value !== 'none' ? currentOption.preview : {})
