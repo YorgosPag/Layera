@@ -75,18 +75,18 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
           <CheckIcon size="sm" /> Live Preview: Κάρτες
         </h3>
 
-        <div style={{
+        <Box style={{
           display: 'flex',
           flexDirection: 'row',
           flexWrap: 'wrap',
-          gap: '8px',
+          gap: 'var(--layera-iconInteractive-sizing-padding-md)',
           width: '100%',
           justifyContent: 'center',
           alignItems: 'center',
-          padding: '16px 0'
+          padding: 'var(--layera-iconInteractive-sizing-padding-xl) 0'
         }}>
           {/* Primary Card */}
-          <div
+          <Box
             style={{
               backgroundColor: getBackgroundColor(currentColors.primary),
               color: getTextColor(currentColors.primary),
@@ -104,12 +104,12 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
               padding: '12px'
             }}
           >
-            <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold', lineHeight: '1.2' }}>Primary</h4>
-            <p style={{ margin: 0, fontSize: '12px', opacity: 0.8, lineHeight: '1.1' }}>Κύρια κάρτα</p>
-          </div>
+            <h4 style={{ margin: '0 0 var(--layera-iconInteractive-sizing-padding-sm) 0', fontSize: 'var(--layera-la-fontSize-sm)', fontWeight: 'bold', lineHeight: 'var(--layera-la-lineHeight-tight)' }}>Primary</h4>
+            <p style={{ margin: 0, fontSize: 'var(--layera-la-fontSize-xs)', opacity: 0.8, lineHeight: 'var(--layera-la-lineHeight-tight)' }}>Κύρια κάρτα</p>
+          </Box>
 
           {/* Secondary Card */}
-          <div
+          <Box
             style={{
               backgroundColor: getBackgroundColor(currentColors.secondary),
               color: getTextColor(currentColors.secondary),
@@ -127,12 +127,12 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
               padding: '12px'
             }}
           >
-            <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold', lineHeight: '1.2' }}>Secondary</h4>
-            <p style={{ margin: 0, fontSize: '12px', opacity: 0.8, lineHeight: '1.1' }}>Δευτερεύουσα κάρτα</p>
-          </div>
+            <h4 style={{ margin: '0 0 var(--layera-iconInteractive-sizing-padding-sm) 0', fontSize: 'var(--layera-la-fontSize-sm)', fontWeight: 'bold', lineHeight: 'var(--layera-la-lineHeight-tight)' }}>Secondary</h4>
+            <p style={{ margin: 0, fontSize: 'var(--layera-la-fontSize-xs)', opacity: 0.8, lineHeight: 'var(--layera-la-lineHeight-tight)' }}>Δευτερεύουσα κάρτα</p>
+          </Box>
 
           {/* Success Card */}
-          <div
+          <Box
             style={{
               backgroundColor: getBackgroundColor(currentColors.success),
               color: getTextColor(currentColors.success),
@@ -150,12 +150,12 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
               padding: '12px'
             }}
           >
-            <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold', lineHeight: '1.2' }}>Success</h4>
-            <p style={{ margin: 0, fontSize: '12px', opacity: 0.8, lineHeight: '1.1' }}>Κάρτα επιτυχίας</p>
-          </div>
+            <h4 style={{ margin: '0 0 var(--layera-iconInteractive-sizing-padding-sm) 0', fontSize: 'var(--layera-la-fontSize-sm)', fontWeight: 'bold', lineHeight: 'var(--layera-la-lineHeight-tight)' }}>Success</h4>
+            <p style={{ margin: 0, fontSize: 'var(--layera-la-fontSize-xs)', opacity: 0.8, lineHeight: 'var(--layera-la-lineHeight-tight)' }}>Κάρτα επιτυχίας</p>
+          </Box>
 
           {/* Warning Card */}
-          <div
+          <Box
             style={{
               backgroundColor: getBackgroundColor(currentColors.warning),
               color: getTextColor(currentColors.warning),
@@ -173,12 +173,12 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
               padding: '12px'
             }}
           >
-            <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold', lineHeight: '1.2' }}>Warning</h4>
-            <p style={{ margin: 0, fontSize: '12px', opacity: 0.8, lineHeight: '1.1' }}>Κάρτα προειδοποίησης</p>
-          </div>
+            <h4 style={{ margin: '0 0 var(--layera-iconInteractive-sizing-padding-sm) 0', fontSize: 'var(--layera-la-fontSize-sm)', fontWeight: 'bold', lineHeight: 'var(--layera-la-lineHeight-tight)' }}>Warning</h4>
+            <p style={{ margin: 0, fontSize: 'var(--layera-la-fontSize-xs)', opacity: 0.8, lineHeight: 'var(--layera-la-lineHeight-tight)' }}>Κάρτα προειδοποίησης</p>
+          </Box>
 
           {/* Danger Card */}
-          <div
+          <Box
             style={{
               backgroundColor: getBackgroundColor(currentColors.danger),
               color: getTextColor(currentColors.danger),
@@ -196,12 +196,12 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
               padding: '12px'
             }}
           >
-            <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold', lineHeight: '1.2' }}>Danger</h4>
-            <p style={{ margin: 0, fontSize: '12px', opacity: 0.8, lineHeight: '1.1' }}>Κάρτα κινδύνου</p>
-          </div>
+            <h4 style={{ margin: '0 0 var(--layera-iconInteractive-sizing-padding-sm) 0', fontSize: 'var(--layera-la-fontSize-sm)', fontWeight: 'bold', lineHeight: 'var(--layera-la-lineHeight-tight)' }}>Danger</h4>
+            <p style={{ margin: 0, fontSize: 'var(--layera-la-fontSize-xs)', opacity: 0.8, lineHeight: 'var(--layera-la-lineHeight-tight)' }}>Κάρτα κινδύνου</p>
+          </Box>
 
           {/* Info Card */}
-          <div
+          <Box
             style={{
               backgroundColor: getBackgroundColor(currentColors.info),
               color: getTextColor(currentColors.info),
@@ -219,10 +219,10 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
               padding: '12px'
             }}
           >
-            <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold', lineHeight: '1.2' }}>Info</h4>
-            <p style={{ margin: 0, fontSize: '12px', opacity: 0.8, lineHeight: '1.1' }}>Κάρτα πληροφοριών</p>
-          </div>
-        </div>
+            <h4 style={{ margin: '0 0 var(--layera-iconInteractive-sizing-padding-sm) 0', fontSize: 'var(--layera-la-fontSize-sm)', fontWeight: 'bold', lineHeight: 'var(--layera-la-lineHeight-tight)' }}>Info</h4>
+            <p style={{ margin: 0, fontSize: 'var(--layera-la-fontSize-xs)', opacity: 0.8, lineHeight: 'var(--layera-la-lineHeight-tight)' }}>Κάρτα πληροφοριών</p>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );
