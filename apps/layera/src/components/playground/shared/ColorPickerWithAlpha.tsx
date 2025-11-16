@@ -151,7 +151,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
         <Text className="layera-typography layera-margin-bottom--xs" data-size="sm" data-weight="medium" data-color="secondary">
           Διαφάνεια: {alphaPercentage}%
         </Text>
-        <Box style={{ position: 'relative' }}>
+        <Box className="layera-position--relative">
           {/* Checkerboard background για transparency preview */}
           <Box
             style={{
@@ -334,14 +334,10 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
           }}
         >
           <Box
+            className="layera-position--absolute layera-position--inset-0"
             style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
               backgroundColor: internalValue?.rgba || `rgba(255, 255, 255, ${(internalValue?.alpha ?? 1.0)})`,
-              borderRadius: '3px'
+              borderRadius: 'var(--layera-iconInteractive-sizing-padding-xs)'
             }}
           />
         </Box>
