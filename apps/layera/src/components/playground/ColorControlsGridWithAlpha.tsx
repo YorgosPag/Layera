@@ -163,10 +163,9 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
 
       {/* Color Controls Grid */}
       <Box
-        className="layera-grid layera-grid--gap-lg"
+        className="layera-grid layera-grid--gap-lg layera-margin-bottom--4xl"
         style={{
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          marginBottom: 'var(--layera-global-spacing-8)'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(calc(var(--layera-fontSize-6xl) * 4.67), 1fr))'
         }}
       >
         {Object.entries(currentColors || {}).map(([colorKey, colorValue]) => {
