@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box } from '@layera/layout';
+import { Text } from '@layera/typography';
 import { CheckIcon } from '@layera/icons';
 
 /**
@@ -42,6 +43,26 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
 
   const cssProperty = getCSSPropertyForCategory(colorCategory);
 
+  // Base card style object
+  const cardStyle = {
+    height: 'var(--layera-fontSize-6xl)',
+    width: 'calc(var(--layera-fontSize-6xl) * 3)',
+    minWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
+    maxWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
+    flex: '0 0 calc(var(--layera-fontSize-6xl) * 3)',
+    borderRadius: 'var(--layera-radius-md)'
+  };
+
+  // Card configurations
+  const cardConfigs = [
+    { key: 'primary', title: 'Primary', description: 'Κύρια κάρτα', colorValue: currentColors.primary },
+    { key: 'secondary', title: 'Secondary', description: 'Δευτερεύουσα κάρτα', colorValue: currentColors.secondary },
+    { key: 'success', title: 'Success', description: 'Κάρτα επιτυχίας', colorValue: currentColors.success },
+    { key: 'warning', title: 'Warning', description: 'Κάρτα προειδοποίησης', colorValue: currentColors.warning },
+    { key: 'danger', title: 'Danger', description: 'Κάρτα κινδύνου', colorValue: currentColors.danger },
+    { key: 'info', title: 'Info', description: 'Κάρτα πληροφοριών', colorValue: currentColors.info }
+  ];
+
   // Helper to get text color based on category and color
   const getTextColor = (colorValue: string) => {
     if (colorCategory === 'text') return colorValue;
@@ -75,240 +96,33 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
           <CheckIcon size="sm" /> Live Preview: Κάρτες
         </h3>
 
-        <Box
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            gap: 'var(--layera-global-spacing-2)',
-            width: 'var(--layera-global-layout-width-full)',
-            justifyContent: 'var(--layera-global-justifyContent-center)',
-            alignItems: 'var(--layera-global-alignItems-center)',
-            paddingTop: 'var(--layera-global-spacing-4)',
-            paddingBottom: 'var(--layera-global-spacing-4)'
-          }}
-        >
-          {/* Primary Card */}
-          <Box
-            style={{
-              backgroundColor: getBackgroundColor(currentColors.primary),
-              color: getTextColor(currentColors.primary),
-              border: getBorderStyle(currentColors.primary),
-              height: 'var(--layera-fontSize-6xl)',
-              width: 'calc(var(--layera-fontSize-6xl) * 3)',
-              minWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
-              maxWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
-              flex: '0 0 calc(var(--layera-fontSize-6xl) * 3)',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'var(--layera-global-alignItems-center)',
-              justifyContent: 'var(--layera-global-justifyContent-center)',
-              borderRadius: 'var(--layera-radius-md)',
-              padding: 'var(--layera-global-spacing-3)'
-            }}
-          >
-            <h4 style={{
-              margin: '0 0 var(--layera-global-spacing-1) 0',
-              fontSize: 'var(--layera-fontSize-sm)',
-              fontWeight: 'var(--layera-fontWeight-bold)',
-              lineHeight: 'var(--layera-lineHeight-tight)'
-            }}>
-              Primary
-            </h4>
-            <p style={{
-              margin: 'var(--layera-global-spacing-0)',
-              fontSize: 'var(--layera-fontSize-xs)',
-              opacity: '0.8',
-              lineHeight: 'var(--layera-lineHeight-tight)'
-            }}>
-              Κύρια κάρτα
-            </p>
-          </Box>
-
-          {/* Secondary Card */}
-          <Box
-            style={{
-              backgroundColor: getBackgroundColor(currentColors.secondary),
-              color: getTextColor(currentColors.secondary),
-              border: getBorderStyle(currentColors.secondary),
-              height: 'var(--layera-fontSize-6xl)',
-              width: 'calc(var(--layera-fontSize-6xl) * 3)',
-              minWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
-              maxWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
-              flex: '0 0 calc(var(--layera-fontSize-6xl) * 3)',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'var(--layera-global-alignItems-center)',
-              justifyContent: 'var(--layera-global-justifyContent-center)',
-              borderRadius: 'var(--layera-radius-md)',
-              padding: 'var(--layera-global-spacing-3)'
-            }}
-          >
-            <h4 style={{
-              margin: '0 0 var(--layera-global-spacing-1) 0',
-              fontSize: 'var(--layera-fontSize-sm)',
-              fontWeight: 'var(--layera-fontWeight-bold)',
-              lineHeight: 'var(--layera-lineHeight-tight)'
-            }}>
-              Secondary
-            </h4>
-            <p style={{
-              margin: 'var(--layera-global-spacing-0)',
-              fontSize: 'var(--layera-fontSize-xs)',
-              opacity: '0.8',
-              lineHeight: 'var(--layera-lineHeight-tight)'
-            }}>
-              Δευτερεύουσα κάρτα
-            </p>
-          </Box>
-
-          {/* Success Card */}
-          <Box
-            style={{
-              backgroundColor: getBackgroundColor(currentColors.success),
-              color: getTextColor(currentColors.success),
-              border: getBorderStyle(currentColors.success),
-              height: 'var(--layera-fontSize-6xl)',
-              width: 'calc(var(--layera-fontSize-6xl) * 3)',
-              minWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
-              maxWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
-              flex: '0 0 calc(var(--layera-fontSize-6xl) * 3)',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'var(--layera-global-alignItems-center)',
-              justifyContent: 'var(--layera-global-justifyContent-center)',
-              borderRadius: 'var(--layera-radius-md)',
-              padding: 'var(--layera-global-spacing-3)'
-            }}
-          >
-            <h4 style={{
-              margin: '0 0 var(--layera-global-spacing-1) 0',
-              fontSize: 'var(--layera-fontSize-sm)',
-              fontWeight: 'var(--layera-fontWeight-bold)',
-              lineHeight: 'var(--layera-lineHeight-tight)'
-            }}>
-              Success
-            </h4>
-            <p style={{
-              margin: 'var(--layera-global-spacing-0)',
-              fontSize: 'var(--layera-fontSize-xs)',
-              opacity: '0.8',
-              lineHeight: 'var(--layera-lineHeight-tight)'
-            }}>
-              Κάρτα επιτυχίας
-            </p>
-          </Box>
-
-          {/* Warning Card */}
-          <Box
-            style={{
-              backgroundColor: getBackgroundColor(currentColors.warning),
-              color: getTextColor(currentColors.warning),
-              border: getBorderStyle(currentColors.warning),
-              height: 'var(--layera-fontSize-6xl)',
-              width: 'calc(var(--layera-fontSize-6xl) * 3)',
-              minWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
-              maxWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
-              flex: '0 0 calc(var(--layera-fontSize-6xl) * 3)',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'var(--layera-global-alignItems-center)',
-              justifyContent: 'var(--layera-global-justifyContent-center)',
-              borderRadius: 'var(--layera-radius-md)',
-              padding: 'var(--layera-global-spacing-3)'
-            }}
-          >
-            <h4 style={{
-              margin: '0 0 var(--layera-global-spacing-1) 0',
-              fontSize: 'var(--layera-fontSize-sm)',
-              fontWeight: 'var(--layera-fontWeight-bold)',
-              lineHeight: 'var(--layera-lineHeight-tight)'
-            }}>
-              Warning
-            </h4>
-            <p style={{
-              margin: 'var(--layera-global-spacing-0)',
-              fontSize: 'var(--layera-fontSize-xs)',
-              opacity: '0.8',
-              lineHeight: 'var(--layera-lineHeight-tight)'
-            }}>
-              Κάρτα προειδοποίησης
-            </p>
-          </Box>
-
-          {/* Danger Card */}
-          <Box
-            style={{
-              backgroundColor: getBackgroundColor(currentColors.danger),
-              color: getTextColor(currentColors.danger),
-              border: getBorderStyle(currentColors.danger),
-              height: 'var(--layera-fontSize-6xl)',
-              width: 'calc(var(--layera-fontSize-6xl) * 3)',
-              minWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
-              maxWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
-              flex: '0 0 calc(var(--layera-fontSize-6xl) * 3)',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'var(--layera-global-alignItems-center)',
-              justifyContent: 'var(--layera-global-justifyContent-center)',
-              borderRadius: 'var(--layera-radius-md)',
-              padding: 'var(--layera-global-spacing-3)'
-            }}
-          >
-            <h4 style={{
-              margin: '0 0 var(--layera-global-spacing-1) 0',
-              fontSize: 'var(--layera-fontSize-sm)',
-              fontWeight: 'var(--layera-fontWeight-bold)',
-              lineHeight: 'var(--layera-lineHeight-tight)'
-            }}>
-              Danger
-            </h4>
-            <p style={{
-              margin: 'var(--layera-global-spacing-0)',
-              fontSize: 'var(--layera-fontSize-xs)',
-              opacity: '0.8',
-              lineHeight: 'var(--layera-lineHeight-tight)'
-            }}>
-              Κάρτα κινδύνου
-            </p>
-          </Box>
-
-          {/* Info Card */}
-          <Box
-            style={{
-              backgroundColor: getBackgroundColor(currentColors.info),
-              color: getTextColor(currentColors.info),
-              border: getBorderStyle(currentColors.info),
-              height: 'var(--layera-fontSize-6xl)',
-              width: 'calc(var(--layera-fontSize-6xl) * 3)',
-              minWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
-              maxWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
-              flex: '0 0 calc(var(--layera-fontSize-6xl) * 3)',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'var(--layera-global-alignItems-center)',
-              justifyContent: 'var(--layera-global-justifyContent-center)',
-              borderRadius: 'var(--layera-radius-md)',
-              padding: 'var(--layera-global-spacing-3)'
-            }}
-          >
-            <h4 style={{
-              margin: '0 0 var(--layera-global-spacing-1) 0',
-              fontSize: 'var(--layera-fontSize-sm)',
-              fontWeight: 'var(--layera-fontWeight-bold)',
-              lineHeight: 'var(--layera-lineHeight-tight)'
-            }}>
-              Info
-            </h4>
-            <p style={{
-              margin: 'var(--layera-global-spacing-0)',
-              fontSize: 'var(--layera-fontSize-xs)',
-              opacity: '0.8',
-              lineHeight: 'var(--layera-lineHeight-tight)'
-            }}>
-              Κάρτα πληροφοριών
-            </p>
-          </Box>
+        <Box className="layera-flex layera-flex--wrap layera-flex--justify-center layera-flex--align-center layera-flex--gap-sm layera-padding-top--lg layera-padding-bottom--lg layera-width--full">
+          {cardConfigs.map(({ key, title, description, colorValue }) => (
+            <Box
+              key={key}
+              className="layera-flex layera-flex-column layera-flex--align-center layera-flex--justify-center layera-padding--md"
+              style={{
+                ...cardStyle,
+                backgroundColor: getBackgroundColor(colorValue),
+                color: getTextColor(colorValue),
+                border: getBorderStyle(colorValue)
+              }}
+            >
+              <Text
+                className="layera-typography layera-margin-bottom--xs layera-line-height--tight"
+                data-size="sm"
+                data-weight="bold"
+              >
+                {title}
+              </Text>
+              <Text
+                className="layera-typography layera-opacity--80 layera-line-height--tight"
+                data-size="xs"
+              >
+                {description}
+              </Text>
+            </Box>
+          ))}
         </Box>
       </Box>
     </Box>
