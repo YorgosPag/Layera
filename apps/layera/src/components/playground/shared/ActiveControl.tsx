@@ -44,7 +44,7 @@ export const ActiveControl: React.FC<ActiveControlProps> = ({
       description: 'Χωρίς active effect',
       preview: {
         transform: 'none',
-        opacity: '1'
+        opacity: 'var(--layera-icon-interactive-interactive-opacity-default)'
       }
     },
     {
@@ -53,7 +53,7 @@ export const ActiveControl: React.FC<ActiveControlProps> = ({
       description: 'Μικραίνει όταν πατιέται',
       preview: {
         transform: 'scale(0.95)',
-        opacity: '1'
+        opacity: 'var(--layera-icon-interactive-interactive-opacity-default)'
       }
     },
     {
