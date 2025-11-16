@@ -5,6 +5,21 @@ import { Button } from '@layera/buttons';
 import { PlusIcon, SearchIcon, UserIcon, SettingsIcon } from '@layera/icons';
 import { ButtonState, SectionProps, ButtonVariant, ButtonSize } from './shared/types';
 
+// Enterprise CSS για ARXES compliance
+const styles = `
+.layera-grid-autofit {
+  grid-template-columns: var(--layera-global-gridTemplateColumns-autoFit) !important;
+}
+`;
+
+// Inject styles
+if (typeof document !== 'undefined' && !document.querySelector('#layera-buttons-section-styles')) {
+  const styleSheet = document.createElement('style');
+  styleSheet.id = 'layera-buttons-section-styles';
+  styleSheet.textContent = styles;
+  document.head.appendChild(styleSheet);
+}
+
 /**
  * ButtonsSection - Live Buttons Playground Section
  *
