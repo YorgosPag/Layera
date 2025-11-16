@@ -16,6 +16,7 @@ import { ColorPreviewArea } from './playground/ColorPreviewArea';
 import { ColorControlsGridWithAlpha } from './playground/ColorControlsGridWithAlpha';
 import { ColorActionsPanel } from './playground/ColorActionsPanel';
 import { ColorValueDisplay } from './playground/ColorValueDisplay';
+import { FactorySettingsPanel } from './playground/FactorySettingsPanel';
 import type { ColorWithAlpha } from './playground/shared/ColorPickerWithAlpha';
 import type { FontSizeValue } from './playground/shared/FontSizeControl';
 import { loadCurrentThemeFromLocalStorage } from '../services/colorThemeService';
@@ -272,6 +273,22 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               fontSize={fontSize}
               onFontSizeChange={setFontSize}
               onPreview={startPreview}
+            />
+          </Box>
+
+          {/* Factory Settings Panel */}
+          <Box className="layera-margin-bottom--lg">
+            <FactorySettingsPanel
+              onSettingsChange={(settings) => {
+                // Εφαρμόζει τις νέες ρυθμίσεις στο color state
+                Object.entries(settings).forEach(([key, value]) => {
+                  if (colorActions.updateColor && typeof colorActions.updateColor === 'function') {
+                    colorActions.updateColor(key, value);
+                  }
+                });
+              }}
+              onPreview={startPreview}
+              currentUserId={user?.uid}
             />
           </Box>
 

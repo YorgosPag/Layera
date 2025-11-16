@@ -1,7 +1,9 @@
 export {
   initializeFirebaseApp,
   getFirebaseAuth,
-  getFirebaseApp
+  getFirebaseApp,
+  getFirebaseDb,
+  db
 } from './firebase.js';
 
 export {

@@ -28,6 +28,8 @@ export {
   initializeFirebaseApp,
   getFirebaseAuth,
   getFirebaseApp,
+  getFirebaseDb,
+  db,
   getCustomClaims,
   calculateMfaStatus,
   createLayeraUser,

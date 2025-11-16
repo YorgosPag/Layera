@@ -1,5 +1,6 @@
 import { initializeApp, getApps, type FirebaseApp } from 'firebase/app';
 import { getAuth, type Auth } from 'firebase/auth';
+import { getFirestore, type Firestore } from 'firebase/firestore';
 import type { AuthConfig } from '../types/auth.js';
 
 /**
@@ -7,6 +8,7 @@ import type { AuthConfig } from '../types/auth.js';
  */
 let firebaseApp: FirebaseApp | null = null;
 let firebaseAuth: Auth | null = null;
+let firebaseDb: Firestore | null = null;
 
 /**
  * Αρχικοποιεί το Firebase app με τις παρεχόμενες παραμέτρους
@@ -36,6 +38,7 @@ export function initializeFirebaseApp(config: AuthConfig): FirebaseApp {
     if (existingApp) {
       firebaseApp = existingApp;
       firebaseAuth = getAuth(existingApp);
+      firebaseDb = getFirestore(existingApp);
       return existingApp;
     }
   }
@@ -64,6 +67,7 @@ export function initializeFirebaseApp(config: AuthConfig): FirebaseApp {
 
   firebaseApp = initializeApp(firebaseConfig);
   firebaseAuth = getAuth(firebaseApp);
+  firebaseDb = getFirestore(firebaseApp);
 
   return firebaseApp;
 }
@@ -92,4 +96,24 @@ export function getFirebaseApp(): FirebaseApp {
     throw new Error('Firebase app not initialized. Call initializeFirebaseApp() first.');
   }
   return firebaseApp;
+}
+
+/**
+ * Επιστρέφει το αρχικοποιημένο Firestore instance
+ *
+ * @returns Firestore instance
+ * @throws Error εάν το Firebase δεν έχει αρχικοποιηθεί
+ */
+export function getFirebaseDb(): Firestore {
+  if (!firebaseDb) {
+    throw new Error('Firebase app not initialized. Call initializeFirebaseApp() first.');
+  }
+  return firebaseDb;
+}
+
+/**
+ * Alias για το Firestore database για ευκολότερη χρήση
+ */
+export function db(): Firestore {
+  return getFirebaseDb();
 }

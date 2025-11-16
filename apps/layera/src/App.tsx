@@ -4,6 +4,7 @@ import { TolgeeProvider } from '@layera/tolgee';
 import { AuthProvider, initializeFirebaseApp } from '@layera/auth-bridge';
 import { AppContent } from './components/AppContent';
 import { useColorPersistence } from './hooks/useColorPersistence';
+import { FactorySettingsService } from './services/factorySettingsService';
 
 // Initialize Firebase για auth-bridge
 try {
@@ -21,6 +22,21 @@ try {
     console.log('Using demo Firebase configuration');
   } else {
     initializeFirebaseApp(firebaseConfig);
+
+    // Αρχικοποίηση εργοστασιακών ρυθμίσεων στο Firebase
+    FactorySettingsService.initializeFactorySettings()
+      .then(() => {
+        console.log('✅ Εργοστασιακές ρυθμίσεις αρχικοποιήθηκαν στο Firebase');
+
+        // Διαγραφή όλων των υπαρχόντων ρυθμίσεων χρηστών
+        return FactorySettingsService.deleteAllUserSettings();
+      })
+      .then(() => {
+        console.log('✅ Όλες οι παλιές ρυθμίσεις χρηστών διαγράφηκαν');
+      })
+      .catch((error) => {
+        console.error('❌ Σφάλμα κατά την αρχικοποίηση εργοστασιακών ρυθμίσεων:', error);
+      });
   }
 } catch (error) {
   console.error('Firebase initialization failed:', error);

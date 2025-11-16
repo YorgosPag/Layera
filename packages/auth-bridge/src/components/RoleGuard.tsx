@@ -104,7 +104,7 @@ export function RoleGuard({
 
   // Έλεγχος πολλαπλών ρόλων εάν έχουν οριστεί
   const hasAnyAllowedRole = allowedRoles
-    ? allowedRoles.some(role => user?.role === role || user?.customClaims?.roles?.includes(role))
+    ? allowedRoles.some(role => user?.layeraClaims?.role === role)
     : guardResult.hasAccess;
 
   // Loading state
