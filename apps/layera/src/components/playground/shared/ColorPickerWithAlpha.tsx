@@ -287,7 +287,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
               background: transparent;
               border-radius: 2px;
               outline: none;
-              border: none;
+              border: var(--layera-global-border-none);
             }
 
             /* Firefox track styling */
@@ -296,7 +296,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
               height: 4px; /* Much thinner track */
               background: transparent;
               border-radius: 2px;
-              border: none;
+              border: var(--layera-global-border-none);
               outline: none;
             }
 
@@ -304,7 +304,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
             .alpha-slider::-webkit-slider-runnable-track {
               height: 4px;
               background: transparent;
-              border: none;
+              border: var(--layera-global-border-none);
               border-radius: 2px;
             }
 

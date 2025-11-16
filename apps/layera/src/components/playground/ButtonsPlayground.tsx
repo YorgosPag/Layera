@@ -22,7 +22,7 @@ const injectDynamicStyles = (colors: any, buttonState: any, dynamicBorderWidth: 
       padding: ${buttonState.shape === 'square' ? '16px' : '8px 16px'} !important;
       border: ${dynamicBorderWidth} solid ${colors.primary} !important;
       border-radius: ${buttonState.shape === 'rounded' ? 'var(--layera-icon-performance-performance-loading-lazy-root-margin)' : buttonState.shape === 'square' ? '6px' : '6px'} !important;
-      cursor: pointer !important;
+      cursor: var(--layera-global-cursor-pointer) !important;
       min-width: ${buttonState.shape === 'square' ? 'var(--layera-icon-performance-performance-loading-lazy-root-margin)' : '120px'} !important;
       height: ${buttonState.shape === 'square' ? 'var(--layera-icon-performance-performance-loading-lazy-root-margin)' : 'auto'} !important;
       display: var(--layera-global-layout-display-flex) !important;
@@ -36,9 +36,9 @@ const injectDynamicStyles = (colors: any, buttonState: any, dynamicBorderWidth: 
       background-color: transparent !important;
       color: ${colors.secondary} !important;
       padding: ${buttonState.shape === 'square' ? 'var(--layera-iconInteractive-sizing-padding-xl)' : 'var(--layera-iconInteractive-sizing-padding-md) var(--layera-iconInteractive-sizing-padding-xl)'} !important;
-      border: none !important;
+      border: var(--layera-global-border-none) !important;
       border-radius: ${buttonState.shape === 'rounded' ? 'var(--layera-global-button-height-xl)' : 'var(--layera-global-layoutSystem-button-outline-borderRadius)'} !important;
-      cursor: pointer !important;
+      cursor: var(--layera-global-cursor-pointer) !important;
       min-width: ${buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : '120px'} !important;
       height: ${buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : 'auto'} !important;
       display: var(--layera-global-layout-display-flex) !important;
