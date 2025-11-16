@@ -6,6 +6,7 @@ import { PaletteIcon, LayersIcon, EditIcon, PolygonIcon, RulerIcon, CompassIcon,
 import { BorderWidthControl } from './shared/BorderWidthControl';
 import { BorderRadiusControl } from './shared/BorderRadiusControl';
 import { HoverControl } from './shared/HoverControl';
+import { ActiveControl } from './shared/ActiveControl';
 import { FontSizeControl, type FontSizeValue } from './shared/FontSizeControl';
 
 /**
@@ -26,6 +27,8 @@ interface ColorCategorySelectionProps {
   onBorderRadiusChange?: (value: string) => void;
   hoverEffect?: string;
   onHoverEffectChange?: (value: string) => void;
+  activeEffect?: string;
+  onActiveEffectChange?: (value: string) => void;
   fontSize?: FontSizeValue;
   onFontSizeChange?: (value: FontSizeValue) => void;
 }
@@ -39,6 +42,8 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
   onBorderRadiusChange,
   hoverEffect = 'normal',
   onHoverEffectChange,
+  activeEffect = 'scale',
+  onActiveEffectChange,
   fontSize = 'base',
   onFontSizeChange
 }) => {
@@ -63,7 +68,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
     }
 
     if (isInteractiveElement) {
-      baseColumns += ' 1fr'; // Add hover control
+      baseColumns += ' 1fr 1fr'; // Add hover control + active control
     }
 
     return baseColumns;
@@ -198,6 +203,16 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
         <HoverControl
           value={hoverEffect}
           onChange={onHoverEffectChange}
+          elementType={colorHookState.elementType}
+          className="layera-height--auto"
+        />
+      )}
+
+      {/* Active Control - ΜΟΝΟ για interactive elements */}
+      {isInteractiveElement && onActiveEffectChange && (
+        <ActiveControl
+          value={activeEffect}
+          onChange={onActiveEffectChange}
           elementType={colorHookState.elementType}
           className="layera-height--auto"
         />

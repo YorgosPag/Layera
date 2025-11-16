@@ -92,6 +92,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   // Hover effect state for interactive elements
   const [hoverEffect, setHoverEffect] = useState<string>('normal');
 
+  // Active effect state for interactive elements
+  const [activeEffect, setActiveEffect] = useState<string>('scale');
+
   // Font size state for text category
   const [fontSize, setFontSize] = useState<FontSizeValue>('base');
 
@@ -264,6 +267,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               onBorderRadiusChange={setBorderRadius}
               hoverEffect={hoverEffect}
               onHoverEffectChange={setHoverEffect}
+              activeEffect={activeEffect}
+              onActiveEffectChange={setActiveEffect}
               fontSize={fontSize}
               onFontSizeChange={setFontSize}
             />
