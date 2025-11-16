@@ -17,6 +17,7 @@ import { ColorControlsGridWithAlpha } from './playground/ColorControlsGridWithAl
 import { ColorActionsPanel } from './playground/ColorActionsPanel';
 import { ColorValueDisplay } from './playground/ColorValueDisplay';
 import type { ColorWithAlpha } from './playground/shared/ColorPickerWithAlpha';
+import type { FontSizeValue } from './playground/shared/FontSizeControl';
 import { loadCurrentThemeFromLocalStorage } from '../services/colorThemeService';
 import { useAuth } from '@layera/auth-bridge';
 import { useRealTimePreview } from '../hooks/useRealTimePreview';
@@ -90,6 +91,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
   // Hover effect state for interactive elements
   const [hoverEffect, setHoverEffect] = useState<string>('normal');
+
+  // Font size state for text category
+  const [fontSize, setFontSize] = useState<FontSizeValue>('base');
 
   // Real-time preview hook for header buttons
   const { startPreview, isPreviewActive } = useRealTimePreview({
@@ -260,6 +264,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               onBorderRadiusChange={setBorderRadius}
               hoverEffect={hoverEffect}
               onHoverEffectChange={setHoverEffect}
+              fontSize={fontSize}
+              onFontSizeChange={setFontSize}
             />
           </Box>
 

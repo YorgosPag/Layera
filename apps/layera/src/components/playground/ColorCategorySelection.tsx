@@ -6,6 +6,7 @@ import { PaletteIcon, LayersIcon, EditIcon, PolygonIcon, RulerIcon, CompassIcon,
 import { BorderWidthControl } from './shared/BorderWidthControl';
 import { BorderRadiusControl } from './shared/BorderRadiusControl';
 import { HoverControl } from './shared/HoverControl';
+import { FontSizeControl, type FontSizeValue } from './shared/FontSizeControl';
 
 /**
  * ColorCategorySelection Component
@@ -25,6 +26,8 @@ interface ColorCategorySelectionProps {
   onBorderRadiusChange?: (value: string) => void;
   hoverEffect?: string;
   onHoverEffectChange?: (value: string) => void;
+  fontSize?: FontSizeValue;
+  onFontSizeChange?: (value: FontSizeValue) => void;
 }
 
 export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
@@ -35,7 +38,9 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
   borderRadius = 'md',
   onBorderRadiusChange,
   hoverEffect = 'normal',
-  onHoverEffectChange
+  onHoverEffectChange,
+  fontSize = 'base',
+  onFontSizeChange
 }) => {
   // Hot reload trigger
   // Debug removed to reduce console noise
@@ -51,6 +56,10 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
 
     if (colorHookState.colorCategory === 'borders') {
       baseColumns += ' 1fr 1fr'; // Add border width + border radius
+    }
+
+    if (colorHookState.colorCategory === 'text') {
+      baseColumns += ' 1fr'; // Add font size control
     }
 
     if (isInteractiveElement) {
@@ -173,6 +182,16 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           className="layera-height--auto"
         />
       )}
+
+      {/* Font Size Control - ΜΟΝΟ για text κατηγορία */}
+      {colorHookState.colorCategory === 'text' && onFontSizeChange && (
+        <FontSizeControl
+          fontSize={fontSize}
+          onFontSizeChange={onFontSizeChange}
+          className="layera-height--auto"
+        />
+      )}
+
 
       {/* Hover Control - ΜΟΝΟ για interactive elements */}
       {isInteractiveElement && onHoverEffectChange && (
