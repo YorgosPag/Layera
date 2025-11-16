@@ -66,13 +66,13 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
               key={color.name}
               style={{
                 ...getTableStyle(color.value),
-                padding: '12px 16px',
-                borderRadius: '6px',
+                padding: 'var(--layera-iconInteractive-sizing-padding-lg) var(--layera-iconInteractive-sizing-padding-xl)',
+                borderRadius: 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                fontSize: '14px',
-                fontWeight: '500'
+                fontSize: 'var(--layera-la-fontSize-sm)',
+                fontWeight: 'var(--layera-la-fontWeight-medium)'
               }}
             >
               <span>{color.name} Row</span>
