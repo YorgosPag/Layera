@@ -203,9 +203,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
           size="sm"
           onClick={handleResetToFactory}
           disabled={isResetting || isLoading}
-          style={{
-            minWidth: 'var(--layera-global-spacing-96)'
-          }}
+          className="layera-min-width--96"
         >
           {isResetting ? (
             'Επιστροφή...'
@@ -236,11 +234,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
       {/* Current Palette Info */}
       <Box
         className="layera-padding--sm"
-        style={{
-          backgroundColor: 'var(--layera-color-surface-primary)',
-          borderRadius: 'var(--layera-global-borderRadius-md)',
-          border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-primary)'
-        }}
+        className="layera-bg-surface--primary layera-border-radius--md layera-border--sm layera-border-color--primary"
       >
         <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-weight="medium" data-color="primary">
           Τρέχουσα Παλέτα: {paletteOptions.find(p => p.value === selectedPalette)?.label}
@@ -254,12 +248,9 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
           {Object.values(AVAILABLE_PALETTES[selectedPalette]).map((color, index) => (
             <Box
               key={index}
+              className="layera-width--lg layera-height--lg layera-border-radius--xs layera-border--sm layera-border-color--light"
               style={{
-                width: 'var(--layera-iconInteractive-sizing-padding-lg)',
-                height: 'var(--layera-iconInteractive-sizing-padding-lg)',
-                borderRadius: 'var(--layera-iconInteractive-sizing-padding-xs)',
-                backgroundColor: color.hex,
-                border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-light)'
+                backgroundColor: color.hex
               }}
               data-title={`${color.name}: ${color.hex}`}
             />
