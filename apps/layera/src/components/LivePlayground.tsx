@@ -87,6 +87,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   // Border radius state for borders category
   const [borderRadius, setBorderRadius] = useState<string>('md');
 
+  // Hover effect state for interactive elements
+  const [hoverEffect, setHoverEffect] = useState<string>('normal');
+
   // Real-time preview hook for header buttons
   const { startPreview, isPreviewActive } = useRealTimePreview({
     onCommit: (key: string, value: string) => {
@@ -254,6 +257,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               onBorderWidthChange={setBorderWidth}
               borderRadius={borderRadius}
               onBorderRadiusChange={setBorderRadius}
+              hoverEffect={hoverEffect}
+              onHoverEffectChange={setHoverEffect}
             />
           </Box>
 

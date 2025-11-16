@@ -5,6 +5,7 @@ import { Button } from '@layera/buttons';
 import { PaletteIcon, LayersIcon, EditIcon, PolygonIcon, RulerIcon, CompassIcon, CheckIcon, MonitorIcon, BuildingIcon, ChartIcon } from '@layera/icons';
 import { BorderWidthControl } from './shared/BorderWidthControl';
 import { BorderRadiusControl } from './shared/BorderRadiusControl';
+import { HoverControl } from './shared/HoverControl';
 
 /**
  * ColorCategorySelection Component
@@ -22,6 +23,8 @@ interface ColorCategorySelectionProps {
   onBorderWidthChange: (value: number) => void;
   borderRadius?: string;
   onBorderRadiusChange?: (value: string) => void;
+  hoverEffect?: string;
+  onHoverEffectChange?: (value: string) => void;
 }
 
 export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
@@ -30,18 +33,38 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
   borderWidth,
   onBorderWidthChange,
   borderRadius = 'md',
-  onBorderRadiusChange
+  onBorderRadiusChange,
+  hoverEffect = 'normal',
+  onHoverEffectChange
 }) => {
   // Hot reload trigger
   // Debug removed to reduce console noise
 
   // Debug function removed to reduce console noise
 
+  // Check if current element type supports hover effects
+  const isInteractiveElement = ['buttons', 'cards', 'inputs'].includes(colorHookState.elementType);
+
+  // Calculate grid columns based on what controls should show
+  const getGridColumns = () => {
+    let baseColumns = '1fr 1fr'; // Always show category + element type
+
+    if (colorHookState.colorCategory === 'borders') {
+      baseColumns += ' 1fr 1fr'; // Add border width + border radius
+    }
+
+    if (isInteractiveElement) {
+      baseColumns += ' 1fr'; // Add hover control
+    }
+
+    return baseColumns;
+  };
+
   return (
     <Box
       className="layera-grid layera-margin-bottom--xl layera-grid--gap-lg"
       style={{
-        gridTemplateColumns: colorHookState.colorCategory === 'borders' ? '1fr 1fr 1fr 1fr' : '1fr 1fr'
+        gridTemplateColumns: getGridColumns()
       } as React.CSSProperties}
     >
       {/* Color Category Selection */}
@@ -146,6 +169,16 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
         <BorderRadiusControl
           value={borderRadius}
           onChange={onBorderRadiusChange}
+          elementType={colorHookState.elementType}
+          className="layera-height--auto"
+        />
+      )}
+
+      {/* Hover Control - ΜΟΝΟ για interactive elements */}
+      {isInteractiveElement && onHoverEffectChange && (
+        <HoverControl
+          value={hoverEffect}
+          onChange={onHoverEffectChange}
           elementType={colorHookState.elementType}
           className="layera-height--auto"
         />
