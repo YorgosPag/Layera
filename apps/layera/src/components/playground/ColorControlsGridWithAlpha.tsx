@@ -169,7 +169,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
           marginBottom: '32px'
         }}
       >
-        {Object.entries(currentColors).map(([colorKey, colorValue]) => {
+        {Object.entries(currentColors || {}).map(([colorKey, colorValue]) => {
           const description = colorDescriptions[colorKey as keyof typeof colorDescriptions] || '';
 
           if (localAlphaEnabled) {

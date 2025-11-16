@@ -32,7 +32,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   value,
   onChange,
   className = '',
-  throttleMs = 16 // Currently unused but kept for future use
+  throttleMs = 200 // Enhanced throttling για καλύτερη performance
 }) => {
   // Parse incoming value
   const parseValue = (val: ColorWithAlpha | string): ColorWithAlpha => {

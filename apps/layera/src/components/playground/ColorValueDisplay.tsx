@@ -58,12 +58,12 @@ export const ColorValueDisplay: React.FC<ColorValueDisplayProps> = ({
         </h4>
         <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">
 {`{
-  primary: "${currentColors.primary}",
-  secondary: "${currentColors.secondary}",
-  success: "${currentColors.success}",
-  warning: "${currentColors.warning}",
-  danger: "${currentColors.danger}",
-  info: "${currentColors.info}"
+  primary: "${currentColors?.primary || '#000000'}",
+  secondary: "${currentColors?.secondary || '#000000'}",
+  success: "${currentColors?.success || '#000000'}",
+  warning: "${currentColors?.warning || '#000000'}",
+  danger: "${currentColors?.danger || '#000000'}",
+  info: "${currentColors?.info || '#000000'}"
 }`}
         </pre>
       </Box>
@@ -75,36 +75,36 @@ export const ColorValueDisplay: React.FC<ColorValueDisplayProps> = ({
         </h4>
         <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">
           {colorHookState.elementType === 'buttons' && colorHookState.colorButtonShape === 'rectangular' && `{
-  --layera-${colorHookState.colorCategory}-button-primary: "${currentColors.primary}",
-  --layera-${colorHookState.colorCategory}-button-secondary: "${currentColors.secondary}",
-  --layera-${colorHookState.colorCategory}-button-success: "${currentColors.success}",
-  --layera-${colorHookState.colorCategory}-button-warning: "${currentColors.warning}",
-  --layera-${colorHookState.colorCategory}-button-danger: "${currentColors.danger}",
-  --layera-${colorHookState.colorCategory}-button-info: "${currentColors.info}"
+  --layera-${colorHookState.colorCategory}-button-primary: "${currentColors?.primary || '#000000'}",
+  --layera-${colorHookState.colorCategory}-button-secondary: "${currentColors?.secondary || '#000000'}",
+  --layera-${colorHookState.colorCategory}-button-success: "${currentColors?.success || '#000000'}",
+  --layera-${colorHookState.colorCategory}-button-warning: "${currentColors?.warning || '#000000'}",
+  --layera-${colorHookState.colorCategory}-button-danger: "${currentColors?.danger || '#000000'}",
+  --layera-${colorHookState.colorCategory}-button-info: "${currentColors?.info || '#000000'}"
 }`}
           {colorHookState.elementType === 'buttons' && colorHookState.colorButtonShape === 'square' && `{
-  --layera-${colorHookState.colorCategory}-button-square-primary: "${currentColors.primary}",
-  --layera-${colorHookState.colorCategory}-button-square-secondary: "${currentColors.secondary}",
-  --layera-${colorHookState.colorCategory}-button-square-success: "${currentColors.success}",
-  --layera-${colorHookState.colorCategory}-button-square-warning: "${currentColors.warning}",
-  --layera-${colorHookState.colorCategory}-button-square-danger: "${currentColors.danger}",
-  --layera-${colorHookState.colorCategory}-button-square-info: "${currentColors.info}"
+  --layera-${colorHookState.colorCategory}-button-square-primary: "${currentColors?.primary || '#000000'}",
+  --layera-${colorHookState.colorCategory}-button-square-secondary: "${currentColors?.secondary || '#000000'}",
+  --layera-${colorHookState.colorCategory}-button-square-success: "${currentColors?.success || '#000000'}",
+  --layera-${colorHookState.colorCategory}-button-square-warning: "${currentColors?.warning || '#000000'}",
+  --layera-${colorHookState.colorCategory}-button-square-danger: "${currentColors?.danger || '#000000'}",
+  --layera-${colorHookState.colorCategory}-button-square-info: "${currentColors?.info || '#000000'}"
 }`}
           {colorHookState.elementType === 'buttons' && colorHookState.colorButtonShape === 'rounded' && `{
-  --layera-${colorHookState.colorCategory}-button-rounded-primary: "${currentColors.primary}",
-  --layera-${colorHookState.colorCategory}-button-rounded-secondary: "${currentColors.secondary}",
-  --layera-${colorHookState.colorCategory}-button-rounded-success: "${currentColors.success}",
-  --layera-${colorHookState.colorCategory}-button-rounded-warning: "${currentColors.warning}",
-  --layera-${colorHookState.colorCategory}-button-rounded-danger: "${currentColors.danger}",
-  --layera-${colorHookState.colorCategory}-button-rounded-info: "${currentColors.info}"
+  --layera-${colorHookState.colorCategory}-button-rounded-primary: "${currentColors?.primary || '#000000'}",
+  --layera-${colorHookState.colorCategory}-button-rounded-secondary: "${currentColors?.secondary || '#000000'}",
+  --layera-${colorHookState.colorCategory}-button-rounded-success: "${currentColors?.success || '#000000'}",
+  --layera-${colorHookState.colorCategory}-button-rounded-warning: "${currentColors?.warning || '#000000'}",
+  --layera-${colorHookState.colorCategory}-button-rounded-danger: "${currentColors?.danger || '#000000'}",
+  --layera-${colorHookState.colorCategory}-button-rounded-info: "${currentColors?.info || '#000000'}"
 }`}
           {colorHookState.elementType !== 'buttons' && `{
-  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-primary: "${currentColors.primary}",
-  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-secondary: "${currentColors.secondary}",
-  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-success: "${currentColors.success}",
-  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-warning: "${currentColors.warning}",
-  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-danger: "${currentColors.danger}",
-  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-info: "${currentColors.info}"
+  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-primary: "${currentColors?.primary || '#000000'}",
+  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-secondary: "${currentColors?.secondary || '#000000'}",
+  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-success: "${currentColors?.success || '#000000'}",
+  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-warning: "${currentColors?.warning || '#000000'}",
+  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-danger: "${currentColors?.danger || '#000000'}",
+  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-info: "${currentColors?.info || '#000000'}"
 }`}
         </pre>
       </Box>

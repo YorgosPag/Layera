@@ -130,11 +130,22 @@ export const useColorPersistence = () => {
       }
     };
 
+    // Ακούει για custom theme events (από factory settings panel)
+    const handleCustomThemeChange = (e: CustomEvent) => {
+      console.log('🎨 Custom theme change event received:', e.detail);
+      if (e.detail && e.detail.key === 'layera-current-theme') {
+        console.log('🔄 Applying stored colors from custom event...');
+        loadAndApplyStoredColors();
+      }
+    };
+
     window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('layera-theme-changed', handleCustomThemeChange);
 
     return () => {
       clearTimeout(timeoutId);
       window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('layera-theme-changed', handleCustomThemeChange);
     };
   }, []);
 };

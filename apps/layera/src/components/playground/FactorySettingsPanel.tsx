@@ -59,9 +59,13 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
       localStorage.setItem('layera-current-theme', JSON.stringify(colorState));
 
       // Ενεργοποιεί το useColorPersistence να εφαρμόσει τα χρώματα
-      window.dispatchEvent(new StorageEvent('storage', {
-        key: 'layera-current-theme',
-        newValue: JSON.stringify(colorState),
+      // Δημιουργεί custom event για local storage changes
+      console.log('🚀 Dispatching theme change event with colors:', colorState);
+      window.dispatchEvent(new CustomEvent('layera-theme-changed', {
+        detail: {
+          key: 'layera-current-theme',
+          newValue: JSON.stringify(colorState),
+        }
       }));
 
       // Αν υπάρχει userId, αποθηκεύει και στη βάση

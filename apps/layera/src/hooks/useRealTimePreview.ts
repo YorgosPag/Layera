@@ -21,7 +21,7 @@ export interface UseRealTimePreviewProps {
   debounceMs?: number;
 }
 
-export const useRealTimePreview = ({ onCommit, debounceMs = 500 }: UseRealTimePreviewProps) => {
+export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePreviewProps) => {
   const [previewState, setPreviewState] = useState<PreviewState>({
     previewColors: {},
     isPreviewActive: false,
@@ -163,9 +163,10 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 500 }: UseRealTimePr
   }, [getHoverEffectCSS, getActiveEffectCSS, getBorderWidthCSS, getBorderRadiusCSS, getFontSizeCSS]);
 
   /**
-   * Εφαρμόζει live preview στο DOM χωρίς save - τώρα με throttling
+   * Εφαρμόζει live preview στο DOM χωρίς save - Optimized για multiple features
    */
   const applyLivePreview = useCallback((key: string, value: string) => {
+    // Use DocumentFragment για batch DOM updates
     const root = document.documentElement;
 
     // Extended CSS variable mapping for all controls
@@ -210,18 +211,19 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 500 }: UseRealTimePr
       fontSize2xl: '--layera-global-fontSize-2xl'
     };
 
+    // Batch CSS variable updates
     const cssVariable = cssVariableMap[key];
     if (cssVariable) {
       root.style.setProperty(cssVariable, value);
 
-      // Ειδική διαχείριση για header buttons (secondary color)
+      // Special header button handling - limited to specific cases
       if (key === 'secondaryColor') {
         applyHeaderButtonPreview(value);
       }
+    } else {
+      // Handle special effects only if not a CSS variable
+      applySpecialEffects(key, value);
     }
-
-    // Handle special effects (hover, active, etc.)
-    applySpecialEffects(key, value);
   }, [applyHeaderButtonPreview, applySpecialEffects]);
 
   /**
@@ -248,7 +250,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 500 }: UseRealTimePr
           pendingDOMUpdate.current = null;
         }
         rafRef.current = null;
-      }, 60); // 60ms throttle με RAF = πολύ smooth
+      }, 100); // 100ms throttle με RAF για extended features
     });
   }, [applyLivePreview]);
 

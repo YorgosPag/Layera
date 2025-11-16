@@ -26,7 +26,7 @@ export const OptimizedColorPicker: React.FC<OptimizedColorPickerProps> = ({
   value,
   onChange,
   className = '',
-  throttleMs = 50 // 20 updates per second max
+  throttleMs = 200 // 5 updates per second για extended features
 }) => {
   const [localValue, setLocalValue] = useState(value);
   const [isChanging, setIsChanging] = useState(false);
