@@ -31,7 +31,7 @@ export const ColorValueDisplay: React.FC<ColorValueDisplayProps> = ({
     <Box
       className="layera-grid layera-grid--gap-lg"
       style={{
-        gridTemplateColumns: '1fr 1fr 1fr'
+        gridTemplateColumns: 'repeat(3, 1fr)'
       } as React.CSSProperties}
     >
       {/* Current Settings Display - για buttons */}
