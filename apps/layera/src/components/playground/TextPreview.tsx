@@ -48,14 +48,16 @@ export const TextPreview: React.FC<TextPreviewProps> = ({
               className="layera-typography layera-margin-bottom--xs"
               data-size="base"
               data-weight="bold"
-              style={{ color: value }}
+              data-color="dynamic"
+              style={{ '--layera-color-text-dynamic': value } as React.CSSProperties}
             >
               {label}
             </Text>
             <Text
               className="layera-typography"
               data-size="xs"
-              style={{ color: value }}
+              data-color="dynamic"
+              style={{ '--layera-color-text-dynamic': value } as React.CSSProperties}
             >
               Sample paragraph
             </Text>
