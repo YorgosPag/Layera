@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@layera/layout';
 import { Button, SquareButton } from '@layera/buttons';
 import { PlusIcon, SearchIcon, CheckIcon, CloseIcon, SettingsIcon, RulerIcon, PolygonIcon, CompassIcon } from '@layera/icons';
-import { ButtonState, ButtonStateActions, ButtonVariant, ButtonSize, ButtonShape } from '../../hooks/useButtonState';
+import { ButtonState } from '../../hooks/useButtonState';
 
 /**
  * ButtonsPlayground Component
@@ -22,16 +22,8 @@ import { ButtonState, ButtonStateActions, ButtonVariant, ButtonSize, ButtonShape
 interface ButtonsPlaygroundProps {
   /** Button state από το useButtonState hook */
   buttonState: ButtonState;
-  /** Button actions από το useButtonState hook */
-  buttonActions: ButtonStateActions;
-  /** Available button variants */
-  buttonVariants: readonly ButtonVariant[];
-  /** Available button sizes */
-  buttonSizes: readonly ButtonSize[];
   /** Color category for description */
   colorCategory?: string;
-  /** Element type for description */
-  elementType?: string;
   /** Current colors for live preview from color state */
   currentColors?: Record<string, string>;
   /** Border width for borders category (1, 2, or 3) */
@@ -40,11 +32,7 @@ interface ButtonsPlaygroundProps {
 
 export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
   buttonState,
-  buttonActions,
-  buttonVariants,
-  buttonSizes,
   colorCategory = 'borders',
-  elementType = 'buttons',
   currentColors = {},
   borderWidth = 2
 }) => {

@@ -185,11 +185,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             <Box className="layera-margin-bottom--lg">
               <ButtonsPlayground
                 buttonState={buttonState}
-                buttonActions={buttonActions}
-                buttonVariants={buttonVariants}
-                buttonSizes={buttonSizes}
                 colorCategory={colorHookState.colorCategory}
-                elementType={colorHookState.elementType}
                 currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, string>}
                 borderWidth={borderWidth}
               />
