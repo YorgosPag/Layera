@@ -115,8 +115,8 @@
         "comment": "8px border radius"
       },
       "full": {
-        "value": "9999px",
-        "comment": "Full border radius"
+        "value": "var(--layera-global-borderRadius-full)",
+        "comment": "Full border radius - consolidated reference"
       }
     },
     "borderWidth": {
