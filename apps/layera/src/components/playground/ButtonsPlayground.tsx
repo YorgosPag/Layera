@@ -137,8 +137,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
           </Button>
           <button style={{
             padding: buttonState.shape === 'square' ? '16px' : '8px 16px',
-            border: `${dynamicBorderWidth} solid ${colors.primary}`,
-            borderRadius: buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px'
+            border: `${dynamicBorderWidth} solid ${colors.primary}`
           }}>
             {buttonState.withIcon && <PlusIcon size="sm" />}
             {buttonState.shape === 'square' ? 'O' : 'Outline'}
