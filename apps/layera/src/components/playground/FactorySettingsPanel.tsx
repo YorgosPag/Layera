@@ -204,7 +204,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
           onClick={handleResetToFactory}
           disabled={isResetting || isLoading}
           style={{
-            minWidth: 'var(--layera-global-spacing-96)'
+            minWidth: 'var(--layera-spacing-component-preview-border-min-width)'
           }}
         >
           {isResetting ? (
