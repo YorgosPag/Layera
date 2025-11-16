@@ -22,25 +22,33 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
   borderWidth = 2
 }) => {
   const getTableStyle = (colorValue: string) => {
+    const baseStyle = {
+      boxSizing: 'border-box' as const,
+      border: '1px solid transparent'
+    };
+
     switch (colorCategory) {
       case 'backgrounds':
         return {
+          ...baseStyle,
           backgroundColor: colorValue,
           color: colorValue === '#f59e0b' ? '#000000' : '#ffffff'
         };
       case 'text':
         return {
+          ...baseStyle,
           backgroundColor: '#ffffff',
           color: colorValue
         };
       case 'borders':
         return {
+          ...baseStyle,
           backgroundColor: '#ffffff',
           color: '#333333',
-          border: `var(--layera-global-borderWidth-${borderWidth}) solid ${colorValue}`
+          border: `1px solid ${colorValue}`
         };
       default:
-        return {};
+        return baseStyle;
     }
   };
 
@@ -60,7 +68,7 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
           <CheckIcon size="sm" /> Live Preview: Πίνακες
         </h3>
 
-        <Box style={{ display: 'flex', flexDirection: 'column', gap: 'var(--layera-global-spacing-1)' }}>
+        <Box style={{ display: 'flex', flexDirection: 'column' }}>
           {colors.map((color, index) => (
             <Box
               key={color.name}
@@ -72,7 +80,8 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 fontSize: 'var(--layera-la-fontSize-sm)',
-                fontWeight: 'var(--layera-la-fontWeight-medium)'
+                fontWeight: 'var(--layera-la-fontWeight-medium)',
+                marginBottom: index === colors.length - 1 ? '0' : '2px'
               }}
             >
               <span>{color.name} Row</span>
