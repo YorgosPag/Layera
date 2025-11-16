@@ -167,37 +167,79 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
 
   return (
     <Box className={`layera-card layera-padding--lg ${className}`}>
-      <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
-        <SettingsIcon size="sm" /> Εργοστασιακές Ρυθμίσεις
-      </h4>
+      {/* Header Section - Horizontal */}
+      <Box className="layera-flex layera-flex--justify-between layera-flex--align-start layera-flex--gap-lg layera-margin-bottom--md">
+        <Box>
+          <h4 className="layera-typography layera-margin-bottom--xs" data-size="base" data-weight="semibold" data-color="primary">
+            <SettingsIcon size="sm" /> Εργοστασιακές Ρυθμίσεις
+          </h4>
+          <Text className="layera-typography" data-size="sm" data-color="secondary">
+            Επιστροφή στα χρώματα των μεγάλων παγκόσμιων εταιρειών
+          </Text>
+        </Box>
 
-      <Text className="layera-typography layera-margin-bottom--md" data-size="sm" data-color="secondary">
-        Επιστροφή στα χρώματα των μεγάλων παγκόσμιων εταιρειών
-      </Text>
+        {/* Current Palette Info - Moved to right side */}
+        <Box
+          className="layera-padding--sm"
+          style={{
+            backgroundColor: 'var(--layera-color-surface-primary)',
+            borderRadius: 'var(--layera-global-borderRadius-md)',
+            border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-primary)',
+            minWidth: '200px'
+          }}
+        >
+          <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-weight="medium" data-color="primary">
+            Τρέχουσα Παλέτα: {paletteOptions.find(p => p.value === selectedPalette)?.label}
+          </Text>
+          <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
+            {paletteOptions.find(p => p.value === selectedPalette)?.description}
+          </Text>
 
-      {/* Palette Selection */}
-      <Box className="layera-margin-bottom--md">
-        <Text className="layera-typography layera-margin-bottom--xs" data-size="sm" data-weight="medium" data-color="secondary">
-          Επιλογή Παλέτας Χρωμάτων
-        </Text>
-        <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
-          {paletteOptions.map((option) => (
-            <Button
-              key={option.value}
-              variant={selectedPalette === option.value ? 'primary' : 'outline'}
-              size="sm"
-              onClick={() => handlePaletteChange(option.value)}
-              disabled={isLoading}
-              title={option.description}
-            >
-              {option.label}
-            </Button>
-          ))}
+          {/* Color Preview */}
+          <Box className="layera-flex layera-flex--gap-xs">
+            {Object.values(AVAILABLE_PALETTES[selectedPalette]).map((color, index) => (
+              <Box
+                key={index}
+                style={{
+                  width: 'var(--layera-iconInteractive-sizing-padding-lg)',
+                  height: 'var(--layera-iconInteractive-sizing-padding-lg)',
+                  borderRadius: 'var(--layera-iconInteractive-sizing-padding-xs)',
+                  '--layera-color-preview-bg': color.hex,
+                  backgroundColor: 'var(--layera-color-preview-bg)',
+                  border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-light)'
+                } as React.CSSProperties}
+                data-title={`${color.name}: ${color.hex}`}
+              />
+            ))}
+          </Box>
         </Box>
       </Box>
 
-      {/* Reset Button */}
-      <Box className="layera-flex layera-flex--gap-sm layera-margin-bottom--md">
+      {/* Controls Section - Horizontal */}
+      <Box className="layera-flex layera-flex--justify-between layera-flex--align-end layera-flex--gap-lg">
+        {/* Palette Selection */}
+        <Box>
+          <Text className="layera-typography layera-margin-bottom--xs" data-size="sm" data-weight="medium" data-color="secondary">
+            Επιλογή Παλέτας Χρωμάτων
+          </Text>
+          <Box className="layera-flex layera-flex--gap-sm">
+            {paletteOptions.map((option) => (
+              <Button
+                key={option.value}
+                variant={selectedPalette === option.value ? 'primary' : 'outline'}
+                size="sm"
+                onClick={() => handlePaletteChange(option.value)}
+                disabled={isLoading}
+                title={option.description}
+              >
+                {option.label}
+              </Button>
+            ))}
+          </Box>
+        </Box>
+
+        {/* Action Buttons */}
+        <Box className="layera-flex layera-flex--gap-sm">
         <Button
           variant={resetSuccess ? 'success' : 'warning'}
           size="sm"
@@ -231,40 +273,6 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
             Φόρτωση Ρυθμίσεων
           </Button>
         )}
-      </Box>
-
-      {/* Current Palette Info */}
-      <Box
-        className="layera-padding--sm"
-        style={{
-          backgroundColor: 'var(--layera-color-surface-primary)',
-          borderRadius: 'var(--layera-global-borderRadius-md)',
-          border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-primary)'
-        }}
-      >
-        <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-weight="medium" data-color="primary">
-          Τρέχουσα Παλέτα: {paletteOptions.find(p => p.value === selectedPalette)?.label}
-        </Text>
-        <Text className="layera-typography" data-size="xs" data-color="secondary">
-          {paletteOptions.find(p => p.value === selectedPalette)?.description}
-        </Text>
-
-        {/* Color Preview */}
-        <Box className="layera-flex layera-flex--gap-xs layera-margin-top--xs">
-          {Object.values(AVAILABLE_PALETTES[selectedPalette]).map((color, index) => (
-            <Box
-              key={index}
-              style={{
-                width: 'var(--layera-iconInteractive-sizing-padding-lg)',
-                height: 'var(--layera-iconInteractive-sizing-padding-lg)',
-                borderRadius: 'var(--layera-iconInteractive-sizing-padding-xs)',
-                '--layera-color-preview-bg': color.hex,
-                backgroundColor: 'var(--layera-color-preview-bg)',
-                border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-light)'
-              } as React.CSSProperties}
-              data-title={`${color.name}: ${color.hex}`}
-            />
-          ))}
         </Box>
       </Box>
     </Box>
