@@ -24,7 +24,7 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
   const getTableStyle = (colorValue: string) => {
     const baseStyle = {
       boxSizing: 'border-box' as const,
-      border: '1px solid transparent'
+      border: 'var(--layera-global-borderWidth-1) var(--layera-global-borderStyle-solid) transparent'
     };
 
     switch (colorCategory) {
@@ -45,7 +45,7 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
           ...baseStyle,
           backgroundColor: '#ffffff',
           color: '#333333',
-          border: `1px solid ${colorValue}`
+          border: `var(--layera-global-borderWidth-1) var(--layera-global-borderStyle-solid) ${colorValue}`
         };
       default:
         return baseStyle;
