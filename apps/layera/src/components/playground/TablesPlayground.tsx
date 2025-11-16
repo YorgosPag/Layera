@@ -2,6 +2,26 @@ import React from 'react';
 import { Box } from '@layera/layout';
 import { CheckIcon } from '@layera/icons';
 
+// Enterprise-grade CSS classes
+const styles = `
+.layera-tables-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.layera-table-row:not(.layera-table-row--last) {
+  margin-bottom: var(--layera-global-borderRadius-xs);
+}
+`;
+
+// Inject styles
+if (typeof document !== 'undefined' && !document.querySelector('#layera-tables-styles')) {
+  const styleSheet = document.createElement('style');
+  styleSheet.id = 'layera-tables-styles';
+  styleSheet.textContent = styles;
+  document.head.appendChild(styleSheet);
+}
+
 interface TablesPlaygroundProps {
   currentColors: {
     primary: string;
@@ -30,7 +50,7 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
       justifyContent: 'space-between',
       alignItems: 'center',
       fontSize: 'var(--layera-la-fontSize-sm)',
-      fontWeight: 'var(--layera-la-fontWeight-medium)'
+      fontWeight: 'var(--layera-la-fontWeight-medium)',
     };
 
     switch (colorCategory) {
@@ -74,14 +94,12 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
           <CheckIcon size="sm" /> Live Preview: Πίνακες
         </h3>
 
-        <Box style={{ display: 'flex', flexDirection: 'column' }}>
+        <Box className="layera-tables-container">
           {colors.map((color, index) => (
             <Box
               key={color.name}
-              style={{
-                ...getTableStyle(color.value),
-                marginBottom: index === colors.length - 1 ? '0' : 'var(--layera-global-borderRadius-xs)'
-              }}
+              className={index === colors.length - 1 ? "layera-table-row layera-table-row--last" : "layera-table-row"}
+              style={getTableStyle(color.value)}
             >
               <span>{color.name} Row</span>
               <span className="layera-opacity--80 layera-fontSize--xs">
