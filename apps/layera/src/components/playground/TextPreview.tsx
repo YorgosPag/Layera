@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box } from '@layera/layout';
+import { Text } from '@layera/typography';
 
 /**
  * TextPreview Component
@@ -22,80 +23,45 @@ interface TextPreviewProps {
 export const TextPreview: React.FC<TextPreviewProps> = ({
   currentColors
 }) => {
+  const colorEntries = [
+    { key: 'primary', label: 'Primary Text', value: currentColors.primary },
+    { key: 'secondary', label: 'Secondary Text', value: currentColors.secondary },
+    { key: 'success', label: 'Success Text', value: currentColors.success },
+    { key: 'warning', label: 'Warning Text', value: currentColors.warning },
+    { key: 'danger', label: 'Danger Text', value: currentColors.danger },
+    { key: 'info', label: 'Info Text', value: currentColors.info }
+  ];
+
   return (
     <>
-      <Box
-        className="flex--base align-center justify-center text-center"
-        style={{
-          height: 'var(--layera-spacing-component-preview-border-height)',
-          minWidth: 'var(--layera-spacing-component-preview-border-min-width)',
-          padding: 'var(--layera-global-spacing-3)'
-        }}>
-        <div>
-          <h4 style={{ color: currentColors.primary, margin: 'var(--layera-global-margin-0) var(--layera-global-margin-0) var(--layera-global-spacing-1) var(--layera-global-margin-0)', fontSize: 'var(--layera-global-fontSize-base)', fontWeight: 'var(--layera-global-fontWeight-bold)' }}>Primary Text</h4>
-          <p style={{ color: currentColors.primary, margin: 'var(--layera-global-margin-0)', fontSize: 'var(--layera-global-fontSize-xs)' }}>Sample paragraph</p>
-        </div>
-      </Box>
-      <Box
-        className="flex--base align-center justify-center text-center"
-        style={{
-          height: 'var(--layera-spacing-component-preview-border-height)',
-          minWidth: 'var(--layera-spacing-component-preview-border-min-width)',
-          padding: 'var(--layera-global-spacing-3)'
-        }}>
-        <div>
-          <h4 style={{ color: currentColors.secondary, margin: 'var(--layera-global-margin-0) var(--layera-global-margin-0) var(--layera-global-spacing-1) var(--layera-global-margin-0)', fontSize: 'var(--layera-global-fontSize-base)', fontWeight: 'var(--layera-global-fontWeight-bold)' }}>Secondary Text</h4>
-          <p style={{ color: currentColors.secondary, margin: 'var(--layera-global-margin-0)', fontSize: 'var(--layera-global-fontSize-xs)' }}>Sample paragraph</p>
-        </div>
-      </Box>
-      <Box
-        className="flex--base align-center justify-center text-center"
-        style={{
-          height: 'var(--layera-spacing-component-preview-border-height)',
-          minWidth: 'var(--layera-spacing-component-preview-border-min-width)',
-          padding: 'var(--layera-global-spacing-3)'
-        }}>
-        <div>
-          <h4 style={{ color: currentColors.success, margin: 'var(--layera-global-margin-0) var(--layera-global-margin-0) var(--layera-global-spacing-1) var(--layera-global-margin-0)', fontSize: 'var(--layera-global-fontSize-base)', fontWeight: 'var(--layera-global-fontWeight-bold)' }}>Success Text</h4>
-          <p style={{ color: currentColors.success, margin: 'var(--layera-global-margin-0)', fontSize: 'var(--layera-global-fontSize-xs)' }}>Sample paragraph</p>
-        </div>
-      </Box>
-      <Box
-        className="flex--base align-center justify-center text-center"
-        style={{
-          height: 'var(--layera-spacing-component-preview-border-height)',
-          minWidth: 'var(--layera-spacing-component-preview-border-min-width)',
-          padding: 'var(--layera-global-spacing-3)'
-        }}>
-        <div>
-          <h4 style={{ color: currentColors.warning, margin: 'var(--layera-global-margin-0) var(--layera-global-margin-0) var(--layera-global-spacing-1) var(--layera-global-margin-0)', fontSize: 'var(--layera-global-fontSize-base)', fontWeight: 'var(--layera-global-fontWeight-bold)' }}>Warning Text</h4>
-          <p style={{ color: currentColors.warning, margin: 'var(--layera-global-margin-0)', fontSize: 'var(--layera-global-fontSize-xs)' }}>Sample paragraph</p>
-        </div>
-      </Box>
-      <Box
-        className="flex--base align-center justify-center text-center"
-        style={{
-          height: 'var(--layera-spacing-component-preview-border-height)',
-          minWidth: 'var(--layera-spacing-component-preview-border-min-width)',
-          padding: 'var(--layera-global-spacing-3)'
-        }}>
-        <div>
-          <h4 style={{ color: currentColors.danger, margin: 'var(--layera-global-margin-0) var(--layera-global-margin-0) var(--layera-global-spacing-1) var(--layera-global-margin-0)', fontSize: 'var(--layera-global-fontSize-base)', fontWeight: 'var(--layera-global-fontWeight-bold)' }}>Danger Text</h4>
-          <p style={{ color: currentColors.danger, margin: 'var(--layera-global-margin-0)', fontSize: 'var(--layera-global-fontSize-xs)' }}>Sample paragraph</p>
-        </div>
-      </Box>
-      <Box
-        className="flex--base align-center justify-center text-center"
-        style={{
-          height: 'var(--layera-spacing-component-preview-border-height)',
-          minWidth: 'var(--layera-spacing-component-preview-border-min-width)',
-          padding: 'var(--layera-global-spacing-3)'
-        }}>
-        <div>
-          <h4 style={{ color: currentColors.info, margin: 'var(--layera-global-margin-0) var(--layera-global-margin-0) var(--layera-global-spacing-1) var(--layera-global-margin-0)', fontSize: 'var(--layera-global-fontSize-base)', fontWeight: 'var(--layera-global-fontWeight-bold)' }}>Info Text</h4>
-          <p style={{ color: currentColors.info, margin: 'var(--layera-global-margin-0)', fontSize: 'var(--layera-global-fontSize-xs)' }}>Sample paragraph</p>
-        </div>
-      </Box>
+      {colorEntries.map(({ key, label, value }) => (
+        <Box
+          key={key}
+          className="layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-padding--md"
+          style={{
+            height: 'var(--layera-spacing-component-preview-border-height)',
+            minWidth: 'var(--layera-spacing-component-preview-border-min-width)'
+          }}
+        >
+          <Box>
+            <Text
+              className="layera-typography layera-margin-bottom--xs"
+              data-size="base"
+              data-weight="bold"
+              style={{ color: value }}
+            >
+              {label}
+            </Text>
+            <Text
+              className="layera-typography"
+              data-size="xs"
+              style={{ color: value }}
+            >
+              Sample paragraph
+            </Text>
+          </Box>
+        </Box>
+      ))}
     </>
   );
 };
