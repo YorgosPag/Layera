@@ -65,9 +65,9 @@ export const FontSizeControl: React.FC<FontSizeControlProps> = ({
 
       {/* Preview του επιλεγμένου μεγέθους */}
       <Box className="layera-margin-top--md layera-padding--md" style={{
-        backgroundColor: '#f8fafc',
+        backgroundColor: 'transparent',
         borderRadius: '6px',
-        border: '1px solid #e2e8f0'
+        border: '1px solid var(--layera-color-border-primary)'
       }}>
         <Text
           className="layera-typography"
