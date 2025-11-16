@@ -267,22 +267,6 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             />
           </Box>
 
-          {/* Factory Settings Panel */}
-          <Box className="layera-margin-bottom--lg">
-            <FactorySettingsPanel
-              onSettingsChange={(settings) => {
-                // Εφαρμόζει τις νέες ρυθμίσεις στο color state
-                Object.entries(settings).forEach(([key, value]) => {
-                  if (typeof key === 'string' && typeof value === 'string') {
-                    colorActions.updateCategoryPalette(colorHookState.colorCategory, key as any, value);
-                  }
-                });
-              }}
-              onPreview={startPreview}
-              currentUserId={user?.uid}
-            />
-          </Box>
-
           {/* Button Controls Grid - ΜΟΝΟ για buttons elementType */}
           {colorHookState.elementType === 'buttons' && (
             <Box className="layera-margin-bottom--lg">
@@ -383,6 +367,22 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               colorHookState={colorHookState}
               applyColorsToApp={applyColorsToApp}
               applySquareColorsToHeader={applySquareColorsToHeader}
+            />
+          </Box>
+
+          {/* Factory Settings Panel */}
+          <Box className="layera-margin-bottom--lg">
+            <FactorySettingsPanel
+              onSettingsChange={(settings) => {
+                // Εφαρμόζει τις νέες ρυθμίσεις στο color state
+                Object.entries(settings).forEach(([key, value]) => {
+                  if (typeof key === 'string' && typeof value === 'string') {
+                    colorActions.updateCategoryPalette(colorHookState.colorCategory, key as any, value);
+                  }
+                });
+              }}
+              onPreview={startPreview}
+              currentUserId={user?.uid}
             />
           </Box>
 
