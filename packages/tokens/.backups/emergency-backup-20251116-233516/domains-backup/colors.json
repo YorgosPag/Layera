@@ -1,0 +1,201 @@
+{
+  "colors": {
+    "comment": "🎨 Enterprise Color System - Centralized color management",
+    "theme": {
+      "light": {
+        "comment": "Light theme color palette",
+        "background": {
+          "primary": {
+            "value": "var(--layera-color-neutral-white)",
+            "comment": "Κύριο φόντο - reference σε neutral white"
+          },
+          "secondary": {
+            "value": "#f8fafc",
+            "comment": "Δευτερεύον φόντο - ελαφρύ γκρι (master reference)"
+          }
+        },
+        "surface": {
+          "primary": {
+            "value": "var(--layera-color-neutral-white)",
+            "comment": "Primary surface - reference σε neutral white"
+          },
+          "secondary": {
+            "value": "#f8fafc",
+            "comment": "Secondary surface για cards"
+          },
+          "overlay": {
+            "value": "rgba(0, 0, 0, 0.5)",
+            "comment": "Modal overlay background"
+          }
+        },
+        "border": {
+          "primary": {
+            "value": "#e2e8f0",
+            "comment": "Primary borders"
+          },
+          "secondary": {
+            "value": "#cbd5e1",
+            "comment": "Secondary borders"
+          }
+        },
+        "header": {
+          "background": {
+            "value": "var(--layera-color-neutral-white)",
+            "comment": "Header background - reference σε neutral white"
+          },
+          "text": {
+            "value": "#1e293b",
+            "comment": "Header text color"
+          },
+          "border": {
+            "value": "#e2e8f0",
+            "comment": "Header border"
+          }
+        },
+        "accent": {
+          "blue": {
+            "value": "var(--layera-color-semantic-info-primary)",
+            "comment": "Blue accent color - consolidated reference to info"
+          },
+          "green": {
+            "value": "var(--layera-color-semantic-success-primary)",
+            "comment": "Green accent color - consolidated reference to success"
+          },
+          "purple": {
+            "value": "#8b5cf6",
+            "comment": "Purple accent color"
+          }
+        }
+      },
+      "dark": {
+        "comment": "Dark theme color palette",
+        "background": {
+          "primary": {
+            "value": "#0f172a",
+            "comment": "Κύριο φόντο - deep midnight"
+          },
+          "secondary": {
+            "value": "#1e293b",
+            "comment": "Δευτερεύον φόντο - dark slate"
+          }
+        },
+        "surface": {
+          "value": "#ff0000",
+          "comment": "Generic surface - ΜΙΑ ΚΑΙ ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ - ΚΟΚΚΙΝΟ ΤΕΣΤ",
+          "primary": {
+            "value": "#ff0000",
+            "comment": "Primary surface για cards/modals - ΚΟΚΚΙΝΟ ΤΕΣΤ"
+          },
+          "secondary": {
+            "value": "#334155",
+            "comment": "Secondary surface για cards"
+          },
+          "overlay": {
+            "value": "rgba(0, 0, 0, 0.75)",
+            "comment": "Modal overlay background - πιο σκούρο για dark mode"
+          }
+        },
+        "text": {
+          "primary": {
+            "value": "#f1f5f9",
+            "comment": "Primary text - clean white"
+          },
+          "secondary": {
+            "value": "#cbd5e1",
+            "comment": "Secondary text - soft silver"
+          },
+          "onAccent": {
+            "value": "#0f172a",
+            "comment": "Text πάνω σε accent buttons - σκούρο"
+          }
+        },
+        "border": {
+          "primary": {
+            "value": "#475569",
+            "comment": "Primary borders dark"
+          },
+          "secondary": {
+            "value": "#64748b",
+            "comment": "Secondary borders dark"
+          }
+        },
+        "header": {
+          "background": {
+            "value": "#ff0000",
+            "comment": "Header background - ΚΟΚΚΙΝΟ ΤΕΣΤ - ΜΙΑ ΚΑΙ ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ"
+          },
+          "text": {
+            "value": "#f1f5f9",
+            "comment": "Header text color"
+          },
+          "border": {
+            "value": "#475569",
+            "comment": "Header border"
+          }
+        },
+        "accent": {
+          "blue": {
+            "value": "#60a5fa",
+            "comment": "Blue accent color - πιο ζωντανό για dark mode"
+          },
+          "green": {
+            "value": "#34d399",
+            "comment": "Green accent color - πιο ζωντανό για dark mode"
+          },
+          "purple": {
+            "value": "#a78bfa",
+            "comment": "Purple accent color - πιο ζωντανό για dark mode"
+          }
+        }
+      }
+    },
+    "border": {
+      "primary": {
+        "value": "var(--layera-color-border-primary, #e5e5e5)",
+        "comment": "Primary border color - theme aware"
+      }
+    },
+    "transparent": {
+      "value": "transparent",
+      "comment": "Transparent color"
+    },
+    "neutral": {
+      "comment": "🔲 Neutral Color System - Pure colors for maximum compatibility",
+      "white": {
+        "value": "#ffffff",
+        "comment": "Pure white - single source of truth for all white references"
+      },
+      "black": {
+        "value": "#000000",
+        "comment": "Pure black - single source of truth for all black references"
+      }
+    },
+    "semantic": {
+      "comment": "🎯 Semantic Color System - Single source for success/error/warning/info",
+      "success": {
+        "primary": {
+          "value": "#10b981",
+          "comment": "Success green - single source of truth for all success colors"
+        }
+      },
+      "error": {
+        "primary": {
+          "value": "#ef4444",
+          "comment": "Error red - single source of truth for all error colors"
+        }
+      },
+      "warning": {
+        "primary": {
+          "value": "#f59e0b",
+          "comment": "Warning orange - single source of truth for all warning colors"
+        }
+      },
+      "info": {
+        "primary": {
+          "value": "#3b82f6",
+          "comment": "Info blue - single source of truth for all info colors"
+        }
+      }
+    }
+  }
+}

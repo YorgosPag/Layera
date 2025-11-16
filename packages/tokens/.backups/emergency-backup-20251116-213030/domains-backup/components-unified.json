@@ -384,31 +384,16 @@
           },
           "fullscreen": {
             "position": "fixed",
-            "top": "var(--layera-header-fixed-height)",
+            "top": "0",
             "left": "0",
             "right": "0",
             "bottom": "0",
             "width": "100vw",
-            "height": "calc(100vh - var(--layera-header-fixed-height))",
-            "zIndex": "6000"
+            "height": "100vh",
+            "zIndex": "1000"
           }
         }
       }
-    },
-    "playground": {
-      "value": {
-        "position": "fixed",
-        "top": "var(--layera-header-fixed-height)",
-        "left": "0",
-        "right": "0",
-        "bottom": "0",
-        "width": "100vw",
-        "height": "calc(100vh - var(--layera-header-fixed-height))",
-        "zIndex": "7000",
-        "overflow": "auto",
-        "backgroundColor": "var(--layera-color-semantic-success-primary)"
-      },
-      "comment": "Ενοποιημένη playground κλάση - υψηλότερη προτεραιότητα από χάρτη"
     }
   }
 }

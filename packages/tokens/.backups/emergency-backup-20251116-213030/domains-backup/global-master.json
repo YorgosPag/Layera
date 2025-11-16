@@ -9,11 +9,6 @@
     },
     "references": {
       "comment": "📚 References to specialized token files",
-      "sharedValues": {
-        "file": "./shared-values.json",
-        "description": "🔗 Κοινές τιμές - Single Source of Truth για duplicates",
-        "priority": "HIGH - Χρησιμοποιείται από όλα τα άλλα αρχεία"
-      },
       "colors": {
         "file": "./colors.json",
         "description": "Πλήρες color system - themes, semantic, neutral"

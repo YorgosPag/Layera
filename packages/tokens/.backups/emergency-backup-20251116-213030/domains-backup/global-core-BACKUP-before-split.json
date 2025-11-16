@@ -1,0 +1,5 @@
+{
+  "BACKUP": "This file contains the original global-core.json before it was split on 2024-11-16",
+  "NOTE": "The content was moved to specialized files: colors.json, layout-primitives.json, components.json, buttons.json, responsive.json, layout-system.json, interaction.json",
+  "REASON": "File was too large (1300+ lines) and hard to maintain"
+}

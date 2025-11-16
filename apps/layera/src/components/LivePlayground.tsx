@@ -170,17 +170,19 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   return (
     <Box
       data-layera-playground="true"
-      className="layera-position--fixed layera-top--0 layera-left--0 layera-bg-surface-light layera-full-width layera-layout-content layera-map--fullscreen"
-      style={{
-        zIndex: 'var(--layera-z-index-overlay)'
-      }}
+      className={`layera-map layera-bg-accent-green ${styles.playgroundOverride}`}
+      data-type="fullscreen"
     >
       <PlaygroundHeader
         onClose={onClose}
       />
 
-        {/* Απευθείας εμφάνιση των Category/Element Selections */}
-        <Box>
+        {/* Main Content με Scrolling */}
+        <Box
+          className="layera-spacing layera-bg-surface-light"
+          data-size="md"
+          data-type="padding"
+        >
           {/* Dynamic Content Based on Element Type Selection */}
           {colorHookState.elementType === 'buttons' && (
             <Box className="layera-margin-bottom--lg">
@@ -292,7 +294,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {colorHookState.elementType === 'buttons' && (
             <Box className="layera-margin-bottom--lg">
               <Box
-                className="layera-grid layera-grid--cols-3 layera-grid--gap-xl layera-margin-top--lg layera-margin-bottom--xl"
+                className="layera-flex layera-flex--gap-lg layera-margin-top--lg layera-margin-bottom--xl"
               >
                 {/* Shape Control - ΠΡΩΤΟ */}
                 <Box className="layera-card layera-padding--lg">
@@ -353,17 +355,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                       type="text"
                       value={buttonState.text}
                       onChange={(e) => buttonActions.setText(e.target.value)}
-                      style={{
-                        padding: 'var(--layera-iconInteractive-sizing-padding-lg)',
-                        borderRadius: 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
-                        fontSize: 'var(--layera-la-fontSize-sm)',
-                        width: 'var(--layera-global-layout-width-full)',
-                        outline: 'none',
-                        backgroundColor: 'var(--layera-la-bg-primary)',
-                        color: 'var(--layera-la-text-primary)',
-                        border: '1px solid var(--layera-la-color-border-light)',
-                        flex: '1'
-                      }}
+                      className="layera-form"
+                      data-element="input"
                     />
                     <Button
                       variant={buttonState.withIcon ? 'primary' : 'outline'}

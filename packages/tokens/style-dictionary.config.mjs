@@ -434,6 +434,9 @@ export default {
         const headerFixedLeft = dictionary.allTokens.find(token => token.path.join('.') === 'header.fixed.left');
         const headerFixedRight = dictionary.allTokens.find(token => token.path.join('.') === 'header.fixed.right');
         const headerFixedZIndex = dictionary.allTokens.find(token => token.path.join('.') === 'header.fixed.zIndex');
+        const headerFixedBackground = dictionary.allTokens.find(token => token.path.join('.') === 'header.fixed.background');
+        const headerFixedBorderBottom = dictionary.allTokens.find(token => token.path.join('.') === 'header.fixed.borderBottom');
+        const headerFixedBackdropFilter = dictionary.allTokens.find(token => token.path.join('.') === 'header.fixed.backdropFilter');
 
         if (headerFixedHeight && headerFixedTop && headerFixedLeft && headerFixedRight && headerFixedZIndex) {
           output += `/* Fixed Header Data-Attribute - Enterprise Layout */\n`;
@@ -444,14 +447,102 @@ export default {
           output += `  right: var(--layera-header-fixed-right);\n`;
           output += `  height: var(--layera-header-fixed-height);\n`;
           output += `  z-index: var(--layera-header-fixed-zIndex);\n`;
-          output += `  background-color: var(--layera-color-surface-primary);\n`;
-          output += `  display: var(--layera-global-display-flex);\n`;
-          output += `  align-items: var(--layera-global-alignItems-center);\n`;
-          output += `  justify-content: var(--layera-global-justifyContent-spaceBetween);\n`;
-          output += `  padding: var(--layera-global-reset-padding) var(--layera-global-spacing-4);\n`;
-          output += `  border-bottom: var(--layera-global-borderWidth-1) var(--layera-global-borderStyle-solid) var(--layera-color-border-light);\n`;
+          output += `  background: ${headerFixedBackground ? 'var(--layera-header-fixed-background)' : 'var(--layera-color-surface-primary)'};\n`;
+          if (headerFixedBorderBottom) {
+            output += `  border-bottom: var(--layera-header-fixed-borderBottom);\n`;
+          } else {
+            output += `  border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n`;
+          }
+          if (headerFixedBackdropFilter) {
+            output += `  backdrop-filter: var(--layera-header-fixed-backdropFilter);\n`;
+          }
+          output += `  display: flex;\n`;
+          output += `  align-items: center;\n`;
+          output += `  justify-content: space-between;\n`;
+          output += `  padding: 0 var(--layera-global-spacing-4);\n`;
           output += `}\n\n`;
         }
+
+        // Flex System Classes - από layoutSystem.flex.base token
+        const flexBaseToken = dictionary.allTokens.find(token => token.path.join('.') === 'layoutSystem.flex.base');
+        if (flexBaseToken && flexBaseToken.value) {
+          const props = flexBaseToken.value;
+          output += `/* Flex Base Class */\n`;
+          output += `.layera-flex {\n`;
+          Object.entries(props).forEach(([prop, value]) => {
+            const cssProp = prop.replace(/([A-Z])/g, '-$1').toLowerCase();
+            output += `  ${cssProp}: ${value};\n`;
+          });
+          output += `}\n\n`;
+
+          // Flex variants
+          if (flexBaseToken.variants) {
+            Object.entries(flexBaseToken.variants).forEach(([variantType, variants]) => {
+              Object.entries(variants).forEach(([key, value]) => {
+                output += `.layera-flex--${variantType}-${key} {\n`;
+                Object.entries(value).forEach(([prop, val]) => {
+                  const cssProp = prop.replace(/([A-Z])/g, '-$1').toLowerCase();
+                  output += `  ${cssProp}: ${val};\n`;
+                });
+                output += `}\n`;
+              });
+            });
+            output += `\n`;
+          }
+        }
+
+        // Grid System Classes - από layoutSystem.grid tokens
+        output += `/* Grid System Classes */\n`;
+
+        // Grid Base Class
+        const gridBaseToken = dictionary.allTokens.find(token => token.path.join('.') === 'layoutSystem.grid.base');
+        if (gridBaseToken && gridBaseToken.value) {
+          output += `.layera-grid {\n`;
+          Object.entries(gridBaseToken.value).forEach(([prop, value]) => {
+            const cssProp = prop.replace(/([A-Z])/g, '-$1').toLowerCase();
+            output += `  ${cssProp}: ${value};\n`;
+          });
+          output += `}\n\n`;
+        }
+
+        // Grid Columns Classes
+        const gridColsTokens = dictionary.allTokens.filter(token =>
+          token.path[0] === 'layoutSystem' &&
+          token.path[1] === 'grid' &&
+          token.path[2] === 'cols'
+        );
+
+        gridColsTokens.forEach(token => {
+          const colNumber = token.path[3];
+          if (colNumber && token.value) {
+            output += `.layera-grid--cols-${colNumber} {\n`;
+            Object.entries(token.value).forEach(([prop, value]) => {
+              const cssProp = prop.replace(/([A-Z])/g, '-$1').toLowerCase();
+              output += `  ${cssProp}: ${value};\n`;
+            });
+            output += `}\n`;
+          }
+        });
+
+        // Grid Gap Classes
+        const gridGapTokens = dictionary.allTokens.filter(token =>
+          token.path[0] === 'layoutSystem' &&
+          token.path[1] === 'grid' &&
+          token.path[2] === 'gap'
+        );
+
+        gridGapTokens.forEach(token => {
+          const gapSize = token.path[3];
+          if (gapSize && token.value) {
+            output += `.layera-grid--gap-${gapSize} {\n`;
+            Object.entries(token.value).forEach(([prop, value]) => {
+              const cssProp = prop.replace(/([A-Z])/g, '-$1').toLowerCase();
+              output += `  ${cssProp}: ${value};\n`;
+            });
+            output += `}\n`;
+          }
+        });
+        output += `\n`;
 
         // Typography System Classes - Unified Generation από typography.unified token
         const typographyUnified = dictionary.allTokens.find(token => token.path.join('.') === 'typography.unified');
@@ -610,50 +701,7 @@ export default {
           }
         });
 
-        // Grid Utility Classes από grid.base token
-        const gridToken = dictionary.allTokens.find(token => token.path.join('.') === 'grid.base');
-        if (gridToken && gridToken.value) {
-          const props = gridToken.value;
-          output += `/* Grid base κλάση */\n`;
-          output += `.layera-grid {\n`;
-          Object.entries(props).forEach(([prop, value]) => {
-            const cssProp = prop.replace(/([A-Z])/g, '-$1').toLowerCase();
-            output += `  ${cssProp}: ${value};\n`;
-          });
-          output += `}\n\n`;
-
-          // Grid variants
-          if (gridToken.variants) {
-            Object.entries(gridToken.variants).forEach(([variantType, variants]) => {
-              Object.entries(variants).forEach(([key, value]) => {
-                if (variantType === 'tablet' || variantType === 'desktop') {
-                  output += `.layera-grid--${variantType}-${key} {\n`;
-                  Object.entries(value).forEach(([prop, val]) => {
-                    if (prop.startsWith('@media')) {
-                      output += `}\n${prop} {\n.layera-grid--${variantType}-${key} {\n`;
-                      Object.entries(val).forEach(([cssProp, cssVal]) => {
-                        output += `  ${cssProp.replace(/([A-Z])/g, '-$1').toLowerCase()}: ${cssVal};\n`;
-                      });
-                    } else {
-                      const cssProp = prop.replace(/([A-Z])/g, '-$1').toLowerCase();
-                      output += `  ${cssProp}: ${val};\n`;
-                    }
-                  });
-                  output += `}\n`;
-                } else {
-                  // Προσθήκη του variant type στο όνομα της κλάσης
-                  output += `.layera-grid--${variantType}-${key} {\n`;
-                  Object.entries(value).forEach(([prop, val]) => {
-                    const cssProp = prop.replace(/([A-Z])/g, '-$1').toLowerCase();
-                    output += `  ${cssProp}: ${val};\n`;
-                  });
-                  output += `}\n`;
-                }
-              });
-            });
-            output += `\n`;
-          }
-        }
+        // Grid Utility Classes REMOVED - Using layoutSystem.grid instead
 
         // Width Utility Classes από width.* tokens
         const widthFull = dictionary.allTokens.find(token => token.path.join('.') === 'width.full');

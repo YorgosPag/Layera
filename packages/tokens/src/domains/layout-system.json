@@ -3,33 +3,98 @@
     "comment": "🏗️ Layout System - Advanced layout utilities and flexbox/grid helpers",
     "flex": {
       "base": {
-        "value": "flex",
-        "comment": "Base flex display"
-      },
-      "alignCenter": {
-        "value": "center",
-        "comment": "Align items center"
-      },
-      "spaceBetween": {
-        "value": "space-between",
-        "comment": "Justify content space between"
-      },
-      "center": {
-        "value": "center",
-        "comment": "Center justify content"
-      },
-      "gap": {
-        "sm": {
-          "value": "0.5rem",
-          "comment": "Small flex gap"
+        "value": {
+          "display": "flex"
         },
-        "md": {
-          "value": "1rem",
-          "comment": "Medium flex gap"
+        "comment": "Base flex display",
+        "variants": {
+          "align": {
+            "center": {
+              "alignItems": "center"
+            },
+            "start": {
+              "alignItems": "flex-start"
+            },
+            "end": {
+              "alignItems": "flex-end"
+            }
+          },
+          "justify": {
+            "center": {
+              "justifyContent": "center"
+            },
+            "between": {
+              "justifyContent": "space-between"
+            },
+            "around": {
+              "justifyContent": "space-around"
+            }
+          },
+          "gap": {
+            "sm": {
+              "gap": "var(--layera-global-spacing-2)"
+            },
+            "md": {
+              "gap": "var(--layera-global-spacing-3)"
+            },
+            "lg": {
+              "gap": "var(--layera-global-spacing-4)"
+            }
+          }
+        }
+      },
+      "grid": {
+        "base": {
+          "value": {
+            "display": "grid"
+          },
+          "comment": "Base grid display"
         },
-        "lg": {
-          "value": "1.5rem",
-          "comment": "Large flex gap"
+        "cols": {
+          "2": {
+            "value": {
+              "gridTemplateColumns": "repeat(2, 1fr)"
+            },
+            "comment": "2 column grid"
+          },
+          "3": {
+            "value": {
+              "gridTemplateColumns": "repeat(3, 1fr)"
+            },
+            "comment": "3 column grid"
+          },
+          "4": {
+            "value": {
+              "gridTemplateColumns": "repeat(4, 1fr)"
+            },
+            "comment": "4 column grid"
+          }
+        },
+        "gap": {
+          "sm": {
+            "value": {
+              "gap": "var(--layera-global-spacing-2)"
+            },
+            "comment": "Small grid gap"
+          },
+          "md": {
+            "value": {
+              "gap": "var(--layera-global-spacing-3)"
+            },
+            "comment": "Medium grid gap"
+          },
+          "lg": {
+            "value": {
+              "gap": "var(--layera-global-spacing-4)"
+            },
+            "comment": "Large grid gap"
+          },
+          "xl": {
+            "value": {
+              "gap": "var(--layera-global-spacing-6)"
+            },
+            "comment": "Extra large grid gap"
+          }
         }
       }
     },
@@ -104,6 +169,10 @@
           "value": "100%",
           "comment": "Full width for header"
         },
+        "height": {
+          "value": "3.5rem",
+          "comment": "Header height"
+        },
         "zIndex": {
           "value": "1000",
           "comment": "Header z-index above map"
@@ -115,7 +184,7 @@
           "comment": "Fixed positioning for map"
         },
         "top": {
-          "value": "var(--layera-global-layoutSystem-header-height)",
+          "value": "var(--layera-header-fixed-height)",
           "comment": "Position below header"
         },
         "left": {
@@ -127,7 +196,7 @@
           "comment": "Full viewport width"
         },
         "height": {
-          "value": "calc(100vh - var(--layera-global-layoutSystem-header-height))",
+          "value": "calc(100vh - var(--layera-header-fixed-height))",
           "comment": "Full height minus header"
         },
         "zIndex": {
@@ -144,6 +213,43 @@
           "value": "100%",
           "comment": "Full height of container"
         }
+      }
+    }
+  },
+  "header": {
+    "comment": "🧩 Header-specific tokens for Style Dictionary header-fixed selector",
+    "fixed": {
+      "height": {
+        "value": "3.5rem",
+        "comment": "Fixed header height for navigation bar"
+      },
+      "top": {
+        "value": "0",
+        "comment": "Header top position - stick to viewport top"
+      },
+      "left": {
+        "value": "0",
+        "comment": "Header left position - stick to viewport left"
+      },
+      "right": {
+        "value": "0",
+        "comment": "Header right position - stick to viewport right"
+      },
+      "zIndex": {
+        "value": "1001",
+        "comment": "Header z-index above map (zIndex: 1000) and other content"
+      },
+      "background": {
+        "value": "rgba(255, 255, 255, 0.95)",
+        "comment": "Semi-transparent white background για visibility"
+      },
+      "borderBottom": {
+        "value": "1px solid rgba(0, 0, 0, 0.1)",
+        "comment": "Subtle bottom border για header separation"
+      },
+      "backdropFilter": {
+        "value": "blur(10px)",
+        "comment": "Glass effect για modern header look"
       }
     }
   }

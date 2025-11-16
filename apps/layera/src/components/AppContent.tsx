@@ -113,6 +113,7 @@ export const AppContent: React.FC = () => {
   };
 
   const openLivePlayground = () => {
+    console.log('🎯 openLivePlayground called!'); // DEBUG
     setShowPlayground(true);
   };
 

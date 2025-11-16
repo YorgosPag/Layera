@@ -15,3 +15,7 @@
 .playgroundContainer {
   background-color: var(--layera-color-light-surface-secondary);
 }
+
+.playgroundOverride {
+  z-index: 7000 !important;
+}

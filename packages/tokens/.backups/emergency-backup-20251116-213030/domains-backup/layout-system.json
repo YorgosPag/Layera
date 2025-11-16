@@ -1,0 +1,150 @@
+{
+  "layoutSystem": {
+    "comment": "🏗️ Layout System - Advanced layout utilities and flexbox/grid helpers",
+    "flex": {
+      "base": {
+        "value": "flex",
+        "comment": "Base flex display"
+      },
+      "alignCenter": {
+        "value": "center",
+        "comment": "Align items center"
+      },
+      "spaceBetween": {
+        "value": "space-between",
+        "comment": "Justify content space between"
+      },
+      "center": {
+        "value": "center",
+        "comment": "Center justify content"
+      },
+      "gap": {
+        "sm": {
+          "value": "0.5rem",
+          "comment": "Small flex gap"
+        },
+        "md": {
+          "value": "1rem",
+          "comment": "Medium flex gap"
+        },
+        "lg": {
+          "value": "1.5rem",
+          "comment": "Large flex gap"
+        }
+      }
+    },
+    "stack": {
+      "direction": {
+        "value": "column",
+        "comment": "Column flex direction"
+      },
+      "gap": {
+        "value": "0.25rem",
+        "comment": "Stack gap"
+      }
+    },
+    "padding": {
+      "xs": {
+        "value": "0.5rem 1rem",
+        "comment": "Extra small padding"
+      },
+      "sm": {
+        "value": "1rem 1.5rem",
+        "comment": "Small padding"
+      }
+    },
+    "appLayout": {
+      "comment": "🗺️ Application Layout Tokens",
+      "body": {
+        "minHeight": {
+          "value": "100vh",
+          "comment": "Full viewport height for body"
+        },
+        "overflow": {
+          "value": "hidden",
+          "comment": "Hide overflow for map app"
+        }
+      },
+      "app": {
+        "minHeight": {
+          "value": "100vh",
+          "comment": "Full viewport height for app"
+        },
+        "width": {
+          "value": "100vw",
+          "comment": "Full viewport width for app"
+        },
+        "position": {
+          "value": "relative",
+          "comment": "Relative positioning for app container"
+        },
+        "overflow": {
+          "value": "hidden",
+          "comment": "Hide overflow for app container"
+        }
+      },
+      "header": {
+        "position": {
+          "value": "fixed",
+          "comment": "Fixed positioning for header"
+        },
+        "top": {
+          "value": "0",
+          "comment": "Stick to top"
+        },
+        "left": {
+          "value": "0",
+          "comment": "Stick to left"
+        },
+        "right": {
+          "value": "0",
+          "comment": "Stick to right"
+        },
+        "width": {
+          "value": "100%",
+          "comment": "Full width for header"
+        },
+        "zIndex": {
+          "value": "1000",
+          "comment": "Header z-index above map"
+        }
+      },
+      "mapContainer": {
+        "position": {
+          "value": "fixed",
+          "comment": "Fixed positioning for map"
+        },
+        "top": {
+          "value": "var(--layera-global-layoutSystem-header-height)",
+          "comment": "Position below header"
+        },
+        "left": {
+          "value": "0",
+          "comment": "Align to left"
+        },
+        "width": {
+          "value": "100vw",
+          "comment": "Full viewport width"
+        },
+        "height": {
+          "value": "calc(100vh - var(--layera-global-layoutSystem-header-height))",
+          "comment": "Full height minus header"
+        },
+        "zIndex": {
+          "value": "1",
+          "comment": "Below header"
+        }
+      },
+      "mapFullscreen": {
+        "width": {
+          "value": "100%",
+          "comment": "Full width of container"
+        },
+        "height": {
+          "value": "100%",
+          "comment": "Full height of container"
+        }
+      }
+    }
+  }
+}

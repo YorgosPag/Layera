@@ -78,11 +78,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
 
   return (
     <Box
-      className="layera-grid layera-margin-bottom--xl layera-grid--gap-lg"
-      style={{
-        '--layera-grid-columns': getGridColumns(),
-        gridTemplateColumns: 'var(--layera-grid-columns)'
-      } as React.CSSProperties}
+      className="layera-flex layera-flex--gap-lg layera-margin-bottom--xl"
     >
       {/* Color Category Selection */}
       <Box className="layera-card layera-padding--lg">
