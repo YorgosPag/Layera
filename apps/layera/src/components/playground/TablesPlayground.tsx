@@ -49,8 +49,8 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      fontSize: 'var(--layera-la-fontSize-sm)',
-      fontWeight: 'var(--layera-la-fontWeight-medium)',
+      fontSize: 'var(--layera-fontSize-sm)',
+      fontWeight: 'var(--layera-fontWeight-medium)',
     };
 
     switch (colorCategory) {
@@ -58,19 +58,19 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
         return {
           ...baseStyle,
           backgroundColor: colorValue,
-          color: colorValue === '#f59e0b' ? '#000000' : '#ffffff'
+          color: colorValue === '#f59e0b' ? 'var(--layera-color-text-primary)' : 'var(--layera-color-text-on-dark)'
         };
       case 'text':
         return {
           ...baseStyle,
-          backgroundColor: '#ffffff',
+          backgroundColor: 'var(--layera-color-surface-primary)',
           color: colorValue
         };
       case 'borders':
         return {
           ...baseStyle,
-          backgroundColor: '#ffffff',
-          color: '#333333',
+          backgroundColor: 'var(--layera-color-surface-primary)',
+          color: 'var(--layera-color-text-primary)',
           border: `var(--layera-global-borderWidth-1) var(--layera-global-borderStyle-solid) ${colorValue}`
         };
       default:
