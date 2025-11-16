@@ -18,8 +18,7 @@ interface TablesPlaygroundProps {
 
 export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
   currentColors,
-  colorCategory,
-  borderWidth = 2
+  colorCategory
 }) => {
   const getTableStyle = (colorValue: string) => {
     const baseStyle = {
