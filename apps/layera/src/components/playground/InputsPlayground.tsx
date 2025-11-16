@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box } from '@layera/layout';
+import { Text } from '@layera/typography';
 import { CheckIcon } from '@layera/icons';
 
 interface InputsPlaygroundProps {
@@ -21,6 +22,15 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
   colorCategory,
   borderWidth = 2
 }) => {
+  // Input field configurations
+  const inputConfigs = [
+    { key: 'primary', label: 'Primary Input', placeholder: 'Primary πεδίο', colorValue: currentColors.primary },
+    { key: 'secondary', label: 'Secondary Input', placeholder: 'Secondary πεδίο', colorValue: currentColors.secondary },
+    { key: 'success', label: 'Success Input', placeholder: 'Success πεδίο', colorValue: currentColors.success },
+    { key: 'warning', label: 'Warning Input', placeholder: 'Warning πεδίο', colorValue: currentColors.warning },
+    { key: 'danger', label: 'Danger Input', placeholder: 'Danger πεδίο', colorValue: currentColors.danger },
+    { key: 'info', label: 'Info Input', placeholder: 'Info πεδίο', colorValue: currentColors.info }
+  ];
   const getInputStyle = (colorValue: string) => {
     const baseStyle = {
       padding: 'var(--layera-global-spacing-3)',

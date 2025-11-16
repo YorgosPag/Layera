@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box } from '@layera/layout';
+import { Text } from '@layera/typography';
 import { CheckIcon } from '@layera/icons';
 
 interface LayoutPlaygroundProps {
@@ -24,6 +25,15 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
   borderWidth = 2,
   borderRadius = 'md'
 }) => {
+  // Layout section configurations
+  const layoutConfigs = [
+    { key: 'primary', title: 'Primary', description: 'Layout Section', colorValue: currentColors.primary },
+    { key: 'secondary', title: 'Secondary', description: 'Layout Section', colorValue: currentColors.secondary },
+    { key: 'success', title: 'Success', description: 'Layout Section', colorValue: currentColors.success },
+    { key: 'warning', title: 'Warning', description: 'Layout Section', colorValue: currentColors.warning },
+    { key: 'danger', title: 'Danger', description: 'Layout Section', colorValue: currentColors.danger },
+    { key: 'info', title: 'Info', description: 'Layout Section', colorValue: currentColors.info }
+  ];
   const getLayoutStyle = (colorValue: string) => {
     const baseStyle = {
       padding: 'var(--layera-global-spacing-3)',
@@ -72,122 +82,26 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
           <CheckIcon size="sm" /> Live Preview: Layout
         </h3>
 
-        <Box
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            gap: 'var(--layera-global-spacing-2)',
-            width: 'var(--layera-global-layout-width-full)',
-            justifyContent: 'var(--layera-global-justifyContent-center)',
-            alignItems: 'var(--layera-global-alignItems-center)',
-            paddingTop: 'var(--layera-global-spacing-4)',
-            paddingBottom: 'var(--layera-global-spacing-4)'
-          }}
-        >
-          <Box style={getLayoutStyle(currentColors.primary)}>
-            <Box>
-              <h4 style={{
-                margin: '0 0 var(--layera-global-spacing-1) 0',
-                fontSize: 'var(--layera-fontSize-sm)',
-                fontWeight: 'var(--layera-fontWeight-bold)'
-              }}>
-                Primary
-              </h4>
-              <p style={{
-                margin: 'var(--layera-global-spacing-0)',
-                fontSize: 'var(--layera-fontSize-xs)',
-                opacity: '0.8'
-              }}>
-                Layout Section
-              </p>
+        <Box className="layera-flex layera-flex--wrap layera-flex--justify-center layera-flex--align-center layera-flex--gap-sm layera-padding-top--lg layera-padding-bottom--lg layera-width--full">
+          {layoutConfigs.map(({ key, title, description, colorValue }) => (
+            <Box key={key} style={getLayoutStyle(colorValue)}>
+              <Box>
+                <Text
+                  className="layera-typography layera-margin-bottom--xs"
+                  data-size="sm"
+                  data-weight="bold"
+                >
+                  {title}
+                </Text>
+                <Text
+                  className="layera-typography layera-opacity--80"
+                  data-size="xs"
+                >
+                  {description}
+                </Text>
+              </Box>
             </Box>
-          </Box>
-
-          <Box style={getLayoutStyle(currentColors.secondary)}>
-            <Box>
-              <h4 style={{
-                margin: '0 0 var(--layera-global-spacing-1) 0',
-                fontSize: 'var(--layera-fontSize-sm)',
-                fontWeight: 'var(--layera-fontWeight-bold)'
-              }}>Secondary</h4>
-              <p style={{
-                margin: 'var(--layera-global-spacing-0)',
-                fontSize: 'var(--layera-fontSize-xs)',
-                opacity: '0.8'
-              }}>
-                Layout Section
-              </p>
-            </Box>
-          </Box>
-
-          <Box style={getLayoutStyle(currentColors.success)}>
-            <Box>
-              <h4 style={{
-                margin: '0 0 var(--layera-global-spacing-1) 0',
-                fontSize: 'var(--layera-fontSize-sm)',
-                fontWeight: 'var(--layera-fontWeight-bold)'
-              }}>Success</h4>
-              <p style={{
-                margin: 'var(--layera-global-spacing-0)',
-                fontSize: 'var(--layera-fontSize-xs)',
-                opacity: '0.8'
-              }}>
-                Layout Section
-              </p>
-            </Box>
-          </Box>
-
-          <Box style={getLayoutStyle(currentColors.warning)}>
-            <Box>
-              <h4 style={{
-                margin: '0 0 var(--layera-global-spacing-1) 0',
-                fontSize: 'var(--layera-fontSize-sm)',
-                fontWeight: 'var(--layera-fontWeight-bold)'
-              }}>Warning</h4>
-              <p style={{
-                margin: 'var(--layera-global-spacing-0)',
-                fontSize: 'var(--layera-fontSize-xs)',
-                opacity: '0.8'
-              }}>
-                Layout Section
-              </p>
-            </Box>
-          </Box>
-
-          <Box style={getLayoutStyle(currentColors.danger)}>
-            <Box>
-              <h4 style={{
-                margin: '0 0 var(--layera-global-spacing-1) 0',
-                fontSize: 'var(--layera-fontSize-sm)',
-                fontWeight: 'var(--layera-fontWeight-bold)'
-              }}>Danger</h4>
-              <p style={{
-                margin: 'var(--layera-global-spacing-0)',
-                fontSize: 'var(--layera-fontSize-xs)',
-                opacity: '0.8'
-              }}>
-                Layout Section
-              </p>
-            </Box>
-          </Box>
-
-          <Box style={getLayoutStyle(currentColors.info)}>
-            <Box>
-              <h4 style={{
-                margin: '0 0 var(--layera-global-spacing-1) 0',
-                fontSize: 'var(--layera-fontSize-sm)',
-                fontWeight: 'var(--layera-fontWeight-bold)'
-              }}>Info</h4>
-              <p style={{
-                margin: 'var(--layera-global-spacing-0)',
-                fontSize: 'var(--layera-fontSize-xs)',
-                opacity: '0.8'
-              }}>
-                Layout Section
-              </p>
-            </Box>
-          </Box>
+          ))}
         </Box>
       </Box>
     </Box>
