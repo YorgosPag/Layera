@@ -25,9 +25,9 @@ const injectDynamicStyles = (colors: any, buttonState: any, dynamicBorderWidth: 
       cursor: pointer !important;
       min-width: ${buttonState.shape === 'square' ? 'var(--layera-icon-performance-performance-loading-lazy-root-margin)' : '120px'} !important;
       height: ${buttonState.shape === 'square' ? 'var(--layera-icon-performance-performance-loading-lazy-root-margin)' : 'auto'} !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
+      display: var(--layera-global-layout-display-flex) !important;
+      align-items: var(--layera-global-align-items-center) !important;
+      justify-content: var(--layera-global-justify-content-center) !important;
       gap: 6px !important;
       font-size: ${buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'} !important;
     }
@@ -41,9 +41,9 @@ const injectDynamicStyles = (colors: any, buttonState: any, dynamicBorderWidth: 
       cursor: pointer !important;
       min-width: ${buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : '120px'} !important;
       height: ${buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : 'auto'} !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
+      display: var(--layera-global-layout-display-flex) !important;
+      align-items: var(--layera-global-align-items-center) !important;
+      justify-content: var(--layera-global-justify-content-center) !important;
       gap: var(--layera-iconInteractive-sizing-padding-sm) !important;
       font-size: ${buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'} !important;
     }
