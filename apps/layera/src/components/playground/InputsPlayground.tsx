@@ -87,108 +87,28 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
             paddingBottom: 'var(--layera-global-spacing-4)'
           }}
         >
-          <Box style={{
-            minWidth: '150px',
-            marginRight: 'var(--layera-global-spacing-2)'
-          }}>
-            <label style={{
-              display: 'block',
-              marginBottom: 'var(--layera-global-spacing-1)',
-              fontSize: 'var(--layera-fontSize-xs)',
-              fontWeight: 'var(--layera-fontWeight-bold)'
-            }}>
-              Primary Input
-            </label>
-            <input
-              type="text"
-              placeholder="Primary πεδίο"
-              style={getInputStyle(currentColors.primary)}
-            />
-          </Box>
-
-          <Box style={{
-            minWidth: '150px',
-            marginRight: 'var(--layera-global-spacing-2)'
-          }}>
-            <label style={{
-              display: 'block',
-              marginBottom: 'var(--layera-global-spacing-1)',
-              fontSize: 'var(--layera-fontSize-xs)',
-              fontWeight: 'var(--layera-fontWeight-bold)'
-            }}>Secondary Input</label>
-            <input
-              type="text"
-              placeholder="Secondary πεδίο"
-              style={getInputStyle(currentColors.secondary)}
-            />
-          </Box>
-
-          <Box style={{
-            minWidth: '150px',
-            marginRight: 'var(--layera-global-spacing-2)'
-          }}>
-            <label style={{
-              display: 'block',
-              marginBottom: 'var(--layera-global-spacing-1)',
-              fontSize: 'var(--layera-fontSize-xs)',
-              fontWeight: 'var(--layera-fontWeight-bold)'
-            }}>Success Input</label>
-            <input
-              type="text"
-              placeholder="Success πεδίο"
-              style={getInputStyle(currentColors.success)}
-            />
-          </Box>
-
-          <Box style={{
-            minWidth: '150px',
-            marginRight: 'var(--layera-global-spacing-2)'
-          }}>
-            <label style={{
-              display: 'block',
-              marginBottom: 'var(--layera-global-spacing-1)',
-              fontSize: 'var(--layera-fontSize-xs)',
-              fontWeight: 'var(--layera-fontWeight-bold)'
-            }}>Warning Input</label>
-            <input
-              type="text"
-              placeholder="Warning πεδίο"
-              style={getInputStyle(currentColors.warning)}
-            />
-          </Box>
-
-          <Box style={{
-            minWidth: '150px',
-            marginRight: 'var(--layera-global-spacing-2)'
-          }}>
-            <label style={{
-              display: 'block',
-              marginBottom: 'var(--layera-global-spacing-1)',
-              fontSize: 'var(--layera-fontSize-xs)',
-              fontWeight: 'var(--layera-fontWeight-bold)'
-            }}>Danger Input</label>
-            <input
-              type="text"
-              placeholder="Danger πεδίο"
-              style={getInputStyle(currentColors.danger)}
-            />
-          </Box>
-
-          <Box style={{ minWidth: '150px' }}>
-            <label style={{
-              display: 'block',
-              marginBottom: 'var(--layera-global-spacing-1)',
-              fontSize: 'var(--layera-fontSize-xs)',
-              fontWeight: 'var(--layera-fontWeight-bold)'
-            }}>
-              Info Input
-            </label>
-            <input
-              type="text"
-              placeholder="Info πεδίο"
-              style={getInputStyle(currentColors.info)}
-            />
-          </Box>
+          {inputConfigs.map(({ key, label, placeholder, colorValue }, index) => (
+            <Box
+              key={key}
+              className="layera-min-width--150"
+              style={{
+                marginRight: index < inputConfigs.length - 1 ? 'var(--layera-global-spacing-2)' : undefined
+              }}
+            >
+              <Text
+                className="layera-typography layera-margin-bottom--xs layera-display--block"
+                data-size="xs"
+                data-weight="bold"
+              >
+                {label}
+              </Text>
+              <input
+                type="text"
+                placeholder={placeholder}
+                style={getInputStyle(colorValue)}
+              />
+            </Box>
+          ))}
         </Box>
       </Box>
     </Box>
