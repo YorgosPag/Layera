@@ -23,13 +23,16 @@ interface BorderRadiusControlProps {
   elementType?: string;
   /** CSS class για styling */
   className?: string;
+  /** Real-time preview callback */
+  onPreview?: (key: string, value: string) => void;
 }
 
 export const BorderRadiusControl: React.FC<BorderRadiusControlProps> = ({
   value = 'md',
   onChange,
   elementType = 'στοιχεία',
-  className = ''
+  className = '',
+  onPreview
 }) => {
   const [isChanging, setIsChanging] = useState(false);
 
@@ -65,11 +68,16 @@ export const BorderRadiusControl: React.FC<BorderRadiusControlProps> = ({
     setIsChanging(true);
     onChange(newValue);
 
+    // Trigger real-time preview
+    if (onPreview) {
+      onPreview('borderRadius', newValue);
+    }
+
     // Reset visual feedback
     setTimeout(() => {
       setIsChanging(false);
     }, 200);
-  }, [onChange]);
+  }, [onChange, onPreview]);
 
   const getCurrentOption = () => {
     return borderRadiusOptions.find(option => option.value === value) || borderRadiusOptions[2];

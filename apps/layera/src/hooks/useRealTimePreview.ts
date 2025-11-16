@@ -7,6 +7,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
  * - Live preview στα header buttons
  * - Debounced save για smooth performance
  * - Separate preview state από committed state
+ * - Extended support για όλες τις ρυθμίσεις (borders, text, hover, active)
  */
 
 export interface PreviewState {
@@ -59,19 +60,154 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 500 }: UseRealTimePr
   }, []);
 
   /**
+   * Δημιουργεί CSS για hover effects
+   */
+  const getHoverEffectCSS = useCallback((effect: string) => {
+    switch (effect) {
+      case 'none':
+        return '.layera-button:hover, .layera-card:hover { transition: none !important; }';
+      case 'subtle':
+        return '.layera-button:hover, .layera-card:hover { opacity: 0.9 !important; transition: opacity 0.2s ease !important; }';
+      case 'normal':
+        return '.layera-button:hover, .layera-card:hover { opacity: 0.8 !important; transform: translateY(-1px) !important; transition: all 0.2s ease !important; }';
+      case 'strong':
+        return '.layera-button:hover, .layera-card:hover { opacity: 0.8 !important; transform: translateY(-2px) scale(1.02) !important; transition: all 0.2s ease !important; }';
+      default:
+        return '';
+    }
+  }, []);
+
+  /**
+   * Δημιουργεί CSS για active effects
+   */
+  const getActiveEffectCSS = useCallback((effect: string) => {
+    switch (effect) {
+      case 'none':
+        return '.layera-button:active, .layera-card:active { transform: none !important; opacity: 1 !important; }';
+      case 'scale':
+        return '.layera-button:active, .layera-card:active { transform: scale(0.95) !important; transition: transform 0.1s ease !important; }';
+      case 'opacity':
+        return '.layera-button:active, .layera-card:active { opacity: 0.7 !important; transition: opacity 0.1s ease !important; }';
+      case 'press':
+        return '.layera-button:active, .layera-card:active { transform: scale(0.95) !important; opacity: 0.8 !important; transition: all 0.1s ease !important; }';
+      default:
+        return '';
+    }
+  }, []);
+
+  /**
+   * Δημιουργεί CSS για border width
+   */
+  const getBorderWidthCSS = useCallback((width: string) => {
+    const widthValue = width === '0' ? '0' : `var(--layera-global-borderWidth-${width})`;
+    return `.layera-button, .layera-card, .layera-input { border-width: ${widthValue} !important; }`;
+  }, []);
+
+  /**
+   * Δημιουργεί CSS για border radius
+   */
+  const getBorderRadiusCSS = useCallback((radius: string) => {
+    const radiusValue = `var(--layera-global-borderRadius-${radius})`;
+    return `.layera-button, .layera-card, .layera-input { border-radius: ${radiusValue} !important; }`;
+  }, []);
+
+  /**
+   * Δημιουργεί CSS για font size
+   */
+  const getFontSizeCSS = useCallback((size: string) => {
+    const sizeValue = `var(--layera-global-fontSize-${size})`;
+    return `.layera-typography[data-size], .layera-text { font-size: ${sizeValue} !important; }`;
+  }, []);
+
+  /**
+   * Εφαρμόζει ειδικά effects (hover, active) στο DOM
+   */
+  const applySpecialEffects = useCallback((key: string, value: string) => {
+    let styleId = '';
+    let cssRules = '';
+
+    switch (key) {
+      case 'hoverEffect':
+        styleId = 'layera-live-preview-hover';
+        cssRules = getHoverEffectCSS(value);
+        break;
+      case 'activeEffect':
+        styleId = 'layera-live-preview-active';
+        cssRules = getActiveEffectCSS(value);
+        break;
+      case 'borderWidth':
+        styleId = 'layera-live-preview-border-width';
+        cssRules = getBorderWidthCSS(value);
+        break;
+      case 'borderRadius':
+        styleId = 'layera-live-preview-border-radius';
+        cssRules = getBorderRadiusCSS(value);
+        break;
+      case 'fontSize':
+        styleId = 'layera-live-preview-font-size';
+        cssRules = getFontSizeCSS(value);
+        break;
+    }
+
+    if (styleId && cssRules) {
+      let style = document.getElementById(styleId) as HTMLStyleElement;
+
+      if (!style) {
+        style = document.createElement('style');
+        style.id = styleId;
+        document.head.appendChild(style);
+      }
+
+      style.textContent = cssRules;
+    }
+  }, [getHoverEffectCSS, getActiveEffectCSS, getBorderWidthCSS, getBorderRadiusCSS, getFontSizeCSS]);
+
+  /**
    * Εφαρμόζει live preview στο DOM χωρίς save - τώρα με throttling
    */
   const applyLivePreview = useCallback((key: string, value: string) => {
     const root = document.documentElement;
 
-    // Map color keys to CSS variables
+    // Extended CSS variable mapping for all controls
     const cssVariableMap: Record<string, string> = {
+      // Button colors (existing)
       primaryColor: '--layera-color-button-primary',
       secondaryColor: '--layera-color-button-secondary',
       successColor: '--layera-color-button-success',
       warningColor: '--layera-color-button-warning',
       dangerColor: '--layera-color-button-danger',
-      infoColor: '--layera-color-button-info'
+      infoColor: '--layera-color-button-info',
+
+      // Background colors
+      backgroundPrimary: '--layera-color-background-primary',
+      backgroundSecondary: '--layera-color-background-secondary',
+      backgroundSurface: '--layera-color-surface-primary',
+
+      // Border colors
+      borderPrimary: '--layera-color-border-primary',
+      borderSecondary: '--layera-color-border-secondary',
+
+      // Text colors
+      textPrimary: '--layera-color-text-primary',
+      textSecondary: '--layera-color-text-secondary',
+
+      // Border width
+      borderWidth1: '--layera-global-borderWidth-1',
+      borderWidth2: '--layera-global-borderWidth-2',
+      borderWidth3: '--layera-global-borderWidth-3',
+
+      // Border radius
+      borderRadiusXs: '--layera-global-borderRadius-xs',
+      borderRadiusMd: '--layera-global-borderRadius-md',
+      borderRadiusLg: '--layera-global-borderRadius-lg',
+
+      // Font sizes
+      fontSizeXs: '--layera-global-fontSize-xs',
+      fontSizeSm: '--layera-global-fontSize-sm',
+      fontSizeBase: '--layera-global-fontSize-base',
+      fontSizeLg: '--layera-global-fontSize-lg',
+      fontSizeXl: '--layera-global-fontSize-xl',
+      fontSize2xl: '--layera-global-fontSize-2xl'
     };
 
     const cssVariable = cssVariableMap[key];
@@ -83,7 +219,10 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 500 }: UseRealTimePr
         applyHeaderButtonPreview(value);
       }
     }
-  }, [applyHeaderButtonPreview]);
+
+    // Handle special effects (hover, active, etc.)
+    applySpecialEffects(key, value);
+  }, [applyHeaderButtonPreview, applySpecialEffects]);
 
   /**
    * Throttled version του DOM update - Μείωση DOM manipulations με requestAnimationFrame
@@ -191,11 +330,22 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 500 }: UseRealTimePr
       previewKey: null
     });
 
-    // Remove live preview styles
-    const existingStyle = document.getElementById('layera-live-preview-header-buttons');
-    if (existingStyle) {
-      existingStyle.remove();
-    }
+    // Remove all live preview styles
+    const styleIds = [
+      'layera-live-preview-header-buttons',
+      'layera-live-preview-hover',
+      'layera-live-preview-active',
+      'layera-live-preview-border-width',
+      'layera-live-preview-border-radius',
+      'layera-live-preview-font-size'
+    ];
+
+    styleIds.forEach(id => {
+      const style = document.getElementById(id);
+      if (style) {
+        style.remove();
+      }
+    });
   }, []);
 
   // Cleanup on unmount

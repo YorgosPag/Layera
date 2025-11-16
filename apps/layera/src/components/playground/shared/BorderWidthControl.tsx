@@ -23,13 +23,16 @@ interface BorderWidthControlProps {
   elementType?: string;
   /** CSS class για styling */
   className?: string;
+  /** Real-time preview callback */
+  onPreview?: (key: string, value: string) => void;
 }
 
 export const BorderWidthControl: React.FC<BorderWidthControlProps> = ({
   value = 2,
   onChange,
   elementType = 'στοιχεία',
-  className = ''
+  className = '',
+  onPreview
 }) => {
   const [isChanging, setIsChanging] = useState(false);
 
@@ -65,11 +68,16 @@ export const BorderWidthControl: React.FC<BorderWidthControlProps> = ({
     setIsChanging(true);
     onChange(newValue);
 
+    // Trigger real-time preview
+    if (onPreview) {
+      onPreview('borderWidth', newValue.toString());
+    }
+
     // Reset visual feedback
     setTimeout(() => {
       setIsChanging(false);
     }, 200);
-  }, [onChange]);
+  }, [onChange, onPreview]);
 
   const getCurrentOption = () => {
     return borderWidthOptions.find(option => option.value === value) || borderWidthOptions[1];

@@ -31,6 +31,7 @@ interface ColorCategorySelectionProps {
   onActiveEffectChange?: (value: string) => void;
   fontSize?: FontSizeValue;
   onFontSizeChange?: (value: FontSizeValue) => void;
+  onPreview?: (key: string, value: string) => void;
 }
 
 export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
@@ -45,7 +46,8 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
   activeEffect = 'scale',
   onActiveEffectChange,
   fontSize = 'base',
-  onFontSizeChange
+  onFontSizeChange,
+  onPreview
 }) => {
   // Hot reload trigger
   // Debug removed to reduce console noise
@@ -175,6 +177,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           onChange={onBorderWidthChange}
           elementType={colorHookState.elementType}
           className="layera-height--auto"
+          onPreview={onPreview}
         />
       )}
 
@@ -185,6 +188,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           onChange={onBorderRadiusChange}
           elementType={colorHookState.elementType}
           className="layera-height--auto"
+          onPreview={onPreview}
         />
       )}
 
@@ -194,6 +198,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           fontSize={fontSize}
           onFontSizeChange={onFontSizeChange}
           className="layera-height--auto"
+          onPreview={onPreview}
         />
       )}
 
@@ -205,6 +210,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           onChange={onHoverEffectChange}
           elementType={colorHookState.elementType}
           className="layera-height--auto"
+          onPreview={onPreview}
         />
       )}
 
@@ -215,6 +221,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           onChange={onActiveEffectChange}
           elementType={colorHookState.elementType}
           className="layera-height--auto"
+          onPreview={onPreview}
         />
       )}
     </Box>

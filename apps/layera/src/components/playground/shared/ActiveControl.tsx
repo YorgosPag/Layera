@@ -22,13 +22,16 @@ interface ActiveControlProps {
   elementType?: string;
   /** CSS class για styling */
   className?: string;
+  /** Real-time preview callback */
+  onPreview?: (key: string, value: string) => void;
 }
 
 export const ActiveControl: React.FC<ActiveControlProps> = ({
   value = 'scale',
   onChange,
   elementType = 'στοιχεία',
-  className = ''
+  className = '',
+  onPreview
 }) => {
   const [isChanging, setIsChanging] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
@@ -77,11 +80,16 @@ export const ActiveControl: React.FC<ActiveControlProps> = ({
     setIsChanging(true);
     onChange(newValue);
 
+    // Trigger real-time preview
+    if (onPreview) {
+      onPreview('activeEffect', newValue);
+    }
+
     // Reset visual feedback
     setTimeout(() => {
       setIsChanging(false);
     }, 200);
-  }, [onChange]);
+  }, [onChange, onPreview]);
 
   const getCurrentOption = () => {
     return activeOptions.find(option => option.value === value) || activeOptions[1];

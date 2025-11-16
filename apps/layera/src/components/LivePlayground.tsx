@@ -271,6 +271,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               onActiveEffectChange={setActiveEffect}
               fontSize={fontSize}
               onFontSizeChange={setFontSize}
+              onPreview={startPreview}
             />
           </Box>
 

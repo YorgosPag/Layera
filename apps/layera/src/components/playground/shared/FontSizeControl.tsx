@@ -19,12 +19,15 @@ interface FontSizeControlProps {
   fontSize: FontSizeValue;
   onFontSizeChange: (size: FontSizeValue) => void;
   className?: string;
+  /** Real-time preview callback */
+  onPreview?: (key: string, value: string) => void;
 }
 
 export const FontSizeControl: React.FC<FontSizeControlProps> = ({
   fontSize,
   onFontSizeChange,
-  className = ''
+  className = '',
+  onPreview
 }) => {
 
   // Font size options με περιγραφές
@@ -51,7 +54,12 @@ export const FontSizeControl: React.FC<FontSizeControlProps> = ({
             key={option.value}
             variant={fontSize === option.value ? 'primary' : 'outline'}
             size="sm"
-            onClick={() => onFontSizeChange(option.value)}
+            onClick={() => {
+              onFontSizeChange(option.value);
+              if (onPreview) {
+                onPreview('fontSize', option.value);
+              }
+            }}
             title={option.description}
             style={{
               minWidth: '50px',
