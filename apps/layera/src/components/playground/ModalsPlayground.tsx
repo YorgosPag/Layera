@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box } from '@layera/layout';
+import { Text } from '@layera/typography';
 import { CheckIcon, CloseIcon } from '@layera/icons';
 
 /**
@@ -72,19 +73,7 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
           <CheckIcon size="sm" /> Live Preview: Modals
         </h3>
 
-        <Box
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            gap: 'var(--layera-global-spacing-2)',
-            width: 'var(--layera-global-layout-width-full)',
-            justifyContent: 'var(--layera-global-justifyContent-center)',
-            alignItems: 'var(--layera-global-alignItems-center)',
-            paddingTop: 'var(--layera-global-spacing-4)',
-            paddingBottom: 'var(--layera-global-spacing-4)'
-          }}
-        >
+        <Box className="layera-flex layera-flex--wrap layera-flex--justify-center layera-flex--align-center layera-flex--gap-sm layera-padding-top--lg layera-padding-bottom--lg layera-width--full">
           <Box
             style={{
               padding: 'var(--layera-global-spacing-3)',
