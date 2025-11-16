@@ -1,0 +1,17 @@
+/* LivePlayground CSS Module - ARXES Compliant */
+
+.playgroundInput {
+  padding: var(--layera-iconInteractive-sizing-padding-lg);
+  border-radius: var(--layera-global-layoutSystem-button-outline-borderRadius);
+  font-size: var(--layera-la-fontSize-sm);
+  width: var(--layera-global-layout-width-full);
+  outline: none;
+  background-color: var(--layera-la-bg-primary);
+  color: var(--layera-la-text-primary);
+  border: 1px solid var(--layera-la-color-border-light);
+  flex: 1;
+}
+
+.playgroundContainer {
+  background-color: var(--layera-color-light-surface-secondary);
+}
