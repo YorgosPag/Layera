@@ -78,7 +78,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
 
   return (
     <Box
-      className="layera-flex layera-flex--gap-lg layera-margin-bottom--xl"
+      className="layera-flex layera-flex--gap-lg layera-flex--justify-between layera-margin-bottom--xl"
     >
       {/* Color Category Selection */}
       <Box className="layera-card layera-padding--lg">

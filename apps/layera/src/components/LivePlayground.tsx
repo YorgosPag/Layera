@@ -292,7 +292,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {colorHookState.elementType === 'buttons' && (
             <Box className="layera-margin-bottom--lg">
               <Box
-                className="layera-flex layera-flex--gap-lg layera-margin-top--lg layera-margin-bottom--xl"
+                className="layera-flex layera-flex--gap-lg layera-flex--justify-between layera-margin-top--lg layera-margin-bottom--xl"
               >
                 {/* Shape Control - ΠΡΩΤΟ */}
                 <Box className="layera-card layera-padding--lg">
