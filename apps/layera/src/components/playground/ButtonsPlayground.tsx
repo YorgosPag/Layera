@@ -92,7 +92,6 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             size={buttonState.size}
             icon={buttonState.withIcon ? <CheckIcon size="sm" /> : undefined}
             className="layera-button-dynamic-primary"
-            style={{ backgroundColor: colors.primary }}
           >
             {buttonState.shape === 'square' ? 'P' : 'Primary'}
           </Button>
