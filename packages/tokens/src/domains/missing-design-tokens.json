@@ -93,10 +93,10 @@
         "dark": { "value": "#ffffff", "comment": "Text on dark backgrounds" }
       }
     },
-    "info": { "value": "#3b82f6", "comment": "Info color" },
-    "success": { "value": "#10b981", "comment": "Success color" },
-    "warning": { "value": "#f59e0b", "comment": "Warning color" },
-    "error": { "value": "#ef4444", "comment": "Error color" },
+    "info": { "value": "var(--layera-color-semantic-info-primary)", "comment": "Info color - consolidated reference" },
+    "success": { "value": "var(--layera-color-semantic-success-primary)", "comment": "Success color - consolidated reference" },
+    "warning": { "value": "var(--layera-color-semantic-warning-primary)", "comment": "Warning color - consolidated reference" },
+    "error": { "value": "var(--layera-color-semantic-error-primary)", "comment": "Error color - consolidated reference" },
     "bg": {
       "success": { "value": "#d1fae5", "comment": "Success background" },
       "warning": { "value": "#fef3c7", "comment": "Warning background" }
@@ -110,8 +110,8 @@
       "medium": { "value": "#f1f5f9", "comment": "Medium surface background" }
     },
     "accent": {
-      "green": { "value": "#10b981", "comment": "Green accent background" },
-      "blue": { "value": "#3b82f6", "comment": "Blue accent background" },
+      "green": { "value": "var(--layera-color-semantic-success-primary)", "comment": "Green accent background - consolidated reference" },
+      "blue": { "value": "var(--layera-color-semantic-info-primary)", "comment": "Blue accent background - consolidated reference" },
       "purple": { "value": "#8b5cf6", "comment": "Purple accent background" }
     }
   },

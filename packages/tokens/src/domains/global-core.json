@@ -598,12 +598,12 @@
           },
           "accent": {
             "blue": {
-              "value": "#3b82f6",
-              "comment": "Blue accent color"
+              "value": "var(--layera-color-semantic-info-primary)",
+              "comment": "Blue accent color - consolidated reference to info"
             },
             "green": {
-              "value": "#10b981",
-              "comment": "Green accent color"
+              "value": "var(--layera-color-semantic-success-primary)",
+              "comment": "Green accent color - consolidated reference to success"
             },
             "purple": {
               "value": "#8b5cf6",
@@ -712,6 +712,33 @@
         "black": {
           "value": "#000000",
           "comment": "Pure black - single source of truth for all black references"
+        }
+      },
+      "semantic": {
+        "comment": "🎯 Semantic Color System - Single source for success/error/warning/info",
+        "success": {
+          "primary": {
+            "value": "#10b981",
+            "comment": "Success green - single source of truth for all success colors"
+          }
+        },
+        "error": {
+          "primary": {
+            "value": "#ef4444",
+            "comment": "Error red - single source of truth for all error colors"
+          }
+        },
+        "warning": {
+          "primary": {
+            "value": "#f59e0b",
+            "comment": "Warning orange - single source of truth for all warning colors"
+          }
+        },
+        "info": {
+          "primary": {
+            "value": "#3b82f6",
+            "comment": "Info blue - single source of truth for all info colors"
+          }
         }
       }
     },
