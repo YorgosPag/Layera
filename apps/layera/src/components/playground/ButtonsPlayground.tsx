@@ -4,6 +4,42 @@ import { Button, SquareButton } from '@layera/buttons';
 import { PlusIcon, SearchIcon, CheckIcon, CloseIcon, SettingsIcon, RulerIcon, PolygonIcon, CompassIcon } from '@layera/icons';
 import { ButtonState } from '../../hooks/useButtonState';
 
+// Enterprise-grade CSS classes για ARXES compliance
+const styles = `
+.layera-button-outline-enterprise {
+  background-color: transparent;
+  padding: var(--layera-iconInteractive-sizing-padding-md) var(--layera-iconInteractive-sizing-padding-xl);
+  border-radius: var(--layera-global-layoutSystem-button-outline-borderRadius);
+  cursor: pointer;
+  min-width: 120px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--layera-iconInteractive-sizing-padding-sm);
+  font-size: var(--layera-la-fontSize-sm);
+}
+
+.layera-button-outline-enterprise.layera-button-outline-enterprise--square {
+  padding: var(--layera-iconInteractive-sizing-padding-xl);
+  border-radius: var(--layera-global-layoutSystem-button-outline-borderRadius);
+  min-width: var(--layera-global-button-height-xl);
+  height: var(--layera-global-button-height-xl);
+}
+
+.layera-button-outline-enterprise.layera-button-outline-enterprise--rounded {
+  border-radius: var(--layera-global-button-height-xl);
+}
+`;
+
+// Inject styles αν δεν υπάρχουν ήδη
+if (typeof document !== 'undefined' && !document.querySelector('#layera-buttons-playground-styles')) {
+  const styleSheet = document.createElement('style');
+  styleSheet.id = 'layera-buttons-playground-styles';
+  styleSheet.textContent = styles;
+  document.head.appendChild(styleSheet);
+}
+
 /**
  * ButtonsPlayground Component
  *
@@ -135,10 +171,17 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
           >
             {buttonState.shape === 'square' ? 'I' : 'Info'}
           </Button>
-          <button style={{
-            padding: buttonState.shape === 'square' ? '16px' : '8px 16px',
-            border: `${dynamicBorderWidth} solid ${colors.primary}`
-          }}>
+          <button
+            className={`layera-button-outline-enterprise ${
+              buttonState.shape === 'square' ? 'layera-button-outline-enterprise--square' :
+              buttonState.shape === 'rounded' ? 'layera-button-outline-enterprise--rounded' : ''
+            }`}
+            style={{
+              borderWidth: dynamicBorderWidth,
+              borderStyle: 'solid',
+              borderColor: colors.primary,
+              color: colors.primary
+            }}>
             {buttonState.withIcon && <PlusIcon size="sm" />}
             {buttonState.shape === 'square' ? 'O' : 'Outline'}
           </button>
