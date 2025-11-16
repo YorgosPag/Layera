@@ -171,8 +171,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
       data-layera-playground="true"
       className="layera-position--fixed layera-top--0 layera-left--0 layera-bg-surface-light layera-full-width layera-layout-content layera-map--fullscreen"
       style={{
-        zIndex: 'var(--layera-global-utilities-zIndex-overlay)'
-      } as React.CSSProperties}
+        zIndex: 'var(--layera-z-index-overlay)'
+      }}
     >
       <PlaygroundHeader
         onClose={onClose}
