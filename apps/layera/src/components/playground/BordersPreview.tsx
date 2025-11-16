@@ -50,8 +50,9 @@ export const BordersPreview: React.FC<BordersPreviewProps> = ({
           className="flex--base align-center justify-center text-center"
           style={{
             ...baseBorderStyle,
-            border: `var(--layera-global-borderWidth-3) solid ${colorValue}`
-          }}
+            '--layera-border-preview-color': colorValue,
+            border: `var(--layera-global-borderWidth-3) solid var(--layera-border-preview-color)`
+          } as React.CSSProperties}
         >
           {label}<br/>Border
         </Box>
