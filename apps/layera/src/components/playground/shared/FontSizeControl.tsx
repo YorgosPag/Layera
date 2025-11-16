@@ -62,7 +62,7 @@ export const FontSizeControl: React.FC<FontSizeControlProps> = ({
             }}
             title={option.description}
             style={{
-              minWidth: '50px',
+              minWidth: 'var(--layera-global-button-height-xl)',
               fontWeight: fontSize === option.value ? 'bold' : 'normal'
             }}
           >
@@ -74,7 +74,7 @@ export const FontSizeControl: React.FC<FontSizeControlProps> = ({
       {/* Preview του επιλεγμένου μεγέθους */}
       <Box className="layera-margin-top--md layera-padding--md" style={{
         backgroundColor: 'transparent',
-        borderRadius: '6px',
+        borderRadius: 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
         border: '1px solid var(--layera-color-border-primary)'
       }}>
         <Text
@@ -82,7 +82,7 @@ export const FontSizeControl: React.FC<FontSizeControlProps> = ({
           data-size={fontSize}
           data-color="primary"
           style={{
-            lineHeight: '1.4',
+            lineHeight: 'var(--layera-la-lineHeight-snug)',
             margin: 0
           }}
         >

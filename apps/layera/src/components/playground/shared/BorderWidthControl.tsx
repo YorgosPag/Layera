@@ -100,7 +100,7 @@ export const BorderWidthControl: React.FC<BorderWidthControlProps> = ({
             size="sm"
             onClick={() => handleChange(option.value)}
             style={{
-              transition: 'all 0.2s ease',
+              transition: 'var(--layera-iconInteractive-interactive-transition-normal)',
               opacity: isChanging && value === option.value ? 0.7 : 1
             }}
           >
@@ -113,7 +113,7 @@ export const BorderWidthControl: React.FC<BorderWidthControlProps> = ({
       <Box
         className="layera-margin-bottom--sm"
         style={{
-          padding: '12px',
+          padding: 'var(--layera-iconInteractive-sizing-padding-lg)',
           backgroundColor: 'var(--layera-color-surface-primary)',
           borderRadius: 'var(--layera-global-borderRadius-md)',
           border: value === 0 ? 'none' : `${currentOption.token} solid var(--layera-color-border-primary)`,

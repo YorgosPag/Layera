@@ -116,7 +116,7 @@ export const HoverControl: React.FC<HoverControlProps> = ({
             size="sm"
             onClick={() => handleChange(option.value)}
             style={{
-              transition: 'all 0.2s ease',
+              transition: 'var(--layera-iconInteractive-interactive-transition-normal)',
               opacity: isChanging && value === option.value ? 0.7 : 1
             }}
           >
@@ -129,7 +129,7 @@ export const HoverControl: React.FC<HoverControlProps> = ({
       <Box
         className="layera-margin-bottom--sm"
         style={{
-          padding: '12px',
+          padding: 'var(--layera-iconInteractive-sizing-padding-lg)',
           backgroundColor: 'var(--layera-color-surface-primary)',
           borderRadius: 'var(--layera-global-borderRadius-md)',
           border: '1px solid var(--layera-color-border-primary)',

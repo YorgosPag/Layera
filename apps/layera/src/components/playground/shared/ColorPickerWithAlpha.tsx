@@ -140,8 +140,8 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
           className="layera-input layera-width--full"
           style={{
             cursor: 'pointer',
-            height: '40px',
-            transition: 'all 0.1s ease'
+            height: 'var(--layera-global-spacing-10)',
+            transition: 'var(--layera-iconInteractive-interactive-transition-fast)'
           }}
         />
       </Box>
@@ -177,8 +177,8 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
               left: 1,
               right: 1,
               bottom: 1,
-              height: '18px',
-              borderRadius: '9px',
+              height: 'var(--layera-iconInteractive-sizing-padding-xl)',
+              borderRadius: 'var(--layera-iconInteractive-sizing-padding-md)',
               background: `linear-gradient(to right,
                 rgba(${parseInt(displayHex.slice(1, 3), 16)}, ${parseInt(displayHex.slice(3, 5), 16)}, ${parseInt(displayHex.slice(5, 7), 16)}, 0) 0%,
                 rgba(${parseInt(displayHex.slice(1, 3), 16)}, ${parseInt(displayHex.slice(3, 5), 16)}, ${parseInt(displayHex.slice(5, 7), 16)}, 1) 100%)`
@@ -197,9 +197,9 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
             style={{
               position: 'relative',
               cursor: 'grab',
-              height: '20px',
+              height: 'var(--layera-iconInteractive-sizing-padding-xl)',
               width: '100%',
-              borderRadius: '10px',
+              borderRadius: 'var(--layera-iconInteractive-sizing-padding-md)',
               WebkitAppearance: 'none',
               appearance: 'none',
               background: 'transparent',
@@ -324,9 +324,9 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
         <Box
           style={{
             width: '100%',
-            height: '30px',
-            borderRadius: '4px',
-            border: '1px solid #e5e5e5',
+            height: 'var(--layera-global-spacing-8)',
+            borderRadius: 'var(--layera-iconInteractive-sizing-padding-sm)',
+            border: '1px solid var(--layera-la-color-border-light)',
             position: 'relative',
             backgroundImage: 'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)',
             backgroundSize: '10px 10px',

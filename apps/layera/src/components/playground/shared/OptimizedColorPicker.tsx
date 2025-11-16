@@ -103,7 +103,7 @@ export const OptimizedColorPicker: React.FC<OptimizedColorPickerProps> = ({
         className="layera-input layera-width--full layera-margin-bottom--sm"
         style={{
           cursor: 'pointer',
-          transition: 'all 0.1s ease',
+          transition: 'var(--layera-iconInteractive-interactive-transition-fast)',
           opacity: isChanging ? 0.8 : 1
         }}
       />
