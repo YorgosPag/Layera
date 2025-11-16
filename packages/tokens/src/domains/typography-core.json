@@ -10,8 +10,8 @@
       "comment": "14px - Small text, form labels"
     },
     "base": {
-      "value": "1rem",
-      "comment": "16px - Body text default"
+      "value": "var(--layera-global-spacing-4)",
+      "comment": "16px - Body text default - consolidated reference"
     },
     "lg": {
       "value": "1.125rem",

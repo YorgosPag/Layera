@@ -25,7 +25,7 @@
             "value": "var(--layera-color-background-surface-light)",
             "comment": "Light surface background",
             "type": "color"
-          },
+          }
         },
         "accent": {
           "blue": {

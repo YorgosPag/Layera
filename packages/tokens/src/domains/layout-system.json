@@ -1,333 +1,150 @@
 {
-  "layout": {
-    "unified": {
-      "value": {
-        "display": "flex",
-        "flexDirection": "column",
-        "width": "100%",
-        "minHeight": "100vh"
+  "layoutSystem": {
+    "comment": "🏗️ Layout System - Advanced layout utilities and flexbox/grid helpers",
+    "flex": {
+      "base": {
+        "value": "flex",
+        "comment": "Base flex display"
       },
-      "comment": "Unified layout system - main container properties"
-    },
-    "header": {
-      "value": {
-        "width": "100%",
-        "padding": "1rem",
-        "backgroundColor": "white",
-        "borderBottom": "1px solid #e5e7eb",
-        "boxShadow": "0 1px 3px 0 rgba(0, 0, 0, 0.1)"
+      "alignCenter": {
+        "value": "center",
+        "comment": "Align items center"
       },
-      "comment": "Header layout properties - full width with shadow"
-    },
-    "sidebar": {
-      "value": {
-        "position": "fixed",
-        "top": "0",
-        "left": "0",
-        "width": "280px",
-        "height": "100vh",
-        "backgroundColor": "var(--layera-color-surface-primary)",
-        "borderRight": "1px solid var(--layera-color-border-primary)",
-        "zIndex": "1000"
+      "spaceBetween": {
+        "value": "space-between",
+        "comment": "Justify content space between"
       },
-      "comment": "Sidebar layout for AppShell component"
-    },
-    "content": {
-      "value": {
-        "flex": "1",
-        "padding": "1rem",
-        "overflow": "auto"
+      "center": {
+        "value": "center",
+        "comment": "Center justify content"
       },
-      "comment": "Main content area layout"
-    },
-    "footer": {
-      "value": {
-        "width": "100%",
-        "padding": "1rem",
-        "backgroundColor": "var(--layera-color-surface-secondary)",
-        "borderTop": "1px solid var(--layera-color-border-primary)",
-        "textAlign": "center"
-      },
-      "comment": "Footer layout properties"
-    }
-  },
-  "typography": {
-    "base": {
-      "value": {
-        "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif",
-        "fontSize": "1rem",
-        "fontWeight": "400",
-        "lineHeight": "1.5",
-        "color": "var(--layera-color-text-primary)",
-        "textDecoration": "inherit"
-      },
-      "comment": "Base typography settings"
-    }
-  },
-  "spacing": {
-    "utilities": {
-      "value": {
-        "margin": "var(--layera-global-spacing-4)",
-        "padding": "var(--layera-global-spacing-4)",
-        "gap": "var(--layera-global-spacing-4)"
-      },
-      "comment": "Standard spacing utilities"
-    }
-  },
-  "header": {
-    "simple": {
-      "value": {
-        "width": "100%",
-        "padding": "1rem",
-        "backgroundColor": "white",
-        "borderBottom": "1px solid #e5e7eb",
-        "boxShadow": "0 1px 3px 0 rgba(0, 0, 0, 0.1)"
-      },
-      "comment": "Simple header class - legacy compatibility"
-    },
-    "fixed": {
-      "height": {
-        "value": "52px",
-        "comment": "Fixed header height for navigation bar"
-      },
-      "zIndex": {
-        "value": "10000",
-        "comment": "Header z-index above map (zIndex: 1) and other content"
-      },
-      "top": {
-        "value": "0",
-        "comment": "Header top position - stick to viewport top"
-      },
-      "left": {
-        "value": "0",
-        "comment": "Header left position - stick to viewport left"
-      },
-      "right": {
-        "value": "0",
-        "comment": "Header right position - stick to viewport right"
-      }
-    }
-  },
-  "utilities": {
-    "padding": {
-      "value": {
-        "padding": "var(--layera-global-spacing-4)"
-      },
-      "variants": {
-        "size": {
-          "sm": { "padding": "var(--layera-global-spacing-2)" },
-          "md": { "padding": "var(--layera-global-spacing-4)" },
-          "lg": { "padding": "var(--layera-global-spacing-6)" },
-          "xl": { "padding": "var(--layera-global-spacing-8)" }
-        }
-      }
-    },
-    "margin": {
-      "value": {
-        "margin": "var(--layera-global-spacing-4)"
-      },
-      "variants": {
-        "direction": {
-          "bottom": { "marginBottom": "var(--layera-global-spacing-4)" }
+      "gap": {
+        "sm": {
+          "value": "0.5rem",
+          "comment": "Small flex gap"
         },
-        "size": {
-          "lg": { "margin": "var(--layera-global-spacing-6)" },
-          "sm": { "marginBottom": "var(--layera-global-spacing-2)" },
-          "md": { "marginBottom": "var(--layera-global-spacing-4)" }
+        "md": {
+          "value": "1rem",
+          "comment": "Medium flex gap"
         },
-        "top": {
-          "lg": { "marginTop": "var(--layera-global-spacing-6)" }
+        "lg": {
+          "value": "1.5rem",
+          "comment": "Large flex gap"
         }
       }
     },
     "stack": {
-      "value": {
-        "display": "flex",
-        "flexDirection": "column"
+      "direction": {
+        "value": "column",
+        "comment": "Column flex direction"
       },
-      "variants": {
-        "spacing": {
-          "lg": { "gap": "var(--layera-global-spacing-6)" }
+      "gap": {
+        "value": "0.25rem",
+        "comment": "Stack gap"
+      }
+    },
+    "padding": {
+      "xs": {
+        "value": "0.5rem 1rem",
+        "comment": "Extra small padding"
+      },
+      "sm": {
+        "value": "1rem 1.5rem",
+        "comment": "Small padding"
+      }
+    },
+    "appLayout": {
+      "comment": "🗺️ Application Layout Tokens",
+      "body": {
+        "minHeight": {
+          "value": "100vh",
+          "comment": "Full viewport height for body"
+        },
+        "overflow": {
+          "value": "hidden",
+          "comment": "Hide overflow for map app"
+        }
+      },
+      "app": {
+        "minHeight": {
+          "value": "100vh",
+          "comment": "Full viewport height for app"
+        },
+        "width": {
+          "value": "100vw",
+          "comment": "Full viewport width for app"
+        },
+        "position": {
+          "value": "relative",
+          "comment": "Relative positioning for app container"
+        },
+        "overflow": {
+          "value": "hidden",
+          "comment": "Hide overflow for app container"
+        }
+      },
+      "header": {
+        "position": {
+          "value": "fixed",
+          "comment": "Fixed positioning for header"
+        },
+        "top": {
+          "value": "0",
+          "comment": "Stick to top"
+        },
+        "left": {
+          "value": "0",
+          "comment": "Stick to left"
+        },
+        "right": {
+          "value": "0",
+          "comment": "Stick to right"
+        },
+        "width": {
+          "value": "100%",
+          "comment": "Full width for header"
+        },
+        "zIndex": {
+          "value": "1000",
+          "comment": "Header z-index above map"
+        }
+      },
+      "mapContainer": {
+        "position": {
+          "value": "fixed",
+          "comment": "Fixed positioning for map"
+        },
+        "top": {
+          "value": "var(--layera-global-layoutSystem-header-height)",
+          "comment": "Position below header"
+        },
+        "left": {
+          "value": "0",
+          "comment": "Align to left"
+        },
+        "width": {
+          "value": "100vw",
+          "comment": "Full viewport width"
+        },
+        "height": {
+          "value": "calc(100vh - var(--layera-global-layoutSystem-header-height))",
+          "comment": "Full height minus header"
+        },
+        "zIndex": {
+          "value": "1",
+          "comment": "Below header"
+        }
+      },
+      "mapFullscreen": {
+        "width": {
+          "value": "100%",
+          "comment": "Full width of container"
+        },
+        "height": {
+          "value": "100%",
+          "comment": "Full height of container"
         }
       }
-    }
-  },
-  "map": {
-    "container": {
-      "value": {
-        "width": "100%",
-        "height": "400px",
-        "position": "relative"
-      },
-      "variants": {
-        "fullscreen": {
-          "true": {
-            "position": "fixed",
-            "top": "0",
-            "left": "0",
-            "width": "100vw",
-            "height": "100vh",
-            "zIndex": "1000"
-          }
-        }
-      }
-    }
-  },
-  "grid": {
-    "base": {
-      "value": {
-        "display": "grid"
-      },
-      "variants": {
-        "cols": {
-          "1": { "gridTemplateColumns": "repeat(1, 1fr)" },
-          "2": { "gridTemplateColumns": "repeat(2, 1fr)" },
-          "3": { "gridTemplateColumns": "repeat(3, 1fr)" }
-        },
-        "gap": {
-          "lg": { "gap": "var(--layera-global-spacing-6)" }
-        },
-        "tablet": {
-          "cols-2": { "@media (min-width: 768px)": { "gridTemplateColumns": "repeat(2, 1fr)" } }
-        },
-        "desktop": {
-          "cols-3": { "@media (min-width: 1024px)": { "gridTemplateColumns": "repeat(3, 1fr)" } }
-        }
-      }
-    }
-  },
-  "width": {
-    "full": {
-      "value": {
-        "width": "100%"
-      }
-    },
-    "variants": {
-      "full": { "width": "100%" }
-    }
-  },
-  "text": {
-    "left": {
-      "value": {
-        "textAlign": "left"
-      }
-    },
-    "center": {
-      "value": {
-        "textAlign": "center"
-      }
-    },
-    "right": {
-      "value": {
-        "textAlign": "right"
-      }
-    },
-    "white": {
-      "value": {
-        "color": "white"
-      }
-    },
-    "3xl": {
-      "value": {
-        "fontSize": "var(--layera-fontSize-3xl)"
-      }
-    }
-  },
-  "flex": {
-    "base": {
-      "value": {
-        "display": "flex"
-      },
-      "variants": {
-        "align": {
-          "center": { "alignItems": "center" }
-        },
-        "justify": {
-          "center": { "justifyContent": "center" },
-          "between": { "justifyContent": "space-between" }
-        },
-        "gap": {
-          "sm": { "gap": "var(--layera-global-spacing-2)" },
-          "md": { "gap": "var(--layera-global-spacing-3)" }
-        }
-      }
-    }
-  },
-  "form": {
-    "label": {
-      "value": {
-        "display": "block",
-        "marginBottom": "0.5rem",
-        "fontSize": "var(--layera-fontSize-sm)",
-        "fontWeight": "var(--layera-fontWeight-medium)",
-        "color": "var(--layera-color-text-primary)"
-      }
-    },
-    "input": {
-      "value": {
-        "width": "100%",
-        "padding": "0.5rem 1rem",
-        "border": "1px solid var(--layera-color-border-primary)",
-        "borderRadius": "0.375rem",
-        "fontSize": "var(--layera-fontSize-base)"
-      }
-    }
-  },
-  "btn": {
-    "primary": {
-      "value": {
-        "backgroundColor": "var(--layera-color-text-primary)",
-        "color": "white",
-        "border": "1px solid var(--layera-color-text-primary)",
-        "borderRadius": "0.375rem",
-        "padding": "0.5rem 1rem",
-        "fontSize": "var(--layera-fontSize-base)",
-        "fontWeight": "var(--layera-fontWeight-medium)",
-        "cursor": "pointer"
-      }
-    },
-    "action": {
-      "value": {
-        "width": "var(--layera-global-spacing-8)",
-        "height": "var(--layera-global-spacing-8)",
-        "backgroundColor": "var(--layera-btn-action-backgroundColor)",
-        "border": "var(--layera-global-border-none)",
-        "borderRadius": "var(--layera-btn-action-borderRadius)",
-        "display": "var(--layera-global-display-flex)",
-        "alignItems": "var(--layera-global-alignItems-center)",
-        "justifyContent": "var(--layera-global-justifyContent-center)",
-        "cursor": "var(--layera-global-cursor-pointer)",
-        "padding": "0"
-      },
-      "comment": "Square action button for icons - matches headerStyles.actionButton"
-    }
-  },
-  "height": {
-    "40": {
-      "value": {
-        "height": "var(--layera-spacing-component-preview-box-height, 40px)"
-      },
-      "comment": "Height 40px for preview boxes"
-    },
-    "30": {
-      "value": {
-        "height": "var(--layera-spacing-component-preview-border-height, 30px)"
-      },
-      "comment": "Height 30px for border preview boxes"
-    }
-  },
-  "min-width": {
-    "120": {
-      "value": {
-        "minWidth": "var(--layera-spacing-component-preview-box-min-width, 120px)"
-      },
-      "comment": "Min width 120px for preview boxes"
-    },
-    "100": {
-      "value": {
-        "minWidth": "var(--layera-spacing-component-preview-border-min-width, 100px)"
-      },
-      "comment": "Min width 100px for border preview boxes"
     }
   }
 }
