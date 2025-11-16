@@ -50,10 +50,7 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
         </h3>
 
         <Box
-          className="layera-grid layera-grid--gap-lg layera-margin-bottom--lg"
-          style={{
-            gridTemplateColumns: 'var(--layera-global-gridTemplateColumns-autoFit)'
-          } as React.CSSProperties}
+          className="layera-grid layera-grid--gap-lg layera-margin-bottom--lg layera-grid-autofit"
         >
           {/* Variant Control */}
           <Box>
@@ -150,10 +147,7 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
         </h3>
 
         <Box
-          className="layera-grid layera-grid--gap-lg"
-          style={{
-            gridTemplateColumns: 'var(--layera-global-gridTemplateColumns-autoFit)'
-          } as React.CSSProperties}
+          className="layera-grid layera-grid--gap-lg layera-grid-autofit"
         >
           {(['primary', 'secondary', 'outline', 'ghost', 'danger', 'success', 'warning', 'info'] as ButtonVariant[]).map((variant) => (
             <Box key={variant} className="layera-text-center layera-padding--md">
