@@ -22,92 +22,40 @@ interface BordersPreviewProps {
 export const BordersPreview: React.FC<BordersPreviewProps> = ({
   currentColors
 }) => {
+  // Border box configurations
+  const borderConfigs = [
+    { key: 'primary', label: 'Primary', colorValue: currentColors.primary },
+    { key: 'secondary', label: 'Secondary', colorValue: currentColors.secondary },
+    { key: 'success', label: 'Success', colorValue: currentColors.success },
+    { key: 'warning', label: 'Warning', colorValue: currentColors.warning },
+    { key: 'danger', label: 'Danger', colorValue: currentColors.danger },
+    { key: 'info', label: 'Info', colorValue: currentColors.info }
+  ];
+
+  // Base border box style
+  const baseBorderStyle = {
+    height: 'var(--layera-spacing-component-preview-box-height)',
+    minWidth: 'var(--layera-global-minWidth-120)',
+    borderRadius: 'var(--layera-global-borderRadius-md)',
+    padding: 'var(--layera-global-spacing-3)',
+    fontSize: 'var(--layera-global-fontSize-xs)',
+    fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
+    backgroundColor: 'var(--layera-color-surface-primary)'
+  };
   return (
     <>
-      <Box
-        className="flex--base align-center justify-center text-center"
-        style={{
-          height: 'var(--layera-spacing-component-preview-box-height)',
-          minWidth: 'var(--layera-global-minWidth-120)',
-          border: `var(--layera-global-borderWidth-3) solid ${currentColors.primary}`,
-          borderRadius: 'var(--layera-global-borderRadius-md)',
-          padding: 'var(--layera-global-spacing-3)',
-          fontSize: 'var(--layera-global-fontSize-xs)',
-          fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
-          backgroundColor: 'var(--layera-color-surface-primary)'
-        }}>
-        Primary<br/>Border
-      </Box>
-      <Box
-        className="flex--base align-center justify-center text-center"
-        style={{
-          height: 'var(--layera-spacing-component-preview-box-height)',
-          minWidth: 'var(--layera-global-minWidth-120)',
-          border: `var(--layera-global-borderWidth-3) solid ${currentColors.secondary}`,
-          borderRadius: 'var(--layera-global-borderRadius-md)',
-          padding: 'var(--layera-global-spacing-3)',
-          fontSize: 'var(--layera-global-fontSize-xs)',
-          fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
-          backgroundColor: 'var(--layera-color-surface-primary)'
-        }}>
-        Secondary<br/>Border
-      </Box>
-      <Box
-        className="flex--base align-center justify-center text-center"
-        style={{
-          height: 'var(--layera-spacing-component-preview-box-height)',
-          minWidth: 'var(--layera-global-minWidth-120)',
-          border: `var(--layera-global-borderWidth-3) solid ${currentColors.success}`,
-          borderRadius: 'var(--layera-global-borderRadius-md)',
-          padding: 'var(--layera-global-spacing-3)',
-          fontSize: 'var(--layera-global-fontSize-xs)',
-          fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
-          backgroundColor: 'var(--layera-color-surface-primary)'
-        }}>
-        Success<br/>Border
-      </Box>
-      <Box
-        className="flex--base align-center justify-center text-center"
-        style={{
-          height: 'var(--layera-spacing-component-preview-box-height)',
-          minWidth: 'var(--layera-global-minWidth-120)',
-          border: `var(--layera-global-borderWidth-3) solid ${currentColors.warning}`,
-          borderRadius: 'var(--layera-global-borderRadius-md)',
-          padding: 'var(--layera-global-spacing-3)',
-          fontSize: 'var(--layera-global-fontSize-xs)',
-          fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
-          backgroundColor: 'var(--layera-color-surface-primary)'
-        }}>
-        Warning<br/>Border
-      </Box>
-      <Box
-        className="flex--base align-center justify-center text-center"
-        style={{
-          height: 'var(--layera-spacing-component-preview-box-height)',
-          minWidth: 'var(--layera-global-minWidth-120)',
-          border: `var(--layera-global-borderWidth-3) solid ${currentColors.danger}`,
-          borderRadius: 'var(--layera-global-borderRadius-md)',
-          padding: 'var(--layera-global-spacing-3)',
-          fontSize: 'var(--layera-global-fontSize-xs)',
-          fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
-          backgroundColor: 'var(--layera-color-surface-primary)'
-        }}>
-        Danger<br/>Border
-      </Box>
-      <Box
-        className="flex--base align-center justify-center text-center"
-        style={{
-          height: 'var(--layera-spacing-component-preview-box-height)',
-          minWidth: 'var(--layera-global-minWidth-120)',
-          border: `var(--layera-global-borderWidth-3) solid ${currentColors.info}`,
-          borderRadius: 'var(--layera-global-borderRadius-md)',
-          padding: 'var(--layera-global-spacing-3)',
-          fontSize: 'var(--layera-global-fontSize-xs)',
-          fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
-          backgroundColor: 'var(--layera-color-surface-primary)'
-        }}>
-        Info<br/>Border
-      </Box>
+      {borderConfigs.map(({ key, label, colorValue }) => (
+        <Box
+          key={key}
+          className="flex--base align-center justify-center text-center"
+          style={{
+            ...baseBorderStyle,
+            border: `var(--layera-global-borderWidth-3) solid ${colorValue}`
+          }}
+        >
+          {label}<br/>Border
+        </Box>
+      ))}
     </>
   );
 };
