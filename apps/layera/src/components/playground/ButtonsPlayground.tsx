@@ -124,7 +124,6 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             size={buttonState.size}
             icon={buttonState.withIcon ? <CloseIcon size="sm" /> : undefined}
             className="layera-button-dynamic-danger"
-            style={{ backgroundColor: colors.danger }}
           >
             {buttonState.shape === 'square' ? 'D' : 'Danger'}
           </Button>
@@ -133,7 +132,6 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             size={buttonState.size}
             icon={buttonState.withIcon ? <SearchIcon size="sm" /> : undefined}
             className="layera-button-dynamic-info"
-            style={{ backgroundColor: colors.info }}
           >
             {buttonState.shape === 'square' ? 'I' : 'Info'}
           </Button>
