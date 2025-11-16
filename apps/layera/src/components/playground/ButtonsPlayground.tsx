@@ -100,7 +100,6 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             size={buttonState.size}
             icon={buttonState.withIcon ? <SettingsIcon size="sm" /> : undefined}
             className="layera-button-dynamic-secondary"
-            style={{ backgroundColor: colors.secondary }}
           >
             {buttonState.shape === 'square' ? 'S' : 'Secondary'}
           </Button>
