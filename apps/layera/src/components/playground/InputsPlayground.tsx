@@ -23,10 +23,10 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
 }) => {
   const getInputStyle = (colorValue: string) => {
     const baseStyle = {
-      padding: '12px',
-      borderRadius: '6px',
-      fontSize: '14px',
-      width: '100%',
+      padding: 'var(--layera-global-spacing-3)',
+      borderRadius: 'var(--layera-radius-md)',
+      fontSize: 'var(--layera-fontSize-sm)',
+      width: 'var(--layera-global-layout-width-full)',
       outline: 'none'
     };
 
@@ -35,21 +35,21 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
         return {
           ...baseStyle,
           backgroundColor: colorValue,
-          color: colorValue === '#f59e0b' ? '#000000' : '#ffffff',
-          border: '1px solid #e5e5e5'
+          color: colorValue === '#f59e0b' ? 'var(--layera-color-text-primary)' : 'var(--layera-color-text-on-dark)',
+          border: 'var(--layera-global-borderWidth-1) solid var(--layera-border-primary)'
         };
       case 'text':
         return {
           ...baseStyle,
-          backgroundColor: '#ffffff',
+          backgroundColor: 'var(--layera-color-surface-primary)',
           color: colorValue,
-          border: '1px solid #e5e5e5'
+          border: 'var(--layera-global-borderWidth-1) solid var(--layera-border-primary)'
         };
       case 'borders':
         return {
           ...baseStyle,
-          backgroundColor: '#ffffff',
-          color: '#333333',
+          backgroundColor: 'var(--layera-color-surface-primary)',
+          color: 'var(--layera-color-text-primary)',
           border: `var(--layera-global-borderWidth-${borderWidth}) solid ${colorValue}`
         };
       default:
@@ -64,70 +64,122 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
           <CheckIcon size="sm" /> Live Preview: Πεδία
         </h3>
 
-        <div style={{
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          gap: '24px',
-          width: '100%',
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: '16px 0'
-        }}>
-          <div style={{ minWidth: '150px', marginRight: '8px' }}>
-            <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px', fontWeight: 'bold' }}>Primary Input</label>
+        <Box
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            gap: 'var(--layera-global-spacing-6)',
+            width: 'var(--layera-global-layout-width-full)',
+            justifyContent: 'var(--layera-global-justifyContent-center)',
+            alignItems: 'var(--layera-global-alignItems-center)',
+            paddingTop: 'var(--layera-global-spacing-4)',
+            paddingBottom: 'var(--layera-global-spacing-4)'
+          }}
+        >
+          <Box style={{
+            minWidth: '150px',
+            marginRight: 'var(--layera-global-spacing-2)'
+          }}>
+            <label style={{
+              display: 'block',
+              marginBottom: 'var(--layera-global-spacing-1)',
+              fontSize: 'var(--layera-fontSize-xs)',
+              fontWeight: 'var(--layera-fontWeight-bold)'
+            }}>
+              Primary Input
+            </label>
             <input
               type="text"
               placeholder="Primary πεδίο"
               style={getInputStyle(currentColors.primary)}
             />
-          </div>
+          </Box>
 
-          <div style={{ minWidth: '150px', marginRight: '8px' }}>
-            <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px', fontWeight: 'bold' }}>Secondary Input</label>
+          <Box style={{
+            minWidth: '150px',
+            marginRight: 'var(--layera-global-spacing-2)'
+          }}>
+            <label style={{
+              display: 'block',
+              marginBottom: 'var(--layera-global-spacing-1)',
+              fontSize: 'var(--layera-fontSize-xs)',
+              fontWeight: 'var(--layera-fontWeight-bold)'
+            }}>Secondary Input</label>
             <input
               type="text"
               placeholder="Secondary πεδίο"
               style={getInputStyle(currentColors.secondary)}
             />
-          </div>
+          </Box>
 
-          <div style={{ minWidth: '150px', marginRight: '8px' }}>
-            <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px', fontWeight: 'bold' }}>Success Input</label>
+          <Box style={{
+            minWidth: '150px',
+            marginRight: 'var(--layera-global-spacing-2)'
+          }}>
+            <label style={{
+              display: 'block',
+              marginBottom: 'var(--layera-global-spacing-1)',
+              fontSize: 'var(--layera-fontSize-xs)',
+              fontWeight: 'var(--layera-fontWeight-bold)'
+            }}>Success Input</label>
             <input
               type="text"
               placeholder="Success πεδίο"
               style={getInputStyle(currentColors.success)}
             />
-          </div>
+          </Box>
 
-          <div style={{ minWidth: '150px', marginRight: '8px' }}>
-            <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px', fontWeight: 'bold' }}>Warning Input</label>
+          <Box style={{
+            minWidth: '150px',
+            marginRight: 'var(--layera-global-spacing-2)'
+          }}>
+            <label style={{
+              display: 'block',
+              marginBottom: 'var(--layera-global-spacing-1)',
+              fontSize: 'var(--layera-fontSize-xs)',
+              fontWeight: 'var(--layera-fontWeight-bold)'
+            }}>Warning Input</label>
             <input
               type="text"
               placeholder="Warning πεδίο"
               style={getInputStyle(currentColors.warning)}
             />
-          </div>
+          </Box>
 
-          <div style={{ minWidth: '150px', marginRight: '8px' }}>
-            <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px', fontWeight: 'bold' }}>Danger Input</label>
+          <Box style={{
+            minWidth: '150px',
+            marginRight: 'var(--layera-global-spacing-2)'
+          }}>
+            <label style={{
+              display: 'block',
+              marginBottom: 'var(--layera-global-spacing-1)',
+              fontSize: 'var(--layera-fontSize-xs)',
+              fontWeight: 'var(--layera-fontWeight-bold)'
+            }}>Danger Input</label>
             <input
               type="text"
               placeholder="Danger πεδίο"
               style={getInputStyle(currentColors.danger)}
             />
-          </div>
+          </Box>
 
-          <div style={{ minWidth: '150px' }}>
-            <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px', fontWeight: 'bold' }}>Info Input</label>
+          <Box style={{ minWidth: '150px' }}>
+            <label style={{
+              display: 'block',
+              marginBottom: 'var(--layera-global-spacing-1)',
+              fontSize: 'var(--layera-fontSize-xs)',
+              fontWeight: 'var(--layera-fontWeight-bold)'
+            }}>
+              Info Input
+            </label>
             <input
               type="text"
               placeholder="Info πεδίο"
               style={getInputStyle(currentColors.info)}
             />
-          </div>
-        </div>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );

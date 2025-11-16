@@ -26,7 +26,7 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
 }) => {
   const getLayoutStyle = (colorValue: string) => {
     const baseStyle = {
-      padding: '12px',
+      padding: 'var(--layera-global-spacing-3)',
       borderRadius: `var(--layera-global-borderRadius-${borderRadius})`,
       height: 'var(--layera-fontSize-6xl)',
       width: 'calc(var(--layera-fontSize-6xl) * 3)',
@@ -34,8 +34,8 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
       maxWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
       flex: '0 0 calc(var(--layera-fontSize-6xl) * 3)',
       display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center'
+      alignItems: 'var(--layera-global-alignItems-center)',
+      justifyContent: 'var(--layera-global-justifyContent-center)'
     };
 
     switch (colorCategory) {
@@ -43,21 +43,21 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
         return {
           ...baseStyle,
           backgroundColor: colorValue,
-          color: colorValue === '#f59e0b' ? '#000000' : '#ffffff',
-          border: '1px solid #e5e5e5'
+          color: colorValue === '#f59e0b' ? 'var(--layera-color-text-primary)' : 'var(--layera-color-text-on-dark)',
+          border: 'var(--layera-global-borderWidth-1) solid var(--layera-border-primary)'
         };
       case 'text':
         return {
           ...baseStyle,
-          backgroundColor: '#f8f9fa',
+          backgroundColor: 'var(--layera-bg-secondary)',
           color: colorValue,
-          border: '1px solid #e5e5e5'
+          border: 'var(--layera-global-borderWidth-1) solid var(--layera-border-primary)'
         };
       case 'borders':
         return {
           ...baseStyle,
-          backgroundColor: '#ffffff',
-          color: '#333333',
+          backgroundColor: 'var(--layera-color-surface-primary)',
+          color: 'var(--layera-color-text-primary)',
           border: borderWidth === 0 ? 'none' : `var(--layera-global-borderWidth-${borderWidth}) solid ${colorValue}`
         };
       default:
@@ -72,58 +72,123 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
           <CheckIcon size="sm" /> Live Preview: Layout
         </h3>
 
-        <div style={{
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          gap: '8px',
-          width: '100%',
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: '16px 0'
-        }}>
+        <Box
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            gap: 'var(--layera-global-spacing-2)',
+            width: 'var(--layera-global-layout-width-full)',
+            justifyContent: 'var(--layera-global-justifyContent-center)',
+            alignItems: 'var(--layera-global-alignItems-center)',
+            paddingTop: 'var(--layera-global-spacing-4)',
+            paddingBottom: 'var(--layera-global-spacing-4)'
+          }}
+        >
           <Box style={getLayoutStyle(currentColors.primary)}>
-            <div>
-              <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold' }}>Primary</h4>
-              <p style={{ margin: 0, fontSize: '11px', opacity: 0.8 }}>Layout Section</p>
-            </div>
+            <Box>
+              <h4 style={{
+                margin: '0 0 var(--layera-global-spacing-1) 0',
+                fontSize: 'var(--layera-fontSize-sm)',
+                fontWeight: 'var(--layera-fontWeight-bold)'
+              }}>
+                Primary
+              </h4>
+              <p style={{
+                margin: 'var(--layera-global-spacing-0)',
+                fontSize: 'var(--layera-fontSize-xs)',
+                opacity: '0.8'
+              }}>
+                Layout Section
+              </p>
+            </Box>
           </Box>
 
           <Box style={getLayoutStyle(currentColors.secondary)}>
-            <div>
-              <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold' }}>Secondary</h4>
-              <p style={{ margin: 0, fontSize: '11px', opacity: 0.8 }}>Layout Section</p>
-            </div>
+            <Box>
+              <h4 style={{
+                margin: '0 0 var(--layera-global-spacing-1) 0',
+                fontSize: 'var(--layera-fontSize-sm)',
+                fontWeight: 'var(--layera-fontWeight-bold)'
+              }}>Secondary</h4>
+              <p style={{
+                margin: 'var(--layera-global-spacing-0)',
+                fontSize: 'var(--layera-fontSize-xs)',
+                opacity: '0.8'
+              }}>
+                Layout Section
+              </p>
+            </Box>
           </Box>
 
           <Box style={getLayoutStyle(currentColors.success)}>
-            <div>
-              <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold' }}>Success</h4>
-              <p style={{ margin: 0, fontSize: '11px', opacity: 0.8 }}>Layout Section</p>
-            </div>
+            <Box>
+              <h4 style={{
+                margin: '0 0 var(--layera-global-spacing-1) 0',
+                fontSize: 'var(--layera-fontSize-sm)',
+                fontWeight: 'var(--layera-fontWeight-bold)'
+              }}>Success</h4>
+              <p style={{
+                margin: 'var(--layera-global-spacing-0)',
+                fontSize: 'var(--layera-fontSize-xs)',
+                opacity: '0.8'
+              }}>
+                Layout Section
+              </p>
+            </Box>
           </Box>
 
           <Box style={getLayoutStyle(currentColors.warning)}>
-            <div>
-              <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold' }}>Warning</h4>
-              <p style={{ margin: 0, fontSize: '11px', opacity: 0.8 }}>Layout Section</p>
-            </div>
+            <Box>
+              <h4 style={{
+                margin: '0 0 var(--layera-global-spacing-1) 0',
+                fontSize: 'var(--layera-fontSize-sm)',
+                fontWeight: 'var(--layera-fontWeight-bold)'
+              }}>Warning</h4>
+              <p style={{
+                margin: 'var(--layera-global-spacing-0)',
+                fontSize: 'var(--layera-fontSize-xs)',
+                opacity: '0.8'
+              }}>
+                Layout Section
+              </p>
+            </Box>
           </Box>
 
           <Box style={getLayoutStyle(currentColors.danger)}>
-            <div>
-              <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold' }}>Danger</h4>
-              <p style={{ margin: 0, fontSize: '11px', opacity: 0.8 }}>Layout Section</p>
-            </div>
+            <Box>
+              <h4 style={{
+                margin: '0 0 var(--layera-global-spacing-1) 0',
+                fontSize: 'var(--layera-fontSize-sm)',
+                fontWeight: 'var(--layera-fontWeight-bold)'
+              }}>Danger</h4>
+              <p style={{
+                margin: 'var(--layera-global-spacing-0)',
+                fontSize: 'var(--layera-fontSize-xs)',
+                opacity: '0.8'
+              }}>
+                Layout Section
+              </p>
+            </Box>
           </Box>
 
           <Box style={getLayoutStyle(currentColors.info)}>
-            <div>
-              <h4 style={{ margin: '0 0 4px 0', fontSize: '14px', fontWeight: 'bold' }}>Info</h4>
-              <p style={{ margin: 0, fontSize: '11px', opacity: 0.8 }}>Layout Section</p>
-            </div>
+            <Box>
+              <h4 style={{
+                margin: '0 0 var(--layera-global-spacing-1) 0',
+                fontSize: 'var(--layera-fontSize-sm)',
+                fontWeight: 'var(--layera-fontWeight-bold)'
+              }}>Info</h4>
+              <p style={{
+                margin: 'var(--layera-global-spacing-0)',
+                fontSize: 'var(--layera-fontSize-xs)',
+                opacity: '0.8'
+              }}>
+                Layout Section
+              </p>
+            </Box>
           </Box>
-        </div>
+        </Box>
       </Box>
     </Box>
   );
