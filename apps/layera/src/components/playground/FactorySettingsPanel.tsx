@@ -239,7 +239,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
         style={{
           backgroundColor: 'var(--layera-color-surface-primary)',
           borderRadius: 'var(--layera-global-borderRadius-md)',
-          border: '1px solid var(--layera-color-border-primary)'
+          border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-primary)'
         }}
       >
         <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-weight="medium" data-color="primary">
@@ -259,9 +259,9 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
                 height: 'var(--layera-iconInteractive-sizing-padding-lg)',
                 borderRadius: 'var(--layera-iconInteractive-sizing-padding-xs)',
                 backgroundColor: color.hex,
-                border: '1px solid rgba(255, 255, 255, 0.3)'
+                border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-light)'
               }}
-              title={`${color.name}: ${color.hex}`}
+              data-title={`${color.name}: ${color.hex}`}
             />
           ))}
         </Box>
