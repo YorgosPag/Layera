@@ -26,6 +26,16 @@
             "comment": "Light surface background",
             "type": "color"
           },
+          "medium": {
+            "value": "var(--layera-color-background-surface-medium)",
+            "comment": "Medium surface background",
+            "type": "color"
+          },
+          "dark": {
+            "value": "var(--layera-color-theme-dark-surface-primary)",
+            "comment": "Dark surface background",
+            "type": "color"
+          }
         },
         "accent": {
           "blue": {
@@ -99,6 +109,16 @@
         "tertiary": {
           "value": "var(--layera-color-text-tertiary)",
           "comment": "Tertiary text color for subtle content",
+          "type": "color"
+        },
+        "inverse": {
+          "value": "var(--layera-color-text-inverse)",
+          "comment": "Inverse text color for dark backgrounds",
+          "type": "color"
+        },
+        "inverted": {
+          "value": "var(--layera-text-inverted)",
+          "comment": "Inverted text color",
           "type": "color"
         },
         "semantic": {
@@ -258,6 +278,11 @@
           "green": {
             "value": "var(--layera-global-colors-theme-light-accent-green)",
             "comment": "Green accent SVG fill",
+            "type": "color"
+          },
+          "purple": {
+            "value": "var(--layera-global-colors-theme-light-accent-purple)",
+            "comment": "Purple accent SVG fill",
             "type": "color"
           }
         },
