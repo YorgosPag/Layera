@@ -22,24 +22,16 @@ if (firebaseConfig.apiKey && firebaseConfig.projectId) {
     initializeFirebaseApp(firebaseConfig);
     console.log('✅ Firebase αρχικοποιήθηκε επιτυχώς');
 
-    // Αρχικοποίηση εργοστασιακών ρυθμίσεων μόνο αν έχουμε authenticated user
+    // Αρχικοποίηση εργοστασιακών ρυθμίσεων
     setTimeout(async () => {
       try {
-        // Ελέγχουμε authentication πρώτα
-        const { getAuthCurrentUser } = await import('./firebase');
-        const currentUser = getAuthCurrentUser();
+        console.log('🚀 Αρχικοποίηση εργοστασιακών ρυθμίσεων στο Firebase...');
 
-        if (currentUser) {
-          console.log('🚀 Αρχικοποίηση εργοστασιακών ρυθμίσεων στο Firebase...');
-          await FactorySettingsService.initializeFactorySettings();
-          console.log('✅ Εργοστασιακές ρυθμίσεις αρχικοποιήθηκαν επιτυχώς');
+        await FactorySettingsService.initializeFactorySettings();
+        console.log('✅ Εργοστασιακές ρυθμίσεις αρχικοποιήθηκαν επιτυχώς');
 
-          await FactorySettingsService.deleteAllUserSettings();
-          console.log('✅ Παλιές ρυθμίσεις χρηστών διαγράφηκαν');
-        } else {
-          console.log('🔐 Δεν υπάρχει authenticated user - παράλειψη Firebase initialization');
-          console.log('💡 Χρήση τοπικών εργοστασιακών ρυθμίσεων');
-        }
+        await FactorySettingsService.deleteAllUserSettings();
+        console.log('✅ Παλιές ρυθμίσεις χρηστών διαγράφηκαν');
 
       } catch (error: any) {
         console.error('❌ Σφάλμα εργοστασιακών ρυθμίσεων:', error?.code || error?.message);

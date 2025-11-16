@@ -50,6 +50,20 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
       // Αποθηκεύει στο local storage
       FactorySettingsService.saveToLocalStorage(factorySettings);
 
+      // Επίσης αποθηκεύει στο κλειδί που διαβάζει το useColorPersistence
+      const colorState = {
+        ...factorySettings,
+        colorCategory: 'buttons' as const, // Default category for factory settings
+        outlineColor: factorySettings.outlineColor || factorySettings.primaryColor,
+      };
+      localStorage.setItem('layera-current-theme', JSON.stringify(colorState));
+
+      // Ενεργοποιεί το useColorPersistence να εφαρμόσει τα χρώματα
+      window.dispatchEvent(new StorageEvent('storage', {
+        key: 'layera-current-theme',
+        newValue: JSON.stringify(colorState),
+      }));
+
       // Αν υπάρχει userId, αποθηκεύει και στη βάση
       if (currentUserId) {
         await FactorySettingsService.saveUserSettings(currentUserId, factorySettings, selectedPalette);

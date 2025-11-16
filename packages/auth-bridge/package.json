@@ -18,6 +18,10 @@
     "./hooks": {
       "import": "./dist/hooks/index.js",
       "types": "./dist/hooks/index.d.ts"
+    },
+    "./firebase": {
+      "import": "./dist/utils/firebase.js",
+      "types": "./dist/utils/firebase.d.ts"
     }
   },
   "files": [

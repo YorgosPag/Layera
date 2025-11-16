@@ -123,6 +123,18 @@ export const useColorPersistence = () => {
     // Επιπλέον έλεγχος μετά από μικρό timeout για late-loading elements
     const timeoutId = setTimeout(loadAndApplyStoredColors, 100);
 
-    return () => clearTimeout(timeoutId);
+    // Ακούει για αλλαγές στο storage (από factory settings panel)
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'layera-current-theme' && e.newValue) {
+        loadAndApplyStoredColors();
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('storage', handleStorageChange);
+    };
   }, []);
 };

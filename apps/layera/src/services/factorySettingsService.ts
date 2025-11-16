@@ -295,17 +295,10 @@ export class FactorySettingsService {
    * Φορτώνει τις εργοστασιακές ρυθμίσεις (fallback σε local αν Firebase αποτύχει)
    */
   static async loadFactorySettingsWithFallback(paletteType: PaletteType = 'enterprise') {
-    // Ελέγχουμε αν έχουμε authenticated user πρώτα
-    const currentUser = getAuthCurrentUser();
-
-    if (!currentUser) {
-      console.log('🔐 Χρήση local factory settings (δεν υπάρχει authentication)');
-      return loadFactorySettings(paletteType);
-    }
-
     try {
       const firebaseSettings = await this.getFactorySettingById(paletteType);
       if (firebaseSettings) {
+        console.log('✅ Φόρτωση factory settings από Firebase επιτυχής');
         return convertPaletteToAppFormat(firebaseSettings.palette);
       }
     } catch (error) {
