@@ -79,7 +79,7 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
             display: 'flex',
             flexDirection: 'row',
             flexWrap: 'wrap',
-            gap: 'var(--layera-global-spacing-6)',
+            gap: 'var(--layera-space-lg)',
             width: 'var(--layera-global-layout-width-full)',
             justifyContent: 'var(--layera-global-justifyContent-center)',
             alignItems: 'var(--layera-global-alignItems-center)',
