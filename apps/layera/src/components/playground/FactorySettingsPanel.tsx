@@ -204,7 +204,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
           onClick={handleResetToFactory}
           disabled={isResetting || isLoading}
           style={{
-            minWidth: '140px'
+            minWidth: 'var(--layera-global-spacing-96)'
           }}
         >
           {isResetting ? (
@@ -255,9 +255,9 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
             <Box
               key={index}
               style={{
-                width: '12px',
-                height: '12px',
-                borderRadius: '2px',
+                width: 'var(--layera-iconInteractive-sizing-padding-lg)',
+                height: 'var(--layera-iconInteractive-sizing-padding-lg)',
+                borderRadius: 'var(--layera-iconInteractive-sizing-padding-xs)',
                 backgroundColor: color.hex,
                 border: '1px solid rgba(255, 255, 255, 0.3)'
               }}

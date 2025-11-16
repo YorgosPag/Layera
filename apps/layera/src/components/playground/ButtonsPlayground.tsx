@@ -102,16 +102,16 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
           <button style={{
             backgroundColor: colors.primary, // primary - dynamic
             color: 'white',
-            padding: buttonState.shape === 'square' ? '16px' : '8px 16px',
+            padding: buttonState.shape === 'square' ? 'var(--layera-iconInteractive-sizing-padding-xl)' : 'var(--layera-iconInteractive-sizing-padding-md) var(--layera-iconInteractive-sizing-padding-xl)',
             border: 'none',
-            borderRadius: buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px',
+            borderRadius: buttonState.shape === 'rounded' ? 'var(--layera-global-button-height-xl)' : 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
             cursor: 'pointer',
-            minWidth: buttonState.shape === 'square' ? '50px' : '120px',
-            height: buttonState.shape === 'square' ? '50px' : 'auto',
+            minWidth: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : '120px',
+            height: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : 'auto',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '6px',
+            gap: 'var(--layera-iconInteractive-sizing-padding-sm)',
             fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
           }}>
             {buttonState.withIcon && <CheckIcon size="sm" />}
@@ -120,16 +120,16 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
           <button style={{
             backgroundColor: colors.secondary, // secondary - dynamic
             color: 'white',
-            padding: buttonState.shape === 'square' ? '16px' : '8px 16px',
+            padding: buttonState.shape === 'square' ? 'var(--layera-iconInteractive-sizing-padding-xl)' : 'var(--layera-iconInteractive-sizing-padding-md) var(--layera-iconInteractive-sizing-padding-xl)',
             border: 'none',
-            borderRadius: buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px',
+            borderRadius: buttonState.shape === 'rounded' ? 'var(--layera-global-button-height-xl)' : 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
             cursor: 'pointer',
-            minWidth: buttonState.shape === 'square' ? '50px' : '120px',
-            height: buttonState.shape === 'square' ? '50px' : 'auto',
+            minWidth: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : '120px',
+            height: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : 'auto',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '6px',
+            gap: 'var(--layera-iconInteractive-sizing-padding-sm)',
             fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
           }}>
             {buttonState.withIcon && <SettingsIcon size="sm" />}
@@ -138,16 +138,16 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
           <button style={{
             backgroundColor: colors.success, // success - dynamic
             color: 'white',
-            padding: buttonState.shape === 'square' ? '16px' : '8px 16px',
+            padding: buttonState.shape === 'square' ? 'var(--layera-iconInteractive-sizing-padding-xl)' : 'var(--layera-iconInteractive-sizing-padding-md) var(--layera-iconInteractive-sizing-padding-xl)',
             border: 'none',
-            borderRadius: buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px',
+            borderRadius: buttonState.shape === 'rounded' ? 'var(--layera-global-button-height-xl)' : 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
             cursor: 'pointer',
-            minWidth: buttonState.shape === 'square' ? '50px' : '120px',
-            height: buttonState.shape === 'square' ? '50px' : 'auto',
+            minWidth: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : '120px',
+            height: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : 'auto',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '6px',
+            gap: 'var(--layera-iconInteractive-sizing-padding-sm)',
             fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
           }}>
             {buttonState.withIcon && <CheckIcon size="sm" />}
@@ -156,16 +156,16 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
           <button style={{
             backgroundColor: colors.warning, // warning - dynamic
             color: 'black',
-            padding: buttonState.shape === 'square' ? '16px' : '8px 16px',
+            padding: buttonState.shape === 'square' ? 'var(--layera-iconInteractive-sizing-padding-xl)' : 'var(--layera-iconInteractive-sizing-padding-md) var(--layera-iconInteractive-sizing-padding-xl)',
             border: 'none',
-            borderRadius: buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px',
+            borderRadius: buttonState.shape === 'rounded' ? 'var(--layera-global-button-height-xl)' : 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
             cursor: 'pointer',
-            minWidth: buttonState.shape === 'square' ? '50px' : '120px',
-            height: buttonState.shape === 'square' ? '50px' : 'auto',
+            minWidth: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : '120px',
+            height: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : 'auto',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '6px',
+            gap: 'var(--layera-iconInteractive-sizing-padding-sm)',
             fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
           }}>
             {buttonState.withIcon && <CloseIcon size="sm" />}
@@ -174,16 +174,16 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
           <button style={{
             backgroundColor: colors.danger, // danger - dynamic
             color: 'white',
-            padding: buttonState.shape === 'square' ? '16px' : '8px 16px',
+            padding: buttonState.shape === 'square' ? 'var(--layera-iconInteractive-sizing-padding-xl)' : 'var(--layera-iconInteractive-sizing-padding-md) var(--layera-iconInteractive-sizing-padding-xl)',
             border: 'none',
-            borderRadius: buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px',
+            borderRadius: buttonState.shape === 'rounded' ? 'var(--layera-global-button-height-xl)' : 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
             cursor: 'pointer',
-            minWidth: buttonState.shape === 'square' ? '50px' : '120px',
-            height: buttonState.shape === 'square' ? '50px' : 'auto',
+            minWidth: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : '120px',
+            height: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : 'auto',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '6px',
+            gap: 'var(--layera-iconInteractive-sizing-padding-sm)',
             fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
           }}>
             {buttonState.withIcon && <CloseIcon size="sm" />}
@@ -192,16 +192,16 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
           <button style={{
             backgroundColor: colors.info, // info - dynamic
             color: 'white',
-            padding: buttonState.shape === 'square' ? '16px' : '8px 16px',
+            padding: buttonState.shape === 'square' ? 'var(--layera-iconInteractive-sizing-padding-xl)' : 'var(--layera-iconInteractive-sizing-padding-md) var(--layera-iconInteractive-sizing-padding-xl)',
             border: 'none',
-            borderRadius: buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px',
+            borderRadius: buttonState.shape === 'rounded' ? 'var(--layera-global-button-height-xl)' : 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
             cursor: 'pointer',
-            minWidth: buttonState.shape === 'square' ? '50px' : '120px',
-            height: buttonState.shape === 'square' ? '50px' : 'auto',
+            minWidth: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : '120px',
+            height: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : 'auto',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '6px',
+            gap: 'var(--layera-iconInteractive-sizing-padding-sm)',
             fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
           }}>
             {buttonState.withIcon && <SearchIcon size="sm" />}
@@ -228,16 +228,16 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
           <button style={{
             backgroundColor: 'transparent', // ghost
             color: colors.secondary,
-            padding: buttonState.shape === 'square' ? '16px' : '8px 16px',
+            padding: buttonState.shape === 'square' ? 'var(--layera-iconInteractive-sizing-padding-xl)' : 'var(--layera-iconInteractive-sizing-padding-md) var(--layera-iconInteractive-sizing-padding-xl)',
             border: 'none',
-            borderRadius: buttonState.shape === 'rounded' ? '50px' : buttonState.shape === 'square' ? '6px' : '6px',
+            borderRadius: buttonState.shape === 'rounded' ? 'var(--layera-global-button-height-xl)' : 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
             cursor: 'pointer',
-            minWidth: buttonState.shape === 'square' ? '50px' : '120px',
-            height: buttonState.shape === 'square' ? '50px' : 'auto',
+            minWidth: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : '120px',
+            height: buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : 'auto',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: '6px',
+            gap: 'var(--layera-iconInteractive-sizing-padding-sm)',
             fontSize: buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'
           }}>
             {buttonState.withIcon && <CompassIcon size="sm" />}
