@@ -116,7 +116,6 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             size={buttonState.size}
             icon={buttonState.withIcon ? <CloseIcon size="sm" /> : undefined}
             className="layera-button-dynamic-warning"
-            style={{ backgroundColor: colors.warning }}
           >
             {buttonState.shape === 'square' ? 'W' : 'Warning'}
           </Button>
