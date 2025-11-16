@@ -19,18 +19,38 @@
         "primary": {
           "value": "#f59e0b",
           "comment": "Primary warning color (amber-500)"
+        },
+        "light": {
+          "value": "#fbbf24",
+          "comment": "Light warning variant (amber-400)"
+        },
+        "dark": {
+          "value": "#d97706",
+          "comment": "Dark warning variant (amber-600)"
         }
       },
       "info": {
         "primary": {
           "value": "#6366f1",
           "comment": "Primary info color (indigo-500)"
+        },
+        "light": {
+          "value": "#818cf8",
+          "comment": "Light info variant (indigo-400)"
+        },
+        "dark": {
+          "value": "#4f46e5",
+          "comment": "Dark info variant (indigo-600)"
         }
       },
       "neutral": {
         "light": {
           "value": "#f3f4f6",
           "comment": "Light neutral (gray-100) - replaces hardcoded RGB"
+        },
+        "medium": {
+          "value": "#9ca3af",
+          "comment": "Medium neutral (gray-400) - replaces hardcoded RGB"
         },
         "dark": {
           "value": "#374151",
@@ -39,6 +59,10 @@
       }
     },
     "transition": {
+      "fast": {
+        "value": "0.1s ease",
+        "comment": "Fast transitions for micro-interactions"
+      },
       "normal": {
         "value": "0.2s ease",
         "comment": "Standard transition speed - replaces hardcoded 0.25s"

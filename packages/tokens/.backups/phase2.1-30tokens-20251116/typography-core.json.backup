@@ -63,6 +63,10 @@
     "bold": {
       "value": "700",
       "comment": "Bold for headings"
+    },
+    "extrabold": {
+      "value": "800",
+      "comment": "Extra bold for display"
     }
   },
   "lineHeight": {
@@ -82,10 +86,18 @@
     "relaxed": {
       "value": "1.625",
       "comment": "Relaxed leading for readability"
+    },
+    "loose": {
+      "value": "2",
+      "comment": "Loose leading for emphasis"
     }
   },
   "letterSpacing": {
     "comment": "🎯 Letter Spacing Tokens - Text refinement",
+    "tighter": {
+      "value": "-0.05em",
+      "comment": "Tighter for large headings"
+    },
     "tight": {
       "value": "-0.025em",
       "comment": "Tight for headings"
@@ -97,6 +109,10 @@
     "wide": {
       "value": "0.025em",
       "comment": "Wide for emphasis"
+    },
+    "wider": {
+      "value": "0.05em",
+      "comment": "Wider for small caps"
     }
   }
 }

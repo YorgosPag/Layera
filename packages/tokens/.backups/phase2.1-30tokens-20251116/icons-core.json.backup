@@ -21,9 +21,37 @@
       "value": "2rem",
       "comment": "32px - Same as lg for consistency"
     },
+    "xxl": {
+      "value": "3rem",
+      "comment": "48px - Hero icons"
+    },
+    "xxxl": {
+      "value": "4rem",
+      "comment": "64px - Ultra large icons"
+    },
+    "leafletSmall": {
+      "value": "12px",
+      "comment": "Map leaflet small icons"
+    },
+    "leafletMedium": {
+      "value": "16px",
+      "comment": "Map leaflet medium icons"
+    },
     "leafletStandard": {
       "value": "20px",
       "comment": "Map leaflet standard icons"
+    },
+    "leafletLarge": {
+      "value": "24px",
+      "comment": "Map leaflet large icons"
+    },
+    "leafletXl": {
+      "value": "32px",
+      "comment": "Map leaflet extra large icons"
+    },
+    "strokeThin": {
+      "value": "1",
+      "comment": "Thin stroke width"
     },
     "strokeLight": {
       "value": "1.5",
@@ -32,6 +60,10 @@
     "strokeNormal": {
       "value": "2",
       "comment": "Normal stroke width"
+    },
+    "strokeBold": {
+      "value": "2.5",
+      "comment": "Bold stroke width"
     },
     "colorPrimary": {
       "value": "#fbbf24",
