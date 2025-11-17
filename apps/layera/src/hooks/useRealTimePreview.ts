@@ -164,6 +164,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
     }
   }, [getHoverEffectCSS, getActiveEffectCSS, getBorderWidthCSS, getBorderRadiusCSS, getFontSizeCSS]);
 
+
   /**
    * Ενημερώνει card CSS variables βάσει κατηγορίας και χρώματος
    */
@@ -226,9 +227,10 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
     // Use DocumentFragment για batch DOM updates
     const root = document.documentElement;
 
+
     // Extended CSS variable mapping for all controls and categories
     const cssVariableMap: Record<string, string> = {
-      // Button colors (χρήση των πραγματικών CSS variables από τα buttons)
+      // Generic colors (μόνο για fallback)
       primaryColor: '--layera-color-primary',
       secondaryColor: '--layera-color-text-secondary',
       successColor: '--layera-color-semantic-success-primary',
@@ -303,36 +305,29 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
           // Update card/component background variables
           updateCardVariables(key, value, category);
         } else if (elementType === 'buttons') {
-          // Update button background variables AND header buttons
-          // For button backgrounds, we need to update the main button color variables
-          const cssVariable = cssVariableMap[key];
-          if (cssVariable) {
-            root.style.setProperty(cssVariable, value);
-          }
-          // Also update header buttons for immediate visual feedback
-          applyHeaderButtonPreview(value);
+          // DELEGATION: Χρησιμοποιούμε το useCSSVariables για button updates
+          // Αυτό αποφεύγει διπλότυπα και εξασφαλίζει ενιαία πηγή αλήθειας
+          console.log(`Button ${key} update delegated to useCSSVariables system`);
+
+          // ΑΦΑΙΡΕΣΗ: Το applyHeaderButtonPreview επηρεάζει όλα τα playground buttons
+          // Σε selective mode δεν χρειαζόμαστε header button updates
+          // Header buttons θα ενημερωθούν μόνο σε full theme mode
         }
       } else if (category === 'text') {
         if (elementType === 'cards' || elementType === 'modals' || elementType === 'inputs' || elementType === 'layout' || elementType === 'tables') {
           // Update card/component text variables
           updateCardVariables(key, value, category);
         } else if (elementType === 'buttons') {
-          // Update button text variables (but don't change header button backgrounds)
-          const cssVariable = cssVariableMap[key];
-          if (cssVariable) {
-            root.style.setProperty(cssVariable, value);
-          }
+          // DELEGATION: Button text updates handled by useCSSVariables
+          console.log(`Button text ${key} update delegated to useCSSVariables system`);
         }
       } else if (category === 'borders') {
         if (elementType === 'cards' || elementType === 'modals' || elementType === 'inputs' || elementType === 'layout' || elementType === 'tables') {
           // Update card/component border variables
           updateCardVariables(key, value, category);
         } else if (elementType === 'buttons') {
-          // Update button border variables
-          const cssVariable = cssVariableMap[key];
-          if (cssVariable) {
-            root.style.setProperty(cssVariable, value);
-          }
+          // DELEGATION: Button border updates handled by useCSSVariables
+          console.log(`Button border ${key} update delegated to useCSSVariables system`);
         }
       } else if (category === 'buttons' && elementType === 'buttons') {
         // Update button colors AND header buttons (this is the main button color category)
@@ -462,6 +457,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
     // Remove all live preview styles
     const styleIds = [
       'layera-live-preview-header-buttons',
+      'layera-button-color-overrides', // CSS overrides for isolated button colors
       'layera-live-preview-hover',
       'layera-live-preview-active',
       'layera-live-preview-border-width',

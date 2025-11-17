@@ -26,6 +26,7 @@ export interface CSSVariablesActions {
   ensureCSSVariablesExist: () => void;
   applySquareColorsToHeader: () => void;
   applyColorsToApp: (colorCategory: ColorCategory, currentColors: ColorPaletteWithAlpha, elementType?: string) => Promise<void>;
+  applySpecificButtonColor: (colorKey: string, colorValue: string) => void;
 }
 
 export interface UseCSSVariablesReturn {
@@ -212,6 +213,53 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
   };
 
   /**
+   * Εφαρμόζει isolated CSS rules για συγκεκριμένο button variant
+   * Αυτή η μέθοδος δημιουργεί CSS override rules αντί να αλλάζει variables
+   */
+  const applySpecificButtonColor = (colorKey: string, colorValue: string) => {
+    // Create or update style element για isolated button overrides
+    let style = document.getElementById('layera-button-color-overrides') as HTMLStyleElement;
+
+    if (!style) {
+      style = document.createElement('style');
+      style.id = 'layera-button-color-overrides';
+      document.head.appendChild(style);
+    }
+
+    // Mapping από colorKey σε CSS class
+    const colorToClassMap: Record<string, string> = {
+      'primaryColor': '.layera-btn--primary',
+      'secondaryColor': '.layera-btn--secondary',
+      'successColor': '.layera-btn--success',
+      'warningColor': '.layera-btn--warning',
+      'dangerColor': '.layera-btn--danger',
+      'infoColor': '.layera-btn--info'
+    };
+
+    const cssClass = colorToClassMap[colorKey];
+    if (!cssClass) return;
+
+    // Get existing rules and remove old rule for this class
+    let existingCSS = style.textContent || '';
+    const classPattern = new RegExp(`\\s*${cssClass.replace('.', '\\.')}[^}]*\\}`, 'g');
+    existingCSS = existingCSS.replace(classPattern, '');
+
+    // Add new override rule with high specificity
+    const newRule = `
+      ${cssClass} {
+        background-color: ${colorValue} !important;
+        border-color: ${colorValue} !important;
+      }
+      ${cssClass}:hover {
+        background-color: ${colorValue}DD !important;
+        border-color: ${colorValue}DD !important;
+      }`;
+
+    style.textContent = existingCSS + newRule;
+    console.log(`Applied isolated color ${colorValue} to ${cssClass}`);
+  };
+
+  /**
    * Επιστρέφει default colors για fallback
    */
   const getCurrentDefaultColors = (): ColorPaletteWithAlpha => ({
@@ -226,7 +274,8 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
   const actions: CSSVariablesActions = {
     ensureCSSVariablesExist,
     applySquareColorsToHeader,
-    applyColorsToApp
+    applyColorsToApp,
+    applySpecificButtonColor
   };
 
   return {

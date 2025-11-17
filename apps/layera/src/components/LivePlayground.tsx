@@ -489,6 +489,22 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               currentSetters={colorHelpersActions.getSettersForCategory(colorHookState.colorCategory) as unknown as Record<string, (value: ColorWithAlpha | string) => void>}
               startPreview={(key: string, value: string | ColorWithAlpha) => {
                 const previewValue = typeof value === 'string' ? value : value.rgba;
+
+                // SELECTIVE UPDATE: Αν είναι buttons, ενημερώνουμε μόνο το συγκεκριμένο κουμπί
+                console.log('DEBUG: startPreview called with:', {
+                  key,
+                  elementType: colorHookState.elementType,
+                  colorCategory: colorHookState.colorCategory,
+                  value: typeof value === 'string' ? value : value.hex
+                });
+
+                if (colorHookState.elementType === 'buttons' &&
+                   (colorHookState.colorCategory === 'backgrounds' || colorHookState.colorCategory === 'buttons')) {
+                  const colorValue = typeof value === 'string' ? value : value.hex;
+                  console.log('DEBUG: Calling applySpecificButtonColor with:', key, colorValue);
+                  cssActions.applySpecificButtonColor(key, colorValue);
+                }
+
                 startPreview(key, previewValue, colorHookState.colorCategory, colorHookState.elementType);
               }}
               colorCategory={colorHookState.colorCategory}
