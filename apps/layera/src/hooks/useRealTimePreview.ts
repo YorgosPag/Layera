@@ -126,9 +126,12 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
     return `
       .layera-card,
       .layera-modal,
+      .layera-layout,
       [data-layera-playground="true"] .layera-card,
       [data-layera-playground="true"] .layera-modal,
-      [data-layera-playground="true"] .layera-flex.layera-flex-column.layera-flex--align-center.layera-flex--justify-center.layera-padding--md {
+      [data-layera-playground="true"] .layera-layout,
+      [data-layera-playground="true"] .layera-flex.layera-flex-column.layera-flex--align-center.layera-flex--justify-center.layera-padding--md,
+      [data-layera-playground="true"] .layera-flex.layera-flex--justify-center.layera-flex--align-center {
         border-radius: ${radiusValue} !important;
       }`;
   }, []);

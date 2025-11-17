@@ -41,14 +41,26 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
   // Helper function για translation των radius values
   const getRadiusInGreek = (radius: string) => {
     switch(radius) {
-      case 'none': return 'χωρίς καμπυλότητα';
-      case 'xs': return 'ελαφρά καμπυλότητα';
-      case 'sm': return 'μικρή καμπυλότητα';
-      case 'md': return 'μεσαία καμπυλότητα';
-      case 'lg': return 'μεγάλη καμπυλότητα';
-      case 'xl': return 'πολύ μεγάλη καμπυλότητα';
+      case 'none': return 'χωρίς καμπυλότητα (0px)';
+      case 'sm': return 'ελαφρά καμπυλότητα (4px)';
+      case 'lg': return 'μεσαία καμπυλότητα (8px)';
+      case 'xl': return 'πολλή καμπυλότητα (12px)';
+      case 'xxl': return 'μεγάλη καμπυλότητα (16px)';
       case 'round': return 'πλήρως στρογγυλά';
       default: return radius;
+    }
+  };
+
+  // Helper function για μετατροπή radius values σε tokens
+  const getRadiusToken = (radius: string) => {
+    switch(radius) {
+      case 'none': return '0px';                        // 0px
+      case 'sm': return 'var(--layera-radius-sm)';      // 4px
+      case 'lg': return 'var(--layera-radius-lg)';      // 8px - default για layout
+      case 'xl': return 'var(--layera-radius-xl)';      // 12px
+      case 'xxl': return 'var(--layera-radius-xxl)';    // 16px
+      case 'round': return 'var(--layera-radius-full)'; // πλήρως στρογγυλά
+      default: return 'var(--layera-radius-lg)';        // 8px fallback
     }
   };
 
@@ -190,9 +202,13 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
 
         <Box className="layera-flex layera-flex--wrap-wrap layera-flex--justify-center layera-flex--align-center layera-flex--gap-md layera-padding-top--lg layera-padding-bottom--lg layera-width--full">
           {layoutConfigs.map(({ key, title, description, colorValue }) => {
+            // Debug logging
+            console.log('📐 LayoutPlayground: layoutRadius prop =', layoutRadius);
+            console.log('📐 LayoutPlayground: Final borderRadius =', getRadiusToken(layoutRadius));
+
             const baseStyle = {
               padding: 'var(--layera-global-spacing-3)',
-              borderRadius: `var(--layera-global-borderRadius-${borderRadius})`,
+              borderRadius: getRadiusToken(layoutRadius),
               height: 'var(--layera-fontSize-6xl)',
               width: 'calc(var(--layera-fontSize-6xl) * 3)',
               minWidth: 'calc(var(--layera-fontSize-6xl) * 3)',

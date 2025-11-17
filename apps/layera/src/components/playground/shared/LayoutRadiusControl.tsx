@@ -46,33 +46,33 @@ export const LayoutRadiusControl: React.FC<LayoutRadiusControlProps> = ({
   const layoutRadiusOptions = [
     {
       value: 'none',
-      label: 'Χωρίς',
+      label: '0px',
       token: '0px',
-      description: 'Χωρίς καμπυλότητα (0px - τετράγωνα)'
+      description: 'Χωρίς καμπυλότητα (0px - τετράγωνα layout)'
     },
     {
-      value: 'xs',
-      label: 'Ελαφρώς',
-      token: '0.125rem',
-      description: 'Ελαφρώς καμπύλες (2px)'
-    },
-    {
-      value: 'md',
-      label: 'Μεσαία',
-      token: 'var(--layera-radius-layout)',
-      description: 'Μεσαία καμπύλες (6px)'
+      value: 'sm',
+      label: '4px',
+      token: 'var(--layera-radius-sm)',
+      description: 'Ελαφρώς καμπύλες (4px)'
     },
     {
       value: 'lg',
-      label: 'Πολύ',
-      token: '0.5rem',
-      description: 'Πολύ καμπύλες (8px)'
+      label: '8px',
+      token: 'var(--layera-radius-lg)',
+      description: 'Μεσαία καμπύλες (8px - default για layout)'
     },
     {
       value: 'xl',
-      label: 'Μεγάλες',
-      token: '0.75rem',
-      description: 'Μεγάλες καμπύλες (12px - layouts)'
+      label: '12px',
+      token: 'var(--layera-radius-xl)',
+      description: 'Πολύ καμπύλες (12px)'
+    },
+    {
+      value: 'xxl',
+      label: '16px',
+      token: 'var(--layera-radius-xxl)',
+      description: 'Μεγάλες καμπύλες (16px - ειδικά layouts)'
     }
   ];
 
@@ -81,8 +81,9 @@ export const LayoutRadiusControl: React.FC<LayoutRadiusControlProps> = ({
     onChange(newValue);
 
     // Trigger real-time preview
+    console.log('🔧 LayoutRadiusControl: Sending preview', { key: 'borderRadius', value: newValue });
     if (onPreview) {
-      onPreview('layoutRadius', newValue);
+      onPreview('borderRadius', newValue);
     }
 
     // Reset visual feedback
