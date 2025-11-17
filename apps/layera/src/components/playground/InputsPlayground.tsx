@@ -132,63 +132,11 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
     { key: 'info', label: 'Info Input', placeholder: 'Info πεδίο', colorValue: currentColors.info }
   ];
 
-  // Helper function για conversion του inputRadius σε tokens
-  const getInputRadiusToken = (radius: string) => {
-    switch(radius) {
-      case 'none': return '0px';                        // 0px
-      case 'sm': return 'var(--layera-radius-sm)';      // 4px
-      case 'lg': return 'var(--layera-radius-lg)';      // 8px - default για inputs
-      case 'xl': return 'var(--layera-radius-xl)';      // 12px
-      case 'xxl': return 'var(--layera-radius-xxl)';    // 16px
-      default: return 'var(--layera-radius-lg)';        // 8px fallback
-    }
-  };
 
-  const getInputStyle = (colorValue: string) => {
-    const baseStyle = {
-      padding: 'var(--layera-global-spacing-4)',
-      borderRadius: getInputRadiusToken(inputRadius),
-      fontSize: 'var(--layera-fontSize-md)',
-      width: '100%',
-      minWidth: '180px',
-      height: '48px',
-      outline: 'none',
-      textAlign: 'center' as const
-    };
-
-    switch (colorCategory) {
-      case 'backgrounds':
-        return {
-          ...baseStyle,
-          backgroundColor: colorValue,
-          color: colorValue === 'var(--layera-icon-colorWarning)' ? 'var(--layera-color-text-primary)' : 'var(--layera-color-text-on-dark)',
-          border: 'var(--layera-global-borderWidth-1) solid var(--layera-border-primary)'
-        };
-      case 'text':
-        return {
-          ...baseStyle,
-          backgroundColor: 'var(--layera-color-surface-primary)',
-          color: colorValue,
-          border: 'var(--layera-global-borderWidth-1) solid var(--layera-border-primary)'
-        };
-      case 'borders':
-        return {
-          ...baseStyle,
-          backgroundColor: 'var(--layera-color-surface-primary)',
-          color: 'var(--layera-color-text-primary)',
-          border: `var(--layera-global-borderWidth-${borderWidth}) solid ${colorValue}`
-        };
-      default:
-        return baseStyle;
-    }
-  };
 
   return (
     <Box
-      style={{
-        paddingLeft: 'var(--layera-size-6)',
-        paddingRight: 'var(--layera-size-6)'
-      } as React.CSSProperties}
+      className="layera-padding-left--lg layera-padding-right--lg"
     >
       <Box className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
         <h3 className="layera-typography layera-margin-bottom--sm layera-text--align-center" data-size="lg" data-weight="bold" data-color="primary">
@@ -204,12 +152,13 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
           {inputConfigs.map(({ key, label, placeholder, colorValue }, index) => (
             <Box
               key={key}
-              className="layera-width--200 layera-text-align--center"
+              className="layera-width--200 layera-text-align--center layera-margin-right--sm"
             >
-              <input
+              <Box
+                as="input"
                 type="text"
                 placeholder={placeholder}
-                style={getInputStyle(colorValue)}
+                className="layera-input layera-width--full layera-padding--md layera-text-align--center layera-border--solid layera-border-width--1 layera-border-radius--lg"
               />
             </Box>
           ))}
