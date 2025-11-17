@@ -193,10 +193,7 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
 
   return (
     <Box
-      style={{
-        paddingLeft: 'var(--layera-size-6)',
-        paddingRight: 'var(--layera-size-6)'
-      } as React.CSSProperties}
+      className="layera-padding-left--lg layera-padding-right--lg"
     >
       <Box className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
         <h3 className="layera-typography layera-margin-bottom--sm layera-text--align-center" data-size="lg" data-weight="bold" data-color="primary">
@@ -212,13 +209,8 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
             console.log('📋 HeaderPlayground: headerRadius prop =', headerRadius);
             console.log('📋 HeaderPlayground: Final borderRadius =', getRadiusToken(headerRadius));
 
-            const headerStyle = {
-              height: 'var(--layera-fontSize-6xl)',
+            const dynamicHeaderStyles = {
               borderRadius: getRadiusToken(headerRadius),
-              display: 'flex',
-              alignItems: 'var(--layera-global-alignItems-center)',
-              justifyContent: 'var(--layera-global-justifyContent-space-between)',
-              padding: 'var(--layera-global-spacing-3)',
               // Χρήση CSS variables για real-time preview support
               backgroundColor: `var(--layera-header-bg-${key}, ${getBackgroundColor(colorValue)})`,
               color: `var(--layera-header-text-${key}, ${getTextColor(colorValue)})`,
@@ -226,7 +218,11 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
             };
 
             return (
-              <Box key={key} style={headerStyle}>
+              <Box
+                key={key}
+                className="layera-height--6xl layera-flex layera-flex--align-center layera-flex--justify-space-between layera-padding--md"
+                style={dynamicHeaderStyles}
+              >
                 {/* Left section - Logo + Title */}
                 <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm">
                   <SquareButton

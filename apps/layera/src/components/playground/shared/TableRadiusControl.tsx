@@ -120,15 +120,9 @@ export const TableRadiusControl: React.FC<TableRadiusControlProps> = ({
 
       {/* Live Preview of Current Table Radius */}
       <Box
-        className={`layera-margin-bottom--sm layera-padding--lg layera-bg--surface-secondary layera-text-align--center layera-transition--normal ${isChanging ? 'layera-transform--scale-102' : 'layera-transform--scale-100'}`}
+        className={`layera-margin-bottom--sm layera-padding--lg layera-bg--surface-secondary layera-text-align--center layera-transition--normal layera-border--solid layera-border-width--2 layera-border-color--primary layera-min-height--4 layera-grid layera-grid-cols--2 layera-gap--xs layera-align-items--center ${isChanging ? 'layera-transform--scale-102' : 'layera-transform--scale-100'}`}
         style={{
-          borderRadius: currentOption.token,
-          border: '2px solid var(--layera-color-border-primary)',
-          minHeight: '4rem',
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '0.25rem',
-          alignItems: 'center'
+          borderRadius: currentOption.token
         } as React.CSSProperties}
       >
         <Box className="layera-padding--sm layera-bg--surface-primary" style={{ borderRadius: currentOption.token }}>
