@@ -163,7 +163,13 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
 
       {/* Color Controls - Horizontal Layout ARXES Compliant */}
       <Box
-        className="layera-flex layera-flex--gap-lg layera-flex--wrap layera-margin-bottom--4xl"
+        className="layera-grid layera-grid--gap-lg layera-margin-bottom--4xl"
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: 'var(--layera-size-8)',
+          padding: 'var(--layera-size-6)'
+        } as React.CSSProperties}
       >
         {Object.entries(currentColors || {}).map(([colorKey, colorValue]) => {
           const description = colorDescriptions[colorKey as keyof typeof colorDescriptions] || '';
