@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
@@ -35,10 +35,17 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
 }) => {
   const [localAlphaEnabled, setLocalAlphaEnabled] = useState(alphaEnabled);
 
+  // Συγχρονισμός με το external prop
+  useEffect(() => {
+    setLocalAlphaEnabled(alphaEnabled);
+  }, [alphaEnabled]);
+
   const handleAlphaToggle = () => {
     const newState = !localAlphaEnabled;
+    console.log('🎯 Alpha toggle clicked! Current:', localAlphaEnabled, '-> New:', newState);
     setLocalAlphaEnabled(newState);
     onAlphaToggle?.(newState);
+    console.log('✅ Alpha toggle complete. Local state should be:', newState);
   };
 
   // Helper function: Ensure ColorWithAlpha format
@@ -168,14 +175,17 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
         {Object.entries(currentColors || {}).map(([colorKey, colorValue]) => {
           const description = colorDescriptions[colorKey as keyof typeof colorDescriptions] || '';
 
+          // Debug: Εμφάνιση της τρέχουσας κατάστασης του toggle
+          console.log('🔍 Rendering color picker for', colorKey, '- alphaEnabled:', localAlphaEnabled);
+
           if (localAlphaEnabled) {
             // Alpha Mode - Use ColorPickerWithAlpha
             const colorWithAlpha = ensureColorWithAlpha(colorValue);
 
             return (
               <ColorPickerWithAlpha
-                key={colorKey}
-                label={`${colorKey.charAt(0).toUpperCase() + colorKey.slice(1)} ${localAlphaEnabled ? '(RGBA)' : '(HEX)'}`}
+                key={`${colorKey}-alpha`}
+                label={`${colorKey.charAt(0).toUpperCase() + colorKey.slice(1)} (RGBA)`}
                 value={colorWithAlpha}
                 onChange={(newValue) => handleColorChange(colorKey, newValue)}
                 className="layera-height--auto layera-text--align-center"
@@ -187,7 +197,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
 
             return (
               <OptimizedColorPicker
-                key={colorKey}
+                key={`${colorKey}-hex`}
                 label={`${colorKey.charAt(0).toUpperCase() + colorKey.slice(1)} (HEX)`}
                 value={hexValue}
                 onChange={(newValue) => handleColorChange(colorKey, newValue)}
