@@ -21,6 +21,7 @@ import { FactorySettingsPanel } from './playground/FactorySettingsPanel';
 import type { ColorWithAlpha } from './playground/shared/ColorPickerWithAlpha';
 import type { FontSizeValue } from './playground/shared/FontSizeControl';
 import { ButtonRadiusControl } from './playground/shared/ButtonRadiusControl';
+import { LayoutRadiusControl } from './playground/shared/LayoutRadiusControl';
 import { loadCurrentThemeFromLocalStorage } from '../services/colorThemeService';
 import { useAuth } from '@layera/auth-bridge';
 import { useRealTimePreview } from '../hooks/useRealTimePreview';
@@ -100,6 +101,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
   // Button radius state for buttons
   const [buttonRadius, setButtonRadius] = useState<string>('md');
+
+  // Layout radius state for layout category
+  const [layoutRadius, setLayoutRadius] = useState<string>('md');
 
   // Font size state for text category
   const [fontSize, setFontSize] = useState<FontSizeValue>('base');
@@ -231,10 +235,11 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
-                borderRadius={borderRadius}
+                borderRadius={layoutRadius}
               />
             </Box>
           )}
+
 
           {colorHookState.elementType === 'tables' && (
             <Box className="layera-margin-bottom--xl">
@@ -264,6 +269,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               onBorderWidthChange={setBorderWidth}
               borderRadius={borderRadius}
               onBorderRadiusChange={setBorderRadius}
+              layoutRadius={layoutRadius}
+              onLayoutRadiusChange={setLayoutRadius}
               hoverEffect={hoverEffect}
               onHoverEffectChange={setHoverEffect}
               activeEffect={activeEffect}

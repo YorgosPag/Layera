@@ -8,6 +8,7 @@ import { BorderRadiusControl } from './shared/BorderRadiusControl';
 import { HoverControl } from './shared/HoverControl';
 import { ActiveControl } from './shared/ActiveControl';
 import { FontSizeControl, type FontSizeValue } from './shared/FontSizeControl';
+import { LayoutRadiusControl } from './shared/LayoutRadiusControl';
 
 /**
  * ColorCategorySelection Component
@@ -27,6 +28,8 @@ interface ColorCategorySelectionProps {
   onBorderWidthChange: (value: number) => void;
   borderRadius?: string;
   onBorderRadiusChange?: (value: string) => void;
+  layoutRadius?: string;
+  onLayoutRadiusChange?: (value: string) => void;
   hoverEffect?: string;
   onHoverEffectChange?: (value: string) => void;
   activeEffect?: string;
@@ -44,6 +47,8 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
   onBorderWidthChange,
   borderRadius = 'md',
   onBorderRadiusChange,
+  layoutRadius = 'md',
+  onLayoutRadiusChange,
   hoverEffect = 'normal',
   onHoverEffectChange,
   activeEffect = 'scale',
@@ -207,6 +212,18 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
         <FontSizeControl
           fontSize={fontSize}
           onFontSizeChange={onFontSizeChange}
+          className="layera-height--auto layera-text--align-center"
+          onPreview={onPreview}
+          buttonState={buttonState}
+        />
+      )}
+
+      {/* Layout Radius Control - ΜΟΝΟ για backgrounds category με layout element */}
+      {colorHookState.colorCategory === 'backgrounds' && colorHookState.elementType === 'layout' && onLayoutRadiusChange && (
+        <LayoutRadiusControl
+          value={layoutRadius}
+          onChange={onLayoutRadiusChange}
+          elementType="layout στοιχεία"
           className="layera-height--auto layera-text--align-center"
           onPreview={onPreview}
           buttonState={buttonState}
