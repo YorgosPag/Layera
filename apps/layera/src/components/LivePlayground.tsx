@@ -284,7 +284,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
                     Σχήμα Πλήκτρου
                   </h4>
-                  <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
+                  <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm layera-flex--justify-center">
                     <Button
                       variant={buttonState.shape === 'rectangular' ? 'primary' : 'secondary'}
                       size="sm"
@@ -314,7 +314,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
                     Size
                   </h4>
-                  <Box className="layera-flex layera-flex--gap-sm">
+                  <Box className="layera-flex layera-flex--gap-sm layera-flex--justify-center">
                     {buttonSizes.map((size) => (
                       <Button
                         key={size}
@@ -333,7 +333,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
                     Κείμενο & Εικονίδιο
                   </h4>
-                  <Box className="layera-flex layera-flex--gap-md layera-flex--align-center">
+                  <Box className="layera-flex layera-flex--gap-md layera-flex--align-center layera-flex--justify-center">
                     <input
                       type="text"
                       value={buttonState.text}

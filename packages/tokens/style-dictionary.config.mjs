@@ -588,6 +588,26 @@ export default {
         });
         output += `\n`;
 
+        // Justify Content Utilities - Generated από global.utilities.justifyContent tokens
+        output += `/* Justify Content Utilities - ARXES Compliant */\n`;
+        const justifyContentTokens = dictionary.allTokens.filter(token =>
+          token.path[0] === 'global' &&
+          token.path[1] === 'utilities' &&
+          token.path[2] === 'justifyContent'
+        );
+
+        justifyContentTokens.forEach(token => {
+          const justifyType = token.path[3];
+          if (justifyType && token.value) {
+            // Convert camelCase to kebab-case for class names
+            const className = justifyType.replace(/([A-Z])/g, '-$1').toLowerCase();
+            output += `.layera-flex--justify-${className} {\n`;
+            output += `  justify-content: ${token.value};\n`;
+            output += `}\n`;
+          }
+        });
+        output += `\n`;
+
         // Typography System Classes - Unified Generation από typography.unified token
         const typographyUnified = dictionary.allTokens.find(token => token.path.join('.') === 'typography.unified');
         if (typographyUnified && typographyUnified.value) {

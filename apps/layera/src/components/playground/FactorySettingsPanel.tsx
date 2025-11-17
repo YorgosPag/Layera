@@ -196,7 +196,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
           </Text>
 
           {/* Color Preview */}
-          <Box className="layera-flex layera-flex--gap-xs">
+          <Box className="layera-flex layera-flex--gap-xs layera-flex--justify-center">
             {Object.values(AVAILABLE_PALETTES[selectedPalette]).map((color, index) => (
               <Box
                 key={index}
@@ -216,13 +216,13 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
       </Box>
 
       {/* Controls Section - Horizontal */}
-      <Box className="layera-flex layera-flex--gap-lg layera-flex--wrap">
+      <Box className="layera-flex layera-flex--gap-lg layera-flex--wrap layera-flex--justify-center">
         {/* Palette Selection */}
         <Box>
           <Text className="layera-typography layera-margin-bottom--xs" data-size="sm" data-weight="medium" data-color="secondary">
             Επιλογή Παλέτας Χρωμάτων
           </Text>
-          <Box className="layera-flex layera-flex--gap-sm">
+          <Box className="layera-flex layera-flex--gap-sm layera-flex--justify-center">
             {paletteOptions.map((option) => (
               <Button
                 key={option.value}
@@ -239,7 +239,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
         </Box>
 
         {/* Action Buttons */}
-        <Box className="layera-flex layera-flex--gap-sm">
+        <Box className="layera-flex layera-flex--gap-sm layera-flex--justify-center">
         <Button
           variant={resetSuccess ? 'success' : 'warning'}
           size="sm"

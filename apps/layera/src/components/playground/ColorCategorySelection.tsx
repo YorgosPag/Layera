@@ -83,7 +83,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
         <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
           <CheckIcon size="sm" /> Επιλογή Κατηγορίας Αντικειμένων
         </h3>
-        <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
+        <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm layera-flex--justify-center">
           <Button
             variant={colorHookState.colorCategory === 'backgrounds' ? 'primary' : 'outline'}
             size="sm"
@@ -116,7 +116,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
         <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
           <PolygonIcon size="sm" /> Τύπος Στοιχείων για {colorHookState.colorCategory === 'backgrounds' ? 'Φόντα' : colorHookState.colorCategory === 'text' ? 'Κείμενα' : 'Περιγράμματα'}
         </h3>
-        <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm">
+        <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm layera-flex--justify-center">
           <Button
             variant={colorHookState.elementType === 'cards' ? 'primary' : 'outline'}
             size="sm"

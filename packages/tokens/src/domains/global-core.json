@@ -91,6 +91,24 @@
           "value": "right",
           "comment": "Right text alignment utility"
         }
+      },
+      "justifyContent": {
+        "center": {
+          "value": "center",
+          "comment": "Center flex/grid items horizontally"
+        },
+        "start": {
+          "value": "flex-start",
+          "comment": "Align flex/grid items to start"
+        },
+        "end": {
+          "value": "flex-end",
+          "comment": "Align flex/grid items to end"
+        },
+        "spaceBetween": {
+          "value": "space-between",
+          "comment": "Space flex/grid items evenly with space between"
+        }
       }
     }
   }
