@@ -100,6 +100,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   // Font size state for text category
   const [fontSize, setFontSize] = useState<FontSizeValue>('base');
 
+  // Alpha state for color controls
+  const [alphaEnabled, setAlphaEnabled] = useState<boolean>(false);
+
   // Real-time preview hook for header buttons
   const { startPreview, isPreviewActive } = useRealTimePreview({
     onCommit: (key: string, value: string) => {
@@ -364,6 +367,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 startPreview(key, previewValue);
               }}
               colorCategory={colorHookState.colorCategory}
+              alphaEnabled={alphaEnabled}
+              onAlphaToggle={setAlphaEnabled}
             />
           </Box>
 
