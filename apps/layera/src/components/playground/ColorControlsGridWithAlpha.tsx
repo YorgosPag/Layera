@@ -184,7 +184,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
                 label={`${colorKey.charAt(0).toUpperCase() + colorKey.slice(1)} ${localAlphaEnabled ? '(RGBA)' : '(HEX)'}`}
                 value={colorWithAlpha}
                 onChange={(newValue) => handleColorChange(colorKey, newValue)}
-                className="layera-height--auto"
+                className="layera-height--auto layera-text--align-center"
               />
             );
           } else {
@@ -197,7 +197,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
                 label={`${colorKey.charAt(0).toUpperCase() + colorKey.slice(1)} (HEX)`}
                 value={hexValue}
                 onChange={(newValue) => handleColorChange(colorKey, newValue)}
-                className="layera-height--auto"
+                className="layera-height--auto layera-text--align-center"
               />
             );
           }

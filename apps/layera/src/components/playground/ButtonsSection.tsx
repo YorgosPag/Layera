@@ -44,7 +44,7 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
   return (
     <Box className={className}>
       {/* Button Controls Panel */}
-      <Box className="layera-card layera-padding--lg layera-margin-bottom--xl">
+      <Box className="layera-card layera-padding--lg layera-margin-bottom--xl layera-text--align-center">
         <h3 className="layera-typography layera-margin-bottom--lg" data-size="lg" data-weight="bold" data-color="primary">
           🎮 Button Controls
         </h3>
@@ -141,7 +141,7 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
       </Box>
 
       {/* Button Showcase Gallery */}
-      <Box className="layera-card layera-padding--lg">
+      <Box className="layera-card layera-padding--lg layera-text--align-center">
         <h3 className="layera-typography layera-margin-bottom--lg" data-size="lg" data-weight="bold" data-color="primary">
           🎨 Button Gallery - {buttonState.size.toUpperCase()} Size
         </h3>
