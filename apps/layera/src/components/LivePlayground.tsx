@@ -346,9 +346,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               >
                 {/* Shape Control - ΠΡΩΤΟ */}
                 <Box className="layera-card layera-padding--lg layera-text--align-center">
-                  <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
-                    Σχήμα Πλήκτρου
-                  </h4>
+                  <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
+                    <PolygonIcon size="sm" /> Σχήμα Πλήκτρου
+                  </h3>
                   <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center layera-align-items--center">
                     <Button
                       variant={buttonState.shape === 'rectangular' ? 'primary' : 'outline'}
@@ -379,9 +379,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
                 {/* Size Control - ΔΕΥΤΕΡΟ */}
                 <Box className="layera-card layera-padding--lg layera-text--align-center">
-                  <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
-                    Size
-                  </h4>
+                  <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
+                    <SettingsIcon size="sm" /> Μέγεθος Πλήκτρων
+                  </h3>
                   <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center layera-align-items--center">
                     {buttonSizes.map((size) => (
                       <Button
@@ -399,9 +399,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
                 {/* Text & Icon Control - ΤΡΙΤΟ */}
                 <Box className="layera-card layera-padding--lg layera-text--align-center">
-                  <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
-                    Κείμενο & Εικονίδιο
-                  </h4>
+                  <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
+                    <EditIcon size="sm" /> Κείμενο & Εικονίδιο
+                  </h3>
                   <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--align-center layera-flex--justify-center">
                     <input
                       type="text"
