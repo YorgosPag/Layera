@@ -82,8 +82,8 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
       style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-        gap: '2rem',
-        padding: '1.5rem'
+        gap: 'var(--layera-size-8)',
+        padding: 'var(--layera-size-6)'
       } as React.CSSProperties}
     >
       {/* Color Category Selection */}
