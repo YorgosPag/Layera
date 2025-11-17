@@ -37,11 +37,7 @@ export const TextPreview: React.FC<TextPreviewProps> = ({
       {colorEntries.map(({ key, label, value }) => (
         <Box
           key={key}
-          className="layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-padding--md"
-          style={{
-            height: 'var(--layera-spacing-component-preview-border-height)',
-            minWidth: 'var(--layera-spacing-component-preview-border-min-width)'
-          }}
+          className="layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-padding--md layera-height--preview layera-min-width--preview"
         >
           <Box>
             <Text

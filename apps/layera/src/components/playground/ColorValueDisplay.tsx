@@ -36,7 +36,7 @@ export const ColorValueDisplay: React.FC<ColorValueDisplayProps> = ({
           <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="lg" data-weight="bold">
             <SettingsIcon size="sm" /> Τρέχουσες Ρυθμίσεις:
           </h4>
-          <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono" style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word', overflowWrap: 'break-word' }}>
+          <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono" className="layera-white-space--pre-wrap layera-word-wrap--break layera-overflow-wrap--break">
 {`{
   variant: "${buttonState.variant}",
   size: "${buttonState.size}",
@@ -49,10 +49,10 @@ export const ColorValueDisplay: React.FC<ColorValueDisplayProps> = ({
 
       {/* Current Color Values Display */}
       <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--neutral-light" data-family="mono" data-size="sm">
-        <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="lg" data-weight="bold" style={{ wordWrap: 'break-word', overflowWrap: 'break-word', whiteSpace: 'normal' }}>
+        <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="lg" data-weight="bold" className="layera-word-wrap--break layera-overflow-wrap--break layera-white-space--normal">
           <PaletteIcon size="sm" /> Παλέτα Χρωμάτων για {colorHookState.colorCategory.toUpperCase()}:
         </h4>
-        <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono" style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word', overflowWrap: 'break-word' }}>
+        <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono" className="layera-white-space--pre-wrap layera-word-wrap--break layera-overflow-wrap--break">
 {`{
   primary: "${currentColors?.primary || '#000000'}",
   secondary: "${currentColors?.secondary || '#000000'}",
@@ -66,10 +66,10 @@ export const ColorValueDisplay: React.FC<ColorValueDisplayProps> = ({
 
       {/* CSS Variables Display - ENTERPRISE DYNAMIC VERSION */}
       <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--info-light" data-family="mono" data-size="sm">
-        <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="lg" data-weight="bold" style={{ wordWrap: 'break-word', overflowWrap: 'break-word', whiteSpace: 'normal' }}>
+        <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="lg" data-weight="bold" className="layera-word-wrap--break layera-overflow-wrap--break layera-white-space--normal">
           <SettingsIcon size="sm" /> CSS Μεταβλητές για {colorHookState.colorCategory.toUpperCase()} στα {colorHookState.elementType.toUpperCase()}{colorHookState.elementType === 'buttons' ? ` (${colorHookState.colorButtonShape})` : ''}:
         </h4>
-        <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono" style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word', overflowWrap: 'break-word' }}>
+        <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono" className="layera-white-space--pre-wrap layera-word-wrap--break layera-overflow-wrap--break">
           {(() => {
             // ENTERPRISE: Dynamic CSS variable reading από DOM - Single source of truth από theme.ts
             const prefix = getCSSVariablePrefix(colorHookState.colorCategory, colorHookState.colorButtonShape);

@@ -141,41 +141,27 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
     return parts.join(' ');
   };
 
-  const getTableStyle = (colorValue: string) => {
-    const baseStyle = {
-      boxSizing: 'border-box' as const,
-      border: 'var(--layera-global-borderWidth-1) var(--layera-global-borderStyle-solid) transparent',
-      padding: 'var(--layera-global-spacing-3) var(--layera-global-spacing-4)',
-      borderRadius: 'var(--layera-global-layoutSystem-button-outline-borderRadius)',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      fontSize: 'var(--layera-fontSize-sm)',
-      fontWeight: 'var(--layera-fontWeight-medium)',
-    };
+  const getDynamicTableStyles = (colorValue: string) => {
 
     switch (colorCategory) {
       case 'backgrounds':
         return {
-          ...baseStyle,
           backgroundColor: colorValue,
           color: colorValue === '#f59e0b' ? 'var(--layera-color-text-primary)' : 'var(--layera-color-text-on-dark)'
         };
       case 'text':
         return {
-          ...baseStyle,
           backgroundColor: 'var(--layera-color-surface-primary)',
           color: colorValue
         };
       case 'borders':
         return {
-          ...baseStyle,
           backgroundColor: 'var(--layera-color-surface-primary)',
           color: 'var(--layera-color-text-primary)',
           border: `var(--layera-global-borderWidth-1) var(--layera-global-borderStyle-solid) ${colorValue}`
         };
       default:
-        return baseStyle;
+        return {};
     }
   };
 
@@ -190,10 +176,7 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
 
   return (
     <Box
-      style={{
-        paddingLeft: 'var(--layera-size-6)',
-        paddingRight: 'var(--layera-size-6)'
-      } as React.CSSProperties}
+      className="layera-padding-left--lg layera-padding-right--lg"
     >
       <Box className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
         <h3 className="layera-typography layera-margin-bottom--sm layera-text--align-center" data-size="lg" data-weight="bold" data-color="primary">
@@ -207,8 +190,8 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
           {colors.map((color, index) => (
             <Box
               key={color.name}
-              className={index === colors.length - 1 ? "layera-table-row layera-table-row--last" : "layera-table-row"}
-              style={getTableStyle(color.value)}
+              className={`layera-box-border layera-border--solid layera-border-color--transparent layera-padding--md layera-border-radius--md layera-flex layera-flex--justify-space-between layera-flex--align-center layera-text--size-sm layera-font-weight--medium ${index === colors.length - 1 ? "layera-table-row layera-table-row--last" : "layera-table-row"}`}
+              style={getDynamicTableStyles(color.value)}
             >
               <span>{color.name} Row</span>
               <span className="layera-opacity--80 layera-fontSize--xs">
