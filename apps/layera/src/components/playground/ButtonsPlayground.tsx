@@ -77,13 +77,22 @@ interface ButtonsPlaygroundProps {
   currentColors?: Record<string, string>;
   /** Border width for borders category (1, 2, or 3) */
   borderWidth?: number;
+  /** Button radius for styling */
+  buttonRadius?: string;
+  /** Hover effect for interactive elements */
+  hoverEffect?: string;
+  /** Active effect for interactive elements */
+  activeEffect?: string;
 }
 
 export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
   buttonState,
   colorCategory = 'borders',
   currentColors = {},
-  borderWidth = 2
+  borderWidth = 2,
+  buttonRadius = 'md',
+  hoverEffect = 'normal',
+  activeEffect = 'scale'
 }) => {
 
   // Helper function για translation του shape
@@ -94,6 +103,97 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
       case 'rounded': return 'Στρογγυλό';
       default: return shape;
     }
+  };
+
+  // Helper function για translation των radius values
+  const getRadiusInGreek = (radius: string) => {
+    switch(radius) {
+      case 'none': return 'χωρίς καμπυλότητα';
+      case 'xs': return 'ελαφρά καμπυλότητα';
+      case 'sm': return 'μικρή καμπυλότητα';
+      case 'md': return 'μεσαία καμπυλότητα';
+      case 'lg': return 'μεγάλη καμπυλότητα';
+      case 'xl': return 'πολύ μεγάλη καμπυλότητα';
+      case 'round': return 'πλήρως στρογγυλά';
+      default: return radius;
+    }
+  };
+
+  // Helper function για translation των hover effects
+  const getHoverEffectInGreek = (effect: string) => {
+    switch(effect) {
+      case 'none': return 'χωρίς hover effect';
+      case 'normal': return 'κανονικό hover effect';
+      case 'glow': return 'φωτεινό hover effect';
+      case 'shadow': return 'σκιώδες hover effect';
+      default: return effect;
+    }
+  };
+
+  // Helper function για translation των active effects
+  const getActiveEffectInGreek = (effect: string) => {
+    switch(effect) {
+      case 'none': return 'χωρίς active effect';
+      case 'scale': return 'μεγέθυνση κατά το πάτημα';
+      case 'press': return 'πίεση κατά το πάτημα';
+      case 'ripple': return 'κύματα κατά το πάτημα';
+      default: return effect;
+    }
+  };
+
+  // Helper function για size translation
+  const getSizeInGreek = (size: string) => {
+    switch(size) {
+      case 'xs': return 'πολύ μικρά';
+      case 'sm': return 'μικρά';
+      case 'md': return 'μεσαία';
+      case 'lg': return 'μεγάλα';
+      case 'xl': return 'πολύ μεγάλα';
+      default: return size;
+    }
+  };
+
+  // Helper function για category translation
+  const getCategoryInGreek = (category: string) => {
+    switch(category.toLowerCase()) {
+      case 'backgrounds': return 'ΦΟΝΤΑ';
+      case 'text': return 'ΚΕΙΜΕΝΑ';
+      case 'borders': return 'ΠΕΡΙΓΡΑΜΜΑΤΑ';
+      default: return category.toUpperCase();
+    }
+  };
+
+  // Δυναμική δημιουργία πλήρους περιγραφής
+  const generateFullDescription = () => {
+    const parts = [
+      getCategoryInGreek(colorCategory),
+      'για πλήκτρα',
+      `σχήματος ${getShapeInGreek(buttonState.shape)}`,
+      `μεγέθους ${getSizeInGreek(buttonState.size)}`,
+      buttonState.withIcon ? 'με εικονίδιο' : 'χωρίς εικονίδιο'
+    ];
+
+    // Προσθέτουμε επιπλέον πληροφορίες για borders category
+    if (colorCategory === 'borders') {
+      parts.push(`με πάχος περιγράμματος ${borderWidth}px`);
+    }
+
+    // Προσθέτουμε radius information
+    if (buttonRadius && buttonRadius !== 'md') {
+      parts.push(`και ${getRadiusInGreek(buttonRadius)}`);
+    }
+
+    // Προσθέτουμε hover effect information
+    if (hoverEffect && hoverEffect !== 'normal') {
+      parts.push(`με ${getHoverEffectInGreek(hoverEffect)}`);
+    }
+
+    // Προσθέτουμε active effect information
+    if (activeEffect && activeEffect !== 'scale') {
+      parts.push(`και ${getActiveEffectInGreek(activeEffect)}`);
+    }
+
+    return parts.join(' ');
   };
 
   // Helper function για εξαγωγή hex χρώματος από CSS variable ή απλό string
@@ -139,7 +239,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
           <CheckIcon size="sm" /> Live Preview: Πλήκτρα
         </h3>
         <p className="layera-typography layera-margin-bottom--md layera-text--align-center" data-size="sm" data-color="secondary">
-          {colorCategory.toUpperCase()} για πλήκτρα σχήματος {getShapeInGreek(buttonState.shape)} μεγέθους {buttonState.size} {buttonState.withIcon ? 'με εικονίδιο' : 'χωρίς εικονίδιο'}
+          {generateFullDescription()}
         </p>
 
         <Box className="layera-flex layera-flex--justify-center layera-flex--wrap-wrap layera-flex--gap-md layera-align-items--center">

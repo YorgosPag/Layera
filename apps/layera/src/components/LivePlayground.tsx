@@ -227,6 +227,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 colorCategory={colorHookState.colorCategory}
                 currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, string>}
                 borderWidth={borderWidth}
+                buttonRadius={buttonRadius}
+                hoverEffect={hoverEffect}
+                activeEffect={activeEffect}
               />
             </Box>
           )}
