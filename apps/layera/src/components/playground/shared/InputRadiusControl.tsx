@@ -42,37 +42,37 @@ export const InputRadiusControl: React.FC<InputRadiusControlProps> = ({
 }) => {
   const [isChanging, setIsChanging] = useState(false);
 
-  // Available input radius options with their tokens
+  // Available input radius options with their tokens - Enterprise unified hierarchy (0, 4, 8, 12, 16px)
   const inputRadiusOptions = [
     {
       value: 'none',
-      label: 'Χωρίς',
+      label: '0px',
       token: '0px',
-      description: 'Χωρίς καμπυλότητα (0px - τετράγωνα inputs)'
+      description: 'Χωρίς καμπυλότητα (0px - τετράγωνα πεδία)'
     },
     {
-      value: 'xs',
-      label: 'Ελαφρώς',
-      token: '0.125rem',
-      description: 'Ελαφρώς καμπύλες (2px)'
-    },
-    {
-      value: 'md',
-      label: 'Μεσαία',
-      token: 'var(--layera-radius-input)',
-      description: 'Μεσαία καμπύλες (4px - inputs)'
+      value: 'sm',
+      label: '4px',
+      token: 'var(--layera-radius-sm)',
+      description: 'Ελαφρώς καμπύλες (4px)'
     },
     {
       value: 'lg',
-      label: 'Πολύ',
-      token: '0.375rem',
-      description: 'Πολύ καμπύλες (6px)'
+      label: '8px',
+      token: 'var(--layera-radius-lg)',
+      description: 'Μεσαία καμπύλες (8px - default για πεδία)'
     },
     {
       value: 'xl',
-      label: 'Μεγάλες',
-      token: '0.5rem',
-      description: 'Μεγάλες καμπύλες (8px - special inputs)'
+      label: '12px',
+      token: 'var(--layera-radius-xl)',
+      description: 'Πολύ καμπύλες (12px)'
+    },
+    {
+      value: 'xxl',
+      label: '16px',
+      token: 'var(--layera-radius-xxl)',
+      description: 'Μεγάλες καμπύλες (16px - ειδικά πεδία)'
     }
   ];
 
@@ -81,6 +81,7 @@ export const InputRadiusControl: React.FC<InputRadiusControlProps> = ({
     onChange(newValue);
 
     // Trigger real-time preview
+    console.log('🔧 InputRadiusControl: Sending preview', { key: 'inputRadius', value: newValue });
     if (onPreview) {
       onPreview('inputRadius', newValue);
     }
@@ -92,7 +93,7 @@ export const InputRadiusControl: React.FC<InputRadiusControlProps> = ({
   }, [onChange, onPreview]);
 
   const getCurrentOption = () => {
-    return inputRadiusOptions.find(option => option.value === value) || inputRadiusOptions[2];
+    return inputRadiusOptions.find(option => option.value === value) || inputRadiusOptions[2]; // Default to 'lg' (8px)
   };
 
   const currentOption = getCurrentOption();

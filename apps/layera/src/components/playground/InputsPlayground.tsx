@@ -133,11 +133,14 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
   ];
   const getInputStyle = (colorValue: string) => {
     const baseStyle = {
-      padding: 'var(--layera-global-spacing-3)',
+      padding: 'var(--layera-global-spacing-4)',
       borderRadius: 'var(--layera-radius-md)',
-      fontSize: 'var(--layera-fontSize-sm)',
-      width: 'var(--layera-global-layout-width-full)',
-      outline: 'none'
+      fontSize: 'var(--layera-fontSize-md)',
+      width: '100%',
+      minWidth: '180px',
+      height: '48px',
+      outline: 'none',
+      textAlign: 'center' as const
     };
 
     switch (colorCategory) {
@@ -183,33 +186,13 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
         </p>
 
         <Box
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            gap: 'var(--layera-space-lg)',
-            width: 'var(--layera-global-layout-width-full)',
-            justifyContent: 'var(--layera-global-justifyContent-center)',
-            alignItems: 'var(--layera-global-alignItems-center)',
-            paddingTop: 'var(--layera-global-spacing-4)',
-            paddingBottom: 'var(--layera-global-spacing-4)'
-          }}
+          className="layera-flex layera-flex--wrap-wrap layera-flex--gap-lg layera-flex--justify-center layera-flex--align-center layera-padding--lg layera-width--full"
         >
           {inputConfigs.map(({ key, label, placeholder, colorValue }, index) => (
             <Box
               key={key}
-              className="layera-min-width--150"
-              style={{
-                marginRight: index < inputConfigs.length - 1 ? 'var(--layera-global-spacing-2)' : undefined
-              }}
+              className="layera-width--200 layera-text-align--center layera-margin-bottom--md"
             >
-              <Text
-                className="layera-typography layera-margin-bottom--xs layera-display--block"
-                data-size="xs"
-                data-weight="bold"
-              >
-                {label}
-              </Text>
               <input
                 type="text"
                 placeholder={placeholder}

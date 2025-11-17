@@ -106,42 +106,112 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
   }, []);
 
   /**
-   * Δημιουργεί CSS για border radius
+   * Shared helper για conversion των radius values σε tokens
    */
-  const getBorderRadiusCSS = useCallback((radius: string) => {
-    // Map των radius values σε σωστά tokens
-    const getRadiusValue = (radius: string) => {
-      switch(radius) {
-        case 'none': return '0px';                        // 0px
-        case 'sm': return 'var(--layera-radius-sm)';      // 4px
-        case 'lg': return 'var(--layera-radius-lg)';      // 8px
-        case 'xl': return 'var(--layera-radius-xl)';      // 12px
-        case 'xxl': return 'var(--layera-radius-xxl)';    // 16px
-        case 'round': return 'var(--layera-radius-full)'; // πλήρως στρογγυλά
-        default: return 'var(--layera-radius-lg)';        // 8px fallback
-      }
-    };
+  const getRadiusValue = useCallback((radius: string) => {
+    switch(radius) {
+      case 'none': return '0px';                        // 0px
+      case 'sm': return 'var(--layera-radius-sm)';      // 4px
+      case 'lg': return 'var(--layera-radius-lg)';      // 8px
+      case 'xl': return 'var(--layera-radius-xl)';      // 12px
+      case 'xxl': return 'var(--layera-radius-xxl)';    // 16px
+      case 'round': return 'var(--layera-radius-full)'; // πλήρως στρογγυλά
+      default: return 'var(--layera-radius-lg)';        // 8px fallback
+    }
+  }, []);
 
+  /**
+   * Δημιουργεί CSS για card radius - ΜΟΝΟ κάρτες
+   */
+  const getCardRadiusCSS = useCallback((radius: string) => {
     const radiusValue = getRadiusValue(radius);
     return `
       .layera-card,
+      [data-layera-playground="true"] .layera-card {
+        border-radius: ${radiusValue} !important;
+      }`;
+  }, [getRadiusValue]);
+
+  /**
+   * Δημιουργεί CSS για modal radius - ΜΟΝΟ modals
+   */
+  const getModalRadiusCSS = useCallback((radius: string) => {
+    const radiusValue = getRadiusValue(radius);
+    return `
       .layera-modal,
+      [data-layera-playground="true"] .layera-modal {
+        border-radius: ${radiusValue} !important;
+      }`;
+  }, [getRadiusValue]);
+
+  /**
+   * Δημιουργεί CSS για layout radius - ΜΟΝΟ layout elements
+   */
+  const getLayoutRadiusCSS = useCallback((radius: string) => {
+    const radiusValue = getRadiusValue(radius);
+    return `
       .layera-layout,
+      [data-layera-playground="true"] .layera-layout {
+        border-radius: ${radiusValue} !important;
+      }`;
+  }, [getRadiusValue]);
+
+  /**
+   * Δημιουργεί CSS για header radius - ΜΟΝΟ headers
+   */
+  const getHeaderRadiusCSS = useCallback((radius: string) => {
+    const radiusValue = getRadiusValue(radius);
+    return `
       .layera-header,
-      .layera-btn,
-      .layera-button,
-      [data-layera-playground="true"] .layera-card,
-      [data-layera-playground="true"] .layera-modal,
-      [data-layera-playground="true"] .layera-layout,
       [data-layera-playground="true"] .layera-header,
-      [data-layera-playground="true"] .layera-btn,
-      [data-layera-playground="true"] .layera-button,
-      [data-layera-playground="true"] .layera-flex.layera-flex-column.layera-flex--align-center.layera-flex--justify-center.layera-padding--md,
-      [data-layera-playground="true"] .layera-flex.layera-flex--justify-center.layera-flex--align-center,
       [data-layera-playground="true"] .layera-flex.layera-flex--align-center.layera-flex--justify-space-between {
         border-radius: ${radiusValue} !important;
       }`;
-  }, []);
+  }, [getRadiusValue]);
+
+  /**
+   * Δημιουργεί CSS για button radius - ΜΟΝΟ buttons
+   */
+  const getButtonRadiusCSS = useCallback((radius: string) => {
+    const radiusValue = getRadiusValue(radius);
+    return `
+      .layera-btn,
+      .layera-button,
+      [data-layera-playground="true"] .layera-btn,
+      [data-layera-playground="true"] .layera-button {
+        border-radius: ${radiusValue} !important;
+      }`;
+  }, [getRadiusValue]);
+
+  /**
+   * Δημιουργεί CSS για input radius - ΜΟΝΟ inputs
+   */
+  const getInputRadiusCSS = useCallback((radius: string) => {
+    const radiusValue = getRadiusValue(radius);
+    return `
+      .layera-input,
+      .layera-field,
+      .layera-textarea,
+      .layera-select,
+      [data-layera-playground="true"] .layera-input,
+      [data-layera-playground="true"] .layera-field,
+      [data-layera-playground="true"] .layera-textarea,
+      [data-layera-playground="true"] .layera-select {
+        border-radius: ${radiusValue} !important;
+      }`;
+  }, [getRadiusValue]);
+
+  /**
+   * Δημιουργεί CSS για border radius - ΜΟΝΟ για generic borders
+   */
+  const getBorderRadiusCSS = useCallback((radius: string) => {
+    const radiusValue = getRadiusValue(radius);
+    return `
+      [data-layera-playground="true"] .layera-flex.layera-flex-column.layera-flex--align-center.layera-flex--justify-center.layera-padding--md,
+      [data-layera-playground="true"] .layera-flex.layera-flex--justify-center.layera-flex--align-center {
+        border-radius: ${radiusValue} !important;
+      }`;
+  }, [getRadiusValue]);
 
   /**
    * Δημιουργεί CSS για font size
@@ -171,11 +241,40 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
         styleId = 'layera-live-preview-border-width';
         cssRules = getBorderWidthCSS(value);
         break;
+      case 'cardRadius':
+        console.log('🎯 useRealTimePreview: Processing cardRadius', { value });
+        styleId = 'layera-live-preview-card-radius';
+        cssRules = getCardRadiusCSS(value);
+        break;
+      case 'modalRadius':
+        console.log('🎯 useRealTimePreview: Processing modalRadius', { value });
+        styleId = 'layera-live-preview-modal-radius';
+        cssRules = getModalRadiusCSS(value);
+        break;
+      case 'layoutRadius':
+        console.log('🎯 useRealTimePreview: Processing layoutRadius', { value });
+        styleId = 'layera-live-preview-layout-radius';
+        cssRules = getLayoutRadiusCSS(value);
+        break;
+      case 'headerRadius':
+        console.log('🎯 useRealTimePreview: Processing headerRadius', { value });
+        styleId = 'layera-live-preview-header-radius';
+        cssRules = getHeaderRadiusCSS(value);
+        break;
+      case 'buttonRadius':
+        console.log('🎯 useRealTimePreview: Processing buttonRadius', { value });
+        styleId = 'layera-live-preview-button-radius';
+        cssRules = getButtonRadiusCSS(value);
+        break;
+      case 'inputRadius':
+        console.log('🎯 useRealTimePreview: Processing inputRadius', { value });
+        styleId = 'layera-live-preview-input-radius';
+        cssRules = getInputRadiusCSS(value);
+        break;
       case 'borderRadius':
-        console.log('🎯 useRealTimePreview: Processing borderRadius', { value, cssRules: 'generating...' });
+        console.log('🎯 useRealTimePreview: Processing borderRadius (generic)', { value });
         styleId = 'layera-live-preview-border-radius';
         cssRules = getBorderRadiusCSS(value);
-        console.log('🎯 useRealTimePreview: Generated CSS', { cssRules });
         break;
       case 'fontSize':
         styleId = 'layera-live-preview-font-size';
@@ -194,7 +293,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
 
       style.textContent = cssRules;
     }
-  }, [getHoverEffectCSS, getActiveEffectCSS, getBorderWidthCSS, getBorderRadiusCSS, getFontSizeCSS]);
+  }, [getHoverEffectCSS, getActiveEffectCSS, getBorderWidthCSS, getCardRadiusCSS, getModalRadiusCSS, getLayoutRadiusCSS, getHeaderRadiusCSS, getButtonRadiusCSS, getInputRadiusCSS, getBorderRadiusCSS, getFontSizeCSS]);
 
 
   /**
