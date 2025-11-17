@@ -131,10 +131,23 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
     { key: 'danger', label: 'Danger Input', placeholder: 'Danger πεδίο', colorValue: currentColors.danger },
     { key: 'info', label: 'Info Input', placeholder: 'Info πεδίο', colorValue: currentColors.info }
   ];
+
+  // Helper function για conversion του inputRadius σε tokens
+  const getInputRadiusToken = (radius: string) => {
+    switch(radius) {
+      case 'none': return '0px';                        // 0px
+      case 'sm': return 'var(--layera-radius-sm)';      // 4px
+      case 'lg': return 'var(--layera-radius-lg)';      // 8px - default για inputs
+      case 'xl': return 'var(--layera-radius-xl)';      // 12px
+      case 'xxl': return 'var(--layera-radius-xxl)';    // 16px
+      default: return 'var(--layera-radius-lg)';        // 8px fallback
+    }
+  };
+
   const getInputStyle = (colorValue: string) => {
     const baseStyle = {
       padding: 'var(--layera-global-spacing-4)',
-      borderRadius: 'var(--layera-radius-md)',
+      borderRadius: getInputRadiusToken(inputRadius),
       fontSize: 'var(--layera-fontSize-md)',
       width: '100%',
       minWidth: '180px',
