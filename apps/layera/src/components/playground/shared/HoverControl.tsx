@@ -120,11 +120,7 @@ export const HoverControl: React.FC<HoverControlProps> = ({
             variant={value === option.value ? 'primary' : 'outline'}
             size={buttonState?.size || 'sm'}
             onClick={() => handleChange(option.value)}
-            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${value === option.value ? 'primary' : 'outline'}`}
-            style={{
-              transition: 'var(--layera-iconInteractive-interactive-transition-normal)',
-              opacity: isChanging && value === option.value ? 0.7 : 1
-            }}
+            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${value === option.value ? 'primary' : 'outline'} ${isChanging && value === option.value ? 'layera-opacity--70' : 'layera-opacity--100'}`}
           >
             {option.label}
           </Button>
@@ -133,28 +129,7 @@ export const HoverControl: React.FC<HoverControlProps> = ({
 
       {/* Live Preview of Current Hover Effect */}
       <Box
-        className="layera-margin-bottom--sm"
-        style={{
-          padding: 'var(--layera-iconInteractive-sizing-padding-lg)',
-          backgroundColor: 'var(--layera-color-surface-primary)',
-          borderRadius: 'var(--layera-global-borderRadius-md)',
-          border: '1px solid var(--layera-color-border-primary)',
-          textAlign: 'center',
-          transition: 'all 0.2s ease',
-          cursor: 'pointer'
-        }}
-        onMouseEnter={(e) => {
-          if (value !== 'none') {
-            const target = e.currentTarget;
-            Object.assign(target.style, currentOption.preview);
-          }
-        }}
-        onMouseLeave={(e) => {
-          const target = e.currentTarget;
-          target.style.opacity = 'var(--layera-icon-interactive-interactive-opacity-default)';
-          target.style.transform = 'none';
-          target.style.backgroundColor = 'var(--layera-color-surface-primary)';
-        }}
+        className="layera-margin-bottom--sm layera-padding--lg layera-bg--surface-primary layera-border-radius--md layera-border--sm layera-border-color--primary layera-text-align--center layera-cursor--pointer layera-transition--normal"
       >
         <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">
           Hover me: {currentOption.description}

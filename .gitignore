@@ -23,7 +23,6 @@ pglite-debug.log
 .pnp.js
 
 # Build / cache / coverage
-dist/
 build/
 .next/
 out/
@@ -32,6 +31,10 @@ coverage/
 .cache/
 .parcel-cache/
 
+# Dist directories (με εξαίρεση tokens για backup safety)
+dist/
+!packages/tokens/dist/
+
 # IDE / OS
 .vscode/
 .idea/
@@ -39,7 +42,6 @@ coverage/
 Thumbs.db
 desktop.ini
 nul
-**/dist/
 packages/*/src/**/*.d.ts
 packages/*/src/**/*.js
 packages/*/src/**/*.jsx

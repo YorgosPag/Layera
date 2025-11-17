@@ -104,11 +104,7 @@ export const BorderWidthControl: React.FC<BorderWidthControlProps> = ({
             variant={value === option.value ? 'primary' : 'outline'}
             size={buttonState?.size || 'sm'}
             onClick={() => handleChange(option.value)}
-            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${value === option.value ? 'primary' : 'outline'}`}
-            style={{
-              transition: 'var(--layera-iconInteractive-interactive-transition-normal)',
-              opacity: isChanging && value === option.value ? 0.7 : 1
-            }}
+            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${value === option.value ? 'primary' : 'outline'} ${isChanging && value === option.value ? 'layera-opacity--70' : 'layera-opacity--100'}`}
           >
             {option.label}
           </Button>
@@ -117,16 +113,7 @@ export const BorderWidthControl: React.FC<BorderWidthControlProps> = ({
 
       {/* Live Preview of Current Border Width */}
       <Box
-        className="layera-margin-bottom--sm"
-        style={{
-          padding: 'var(--layera-iconInteractive-sizing-padding-lg)',
-          backgroundColor: 'var(--layera-color-surface-primary)',
-          borderRadius: 'var(--layera-global-borderRadius-md)',
-          border: value === 0 ? 'none' : `${currentOption.token} solid var(--layera-color-border-primary)`,
-          textAlign: 'center',
-          transition: 'all 0.2s ease',
-          transform: isChanging ? 'scale(1.02)' : 'scale(1)'
-        }}
+        className={`layera-margin-bottom--sm layera-padding--lg layera-bg--surface-primary layera-border-radius--md layera-text-align--center layera-transition--normal ${value === 0 ? 'layera-border--none' : 'layera-border--sm layera-border-color--primary'} ${isChanging ? 'layera-transform--scale-102' : 'layera-transform--scale-100'}`}
       >
         <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">
           Preview: {currentOption.description}

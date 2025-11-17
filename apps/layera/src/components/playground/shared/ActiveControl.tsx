@@ -116,11 +116,7 @@ export const ActiveControl: React.FC<ActiveControlProps> = ({
             variant={value === option.value ? 'primary' : 'outline'}
             size={buttonState?.size || 'sm'}
             onClick={() => handleChange(option.value)}
-            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${value === option.value ? 'primary' : 'outline'}`}
-            style={{
-              transition: 'var(--layera-iconInteractive-interactive-transition-normal)',
-              opacity: isChanging && value === option.value ? 0.7 : 1
-            }}
+            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${value === option.value ? 'primary' : 'outline'} ${isChanging && value === option.value ? 'layera-opacity--70' : 'layera-opacity--100'}`}
           >
             {option.label}
           </Button>
@@ -129,7 +125,7 @@ export const ActiveControl: React.FC<ActiveControlProps> = ({
 
       {/* Live Preview of Current Active Effect */}
       <Box
-        className="layera-margin-bottom--sm"
+        className={`layera-margin-bottom--sm layera-padding--lg layera-bg--surface-primary layera-border-radius--md layera-border--sm layera-border-color--primary layera-text-align--center layera-transition--fast layera-cursor--pointer layera-user-select--none ${isPressed && value !== 'none' ? 'layera-transform--scale-95 layera-opacity--80' : ''}`}
         onMouseDown={() => {
           if (value !== 'none') {
             setIsPressed(true);
@@ -140,17 +136,6 @@ export const ActiveControl: React.FC<ActiveControlProps> = ({
         }}
         onMouseLeave={() => {
           setIsPressed(false);
-        }}
-        style={{
-          padding: 'var(--layera-iconInteractive-sizing-padding-lg)',
-          backgroundColor: 'var(--layera-color-surface-primary)',
-          borderRadius: 'var(--layera-global-borderRadius-md)',
-          border: '1px solid var(--layera-color-border-primary)',
-          textAlign: 'center',
-          transition: 'all 0.1s ease',
-          cursor: 'pointer',
-          userSelect: 'none',
-          ...(isPressed && value !== 'none' ? currentOption.preview : {})
         }}
       >
         <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">

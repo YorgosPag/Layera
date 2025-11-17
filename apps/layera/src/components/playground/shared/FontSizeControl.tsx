@@ -67,9 +67,6 @@ export const FontSizeControl: React.FC<FontSizeControlProps> = ({
             }}
             title={option.description}
             className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${fontSize === option.value ? 'primary' : 'outline'}`}
-            style={{
-              minWidth: 'var(--layera-global-button-height-xl)'
-            }}
           >
             {option.label}
           </Button>

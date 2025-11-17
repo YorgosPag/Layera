@@ -19,7 +19,10 @@
   "sideEffects": false,
   "scripts": {
     "build": "style-dictionary build --config style-dictionary.config.mjs",
-    "prepack": "pnpm run build"
+    "prepack": "pnpm run build",
+    "backup:create": "echo 'Creating tokens backup...' && cp -r dist .backups/dist-$(date +%Y%m%d-%H%M%S) && echo 'Backup created successfully'",
+    "backup:restore": "echo 'Restoring tokens from backup...' && git checkout HEAD -- dist/ && pnpm run build && echo 'Tokens restored successfully'",
+    "disaster-recovery": "echo 'Starting disaster recovery...' && git pull origin main && pnpm run build && echo 'Disaster recovery completed'"
   },
   "devDependencies": {
     "style-dictionary": "^4.0.0"
