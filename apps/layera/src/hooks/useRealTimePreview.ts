@@ -30,7 +30,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
 
   const debounceTimerRef = useRef<NodeJS.Timeout | undefined>(undefined);
   const domUpdateTimerRef = useRef<NodeJS.Timeout | undefined>(undefined);
-  const pendingDOMUpdate = useRef<{ key: string; value: string; category?: string } | null>(null);
+  const pendingDOMUpdate = useRef<{ key: string; value: string; category?: string; elementType?: string } | null>(null);
   const rafRef = useRef<number | null>(null);
 
   /**
@@ -213,19 +213,19 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
   /**
    * Εφαρμόζει live preview στο DOM χωρίς save - Optimized για multiple features
    */
-  const applyLivePreview = useCallback((key: string, value: string, category?: string) => {
+  const applyLivePreview = useCallback((key: string, value: string, category?: string, elementType?: string) => {
     // Use DocumentFragment για batch DOM updates
     const root = document.documentElement;
 
     // Extended CSS variable mapping for all controls and categories
     const cssVariableMap: Record<string, string> = {
-      // Button colors (unified format - χρήση του επίσημου ColorState format)
-      primaryColor: '--layera-color-button-primary',
-      secondaryColor: '--layera-color-button-secondary',
-      successColor: '--layera-color-button-success',
-      warningColor: '--layera-color-button-warning',
-      dangerColor: '--layera-color-button-danger',
-      infoColor: '--layera-color-button-info',
+      // Button colors (χρήση των πραγματικών CSS variables από τα buttons)
+      primaryColor: '--layera-color-primary',
+      secondaryColor: '--layera-color-text-secondary',
+      successColor: '--layera-color-semantic-success-primary',
+      warningColor: '--layera-color-semantic-warning-primary',
+      dangerColor: '--layera-color-semantic-error-primary',
+      infoColor: '--layera-color-semantic-info-primary',
 
       // Background colors (για κάρτες και άλλα components)
       backgroundPrimary: '--layera-color-background-primary',
@@ -283,38 +283,73 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
       fontSize2xl: '--layera-global-fontSize-2xl'
     };
 
-    // Special handling for card variables - νέα λογική για real-time preview
-    if (category && (key === 'primaryColor' || key === 'secondaryColor' || key === 'successColor' ||
-                    key === 'warningColor' || key === 'dangerColor' || key === 'infoColor')) {
-      updateCardVariables(key, value, category);
-    }
+    // ISOLATED UPDATES: Apply changes only to the specific element type + category
+    const isColorKey = key === 'primaryColor' || key === 'secondaryColor' || key === 'successColor' ||
+                      key === 'warningColor' || key === 'dangerColor' || key === 'infoColor';
 
-    // Batch CSS variable updates για existing logic
-    const cssVariable = cssVariableMap[key];
-    if (cssVariable) {
-      root.style.setProperty(cssVariable, value);
-
-      // Special header button handling - για όλα τα button colors (unified format)
-      if (key === 'primaryColor' ||
-          key === 'secondaryColor' ||
-          key === 'successColor' ||
-          key === 'warningColor' ||
-          key === 'dangerColor' ||
-          key === 'infoColor') {
+    if (category && elementType && isColorKey) {
+      // Update based on category type, regardless of elementType for most categories
+      if (category === 'backgrounds') {
+        if (elementType === 'cards' || elementType === 'modals' || elementType === 'inputs' || elementType === 'layout' || elementType === 'tables') {
+          // Update card/component background variables
+          updateCardVariables(key, value, category);
+        } else if (elementType === 'buttons') {
+          // Update button background variables AND header buttons
+          // For button backgrounds, we need to update the main button color variables
+          const cssVariable = cssVariableMap[key];
+          if (cssVariable) {
+            root.style.setProperty(cssVariable, value);
+          }
+          // Also update header buttons for immediate visual feedback
+          applyHeaderButtonPreview(value);
+        }
+      } else if (category === 'text') {
+        if (elementType === 'cards' || elementType === 'modals' || elementType === 'inputs' || elementType === 'layout' || elementType === 'tables') {
+          // Update card/component text variables
+          updateCardVariables(key, value, category);
+        } else if (elementType === 'buttons') {
+          // Update button text variables (but don't change header button backgrounds)
+          const cssVariable = cssVariableMap[key];
+          if (cssVariable) {
+            root.style.setProperty(cssVariable, value);
+          }
+        }
+      } else if (category === 'borders') {
+        if (elementType === 'cards' || elementType === 'modals' || elementType === 'inputs' || elementType === 'layout' || elementType === 'tables') {
+          // Update card/component border variables
+          updateCardVariables(key, value, category);
+        } else if (elementType === 'buttons') {
+          // Update button border variables
+          const cssVariable = cssVariableMap[key];
+          if (cssVariable) {
+            root.style.setProperty(cssVariable, value);
+          }
+        }
+      } else if (category === 'buttons' && elementType === 'buttons') {
+        // Update button colors AND header buttons (this is the main button color category)
+        const cssVariable = cssVariableMap[key];
+        if (cssVariable) {
+          root.style.setProperty(cssVariable, value);
+        }
         applyHeaderButtonPreview(value);
       }
     } else {
-      // Handle special effects only if not a CSS variable
-      applySpecialEffects(key, value);
+      // Fallback to old logic for non-color keys or missing parameters
+      const cssVariable = cssVariableMap[key];
+      if (cssVariable) {
+        root.style.setProperty(cssVariable, value);
+      } else {
+        applySpecialEffects(key, value);
+      }
     }
   }, [applyHeaderButtonPreview, applySpecialEffects, updateCardVariables]);
 
   /**
    * Throttled version του DOM update - Μείωση DOM manipulations με requestAnimationFrame
    */
-  const throttledDOMUpdate = useCallback((key: string, value: string, category?: string) => {
+  const throttledDOMUpdate = useCallback((key: string, value: string, category?: string, elementType?: string) => {
     // Αποθήκευση του pending update
-    pendingDOMUpdate.current = { key, value, category };
+    pendingDOMUpdate.current = { key, value, category, elementType };
 
     // Cancel previous RAF/timer
     if (rafRef.current) {
@@ -329,7 +364,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
     rafRef.current = requestAnimationFrame(() => {
       domUpdateTimerRef.current = setTimeout(() => {
         if (pendingDOMUpdate.current) {
-          applyLivePreview(pendingDOMUpdate.current.key, pendingDOMUpdate.current.value, pendingDOMUpdate.current.category);
+          applyLivePreview(pendingDOMUpdate.current.key, pendingDOMUpdate.current.value, pendingDOMUpdate.current.category, pendingDOMUpdate.current.elementType);
           pendingDOMUpdate.current = null;
         }
         rafRef.current = null;
@@ -361,7 +396,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
   /**
    * Ξεκινάει live preview για ένα συγκεκριμένο χρώμα
    */
-  const startPreview = useCallback((key: string, value: string, category?: string) => {
+  const startPreview = useCallback((key: string, value: string, category?: string, elementType?: string) => {
     // Clear previous debounce timer
     if (debounceTimerRef.current) {
       clearTimeout(debounceTimerRef.current);
@@ -375,7 +410,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
     }));
 
     // Apply live preview to DOM με throttling για καλύτερη performance
-    throttledDOMUpdate(key, value, category);
+    throttledDOMUpdate(key, value, category, elementType);
 
     // Set debounced commit
     debounceTimerRef.current = setTimeout(() => {

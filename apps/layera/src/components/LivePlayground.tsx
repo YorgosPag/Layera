@@ -489,7 +489,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               currentSetters={colorHelpersActions.getSettersForCategory(colorHookState.colorCategory) as unknown as Record<string, (value: ColorWithAlpha | string) => void>}
               startPreview={(key: string, value: string | ColorWithAlpha) => {
                 const previewValue = typeof value === 'string' ? value : value.rgba;
-                startPreview(key, previewValue, colorHookState.colorCategory);
+                startPreview(key, previewValue, colorHookState.colorCategory, colorHookState.elementType);
               }}
               colorCategory={colorHookState.colorCategory}
               alphaEnabled={alphaEnabled}
