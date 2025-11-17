@@ -34,7 +34,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   onChange,
   onPreview,
   className = '',
-  throttleMs = 200 // Enhanced throttling για καλύτερη performance
+  throttleMs = 16 // 60fps για real-time smooth response
 }) => {
   // Parse incoming value
   const parseValue = (val: ColorWithAlpha | string): ColorWithAlpha => {
@@ -169,7 +169,13 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     };
 
     const checkColorChange = () => {
-      if (!isMouseDown || !input) return;
+      if (!isMouseDown || !input) {
+        if (animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
+          animationFrameId = null;
+        }
+        return;
+      }
 
       const currentColor = input.value;
       if (currentColor && currentColor !== displayHex) {
@@ -185,8 +191,10 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
         onPreview(previewValue);
       }
 
-      // Συνεχής έλεγχος κατά το dragging
-      animationFrameId = requestAnimationFrame(checkColorChange);
+      // Συνεχής έλεγχος ΜΟΝΟ κατά το dragging
+      if (isMouseDown) {
+        animationFrameId = requestAnimationFrame(checkColorChange);
+      }
     };
 
     const handleMouseMove = () => {

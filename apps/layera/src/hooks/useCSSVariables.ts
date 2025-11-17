@@ -217,46 +217,85 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
    * Αυτή η μέθοδος δημιουργεί CSS override rules αντί να αλλάζει variables
    */
   const applySpecificButtonColor = (colorKey: string, colorValue: string) => {
-    // Create or update style element για isolated button overrides
-    let style = document.getElementById('layera-button-color-overrides') as HTMLStyleElement;
+    // Optimized: Use CSS variables instead of rewriting style.textContent
+    const root = document.documentElement;
 
+    // Mapping από colorKey σε CSS variable
+    const colorToVariableMap: Record<string, string> = {
+      'primaryColor': '--layera-btn-primary-override',
+      'secondaryColor': '--layera-btn-secondary-override',
+      'successColor': '--layera-btn-success-override',
+      'warningColor': '--layera-btn-warning-override',
+      'dangerColor': '--layera-btn-danger-override',
+      'infoColor': '--layera-btn-info-override'
+    };
+
+    const variableName = colorToVariableMap[colorKey];
+    if (!variableName) return;
+
+    // Fast CSS variable update (no DOM reflow/repaint)
+    root.style.setProperty(variableName, colorValue);
+    root.style.setProperty(`${variableName}-hover`, `${colorValue}DD`);
+
+    // Create CSS rules only once
+    let style = document.getElementById('layera-button-color-overrides') as HTMLStyleElement;
     if (!style) {
       style = document.createElement('style');
       style.id = 'layera-button-color-overrides';
       document.head.appendChild(style);
+
+      // Static CSS rules using variables (created only once)
+      style.textContent = `
+        .layera-btn--primary {
+          background-color: var(--layera-btn-primary-override, var(--layera-color-primary)) !important;
+          border-color: var(--layera-btn-primary-override, var(--layera-color-primary)) !important;
+        }
+        .layera-btn--primary:hover {
+          background-color: var(--layera-btn-primary-override-hover, var(--layera-color-primary-hover)) !important;
+          border-color: var(--layera-btn-primary-override-hover, var(--layera-color-primary-hover)) !important;
+        }
+        .layera-btn--secondary {
+          background-color: var(--layera-btn-secondary-override, var(--layera-color-secondary)) !important;
+          border-color: var(--layera-btn-secondary-override, var(--layera-color-secondary)) !important;
+        }
+        .layera-btn--secondary:hover {
+          background-color: var(--layera-btn-secondary-override-hover, var(--layera-color-secondary-hover)) !important;
+          border-color: var(--layera-btn-secondary-override-hover, var(--layera-color-secondary-hover)) !important;
+        }
+        .layera-btn--success {
+          background-color: var(--layera-btn-success-override, var(--layera-color-success)) !important;
+          border-color: var(--layera-btn-success-override, var(--layera-color-success)) !important;
+        }
+        .layera-btn--success:hover {
+          background-color: var(--layera-btn-success-override-hover, var(--layera-color-success-hover)) !important;
+          border-color: var(--layera-btn-success-override-hover, var(--layera-color-success-hover)) !important;
+        }
+        .layera-btn--warning {
+          background-color: var(--layera-btn-warning-override, var(--layera-color-warning)) !important;
+          border-color: var(--layera-btn-warning-override, var(--layera-color-warning)) !important;
+        }
+        .layera-btn--warning:hover {
+          background-color: var(--layera-btn-warning-override-hover, var(--layera-color-warning-hover)) !important;
+          border-color: var(--layera-btn-warning-override-hover, var(--layera-color-warning-hover)) !important;
+        }
+        .layera-btn--danger {
+          background-color: var(--layera-btn-danger-override, var(--layera-color-danger)) !important;
+          border-color: var(--layera-btn-danger-override, var(--layera-color-danger)) !important;
+        }
+        .layera-btn--danger:hover {
+          background-color: var(--layera-btn-danger-override-hover, var(--layera-color-danger-hover)) !important;
+          border-color: var(--layera-btn-danger-override-hover, var(--layera-color-danger-hover)) !important;
+        }
+        .layera-btn--info {
+          background-color: var(--layera-btn-info-override, var(--layera-color-info)) !important;
+          border-color: var(--layera-btn-info-override, var(--layera-color-info)) !important;
+        }
+        .layera-btn--info:hover {
+          background-color: var(--layera-btn-info-override-hover, var(--layera-color-info-hover)) !important;
+          border-color: var(--layera-btn-info-override-hover, var(--layera-color-info-hover)) !important;
+        }
+      `;
     }
-
-    // Mapping από colorKey σε CSS class
-    const colorToClassMap: Record<string, string> = {
-      'primaryColor': '.layera-btn--primary',
-      'secondaryColor': '.layera-btn--secondary',
-      'successColor': '.layera-btn--success',
-      'warningColor': '.layera-btn--warning',
-      'dangerColor': '.layera-btn--danger',
-      'infoColor': '.layera-btn--info'
-    };
-
-    const cssClass = colorToClassMap[colorKey];
-    if (!cssClass) return;
-
-    // Get existing rules and remove old rule for this class
-    let existingCSS = style.textContent || '';
-    const classPattern = new RegExp(`\\s*${cssClass.replace('.', '\\.')}[^}]*\\}`, 'g');
-    existingCSS = existingCSS.replace(classPattern, '');
-
-    // Add new override rule with high specificity
-    const newRule = `
-      ${cssClass} {
-        background-color: ${colorValue} !important;
-        border-color: ${colorValue} !important;
-      }
-      ${cssClass}:hover {
-        background-color: ${colorValue}DD !important;
-        border-color: ${colorValue}DD !important;
-      }`;
-
-    style.textContent = existingCSS + newRule;
-    console.log(`Applied isolated color ${colorValue} to ${cssClass}`);
   };
 
   /**

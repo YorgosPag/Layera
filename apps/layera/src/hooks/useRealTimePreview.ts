@@ -307,7 +307,6 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
         } else if (elementType === 'buttons') {
           // DELEGATION: Χρησιμοποιούμε το useCSSVariables για button updates
           // Αυτό αποφεύγει διπλότυπα και εξασφαλίζει ενιαία πηγή αλήθειας
-          console.log(`Button ${key} update delegated to useCSSVariables system`);
 
           // ΑΦΑΙΡΕΣΗ: Το applyHeaderButtonPreview επηρεάζει όλα τα playground buttons
           // Σε selective mode δεν χρειαζόμαστε header button updates
@@ -319,7 +318,6 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
           updateCardVariables(key, value, category);
         } else if (elementType === 'buttons') {
           // DELEGATION: Button text updates handled by useCSSVariables
-          console.log(`Button text ${key} update delegated to useCSSVariables system`);
         }
       } else if (category === 'borders') {
         if (elementType === 'cards' || elementType === 'modals' || elementType === 'inputs' || elementType === 'layout' || elementType === 'tables') {
@@ -327,7 +325,6 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
           updateCardVariables(key, value, category);
         } else if (elementType === 'buttons') {
           // DELEGATION: Button border updates handled by useCSSVariables
-          console.log(`Button border ${key} update delegated to useCSSVariables system`);
         }
       } else if (category === 'buttons' && elementType === 'buttons') {
         // Update button colors AND header buttons (this is the main button color category)

@@ -88,7 +88,7 @@ export const ColorControlsGrid: React.FC<ColorControlsGridProps> = React.memo(({
         label="Primary Color"
         value={currentColors.primary}
         onChange={currentSetters.setPrimary}
-        throttleMs={150}
+        throttleMs={16}
       />
 
       {/* Secondary Color Control */}
@@ -96,7 +96,7 @@ export const ColorControlsGrid: React.FC<ColorControlsGridProps> = React.memo(({
         label="Secondary Color"
         value={currentColors.secondary}
         onChange={currentSetters.setSecondary}
-        throttleMs={150}
+        throttleMs={16}
       />
 
       {/* Success Color Control */}
@@ -104,7 +104,7 @@ export const ColorControlsGrid: React.FC<ColorControlsGridProps> = React.memo(({
         label="Success Color"
         value={currentColors.success}
         onChange={currentSetters.setSuccess}
-        throttleMs={150}
+        throttleMs={16}
       />
 
       {/* Warning Color Control */}
@@ -112,7 +112,7 @@ export const ColorControlsGrid: React.FC<ColorControlsGridProps> = React.memo(({
         label="Warning Color"
         value={currentColors.warning}
         onChange={currentSetters.setWarning}
-        throttleMs={150}
+        throttleMs={16}
       />
 
       {/* Danger Color Control */}
@@ -120,7 +120,7 @@ export const ColorControlsGrid: React.FC<ColorControlsGridProps> = React.memo(({
         label="Danger Color"
         value={currentColors.danger}
         onChange={currentSetters.setDanger}
-        throttleMs={150}
+        throttleMs={16}
       />
 
       {/* Info Color Control */}
@@ -128,7 +128,7 @@ export const ColorControlsGrid: React.FC<ColorControlsGridProps> = React.memo(({
         label="Info Color"
         value={currentColors.info}
         onChange={currentSetters.setInfo}
-        throttleMs={150}
+        throttleMs={16}
       />
     </Box>
   );
