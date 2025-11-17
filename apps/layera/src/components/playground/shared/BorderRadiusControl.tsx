@@ -87,7 +87,7 @@ export const BorderRadiusControl: React.FC<BorderRadiusControlProps> = ({
 
   return (
     <Box className={`layera-card layera-padding--lg ${className}`}>
-      <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
+      <h4 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
         <CompassIcon size="sm" /> Καμπυλότητα Περιγραμμάτων
       </h4>
 

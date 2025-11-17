@@ -42,7 +42,7 @@ export const FontSizeControl: React.FC<FontSizeControlProps> = ({
 
   return (
     <Box className={`layera-card layera-padding--lg ${className}`}>
-      <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
+      <h4 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
         <EditIcon size="sm" /> Μέγεθος Γραμματοσειράς
       </h4>
       <Text className="layera-typography layera-margin-bottom--sm" data-size="sm" data-color="secondary">

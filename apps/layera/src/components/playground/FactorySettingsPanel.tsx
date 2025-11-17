@@ -170,7 +170,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
       {/* Header Section */}
       <Box className="layera-margin-bottom--md">
         <Box>
-          <h4 className="layera-typography layera-margin-bottom--xs layera-text--align-center" data-size="base" data-weight="semibold" data-color="primary">
+          <h4 className="layera-typography layera-margin-bottom--xs layera-text--align-center" data-size="lg" data-weight="bold" data-color="primary">
             <SettingsIcon size="sm" /> Εργοστασιακές Ρυθμίσεις
           </h4>
           <Text className="layera-typography layera-text--align-center" data-size="sm" data-color="secondary">

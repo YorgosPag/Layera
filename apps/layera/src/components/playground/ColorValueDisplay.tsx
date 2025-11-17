@@ -32,7 +32,7 @@ export const ColorValueDisplay: React.FC<ColorValueDisplayProps> = ({
       {/* Current Settings Display - για buttons */}
       {colorHookState.elementType === 'buttons' && buttonState && (
         <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--neutral-light" data-family="mono" data-size="sm">
-          <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="base" data-weight="semibold">
+          <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="lg" data-weight="bold">
             <SettingsIcon size="sm" /> Τρέχουσες Ρυθμίσεις:
           </h4>
           <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">
@@ -48,7 +48,7 @@ export const ColorValueDisplay: React.FC<ColorValueDisplayProps> = ({
 
       {/* Current Color Values Display */}
       <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--neutral-light" data-family="mono" data-size="sm">
-        <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="base" data-weight="semibold">
+        <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="lg" data-weight="bold">
           <PaletteIcon size="sm" /> Παλέτα Χρωμάτων για {colorHookState.colorCategory.toUpperCase()}:
         </h4>
         <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">
@@ -65,7 +65,7 @@ export const ColorValueDisplay: React.FC<ColorValueDisplayProps> = ({
 
       {/* CSS Variables Display */}
       <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--info-light" data-family="mono" data-size="sm">
-        <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="base" data-weight="semibold">
+        <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="lg" data-weight="bold">
           <SettingsIcon size="sm" /> CSS Μεταβλητές για {colorHookState.colorCategory.toUpperCase()} στα {colorHookState.elementType.toUpperCase()}{colorHookState.elementType === 'buttons' ? ` (${colorHookState.colorButtonShape})` : ''}:
         </h4>
         <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono">

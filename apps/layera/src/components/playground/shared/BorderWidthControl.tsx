@@ -87,7 +87,7 @@ export const BorderWidthControl: React.FC<BorderWidthControlProps> = ({
 
   return (
     <Box className={`layera-card layera-padding--lg ${className}`}>
-      <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
+      <h4 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
         <RulerIcon size="sm" /> Πάχος Περιγραμμάτων
       </h4>
 
