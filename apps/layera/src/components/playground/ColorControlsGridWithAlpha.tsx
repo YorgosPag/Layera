@@ -156,8 +156,8 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
   return (
     <Box>
       {/* Alpha Mode Toggle - Compact Header */}
-      <Box className="layera-flex layera-flex--justify-between layera-flex--align-center layera-margin-bottom--lg layera-text--align-center">
-        <h3 className="layera-typography" data-size="lg" data-weight="bold" data-color="primary">
+      <Box className="layera-text--align-center layera-margin-bottom--lg">
+        <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
           <LayersIcon size="sm" /> Χρώματα {colorCategory.charAt(0).toUpperCase() + colorCategory.slice(1)}
         </h3>
         <Button
