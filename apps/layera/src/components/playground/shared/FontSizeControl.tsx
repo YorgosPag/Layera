@@ -15,19 +15,24 @@ import { EditIcon, EyeIcon } from '@layera/icons';
 
 export type FontSizeValue = 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl';
 
+import type { ButtonState } from '../../../hooks/useButtonState.js';
+
 interface FontSizeControlProps {
   fontSize: FontSizeValue;
   onFontSizeChange: (size: FontSizeValue) => void;
   className?: string;
   /** Real-time preview callback */
   onPreview?: (key: string, value: string) => void;
+  /** Button state for sizing */
+  buttonState?: ButtonState;
 }
 
 export const FontSizeControl: React.FC<FontSizeControlProps> = ({
   fontSize,
   onFontSizeChange,
   className = '',
-  onPreview
+  onPreview,
+  buttonState
 }) => {
 
   // Font size options με περιγραφές
@@ -53,7 +58,7 @@ export const FontSizeControl: React.FC<FontSizeControlProps> = ({
           <Button
             key={option.value}
             variant={fontSize === option.value ? 'primary' : 'outline'}
-            size="sm"
+            size={buttonState?.size || 'sm'}
             onClick={() => {
               onFontSizeChange(option.value);
               if (onPreview) {
@@ -61,7 +66,7 @@ export const FontSizeControl: React.FC<FontSizeControlProps> = ({
               }
             }}
             title={option.description}
-            className={fontSize === option.value ? 'layera-font-weight--bold' : 'layera-font-weight--normal'}
+            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${fontSize === option.value ? 'primary' : 'outline'}`}
             style={{
               minWidth: 'var(--layera-global-button-height-xl)'
             }}

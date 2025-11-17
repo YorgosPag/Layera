@@ -13,6 +13,8 @@ import { SettingsIcon } from '@layera/icons';
  * - Compatible με το SST design token system
  */
 
+import type { ButtonState } from '../../../hooks/useButtonState.js';
+
 interface ActiveControlProps {
   /** Current active effect value ('none', 'scale', 'opacity', 'press') */
   value: string;
@@ -24,6 +26,8 @@ interface ActiveControlProps {
   className?: string;
   /** Real-time preview callback */
   onPreview?: (key: string, value: string) => void;
+  /** Button state for sizing */
+  buttonState?: ButtonState;
 }
 
 export const ActiveControl: React.FC<ActiveControlProps> = ({
@@ -31,7 +35,8 @@ export const ActiveControl: React.FC<ActiveControlProps> = ({
   onChange,
   elementType = 'στοιχεία',
   className = '',
-  onPreview
+  onPreview,
+  buttonState
 }) => {
   const [isChanging, setIsChanging] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
@@ -109,8 +114,9 @@ export const ActiveControl: React.FC<ActiveControlProps> = ({
           <Button
             key={option.value}
             variant={value === option.value ? 'primary' : 'outline'}
-            size="sm"
+            size={buttonState?.size || 'sm'}
             onClick={() => handleChange(option.value)}
+            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${value === option.value ? 'primary' : 'outline'}`}
             style={{
               transition: 'var(--layera-iconInteractive-interactive-transition-normal)',
               opacity: isChanging && value === option.value ? 0.7 : 1

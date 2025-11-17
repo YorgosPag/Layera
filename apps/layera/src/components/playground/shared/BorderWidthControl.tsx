@@ -14,6 +14,8 @@ import { RulerIcon } from '@layera/icons';
  * - Χρησιμοποιεί --layera-global-borderWidth-{1,2,3} tokens
  */
 
+import type { ButtonState } from '../../../hooks/useButtonState.js';
+
 interface BorderWidthControlProps {
   /** Current border width value (0, 1, 2, or 3) */
   value: number;
@@ -25,6 +27,8 @@ interface BorderWidthControlProps {
   className?: string;
   /** Real-time preview callback */
   onPreview?: (key: string, value: string) => void;
+  /** Button state for sizing */
+  buttonState?: ButtonState;
 }
 
 export const BorderWidthControl: React.FC<BorderWidthControlProps> = ({
@@ -32,7 +36,8 @@ export const BorderWidthControl: React.FC<BorderWidthControlProps> = ({
   onChange,
   elementType = 'στοιχεία',
   className = '',
-  onPreview
+  onPreview,
+  buttonState
 }) => {
   const [isChanging, setIsChanging] = useState(false);
 
@@ -97,8 +102,9 @@ export const BorderWidthControl: React.FC<BorderWidthControlProps> = ({
           <Button
             key={option.value}
             variant={value === option.value ? 'primary' : 'outline'}
-            size="sm"
+            size={buttonState?.size || 'sm'}
             onClick={() => handleChange(option.value)}
+            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${value === option.value ? 'primary' : 'outline'}`}
             style={{
               transition: 'var(--layera-iconInteractive-interactive-transition-normal)',
               opacity: isChanging && value === option.value ? 0.7 : 1

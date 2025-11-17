@@ -18,6 +18,8 @@ import { FontSizeControl, type FontSizeValue } from './shared/FontSizeControl';
 
 import type { UseColorStateReturn, ColorState, ColorStateActions } from '../../hooks/useColorState.js';
 
+import type { ButtonState } from '../../hooks/useButtonState.js';
+
 interface ColorCategorySelectionProps {
   colorHookState: ColorState;
   colorActions: ColorStateActions;
@@ -32,6 +34,7 @@ interface ColorCategorySelectionProps {
   fontSize?: FontSizeValue;
   onFontSizeChange?: (value: FontSizeValue) => void;
   onPreview?: (key: string, value: string) => void;
+  buttonState?: ButtonState;
 }
 
 export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
@@ -47,7 +50,8 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
   onActiveEffectChange,
   fontSize = 'base',
   onFontSizeChange,
-  onPreview
+  onPreview,
+  buttonState
 }) => {
   // Hot reload trigger
   // Debug removed to reduce console noise
@@ -86,22 +90,25 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
         <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm layera-flex--justify-center">
           <Button
             variant={colorHookState.colorCategory === 'backgrounds' ? 'primary' : 'outline'}
-            size="sm"
+            size={buttonState?.size || 'sm'}
             onClick={() => colorActions.setColorCategory('backgrounds')}
+            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.colorCategory === 'backgrounds' ? 'primary' : 'outline'}`}
           >
             <LayersIcon size="sm" /> Backgrounds
           </Button>
           <Button
             variant={colorHookState.colorCategory === 'text' ? 'primary' : 'outline'}
-            size="sm"
+            size={buttonState?.size || 'sm'}
             onClick={() => colorActions.setColorCategory('text')}
+            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.colorCategory === 'text' ? 'primary' : 'outline'}`}
           >
             <EditIcon size="sm" /> Text
           </Button>
           <Button
             variant={colorHookState.colorCategory === 'borders' ? 'primary' : 'outline'}
-            size="sm"
+            size={buttonState?.size || 'sm'}
             onClick={() => colorActions.setColorCategory('borders')}
+            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.colorCategory === 'borders' ? 'primary' : 'outline'}`}
           >
             <PolygonIcon size="sm" /> Borders
           </Button>
@@ -119,43 +126,49 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
         <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm layera-flex--justify-center">
           <Button
             variant={colorHookState.elementType === 'cards' ? 'primary' : 'outline'}
-            size="sm"
+            size={buttonState?.size || 'sm'}
             onClick={() => colorActions.setElementType('cards')}
+            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.elementType === 'cards' ? 'primary' : 'outline'}`}
           >
             <LayersIcon size="sm" /> Κάρτες
           </Button>
           <Button
             variant={colorHookState.elementType === 'modals' ? 'primary' : 'outline'}
-            size="sm"
+            size={buttonState?.size || 'sm'}
             onClick={() => colorActions.setElementType('modals')}
+            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.elementType === 'modals' ? 'primary' : 'outline'}`}
           >
             <MonitorIcon size="sm" /> Modals
           </Button>
           <Button
             variant={colorHookState.elementType === 'layout' ? 'primary' : 'outline'}
-            size="sm"
+            size={buttonState?.size || 'sm'}
             onClick={() => colorActions.setElementType('layout')}
+            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.elementType === 'layout' ? 'primary' : 'outline'}`}
           >
             <BuildingIcon size="sm" /> Layout
           </Button>
           <Button
             variant={colorHookState.elementType === 'buttons' ? 'primary' : 'outline'}
-            size="sm"
+            size={buttonState?.size || 'sm'}
             onClick={() => colorActions.setElementType('buttons')}
+            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.elementType === 'buttons' ? 'primary' : 'outline'}`}
           >
             <CheckIcon size="sm" /> Πλήκτρα
           </Button>
           <Button
             variant={colorHookState.elementType === 'inputs' ? 'primary' : 'outline'}
-            size="sm"
+            size={buttonState?.size || 'sm'}
             onClick={() => colorActions.setElementType('inputs')}
+            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.elementType === 'inputs' ? 'primary' : 'outline'}`}
           >
             <EditIcon size="sm" /> Πεδία
           </Button>
           <Button
             variant={colorHookState.elementType === 'tables' ? 'primary' : 'outline'}
-            size="sm"
+            size={buttonState?.size || 'sm'}
             onClick={() => colorActions.setElementType('tables')}
+            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.elementType === 'tables' ? 'primary' : 'outline'}`}
           >
             <ChartIcon size="sm" /> Πίνακες
           </Button>
@@ -173,6 +186,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           elementType={colorHookState.elementType}
           className="layera-height--auto layera-text--align-center"
           onPreview={onPreview}
+          buttonState={buttonState}
         />
       )}
 
@@ -184,6 +198,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           elementType={colorHookState.elementType}
           className="layera-height--auto layera-text--align-center"
           onPreview={onPreview}
+          buttonState={buttonState}
         />
       )}
 
@@ -194,6 +209,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           onFontSizeChange={onFontSizeChange}
           className="layera-height--auto layera-text--align-center"
           onPreview={onPreview}
+          buttonState={buttonState}
         />
       )}
 
@@ -206,6 +222,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           elementType={colorHookState.elementType}
           className="layera-height--auto layera-text--align-center"
           onPreview={onPreview}
+          buttonState={buttonState}
         />
       )}
 
@@ -217,6 +234,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           elementType={colorHookState.elementType}
           className="layera-height--auto layera-text--align-center"
           onPreview={onPreview}
+          buttonState={buttonState}
         />
       )}
     </Box>

@@ -14,6 +14,8 @@ import { SettingsIcon } from '@layera/icons';
  * - Χρησιμοποιεί hover tokens από το design system
  */
 
+import type { ButtonState } from '../../../hooks/useButtonState.js';
+
 interface HoverControlProps {
   /** Current hover effect value ('none', 'subtle', 'normal', 'strong') */
   value: string;
@@ -25,6 +27,8 @@ interface HoverControlProps {
   className?: string;
   /** Real-time preview callback */
   onPreview?: (key: string, value: string) => void;
+  /** Button state for sizing */
+  buttonState?: ButtonState;
 }
 
 export const HoverControl: React.FC<HoverControlProps> = ({
@@ -32,7 +36,8 @@ export const HoverControl: React.FC<HoverControlProps> = ({
   onChange,
   elementType = 'στοιχεία',
   className = '',
-  onPreview
+  onPreview,
+  buttonState
 }) => {
   const [isChanging, setIsChanging] = useState(false);
 
@@ -113,8 +118,9 @@ export const HoverControl: React.FC<HoverControlProps> = ({
           <Button
             key={option.value}
             variant={value === option.value ? 'primary' : 'outline'}
-            size="sm"
+            size={buttonState?.size || 'sm'}
             onClick={() => handleChange(option.value)}
+            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${value === option.value ? 'primary' : 'outline'}`}
             style={{
               transition: 'var(--layera-iconInteractive-interactive-transition-normal)',
               opacity: isChanging && value === option.value ? 0.7 : 1
