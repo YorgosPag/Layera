@@ -11,6 +11,7 @@ import { FontSizeControl, type FontSizeValue } from './shared/FontSizeControl';
 import { LayoutRadiusControl } from './shared/LayoutRadiusControl';
 import { CardRadiusControl } from './shared/CardRadiusControl';
 import { ModalRadiusControl } from './shared/ModalRadiusControl';
+import { InputRadiusControl } from './shared/InputRadiusControl';
 
 /**
  * ColorCategorySelection Component
@@ -36,6 +37,8 @@ interface ColorCategorySelectionProps {
   onCardRadiusChange?: (value: string) => void;
   modalRadius?: string;
   onModalRadiusChange?: (value: string) => void;
+  inputRadius?: string;
+  onInputRadiusChange?: (value: string) => void;
   hoverEffect?: string;
   onHoverEffectChange?: (value: string) => void;
   activeEffect?: string;
@@ -59,6 +62,8 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
   onCardRadiusChange,
   modalRadius = 'md',
   onModalRadiusChange,
+  inputRadius = 'md',
+  onInputRadiusChange,
   hoverEffect = 'normal',
   onHoverEffectChange,
   activeEffect = 'scale',
@@ -258,6 +263,18 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           value={modalRadius}
           onChange={onModalRadiusChange}
           elementType="modals"
+          className="layera-height--auto layera-text--align-center"
+          onPreview={onPreview}
+          buttonState={buttonState}
+        />
+      )}
+
+      {/* Input Radius Control - ΜΟΝΟ για backgrounds category με inputs element */}
+      {colorHookState.colorCategory === 'backgrounds' && colorHookState.elementType === 'inputs' && onInputRadiusChange && (
+        <InputRadiusControl
+          value={inputRadius}
+          onChange={onInputRadiusChange}
+          elementType="πεδία εισαγωγής"
           className="layera-height--auto layera-text--align-center"
           onPreview={onPreview}
           buttonState={buttonState}

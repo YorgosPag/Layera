@@ -24,6 +24,7 @@ import { ButtonRadiusControl } from './playground/shared/ButtonRadiusControl';
 import { LayoutRadiusControl } from './playground/shared/LayoutRadiusControl';
 import { CardRadiusControl } from './playground/shared/CardRadiusControl';
 import { ModalRadiusControl } from './playground/shared/ModalRadiusControl';
+import { InputRadiusControl } from './playground/shared/InputRadiusControl';
 import { loadCurrentThemeFromLocalStorage } from '../services/colorThemeService';
 import { useAuth } from '@layera/auth-bridge';
 import { useRealTimePreview } from '../hooks/useRealTimePreview';
@@ -112,6 +113,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
   // Modal radius state for modals category
   const [modalRadius, setModalRadius] = useState<string>('md');
+
+  // Input radius state for inputs category
+  const [inputRadius, setInputRadius] = useState<string>('md');
 
   // Font size state for text category
   const [fontSize, setFontSize] = useState<FontSizeValue>('base');
@@ -283,6 +287,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               onCardRadiusChange={setCardRadius}
               modalRadius={modalRadius}
               onModalRadiusChange={setModalRadius}
+              inputRadius={inputRadius}
+              onInputRadiusChange={setInputRadius}
               hoverEffect={hoverEffect}
               onHoverEffectChange={setHoverEffect}
               activeEffect={activeEffect}
