@@ -84,7 +84,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
   // Debug function removed to reduce console noise
 
   // Check if current element type supports hover effects
-  const isInteractiveElement = ['buttons', 'cards', 'inputs'].includes(colorHookState.elementType);
+  const isInteractiveElement = ['buttons', 'cards', 'inputs', 'modals', 'tables', 'layout'].includes(colorHookState.elementType);
 
   // Calculate grid columns based on what controls should show
   const getGridColumns = () => {
