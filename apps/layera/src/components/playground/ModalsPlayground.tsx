@@ -173,12 +173,6 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
     minWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
     maxWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
     borderRadius: getRadiusToken(modalRadius),
-    display: 'flex',
-    flexDirection: 'column' as const,
-    justifyContent: 'var(--layera-global-justifyContent-center)',
-    alignItems: 'var(--layera-global-alignItems-center)',
-    position: 'relative' as const,
-    boxShadow: 'var(--layera-shadow-md)',
     flex: '0 0 calc(var(--layera-fontSize-6xl) * 3)'
   };
 
@@ -220,10 +214,10 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
           {modalConfigs.map(({ key, title, description, colorValue }) => (
             <Box
               key={key}
-              className="layera-padding--md"
+              className="layera-padding--md layera-flex layera-flex--column layera-flex--justify-center layera-flex--align-center layera-position--relative layera-shadow--md"
               style={{
                 ...modalStyle,
-                // Χρήση CSS variables για real-time preview support
+                // Dynamic styling only
                 backgroundColor: `var(--layera-modal-bg-${key}, ${getBackgroundColor(colorValue)})`,
                 color: `var(--layera-modal-text-${key}, ${getTextColor(colorValue)})`,
                 border: `var(--layera-modal-border-${key}, ${getBorderStyle(colorValue)})`

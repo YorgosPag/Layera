@@ -243,17 +243,17 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
         <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-weight="medium" data-color="secondary">
           Χρώμα
         </Text>
-        <input
+        <Box
           ref={colorInputRef}
+          as="input"
           type="color"
           value={displayHex}
           onInput={handleHexInput}
-          onChange={(e) => handleHexChange(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleHexChange(e.target.value)}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          className="layera-input layera-width--full"
+          className="layera-input layera-width--full layera-cursor--pointer"
           style={{
-            cursor: 'pointer',
             transition: 'none',
             willChange: 'auto'
           } as React.CSSProperties}
@@ -269,26 +269,20 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
         {/* Alpha Preview Box - 250px πλάτος με progressive alpha */}
         <Box className="layera-margin-bottom--xs layera-flex layera-flex--justify-center">
           <Box
-            className="layera-border--default"
+            className="layera-border--default layera-position--relative"
             style={{
               width: '250px',
               height: '24px',
               borderRadius: '4px',
-              // Πάντα checkboard pattern ως background
               backgroundImage: 'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)',
               backgroundSize: '8px 8px',
-              backgroundPosition: '0 0, 0 4px, 4px -4px, -4px 0px',
-              position: 'relative'
+              backgroundPosition: '0 0, 0 4px, 4px -4px, -4px 0px'
             } as React.CSSProperties}
           >
             {/* Overlay με το χρώμα και την αντίστοιχη διαφάνεια */}
             <Box
+              className="layera-position--absolute layera-position-top--0 layera-position-left--0 layera-width--full layera-height--full"
               style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
                 borderRadius: '4px',
                 backgroundColor: internalValue?.rgba || 'rgba(255, 255, 255, 1)'
               } as React.CSSProperties}
@@ -298,7 +292,8 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
 
         {/* Alpha Slider - 250px πλάτος για συμμετρία */}
         <Box className="layera-flex layera-flex--justify-center">
-          <input
+          <Box
+            as="input"
             type="range"
             min="0"
             max="100"

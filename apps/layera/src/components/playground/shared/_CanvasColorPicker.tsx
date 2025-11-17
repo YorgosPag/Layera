@@ -184,12 +184,10 @@ export const CanvasColorPicker: React.FC<CanvasColorPickerProps> = ({
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
-          className="layera-border--default"
+          className="layera-border--default layera-cursor--crosshair layera-border-radius--md"
           style={{
             width: '250px',
-            height: '100px',
-            cursor: 'crosshair',
-            borderRadius: 'var(--layera-global-borderRadius-md)'
+            height: '100px'
           } as React.CSSProperties}
         />
       </Box>
@@ -203,11 +201,10 @@ export const CanvasColorPicker: React.FC<CanvasColorPickerProps> = ({
         {/* Alpha Preview Box */}
         <Box className="layera-margin-bottom--xs layera-flex layera-flex--justify-center">
           <Box
-            className="layera-border--default"
+            className="layera-border--default layera-border-radius--md"
             style={{
               width: '250px',
               height: '24px',
-              borderRadius: 'var(--layera-global-borderRadius-md)',
               backgroundImage: 'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)',
               backgroundSize: '8px 8px',
               backgroundPosition: '0 0, 0 4px, 4px -4px, -4px 0px',
@@ -215,13 +212,8 @@ export const CanvasColorPicker: React.FC<CanvasColorPickerProps> = ({
             } as React.CSSProperties}
           >
             <Box
+              className="layera-position--absolute layera-position-top--0 layera-position-left--0 layera-width--full layera-height--full layera-border-radius--md"
               style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                borderRadius: 'var(--layera-global-borderRadius-md)',
                 backgroundColor: currentColor.rgba
               } as React.CSSProperties}
             />
@@ -230,13 +222,14 @@ export const CanvasColorPicker: React.FC<CanvasColorPickerProps> = ({
 
         {/* Alpha Slider */}
         <Box className="layera-flex layera-flex--justify-center">
-          <input
+          <Box
+            as="input"
             type="range"
             min="0"
             max="100"
             step="1"
             value={alphaPercentage}
-            onChange={(e) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               const newAlpha = parseFloat(e.target.value) / 100;
               const newColor = {
                 ...currentColor,

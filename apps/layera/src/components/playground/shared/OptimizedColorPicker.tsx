@@ -111,15 +111,14 @@ export const OptimizedColorPicker: React.FC<OptimizedColorPickerProps> = ({
       <h4 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
         {label}
       </h4>
-      <input
+      <Box
+        as="input"
         type="color"
         value={displayValue}
-        onChange={(e) => handleChange(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e.target.value)}
         onInput={handleInput}
-        className="layera-input layera-width--full layera-margin-bottom--sm"
+        className="layera-input layera-width--full layera-margin-bottom--sm layera-cursor--pointer layera-transition--fast"
         style={{
-          cursor: 'pointer',
-          transition: 'var(--layera-iconInteractive-interactive-transition-fast)',
           opacity: isChanging ? 0.8 : 1
         }}
       />

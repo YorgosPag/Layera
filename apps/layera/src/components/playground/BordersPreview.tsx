@@ -32,27 +32,18 @@ export const BordersPreview: React.FC<BordersPreviewProps> = ({
     { key: 'info', label: 'Info', colorValue: currentColors.info }
   ];
 
-  // Base border box style
-  const baseBorderStyle = {
-    height: 'var(--layera-spacing-component-preview-box-height)',
-    minWidth: 'var(--layera-global-minWidth-120)',
-    borderRadius: 'var(--layera-global-borderRadius-md)',
-    padding: 'var(--layera-global-spacing-3)',
-    fontSize: 'var(--layera-global-fontSize-xs)',
-    fontWeight: 'var(--layera-global-fontWeight-bold, bold)',
-    backgroundColor: 'var(--layera-color-surface-primary)'
-  };
+  // Dynamic border color only - static styles moved to className
+  const getDynamicBorderStyle = (colorValue: string) => ({
+    '--layera-border-preview-color': colorValue,
+    border: `var(--layera-global-borderWidth-3) solid var(--layera-border-preview-color)`
+  });
   return (
     <>
       {borderConfigs.map(({ key, label, colorValue }) => (
         <Box
           key={key}
-          className="flex--base align-center justify-center text-center"
-          style={{
-            ...baseBorderStyle,
-            '--layera-border-preview-color': colorValue,
-            border: `var(--layera-global-borderWidth-3) solid var(--layera-border-preview-color)`
-          } as React.CSSProperties}
+          className="layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-height--preview layera-min-width--120 layera-border-radius--md layera-padding--md layera-fontSize--xs layera-fontWeight--bold layera-bg-surface--primary"
+          style={getDynamicBorderStyle(colorValue) as React.CSSProperties}
         >
           {label}<br/>Border
         </Box>

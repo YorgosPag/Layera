@@ -183,11 +183,8 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
 
         {/* Current Palette Info - Moved to right side */}
         <Box
-          className="layera-padding--sm"
+          className="layera-padding--sm layera-bg-surface--primary layera-border--default layera-border-radius--md"
           style={{
-            backgroundColor: 'var(--layera-color-surface-primary)',
-            borderRadius: 'var(--layera-global-borderRadius-md)',
-            border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-primary)',
             minWidth: '200px'
           }}
         >
@@ -253,13 +250,12 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
             {Object.values(AVAILABLE_PALETTES[selectedPalette]).map((color, index) => (
               <Box
                 key={index}
+                className="layera-border--light layera-border-radius--xs"
                 style={{
                   width: 'var(--layera-iconInteractive-sizing-padding-lg)',
                   height: 'var(--layera-iconInteractive-sizing-padding-lg)',
-                  borderRadius: 'var(--layera-iconInteractive-sizing-padding-xs)',
                   '--layera-color-preview-bg': color.hex,
-                  backgroundColor: 'var(--layera-color-preview-bg)',
-                  border: 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-light)'
+                  backgroundColor: 'var(--layera-color-preview-bg)'
                 } as React.CSSProperties}
                 data-title={`${color.name}: ${color.hex}`}
               />

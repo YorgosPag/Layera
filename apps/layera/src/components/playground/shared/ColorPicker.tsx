@@ -25,24 +25,21 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
       <h4 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
         {label}
       </h4>
-      <input
+      <Box
+        as="input"
         type="color"
         value={value}
-        onInput={(e) => {
+        onInput={(e: React.FormEvent<HTMLInputElement>) => {
           // Real-time preview while dragging
           if (onPreview) {
             onPreview((e.target as HTMLInputElement).value);
           }
         }}
-        onChange={(e) => {
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           // Final commit when selection is done
           onChange(e.target.value);
         }}
-        className="layera-input layera-width--full layera-margin-bottom--sm"
-        style={{
-          cursor: 'pointer',
-          transition: 'all 0.2s ease'
-        }}
+        className="layera-input layera-width--full layera-margin-bottom--sm layera-cursor--pointer layera-transition--all"
       />
       <Text className="layera-typography" data-size="sm" data-color="secondary">
         {value.toUpperCase()}
