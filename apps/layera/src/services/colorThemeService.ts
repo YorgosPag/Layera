@@ -32,15 +32,26 @@ export interface ColorTheme {
 
 /**
  * Μετατρέπει ColorState σε ThemeColors format
+ * Validates για undefined values που δεν δέχεται το Firebase
  */
 function colorStateToThemeColors(colorState: ColorState): ThemeColors {
+  // ES Modules compliant - no CommonJS require (ARXES rule)
+  const DEFAULT_THEME_COLORS = {
+    primary: 'var(--layera-icon-colorInfo)',
+    secondary: 'var(--layera-color-semantic-neutral-medium)',
+    success: 'var(--layera-icon-colorSuccess)',
+    warning: 'var(--layera-icon-colorWarning)',
+    danger: 'var(--layera-icon-colorDanger)',
+    info: 'var(--layera-icon-colorInfo)'
+  };
+
   return {
-    primary: colorState.primaryColor,
-    secondary: colorState.secondaryColor,
-    success: colorState.successColor,
-    warning: colorState.warningColor,
-    danger: colorState.dangerColor,
-    info: colorState.infoColor
+    primary: colorState.primaryColor || DEFAULT_THEME_COLORS.primary,
+    secondary: colorState.secondaryColor || DEFAULT_THEME_COLORS.secondary,
+    success: colorState.successColor || DEFAULT_THEME_COLORS.success,
+    warning: colorState.warningColor || DEFAULT_THEME_COLORS.warning,
+    danger: colorState.dangerColor || DEFAULT_THEME_COLORS.danger,
+    info: colorState.infoColor || DEFAULT_THEME_COLORS.info
   };
 }
 

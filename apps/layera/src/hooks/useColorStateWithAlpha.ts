@@ -6,6 +6,7 @@ import {
   ColorButtonShape,
   useColorState
 } from './useColorState';
+import { applyThemeToDOM, getCSSVariablePrefix } from '../services/theme';
 
 /**
  * Extended Color State Management Hook με Alpha Channel Support
@@ -211,35 +212,70 @@ export const useColorStateWithAlpha = (): UseColorStateWithAlphaReturn => {
     setState(prev => ({ ...prev, alphaEnabled: enabled }));
   };
 
+  // ENTERPRISE: Auto-apply CSS variables to DOM when colors change
+  const applyColorsToDOM = (buttonShape: ColorButtonShape, palette: ColorPaletteWithAlpha) => {
+    // Convert ColorWithAlpha to Record<string, string> για το theme service
+    const colorsAsHex: Record<string, string> = Object.entries(palette).reduce((acc, [key, color]) => {
+      acc[key.replace('Color', '')] = color.hex; // Remove 'Color' suffix για compatibility
+      return acc;
+    }, {} as Record<string, string>);
+
+    applyThemeToDOM(colorsAsHex as any, 'buttons', buttonShape);
+  };
+
   const updateRectangularPalette = (key: keyof ColorPaletteWithAlpha, value: ColorWithAlpha) => {
-    setState(prev => ({
-      ...prev,
-      rectangularPalette: { ...prev.rectangularPalette, [key]: value }
-    }));
+    setState(prev => {
+      const newPalette = { ...prev.rectangularPalette, [key]: value };
+      // Auto-apply to DOM if this is the current shape
+      if (prev.colorButtonShape === 'rectangular') {
+        applyColorsToDOM('rectangular', newPalette);
+      }
+      return { ...prev, rectangularPalette: newPalette };
+    });
   };
 
   const updateSquarePalette = (key: keyof ColorPaletteWithAlpha, value: ColorWithAlpha) => {
-    setState(prev => ({
-      ...prev,
-      squarePalette: { ...prev.squarePalette, [key]: value }
-    }));
+    setState(prev => {
+      const newPalette = { ...prev.squarePalette, [key]: value };
+      // Auto-apply to DOM if this is the current shape
+      if (prev.colorButtonShape === 'square') {
+        applyColorsToDOM('square', newPalette);
+      }
+      return { ...prev, squarePalette: newPalette };
+    });
   };
 
   const updateRoundedPalette = (key: keyof ColorPaletteWithAlpha, value: ColorWithAlpha) => {
-    setState(prev => ({
-      ...prev,
-      roundedPalette: { ...prev.roundedPalette, [key]: value }
-    }));
+    setState(prev => {
+      const newPalette = { ...prev.roundedPalette, [key]: value };
+      // Auto-apply to DOM if this is the current shape
+      if (prev.colorButtonShape === 'rounded') {
+        applyColorsToDOM('rounded', newPalette);
+      }
+      return { ...prev, roundedPalette: newPalette };
+    });
   };
 
   const updateCategoryPalette = (category: ColorCategory, key: keyof ColorPaletteWithAlpha, value: ColorWithAlpha) => {
-    setState(prev => ({
-      ...prev,
-      categoryPalettes: {
-        ...prev.categoryPalettes,
-        [category]: { ...prev.categoryPalettes[category], [key]: value }
-      }
-    }));
+    setState(prev => {
+      const newCategoryPalette = { ...prev.categoryPalettes[category], [key]: value };
+
+      // Auto-apply to DOM for non-button categories (text, backgrounds, borders)
+      const colorsAsHex: Record<string, string> = Object.entries(newCategoryPalette).reduce((acc, [key, color]) => {
+        acc[key.replace('Color', '')] = color.hex;
+        return acc;
+      }, {} as Record<string, string>);
+
+      applyThemeToDOM(colorsAsHex as any, category, undefined);
+
+      return {
+        ...prev,
+        categoryPalettes: {
+          ...prev.categoryPalettes,
+          [category]: newCategoryPalette
+        }
+      };
+    });
   };
 
   // Legacy HEX support methods

@@ -46,10 +46,20 @@ export async function saveTheme(
       return;
     }
 
+    // Validate colors object για undefined values - Firebase απαγορεύει undefined
+    const sanitizedColors: ThemeColors = {
+      primary: colors.primary || DEFAULT_THEME_COLORS.primary,
+      secondary: colors.secondary || DEFAULT_THEME_COLORS.secondary,
+      success: colors.success || DEFAULT_THEME_COLORS.success,
+      warning: colors.warning || DEFAULT_THEME_COLORS.warning,
+      danger: colors.danger || DEFAULT_THEME_COLORS.danger,
+      info: colors.info || DEFAULT_THEME_COLORS.info
+    };
+
     const theme: UserTheme = {
       id: themeId,
       name: `${category}_theme_${buttonShape || 'default'}`,
-      colors,
+      colors: sanitizedColors,
       category: category as UserTheme['category'],
       buttonShape: buttonShape as UserTheme['buttonShape'],
       userId,
