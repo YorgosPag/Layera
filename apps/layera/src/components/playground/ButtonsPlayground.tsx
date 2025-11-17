@@ -231,10 +231,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
 
   return (
     <Box
-      style={{
-        paddingLeft: 'var(--layera-size-6)',
-        paddingRight: 'var(--layera-size-6)'
-      } as React.CSSProperties}
+      className="layera-padding-left--lg layera-padding-right--lg"
     >
       {/* Live Preview Area - Ενοποιημένο με 6 χρωματιστά buttons */}
       <Box className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">

@@ -120,10 +120,9 @@ export const ButtonRadiusControl: React.FC<ButtonRadiusControlProps> = ({
 
       {/* Live Preview of Current Button Radius */}
       <Box
-        className={`layera-margin-bottom--sm layera-padding--lg layera-bg--surface-primary layera-text-align--center layera-transition--normal ${isChanging ? 'layera-transform--scale-102' : 'layera-transform--scale-100'}`}
+        className={`layera-margin-bottom--sm layera-padding--lg layera-bg--surface-primary layera-text-align--center layera-transition--normal layera-border--solid layera-border-width--2 layera-border-color--primary ${isChanging ? 'layera-transform--scale-102' : 'layera-transform--scale-100'}`}
         style={{
-          borderRadius: currentOption.token,
-          border: '2px solid var(--layera-color-border-primary)'
+          borderRadius: currentOption.token
         } as React.CSSProperties}
       >
         <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">
