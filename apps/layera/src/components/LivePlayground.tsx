@@ -480,9 +480,22 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               onSettingsChange={(settings) => {
                 // Εφαρμόζει τις νέες ρυθμίσεις στο color state
                 // Φιλτράρει το outlineColor που δεν πρέπει να εμφανίζεται ως color picker
+
+                // Mapping από factory format (primaryColor) σε color state format (primary)
+                const keyMapping: Record<string, string> = {
+                  'primaryColor': 'primary',
+                  'secondaryColor': 'secondary',
+                  'successColor': 'success',
+                  'warningColor': 'warning',
+                  'dangerColor': 'danger',
+                  'infoColor': 'info'
+                };
+
                 Object.entries(settings).forEach(([key, value]) => {
                   if (typeof key === 'string' && typeof value === 'string' && key !== 'outlineColor') {
-                    colorActions.updateCategoryPalette(colorHookState.colorCategory, key as any, value);
+                    // Μετατρέπει το key αν είναι factory format (πχ primaryColor -> primary)
+                    const mappedKey = keyMapping[key] || key;
+                    colorActions.updateCategoryPalette(colorHookState.colorCategory, mappedKey as any, value);
                   }
                 });
               }}
