@@ -301,7 +301,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
     if (category && elementType && isColorKey) {
       // Update based on category type, regardless of elementType for most categories
       if (category === 'backgrounds') {
-        if (elementType === 'cards' || elementType === 'modals' || elementType === 'inputs' || elementType === 'layout' || elementType === 'tables') {
+        if (elementType === 'cards' || elementType === 'modals' || elementType === 'inputs' || elementType === 'layout' || elementType === 'tables' || elementType === 'headers') {
           // Update card/component background variables
           updateCardVariables(key, value, category);
         } else if (elementType === 'buttons') {
@@ -313,14 +313,14 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
           // Header buttons θα ενημερωθούν μόνο σε full theme mode
         }
       } else if (category === 'text') {
-        if (elementType === 'cards' || elementType === 'modals' || elementType === 'inputs' || elementType === 'layout' || elementType === 'tables') {
+        if (elementType === 'cards' || elementType === 'modals' || elementType === 'inputs' || elementType === 'layout' || elementType === 'tables' || elementType === 'headers') {
           // Update card/component text variables
           updateCardVariables(key, value, category);
         } else if (elementType === 'buttons') {
           // DELEGATION: Button text updates handled by useCSSVariables
         }
       } else if (category === 'borders') {
-        if (elementType === 'cards' || elementType === 'modals' || elementType === 'inputs' || elementType === 'layout' || elementType === 'tables') {
+        if (elementType === 'cards' || elementType === 'modals' || elementType === 'inputs' || elementType === 'layout' || elementType === 'tables' || elementType === 'headers') {
           // Update card/component border variables
           updateCardVariables(key, value, category);
         } else if (elementType === 'buttons') {

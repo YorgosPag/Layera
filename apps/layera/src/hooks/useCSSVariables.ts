@@ -30,6 +30,7 @@ export interface CSSVariablesActions {
   applySpecificCardColor: (colorKey: string, colorValue: string) => void;
   applySpecificModalColor: (colorKey: string, colorValue: string) => void;
   applySpecificLayoutColor: (colorKey: string, colorValue: string) => void;
+  applySpecificHeaderColor: (colorKey: string, colorValue: string) => void;
 }
 
 export interface UseCSSVariablesReturn {
@@ -447,6 +448,54 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
   };
 
   /**
+   * Εφαρμόζει συγκεκριμένο χρώμα σε header element για real-time preview
+   * Χρησιμοποιεί CSS variables για άμεση ενημέρωση χωρίς re-render
+   */
+  const applySpecificHeaderColor = (colorKey: string, colorValue: string) => {
+    // Optimized: Use CSS variables instead of rewriting style.textContent
+    const root = document.documentElement;
+
+    // Mapping από colorKey σε CSS variable για headers
+    // NOTE: colorKey format is 'primaryColor' από LivePlayground, CSS variable format is 'primary'
+    const colorToVariableMap: Record<string, string> = {
+      'primaryColor': '--layera-header-bg-primary',
+      'secondaryColor': '--layera-header-bg-secondary',
+      'successColor': '--layera-header-bg-success',
+      'warningColor': '--layera-header-bg-warning',
+      'dangerColor': '--layera-header-bg-danger',
+      'infoColor': '--layera-header-bg-info'
+    };
+
+    const variableName = colorToVariableMap[colorKey];
+    if (!variableName) return;
+
+    // Fast CSS variable update (no DOM reflow/repaint)
+    root.style.setProperty(variableName, colorValue);
+    root.style.setProperty(`${variableName}-hover`, `${colorValue}DD`);
+
+    // Create CSS rules only once για headers
+    let style = document.getElementById('layera-header-color-overrides') as HTMLStyleElement;
+    if (!style) {
+      style = document.createElement('style');
+      style.id = 'layera-header-color-overrides';
+      document.head.appendChild(style);
+
+      // Minimal CSS rules - rely on HeaderPlayground's own CSS variable usage
+      // The HeaderPlayground will use var(--layera-header-bg-${key}, fallback) in inline styles
+      // We just need to ensure CSS variables are properly set - no additional CSS rules needed
+      style.textContent = `
+        /* Minimal CSS for header live preview - relies on HeaderPlayground's inline CSS variables */
+        /* CSS variables are set directly on :root by applySpecificHeaderColor */
+
+        /* Debug helper to visualize applied variables */
+        :root {
+          /* Variables set dynamically by applySpecificHeaderColor function */
+        }
+      `;
+    }
+  };
+
+  /**
    * Επιστρέφει default colors για fallback
    */
   const getCurrentDefaultColors = (): ColorPaletteWithAlpha => ({
@@ -465,7 +514,8 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
     applySpecificButtonColor,
     applySpecificCardColor,
     applySpecificModalColor,
-    applySpecificLayoutColor
+    applySpecificLayoutColor,
+    applySpecificHeaderColor
   };
 
   return {

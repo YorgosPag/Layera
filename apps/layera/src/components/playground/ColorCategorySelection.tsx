@@ -199,6 +199,14 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
             <BuildingIcon size="sm" /> Layout
           </Button>
           <Button
+            variant={colorHookState.elementType === 'headers' ? 'primary' : 'outline'}
+            size={buttonState?.size || 'sm'}
+            onClick={() => colorActions.setElementType('headers')}
+            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.elementType === 'headers' ? 'primary' : 'outline'}`}
+          >
+            <CompassIcon size="sm" /> Headers
+          </Button>
+          <Button
             variant={colorHookState.elementType === 'buttons' ? 'primary' : 'outline'}
             size={buttonState?.size || 'sm'}
             onClick={() => colorActions.setElementType('buttons')}

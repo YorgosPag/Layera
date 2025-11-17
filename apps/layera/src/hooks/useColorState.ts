@@ -17,7 +17,7 @@ import { ColorPaletteWithAlpha, hexToColorWithAlpha } from './useColorStateWithA
  */
 
 export type ColorCategory = 'backgrounds' | 'text' | 'borders';
-export type ElementType = 'buttons' | 'cards' | 'modals' | 'inputs' | 'layout' | 'tables';
+export type ElementType = 'buttons' | 'cards' | 'modals' | 'inputs' | 'layout' | 'tables' | 'headers';
 export type ColorButtonShape = 'rectangular' | 'square' | 'rounded';
 
 // Re-export το ColorPaletteWithAlpha για compatibility

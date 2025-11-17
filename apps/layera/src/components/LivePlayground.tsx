@@ -12,6 +12,7 @@ import { ModalsPlayground } from './playground/ModalsPlayground';
 import { InputsPlayground } from './playground/InputsPlayground';
 import { LayoutPlayground } from './playground/LayoutPlayground';
 import { TablesPlayground } from './playground/TablesPlayground';
+import { HeaderPlayground } from './playground/HeaderPlayground';
 import { ColorCategorySelection } from './playground/ColorCategorySelection';
 import { ColorPreviewArea } from './playground/ColorPreviewArea';
 import { ColorControlsGridWithAlpha } from './playground/ColorControlsGridWithAlpha';
@@ -326,6 +327,20 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             </Box>
           )}
 
+          {colorHookState.elementType === 'headers' && (
+            <Box className="layera-margin-bottom--xl">
+              <HeaderPlayground
+                currentColors={convertColorPaletteWithAlphaToLegacy(colorHelpersActions.getColorsForCategory(colorHookState.colorCategory))}
+                colorCategory={colorHookState.colorCategory}
+                borderWidth={borderWidth}
+                headerRadius="md"
+                headerSize="md"
+                hoverEffect={hoverEffect}
+                activeEffect={activeEffect}
+              />
+            </Box>
+          )}
+
 
           {colorHookState.elementType === 'tables' && (
             <Box className="layera-margin-bottom--xl">
@@ -512,6 +527,12 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                    colorHookState.colorCategory === 'backgrounds') {
                   const colorValue = typeof value === 'string' ? value : value.hex;
                   cssActions.applySpecificLayoutColor(key, colorValue);
+                }
+
+                if (colorHookState.elementType === 'headers' &&
+                   colorHookState.colorCategory === 'backgrounds') {
+                  const colorValue = typeof value === 'string' ? value : value.hex;
+                  cssActions.applySpecificHeaderColor(key, colorValue);
                 }
 
                 startPreview(key, previewValue, colorHookState.colorCategory, colorHookState.elementType);
