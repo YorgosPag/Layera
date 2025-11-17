@@ -187,10 +187,7 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
 
   return (
     <Box
-      style={{
-        paddingLeft: 'var(--layera-size-6)',
-        paddingRight: 'var(--layera-size-6)'
-      } as React.CSSProperties}
+      className="layera-padding-left--lg layera-padding-right--lg"
     >
       <Box className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
         <h3 className="layera-typography layera-margin-bottom--sm layera-text--align-center" data-size="lg" data-weight="bold" data-color="primary">
@@ -206,17 +203,8 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
             console.log('📐 LayoutPlayground: layoutRadius prop =', layoutRadius);
             console.log('📐 LayoutPlayground: Final borderRadius =', getRadiusToken(layoutRadius));
 
-            const baseStyle = {
-              padding: 'var(--layera-global-spacing-3)',
+            const dynamicLayoutStyles = {
               borderRadius: getRadiusToken(layoutRadius),
-              height: 'var(--layera-fontSize-6xl)',
-              width: 'calc(var(--layera-fontSize-6xl) * 3)',
-              minWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
-              maxWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
-              flex: '0 0 calc(var(--layera-fontSize-6xl) * 3)',
-              display: 'flex',
-              alignItems: 'var(--layera-global-alignItems-center)',
-              justifyContent: 'var(--layera-global-justifyContent-center)',
               // Χρήση CSS variables για real-time preview support
               backgroundColor: `var(--layera-layout-bg-${key}, ${getBackgroundColor(colorValue)})`,
               color: `var(--layera-layout-text-${key}, ${getTextColor(colorValue)})`,
@@ -224,7 +212,11 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
             };
 
             return (
-              <Box key={key} style={baseStyle}>
+              <Box
+                key={key}
+                className="layera-padding--md layera-height--6xl layera-width--card layera-flex layera-flex--align-center layera-flex--justify-center layera-flex-shrink--0"
+                style={dynamicLayoutStyles}
+              >
                 <Box>
                   <Text
                     className="layera-typography layera-margin-bottom--xs"
