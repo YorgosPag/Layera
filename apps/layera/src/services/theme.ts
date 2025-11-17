@@ -124,13 +124,13 @@ export function applyThemeToDOM(
     root.style.setProperty(cssVar, colorValue);
   });
 
-  console.log(`🎯 Colors applied to DOM for ${category}${buttonShape ? ` (${buttonShape})` : ''}`);
 }
 
 /**
- * Επιστρέφει το σωστό CSS variable prefix
+ * Επιστρέφει το σωστό CSS variable prefix - ENTERPRISE SINGLE SOURCE OF TRUTH
+ * EXPORTED για χρήση σε άλλα components για consistency
  */
-function getCSSVariablePrefix(category: string, buttonShape?: string): string {
+export function getCSSVariablePrefix(category: string, buttonShape?: string): string {
   switch (category) {
     case 'buttons':
       if (buttonShape === 'square') return '--layera-color-button-square-';

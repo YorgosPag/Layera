@@ -1,4 +1,5 @@
-import { ColorPalette, ColorCategory } from './useColorState';
+import { ColorPaletteWithAlpha, ColorCategory } from './useColorState';
+import { hexToColorWithAlpha } from './useColorStateWithAlpha';
 
 /**
  * CSS Variables Management Hook
@@ -24,7 +25,7 @@ interface CSSVariableMap {
 export interface CSSVariablesActions {
   ensureCSSVariablesExist: () => void;
   applySquareColorsToHeader: () => void;
-  applyColorsToApp: (colorCategory: ColorCategory, currentColors: ColorPalette, elementType?: string) => Promise<void>;
+  applyColorsToApp: (colorCategory: ColorCategory, currentColors: ColorPaletteWithAlpha, elementType?: string) => Promise<void>;
 }
 
 export interface UseCSSVariablesReturn {
@@ -79,11 +80,11 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
     const currentColors = getCurrentDefaultColors();
 
     // Δημιουργώ τις CSS μεταβλητές αν δεν υπάρχουν
-    root.style.setProperty('--layera-btn-secondary-bg', currentColors.secondary);
-    root.style.setProperty('--layera-btn-secondary-border', currentColors.secondary);
+    root.style.setProperty('--layera-btn-secondary-bg', currentColors.secondaryColor.hex);
+    root.style.setProperty('--layera-btn-secondary-border', currentColors.secondaryColor.hex);
     root.style.setProperty('--layera-btn-secondary-color', '#ffffff');
-    root.style.setProperty('--layera-btn-secondary-hover-bg', currentColors.secondary + 'CC');
-    root.style.setProperty('--layera-btn-secondary-hover-border', currentColors.secondary + 'CC');
+    root.style.setProperty('--layera-btn-secondary-hover-bg', currentColors.secondaryColor.hex + 'CC');
+    root.style.setProperty('--layera-btn-secondary-hover-border', currentColors.secondaryColor.hex + 'CC');
 
     // Εξασφαλίζω ότι υπάρχουν τα CSS rules
     let customStyle = document.getElementById('layera-css-variables');
@@ -118,20 +119,19 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
   /**
    * Εφαρμόζει χρώματα στην εφαρμογή μέσω CSS variables
    */
-  const applyColorsToApp = async (colorCategory: ColorCategory, currentColors: ColorPalette, elementType: string = 'buttons') => {
+  const applyColorsToApp = async (colorCategory: ColorCategory, currentColors: ColorPaletteWithAlpha, elementType: string = 'buttons') => {
     const root = document.documentElement;
     const categoryColors = CSS_VARIABLE_MAP[colorCategory];
 
     // Νέα αρχιτεκτονική: 3 κατηγορίες (backgrounds/text/borders) + element types
-    console.log(`🎯 CSS INJECTION - Category: ${colorCategory}, ElementType: ${elementType}, Colors:`, currentColors);
 
     // Set CSS variables για την επιλεγμένη κατηγορία
-    root.style.setProperty(categoryColors.primary, currentColors.primary);
-    root.style.setProperty(categoryColors.secondary, currentColors.secondary);
-    root.style.setProperty(categoryColors.success, currentColors.success);
-    root.style.setProperty(categoryColors.warning, currentColors.warning);
-    root.style.setProperty(categoryColors.danger, currentColors.danger);
-    root.style.setProperty(categoryColors.info, currentColors.info);
+    root.style.setProperty(categoryColors.primary, currentColors.primaryColor.hex);
+    root.style.setProperty(categoryColors.secondary, currentColors.secondaryColor.hex);
+    root.style.setProperty(categoryColors.success, currentColors.successColor.hex);
+    root.style.setProperty(categoryColors.warning, currentColors.warningColor.hex);
+    root.style.setProperty(categoryColors.danger, currentColors.dangerColor.hex);
+    root.style.setProperty(categoryColors.info, currentColors.infoColor.hex);
 
     // Δημιουργώ CSS selectors ανάλογα με το element type
     const getSelectorsForElementType = (type: string) => {
@@ -214,13 +214,13 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
   /**
    * Επιστρέφει default colors για fallback
    */
-  const getCurrentDefaultColors = (): ColorPalette => ({
-    primary: '#44FF44',
-    secondary: '#44FF44',
-    success: '#4444FF',
-    warning: '#FFAA00',
-    danger: '#AA00FF',
-    info: '#00AAFF'
+  const getCurrentDefaultColors = (): ColorPaletteWithAlpha => ({
+    primaryColor: hexToColorWithAlpha('#44FF44', 1.0),
+    secondaryColor: hexToColorWithAlpha('#44FF44', 1.0),
+    successColor: hexToColorWithAlpha('#4444FF', 1.0),
+    warningColor: hexToColorWithAlpha('#FFAA00', 1.0),
+    dangerColor: hexToColorWithAlpha('#AA00FF', 1.0),
+    infoColor: hexToColorWithAlpha('#00AAFF', 1.0)
   });
 
   const actions: CSSVariablesActions = {

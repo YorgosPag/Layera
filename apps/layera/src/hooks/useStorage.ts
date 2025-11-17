@@ -85,26 +85,26 @@ export const useStorage = ({ colorState, colorActions }: UseStorageProps): UseSt
 
         // Εφαρμογή χρωμάτων ανάλογα με το σχήμα
         if (buttonShape === 'square') {
-          if (savedState.primaryColor) colorActions.updateSquarePalette('primary', savedState.primaryColor);
-          if (savedState.secondaryColor) colorActions.updateSquarePalette('secondary', savedState.secondaryColor);
-          if (savedState.successColor) colorActions.updateSquarePalette('success', savedState.successColor);
-          if (savedState.warningColor) colorActions.updateSquarePalette('warning', savedState.warningColor);
-          if (savedState.dangerColor) colorActions.updateSquarePalette('danger', savedState.dangerColor);
-          if (savedState.infoColor) colorActions.updateSquarePalette('info', savedState.infoColor);
+          if (savedState.primaryColor) colorActions.updateSquarePalette('primaryColor', savedState.primaryColor);
+          if (savedState.secondaryColor) colorActions.updateSquarePalette('secondaryColor', savedState.secondaryColor);
+          if (savedState.successColor) colorActions.updateSquarePalette('successColor', savedState.successColor);
+          if (savedState.warningColor) colorActions.updateSquarePalette('warningColor', savedState.warningColor);
+          if (savedState.dangerColor) colorActions.updateSquarePalette('dangerColor', savedState.dangerColor);
+          if (savedState.infoColor) colorActions.updateSquarePalette('infoColor', savedState.infoColor);
         } else if (buttonShape === 'rectangular') {
-          if (savedState.primaryColor) colorActions.updateRectangularPalette('primary', savedState.primaryColor);
-          if (savedState.secondaryColor) colorActions.updateRectangularPalette('secondary', savedState.secondaryColor);
-          if (savedState.successColor) colorActions.updateRectangularPalette('success', savedState.successColor);
-          if (savedState.warningColor) colorActions.updateRectangularPalette('warning', savedState.warningColor);
-          if (savedState.dangerColor) colorActions.updateRectangularPalette('danger', savedState.dangerColor);
-          if (savedState.infoColor) colorActions.updateRectangularPalette('info', savedState.infoColor);
+          if (savedState.primaryColor) colorActions.updateRectangularPalette('primaryColor', savedState.primaryColor);
+          if (savedState.secondaryColor) colorActions.updateRectangularPalette('secondaryColor', savedState.secondaryColor);
+          if (savedState.successColor) colorActions.updateRectangularPalette('successColor', savedState.successColor);
+          if (savedState.warningColor) colorActions.updateRectangularPalette('warningColor', savedState.warningColor);
+          if (savedState.dangerColor) colorActions.updateRectangularPalette('dangerColor', savedState.dangerColor);
+          if (savedState.infoColor) colorActions.updateRectangularPalette('infoColor', savedState.infoColor);
         } else if (buttonShape === 'rounded') {
-          if (savedState.primaryColor) colorActions.updateRoundedPalette('primary', savedState.primaryColor);
-          if (savedState.secondaryColor) colorActions.updateRoundedPalette('secondary', savedState.secondaryColor);
-          if (savedState.successColor) colorActions.updateRoundedPalette('success', savedState.successColor);
-          if (savedState.warningColor) colorActions.updateRoundedPalette('warning', savedState.warningColor);
-          if (savedState.dangerColor) colorActions.updateRoundedPalette('danger', savedState.dangerColor);
-          if (savedState.infoColor) colorActions.updateRoundedPalette('info', savedState.infoColor);
+          if (savedState.primaryColor) colorActions.updateRoundedPalette('primaryColor', savedState.primaryColor);
+          if (savedState.secondaryColor) colorActions.updateRoundedPalette('secondaryColor', savedState.secondaryColor);
+          if (savedState.successColor) colorActions.updateRoundedPalette('successColor', savedState.successColor);
+          if (savedState.warningColor) colorActions.updateRoundedPalette('warningColor', savedState.warningColor);
+          if (savedState.dangerColor) colorActions.updateRoundedPalette('dangerColor', savedState.dangerColor);
+          if (savedState.infoColor) colorActions.updateRoundedPalette('infoColor', savedState.infoColor);
         }
       }
     } catch (error) {

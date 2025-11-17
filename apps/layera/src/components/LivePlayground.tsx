@@ -34,7 +34,7 @@ import { loadCurrentThemeFromLocalStorage } from '../services/colorThemeService'
 import { useAuth } from '@layera/auth-bridge';
 import { useRealTimePreview } from '../hooks/useRealTimePreview';
 import { useButtonState } from '../hooks/useButtonState';
-import { useColorState, ColorPalette } from '../hooks/useColorState';
+import { useColorState, ColorPaletteWithAlpha } from '../hooks/useColorState';
 import { useCSSVariables } from '../hooks/useCSSVariables';
 import { useStorage } from '../hooks/useStorage';
 import { useNavigation } from '../hooks/useNavigation';
@@ -149,13 +149,48 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
       // Update the actual color state when preview is committed
       // ΜΟΝΟ για buttons category επηρεάζει τα header buttons
       if (key === 'buttonsSecondaryColor') {
-        colorActions.updateSquarePalette('secondary', value);
+        colorActions.updateSquarePalette('secondaryColor', value);
       }
     },
     debounceMs: 1000
   });
 
 
+
+  // ==============================
+  // HELPER FUNCTIONS
+  // ==============================
+
+  // Conversion function for backward compatibility με playground components
+  const convertColorPaletteWithAlphaToLegacy = (palette: ColorPaletteWithAlpha) => {
+    // Helper function για safe extraction του hex value
+    const safeExtractHex = (color: any): string => {
+      if (!color) return '#ffffff';
+      if (typeof color === 'string') return color; // Factory settings format
+      if (color.hex) return color.hex; // ColorWithAlpha format
+      return '#ffffff'; // Fallback
+    };
+
+    const converted = {
+      primary: safeExtractHex(palette.primaryColor),
+      secondary: safeExtractHex(palette.secondaryColor),
+      success: safeExtractHex(palette.successColor),
+      warning: safeExtractHex(palette.warningColor),
+      danger: safeExtractHex(palette.dangerColor),
+      info: safeExtractHex(palette.infoColor)
+    };
+
+    // Επιπλέον έλεγχος για το αν τα χρώματα είναι μηδενικά (ΜΟΝΟ πραγματικά άκυρα)
+    const hasNullColors = Object.values(converted).some(color =>
+      !color || color === 'undefined' || color === '' || color === null
+    );
+
+    if (hasNullColors) {
+      console.warn('Warning: Some colors may not be properly set:', converted);
+    }
+
+    return converted;
+  };
 
   // ==============================
   // EVENT HANDLERS
@@ -185,18 +220,18 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
     const categoryColors = colorHelpersActions.getColorsForCategory(colorHookState.colorCategory);
 
     // Apply colors via CSS Variables hook
-    await cssActions.applyColorsToApp(colorHookState.colorCategory, categoryColors as ColorPalette, colorHookState.elementType);
+    await cssActions.applyColorsToApp(colorHookState.colorCategory, categoryColors, colorHookState.elementType);
 
     // Save theme via Storage hook
     const themeData = {
       colorCategory: colorHookState.colorCategory,
       shape: colorHookState.colorButtonShape,
-      primaryColor: categoryColors.primary,
-      secondaryColor: categoryColors.secondary,
-      successColor: categoryColors.success,
-      warningColor: categoryColors.warning,
-      dangerColor: categoryColors.danger,
-      infoColor: categoryColors.info
+      primaryColor: categoryColors.primaryColor.hex,
+      secondaryColor: categoryColors.secondaryColor.hex,
+      successColor: categoryColors.successColor.hex,
+      warningColor: categoryColors.warningColor.hex,
+      dangerColor: categoryColors.dangerColor.hex,
+      infoColor: categoryColors.infoColor.hex
     };
 
     await storageActions.saveToStorage(themeData, user || undefined);
@@ -237,7 +272,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {colorHookState.elementType === 'cards' && (
             <Box className="layera-margin-bottom--xl">
               <CardsPlayground
-                currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
+                currentColors={convertColorPaletteWithAlphaToLegacy(colorHelpersActions.getColorsForCategory(colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
                 cardRadius={cardRadius}
@@ -251,7 +286,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {colorHookState.elementType === 'modals' && (
             <Box className="layera-margin-bottom--xl">
               <ModalsPlayground
-                currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
+                currentColors={convertColorPaletteWithAlphaToLegacy(colorHelpersActions.getColorsForCategory(colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
                 modalRadius={modalRadius}
@@ -265,7 +300,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {colorHookState.elementType === 'inputs' && (
             <Box className="layera-margin-bottom--xl">
               <InputsPlayground
-                currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
+                currentColors={convertColorPaletteWithAlphaToLegacy(colorHelpersActions.getColorsForCategory(colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
                 inputRadius={inputRadius}
@@ -279,7 +314,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {colorHookState.elementType === 'layout' && (
             <Box className="layera-margin-bottom--xl">
               <LayoutPlayground
-                currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
+                currentColors={convertColorPaletteWithAlphaToLegacy(colorHelpersActions.getColorsForCategory(colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
                 borderRadius={layoutRadius}
@@ -295,7 +330,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {colorHookState.elementType === 'tables' && (
             <Box className="layera-margin-bottom--xl">
               <TablesPlayground
-                currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
+                currentColors={convertColorPaletteWithAlphaToLegacy(colorHelpersActions.getColorsForCategory(colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
                 tableRadius={tableRadius}
@@ -311,7 +346,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           <Box className="layera-margin-bottom--xl">
             <ColorPreviewArea
               colorHookState={colorHookState}
-              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
+              currentColors={convertColorPaletteWithAlphaToLegacy(colorHelpersActions.getColorsForCategory(colorHookState.colorCategory))}
             />
           </Box>
 
@@ -492,7 +527,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
             <ColorValueDisplay
               colorHookState={colorHookState}
-              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, string>}
+              currentColors={convertColorPaletteWithAlphaToLegacy(colorHelpersActions.getColorsForCategory(colorHookState.colorCategory))}
               buttonState={buttonState}
             />
           </Box>

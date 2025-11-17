@@ -43,7 +43,7 @@ if (firebaseConfig.apiKey && firebaseConfig.projectId) {
     console.error('❌ Firebase αρχικοποίηση απέτυχε:', error);
   }
 } else {
-  console.log('🔧 Demo mode - δεν υπάρχουν Firebase credentials');
+  // Demo mode - δεν υπάρχουν Firebase credentials
 }
 
 function App(): React.ReactElement {

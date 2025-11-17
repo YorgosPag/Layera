@@ -1,4 +1,4 @@
-import { ColorState, ColorStateActions, ColorPalette, ColorCategory, CategoryColorPalettes } from './useColorState';
+import { ColorState, ColorStateActions, ColorPaletteWithAlpha, ColorCategory, CategoryColorPalettes } from './useColorState';
 
 /**
  * Color Helpers Hook
@@ -25,9 +25,9 @@ interface ColorSetters {
 }
 
 interface CategorySpecificColors {
-  backgrounds: ColorPalette;
-  text: ColorPalette;
-  borders: ColorPalette;
+  backgrounds: ColorPaletteWithAlpha;
+  text: ColorPaletteWithAlpha;
+  borders: ColorPaletteWithAlpha;
 }
 
 interface CategorySpecificSetters {
@@ -37,9 +37,9 @@ interface CategorySpecificSetters {
 }
 
 export interface ColorHelpersActions {
-  getCurrentColors: () => ColorPalette;
+  getCurrentColors: () => ColorPaletteWithAlpha;
   getCurrentSetters: () => ColorSetters;
-  getColorsForCategory: (category: string) => ColorPalette;
+  getColorsForCategory: (category: string) => ColorPaletteWithAlpha;
   getSettersForCategory: (category: string) => ColorSetters;
   getAllCategoryColors: () => CategorySpecificColors;
   getAllCategorySetters: () => CategorySpecificSetters;
@@ -47,7 +47,7 @@ export interface ColorHelpersActions {
 
 export interface UseColorHelpersReturn {
   actions: ColorHelpersActions;
-  currentColors: ColorPalette;
+  currentColors: ColorPaletteWithAlpha;
   currentSetters: ColorSetters;
   categoryColors: CategorySpecificColors;
   categorySetters: CategorySpecificSetters;
@@ -56,8 +56,8 @@ export interface UseColorHelpersReturn {
 interface UseColorHelpersProps {
   colorState: ColorState;
   colorActions: ColorStateActions;
-  getCurrentPalette: () => ColorPalette;
-  getCategoryPalette: (category: ColorCategory) => ColorPalette;
+  getCurrentPalette: () => ColorPaletteWithAlpha;
+  getCategoryPalette: (category: ColorCategory) => ColorPaletteWithAlpha;
 }
 
 /**
@@ -74,7 +74,7 @@ export const useColorHelpers = ({
    * Gets the current color palette based on selected button shape
    * @returns Color object with primary, secondary, success, warning, danger, info
    */
-  const getCurrentColors = (): ColorPalette => {
+  const getCurrentColors = (): ColorPaletteWithAlpha => {
     return getCurrentPalette();
   };
 
@@ -85,47 +85,54 @@ export const useColorHelpers = ({
     switch (colorState.colorButtonShape) {
       case 'rectangular':
         return {
-          setPrimary: (value: string) => colorActions.updateRectangularPalette('primary', value),
-          setSecondary: (value: string) => colorActions.updateRectangularPalette('secondary', value),
-          setSuccess: (value: string) => colorActions.updateRectangularPalette('success', value),
-          setWarning: (value: string) => colorActions.updateRectangularPalette('warning', value),
-          setDanger: (value: string) => colorActions.updateRectangularPalette('danger', value),
-          setInfo: (value: string) => colorActions.updateRectangularPalette('info', value)
+          setPrimary: (value: string) => colorActions.updateRectangularPalette('primaryColor', value),
+          setSecondary: (value: string) => colorActions.updateRectangularPalette('secondaryColor', value),
+          setSuccess: (value: string) => colorActions.updateRectangularPalette('successColor', value),
+          setWarning: (value: string) => colorActions.updateRectangularPalette('warningColor', value),
+          setDanger: (value: string) => colorActions.updateRectangularPalette('dangerColor', value),
+          setInfo: (value: string) => colorActions.updateRectangularPalette('infoColor', value)
         };
       case 'square':
         return {
-          setPrimary: (value: string) => colorActions.updateSquarePalette('primary', value),
-          setSecondary: (value: string) => colorActions.updateSquarePalette('secondary', value),
-          setSuccess: (value: string) => colorActions.updateSquarePalette('success', value),
-          setWarning: (value: string) => colorActions.updateSquarePalette('warning', value),
-          setDanger: (value: string) => colorActions.updateSquarePalette('danger', value),
-          setInfo: (value: string) => colorActions.updateSquarePalette('info', value)
+          setPrimary: (value: string) => colorActions.updateSquarePalette('primaryColor', value),
+          setSecondary: (value: string) => colorActions.updateSquarePalette('secondaryColor', value),
+          setSuccess: (value: string) => colorActions.updateSquarePalette('successColor', value),
+          setWarning: (value: string) => colorActions.updateSquarePalette('warningColor', value),
+          setDanger: (value: string) => colorActions.updateSquarePalette('dangerColor', value),
+          setInfo: (value: string) => colorActions.updateSquarePalette('infoColor', value)
         };
       case 'rounded':
         return {
-          setPrimary: (value: string) => colorActions.updateRoundedPalette('primary', value),
-          setSecondary: (value: string) => colorActions.updateRoundedPalette('secondary', value),
-          setSuccess: (value: string) => colorActions.updateRoundedPalette('success', value),
-          setWarning: (value: string) => colorActions.updateRoundedPalette('warning', value),
-          setDanger: (value: string) => colorActions.updateRoundedPalette('danger', value),
-          setInfo: (value: string) => colorActions.updateRoundedPalette('info', value)
+          setPrimary: (value: string) => colorActions.updateRoundedPalette('primaryColor', value),
+          setSecondary: (value: string) => colorActions.updateRoundedPalette('secondaryColor', value),
+          setSuccess: (value: string) => colorActions.updateRoundedPalette('successColor', value),
+          setWarning: (value: string) => colorActions.updateRoundedPalette('warningColor', value),
+          setDanger: (value: string) => colorActions.updateRoundedPalette('dangerColor', value),
+          setInfo: (value: string) => colorActions.updateRoundedPalette('infoColor', value)
         };
       default:
         return {
-          setPrimary: (value: string) => colorActions.updateRectangularPalette('primary', value),
-          setSecondary: (value: string) => colorActions.updateRectangularPalette('secondary', value),
-          setSuccess: (value: string) => colorActions.updateRectangularPalette('success', value),
-          setWarning: (value: string) => colorActions.updateRectangularPalette('warning', value),
-          setDanger: (value: string) => colorActions.updateRectangularPalette('danger', value),
-          setInfo: (value: string) => colorActions.updateRectangularPalette('info', value)
+          setPrimary: (value: string) => colorActions.updateRectangularPalette('primaryColor', value),
+          setSecondary: (value: string) => colorActions.updateRectangularPalette('secondaryColor', value),
+          setSuccess: (value: string) => colorActions.updateRectangularPalette('successColor', value),
+          setWarning: (value: string) => colorActions.updateRectangularPalette('warningColor', value),
+          setDanger: (value: string) => colorActions.updateRectangularPalette('dangerColor', value),
+          setInfo: (value: string) => colorActions.updateRectangularPalette('infoColor', value)
         };
     }
   };
 
   /**
    * Gets colors for a specific category (autonomous color system)
+   * ENTERPRISE FIX: Proper handling για 'buttons' category
    */
-  const getColorsForCategory = (category: string): ColorPalette => {
+  const getColorsForCategory = (category: string): ColorPaletteWithAlpha => {
+    // SPECIAL CASE: Buttons category uses shape-specific palettes
+    if (category === 'buttons') {
+      return getCurrentPalette(); // Returns the current button shape palette
+    }
+
+    // Standard categories: backgrounds, text, borders
     const palette = colorState.categoryPalettes[category as ColorCategory];
     if (!palette) {
       // Fallback to current colors if category palette doesn't exist
@@ -139,12 +146,12 @@ export const useColorHelpers = ({
    */
   const getSettersForCategory = (category: string): ColorSetters => {
     return {
-      setPrimary: (value: string) => colorActions.updateCategoryPalette(category as ColorCategory, 'primary', value),
-      setSecondary: (value: string) => colorActions.updateCategoryPalette(category as ColorCategory, 'secondary', value),
-      setSuccess: (value: string) => colorActions.updateCategoryPalette(category as ColorCategory, 'success', value),
-      setWarning: (value: string) => colorActions.updateCategoryPalette(category as ColorCategory, 'warning', value),
-      setDanger: (value: string) => colorActions.updateCategoryPalette(category as ColorCategory, 'danger', value),
-      setInfo: (value: string) => colorActions.updateCategoryPalette(category as ColorCategory, 'info', value)
+      setPrimary: (value: string) => colorActions.updateCategoryPalette(category as ColorCategory, 'primaryColor', value),
+      setSecondary: (value: string) => colorActions.updateCategoryPalette(category as ColorCategory, 'secondaryColor', value),
+      setSuccess: (value: string) => colorActions.updateCategoryPalette(category as ColorCategory, 'successColor', value),
+      setWarning: (value: string) => colorActions.updateCategoryPalette(category as ColorCategory, 'warningColor', value),
+      setDanger: (value: string) => colorActions.updateCategoryPalette(category as ColorCategory, 'dangerColor', value),
+      setInfo: (value: string) => colorActions.updateCategoryPalette(category as ColorCategory, 'infoColor', value)
     };
   };
 

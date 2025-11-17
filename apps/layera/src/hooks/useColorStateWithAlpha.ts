@@ -78,6 +78,7 @@ const hexToColorWithAlpha = (hex: string, alpha: number = 1.0): ColorWithAlpha =
   // Extract HEX από CSS variables
   const extractedHex = extractHexFromValue(hex);
 
+
   const r = parseInt(extractedHex.slice(1, 3), 16);
   const g = parseInt(extractedHex.slice(3, 5), 16);
   const b = parseInt(extractedHex.slice(5, 7), 16);
@@ -139,28 +140,28 @@ const DEFAULT_ALPHA_ROUNDED_PALETTE: ColorPaletteWithAlpha = {
 
 const DEFAULT_ALPHA_CATEGORY_PALETTES: CategoryColorPalettesWithAlpha = {
   backgrounds: {
-    primary: hexToColorWithAlpha('#ffffff', 0.9), // Semi-transparent backgrounds
-    secondary: hexToColorWithAlpha('#f8fafc', 0.8),
-    success: hexToColorWithAlpha('#10b981', 0.1),
-    warning: hexToColorWithAlpha('#f59e0b', 0.1),
-    danger: hexToColorWithAlpha('#ef4444', 0.1),
-    info: hexToColorWithAlpha('#6366f1', 0.1)
+    primaryColor: hexToColorWithAlpha('#ffffff', 0.9), // Semi-transparent backgrounds
+    secondaryColor: hexToColorWithAlpha('#f8fafc', 0.8),
+    successColor: hexToColorWithAlpha('#10b981', 0.1),
+    warningColor: hexToColorWithAlpha('#f59e0b', 0.1),
+    dangerColor: hexToColorWithAlpha('#ef4444', 0.1),
+    infoColor: hexToColorWithAlpha('#6366f1', 0.1)
   },
   text: {
-    primary: hexToColorWithAlpha('#1f2937', 1.0),
-    secondary: hexToColorWithAlpha('#6b7280', 0.8),
-    success: hexToColorWithAlpha('#10b981', 1.0),
-    warning: hexToColorWithAlpha('#f59e0b', 1.0),
-    danger: hexToColorWithAlpha('#ef4444', 1.0),
-    info: hexToColorWithAlpha('#6366f1', 1.0)
+    primaryColor: hexToColorWithAlpha('#1f2937', 1.0),
+    secondaryColor: hexToColorWithAlpha('#6b7280', 0.8),
+    successColor: hexToColorWithAlpha('#10b981', 1.0),
+    warningColor: hexToColorWithAlpha('#f59e0b', 1.0),
+    dangerColor: hexToColorWithAlpha('#ef4444', 1.0),
+    infoColor: hexToColorWithAlpha('#6366f1', 1.0)
   },
   borders: {
-    primary: hexToColorWithAlpha('#e5e5e5', 0.5), // Semi-transparent borders
-    secondary: hexToColorWithAlpha('#d1d5db', 0.4),
-    success: hexToColorWithAlpha('#10b981', 0.6),
-    warning: hexToColorWithAlpha('#f59e0b', 0.6),
-    danger: hexToColorWithAlpha('#ef4444', 0.6),
-    info: hexToColorWithAlpha('#6366f1', 0.6)
+    primaryColor: hexToColorWithAlpha('#e5e5e5', 0.5), // Semi-transparent borders
+    secondaryColor: hexToColorWithAlpha('#d1d5db', 0.4),
+    successColor: hexToColorWithAlpha('#10b981', 0.6),
+    warningColor: hexToColorWithAlpha('#f59e0b', 0.6),
+    dangerColor: hexToColorWithAlpha('#ef4444', 0.6),
+    infoColor: hexToColorWithAlpha('#6366f1', 0.6)
   }
 };
 

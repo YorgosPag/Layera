@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ColorPaletteWithAlpha, hexToColorWithAlpha } from './useColorStateWithAlpha';
 
 /**
  * Color State Management Hook
@@ -19,28 +20,24 @@ export type ColorCategory = 'backgrounds' | 'text' | 'borders';
 export type ElementType = 'buttons' | 'cards' | 'modals' | 'inputs' | 'layout' | 'tables';
 export type ColorButtonShape = 'rectangular' | 'square' | 'rounded';
 
-export interface ColorPalette {
-  primary: string;
-  secondary: string;
-  success: string;
-  warning: string;
-  danger: string;
-  info: string;
-}
+// Re-export το ColorPaletteWithAlpha για compatibility
+export type { ColorPaletteWithAlpha } from './useColorStateWithAlpha';
+
+// 🗑️ DELETED: ColorPalette interface - replaced with ColorPaletteWithAlpha for Enterprise consistency
 
 export interface CategoryColorPalettes {
-  backgrounds: ColorPalette;
-  text: ColorPalette;
-  borders: ColorPalette;
+  backgrounds: ColorPaletteWithAlpha;
+  text: ColorPaletteWithAlpha;
+  borders: ColorPaletteWithAlpha;
 }
 
 export interface ColorState {
   colorCategory: ColorCategory;
   elementType: ElementType;
   colorButtonShape: ColorButtonShape;
-  rectangularPalette: ColorPalette;
-  squarePalette: ColorPalette;
-  roundedPalette: ColorPalette;
+  rectangularPalette: ColorPaletteWithAlpha;
+  squarePalette: ColorPaletteWithAlpha;
+  roundedPalette: ColorPaletteWithAlpha;
   categoryPalettes: CategoryColorPalettes;
 }
 
@@ -48,10 +45,10 @@ export interface ColorStateActions {
   setColorCategory: (category: ColorCategory) => void;
   setElementType: (type: ElementType) => void;
   setColorButtonShape: (shape: ColorButtonShape) => void;
-  updateRectangularPalette: (key: keyof ColorPalette, value: string) => void;
-  updateSquarePalette: (key: keyof ColorPalette, value: string) => void;
-  updateRoundedPalette: (key: keyof ColorPalette, value: string) => void;
-  updateCategoryPalette: (category: ColorCategory, key: keyof ColorPalette, value: string) => void;
+  updateRectangularPalette: (key: keyof ColorPaletteWithAlpha, value: string) => void;
+  updateSquarePalette: (key: keyof ColorPaletteWithAlpha, value: string) => void;
+  updateRoundedPalette: (key: keyof ColorPaletteWithAlpha, value: string) => void;
+  updateCategoryPalette: (category: ColorCategory, key: keyof ColorPaletteWithAlpha, value: string) => void;
   resetToDefaults: () => void;
 }
 
@@ -61,61 +58,61 @@ export interface UseColorStateReturn {
   colorCategories: readonly ColorCategory[];
   elementTypes: readonly ElementType[];
   colorButtonShapes: readonly ColorButtonShape[];
-  getCurrentPalette: () => ColorPalette;
-  getCategoryPalette: (category: ColorCategory) => ColorPalette;
+  getCurrentPalette: () => ColorPaletteWithAlpha;
+  getCategoryPalette: (category: ColorCategory) => ColorPaletteWithAlpha;
 }
 
-const DEFAULT_RECTANGULAR_PALETTE: ColorPalette = {
-  primary: 'var(--layera-color-semantic-info-primary, #6366f1)',
-  secondary: 'var(--layera-color-text-secondary, #475569)',
-  success: 'var(--layera-color-semantic-success-primary, #10b981)',
-  warning: 'var(--layera-color-semantic-warning-primary, #f59e0b)',
-  danger: 'var(--layera-color-semantic-error-primary, #ef4444)',
-  info: 'var(--layera-color-semantic-info-primary, #6366f1)'
+const DEFAULT_RECTANGULAR_PALETTE: ColorPaletteWithAlpha = {
+  primaryColor: hexToColorWithAlpha('#6366f1', 1.0),
+  secondaryColor: hexToColorWithAlpha('#475569', 1.0),
+  successColor: hexToColorWithAlpha('#10b981', 1.0),
+  warningColor: hexToColorWithAlpha('#f59e0b', 1.0),
+  dangerColor: hexToColorWithAlpha('#ef4444', 1.0),
+  infoColor: hexToColorWithAlpha('#6366f1', 1.0)
 };
 
-const DEFAULT_SQUARE_PALETTE: ColorPalette = {
-  primary: 'var(--layera-color-semantic-info-primary, #6366f1)',
-  secondary: 'var(--layera-color-text-secondary, #475569)',
-  success: 'var(--layera-color-semantic-success-primary, #10b981)',
-  warning: 'var(--layera-color-semantic-warning-primary, #f59e0b)',
-  danger: 'var(--layera-color-semantic-error-primary, #ef4444)',
-  info: 'var(--layera-color-semantic-info-primary, #6366f1)'
+const DEFAULT_SQUARE_PALETTE: ColorPaletteWithAlpha = {
+  primaryColor: hexToColorWithAlpha('#6366f1', 1.0),
+  secondaryColor: hexToColorWithAlpha('#475569', 1.0),
+  successColor: hexToColorWithAlpha('#10b981', 1.0),
+  warningColor: hexToColorWithAlpha('#f59e0b', 1.0),
+  dangerColor: hexToColorWithAlpha('#ef4444', 1.0),
+  infoColor: hexToColorWithAlpha('#6366f1', 1.0)
 };
 
-const DEFAULT_ROUNDED_PALETTE: ColorPalette = {
-  primary: 'var(--layera-color-semantic-info-primary, #6366f1)',
-  secondary: 'var(--layera-color-text-secondary, #475569)',
-  success: 'var(--layera-color-semantic-success-primary, #10b981)',
-  warning: 'var(--layera-color-semantic-warning-primary, #f59e0b)',
-  danger: 'var(--layera-color-semantic-error-primary, #ef4444)',
-  info: 'var(--layera-color-semantic-info-primary, #6366f1)'
+const DEFAULT_ROUNDED_PALETTE: ColorPaletteWithAlpha = {
+  primaryColor: hexToColorWithAlpha('#6366f1', 1.0),
+  secondaryColor: hexToColorWithAlpha('#475569', 1.0),
+  successColor: hexToColorWithAlpha('#10b981', 1.0),
+  warningColor: hexToColorWithAlpha('#f59e0b', 1.0),
+  dangerColor: hexToColorWithAlpha('#ef4444', 1.0),
+  infoColor: hexToColorWithAlpha('#6366f1', 1.0)
 };
 
 const DEFAULT_CATEGORY_PALETTES: CategoryColorPalettes = {
   backgrounds: {
-    primary: 'var(--layera-color-surface-primary, #ffffff)',
-    secondary: 'var(--layera-color-surface-secondary, #f8fafc)',
-    success: 'var(--layera-color-semantic-success-primary, #10b981)',
-    warning: 'var(--layera-color-semantic-warning-primary, #f59e0b)',
-    danger: 'var(--layera-color-semantic-error-primary, #ef4444)',
-    info: 'var(--layera-color-semantic-info-primary, #6366f1)'
+    primaryColor: hexToColorWithAlpha('var(--layera-color-surface-primary, #ffffff)', 1.0),
+    secondaryColor: hexToColorWithAlpha('var(--layera-color-surface-secondary, #f8fafc)', 1.0),
+    successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary, #10b981)', 1.0),
+    warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary, #f59e0b)', 1.0),
+    dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary, #ef4444)', 1.0),
+    infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary, #6366f1)', 1.0)
   },
   text: {
-    primary: 'var(--layera-color-text-primary, #1f2937)',
-    secondary: 'var(--layera-color-text-secondary, #6b7280)',
-    success: 'var(--layera-color-semantic-success-primary, #10b981)',
-    warning: 'var(--layera-color-semantic-warning-primary, #f59e0b)',
-    danger: 'var(--layera-color-semantic-error-primary, #ef4444)',
-    info: 'var(--layera-color-semantic-info-primary, #6366f1)'
+    primaryColor: hexToColorWithAlpha('var(--layera-color-text-primary, #1f2937)', 1.0),
+    secondaryColor: hexToColorWithAlpha('var(--layera-color-text-secondary, #6b7280)', 1.0),
+    successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary, #10b981)', 1.0),
+    warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary, #f59e0b)', 1.0),
+    dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary, #ef4444)', 1.0),
+    infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary, #6366f1)', 1.0)
   },
   borders: {
-    primary: 'var(--layera-color-border-primary, #e5e5e5)',
-    secondary: 'var(--layera-color-border-secondary, #d1d5db)',
-    success: 'var(--layera-color-semantic-success-primary, #10b981)',
-    warning: 'var(--layera-color-semantic-warning-primary, #f59e0b)',
-    danger: 'var(--layera-color-semantic-error-primary, #ef4444)',
-    info: 'var(--layera-color-semantic-info-primary, #6366f1)'
+    primaryColor: hexToColorWithAlpha('var(--layera-color-border-primary, #e5e5e5)', 1.0),
+    secondaryColor: hexToColorWithAlpha('var(--layera-color-border-secondary, #d1d5db)', 1.0),
+    successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary, #10b981)', 1.0),
+    warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary, #f59e0b)', 1.0),
+    dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary, #ef4444)', 1.0),
+    infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary, #6366f1)', 1.0)
   }
 };
 
@@ -162,28 +159,28 @@ export const useColorState = (): UseColorStateReturn => {
       setState(prev => ({ ...prev, elementType: type }));
     },
 
-    updateRectangularPalette: (key: keyof ColorPalette, value: string) => {
+    updateRectangularPalette: (key: keyof ColorPaletteWithAlpha, value: string) => {
       setState(prev => ({
         ...prev,
         rectangularPalette: { ...prev.rectangularPalette, [key]: value }
       }));
     },
 
-    updateSquarePalette: (key: keyof ColorPalette, value: string) => {
+    updateSquarePalette: (key: keyof ColorPaletteWithAlpha, value: string) => {
       setState(prev => ({
         ...prev,
         squarePalette: { ...prev.squarePalette, [key]: value }
       }));
     },
 
-    updateRoundedPalette: (key: keyof ColorPalette, value: string) => {
+    updateRoundedPalette: (key: keyof ColorPaletteWithAlpha, value: string) => {
       setState(prev => ({
         ...prev,
         roundedPalette: { ...prev.roundedPalette, [key]: value }
       }));
     },
 
-    updateCategoryPalette: (category: ColorCategory, key: keyof ColorPalette, value: string) => {
+    updateCategoryPalette: (category: ColorCategory, key: keyof ColorPaletteWithAlpha, value: string) => {
       setState(prev => ({
         ...prev,
         categoryPalettes: {
@@ -201,7 +198,7 @@ export const useColorState = (): UseColorStateReturn => {
     }
   };
 
-  const getCurrentPalette = (): ColorPalette => {
+  const getCurrentPalette = (): ColorPaletteWithAlpha => {
     switch (state.colorButtonShape) {
       case 'rectangular':
         return state.rectangularPalette;
@@ -214,7 +211,7 @@ export const useColorState = (): UseColorStateReturn => {
     }
   };
 
-  const getCategoryPalette = (category: ColorCategory): ColorPalette => {
+  const getCategoryPalette = (category: ColorCategory): ColorPaletteWithAlpha => {
     return state.categoryPalettes[category];
   };
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box } from '@layera/layout';
 import { PaletteIcon, SettingsIcon } from '@layera/icons';
+import { getCSSVariablePrefix } from '../../services/theme';
 
 /**
  * ColorValueDisplay Component
@@ -63,44 +64,26 @@ export const ColorValueDisplay: React.FC<ColorValueDisplayProps> = ({
         </pre>
       </Box>
 
-      {/* CSS Variables Display */}
+      {/* CSS Variables Display - ENTERPRISE DYNAMIC VERSION */}
       <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--info-light" data-family="mono" data-size="sm">
         <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="lg" data-weight="bold" style={{ wordWrap: 'break-word', overflowWrap: 'break-word', whiteSpace: 'normal' }}>
           <SettingsIcon size="sm" /> CSS Μεταβλητές για {colorHookState.colorCategory.toUpperCase()} στα {colorHookState.elementType.toUpperCase()}{colorHookState.elementType === 'buttons' ? ` (${colorHookState.colorButtonShape})` : ''}:
         </h4>
         <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono" style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word', overflowWrap: 'break-word' }}>
-          {colorHookState.elementType === 'buttons' && colorHookState.colorButtonShape === 'rectangular' && `{
-  --layera-${colorHookState.colorCategory}-button-primary: "${currentColors?.primary || '#000000'}",
-  --layera-${colorHookState.colorCategory}-button-secondary: "${currentColors?.secondary || '#000000'}",
-  --layera-${colorHookState.colorCategory}-button-success: "${currentColors?.success || '#000000'}",
-  --layera-${colorHookState.colorCategory}-button-warning: "${currentColors?.warning || '#000000'}",
-  --layera-${colorHookState.colorCategory}-button-danger: "${currentColors?.danger || '#000000'}",
-  --layera-${colorHookState.colorCategory}-button-info: "${currentColors?.info || '#000000'}"
-}`}
-          {colorHookState.elementType === 'buttons' && colorHookState.colorButtonShape === 'square' && `{
-  --layera-${colorHookState.colorCategory}-button-square-primary: "${currentColors?.primary || '#000000'}",
-  --layera-${colorHookState.colorCategory}-button-square-secondary: "${currentColors?.secondary || '#000000'}",
-  --layera-${colorHookState.colorCategory}-button-square-success: "${currentColors?.success || '#000000'}",
-  --layera-${colorHookState.colorCategory}-button-square-warning: "${currentColors?.warning || '#000000'}",
-  --layera-${colorHookState.colorCategory}-button-square-danger: "${currentColors?.danger || '#000000'}",
-  --layera-${colorHookState.colorCategory}-button-square-info: "${currentColors?.info || '#000000'}"
-}`}
-          {colorHookState.elementType === 'buttons' && colorHookState.colorButtonShape === 'rounded' && `{
-  --layera-${colorHookState.colorCategory}-button-rounded-primary: "${currentColors?.primary || '#000000'}",
-  --layera-${colorHookState.colorCategory}-button-rounded-secondary: "${currentColors?.secondary || '#000000'}",
-  --layera-${colorHookState.colorCategory}-button-rounded-success: "${currentColors?.success || '#000000'}",
-  --layera-${colorHookState.colorCategory}-button-rounded-warning: "${currentColors?.warning || '#000000'}",
-  --layera-${colorHookState.colorCategory}-button-rounded-danger: "${currentColors?.danger || '#000000'}",
-  --layera-${colorHookState.colorCategory}-button-rounded-info: "${currentColors?.info || '#000000'}"
-}`}
-          {colorHookState.elementType !== 'buttons' && `{
-  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-primary: "${currentColors?.primary || '#000000'}",
-  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-secondary: "${currentColors?.secondary || '#000000'}",
-  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-success: "${currentColors?.success || '#000000'}",
-  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-warning: "${currentColors?.warning || '#000000'}",
-  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-danger: "${currentColors?.danger || '#000000'}",
-  --layera-${colorHookState.colorCategory}-${colorHookState.elementType}-info: "${currentColors?.info || '#000000'}"
-}`}
+          {(() => {
+            // ENTERPRISE: Dynamic CSS variable reading από DOM - Single source of truth από theme.ts
+            const prefix = getCSSVariablePrefix(colorHookState.colorCategory, colorHookState.colorButtonShape);
+            const colorNames = ['primary', 'secondary', 'success', 'warning', 'danger', 'info'];
+
+            // Read actual values από DOM που δημιούργησε το theme.ts
+            const cssVariables = colorNames.map(colorName => {
+              const varName = `${prefix}${colorName}`;
+              const value = getComputedStyle(document.documentElement).getPropertyValue(varName).trim() || currentColors?.[colorName] || '#000000';
+              return `  ${varName}: "${value}"`;
+            }).join(',\n');
+
+            return `{\n${cssVariables}\n}`;
+          })()}
         </pre>
       </Box>
     </>
