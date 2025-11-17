@@ -1,1 +1,1 @@
-export { MapContainer } from './MapContainer';
+export { MapContainer } from '@layera/map-core';

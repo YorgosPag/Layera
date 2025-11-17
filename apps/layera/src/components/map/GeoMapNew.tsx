@@ -6,7 +6,7 @@
  */
 
 import React from 'react';
-import { MapContainer } from './map/MapContainer';
+import { MapContainer } from '@layera/map-core';
 import { Box } from '@layera/layout';
 
 interface GeoMapProps {

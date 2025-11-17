@@ -325,7 +325,6 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
     root.style.setProperty(variableName, colorValue);
     root.style.setProperty(`${variableName}-hover`, `${colorValue}DD`);
 
-    console.log(`CARD DEBUG: Applied card color ${colorValue} to ${variableName} for ${colorKey}`);
 
     // Create CSS rules only once για κάρτες
     let style = document.getElementById('layera-card-color-overrides') as HTMLStyleElement;
