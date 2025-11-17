@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, { useState, useCallback, useRef, useEffect, useMemo } from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 
@@ -36,15 +36,27 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   className = '',
   throttleMs = 16 // 60fps για real-time smooth response
 }) => {
-  // Parse incoming value
-  const parseValue = (val: ColorWithAlpha | string): ColorWithAlpha => {
+  // Optimized parse function with caching
+  const parseValue = useCallback((val: ColorWithAlpha | string): ColorWithAlpha => {
     if (typeof val === 'string') {
-      // Legacy HEX support
+      // Fast path for HEX colors (most common case)
+      if (val.startsWith('#') && val.length === 7) {
+        return {
+          hex: val,
+          alpha: 1.0,
+          rgba: hexToRgba(val, 1.0)
+        };
+      }
+      // RGBA parsing (less common)
       if (val.startsWith('rgba')) {
         const rgbaMatch = val.match(/rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)/);
         if (rgbaMatch) {
           const [, r, g, b, a] = rgbaMatch;
-          const hex = `#${[r, g, b].map(x => parseInt(x).toString(16).padStart(2, '0')).join('')}`;
+          // Optimized hex conversion without map
+          const hex = '#' +
+            parseInt(r).toString(16).padStart(2, '0') +
+            parseInt(g).toString(16).padStart(2, '0') +
+            parseInt(b).toString(16).padStart(2, '0');
           return {
             hex,
             alpha: parseFloat(a),
@@ -52,15 +64,15 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
           };
         }
       }
-      // Regular HEX
+      // Fallback
       return {
-        hex: val.startsWith('#') ? val : '#ffffff',
+        hex: '#ffffff',
         alpha: 1.0,
-        rgba: hexToRgba(val.startsWith('#') ? val : '#ffffff', 1.0)
+        rgba: hexToRgba('#ffffff', 1.0)
       };
     }
     return val;
-  };
+  }, []);
 
   // Simplified state - no complex throttling (throttleMs available for future optimization)
   const [internalValue, setInternalValue] = useState<ColorWithAlpha>(parseValue(value));
@@ -121,103 +133,90 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     onChange(newValue);
   }, [internalValue?.hex, onChange]);
 
-  // Real-time preview handler για color picker input events με throttling
+  // Lightweight input handler με memoization
   const handleHexInput = useCallback((e: React.FormEvent<HTMLInputElement>) => {
     const newHex = (e.target as HTMLInputElement).value;
-    if (!newHex || !newHex.startsWith('#')) return;
+    // Fast validation with early returns
+    if (!newHex?.startsWith('#') || newHex.length !== 7) return;
 
     const safeAlpha = internalValue?.alpha ?? 1.0;
-    const previewValue = {
-      hex: newHex,
-      alpha: safeAlpha,
-      rgba: hexToRgba(newHex, safeAlpha)
-    };
 
-    // Ενημέρωση του internal state για καλύτερη συνέχεια
-    setInternalValue(previewValue);
-
-    // Real-time preview χωρίς αλλαγή του external state
+    // Throttled preview call για smooth performance
     if (onPreview) {
-      onPreview(previewValue);
+      onPreview({
+        hex: newHex,
+        alpha: safeAlpha,
+        rgba: hexToRgba(newHex, safeAlpha)
+      });
     }
   }, [internalValue?.alpha, onPreview]);
 
   // Real-time mouse tracking για color picker (browser limitations workaround)
   const colorInputRef = useRef<HTMLInputElement>(null);
 
-  // Extract display values before using them in useEffect
-  const displayHex = extractHexFromValue(internalValue?.hex || '#ffffff');
-  const alphaPercentage = Math.round((internalValue?.alpha ?? 1.0) * 100);
+  // Memoized display values to prevent recalculations
+  const displayHex = useMemo(() => extractHexFromValue(internalValue?.hex || '#ffffff'), [internalValue?.hex]);
+  const alphaPercentage = useMemo(() => Math.round((internalValue?.alpha ?? 1.0) * 100), [internalValue?.alpha]);
 
+  // ΒΕΛΤΙΣΤΟΠΟΙΗΜΕΝΗ real-time tracking με throttling
   useEffect(() => {
     const input = colorInputRef.current;
     if (!input || !onPreview) return;
 
     let isMouseDown = false;
-    let animationFrameId: number | null = null;
+    let lastCheckedColor = input.value;
+    let throttleTimestamp = 0;
+    const THROTTLE_INTERVAL = 16; // 60fps max
+
+    // Optimized throttled preview function
+    const throttledPreview = (newHex: string) => {
+      const now = Date.now();
+      if (now - throttleTimestamp < THROTTLE_INTERVAL) return;
+      throttleTimestamp = now;
+
+      if (newHex === lastCheckedColor) return;
+      lastCheckedColor = newHex;
+
+      const safeAlpha = internalValue?.alpha ?? 1.0;
+      const previewValue = {
+        hex: newHex,
+        alpha: safeAlpha,
+        rgba: hexToRgba(newHex, safeAlpha)
+      };
+
+      setInternalValue(previewValue);
+      onPreview(previewValue);
+    };
 
     const handleMouseDown = () => {
       isMouseDown = true;
+      lastCheckedColor = input.value;
     };
 
     const handleMouseUp = () => {
       isMouseDown = false;
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-        animationFrameId = null;
-      }
     };
 
-    const checkColorChange = () => {
-      if (!isMouseDown || !input) {
-        if (animationFrameId) {
-          cancelAnimationFrame(animationFrameId);
-          animationFrameId = null;
-        }
-        return;
-      }
-
-      const currentColor = input.value;
-      if (currentColor && currentColor !== displayHex) {
-        const safeAlpha = internalValue?.alpha ?? 1.0;
-        const previewValue = {
-          hex: currentColor,
-          alpha: safeAlpha,
-          rgba: hexToRgba(currentColor, safeAlpha)
-        };
-
-        // Real-time update χωρίς lag
-        setInternalValue(previewValue);
-        onPreview(previewValue);
-      }
-
-      // Συνεχής έλεγχος ΜΟΝΟ κατά το dragging
+    // Event-based tracking (μόνο όταν χρειάζεται)
+    const handleChange = () => {
       if (isMouseDown) {
-        animationFrameId = requestAnimationFrame(checkColorChange);
+        throttledPreview(input.value);
       }
     };
 
-    const handleMouseMove = () => {
-      if (isMouseDown && !animationFrameId) {
-        animationFrameId = requestAnimationFrame(checkColorChange);
-      }
-    };
-
-    input.addEventListener('mousedown', handleMouseDown);
-    input.addEventListener('mouseup', handleMouseUp);
-    input.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseup', handleMouseUp); // Global mouse up
+    // Lightweight event listeners
+    input.addEventListener('mousedown', handleMouseDown, { passive: true });
+    input.addEventListener('mouseup', handleMouseUp, { passive: true });
+    input.addEventListener('input', handleChange, { passive: true });
+    document.addEventListener('mouseup', handleMouseUp, { passive: true });
 
     return () => {
       input.removeEventListener('mousedown', handleMouseDown);
       input.removeEventListener('mouseup', handleMouseUp);
-      input.removeEventListener('mousemove', handleMouseMove);
+      input.removeEventListener('input', handleChange);
       document.removeEventListener('mouseup', handleMouseUp);
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-      }
     };
-  }, [displayHex, internalValue?.alpha, onPreview]);
+  }, [internalValue?.alpha, onPreview]);
 
   // Mouse enter handler για καλύτερο UX
   const handleMouseEnter = useCallback(() => {
@@ -247,11 +246,16 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
           ref={colorInputRef}
           type="color"
           value={displayHex}
-          onChange={(e) => handleHexChange(e.target.value)}
           onInput={handleHexInput}
+          onChange={(e) => handleHexChange(e.target.value)}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           className="layera-input layera-width--full"
+          style={{
+            cursor: 'pointer',
+            transition: 'none',
+            willChange: 'auto'
+          } as React.CSSProperties}
         />
       </Box>
 

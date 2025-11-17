@@ -27,6 +27,7 @@ export interface CSSVariablesActions {
   applySquareColorsToHeader: () => void;
   applyColorsToApp: (colorCategory: ColorCategory, currentColors: ColorPaletteWithAlpha, elementType?: string) => Promise<void>;
   applySpecificButtonColor: (colorKey: string, colorValue: string) => void;
+  applySpecificCardColor: (colorKey: string, colorValue: string) => void;
 }
 
 export interface UseCSSVariablesReturn {
@@ -299,6 +300,69 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
   };
 
   /**
+   * Εφαρμόζει isolated CSS rules για συγκεκριμένο card variant
+   * Χρησιμοποιεί CSS variables για καρτών backgrounds
+   */
+  const applySpecificCardColor = (colorKey: string, colorValue: string) => {
+    // Optimized: Use CSS variables instead of rewriting style.textContent
+    const root = document.documentElement;
+
+    // Mapping από colorKey σε CSS variable για κάρτες
+    const colorToVariableMap: Record<string, string> = {
+      'primaryColor': '--layera-card-bg-primary',
+      'secondaryColor': '--layera-card-bg-secondary',
+      'successColor': '--layera-card-bg-success',
+      'warningColor': '--layera-card-bg-warning',
+      'dangerColor': '--layera-card-bg-danger',
+      'infoColor': '--layera-card-bg-info'
+    };
+
+    const variableName = colorToVariableMap[colorKey];
+    if (!variableName) return;
+
+    // Fast CSS variable update (no DOM reflow/repaint)
+    root.style.setProperty(variableName, colorValue);
+    root.style.setProperty(`${variableName}-hover`, `${colorValue}DD`);
+
+    // Create CSS rules only once για κάρτες
+    let style = document.getElementById('layera-card-color-overrides') as HTMLStyleElement;
+    if (!style) {
+      style = document.createElement('style');
+      style.id = 'layera-card-color-overrides';
+      document.head.appendChild(style);
+
+      // Static CSS rules using variables (created only once)
+      style.textContent = `
+        .layera-card[data-variant="primary"] {
+          background-color: var(--layera-card-bg-primary, var(--layera-color-bg-primary)) !important;
+        }
+        .layera-card[data-variant="secondary"] {
+          background-color: var(--layera-card-bg-secondary, var(--layera-color-bg-secondary)) !important;
+        }
+        .layera-card[data-variant="success"] {
+          background-color: var(--layera-card-bg-success, var(--layera-color-bg-success)) !important;
+        }
+        .layera-card[data-variant="warning"] {
+          background-color: var(--layera-card-bg-warning, var(--layera-color-bg-warning)) !important;
+        }
+        .layera-card[data-variant="danger"] {
+          background-color: var(--layera-card-bg-danger, var(--layera-color-bg-danger)) !important;
+        }
+        .layera-card[data-variant="info"] {
+          background-color: var(--layera-card-bg-info, var(--layera-color-bg-info)) !important;
+        }
+        /* Fallback για CSS variables που χρησιμοποιεί το CardsPlayground */
+        .layera-card {
+          background-color: var(--layera-card-bg-primary, var(--layera-color-bg-primary)) !important;
+        }
+        .layera-card:hover {
+          background-color: var(--layera-card-bg-primary-hover, var(--layera-color-bg-primary)) !important;
+        }
+      `;
+    }
+  };
+
+  /**
    * Επιστρέφει default colors για fallback
    */
   const getCurrentDefaultColors = (): ColorPaletteWithAlpha => ({
@@ -314,7 +378,8 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
     ensureCSSVariablesExist,
     applySquareColorsToHeader,
     applyColorsToApp,
-    applySpecificButtonColor
+    applySpecificButtonColor,
+    applySpecificCardColor
   };
 
   return {
