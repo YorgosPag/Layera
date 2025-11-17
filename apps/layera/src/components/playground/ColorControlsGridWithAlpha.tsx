@@ -46,10 +46,8 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
 
   const handleAlphaToggle = () => {
     const newState = !localAlphaEnabled;
-    console.log('🎯 Alpha toggle clicked! Current:', localAlphaEnabled, '-> New:', newState);
     setLocalAlphaEnabled(newState);
     onAlphaToggle?.(newState);
-    console.log('✅ Alpha toggle complete. Local state should be:', newState);
   };
 
   // Helper function: Ensure ColorWithAlpha format
@@ -180,8 +178,6 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
         {Object.entries(currentColors || {}).map(([colorKey, colorValue]) => {
           const description = colorDescriptions[colorKey as keyof typeof colorDescriptions] || '';
 
-          // Debug: Εμφάνιση της τρέχουσας κατάστασης του toggle
-          console.log('🔍 Rendering color picker for', colorKey, '- alphaEnabled:', localAlphaEnabled);
 
           if (localAlphaEnabled) {
             // Alpha Mode - Use ColorPickerWithAlpha
