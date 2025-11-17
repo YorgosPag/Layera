@@ -79,7 +79,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
   return (
     <Box className="layera-grid--auto-fit-280 layera-margin-bottom--xl">
       {/* Color Category Selection */}
-      <Box className="layera-card layera-padding--lg">
+      <Box className="layera-card layera-padding--lg layera-text--align-center">
         <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
           <CheckIcon size="sm" /> Επιλογή Κατηγορίας Αντικειμένων
         </h3>
@@ -112,7 +112,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
       </Box>
 
       {/* Element Type Selection - For All Categories */}
-      <Box className="layera-card layera-padding--lg">
+      <Box className="layera-card layera-padding--lg layera-text--align-center">
         <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
           <PolygonIcon size="sm" /> Τύπος Στοιχείων για {colorHookState.colorCategory === 'backgrounds' ? 'Φόντα' : colorHookState.colorCategory === 'text' ? 'Κείμενα' : 'Περιγράμματα'}
         </h3>
@@ -171,7 +171,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           value={borderWidth}
           onChange={onBorderWidthChange}
           elementType={colorHookState.elementType}
-          className="layera-height--auto"
+          className="layera-height--auto layera-text--align-center"
           onPreview={onPreview}
         />
       )}
@@ -182,7 +182,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           value={borderRadius}
           onChange={onBorderRadiusChange}
           elementType={colorHookState.elementType}
-          className="layera-height--auto"
+          className="layera-height--auto layera-text--align-center"
           onPreview={onPreview}
         />
       )}
@@ -192,7 +192,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
         <FontSizeControl
           fontSize={fontSize}
           onFontSizeChange={onFontSizeChange}
-          className="layera-height--auto"
+          className="layera-height--auto layera-text--align-center"
           onPreview={onPreview}
         />
       )}
@@ -204,7 +204,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           value={hoverEffect}
           onChange={onHoverEffectChange}
           elementType={colorHookState.elementType}
-          className="layera-height--auto"
+          className="layera-height--auto layera-text--align-center"
           onPreview={onPreview}
         />
       )}
@@ -215,7 +215,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           value={activeEffect}
           onChange={onActiveEffectChange}
           elementType={colorHookState.elementType}
-          className="layera-height--auto"
+          className="layera-height--auto layera-text--align-center"
           onPreview={onPreview}
         />
       )}

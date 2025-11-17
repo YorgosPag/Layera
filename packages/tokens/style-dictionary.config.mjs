@@ -570,6 +570,24 @@ export default {
         });
         output += `\n`;
 
+        // Text Alignment Utilities - Generated από global.utilities.textAlign tokens
+        output += `/* Text Alignment Utilities - ARXES Compliant */\n`;
+        const textAlignTokens = dictionary.allTokens.filter(token =>
+          token.path[0] === 'global' &&
+          token.path[1] === 'utilities' &&
+          token.path[2] === 'textAlign'
+        );
+
+        textAlignTokens.forEach(token => {
+          const alignType = token.path[3];
+          if (alignType && token.value) {
+            output += `.layera-text--align-${alignType} {\n`;
+            output += `  text-align: ${token.value};\n`;
+            output += `}\n`;
+          }
+        });
+        output += `\n`;
+
         // Typography System Classes - Unified Generation από typography.unified token
         const typographyUnified = dictionary.allTokens.find(token => token.path.join('.') === 'typography.unified');
         if (typographyUnified && typographyUnified.value) {

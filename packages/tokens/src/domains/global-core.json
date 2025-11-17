@@ -77,6 +77,20 @@
           "value": "repeat(auto-fit, minmax(280px, 1fr))",
           "comment": "Auto-fit grid template 280px exactly"
         }
+      },
+      "textAlign": {
+        "center": {
+          "value": "center",
+          "comment": "Center text alignment utility"
+        },
+        "left": {
+          "value": "left",
+          "comment": "Left text alignment utility"
+        },
+        "right": {
+          "value": "right",
+          "comment": "Right text alignment utility"
+        }
       }
     }
   }

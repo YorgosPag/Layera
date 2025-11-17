@@ -280,7 +280,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 } as React.CSSProperties}
               >
                 {/* Shape Control - ΠΡΩΤΟ */}
-                <Box className="layera-card layera-padding--lg">
+                <Box className="layera-card layera-padding--lg layera-text--align-center">
                   <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
                     Σχήμα Πλήκτρου
                   </h4>
@@ -310,7 +310,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 </Box>
 
                 {/* Size Control - ΔΕΥΤΕΡΟ */}
-                <Box className="layera-card layera-padding--lg">
+                <Box className="layera-card layera-padding--lg layera-text--align-center">
                   <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
                     Size
                   </h4>
@@ -329,7 +329,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 </Box>
 
                 {/* Text & Icon Control - ΤΡΙΤΟ */}
-                <Box className="layera-card layera-padding--lg">
+                <Box className="layera-card layera-padding--lg layera-text--align-center">
                   <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
                     Κείμενο & Εικονίδιο
                   </h4>
