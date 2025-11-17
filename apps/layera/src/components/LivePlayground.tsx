@@ -290,26 +290,26 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   </h4>
                   <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center layera-align-items--center">
                     <Button
-                      variant={buttonState.shape === 'rectangular' ? 'primary' : 'secondary'}
+                      variant={buttonState.shape === 'rectangular' ? 'primary' : 'outline'}
                       size={buttonState.size}
                       onClick={() => buttonActions.setShape('rectangular')}
-                      className={`layera-btn layera-btn--${buttonState.size} layera-btn--${buttonState.shape === 'rectangular' ? 'primary' : 'secondary'}`}
+                      className={`layera-btn layera-btn--${buttonState.size} layera-btn--${buttonState.shape === 'rectangular' ? 'primary' : 'outline'}`}
                     >
                       <RulerIcon size="sm" /> Παραλληλόγραμμο
                     </Button>
                     <Button
-                      variant={buttonState.shape === 'square' ? 'primary' : 'secondary'}
+                      variant={buttonState.shape === 'square' ? 'primary' : 'outline'}
                       size={buttonState.size}
                       onClick={() => buttonActions.setShape('square')}
-                      className={`layera-btn layera-btn--${buttonState.size} layera-btn--${buttonState.shape === 'square' ? 'primary' : 'secondary'}`}
+                      className={`layera-btn layera-btn--${buttonState.size} layera-btn--${buttonState.shape === 'square' ? 'primary' : 'outline'}`}
                     >
                       <PolygonIcon size="sm" /> Τετράγωνο
                     </Button>
                     <Button
-                      variant={buttonState.shape === 'rounded' ? 'primary' : 'secondary'}
+                      variant={buttonState.shape === 'rounded' ? 'primary' : 'outline'}
                       size={buttonState.size}
                       onClick={() => buttonActions.setShape('rounded')}
-                      className={`layera-btn layera-btn--${buttonState.size} layera-btn--${buttonState.shape === 'rounded' ? 'primary' : 'secondary'}`}
+                      className={`layera-btn layera-btn--${buttonState.size} layera-btn--${buttonState.shape === 'rounded' ? 'primary' : 'outline'}`}
                     >
                       <CompassIcon size="sm" /> Στρογγυλό
                     </Button>
@@ -325,10 +325,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                     {buttonSizes.map((size) => (
                       <Button
                         key={size}
-                        variant={buttonState.size === size ? 'primary' : 'secondary'}
+                        variant={buttonState.size === size ? 'primary' : 'outline'}
                         size={buttonState.size}
                         onClick={() => buttonActions.setSize(size)}
-                        className={`layera-btn layera-btn--${buttonState.size} layera-btn--${buttonState.size === size ? 'primary' : 'secondary'}`}
+                        className={`layera-btn layera-btn--${buttonState.size} layera-btn--${buttonState.size === size ? 'primary' : 'outline'}`}
                       >
                         {size}
                       </Button>

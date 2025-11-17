@@ -61,10 +61,10 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
               {(['primary', 'secondary', 'outline', 'ghost', 'danger', 'success', 'warning', 'info'] as ButtonVariant[]).map((variant) => (
                 <Button
                   key={variant}
-                  variant={buttonState.variant === variant ? 'primary' : 'secondary'}
+                  variant={buttonState.variant === variant ? 'primary' : 'outline'}
                   size="sm"
                   onClick={() => updateButtonState({ variant })}
-                  className={`layera-btn layera-btn--sm layera-btn--${buttonState.variant === variant ? 'primary' : 'secondary'}`}
+                  className={`layera-btn layera-btn--sm layera-btn--${buttonState.variant === variant ? 'primary' : 'outline'}`}
                 >
                   {variant}
                 </Button>
@@ -81,10 +81,10 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
               {(['xs', 'sm', 'md', 'lg', 'xl'] as ButtonSize[]).map((size) => (
                 <Button
                   key={size}
-                  variant={buttonState.size === size ? 'primary' : 'secondary'}
+                  variant={buttonState.size === size ? 'primary' : 'outline'}
                   size="sm"
                   onClick={() => updateButtonState({ size })}
-                  className={`layera-btn layera-btn--sm layera-btn--${buttonState.size === size ? 'primary' : 'secondary'}`}
+                  className={`layera-btn layera-btn--sm layera-btn--${buttonState.size === size ? 'primary' : 'outline'}`}
                 >
                   {size}
                 </Button>
