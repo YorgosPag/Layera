@@ -185,7 +185,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
 
             return (
               <ColorPickerWithAlpha
-                key={`${colorKey}-alpha`}
+                key={colorKey}
                 label={`${colorKey.charAt(0).toUpperCase() + colorKey.slice(1)} (RGBA)`}
                 value={colorWithAlpha}
                 onChange={(newValue) => handleColorChange(colorKey, newValue)}
@@ -198,7 +198,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
 
             return (
               <OptimizedColorPicker
-                key={`${colorKey}-hex`}
+                key={colorKey}
                 label={`${colorKey.charAt(0).toUpperCase() + colorKey.slice(1)} (HEX)`}
                 value={hexValue}
                 onChange={(newValue) => handleColorChange(colorKey, newValue)}
