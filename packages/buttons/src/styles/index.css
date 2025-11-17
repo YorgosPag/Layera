@@ -11,26 +11,31 @@
   --layera-btn-xs-font-size: 0.75rem;
   --layera-btn-xs-icon-size: 0.875rem;
   --layera-btn-xs-gap: 0.375rem;
+  --layera-btn-xs-min-width: 4rem; /* 64px - Enterprise standard για μικρά buttons */
   --layera-btn-sm-height: 2.25rem;
   --layera-btn-sm-padding: 0.5rem 1rem;
   --layera-btn-sm-font-size: 0.875rem;
   --layera-btn-sm-icon-size: 1rem;
   --layera-btn-sm-gap: 0.5rem;
+  --layera-btn-sm-min-width: 5rem; /* 80px - Microsoft Fluent standard */
   --layera-btn-md-height: 2.75rem;
   --layera-btn-md-padding: 0.75rem 1.25rem;
   --layera-btn-md-font-size: 1rem;
   --layera-btn-md-icon-size: 1.125rem;
   --layera-btn-md-gap: 0.5rem;
+  --layera-btn-md-min-width: 7rem; /* 112px - Google Material standard */
   --layera-btn-lg-height: 3rem;
   --layera-btn-lg-padding: 0.875rem 1.5rem;
   --layera-btn-lg-font-size: 1.125rem;
   --layera-btn-lg-icon-size: 1.25rem;
   --layera-btn-lg-gap: 0.625rem;
+  --layera-btn-lg-min-width: 9rem; /* 144px - Extended για μεγάλα buttons */
   --layera-btn-xl-height: 3.5rem;
   --layera-btn-xl-padding: 1rem 2rem;
   --layera-btn-xl-font-size: 1.25rem;
   --layera-btn-xl-icon-size: 1.5rem;
   --layera-btn-xl-gap: 0.75rem;
+  --layera-btn-xl-min-width: 12.5rem; /* 200px - Google Material Large standard */
 
   /* Border Radius */
   --layera-btn-radius-none: var(--layera-size-0);
@@ -207,12 +212,14 @@
 
 /* Removed - will be placed later */
 
-/* Size Variants */
+/* Size Variants με Enterprise Min-Width Logic */
 .layera-btn--xs {
   height: var(--layera-btn-xs-height);
   padding: var(--layera-btn-xs-padding);
   font-size: var(--layera-btn-xs-font-size);
   gap: var(--layera-btn-xs-gap);
+  min-width: var(--layera-btn-xs-min-width); /* Ελάχιστο πλάτος για συνέπεια */
+  width: auto; /* Αυτόματη επέκταση για μεγάλα κείμενα */
 
   .layera-btn-icon {
     width: var(--layera-btn-xs-icon-size);
@@ -225,6 +232,8 @@
   padding: var(--layera-btn-sm-padding);
   font-size: var(--layera-btn-sm-font-size);
   gap: var(--layera-btn-sm-gap);
+  min-width: var(--layera-btn-sm-min-width); /* Ελάχιστο πλάτος για συνέπεια */
+  width: auto; /* Αυτόματη επέκταση για μεγάλα κείμενα */
 
   .layera-btn-icon {
     width: var(--layera-btn-sm-icon-size);
@@ -237,6 +246,8 @@
   padding: var(--layera-btn-md-padding);
   font-size: var(--layera-btn-md-font-size);
   gap: var(--layera-btn-md-gap);
+  min-width: var(--layera-btn-md-min-width); /* Ελάχιστο πλάτος για συνέπεια */
+  width: auto; /* Αυτόματη επέκταση για μεγάλα κείμενα */
 
   .layera-btn-icon {
     width: var(--layera-btn-md-icon-size);
@@ -249,6 +260,8 @@
   padding: var(--layera-btn-lg-padding);
   font-size: var(--layera-btn-lg-font-size);
   gap: var(--layera-btn-lg-gap);
+  min-width: var(--layera-btn-lg-min-width); /* Ελάχιστο πλάτος για συνέπεια */
+  width: auto; /* Αυτόματη επέκταση για μεγάλα κείμενα */
 
   .layera-btn-icon {
     width: var(--layera-btn-lg-icon-size);
@@ -261,6 +274,8 @@
   padding: var(--layera-btn-xl-padding);
   font-size: var(--layera-btn-xl-font-size);
   gap: var(--layera-btn-xl-gap);
+  min-width: var(--layera-btn-xl-min-width); /* Ελάχιστο πλάτος για συνέπεια */
+  width: auto; /* Αυτόματη επέκταση για μεγάλα κείμενα */
 
   .layera-btn-icon {
     width: var(--layera-btn-xl-icon-size);
@@ -502,11 +517,13 @@
   animation: layera-btn-pulse 1s ease-in-out infinite;
 }
 
-/* Icon Only Buttons */
+/* Icon Only Buttons - Override min-width για τετράγωνα buttons */
 .layera-btn--icon-only {
   padding: var(--layera-size-0);
   aspect-ratio: 1;
   justify-content: center;
+  min-width: auto; /* Override το min-width για τετράγωνα buttons */
+  width: auto; /* Τετράγωνο aspect-ratio */
 }
 
 /* Animations */
