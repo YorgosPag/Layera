@@ -23,6 +23,7 @@ interface ColorPickerWithAlphaProps {
   label: string;
   value: ColorWithAlpha | string; // Support για legacy HEX values
   onChange: (value: ColorWithAlpha) => void;
+  onPreview?: (value: ColorWithAlpha) => void; // Real-time preview για hover events
   className?: string;
   throttleMs?: number; // Currently unused but kept for future use
 }
@@ -31,6 +32,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   label,
   value,
   onChange,
+  onPreview,
   className = '',
   throttleMs = 200 // Enhanced throttling για καλύτερη performance
 }) => {
@@ -119,6 +121,31 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     onChange(newValue);
   }, [internalValue?.hex, onChange]);
 
+  // Real-time preview handler για color picker input events
+  const handleHexInput = useCallback((e: React.FormEvent<HTMLInputElement>) => {
+    const newHex = (e.target as HTMLInputElement).value;
+    if (!newHex || !newHex.startsWith('#')) return;
+
+    const safeAlpha = internalValue?.alpha ?? 1.0;
+    const previewValue = {
+      hex: newHex,
+      alpha: safeAlpha,
+      rgba: hexToRgba(newHex, safeAlpha)
+    };
+
+    // Real-time preview χωρίς αλλαγή του state
+    if (onPreview) {
+      onPreview(previewValue);
+    }
+  }, [internalValue?.alpha, onPreview]);
+
+  // Mouse enter handler για καλύτερο UX
+  const handleMouseEnter = useCallback(() => {
+    if (onPreview && internalValue) {
+      onPreview(internalValue);
+    }
+  }, [onPreview, internalValue]);
+
   const displayHex = extractHexFromValue(internalValue?.hex || '#ffffff');
   const alphaPercentage = Math.round((internalValue?.alpha ?? 1.0) * 100);
 
@@ -137,6 +164,8 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
           type="color"
           value={displayHex}
           onChange={(e) => handleHexChange(e.target.value)}
+          onInput={handleHexInput}
+          onMouseEnter={handleMouseEnter}
           className="layera-input layera-width--full"
         />
       </Box>

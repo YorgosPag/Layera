@@ -30,7 +30,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
 
   const debounceTimerRef = useRef<NodeJS.Timeout | undefined>(undefined);
   const domUpdateTimerRef = useRef<NodeJS.Timeout | undefined>(undefined);
-  const pendingDOMUpdate = useRef<{ key: string; value: string } | null>(null);
+  const pendingDOMUpdate = useRef<{ key: string; value: string; category?: string } | null>(null);
   const rafRef = useRef<number | null>(null);
 
   /**
@@ -165,13 +165,59 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
   }, [getHoverEffectCSS, getActiveEffectCSS, getBorderWidthCSS, getBorderRadiusCSS, getFontSizeCSS]);
 
   /**
+   * Ενημερώνει card CSS variables βάσει κατηγορίας και χρώματος
+   */
+  const updateCardVariables = useCallback((colorKey: string, colorValue: string, category: string) => {
+    const root = document.documentElement;
+
+    // Map color keys to CSS variable suffixes
+    const colorMapping = {
+      primaryColor: 'primary',
+      secondaryColor: 'secondary',
+      successColor: 'success',
+      warningColor: 'warning',
+      dangerColor: 'danger',
+      infoColor: 'info'
+    } as const;
+
+    const colorSuffix = colorMapping[colorKey as keyof typeof colorMapping];
+    if (!colorSuffix) return;
+
+    switch (category) {
+      case 'backgrounds':
+        // Update background colors
+        root.style.setProperty(`--layera-card-bg-${colorSuffix}`, colorValue);
+        // Auto-calculate text color για καλή αντίθεση
+        const textColor = colorValue === '#f59e0b' ? '#000000' : '#ffffff';
+        root.style.setProperty(`--layera-card-text-${colorSuffix}`, textColor);
+        // Keep default border
+        root.style.setProperty(`--layera-card-border-${colorSuffix}`, '1px solid #e5e5e5');
+        break;
+
+      case 'text':
+        // Update text colors, keep white background
+        root.style.setProperty(`--layera-card-text-${colorSuffix}`, colorValue);
+        root.style.setProperty(`--layera-card-bg-${colorSuffix}`, '#ffffff');
+        root.style.setProperty(`--layera-card-border-${colorSuffix}`, '1px solid #e5e5e5');
+        break;
+
+      case 'borders':
+        // Update border colors, keep default text and background
+        root.style.setProperty(`--layera-card-border-${colorSuffix}`, `1px solid ${colorValue}`);
+        root.style.setProperty(`--layera-card-bg-${colorSuffix}`, '#ffffff');
+        root.style.setProperty(`--layera-card-text-${colorSuffix}`, '#333333');
+        break;
+    }
+  }, []);
+
+  /**
    * Εφαρμόζει live preview στο DOM χωρίς save - Optimized για multiple features
    */
-  const applyLivePreview = useCallback((key: string, value: string) => {
+  const applyLivePreview = useCallback((key: string, value: string, category?: string) => {
     // Use DocumentFragment για batch DOM updates
     const root = document.documentElement;
 
-    // Extended CSS variable mapping for all controls
+    // Extended CSS variable mapping for all controls and categories
     const cssVariableMap: Record<string, string> = {
       // Button colors (unified format - χρήση του επίσημου ColorState format)
       primaryColor: '--layera-color-button-primary',
@@ -181,10 +227,34 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
       dangerColor: '--layera-color-button-danger',
       infoColor: '--layera-color-button-info',
 
-      // Background colors
+      // Background colors (για κάρτες και άλλα components)
       backgroundPrimary: '--layera-color-background-primary',
       backgroundSecondary: '--layera-color-background-secondary',
       backgroundSurface: '--layera-color-surface-primary',
+
+      // Card background colors - νέα προσθήκη για real-time preview
+      'card-bg-primary': '--layera-card-bg-primary',
+      'card-bg-secondary': '--layera-card-bg-secondary',
+      'card-bg-success': '--layera-card-bg-success',
+      'card-bg-warning': '--layera-card-bg-warning',
+      'card-bg-danger': '--layera-card-bg-danger',
+      'card-bg-info': '--layera-card-bg-info',
+
+      // Card text colors - νέα προσθήκη για real-time preview
+      'card-text-primary': '--layera-card-text-primary',
+      'card-text-secondary': '--layera-card-text-secondary',
+      'card-text-success': '--layera-card-text-success',
+      'card-text-warning': '--layera-card-text-warning',
+      'card-text-danger': '--layera-card-text-danger',
+      'card-text-info': '--layera-card-text-info',
+
+      // Card border colors - νέα προσθήκη για real-time preview
+      'card-border-primary': '--layera-card-border-primary',
+      'card-border-secondary': '--layera-card-border-secondary',
+      'card-border-success': '--layera-card-border-success',
+      'card-border-warning': '--layera-card-border-warning',
+      'card-border-danger': '--layera-card-border-danger',
+      'card-border-info': '--layera-card-border-info',
 
       // Border colors
       borderPrimary: '--layera-color-border-primary',
@@ -213,7 +283,13 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
       fontSize2xl: '--layera-global-fontSize-2xl'
     };
 
-    // Batch CSS variable updates
+    // Special handling for card variables - νέα λογική για real-time preview
+    if (category && (key === 'primaryColor' || key === 'secondaryColor' || key === 'successColor' ||
+                    key === 'warningColor' || key === 'dangerColor' || key === 'infoColor')) {
+      updateCardVariables(key, value, category);
+    }
+
+    // Batch CSS variable updates για existing logic
     const cssVariable = cssVariableMap[key];
     if (cssVariable) {
       root.style.setProperty(cssVariable, value);
@@ -231,14 +307,14 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
       // Handle special effects only if not a CSS variable
       applySpecialEffects(key, value);
     }
-  }, [applyHeaderButtonPreview, applySpecialEffects]);
+  }, [applyHeaderButtonPreview, applySpecialEffects, updateCardVariables]);
 
   /**
    * Throttled version του DOM update - Μείωση DOM manipulations με requestAnimationFrame
    */
-  const throttledDOMUpdate = useCallback((key: string, value: string) => {
+  const throttledDOMUpdate = useCallback((key: string, value: string, category?: string) => {
     // Αποθήκευση του pending update
-    pendingDOMUpdate.current = { key, value };
+    pendingDOMUpdate.current = { key, value, category };
 
     // Cancel previous RAF/timer
     if (rafRef.current) {
@@ -253,7 +329,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
     rafRef.current = requestAnimationFrame(() => {
       domUpdateTimerRef.current = setTimeout(() => {
         if (pendingDOMUpdate.current) {
-          applyLivePreview(pendingDOMUpdate.current.key, pendingDOMUpdate.current.value);
+          applyLivePreview(pendingDOMUpdate.current.key, pendingDOMUpdate.current.value, pendingDOMUpdate.current.category);
           pendingDOMUpdate.current = null;
         }
         rafRef.current = null;
@@ -285,7 +361,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
   /**
    * Ξεκινάει live preview για ένα συγκεκριμένο χρώμα
    */
-  const startPreview = useCallback((key: string, value: string) => {
+  const startPreview = useCallback((key: string, value: string, category?: string) => {
     // Clear previous debounce timer
     if (debounceTimerRef.current) {
       clearTimeout(debounceTimerRef.current);
@@ -299,7 +375,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
     }));
 
     // Apply live preview to DOM με throttling για καλύτερη performance
-    throttledDOMUpdate(key, value);
+    throttledDOMUpdate(key, value, category);
 
     // Set debounced commit
     debounceTimerRef.current = setTimeout(() => {

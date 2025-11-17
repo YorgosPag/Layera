@@ -189,6 +189,11 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
                 label={`${colorKey.charAt(0).toUpperCase() + colorKey.slice(1)} (RGBA)`}
                 value={colorWithAlpha}
                 onChange={(newValue) => handleColorChange(colorKey, newValue)}
+                onPreview={(previewValue) => {
+                  // Real-time preview χωρίς αλλαγή state
+                  const previewVal = localAlphaEnabled ? previewValue.rgba : previewValue.hex;
+                  startPreview(colorKey, previewVal);
+                }}
                 className="layera-height--auto layera-text--align-center layera-width--auto"
               />
             );

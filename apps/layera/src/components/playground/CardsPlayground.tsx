@@ -188,6 +188,19 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
     return '1px solid #e5e5e5'; // subtle border for others
   };
 
+  // Initialize CSS variables for fallback values - ensure real-time preview has defaults
+  React.useEffect(() => {
+    const root = document.documentElement;
+    cardConfigs.forEach(({ key, colorValue }) => {
+      // Set initial CSS variables if not already set by real-time preview
+      if (!root.style.getPropertyValue(`--layera-card-bg-${key}`)) {
+        root.style.setProperty(`--layera-card-bg-${key}`, getBackgroundColor(colorValue));
+        root.style.setProperty(`--layera-card-text-${key}`, getTextColor(colorValue));
+        root.style.setProperty(`--layera-card-border-${key}`, getBorderStyle(colorValue));
+      }
+    });
+  }, [cardConfigs, colorCategory, borderWidth]);
+
   return (
     <Box
       style={{
@@ -211,12 +224,10 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
               className="layera-flex layera-flex-column layera-flex--align-center layera-flex--justify-center layera-padding--md"
               style={{
                 ...cardStyle,
-                '--layera-card-bg-color': getBackgroundColor(colorValue),
-                '--layera-card-text-color': getTextColor(colorValue),
-                '--layera-card-border': getBorderStyle(colorValue),
-                backgroundColor: 'var(--layera-card-bg-color)',
-                color: 'var(--layera-card-text-color)',
-                border: 'var(--layera-card-border)'
+                // Χρήση CSS variables για real-time preview support
+                backgroundColor: `var(--layera-card-bg-${key}, ${getBackgroundColor(colorValue)})`,
+                color: `var(--layera-card-text-${key}, ${getTextColor(colorValue)})`,
+                border: `var(--layera-card-border-${key}, ${getBorderStyle(colorValue)})`
               } as React.CSSProperties}
             >
               <Text
