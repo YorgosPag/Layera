@@ -161,13 +161,13 @@ button:focus-visible {
   justify-content: space-around;
 }
 .layera-flex--gap-sm {
-  gap: var(--layera-size-2);
+  gap: var(--layera-global-spacing-2);
 }
 .layera-flex--gap-md {
-  gap: 0.75rem;
+  gap: var(--layera-global-spacing-3);
 }
 .layera-flex--gap-lg {
-  gap: var(--layera-size-4);
+  gap: var(--layera-global-spacing-4);
 }
 .layera-flex--wrap-wrap {
   flex-wrap: wrap;

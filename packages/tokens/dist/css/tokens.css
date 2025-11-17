@@ -70,6 +70,7 @@
   --layera-color-border-default: #475569; /** Default border - subtle definition */
   --layera-color-border-light: #334155; /** Light border - minimal separation */
   --layera-color-border-focus: #06b6d4; /** Focus border - bright cyan highlight */
+  --layera-color-semantic-success-primary: #10b981; /** Primary success color (emerald-500) - MANUALLY ADDED */
   --layera-color-semantic-error-primary: #ef4444; /** Primary error color (red-500) - replaces hardcoded RGB */
   --layera-color-semantic-error-light: #f87171; /** Light error variant (red-400) - replaces hardcoded RGB */
   --layera-color-semantic-error-dark: #dc2626; /** Dark error variant (red-600) - replaces hardcoded RGB */
