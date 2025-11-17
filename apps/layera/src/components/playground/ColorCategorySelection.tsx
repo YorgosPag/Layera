@@ -10,6 +10,7 @@ import { ActiveControl } from './shared/ActiveControl';
 import { FontSizeControl, type FontSizeValue } from './shared/FontSizeControl';
 import { CardSizeControl, type CardSizeValue } from './shared/CardSizeControl';
 import { ModalSizeControl, type ModalSizeValue } from './shared/ModalSizeControl';
+import { InputSizeControl, type InputSizeValue } from './shared/InputSizeControl';
 import { LayoutRadiusControl } from './shared/LayoutRadiusControl';
 import { CardRadiusControl } from './shared/CardRadiusControl';
 import { ModalRadiusControl } from './shared/ModalRadiusControl';
@@ -54,6 +55,8 @@ interface ColorCategorySelectionProps {
   onCardSizeChange?: (value: CardSizeValue) => void;
   modalSize?: ModalSizeValue;
   onModalSizeChange?: (value: ModalSizeValue) => void;
+  inputSize?: InputSizeValue;
+  onInputSizeChange?: (value: InputSizeValue) => void;
   onPreview?: (key: string, value: string) => void;
   buttonState?: ButtonState;
 }
@@ -85,6 +88,8 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
   onCardSizeChange,
   modalSize = 'md',
   onModalSizeChange,
+  inputSize = 'md',
+  onInputSizeChange,
   onPreview,
   buttonState
 }) => {
@@ -312,6 +317,17 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           value={inputRadius}
           onChange={onInputRadiusChange}
           elementType="πεδία εισαγωγής"
+          className="layera-height--auto layera-text--align-center"
+          onPreview={onPreview}
+          buttonState={buttonState}
+        />
+      )}
+
+      {/* Input Size Control - ΜΟΝΟ για οποιαδήποτε category με inputs element */}
+      {colorHookState.elementType === 'inputs' && onInputSizeChange && (
+        <InputSizeControl
+          inputSize={inputSize}
+          onInputSizeChange={onInputSizeChange}
           className="layera-height--auto layera-text--align-center"
           onPreview={onPreview}
           buttonState={buttonState}

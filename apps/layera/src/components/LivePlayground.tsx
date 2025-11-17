@@ -22,6 +22,7 @@ import type { ColorWithAlpha } from './playground/shared/ColorPickerWithAlpha';
 import type { FontSizeValue } from './playground/shared/FontSizeControl';
 import { CardSizeControl, type CardSizeValue } from './playground/shared/CardSizeControl';
 import { ModalSizeControl, type ModalSizeValue } from './playground/shared/ModalSizeControl';
+import { InputSizeControl, type InputSizeValue } from './playground/shared/InputSizeControl';
 import { ButtonRadiusControl } from './playground/shared/ButtonRadiusControl';
 import { LayoutRadiusControl } from './playground/shared/LayoutRadiusControl';
 import { CardRadiusControl } from './playground/shared/CardRadiusControl';
@@ -131,6 +132,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
   // Modal size state for modals category
   const [modalSize, setModalSize] = useState<ModalSizeValue>('md');
+
+  // Input size state for inputs category
+  const [inputSize, setInputSize] = useState<InputSizeValue>('md');
 
   // Alpha state for color controls
   const [alphaEnabled, setAlphaEnabled] = useState<boolean>(false);
@@ -313,6 +317,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               onCardSizeChange={setCardSize}
               modalSize={modalSize}
               onModalSizeChange={setModalSize}
+              inputSize={inputSize}
+              onInputSizeChange={setInputSize}
               onPreview={startPreview}
               buttonState={buttonState}
             />
