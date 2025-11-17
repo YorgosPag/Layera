@@ -40,6 +40,11 @@
             "lg": {
               "gap": "var(--layera-global-spacing-4)"
             }
+          },
+          "wrap": {
+            "wrap": {
+              "flexWrap": "wrap"
+            }
           }
         }
       },

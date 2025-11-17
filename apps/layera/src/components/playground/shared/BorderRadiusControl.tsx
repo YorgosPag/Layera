@@ -97,7 +97,7 @@ export const BorderRadiusControl: React.FC<BorderRadiusControlProps> = ({
       </h4>
 
       {/* Border Radius Selection Buttons */}
-      <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm layera-margin-bottom--md layera-flex--justify-center">
+      <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-sm layera-margin-bottom--md layera-flex--justify-center">
         {borderRadiusOptions.map((option) => (
           <Button
             key={option.value}

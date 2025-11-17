@@ -97,7 +97,7 @@ export const BorderWidthControl: React.FC<BorderWidthControlProps> = ({
       </h4>
 
       {/* Border Width Selection Buttons */}
-      <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm layera-margin-bottom--md layera-flex--justify-center">
+      <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-sm layera-margin-bottom--md layera-flex--justify-center">
         {borderWidthOptions.map((option) => (
           <Button
             key={option.value}

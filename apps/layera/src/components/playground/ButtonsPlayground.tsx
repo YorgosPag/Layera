@@ -142,7 +142,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
           {colorCategory.toUpperCase()} για πλήκτρα σχήματος {getShapeInGreek(buttonState.shape)} μεγέθους {buttonState.size} {buttonState.withIcon ? 'με εικονίδιο' : 'χωρίς εικονίδιο'}
         </p>
 
-        <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-gap--md layera-align-items--center">
+        <Box className="layera-flex layera-flex--justify-center layera-flex--wrap-wrap layera-gap--md layera-align-items--center">
           {/* Τα 6 χρωματιστά buttons με enterprise min-width + auto logic */}
           <Button
             variant="primary"

@@ -29,7 +29,7 @@ export const ColorActionsPanel: React.FC<ColorActionsPanelProps> = ({
 }) => {
   return (
     <Box className="layera-text-center layera-margin-top--2xl layera-margin-bottom--xl">
-      <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-gap--md layera-align-items--center">
+      <Box className="layera-flex layera-flex--justify-center layera-flex--wrap-wrap layera-gap--md layera-align-items--center">
         <Button
           variant="primary"
           size={buttonState.size}

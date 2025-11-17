@@ -96,7 +96,7 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
           <CheckIcon size="sm" /> Live Preview: Κάρτες
         </h3>
 
-        <Box className="layera-flex layera-flex--wrap layera-flex--justify-center layera-flex--align-center layera-flex--gap-sm layera-padding-top--lg layera-padding-bottom--lg layera-width--full">
+        <Box className="layera-flex layera-flex--wrap-wrap layera-flex--justify-center layera-flex--align-center layera-flex--gap-sm layera-padding-top--lg layera-padding-bottom--lg layera-width--full">
           {cardConfigs.map(({ key, title, description, colorValue }) => (
             <Box
               key={key}

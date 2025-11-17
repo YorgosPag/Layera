@@ -202,7 +202,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
       </Box>
 
       {/* Controls Section - Horizontal */}
-      <Box className="layera-flex layera-flex--gap-lg layera-flex--wrap layera-flex--justify-center">
+      <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-lg layera-flex--justify-center">
         {/* Palette Selection */}
         <Box>
           {/* Label πάνω από τα κουμπιά */}
@@ -211,7 +211,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
           </Text>
 
           {/* Palette Buttons + Reset Button */}
-          <Box className="layera-flex layera-gap--md layera-flex--justify-center layera-margin-bottom--sm layera-flex--wrap layera-align-items--center">
+          <Box className="layera-flex layera-flex--wrap-wrap layera-gap--md layera-flex--justify-center layera-margin-bottom--sm layera-align-items--center">
             {paletteOptions.map((option) => (
               <Button
                 key={option.value}
@@ -249,7 +249,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
           </Box>
 
           {/* Color Preview εικονίδια κάτω από τα κουμπιά */}
-          <Box className="layera-flex layera-flex--gap-xs layera-flex--justify-center">
+          <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-xs layera-flex--justify-center">
             {Object.values(AVAILABLE_PALETTES[selectedPalette]).map((color, index) => (
               <Box
                 key={index}
@@ -269,7 +269,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
 
         {/* Load User Settings Button - μόνο αν υπάρχει userId */}
         {currentUserId && (
-          <Box className="layera-flex layera-flex--justify-center">
+          <Box className="layera-flex layera-flex--wrap-wrap layera-flex--justify-center">
             <Button
               variant="outline"
               size={buttonState.size}

@@ -288,7 +288,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
                     Σχήμα Πλήκτρου
                   </h4>
-                  <Box className="layera-flex layera-flex--wrap layera-gap--md layera-flex--justify-center layera-align-items--center">
+                  <Box className="layera-flex layera-flex--wrap-wrap layera-gap--md layera-flex--justify-center layera-align-items--center">
                     <Button
                       variant={buttonState.shape === 'rectangular' ? 'primary' : 'secondary'}
                       size={buttonState.size}
@@ -321,14 +321,14 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
                     Size
                   </h4>
-                  <Box className="layera-flex layera-gap--md layera-flex--justify-center layera-align-items--center">
+                  <Box className="layera-flex layera-flex--wrap-wrap layera-gap--md layera-flex--justify-center layera-align-items--center">
                     {buttonSizes.map((size) => (
                       <Button
                         key={size}
                         variant={buttonState.size === size ? 'primary' : 'secondary'}
-                        size="sm"
+                        size={buttonState.size}
                         onClick={() => buttonActions.setSize(size)}
-                        className={`layera-btn layera-btn--sm layera-btn--${buttonState.size === size ? 'primary' : 'secondary'}`}
+                        className={`layera-btn layera-btn--${buttonState.size} layera-btn--${buttonState.size === size ? 'primary' : 'secondary'}`}
                       >
                         {size}
                       </Button>
@@ -341,7 +341,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
                     Κείμενο & Εικονίδιο
                   </h4>
-                  <Box className="layera-flex layera-gap--md layera-flex--align-center layera-flex--justify-center">
+                  <Box className="layera-flex layera-flex--wrap-wrap layera-gap--md layera-flex--align-center layera-flex--justify-center">
                     <input
                       type="text"
                       value={buttonState.text}
