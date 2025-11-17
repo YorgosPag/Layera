@@ -147,7 +147,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
           Διαφάνεια: {alphaPercentage}%
         </Text>
 
-        {/* Alpha Preview Box - 250px πλάτος */}
+        {/* Alpha Preview Box - 250px πλάτος με progressive alpha */}
         <Box className="layera-margin-bottom--xs layera-flex layera-flex--justify-center">
           <Box
             className="layera-border--default"
@@ -155,12 +155,26 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
               width: '250px',
               height: '24px',
               borderRadius: '4px',
-              backgroundColor: internalValue?.rgba || 'rgba(255, 255, 255, 1)',
+              // Πάντα checkboard pattern ως background
               backgroundImage: 'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)',
               backgroundSize: '8px 8px',
-              backgroundPosition: '0 0, 0 4px, 4px -4px, -4px 0px'
+              backgroundPosition: '0 0, 0 4px, 4px -4px, -4px 0px',
+              position: 'relative'
             } as React.CSSProperties}
-          />
+          >
+            {/* Overlay με το χρώμα και την αντίστοιχη διαφάνεια */}
+            <Box
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                borderRadius: '4px',
+                backgroundColor: internalValue?.rgba || 'rgba(255, 255, 255, 1)'
+              } as React.CSSProperties}
+            />
+          </Box>
         </Box>
 
         {/* Alpha Slider - 250px πλάτος για συμμετρία */}
