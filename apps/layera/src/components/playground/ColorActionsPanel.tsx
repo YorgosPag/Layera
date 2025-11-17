@@ -12,26 +12,29 @@ import { RocketIcon, CheckIcon } from '@layera/icons';
  */
 
 import type { ColorState } from '../../hooks/useColorState.js';
+import type { ButtonState } from '../../hooks/useButtonState.js';
 
 interface ColorActionsPanelProps {
   colorHookState: ColorState;
+  buttonState: ButtonState;
   applyColorsToApp: () => void;
   applySquareColorsToHeader: () => void;
 }
 
 export const ColorActionsPanel: React.FC<ColorActionsPanelProps> = ({
   colorHookState,
+  buttonState,
   applyColorsToApp,
   applySquareColorsToHeader
 }) => {
   return (
     <Box className="layera-text-center layera-margin-top--2xl layera-margin-bottom--xl">
-      <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-md">
+      <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-gap--md layera-align-items--center">
         <Button
           variant="primary"
-          size="lg"
+          size={buttonState.size}
           onClick={applyColorsToApp}
-          className="layera-button layera-button--primary"
+          className={`layera-btn layera-btn--${buttonState.size} layera-btn--primary`}
         >
           <RocketIcon size="sm" /> Εφαρμογή Χρωμάτων για {colorHookState.colorCategory.toUpperCase()}
         </Button>
@@ -40,9 +43,9 @@ export const ColorActionsPanel: React.FC<ColorActionsPanelProps> = ({
         {colorHookState.colorCategory === 'borders' && colorHookState.elementType === 'buttons' && colorHookState.colorButtonShape === 'square' && (
           <Button
             variant="success"
-            size="lg"
+            size={buttonState.size}
             onClick={applySquareColorsToHeader}
-            className="layera-button layera-button--success"
+            className={`layera-btn layera-btn--${buttonState.size} layera-btn--success`}
           >
             <CheckIcon size="sm" /> Εφαρμογή στην Επικεφαλίδα
           </Button>

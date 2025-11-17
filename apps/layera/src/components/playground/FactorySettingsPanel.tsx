@@ -5,6 +5,7 @@ import { Button } from '@layera/buttons';
 import { SettingsIcon, RefreshIcon, CheckIcon } from '@layera/icons';
 import { FactorySettingsService } from '../../services/factorySettingsService';
 import { AVAILABLE_PALETTES, PaletteType } from '../../constants/factoryColorSettings';
+import type { ButtonState } from '../../hooks/useButtonState.js';
 
 /**
  * Factory Settings Panel Component
@@ -16,6 +17,7 @@ import { AVAILABLE_PALETTES, PaletteType } from '../../constants/factoryColorSet
  */
 
 interface FactorySettingsPanelProps {
+  buttonState: ButtonState;
   onSettingsChange: (settings: Record<string, string>) => void;
   onPreview?: (key: string, value: string) => void;
   currentUserId?: string;
@@ -23,6 +25,7 @@ interface FactorySettingsPanelProps {
 }
 
 export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
+  buttonState,
   onSettingsChange,
   onPreview,
   currentUserId,
@@ -208,15 +211,16 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
           </Text>
 
           {/* Palette Buttons + Reset Button */}
-          <Box className="layera-flex layera-flex--gap-sm layera-flex--justify-center layera-margin-bottom--sm layera-flex--wrap">
+          <Box className="layera-flex layera-gap--md layera-flex--justify-center layera-margin-bottom--sm layera-flex--wrap layera-align-items--center">
             {paletteOptions.map((option) => (
               <Button
                 key={option.value}
                 variant={selectedPalette === option.value ? 'primary' : 'outline'}
-                size="sm"
+                size={buttonState.size}
                 onClick={() => handlePaletteChange(option.value)}
                 disabled={isLoading}
                 title={option.description}
+                className={`layera-btn layera-btn--${buttonState.size} layera-btn--${selectedPalette === option.value ? 'primary' : 'outline'}`}
               >
                 {option.label}
               </Button>
@@ -225,12 +229,10 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
             {/* Reset to Factory Button - στην ίδια σειρά */}
             <Button
               variant={resetSuccess ? 'success' : 'warning'}
-              size="sm"
+              size={buttonState.size}
               onClick={handleResetToFactory}
               disabled={isResetting || isLoading}
-              style={{
-                minWidth: 'var(--layera-global-button-height-xl)'
-              }}
+              className={`layera-btn layera-btn--${buttonState.size} layera-btn--${resetSuccess ? 'success' : 'warning'}`}
             >
               {isResetting ? (
                 'Επιστροφή...'
@@ -270,9 +272,10 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
           <Box className="layera-flex layera-flex--justify-center">
             <Button
               variant="outline"
-              size="sm"
+              size={buttonState.size}
               onClick={handleLoadUserSettings}
               disabled={isLoading}
+              className={`layera-btn layera-btn--${buttonState.size} layera-btn--outline`}
             >
               Φόρτωση Ρυθμίσεων
             </Button>

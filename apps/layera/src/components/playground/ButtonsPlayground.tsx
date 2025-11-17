@@ -142,13 +142,13 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
           {colorCategory.toUpperCase()} για πλήκτρα σχήματος {getShapeInGreek(buttonState.shape)} μεγέθους {buttonState.size} {buttonState.withIcon ? 'με εικονίδιο' : 'χωρίς εικονίδιο'}
         </p>
 
-        <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-md">
-          {/* Τα 6 χρωματιστά buttons με δυναμικές τιμές */}
+        <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-gap--md layera-align-items--center">
+          {/* Τα 6 χρωματιστά buttons με enterprise min-width + auto logic */}
           <Button
             variant="primary"
             size={buttonState.size}
             icon={buttonState.withIcon ? <CheckIcon size="sm" /> : undefined}
-            className="layera-button-dynamic-primary"
+            className={`layera-btn layera-btn--${buttonState.size} layera-btn--primary`}
           >
             {buttonState.shape === 'square' ? 'P' : 'Primary'}
           </Button>
@@ -156,7 +156,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             variant="secondary"
             size={buttonState.size}
             icon={buttonState.withIcon ? <SettingsIcon size="sm" /> : undefined}
-            className="layera-button-dynamic-secondary"
+            className={`layera-btn layera-btn--${buttonState.size} layera-btn--secondary`}
           >
             {buttonState.shape === 'square' ? 'S' : 'Secondary'}
           </Button>
@@ -164,7 +164,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             variant="success"
             size={buttonState.size}
             icon={buttonState.withIcon ? <CheckIcon size="sm" /> : undefined}
-            className="layera-button-dynamic-success"
+            className={`layera-btn layera-btn--${buttonState.size} layera-btn--success`}
           >
             {buttonState.shape === 'square' ? 'Su' : 'Success'}
           </Button>
@@ -172,7 +172,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             variant="warning"
             size={buttonState.size}
             icon={buttonState.withIcon ? <CloseIcon size="sm" /> : undefined}
-            className="layera-button-dynamic-warning"
+            className={`layera-btn layera-btn--${buttonState.size} layera-btn--warning`}
           >
             {buttonState.shape === 'square' ? 'W' : 'Warning'}
           </Button>
@@ -180,7 +180,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             variant="danger"
             size={buttonState.size}
             icon={buttonState.withIcon ? <CloseIcon size="sm" /> : undefined}
-            className="layera-button-dynamic-danger"
+            className={`layera-btn layera-btn--${buttonState.size} layera-btn--danger`}
           >
             {buttonState.shape === 'square' ? 'D' : 'Danger'}
           </Button>
@@ -188,18 +188,26 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
             variant="info"
             size={buttonState.size}
             icon={buttonState.withIcon ? <SearchIcon size="sm" /> : undefined}
-            className="layera-button-dynamic-info"
+            className={`layera-btn layera-btn--${buttonState.size} layera-btn--info`}
           >
             {buttonState.shape === 'square' ? 'I' : 'Info'}
           </Button>
-          <button className="layera-outline-dynamic">
-            {buttonState.withIcon && <PlusIcon size="sm" />}
+          <Button
+            variant="outline"
+            size={buttonState.size}
+            icon={buttonState.withIcon ? <PlusIcon size="sm" /> : undefined}
+            className={`layera-btn layera-btn--${buttonState.size} layera-btn--outline`}
+          >
             {buttonState.shape === 'square' ? 'O' : 'Outline'}
-          </button>
-          <button className="layera-ghost-dynamic">
-            {buttonState.withIcon && <CompassIcon size="sm" />}
+          </Button>
+          <Button
+            variant="ghost"
+            size={buttonState.size}
+            icon={buttonState.withIcon ? <CompassIcon size="sm" /> : undefined}
+            className={`layera-btn layera-btn--${buttonState.size} layera-btn--ghost`}
+          >
             {buttonState.shape === 'square' ? 'G' : 'Ghost'}
-          </button>
+          </Button>
         </Box>
       </Box>
 

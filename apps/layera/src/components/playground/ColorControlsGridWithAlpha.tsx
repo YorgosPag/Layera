@@ -16,6 +16,8 @@ import { SettingsIcon, LayersIcon } from '@layera/icons';
  * - Live preview με transparency effects
  */
 
+import type { ButtonState } from '../../hooks/useButtonState.js';
+
 interface ColorControlsGridWithAlphaProps {
   currentColors: Record<string, ColorWithAlpha | string>; // Support για mixed types
   currentSetters: Record<string, (value: ColorWithAlpha | string) => void>;
@@ -23,6 +25,7 @@ interface ColorControlsGridWithAlphaProps {
   colorCategory: string;
   alphaEnabled?: boolean;
   onAlphaToggle?: (enabled: boolean) => void;
+  buttonState?: ButtonState; // Προαιρετικό για backward compatibility
 }
 
 export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProps> = React.memo(({
@@ -31,7 +34,8 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
   startPreview,
   colorCategory,
   alphaEnabled = false,
-  onAlphaToggle
+  onAlphaToggle,
+  buttonState
 }) => {
   const [localAlphaEnabled, setLocalAlphaEnabled] = useState(alphaEnabled);
 
@@ -160,8 +164,9 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
         </h3>
         <Button
           variant={localAlphaEnabled ? 'primary' : 'outline'}
-          size="sm"
+          size={buttonState?.size || "sm"}
           onClick={handleAlphaToggle}
+          className={`layera-btn layera-btn--${buttonState?.size || "sm"} layera-btn--${localAlphaEnabled ? 'primary' : 'outline'}`}
         >
           <SettingsIcon size="sm" />
           {localAlphaEnabled ? 'RGBA' : 'HEX'}

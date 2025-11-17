@@ -287,11 +287,12 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
                     Σχήμα Πλήκτρου
                   </h4>
-                  <Box className="layera-flex layera-flex--wrap layera-flex--gap-sm layera-flex--justify-center">
+                  <Box className="layera-flex layera-flex--wrap layera-gap--md layera-flex--justify-center layera-align-items--center">
                     <Button
                       variant={buttonState.shape === 'rectangular' ? 'primary' : 'secondary'}
                       size="sm"
                       onClick={() => buttonActions.setShape('rectangular')}
+                      className={`layera-btn layera-btn--sm layera-btn--${buttonState.shape === 'rectangular' ? 'primary' : 'secondary'}`}
                     >
                       <RulerIcon size="sm" /> Παραλληλόγραμμο
                     </Button>
@@ -299,6 +300,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                       variant={buttonState.shape === 'square' ? 'primary' : 'secondary'}
                       size="sm"
                       onClick={() => buttonActions.setShape('square')}
+                      className={`layera-btn layera-btn--sm layera-btn--${buttonState.shape === 'square' ? 'primary' : 'secondary'}`}
                     >
                       <PolygonIcon size="sm" /> Τετράγωνο
                     </Button>
@@ -306,6 +308,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                       variant={buttonState.shape === 'rounded' ? 'primary' : 'secondary'}
                       size="sm"
                       onClick={() => buttonActions.setShape('rounded')}
+                      className={`layera-btn layera-btn--sm layera-btn--${buttonState.shape === 'rounded' ? 'primary' : 'secondary'}`}
                     >
                       <CompassIcon size="sm" /> Στρογγυλό
                     </Button>
@@ -317,13 +320,14 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
                     Size
                   </h4>
-                  <Box className="layera-flex layera-flex--gap-sm layera-flex--justify-center">
+                  <Box className="layera-flex layera-gap--md layera-flex--justify-center layera-align-items--center">
                     {buttonSizes.map((size) => (
                       <Button
                         key={size}
                         variant={buttonState.size === size ? 'primary' : 'secondary'}
                         size="sm"
                         onClick={() => buttonActions.setSize(size)}
+                        className={`layera-btn layera-btn--sm layera-btn--${buttonState.size === size ? 'primary' : 'secondary'}`}
                       >
                         {size}
                       </Button>
@@ -336,7 +340,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   <h4 className="layera-typography layera-margin-bottom--md" data-size="base" data-weight="semibold" data-color="primary">
                     Κείμενο & Εικονίδιο
                   </h4>
-                  <Box className="layera-flex layera-flex--gap-md layera-flex--align-center layera-flex--justify-center">
+                  <Box className="layera-flex layera-gap--md layera-flex--align-center layera-flex--justify-center">
                     <input
                       type="text"
                       value={buttonState.text}
@@ -348,6 +352,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                       variant={buttonState.withIcon ? 'primary' : 'outline'}
                       size="sm"
                       onClick={() => buttonActions.setWithIcon(!buttonState.withIcon)}
+                      className={`layera-btn layera-btn--sm layera-btn--${buttonState.withIcon ? 'primary' : 'outline'}`}
                     >
                       {buttonState.withIcon ? <><CheckIcon size="sm" /> Με εικονίδιο</> : <><CloseIcon size="sm" /> Χωρίς εικονίδιο</>}
                     </Button>
@@ -369,6 +374,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               colorCategory={colorHookState.colorCategory}
               alphaEnabled={alphaEnabled}
               onAlphaToggle={setAlphaEnabled}
+              buttonState={buttonState}
             />
           </Box>
 
@@ -376,6 +382,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           <Box className="layera-margin-bottom--xl">
             <ColorActionsPanel
               colorHookState={colorHookState}
+              buttonState={buttonState}
               applyColorsToApp={applyColorsToApp}
               applySquareColorsToHeader={applySquareColorsToHeader}
             />
@@ -384,6 +391,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {/* Unified Factory Settings & Display Panel */}
           <Box className="layera-grid--auto-fit-280 layera-margin-bottom--xl">
             <FactorySettingsPanel
+              buttonState={buttonState}
               onSettingsChange={(settings) => {
                 // Εφαρμόζει τις νέες ρυθμίσεις στο color state
                 Object.entries(settings).forEach(([key, value]) => {

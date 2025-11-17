@@ -57,13 +57,14 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
             <Text className="layera-typography layera-margin-bottom--sm" data-size="sm" data-weight="medium" data-color="primary">
               Variant
             </Text>
-            <Box className="layera-flex layera-flex--wrap layera-flex--gap-md layera-flex--justify-center">
+            <Box className="layera-flex layera-flex--wrap layera-gap--md layera-flex--justify-center layera-align-items--center">
               {(['primary', 'secondary', 'outline', 'ghost', 'danger', 'success', 'warning', 'info'] as ButtonVariant[]).map((variant) => (
                 <Button
                   key={variant}
                   variant={buttonState.variant === variant ? 'primary' : 'secondary'}
                   size="sm"
                   onClick={() => updateButtonState({ variant })}
+                  className={`layera-btn layera-btn--sm layera-btn--${buttonState.variant === variant ? 'primary' : 'secondary'}`}
                 >
                   {variant}
                 </Button>
@@ -76,13 +77,14 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
             <Text className="layera-typography layera-margin-bottom--sm" data-size="sm" data-weight="medium" data-color="primary">
               Size
             </Text>
-            <Box className="layera-flex layera-flex--wrap layera-flex--gap-md layera-flex--justify-center">
+            <Box className="layera-flex layera-flex--wrap layera-gap--md layera-flex--justify-center layera-align-items--center">
               {(['xs', 'sm', 'md', 'lg', 'xl'] as ButtonSize[]).map((size) => (
                 <Button
                   key={size}
                   variant={buttonState.size === size ? 'primary' : 'secondary'}
                   size="sm"
                   onClick={() => updateButtonState({ size })}
+                  className={`layera-btn layera-btn--sm layera-btn--${buttonState.size === size ? 'primary' : 'secondary'}`}
                 >
                   {size}
                 </Button>
@@ -112,6 +114,7 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
               variant={buttonState.withIcon ? 'success' : 'outline'}
               size="sm"
               onClick={() => updateButtonState({ withIcon: !buttonState.withIcon })}
+              className={`layera-btn layera-btn--sm layera-btn--${buttonState.withIcon ? 'success' : 'outline'}`}
             >
               {buttonState.withIcon ? '✅ Enabled' : '❌ Disabled'}
             </Button>
@@ -125,11 +128,12 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
           🎯 Live Button Preview
         </h3>
 
-        <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-flex--gap-lg layera-margin-bottom--lg">
+        <Box className="layera-flex layera-flex--justify-center layera-flex--wrap layera-gap--lg layera-margin-bottom--lg layera-align-items--center">
           <Button
             variant={buttonState.variant}
             size={buttonState.size}
             icon={buttonState.withIcon ? <PlusIcon /> : undefined}
+            className={`layera-btn layera-btn--${buttonState.size} layera-btn--${buttonState.variant}`}
           >
             {buttonState.text}
           </Button>
@@ -146,16 +150,14 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
           🎨 Button Gallery - {buttonState.size.toUpperCase()} Size
         </h3>
 
-        <Box
-          className="layera-grid layera-grid--gap-lg layera-grid-autofit"
-        >
+        <Box className="layera-flex layera-flex--wrap layera-gap--lg layera-flex--justify-center layera-align-items--start">
           {(['primary', 'secondary', 'outline', 'ghost', 'danger', 'success', 'warning', 'info'] as ButtonVariant[]).map((variant) => (
-            <Box key={variant} className="layera-text-center layera-padding--md">
+            <Box key={variant} className="layera-text-center layera-padding--md layera-flex layera-flex-column layera-align-items--center">
               <Button
                 variant={variant}
                 size={buttonState.size}
                 icon={buttonState.withIcon ? <SearchIcon /> : undefined}
-                className="layera-margin-bottom--sm"
+                className={`layera-btn layera-btn--${buttonState.size} layera-btn--${variant} layera-margin-bottom--sm`}
               >
                 {variant.charAt(0).toUpperCase() + variant.slice(1)}
               </Button>
