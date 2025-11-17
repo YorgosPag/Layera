@@ -376,8 +376,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             />
           </Box>
 
-          {/* Factory Settings Panel */}
-          <Box className="layera-margin-bottom--xl">
+          {/* Unified Factory Settings & Display Panel */}
+          <Box className="layera-grid--auto-fit-280 layera-margin-bottom--xl">
             <FactorySettingsPanel
               onSettingsChange={(settings) => {
                 // Εφαρμόζει τις νέες ρυθμίσεις στο color state
@@ -390,10 +390,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               onPreview={startPreview}
               currentUserId={user?.uid}
             />
-          </Box>
 
-          {/* Color Values & CSS Variables */}
-          <Box className="layera-margin-bottom--xl">
             <ColorValueDisplay
               colorHookState={colorHookState}
               currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, string>}

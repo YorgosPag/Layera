@@ -167,8 +167,8 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
 
   return (
     <Box className={`layera-card layera-padding--lg ${className}`}>
-      {/* Header Section - Horizontal */}
-      <Box className="layera-flex layera-flex--gap-lg layera-flex--wrap layera-margin-bottom--md">
+      {/* Header Section */}
+      <Box className="layera-margin-bottom--md">
         <Box>
           <h4 className="layera-typography layera-margin-bottom--xs" data-size="base" data-weight="semibold" data-color="primary">
             <SettingsIcon size="sm" /> Εργοστασιακές Ρυθμίσεις
