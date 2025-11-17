@@ -127,11 +127,14 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
       .layera-card,
       .layera-modal,
       .layera-layout,
+      .layera-header,
       [data-layera-playground="true"] .layera-card,
       [data-layera-playground="true"] .layera-modal,
       [data-layera-playground="true"] .layera-layout,
+      [data-layera-playground="true"] .layera-header,
       [data-layera-playground="true"] .layera-flex.layera-flex-column.layera-flex--align-center.layera-flex--justify-center.layera-padding--md,
-      [data-layera-playground="true"] .layera-flex.layera-flex--justify-center.layera-flex--align-center {
+      [data-layera-playground="true"] .layera-flex.layera-flex--justify-center.layera-flex--align-center,
+      [data-layera-playground="true"] .layera-flex.layera-flex--align-center.layera-flex--justify-space-between {
         border-radius: ${radiusValue} !important;
       }`;
   }, []);

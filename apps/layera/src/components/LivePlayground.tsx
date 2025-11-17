@@ -126,6 +126,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   // Table radius state for tables category
   const [tableRadius, setTableRadius] = useState<string>('md');
 
+  // Header radius state for headers category
+  const [headerRadius, setHeaderRadius] = useState<string>('lg');
+
   // Font size state for text category
   const [fontSize, setFontSize] = useState<FontSizeValue>('base');
 
@@ -333,7 +336,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 currentColors={convertColorPaletteWithAlphaToLegacy(colorHelpersActions.getColorsForCategory(colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
-                headerRadius="md"
+                headerRadius={headerRadius}
                 headerSize="md"
                 hoverEffect={hoverEffect}
                 activeEffect={activeEffect}
@@ -386,6 +389,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               onInputRadiusChange={setInputRadius}
               tableRadius={tableRadius}
               onTableRadiusChange={setTableRadius}
+              headerRadius={headerRadius}
+              onHeaderRadiusChange={setHeaderRadius}
               hoverEffect={hoverEffect}
               onHoverEffectChange={setHoverEffect}
               activeEffect={activeEffect}

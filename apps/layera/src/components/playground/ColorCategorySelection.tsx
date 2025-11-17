@@ -18,6 +18,7 @@ import { CardRadiusControl } from './shared/CardRadiusControl';
 import { ModalRadiusControl } from './shared/ModalRadiusControl';
 import { InputRadiusControl } from './shared/InputRadiusControl';
 import { TableRadiusControl } from './shared/TableRadiusControl';
+import { HeaderRadiusControl } from './shared/HeaderRadiusControl';
 
 /**
  * ColorCategorySelection Component
@@ -49,6 +50,8 @@ interface ColorCategorySelectionProps {
   onInputRadiusChange?: (value: string) => void;
   tableRadius?: string;
   onTableRadiusChange?: (value: string) => void;
+  headerRadius?: string;
+  onHeaderRadiusChange?: (value: string) => void;
   hoverEffect?: string;
   onHoverEffectChange?: (value: string) => void;
   activeEffect?: string;
@@ -86,6 +89,8 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
   onInputRadiusChange,
   tableRadius = 'md',
   onTableRadiusChange,
+  headerRadius = 'lg',
+  onHeaderRadiusChange,
   hoverEffect = 'normal',
   onHoverEffectChange,
   activeEffect = 'scale',
@@ -382,6 +387,18 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
         <TableSizeControl
           tableSize={tableSize}
           onTableSizeChange={onTableSizeChange}
+          className="layera-height--auto layera-text--align-center"
+          onPreview={onPreview}
+          buttonState={buttonState}
+        />
+      )}
+
+      {/* Header Radius Control - ΜΟΝΟ για backgrounds category με headers element */}
+      {colorHookState.colorCategory === 'backgrounds' && colorHookState.elementType === 'headers' && onHeaderRadiusChange && (
+        <HeaderRadiusControl
+          value={headerRadius}
+          onChange={onHeaderRadiusChange}
+          elementType="headers"
           className="layera-height--auto layera-text--align-center"
           onPreview={onPreview}
           buttonState={buttonState}

@@ -48,14 +48,26 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
   // Helper function για translation των radius values
   const getRadiusInGreek = (radius: string) => {
     switch(radius) {
-      case 'none': return 'χωρίς καμπυλότητα';
-      case 'xs': return 'ελαφρά καμπυλότητα';
-      case 'sm': return 'μικρή καμπυλότητα';
-      case 'md': return 'μεσαία καμπυλότητα';
-      case 'lg': return 'μεγάλη καμπυλότητα';
-      case 'xl': return 'πολύ μεγάλη καμπυλότητα';
+      case 'none': return 'χωρίς καμπυλότητα (0px)';
+      case 'sm': return 'ελαφρά καμπυλότητα (4px)';
+      case 'lg': return 'μεσαία καμπυλότητα (8px)';
+      case 'xl': return 'πολλή καμπυλότητα (12px)';
+      case 'xxl': return 'μεγάλη καμπυλότητα (16px)';
       case 'round': return 'πλήρως στρογγυλά';
       default: return radius;
+    }
+  };
+
+  // Helper function για μετατροπή radius values σε tokens
+  const getRadiusToken = (radius: string) => {
+    switch(radius) {
+      case 'none': return '0px';                        // 0px
+      case 'sm': return 'var(--layera-radius-sm)';      // 4px
+      case 'lg': return 'var(--layera-radius-lg)';      // 8px - default για headers
+      case 'xl': return 'var(--layera-radius-xl)';      // 12px
+      case 'xxl': return 'var(--layera-radius-xxl)';    // 16px
+      case 'round': return 'var(--layera-radius-full)'; // πλήρως στρογγυλά
+      default: return 'var(--layera-radius-lg)';        // 8px fallback
     }
   };
 
@@ -196,9 +208,13 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
 
         <Box className="layera-flex layera-flex-column layera-flex--gap-md layera-padding-top--lg layera-padding-bottom--lg layera-width--full">
           {headerConfigs.map(({ key, title, description, colorValue }) => {
+            // Debug logging
+            console.log('📋 HeaderPlayground: headerRadius prop =', headerRadius);
+            console.log('📋 HeaderPlayground: Final borderRadius =', getRadiusToken(headerRadius));
+
             const headerStyle = {
               height: 'var(--layera-fontSize-6xl)',
-              borderRadius: `var(--layera-global-borderRadius-${headerRadius})`,
+              borderRadius: getRadiusToken(headerRadius),
               display: 'flex',
               alignItems: 'var(--layera-global-alignItems-center)',
               justifyContent: 'var(--layera-global-justifyContent-space-between)',
