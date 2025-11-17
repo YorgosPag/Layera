@@ -2,7 +2,6 @@ import React from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { PaletteIcon, LayersIcon, EditIcon, PolygonIcon } from '@layera/icons';
-import { ButtonsPreview } from './ButtonsPreview';
 import { TextPreview } from './TextPreview';
 import { BordersPreview } from './BordersPreview';
 
