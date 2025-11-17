@@ -195,7 +195,58 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
             {paletteOptions.find(p => p.value === selectedPalette)?.description}
           </Text>
 
-          {/* Color Preview */}
+        </Box>
+      </Box>
+
+      {/* Controls Section - Horizontal */}
+      <Box className="layera-flex layera-flex--gap-lg layera-flex--wrap layera-flex--justify-center">
+        {/* Palette Selection */}
+        <Box>
+          {/* Label πάνω από τα κουμπιά */}
+          <Text className="layera-typography layera-margin-bottom--xs layera-text--align-center" data-size="sm" data-weight="medium" data-color="secondary">
+            Επιλογή Παλέτας Χρωμάτων
+          </Text>
+
+          {/* Palette Buttons + Reset Button */}
+          <Box className="layera-flex layera-flex--gap-sm layera-flex--justify-center layera-margin-bottom--sm layera-flex--wrap">
+            {paletteOptions.map((option) => (
+              <Button
+                key={option.value}
+                variant={selectedPalette === option.value ? 'primary' : 'outline'}
+                size="sm"
+                onClick={() => handlePaletteChange(option.value)}
+                disabled={isLoading}
+                title={option.description}
+              >
+                {option.label}
+              </Button>
+            ))}
+
+            {/* Reset to Factory Button - στην ίδια σειρά */}
+            <Button
+              variant={resetSuccess ? 'success' : 'warning'}
+              size="sm"
+              onClick={handleResetToFactory}
+              disabled={isResetting || isLoading}
+              style={{
+                minWidth: 'var(--layera-global-button-height-xl)'
+              }}
+            >
+              {isResetting ? (
+                'Επιστροφή...'
+              ) : resetSuccess ? (
+                <>
+                  <CheckIcon size="xs" /> Επιτυχία!
+                </>
+              ) : (
+                <>
+                  <RefreshIcon size="xs" /> Reset to Factory
+                </>
+              )}
+            </Button>
+          </Box>
+
+          {/* Color Preview εικονίδια κάτω από τα κουμπιά */}
           <Box className="layera-flex layera-flex--gap-xs layera-flex--justify-center">
             {Object.values(AVAILABLE_PALETTES[selectedPalette]).map((color, index) => (
               <Box
@@ -213,69 +264,20 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
             ))}
           </Box>
         </Box>
-      </Box>
 
-      {/* Controls Section - Horizontal */}
-      <Box className="layera-flex layera-flex--gap-lg layera-flex--wrap layera-flex--justify-center">
-        {/* Palette Selection */}
-        <Box className="layera-flex layera-flex--gap-sm layera-flex--justify-center">
-          {paletteOptions.map((option) => (
-            <Button
-              key={option.value}
-              variant={selectedPalette === option.value ? 'primary' : 'outline'}
-              size="sm"
-              onClick={() => handlePaletteChange(option.value)}
-              disabled={isLoading}
-              title={option.description}
-            >
-              {option.label}
-            </Button>
-          ))}
-        </Box>
-
-        {/* Action Buttons */}
-        <Box className="layera-flex layera-flex--gap-sm layera-flex--justify-center">
-        <Button
-          variant={resetSuccess ? 'success' : 'warning'}
-          size="sm"
-          onClick={handleResetToFactory}
-          disabled={isResetting || isLoading}
-          style={{
-            minWidth: 'var(--layera-global-button-height-xl)'
-          }}
-        >
-          {isResetting ? (
-            'Επιστροφή...'
-          ) : resetSuccess ? (
-            <>
-              <CheckIcon size="xs" /> Επιτυχία!
-            </>
-          ) : (
-            <>
-              <RefreshIcon size="xs" /> Reset to Factory
-            </>
-          )}
-        </Button>
-
-        {/* Load User Settings Button */}
+        {/* Load User Settings Button - μόνο αν υπάρχει userId */}
         {currentUserId && (
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleLoadUserSettings}
-            disabled={isLoading}
-          >
-            Φόρτωση Ρυθμίσεων
-          </Button>
+          <Box className="layera-flex layera-flex--justify-center">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleLoadUserSettings}
+              disabled={isLoading}
+            >
+              Φόρτωση Ρυθμίσεων
+            </Button>
+          </Box>
         )}
-        </Box>
-      </Box>
-
-      {/* Label κάτω από τα Action Buttons */}
-      <Box className="layera-margin-top--md">
-        <Text className="layera-typography layera-text--align-center" data-size="sm" data-weight="medium" data-color="secondary">
-          Επιλογή Παλέτας Χρωμάτων
-        </Text>
       </Box>
     </Box>
   );
