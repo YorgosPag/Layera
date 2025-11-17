@@ -153,6 +153,9 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
     borderRadius: 'var(--layera-radius-md)'
   };
 
+  // DEBUG: Log current colors to see what cards receive
+  console.log('CardsPlayground received colors:', currentColors);
+
   // Card configurations
   const cardConfigs = [
     { key: 'primary', title: 'Primary', description: 'Κύρια κάρτα', colorValue: currentColors.primary },
@@ -162,6 +165,9 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
     { key: 'danger', title: 'Danger', description: 'Κάρτα κινδύνου', colorValue: currentColors.danger },
     { key: 'info', title: 'Info', description: 'Κάρτα πληροφοριών', colorValue: currentColors.info }
   ];
+
+  // DEBUG: Log individual card configs
+  console.log('Card configs:', cardConfigs.map(c => ({ key: c.key, color: c.colorValue })));
 
   // Helper to get text color based on category and color
   const getTextColor = (colorValue: string) => {

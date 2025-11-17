@@ -499,6 +499,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 if (colorHookState.elementType === 'cards' &&
                    (colorHookState.colorCategory === 'backgrounds' || colorHookState.colorCategory === 'cards')) {
                   const colorValue = typeof value === 'string' ? value : value.hex;
+                  console.log('CARD PREVIEW: Applying card color', { key, colorValue, elementType: colorHookState.elementType, category: colorHookState.colorCategory });
                   cssActions.applySpecificCardColor(key, colorValue);
                 }
 

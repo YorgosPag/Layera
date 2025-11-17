@@ -308,6 +308,7 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
     const root = document.documentElement;
 
     // Mapping από colorKey σε CSS variable για κάρτες
+    // NOTE: colorKey format is 'primaryColor' από LivePlayground, CSS variable format is 'primary'
     const colorToVariableMap: Record<string, string> = {
       'primaryColor': '--layera-card-bg-primary',
       'secondaryColor': '--layera-card-bg-secondary',
@@ -324,6 +325,8 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
     root.style.setProperty(variableName, colorValue);
     root.style.setProperty(`${variableName}-hover`, `${colorValue}DD`);
 
+    console.log(`CARD DEBUG: Applied card color ${colorValue} to ${variableName} for ${colorKey}`);
+
     // Create CSS rules only once για κάρτες
     let style = document.getElementById('layera-card-color-overrides') as HTMLStyleElement;
     if (!style) {
@@ -331,32 +334,16 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
       style.id = 'layera-card-color-overrides';
       document.head.appendChild(style);
 
-      // Static CSS rules using variables (created only once)
+      // Minimal CSS rules - rely on CardsPlayground's own CSS variable usage
+      // The CardsPlayground already uses var(--layera-card-bg-${key}, fallback) in inline styles
+      // We just need to ensure CSS variables are properly set - no additional CSS rules needed
       style.textContent = `
-        .layera-card[data-variant="primary"] {
-          background-color: var(--layera-card-bg-primary, var(--layera-color-bg-primary)) !important;
-        }
-        .layera-card[data-variant="secondary"] {
-          background-color: var(--layera-card-bg-secondary, var(--layera-color-bg-secondary)) !important;
-        }
-        .layera-card[data-variant="success"] {
-          background-color: var(--layera-card-bg-success, var(--layera-color-bg-success)) !important;
-        }
-        .layera-card[data-variant="warning"] {
-          background-color: var(--layera-card-bg-warning, var(--layera-color-bg-warning)) !important;
-        }
-        .layera-card[data-variant="danger"] {
-          background-color: var(--layera-card-bg-danger, var(--layera-color-bg-danger)) !important;
-        }
-        .layera-card[data-variant="info"] {
-          background-color: var(--layera-card-bg-info, var(--layera-color-bg-info)) !important;
-        }
-        /* Fallback για CSS variables που χρησιμοποιεί το CardsPlayground */
-        .layera-card {
-          background-color: var(--layera-card-bg-primary, var(--layera-color-bg-primary)) !important;
-        }
-        .layera-card:hover {
-          background-color: var(--layera-card-bg-primary-hover, var(--layera-color-bg-primary)) !important;
+        /* Minimal CSS for card live preview - relies on CardsPlayground's inline CSS variables */
+        /* CSS variables are set directly on :root by applySpecificCardColor */
+
+        /* Debug helper to visualize applied variables */
+        :root {
+          /* Variables set dynamically by applySpecificCardColor function */
         }
       `;
     }
