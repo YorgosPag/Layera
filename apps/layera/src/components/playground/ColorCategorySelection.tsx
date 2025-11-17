@@ -9,6 +9,7 @@ import { HoverControl } from './shared/HoverControl';
 import { ActiveControl } from './shared/ActiveControl';
 import { FontSizeControl, type FontSizeValue } from './shared/FontSizeControl';
 import { CardSizeControl, type CardSizeValue } from './shared/CardSizeControl';
+import { ModalSizeControl, type ModalSizeValue } from './shared/ModalSizeControl';
 import { LayoutRadiusControl } from './shared/LayoutRadiusControl';
 import { CardRadiusControl } from './shared/CardRadiusControl';
 import { ModalRadiusControl } from './shared/ModalRadiusControl';
@@ -51,6 +52,8 @@ interface ColorCategorySelectionProps {
   onFontSizeChange?: (value: FontSizeValue) => void;
   cardSize?: CardSizeValue;
   onCardSizeChange?: (value: CardSizeValue) => void;
+  modalSize?: ModalSizeValue;
+  onModalSizeChange?: (value: ModalSizeValue) => void;
   onPreview?: (key: string, value: string) => void;
   buttonState?: ButtonState;
 }
@@ -80,6 +83,8 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
   onFontSizeChange,
   cardSize = 'md',
   onCardSizeChange,
+  modalSize = 'md',
+  onModalSizeChange,
   onPreview,
   buttonState
 }) => {
@@ -284,6 +289,17 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           value={modalRadius}
           onChange={onModalRadiusChange}
           elementType="modals"
+          className="layera-height--auto layera-text--align-center"
+          onPreview={onPreview}
+          buttonState={buttonState}
+        />
+      )}
+
+      {/* Modal Size Control - ΜΟΝΟ για οποιαδήποτε category με modals element */}
+      {colorHookState.elementType === 'modals' && onModalSizeChange && (
+        <ModalSizeControl
+          modalSize={modalSize}
+          onModalSizeChange={onModalSizeChange}
           className="layera-height--auto layera-text--align-center"
           onPreview={onPreview}
           buttonState={buttonState}
