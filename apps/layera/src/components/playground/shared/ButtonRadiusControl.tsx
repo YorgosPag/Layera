@@ -41,37 +41,37 @@ export const ButtonRadiusControl: React.FC<ButtonRadiusControlProps> = ({
 }) => {
   const [isChanging, setIsChanging] = useState(false);
 
-  // Available button radius options with their tokens
+  // Available button radius options with their tokens - Updated hierarchy (0, 4, 8, 12, 16px)
   const buttonRadiusOptions = [
     {
       value: 'none',
-      label: 'Χωρίς',
+      label: '0px',
       token: '0px',
-      description: 'Χωρίς καμπυλότητα (0px - τετράγωνα)'
+      description: 'Χωρίς καμπυλότητα (0px - τετράγωνα πλήκτρα)'
     },
     {
-      value: 'xs',
-      label: 'Ελαφρώς',
-      token: '0.125rem',
-      description: 'Ελαφρώς καμπύλες (2px)'
-    },
-    {
-      value: 'md',
-      label: 'Μεσαία',
-      token: 'var(--layera-radius-button)',
-      description: 'Μεσαία καμπύλες (6px)'
+      value: 'sm',
+      label: '4px',
+      token: 'var(--layera-radius-sm)',
+      description: 'Ελαφρώς καμπύλες (4px)'
     },
     {
       value: 'lg',
-      label: 'Πολύ',
-      token: '0.5rem',
-      description: 'Πολύ καμπύλες (8px)'
+      label: '8px',
+      token: 'var(--layera-radius-lg)',
+      description: 'Μεσαία καμπύλες (8px - default για πλήκτρα)'
     },
     {
-      value: 'round',
-      label: 'Στρογγυλά',
-      token: '50%',
-      description: 'Πλήρως στρογγυλά (50%)'
+      value: 'xl',
+      label: '12px',
+      token: 'var(--layera-radius-xl)',
+      description: 'Πολύ καμπύλες (12px)'
+    },
+    {
+      value: 'xxl',
+      label: '16px',
+      token: 'var(--layera-radius-xxl)',
+      description: 'Μεγάλες καμπύλες (16px - ειδικά πλήκτρα)'
     }
   ];
 
@@ -91,7 +91,7 @@ export const ButtonRadiusControl: React.FC<ButtonRadiusControlProps> = ({
   }, [onChange, onPreview]);
 
   const getCurrentOption = () => {
-    return buttonRadiusOptions.find(option => option.value === value) || buttonRadiusOptions[2];
+    return buttonRadiusOptions.find(option => option.value === value) || buttonRadiusOptions[2]; // Default to 'lg' (8px)
   };
 
   const currentOption = getCurrentOption();

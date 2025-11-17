@@ -241,8 +241,8 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
         </Text>
       </Box>
 
-      {/* Button Radius Control - ΜΟΝΟ για backgrounds category με buttons element */}
-      {colorHookState.colorCategory === 'backgrounds' && colorHookState.elementType === 'buttons' && onButtonRadiusChange && (
+      {/* Button Radius Control - ΜΟΝΟ για backgrounds category με buttons element ΚΑΙ όταν το shape ΔΕΝ είναι rounded */}
+      {colorHookState.colorCategory === 'backgrounds' && colorHookState.elementType === 'buttons' && onButtonRadiusChange && buttonState?.shape !== 'rounded' && (
         <ButtonRadiusControl
           value={buttonRadius}
           onChange={onButtonRadiusChange}
