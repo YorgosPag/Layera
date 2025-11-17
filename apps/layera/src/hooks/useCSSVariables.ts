@@ -29,6 +29,7 @@ export interface CSSVariablesActions {
   applySpecificButtonColor: (colorKey: string, colorValue: string) => void;
   applySpecificCardColor: (colorKey: string, colorValue: string) => void;
   applySpecificModalColor: (colorKey: string, colorValue: string) => void;
+  applySpecificLayoutColor: (colorKey: string, colorValue: string) => void;
 }
 
 export interface UseCSSVariablesReturn {
@@ -398,6 +399,54 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
   };
 
   /**
+   * Εφαρμόζει συγκεκριμένο χρώμα σε layout element για real-time preview
+   * Χρησιμοποιεί CSS variables για άμεση ενημέρωση χωρίς re-render
+   */
+  const applySpecificLayoutColor = (colorKey: string, colorValue: string) => {
+    // Optimized: Use CSS variables instead of rewriting style.textContent
+    const root = document.documentElement;
+
+    // Mapping από colorKey σε CSS variable για layouts
+    // NOTE: colorKey format is 'primaryColor' από LivePlayground, CSS variable format is 'primary'
+    const colorToVariableMap: Record<string, string> = {
+      'primaryColor': '--layera-layout-bg-primary',
+      'secondaryColor': '--layera-layout-bg-secondary',
+      'successColor': '--layera-layout-bg-success',
+      'warningColor': '--layera-layout-bg-warning',
+      'dangerColor': '--layera-layout-bg-danger',
+      'infoColor': '--layera-layout-bg-info'
+    };
+
+    const variableName = colorToVariableMap[colorKey];
+    if (!variableName) return;
+
+    // Fast CSS variable update (no DOM reflow/repaint)
+    root.style.setProperty(variableName, colorValue);
+    root.style.setProperty(`${variableName}-hover`, `${colorValue}DD`);
+
+    // Create CSS rules only once για layouts
+    let style = document.getElementById('layera-layout-color-overrides') as HTMLStyleElement;
+    if (!style) {
+      style = document.createElement('style');
+      style.id = 'layera-layout-color-overrides';
+      document.head.appendChild(style);
+
+      // Minimal CSS rules - rely on LayoutPlayground's own CSS variable usage
+      // The LayoutPlayground will use var(--layera-layout-bg-${key}, fallback) in inline styles
+      // We just need to ensure CSS variables are properly set - no additional CSS rules needed
+      style.textContent = `
+        /* Minimal CSS for layout live preview - relies on LayoutPlayground's inline CSS variables */
+        /* CSS variables are set directly on :root by applySpecificLayoutColor */
+
+        /* Debug helper to visualize applied variables */
+        :root {
+          /* Variables set dynamically by applySpecificLayoutColor function */
+        }
+      `;
+    }
+  };
+
+  /**
    * Επιστρέφει default colors για fallback
    */
   const getCurrentDefaultColors = (): ColorPaletteWithAlpha => ({
@@ -415,7 +464,8 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
     applyColorsToApp,
     applySpecificButtonColor,
     applySpecificCardColor,
-    applySpecificModalColor
+    applySpecificModalColor,
+    applySpecificLayoutColor
   };
 
   return {

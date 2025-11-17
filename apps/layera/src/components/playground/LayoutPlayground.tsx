@@ -126,6 +126,31 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
   };
 
   // Layout section configurations
+  // Helper to get text color based on category and color
+  const getTextColor = (colorValue: string) => {
+    if (colorCategory === 'text') return colorValue;
+    if (colorCategory === 'backgrounds') {
+      // Dark backgrounds need white text, light backgrounds need black text
+      return colorValue === '#f59e0b' ? '#000000' : '#ffffff'; // warning is light, others dark
+    }
+    return '#333333'; // default for borders
+  };
+
+  // Helper to get background color
+  const getBackgroundColor = (colorValue: string) => {
+    if (colorCategory === 'backgrounds') return colorValue;
+    return '#ffffff'; // white background for text and borders
+  };
+
+  // Helper to get border style
+  const getBorderStyle = (colorValue: string) => {
+    if (colorCategory === 'borders') {
+      const borderWidthToken = `var(--layera-global-borderWidth-${borderWidth})`;
+      return `${borderWidthToken} solid ${colorValue}`;
+    }
+    return '1px solid #e5e5e5'; // subtle border for others
+  };
+
   const layoutConfigs = [
     { key: 'primary', title: 'Primary', description: 'Layout Section', colorValue: currentColors.primary },
     { key: 'secondary', title: 'Secondary', description: 'Layout Section', colorValue: currentColors.secondary },
@@ -134,46 +159,19 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
     { key: 'danger', title: 'Danger', description: 'Layout Section', colorValue: currentColors.danger },
     { key: 'info', title: 'Info', description: 'Layout Section', colorValue: currentColors.info }
   ];
-  const getLayoutStyle = (colorValue: string) => {
-    const baseStyle = {
-      padding: 'var(--layera-global-spacing-3)',
-      borderRadius: `var(--layera-global-borderRadius-${borderRadius})`,
-      height: 'var(--layera-fontSize-6xl)',
-      width: 'calc(var(--layera-fontSize-6xl) * 3)',
-      minWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
-      maxWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
-      flex: '0 0 calc(var(--layera-fontSize-6xl) * 3)',
-      display: 'flex',
-      alignItems: 'var(--layera-global-alignItems-center)',
-      justifyContent: 'var(--layera-global-justifyContent-center)'
-    };
 
-    switch (colorCategory) {
-      case 'backgrounds':
-        return {
-          ...baseStyle,
-          backgroundColor: colorValue,
-          color: colorValue === '#f59e0b' ? 'var(--layera-color-text-primary)' : 'var(--layera-color-text-on-dark)',
-          border: 'var(--layera-global-borderWidth-1) solid var(--layera-border-primary)'
-        };
-      case 'text':
-        return {
-          ...baseStyle,
-          backgroundColor: 'var(--layera-bg-secondary)',
-          color: colorValue,
-          border: 'var(--layera-global-borderWidth-1) solid var(--layera-border-primary)'
-        };
-      case 'borders':
-        return {
-          ...baseStyle,
-          backgroundColor: 'var(--layera-color-surface-primary)',
-          color: 'var(--layera-color-text-primary)',
-          border: borderWidth === 0 ? 'none' : `var(--layera-global-borderWidth-${borderWidth}) solid ${colorValue}`
-        };
-      default:
-        return baseStyle;
-    }
-  };
+  // Initialize CSS variables for fallback values - ensure real-time preview has defaults
+  React.useEffect(() => {
+    const root = document.documentElement;
+    layoutConfigs.forEach(({ key, colorValue }) => {
+      // Set initial CSS variables if not already set by real-time preview
+      if (!root.style.getPropertyValue(`--layera-layout-bg-${key}`)) {
+        root.style.setProperty(`--layera-layout-bg-${key}`, getBackgroundColor(colorValue));
+        root.style.setProperty(`--layera-layout-text-${key}`, getTextColor(colorValue));
+        root.style.setProperty(`--layera-layout-border-${key}`, getBorderStyle(colorValue));
+      }
+    });
+  }, [layoutConfigs, colorCategory, borderWidth]);
 
   return (
     <Box
@@ -191,25 +189,44 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
         </p>
 
         <Box className="layera-flex layera-flex--wrap-wrap layera-flex--justify-center layera-flex--align-center layera-flex--gap-md layera-padding-top--lg layera-padding-bottom--lg layera-width--full">
-          {layoutConfigs.map(({ key, title, description, colorValue }) => (
-            <Box key={key} style={getLayoutStyle(colorValue)}>
-              <Box>
-                <Text
-                  className="layera-typography layera-margin-bottom--xs"
-                  data-size="sm"
-                  data-weight="bold"
-                >
-                  {title}
-                </Text>
-                <Text
-                  className="layera-typography layera-opacity--80"
-                  data-size="xs"
-                >
-                  {description}
-                </Text>
+          {layoutConfigs.map(({ key, title, description, colorValue }) => {
+            const baseStyle = {
+              padding: 'var(--layera-global-spacing-3)',
+              borderRadius: `var(--layera-global-borderRadius-${borderRadius})`,
+              height: 'var(--layera-fontSize-6xl)',
+              width: 'calc(var(--layera-fontSize-6xl) * 3)',
+              minWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
+              maxWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
+              flex: '0 0 calc(var(--layera-fontSize-6xl) * 3)',
+              display: 'flex',
+              alignItems: 'var(--layera-global-alignItems-center)',
+              justifyContent: 'var(--layera-global-justifyContent-center)',
+              // Χρήση CSS variables για real-time preview support
+              backgroundColor: `var(--layera-layout-bg-${key}, ${getBackgroundColor(colorValue)})`,
+              color: `var(--layera-layout-text-${key}, ${getTextColor(colorValue)})`,
+              border: `var(--layera-layout-border-${key}, ${getBorderStyle(colorValue)})`
+            };
+
+            return (
+              <Box key={key} style={baseStyle}>
+                <Box>
+                  <Text
+                    className="layera-typography layera-margin-bottom--xs"
+                    data-size="sm"
+                    data-weight="bold"
+                  >
+                    {title}
+                  </Text>
+                  <Text
+                    className="layera-typography layera-opacity--80"
+                    data-size="xs"
+                  >
+                    {description}
+                  </Text>
+                </Box>
               </Box>
-            </Box>
-          ))}
+            );
+          })}
         </Box>
       </Box>
     </Box>

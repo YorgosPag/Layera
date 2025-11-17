@@ -70,7 +70,12 @@
   --layera-color-border-default: #475569; /** Default border - subtle definition */
   --layera-color-border-light: #334155; /** Light border - minimal separation */
   --layera-color-border-focus: #06b6d4; /** Focus border - bright cyan highlight */
-  --layera-color-semantic-success-primary: #10b981; /** Primary success color (emerald-500) - MANUALLY ADDED */
+  --layera-color-bg-primary: #ffffff; /** Primary background - clean white for main surfaces */
+  --layera-color-bg-secondary: #f8fafc; /** Secondary background - light slate for card surfaces */
+  --layera-color-bg-success: #d1fae5; /** Success background */
+  --layera-color-bg-warning: #fef3c7; /** Warning background */
+  --layera-color-bg-danger: #fef2f2; /** Danger background - light red for error states */
+  --layera-color-bg-info: #eff6ff; /** Info background - light blue for info states */
   --layera-color-semantic-error-primary: #ef4444; /** Primary error color (red-500) - replaces hardcoded RGB */
   --layera-color-semantic-error-light: #f87171; /** Light error variant (red-400) - replaces hardcoded RGB */
   --layera-color-semantic-error-dark: #dc2626; /** Dark error variant (red-600) - replaces hardcoded RGB */
@@ -103,8 +108,6 @@
   --layera-color-success: var(--layera-color-semantic-success-primary); /** Success color - consolidated reference */
   --layera-color-warning: var(--layera-color-semantic-warning-primary); /** Warning color - consolidated reference */
   --layera-color-error: var(--layera-color-semantic-error-primary); /** Error color - consolidated reference */
-  --layera-color-bg-success: #d1fae5; /** Success background */
-  --layera-color-bg-warning: #fef3c7; /** Warning background */
   --layera-colorUtilities-utilities-background-primary: var(--layera-color-surface-primary); /** Primary background - theme aware */
   --layera-colorUtilities-utilities-background-secondary: var(--layera-color-surface-secondary); /** Secondary background - theme aware */
   --layera-colorUtilities-utilities-background-tertiary: var(--layera-color-background-tertiary, #f1f5f9); /** Tertiary background for subtle sections */

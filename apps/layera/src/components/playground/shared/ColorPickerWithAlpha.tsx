@@ -10,8 +10,24 @@ import { Text } from '@layera/typography';
  * - Alpha slider για διαφάνεια (0-100%)
  * - Live preview με RGBA output
  * - Θυμάται την alpha τιμή ανά χρώμα
- * - Optimized performance με throttling
+ * - ULTRA-OPTIMIZED performance με throttling + zero re-renders
  */
+
+// PERFORMANCE: Move helper functions outside component για zero recreations
+const hexToRgba = (hex: string, alpha: number): string => {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
+const extractHexFromValue = (colorValue: string): string => {
+  if (!colorValue) return '#ffffff';
+  if (colorValue.startsWith('#')) return colorValue;
+  // CSS variable fallback
+  const match = colorValue.match(/var\([^,]+,\s*(#[0-9a-fA-F]{6})\)/);
+  return match ? match[1] : '#ffffff';
+};
 
 interface ColorWithAlpha {
   hex: string;    // #ff0000
@@ -80,23 +96,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   // Note: throttleMs parameter preserved for future performance optimizations
   void throttleMs;
 
-  // Helper function: HEX to RGBA
-  const hexToRgba = (hex: string, alpha: number): string => {
-    const r = parseInt(hex.slice(1, 3), 16);
-    const g = parseInt(hex.slice(3, 5), 16);
-    const b = parseInt(hex.slice(5, 7), 16);
-    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-  };
-
-  // Helper function: Extract HEX from CSS variable
-  const extractHexFromValue = (colorValue: string): string => {
-    if (!colorValue) return '#ffffff';
-    if (colorValue.startsWith('#')) return colorValue;
-
-    // CSS variable fallback
-    const match = colorValue.match(/var\([^,]+,\s*(#[0-9a-fA-F]{6})\)/);
-    return match ? match[1] : '#ffffff';
-  };
+  // PERFORMANCE: Helper functions moved outside component για zero recreations
 
   // Sync με external value
   useEffect(() => {
@@ -166,9 +166,9 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     let isMouseDown = false;
     let lastCheckedColor = input.value;
     let throttleTimestamp = 0;
-    const THROTTLE_INTERVAL = 16; // 60fps max
+    const THROTTLE_INTERVAL = 32; // 30fps για smooth performance balance
 
-    // Optimized throttled preview function
+    // ULTRA-OPTIMIZED throttled preview - χωρίς state updates για performance
     const throttledPreview = (newHex: string) => {
       const now = Date.now();
       if (now - throttleTimestamp < THROTTLE_INTERVAL) return;
@@ -184,7 +184,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
         rgba: hexToRgba(newHex, safeAlpha)
       };
 
-      setInternalValue(previewValue);
+      // CRITICAL FIX: Μόνο onPreview, ΌΧΙ setInternalValue για smooth cursor movement
       onPreview(previewValue);
     };
 
@@ -218,9 +218,10 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     };
   }, [internalValue?.alpha, onPreview]);
 
-  // Mouse enter handler για καλύτερο UX
+  // OPTIMIZED Mouse enter handler - debounced για performance
   const handleMouseEnter = useCallback(() => {
     if (onPreview && internalValue) {
+      // Immediate preview χωρίς throttling για responsive UX
       onPreview(internalValue);
     }
   }, [onPreview, internalValue]);

@@ -491,21 +491,27 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 const previewValue = typeof value === 'string' ? value : value.rgba;
 
                 if (colorHookState.elementType === 'buttons' &&
-                   (colorHookState.colorCategory === 'backgrounds' || colorHookState.colorCategory === 'buttons')) {
+                   colorHookState.colorCategory === 'backgrounds') {
                   const colorValue = typeof value === 'string' ? value : value.hex;
                   cssActions.applySpecificButtonColor(key, colorValue);
                 }
 
                 if (colorHookState.elementType === 'cards' &&
-                   (colorHookState.colorCategory === 'backgrounds' || colorHookState.colorCategory === 'cards')) {
+                   colorHookState.colorCategory === 'backgrounds') {
                   const colorValue = typeof value === 'string' ? value : value.hex;
                   cssActions.applySpecificCardColor(key, colorValue);
                 }
 
                 if (colorHookState.elementType === 'modals' &&
-                   (colorHookState.colorCategory === 'backgrounds' || colorHookState.colorCategory === 'modals')) {
+                   colorHookState.colorCategory === 'backgrounds') {
                   const colorValue = typeof value === 'string' ? value : value.hex;
                   cssActions.applySpecificModalColor(key, colorValue);
+                }
+
+                if (colorHookState.elementType === 'layout' &&
+                   colorHookState.colorCategory === 'backgrounds') {
+                  const colorValue = typeof value === 'string' ? value : value.hex;
+                  cssActions.applySpecificLayoutColor(key, colorValue);
                 }
 
                 startPreview(key, previewValue, colorHookState.colorCategory, colorHookState.elementType);
