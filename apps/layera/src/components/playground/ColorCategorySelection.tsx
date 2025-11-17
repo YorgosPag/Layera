@@ -260,8 +260,9 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
         />
       )}
 
-      {/* Border Radius Control - ΜΟΝΟ για borders category */}
-      {colorHookState.colorCategory === 'borders' && onBorderRadiusChange && (
+      {/* ΑΦΑΙΡΕΘΗΚΕ: Border Radius Control από borders category - Γιώργος 17/11/2025 */}
+      {/* Η καμπυλότητα ορίζεται πλέον ΜΟΝΟ από τις ειδικές ρυθμίσεις κάθε element type */}
+      {/* {colorHookState.colorCategory === 'borders' && onBorderRadiusChange && (
         <BorderRadiusControl
           value={borderRadius}
           onChange={onBorderRadiusChange}
@@ -270,7 +271,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           onPreview={onPreview}
           buttonState={buttonState}
         />
-      )}
+      )} */}
 
       {/* Font Size Control - ΜΟΝΟ για text κατηγορία */}
       {colorHookState.colorCategory === 'text' && onFontSizeChange && (
