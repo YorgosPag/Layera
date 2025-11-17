@@ -20,6 +20,7 @@ import { ColorValueDisplay } from './playground/ColorValueDisplay';
 import { FactorySettingsPanel } from './playground/FactorySettingsPanel';
 import type { ColorWithAlpha } from './playground/shared/ColorPickerWithAlpha';
 import type { FontSizeValue } from './playground/shared/FontSizeControl';
+import { ButtonRadiusControl } from './playground/shared/ButtonRadiusControl';
 import { loadCurrentThemeFromLocalStorage } from '../services/colorThemeService';
 import { useAuth } from '@layera/auth-bridge';
 import { useRealTimePreview } from '../hooks/useRealTimePreview';
@@ -96,6 +97,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
   // Active effect state for interactive elements
   const [activeEffect, setActiveEffect] = useState<string>('scale');
+
+  // Button radius state for buttons
+  const [buttonRadius, setButtonRadius] = useState<string>('md');
 
   // Font size state for text category
   const [fontSize, setFontSize] = useState<FontSizeValue>('base');
@@ -359,6 +363,15 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                     </Button>
                   </Box>
                 </Box>
+
+                {/* Button Radius Control - ΤΕΤΑΡΤΟ */}
+                <ButtonRadiusControl
+                  value={buttonRadius}
+                  onChange={setButtonRadius}
+                  elementType="πλήκτρα"
+                  onPreview={startPreview}
+                  buttonState={buttonState}
+                />
               </Box>
             </Box>
           )}
