@@ -333,7 +333,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
           pendingDOMUpdate.current = null;
         }
         rafRef.current = null;
-      }, 100); // 100ms throttle με RAF για extended features
+      }, 16); // 16ms throttle (~60fps) για real-time responsiveness
     });
   }, [applyLivePreview]);
 
@@ -350,7 +350,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
     // Commit the change
     onCommit(key, value);
 
-    // Clear preview state
+    // ΔΙΑΤΗΡΗΣΗ του preview color αντί για clear - fixes το γαλάζιο χρώμα issue
     setPreviewState(prev => ({
       previewColors: { ...prev.previewColors, [key]: value },
       isPreviewActive: false,

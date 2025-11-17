@@ -207,6 +207,10 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
                 label={`${colorKey.charAt(0).toUpperCase() + colorKey.slice(1)} (HEX)`}
                 value={hexValue}
                 onChange={(newValue) => handleColorChange(colorKey, newValue)}
+                onPreview={(previewValue) => {
+                  // Real-time preview χωρίς αλλαγή state
+                  startPreview(colorKey, previewValue);
+                }}
                 className="layera-height--auto layera-text--align-center"
               />
             );

@@ -16,6 +16,7 @@ interface OptimizedColorPickerProps {
   label: string;
   value: string;
   onChange: (value: string) => void;
+  onPreview?: (value: string) => void; // Real-time preview για dragging
   className?: string;
   throttleMs?: number;
   disableThrottle?: boolean;
@@ -25,8 +26,9 @@ export const OptimizedColorPicker: React.FC<OptimizedColorPickerProps> = ({
   label,
   value,
   onChange,
+  onPreview,
   className = '',
-  throttleMs = 200 // 5 updates per second για extended features
+  throttleMs = 100 // 10 updates per second για καλύτερη απόκριση
 }) => {
   const [localValue, setLocalValue] = useState(value);
   const [isChanging, setIsChanging] = useState(false);
@@ -70,6 +72,19 @@ export const OptimizedColorPicker: React.FC<OptimizedColorPickerProps> = ({
     }
   }, [onChange, throttleMs]);
 
+  // Real-time input handler για immediate preview κατά το dragging
+  const handleInput = useCallback((e: React.FormEvent<HTMLInputElement>) => {
+    const newValue = (e.target as HTMLInputElement).value;
+
+    // Update local state immediately
+    setLocalValue(newValue);
+
+    // Call preview immediately χωρίς throttling
+    if (onPreview) {
+      onPreview(newValue);
+    }
+  }, [onPreview]);
+
   // Cleanup
   useEffect(() => {
     return () => {
@@ -100,6 +115,7 @@ export const OptimizedColorPicker: React.FC<OptimizedColorPickerProps> = ({
         type="color"
         value={displayValue}
         onChange={(e) => handleChange(e.target.value)}
+        onInput={handleInput}
         className="layera-input layera-width--full layera-margin-bottom--sm"
         style={{
           cursor: 'pointer',

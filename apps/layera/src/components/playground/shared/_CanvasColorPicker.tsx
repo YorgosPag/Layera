@@ -1,0 +1,270 @@
+import React, { useRef, useEffect, useCallback, useState } from 'react';
+import { Box } from '@layera/layout';
+import { Text } from '@layera/typography';
+
+/**
+ * CanvasColorPicker Component
+ *
+ * Custom HTML5 Canvas Color Picker με real-time preview
+ * - Τηρεί τους ARXES κανόνες (χωρίς νέες dependencies)
+ * - Χρήση μόνο @layera/* components
+ * - Real-time onMouseMove events για live preview
+ * - HTML5 Canvas για color palette
+ */
+
+interface ColorWithAlpha {
+  hex: string;
+  alpha: number;
+  rgba: string;
+}
+
+interface CanvasColorPickerProps {
+  label: string;
+  value: ColorWithAlpha | string;
+  onChange: (value: ColorWithAlpha) => void;
+  onPreview?: (value: ColorWithAlpha) => void;
+  className?: string;
+}
+
+export const CanvasColorPicker: React.FC<CanvasColorPickerProps> = ({
+  label,
+  value,
+  onChange,
+  onPreview,
+  className = ''
+}) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isMouseDown, setIsMouseDown] = useState(false);
+  const [currentColor, setCurrentColor] = useState<ColorWithAlpha>(() => {
+    if (typeof value === 'string') {
+      const hex = value.startsWith('#') ? value : '#0066cc';
+      return {
+        hex,
+        alpha: 1.0,
+        rgba: `rgba(${parseInt(hex.slice(1, 3), 16)}, ${parseInt(hex.slice(3, 5), 16)}, ${parseInt(hex.slice(5, 7), 16)}, 1.0)`
+      };
+    }
+    return value;
+  });
+
+  // Helper function: RGB to HEX
+  const rgbToHex = (r: number, g: number, b: number): string => {
+    return `#${[r, g, b].map(x => x.toString(16).padStart(2, '0')).join('')}`;
+  };
+
+  // Helper function: HEX to RGBA
+  const hexToRgba = (hex: string, alpha: number): string => {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  };
+
+  // Draw color palette στο canvas
+  const drawColorPalette = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const width = canvas.width;
+    const height = canvas.height;
+
+    // Hue gradient (horizontal)
+    for (let x = 0; x < width; x++) {
+      const hue = (x / width) * 360;
+      const gradient = ctx.createLinearGradient(0, 0, 0, height);
+      gradient.addColorStop(0, `hsl(${hue}, 100%, 50%)`);
+      gradient.addColorStop(0.5, `hsl(${hue}, 100%, 25%)`);
+      gradient.addColorStop(1, `hsl(${hue}, 0%, 0%)`);
+
+      ctx.fillStyle = gradient;
+      ctx.fillRect(x, 0, 1, height);
+    }
+  }, []);
+
+  // Handle mouse events για real-time preview
+  const handleMouseEvent = useCallback((event: React.MouseEvent<HTMLCanvasElement>) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    // Clamp coordinates
+    const clampedX = Math.max(0, Math.min(x, canvas.width - 1));
+    const clampedY = Math.max(0, Math.min(y, canvas.height - 1));
+
+    // Get pixel color
+    const imageData = ctx.getImageData(clampedX, clampedY, 1, 1);
+    const [r, g, b] = imageData.data;
+
+    const newHex = rgbToHex(r, g, b);
+    const newColor: ColorWithAlpha = {
+      hex: newHex,
+      alpha: currentColor.alpha,
+      rgba: hexToRgba(newHex, currentColor.alpha)
+    };
+
+    setCurrentColor(newColor);
+
+    // Real-time preview όταν κινείται ο κέρσορας
+    if (onPreview) {
+      onPreview(newColor);
+    }
+  }, [currentColor.alpha, onPreview]);
+
+  const handleMouseDown = (event: React.MouseEvent<HTMLCanvasElement>) => {
+    setIsMouseDown(true);
+    handleMouseEvent(event);
+  };
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLCanvasElement>) => {
+    if (isMouseDown || true) { // Always trigger για καλύτερο UX
+      handleMouseEvent(event);
+    }
+  };
+
+  const handleMouseUp = () => {
+    if (isMouseDown) {
+      setIsMouseDown(false);
+      // Commit την αλλαγή όταν σταματάς το drag
+      onChange(currentColor);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsMouseDown(false);
+    // ΔΕΝ καθαρίζουμε το preview - διατηρούμε το χρώμα
+  };
+
+  // Initialize canvas
+  useEffect(() => {
+    drawColorPalette();
+  }, [drawColorPalette]);
+
+  // Sync with external value
+  useEffect(() => {
+    if (typeof value === 'string') {
+      const hex = value.startsWith('#') ? value : '#0066cc';
+      const newColor = {
+        hex,
+        alpha: currentColor.alpha,
+        rgba: hexToRgba(hex, currentColor.alpha)
+      };
+      setCurrentColor(newColor);
+    } else {
+      setCurrentColor(value);
+    }
+  }, [value]); // Αφαιρέθηκε currentColor.alpha για να αποφύγουμε infinite loops
+
+  const alphaPercentage = Math.round(currentColor.alpha * 100);
+
+  return (
+    <Box className={`layera-card layera-padding--md ${className}`}>
+      <h4 className="layera-typography layera-margin-bottom--sm" data-size="base" data-weight="bold" data-color="primary">
+        {label}
+      </h4>
+
+      {/* Canvas Color Picker */}
+      <Box className="layera-margin-bottom--xs">
+        <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-weight="medium" data-color="secondary">
+          Χρώμα (Real-time Canvas)
+        </Text>
+        <canvas
+          ref={canvasRef}
+          width={250}
+          height={100}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
+          className="layera-border--default"
+          style={{
+            width: '250px',
+            height: '100px',
+            cursor: 'crosshair',
+            borderRadius: 'var(--layera-global-borderRadius-md)'
+          } as React.CSSProperties}
+        />
+      </Box>
+
+      {/* Alpha Slider */}
+      <Box className="layera-margin-bottom--xs">
+        <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-weight="medium" data-color="secondary">
+          Διαφάνεια: {alphaPercentage}%
+        </Text>
+
+        {/* Alpha Preview Box */}
+        <Box className="layera-margin-bottom--xs layera-flex layera-flex--justify-center">
+          <Box
+            className="layera-border--default"
+            style={{
+              width: '250px',
+              height: '24px',
+              borderRadius: 'var(--layera-global-borderRadius-md)',
+              backgroundImage: 'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)',
+              backgroundSize: '8px 8px',
+              backgroundPosition: '0 0, 0 4px, 4px -4px, -4px 0px',
+              position: 'relative'
+            } as React.CSSProperties}
+          >
+            <Box
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                borderRadius: 'var(--layera-global-borderRadius-md)',
+                backgroundColor: currentColor.rgba
+              } as React.CSSProperties}
+            />
+          </Box>
+        </Box>
+
+        {/* Alpha Slider */}
+        <Box className="layera-flex layera-flex--justify-center">
+          <input
+            type="range"
+            min="0"
+            max="100"
+            step="1"
+            value={alphaPercentage}
+            onChange={(e) => {
+              const newAlpha = parseFloat(e.target.value) / 100;
+              const newColor = {
+                ...currentColor,
+                alpha: newAlpha,
+                rgba: hexToRgba(currentColor.hex, newAlpha)
+              };
+              setCurrentColor(newColor);
+              onChange(newColor);
+              if (onPreview) {
+                onPreview(newColor);
+              }
+            }}
+            className="layera-input"
+            style={{
+              width: '250px'
+            } as React.CSSProperties}
+          />
+        </Box>
+      </Box>
+
+      {/* Compact Values */}
+      <Box>
+        <Text className="layera-typography" data-size="xs" data-color="secondary">
+          {currentColor.hex.toUpperCase()} · α{alphaPercentage}%
+        </Text>
+      </Box>
+    </Box>
+  );
+};
+
+export type { ColorWithAlpha };

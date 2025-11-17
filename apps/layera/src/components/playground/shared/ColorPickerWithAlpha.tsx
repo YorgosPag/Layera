@@ -121,7 +121,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     onChange(newValue);
   }, [internalValue?.hex, onChange]);
 
-  // Real-time preview handler για color picker input events
+  // Real-time preview handler για color picker input events με throttling
   const handleHexInput = useCallback((e: React.FormEvent<HTMLInputElement>) => {
     const newHex = (e.target as HTMLInputElement).value;
     if (!newHex || !newHex.startsWith('#')) return;
@@ -133,11 +133,83 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
       rgba: hexToRgba(newHex, safeAlpha)
     };
 
-    // Real-time preview χωρίς αλλαγή του state
+    // Ενημέρωση του internal state για καλύτερη συνέχεια
+    setInternalValue(previewValue);
+
+    // Real-time preview χωρίς αλλαγή του external state
     if (onPreview) {
       onPreview(previewValue);
     }
   }, [internalValue?.alpha, onPreview]);
+
+  // Real-time mouse tracking για color picker (browser limitations workaround)
+  const colorInputRef = useRef<HTMLInputElement>(null);
+
+  // Extract display values before using them in useEffect
+  const displayHex = extractHexFromValue(internalValue?.hex || '#ffffff');
+  const alphaPercentage = Math.round((internalValue?.alpha ?? 1.0) * 100);
+
+  useEffect(() => {
+    const input = colorInputRef.current;
+    if (!input || !onPreview) return;
+
+    let isMouseDown = false;
+    let animationFrameId: number | null = null;
+
+    const handleMouseDown = () => {
+      isMouseDown = true;
+    };
+
+    const handleMouseUp = () => {
+      isMouseDown = false;
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+      }
+    };
+
+    const checkColorChange = () => {
+      if (!isMouseDown || !input) return;
+
+      const currentColor = input.value;
+      if (currentColor && currentColor !== displayHex) {
+        const safeAlpha = internalValue?.alpha ?? 1.0;
+        const previewValue = {
+          hex: currentColor,
+          alpha: safeAlpha,
+          rgba: hexToRgba(currentColor, safeAlpha)
+        };
+
+        // Real-time update χωρίς lag
+        setInternalValue(previewValue);
+        onPreview(previewValue);
+      }
+
+      // Συνεχής έλεγχος κατά το dragging
+      animationFrameId = requestAnimationFrame(checkColorChange);
+    };
+
+    const handleMouseMove = () => {
+      if (isMouseDown && !animationFrameId) {
+        animationFrameId = requestAnimationFrame(checkColorChange);
+      }
+    };
+
+    input.addEventListener('mousedown', handleMouseDown);
+    input.addEventListener('mouseup', handleMouseUp);
+    input.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp); // Global mouse up
+
+    return () => {
+      input.removeEventListener('mousedown', handleMouseDown);
+      input.removeEventListener('mouseup', handleMouseUp);
+      input.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
+  }, [displayHex, internalValue?.alpha, onPreview]);
 
   // Mouse enter handler για καλύτερο UX
   const handleMouseEnter = useCallback(() => {
@@ -146,8 +218,11 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     }
   }, [onPreview, internalValue]);
 
-  const displayHex = extractHexFromValue(internalValue?.hex || '#ffffff');
-  const alphaPercentage = Math.round((internalValue?.alpha ?? 1.0) * 100);
+  // Mouse leave handler για να διατηρήσει το χρώμα αντί για fallback
+  const handleMouseLeave = useCallback(() => {
+    // ΜΗ καλέσεις onPreview - αφήνει το τελευταίο preview ενεργό
+    // Αυτό αποτρέπει το revert στα factory settings (#0078d4)
+  }, []);
 
   return (
     <Box className={`layera-card layera-padding--md ${className}`}>
@@ -161,11 +236,13 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
           Χρώμα
         </Text>
         <input
+          ref={colorInputRef}
           type="color"
           value={displayHex}
           onChange={(e) => handleHexChange(e.target.value)}
           onInput={handleHexInput}
           onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
           className="layera-input layera-width--full"
         />
       </Box>
