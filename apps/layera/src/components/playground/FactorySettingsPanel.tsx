@@ -170,10 +170,10 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
       {/* Header Section */}
       <Box className="layera-margin-bottom--md">
         <Box>
-          <h4 className="layera-typography layera-margin-bottom--xs" data-size="base" data-weight="semibold" data-color="primary">
+          <h4 className="layera-typography layera-margin-bottom--xs layera-text--align-center" data-size="base" data-weight="semibold" data-color="primary">
             <SettingsIcon size="sm" /> Εργοστασιακές Ρυθμίσεις
           </h4>
-          <Text className="layera-typography" data-size="sm" data-color="secondary">
+          <Text className="layera-typography layera-text--align-center" data-size="sm" data-color="secondary">
             Επιστροφή στα χρώματα των μεγάλων παγκόσμιων εταιρειών
           </Text>
         </Box>
@@ -188,10 +188,10 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
             minWidth: '200px'
           }}
         >
-          <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-weight="medium" data-color="primary">
+          <Text className="layera-typography layera-margin-bottom--xs layera-text--align-center" data-size="xs" data-weight="medium" data-color="primary">
             Τρέχουσα Παλέτα: {paletteOptions.find(p => p.value === selectedPalette)?.label}
           </Text>
-          <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
+          <Text className="layera-typography layera-margin-bottom--xs layera-text--align-center" data-size="xs" data-color="secondary">
             {paletteOptions.find(p => p.value === selectedPalette)?.description}
           </Text>
 
@@ -218,24 +218,19 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
       {/* Controls Section - Horizontal */}
       <Box className="layera-flex layera-flex--gap-lg layera-flex--wrap layera-flex--justify-center">
         {/* Palette Selection */}
-        <Box>
-          <Text className="layera-typography layera-margin-bottom--xs" data-size="sm" data-weight="medium" data-color="secondary">
-            Επιλογή Παλέτας Χρωμάτων
-          </Text>
-          <Box className="layera-flex layera-flex--gap-sm layera-flex--justify-center">
-            {paletteOptions.map((option) => (
-              <Button
-                key={option.value}
-                variant={selectedPalette === option.value ? 'primary' : 'outline'}
-                size="sm"
-                onClick={() => handlePaletteChange(option.value)}
-                disabled={isLoading}
-                title={option.description}
-              >
-                {option.label}
-              </Button>
-            ))}
-          </Box>
+        <Box className="layera-flex layera-flex--gap-sm layera-flex--justify-center">
+          {paletteOptions.map((option) => (
+            <Button
+              key={option.value}
+              variant={selectedPalette === option.value ? 'primary' : 'outline'}
+              size="sm"
+              onClick={() => handlePaletteChange(option.value)}
+              disabled={isLoading}
+              title={option.description}
+            >
+              {option.label}
+            </Button>
+          ))}
         </Box>
 
         {/* Action Buttons */}
@@ -274,6 +269,13 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
           </Button>
         )}
         </Box>
+      </Box>
+
+      {/* Label κάτω από τα Action Buttons */}
+      <Box className="layera-margin-top--md">
+        <Text className="layera-typography layera-text--align-center" data-size="sm" data-weight="medium" data-color="secondary">
+          Επιλογή Παλέτας Χρωμάτων
+        </Text>
       </Box>
     </Box>
   );
