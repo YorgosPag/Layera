@@ -143,12 +143,12 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
 
       {/* Alpha Slider με Preview */}
       <Box className="layera-margin-bottom--xs">
-        <Box className="layera-flex layera-flex--justify-between layera-flex--align-center layera-margin-bottom--xs">
-          <Text className="layera-typography" data-size="xs" data-weight="medium" data-color="secondary">
-            Διαφάνεια: {alphaPercentage}%
-          </Text>
+        <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-weight="medium" data-color="secondary">
+          Διαφάνεια: {alphaPercentage}%
+        </Text>
 
-          {/* Alpha Preview Box */}
+        {/* Alpha Preview Box - Κάτω από το κείμενο */}
+        <Box className="layera-margin-bottom--xs layera-flex layera-flex--justify-center">
           <Box
             className="layera-border--default"
             style={{
