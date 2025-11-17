@@ -46,33 +46,33 @@ export const CardRadiusControl: React.FC<CardRadiusControlProps> = ({
   const cardRadiusOptions = [
     {
       value: 'none',
-      label: 'Χωρίς',
+      label: '0px',
       token: '0px',
       description: 'Χωρίς καμπυλότητα (0px - τετράγωνες κάρτες)'
     },
     {
-      value: 'xs',
-      label: 'Ελαφρώς',
-      token: 'var(--layera-radius-xs)',
-      description: 'Ελαφρώς καμπύλες (2px)'
-    },
-    {
-      value: 'md',
-      label: 'Μεσαία',
-      token: 'var(--layera-radius-md)',
-      description: 'Μεσαία καμπύλες (6px - default)'
+      value: 'sm',
+      label: '4px',
+      token: 'var(--layera-radius-sm)',
+      description: 'Ελαφρώς καμπύλες (4px)'
     },
     {
       value: 'lg',
-      label: 'Πολύ',
+      label: '8px',
       token: 'var(--layera-radius-lg)',
-      description: 'Πολύ καμπύλες (8px)'
+      description: 'Μεσαία καμπύλες (8px)'
     },
     {
       value: 'xl',
-      label: 'Μεγάλες',
+      label: '12px',
       token: 'var(--layera-radius-xl)',
-      description: 'Μεγάλες καμπύλες (12px - ειδικές κάρτες)'
+      description: 'Πολύ καμπύλες (12px)'
+    },
+    {
+      value: 'xxl',
+      label: '16px',
+      token: 'var(--layera-radius-xxl)',
+      description: 'Μεγάλες καμπύλες (16px - ειδικές κάρτες)'
     }
   ];
 

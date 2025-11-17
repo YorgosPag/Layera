@@ -112,15 +112,13 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
     // Map των radius values σε σωστά tokens
     const getRadiusValue = (radius: string) => {
       switch(radius) {
-        case 'none': return '0px';
-        case 'xs': return 'var(--layera-radius-xs)';      // 2px
+        case 'none': return '0px';                        // 0px
         case 'sm': return 'var(--layera-radius-sm)';      // 4px
-        case 'md': return 'var(--layera-radius-md)';      // 6px
         case 'lg': return 'var(--layera-radius-lg)';      // 8px
         case 'xl': return 'var(--layera-radius-xl)';      // 12px
         case 'xxl': return 'var(--layera-radius-xxl)';    // 16px
         case 'round': return 'var(--layera-radius-full)'; // πλήρως στρογγυλά
-        default: return 'var(--layera-radius-card)';      // 8px fallback
+        default: return 'var(--layera-radius-lg)';        // 8px fallback
       }
     };
 
