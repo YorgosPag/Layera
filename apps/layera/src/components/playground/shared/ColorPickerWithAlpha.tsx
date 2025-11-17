@@ -141,11 +141,28 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
         />
       </Box>
 
-      {/* Alpha Slider */}
+      {/* Alpha Slider με Preview */}
       <Box className="layera-margin-bottom--xs">
-        <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-weight="medium" data-color="secondary">
-          Διαφάνεια: {alphaPercentage}%
-        </Text>
+        <Box className="layera-flex layera-flex--justify-between layera-flex--align-center layera-margin-bottom--xs">
+          <Text className="layera-typography" data-size="xs" data-weight="medium" data-color="secondary">
+            Διαφάνεια: {alphaPercentage}%
+          </Text>
+
+          {/* Alpha Preview Box */}
+          <Box
+            className="layera-border--default"
+            style={{
+              width: '24px',
+              height: '24px',
+              borderRadius: '4px',
+              backgroundColor: internalValue?.rgba || 'rgba(255, 255, 255, 1)',
+              backgroundImage: 'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)',
+              backgroundSize: '8px 8px',
+              backgroundPosition: '0 0, 0 4px, 4px -4px, -4px 0px'
+            } as React.CSSProperties}
+          />
+        </Box>
+
         <input
           type="range"
           min="0"
