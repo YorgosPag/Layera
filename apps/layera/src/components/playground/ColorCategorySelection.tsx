@@ -12,6 +12,7 @@ import { LayoutRadiusControl } from './shared/LayoutRadiusControl';
 import { CardRadiusControl } from './shared/CardRadiusControl';
 import { ModalRadiusControl } from './shared/ModalRadiusControl';
 import { InputRadiusControl } from './shared/InputRadiusControl';
+import { TableRadiusControl } from './shared/TableRadiusControl';
 
 /**
  * ColorCategorySelection Component
@@ -39,6 +40,8 @@ interface ColorCategorySelectionProps {
   onModalRadiusChange?: (value: string) => void;
   inputRadius?: string;
   onInputRadiusChange?: (value: string) => void;
+  tableRadius?: string;
+  onTableRadiusChange?: (value: string) => void;
   hoverEffect?: string;
   onHoverEffectChange?: (value: string) => void;
   activeEffect?: string;
@@ -64,6 +67,8 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
   onModalRadiusChange,
   inputRadius = 'md',
   onInputRadiusChange,
+  tableRadius = 'md',
+  onTableRadiusChange,
   hoverEffect = 'normal',
   onHoverEffectChange,
   activeEffect = 'scale',
@@ -275,6 +280,18 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           value={inputRadius}
           onChange={onInputRadiusChange}
           elementType="πεδία εισαγωγής"
+          className="layera-height--auto layera-text--align-center"
+          onPreview={onPreview}
+          buttonState={buttonState}
+        />
+      )}
+
+      {/* Table Radius Control - ΜΟΝΟ για backgrounds category με tables element */}
+      {colorHookState.colorCategory === 'backgrounds' && colorHookState.elementType === 'tables' && onTableRadiusChange && (
+        <TableRadiusControl
+          value={tableRadius}
+          onChange={onTableRadiusChange}
+          elementType="πίνακες"
           className="layera-height--auto layera-text--align-center"
           onPreview={onPreview}
           buttonState={buttonState}
