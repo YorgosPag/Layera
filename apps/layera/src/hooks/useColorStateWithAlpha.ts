@@ -18,12 +18,12 @@ import {
  */
 
 export interface ColorPaletteWithAlpha {
-  primary: ColorWithAlpha;
-  secondary: ColorWithAlpha;
-  success: ColorWithAlpha;
-  warning: ColorWithAlpha;
-  danger: ColorWithAlpha;
-  info: ColorWithAlpha;
+  primaryColor: ColorWithAlpha;
+  secondaryColor: ColorWithAlpha;
+  successColor: ColorWithAlpha;
+  warningColor: ColorWithAlpha;
+  dangerColor: ColorWithAlpha;
+  infoColor: ColorWithAlpha;
 }
 
 export interface CategoryColorPalettesWithAlpha {
@@ -111,30 +111,30 @@ const colorWithAlphaToRgba = (color: ColorWithAlpha): string => {
 
 // Default palettes με alpha support
 const DEFAULT_ALPHA_RECTANGULAR_PALETTE: ColorPaletteWithAlpha = {
-  primary: hexToColorWithAlpha('#6366f1', 1.0),
-  secondary: hexToColorWithAlpha('#475569', 1.0),
-  success: hexToColorWithAlpha('#10b981', 1.0),
-  warning: hexToColorWithAlpha('#f59e0b', 1.0),
-  danger: hexToColorWithAlpha('#ef4444', 1.0),
-  info: hexToColorWithAlpha('#6366f1', 1.0)
+  primaryColor: hexToColorWithAlpha('#6366f1', 1.0),
+  secondaryColor: hexToColorWithAlpha('#475569', 1.0),
+  successColor: hexToColorWithAlpha('#10b981', 1.0),
+  warningColor: hexToColorWithAlpha('#f59e0b', 1.0),
+  dangerColor: hexToColorWithAlpha('#ef4444', 1.0),
+  infoColor: hexToColorWithAlpha('#6366f1', 1.0)
 };
 
 const DEFAULT_ALPHA_SQUARE_PALETTE: ColorPaletteWithAlpha = {
-  primary: hexToColorWithAlpha('#6366f1', 1.0),
-  secondary: hexToColorWithAlpha('#475569', 1.0),
-  success: hexToColorWithAlpha('#10b981', 1.0),
-  warning: hexToColorWithAlpha('#f59e0b', 1.0),
-  danger: hexToColorWithAlpha('#ef4444', 1.0),
-  info: hexToColorWithAlpha('#6366f1', 1.0)
+  primaryColor: hexToColorWithAlpha('#6366f1', 1.0),
+  secondaryColor: hexToColorWithAlpha('#475569', 1.0),
+  successColor: hexToColorWithAlpha('#10b981', 1.0),
+  warningColor: hexToColorWithAlpha('#f59e0b', 1.0),
+  dangerColor: hexToColorWithAlpha('#ef4444', 1.0),
+  infoColor: hexToColorWithAlpha('#6366f1', 1.0)
 };
 
 const DEFAULT_ALPHA_ROUNDED_PALETTE: ColorPaletteWithAlpha = {
-  primary: hexToColorWithAlpha('#6366f1', 1.0),
-  secondary: hexToColorWithAlpha('#475569', 1.0),
-  success: hexToColorWithAlpha('#10b981', 1.0),
-  warning: hexToColorWithAlpha('#f59e0b', 1.0),
-  danger: hexToColorWithAlpha('#ef4444', 1.0),
-  info: hexToColorWithAlpha('#6366f1', 1.0)
+  primaryColor: hexToColorWithAlpha('#6366f1', 1.0),
+  secondaryColor: hexToColorWithAlpha('#475569', 1.0),
+  successColor: hexToColorWithAlpha('#10b981', 1.0),
+  warningColor: hexToColorWithAlpha('#f59e0b', 1.0),
+  dangerColor: hexToColorWithAlpha('#ef4444', 1.0),
+  infoColor: hexToColorWithAlpha('#6366f1', 1.0)
 };
 
 const DEFAULT_ALPHA_CATEGORY_PALETTES: CategoryColorPalettesWithAlpha = {

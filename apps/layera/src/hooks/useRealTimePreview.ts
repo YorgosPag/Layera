@@ -173,20 +173,13 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
 
     // Extended CSS variable mapping for all controls
     const cssVariableMap: Record<string, string> = {
-      // Button colors (existing)
+      // Button colors (unified format - χρήση του επίσημου ColorState format)
       primaryColor: '--layera-color-button-primary',
       secondaryColor: '--layera-color-button-secondary',
       successColor: '--layera-color-button-success',
       warningColor: '--layera-color-button-warning',
       dangerColor: '--layera-color-button-danger',
       infoColor: '--layera-color-button-info',
-      // Button colors (short format for color picker compatibility)
-      primary: '--layera-color-button-primary',
-      secondary: '--layera-color-button-secondary',
-      success: '--layera-color-button-success',
-      warning: '--layera-color-button-warning',
-      danger: '--layera-color-button-danger',
-      info: '--layera-color-button-info',
 
       // Background colors
       backgroundPrimary: '--layera-color-background-primary',
@@ -225,13 +218,13 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
     if (cssVariable) {
       root.style.setProperty(cssVariable, value);
 
-      // Special header button handling - για όλα τα button colors
-      if (key === 'secondaryColor' || key === 'secondary' ||
-          key === 'primaryColor' || key === 'primary' ||
-          key === 'successColor' || key === 'success' ||
-          key === 'warningColor' || key === 'warning' ||
-          key === 'dangerColor' || key === 'danger' ||
-          key === 'infoColor' || key === 'info') {
+      // Special header button handling - για όλα τα button colors (unified format)
+      if (key === 'primaryColor' ||
+          key === 'secondaryColor' ||
+          key === 'successColor' ||
+          key === 'warningColor' ||
+          key === 'dangerColor' ||
+          key === 'infoColor') {
         applyHeaderButtonPreview(value);
       }
     } else {
