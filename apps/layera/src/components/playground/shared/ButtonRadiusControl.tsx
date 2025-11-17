@@ -80,8 +80,9 @@ export const ButtonRadiusControl: React.FC<ButtonRadiusControlProps> = ({
     onChange(newValue);
 
     // Trigger real-time preview
+    console.log('🔧 ButtonRadiusControl: Sending preview', { key: 'borderRadius', value: newValue });
     if (onPreview) {
-      onPreview('buttonRadius', newValue);
+      onPreview('borderRadius', newValue);
     }
 
     // Reset visual feedback
