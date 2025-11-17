@@ -11,6 +11,7 @@ import { FontSizeControl, type FontSizeValue } from './shared/FontSizeControl';
 import { CardSizeControl, type CardSizeValue } from './shared/CardSizeControl';
 import { ModalSizeControl, type ModalSizeValue } from './shared/ModalSizeControl';
 import { InputSizeControl, type InputSizeValue } from './shared/InputSizeControl';
+import { TableSizeControl, type TableSizeValue } from './shared/TableSizeControl';
 import { LayoutRadiusControl } from './shared/LayoutRadiusControl';
 import { CardRadiusControl } from './shared/CardRadiusControl';
 import { ModalRadiusControl } from './shared/ModalRadiusControl';
@@ -57,6 +58,8 @@ interface ColorCategorySelectionProps {
   onModalSizeChange?: (value: ModalSizeValue) => void;
   inputSize?: InputSizeValue;
   onInputSizeChange?: (value: InputSizeValue) => void;
+  tableSize?: TableSizeValue;
+  onTableSizeChange?: (value: TableSizeValue) => void;
   onPreview?: (key: string, value: string) => void;
   buttonState?: ButtonState;
 }
@@ -90,6 +93,8 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
   onModalSizeChange,
   inputSize = 'md',
   onInputSizeChange,
+  tableSize = 'md',
+  onTableSizeChange,
   onPreview,
   buttonState
 }) => {
@@ -340,6 +345,17 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           value={tableRadius}
           onChange={onTableRadiusChange}
           elementType="πίνακες"
+          className="layera-height--auto layera-text--align-center"
+          onPreview={onPreview}
+          buttonState={buttonState}
+        />
+      )}
+
+      {/* Table Size Control - ΜΟΝΟ για οποιαδήποτε category με tables element */}
+      {colorHookState.elementType === 'tables' && onTableSizeChange && (
+        <TableSizeControl
+          tableSize={tableSize}
+          onTableSizeChange={onTableSizeChange}
           className="layera-height--auto layera-text--align-center"
           onPreview={onPreview}
           buttonState={buttonState}

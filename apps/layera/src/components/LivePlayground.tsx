@@ -23,6 +23,7 @@ import type { FontSizeValue } from './playground/shared/FontSizeControl';
 import { CardSizeControl, type CardSizeValue } from './playground/shared/CardSizeControl';
 import { ModalSizeControl, type ModalSizeValue } from './playground/shared/ModalSizeControl';
 import { InputSizeControl, type InputSizeValue } from './playground/shared/InputSizeControl';
+import { TableSizeControl, type TableSizeValue } from './playground/shared/TableSizeControl';
 import { ButtonRadiusControl } from './playground/shared/ButtonRadiusControl';
 import { LayoutRadiusControl } from './playground/shared/LayoutRadiusControl';
 import { CardRadiusControl } from './playground/shared/CardRadiusControl';
@@ -135,6 +136,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
   // Input size state for inputs category
   const [inputSize, setInputSize] = useState<InputSizeValue>('md');
+
+  // Table size state for tables category
+  const [tableSize, setTableSize] = useState<TableSizeValue>('md');
 
   // Alpha state for color controls
   const [alphaEnabled, setAlphaEnabled] = useState<boolean>(false);
@@ -319,6 +323,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               onModalSizeChange={setModalSize}
               inputSize={inputSize}
               onInputSizeChange={setInputSize}
+              tableSize={tableSize}
+              onTableSizeChange={setTableSize}
               onPreview={startPreview}
               buttonState={buttonState}
             />
