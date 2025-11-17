@@ -479,8 +479,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               buttonState={buttonState}
               onSettingsChange={(settings) => {
                 // Εφαρμόζει τις νέες ρυθμίσεις στο color state
+                // Φιλτράρει το outlineColor που δεν πρέπει να εμφανίζεται ως color picker
                 Object.entries(settings).forEach(([key, value]) => {
-                  if (typeof key === 'string' && typeof value === 'string') {
+                  if (typeof key === 'string' && typeof value === 'string' && key !== 'outlineColor') {
                     colorActions.updateCategoryPalette(colorHookState.colorCategory, key as any, value);
                   }
                 });
