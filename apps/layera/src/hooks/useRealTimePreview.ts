@@ -185,27 +185,43 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
 
     switch (category) {
       case 'backgrounds':
-        // Update background colors
+        // Update the actual card surface variables used by cards
+        if (colorSuffix === 'primary') {
+          root.style.setProperty('--layera-color-light-surface-primary', colorValue);
+          root.style.setProperty('--layera-color-dark-surface-primary', colorValue);
+        } else if (colorSuffix === 'secondary') {
+          root.style.setProperty('--layera-color-light-surface-secondary', colorValue);
+          root.style.setProperty('--layera-color-dark-surface-secondary', colorValue);
+        }
+        // Also update generic card backgrounds for custom CSS
         root.style.setProperty(`--layera-card-bg-${colorSuffix}`, colorValue);
         // Auto-calculate text color για καλή αντίθεση
         const textColor = colorValue === '#f59e0b' ? '#000000' : '#ffffff';
         root.style.setProperty(`--layera-card-text-${colorSuffix}`, textColor);
-        // Keep default border
-        root.style.setProperty(`--layera-card-border-${colorSuffix}`, '1px solid #e5e5e5');
         break;
 
       case 'text':
-        // Update text colors, keep white background
+        // Update card title color
+        if (colorSuffix === 'primary') {
+          root.style.setProperty('--layera-cardTitleColor', colorValue);
+          root.style.setProperty('--layera-color-text-primary', colorValue);
+        } else if (colorSuffix === 'secondary') {
+          root.style.setProperty('--layera-color-text-secondary', colorValue);
+        }
+        // Also update generic card text colors
         root.style.setProperty(`--layera-card-text-${colorSuffix}`, colorValue);
-        root.style.setProperty(`--layera-card-bg-${colorSuffix}`, '#ffffff');
-        root.style.setProperty(`--layera-card-border-${colorSuffix}`, '1px solid #e5e5e5');
         break;
 
       case 'borders':
-        // Update border colors, keep default text and background
+        // Update border colors - use the actual border variables
+        if (colorSuffix === 'primary') {
+          root.style.setProperty('--layera-color-light-border-primary', colorValue);
+          root.style.setProperty('--layera-color-border-default', colorValue);
+        } else if (colorSuffix === 'secondary') {
+          root.style.setProperty('--layera-color-border-light', colorValue);
+        }
+        // Also update generic card borders
         root.style.setProperty(`--layera-card-border-${colorSuffix}`, `1px solid ${colorValue}`);
-        root.style.setProperty(`--layera-card-bg-${colorSuffix}`, '#ffffff');
-        root.style.setProperty(`--layera-card-text-${colorSuffix}`, '#333333');
         break;
     }
   }, []);
