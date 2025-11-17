@@ -37,7 +37,7 @@ export const PropertyTypeDrawer: React.FC<PropertyTypeDrawerProps> = ({
     >
       <Box className="layera-padding--lg">
         {/* Header με κουμπί Πίσω */}
-        <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm layera-margin-bottom--lg">
+        <Box className="layera-flex layera-flex--align-center layera-flex--gap-md layera-margin-bottom--lg">
           <Box
             as="button"
             className="layera-typography"

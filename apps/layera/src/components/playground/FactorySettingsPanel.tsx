@@ -211,7 +211,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
           </Text>
 
           {/* Palette Buttons + Reset Button */}
-          <Box className="layera-flex layera-flex--wrap-wrap layera-gap--md layera-flex--justify-center layera-margin-bottom--sm layera-align-items--center">
+          <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center layera-margin-bottom--sm layera-align-items--center">
             {paletteOptions.map((option) => (
               <Button
                 key={option.value}

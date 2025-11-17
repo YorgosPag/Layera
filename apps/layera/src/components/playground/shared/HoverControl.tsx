@@ -113,7 +113,7 @@ export const HoverControl: React.FC<HoverControlProps> = ({
       </h4>
 
       {/* Hover Effect Selection Buttons */}
-      <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-sm layera-margin-bottom--md layera-flex--justify-center">
+      <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-margin-bottom--md layera-flex--justify-center">
         {hoverOptions.map((option) => (
           <Button
             key={option.value}

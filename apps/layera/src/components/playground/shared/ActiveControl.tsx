@@ -109,7 +109,7 @@ export const ActiveControl: React.FC<ActiveControlProps> = ({
       </h4>
 
       {/* Active Effect Selection Buttons */}
-      <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-sm layera-margin-bottom--md layera-flex--justify-center">
+      <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-margin-bottom--md layera-flex--justify-center">
         {activeOptions.map((option) => (
           <Button
             key={option.value}

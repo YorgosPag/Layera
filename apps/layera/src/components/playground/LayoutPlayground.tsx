@@ -82,7 +82,7 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
           <CheckIcon size="sm" /> Live Preview: Layout
         </h3>
 
-        <Box className="layera-flex layera-flex--wrap-wrap layera-flex--justify-center layera-flex--align-center layera-flex--gap-sm layera-padding-top--lg layera-padding-bottom--lg layera-width--full">
+        <Box className="layera-flex layera-flex--wrap-wrap layera-flex--justify-center layera-flex--align-center layera-flex--gap-md layera-padding-top--lg layera-padding-bottom--lg layera-width--full">
           {layoutConfigs.map(({ key, title, description, colorValue }) => (
             <Box key={key} style={getLayoutStyle(colorValue)}>
               <Box>

@@ -57,7 +57,7 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
             <Text className="layera-typography layera-margin-bottom--sm" data-size="sm" data-weight="medium" data-color="primary">
               Variant
             </Text>
-            <Box className="layera-flex layera-flex--wrap-wrap layera-gap--md layera-flex--justify-center layera-align-items--center">
+            <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center layera-align-items--center">
               {(['primary', 'secondary', 'outline', 'ghost', 'danger', 'success', 'warning', 'info'] as ButtonVariant[]).map((variant) => (
                 <Button
                   key={variant}
@@ -77,7 +77,7 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
             <Text className="layera-typography layera-margin-bottom--sm" data-size="sm" data-weight="medium" data-color="primary">
               Size
             </Text>
-            <Box className="layera-flex layera-flex--wrap-wrap layera-gap--md layera-flex--justify-center layera-align-items--center">
+            <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center layera-align-items--center">
               {(['xs', 'sm', 'md', 'lg', 'xl'] as ButtonSize[]).map((size) => (
                 <Button
                   key={size}
@@ -128,7 +128,7 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
           🎯 Live Button Preview
         </h3>
 
-        <Box className="layera-flex layera-flex--justify-center layera-flex--wrap-wrap layera-gap--lg layera-margin-bottom--lg layera-align-items--center">
+        <Box className="layera-flex layera-flex--justify-center layera-flex--wrap-wrap layera-flex--gap-lg layera-margin-bottom--lg layera-align-items--center">
           <Button
             variant={buttonState.variant}
             size={buttonState.size}
@@ -150,7 +150,7 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
           🎨 Button Gallery - {buttonState.size.toUpperCase()} Size
         </h3>
 
-        <Box className="layera-flex layera-flex--wrap-wrap layera-gap--lg layera-flex--justify-center layera-align-items--start">
+        <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-lg layera-flex--justify-center layera-align-items--start">
           {(['primary', 'secondary', 'outline', 'ghost', 'danger', 'success', 'warning', 'info'] as ButtonVariant[]).map((variant) => (
             <Box key={variant} className="layera-text-center layera-padding--md layera-flex layera-flex-column layera-align-items--center">
               <Button

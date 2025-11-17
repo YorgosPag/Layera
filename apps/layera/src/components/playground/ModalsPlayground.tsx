@@ -82,7 +82,7 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
           <CheckIcon size="sm" /> Live Preview: Modals
         </h3>
 
-        <Box className="layera-flex layera-flex--wrap-wrap layera-flex--justify-center layera-flex--align-center layera-flex--gap-sm layera-padding-top--lg layera-padding-bottom--lg layera-width--full">
+        <Box className="layera-flex layera-flex--wrap-wrap layera-flex--justify-center layera-flex--align-center layera-flex--gap-md layera-padding-top--lg layera-padding-bottom--lg layera-width--full">
           {modalConfigs.map(({ key, title, description, colorValue }) => (
             <Box
               key={key}
