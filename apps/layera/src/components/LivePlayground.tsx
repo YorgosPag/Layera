@@ -20,6 +20,7 @@ import { ColorValueDisplay } from './playground/ColorValueDisplay';
 import { FactorySettingsPanel } from './playground/FactorySettingsPanel';
 import type { ColorWithAlpha } from './playground/shared/ColorPickerWithAlpha';
 import type { FontSizeValue } from './playground/shared/FontSizeControl';
+import { CardSizeControl, type CardSizeValue } from './playground/shared/CardSizeControl';
 import { ButtonRadiusControl } from './playground/shared/ButtonRadiusControl';
 import { LayoutRadiusControl } from './playground/shared/LayoutRadiusControl';
 import { CardRadiusControl } from './playground/shared/CardRadiusControl';
@@ -123,6 +124,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
   // Font size state for text category
   const [fontSize, setFontSize] = useState<FontSizeValue>('base');
+
+  // Card size state for cards category
+  const [cardSize, setCardSize] = useState<CardSizeValue>('md');
 
   // Alpha state for color controls
   const [alphaEnabled, setAlphaEnabled] = useState<boolean>(false);
@@ -301,6 +305,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               onActiveEffectChange={setActiveEffect}
               fontSize={fontSize}
               onFontSizeChange={setFontSize}
+              cardSize={cardSize}
+              onCardSizeChange={setCardSize}
               onPreview={startPreview}
               buttonState={buttonState}
             />
