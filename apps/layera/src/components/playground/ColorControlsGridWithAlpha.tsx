@@ -188,7 +188,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
                 label={`${colorKey.charAt(0).toUpperCase() + colorKey.slice(1)} (RGBA)`}
                 value={colorWithAlpha}
                 onChange={(newValue) => handleColorChange(colorKey, newValue)}
-                className="layera-height--auto layera-text--align-center"
+                className="layera-height--auto layera-text--align-center layera-width--auto"
               />
             );
           } else {
