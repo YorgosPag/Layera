@@ -147,12 +147,12 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
           Διαφάνεια: {alphaPercentage}%
         </Text>
 
-        {/* Alpha Preview Box - Κάτω από το κείμενο */}
+        {/* Alpha Preview Box - 250px πλάτος */}
         <Box className="layera-margin-bottom--xs layera-flex layera-flex--justify-center">
           <Box
             className="layera-border--default"
             style={{
-              width: '24px',
+              width: '250px',
               height: '24px',
               borderRadius: '4px',
               backgroundColor: internalValue?.rgba || 'rgba(255, 255, 255, 1)',
@@ -163,15 +163,21 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
           />
         </Box>
 
-        <input
-          type="range"
-          min="0"
-          max="100"
-          step="1"
-          value={alphaPercentage}
-          onChange={handleAlphaChange}
-          className="layera-width--full layera-input"
-        />
+        {/* Alpha Slider - 250px πλάτος για συμμετρία */}
+        <Box className="layera-flex layera-flex--justify-center">
+          <input
+            type="range"
+            min="0"
+            max="100"
+            step="1"
+            value={alphaPercentage}
+            onChange={handleAlphaChange}
+            className="layera-input"
+            style={{
+              width: '250px'
+            } as React.CSSProperties}
+          />
+        </Box>
       </Box>
 
       {/* Compact Values */}
