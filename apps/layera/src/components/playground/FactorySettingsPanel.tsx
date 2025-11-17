@@ -168,7 +168,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
   return (
     <Box className={`layera-card layera-padding--lg ${className}`}>
       {/* Header Section - Horizontal */}
-      <Box className="layera-flex layera-flex--justify-between layera-flex--align-start layera-flex--gap-lg layera-margin-bottom--md">
+      <Box className="layera-flex layera-flex--gap-lg layera-flex--wrap layera-margin-bottom--md">
         <Box>
           <h4 className="layera-typography layera-margin-bottom--xs" data-size="base" data-weight="semibold" data-color="primary">
             <SettingsIcon size="sm" /> Εργοστασιακές Ρυθμίσεις
@@ -216,7 +216,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
       </Box>
 
       {/* Controls Section - Horizontal */}
-      <Box className="layera-flex layera-flex--justify-between layera-flex--align-end layera-flex--gap-lg">
+      <Box className="layera-flex layera-flex--gap-lg layera-flex--wrap">
         {/* Palette Selection */}
         <Box>
           <Text className="layera-typography layera-margin-bottom--xs" data-size="sm" data-weight="medium" data-color="secondary">

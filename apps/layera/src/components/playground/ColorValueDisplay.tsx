@@ -28,7 +28,7 @@ export const ColorValueDisplay: React.FC<ColorValueDisplayProps> = ({
   buttonState
 }) => {
   return (
-    <Box className="layera-flex layera-flex--gap-lg layera-flex--wrap layera-flex--justify-between">
+    <Box className="layera-flex layera-flex--gap-lg layera-flex--wrap">
       {/* Current Settings Display - για buttons */}
       {colorHookState.elementType === 'buttons' && buttonState && (
         <Box className="layera-card layera-padding--lg layera-typography layera-border--default layera-bg-semantic--neutral-light" data-family="mono" data-size="sm">

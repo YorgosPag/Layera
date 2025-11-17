@@ -178,7 +178,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
       />
           {/* Dynamic Content Based on Element Type Selection */}
           {colorHookState.elementType === 'buttons' && (
-            <Box className="layera-margin-bottom--lg">
+            <Box className="layera-margin-bottom--xl">
               <ButtonsPlayground
                 buttonState={buttonState}
                 colorCategory={colorHookState.colorCategory}
@@ -189,7 +189,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           )}
 
           {colorHookState.elementType === 'cards' && (
-            <Box className="layera-margin-bottom--lg">
+            <Box className="layera-margin-bottom--xl">
               <CardsPlayground
                 currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
                 colorCategory={colorHookState.colorCategory}
@@ -199,7 +199,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           )}
 
           {colorHookState.elementType === 'modals' && (
-            <Box className="layera-margin-bottom--lg">
+            <Box className="layera-margin-bottom--xl">
               <ModalsPlayground
                 currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
                 colorCategory={colorHookState.colorCategory}
@@ -209,7 +209,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           )}
 
           {colorHookState.elementType === 'inputs' && (
-            <Box className="layera-margin-bottom--lg">
+            <Box className="layera-margin-bottom--xl">
               <InputsPlayground
                 currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
                 colorCategory={colorHookState.colorCategory}
@@ -219,7 +219,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           )}
 
           {colorHookState.elementType === 'layout' && (
-            <Box className="layera-margin-bottom--lg">
+            <Box className="layera-margin-bottom--xl">
               <LayoutPlayground
                 currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
                 colorCategory={colorHookState.colorCategory}
@@ -230,7 +230,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           )}
 
           {colorHookState.elementType === 'tables' && (
-            <Box className="layera-margin-bottom--lg">
+            <Box className="layera-margin-bottom--xl">
               <TablesPlayground
                 currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
                 colorCategory={colorHookState.colorCategory}
@@ -241,7 +241,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
           {/* Always show color management sections */}
           {/* Live Color Preview Area */}
-          <Box className="layera-margin-bottom--lg">
+          <Box className="layera-margin-bottom--xl">
             <ColorPreviewArea
               colorHookState={colorHookState}
               currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
@@ -249,7 +249,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           </Box>
 
           {/* Category and Element Type Selection - Πάνω από Button Controls */}
-          <Box className="layera-margin-bottom--lg">
+          <Box className="layera-margin-bottom--xl">
             <ColorCategorySelection
               colorHookState={colorHookState}
               colorActions={colorActions}
@@ -269,9 +269,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
           {/* Button Controls Grid - ΜΟΝΟ για buttons elementType */}
           {colorHookState.elementType === 'buttons' && (
-            <Box className="layera-margin-bottom--lg">
+            <Box className="layera-margin-bottom--xl">
               <Box
-                className="layera-flex layera-flex--gap-lg layera-flex--justify-between layera-margin-top--lg layera-margin-bottom--xl"
+                className="layera-flex layera-flex--gap-lg layera-flex--wrap layera-margin-top--lg layera-margin-bottom--xl"
               >
                 {/* Shape Control - ΠΡΩΤΟ */}
                 <Box className="layera-card layera-padding--lg">
@@ -349,7 +349,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           )}
 
           {/* Color Controls Grid με Alpha Support */}
-          <Box className="layera-margin-bottom--lg">
+          <Box className="layera-margin-bottom--xl">
             <ColorControlsGridWithAlpha
               currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, ColorWithAlpha | string>}
               currentSetters={colorHelpersActions.getSettersForCategory(colorHookState.colorCategory) as unknown as Record<string, (value: ColorWithAlpha | string) => void>}
@@ -362,7 +362,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           </Box>
 
           {/* Apply Colors Buttons */}
-          <Box className="layera-margin-bottom--lg">
+          <Box className="layera-margin-bottom--xl">
             <ColorActionsPanel
               colorHookState={colorHookState}
               applyColorsToApp={applyColorsToApp}
@@ -371,7 +371,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           </Box>
 
           {/* Factory Settings Panel */}
-          <Box className="layera-margin-bottom--lg">
+          <Box className="layera-margin-bottom--xl">
             <FactorySettingsPanel
               onSettingsChange={(settings) => {
                 // Εφαρμόζει τις νέες ρυθμίσεις στο color state
@@ -387,11 +387,13 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           </Box>
 
           {/* Color Values & CSS Variables */}
-          <ColorValueDisplay
-            colorHookState={colorHookState}
-            currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, string>}
-            buttonState={buttonState}
-          />
+          <Box className="layera-margin-bottom--xl">
+            <ColorValueDisplay
+              colorHookState={colorHookState}
+              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, string>}
+              buttonState={buttonState}
+            />
+          </Box>
     </Box>
   );
 };

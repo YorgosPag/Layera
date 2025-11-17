@@ -30,7 +30,7 @@
 }
 
 .playgroundUnified {
-  /* Συγχώνευση εξωτερικού + εσωτερικού container */
+  /* Συγχώνευση εξωτερικού + εσωτερικού container - ARXES compliant */
   position: fixed;
   top: var(--layera-header-fixed-height);
   left: 0;
@@ -40,6 +40,6 @@
   height: calc(100vh - var(--layera-header-fixed-height));
   z-index: 7000;
   overflow: auto;
-  padding: var(--layera-global-spacing-4);
+  padding: var(--layera-global-spacing-6) var(--layera-global-spacing-4);
   background-color: var(--layera-color-semantic-success-primary);
 }
