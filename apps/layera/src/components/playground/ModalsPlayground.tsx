@@ -175,6 +175,19 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
     { key: 'info', title: 'Info Modal', description: 'Modal πληροφοριών', colorValue: currentColors.info }
   ];
 
+  // Initialize CSS variables for fallback values - ensure real-time preview has defaults
+  React.useEffect(() => {
+    const root = document.documentElement;
+    modalConfigs.forEach(({ key, colorValue }) => {
+      // Set initial CSS variables if not already set by real-time preview
+      if (!root.style.getPropertyValue(`--layera-modal-bg-${key}`)) {
+        root.style.setProperty(`--layera-modal-bg-${key}`, getBackgroundColor(colorValue));
+        root.style.setProperty(`--layera-modal-text-${key}`, getTextColor(colorValue));
+        root.style.setProperty(`--layera-modal-border-${key}`, getBorderStyle(colorValue));
+      }
+    });
+  }, [modalConfigs]);
+
   return (
     <Box
       style={{
@@ -197,10 +210,11 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
               className="layera-padding--md"
               style={{
                 ...modalStyle,
-                backgroundColor: getBackgroundColor(colorValue),
-                color: getTextColor(colorValue),
-                border: getBorderStyle(colorValue)
-              }}
+                // Χρήση CSS variables για real-time preview support
+                backgroundColor: `var(--layera-modal-bg-${key}, ${getBackgroundColor(colorValue)})`,
+                color: `var(--layera-modal-text-${key}, ${getTextColor(colorValue)})`,
+                border: `var(--layera-modal-border-${key}, ${getBorderStyle(colorValue)})`
+              } as React.CSSProperties}
             >
               <Box className="layera-flex layera-flex--justify-between layera-flex--align-center">
                 <Text className="layera-typography" data-size="sm" data-weight="bold">

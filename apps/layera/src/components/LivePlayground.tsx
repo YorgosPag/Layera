@@ -502,6 +502,12 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                   cssActions.applySpecificCardColor(key, colorValue);
                 }
 
+                if (colorHookState.elementType === 'modals' &&
+                   (colorHookState.colorCategory === 'backgrounds' || colorHookState.colorCategory === 'modals')) {
+                  const colorValue = typeof value === 'string' ? value : value.hex;
+                  cssActions.applySpecificModalColor(key, colorValue);
+                }
+
                 startPreview(key, previewValue, colorHookState.colorCategory, colorHookState.elementType);
               }}
               colorCategory={colorHookState.colorCategory}

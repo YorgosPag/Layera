@@ -28,6 +28,7 @@ export interface CSSVariablesActions {
   applyColorsToApp: (colorCategory: ColorCategory, currentColors: ColorPaletteWithAlpha, elementType?: string) => Promise<void>;
   applySpecificButtonColor: (colorKey: string, colorValue: string) => void;
   applySpecificCardColor: (colorKey: string, colorValue: string) => void;
+  applySpecificModalColor: (colorKey: string, colorValue: string) => void;
 }
 
 export interface UseCSSVariablesReturn {
@@ -349,6 +350,54 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
   };
 
   /**
+   * Εφαρμόζει isolated CSS rules για συγκεκριμένο modal variant
+   * Χρησιμοποιεί CSS variables για modal backgrounds
+   */
+  const applySpecificModalColor = (colorKey: string, colorValue: string) => {
+    // Optimized: Use CSS variables instead of rewriting style.textContent
+    const root = document.documentElement;
+
+    // Mapping από colorKey σε CSS variable για modals
+    // NOTE: colorKey format is 'primaryColor' από LivePlayground, CSS variable format is 'primary'
+    const colorToVariableMap: Record<string, string> = {
+      'primaryColor': '--layera-modal-bg-primary',
+      'secondaryColor': '--layera-modal-bg-secondary',
+      'successColor': '--layera-modal-bg-success',
+      'warningColor': '--layera-modal-bg-warning',
+      'dangerColor': '--layera-modal-bg-danger',
+      'infoColor': '--layera-modal-bg-info'
+    };
+
+    const variableName = colorToVariableMap[colorKey];
+    if (!variableName) return;
+
+    // Fast CSS variable update (no DOM reflow/repaint)
+    root.style.setProperty(variableName, colorValue);
+    root.style.setProperty(`${variableName}-hover`, `${colorValue}DD`);
+
+    // Create CSS rules only once για modals
+    let style = document.getElementById('layera-modal-color-overrides') as HTMLStyleElement;
+    if (!style) {
+      style = document.createElement('style');
+      style.id = 'layera-modal-color-overrides';
+      document.head.appendChild(style);
+
+      // Minimal CSS rules - rely on ModalsPlayground's own CSS variable usage
+      // The ModalsPlayground already uses var(--layera-modal-bg-${key}, fallback) in inline styles
+      // We just need to ensure CSS variables are properly set - no additional CSS rules needed
+      style.textContent = `
+        /* Minimal CSS for modal live preview - relies on ModalsPlayground's inline CSS variables */
+        /* CSS variables are set directly on :root by applySpecificModalColor */
+
+        /* Debug helper to visualize applied variables */
+        :root {
+          /* Variables set dynamically by applySpecificModalColor function */
+        }
+      `;
+    }
+  };
+
+  /**
    * Επιστρέφει default colors για fallback
    */
   const getCurrentDefaultColors = (): ColorPaletteWithAlpha => ({
@@ -365,7 +414,8 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
     applySquareColorsToHeader,
     applyColorsToApp,
     applySpecificButtonColor,
-    applySpecificCardColor
+    applySpecificCardColor,
+    applySpecificModalColor
   };
 
   return {
