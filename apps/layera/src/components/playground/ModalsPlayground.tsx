@@ -78,7 +78,7 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
   return (
     <Box>
       <Box className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
-        <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
+        <h3 className="layera-typography layera-margin-bottom--md layera-text--align-center" data-size="lg" data-weight="bold" data-color="primary">
           <CheckIcon size="sm" /> Live Preview: Modals
         </h3>
 
