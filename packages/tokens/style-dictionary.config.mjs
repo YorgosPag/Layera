@@ -544,6 +544,32 @@ export default {
         });
         output += `\n`;
 
+        // Grid Template Columns Utilities - Generated από global.utilities.grid tokens
+        output += `/* Grid Template Columns Utilities - ARXES Compliant */\n`;
+        const gridTemplateTokens = dictionary.allTokens.filter(token =>
+          token.path[0] === 'global' &&
+          token.path[1] === 'utilities' &&
+          token.path[2] === 'grid'
+        );
+
+        gridTemplateTokens.forEach(token => {
+          const gridType = token.path[3]; // autoFit, autoFit280, etc
+          if (gridType && token.value) {
+            // Create utility class name
+            const className = gridType === 'autoFit280' ? 'auto-fit-280' :
+                             gridType === 'autoFit' ? 'auto-fit' :
+                             gridType.replace(/([A-Z])/g, '-$1').toLowerCase();
+
+            output += `.layera-grid--${className} {\n`;
+            output += `  display: grid;\n`;
+            output += `  grid-template-columns: ${token.value};\n`;
+            output += `  gap: var(--layera-size-8);\n`;
+            output += `  padding: var(--layera-size-6);\n`;
+            output += `}\n`;
+          }
+        });
+        output += `\n`;
+
         // Typography System Classes - Unified Generation από typography.unified token
         const typographyUnified = dictionary.allTokens.find(token => token.path.join('.') === 'typography.unified');
         if (typographyUnified && typographyUnified.value) {

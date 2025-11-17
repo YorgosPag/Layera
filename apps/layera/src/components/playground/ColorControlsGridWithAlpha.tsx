@@ -166,7 +166,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
         className="layera-grid layera-grid--gap-lg layera-margin-bottom--4xl"
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gridTemplateColumns: 'var(--layera-global-utilities-grid-autoFit280)',
           gap: 'var(--layera-size-8)',
           padding: 'var(--layera-size-6)'
         } as React.CSSProperties}

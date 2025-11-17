@@ -77,15 +77,7 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
   };
 
   return (
-    <Box
-      className="layera-grid layera-grid--gap-lg layera-margin-bottom--xl"
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-        gap: 'var(--layera-size-8)',
-        padding: 'var(--layera-size-6)'
-      } as React.CSSProperties}
-    >
+    <Box className="layera-grid--auto-fit-280 layera-margin-bottom--xl">
       {/* Color Category Selection */}
       <Box className="layera-card layera-padding--lg">
         <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
