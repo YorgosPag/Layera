@@ -109,8 +109,28 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
    * Δημιουργεί CSS για border radius
    */
   const getBorderRadiusCSS = useCallback((radius: string) => {
-    const radiusValue = `var(--layera-global-borderRadius-${radius})`;
-    return `.layera-button, .layera-card, .layera-input { border-radius: ${radiusValue} !important; }`;
+    // Map των radius values σε σωστά tokens
+    const getRadiusValue = (radius: string) => {
+      switch(radius) {
+        case 'none': return '0px';
+        case 'xs': return 'var(--layera-radius-xs)';      // 2px
+        case 'sm': return 'var(--layera-radius-sm)';      // 4px
+        case 'md': return 'var(--layera-radius-md)';      // 6px
+        case 'lg': return 'var(--layera-radius-lg)';      // 8px
+        case 'xl': return 'var(--layera-radius-xl)';      // 12px
+        case 'xxl': return 'var(--layera-radius-xxl)';    // 16px
+        case 'round': return 'var(--layera-radius-full)'; // πλήρως στρογγυλά
+        default: return 'var(--layera-radius-card)';      // 8px fallback
+      }
+    };
+
+    const radiusValue = getRadiusValue(radius);
+    return `
+      .layera-card,
+      [data-layera-playground="true"] .layera-card,
+      [data-layera-playground="true"] .layera-flex.layera-flex-column.layera-flex--align-center.layera-flex--justify-center.layera-padding--md {
+        border-radius: ${radiusValue} !important;
+      }`;
   }, []);
 
   /**
@@ -142,8 +162,10 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
         cssRules = getBorderWidthCSS(value);
         break;
       case 'borderRadius':
+        console.log('🎯 useRealTimePreview: Processing borderRadius', { value, cssRules: 'generating...' });
         styleId = 'layera-live-preview-border-radius';
         cssRules = getBorderRadiusCSS(value);
+        console.log('🎯 useRealTimePreview: Generated CSS', { cssRules });
         break;
       case 'fontSize':
         styleId = 'layera-live-preview-font-size';

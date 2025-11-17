@@ -53,26 +53,26 @@ export const CardRadiusControl: React.FC<CardRadiusControlProps> = ({
     {
       value: 'xs',
       label: 'Ελαφρώς',
-      token: '0.125rem',
+      token: 'var(--layera-radius-xs)',
       description: 'Ελαφρώς καμπύλες (2px)'
     },
     {
       value: 'md',
       label: 'Μεσαία',
-      token: 'var(--layera-radius-card)',
-      description: 'Μεσαία καμπύλες (8px - κάρτες)'
+      token: 'var(--layera-radius-md)',
+      description: 'Μεσαία καμπύλες (6px - default)'
     },
     {
       value: 'lg',
       label: 'Πολύ',
-      token: '0.75rem',
-      description: 'Πολύ καμπύλες (12px)'
+      token: 'var(--layera-radius-lg)',
+      description: 'Πολύ καμπύλες (8px)'
     },
     {
       value: 'xl',
       label: 'Μεγάλες',
-      token: '1rem',
-      description: 'Μεγάλες καμπύλες (16px - special cards)'
+      token: 'var(--layera-radius-xl)',
+      description: 'Μεγάλες καμπύλες (12px - ειδικές κάρτες)'
     }
   ];
 
@@ -81,8 +81,9 @@ export const CardRadiusControl: React.FC<CardRadiusControlProps> = ({
     onChange(newValue);
 
     // Trigger real-time preview
+    console.log('🔧 CardRadiusControl: Sending preview', { key: 'borderRadius', value: newValue });
     if (onPreview) {
-      onPreview('cardRadius', newValue);
+      onPreview('borderRadius', newValue);
     }
 
     // Reset visual feedback

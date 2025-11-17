@@ -143,6 +143,21 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
 
   const cssProperty = getCSSPropertyForCategory(colorCategory);
 
+  // Helper function για μετατροπή radius values σε tokens
+  const getRadiusToken = (radius: string) => {
+    switch(radius) {
+      case 'none': return '0px';
+      case 'xs': return 'var(--layera-radius-xs)';      // 2px
+      case 'sm': return 'var(--layera-radius-sm)';      // 4px
+      case 'md': return 'var(--layera-radius-md)';      // 6px - default για κάρτες
+      case 'lg': return 'var(--layera-radius-lg)';      // 8px
+      case 'xl': return 'var(--layera-radius-xl)';      // 12px
+      case 'xxl': return 'var(--layera-radius-xxl)';    // 16px
+      case 'round': return 'var(--layera-radius-full)'; // πλήρως στρογγυλά
+      default: return 'var(--layera-radius-card)';      // 8px fallback
+    }
+  };
+
   // Base card style object
   const cardStyle = {
     height: 'var(--layera-fontSize-6xl)',
@@ -150,8 +165,12 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
     minWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
     maxWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
     flex: '0 0 calc(var(--layera-fontSize-6xl) * 3)',
-    borderRadius: 'var(--layera-radius-md)'
+    borderRadius: getRadiusToken(cardRadius)
   };
+
+  // Debug logging
+  console.log('🃏 CardsPlayground: cardRadius prop =', cardRadius);
+  console.log('🃏 CardsPlayground: Final borderRadius =', getRadiusToken(cardRadius));
 
   // Card configurations
   const cardConfigs = [
