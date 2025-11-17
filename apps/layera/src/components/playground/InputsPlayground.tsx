@@ -199,12 +199,12 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
         </p>
 
         <Box
-          className="layera-flex layera-flex--wrap-wrap layera-flex--gap-lg layera-flex--justify-center layera-flex--align-center layera-padding--lg layera-width--full"
+          className="layera-flex layera-flex--wrap-wrap layera-flex--justify-center layera-flex--align-center layera-flex--gap-md layera-width--full layera-padding--lg"
         >
           {inputConfigs.map(({ key, label, placeholder, colorValue }, index) => (
             <Box
               key={key}
-              className="layera-width--200 layera-text-align--center layera-margin-bottom--md"
+              className="layera-width--200 layera-text-align--center"
             >
               <input
                 type="text"
