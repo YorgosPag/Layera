@@ -178,10 +178,8 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
       parts.push(`με πάχος περιγράμματος ${borderWidth}px`);
     }
 
-    // Προσθέτουμε radius information
-    if (buttonRadius && buttonRadius !== 'md') {
-      parts.push(`και ${getRadiusInGreek(buttonRadius)}`);
-    }
+    // Προσθέτουμε radius information - ΠΑΝΤΑ
+    parts.push(`με ${getRadiusInGreek(buttonRadius)}`);
 
     // Προσθέτουμε hover effect information
     if (hoverEffect && hoverEffect !== 'normal') {

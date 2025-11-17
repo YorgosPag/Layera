@@ -240,6 +240,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
+                cardRadius={cardRadius}
+                cardSize={cardSize}
+                hoverEffect={hoverEffect}
+                activeEffect={activeEffect}
               />
             </Box>
           )}
@@ -250,6 +254,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
+                modalRadius={modalRadius}
+                modalSize={modalSize}
+                hoverEffect={hoverEffect}
+                activeEffect={activeEffect}
               />
             </Box>
           )}
@@ -260,6 +268,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
+                inputRadius={inputRadius}
+                inputSize={inputSize}
+                hoverEffect={hoverEffect}
+                activeEffect={activeEffect}
               />
             </Box>
           )}
@@ -271,6 +283,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
                 borderRadius={layoutRadius}
+                layoutRadius={layoutRadius}
+                layoutSize="md"
+                hoverEffect={hoverEffect}
+                activeEffect={activeEffect}
               />
             </Box>
           )}
@@ -282,6 +298,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory)}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
+                tableRadius={tableRadius}
+                tableSize={tableSize}
+                hoverEffect={hoverEffect}
+                activeEffect={activeEffect}
               />
             </Box>
           )}
