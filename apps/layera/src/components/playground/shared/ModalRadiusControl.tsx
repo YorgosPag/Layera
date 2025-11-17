@@ -46,33 +46,33 @@ export const ModalRadiusControl: React.FC<ModalRadiusControlProps> = ({
   const modalRadiusOptions = [
     {
       value: 'none',
-      label: 'Χωρίς',
+      label: '0px',
       token: '0px',
       description: 'Χωρίς καμπυλότητα (0px - τετράγωνα modals)'
     },
     {
-      value: 'xs',
-      label: 'Ελαφρώς',
-      token: '0.25rem',
+      value: 'sm',
+      label: '4px',
+      token: 'var(--layera-radius-sm)',
       description: 'Ελαφρώς καμπύλες (4px)'
     },
     {
-      value: 'md',
-      label: 'Μεσαία',
-      token: 'var(--layera-radius-modal)',
-      description: 'Μεσαία καμπύλες (12px - modals)'
-    },
-    {
       value: 'lg',
-      label: 'Πολύ',
-      token: '1rem',
-      description: 'Πολύ καμπύλες (16px)'
+      label: '8px',
+      token: 'var(--layera-radius-lg)',
+      description: 'Μεσαία καμπύλες (8px)'
     },
     {
       value: 'xl',
-      label: 'Μεγάλες',
-      token: '1.25rem',
-      description: 'Μεγάλες καμπύλες (20px - special modals)'
+      label: '12px',
+      token: 'var(--layera-radius-xl)',
+      description: 'Πολύ καμπύλες (12px - default για modals)'
+    },
+    {
+      value: 'xxl',
+      label: '16px',
+      token: 'var(--layera-radius-xxl)',
+      description: 'Μεγάλες καμπύλες (16px - ειδικά modals)'
     }
   ];
 
@@ -81,8 +81,9 @@ export const ModalRadiusControl: React.FC<ModalRadiusControlProps> = ({
     onChange(newValue);
 
     // Trigger real-time preview
+    console.log('🔧 ModalRadiusControl: Sending preview', { key: 'borderRadius', value: newValue });
     if (onPreview) {
-      onPreview('modalRadius', newValue);
+      onPreview('borderRadius', newValue);
     }
 
     // Reset visual feedback

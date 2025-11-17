@@ -125,7 +125,9 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
     const radiusValue = getRadiusValue(radius);
     return `
       .layera-card,
+      .layera-modal,
       [data-layera-playground="true"] .layera-card,
+      [data-layera-playground="true"] .layera-modal,
       [data-layera-playground="true"] .layera-flex.layera-flex-column.layera-flex--align-center.layera-flex--justify-center.layera-padding--md {
         border-radius: ${radiusValue} !important;
       }`;
