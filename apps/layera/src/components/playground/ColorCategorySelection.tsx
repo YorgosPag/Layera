@@ -12,6 +12,7 @@ import { CardSizeControl, type CardSizeValue } from './shared/CardSizeControl';
 import { ModalSizeControl, type ModalSizeValue } from './shared/ModalSizeControl';
 import { InputSizeControl, type InputSizeValue } from './shared/InputSizeControl';
 import { TableSizeControl, type TableSizeValue } from './shared/TableSizeControl';
+import { ButtonRadiusControl } from './shared/ButtonRadiusControl';
 import { LayoutRadiusControl } from './shared/LayoutRadiusControl';
 import { CardRadiusControl } from './shared/CardRadiusControl';
 import { ModalRadiusControl } from './shared/ModalRadiusControl';
@@ -36,6 +37,8 @@ interface ColorCategorySelectionProps {
   onBorderWidthChange: (value: number) => void;
   borderRadius?: string;
   onBorderRadiusChange?: (value: string) => void;
+  buttonRadius?: string;
+  onButtonRadiusChange?: (value: string) => void;
   layoutRadius?: string;
   onLayoutRadiusChange?: (value: string) => void;
   cardRadius?: string;
@@ -71,6 +74,8 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
   onBorderWidthChange,
   borderRadius = 'md',
   onBorderRadiusChange,
+  buttonRadius = 'md',
+  onButtonRadiusChange,
   layoutRadius = 'md',
   onLayoutRadiusChange,
   cardRadius = 'md',
@@ -222,6 +227,18 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           Επιλέξτε ποια στοιχεία θα επηρεάζονται από τα {colorHookState.colorCategory === 'backgrounds' ? 'background' : colorHookState.colorCategory === 'text' ? 'text' : 'border'} χρώματα
         </Text>
       </Box>
+
+      {/* Button Radius Control - ΜΟΝΟ για backgrounds category με buttons element */}
+      {colorHookState.colorCategory === 'backgrounds' && colorHookState.elementType === 'buttons' && onButtonRadiusChange && (
+        <ButtonRadiusControl
+          value={buttonRadius}
+          onChange={onButtonRadiusChange}
+          elementType="πλήκτρα"
+          className="layera-height--auto layera-text--align-center"
+          onPreview={onPreview}
+          buttonState={buttonState}
+        />
+      )}
 
       {/* Border Width Control - ΜΟΝΟ για borders category */}
       {colorHookState.colorCategory === 'borders' && (

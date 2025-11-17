@@ -301,6 +301,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               onBorderWidthChange={setBorderWidth}
               borderRadius={borderRadius}
               onBorderRadiusChange={setBorderRadius}
+              buttonRadius={buttonRadius}
+              onButtonRadiusChange={setButtonRadius}
               layoutRadius={layoutRadius}
               onLayoutRadiusChange={setLayoutRadius}
               cardRadius={cardRadius}
@@ -418,15 +420,6 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                     </Button>
                   </Box>
                 </Box>
-
-                {/* Button Radius Control - ΤΕΤΑΡΤΟ */}
-                <ButtonRadiusControl
-                  value={buttonRadius}
-                  onChange={setButtonRadius}
-                  elementType="πλήκτρα"
-                  onPreview={startPreview}
-                  buttonState={buttonState}
-                />
               </Box>
             </Box>
           )}
