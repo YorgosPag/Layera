@@ -22,6 +22,7 @@ import type { ColorWithAlpha } from './playground/shared/ColorPickerWithAlpha';
 import type { FontSizeValue } from './playground/shared/FontSizeControl';
 import { ButtonRadiusControl } from './playground/shared/ButtonRadiusControl';
 import { LayoutRadiusControl } from './playground/shared/LayoutRadiusControl';
+import { CardRadiusControl } from './playground/shared/CardRadiusControl';
 import { loadCurrentThemeFromLocalStorage } from '../services/colorThemeService';
 import { useAuth } from '@layera/auth-bridge';
 import { useRealTimePreview } from '../hooks/useRealTimePreview';
@@ -104,6 +105,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
   // Layout radius state for layout category
   const [layoutRadius, setLayoutRadius] = useState<string>('md');
+
+  // Card radius state for cards category
+  const [cardRadius, setCardRadius] = useState<string>('md');
 
   // Font size state for text category
   const [fontSize, setFontSize] = useState<FontSizeValue>('base');
@@ -271,6 +275,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               onBorderRadiusChange={setBorderRadius}
               layoutRadius={layoutRadius}
               onLayoutRadiusChange={setLayoutRadius}
+              cardRadius={cardRadius}
+              onCardRadiusChange={setCardRadius}
               hoverEffect={hoverEffect}
               onHoverEffectChange={setHoverEffect}
               activeEffect={activeEffect}

@@ -9,6 +9,7 @@ import { HoverControl } from './shared/HoverControl';
 import { ActiveControl } from './shared/ActiveControl';
 import { FontSizeControl, type FontSizeValue } from './shared/FontSizeControl';
 import { LayoutRadiusControl } from './shared/LayoutRadiusControl';
+import { CardRadiusControl } from './shared/CardRadiusControl';
 
 /**
  * ColorCategorySelection Component
@@ -30,6 +31,8 @@ interface ColorCategorySelectionProps {
   onBorderRadiusChange?: (value: string) => void;
   layoutRadius?: string;
   onLayoutRadiusChange?: (value: string) => void;
+  cardRadius?: string;
+  onCardRadiusChange?: (value: string) => void;
   hoverEffect?: string;
   onHoverEffectChange?: (value: string) => void;
   activeEffect?: string;
@@ -49,6 +52,8 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
   onBorderRadiusChange,
   layoutRadius = 'md',
   onLayoutRadiusChange,
+  cardRadius = 'md',
+  onCardRadiusChange,
   hoverEffect = 'normal',
   onHoverEffectChange,
   activeEffect = 'scale',
@@ -224,6 +229,18 @@ export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
           value={layoutRadius}
           onChange={onLayoutRadiusChange}
           elementType="layout στοιχεία"
+          className="layera-height--auto layera-text--align-center"
+          onPreview={onPreview}
+          buttonState={buttonState}
+        />
+      )}
+
+      {/* Card Radius Control - ΜΟΝΟ για backgrounds category με cards element */}
+      {colorHookState.colorCategory === 'backgrounds' && colorHookState.elementType === 'cards' && onCardRadiusChange && (
+        <CardRadiusControl
+          value={cardRadius}
+          onChange={onCardRadiusChange}
+          elementType="κάρτες"
           className="layera-height--auto layera-text--align-center"
           onPreview={onPreview}
           buttonState={buttonState}
