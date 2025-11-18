@@ -30,10 +30,7 @@ export const PlaygroundHeader: React.FC<PlaygroundHeaderProps> = ({
     <>
       {/* Header με κουμπί κλεισίματος */}
       <Box
-        className="layera-flex layera-flex--justify-between layera-flex--align-center layera-padding--lg layera-border-bottom--default layera-bg-surface--primary layera-position--sticky layera-position-top--0 layera-z-index--1000"
-        style={{
-          backgroundColor: 'rgba(255,255,255,0.95)'
-        }}
+        className="layera-flex layera-flex--justify-between layera-flex--align-center layera-padding--lg layera-border-bottom--default layera-bg-surface--primary layera-bg--translucent layera-position--sticky layera-position-top--0 layera-z-index--1000"
       >
         <h1 className="layera-typography" data-size="xl" data-weight="bold" data-color="primary">
           <SettingsIcon size="sm" /> Live Playground - Ζωντανές Ρυθμίσεις
