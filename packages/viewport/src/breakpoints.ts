@@ -11,41 +11,41 @@ import type { UnifiedBreakpoints, BreakpointKey, DeviceCategory } from './types/
 export const UNIFIED_BREAKPOINTS: UnifiedBreakpoints = {
   sm: {
     min: 0,
-    max: 767,
+    max: 767, // var(--layera-responsive-breakpoints-mobile-max)
     device: 'mobile',
-    mediaQuery: '@media screen and (max-width: 767px)',
+    mediaQuery: '@media screen and (max-width: var(--layera-responsive-breakpoints-mobile-max))',
     containerMaxWidth: '100%',
     gridColumns: 1
   },
   md: {
-    min: 768,
+    min: 768, // var(--layera-responsive-breakpoints-tablet-min)
     max: 1023,
     device: 'tablet',
-    mediaQuery: '@media screen and (min-width: 768px) and (max-width: 1023px)',
+    mediaQuery: '@media screen and (min-width: var(--layera-responsive-breakpoints-tablet-min)) and (max-width: 1023px)',
     containerMaxWidth: '750px',
     gridColumns: 2
   },
   lg: {
     min: 1024,
-    max: 1199,
+    max: 1199, // var(--layera-responsive-breakpoints-tablet-max)
     device: 'tablet',
-    mediaQuery: '@media screen and (min-width: 1024px) and (max-width: 1199px)',
+    mediaQuery: '@media screen and (min-width: 1024px) and (max-width: var(--layera-responsive-breakpoints-tablet-max))',
     containerMaxWidth: '960px',
     gridColumns: 3
   },
   xl: {
-    min: 1200,
-    max: 1439,
+    min: 1200, // var(--layera-responsive-breakpoints-desktop-min)
+    max: 1439, // var(--layera-responsive-breakpoints-desktop-max)
     device: 'desktop',
-    mediaQuery: '@media screen and (min-width: 1200px) and (max-width: 1439px)',
+    mediaQuery: '@media screen and (min-width: var(--layera-responsive-breakpoints-desktop-min)) and (max-width: var(--layera-responsive-breakpoints-desktop-max))',
     containerMaxWidth: '1140px',
     gridColumns: 4
   },
   '2xl': {
-    min: 1440,
+    min: 1440, // var(--layera-responsive-breakpoints-desktopLarge-min)
     max: Infinity,
     device: 'desktopLarge',
-    mediaQuery: '@media screen and (min-width: 1440px)',
+    mediaQuery: '@media screen and (min-width: var(--layera-responsive-breakpoints-desktopLarge-min))',
     containerMaxWidth: '1320px',
     gridColumns: 6
   }
@@ -62,23 +62,23 @@ export const MEDIA_QUERIES = {
 
   // "And up" queries
   smUp: '@media screen and (min-width: 0px)',
-  mdUp: '@media screen and (min-width: 768px)',
-  lgUp: '@media screen and (min-width: 1024px)',
-  xlUp: '@media screen and (min-width: 1200px)',
-  '2xlUp': '@media screen and (min-width: 1440px)',
+  mdUp: '@media screen and (min-width: var(--layera-responsive-breakpoints-tablet-min))',
+  lgUp: '@media screen and (min-width: 1024px)', // Note: 1024px is intermediate value
+  xlUp: '@media screen and (min-width: var(--layera-responsive-breakpoints-desktop-min))',
+  '2xlUp': '@media screen and (min-width: var(--layera-responsive-breakpoints-desktopLarge-min))',
 
   // "And down" queries
-  smDown: '@media screen and (max-width: 767px)',
-  mdDown: '@media screen and (max-width: 1023px)',
-  lgDown: '@media screen and (max-width: 1199px)',
-  xlDown: '@media screen and (max-width: 1439px)',
+  smDown: '@media screen and (max-width: var(--layera-responsive-breakpoints-mobile-max))',
+  mdDown: '@media screen and (max-width: 1023px)', // Note: 1023px is intermediate value
+  lgDown: '@media screen and (max-width: var(--layera-responsive-breakpoints-tablet-max))',
+  xlDown: '@media screen and (max-width: var(--layera-responsive-breakpoints-desktop-max))',
 
   // Device category aliases (backward compatibility)
-  mobileOnly: '@media screen and (max-width: 767px)',
-  tabletOnly: '@media screen and (min-width: 768px) and (max-width: 1199px)',
+  mobileOnly: '@media screen and (max-width: var(--layera-responsive-breakpoints-mobile-max))',
+  tabletOnly: '@media screen and (min-width: var(--layera-responsive-breakpoints-tablet-min)) and (max-width: var(--layera-responsive-breakpoints-tablet-max))',
   desktopOnly: '@media screen and (min-width: 1200px)',
-  tabletAndUp: '@media screen and (min-width: 768px)',
-  desktopAndUp: '@media screen and (min-width: 1200px)'
+  tabletAndUp: '@media screen and (min-width: var(--layera-responsive-breakpoints-tablet-min))',
+  desktopAndUp: '@media screen and (min-width: var(--layera-responsive-breakpoints-desktop-min))'
 } as const;
 
 // UTILITY FUNCTIONS
@@ -119,7 +119,7 @@ export const LAYERA_BREAKPOINTS = {
   tablet: {
     min: 768,
     max: 1199,
-    mediaQuery: '@media screen and (min-width: 768px) and (max-width: 1199px)'
+    mediaQuery: '@media screen and (min-width: var(--layera-responsive-breakpoints-tablet-min)) and (max-width: var(--layera-responsive-breakpoints-tablet-max))'
   },
   desktop: {
     min: 1200,

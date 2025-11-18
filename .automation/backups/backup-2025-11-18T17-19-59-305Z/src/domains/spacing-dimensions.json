@@ -1,0 +1,104 @@
+{
+  "spacing": {
+    "breakpoint": {
+      "mobile": {
+        "value": "768px",
+        "comment": "Mobile breakpoint - replaces hardcoded 768"
+      },
+      "tablet": {
+        "value": "1024px",
+        "comment": "Tablet breakpoint - replaces hardcoded 1024"
+      },
+      "desktop": {
+        "value": "1025px",
+        "comment": "Desktop breakpoint - replaces hardcoded 1025"
+      }
+    },
+    "viewport": {
+      "full-width": {
+        "value": "100vw",
+        "comment": "Full viewport width"
+      }
+    },
+    "component": {
+      "card-width": {
+        "value": "320px",
+        "comment": "Standard card width - replaces hardcoded value"
+      },
+      "card-height": {
+        "value": "480px",
+        "comment": "Standard card height - replaces hardcoded value"
+      },
+      "input-height": {
+        "value": "40px",
+        "comment": "Standard input height - replaces hardcoded value"
+      },
+      "preview-box-height": {
+        "value": "40px",
+        "comment": "Preview box height for background components"
+      },
+      "preview-border-height": {
+        "value": "30px",
+        "comment": "Preview box height for border components"
+      },
+      "preview-box-min-width": {
+        "value": "120px",
+        "comment": "Preview box minimum width for background components"
+      },
+      "preview-border-min-width": {
+        "value": "100px",
+        "comment": "Preview box minimum width for border components"
+      }
+    },
+    "container": {
+      "sm": {
+        "value": "540px",
+        "comment": "Small container - replaces hardcoded legacy value"
+      },
+      "md": {
+        "value": "720px",
+        "comment": "Medium container - replaces hardcoded legacy value"
+      },
+      "lg": {
+        "value": "960px",
+        "comment": "Large container - replaces hardcoded legacy value"
+      },
+      "xl": {
+        "value": "1140px",
+        "comment": "Extra large container - replaces hardcoded legacy value"
+      }
+    }
+  },
+  "border": {
+    "radius": {
+      "none": {
+        "value": "0px",
+        "comment": "No border radius"
+      },
+      "xs": {
+        "value": "2px",
+        "comment": "Extra small border radius"
+      },
+      "sm": {
+        "value": "4px",
+        "comment": "Small border radius"
+      },
+      "md": {
+        "value": "8px",
+        "comment": "Medium border radius"
+      },
+      "lg": {
+        "value": "12px",
+        "comment": "Large border radius"
+      },
+      "xl": {
+        "value": "16px",
+        "comment": "Extra large border radius"
+      },
+      "pill": {
+        "value": "var(--layera-global-borderRadius-full)",
+        "comment": "Pill/fully rounded border radius - consolidated reference"
+      }
+    }
+  }
+}

@@ -36,16 +36,16 @@
   --layera-iconInteractive-sizing-margin-md: 8px; /** Medium margin */
   --layera-iconInteractive-sizing-margin-lg: 12px; /** Large margin */
   --layera-iconInteractive-sizing-margin-xl: 16px; /** Extra large margin */
-  --layera-fontSize-xs: 0.75rem; /** 12px - Captions, labels */
-  --layera-fontSize-sm: 0.875rem; /** 14px - Small text, form labels */
+  --layera-fontSize-xs: var(--layera-fontSize-xs); /** 12px - Captions, labels */
+  --layera-fontSize-sm: var(--layera-fontSize-sm); /** 14px - Small text, form labels */
   --layera-fontSize-base: var(--layera-global-spacing-4); /** 16px - Body text default - consolidated reference */
-  --layera-fontSize-lg: 1.125rem; /** 18px - Large body text */
-  --layera-fontSize-xl: 1.25rem; /** 20px - Subheadings */
-  --layera-fontSize-2xl: 1.5rem; /** 24px - Small headings */
-  --layera-fontSize-3xl: 1.875rem; /** 30px - Medium headings */
-  --layera-fontSize-4xl: 2.25rem; /** 36px - Large headings */
-  --layera-fontSize-5xl: 3rem; /** 48px - Hero headings */
-  --layera-fontSize-6xl: 3.75rem; /** 60px - Display headings */
+  --layera-fontSize-lg: var(--layera-fontSize-lg); /** 18px - Large body text */
+  --layera-fontSize-xl: var(--layera-fontSize-xl); /** 20px - Subheadings */
+  --layera-fontSize-2xl: var(--layera-fontSize-2xl); /** 24px - Small headings */
+  --layera-fontSize-3xl: var(--layera-fontSize-3xl); /** 30px - Medium headings */
+  --layera-fontSize-4xl: var(--layera-fontSize-4xl); /** 36px - Large headings */
+  --layera-fontSize-5xl: var(--layera-fontSize-5xl); /** 48px - Hero headings */
+  --layera-fontSize-6xl: var(--layera-fontSize-6xl); /** 60px - Display headings */
   --layera-fontWeight-light: 300; /** Light weight for delicate text */
   --layera-fontWeight-normal: 400; /** Normal weight for body text */
   --layera-fontWeight-medium: 500; /** Medium weight for emphasis */
@@ -55,9 +55,9 @@
   --layera-lineHeight-snug: 1.375; /** Snug leading for subheadings */
   --layera-lineHeight-normal: 1.5; /** Normal leading for body text */
   --layera-lineHeight-relaxed: 1.625; /** Relaxed leading for readability */
-  --layera-letterSpacing-tight: -0.025em; /** Tight for headings */
+  --layera-letterSpacing-tight: var(--layera-letterSpacing-tight); /** Tight for headings */
   --layera-letterSpacing-normal: 0; /** Normal for body text */
-  --layera-letterSpacing-wide: 0.025em; /** Wide for emphasis */
+  --layera-letterSpacing-wide: var(--layera-letterSpacing-wide); /** Wide for emphasis */
   --layera-typography-unified: [object Object]; /** Ενοποιημένη typography κλάση - αντικαθιστά 33 κλάσεις */
   --layera-color-text-primary: #1e293b; /** Primary text - σκούρο γκρι για καλή αντίθεση με λευκό φόντο */
   --layera-color-text-secondary: #475569; /** Secondary text - μεσαίο γκρι για secondary content */
@@ -73,10 +73,10 @@
   --layera-color-semantic-error-primary: #ef4444; /** Primary error color (red-500) - replaces hardcoded RGB */
   --layera-color-semantic-warning-primary: #f59e0b; /** Primary warning color (amber-500) */
   --layera-color-semantic-info-primary: #6366f1; /** Primary info color (indigo-500) */
-  --layera-color-light-surface-primary: #22c55e; /** Primary surface για cards/modals */
-  --layera-color-light-text-primary: #1e293b; /** Primary text - σκούρο για contrast */
-  --layera-color-dark-surface-primary: #1e293b; /** Primary surface για cards/modals */
-  --layera-color-dark-text-primary: #f1f5f9; /** Primary text - clean white */
+  --layera-color-light-surface-primary: var(--layera-color-semantic-success-primary); /** Primary surface για cards/modals */
+  --layera-color-light-text-primary: var(--layera-color-semantic-neutral-dark); /** Primary text - σκούρο για contrast */
+  --layera-color-dark-surface-primary: var(--layera-color-semantic-neutral-dark); /** Primary surface για cards/modals */
+  --layera-color-dark-text-primary: var(--layera-color-semantic-neutral-light); /** Primary text - clean white */
   --layera-color-brand: #3b82f6; /** Brand primary color */
   --layera-color-primary: #3b82f6; /** Primary color */
   --layera-color-surface-tertiary: #f1f5f9; /** Tertiary surface */
@@ -134,25 +134,25 @@
   --layera-colorUtilities-utilities-fill-neutral-black: var(--layera-color-neutral-black); /** Pure black SVG fill - consolidated reference */
   --layera-colorUtilities-utilities-fill-neutral-currentColor: currentColor; /** Inherit text color for SVG fill */
   --layera-i18n-unified: [object Object]; /** Unified i18n class - replaces multiple fragmented classes */
-  --layera-spacing-breakpoint-mobile: 768px; /** Mobile breakpoint - replaces hardcoded 768 */
+  --layera-spacing-breakpoint-mobile: var(--layera-responsive-breakpoints-tablet-min); /** Mobile breakpoint - replaces hardcoded 768 */
   --layera-spacing-breakpoint-tablet: 1024px; /** Tablet breakpoint - replaces hardcoded 1024 */
   --layera-spacing-breakpoint-desktop: 1025px; /** Desktop breakpoint - replaces hardcoded 1025 */
-  --layera-spacing-breakpoint-desktop-large: 1440px; /** Large desktop breakpoint - replaces hardcoded 1440 */
+  --layera-spacing-breakpoint-desktop-large: var(--layera-responsive-breakpoints-desktopLarge-min); /** Large desktop breakpoint - replaces hardcoded 1440 */
   --layera-spacing-viewport-full-height: 100vh; /** Full viewport height */
   --layera-spacing-viewport-full-width: 100vw; /** Full viewport width */
-  --layera-spacing-component-card-width: 320px; /** Standard card width - replaces hardcoded value */
-  --layera-spacing-component-card-height: 480px; /** Standard card height - replaces hardcoded value */
-  --layera-spacing-component-input-height: 40px; /** Standard input height - replaces hardcoded value */
-  --layera-spacing-component-preview-box-height: 40px; /** Preview box height for background components */
-  --layera-spacing-component-preview-border-height: 30px; /** Preview box height for border components */
-  --layera-spacing-component-preview-box-min-width: 120px; /** Preview box minimum width for background components */
-  --layera-spacing-component-preview-border-min-width: 100px; /** Preview box minimum width for border components */
-  --layera-spacing-container-sm: 540px; /** Small container - replaces hardcoded legacy value */
-  --layera-spacing-container-md: 720px; /** Medium container - replaces hardcoded legacy value */
-  --layera-spacing-container-lg: 960px; /** Large container - replaces hardcoded legacy value */
-  --layera-spacing-container-xl: 1140px; /** Extra large container - replaces hardcoded legacy value */
+  --layera-spacing-component-card-width: var(--layera-global-spacing-80); /** Standard card width - replaces hardcoded value */
+  --layera-spacing-component-card-height: var(--layera-global-spacing-120); /** Standard card height - replaces hardcoded value */
+  --layera-spacing-component-input-height: var(--layera-global-spacing-10); /** Standard input height - replaces hardcoded value */
+  --layera-spacing-component-preview-box-height: var(--layera-global-spacing-10); /** Preview box height for background components */
+  --layera-spacing-component-preview-border-height: var(--layera-global-spacing-7-5); /** Preview box height for border components */
+  --layera-spacing-component-preview-box-min-width: var(--layera-global-spacing-30); /** Preview box minimum width for background components */
+  --layera-spacing-component-preview-border-min-width: var(--layera-global-spacing-25); /** Preview box minimum width for border components */
+  --layera-spacing-container-sm: var(--layera-global-spacing-135); /** Small container - replaces hardcoded legacy value */
+  --layera-spacing-container-md: var(--layera-global-spacing-180); /** Medium container - replaces hardcoded legacy value */
+  --layera-spacing-container-lg: var(--layera-global-spacing-240); /** Large container - replaces hardcoded legacy value */
+  --layera-spacing-container-xl: var(--layera-global-spacing-285); /** Extra large container - replaces hardcoded legacy value */
   --layera-spacing-unified: [object Object]; /** Ενοποιημένη spacing κλάση - αντικαθιστά 40+ spacing κλάσεις */
-  --layera-border-radius-md: 8px; /** Medium border radius */
+  --layera-border-radius-md: var(--layera-global-spacing-2); /** Medium border radius */
   --layera-border-primary: #e2e8f0; /** Primary border color */
   --layera-border-info: #3b82f6; /** Info border color */
   --layera-border-error: #ef4444; /** Error border color */
@@ -295,8 +295,8 @@
 
 /* ✅ DYNAMIC: Light theme από JSON tokens */
 :root.light {
-  --layera-color-surface-primary: var(--layera-color-light-surface-primary, #22c55e);
-  --layera-color-text-primary: var(--layera-color-light-text-primary, #1e293b);
+  --layera-color-surface-primary: var(--layera-color-light-surface-primary, var(--layera-color-semantic-success-primary));
+  --layera-color-text-primary: var(--layera-color-light-text-primary, var(--layera-color-semantic-neutral-dark));
   --layera-colorUtilities-utilities-background-surface-light: var(--layera-colorUtilities-utilities-background-surface-light, var(--layera-color-background-surface-light));
   --layera-la-color-background-surface-light: var(--layera-la-color-background-surface-light, #f8fafc);
   --layera-bg-surface-light: var(--layera-bg-surface-light, var(--layera-color-surface-primary));
@@ -305,8 +305,8 @@
 /* ✅ DYNAMIC: Dark theme από JSON tokens */
 :root.dark {
   --layera-color-text-on-dark: var(--layera-color-text-on-dark, #ffffff);
-  --layera-color-surface-primary: var(--layera-color-dark-surface-primary, #1e293b);
-  --layera-color-text-primary: var(--layera-color-dark-text-primary, #f1f5f9);
+  --layera-color-surface-primary: var(--layera-color-dark-surface-primary, var(--layera-color-semantic-neutral-dark));
+  --layera-color-text-primary: var(--layera-color-dark-text-primary, var(--layera-color-semantic-neutral-light));
 }
 
 /* ✅ MODAL DATA ATTRIBUTE STYLES - Enterprise styling */

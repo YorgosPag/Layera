@@ -1,0 +1,184 @@
+{
+  "spacing": {
+    "comment": "🎯 ΜΟΝΑΔΙΚΗ Enterprise Spacing Κλάση - Αντικαθιστά 40+ κλάσεις",
+    "unified": {
+      "value": {
+        "margin": "var(--layera-global-spacing-4)",
+        "padding": "var(--layera-global-spacing-4)",
+        "gap": "var(--layera-global-spacing-4)",
+        "width": "100%",
+        "height": "auto",
+        "minWidth": "var(--layera-global-layout-minWidth)",
+        "minHeight": "var(--layera-global-layout-minHeight)",
+        "maxWidth": "var(--layera-spacing-container-xl)",
+        "maxHeight": "var(--layera-spacing-viewport-full-height)",
+        "position": "relative",
+        "display": "block",
+        "boxSizing": "border-box"
+      },
+      "comment": "Ενοποιημένη spacing κλάση - αντικαθιστά 40+ spacing κλάσεις",
+      "variants": {
+        "size": {
+          "xs": {
+            "margin": "var(--layera-global-spacing-1)",
+            "padding": "var(--layera-global-spacing-1)",
+            "gap": "var(--layera-global-spacing-1)"
+          },
+          "sm": {
+            "margin": "var(--layera-global-spacing-2)",
+            "padding": "var(--layera-global-spacing-2)",
+            "gap": "var(--layera-global-spacing-2)"
+          },
+          "md": {
+            "margin": "var(--layera-global-spacing-4)",
+            "padding": "var(--layera-global-spacing-4)",
+            "gap": "var(--layera-global-spacing-4)"
+          },
+          "lg": {
+            "margin": "var(--layera-global-spacing-6)",
+            "padding": "var(--layera-global-spacing-6)",
+            "gap": "var(--layera-global-spacing-6)"
+          },
+          "xl": {
+            "margin": "var(--layera-global-spacing-8)",
+            "padding": "var(--layera-global-spacing-8)",
+            "gap": "var(--layera-global-spacing-8)"
+          },
+          "xxl": {
+            "margin": "var(--layera-global-spacing-12)",
+            "padding": "var(--layera-global-spacing-12)",
+            "gap": "var(--layera-global-spacing-12)"
+          }
+        },
+        "direction": {
+          "all": {
+            "margin": "inherit",
+            "padding": "inherit"
+          },
+          "horizontal": {
+            "marginLeft": "inherit",
+            "marginRight": "inherit",
+            "paddingLeft": "inherit",
+            "paddingRight": "inherit"
+          },
+          "vertical": {
+            "marginTop": "inherit",
+            "marginBottom": "inherit",
+            "paddingTop": "inherit",
+            "paddingBottom": "inherit"
+          },
+          "top": {
+            "marginTop": "inherit",
+            "paddingTop": "inherit"
+          },
+          "bottom": {
+            "marginBottom": "inherit",
+            "paddingBottom": "inherit"
+          },
+          "left": {
+            "marginLeft": "inherit",
+            "paddingLeft": "inherit"
+          },
+          "right": {
+            "marginRight": "inherit",
+            "paddingRight": "inherit"
+          }
+        },
+        "type": {
+          "margin": {
+            "padding": "0"
+          },
+          "padding": {
+            "margin": "0"
+          },
+          "gap": {
+            "margin": "0",
+            "padding": "0",
+            "display": "flex",
+            "flexDirection": "column"
+          },
+          "stack": {
+            "display": "flex",
+            "flexDirection": "column",
+            "gap": "inherit"
+          },
+          "inline": {
+            "display": "flex",
+            "flexDirection": "row",
+            "gap": "inherit",
+            "alignItems": "center"
+          }
+        },
+        "container": {
+          "sm": {
+            "maxWidth": "var(--layera-spacing-container-sm)",
+            "margin": "0 auto"
+          },
+          "md": {
+            "maxWidth": "var(--layera-spacing-container-md)",
+            "margin": "0 auto"
+          },
+          "lg": {
+            "maxWidth": "var(--layera-spacing-container-lg)",
+            "margin": "0 auto"
+          },
+          "xl": {
+            "maxWidth": "var(--layera-spacing-container-xl)",
+            "margin": "0 auto"
+          },
+          "full": {
+            "width": "var(--layera-spacing-viewport-full-width)",
+            "maxWidth": "none"
+          },
+          "fullscreen": {
+            "width": "var(--layera-spacing-viewport-full-width)",
+            "height": "var(--layera-spacing-viewport-full-height)",
+            "maxWidth": "none",
+            "maxHeight": "none"
+          }
+        },
+        "component": {
+          "card": {
+            "width": "var(--layera-spacing-component-card-width)",
+            "height": "var(--layera-spacing-component-card-height)",
+            "padding": "var(--layera-global-spacing-4)"
+          },
+          "button": {
+            "height": "var(--layera-global-button-height-md)",
+            "padding": "var(--layera-global-spacing-2) var(--layera-global-spacing-4)"
+          },
+          "input": {
+            "height": "var(--layera-spacing-component-input-height)",
+            "padding": "var(--layera-global-spacing-2) var(--layera-global-spacing-3)"
+          },
+          "modal": {
+            "padding": "var(--layera-layera-global-spacing-modal-lg)",
+            "margin": "var(--layera-layera-global-spacing-modal-md)",
+            "maxWidth": "90vw",
+            "maxHeight": "90vh"
+          }
+        },
+        "breakpoint": {
+          "mobile": {
+            "@media (max-width: var(--layera-spacing-breakpoint-mobile))": {
+              "margin": "var(--layera-global-spacing-2)",
+              "padding": "var(--layera-global-spacing-2)"
+            }
+          },
+          "tablet": {
+            "@media (max-width: var(--layera-spacing-breakpoint-tablet))": {
+              "margin": "var(--layera-global-spacing-3)",
+              "padding": "var(--layera-global-spacing-3)"
+            }
+          },
+          "desktop": {
+            "@media (min-width: var(--layera-spacing-breakpoint-desktop))": {
+              "margin": "var(--layera-global-spacing-6)",
+              "padding": "var(--layera-global-spacing-6)"
+            }
+          }
+        }
+      }
+    }
+  }
+}

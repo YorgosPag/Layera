@@ -1,0 +1,56 @@
+{
+  "fontSize": {
+    "comment": "🎯 Font Size Tokens - Responsive typography scale",
+    "xs": {
+      "value": "0.75rem",
+      "comment": "12px - Captions, labels"
+    },
+    "sm": {
+      "value": "0.875rem",
+      "comment": "14px - Small text, form labels"
+    },
+    "base": {
+      "value": "var(--layera-global-spacing-4)",
+      "comment": "16px - Body text default - consolidated reference"
+    },
+    "lg": {
+      "value": "1.125rem",
+      "comment": "18px - Large body text"
+    },
+    "xl": {
+      "value": "1.25rem",
+      "comment": "20px - Subheadings"
+    },
+    "2xl": {
+      "value": "1.5rem",
+      "comment": "24px - Small headings"
+    },
+    "3xl": {
+      "value": "1.875rem",
+      "comment": "30px - Medium headings"
+    },
+    "4xl": {
+      "value": "2.25rem",
+      "comment": "36px - Large headings"
+    },
+    "5xl": {
+      "value": "3rem",
+      "comment": "48px - Hero headings"
+    },
+    "6xl": {
+      "value": "3.75rem",
+      "comment": "60px - Display headings"
+    }
+  },
+  "letterSpacing": {
+    "comment": "🎯 Letter Spacing Tokens - Text refinement",
+    "normal": {
+      "value": "0",
+      "comment": "Normal for body text"
+    },
+    "wide": {
+      "value": "0.025em",
+      "comment": "Wide for emphasis"
+    }
+  }
+}

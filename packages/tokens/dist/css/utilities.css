@@ -266,17 +266,17 @@ button:focus-visible {
 
 /* Typography Variant για Buttons */
 .layera-typography[data-variant="button"] {
-  padding: 8px 16px;
-  border: 1px solid #3b82f6;
-  border-radius: 6px;
-  background-color: #3b82f6;
+  padding: var(--layera-global-spacing-2) var(--layera-global-spacing-4);
+  border: 1px solid var(--layera-color-semantic-info-primary);
+  border-radius: var(--layera-global-borderRadius-xs);
+  background-color: var(--layera-color-semantic-info-primary);
   color: white;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 44px;
-  min-height: 44px;
+  min-width: var(--layera-global-spacing-11);
+  min-height: var(--layera-global-spacing-11);
   transition: all 0.2s ease;
 }
 
@@ -286,17 +286,17 @@ button:focus-visible {
 }
 
 .layera-typography[data-variant="logo"] {
-  padding: 8px;
+  padding: var(--layera-global-spacing-2);
   border: none;
-  border-radius: 6px;
+  border-radius: var(--layera-global-borderRadius-xs);
   background-color: transparent;
   color: var(--layera-color-text-primary);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 44px;
-  min-height: 44px;
+  min-width: var(--layera-global-spacing-11);
+  min-height: var(--layera-global-spacing-11);
   transition: all 0.2s ease;
 }
 
@@ -2187,19 +2187,19 @@ button:focus-visible {
 
 /* Theme Switcher Size Variants */
 .layera-theme-switcher[data-size="sm"] {
-  width: 2rem;
-  height: 2rem;
-  padding: 0.25rem;
+  width: var(--layera-global-spacing-8);
+  height: var(--layera-global-spacing-8);
+  padding: var(--layera-global-spacing-1);
 }
 .layera-theme-switcher[data-size="md"] {
-  width: 2.5rem;
-  height: 2.5rem;
-  padding: 0.375rem;
+  width: var(--layera-global-spacing-10);
+  height: var(--layera-global-spacing-10);
+  padding: var(--layera-global-spacing-1-5);
 }
 .layera-theme-switcher[data-size="lg"] {
-  width: 3rem;
-  height: 3rem;
-  padding: 0.5rem;
+  width: var(--layera-global-spacing-12);
+  height: var(--layera-global-spacing-12);
+  padding: var(--layera-global-spacing-2);
 }
 
 /* Theme Switcher Variant Variants */
@@ -2209,13 +2209,13 @@ button:focus-visible {
 }
 .layera-theme-switcher[data-variant="button"] {
   width: auto;
-  padding: 0.5rem 1rem;
-  gap: 0.5rem;
+  padding: var(--layera-global-spacing-2) var(--layera-global-spacing-4);
+  gap: var(--layera-global-spacing-2);
 }
 .layera-theme-switcher[data-variant="dropdown"] {
   width: auto;
-  padding: 0.75rem 1rem;
-  gap: 0.5rem;
+  padding: var(--layera-global-spacing-3) var(--layera-global-spacing-4);
+  gap: var(--layera-global-spacing-2);
 }
 
 /* Theme Switcher State Variants */

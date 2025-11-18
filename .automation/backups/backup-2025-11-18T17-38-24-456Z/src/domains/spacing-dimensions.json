@@ -1,0 +1,18 @@
+{
+  "spacing": {
+    "breakpoint": {
+      "desktop": {
+        "value": "1025px",
+        "comment": "Desktop breakpoint - replaces hardcoded 1025"
+      }
+    }
+  },
+  "border": {
+    "radius": {
+      "md": {
+        "value": "8px",
+        "comment": "Medium border radius"
+      }
+    }
+  }
+}

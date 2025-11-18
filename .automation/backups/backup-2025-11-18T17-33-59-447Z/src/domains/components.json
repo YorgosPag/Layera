@@ -1,0 +1,330 @@
+{
+  "components": {
+    "comment": "🧩 Component-specific tokens - Dedicated styling for UI components",
+    "app": {
+      "height": {
+        "value": "100vh",
+        "comment": "App container height"
+      },
+      "width": {
+        "value": "100vw",
+        "comment": "App container width"
+      },
+      "headerOffset": {
+        "value": "var(--layera-global-layoutSystem-header-height)",
+        "comment": "Header height offset"
+      }
+    },
+    "header": {
+      "height": {
+        "value": "var(--layera-global-layoutSystem-header-height)",
+        "comment": "Header height"
+      },
+      "zIndex": {
+        "value": "1000",
+        "comment": "Header z-index"
+      },
+      "backdrop": {
+        "filter": {
+          "value": "blur(8px)",
+          "comment": "Header backdrop filter"
+        },
+        "background": {
+          "value": "rgba(255, 255, 255, 0.95)",
+          "comment": "Header backdrop background"
+        }
+      },
+      "shadow": {
+        "value": "0 2px 8px rgba(0, 0, 0, 0.1)",
+        "comment": "Header shadow"
+      }
+    },
+    "overlay": {
+      "position": {
+        "value": "var(--layera-global-position-fixed)",
+        "comment": "Fixed positioned overlay"
+      },
+      "top": {
+        "value": "var(--layera-global-spacing-0)",
+        "comment": "Overlay top position"
+      },
+      "left": {
+        "value": "var(--layera-global-spacing-0)",
+        "comment": "Overlay left position"
+      },
+      "width": {
+        "value": "var(--layera-spacing-viewport-full-width)",
+        "comment": "Full width overlay"
+      },
+      "height": {
+        "value": "var(--layera-spacing-viewport-full-height)",
+        "comment": "Full height overlay"
+      },
+      "backgroundColor": {
+        "value": "var(--layera-color-surface-primary)",
+        "comment": "Overlay background color"
+      },
+      "zIndex": {
+        "value": "var(--layera-z-index-overlay)",
+        "comment": "Overlay z-index"
+      },
+      "overflow": {
+        "value": "var(--layera-global-overflow-auto)",
+        "comment": "Overlay overflow behavior"
+      }
+    },
+    "navigation": {
+      "button": {
+        "padding": {
+          "value": "var(--layera-space-xs) var(--layera-space-sm)",
+          "comment": "Navigation button padding"
+        },
+        "borderRadius": {
+          "value": "var(--layera-radius-md)",
+          "comment": "Navigation button border radius"
+        },
+        "fontSize": {
+          "value": "0.875rem",
+          "comment": "Navigation button font size"
+        },
+        "fontWeight": {
+          "value": "500",
+          "comment": "Navigation button font weight"
+        },
+        "gap": {
+          "value": "var(--layera-space-xs)",
+          "comment": "Navigation button icon gap"
+        },
+        "transition": {
+          "value": "all 0.2s ease",
+          "comment": "Navigation button transition"
+        },
+        "hover": {
+          "transform": {
+            "value": "translateY(-1px)",
+            "comment": "Navigation button hover transform"
+          },
+          "shadow": {
+            "value": "0 4px 8px rgba(0, 0, 0, 0.1)",
+            "comment": "Navigation button hover shadow"
+          }
+        }
+      },
+      "login": {
+        "size": {
+          "value": "var(--layera-space-xl)",
+          "comment": "Login button size"
+        },
+        "borderRadius": {
+          "value": "var(--layera-global-borderRadius-circle)",
+          "comment": "Login button border radius - consolidated reference"
+        },
+        "hover": {
+          "transform": {
+            "value": "scale(1.05)",
+            "comment": "Login button hover scale"
+          },
+          "shadow": {
+            "value": "0 4px 12px rgba(0, 0, 0, 0.15)",
+            "comment": "Login button hover shadow"
+          }
+        }
+      }
+    },
+    "map": {
+      "zIndex": {
+        "value": "1",
+        "comment": "Map container z-index"
+      },
+      "position": {
+        "value": "fixed",
+        "comment": "Map position"
+      },
+      "inset": {
+        "value": "0",
+        "comment": "Map full inset"
+      },
+      "container": {
+        "height": {
+          "value": "calc(100vh - var(--layera-global-layoutSystem-header-height))",
+          "comment": "Map height minus header"
+        },
+        "width": {
+          "value": "100vw",
+          "comment": "Full viewport width"
+        },
+        "top": {
+          "value": "var(--layera-global-layoutSystem-header-height)",
+          "comment": "Position below header"
+        },
+        "left": {
+          "value": "0",
+          "comment": "Align to left edge"
+        }
+      }
+    },
+    "drawer": {
+      "comment": "🗂️ Drawer sidebar component tokens",
+      "zIndex": {
+        "value": "1000",
+        "comment": "Drawer z-index (same as modal)"
+      },
+      "overlay": {
+        "background": {
+          "value": "var(--layera-color-surface-overlay, rgba(0, 0, 0, 0.5))",
+          "comment": "Drawer overlay background - theme aware"
+        },
+        "position": {
+          "value": "fixed",
+          "comment": "Fixed overlay positioning"
+        },
+        "inset": {
+          "value": "var(--layera-global-layoutSystem-header-height) 0 0 0",
+          "comment": "Overlay starts below header"
+        }
+      },
+      "panel": {
+        "background": {
+          "value": "var(--layera-color-surface, #ffffff)",
+          "comment": "Drawer panel background"
+        },
+        "border": {
+          "value": "1px solid var(--layera-color-border-primary, #e5e5e5)",
+          "comment": "Drawer panel border"
+        },
+        "shadow": {
+          "value": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+          "comment": "Drawer panel shadow"
+        },
+        "borderRadius": {
+          "value": "var(--layera-radius-lg, 0.5rem)",
+          "comment": "Drawer panel border radius"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "value": "20rem",
+          "comment": "Small drawer width - 320px"
+        },
+        "md": {
+          "value": "28rem",
+          "comment": "Medium drawer width - 448px"
+        },
+        "lg": {
+          "value": "36rem",
+          "comment": "Large drawer width - 576px"
+        }
+      },
+      "positions": {
+        "right": {
+          "top": {
+            "value": "0",
+            "comment": "Right drawer top position (relative to overlay)"
+          },
+          "right": {
+            "value": "0",
+            "comment": "Right drawer right position"
+          },
+          "height": {
+            "value": "calc(100vh - var(--layera-global-layoutSystem-header-height))",
+            "comment": "Right drawer height minus header"
+          }
+        },
+        "left": {
+          "top": {
+            "value": "0",
+            "comment": "Left drawer top position"
+          },
+          "left": {
+            "value": "0",
+            "comment": "Left drawer left position"
+          },
+          "height": {
+            "value": "100%",
+            "comment": "Left drawer full height"
+          }
+        },
+        "top": {
+          "top": {
+            "value": "0",
+            "comment": "Top drawer top position"
+          },
+          "left": {
+            "value": "0",
+            "comment": "Top drawer left position"
+          },
+          "width": {
+            "value": "100%",
+            "comment": "Top drawer full width"
+          }
+        },
+        "bottom": {
+          "bottom": {
+            "value": "0",
+            "comment": "Bottom drawer bottom position"
+          },
+          "left": {
+            "value": "0",
+            "comment": "Bottom drawer left position"
+          },
+          "width": {
+            "value": "100%",
+            "comment": "Bottom drawer full width"
+          }
+        }
+      },
+      "closeButton": {
+        "position": {
+          "value": "absolute",
+          "comment": "Close button positioning"
+        },
+        "top": {
+          "value": "0.75rem",
+          "comment": "Close button top spacing"
+        },
+        "right": {
+          "value": "0.75rem",
+          "comment": "Close button right spacing"
+        },
+        "size": {
+          "value": "1.5rem",
+          "comment": "Close button size - optimized for large icons"
+        },
+        "padding": {
+          "value": "0.25rem",
+          "comment": "Close button padding - minimal for large icons"
+        },
+        "background": {
+          "value": "transparent",
+          "comment": "Transparent close button background"
+        },
+        "borderRadius": {
+          "value": "var(--layera-radius-md, 0.375rem)",
+          "comment": "Close button border radius"
+        },
+        "hover": {
+          "background": {
+            "value": "var(--layera-color-surface-secondary, #f8fafc)",
+            "comment": "Close button hover background"
+          }
+        }
+      },
+      "content": {
+        "padding": {
+          "value": "var(--layera-space-4, 1rem)",
+          "comment": "Drawer content padding"
+        }
+      },
+      "pinnedOverlay": {
+        "pointerEvents": {
+          "value": "none",
+          "comment": "Pinned mode - overlay doesn't capture events"
+        },
+        "background": {
+          "value": "transparent",
+          "comment": "Pinned mode - transparent overlay"
+        }
+      }
+    }
+  }
+}

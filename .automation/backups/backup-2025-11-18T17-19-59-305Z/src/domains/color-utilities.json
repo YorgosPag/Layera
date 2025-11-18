@@ -1,0 +1,257 @@
+{
+  "colorUtilities": {
+    "comment": "🎨 Enterprise Color Utility Classes - Complete Design System",
+    "utilities": {
+      "comment": "Color utility classes for rapid development and consistency",
+      "background": {
+        "comment": "🎯 Background color utility classes",
+        "primary": {
+          "value": "var(--layera-color-surface-primary)",
+          "comment": "Primary background - theme aware",
+          "type": "color"
+        },
+        "secondary": {
+          "value": "var(--layera-color-surface-secondary)",
+          "comment": "Secondary background - theme aware",
+          "type": "color"
+        },
+        "semantic": {
+          "success": {
+            "value": "var(--layera-color-semantic-success-primary, #10b981)",
+            "comment": "Success background color",
+            "type": "color"
+          },
+          "warning": {
+            "value": "var(--layera-color-semantic-warning-primary, #f59e0b)",
+            "comment": "Warning background color",
+            "type": "color"
+          },
+          "error": {
+            "value": "var(--layera-color-semantic-error-primary, #ef4444)",
+            "comment": "Error background color",
+            "type": "color"
+          },
+          "info": {
+            "value": "var(--layera-color-semantic-info-primary, #6366f1)",
+            "comment": "Info background color",
+            "type": "color"
+          }
+        },
+        "neutral": {
+          "white": {
+            "value": "var(--layera-color-neutral-white)",
+            "comment": "Pure white background - consolidated reference",
+            "type": "color"
+          },
+          "black": {
+            "value": "var(--layera-color-neutral-black)",
+            "comment": "Pure black background - consolidated reference",
+            "type": "color"
+          },
+          "transparent": {
+            "value": "transparent",
+            "comment": "Transparent background",
+            "type": "color"
+          }
+        }
+      },
+      "text": {
+        "comment": "📝 Text color utility classes",
+        "primary": {
+          "value": "var(--layera-color-text-primary)",
+          "comment": "Primary text color - theme aware",
+          "type": "color"
+        },
+        "secondary": {
+          "value": "var(--layera-color-text-secondary)",
+          "comment": "Secondary text color - theme aware",
+          "type": "color"
+        },
+        "tertiary": {
+          "value": "var(--layera-color-text-tertiary)",
+          "comment": "Tertiary text color for subtle content",
+          "type": "color"
+        },
+        "semantic": {
+          "success": {
+            "value": "var(--layera-color-semantic-success-primary, #10b981)",
+            "comment": "Success text color",
+            "type": "color"
+          },
+          "warning": {
+            "value": "var(--layera-color-semantic-warning-primary, #f59e0b)",
+            "comment": "Warning text color",
+            "type": "color"
+          },
+          "error": {
+            "value": "var(--layera-color-semantic-error-primary, #ef4444)",
+            "comment": "Error text color",
+            "type": "color"
+          },
+          "info": {
+            "value": "var(--layera-color-semantic-info-primary, #6366f1)",
+            "comment": "Info text color",
+            "type": "color"
+          }
+        },
+        "neutral": {
+          "white": {
+            "value": "var(--layera-color-neutral-white)",
+            "comment": "Pure white text - consolidated reference",
+            "type": "color"
+          },
+          "black": {
+            "value": "var(--layera-color-neutral-black)",
+            "comment": "Pure black text - consolidated reference",
+            "type": "color"
+          }
+        },
+        "accent": {
+          "blue": {
+            "value": "var(--layera-global-colors-theme-light-accent-blue)",
+            "comment": "Blue accent text",
+            "type": "color"
+          }
+        }
+      },
+      "border": {
+        "comment": "🔲 Border color utility classes",
+        "primary": {
+          "value": "var(--layera-color-border-primary)",
+          "comment": "Primary border color - theme aware",
+          "type": "color"
+        },
+        "secondary": {
+          "value": "var(--layera-color-border-secondary)",
+          "comment": "Secondary border color",
+          "type": "color"
+        },
+        "default": {
+          "value": "var(--layera-color-border-default)",
+          "comment": "Default border color",
+          "type": "color"
+        },
+        "light": {
+          "value": "var(--layera-color-border-light)",
+          "comment": "Light border color for subtle separation",
+          "type": "color"
+        },
+        "focus": {
+          "value": "var(--layera-color-border-focus)",
+          "comment": "Focus border color for interactive elements",
+          "type": "color"
+        },
+        "semantic": {
+          "success": {
+            "value": "var(--layera-color-semantic-success-primary, #10b981)",
+            "comment": "Success border color",
+            "type": "color"
+          },
+          "warning": {
+            "value": "var(--layera-color-semantic-warning-primary, #f59e0b)",
+            "comment": "Warning border color",
+            "type": "color"
+          },
+          "error": {
+            "value": "var(--layera-color-semantic-error-primary, #ef4444)",
+            "comment": "Error border color",
+            "type": "color"
+          },
+          "info": {
+            "value": "var(--layera-color-semantic-info-primary, #6366f1)",
+            "comment": "Info border color",
+            "type": "color"
+          }
+        },
+        "neutral": {
+          "white": {
+            "value": "var(--layera-color-neutral-white)",
+            "comment": "Pure white border - consolidated reference",
+            "type": "color"
+          },
+          "black": {
+            "value": "var(--layera-color-neutral-black)",
+            "comment": "Pure black border - consolidated reference",
+            "type": "color"
+          },
+          "transparent": {
+            "value": "transparent",
+            "comment": "Transparent border",
+            "type": "color"
+          }
+        },
+        "accent": {
+          "blue": {
+            "value": "var(--layera-global-colors-theme-light-accent-blue)",
+            "comment": "Blue accent border",
+            "type": "color"
+          }
+        }
+      },
+      "fill": {
+        "comment": "🎨 SVG fill color utility classes",
+        "primary": {
+          "value": "var(--layera-color-text-primary)",
+          "comment": "Primary SVG fill color",
+          "type": "color"
+        },
+        "secondary": {
+          "value": "var(--layera-color-text-secondary)",
+          "comment": "Secondary SVG fill color",
+          "type": "color"
+        },
+        "accent": {
+          "blue": {
+            "value": "var(--layera-global-colors-theme-light-accent-blue)",
+            "comment": "Blue accent SVG fill",
+            "type": "color"
+          },
+          "green": {
+            "value": "var(--layera-global-colors-theme-light-accent-green)",
+            "comment": "Green accent SVG fill",
+            "type": "color"
+          }
+        },
+        "semantic": {
+          "success": {
+            "value": "var(--layera-color-semantic-success-primary, #10b981)",
+            "comment": "Success SVG fill color",
+            "type": "color"
+          },
+          "warning": {
+            "value": "var(--layera-color-semantic-warning-primary, #f59e0b)",
+            "comment": "Warning SVG fill color",
+            "type": "color"
+          },
+          "error": {
+            "value": "var(--layera-color-semantic-error-primary, #ef4444)",
+            "comment": "Error SVG fill color",
+            "type": "color"
+          },
+          "info": {
+            "value": "var(--layera-color-semantic-info-primary, #6366f1)",
+            "comment": "Info SVG fill color",
+            "type": "color"
+          }
+        },
+        "neutral": {
+          "white": {
+            "value": "var(--layera-color-neutral-white)",
+            "comment": "Pure white SVG fill - consolidated reference",
+            "type": "color"
+          },
+          "black": {
+            "value": "var(--layera-color-neutral-black)",
+            "comment": "Pure black SVG fill - consolidated reference",
+            "type": "color"
+          },
+          "currentColor": {
+            "value": "currentColor",
+            "comment": "Inherit text color for SVG fill",
+            "type": "color"
+          }
+        }
+      }
+    }
+  }
+}

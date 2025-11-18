@@ -1,0 +1,27 @@
+{
+  "color": {
+    "bg": {
+      "comment": "Background colors - primary surfaces and semantic states",
+      "secondary": {
+        "value": "var(--layera-color-bg-secondary)",
+        "comment": "Secondary background - light slate for card surfaces"
+      },
+      "success": {
+        "value": "var(--layera-color-semantic-success-bg)",
+        "comment": "Success background - light green for success states"
+      },
+      "warning": {
+        "value": "var(--layera-color-semantic-warning-bg)",
+        "comment": "Warning background - light amber for warning states"
+      },
+      "danger": {
+        "value": "var(--layera-color-semantic-danger-bg)",
+        "comment": "Danger background - light red for error states"
+      },
+      "info": {
+        "value": "var(--layera-color-semantic-info-bg)",
+        "comment": "Info background - light blue for info states"
+      }
+    }
+  }
+}

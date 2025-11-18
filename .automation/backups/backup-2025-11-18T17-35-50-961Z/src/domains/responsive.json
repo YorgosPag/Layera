@@ -1,0 +1,59 @@
+{
+  "responsive": {
+    "comment": "📱 Enterprise Responsive System - Breakpoints and mobile optimizations",
+    "breakpoints": {
+      "mobile": {
+        "value": "480px",
+        "comment": "Mobile breakpoint"
+      },
+      "tablet": {
+        "value": "768px",
+        "comment": "Tablet breakpoint"
+      },
+      "desktop": {
+        "value": "1024px",
+        "comment": "Desktop breakpoint"
+      }
+    },
+    "mobile": {
+      "navigation": {
+        "button": {
+          "padding": {
+            "value": "var(--layera-space-xs)",
+            "comment": "Mobile nav button padding"
+          },
+          "fontSize": {
+            "value": "0.75rem",
+            "comment": "Mobile nav button font size"
+          },
+          "minWidth": {
+            "value": "44px",
+            "comment": "Mobile touch target minimum"
+          }
+        },
+        "login": {
+          "size": {
+            "value": "var(--layera-space-md)",
+            "comment": "Mobile login button size"
+          }
+        }
+      }
+    },
+    "tablet": {
+      "navigation": {
+        "button": {
+          "fontSize": {
+            "value": "0.875rem",
+            "comment": "Tablet nav button font size"
+          }
+        },
+        "login": {
+          "size": {
+            "value": "var(--layera-space-lg)",
+            "comment": "Tablet login button size"
+          }
+        }
+      }
+    }
+  }
+}

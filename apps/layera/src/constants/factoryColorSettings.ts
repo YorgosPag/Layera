@@ -31,49 +31,49 @@ export interface FactoryColorSettings {
 export const FACTORY_COLOR_SETTINGS: FactoryColorSettings = {
   primary: {
     name: 'Microsoft Blue',
-    hex: '#0078d4', // Microsoft's primary blue - accessible and professional
+    hex: 'var(--layera-color-semantic-info-primary)', // Microsoft's primary blue - accessible and professional
     description: 'Επαγγελματικό μπλε της Microsoft - κύρια ενέργεια',
     source: 'Microsoft Design System'
   },
 
   secondary: {
     name: 'Apple Gray',
-    hex: '#6c757d', // Bootstrap 5 secondary + Apple's neutral
+    hex: 'var(--layera-color-semantic-neutral-dark)', // Bootstrap 5 secondary + Apple's neutral
     description: 'Ουδέτερο γκρι για δευτερεύουσες ενέργειες',
     source: 'Bootstrap 5 + Apple Design'
   },
 
   success: {
     name: 'Google Green',
-    hex: '#34a853', // Google's green - universally recognized for success
+    hex: 'var(--layera-color-semantic-success-primary)', // Google's green - universally recognized for success
     description: 'Πράσινο επιτυχίας - επιβεβαίωση ενεργειών',
     source: 'Google Material Design'
   },
 
   warning: {
     name: 'Amazon Orange',
-    hex: '#ff9900', // Amazon's signature orange - attention-grabbing
+    hex: 'var(--layera-color-semantic-warning-primary)', // Amazon's signature orange - attention-grabbing
     description: 'Πορτοκαλί προσοχής - προειδοποιήσεις',
     source: 'Amazon Brand Guidelines'
   },
 
   danger: {
     name: 'Bootstrap Red',
-    hex: '#dc3545', // Bootstrap 5 danger - WCAG compliant red
+    hex: 'var(--layera-color-semantic-error-primary)', // Bootstrap 5 danger - WCAG compliant red
     description: 'Κόκκινο κινδύνου - σφάλματα και διαγραφές',
     source: 'Bootstrap 5 Design System'
   },
 
   info: {
     name: 'Facebook Blue',
-    hex: '#1877f2', // Facebook's current blue - informational
+    hex: 'var(--layera-color-semantic-info-primary)', // Facebook's current blue - informational
     description: 'Ανοικτό μπλε για πληροφορίες',
     source: 'Facebook Brand Guidelines'
   },
 
   outline: {
     name: 'Enterprise Gray',
-    hex: '#e9ecef', // Light gray for outlines - subtle and accessible
+    hex: 'var(--layera-color-semantic-neutral-light)', // Light gray for outlines - subtle and accessible
     description: 'Ανοικτό γκρι για περιγράμματα',
     source: 'Bootstrap 5 + Enterprise Standards'
   }
@@ -85,43 +85,43 @@ export const FACTORY_COLOR_SETTINGS: FactoryColorSettings = {
 export const MICROSOFT_PALETTE: FactoryColorSettings = {
   primary: {
     name: 'Microsoft Blue',
-    hex: '#0078d4',
+    hex: 'var(--layera-color-semantic-info-primary)',
     description: 'Κύριο μπλε Microsoft',
     source: 'Microsoft Fluent Design'
   },
   secondary: {
     name: 'Microsoft Gray',
-    hex: '#605e5c',
+    hex: 'var(--layera-color-semantic-neutral-dark)',
     description: 'Δευτερεύον γκρι Microsoft',
     source: 'Microsoft Fluent Design'
   },
   success: {
     name: 'Microsoft Green',
-    hex: '#107c10',
+    hex: 'var(--layera-color-semantic-success-primary)',
     description: 'Πράσινο επιτυχίας Microsoft',
     source: 'Microsoft Fluent Design'
   },
   warning: {
     name: 'Microsoft Yellow',
-    hex: '#ffb900',
+    hex: 'var(--layera-color-semantic-warning-primary)',
     description: 'Κίτρινο προειδοποίησης Microsoft',
     source: 'Microsoft Fluent Design'
   },
   danger: {
     name: 'Microsoft Red',
-    hex: '#d13438',
+    hex: 'var(--layera-color-semantic-error-primary)',
     description: 'Κόκκινο κινδύνου Microsoft',
     source: 'Microsoft Fluent Design'
   },
   info: {
     name: 'Microsoft Light Blue',
-    hex: '#00bcf2',
+    hex: 'var(--layera-color-semantic-info-primary)',
     description: 'Ανοικτό μπλε πληροφοριών Microsoft',
     source: 'Microsoft Fluent Design'
   },
   outline: {
     name: 'Microsoft Border',
-    hex: '#edebe9',
+    hex: 'var(--layera-color-semantic-neutral-light)',
     description: 'Περίγραμμα Microsoft',
     source: 'Microsoft Fluent Design'
   }
@@ -133,43 +133,43 @@ export const MICROSOFT_PALETTE: FactoryColorSettings = {
 export const GOOGLE_PALETTE: FactoryColorSettings = {
   primary: {
     name: 'Google Blue',
-    hex: '#4285f4',
+    hex: 'var(--layera-color-semantic-info-primary)',
     description: 'Κύριο μπλε Google',
     source: 'Google Material Design'
   },
   secondary: {
     name: 'Google Gray',
-    hex: '#9aa0a6',
+    hex: 'var(--layera-color-semantic-neutral-dark)',
     description: 'Δευτερεύον γκρι Google',
     source: 'Google Material Design'
   },
   success: {
     name: 'Google Green',
-    hex: '#34a853',
+    hex: 'var(--layera-color-semantic-success-primary)',
     description: 'Πράσινο επιτυχίας Google',
     source: 'Google Material Design'
   },
   warning: {
     name: 'Google Yellow',
-    hex: '#fbbc05',
+    hex: 'var(--layera-color-semantic-warning-primary)',
     description: 'Κίτρινο προειδοποίησης Google',
     source: 'Google Material Design'
   },
   danger: {
     name: 'Google Red',
-    hex: '#ea4335',
+    hex: 'var(--layera-color-semantic-error-primary)',
     description: 'Κόκκινο κινδύνου Google',
     source: 'Google Material Design'
   },
   info: {
     name: 'Google Cyan',
-    hex: '#00acc1',
+    hex: 'var(--layera-color-semantic-info-primary)',
     description: 'Cyan πληροφοριών Google',
     source: 'Google Material Design'
   },
   outline: {
     name: 'Google Border',
-    hex: '#dadce0',
+    hex: 'var(--layera-color-semantic-neutral-light)',
     description: 'Περίγραμμα Google',
     source: 'Google Material Design'
   }

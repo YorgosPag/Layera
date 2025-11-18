@@ -1,0 +1,46 @@
+{
+  "i18n": {
+    "comment": "🌍 Enterprise Internationalization System - Complete I18N Support",
+    "unified": {
+      "comment": "Unified i18n class - replaces multiple fragmented classes",
+      "value": {
+        "position": "relative",
+        "boxSizing": "border-box",
+        "transition": "all 0.2s ease",
+        "fontFamily": "inherit",
+        "fontSize": "inherit",
+        "lineHeight": "inherit"
+      },
+      "type": "object",
+      "variants": {
+        "direction": {
+          "comment": "Text and layout direction variants",
+          "ltr": {
+            "direction": "ltr",
+            "textAlign": "left",
+            "unicodeBidi": "embed"
+          }
+        },
+        "content": {
+          "comment": "Content-specific adaptations",
+          "numeric": {
+            "fontVariantNumeric": "tabular-nums",
+            "direction": "ltr",
+            "unicodeBidi": "bidi-override"
+          }
+        },
+        "reading": {
+          "comment": "Reading pattern adaptations",
+          "horizontal": {
+            "writingMode": "horizontal-tb",
+            "textOrientation": "mixed"
+          },
+          "vertical": {
+            "writingMode": "vertical-rl",
+            "textOrientation": "mixed"
+          }
+        }
+      }
+    }
+  }
+}

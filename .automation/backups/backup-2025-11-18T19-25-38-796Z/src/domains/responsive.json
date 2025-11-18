@@ -1,0 +1,101 @@
+{
+  "responsive": {
+    "comment": "📱 Enterprise Responsive System - Breakpoints and mobile optimizations",
+    "breakpoints": {
+      "mobile": {
+        "value": "480px",
+        "comment": "Mobile breakpoint - legacy"
+      },
+      "tablet": {
+        "value": "768px",
+        "comment": "Tablet breakpoint - standard"
+      },
+      "desktop": {
+        "value": "1024px",
+        "comment": "Desktop breakpoint - standard"
+      },
+      "sm": {
+        "max": {
+          "value": "767px",
+          "comment": "Small devices - mobile phones (max-width)"
+        }
+      },
+      "md": {
+        "min": {
+          "value": "768px",
+          "comment": "Medium devices - tablets (min-width)"
+        },
+        "max": {
+          "value": "1023px",
+          "comment": "Medium devices - tablets (max-width)"
+        }
+      },
+      "lg": {
+        "min": {
+          "value": "1024px",
+          "comment": "Large devices - small desktops (min-width)"
+        },
+        "max": {
+          "value": "1199px",
+          "comment": "Large devices - small desktops (max-width)"
+        }
+      },
+      "xl": {
+        "min": {
+          "value": "1200px",
+          "comment": "Extra large devices - desktops (min-width)"
+        },
+        "max": {
+          "value": "1439px",
+          "comment": "Extra large devices - desktops (max-width)"
+        }
+      },
+      "2xl": {
+        "min": {
+          "value": "1440px",
+          "comment": "Extra extra large devices - large desktops (min-width)"
+        }
+      }
+    },
+    "mobile": {
+      "navigation": {
+        "button": {
+          "padding": {
+            "value": "var(--layera-space-xs)",
+            "comment": "Mobile nav button padding"
+          },
+          "fontSize": {
+            "value": "0.75rem",
+            "comment": "Mobile nav button font size"
+          },
+          "minWidth": {
+            "value": "44px",
+            "comment": "Mobile touch target minimum"
+          }
+        },
+        "login": {
+          "size": {
+            "value": "var(--layera-space-md)",
+            "comment": "Mobile login button size"
+          }
+        }
+      }
+    },
+    "tablet": {
+      "navigation": {
+        "button": {
+          "fontSize": {
+            "value": "0.875rem",
+            "comment": "Tablet nav button font size"
+          }
+        },
+        "login": {
+          "size": {
+            "value": "var(--layera-space-lg)",
+            "comment": "Tablet login button size"
+          }
+        }
+      }
+    }
+  }
+}

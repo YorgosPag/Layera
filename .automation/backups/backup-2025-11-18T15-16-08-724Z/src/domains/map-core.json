@@ -1,0 +1,54 @@
+{
+  "map": {
+    "container": {
+      "value": {
+        "position": "fixed",
+        "top": "80px",
+        "left": "0",
+        "right": "0",
+        "bottom": "0",
+        "width": "var(--layera-spacing-viewport-full-width)",
+        "height": "calc(100vh - 80px)",
+        "zIndex": "1"
+      },
+      "comment": "Map container - κάτω από την επικεφαλίδα",
+      "height": {
+        "default": {
+          "value": "25rem",
+          "comment": "400px - Default map container height"
+        },
+        "compact": {
+          "value": "18.75rem",
+          "comment": "300px - Compact map height for mobile"
+        },
+        "expanded": {
+          "value": "31.25rem",
+          "comment": "500px - Expanded map height for detail views"
+        }
+      }
+    },
+    "fullscreen": {
+      "value": {
+        "width": "100%",
+        "height": "100%"
+      },
+      "comment": "Map fullscreen styling"
+    },
+    "defaults": {
+      "initial": {
+        "latitude": {
+          "value": 37.9755,
+          "comment": "Default latitude for Athens, Greece center"
+        },
+        "longitude": {
+          "value": 23.7348,
+          "comment": "Default longitude for Athens, Greece center"
+        },
+        "zoom": {
+          "value": 13,
+          "comment": "Default zoom level for city view"
+        }
+      }
+    }
+  }
+}
