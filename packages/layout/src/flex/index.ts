@@ -300,7 +300,7 @@ export const FLEX_UTILITIES = {
       // Desktop: row, Mobile: column
       display: 'flex',
       flexDirection: getFlexVar('direction', 'row'),
-      '@media screen and (max-width: calc(var(--layera-spacing-breakpoint-mobile) - 1px))': {
+      '@media screen and (max-width: calc(var(--layera-spacing-breakpoint-mobile) - var(--layera-spacing-unit-pixel)))': {
         flexDirection: getFlexVar('direction', 'column')
       }
     },
@@ -308,7 +308,7 @@ export const FLEX_UTILITIES = {
       // Desktop: normal order, Mobile: reverse
       display: 'flex',
       flexDirection: getFlexVar('direction', 'row'),
-      '@media screen and (max-width: calc(var(--layera-spacing-breakpoint-mobile) - 1px))': {
+      '@media screen and (max-width: calc(var(--layera-spacing-breakpoint-mobile) - var(--layera-spacing-unit-pixel)))': {
         flexDirection: getFlexVar('direction', 'row-reverse')
       }
     },
@@ -316,7 +316,7 @@ export const FLEX_UTILITIES = {
       // Desktop: row, Tablet και κάτω: column
       display: 'flex',
       flexDirection: getFlexVar('direction', 'row'),
-      '@media screen and (max-width: calc(var(--layera-spacing-breakpoint-desktop) - 1px))': {
+      '@media screen and (max-width: calc(var(--layera-spacing-breakpoint-desktop) - var(--layera-spacing-unit-pixel)))': {
         flexDirection: getFlexVar('direction', 'column')
       }
     }

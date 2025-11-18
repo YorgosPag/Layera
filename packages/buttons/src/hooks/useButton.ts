@@ -11,39 +11,39 @@ export const useButton = () => {
   const buttonTokens: ButtonTokens = useMemo(() => ({
     sizes: {
       xs: {
-        height: '2rem',
-        padding: `var(--layera-global-spacing-2) 0.75rem`,
-        fontSize: '0.75rem',
-        iconSize: '0.875rem',
-        gap: '0.375rem'
+        height: 'var(--layera-global-button-height-xs)',
+        padding: `var(--layera-global-spacing-2) var(--layera-global-spacing-3)`,
+        fontSize: 'var(--layera-fontSize-xs)',
+        iconSize: 'var(--layera-iconSize-sm)',
+        gap: 'var(--layera-global-spacing-1-5)'
       },
       sm: {
-        height: '2.25rem',
-        padding: `var(--layera-global-spacing-2) 1rem`,
-        fontSize: '0.875rem',
-        iconSize: '1rem',
+        height: 'var(--layera-global-button-height-sm)',
+        padding: `var(--layera-global-spacing-2) var(--layera-global-spacing-4)`,
+        fontSize: 'var(--layera-fontSize-sm)',
+        iconSize: 'var(--layera-iconSize-base)',
         gap: `var(--layera-global-spacing-2)`
       },
       md: {
-        height: '2.75rem',
-        padding: `var(--layera-global-spacing-4) 1.25rem`,
-        fontSize: '1rem',
-        iconSize: '1.125rem',
+        height: 'var(--layera-global-button-height-md)',
+        padding: `var(--layera-global-spacing-4) var(--layera-global-spacing-5)`,
+        fontSize: 'var(--layera-fontSize-base)',
+        iconSize: 'var(--layera-iconSize-lg)',
         gap: `var(--layera-global-spacing-2)`
       },
       lg: {
-        height: '3rem',
+        height: 'var(--layera-global-button-height-lg)',
         padding: `var(--layera-global-spacing-3) var(--layera-global-spacing-6)`,
-        fontSize: '1.125rem',
-        iconSize: '1.25rem',
+        fontSize: 'var(--layera-fontSize-lg)',
+        iconSize: 'var(--layera-iconSize-xl)',
         gap: `var(--layera-global-spacing-2)`
       },
       xl: {
-        height: '3.5rem',
+        height: 'var(--layera-global-button-height-xl)',
         padding: `var(--layera-global-spacing-4) var(--layera-global-spacing-12)`,
-        fontSize: '1.25rem',
-        iconSize: '1.5rem',
-        gap: '0.75rem'
+        fontSize: 'var(--layera-fontSize-xl)',
+        iconSize: 'var(--layera-iconSize-2xl)',
+        gap: 'var(--layera-global-spacing-3)'
       }
     },
     variants: {
@@ -247,8 +247,8 @@ export const useButton = () => {
     },
     radius: {
       none: '0',
-      sm: '0.25rem',
-      md: '0.375rem',
+      sm: 'var(--layera-global-borderRadius-sm)',
+      md: 'var(--layera-global-borderRadius-md)',
       lg: `var(--layera-global-spacing-2)`,
       full: 'var(--layera-radius-pill)'
     }
@@ -276,8 +276,8 @@ export const useButton = () => {
       border: `var(--layera-global-borderWidth-1) solid ${variantTokens.border}`,
       borderRadius: buttonTokens.radius.md,
       transition: buttonTokens.transitions.default,
-      fontFamily: 'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-      fontWeight: '500',
+      fontFamily: 'var(--layera-fontFamily-primary)',
+      fontWeight: 'var(--layera-fontWeight-medium)',
       cursor: 'pointer',
       display: 'inline-flex',
       alignItems: 'center',

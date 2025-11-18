@@ -10,11 +10,11 @@
  * Standard width percentages για UI components
  */
 export const UI_WIDTH_PERCENTAGES = {
-  SMALL: 20,                       // Small width percentage (20%)
-  MEDIUM: 40,                      // Medium width percentage (40%)
-  LARGE: 60,                       // Large width percentage (60%)
-  XL: 80,                          // Extra large width percentage (80%)
-  FULL: 100                        // Full width percentage (100%)
+  SMALL: 'var(--layera-percentage-small)',      // Small width percentage (20%)
+  MEDIUM: 'var(--layera-percentage-medium)',    // Medium width percentage (40%)
+  LARGE: 'var(--layera-percentage-large)',      // Large width percentage (60%)
+  XL: 'var(--layera-percentage-xl)',            // Extra large width percentage (80%)
+  FULL: 'var(--layera-percentage-full)'         // Full width percentage (100%)
 } as const;
 
 /**

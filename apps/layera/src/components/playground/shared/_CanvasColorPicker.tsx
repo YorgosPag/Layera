@@ -75,9 +75,9 @@ export const CanvasColorPicker: React.FC<CanvasColorPickerProps> = ({
     for (let x = 0; x < width; x++) {
       const hue = (x / width) * 360;
       const gradient = ctx.createLinearGradient(0, 0, 0, height);
-      gradient.addColorStop(0, `hsl(${hue}, 100%, 50%)`);
-      gradient.addColorStop(0.5, `hsl(${hue}, 100%, 25%)`);
-      gradient.addColorStop(1, `hsl(${hue}, 0%, 0%)`);
+      gradient.addColorStop(0, `hsl(${hue}, var(--layera-colorUtilities-saturation-full), var(--layera-colorUtilities-lightness-medium))`);
+      gradient.addColorStop(0.5, `hsl(${hue}, var(--layera-colorUtilities-saturation-full), var(--layera-colorUtilities-lightness-dark))`);
+      gradient.addColorStop(1, `hsl(${hue}, var(--layera-colorUtilities-saturation-none), var(--layera-colorUtilities-lightness-none))`);
 
       ctx.fillStyle = gradient;
       ctx.fillRect(x, 0, 1, height);
