@@ -198,7 +198,7 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
     const style = `
       /* ${colorCategory} colors για ${elementType} elements */
       ${selectors} {
-        ${cssProperty}: var(${variableName}, #d1d5db) !important;
+        ${cssProperty}: var(${variableName}, var(--layera-color-semantic-neutral-light)) !important;
       }
     `;
 

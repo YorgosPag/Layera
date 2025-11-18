@@ -206,11 +206,11 @@ export const useCSSVariablesWithAlpha = (): UseCSSVariablesWithAlphaReturn => {
       :root {
         /* Alpha-enhanced CSS Variables */
         /* Buttons */
-        --layera-btn-primary-bg-hex: #6366f1;
+        --layera-btn-primary-bg-hex: var(--layera-color-semantic-info-primary);
         --layera-btn-primary-bg-rgba: rgba(99, 102, 241, 1);
         --layera-btn-primary-bg-alpha: 1;
 
-        --layera-btn-secondary-bg-hex: #475569;
+        --layera-btn-secondary-bg-hex: var(--layera-color-semantic-neutral-dark);
         --layera-btn-secondary-bg-rgba: rgba(71, 85, 105, 1);
         --layera-btn-secondary-bg-alpha: 1;
 
@@ -219,25 +219,25 @@ export const useCSSVariablesWithAlpha = (): UseCSSVariablesWithAlphaReturn => {
         --layera-color-bg-primary-rgba: rgba(255, 255, 255, 0.9);
         --layera-color-bg-primary-alpha: 0.9;
 
-        --layera-color-bg-secondary-hex: #f8fafc;
+        --layera-color-bg-secondary-hex: var(--layera-color-semantic-neutral-light);
         --layera-color-bg-secondary-rgba: rgba(248, 250, 252, 0.8);
         --layera-color-bg-secondary-alpha: 0.8;
 
         /* Text */
-        --layera-color-text-primary-hex: #1f2937;
+        --layera-color-text-primary-hex: var(--layera-color-semantic-neutral-dark);
         --layera-color-text-primary-rgba: rgba(31, 41, 55, 1);
         --layera-color-text-primary-alpha: 1;
 
-        --layera-color-text-secondary-hex: #6b7280;
+        --layera-color-text-secondary-hex: var(--layera-color-semantic-neutral-dark);
         --layera-color-text-secondary-rgba: rgba(107, 114, 128, 0.8);
         --layera-color-text-secondary-alpha: 0.8;
 
         /* Borders */
-        --layera-color-border-primary-hex: #e5e5e5;
+        --layera-color-border-primary-hex: var(--layera-color-semantic-neutral-light);
         --layera-color-border-primary-rgba: rgba(229, 229, 229, 0.5);
         --layera-color-border-primary-alpha: 0.5;
 
-        --layera-color-border-secondary-hex: #d1d5db;
+        --layera-color-border-secondary-hex: var(--layera-color-semantic-neutral-light);
         --layera-color-border-secondary-rgba: rgba(209, 213, 219, 0.4);
         --layera-color-border-secondary-alpha: 0.4;
 
@@ -254,7 +254,7 @@ export const useCSSVariablesWithAlpha = (): UseCSSVariablesWithAlphaReturn => {
         --layera-btn-danger-bg-rgba: rgba(239, 68, 68, 1);
         --layera-btn-danger-bg-alpha: 1;
 
-        --layera-btn-info-bg-hex: #6366f1;
+        --layera-btn-info-bg-hex: var(--layera-color-semantic-info-primary);
         --layera-btn-info-bg-rgba: rgba(99, 102, 241, 1);
         --layera-btn-info-bg-alpha: 1;
       }
