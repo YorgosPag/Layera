@@ -289,7 +289,6 @@
   --layera-layoutSystem-appLayout-body-minHeight: 100vh; /** Full viewport height for body */
   --layera-layoutSystem-appLayout-body-overflow: hidden; /** Hide overflow for map app */
   --layera-layoutSystem-appLayout-app-minHeight: 100vh; /** Full viewport height for app */
-  --layera-layoutSystem-appLayout-app-width: 100vw; /** Full viewport width for app */
   --layera-layoutSystem-appLayout-app-position: relative; /** Relative positioning for app container */
   --layera-layoutSystem-appLayout-app-overflow: hidden; /** Hide overflow for app container */
   --layera-layoutSystem-appLayout-header-position: fixed; /** Fixed positioning for header */
@@ -302,7 +301,6 @@
   --layera-layoutSystem-appLayout-mapContainer-position: fixed; /** Fixed positioning for map */
   --layera-layoutSystem-appLayout-mapContainer-top: var(--layera-header-fixed-height); /** Position below header */
   --layera-layoutSystem-appLayout-mapContainer-left: 0; /** Align to left */
-  --layera-layoutSystem-appLayout-mapContainer-width: 100vw; /** Full viewport width */
   --layera-layoutSystem-appLayout-mapContainer-height: calc(100vh - var(--layera-header-fixed-height)); /** Full height minus header */
   --layera-layoutSystem-appLayout-mapContainer-zIndex: 1; /** Below header */
   --layera-layoutSystem-appLayout-mapFullscreen-width: 100%; /** Full width of container */

@@ -140,10 +140,6 @@
           "value": "100vh",
           "comment": "Full viewport height for app"
         },
-        "width": {
-          "value": "100vw",
-          "comment": "Full viewport width for app"
-        },
         "position": {
           "value": "relative",
           "comment": "Relative positioning for app container"
@@ -195,10 +191,6 @@
         "left": {
           "value": "0",
           "comment": "Align to left"
-        },
-        "width": {
-          "value": "100vw",
-          "comment": "Full viewport width"
         },
         "height": {
           "value": "calc(100vh - var(--layera-header-fixed-height))",

@@ -378,7 +378,7 @@
             "left": "0",
             "right": "0",
             "bottom": "0",
-            "width": "100vw",
+            "width": "var(--layera-spacing-viewport-full-width)",
             "height": "calc(100vh - 80px)",
             "zIndex": "1"
           },
@@ -388,7 +388,7 @@
             "left": "0",
             "right": "0",
             "bottom": "0",
-            "width": "100vw",
+            "width": "var(--layera-spacing-viewport-full-width)",
             "height": "calc(100vh - var(--layera-header-fixed-height))",
             "zIndex": "6000"
           }

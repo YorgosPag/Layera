@@ -1955,7 +1955,7 @@ button:focus-visible {
   left: 0;
   right: 0;
   bottom: 0;
-  width: 100vw;
+  width: var(--layera-spacing-viewport-full-width);
   height: calc(100vh - 80px);
   z-index: 1;
 }
@@ -1965,7 +1965,7 @@ button:focus-visible {
   left: 0;
   right: 0;
   bottom: 0;
-  width: 100vw;
+  width: var(--layera-spacing-viewport-full-width);
   height: calc(100vh - var(--layera-header-fixed-height));
   z-index: 6000;
 }
@@ -1988,7 +1988,7 @@ button:focus-visible {
   left: 0;
   right: 0;
   bottom: 0;
-  width: 100vw;
+  width: var(--layera-spacing-viewport-full-width);
   height: calc(100vh - 80px);
   z-index: 1;
 }
@@ -1999,7 +1999,7 @@ button:focus-visible {
   left: 0;
   right: 0;
   bottom: 0;
-  width: 100vw;
+  width: var(--layera-spacing-viewport-full-width);
   height: calc(100vh - var(--layera-header-fixed-height));
   z-index: 6000;
 }
