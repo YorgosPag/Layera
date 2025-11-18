@@ -225,17 +225,18 @@ export const Modal: React.FC<BaseModalProps> = ({
         as="section"
         id={modalId}
         role="document"
-        className="layera-modal-content"
+        className={`layera-modal-content ${draggable && !isMobile() && !isTouchDevice() ? 'layera-modal-draggable' : ''}`}
         {...(draggable && !isMobile() && !isTouchDevice() ? {
           onMouseDown: dragHandlers.onMouseDown,
-          onTouchStart: dragHandlers.onTouchStart
+          onTouchStart: dragHandlers.onTouchStart,
+          style: {
+            '--layera-modal-position-x': `${modalPosition.x}px`,
+            '--layera-modal-position-y': `${modalPosition.y}px`
+          } as React.CSSProperties
         } : {})}
         data-draggable={draggable && !isMobile() && !isTouchDevice()}
         data-dragging={isDragging}
         data-no-overlay={noOverlay}
-        style={draggable && !isMobile() && !isTouchDevice() ? {
-          transform: `translate(${modalPosition.x}px, ${modalPosition.y}px)`
-        } : undefined}
       >
         {showCloseButton && (
           <button

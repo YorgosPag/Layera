@@ -28,7 +28,6 @@ export const SquareButton = forwardRef<HTMLButtonElement, SquareButtonProps>(({
   variant = 'secondary',
   className = '',
   tooltip,
-  style,
   ...props
 }, ref) => {
   // Enterprise CSS classes αντί για inline styles
@@ -42,7 +41,6 @@ export const SquareButton = forwardRef<HTMLButtonElement, SquareButtonProps>(({
       icon={icon}
       iconPosition="left"
       className={squareClassName}
-      style={style}
       title={tooltip}
       data-shape="square"
       data-size={size}

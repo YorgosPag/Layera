@@ -243,9 +243,6 @@
   --layera-radius-pill: var(--layera-global-borderRadius-full); /** Pill shape radius - consolidated reference */
   --layera-radius-circle: var(--layera-global-borderRadius-circle); /** Circle shape radius - consolidated reference */
   --layera-radius-full: var(--layera-global-borderRadius-full); /** Full border radius - consolidated reference */
-  --layera-radius-badge: 0.25rem; /** Badge border radius */
-  --layera-radius-tooltip: 0.25rem; /** Tooltip border radius */
-  --layera-radius-layout-sm: 0.25rem; /** Small layout radius */
   --layera-radius-layout-xl: 0.75rem; /** Extra large layout radius */
   --layera-z-index-base: 1; /** Base z-index */
   --layera-z-index-dropdown: 1000; /** Dropdown z-index */

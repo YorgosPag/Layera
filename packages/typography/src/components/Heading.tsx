@@ -71,14 +71,13 @@ export const Heading: React.FC<HeadingProps> = ({
     `layera-text-${finalSize}`,
     `layera-font-${finalWeight}`,
     `layera-leading-${finalLineHeight}`,
+    `layera-text-color-${color}`,
+    `layera-text-align-${align}`,
     className
   ].filter(Boolean).join(' ');
 
-  const colorVar = `var(--layera-text-${color})`;
-  const style = { color: colorVar, ...(props.style || {}) };
-
   return (
-    <Component className={classes} style={style} {...props}>
+    <Component className={classes} data-size={finalSize} data-weight={finalWeight} data-color={color} data-align={align} data-line-height={finalLineHeight} {...props}>
       {children}
     </Component>
   );

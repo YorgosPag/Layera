@@ -129,7 +129,7 @@ export interface BackButtonProps extends Omit<ButtonProps, 'children' | 'icon' |
 /**
  * SquareButton component props - Τετράγωνα buttons για επικεφαλίδες και toolbars
  */
-export interface SquareButtonProps extends Omit<ButtonProps, 'children' | 'iconPosition'> {
+export interface SquareButtonProps extends Omit<ButtonProps, 'children' | 'iconPosition' | 'style'> {
   /** Εικονίδιο που θα εμφανίζεται (υποχρεωτικό) */
   icon: React.ReactNode;
 

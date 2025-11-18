@@ -22,14 +22,13 @@ export const Text: React.FC<TextProps> = ({
     `layera-text-${size}`,
     `layera-font-${weight}`,
     `layera-leading-${lineHeight}`,
+    `layera-text-color-${color}`,
+    `layera-text-align-${align}`,
     className
   ].filter(Boolean).join(' ');
 
-  const colorVar = `var(--layera-text-${color})`;
-  const style = { color: colorVar, ...(props.style || {}) };
-
   return (
-    <Component className={classes} style={style} {...props}>
+    <Component className={classes} data-size={size} data-weight={weight} data-color={color} data-align={align} data-line-height={lineHeight} {...props}>
       {children}
     </Component>
   );

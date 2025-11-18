@@ -18,10 +18,7 @@
     "pill": { "value": "var(--layera-global-borderRadius-full)", "comment": "Pill shape radius - consolidated reference" },
     "circle": { "value": "var(--layera-global-borderRadius-circle)", "comment": "Circle shape radius - consolidated reference" },
     "full": { "value": "var(--layera-global-borderRadius-full)", "comment": "Full border radius - consolidated reference" },
-    "badge": { "value": "0.25rem", "comment": "Badge border radius" },
-    "tooltip": { "value": "0.25rem", "comment": "Tooltip border radius" },
     "layout": {
-      "sm": { "value": "0.25rem", "comment": "Small layout radius" },
       "xl": { "value": "0.75rem", "comment": "Extra large layout radius" }
     }
   },
