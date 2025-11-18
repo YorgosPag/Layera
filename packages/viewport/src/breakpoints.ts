@@ -22,7 +22,7 @@ export const UNIFIED_BREAKPOINTS: UnifiedBreakpoints = {
     max: 1023,
     device: 'tablet',
     mediaQuery: '@media screen and (min-width: var(--layera-responsive-breakpoints-tablet-min)) and (max-width: 1023px)',
-    containerMaxWidth: '750px',
+    containerMaxWidth: 'var(--layera-container-maxWidth-md)',
     gridColumns: 2
   },
   lg: {
@@ -30,7 +30,7 @@ export const UNIFIED_BREAKPOINTS: UnifiedBreakpoints = {
     max: 1199, // var(--layera-responsive-breakpoints-tablet-max)
     device: 'tablet',
     mediaQuery: '@media screen and (min-width: 1024px) and (max-width: var(--layera-responsive-breakpoints-tablet-max))',
-    containerMaxWidth: '960px',
+    containerMaxWidth: 'var(--layera-container-maxWidth-lg)',
     gridColumns: 3
   },
   xl: {
@@ -38,7 +38,7 @@ export const UNIFIED_BREAKPOINTS: UnifiedBreakpoints = {
     max: 1439, // var(--layera-responsive-breakpoints-desktop-max)
     device: 'desktop',
     mediaQuery: '@media screen and (min-width: var(--layera-responsive-breakpoints-desktop-min)) and (max-width: var(--layera-responsive-breakpoints-desktop-max))',
-    containerMaxWidth: '1140px',
+    containerMaxWidth: 'var(--layera-container-maxWidth-xl)',
     gridColumns: 4
   },
   '2xl': {
@@ -46,7 +46,7 @@ export const UNIFIED_BREAKPOINTS: UnifiedBreakpoints = {
     max: Infinity,
     device: 'desktopLarge',
     mediaQuery: '@media screen and (min-width: var(--layera-responsive-breakpoints-desktopLarge-min))',
-    containerMaxWidth: '1320px',
+    containerMaxWidth: 'var(--layera-container-maxWidth-2xl)',
     gridColumns: 6
   }
 } as const;

@@ -2558,7 +2558,7 @@ button:focus-visible {
 
 /* Background surface medium κλάση */
 .layera-bg-surface-medium {
-  background-color: #f1f5f9;
+  background-color: var(--layera-color-semantic-neutral-light);
 }
 
 /* Background accent green κλάση */
@@ -2573,6 +2573,6 @@ button:focus-visible {
 
 /* Background accent purple κλάση */
 .layera-bg-accent-purple {
-  background-color: #8b5cf6;
+  background-color: var(--layera-color-semantic-info-primary);
 }
 

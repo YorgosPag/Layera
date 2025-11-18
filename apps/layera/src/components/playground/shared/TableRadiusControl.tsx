@@ -47,7 +47,7 @@ export const TableRadiusControl: React.FC<TableRadiusControlProps> = ({
     {
       value: 'none',
       label: 'Χωρίς',
-      token: '0px',
+      token: 'var(--layera-global-borderRadius-none)',
       description: 'Χωρίς καμπυλότητα (0px - τετράγωνοι πίνακες)'
     },
     {

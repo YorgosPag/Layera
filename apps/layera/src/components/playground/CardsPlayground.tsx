@@ -175,15 +175,15 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
     if (colorCategory === 'text') return colorValue;
     if (colorCategory === 'backgrounds') {
       // Dark backgrounds need white text, light backgrounds need black text
-      return colorValue === '#f59e0b' ? '#000000' : '#ffffff'; // warning is light, others dark
+      return colorValue === 'var(--layera-color-semantic-warning-primary)' ? 'var(--layera-color-text-primary)' : 'var(--layera-color-text-on-dark)'; // warning is light, others dark
     }
-    return '#333333'; // default for borders
+    return 'var(--layera-color-text-secondary)'; // default for borders
   };
 
   // Helper to get background color
   const getBackgroundColor = (colorValue: string) => {
     if (colorCategory === 'backgrounds') return colorValue;
-    return '#ffffff'; // white background for text and borders
+    return 'var(--layera-color-surface-primary)'; // white background for text and borders
   };
 
   // Helper to get border style
@@ -192,7 +192,7 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
       const borderWidthToken = `var(--layera-global-borderWidth-${borderWidth})`;
       return `${borderWidthToken} solid ${colorValue}`;
     }
-    return '1px solid #e5e5e5'; // subtle border for others
+    return 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-primary)'; // subtle border for others
   };
 
   // Initialize CSS variables for fallback values - ensure real-time preview has defaults

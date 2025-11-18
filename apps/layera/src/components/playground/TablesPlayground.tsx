@@ -147,7 +147,7 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
       case 'backgrounds':
         return {
           backgroundColor: colorValue,
-          color: colorValue === '#f59e0b' ? 'var(--layera-color-text-primary)' : 'var(--layera-color-text-on-dark)'
+          color: colorValue === 'var(--layera-color-semantic-warning-primary)' ? 'var(--layera-color-text-primary)' : 'var(--layera-color-text-on-dark)'
         };
       case 'text':
         return {

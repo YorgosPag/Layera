@@ -6,13 +6,13 @@
   --layera-icon-xs: 1rem; /** 16px - Standard mobile size */
   --layera-icon-md: 1.25rem; /** 20px - Default icon size for desktop */
   --layera-icon-lg: 2rem; /** 32px - Large interactive elements */
-  --layera-icon-colorPrimary: #fbbf24; /** Primary brand color for icons - ΚΙΤΡΙΝΟ για single source test */
-  --layera-icon-colorSecondary: #6b7280; /** Secondary color for supporting icons */
+  --layera-icon-colorPrimary: var(--layera-color-semantic-warning-primary); /** Primary brand color for icons - ΚΙΤΡΙΝΟ για single source test */
+  --layera-icon-colorSecondary: var(--layera-color-semantic-neutral-dark); /** Secondary color for supporting icons */
   --layera-icon-colorSuccess: var(--layera-color-semantic-success-primary); /** Green for success states - consolidated reference */
   --layera-icon-colorWarning: var(--layera-color-semantic-warning-primary); /** Orange for warning states - consolidated reference */
   --layera-icon-colorDanger: var(--layera-color-semantic-error-primary); /** Red for danger/error states - consolidated reference */
   --layera-icon-colorInfo: var(--layera-color-semantic-info-primary); /** Blue for informational states - consolidated reference */
-  --layera-icon-colorNeutral: #6b7280; /** Neutral gray for standard icons */
+  --layera-icon-colorNeutral: var(--layera-color-semantic-neutral-dark); /** Neutral gray for standard icons */
   --layera-iconInteractive-interactive-opacity-default: 1; /** Default opacity state */
   --layera-iconInteractive-interactive-opacity-hover: 0.8; /** Hover opacity for interactive icons */
   --layera-iconInteractive-interactive-opacity-active: 0.6; /** Active/pressed opacity state */
@@ -24,7 +24,7 @@
   --layera-iconInteractive-interactive-transition-normal: 0.2s ease-out; /** Standard transition speed */
   --layera-iconInteractive-interactive-transition-slow: 0.3s ease-out; /** Slow transitions for emphasis */
   --layera-iconInteractive-accessibility-focusRing-width: 2px; /** Focus ring width for keyboard navigation */
-  --layera-iconInteractive-accessibility-focusRing-color: #3b82f6; /** Focus ring color for visibility */
+  --layera-iconInteractive-accessibility-focusRing-color: var(--layera-color-semantic-info-primary); /** Focus ring color for visibility */
   --layera-iconInteractive-accessibility-contrast-normal: 4.5; /** WCAG AA contrast ratio */
   --layera-iconInteractive-sizing-padding-xs: 2px; /** Extra small padding */
   --layera-iconInteractive-sizing-padding-sm: 4px; /** Small padding */
@@ -63,8 +63,8 @@
   --layera-color-text-secondary: #475569; /** Secondary text - μεσαίο γκρι για secondary content */
   --layera-color-text-tertiary: #94a3b8; /** Tertiary text - muted slate */
   --layera-color-text-inverse: #1e293b; /** Inverse text για bright backgrounds */
-  --layera-color-text-muted: #94a3b8; /** Muted text color */
-  --layera-color-text-on-dark: #ffffff; /** Text on dark backgrounds */
+  --layera-color-text-muted: var(--layera-color-semantic-neutral-dark); /** Muted text color */
+  --layera-color-text-on-dark: var(--layera-color-semantic-neutral-light); /** Text on dark backgrounds */
   --layera-color-border-default: #475569; /** Default border - subtle definition */
   --layera-color-border-light: #334155; /** Light border - minimal separation */
   --layera-color-border-focus: #06b6d4; /** Focus border - bright cyan highlight */
@@ -78,9 +78,9 @@
   --layera-color-dark-surface-primary: var(--layera-color-semantic-neutral-dark); /** Primary surface για cards/modals */
   --layera-color-dark-text-primary: var(--layera-color-semantic-neutral-light); /** Primary text - clean white */
   --layera-color-brand: var(--layera-color-semantic-info-primary); /** Brand primary color */
-  --layera-color-primary: #3b82f6; /** Primary color */
-  --layera-color-surface-tertiary: #f1f5f9; /** Tertiary surface */
-  --layera-color-surface-hover: #f8fafc; /** Surface hover state */
+  --layera-color-primary: var(--layera-color-semantic-info-primary); /** Primary color */
+  --layera-color-surface-tertiary: var(--layera-color-semantic-neutral-light); /** Tertiary surface */
+  --layera-color-surface-hover: var(--layera-color-semantic-neutral-light); /** Surface hover state */
   --layera-color-info: var(--layera-color-semantic-info-primary); /** Info color - consolidated reference */
   --layera-color-success: var(--layera-color-semantic-success-primary); /** Success color - consolidated reference */
   --layera-color-warning: var(--layera-color-semantic-warning-primary); /** Warning color - consolidated reference */
@@ -153,9 +153,9 @@
   --layera-spacing-container-xl: var(--layera-global-spacing-285); /** Extra large container - replaces hardcoded legacy value */
   --layera-spacing-unified: [object Object]; /** Ενοποιημένη spacing κλάση - αντικαθιστά 40+ spacing κλάσεις */
   --layera-border-radius-md: var(--layera-global-spacing-2); /** Medium border radius */
-  --layera-border-primary: #e2e8f0; /** Primary border color */
-  --layera-border-info: #3b82f6; /** Info border color */
-  --layera-border-error: #ef4444; /** Error border color */
+  --layera-border-primary: var(--layera-color-semantic-neutral-light); /** Primary border color */
+  --layera-border-info: var(--layera-color-semantic-info-primary); /** Info border color */
+  --layera-border-error: var(--layera-color-semantic-error-primary); /** Error border color */
   --layera-border-width-xxs: 1px; /** Extra extra small border */
   --layera-global-shared-layoutSystem-header-height: 3.5rem; /** Header height - MASTER REFERENCE που χρησιμοποιείται παντού */
   --layera-global-shared-z-index-overlay: 1000; /** Standard overlay z-index - modals, dropdowns */
@@ -205,13 +205,13 @@
   --layera-text-on-success: var(--layera-color-semantic-success-primary); /** Text on success backgrounds */
   --layera-text-on-warning: var(--layera-color-semantic-warning-primary); /** Text on warning backgrounds */
   --layera-text-on-error: var(--layera-color-semantic-neutral-light); /** Text on error backgrounds */
-  --layera-bg-dark: #0f172a; /** Dark background */
-  --layera-bg-secondary: #f8fafc; /** Secondary background */
+  --layera-bg-dark: var(--layera-color-semantic-neutral-dark); /** Dark background */
+  --layera-bg-secondary: var(--layera-color-semantic-neutral-light); /** Secondary background */
   --layera-bg-surface-light: var(--layera-color-surface-primary); /** Light surface background - matches header */
-  --layera-bg-surface-medium: #f1f5f9; /** Medium surface background */
+  --layera-bg-surface-medium: var(--layera-color-semantic-neutral-light); /** Medium surface background */
   --layera-bg-accent-green: var(--layera-color-semantic-success-primary); /** Green accent background - consolidated reference */
   --layera-bg-accent-blue: var(--layera-color-semantic-info-primary); /** Blue accent background - consolidated reference */
-  --layera-bg-accent-purple: #8b5cf6; /** Purple accent background */
+  --layera-bg-accent-purple: var(--layera-color-semantic-info-primary); /** Purple accent background */
   --layera-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /** Small shadow */
   --layera-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /** Medium shadow */
   --layera-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /** Large shadow */
@@ -284,7 +284,7 @@
 
 /* ✅ DYNAMIC: Dark theme από JSON tokens */
 :root.dark {
-  --layera-color-text-on-dark: var(--layera-color-text-on-dark, #ffffff);
+  --layera-color-text-on-dark: var(--layera-color-text-on-dark, var(--layera-color-semantic-neutral-light));
   --layera-color-surface-primary: var(--layera-color-dark-surface-primary, var(--layera-color-semantic-neutral-dark));
   --layera-color-text-primary: var(--layera-color-dark-text-primary, var(--layera-color-semantic-neutral-light));
 }

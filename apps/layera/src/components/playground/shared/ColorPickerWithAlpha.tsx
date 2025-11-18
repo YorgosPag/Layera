@@ -22,7 +22,7 @@ const hexToRgba = (hex: string, alpha: number): string => {
 };
 
 const extractHexFromValue = (colorValue: string): string => {
-  if (!colorValue) return '#ffffff';
+  if (!colorValue) return 'var(--layera-color-surface-primary)';
   if (colorValue.startsWith('#')) return colorValue;
   // CSS variable fallback
   const match = colorValue.match(/var\([^,]+,\s*(#[0-9a-fA-F]{6})\)/);

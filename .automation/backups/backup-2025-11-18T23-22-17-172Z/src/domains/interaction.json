@@ -1,0 +1,137 @@
+{
+  "interaction": {
+    "comment": "🖱️ Interaction Tokens - Cursor, transitions, and user interaction states",
+    "textDecoration": {
+      "comment": "Text decoration tokens",
+      "inherit": {
+        "value": "inherit",
+        "comment": "Inherit parent decoration"
+      },
+      "none": {
+        "value": "none",
+        "comment": "No text decoration"
+      }
+    },
+    "cursor": {
+      "comment": "Cursor interaction tokens",
+      "pointer": {
+        "value": "pointer",
+        "comment": "Pointer cursor for interactive elements"
+      },
+      "default": {
+        "value": "default",
+        "comment": "Default cursor"
+      }
+    },
+    "transition": {
+      "comment": "Animation and transition tokens",
+      "border": {
+        "value": "border-color 0.15s ease-in-out",
+        "comment": "Smooth border color transitions"
+      },
+      "color": {
+        "value": "color 0.15s ease-in-out",
+        "comment": "Smooth color transitions"
+      }
+    },
+    "outline": {
+      "comment": "Focus outline tokens",
+      "focus": {
+        "value": "2px auto -webkit-focus-ring-color",
+        "comment": "Standard focus outline"
+      }
+    },
+    "zIndex": {
+      "comment": "Z-index layering tokens",
+      "modal": {
+        "value": "1000",
+        "comment": "Modal overlay z-index"
+      },
+      "dropdown": {
+        "value": "1001",
+        "comment": "Dropdown z-index (above modals)"
+      }
+    },
+    "textAlign": {
+      "comment": "Text alignment tokens",
+      "center": {
+        "value": "center",
+        "comment": "Center text alignment"
+      }
+    },
+    "flexDirection": {
+      "comment": "Flex direction tokens",
+      "row": {
+        "value": "row",
+        "comment": "Flex row direction"
+      },
+      "column": {
+        "value": "column",
+        "comment": "Flex column direction"
+      }
+    },
+    "flexWrap": {
+      "comment": "Flex wrap tokens",
+      "wrap": {
+        "value": "wrap",
+        "comment": "Flex wrap"
+      }
+    },
+    "gridTemplateColumns": {
+      "comment": "Grid template columns tokens",
+      "autoFit": {
+        "value": "repeat(auto-fit, minmax(var(--layera-spacing-component-card-width), 1fr))",
+        "comment": "Auto-fit grid columns with card width minimum"
+      }
+    },
+    "alignItems": {
+      "comment": "Flex align items tokens",
+      "center": {
+        "value": "center",
+        "comment": "Center align items"
+      },
+      "start": {
+        "value": "flex-start",
+        "comment": "Start align items"
+      },
+      "end": {
+        "value": "flex-end",
+        "comment": "End align items"
+      }
+    },
+    "justifyContent": {
+      "comment": "Flex justify content tokens",
+      "center": {
+        "value": "center",
+        "comment": "Center justify content"
+      },
+      "spaceBetween": {
+        "value": "space-between",
+        "comment": "Space between justify content"
+      },
+      "spaceAround": {
+        "value": "space-around",
+        "comment": "Space around justify content"
+      }
+    },
+    "iconSize": {
+      "comment": "Icon size tokens for consistent sizing",
+      "sm": {
+        "value": "sm",
+        "comment": "Small icon size"
+      },
+      "md": {
+        "value": "md",
+        "comment": "Medium icon size"
+      },
+      "lg": {
+        "value": "lg",
+        "comment": "Large icon size"
+      },
+      "xl": {
+        "value": "xl",
+        "comment": "Extra large icon size"
+      }
+    }
+  }
+}

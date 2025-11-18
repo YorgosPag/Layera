@@ -37,7 +37,7 @@ export const CanvasColorPicker: React.FC<CanvasColorPickerProps> = ({
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [currentColor, setCurrentColor] = useState<ColorWithAlpha>(() => {
     if (typeof value === 'string') {
-      const hex = value.startsWith('#') ? value : '#0066cc';
+      const hex = value.startsWith('#') ? value : 'var(--layera-color-semantic-info-primary)';
       return {
         hex,
         alpha: 1.0,
@@ -151,7 +151,7 @@ export const CanvasColorPicker: React.FC<CanvasColorPickerProps> = ({
   // Sync with external value
   useEffect(() => {
     if (typeof value === 'string') {
-      const hex = value.startsWith('#') ? value : '#0066cc';
+      const hex = value.startsWith('#') ? value : 'var(--layera-color-semantic-info-primary)';
       const newColor = {
         hex,
         alpha: currentColor.alpha,

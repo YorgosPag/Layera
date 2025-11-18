@@ -166,10 +166,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   const convertColorPaletteWithAlphaToLegacy = (palette: ColorPaletteWithAlpha) => {
     // Helper function για safe extraction του hex value
     const safeExtractHex = (color: string | { hex: string } | undefined): string => {
-      if (!color) return '#ffffff';
+      if (!color) return 'var(--layera-color-surface-primary)';
       if (typeof color === 'string') return color; // Factory settings format
       if (typeof color === 'object' && color.hex) return color.hex; // ColorWithAlpha format
-      return '#ffffff'; // Fallback
+      return 'var(--layera-color-surface-primary)'; // Fallback
     };
 
     const converted = {

@@ -132,14 +132,14 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
   const getTextColor = (colorValue: string) => {
     if (colorCategory === 'text') return colorValue;
     if (colorCategory === 'backgrounds') {
-      return colorValue === '#f59e0b' ? '#000000' : '#ffffff';
+      return colorValue === 'var(--layera-color-semantic-warning-primary)' ? 'var(--layera-color-text-primary)' : 'var(--layera-color-text-on-dark)';
     }
-    return '#333333';
+    return 'var(--layera-color-text-secondary)';
   };
 
   const getBackgroundColor = (colorValue: string) => {
     if (colorCategory === 'backgrounds') return colorValue;
-    return '#ffffff';
+    return 'var(--layera-color-surface-primary)';
   };
 
   const getBorderStyle = (colorValue: string) => {
@@ -147,7 +147,7 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
       const borderWidthToken = `var(--layera-global-borderWidth-${borderWidth})`;
       return `${borderWidthToken} solid ${colorValue}`;
     }
-    return '1px solid #e5e5e5';
+    return 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-primary)';
   };
 
   // Helper function για μετατροπή radius values σε tokens

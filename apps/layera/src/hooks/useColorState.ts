@@ -13,7 +13,7 @@ export const hexToColorWithAlpha = (hex: string, alpha: number = 1.0): ColorWith
   // Αν είναι CSS variable, εξάγει το fallback value
   if (hex.includes('var(')) {
     const match = hex.match(/,\s*(#[0-9a-fA-F]{6})\)/);
-    cleanHex = match ? match[1] : '#ffffff';
+    cleanHex = match ? match[1] : 'var(--layera-color-semantic-neutral-light)';
   }
 
   // Βεβαιώνεται ότι αρχίζει με #
@@ -96,56 +96,56 @@ export interface UseColorStateReturn {
 }
 
 const DEFAULT_RECTANGULAR_PALETTE: ColorPaletteWithAlpha = {
-  primaryColor: hexToColorWithAlpha('#6366f1', 1.0),
-  secondaryColor: hexToColorWithAlpha('#475569', 1.0),
-  successColor: hexToColorWithAlpha('#10b981', 1.0),
-  warningColor: hexToColorWithAlpha('#f59e0b', 1.0),
-  dangerColor: hexToColorWithAlpha('#ef4444', 1.0),
-  infoColor: hexToColorWithAlpha('#6366f1', 1.0)
+  primaryColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0),
+  secondaryColor: hexToColorWithAlpha('var(--layera-color-semantic-neutral-dark)', 1.0),
+  successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+  warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+  dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+  infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
 };
 
 const DEFAULT_SQUARE_PALETTE: ColorPaletteWithAlpha = {
-  primaryColor: hexToColorWithAlpha('#6366f1', 1.0),
-  secondaryColor: hexToColorWithAlpha('#475569', 1.0),
-  successColor: hexToColorWithAlpha('#10b981', 1.0),
-  warningColor: hexToColorWithAlpha('#f59e0b', 1.0),
-  dangerColor: hexToColorWithAlpha('#ef4444', 1.0),
-  infoColor: hexToColorWithAlpha('#6366f1', 1.0)
+  primaryColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0),
+  secondaryColor: hexToColorWithAlpha('var(--layera-color-semantic-neutral-dark)', 1.0),
+  successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+  warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+  dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+  infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
 };
 
 const DEFAULT_ROUNDED_PALETTE: ColorPaletteWithAlpha = {
-  primaryColor: hexToColorWithAlpha('#6366f1', 1.0),
-  secondaryColor: hexToColorWithAlpha('#475569', 1.0),
-  successColor: hexToColorWithAlpha('#10b981', 1.0),
-  warningColor: hexToColorWithAlpha('#f59e0b', 1.0),
-  dangerColor: hexToColorWithAlpha('#ef4444', 1.0),
-  infoColor: hexToColorWithAlpha('#6366f1', 1.0)
+  primaryColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0),
+  secondaryColor: hexToColorWithAlpha('var(--layera-color-semantic-neutral-dark)', 1.0),
+  successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+  warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+  dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+  infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
 };
 
 const DEFAULT_CATEGORY_PALETTES: CategoryColorPalettes = {
   backgrounds: {
-    primaryColor: hexToColorWithAlpha('var(--layera-color-surface-primary, #ffffff)', 1.0),
-    secondaryColor: hexToColorWithAlpha('var(--layera-color-surface-secondary, #f8fafc)', 1.0),
-    successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary, #10b981)', 1.0),
-    warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary, #f59e0b)', 1.0),
-    dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary, #ef4444)', 1.0),
-    infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary, #6366f1)', 1.0)
+    primaryColor: hexToColorWithAlpha('var(--layera-color-surface-primary)', 1.0),
+    secondaryColor: hexToColorWithAlpha('var(--layera-color-surface-secondary)', 1.0),
+    successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+    warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+    dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+    infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
   },
   text: {
-    primaryColor: hexToColorWithAlpha('var(--layera-color-text-primary, #1f2937)', 1.0),
-    secondaryColor: hexToColorWithAlpha('var(--layera-color-text-secondary, #6b7280)', 1.0),
-    successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary, #10b981)', 1.0),
-    warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary, #f59e0b)', 1.0),
-    dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary, #ef4444)', 1.0),
-    infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary, #6366f1)', 1.0)
+    primaryColor: hexToColorWithAlpha('var(--layera-color-text-primary)', 1.0),
+    secondaryColor: hexToColorWithAlpha('var(--layera-color-text-secondary)', 1.0),
+    successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+    warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+    dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+    infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
   },
   borders: {
-    primaryColor: hexToColorWithAlpha('var(--layera-color-border-primary, #e5e5e5)', 1.0),
-    secondaryColor: hexToColorWithAlpha('var(--layera-color-border-secondary, #d1d5db)', 1.0),
-    successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary, #10b981)', 1.0),
-    warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary, #f59e0b)', 1.0),
-    dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary, #ef4444)', 1.0),
-    infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary, #6366f1)', 1.0)
+    primaryColor: hexToColorWithAlpha('var(--layera-color-border-primary)', 1.0),
+    secondaryColor: hexToColorWithAlpha('var(--layera-color-border-secondary)', 1.0),
+    successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+    warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+    dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+    infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
   }
 };
 

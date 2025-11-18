@@ -71,9 +71,9 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
       case 'subtle':
         return '.layera-button:hover, .layera-card:hover { opacity: 0.9 !important; transition: var(--layera-transition-colors) !important; }';
       case 'normal':
-        return '.layera-button:hover, .layera-card:hover { opacity: var(--layera-icon-interactive-interactive-opacity-hover) !important; transform: translateY(-1px) !important; transition: var(--layera-transition-all) !important; }';
+        return '.layera-button:hover, .layera-card:hover { opacity: var(--layera-icon-interactive-interactive-opacity-hover) !important; transform: translateY(calc(-1 * var(--layera-global-spacing-1))) !important; transition: var(--layera-transition-all) !important; }';
       case 'strong':
-        return '.layera-button:hover, .layera-card:hover { opacity: var(--layera-icon-interactive-interactive-opacity-hover) !important; transform: translateY(-2px) scale(1.02) !important; transition: var(--layera-transition-all) !important; }';
+        return '.layera-button:hover, .layera-card:hover { opacity: var(--layera-icon-interactive-interactive-opacity-hover) !important; transform: translateY(calc(-1 * var(--layera-global-spacing-2))) scale(1.02) !important; transition: var(--layera-transition-all) !important; }';
       default:
         return '';
     }
@@ -110,7 +110,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
    */
   const getRadiusValue = useCallback((radius: string) => {
     switch(radius) {
-      case 'none': return '0px';                        // 0px
+      case 'none': return 'var(--layera-global-borderRadius-none)';  // 0
       case 'sm': return 'var(--layera-radius-sm)';      // 4px
       case 'lg': return 'var(--layera-radius-lg)';      // 8px
       case 'xl': return 'var(--layera-radius-xl)';      // 12px
@@ -326,7 +326,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
           root.style.setProperty('--layera-color-dark-surface-secondary', colorValue);
         }
         // Auto-calculate text color για καλή αντίθεση
-        const textColor = colorValue === '#f59e0b' ? '#000000' : '#ffffff';
+        const textColor = colorValue === 'var(--layera-color-semantic-warning-primary)' ? 'var(--layera-color-neutral-black)' : 'var(--layera-color-neutral-white)';
         break;
 
       case 'text':

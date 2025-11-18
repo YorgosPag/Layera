@@ -96,12 +96,12 @@ export const OptimizedColorPicker: React.FC<OptimizedColorPickerProps> = ({
 
   // Helper function για εξαγωγή hex χρώματος
   const extractHexFromValue = (colorValue: string): string => {
-    if (!colorValue) return '#ffffff';
+    if (!colorValue) return 'var(--layera-color-surface-primary)';
     if (colorValue.startsWith('#')) return colorValue;
 
     // Αν είναι CSS variable, εξάγει το fallback hex value
     const match = colorValue.match(/var\([^,]+,\s*(#[0-9a-fA-F]{6})\)/);
-    return match ? match[1] : '#ffffff';
+    return match ? match[1] : 'var(--layera-color-surface-primary)';
   };
 
   const displayValue = extractHexFromValue(localValue);

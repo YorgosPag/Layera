@@ -53,6 +53,14 @@ const CSS_VARIABLE_MAP: CSSVariableMap = {
     danger: '--layera-color-bg-danger',
     info: '--layera-color-bg-info'
   },
+  layout: {
+    primary: '--layera-layout-bg-primary',
+    secondary: '--layera-layout-bg-secondary',
+    success: '--layera-layout-bg-success',
+    warning: '--layera-layout-bg-warning',
+    danger: '--layera-layout-bg-danger',
+    info: '--layera-layout-bg-info'
+  },
   text: {
     primary: '--layera-color-text-primary',
     secondary: '--layera-color-text-secondary',
@@ -86,7 +94,7 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
     // Δημιουργώ τις CSS μεταβλητές αν δεν υπάρχουν
     root.style.setProperty('--layera-btn-secondary-bg', currentColors.secondaryColor.hex);
     root.style.setProperty('--layera-btn-secondary-border', currentColors.secondaryColor.hex);
-    root.style.setProperty('--layera-btn-secondary-color', '#ffffff');
+    root.style.setProperty('--layera-btn-secondary-color', 'var(--layera-color-semantic-neutral-light)');
     root.style.setProperty('--layera-btn-secondary-hover-bg', currentColors.secondaryColor.hex + 'CC');
     root.style.setProperty('--layera-btn-secondary-hover-border', currentColors.secondaryColor.hex + 'CC');
 
@@ -125,9 +133,11 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
    */
   const applyColorsToApp = async (colorCategory: ColorCategory, currentColors: ColorPaletteWithAlpha, elementType: string = 'buttons') => {
     const root = document.documentElement;
-    const categoryColors = CSS_VARIABLE_MAP[colorCategory];
 
-    // Νέα αρχιτεκτονική: 3 κατηγορίες (backgrounds/text/borders) + element types
+    // Νέα αρχιτεκτονική: Διαφορετικές CSS variables για layout vs άλλα elements
+    const categoryColors = elementType === 'layout'
+      ? CSS_VARIABLE_MAP['layout']
+      : CSS_VARIABLE_MAP[colorCategory];
 
     // Set CSS variables για την επιλεγμένη κατηγορία
     root.style.setProperty(categoryColors.primary, currentColors.primaryColor.hex);
@@ -166,9 +176,10 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
           'textarea'
         ],
         'layout': [
-          '.layera-header',
-          '.layera-sidebar',
-          'hr'
+          '.layera-layout.layera-bg-primary',
+          '.layera-main-layout',
+          'body > .layera-layout',
+          '#root > .layera-layout'
         ],
         'tables': [
           '.layera-table',
@@ -498,12 +509,12 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
    * Επιστρέφει default colors για fallback
    */
   const getCurrentDefaultColors = (): ColorPaletteWithAlpha => ({
-    primaryColor: hexToColorWithAlpha('#44FF44', 1.0),
-    secondaryColor: hexToColorWithAlpha('#44FF44', 1.0),
-    successColor: hexToColorWithAlpha('#4444FF', 1.0),
-    warningColor: hexToColorWithAlpha('#FFAA00', 1.0),
-    dangerColor: hexToColorWithAlpha('#AA00FF', 1.0),
-    infoColor: hexToColorWithAlpha('#00AAFF', 1.0)
+    primaryColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+    secondaryColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+    successColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0),
+    warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+    dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+    infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
   });
 
   const actions: CSSVariablesActions = {
