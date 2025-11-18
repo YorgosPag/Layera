@@ -86,9 +86,9 @@ export const getEnhancedCardTheme = (
   switch (opacityMode) {
     case 'transparent':
       return {
-        backgroundColor: `rgba(${baseColor}, 0.01)`, // Πλήρως διαφανές background ΜΟΝΟ
+        backgroundColor: 'color-mix(in srgb, var(--layera-color-surface-primary) 1%, transparent)', // Πλήρως διαφανές background ΜΟΝΟ
         borderColor, // Περίγραμμα παραμένει πλήρως ορατό
-        titleBackground: `rgba(${baseColor}, 0.02)`,
+        titleBackground: 'color-mix(in srgb, var(--layera-color-surface-primary) 2%, transparent)',
         titleShadow: 'none', // Χωρίς shadow στο transparent mode
         backdropFilter: 'none', // ΚΑΜΙΑ θόλωση - όλα καθαρά
         opacity: 1 // ΠΑΡΑΜΕΝΕΙ 1 - μόνο το background είναι διαφανές
@@ -96,7 +96,7 @@ export const getEnhancedCardTheme = (
 
     case 'semi-transparent':
       return {
-        backgroundColor: `rgba(${baseColor}, 0.65)`, // Πιο έντονο χρώμα, λιγότερη διαφάνεια
+        backgroundColor: 'color-mix(in srgb, var(--layera-color-surface-primary) 65%, transparent)', // Πιο έντονο χρώμα, λιγότερη διαφάνεια
         borderColor,
         titleBackground: 'transparent', // Χωρίς δεύτερο στρώμα στον τίτλο
         titleShadow: 'none', // Χωρίς shadow για καθαρότητα
@@ -106,7 +106,7 @@ export const getEnhancedCardTheme = (
 
     case 'opaque':
       return {
-        backgroundColor: `rgba(${baseColor}, 0.95)`, // Συμπαγές
+        backgroundColor: 'color-mix(in srgb, var(--layera-color-surface-primary) 95%, transparent)', // Συμπαγές
         borderColor,
         titleBackground: 'transparent', // Χωρίς δεύτερο στρώμα στον τίτλο
         titleShadow: titleShadow, // Μπορεί να έχει shadow στο opaque mode

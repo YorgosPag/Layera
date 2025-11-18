@@ -26,7 +26,7 @@ const extractHexFromValue = (colorValue: string): string => {
   if (colorValue.startsWith('#')) return colorValue;
   // CSS variable fallback
   const match = colorValue.match(/var\([^,]+,\s*(#[0-9a-fA-F]{6})\)/);
-  return match ? match[1] : '#ffffff';
+  return match ? match[1] : 'var(--layera-color-surface-primary)';
 };
 
 interface ColorWithAlpha {
@@ -82,9 +82,9 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
       }
       // Fallback
       return {
-        hex: '#ffffff',
+        hex: 'var(--layera-color-surface-primary)',
         alpha: 1.0,
-        rgba: hexToRgba('#ffffff', 1.0)
+        rgba: hexToRgba('var(--layera-color-surface-primary)', 1.0)
       };
     }
     return val;

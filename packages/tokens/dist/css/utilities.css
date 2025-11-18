@@ -2296,7 +2296,7 @@ button:focus-visible {
 }
 .layera-theme-switcher[data-state="focus"] {
   outline: none;
-  box-shadow: var(--layera-global-outline-focus, 0 0 0 2px #3b82f6);
+  box-shadow: var(--layera-global-outline-focus, 0 0 0 2px var(--layera-color-semantic-info-primary));
 }
 .layera-theme-switcher[data-state="disabled"] {
   opacity: 0.6;

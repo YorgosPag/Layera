@@ -1,0 +1,117 @@
+{
+  "iconInteractive": {
+    "comment": "🏢 Enterprise Interactive & Behavioral Tokens - Used by Fortune 500 companies",
+    "interactive": {
+      "opacity": {
+        "default": {
+          "value": "1",
+          "comment": "Default opacity state"
+        },
+        "hover": {
+          "value": "0.8",
+          "comment": "Hover opacity for interactive icons"
+        },
+        "active": {
+          "value": "0.6",
+          "comment": "Active/pressed opacity state"
+        },
+        "disabled": {
+          "value": "0.4",
+          "comment": "Disabled state opacity"
+        }
+      },
+      "scale": {
+        "default": {
+          "value": "1",
+          "comment": "Default scale state"
+        },
+        "hover": {
+          "value": "1.1",
+          "comment": "Hover scale for micro-interactions"
+        },
+        "active": {
+          "value": "0.95",
+          "comment": "Active/pressed scale state"
+        }
+      },
+      "transition": {
+        "fast": {
+          "value": "0.1s ease-out",
+          "comment": "Fast transitions for micro-interactions"
+        },
+        "normal": {
+          "value": "0.2s ease-out",
+          "comment": "Standard transition speed"
+        },
+        "slow": {
+          "value": "0.3s ease-out",
+          "comment": "Slow transitions for emphasis"
+        }
+      }
+    },
+    "accessibility": {
+      "focusRing": {
+        "width": {
+          "value": "2px",
+          "comment": "Focus ring width for keyboard navigation"
+        },
+        "color": {
+          "value": "var(--layera-color-semantic-info-primary)",
+          "comment": "Focus ring color for visibility"
+        }
+      },
+      "contrast": {
+        "normal": {
+          "value": "4.5",
+          "comment": "WCAG AA contrast ratio"
+        }
+      }
+    },
+    "sizing": {
+      "padding": {
+        "xs": {
+          "value": "2px",
+          "comment": "Extra small padding"
+        },
+        "sm": {
+          "value": "4px",
+          "comment": "Small padding"
+        },
+        "md": {
+          "value": "8px",
+          "comment": "Medium padding"
+        },
+        "lg": {
+          "value": "12px",
+          "comment": "Large padding"
+        },
+        "xl": {
+          "value": "16px",
+          "comment": "Extra large padding"
+        }
+      },
+      "margin": {
+        "xs": {
+          "value": "2px",
+          "comment": "Extra small margin"
+        },
+        "sm": {
+          "value": "4px",
+          "comment": "Small margin"
+        },
+        "md": {
+          "value": "8px",
+          "comment": "Medium margin"
+        },
+        "lg": {
+          "value": "12px",
+          "comment": "Large margin"
+        },
+        "xl": {
+          "value": "16px",
+          "comment": "Extra large margin"
+        }
+      }
+    }
+  }
+}

@@ -195,7 +195,7 @@
 .unified-pipeline-modal .card-text {
   font-size: var(--la-text-sm, 0.65rem);
   line-height: var(--la-leading-relaxed, 1.4);
-  color: var(--la-text-secondary, #6b7280);
+  color: var(--layera-color-text-secondary);
   overflow-wrap: break-word;
   white-space: normal;
   hyphens: auto;
@@ -214,13 +214,13 @@
     line-height: var(--la-leading-snug);
     margin-bottom: 0.4rem;
     font-weight: 600;
-    color: var(--la-text-primary, #1f2937);
+    color: var(--layera-color-text-primary);
   }
 
   .unified-pipeline-modal .card-text {
     font-size: 0.85rem;
     line-height: var(--la-leading-normal);
-    color: var(--la-text-secondary, #6b7280);
+    color: var(--layera-color-text-secondary);
     min-height: 2.5rem;
   }
 }

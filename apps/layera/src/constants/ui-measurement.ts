@@ -90,8 +90,8 @@ export const LEAFLET_ICON_SIZES = {
   SMALL: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-icon-leafletMedium')) || 16, // Small marker icon size (16px)
   MEDIUM: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-icon-leafletLarge')) || 24, // Medium marker icon size (24px)
   STANDARD: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-icon-leafletXl')) || 32, // Standard marker icon size (32px) - Leaflet default
-  LARGE: 48,                       // Large marker icon size (48x48px)
-  XL: 64,                          // Extra large marker icon size (64x64px)
+  LARGE: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-size-12')) || 48,     // Large marker icon size from tokens
+  XL: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-size-16')) || 64,        // Extra large marker icon size from tokens
 
   // Shadow offsets για marker shadows
   SHADOW_ANCHOR_X: 12,             // Shadow horizontal anchor point

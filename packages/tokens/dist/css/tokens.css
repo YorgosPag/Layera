@@ -59,20 +59,17 @@
   --layera-letterSpacing-normal: 0; /** Normal for body text */
   --layera-letterSpacing-wide: var(--layera-letterSpacing-wide); /** Wide for emphasis */
   --layera-typography-unified: [object Object]; /** Ενοποιημένη typography κλάση - αντικαθιστά 33 κλάσεις */
-  --layera-color-text-primary: #1e293b; /** Primary text - σκούρο γκρι για καλή αντίθεση με λευκό φόντο */
-  --layera-color-text-secondary: #475569; /** Secondary text - μεσαίο γκρι για secondary content */
-  --layera-color-text-tertiary: #94a3b8; /** Tertiary text - muted slate */
-  --layera-color-text-inverse: #1e293b; /** Inverse text για bright backgrounds */
+  --layera-color-text-primary: var(--layera-color-semantic-neutral-dark); /** Primary text - σκούρο γκρι για καλή αντίθεση με λευκό φόντο */
+  --layera-color-text-secondary: var(--layera-color-semantic-neutral-dark); /** Secondary text - μεσαίο γκρι για secondary content */
+  --layera-color-text-tertiary: var(--layera-color-semantic-neutral-dark); /** Tertiary text - muted slate */
+  --layera-color-text-inverse: var(--layera-color-semantic-neutral-dark); /** Inverse text για bright backgrounds */
   --layera-color-text-muted: var(--layera-color-semantic-neutral-dark); /** Muted text color */
   --layera-color-text-on-dark: var(--layera-color-semantic-neutral-light); /** Text on dark backgrounds */
-  --layera-color-border-default: #475569; /** Default border - subtle definition */
-  --layera-color-border-light: #334155; /** Light border - minimal separation */
-  --layera-color-border-focus: #06b6d4; /** Focus border - bright cyan highlight */
-  --layera-color-bg-success: #d1fae5; /** Success background - light green for success states */
-  --layera-color-bg-warning: #fef3c7; /** Warning background - light amber for warning states */
-  --layera-color-semantic-error-primary: #ef4444; /** Primary error color (red-500) - replaces hardcoded RGB */
-  --layera-color-semantic-warning-primary: #f59e0b; /** Primary warning color (amber-500) */
-  --layera-color-semantic-info-primary: #6366f1; /** Primary info color (indigo-500) */
+  --layera-color-border-default: var(--layera-color-semantic-neutral-dark); /** Default border - subtle definition */
+  --layera-color-border-light: var(--layera-color-semantic-neutral-dark); /** Light border - minimal separation */
+  --layera-color-border-focus: var(--layera-color-semantic-info-primary); /** Focus border - bright cyan highlight */
+  --layera-color-bg-success: var(--layera-color-neutral-emerald-100); /** Success background - light green for success states */
+  --layera-color-bg-warning: var(--layera-color-neutral-amber-100); /** Warning background - light amber for warning states */
   --layera-color-light-surface-primary: var(--layera-color-semantic-success-primary); /** Primary surface για cards/modals */
   --layera-color-light-text-primary: var(--layera-color-semantic-neutral-dark); /** Primary text - σκούρο για contrast */
   --layera-color-dark-surface-primary: var(--layera-color-semantic-neutral-dark); /** Primary surface για cards/modals */
@@ -135,8 +132,8 @@
   --layera-colorUtilities-utilities-fill-neutral-currentColor: currentColor; /** Inherit text color for SVG fill */
   --layera-i18n-unified: [object Object]; /** Unified i18n class - replaces multiple fragmented classes */
   --layera-spacing-breakpoint-mobile: var(--layera-responsive-breakpoints-tablet-min); /** Mobile breakpoint - replaces hardcoded 768 */
-  --layera-spacing-breakpoint-tablet: 1024px; /** Tablet breakpoint - replaces hardcoded 1024 */
-  --layera-spacing-breakpoint-desktop: 1025px; /** Desktop breakpoint - replaces hardcoded 1025 */
+  --layera-spacing-breakpoint-tablet: var(--layera-responsive-breakpoints-desktop-min); /** Tablet breakpoint - replaces hardcoded 1024 */
+  --layera-spacing-breakpoint-desktop: var(--layera-responsive-breakpoints-desktop-min); /** Desktop breakpoint - replaces hardcoded 1025 */
   --layera-spacing-breakpoint-desktop-large: var(--layera-responsive-breakpoints-desktopLarge-min); /** Large desktop breakpoint - replaces hardcoded 1440 */
   --layera-spacing-viewport-full-height: 100vh; /** Full viewport height */
   --layera-spacing-viewport-full-width: 100vw; /** Full viewport width */

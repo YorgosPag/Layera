@@ -54,12 +54,12 @@ export const ColorValueDisplay: React.FC<ColorValueDisplayProps> = ({
         </h4>
         <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono" className="layera-white-space--pre-wrap layera-word-wrap--break layera-overflow-wrap--break">
 {`{
-  primary: "${currentColors?.primary || '#000000'}",
-  secondary: "${currentColors?.secondary || '#000000'}",
-  success: "${currentColors?.success || '#000000'}",
-  warning: "${currentColors?.warning || '#000000'}",
-  danger: "${currentColors?.danger || '#000000'}",
-  info: "${currentColors?.info || '#000000'}"
+  primary: "${currentColors?.primary || 'var(--layera-color-text-primary)'}",
+  secondary: "${currentColors?.secondary || 'var(--layera-color-text-secondary)'}",
+  success: "${currentColors?.success || 'var(--layera-color-semantic-success-primary)'}",
+  warning: "${currentColors?.warning || 'var(--layera-color-semantic-warning-primary)'}",
+  danger: "${currentColors?.danger || 'var(--layera-color-semantic-error-primary)'}",
+  info: "${currentColors?.info || 'var(--layera-color-semantic-info-primary)'}"
 }`}
         </pre>
       </Box>
