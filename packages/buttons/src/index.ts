@@ -22,5 +22,5 @@ export { Button, LinkButton, BackButton, SquareButton, ButtonGroup } from './com
 // Hooks - Currently disabled due to dependency issues
 // export { useButton } from './hooks';
 
-// CSS Styles - Αυτόματα import όταν χρησιμοποιείται το package
-import './styles/index.css';
+// CSS Styles - Enterprise τώρα χρησιμοποιεί το @layera/tokens system
+// Styling παρέχεται από @layera/tokens/dist/css/utilities.css

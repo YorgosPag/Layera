@@ -11,17 +11,14 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
-    },
-    "./styles": "./dist/styles.css",
-    "./dist/styles.css": "./dist/styles.css"
+    }
   },
   "files": [
     "dist",
     "src"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts && npm run build:css",
-    "build:css": "postcss src/styles/index.css -o dist/styles.css",
+    "build": "tsup src/index.ts --format cjs,esm --dts",
     "dev": "npm run build -- --watch",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"src/**/*.{ts,tsx}\" --max-warnings 0"
