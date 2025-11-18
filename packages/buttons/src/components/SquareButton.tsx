@@ -31,18 +31,8 @@ export const SquareButton = forwardRef<HTMLButtonElement, SquareButtonProps>(({
   style,
   ...props
 }, ref) => {
-  // Square dimensions based on button height tokens
-  const squareStyle = {
-    width: `var(--layera-global-button-height-${size})`,
-    height: `var(--layera-global-button-height-${size})`,
-    minWidth: `var(--layera-global-button-height-${size})`,
-    padding: '0',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    aspectRatio: '1',
-    ...style
-  };
+  // Enterprise CSS classes αντί για inline styles
+  const squareClassName = `layera-square-btn layera-square-btn--${size} layera-button ${className}`;
 
   return (
     <Button
@@ -51,8 +41,8 @@ export const SquareButton = forwardRef<HTMLButtonElement, SquareButtonProps>(({
       size={size}
       icon={icon}
       iconPosition="left"
-      className={`layera-square-btn layera-button ${className}`}
-      style={squareStyle}
+      className={squareClassName}
+      style={style}
       title={tooltip}
       data-shape="square"
       data-size={size}

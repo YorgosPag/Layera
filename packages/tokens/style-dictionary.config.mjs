@@ -822,6 +822,29 @@ export default {
           output += `}\n\n`;
         }
 
+        // Square Button Utility Classes - Enterprise solution για square dimensions
+        output += `/* Square Button Utility Classes */\n`;
+
+        // Base square button class
+        output += `.layera-square-btn {\n`;
+        output += `  padding: 0;\n`;
+        output += `  display: flex;\n`;
+        output += `  align-items: center;\n`;
+        output += `  justify-content: center;\n`;
+        output += `  aspect-ratio: 1;\n`;
+        output += `}\n\n`;
+
+        // Size-specific square button classes based on button height tokens
+        const buttonSizes = ['xs', 'sm', 'md', 'lg', 'xl'];
+        buttonSizes.forEach(size => {
+          output += `.layera-square-btn--${size} {\n`;
+          output += `  width: var(--layera-global-button-height-${size});\n`;
+          output += `  height: var(--layera-global-button-height-${size});\n`;
+          output += `  min-width: var(--layera-global-button-height-${size});\n`;
+          output += `}\n`;
+        });
+        output += `\n`;
+
         // Text Utility Classes από text.* tokens
         const textAlignTypes = ['left', 'center', 'right', 'white', '3xl'];
         textAlignTypes.forEach(alignType => {

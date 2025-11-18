@@ -305,6 +305,41 @@ button:focus-visible {
 }
 
 
+/* Square Button Utility Classes */
+.layera-square-btn {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+}
+
+.layera-square-btn--xs {
+  width: var(--layera-global-button-height-xs);
+  height: var(--layera-global-button-height-xs);
+  min-width: var(--layera-global-button-height-xs);
+}
+.layera-square-btn--sm {
+  width: var(--layera-global-button-height-sm);
+  height: var(--layera-global-button-height-sm);
+  min-width: var(--layera-global-button-height-sm);
+}
+.layera-square-btn--md {
+  width: var(--layera-global-button-height-md);
+  height: var(--layera-global-button-height-md);
+  min-width: var(--layera-global-button-height-md);
+}
+.layera-square-btn--lg {
+  width: var(--layera-global-button-height-lg);
+  height: var(--layera-global-button-height-lg);
+  min-width: var(--layera-global-button-height-lg);
+}
+.layera-square-btn--xl {
+  width: var(--layera-global-button-height-xl);
+  height: var(--layera-global-button-height-xl);
+  min-width: var(--layera-global-button-height-xl);
+}
+
 /* ⚠️  ΠΡΟΕΙΔΟΠΟΙΗΣΗ ΑΠΟ ΑΡΧΙΤΕΚΤΟΝΑ ΓΙΩΡΓΟ ⚠️
  *
  * ΑΠΑΓΟΡΕΥΕΤΑΙ ΑΥΣΤΗΡΑ:
