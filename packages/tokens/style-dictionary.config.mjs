@@ -138,6 +138,36 @@ export default {
           output += `}\n`;
         }
 
+        // ✅ MODAL DATA ATTRIBUTE STYLES: Enterprise modal styling
+        output += `\n/* ✅ MODAL DATA ATTRIBUTE STYLES - Enterprise styling */\n`;
+
+        // Modal no-overlay styling
+        output += `.layera-modal[data-no-overlay="true"] {\n`;
+        output += `  background: var(--layera-modal-color-noOverlay, transparent) !important;\n`;
+        output += `  pointer-events: none;\n`;
+        output += `}\n`;
+
+        // Modal content for no-overlay
+        output += `.layera-modal-content[data-no-overlay="true"] {\n`;
+        output += `  pointer-events: auto;\n`;
+        output += `  background: var(--layera-modal-color-surface-primary, var(--layera-color-surface-primary)) !important;\n`;
+        output += `}\n`;
+
+        // Modal draggable styling
+        output += `.layera-modal-content[data-draggable="true"] {\n`;
+        output += `  position: fixed !important;\n`;
+        output += `  cursor: grab;\n`;
+        output += `  user-select: none;\n`;
+        output += `  transform: none !important;\n`;
+        output += `  transition: all 0.2s ease;\n`;
+        output += `}\n`;
+
+        // Modal dragging styling
+        output += `.layera-modal-content[data-dragging="true"] {\n`;
+        output += `  cursor: grabbing !important;\n`;
+        output += `  transition: none !important;\n`;
+        output += `}\n`;
+
         return output;
       },
       'javascript/named-exports': function({dictionary}) {

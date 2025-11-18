@@ -398,3 +398,24 @@
   --layera-global-button-height-lg: 2.5rem; /** Large button height */
   --layera-global-button-height-xl: 2.75rem; /** Extra large button height */
 }
+
+/* ✅ MODAL DATA ATTRIBUTE STYLES - Enterprise styling */
+.layera-modal[data-no-overlay="true"] {
+  background: var(--layera-modal-color-noOverlay, transparent) !important;
+  pointer-events: none;
+}
+.layera-modal-content[data-no-overlay="true"] {
+  pointer-events: auto;
+  background: var(--layera-modal-color-surface-primary, var(--layera-color-surface-primary)) !important;
+}
+.layera-modal-content[data-draggable="true"] {
+  position: fixed !important;
+  cursor: grab;
+  user-select: none;
+  transform: none !important;
+  transition: all 0.2s ease;
+}
+.layera-modal-content[data-dragging="true"] {
+  cursor: grabbing !important;
+  transition: none !important;
+}

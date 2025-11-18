@@ -219,12 +219,7 @@ export const Modal: React.FC<BaseModalProps> = ({
       aria-modal={true}
       aria-labelledby={ariaLabelledBy}
       aria-describedby={ariaDescribedBy}
-      style={noOverlay ? {
-        background: 'var(--layera-global-components-drawer-pinnedOverlay-background, transparent)',
-        pointerEvents: 'none' as const
-      } : {
-        background: 'var(--layera-color-surface-primary, #ffffff)'
-      }}
+      data-no-overlay={noOverlay}
     >
       <Box
         as="section"
@@ -235,23 +230,12 @@ export const Modal: React.FC<BaseModalProps> = ({
           onMouseDown: dragHandlers.onMouseDown,
           onTouchStart: dragHandlers.onTouchStart
         } : {})}
-        style={{
-          ...(noOverlay ? {
-            pointerEvents: 'auto' as const,
-            background: 'var(--layera-color-surface-primary, #ffffff)'
-          } : {
-            background: 'var(--layera-color-surface-primary, #ffffff)'
-          }),
-          ...(draggable && !isMobile() && !isTouchDevice() ? {
-            position: 'fixed' as const,
-            left: modalPosition.x,
-            top: modalPosition.y,
-            cursor: isDragging ? ('grabbing' as const) : ('grab' as const),
-            userSelect: 'none' as const,
-            transform: 'none'
-          } : {}),
-          transition: isDragging ? 'none' : 'all 0.2s ease'
-        }}
+        data-draggable={draggable && !isMobile() && !isTouchDevice()}
+        data-dragging={isDragging}
+        data-no-overlay={noOverlay}
+        style={draggable && !isMobile() && !isTouchDevice() ? {
+          transform: `translate(${modalPosition.x}px, ${modalPosition.y}px)`
+        } : undefined}
       >
         {showCloseButton && (
           <button
