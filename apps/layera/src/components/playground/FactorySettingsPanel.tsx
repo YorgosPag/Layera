@@ -183,10 +183,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
 
         {/* Current Palette Info - Moved to right side */}
         <Box
-          className="layera-padding--sm layera-bg-surface--primary layera-border--default layera-border-radius--md"
-          style={{
-            minWidth: 'var(--layera-size-48)'
-          }}
+          className="layera-padding--sm layera-bg-surface--primary layera-border--default layera-border-radius--md layera-min-width--48"
         >
           <Text className="layera-typography layera-margin-bottom--xs layera-text--align-center" data-size="xs" data-weight="medium" data-color="primary">
             Τρέχουσα Παλέτα: {paletteOptions.find(p => p.value === selectedPalette)?.label}

@@ -60,7 +60,7 @@ export const ButtonsPreview: React.FC = () => {
   return (
     <Container className="layera-layout">
       {/* Header */}
-      <Box className="layera-layout" style={{ marginBottom: 'var(--layera-global-spacing-6)' }}>
+      <Box className="layera-layout layera-spacing" data-type="margin" data-direction="bottom" data-size="lg">
         <Heading
           as="h1"
           className="layera-typography"
@@ -80,7 +80,7 @@ export const ButtonsPreview: React.FC = () => {
       </Box>
 
       {/* Tabs για Button Shape */}
-      <Box className="layera-layout" style={{ marginBottom: 'var(--layera-global-spacing-4)' }}>
+      <Box className="layera-layout layera-spacing" data-type="margin" data-direction="bottom" data-size="md">
         <Text
           className="layera-typography"
           data-size="sm"
@@ -90,12 +90,10 @@ export const ButtonsPreview: React.FC = () => {
           Τύπος Πλήκτρου:
         </Text>
         <Box
-          className="layera-layout"
-          style={{
-            display: 'flex',
-            gap: 'var(--layera-global-spacing-2)',
-            marginTop: 'var(--layera-global-spacing-2)'
-          }}
+          className="layera-flex layera-flex--gap-sm layera-spacing"
+          data-type="margin"
+          data-direction="top"
+          data-size="sm"
         >
           {buttonShapes.map((shape) => (
             <Button
@@ -112,16 +110,9 @@ export const ButtonsPreview: React.FC = () => {
 
       {/* Controls */}
       <Box
-        className="layera-layout"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: 'var(--layera-global-spacing-4)',
-          marginBottom: 'var(--layera-global-spacing-6)',
-          padding: 'var(--layera-global-spacing-4)',
-          backgroundColor: 'var(--layera-color-surface-secondary)',
-          borderRadius: 'var(--layera-global-borderRadius-lg)'
-        }}
+        className="layera-grid--auto-fit layera-spacing"
+        data-size="md"
+        data-type="padding"
       >
         {/* Variant Control */}
         <Box className="layera-layout">
@@ -133,17 +124,16 @@ export const ButtonsPreview: React.FC = () => {
           >
             Variant:
           </Text>
-          <Box className="layera-layout" style={{ marginTop: 'var(--layera-global-spacing-2)' }}>
+          <Box className="layera-layout layera-spacing" data-type="margin" data-direction="top" data-size="sm">
             {buttonVariants.map((v) => (
               <Button
                 key={v}
                 variant={variant === v ? 'primary' : 'ghost'}
                 size="xs"
                 onClick={() => setVariant(v)}
-                style={{
-                  margin: 'var(--layera-global-spacing-1)',
-                  fontSize: 'var(--layera-fontSize-xs)'
-                }}
+                className="layera-spacing"
+                data-type="margin"
+                data-size="xs"
               >
                 {v}
               </Button>
@@ -161,14 +151,16 @@ export const ButtonsPreview: React.FC = () => {
           >
             Μέγεθος:
           </Text>
-          <Box className="layera-layout" style={{ marginTop: 'var(--layera-global-spacing-2)' }}>
+          <Box className="layera-layout layera-spacing" data-type="margin" data-direction="top" data-size="sm">
             {buttonSizes.map((s) => (
               <Button
                 key={s}
                 variant={size === s ? 'primary' : 'outline'}
                 size="xs"
                 onClick={() => setSize(s)}
-                style={{ margin: 'var(--layera-global-spacing-1)' }}
+                className="layera-spacing"
+                data-type="margin"
+                data-size="xs"
               >
                 {s}
               </Button>
@@ -187,18 +179,12 @@ export const ButtonsPreview: React.FC = () => {
             >
               Κείμενο:
             </Text>
-            <Box className="layera-layout" style={{ marginTop: 'var(--layera-global-spacing-2)' }}>
+            <Box className="layera-layout layera-spacing" data-type="margin" data-direction="top" data-size="sm">
               <input
                 type="text"
                 value={buttonText}
                 onChange={(e) => setButtonText(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: 'var(--layera-global-spacing-2)',
-                  border: '1px solid var(--layera-color-border-primary)',
-                  borderRadius: 'var(--layera-global-borderRadius-md)',
-                  fontSize: 'var(--layera-fontSize-sm)'
-                }}
+                className="layera-spacing" data-type="padding" data-size="sm"
               />
             </Box>
           </Box>
@@ -214,7 +200,7 @@ export const ButtonsPreview: React.FC = () => {
           >
             Εικονίδιο:
           </Text>
-          <Box className="layera-layout" style={{ marginTop: 'var(--layera-global-spacing-2)' }}>
+          <Box className="layera-layout layera-spacing" data-type="margin" data-direction="top" data-size="sm">
             <Button
               variant={withIcon ? 'primary' : 'secondary'}
               size="xs"
@@ -228,25 +214,17 @@ export const ButtonsPreview: React.FC = () => {
 
       {/* Preview Area */}
       <Box
-        className="layera-layout"
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: 'var(--layera-global-spacing-8)',
-          backgroundColor: 'var(--layera-color-surface-primary)',
-          borderRadius: 'var(--layera-global-borderRadius-xl)',
-          border: '2px dashed var(--layera-color-border-secondary)',
-          minHeight: '200px'
-        }}
+        className="layera-flex layera-flex--align-center layera-flex--justify-center layera-spacing"
+        data-size="xxl"
+        data-type="padding"
       >
         <Text
-          className="layera-typography"
+          className="layera-typography layera-spacing"
           data-size="lg"
           data-weight="semibold"
           data-color="primary"
-          style={{ marginBottom: 'var(--layera-global-spacing-4)' }}
+          data-type="margin"
+          data-direction="bottom"
         >
           🎯 Live Preview
         </Text>
@@ -255,11 +233,10 @@ export const ButtonsPreview: React.FC = () => {
 
         {/* Button Info */}
         <Box
-          className="layera-layout"
-          style={{
-            marginTop: 'var(--layera-global-spacing-4)',
-            textAlign: 'center'
-          }}
+          className="layera-text--align-center layera-spacing"
+          data-type="margin"
+          data-direction="top"
+          data-size="md"
         >
           <Text
             className="layera-typography"
@@ -277,33 +254,25 @@ export const ButtonsPreview: React.FC = () => {
 
       {/* Component Usage Example */}
       <Box
-        className="layera-layout"
-        style={{
-          marginTop: 'var(--layera-global-spacing-6)',
-          padding: 'var(--layera-global-spacing-4)',
-          backgroundColor: 'var(--layera-color-surface-tertiary)',
-          borderRadius: 'var(--layera-global-borderRadius-lg)'
-        }}
+        className="layera-layout layera-spacing"
+        data-type="padding"
+        data-size="md"
       >
         <Text
-          className="layera-typography"
+          className="layera-typography layera-spacing"
           data-size="md"
           data-weight="semibold"
           data-color="primary"
-          style={{ marginBottom: 'var(--layera-global-spacing-2)' }}
+          data-type="margin"
+          data-direction="bottom"
+          data-size="sm"
         >
           📝 Κώδικας:
         </Text>
         <Box
-          className="layera-layout"
-          style={{
-            padding: 'var(--layera-global-spacing-3)',
-            backgroundColor: 'var(--layera-color-surface-primary)',
-            borderRadius: 'var(--layera-global-borderRadius-md)',
-            fontFamily: 'monospace',
-            fontSize: 'var(--layera-fontSize-sm)',
-            border: '1px solid var(--layera-color-border-primary)'
-          }}
+          className="layera-layout layera-spacing layera-border-default"
+          data-type="padding"
+          data-size="sm"
         >
           <Text className="layera-typography" data-color="primary">
             {activeTab === 'square' ? (
