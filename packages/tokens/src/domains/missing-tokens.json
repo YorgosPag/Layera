@@ -70,17 +70,6 @@
         "comment": "Loose line height"
       }
     },
-    "size": {
-      "comment": "Size tokens",
-      "2": {
-        "value": "0.5rem",
-        "comment": "8px size"
-      },
-      "4": {
-        "value": "1rem",
-        "comment": "16px size"
-      }
-    },
     "text": {
       "comment": "Text utility tokens",
       "primary": {

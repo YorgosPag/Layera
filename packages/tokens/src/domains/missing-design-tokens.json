@@ -7,11 +7,6 @@
     "12": { "value": "3rem", "comment": "48px spacing" },
     "16": { "value": "4rem", "comment": "64px spacing" }
   },
-  "space": {
-    "md": { "value": "16px", "comment": "Medium spacing" },
-    "lg": { "value": "24px", "comment": "Large spacing" },
-    "12": { "value": "3rem", "comment": "48px spacing" }
-  },
   "radius": {
     "xs": { "value": "0.125rem", "comment": "2px radius" },
     "sm": { "value": "0.25rem", "comment": "4px radius" },
