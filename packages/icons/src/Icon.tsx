@@ -14,7 +14,7 @@ const ENTERPRISE_TOKENS = {
     sm: 'var(--layera-icon-xs)', // CSS Variable από SSOT - consolidated με xs
     md: 'var(--layera-icon-md)', // CSS Variable από SSOT
     lg: 'var(--layera-icon-lg)', // CSS Variable από SSOT
-    xl: 'var(--layera-icon-xl)', // CSS Variable από SSOT
+    xl: 'var(--layera-icon-lg)', // CSS Variable από SSOT - consolidated με lg
     xxl: 'var(--layera-icon-xxl)', // CSS Variable από SSOT
     xxxl: 'var(--layera-icon-xxxl)' // CSS Variable από SSOT
   },
@@ -86,7 +86,7 @@ const ICON_SIZES = {
   sm: ENTERPRISE_TOKENS.sizes.sm,     // όλα από SSOT
   md: ENTERPRISE_TOKENS.sizes.md,     // όλα από SSOT
   lg: ENTERPRISE_TOKENS.sizes.lg,     // όλα από SSOT
-  xl: ENTERPRISE_TOKENS.sizes.xl,     // όλα από SSOT
+  xl: ENTERPRISE_TOKENS.sizes.lg,     // από SSOT - consolidated με lg
   xxl: ENTERPRISE_TOKENS.sizes.xxl,   // όλα από SSOT
   xxxl: ENTERPRISE_TOKENS.sizes.xxxl  // όλα από SSOT
 };

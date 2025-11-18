@@ -1,7 +1,6 @@
 export const IconXs = '1rem' as const;
 export const IconMd = '1.25rem' as const;
 export const IconLg = '2rem' as const;
-export const IconXl = '2rem' as const;
 export const IconColorPrimary = '#fbbf24' as const;
 export const IconColorSecondary = '#6b7280' as const;
 export const IconColorSuccess = 'var(--layera-color-semantic-success-primary)' as const;

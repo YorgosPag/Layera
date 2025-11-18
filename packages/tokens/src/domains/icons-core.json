@@ -13,10 +13,6 @@
       "value": "2rem",
       "comment": "32px - Large interactive elements"
     },
-    "xl": {
-      "value": "2rem",
-      "comment": "32px - Same as lg for consistency"
-    },
     "colorPrimary": {
       "value": "#fbbf24",
       "comment": "Primary brand color for icons - ΚΙΤΡΙΝΟ για single source test"

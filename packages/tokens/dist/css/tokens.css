@@ -6,7 +6,6 @@
   --layera-icon-xs: 1rem; /** 16px - Standard mobile size */
   --layera-icon-md: 1.25rem; /** 20px - Default icon size for desktop */
   --layera-icon-lg: 2rem; /** 32px - Large interactive elements */
-  --layera-icon-xl: 2rem; /** 32px - Same as lg for consistency */
   --layera-icon-colorPrimary: #fbbf24; /** Primary brand color for icons - ΚΙΤΡΙΝΟ για single source test */
   --layera-icon-colorSecondary: #6b7280; /** Secondary color for supporting icons */
   --layera-icon-colorSuccess: var(--layera-color-semantic-success-primary); /** Green for success states - consolidated reference */

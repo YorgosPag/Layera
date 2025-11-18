@@ -1,7 +1,6 @@
 export const IconXs_var = 'var(--layera-icon-xs)' as const;
 export const IconMd_var = 'var(--layera-icon-md)' as const;
 export const IconLg_var = 'var(--layera-icon-lg)' as const;
-export const IconXl_var = 'var(--layera-icon-xl)' as const;
 export const IconColorPrimary_var = 'var(--layera-icon-colorPrimary)' as const;
 export const IconColorSecondary_var = 'var(--layera-icon-colorSecondary)' as const;
 export const IconColorSuccess_var = 'var(--layera-icon-colorSuccess)' as const;
