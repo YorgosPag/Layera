@@ -276,6 +276,15 @@ export default {
           output += `  background-color: var(--${prefix}-layout-bg-${color});\n`;
           output += `}\n`;
         });
+
+        // High-specificity rules για κύριο layout container
+        output += `\n/* 🎯 Specific rules για κύριο layout container - Higher specificity */\n`;
+        semanticColors.forEach(color => {
+          output += `.${prefix}-layout.${prefix}-bg-${color} {\n`;
+          output += `  background-color: var(--${prefix}-layout-bg-${color}) !important;\n`;
+          output += `  min-height: 100vh;\n`;
+          output += `}\n`;
+        });
         output += '\n';
 
         // Semantic text color utilities για layout elements

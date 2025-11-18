@@ -139,7 +139,7 @@ export const AppContent: React.FC = () => {
   };
 
   return (
-    <Box className="layera-layout">
+    <Box className="layera-layout layera-bg-primary">
       {/* Live Playground Fullscreen */}
       {showPlayground && (
         <LivePlayground onClose={closeLivePlayground} />

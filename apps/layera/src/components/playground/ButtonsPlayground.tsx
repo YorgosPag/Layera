@@ -5,7 +5,7 @@ import { PlusIcon, SearchIcon, CheckIcon, CloseIcon, SettingsIcon, RulerIcon, Po
 import { ButtonState } from '../../hooks/useButtonState';
 
 // Dynamic CSS injection που διατηρεί 100% την ίδια εμφάνιση
-const injectDynamicStyles = (colors: any, buttonState: any, dynamicBorderWidth: string) => {
+const injectDynamicStyles = (colors: Record<string, string>, buttonState: ButtonState, dynamicBorderWidth: string) => {
   const styleId = 'layera-dynamic-button-styles';
   let existingStyle = document.getElementById(styleId);
 

@@ -29,6 +29,32 @@
   background-color: var(--layera-layout-bg-info);
 }
 
+/* 🎯 Specific rules για κύριο layout container - Higher specificity */
+.layera-layout.layera-bg-primary {
+  background-color: var(--layera-layout-bg-primary) !important;
+  min-height: 100vh;
+}
+.layera-layout.layera-bg-secondary {
+  background-color: var(--layera-layout-bg-secondary) !important;
+  min-height: 100vh;
+}
+.layera-layout.layera-bg-success {
+  background-color: var(--layera-layout-bg-success) !important;
+  min-height: 100vh;
+}
+.layera-layout.layera-bg-warning {
+  background-color: var(--layera-layout-bg-warning) !important;
+  min-height: 100vh;
+}
+.layera-layout.layera-bg-danger {
+  background-color: var(--layera-layout-bg-danger) !important;
+  min-height: 100vh;
+}
+.layera-layout.layera-bg-info {
+  background-color: var(--layera-layout-bg-info) !important;
+  min-height: 100vh;
+}
+
 /* 📝 Semantic Text Colors για Layout Elements */
 .layera-text-primary {
   color: var(--layera-color-text-primary);

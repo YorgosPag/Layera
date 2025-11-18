@@ -168,10 +168,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   // Conversion function for backward compatibility με playground components
   const convertColorPaletteWithAlphaToLegacy = (palette: ColorPaletteWithAlpha) => {
     // Helper function για safe extraction του hex value
-    const safeExtractHex = (color: any): string => {
+    const safeExtractHex = (color: string | { hex: string } | undefined): string => {
       if (!color) return '#ffffff';
       if (typeof color === 'string') return color; // Factory settings format
-      if (color.hex) return color.hex; // ColorWithAlpha format
+      if (typeof color === 'object' && color.hex) return color.hex; // ColorWithAlpha format
       return '#ffffff'; // Fallback
     };
 

@@ -33,8 +33,8 @@ if (firebaseConfig.apiKey && firebaseConfig.projectId) {
         await FactorySettingsService.deleteAllUserSettings();
         console.log('✅ Παλιές ρυθμίσεις χρηστών διαγράφηκαν');
 
-      } catch (error: any) {
-        console.error('❌ Σφάλμα εργοστασιακών ρυθμίσεων:', error?.code || error?.message);
+      } catch (error: unknown) {
+        console.error('❌ Σφάλμα εργοστασιακών ρυθμίσεων:', error instanceof Error ? (error.code || error.message) : String(error));
         console.log('💡 Χρήση τοπικών εργοστασιακών ρυθμίσεων');
       }
     }, 1000);

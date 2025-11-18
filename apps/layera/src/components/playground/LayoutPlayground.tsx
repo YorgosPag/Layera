@@ -31,7 +31,6 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
   currentColors,
   colorCategory,
   borderWidth = 2,
-  borderRadius = 'md',
   layoutRadius = 'md',
   layoutSize = 'md',
   hoverEffect = 'normal',
@@ -54,7 +53,7 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
   // Helper function για μετατροπή radius values σε tokens
   const getRadiusToken = (radius: string) => {
     switch(radius) {
-      case 'none': return '0px';                        // 0px
+      case 'none': return 'var(--layera-radius-none)';  // 0px from tokens
       case 'sm': return 'var(--layera-radius-sm)';      // 4px
       case 'lg': return 'var(--layera-radius-lg)';      // 8px - default για layout
       case 'xl': return 'var(--layera-radius-xl)';      // 12px
@@ -138,30 +137,8 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
   };
 
   // Layout section configurations
-  // Helper to get text color based on category and color
-  const getTextColor = (colorValue: string) => {
-    if (colorCategory === 'text') return colorValue;
-    if (colorCategory === 'backgrounds') {
-      // Dark backgrounds need white text, light backgrounds need black text
-      return colorValue === '#f59e0b' ? '#000000' : '#ffffff'; // warning is light, others dark
-    }
-    return '#333333'; // default for borders
-  };
-
-  // Helper to get background color
-  const getBackgroundColor = (colorValue: string) => {
-    if (colorCategory === 'backgrounds') return colorValue;
-    return '#ffffff'; // white background for text and borders
-  };
-
-  // Helper to get border style
-  const getBorderStyle = (colorValue: string) => {
-    if (colorCategory === 'borders') {
-      const borderWidthToken = `var(--layera-global-borderWidth-${borderWidth})`;
-      return `${borderWidthToken} solid ${colorValue}`;
-    }
-    return '1px solid #e5e5e5'; // subtle border for others
-  };
+  // REMOVED: All hardcoded helper functions that violated ZERO ΣΚΛΗΡΕΣ ΤΙΜΕΣ rule
+  // Layout colors are now handled EXCLUSIVELY through CSS classes and tokens
 
   const layoutConfigs = [
     { key: 'primary', title: 'Primary', description: 'Layout Section', colorValue: currentColors.primary },
@@ -172,14 +149,7 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
     { key: 'info', title: 'Info', description: 'Layout Section', colorValue: currentColors.info }
   ];
 
-  // Initialize CSS variables που χρησιμοποιούν τα CSS classes
-  React.useEffect(() => {
-    const root = document.documentElement;
-    layoutConfigs.forEach(({ key, colorValue }) => {
-      // Δημιουργία αρχικών τιμών για τα --layera-layout-bg-* variables που χρησιμοποιούν τα CSS classes
-      root.style.setProperty(`--layera-layout-bg-${key}`, getBackgroundColor(colorValue));
-    });
-  }, [layoutConfigs, colorCategory]);
+  // REMOVED: DOM manipulation violation - CSS variables are handled by useCSSVariables.ts
 
   // Helper to get appropriate CSS class based on category and key
   const getLayoutClasses = (key: string) => {
@@ -205,10 +175,13 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
         </p>
 
         <Box className="layera-flex layera-flex--wrap-wrap layera-flex--justify-center layera-flex--align-center layera-flex--gap-md layera-padding-top--lg layera-padding-bottom--lg layera-width--full">
-          {layoutConfigs.map(({ key, title, description, colorValue }) => {
+          {layoutConfigs.map(({ key, title, description }) => {
             // Debug logging
             console.log('📐 LayoutPlayground: layoutRadius prop =', layoutRadius);
             console.log('📐 LayoutPlayground: Final borderRadius =', getRadiusToken(layoutRadius));
+            console.log('🎯 LayoutPlayground: key =', key);
+            console.log('🎯 LayoutPlayground: classes =', getLayoutClasses(key));
+            console.log('🎯 LayoutPlayground: colorCategory =', colorCategory);
 
 
             return (
