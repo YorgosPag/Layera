@@ -11,10 +11,6 @@
         "secondary": {
           "value": "#f8fafc",
           "comment": "Secondary surface για cards"
-        },
-        "overlay": {
-          "value": "rgba(0, 0, 0, 0.5)",
-          "comment": "Modal overlay background"
         }
       },
       "text": {

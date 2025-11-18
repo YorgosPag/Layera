@@ -55,9 +55,6 @@
       "error": { "value": "#ffffff", "comment": "Text on error backgrounds" }
     }
   },
-  "overlay": {
-    "background": { "value": "rgba(0, 0, 0, 0.5)", "comment": "Modal overlay background" }
-  },
   "color": {
     "brand": {
       "value": "#3b82f6",

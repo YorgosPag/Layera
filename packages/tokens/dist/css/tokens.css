@@ -86,7 +86,6 @@
   --layera-color-transition-border: 0.25s ease; /** Border color transition timing */
   --layera-color-light-surface-primary: #22c55e; /** Primary surface για cards/modals */
   --layera-color-light-surface-secondary: #f8fafc; /** Secondary surface για cards */
-  --layera-color-light-surface-overlay: rgba(0, 0, 0, 0.5); /** Modal overlay background */
   --layera-color-light-text-primary: #1e293b; /** Primary text - σκούρο για contrast */
   --layera-color-light-text-secondary: #475569; /** Secondary text - medium gray */
   --layera-color-light-border-primary: #e2e8f0; /** Primary borders */
@@ -261,7 +260,6 @@
   --layera-text-on-success: #065f46; /** Text on success backgrounds */
   --layera-text-on-warning: #92400e; /** Text on warning backgrounds */
   --layera-text-on-error: #ffffff; /** Text on error backgrounds */
-  --layera-overlay-background: rgba(0, 0, 0, 0.5); /** Modal overlay background */
   --layera-bg-dark: #0f172a; /** Dark background */
   --layera-bg-secondary: #f8fafc; /** Secondary background */
   --layera-bg-surface-light: var(--layera-color-surface-primary); /** Light surface background - matches header */
@@ -337,7 +335,6 @@
 :root.light {
   --layera-color-surface-primary: var(--layera-color-light-surface-primary, #22c55e);
   --layera-color-surface-secondary: var(--layera-color-light-surface-secondary, #f8fafc);
-  --layera-color-surface-overlay: var(--layera-color-light-surface-overlay, rgba(0, 0, 0, 0.5));
   --layera-color-text-primary: var(--layera-color-light-text-primary, #1e293b);
   --layera-color-text-secondary: var(--layera-color-light-text-secondary, #475569);
   --layera-colorUtilities-utilities-background-surface-light: var(--layera-colorUtilities-utilities-background-surface-light, var(--layera-color-background-surface-light));
