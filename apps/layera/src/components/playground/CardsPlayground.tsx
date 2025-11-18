@@ -155,10 +155,6 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
     }
   };
 
-  // Base card style object
-  const dynamicCardStyles = {
-    borderRadius: getRadiusToken(cardRadius)
-  };
 
   // Debug logging
   console.log('🃏 CardsPlayground: cardRadius prop =', cardRadius);
@@ -229,14 +225,11 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
           {cardConfigs.map(({ key, title, description, colorValue }) => (
             <Box
               key={key}
-              className="layera-flex layera-flex-column layera-flex--align-center layera-flex--justify-center layera-padding--md layera-height--6xl layera-width--card layera-flex-shrink--0"
-              style={{
-                ...dynamicCardStyles,
-                // Χρήση CSS variables για real-time preview support
-                backgroundColor: `var(--layera-card-bg-${key}, ${getBackgroundColor(colorValue)})`,
-                color: `var(--layera-card-text-${key}, ${getTextColor(colorValue)})`,
-                border: `var(--layera-card-border-${key}, ${getBorderStyle(colorValue)})`
-              } as React.CSSProperties}
+              className="layera-flex layera-flex-column layera-flex--align-center layera-flex--justify-center layera-padding--md layera-height--6xl layera-width--card layera-flex-shrink--0 layera-card--dynamic"
+              data-dynamic-bg={getBackgroundColor(colorValue)}
+              data-dynamic-text={getTextColor(colorValue)}
+              data-dynamic-border={getBorderStyle(colorValue)}
+              data-dynamic-radius={getRadiusToken(cardRadius)}
             >
               <Text
                 className="layera-typography layera-margin-bottom--xs layera-line-height--tight"

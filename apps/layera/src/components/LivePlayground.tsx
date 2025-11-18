@@ -414,13 +414,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {colorHookState.elementType === 'buttons' && (
             <Box className="layera-margin-bottom--xl">
               <Box
-                className="layera-grid layera-grid--gap-lg layera-margin-top--lg layera-margin-bottom--xl"
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'var(--layera-global-utilities-grid-autoFit280)',
-                  gap: 'var(--layera-size-8)',
-                  padding: 'var(--layera-size-6)'
-                } as React.CSSProperties}
+                className="layera-grid layera-grid--gap-lg layera-margin-top--lg layera-margin-bottom--xl layera-grid--auto-fit-280 layera-padding--lg"
               >
                 {/* Shape Control - ΠΡΩΤΟ */}
                 <Box className="layera-card layera-padding--lg layera-text--align-center">

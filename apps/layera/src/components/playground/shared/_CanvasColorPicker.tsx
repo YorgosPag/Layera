@@ -184,11 +184,7 @@ export const CanvasColorPicker: React.FC<CanvasColorPickerProps> = ({
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseLeave}
-          className="layera-border--default layera-cursor--crosshair layera-border-radius--md"
-          style={{
-            width: '250px',
-            height: '100px'
-          } as React.CSSProperties}
+          className="layera-border--default layera-cursor--crosshair layera-border-radius--md layera-canvas--250x100"
         />
       </Box>
 
@@ -201,21 +197,11 @@ export const CanvasColorPicker: React.FC<CanvasColorPickerProps> = ({
         {/* Alpha Preview Box */}
         <Box className="layera-margin-bottom--xs layera-flex layera-flex--justify-center">
           <Box
-            className="layera-border--default layera-border-radius--md"
-            style={{
-              width: '250px',
-              height: '24px',
-              backgroundImage: 'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)',
-              backgroundSize: '8px 8px',
-              backgroundPosition: '0 0, 0 4px, 4px -4px, -4px 0px',
-              position: 'relative'
-            } as React.CSSProperties}
+            className="layera-border--default layera-border-radius--md layera-alpha-preview"
           >
             <Box
-              className="layera-position--absolute layera-position-top--0 layera-position-left--0 layera-width--full layera-height--full layera-border-radius--md"
-              style={{
-                backgroundColor: currentColor.rgba
-              } as React.CSSProperties}
+              className="layera-position--absolute layera-position-top--0 layera-position-left--0 layera-width--full layera-height--full layera-border-radius--md layera-dynamic-bg"
+              data-dynamic-bg={currentColor.rgba}
             />
           </Box>
         </Box>
@@ -242,10 +228,7 @@ export const CanvasColorPicker: React.FC<CanvasColorPickerProps> = ({
                 onPreview(newColor);
               }
             }}
-            className="layera-input"
-            style={{
-              width: '250px'
-            } as React.CSSProperties}
+            className="layera-input layera-width--250"
           />
         </Box>
       </Box>

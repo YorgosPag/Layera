@@ -209,19 +209,15 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
             console.log('📋 HeaderPlayground: headerRadius prop =', headerRadius);
             console.log('📋 HeaderPlayground: Final borderRadius =', getRadiusToken(headerRadius));
 
-            const dynamicHeaderStyles = {
-              borderRadius: getRadiusToken(headerRadius),
-              // Χρήση CSS variables για real-time preview support
-              backgroundColor: `var(--layera-header-bg-${key}, ${getBackgroundColor(colorValue)})`,
-              color: `var(--layera-header-text-${key}, ${getTextColor(colorValue)})`,
-              border: `var(--layera-header-border-${key}, ${getBorderStyle(colorValue)})`
-            };
 
             return (
               <Box
                 key={key}
-                className="layera-height--6xl layera-flex layera-flex--align-center layera-flex--justify-space-between layera-padding--md"
-                style={dynamicHeaderStyles}
+                className="layera-height--6xl layera-flex layera-flex--align-center layera-flex--justify-space-between layera-padding--md layera-header--dynamic"
+                data-dynamic-bg={getBackgroundColor(colorValue)}
+                data-dynamic-text={getTextColor(colorValue)}
+                data-dynamic-border={getBorderStyle(colorValue)}
+                data-dynamic-radius={getRadiusToken(headerRadius)}
               >
                 {/* Left section - Logo + Title */}
                 <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm">

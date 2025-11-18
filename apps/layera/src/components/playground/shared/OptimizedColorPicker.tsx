@@ -117,10 +117,7 @@ export const OptimizedColorPicker: React.FC<OptimizedColorPickerProps> = ({
         value={displayValue}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e.target.value)}
         onInput={handleInput}
-        className="layera-input layera-width--full layera-margin-bottom--sm layera-cursor--pointer layera-transition--fast"
-        style={{
-          opacity: isChanging ? 0.8 : 1
-        }}
+        className={`layera-input layera-width--full layera-margin-bottom--sm layera-cursor--pointer layera-transition--fast ${isChanging ? 'layera-opacity--80' : 'layera-opacity--100'}`}
       />
       <Text className="layera-typography" data-size="sm" data-color="secondary">
         {displayValue.toUpperCase()}

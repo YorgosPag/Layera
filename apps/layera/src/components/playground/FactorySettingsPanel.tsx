@@ -247,13 +247,8 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
             {Object.values(AVAILABLE_PALETTES[selectedPalette]).map((color, index) => (
               <Box
                 key={index}
-                className="layera-border--light layera-border-radius--xs"
-                style={{
-                  width: 'var(--layera-iconInteractive-sizing-padding-lg)',
-                  height: 'var(--layera-iconInteractive-sizing-padding-lg)',
-                  '--layera-color-preview-bg': color.hex,
-                  backgroundColor: 'var(--layera-color-preview-bg)'
-                } as React.CSSProperties}
+                className="layera-border--light layera-border-radius--xs layera-color-preview--lg layera-dynamic-bg"
+                data-dynamic-bg={color.hex}
                 data-title={`${color.name}: ${color.hex}`}
               />
             ))}

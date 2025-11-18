@@ -203,19 +203,15 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
             console.log('📐 LayoutPlayground: layoutRadius prop =', layoutRadius);
             console.log('📐 LayoutPlayground: Final borderRadius =', getRadiusToken(layoutRadius));
 
-            const dynamicLayoutStyles = {
-              borderRadius: getRadiusToken(layoutRadius),
-              // Χρήση CSS variables για real-time preview support
-              backgroundColor: `var(--layera-layout-bg-${key}, ${getBackgroundColor(colorValue)})`,
-              color: `var(--layera-layout-text-${key}, ${getTextColor(colorValue)})`,
-              border: `var(--layera-layout-border-${key}, ${getBorderStyle(colorValue)})`
-            };
 
             return (
               <Box
                 key={key}
-                className="layera-padding--md layera-height--6xl layera-width--card layera-flex layera-flex--align-center layera-flex--justify-center layera-flex-shrink--0"
-                style={dynamicLayoutStyles}
+                className="layera-padding--md layera-height--6xl layera-width--card layera-flex layera-flex--align-center layera-flex--justify-center layera-flex-shrink--0 layera-layout--dynamic"
+                data-dynamic-bg={getBackgroundColor(colorValue)}
+                data-dynamic-text={getTextColor(colorValue)}
+                data-dynamic-border={getBorderStyle(colorValue)}
+                data-dynamic-radius={getRadiusToken(layoutRadius)}
               >
                 <Box>
                   <Text

@@ -190,8 +190,9 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
           {colors.map((color, index) => (
             <Box
               key={color.name}
-              className={`layera-box-border layera-border--solid layera-border-color--transparent layera-padding--md layera-border-radius--md layera-flex layera-flex--justify-space-between layera-flex--align-center layera-text--size-sm layera-font-weight--medium ${index === colors.length - 1 ? "layera-table-row layera-table-row--last" : "layera-table-row"}`}
-              style={getDynamicTableStyles(color.value)}
+              className={`layera-box-border layera-border--solid layera-border-color--transparent layera-padding--md layera-border-radius--md layera-flex layera-flex--justify-space-between layera-flex--align-center layera-text--size-sm layera-font-weight--medium layera-table-row--dynamic ${index === colors.length - 1 ? "layera-table-row layera-table-row--last" : "layera-table-row"}`}
+              data-color-category={colorCategory}
+              data-dynamic-color={color.value}
             >
               <span>{color.name} Row</span>
               <span className="layera-opacity--80 layera-fontSize--xs">

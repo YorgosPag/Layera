@@ -32,18 +32,13 @@ export const BordersPreview: React.FC<BordersPreviewProps> = ({
     { key: 'info', label: 'Info', colorValue: currentColors.info }
   ];
 
-  // Dynamic border color only - static styles moved to className
-  const getDynamicBorderStyle = (colorValue: string) => ({
-    '--layera-border-preview-color': colorValue,
-    border: `var(--layera-global-borderWidth-3) solid var(--layera-border-preview-color)`
-  });
   return (
     <>
       {borderConfigs.map(({ key, label, colorValue }) => (
         <Box
           key={key}
-          className="layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-height--preview layera-min-width--120 layera-border-radius--md layera-padding--md layera-fontSize--xs layera-fontWeight--bold layera-bg-surface--primary"
-          style={getDynamicBorderStyle(colorValue) as React.CSSProperties}
+          className="layera-flex layera-flex--align-center layera-flex--justify-center layera-text-center layera-height--preview layera-min-width--120 layera-border-radius--md layera-padding--md layera-fontSize--xs layera-fontWeight--bold layera-bg-surface--primary layera-border--dynamic"
+          data-dynamic-border-color={colorValue}
         >
           {label}<br/>Border
         </Box>

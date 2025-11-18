@@ -252,11 +252,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleHexChange(e.target.value)}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          className="layera-input layera-width--full layera-cursor--pointer"
-          style={{
-            transition: 'none',
-            willChange: 'auto'
-          } as React.CSSProperties}
+          className="layera-input layera-width--full layera-cursor--pointer layera-transition--none"
         />
       </Box>
 
@@ -269,23 +265,12 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
         {/* Alpha Preview Box - 250px πλάτος με progressive alpha */}
         <Box className="layera-margin-bottom--xs layera-flex layera-flex--justify-center">
           <Box
-            className="layera-border--default layera-position--relative"
-            style={{
-              width: '250px',
-              height: '24px',
-              borderRadius: '4px',
-              backgroundImage: 'linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)',
-              backgroundSize: '8px 8px',
-              backgroundPosition: '0 0, 0 4px, 4px -4px, -4px 0px'
-            } as React.CSSProperties}
+            className="layera-border--default layera-position--relative layera-alpha-preview-250"
           >
             {/* Overlay με το χρώμα και την αντίστοιχη διαφάνεια */}
             <Box
-              className="layera-position--absolute layera-position-top--0 layera-position-left--0 layera-width--full layera-height--full"
-              style={{
-                borderRadius: '4px',
-                backgroundColor: internalValue?.rgba || 'rgba(255, 255, 255, 1)'
-              } as React.CSSProperties}
+              className="layera-position--absolute layera-position-top--0 layera-position-left--0 layera-width--full layera-height--full layera-border-radius--sm layera-dynamic-bg"
+              data-dynamic-bg={internalValue?.rgba || 'rgba(255, 255, 255, 1)'}
             />
           </Box>
         </Box>
@@ -300,10 +285,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
             step="1"
             value={alphaPercentage}
             onChange={handleAlphaChange}
-            className="layera-input"
-            style={{
-              width: '250px'
-            } as React.CSSProperties}
+            className="layera-input layera-width--250"
           />
         </Box>
       </Box>

@@ -167,14 +167,6 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
   console.log('🔲 ModalsPlayground: modalRadius prop =', modalRadius);
   console.log('🔲 ModalsPlayground: Final borderRadius =', getRadiusToken(modalRadius));
 
-  const modalStyle = {
-    height: 'var(--layera-fontSize-6xl)',
-    width: 'calc(var(--layera-fontSize-6xl) * 3)',
-    minWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
-    maxWidth: 'calc(var(--layera-fontSize-6xl) * 3)',
-    borderRadius: getRadiusToken(modalRadius),
-    flex: '0 0 calc(var(--layera-fontSize-6xl) * 3)'
-  };
 
   const modalConfigs = [
     { key: 'primary', title: 'Primary Modal', description: 'Κύριο modal', colorValue: currentColors.primary },
@@ -214,14 +206,11 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
           {modalConfigs.map(({ key, title, description, colorValue }) => (
             <Box
               key={key}
-              className="layera-padding--md layera-flex layera-flex--column layera-flex--justify-center layera-flex--align-center layera-position--relative layera-shadow--md"
-              style={{
-                ...modalStyle,
-                // Dynamic styling only
-                backgroundColor: `var(--layera-modal-bg-${key}, ${getBackgroundColor(colorValue)})`,
-                color: `var(--layera-modal-text-${key}, ${getTextColor(colorValue)})`,
-                border: `var(--layera-modal-border-${key}, ${getBorderStyle(colorValue)})`
-              } as React.CSSProperties}
+              className="layera-padding--md layera-flex layera-flex--column layera-flex--justify-center layera-flex--align-center layera-position--relative layera-shadow--md layera-modal--preview layera-modal--dynamic"
+              data-dynamic-bg={getBackgroundColor(colorValue)}
+              data-dynamic-text={getTextColor(colorValue)}
+              data-dynamic-border={getBorderStyle(colorValue)}
+              data-dynamic-radius={getRadiusToken(modalRadius)}
             >
               <Box className="layera-flex layera-flex--justify-between layera-flex--align-center">
                 <Text className="layera-typography" data-size="sm" data-weight="bold">
