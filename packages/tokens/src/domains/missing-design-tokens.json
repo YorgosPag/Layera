@@ -18,13 +18,10 @@
     "pill": { "value": "var(--layera-global-borderRadius-full)", "comment": "Pill shape radius - consolidated reference" },
     "circle": { "value": "var(--layera-global-borderRadius-circle)", "comment": "Circle shape radius - consolidated reference" },
     "full": { "value": "var(--layera-global-borderRadius-full)", "comment": "Full border radius - consolidated reference" },
-    "button": { "value": "0.375rem", "comment": "Button border radius" },
-    "input": { "value": "0.375rem", "comment": "Input border radius" },
     "badge": { "value": "0.25rem", "comment": "Badge border radius" },
     "tooltip": { "value": "0.25rem", "comment": "Tooltip border radius" },
     "layout": {
       "sm": { "value": "0.25rem", "comment": "Small layout radius" },
-      "md": { "value": "0.375rem", "comment": "Medium layout radius" },
       "xl": { "value": "0.75rem", "comment": "Extra large layout radius" }
     }
   },
@@ -44,9 +41,6 @@
       "sm": { "value": "0.5rem 1rem", "comment": "Small button padding" },
       "xl": { "value": "1rem 2rem", "comment": "XL button padding" }
     },
-    "border": {
-      "radius": { "value": "0.375rem", "comment": "Button border radius" }
-    }
   },
   "transition": {
     "all": { "value": "all 0.2s ease", "comment": "All properties transition" },

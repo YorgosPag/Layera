@@ -26,10 +26,6 @@
         "file": "./components.json",
         "description": "Component-specific tokens - header, drawer, navigation"
       },
-      "buttons": {
-        "file": "./buttons.json",
-        "description": "Καθολικό button system"
-      },
       "responsive": {
         "file": "./responsive.json",
         "description": "Responsive breakpoints και mobile optimizations"
