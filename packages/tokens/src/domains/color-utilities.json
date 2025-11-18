@@ -27,23 +27,7 @@
             "type": "color"
           }
         },
-        "accent": {
-          "blue": {
-            "value": "var(--layera-global-colors-theme-light-accent-blue)",
-            "comment": "Blue accent background",
-            "type": "color"
-          },
-          "green": {
-            "value": "var(--layera-global-colors-theme-light-accent-green)",
-            "comment": "Green accent background",
-            "type": "color"
-          },
-          "purple": {
-            "value": "var(--layera-global-colors-theme-light-accent-purple)",
-            "comment": "Purple accent background",
-            "type": "color"
-          }
-        },
+        "accent": {},
         "semantic": {
           "success": {
             "value": "var(--layera-color-semantic-success-primary, #10b981)",
@@ -70,11 +54,6 @@
           "white": {
             "value": "var(--layera-color-neutral-white)",
             "comment": "Pure white background - consolidated reference",
-            "type": "color"
-          },
-          "black": {
-            "value": "var(--layera-color-neutral-black)",
-            "comment": "Pure black background - consolidated reference",
             "type": "color"
           },
           "transparent": {
