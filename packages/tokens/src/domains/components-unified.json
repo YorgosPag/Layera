@@ -134,7 +134,7 @@
         "textDecoration": "none",
         "cursor": "pointer",
         "transition": "all 0.2s ease",
-        "minHeight": "var(--layera-spacing-component-button-height)"
+        "minHeight": "var(--layera-global-button-height-md)"
       },
       "comment": "Ενοποιημένη button κλάση - αντικαθιστά 5+ κλάσεις",
       "variants": {

@@ -37,10 +37,6 @@
         "value": "480px",
         "comment": "Standard card height - replaces hardcoded value"
       },
-      "button-height": {
-        "value": "40px",
-        "comment": "Standard button height - replaces hardcoded value"
-      },
       "input-height": {
         "value": "40px",
         "comment": "Standard input height - replaces hardcoded value"

@@ -492,7 +492,7 @@ button:focus-visible {
   padding: var(--layera-global-spacing-4);
 }
 .layera-spacing[data-component="button"] {
-  height: var(--layera-spacing-component-button-height);
+  height: var(--layera-global-button-height-md);
   padding: var(--layera-global-spacing-2) var(--layera-global-spacing-4);
 }
 .layera-spacing[data-component="input"] {

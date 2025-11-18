@@ -30,14 +30,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   // Removed CSS properties for ARXES compliance - styling via CSS classes only
   ...props
 }, ref) => {
-  // Υπολογισμός CSS classes
+  // Υπολογισμός CSS classes - χρήση των ΠΡΑΓΜΑΤΙΚΩΝ κλάσεων από tokens
   const classes = [
-    'layera-btn',
-    `layera-btn--${variant}`,
-    `layera-btn--${size}`,
-    fullWidth && 'layera-btn--full-width',
-    loading && 'layera-btn--loading',
-    icon && !children && 'layera-btn--icon-only',
+    'layera-button',
+    `layera-button--${size}`,
+    fullWidth && 'layera-button--full-width',
+    loading && 'layera-button--loading',
+    icon && !children && 'layera-button--icon-only',
     className
   ].filter(Boolean).join(' ');
 
@@ -97,6 +96,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
       ref={ref}
       type={type}
       className={classes}
+      data-size={size}
+      data-variant={variant}
+      data-loading={loading}
+      data-full-width={fullWidth}
       disabled={disabled || loading}
       aria-disabled={disabled || loading}
       aria-busy={loading}
@@ -104,11 +107,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
       {...props}
     >
       {loading && (
-        <Box className="layera-btn-loading">
+        <Box className="layera-button-loading">
           {renderLoadingContent()}
         </Box>
       )}
-      <Box className="layera-btn-content">
+      <Box className="layera-button-content">
         {loading && loadingText ? loadingText : renderContent()}
       </Box>
     </button>

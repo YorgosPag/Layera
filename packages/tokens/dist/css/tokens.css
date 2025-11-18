@@ -169,7 +169,6 @@
   --layera-spacing-viewport-full-width: 100vw; /** Full viewport width */
   --layera-spacing-component-card-width: 320px; /** Standard card width - replaces hardcoded value */
   --layera-spacing-component-card-height: 480px; /** Standard card height - replaces hardcoded value */
-  --layera-spacing-component-button-height: 40px; /** Standard button height - replaces hardcoded value */
   --layera-spacing-component-input-height: 40px; /** Standard input height - replaces hardcoded value */
   --layera-spacing-component-preview-box-height: 40px; /** Preview box height for background components */
   --layera-spacing-component-preview-border-height: 30px; /** Preview box height for border components */
@@ -349,6 +348,24 @@
   --layera-cardTitleColor: var(--layera-color-text-primary); /** Card title color - κληρονομεί από text primary */
   --layera-modalHeaderFontSize: 1.25rem; /** Modal header font size - 20px για mobile optimization */
   --layera-modalHeaderFontWeight: 700; /** Modal header font weight - bold για έμφαση */
+  --layera-buttons-base-background: var(--layera-color-text-secondary); /** Καθολικό button background - αλλάζει όλα τα buttons */
+  --layera-buttons-base-text: var(--layera-color-text-on-dark); /** Καθολικό button text color - αλλάζει όλα τα buttons */
+  --layera-buttons-base-border: var(--layera-color-text-secondary); /** Καθολικό button border - αλλάζει όλα τα buttons */
+  --layera-buttons-base-borderWidth: 1px; /** Καθολικό button border πλάτος */
+  --layera-buttons-states-hover-background: color-mix(in srgb, var(--layera-color-text-secondary) 80%, black 20%); /** Καθολικό button hover background */
+  --layera-buttons-states-hover-text: var(--layera-color-text-on-dark); /** Καθολικό button hover text */
+  --layera-buttons-states-hover-border: color-mix(in srgb, var(--layera-color-text-secondary) 80%, black 20%); /** Καθολικό button hover border */
+  --layera-buttons-states-active-background: color-mix(in srgb, var(--layera-color-text-secondary) 70%, black 30%); /** Καθολικό button active background */
+  --layera-buttons-states-active-text: var(--layera-color-text-on-dark); /** Καθολικό button active text */
+  --layera-buttons-states-active-border: color-mix(in srgb, var(--layera-color-text-secondary) 70%, black 30%); /** Καθολικό button active border */
+  --layera-buttons-states-disabled-background: var(--layera-color-background-tertiary); /** Καθολικό button disabled background */
+  --layera-buttons-states-disabled-text: var(--layera-color-text-tertiary); /** Καθολικό button disabled text */
+  --layera-buttons-states-disabled-border: var(--layera-color-border-primary); /** Καθολικό button disabled border */
+  --layera-buttons-sizes-xs-height: 1.75rem; /** Extra small button height - χωράει στην επικεφαλίδα */
+  --layera-buttons-sizes-sm-height: 2rem; /** Small button height - χωράει στην επικεφαλίδα */
+  --layera-buttons-sizes-md-height: 2.25rem; /** Medium button height - χωράει στην επικεφαλίδα */
+  --layera-buttons-sizes-lg-height: 2.5rem; /** Large button height */
+  --layera-buttons-sizes-xl-height: 2.75rem; /** Extra large button height */
 }
 
 /* ✅ DYNAMIC: Light theme από JSON tokens */
@@ -371,4 +388,13 @@
   --layera-color-surface-overlay: var(--layera-color-dark-surface-overlay, rgba(0, 0, 0, 0.75));
   --layera-color-text-primary: var(--layera-color-dark-text-primary, #f1f5f9);
   --layera-color-text-secondary: var(--layera-color-dark-text-secondary, #cbd5e1);
+}
+
+/* ✅ BUTTON HEIGHT VARIABLES από buttons.json */
+:root {
+  --layera-global-button-height-xs: 1.75rem; /** Extra small button height - χωράει στην επικεφαλίδα */
+  --layera-global-button-height-sm: 2rem; /** Small button height - χωράει στην επικεφαλίδα */
+  --layera-global-button-height-md: 2.25rem; /** Medium button height - χωράει στην επικεφαλίδα */
+  --layera-global-button-height-lg: 2.5rem; /** Large button height */
+  --layera-global-button-height-xl: 2.75rem; /** Extra large button height */
 }

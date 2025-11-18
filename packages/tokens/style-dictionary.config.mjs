@@ -122,6 +122,22 @@ export default {
           output += `}\n`;
         }
 
+        // ✅ BUTTON HEIGHT VARIABLES: Generate από buttons.json
+        const buttonTokens = dictionary.allTokens.filter(token =>
+          token.path && token.path[0] === 'buttons' && token.path[1] === 'sizes' && token.path[3] === 'height'
+        );
+
+        if (buttonTokens.length > 0) {
+          output += `\n/* ✅ BUTTON HEIGHT VARIABLES από buttons.json */\n:root {\n`;
+          buttonTokens.forEach(token => {
+            // Extract size από path: ['buttons', 'sizes', 'xs', 'height']
+            const size = token.path[2]; // xs, sm, md, lg, xl
+            const varName = `--layera-global-button-height-${size}`;
+            output += `  ${varName}: ${token.value}; /** ${token.comment || `${size.toUpperCase()} button height`} */\n`;
+          });
+          output += `}\n`;
+        }
+
         return output;
       },
       'javascript/named-exports': function({dictionary}) {
@@ -1453,7 +1469,8 @@ export default {
     'src/domains/components-unified.json',
     'src/domains/theme-switcher-unified.json',
     'src/domains/responsive-unified.json',
-    'src/domains/card-typography.json'
+    'src/domains/card-typography.json',
+    'src/domains/buttons.json'
   ],
   platforms: {
     css: {
