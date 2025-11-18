@@ -271,8 +271,6 @@
   --layera-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /** Medium shadow */
   --layera-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /** Large shadow */
   --layera-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1); /** XL shadow */
-  --layera-color-brand-background: #dbeafe; /** Brand background color for CSS variable --layera-color-brand-background */
-  --layera-color-brand-light: #93c5fd; /** Light brand color for CSS variable --layera-color-brand-light */
   --layera-layoutSystem-flex-base: [object Object]; /** Base flex display */
   --layera-layoutSystem-flex-grid-base: [object Object]; /** Base grid display */
   --layera-layoutSystem-flex-grid-cols-2: [object Object]; /** 2 column grid */
@@ -321,10 +319,6 @@
   --layera-components-playground: [object Object]; /** Ενοποιημένη playground κλάση - υψηλότερη προτεραιότητα από χάρτη */
   --layera-theme-switcher-unified: [object Object]; /** Single .layera-theme-switcher class with data attribute variants */
   --layera-responsive-unified: [object Object]; /** Single .layera-responsive-container class with data attribute variants */
-  --layera-cardTitleFontSize: 1.125rem; /** Card title font size - 18px πιο μικρό γράμμα */
-  --layera-cardTitleFontWeight: 700; /** Card title font weight - bold για έμφαση */
-  --layera-cardTitleLineHeight: 1.2; /** Card title line height - tight για compact look */
-  --layera-cardTitleColor: var(--layera-color-text-primary); /** Card title color - κληρονομεί από text primary */
   --layera-modalHeaderFontSize: 1.25rem; /** Modal header font size - 20px για mobile optimization */
   --layera-modalHeaderFontWeight: 700; /** Modal header font weight - bold για έμφαση */
 }
