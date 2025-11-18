@@ -185,7 +185,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
         <Box
           className="layera-padding--sm layera-bg-surface--primary layera-border--default layera-border-radius--md"
           style={{
-            minWidth: '200px'
+            minWidth: 'var(--layera-size-48)'
           }}
         >
           <Text className="layera-typography layera-margin-bottom--xs layera-text--align-center" data-size="xs" data-weight="medium" data-color="primary">

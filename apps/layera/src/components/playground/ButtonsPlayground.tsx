@@ -21,10 +21,10 @@ const injectDynamicStyles = (colors: any, buttonState: any, dynamicBorderWidth: 
       color: ${colors.primary} !important;
       padding: ${buttonState.shape === 'square' ? 'var(--layera-size-4)' : 'var(--layera-size-2) var(--layera-size-4)'} !important;
       border: ${dynamicBorderWidth} solid ${colors.primary} !important;
-      border-radius: ${buttonState.shape === 'rounded' ? 'var(--layera-icon-performance-performance-loading-lazy-root-margin)' : buttonState.shape === 'square' ? '6px' : '6px'} !important;
+      border-radius: ${buttonState.shape === 'rounded' ? 'var(--layera-border-radius-full)' : buttonState.shape === 'square' ? 'var(--layera-border-radius-md)' : 'var(--layera-border-radius-md)'} !important;
       cursor: var(--layera-global-cursor-pointer) !important;
-      min-width: ${buttonState.shape === 'square' ? 'var(--layera-icon-performance-performance-loading-lazy-root-margin)' : '120px'} !important;
-      height: ${buttonState.shape === 'square' ? 'var(--layera-icon-performance-performance-loading-lazy-root-margin)' : 'auto'} !important;
+      min-width: ${buttonState.shape === 'square' ? 'var(--layera-size-12)' : 'var(--layera-size-32)'} !important;
+      height: ${buttonState.shape === 'square' ? 'var(--layera-size-12)' : 'auto'} !important;
       display: var(--layera-global-layout-display-flex) !important;
       align-items: var(--layera-global-align-items-center) !important;
       justify-content: var(--layera-global-justify-content-center) !important;
@@ -39,7 +39,7 @@ const injectDynamicStyles = (colors: any, buttonState: any, dynamicBorderWidth: 
       border: var(--layera-global-border-none) !important;
       border-radius: ${buttonState.shape === 'rounded' ? 'var(--layera-global-button-height-xl)' : 'var(--layera-global-layoutSystem-button-outline-borderRadius)'} !important;
       cursor: var(--layera-global-cursor-pointer) !important;
-      min-width: ${buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : '120px'} !important;
+      min-width: ${buttonState.shape === 'square' ? 'var(--layera-size-12)' : 'var(--layera-size-32)'} !important;
       height: ${buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : 'auto'} !important;
       display: var(--layera-global-layout-display-flex) !important;
       align-items: var(--layera-global-align-items-center) !important;
