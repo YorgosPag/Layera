@@ -1,18 +1,6 @@
-import { useCallback, useContext } from 'react';
-import { ThemeContext } from '../context/ThemeContext';
-import type { UseThemeReturn, ThemeContextValue } from '../types';
-
-/**
- * useThemeContext Hook - Direct context access
- * Internal hook για πρόσβαση στο ThemeContext
- */
-export function useThemeContext(): ThemeContextValue {
-  const context = useContext(ThemeContext);
-  if (context === undefined) {
-    throw new Error('useThemeContext must be used within a ThemeProvider');
-  }
-  return context;
-}
+import { useCallback } from 'react';
+import { useThemeContext } from './useThemeContext';
+import type { UseThemeReturn } from '../types';
 
 /**
  * useTheme Hook - Enterprise Theme Management

@@ -23,19 +23,19 @@
   --layera-iconInteractive-interactive-transition-fast: 0.1s ease-out; /** Fast transitions for micro-interactions */
   --layera-iconInteractive-interactive-transition-normal: 0.2s ease-out; /** Standard transition speed */
   --layera-iconInteractive-interactive-transition-slow: 0.3s ease-out; /** Slow transitions for emphasis */
-  --layera-iconInteractive-accessibility-focusRing-width: 2px; /** Focus ring width for keyboard navigation */
+  --layera-iconInteractive-accessibility-focusRing-width: var(--layera-global-spacing-0-5); /** Focus ring width for keyboard navigation */
   --layera-iconInteractive-accessibility-focusRing-color: var(--layera-color-semantic-info-primary); /** Focus ring color for visibility */
   --layera-iconInteractive-accessibility-contrast-normal: 4.5; /** WCAG AA contrast ratio */
-  --layera-iconInteractive-sizing-padding-xs: 2px; /** Extra small padding */
-  --layera-iconInteractive-sizing-padding-sm: 4px; /** Small padding */
-  --layera-iconInteractive-sizing-padding-md: 8px; /** Medium padding */
-  --layera-iconInteractive-sizing-padding-lg: 12px; /** Large padding */
-  --layera-iconInteractive-sizing-padding-xl: 16px; /** Extra large padding */
-  --layera-iconInteractive-sizing-margin-xs: 2px; /** Extra small margin */
-  --layera-iconInteractive-sizing-margin-sm: 4px; /** Small margin */
-  --layera-iconInteractive-sizing-margin-md: 8px; /** Medium margin */
-  --layera-iconInteractive-sizing-margin-lg: 12px; /** Large margin */
-  --layera-iconInteractive-sizing-margin-xl: 16px; /** Extra large margin */
+  --layera-iconInteractive-sizing-padding-xs: var(--layera-global-spacing-0-5); /** Extra small padding */
+  --layera-iconInteractive-sizing-padding-sm: var(--layera-global-spacing-1); /** Small padding */
+  --layera-iconInteractive-sizing-padding-md: var(--layera-global-spacing-2); /** Medium padding */
+  --layera-iconInteractive-sizing-padding-lg: var(--layera-global-spacing-3); /** Large padding */
+  --layera-iconInteractive-sizing-padding-xl: var(--layera-global-spacing-4); /** Extra large padding */
+  --layera-iconInteractive-sizing-margin-xs: var(--layera-global-spacing-0-5); /** Extra small margin */
+  --layera-iconInteractive-sizing-margin-sm: var(--layera-global-spacing-1); /** Small margin */
+  --layera-iconInteractive-sizing-margin-md: var(--layera-global-spacing-2); /** Medium margin */
+  --layera-iconInteractive-sizing-margin-lg: var(--layera-global-spacing-3); /** Large margin */
+  --layera-iconInteractive-sizing-margin-xl: var(--layera-global-spacing-4); /** Extra large margin */
   --layera-fontSize-xs: var(--layera-fontSize-xs); /** 12px - Captions, labels */
   --layera-fontSize-sm: var(--layera-fontSize-sm); /** 14px - Small text, form labels */
   --layera-fontSize-base: var(--layera-global-spacing-4); /** 16px - Body text default - consolidated reference */
@@ -135,8 +135,8 @@
   --layera-spacing-breakpoint-tablet: var(--layera-responsive-breakpoints-desktop-min); /** Tablet breakpoint - replaces hardcoded 1024 */
   --layera-spacing-breakpoint-desktop: var(--layera-responsive-breakpoints-desktop-min); /** Desktop breakpoint - replaces hardcoded 1025 */
   --layera-spacing-breakpoint-desktop-large: var(--layera-responsive-breakpoints-desktopLarge-min); /** Large desktop breakpoint - replaces hardcoded 1440 */
-  --layera-spacing-viewport-full-height: 100vh; /** Full viewport height */
-  --layera-spacing-viewport-full-width: 100vw; /** Full viewport width */
+  --layera-spacing-viewport-full-height: var(--layera-shared-dimensions-viewport-height); /** Full viewport height */
+  --layera-spacing-viewport-full-width: var(--layera-shared-dimensions-viewport-width); /** Full viewport width */
   --layera-spacing-component-card-width: var(--layera-global-spacing-80); /** Standard card width - replaces hardcoded value */
   --layera-spacing-component-card-height: var(--layera-global-spacing-120); /** Standard card height - replaces hardcoded value */
   --layera-spacing-component-input-height: var(--layera-global-spacing-10); /** Standard input height - replaces hardcoded value */
@@ -216,13 +216,13 @@
   --layera-radius-circle: var(--layera-global-borderRadius-circle); /** Circle shape radius - consolidated reference */
   --layera-radius-full: var(--layera-global-borderRadius-full); /** Full border radius - consolidated reference */
   --layera-radius-layout-xl: var(--layera-global-spacing-3); /** Extra large layout radius */
-  --layera-z-index-base: 1; /** Base z-index */
-  --layera-z-index-dropdown: 1000; /** Dropdown z-index */
-  --layera-z-index-overlay: 1100; /** Overlay z-index */
-  --layera-z-index-modal: 1200; /** Modal z-index */
-  --layera-z-index-popover: 1300; /** Popover z-index */
-  --layera-z-index-tooltip: 1400; /** Tooltip z-index */
-  --layera-z-toast: 1500; /** Toast notification z-index */
+  --layera-z-index-base: var(--layera-global-z-index-base); /** Base z-index */
+  --layera-z-index-dropdown: var(--layera-global-z-index-overlay); /** Dropdown z-index */
+  --layera-z-index-overlay: var(--layera-global-z-index-overlay-high); /** Overlay z-index */
+  --layera-z-index-modal: var(--layera-global-z-index-modal); /** Modal z-index */
+  --layera-z-index-popover: var(--layera-global-z-index-popover); /** Popover z-index */
+  --layera-z-index-tooltip: var(--layera-global-z-index-tooltip); /** Tooltip z-index */
+  --layera-z-toast: var(--layera-global-z-index-toast); /** Toast notification z-index */
   --layera-button-padding-sm: var(--layera-global-spacing-2) var(--layera-global-spacing-4); /** Small button padding */
   --layera-button-padding-xl: var(--layera-global-spacing-4) var(--layera-global-spacing-8); /** XL button padding */
   --layera-transition-all: all 0.2s ease; /** All properties transition */
@@ -263,31 +263,31 @@
   --layera-layoutSystem-stack-gap: var(--layera-global-spacing-1); /** Stack gap */
   --layera-layoutSystem-padding-xs: var(--layera-global-spacing-2) var(--layera-global-spacing-4); /** Extra small padding */
   --layera-layoutSystem-padding-sm: var(--layera-global-spacing-4) var(--layera-global-spacing-6); /** Small padding */
-  --layera-layoutSystem-appLayout-body-minHeight: 100vh; /** Full viewport height for body */
+  --layera-layoutSystem-appLayout-body-minHeight: var(--layera-shared-dimensions-viewport-height); /** Full viewport height for body */
   --layera-layoutSystem-appLayout-body-overflow: hidden; /** Hide overflow for map app */
-  --layera-layoutSystem-appLayout-app-minHeight: 100vh; /** Full viewport height for app */
+  --layera-layoutSystem-appLayout-app-minHeight: var(--layera-shared-dimensions-viewport-height); /** Full viewport height for app */
   --layera-layoutSystem-appLayout-app-position: relative; /** Relative positioning for app container */
   --layera-layoutSystem-appLayout-app-overflow: hidden; /** Hide overflow for app container */
   --layera-layoutSystem-appLayout-header-position: fixed; /** Fixed positioning for header */
   --layera-layoutSystem-appLayout-header-top: 0; /** Stick to top */
   --layera-layoutSystem-appLayout-header-left: 0; /** Stick to left */
   --layera-layoutSystem-appLayout-header-right: 0; /** Stick to right */
-  --layera-layoutSystem-appLayout-header-width: 100%; /** Full width for header */
+  --layera-layoutSystem-appLayout-header-width: var(--layera-shared-dimensions-viewport-width); /** Full width for header */
   --layera-layoutSystem-appLayout-header-height: var(--layera-global-spacing-14); /** Header height */
   --layera-layoutSystem-appLayout-header-zIndex: var(--layera-global-z-index-overlay); /** Header z-index above map */
   --layera-layoutSystem-appLayout-mapContainer-position: fixed; /** Fixed positioning for map */
   --layera-layoutSystem-appLayout-mapContainer-top: var(--layera-header-fixed-height); /** Position below header */
   --layera-layoutSystem-appLayout-mapContainer-left: 0; /** Align to left */
-  --layera-layoutSystem-appLayout-mapContainer-height: calc(100vh - var(--layera-header-fixed-height)); /** Full height minus header */
+  --layera-layoutSystem-appLayout-mapContainer-height: calc(var(--layera-shared-dimensions-viewport-height) - var(--layera-header-fixed-height)); /** Full height minus header */
   --layera-layoutSystem-appLayout-mapContainer-zIndex: 1; /** Below header */
-  --layera-layoutSystem-appLayout-mapFullscreen-width: 100%; /** Full width of container */
-  --layera-layoutSystem-appLayout-mapFullscreen-height: 100%; /** Full height of container */
+  --layera-layoutSystem-appLayout-mapFullscreen-width: var(--layera-shared-dimensions-viewport-width); /** Full width of container */
+  --layera-layoutSystem-appLayout-mapFullscreen-height: var(--layera-shared-dimensions-viewport-height); /** Full height of container */
   --layera-header-fixed-height: var(--layera-global-spacing-14); /** Fixed header height for navigation bar */
   --layera-header-fixed-top: 0; /** Header top position - stick to viewport top */
   --layera-header-fixed-left: 0; /** Header left position - stick to viewport left */
   --layera-header-fixed-right: 0; /** Header right position - stick to viewport right */
-  --layera-header-fixed-zIndex: 1001; /** Header z-index above map (zIndex: 1000) and other content */
-  --layera-header-fixed-background: rgba(255, 255, 255, 0.95); /** Semi-transparent white background για visibility */
+  --layera-header-fixed-zIndex: var(--layera-global-z-index-header); /** Header z-index above map (zIndex: 1000) and other content */
+  --layera-header-fixed-background: var(--layera-color-surface-backdrop); /** Semi-transparent white background για visibility */
   --layera-header-fixed-borderBottom: 1px solid rgba(0, 0, 0, 0.1); /** Subtle bottom border για header separation */
   --layera-header-fixed-backdropFilter: blur(10px); /** Glass effect για modern header look */
   --layera-components-card: [object Object]; /** Ενοποιημένη card κλάση - αντικαθιστά 3 κλάσεις */

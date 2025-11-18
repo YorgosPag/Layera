@@ -2017,12 +2017,12 @@ button:focus-visible {
 }
 .layera-map[data-type="container"] {
   position: fixed;
-  top: 80px;
+  top: var(--layera-global-layoutSystem-header-height);
   left: 0;
   right: 0;
   bottom: 0;
   width: var(--layera-spacing-viewport-full-width);
-  height: calc(100vh - 80px);
+  height: calc(100vh - var(--layera-global-layoutSystem-header-height));
   z-index: 1;
 }
 .layera-map[data-type="fullscreen"] {
@@ -2050,12 +2050,12 @@ button:focus-visible {
 /* BEM Compatibility: map--container */
 .layera-map--container {
   position: fixed;
-  top: 80px;
+  top: var(--layera-global-layoutSystem-header-height);
   left: 0;
   right: 0;
   bottom: 0;
   width: var(--layera-spacing-viewport-full-width);
-  height: calc(100vh - 80px);
+  height: calc(100vh - var(--layera-global-layoutSystem-header-height));
   z-index: 1;
 }
 /* BEM Compatibility: map--fullscreen */
@@ -2311,8 +2311,8 @@ button:focus-visible {
   right: 0;
 }
 .layera-theme-switcher[data-position="center"] {
-  left: 50%;
-  transform: translateX(-50%);
+  left: var(--layera-global-position-center);
+  transform: translateX(var(--layera-global-transform-center-x));
 }
 
 
