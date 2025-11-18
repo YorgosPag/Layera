@@ -172,18 +172,25 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
     { key: 'info', title: 'Info', description: 'Layout Section', colorValue: currentColors.info }
   ];
 
-  // Initialize CSS variables for fallback values - ensure real-time preview has defaults
+  // Initialize CSS variables που χρησιμοποιούν τα CSS classes
   React.useEffect(() => {
     const root = document.documentElement;
     layoutConfigs.forEach(({ key, colorValue }) => {
-      // Set initial CSS variables if not already set by real-time preview
-      if (!root.style.getPropertyValue(`--layera-layout-bg-${key}`)) {
-        root.style.setProperty(`--layera-layout-bg-${key}`, getBackgroundColor(colorValue));
-        root.style.setProperty(`--layera-layout-text-${key}`, getTextColor(colorValue));
-        root.style.setProperty(`--layera-layout-border-${key}`, getBorderStyle(colorValue));
-      }
+      // Δημιουργία αρχικών τιμών για τα --layera-layout-bg-* variables που χρησιμοποιούν τα CSS classes
+      root.style.setProperty(`--layera-layout-bg-${key}`, getBackgroundColor(colorValue));
     });
-  }, [layoutConfigs, colorCategory, borderWidth]);
+  }, [layoutConfigs, colorCategory]);
+
+  // Helper to get appropriate CSS class based on category and key
+  const getLayoutClasses = (key: string) => {
+    const baseClasses = "layera-padding--md layera-height--6xl layera-width--card layera-flex layera-flex--align-center layera-flex--justify-center layera-flex-shrink--0";
+
+    // Map keys to semantic classes
+    const backgroundClass = `layera-bg-${key}`;
+    const textClass = colorCategory === 'text' ? `layera-text-${key}` : '';
+
+    return `${baseClasses} ${backgroundClass} ${textClass}`.trim();
+  };
 
   return (
     <Box
@@ -207,11 +214,7 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
             return (
               <Box
                 key={key}
-                className="layera-padding--md layera-height--6xl layera-width--card layera-flex layera-flex--align-center layera-flex--justify-center layera-flex-shrink--0 layera-layout--dynamic"
-                data-dynamic-bg={getBackgroundColor(colorValue)}
-                data-dynamic-text={getTextColor(colorValue)}
-                data-dynamic-border={getBorderStyle(colorValue)}
-                data-dynamic-radius={getRadiusToken(layoutRadius)}
+                className={getLayoutClasses(key)}
               >
                 <Box>
                   <Text

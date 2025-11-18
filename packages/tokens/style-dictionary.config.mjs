@@ -267,6 +267,52 @@ export default {
           output += '\n';
         }
 
+        // Semantic background color utilities για layout elements που συνδέονται με color pickers
+        const semanticColors = ['primary', 'secondary', 'success', 'warning', 'danger', 'info'];
+        output += `/* 🎯 Dynamic Background Colors για Layout Elements - Connected to Color Pickers */\n`;
+        semanticColors.forEach(color => {
+          output += `.${prefix}-bg-${color} {\n`;
+          // Χρησιμοποιούμε τα variables που ενημερώνουν τα color pickers
+          output += `  background-color: var(--${prefix}-layout-bg-${color});\n`;
+          output += `}\n`;
+        });
+        output += '\n';
+
+        // Semantic text color utilities για layout elements
+        output += `/* 📝 Semantic Text Colors για Layout Elements */\n`;
+        semanticColors.forEach(color => {
+          output += `.${prefix}-text-${color} {\n`;
+
+          // Map to appropriate CSS variables για text
+          let cssVar;
+          switch(color) {
+            case 'primary':
+              cssVar = `var(--${prefix}-color-text-primary)`;
+              break;
+            case 'secondary':
+              cssVar = `var(--${prefix}-color-text-secondary)`;
+              break;
+            case 'success':
+              cssVar = `var(--${prefix}-color-semantic-success-primary)`;
+              break;
+            case 'warning':
+              cssVar = `var(--${prefix}-color-semantic-warning-primary)`;
+              break;
+            case 'danger':
+              cssVar = `var(--${prefix}-color-semantic-error-primary)`;
+              break;
+            case 'info':
+              cssVar = `var(--layera-text-on-info)`;
+              break;
+            default:
+              cssVar = `var(--${prefix}-color-text-primary)`;
+          }
+
+          output += `  color: ${cssVar};\n`;
+          output += `}\n`;
+        });
+        output += '\n';
+
         // Gradient backgrounds
         output += `/* Gradient Backgrounds */\n`;
         output += `.${prefix}-bg-gradient-primary {\n`;

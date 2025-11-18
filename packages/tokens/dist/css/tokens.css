@@ -68,8 +68,8 @@
   --layera-color-border-default: #475569; /** Default border - subtle definition */
   --layera-color-border-light: #334155; /** Light border - minimal separation */
   --layera-color-border-focus: #06b6d4; /** Focus border - bright cyan highlight */
-  --layera-color-bg-success: #d1fae5; /** Success background */
-  --layera-color-bg-warning: #fef3c7; /** Warning background */
+  --layera-color-bg-success: #d1fae5; /** Success background - light green for success states */
+  --layera-color-bg-warning: #fef3c7; /** Warning background - light amber for warning states */
   --layera-color-semantic-error-primary: #ef4444; /** Primary error color (red-500) - replaces hardcoded RGB */
   --layera-color-semantic-warning-primary: #f59e0b; /** Primary warning color (amber-500) */
   --layera-color-semantic-info-primary: #6366f1; /** Primary info color (indigo-500) */
@@ -171,31 +171,6 @@
   --layera-global-utilities-justifyContent-spaceBetween: space-between; /** Space flex/grid items evenly with space between */
   --layera-global-fontFamily-system: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; /** Global system font */
   --layera-global-fontFamily-mono: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; /** Global mono font */
-  --layera-la-bg-info: var(--layera-color-accent-blue); /** Info background using blue accent */
-  --layera-la-bg-primary: var(--layera-color-surface-primary); /** Primary background - unified with header */
-  --layera-la-bg-secondary: var(--layera-color-surface-secondary); /** Secondary background */
-  --layera-la-color-background-accent-green: var(--layera-color-theme-accent-green); /** Green accent background */
-  --layera-la-color-background-secondary: var(--layera-color-theme-background-secondary); /** Secondary background reference */
-  --layera-la-color-background-surface-light: var(--layera-color-semantic-neutral-light); /** Light surface background */
-  --layera-la-color-background-surface-medium: var(--layera-color-semantic-neutral-light); /** Medium surface background */
-  --layera-la-color-border-default: var(--layera-color-border-primary); /** Default border color */
-  --layera-la-lineHeight-tight: 1.25; /** Tight line height */
-  --layera-la-lineHeight-snug: 1.375; /** Snug line height */
-  --layera-la-lineHeight-normal: 1.5; /** Normal line height */
-  --layera-la-lineHeight-relaxed: 1.625; /** Relaxed line height */
-  --layera-la-lineHeight-loose: 2; /** Loose line height */
-  --layera-la-text-primary: var(--layera-color-text-primary); /** Primary text color */
-  --layera-la-global-fontFamily-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; /** System font family */
-  --layera-la-global-duration-fast: 150ms; /** Fast animation duration */
-  --layera-la-global-layout-minHeight: 100vh; /** Minimum layout height */
-  --layera-la-global-layout-minWidth: 320px; /** Minimum layout width */
-  --layera-la-global-layout-placeItems-center: center; /** Place items center */
-  --layera-la-global-spacing-full: 100%; /** Full spacing (100%) */
-  --layera-la-global-spacing-modal-xs: 0.5rem; /** Modal extra small spacing */
-  --layera-la-global-spacing-modal-sm: 1rem; /** Modal small spacing */
-  --layera-la-global-spacing-modal-md: 1.5rem; /** Modal medium spacing */
-  --layera-la-global-spacing-modal-lg: 2rem; /** Modal large spacing */
-  --layera-la-global-spacing-modal-xl: 3rem; /** Modal extra large spacing */
   --layera-size-2: 0.5rem; /** 8px spacing */
   --layera-size-4: 1rem; /** 16px spacing */
   --layera-size-6: 1.5rem; /** 24px spacing */
@@ -241,6 +216,12 @@
   --layera-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /** Medium shadow */
   --layera-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /** Large shadow */
   --layera-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1); /** XL shadow */
+  --layera-layout-bg-primary: var(--layera-color-semantic-info-primary); /** Primary layout background - references semantic info color */
+  --layera-layout-bg-secondary: var(--layera-color-surface-secondary); /** Secondary layout background - references surface secondary */
+  --layera-layout-bg-success: var(--layera-color-semantic-success-primary); /** Success layout background - references semantic success color */
+  --layera-layout-bg-warning: var(--layera-color-semantic-warning-primary); /** Warning layout background - references semantic warning color */
+  --layera-layout-bg-danger: var(--layera-color-semantic-error-primary); /** Danger layout background - references semantic error color */
+  --layera-layout-bg-info: var(--layera-color-semantic-info-primary); /** Info layout background - references semantic info color */
   --layera-layoutSystem-flex-base: [object Object]; /** Base flex display */
   --layera-layoutSystem-flex-grid-base: [object Object]; /** Base grid display */
   --layera-layoutSystem-flex-grid-cols-2: [object Object]; /** 2 column grid */
@@ -298,7 +279,6 @@
   --layera-color-surface-primary: var(--layera-color-light-surface-primary, var(--layera-color-semantic-success-primary));
   --layera-color-text-primary: var(--layera-color-light-text-primary, var(--layera-color-semantic-neutral-dark));
   --layera-colorUtilities-utilities-background-surface-light: var(--layera-colorUtilities-utilities-background-surface-light, var(--layera-color-background-surface-light));
-  --layera-la-color-background-surface-light: var(--layera-la-color-background-surface-light, var(--layera-color-semantic-neutral-light));
   --layera-bg-surface-light: var(--layera-bg-surface-light, var(--layera-color-surface-primary));
 }
 
