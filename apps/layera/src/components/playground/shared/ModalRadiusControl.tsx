@@ -47,7 +47,7 @@ export const ModalRadiusControl: React.FC<ModalRadiusControlProps> = ({
     {
       value: 'none',
       label: '0px',
-      token: '0px',
+      token: '0',
       description: 'Χωρίς καμπυλότητα (0px - τετράγωνα modals)'
     },
     {

@@ -47,7 +47,7 @@ export const LayoutRadiusControl: React.FC<LayoutRadiusControlProps> = ({
     {
       value: 'none',
       label: '0px',
-      token: '0px',
+      token: '0',
       description: 'Χωρίς καμπυλότητα (0px - τετράγωνα layout)'
     },
     {

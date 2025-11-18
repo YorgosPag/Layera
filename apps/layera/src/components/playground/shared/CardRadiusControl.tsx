@@ -47,7 +47,7 @@ export const CardRadiusControl: React.FC<CardRadiusControlProps> = ({
     {
       value: 'none',
       label: '0px',
-      token: '0px',
+      token: '0',
       description: 'Χωρίς καμπυλότητα (0px - τετράγωνες κάρτες)'
     },
     {

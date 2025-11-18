@@ -183,6 +183,7 @@
   --layera-global-spacing-0-25: 0.0625rem; /** 1px - Hair line spacing */
   --layera-global-spacing-0-5: 0.125rem; /** 2px - Tiny spacing */
   --layera-global-spacing-1-5: 0.375rem; /** 6px - Small-medium spacing */
+  --layera-global-spacing-2-5: 0.625rem; /** 10px - Blur effects */
   --layera-global-spacing-3-5: 0.875rem; /** 14px - Typography font sizes */
   --layera-global-spacing-7-5: 1.875rem; /** 30px - Large-medium+ spacing */
   --layera-global-shared-layoutSystem-header-height: var(--layera-global-shared-layout-system-headerHeight); /** Header height - MASTER REFERENCE που χρησιμοποιείται παντού */
@@ -269,27 +270,27 @@
   --layera-layoutSystem-appLayout-app-position: relative; /** Relative positioning for app container */
   --layera-layoutSystem-appLayout-app-overflow: hidden; /** Hide overflow for app container */
   --layera-layoutSystem-appLayout-header-position: fixed; /** Fixed positioning for header */
-  --layera-layoutSystem-appLayout-header-top: 0; /** Stick to top */
-  --layera-layoutSystem-appLayout-header-left: 0; /** Stick to left */
-  --layera-layoutSystem-appLayout-header-right: 0; /** Stick to right */
+  --layera-layoutSystem-appLayout-header-top: var(--layera-shared-dimensions-zero); /** Stick to top */
+  --layera-layoutSystem-appLayout-header-left: var(--layera-shared-dimensions-zero); /** Stick to left */
+  --layera-layoutSystem-appLayout-header-right: var(--layera-shared-dimensions-zero); /** Stick to right */
   --layera-layoutSystem-appLayout-header-width: var(--layera-shared-dimensions-viewport-width); /** Full width for header */
   --layera-layoutSystem-appLayout-header-height: var(--layera-global-spacing-14); /** Header height */
   --layera-layoutSystem-appLayout-header-zIndex: var(--layera-global-z-index-overlay); /** Header z-index above map */
   --layera-layoutSystem-appLayout-mapContainer-position: fixed; /** Fixed positioning for map */
   --layera-layoutSystem-appLayout-mapContainer-top: var(--layera-header-fixed-height); /** Position below header */
-  --layera-layoutSystem-appLayout-mapContainer-left: 0; /** Align to left */
+  --layera-layoutSystem-appLayout-mapContainer-left: var(--layera-shared-dimensions-zero); /** Align to left */
   --layera-layoutSystem-appLayout-mapContainer-height: calc(var(--layera-shared-dimensions-viewport-height) - var(--layera-header-fixed-height)); /** Full height minus header */
-  --layera-layoutSystem-appLayout-mapContainer-zIndex: 1; /** Below header */
+  --layera-layoutSystem-appLayout-mapContainer-zIndex: var(--layera-global-z-index-base); /** Below header */
   --layera-layoutSystem-appLayout-mapFullscreen-width: var(--layera-shared-dimensions-viewport-width); /** Full width of container */
   --layera-layoutSystem-appLayout-mapFullscreen-height: var(--layera-shared-dimensions-viewport-height); /** Full height of container */
   --layera-header-fixed-height: var(--layera-global-spacing-14); /** Fixed header height for navigation bar */
-  --layera-header-fixed-top: 0; /** Header top position - stick to viewport top */
-  --layera-header-fixed-left: 0; /** Header left position - stick to viewport left */
-  --layera-header-fixed-right: 0; /** Header right position - stick to viewport right */
+  --layera-header-fixed-top: var(--layera-shared-dimensions-zero); /** Header top position - stick to viewport top */
+  --layera-header-fixed-left: var(--layera-shared-dimensions-zero); /** Header left position - stick to viewport left */
+  --layera-header-fixed-right: var(--layera-shared-dimensions-zero); /** Header right position - stick to viewport right */
   --layera-header-fixed-zIndex: var(--layera-global-z-index-header); /** Header z-index above map (zIndex: 1000) and other content */
   --layera-header-fixed-background: var(--layera-color-surface-backdrop); /** Semi-transparent white background για visibility */
-  --layera-header-fixed-borderBottom: 1px solid rgba(0, 0, 0, 0.1); /** Subtle bottom border για header separation */
-  --layera-header-fixed-backdropFilter: blur(10px); /** Glass effect για modern header look */
+  --layera-header-fixed-borderBottom: var(--layera-global-spacing-0-25) solid var(--layera-color-semantic-overlay-light); /** Subtle bottom border για header separation */
+  --layera-header-fixed-backdropFilter: blur(var(--layera-global-spacing-2-5)); /** Glass effect για modern header look */
   --layera-components-card: [object Object]; /** Ενοποιημένη card κλάση - αντικαθιστά 3 κλάσεις */
   --layera-components-button: [object Object]; /** Enterprise button κλάση - ΚΑΘΟΛΙΚΟ styling ΓΙΑ ΟΛΟΥΣ - Single Source of Truth */
   --layera-components-form: [object Object]; /** Ενοποιημένη form κλάση - αντικαθιστά 4 κλάσεις */

@@ -153,7 +153,7 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
   // Helper function για μετατροπή radius values σε tokens
   const getRadiusToken = (radius: string) => {
     switch(radius) {
-      case 'none': return '0px';                        // 0px
+      case 'none': return '0';                          // 0 (unit-less)
       case 'sm': return 'var(--layera-radius-sm)';      // 4px
       case 'lg': return 'var(--layera-radius-lg)';      // 8px
       case 'xl': return 'var(--layera-radius-xl)';      // 12px - default για modals

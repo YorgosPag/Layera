@@ -1,0 +1,37 @@
+{
+  "color": {
+    "comment": "🎨 Theme System - Light/Dark Mode Colors",
+    "light": {
+      "comment": "Light theme color palette",
+      "surface": {
+        "primary": {
+          "value": "var(--layera-color-semantic-success-primary)",
+          "comment": "Primary surface για cards/modals"
+        }
+      },
+      "text": {
+        "primary": {
+          "value": "var(--layera-color-semantic-neutral-dark)",
+          "comment": "Primary text - σκούρο για contrast"
+        }
+      },
+      "border": {}
+    },
+    "dark": {
+      "comment": "Dark theme color palette",
+      "surface": {
+        "primary": {
+          "value": "var(--layera-color-semantic-neutral-dark)",
+          "comment": "Primary surface για cards/modals"
+        }
+      },
+      "text": {
+        "primary": {
+          "value": "var(--layera-color-semantic-neutral-light)",
+          "comment": "Primary text - clean white"
+        }
+      },
+      "border": {}
+    }
+  }
+}
