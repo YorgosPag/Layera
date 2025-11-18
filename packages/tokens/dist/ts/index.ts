@@ -1,5 +1,4 @@
 export const IconXs = '1rem' as const;
-export const IconSmBase = '1rem' as const;
 export const IconMd = '1.25rem' as const;
 export const IconLg = '2rem' as const;
 export const IconXl = '2rem' as const;

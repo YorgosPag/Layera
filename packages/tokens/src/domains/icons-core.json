@@ -5,10 +5,6 @@
       "value": "1rem",
       "comment": "16px - Standard mobile size"
     },
-    "smBase": {
-      "value": "1rem",
-      "comment": "16px - Base small size"
-    },
     "md": {
       "value": "1.25rem",
       "comment": "20px - Default icon size for desktop"

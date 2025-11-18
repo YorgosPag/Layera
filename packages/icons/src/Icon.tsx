@@ -11,7 +11,7 @@ import { BaseIconProps } from './types';
 const ENTERPRISE_TOKENS = {
   sizes: {
     xs: 'var(--layera-icon-xs)', // CSS Variable από SSOT
-    sm: 'var(--layera-icon-smBase)', // CSS Variable από SSOT
+    sm: 'var(--layera-icon-xs)', // CSS Variable από SSOT - consolidated με xs
     md: 'var(--layera-icon-md)', // CSS Variable από SSOT
     lg: 'var(--layera-icon-lg)', // CSS Variable από SSOT
     xl: 'var(--layera-icon-xl)', // CSS Variable από SSOT

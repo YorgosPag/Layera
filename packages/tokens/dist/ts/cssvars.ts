@@ -1,5 +1,4 @@
 export const IconXs_var = 'var(--layera-icon-xs)' as const;
-export const IconSmBase_var = 'var(--layera-icon-smBase)' as const;
 export const IconMd_var = 'var(--layera-icon-md)' as const;
 export const IconLg_var = 'var(--layera-icon-lg)' as const;
 export const IconXl_var = 'var(--layera-icon-xl)' as const;
