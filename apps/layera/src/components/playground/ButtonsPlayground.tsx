@@ -19,7 +19,7 @@ const injectDynamicStyles = (colors: any, buttonState: any, dynamicBorderWidth: 
     .layera-outline-dynamic {
       background-color: transparent !important;
       color: ${colors.primary} !important;
-      padding: ${buttonState.shape === 'square' ? '16px' : '8px 16px'} !important;
+      padding: ${buttonState.shape === 'square' ? 'var(--layera-size-4)' : 'var(--layera-size-2) var(--layera-size-4)'} !important;
       border: ${dynamicBorderWidth} solid ${colors.primary} !important;
       border-radius: ${buttonState.shape === 'rounded' ? 'var(--layera-icon-performance-performance-loading-lazy-root-margin)' : buttonState.shape === 'square' ? '6px' : '6px'} !important;
       cursor: var(--layera-global-cursor-pointer) !important;
@@ -28,8 +28,8 @@ const injectDynamicStyles = (colors: any, buttonState: any, dynamicBorderWidth: 
       display: var(--layera-global-layout-display-flex) !important;
       align-items: var(--layera-global-align-items-center) !important;
       justify-content: var(--layera-global-justify-content-center) !important;
-      gap: 6px !important;
-      font-size: ${buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'} !important;
+      gap: var(--layera-size-2) !important;
+      font-size: ${buttonState.size === 'xs' ? 'var(--layera-fontSize-xs)' : buttonState.size === 'sm' ? 'var(--layera-fontSize-sm)' : buttonState.size === 'md' ? 'var(--layera-fontSize-base)' : buttonState.size === 'lg' ? 'var(--layera-fontSize-lg)' : 'var(--layera-fontSize-xl)'} !important;
     }
 
     .layera-ghost-dynamic {
@@ -45,7 +45,7 @@ const injectDynamicStyles = (colors: any, buttonState: any, dynamicBorderWidth: 
       align-items: var(--layera-global-align-items-center) !important;
       justify-content: var(--layera-global-justify-content-center) !important;
       gap: var(--layera-iconInteractive-sizing-padding-sm) !important;
-      font-size: ${buttonState.size === 'xs' ? '12px' : buttonState.size === 'sm' ? '14px' : buttonState.size === 'md' ? '16px' : buttonState.size === 'lg' ? '18px' : '20px'} !important;
+      font-size: ${buttonState.size === 'xs' ? 'var(--layera-fontSize-xs)' : buttonState.size === 'sm' ? 'var(--layera-fontSize-sm)' : buttonState.size === 'md' ? 'var(--layera-fontSize-base)' : buttonState.size === 'lg' ? 'var(--layera-fontSize-lg)' : 'var(--layera-fontSize-xl)'} !important;
     }
   `;
 

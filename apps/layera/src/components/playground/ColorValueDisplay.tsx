@@ -36,7 +36,7 @@ export const ColorValueDisplay: React.FC<ColorValueDisplayProps> = ({
           <h4 className="layera-typography layera-margin-bottom--sm layera-text-color--neutral-dark" data-size="lg" data-weight="bold">
             <SettingsIcon size="sm" /> Τρέχουσες Ρυθμίσεις:
           </h4>
-          <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark" data-family="mono" className="layera-white-space--pre-wrap layera-word-wrap--break layera-overflow-wrap--break">
+          <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark layera-white-space--pre-wrap layera-word-wrap--break layera-overflow-wrap--break" data-family="mono">
 {`{
   variant: "${buttonState.variant}",
   size: "${buttonState.size}",
