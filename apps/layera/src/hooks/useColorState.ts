@@ -1,5 +1,31 @@
 import { useState } from 'react';
-import { ColorPaletteWithAlpha, hexToColorWithAlpha } from './useColorStateWithAlpha';
+// ColorPaletteWithAlpha and hexToColorWithAlpha now defined in this file
+
+export interface ColorWithAlpha {
+  hex: string;
+  alpha: number;
+}
+
+export const hexToColorWithAlpha = (hex: string, alpha: number = 1.0): ColorWithAlpha => {
+  // Καθαρό hex value - αφαίρεση CSS variables
+  let cleanHex = hex;
+
+  // Αν είναι CSS variable, εξάγει το fallback value
+  if (hex.includes('var(')) {
+    const match = hex.match(/,\s*(#[0-9a-fA-F]{6})\)/);
+    cleanHex = match ? match[1] : '#ffffff';
+  }
+
+  // Βεβαιώνεται ότι αρχίζει με #
+  if (!cleanHex.startsWith('#')) {
+    cleanHex = `#${cleanHex}`;
+  }
+
+  return {
+    hex: cleanHex,
+    alpha: Math.max(0, Math.min(1, alpha))
+  };
+};
 
 /**
  * Color State Management Hook
@@ -20,8 +46,15 @@ export type ColorCategory = 'backgrounds' | 'text' | 'borders';
 export type ElementType = 'buttons' | 'cards' | 'modals' | 'inputs' | 'layout' | 'tables' | 'headers';
 export type ColorButtonShape = 'rectangular' | 'square' | 'rounded';
 
-// Re-export το ColorPaletteWithAlpha για compatibility
-export type { ColorPaletteWithAlpha } from './useColorStateWithAlpha';
+// ColorPaletteWithAlpha interface moved here from deleted useColorStateWithAlpha
+export interface ColorPaletteWithAlpha {
+  primaryColor: ColorWithAlpha;
+  secondaryColor: ColorWithAlpha;
+  successColor: ColorWithAlpha;
+  warningColor: ColorWithAlpha;
+  dangerColor: ColorWithAlpha;
+  infoColor: ColorWithAlpha;
+}
 
 // 🗑️ DELETED: ColorPalette interface - replaced with ColorPaletteWithAlpha for Enterprise consistency
 

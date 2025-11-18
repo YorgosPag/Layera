@@ -39,7 +39,7 @@ import { useColorState, ColorPaletteWithAlpha } from '../hooks/useColorState';
 import { useCSSVariables } from '../hooks/useCSSVariables';
 import { useStorage } from '../hooks/useStorage';
 import { useNavigation } from '../hooks/useNavigation';
-import { useColorHelpers } from '../hooks/useColorHelpers';
+// useColorHelpers functionality merged into other hooks
 
 /**
  * Live Playground - Enterprise Component Testing Interface
@@ -84,13 +84,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   // Navigation Management
   const { state: navigationState, actions: navigationActions } = useNavigation();
 
-  // Color Helpers Management
-  const { currentColors, currentSetters, categoryColors, categorySetters, actions: colorHelpersActions } = useColorHelpers({
-    colorState: colorHookState,
-    colorActions,
-    getCurrentPalette,
-    getCategoryPalette
-  });
+  // Color helper functions - simplified to use existing hooks
+  const getColorsForCategory = (category: string) => {
+    return getCategoryPalette(category as any);
+  };
 
   // ==============================
   // STATE MANAGEMENT
@@ -221,7 +218,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
   const applyColorsToApp = async () => {
     // Get autonomous colors for current category
-    const categoryColors = colorHelpersActions.getColorsForCategory(colorHookState.colorCategory);
+    const categoryColors = getColorsForCategory(colorHookState.colorCategory);
 
     // Apply colors via CSS Variables hook
     await cssActions.applyColorsToApp(colorHookState.colorCategory, categoryColors, colorHookState.elementType);
@@ -264,7 +261,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               <ButtonsPlayground
                 buttonState={buttonState}
                 colorCategory={colorHookState.colorCategory}
-                currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, string>}
+                currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
                 borderWidth={borderWidth}
                 buttonRadius={buttonRadius}
                 hoverEffect={hoverEffect}
@@ -276,7 +273,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {colorHookState.elementType === 'cards' && (
             <Box className="layera-margin-bottom--xl">
               <CardsPlayground
-                currentColors={convertColorPaletteWithAlphaToLegacy(colorHelpersActions.getColorsForCategory(colorHookState.colorCategory))}
+                currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
                 cardRadius={cardRadius}
@@ -290,7 +287,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {colorHookState.elementType === 'modals' && (
             <Box className="layera-margin-bottom--xl">
               <ModalsPlayground
-                currentColors={convertColorPaletteWithAlphaToLegacy(colorHelpersActions.getColorsForCategory(colorHookState.colorCategory))}
+                currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
                 modalRadius={modalRadius}
@@ -304,7 +301,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {colorHookState.elementType === 'inputs' && (
             <Box className="layera-margin-bottom--xl">
               <InputsPlayground
-                currentColors={convertColorPaletteWithAlphaToLegacy(colorHelpersActions.getColorsForCategory(colorHookState.colorCategory))}
+                currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
                 inputRadius={inputRadius}
@@ -318,7 +315,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {colorHookState.elementType === 'layout' && (
             <Box className="layera-margin-bottom--xl">
               <LayoutPlayground
-                currentColors={convertColorPaletteWithAlphaToLegacy(colorHelpersActions.getColorsForCategory(colorHookState.colorCategory))}
+                currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
                 borderRadius={layoutRadius}
@@ -333,7 +330,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {colorHookState.elementType === 'headers' && (
             <Box className="layera-margin-bottom--xl">
               <HeaderPlayground
-                currentColors={convertColorPaletteWithAlphaToLegacy(colorHelpersActions.getColorsForCategory(colorHookState.colorCategory))}
+                currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
                 headerRadius={headerRadius}
@@ -348,7 +345,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {colorHookState.elementType === 'tables' && (
             <Box className="layera-margin-bottom--xl">
               <TablesPlayground
-                currentColors={convertColorPaletteWithAlphaToLegacy(colorHelpersActions.getColorsForCategory(colorHookState.colorCategory))}
+                currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
                 tableRadius={tableRadius}
@@ -364,7 +361,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           <Box className="layera-margin-bottom--xl">
             <ColorPreviewArea
               colorHookState={colorHookState}
-              currentColors={convertColorPaletteWithAlphaToLegacy(colorHelpersActions.getColorsForCategory(colorHookState.colorCategory))}
+              currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
             />
           </Box>
 
@@ -499,8 +496,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {/* Color Controls Grid με Alpha Support */}
           <Box className="layera-margin-bottom--xl">
             <ColorControlsGridWithAlpha
-              currentColors={colorHelpersActions.getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, ColorWithAlpha | string>}
-              currentSetters={colorHelpersActions.getSettersForCategory(colorHookState.colorCategory) as unknown as Record<string, (value: ColorWithAlpha | string) => void>}
+              currentColors={getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, ColorWithAlpha | string>}
+              currentSetters={colorActions as unknown as Record<string, (value: ColorWithAlpha | string) => void>}
               startPreview={(key: string, value: string | ColorWithAlpha) => {
                 const previewValue = typeof value === 'string' ? value : value.rgba;
 
@@ -572,7 +569,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
             <ColorValueDisplay
               colorHookState={colorHookState}
-              currentColors={convertColorPaletteWithAlphaToLegacy(colorHelpersActions.getColorsForCategory(colorHookState.colorCategory))}
+              currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
               buttonState={buttonState}
             />
           </Box>

@@ -3,7 +3,7 @@ import { ThemeProvider } from '../../../packages/theme-switcher/src';
 import { TolgeeProvider } from '@layera/tolgee';
 import { AuthProvider, initializeFirebaseApp } from '@layera/auth-bridge';
 import { AppContent } from './components/AppContent';
-import { useColorPersistence } from './hooks/useColorPersistence';
+// useColorPersistence functionality merged into useStorage
 import { FactorySettingsService } from './services/factorySettingsService';
 
 // Initialize Firebase πρώτα
@@ -47,8 +47,7 @@ if (firebaseConfig.apiKey && firebaseConfig.projectId) {
 }
 
 function App(): React.ReactElement {
-  // Αυτόματη φόρτωση και εφαρμογή αποθηκευμένων χρωμάτων
-  useColorPersistence();
+  // Color persistence now handled by useStorage hook in playground components
 
   return (
     <TolgeeProvider>

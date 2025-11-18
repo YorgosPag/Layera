@@ -1,5 +1,4 @@
-import { ColorPaletteWithAlpha, ColorCategory } from './useColorState';
-import { hexToColorWithAlpha } from './useColorStateWithAlpha';
+import { ColorPaletteWithAlpha, ColorCategory, hexToColorWithAlpha } from './useColorState';
 
 /**
  * CSS Variables Management Hook
