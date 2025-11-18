@@ -180,8 +180,8 @@ const FileListItem: React.FC<FileListItemProps> = ({
             {showProgress && (
               <Box className={`w-full bg-gray-200 rounded-full h-2 mt-2 ${theme === 'dark' ? 'bg-gray-600' : 'bg-gray-200'}`}>
                 <Box
-                  className={`h-2 rounded-full transition-all duration-300 ${getProgressBarColor()}`}
-                  style={{ width: `${Math.min(file.progress, 100)}%` }}
+                  className={`h-2 rounded-full transition-all duration-300 ${getProgressBarColor()} layera-progress-bar`}
+                  data-progress={Math.min(file.progress, 100)}
                 />
               </Box>
             )}

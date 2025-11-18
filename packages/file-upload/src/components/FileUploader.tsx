@@ -341,8 +341,8 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
             {isUploading && summary.total > 0 && (
               <Box className="w-full bg-gray-200 rounded-full h-2">
                 <Box
-                  className="bg-blue-500 h-2 rounded-full transition-all duration-300"
-                  style={{ width: `${(summary.completed / summary.total) * 100}%` }}
+                  className="bg-blue-500 h-2 rounded-full transition-all duration-300 layera-progress-bar"
+                  data-progress={(summary.completed / summary.total) * 100}
                 />
               </Box>
             )}
