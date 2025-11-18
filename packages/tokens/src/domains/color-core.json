@@ -35,14 +35,6 @@
     },
     "bg": {
       "comment": "Background colors - primary surfaces and semantic states",
-      "primary": {
-        "value": "#ffffff",
-        "comment": "Primary background - clean white for main surfaces"
-      },
-      "secondary": {
-        "value": "#f8fafc",
-        "comment": "Secondary background - light slate for card surfaces"
-      },
       "success": {
         "value": "#d1fae5",
         "comment": "Success background - light green for success states"
@@ -50,14 +42,6 @@
       "warning": {
         "value": "#fef3c7",
         "comment": "Warning background - light amber for warning states"
-      },
-      "danger": {
-        "value": "#fef2f2",
-        "comment": "Danger background - light red for error states"
-      },
-      "info": {
-        "value": "#eff6ff",
-        "comment": "Info background - light blue for info states"
       }
     }
   }

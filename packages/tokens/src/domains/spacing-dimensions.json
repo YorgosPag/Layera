@@ -79,33 +79,9 @@
   },
   "border": {
     "radius": {
-      "none": {
-        "value": "0px",
-        "comment": "No border radius"
-      },
-      "xs": {
-        "value": "2px",
-        "comment": "Extra small border radius"
-      },
-      "sm": {
-        "value": "4px",
-        "comment": "Small border radius"
-      },
       "md": {
         "value": "8px",
         "comment": "Medium border radius"
-      },
-      "lg": {
-        "value": "12px",
-        "comment": "Large border radius"
-      },
-      "xl": {
-        "value": "16px",
-        "comment": "Extra large border radius"
-      },
-      "pill": {
-        "value": "var(--layera-global-borderRadius-full)",
-        "comment": "Pill/fully rounded border radius - consolidated reference"
       }
     }
   }
