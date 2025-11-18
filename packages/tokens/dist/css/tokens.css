@@ -72,7 +72,6 @@
   --layera-color-bg-warning: #fef3c7; /** Warning background */
   --layera-color-semantic-error-primary: #ef4444; /** Primary error color (red-500) - replaces hardcoded RGB */
   --layera-color-semantic-error-light: #f87171; /** Light error variant (red-400) - replaces hardcoded RGB */
-  --layera-color-semantic-error-dark: #dc2626; /** Dark error variant (red-600) - replaces hardcoded RGB */
   --layera-color-semantic-warning-primary: #f59e0b; /** Primary warning color (amber-500) */
   --layera-color-semantic-info-primary: #6366f1; /** Primary info color (indigo-500) */
   --layera-color-semantic-neutral-light: #f3f4f6; /** Light neutral (gray-100) - replaces hardcoded RGB */
@@ -81,18 +80,9 @@
   --layera-color-transition-slow: 0.3s ease; /** Slow transitions for emphasis */
   --layera-color-transition-border: 0.25s ease; /** Border color transition timing */
   --layera-color-light-surface-primary: #22c55e; /** Primary surface για cards/modals */
-  --layera-color-light-surface-secondary: #f8fafc; /** Secondary surface για cards */
   --layera-color-light-text-primary: #1e293b; /** Primary text - σκούρο για contrast */
-  --layera-color-light-text-secondary: #475569; /** Secondary text - medium gray */
-  --layera-color-light-border-primary: #e2e8f0; /** Primary borders */
-  --layera-color-light-border-secondary: #cbd5e1; /** Secondary borders */
   --layera-color-dark-surface-primary: #1e293b; /** Primary surface για cards/modals */
-  --layera-color-dark-surface-secondary: #334155; /** Secondary surface για cards */
-  --layera-color-dark-surface-overlay: rgba(0, 0, 0, 0.75); /** Modal overlay background - πιο σκούρο για dark mode */
   --layera-color-dark-text-primary: #f1f5f9; /** Primary text - clean white */
-  --layera-color-dark-text-secondary: #cbd5e1; /** Secondary text - soft silver */
-  --layera-color-dark-border-primary: #475569; /** Primary borders dark */
-  --layera-color-dark-border-secondary: #64748b; /** Secondary borders dark */
   --layera-color-brand: #3b82f6; /** Brand primary color */
   --layera-color-primary: #3b82f6; /** Primary color */
   --layera-color-surface-tertiary: #f1f5f9; /** Tertiary surface */
@@ -316,9 +306,7 @@
 /* ✅ DYNAMIC: Light theme από JSON tokens */
 :root.light {
   --layera-color-surface-primary: var(--layera-color-light-surface-primary, #22c55e);
-  --layera-color-surface-secondary: var(--layera-color-light-surface-secondary, #f8fafc);
   --layera-color-text-primary: var(--layera-color-light-text-primary, #1e293b);
-  --layera-color-text-secondary: var(--layera-color-light-text-secondary, #475569);
   --layera-colorUtilities-utilities-background-surface-light: var(--layera-colorUtilities-utilities-background-surface-light, var(--layera-color-background-surface-light));
   --layera-la-color-background-surface-light: var(--layera-la-color-background-surface-light, #f8fafc);
   --layera-bg-surface-light: var(--layera-bg-surface-light, var(--layera-color-surface-primary));
@@ -328,10 +316,7 @@
 :root.dark {
   --layera-color-text-on-dark: var(--layera-color-text-on-dark, #ffffff);
   --layera-color-surface-primary: var(--layera-color-dark-surface-primary, #1e293b);
-  --layera-color-surface-secondary: var(--layera-color-dark-surface-secondary, #334155);
-  --layera-color-surface-overlay: var(--layera-color-dark-surface-overlay, rgba(0, 0, 0, 0.75));
   --layera-color-text-primary: var(--layera-color-dark-text-primary, #f1f5f9);
-  --layera-color-text-secondary: var(--layera-color-dark-text-secondary, #cbd5e1);
 }
 
 /* ✅ MODAL DATA ATTRIBUTE STYLES - Enterprise styling */

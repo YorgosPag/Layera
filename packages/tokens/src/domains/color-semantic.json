@@ -9,10 +9,6 @@
         "light": {
           "value": "#f87171",
           "comment": "Light error variant (red-400) - replaces hardcoded RGB"
-        },
-        "dark": {
-          "value": "#dc2626",
-          "comment": "Dark error variant (red-600) - replaces hardcoded RGB"
         }
       },
       "warning": {

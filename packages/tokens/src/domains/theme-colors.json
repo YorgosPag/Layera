@@ -7,32 +7,15 @@
         "primary": {
           "value": "#22c55e",
           "comment": "Primary surface για cards/modals"
-        },
-        "secondary": {
-          "value": "#f8fafc",
-          "comment": "Secondary surface για cards"
         }
       },
       "text": {
         "primary": {
           "value": "#1e293b",
           "comment": "Primary text - σκούρο για contrast"
-        },
-        "secondary": {
-          "value": "#475569",
-          "comment": "Secondary text - medium gray"
         }
       },
-      "border": {
-        "primary": {
-          "value": "#e2e8f0",
-          "comment": "Primary borders"
-        },
-        "secondary": {
-          "value": "#cbd5e1",
-          "comment": "Secondary borders"
-        }
-      }
+      "border": {}
     },
     "dark": {
       "comment": "Dark theme color palette",
@@ -40,36 +23,15 @@
         "primary": {
           "value": "#1e293b",
           "comment": "Primary surface για cards/modals"
-        },
-        "secondary": {
-          "value": "#334155",
-          "comment": "Secondary surface για cards"
-        },
-        "overlay": {
-          "value": "rgba(0, 0, 0, 0.75)",
-          "comment": "Modal overlay background - πιο σκούρο για dark mode"
         }
       },
       "text": {
         "primary": {
           "value": "#f1f5f9",
           "comment": "Primary text - clean white"
-        },
-        "secondary": {
-          "value": "#cbd5e1",
-          "comment": "Secondary text - soft silver"
         }
       },
-      "border": {
-        "primary": {
-          "value": "#475569",
-          "comment": "Primary borders dark"
-        },
-        "secondary": {
-          "value": "#64748b",
-          "comment": "Secondary borders dark"
-        }
-      }
+      "border": {}
     }
   }
 }
