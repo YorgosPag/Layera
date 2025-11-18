@@ -9,11 +9,6 @@
     },
     "references": {
       "comment": "📚 References to specialized token files",
-      "sharedValues": {
-        "file": "./shared-values.json",
-        "description": "🔗 Κοινές τιμές - Single Source of Truth για duplicates",
-        "priority": "HIGH - Χρησιμοποιείται από όλα τα άλλα αρχεία"
-      },
       "colors": {
         "file": "./colors.json",
         "description": "Πλήρες color system - themes, semantic, neutral"
@@ -25,6 +20,10 @@
       "components": {
         "file": "./components.json",
         "description": "Component-specific tokens - header, drawer, navigation"
+      },
+      "buttons": {
+        "file": "./buttons.json",
+        "description": "Καθολικό button system"
       },
       "responsive": {
         "file": "./responsive.json",
@@ -44,7 +43,7 @@
       "layoutSystem": {
         "header": {
           "height": {
-            "value": "var(--layera-global-shared-layout-system-headerHeight)",
+            "value": "3.5rem",
             "comment": "Header height - MASTER REFERENCE που χρησιμοποιείται παντού"
           }
         }
@@ -66,44 +65,8 @@
       },
       "grid": {
         "autoFit": {
-          "value": "var(--layera-global-utilities-grid-autoFit)",
+          "value": "repeat(auto-fit, minmax(250px, 1fr))",
           "comment": "Auto-fit grid template for responsive cards"
-        },
-        "autoFit280": {
-          "value": "var(--layera-global-utilities-grid-autoFit280)",
-          "comment": "Auto-fit grid template 280px exactly"
-        }
-      },
-      "textAlign": {
-        "center": {
-          "value": "center",
-          "comment": "Center text alignment utility"
-        },
-        "left": {
-          "value": "left",
-          "comment": "Left text alignment utility"
-        },
-        "right": {
-          "value": "right",
-          "comment": "Right text alignment utility"
-        }
-      },
-      "justifyContent": {
-        "center": {
-          "value": "center",
-          "comment": "Center flex/grid items horizontally"
-        },
-        "start": {
-          "value": "flex-start",
-          "comment": "Align flex/grid items to start"
-        },
-        "end": {
-          "value": "flex-end",
-          "comment": "Align flex/grid items to end"
-        },
-        "spaceBetween": {
-          "value": "space-between",
-          "comment": "Space flex/grid items evenly with space between"
         }
       }
     }

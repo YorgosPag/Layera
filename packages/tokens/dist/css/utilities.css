@@ -244,13 +244,13 @@ button:focus-visible {
 /* Grid Template Columns Utilities - ARXES Compliant */
 .layera-grid--auto-fit {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: var(--layera-global-utilities-grid-autoFit);
   gap: var(--layera-size-8);
   padding: var(--layera-size-6);
 }
 .layera-grid--auto-fit-280 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: var(--layera-global-utilities-grid-autoFit280);
   gap: var(--layera-size-8);
   padding: var(--layera-size-6);
 }

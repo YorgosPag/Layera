@@ -44,10 +44,10 @@ export const UI_TIMING = {
   DEBOUNCE_MEDIUM: 500,            // Medium debounce delay (500ms) - search
   DEBOUNCE_LONG: 1000,             // Long debounce delay (1000ms) - address updates
 
-  // Animation durations
-  TRANSITION_FAST: 150,            // Fast transition duration (150ms)
-  TRANSITION_NORMAL: 250,          // Normal transition duration (250ms)
-  TRANSITION_SLOW: 400,            // Slow transition duration (400ms)
+  // Animation durations - from tokens system
+  TRANSITION_FAST: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-iconInteractive-interactive-transition-fast').replace(/[^0-9]/g, '')) || 100,
+  TRANSITION_NORMAL: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-iconInteractive-interactive-transition-normal').replace(/[^0-9]/g, '')) || 200,
+  TRANSITION_SLOW: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-iconInteractive-interactive-transition-slow').replace(/[^0-9]/g, '')) || 300
 
   // Loading states
   LOADING_SPINNER_MIN: 500,        // Minimum spinner display time

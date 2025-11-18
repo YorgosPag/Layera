@@ -31,7 +31,7 @@
 
 .playgroundContent {
   width: 100vw;
-  height: calc(100vh - var(--layera-header-fixed-height) - 60px);
+  height: calc(100vh - var(--layera-header-fixed-height) - var(--layera-size-16));
   overflow: auto;
   padding: var(--layera-global-spacing-4);
   background-color: var(--layera-color-semantic-success-primary);

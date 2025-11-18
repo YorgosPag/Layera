@@ -78,7 +78,7 @@ export const ColorValueDisplay: React.FC<ColorValueDisplayProps> = ({
             // Read actual values από DOM που δημιούργησε το theme.ts
             const cssVariables = colorNames.map(colorName => {
               const varName = `${prefix}${colorName}`;
-              const value = getComputedStyle(document.documentElement).getPropertyValue(varName).trim() || currentColors?.[colorName] || '#000000';
+              const value = getComputedStyle(document.documentElement).getPropertyValue(varName).trim() || currentColors?.[colorName] || 'var(--layera-color-text-primary)';
               return `  ${varName}: "${value}"`;
             }).join(',\n');
 

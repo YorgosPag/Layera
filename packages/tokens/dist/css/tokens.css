@@ -154,11 +154,11 @@
   --layera-border-info: var(--layera-color-semantic-info-primary); /** Info border color */
   --layera-border-error: var(--layera-color-semantic-error-primary); /** Error border color */
   --layera-border-width-xxs: 1px; /** Extra extra small border */
-  --layera-global-shared-layoutSystem-header-height: 3.5rem; /** Header height - MASTER REFERENCE που χρησιμοποιείται παντού */
+  --layera-global-shared-layoutSystem-header-height: var(--layera-global-shared-layout-system-headerHeight); /** Header height - MASTER REFERENCE που χρησιμοποιείται παντού */
   --layera-global-shared-z-index-overlay: 1000; /** Standard overlay z-index - modals, dropdowns */
   --layera-global-utilities-zIndex-overlay: var(--layera-z-index-overlay, 1000); /** Z-index for overlay elements like modals and dropdowns */
-  --layera-global-utilities-grid-autoFit: repeat(auto-fit, minmax(250px, 1fr)); /** Auto-fit grid template for responsive cards */
-  --layera-global-utilities-grid-autoFit280: repeat(auto-fit, minmax(280px, 1fr)); /** Auto-fit grid template 280px exactly */
+  --layera-global-utilities-grid-autoFit: var(--layera-global-utilities-grid-autoFit); /** Auto-fit grid template for responsive cards */
+  --layera-global-utilities-grid-autoFit280: var(--layera-global-utilities-grid-autoFit280); /** Auto-fit grid template 280px exactly */
   --layera-global-utilities-textAlign-center: center; /** Center text alignment utility */
   --layera-global-utilities-textAlign-left: left; /** Left text alignment utility */
   --layera-global-utilities-textAlign-right: right; /** Right text alignment utility */

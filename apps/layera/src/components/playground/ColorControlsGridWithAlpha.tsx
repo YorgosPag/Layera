@@ -67,14 +67,21 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
         }
       }
       // Regular HEX
-      const hex = color.startsWith('#') ? color : '#ffffff';
-      const r = parseInt(hex.slice(1, 3), 16);
-      const g = parseInt(hex.slice(3, 5), 16);
-      const b = parseInt(hex.slice(5, 7), 16);
+      const hex = color.startsWith('#') ? color : 'var(--layera-color-surface-primary)';
+      if (hex.startsWith('#')) {
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return {
+          hex,
+          alpha: 1.0,
+          rgba: `rgba(${r}, ${g}, ${b}, 1.0)`
+        };
+      }
       return {
-        hex,
+        hex: 'var(--layera-color-surface-primary)',
         alpha: 1.0,
-        rgba: `rgba(${r}, ${g}, ${b}, 1.0)`
+        rgba: 'color-mix(in srgb, var(--layera-color-surface-primary) 100%, transparent)'
       };
     }
     return color;
@@ -83,7 +90,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
   // Helper function: Extract HEX για legacy compatibility
   const extractHex = (color: ColorWithAlpha | string): string => {
     if (typeof color === 'string') {
-      return color.startsWith('#') ? color : '#ffffff';
+      return color.startsWith('#') ? color : 'var(--layera-color-surface-primary)';
     }
     return color.hex;
   };

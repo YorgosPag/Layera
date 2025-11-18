@@ -121,7 +121,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     const newAlpha = parseFloat(e.target.value) / 100;
     if (isNaN(newAlpha)) return;
 
-    const safeHex = internalValue?.hex || '#ffffff';
+    const safeHex = internalValue?.hex || 'var(--layera-color-surface-primary)';
     if (!safeHex.startsWith('#')) return;
 
     const newValue = {
@@ -155,7 +155,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   const colorInputRef = useRef<HTMLInputElement>(null);
 
   // Memoized display values to prevent recalculations
-  const displayHex = useMemo(() => extractHexFromValue(internalValue?.hex || '#ffffff'), [internalValue?.hex]);
+  const displayHex = useMemo(() => extractHexFromValue(internalValue?.hex || 'var(--layera-color-surface-primary)'), [internalValue?.hex]);
   const alphaPercentage = useMemo(() => Math.round((internalValue?.alpha ?? 1.0) * 100), [internalValue?.alpha]);
 
   // ΒΕΛΤΙΣΤΟΠΟΙΗΜΕΝΗ real-time tracking με throttling
@@ -270,7 +270,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
             {/* Overlay με το χρώμα και την αντίστοιχη διαφάνεια */}
             <Box
               className="layera-position--absolute layera-position-top--0 layera-position-left--0 layera-width--full layera-height--full layera-border-radius--sm layera-dynamic-bg"
-              data-dynamic-bg={internalValue?.rgba || 'rgba(255, 255, 255, 1)'}
+              data-dynamic-bg={internalValue?.rgba || 'color-mix(in srgb, var(--layera-color-surface-primary) 100%, transparent)'}
             />
           </Box>
         </Box>
