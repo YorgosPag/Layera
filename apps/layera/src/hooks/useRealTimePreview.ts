@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { UI_TIMING } from '../constants/ui-utilities';
 
 /**
  * Real-Time Color Preview Hook
@@ -111,12 +112,12 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
   const getRadiusValue = useCallback((radius: string) => {
     switch(radius) {
       case 'none': return 'var(--layera-global-borderRadius-none)';  // 0
-      case 'sm': return 'var(--layera-radius-sm)';      // 4px
-      case 'lg': return 'var(--layera-radius-lg)';      // 8px
-      case 'xl': return 'var(--layera-radius-xl)';      // 12px
-      case 'xxl': return 'var(--layera-radius-xxl)';    // 16px
+      case 'sm': return 'var(--layera-radius-sm)';      // var(--layera-global-spacing-1)
+      case 'lg': return 'var(--layera-radius-lg)';      // var(--layera-global-spacing-2)
+      case 'xl': return 'var(--layera-radius-xl)';      // var(--layera-global-spacing-3)
+      case 'xxl': return 'var(--layera-radius-xxl)';    // var(--layera-global-spacing-4)
       case 'round': return 'var(--layera-radius-full)'; // πλήρως στρογγυλά
-      default: return 'var(--layera-radius-lg)';        // 8px fallback
+      default: return 'var(--layera-radius-lg)';        // var(--layera-global-spacing-2) fallback
     }
   }, []);
 
@@ -500,7 +501,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
           pendingDOMUpdate.current = null;
         }
         rafRef.current = null;
-      }, 16); // 16ms throttle (~60fps) για real-time responsiveness
+      }, UI_TIMING.FRAME_60FPS); // 60fps throttle για real-time responsiveness
     });
   }, [applyLivePreview]);
 

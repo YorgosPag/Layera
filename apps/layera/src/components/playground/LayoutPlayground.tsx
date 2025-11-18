@@ -53,7 +53,7 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
   // Helper function για μετατροπή radius values σε tokens
   const getRadiusToken = (radius: string) => {
     switch(radius) {
-      case 'none': return 'var(--layera-radius-none)';  // 0px from tokens
+      case 'none': return '0px';  // 0px direct value
       case 'sm': return 'var(--layera-radius-sm)';      // 4px
       case 'lg': return 'var(--layera-radius-lg)';      // 8px - default για layout
       case 'xl': return 'var(--layera-radius-xl)';      // 12px

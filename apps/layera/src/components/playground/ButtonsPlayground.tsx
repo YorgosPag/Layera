@@ -175,7 +175,7 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
 
     // Προσθέτουμε επιπλέον πληροφορίες για borders category
     if (colorCategory === 'borders') {
-      parts.push(`με πάχος περιγράμματος ${borderWidth}px`);
+      parts.push(`με πάχος περιγράμματος ${borderWidth}`);
     }
 
     // Προσθέτουμε radius information - ΠΑΝΤΑ

@@ -8,14 +8,14 @@
   outline: none;
   background-color: var(--layera-la-bg-primary);
   color: var(--layera-la-text-primary);
-  border: 1px solid var(--layera-la-color-border-light);
+  border: var(--layera-global-spacing-0-25) solid var(--layera-la-color-border-light);
   flex: 1;
 }
 
 /* ARXES Compliant Grid Layouts - Αντικατάσταση inline styles */
 .cardGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(var(--layera-global-spacing-112), 1fr));
   gap: var(--layera-size-8);
   padding: var(--layera-size-6);
 }
@@ -26,12 +26,12 @@
 
 /* Παλιές κλάσεις - πλέον unused μετά την απλοποίηση */
 .playgroundOverride {
-  z-index: 7000 !important;
+  z-index: 9999 !important;
 }
 
 .playgroundContent {
-  width: 100vw;
-  height: calc(100vh - var(--layera-header-fixed-height) - var(--layera-size-16));
+  width: var(--layera-spacing-viewport-full-width);
+  height: calc(var(--layera-spacing-viewport-full-height) - var(--layera-header-fixed-height) - var(--layera-size-16));
   overflow: auto;
   padding: var(--layera-global-spacing-4);
   background-color: var(--layera-color-semantic-success-primary);
@@ -44,9 +44,9 @@
   left: 0;
   right: 0;
   bottom: 0;
-  width: 100vw;
-  height: calc(100vh - var(--layera-header-fixed-height));
-  z-index: 7000;
+  width: var(--layera-spacing-viewport-full-width);
+  height: calc(var(--layera-spacing-viewport-full-height) - var(--layera-header-fixed-height));
+  z-index: 9999;
   overflow: auto;
   padding: var(--layera-global-spacing-6) var(--layera-global-spacing-4);
   background-color: var(--layera-color-semantic-success-primary);

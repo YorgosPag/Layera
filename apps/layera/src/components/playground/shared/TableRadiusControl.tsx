@@ -53,7 +53,7 @@ export const TableRadiusControl: React.FC<TableRadiusControlProps> = ({
     {
       value: 'xs',
       label: 'Ελαφρώς',
-      token: '0.125rem',
+      token: 'var(--layera-radius-xs)',
       description: 'Ελαφρώς καμπύλες (2px)'
     },
     {
@@ -65,13 +65,13 @@ export const TableRadiusControl: React.FC<TableRadiusControlProps> = ({
     {
       value: 'lg',
       label: 'Πολύ',
-      token: '0.5rem',
+      token: 'var(--layera-radius-lg)',
       description: 'Πολύ καμπύλες (8px)'
     },
     {
       value: 'xl',
       label: 'Μεγάλες',
-      token: '0.75rem',
+      token: 'var(--layera-radius-xl)',
       description: 'Μεγάλες καμπύλες (12px - special tables)'
     }
   ];

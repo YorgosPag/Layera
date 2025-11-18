@@ -47,11 +47,11 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
   // Helper function για translation των radius values
   const getRadiusInGreek = (radius: string) => {
     switch(radius) {
-      case 'none': return 'χωρίς καμπυλότητα (0px)';
-      case 'sm': return 'ελαφρά καμπυλότητα (4px)';
-      case 'lg': return 'μεσαία καμπυλότητα (8px)';
-      case 'xl': return 'πολλή καμπυλότητα (12px)';
-      case 'xxl': return 'μεγάλη καμπυλότητα (16px)';
+      case 'none': return 'χωρίς καμπυλότητα (var(--layera-global-borderRadius-none))';
+      case 'sm': return 'ελαφρά καμπυλότητα (var(--layera-global-spacing-1))';
+      case 'lg': return 'μεσαία καμπυλότητα (var(--layera-global-spacing-2))';
+      case 'xl': return 'πολλή καμπυλότητα (var(--layera-global-spacing-3))';
+      case 'xxl': return 'μεγάλη καμπυλότητα (var(--layera-global-spacing-4))';
       case 'round': return 'πλήρως στρογγυλά';
       default: return radius;
     }
@@ -145,13 +145,13 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
   // Helper function για μετατροπή radius values σε tokens
   const getRadiusToken = (radius: string) => {
     switch(radius) {
-      case 'none': return '0px';                        // 0px
-      case 'sm': return 'var(--layera-radius-sm)';      // 4px
-      case 'lg': return 'var(--layera-radius-lg)';      // 8px - default για κάρτες
-      case 'xl': return 'var(--layera-radius-xl)';      // 12px
-      case 'xxl': return 'var(--layera-radius-xxl)';    // 16px
+      case 'none': return 'var(--layera-global-borderRadius-none)';                        // 0
+      case 'sm': return 'var(--layera-radius-sm)';      // var(--layera-global-spacing-1)
+      case 'lg': return 'var(--layera-radius-lg)';      // var(--layera-global-spacing-2) - default για κάρτες
+      case 'xl': return 'var(--layera-radius-xl)';      // var(--layera-global-spacing-3)
+      case 'xxl': return 'var(--layera-radius-xxl)';    // var(--layera-global-spacing-4)
       case 'round': return 'var(--layera-radius-full)'; // πλήρως στρογγυλά
-      default: return 'var(--layera-radius-lg)';        // 8px fallback
+      default: return 'var(--layera-radius-lg)';        // var(--layera-global-spacing-2) fallback
     }
   };
 

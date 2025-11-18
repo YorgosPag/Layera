@@ -646,11 +646,11 @@ button:focus-visible {
   padding: var(--layera-global-spacing-6);
 }
 .layera-card[data-size="auth"] {
-  max-width: 28rem;
+  max-width: var(--layera-global-spacing-112);
   width: 100%;
-  border-radius: 0.5rem;
+  border-radius: var(--layera-global-spacing-2);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
+  padding: var(--layera-global-spacing-8);
 }
 
 /* Card Element Variants */
@@ -851,11 +851,11 @@ button:focus-visible {
 }
 /* BEM Compatibility: card--auth */
 .layera-card--auth {
-  max-width: 28rem;
+  max-width: var(--layera-global-spacing-112);
   width: 100%;
-  border-radius: 0.5rem;
+  border-radius: var(--layera-global-spacing-2);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
+  padding: var(--layera-global-spacing-8);
 }
 /* BEM Compatibility: card--title */
 .layera-card--title {
@@ -1801,28 +1801,28 @@ button:focus-visible {
 /* Form Element Variants */
 .layera-form[data-element="input"] {
   width: 100%;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--layera-color-border-default);
-  border-radius: 0.5rem;
+  padding: var(--layera-global-spacing-2) var(--layera-global-spacing-4);
+  border: var(--layera-global-spacing-0-25) solid var(--layera-color-border-default);
+  border-radius: var(--layera-global-spacing-2);
   transition: all 0.2s ease;
   font-size: var(--layera-fontSize-base);
   height: var(--layera-spacing-component-input-height);
 }
 .layera-form[data-element="label"] {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--layera-global-spacing-2);
   font-size: var(--layera-fontSize-sm);
   font-weight: var(--layera-fontWeight-medium);
   color: var(--layera-color-text-primary);
 }
 .layera-form[data-element="textarea"] {
   width: 100%;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--layera-color-border-default);
-  border-radius: 0.5rem;
+  padding: var(--layera-global-spacing-2) var(--layera-global-spacing-4);
+  border: var(--layera-global-spacing-0-25) solid var(--layera-color-border-default);
+  border-radius: var(--layera-global-spacing-2);
   transition: all 0.2s ease;
   font-size: var(--layera-fontSize-base);
-  min-height: 80px;
+  min-height: var(--layera-global-spacing-20);
   resize: vertical;
 }
 
@@ -1854,9 +1854,9 @@ button:focus-visible {
 /* BEM Compatibility: form--input */
 .layera-form--input {
   width: 100%;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--layera-color-border-default);
-  border-radius: 0.5rem;
+  padding: var(--layera-global-spacing-2) var(--layera-global-spacing-4);
+  border: var(--layera-global-spacing-0-25) solid var(--layera-color-border-default);
+  border-radius: var(--layera-global-spacing-2);
   transition: all 0.2s ease;
   font-size: var(--layera-fontSize-base);
   height: var(--layera-spacing-component-input-height);
@@ -1864,7 +1864,7 @@ button:focus-visible {
 /* BEM Compatibility: form--label */
 .layera-form--label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--layera-global-spacing-2);
   font-size: var(--layera-fontSize-sm);
   font-weight: var(--layera-fontWeight-medium);
   color: var(--layera-color-text-primary);
@@ -1872,12 +1872,12 @@ button:focus-visible {
 /* BEM Compatibility: form--textarea */
 .layera-form--textarea {
   width: 100%;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--layera-color-border-default);
-  border-radius: 0.5rem;
+  padding: var(--layera-global-spacing-2) var(--layera-global-spacing-4);
+  border: var(--layera-global-spacing-0-25) solid var(--layera-color-border-default);
+  border-radius: var(--layera-global-spacing-2);
   transition: all 0.2s ease;
   font-size: var(--layera-fontSize-base);
-  min-height: 80px;
+  min-height: var(--layera-global-spacing-20);
   resize: vertical;
 }
 /* BEM Compatibility: form--focus */
@@ -2007,7 +2007,7 @@ button:focus-visible {
 /* Map Type Variants */
 .layera-map[data-type="placeholder"] {
   height: 24rem;
-  border-radius: 0.5rem;
+  border-radius: var(--layera-global-spacing-2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2039,7 +2039,7 @@ button:focus-visible {
 /* BEM Compatibility: map--placeholder */
 .layera-map--placeholder {
   height: 24rem;
-  border-radius: 0.5rem;
+  border-radius: var(--layera-global-spacing-2);
   display: flex;
   align-items: center;
   justify-content: center;

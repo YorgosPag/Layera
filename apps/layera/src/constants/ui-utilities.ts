@@ -47,7 +47,10 @@ export const UI_TIMING = {
   // Animation durations - from tokens system
   TRANSITION_FAST: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-iconInteractive-interactive-transition-fast').replace(/[^0-9]/g, '')) || 100,
   TRANSITION_NORMAL: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-iconInteractive-interactive-transition-normal').replace(/[^0-9]/g, '')) || 200,
-  TRANSITION_SLOW: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-iconInteractive-interactive-transition-slow').replace(/[^0-9]/g, '')) || 300
+  TRANSITION_SLOW: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-iconInteractive-interactive-slow').replace(/[^0-9]/g, '')) || 300,
+
+  // Frame rate throttling
+  FRAME_60FPS: 16,                     // 60fps throttle (16ms) for smooth real-time updates
 
   // Loading states
   LOADING_SPINNER_MIN: 500,        // Minimum spinner display time

@@ -37,12 +37,12 @@ export const FontSizeControl: React.FC<FontSizeControlProps> = ({
 
   // Font size options με περιγραφές
   const fontSizeOptions: { value: FontSizeValue; label: string; description: string }[] = [
-    { value: 'xs', label: 'XS', description: '12px - Captions, labels' },
-    { value: 'sm', label: 'SM', description: '14px - Small text' },
-    { value: 'base', label: 'Base', description: '16px - Body default' },
-    { value: 'lg', label: 'LG', description: '18px - Large body text' },
-    { value: 'xl', label: 'XL', description: '20px - Subheadings' },
-    { value: '2xl', label: '2XL', description: '24px - Small headings' }
+    { value: 'xs', label: 'XS', description: 'var(--layera-fontSize-xs) - Captions, labels' },
+    { value: 'sm', label: 'SM', description: 'var(--layera-fontSize-sm) - Small text' },
+    { value: 'base', label: 'Base', description: 'var(--layera-fontSize-base) - Body default' },
+    { value: 'lg', label: 'LG', description: 'var(--layera-fontSize-lg) - Large body text' },
+    { value: 'xl', label: 'XL', description: 'var(--layera-fontSize-xl) - Subheadings' },
+    { value: '2xl', label: '2XL', description: 'var(--layera-fontSize-2xl) - Small headings' }
   ];
 
   return (
