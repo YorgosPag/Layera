@@ -8,7 +8,7 @@ import { SettingsIcon } from '@layera/icons';
  * TableRadiusControl Component
  *
  * Ρύθμιση καμπυλότητας γωνιών table και data grid components
- * - Επιλογές: None (0px), Small (2px), Medium (6px), Large (8px), XL (12px)
+ * - Επιλογές: None, Small, Medium, Large, XL
  * - Live preview με visual feedback
  * - Compatible με το SST design token system
  * - Χρησιμοποιεί --layera-radius-table tokens για πίνακες
@@ -48,31 +48,31 @@ export const TableRadiusControl: React.FC<TableRadiusControlProps> = ({
       value: 'none',
       label: 'Χωρίς',
       token: 'var(--layera-global-borderRadius-none)',
-      description: 'Χωρίς καμπυλότητα (0px - τετράγωνοι πίνακες)'
+      description: 'Χωρίς καμπυλότητα - τετράγωνοι πίνακες'
     },
     {
       value: 'xs',
       label: 'Ελαφρώς',
       token: 'var(--layera-radius-xs)',
-      description: 'Ελαφρώς καμπύλες (2px)'
+      description: 'Ελαφρώς καμπύλες'
     },
     {
       value: 'md',
       label: 'Μεσαία',
       token: 'var(--layera-radius-table)',
-      description: 'Μεσαία καμπύλες (6px - tables)'
+      description: 'Μεσαία καμπύλες - tables'
     },
     {
       value: 'lg',
       label: 'Πολύ',
       token: 'var(--layera-radius-lg)',
-      description: 'Πολύ καμπύλες (8px)'
+      description: 'Πολύ καμπύλες'
     },
     {
       value: 'xl',
       label: 'Μεγάλες',
       token: 'var(--layera-radius-xl)',
-      description: 'Μεγάλες καμπύλες (12px - special tables)'
+      description: 'Μεγάλες καμπύλες - special tables'
     }
   ];
 

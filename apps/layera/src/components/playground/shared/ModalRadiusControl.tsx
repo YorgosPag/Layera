@@ -8,7 +8,7 @@ import { SettingsIcon } from '@layera/icons';
  * ModalRadiusControl Component
  *
  * Ρύθμιση καμπυλότητας γωνιών modals και dialog components
- * - Επιλογές: None (0px), Small (4px), Medium (12px), Large (16px), XL (20px)
+ * - Επιλογές: None, Small, Medium, Large, XL
  * - Live preview με visual feedback
  * - Compatible με το SST design token system
  * - Χρησιμοποιεί --layera-radius-modal tokens για modals
@@ -46,33 +46,33 @@ export const ModalRadiusControl: React.FC<ModalRadiusControlProps> = ({
   const modalRadiusOptions = [
     {
       value: 'none',
-      label: '0px',
+      label: 'Χωρίς',
       token: '0',
-      description: 'Χωρίς καμπυλότητα (0px - τετράγωνα modals)'
+      description: 'Χωρίς καμπυλότητα - τετράγωνα modals'
     },
     {
       value: 'sm',
-      label: '4px',
+      label: 'Ελαφρώς',
       token: 'var(--layera-radius-sm)',
-      description: 'Ελαφρώς καμπύλες (4px)'
+      description: 'Ελαφρώς καμπύλες'
     },
     {
       value: 'lg',
-      label: '8px',
+      label: 'Μεσαία',
       token: 'var(--layera-radius-lg)',
-      description: 'Μεσαία καμπύλες (8px)'
+      description: 'Μεσαία καμπύλες'
     },
     {
       value: 'xl',
-      label: '12px',
+      label: 'Πολύ',
       token: 'var(--layera-radius-xl)',
-      description: 'Πολύ καμπύλες (12px - default για modals)'
+      description: 'Πολύ καμπύλες - default για modals'
     },
     {
       value: 'xxl',
-      label: '16px',
+      label: 'Μεγάλες',
       token: 'var(--layera-radius-xxl)',
-      description: 'Μεγάλες καμπύλες (16px - ειδικά modals)'
+      description: 'Μεγάλες καμπύλες - ειδικά modals'
     }
   ];
 

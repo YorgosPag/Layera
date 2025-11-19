@@ -10,11 +10,11 @@
  * Standard width percentages για UI components
  */
 export const UI_WIDTH_PERCENTAGES = {
-  SMALL: 'var(--layera-percentage-small)',      // Small width percentage (20%)
-  MEDIUM: 'var(--layera-percentage-medium)',    // Medium width percentage (40%)
-  LARGE: 'var(--layera-percentage-large)',      // Large width percentage (60%)
-  XL: 'var(--layera-percentage-xl)',            // Extra large width percentage (80%)
-  FULL: 'var(--layera-percentage-full)'         // Full width percentage (100%)
+  SMALL: 'var(--layera-percentage-small)',      // Small width percentage
+  MEDIUM: 'var(--layera-percentage-medium)',    // Medium width percentage
+  LARGE: 'var(--layera-percentage-large)',      // Large width percentage
+  XL: 'var(--layera-percentage-xl)',            // Extra large width percentage
+  FULL: 'var(--layera-percentage-full)'         // Full width percentage
 } as const;
 
 /**
@@ -40,9 +40,9 @@ export const ADDRESS_PARSING = {
  */
 export const UI_TIMING = {
   // Component update delays
-  DEBOUNCE_SHORT: 300,             // Short debounce delay (300ms) - user input
-  DEBOUNCE_MEDIUM: 500,            // Medium debounce delay (500ms) - search
-  DEBOUNCE_LONG: 1000,             // Long debounce delay (1000ms) - address updates
+  DEBOUNCE_SHORT: 300,
+  DEBOUNCE_MEDIUM: 500,
+  DEBOUNCE_LONG: 1000,
 
   // Animation durations - from tokens system
   TRANSITION_FAST: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-iconInteractive-interactive-transition-fast').replace(/[^0-9]/g, '')) || 100,
@@ -50,7 +50,7 @@ export const UI_TIMING = {
   TRANSITION_SLOW: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-iconInteractive-interactive-slow').replace(/[^0-9]/g, '')) || 300,
 
   // Frame rate throttling
-  FRAME_60FPS: 16,                     // 60fps throttle (16ms) for smooth real-time updates
+  FRAME_60FPS: 16,
 
   // Loading states
   LOADING_SPINNER_MIN: 500,        // Minimum spinner display time

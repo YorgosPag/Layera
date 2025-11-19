@@ -30,9 +30,9 @@ const extractHexFromValue = (colorValue: string): string => {
 };
 
 interface ColorWithAlpha {
-  hex: string;    // hex color value
-  alpha: number;  // 0.8 (80%)
-  rgba: string;   // rgba color value
+  hex: string;
+  alpha: number;
+  rgba: string;
 }
 
 interface ColorPickerWithAlphaProps {
@@ -50,7 +50,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   onChange,
   onPreview,
   className = '',
-  throttleMs = 16 // 60fps για real-time smooth response
+  throttleMs = 16
 }) => {
   // Optimized parse function with caching
   const parseValue = useCallback((val: ColorWithAlpha | string): ColorWithAlpha => {
@@ -166,7 +166,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     let isMouseDown = false;
     let lastCheckedColor = input.value;
     let throttleTimestamp = 0;
-    const THROTTLE_INTERVAL = 32; // 30fps για smooth performance balance
+    const THROTTLE_INTERVAL = 32;
 
     // ULTRA-OPTIMIZED throttled preview - χωρίς state updates για performance
     const throttledPreview = (newHex: string) => {

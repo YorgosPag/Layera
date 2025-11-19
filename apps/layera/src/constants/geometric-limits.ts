@@ -10,7 +10,7 @@
  */
 export const GEOMETRIC_LIMITS = {
   MAX_AREA_SQM: 1000000, // 1 km² - geometric validation limit
-  MIN_AREA_SQM: 100,     // 100 square meters minimum
+  MIN_AREA_SQM: 100,
   MAX_TICK_VALUE: 100000, // Maximum normalized tick value for rulers
   AREA_CONVERSION_FACTOR: 111319.9, // Meters per degree approximation
   MIN_POLYGON_POINTS: 3   // Minimum points for valid polygon

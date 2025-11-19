@@ -46,17 +46,17 @@
   --layera-fontSize-4xl: var(--layera-fontSize-4xl); /** Large headings */
   --layera-fontSize-5xl: var(--layera-fontSize-5xl); /** Hero headings */
   --layera-fontSize-6xl: var(--layera-fontSize-6xl); /** Display headings */
-  --layera-fontWeight-light: 300; /** Light weight for delicate text */
-  --layera-fontWeight-normal: 400; /** Normal weight for body text */
-  --layera-fontWeight-medium: 500; /** Medium weight for emphasis */
-  --layera-fontWeight-semibold: 600; /** Semibold for subheadings */
-  --layera-fontWeight-bold: 700; /** Bold for headings */
-  --layera-lineHeight-tight: 1.25; /** Tight leading for headings */
-  --layera-lineHeight-snug: 1.375; /** Snug leading for subheadings */
-  --layera-lineHeight-normal: 1.5; /** Normal leading for body text */
-  --layera-lineHeight-relaxed: 1.625; /** Relaxed leading for readability */
+  --layera-fontWeight-light: var(--layera-fontWeight-light); /** Light weight for delicate text */
+  --layera-fontWeight-normal: var(--layera-fontWeight-normal); /** Normal weight for body text */
+  --layera-fontWeight-medium: var(--layera-fontWeight-medium); /** Medium weight for emphasis */
+  --layera-fontWeight-semibold: var(--layera-fontWeight-semibold); /** Semibold for subheadings */
+  --layera-fontWeight-bold: var(--layera-fontWeight-bold); /** Bold for headings */
+  --layera-lineHeight-tight: var(--layera-lineHeight-tight); /** Tight leading for headings */
+  --layera-lineHeight-snug: var(--layera-lineHeight-snug); /** Snug leading for subheadings */
+  --layera-lineHeight-normal: var(--layera-lineHeight-normal); /** Normal leading for body text */
+  --layera-lineHeight-relaxed: var(--layera-lineHeight-relaxed); /** Relaxed leading for readability */
   --layera-letterSpacing-tight: var(--layera-letterSpacing-tight); /** Tight for headings */
-  --layera-letterSpacing-normal: 0; /** Normal for body text */
+  --layera-letterSpacing-normal: var(--layera-shared-dimensions-zero); /** Normal for body text */
   --layera-letterSpacing-wide: var(--layera-letterSpacing-wide); /** Wide for emphasis */
   --layera-typography-unified: [object Object]; /** Ενοποιημένη typography κλάση - αντικαθιστά 33 κλάσεις */
   --layera-color-text-primary: var(--layera-color-semantic-neutral-dark); /** Primary text - σκούρο γκρι για καλή αντίθεση με λευκό φόντο */
@@ -300,7 +300,7 @@
   --layera-theme-switcher-unified: [object Object]; /** Single .layera-theme-switcher class with data attribute variants */
   --layera-responsive-unified: [object Object]; /** Single .layera-responsive-container class with data attribute variants */
   --layera-modalHeaderFontSize: var(--layera-global-spacing-5); /** Modal header font size για mobile optimization */
-  --layera-modalHeaderFontWeight: 700; /** Modal header font weight - bold για έμφαση */
+  --layera-modalHeaderFontWeight: var(--layera-fontWeight-bold); /** Modal header font weight - bold για έμφαση */
 }
 
 /* ✅ DYNAMIC: Light theme από JSON tokens */

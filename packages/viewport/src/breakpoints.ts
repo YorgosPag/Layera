@@ -21,7 +21,7 @@ export const UNIFIED_BREAKPOINTS: UnifiedBreakpoints = {
     min: 768, // var(--layera-responsive-breakpoints-tablet-min)
     max: 1023,
     device: 'tablet',
-    mediaQuery: '@media screen and (min-width: var(--layera-responsive-breakpoints-tablet-min)) and (max-width: 1023px)',
+    mediaQuery: '@media screen and (min-width: var(--layera-responsive-breakpoints-tablet-min)) and (max-width: var(--layera-responsive-breakpoints-tablet-max-intermediate))',
     containerMaxWidth: 'var(--layera-container-maxWidth-md)',
     gridColumns: 2
   },
@@ -29,7 +29,7 @@ export const UNIFIED_BREAKPOINTS: UnifiedBreakpoints = {
     min: 1024,
     max: 1199, // var(--layera-responsive-breakpoints-tablet-max)
     device: 'tablet',
-    mediaQuery: '@media screen and (min-width: 1024px) and (max-width: var(--layera-responsive-breakpoints-tablet-max))',
+    mediaQuery: '@media screen and (min-width: var(--layera-responsive-breakpoints-tablet-min-intermediate)) and (max-width: var(--layera-responsive-breakpoints-tablet-max))',
     containerMaxWidth: 'var(--layera-container-maxWidth-lg)',
     gridColumns: 3
   },
@@ -61,22 +61,22 @@ export const MEDIA_QUERIES = {
   '2xlOnly': UNIFIED_BREAKPOINTS['2xl'].mediaQuery,
 
   // "And up" queries
-  smUp: '@media screen and (min-width: 0px)',
+  smUp: '@media screen and (min-width: var(--layera-responsive-breakpoints-mobile-min))',
   mdUp: '@media screen and (min-width: var(--layera-responsive-breakpoints-tablet-min))',
-  lgUp: '@media screen and (min-width: 1024px)', // Note: intermediate value
+  lgUp: '@media screen and (min-width: var(--layera-responsive-breakpoints-tablet-min-intermediate))', // Note: intermediate value
   xlUp: '@media screen and (min-width: var(--layera-responsive-breakpoints-desktop-min))',
   '2xlUp': '@media screen and (min-width: var(--layera-responsive-breakpoints-desktopLarge-min))',
 
   // "And down" queries
   smDown: '@media screen and (max-width: var(--layera-responsive-breakpoints-mobile-max))',
-  mdDown: '@media screen and (max-width: 1023px)', // Note: intermediate value
+  mdDown: '@media screen and (max-width: var(--layera-responsive-breakpoints-tablet-max-intermediate))', // Note: intermediate value
   lgDown: '@media screen and (max-width: var(--layera-responsive-breakpoints-tablet-max))',
   xlDown: '@media screen and (max-width: var(--layera-responsive-breakpoints-desktop-max))',
 
   // Device category aliases (backward compatibility)
   mobileOnly: '@media screen and (max-width: var(--layera-responsive-breakpoints-mobile-max))',
   tabletOnly: '@media screen and (min-width: var(--layera-responsive-breakpoints-tablet-min)) and (max-width: var(--layera-responsive-breakpoints-tablet-max))',
-  desktopOnly: '@media screen and (min-width: 1200px)',
+  desktopOnly: '@media screen and (min-width: var(--layera-responsive-breakpoints-desktop-min))',
   tabletAndUp: '@media screen and (min-width: var(--layera-responsive-breakpoints-tablet-min))',
   desktopAndUp: '@media screen and (min-width: var(--layera-responsive-breakpoints-desktop-min))'
 } as const;

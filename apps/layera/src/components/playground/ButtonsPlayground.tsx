@@ -4,7 +4,7 @@ import { Button, SquareButton } from '@layera/buttons';
 import { PlusIcon, SearchIcon, CheckIcon, CloseIcon, SettingsIcon, RulerIcon, PolygonIcon, CompassIcon } from '@layera/icons';
 import { ButtonState } from '../../hooks/useButtonState';
 
-// Dynamic CSS injection που διατηρεί 100% την ίδια εμφάνιση
+// Dynamic CSS injection που διατηρεί την ίδια εμφάνιση
 const injectDynamicStyles = (colors: Record<string, string>, buttonState: ButtonState, dynamicBorderWidth: string) => {
   const styleId = 'layera-dynamic-button-styles';
   let existingStyle = document.getElementById(styleId);

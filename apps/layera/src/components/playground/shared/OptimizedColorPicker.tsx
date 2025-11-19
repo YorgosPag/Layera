@@ -28,7 +28,7 @@ export const OptimizedColorPicker: React.FC<OptimizedColorPickerProps> = ({
   onChange,
   onPreview,
   className = '',
-  throttleMs = 16 // 60fps για real-time smooth response
+  throttleMs = 16
 }) => {
   const [localValue, setLocalValue] = useState(value);
   const [isChanging, setIsChanging] = useState(false);

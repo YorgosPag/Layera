@@ -501,7 +501,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
           pendingDOMUpdate.current = null;
         }
         rafRef.current = null;
-      }, UI_TIMING.FRAME_60FPS); // 60fps throttle για real-time responsiveness
+      }, UI_TIMING.FRAME_60FPS);
     });
   }, [applyLivePreview]);
 

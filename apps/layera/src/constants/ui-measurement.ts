@@ -38,7 +38,7 @@ export const RULER_TICK_VALUES = {
  * Single Source of Truth για image compression parameters
  */
 export const COMPRESSION_SETTINGS = {
-  WEBP_SAVINGS_PERCENT: 25,     // WebP average savings over JPEG (25-30%)
+  WEBP_SAVINGS_PERCENT: 25,     // WebP average savings over JPEG
   WEBP_MAX_SAVINGS_PERCENT: 30, // WebP maximum savings percentage
   JPEG_HIGH_QUALITY: 85,        // High quality JPEG setting
   JPEG_MEDIUM_QUALITY: 80,      // Medium quality JPEG setting
@@ -73,12 +73,12 @@ export const PROPERTY_VALIDATION = {
   MAX_BUILDING_YEAR: new Date().getFullYear() + 5, // Maximum future building year (current + 5 years)
 
   // Property area constraints (square meters)
-  MIN_PROPERTY_AREA: 10,           // Minimum property area validation (10 sq.m)
-  MAX_PROPERTY_AREA: 100000,       // Maximum property area validation (10 hectares)
+  MIN_PROPERTY_AREA: 10,
+  MAX_PROPERTY_AREA: 100000,
 
   // Property value constraints (EUR)
   MIN_PROPERTY_VALUE: 1000,        // Minimum property value for validation
-  MAX_PROPERTY_VALUE: 50000000     // Maximum property value for validation (50M EUR)
+  MAX_PROPERTY_VALUE: 50000000
 } as const;
 
 /**
