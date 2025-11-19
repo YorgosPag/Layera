@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Box, HeaderActionsGroup, LayeraHeader } from '../../../../packages/layout/src';
+import { Box, LayeraHeader } from '../../../../packages/layout/src';
 import { MapContainer } from '@layera/map-core';
-import { Drawer, Modal, ModalHeader, ModalContent, AddContentModal } from '@layera/modals';
-import { ThemeSwitcher } from '../../../../packages/theme-switcher/src';
-import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
-import { PlusIcon, UserIcon, ArrowLeftIcon } from '../../../../packages/icons/src';
-import { Text, Heading } from '../../../../packages/typography/src';
 import { PipelineDiscovery, type PipelineState } from '@layera/pipelines';
 import { LivePlayground } from './LivePlayground';
-import LoginContent from './LoginPage';
 import { PropertyTypeDrawer } from './PropertyTypeDrawer';
 import { PipelineDebugInfo } from './PipelineDebugInfo';
 import { AppModals } from './AppModals';
@@ -25,7 +19,6 @@ export const AppContent: React.FC = () => {
   const [activeModal, setActiveModal] = useState<'login' | 'addContent' | null>(null);
   const [showPlayground, setShowPlayground] = useState(false);
   const [pipelineState, setPipelineState] = useState<PipelineState | null>(null);
-  const { t } = useLayeraTranslation();
 
   // Enterprise Pipeline Discovery Instance
   const pipelineDiscovery = PipelineDiscovery.getInstance();
