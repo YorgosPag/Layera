@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BuildingIcon, BriefcaseIcon } from '../../../../packages/icons/src';
-import { Box, Flex, Stack, LayeraHeader, HeaderActionsGroup } from '../../../../packages/layout/src';
+import { Box, LayeraHeader, HeaderActionsGroup } from '../../../../packages/layout/src';
 import { Text, Heading } from '../../../../packages/typography/src';
 import styles from './HomePage.module.css';
 

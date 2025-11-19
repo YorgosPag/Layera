@@ -6,7 +6,7 @@
  * για πλήρη enterprise integration
  */
 
-import { saveTheme, loadTheme, generateThemeId, DEFAULT_THEME_COLORS, type ThemeColors, type UserTheme } from './theme';
+import { saveTheme, generateThemeId, DEFAULT_THEME_COLORS, type ThemeColors, type UserTheme } from './theme';
 import type { LayeraUser } from '@layera/auth-bridge';
 
 // Types που αντιστοιχούν στο ColorsSection
@@ -48,23 +48,6 @@ function colorStateToThemeColors(colorState: ColorState): ThemeColors {
   };
 }
 
-/**
- * Μετατρέπει ThemeColors σε ColorState format
- */
-function themeColorsToColorState(
-  colors: ThemeColors,
-  category: ColorState['colorCategory']
-): ColorState {
-  return {
-    primaryColor: colors.primary,
-    secondaryColor: colors.secondary,
-    successColor: colors.success,
-    warningColor: colors.warning,
-    dangerColor: colors.danger,
-    infoColor: colors.info,
-    colorCategory: category
-  };
-}
 
 /**
  * Αποθηκεύει το current color state στο Firebase
@@ -91,33 +74,6 @@ export async function saveColorTheme(
   }
 }
 
-/**
- * Φορτώνει ένα color theme από το Firebase
- */
-export async function loadColorTheme(
-  themeId: string,
-  _user?: LayeraUser
-): Promise<ColorState | null> {
-  try {
-    // Φόρτωση από το theme service
-    const theme = await loadTheme(themeId);
-
-    if (!theme) {
-      console.log(`📭 Theme not found: ${themeId}`);
-      return null;
-    }
-
-    // Backward compatibility: map old "buttons" category to "borders"
-    const mappedCategory = theme.category === 'buttons' ? 'borders' : theme.category;
-    const colorState = themeColorsToColorState(theme.colors, mappedCategory as ColorState['colorCategory']);
-    console.log(`🎨 Color theme loaded successfully: ${themeId}`);
-    return colorState;
-
-  } catch (error) {
-    console.error('❌ Error loading color theme:', error);
-    throw error;
-  }
-}
 
 
 

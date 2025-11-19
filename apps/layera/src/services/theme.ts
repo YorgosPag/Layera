@@ -5,7 +5,7 @@
  * με χρήση Firebase Firestore για persistence
  */
 
-import { doc, setDoc, getDoc, type DocumentSnapshot } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { getDb } from '../firebase';
 
 // Types
@@ -75,33 +75,6 @@ export async function saveTheme(
   }
 }
 
-/**
- * Φορτώνει τα χρώματα από το Firestore
- */
-export async function loadTheme(themeId: string): Promise<UserTheme | null> {
-  try {
-    const db = getDb();
-    if (!db) {
-      console.warn('🔧 Firebase not initialized - cannot load from Firestore');
-      return null;
-    }
-
-    const docRef = doc(db, 'themes', themeId);
-    const docSnap: DocumentSnapshot = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      const data = docSnap.data() as UserTheme;
-      console.log('🎨 Theme loaded from Firestore:', themeId);
-      return data;
-    } else {
-      console.log('📭 No theme found for ID:', themeId);
-      return null;
-    }
-  } catch (error) {
-    console.error('❌ Error loading theme:', error);
-    throw error;
-  }
-}
 
 /**
  * Δημιουργεί ένα unique theme ID

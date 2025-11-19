@@ -1,0 +1,11 @@
+{
+
+  "modalHeaderFontSize": {
+    "value": "var(--layera-global-spacing-5)",
+    "comment": "Modal header font size για mobile optimization"
+  },
+  "modalHeaderFontWeight": {
+    "value": "var(--layera-fontWeight-bold)",
+    "comment": "Modal header font weight - bold για έμφαση"
+  }
+}
