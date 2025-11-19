@@ -35,7 +35,14 @@ const spacingFile = path.join(srcDir, 'core', 'spacing', 'spacing.variables.ts')
 const typographyFile = path.join(srcDir, 'core', 'typography', 'typography.variables.ts');
 const bordersFile = path.join(srcDir, 'core', 'borders', 'borders.variables.ts');
 const shadowsFile = path.join(srcDir, 'core', 'shadows', 'shadows.variables.ts');
+const motionFile = path.join(srcDir, 'core', 'motion', 'motion.variables.ts');
 const iconsFile = path.join(srcDir, 'component', 'icons', 'icons.variables.ts');
+
+// Semantic tokens αρχεία
+const backgroundSemanticFile = path.join(srcDir, 'semantic', 'background', 'background.variables.ts');
+const textSemanticFile = path.join(srcDir, 'semantic', 'text', 'text.variables.ts');
+const borderSemanticFile = path.join(srcDir, 'semantic', 'border', 'border.variables.ts');
+const feedbackSemanticFile = path.join(srcDir, 'semantic', 'feedback', 'feedback.variables.ts');
 
 if (!fs.existsSync(colorsFile)) {
   console.error('❌ Δεν βρέθηκε το αρχείο:', colorsFile);
@@ -57,8 +64,23 @@ const bordersContent = fs.existsSync(bordersFile) ? fs.readFileSync(bordersFile,
 console.log('🌫️ Διαβάζω shadows tokens από:', shadowsFile);
 const shadowsContent = fs.existsSync(shadowsFile) ? fs.readFileSync(shadowsFile, 'utf8') : null;
 
+console.log('⚡ Διαβάζω motion tokens από:', motionFile);
+const motionContent = fs.existsSync(motionFile) ? fs.readFileSync(motionFile, 'utf8') : null;
+
 console.log('🎯 Διαβάζω icons tokens από:', iconsFile);
 const iconsContent = fs.existsSync(iconsFile) ? fs.readFileSync(iconsFile, 'utf8') : null;
+
+console.log('🎨 Διαβάζω background semantic tokens από:', backgroundSemanticFile);
+const backgroundSemanticContent = fs.existsSync(backgroundSemanticFile) ? fs.readFileSync(backgroundSemanticFile, 'utf8') : null;
+
+console.log('✏️ Διαβάζω text semantic tokens από:', textSemanticFile);
+const textSemanticContent = fs.existsSync(textSemanticFile) ? fs.readFileSync(textSemanticFile, 'utf8') : null;
+
+console.log('🔲 Διαβάζω border semantic tokens από:', borderSemanticFile);
+const borderSemanticContent = fs.existsSync(borderSemanticFile) ? fs.readFileSync(borderSemanticFile, 'utf8') : null;
+
+console.log('🔔 Διαβάζω feedback semantic tokens από:', feedbackSemanticFile);
+const feedbackSemanticContent = fs.existsSync(feedbackSemanticFile) ? fs.readFileSync(feedbackSemanticFile, 'utf8') : null;
 
 // Εξάγει hex τιμές από το TypeScript αρχείο
 function extractHexValues(content) {
@@ -449,30 +471,376 @@ function extractShadowsValues(content) {
   return cssVariables;
 }
 
+// Εξάγει motion τιμές από το TypeScript αρχείο
+function extractMotionValues(content) {
+  const cssVariables = [];
+
+  if (!content) {
+    console.log('⚡ Δεν βρέθηκε περιεχόμενο motion αρχείου');
+    return cssVariables;
+  }
+
+  // Απλός line-by-line parsing για MOTION_VARIABLES
+  const lines = content.split('\n');
+  let insideMotionVariables = false;
+  let braceCount = 0;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    // Αρχή του MOTION_VARIABLES object
+    if (line.includes('export const MOTION_VARIABLES')) {
+      insideMotionVariables = true;
+      braceCount = 0;
+      continue;
+    }
+
+    if (insideMotionVariables) {
+      // Μετράω τα braces
+      braceCount += (line.match(/\{/g) || []).length;
+      braceCount -= (line.match(/\}/g) || []).length;
+
+      // Αν βρω variable definition - απλό string matching
+      const trimmedLine = line.trim();
+      if (trimmedLine.startsWith("'") && trimmedLine.includes("': ")) {
+        const parts = trimmedLine.split("': ");
+        if (parts.length === 2) {
+          const varName = parts[0].replace(/'/g, '');
+          let varValue = parts[1].replace(/,$/, '').trim();
+
+          // Αφαιρώ τα quotes από την τιμή
+          varValue = varValue.replace(/^['"]|['"]$/g, '');
+
+          cssVariables.push(`  --layera-${varName}: ${varValue};`);
+        }
+      }
+
+      // Τέλος του MOTION_VARIABLES object
+      if (braceCount === 0 && trimmedLine.includes('}')) {
+        break;
+      }
+    }
+  }
+
+  console.log(`⚡ Εξήχθησαν ${cssVariables.length} motion variables`);
+  return cssVariables;
+}
+
+// Εξάγει background semantic τιμές από το TypeScript αρχείο
+function extractBackgroundSemanticValues(content) {
+  const cssVariables = [];
+
+  if (!content) {
+    console.log('🎨 Δεν βρέθηκε περιεχόμενο background semantic αρχείου');
+    return cssVariables;
+  }
+
+  // Απλός line-by-line parsing για BACKGROUND_VARIABLES
+  const lines = content.split('\n');
+  let insideBackgroundVariables = false;
+  let braceCount = 0;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    // Αρχή του BACKGROUND_VARIABLES object
+    if (line.includes('export const BACKGROUND_VARIABLES')) {
+      insideBackgroundVariables = true;
+      braceCount = 0;
+      continue;
+    }
+
+    if (insideBackgroundVariables) {
+      // Μετράω τα braces
+      braceCount += (line.match(/\{/g) || []).length;
+      braceCount -= (line.match(/\}/g) || []).length;
+
+      // Αν βρω variable definition - απλό string matching
+      const trimmedLine = line.trim();
+      if (trimmedLine.startsWith("'") && trimmedLine.includes("': ")) {
+        const parts = trimmedLine.split("': ");
+        if (parts.length === 2) {
+          const varName = parts[0].replace(/'/g, '');
+          let varValue = parts[1].replace(/,$/, '').trim();
+
+          // Resolve COLOR_SCALE references
+          if (varValue.includes('COLOR_SCALE.')) {
+            // Extract the reference (e.g., "COLOR_SCALE.primary[500]")
+            const colorRef = varValue.match(/COLOR_SCALE\.(\w+)(?:\[(\w+)\])?/);
+            if (colorRef) {
+              const [, colorType, colorScale] = colorRef;
+              if (colorScale) {
+                varValue = `var(--layera-color-${colorType}-${colorScale})`;
+              } else {
+                varValue = `var(--layera-color-${colorType})`;
+              }
+            }
+          }
+
+          cssVariables.push(`  --layera-${varName}: ${varValue};`);
+        }
+      }
+
+      // Τέλος του BACKGROUND_VARIABLES object
+      if (braceCount === 0 && trimmedLine.includes('} as const;')) {
+        break;
+      }
+    }
+  }
+
+  console.log(`🎨 Εξήχθησαν ${cssVariables.length} background semantic variables`);
+  return cssVariables;
+}
+
+// Εξάγει text semantic τιμές από το TypeScript αρχείο
+function extractTextSemanticValues(content) {
+  const cssVariables = [];
+
+  if (!content) {
+    console.log('✏️ Δεν βρέθηκε περιεχόμενο text semantic αρχείου');
+    return cssVariables;
+  }
+
+  // Απλός line-by-line parsing για TEXT_VARIABLES
+  const lines = content.split('\n');
+  let insideTextVariables = false;
+  let braceCount = 0;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    // Αρχή του TEXT_VARIABLES object
+    if (line.includes('export const TEXT_VARIABLES')) {
+      insideTextVariables = true;
+      braceCount = 0;
+      continue;
+    }
+
+    if (insideTextVariables) {
+      // Μετράω τα braces
+      braceCount += (line.match(/\{/g) || []).length;
+      braceCount -= (line.match(/\}/g) || []).length;
+
+      // Αν βρω variable definition - απλό string matching
+      const trimmedLine = line.trim();
+      if (trimmedLine.startsWith("'") && trimmedLine.includes("': ")) {
+        const parts = trimmedLine.split("': ");
+        if (parts.length === 2) {
+          const varName = parts[0].replace(/'/g, '');
+          let varValue = parts[1].replace(/,$/, '').trim();
+
+          // Resolve COLOR_SCALE references
+          if (varValue.includes('COLOR_SCALE.')) {
+            // Extract the reference (e.g., "COLOR_SCALE.neutral.dark")
+            const colorRef = varValue.match(/COLOR_SCALE\.(\w+)(?:\.(\w+)|\[(\w+)\])?/);
+            if (colorRef) {
+              const [, colorType, colorVariant, colorScale] = colorRef;
+              if (colorScale) {
+                varValue = `var(--layera-color-${colorType}-${colorScale})`;
+              } else if (colorVariant) {
+                varValue = `var(--layera-color-${colorType}-${colorVariant})`;
+              } else {
+                varValue = `var(--layera-color-${colorType})`;
+              }
+            }
+          }
+
+          cssVariables.push(`  --layera-${varName}: ${varValue};`);
+        }
+      }
+
+      // Τέλος του TEXT_VARIABLES object
+      if (braceCount === 0 && trimmedLine.includes('} as const;')) {
+        break;
+      }
+    }
+  }
+
+  console.log(`✏️ Εξήχθησαν ${cssVariables.length} text semantic variables`);
+  return cssVariables;
+}
+
+// Εξάγει border semantic τιμές από το TypeScript αρχείο
+function extractBorderSemanticValues(content) {
+  const cssVariables = [];
+
+  if (!content) {
+    console.log('🔲 Δεν βρέθηκε περιεχόμενο border semantic αρχείου');
+    return cssVariables;
+  }
+
+  // Απλός line-by-line parsing για BORDER_SEMANTIC_VARIABLES
+  const lines = content.split('\n');
+  let insideBorderVariables = false;
+  let braceCount = 0;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    // Αρχή του BORDER_SEMANTIC_VARIABLES object
+    if (line.includes('export const BORDER_SEMANTIC_VARIABLES')) {
+      insideBorderVariables = true;
+      braceCount = 0;
+      continue;
+    }
+
+    if (insideBorderVariables) {
+      // Μετράω τα braces
+      braceCount += (line.match(/\{/g) || []).length;
+      braceCount -= (line.match(/\}/g) || []).length;
+
+      // Αν βρω variable definition - απλό string matching
+      const trimmedLine = line.trim();
+      if (trimmedLine.startsWith("'") && trimmedLine.includes("': ")) {
+        const parts = trimmedLine.split("': ");
+        if (parts.length === 2) {
+          const varName = parts[0].replace(/'/g, '');
+          let varValue = parts[1].replace(/,$/, '').trim();
+
+          // Resolve COLOR_SCALE και BORDER_VARIABLES references
+          if (varValue.includes('COLOR_SCALE.')) {
+            const colorRef = varValue.match(/COLOR_SCALE\.(\w+)(?:\.(\w+)|\[(\w+)\])?/);
+            if (colorRef) {
+              const [, colorType, colorVariant, colorScale] = colorRef;
+              if (colorScale) {
+                varValue = varValue.replace(colorRef[0], `var(--layera-color-${colorType}-${colorScale})`);
+              } else if (colorVariant) {
+                varValue = varValue.replace(colorRef[0], `var(--layera-color-${colorType}-${colorVariant})`);
+              }
+            }
+          }
+
+          if (varValue.includes('BORDER_VARIABLES[')) {
+            const borderRef = varValue.match(/BORDER_VARIABLES\['([^']+)'\]/g);
+            if (borderRef) {
+              borderRef.forEach(ref => {
+                const borderKey = ref.match(/BORDER_VARIABLES\['([^']+)'\]/)[1];
+                varValue = varValue.replace(ref, `var(--layera-${borderKey})`);
+              });
+            }
+          }
+
+          // Αφαιρώ τα quotes από την τιμή
+          varValue = varValue.replace(/^['"]|['"]$/g, '');
+
+          cssVariables.push(`  --layera-${varName}: ${varValue};`);
+        }
+      }
+
+      // Τέλος του BORDER_SEMANTIC_VARIABLES object
+      if (braceCount === 0 && trimmedLine.includes('} as const;')) {
+        break;
+      }
+    }
+  }
+
+  console.log(`🔲 Εξήχθησαν ${cssVariables.length} border semantic variables`);
+  return cssVariables;
+}
+
+// Εξάγει feedback semantic τιμές από το TypeScript αρχείο
+function extractFeedbackSemanticValues(content) {
+  const cssVariables = [];
+
+  if (!content) {
+    console.log('🔔 Δεν βρέθηκε περιεχόμενο feedback semantic αρχείου');
+    return cssVariables;
+  }
+
+  // Απλός line-by-line parsing για FEEDBACK_VARIABLES
+  const lines = content.split('\n');
+  let insideFeedbackVariables = false;
+  let braceCount = 0;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    // Αρχή του FEEDBACK_VARIABLES object
+    if (line.includes('export const FEEDBACK_VARIABLES')) {
+      insideFeedbackVariables = true;
+      braceCount = 0;
+      continue;
+    }
+
+    if (insideFeedbackVariables) {
+      // Μετράω τα braces
+      braceCount += (line.match(/\{/g) || []).length;
+      braceCount -= (line.match(/\}/g) || []).length;
+
+      // Αν βρω variable definition - απλό string matching
+      const trimmedLine = line.trim();
+      if (trimmedLine.startsWith("'") && trimmedLine.includes("': ")) {
+        const parts = trimmedLine.split("': ");
+        if (parts.length === 2) {
+          const varName = parts[0].replace(/'/g, '');
+          let varValue = parts[1].replace(/,$/, '').trim();
+
+          // Resolve COLOR_SCALE references
+          if (varValue.includes('COLOR_SCALE.')) {
+            const colorRef = varValue.match(/COLOR_SCALE\.(\w+)(?:\.(\w+)|\[(\w+)\])?/);
+            if (colorRef) {
+              const [, colorType, colorVariant, colorScale] = colorRef;
+              if (colorScale) {
+                varValue = `var(--layera-color-${colorType}-${colorScale})`;
+              } else if (colorVariant) {
+                varValue = `var(--layera-color-${colorType}-${colorVariant})`;
+              } else {
+                varValue = `var(--layera-color-${colorType})`;
+              }
+            }
+          }
+
+          cssVariables.push(`  --layera-${varName}: ${varValue};`);
+        }
+      }
+
+      // Τέλος του FEEDBACK_VARIABLES object
+      if (braceCount === 0 && trimmedLine.includes('} as const;')) {
+        break;
+      }
+    }
+  }
+
+  console.log(`🔔 Εξήχθησαν ${cssVariables.length} feedback semantic variables`);
+  return cssVariables;
+}
+
 // Εξάγει τις CSS variables
 const cssVariables = extractHexValues(colorsContent);
 const spacingVariables = extractSpacingValues(spacingContent);
 const typographyVariables = extractTypographyValues(typographyContent);
 const bordersVariables = extractBordersValues(bordersContent);
 const shadowsVariables = extractShadowsValues(shadowsContent);
+const motionVariables = extractMotionValues(motionContent);
 const iconsVariables = extractIconValues(iconsContent);
+
+// Εξάγει τις semantic CSS variables
+const backgroundSemanticVariables = extractBackgroundSemanticValues(backgroundSemanticContent);
+const textSemanticVariables = extractTextSemanticValues(textSemanticContent);
+const borderSemanticVariables = extractBorderSemanticValues(borderSemanticContent);
+const feedbackSemanticVariables = extractFeedbackSemanticValues(feedbackSemanticContent);
 
 console.log(`✅ Εξήχθησαν ${cssVariables.length} color variables`);
 console.log(`✅ Εξήχθησαν ${spacingVariables.length} spacing variables`);
 console.log(`✅ Εξήχθησαν ${typographyVariables.length} typography variables`);
 console.log(`✅ Εξήχθησαν ${bordersVariables.length} borders variables`);
 console.log(`✅ Εξήχθησαν ${shadowsVariables.length} shadows variables`);
+console.log(`✅ Εξήχθησαν ${motionVariables.length} motion variables`);
 console.log(`✅ Εξήχθησαν ${iconsVariables.length} icons variables`);
+console.log(`✅ Εξήχθησαν ${backgroundSemanticVariables.length} background semantic variables`);
+console.log(`✅ Εξήχθησαν ${textSemanticVariables.length} text semantic variables`);
+console.log(`✅ Εξήχθησαν ${borderSemanticVariables.length} border semantic variables`);
+console.log(`✅ Εξήχθησαν ${feedbackSemanticVariables.length} feedback semantic variables`);
 
 // Συνδυάζει όλα τα CSS variables
-const allVariables = [...cssVariables, ...spacingVariables, ...typographyVariables, ...bordersVariables, ...shadowsVariables, ...iconsVariables];
+const allVariables = [...cssVariables, ...spacingVariables, ...typographyVariables, ...bordersVariables, ...shadowsVariables, ...motionVariables, ...iconsVariables, ...backgroundSemanticVariables, ...textSemanticVariables, ...borderSemanticVariables, ...feedbackSemanticVariables];
 
 // Δημιουργεί το CSS περιεχόμενο
 const cssContent = `/*
  * 🎨 LAYERA DESIGN TOKENS - AUTO GENERATED
  *
  * ⚠️  DO NOT EDIT MANUALLY
- * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts και component/icons/icons.variables.ts and rebuild
+ * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts, core/motion/motion.variables.ts και component/icons/icons.variables.ts and rebuild
  * Generated: ${new Date().toISOString()}
  */
 
@@ -492,8 +860,23 @@ ${bordersVariables.join('\n')}
   /* 🌫️ SHADOWS */
 ${shadowsVariables.join('\n')}
 
+  /* ⚡ MOTION */
+${motionVariables.join('\n')}
+
   /* 🎯 ICONS */
 ${iconsVariables.join('\n')}
+
+  /* 🎨 SEMANTIC BACKGROUND */
+${backgroundSemanticVariables.join('\n')}
+
+  /* ✏️ SEMANTIC TEXT */
+${textSemanticVariables.join('\n')}
+
+  /* 🔲 SEMANTIC BORDERS */
+${borderSemanticVariables.join('\n')}
+
+  /* 🔔 SEMANTIC FEEDBACK */
+${feedbackSemanticVariables.join('\n')}
 }
 
 /* 🎯 Layera Design Tokens System Ready */
@@ -509,7 +892,14 @@ console.log(`   📁 Output: ${outputFile}`);
 console.log(`   🎨 Colors: ${cssVariables.length}`);
 console.log(`   📏 Spacing: ${spacingVariables.length}`);
 console.log(`   🖋️ Typography: ${typographyVariables.length}`);
+console.log(`   🔲 Borders: ${bordersVariables.length}`);
+console.log(`   🌫️ Shadows: ${shadowsVariables.length}`);
+console.log(`   ⚡ Motion: ${motionVariables.length}`);
 console.log(`   🎯 Icons: ${iconsVariables.length}`);
+console.log(`   🎨 Background Semantic: ${backgroundSemanticVariables.length}`);
+console.log(`   ✏️ Text Semantic: ${textSemanticVariables.length}`);
+console.log(`   🔲 Border Semantic: ${borderSemanticVariables.length}`);
+console.log(`   🔔 Feedback Semantic: ${feedbackSemanticVariables.length}`);
 console.log(`   🎯 Total: ${allVariables.length}`);
 console.log('');
 console.log('✅ Build completed successfully!');

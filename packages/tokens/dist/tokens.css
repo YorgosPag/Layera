@@ -2,8 +2,8 @@
  * 🎨 LAYERA DESIGN TOKENS - AUTO GENERATED
  *
  * ⚠️  DO NOT EDIT MANUALLY
- * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts και component/icons/icons.variables.ts and rebuild
- * Generated: 2025-11-19T19:58:42.914Z
+ * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts, core/motion/motion.variables.ts και component/icons/icons.variables.ts and rebuild
+ * Generated: 2025-11-19T20:14:35.530Z
  */
 
 :root {
@@ -106,6 +106,24 @@
   --layera-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
   --layera-shadow-xxl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 
+  /* ⚡ MOTION */
+  --layera-duration-instant: 0ms;
+  --layera-duration-fast: 100ms;
+  --layera-duration-normal: 200ms;
+  --layera-duration-slow: 300ms;
+  --layera-duration-slower: 500ms;
+  --layera-duration-slowest: 750ms;
+  --layera-easing-linear: linear;
+  --layera-easing-ease-in: ease-in;
+  --layera-easing-ease-out: ease-out;
+  --layera-easing-ease-in-out: ease-in-out;
+  --layera-easing-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --layera-easing-decelerate: cubic-bezier(0.0, 0.0, 0.2, 1);
+  --layera-easing-accelerate: cubic-bezier(0.4, 0.0, 1, 1);
+  --layera-transition-fast: 0.1s ease-out;
+  --layera-transition-normal: 0.2s ease-out;
+  --layera-transition-slow: 0.3s ease-out;
+
   /* 🎯 ICONS */
   --layera-icon-xs: var(--layera-spacing-4);
   --layera-icon-md: var(--layera-spacing-5);
@@ -140,6 +158,95 @@
   --layera-iconInteractive-sizing-margin-md: var(--layera-spacing-3);
   --layera-iconInteractive-sizing-margin-lg: var(--layera-spacing-4);
   --layera-iconInteractive-sizing-margin-xl: var(--layera-spacing-5);
+
+  /* 🎨 SEMANTIC BACKGROUND */
+  --layera-background-primary: var(--layera-color-primary-500);
+  --layera-background-primary-light: var(--layera-color-primary-100);
+  --layera-background-primary-dark: var(--layera-color-primary-700);
+  --layera-background-secondary: var(--layera-color-secondary-100);
+  --layera-background-secondary-light: var(--layera-color-secondary-50);
+  --layera-background-secondary-dark: var(--layera-color-secondary-200);
+  --layera-background-default: var(--layera-color-neutral);
+  --layera-background-subtle: var(--layera-color-secondary-50);
+  --layera-background-muted: var(--layera-color-secondary-100);
+  --layera-background-hover: var(--layera-color-secondary-50);
+  --layera-background-active: var(--layera-color-secondary-100);
+  --layera-background-disabled: var(--layera-color-secondary-100);
+  --layera-background-success: var(--layera-color-success);
+  --layera-background-warning: var(--layera-color-warning);
+  --layera-background-error: var(--layera-color-error);
+  --layera-background-info: var(--layera-color-info);
+
+  /* ✏️ SEMANTIC TEXT */
+  --layera-text-primary: var(--layera-color-neutral-dark);
+  --layera-text-secondary: var(--layera-color-neutral-medium);
+  --layera-text-tertiary: var(--layera-color-secondary-400);
+  --layera-text-disabled: var(--layera-color-secondary-300);
+  --layera-text-link: var(--layera-color-primary-600);
+  --layera-text-link-hover: var(--layera-color-primary-700);
+  --layera-text-link-visited: var(--layera-color-primary-800);
+  --layera-text-on-primary: var(--layera-color-neutral-white);
+  --layera-text-on-secondary: var(--layera-color-neutral-dark);
+  --layera-text-on-dark: var(--layera-color-neutral-white);
+  --layera-text-on-light: var(--layera-color-neutral-dark);
+  --layera-text-success: var(--layera-color-success-dark);
+  --layera-text-warning: var(--layera-color-warning-dark);
+  --layera-text-error: var(--layera-color-error-dark);
+  --layera-text-info: var(--layera-color-info-dark);
+  --layera-text-brand: var(--layera-color-primary-600);
+  --layera-text-brand-light: var(--layera-color-primary-500);
+  --layera-text-brand-dark: var(--layera-color-primary-700);
+
+  /* 🔲 SEMANTIC BORDERS */
+  --layera-border-color-default: var(--layera-color-secondary-200);
+  --layera-border-color-subtle: var(--layera-color-secondary-100);
+  --layera-border-color-strong: var(--layera-color-secondary-300);
+  --layera-border-color-interactive: var(--layera-color-primary-300);
+  --layera-border-color-interactive-hover: var(--layera-color-primary-400);
+  --layera-border-color-interactive-active: var(--layera-color-primary-500);
+  --layera-border-color-focus: var(--layera-color-primary-500);
+  --layera-border-color-success: var(--layera-color-success-main);
+  --layera-border-color-warning: var(--layera-color-warning-main);
+  --layera-border-color-error: var(--layera-color-error-main);
+  --layera-border-color-info: var(--layera-color-info-main);
+  --layera-border-color-disabled: var(--layera-color-secondary-200);
+  --layera-border-color-on-dark: var(--layera-color-secondary-300);
+  --layera-border-color-on-primary: var(--layera-color-primary-200);
+  --layera-border-default: 1px solid var(--layera-color-secondary-200);
+  --layera-border-subtle: 1px solid var(--layera-color-secondary-100);
+  --layera-border-strong: 2px solid var(--layera-color-secondary-300);
+  --layera-border-interactive: 1px solid var(--layera-color-primary-300);
+  --layera-border-interactive-hover: 1px solid var(--layera-color-primary-400);
+  --layera-border-interactive-active: 2px solid var(--layera-color-primary-500);
+  --layera-border-focus: 2px solid var(--layera-color-primary-500);
+  --layera-border-success: 1px solid var(--layera-color-success-main);
+  --layera-border-warning: 1px solid var(--layera-color-warning-main);
+  --layera-border-error: 1px solid var(--layera-color-error-main);
+  --layera-border-info: 1px solid var(--layera-color-info-main);
+  --layera-border-disabled: 1px dashed var(--layera-color-secondary-200);
+  --layera-border-none: none;
+
+  /* 🔔 SEMANTIC FEEDBACK */
+  --layera-feedback-success-text: var(--layera-color-success-dark);
+  --layera-feedback-success-background: var(--layera-color-success-light);
+  --layera-feedback-success-border: var(--layera-color-success-main);
+  --layera-feedback-success-icon: var(--layera-color-success-main);
+  --layera-feedback-warning-text: var(--layera-color-warning-dark);
+  --layera-feedback-warning-background: var(--layera-color-warning-light);
+  --layera-feedback-warning-border: var(--layera-color-warning-main);
+  --layera-feedback-warning-icon: var(--layera-color-warning-main);
+  --layera-feedback-error-text: var(--layera-color-error-dark);
+  --layera-feedback-error-background: var(--layera-color-error-light);
+  --layera-feedback-error-border: var(--layera-color-error-main);
+  --layera-feedback-error-icon: var(--layera-color-error-main);
+  --layera-feedback-info-text: var(--layera-color-info-dark);
+  --layera-feedback-info-background: var(--layera-color-info-light);
+  --layera-feedback-info-border: var(--layera-color-info-main);
+  --layera-feedback-info-icon: var(--layera-color-info-main);
+  --layera-feedback-neutral-text: var(--layera-color-secondary-700);
+  --layera-feedback-neutral-background: var(--layera-color-secondary-50);
+  --layera-feedback-neutral-border: var(--layera-color-secondary-200);
+  --layera-feedback-neutral-icon: var(--layera-color-secondary-500);
 }
 
 /* 🎯 Layera Design Tokens System Ready */
