@@ -3,21 +3,8 @@ import { Box } from '@layera/layout';
 import { Button, SquareButton } from '@layera/buttons';
 import { PlusIcon, SearchIcon, CheckIcon, CloseIcon, SettingsIcon, RulerIcon, PolygonIcon, CompassIcon } from '@layera/icons';
 import { ButtonState } from '../../hooks/useButtonState';
+import { useCSSVariables } from '../../hooks/useCSSVariables';
 
-// Dynamic CSS injection που διατηρεί την ίδια εμφάνιση
-const injectDynamicStyles = (colors: Record<string, string>, buttonState: ButtonState, dynamicBorderWidth: string) => {
-  const styleId = 'layera-dynamic-button-styles';
-  // ✅ ARXES COMPLIANT: PURE token-based approach - NO CSS injection
-  // Use CSS custom properties set directly on :root via setProperty()
-  // NO document.createElement('style') - ZERO DOM manipulation
-
-  const root = document.documentElement;
-
-  // Set dynamic button colors via CSS custom properties
-  root.style.setProperty('--layera-button-outline-color', colors.primary);
-  root.style.setProperty('--layera-button-outline-border', `${dynamicBorderWidth} solid ${colors.primary}`);
-  root.style.setProperty('--layera-button-ghost-color', colors.secondary);
-};
 
 
 /**
@@ -61,6 +48,8 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
   hoverEffect = 'normal',
   activeEffect = 'scale'
 }) => {
+  // ✅ ARXES COMPLIANT: Χρήση κεντρικού hook για CSS Variables
+  const { actions } = useCSSVariables();
 
   // Helper function για translation του shape
   const getShapeInGreek = (shape: string) => {
@@ -189,12 +178,12 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
   // Border width για outline button
   const dynamicBorderWidth = getBorderWidthToken(borderWidth);
 
-  // Inject dynamic styles για ARXES compliance χωρίς αλλαγή εμφάνισης
+  // ✅ ARXES COMPLIANT: Χρήση κεντρικού hook για dynamic button styles
   React.useEffect(() => {
     if (typeof document !== 'undefined') {
-      injectDynamicStyles(colors, buttonState, dynamicBorderWidth);
+      actions.applyButtonDynamicStyles(colors, dynamicBorderWidth);
     }
-  }, [colors, buttonState, dynamicBorderWidth]);
+  }, [colors, dynamicBorderWidth, actions]);
 
   return (
     <Box

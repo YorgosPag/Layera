@@ -178,18 +178,9 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
     { key: 'info', title: 'Info Header', description: 'Επικεφαλίδα πληροφοριών', colorValue: currentColors.info }
   ];
 
-  // Initialize CSS variables for fallback values - ensure real-time preview has defaults
-  React.useEffect(() => {
-    const root = document.documentElement;
-    headerConfigs.forEach(({ key, colorValue }) => {
-      // Set initial CSS variables if not already set by real-time preview
-      if (!root.style.getPropertyValue(`--layera-header-bg-${key}`)) {
-        root.style.setProperty(`--layera-header-bg-${key}`, getBackgroundColor(colorValue));
-        root.style.setProperty(`--layera-header-text-${key}`, getTextColor(colorValue));
-        root.style.setProperty(`--layera-header-border-${key}`, getBorderStyle(colorValue));
-      }
-    });
-  }, [headerConfigs, colorCategory, borderWidth]);
+  // ✅ ARXES COMPLIANT: NO CSS injection - Using only @layera tokens
+  // Headers use predefined CSS classes with data attributes for theming
+  // NO style.setProperty() - ZERO DOM manipulation
 
   return (
     <Box

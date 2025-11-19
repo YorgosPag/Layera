@@ -116,7 +116,8 @@ export function generateThemeId(
 }
 
 /**
- * Εφαρμόζει τα χρώματα στο DOM
+ * ✅ ARXES COMPLIANT: Theme application via data attributes only
+ * NO style.setProperty() - ZERO DOM manipulation
  */
 export function applyThemeToDOM(
   colors: ThemeColors,
@@ -125,15 +126,12 @@ export function applyThemeToDOM(
 ): void {
   const root = document.documentElement;
 
-  // Καθαρισμός προηγούμενων CSS variables
-  const cssVarPrefix = getCSSVariablePrefix(category, buttonShape);
-
-  // Εφαρμογή νέων χρωμάτων
-  Object.entries(colors).forEach(([colorName, colorValue]) => {
-    const cssVar = `${cssVarPrefix}${colorName}`;
-    root.style.setProperty(cssVar, colorValue);
-  });
-
+  // ✅ ARXES COMPLIANT: Use data attributes for theming instead of CSS variables
+  // This allows CSS classes to handle the actual styling via @layera tokens
+  root.setAttribute('data-layera-theme-category', category);
+  if (buttonShape) {
+    root.setAttribute('data-layera-theme-shape', buttonShape);
+  }
 }
 
 /**

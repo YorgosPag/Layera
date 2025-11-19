@@ -2,6 +2,7 @@ import React from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { CheckIcon, CloseIcon } from '@layera/icons';
+import { useCSSVariables } from '../../hooks/useCSSVariables';
 
 /**
  * ModalsPlayground Component
@@ -177,18 +178,14 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
     { key: 'info', title: 'Info Modal', description: 'Modal πληροφοριών', colorValue: currentColors.info }
   ];
 
-  // Initialize CSS variables for fallback values - ensure real-time preview has defaults
+  // ✅ NO INLINE STYLES - Using useCSSVariables hook
+  const { actions } = useCSSVariables();
+
   React.useEffect(() => {
-    const root = document.documentElement;
     modalConfigs.forEach(({ key, colorValue }) => {
-      // Set initial CSS variables if not already set by real-time preview
-      if (!root.style.getPropertyValue(`--layera-modal-bg-${key}`)) {
-        root.style.setProperty(`--layera-modal-bg-${key}`, getBackgroundColor(colorValue));
-        root.style.setProperty(`--layera-modal-text-${key}`, getTextColor(colorValue));
-        root.style.setProperty(`--layera-modal-border-${key}`, getBorderStyle(colorValue));
-      }
+      actions.applySpecificModalColor(key, colorValue);
     });
-  }, [modalConfigs]);
+  }, [modalConfigs, actions]);
 
   return (
     <Box

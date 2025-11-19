@@ -1,0 +1,32 @@
+{
+  "layera-bg-surface-light": {
+    "comment": "Background utility class for light surface",
+    "value": {
+      "backgroundColor": "var(--layera-bg-surface-light)"
+    }
+  },
+  "layera-bg-surface-medium": {
+    "comment": "Background utility class for medium surface",
+    "value": {
+      "backgroundColor": "var(--layera-bg-surface-medium)"
+    }
+  },
+  "layera-bg-accent-green": {
+    "comment": "Background utility class for green accent",
+    "value": {
+      "backgroundColor": "var(--layera-bg-accent-green)"
+    }
+  },
+  "layera-bg-accent-blue": {
+    "comment": "Background utility class for blue accent",
+    "value": {
+      "backgroundColor": "var(--layera-bg-accent-blue)"
+    }
+  },
+  "layera-bg-accent-purple": {
+    "comment": "Background utility class for purple accent",
+    "value": {
+      "backgroundColor": "var(--layera-bg-accent-purple)"
+    }
+  }
+}

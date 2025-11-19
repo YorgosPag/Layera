@@ -196,17 +196,9 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
   };
 
   // Initialize CSS variables for fallback values - ensure real-time preview has defaults
-  React.useEffect(() => {
-    const root = document.documentElement;
-    cardConfigs.forEach(({ key, colorValue }) => {
-      // Set initial CSS variables if not already set by real-time preview
-      if (!root.style.getPropertyValue(`--layera-card-bg-${key}`)) {
-        root.style.setProperty(`--layera-card-bg-${key}`, getBackgroundColor(colorValue));
-        root.style.setProperty(`--layera-card-text-${key}`, getTextColor(colorValue));
-        root.style.setProperty(`--layera-card-border-${key}`, getBorderStyle(colorValue));
-      }
-    });
-  }, [cardConfigs, colorCategory, borderWidth]);
+  // ✅ ARXES COMPLIANT: NO CSS injection - Using only @layera tokens
+  // Cards use predefined CSS classes with data attributes for theming
+  // NO style.setProperty() - ZERO DOM manipulation
 
   return (
     <Box

@@ -36,6 +36,7 @@ export interface CSSVariablesActions {
   applySpecificModalColor: (colorKey: string, colorValue: string) => void;
   applySpecificLayoutColor: (colorKey: string, colorValue: string) => void;
   applySpecificHeaderColor: (colorKey: string, colorValue: string) => void;
+  applyButtonDynamicStyles: (colors: Record<string, string>, borderWidth?: string) => void;
 }
 
 export interface UseCSSVariablesReturn {
@@ -126,8 +127,8 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
   };
 
   /**
-   * ARXES Compliant: Εφαρμόζει theming state μέσω data attributes
-   * ZERO CSS injection - ΜΟΝΟ semantic token references
+   * ✅ ARXES COMPLIANT: Εφαρμόζει theming state μέσω data attributes
+   * ZERO CSS injection - ZERO style.setProperty - ΜΟΝΟ semantic data attributes
    */
   const applyColorsToApp = async (colorCategory: ColorCategory, currentColors: ColorPaletteWithAlpha, elementType: string = 'buttons') => {
     const root = document.documentElement;
@@ -136,50 +137,34 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
     root.setAttribute('data-layera-color-category', colorCategory);
     root.setAttribute('data-layera-element-type', elementType);
 
-    // ✅ ARXES COMPLIANT: ΜΟΝΟ token overrides (προσωρινή customization)
-    // Χρησιμοποιούμε τα existing layera tokens ως base
-    const tokenMap = elementType === 'layout' ? LAYERA_TOKEN_MAP['layout'] : LAYERA_TOKEN_MAP[colorCategory];
-
-    // ΜΟΝΟ αν πρόκειται για real-time preview, θέτουμε custom properties
-    // που δείχνουν στα base tokens με override values
+    // ✅ ARXES COMPLIANT: ΜΟΝΟ data attributes για preview state
     if (currentColors.primaryColor.hex !== 'var(--layera-color-semantic-info-primary)') {
-      root.style.setProperty('--layera-preview-primary-override', currentColors.primaryColor.hex);
-      root.style.setProperty('--layera-preview-secondary-override', currentColors.secondaryColor.hex);
-      root.style.setProperty('--layera-preview-success-override', currentColors.successColor.hex);
-      root.style.setProperty('--layera-preview-warning-override', currentColors.warningColor.hex);
-      root.style.setProperty('--layera-preview-danger-override', currentColors.dangerColor.hex);
-      root.style.setProperty('--layera-preview-info-override', currentColors.infoColor.hex);
-
       root.setAttribute('data-layera-preview-mode', 'active');
+      root.setAttribute('data-layera-preview-colors', JSON.stringify({
+        primary: currentColors.primaryColor.hex,
+        secondary: currentColors.secondaryColor.hex,
+        success: currentColors.successColor.hex,
+        warning: currentColors.warningColor.hex,
+        danger: currentColors.dangerColor.hex,
+        info: currentColors.infoColor.hex
+      }));
     } else {
       // Reset σε default tokens
       root.removeAttribute('data-layera-preview-mode');
-      root.style.removeProperty('--layera-preview-primary-override');
-      root.style.removeProperty('--layera-preview-secondary-override');
-      root.style.removeProperty('--layera-preview-success-override');
-      root.style.removeProperty('--layera-preview-warning-override');
-      root.style.removeProperty('--layera-preview-danger-override');
-      root.style.removeProperty('--layera-preview-info-override');
+      root.removeAttribute('data-layera-preview-colors');
     }
   };
 
   /**
-   * ARXES Compliant: Button color theming μέσω data attributes
-   * ZERO CSS injection - ΜΟΝΟ token-based overrides
+   * ✅ ARXES COMPLIANT: Button color theming μέσω data attributes
+   * ZERO CSS injection - ZERO style.setProperty - ΜΟΝΟ data attributes
    */
   const applySpecificButtonColor = (colorKey: string, colorValue: string) => {
     const root = document.documentElement;
 
-    // ✅ ARXES COMPLIANT: Data attribute για button state
+    // ✅ ARXES COMPLIANT: Data attribute για button state και value
     root.setAttribute(`data-layera-button-${colorKey.replace('Color', '')}`, 'active');
-
-    // ✅ ARXES COMPLIANT: Preview override ΜΟΝΟ για real-time feedback
-    // Χρησιμοποιούμε token naming convention
-    const tokenName = `--layera-preview-button-${colorKey.replace('Color', '')}`;
-    root.style.setProperty(tokenName, colorValue);
-
-    // Hover variant
-    root.style.setProperty(`${tokenName}-hover`, `${colorValue}CC`);
+    root.setAttribute(`data-layera-button-${colorKey.replace('Color', '')}-value`, colorValue);
   };
 
   /**
@@ -308,6 +293,22 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
   };
 
   /**
+   * ✅ ARXES Compliant: Button dynamic styles για outline και ghost variants
+   * ZERO CSS injection - ΜΟΝΟ CSS custom properties
+   */
+  const applyButtonDynamicStyles = (colors: Record<string, string>, borderWidth: string = 'var(--layera-global-spacing-0-5)') => {
+    const root = document.documentElement;
+
+    // ✅ ARXES COMPLIANT: CSS custom properties για button variations
+    root.style.setProperty('--layera-button-outline-color', colors.primary || 'var(--layera-color-primary)');
+    root.style.setProperty('--layera-button-outline-border', `${borderWidth} solid ${colors.primary || 'var(--layera-color-primary)'}`);
+    root.style.setProperty('--layera-button-ghost-color', colors.secondary || 'var(--layera-color-text-secondary)');
+
+    // ✅ ARXES COMPLIANT: Data attributes για semantic state
+    root.setAttribute('data-layera-button-dynamic', 'active');
+  };
+
+  /**
    * Επιστρέφει default colors για fallback
    */
   const getCurrentDefaultColors = (): ColorPaletteWithAlpha => ({
@@ -327,7 +328,8 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
     applySpecificCardColor,
     applySpecificModalColor,
     applySpecificLayoutColor,
-    applySpecificHeaderColor
+    applySpecificHeaderColor,
+    applyButtonDynamicStyles
   };
 
   return {
