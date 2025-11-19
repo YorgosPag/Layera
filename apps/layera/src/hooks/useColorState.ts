@@ -12,16 +12,17 @@ export interface ColorWithAlpha {
 }
 
 export const hexToColorWithAlpha = (hex: string, alpha: number = 1.0): ColorWithAlpha => {
-  // Καθαρό hex value - αφαίρεση CSS variables
-  let cleanHex = hex;
-
-  // Αν είναι CSS variable, εξάγει το fallback value
+  // Αν είναι CSS variable, επιστρέφει αυτούσιο χωρίς μετατροπή
   if (hex.includes('var(')) {
-    const match = hex.match(/,\s*(#[0-9a-fA-F]{6})\)/);
-    cleanHex = match ? match[1] : 'var(--layera-color-semantic-neutral-light)';
+    return {
+      hex: hex,
+      alpha: Math.max(0, Math.min(1, alpha)),
+      rgba: hex // Κρατάει το CSS variable ως rgba για συμβατότητα
+    };
   }
 
-  // Βεβαιώνεται ότι αρχίζει με #
+  // Καθαρό hex value - βεβαιώνεται ότι αρχίζει με #
+  let cleanHex = hex;
   if (!cleanHex.startsWith('#')) {
     cleanHex = `#${cleanHex}`;
   }

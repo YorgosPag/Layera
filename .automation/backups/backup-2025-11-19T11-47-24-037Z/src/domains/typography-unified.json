@@ -1,0 +1,86 @@
+{
+  "typography": {
+    "comment": "🎯 UNIFIED Typography System - Ενοποίηση typography-core.json + typography.json",
+    "core": {
+      "fontSize": {
+        "xs": { "value": "0.75rem", "comment": "12px - Μικρά labels, footnotes" },
+        "sm": { "value": "0.875rem", "comment": "14px - Body text, captions" },
+        "base": { "value": "1rem", "comment": "16px - Default body text" },
+        "lg": { "value": "1.125rem", "comment": "18px - Emphasis text" },
+        "xl": { "value": "1.25rem", "comment": "20px - H5 headings" },
+        "2xl": { "value": "1.5rem", "comment": "24px - H4 headings" },
+        "3xl": { "value": "1.875rem", "comment": "30px - H3 headings" },
+        "4xl": { "value": "2.25rem", "comment": "36px - H2 headings" },
+        "5xl": { "value": "3rem", "comment": "48px - H1 headings" },
+        "6xl": { "value": "4rem", "comment": "64px - Display text" }
+      },
+      "fontWeight": {
+        "light": { "value": "300", "comment": "Ελαφρύ κείμενο" },
+        "normal": { "value": "400", "comment": "Κανονικό κείμενο" },
+        "medium": { "value": "500", "comment": "Μεσαίο κείμενο" },
+        "semibold": { "value": "600", "comment": "Ημι-έντονο" },
+        "bold": { "value": "700", "comment": "Έντονο κείμενο" },
+        "extrabold": { "value": "800", "comment": "Πολύ έντονο" }
+      },
+      "lineHeight": {
+        "tight": { "value": "1.1", "comment": "Στενό διάστιχο" },
+        "snug": { "value": "1.2", "comment": "Άνετο διάστιχο" },
+        "normal": { "value": "1.5", "comment": "Κανονικό διάστιχο" },
+        "relaxed": { "value": "1.6", "comment": "Χαλαρό διάστιχο" },
+        "loose": { "value": "1.8", "comment": "Πολύ χαλαρό διάστιχο" }
+      },
+      "fontFamily": {
+        "system": {
+          "value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+          "comment": "System font stack για optimized performance"
+        }
+      }
+    },
+    "unified": {
+      "comment": "🎯 Ενοποιημένη typography κλάση που χρησιμοποιεί ΜΟΝΟ τα νέα consolidated tokens",
+      "value": {
+        "fontFamily": "var(--layera-typography-system)",
+        "fontSize": "var(--layera-typography-base)",
+        "fontWeight": "var(--layera-typography-normal)",
+        "lineHeight": "var(--layera-typography-line-normal)",
+        "color": "var(--layera-colors-text-primary)",
+        "textDecoration": "none"
+      },
+      "variants": {
+        "size": {
+          "xs": "var(--layera-typography-xs)",
+          "sm": "var(--layera-typography-sm)",
+          "base": "var(--layera-typography-base)",
+          "lg": "var(--layera-typography-lg)",
+          "xl": "var(--layera-typography-xl)",
+          "2xl": "var(--layera-typography-2xl)",
+          "3xl": "var(--layera-typography-3xl)",
+          "4xl": "var(--layera-typography-4xl)",
+          "5xl": "var(--layera-typography-5xl)",
+          "6xl": "var(--layera-typography-6xl)"
+        },
+        "weight": {
+          "light": "var(--layera-typography-light)",
+          "normal": "var(--layera-typography-normal)",
+          "medium": "var(--layera-typography-medium)",
+          "semibold": "var(--layera-typography-semibold)",
+          "bold": "var(--layera-typography-bold)",
+          "extrabold": "var(--layera-typography-extrabold)"
+        },
+        "leading": {
+          "tight": "var(--layera-typography-line-tight)",
+          "snug": "var(--layera-typography-line-snug)",
+          "normal": "var(--layera-typography-line-normal)",
+          "relaxed": "var(--layera-typography-line-relaxed)",
+          "loose": "var(--layera-typography-line-loose)"
+        },
+        "color": {
+          "primary": "var(--layera-colors-text-primary)",
+          "secondary": "var(--layera-colors-text-secondary)",
+          "white": "var(--layera-colors-neutral-white)",
+          "black": "var(--layera-colors-neutral-black)"
+        }
+      }
+    }
+  }
+}

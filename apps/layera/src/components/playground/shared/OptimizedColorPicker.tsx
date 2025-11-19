@@ -3,6 +3,30 @@ import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { useControlThrottle } from '../../../hooks/useControlThrottle';
 
+// Default fallback color που θα υπολογιστεί dynamically από CSS variables
+const getDefaultFallbackColor = (): string => {
+  if (typeof window !== 'undefined') {
+    const computedStyle = getComputedStyle(document.documentElement);
+
+    // Δοκιμάζει διάφορα CSS variables για να βρει έγκυρη hex τιμή
+    const variables = [
+      '--layera-colors-surface-light',
+      '--layera-color-surface-primary',
+      '--layera-color-neutral-white'
+    ];
+
+    for (const variable of variables) {
+      const value = computedStyle.getPropertyValue(variable).trim();
+      if (value && value.startsWith('#')) {
+        return value;
+      }
+    }
+  }
+
+  // Αν δεν μπορεί να βρει τίποτα, επιστρέφει CSS variable χωρίς fallback
+  return 'var(--layera-colors-surface-light)';
+};
+
 /**
  * OptimizedColorPicker Component
  *
@@ -45,15 +69,17 @@ export const OptimizedColorPicker: React.FC<OptimizedColorPickerProps> = ({
 
   // Helper function για εξαγωγή hex χρώματος
   const extractHexFromValue = (colorValue: string): string => {
-    if (!colorValue) return 'var(--layera-colors-surface-light)';
+    if (!colorValue) return getDefaultFallbackColor();
     if (colorValue.startsWith('#')) return colorValue;
 
     // Αν είναι CSS variable, εξάγει το fallback hex value
     const match = colorValue.match(/var\([^,]+,\s*(#[0-9a-fA-F]{6})\)/);
-    return match ? match[1] : 'var(--layera-colors-surface-light)';
+    return match ? match[1] : getDefaultFallbackColor();
   };
 
   const displayValue = extractHexFromValue(localValue);
+  const isVariable = localValue.includes('var(');
+  const inputType = isVariable ? 'text' : 'color';
 
   return (
     <Box className={`layera-card layera-padding--lg ${className}`}>
@@ -62,14 +88,15 @@ export const OptimizedColorPicker: React.FC<OptimizedColorPickerProps> = ({
       </h4>
       <Box
         as="input"
-        type="color"
-        value={displayValue}
+        type={inputType}
+        value={isVariable ? localValue : displayValue}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e.target.value)}
         onInput={handleInputEvent}
         className={`layera-input layera-width--full layera-margin-bottom--sm layera-cursor--pointer layera-transition--fast ${isChanging ? 'layera-opacity--80' : 'layera-opacity--100'}`}
+        placeholder={isVariable ? 'CSS Variable or hex color...' : ''}
       />
       <Text className="layera-typography" data-size="sm" data-color="secondary">
-        {displayValue.toUpperCase()}
+        {isVariable ? localValue : displayValue.toUpperCase()}
         {isChanging && ' (updating...)'}
       </Text>
     </Box>

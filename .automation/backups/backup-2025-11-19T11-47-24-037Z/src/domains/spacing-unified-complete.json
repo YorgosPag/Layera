@@ -1,0 +1,108 @@
+{
+  "spacing": {
+    "comment": "📐 UNIFIED Enterprise Spacing System - Ενοποίηση spacing-dimensions + spacing-unified",
+    "core": {
+      "comment": "🎯 Core spacing values - Μόνη πηγή αλήθειας",
+      "base": {
+        "0": { "value": "0", "comment": "Zero spacing" },
+        "1": { "value": "0.25rem", "comment": "4px - micro spacing" },
+        "2": { "value": "0.5rem", "comment": "8px - small spacing" },
+        "3": { "value": "0.75rem", "comment": "12px - medium-small spacing" },
+        "4": { "value": "1rem", "comment": "16px - standard spacing unit" },
+        "5": { "value": "1.25rem", "comment": "20px - medium spacing" },
+        "6": { "value": "1.5rem", "comment": "24px - large spacing" },
+        "8": { "value": "2rem", "comment": "32px - extra large spacing" },
+        "10": { "value": "2.5rem", "comment": "40px - component spacing" },
+        "12": { "value": "3rem", "comment": "48px - section spacing" },
+        "16": { "value": "4rem", "comment": "64px - layout spacing" },
+        "20": { "value": "5rem", "comment": "80px - large layout spacing" },
+        "24": { "value": "6rem", "comment": "96px - extra large layout spacing" },
+        "32": { "value": "8rem", "comment": "128px - container spacing" }
+      }
+    },
+    "semantic": {
+      "comment": "🏗️ Semantic spacing από unified dimensions",
+      "component": {
+        "card": {
+          "width": { "value": "var(--layera-spacing-core-base-20)", "comment": "Standard card width" },
+          "height": { "value": "var(--layera-spacing-core-base-24)", "comment": "Standard card height" },
+          "padding": { "value": "var(--layera-spacing-core-base-4)", "comment": "Card inner padding" }
+        },
+        "input": {
+          "height": { "value": "var(--layera-spacing-core-base-10)", "comment": "Standard input height" },
+          "padding": { "value": "var(--layera-spacing-core-base-3) var(--layera-spacing-core-base-4)", "comment": "Input padding" }
+        },
+        "button": {
+          "height": { "value": "var(--layera-spacing-core-base-10)", "comment": "Button height" },
+          "padding": { "value": "var(--layera-spacing-core-base-2) var(--layera-spacing-core-base-4)", "comment": "Button padding" }
+        },
+        "modal": {
+          "padding": { "value": "var(--layera-spacing-core-base-6)", "comment": "Modal padding" },
+          "margin": { "value": "var(--layera-spacing-core-base-4)", "comment": "Modal margin" }
+        },
+        "preview": {
+          "height": { "value": "var(--layera-spacing-core-base-10)", "comment": "Preview box height" },
+          "minWidth": { "value": "var(--layera-spacing-core-base-16)", "comment": "Preview min width" }
+        }
+      },
+      "container": {
+        "sm": { "value": "var(--layera-spacing-core-base-32)", "comment": "Small container" },
+        "md": { "value": "48rem", "comment": "768px - Medium container" },
+        "lg": { "value": "64rem", "comment": "1024px - Large container" },
+        "xl": { "value": "80rem", "comment": "1280px - Extra large container" }
+      },
+      "breakpoint": {
+        "mobile": { "value": "48rem", "comment": "768px - Mobile breakpoint" },
+        "tablet": { "value": "64rem", "comment": "1024px - Tablet breakpoint" },
+        "desktop": { "value": "80rem", "comment": "1280px - Desktop breakpoint" },
+        "desktopLarge": { "value": "90rem", "comment": "1440px - Large desktop breakpoint" }
+      },
+      "viewport": {
+        "fullHeight": { "value": "100vh", "comment": "Full viewport height" },
+        "fullWidth": { "value": "100vw", "comment": "Full viewport width" }
+      }
+    },
+    "utilities": {
+      "comment": "⚡ Unified spacing utility system που αντικαθιστά 40+ κλάσεις",
+      "margin": {
+        "xs": { "value": "var(--layera-spacing-core-base-1)", "comment": "Extra small margin" },
+        "sm": { "value": "var(--layera-spacing-core-base-2)", "comment": "Small margin" },
+        "md": { "value": "var(--layera-spacing-core-base-4)", "comment": "Medium margin - default" },
+        "lg": { "value": "var(--layera-spacing-core-base-6)", "comment": "Large margin" },
+        "xl": { "value": "var(--layera-spacing-core-base-8)", "comment": "Extra large margin" },
+        "xxl": { "value": "var(--layera-spacing-core-base-12)", "comment": "Double extra large margin" }
+      },
+      "padding": {
+        "xs": { "value": "var(--layera-spacing-core-base-1)", "comment": "Extra small padding" },
+        "sm": { "value": "var(--layera-spacing-core-base-2)", "comment": "Small padding" },
+        "md": { "value": "var(--layera-spacing-core-base-4)", "comment": "Medium padding - default" },
+        "lg": { "value": "var(--layera-spacing-core-base-6)", "comment": "Large padding" },
+        "xl": { "value": "var(--layera-spacing-core-base-8)", "comment": "Extra large padding" },
+        "xxl": { "value": "var(--layera-spacing-core-base-12)", "comment": "Double extra large padding" }
+      },
+      "gap": {
+        "xs": { "value": "var(--layera-spacing-core-base-1)", "comment": "Extra small gap" },
+        "sm": { "value": "var(--layera-spacing-core-base-2)", "comment": "Small gap" },
+        "md": { "value": "var(--layera-spacing-core-base-4)", "comment": "Medium gap - default" },
+        "lg": { "value": "var(--layera-spacing-core-base-6)", "comment": "Large gap" },
+        "xl": { "value": "var(--layera-spacing-core-base-8)", "comment": "Extra large gap" },
+        "xxl": { "value": "var(--layera-spacing-core-base-12)", "comment": "Double extra large gap" }
+      }
+    },
+    "responsive": {
+      "comment": "📱 Responsive spacing που αντικαθιστά breakpoint duplicates",
+      "mobile": {
+        "margin": { "value": "var(--layera-spacing-utilities-margin-sm)", "comment": "Mobile margins" },
+        "padding": { "value": "var(--layera-spacing-utilities-padding-sm)", "comment": "Mobile padding" }
+      },
+      "tablet": {
+        "margin": { "value": "var(--layera-spacing-utilities-margin-md)", "comment": "Tablet margins" },
+        "padding": { "value": "var(--layera-spacing-utilities-padding-md)", "comment": "Tablet padding" }
+      },
+      "desktop": {
+        "margin": { "value": "var(--layera-spacing-utilities-margin-lg)", "comment": "Desktop margins" },
+        "padding": { "value": "var(--layera-spacing-utilities-padding-lg)", "comment": "Desktop padding" }
+      }
+    }
+  }
+}

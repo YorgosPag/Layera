@@ -223,12 +223,12 @@ class LayeraSafetySystem {
     // Cross-platform file copy
     if (process.platform === 'win32') {
       this.execCommand(
-        `xcopy "${path.join(this.tokensPath, 'src')}" "${srcBackup}" /E /I /Y`,
+        `xcopy "${path.join(this.tokensPath, '_src')}" "${srcBackup}" /E /I /Y`,
         'Backup source files'
       );
     } else {
       this.execCommand(
-        `cp -r "${path.join(this.tokensPath, 'src')}"/* "${srcBackup}"/`,
+        `cp -r "${path.join(this.tokensPath, '_src')}"/* "${srcBackup}"/`,
         'Backup source files'
       );
     }
