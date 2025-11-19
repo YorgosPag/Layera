@@ -24,8 +24,7 @@
 import {
   LEGACY_LAYOUT_ALIASES,
   LEGACY_CONTAINER_ALIASES,
-  LEGACY_VIEWPORT_ALIASES,
-  CRYPTOGRAPHIC_CONSTANTS
+  LEGACY_VIEWPORT_ALIASES
 } from './legacy-aliases';
 
 // === SEMANTIC ALIASES (SST-BASED) ===
@@ -64,8 +63,7 @@ export const SPACING_SCALE = {
   ...LEGACY_VIEWPORT_ALIASES,
 } as const;
 
-// Export crypto constants για auth-bridge
-export { CRYPTOGRAPHIC_CONSTANTS };
+// Export crypto constants για auth-bridge - Available from ui-utilities.ts
 
 /**
  * Border Radius Scale - SINGLE SOURCE OF TRUTH

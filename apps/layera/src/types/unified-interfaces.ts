@@ -379,7 +379,6 @@ export type ColorPreviewAreaProps = PreviewProps;
 // Playground-related
 export type ButtonsPlaygroundProps = ButtonPlaygroundProps;
 export type CardsPlaygroundProps = LayoutPlaygroundProps;
-export type LayoutPlaygroundProps = LayoutPlaygroundProps;
 
 // Map-related
 export type GeoMapProps = BaseMapProps;

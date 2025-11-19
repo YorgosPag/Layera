@@ -36,6 +36,7 @@ const typographyFile = path.join(srcDir, 'core', 'typography', 'typography.varia
 const bordersFile = path.join(srcDir, 'core', 'borders', 'borders.variables.ts');
 const shadowsFile = path.join(srcDir, 'core', 'shadows', 'shadows.variables.ts');
 const motionFile = path.join(srcDir, 'core', 'motion', 'motion.variables.ts');
+const utilitiesFile = path.join(srcDir, 'core', 'utilities', 'utilities.variables.ts');
 const iconsFile = path.join(srcDir, 'component', 'icons', 'icons.variables.ts');
 
 // Semantic tokens αρχεία
@@ -47,6 +48,10 @@ const feedbackSemanticFile = path.join(srcDir, 'semantic', 'feedback', 'feedback
 // Component tokens αρχεία
 const buttonsComponentFile = path.join(srcDir, 'component', 'buttons', 'buttons.variables.ts');
 const modalComponentFile = path.join(srcDir, 'component', 'modal', 'modal.variables.ts');
+const modalClassFile = path.join(srcDir, 'component', 'modal', 'modal.class.ts');
+const layoutComponentFile = path.join(srcDir, 'component', 'layout', 'layout.variables.ts');
+const inputsComponentFile = path.join(srcDir, 'component', 'inputs', 'inputs.variables.ts');
+const navigationComponentFile = path.join(srcDir, 'component', 'navigation', 'navigation.variables.ts');
 
 if (!fs.existsSync(colorsFile)) {
   console.error('❌ Δεν βρέθηκε το αρχείο:', colorsFile);
@@ -91,6 +96,32 @@ const buttonsComponentContent = fs.existsSync(buttonsComponentFile) ? fs.readFil
 
 console.log('🏢 Διαβάζω modal component tokens από:', modalComponentFile);
 const modalComponentContent = fs.existsSync(modalComponentFile) ? fs.readFileSync(modalComponentFile, 'utf8') : null;
+
+console.log('🎨 Διαβάζω modal CSS classes από:', modalClassFile);
+const modalClassContent = fs.existsSync(modalClassFile) ? fs.readFileSync(modalClassFile, 'utf8') : null;
+
+console.log('🔧 Διαβάζω utilities tokens από:', utilitiesFile);
+const utilitiesContent = fs.existsSync(utilitiesFile) ? fs.readFileSync(utilitiesFile, 'utf8') : null;
+
+console.log('📐 Διαβάζω layout component tokens από:', layoutComponentFile);
+const layoutComponentContent = fs.existsSync(layoutComponentFile) ? fs.readFileSync(layoutComponentFile, 'utf8') : null;
+
+console.log('📝 Διαβάζω inputs component tokens από:', inputsComponentFile);
+const inputsComponentContent = fs.existsSync(inputsComponentFile) ? fs.readFileSync(inputsComponentFile, 'utf8') : null;
+
+console.log('🧭 Διαβάζω navigation component tokens από:', navigationComponentFile);
+const navigationComponentContent = fs.existsSync(navigationComponentFile) ? fs.readFileSync(navigationComponentFile, 'utf8') : null;
+
+// Εξάγει CSS από LAYERA_MODAL_CSS constant
+function extractModalCSS(content) {
+  if (!content) return '';
+
+  const cssMatch = content.match(/export const LAYERA_MODAL_CSS = `([\s\S]*?)`;/);
+  if (cssMatch) {
+    return cssMatch[1];
+  }
+  return '';
+}
 
 // Εξάγει hex τιμές από το TypeScript αρχείο
 function extractHexValues(content) {
@@ -1043,6 +1074,577 @@ function extractModalComponentValues(content) {
   return cssVariables;
 }
 
+// Εξάγει utilities τιμές από το TypeScript αρχείο
+function extractUtilitiesValues(content) {
+  const cssVariables = [];
+
+  if (!content) {
+    console.log('🔧 Δεν βρέθηκε περιεχόμενο utilities αρχείου');
+    return cssVariables;
+  }
+
+  // Απλός line-by-line parsing για UTILITIES_VARIABLES
+  const lines = content.split('\n');
+  let insideUtilitiesVariables = false;
+  let braceCount = 0;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    // Αρχή του UTILITIES_VARIABLES object
+    if (line.includes('export const UTILITIES_VARIABLES')) {
+      insideUtilitiesVariables = true;
+      braceCount = 0;
+      continue;
+    }
+
+    if (insideUtilitiesVariables) {
+      // Μετράω τα braces
+      braceCount += (line.match(/\{/g) || []).length;
+      braceCount -= (line.match(/\}/g) || []).length;
+
+      // Αν βρω variable definition - απλό string matching
+      const trimmedLine = line.trim();
+      if (trimmedLine.startsWith("'") && trimmedLine.includes("': ")) {
+        const parts = trimmedLine.split("': ");
+        if (parts.length === 2) {
+          const varName = parts[0].replace(/'/g, '');
+          let varValue = parts[1].replace(/,$/, '').trim();
+
+          // Resolve SPACING_VARIABLES references
+          if (varValue.includes('SPACING_VARIABLES[')) {
+            const ref = varValue.match(/SPACING_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          // Resolve GLOBAL_ constants references
+          if (varValue.includes('GLOBAL_DISPLAY.')) {
+            const ref = varValue.match(/GLOBAL_DISPLAY\.(\w+)/);
+            if (ref) {
+              const displayMap = { flex: 'flex', block: 'block', inline: 'inline', none: 'none' };
+              varValue = displayMap[ref[1]] || varValue;
+            }
+          }
+
+          if (varValue.includes('GLOBAL_CURSOR.')) {
+            const ref = varValue.match(/GLOBAL_CURSOR\.(\w+)/);
+            if (ref) {
+              const cursorMap = { pointer: 'pointer', auto: 'auto', notAllowed: 'not-allowed' };
+              varValue = cursorMap[ref[1]] || varValue;
+            }
+          }
+
+          if (varValue.includes('GLOBAL_FLEX.')) {
+            const ref = varValue.match(/GLOBAL_FLEX\.(\w+)/);
+            if (ref) {
+              const flexMap = {
+                alignCenter: 'center',
+                alignStart: 'flex-start',
+                alignEnd: 'flex-end',
+                justifyCenter: 'center',
+                justifyStart: 'flex-start',
+                justifyEnd: 'flex-end',
+                justifyBetween: 'space-between'
+              };
+              varValue = flexMap[ref[1]] || varValue;
+            }
+          }
+
+          if (varValue.includes('GLOBAL_BORDER.')) {
+            const ref = varValue.match(/GLOBAL_BORDER\.(\w+)/);
+            if (ref) {
+              const borderMap = { solid: 'solid', dashed: 'dashed', dotted: 'dotted', none: 'none' };
+              varValue = borderMap[ref[1]] || varValue;
+            }
+          }
+
+          // Αφαιρώ τα quotes από την τιμή
+          varValue = varValue.replace(/^['"]|['"]$/g, '');
+
+          // Create CSS class instead of variable for utilities
+          const className = varName.replace(/-/g, '-');
+          cssVariables.push(`.${className} { ${convertUtilityToCSS(varName, varValue)} }`);
+        }
+      }
+
+      // Τέλος του UTILITIES_VARIABLES object
+      if (braceCount <= 0 && trimmedLine.includes('} as const;')) {
+        break;
+      }
+    }
+  }
+
+  console.log(`🔧 Εξήχθησαν ${cssVariables.length} utilities classes`);
+  return cssVariables;
+}
+
+// Helper function να μετατρέψει utility variables σε CSS properties
+function convertUtilityToCSS(varName, varValue) {
+  if (varName.startsWith('global-display-')) {
+    return `display: ${varValue};`;
+  }
+  if (varName.startsWith('global-cursor-')) {
+    return `cursor: ${varValue};`;
+  }
+  if (varName.startsWith('global-alignItems-')) {
+    return `align-items: ${varValue};`;
+  }
+  if (varName.startsWith('global-justifyContent-')) {
+    return `justify-content: ${varValue};`;
+  }
+  if (varName.startsWith('global-border-')) {
+    return `border-style: ${varValue};`;
+  }
+  if (varName.startsWith('margin-bottom-')) {
+    return `margin-bottom: ${varValue};`;
+  }
+
+  // Default fallback
+  return `/* ${varName}: ${varValue}; */`;
+}
+
+// Εξάγει layout component τιμές από το TypeScript αρχείο
+function extractLayoutComponentValues(content) {
+  const cssVariables = [];
+
+  if (!content) {
+    console.log('📐 Δεν βρέθηκε περιεχόμενο layout component αρχείου');
+    return cssVariables;
+  }
+
+  // Εξάγει LAYOUT_CSS_VARS
+  const lines = content.split('\n');
+  let insideLayoutCSSVars = false;
+  let braceCount = 0;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    // Αρχή του LAYOUT_CSS_VARS object
+    if (line.includes('export const LAYOUT_CSS_VARS')) {
+      insideLayoutCSSVars = true;
+      braceCount = 0;
+      continue;
+    }
+
+    if (insideLayoutCSSVars) {
+      // Μετράω τα braces
+      braceCount += (line.match(/\{/g) || []).length;
+      braceCount -= (line.match(/\}/g) || []).length;
+
+      // Αν βρω variable definition - απλό string matching
+      const trimmedLine = line.trim();
+      if ((trimmedLine.startsWith("'") || trimmedLine.startsWith("'--layera-")) && trimmedLine.includes("': ")) {
+        const parts = trimmedLine.split("': ");
+        if (parts.length === 2) {
+          let varName = parts[0].replace(/'/g, '');
+          let varValue = parts[1].replace(/,$/, '').trim();
+
+          // Resolve references
+          if (varValue.includes('LAYOUT_POSITION.')) {
+            const ref = varValue.match(/LAYOUT_POSITION\.(\w+)/);
+            if (ref) {
+              const positionMap = { fixed: 'fixed', absolute: 'absolute', relative: 'relative', static: 'static', sticky: 'sticky' };
+              varValue = positionMap[ref[1]] || varValue;
+            }
+          }
+
+          if (varValue.includes('LAYOUT_SPACING.')) {
+            const ref = varValue.match(/LAYOUT_SPACING\.(\w+)/);
+            if (ref) {
+              // Map to appropriate CSS variables
+              const spacingMap = {
+                headerOffset: '4rem',
+                medium: '1rem',
+                large: '1.5rem',
+                xxxxxLarge: '4rem'
+              };
+              varValue = spacingMap[ref[1]] || varValue;
+            }
+          }
+
+          if (varValue.includes('LAYOUT_VIEWPORT.')) {
+            const ref = varValue.match(/LAYOUT_VIEWPORT\.(\w+)/);
+            if (ref) {
+              const viewportMap = { fullWidth: '100%', fullHeight: '100vh' };
+              varValue = viewportMap[ref[1]] || varValue;
+            }
+          }
+
+          if (varValue.includes('LAYOUT_Z_INDEX.')) {
+            const ref = varValue.match(/LAYOUT_Z_INDEX\.(\w+)/);
+            if (ref) {
+              const zIndexMap = { modal: '500', header: '300', overlay: '400' };
+              varValue = zIndexMap[ref[1]] || varValue;
+            }
+          }
+
+          if (varValue.includes('BACKGROUND_VARIABLES[')) {
+            const ref = varValue.match(/BACKGROUND_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          // Αφαιρώ τα quotes από την τιμή
+          varValue = varValue.replace(/^['"]|['"]$/g, '');
+
+          // CSS class generation for layout utilities
+          if (!varName.startsWith('--layera-')) {
+            const className = varName.replace(/-/g, '-');
+            cssVariables.push(`.${className} { ${convertLayoutToCSS(varName, varValue)} }`);
+          } else {
+            // CSS variable
+            cssVariables.push(`  ${varName}: ${varValue};`);
+          }
+        }
+      }
+
+      // Τέλος του LAYOUT_CSS_VARS object
+      if (braceCount <= 0 && trimmedLine.includes('} as const;')) {
+        break;
+      }
+    }
+  }
+
+  console.log(`📐 Εξήχθησαν ${cssVariables.length} layout component variables/classes`);
+  return cssVariables;
+}
+
+// Helper function για layout CSS properties
+function convertLayoutToCSS(varName, varValue) {
+  if (varName.includes('fullscreen-position')) {
+    return `position: ${varValue};`;
+  }
+  if (varName.includes('fullscreen-top')) {
+    return `top: ${varValue};`;
+  }
+  if (varName.includes('fullscreen-left')) {
+    return `left: ${varValue};`;
+  }
+  if (varName.includes('fullscreen-right')) {
+    return `right: ${varValue};`;
+  }
+  if (varName.includes('fullscreen-bottom')) {
+    return `bottom: ${varValue};`;
+  }
+  if (varName.includes('fullscreen-width')) {
+    return `width: ${varValue};`;
+  }
+  if (varName.includes('fullscreen-height')) {
+    return `height: ${varValue};`;
+  }
+  if (varName.includes('fullscreen-z-index')) {
+    return `z-index: ${varValue};`;
+  }
+  if (varName.includes('fullscreen-overflow')) {
+    return `overflow: ${varValue};`;
+  }
+  if (varName.includes('fullscreen-padding')) {
+    return `padding: ${varValue};`;
+  }
+  if (varName.includes('fullscreen-background')) {
+    return `background: ${varValue};`;
+  }
+  if (varName.includes('card-grid-display')) {
+    return `display: ${varValue};`;
+  }
+  if (varName.includes('card-grid-columns')) {
+    return `grid-template-columns: ${varValue};`;
+  }
+  if (varName.includes('card-grid-gap')) {
+    return `gap: ${varValue};`;
+  }
+  if (varName.includes('card-grid-padding')) {
+    return `padding: ${varValue};`;
+  }
+
+  // Default fallback
+  return `/* ${varName}: ${varValue}; */`;
+}
+
+// Εξάγει inputs component τιμές από το TypeScript αρχείο
+function extractInputsComponentValues(content) {
+  const cssVariables = [];
+
+  if (!content) {
+    console.log('📝 Δεν βρέθηκε περιεχόμενο inputs component αρχείου');
+    return cssVariables;
+  }
+
+  // Απλός line-by-line parsing για INPUT_VARIABLES
+  const lines = content.split('\n');
+  let insideInputVariables = false;
+  let braceCount = 0;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    // Αρχή του INPUT_VARIABLES object
+    if (line.includes('export const INPUT_VARIABLES')) {
+      insideInputVariables = true;
+      braceCount = 0;
+      continue;
+    }
+
+    if (insideInputVariables) {
+      // Μετράω τα braces
+      braceCount += (line.match(/\{/g) || []).length;
+      braceCount -= (line.match(/\}/g) || []).length;
+
+      // Αν βρω variable definition - απλό string matching
+      const trimmedLine = line.trim();
+      if (trimmedLine.startsWith("'") && trimmedLine.includes("': ")) {
+        const parts = trimmedLine.split("': ");
+        if (parts.length === 2) {
+          const varName = parts[0].replace(/'/g, '');
+          let varValue = parts[1].replace(/,$/, '').trim();
+
+          // Resolve imports και references για inputs
+          if (varValue.includes('BACKGROUND_VARIABLES[')) {
+            const ref = varValue.match(/BACKGROUND_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('TEXT_VARIABLES[')) {
+            const ref = varValue.match(/TEXT_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('BORDER_SEMANTIC_VARIABLES[')) {
+            const ref = varValue.match(/BORDER_SEMANTIC_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('SPACING_VARIABLES[')) {
+            const ref = varValue.match(/SPACING_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('BORDER_VARIABLES[')) {
+            const ref = varValue.match(/BORDER_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('SHADOW_VARIABLES[')) {
+            const ref = varValue.match(/SHADOW_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('MOTION_VARIABLES[')) {
+            const ref = varValue.match(/MOTION_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          // Handle template literals με spacing variables
+          if (varValue.includes('`${') && varValue.includes('SPACING_VARIABLES[')) {
+            varValue = varValue.replace(/`\$\{SPACING_VARIABLES\['([^']+)'\]\}/g, 'var(--layera-$1)');
+            varValue = varValue.replace(/\$\{SPACING_VARIABLES\['([^']+)'\]\}/g, ' var(--layera-$1)');
+            varValue = varValue.replace(/`/g, '');
+          }
+
+          // Αφαιρώ τα quotes από την τιμή
+          varValue = varValue.replace(/^['"]|['"]$/g, '');
+
+          cssVariables.push(`  --layera-${varName}: ${varValue};`);
+        }
+      }
+
+      // Τέλος του INPUT_VARIABLES object
+      if (braceCount <= 0 && trimmedLine.includes('} as const;')) {
+        break;
+      }
+    }
+  }
+
+  console.log(`📝 Εξήχθησαν ${cssVariables.length} inputs component variables`);
+  return cssVariables;
+}
+
+// Εξάγει navigation component τιμές από το TypeScript αρχείο
+function extractNavigationComponentValues(content) {
+  const cssVariables = [];
+  const cssClasses = [];
+
+  if (!content) {
+    console.log('🧭 Δεν βρέθηκε περιεχόμενο navigation component αρχείου');
+    return { cssVariables, cssClasses };
+  }
+
+  // Απλός line-by-line parsing για NAVIGATION_VARIABLES
+  const lines = content.split('\n');
+  let insideNavigationVariables = false;
+  let braceCount = 0;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    // Αρχή του NAVIGATION_VARIABLES object
+    if (line.includes('export const NAVIGATION_VARIABLES')) {
+      insideNavigationVariables = true;
+      braceCount = 0;
+      continue;
+    }
+
+    if (insideNavigationVariables) {
+      // Μετράω τα braces
+      braceCount += (line.match(/\{/g) || []).length;
+      braceCount -= (line.match(/\}/g) || []).length;
+
+      // Αν βρω variable definition - απλό string matching
+      const trimmedLine = line.trim();
+      if (trimmedLine.startsWith("'") && trimmedLine.includes("': ")) {
+        const parts = trimmedLine.split("': ");
+        if (parts.length === 2) {
+          const varName = parts[0].replace(/'/g, '');
+          let varValue = parts[1].replace(/,$/, '').trim();
+
+          // Resolve imports και references για navigation
+          if (varValue.includes('BACKGROUND_VARIABLES[')) {
+            const ref = varValue.match(/BACKGROUND_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('TEXT_VARIABLES[')) {
+            const ref = varValue.match(/TEXT_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('BORDER_SEMANTIC_VARIABLES[')) {
+            const ref = varValue.match(/BORDER_SEMANTIC_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('SPACING_VARIABLES[')) {
+            const ref = varValue.match(/SPACING_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('BORDER_VARIABLES[')) {
+            const ref = varValue.match(/BORDER_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('SHADOW_VARIABLES[')) {
+            const ref = varValue.match(/SHADOW_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('MOTION_VARIABLES[')) {
+            const ref = varValue.match(/MOTION_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          // Handle template literals με spacing variables
+          if (varValue.includes('`${') && varValue.includes('SPACING_VARIABLES[')) {
+            varValue = varValue.replace(/`\$\{SPACING_VARIABLES\['([^']+)'\]\}/g, 'var(--layera-$1)');
+            varValue = varValue.replace(/\$\{SPACING_VARIABLES\['([^']+)'\]\}/g, ' var(--layera-$1)');
+            varValue = varValue.replace(/`/g, '');
+          }
+
+          // Αφαιρώ τα quotes από την τιμή
+          varValue = varValue.replace(/^['"]|['"]$/g, '');
+
+          // CSS variable για όλα
+          cssVariables.push(`  --layera-${varName}: ${varValue};`);
+
+          // Δημιουργώ CSS classes για header και sidebar
+          if (varName.startsWith('navbar-') || varName.startsWith('nav-') && !varName.includes('icon')) {
+            const className = `layera-header`;
+            const cssProperty = convertNavigationToCSS(varName, varValue);
+            if (cssProperty && !cssClasses.find(cls => cls.includes(className))) {
+              cssClasses.push(`.${className} { ${cssProperty} }`);
+            }
+          }
+
+          if (varName.startsWith('sidebar-')) {
+            const className = `layera-sidebar`;
+            const cssProperty = convertNavigationToCSS(varName, varValue);
+            if (cssProperty && !cssClasses.find(cls => cls.includes(className))) {
+              cssClasses.push(`.${className} { ${cssProperty} }`);
+            }
+          }
+        }
+      }
+
+      // Τέλος του NAVIGATION_VARIABLES object
+      if (braceCount <= 0 && trimmedLine.includes('} as const;')) {
+        break;
+      }
+    }
+  }
+
+  console.log(`🧭 Εξήχθησαν ${cssVariables.length} navigation component variables`);
+  console.log(`🧭 Εξήχθησαν ${cssClasses.length} navigation component classes`);
+  return { cssVariables, cssClasses };
+}
+
+// Helper function για navigation CSS properties
+function convertNavigationToCSS(varName, varValue) {
+  // Header/Navbar properties
+  if (varName === 'navbar-height') {
+    return `height: ${varValue};`;
+  }
+  if (varName === 'navbar-background' || varName === 'nav-background') {
+    return `background: ${varValue};`;
+  }
+  if (varName === 'navbar-border-bottom') {
+    return `border-bottom: 1px solid ${varValue};`;
+  }
+  if (varName === 'navbar-padding' || varName === 'nav-padding') {
+    return `padding: ${varValue};`;
+  }
+  if (varName === 'navbar-shadow') {
+    return `box-shadow: ${varValue};`;
+  }
+
+  // Sidebar properties
+  if (varName === 'sidebar-width') {
+    return `width: ${varValue};`;
+  }
+  if (varName === 'sidebar-background') {
+    return `background: ${varValue};`;
+  }
+  if (varName === 'sidebar-border-right') {
+    return `border-right: 1px solid ${varValue};`;
+  }
+  if (varName === 'sidebar-padding') {
+    return `padding: ${varValue};`;
+  }
+
+  return null; // Δεν χρειάζεται CSS class για αυτό το token
+}
+
 // Εξάγει τις CSS variables
 const cssVariables = extractHexValues(colorsContent);
 const spacingVariables = extractSpacingValues(spacingContent);
@@ -1061,6 +1663,15 @@ const feedbackSemanticVariables = extractFeedbackSemanticValues(feedbackSemantic
 // Εξάγει τις component CSS variables
 const buttonsComponentVariables = extractButtonsComponentValues(buttonsComponentContent);
 const modalComponentVariables = extractModalComponentValues(modalComponentContent);
+const utilitiesVariables = extractUtilitiesValues(utilitiesContent);
+const layoutComponentVariables = extractLayoutComponentValues(layoutComponentContent);
+const inputsComponentVariables = extractInputsComponentValues(inputsComponentContent);
+const navigationResult = extractNavigationComponentValues(navigationComponentContent);
+const navigationComponentVariables = navigationResult.cssVariables;
+const navigationComponentClasses = navigationResult.cssClasses;
+
+// Εξάγει το modal CSS
+const modalCSS = extractModalCSS(modalClassContent);
 
 console.log(`✅ Εξήχθησαν ${cssVariables.length} color variables`);
 console.log(`✅ Εξήχθησαν ${spacingVariables.length} spacing variables`);
@@ -1075,9 +1686,18 @@ console.log(`✅ Εξήχθησαν ${borderSemanticVariables.length} border sem
 console.log(`✅ Εξήχθησαν ${feedbackSemanticVariables.length} feedback semantic variables`);
 console.log(`✅ Εξήχθησαν ${buttonsComponentVariables.length} buttons component variables`);
 console.log(`✅ Εξήχθησαν ${modalComponentVariables.length} modal component variables`);
+console.log(`✅ Εξήχθησαν ${utilitiesVariables.length} utilities classes`);
+console.log(`✅ Εξήχθησαν ${layoutComponentVariables.length} layout component variables/classes`);
+console.log(`✅ Εξήχθησαν ${inputsComponentVariables.length} inputs component variables`);
+console.log(`✅ Εξήχθησαν ${navigationComponentVariables.length} navigation component variables`);
+console.log(`✅ Εξήχθησαν ${navigationComponentClasses.length} navigation component classes`);
+console.log(`✅ Εξήχθη modal CSS: ${modalCSS ? 'YES' : 'NO'}`);
 
 // Συνδυάζει όλα τα CSS variables
-const allVariables = [...cssVariables, ...spacingVariables, ...typographyVariables, ...bordersVariables, ...shadowsVariables, ...motionVariables, ...iconsVariables, ...backgroundSemanticVariables, ...textSemanticVariables, ...borderSemanticVariables, ...feedbackSemanticVariables, ...buttonsComponentVariables, ...modalComponentVariables];
+const allVariables = [...cssVariables, ...spacingVariables, ...typographyVariables, ...bordersVariables, ...shadowsVariables, ...motionVariables, ...iconsVariables, ...backgroundSemanticVariables, ...textSemanticVariables, ...borderSemanticVariables, ...feedbackSemanticVariables, ...buttonsComponentVariables, ...modalComponentVariables, ...inputsComponentVariables, ...navigationComponentVariables];
+
+// Συνδυάζει CSS classes και variables
+const allClasses = [...utilitiesVariables, ...layoutComponentVariables, ...navigationComponentClasses];
 
 // Δημιουργεί το CSS περιεχόμενο
 const cssContent = `/*
@@ -1127,7 +1747,24 @@ ${buttonsComponentVariables.join('\n')}
 
   /* 🏢 COMPONENT MODAL */
 ${modalComponentVariables.join('\n')}
+
+  /* 📝 COMPONENT INPUTS */
+${inputsComponentVariables.join('\n')}
+
+  /* 🧭 COMPONENT NAVIGATION */
+${navigationComponentVariables.join('\n')}
 }
+
+/* 🔧 UTILITY CLASSES */
+${utilitiesVariables.join('\n')}
+
+/* 📐 LAYOUT CLASSES */
+${layoutComponentVariables.filter(item => item.startsWith('.')).join('\n')}
+
+/* 🧭 NAVIGATION CLASSES */
+${navigationComponentClasses.join('\n')}
+
+${modalCSS}
 
 /* 🎯 Layera Design Tokens System Ready */
 `;
@@ -1152,7 +1789,13 @@ console.log(`   🔲 Border Semantic: ${borderSemanticVariables.length}`);
 console.log(`   🔔 Feedback Semantic: ${feedbackSemanticVariables.length}`);
 console.log(`   🔲 Buttons Component: ${buttonsComponentVariables.length}`);
 console.log(`   🏢 Modal Component: ${modalComponentVariables.length}`);
-console.log(`   🎯 Total: ${allVariables.length}`);
+console.log(`   📝 Inputs Component: ${inputsComponentVariables.length}`);
+console.log(`   🧭 Navigation Component: ${navigationComponentVariables.length}`);
+console.log(`   🔧 Utilities Classes: ${utilitiesVariables.length}`);
+console.log(`   📐 Layout Classes: ${layoutComponentVariables.length}`);
+console.log(`   🧭 Navigation Classes: ${navigationComponentClasses.length}`);
+console.log(`   🎯 Total Variables: ${allVariables.length}`);
+console.log(`   🎯 Total Classes: ${allClasses.length}`);
 console.log('');
 console.log('✅ Build completed successfully!');
 console.log('🚀 Ready για import στην εφαρμογή!');

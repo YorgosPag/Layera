@@ -3,7 +3,7 @@
  *
  * ⚠️  DO NOT EDIT MANUALLY
  * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts, core/motion/motion.variables.ts και component/icons/icons.variables.ts and rebuild
- * Generated: 2025-11-19T21:14:11.859Z
+ * Generated: 2025-11-19T21:57:03.279Z
  */
 
 :root {
@@ -359,6 +359,456 @@
   --layera-modal-fullscreen-height: 100vh;
   --layera-modal-fullscreen-padding: var(--layera-spacing-6);
   --layera-modal-header-padding: var(--layera-spacing-6);
+
+  /* 📝 COMPONENT INPUTS */
+  --layera-input-background: var(--layera-background-default);
+  --layera-input-background-disabled: var(--layera-background-disabled);
+  --layera-input-background-readonly: var(--layera-background-muted);
+  --layera-input-background-focus: var(--layera-background-default);
+  --layera-input-background-error: var(--layera-background-error);
+  --layera-input-background-success: var(--layera-background-success);
+  --layera-input-background-warning: var(--layera-background-warning);
+  --layera-input-border: var(--layera-border-default);
+  --layera-input-border-hover: var(--layera-border-hover);
+  --layera-input-border-focus: var(--layera-border-focus);
+  --layera-input-border-disabled: var(--layera-border-disabled);
+  --layera-input-border-error: var(--layera-border-error);
+  --layera-input-border-success: var(--layera-border-success);
+  --layera-input-border-warning: var(--layera-border-warning);
+  --layera-input-border-radius: var(--layera-border-radius-4);
+  --layera-input-border-width: 1px;
+  --layera-input-text-color: var(--layera-text-primary);
+  --layera-input-text-disabled: var(--layera-text-disabled);
+  --layera-input-text-placeholder: var(--layera-text-tertiary);
+  --layera-input-text-error: var(--layera-text-primary);
+  --layera-input-text-success: var(--layera-text-primary);
+  --layera-input-text-warning: var(--layera-text-primary);
+  --layera-input-sm-height: 32px;
+  --layera-input-sm-padding: var(--layera-spacing-2);
+  --layera-input-sm-font-size: 14px;
+  --layera-input-sm-line-height: 1.4;
+  --layera-input-md-height: 40px;
+  --layera-input-md-padding: var(--layera-spacing-3);
+  --layera-input-md-font-size: 16px;
+  --layera-input-md-line-height: 1.5;
+  --layera-input-lg-height: 48px;
+  --layera-input-lg-padding: var(--layera-spacing-4);
+  --layera-input-lg-font-size: 18px;
+  --layera-input-lg-line-height: 1.6;
+  --layera-input-shadow: none;
+  --layera-input-shadow-focus: var(--layera-shadow-sm);
+  --layera-input-shadow-error: `0 0 0 3px rgba(239, 68, 68, 0.1)`;
+  --layera-input-shadow-success: `0 0 0 3px rgba(34, 197, 94, 0.1)`;
+  --layera-input-shadow-warning: `0 0 0 3px rgba(245, 158, 11, 0.1)`;
+  --layera-input-transition: var(--layera-transition-normal);
+  --layera-label-color: var(--layera-text-primary);
+  --layera-label-color-disabled: var(--layera-text-disabled);
+  --layera-label-font-weight: 500;
+  --layera-label-font-size: 14px;
+  --layera-label-margin-bottom: var(--layera-spacing-2);
+  --layera-label-required-color: var(--layera-border-error);
+  --layera-helper-text-color: var(--layera-text-secondary);
+  --layera-helper-text-error: var(--layera-border-error);
+  --layera-helper-text-success: var(--layera-border-success);
+  --layera-helper-text-warning: var(--layera-border-warning);
+  --layera-helper-text-font-size: 12px;
+  --layera-helper-text-margin-top: var(--layera-spacing-1);
+  --layera-textarea-min-height: 120px;
+  --layera-textarea-resize: vertical;
+  --layera-textarea-line-height: 1.6;
+  --layera-select-arrow-size: var(--layera-spacing-4);
+  --layera-select-arrow-color: var(--layera-text-tertiary);
+  --layera-select-arrow-hover-color: var(--layera-text-secondary);
+  --layera-select-padding-right: var(--layera-spacing-8);
+  --layera-checkbox-size: var(--layera-spacing-4);
+  --layera-checkbox-border-radius: var(--layera-border-radius-2);
+  --layera-checkbox-checked-background: var(--layera-background-active);
+  --layera-checkbox-checked-border: var(--layera-border-focus);
+  --layera-checkbox-checkmark-color: var(--layera-text-primary);
+  --layera-radio-size: var(--layera-spacing-4);
+  --layera-radio-border-radius: var(--layera-border-radius-full);
+  --layera-radio-checked-background: var(--layera-background-active);
+  --layera-radio-checked-border: var(--layera-border-focus);
+  --layera-radio-dot-size: var(--layera-spacing-2);
+  --layera-input-group-gap: var(--layera-spacing-2);
+  --layera-input-group-border-radius: var(--layera-border-radius-4);
+  --layera-input-addon-background: var(--layera-background-muted);
+  --layera-input-addon-border: var(--layera-border-default);
+  --layera-input-addon-color: var(--layera-text-secondary);
+  --layera-input-addon-padding: var(--layera-spacing-3);
+  --layera-file-input-button-background: var(--layera-background-muted);
+  --layera-file-input-button-border: var(--layera-border-default);
+  --layera-file-input-button-color: var(--layera-text-primary);
+  --layera-file-input-button-hover-background: var(--layera-background-hover);
+  --layera-file-input-button-padding: var(--layera-spacing-2);
+  --layera-range-track-height: 6px;
+  --layera-range-track-background: var(--layera-background-muted);
+  --layera-range-track-border-radius: var(--layera-border-radius-full);
+  --layera-range-thumb-size: var(--layera-spacing-5);
+  --layera-range-thumb-background: var(--layera-background-default);
+  --layera-range-thumb-border: var(--layera-border-default);
+  --layera-range-thumb-shadow: var(--layera-shadow-sm);
+  --layera-range-thumb-hover-shadow: var(--layera-shadow-md);
+  --layera-switch-width: 44px;
+  --layera-switch-height: 24px;
+  --layera-switch-background: var(--layera-background-muted);
+  --layera-switch-background-checked: var(--layera-background-active);
+  --layera-switch-border-radius: var(--layera-border-radius-full);
+  --layera-switch-thumb-size: 20px;
+  --layera-switch-thumb-background: var(--layera-background-default);
+  --layera-switch-thumb-shadow: var(--layera-shadow-sm);
+  --layera-switch-thumb-translate: 20px;
+  --layera-input-loading-opacity: 0.6;
+  --layera-input-loading-cursor: not-allowed;
+  --layera-input-focus-ring-width: 2px;
+  --layera-input-focus-ring-offset: 2px;
+  --layera-input-focus-ring-color: var(--layera-border-focus);
+  --layera-input-focus-ring-style: solid;
+  --layera-input-valid-border: var(--layera-border-success);
+  --layera-input-valid-background: var(--layera-background-success);
+  --layera-input-invalid-border: var(--layera-border-error);
+  --layera-input-invalid-background: var(--layera-background-error);
+  --layera-floating-label-color: var(--layera-text-tertiary);
+  --layera-floating-label-color-focused: var(--layera-text-primary);
+  --layera-floating-label-font-size: 12px;
+  --layera-floating-label-transform: translateY(-20px) scale(0.875);
+  --layera-floating-label-transition: var(--layera-transition-normal);
+  --layera-input-step-button-width: var(--layera-spacing-6);
+  --layera-input-step-button-background: var(--layera-background-muted);
+  --layera-input-step-button-border: var(--layera-border-default);
+  --layera-input-step-button-color: var(--layera-text-secondary);
+  --layera-input-step-button-hover-background: var(--layera-background-hover);
+  --layera-playground-input-padding: var(--layera-spacing-3);
+  --layera-playground-input-border-radius: var(--layera-border-radius-md);
+  --layera-playground-input-font-size: 0.875rem', // fontSize-sm;
+  --layera-playground-input-width: 100%;
+  --layera-playground-input-outline: none;
+  --layera-playground-input-background: var(--layera-background-default);
+  --layera-playground-input-color: var(--layera-text-primary);
+  --layera-playground-input-border: var(--layera-spacing-0-25);
+  --layera-playground-input-border-color: var(--layera-border-subtle);
+  --layera-playground-input-flex: 1;
+
+  /* 🧭 COMPONENT NAVIGATION */
+  --layera-nav-background: var(--layera-background-default);
+  --layera-nav-background-hover: var(--layera-background-hover);
+  --layera-nav-background-active: var(--layera-background-active);
+  --layera-nav-background-disabled: var(--layera-background-disabled);
+  --layera-nav-text-color: var(--layera-text-primary);
+  --layera-nav-text-hover: var(--layera-text-primary);
+  --layera-nav-text-active: var(--layera-text-primary);
+  --layera-nav-text-disabled: var(--layera-text-disabled);
+  --layera-nav-link-color: var(--layera-text-link);
+  --layera-nav-link-hover: var(--layera-text-link-hover);
+  --layera-nav-border: var(--layera-border-default);
+  --layera-nav-border-hover: var(--layera-border-hover);
+  --layera-nav-border-active: var(--layera-border-focus);
+  --layera-nav-border-radius: var(--layera-border-radius-4);
+  --layera-navigation-border-default: var(--layera-border-subtle);
+  --layera-navigation-border-active: var(--layera-border-interactive);
+  --layera-nav-padding: var(--layera-spacing-4);
+  --layera-nav-gap: var(--layera-spacing-2);
+  --layera-nav-item-padding: var(--layera-spacing-2);
+  --layera-nav-item-margin: var(--layera-spacing-1);
+  --layera-navigation-spacing-padding: var(--layera-spacing-4);
+  --layera-navigation-spacing-margin: var(--layera-spacing-2);
+  --layera-navigation-spacing-section: var(--layera-spacing-8);
+  --layera-nav-shadow: var(--layera-shadow-sm);
+  --layera-nav-shadow-hover: var(--layera-shadow-md);
+  --layera-nav-transition: var(--layera-transition-normal);
+  --layera-navbar-height: var(--layera-spacing-16);
+  --layera-navbar-background: var(--layera-background-default);
+  --layera-navbar-border-bottom: var(--layera-border-default);
+  --layera-navbar-padding: var(--layera-spacing-0);
+  --layera-navbar-shadow: var(--layera-shadow-sm);
+  --layera-sidebar-width: var(--layera-spacing-64);
+  --layera-sidebar-width-collapsed: var(--layera-spacing-16);
+  --layera-sidebar-background: var(--layera-background-default);
+  --layera-sidebar-border-right: var(--layera-border-default);
+  --layera-sidebar-padding: var(--layera-spacing-4);
+  --layera-breadcrumb-separator-color: var(--layera-text-tertiary);
+  --layera-breadcrumb-link-color: var(--layera-text-link);
+  --layera-breadcrumb-current-color: var(--layera-text-primary);
+  --layera-breadcrumb-gap: var(--layera-spacing-2);
+  --layera-menu-background: var(--layera-background-default);
+  --layera-menu-border: var(--layera-border-default);
+  --layera-menu-border-radius: var(--layera-border-radius-8);
+  --layera-menu-shadow: var(--layera-shadow-lg);
+  --layera-menu-padding: var(--layera-spacing-2);
+  --layera-menu-item-padding: var(--layera-spacing-2);
+  --layera-menu-item-border-radius: var(--layera-border-radius-4);
+  --layera-dropdown-background: var(--layera-background-default);
+  --layera-dropdown-border: var(--layera-border-default);
+  --layera-dropdown-border-radius: var(--layera-border-radius-8);
+  --layera-dropdown-shadow: var(--layera-shadow-xl);
+  --layera-dropdown-padding: var(--layera-spacing-2);
+  --layera-dropdown-max-height: var(--layera-spacing-80);
+  --layera-dropdown-z-index: var(--layera-spacing-25);
+  --layera-tab-background: transparent;
+  --layera-tab-background-active: var(--layera-background-default);
+  --layera-tab-border-bottom: var(--layera-border-default);
+  --layera-tab-border-active: var(--layera-border-focus);
+  --layera-tab-padding: var(--layera-spacing-3);
+  --layera-tab-gap: var(--layera-spacing-1);
+  --layera-mobile-nav-height: var(--layera-spacing-14);
+  --layera-mobile-nav-background: var(--layera-background-default);
+  --layera-mobile-nav-border-top: var(--layera-border-default);
+  --layera-mobile-nav-padding: var(--layera-spacing-2);
+  --layera-pagination-item-size: var(--layera-spacing-10);
+  --layera-pagination-item-border-radius: var(--layera-border-radius-4);
+  --layera-pagination-gap: var(--layera-spacing-1);
+  --layera-pagination-current-background: var(--layera-background-active);
+  --layera-pagination-current-color: var(--layera-text-primary);
+  --layera-nav-icon-size: var(--layera-spacing-5);
+  --layera-nav-icon-color: var(--layera-text-secondary);
+  --layera-nav-icon-hover: var(--layera-text-primary);
+  --layera-nav-icon-margin: var(--layera-spacing-2);
+  --layera-nav-icon-size-mobile: var(--layera-spacing-8);
+  --layera-nav-icon-size-desktop: var(--layera-spacing-5);
+  --layera-nav-icon-menu-size: var(--layera-spacing-5);
+  --layera-nav-icon-close-size: var(--layera-spacing-5);
+  --layera-nav-icon-back-size: var(--layera-spacing-5);
+  --layera-nav-icon-forward-size: var(--layera-spacing-5);
+  --layera-nav-loading-opacity: var(--layera-background-muted);
+  --layera-nav-disabled-opacity: var(--layera-text-disabled);
 }
+
+/* 🔧 UTILITY CLASSES */
+.global-display-flex { display: flex; }
+.global-display-block { display: block; }
+.global-display-inline { display: inline; }
+.global-display-none { display: none; }
+.global-cursor-pointer { cursor: pointer; }
+.global-cursor-auto { cursor: auto; }
+.global-cursor-not-allowed { cursor: not-allowed; }
+.global-alignItems-center { align-items: center; }
+.global-alignItems-start { align-items: flex-start; }
+.global-alignItems-end { align-items: flex-end; }
+.global-justifyContent-center { justify-content: center; }
+.global-justifyContent-start { justify-content: flex-start; }
+.global-justifyContent-end { justify-content: flex-end; }
+.global-justifyContent-between { justify-content: space-between; }
+.global-border-none { border-style: none; }
+.global-border-solid { border-style: solid; }
+.global-border-dashed { border-style: dashed; }
+.global-border-dotted { border-style: dotted; }
+.margin-bottom-xl { margin-bottom: var(--layera-spacing-8); }
+
+/* 📐 LAYOUT CLASSES */
+.playground-fullscreen-position { position: fixed; }
+.playground-fullscreen-top { top: 4rem; }
+.playground-fullscreen-left { left: 0; }
+.playground-fullscreen-right { right: 0; }
+.playground-fullscreen-bottom { bottom: 0; }
+.playground-fullscreen-width { width: 100%; }
+.playground-fullscreen-height { height: 4rem; }
+.playground-fullscreen-z-index { z-index: 500; }
+.playground-fullscreen-overflow { overflow: auto; }
+.playground-fullscreen-padding { padding: 1.5rem; }
+.playground-fullscreen-background { background: var(--layera-background-default); }
+.card-grid-display { display: grid; }
+.card-grid-columns { grid-template-columns: 4rem; }
+.card-grid-gap { gap: 1.5rem; }
+.card-grid-padding { padding: 1.5rem; }
+
+/* 🧭 NAVIGATION CLASSES */
+.layera-header { background: var(--layera-background-default); }
+.layera-sidebar { width: var(--layera-spacing-64); }
+
+
+/* 🔲 LAYERA MODAL COMPONENTS */
+
+.layera-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--layera-modal-backdrop-z-index);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--layera-modal-backdrop-background);
+  backdrop-filter: var(--layera-modal-backdrop-blur);
+  transition: var(--layera-modal-backdrop-transition);
+}
+
+.layera-modal--no-overlay {
+  background: transparent;
+  backdrop-filter: none;
+}
+
+.layera-modal-content {
+  position: relative;
+  z-index: var(--layera-modal-content-z-index);
+  width: var(--layera-modal-md-width);
+  max-width: var(--layera-modal-md-max-width);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--layera-modal-content-background);
+  border: var(--layera-modal-content-border);
+  border-radius: var(--layera-modal-content-border-radius);
+  box-shadow: var(--layera-modal-content-shadow);
+  color: var(--layera-modal-content-text);
+  outline: none;
+  overflow: hidden;
+  transform: var(--layera-modal-scale-enter);
+  transition: var(--layera-modal-content-transition);
+}
+
+.layera-modal-content[data-draggable="true"] {
+  cursor: move;
+}
+
+.layera-modal-content[data-dragging="true"] {
+  user-select: none;
+  cursor: grabbing;
+}
+
+.layera-modal-content[data-no-overlay="true"] {
+  position: absolute;
+  left: var(--layera-modal-position-x, 50%);
+  top: var(--layera-modal-position-y, 50%);
+  transform: translate(-50%, -50%);
+}
+
+.layera-modal-draggable {
+  cursor: move;
+}
+
+.layera-modal-close-button {
+  position: absolute;
+  top: var(--layera-spacing-4);
+  right: var(--layera-spacing-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--layera-modal-close-size);
+  height: var(--layera-modal-close-size);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: var(--layera-modal-close-border-radius);
+  color: var(--layera-modal-close-color);
+  transition: all 150ms ease;
+  z-index: 10;
+}
+
+.layera-modal-close-button:hover {
+  color: var(--layera-modal-close-hover-color);
+  background: var(--layera-modal-close-background-hover);
+}
+
+.layera-modal-close-button:focus {
+  outline: 2px solid var(--layera-color-primary-500);
+  outline-offset: 2px;
+}
+
+/* Modal Sizes */
+.layera-modal--sm .layera-modal-content {
+  width: var(--layera-modal-sm-width);
+  max-width: var(--layera-modal-sm-max-width);
+  padding: var(--layera-modal-sm-padding);
+}
+
+.layera-modal--md .layera-modal-content {
+  width: var(--layera-modal-md-width);
+  max-width: var(--layera-modal-md-max-width);
+  padding: var(--layera-modal-md-padding);
+}
+
+.layera-modal--lg .layera-modal-content {
+  width: var(--layera-modal-lg-width);
+  max-width: var(--layera-modal-lg-max-width);
+  padding: var(--layera-modal-lg-padding);
+}
+
+.layera-modal--xl .layera-modal-content {
+  width: var(--layera-modal-xl-width);
+  max-width: var(--layera-modal-xl-max-width);
+  padding: var(--layera-modal-xl-padding);
+}
+
+.layera-modal--fullscreen .layera-modal-content {
+  width: var(--layera-modal-fullscreen-width);
+  height: var(--layera-modal-fullscreen-height);
+  max-width: none;
+  max-height: none;
+  padding: var(--layera-modal-fullscreen-padding);
+  border-radius: 0;
+}
+
+/* Body scroll lock */
+.layera-modal-open {
+  overflow: hidden;
+}
+
+.layera-scroll-hidden {
+  overflow: hidden !important;
+}
+
+/* Modal Header */
+.layera-modal-header {
+  padding: var(--layera-modal-header-padding);
+  border-bottom: var(--layera-modal-header-border-bottom);
+  background: var(--layera-modal-header-background);
+  color: var(--layera-modal-header-text);
+  flex-shrink: 0;
+}
+
+.layera-modal-title {
+  margin: 0;
+  font-weight: var(--layera-modal-title-font-weight);
+  color: var(--layera-modal-title-color);
+}
+
+/* Modal Body */
+.layera-modal-body {
+  padding: var(--layera-modal-body-padding);
+  max-height: var(--layera-modal-body-max-height);
+  overflow: var(--layera-modal-body-overflow);
+  color: var(--layera-modal-body-color);
+  line-height: var(--layera-modal-body-line-height);
+  flex: 1;
+}
+
+/* Modal Footer */
+.layera-modal-footer {
+  padding: var(--layera-modal-footer-padding);
+  border-top: var(--layera-modal-footer-border-top);
+  background: var(--layera-modal-footer-background);
+  color: var(--layera-modal-footer-text);
+  display: flex;
+  align-items: center;
+  gap: var(--layera-modal-footer-button-gap);
+  justify-content: var(--layera-modal-footer-justify);
+  flex-shrink: 0;
+}
+
+/* Animation states */
+.layera-modal[data-state="opening"] .layera-modal-content {
+  transform: var(--layera-modal-scale-open);
+}
+
+.layera-modal[data-state="closing"] .layera-modal-content {
+  transform: var(--layera-modal-scale-exit);
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+  .layera-modal-content {
+    width: 95vw !important;
+    max-width: 95vw !important;
+    margin: var(--layera-spacing-4);
+  }
+
+  .layera-modal--fullscreen .layera-modal-content {
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0;
+  }
+}
+
 
 /* 🎯 Layera Design Tokens System Ready */
