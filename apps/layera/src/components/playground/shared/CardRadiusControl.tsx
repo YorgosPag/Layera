@@ -8,7 +8,7 @@ import { SettingsIcon } from '@layera/icons';
  * CardRadiusControl Component
  *
  * Ρύθμιση καμπυλότητας γωνιών καρτών και card components
- * - Επιλογές: None (0px), Small (2px), Medium (8px), Large (12px), XL (16px)
+ * - Επιλογές: None, Small, Medium, Large, XL
  * - Live preview με visual feedback
  * - Compatible με το SST design token system
  * - Χρησιμοποιεί --layera-radius-card tokens για κάρτες
@@ -48,31 +48,31 @@ export const CardRadiusControl: React.FC<CardRadiusControlProps> = ({
       value: 'none',
       label: 'Χωρίς',
       token: '0',
-      description: 'Χωρίς καμπυλότητα (0px - τετράγωνες κάρτες)'
+      description: 'Χωρίς καμπυλότητα - τετράγωνες κάρτες'
     },
     {
       value: 'sm',
       label: 'Ελαφρώς',
       token: 'var(--layera-radius-sm)',
-      description: 'Ελαφρώς καμπύλες (4px)'
+      description: 'Ελαφρώς καμπύλες'
     },
     {
       value: 'lg',
       label: 'Μεσαία',
       token: 'var(--layera-radius-lg)',
-      description: 'Μεσαία καμπύλες (8px)'
+      description: 'Μεσαία καμπύλες - default για κάρτες'
     },
     {
       value: 'xl',
       label: 'Πολύ',
       token: 'var(--layera-radius-xl)',
-      description: 'Πολύ καμπύλες (12px)'
+      description: 'Πολύ καμπύλες'
     },
     {
       value: 'xxl',
       label: 'Μεγάλες',
       token: 'var(--layera-radius-xxl)',
-      description: 'Μεγάλες καμπύλες (16px - ειδικές κάρτες)'
+      description: 'Μεγάλες καμπύλες - ειδικές κάρτες'
     }
   ];
 

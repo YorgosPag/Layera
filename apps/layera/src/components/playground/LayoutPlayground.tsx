@@ -40,11 +40,11 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
   // Helper function για translation των radius values
   const getRadiusInGreek = (radius: string) => {
     switch(radius) {
-      case 'none': return 'χωρίς καμπυλότητα (0px)';
-      case 'sm': return 'ελαφρά καμπυλότητα (4px)';
-      case 'lg': return 'μεσαία καμπυλότητα (8px)';
-      case 'xl': return 'πολλή καμπυλότητα (12px)';
-      case 'xxl': return 'μεγάλη καμπυλότητα (16px)';
+      case 'none': return 'χωρίς καμπυλότητα';
+      case 'sm': return 'ελαφρά καμπυλότητα';
+      case 'lg': return 'μεσαία καμπυλότητα';
+      case 'xl': return 'πολλή καμπυλότητα';
+      case 'xxl': return 'μεγάλη καμπυλότητα';
       case 'round': return 'πλήρως στρογγυλά';
       default: return radius;
     }
@@ -117,7 +117,7 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
 
     // Προσθέτουμε επιπλέον πληροφορίες για borders category
     if (colorCategory === 'borders') {
-      parts.push(`με πάχος περιγράμματος ${borderWidth}px`);
+      parts.push(`με πάχος περιγράμματος ${borderWidth}`);
     }
 
     // Προσθέτουμε radius information - ΠΑΝΤΑ

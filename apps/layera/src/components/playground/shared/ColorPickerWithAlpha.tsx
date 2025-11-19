@@ -22,11 +22,11 @@ const hexToRgba = (hex: string, alpha: number): string => {
 };
 
 const extractHexFromValue = (colorValue: string): string => {
-  if (!colorValue) return 'var(--layera-color-surface-primary)';
+  if (!colorValue) return '#000000';
   if (colorValue.startsWith('#')) return colorValue;
   // CSS variable fallback
   const match = colorValue.match(/var\([^,]+,\s*(#[0-9a-fA-F]{6})\)/);
-  return match ? match[1] : 'var(--layera-color-surface-primary)';
+  return match ? match[1] : '#000000';
 };
 
 interface ColorWithAlpha {
@@ -82,9 +82,9 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
       }
       // Fallback
       return {
-        hex: 'var(--layera-color-surface-primary)',
+        hex: '#000000',
         alpha: 1.0,
-        rgba: hexToRgba('var(--layera-color-surface-primary)', 1.0)
+        rgba: hexToRgba('#000000', 1.0)
       };
     }
     return val;
@@ -101,7 +101,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   // Sync με external value
   useEffect(() => {
     setInternalValue(parseValue(value));
-  }, [value]);
+  }, [value, parseValue]);
 
   // Enhanced handlers με safety checks
   const handleHexChange = useCallback((newHex: string) => {
@@ -121,7 +121,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     const newAlpha = parseFloat(e.target.value) / 100;
     if (isNaN(newAlpha)) return;
 
-    const safeHex = internalValue?.hex || 'var(--layera-color-surface-primary)';
+    const safeHex = internalValue?.hex || '#000000';
     if (!safeHex.startsWith('#')) return;
 
     const newValue = {
@@ -155,7 +155,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   const colorInputRef = useRef<HTMLInputElement>(null);
 
   // Memoized display values to prevent recalculations
-  const displayHex = useMemo(() => extractHexFromValue(internalValue?.hex || 'var(--layera-color-surface-primary)'), [internalValue?.hex]);
+  const displayHex = useMemo(() => extractHexFromValue(internalValue?.hex || '#000000'), [internalValue?.hex]);
   const alphaPercentage = useMemo(() => Math.round((internalValue?.alpha ?? 1.0) * 100), [internalValue?.alpha]);
 
   // ΒΕΛΤΙΣΤΟΠΟΙΗΜΕΝΗ real-time tracking με throttling
@@ -262,10 +262,11 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
           Διαφάνεια: {alphaPercentage}%
         </Text>
 
-        {/* Alpha Preview Box - 250px πλάτος με progressive alpha */}
+        {/* Alpha Preview Box - με progressive alpha */}
         <Box className="layera-margin-bottom--xs layera-flex layera-flex--justify-center">
           <Box
-            className="layera-border--default layera-position--relative layera-alpha-preview-250"
+            className="layera-border--default layera-position--relative layera-height--8"
+            data-width="var(--layera-global-spacing-62)"
           >
             {/* Overlay με το χρώμα και την αντίστοιχη διαφάνεια */}
             <Box
@@ -274,8 +275,10 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
             />
           </Box>
         </Box>
+      </Box>
 
-        {/* Alpha Slider - 250px πλάτος για συμμετρία */}
+      {/* Alpha Slider - για συμμετρία */}
+      <Box className="layera-margin-bottom--xs">
         <Box className="layera-flex layera-flex--justify-center">
           <Box
             as="input"
@@ -285,7 +288,8 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
             step="1"
             value={alphaPercentage}
             onChange={handleAlphaChange}
-            className="layera-input layera-width--250"
+            className="layera-input"
+            data-width="var(--layera-global-spacing-62)"
           />
         </Box>
       </Box>

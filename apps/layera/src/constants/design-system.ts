@@ -39,11 +39,11 @@ export const DEVICE_FRAME_COLORS = {
  * Standard SVG Icon Dimensions
  */
 export const SVG_DIMENSIONS = {
-  ICON_SMALL: { width: 16, height: 16 },
-  ICON_MEDIUM: { width: 24, height: 24 },
-  ICON_LARGE: { width: 32, height: 32 },
-  ICON_XL: { width: 48, height: 48 },
-  ICON_XXL: { width: 64, height: 64 },
+  ICON_SMALL: { width: 'var(--layera-size-4)', height: 'var(--layera-size-4)' },
+  ICON_MEDIUM: { width: 'var(--layera-size-6)', height: 'var(--layera-size-6)' },
+  ICON_LARGE: { width: 'var(--layera-size-8)', height: 'var(--layera-size-8)' },
+  ICON_XL: { width: 'var(--layera-size-12)', height: 'var(--layera-size-12)' },
+  ICON_XXL: { width: 'var(--layera-size-16)', height: 'var(--layera-size-16)' },
 } as const;
 
 /**
@@ -51,17 +51,17 @@ export const SVG_DIMENSIONS = {
  * Single Source of Truth για icon dimensions across components
  */
 export const ICON_SIZES = {
-  SMALL: 24,
-  MEDIUM: 32,
-  LARGE: 48,
-  XL: 64
+  SMALL: 'var(--layera-size-6)',
+  MEDIUM: 'var(--layera-size-8)',
+  LARGE: 'var(--layera-size-12)',
+  XL: 'var(--layera-size-16)'
 } as const;
 
 /**
  * Leaflet Marker Dimensions
  */
 export const LEAFLET_MARKER_DIMENSIONS = {
-  DEFAULT: { width: 25, height: 41 },
-  RETINA: { width: 50, height: 82 },
-  SHADOW: { width: 41, height: 41 },
+  DEFAULT: { width: 'var(--layera-size-6)', height: 'var(--layera-size-10)' },
+  RETINA: { width: 'var(--layera-size-12)', height: 'var(--layera-size-20)' },
+  SHADOW: { width: 'var(--layera-size-10)', height: 'var(--layera-size-10)' },
 } as const;

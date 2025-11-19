@@ -8,7 +8,7 @@ import { RulerIcon } from '@layera/icons';
  * BorderWidthControl Component
  *
  * Ρύθμιση πάχους περιγραμμάτων για όλους τους τύπους στοιχείων
- * - Επιλογές: Thin (1px), Medium (2px), Thick (3px)
+ * - Επιλογές: Thin, Medium, Thick
  * - Live preview με visual feedback
  * - Compatible με το SST design token system
  * - Χρησιμοποιεί --layera-global-borderWidth-{1,2,3} tokens
@@ -53,19 +53,19 @@ export const BorderWidthControl: React.FC<BorderWidthControlProps> = ({
       value: 1,
       label: 'Λεπτό',
       token: 'var(--layera-global-borderWidth-1)',
-      description: '1px περίγραμμα'
+      description: 'Λεπτό περίγραμμα'
     },
     {
       value: 2,
       label: 'Μεσαίο',
       token: 'var(--layera-global-borderWidth-2)',
-      description: '3px περίγραμμα'
+      description: 'Μεσαίο περίγραμμα'
     },
     {
       value: 3,
       label: 'Χοντρό',
       token: 'var(--layera-global-borderWidth-3)',
-      description: '5px περίγραμμα'
+      description: 'Χοντρό περίγραμμα'
     }
   ];
 

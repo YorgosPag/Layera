@@ -8,7 +8,7 @@ import { SettingsIcon } from '@layera/icons';
  * LayoutRadiusControl Component
  *
  * Ρύθμιση καμπυλότητας γωνιών Layout στοιχείων
- * - Επιλογές: None (0px), Small (2px), Medium (6px), Large (8px), XL (12px)
+ * - Επιλογές: None, Small, Medium, Large, XL
  * - Live preview με visual feedback
  * - Compatible με το SST design token system
  * - Χρησιμοποιεί --layera-radius-layout tokens για layout elements
@@ -48,31 +48,31 @@ export const LayoutRadiusControl: React.FC<LayoutRadiusControlProps> = ({
       value: 'none',
       label: 'Χωρίς',
       token: '0',
-      description: 'Χωρίς καμπυλότητα (0px - τετράγωνα layout)'
+      description: 'Χωρίς καμπυλότητα - τετράγωνα layout'
     },
     {
       value: 'sm',
       label: 'Ελαφρώς',
       token: 'var(--layera-radius-sm)',
-      description: 'Ελαφρώς καμπύλες (4px)'
+      description: 'Ελαφρώς καμπύλες'
     },
     {
       value: 'lg',
       label: 'Μεσαία',
       token: 'var(--layera-radius-lg)',
-      description: 'Μεσαία καμπύλες (8px - default για layout)'
+      description: 'Μεσαία καμπύλες - default για layout'
     },
     {
       value: 'xl',
       label: 'Πολύ',
       token: 'var(--layera-radius-xl)',
-      description: 'Πολύ καμπύλες (12px)'
+      description: 'Πολύ καμπύλες'
     },
     {
       value: 'xxl',
       label: 'Μεγάλες',
       token: 'var(--layera-radius-xxl)',
-      description: 'Μεγάλες καμπύλες (16px - ειδικά layouts)'
+      description: 'Μεγάλες καμπύλες - ειδικά layouts'
     }
   ];
 

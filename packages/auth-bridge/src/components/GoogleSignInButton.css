@@ -59,12 +59,12 @@
   border: var(--layera-global-borderWidth-2) solid var(--layera-colorUtilities-utilities-border-primary);
   border-top: var(--layera-global-borderWidth-2) solid var(--layera-color-primary);
   border-radius: var(--layera-radius-circle);
-  animation: layera-spin 1s linear infinite;
+  animation: layera-spin var(--layera-transition-slow) linear infinite;
 }
 
 @keyframes layera-spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% { transform: rotate(var(--layera-shared-dimensions-zero-degrees)); }
+  100% { transform: rotate(var(--layera-shared-dimensions-full-rotation)); }
 }
 
 /* Google icon colors με layera tokens αντί για hex values */

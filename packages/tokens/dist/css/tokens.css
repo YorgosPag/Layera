@@ -13,19 +13,19 @@
   --layera-icon-colorDanger: var(--layera-color-semantic-error-primary); /** Red for danger/error states - consolidated reference */
   --layera-icon-colorInfo: var(--layera-color-semantic-info-primary); /** Blue for informational states - consolidated reference */
   --layera-icon-colorNeutral: var(--layera-color-semantic-neutral-dark); /** Neutral gray for standard icons */
-  --layera-iconInteractive-interactive-opacity-default: 1; /** Default opacity state */
+  --layera-iconInteractive-interactive-opacity-default: var(--layera-opacity-full); /** Default opacity state */
   --layera-iconInteractive-interactive-opacity-hover: var(--layera-opacity-hover); /** Hover opacity for interactive icons */
   --layera-iconInteractive-interactive-opacity-active: var(--layera-opacity-active); /** Active/pressed opacity state */
   --layera-iconInteractive-interactive-opacity-disabled: var(--layera-opacity-disabled); /** Disabled state opacity */
-  --layera-iconInteractive-interactive-scale-default: 1; /** Default scale state */
-  --layera-iconInteractive-interactive-scale-hover: 1.1; /** Hover scale for micro-interactions */
-  --layera-iconInteractive-interactive-scale-active: 0.95; /** Active/pressed scale state */
+  --layera-iconInteractive-interactive-scale-default: var(--layera-transform-scale-default); /** Default scale state */
+  --layera-iconInteractive-interactive-scale-hover: var(--layera-transform-scale-hover); /** Hover scale for micro-interactions */
+  --layera-iconInteractive-interactive-scale-active: var(--layera-transform-scale-active); /** Active/pressed scale state */
   --layera-iconInteractive-interactive-transition-fast: var(--layera-transition-fast); /** Fast transitions for micro-interactions */
   --layera-iconInteractive-interactive-transition-normal: var(--layera-transition-normal); /** Standard transition speed */
   --layera-iconInteractive-interactive-transition-slow: var(--layera-transition-slow); /** Slow transitions for emphasis */
   --layera-iconInteractive-accessibility-focusRing-width: var(--layera-global-spacing-0-5); /** Focus ring width for keyboard navigation */
   --layera-iconInteractive-accessibility-focusRing-color: var(--layera-color-semantic-info-primary); /** Focus ring color for visibility */
-  --layera-iconInteractive-accessibility-contrast-normal: 4.5; /** WCAG AA contrast ratio */
+  --layera-iconInteractive-accessibility-contrast-normal: var(--layera-accessibility-contrast-aa); /** WCAG AA contrast ratio */
   --layera-iconInteractive-sizing-padding-xs: var(--layera-global-spacing-0-5); /** Extra small padding */
   --layera-iconInteractive-sizing-padding-sm: var(--layera-global-spacing-1); /** Small padding */
   --layera-iconInteractive-sizing-padding-md: var(--layera-global-spacing-2); /** Medium padding */
@@ -91,7 +91,7 @@
   --layera-colorUtilities-utilities-background-semantic-error: var(--layera-color-semantic-error-primary, #ef4444); /** Error background color */
   --layera-colorUtilities-utilities-background-semantic-info: var(--layera-color-semantic-info-primary, #6366f1); /** Info background color */
   --layera-colorUtilities-utilities-background-neutral-white: var(--layera-color-neutral-white); /** Pure white background - consolidated reference */
-  --layera-colorUtilities-utilities-background-neutral-transparent: rgba(0, 0, 0, 0); /** Transparent background */
+  --layera-colorUtilities-utilities-background-neutral-transparent: var(--layera-color-transparent); /** Transparent background */
   --layera-colorUtilities-utilities-text-primary: var(--layera-color-text-primary); /** Primary text color - theme aware */
   --layera-colorUtilities-utilities-text-secondary: var(--layera-color-text-secondary); /** Secondary text color - theme aware */
   --layera-colorUtilities-utilities-text-tertiary: var(--layera-color-text-tertiary); /** Tertiary text color for subtle content */
@@ -115,7 +115,7 @@
   --layera-colorUtilities-utilities-border-semantic-info: var(--layera-color-semantic-info-primary, #6366f1); /** Info border color */
   --layera-colorUtilities-utilities-border-neutral-white: var(--layera-color-neutral-white); /** Pure white border - consolidated reference */
   --layera-colorUtilities-utilities-border-neutral-black: var(--layera-color-neutral-black); /** Pure black border - consolidated reference */
-  --layera-colorUtilities-utilities-border-neutral-transparent: rgba(0, 0, 0, 0); /** Transparent border */
+  --layera-colorUtilities-utilities-border-neutral-transparent: var(--layera-color-transparent); /** Transparent border */
   --layera-colorUtilities-utilities-border-accent-blue: var(--layera-global-colors-theme-light-accent-blue); /** Blue accent border */
   --layera-colorUtilities-utilities-border-accent-green: var(--layera-global-colors-theme-light-accent-green); /** Green accent border */
   --layera-colorUtilities-utilities-border-accent-purple: var(--layera-global-colors-theme-light-accent-purple); /** Purple accent border */
@@ -129,7 +129,7 @@
   --layera-colorUtilities-utilities-fill-semantic-info: var(--layera-color-semantic-info-primary, #6366f1); /** Info SVG fill color */
   --layera-colorUtilities-utilities-fill-neutral-white: var(--layera-color-neutral-white); /** Pure white SVG fill - consolidated reference */
   --layera-colorUtilities-utilities-fill-neutral-black: var(--layera-color-neutral-black); /** Pure black SVG fill - consolidated reference */
-  --layera-colorUtilities-utilities-fill-neutral-currentColor: currentColor; /** Inherit text color for SVG fill */
+  --layera-colorUtilities-utilities-fill-neutral-currentColor: var(--layera-color-currentColor); /** Inherit text color for SVG fill */
   --layera-i18n-unified: [object Object]; /** Unified i18n class - replaces multiple fragmented classes */
   --layera-spacing-breakpoint-mobile: var(--layera-responsive-breakpoints-tablet-min); /** Mobile breakpoint - replaces hardcoded 768 */
   --layera-spacing-breakpoint-tablet: var(--layera-responsive-breakpoints-desktop-min); /** Tablet breakpoint - replaces hardcoded 1024 */
@@ -191,13 +191,13 @@
   --layera-global-utilities-zIndex-overlay: var(--layera-z-index-overlay, var(--layera-shared-zIndex-overlay)); /** Z-index for overlay elements like modals and dropdowns */
   --layera-global-utilities-grid-autoFit: var(--layera-global-utilities-grid-autoFit); /** Auto-fit grid template for responsive cards */
   --layera-global-utilities-grid-autoFit280: var(--layera-global-utilities-grid-autoFit280); /** Auto-fit grid template for responsive cards */
-  --layera-global-utilities-textAlign-center: center; /** Center text alignment utility */
-  --layera-global-utilities-textAlign-left: left; /** Left text alignment utility */
-  --layera-global-utilities-textAlign-right: right; /** Right text alignment utility */
-  --layera-global-utilities-justifyContent-center: center; /** Center flex/grid items horizontally */
-  --layera-global-utilities-justifyContent-start: flex-start; /** Align flex/grid items to start */
-  --layera-global-utilities-justifyContent-end: flex-end; /** Align flex/grid items to end */
-  --layera-global-utilities-justifyContent-spaceBetween: space-between; /** Space flex/grid items evenly with space between */
+  --layera-global-utilities-textAlign-center: var(--layera-textAlign-center); /** Center text alignment utility */
+  --layera-global-utilities-textAlign-left: var(--layera-textAlign-left); /** Left text alignment utility */
+  --layera-global-utilities-textAlign-right: var(--layera-textAlign-right); /** Right text alignment utility */
+  --layera-global-utilities-justifyContent-center: var(--layera-alignItems-center); /** Center flex/grid items horizontally */
+  --layera-global-utilities-justifyContent-start: var(--layera-alignItems-start); /** Align flex/grid items to start */
+  --layera-global-utilities-justifyContent-end: var(--layera-alignItems-end); /** Align flex/grid items to end */
+  --layera-global-utilities-justifyContent-spaceBetween: var(--layera-justifyContent-spaceBetween); /** Space flex/grid items evenly with space between */
   --layera-global-fontFamily-system: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; /** Global system font */
   --layera-global-fontFamily-mono: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; /** Global mono font */
   --layera-size-2: var(--layera-global-spacing-2); /** Small spacing */
@@ -260,23 +260,23 @@
   --layera-layoutSystem-flex-grid-gap-md: [object Object]; /** Medium grid gap */
   --layera-layoutSystem-flex-grid-gap-lg: [object Object]; /** Large grid gap */
   --layera-layoutSystem-flex-grid-gap-xl: [object Object]; /** Extra large grid gap */
-  --layera-layoutSystem-stack-direction: column; /** Column flex direction */
+  --layera-layoutSystem-stack-direction: var(--layera-flexDirection-column); /** Column flex direction */
   --layera-layoutSystem-stack-gap: var(--layera-global-spacing-1); /** Stack gap */
   --layera-layoutSystem-padding-xs: var(--layera-global-spacing-2) var(--layera-global-spacing-4); /** Extra small padding */
   --layera-layoutSystem-padding-sm: var(--layera-global-spacing-4) var(--layera-global-spacing-6); /** Small padding */
   --layera-layoutSystem-appLayout-body-minHeight: var(--layera-shared-dimensions-viewport-height); /** Full viewport height for body */
-  --layera-layoutSystem-appLayout-body-overflow: hidden; /** Hide overflow for map app */
+  --layera-layoutSystem-appLayout-body-overflow: var(--layera-overflow-hidden); /** Hide overflow for map app */
   --layera-layoutSystem-appLayout-app-minHeight: var(--layera-shared-dimensions-viewport-height); /** Full viewport height for app */
-  --layera-layoutSystem-appLayout-app-position: relative; /** Relative positioning for app container */
-  --layera-layoutSystem-appLayout-app-overflow: hidden; /** Hide overflow for app container */
-  --layera-layoutSystem-appLayout-header-position: fixed; /** Fixed positioning for header */
+  --layera-layoutSystem-appLayout-app-position: var(--layera-position-relative); /** Relative positioning for app container */
+  --layera-layoutSystem-appLayout-app-overflow: var(--layera-overflow-hidden); /** Hide overflow for app container */
+  --layera-layoutSystem-appLayout-header-position: var(--layera-position-fixed); /** Fixed positioning for header */
   --layera-layoutSystem-appLayout-header-top: var(--layera-shared-dimensions-zero); /** Stick to top */
   --layera-layoutSystem-appLayout-header-left: var(--layera-shared-dimensions-zero); /** Stick to left */
   --layera-layoutSystem-appLayout-header-right: var(--layera-shared-dimensions-zero); /** Stick to right */
   --layera-layoutSystem-appLayout-header-width: var(--layera-shared-dimensions-viewport-width); /** Full width for header */
   --layera-layoutSystem-appLayout-header-height: var(--layera-global-spacing-14); /** Header height */
   --layera-layoutSystem-appLayout-header-zIndex: var(--layera-global-z-index-overlay); /** Header z-index above map */
-  --layera-layoutSystem-appLayout-mapContainer-position: fixed; /** Fixed positioning for map */
+  --layera-layoutSystem-appLayout-mapContainer-position: var(--layera-position-fixed); /** Fixed positioning for map */
   --layera-layoutSystem-appLayout-mapContainer-top: var(--layera-header-fixed-height); /** Position below header */
   --layera-layoutSystem-appLayout-mapContainer-left: var(--layera-shared-dimensions-zero); /** Align to left */
   --layera-layoutSystem-appLayout-mapContainer-height: calc(var(--layera-shared-dimensions-viewport-height) - var(--layera-header-fixed-height)); /** Full height minus header */

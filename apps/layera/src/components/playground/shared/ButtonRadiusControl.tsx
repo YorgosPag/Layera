@@ -8,7 +8,7 @@ import { SettingsIcon } from '@layera/icons';
  * ButtonRadiusControl Component
  *
  * Ρύθμιση καμπυλότητας γωνιών πλήκτρων για όλους τους τύπους στοιχείων
- * - Επιλογές: None (0px), Small (2px), Medium (6px), Large (8px), Round (50%)
+ * - Επιλογές: None, Small, Medium, Large, Round
  * - Live preview με visual feedback
  * - Compatible με το SST design token system
  * - Χρησιμοποιεί --layera-radius-* tokens για πλήκτρα
@@ -47,31 +47,31 @@ export const ButtonRadiusControl: React.FC<ButtonRadiusControlProps> = ({
       value: 'none',
       label: 'Χωρίς',
       token: '0',
-      description: 'Χωρίς καμπυλότητα (0px - τετράγωνα πλήκτρα)'
+      description: 'Χωρίς καμπυλότητα - τετράγωνα πλήκτρα'
     },
     {
       value: 'sm',
       label: 'Ελαφρώς',
       token: 'var(--layera-radius-sm)',
-      description: 'Ελαφρώς καμπύλες (4px)'
+      description: 'Ελαφρώς καμπύλες'
     },
     {
       value: 'lg',
       label: 'Μεσαία',
       token: 'var(--layera-radius-lg)',
-      description: 'Μεσαία καμπύλες (8px - default για πλήκτρα)'
+      description: 'Μεσαία καμπύλες - default για πλήκτρα'
     },
     {
       value: 'xl',
       label: 'Πολύ',
       token: 'var(--layera-radius-xl)',
-      description: 'Πολύ καμπύλες (12px)'
+      description: 'Πολύ καμπύλες'
     },
     {
       value: 'xxl',
       label: 'Μεγάλες',
       token: 'var(--layera-radius-xxl)',
-      description: 'Μεγάλες καμπύλες (16px - ειδικά πλήκτρα)'
+      description: 'Μεγάλες καμπύλες - ειδικά πλήκτρα'
     }
   ];
 

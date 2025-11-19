@@ -22,14 +22,14 @@ export const GEOMETRIC_LIMITS = {
 export const ICON_DIMENSIONS = {
   MAP: {
     ALERT: {
-      width: 30,
-      height: 48,
+      width: 'var(--layera-global-spacing-7-5)',
+      height: 'var(--layera-global-spacing-12)',
       anchor: {
-        x: 15,
-        y: 48
+        x: 'var(--layera-global-spacing-3-75)',
+        y: 'var(--layera-global-spacing-12)'
       },
       shadow: {
-        size: 48
+        size: 'var(--layera-global-spacing-12)'
       },
       popup: {
         offsetY: -42

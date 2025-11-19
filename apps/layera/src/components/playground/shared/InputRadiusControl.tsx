@@ -8,7 +8,7 @@ import { SettingsIcon } from '@layera/icons';
  * InputRadiusControl Component
  *
  * Ρύθμιση καμπυλότητας γωνιών input fields και form controls
- * - Επιλογές: None (0px), Small (2px), Medium (4px), Large (6px), XL (8px)
+ * - Επιλογές: None, Small, Medium, Large, XL
  * - Live preview με visual feedback
  * - Compatible με το SST design token system
  * - Χρησιμοποιεί --layera-radius-input tokens για inputs
@@ -48,31 +48,31 @@ export const InputRadiusControl: React.FC<InputRadiusControlProps> = ({
       value: 'none',
       label: 'Χωρίς',
       token: '0',
-      description: 'Χωρίς καμπυλότητα (0px - τετράγωνα πεδία)'
+      description: 'Χωρίς καμπυλότητα - τετράγωνα πεδία'
     },
     {
       value: 'sm',
       label: 'Ελαφρώς',
       token: 'var(--layera-radius-sm)',
-      description: 'Ελαφρώς καμπύλες (4px)'
+      description: 'Ελαφρώς καμπύλες'
     },
     {
       value: 'lg',
       label: 'Μεσαία',
       token: 'var(--layera-radius-lg)',
-      description: 'Μεσαία καμπύλες (8px - default για πεδία)'
+      description: 'Μεσαία καμπύλες - default για πεδία'
     },
     {
       value: 'xl',
       label: 'Πολύ',
       token: 'var(--layera-radius-xl)',
-      description: 'Πολύ καμπύλες (12px)'
+      description: 'Πολύ καμπύλες'
     },
     {
       value: 'xxl',
       label: 'Μεγάλες',
       token: 'var(--layera-radius-xxl)',
-      description: 'Μεγάλες καμπύλες (16px - ειδικά πεδία)'
+      description: 'Μεγάλες καμπύλες - ειδικά πεδία'
     }
   ];
 

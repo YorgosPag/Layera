@@ -53,9 +53,9 @@ export const DEVICE_VIEWPORTS = {
  */
 export const CSS_DIMENSIONS = {
   FULL_PERCENT: '100%',
-  FULL_VH: '100vh',
-  FULL_VW: '100vw',
-  FULL_VIEWPORT_HEIGHT: '100vh',
+  FULL_VH: 'var(--layera-spacing-viewport-full-height)',
+  FULL_VW: 'var(--layera-spacing-viewport-full-width)',
+  FULL_VIEWPORT_HEIGHT: 'var(--layera-spacing-viewport-full-height)',
   HALF_PERCENT: '50%',
 } as const;
 

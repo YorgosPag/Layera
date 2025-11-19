@@ -8,7 +8,7 @@ import { CompassIcon } from '@layera/icons';
  * BorderRadiusControl Component
  *
  * Ρύθμιση καμπυλότητας περιγραμμάτων για όλους τους τύπους στοιχείων
- * - Επιλογές: None (0px), Small (2px), Medium (6px), Large (8px)
+ * - Επιλογές: None, Small, Medium, Large
  * - Live preview με visual feedback
  * - Compatible με το SST design token system
  * - Χρησιμοποιεί --layera-global-borderRadius-{none,xs,md,lg} tokens
@@ -47,25 +47,25 @@ export const BorderRadiusControl: React.FC<BorderRadiusControlProps> = ({
       value: 'none',
       label: 'Χωρίς',
       token: 'var(--layera-global-borderRadius-none)',
-      description: 'Χωρίς καμπυλότητα (0px - τετράγωνα)'
+      description: 'Χωρίς καμπυλότητα - τετράγωνα'
     },
     {
       value: 'xs',
       label: 'Ελαφρώς',
       token: 'var(--layera-global-borderRadius-xs)',
-      description: 'Ελαφρώς καμπύλες (2px)'
+      description: 'Ελαφρώς καμπύλες'
     },
     {
       value: 'md',
       label: 'Μεσαία',
       token: 'var(--layera-global-borderRadius-md)',
-      description: 'Μεσαία καμπύλες (6px)'
+      description: 'Μεσαία καμπύλες'
     },
     {
       value: 'lg',
       label: 'Πολύ',
       token: 'var(--layera-global-borderRadius-lg)',
-      description: 'Πολύ καμπύλες (8px)'
+      description: 'Πολύ καμπύλες'
     }
   ];
 

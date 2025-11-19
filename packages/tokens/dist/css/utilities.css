@@ -257,27 +257,27 @@ button:focus-visible {
 
 /* Text Alignment Utilities - ARXES Compliant */
 .layera-text--align-center {
-  text-align: center;
+  text-align: var(--layera-textAlign-center);
 }
 .layera-text--align-left {
-  text-align: left;
+  text-align: var(--layera-textAlign-left);
 }
 .layera-text--align-right {
-  text-align: right;
+  text-align: var(--layera-textAlign-right);
 }
 
 /* Justify Content Utilities - ARXES Compliant */
 .layera-flex--justify-center {
-  justify-content: center;
+  justify-content: var(--layera-alignItems-center);
 }
 .layera-flex--justify-start {
-  justify-content: flex-start;
+  justify-content: var(--layera-alignItems-start);
 }
 .layera-flex--justify-end {
-  justify-content: flex-end;
+  justify-content: var(--layera-alignItems-end);
 }
 .layera-flex--justify-space-between {
-  justify-content: space-between;
+  justify-content: var(--layera-justifyContent-spaceBetween);
 }
 
 /* ΜΟΝΑΔΙΚΗ Typography Κλάση - Αντικαθιστά 33 κλάσεις */
@@ -323,12 +323,12 @@ button:focus-visible {
 .layera-typography[data-color="tertiary"] { color: var(--layera-color-text-tertiary); }
 .layera-typography[data-color="inverse"] { color: var(--layera-color-text-inverse); }
 .layera-typography[data-color="inverted"] { color: var(--layera-text-inverted); }
-.layera-typography[data-color="white"] { color: white; }
-.layera-typography[data-color="black"] { color: black; }
+.layera-typography[data-color="white"] { color: var(--layera-color-neutral-white); }
+.layera-typography[data-color="black"] { color: var(--layera-color-neutral-black); }
 
 /* Typography Decoration Variants */
-.layera-typography[data-decoration="none"] { text-decoration: none; }
-.layera-typography[data-decoration="underline"] { text-decoration: underline; }
+.layera-typography[data-decoration="none"] { text-decoration: var(--layera-textDecoration-none); }
+.layera-typography[data-decoration="underline"] { text-decoration: var(--layera-textDecoration-underline); }
 
 /* Typography Variant για Buttons */
 .layera-typography[data-variant="button"] {
@@ -336,11 +336,11 @@ button:focus-visible {
   border: 1px solid var(--layera-color-semantic-info-primary);
   border-radius: var(--layera-global-borderRadius-xs);
   background-color: var(--layera-color-semantic-info-primary);
-  color: white;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  color: var(--layera-color-neutral-white);
+  cursor: var(--layera-cursor-pointer);
+  display: var(--layera-display-inline-flex);
+  align-items: var(--layera-alignItems-center);
+  justify-content: var(--layera-justifyContent-center);
   min-width: var(--layera-global-spacing-11);
   min-height: var(--layera-global-spacing-11);
   transition: var(--layera-transition-all);
@@ -353,14 +353,14 @@ button:focus-visible {
 
 .layera-typography[data-variant="logo"] {
   padding: var(--layera-global-spacing-2);
-  border: none;
+  border: var(--layera-border-none);
   border-radius: var(--layera-global-borderRadius-xs);
-  background-color: transparent;
+  background-color: var(--layera-color-transparent);
   color: var(--layera-color-text-primary);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  cursor: var(--layera-cursor-pointer);
+  display: var(--layera-display-inline-flex);
+  align-items: var(--layera-alignItems-center);
+  justify-content: var(--layera-justifyContent-center);
   min-width: var(--layera-global-spacing-11);
   min-height: var(--layera-global-spacing-11);
   transition: var(--layera-transition-all);
@@ -2120,91 +2120,91 @@ button:focus-visible {
  * Συνεργάζεται με @layera/tolgee package για complete i18n solution
  */
 .layera-i18n {
-  position: relative;
-  box-sizing: border-box;
+  position: var(--layera-position-relative);
+  box-sizing: var(--layera-boxSizing-border-box);
   transition: var(--layera-transition-all);
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
+  font-family: var(--layera-fontFamily-inherit);
+  font-size: var(--layera-fontSize-inherit);
+  line-height: var(--layera-lineHeight-inherit);
 }
 
 /* I18N Direction Variants */
 .layera-i18n[data-direction="ltr"] {
-  direction: ltr;
-  text-align: left;
-  unicode-bidi: embed;
+  direction: var(--layera-direction-ltr);
+  text-align: var(--layera-textAlign-left);
+  unicode-bidi: var(--layera-unicodeBidi-embed);
 }
 .layera-i18n[data-direction="rtl"] {
-  direction: rtl;
-  text-align: right;
-  unicode-bidi: embed;
+  direction: var(--layera-direction-rtl);
+  text-align: var(--layera-textAlign-right);
+  unicode-bidi: var(--layera-unicodeBidi-embed);
 }
 .layera-i18n[data-direction="auto"] {
-  direction: auto;
-  text-align: start;
-  unicode-bidi: plaintext;
+  direction: var(--layera-direction-auto);
+  text-align: var(--layera-textAlign-start);
+  unicode-bidi: var(--layera-unicodeBidi-plaintext);
 }
 
 /* I18N Locale Variants */
 .layera-i18n[data-locale="el"] {
   font-family: var(--layera-la-global-fontFamily-system, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif);
-  direction: ltr;
-  text-align: left;
-  line-height: 1.5;
+  direction: var(--layera-direction-ltr);
+  text-align: var(--layera-textAlign-left);
+  line-height: var(--layera-lineHeight-normal);
 }
 .layera-i18n[data-locale="en"] {
   font-family: var(--layera-la-global-fontFamily-system, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif);
-  direction: ltr;
-  text-align: left;
-  line-height: 1.5;
+  direction: var(--layera-direction-ltr);
+  text-align: var(--layera-textAlign-left);
+  line-height: var(--layera-lineHeight-normal);
 }
 
 /* I18N Layout Variants */
 .layera-i18n[data-layout="flip"] {
-  transform: scaleX(-1);
+  transform: var(--layera-transform-scaleX-flip);
 }
 .layera-i18n[data-layout="mirror"] {
-  transform: rotateY(180deg);
+  transform: var(--layera-transform-rotateY-mirror);
 }
 .layera-i18n[data-layout="preserve"] {
-  transform: none;
+  transform: var(--layera-transform-none);
 }
 
 /* I18N Spacing Variants */
 .layera-i18n[data-spacing="rtl"] {
-  margin-left: auto;
-  margin-right: 0;
-  padding-left: inherit;
-  padding-right: 0;
+  margin-left: var(--layera-margin-auto);
+  margin-right: var(--layera-shared-dimensions-zero);
+  padding-left: var(--layera-padding-inherit);
+  padding-right: var(--layera-shared-dimensions-zero);
 }
 .layera-i18n[data-spacing="ltr"] {
-  margin-left: 0;
-  margin-right: auto;
-  padding-left: 0;
-  padding-right: inherit;
+  margin-left: var(--layera-shared-dimensions-zero);
+  margin-right: var(--layera-margin-auto);
+  padding-left: var(--layera-shared-dimensions-zero);
+  padding-right: var(--layera-padding-inherit);
 }
 .layera-i18n[data-spacing="balanced"] {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
+  margin-left: var(--layera-margin-auto);
+  margin-right: var(--layera-margin-auto);
+  text-align: var(--layera-textAlign-center);
 }
 
 /* I18N Content Variants */
 .layera-i18n[data-content="numeric"] {
-  font-variant-numeric: tabular-nums;
-  direction: ltr;
+  font-variant-numeric: var(--layera-fontVariantNumeric-tabular);
+  direction: var(--layera-direction-ltr);
   unicode-bidi: bidi-override;
 }
 .layera-i18n[data-content="currency"] {
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: var(--layera-fontVariantNumeric-tabular);
   white-space: nowrap;
 }
 .layera-i18n[data-content="date"] {
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: var(--layera-fontVariantNumeric-tabular);
   direction: ltr;
 }
 .layera-i18n[data-content="time"] {
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: var(--layera-fontVariantNumeric-tabular);
   font-feature-settings: 'tnum';
 }
 

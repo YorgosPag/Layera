@@ -8,7 +8,7 @@ import { SettingsIcon } from '@layera/icons';
  * HeaderRadiusControl Component
  *
  * Ρύθμιση καμπυλότητας γωνιών headers και header components
- * - Επιλογές: None (0px), Small (4px), Medium (8px), Large (12px), XL (16px)
+ * - Επιλογές: None, Small, Medium, Large, XL
  * - Live preview με visual feedback
  * - Compatible με το SST design token system
  * - Χρησιμοποιεί --layera-radius-header tokens για headers
@@ -48,31 +48,31 @@ export const HeaderRadiusControl: React.FC<HeaderRadiusControlProps> = ({
       value: 'none',
       label: 'Χωρίς',
       token: '0',
-      description: 'Χωρίς καμπυλότητα (0px - τετράγωνα headers)'
+      description: 'Χωρίς καμπυλότητα - τετράγωνα headers'
     },
     {
       value: 'sm',
       label: 'Ελαφρώς',
       token: 'var(--layera-radius-sm)',
-      description: 'Ελαφρώς καμπύλες (4px)'
+      description: 'Ελαφρώς καμπύλες'
     },
     {
       value: 'lg',
       label: 'Μεσαία',
       token: 'var(--layera-radius-lg)',
-      description: 'Μεσαία καμπύλες (8px - default για headers)'
+      description: 'Μεσαία καμπύλες - default για headers'
     },
     {
       value: 'xl',
       label: 'Πολύ',
       token: 'var(--layera-radius-xl)',
-      description: 'Πολύ καμπύλες (12px)'
+      description: 'Πολύ καμπύλες'
     },
     {
       value: 'xxl',
       label: 'Μεγάλες',
       token: 'var(--layera-radius-xxl)',
-      description: 'Μεγάλες καμπύλες (16px - ειδικά headers)'
+      description: 'Μεγάλες καμπύλες - ειδικά headers'
     }
   ];
 
