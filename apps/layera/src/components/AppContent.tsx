@@ -6,6 +6,7 @@ import { LivePlayground } from './LivePlayground';
 import { PropertyTypeDrawer } from './PropertyTypeDrawer';
 import { PipelineDebugInfo } from './PipelineDebugInfo';
 import { AppModals } from './AppModals';
+// import { Colors, PRIMARY_COLORS } from '../../../../packages/tokens/src/colors';
 
 import { MAP_DEFAULTS } from '../constants/dev-config';
 
@@ -135,8 +136,37 @@ export const AppContent: React.FC = () => {
         onTestPanelClick={openLivePlayground}
       />
 
+
       {/* Pipeline State Debug Info */}
       <PipelineDebugInfo pipelineState={pipelineState} />
+
+      {/* 🎯 TEST: Colors + Spacing tokens - ΜΟΝΟ CSS CUSTOM PROPERTIES */}
+      <Box
+        className="layera-layout"
+        style={{
+          backgroundColor: 'var(--layera-color-primary-500)',
+          color: 'var(--layera-color-neutral-white)',
+          border: `3px solid var(--layera-color-primary-700)`,
+          padding: 'var(--layera-spacing-large)',     // 2rem / 32px
+          margin: 'var(--layera-spacing-medium)',     // 1rem / 16px
+          borderRadius: 'var(--layera-spacing-small)', // 0.5rem / 8px
+          position: 'fixed',
+          top: 'var(--layera-spacing-16)',            // 4rem / 64px από top
+          right: 'var(--layera-spacing-medium)',      // 1rem / 16px από right
+          zIndex: 9999,
+          maxWidth: '300px',
+          fontSize: '18px',
+          fontWeight: 'bold',
+          textAlign: 'center',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)'
+        }}
+      >
+        🎯 COLORS + SPACING TOKENS!
+        <br />
+        <small style={{ marginTop: 'var(--layera-spacing-small)' }}>
+          Χρώματα & Spacing από tokens!
+        </small>
+      </Box>
 
       <Box className="layera-map-container layera-margin-top--lg">
         <MapContainer

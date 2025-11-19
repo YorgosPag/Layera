@@ -1,0 +1,77 @@
+/*
+ * 🎨 LAYERA DESIGN TOKENS - AUTO GENERATED
+ *
+ * ⚠️  DO NOT EDIT MANUALLY
+ * Edit packages/tokens/src/colors/colors.variables.ts και core/spacing/spacing.variables.ts and rebuild
+ * Generated: 2025-11-19T12:57:43.212Z
+ */
+
+:root {
+  /* 🎨 COLORS */
+  --layera-color-primary-50: #e3f2fd;
+  --layera-color-primary-100: #bbdefb;
+  --layera-color-primary-200: #90caf9;
+  --layera-color-primary-300: #64b5f6;
+  --layera-color-primary-400: #42a5f5;
+  --layera-color-primary-500: #1976d2;
+  --layera-color-primary-600: #1565c0;
+  --layera-color-primary-700: #0d47a1;
+  --layera-color-primary-800: #0a3d91;
+  --layera-color-primary-900: #063581;
+  --layera-color-primary-950: #042671;
+  --layera-color-secondary-50: #f8fafc;
+  --layera-color-secondary-100: #f1f5f9;
+  --layera-color-secondary-200: #e2e8f0;
+  --layera-color-secondary-300: #cbd5e1;
+  --layera-color-secondary-400: #94a3b8;
+  --layera-color-secondary-500: #64748b;
+  --layera-color-secondary-600: #475569;
+  --layera-color-secondary-700: #334155;
+  --layera-color-secondary-800: #1e293b;
+  --layera-color-secondary-900: #0f172a;
+  --layera-color-secondary-950: #020617;
+  --layera-color-success-light: #81c784;
+  --layera-color-success-main: #4caf50;
+  --layera-color-success-dark: #388e3c;
+  --layera-color-success-contrastText: #ffffff;
+  --layera-color-warning-light: #ffb74d;
+  --layera-color-warning-main: #ff9800;
+  --layera-color-warning-dark: #f57c00;
+  --layera-color-warning-contrastText: #000000;
+  --layera-color-error-light: #e57373;
+  --layera-color-error-main: #f44336;
+  --layera-color-error-dark: #d32f2f;
+  --layera-color-error-contrastText: #ffffff;
+  --layera-color-info-light: #64b5f6;
+  --layera-color-info-main: #2196f3;
+  --layera-color-info-dark: #1976d2;
+  --layera-color-info-contrastText: #ffffff;
+  --layera-color-neutral-white: #ffffff;
+  --layera-color-neutral-light: #f8fafc;
+  --layera-color-neutral-medium: #64748b;
+  --layera-color-neutral-dark: #1e293b;
+  --layera-color-neutral-black: #000000;
+
+  /* 📏 SPACING */
+  --layera-spacing-0: 0;
+  --layera-spacing-1: 0.25rem;
+  --layera-spacing-2: 0.5rem;
+  --layera-spacing-3: 0.75rem;
+  --layera-spacing-4: 1rem;
+  --layera-spacing-5: 1.25rem;
+  --layera-spacing-6: 1.5rem;
+  --layera-spacing-8: 2rem;
+  --layera-spacing-10: 2.5rem;
+  --layera-spacing-12: 3rem;
+  --layera-spacing-16: 4rem;
+  --layera-spacing-20: 5rem;
+  --layera-spacing-24: 6rem;
+  --layera-spacing-32: 8rem;
+  --layera-spacing-micro: 0.25rem;
+  --layera-spacing-small: 0.5rem;
+  --layera-spacing-medium: 1rem;
+  --layera-spacing-large: 2rem;
+  --layera-spacing-macro: 4rem;
+}
+
+/* 🎯 Layera Design Tokens System Ready */
