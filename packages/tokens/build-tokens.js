@@ -181,10 +181,10 @@ function extractTypographyValues(content) {
   if (!content) return cssVariables;
 
   // Extract FONT_SIZE_SCALE
-  const fontSizeMatch = content.match(/export const FONT_SIZE_SCALE[\\s\\S]*?= \\{([\\s\\S]*?)\\} as const;/);
+  const fontSizeMatch = content.match(/export const FONT_SIZE_SCALE[\\s\\S]*?= \\{([\\s\\S]*?)\\}/);
   if (fontSizeMatch) {
     const fontSizeContent = fontSizeMatch[1];
-    const sizeRegex = /(\\w+): ['\"]([^'\"]+)['\"]/g;
+    const sizeRegex = /([\\w']+): ['\"]([^'\"]+)['\"]/g;
     let match;
 
     while ((match = sizeRegex.exec(fontSizeContent)) !== null) {
@@ -194,7 +194,7 @@ function extractTypographyValues(content) {
   }
 
   // Extract FONT_WEIGHT_SCALE
-  const fontWeightMatch = content.match(/export const FONT_WEIGHT_SCALE[\\s\\S]*?= \\{([\\s\\S]*?)\\} as const;/);
+  const fontWeightMatch = content.match(/export const FONT_WEIGHT_SCALE[\\s\\S]*?= \\{([\\s\\S]*?)\\}/);
   if (fontWeightMatch) {
     const fontWeightContent = fontWeightMatch[1];
     const weightRegex = /(\\w+): (\\d+)/g;
@@ -207,7 +207,7 @@ function extractTypographyValues(content) {
   }
 
   // Extract LINE_HEIGHT_SCALE
-  const lineHeightMatch = content.match(/export const LINE_HEIGHT_SCALE[\\s\\S]*?= \\{([\\s\\S]*?)\\} as const;/);
+  const lineHeightMatch = content.match(/export const LINE_HEIGHT_SCALE[\\s\\S]*?= \\{([\\s\\S]*?)\\}/);
   if (lineHeightMatch) {
     const lineHeightContent = lineHeightMatch[1];
     const heightRegex = /(\\w+): ([\\d.]+)/g;
@@ -220,7 +220,7 @@ function extractTypographyValues(content) {
   }
 
   // Extract FONT_FAMILY_SCALE
-  const fontFamilyMatch = content.match(/export const FONT_FAMILY_SCALE[\\s\\S]*?= \\{([\\s\\S]*?)\\} as const;/);
+  const fontFamilyMatch = content.match(/export const FONT_FAMILY_SCALE[\\s\\S]*?= \\{([\\s\\S]*?)\\}/);
   if (fontFamilyMatch) {
     const fontFamilyContent = fontFamilyMatch[1];
     const familyRegex = /(\\w+): `([^`]+)`/g;
