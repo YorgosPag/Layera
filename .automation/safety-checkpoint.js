@@ -220,15 +220,15 @@ class LayeraSafetySystem {
     const srcBackup = path.join(backupPath, 'src');
     fs.mkdirSync(srcBackup, { recursive: true });
 
-    // Cross-platform file copy
+    // Cross-platform file copy - νέο tokens system
     if (process.platform === 'win32') {
       this.execCommand(
-        `xcopy "${path.join(this.tokensPath, '_src')}" "${srcBackup}" /E /I /Y`,
+        `xcopy "${path.join(this.tokensPath, 'src')}" "${srcBackup}" /E /I /Y`,
         'Backup source files'
       );
     } else {
       this.execCommand(
-        `cp -r "${path.join(this.tokensPath, '_src')}"/* "${srcBackup}"/`,
+        `cp -r "${path.join(this.tokensPath, 'src')}"/* "${srcBackup}"/`,
         'Backup source files'
       );
     }

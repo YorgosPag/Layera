@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { BuildingIcon, BriefcaseIcon } from '../../../../packages/icons/src';
 import { Box, LayeraHeader, HeaderActionsGroup } from '../../../../packages/layout/src';
 import { Text, Heading } from '../../../../packages/typography/src';
+import { Colors, PRIMARY_COLORS } from '../../../../packages/tokens/src/colors';
 import styles from './HomePage.module.css';
 
 const HomePage: React.FC = () => {
@@ -33,6 +34,22 @@ const HomePage: React.FC = () => {
             <Heading as="h1" className="layera-typography" data-size="5xl" data-weight="bold" data-color="primary" data-leading="tight">
               Layera
             </Heading>
+
+            {/* 🎨 TEST: Νέα Colors από νέο tokens system */}
+            <Box
+              className="layera-layout"
+              style={{
+                backgroundColor: PRIMARY_COLORS[500],
+                color: Colors.neutral.white,
+                padding: '1rem',
+                borderRadius: '8px',
+                margin: '1rem 0'
+              }}
+            >
+              <Text className="layera-typography" data-size="lg" data-weight="medium">
+                🎯 TEST: Νέο Colors System - Primary Blue {PRIMARY_COLORS[500]}
+              </Text>
+            </Box>
 
             <Box className={`layera-layout ${styles.cardsContainer}`}>
               <Link
