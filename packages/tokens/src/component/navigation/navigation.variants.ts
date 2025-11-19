@@ -67,12 +67,6 @@ export const NAVIGATION_TYPE_VARIANTS = {
     maxHeight: NAVIGATION_VARIABLES['dropdown-max-height'],
     zIndex: NAVIGATION_VARIABLES['dropdown-z-index'],
   },
-  tabs: {
-    background: 'transparent',
-    borderBottom: NAVIGATION_VARIABLES['tab-border-bottom'],
-    gap: NAVIGATION_VARIABLES['tab-gap'],
-    padding: '0',
-  },
   mobile: {
     background: NAVIGATION_VARIABLES['mobile-nav-background'],
     borderTop: NAVIGATION_VARIABLES['mobile-nav-border-top'],

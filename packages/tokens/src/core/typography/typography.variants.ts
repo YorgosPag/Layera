@@ -101,20 +101,6 @@ export const TYPOGRAPHY_VARIANTS = {
     family: FONT_FAMILY_SCALE.mono,
   },
 
-  // Navigation elements
-  navLink: {
-    size: FONT_SIZE_SCALE.base,
-    weight: FONT_WEIGHT_SCALE.medium,
-    lineHeight: LINE_HEIGHT_SCALE.tight,
-    family: FONT_FAMILY_SCALE.system,
-  },
-
-  navLabel: {
-    size: FONT_SIZE_SCALE.sm,
-    weight: FONT_WEIGHT_SCALE.normal,
-    lineHeight: LINE_HEIGHT_SCALE.tight,
-    family: FONT_FAMILY_SCALE.system,
-  },
 } as const;
 
 // RESPONSIVE VARIANTS - Adjustments για διαφορετικά screen sizes

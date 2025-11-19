@@ -56,6 +56,7 @@ const tooltipsComponentFile = path.join(srcDir, 'component', 'tooltips', 'toolti
 const badgesComponentFile = path.join(srcDir, 'component', 'badges', 'badges.variables.ts');
 const loadingComponentFile = path.join(srcDir, 'component', 'loading', 'loading.variables.ts');
 const disclosureComponentFile = path.join(srcDir, 'component', 'disclosure', 'disclosure.variables.ts');
+const dataImportComponentFile = path.join(srcDir, 'component', 'data-import', 'data-import.variables.ts');
 const tooltipsClassFile = path.join(srcDir, 'component', 'tooltips', 'tooltips.class.ts');
 
 if (!fs.existsSync(colorsFile)) {
@@ -128,6 +129,9 @@ const loadingComponentContent = fs.existsSync(loadingComponentFile) ? fs.readFil
 
 console.log('🎭 Διαβάζω disclosure component tokens από:', disclosureComponentFile);
 const disclosureComponentContent = fs.existsSync(disclosureComponentFile) ? fs.readFileSync(disclosureComponentFile, 'utf8') : null;
+
+console.log('📂 Διαβάζω data-import component tokens από:', dataImportComponentFile);
+const dataImportComponentContent = fs.existsSync(dataImportComponentFile) ? fs.readFileSync(dataImportComponentFile, 'utf8') : null;
 
 console.log('💬 Διαβάζω tooltips CSS classes από:', tooltipsClassFile);
 const tooltipsClassContent = fs.existsSync(tooltipsClassFile) ? fs.readFileSync(tooltipsClassFile, 'utf8') : null;
@@ -2100,6 +2104,133 @@ function extractDisclosureComponentValues(content) {
   return cssVariables;
 }
 
+// Εξάγει data-import component τιμές από το TypeScript αρχείο
+function extractDataImportComponentValues(content) {
+  const cssVariables = [];
+
+  if (!content) {
+    console.log('📂 Δεν βρέθηκε περιεχόμενο data-import component αρχείου');
+    return cssVariables;
+  }
+
+  // TypeScript to CSS mapping για data-import
+  const tsToCSS = {
+    "BACKGROUND_VARIABLES['background-default']": 'var(--layera-color-background-default)',
+    "BACKGROUND_VARIABLES['background-hover']": 'var(--layera-color-background-hover)',
+    "BACKGROUND_VARIABLES['background-active']": 'var(--layera-color-background-active)',
+    "BACKGROUND_VARIABLES['background-disabled']": 'var(--layera-color-background-disabled)',
+    "BACKGROUND_VARIABLES['background-muted']": 'var(--layera-color-background-muted)',
+    "BACKGROUND_VARIABLES['background-success']": 'var(--layera-color-background-success)',
+    "BACKGROUND_VARIABLES['background-error']": 'var(--layera-color-background-error)',
+    "BACKGROUND_VARIABLES['background-warning']": 'var(--layera-color-background-warning)',
+    "TEXT_VARIABLES['text-primary']": 'var(--layera-color-text-primary)',
+    "TEXT_VARIABLES['text-secondary']": 'var(--layera-color-text-secondary)',
+    "TEXT_VARIABLES['text-tertiary']": 'var(--layera-color-text-tertiary)',
+    "TEXT_VARIABLES['text-disabled']": 'var(--layera-color-text-disabled)',
+    "TEXT_VARIABLES['text-success']": 'var(--layera-color-text-success)',
+    "TEXT_VARIABLES['text-error']": 'var(--layera-color-text-error)',
+    "TEXT_VARIABLES['text-error-hover']": 'var(--layera-color-text-error-hover)',
+    "TEXT_VARIABLES['text-warning']": 'var(--layera-color-text-warning)',
+    "BORDER_SEMANTIC_VARIABLES['border-default']": 'var(--layera-border-default)',
+    "BORDER_SEMANTIC_VARIABLES['border-hover']": 'var(--layera-border-hover)',
+    "BORDER_SEMANTIC_VARIABLES['border-focus']": 'var(--layera-border-focus)',
+    "BORDER_SEMANTIC_VARIABLES['border-subtle']": 'var(--layera-border-subtle)',
+    "BORDER_SEMANTIC_VARIABLES['border-success']": 'var(--layera-border-success)',
+    "BORDER_SEMANTIC_VARIABLES['border-error']": 'var(--layera-border-error)',
+    "BORDER_SEMANTIC_VARIABLES['border-warning']": 'var(--layera-border-warning)',
+    "BORDER_VARIABLES['border-radius-4']": 'var(--layera-border-radius-4)',
+    "BORDER_VARIABLES['border-radius-6']": 'var(--layera-border-radius-6)',
+    "BORDER_VARIABLES['border-radius-8']": 'var(--layera-border-radius-8)',
+    "BORDER_VARIABLES['border-radius-full']": 'var(--layera-border-radius-full)',
+    "SHADOW_VARIABLES['shadow-sm']": 'var(--layera-shadow-sm)',
+    "SHADOW_VARIABLES['shadow-lg']": 'var(--layera-shadow-lg)',
+    "SHADOW_VARIABLES['shadow-xl']": 'var(--layera-shadow-xl)',
+    "MOTION_VARIABLES['transition-normal']": 'var(--layera-transition-normal)',
+    "MOTION_VARIABLES['transition-fast']": 'var(--layera-transition-fast)',
+    "MOTION_VARIABLES['motion-duration-normal']": 'var(--layera-motion-duration-normal)',
+    "MOTION_VARIABLES['motion-duration-fast']": 'var(--layera-motion-duration-fast)',
+    "MOTION_VARIABLES['motion-duration-slow']": 'var(--layera-motion-duration-slow)',
+    "MOTION_VARIABLES['motion-easing-ease-in-out']": 'var(--layera-motion-easing-ease-in-out)',
+    "MOTION_VARIABLES['motion-easing-ease']": 'var(--layera-motion-easing-ease)',
+  };
+
+  // Προσθήκη spacing variables
+  for (let i = 0; i <= 80; i++) {
+    tsToCSS[`SPACING_VARIABLES['spacing-${i}']`] = `var(--layera-spacing-${i})`;
+  }
+
+  // Εύρεση του DATA_IMPORT_VARIABLES object
+  const dataImportMatch = content.match(/export const DATA_IMPORT_VARIABLES = \{([\s\S]*?)\} as const;/);
+
+  if (dataImportMatch) {
+    const dataImportContent = dataImportMatch[1];
+    const lines = dataImportContent.split('\n');
+
+    let braceCount = 0;
+    let inString = false;
+    let stringChar = null;
+
+    for (let line of lines) {
+      const trimmedLine = line.trim();
+
+      // Skip comments και empty lines
+      if (trimmedLine.startsWith('//') || !trimmedLine) continue;
+
+      // Track braces για nested objects
+      for (let char of trimmedLine) {
+        if ((char === '"' || char === "'") && !inString) {
+          inString = true;
+          stringChar = char;
+        } else if (char === stringChar && inString) {
+          inString = false;
+          stringChar = null;
+        } else if (!inString) {
+          if (char === '{') braceCount++;
+          if (char === '}') braceCount--;
+        }
+      }
+
+      // Process variable definition
+      if (trimmedLine.includes(':') && !trimmedLine.startsWith('//')) {
+        const parts = trimmedLine.split(':');
+        if (parts.length === 2) {
+          const varName = parts[0].replace(/'/g, '');
+          let varValue = parts[1].replace(/,$/, '').trim();
+
+          // Handle template literals for compound values
+          if (varValue.includes('${') && varValue.includes('}')) {
+            // Extract the variables from template literal
+            const templateMatch = varValue.match(/\$\{([^}]+)\}/g);
+            if (templateMatch) {
+              for (let templateVar of templateMatch) {
+                const cleanVar = templateVar.replace(/[\${}]/g, '');
+                if (tsToCSS[cleanVar]) {
+                  varValue = varValue.replace(templateVar, tsToCSS[cleanVar]);
+                }
+              }
+            }
+          } else if (tsToCSS[varValue]) {
+            varValue = tsToCSS[varValue];
+          }
+
+          // Remove quotes if they exist
+          varValue = varValue.replace(/['"]/g, '');
+
+          cssVariables.push(`  --layera-${varName}: ${varValue};`);
+        }
+      }
+
+      // Τέλος του DATA_IMPORT_VARIABLES object
+      if (braceCount <= 0 && trimmedLine.includes('} as const;')) {
+        break;
+      }
+    }
+  }
+
+  console.log(`📂 Εξήχθησαν ${cssVariables.length} data-import component variables`);
+  return cssVariables;
+}
+
 // Εξάγει CSS από LAYERA_TOOLTIP_CSS constant
 function extractTooltipCSS(content) {
   if (!content) return '';
@@ -2139,6 +2270,7 @@ const tooltipsComponentVariables = extractTooltipsComponentValues(tooltipsCompon
 const badgesComponentVariables = extractBadgesComponentValues(badgesComponentContent);
 const loadingComponentVariables = extractLoadingComponentValues(loadingComponentContent);
 const disclosureComponentVariables = extractDisclosureComponentValues(disclosureComponentContent);
+const dataImportComponentVariables = extractDataImportComponentValues(dataImportComponentContent);
 
 // Εξάγει το modal CSS
 const modalCSS = extractModalCSS(modalClassContent);
@@ -2168,11 +2300,12 @@ console.log(`✅ Εξήχθησαν ${tooltipsComponentVariables.length} tooltip
 console.log(`✅ Εξήχθησαν ${badgesComponentVariables.length} badges component variables`);
 console.log(`✅ Εξήχθησαν ${loadingComponentVariables.length} loading component variables`);
 console.log(`✅ Εξήχθησαν ${disclosureComponentVariables.length} disclosure component variables`);
+console.log(`✅ Εξήχθησαν ${dataImportComponentVariables.length} data-import component variables`);
 console.log(`✅ Εξήχθη modal CSS: ${modalCSS ? 'YES' : 'NO'}`);
 console.log(`✅ Εξήχθη tooltip CSS: ${tooltipCSS ? 'YES' : 'NO'}`);
 
 // Συνδυάζει όλα τα CSS variables
-const allVariables = [...cssVariables, ...spacingVariables, ...typographyVariables, ...bordersVariables, ...shadowsVariables, ...motionVariables, ...iconsVariables, ...backgroundSemanticVariables, ...textSemanticVariables, ...borderSemanticVariables, ...feedbackSemanticVariables, ...buttonsComponentVariables, ...modalComponentVariables, ...inputsComponentVariables, ...navigationComponentVariables, ...tooltipsComponentVariables, ...badgesComponentVariables, ...loadingComponentVariables, ...disclosureComponentVariables];
+const allVariables = [...cssVariables, ...spacingVariables, ...typographyVariables, ...bordersVariables, ...shadowsVariables, ...motionVariables, ...iconsVariables, ...backgroundSemanticVariables, ...textSemanticVariables, ...borderSemanticVariables, ...feedbackSemanticVariables, ...buttonsComponentVariables, ...modalComponentVariables, ...inputsComponentVariables, ...navigationComponentVariables, ...tooltipsComponentVariables, ...badgesComponentVariables, ...loadingComponentVariables, ...disclosureComponentVariables, ...dataImportComponentVariables];
 
 // Συνδυάζει CSS classes και variables
 const allClasses = [...utilitiesVariables, ...layoutComponentVariables, ...navigationComponentClasses];
@@ -2243,6 +2376,9 @@ ${loadingComponentVariables.join('\n')}
 
   /* 🎭 COMPONENT DISCLOSURE */
 ${disclosureComponentVariables.join('\n')}
+
+  /* 📂 COMPONENT DATA IMPORT */
+${dataImportComponentVariables.join('\n')}
 }
 
 /* 🔧 UTILITY CLASSES */
@@ -2287,6 +2423,7 @@ console.log(`   💬 Tooltips Component: ${tooltipsComponentVariables.length}`);
 console.log(`   🎯 Badges Component: ${badgesComponentVariables.length}`);
 console.log(`   ⚡ Loading Component: ${loadingComponentVariables.length}`);
 console.log(`   🎭 Disclosure Component: ${disclosureComponentVariables.length}`);
+console.log(`   📂 Data Import Component: ${dataImportComponentVariables.length}`);
 console.log(`   🔧 Utilities Classes: ${utilitiesVariables.length}`);
 console.log(`   📐 Layout Classes: ${layoutComponentVariables.length}`);
 console.log(`   🧭 Navigation Classes: ${navigationComponentClasses.length}`);

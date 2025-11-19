@@ -108,6 +108,14 @@ export { PIPELINE_VARIABLES, PIPELINE_VARIANTS, PipelineComponentSystem } from '
 export * from './component/feedback';
 export { FEEDBACK_COMPONENT_VARIABLES, FEEDBACK_COMPONENT_VARIANTS, FeedbackComponentSystem } from './component/feedback';
 
+// Tables - Table component system
+export * from './component/tables';
+export { TABLE_VARIABLES, TABLE_VARIANTS, TableComponentSystem } from './component/tables';
+
+// File Upload - Complete file upload system
+export * from './component/file-upload';
+export { FILE_UPLOAD_VARIABLES, FILE_UPLOAD_VARIANTS, FileUploadComponentSystem } from './component/file-upload';
+
 // ═══════════════════════════════════════════════════════════════════════════════════════
 // 🎯 CONVENIENCE COLLECTIONS - Grouped exports για common use cases
 // ═══════════════════════════════════════════════════════════════════════════════════════
@@ -144,6 +152,8 @@ export const COMPONENT_TOKENS = {
   icons: './component/icons',
   pipelines: './component/pipelines',
   feedback: './component/feedback',
+  tables: './component/tables',
+  'file-upload': './component/file-upload',
 } as const;
 
 // Full token registry για introspection

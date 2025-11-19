@@ -96,13 +96,6 @@ export const NAVIGATION_VARIABLES = {
   'dropdown-max-height': SPACING_VARIABLES['spacing-80'],
   'dropdown-z-index': SPACING_VARIABLES['spacing-25'],
 
-  // TAB NAVIGATION TOKENS
-  'tab-background': 'transparent',
-  'tab-background-active': BACKGROUND_VARIABLES['background-default'],
-  'tab-border-bottom': BORDER_SEMANTIC_VARIABLES['border-default'],
-  'tab-border-active': BORDER_SEMANTIC_VARIABLES['border-focus'],
-  'tab-padding': `${SPACING_VARIABLES['spacing-3']} ${SPACING_VARIABLES['spacing-4']}`,
-  'tab-gap': SPACING_VARIABLES['spacing-1'],
 
   // MOBILE NAVIGATION TOKENS
   'mobile-nav-height': SPACING_VARIABLES['spacing-14'],
@@ -133,13 +126,24 @@ export const NAVIGATION_VARIABLES = {
   'nav-icon-back-size': SPACING_VARIABLES['spacing-5'],
   'nav-icon-forward-size': SPACING_VARIABLES['spacing-5'],
 
+  // NAVIGATION TYPOGRAPHY TOKENS (από core/typography)
+  'nav-link-font-size': '16px',          // base
+  'nav-link-font-weight': '500',         // medium
+  'nav-link-line-height': '1.25',        // tight
+  'nav-link-font-family': 'system-ui, -apple-system, sans-serif',
+
+  'nav-label-font-size': '14px',         // sm
+  'nav-label-font-weight': '400',        // normal
+  'nav-label-line-height': '1.25',       // tight
+  'nav-label-font-family': 'system-ui, -apple-system, sans-serif',
+
   // NAVIGATION STATE TOKENS
   'nav-loading-opacity': BACKGROUND_VARIABLES['background-muted'],
   'nav-disabled-opacity': TEXT_VARIABLES['text-disabled'],
 } as const;
 
 // Helper types για type safety
-export type NavigationType = 'navbar' | 'sidebar' | 'breadcrumb' | 'menu' | 'dropdown' | 'tabs' | 'mobile' | 'pagination';
+export type NavigationType = 'navbar' | 'sidebar' | 'breadcrumb' | 'menu' | 'dropdown' | 'mobile' | 'pagination';
 export type NavigationState = 'default' | 'hover' | 'active' | 'disabled' | 'loading';
 export type NavigationVariant = 'default' | 'primary' | 'secondary' | 'ghost' | 'minimal';
 export type NavigationSize = 'sm' | 'md' | 'lg';
