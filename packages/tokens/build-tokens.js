@@ -33,6 +33,7 @@ if (!fs.existsSync(distDir)) {
 const colorsFile = path.join(srcDir, 'colors', 'colors.variables.ts');
 const spacingFile = path.join(srcDir, 'core', 'spacing', 'spacing.variables.ts');
 const typographyFile = path.join(srcDir, 'core', 'typography', 'typography.variables.ts');
+const bordersFile = path.join(srcDir, 'core', 'borders', 'borders.variables.ts');
 const iconsFile = path.join(srcDir, 'component', 'icons', 'icons.variables.ts');
 
 if (!fs.existsSync(colorsFile)) {
@@ -48,6 +49,9 @@ const spacingContent = fs.existsSync(spacingFile) ? fs.readFileSync(spacingFile,
 
 console.log('🖋️ Διαβάζω typography tokens από:', typographyFile);
 const typographyContent = fs.existsSync(typographyFile) ? fs.readFileSync(typographyFile, 'utf8') : null;
+
+console.log('🔲 Διαβάζω borders tokens από:', bordersFile);
+const bordersContent = fs.existsSync(bordersFile) ? fs.readFileSync(bordersFile, 'utf8') : null;
 
 console.log('🎯 Διαβάζω icons tokens από:', iconsFile);
 const iconsContent = fs.existsSync(iconsFile) ? fs.readFileSync(iconsFile, 'utf8') : null;
@@ -334,26 +338,80 @@ function extractIconValues(content) {
   return cssVariables;
 }
 
+// Εξάγει borders τιμές από το TypeScript αρχείο
+function extractBordersValues(content) {
+  const cssVariables = [];
+
+  if (!content) {
+    console.log('🔲 Δεν βρέθηκε περιεχόμενο borders αρχείου');
+    return cssVariables;
+  }
+
+  // Extract BORDER_WIDTH_SCALE
+  const borderWidthMatch = content.match(/export const BORDER_WIDTH_SCALE[\s\S]*?= \{([\s\S]*?)\} as const;/);
+  if (borderWidthMatch) {
+    const borderWidthContent = borderWidthMatch[1];
+    const widthRegex = /(\w+): ['"]?([^'"\s,}]+)['"]?/g;
+    let match;
+
+    while ((match = widthRegex.exec(borderWidthContent)) !== null) {
+      const [, scale, value] = match;
+      cssVariables.push(`  --layera-border-width-${scale}: ${value};`);
+    }
+  }
+
+  // Extract BORDER_RADIUS_SCALE
+  const borderRadiusMatch = content.match(/export const BORDER_RADIUS_SCALE[\s\S]*?= \{([\s\S]*?)\} as const;/);
+  if (borderRadiusMatch) {
+    const borderRadiusContent = borderRadiusMatch[1];
+    const radiusRegex = /(\w+): ['"]?([^'"\s,}]+)['"]?/g;
+    let match;
+
+    while ((match = radiusRegex.exec(borderRadiusContent)) !== null) {
+      const [, scale, value] = match;
+      cssVariables.push(`  --layera-border-radius-${scale}: ${value};`);
+    }
+  }
+
+  // Extract BORDER_STYLE_SCALE
+  const borderStyleMatch = content.match(/export const BORDER_STYLE_SCALE[\s\S]*?= \{([\s\S]*?)\} as const;/);
+  if (borderStyleMatch) {
+    const borderStyleContent = borderStyleMatch[1];
+    const styleRegex = /(\w+): ['"]?([^'"\s,}]+)['"]?/g;
+    let match;
+
+    while ((match = styleRegex.exec(borderStyleContent)) !== null) {
+      const [, scale, value] = match;
+      cssVariables.push(`  --layera-border-style-${scale}: ${value};`);
+    }
+  }
+
+  console.log(`🔲 Εξήχθησαν ${cssVariables.length} borders variables`);
+  return cssVariables;
+}
+
 // Εξάγει τις CSS variables
 const cssVariables = extractHexValues(colorsContent);
 const spacingVariables = extractSpacingValues(spacingContent);
 const typographyVariables = extractTypographyValues(typographyContent);
+const bordersVariables = extractBordersValues(bordersContent);
 const iconsVariables = extractIconValues(iconsContent);
 
 console.log(`✅ Εξήχθησαν ${cssVariables.length} color variables`);
 console.log(`✅ Εξήχθησαν ${spacingVariables.length} spacing variables`);
 console.log(`✅ Εξήχθησαν ${typographyVariables.length} typography variables`);
+console.log(`✅ Εξήχθησαν ${bordersVariables.length} borders variables`);
 console.log(`✅ Εξήχθησαν ${iconsVariables.length} icons variables`);
 
 // Συνδυάζει όλα τα CSS variables
-const allVariables = [...cssVariables, ...spacingVariables, ...typographyVariables, ...iconsVariables];
+const allVariables = [...cssVariables, ...spacingVariables, ...typographyVariables, ...bordersVariables, ...iconsVariables];
 
 // Δημιουργεί το CSS περιεχόμενο
 const cssContent = `/*
  * 🎨 LAYERA DESIGN TOKENS - AUTO GENERATED
  *
  * ⚠️  DO NOT EDIT MANUALLY
- * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, και component/icons/icons.variables.ts and rebuild
+ * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts και component/icons/icons.variables.ts and rebuild
  * Generated: ${new Date().toISOString()}
  */
 
@@ -366,6 +424,9 @@ ${spacingVariables.join('\n')}
 
   /* 🖋️ TYPOGRAPHY */
 ${typographyVariables.join('\n')}
+
+  /* 🔲 BORDERS */
+${bordersVariables.join('\n')}
 
   /* 🎯 ICONS */
 ${iconsVariables.join('\n')}

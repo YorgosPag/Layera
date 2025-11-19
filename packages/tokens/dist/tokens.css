@@ -2,8 +2,8 @@
  * 🎨 LAYERA DESIGN TOKENS - AUTO GENERATED
  *
  * ⚠️  DO NOT EDIT MANUALLY
- * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, και component/icons/icons.variables.ts and rebuild
- * Generated: 2025-11-19T19:23:29.865Z
+ * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts και component/icons/icons.variables.ts and rebuild
+ * Generated: 2025-11-19T19:50:27.585Z
  */
 
 :root {
@@ -75,6 +75,28 @@
 
   /* 🖋️ TYPOGRAPHY */
 
+
+  /* 🔲 BORDERS */
+  --layera-border-width-0: 0px;
+  --layera-border-width-1: 1px;
+  --layera-border-width-2: 2px;
+  --layera-border-width-3: 3px;
+  --layera-border-width-4: 4px;
+  --layera-border-width-8: 8px;
+  --layera-border-radius-0: 0px;
+  --layera-border-radius-2: 2px;
+  --layera-border-radius-4: 4px;
+  --layera-border-radius-6: 6px;
+  --layera-border-radius-8: 8px;
+  --layera-border-radius-12: 12px;
+  --layera-border-radius-16: 16px;
+  --layera-border-radius-20: 20px;
+  --layera-border-radius-24: 24px;
+  --layera-border-radius-full: 9999px;
+  --layera-border-style-none: none;
+  --layera-border-style-solid: solid;
+  --layera-border-style-dashed: dashed;
+  --layera-border-style-dotted: dotted;
 
   /* 🎯 ICONS */
   --layera-icon-xs: var(--layera-spacing-4);
