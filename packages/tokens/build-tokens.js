@@ -34,6 +34,7 @@ const colorsFile = path.join(srcDir, 'colors', 'colors.variables.ts');
 const spacingFile = path.join(srcDir, 'core', 'spacing', 'spacing.variables.ts');
 const typographyFile = path.join(srcDir, 'core', 'typography', 'typography.variables.ts');
 const bordersFile = path.join(srcDir, 'core', 'borders', 'borders.variables.ts');
+const shadowsFile = path.join(srcDir, 'core', 'shadows', 'shadows.variables.ts');
 const iconsFile = path.join(srcDir, 'component', 'icons', 'icons.variables.ts');
 
 if (!fs.existsSync(colorsFile)) {
@@ -52,6 +53,9 @@ const typographyContent = fs.existsSync(typographyFile) ? fs.readFileSync(typogr
 
 console.log('🔲 Διαβάζω borders tokens από:', bordersFile);
 const bordersContent = fs.existsSync(bordersFile) ? fs.readFileSync(bordersFile, 'utf8') : null;
+
+console.log('🌫️ Διαβάζω shadows tokens από:', shadowsFile);
+const shadowsContent = fs.existsSync(shadowsFile) ? fs.readFileSync(shadowsFile, 'utf8') : null;
 
 console.log('🎯 Διαβάζω icons tokens από:', iconsFile);
 const iconsContent = fs.existsSync(iconsFile) ? fs.readFileSync(iconsFile, 'utf8') : null;
@@ -390,28 +394,85 @@ function extractBordersValues(content) {
   return cssVariables;
 }
 
+// Εξάγει shadows τιμές από το TypeScript αρχείο
+function extractShadowsValues(content) {
+  const cssVariables = [];
+
+  if (!content) {
+    console.log('🌫️ Δεν βρέθηκε περιεχόμενο shadows αρχείου');
+    return cssVariables;
+  }
+
+  // Απλός line-by-line parsing για SHADOW_VARIABLES
+  const lines = content.split('\n');
+  let insideShadowVariables = false;
+  let braceCount = 0;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    // Αρχή του SHADOW_VARIABLES object
+    if (line.includes('export const SHADOW_VARIABLES')) {
+      insideShadowVariables = true;
+      braceCount = 0;
+      continue;
+    }
+
+    if (insideShadowVariables) {
+      // Μετράω τα braces
+      braceCount += (line.match(/\{/g) || []).length;
+      braceCount -= (line.match(/\}/g) || []).length;
+
+      // Αν βρω variable definition - απλό string matching
+      const trimmedLine = line.trim();
+      if (trimmedLine.startsWith("'") && trimmedLine.includes("': ")) {
+        const parts = trimmedLine.split("': ");
+        if (parts.length === 2) {
+          const varName = parts[0].replace(/'/g, '');
+          let varValue = parts[1].replace(/,$/, '').trim();
+
+          // Αφαιρώ τα quotes από την τιμή
+          varValue = varValue.replace(/^['"]|['"]$/g, '');
+
+          cssVariables.push(`  --layera-${varName}: ${varValue};`);
+        }
+      }
+
+      // Τέλος του SHADOW_VARIABLES object
+      if (braceCount === 0 && trimmedLine.includes('}')) {
+        break;
+      }
+    }
+  }
+
+  console.log(`🌫️ Εξήχθησαν ${cssVariables.length} shadows variables`);
+  return cssVariables;
+}
+
 // Εξάγει τις CSS variables
 const cssVariables = extractHexValues(colorsContent);
 const spacingVariables = extractSpacingValues(spacingContent);
 const typographyVariables = extractTypographyValues(typographyContent);
 const bordersVariables = extractBordersValues(bordersContent);
+const shadowsVariables = extractShadowsValues(shadowsContent);
 const iconsVariables = extractIconValues(iconsContent);
 
 console.log(`✅ Εξήχθησαν ${cssVariables.length} color variables`);
 console.log(`✅ Εξήχθησαν ${spacingVariables.length} spacing variables`);
 console.log(`✅ Εξήχθησαν ${typographyVariables.length} typography variables`);
 console.log(`✅ Εξήχθησαν ${bordersVariables.length} borders variables`);
+console.log(`✅ Εξήχθησαν ${shadowsVariables.length} shadows variables`);
 console.log(`✅ Εξήχθησαν ${iconsVariables.length} icons variables`);
 
 // Συνδυάζει όλα τα CSS variables
-const allVariables = [...cssVariables, ...spacingVariables, ...typographyVariables, ...bordersVariables, ...iconsVariables];
+const allVariables = [...cssVariables, ...spacingVariables, ...typographyVariables, ...bordersVariables, ...shadowsVariables, ...iconsVariables];
 
 // Δημιουργεί το CSS περιεχόμενο
 const cssContent = `/*
  * 🎨 LAYERA DESIGN TOKENS - AUTO GENERATED
  *
  * ⚠️  DO NOT EDIT MANUALLY
- * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts και component/icons/icons.variables.ts and rebuild
+ * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts και component/icons/icons.variables.ts and rebuild
  * Generated: ${new Date().toISOString()}
  */
 
@@ -427,6 +488,9 @@ ${typographyVariables.join('\n')}
 
   /* 🔲 BORDERS */
 ${bordersVariables.join('\n')}
+
+  /* 🌫️ SHADOWS */
+${shadowsVariables.join('\n')}
 
   /* 🎯 ICONS */
 ${iconsVariables.join('\n')}
