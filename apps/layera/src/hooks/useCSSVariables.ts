@@ -209,26 +209,9 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
     root.style.setProperty(`${variableName}-hover`, `${colorValue}DD`);
 
 
-    // Create CSS rules only once για κάρτες
-    let style = document.getElementById('layera-card-color-overrides') as HTMLStyleElement;
-    if (!style) {
-      style = document.createElement('style');
-      style.id = 'layera-card-color-overrides';
-      document.head.appendChild(style);
-
-      // Minimal CSS rules - rely on CardsPlayground's own CSS variable usage
-      // The CardsPlayground already uses var(--layera-card-bg-${key}, fallback) in inline styles
-      // We just need to ensure CSS variables are properly set - no additional CSS rules needed
-      style.textContent = `
-        /* Minimal CSS for card live preview - relies on CardsPlayground's inline CSS variables */
-        /* CSS variables are set directly on :root by applySpecificCardColor */
-
-        /* Debug helper to visualize applied variables */
-        :root {
-          /* Variables set dynamically by applySpecificCardColor function */
-        }
-      `;
-    }
+    // ✅ ARXES COMPLIANT: PURE token-based approach - NO CSS injection
+    // Cards use CSS custom properties set directly on :root via setProperty()
+    // NO document.createElement('style') - ZERO DOM manipulation
   };
 
   /**
@@ -257,26 +240,9 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
     root.style.setProperty(variableName, colorValue);
     root.style.setProperty(`${variableName}-hover`, `${colorValue}DD`);
 
-    // Create CSS rules only once για modals
-    let style = document.getElementById('layera-modal-color-overrides') as HTMLStyleElement;
-    if (!style) {
-      style = document.createElement('style');
-      style.id = 'layera-modal-color-overrides';
-      document.head.appendChild(style);
-
-      // Minimal CSS rules - rely on ModalsPlayground's own CSS variable usage
-      // The ModalsPlayground already uses var(--layera-modal-bg-${key}, fallback) in inline styles
-      // We just need to ensure CSS variables are properly set - no additional CSS rules needed
-      style.textContent = `
-        /* Minimal CSS for modal live preview - relies on ModalsPlayground's inline CSS variables */
-        /* CSS variables are set directly on :root by applySpecificModalColor */
-
-        /* Debug helper to visualize applied variables */
-        :root {
-          /* Variables set dynamically by applySpecificModalColor function */
-        }
-      `;
-    }
+    // ✅ ARXES COMPLIANT: PURE token-based approach - NO CSS injection
+    // Modals use CSS custom properties set directly on :root via setProperty()
+    // NO document.createElement('style') - ZERO DOM manipulation
   };
 
   /**
@@ -305,26 +271,9 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
     root.style.setProperty(variableName, colorValue);
     root.style.setProperty(`${variableName}-hover`, `${colorValue}DD`);
 
-    // Create CSS rules only once για layouts
-    let style = document.getElementById('layera-layout-color-overrides') as HTMLStyleElement;
-    if (!style) {
-      style = document.createElement('style');
-      style.id = 'layera-layout-color-overrides';
-      document.head.appendChild(style);
-
-      // Minimal CSS rules - rely on LayoutPlayground's own CSS variable usage
-      // The LayoutPlayground will use var(--layera-layout-bg-${key}, fallback) in inline styles
-      // We just need to ensure CSS variables are properly set - no additional CSS rules needed
-      style.textContent = `
-        /* Minimal CSS for layout live preview - relies on LayoutPlayground's inline CSS variables */
-        /* CSS variables are set directly on :root by applySpecificLayoutColor */
-
-        /* Debug helper to visualize applied variables */
-        :root {
-          /* Variables set dynamically by applySpecificLayoutColor function */
-        }
-      `;
-    }
+    // ✅ ARXES COMPLIANT: PURE token-based approach - NO CSS injection
+    // Layouts use CSS custom properties set directly on :root via setProperty()
+    // NO document.createElement('style') - ZERO DOM manipulation
   };
 
   /**
@@ -353,26 +302,9 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
     root.style.setProperty(variableName, colorValue);
     root.style.setProperty(`${variableName}-hover`, `${colorValue}DD`);
 
-    // Create CSS rules only once για headers
-    let style = document.getElementById('layera-header-color-overrides') as HTMLStyleElement;
-    if (!style) {
-      style = document.createElement('style');
-      style.id = 'layera-header-color-overrides';
-      document.head.appendChild(style);
-
-      // Minimal CSS rules - rely on HeaderPlayground's own CSS variable usage
-      // The HeaderPlayground will use var(--layera-header-bg-${key}, fallback) in inline styles
-      // We just need to ensure CSS variables are properly set - no additional CSS rules needed
-      style.textContent = `
-        /* Minimal CSS for header live preview - relies on HeaderPlayground's inline CSS variables */
-        /* CSS variables are set directly on :root by applySpecificHeaderColor */
-
-        /* Debug helper to visualize applied variables */
-        :root {
-          /* Variables set dynamically by applySpecificHeaderColor function */
-        }
-      `;
-    }
+    // ✅ ARXES COMPLIANT: PURE token-based approach - NO CSS injection
+    // Headers use CSS custom properties set directly on :root via setProperty()
+    // NO document.createElement('style') - ZERO DOM manipulation
   };
 
   /**

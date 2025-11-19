@@ -5,20 +5,7 @@ import { Button } from '@layera/buttons';
 import { PlusIcon, SearchIcon, UserIcon, SettingsIcon } from '@layera/icons';
 import { ButtonState, SectionProps, ButtonVariant, ButtonSize } from './shared/types';
 
-// Enterprise CSS για ARXES compliance
-const styles = `
-.layera-grid-autofit {
-  grid-template-columns: var(--layera-global-gridTemplateColumns-autoFit) !important;
-}
-`;
-
-// Inject styles
-if (typeof document !== 'undefined' && !document.querySelector('#layera-buttons-section-styles')) {
-  const styleSheet = document.createElement('style');
-  styleSheet.id = 'layera-buttons-section-styles';
-  styleSheet.textContent = styles;
-  document.head.appendChild(styleSheet);
-}
+// ✅ NO INLINE STYLES - Using only @layera tokens and CSS classes
 
 /**
  * ButtonsSection - Live Buttons Playground Section
@@ -50,7 +37,7 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
         </h3>
 
         <Box
-          className="layera-grid layera-grid--gap-lg layera-margin-bottom--lg layera-grid-autofit"
+          className="layera-grid layera-grid--gap-lg layera-margin-bottom--lg layera-grid--auto-fit"
         >
           {/* Variant Control */}
           <Box>
@@ -97,7 +84,8 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
             <Text className="layera-typography layera-margin-bottom--sm" data-size="sm" data-weight="medium" data-color="primary">
               Button Text
             </Text>
-            <input
+            <Box
+              as="input"
               type="text"
               value={buttonState.text}
               onChange={(e) => updateButtonState({ text: e.target.value })}

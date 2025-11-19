@@ -121,9 +121,8 @@ export const ModalRadiusControl: React.FC<ModalRadiusControlProps> = ({
 
       {/* Live Preview of Current Modal Radius */}
       <Box
-        className={`layera-margin-bottom--sm layera-padding--lg layera-bg--surface-primary layera-text-align--center layera-transition--normal layera-border--solid layera-border-width--2 layera-border-color--primary layera-min-height--5 ${isChanging ? 'layera-transform--scale-102' : 'layera-transform--scale-100'}`}
-data-dynamic-radius={currentOption.token}
-        className="layera-dynamic-radius"
+        className={`layera-margin-bottom--sm layera-padding--lg layera-bg--surface-primary layera-text-align--center layera-transition--normal layera-border--solid layera-border-width--2 layera-border-color--primary layera-min-height--5 layera-dynamic-radius ${isChanging ? 'layera-transform--scale-102' : 'layera-transform--scale-100'}`}
+        data-dynamic-radius={currentOption.token}
       >
         <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">
           Preview: {currentOption.description}

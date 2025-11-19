@@ -2,25 +2,7 @@ import React from 'react';
 import { Box } from '@layera/layout';
 import { CheckIcon } from '@layera/icons';
 
-// Enterprise-grade CSS classes
-const styles = `
-.layera-tables-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.layera-table-row:not(.layera-table-row--last) {
-  margin-bottom: var(--layera-global-borderRadius-xs);
-}
-`;
-
-// Inject styles
-if (typeof document !== 'undefined' && !document.querySelector('#layera-tables-styles')) {
-  const styleSheet = document.createElement('style');
-  styleSheet.id = 'layera-tables-styles';
-  styleSheet.textContent = styles;
-  document.head.appendChild(styleSheet);
-}
+// ✅ NO INLINE STYLES - Using only @layera tokens and CSS classes
 
 interface TablesPlaygroundProps {
   currentColors: {
@@ -141,27 +123,19 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
     return parts.join(' ');
   };
 
-  const getDynamicTableStyles = (colorValue: string) => {
+  // ✅ NO INLINE STYLES - Using CSS classes with @layera tokens
+  const getDynamicTableClasses = (colorName: string) => {
+    const baseClasses = "layera-box-border layera-border--solid layera-border-color--transparent layera-padding--md layera-border-radius--md layera-flex layera-flex--justify-space-between layera-flex--align-center layera-text--size-sm layera-font-weight--medium";
 
     switch (colorCategory) {
       case 'backgrounds':
-        return {
-          backgroundColor: colorValue,
-          color: colorValue === 'var(--layera-color-semantic-warning-primary)' ? 'var(--layera-color-text-primary)' : 'var(--layera-color-text-on-dark)'
-        };
+        return `${baseClasses} layera-dynamic-bg layera-text-color--on-dark`;
       case 'text':
-        return {
-          backgroundColor: 'var(--layera-color-surface-primary)',
-          color: colorValue
-        };
+        return `${baseClasses} layera-bg--surface-primary layera-dynamic-text`;
       case 'borders':
-        return {
-          backgroundColor: 'var(--layera-color-surface-primary)',
-          color: 'var(--layera-color-text-primary)',
-          border: `var(--layera-global-borderWidth-1) var(--layera-global-borderStyle-solid) ${colorValue}`
-        };
+        return `${baseClasses} layera-bg--surface-primary layera-text-color--primary layera-dynamic-border`;
       default:
-        return {};
+        return baseClasses;
     }
   };
 
@@ -186,11 +160,11 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
           {generateFullDescription()}
         </p>
 
-        <Box className="layera-tables-container">
+        <Box className="layera-flex layera-flex--column">
           {colors.map((color, index) => (
             <Box
               key={color.name}
-              className={`layera-box-border layera-border--solid layera-border-color--transparent layera-padding--md layera-border-radius--md layera-flex layera-flex--justify-space-between layera-flex--align-center layera-text--size-sm layera-font-weight--medium layera-table-row--dynamic ${index === colors.length - 1 ? "layera-table-row layera-table-row--last" : "layera-table-row"}`}
+              className={`${getDynamicTableClasses(color.name)} ${index === colors.length - 1 ? "" : "layera-margin-bottom--xs"}`}
               data-color-category={colorCategory}
               data-dynamic-color={color.value}
             >

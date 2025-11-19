@@ -41,24 +41,28 @@ export interface BoxProps {
   min?: string | number;
   max?: string | number;
   step?: string | number;
+  placeholder?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onInput?: React.FormEventHandler<HTMLInputElement>;
 }
 
-export const Box: React.FC<BoxProps> = ({
+export const Box = forwardRef<HTMLElement, BoxProps>(({
   children,
   className = '',
   as = 'div',
   ...restProps
-}) => {
+}, ref) => {
   const Component = as;
 
   return (
     <Component
+      ref={ref}
       className={`layera-box ${className}`.trim()}
       {...restProps}
     >
       {children}
     </Component>
   );
-};
+});
+
+Box.displayName = 'Box';

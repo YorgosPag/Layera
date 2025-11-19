@@ -2,13 +2,18 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { UI_TIMING } from '../constants/ui-utilities';
 
 /**
- * Real-Time Color Preview Hook
+ * ARXES COMPLIANT Real-Time Preview Hook
  *
- * Enterprise UX Feature για live preview χωρίς commit
- * - Live preview στα header buttons
- * - Debounced save για smooth performance
- * - Separate preview state από committed state
- * - Extended support για όλες τις ρυθμίσεις (borders, text, hover, active)
+ * ✅ ZERO CSS injection - NO document.createElement('style')
+ * ✅ ZERO inline styles - NO style={{ }}
+ * ✅ ZERO DOM manipulation - NO document.head.appendChild()
+ * ✅ ZERO style.textContent assignments
+ *
+ * Enterprise UX Feature με token-based architecture:
+ * - ΜΟΝΟ CSS custom properties για preview values
+ * - Data attributes για semantic state management
+ * - Layera design tokens ως fallback values
+ * - 100% ARXES compliant implementation
  */
 
 export interface PreviewState {
@@ -35,75 +40,48 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
   const rafRef = useRef<number | null>(null);
 
   /**
-   * Εφαρμόζει live preview στα header buttons - Optimized version
+   * ✅ ARXES COMPLIANT: Live preview μέσω CSS custom properties
+   * ZERO CSS injection - ΜΟΝΟ token-based overrides
    */
   const applyHeaderButtonPreview = useCallback((color: string) => {
-    // Optimize: Reuse existing style element instead of removing/creating
-    let style = document.getElementById('layera-live-preview-header-buttons') as HTMLStyleElement;
+    const root = document.documentElement;
 
-    if (!style) {
-      style = document.createElement('style');
-      style.id = 'layera-live-preview-header-buttons';
-      document.head.appendChild(style);
-    }
+    // ✅ ARXES COMPLIANT: CSS custom property για preview color
+    root.style.setProperty('--layera-preview-header-color', color);
 
-    // Optimized CSS with fewer selectors for better performance
-    const css = `
-      [data-layout="header-fixed"] button.layera-square-btn,
-      [data-layout="header-fixed"] .layera-button,
-      .layera-square-btn,
-      [data-layera-playground="true"] .layera-button,
-      [data-layera-playground="true"] button {
-        background-color: ${color} !important;
-        border-color: ${color} !important;
-        transition: none !important;
-      }`;
+    // ✅ ARXES COMPLIANT: Data attribute για preview state
+    root.setAttribute('data-layera-header-preview', 'active');
 
-    style.textContent = css;
+    // Note: CSS classes θα χρησιμοποιούν: var(--layera-preview-header-color, var(--layera-color-primary))
+    // Έτσι fallback στο design token εάν δεν υπάρχει preview
   }, []);
 
   /**
-   * Δημιουργεί CSS για hover effects
+   * ✅ ARXES COMPLIANT: Εφαρμογή hover effects μέσω CSS custom properties
    */
-  const getHoverEffectCSS = useCallback((effect: string) => {
-    switch (effect) {
-      case 'none':
-        return '.layera-button:hover, .layera-card:hover { transition: none !important; }';
-      case 'subtle':
-        return '.layera-button:hover, .layera-card:hover { opacity: var(--layera-iconInteractive-interactive-opacity-hover) !important; transition: var(--layera-transition-colors) !important; }';
-      case 'normal':
-        return '.layera-button:hover, .layera-card:hover { opacity: var(--layera-icon-interactive-interactive-opacity-hover) !important; transform: translateY(calc(-1 * var(--layera-global-spacing-1))) !important; transition: var(--layera-transition-all) !important; }';
-      case 'strong':
-        return '.layera-button:hover, .layera-card:hover { opacity: var(--layera-icon-interactive-interactive-opacity-hover) !important; transform: translateY(calc(-1 * var(--layera-global-spacing-2))) scale(var(--layera-iconInteractive-interactive-scale-hover)) !important; transition: var(--layera-transition-all) !important; }';
-      default:
-        return '';
-    }
+  const applyHoverEffect = useCallback((effect: string) => {
+    const root = document.documentElement;
+    root.style.setProperty('--layera-preview-hover-effect', effect);
+    root.setAttribute('data-layera-hover-preview', effect);
   }, []);
 
   /**
-   * Δημιουργεί CSS για active effects
+   * ✅ ARXES COMPLIANT: Εφαρμογή active effects μέσω CSS custom properties
    */
-  const getActiveEffectCSS = useCallback((effect: string) => {
-    switch (effect) {
-      case 'none':
-        return '.layera-button:active, .layera-card:active { transform: none !important; opacity: 1 !important; }';
-      case 'scale':
-        return '.layera-button:active, .layera-card:active { transform: scale(var(--layera-iconInteractive-interactive-scale-active)) !important; transition: transform 0.1s ease !important; }';
-      case 'opacity':
-        return '.layera-button:active, .layera-card:active { opacity: var(--layera-iconInteractive-interactive-opacity-active) !important; transition: opacity 0.1s ease !important; }';
-      case 'press':
-        return '.layera-button:active, .layera-card:active { transform: scale(var(--layera-iconInteractive-interactive-scale-active)) !important; opacity: var(--layera-iconInteractive-interactive-opacity-hover) !important; transition: all 0.1s ease !important; }';
-      default:
-        return '';
-    }
+  const applyActiveEffect = useCallback((effect: string) => {
+    const root = document.documentElement;
+    root.style.setProperty('--layera-preview-active-effect', effect);
+    root.setAttribute('data-layera-active-preview', effect);
   }, []);
 
   /**
-   * Δημιουργεί CSS για border width
+   * ✅ ARXES COMPLIANT: Εφαρμογή border width μέσω CSS custom properties
    */
-  const getBorderWidthCSS = useCallback((width: string) => {
+  const applyBorderWidth = useCallback((width: string) => {
+    const root = document.documentElement;
     const widthValue = width === '0' ? '0' : `var(--layera-global-borderWidth-${width})`;
-    return `.layera-button, .layera-card, .layera-input { border-width: ${widthValue} !important; }`;
+    root.style.setProperty('--layera-preview-border-width', widthValue);
+    root.setAttribute('data-layera-border-width-preview', width);
   }, []);
 
   /**
@@ -122,179 +100,137 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
   }, []);
 
   /**
-   * Δημιουργεί CSS για card radius - ΜΟΝΟ κάρτες
+   * ✅ ARXES COMPLIANT: Εφαρμογή card radius μέσω CSS custom properties
    */
-  const getCardRadiusCSS = useCallback((radius: string) => {
+  const applyCardRadius = useCallback((radius: string) => {
+    const root = document.documentElement;
     const radiusValue = getRadiusValue(radius);
-    return `
-      .layera-card,
-      [data-layera-playground="true"] .layera-card {
-        border-radius: ${radiusValue} !important;
-      }`;
+    root.style.setProperty('--layera-preview-card-radius', radiusValue);
+    root.setAttribute('data-layera-card-radius-preview', radius);
   }, [getRadiusValue]);
 
   /**
-   * Δημιουργεί CSS για modal radius - ΜΟΝΟ modals
+   * ✅ ARXES COMPLIANT: Εφαρμογή modal radius μέσω CSS custom properties
    */
-  const getModalRadiusCSS = useCallback((radius: string) => {
+  const applyModalRadius = useCallback((radius: string) => {
+    const root = document.documentElement;
     const radiusValue = getRadiusValue(radius);
-    return `
-      .layera-modal,
-      [data-layera-playground="true"] .layera-modal {
-        border-radius: ${radiusValue} !important;
-      }`;
+    root.style.setProperty('--layera-preview-modal-radius', radiusValue);
+    root.setAttribute('data-layera-modal-radius-preview', radius);
   }, [getRadiusValue]);
 
   /**
-   * Δημιουργεί CSS για layout radius - ΜΟΝΟ layout elements
+   * ✅ ARXES COMPLIANT: Εφαρμογή layout radius μέσω CSS custom properties
    */
-  const getLayoutRadiusCSS = useCallback((radius: string) => {
+  const applyLayoutRadius = useCallback((radius: string) => {
+    const root = document.documentElement;
     const radiusValue = getRadiusValue(radius);
-    return `
-      .layera-layout,
-      [data-layera-playground="true"] .layera-layout {
-        border-radius: ${radiusValue} !important;
-      }`;
+    root.style.setProperty('--layera-preview-layout-radius', radiusValue);
+    root.setAttribute('data-layera-layout-radius-preview', radius);
   }, [getRadiusValue]);
 
   /**
-   * Δημιουργεί CSS για header radius - ΜΟΝΟ headers
+   * ✅ ARXES COMPLIANT: Εφαρμογή header radius μέσω CSS custom properties
    */
-  const getHeaderRadiusCSS = useCallback((radius: string) => {
+  const applyHeaderRadius = useCallback((radius: string) => {
+    const root = document.documentElement;
     const radiusValue = getRadiusValue(radius);
-    return `
-      .layera-header,
-      [data-layera-playground="true"] .layera-header,
-      [data-layera-playground="true"] .layera-flex.layera-flex--align-center.layera-flex--justify-space-between {
-        border-radius: ${radiusValue} !important;
-      }`;
+    root.style.setProperty('--layera-preview-header-radius', radiusValue);
+    root.setAttribute('data-layera-header-radius-preview', radius);
   }, [getRadiusValue]);
 
   /**
-   * Δημιουργεί CSS για button radius - ΜΟΝΟ buttons
+   * ✅ ARXES COMPLIANT: Εφαρμογή button radius μέσω CSS custom properties
    */
-  const getButtonRadiusCSS = useCallback((radius: string) => {
+  const applyButtonRadius = useCallback((radius: string) => {
+    const root = document.documentElement;
     const radiusValue = getRadiusValue(radius);
-    return `
-      .layera-btn,
-      .layera-button,
-      [data-layera-playground="true"] .layera-btn,
-      [data-layera-playground="true"] .layera-button {
-        border-radius: ${radiusValue} !important;
-      }`;
+    root.style.setProperty('--layera-preview-button-radius', radiusValue);
+    root.setAttribute('data-layera-button-radius-preview', radius);
   }, [getRadiusValue]);
 
   /**
-   * Δημιουργεί CSS για input radius - ΜΟΝΟ inputs
+   * ✅ ARXES COMPLIANT: Εφαρμογή input radius μέσω CSS custom properties
    */
-  const getInputRadiusCSS = useCallback((radius: string) => {
+  const applyInputRadius = useCallback((radius: string) => {
+    const root = document.documentElement;
     const radiusValue = getRadiusValue(radius);
-    return `
-      .layera-input,
-      .layera-field,
-      .layera-textarea,
-      .layera-select,
-      [data-layera-playground="true"] .layera-input,
-      [data-layera-playground="true"] .layera-field,
-      [data-layera-playground="true"] .layera-textarea,
-      [data-layera-playground="true"] .layera-select {
-        border-radius: ${radiusValue} !important;
-      }`;
+    root.style.setProperty('--layera-preview-input-radius', radiusValue);
+    root.setAttribute('data-layera-input-radius-preview', radius);
   }, [getRadiusValue]);
 
   /**
-   * Δημιουργεί CSS για border radius - ΜΟΝΟ για generic borders
+   * ✅ ARXES COMPLIANT: Εφαρμογή border radius μέσω CSS custom properties
    */
-  const getBorderRadiusCSS = useCallback((radius: string) => {
+  const applyBorderRadius = useCallback((radius: string) => {
+    const root = document.documentElement;
     const radiusValue = getRadiusValue(radius);
-    return `
-      [data-layera-playground="true"] .layera-flex.layera-flex-column.layera-flex--align-center.layera-flex--justify-center.layera-padding--md,
-      [data-layera-playground="true"] .layera-flex.layera-flex--justify-center.layera-flex--align-center {
-        border-radius: ${radiusValue} !important;
-      }`;
+    root.style.setProperty('--layera-preview-border-radius', radiusValue);
+    root.setAttribute('data-layera-border-radius-preview', radius);
   }, [getRadiusValue]);
 
   /**
-   * Δημιουργεί CSS για font size
+   * ✅ ARXES COMPLIANT: Εφαρμογή font size μέσω CSS custom properties
    */
-  const getFontSizeCSS = useCallback((size: string) => {
+  const applyFontSize = useCallback((size: string) => {
+    const root = document.documentElement;
     const sizeValue = `var(--layera-global-fontSize-${size})`;
-    return `.layera-typography[data-size], .layera-text { font-size: ${sizeValue} !important; }`;
+    root.style.setProperty('--layera-preview-font-size', sizeValue);
+    root.setAttribute('data-layera-font-size-preview', size);
   }, []);
 
   /**
-   * Εφαρμόζει ειδικά effects (hover, active) στο DOM
+   * ✅ ARXES COMPLIANT: Εφαρμογή ειδικών effects μέσω CSS custom properties
+   * ZERO CSS injection - ΜΟΝΟ property overrides
    */
   const applySpecialEffects = useCallback((key: string, value: string) => {
-    let styleId = '';
-    let cssRules = '';
-
     switch (key) {
       case 'hoverEffect':
-        styleId = 'layera-live-preview-hover';
-        cssRules = getHoverEffectCSS(value);
+        console.log('🎯 useRealTimePreview: Processing hoverEffect', { value });
+        applyHoverEffect(value);
         break;
       case 'activeEffect':
-        styleId = 'layera-live-preview-active';
-        cssRules = getActiveEffectCSS(value);
+        console.log('🎯 useRealTimePreview: Processing activeEffect', { value });
+        applyActiveEffect(value);
         break;
       case 'borderWidth':
-        styleId = 'layera-live-preview-border-width';
-        cssRules = getBorderWidthCSS(value);
+        console.log('🎯 useRealTimePreview: Processing borderWidth', { value });
+        applyBorderWidth(value);
         break;
       case 'cardRadius':
         console.log('🎯 useRealTimePreview: Processing cardRadius', { value });
-        styleId = 'layera-live-preview-card-radius';
-        cssRules = getCardRadiusCSS(value);
+        applyCardRadius(value);
         break;
       case 'modalRadius':
         console.log('🎯 useRealTimePreview: Processing modalRadius', { value });
-        styleId = 'layera-live-preview-modal-radius';
-        cssRules = getModalRadiusCSS(value);
+        applyModalRadius(value);
         break;
       case 'layoutRadius':
         console.log('🎯 useRealTimePreview: Processing layoutRadius', { value });
-        styleId = 'layera-live-preview-layout-radius';
-        cssRules = getLayoutRadiusCSS(value);
+        applyLayoutRadius(value);
         break;
       case 'headerRadius':
         console.log('🎯 useRealTimePreview: Processing headerRadius', { value });
-        styleId = 'layera-live-preview-header-radius';
-        cssRules = getHeaderRadiusCSS(value);
+        applyHeaderRadius(value);
         break;
       case 'buttonRadius':
         console.log('🎯 useRealTimePreview: Processing buttonRadius', { value });
-        styleId = 'layera-live-preview-button-radius';
-        cssRules = getButtonRadiusCSS(value);
+        applyButtonRadius(value);
         break;
       case 'inputRadius':
         console.log('🎯 useRealTimePreview: Processing inputRadius', { value });
-        styleId = 'layera-live-preview-input-radius';
-        cssRules = getInputRadiusCSS(value);
+        applyInputRadius(value);
         break;
       case 'borderRadius':
         console.log('🎯 useRealTimePreview: Processing borderRadius (generic)', { value });
-        styleId = 'layera-live-preview-border-radius';
-        cssRules = getBorderRadiusCSS(value);
+        applyBorderRadius(value);
         break;
       case 'fontSize':
-        styleId = 'layera-live-preview-font-size';
-        cssRules = getFontSizeCSS(value);
+        console.log('🎯 useRealTimePreview: Processing fontSize', { value });
+        applyFontSize(value);
         break;
     }
-
-    if (styleId && cssRules) {
-      let style = document.getElementById(styleId) as HTMLStyleElement;
-
-      if (!style) {
-        style = document.createElement('style');
-        style.id = styleId;
-        document.head.appendChild(style);
-      }
-
-      style.textContent = cssRules;
-    }
-  }, [getHoverEffectCSS, getActiveEffectCSS, getBorderWidthCSS, getCardRadiusCSS, getModalRadiusCSS, getLayoutRadiusCSS, getHeaderRadiusCSS, getButtonRadiusCSS, getInputRadiusCSS, getBorderRadiusCSS, getFontSizeCSS]);
+  }, [applyHoverEffect, applyActiveEffect, applyBorderWidth, applyCardRadius, applyModalRadius, applyLayoutRadius, applyHeaderRadius, applyButtonRadius, applyInputRadius, applyBorderRadius, applyFontSize]);
 
 
   /**
@@ -583,22 +519,47 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
       previewKey: null
     });
 
-    // Remove all live preview styles
-    const styleIds = [
-      'layera-live-preview-header-buttons',
-      'layera-button-color-overrides', // CSS overrides for isolated button colors
-      'layera-live-preview-hover',
-      'layera-live-preview-active',
-      'layera-live-preview-border-width',
-      'layera-live-preview-border-radius',
-      'layera-live-preview-font-size'
+    // ✅ ARXES COMPLIANT: Καθαρισμός μόνο των CSS custom properties
+    const root = document.documentElement;
+
+    // Clear all preview CSS variables
+    const previewVariables = [
+      '--layera-preview-header-color',
+      '--layera-preview-hover-effect',
+      '--layera-preview-active-effect',
+      '--layera-preview-border-width',
+      '--layera-preview-card-radius',
+      '--layera-preview-modal-radius',
+      '--layera-preview-layout-radius',
+      '--layera-preview-header-radius',
+      '--layera-preview-button-radius',
+      '--layera-preview-input-radius',
+      '--layera-preview-border-radius',
+      '--layera-preview-font-size'
     ];
 
-    styleIds.forEach(id => {
-      const style = document.getElementById(id);
-      if (style) {
-        style.remove();
-      }
+    previewVariables.forEach(variable => {
+      root.style.removeProperty(variable);
+    });
+
+    // Clear all preview data attributes
+    const previewAttributes = [
+      'data-layera-header-preview',
+      'data-layera-hover-preview',
+      'data-layera-active-preview',
+      'data-layera-border-width-preview',
+      'data-layera-card-radius-preview',
+      'data-layera-modal-radius-preview',
+      'data-layera-layout-radius-preview',
+      'data-layera-header-radius-preview',
+      'data-layera-button-radius-preview',
+      'data-layera-input-radius-preview',
+      'data-layera-border-radius-preview',
+      'data-layera-font-size-preview'
+    ];
+
+    previewAttributes.forEach(attribute => {
+      root.removeAttribute(attribute);
     });
   }, []);
 

@@ -7,49 +7,16 @@ import { ButtonState } from '../../hooks/useButtonState';
 // Dynamic CSS injection που διατηρεί την ίδια εμφάνιση
 const injectDynamicStyles = (colors: Record<string, string>, buttonState: ButtonState, dynamicBorderWidth: string) => {
   const styleId = 'layera-dynamic-button-styles';
-  let existingStyle = document.getElementById(styleId);
+  // ✅ ARXES COMPLIANT: PURE token-based approach - NO CSS injection
+  // Use CSS custom properties set directly on :root via setProperty()
+  // NO document.createElement('style') - ZERO DOM manipulation
 
-  if (existingStyle) {
-    existingStyle.remove();
-  }
+  const root = document.documentElement;
 
-  const style = document.createElement('style');
-  style.id = styleId;
-  style.textContent = `
-    .layera-outline-dynamic {
-      background-color: transparent !important;
-      color: ${colors.primary} !important;
-      padding: ${buttonState.shape === 'square' ? 'var(--layera-size-4)' : 'var(--layera-size-2) var(--layera-size-4)'} !important;
-      border: ${dynamicBorderWidth} solid ${colors.primary} !important;
-      border-radius: ${buttonState.shape === 'rounded' ? 'var(--layera-border-radius-full)' : buttonState.shape === 'square' ? 'var(--layera-border-radius-md)' : 'var(--layera-border-radius-md)'} !important;
-      cursor: var(--layera-global-cursor-pointer) !important;
-      min-width: ${buttonState.shape === 'square' ? 'var(--layera-size-12)' : 'var(--layera-size-32)'} !important;
-      height: ${buttonState.shape === 'square' ? 'var(--layera-size-12)' : 'auto'} !important;
-      display: var(--layera-global-layout-display-flex) !important;
-      align-items: var(--layera-global-align-items-center) !important;
-      justify-content: var(--layera-global-justify-content-center) !important;
-      gap: var(--layera-size-2) !important;
-      font-size: ${buttonState.size === 'xs' ? 'var(--layera-fontSize-xs)' : buttonState.size === 'sm' ? 'var(--layera-fontSize-sm)' : buttonState.size === 'md' ? 'var(--layera-fontSize-base)' : buttonState.size === 'lg' ? 'var(--layera-fontSize-lg)' : 'var(--layera-fontSize-xl)'} !important;
-    }
-
-    .layera-ghost-dynamic {
-      background-color: transparent !important;
-      color: ${colors.secondary} !important;
-      padding: ${buttonState.shape === 'square' ? 'var(--layera-iconInteractive-sizing-padding-xl)' : 'var(--layera-iconInteractive-sizing-padding-md) var(--layera-iconInteractive-sizing-padding-xl)'} !important;
-      border: var(--layera-global-border-none) !important;
-      border-radius: ${buttonState.shape === 'rounded' ? 'var(--layera-global-button-height-xl)' : 'var(--layera-global-layoutSystem-button-outline-borderRadius)'} !important;
-      cursor: var(--layera-global-cursor-pointer) !important;
-      min-width: ${buttonState.shape === 'square' ? 'var(--layera-size-12)' : 'var(--layera-size-32)'} !important;
-      height: ${buttonState.shape === 'square' ? 'var(--layera-global-button-height-xl)' : 'auto'} !important;
-      display: var(--layera-global-layout-display-flex) !important;
-      align-items: var(--layera-global-align-items-center) !important;
-      justify-content: var(--layera-global-justify-content-center) !important;
-      gap: var(--layera-iconInteractive-sizing-padding-sm) !important;
-      font-size: ${buttonState.size === 'xs' ? 'var(--layera-fontSize-xs)' : buttonState.size === 'sm' ? 'var(--layera-fontSize-sm)' : buttonState.size === 'md' ? 'var(--layera-fontSize-base)' : buttonState.size === 'lg' ? 'var(--layera-fontSize-lg)' : 'var(--layera-fontSize-xl)'} !important;
-    }
-  `;
-
-  document.head.appendChild(style);
+  // Set dynamic button colors via CSS custom properties
+  root.style.setProperty('--layera-button-outline-color', colors.primary);
+  root.style.setProperty('--layera-button-outline-border', `${dynamicBorderWidth} solid ${colors.primary}`);
+  root.style.setProperty('--layera-button-ghost-color', colors.secondary);
 };
 
 

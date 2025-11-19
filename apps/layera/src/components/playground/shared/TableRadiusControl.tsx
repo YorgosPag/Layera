@@ -120,9 +120,8 @@ export const TableRadiusControl: React.FC<TableRadiusControlProps> = ({
 
       {/* Live Preview of Current Table Radius */}
       <Box
-        className={`layera-margin-bottom--sm layera-padding--lg layera-bg--surface-secondary layera-text-align--center layera-transition--normal layera-border--solid layera-border-width--2 layera-border-color--primary layera-min-height--4 layera-grid layera-grid-cols--2 layera-gap--xs layera-align-items--center ${isChanging ? 'layera-transform--scale-102' : 'layera-transform--scale-100'}`}
-data-dynamic-radius={currentOption.token}
-        className="layera-dynamic-radius"
+        className={`layera-margin-bottom--sm layera-padding--lg layera-bg--surface-secondary layera-text-align--center layera-transition--normal layera-border--solid layera-border-width--2 layera-border-color--primary layera-min-height--4 layera-grid layera-grid-cols--2 layera-gap--xs layera-align-items--center layera-dynamic-radius ${isChanging ? 'layera-transform--scale-102' : 'layera-transform--scale-100'}`}
+        data-dynamic-radius={currentOption.token}
       >
         <Box className="layera-padding--sm layera-bg--surface-primary layera-dynamic-radius" data-dynamic-radius={currentOption.token}>
           <Text className="layera-typography" data-size="xs" data-weight="medium" data-color="primary">Header</Text>

@@ -151,69 +151,23 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
 
   // REMOVED: DOM manipulation violation - CSS variables are handled by useCSSVariables.ts
 
-  // Helper to get appropriate CSS class based on category and key
+  // Helper to get appropriate CSS classes with dynamic data attributes
   const getLayoutClasses = (key: string) => {
     const baseClasses = "layera-padding--md layera-height--6xl layera-width--card layera-flex layera-flex--align-center layera-flex--justify-center layera-flex-shrink--0";
 
-    // Map keys to SPECIFIC layout preview classes που δεν επηρεάζουν άλλες κάρτες
-    const backgroundClass = `layera-layout-preview-bg-${key}`;
-    const textClass = colorCategory === 'text' ? `layera-layout-preview-text-${key}` : '';
-
-    return `${baseClasses} ${backgroundClass} ${textClass}`.trim();
+    switch (colorCategory) {
+      case 'backgrounds':
+        return `${baseClasses} layera-dynamic-bg layera-text-color--on-dark`;
+      case 'text':
+        return `${baseClasses} layera-bg--surface-primary layera-dynamic-text`;
+      case 'borders':
+        return `${baseClasses} layera-bg--surface-primary layera-text-color--primary layera-dynamic-border`;
+      default:
+        return baseClasses;
+    }
   };
 
-  // Dynamic CSS injection για Layout Preview μόνο
-  React.useEffect(() => {
-    const styleId = 'layera-layout-preview-styles';
-    let existingStyle = document.getElementById(styleId);
-
-    if (existingStyle) {
-      existingStyle.remove();
-    }
-
-    const style = document.createElement('style');
-    style.id = styleId;
-    style.textContent = `
-      .layera-layout-preview-bg-primary {
-        background-color: ${currentColors.primary} !important;
-      }
-      .layera-layout-preview-bg-secondary {
-        background-color: ${currentColors.secondary} !important;
-      }
-      .layera-layout-preview-bg-success {
-        background-color: ${currentColors.success} !important;
-      }
-      .layera-layout-preview-bg-warning {
-        background-color: ${currentColors.warning} !important;
-      }
-      .layera-layout-preview-bg-danger {
-        background-color: ${currentColors.danger} !important;
-      }
-      .layera-layout-preview-bg-info {
-        background-color: ${currentColors.info} !important;
-      }
-      .layera-layout-preview-text-primary {
-        color: ${currentColors.primary} !important;
-      }
-      .layera-layout-preview-text-secondary {
-        color: ${currentColors.secondary} !important;
-      }
-      .layera-layout-preview-text-success {
-        color: ${currentColors.success} !important;
-      }
-      .layera-layout-preview-text-warning {
-        color: ${currentColors.warning} !important;
-      }
-      .layera-layout-preview-text-danger {
-        color: ${currentColors.danger} !important;
-      }
-      .layera-layout-preview-text-info {
-        color: ${currentColors.info} !important;
-      }
-    `;
-
-    document.head.appendChild(style);
-  }, [currentColors]);
+  // ✅ NO INLINE STYLES - Using only @layera tokens and data-attributes
 
   return (
     <Box
@@ -241,6 +195,7 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
               <Box
                 key={key}
                 className={getLayoutClasses(key)}
+                data-dynamic-color={layoutConfigs.find(config => config.key === key)?.colorValue}
               >
                 <Box>
                   <Text
