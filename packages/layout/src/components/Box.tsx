@@ -16,10 +16,13 @@ import React, { forwardRef } from 'react';
 // Enterprise type alias για consistent ReactNode
 type LayeraReactNode = React.ReactNode;
 
+// React 19.1.1 compatible generic component type
+type BoxElement = 'section' | 'article' | 'main' | 'aside' | 'nav' | 'header' | 'footer' | 'div' | 'span' | 'button' | 'input';
+
 export interface BoxProps {
   children?: LayeraReactNode;
   className?: string;
-  as?: 'section' | 'article' | 'main' | 'aside' | 'nav' | 'header' | 'footer' | 'div' | 'span' | 'button' | 'input';
+  as?: BoxElement;
   style?: React.CSSProperties;
 
   // Safe DOM attributes
@@ -46,19 +49,73 @@ export interface BoxProps {
   onInput?: React.FormEventHandler<HTMLInputElement>;
 }
 
+// ✅ ARXES COMPLIANT: Simple forwardRef approach without complex generics
 export const Box = forwardRef<HTMLElement, BoxProps>(({
   children,
   className = '',
   as = 'div',
+  style,
+  id,
+  role,
+  type,
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledby,
+  'aria-describedby': ariaDescribedby,
+  'aria-modal': ariaModal,
+  onClick,
+  onMouseEnter,
+  onMouseLeave,
+  onMouseDown,
+  onMouseUp,
+  value,
+  min,
+  max,
+  step,
+  placeholder,
+  onChange,
+  onInput,
   ...restProps
-}, ref) => {
+}, _ref) => {
   const Component = as;
+
+  // ✅ ARXES COMPLIANT: Type-safe props without any
+  const elementProps: Record<string, unknown> = {
+    ref: _ref,
+    style,
+    id,
+    role,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledby,
+    'aria-describedby': ariaDescribedby,
+    'aria-modal': ariaModal,
+    onClick,
+    onMouseEnter,
+    onMouseLeave,
+    onMouseDown,
+    onMouseUp,
+    ...restProps
+  };
+
+  // Add type-specific props
+  if (as === 'button' && type && ['button', 'submit', 'reset'].includes(type)) {
+    elementProps.type = type;
+  } else if (as === 'input') {
+    if (type && ['color', 'range', 'text', 'number', 'email', 'password'].includes(type)) {
+      elementProps.type = type;
+    }
+    if (value !== undefined) elementProps.value = value;
+    if (min !== undefined) elementProps.min = min;
+    if (max !== undefined) elementProps.max = max;
+    if (step !== undefined) elementProps.step = step;
+    if (placeholder !== undefined) elementProps.placeholder = placeholder;
+    if (onChange) elementProps.onChange = onChange;
+    if (onInput) elementProps.onInput = onInput;
+  }
 
   return (
     <Component
-      ref={ref}
       className={`layera-box ${className}`.trim()}
-      {...restProps}
+      {...elementProps}
     >
       {children}
     </Component>

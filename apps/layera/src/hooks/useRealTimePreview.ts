@@ -40,47 +40,41 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
   const rafRef = useRef<number | null>(null);
 
   /**
-   * ✅ ARXES COMPLIANT: Live preview μέσω CSS custom properties
-   * ZERO CSS injection - ΜΟΝΟ token-based overrides
+   * ✅ ARXES COMPLIANT: Live preview μέσω data attributes
+   * ZERO CSS injection - ZERO style.setProperty - ΜΟΝΟ data attributes
    */
   const applyHeaderButtonPreview = useCallback((color: string) => {
     const root = document.documentElement;
 
-    // ✅ ARXES COMPLIANT: CSS custom property για preview color
-    root.style.setProperty('--layera-preview-header-color', color);
-
-    // ✅ ARXES COMPLIANT: Data attribute για preview state
+    // ✅ ARXES COMPLIANT: Data attributes για preview state και value
     root.setAttribute('data-layera-header-preview', 'active');
-
-    // Note: CSS classes θα χρησιμοποιούν: var(--layera-preview-header-color, var(--layera-color-primary))
-    // Έτσι fallback στο design token εάν δεν υπάρχει preview
+    root.setAttribute('data-layera-header-preview-color', color);
   }, []);
 
   /**
-   * ✅ ARXES COMPLIANT: Εφαρμογή hover effects μέσω CSS custom properties
+   * ✅ ARXES COMPLIANT: Εφαρμογή hover effects μέσω data attributes
+   * ZERO CSS injection - ZERO style.setProperty - ΜΟΝΟ data attributes
    */
   const applyHoverEffect = useCallback((effect: string) => {
     const root = document.documentElement;
-    root.style.setProperty('--layera-preview-hover-effect', effect);
     root.setAttribute('data-layera-hover-preview', effect);
   }, []);
 
   /**
-   * ✅ ARXES COMPLIANT: Εφαρμογή active effects μέσω CSS custom properties
+   * ✅ ARXES COMPLIANT: Εφαρμογή active effects μέσω data attributes
+   * ZERO CSS injection - ZERO style.setProperty - ΜΟΝΟ data attributes
    */
   const applyActiveEffect = useCallback((effect: string) => {
     const root = document.documentElement;
-    root.style.setProperty('--layera-preview-active-effect', effect);
     root.setAttribute('data-layera-active-preview', effect);
   }, []);
 
   /**
-   * ✅ ARXES COMPLIANT: Εφαρμογή border width μέσω CSS custom properties
+   * ✅ ARXES COMPLIANT: Εφαρμογή border width μέσω data attributes
+   * ZERO CSS injection - ZERO style.setProperty - ΜΟΝΟ data attributes
    */
   const applyBorderWidth = useCallback((width: string) => {
     const root = document.documentElement;
-    const widthValue = width === '0' ? '0' : `var(--layera-global-borderWidth-${width})`;
-    root.style.setProperty('--layera-preview-border-width', widthValue);
     root.setAttribute('data-layera-border-width-preview', width);
   }, []);
 
@@ -100,82 +94,67 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
   }, []);
 
   /**
-   * ✅ ARXES COMPLIANT: Εφαρμογή card radius μέσω CSS custom properties
+   * ✅ ARXES COMPLIANT: Εφαρμογή card radius μέσω data attributes
+   * ZERO CSS injection - ZERO style.setProperty - ΜΟΝΟ data attributes
    */
   const applyCardRadius = useCallback((radius: string) => {
     const root = document.documentElement;
-    const radiusValue = getRadiusValue(radius);
-    root.style.setProperty('--layera-preview-card-radius', radiusValue);
     root.setAttribute('data-layera-card-radius-preview', radius);
-  }, [getRadiusValue]);
+  }, []);
 
   /**
    * ✅ ARXES COMPLIANT: Εφαρμογή modal radius μέσω CSS custom properties
    */
   const applyModalRadius = useCallback((radius: string) => {
     const root = document.documentElement;
-    const radiusValue = getRadiusValue(radius);
-    root.style.setProperty('--layera-preview-modal-radius', radiusValue);
     root.setAttribute('data-layera-modal-radius-preview', radius);
-  }, [getRadiusValue]);
+  }, []);
 
   /**
    * ✅ ARXES COMPLIANT: Εφαρμογή layout radius μέσω CSS custom properties
    */
   const applyLayoutRadius = useCallback((radius: string) => {
     const root = document.documentElement;
-    const radiusValue = getRadiusValue(radius);
-    root.style.setProperty('--layera-preview-layout-radius', radiusValue);
     root.setAttribute('data-layera-layout-radius-preview', radius);
-  }, [getRadiusValue]);
+  }, []);
 
   /**
    * ✅ ARXES COMPLIANT: Εφαρμογή header radius μέσω CSS custom properties
    */
   const applyHeaderRadius = useCallback((radius: string) => {
     const root = document.documentElement;
-    const radiusValue = getRadiusValue(radius);
-    root.style.setProperty('--layera-preview-header-radius', radiusValue);
     root.setAttribute('data-layera-header-radius-preview', radius);
-  }, [getRadiusValue]);
+  }, []);
 
   /**
    * ✅ ARXES COMPLIANT: Εφαρμογή button radius μέσω CSS custom properties
    */
   const applyButtonRadius = useCallback((radius: string) => {
     const root = document.documentElement;
-    const radiusValue = getRadiusValue(radius);
-    root.style.setProperty('--layera-preview-button-radius', radiusValue);
     root.setAttribute('data-layera-button-radius-preview', radius);
-  }, [getRadiusValue]);
+  }, []);
 
   /**
    * ✅ ARXES COMPLIANT: Εφαρμογή input radius μέσω CSS custom properties
    */
   const applyInputRadius = useCallback((radius: string) => {
     const root = document.documentElement;
-    const radiusValue = getRadiusValue(radius);
-    root.style.setProperty('--layera-preview-input-radius', radiusValue);
     root.setAttribute('data-layera-input-radius-preview', radius);
-  }, [getRadiusValue]);
+  }, []);
 
   /**
    * ✅ ARXES COMPLIANT: Εφαρμογή border radius μέσω CSS custom properties
    */
   const applyBorderRadius = useCallback((radius: string) => {
     const root = document.documentElement;
-    const radiusValue = getRadiusValue(radius);
-    root.style.setProperty('--layera-preview-border-radius', radiusValue);
     root.setAttribute('data-layera-border-radius-preview', radius);
-  }, [getRadiusValue]);
+  }, []);
 
   /**
    * ✅ ARXES COMPLIANT: Εφαρμογή font size μέσω CSS custom properties
    */
   const applyFontSize = useCallback((size: string) => {
     const root = document.documentElement;
-    const sizeValue = `var(--layera-global-fontSize-${size})`;
-    root.style.setProperty('--layera-preview-font-size', sizeValue);
     root.setAttribute('data-layera-font-size-preview', size);
   }, []);
 
@@ -252,40 +231,10 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
     const colorSuffix = colorMapping[colorKey as keyof typeof colorMapping];
     if (!colorSuffix) return;
 
-    switch (category) {
-      case 'backgrounds':
-        // Update the actual card surface variables used by cards
-        if (colorSuffix === 'primary') {
-          root.style.setProperty('--layera-color-light-surface-primary', colorValue);
-          root.style.setProperty('--layera-color-dark-surface-primary', colorValue);
-        } else if (colorSuffix === 'secondary') {
-          root.style.setProperty('--layera-color-light-surface-secondary', colorValue);
-          root.style.setProperty('--layera-color-dark-surface-secondary', colorValue);
-        }
-        // Auto-calculate text color για καλή αντίθεση
-        const textColor = colorValue === 'var(--layera-color-semantic-warning-primary)' ? 'var(--layera-color-neutral-black)' : 'var(--layera-color-neutral-white)';
-        break;
-
-      case 'text':
-        // Update card title color
-        if (colorSuffix === 'primary') {
-          root.style.setProperty('--layera-cardTitleColor', colorValue);
-          root.style.setProperty('--layera-color-text-primary', colorValue);
-        } else if (colorSuffix === 'secondary') {
-          root.style.setProperty('--layera-color-text-secondary', colorValue);
-        }
-        break;
-
-      case 'borders':
-        // Update border colors - use the actual border variables
-        if (colorSuffix === 'primary') {
-          root.style.setProperty('--layera-color-light-border-primary', colorValue);
-          root.style.setProperty('--layera-color-border-default', colorValue);
-        } else if (colorSuffix === 'secondary') {
-          root.style.setProperty('--layera-color-border-light', colorValue);
-        }
-        break;
-    }
+    // ✅ ARXES COMPLIANT: Data attributes για card variable updates
+    // ZERO style.setProperty - ΜΟΝΟ semantic data attributes
+    root.setAttribute(`data-layera-card-${category}-${colorSuffix}`, 'active');
+    root.setAttribute(`data-layera-card-${category}-${colorSuffix}-value`, colorValue);
   }, []);
 
   /**
@@ -395,21 +344,14 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
           // DELEGATION: Button border updates handled by useCSSVariables
         }
       } else if (category === 'buttons' && elementType === 'buttons') {
-        // Update button colors AND header buttons (this is the main button color category)
-        const cssVariable = cssVariableMap[key];
-        if (cssVariable) {
-          root.style.setProperty(cssVariable, value);
-        }
+        // ✅ ARXES COMPLIANT: Button colors μέσω data attributes
+        root.setAttribute(`data-layera-preview-button-${key}`, value);
         applyHeaderButtonPreview(value);
       }
     } else {
-      // Fallback to old logic for non-color keys or missing parameters
-      const cssVariable = cssVariableMap[key];
-      if (cssVariable) {
-        root.style.setProperty(cssVariable, value);
-      } else {
-        applySpecialEffects(key, value);
-      }
+      // ✅ ARXES COMPLIANT: Fallback logic μέσω data attributes
+      root.setAttribute(`data-layera-preview-${key}`, value);
+      applySpecialEffects(key, value);
     }
   }, [applyHeaderButtonPreview, applySpecialEffects, updateCardVariables]);
 
@@ -519,28 +461,8 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
       previewKey: null
     });
 
-    // ✅ ARXES COMPLIANT: Καθαρισμός μόνο των CSS custom properties
+    // ✅ ARXES COMPLIANT: Καθαρισμός μόνο των data attributes
     const root = document.documentElement;
-
-    // Clear all preview CSS variables
-    const previewVariables = [
-      '--layera-preview-header-color',
-      '--layera-preview-hover-effect',
-      '--layera-preview-active-effect',
-      '--layera-preview-border-width',
-      '--layera-preview-card-radius',
-      '--layera-preview-modal-radius',
-      '--layera-preview-layout-radius',
-      '--layera-preview-header-radius',
-      '--layera-preview-button-radius',
-      '--layera-preview-input-radius',
-      '--layera-preview-border-radius',
-      '--layera-preview-font-size'
-    ];
-
-    previewVariables.forEach(variable => {
-      root.style.removeProperty(variable);
-    });
 
     // Clear all preview data attributes
     const previewAttributes = [

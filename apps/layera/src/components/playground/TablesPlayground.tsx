@@ -124,7 +124,7 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
   };
 
   // ✅ NO INLINE STYLES - Using CSS classes with @layera tokens
-  const getDynamicTableClasses = (colorName: string) => {
+  const getDynamicTableClasses = (_colorName: string) => {
     const baseClasses = "layera-box-border layera-border--solid layera-border-color--transparent layera-padding--md layera-border-radius--md layera-flex layera-flex--justify-space-between layera-flex--align-center layera-text--size-sm layera-font-weight--medium";
 
     switch (colorCategory) {

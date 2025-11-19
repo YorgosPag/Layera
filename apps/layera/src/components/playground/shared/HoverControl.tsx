@@ -41,47 +41,32 @@ export const HoverControl: React.FC<HoverControlProps> = ({
 }) => {
   const [isChanging, setIsChanging] = useState(false);
 
-  // Available hover effect options
+  // ✅ ARXES COMPLIANT: Hover options ΧΩΡΙΣ inline CSS objects
+  // Χρησιμοποιούμε data attributes για semantic state management
   const hoverOptions = [
     {
       value: 'none',
       label: 'Χωρίς',
       description: 'Χωρίς hover effect',
-      preview: {
-        opacity: 'var(--layera-icon-interactive-interactive-opacity-default)',
-        transform: 'none',
-        background: 'var(--layera-color-surface-primary)'
-      }
+      dataClass: 'layera-hover--none'
     },
     {
       value: 'subtle',
       label: 'Ελαφρύ',
       description: 'Ελαφρύ hover effect',
-      preview: {
-        opacity: 'var(--layera-iconInteractive-interactive-opacity-hover)',
-        transform: 'none',
-        background: 'var(--layera-color-surface-hover)'
-      }
+      dataClass: 'layera-hover--subtle'
     },
     {
       value: 'normal',
       label: 'Κανονικό',
       description: 'Κανονικό hover effect',
-      preview: {
-        opacity: 'var(--layera-iconInteractive-interactive-opacity-hover)',
-        transform: 'translateY(calc(-1 * var(--layera-global-spacing-0-25)))',
-        background: 'var(--layera-color-surface-hover)'
-      }
+      dataClass: 'layera-hover--normal'
     },
     {
       value: 'strong',
       label: 'Έντονο',
       description: 'Έντονο hover effect',
-      preview: {
-        opacity: 'var(--layera-iconInteractive-interactive-opacity-hover)',
-        transform: 'translateY(calc(-1 * var(--layera-global-spacing-0-5))) scale(var(--layera-iconInteractive-interactive-scale-hover))',
-        background: 'var(--layera-color-surface-hover)'
-      }
+      dataClass: 'layera-hover--strong'
     }
   ];
 

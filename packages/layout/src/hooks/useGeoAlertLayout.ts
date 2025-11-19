@@ -33,10 +33,10 @@ export interface UseGeoAlertLayoutReturn {
   /** Utility functions */
   utils: {
     /** Get styles for card container */
-    getCardStyles: (variant?: GeoAlertCardLayoutVariant) => Record<string, string | number>;
+    getCardStyles: (variant?: GeoAlertCardLayoutVariant) => React.CSSProperties;
 
     /** Get styles for info panel */
-    getInfoPanelStyles: () => Record<string, string | number>;
+    getInfoPanelStyles: () => React.CSSProperties;
 
     /** Update layout configuration dynamically */
     updateConfig: (newConfig: Partial<GeoAlertLayoutConfig>) => void;

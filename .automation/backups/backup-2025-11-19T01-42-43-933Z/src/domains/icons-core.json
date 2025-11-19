@@ -1,0 +1,45 @@
+{
+  "icon": {
+    "comment": "🎯 Core Icon Tokens - Essential properties used by ALL companies globally",
+    "xs": {
+      "value": "var(--layera-global-spacing-4)",
+      "comment": "Standard mobile size"
+    },
+    "md": {
+      "value": "var(--layera-global-spacing-5)",
+      "comment": "Default icon size for desktop"
+    },
+    "lg": {
+      "value": "var(--layera-global-spacing-8)",
+      "comment": "Large interactive elements"
+    },
+    "colorPrimary": {
+      "value": "var(--layera-color-semantic-warning-primary)",
+      "comment": "Primary brand color for icons - ΚΙΤΡΙΝΟ για single source test"
+    },
+    "colorSecondary": {
+      "value": "var(--layera-color-semantic-neutral-dark)",
+      "comment": "Secondary color for supporting icons"
+    },
+    "colorSuccess": {
+      "value": "var(--layera-color-semantic-success-primary)",
+      "comment": "Green for success states - consolidated reference"
+    },
+    "colorWarning": {
+      "value": "var(--layera-color-semantic-warning-primary)",
+      "comment": "Orange for warning states - consolidated reference"
+    },
+    "colorDanger": {
+      "value": "var(--layera-color-semantic-error-primary)",
+      "comment": "Red for danger/error states - consolidated reference"
+    },
+    "colorInfo": {
+      "value": "var(--layera-color-semantic-info-primary)",
+      "comment": "Blue for informational states - consolidated reference"
+    },
+    "colorNeutral": {
+      "value": "var(--layera-color-semantic-neutral-dark)",
+      "comment": "Neutral gray for standard icons"
+    }
+  }
+}

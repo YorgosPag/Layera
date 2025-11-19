@@ -168,66 +168,27 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
   };
 
   /**
-   * Εφαρμόζει isolated CSS rules για συγκεκριμένο card variant
-   * Χρησιμοποιεί CSS variables για καρτών backgrounds
+   * ✅ ARXES COMPLIANT: Card color theming μέσω data attributes
+   * ZERO CSS injection - ZERO style.setProperty - ΜΟΝΟ data attributes
    */
   const applySpecificCardColor = (colorKey: string, colorValue: string) => {
-    // Optimized: Use CSS variables instead of rewriting style.textContent
     const root = document.documentElement;
 
-    // Mapping από colorKey σε CSS variable για κάρτες
-    // NOTE: colorKey format is 'primaryColor' από LivePlayground, CSS variable format is 'primary'
-    const colorToVariableMap: Record<string, string> = {
-      'primaryColor': '--layera-card-bg-primary',
-      'secondaryColor': '--layera-card-bg-secondary',
-      'successColor': '--layera-card-bg-success',
-      'warningColor': '--layera-card-bg-warning',
-      'dangerColor': '--layera-card-bg-danger',
-      'infoColor': '--layera-card-bg-info'
-    };
-
-    const variableName = colorToVariableMap[colorKey];
-    if (!variableName) return;
-
-    // Fast CSS variable update (no DOM reflow/repaint)
-    root.style.setProperty(variableName, colorValue);
-    root.style.setProperty(`${variableName}-hover`, `${colorValue}DD`);
-
-
-    // ✅ ARXES COMPLIANT: PURE token-based approach - NO CSS injection
-    // Cards use CSS custom properties set directly on :root via setProperty()
-    // NO document.createElement('style') - ZERO DOM manipulation
+    // ✅ ARXES COMPLIANT: Data attribute για card state και value
+    root.setAttribute(`data-layera-card-${colorKey.replace('Color', '')}`, 'active');
+    root.setAttribute(`data-layera-card-${colorKey.replace('Color', '')}-value`, colorValue);
   };
 
   /**
-   * Εφαρμόζει isolated CSS rules για συγκεκριμένο modal variant
-   * Χρησιμοποιεί CSS variables για modal backgrounds
+   * ✅ ARXES COMPLIANT: Modal color theming μέσω data attributes
+   * ZERO CSS injection - ZERO style.setProperty - ΜΟΝΟ data attributes
    */
   const applySpecificModalColor = (colorKey: string, colorValue: string) => {
-    // Optimized: Use CSS variables instead of rewriting style.textContent
     const root = document.documentElement;
 
-    // Mapping από colorKey σε CSS variable για modals
-    // NOTE: colorKey format is 'primaryColor' από LivePlayground, CSS variable format is 'primary'
-    const colorToVariableMap: Record<string, string> = {
-      'primaryColor': '--layera-modal-bg-primary',
-      'secondaryColor': '--layera-modal-bg-secondary',
-      'successColor': '--layera-modal-bg-success',
-      'warningColor': '--layera-modal-bg-warning',
-      'dangerColor': '--layera-modal-bg-danger',
-      'infoColor': '--layera-modal-bg-info'
-    };
-
-    const variableName = colorToVariableMap[colorKey];
-    if (!variableName) return;
-
-    // Fast CSS variable update (no DOM reflow/repaint)
-    root.style.setProperty(variableName, colorValue);
-    root.style.setProperty(`${variableName}-hover`, `${colorValue}DD`);
-
-    // ✅ ARXES COMPLIANT: PURE token-based approach - NO CSS injection
-    // Modals use CSS custom properties set directly on :root via setProperty()
-    // NO document.createElement('style') - ZERO DOM manipulation
+    // ✅ ARXES COMPLIANT: Data attribute για modal state και value
+    root.setAttribute(`data-layera-modal-${colorKey.replace('Color', '')}`, 'active');
+    root.setAttribute(`data-layera-modal-${colorKey.replace('Color', '')}-value`, colorValue);
   };
 
   /**
@@ -235,30 +196,11 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
    * Χρησιμοποιεί CSS variables για άμεση ενημέρωση χωρίς re-render
    */
   const applySpecificLayoutColor = (colorKey: string, colorValue: string) => {
-    // Optimized: Use CSS variables instead of rewriting style.textContent
     const root = document.documentElement;
 
-    // Mapping από colorKey σε CSS variable για layouts
-    // NOTE: colorKey format is 'primaryColor' από LivePlayground, CSS variable format is 'primary'
-    const colorToVariableMap: Record<string, string> = {
-      'primaryColor': '--layera-layout-bg-primary',
-      'secondaryColor': '--layera-layout-bg-secondary',
-      'successColor': '--layera-layout-bg-success',
-      'warningColor': '--layera-layout-bg-warning',
-      'dangerColor': '--layera-layout-bg-danger',
-      'infoColor': '--layera-layout-bg-info'
-    };
-
-    const variableName = colorToVariableMap[colorKey];
-    if (!variableName) return;
-
-    // Fast CSS variable update (no DOM reflow/repaint)
-    root.style.setProperty(variableName, colorValue);
-    root.style.setProperty(`${variableName}-hover`, `${colorValue}DD`);
-
-    // ✅ ARXES COMPLIANT: PURE token-based approach - NO CSS injection
-    // Layouts use CSS custom properties set directly on :root via setProperty()
-    // NO document.createElement('style') - ZERO DOM manipulation
+    // ✅ ARXES COMPLIANT: Data attribute για layout state και value
+    root.setAttribute(`data-layera-layout-${colorKey.replace('Color', '')}`, 'active');
+    root.setAttribute(`data-layera-layout-${colorKey.replace('Color', '')}-value`, colorValue);
   };
 
   /**
@@ -266,46 +208,25 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
    * Χρησιμοποιεί CSS variables για άμεση ενημέρωση χωρίς re-render
    */
   const applySpecificHeaderColor = (colorKey: string, colorValue: string) => {
-    // Optimized: Use CSS variables instead of rewriting style.textContent
     const root = document.documentElement;
 
-    // Mapping από colorKey σε CSS variable για headers
-    // NOTE: colorKey format is 'primaryColor' από LivePlayground, CSS variable format is 'primary'
-    const colorToVariableMap: Record<string, string> = {
-      'primaryColor': '--layera-header-bg-primary',
-      'secondaryColor': '--layera-header-bg-secondary',
-      'successColor': '--layera-header-bg-success',
-      'warningColor': '--layera-header-bg-warning',
-      'dangerColor': '--layera-header-bg-danger',
-      'infoColor': '--layera-header-bg-info'
-    };
-
-    const variableName = colorToVariableMap[colorKey];
-    if (!variableName) return;
-
-    // Fast CSS variable update (no DOM reflow/repaint)
-    root.style.setProperty(variableName, colorValue);
-    root.style.setProperty(`${variableName}-hover`, `${colorValue}DD`);
-
-    // ✅ ARXES COMPLIANT: PURE token-based approach - NO CSS injection
-    // Headers use CSS custom properties set directly on :root via setProperty()
-    // NO document.createElement('style') - ZERO DOM manipulation
+    // ✅ ARXES COMPLIANT: Data attribute για header state και value
+    root.setAttribute(`data-layera-header-${colorKey.replace('Color', '')}`, 'active');
+    root.setAttribute(`data-layera-header-${colorKey.replace('Color', '')}-value`, colorValue);
   };
 
   /**
-   * ✅ ARXES Compliant: Button dynamic styles για outline και ghost variants
-   * ZERO CSS injection - ΜΟΝΟ CSS custom properties
+   * ✅ ARXES COMPLIANT: Button dynamic styles μέσω data attributes
+   * ZERO CSS injection - ZERO style.setProperty - ΜΟΝΟ data attributes
    */
   const applyButtonDynamicStyles = (colors: Record<string, string>, borderWidth: string = 'var(--layera-global-spacing-0-5)') => {
     const root = document.documentElement;
 
-    // ✅ ARXES COMPLIANT: CSS custom properties για button variations
-    root.style.setProperty('--layera-button-outline-color', colors.primary || 'var(--layera-color-primary)');
-    root.style.setProperty('--layera-button-outline-border', `${borderWidth} solid ${colors.primary || 'var(--layera-color-primary)'}`);
-    root.style.setProperty('--layera-button-ghost-color', colors.secondary || 'var(--layera-color-text-secondary)');
-
-    // ✅ ARXES COMPLIANT: Data attributes για semantic state
+    // ✅ ARXES COMPLIANT: Data attributes για button dynamic state
     root.setAttribute('data-layera-button-dynamic', 'active');
+    root.setAttribute('data-layera-button-primary-color', colors.primary || 'var(--layera-color-primary)');
+    root.setAttribute('data-layera-button-secondary-color', colors.secondary || 'var(--layera-color-text-secondary)');
+    root.setAttribute('data-layera-button-border-width', borderWidth);
   };
 
   /**

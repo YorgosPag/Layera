@@ -35,7 +35,7 @@ import { loadCurrentThemeFromLocalStorage } from '../services/colorThemeService'
 import { useAuth } from '@layera/auth-bridge';
 import { useRealTimePreview } from '../hooks/useRealTimePreview';
 import { useButtonState } from '../hooks/useButtonState';
-import { useColorState, ColorPaletteWithAlpha } from '../hooks/useColorState';
+import { useColorState, ColorPaletteWithAlpha, ColorCategory } from '../hooks/useColorState';
 import { useCSSVariables } from '../hooks/useCSSVariables';
 import { useStorage } from '../hooks/useStorage';
 import { useNavigation } from '../hooks/useNavigation';
@@ -86,7 +86,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
   // Color helper functions - simplified to use existing hooks
   const getColorsForCategory = (category: string) => {
-    return getCategoryPalette(category as any);
+    return getCategoryPalette(category as ColorCategory);
   };
 
   // ==============================
@@ -559,7 +559,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 // Φιλτράρει το outlineColor που δεν πρέπει να εμφανίζεται ως color picker
                 Object.entries(settings).forEach(([key, value]) => {
                   if (typeof key === 'string' && typeof value === 'string' && key !== 'outlineColor') {
-                    colorActions.updateCategoryPalette(colorHookState.colorCategory, key as any, value);
+                    const validColorKeys = ['primaryColor', 'secondaryColor', 'successColor', 'warningColor', 'dangerColor', 'infoColor'];
+                    if (validColorKeys.includes(key)) {
+                      colorActions.updateCategoryPalette(colorHookState.colorCategory, key as keyof ColorPaletteWithAlpha, value);
+                    }
                   }
                 });
               }}

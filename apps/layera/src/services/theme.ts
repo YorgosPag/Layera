@@ -120,7 +120,7 @@ export function generateThemeId(
  * NO style.setProperty() - ZERO DOM manipulation
  */
 export function applyThemeToDOM(
-  colors: ThemeColors,
+  _colors: ThemeColors,
   category: string,
   buttonShape?: string
 ): void {

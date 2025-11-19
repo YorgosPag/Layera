@@ -34,7 +34,10 @@ if (firebaseConfig.apiKey && firebaseConfig.projectId) {
         console.log('✅ Παλιές ρυθμίσεις χρηστών διαγράφηκαν');
 
       } catch (error: unknown) {
-        console.error('❌ Σφάλμα εργοστασιακών ρυθμίσεων:', error instanceof Error ? (error.code || error.message) : String(error));
+        const errorMessage = error instanceof Error
+          ? (('code' in error ? (error as Error & { code?: string }).code : undefined) || error.message)
+          : String(error);
+        console.error('❌ Σφάλμα εργοστασιακών ρυθμίσεων:', errorMessage);
         console.log('💡 Χρήση τοπικών εργοστασιακών ρυθμίσεων');
       }
     }, 1000);

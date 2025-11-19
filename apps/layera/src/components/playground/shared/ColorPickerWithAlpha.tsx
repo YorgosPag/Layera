@@ -22,11 +22,11 @@ const hexToRgba = (hex: string, alpha: number): string => {
 };
 
 const extractHexFromValue = (colorValue: string): string => {
-  if (!colorValue) return '#000000';
+  if (!colorValue) return 'var(--layera-color-semantic-neutral-dark)';
   if (colorValue.startsWith('#')) return colorValue;
   // CSS variable fallback
   const match = colorValue.match(/var\([^,]+,\s*(#[0-9a-fA-F]{6})\)/);
-  return match ? match[1] : '#000000';
+  return match ? match[1] : 'var(--layera-color-semantic-neutral-dark)';
 };
 
 interface ColorWithAlpha {
@@ -82,9 +82,9 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
       }
       // Fallback
       return {
-        hex: '#000000',
+        hex: 'var(--layera-color-semantic-neutral-dark)',
         alpha: 1.0,
-        rgba: hexToRgba('#000000', 1.0)
+        rgba: hexToRgba('var(--layera-color-semantic-neutral-dark)', 1.0)
       };
     }
     return val;
@@ -121,7 +121,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     const newAlpha = parseFloat(e.target.value) / 100;
     if (isNaN(newAlpha)) return;
 
-    const safeHex = internalValue?.hex || '#000000';
+    const safeHex = internalValue?.hex || 'var(--layera-color-semantic-neutral-dark)';
     if (!safeHex.startsWith('#')) return;
 
     const newValue = {
@@ -155,7 +155,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   const colorInputRef = useRef<HTMLInputElement>(null);
 
   // Memoized display values to prevent recalculations
-  const displayHex = useMemo(() => extractHexFromValue(internalValue?.hex || '#000000'), [internalValue?.hex]);
+  const displayHex = useMemo(() => extractHexFromValue(internalValue?.hex || 'var(--layera-color-semantic-neutral-dark)'), [internalValue?.hex]);
   const alphaPercentage = useMemo(() => Math.round((internalValue?.alpha ?? 1.0) * 100), [internalValue?.alpha]);
 
   // ΒΕΛΤΙΣΤΟΠΟΙΗΜΕΝΗ real-time tracking με throttling

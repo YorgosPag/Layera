@@ -172,15 +172,15 @@ export const Modal: React.FC<BaseModalProps> = ({
     return () => document.removeEventListener('keydown', handleEscape);
   }, [open, closeOnEscape, onClose]);
 
-  // Handle body scroll prevention
+  // ✅ ARXES COMPLIANT: Handle body scroll prevention μέσω CSS classes
   useEffect(() => {
     if (!open || !preventBodyScroll) return;
 
-    const originalStyle = window.getComputedStyle(document.body).overflow;
-    document.body.style.overflow = 'hidden';
+    // ✅ ARXES COMPLIANT: CSS class αντί inline style
+    document.body.classList.add('layera-modal-open', 'layera-scroll-hidden');
 
     return () => {
-      document.body.style.overflow = originalStyle;
+      document.body.classList.remove('layera-modal-open', 'layera-scroll-hidden');
     };
   }, [open, preventBodyScroll]);
 

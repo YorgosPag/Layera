@@ -41,43 +41,32 @@ export const ActiveControl: React.FC<ActiveControlProps> = ({
   const [isChanging, setIsChanging] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
 
-  // Available active effect options
+  // ✅ ARXES COMPLIANT: Active options ΧΩΡΙΣ inline CSS objects
+  // Χρησιμοποιούμε data attributes για semantic state management
   const activeOptions = [
     {
       value: 'none',
       label: 'Χωρίς',
       description: 'Χωρίς active effect',
-      preview: {
-        transform: 'none',
-        opacity: 'var(--layera-icon-interactive-interactive-opacity-default)'
-      }
+      dataClass: 'layera-active--none'
     },
     {
       value: 'scale',
       label: 'Scale',
       description: 'Μικραίνει όταν πατιέται',
-      preview: {
-        transform: 'scale(var(--layera-iconInteractive-interactive-scale-active))',
-        opacity: 'var(--layera-icon-interactive-interactive-opacity-default)'
-      }
+      dataClass: 'layera-active--scale'
     },
     {
       value: 'opacity',
       label: 'Opacity',
       description: 'Γίνεται διαφανές όταν πατιέται',
-      preview: {
-        transform: 'none',
-        opacity: '0.7'
-      }
+      dataClass: 'layera-active--opacity'
     },
     {
       value: 'press',
       label: 'Press',
       description: 'Scale + Opacity όταν πατιέται',
-      preview: {
-        transform: 'scale(var(--layera-iconInteractive-interactive-scale-active))',
-        opacity: 'var(--layera-iconInteractive-interactive-opacity-hover)'
-      }
+      dataClass: 'layera-active--press'
     }
   ];
 

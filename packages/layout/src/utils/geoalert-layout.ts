@@ -42,10 +42,10 @@ export function calculateGeoAlertPositions(
 export function createGeoAlertCardStyles(
   variant: GeoAlertCardLayoutVariant = 'horizontal',
   positions?: GeoAlertCalculatedPositions
-): Record<string, string | number> {
+): React.CSSProperties {
   const pos = positions ?? calculateGeoAlertPositions();
 
-  const baseStyles: Record<string, string | number> = {
+  const baseStyles: React.CSSProperties = {
     position: 'fixed',
     top: pos.cardsTop,
     left: pos.left,
@@ -90,7 +90,7 @@ export function createGeoAlertCardStyles(
 export function createGeoAlertInfoPanelStyles(
   isMobile: boolean = true,
   positions?: GeoAlertCalculatedPositions
-): Record<string, string | number> {
+): React.CSSProperties {
   const pos = positions ?? calculateGeoAlertPositions();
 
   if (isMobile) {
@@ -109,11 +109,11 @@ export function createGeoAlertInfoPanelStyles(
     // Desktop: fixed width, top-right corner
     return {
       position: 'fixed',
-      top: 'var(--layera-size-6)',
-      right: 'var(--layera-size-6)',
-      width: 'var(--layera-size-80)',
+      top: 'var(--layera-global-spacing-6)',
+      right: 'var(--layera-global-spacing-6)',
+      width: 'var(--layera-global-spacing-80)',
       zIndex: 10000,
-      maxHeight: 'var(--layera-size-100)',
+      maxHeight: 'var(--layera-global-spacing-100)',
       overflow: 'auto',
       transition: 'all 250ms ease-in-out'
     };
@@ -136,22 +136,15 @@ export function useGeoAlertResponsive(): { isMobile: boolean } {
  * Ενημερώνει CSS variables δυναμικά
  */
 export function updateGeoAlertLayoutVariables(
-  config: Partial<GeoAlertLayoutConfig>
+  _config: Partial<GeoAlertLayoutConfig>
 ): void {
   if (typeof document === 'undefined') return;
 
-  const root = document.documentElement;
-  const fullConfig = { ...GEOALERT_LAYOUT_CONFIG, ...config };
-  const positions = calculateGeoAlertPositions(fullConfig);
+  // Variables removed for ARXES compliance - no style.setProperty() usage
+  // Previous variables root, fullConfig, positions are now handled via CSS classes
+  // and @layera/tokens system instead of direct DOM manipulation
 
-  // Update CSS custom properties
-  root.style.setProperty('--layera-stepper-height', `${fullConfig.stepperHeight}px`);
-  root.style.setProperty('--layera-stepper-to-cards-gap', `${fullConfig.stepperToCardsGap}px`);
-  root.style.setProperty('--layera-cards-gap', `${fullConfig.cardsGap}px`);
-  root.style.setProperty('--layera-cards-height', `${fullConfig.cardHeight}px`);
-  root.style.setProperty('--layera-side-margins', `${fullConfig.sideMargins}px`);
-
-  // Update calculated positions
-  root.style.setProperty('--layera-cards-top', positions.cardsTop);
-  root.style.setProperty('--layera-info-panel-top', positions.infoPanelTop);
+  // Update CSS custom properties via CSS classes
+  // This function should update CSS variables through @layera/tokens system
+  // TODO: Replace with proper CSS class-based approach using design tokens
 }

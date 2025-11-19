@@ -152,7 +152,7 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
   // REMOVED: DOM manipulation violation - CSS variables are handled by useCSSVariables.ts
 
   // Helper to get appropriate CSS classes with dynamic data attributes
-  const getLayoutClasses = (key: string) => {
+  const getLayoutClasses = (_key: string) => {
     const baseClasses = "layera-padding--md layera-height--6xl layera-width--card layera-flex layera-flex--align-center layera-flex--justify-center layera-flex-shrink--0";
 
     switch (colorCategory) {

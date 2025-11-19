@@ -1,0 +1,253 @@
+{
+  "layoutSystem": {
+    "comment": "🏗️ Layout System - Advanced layout utilities and flexbox/grid helpers",
+    "flex": {
+      "base": {
+        "value": {
+          "display": "flex"
+        },
+        "comment": "Base flex display",
+        "variants": {
+          "align": {
+            "center": {
+              "alignItems": "center"
+            },
+            "start": {
+              "alignItems": "flex-start"
+            },
+            "end": {
+              "alignItems": "flex-end"
+            }
+          },
+          "justify": {
+            "center": {
+              "justifyContent": "center"
+            },
+            "between": {
+              "justifyContent": "space-between"
+            },
+            "around": {
+              "justifyContent": "space-around"
+            }
+          },
+          "gap": {
+            "sm": {
+              "gap": "var(--layera-global-spacing-2)"
+            },
+            "md": {
+              "gap": "var(--layera-global-spacing-3)"
+            },
+            "lg": {
+              "gap": "var(--layera-global-spacing-4)"
+            }
+          },
+          "wrap": {
+            "wrap": {
+              "flexWrap": "wrap"
+            }
+          }
+        }
+      },
+      "grid": {
+        "base": {
+          "value": {
+            "display": "grid"
+          },
+          "comment": "Base grid display"
+        },
+        "cols": {
+          "2": {
+            "value": {
+              "gridTemplateColumns": "repeat(2, var(--layera-grid-unit-fraction))"
+            },
+            "comment": "2 column grid"
+          },
+          "3": {
+            "value": {
+              "gridTemplateColumns": "repeat(3, var(--layera-grid-unit-fraction))"
+            },
+            "comment": "3 column grid"
+          },
+          "4": {
+            "value": {
+              "gridTemplateColumns": "repeat(4, var(--layera-grid-unit-fraction))"
+            },
+            "comment": "4 column grid"
+          }
+        },
+        "gap": {
+          "sm": {
+            "value": {
+              "gap": "var(--layera-global-spacing-2)"
+            },
+            "comment": "Small grid gap"
+          },
+          "md": {
+            "value": {
+              "gap": "var(--layera-global-spacing-3)"
+            },
+            "comment": "Medium grid gap"
+          },
+          "lg": {
+            "value": {
+              "gap": "var(--layera-global-spacing-4)"
+            },
+            "comment": "Large grid gap"
+          },
+          "xl": {
+            "value": {
+              "gap": "var(--layera-global-spacing-6)"
+            },
+            "comment": "Extra large grid gap"
+          }
+        }
+      }
+    },
+    "stack": {
+      "direction": {
+        "value": "var(--layera-flexDirection-column)",
+        "comment": "Column flex direction"
+      },
+      "gap": {
+        "value": "var(--layera-global-spacing-1)",
+        "comment": "Stack gap"
+      }
+    },
+    "padding": {
+      "xs": {
+        "value": "var(--layera-global-spacing-2) var(--layera-global-spacing-4)",
+        "comment": "Extra small padding"
+      },
+      "sm": {
+        "value": "var(--layera-global-spacing-4) var(--layera-global-spacing-6)",
+        "comment": "Small padding"
+      }
+    },
+    "appLayout": {
+      "comment": "🗺️ Application Layout Tokens",
+      "body": {
+        "minHeight": {
+          "value": "var(--layera-shared-dimensions-viewport-height)",
+          "comment": "Full viewport height for body"
+        },
+        "overflow": {
+          "value": "var(--layera-overflow-hidden)",
+          "comment": "Hide overflow for map app"
+        }
+      },
+      "app": {
+        "minHeight": {
+          "value": "var(--layera-shared-dimensions-viewport-height)",
+          "comment": "Full viewport height for app"
+        },
+        "position": {
+          "value": "var(--layera-position-relative)",
+          "comment": "Relative positioning for app container"
+        },
+        "overflow": {
+          "value": "var(--layera-overflow-hidden)",
+          "comment": "Hide overflow for app container"
+        }
+      },
+      "header": {
+        "position": {
+          "value": "var(--layera-position-fixed)",
+          "comment": "Fixed positioning for header"
+        },
+        "top": {
+          "value": "var(--layera-shared-dimensions-zero)",
+          "comment": "Stick to top"
+        },
+        "left": {
+          "value": "var(--layera-shared-dimensions-zero)",
+          "comment": "Stick to left"
+        },
+        "right": {
+          "value": "var(--layera-shared-dimensions-zero)",
+          "comment": "Stick to right"
+        },
+        "width": {
+          "value": "var(--layera-shared-dimensions-viewport-width)",
+          "comment": "Full width for header"
+        },
+        "height": {
+          "value": "var(--layera-global-spacing-14)",
+          "comment": "Header height"
+        },
+        "zIndex": {
+          "value": "var(--layera-global-z-index-overlay)",
+          "comment": "Header z-index above map"
+        }
+      },
+      "mapContainer": {
+        "position": {
+          "value": "var(--layera-position-fixed)",
+          "comment": "Fixed positioning for map"
+        },
+        "top": {
+          "value": "var(--layera-header-fixed-height)",
+          "comment": "Position below header"
+        },
+        "left": {
+          "value": "var(--layera-shared-dimensions-zero)",
+          "comment": "Align to left"
+        },
+        "height": {
+          "value": "calc(var(--layera-shared-dimensions-viewport-height) - var(--layera-header-fixed-height))",
+          "comment": "Full height minus header"
+        },
+        "zIndex": {
+          "value": "var(--layera-global-z-index-base)",
+          "comment": "Below header"
+        }
+      },
+      "mapFullscreen": {
+        "width": {
+          "value": "var(--layera-shared-dimensions-viewport-width)",
+          "comment": "Full width of container"
+        },
+        "height": {
+          "value": "var(--layera-shared-dimensions-viewport-height)",
+          "comment": "Full height of container"
+        }
+      }
+    }
+  },
+  "header": {
+    "comment": "🧩 Header-specific tokens for Style Dictionary header-fixed selector",
+    "fixed": {
+      "height": {
+        "value": "var(--layera-global-spacing-14)",
+        "comment": "Fixed header height for navigation bar"
+      },
+      "top": {
+        "value": "var(--layera-shared-dimensions-zero)",
+        "comment": "Header top position - stick to viewport top"
+      },
+      "left": {
+        "value": "var(--layera-shared-dimensions-zero)",
+        "comment": "Header left position - stick to viewport left"
+      },
+      "right": {
+        "value": "var(--layera-shared-dimensions-zero)",
+        "comment": "Header right position - stick to viewport right"
+      },
+      "zIndex": {
+        "value": "var(--layera-global-z-index-header)",
+        "comment": "Header z-index above map (zIndex: 1000) and other content"
+      },
+      "background": {
+        "value": "var(--layera-color-surface-backdrop)",
+        "comment": "Semi-transparent white background για visibility"
+      },
+      "borderBottom": {
+        "value": "var(--layera-global-spacing-0-25) solid var(--layera-color-semantic-overlay-light)",
+        "comment": "Subtle bottom border για header separation"
+      },
+      "backdropFilter": {
+        "value": "blur(var(--layera-global-spacing-2-5))",
+        "comment": "Glass effect για modern header look"
+      }
+    }
+  }
+}

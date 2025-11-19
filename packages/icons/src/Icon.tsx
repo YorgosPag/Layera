@@ -248,20 +248,22 @@ export const Icon: React.FC<IconProps> = ({
           onClick();
         }
       } : undefined}
-      // 🎯 Interactive states με SSOT values
+      // ✅ ARXES COMPLIANT: Interactive states μέσω CSS classes - ZERO inline styles
       onMouseEnter={interactive ? (e: React.MouseEvent<SVGSVGElement>) => {
-        e.currentTarget.style.opacity = ENTERPRISE_TOKENS.interactive.opacity.hover.toString();
-        e.currentTarget.style.transform = `scale(${ENTERPRISE_TOKENS.interactive.scale.hover})`;
+        e.currentTarget.setAttribute('data-layera-icon-hover', 'true');
+        e.currentTarget.classList.add('layera-icon--hover');
       } : undefined}
       onMouseLeave={interactive ? (e: React.MouseEvent<SVGSVGElement>) => {
-        e.currentTarget.style.opacity = currentOpacity.toString();
-        e.currentTarget.style.transform = `scale(${ENTERPRISE_TOKENS.interactive.scale.default})`;
+        e.currentTarget.removeAttribute('data-layera-icon-hover');
+        e.currentTarget.classList.remove('layera-icon--hover');
       } : undefined}
       onFocus={focusable ? (e: React.FocusEvent<SVGSVGElement>) => {
-        e.currentTarget.style.outline = `${ENTERPRISE_TOKENS.accessibility.focusRing.width} solid ${ENTERPRISE_TOKENS.accessibility.focusRing.color}`;
+        e.currentTarget.setAttribute('data-layera-icon-focus', 'true');
+        e.currentTarget.classList.add('layera-icon--focus');
       } : undefined}
       onBlur={focusable ? (e: React.FocusEvent<SVGSVGElement>) => {
-        e.currentTarget.style.outline = 'none';
+        e.currentTarget.removeAttribute('data-layera-icon-focus');
+        e.currentTarget.classList.remove('layera-icon--focus');
       } : undefined}
       {...variantStyle}
       {...props}
