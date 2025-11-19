@@ -87,8 +87,8 @@ export const PROPERTY_VALIDATION = {
  */
 export const COLOR_PICKER_DIMENSIONS = {
   // Standard width for color picker components
-  STANDARD_WIDTH: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-global-spacing-62')) || 250, // Color picker width from tokens or fallback
-  CANVAS_HEIGHT: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-global-spacing-25')) || 100    // Canvas height from tokens or fallback
+  STANDARD_WIDTH: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-global-spacing-62')) || parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-global-spacing-62-fallback')) || parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-dimension-medium')), // Color picker width from tokens
+  CANVAS_HEIGHT: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-global-spacing-25')) || parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-global-spacing-25-fallback')) || parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-dimension-small'))    // Canvas height from tokens
 } as const;
 
 /**
