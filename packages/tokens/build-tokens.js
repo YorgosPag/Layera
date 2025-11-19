@@ -46,6 +46,7 @@ const feedbackSemanticFile = path.join(srcDir, 'semantic', 'feedback', 'feedback
 
 // Component tokens αρχεία
 const buttonsComponentFile = path.join(srcDir, 'component', 'buttons', 'buttons.variables.ts');
+const modalComponentFile = path.join(srcDir, 'component', 'modal', 'modal.variables.ts');
 
 if (!fs.existsSync(colorsFile)) {
   console.error('❌ Δεν βρέθηκε το αρχείο:', colorsFile);
@@ -87,6 +88,9 @@ const feedbackSemanticContent = fs.existsSync(feedbackSemanticFile) ? fs.readFil
 
 console.log('🔲 Διαβάζω buttons component tokens από:', buttonsComponentFile);
 const buttonsComponentContent = fs.existsSync(buttonsComponentFile) ? fs.readFileSync(buttonsComponentFile, 'utf8') : null;
+
+console.log('🏢 Διαβάζω modal component tokens από:', modalComponentFile);
+const modalComponentContent = fs.existsSync(modalComponentFile) ? fs.readFileSync(modalComponentFile, 'utf8') : null;
 
 // Εξάγει hex τιμές από το TypeScript αρχείο
 function extractHexValues(content) {
@@ -932,6 +936,113 @@ function extractButtonsComponentValues(content) {
   return cssVariables;
 }
 
+// Εξάγει τις modal component τιμές
+function extractModalComponentValues(content) {
+  const cssVariables = [];
+
+  if (!content) {
+    console.log('🏢 Δεν βρέθηκε περιεχόμενο modal component αρχείου');
+    return cssVariables;
+  }
+
+  // Απλός line-by-line parsing για MODAL_VARIABLES
+  const lines = content.split('\n');
+  let insideModalVariables = false;
+  let braceCount = 0;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    // Αρχή του MODAL_VARIABLES object
+    if (line.includes('export const MODAL_VARIABLES')) {
+      insideModalVariables = true;
+      braceCount = 0;
+      continue;
+    }
+
+    if (insideModalVariables) {
+      // Μετράω τα braces
+      braceCount += (line.match(/\{/g) || []).length;
+      braceCount -= (line.match(/\}/g) || []).length;
+
+      // Αν βρω variable definition - απλό string matching
+      const trimmedLine = line.trim();
+      if (trimmedLine.startsWith("'") && trimmedLine.includes("': ")) {
+        const parts = trimmedLine.split("': ");
+        if (parts.length === 2) {
+          const varName = parts[0].replace(/'/g, '');
+          let varValue = parts[1].replace(/,$/, '').trim();
+
+          // Resolve imports και references για modal
+          if (varValue.includes('BACKGROUND_VARIABLES[')) {
+            const ref = varValue.match(/BACKGROUND_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('TEXT_VARIABLES[')) {
+            const ref = varValue.match(/TEXT_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('BORDER_SEMANTIC_VARIABLES[')) {
+            const ref = varValue.match(/BORDER_SEMANTIC_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('MOTION_VARIABLES[')) {
+            const ref = varValue.match(/MOTION_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('SPACING_VARIABLES[')) {
+            const ref = varValue.match(/SPACING_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('BORDER_VARIABLES[')) {
+            const ref = varValue.match(/BORDER_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('SHADOW_VARIABLES[')) {
+            const ref = varValue.match(/SHADOW_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          // Remove quotes αν υπάρχουν
+          if (varValue.startsWith("'") && varValue.endsWith("'")) {
+            varValue = varValue.slice(1, -1);
+          }
+
+          cssVariables.push(`  --layera-${varName}: ${varValue};`);
+        }
+      }
+
+      // Τέλος του object
+      if (braceCount <= 0 && line.includes('}')) {
+        break;
+      }
+    }
+  }
+
+  console.log(`🏢 Εξήχθησαν ${cssVariables.length} modal component variables`);
+  return cssVariables;
+}
+
 // Εξάγει τις CSS variables
 const cssVariables = extractHexValues(colorsContent);
 const spacingVariables = extractSpacingValues(spacingContent);
@@ -949,6 +1060,7 @@ const feedbackSemanticVariables = extractFeedbackSemanticValues(feedbackSemantic
 
 // Εξάγει τις component CSS variables
 const buttonsComponentVariables = extractButtonsComponentValues(buttonsComponentContent);
+const modalComponentVariables = extractModalComponentValues(modalComponentContent);
 
 console.log(`✅ Εξήχθησαν ${cssVariables.length} color variables`);
 console.log(`✅ Εξήχθησαν ${spacingVariables.length} spacing variables`);
@@ -962,9 +1074,10 @@ console.log(`✅ Εξήχθησαν ${textSemanticVariables.length} text semanti
 console.log(`✅ Εξήχθησαν ${borderSemanticVariables.length} border semantic variables`);
 console.log(`✅ Εξήχθησαν ${feedbackSemanticVariables.length} feedback semantic variables`);
 console.log(`✅ Εξήχθησαν ${buttonsComponentVariables.length} buttons component variables`);
+console.log(`✅ Εξήχθησαν ${modalComponentVariables.length} modal component variables`);
 
 // Συνδυάζει όλα τα CSS variables
-const allVariables = [...cssVariables, ...spacingVariables, ...typographyVariables, ...bordersVariables, ...shadowsVariables, ...motionVariables, ...iconsVariables, ...backgroundSemanticVariables, ...textSemanticVariables, ...borderSemanticVariables, ...feedbackSemanticVariables, ...buttonsComponentVariables];
+const allVariables = [...cssVariables, ...spacingVariables, ...typographyVariables, ...bordersVariables, ...shadowsVariables, ...motionVariables, ...iconsVariables, ...backgroundSemanticVariables, ...textSemanticVariables, ...borderSemanticVariables, ...feedbackSemanticVariables, ...buttonsComponentVariables, ...modalComponentVariables];
 
 // Δημιουργεί το CSS περιεχόμενο
 const cssContent = `/*
@@ -1011,6 +1124,9 @@ ${feedbackSemanticVariables.join('\n')}
 
   /* 🔲 COMPONENT BUTTONS */
 ${buttonsComponentVariables.join('\n')}
+
+  /* 🏢 COMPONENT MODAL */
+${modalComponentVariables.join('\n')}
 }
 
 /* 🎯 Layera Design Tokens System Ready */
@@ -1035,6 +1151,7 @@ console.log(`   ✏️ Text Semantic: ${textSemanticVariables.length}`);
 console.log(`   🔲 Border Semantic: ${borderSemanticVariables.length}`);
 console.log(`   🔔 Feedback Semantic: ${feedbackSemanticVariables.length}`);
 console.log(`   🔲 Buttons Component: ${buttonsComponentVariables.length}`);
+console.log(`   🏢 Modal Component: ${modalComponentVariables.length}`);
 console.log(`   🎯 Total: ${allVariables.length}`);
 console.log('');
 console.log('✅ Build completed successfully!');

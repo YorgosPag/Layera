@@ -3,7 +3,7 @@
  *
  * ⚠️  DO NOT EDIT MANUALLY
  * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts, core/motion/motion.variables.ts και component/icons/icons.variables.ts and rebuild
- * Generated: 2025-11-19T20:43:13.833Z
+ * Generated: 2025-11-19T20:54:53.787Z
  */
 
 :root {
@@ -94,6 +94,8 @@
   --layera-border-radius-20: 20px;
   --layera-border-radius-24: 24px;
   --layera-border-radius-full: 9999px;
+  --layera-border-radius-circle: 50%;
+  --layera-border-radius-md: 6px;
   --layera-border-style-none: none;
   --layera-border-style-solid: solid;
   --layera-border-style-dashed: dashed;
@@ -317,6 +319,40 @@
   --layera-button-shadow-disabled: var(--layera-shadow-none);
   --layera-button-transition-default: var(--layera-transition-fast);
   --layera-button-transition-hover: var(--layera-transition-normal);
+
+  /* 🏢 COMPONENT MODAL */
+  --layera-modal-backdrop-background: rgba(0, 0, 0, 0.5);
+  --layera-modal-backdrop-blur: blur(4px);
+  --layera-modal-backdrop-z-index: 1000;
+  --layera-modal-content-z-index: 1001;
+  --layera-modal-backdrop-transition: var(--layera-transition-normal);
+  --layera-modal-content-background: var(--layera-background-default);
+  --layera-modal-content-border: var(--layera-border-subtle);
+  --layera-modal-content-border-radius: var(--layera-border-radius-12);
+  --layera-modal-content-shadow: var(--layera-shadow-xl);
+  --layera-modal-content-text: var(--layera-text-primary);
+  --layera-modal-header-text: var(--layera-text-primary);
+  --layera-modal-footer-text: var(--layera-text-secondary);
+  --layera-modal-content-transition: var(--layera-transition-normal);
+  --layera-modal-scale-enter: scale(0.95);
+  --layera-modal-scale-exit: scale(0.95);
+  --layera-modal-scale-open: scale(1);
+  --layera-modal-sm-width: 320px;
+  --layera-modal-sm-max-width: 90vw;
+  --layera-modal-sm-padding: var(--layera-spacing-4);
+  --layera-modal-md-width: 500px;
+  --layera-modal-md-max-width: 90vw;
+  --layera-modal-md-padding: var(--layera-spacing-6);
+  --layera-modal-lg-width: 800px;
+  --layera-modal-lg-max-width: 95vw;
+  --layera-modal-lg-padding: var(--layera-spacing-8);
+  --layera-modal-xl-width: 1200px;
+  --layera-modal-xl-max-width: 98vw;
+  --layera-modal-xl-padding: var(--layera-spacing-10);
+  --layera-modal-fullscreen-width: 100vw;
+  --layera-modal-fullscreen-height: 100vh;
+  --layera-modal-fullscreen-padding: var(--layera-spacing-6);
+  --layera-modal-header-padding: var(--layera-spacing-6);
 }
 
 /* 🎯 Layera Design Tokens System Ready */

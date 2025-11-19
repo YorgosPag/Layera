@@ -3,7 +3,6 @@ import { useAuth } from '../hooks/useAuth.js';
 import type { AuthResult, LayeraUser } from '../types/auth.js';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
-import './GoogleSignInButton.css';
 
 export interface GoogleSignInButtonProps {
   /** Text που εμφανίζεται στο button */
