@@ -43,52 +43,7 @@ export interface UseCSSVariablesReturn {
   actions: CSSVariablesActions;
 }
 
-/**
- * Mapping από UI categories σε layera semantic tokens
- * ΜΟΝΟ token references - ZERO σκληρές τιμές
- */
-const LAYERA_TOKEN_MAP: TokenVariableMap = {
-  buttons: {
-    primary: '--layera-color-primary',
-    secondary: '--layera-color-semantic-neutral-light',
-    success: '--layera-color-semantic-success-primary',
-    warning: '--layera-color-semantic-warning-primary',
-    danger: '--layera-color-semantic-error-primary',
-    info: '--layera-color-semantic-info-primary'
-  },
-  backgrounds: {
-    primary: '--layera-colorUtilities-utilities-background-primary',
-    secondary: '--layera-colorUtilities-utilities-background-secondary',
-    success: '--layera-colorUtilities-utilities-background-semantic-success',
-    warning: '--layera-colorUtilities-utilities-background-semantic-warning',
-    danger: '--layera-colorUtilities-utilities-background-semantic-error',
-    info: '--layera-colorUtilities-utilities-background-semantic-info'
-  },
-  layout: {
-    primary: '--layera-layout-bg-primary',
-    secondary: '--layera-layout-bg-secondary',
-    success: '--layera-layout-bg-success',
-    warning: '--layera-layout-bg-warning',
-    danger: '--layera-layout-bg-danger',
-    info: '--layera-layout-bg-info'
-  },
-  text: {
-    primary: '--layera-colorUtilities-utilities-text-primary',
-    secondary: '--layera-colorUtilities-utilities-text-secondary',
-    success: '--layera-colorUtilities-utilities-text-semantic-success',
-    warning: '--layera-colorUtilities-utilities-text-semantic-warning',
-    danger: '--layera-colorUtilities-utilities-text-semantic-error',
-    info: '--layera-colorUtilities-utilities-text-semantic-info'
-  },
-  borders: {
-    primary: '--layera-colorUtilities-utilities-border-default',
-    secondary: '--layera-colorUtilities-utilities-border-light',
-    success: '--layera-colorUtilities-utilities-border-semantic-success',
-    warning: '--layera-colorUtilities-utilities-border-semantic-warning',
-    danger: '--layera-colorUtilities-utilities-border-semantic-error',
-    info: '--layera-colorUtilities-utilities-border-semantic-info'
-  }
-};
+// Token mapping functionality removed as it was unused
 
 /**
  * ARXES Compliant Hook για διαχείριση design token theming
@@ -229,17 +184,7 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
     root.setAttribute('data-layera-button-border-width', borderWidth);
   };
 
-  /**
-   * Επιστρέφει default colors για fallback
-   */
-  const getCurrentDefaultColors = (): ColorPaletteWithAlpha => ({
-    primaryColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
-    secondaryColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
-    successColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0),
-    warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
-    dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
-    infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
-  });
+  // Default colors functionality removed as it was unused
 
   const actions: CSSVariablesActions = {
     ensureCSSVariablesExist,

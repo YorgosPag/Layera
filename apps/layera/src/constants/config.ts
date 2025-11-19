@@ -7,10 +7,8 @@
 
 // External APIs & Services
 import { EXTERNAL_APIS, LEAFLET_INFRASTRUCTURE } from './external-apis';
-// Animation Durations
-import { ANIMATION_DURATIONS } from './animation-durations';
-// Demo Property Data
-import { DEMO_PROPERTY_DATA } from './demo-property-data';
+// Animation Durations - imported only for re-export
+// Demo Property Data - imported only for re-export
 // Geometric & UI Constants
 import { GEOMETRIC_LIMITS, ICON_DIMENSIONS, UI_DIMENSIONS } from './geometric-limits';
 // UI Layers, Workflow & Geospatial

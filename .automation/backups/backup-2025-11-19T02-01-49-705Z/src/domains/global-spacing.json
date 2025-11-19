@@ -1,0 +1,135 @@
+{
+  "global": {
+    "comment": "🌐 Global Spacing System - ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ",
+    "spacing": {
+      "0": {
+        "value": "0rem",
+        "comment": "No spacing"
+      },
+      "0-25": {
+        "value": "0.0625rem",
+        "comment": "Hair line spacing"
+      },
+      "0-5": {
+        "value": "0.125rem",
+        "comment": "Tiny spacing"
+      },
+      "1": {
+        "value": "0.25rem",
+        "comment": "Extra small spacing"
+      },
+      "1-5": {
+        "value": "0.375rem",
+        "comment": "Small-medium spacing"
+      },
+      "2": {
+        "value": "0.5rem",
+        "comment": "Small spacing"
+      },
+      "2-5": {
+        "value": "0.625rem",
+        "comment": "Blur effects"
+      },
+      "3": {
+        "value": "0.75rem",
+        "comment": "Medium-small spacing"
+      },
+      "3-5": {
+        "value": "0.875rem",
+        "comment": "Typography font sizes"
+      },
+      "4": {
+        "value": "1rem",
+        "comment": "Base spacing"
+      },
+      "5": {
+        "value": "1.25rem",
+        "comment": "Medium spacing"
+      },
+      "6": {
+        "value": "1.5rem",
+        "comment": "Large spacing"
+      },
+      "7": {
+        "value": "1.75rem",
+        "comment": "Large-medium spacing"
+      },
+      "7-5": {
+        "value": "1.875rem",
+        "comment": "Large-medium+ spacing"
+      },
+      "8": {
+        "value": "2rem",
+        "comment": "Extra large spacing"
+      },
+      "9": {
+        "value": "2.25rem",
+        "comment": "Extra large+ spacing"
+      },
+      "10": {
+        "value": "2.5rem",
+        "comment": "XXL spacing"
+      },
+      "11": {
+        "value": "2.75rem",
+        "comment": "XXL+ spacing"
+      },
+      "12": {
+        "value": "3rem",
+        "comment": "XXXL spacing"
+      },
+      "14": {
+        "value": "3.5rem",
+        "comment": "Header height"
+      },
+      "16": {
+        "value": "4rem",
+        "comment": "Section spacing"
+      },
+      "20": {
+        "value": "5rem",
+        "comment": "Page section spacing"
+      },
+      "25": {
+        "value": "6.25rem",
+        "comment": "Large section spacing"
+      },
+      "30": {
+        "value": "7.5rem",
+        "comment": "Hero section spacing"
+      },
+      "80": {
+        "value": "20rem",
+        "comment": "Component widths"
+      },
+      "112": {
+        "value": "28rem",
+        "comment": "Medium drawer width"
+      },
+      "120": {
+        "value": "30rem",
+        "comment": "Card heights"
+      },
+      "135": {
+        "value": "33.75rem",
+        "comment": "Container sm"
+      },
+      "144": {
+        "value": "36rem",
+        "comment": "Large drawer width"
+      },
+      "180": {
+        "value": "45rem",
+        "comment": "Container md"
+      },
+      "240": {
+        "value": "60rem",
+        "comment": "Container lg"
+      },
+      "285": {
+        "value": "71.25rem",
+        "comment": "Container xl"
+      }
+    }
+  }
+}

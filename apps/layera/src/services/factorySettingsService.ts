@@ -31,7 +31,7 @@ import {
 const FACTORY_SETTINGS_COLLECTION = 'factoryColorSettings';
 const USER_SETTINGS_COLLECTION = 'userColorSettings';
 
-export interface UserColorSettings {
+interface UserColorSettings {
   userId: string;
   settings: {
     primaryColor: string;
@@ -48,7 +48,7 @@ export interface UserColorSettings {
   paletteType?: PaletteType;
 }
 
-export interface StoredFactorySettings {
+interface StoredFactorySettings {
   id: string;
   name: string;
   palette: FactoryColorSettings;
@@ -247,23 +247,6 @@ export class FactorySettingsService {
     }
   }
 
-  /**
-   * Διαγράφει όλες τις ρυθμίσεις χρήστη (για reset)
-   */
-  static async deleteUserSettings(userId: string): Promise<void> {
-    try {
-      const db = getDb();
-      if (!db) {
-        throw new Error('Firebase δεν είναι διαθέσιμο');
-      }
-      const docRef = doc(db, USER_SETTINGS_COLLECTION, userId);
-      await deleteDoc(docRef);
-      console.log('✅ Ρυθμίσεις χρήστη διαγράφηκαν επιτυχώς');
-    } catch (error) {
-      console.error('❌ Σφάλμα κατά τη διαγραφή ρυθμίσεων χρήστη:', error);
-      throw error;
-    }
-  }
 
   /**
    * Διαγράφει όλες τις αποθηκευμένες ρυθμίσεις χρηστών (admin function)
@@ -338,15 +321,4 @@ export class FactorySettingsService {
     }
   }
 
-  /**
-   * Καθαρίζει το local storage
-   */
-  static clearLocalStorage(): void {
-    try {
-      localStorage.removeItem('layera-color-settings');
-      localStorage.removeItem('layera-color-settings-timestamp');
-    } catch (error) {
-      console.error('❌ Σφάλμα κατά τον καθαρισμό του local storage:', error);
-    }
-  }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '../../../../packages/layout/src';
 import { Drawer } from '@layera/modals';
-import { LanguageSwitcher, useLayeraTranslation } from '@layera/tolgee';
+import { useLayeraTranslation } from '@layera/tolgee';
 import { ArrowLeftIcon } from '../../../../packages/icons/src';
 import { Text, Heading } from '../../../../packages/typography/src';
 

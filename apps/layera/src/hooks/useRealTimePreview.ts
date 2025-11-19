@@ -78,20 +78,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
     root.setAttribute('data-layera-border-width-preview', width);
   }, []);
 
-  /**
-   * Shared helper για conversion των radius values σε tokens
-   */
-  const getRadiusValue = useCallback((radius: string) => {
-    switch(radius) {
-      case 'none': return 'var(--layera-global-borderRadius-none)';  // 0
-      case 'sm': return 'var(--layera-radius-sm)';      // var(--layera-global-spacing-1)
-      case 'lg': return 'var(--layera-radius-lg)';      // var(--layera-global-spacing-2)
-      case 'xl': return 'var(--layera-radius-xl)';      // var(--layera-global-spacing-3)
-      case 'xxl': return 'var(--layera-radius-xxl)';    // var(--layera-global-spacing-4)
-      case 'round': return 'var(--layera-radius-full)'; // πλήρως στρογγυλά
-      default: return 'var(--layera-radius-lg)';        // var(--layera-global-spacing-2) fallback
-    }
-  }, []);
+  // Radius value helper removed as it was unused
 
   /**
    * ✅ ARXES COMPLIANT: Εφαρμογή card radius μέσω data attributes
@@ -245,71 +232,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
     const root = document.documentElement;
 
 
-    // Extended CSS variable mapping for all controls and categories
-    const cssVariableMap: Record<string, string> = {
-      // Generic colors (μόνο για fallback)
-      primaryColor: '--layera-color-primary',
-      secondaryColor: '--layera-color-text-secondary',
-      successColor: '--layera-color-semantic-success-primary',
-      warningColor: '--layera-color-semantic-warning-primary',
-      dangerColor: '--layera-color-semantic-error-primary',
-      infoColor: '--layera-color-semantic-info-primary',
-
-      // Background colors (για κάρτες και άλλα components)
-      backgroundPrimary: '--layera-color-background-primary',
-      backgroundSecondary: '--layera-color-background-secondary',
-      backgroundSurface: '--layera-color-surface-primary',
-
-      // Card background colors - νέα προσθήκη για real-time preview
-      'card-bg-primary': '--layera-card-bg-primary',
-      'card-bg-secondary': '--layera-card-bg-secondary',
-      'card-bg-success': '--layera-card-bg-success',
-      'card-bg-warning': '--layera-card-bg-warning',
-      'card-bg-danger': '--layera-card-bg-danger',
-      'card-bg-info': '--layera-card-bg-info',
-
-      // Card text colors - νέα προσθήκη για real-time preview
-      'card-text-primary': '--layera-card-text-primary',
-      'card-text-secondary': '--layera-card-text-secondary',
-      'card-text-success': '--layera-card-text-success',
-      'card-text-warning': '--layera-card-text-warning',
-      'card-text-danger': '--layera-card-text-danger',
-      'card-text-info': '--layera-card-text-info',
-
-      // Card border colors - νέα προσθήκη για real-time preview
-      'card-border-primary': '--layera-card-border-primary',
-      'card-border-secondary': '--layera-card-border-secondary',
-      'card-border-success': '--layera-card-border-success',
-      'card-border-warning': '--layera-card-border-warning',
-      'card-border-danger': '--layera-card-border-danger',
-      'card-border-info': '--layera-card-border-info',
-
-      // Border colors
-      borderPrimary: '--layera-color-border-primary',
-      borderSecondary: '--layera-color-border-secondary',
-
-      // Text colors
-      textPrimary: '--layera-color-text-primary',
-      textSecondary: '--layera-color-text-secondary',
-
-      // Border width
-      borderWidth1: '--layera-global-borderWidth-1',
-      borderWidth2: '--layera-global-borderWidth-2',
-      borderWidth3: '--layera-global-borderWidth-3',
-
-      // Border radius
-      borderRadiusXs: '--layera-global-borderRadius-xs',
-      borderRadiusMd: '--layera-global-borderRadius-md',
-      borderRadiusLg: '--layera-global-borderRadius-lg',
-
-      // Font sizes
-      fontSizeXs: '--layera-global-fontSize-xs',
-      fontSizeSm: '--layera-global-fontSize-sm',
-      fontSizeBase: '--layera-global-fontSize-base',
-      fontSizeLg: '--layera-global-fontSize-lg',
-      fontSizeXl: '--layera-global-fontSize-xl',
-      fontSize2xl: '--layera-global-fontSize-2xl'
-    };
+    // CSS variable mapping removed as it was unused
 
     // ISOLATED UPDATES: Apply changes only to the specific element type + category
     const isColorKey = key === 'primaryColor' || key === 'secondaryColor' || key === 'successColor' ||

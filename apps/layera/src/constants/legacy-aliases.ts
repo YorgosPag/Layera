@@ -3,7 +3,7 @@
  * Αυτό το αρχείο παρέχει aliases για constants που μετονομάστηκαν ή μετακινήθηκαν
  */
 
-import { CONFIG, ICON_DIMENSIONS } from './config';
+import { ICON_DIMENSIONS } from './config';
 
 // Map-related legacy aliases
 export const MAP_DEFAULTS = {

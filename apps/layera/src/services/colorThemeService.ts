@@ -20,19 +20,11 @@ export interface ColorState {
   colorCategory: 'backgrounds' | 'text' | 'borders';
 }
 
-export interface ColorTheme {
-  id: string;
-  name: string;
-  colors: ThemeColors;
-  category: ColorState['colorCategory'];
-  userId?: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
 
 /**
  * Μετατρέπει ColorState σε ThemeColors format
  * Validates για undefined values που δεν δέχεται το Firebase
+ * INTERNAL USE ONLY
  */
 function colorStateToThemeColors(colorState: ColorState): ThemeColors {
   // ES Modules compliant - no CommonJS require (ARXES rule)
