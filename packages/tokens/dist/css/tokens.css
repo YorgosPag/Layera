@@ -3,9 +3,9 @@
  */
 
 :root {
-  --layera-icon-xs: var(--layera-global-spacing-4); /** 16px - Standard mobile size */
-  --layera-icon-md: var(--layera-global-spacing-5); /** 20px - Default icon size for desktop */
-  --layera-icon-lg: var(--layera-global-spacing-8); /** 32px - Large interactive elements */
+  --layera-icon-xs: var(--layera-global-spacing-4); /** Standard mobile size */
+  --layera-icon-md: var(--layera-global-spacing-5); /** Default icon size for desktop */
+  --layera-icon-lg: var(--layera-global-spacing-8); /** Large interactive elements */
   --layera-icon-colorPrimary: var(--layera-color-semantic-warning-primary); /** Primary brand color for icons - ΚΙΤΡΙΝΟ για single source test */
   --layera-icon-colorSecondary: var(--layera-color-semantic-neutral-dark); /** Secondary color for supporting icons */
   --layera-icon-colorSuccess: var(--layera-color-semantic-success-primary); /** Green for success states - consolidated reference */
@@ -14,9 +14,9 @@
   --layera-icon-colorInfo: var(--layera-color-semantic-info-primary); /** Blue for informational states - consolidated reference */
   --layera-icon-colorNeutral: var(--layera-color-semantic-neutral-dark); /** Neutral gray for standard icons */
   --layera-iconInteractive-interactive-opacity-default: 1; /** Default opacity state */
-  --layera-iconInteractive-interactive-opacity-hover: 0.8; /** Hover opacity for interactive icons */
-  --layera-iconInteractive-interactive-opacity-active: 0.6; /** Active/pressed opacity state */
-  --layera-iconInteractive-interactive-opacity-disabled: 0.4; /** Disabled state opacity */
+  --layera-iconInteractive-interactive-opacity-hover: var(--layera-opacity-hover); /** Hover opacity for interactive icons */
+  --layera-iconInteractive-interactive-opacity-active: var(--layera-opacity-active); /** Active/pressed opacity state */
+  --layera-iconInteractive-interactive-opacity-disabled: var(--layera-opacity-disabled); /** Disabled state opacity */
   --layera-iconInteractive-interactive-scale-default: 1; /** Default scale state */
   --layera-iconInteractive-interactive-scale-hover: 1.1; /** Hover scale for micro-interactions */
   --layera-iconInteractive-interactive-scale-active: 0.95; /** Active/pressed scale state */
@@ -190,7 +190,7 @@
   --layera-global-shared-z-index-overlay: var(--layera-shared-zIndex-overlay); /** Standard overlay z-index - modals, dropdowns */
   --layera-global-utilities-zIndex-overlay: var(--layera-z-index-overlay, var(--layera-shared-zIndex-overlay)); /** Z-index for overlay elements like modals and dropdowns */
   --layera-global-utilities-grid-autoFit: var(--layera-global-utilities-grid-autoFit); /** Auto-fit grid template for responsive cards */
-  --layera-global-utilities-grid-autoFit280: var(--layera-global-utilities-grid-autoFit280); /** Auto-fit grid template 280px exactly */
+  --layera-global-utilities-grid-autoFit280: var(--layera-global-utilities-grid-autoFit280); /** Auto-fit grid template for responsive cards */
   --layera-global-utilities-textAlign-center: center; /** Center text alignment utility */
   --layera-global-utilities-textAlign-left: left; /** Left text alignment utility */
   --layera-global-utilities-textAlign-right: right; /** Right text alignment utility */
@@ -200,19 +200,19 @@
   --layera-global-utilities-justifyContent-spaceBetween: space-between; /** Space flex/grid items evenly with space between */
   --layera-global-fontFamily-system: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; /** Global system font */
   --layera-global-fontFamily-mono: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; /** Global mono font */
-  --layera-size-2: var(--layera-global-spacing-2); /** 8px spacing */
-  --layera-size-4: var(--layera-global-spacing-4); /** 16px spacing */
-  --layera-size-6: var(--layera-global-spacing-6); /** 24px spacing */
-  --layera-size-8: var(--layera-global-spacing-8); /** 32px spacing */
-  --layera-size-12: var(--layera-global-spacing-12); /** 48px spacing */
-  --layera-size-16: var(--layera-global-spacing-16); /** 64px spacing */
-  --layera-radius-xs: var(--layera-global-spacing-0-5); /** 2px radius */
-  --layera-radius-sm: var(--layera-global-spacing-1); /** 4px radius */
-  --layera-radius-md: var(--layera-global-spacing-1-5); /** 6px radius */
-  --layera-radius-lg: var(--layera-global-spacing-2); /** 8px radius */
-  --layera-radius-xl: var(--layera-global-spacing-3); /** 12px border radius */
-  --layera-radius-xxl: var(--layera-global-spacing-4); /** 16px border radius */
-  --layera-radius-xxxl: var(--layera-global-spacing-6); /** 24px border radius */
+  --layera-size-2: var(--layera-global-spacing-2); /** Small spacing */
+  --layera-size-4: var(--layera-global-spacing-4); /** Base spacing */
+  --layera-size-6: var(--layera-global-spacing-6); /** Large spacing */
+  --layera-size-8: var(--layera-global-spacing-8); /** Extra large spacing */
+  --layera-size-12: var(--layera-global-spacing-12); /** Section spacing */
+  --layera-size-16: var(--layera-global-spacing-16); /** Page spacing */
+  --layera-radius-xs: var(--layera-global-spacing-0-5); /** Tiny radius */
+  --layera-radius-sm: var(--layera-global-spacing-1); /** Small radius */
+  --layera-radius-md: var(--layera-global-spacing-1-5); /** Medium radius */
+  --layera-radius-lg: var(--layera-global-spacing-2); /** Large radius */
+  --layera-radius-xl: var(--layera-global-spacing-3); /** Extra large border radius */
+  --layera-radius-xxl: var(--layera-global-spacing-4); /** XXL border radius */
+  --layera-radius-xxxl: var(--layera-global-spacing-6); /** XXXL border radius */
   --layera-radius-pill: var(--layera-global-borderRadius-full); /** Pill shape radius - consolidated reference */
   --layera-radius-circle: var(--layera-global-borderRadius-circle); /** Circle shape radius - consolidated reference */
   --layera-radius-full: var(--layera-global-borderRadius-full); /** Full border radius - consolidated reference */

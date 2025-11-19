@@ -1004,7 +1004,7 @@ button:focus-visible {
   color: var(--layera-global-button-text-disabled);
   border: var(--layera-global-button-borderWidth) solid var(--layera-global-button-border-disabled);
   cursor: not-allowed;
-  opacity: 0.6;
+  opacity: var(--layera-opacity-disabled);
 }
 
 /* Button Hover Variants */
@@ -1428,7 +1428,7 @@ button:focus-visible {
   color: var(--layera-global-button-text-disabled);
   border: var(--layera-global-button-borderWidth) solid var(--layera-global-button-border-disabled);
   cursor: not-allowed;
-  opacity: 0.6;
+  opacity: var(--layera-opacity-disabled);
 }
 /* BEM Compatibility: button--backgroundColor */
 .layera-button--backgroundColor {

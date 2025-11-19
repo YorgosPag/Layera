@@ -58,7 +58,7 @@ export const HoverControl: React.FC<HoverControlProps> = ({
       label: 'Ελαφρύ',
       description: 'Ελαφρύ hover effect',
       preview: {
-        opacity: '0.9',
+        opacity: 'var(--layera-iconInteractive-interactive-opacity-hover)',
         transform: 'none',
         background: 'var(--layera-color-surface-hover)'
       }

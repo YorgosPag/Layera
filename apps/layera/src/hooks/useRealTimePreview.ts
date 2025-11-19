@@ -70,7 +70,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
       case 'none':
         return '.layera-button:hover, .layera-card:hover { transition: none !important; }';
       case 'subtle':
-        return '.layera-button:hover, .layera-card:hover { opacity: 0.9 !important; transition: var(--layera-transition-colors) !important; }';
+        return '.layera-button:hover, .layera-card:hover { opacity: var(--layera-iconInteractive-interactive-opacity-hover) !important; transition: var(--layera-transition-colors) !important; }';
       case 'normal':
         return '.layera-button:hover, .layera-card:hover { opacity: var(--layera-icon-interactive-interactive-opacity-hover) !important; transform: translateY(calc(-1 * var(--layera-global-spacing-1))) !important; transition: var(--layera-transition-all) !important; }';
       case 'strong':

@@ -85,7 +85,7 @@
       },
       "10": {
         "value": "var(--layera-global-spacing-10)",
-        "comment": "XXL spacing"
+        "comment": "40px spacing"
       },
       "12": {
         "value": "var(--layera-global-spacing-12)",
