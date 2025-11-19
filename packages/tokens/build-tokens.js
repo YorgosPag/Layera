@@ -32,6 +32,7 @@ if (!fs.existsSync(distDir)) {
 // Διαβάζει τα tokens αρχεία
 const colorsFile = path.join(srcDir, 'colors', 'colors.variables.ts');
 const spacingFile = path.join(srcDir, 'core', 'spacing', 'spacing.variables.ts');
+const typographyFile = path.join(srcDir, 'core', 'typography', 'typography.variables.ts');
 
 if (!fs.existsSync(colorsFile)) {
   console.error('❌ Δεν βρέθηκε το αρχείο:', colorsFile);
@@ -43,6 +44,9 @@ const colorsContent = fs.readFileSync(colorsFile, 'utf8');
 
 console.log('📏 Διαβάζω spacing tokens από:', spacingFile);
 const spacingContent = fs.existsSync(spacingFile) ? fs.readFileSync(spacingFile, 'utf8') : null;
+
+console.log('🖋️ Διαβάζω typography tokens από:', typographyFile);
+const typographyContent = fs.existsSync(typographyFile) ? fs.readFileSync(typographyFile, 'utf8') : null;
 
 // Εξάγει hex τιμές από το TypeScript αρχείο
 function extractHexValues(content) {
@@ -170,22 +174,86 @@ function extractSpacingValues(content) {
   return cssVariables;
 }
 
+// Εξάγει typography τιμές από το TypeScript αρχείο
+function extractTypographyValues(content) {
+  const cssVariables = [];
+
+  if (!content) return cssVariables;
+
+  // Extract FONT_SIZE_SCALE
+  const fontSizeMatch = content.match(/export const FONT_SIZE_SCALE[\\s\\S]*?= \\{([\\s\\S]*?)\\} as const;/);
+  if (fontSizeMatch) {
+    const fontSizeContent = fontSizeMatch[1];
+    const sizeRegex = /(\\w+): ['\"]([^'\"]+)['\"]/g;
+    let match;
+
+    while ((match = sizeRegex.exec(fontSizeContent)) !== null) {
+      const [, size, value] = match;
+      cssVariables.push(`  --layera-typography-core-fontSize-${size}: ${value};`);
+    }
+  }
+
+  // Extract FONT_WEIGHT_SCALE
+  const fontWeightMatch = content.match(/export const FONT_WEIGHT_SCALE[\\s\\S]*?= \\{([\\s\\S]*?)\\} as const;/);
+  if (fontWeightMatch) {
+    const fontWeightContent = fontWeightMatch[1];
+    const weightRegex = /(\\w+): (\\d+)/g;
+    let match;
+
+    while ((match = weightRegex.exec(fontWeightContent)) !== null) {
+      const [, weight, value] = match;
+      cssVariables.push(`  --layera-typography-core-fontWeight-${weight}: ${value};`);
+    }
+  }
+
+  // Extract LINE_HEIGHT_SCALE
+  const lineHeightMatch = content.match(/export const LINE_HEIGHT_SCALE[\\s\\S]*?= \\{([\\s\\S]*?)\\} as const;/);
+  if (lineHeightMatch) {
+    const lineHeightContent = lineHeightMatch[1];
+    const heightRegex = /(\\w+): ([\\d.]+)/g;
+    let match;
+
+    while ((match = heightRegex.exec(lineHeightContent)) !== null) {
+      const [, height, value] = match;
+      cssVariables.push(`  --layera-typography-core-lineHeight-${height}: ${value};`);
+    }
+  }
+
+  // Extract FONT_FAMILY_SCALE
+  const fontFamilyMatch = content.match(/export const FONT_FAMILY_SCALE[\\s\\S]*?= \\{([\\s\\S]*?)\\} as const;/);
+  if (fontFamilyMatch) {
+    const fontFamilyContent = fontFamilyMatch[1];
+    const familyRegex = /(\\w+): `([^`]+)`/g;
+    let match;
+
+    while ((match = familyRegex.exec(fontFamilyContent)) !== null) {
+      const [, family, value] = match;
+      cssVariables.push(`  --layera-typography-core-fontFamily-${family}: ${value};`);
+    }
+  }
+
+  console.log(`🖋️ Εξήχθησαν ${cssVariables.length} typography variables`);
+  return cssVariables;
+}
+
 // Εξάγει τις CSS variables
 const cssVariables = extractHexValues(colorsContent);
 const spacingVariables = extractSpacingValues(spacingContent);
+const typographyVariables = extractTypographyValues(typographyContent);
 
 console.log(`✅ Εξήχθησαν ${cssVariables.length} color variables`);
 console.log(`✅ Εξήχθησαν ${spacingVariables.length} spacing variables`);
+console.log(`✅ Εξήχθησαν ${typographyVariables.length} typography variables`);
 
 // Συνδυάζει όλα τα CSS variables
-const allVariables = [...cssVariables, ...spacingVariables];
+const allVariables = [...cssVariables, ...spacingVariables, ...typographyVariables];
 
 // Δημιουργεί το CSS περιεχόμενο
 const cssContent = `/*
  * 🎨 LAYERA DESIGN TOKENS - AUTO GENERATED
  *
  * ⚠️  DO NOT EDIT MANUALLY
- * Edit packages/tokens/src/colors/colors.variables.ts και core/spacing/spacing.variables.ts and rebuild
+ * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, και core/typography/typography.variables.ts and rebuild
  * Generated: ${new Date().toISOString()}
  */
 
@@ -195,6 +263,9 @@ ${cssVariables.join('\n')}
 
   /* 📏 SPACING */
 ${spacingVariables.join('\n')}
+
+  /* 🖋️ TYPOGRAPHY */
+${typographyVariables.join('\n')}
 }
 
 /* 🎯 Layera Design Tokens System Ready */
@@ -209,6 +280,7 @@ console.log(`   📁 Source: ${colorsFile}`);
 console.log(`   📁 Output: ${outputFile}`);
 console.log(`   🎨 Colors: ${cssVariables.length}`);
 console.log(`   📏 Spacing: ${spacingVariables.length}`);
+console.log(`   🖋️ Typography: ${typographyVariables.length}`);
 console.log(`   🎯 Total: ${allVariables.length}`);
 console.log('');
 console.log('✅ Build completed successfully!');

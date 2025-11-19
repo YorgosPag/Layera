@@ -168,8 +168,8 @@ export const AppContent: React.FC = () => {
       <Box
         className="layera-layout"
         style={{
-          width: 'calc(var(--layera-layoutSystem-viewport-width, 100vw) - var(--layera-spacing-large))',
-          height: 'calc(var(--layera-layoutSystem-viewport-height, 100vh) - var(--layera-header-fixed-height) - var(--layera-spacing-medium))',
+          width: 'calc(var(--layera-layoutSystem-viewport-width) - var(--layera-spacing-large))',
+          height: 'calc(var(--layera-layoutSystem-viewport-height) - var(--layera-header-fixed-height) - var(--layera-spacing-medium))',
           position: 'relative',
           marginTop: 'var(--layera-spacing-medium)',
           backgroundColor: 'var(--layera-color-neutral-light)',

@@ -74,7 +74,7 @@ const EXCLUDED_PATHS = [
 // Domain token files που επιτρέπονται να έχουν σκληρές τιμές
 const ALLOWED_TOKEN_PATHS = [
   'packages/tokens/src/domains/',
-  'packages/tokens/dist/css/tokens.css'
+  'packages/tokens/dist/tokens.css'
 ];
 
 /**

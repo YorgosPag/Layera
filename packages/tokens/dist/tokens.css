@@ -2,8 +2,8 @@
  * 🎨 LAYERA DESIGN TOKENS - AUTO GENERATED
  *
  * ⚠️  DO NOT EDIT MANUALLY
- * Edit packages/tokens/src/colors/colors.variables.ts και core/spacing/spacing.variables.ts and rebuild
- * Generated: 2025-11-19T18:03:59.976Z
+ * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, και core/typography/typography.variables.ts and rebuild
+ * Generated: 2025-11-19T18:26:17.583Z
  */
 
 :root {
@@ -72,6 +72,9 @@
   --layera-spacing-medium: 1rem;
   --layera-spacing-large: 2rem;
   --layera-spacing-macro: 4rem;
+
+  /* 🖋️ TYPOGRAPHY */
+
 }
 
 /* 🎯 Layera Design Tokens System Ready */

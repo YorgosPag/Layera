@@ -20,7 +20,7 @@ const PATTERNS = {
 // Επιτρεπόμενα paths
 const ALLOWED_PATHS = [
   'packages/tokens/src/domains/',
-  'packages/tokens/dist/css/tokens.css',
+  'packages/tokens/dist/tokens.css',
   'constants/config.ts' // Business logic OK
 ];
 
