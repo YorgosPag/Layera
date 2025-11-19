@@ -3,7 +3,7 @@
  *
  * ⚠️  DO NOT EDIT MANUALLY
  * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts, core/motion/motion.variables.ts και component/icons/icons.variables.ts and rebuild
- * Generated: 2025-11-19T20:14:35.530Z
+ * Generated: 2025-11-19T20:43:13.833Z
  */
 
 :root {
@@ -67,6 +67,7 @@
   --layera-spacing-20: 5rem;
   --layera-spacing-24: 6rem;
   --layera-spacing-32: 8rem;
+  --layera-spacing-112: 28rem;
   --layera-spacing-micro: 0.25rem;
   --layera-spacing-small: 0.5rem;
   --layera-spacing-medium: 1rem;
@@ -166,16 +167,16 @@
   --layera-background-secondary: var(--layera-color-secondary-100);
   --layera-background-secondary-light: var(--layera-color-secondary-50);
   --layera-background-secondary-dark: var(--layera-color-secondary-200);
-  --layera-background-default: var(--layera-color-neutral);
+  --layera-background-default: var(--layera-color-neutral-white);
   --layera-background-subtle: var(--layera-color-secondary-50);
   --layera-background-muted: var(--layera-color-secondary-100);
   --layera-background-hover: var(--layera-color-secondary-50);
   --layera-background-active: var(--layera-color-secondary-100);
   --layera-background-disabled: var(--layera-color-secondary-100);
-  --layera-background-success: var(--layera-color-success);
-  --layera-background-warning: var(--layera-color-warning);
-  --layera-background-error: var(--layera-color-error);
-  --layera-background-info: var(--layera-color-info);
+  --layera-background-success: var(--layera-color-success-light);
+  --layera-background-warning: var(--layera-color-warning-light);
+  --layera-background-error: var(--layera-color-error-light);
+  --layera-background-info: var(--layera-color-info-light);
 
   /* ✏️ SEMANTIC TEXT */
   --layera-text-primary: var(--layera-color-neutral-dark);
@@ -247,6 +248,75 @@
   --layera-feedback-neutral-background: var(--layera-color-secondary-50);
   --layera-feedback-neutral-border: var(--layera-color-secondary-200);
   --layera-feedback-neutral-icon: var(--layera-color-secondary-500);
+
+  /* 🔲 COMPONENT BUTTONS */
+  --layera-button-primary-background-default: var(--layera-background-primary);
+  --layera-button-primary-background-hover: var(--layera-color-primary-600);
+  --layera-button-primary-background-active: var(--layera-color-primary-700);
+  --layera-button-primary-background-disabled: var(--layera-background-disabled);
+  --layera-button-primary-text-default: var(--layera-text-on-primary);
+  --layera-button-primary-text-hover: var(--layera-text-on-primary);
+  --layera-button-primary-text-active: var(--layera-text-on-primary);
+  --layera-button-primary-text-disabled: var(--layera-text-disabled);
+  --layera-button-primary-border-default: var(--layera-border-interactive);
+  --layera-button-primary-border-hover: var(--layera-border-interactive-hover);
+  --layera-button-primary-border-active: var(--layera-border-interactive-active);
+  --layera-button-primary-border-disabled: var(--layera-border-disabled);
+  --layera-button-primary-border-focus: var(--layera-border-focus);
+  --layera-button-secondary-background-default: var(--layera-background-default);
+  --layera-button-secondary-background-hover: var(--layera-background-hover);
+  --layera-button-secondary-background-active: var(--layera-background-active);
+  --layera-button-secondary-background-disabled: var(--layera-background-disabled);
+  --layera-button-secondary-text-default: var(--layera-text-brand);
+  --layera-button-secondary-text-hover: var(--layera-text-brand-dark);
+  --layera-button-secondary-text-active: var(--layera-text-brand-dark);
+  --layera-button-secondary-text-disabled: var(--layera-text-disabled);
+  --layera-button-secondary-border-default: var(--layera-border-interactive);
+  --layera-button-secondary-border-hover: var(--layera-border-interactive-hover);
+  --layera-button-secondary-border-active: var(--layera-border-interactive-active);
+  --layera-button-secondary-border-disabled: var(--layera-border-disabled);
+  --layera-button-ghost-background-default: transparent;
+  --layera-button-ghost-background-hover: var(--layera-background-hover);
+  --layera-button-ghost-background-active: var(--layera-background-active);
+  --layera-button-ghost-background-disabled: transparent;
+  --layera-button-ghost-text-default: var(--layera-text-brand);
+  --layera-button-ghost-text-hover: var(--layera-text-brand-dark);
+  --layera-button-ghost-text-active: var(--layera-text-brand-dark);
+  --layera-button-ghost-text-disabled: var(--layera-text-disabled);
+  --layera-button-ghost-border-default: var(--layera-border-none);
+  --layera-button-ghost-border-hover: var(--layera-border-none);
+  --layera-button-ghost-border-active: var(--layera-border-none);
+  --layera-button-ghost-border-disabled: var(--layera-border-none);
+  --layera-button-ghost-border-focus: var(--layera-border-focus);
+  --layera-button-danger-background-default: var(--layera-color-error-main);
+  --layera-button-danger-background-hover: var(--layera-color-error-dark);
+  --layera-button-danger-background-active: var(--layera-color-error-dark);
+  --layera-button-danger-background-disabled: var(--layera-background-disabled);
+  --layera-button-danger-text-default: var(--layera-text-on-primary);
+  --layera-button-danger-text-hover: var(--layera-text-on-primary);
+  --layera-button-danger-text-active: var(--layera-text-on-primary);
+  --layera-button-danger-text-disabled: var(--layera-text-disabled);
+  --layera-button-danger-border-default: var(--layera-border-error);
+  --layera-button-danger-border-hover: var(--layera-border-error);
+  --layera-button-danger-border-active: var(--layera-border-error);
+  --layera-button-danger-border-disabled: var(--layera-border-disabled);
+  --layera-button-danger-border-focus: var(--layera-border-focus);
+  --layera-button-padding-xs: var(--layera-spacing-2) var(--layera-spacing-3);
+  --layera-button-padding-sm: var(--layera-spacing-3) var(--layera-spacing-4);
+  --layera-button-padding-md: var(--layera-spacing-4) var(--layera-spacing-6);
+  --layera-button-padding-lg: var(--layera-spacing-5) var(--layera-spacing-8);
+  --layera-button-padding-xl: var(--layera-spacing-6) var(--layera-spacing-10);
+  --layera-button-border-radius-xs: var(--layera-border-radius-2);
+  --layera-button-border-radius-sm: var(--layera-border-radius-4);
+  --layera-button-border-radius-md: var(--layera-border-radius-6);
+  --layera-button-border-radius-lg: var(--layera-border-radius-8);
+  --layera-button-border-radius-xl: var(--layera-border-radius-12);
+  --layera-button-shadow-default: var(--layera-shadow-sm);
+  --layera-button-shadow-hover: var(--layera-shadow-md);
+  --layera-button-shadow-active: var(--layera-shadow-none);
+  --layera-button-shadow-disabled: var(--layera-shadow-none);
+  --layera-button-transition-default: var(--layera-transition-fast);
+  --layera-button-transition-hover: var(--layera-transition-normal);
 }
 
 /* 🎯 Layera Design Tokens System Ready */

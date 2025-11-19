@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import styles from './LivePlayground.module.css';
 import { Box } from '@layera/layout';
 import { Button } from '@layera/buttons';
 import { SettingsIcon, CloseIcon, EditIcon, PolygonIcon, RulerIcon, CompassIcon, CheckIcon } from '@layera/icons';
@@ -247,7 +246,19 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   return (
     <Box
       data-layera-playground="true"
-      className={styles.playgroundUnified}
+      style={{
+        position: 'fixed',
+        top: 'var(--layera-header-fixed-height)',
+        left: 'var(--layera-spacing-0)',
+        right: 'var(--layera-spacing-0)',
+        bottom: 'var(--layera-spacing-0)',
+        width: 'var(--layera-spacing-viewport-full-width)',
+        height: 'calc(var(--layera-spacing-viewport-full-height) - var(--layera-header-fixed-height))',
+        zIndex: 'var(--layera-layout-z-emergency)',
+        overflow: 'auto',
+        padding: 'var(--layera-spacing-6) var(--layera-spacing-4)',
+        backgroundColor: 'var(--layera-color-semantic-success-primary)'
+      }}
       data-type="fullscreen"
     >
       <PlaygroundHeader

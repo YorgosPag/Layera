@@ -29,8 +29,8 @@ if (!fs.existsSync(distDir)) {
   console.log('📁 Δημιουργήθηκε dist directory');
 }
 
-// Διαβάζει τα tokens αρχεία
-const colorsFile = path.join(srcDir, 'colors', 'colors.variables.ts');
+// Διαβάζει τα tokens αρχεία - ΜΟΝΟ από επίσημους φακέλους (core, semantic, component)
+const colorsFile = path.join(srcDir, 'core', 'colors', 'colors.variables.ts');
 const spacingFile = path.join(srcDir, 'core', 'spacing', 'spacing.variables.ts');
 const typographyFile = path.join(srcDir, 'core', 'typography', 'typography.variables.ts');
 const bordersFile = path.join(srcDir, 'core', 'borders', 'borders.variables.ts');
@@ -43,6 +43,9 @@ const backgroundSemanticFile = path.join(srcDir, 'semantic', 'background', 'back
 const textSemanticFile = path.join(srcDir, 'semantic', 'text', 'text.variables.ts');
 const borderSemanticFile = path.join(srcDir, 'semantic', 'border', 'border.variables.ts');
 const feedbackSemanticFile = path.join(srcDir, 'semantic', 'feedback', 'feedback.variables.ts');
+
+// Component tokens αρχεία
+const buttonsComponentFile = path.join(srcDir, 'component', 'buttons', 'buttons.variables.ts');
 
 if (!fs.existsSync(colorsFile)) {
   console.error('❌ Δεν βρέθηκε το αρχείο:', colorsFile);
@@ -81,6 +84,9 @@ const borderSemanticContent = fs.existsSync(borderSemanticFile) ? fs.readFileSyn
 
 console.log('🔔 Διαβάζω feedback semantic tokens από:', feedbackSemanticFile);
 const feedbackSemanticContent = fs.existsSync(feedbackSemanticFile) ? fs.readFileSync(feedbackSemanticFile, 'utf8') : null;
+
+console.log('🔲 Διαβάζω buttons component tokens από:', buttonsComponentFile);
+const buttonsComponentContent = fs.existsSync(buttonsComponentFile) ? fs.readFileSync(buttonsComponentFile, 'utf8') : null;
 
 // Εξάγει hex τιμές από το TypeScript αρχείο
 function extractHexValues(content) {
@@ -565,12 +571,14 @@ function extractBackgroundSemanticValues(content) {
 
           // Resolve COLOR_SCALE references
           if (varValue.includes('COLOR_SCALE.')) {
-            // Extract the reference (e.g., "COLOR_SCALE.primary[500]")
-            const colorRef = varValue.match(/COLOR_SCALE\.(\w+)(?:\[(\w+)\])?/);
+            // Extract the reference (e.g., "COLOR_SCALE.primary[500]" or "COLOR_SCALE.neutral.white")
+            const colorRef = varValue.match(/COLOR_SCALE\.(\w+)(?:\[(\w+)\]|\.(\w+))?/);
             if (colorRef) {
-              const [, colorType, colorScale] = colorRef;
+              const [, colorType, colorScale, colorVariant] = colorRef;
               if (colorScale) {
                 varValue = `var(--layera-color-${colorType}-${colorScale})`;
+              } else if (colorVariant) {
+                varValue = `var(--layera-color-${colorType}-${colorVariant})`;
               } else {
                 varValue = `var(--layera-color-${colorType})`;
               }
@@ -631,7 +639,7 @@ function extractTextSemanticValues(content) {
 
           // Resolve COLOR_SCALE references
           if (varValue.includes('COLOR_SCALE.')) {
-            // Extract the reference (e.g., "COLOR_SCALE.neutral.dark")
+            // Extract the reference (e.g., "COLOR_SCALE.neutral.dark" or "COLOR_SCALE.primary[600]")
             const colorRef = varValue.match(/COLOR_SCALE\.(\w+)(?:\.(\w+)|\[(\w+)\])?/);
             if (colorRef) {
               const [, colorType, colorVariant, colorScale] = colorRef;
@@ -777,6 +785,7 @@ function extractFeedbackSemanticValues(content) {
 
           // Resolve COLOR_SCALE references
           if (varValue.includes('COLOR_SCALE.')) {
+            // Extract the reference (e.g., "COLOR_SCALE.success.dark" or "COLOR_SCALE.secondary[700]")
             const colorRef = varValue.match(/COLOR_SCALE\.(\w+)(?:\.(\w+)|\[(\w+)\])?/);
             if (colorRef) {
               const [, colorType, colorVariant, colorScale] = colorRef;
@@ -805,6 +814,124 @@ function extractFeedbackSemanticValues(content) {
   return cssVariables;
 }
 
+// Εξάγει buttons component τιμές από το TypeScript αρχείο
+function extractButtonsComponentValues(content) {
+  const cssVariables = [];
+
+  if (!content) {
+    console.log('🔲 Δεν βρέθηκε περιεχόμενο buttons component αρχείου');
+    return cssVariables;
+  }
+
+  // Απλός line-by-line parsing για BUTTON_VARIABLES
+  const lines = content.split('\n');
+  let insideButtonVariables = false;
+  let braceCount = 0;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    // Αρχή του BUTTON_VARIABLES object
+    if (line.includes('export const BUTTON_VARIABLES')) {
+      insideButtonVariables = true;
+      braceCount = 0;
+      continue;
+    }
+
+    if (insideButtonVariables) {
+      // Μετράω τα braces
+      braceCount += (line.match(/\{/g) || []).length;
+      braceCount -= (line.match(/\}/g) || []).length;
+
+      // Αν βρω variable definition - απλό string matching
+      const trimmedLine = line.trim();
+      if (trimmedLine.startsWith("'") && trimmedLine.includes("': ")) {
+        const parts = trimmedLine.split("': ");
+        if (parts.length === 2) {
+          const varName = parts[0].replace(/'/g, '');
+          let varValue = parts[1].replace(/,$/, '').trim();
+
+          // Resolve imports και references
+          if (varValue.includes('BACKGROUND_VARIABLES[')) {
+            const ref = varValue.match(/BACKGROUND_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('TEXT_VARIABLES[')) {
+            const ref = varValue.match(/TEXT_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('BORDER_SEMANTIC_VARIABLES[')) {
+            const ref = varValue.match(/BORDER_SEMANTIC_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('MOTION_VARIABLES[')) {
+            const ref = varValue.match(/MOTION_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('SPACING_VARIABLES[')) {
+            const ref = varValue.match(/SPACING_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('BORDER_VARIABLES[')) {
+            const ref = varValue.match(/BORDER_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          if (varValue.includes('SHADOW_VARIABLES[')) {
+            const ref = varValue.match(/SHADOW_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          // Handle template literals με spacing variables
+          if (varValue.includes('`${') && varValue.includes('SPACING_VARIABLES[')) {
+            // Convert template literals like `${SPACING_VARIABLES['spacing-2']} ${SPACING_VARIABLES['spacing-3']}`
+            varValue = varValue.replace(/`\$\{SPACING_VARIABLES\['([^']+)'\]\}/g, 'var(--layera-$1)');
+            varValue = varValue.replace(/\$\{SPACING_VARIABLES\['([^']+)'\]\}/g, ' var(--layera-$1)');
+            varValue = varValue.replace(/`/g, '');
+          }
+
+          // Direct color references
+          if (varValue.includes("'var(--layera-color-")) {
+            varValue = varValue.replace(/'/g, '');
+          }
+
+          // Αφαιρώ τα quotes από την τιμή
+          varValue = varValue.replace(/^['"]|['"]$/g, '');
+
+          cssVariables.push(`  --layera-${varName}: ${varValue};`);
+        }
+      }
+
+      // Τέλος του BUTTON_VARIABLES object
+      if (braceCount <= 0 && trimmedLine.includes('} as const;')) {
+        break;
+      }
+    }
+  }
+
+  console.log(`🔲 Εξήχθησαν ${cssVariables.length} buttons component variables`);
+  return cssVariables;
+}
+
 // Εξάγει τις CSS variables
 const cssVariables = extractHexValues(colorsContent);
 const spacingVariables = extractSpacingValues(spacingContent);
@@ -820,6 +947,9 @@ const textSemanticVariables = extractTextSemanticValues(textSemanticContent);
 const borderSemanticVariables = extractBorderSemanticValues(borderSemanticContent);
 const feedbackSemanticVariables = extractFeedbackSemanticValues(feedbackSemanticContent);
 
+// Εξάγει τις component CSS variables
+const buttonsComponentVariables = extractButtonsComponentValues(buttonsComponentContent);
+
 console.log(`✅ Εξήχθησαν ${cssVariables.length} color variables`);
 console.log(`✅ Εξήχθησαν ${spacingVariables.length} spacing variables`);
 console.log(`✅ Εξήχθησαν ${typographyVariables.length} typography variables`);
@@ -831,9 +961,10 @@ console.log(`✅ Εξήχθησαν ${backgroundSemanticVariables.length} backgr
 console.log(`✅ Εξήχθησαν ${textSemanticVariables.length} text semantic variables`);
 console.log(`✅ Εξήχθησαν ${borderSemanticVariables.length} border semantic variables`);
 console.log(`✅ Εξήχθησαν ${feedbackSemanticVariables.length} feedback semantic variables`);
+console.log(`✅ Εξήχθησαν ${buttonsComponentVariables.length} buttons component variables`);
 
 // Συνδυάζει όλα τα CSS variables
-const allVariables = [...cssVariables, ...spacingVariables, ...typographyVariables, ...bordersVariables, ...shadowsVariables, ...motionVariables, ...iconsVariables, ...backgroundSemanticVariables, ...textSemanticVariables, ...borderSemanticVariables, ...feedbackSemanticVariables];
+const allVariables = [...cssVariables, ...spacingVariables, ...typographyVariables, ...bordersVariables, ...shadowsVariables, ...motionVariables, ...iconsVariables, ...backgroundSemanticVariables, ...textSemanticVariables, ...borderSemanticVariables, ...feedbackSemanticVariables, ...buttonsComponentVariables];
 
 // Δημιουργεί το CSS περιεχόμενο
 const cssContent = `/*
@@ -877,6 +1008,9 @@ ${borderSemanticVariables.join('\n')}
 
   /* 🔔 SEMANTIC FEEDBACK */
 ${feedbackSemanticVariables.join('\n')}
+
+  /* 🔲 COMPONENT BUTTONS */
+${buttonsComponentVariables.join('\n')}
 }
 
 /* 🎯 Layera Design Tokens System Ready */
@@ -900,6 +1034,7 @@ console.log(`   🎨 Background Semantic: ${backgroundSemanticVariables.length}`
 console.log(`   ✏️ Text Semantic: ${textSemanticVariables.length}`);
 console.log(`   🔲 Border Semantic: ${borderSemanticVariables.length}`);
 console.log(`   🔔 Feedback Semantic: ${feedbackSemanticVariables.length}`);
+console.log(`   🔲 Buttons Component: ${buttonsComponentVariables.length}`);
 console.log(`   🎯 Total: ${allVariables.length}`);
 console.log('');
 console.log('✅ Build completed successfully!');
