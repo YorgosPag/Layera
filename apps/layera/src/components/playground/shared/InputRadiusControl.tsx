@@ -42,7 +42,7 @@ export const InputRadiusControl: React.FC<InputRadiusControlProps> = ({
 }) => {
   const [isChanging, setIsChanging] = useState(false);
 
-  // Available input radius options with their tokens - Enterprise unified hierarchy (0, 4, 8, 12, 16px)
+  // Available input radius options with their tokens - Enterprise unified hierarchy
   const inputRadiusOptions = [
     {
       value: 'none',
@@ -93,7 +93,7 @@ export const InputRadiusControl: React.FC<InputRadiusControlProps> = ({
   }, [onChange, onPreview]);
 
   const getCurrentOption = () => {
-    return inputRadiusOptions.find(option => option.value === value) || inputRadiusOptions[2]; // Default to 'lg' (8px)
+    return inputRadiusOptions.find(option => option.value === value) || inputRadiusOptions[2]; // Default to 'lg'
   };
 
   const currentOption = getCurrentOption();

@@ -74,14 +74,14 @@ export const FLEX_SCALE = {
   // Gap values (aligned με design tokens)
   gap: {
     NONE: '0',
-    XXS: 'var(--layera-size-1)',   // 4px
-    XS: 'var(--layera-size-2)',    // 8px
-    SM: 'var(--layera-size-4)',    // 16px
-    MD: 'var(--layera-size-6)',    // 24px
-    LG: 'var(--layera-size-8)',    // 32px
-    XL: 'var(--layera-size-12)',   // 48px
-    XXL: 'var(--layera-size-16)',  // 64px
-    XXXL: 'var(--layera-size-20)'  // 80px
+    XXS: 'var(--layera-size-1)',
+    XS: 'var(--layera-size-2)',
+    SM: 'var(--layera-size-4)',
+    MD: 'var(--layera-size-6)',
+    LG: 'var(--layera-size-8)',
+    XL: 'var(--layera-size-12)',
+    XXL: 'var(--layera-size-16)',
+    XXXL: 'var(--layera-size-20)'
   }
 } as const;
 

@@ -63,13 +63,13 @@ export const MEDIA_QUERIES = {
   // "And up" queries
   smUp: '@media screen and (min-width: 0px)',
   mdUp: '@media screen and (min-width: var(--layera-responsive-breakpoints-tablet-min))',
-  lgUp: '@media screen and (min-width: 1024px)', // Note: 1024px is intermediate value
+  lgUp: '@media screen and (min-width: 1024px)', // Note: intermediate value
   xlUp: '@media screen and (min-width: var(--layera-responsive-breakpoints-desktop-min))',
   '2xlUp': '@media screen and (min-width: var(--layera-responsive-breakpoints-desktopLarge-min))',
 
   // "And down" queries
   smDown: '@media screen and (max-width: var(--layera-responsive-breakpoints-mobile-max))',
-  mdDown: '@media screen and (max-width: 1023px)', // Note: 1023px is intermediate value
+  mdDown: '@media screen and (max-width: 1023px)', // Note: intermediate value
   lgDown: '@media screen and (max-width: var(--layera-responsive-breakpoints-tablet-max))',
   xlDown: '@media screen and (max-width: var(--layera-responsive-breakpoints-desktop-max))',
 

@@ -20,9 +20,9 @@
   --layera-iconInteractive-interactive-scale-default: 1; /** Default scale state */
   --layera-iconInteractive-interactive-scale-hover: 1.1; /** Hover scale for micro-interactions */
   --layera-iconInteractive-interactive-scale-active: 0.95; /** Active/pressed scale state */
-  --layera-iconInteractive-interactive-transition-fast: 0.1s ease-out; /** Fast transitions for micro-interactions */
-  --layera-iconInteractive-interactive-transition-normal: 0.2s ease-out; /** Standard transition speed */
-  --layera-iconInteractive-interactive-transition-slow: 0.3s ease-out; /** Slow transitions for emphasis */
+  --layera-iconInteractive-interactive-transition-fast: var(--layera-transition-fast); /** Fast transitions for micro-interactions */
+  --layera-iconInteractive-interactive-transition-normal: var(--layera-transition-normal); /** Standard transition speed */
+  --layera-iconInteractive-interactive-transition-slow: var(--layera-transition-slow); /** Slow transitions for emphasis */
   --layera-iconInteractive-accessibility-focusRing-width: var(--layera-global-spacing-0-5); /** Focus ring width for keyboard navigation */
   --layera-iconInteractive-accessibility-focusRing-color: var(--layera-color-semantic-info-primary); /** Focus ring color for visibility */
   --layera-iconInteractive-accessibility-contrast-normal: 4.5; /** WCAG AA contrast ratio */
@@ -36,16 +36,16 @@
   --layera-iconInteractive-sizing-margin-md: var(--layera-global-spacing-2); /** Medium margin */
   --layera-iconInteractive-sizing-margin-lg: var(--layera-global-spacing-3); /** Large margin */
   --layera-iconInteractive-sizing-margin-xl: var(--layera-global-spacing-4); /** Extra large margin */
-  --layera-fontSize-xs: var(--layera-fontSize-xs); /** 12px - Captions, labels */
-  --layera-fontSize-sm: var(--layera-fontSize-sm); /** 14px - Small text, form labels */
-  --layera-fontSize-base: var(--layera-global-spacing-4); /** 16px - Body text default - consolidated reference */
-  --layera-fontSize-lg: var(--layera-fontSize-lg); /** 18px - Large body text */
-  --layera-fontSize-xl: var(--layera-fontSize-xl); /** 20px - Subheadings */
-  --layera-fontSize-2xl: var(--layera-fontSize-2xl); /** 24px - Small headings */
-  --layera-fontSize-3xl: var(--layera-fontSize-3xl); /** 30px - Medium headings */
-  --layera-fontSize-4xl: var(--layera-fontSize-4xl); /** 36px - Large headings */
-  --layera-fontSize-5xl: var(--layera-fontSize-5xl); /** 48px - Hero headings */
-  --layera-fontSize-6xl: var(--layera-fontSize-6xl); /** 60px - Display headings */
+  --layera-fontSize-xs: var(--layera-fontSize-xs); /** Captions, labels */
+  --layera-fontSize-sm: var(--layera-fontSize-sm); /** Small text, form labels */
+  --layera-fontSize-base: var(--layera-global-spacing-4); /** Body text default - consolidated reference */
+  --layera-fontSize-lg: var(--layera-fontSize-lg); /** Large body text */
+  --layera-fontSize-xl: var(--layera-fontSize-xl); /** Subheadings */
+  --layera-fontSize-2xl: var(--layera-fontSize-2xl); /** Small headings */
+  --layera-fontSize-3xl: var(--layera-fontSize-3xl); /** Medium headings */
+  --layera-fontSize-4xl: var(--layera-fontSize-4xl); /** Large headings */
+  --layera-fontSize-5xl: var(--layera-fontSize-5xl); /** Hero headings */
+  --layera-fontSize-6xl: var(--layera-fontSize-6xl); /** Display headings */
   --layera-fontWeight-light: 300; /** Light weight for delicate text */
   --layera-fontWeight-normal: 400; /** Normal weight for body text */
   --layera-fontWeight-medium: 500; /** Medium weight for emphasis */
@@ -154,41 +154,41 @@
   --layera-border-info: var(--layera-color-semantic-info-primary); /** Info border color */
   --layera-border-error: var(--layera-color-semantic-error-primary); /** Error border color */
   --layera-border-width-xxs: var(--layera-global-spacing-0-25); /** Extra extra small border */
-  --layera-global-spacing-0: 0rem; /** 0px - No spacing */
-  --layera-global-spacing-1: 0.25rem; /** 4px - Extra small spacing */
-  --layera-global-spacing-2: 0.5rem; /** 8px - Small spacing */
-  --layera-global-spacing-3: 0.75rem; /** 12px - Medium-small spacing */
-  --layera-global-spacing-4: 1rem; /** 16px - Base spacing */
-  --layera-global-spacing-5: 1.25rem; /** 20px - Medium spacing */
-  --layera-global-spacing-6: 1.5rem; /** 24px - Large spacing */
-  --layera-global-spacing-7: 1.75rem; /** 28px - Large-medium spacing */
-  --layera-global-spacing-8: 2rem; /** 32px - Extra large spacing */
-  --layera-global-spacing-9: 2.25rem; /** 36px - Extra large+ spacing */
-  --layera-global-spacing-10: 2.5rem; /** 40px - XXL spacing */
-  --layera-global-spacing-11: 2.75rem; /** 44px - XXL+ spacing */
-  --layera-global-spacing-12: 3rem; /** 48px - XXXL spacing */
-  --layera-global-spacing-14: 3.5rem; /** 56px - Header height */
-  --layera-global-spacing-16: 4rem; /** 64px - Section spacing */
-  --layera-global-spacing-20: 5rem; /** 80px - Page section spacing */
-  --layera-global-spacing-25: 6.25rem; /** 100px - Large section spacing */
-  --layera-global-spacing-30: 7.5rem; /** 120px - Hero section spacing */
-  --layera-global-spacing-80: 20rem; /** 320px - Component widths */
-  --layera-global-spacing-112: 28rem; /** 448px - Medium drawer width */
-  --layera-global-spacing-120: 30rem; /** 480px - Card heights */
-  --layera-global-spacing-135: 33.75rem; /** 540px - Container sm */
-  --layera-global-spacing-144: 36rem; /** 576px - Large drawer width */
-  --layera-global-spacing-180: 45rem; /** 720px - Container md */
-  --layera-global-spacing-240: 60rem; /** 960px - Container lg */
-  --layera-global-spacing-285: 71.25rem; /** 1140px - Container xl */
-  --layera-global-spacing-0-25: 0.0625rem; /** 1px - Hair line spacing */
-  --layera-global-spacing-0-5: 0.125rem; /** 2px - Tiny spacing */
-  --layera-global-spacing-1-5: 0.375rem; /** 6px - Small-medium spacing */
-  --layera-global-spacing-2-5: 0.625rem; /** 10px - Blur effects */
-  --layera-global-spacing-3-5: 0.875rem; /** 14px - Typography font sizes */
-  --layera-global-spacing-7-5: 1.875rem; /** 30px - Large-medium+ spacing */
+  --layera-global-spacing-0: 0rem; /** No spacing */
+  --layera-global-spacing-1: 0.25rem; /** Extra small spacing */
+  --layera-global-spacing-2: 0.5rem; /** Small spacing */
+  --layera-global-spacing-3: 0.75rem; /** Medium-small spacing */
+  --layera-global-spacing-4: 1rem; /** Base spacing */
+  --layera-global-spacing-5: 1.25rem; /** Medium spacing */
+  --layera-global-spacing-6: 1.5rem; /** Large spacing */
+  --layera-global-spacing-7: 1.75rem; /** Large-medium spacing */
+  --layera-global-spacing-8: 2rem; /** Extra large spacing */
+  --layera-global-spacing-9: 2.25rem; /** Extra large+ spacing */
+  --layera-global-spacing-10: 2.5rem; /** XXL spacing */
+  --layera-global-spacing-11: 2.75rem; /** XXL+ spacing */
+  --layera-global-spacing-12: 3rem; /** XXXL spacing */
+  --layera-global-spacing-14: 3.5rem; /** Header height */
+  --layera-global-spacing-16: 4rem; /** Section spacing */
+  --layera-global-spacing-20: 5rem; /** Page section spacing */
+  --layera-global-spacing-25: 6.25rem; /** Large section spacing */
+  --layera-global-spacing-30: 7.5rem; /** Hero section spacing */
+  --layera-global-spacing-80: 20rem; /** Component widths */
+  --layera-global-spacing-112: 28rem; /** Medium drawer width */
+  --layera-global-spacing-120: 30rem; /** Card heights */
+  --layera-global-spacing-135: 33.75rem; /** Container sm */
+  --layera-global-spacing-144: 36rem; /** Large drawer width */
+  --layera-global-spacing-180: 45rem; /** Container md */
+  --layera-global-spacing-240: 60rem; /** Container lg */
+  --layera-global-spacing-285: 71.25rem; /** Container xl */
+  --layera-global-spacing-0-25: 0.0625rem; /** Hair line spacing */
+  --layera-global-spacing-0-5: 0.125rem; /** Tiny spacing */
+  --layera-global-spacing-1-5: 0.375rem; /** Small-medium spacing */
+  --layera-global-spacing-2-5: 0.625rem; /** Blur effects */
+  --layera-global-spacing-3-5: 0.875rem; /** Typography font sizes */
+  --layera-global-spacing-7-5: 1.875rem; /** Large-medium+ spacing */
   --layera-global-shared-layoutSystem-header-height: var(--layera-global-shared-layout-system-headerHeight); /** Header height - MASTER REFERENCE που χρησιμοποιείται παντού */
-  --layera-global-shared-z-index-overlay: 1000; /** Standard overlay z-index - modals, dropdowns */
-  --layera-global-utilities-zIndex-overlay: var(--layera-z-index-overlay, 1000); /** Z-index for overlay elements like modals and dropdowns */
+  --layera-global-shared-z-index-overlay: var(--layera-shared-zIndex-overlay); /** Standard overlay z-index - modals, dropdowns */
+  --layera-global-utilities-zIndex-overlay: var(--layera-z-index-overlay, var(--layera-shared-zIndex-overlay)); /** Z-index for overlay elements like modals and dropdowns */
   --layera-global-utilities-grid-autoFit: var(--layera-global-utilities-grid-autoFit); /** Auto-fit grid template for responsive cards */
   --layera-global-utilities-grid-autoFit280: var(--layera-global-utilities-grid-autoFit280); /** Auto-fit grid template 280px exactly */
   --layera-global-utilities-textAlign-center: center; /** Center text alignment utility */
@@ -226,8 +226,8 @@
   --layera-z-toast: var(--layera-global-z-index-toast); /** Toast notification z-index */
   --layera-button-padding-sm: var(--layera-global-spacing-2) var(--layera-global-spacing-4); /** Small button padding */
   --layera-button-padding-xl: var(--layera-global-spacing-4) var(--layera-global-spacing-8); /** XL button padding */
-  --layera-transition-all: all 0.2s ease; /** All properties transition */
-  --layera-transition-colors: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease; /** Color transitions */
+  --layera-transition-all: var(--layera-transition-all); /** All properties transition */
+  --layera-transition-colors: var(--layera-transition-colors); /** Color transitions */
   --layera-fontFamily-system: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; /** System font family */
   --layera-fontFamily-mono: 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace; /** Monospace font family */
   --layera-text-on-info: var(--layera-color-semantic-neutral-light); /** Text on info backgrounds */
@@ -299,7 +299,7 @@
   --layera-components-playground: [object Object]; /** Ενοποιημένη playground κλάση - υψηλότερη προτεραιότητα από χάρτη */
   --layera-theme-switcher-unified: [object Object]; /** Single .layera-theme-switcher class with data attribute variants */
   --layera-responsive-unified: [object Object]; /** Single .layera-responsive-container class with data attribute variants */
-  --layera-modalHeaderFontSize: var(--layera-global-spacing-5); /** Modal header font size - 20px για mobile optimization */
+  --layera-modalHeaderFontSize: var(--layera-global-spacing-5); /** Modal header font size για mobile optimization */
   --layera-modalHeaderFontWeight: 700; /** Modal header font weight - bold για έμφαση */
 }
 

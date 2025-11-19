@@ -82,14 +82,24 @@ export const PROPERTY_VALIDATION = {
 } as const;
 
 /**
+ * COLOR PICKER UI CONSTANTS
+ * Standard widths για color picker components
+ */
+export const COLOR_PICKER_DIMENSIONS = {
+  // Standard width for color picker components
+  STANDARD_WIDTH: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-global-spacing-62')) || 250, // Color picker width from tokens or fallback
+  CANVAS_HEIGHT: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-global-spacing-25')) || 100    // Canvas height from tokens or fallback
+} as const;
+
+/**
  * LEAFLET MAP ICON CONSTANTS
  * Icon sizing constraints για Leaflet map markers - LEAFLET API requirements
  */
 export const LEAFLET_ICON_SIZES = {
   // Standard icon sizes για Leaflet markers
-  SMALL: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-icon-leafletMedium')) || 16, // Small marker icon size (16px)
-  MEDIUM: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-icon-leafletLarge')) || 24, // Medium marker icon size (24px)
-  STANDARD: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-icon-leafletXl')) || 32, // Standard marker icon size (32px) - Leaflet default
+  SMALL: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-icon-leafletMedium')) || 16, // Small marker icon size
+  MEDIUM: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-icon-leafletLarge')) || 24, // Medium marker icon size
+  STANDARD: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-icon-leafletXl')) || 32, // Standard marker icon size - Leaflet default
   LARGE: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-size-12')) || 48,     // Large marker icon size from tokens
   XL: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-size-16')) || 64,        // Extra large marker icon size from tokens
 

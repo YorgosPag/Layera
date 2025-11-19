@@ -30,9 +30,9 @@ const extractHexFromValue = (colorValue: string): string => {
 };
 
 interface ColorWithAlpha {
-  hex: string;    // #ff0000
+  hex: string;    // hex color value
   alpha: number;  // 0.8 (80%)
-  rgba: string;   // rgba(255, 0, 0, 0.8)
+  rgba: string;   // rgba color value
 }
 
 interface ColorPickerWithAlphaProps {
@@ -229,7 +229,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   // Mouse leave handler για να διατηρήσει το χρώμα αντί για fallback
   const handleMouseLeave = useCallback(() => {
     // ΜΗ καλέσεις onPreview - αφήνει το τελευταίο preview ενεργό
-    // Αυτό αποτρέπει το revert στα factory settings (#0078d4)
+    // Αυτό αποτρέπει το revert στα factory settings
   }, []);
 
   return (

@@ -41,7 +41,7 @@ export const ButtonRadiusControl: React.FC<ButtonRadiusControlProps> = ({
 }) => {
   const [isChanging, setIsChanging] = useState(false);
 
-  // Available button radius options with their tokens - Updated hierarchy (0, 4, 8, 12, 16px)
+  // Available button radius options with their tokens - Updated hierarchy
   const buttonRadiusOptions = [
     {
       value: 'none',
@@ -92,7 +92,7 @@ export const ButtonRadiusControl: React.FC<ButtonRadiusControlProps> = ({
   }, [onChange, onPreview]);
 
   const getCurrentOption = () => {
-    return buttonRadiusOptions.find(option => option.value === value) || buttonRadiusOptions[2]; // Default to 'lg' (8px)
+    return buttonRadiusOptions.find(option => option.value === value) || buttonRadiusOptions[2]; // Default to 'lg'
   };
 
   const currentOption = getCurrentOption();

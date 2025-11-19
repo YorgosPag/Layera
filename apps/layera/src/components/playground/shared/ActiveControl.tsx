@@ -57,7 +57,7 @@ export const ActiveControl: React.FC<ActiveControlProps> = ({
       label: 'Scale',
       description: 'Μικραίνει όταν πατιέται',
       preview: {
-        transform: 'scale(0.95)',
+        transform: 'scale(var(--layera-iconInteractive-interactive-scale-active))',
         opacity: 'var(--layera-icon-interactive-interactive-opacity-default)'
       }
     },
@@ -75,8 +75,8 @@ export const ActiveControl: React.FC<ActiveControlProps> = ({
       label: 'Press',
       description: 'Scale + Opacity όταν πατιέται',
       preview: {
-        transform: 'scale(0.95)',
-        opacity: '0.8'
+        transform: 'scale(var(--layera-iconInteractive-interactive-scale-active))',
+        opacity: 'var(--layera-iconInteractive-interactive-opacity-hover)'
       }
     }
   ];

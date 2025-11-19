@@ -74,7 +74,7 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
       case 'normal':
         return '.layera-button:hover, .layera-card:hover { opacity: var(--layera-icon-interactive-interactive-opacity-hover) !important; transform: translateY(calc(-1 * var(--layera-global-spacing-1))) !important; transition: var(--layera-transition-all) !important; }';
       case 'strong':
-        return '.layera-button:hover, .layera-card:hover { opacity: var(--layera-icon-interactive-interactive-opacity-hover) !important; transform: translateY(calc(-1 * var(--layera-global-spacing-2))) scale(1.02) !important; transition: var(--layera-transition-all) !important; }';
+        return '.layera-button:hover, .layera-card:hover { opacity: var(--layera-icon-interactive-interactive-opacity-hover) !important; transform: translateY(calc(-1 * var(--layera-global-spacing-2))) scale(var(--layera-iconInteractive-interactive-scale-hover)) !important; transition: var(--layera-transition-all) !important; }';
       default:
         return '';
     }
@@ -88,11 +88,11 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
       case 'none':
         return '.layera-button:active, .layera-card:active { transform: none !important; opacity: 1 !important; }';
       case 'scale':
-        return '.layera-button:active, .layera-card:active { transform: scale(0.95) !important; transition: transform 0.1s ease !important; }';
+        return '.layera-button:active, .layera-card:active { transform: scale(var(--layera-iconInteractive-interactive-scale-active)) !important; transition: transform 0.1s ease !important; }';
       case 'opacity':
-        return '.layera-button:active, .layera-card:active { opacity: 0.7 !important; transition: opacity 0.1s ease !important; }';
+        return '.layera-button:active, .layera-card:active { opacity: var(--layera-iconInteractive-interactive-opacity-active) !important; transition: opacity 0.1s ease !important; }';
       case 'press':
-        return '.layera-button:active, .layera-card:active { transform: scale(0.95) !important; opacity: 0.8 !important; transition: all 0.1s ease !important; }';
+        return '.layera-button:active, .layera-card:active { transform: scale(var(--layera-iconInteractive-interactive-scale-active)) !important; opacity: var(--layera-iconInteractive-interactive-opacity-hover) !important; transition: all 0.1s ease !important; }';
       default:
         return '';
     }

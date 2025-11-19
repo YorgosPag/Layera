@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
+import { COLOR_PICKER_DIMENSIONS } from '../../../constants/ui-measurement';
 
 /**
  * CanvasColorPicker Component
@@ -178,8 +179,8 @@ export const CanvasColorPicker: React.FC<CanvasColorPickerProps> = ({
         </Text>
         <canvas
           ref={canvasRef}
-          width={250}
-          height={100}
+          width={COLOR_PICKER_DIMENSIONS.STANDARD_WIDTH}
+          height={COLOR_PICKER_DIMENSIONS.CANVAS_HEIGHT}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}

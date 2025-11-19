@@ -68,8 +68,8 @@ export const HoverControl: React.FC<HoverControlProps> = ({
       label: 'Κανονικό',
       description: 'Κανονικό hover effect',
       preview: {
-        opacity: '0.8',
-        transform: 'translateY(-1px)',
+        opacity: 'var(--layera-iconInteractive-interactive-opacity-hover)',
+        transform: 'translateY(calc(-1 * var(--layera-global-spacing-0-25)))',
         background: 'var(--layera-color-surface-hover)'
       }
     },
@@ -78,8 +78,8 @@ export const HoverControl: React.FC<HoverControlProps> = ({
       label: 'Έντονο',
       description: 'Έντονο hover effect',
       preview: {
-        opacity: '0.8',
-        transform: 'translateY(-2px) scale(1.02)',
+        opacity: 'var(--layera-iconInteractive-interactive-opacity-hover)',
+        transform: 'translateY(calc(-1 * var(--layera-global-spacing-0-5))) scale(var(--layera-iconInteractive-interactive-scale-hover))',
         background: 'var(--layera-color-surface-hover)'
       }
     }

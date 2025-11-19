@@ -154,12 +154,12 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
   const getRadiusToken = (radius: string) => {
     switch(radius) {
       case 'none': return '0';                          // 0 (unit-less)
-      case 'sm': return 'var(--layera-radius-sm)';      // 4px
-      case 'lg': return 'var(--layera-radius-lg)';      // 8px
-      case 'xl': return 'var(--layera-radius-xl)';      // 12px - default για modals
-      case 'xxl': return 'var(--layera-radius-xxl)';    // 16px
+      case 'sm': return 'var(--layera-radius-sm)';
+      case 'lg': return 'var(--layera-radius-lg)';
+      case 'xl': return 'var(--layera-radius-xl)';      // default για modals
+      case 'xxl': return 'var(--layera-radius-xxl)';
       case 'round': return 'var(--layera-radius-full)'; // πλήρως στρογγυλά
-      default: return 'var(--layera-radius-xl)';        // 12px fallback
+      default: return 'var(--layera-radius-xl)';        // fallback
     }
   };
 

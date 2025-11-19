@@ -343,7 +343,7 @@ button:focus-visible {
   justify-content: center;
   min-width: var(--layera-global-spacing-11);
   min-height: var(--layera-global-spacing-11);
-  transition: all 0.2s ease;
+  transition: var(--layera-transition-all);
 }
 
 .layera-typography[data-variant="button"]:hover {
@@ -363,7 +363,7 @@ button:focus-visible {
   justify-content: center;
   min-width: var(--layera-global-spacing-11);
   min-height: var(--layera-global-spacing-11);
-  transition: all 0.2s ease;
+  transition: var(--layera-transition-all);
 }
 
 .layera-typography[data-variant="logo"]:hover {
@@ -609,7 +609,7 @@ button:focus-visible {
   padding: var(--layera-global-spacing-4);
   color: var(--layera-color-text-primary);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
+  transition: var(--layera-transition-all);
 }
 
 /* Card Accent Variants */
@@ -948,7 +948,7 @@ button:focus-visible {
   color: var(--layera-global-button-text);
   border: var(--layera-global-button-borderWidth) solid var(--layera-global-button-border);
   height: var(--layera-global-button-height-md);
-  transition: all 0.2s ease;
+  transition: var(--layera-transition-all);
 }
 
 /* Button Size Variants */
@@ -1804,7 +1804,7 @@ button:focus-visible {
   padding: var(--layera-global-spacing-2) var(--layera-global-spacing-4);
   border: var(--layera-global-spacing-0-25) solid var(--layera-color-border-default);
   border-radius: var(--layera-global-spacing-2);
-  transition: all 0.2s ease;
+  transition: var(--layera-transition-all);
   font-size: var(--layera-fontSize-base);
   height: var(--layera-spacing-component-input-height);
 }
@@ -1820,7 +1820,7 @@ button:focus-visible {
   padding: var(--layera-global-spacing-2) var(--layera-global-spacing-4);
   border: var(--layera-global-spacing-0-25) solid var(--layera-color-border-default);
   border-radius: var(--layera-global-spacing-2);
-  transition: all 0.2s ease;
+  transition: var(--layera-transition-all);
   font-size: var(--layera-fontSize-base);
   min-height: var(--layera-global-spacing-20);
   resize: vertical;
@@ -1857,7 +1857,7 @@ button:focus-visible {
   padding: var(--layera-global-spacing-2) var(--layera-global-spacing-4);
   border: var(--layera-global-spacing-0-25) solid var(--layera-color-border-default);
   border-radius: var(--layera-global-spacing-2);
-  transition: all 0.2s ease;
+  transition: var(--layera-transition-all);
   font-size: var(--layera-fontSize-base);
   height: var(--layera-spacing-component-input-height);
 }
@@ -1875,7 +1875,7 @@ button:focus-visible {
   padding: var(--layera-global-spacing-2) var(--layera-global-spacing-4);
   border: var(--layera-global-spacing-0-25) solid var(--layera-color-border-default);
   border-radius: var(--layera-global-spacing-2);
-  transition: all 0.2s ease;
+  transition: var(--layera-transition-all);
   font-size: var(--layera-fontSize-base);
   min-height: var(--layera-global-spacing-20);
   resize: vertical;
@@ -2122,7 +2122,7 @@ button:focus-visible {
 .layera-i18n {
   position: relative;
   box-sizing: border-box;
-  transition: all 0.2s ease;
+  transition: var(--layera-transition-all);
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
@@ -2245,7 +2245,7 @@ button:focus-visible {
   border-radius: var(--layera-global-borderRadius-md, 0.375rem);
   background-color: var(--layera-color-surface-secondary);
   color: var(--layera-color-text-primary);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: var(--layera-transition-all-smooth);
   position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

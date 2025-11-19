@@ -1,0 +1,54 @@
+{
+  "map": {
+    "container": {
+      "value": {
+        "position": "fixed",
+        "top": "var(--layera-global-layoutSystem-header-height)",
+        "left": "0",
+        "right": "0",
+        "bottom": "0",
+        "width": "var(--layera-spacing-viewport-full-width)",
+        "height": "calc(100vh - var(--layera-global-layoutSystem-header-height))",
+        "zIndex": "var(--layera-global-z-index-base)"
+      },
+      "comment": "Map container - κάτω από την επικεφαλίδα",
+      "height": {
+        "default": {
+          "value": "var(--layera-global-spacing-100)",
+          "comment": "400px - Default map container height"
+        },
+        "compact": {
+          "value": "var(--layera-global-spacing-75)",
+          "comment": "300px - Compact map height for mobile"
+        },
+        "expanded": {
+          "value": "var(--layera-global-spacing-125)",
+          "comment": "500px - Expanded map height for detail views"
+        }
+      }
+    },
+    "fullscreen": {
+      "value": {
+        "width": "var(--layera-shared-dimensions-viewport-width)",
+        "height": "var(--layera-shared-dimensions-viewport-height)"
+      },
+      "comment": "Map fullscreen styling"
+    },
+    "defaults": {
+      "initial": {
+        "latitude": {
+          "value": "var(--layera-map-coordinates-athens-lat)",
+          "comment": "Default latitude for Athens, Greece center"
+        },
+        "longitude": {
+          "value": "var(--layera-map-coordinates-athens-lng)",
+          "comment": "Default longitude for Athens, Greece center"
+        },
+        "zoom": {
+          "value": "var(--layera-map-zoom-default)",
+          "comment": "Default zoom level for city view"
+        }
+      }
+    }
+  }
+}

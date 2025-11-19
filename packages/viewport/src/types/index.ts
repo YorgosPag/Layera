@@ -22,11 +22,11 @@ export interface BreakpointDefinition {
 }
 
 export interface UnifiedBreakpoints {
-  sm: BreakpointDefinition;   // mobile: 0-767px
-  md: BreakpointDefinition;   // tablet: 768-1023px
-  lg: BreakpointDefinition;   // tablet large: 1024-1199px
-  xl: BreakpointDefinition;   // desktop: 1200-1439px
-  '2xl': BreakpointDefinition; // desktop large: 1440px+
+  sm: BreakpointDefinition;   // mobile
+  md: BreakpointDefinition;   // tablet
+  lg: BreakpointDefinition;   // tablet large
+  xl: BreakpointDefinition;   // desktop
+  '2xl': BreakpointDefinition; // desktop large
 }
 
 export interface ViewportInfo {
