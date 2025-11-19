@@ -8,13 +8,13 @@
   padding: var(--layera-global-spacing-2);
 }
 
-@media screen and (width >= var(--layera-responsive-breakpoint-tablet)) {
+@media screen and (width >= var(--layera-breakpoint-tablet)) {
   .unified-pipeline-modal-overlay.layera-modal-overlay {
     padding: var(--layera-global-spacing-3);
   }
 }
 
-@media screen and (width >= var(--layera-responsive-breakpoint-desktop)) {
+@media screen and (width >= var(--layera-breakpoint-desktop)) {
   .unified-pipeline-modal-overlay.layera-modal-overlay {
     padding: var(--layera-global-spacing-4);
   }
@@ -25,7 +25,7 @@
 /* Base Modal Overlay */
 .unified-pipeline-modal-overlay {
   position: fixed;
-  inset: var(--la-size-0);
+  inset: var(--layera-shared-dimensions-zero);
   width: var(--layera-shared-dimensions-viewport-width);
   height: var(--layera-shared-dimensions-viewport-height);
   background-color: var(--layera-color-semantic-overlay-dark);
@@ -44,7 +44,7 @@
   box-shadow: var(--layera-shadow-2xl);
   overflow: hidden auto;
   box-sizing: border-box;
-  z-index: var(--layera-global-z-index-modal);
+  z-index: var(--layera-modal-content-z-index);
 }
 
 /* Responsive Modal Sizing - Mobile First */
@@ -57,7 +57,7 @@
 }
 
 /* Tablet Styles */
-@media screen and (width >= var(--layera-responsive-breakpoint-tablet)) and (width <= var(--layera-responsive-breakpoint-desktop-max)) {
+@media screen and (width >= var(--layera-breakpoint-tablet)) and (width <= var(--layera-breakpoint-wide)) {
   .unified-pipeline-modal {
     max-width: var(--layera-global-spacing-80);
     padding: var(--layera-global-spacing-2);
@@ -66,7 +66,7 @@
 }
 
 /* Desktop Styles - Floating Panel Mode */
-@media screen and (width >= var(--layera-responsive-breakpoint-desktop)) {
+@media screen and (width >= var(--layera-breakpoint-desktop)) {
   .unified-pipeline-modal-overlay {
     /* Transparent overlay για desktop - δεν κλείνει το background */
     background-color: var(--layera-shared-dimensions-transparent);
@@ -88,7 +88,7 @@
     /* Panel styling */
     background-color: var(--layera-color-surface-primary);
     border-radius: var(--layera-radius-lg);
-    box-shadow: var(--layera-shadow-2xl);
+    box-shadow: var(--layera-shadow-xxl);
     border: var(--layera-global-spacing-0-25) solid var(--layera-color-semantic-neutral-light);
 
     /* Panel animation */
@@ -115,7 +115,7 @@
 }
 
 /* Large Desktop - Slightly bigger panel */
-@media screen and (width >= var(--layera-responsive-breakpoint-desktopLarge)) {
+@media screen and (width >= var(--layera-breakpoint-wide)) {
   .unified-pipeline-modal {
     width: var(--layera-global-spacing-112);
     max-width: var(--layera-global-spacing-112);
@@ -149,7 +149,7 @@
 /* Card sizing - Mobile */
 
 /* Card sizing - Desktop Floating Panel */
-@media screen and (width >= var(--layera-responsive-breakpoint-desktop)) {
+@media screen and (width >= var(--layera-breakpoint-desktop)) {
   .unified-pipeline-modal .layera-unified-card {
     min-height: var(--layera-global-spacing-20);
     margin: var(--layera-global-spacing-1-5) 0;
@@ -171,7 +171,7 @@
 }
 
 /* Large Desktop - Slightly larger cards */
-@media screen and (width >= var(--layera-responsive-breakpoint-desktopLarge)) {
+@media screen and (width >= var(--layera-breakpoint-wide)) {
   .unified-pipeline-modal .layera-unified-card {
     margin: var(--layera-global-spacing-2-5) 0;
     padding: var(--layera-global-spacing-3-5);
@@ -208,10 +208,10 @@
 }
 
 /* Desktop Floating Panel Typography */
-@media screen and (width >= var(--layera-responsive-breakpoint-desktop)) {
+@media screen and (width >= var(--layera-breakpoint-desktop)) {
   .unified-pipeline-modal .card-title {
     font-size: var(--layera-global-spacing-4);
-    line-height: var(--la-leading-snug);
+    line-height: var(--layera-lineHeight-snug);
     margin-bottom: var(--layera-global-spacing-1-5);
     font-weight: var(--layera-fontWeight-semibold);
     color: var(--layera-color-text-primary);
@@ -219,14 +219,14 @@
 
   .unified-pipeline-modal .card-text {
     font-size: var(--layera-global-spacing-3-5);
-    line-height: var(--la-leading-normal);
+    line-height: var(--layera-lineHeight-normal);
     color: var(--layera-color-text-secondary);
     min-height: var(--layera-global-spacing-10);
   }
 }
 
 /* Large Desktop - Slightly larger text */
-@media screen and (width >= var(--layera-responsive-breakpoint-desktopLarge)) {
+@media screen and (width >= var(--layera-breakpoint-wide)) {
   .unified-pipeline-modal .card-title {
     font-size: var(--layera-global-spacing-4);
     margin-bottom: var(--layera-global-spacing-2);
@@ -241,14 +241,14 @@
 /* Icon sizing - Progressive */
 .unified-pipeline-modal .layera-unified-card svg,
 .unified-pipeline-modal .layera-unified-card .layera-icon {
-  flex-shrink: var(--la-size-0);
+  flex-shrink: var(--layera-shared-dimensions-zero);
   width: var(--layera-global-spacing-5);
   height: var(--layera-global-spacing-5);
   margin-top: var(--layera-global-spacing-0-5);
 }
 
 /* Desktop Floating Panel Icons */
-@media screen and (width >= var(--layera-responsive-breakpoint-desktop)) {
+@media screen and (width >= var(--layera-breakpoint-desktop)) {
   .unified-pipeline-modal .layera-unified-card svg,
   .unified-pipeline-modal .layera-unified-card .layera-icon {
     width: var(--layera-global-spacing-6);
@@ -257,7 +257,7 @@
   }
 }
 
-@media screen and (width >= var(--layera-responsive-breakpoint-desktopLarge)) {
+@media screen and (width >= var(--layera-breakpoint-wide)) {
   .unified-pipeline-modal .layera-unified-card svg,
   .unified-pipeline-modal .layera-unified-card .layera-icon {
     width: var(--layera-global-spacing-6);
@@ -269,12 +269,12 @@
 .unified-pipeline-modal .layera-unified-card > * {
   width: 100%;
   max-width: 100%;
-  min-width: var(--la-size-0);
+  min-width: var(--layera-shared-dimensions-zero);
   flex-shrink: 1;
 }
 
 .unified-pipeline-modal .layera-unified-card [style*="flex: 1"] {
-  min-width: var(--la-size-0);
+  min-width: var(--layera-shared-dimensions-zero);
   max-width: 100%;
   width: 100%;
   overflow: hidden;
@@ -291,7 +291,7 @@
 }
 
 .unified-pipeline-modal .layera-unified-card .layera-stack {
-  min-width: var(--la-size-0);
+  min-width: var(--layera-shared-dimensions-zero);
   flex: 1;
 }
 

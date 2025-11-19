@@ -3,7 +3,7 @@
  *
  * ⚠️  DO NOT EDIT MANUALLY
  * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts, core/motion/motion.variables.ts και component/icons/icons.variables.ts and rebuild
- * Generated: 2025-11-19T23:17:38.563Z
+ * Generated: 2025-11-19T23:51:46.658Z
  */
 
 :root {
@@ -67,6 +67,8 @@
   --layera-spacing-20: 5rem;
   --layera-spacing-24: 6rem;
   --layera-spacing-32: 8rem;
+  --layera-spacing-80: 20rem;
+  --layera-spacing-100: 25rem;
   --layera-spacing-112: 28rem;
   --layera-spacing-micro: 0.25rem;
   --layera-spacing-small: 0.5rem;
@@ -95,9 +97,8 @@
   --layera-border-radius-24: 24px;
   --layera-border-radius-full: 9999px;
   --layera-border-radius-circle: 50%;
-  --layera-border-radius-md: 6px;
-  --layera-border-radius-lg: 8px;
   --layera-border-style-none: none;
+  --layera-border-style-hidden: hidden;
   --layera-border-style-solid: solid;
   --layera-border-style-dashed: dashed;
   --layera-border-style-dotted: dotted;
@@ -108,7 +109,6 @@
   --layera-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --layera-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   --layera-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  --layera-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25)',    // από modal.css;
   --layera-shadow-xxl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 
   /* ⚡ MOTION */
@@ -309,22 +309,6 @@
   --layera-button-danger-border-active: var(--layera-border-error);
   --layera-button-danger-border-disabled: var(--layera-border-disabled);
   --layera-button-danger-border-focus: var(--layera-border-focus);
-  --layera-button-padding-xs: var(--layera-spacing-2) var(--layera-spacing-3);
-  --layera-button-padding-sm: var(--layera-spacing-3) var(--layera-spacing-4);
-  --layera-button-padding-md: var(--layera-spacing-4) var(--layera-spacing-6);
-  --layera-button-padding-lg: var(--layera-spacing-5) var(--layera-spacing-8);
-  --layera-button-padding-xl: var(--layera-spacing-6) var(--layera-spacing-10);
-  --layera-button-border-radius-xs: var(--layera-border-radius-2);
-  --layera-button-border-radius-sm: var(--layera-border-radius-4);
-  --layera-button-border-radius-md: var(--layera-border-radius-6);
-  --layera-button-border-radius-lg: var(--layera-border-radius-8);
-  --layera-button-border-radius-xl: var(--layera-border-radius-12);
-  --layera-button-shadow-default: var(--layera-shadow-sm);
-  --layera-button-shadow-hover: var(--layera-shadow-md);
-  --layera-button-shadow-active: var(--layera-shadow-none);
-  --layera-button-shadow-disabled: var(--layera-shadow-none);
-  --layera-button-transition-default: var(--layera-transition-fast);
-  --layera-button-transition-hover: var(--layera-transition-normal);
 
   /* 🏢 COMPONENT MODAL */
   --layera-modal-backdrop-background: rgba(0, 0, 0, 0.5);
@@ -742,7 +726,7 @@
   --layera-spinner-lg-border-width: 3px;
   --layera-spinner-xl-size: var(--layera-spacing-12);
   --layera-spinner-xl-border-width: 4px;
-  --layera-spinner-animation-duration: var(--layera-motion-duration-slow);
+  --layera-spinner-animation-duration: var(--layera-duration-slow);
   --layera-spinner-animation-easing: linear;
   --layera-spinner-animation-iteration: infinite;
   --layera-spinner-animation-name: spin;
@@ -753,7 +737,7 @@
   --layera-skeleton-background: var(--layera-background-muted);
   --layera-skeleton-background-active: var(--layera-background-hover);
   --layera-skeleton-border-radius: var(--layera-border-radius-4);
-  --layera-skeleton-animation-duration: var(--layera-motion-duration-slow);
+  --layera-skeleton-animation-duration: var(--layera-duration-slow);
   --layera-skeleton-animation-easing: ease-in-out;
   --layera-skeleton-text-height: var(--layera-spacing-4);
   --layera-skeleton-text-small-height: var(--layera-spacing-3);
@@ -784,7 +768,7 @@
   --layera-pulse-opacity-start: 1;
   --layera-pulse-opacity-mid: 0.7;
   --layera-pulse-opacity-end: 1;
-  --layera-pulse-duration: var(--layera-motion-duration-slow);
+  --layera-pulse-duration: var(--layera-duration-slow);
   --layera-wave-height: var(--layera-spacing-8);
   --layera-wave-width: var(--layera-spacing-1);
   --layera-wave-gap: var(--layera-spacing-0-5);
@@ -835,7 +819,7 @@
   --layera-accordion-header-background-hover: var(--layera-color-background-hover);
   --layera-accordion-header-background-active: var(--layera-color-background-active);
   --layera-accordion-header-background-disabled: var(--layera-color-background-disabled);
-  --layera-accordion-header-padding: `${SPACING_VARIABLES['spacing-4']} ${SPACING_VARIABLES['spacing-6']}`;
+  --layera-accordion-header-padding: `SPACING_VARIABLES['component-padding-medium']`;
   --layera-accordion-header-margin: var(--layera-spacing-0);
   --layera-accordion-header-border: var(--layera-border-default);
   --layera-accordion-header-border-radius: var(--layera-border-radius-4);
@@ -847,7 +831,7 @@
   --layera-accordion-header-font-weight: '600';
   --layera-accordion-header-line-height: '1.5';
   --layera-accordion-content-background: var(--layera-color-background-default);
-  --layera-accordion-content-padding: `${SPACING_VARIABLES['spacing-4']} ${SPACING_VARIABLES['spacing-6']}`;
+  --layera-accordion-content-padding: `SPACING_VARIABLES['component-padding-medium']`;
   --layera-accordion-content-margin: var(--layera-spacing-0);
   --layera-accordion-content-border: 'none';
   --layera-accordion-content-border-top: var(--layera-border-default);
@@ -868,8 +852,8 @@
   --layera-accordion-sm-content-padding: `${SPACING_VARIABLES['spacing-3']} ${SPACING_VARIABLES['spacing-4']}`;
   --layera-accordion-sm-font-size: '14px';
   --layera-accordion-sm-icon-size: var(--layera-spacing-4);
-  --layera-accordion-md-header-padding: `${SPACING_VARIABLES['spacing-4']} ${SPACING_VARIABLES['spacing-6']}`;
-  --layera-accordion-md-content-padding: `${SPACING_VARIABLES['spacing-4']} ${SPACING_VARIABLES['spacing-6']}`;
+  --layera-accordion-md-header-padding: `SPACING_VARIABLES['component-padding-medium']`;
+  --layera-accordion-md-content-padding: `SPACING_VARIABLES['component-padding-medium']`;
   --layera-accordion-md-font-size: '16px';
   --layera-accordion-md-icon-size: var(--layera-spacing-5);
   --layera-accordion-lg-header-padding: `${SPACING_VARIABLES['spacing-5']} ${SPACING_VARIABLES['spacing-8']}`;
@@ -985,7 +969,7 @@
   --layera-import-wizard-border: var(--layera-border-default);
   --layera-import-wizard-padding: var(--layera-spacing-5);
   --layera-import-wizard-gap: var(--layera-spacing-4);
-  --layera-import-wizard-min-height: 400px;
+  --layera-import-wizard-min-height: SPACING_VARIABLES[spacing-100];
   --layera-import-step-background: var(--layera-color-background-muted);
   --layera-import-step-background-active: var(--layera-color-background-active);
   --layera-import-step-background-completed: var(--layera-color-background-success);
@@ -998,7 +982,7 @@
   --layera-import-step-border-active: var(--layera-border-focus);
   --layera-import-step-border-radius: var(--layera-border-radius-full);
   --layera-import-step-size: var(--layera-spacing-10);
-  --layera-import-step-connector-width: 2px;
+  --layera-import-step-connector-width: BORDER_VARIABLES[border-width-2];
   --layera-import-step-connector-color: var(--layera-border-default);
   --layera-import-file-selector-background: var(--layera-color-background-muted);
   --layera-import-file-selector-background-hover: var(--layera-color-background-hover);
@@ -1008,7 +992,7 @@
   --layera-import-file-selector-border-radius: var(--layera-border-radius-8);
   --layera-import-file-selector-border-style: dashed;
   --layera-import-file-selector-padding: var(--layera-spacing-8);
-  --layera-import-file-selector-min-height: 200px;
+  --layera-import-file-selector-min-height: 12.5rem, // 200px - needs spacing token;
   --layera-import-file-selector-text-color: var(--layera-color-text-secondary);
   --layera-import-file-selector-text-dragover: var(--layera-color-text-primary);
   --layera-import-file-selector-icon-size: var(--layera-spacing-12);
@@ -1034,7 +1018,7 @@
   --layera-import-preview-cell-padding: var(--layera-spacing-2);
   --layera-import-preview-cell-border: var(--layera-border-subtle);
   --layera-import-preview-row-hover: var(--layera-color-background-hover);
-  --layera-import-preview-max-height: 300px;
+  --layera-import-preview-max-height: 18.75rem, // 300px - needs spacing token;
   --layera-import-mapping-container-background: var(--layera-color-background-default);
   --layera-import-mapping-container-padding: var(--layera-spacing-4);
   --layera-import-mapping-container-gap: var(--layera-spacing-4);
@@ -1050,7 +1034,7 @@
   --layera-import-mapping-field-text-mapped: var(--layera-color-text-primary);
   --layera-import-mapping-field-text-error: var(--layera-color-text-primary);
   --layera-import-mapping-connector-color: var(--layera-border-focus);
-  --layera-import-mapping-connector-width: 2px;
+  --layera-import-mapping-connector-width: BORDER_VARIABLES[border-width-2];
   --layera-import-mapping-connector-style: solid;
   --layera-import-mapping-connector-hover: var(--layera-border-hover);
   --layera-import-validation-container-background: var(--layera-color-background-default);
@@ -1127,13 +1111,13 @@
   --layera-import-desktop-padding: var(--layera-spacing-6);
   --layera-import-desktop-gap: var(--layera-spacing-4);
   --layera-import-focus-outline: `2px solid var(--layera-border-focus)`;
-  --layera-import-focus-outline-offset: 2px;
+  --layera-import-focus-outline-offset: SPACING_VARIABLES[spacing-0-5];
   --layera-import-aria-live: polite;
   --layera-import-aria-busy: true;
   --layera-import-loading-opacity: 0.6;
   --layera-import-loading-animation: `pulse var(--layera-motion-duration-slow) infinite`;
   --layera-import-spinner-size: var(--layera-spacing-8);
-  --layera-import-spinner-border-width: 3px;
+  --layera-import-spinner-border-width: BORDER_VARIABLES[border-width-3];
 }
 
 /* 🔧 UTILITY CLASSES */
@@ -1151,10 +1135,11 @@
 .global-justifyContent-start { justify-content: flex-start; }
 .global-justifyContent-end { justify-content: flex-end; }
 .global-justifyContent-between { justify-content: space-between; }
-.global-border-none { border-style: none; }
-.global-border-solid { border-style: solid; }
-.global-border-dashed { border-style: dashed; }
-.global-border-dotted { border-style: dotted; }
+.global-border-none { border-style: BORDER_STYLE_SCALE.none; }
+.global-border-hidden { border-style: BORDER_STYLE_SCALE.hidden; }
+.global-border-solid { border-style: BORDER_STYLE_SCALE.solid; }
+.global-border-dashed { border-style: BORDER_STYLE_SCALE.dashed; }
+.global-border-dotted { border-style: BORDER_STYLE_SCALE.dotted; }
 .margin-bottom-xl { margin-bottom: var(--layera-spacing-8); }
 
 /* 📐 LAYOUT CLASSES */
