@@ -168,9 +168,9 @@ export const AppContent: React.FC = () => {
       <Box
         className="layera-layout"
         style={{
-          width: 'var(--layera-layout-map-full-width)',
-          height: 'var(--layera-layout-map-full-height)',
-          position: 'var(--layera-layout-map-position)',
+          width: 'calc(var(--layera-layoutSystem-viewport-width, 100vw) - var(--layera-spacing-large))',
+          height: 'calc(var(--layera-layoutSystem-viewport-height, 100vh) - var(--layera-header-fixed-height) - var(--layera-spacing-medium))',
+          position: 'relative',
           marginTop: 'var(--layera-spacing-medium)',
           backgroundColor: 'var(--layera-color-neutral-light)',
           border: `var(--layera-spacing-micro) solid var(--layera-color-primary-500)`,
@@ -182,10 +182,10 @@ export const AppContent: React.FC = () => {
           initialLng={MAP_DEFAULTS.CENTER[1]}
           initialZoom={MAP_DEFAULTS.ZOOM}
           style={{
-            width: 'var(--layera-layout-map-full-width)',
-            height: 'var(--layera-layout-map-full-size)',
-            position: 'var(--layera-layout-map-position)',
-            zIndex: 'var(--layera-layout-z-base)',
+            width: '100%',
+            height: '100%',
+            position: 'relative',
+            zIndex: 1,
           }}
         />
       </Box>
