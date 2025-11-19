@@ -2,30 +2,8 @@ import React from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { CheckIcon } from '@layera/icons';
-
-interface LayoutPlaygroundProps {
-  currentColors: {
-    primary: string;
-    secondary: string;
-    success: string;
-    warning: string;
-    danger: string;
-    info: string;
-  };
-  colorCategory: string;
-  /** Border width for borders category (0, 1, 2, or 3) */
-  borderWidth?: number;
-  /** Border radius for borders category ('none', 'xs', 'md', 'lg') */
-  borderRadius?: string;
-  /** Layout radius for styling */
-  layoutRadius?: string;
-  /** Layout size for styling */
-  layoutSize?: string;
-  /** Hover effect for interactive elements */
-  hoverEffect?: string;
-  /** Active effect for interactive elements */
-  activeEffect?: string;
-}
+import { PLAYGROUND_HELPERS } from '../../constants/ui-utilities';
+import { LayoutPlaygroundProps } from '../../types/unified-interfaces';
 
 export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
   currentColors,
@@ -37,75 +15,8 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
   activeEffect = 'scale'
 }) => {
 
-  // Helper function για translation των radius values
-  const getRadiusInGreek = (radius: string) => {
-    switch(radius) {
-      case 'none': return 'χωρίς καμπυλότητα';
-      case 'sm': return 'ελαφρά καμπυλότητα';
-      case 'lg': return 'μεσαία καμπυλότητα';
-      case 'xl': return 'πολλή καμπυλότητα';
-      case 'xxl': return 'μεγάλη καμπυλότητα';
-      case 'round': return 'πλήρως στρογγυλά';
-      default: return radius;
-    }
-  };
-
-  // Helper function για μετατροπή radius values σε tokens
-  const getRadiusToken = (radius: string) => {
-    switch(radius) {
-      case 'none': return '0';    // 0 (unit-less)
-      case 'sm': return 'var(--layera-radius-sm)';
-      case 'lg': return 'var(--layera-radius-lg)';      // default για layout
-      case 'xl': return 'var(--layera-radius-xl)';
-      case 'xxl': return 'var(--layera-radius-xxl)';
-      case 'round': return 'var(--layera-radius-full)'; // πλήρως στρογγυλά
-      default: return 'var(--layera-radius-lg)';        // fallback
-    }
-  };
-
-  // Helper function για translation των hover effects
-  const getHoverEffectInGreek = (effect: string) => {
-    switch(effect) {
-      case 'none': return 'χωρίς hover effect';
-      case 'normal': return 'κανονικό hover effect';
-      case 'glow': return 'φωτεινό hover effect';
-      case 'shadow': return 'σκιώδες hover effect';
-      default: return effect;
-    }
-  };
-
-  // Helper function για translation των active effects
-  const getActiveEffectInGreek = (effect: string) => {
-    switch(effect) {
-      case 'none': return 'χωρίς active effect';
-      case 'scale': return 'μεγέθυνση κατά το πάτημα';
-      case 'press': return 'πίεση κατά το πάτημα';
-      case 'ripple': return 'κύματα κατά το πάτημα';
-      default: return effect;
-    }
-  };
-
-  // Helper function για size translation
-  const getSizeInGreek = (size: string) => {
-    switch(size) {
-      case 'xs': return 'πολύ μικρά';
-      case 'sm': return 'μικρά';
-      case 'md': return 'μεσαία';
-      case 'lg': return 'μεγάλα';
-      case 'xl': return 'πολύ μεγάλα';
-      default: return size;
-    }
-  };
-
-  // Helper function για category translation
-  const getCategoryInGreek = (category: string) => {
-    switch(category.toLowerCase()) {
-      case 'backgrounds': return 'ΦΟΝΤΑ';
-      case 'text': return 'ΚΕΙΜΕΝΑ';
-      case 'borders': return 'ΠΕΡΙΓΡΑΜΜΑΤΑ';
-      default: return category.toUpperCase();
-    }
-  };
+  // ✅ ΑΝΤΙΚΑΤΑΣΤΑΣΗ ΔΙΠΛΟΤΥΠΩΝ FUNCTIONS - Χρήση κεντρικών helper functions
+  const { getRadiusInGreek, getRadiusToken, getHoverEffectInGreek, getActiveEffectInGreek, getSizeInGreek, getCategoryInGreek } = PLAYGROUND_HELPERS;
 
   // Δυναμική δημιουργία πλήρους περιγραφής
   const generateFullDescription = () => {

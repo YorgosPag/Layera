@@ -3,7 +3,8 @@ import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { PlusIcon, SearchIcon, UserIcon, SettingsIcon } from '@layera/icons';
-import { ButtonState, SectionProps, ButtonVariant, ButtonSize } from './shared/types';
+import { ButtonState, SectionProps, ButtonVariant } from './shared/types';
+import type { ButtonSize } from '../../types/sizes';
 
 // ✅ NO INLINE STYLES - Using only @layera tokens and CSS classes
 

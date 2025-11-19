@@ -3,6 +3,7 @@ import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { RulerIcon } from '@layera/icons';
+import { BorderWidthControlProps } from '../../../types/unified-interfaces';
 
 /**
  * BorderWidthControl Component
@@ -12,26 +13,17 @@ import { RulerIcon } from '@layera/icons';
  * - Live preview με visual feedback
  * - Compatible με το SST design token system
  * - Χρησιμοποιεί --layera-global-borderWidth-{1,2,3} tokens
+ * Props interface moved to unified-interfaces.ts
  */
 
 import type { ButtonState } from '../../../hooks/useButtonState.js';
 
-interface BorderWidthControlProps {
-  /** Current border width value (0, 1, 2, or 3) */
-  value: number;
-  /** Callback when border width changes */
-  onChange: (value: number) => void;
-  /** Element type για description context */
-  elementType?: string;
-  /** CSS class για styling */
-  className?: string;
-  /** Real-time preview callback */
-  onPreview?: (key: string, value: string) => void;
+interface ExtendedBorderWidthControlProps extends BorderWidthControlProps {
   /** Button state for sizing */
   buttonState?: ButtonState;
 }
 
-export const BorderWidthControl: React.FC<BorderWidthControlProps> = ({
+export const BorderWidthControl: React.FC<ExtendedBorderWidthControlProps> = ({
   value = 2,
   onChange,
   elementType = 'στοιχεία',

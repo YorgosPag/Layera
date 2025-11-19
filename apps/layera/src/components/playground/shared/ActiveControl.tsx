@@ -3,6 +3,7 @@ import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { SettingsIcon } from '@layera/icons';
+import { useControlThrottle } from '../../../hooks/useControlThrottle';
 
 /**
  * ActiveControl Component
@@ -38,7 +39,11 @@ export const ActiveControl: React.FC<ActiveControlProps> = ({
   onPreview,
   buttonState
 }) => {
-  const [isChanging, setIsChanging] = useState(false);
+  const { value: currentValue, isChanging, handleChange } = useControlThrottle({
+    initialValue: value,
+    onChange,
+    onPreview: onPreview ? (val) => onPreview('activeEffect', val) : undefined
+  });
   const [isPressed, setIsPressed] = useState(false);
 
   // ✅ ARXES COMPLIANT: Active options ΧΩΡΙΣ inline CSS objects
@@ -70,23 +75,8 @@ export const ActiveControl: React.FC<ActiveControlProps> = ({
     }
   ];
 
-  const handleChange = useCallback((newValue: string) => {
-    setIsChanging(true);
-    onChange(newValue);
-
-    // Trigger real-time preview
-    if (onPreview) {
-      onPreview('activeEffect', newValue);
-    }
-
-    // Reset visual feedback
-    setTimeout(() => {
-      setIsChanging(false);
-    }, 200);
-  }, [onChange, onPreview]);
-
   const getCurrentOption = () => {
-    return activeOptions.find(option => option.value === value) || activeOptions[1];
+    return activeOptions.find(option => option.value === currentValue) || activeOptions[1];
   };
 
   const currentOption = getCurrentOption();
@@ -102,10 +92,10 @@ export const ActiveControl: React.FC<ActiveControlProps> = ({
         {activeOptions.map((option) => (
           <Button
             key={option.value}
-            variant={value === option.value ? 'primary' : 'outline'}
+            variant={currentValue === option.value ? 'primary' : 'outline'}
             size={buttonState?.size || 'sm'}
             onClick={() => handleChange(option.value)}
-            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${value === option.value ? 'primary' : 'outline'} ${isChanging && value === option.value ? 'layera-opacity--70' : 'layera-opacity--100'}`}
+            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${currentValue === option.value ? 'primary' : 'outline'} ${isChanging && currentValue === option.value ? 'layera-opacity--70' : 'layera-opacity--100'}`}
           >
             {option.label}
           </Button>
@@ -114,9 +104,9 @@ export const ActiveControl: React.FC<ActiveControlProps> = ({
 
       {/* Live Preview of Current Active Effect */}
       <Box
-        className={`layera-margin-bottom--sm layera-padding--lg layera-bg--surface-primary layera-border-radius--md layera-border--sm layera-border-color--primary layera-text-align--center layera-transition--fast layera-cursor--pointer layera-user-select--none ${isPressed && value !== 'none' ? 'layera-transform--scale-95 layera-opacity--80' : ''}`}
+        className={`layera-margin-bottom--sm layera-padding--lg layera-bg--surface-primary layera-border-radius--md layera-border--sm layera-border-color--primary layera-text-align--center layera-transition--fast layera-cursor--pointer layera-user-select--none ${isPressed && currentValue !== 'none' ? 'layera-transform--scale-95 layera-opacity--80' : ''}`}
         onMouseDown={() => {
-          if (value !== 'none') {
+          if (currentValue !== 'none') {
             setIsPressed(true);
           }
         }}

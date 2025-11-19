@@ -3,6 +3,7 @@ import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { CheckIcon, PlusIcon, LocationIcon, MenuIcon, UserIcon, SettingsIcon, SearchIcon } from '@layera/icons';
 import { SquareButton } from '@layera/buttons';
+import { PLAYGROUND_HELPERS } from '../../constants/ui-utilities';
 
 /**
  * HeaderPlayground Component
@@ -45,75 +46,8 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
   activeEffect = 'scale'
 }) => {
 
-  // Helper function για translation των radius values
-  const getRadiusInGreek = (radius: string) => {
-    switch(radius) {
-      case 'none': return 'χωρίς καμπυλότητα';
-      case 'sm': return 'ελαφρά καμπυλότητα';
-      case 'lg': return 'μεσαία καμπυλότητα';
-      case 'xl': return 'πολλή καμπυλότητα';
-      case 'xxl': return 'μεγάλη καμπυλότητα';
-      case 'round': return 'πλήρως στρογγυλά';
-      default: return radius;
-    }
-  };
-
-  // Helper function για μετατροπή radius values σε tokens
-  const getRadiusToken = (radius: string) => {
-    switch(radius) {
-      case 'none': return '0';                          // 0 (unit-less)
-      case 'sm': return 'var(--layera-radius-sm)';
-      case 'lg': return 'var(--layera-radius-lg)';      // default για headers
-      case 'xl': return 'var(--layera-radius-xl)';
-      case 'xxl': return 'var(--layera-radius-xxl)';
-      case 'round': return 'var(--layera-radius-full)'; // πλήρως στρογγυλά
-      default: return 'var(--layera-radius-lg)';        // fallback
-    }
-  };
-
-  // Helper function για translation των hover effects
-  const getHoverEffectInGreek = (effect: string) => {
-    switch(effect) {
-      case 'none': return 'χωρίς hover effect';
-      case 'normal': return 'κανονικό hover effect';
-      case 'glow': return 'φωτεινό hover effect';
-      case 'shadow': return 'σκιώδες hover effect';
-      default: return effect;
-    }
-  };
-
-  // Helper function για translation των active effects
-  const getActiveEffectInGreek = (effect: string) => {
-    switch(effect) {
-      case 'none': return 'χωρίς active effect';
-      case 'scale': return 'μεγέθυνση κατά το πάτημα';
-      case 'press': return 'πίεση κατά το πάτημα';
-      case 'ripple': return 'κύματα κατά το πάτημα';
-      default: return effect;
-    }
-  };
-
-  // Helper function για size translation
-  const getSizeInGreek = (size: string) => {
-    switch(size) {
-      case 'xs': return 'πολύ μικρά';
-      case 'sm': return 'μικρά';
-      case 'md': return 'μεσαία';
-      case 'lg': return 'μεγάλα';
-      case 'xl': return 'πολύ μεγάλα';
-      default: return size;
-    }
-  };
-
-  // Helper function για category translation
-  const getCategoryInGreek = (category: string) => {
-    switch(category.toLowerCase()) {
-      case 'backgrounds': return 'ΦΟΝΤΑ';
-      case 'text': return 'ΚΕΙΜΕΝΑ';
-      case 'borders': return 'ΠΕΡΙΓΡΑΜΜΑΤΑ';
-      default: return category.toUpperCase();
-    }
-  };
+  // Χρησιμοποιούμε τις κεντρικές helper functions από το PLAYGROUND_HELPERS utility
+  const { getRadiusInGreek, getRadiusToken, getHoverEffectInGreek, getActiveEffectInGreek, getSizeInGreek, getCategoryInGreek } = PLAYGROUND_HELPERS;
 
   // Δυναμική δημιουργία πλήρους περιγραφής
   const generateFullDescription = () => {
@@ -149,24 +83,24 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
     if (colorCategory === 'text') return colorValue;
     if (colorCategory === 'backgrounds') {
       // Dark backgrounds need white text, light backgrounds need black text
-      return colorValue === 'var(--layera-color-semantic-warning-primary)' ? 'var(--layera-color-text-primary)' : 'var(--layera-color-text-on-dark)'; // warning is light, others dark
+      return colorValue === 'var(--layera-colors-primary-warning)' ? 'var(--layera-colors-text-primary)' : 'var(--layera-colors-text-primary)'; // warning is light, others dark
     }
-    return 'var(--layera-color-text-secondary)'; // default for borders
+    return 'var(--layera-colors-text-secondary)'; // default for borders
   };
 
   // Helper to get background color
   const getBackgroundColor = (colorValue: string) => {
     if (colorCategory === 'backgrounds') return colorValue;
-    return 'var(--layera-color-surface-primary)'; // white background for text and borders
+    return 'var(--layera-colors-surface-light)'; // white background for text and borders
   };
 
   // Helper to get border style
   const getBorderStyle = (colorValue: string) => {
     if (colorCategory === 'borders') {
-      const borderWidthToken = `var(--layera-global-borderWidth-${borderWidth})`;
+      const borderWidthToken = `var(--layera-spacing-scale-${borderWidth})`;
       return `${borderWidthToken} solid ${colorValue}`;
     }
-    return 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-primary)'; // subtle border for others
+    return 'var(--layera-spacing-scale-1) solid var(--layera-color-border-primary)'; // subtle border for others
   };
 
   const headerConfigs = [

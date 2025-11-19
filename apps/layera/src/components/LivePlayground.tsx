@@ -18,11 +18,7 @@ import { ColorActionsPanel } from './playground/ColorActionsPanel';
 import { ColorValueDisplay } from './playground/ColorValueDisplay';
 import { FactorySettingsPanel } from './playground/FactorySettingsPanel';
 import type { ColorWithAlpha } from './playground/shared/ColorPickerWithAlpha';
-import type { FontSizeValue } from './playground/shared/FontSizeControl';
-import type { CardSizeValue } from './playground/shared/CardSizeControl';
-import type { ModalSizeValue } from './playground/shared/ModalSizeControl';
-import type { InputSizeValue } from './playground/shared/InputSizeControl';
-import type { TableSizeValue } from './playground/shared/TableSizeControl';
+import type { FontSizeValue, CardSizeValue, ModalSizeValue, InputSizeValue, TableSizeValue, UnifiedSizeConfig } from '../types/sizes';
 import { useAuth } from '@layera/auth-bridge';
 import { useRealTimePreview } from '../hooks/useRealTimePreview';
 import { useButtonState } from '../hooks/useButtonState';
@@ -46,9 +42,7 @@ import { useStorage } from '../hooks/useStorage';
  */
 
 
-interface LivePlaygroundProps {
-  onClose: () => void;
-}
+import { LivePlaygroundProps } from '../types/unified-interfaces';
 
 export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
@@ -81,56 +75,86 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   // STATE MANAGEMENT
   // ==============================
 
-  // Border width state for borders category
-  const [borderWidth, setBorderWidth] = useState<number>(2);
+  // ✅ UNIFIED STYLING CONFIG - multiple states → 1 object (ARXES compliant)
+  const [stylingConfig, setStylingConfig] = useState({
+    borderWidth: 2,
+    fontSize: 'base' as FontSizeValue,
+    alphaEnabled: false
+  });
 
-  // Border radius state for borders category
-  const [borderRadius, setBorderRadius] = useState<string>('md');
+  // Helper functions για backward compatibility
+  const borderWidth = stylingConfig.borderWidth;
+  const fontSize = stylingConfig.fontSize;
+  const alphaEnabled = stylingConfig.alphaEnabled;
 
-  // Hover effect state for interactive elements
-  const [hoverEffect, setHoverEffect] = useState<string>('normal');
+  const setBorderWidth = (value: number) => setStylingConfig(prev => ({ ...prev, borderWidth: value }));
+  const setFontSize = (value: FontSizeValue) => setStylingConfig(prev => ({ ...prev, fontSize: value }));
+  const setAlphaEnabled = (value: boolean) => setStylingConfig(prev => ({ ...prev, alphaEnabled: value }));
 
-  // Active effect state for interactive elements
-  const [activeEffect, setActiveEffect] = useState<string>('scale');
+  // ✅ UNIFIED RADIUS CONFIG - 7 states → 1 object (ARXES compliant)
+  const [radiusConfig, setRadiusConfig] = useState({
+    border: 'md',
+    button: 'md',
+    layout: 'md',
+    card: 'md',
+    modal: 'md',
+    input: 'md',
+    table: 'md',
+    header: 'lg'
+  });
 
-  // Button radius state for buttons
-  const [buttonRadius, setButtonRadius] = useState<string>('md');
+  // Helper functions για backward compatibility
+  const borderRadius = radiusConfig.border;
+  const buttonRadius = radiusConfig.button;
+  const layoutRadius = radiusConfig.layout;
+  const cardRadius = radiusConfig.card;
+  const modalRadius = radiusConfig.modal;
+  const inputRadius = radiusConfig.input;
+  const tableRadius = radiusConfig.table;
+  const headerRadius = radiusConfig.header;
 
-  // Layout radius state for layout category
-  const [layoutRadius, setLayoutRadius] = useState<string>('md');
+  const setBorderRadius = (value: string) => setRadiusConfig(prev => ({ ...prev, border: value }));
+  const setButtonRadius = (value: string) => setRadiusConfig(prev => ({ ...prev, button: value }));
+  const setLayoutRadius = (value: string) => setRadiusConfig(prev => ({ ...prev, layout: value }));
+  const setCardRadius = (value: string) => setRadiusConfig(prev => ({ ...prev, card: value }));
+  const setModalRadius = (value: string) => setRadiusConfig(prev => ({ ...prev, modal: value }));
+  const setInputRadius = (value: string) => setRadiusConfig(prev => ({ ...prev, input: value }));
+  const setTableRadius = (value: string) => setRadiusConfig(prev => ({ ...prev, table: value }));
+  const setHeaderRadius = (value: string) => setRadiusConfig(prev => ({ ...prev, header: value }));
 
-  // Card radius state for cards category
-  const [cardRadius, setCardRadius] = useState<string>('md');
+  // ✅ UNIFIED EFFECTS CONFIG - 2 states → 1 object (ARXES compliant)
+  const [effectsConfig, setEffectsConfig] = useState({
+    hover: 'normal',
+    active: 'scale'
+  });
 
-  // Modal radius state for modals category
-  const [modalRadius, setModalRadius] = useState<string>('md');
+  // Helper functions για backward compatibility
+  const hoverEffect = effectsConfig.hover;
+  const activeEffect = effectsConfig.active;
 
-  // Input radius state for inputs category
-  const [inputRadius, setInputRadius] = useState<string>('md');
+  const setHoverEffect = (value: string) => setEffectsConfig(prev => ({ ...prev, hover: value }));
+  const setActiveEffect = (value: string) => setEffectsConfig(prev => ({ ...prev, active: value }));
 
-  // Table radius state for tables category
-  const [tableRadius, setTableRadius] = useState<string>('md');
 
-  // Header radius state for headers category
-  const [headerRadius, setHeaderRadius] = useState<string>('lg');
+  // ✅ UNIFIED SIZE CONFIG - 4 states → 1 object (ARXES compliant)
+  const [sizeConfig, setSizeConfig] = useState({
+    card: 'md' as CardSizeValue,
+    modal: 'md' as ModalSizeValue,
+    input: 'md' as InputSizeValue,
+    table: 'md' as TableSizeValue
+  });
 
-  // Font size state for text category
-  const [fontSize, setFontSize] = useState<FontSizeValue>('base');
+  // Helper functions για backward compatibility
+  const cardSize = sizeConfig.card;
+  const modalSize = sizeConfig.modal;
+  const inputSize = sizeConfig.input;
+  const tableSize = sizeConfig.table;
 
-  // Card size state for cards category
-  const [cardSize, setCardSize] = useState<CardSizeValue>('md');
+  const setCardSize = (value: CardSizeValue) => setSizeConfig(prev => ({ ...prev, card: value }));
+  const setModalSize = (value: ModalSizeValue) => setSizeConfig(prev => ({ ...prev, modal: value }));
+  const setInputSize = (value: InputSizeValue) => setSizeConfig(prev => ({ ...prev, input: value }));
+  const setTableSize = (value: TableSizeValue) => setSizeConfig(prev => ({ ...prev, table: value }));
 
-  // Modal size state for modals category
-  const [modalSize, setModalSize] = useState<ModalSizeValue>('md');
-
-  // Input size state for inputs category
-  const [inputSize, setInputSize] = useState<InputSizeValue>('md');
-
-  // Table size state for tables category
-  const [tableSize, setTableSize] = useState<TableSizeValue>('md');
-
-  // Alpha state for color controls
-  const [alphaEnabled, setAlphaEnabled] = useState<boolean>(false);
 
   // Real-time preview hook for header buttons
   const { startPreview } = useRealTimePreview({
@@ -292,7 +316,6 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
-                borderRadius={layoutRadius}
                 layoutRadius={layoutRadius}
                 layoutSize="md"
                 hoverEffect={hoverEffect}

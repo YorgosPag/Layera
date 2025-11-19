@@ -7,12 +7,7 @@ import { PropertyTypeDrawer } from './PropertyTypeDrawer';
 import { PipelineDebugInfo } from './PipelineDebugInfo';
 import { AppModals } from './AppModals';
 
-// Map defaults from tokens system
-const MAP_DEFAULTS = {
-  INITIAL_LAT: 37.9755,  // From --layera-map-defaults-initial-latitude
-  INITIAL_LNG: 23.7348,  // From --layera-map-defaults-initial-longitude
-  INITIAL_ZOOM: 13       // From --layera-map-defaults-initial-zoom
-} as const;
+import { MAP_DEFAULTS } from '../constants/dev-config';
 
 export const AppContent: React.FC = () => {
   const [activeDrawer, setActiveDrawer] = useState<'propertyTypeSelection' | null>(null);
@@ -146,9 +141,9 @@ export const AppContent: React.FC = () => {
       <Box className="layera-map-container layera-margin-top--lg">
         <MapContainer
           className="layera-map--fullscreen"
-          initialLat={MAP_DEFAULTS.INITIAL_LAT}
-          initialLng={MAP_DEFAULTS.INITIAL_LNG}
-          initialZoom={MAP_DEFAULTS.INITIAL_ZOOM}
+          initialLat={MAP_DEFAULTS.CENTER[0]}
+          initialLng={MAP_DEFAULTS.CENTER[1]}
+          initialZoom={MAP_DEFAULTS.ZOOM}
         />
       </Box>
 

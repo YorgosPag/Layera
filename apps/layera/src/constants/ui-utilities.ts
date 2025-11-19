@@ -74,7 +74,13 @@ export const CRYPTOGRAPHIC_CONSTANTS = {
   // TOTP constants
   TOTP_WINDOW: 30,                 // TOTP time window in seconds
   TOTP_DIGITS: 6,                  // Number of TOTP digits
-  TOTP_COUNTER_SIZE: 8             // TOTP counter size in bytes
+  TOTP_COUNTER_SIZE: 8,            // TOTP counter size in bytes
+
+  // Authentication constants (consolidated from legacy-aliases.ts)
+  SALT_ROUNDS: 12,
+  TOKEN_LENGTH: 32,
+  SESSION_TIMEOUT: 3600000,        // 1 hour in milliseconds
+  REFRESH_TOKEN_TIMEOUT: 2592000000 // 30 days in milliseconds
 } as const;
 
 /**
@@ -100,4 +106,93 @@ export const UI_Z_INDEX_LAYERS = {
   // Critical layers
   TOOLTIP: 5000,                   // Tooltip layer (highest UI)
   DEBUG: 9999                      // Debug overlays (development only)
+} as const;
+
+/**
+ * 🎮 PLAYGROUND HELPER FUNCTIONS
+ * Κεντρικοποιημένες helper functions για playground components
+ * Αποφεύγουν διπλότυπο κώδικα σε όλα τα playground components
+ */
+export const PLAYGROUND_HELPERS = {
+  /**
+   * Μετατρέπει radius values σε ελληνικά
+   */
+  getRadiusInGreek: (radius: string): string => {
+    switch(radius) {
+      case 'none': return 'χωρίς καμπυλότητα';
+      case 'sm': return 'ελαφρά καμπυλότητα';
+      case 'lg': return 'μεσαία καμπυλότητα';
+      case 'xl': return 'πολλή καμπυλότητα';
+      case 'xxl': return 'μεγάλη καμπυλότητα';
+      case 'round': return 'πλήρως στρογγυλά';
+      default: return radius;
+    }
+  },
+
+  /**
+   * Μετατρέπει radius values σε CSS tokens
+   */
+  getRadiusToken: (radius: string): string => {
+    switch(radius) {
+      case 'none': return '0';
+      case 'sm': return 'var(--layera-radius-sm)';
+      case 'lg': return 'var(--layera-radius-lg)';
+      case 'xl': return 'var(--layera-radius-xl)';
+      case 'xxl': return 'var(--layera-radius-xxl)';
+      case 'round': return 'var(--layera-radius-full)';
+      default: return 'var(--layera-radius-lg)';
+    }
+  },
+
+  /**
+   * Μετατρέπει hover effects σε ελληνικά
+   */
+  getHoverEffectInGreek: (effect: string): string => {
+    switch(effect) {
+      case 'none': return 'χωρίς hover effect';
+      case 'normal': return 'κανονικό hover effect';
+      case 'glow': return 'φωτεινό hover effect';
+      case 'shadow': return 'σκιώδες hover effect';
+      default: return effect;
+    }
+  },
+
+  /**
+   * Μετατρέπει active effects σε ελληνικά
+   */
+  getActiveEffectInGreek: (effect: string): string => {
+    switch(effect) {
+      case 'none': return 'χωρίς active effect';
+      case 'scale': return 'μεγέθυνση κατά το πάτημα';
+      case 'press': return 'πίεση κατά το πάτημα';
+      case 'ripple': return 'κύματα κατά το πάτημα';
+      default: return effect;
+    }
+  },
+
+  /**
+   * Μετατρέπει size values σε ελληνικά
+   */
+  getSizeInGreek: (size: string): string => {
+    switch(size) {
+      case 'xs': return 'πολύ μικρά';
+      case 'sm': return 'μικρά';
+      case 'md': return 'μεσαία';
+      case 'lg': return 'μεγάλα';
+      case 'xl': return 'πολύ μεγάλα';
+      default: return size;
+    }
+  },
+
+  /**
+   * Μετατρέπει category values σε ελληνικά
+   */
+  getCategoryInGreek: (category: string): string => {
+    switch(category.toLowerCase()) {
+      case 'backgrounds': return 'ΦΟΝΤΑ';
+      case 'text': return 'ΚΕΙΜΕΝΑ';
+      case 'borders': return 'ΠΕΡΙΓΡΑΜΜΑΤΑ';
+      default: return category.toUpperCase();
+    }
+  }
 } as const;

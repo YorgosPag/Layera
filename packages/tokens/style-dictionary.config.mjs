@@ -1523,8 +1523,7 @@ export default {
   source: [
     'src/domains/icons-core.json',
     'src/domains/icons-advanced-interactive.json',
-    'src/domains/typography-core.json',
-    'src/domains/typography.json',
+    'src/domains/typography-unified.json',
     'src/domains/color-core.json',
     'src/domains/color-utilities.json',
     'src/domains/i18n-utilities.json',

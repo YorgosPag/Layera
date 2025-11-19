@@ -3,6 +3,7 @@ import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { SettingsIcon, ChartIcon } from '@layera/icons';
+import type { TableSizeValue } from '../../../types/sizes';
 
 /**
  * TableSizeControl Component
@@ -14,7 +15,7 @@ import { SettingsIcon, ChartIcon } from '@layera/icons';
  * - Row height control για διαφορετικές data densities
  */
 
-export type TableSizeValue = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+// TableSizeValue moved to unified size system - import from ../../../types/sizes
 
 import type { ButtonState } from '../../../hooks/useButtonState.js';
 

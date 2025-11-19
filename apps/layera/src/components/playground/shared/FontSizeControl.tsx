@@ -3,6 +3,7 @@ import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { EditIcon, EyeIcon } from '@layera/icons';
+import type { FontSizeValue } from '../../../types/sizes';
 
 /**
  * FontSizeControl Component
@@ -13,7 +14,7 @@ import { EditIcon, EyeIcon } from '@layera/icons';
  * - Responsive design με εικονίδια και καθαρή interface
  */
 
-export type FontSizeValue = 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl';
+// FontSizeValue moved to unified size system - import from ../../../types/sizes
 
 import type { ButtonState } from '../../../hooks/useButtonState.js';
 

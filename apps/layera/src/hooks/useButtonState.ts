@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import type { ButtonSize } from '../types/sizes';
+import type { ButtonVariant } from '../components/playground/shared/types';
 
 /**
  * Button State Management Hook
@@ -16,8 +18,8 @@ import { useState } from 'react';
  * - Single Responsibility Principle
  */
 
-export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'success' | 'warning' | 'info';
-export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+// ButtonVariant moved to shared/types.ts
+// ButtonSize moved to unified size system - import from ../types/sizes
 export type ButtonShape = 'rectangular' | 'square' | 'rounded';
 
 export interface ButtonState {

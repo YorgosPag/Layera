@@ -95,18 +95,7 @@ export const COLOR_PICKER_DIMENSIONS = {
  * LEAFLET MAP ICON CONSTANTS
  * Icon sizing constraints για Leaflet map markers - LEAFLET API requirements
  */
-export const LEAFLET_ICON_SIZES = {
-  // Standard icon sizes για Leaflet markers
-  SMALL: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-icon-leafletMedium')) || 16, // Small marker icon size
-  MEDIUM: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-icon-leafletLarge')) || 24, // Medium marker icon size
-  STANDARD: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-icon-leafletXl')) || 32, // Standard marker icon size - Leaflet default
-  LARGE: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-size-12')) || 48,     // Large marker icon size from tokens
-  XL: parseInt(getComputedStyle(document.documentElement).getPropertyValue('--layera-size-16')) || 64,        // Extra large marker icon size from tokens
-
-  // Shadow offsets για marker shadows
-  SHADOW_ANCHOR_X: 12,             // Shadow horizontal anchor point
-  SHADOW_ANCHOR_Y: 41,             // Shadow vertical anchor point
-
-  // Popup anchor offsets
-  POPUP_ANCHOR_Y: -34              // Popup vertical anchor offset from icon center
-} as const;
+// LEAFLET_ICON_SIZES moved to UNIFIED_ICON_SYSTEM in design-system.ts
+// Import: import { UNIFIED_ICON_SYSTEM } from './design-system'
+// Use: UNIFIED_ICON_SYSTEM.LEAFLET_SIZES.STANDARD
+// Additional anchor points still available here if needed as LEAFLET_ANCHORS

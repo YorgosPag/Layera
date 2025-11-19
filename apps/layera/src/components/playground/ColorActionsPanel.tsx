@@ -3,25 +3,27 @@ import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { RocketIcon, CheckIcon } from '@layera/icons';
+import { ColorActionsProps } from '../../types/unified-interfaces';
 
 /**
  * ColorActionsPanel Component
  *
  * ΑΠΑΡΑΒΑΤΟΣ ΌΡΟΣ: 100% ίδιο output με την αρχική Apply Colors Buttons ενότητα
  * Γραμμές 191-221 από το αρχικό LivePlayground.tsx
+ * Props interface moved to unified-interfaces.ts
  */
 
 import type { ColorState } from '../../hooks/useColorState.js';
 import type { ButtonState } from '../../hooks/useButtonState.js';
 
-interface ColorActionsPanelProps {
+interface ExtendedColorActionsPanelProps extends ColorActionsProps {
   colorHookState: ColorState;
   buttonState: ButtonState;
   applyColorsToApp: () => void;
   applySquareColorsToHeader: () => void;
 }
 
-export const ColorActionsPanel: React.FC<ColorActionsPanelProps> = ({
+export const ColorActionsPanel: React.FC<ExtendedColorActionsPanelProps> = ({
   colorHookState,
   buttonState,
   applyColorsToApp,

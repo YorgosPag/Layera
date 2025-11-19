@@ -3,6 +3,7 @@ import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { SettingsIcon, EditIcon } from '@layera/icons';
+import type { InputSizeValue } from '../../../types/sizes';
 
 /**
  * InputSizeControl Component
@@ -14,7 +15,7 @@ import { SettingsIcon, EditIcon } from '@layera/icons';
  * - Compatible με Form density principles (Compact, Standard, Comfortable)
  */
 
-export type InputSizeValue = 'xs' | 'sm' | 'md' | 'lg';
+// InputSizeValue moved to unified size system - import from ../../../types/sizes
 
 import type { ButtonState } from '../../../hooks/useButtonState.js';
 

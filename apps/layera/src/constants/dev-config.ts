@@ -39,9 +39,15 @@ export const MAP_DEFAULTS = {
  * Drawing Limits & Constraints
  */
 export const DRAWING_LIMITS = {
+  // Radius constraints
   MIN_RADIUS: 50, // meters minimum radius
   MAX_RADIUS: 2000, // meters maximum radius
+  // Polygon constraints
   MAX_POLYGON_POINTS: 20, // maximum points per polygon
+  MAX_POINTS: 1000, // legacy compatibility
+  // Area constraints
+  MIN_AREA: 1, // square meters
+  MAX_AREA: 10000000 // square meters
 } as const;
 
 /**

@@ -2,16 +2,17 @@ import React from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
-import { PaletteIcon, LayersIcon, EditIcon, PolygonIcon, RulerIcon, CompassIcon, CheckIcon, MonitorIcon, BuildingIcon, ChartIcon } from '@layera/icons';
+import { PaletteIcon, LayersIcon, EditIcon, PolygonIcon, CompassIcon, CheckIcon, MonitorIcon, BuildingIcon, ChartIcon } from '@layera/icons';
 import { BorderWidthControl } from './shared/BorderWidthControl';
 import { BorderRadiusControl } from './shared/BorderRadiusControl';
 import { HoverControl } from './shared/HoverControl';
 import { ActiveControl } from './shared/ActiveControl';
-import { FontSizeControl, type FontSizeValue } from './shared/FontSizeControl';
-import { CardSizeControl, type CardSizeValue } from './shared/CardSizeControl';
-import { ModalSizeControl, type ModalSizeValue } from './shared/ModalSizeControl';
-import { InputSizeControl, type InputSizeValue } from './shared/InputSizeControl';
-import { TableSizeControl, type TableSizeValue } from './shared/TableSizeControl';
+import { FontSizeControl } from './shared/FontSizeControl';
+import { CardSizeControl } from './shared/CardSizeControl';
+import { ModalSizeControl } from './shared/ModalSizeControl';
+import { InputSizeControl } from './shared/InputSizeControl';
+import { TableSizeControl } from './shared/TableSizeControl';
+import type { FontSizeValue, CardSizeValue, ModalSizeValue, InputSizeValue, TableSizeValue } from '../../types/sizes';
 import { ButtonRadiusControl } from './shared/ButtonRadiusControl';
 import { LayoutRadiusControl } from './shared/LayoutRadiusControl';
 import { CardRadiusControl } from './shared/CardRadiusControl';
@@ -28,10 +29,11 @@ import { HeaderRadiusControl } from './shared/HeaderRadiusControl';
  */
 
 import type { UseColorStateReturn, ColorState, ColorStateActions } from '../../hooks/useColorState.js';
+import { ColorCategoryProps } from '../../types/unified-interfaces';
 
 import type { ButtonState } from '../../hooks/useButtonState.js';
 
-interface ColorCategorySelectionProps {
+interface ExtendedColorCategorySelectionProps extends ColorCategoryProps {
   colorHookState: ColorState;
   colorActions: ColorStateActions;
   borderWidth: number;
@@ -70,7 +72,7 @@ interface ColorCategorySelectionProps {
   buttonState?: ButtonState;
 }
 
-export const ColorCategorySelection: React.FC<ColorCategorySelectionProps> = ({
+export const ColorCategorySelection: React.FC<ExtendedColorCategorySelectionProps> = ({
   colorHookState,
   colorActions,
   borderWidth,

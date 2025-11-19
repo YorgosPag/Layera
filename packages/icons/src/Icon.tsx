@@ -2,7 +2,6 @@
 // Enterprise pattern: Ενιαίο component για όλα τα εικονίδια
 
 import React from 'react';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { BaseIconProps } from './types';
 
 // 🏢 ENTERPRISE ARCHITECTURE - Single Source of Truth με fallback constants

@@ -2,17 +2,15 @@ import React from 'react';
 import { Box } from '../../../../packages/layout/src';
 import { Text } from '../../../../packages/typography/src';
 import { type PipelineState } from '@layera/pipelines';
+import { PipelineDebugInfoProps } from '../types/unified-interfaces';
 
 /**
  * PipelineDebugInfo Component
  *
  * ΑΠΑΡΑΒΑΤΟΣ ΌΡΟΣ: 100% ίδιο output με την αρχική Pipeline Debug Info ενότητα
  * Γραμμές 155-172 από το αρχικό AppContent.tsx
+ * Props interface moved to unified-interfaces.ts
  */
-
-interface PipelineDebugInfoProps {
-  pipelineState: PipelineState | null;
-}
 
 export const PipelineDebugInfo: React.FC<PipelineDebugInfoProps> = ({
   pipelineState

@@ -47,15 +47,41 @@ export const SVG_DIMENSIONS = {
 } as const;
 
 /**
- * Icon Sizes - Unified Icon Size System
- * Single Source of Truth για icon dimensions across components
+ * Unified Icon System - Complete Icon Size & Dimension Management
+ * Single Source of Truth για όλες τις icon ανάγκες (UI, Leaflet, Map)
  */
-export const ICON_SIZES = {
-  SMALL: 'var(--layera-size-6)',
-  MEDIUM: 'var(--layera-size-8)',
-  LARGE: 'var(--layera-size-12)',
-  XL: 'var(--layera-size-16)'
+export const UNIFIED_ICON_SYSTEM = {
+  // Standard UI icon sizes
+  UI_SIZES: {
+    XS: 'var(--layera-size-4)',    // 16px
+    SM: 'var(--layera-size-5)',    // 20px
+    MD: 'var(--layera-size-6)',    // 24px - SMALL από το παλιό ICON_SIZES
+    LG: 'var(--layera-size-8)',    // 32px - MEDIUM από το παλιό ICON_SIZES
+    XL: 'var(--layera-size-12)',   // 48px - LARGE από το παλιό ICON_SIZES
+    XXL: 'var(--layera-size-16)'   // 64px - XL από το παλιό ICON_SIZES
+  },
+
+  // Leaflet-specific sizes (numeric for Leaflet API)
+  LEAFLET_SIZES: {
+    SMALL: 16,    // από LEAFLET_ICON_SIZES.SMALL
+    MEDIUM: 24,   // από LEAFLET_ICON_SIZES.MEDIUM
+    STANDARD: 32, // από LEAFLET_ICON_SIZES.STANDARD
+    LARGE: 48,    // από LEAFLET_ICON_SIZES.LARGE
+    XL: 64        // από LEAFLET_ICON_SIZES.XL
+  },
+
+  // Map-specific dimensions (unified από ICON_DIMENSIONS)
+  MAP_DIMENSIONS: {
+    ALERT: {
+      width: 'var(--layera-global-spacing-7-5)',
+      height: 'var(--layera-global-spacing-12)',
+      anchor: { x: 'var(--layera-global-spacing-3-75)', y: 'var(--layera-global-spacing-12)' }
+    }
+  }
 } as const;
+
+// Legacy compatibility exports
+export const ICON_SIZES = UNIFIED_ICON_SYSTEM.UI_SIZES;
 
 /**
  * Leaflet Marker Dimensions

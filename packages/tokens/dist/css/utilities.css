@@ -282,94 +282,50 @@ button:focus-visible {
 
 /* ΜΟΝΑΔΙΚΗ Typography Κλάση - Αντικαθιστά 33 κλάσεις */
 .layera-typography {
-  font-family: var(--layera-global-fontFamily-system);
-  font-size: var(--layera-fontSize-base);
-  font-weight: var(--layera-fontWeight-normal);
-  line-height: var(--layera-lineHeight-normal);
-  color: var(--layera-color-text-primary);
-  text-decoration: var(--layera-global-textDecoration-inherit);
+  font-family: var(--layera-typography-system);
+  font-size: var(--layera-typography-base);
+  font-weight: var(--layera-typography-normal);
+  line-height: var(--layera-typography-line-normal);
+  color: var(--layera-colors-text-primary);
+  text-decoration: none;
 }
 
 /* Typography Size Variants */
-.layera-typography[data-size="xs"] { font-size: var(--layera-fontSize-xs); }
-.layera-typography[data-size="sm"] { font-size: var(--layera-fontSize-sm); }
-.layera-typography[data-size="base"] { font-size: var(--layera-fontSize-base); }
-.layera-typography[data-size="lg"] { font-size: var(--layera-fontSize-lg); }
-.layera-typography[data-size="xl"] { font-size: var(--layera-fontSize-xl); }
-.layera-typography[data-size="2xl"] { font-size: var(--layera-fontSize-2xl); }
-.layera-typography[data-size="3xl"] { font-size: var(--layera-fontSize-3xl); }
-.layera-typography[data-size="4xl"] { font-size: var(--layera-fontSize-4xl); }
-.layera-typography[data-size="5xl"] { font-size: var(--layera-fontSize-5xl); }
-.layera-typography[data-size="6xl"] { font-size: var(--layera-fontSize-6xl); }
+.layera-typography[data-size="xs"] { font-size: var(--layera-typography-xs); }
+.layera-typography[data-size="sm"] { font-size: var(--layera-typography-sm); }
+.layera-typography[data-size="base"] { font-size: var(--layera-typography-base); }
+.layera-typography[data-size="lg"] { font-size: var(--layera-typography-lg); }
+.layera-typography[data-size="xl"] { font-size: var(--layera-typography-xl); }
+.layera-typography[data-size="2xl"] { font-size: var(--layera-typography-2xl); }
+.layera-typography[data-size="3xl"] { font-size: var(--layera-typography-3xl); }
+.layera-typography[data-size="4xl"] { font-size: var(--layera-typography-4xl); }
+.layera-typography[data-size="5xl"] { font-size: var(--layera-typography-5xl); }
+.layera-typography[data-size="6xl"] { font-size: var(--layera-typography-6xl); }
 
 /* Typography Weight Variants */
-.layera-typography[data-weight="light"] { font-weight: var(--layera-fontWeight-light); }
-.layera-typography[data-weight="normal"] { font-weight: var(--layera-fontWeight-normal); }
-.layera-typography[data-weight="medium"] { font-weight: var(--layera-fontWeight-medium); }
-.layera-typography[data-weight="semibold"] { font-weight: var(--layera-fontWeight-semibold); }
-.layera-typography[data-weight="bold"] { font-weight: var(--layera-fontWeight-bold); }
-.layera-typography[data-weight="extrabold"] { font-weight: var(--layera-fontWeight-extrabold); }
+.layera-typography[data-weight="light"] { font-weight: var(--layera-typography-light); }
+.layera-typography[data-weight="normal"] { font-weight: var(--layera-typography-normal); }
+.layera-typography[data-weight="medium"] { font-weight: var(--layera-typography-medium); }
+.layera-typography[data-weight="semibold"] { font-weight: var(--layera-typography-semibold); }
+.layera-typography[data-weight="bold"] { font-weight: var(--layera-typography-bold); }
+.layera-typography[data-weight="extrabold"] { font-weight: var(--layera-typography-extrabold); }
 
 /* Typography Leading Variants */
-.layera-typography[data-leading="tight"] { line-height: var(--layera-lineHeight-tight); }
-.layera-typography[data-leading="snug"] { line-height: var(--layera-lineHeight-snug); }
-.layera-typography[data-leading="normal"] { line-height: var(--layera-lineHeight-normal); }
-.layera-typography[data-leading="relaxed"] { line-height: var(--layera-lineHeight-relaxed); }
-.layera-typography[data-leading="loose"] { line-height: var(--layera-lineHeight-loose); }
+.layera-typography[data-leading="tight"] { line-height: var(--layera-typography-line-tight); }
+.layera-typography[data-leading="snug"] { line-height: var(--layera-typography-line-snug); }
+.layera-typography[data-leading="normal"] { line-height: var(--layera-typography-line-normal); }
+.layera-typography[data-leading="relaxed"] { line-height: var(--layera-typography-line-relaxed); }
+.layera-typography[data-leading="loose"] { line-height: var(--layera-typography-line-loose); }
 
 /* Typography Color Variants */
-.layera-typography[data-color="primary"] { color: var(--layera-color-text-primary); }
-.layera-typography[data-color="secondary"] { color: var(--layera-color-text-secondary); }
-.layera-typography[data-color="tertiary"] { color: var(--layera-color-text-tertiary); }
-.layera-typography[data-color="inverse"] { color: var(--layera-color-text-inverse); }
-.layera-typography[data-color="inverted"] { color: var(--layera-text-inverted); }
-.layera-typography[data-color="white"] { color: var(--layera-color-neutral-white); }
-.layera-typography[data-color="black"] { color: var(--layera-color-neutral-black); }
+.layera-typography[data-color="primary"] { color: var(--layera-colors-text-primary); }
+.layera-typography[data-color="secondary"] { color: var(--layera-colors-text-secondary); }
+.layera-typography[data-color="white"] { color: var(--layera-colors-neutral-white); }
+.layera-typography[data-color="black"] { color: var(--layera-colors-neutral-black); }
 
 /* Typography Decoration Variants */
-.layera-typography[data-decoration="none"] { text-decoration: var(--layera-textDecoration-none); }
-.layera-typography[data-decoration="underline"] { text-decoration: var(--layera-textDecoration-underline); }
 
 /* Typography Variant για Buttons */
-.layera-typography[data-variant="button"] {
-  padding: var(--layera-global-spacing-2) var(--layera-global-spacing-4);
-  border: 1px solid var(--layera-color-semantic-info-primary);
-  border-radius: var(--layera-global-borderRadius-xs);
-  background-color: var(--layera-color-semantic-info-primary);
-  color: var(--layera-color-neutral-white);
-  cursor: var(--layera-cursor-pointer);
-  display: var(--layera-display-inline-flex);
-  align-items: var(--layera-alignItems-center);
-  justify-content: var(--layera-justifyContent-center);
-  min-width: var(--layera-global-spacing-11);
-  min-height: var(--layera-global-spacing-11);
-  transition: var(--layera-transition-all);
-}
-
-.layera-typography[data-variant="button"]:hover {
-  background-color: #2563eb;
-  border-color: #2563eb;
-}
-
-.layera-typography[data-variant="logo"] {
-  padding: var(--layera-global-spacing-2);
-  border: var(--layera-border-none);
-  border-radius: var(--layera-global-borderRadius-xs);
-  background-color: var(--layera-color-transparent);
-  color: var(--layera-color-text-primary);
-  cursor: var(--layera-cursor-pointer);
-  display: var(--layera-display-inline-flex);
-  align-items: var(--layera-alignItems-center);
-  justify-content: var(--layera-justifyContent-center);
-  min-width: var(--layera-global-spacing-11);
-  min-height: var(--layera-global-spacing-11);
-  transition: var(--layera-transition-all);
-}
-
-.layera-typography[data-variant="logo"]:hover {
-  background-color: var(--layera-color-background-secondary, #f3f4f6);
-}
-
 
 /* Square Button Utility Classes */
 .layera-square-btn {

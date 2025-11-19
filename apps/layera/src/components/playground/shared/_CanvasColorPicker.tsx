@@ -2,6 +2,8 @@ import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { COLOR_PICKER_DIMENSIONS } from '../../../constants/ui-measurement';
+import type { ColorWithAlpha } from '../../../hooks/useColorState';
+import { hexToRgba } from '../../../utils/colors';
 
 /**
  * CanvasColorPicker Component
@@ -13,11 +15,7 @@ import { COLOR_PICKER_DIMENSIONS } from '../../../constants/ui-measurement';
  * - HTML5 Canvas για color palette
  */
 
-interface ColorWithAlpha {
-  hex: string;
-  alpha: number;
-  rgba: string;
-}
+// ColorWithAlpha interface removed - now using unified interface from useColorState
 
 interface CanvasColorPickerProps {
   label: string;
@@ -38,7 +36,7 @@ export const CanvasColorPicker: React.FC<CanvasColorPickerProps> = ({
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [currentColor, setCurrentColor] = useState<ColorWithAlpha>(() => {
     if (typeof value === 'string') {
-      const hex = value.startsWith('#') ? value : 'var(--layera-color-semantic-info-primary)';
+      const hex = value.startsWith('#') ? value : 'var(--layera-colors-status-info)';
       return {
         hex,
         alpha: 1.0,
@@ -53,13 +51,7 @@ export const CanvasColorPicker: React.FC<CanvasColorPickerProps> = ({
     return `#${[r, g, b].map(x => x.toString(16).padStart(2, '0')).join('')}`;
   };
 
-  // Helper function: HEX to RGBA
-  const hexToRgba = (hex: string, alpha: number): string => {
-    const r = parseInt(hex.slice(1, 3), 16);
-    const g = parseInt(hex.slice(3, 5), 16);
-    const b = parseInt(hex.slice(5, 7), 16);
-    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-  };
+  // hexToRgba function moved to centralized utils
 
   // Draw color palette στο canvas
   const drawColorPalette = useCallback(() => {
@@ -152,7 +144,7 @@ export const CanvasColorPicker: React.FC<CanvasColorPickerProps> = ({
   // Sync with external value
   useEffect(() => {
     if (typeof value === 'string') {
-      const hex = value.startsWith('#') ? value : 'var(--layera-color-semantic-info-primary)';
+      const hex = value.startsWith('#') ? value : 'var(--layera-colors-status-info)';
       const newColor = {
         hex,
         alpha: currentColor.alpha,

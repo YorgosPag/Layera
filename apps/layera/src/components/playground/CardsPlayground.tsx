@@ -2,28 +2,18 @@ import React from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { CheckIcon } from '@layera/icons';
+import { PLAYGROUND_HELPERS } from '../../constants/ui-utilities';
+import { LayoutPlaygroundProps } from '../../types/unified-interfaces';
 
 /**
  * CardsPlayground Component
  *
  * Live Preview για κάρτες με δυναμικά χρώματα
  * Εμφανίζει 6 χρωματιστές κάρτες (P, S, Su, W, D, I)
+ * Props interface moved to unified-interfaces.ts
  */
 
-interface CardsPlaygroundProps {
-  /** Current colors for the selected category */
-  currentColors: {
-    primary: string;
-    secondary: string;
-    success: string;
-    warning: string;
-    danger: string;
-    info: string;
-  };
-  /** Color category for proper styling */
-  colorCategory: string;
-  /** Border width for borders category (1, 2, or 3) */
-  borderWidth?: number;
+interface ExtendedCardsPlaygroundProps extends LayoutPlaygroundProps {
   /** Card radius for styling */
   cardRadius?: string;
   /** Card size for styling */
@@ -34,7 +24,7 @@ interface CardsPlaygroundProps {
   activeEffect?: string;
 }
 
-export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
+export const CardsPlayground: React.FC<ExtendedCardsPlaygroundProps> = ({
   currentColors,
   colorCategory,
   borderWidth = 2,
@@ -44,62 +34,8 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
   activeEffect = 'scale'
 }) => {
 
-  // Helper function για translation των radius values
-  const getRadiusInGreek = (radius: string) => {
-    switch(radius) {
-      case 'none': return 'χωρίς καμπυλότητα (var(--layera-global-borderRadius-none))';
-      case 'sm': return 'ελαφρά καμπυλότητα (var(--layera-global-spacing-1))';
-      case 'lg': return 'μεσαία καμπυλότητα (var(--layera-global-spacing-2))';
-      case 'xl': return 'πολλή καμπυλότητα (var(--layera-global-spacing-3))';
-      case 'xxl': return 'μεγάλη καμπυλότητα (var(--layera-global-spacing-4))';
-      case 'round': return 'πλήρως στρογγυλά';
-      default: return radius;
-    }
-  };
-
-  // Helper function για translation των hover effects
-  const getHoverEffectInGreek = (effect: string) => {
-    switch(effect) {
-      case 'none': return 'χωρίς hover effect';
-      case 'normal': return 'κανονικό hover effect';
-      case 'glow': return 'φωτεινό hover effect';
-      case 'shadow': return 'σκιώδες hover effect';
-      default: return effect;
-    }
-  };
-
-  // Helper function για translation των active effects
-  const getActiveEffectInGreek = (effect: string) => {
-    switch(effect) {
-      case 'none': return 'χωρίς active effect';
-      case 'scale': return 'μεγέθυνση κατά το πάτημα';
-      case 'press': return 'πίεση κατά το πάτημα';
-      case 'ripple': return 'κύματα κατά το πάτημα';
-      default: return effect;
-    }
-  };
-
-  // Helper function για size translation
-  const getSizeInGreek = (size: string) => {
-    switch(size) {
-      case 'xs': return 'πολύ μικρά';
-      case 'sm': return 'μικρά';
-      case 'md': return 'μεσαία';
-      case 'lg': return 'μεγάλα';
-      case 'xl': return 'πολύ μεγάλα';
-      default: return size;
-    }
-  };
-
-  // Helper function για category translation
-  const getCategoryInGreek = (category: string) => {
-    switch(category.toLowerCase()) {
-      case 'backgrounds': return 'ΦΟΝΤΑ';
-      case 'text': return 'ΚΕΙΜΕΝΑ';
-      case 'borders': return 'ΠΕΡΙΓΡΑΜΜΑΤΑ';
-      default: return category.toUpperCase();
-    }
-  };
+  // Χρησιμοποιούμε τις κεντρικές helper functions από το PLAYGROUND_HELPERS utility
+  const { getRadiusInGreek, getHoverEffectInGreek, getActiveEffectInGreek, getSizeInGreek, getCategoryInGreek, getRadiusToken } = PLAYGROUND_HELPERS;
 
   // Δυναμική δημιουργία πλήρους περιγραφής
   const generateFullDescription = () => {
@@ -142,18 +78,6 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
 
   const cssProperty = getCSSPropertyForCategory(colorCategory);
 
-  // Helper function για μετατροπή radius values σε tokens
-  const getRadiusToken = (radius: string) => {
-    switch(radius) {
-      case 'none': return 'var(--layera-global-borderRadius-none)';                        // 0
-      case 'sm': return 'var(--layera-radius-sm)';      // var(--layera-global-spacing-1)
-      case 'lg': return 'var(--layera-radius-lg)';      // var(--layera-global-spacing-2) - default για κάρτες
-      case 'xl': return 'var(--layera-radius-xl)';      // var(--layera-global-spacing-3)
-      case 'xxl': return 'var(--layera-radius-xxl)';    // var(--layera-global-spacing-4)
-      case 'round': return 'var(--layera-radius-full)'; // πλήρως στρογγυλά
-      default: return 'var(--layera-radius-lg)';        // var(--layera-global-spacing-2) fallback
-    }
-  };
 
 
   // Debug logging
@@ -175,24 +99,24 @@ export const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
     if (colorCategory === 'text') return colorValue;
     if (colorCategory === 'backgrounds') {
       // Dark backgrounds need white text, light backgrounds need black text
-      return colorValue === 'var(--layera-color-semantic-warning-primary)' ? 'var(--layera-color-text-primary)' : 'var(--layera-color-text-on-dark)'; // warning is light, others dark
+      return colorValue === 'var(--layera-colors-primary-warning)' ? 'var(--layera-colors-text-primary)' : 'var(--layera-colors-text-primary)'; // warning is light, others dark
     }
-    return 'var(--layera-color-text-secondary)'; // default for borders
+    return 'var(--layera-colors-text-secondary)'; // default for borders
   };
 
   // Helper to get background color
   const getBackgroundColor = (colorValue: string) => {
     if (colorCategory === 'backgrounds') return colorValue;
-    return 'var(--layera-color-surface-primary)'; // white background for text and borders
+    return 'var(--layera-colors-surface-light)'; // white background for text and borders
   };
 
   // Helper to get border style
   const getBorderStyle = (colorValue: string) => {
     if (colorCategory === 'borders') {
-      const borderWidthToken = `var(--layera-global-borderWidth-${borderWidth})`;
+      const borderWidthToken = `var(--layera-spacing-scale-${borderWidth})`;
       return `${borderWidthToken} solid ${colorValue}`;
     }
-    return 'var(--layera-global-borderWidth-1) solid var(--layera-color-border-primary)'; // subtle border for others
+    return 'var(--layera-spacing-scale-1) solid var(--layera-color-border-primary)'; // subtle border for others
   };
 
   // Initialize CSS variables for fallback values - ensure real-time preview has defaults

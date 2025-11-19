@@ -54,12 +54,12 @@ export const ColorValueDisplay: React.FC<ColorValueDisplayProps> = ({
         </h4>
         <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark layera-white-space--pre-wrap layera-word-wrap--break layera-overflow-wrap--break" data-family="mono">
 {`{
-  primary: "${currentColors?.primary || 'var(--layera-color-text-primary)'}",
-  secondary: "${currentColors?.secondary || 'var(--layera-color-text-secondary)'}",
-  success: "${currentColors?.success || 'var(--layera-color-semantic-success-primary)'}",
-  warning: "${currentColors?.warning || 'var(--layera-color-semantic-warning-primary)'}",
-  danger: "${currentColors?.danger || 'var(--layera-color-semantic-error-primary)'}",
-  info: "${currentColors?.info || 'var(--layera-color-semantic-info-primary)'}"
+  primary: "${currentColors?.primary || 'var(--layera-colors-text-primary)'}",
+  secondary: "${currentColors?.secondary || 'var(--layera-colors-text-secondary)'}",
+  success: "${currentColors?.success || 'var(--layera-colors-primary-success)'}",
+  warning: "${currentColors?.warning || 'var(--layera-colors-primary-warning)'}",
+  danger: "${currentColors?.danger || 'var(--layera-colors-primary-danger)'}",
+  info: "${currentColors?.info || 'var(--layera-colors-status-info)'}"
 }`}
         </pre>
       </Box>
@@ -78,7 +78,7 @@ export const ColorValueDisplay: React.FC<ColorValueDisplayProps> = ({
             // Read actual values από DOM που δημιούργησε το theme.ts
             const cssVariables = colorNames.map(colorName => {
               const varName = `${prefix}${colorName}`;
-              const value = getComputedStyle(document.documentElement).getPropertyValue(varName).trim() || currentColors?.[colorName] || 'var(--layera-color-text-primary)';
+              const value = getComputedStyle(document.documentElement).getPropertyValue(varName).trim() || currentColors?.[colorName] || 'var(--layera-colors-text-primary)';
               return `  ${varName}: "${value}"`;
             }).join(',\n');
 

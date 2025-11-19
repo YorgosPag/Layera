@@ -1,9 +1,14 @@
 import { useState } from 'react';
+import type { ColorCategory } from '../components/playground/shared/types';
+
+// Re-export για backwards compatibility
+export type { ColorCategory } from '../components/playground/shared/types';
 // ColorPaletteWithAlpha and hexToColorWithAlpha now defined in this file
 
 export interface ColorWithAlpha {
   hex: string;
   alpha: number;
+  rgba: string; // Added for compatibility with ColorPickerWithAlpha components
 }
 
 export const hexToColorWithAlpha = (hex: string, alpha: number = 1.0): ColorWithAlpha => {
@@ -21,9 +26,18 @@ export const hexToColorWithAlpha = (hex: string, alpha: number = 1.0): ColorWith
     cleanHex = `#${cleanHex}`;
   }
 
+  const clampedAlpha = Math.max(0, Math.min(1, alpha));
+
+  // Generate rgba string
+  const r = parseInt(cleanHex.slice(1, 3), 16);
+  const g = parseInt(cleanHex.slice(3, 5), 16);
+  const b = parseInt(cleanHex.slice(5, 7), 16);
+  const rgba = `rgba(${r}, ${g}, ${b}, ${clampedAlpha})`;
+
   return {
     hex: cleanHex,
-    alpha: Math.max(0, Math.min(1, alpha))
+    alpha: clampedAlpha,
+    rgba
   };
 };
 
@@ -42,7 +56,7 @@ export const hexToColorWithAlpha = (hex: string, alpha: number = 1.0): ColorWith
  * - Single Responsibility Principle
  */
 
-export type ColorCategory = 'backgrounds' | 'text' | 'borders';
+// ColorCategory moved to shared/types.ts
 export type ElementType = 'buttons' | 'cards' | 'modals' | 'inputs' | 'layout' | 'tables' | 'headers';
 export type ColorButtonShape = 'rectangular' | 'square' | 'rounded';
 
@@ -59,6 +73,7 @@ export interface ColorPaletteWithAlpha {
 // 🗑️ DELETED: ColorPalette interface - replaced with ColorPaletteWithAlpha for Enterprise consistency
 
 export interface CategoryColorPalettes {
+  buttons: ColorPaletteWithAlpha;
   backgrounds: ColorPaletteWithAlpha;
   text: ColorPaletteWithAlpha;
   borders: ColorPaletteWithAlpha;
@@ -72,6 +87,13 @@ export interface ColorState {
   squarePalette: ColorPaletteWithAlpha;
   roundedPalette: ColorPaletteWithAlpha;
   categoryPalettes: CategoryColorPalettes;
+  // Simple color fields added for backwards compatibility with services
+  primaryColor?: string;
+  secondaryColor?: string;
+  successColor?: string;
+  warningColor?: string;
+  dangerColor?: string;
+  infoColor?: string;
 }
 
 export interface ColorStateActions {
@@ -83,6 +105,13 @@ export interface ColorStateActions {
   updateRoundedPalette: (key: keyof ColorPaletteWithAlpha, value: string) => void;
   updateCategoryPalette: (category: ColorCategory, key: keyof ColorPaletteWithAlpha, value: string) => void;
   resetToDefaults: () => void;
+  // Simple color field setters added for backwards compatibility
+  setPrimaryColor?: (color: string) => void;
+  setSecondaryColor?: (color: string) => void;
+  setSuccessColor?: (color: string) => void;
+  setWarningColor?: (color: string) => void;
+  setDangerColor?: (color: string) => void;
+  setInfoColor?: (color: string) => void;
 }
 
 export interface UseColorStateReturn {
@@ -123,6 +152,14 @@ const DEFAULT_ROUNDED_PALETTE: ColorPaletteWithAlpha = {
 };
 
 const DEFAULT_CATEGORY_PALETTES: CategoryColorPalettes = {
+  buttons: {
+    primaryColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0),
+    secondaryColor: hexToColorWithAlpha('var(--layera-color-semantic-neutral-medium)', 1.0),
+    successColor: hexToColorWithAlpha('var(--layera-color-semantic-success-primary)', 1.0),
+    warningColor: hexToColorWithAlpha('var(--layera-color-semantic-warning-primary)', 1.0),
+    dangerColor: hexToColorWithAlpha('var(--layera-color-semantic-error-primary)', 1.0),
+    infoColor: hexToColorWithAlpha('var(--layera-color-semantic-info-primary)', 1.0)
+  },
   backgrounds: {
     primaryColor: hexToColorWithAlpha('var(--layera-color-surface-primary)', 1.0),
     secondaryColor: hexToColorWithAlpha('var(--layera-color-surface-secondary)', 1.0),

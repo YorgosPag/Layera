@@ -3,6 +3,7 @@ import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { SettingsIcon, LayersIcon } from '@layera/icons';
+import type { CardSizeValue } from '../../../types/sizes';
 
 /**
  * CardSizeControl Component
@@ -14,7 +15,7 @@ import { SettingsIcon, LayersIcon } from '@layera/icons';
  * - Compatible με Material Design, Ant Design standards
  */
 
-export type CardSizeValue = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+// CardSizeValue moved to unified size system - import from ../../../types/sizes
 
 import type { ButtonState } from '../../../hooks/useButtonState.js';
 

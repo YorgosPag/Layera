@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect, useMemo } from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
+import type { ColorWithAlpha } from '../../../hooks/useColorState';
 
 /**
  * ColorPickerWithAlpha Component
@@ -14,26 +15,10 @@ import { Text } from '@layera/typography';
  */
 
 // PERFORMANCE: Move helper functions outside component για zero recreations
-const hexToRgba = (hex: string, alpha: number): string => {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-};
+// Color utility functions moved to centralized utils
+import { hexToRgba, extractHexFromValue } from '../../../utils/colors';
 
-const extractHexFromValue = (colorValue: string): string => {
-  if (!colorValue) return 'var(--layera-color-semantic-neutral-dark)';
-  if (colorValue.startsWith('#')) return colorValue;
-  // CSS variable fallback
-  const match = colorValue.match(/var\([^,]+,\s*(#[0-9a-fA-F]{6})\)/);
-  return match ? match[1] : 'var(--layera-color-semantic-neutral-dark)';
-};
-
-interface ColorWithAlpha {
-  hex: string;
-  alpha: number;
-  rgba: string;
-}
+// ColorWithAlpha interface removed - now using unified interface from useColorState
 
 interface ColorPickerWithAlphaProps {
   label: string;
@@ -82,9 +67,9 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
       }
       // Fallback
       return {
-        hex: 'var(--layera-color-semantic-neutral-dark)',
+        hex: 'var(--layera-colors-text-primary)',
         alpha: 1.0,
-        rgba: hexToRgba('var(--layera-color-semantic-neutral-dark)', 1.0)
+        rgba: hexToRgba('var(--layera-colors-text-primary)', 1.0)
       };
     }
     return val;
@@ -121,7 +106,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     const newAlpha = parseFloat(e.target.value) / 100;
     if (isNaN(newAlpha)) return;
 
-    const safeHex = internalValue?.hex || 'var(--layera-color-semantic-neutral-dark)';
+    const safeHex = internalValue?.hex || 'var(--layera-colors-text-primary)';
     if (!safeHex.startsWith('#')) return;
 
     const newValue = {
@@ -155,7 +140,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   const colorInputRef = useRef<HTMLInputElement>(null);
 
   // Memoized display values to prevent recalculations
-  const displayHex = useMemo(() => extractHexFromValue(internalValue?.hex || 'var(--layera-color-semantic-neutral-dark)'), [internalValue?.hex]);
+  const displayHex = useMemo(() => extractHexFromValue(internalValue?.hex || 'var(--layera-colors-text-primary)'), [internalValue?.hex]);
   const alphaPercentage = useMemo(() => Math.round((internalValue?.alpha ?? 1.0) * 100), [internalValue?.alpha]);
 
   // ΒΕΛΤΙΣΤΟΠΟΙΗΜΕΝΗ real-time tracking με throttling
@@ -266,12 +251,12 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
         <Box className="layera-margin-bottom--xs layera-flex layera-flex--justify-center">
           <Box
             className="layera-border--default layera-position--relative layera-height--8"
-            data-width="var(--layera-global-spacing-62)"
+            data-width="var(--layera-spacing-scale-62)"
           >
             {/* Overlay με το χρώμα και την αντίστοιχη διαφάνεια */}
             <Box
               className="layera-position--absolute layera-position-top--0 layera-position-left--0 layera-width--full layera-height--full layera-border-radius--sm layera-dynamic-bg"
-              data-dynamic-bg={internalValue?.rgba || 'color-mix(in srgb, var(--layera-color-surface-primary) 100%, transparent)'}
+              data-dynamic-bg={internalValue?.rgba || 'color-mix(in srgb, var(--layera-colors-surface-light) 100%, transparent)'}
             />
           </Box>
         </Box>
@@ -289,7 +274,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
             value={alphaPercentage}
             onChange={handleAlphaChange}
             className="layera-input"
-            data-width="var(--layera-global-spacing-62)"
+            data-width="var(--layera-spacing-scale-62)"
           />
         </Box>
       </Box>

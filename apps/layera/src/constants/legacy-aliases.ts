@@ -5,20 +5,9 @@
 
 import { ICON_DIMENSIONS } from './config';
 
-// Map-related legacy aliases
-export const MAP_DEFAULTS = {
-  CENTER: [37.9755, 23.7348] as [number, number], // Athens
-  ZOOM: 13,
-  MAX_ZOOM: 18,
-  DEFAULT_RADIUS: 1000
-};
+// Map-related legacy aliases - moved to dev-config.ts
 
-// Drawing-related legacy aliases
-export const DRAWING_LIMITS = {
-  MAX_POINTS: 1000,
-  MIN_AREA: 1, // square meters
-  MAX_AREA: 10000000 // square meters
-};
+// Drawing-related legacy aliases - moved to dev-config.ts
 
 // UI dimensions legacy alias - maps to ICON_DIMENSIONS
 export const UI_DIMENSIONS = ICON_DIMENSIONS;
@@ -46,13 +35,7 @@ export const LEGACY_VIEWPORT_ALIASES = {
   DESKTOP: 'desktop'
 };
 
-// Cryptographic constants
-export const CRYPTOGRAPHIC_CONSTANTS = {
-  SALT_ROUNDS: 12,
-  TOKEN_LENGTH: 32,
-  SESSION_TIMEOUT: 3600000,
-  REFRESH_TOKEN_TIMEOUT: 2592000000
-};
+// Cryptographic constants - moved to ui-utilities.ts
 
 // ESLint limits for configuration
 export const ESLINT_LIMITS = {

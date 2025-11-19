@@ -3,6 +3,7 @@ import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { SettingsIcon } from '@layera/icons';
+import { HoverControlProps } from '../../../types/unified-interfaces';
 
 /**
  * HoverControl Component
@@ -12,26 +13,17 @@ import { SettingsIcon } from '@layera/icons';
  * - Live preview με visual feedback
  * - Compatible με το SST design token system
  * - Χρησιμοποιεί hover tokens από το design system
+ * Props interface moved to unified-interfaces.ts
  */
 
 import type { ButtonState } from '../../../hooks/useButtonState.js';
 
-interface HoverControlProps {
-  /** Current hover effect value ('none', 'subtle', 'normal', 'strong') */
-  value: string;
-  /** Callback when hover effect changes */
-  onChange: (value: string) => void;
-  /** Element type για description context */
-  elementType?: string;
-  /** CSS class για styling */
-  className?: string;
-  /** Real-time preview callback */
-  onPreview?: (key: string, value: string) => void;
+interface ExtendedHoverControlProps extends HoverControlProps {
   /** Button state for sizing */
   buttonState?: ButtonState;
 }
 
-export const HoverControl: React.FC<HoverControlProps> = ({
+export const HoverControl: React.FC<ExtendedHoverControlProps> = ({
   value = 'normal',
   onChange,
   elementType = 'στοιχεία',

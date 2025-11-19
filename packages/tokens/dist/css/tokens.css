@@ -36,29 +36,29 @@
   --layera-iconInteractive-sizing-margin-md: var(--layera-global-spacing-2); /** Medium margin */
   --layera-iconInteractive-sizing-margin-lg: var(--layera-global-spacing-3); /** Large margin */
   --layera-iconInteractive-sizing-margin-xl: var(--layera-global-spacing-4); /** Extra large margin */
-  --layera-fontSize-xs: var(--layera-fontSize-xs); /** Captions, labels */
-  --layera-fontSize-sm: var(--layera-fontSize-sm); /** Small text, form labels */
-  --layera-fontSize-base: var(--layera-global-spacing-4); /** Body text default - consolidated reference */
-  --layera-fontSize-lg: var(--layera-fontSize-lg); /** Large body text */
-  --layera-fontSize-xl: var(--layera-fontSize-xl); /** Subheadings */
-  --layera-fontSize-2xl: var(--layera-fontSize-2xl); /** Small headings */
-  --layera-fontSize-3xl: var(--layera-fontSize-3xl); /** Medium headings */
-  --layera-fontSize-4xl: var(--layera-fontSize-4xl); /** Large headings */
-  --layera-fontSize-5xl: var(--layera-fontSize-5xl); /** Hero headings */
-  --layera-fontSize-6xl: var(--layera-fontSize-6xl); /** Display headings */
-  --layera-fontWeight-light: var(--layera-fontWeight-light); /** Light weight for delicate text */
-  --layera-fontWeight-normal: var(--layera-fontWeight-normal); /** Normal weight for body text */
-  --layera-fontWeight-medium: var(--layera-fontWeight-medium); /** Medium weight for emphasis */
-  --layera-fontWeight-semibold: var(--layera-fontWeight-semibold); /** Semibold for subheadings */
-  --layera-fontWeight-bold: var(--layera-fontWeight-bold); /** Bold for headings */
-  --layera-lineHeight-tight: var(--layera-lineHeight-tight); /** Tight leading for headings */
-  --layera-lineHeight-snug: var(--layera-lineHeight-snug); /** Snug leading for subheadings */
-  --layera-lineHeight-normal: var(--layera-lineHeight-normal); /** Normal leading for body text */
-  --layera-lineHeight-relaxed: var(--layera-lineHeight-relaxed); /** Relaxed leading for readability */
-  --layera-letterSpacing-tight: var(--layera-letterSpacing-tight); /** Tight for headings */
-  --layera-letterSpacing-normal: var(--layera-shared-dimensions-zero); /** Normal for body text */
-  --layera-letterSpacing-wide: var(--layera-letterSpacing-wide); /** Wide for emphasis */
-  --layera-typography-unified: [object Object]; /** Ενοποιημένη typography κλάση - αντικαθιστά 33 κλάσεις */
+  --layera-typography-core-fontSize-xs: 0.75rem; /** 12px - Μικρά labels, footnotes */
+  --layera-typography-core-fontSize-sm: 0.875rem; /** 14px - Body text, captions */
+  --layera-typography-core-fontSize-base: 1rem; /** 16px - Default body text */
+  --layera-typography-core-fontSize-lg: 1.125rem; /** 18px - Emphasis text */
+  --layera-typography-core-fontSize-xl: 1.25rem; /** 20px - H5 headings */
+  --layera-typography-core-fontSize-2xl: 1.5rem; /** 24px - H4 headings */
+  --layera-typography-core-fontSize-3xl: 1.875rem; /** 30px - H3 headings */
+  --layera-typography-core-fontSize-4xl: 2.25rem; /** 36px - H2 headings */
+  --layera-typography-core-fontSize-5xl: 3rem; /** 48px - H1 headings */
+  --layera-typography-core-fontSize-6xl: 4rem; /** 64px - Display text */
+  --layera-typography-core-fontWeight-light: 300; /** Ελαφρύ κείμενο */
+  --layera-typography-core-fontWeight-normal: 400; /** Κανονικό κείμενο */
+  --layera-typography-core-fontWeight-medium: 500; /** Μεσαίο κείμενο */
+  --layera-typography-core-fontWeight-semibold: 600; /** Ημι-έντονο */
+  --layera-typography-core-fontWeight-bold: 700; /** Έντονο κείμενο */
+  --layera-typography-core-fontWeight-extrabold: 800; /** Πολύ έντονο */
+  --layera-typography-core-lineHeight-tight: 1.1; /** Στενό διάστιχο */
+  --layera-typography-core-lineHeight-snug: 1.2; /** Άνετο διάστιχο */
+  --layera-typography-core-lineHeight-normal: 1.5; /** Κανονικό διάστιχο */
+  --layera-typography-core-lineHeight-relaxed: 1.6; /** Χαλαρό διάστιχο */
+  --layera-typography-core-lineHeight-loose: 1.8; /** Πολύ χαλαρό διάστιχο */
+  --layera-typography-core-fontFamily-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; /** System font stack για optimized performance */
+  --layera-typography-unified: [object Object]; /** 🎯 Ενοποιημένη typography κλάση που χρησιμοποιεί ΜΟΝΟ τα νέα consolidated tokens */
   --layera-color-text-primary: var(--layera-color-semantic-neutral-dark); /** Primary text - σκούρο γκρι για καλή αντίθεση με λευκό φόντο */
   --layera-color-text-secondary: var(--layera-color-semantic-neutral-dark); /** Secondary text - μεσαίο γκρι για secondary content */
   --layera-color-text-tertiary: var(--layera-color-semantic-neutral-dark); /** Tertiary text - muted slate */

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, ModalHeader, ModalContent, AddContentModal } from '@layera/modals';
 import { useLayeraTranslation } from '@layera/tolgee';
+import { AppModalsProps } from '../types/unified-interfaces';
 import LoginContent from './LoginPage';
 
 /**
@@ -8,14 +9,8 @@ import LoginContent from './LoginPage';
  *
  * ΑΠΑΡΑΒΑΤΟΣ ΌΡΟΣ: 100% ίδιο output με την αρχική Modal Management ενότητα
  * Γραμμές 175-194 από το αρχικό AppContent.tsx
+ * Props interface moved to unified-interfaces.ts
  */
-
-interface AppModalsProps {
-  activeModal: 'login' | 'addContent' | null;
-  closeModal: () => void;
-  handleSelectProperty: () => void;
-  handleSelectJob: () => void;
-}
 
 export const AppModals: React.FC<AppModalsProps> = ({
   activeModal,

@@ -2,23 +2,17 @@ import React from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { OptimizedColorPicker } from './shared/OptimizedColorPicker';
+import { ColorControlsProps } from '../../types/unified-interfaces';
 
 /**
  * ColorControlsGrid Component
  *
  * ΑΠΑΡΑΒΑΤΟΣ ΌΡΟΣ: 100% ίδιο output με την αρχική Color Controls Grid ενότητα
  * Γραμμές 184-295 από το αρχικό LivePlayground.tsx
+ * Props interface moved to unified-interfaces.ts
  */
 
-
-interface ColorControlsGridProps {
-  currentColors: Record<string, string>;
-  currentSetters: Record<string, (value: string) => void>;
-  startPreview: (key: string, value: string) => void;
-  colorCategory: string;
-}
-
-export const ColorControlsGrid: React.FC<ColorControlsGridProps> = React.memo(({
+export const ColorControlsGrid: React.FC<ColorControlsProps> = React.memo(({
   currentColors,
   currentSetters,
   colorCategory

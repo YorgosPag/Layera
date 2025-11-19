@@ -2,6 +2,7 @@ import React from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { CheckIcon } from '@layera/icons';
+import { PLAYGROUND_HELPERS } from '../../constants/ui-utilities';
 
 interface InputsPlaygroundProps {
   currentColors: {
@@ -35,63 +36,8 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
   activeEffect = 'scale'
 }) => {
 
-  // Helper function για translation των radius values
-  const getRadiusInGreek = (radius: string) => {
-    switch(radius) {
-      case 'none': return 'χωρίς καμπυλότητα';
-      case 'xs': return 'ελαφρά καμπυλότητα';
-      case 'sm': return 'μικρή καμπυλότητα';
-      case 'md': return 'μεσαία καμπυλότητα';
-      case 'lg': return 'μεγάλη καμπυλότητα';
-      case 'xl': return 'πολύ μεγάλη καμπυλότητα';
-      case 'round': return 'πλήρως στρογγυλά';
-      default: return radius;
-    }
-  };
-
-  // Helper function για translation των hover effects
-  const getHoverEffectInGreek = (effect: string) => {
-    switch(effect) {
-      case 'none': return 'χωρίς hover effect';
-      case 'normal': return 'κανονικό hover effect';
-      case 'glow': return 'φωτεινό hover effect';
-      case 'shadow': return 'σκιώδες hover effect';
-      default: return effect;
-    }
-  };
-
-  // Helper function για translation των active effects
-  const getActiveEffectInGreek = (effect: string) => {
-    switch(effect) {
-      case 'none': return 'χωρίς active effect';
-      case 'scale': return 'μεγέθυνση κατά το πάτημα';
-      case 'press': return 'πίεση κατά το πάτημα';
-      case 'ripple': return 'κύματα κατά το πάτημα';
-      default: return effect;
-    }
-  };
-
-  // Helper function για size translation
-  const getSizeInGreek = (size: string) => {
-    switch(size) {
-      case 'xs': return 'πολύ μικρά';
-      case 'sm': return 'μικρά';
-      case 'md': return 'μεσαία';
-      case 'lg': return 'μεγάλα';
-      case 'xl': return 'πολύ μεγάλα';
-      default: return size;
-    }
-  };
-
-  // Helper function για category translation
-  const getCategoryInGreek = (category: string) => {
-    switch(category.toLowerCase()) {
-      case 'backgrounds': return 'ΦΟΝΤΑ';
-      case 'text': return 'ΚΕΙΜΕΝΑ';
-      case 'borders': return 'ΠΕΡΙΓΡΑΜΜΑΤΑ';
-      default: return category.toUpperCase();
-    }
-  };
+  // Χρησιμοποιούμε τις κεντρικές helper functions από το PLAYGROUND_HELPERS utility
+  const { getRadiusInGreek, getHoverEffectInGreek, getActiveEffectInGreek, getSizeInGreek, getCategoryInGreek } = PLAYGROUND_HELPERS;
 
   // Δυναμική δημιουργία πλήρους περιγραφής
   const generateFullDescription = () => {

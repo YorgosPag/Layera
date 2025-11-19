@@ -33,15 +33,9 @@ interface SavedThemeState {
   infoColor?: string;
 }
 
-interface ThemeData {
-  colorCategory: 'backgrounds' | 'text' | 'borders';
+// ThemeData is now just a subset of ColorState for backwards compatibility
+interface ThemeData extends Pick<ColorState, 'primaryColor' | 'secondaryColor' | 'successColor' | 'warningColor' | 'dangerColor' | 'infoColor' | 'colorCategory'> {
   shape: 'rectangular' | 'square' | 'rounded';
-  primaryColor: string;
-  secondaryColor: string;
-  successColor: string;
-  warningColor: string;
-  dangerColor: string;
-  infoColor: string;
 }
 
 export interface StorageActions {

@@ -52,20 +52,42 @@ export const FONT_WEIGHTS = {
 } as const;
 
 /**
- * Animation Distances (in pixels)
+ * Unified Animation System - Complete Animation Management
+ * Consolidated from ANIMATION_DURATIONS + ANIMATION_DISTANCES + EASING_FUNCTIONS
  */
-export const ANIMATION_DISTANCES = {
-  SLIDE_SMALL: 5,   // Small slide animation
-  SLIDE_NORMAL: 10, // Normal slide animation
-  SLIDE_LARGE: 20,  // Large slide animation
-  SLIDE_EXTRA: 50   // Extra large slide animation
+export const UNIFIED_ANIMATION_SYSTEM = {
+  // Durations in milliseconds (from animation-durations.ts)
+  DURATIONS: {
+    // Auto-advance timings
+    PROPERTY_TYPE_SELECTION: 500,
+    OCCUPATION_SEARCH: 1500,
+    COMPLETE_STEP: 500,
+    // Form interaction timings
+    FORM_VALIDATION_DELAY: 300,
+    SEARCH_DEBOUNCE: 300,
+    API_DEBOUNCE: 500,
+    // UI transitions
+    MODAL_TRANSITION: 300,
+    DRAWER_SLIDE: 250,
+    TOOLTIP_SHOW: 150
+  },
+
+  // Distances in pixels
+  DISTANCES: {
+    SLIDE_SMALL: 5,
+    SLIDE_NORMAL: 10,
+    SLIDE_LARGE: 20,
+    SLIDE_EXTRA: 50
+  },
+
+  // Easing functions
+  EASING: {
+    EASE_OUT: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+    EASE_IN_OUT: 'cubic-bezier(0.4, 0, 0.2, 1)',
+    BOUNCE: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)'
+  }
 } as const;
 
-/**
- * Transition Timing Functions
- */
-export const EASING_FUNCTIONS = {
-  EASE_OUT: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-  EASE_IN_OUT: 'cubic-bezier(0.4, 0, 0.2, 1)',
-  BOUNCE: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-} as const;
+// Legacy compatibility exports
+export const ANIMATION_DISTANCES = UNIFIED_ANIMATION_SYSTEM.DISTANCES;
+export const EASING_FUNCTIONS = UNIFIED_ANIMATION_SYSTEM.EASING;

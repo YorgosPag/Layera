@@ -1,0 +1,237 @@
+{
+  "layera": {
+    "comment": "🏢 LAYERA ENTERPRISE TOKEN SYSTEM - EXACTLY 100 VARIABLES",
+    "version": "2.0.0",
+    "description": "Consolidated token system - reduced from 363 to exactly 100 variables",
+
+    "colors": {
+      "comment": "🎨 COLOR SYSTEM - 25 Variables Total",
+
+      "primary": {
+        "comment": "Primary color palette - 5 variables",
+        "main": { "value": "#1976d2", "comment": "Main primary color" },
+        "secondary": { "value": "#6c757d", "comment": "Secondary color" },
+        "success": { "value": "#28a745", "comment": "Success green" },
+        "warning": { "value": "#ffc107", "comment": "Warning amber" },
+        "danger": { "value": "#dc3545", "comment": "Danger red" }
+      },
+
+      "surface": {
+        "comment": "Surface colors - 5 variables",
+        "light": { "value": "#ffffff", "comment": "Light surface" },
+        "medium": { "value": "#f8f9fa", "comment": "Medium surface" },
+        "dark": { "value": "#343a40", "comment": "Dark surface" },
+        "backdrop": { "value": "rgba(0, 0, 0, 0.5)", "comment": "Modal backdrop" },
+        "overlay": { "value": "rgba(255, 255, 255, 0.9)", "comment": "Overlay surface" }
+      },
+
+      "text": {
+        "comment": "Text colors - 5 variables",
+        "primary": { "value": "#212529", "comment": "Primary text" },
+        "secondary": { "value": "#6c757d", "comment": "Secondary text" },
+        "muted": { "value": "#8e8e93", "comment": "Muted text" },
+        "inverse": { "value": "#ffffff", "comment": "Inverse text" },
+        "accent": { "value": "#1976d2", "comment": "Accent text" }
+      },
+
+      "border": {
+        "comment": "Border colors - 5 variables",
+        "light": { "value": "#e9ecef", "comment": "Light border" },
+        "medium": { "value": "#dee2e6", "comment": "Medium border" },
+        "dark": { "value": "#6c757d", "comment": "Dark border" },
+        "focus": { "value": "#80bdff", "comment": "Focus border" },
+        "error": { "value": "#dc3545", "comment": "Error border" }
+      },
+
+      "status": {
+        "comment": "Status colors - 5 variables",
+        "info": { "value": "#17a2b8", "comment": "Info blue" },
+        "success": { "value": "#28a745", "comment": "Success green" },
+        "warning": { "value": "#ffc107", "comment": "Warning amber" },
+        "error": { "value": "#dc3545", "comment": "Error red" },
+        "neutral": { "value": "#6c757d", "comment": "Neutral gray" }
+      }
+    },
+
+    "spacing": {
+      "comment": "📏 SPACING SYSTEM - 20 Variables Total",
+
+      "scale": {
+        "comment": "Base spacing scale - 8 variables",
+        "0": { "value": "0", "comment": "Zero spacing" },
+        "1": { "value": "0.25rem", "comment": "4px - Micro" },
+        "2": { "value": "0.5rem", "comment": "8px - Small" },
+        "4": { "value": "1rem", "comment": "16px - Base" },
+        "6": { "value": "1.5rem", "comment": "24px - Medium" },
+        "8": { "value": "2rem", "comment": "32px - Large" },
+        "12": { "value": "3rem", "comment": "48px - XL" },
+        "16": { "value": "4rem", "comment": "64px - XXL" }
+      },
+
+      "component": {
+        "comment": "Component-specific spacing - 12 variables",
+        "button-sm": { "value": "0.5rem 1rem", "comment": "Small button padding" },
+        "button-md": { "value": "0.75rem 1.25rem", "comment": "Medium button padding" },
+        "button-lg": { "value": "1rem 1.5rem", "comment": "Large button padding" },
+        "input-sm": { "value": "0.375rem 0.75rem", "comment": "Small input padding" },
+        "input-md": { "value": "0.5rem 1rem", "comment": "Medium input padding" },
+        "input-lg": { "value": "0.75rem 1.25rem", "comment": "Large input padding" },
+        "card": { "value": "1.5rem", "comment": "Card padding" },
+        "modal": { "value": "2rem", "comment": "Modal padding" },
+        "section": { "value": "3rem", "comment": "Section spacing" },
+        "container": { "value": "1rem", "comment": "Container padding" },
+        "gap-sm": { "value": "0.5rem", "comment": "Small gap" },
+        "gap-md": { "value": "1rem", "comment": "Medium gap" }
+      }
+    },
+
+    "typography": {
+      "comment": "📝 TYPOGRAPHY SYSTEM - 15 Variables Total",
+
+      "fontSize": {
+        "comment": "Font sizes - 6 variables",
+        "xs": { "value": "0.75rem", "comment": "12px - Caption" },
+        "sm": { "value": "0.875rem", "comment": "14px - Small" },
+        "base": { "value": "1rem", "comment": "16px - Body" },
+        "lg": { "value": "1.125rem", "comment": "18px - Large" },
+        "xl": { "value": "1.25rem", "comment": "20px - Subheading" },
+        "2xl": { "value": "1.5rem", "comment": "24px - Heading" }
+      },
+
+      "fontWeight": {
+        "comment": "Font weights - 4 variables",
+        "light": { "value": "300", "comment": "Light weight" },
+        "normal": { "value": "400", "comment": "Normal weight" },
+        "semibold": { "value": "600", "comment": "Semibold weight" },
+        "bold": { "value": "700", "comment": "Bold weight" }
+      },
+
+      "lineHeight": {
+        "comment": "Line heights - 3 variables",
+        "tight": { "value": "1.25", "comment": "Tight leading" },
+        "normal": { "value": "1.5", "comment": "Normal leading" },
+        "relaxed": { "value": "1.75", "comment": "Relaxed leading" }
+      },
+
+      "letterSpacing": {
+        "comment": "Letter spacing - 2 variables",
+        "tight": { "value": "-0.02em", "comment": "Tight tracking" },
+        "wide": { "value": "0.05em", "comment": "Wide tracking" }
+      }
+    },
+
+    "layout": {
+      "comment": "🏗️ LAYOUT SYSTEM - 10 Variables Total",
+
+      "breakpoint": {
+        "comment": "Breakpoints - 3 variables",
+        "mobile": { "value": "480px", "comment": "Mobile breakpoint" },
+        "tablet": { "value": "768px", "comment": "Tablet breakpoint" },
+        "desktop": { "value": "1024px", "comment": "Desktop breakpoint" }
+      },
+
+      "container": {
+        "comment": "Container widths - 3 variables",
+        "sm": { "value": "640px", "comment": "Small container" },
+        "md": { "value": "768px", "comment": "Medium container" },
+        "lg": { "value": "1024px", "comment": "Large container" }
+      },
+
+      "zIndex": {
+        "comment": "Z-index layers - 4 variables",
+        "base": { "value": "1", "comment": "Base layer" },
+        "header": { "value": "100", "comment": "Header layer" },
+        "modal": { "value": "1000", "comment": "Modal layer" },
+        "overlay": { "value": "1050", "comment": "Overlay layer" }
+      }
+    },
+
+    "borders": {
+      "comment": "🔲 BORDER SYSTEM - 8 Variables Total",
+
+      "radius": {
+        "comment": "Border radius - 4 variables",
+        "none": { "value": "0", "comment": "No radius" },
+        "sm": { "value": "0.25rem", "comment": "Small radius" },
+        "md": { "value": "0.5rem", "comment": "Medium radius" },
+        "full": { "value": "9999px", "comment": "Full radius" }
+      },
+
+      "width": {
+        "comment": "Border widths - 2 variables",
+        "thin": { "value": "1px", "comment": "Thin border" },
+        "normal": { "value": "2px", "comment": "Normal border" }
+      },
+
+      "style": {
+        "comment": "Border styles - 2 variables",
+        "solid": { "value": "solid", "comment": "Solid border" },
+        "none": { "value": "none", "comment": "No border" }
+      }
+    },
+
+    "shadows": {
+      "comment": "🌙 SHADOW SYSTEM - 5 Variables Total",
+      "none": { "value": "none", "comment": "No shadow" },
+      "sm": { "value": "0 1px 2px rgba(0, 0, 0, 0.1)", "comment": "Small shadow" },
+      "md": { "value": "0 4px 6px rgba(0, 0, 0, 0.1)", "comment": "Medium shadow" },
+      "lg": { "value": "0 10px 15px rgba(0, 0, 0, 0.1)", "comment": "Large shadow" },
+      "xl": { "value": "0 20px 25px rgba(0, 0, 0, 0.15)", "comment": "Extra large shadow" }
+    },
+
+    "icons": {
+      "comment": "🔍 ICON SYSTEM - 7 Variables Total",
+
+      "size": {
+        "comment": "Icon sizes - 4 variables",
+        "sm": { "value": "1rem", "comment": "16px - Small icon" },
+        "md": { "value": "1.5rem", "comment": "24px - Medium icon" },
+        "lg": { "value": "2rem", "comment": "32px - Large icon" },
+        "xl": { "value": "3rem", "comment": "48px - XL icon" }
+      },
+
+      "color": {
+        "comment": "Icon colors - 3 variables",
+        "primary": { "value": "#212529", "comment": "Primary icon color" },
+        "secondary": { "value": "#6c757d", "comment": "Secondary icon color" },
+        "accent": { "value": "#1976d2", "comment": "Accent icon color" }
+      }
+    },
+
+    "interactions": {
+      "comment": "⚡ INTERACTION SYSTEM - 5 Variables Total",
+
+      "transition": {
+        "comment": "Transitions - 3 variables",
+        "fast": { "value": "150ms ease-in-out", "comment": "Fast transition" },
+        "normal": { "value": "250ms ease-in-out", "comment": "Normal transition" },
+        "slow": { "value": "500ms ease-in-out", "comment": "Slow transition" }
+      },
+
+      "cursor": {
+        "comment": "Cursors - 2 variables",
+        "default": { "value": "default", "comment": "Default cursor" },
+        "pointer": { "value": "pointer", "comment": "Pointer cursor" }
+      }
+    },
+
+    "responsive": {
+      "comment": "📱 RESPONSIVE SYSTEM - 3 Variables Total",
+      "touchTarget": {
+        "comment": "Touch targets - 2 variables",
+        "mobile": { "value": "44px", "comment": "Mobile touch target" },
+        "desktop": { "value": "32px", "comment": "Desktop touch target" }
+      },
+      "viewport": {
+        "comment": "Viewport units - 1 variable",
+        "full": { "value": "100%", "comment": "Full viewport" }
+      }
+    },
+
+    "utilities": {
+      "comment": "🔧 UTILITY SYSTEM - 2 Variables Total",
+      "zero": { "value": "0", "comment": "Zero utility" },
+      "full": { "value": "100%", "comment": "Full percentage" }
+    }
+  }
+}

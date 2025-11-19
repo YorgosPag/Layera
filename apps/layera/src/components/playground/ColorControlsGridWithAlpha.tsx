@@ -5,6 +5,7 @@ import { Button } from '@layera/buttons';
 import { ColorPickerWithAlpha, ColorWithAlpha } from './shared/ColorPickerWithAlpha';
 import { OptimizedColorPicker } from './shared/OptimizedColorPicker';
 import { SettingsIcon, LayersIcon } from '@layera/icons';
+import { ColorControlsProps } from '../../types/unified-interfaces';
 
 /**
  * ColorControlsGridWithAlpha Component
@@ -14,15 +15,12 @@ import { SettingsIcon, LayersIcon } from '@layera/icons';
  * - Alpha sliders για διαφάνεια
  * - Backward compatibility με υπάρχον σύστημα
  * - Live preview με transparency effects
+ * Props interface moved to unified-interfaces.ts
  */
 
 import type { ButtonState } from '../../hooks/useButtonState.js';
 
-interface ColorControlsGridWithAlphaProps {
-  currentColors: Record<string, ColorWithAlpha | string>; // Support για mixed types
-  currentSetters: Record<string, (value: ColorWithAlpha | string) => void>;
-  startPreview: (key: string, value: string | ColorWithAlpha) => void;
-  colorCategory: string;
+interface ColorControlsGridWithAlphaProps extends ColorControlsProps {
   alphaEnabled?: boolean;
   onAlphaToggle?: (enabled: boolean) => void;
   buttonState?: ButtonState; // Προαιρετικό για backward compatibility
@@ -67,7 +65,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
         }
       }
       // Regular HEX
-      const hex = color.startsWith('#') ? color : 'var(--layera-color-surface-primary)';
+      const hex = color.startsWith('#') ? color : 'var(--layera-colors-surface-light)';
       if (hex.startsWith('#')) {
         const r = parseInt(hex.slice(1, 3), 16);
         const g = parseInt(hex.slice(3, 5), 16);
@@ -79,9 +77,9 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
         };
       }
       return {
-        hex: 'var(--layera-color-surface-primary)',
+        hex: 'var(--layera-colors-surface-light)',
         alpha: 1.0,
-        rgba: 'color-mix(in srgb, var(--layera-color-surface-primary) 100%, transparent)'
+        rgba: 'color-mix(in srgb, var(--layera-colors-surface-light) 100%, transparent)'
       };
     }
     return color;
@@ -90,7 +88,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
   // Helper function: Extract HEX για legacy compatibility
   const extractHex = (color: ColorWithAlpha | string): string => {
     if (typeof color === 'string') {
-      return color.startsWith('#') ? color : 'var(--layera-color-surface-primary)';
+      return color.startsWith('#') ? color : 'var(--layera-colors-surface-light)';
     }
     return color.hex;
   };

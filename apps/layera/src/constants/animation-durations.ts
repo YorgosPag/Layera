@@ -1,13 +1,12 @@
 /**
  * @layera/constants - Animation Durations Configuration
  *
- * UI ANIMATION & INTERACTION DURATIONS - Single Source of Truth
- * Extracted from config.ts for better maintainability
+ * ⚠️ DEPRECATED - Moved to UNIFIED_ANIMATION_SYSTEM in brand-system.ts
+ * Import: import { UNIFIED_ANIMATION_SYSTEM } from './brand-system'
+ * Use: UNIFIED_ANIMATION_SYSTEM.DURATIONS.PROPERTY_TYPE_SELECTION
  */
 
-/**
- * Animation Durations για UI Interactions
- */
+// DEPRECATED - Use UNIFIED_ANIMATION_SYSTEM.DURATIONS instead
 export const ANIMATION_DURATIONS = {
   // Auto-advance timings
   PROPERTY_TYPE_SELECTION: 500, // PropertyTypeSelector auto-advance delay

@@ -8,17 +8,7 @@
 
 import { saveTheme, generateThemeId, DEFAULT_THEME_COLORS, type ThemeColors } from './theme';
 import type { LayeraUser } from '@layera/auth-bridge';
-
-// Types που αντιστοιχούν στο ColorsSection
-export interface ColorState {
-  primaryColor: string;
-  secondaryColor: string;
-  successColor: string;
-  warningColor: string;
-  dangerColor: string;
-  infoColor: string;
-  colorCategory: 'backgrounds' | 'text' | 'borders';
-}
+import type { ColorState } from '../hooks/useColorState';
 
 
 /**
@@ -26,26 +16,40 @@ export interface ColorState {
  * Validates για undefined values που δεν δέχεται το Firebase
  * INTERNAL USE ONLY
  */
-function colorStateToThemeColors(colorState: ColorState): ThemeColors {
+function colorStateToThemeColors(colorState: ColorState | {primaryColor?: string; secondaryColor?: string; successColor?: string; warningColor?: string; dangerColor?: string; infoColor?: string; colorCategory: string}): ThemeColors {
   // ES Modules compliant - no CommonJS require (ARXES rule)
   // Using imported DEFAULT_THEME_COLORS from theme.ts (single source of truth)
+  // Support both simple color fields and palette structure
 
   return {
-    primary: colorState.primaryColor || DEFAULT_THEME_COLORS.primary,
-    secondary: colorState.secondaryColor || DEFAULT_THEME_COLORS.secondary,
-    success: colorState.successColor || DEFAULT_THEME_COLORS.success,
-    warning: colorState.warningColor || DEFAULT_THEME_COLORS.warning,
-    danger: colorState.dangerColor || DEFAULT_THEME_COLORS.danger,
-    info: colorState.infoColor || DEFAULT_THEME_COLORS.info
+    primary: colorState.primaryColor ||
+             ('rectangularPalette' in colorState ? colorState.rectangularPalette?.primaryColor?.hex : undefined) ||
+             DEFAULT_THEME_COLORS.primary,
+    secondary: colorState.secondaryColor ||
+               ('rectangularPalette' in colorState ? colorState.rectangularPalette?.secondaryColor?.hex : undefined) ||
+               DEFAULT_THEME_COLORS.secondary,
+    success: colorState.successColor ||
+             ('rectangularPalette' in colorState ? colorState.rectangularPalette?.successColor?.hex : undefined) ||
+             DEFAULT_THEME_COLORS.success,
+    warning: colorState.warningColor ||
+             ('rectangularPalette' in colorState ? colorState.rectangularPalette?.warningColor?.hex : undefined) ||
+             DEFAULT_THEME_COLORS.warning,
+    danger: colorState.dangerColor ||
+            ('rectangularPalette' in colorState ? colorState.rectangularPalette?.dangerColor?.hex : undefined) ||
+            DEFAULT_THEME_COLORS.danger,
+    info: colorState.infoColor ||
+          ('rectangularPalette' in colorState ? colorState.rectangularPalette?.infoColor?.hex : undefined) ||
+          DEFAULT_THEME_COLORS.info
   };
 }
 
 
 /**
  * Αποθηκεύει το current color state στο Firebase
+ * Supports both full ColorState and simple color objects
  */
 export async function saveColorTheme(
-  colorState: ColorState,
+  colorState: ColorState | {primaryColor?: string; secondaryColor?: string; successColor?: string; warningColor?: string; dangerColor?: string; infoColor?: string; colorCategory: string},
   user?: LayeraUser,
   themeName?: string
 ): Promise<string> {

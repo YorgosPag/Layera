@@ -1,8 +1,9 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { SettingsIcon } from '@layera/icons';
+import { useControlThrottle } from '../../../hooks/useControlThrottle';
 
 /**
  * ButtonRadiusControl Component
@@ -39,7 +40,11 @@ export const ButtonRadiusControl: React.FC<ButtonRadiusControlProps> = ({
   onPreview,
   buttonState
 }) => {
-  const [isChanging, setIsChanging] = useState(false);
+  const { value: currentValue, isChanging, handleChange } = useControlThrottle({
+    initialValue: value,
+    onChange,
+    onPreview: onPreview ? (val) => onPreview('buttonRadius', val) : undefined
+  });
 
   // Available button radius options with their tokens - Updated hierarchy
   const buttonRadiusOptions = [
@@ -75,24 +80,8 @@ export const ButtonRadiusControl: React.FC<ButtonRadiusControlProps> = ({
     }
   ];
 
-  const handleChange = useCallback((newValue: string) => {
-    setIsChanging(true);
-    onChange(newValue);
-
-    // Trigger real-time preview
-    console.log('🔧 ButtonRadiusControl: Sending preview', { key: 'buttonRadius', value: newValue });
-    if (onPreview) {
-      onPreview('buttonRadius', newValue);
-    }
-
-    // Reset visual feedback
-    setTimeout(() => {
-      setIsChanging(false);
-    }, 200);
-  }, [onChange, onPreview]);
-
   const getCurrentOption = () => {
-    return buttonRadiusOptions.find(option => option.value === value) || buttonRadiusOptions[2]; // Default to 'lg'
+    return buttonRadiusOptions.find(option => option.value === currentValue) || buttonRadiusOptions[2]; // Default to 'lg'
   };
 
   const currentOption = getCurrentOption();
@@ -108,10 +97,10 @@ export const ButtonRadiusControl: React.FC<ButtonRadiusControlProps> = ({
         {buttonRadiusOptions.map((option) => (
           <Button
             key={option.value}
-            variant={value === option.value ? 'primary' : 'outline'}
+            variant={currentValue === option.value ? 'primary' : 'outline'}
             size={buttonState?.size || 'sm'}
             onClick={() => handleChange(option.value)}
-            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${value === option.value ? 'primary' : 'outline'} ${isChanging && value === option.value ? 'layera-opacity--70' : 'layera-opacity--100'}`}
+            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${currentValue === option.value ? 'primary' : 'outline'} ${isChanging && currentValue === option.value ? 'layera-opacity--70' : 'layera-opacity--100'}`}
           >
             {option.label}
           </Button>

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Box } from '@layera/layout';
 import { Button, SquareButton } from '@layera/buttons';
-import { PlusIcon, SearchIcon, CheckIcon, CloseIcon, SettingsIcon, RulerIcon, PolygonIcon, CompassIcon } from '@layera/icons';
+import { PlusIcon, SearchIcon, CheckIcon, CloseIcon, SettingsIcon, CompassIcon } from '@layera/icons';
 import { ButtonState } from '../../hooks/useButtonState';
 import { useCSSVariables } from '../../hooks/useCSSVariables';
-
-
+import { PLAYGROUND_HELPERS } from '../../constants/ui-utilities';
+import { ButtonPlaygroundProps } from '../../types/unified-interfaces';
 
 /**
  * ButtonsPlayground Component
@@ -20,15 +20,12 @@ import { useCSSVariables } from '../../hooks/useCSSVariables';
  * - TypeScript strict
  * - Well-defined props interface
  * - Single Responsibility Principle
+ * Props interface moved to unified-interfaces.ts
  */
 
-interface ButtonsPlaygroundProps {
+interface ExtendedButtonPlaygroundProps extends ButtonPlaygroundProps {
   /** Button state από το useButtonState hook */
   buttonState: ButtonState;
-  /** Color category for description */
-  colorCategory?: string;
-  /** Current colors for live preview from color state */
-  currentColors?: Record<string, string>;
   /** Border width for borders category (1, 2, or 3) */
   borderWidth?: number;
   /** Button radius for styling */
@@ -39,7 +36,7 @@ interface ButtonsPlaygroundProps {
   activeEffect?: string;
 }
 
-export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
+export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
   buttonState,
   colorCategory = 'borders',
   currentColors = {},
@@ -61,63 +58,8 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
     }
   };
 
-  // Helper function για translation των radius values
-  const getRadiusInGreek = (radius: string) => {
-    switch(radius) {
-      case 'none': return 'χωρίς καμπυλότητα';
-      case 'xs': return 'ελαφρά καμπυλότητα';
-      case 'sm': return 'μικρή καμπυλότητα';
-      case 'md': return 'μεσαία καμπυλότητα';
-      case 'lg': return 'μεγάλη καμπυλότητα';
-      case 'xl': return 'πολύ μεγάλη καμπυλότητα';
-      case 'round': return 'πλήρως στρογγυλά';
-      default: return radius;
-    }
-  };
-
-  // Helper function για translation των hover effects
-  const getHoverEffectInGreek = (effect: string) => {
-    switch(effect) {
-      case 'none': return 'χωρίς hover effect';
-      case 'normal': return 'κανονικό hover effect';
-      case 'glow': return 'φωτεινό hover effect';
-      case 'shadow': return 'σκιώδες hover effect';
-      default: return effect;
-    }
-  };
-
-  // Helper function για translation των active effects
-  const getActiveEffectInGreek = (effect: string) => {
-    switch(effect) {
-      case 'none': return 'χωρίς active effect';
-      case 'scale': return 'μεγέθυνση κατά το πάτημα';
-      case 'press': return 'πίεση κατά το πάτημα';
-      case 'ripple': return 'κύματα κατά το πάτημα';
-      default: return effect;
-    }
-  };
-
-  // Helper function για size translation
-  const getSizeInGreek = (size: string) => {
-    switch(size) {
-      case 'xs': return 'πολύ μικρά';
-      case 'sm': return 'μικρά';
-      case 'md': return 'μεσαία';
-      case 'lg': return 'μεγάλα';
-      case 'xl': return 'πολύ μεγάλα';
-      default: return size;
-    }
-  };
-
-  // Helper function για category translation
-  const getCategoryInGreek = (category: string) => {
-    switch(category.toLowerCase()) {
-      case 'backgrounds': return 'ΦΟΝΤΑ';
-      case 'text': return 'ΚΕΙΜΕΝΑ';
-      case 'borders': return 'ΠΕΡΙΓΡΑΜΜΑΤΑ';
-      default: return category.toUpperCase();
-    }
-  };
+  // ✅ ΑΝΤΙΚΑΤΑΣΤΑΣΗ ΔΙΠΛΟΤΥΠΩΝ FUNCTIONS - Χρήση κεντρικών helper functions
+  const { getRadiusInGreek, getHoverEffectInGreek, getActiveEffectInGreek, getSizeInGreek, getCategoryInGreek } = PLAYGROUND_HELPERS;
 
   // Δυναμική δημιουργία πλήρους περιγραφής
   const generateFullDescription = () => {
@@ -167,12 +109,12 @@ export const ButtonsPlayground: React.FC<ButtonsPlaygroundProps> = ({
 
   // Dynamic colors with fallbacks using design tokens
   const colors = {
-    primary: extractColor(currentColors.primary, 'var(--layera-color-text-primary)'),
-    secondary: extractColor(currentColors.secondary, 'var(--layera-color-text-secondary)'),
-    success: extractColor(currentColors.success, 'var(--layera-color-semantic-success-primary)'),
-    warning: extractColor(currentColors.warning, 'var(--layera-color-semantic-warning-primary)'),
-    danger: extractColor(currentColors.danger, 'var(--layera-color-semantic-error-primary)'),
-    info: extractColor(currentColors.info, 'var(--layera-color-semantic-info-primary)')
+    primary: extractColor(currentColors.primary, 'var(--layera-colors-text-primary)'),
+    secondary: extractColor(currentColors.secondary, 'var(--layera-colors-text-secondary)'),
+    success: extractColor(currentColors.success, 'var(--layera-colors-primary-success)'),
+    warning: extractColor(currentColors.warning, 'var(--layera-colors-primary-warning)'),
+    danger: extractColor(currentColors.danger, 'var(--layera-colors-primary-danger)'),
+    info: extractColor(currentColors.info, 'var(--layera-colors-status-info)')
   };
 
   // Border width για outline button
