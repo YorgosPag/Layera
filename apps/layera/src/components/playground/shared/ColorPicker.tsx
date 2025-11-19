@@ -2,6 +2,7 @@ import React from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { ColorPickerProps } from './types';
+import { hexToColorWithAlpha } from '../../../hooks/useColorState';
 
 /**
  * ColorPicker - Επαναχρησιμοποιήσιμο component για επιλογή χρωμάτων
@@ -28,21 +29,21 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({
       <Box
         as="input"
         type="color"
-        value={value}
+        value={typeof value === 'string' ? value : value.hex}
         onInput={(e: React.FormEvent<HTMLInputElement>) => {
           // Real-time preview while dragging
           if (onPreview) {
-            onPreview((e.target as HTMLInputElement).value);
+            onPreview(hexToColorWithAlpha((e.target as HTMLInputElement).value));
           }
         }}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           // Final commit when selection is done
-          onChange(e.target.value);
+          onChange(hexToColorWithAlpha(e.target.value));
         }}
         className="layera-input layera-width--full layera-margin-bottom--sm layera-cursor--pointer layera-transition--all"
       />
       <Text className="layera-typography" data-size="sm" data-color="secondary">
-        {value.toUpperCase()}
+        {typeof value === 'string' ? value.toUpperCase() : value.hex.toUpperCase()}
       </Text>
     </Box>
   );

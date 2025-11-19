@@ -5,7 +5,7 @@ import { PlusIcon, SearchIcon, CheckIcon, CloseIcon, SettingsIcon, CompassIcon }
 import { ButtonState } from '../../hooks/useButtonState';
 import { useCSSVariables } from '../../hooks/useCSSVariables';
 import { PLAYGROUND_HELPERS } from '../../constants/ui-utilities';
-import { ButtonPlaygroundProps } from '../../types/unified-interfaces';
+import { ButtonPlaygroundProps, PlaygroundColors } from '../../types/unified-interfaces';
 
 /**
  * ButtonsPlayground Component
@@ -23,9 +23,11 @@ import { ButtonPlaygroundProps } from '../../types/unified-interfaces';
  * Props interface moved to unified-interfaces.ts
  */
 
-interface ExtendedButtonPlaygroundProps extends ButtonPlaygroundProps {
+interface ExtendedButtonPlaygroundProps extends Omit<ButtonPlaygroundProps, 'currentColors'> {
   /** Button state από το useButtonState hook */
   buttonState: ButtonState;
+  /** Current colors - μπορεί να είναι partial */
+  currentColors?: Partial<PlaygroundColors>;
   /** Border width for borders category (1, 2, or 3) */
   borderWidth?: number;
   /** Button radius for styling */
@@ -109,12 +111,12 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
 
   // Dynamic colors with fallbacks using design tokens
   const colors = {
-    primary: extractColor(currentColors.primary, 'var(--layera-colors-text-primary)'),
-    secondary: extractColor(currentColors.secondary, 'var(--layera-colors-text-secondary)'),
-    success: extractColor(currentColors.success, 'var(--layera-colors-primary-success)'),
-    warning: extractColor(currentColors.warning, 'var(--layera-colors-primary-warning)'),
-    danger: extractColor(currentColors.danger, 'var(--layera-colors-primary-danger)'),
-    info: extractColor(currentColors.info, 'var(--layera-colors-status-info)')
+    primary: extractColor(currentColors.primary || '', 'var(--layera-colors-text-primary)'),
+    secondary: extractColor(currentColors.secondary || '', 'var(--layera-colors-text-secondary)'),
+    success: extractColor(currentColors.success || '', 'var(--layera-colors-primary-success)'),
+    warning: extractColor(currentColors.warning || '', 'var(--layera-colors-primary-warning)'),
+    danger: extractColor(currentColors.danger || '', 'var(--layera-colors-primary-danger)'),
+    info: extractColor(currentColors.info || '', 'var(--layera-colors-status-info)')
   };
 
   // Border width για outline button

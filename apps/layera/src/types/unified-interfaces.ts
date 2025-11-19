@@ -318,6 +318,11 @@ export interface TextPreviewProps extends PreviewProps {
  * Props για table playground
  */
 export interface TablesPlaygroundProps extends BasePlaygroundProps {
+  borderWidth?: number;
+  tableRadius?: string;
+  tableSize?: string;
+  hoverEffect?: string;
+  activeEffect?: string;
   showHeaders?: boolean;
   showBorders?: boolean;
   striped?: boolean;
