@@ -1,0 +1,107 @@
+{
+  "responsive": {
+    "comment": "📱 Unified Responsive Container System - Replaces 10+ fragmented classes",
+    "unified": {
+      "comment": "Single .layera-responsive-container class with data attribute variants",
+      "value": {
+        "width": "100%",
+        "margin": "0 auto",
+        "position": "relative",
+        "boxSizing": "border-box"
+      },
+      "type": "object",
+      "variants": {
+        "breakpoint": {
+          "comment": "Device breakpoint variants",
+          "mobile": {
+            "comment": "Mobile-first responsive behavior"
+          },
+          "tablet": {
+            "comment": "Tablet-specific responsive behavior"
+          },
+          "desktop": {
+            "comment": "Desktop-specific responsive behavior"
+          }
+        },
+        "max-width": {
+          "comment": "Maximum width constraints by breakpoint",
+          "enabled": {
+            "comment": "Enable max-width constraints based on breakpoint"
+          },
+          "disabled": {
+            "comment": "No max-width constraints"
+          }
+        },
+        "padding": {
+          "comment": "Responsive padding by breakpoint",
+          "enabled": {
+            "comment": "Enable responsive padding based on breakpoint"
+          },
+          "disabled": {
+            "comment": "No responsive padding"
+          }
+        },
+        "fallback": {
+          "comment": "CSS fallback mode for older browsers",
+          "enabled": {
+            "comment": "Use CSS media queries for fallback support"
+          },
+          "disabled": {
+            "comment": "Modern CSS-in-JS only"
+          }
+        }
+      },
+      "breakpoint-specific": {
+        "comment": "Breakpoint-specific styling rules",
+        "mobile": {
+          "max-width-enabled": {
+            "maxWidth": "100%"
+          },
+          "padding-enabled": {
+            "padding": "var(--layera-space-md)"
+          }
+        },
+        "tablet": {
+          "max-width-enabled": {
+            "maxWidth": "100%"
+          },
+          "padding-enabled": {
+            "padding": "var(--layera-space-xl)"
+          }
+        },
+        "desktop": {
+          "max-width-enabled": {
+            "maxWidth": "var(--layera-spacing-container-xl)"
+          },
+          "padding-enabled": {
+            "padding": "var(--layera-space-xxl)"
+          }
+        }
+      },
+      "media-queries": {
+        "comment": "CSS Media query fallbacks for older browsers",
+        "mobile": {
+          "breakpoint": "max-width: calc(var(--layera-spacing-breakpoint-mobile) - 1px)",
+          "styles": {
+            "padding": "var(--layera-space-md)",
+            "maxWidth": "100%"
+          }
+        },
+        "tablet": {
+          "breakpoint": "min-width: var(--layera-spacing-breakpoint-mobile) and (max-width: calc(var(--layera-spacing-breakpoint-tablet) - 1px))",
+          "styles": {
+            "padding": "var(--layera-space-xl)",
+            "maxWidth": "100%"
+          }
+        },
+        "desktop": {
+          "breakpoint": "min-width: var(--layera-spacing-breakpoint-tablet)",
+          "styles": {
+            "padding": "var(--layera-space-xxl)",
+            "maxWidth": "var(--layera-spacing-container-xl)"
+          }
+        }
+      }
+    }
+  }
+}

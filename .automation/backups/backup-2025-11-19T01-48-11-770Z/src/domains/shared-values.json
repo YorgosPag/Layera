@@ -1,0 +1,117 @@
+{
+  "shared": {
+    "comment": "🔗 Shared Values - Single Source of Truth για όλες τις κοινές τιμές",
+    "spacing": {
+      "comment": "Κοινές spacing τιμές που χρησιμοποιούνται παντού",
+      "xs": {
+        "value": "var(--layera-global-spacing-2)",
+        "comment": "CONSOLIDATED REFERENCE - points to global-spacing-2 (0.5rem)"
+      },
+      "md": {
+        "value": "var(--layera-global-spacing-4)",
+        "comment": "CONSOLIDATED REFERENCE - points to global-spacing-4 (1rem)"
+      },
+      "lg": {
+        "value": "var(--layera-global-spacing-6)",
+        "comment": "CONSOLIDATED REFERENCE - points to global-spacing-6 (1.5rem)"
+      }
+},
+    "borderRadius": {
+      "comment": "Κοινές border radius τιμές",
+      "sm": {
+        "value": "var(--layera-global-spacing-2)",
+        "comment": "Small radius - MASTER REFERENCE για όλα τα sm border-radius"
+      },
+      "md": {
+        "value": "var(--layera-global-spacing-4)",
+        "comment": "Medium radius - MASTER REFERENCE για όλα τα md border-radius"
+      }
+    },
+    "layout": {
+      "comment": "Κοινές layout τιμές",
+      "display": {
+        "flex": {
+          "value": "flex",
+          "comment": "MASTER REFERENCE για όλα τα flex displays"
+        }
+      },
+      "position": {
+        "fixed": {
+          "value": "fixed",
+          "comment": "MASTER REFERENCE για όλα τα fixed positions"
+        }
+      },
+      "alignment": {
+        "center": {
+          "value": "center",
+          "comment": "MASTER REFERENCE για όλα τα center alignments (align-items, justify-content, text-align)"
+        }
+      }
+    },
+    "dimensions": {
+      "comment": "Κοινές dimension τιμές",
+      "full": {
+        "width": {
+          "value": "var(--layera-percentage-full)",
+          "comment": "MASTER REFERENCE για όλα τα full width"
+        },
+        "height": {
+          "viewport": {
+            "value": "var(--layera-shared-dimensions-viewport-height)",
+            "comment": "MASTER REFERENCE για όλα τα viewport height"
+          },
+          "percentage": {
+            "value": "var(--layera-percentage-full)",
+            "comment": "MASTER REFERENCE για όλα τα percentage height"
+          }
+        }
+      },
+      "viewport": {
+        "width": {
+          "value": "var(--layera-shared-dimensions-viewport-width)",
+          "comment": "MASTER REFERENCE για όλα τα viewport width"
+        },
+        "height": {
+          "value": "100vh",
+          "comment": "MASTER REFERENCE για όλα τα viewport height"
+        }
+      },
+      "zero": {
+        "value": "var(--layera-shared-dimensions-zero)",
+        "comment": "MASTER REFERENCE για όλα τα zero values"
+      },
+      "zero-degrees": {
+        "value": "0deg",
+        "comment": "MASTER REFERENCE για animation start rotation"
+      },
+      "full-rotation": {
+        "value": "360deg",
+        "comment": "MASTER REFERENCE για animation full rotation"
+      }
+    },
+    "zIndex": {
+      "comment": "Κοινές z-index τιμές",
+      "overlay": {
+        "value": "var(--layera-global-z-index-overlay)",
+        "comment": "MASTER REFERENCE για όλα τα modal/overlay z-index"
+      },
+      "dropdown": {
+        "value": "var(--layera-global-z-index-header)",
+        "comment": "MASTER REFERENCE για dropdowns (πάνω από modals)"
+      }
+    },
+    "padding": {
+      "comment": "Κοινά padding patterns",
+      "button": {
+        "sm": {
+          "value": "var(--layera-global-spacing-2) var(--layera-global-spacing-4)",
+          "comment": "MASTER REFERENCE για small button padding"
+        },
+        "md": {
+          "value": "var(--layera-global-spacing-3) var(--layera-global-spacing-4)",
+          "comment": "MASTER REFERENCE για medium button padding"
+        }
+      }
+    }
+  }
+}

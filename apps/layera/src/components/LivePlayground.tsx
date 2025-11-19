@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './LivePlayground.module.css';
-import { Box, PageContainer } from '@layera/layout';
-import { Text, Heading } from '@layera/typography';
-import { Button, SquareButton } from '@layera/buttons';
-import { PlusIcon, SearchIcon, UserIcon, SettingsIcon, CloseIcon, PaletteIcon, LayersIcon, EditIcon, PolygonIcon, RulerIcon, CompassIcon, CheckIcon, RocketIcon } from '@layera/icons';
-import { ButtonsSection } from './playground/ButtonsSection';
+import { Box } from '@layera/layout';
+import { Button } from '@layera/buttons';
+import { SettingsIcon, CloseIcon, EditIcon, PolygonIcon, RulerIcon, CompassIcon, CheckIcon } from '@layera/icons';
 import { PlaygroundHeader } from './playground/PlaygroundHeader';
 import { ButtonsPlayground } from './playground/ButtonsPlayground';
 import { CardsPlayground } from './playground/CardsPlayground';
@@ -21,24 +19,16 @@ import { ColorValueDisplay } from './playground/ColorValueDisplay';
 import { FactorySettingsPanel } from './playground/FactorySettingsPanel';
 import type { ColorWithAlpha } from './playground/shared/ColorPickerWithAlpha';
 import type { FontSizeValue } from './playground/shared/FontSizeControl';
-import { CardSizeControl, type CardSizeValue } from './playground/shared/CardSizeControl';
-import { ModalSizeControl, type ModalSizeValue } from './playground/shared/ModalSizeControl';
-import { InputSizeControl, type InputSizeValue } from './playground/shared/InputSizeControl';
-import { TableSizeControl, type TableSizeValue } from './playground/shared/TableSizeControl';
-import { ButtonRadiusControl } from './playground/shared/ButtonRadiusControl';
-import { LayoutRadiusControl } from './playground/shared/LayoutRadiusControl';
-import { CardRadiusControl } from './playground/shared/CardRadiusControl';
-import { ModalRadiusControl } from './playground/shared/ModalRadiusControl';
-import { InputRadiusControl } from './playground/shared/InputRadiusControl';
-import { TableRadiusControl } from './playground/shared/TableRadiusControl';
-import { loadCurrentThemeFromLocalStorage } from '../services/colorThemeService';
+import type { CardSizeValue } from './playground/shared/CardSizeControl';
+import type { ModalSizeValue } from './playground/shared/ModalSizeControl';
+import type { InputSizeValue } from './playground/shared/InputSizeControl';
+import type { TableSizeValue } from './playground/shared/TableSizeControl';
 import { useAuth } from '@layera/auth-bridge';
 import { useRealTimePreview } from '../hooks/useRealTimePreview';
 import { useButtonState } from '../hooks/useButtonState';
 import { useColorState, ColorPaletteWithAlpha, ColorCategory } from '../hooks/useColorState';
 import { useCSSVariables } from '../hooks/useCSSVariables';
 import { useStorage } from '../hooks/useStorage';
-import { useNavigation } from '../hooks/useNavigation';
 // useColorHelpers functionality merged into other hooks
 
 /**
@@ -70,10 +60,10 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   // ==============================
 
   // Button State Management
-  const { state: buttonState, actions: buttonActions, variants: buttonVariants, sizes: buttonSizes } = useButtonState();
+  const { state: buttonState, actions: buttonActions, sizes: buttonSizes } = useButtonState();
 
   // Color State Management
-  const { state: colorHookState, actions: colorActions, colorCategories, colorButtonShapes, getCurrentPalette, getCategoryPalette } = useColorState();
+  const { state: colorHookState, actions: colorActions, getCategoryPalette } = useColorState();
 
   // CSS Variables Management
   const { actions: cssActions } = useCSSVariables();
@@ -81,8 +71,6 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   // Storage Management
   const { actions: storageActions } = useStorage({ colorState: colorHookState, colorActions });
 
-  // Navigation Management
-  const { state: navigationState, actions: navigationActions } = useNavigation();
 
   // Color helper functions - simplified to use existing hooks
   const getColorsForCategory = (category: string) => {
@@ -145,7 +133,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   const [alphaEnabled, setAlphaEnabled] = useState<boolean>(false);
 
   // Real-time preview hook for header buttons
-  const { startPreview, isPreviewActive } = useRealTimePreview({
+  const { startPreview } = useRealTimePreview({
     onCommit: (key: string, value: string) => {
       // Update the actual color state when preview is committed
       // ΜΟΝΟ για buttons category επηρεάζει τα header buttons
@@ -197,20 +185,6 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   // EVENT HANDLERS
   // ==============================
 
-  /**
-   * Applies current button settings to the application
-   * Dispatches custom event for other components to listen
-   */
-  const applyToApp = () => {
-    window.dispatchEvent(new CustomEvent('playgroundUpdate', {
-      detail: {
-        variant: buttonState.variant,
-        size: buttonState.size,
-        text: buttonState.text,
-        withIcon: buttonState.withIcon
-      }
-    }));
-  };
 
   // ==============================
   // CSS VARIABLES INTEGRATION
