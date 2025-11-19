@@ -296,10 +296,10 @@ export const AddContentModal: React.FC<AddContentModalProps> = ({
       open={isOpen}
       onClose={onClose}
       size="md"
-      noOverlay={true}
-      showCloseButton={false}
-      draggable={true}
-      initialPosition="top-right"
+      noOverlay={false}
+      showCloseButton={true}
+      draggable={false}
+      initialPosition="center"
       aria-labelledby="add-content-title"
     >
       <ModalHeader

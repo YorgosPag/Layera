@@ -146,19 +146,15 @@ export const AppContent: React.FC = () => {
         style={{
           backgroundColor: 'var(--layera-color-primary-500)',
           color: 'var(--layera-color-neutral-white)',
-          border: `3px solid var(--layera-color-primary-700)`,
-          padding: 'var(--layera-spacing-large)',     // 2rem / 32px
-          margin: 'var(--layera-spacing-medium)',     // 1rem / 16px
-          borderRadius: 'var(--layera-spacing-small)', // 0.5rem / 8px
+          border: `var(--layera-spacing-micro) solid var(--layera-color-primary-700)`,
+          padding: 'var(--layera-spacing-large)',
+          margin: 'var(--layera-spacing-medium)',
+          borderRadius: 'var(--layera-spacing-small)',
           position: 'fixed',
-          top: 'var(--layera-spacing-16)',            // 4rem / 64px από top
-          right: 'var(--layera-spacing-medium)',      // 1rem / 16px από right
-          zIndex: 9999,
-          maxWidth: '300px',
-          fontSize: '18px',
-          fontWeight: 'bold',
-          textAlign: 'center',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)'
+          top: 'var(--layera-spacing-16)',
+          right: 'var(--layera-spacing-medium)',
+          zIndex: 100,
+          // ❌ ΑΦΑΙΡΕΘΗΚΑΝ σκληρές τιμές - χρειάζονται typography tokens!
         }}
       >
         🎯 COLORS + SPACING TOKENS!
@@ -168,12 +164,29 @@ export const AppContent: React.FC = () => {
         </small>
       </Box>
 
-      <Box className="layera-map-container layera-margin-top--lg">
+      {/* 🗺️ MAP με νέα layout tokens - DEBUG MODE */}
+      <Box
+        className="layera-layout"
+        style={{
+          width: 'var(--layera-layout-map-full-width)',
+          height: 'var(--layera-layout-map-full-height)',
+          position: 'var(--layera-layout-map-position)',
+          marginTop: 'var(--layera-spacing-medium)',
+          backgroundColor: 'var(--layera-color-neutral-light)',
+          border: `var(--layera-spacing-micro) solid var(--layera-color-primary-500)`,
+        }}
+      >
         <MapContainer
           className="layera-map--fullscreen"
           initialLat={MAP_DEFAULTS.CENTER[0]}
           initialLng={MAP_DEFAULTS.CENTER[1]}
           initialZoom={MAP_DEFAULTS.ZOOM}
+          style={{
+            width: 'var(--layera-layout-map-full-width)',
+            height: 'var(--layera-layout-map-full-size)',
+            position: 'var(--layera-layout-map-position)',
+            zIndex: 'var(--layera-layout-z-base)',
+          }}
         />
       </Box>
 
