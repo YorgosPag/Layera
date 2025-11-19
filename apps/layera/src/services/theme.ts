@@ -115,24 +115,6 @@ export function generateThemeId(
   return `${userId}_${category}${suffix}`;
 }
 
-/**
- * ✅ ARXES COMPLIANT: Theme application via data attributes only
- * NO style.setProperty() - ZERO DOM manipulation
- */
-export function applyThemeToDOM(
-  _colors: ThemeColors,
-  category: string,
-  buttonShape?: string
-): void {
-  const root = document.documentElement;
-
-  // ✅ ARXES COMPLIANT: Use data attributes for theming instead of CSS variables
-  // This allows CSS classes to handle the actual styling via @layera tokens
-  root.setAttribute('data-layera-theme-category', category);
-  if (buttonShape) {
-    root.setAttribute('data-layera-theme-shape', buttonShape);
-  }
-}
 
 /**
  * Επιστρέφει το σωστό CSS variable prefix - ENTERPRISE SINGLE SOURCE OF TRUTH

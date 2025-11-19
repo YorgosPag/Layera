@@ -6,7 +6,7 @@
  * για πλήρη enterprise integration
  */
 
-import { saveTheme, loadTheme, generateThemeId, type ThemeColors, type UserTheme } from './theme';
+import { saveTheme, loadTheme, generateThemeId, DEFAULT_THEME_COLORS, type ThemeColors, type UserTheme } from './theme';
 import type { LayeraUser } from '@layera/auth-bridge';
 
 // Types που αντιστοιχούν στο ColorsSection
@@ -36,14 +36,7 @@ export interface ColorTheme {
  */
 function colorStateToThemeColors(colorState: ColorState): ThemeColors {
   // ES Modules compliant - no CommonJS require (ARXES rule)
-  const DEFAULT_THEME_COLORS = {
-    primary: 'var(--layera-icon-colorInfo)',
-    secondary: 'var(--layera-color-semantic-neutral-medium)',
-    success: 'var(--layera-icon-colorSuccess)',
-    warning: 'var(--layera-icon-colorWarning)',
-    danger: 'var(--layera-icon-colorDanger)',
-    info: 'var(--layera-icon-colorInfo)'
-  };
+  // Using imported DEFAULT_THEME_COLORS from theme.ts (single source of truth)
 
   return {
     primary: colorState.primaryColor || DEFAULT_THEME_COLORS.primary,
@@ -126,63 +119,6 @@ export async function loadColorTheme(
   }
 }
 
-/**
- * Φορτώνει όλα τα themes ενός χρήστη για μια συγκεκριμένη κατηγορία
- */
-export async function loadUserColorThemes(
-  category: ColorState['colorCategory'],
-  user?: LayeraUser
-): Promise<ColorTheme[]> {
-  try {
-    // Για τώρα επιστρέφουμε κενό array - θα υλοποιηθεί με Firestore queries
-    console.log(`📥 Loading themes for category: ${category}, user: ${user?.uid || 'anonymous'}`);
-    return [];
 
-  } catch (error) {
-    console.error('❌ Error loading user color themes:', error);
-    return [];
-  }
-}
 
-/**
- * Διαγράφει ένα color theme
- */
-export async function deleteColorTheme(
-  themeId: string,
-  user?: LayeraUser
-): Promise<void> {
-  try {
-    const userId = user?.uid || 'anonymous';
 
-    // Απλή διαγραφή για τώρα - θα υλοποιηθεί πλήρως αργότερα
-    console.log(`🗑️ Color theme delete requested: ${themeId} for user: ${userId}`);
-
-  } catch (error) {
-    console.error('❌ Error deleting color theme:', error);
-    throw error;
-  }
-}
-
-/**
- * Αυτόματη αποθήκευση του current theme στο localStorage για γρήγορη φόρτωση
- */
-export function saveCurrentThemeToLocalStorage(colorState: ColorState): void {
-  try {
-    localStorage.setItem('layera-current-theme', JSON.stringify(colorState));
-  } catch (error) {
-    console.warn('⚠️ Could not save theme to localStorage:', error);
-  }
-}
-
-/**
- * Φόρτωση του τελευταίου theme από localStorage
- */
-export function loadCurrentThemeFromLocalStorage(): ColorState | null {
-  try {
-    const stored = localStorage.getItem('layera-current-theme');
-    return stored ? JSON.parse(stored) : null;
-  } catch (error) {
-    console.warn('⚠️ Could not load theme from localStorage:', error);
-    return null;
-  }
-}

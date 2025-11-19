@@ -97,10 +97,6 @@ export const AppContent: React.FC = () => {
     setActiveModal(null);
   };
 
-  const openModal = (modalType: 'login' | 'addContent') => {
-    setActiveModal(modalType);
-  };
-
   const openAddContentModal = () => {
     setActiveModal('addContent');
   };
