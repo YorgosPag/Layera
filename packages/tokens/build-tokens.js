@@ -33,6 +33,7 @@ if (!fs.existsSync(distDir)) {
 const colorsFile = path.join(srcDir, 'colors', 'colors.variables.ts');
 const spacingFile = path.join(srcDir, 'core', 'spacing', 'spacing.variables.ts');
 const typographyFile = path.join(srcDir, 'core', 'typography', 'typography.variables.ts');
+const iconsFile = path.join(srcDir, 'component', 'icons', 'icons.variables.ts');
 
 if (!fs.existsSync(colorsFile)) {
   console.error('❌ Δεν βρέθηκε το αρχείο:', colorsFile);
@@ -47,6 +48,9 @@ const spacingContent = fs.existsSync(spacingFile) ? fs.readFileSync(spacingFile,
 
 console.log('🖋️ Διαβάζω typography tokens από:', typographyFile);
 const typographyContent = fs.existsSync(typographyFile) ? fs.readFileSync(typographyFile, 'utf8') : null;
+
+console.log('🎯 Διαβάζω icons tokens από:', iconsFile);
+const iconsContent = fs.existsSync(iconsFile) ? fs.readFileSync(iconsFile, 'utf8') : null;
 
 // Εξάγει hex τιμές από το TypeScript αρχείο
 function extractHexValues(content) {
@@ -236,24 +240,120 @@ function extractTypographyValues(content) {
   return cssVariables;
 }
 
+// Εξάγει icons τιμές από το TypeScript αρχείο
+function extractIconValues(content) {
+  const cssVariables = [];
+
+  if (!content) {
+    console.log('🚨 Δεν βρέθηκε περιεχόμενο icons αρχείου');
+    return cssVariables;
+  }
+
+  // Map για TypeScript references σε CSS variables
+  const tsToCSS = {
+    'ICON_TOKENS.sizes.xs': 'var(--layera-spacing-4)',
+    'ICON_TOKENS.sizes.md': 'var(--layera-spacing-5)',
+    'ICON_TOKENS.sizes.lg': 'var(--layera-spacing-8)',
+    'ICON_TOKENS.colors.primary': 'var(--layera-color-warning-main)',
+    'ICON_TOKENS.colors.secondary': 'var(--layera-color-secondary-600)',
+    'ICON_TOKENS.colors.success': 'var(--layera-color-success-main)',
+    'ICON_TOKENS.colors.warning': 'var(--layera-color-warning-main)',
+    'ICON_TOKENS.colors.danger': 'var(--layera-color-error-main)',
+    'ICON_TOKENS.colors.info': 'var(--layera-color-info-main)',
+    'ICON_TOKENS.colors.neutral': 'var(--layera-color-secondary-600)',
+    'ICON_TOKENS.interactive.opacity.default': '1',
+    'ICON_TOKENS.interactive.opacity.hover': '0.8',
+    'ICON_TOKENS.interactive.opacity.active': '0.6',
+    'ICON_TOKENS.interactive.opacity.disabled': '0.4',
+    'ICON_TOKENS.interactive.scale.default': '1',
+    'ICON_TOKENS.interactive.scale.hover': '1.05',
+    'ICON_TOKENS.interactive.scale.active': '0.95',
+    'ICON_TOKENS.interactive.transitions.fast': '150ms ease',
+    'ICON_TOKENS.interactive.transitions.normal': '250ms ease',
+    'ICON_TOKENS.interactive.transitions.slow': '350ms ease',
+    'ICON_TOKENS.accessibility.focusRing.width': 'var(--layera-spacing-1)',
+    'ICON_TOKENS.accessibility.focusRing.color': 'var(--layera-color-info-main)',
+    'ICON_TOKENS.accessibility.contrast.normal': 'normal',
+    'ICON_TOKENS.sizing.padding.xs': 'var(--layera-spacing-1)',
+    'ICON_TOKENS.sizing.padding.sm': 'var(--layera-spacing-2)',
+    'ICON_TOKENS.sizing.padding.md': 'var(--layera-spacing-3)',
+    'ICON_TOKENS.sizing.padding.lg': 'var(--layera-spacing-4)',
+    'ICON_TOKENS.sizing.padding.xl': 'var(--layera-spacing-5)',
+    'ICON_TOKENS.sizing.margin.xs': 'var(--layera-spacing-1)',
+    'ICON_TOKENS.sizing.margin.sm': 'var(--layera-spacing-2)',
+    'ICON_TOKENS.sizing.margin.md': 'var(--layera-spacing-3)',
+    'ICON_TOKENS.sizing.margin.lg': 'var(--layera-spacing-4)',
+    'ICON_TOKENS.sizing.margin.xl': 'var(--layera-spacing-5)',
+  };
+
+  // Απλός line-by-line parsing για ICON_VARIABLES
+  const lines = content.split('\n');
+  let insideIconVariables = false;
+  let braceCount = 0;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    // Αρχή του ICON_VARIABLES object
+    if (line.includes('export const ICON_VARIABLES')) {
+      insideIconVariables = true;
+      braceCount = 0;
+      continue;
+    }
+
+    if (insideIconVariables) {
+      // Μετράω τα braces
+      braceCount += (line.match(/\\{/g) || []).length;
+      braceCount -= (line.match(/\\}/g) || []).length;
+
+      // Αν βρω variable definition - απλό string matching
+      const trimmedLine = line.trim();
+      if (trimmedLine.startsWith("'") && trimmedLine.includes("': ")) {
+        const parts = trimmedLine.split("': ");
+        if (parts.length === 2) {
+          const varName = parts[0].replace(/'/g, '');
+          let varValue = parts[1].replace(/,$/, '').trim();
+
+          // Resolve TypeScript reference to CSS variable
+          if (tsToCSS[varValue]) {
+            varValue = tsToCSS[varValue];
+          }
+
+          cssVariables.push(`  --layera-${varName}: ${varValue};`);
+        }
+      }
+
+      // Αν τελειώσαμε με το object (brace count = -1 σημαίνει το κλείσιμο)
+      if (braceCount < 0) {
+        break;
+      }
+    }
+  }
+
+  console.log(`🎯 Εξήχθησαν ${cssVariables.length} icons variables`);
+  return cssVariables;
+}
+
 // Εξάγει τις CSS variables
 const cssVariables = extractHexValues(colorsContent);
 const spacingVariables = extractSpacingValues(spacingContent);
 const typographyVariables = extractTypographyValues(typographyContent);
+const iconsVariables = extractIconValues(iconsContent);
 
 console.log(`✅ Εξήχθησαν ${cssVariables.length} color variables`);
 console.log(`✅ Εξήχθησαν ${spacingVariables.length} spacing variables`);
 console.log(`✅ Εξήχθησαν ${typographyVariables.length} typography variables`);
+console.log(`✅ Εξήχθησαν ${iconsVariables.length} icons variables`);
 
 // Συνδυάζει όλα τα CSS variables
-const allVariables = [...cssVariables, ...spacingVariables, ...typographyVariables];
+const allVariables = [...cssVariables, ...spacingVariables, ...typographyVariables, ...iconsVariables];
 
 // Δημιουργεί το CSS περιεχόμενο
 const cssContent = `/*
  * 🎨 LAYERA DESIGN TOKENS - AUTO GENERATED
  *
  * ⚠️  DO NOT EDIT MANUALLY
- * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, και core/typography/typography.variables.ts and rebuild
+ * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, και component/icons/icons.variables.ts and rebuild
  * Generated: ${new Date().toISOString()}
  */
 
@@ -266,6 +366,9 @@ ${spacingVariables.join('\n')}
 
   /* 🖋️ TYPOGRAPHY */
 ${typographyVariables.join('\n')}
+
+  /* 🎯 ICONS */
+${iconsVariables.join('\n')}
 }
 
 /* 🎯 Layera Design Tokens System Ready */
@@ -281,6 +384,7 @@ console.log(`   📁 Output: ${outputFile}`);
 console.log(`   🎨 Colors: ${cssVariables.length}`);
 console.log(`   📏 Spacing: ${spacingVariables.length}`);
 console.log(`   🖋️ Typography: ${typographyVariables.length}`);
+console.log(`   🎯 Icons: ${iconsVariables.length}`);
 console.log(`   🎯 Total: ${allVariables.length}`);
 console.log('');
 console.log('✅ Build completed successfully!');

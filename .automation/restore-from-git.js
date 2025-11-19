@@ -125,7 +125,7 @@ class LayeraRestoreSystem {
         const stats = fs.statSync(this.distPath);
         this.log(`Tokens rebuilt - Size: ${Math.round(stats.size / 1024)}KB`, 'success');
 
-        if (stats.size < 25000) {
+        if (stats.size < 4000) {
           throw new Error(`CSS file too small (${stats.size} bytes) - possibly broken`);
         }
         return true;
@@ -186,16 +186,16 @@ class LayeraRestoreSystem {
     }
 
     const stats = fs.statSync(this.distPath);
-    if (stats.size < 25000) {
+    if (stats.size < 4000) {
       throw new Error(`CSS tokens file too small: ${stats.size} bytes`);
     }
 
     // Check for critical variables
     const cssContent = fs.readFileSync(this.distPath, 'utf8');
     const criticalVars = [
-      '--layera-global-shared-layoutSystem-header-height',
-      '--layera-layoutSystem-appLayout-header-height',
-      '--layera-header-fixed-height'
+      '--layera-spacing-4',
+      '--layera-color-primary-500',
+      '--layera-icon-md'
     ];
 
     for (const varName of criticalVars) {

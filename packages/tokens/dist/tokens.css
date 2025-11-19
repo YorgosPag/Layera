@@ -2,8 +2,8 @@
  * 🎨 LAYERA DESIGN TOKENS - AUTO GENERATED
  *
  * ⚠️  DO NOT EDIT MANUALLY
- * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, και core/typography/typography.variables.ts and rebuild
- * Generated: 2025-11-19T18:28:41.004Z
+ * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, και component/icons/icons.variables.ts and rebuild
+ * Generated: 2025-11-19T19:23:29.865Z
  */
 
 :root {
@@ -75,6 +75,41 @@
 
   /* 🖋️ TYPOGRAPHY */
 
+
+  /* 🎯 ICONS */
+  --layera-icon-xs: var(--layera-spacing-4);
+  --layera-icon-md: var(--layera-spacing-5);
+  --layera-icon-lg: var(--layera-spacing-8);
+  --layera-icon-colorPrimary: var(--layera-color-warning-main);
+  --layera-icon-colorSecondary: var(--layera-color-secondary-600);
+  --layera-icon-colorSuccess: var(--layera-color-success-main);
+  --layera-icon-colorWarning: var(--layera-color-warning-main);
+  --layera-icon-colorDanger: var(--layera-color-error-main);
+  --layera-icon-colorInfo: var(--layera-color-info-main);
+  --layera-icon-colorNeutral: var(--layera-color-secondary-600);
+  --layera-iconInteractive-interactive-opacity-default: 1;
+  --layera-iconInteractive-interactive-opacity-hover: 0.8;
+  --layera-iconInteractive-interactive-opacity-active: 0.6;
+  --layera-iconInteractive-interactive-opacity-disabled: 0.4;
+  --layera-iconInteractive-interactive-scale-default: 1;
+  --layera-iconInteractive-interactive-scale-hover: 1.05;
+  --layera-iconInteractive-interactive-scale-active: 0.95;
+  --layera-iconInteractive-interactive-transition-fast: 150ms ease;
+  --layera-iconInteractive-interactive-transition-normal: 250ms ease;
+  --layera-iconInteractive-interactive-transition-slow: 350ms ease;
+  --layera-iconInteractive-accessibility-focusRing-width: var(--layera-spacing-1);
+  --layera-iconInteractive-accessibility-focusRing-color: var(--layera-color-info-main);
+  --layera-iconInteractive-accessibility-contrast-normal: normal;
+  --layera-iconInteractive-sizing-padding-xs: var(--layera-spacing-1);
+  --layera-iconInteractive-sizing-padding-sm: var(--layera-spacing-2);
+  --layera-iconInteractive-sizing-padding-md: var(--layera-spacing-3);
+  --layera-iconInteractive-sizing-padding-lg: var(--layera-spacing-4);
+  --layera-iconInteractive-sizing-padding-xl: var(--layera-spacing-5);
+  --layera-iconInteractive-sizing-margin-xs: var(--layera-spacing-1);
+  --layera-iconInteractive-sizing-margin-sm: var(--layera-spacing-2);
+  --layera-iconInteractive-sizing-margin-md: var(--layera-spacing-3);
+  --layera-iconInteractive-sizing-margin-lg: var(--layera-spacing-4);
+  --layera-iconInteractive-sizing-margin-xl: var(--layera-spacing-5);
 }
 
 /* 🎯 Layera Design Tokens System Ready */
