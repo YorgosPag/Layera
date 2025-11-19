@@ -3,7 +3,7 @@
  *
  * ⚠️  DO NOT EDIT MANUALLY
  * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts, core/motion/motion.variables.ts και component/icons/icons.variables.ts and rebuild
- * Generated: 2025-11-19T20:54:53.787Z
+ * Generated: 2025-11-19T21:14:11.859Z
  */
 
 :root {
@@ -96,6 +96,7 @@
   --layera-border-radius-full: 9999px;
   --layera-border-radius-circle: 50%;
   --layera-border-radius-md: 6px;
+  --layera-border-radius-lg: 8px;
   --layera-border-style-none: none;
   --layera-border-style-solid: solid;
   --layera-border-style-dashed: dashed;
@@ -107,6 +108,7 @@
   --layera-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --layera-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   --layera-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --layera-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25)',    // από modal.css;
   --layera-shadow-xxl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 
   /* ⚡ MOTION */
@@ -126,6 +128,7 @@
   --layera-transition-fast: 0.1s ease-out;
   --layera-transition-normal: 0.2s ease-out;
   --layera-transition-slow: 0.3s ease-out;
+  --layera-transition-all: all 0.2s ease-out',    // από modal.css;
 
   /* 🎯 ICONS */
   --layera-icon-xs: var(--layera-spacing-4);
@@ -179,6 +182,9 @@
   --layera-background-warning: var(--layera-color-warning-light);
   --layera-background-error: var(--layera-color-error-light);
   --layera-background-info: var(--layera-color-info-light);
+  --layera-color-surface-primary: var(--layera-color-neutral-white);
+  --layera-color-surface-dark: var(--layera-color-secondary-800);
+  --layera-color-semantic-overlay-dark: `rgba(0, 0, 0, 0.5)`,       // Dark overlay (από modal.css);
 
   /* ✏️ SEMANTIC TEXT */
   --layera-text-primary: var(--layera-color-neutral-dark);

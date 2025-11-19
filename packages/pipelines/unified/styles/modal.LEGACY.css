@@ -29,7 +29,7 @@
   width: var(--layera-shared-dimensions-viewport-width);
   height: var(--layera-shared-dimensions-viewport-height);
   background-color: var(--layera-color-semantic-overlay-dark);
-  z-index: var(--la-z-modal-overlay, 1000);
+  z-index: var(--layera-modal-backdrop-z-index);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -127,7 +127,7 @@
 /* Card Styles - Progressive sizing */
 .unified-pipeline-modal .layera-unified-card {
   border: var(--layera-global-spacing-0-5) solid var(--layera-color-semantic-info-primary);
-  border-radius: var(--la-radius-md, var(--layera-global-spacing-2));
+  border-radius: var(--layera-radius-md);
   background-color: var(--layera-color-surface-primary);
   transition: var(--layera-transition-all);
   cursor: pointer;
@@ -152,11 +152,11 @@
 @media screen and (width >= var(--layera-responsive-breakpoint-desktop)) {
   .unified-pipeline-modal .layera-unified-card {
     min-height: var(--layera-global-spacing-20);
-    margin: var(--la-spacing-sm, var(--layera-global-spacing-1-5)) 0;
-    padding: var(--la-spacing-sm, var(--layera-global-spacing-2-5));
+    margin: var(--layera-global-spacing-1-5) 0;
+    padding: var(--layera-global-spacing-2-5);
 
     /* Enhanced panel card styling */
-    border: var(--layera-global-spacing-0-25) solid var(--la-color-primary, hsl(210deg 100% 50%));
+    border: var(--layera-global-spacing-0-25) solid var(--layera-color-primary-500);
     border-radius: var(--layera-global-spacing-2-5);
     transition: var(--layera-transition-all);
     cursor: pointer;
@@ -164,7 +164,7 @@
 
   .unified-pipeline-modal .layera-unified-card:hover {
     border-color: var(--layera-color-semantic-info-dark);
-    background-color: var(--la-color-primary-light, hsl(210deg 80% 95%));
+    background-color: var(--layera-color-primary-100);
     transform: translateY(calc(-1 * var(--layera-global-spacing-0-25)));
     box-shadow: var(--layera-shadow-md);
   }
@@ -181,10 +181,10 @@
 
 /* Typography - Progressive scaling */
 .unified-pipeline-modal .card-title {
-  font-size: var(--la-text-base, var(--layera-global-spacing-3-5));
-  line-height: var(--la-leading-tight, 1.3);
-  margin-bottom: var(--la-spacing-xs, var(--layera-global-spacing-1-5));
-  font-weight: var(--la-font-bold, 600);
+  font-size: var(--layera-fontSize-base);
+  line-height: var(--layera-lineHeight-tight);
+  margin-bottom: var(--layera-global-spacing-1-5);
+  font-weight: var(--layera-fontWeight-semibold);
   overflow-wrap: break-word;
   hyphens: auto;
   white-space: normal;
@@ -193,8 +193,8 @@
 }
 
 .unified-pipeline-modal .card-text {
-  font-size: var(--la-text-sm, var(--layera-global-spacing-2-5));
-  line-height: var(--la-leading-relaxed, 1.4);
+  font-size: var(--layera-fontSize-sm);
+  line-height: var(--layera-lineHeight-relaxed);
   color: var(--layera-color-text-secondary);
   overflow-wrap: break-word;
   white-space: normal;
@@ -213,7 +213,7 @@
     font-size: var(--layera-global-spacing-4);
     line-height: var(--la-leading-snug);
     margin-bottom: var(--layera-global-spacing-1-5);
-    font-weight: 600;
+    font-weight: var(--layera-fontWeight-semibold);
     color: var(--layera-color-text-primary);
   }
 
@@ -242,8 +242,8 @@
 .unified-pipeline-modal .layera-unified-card svg,
 .unified-pipeline-modal .layera-unified-card .layera-icon {
   flex-shrink: var(--la-size-0);
-  width: var(--la-icon-md, var(--layera-global-spacing-5));
-  height: var(--la-icon-md, var(--layera-global-spacing-5));
+  width: var(--layera-global-spacing-5);
+  height: var(--layera-global-spacing-5);
   margin-top: var(--layera-global-spacing-0-5);
 }
 
@@ -284,7 +284,7 @@
 .unified-pipeline-modal .layera-unified-card > div[class*="flex"],
 .unified-pipeline-modal .layera-unified-card > div > div[class*="flex"] {
   align-items: flex-start;
-  gap: var(--la-spacing-sm, var(--layera-global-spacing-2));
+  gap: var(--layera-global-spacing-2);
   width: 100%;
   min-height: var(--layera-global-spacing-14);
   display: flex;

@@ -4,7 +4,7 @@ import { ColorPaletteWithAlpha, ColorCategory } from './useColorState';
  * ARXES COMPLIANT CSS Variables Management Hook
  *
  * ✅ ZERO CSS injection - NO document.createElement('style')
- * ✅ ZERO inline styles - NO style={{ }}
+ * ✅ ZERO inline styles - NO style
  * ✅ ZERO DOM manipulation - NO document.head.appendChild()
  * ✅ ZERO style.textContent assignments
  *

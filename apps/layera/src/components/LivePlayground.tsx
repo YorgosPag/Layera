@@ -246,19 +246,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   return (
     <Box
       data-layera-playground="true"
-      style={{
-        position: 'fixed',
-        top: 'var(--layera-header-fixed-height)',
-        left: 'var(--layera-spacing-0)',
-        right: 'var(--layera-spacing-0)',
-        bottom: 'var(--layera-spacing-0)',
-        width: 'var(--layera-spacing-viewport-full-width)',
-        height: 'calc(var(--layera-spacing-viewport-full-height) - var(--layera-header-fixed-height))',
-        zIndex: 'var(--layera-layout-z-emergency)',
-        overflow: 'auto',
-        padding: 'var(--layera-spacing-6) var(--layera-spacing-4)',
-        backgroundColor: 'var(--layera-color-semantic-success-primary)'
-      }}
+      className="layera-playground-fullscreen"
       data-type="fullscreen"
     >
       <PlaygroundHeader

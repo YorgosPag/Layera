@@ -142,51 +142,24 @@ export const AppContent: React.FC = () => {
 
       {/* 🎯 TEST: Colors + Spacing tokens - ΜΟΝΟ CSS CUSTOM PROPERTIES */}
       <Box
-        className="layera-layout"
-        style={{
-          backgroundColor: 'var(--layera-color-primary-500)',
-          color: 'var(--layera-color-neutral-white)',
-          border: `var(--layera-spacing-micro) solid var(--layera-color-primary-700)`,
-          padding: 'var(--layera-spacing-large)',
-          margin: 'var(--layera-spacing-medium)',
-          borderRadius: 'var(--layera-spacing-small)',
-          position: 'fixed',
-          top: 'var(--layera-spacing-16)',
-          right: 'var(--layera-spacing-medium)',
-          zIndex: 100,
-          // ❌ ΑΦΑΙΡΕΘΗΚΑΝ σκληρές τιμές - χρειάζονται typography tokens!
-        }}
+        className="layera-layout layera-test-colors-box"
       >
         🎯 COLORS + SPACING TOKENS!
         <br />
-        <small style={{ marginTop: 'var(--layera-spacing-small)' }}>
+        <small className="layera-margin-top-small">
           Χρώματα & Spacing από tokens!
         </small>
       </Box>
 
       {/* 🗺️ MAP με νέα layout tokens - DEBUG MODE */}
       <Box
-        className="layera-layout"
-        style={{
-          width: 'calc(var(--layera-layoutSystem-viewport-width) - var(--layera-spacing-large))',
-          height: 'calc(var(--layera-layoutSystem-viewport-height) - var(--layera-header-fixed-height) - var(--layera-spacing-medium))',
-          position: 'relative',
-          marginTop: 'var(--layera-spacing-medium)',
-          backgroundColor: 'var(--layera-color-neutral-light)',
-          border: `var(--layera-spacing-micro) solid var(--layera-color-primary-500)`,
-        }}
+        className="layera-layout layera-map-container"
       >
         <MapContainer
-          className="layera-map--fullscreen"
+          className="layera-map--fullscreen layera-map-base"
           initialLat={MAP_DEFAULTS.CENTER[0]}
           initialLng={MAP_DEFAULTS.CENTER[1]}
           initialZoom={MAP_DEFAULTS.ZOOM}
-          style={{
-            width: '100%',
-            height: '100%',
-            position: 'relative',
-            zIndex: 1,
-          }}
         />
       </Box>
 
