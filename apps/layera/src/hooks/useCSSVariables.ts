@@ -1,4 +1,4 @@
-import { ColorPaletteWithAlpha, ColorCategory, hexToColorWithAlpha } from './useColorState';
+import { ColorPaletteWithAlpha, ColorCategory } from './useColorState';
 
 /**
  * ARXES COMPLIANT CSS Variables Management Hook
@@ -21,11 +21,7 @@ import { ColorPaletteWithAlpha, ColorCategory, hexToColorWithAlpha } from './use
  * - 100% ARXES compliant
  */
 
-interface TokenVariableMap {
-  [category: string]: {
-    [colorKey: string]: string;
-  };
-}
+// TokenVariableMap interface removed as it was unused
 
 export interface CSSVariablesActions {
   ensureCSSVariablesExist: () => void;

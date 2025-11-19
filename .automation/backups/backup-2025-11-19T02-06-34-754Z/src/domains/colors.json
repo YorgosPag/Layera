@@ -1,0 +1,305 @@
+{
+  "colors": {
+    "comment": "🎨 Enterprise Color System - Centralized color management",
+    "theme": {
+      "light": {
+        "comment": "Light theme color palette",
+        "background": {
+          "primary": {
+            "value": "var(--layera-color-neutral-white)",
+            "comment": "Κύριο φόντο - reference σε neutral white"
+          },
+          "secondary": {
+            "value": "var(--layera-color-semantic-neutral-light)",
+            "comment": "Δευτερεύον φόντο - ελαφρύ γκρι (master reference)"
+          }
+        },
+        "surface": {
+          "primary": {
+            "value": "var(--layera-color-neutral-white)",
+            "comment": "Primary surface - reference σε neutral white"
+          },
+          "secondary": {
+            "value": "var(--layera-color-semantic-neutral-light)",
+            "comment": "Secondary surface για cards"
+          },
+          "overlay": {
+            "value": "var(--layera-color-semantic-overlay-dark)",
+            "comment": "Modal overlay background"
+          }
+        },
+        "border": {
+          "primary": {
+            "value": "var(--layera-color-neutral-slate-200)",
+            "comment": "Primary borders"
+          },
+          "secondary": {
+            "value": "var(--layera-color-semantic-neutral-light)",
+            "comment": "Secondary borders"
+          }
+        },
+        "header": {
+          "background": {
+            "value": "var(--layera-color-neutral-white)",
+            "comment": "Header background - reference σε neutral white"
+          },
+          "text": {
+            "value": "var(--layera-color-semantic-neutral-dark)",
+            "comment": "Header text color"
+          },
+          "border": {
+            "value": "var(--layera-color-neutral-slate-200)",
+            "comment": "Header border"
+          }
+        },
+        "accent": {
+          "blue": {
+            "value": "var(--layera-color-semantic-info-primary)",
+            "comment": "Blue accent color - consolidated reference to info"
+          },
+          "green": {
+            "value": "var(--layera-color-semantic-success-primary)",
+            "comment": "Green accent color - consolidated reference to success"
+          },
+          "purple": {
+            "value": "var(--layera-color-semantic-info-primary)",
+            "comment": "Purple accent color"
+          }
+        }
+      },
+      "dark": {
+        "comment": "Dark theme color palette",
+        "background": {
+          "primary": {
+            "value": "var(--layera-color-neutral-slate-900)",
+            "comment": "Κύριο φόντο - deep midnight"
+          },
+          "secondary": {
+            "value": "var(--layera-color-semantic-neutral-dark)",
+            "comment": "Δευτερεύον φόντο - dark slate"
+          }
+        },
+        "surface": {
+          "value": "var(--layera-color-semantic-error-primary)",
+          "comment": "Generic surface - ΜΙΑ ΚΑΙ ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ - ΚΟΚΚΙΝΟ ΤΕΣΤ",
+          "primary": {
+            "value": "var(--layera-color-semantic-error-primary)",
+            "comment": "Primary surface για cards/modals - ΚΟΚΚΙΝΟ ΤΕΣΤ"
+          },
+          "secondary": {
+            "value": "var(--layera-color-semantic-neutral-dark)",
+            "comment": "Secondary surface για cards"
+          },
+          "overlay": {
+            "value": "var(--layera-color-semantic-overlay-darker)",
+            "comment": "Modal overlay background - πιο σκούρο για dark mode"
+          }
+        },
+        "text": {
+          "primary": {
+            "value": "var(--layera-color-neutral-slate-100)",
+            "comment": "Primary text - clean white"
+          },
+          "secondary": {
+            "value": "var(--layera-color-semantic-neutral-light)",
+            "comment": "Secondary text - soft silver"
+          },
+          "onAccent": {
+            "value": "var(--layera-color-neutral-slate-900)",
+            "comment": "Text πάνω σε accent buttons - σκούρο"
+          }
+        },
+        "border": {
+          "primary": {
+            "value": "var(--layera-color-neutral-slate-600)",
+            "comment": "Primary borders dark"
+          },
+          "secondary": {
+            "value": "var(--layera-color-neutral-slate-500)",
+            "comment": "Secondary borders dark"
+          }
+        },
+        "header": {
+          "background": {
+            "value": "var(--layera-color-semantic-error-primary)",
+            "comment": "Header background - ΚΟΚΚΙΝΟ ΤΕΣΤ - ΜΙΑ ΚΑΙ ΜΟΝΑΔΙΚΗ ΠΗΓΗ ΑΛΗΘΕΙΑΣ"
+          },
+          "text": {
+            "value": "var(--layera-color-neutral-slate-100)",
+            "comment": "Header text color"
+          },
+          "border": {
+            "value": "var(--layera-color-neutral-slate-600)",
+            "comment": "Header border"
+          }
+        },
+        "accent": {
+          "blue": {
+            "value": "var(--layera-color-neutral-blue-400)",
+            "comment": "Blue accent color - πιο ζωντανό για dark mode"
+          },
+          "green": {
+            "value": "var(--layera-color-neutral-green-400)",
+            "comment": "Green accent color - πιο ζωντανό για dark mode"
+          },
+          "purple": {
+            "value": "var(--layera-color-neutral-purple-400)",
+            "comment": "Purple accent color - πιο ζωντανό για dark mode"
+          }
+        }
+      }
+    },
+    "border": {
+      "primary": {
+        "value": "var(--layera-color-border-primary, #e5e5e5)",
+        "comment": "Primary border color - theme aware"
+      }
+    },
+    "transparent": {
+      "value": "transparent",
+      "comment": "Transparent color"
+    },
+    "neutral": {
+      "comment": "🔲 Neutral Color System - Pure colors for maximum compatibility",
+      "white": {
+        "value": "#ffffff",
+        "comment": "Pure white - single source of truth for all white references"
+      },
+      "black": {
+        "value": "#000000",
+        "comment": "Pure black - single source of truth for all black references"
+      },
+      "slate": {
+        "50": {
+          "value": "#f8fafc",
+          "comment": "Very light slate - for subtle backgrounds"
+        },
+        "100": {
+          "value": "#f1f5f9",
+          "comment": "Light slate - for tertiary backgrounds"
+        },
+        "200": {
+          "value": "#e2e8f0",
+          "comment": "Light gray - for borders and dividers"
+        },
+        "300": {
+          "value": "#cbd5e1",
+          "comment": "Medium light gray"
+        },
+        "400": {
+          "value": "#94a3b8",
+          "comment": "Medium gray - for tertiary text"
+        },
+        "500": {
+          "value": "#64748b",
+          "comment": "Medium dark gray"
+        },
+        "600": {
+          "value": "#475569",
+          "comment": "Dark gray - for secondary text and borders"
+        },
+        "700": {
+          "value": "#334155",
+          "comment": "Very dark gray"
+        },
+        "800": {
+          "value": "#1e293b",
+          "comment": "Very dark slate - for primary text"
+        },
+        "900": {
+          "value": "#0f172a",
+          "comment": "Nearly black - for dark backgrounds"
+        }
+      },
+      "blue": {
+        "400": {
+          "value": "#60a5fa",
+          "comment": "Light blue - for dark theme accent"
+        },
+        "500": {
+          "value": "#3b82f6",
+          "comment": "Primary blue - consolidated with semantic info"
+        },
+        "600": {
+          "value": "#2563eb",
+          "comment": "Medium blue"
+        }
+      },
+      "green": {
+        "400": {
+          "value": "#34d399",
+          "comment": "Light green - for dark theme success"
+        },
+        "500": {
+          "value": "#10b981",
+          "comment": "Primary green - consolidated with semantic success"
+        }
+      },
+      "purple": {
+        "400": {
+          "value": "#a78bfa",
+          "comment": "Light purple - for dark theme accents"
+        },
+        "600": {
+          "value": "#8b5cf6",
+          "comment": "Medium purple"
+        }
+      },
+      "cyan": {
+        "500": {
+          "value": "#06b6d4",
+          "comment": "Primary cyan - for focus states"
+        }
+      },
+      "emerald": {
+        "100": {
+          "value": "#d1fae5",
+          "comment": "Very light emerald - for success backgrounds"
+        }
+      },
+      "amber": {
+        "100": {
+          "value": "#fef3c7",
+          "comment": "Very light amber - for warning backgrounds"
+        }
+      }
+    },
+    "semantic": {
+      "comment": "🎯 Semantic Color System - Single source for success/error/warning/info",
+      "neutral": {
+        "light": {
+          "value": "var(--layera-color-neutral-slate-50)",
+          "comment": "Light neutral - for subtle backgrounds"
+        },
+        "dark": {
+          "value": "var(--layera-color-neutral-slate-800)",
+          "comment": "Dark neutral - for primary text"
+        }
+      },
+      "success": {
+        "primary": {
+          "value": "var(--layera-color-neutral-green-500)",
+          "comment": "Success green - single source of truth for all success colors"
+        }
+      },
+      "error": {
+        "primary": {
+          "value": "#ef4444",
+          "comment": "Error red - single source of truth for all error colors"
+        }
+      },
+      "warning": {
+        "primary": {
+          "value": "#f59e0b",
+          "comment": "Warning orange - single source of truth for all warning colors"
+        }
+      },
+      "info": {
+        "primary": {
+          "value": "var(--layera-color-neutral-blue-500)",
+          "comment": "Info blue - single source of truth for all info colors"
+        }
+      }
+    }
+  }
+}

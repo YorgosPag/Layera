@@ -19,7 +19,6 @@ interface OptimizedColorPickerProps {
   onPreview?: (value: string) => void; // Real-time preview για dragging
   className?: string;
   throttleMs?: number;
-  disableThrottle?: boolean;
 }
 
 export const OptimizedColorPicker: React.FC<OptimizedColorPickerProps> = ({

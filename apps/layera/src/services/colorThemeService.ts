@@ -6,7 +6,7 @@
  * για πλήρη enterprise integration
  */
 
-import { saveTheme, generateThemeId, DEFAULT_THEME_COLORS, type ThemeColors, type UserTheme } from './theme';
+import { saveTheme, generateThemeId, DEFAULT_THEME_COLORS, type ThemeColors } from './theme';
 import type { LayeraUser } from '@layera/auth-bridge';
 
 // Types που αντιστοιχούν στο ColorsSection

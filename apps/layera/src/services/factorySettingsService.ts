@@ -13,13 +13,10 @@ import {
   updateDoc,
   deleteDoc,
   getDocs,
-  query,
-  where,
   Timestamp
 } from 'firebase/firestore';
 import { getDb, getAuthCurrentUser } from '../firebase';
 import {
-  FACTORY_COLOR_SETTINGS,
   AVAILABLE_PALETTES,
   PaletteType,
   loadFactorySettings,
