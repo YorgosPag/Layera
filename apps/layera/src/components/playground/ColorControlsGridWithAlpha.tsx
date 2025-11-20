@@ -28,9 +28,9 @@ interface ColorControlsGridWithAlphaProps extends ColorControlsProps {
 
 export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProps> = React.memo(({
   currentColors,
-  currentSetters,
-  startPreview,
-  colorCategory,
+  currentSetters = {},
+  startPreview = () => {},
+  colorCategory = '',
   alphaEnabled = false,
   onAlphaToggle,
   buttonState
@@ -149,17 +149,18 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
   const handleColorChange = (colorKey: string, newValue: ColorWithAlpha | string) => {
     const setter = currentSetters[colorKey];
     if (setter) {
-      setter(newValue);
+      // Convert to string for compatibility
+      const stringValue = typeof newValue === 'string' ? newValue :
+                         (localAlphaEnabled ? newValue.rgba : newValue.hex);
+      setter(stringValue);
 
       // Trigger preview
-      const previewValue = typeof newValue === 'string' ? newValue :
-                          (localAlphaEnabled ? newValue.rgba : newValue.hex);
-      startPreview(colorKey, previewValue);
+      startPreview(colorKey, stringValue);
     }
   };
 
   return (
-    <Box>
+    <Box className="layera-card layera-padding--lg layera-bg-surface--warning layera-border-color--warning layera-border-width--2">
       {/* Alpha Mode Toggle - Compact Header */}
       <Box className="layera-text--align-center layera-margin-bottom--lg">
         <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
@@ -186,7 +187,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
 
           if (localAlphaEnabled) {
             // Alpha Mode - Use ColorPickerWithAlpha
-            const colorWithAlpha = ensureColorWithAlpha(colorValue);
+            const colorWithAlpha = ensureColorWithAlpha(colorValue as string);
 
             return (
               <ColorPickerWithAlpha
@@ -204,7 +205,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
             );
           } else {
             // HEX Mode - Use OptimizedColorPicker (legacy)
-            const hexValue = extractHex(colorValue);
+            const hexValue = extractHex(colorValue as string);
 
             return (
               <OptimizedColorPicker

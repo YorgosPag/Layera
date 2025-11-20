@@ -2,6 +2,7 @@ import React from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
+import { UnifiedCard } from '@layera/cards';
 import { PaletteIcon, LayersIcon, EditIcon, PolygonIcon, CompassIcon, CheckIcon, MonitorIcon, BuildingIcon, ChartIcon } from '@layera/icons';
 import { BorderWidthControl } from './shared/BorderWidthControl';
 import { BorderRadiusControl } from './shared/BorderRadiusControl';
@@ -33,7 +34,7 @@ import { ColorCategoryProps } from '../../types/unified-interfaces';
 
 import type { ButtonState } from '../../hooks/useButtonState.js';
 
-interface ExtendedColorCategorySelectionProps extends ColorCategoryProps {
+interface ExtendedColorCategorySelectionProps {
   colorHookState: ColorState;
   colorActions: ColorStateActions;
   borderWidth: number;
@@ -139,109 +140,117 @@ export const ColorCategorySelection: React.FC<ExtendedColorCategorySelectionProp
 
   return (
     <Box className="layera-grid--auto-fit-280 layera-margin-bottom--xl">
-      {/* Color Category Selection */}
-      <Box className="layera-card layera-padding--lg layera-text--align-center">
-        <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
-          <CheckIcon size="sm" /> Επιλογή Κατηγορίας Αντικειμένων
-        </h3>
-        <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center">
-          <Button
-            variant={colorHookState.colorCategory === 'backgrounds' ? 'primary' : 'outline'}
-            size={buttonState?.size || 'sm'}
-            onClick={() => colorActions.setColorCategory('backgrounds')}
-            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.colorCategory === 'backgrounds' ? 'primary' : 'outline'}`}
-          >
-            <LayersIcon size="sm" /> Backgrounds
-          </Button>
-          <Button
-            variant={colorHookState.colorCategory === 'text' ? 'primary' : 'outline'}
-            size={buttonState?.size || 'sm'}
-            onClick={() => colorActions.setColorCategory('text')}
-            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.colorCategory === 'text' ? 'primary' : 'outline'}`}
-          >
-            <EditIcon size="sm" /> Text
-          </Button>
-          <Button
-            variant={colorHookState.colorCategory === 'borders' ? 'primary' : 'outline'}
-            size={buttonState?.size || 'sm'}
-            onClick={() => colorActions.setColorCategory('borders')}
-            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.colorCategory === 'borders' ? 'primary' : 'outline'}`}
-          >
-            <PolygonIcon size="sm" /> Borders
-          </Button>
-        </Box>
-        <Text className="layera-typography layera-margin-top--sm" data-size="sm" data-color="secondary">
-          Επιλέξτε ποια αντικείμενα θα επηρεάσουν οι αλλαγές χρωμάτων
-        </Text>
-      </Box>
+      {/* #1: Επιλογή Κατηγορίας Αντικειμένων (Card 1) */}
+      <UnifiedCard
+        config={{
+          id: 'color-category-selection',
+          type: 'selection',
+          title: 'Επιλογή Κατηγορίας Αντικειμένων',
+          description: 'Επιλέξτε ποια αντικείμενα θα επηρεάσουν οι αλλαγές χρωμάτων',
+          icon: <CheckIcon size="sm" />,
+          variant: 'elevated',
+          content: (
+            <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center">
+              <Button
+                variant={colorHookState.colorCategory === 'backgrounds' ? 'primary' : 'outline'}
+                size={buttonState?.size || 'sm'}
+                onClick={() => colorActions.setColorCategory('backgrounds')}
+                className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.colorCategory === 'backgrounds' ? 'primary' : 'outline'}`}
+              >
+                <LayersIcon size="sm" /> Backgrounds
+              </Button>
+              <Button
+                variant={colorHookState.colorCategory === 'text' ? 'primary' : 'outline'}
+                size={buttonState?.size || 'sm'}
+                onClick={() => colorActions.setColorCategory('text')}
+                className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.colorCategory === 'text' ? 'primary' : 'outline'}`}
+              >
+                <EditIcon size="sm" /> Text
+              </Button>
+              <Button
+                variant={colorHookState.colorCategory === 'borders' ? 'primary' : 'outline'}
+                size={buttonState?.size || 'sm'}
+                onClick={() => colorActions.setColorCategory('borders')}
+                className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.colorCategory === 'borders' ? 'primary' : 'outline'}`}
+              >
+                <PolygonIcon size="sm" /> Borders
+              </Button>
+            </Box>
+          )
+        }}
+      />
 
-      {/* Element Type Selection - For All Categories */}
-      <Box className="layera-card layera-padding--lg layera-text--align-center">
-        <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
-          <PolygonIcon size="sm" /> Τύπος Στοιχείων για {colorHookState.colorCategory === 'backgrounds' ? 'Φόντα' : colorHookState.colorCategory === 'text' ? 'Κείμενα' : 'Περιγράμματα'}
-        </h3>
-        <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center">
-          <Button
-            variant={colorHookState.elementType === 'cards' ? 'primary' : 'outline'}
-            size={buttonState?.size || 'sm'}
-            onClick={() => colorActions.setElementType('cards')}
-            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.elementType === 'cards' ? 'primary' : 'outline'}`}
-          >
-            <LayersIcon size="sm" /> Κάρτες
-          </Button>
-          <Button
-            variant={colorHookState.elementType === 'modals' ? 'primary' : 'outline'}
-            size={buttonState?.size || 'sm'}
-            onClick={() => colorActions.setElementType('modals')}
-            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.elementType === 'modals' ? 'primary' : 'outline'}`}
-          >
-            <MonitorIcon size="sm" /> Modals
-          </Button>
-          <Button
-            variant={colorHookState.elementType === 'layout' ? 'primary' : 'outline'}
-            size={buttonState?.size || 'sm'}
-            onClick={() => colorActions.setElementType('layout')}
-            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.elementType === 'layout' ? 'primary' : 'outline'}`}
-          >
-            <BuildingIcon size="sm" /> Layout
-          </Button>
-          <Button
-            variant={colorHookState.elementType === 'headers' ? 'primary' : 'outline'}
-            size={buttonState?.size || 'sm'}
-            onClick={() => colorActions.setElementType('headers')}
-            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.elementType === 'headers' ? 'primary' : 'outline'}`}
-          >
-            <CompassIcon size="sm" /> Headers
-          </Button>
-          <Button
-            variant={colorHookState.elementType === 'buttons' ? 'primary' : 'outline'}
-            size={buttonState?.size || 'sm'}
-            onClick={() => colorActions.setElementType('buttons')}
-            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.elementType === 'buttons' ? 'primary' : 'outline'}`}
-          >
-            <CheckIcon size="sm" /> Πλήκτρα
-          </Button>
-          <Button
-            variant={colorHookState.elementType === 'inputs' ? 'primary' : 'outline'}
-            size={buttonState?.size || 'sm'}
-            onClick={() => colorActions.setElementType('inputs')}
-            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.elementType === 'inputs' ? 'primary' : 'outline'}`}
-          >
-            <EditIcon size="sm" /> Πεδία
-          </Button>
-          <Button
-            variant={colorHookState.elementType === 'tables' ? 'primary' : 'outline'}
-            size={buttonState?.size || 'sm'}
-            onClick={() => colorActions.setElementType('tables')}
-            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.elementType === 'tables' ? 'primary' : 'outline'}`}
-          >
-            <ChartIcon size="sm" /> Πίνακες
-          </Button>
-        </Box>
-        <Text className="layera-typography layera-margin-top--sm" data-size="sm" data-color="secondary">
-          Επιλέξτε ποια στοιχεία θα επηρεάζονται από τα {colorHookState.colorCategory === 'backgrounds' ? 'background' : colorHookState.colorCategory === 'text' ? 'text' : 'border'} χρώματα
-        </Text>
-      </Box>
+      {/* #2: Τύπος Στοιχείου για Περιγράμματα (Card 2) */}
+      <UnifiedCard
+        config={{
+          id: 'element-type-selection',
+          type: 'selection',
+          title: `Τύπος Στοιχείων για ${colorHookState.colorCategory === 'backgrounds' ? 'Φόντα' : colorHookState.colorCategory === 'text' ? 'Κείμενα' : 'Περιγράμματα'}`,
+          description: `Επιλέξτε ποια στοιχεία θα επηρεάζονται από τα ${colorHookState.colorCategory === 'backgrounds' ? 'background' : colorHookState.colorCategory === 'text' ? 'text' : 'border'} χρώματα`,
+          icon: <PolygonIcon size="sm" />,
+          variant: 'outlined',
+          content: (
+            <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center">
+              <Button
+                variant={colorHookState.elementType === 'cards' ? 'primary' : 'outline'}
+                size={buttonState?.size || 'sm'}
+                onClick={() => colorActions.setElementType('cards')}
+                className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.elementType === 'cards' ? 'primary' : 'outline'}`}
+              >
+                <LayersIcon size="sm" /> Κάρτες
+              </Button>
+              <Button
+                variant={colorHookState.elementType === 'modals' ? 'primary' : 'outline'}
+                size={buttonState?.size || 'sm'}
+                onClick={() => colorActions.setElementType('modals')}
+                className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.elementType === 'modals' ? 'primary' : 'outline'}`}
+              >
+                <MonitorIcon size="sm" /> Modals
+              </Button>
+              <Button
+                variant={colorHookState.elementType === 'layout' ? 'primary' : 'outline'}
+                size={buttonState?.size || 'sm'}
+                onClick={() => colorActions.setElementType('layout')}
+                className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.elementType === 'layout' ? 'primary' : 'outline'}`}
+              >
+                <BuildingIcon size="sm" /> Layout
+              </Button>
+              <Button
+                variant={colorHookState.elementType === 'headers' ? 'primary' : 'outline'}
+                size={buttonState?.size || 'sm'}
+                onClick={() => colorActions.setElementType('headers')}
+                className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.elementType === 'headers' ? 'primary' : 'outline'}`}
+              >
+                <CompassIcon size="sm" /> Headers
+              </Button>
+              <Button
+                variant={colorHookState.elementType === 'buttons' ? 'primary' : 'outline'}
+                size={buttonState?.size || 'sm'}
+                onClick={() => colorActions.setElementType('buttons')}
+                className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.elementType === 'buttons' ? 'primary' : 'outline'}`}
+              >
+                <CheckIcon size="sm" /> Πλήκτρα
+              </Button>
+              <Button
+                variant={colorHookState.elementType === 'inputs' ? 'primary' : 'outline'}
+                size={buttonState?.size || 'sm'}
+                onClick={() => colorActions.setElementType('inputs')}
+                className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.elementType === 'inputs' ? 'primary' : 'outline'}`}
+              >
+                <EditIcon size="sm" /> Πεδία
+              </Button>
+              <Button
+                variant={colorHookState.elementType === 'tables' ? 'primary' : 'outline'}
+                size={buttonState?.size || 'sm'}
+                onClick={() => colorActions.setElementType('tables')}
+                className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${colorHookState.elementType === 'tables' ? 'primary' : 'outline'}`}
+              >
+                <ChartIcon size="sm" /> Πίνακες
+              </Button>
+            </Box>
+          )
+        }}
+      />
 
       {/* Button Radius Control - ΜΟΝΟ για backgrounds category με buttons element ΚΑΙ όταν το shape ΔΕΝ είναι rounded */}
       {colorHookState.colorCategory === 'backgrounds' && colorHookState.elementType === 'buttons' && onButtonRadiusChange && buttonState?.shape !== 'rounded' && (
@@ -257,13 +266,25 @@ export const ColorCategorySelection: React.FC<ExtendedColorCategorySelectionProp
 
       {/* Border Width Control - ΜΟΝΟ για borders category */}
       {colorHookState.colorCategory === 'borders' && (
-        <BorderWidthControl
-          value={borderWidth}
-          onChange={onBorderWidthChange}
-          elementType={colorHookState.elementType}
-          className="layera-height--auto layera-text--align-center"
-          onPreview={onPreview}
-          buttonState={buttonState}
+        <UnifiedCard
+          config={{
+            id: 'border-width-control',
+            type: 'data',
+            title: 'Πάχος Περιγραμμάτων',
+            description: `Ρυθμίστε το πάχος των περιγραμμάτων για ${colorHookState.elementType}`,
+            icon: <PolygonIcon size="sm" />,
+            variant: 'info',
+            content: (
+              <BorderWidthControl
+                value={borderWidth}
+                onChange={onBorderWidthChange}
+                elementType={colorHookState.elementType}
+                className="layera-height--auto layera-text--align-center"
+                onPreview={onPreview}
+                buttonState={buttonState}
+              />
+            )
+          }}
         />
       )}
 
@@ -282,12 +303,24 @@ export const ColorCategorySelection: React.FC<ExtendedColorCategorySelectionProp
 
       {/* Font Size Control - ΜΟΝΟ για text κατηγορία */}
       {colorHookState.colorCategory === 'text' && onFontSizeChange && (
-        <FontSizeControl
-          fontSize={fontSize}
-          onFontSizeChange={onFontSizeChange}
-          className="layera-height--auto layera-text--align-center"
-          onPreview={onPreview}
-          buttonState={buttonState}
+        <UnifiedCard
+          config={{
+            id: 'font-size-control',
+            type: 'data',
+            title: 'Μέγεθος Γραμματοσειράς',
+            description: 'Ρυθμίστε το μέγεθος της γραμματοσειράς για κείμενα',
+            icon: <EditIcon size="sm" />,
+            variant: 'filled',
+            content: (
+              <FontSizeControl
+                fontSize={fontSize}
+                onFontSizeChange={onFontSizeChange}
+                className="layera-height--auto layera-text--align-center"
+                onPreview={onPreview}
+                buttonState={buttonState}
+              />
+            )
+          }}
         />
       )}
 
@@ -408,27 +441,51 @@ export const ColorCategorySelection: React.FC<ExtendedColorCategorySelectionProp
       )}
 
 
-      {/* Hover Control - ΜΟΝΟ για interactive elements */}
+      {/* #3: Hover Effects (Card 3) - ΜΟΝΟ για interactive elements */}
       {isInteractiveElement && onHoverEffectChange && (
-        <HoverControl
-          value={hoverEffect}
-          onChange={onHoverEffectChange}
-          elementType={colorHookState.elementType}
-          className="layera-height--auto layera-text--align-center"
-          onPreview={onPreview}
-          buttonState={buttonState}
+        <UnifiedCard
+          config={{
+            id: 'hover-effects-control',
+            type: 'data',
+            title: 'Hover Effects',
+            description: `Ρυθμίστε τα hover effects για ${colorHookState.elementType}`,
+            icon: <CompassIcon size="sm" />,
+            variant: 'success',
+            content: (
+              <HoverControl
+                value={hoverEffect}
+                onChange={onHoverEffectChange}
+                elementType={colorHookState.elementType}
+                className="layera-height--auto layera-text--align-center"
+                onPreview={onPreview}
+                buttonState={buttonState}
+              />
+            )
+          }}
         />
       )}
 
-      {/* Active Control - ΜΟΝΟ για interactive elements */}
+      {/* #4: Active Effects (Card 4) - ΜΟΝΟ για interactive elements */}
       {isInteractiveElement && onActiveEffectChange && (
-        <ActiveControl
-          value={activeEffect}
-          onChange={onActiveEffectChange}
-          elementType={colorHookState.elementType}
-          className="layera-height--auto layera-text--align-center"
-          onPreview={onPreview}
-          buttonState={buttonState}
+        <UnifiedCard
+          config={{
+            id: 'active-effects-control',
+            type: 'data',
+            title: 'Active Effects',
+            description: `Ρυθμίστε τα active effects για ${colorHookState.elementType}`,
+            icon: <CheckIcon size="sm" />,
+            variant: 'warning',
+            content: (
+              <ActiveControl
+                value={activeEffect}
+                onChange={onActiveEffectChange}
+                elementType={colorHookState.elementType}
+                className="layera-height--auto layera-text--align-center"
+                onPreview={onPreview}
+                buttonState={buttonState}
+              />
+            )
+          }}
         />
       )}
     </Box>

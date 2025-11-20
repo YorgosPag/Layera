@@ -141,8 +141,8 @@ export interface BaseColorPickerProps extends BaseComponentProps {
  * Props για color control components
  */
 export interface ColorControlsProps extends BaseComponentProps {
-  currentColors: Record<string, string>;
-  currentSetters?: Record<string, (value: string) => void>;
+  currentColors: any; // Accept both Record<string, string> and ColorPaletteWithAlpha
+  currentSetters?: any; // Accept both Record<string, (value: string) => void> and ColorStateActions
   onColorChange?: (key: string, value: ColorWithAlpha | string) => void;
   startPreview?: (key: string, value: string) => void;
   colorCategory?: string;

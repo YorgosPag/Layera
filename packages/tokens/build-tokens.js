@@ -48,6 +48,7 @@ const feedbackSemanticFile = path.join(srcDir, 'semantic', 'feedback', 'feedback
 // Component tokens αρχεία
 const buttonsComponentFile = path.join(srcDir, 'component', 'buttons', 'buttons.variables.ts');
 const modalComponentFile = path.join(srcDir, 'component', 'modal', 'modal.variables.ts');
+const cardsComponentFile = path.join(srcDir, 'component', 'cards', 'cards.variables.ts');
 const modalClassFile = path.join(srcDir, 'component', 'modal', 'modal.class.ts');
 const layoutComponentFile = path.join(srcDir, 'component', 'layout', 'layout.variables.ts');
 const inputsComponentFile = path.join(srcDir, 'component', 'inputs', 'inputs.variables.ts');
@@ -102,6 +103,8 @@ const buttonsComponentContent = fs.existsSync(buttonsComponentFile) ? fs.readFil
 
 console.log('🏢 Διαβάζω modal component tokens από:', modalComponentFile);
 const modalComponentContent = fs.existsSync(modalComponentFile) ? fs.readFileSync(modalComponentFile, 'utf8') : null;
+console.log('🎯 Διαβάζω cards component tokens από:', cardsComponentFile);
+const cardsComponentContent = fs.existsSync(cardsComponentFile) ? fs.readFileSync(cardsComponentFile, 'utf8') : null;
 
 console.log('🎨 Διαβάζω modal CSS classes από:', modalClassFile);
 const modalClassContent = fs.existsSync(modalClassFile) ? fs.readFileSync(modalClassFile, 'utf8') : null;
@@ -2231,6 +2234,69 @@ function extractDataImportComponentValues(content) {
   return cssVariables;
 }
 
+// Εξάγει cards component τιμές από το TypeScript αρχείο
+function extractCardsComponentValues(content) {
+  const cssVariables = [];
+
+  if (!content) {
+    console.log('🎯 Δεν βρέθηκε περιεχόμενο cards component αρχείου');
+    return cssVariables;
+  }
+
+  // Απλός line-by-line parsing για CARD_VARIABLES
+  const lines = content.split('\n');
+  let insideCardVariables = false;
+  let braceCount = 0;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    // Αρχή του CARD_VARIABLES object
+    if (line.includes('export const CARD_VARIABLES')) {
+      insideCardVariables = true;
+      braceCount = 0;
+      continue;
+    }
+
+    if (insideCardVariables) {
+      // Μετράω τα braces
+      braceCount += (line.match(/\{/g) || []).length;
+      braceCount -= (line.match(/\}/g) || []).length;
+
+      // Αν βρω variable definition - απλό string matching
+      const trimmedLine = line.trim();
+      if (trimmedLine.startsWith("'") && trimmedLine.includes("': ")) {
+        const parts = trimmedLine.split("': ");
+        if (parts.length === 2) {
+          const varName = parts[0].replace(/'/g, '');
+          let varValue = parts[1].replace(/,$/, '').trim();
+
+          // Resolve SPACING_VARIABLES references
+          if (varValue.includes('SPACING_VARIABLES[')) {
+            const ref = varValue.match(/SPACING_VARIABLES\['([^']+)'\]/);
+            if (ref) {
+              varValue = `var(--layera-${ref[1]})`;
+            }
+          }
+
+          // Remove quotes από την τιμή
+          varValue = varValue.replace(/^['"]|['"]$/g, '');
+
+          cssVariables.push(`  --layera-${varName}: ${varValue};`);
+        }
+      }
+
+      // Τέλος του CARD_VARIABLES object
+      if (braceCount <= 0 && trimmedLine.includes('} as const;')) {
+        break;
+      }
+    }
+  }
+
+  console.log(`🎯 Εξήχθησαν ${cssVariables.length} cards component variables`);
+  return cssVariables;
+}
+
 // Εξάγει CSS από LAYERA_TOOLTIP_CSS constant
 function extractTooltipCSS(content) {
   if (!content) return '';
@@ -2260,6 +2326,7 @@ const feedbackSemanticVariables = extractFeedbackSemanticValues(feedbackSemantic
 // Εξάγει τις component CSS variables
 const buttonsComponentVariables = extractButtonsComponentValues(buttonsComponentContent);
 const modalComponentVariables = extractModalComponentValues(modalComponentContent);
+const cardsComponentVariables = extractCardsComponentValues(cardsComponentContent);
 const utilitiesVariables = extractUtilitiesValues(utilitiesContent);
 const layoutComponentVariables = extractLayoutComponentValues(layoutComponentContent);
 const inputsComponentVariables = extractInputsComponentValues(inputsComponentContent);
@@ -2291,6 +2358,7 @@ console.log(`✅ Εξήχθησαν ${borderSemanticVariables.length} border sem
 console.log(`✅ Εξήχθησαν ${feedbackSemanticVariables.length} feedback semantic variables`);
 console.log(`✅ Εξήχθησαν ${buttonsComponentVariables.length} buttons component variables`);
 console.log(`✅ Εξήχθησαν ${modalComponentVariables.length} modal component variables`);
+console.log(`✅ Εξήχθησαν ${cardsComponentVariables.length} cards component variables`);
 console.log(`✅ Εξήχθησαν ${utilitiesVariables.length} utilities classes`);
 console.log(`✅ Εξήχθησαν ${layoutComponentVariables.length} layout component variables/classes`);
 console.log(`✅ Εξήχθησαν ${inputsComponentVariables.length} inputs component variables`);
@@ -2305,7 +2373,7 @@ console.log(`✅ Εξήχθη modal CSS: ${modalCSS ? 'YES' : 'NO'}`);
 console.log(`✅ Εξήχθη tooltip CSS: ${tooltipCSS ? 'YES' : 'NO'}`);
 
 // Συνδυάζει όλα τα CSS variables
-const allVariables = [...cssVariables, ...spacingVariables, ...typographyVariables, ...bordersVariables, ...shadowsVariables, ...motionVariables, ...iconsVariables, ...backgroundSemanticVariables, ...textSemanticVariables, ...borderSemanticVariables, ...feedbackSemanticVariables, ...buttonsComponentVariables, ...modalComponentVariables, ...inputsComponentVariables, ...navigationComponentVariables, ...tooltipsComponentVariables, ...badgesComponentVariables, ...loadingComponentVariables, ...disclosureComponentVariables, ...dataImportComponentVariables];
+const allVariables = [...cssVariables, ...spacingVariables, ...typographyVariables, ...bordersVariables, ...shadowsVariables, ...motionVariables, ...iconsVariables, ...backgroundSemanticVariables, ...textSemanticVariables, ...borderSemanticVariables, ...feedbackSemanticVariables, ...buttonsComponentVariables, ...modalComponentVariables, ...cardsComponentVariables, ...inputsComponentVariables, ...navigationComponentVariables, ...tooltipsComponentVariables, ...badgesComponentVariables, ...loadingComponentVariables, ...disclosureComponentVariables, ...dataImportComponentVariables];
 
 // Συνδυάζει CSS classes και variables
 const allClasses = [...utilitiesVariables, ...layoutComponentVariables, ...navigationComponentClasses];
@@ -2359,6 +2427,9 @@ ${buttonsComponentVariables.join('\n')}
   /* 🏢 COMPONENT MODAL */
 ${modalComponentVariables.join('\n')}
 
+  /* 🎯 COMPONENT CARDS */
+${cardsComponentVariables.join('\n')}
+
   /* 📝 COMPONENT INPUTS */
 ${inputsComponentVariables.join('\n')}
 
@@ -2393,6 +2464,60 @@ ${navigationComponentClasses.join('\n')}
 ${modalCSS}
 
 ${tooltipCSS}
+
+/* 🎯 CARD CLASSES - Ορατές βαμμένες κάρτες */
+.layera-card {
+  background: var(--layera-card-background-default);
+  border: var(--layera-card-border-default);
+  border-radius: var(--layera-card-border-radius);
+  padding: var(--layera-card-padding);
+  margin: var(--layera-card-margin);
+  min-height: var(--layera-card-min-height);
+  display: var(--layera-card-display);
+  position: var(--layera-card-position);
+  box-shadow: var(--layera-card-shadow-default);
+  transition: var(--layera-card-transition);
+}
+
+.layera-card--primary {
+  background: var(--layera-card-background-primary);
+  border: var(--layera-card-border-primary);
+}
+
+.layera-card--secondary {
+  background: var(--layera-card-background-secondary);
+  border: var(--layera-card-border-secondary);
+}
+
+.layera-card--success {
+  background: var(--layera-card-background-success);
+  border: var(--layera-card-border-success);
+}
+
+.layera-card--warning {
+  background: var(--layera-card-background-warning);
+  border: var(--layera-card-border-warning);
+}
+
+.layera-card--error {
+  background: var(--layera-card-background-error);
+  border: var(--layera-card-border-error);
+}
+
+.layera-card--info {
+  background: var(--layera-card-background-info);
+  border: var(--layera-card-border-info);
+}
+
+.layera-card--neutral {
+  background: var(--layera-card-background-neutral);
+  border: var(--layera-card-border-neutral);
+}
+
+.layera-card:hover {
+  box-shadow: var(--layera-card-shadow-hover);
+  transform: var(--layera-card-hover-transform);
+}
 
 /* 🎯 Layera Design Tokens System Ready */
 `;

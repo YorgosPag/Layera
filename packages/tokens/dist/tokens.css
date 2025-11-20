@@ -3,7 +3,7 @@
  *
  * ⚠️  DO NOT EDIT MANUALLY
  * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts, core/motion/motion.variables.ts και component/icons/icons.variables.ts and rebuild
- * Generated: 2025-11-20T00:33:15.633Z
+ * Generated: 2025-11-20T01:06:05.394Z
  */
 
 :root {
@@ -348,6 +348,79 @@
   --layera-modal-fullscreen-height: 100vh;
   --layera-modal-fullscreen-padding: var(--layera-spacing-6);
   --layera-modal-header-padding: var(--layera-spacing-6);
+
+  /* 🎯 COMPONENT CARDS */
+  --layera-card-font-family: var(--layera-fontFamily-body);
+  --layera-card-font-size: var(--layera-fontSize-base);
+  --layera-card-line-height: var(--layera-lineHeight-normal);
+  --layera-card-text-color: var(--layera-color-text-primary);
+  --layera-card-transition: var(--layera-duration-normal) var(--layera-easing-ease-out);
+  --layera-card-transition-transform: transform var(--layera-duration-fast) var(--layera-easing-ease-out);
+  --layera-card-transition-shadow: box-shadow var(--layera-duration-normal) var(--layera-easing-ease-out);
+  --layera-card-shadow-default: var(--layera-shadow-sm);
+  --layera-card-shadow-hover: var(--layera-shadow-lg);
+  --layera-card-shadow-focus: var(--layera-shadow-outline);
+  --layera-card-border-radius: var(--layera-global-borderRadius-md);
+  --layera-card-border-width: var(--layera-global-borderWidth-default);
+  --layera-card-header-gap: var(--layera-spacing-3);
+  --layera-card-header-margin-bottom: var(--layera-spacing-4);
+  --layera-card-header-padding: var(--layera-spacing-4);
+  --layera-card-title-font-size: var(--layera-fontSize-lg);
+  --layera-card-title-font-weight: var(--layera-fontWeight-semibold);
+  --layera-card-title-line-height: var(--layera-lineHeight-tight);
+  --layera-card-title-color: var(--layera-color-text-primary);
+  --layera-card-title-margin-bottom: var(--layera-spacing-1);
+  --layera-card-background-default: var(--layera-color-semantic-neutral-light)', // ΛΕΥΚΟ για default cards;
+  --layera-card-background-primary: var(--layera-color-semantic-warning-secondary)', // ΚΙΤΡΙΝΟ για primary cards;
+  --layera-card-background-secondary: var(--layera-color-semantic-info-secondary)', // ΜΠΛΕ για secondary cards;
+  --layera-card-background-success: var(--layera-color-semantic-success-secondary)', // ΠΡΑΣΙΝΟ για success cards;
+  --layera-card-background-warning: var(--layera-color-semantic-warning-primary)', // ΠΟΡΤΟΚΑΛΙ για warning cards;
+  --layera-card-background-error: var(--layera-color-semantic-error-secondary)', // ΚΟΚΚΙΝΟ για error cards;
+  --layera-card-background-neutral: var(--layera-color-semantic-neutral-secondary)', // ΓΚΡΙ για neutral cards;
+  --layera-card-border-default: 2px solid var(--layera-color-semantic-neutral-primary);
+  --layera-card-border-primary: 2px solid var(--layera-color-semantic-warning-primary);
+  --layera-card-border-secondary: 2px solid var(--layera-color-semantic-info-primary);
+  --layera-card-border-success: 2px solid var(--layera-color-semantic-success-primary);
+  --layera-card-border-warning: 2px solid var(--layera-color-semantic-warning-primary);
+  --layera-card-border-error: 2px solid var(--layera-color-semantic-error-primary);
+  --layera-card-border-neutral: 2px solid var(--layera-color-semantic-neutral-primary);
+  --layera-card-padding: var(--layera-spacing-4);
+  --layera-card-margin: var(--layera-spacing-2);
+  --layera-card-min-height: 120px', // Minimum height για consistency;
+  --layera-card-display: block;
+  --layera-card-position: relative;
+  --layera-card-subtitle-font-size: var(--layera-fontSize-sm);
+  --layera-card-subtitle-font-weight: var(--layera-fontWeight-medium);
+  --layera-card-subtitle-color: var(--layera-color-text-secondary);
+  --layera-card-subtitle-margin-bottom: var(--layera-spacing-2);
+  --layera-card-description-font-size: var(--layera-fontSize-sm);
+  --layera-card-description-color: var(--layera-color-text-muted);
+  --layera-card-description-line-height: var(--layera-lineHeight-relaxed);
+  --layera-card-icon-size: var(--layera-spacing-6);
+  --layera-card-icon-color: var(--layera-color-text-accent);
+  --layera-card-content-padding: var(--layera-spacing-4);
+  --layera-card-content-gap: var(--layera-spacing-3);
+  --layera-card-footer-margin-top: var(--layera-spacing-4);
+  --layera-card-footer-padding: var(--layera-spacing-4);
+  --layera-card-footer-padding-top: var(--layera-spacing-3);
+  --layera-card-footer-border: 1px solid var(--layera-color-border-muted);
+  --layera-card-footer-background: var(--layera-color-surface-muted);
+  --layera-card-actions-gap: var(--layera-spacing-2);
+  --layera-card-actions-margin: var(--layera-spacing-2);
+  --layera-card-loading-background: var(--layera-color-surface-muted);
+  --layera-card-loading-animation: pulse var(--layera-duration-slow) infinite;
+  --layera-card-empty-color: var(--layera-color-text-muted);
+  --layera-card-empty-font-style: italic;
+  --layera-card-hover-transform: translateY(-2px);
+  --layera-card-active-transform: translateY(1px);
+  --layera-card-focus-outline: 2px solid var(--layera-color-primary-500);
+  --layera-card-focus-outline-offset: var(--layera-spacing-0-5);
+  --layera-card-breakpoint-mobile: var(--layera-breakpoint-sm);
+  --layera-card-breakpoint-tablet: var(--layera-breakpoint-md);
+  --layera-card-breakpoint-desktop: var(--layera-breakpoint-lg);
+  --layera-card-z-index-base: var(--layera-zIndex-base);
+  --layera-card-z-index-elevated: var(--layera-zIndex-raised);
+  --layera-card-z-index-modal: var(--layera-zIndex-modal);
 
   /* 📝 COMPONENT INPUTS */
   --layera-input-background: var(--layera-background-default);
@@ -1494,5 +1567,59 @@
   outline-offset: var(--layera-tooltip-trigger-focus-outline-offset);
 }
 
+
+/* 🎯 CARD CLASSES - Ορατές βαμμένες κάρτες */
+.layera-card {
+  background: var(--layera-card-background-default);
+  border: var(--layera-card-border-default);
+  border-radius: var(--layera-card-border-radius);
+  padding: var(--layera-card-padding);
+  margin: var(--layera-card-margin);
+  min-height: var(--layera-card-min-height);
+  display: var(--layera-card-display);
+  position: var(--layera-card-position);
+  box-shadow: var(--layera-card-shadow-default);
+  transition: var(--layera-card-transition);
+}
+
+.layera-card--primary {
+  background: var(--layera-card-background-primary);
+  border: var(--layera-card-border-primary);
+}
+
+.layera-card--secondary {
+  background: var(--layera-card-background-secondary);
+  border: var(--layera-card-border-secondary);
+}
+
+.layera-card--success {
+  background: var(--layera-card-background-success);
+  border: var(--layera-card-border-success);
+}
+
+.layera-card--warning {
+  background: var(--layera-card-background-warning);
+  border: var(--layera-card-border-warning);
+}
+
+.layera-card--error {
+  background: var(--layera-card-background-error);
+  border: var(--layera-card-border-error);
+}
+
+.layera-card--info {
+  background: var(--layera-card-background-info);
+  border: var(--layera-card-border-info);
+}
+
+.layera-card--neutral {
+  background: var(--layera-card-background-neutral);
+  border: var(--layera-card-border-neutral);
+}
+
+.layera-card:hover {
+  box-shadow: var(--layera-card-shadow-hover);
+  transform: var(--layera-card-hover-transform);
+}
 
 /* 🎯 Layera Design Tokens System Ready */

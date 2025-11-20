@@ -84,7 +84,7 @@ export const HoverControl: React.FC<ExtendedHoverControlProps> = ({
   const currentOption = getCurrentOption();
 
   return (
-    <Box className={`layera-card layera-padding--lg ${className}`}>
+    <Box className={`layera-card layera-card--success layera-padding--lg ${className}`}>
       <h4 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
         <SettingsIcon size="sm" /> Hover Effects
       </h4>

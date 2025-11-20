@@ -16,11 +16,14 @@ import { ColorActionsProps } from '../../types/unified-interfaces';
 import type { ColorState } from '../../hooks/useColorState.js';
 import type { ButtonState } from '../../hooks/useButtonState.js';
 
-interface ExtendedColorActionsPanelProps extends ColorActionsProps {
+interface ExtendedColorActionsPanelProps {
   colorHookState: ColorState;
   buttonState: ButtonState;
   applyColorsToApp: () => void;
   applySquareColorsToHeader: () => void;
+  onSave?: () => void;
+  onLoad?: () => void;
+  onReset?: () => void;
 }
 
 export const ColorActionsPanel: React.FC<ExtendedColorActionsPanelProps> = ({
@@ -30,7 +33,7 @@ export const ColorActionsPanel: React.FC<ExtendedColorActionsPanelProps> = ({
   applySquareColorsToHeader
 }) => {
   return (
-    <Box className="layera-text-center layera-margin-top--2xl layera-margin-bottom--xl">
+    <Box className="layera-card layera-padding--lg layera-text-center layera-margin-top--2xl layera-margin-bottom--xl layera-bg-surface--success layera-border-color--success layera-border-width--2">
       <Box className="layera-flex layera-flex--justify-center layera-flex--wrap-wrap layera-flex--gap-md layera-align-items--center">
         <Button
           variant="primary"

@@ -169,7 +169,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
   ];
 
   return (
-    <Box className={`layera-card layera-padding--lg ${className}`}>
+    <Box className={`layera-card layera-padding--lg layera-bg-surface--neutral layera-border-color--neutral layera-border-width--2 ${className}`}>
       {/* Header Section */}
       <Box className="layera-margin-bottom--md">
         <Box>

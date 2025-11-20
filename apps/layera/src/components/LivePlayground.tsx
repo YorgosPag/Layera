@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box } from '@layera/layout';
 import { Button } from '@layera/buttons';
-import { SettingsIcon, CloseIcon, EditIcon, PolygonIcon, RulerIcon, CompassIcon, CheckIcon } from '@layera/icons';
+import { SettingsIcon, CloseIcon, EditIcon, PolygonIcon, RulerIcon, CompassIcon, CheckIcon, PaletteIcon } from '@layera/icons';
 import { PlaygroundHeader } from './playground/PlaygroundHeader';
 import { ButtonsPlayground } from './playground/ButtonsPlayground';
 import { CardsPlayground } from './playground/CardsPlayground';
@@ -410,7 +410,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 className="layera-grid layera-grid--gap-lg layera-margin-top--lg layera-margin-bottom--xl layera-grid--auto-fit-280 layera-padding--lg"
               >
                 {/* Shape Control - ΠΡΩΤΟ */}
-                <Box className="layera-card layera-padding--lg layera-text--align-center">
+                <Box
+                  className="layera-card layera-card--success layera-padding--lg layera-text--align-center"
+                >
                   <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
                     <PolygonIcon size="sm" /> Σχήμα Πλήκτρου
                   </h3>
@@ -443,7 +445,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 </Box>
 
                 {/* Size Control - ΔΕΥΤΕΡΟ */}
-                <Box className="layera-card layera-padding--lg layera-text--align-center">
+                <Box className="layera-card layera-card--warning layera-padding--lg layera-text--align-center">
                   <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
                     <SettingsIcon size="sm" /> Μέγεθος Πλήκτρων
                   </h3>
@@ -463,7 +465,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 </Box>
 
                 {/* Text & Icon Control - ΤΡΙΤΟ */}
-                <Box className="layera-card layera-padding--lg layera-text--align-center">
+                <Box className="layera-card layera-card--error layera-padding--lg layera-text--align-center">
                   <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
                     <EditIcon size="sm" /> Κείμενο & Εικονίδιο
                   </h3>
@@ -492,8 +494,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {/* Color Controls Grid με Alpha Support */}
           <Box className="layera-margin-bottom--xl">
             <ColorControlsGridWithAlpha
-              currentColors={getColorsForCategory(colorHookState.colorCategory) as unknown as Record<string, ColorWithAlpha | string>}
-              currentSetters={colorActions as unknown as Record<string, (value: ColorWithAlpha | string) => void>}
+              currentColors={getColorsForCategory(colorHookState.colorCategory)}
+              currentSetters={colorActions}
               startPreview={(key: string, value: string | ColorWithAlpha) => {
                 const previewValue = typeof value === 'string' ? value : value.rgba;
 
@@ -546,31 +548,47 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             />
           </Box>
 
-          {/* Unified Factory Settings & Display Panel */}
+          {/* #9 & #10: Εργοστασιακές Ρυθμίσεις & Τρέχουσες Ρυθμίσεις (Cards 9 & 10) */}
           <Box className="layera-grid--auto-fit-280 layera-margin-bottom--xl">
-            <FactorySettingsPanel
-              buttonState={buttonState}
-              onSettingsChange={(settings) => {
-                // Εφαρμόζει τις νέες ρυθμίσεις στο color state
-                // Φιλτράρει το outlineColor που δεν πρέπει να εμφανίζεται ως color picker
-                Object.entries(settings).forEach(([key, value]) => {
-                  if (typeof key === 'string' && typeof value === 'string' && key !== 'outlineColor') {
-                    const validColorKeys = ['primaryColor', 'secondaryColor', 'successColor', 'warningColor', 'dangerColor', 'infoColor'];
-                    if (validColorKeys.includes(key)) {
-                      colorActions.updateCategoryPalette(colorHookState.colorCategory, key as keyof ColorPaletteWithAlpha, value);
+            {/* #9: Εργοστασιακές Ρυθμίσεις (Factory Settings) */}
+            <Box
+              className="layera-card layera-card--warning layera-padding--lg layera-text--align-center"
+            >
+              <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
+                <SettingsIcon size="sm" /> Εργοστασιακές Ρυθμίσεις
+              </h3>
+              <FactorySettingsPanel
+                buttonState={buttonState}
+                onSettingsChange={(settings) => {
+                  // Εφαρμόζει τις νέες ρυθμίσεις στο color state
+                  // Φιλτράρει το outlineColor που δεν πρέπει να εμφανίζεται ως color picker
+                  Object.entries(settings).forEach(([key, value]) => {
+                    if (typeof key === 'string' && typeof value === 'string' && key !== 'outlineColor') {
+                      const validColorKeys = ['primaryColor', 'secondaryColor', 'successColor', 'warningColor', 'dangerColor', 'infoColor'];
+                      if (validColorKeys.includes(key)) {
+                        colorActions.updateCategoryPalette(colorHookState.colorCategory, key as keyof ColorPaletteWithAlpha, value);
+                      }
                     }
-                  }
-                });
-              }}
-              onPreview={startPreview}
-              currentUserId={user?.uid}
-            />
+                  });
+                }}
+                onPreview={startPreview}
+                currentUserId={user?.uid}
+              />
+            </Box>
 
-            <ColorValueDisplay
-              colorHookState={colorHookState}
-              currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
-              buttonState={buttonState}
-            />
+            {/* #10: Τρέχουσες Ρυθμίσεις (Color Value Display) */}
+            <Box
+              className="layera-card layera-card--info layera-padding--lg layera-text--align-center"
+            >
+              <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
+                <PaletteIcon size="sm" /> Τρέχουσες Ρυθμίσεις
+              </h3>
+              <ColorValueDisplay
+                colorHookState={colorHookState}
+                currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
+                buttonState={buttonState}
+              />
+            </Box>
           </Box>
     </Box>
   );

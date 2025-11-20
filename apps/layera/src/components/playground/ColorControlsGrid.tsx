@@ -14,8 +14,8 @@ import { ColorControlsProps } from '../../types/unified-interfaces';
 
 export const ColorControlsGrid: React.FC<ColorControlsProps> = React.memo(({
   currentColors,
-  currentSetters,
-  colorCategory
+  currentSetters = {},
+  colorCategory = ''
 }) => {
 
   // Περιγραφές για κάθε κατηγορία χρωμάτων
@@ -71,14 +71,15 @@ export const ColorControlsGrid: React.FC<ColorControlsProps> = React.memo(({
 
   const descriptions = getColorDescriptions();
   return (
-    <Box
-      className="layera-grid layera-margin-bottom--xl layera-grid--gap-2xl layera-grid--columns-auto-fit"
-    >
+    <Box className="layera-card layera-padding--lg layera-margin-bottom--xl layera-bg-surface--info layera-border-color--info layera-border-width--2">
+      <Box
+        className="layera-grid layera-grid--gap-2xl layera-grid--columns-auto-fit"
+      >
       {/* Primary Color Control */}
       <OptimizedColorPicker
         label="Primary Color"
         value={currentColors.primary}
-        onChange={currentSetters.setPrimary}
+        onChange={currentSetters.setPrimary || (() => {})}
         throttleMs={16}
       />
 
@@ -86,7 +87,7 @@ export const ColorControlsGrid: React.FC<ColorControlsProps> = React.memo(({
       <OptimizedColorPicker
         label="Secondary Color"
         value={currentColors.secondary}
-        onChange={currentSetters.setSecondary}
+        onChange={currentSetters.setSecondary || (() => {})}
         throttleMs={16}
       />
 
@@ -94,7 +95,7 @@ export const ColorControlsGrid: React.FC<ColorControlsProps> = React.memo(({
       <OptimizedColorPicker
         label="Success Color"
         value={currentColors.success}
-        onChange={currentSetters.setSuccess}
+        onChange={currentSetters.setSuccess || (() => {})}
         throttleMs={16}
       />
 
@@ -102,7 +103,7 @@ export const ColorControlsGrid: React.FC<ColorControlsProps> = React.memo(({
       <OptimizedColorPicker
         label="Warning Color"
         value={currentColors.warning}
-        onChange={currentSetters.setWarning}
+        onChange={currentSetters.setWarning || (() => {})}
         throttleMs={16}
       />
 
@@ -110,7 +111,7 @@ export const ColorControlsGrid: React.FC<ColorControlsProps> = React.memo(({
       <OptimizedColorPicker
         label="Danger Color"
         value={currentColors.danger}
-        onChange={currentSetters.setDanger}
+        onChange={currentSetters.setDanger || (() => {})}
         throttleMs={16}
       />
 
@@ -118,9 +119,10 @@ export const ColorControlsGrid: React.FC<ColorControlsProps> = React.memo(({
       <OptimizedColorPicker
         label="Info Color"
         value={currentColors.info}
-        onChange={currentSetters.setInfo}
+        onChange={currentSetters.setInfo || (() => {})}
         throttleMs={16}
       />
+      </Box>
     </Box>
   );
 });
