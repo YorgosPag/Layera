@@ -4,15 +4,16 @@ import { PaletteIcon, SettingsIcon } from '@layera/icons';
 import { getCSSVariablePrefix } from '../../services/theme';
 
 /**
- * ColorValueDisplay Component
+ * SettingsDisplay Component
  *
- * ΑΠΑΡΑΒΑΤΟΣ ΌΡΟΣ: 100% ίδιο output με την αρχική Color Values Display ενότητα
+ * Εμφανίζει τις τρέχουσες ρυθμίσεις (button settings, colors, CSS variables)
+ * ΑΠΑΡΑΒΑΤΟΣ ΌΡΟΣ: 100% ίδιο output με την αρχική Settings Display ενότητα
  * Γραμμές 199-279 από το αρχικό LivePlayground.tsx
  */
 
 import type { ColorState } from '../../hooks/useColorState.js';
 
-interface ColorValueDisplayProps {
+interface SettingsDisplayProps {
   colorHookState: ColorState;
   currentColors: Record<string, string>;
   buttonState?: {
@@ -23,7 +24,7 @@ interface ColorValueDisplayProps {
   };
 }
 
-export const ColorValueDisplay: React.FC<ColorValueDisplayProps> = ({
+export const SettingsDisplay: React.FC<SettingsDisplayProps> = ({
   colorHookState,
   currentColors,
   buttonState

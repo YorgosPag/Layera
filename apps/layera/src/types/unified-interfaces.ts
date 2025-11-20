@@ -149,9 +149,9 @@ export interface ColorControlsProps extends BaseComponentProps {
 }
 
 /**
- * Props για color category selection
+ * Props για category selection
  */
-export interface ColorCategoryProps extends BaseComponentProps {
+export interface CategoryProps extends BaseComponentProps {
   selectedCategory: ColorCategory;
   onCategoryChange: (category: ColorCategory) => void;
   categories?: ColorCategory[];
@@ -377,9 +377,8 @@ export type ActiveControlProps = StringControlProps;
 export type ColorPickerWithAlphaProps = BaseColorPickerProps;
 export type ColorControlsGridProps = ColorControlsProps;
 export type ColorControlsGridWithAlphaProps = ColorControlsProps;
-export type ColorCategorySelectionProps = ColorCategoryProps;
+export type CategorySelectionProps = CategoryProps;
 export type ColorActionsPanelProps = ColorActionsProps;
-export type ColorPreviewAreaProps = PreviewProps;
 
 // Playground-related
 export type ButtonsPlaygroundProps = ButtonPlaygroundProps;

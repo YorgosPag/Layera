@@ -210,7 +210,6 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
         </Box>
       </Box>
 
-
     </Box>
   );
 };

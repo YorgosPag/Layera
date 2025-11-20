@@ -10,11 +10,10 @@ import { InputsPlayground } from './playground/InputsPlayground';
 import { LayoutPlayground } from './playground/LayoutPlayground';
 import { TablesPlayground } from './playground/TablesPlayground';
 import { HeaderPlayground } from './playground/HeaderPlayground';
-import { ColorCategorySelection } from './playground/ColorCategorySelection';
-import { ColorPreviewArea } from './playground/ColorPreviewArea';
+import { CategorySelection } from './playground/CategorySelection';
 import { ColorControlsGridWithAlpha } from './playground/ColorControlsGridWithAlpha';
 import { ColorActionsPanel } from './playground/ColorActionsPanel';
-import { ColorValueDisplay } from './playground/ColorValueDisplay';
+import { SettingsDisplay } from './playground/SettingsDisplay';
 import { FactorySettingsPanel } from './playground/FactorySettingsPanel';
 import type { ColorWithAlpha } from './playground/shared/ColorPickerWithAlpha';
 import type { FontSizeValue, CardSizeValue, ModalSizeValue, InputSizeValue, TableSizeValue, UnifiedSizeConfig } from '../types/sizes';
@@ -353,17 +352,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           )}
 
           {/* Always show color management sections */}
-          {/* Live Color Preview Area */}
-          <Box className="layera-margin-bottom--xl">
-            <ColorPreviewArea
-              colorHookState={colorHookState}
-              currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
-            />
-          </Box>
-
           {/* Category and Element Type Selection - Πάνω από Button Controls */}
           <Box className="layera-margin-bottom--xl">
-            <ColorCategorySelection
+            <CategorySelection
               colorHookState={colorHookState}
               colorActions={colorActions}
               borderWidth={borderWidth}
@@ -583,7 +574,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
                 <PaletteIcon size="sm" /> Τρέχουσες Ρυθμίσεις
               </h3>
-              <ColorValueDisplay
+              <SettingsDisplay
                 colorHookState={colorHookState}
                 currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
                 buttonState={buttonState}

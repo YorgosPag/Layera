@@ -23,18 +23,18 @@ import { TableRadiusControl } from './shared/TableRadiusControl';
 import { HeaderRadiusControl } from './shared/HeaderRadiusControl';
 
 /**
- * ColorCategorySelection Component
+ * CategorySelection Component
  *
  * ΑΠΑΡΑΒΑΤΟΣ ΌΡΟΣ: 100% ίδιο output με την αρχική Category and Shape Selection ενότητα
  * Γραμμές 170-253 από το αρχικό LivePlayground.tsx
  */
 
 import type { UseColorStateReturn, ColorState, ColorStateActions } from '../../hooks/useColorState.js';
-import { ColorCategoryProps } from '../../types/unified-interfaces';
+import { CategoryProps } from '../../types/unified-interfaces';
 
 import type { ButtonState } from '../../hooks/useButtonState.js';
 
-interface ExtendedColorCategorySelectionProps {
+interface ExtendedCategorySelectionProps {
   colorHookState: ColorState;
   colorActions: ColorStateActions;
   borderWidth: number;
@@ -73,7 +73,7 @@ interface ExtendedColorCategorySelectionProps {
   buttonState?: ButtonState;
 }
 
-export const ColorCategorySelection: React.FC<ExtendedColorCategorySelectionProps> = ({
+export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
   colorHookState,
   colorActions,
   borderWidth,
