@@ -42,7 +42,7 @@ export const LayeraHeader: React.FC<LayeraHeaderProps> = ({
           />
           <span className="layera-typography" data-size="base" data-weight="semibold" data-color="primary">Geo-Canvas</span>
           <SquareButton
-            icon={<SettingsIcon size="sm" />}
+            icon={<SettingsIcon size="md" />}
             onClick={onTestPanelClick}
             aria-label="Πάνελ δοκιμών"
             tooltip="Άνοιγμα πάνελ δοκιμών"

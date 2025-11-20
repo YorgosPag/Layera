@@ -3,7 +3,7 @@
  *
  * ⚠️  DO NOT EDIT MANUALLY
  * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts, core/motion/motion.variables.ts και component/icons/icons.variables.ts and rebuild
- * Generated: 2025-11-20T00:06:30.437Z
+ * Generated: 2025-11-20T00:33:15.633Z
  */
 
 :root {
@@ -137,6 +137,8 @@
   --layera-icon-xs: var(--layera-spacing-4);
   --layera-icon-md: var(--layera-spacing-5);
   --layera-icon-lg: var(--layera-spacing-8);
+  --layera-icon-xxl: ICON_TOKENS.sizes.xxl;
+  --layera-icon-xxxl: ICON_TOKENS.sizes.xxxl;
   --layera-icon-colorPrimary: var(--layera-color-warning-main);
   --layera-icon-colorSecondary: var(--layera-color-secondary-600);
   --layera-icon-colorSuccess: var(--layera-color-success-main);

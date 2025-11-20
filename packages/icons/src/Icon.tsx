@@ -10,7 +10,7 @@ import { BaseIconProps } from './types';
 const ENTERPRISE_TOKENS = {
   sizes: {
     xs: 'var(--layera-icon-xs)', // CSS Variable από SSOT
-    sm: 'var(--layera-icon-xs)', // CSS Variable από SSOT - consolidated με xs
+    sm: 'var(--layera-icon-md)', // CSS Variable από SSOT - fixed mapping
     md: 'var(--layera-icon-md)', // CSS Variable από SSOT
     lg: 'var(--layera-icon-lg)', // CSS Variable από SSOT
     xl: 'var(--layera-icon-lg)', // CSS Variable από SSOT - consolidated με lg
@@ -167,23 +167,26 @@ export const Icon: React.FC<IconProps> = ({
   ...props
 }) => {
   // 🏢 Enterprise size calculation με CSS Variables SSOT
-  const iconSize = typeof size === 'number' ? `${size}px` : ICON_SIZES[size];
+  const iconSize = typeof size === 'number' ? `${size}px` : ICON_SIZES[size] || ICON_SIZES['md'];
 
-  // Touch target με CSS calc() για enterprise support
+  // Touch target με CSS calc() για enterprise support - με fallback
+  const touchTargetMobile = 'var(--layera-iconAdvanced-sizing-touchTargetMobile, 44px)';
+  const touchTargetDesktop = 'var(--layera-iconAdvanced-sizing-touchTargetDesktop, 32px)';
+
   const minTouchTarget = onClick && touchTarget === 'mobile'
-    ? `max(${iconSize}, var(--layera-iconAdvanced-sizing-touchTargetMobile))`
+    ? `max(${iconSize}, ${touchTargetMobile})`
     : onClick && touchTarget === 'desktop'
-    ? `max(${iconSize}, var(--layera-iconAdvanced-sizing-touchTargetDesktop))`
+    ? `max(${iconSize}, ${touchTargetDesktop})`
     : iconSize;
 
   // 🌙 Dark mode color calculation
   const colorTheme = darkMode ? ENTERPRISE_TOKENS.darkColors : ENTERPRISE_TOKENS.colors;
   const color = colorTheme[theme] || THEME_COLORS[theme];
 
-  // ♿ Accessibility opacity based on state
+  // ♿ Accessibility opacity based on state με fallbacks
   const currentOpacity = disabled
-    ? ENTERPRISE_TOKENS.interactive.opacity.disabled
-    : ENTERPRISE_TOKENS.interactive.opacity.default;
+    ? 'var(--layera-iconAdvanced-interactive-opacity-disabled, 0.5)'
+    : 'var(--layera-iconAdvanced-interactive-opacity-default, 1)';
 
   // Στυλ για το variant
   const variantStyle = VARIANT_STYLES[variant];
