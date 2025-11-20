@@ -88,13 +88,24 @@ function renderCardContent(
     );
   }
 
-  // Selection cards με selection indicators
-  if (config.type === 'selection' && config.selected) {
-    return (
-      <Box className="unified-card__selection-indicator">
-        ✓
-      </Box>
-    );
+  // Selection cards με custom content ή selection indicators
+  if (config.type === 'selection') {
+    // Αν έχει custom content, το render-άρουμε
+    if (config.content) {
+      return (
+        <Box className="unified-card__content">
+          {config.content}
+        </Box>
+      );
+    }
+    // Αλλιώς, αν είναι selected, δείχνουμε το indicator
+    if (config.selected) {
+      return (
+        <Box className="unified-card__selection-indicator">
+          ✓
+        </Box>
+      );
+    }
   }
 
   // Tool cards με tool-specific content
