@@ -69,7 +69,7 @@ export const CardSizeControl: React.FC<CardSizeControlProps> = ({
             variant={cardSize === option.value ? 'primary' : 'outline'}
             size={buttonState?.size || 'sm'}
             onClick={() => handleSizeChange(option.value)}
-            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${cardSize === option.value ? 'primary' : 'outline'}`}
+            className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${cardSize === option.value ? 'primary' : 'outline'}`}
           >
             <SettingsIcon size="sm" /> {option.label}
           </Button>

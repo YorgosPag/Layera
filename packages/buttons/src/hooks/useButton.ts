@@ -303,11 +303,11 @@ export const useButton = () => {
     className?: string;
   }) => {
     return [
-      'layera-btn',
-      `layera-btn--${variant}`,
-      `layera-btn--${size}`,
-      fullWidth && 'layera-btn--full-width',
-      loading && 'layera-btn--loading',
+      'layera-button',
+      `layera-button--${variant}`,
+      `layera-button--${size}`,
+      fullWidth && 'layera-button--full-width',
+      loading && 'layera-button--loading',
       className
     ].filter(Boolean).join(' ');
   };
@@ -320,36 +320,36 @@ export const useButton = () => {
 
     // Size properties
     Object.entries(buttonTokens.sizes).forEach(([size, tokens]) => {
-      properties[`--layera-btn-${size}-height`] = tokens.height;
-      properties[`--layera-btn-${size}-padding`] = tokens.padding;
-      properties[`--layera-btn-${size}-font-size`] = tokens.fontSize;
-      properties[`--layera-btn-${size}-icon-size`] = tokens.iconSize;
-      properties[`--layera-btn-${size}-gap`] = tokens.gap;
+      properties[`--layera-button-${size}-height`] = tokens.height;
+      properties[`--layera-button-${size}-padding`] = tokens.padding;
+      properties[`--layera-button-${size}-font-size`] = tokens.fontSize;
+      properties[`--layera-button-${size}-icon-size`] = tokens.iconSize;
+      properties[`--layera-button-${size}-gap`] = tokens.gap;
     });
 
     // Variant properties
     Object.entries(buttonTokens.variants).forEach(([variant, tokens]) => {
-      properties[`--layera-btn-${variant}-bg`] = tokens.background;
-      properties[`--layera-btn-${variant}-color`] = tokens.color;
-      properties[`--layera-btn-${variant}-border`] = tokens.border;
-      properties[`--layera-btn-${variant}-hover-bg`] = tokens.hover.background;
-      properties[`--layera-btn-${variant}-hover-color`] = tokens.hover.color;
-      properties[`--layera-btn-${variant}-hover-border`] = tokens.hover.border;
-      properties[`--layera-btn-${variant}-active-bg`] = tokens.active.background;
-      properties[`--layera-btn-${variant}-active-color`] = tokens.active.color;
-      properties[`--layera-btn-${variant}-active-border`] = tokens.active.border;
-      properties[`--layera-btn-${variant}-focus-outline`] = tokens.focus.outline;
-      properties[`--layera-btn-${variant}-focus-ring`] = tokens.focus.ring;
+      properties[`--layera-button-${variant}-bg`] = tokens.background;
+      properties[`--layera-button-${variant}-color`] = tokens.color;
+      properties[`--layera-button-${variant}-border`] = tokens.border;
+      properties[`--layera-button-${variant}-hover-bg`] = tokens.hover.background;
+      properties[`--layera-button-${variant}-hover-color`] = tokens.hover.color;
+      properties[`--layera-button-${variant}-hover-border`] = tokens.hover.border;
+      properties[`--layera-button-${variant}-active-bg`] = tokens.active.background;
+      properties[`--layera-button-${variant}-active-color`] = tokens.active.color;
+      properties[`--layera-button-${variant}-active-border`] = tokens.active.border;
+      properties[`--layera-button-${variant}-focus-outline`] = tokens.focus.outline;
+      properties[`--layera-button-${variant}-focus-ring`] = tokens.focus.ring;
     });
 
     // Transition properties
     Object.entries(buttonTokens.transitions).forEach(([key, value]) => {
-      properties[`--layera-btn-transition-${key}`] = value;
+      properties[`--layera-button-transition-${key}`] = value;
     });
 
     // Radius properties
     Object.entries(buttonTokens.radius).forEach(([key, value]) => {
-      properties[`--layera-btn-radius-${key}`] = value;
+      properties[`--layera-button-radius-${key}`] = value;
     });
 
     return properties;

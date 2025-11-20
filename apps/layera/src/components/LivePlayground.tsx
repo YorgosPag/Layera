@@ -421,7 +421,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                       variant={buttonState.shape === 'rectangular' ? 'primary' : 'outline'}
                       size={buttonState.size}
                       onClick={() => buttonActions.setShape('rectangular')}
-                      className={`layera-btn layera-btn--${buttonState.size} layera-btn--${buttonState.shape === 'rectangular' ? 'primary' : 'outline'}`}
+                      className={`layera-button layera-button--${buttonState.size} layera-button--${buttonState.shape === 'rectangular' ? 'primary' : 'outline'}`}
                     >
                       <RulerIcon size="sm" /> Παραλληλόγραμμο
                     </Button>
@@ -429,7 +429,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                       variant={buttonState.shape === 'square' ? 'primary' : 'outline'}
                       size={buttonState.size}
                       onClick={() => buttonActions.setShape('square')}
-                      className={`layera-btn layera-btn--${buttonState.size} layera-btn--${buttonState.shape === 'square' ? 'primary' : 'outline'}`}
+                      className={`layera-button layera-button--${buttonState.size} layera-button--${buttonState.shape === 'square' ? 'primary' : 'outline'}`}
                     >
                       <PolygonIcon size="sm" /> Τετράγωνο
                     </Button>
@@ -437,7 +437,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                       variant={buttonState.shape === 'rounded' ? 'primary' : 'outline'}
                       size={buttonState.size}
                       onClick={() => buttonActions.setShape('rounded')}
-                      className={`layera-btn layera-btn--${buttonState.size} layera-btn--${buttonState.shape === 'rounded' ? 'primary' : 'outline'}`}
+                      className={`layera-button layera-button--${buttonState.size} layera-button--${buttonState.shape === 'rounded' ? 'primary' : 'outline'}`}
                     >
                       <CompassIcon size="sm" /> Στρογγυλό
                     </Button>
@@ -456,7 +456,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                         variant={buttonState.size === size ? 'primary' : 'outline'}
                         size={buttonState.size}
                         onClick={() => buttonActions.setSize(size)}
-                        className={`layera-btn layera-btn--${buttonState.size} layera-btn--${buttonState.size === size ? 'primary' : 'outline'}`}
+                        className={`layera-button layera-button--${buttonState.size} layera-button--${buttonState.size === size ? 'primary' : 'outline'}`}
                       >
                         {size}
                       </Button>
@@ -481,7 +481,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                       variant={buttonState.withIcon ? 'primary' : 'outline'}
                       size={buttonState.size}
                       onClick={() => buttonActions.setWithIcon(!buttonState.withIcon)}
-                      className={`layera-btn layera-btn--${buttonState.size} layera-btn--${buttonState.withIcon ? 'primary' : 'outline'}`}
+                      className={`layera-button layera-button--${buttonState.size} layera-button--${buttonState.withIcon ? 'primary' : 'outline'}`}
                     >
                       {buttonState.withIcon ? <><CheckIcon size="sm" /> Με εικονίδιο</> : <><CloseIcon size="sm" /> Χωρίς εικονίδιο</>}
                     </Button>

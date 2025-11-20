@@ -288,14 +288,14 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
                 {/* View Mode Toggle */}
                 <Box className="flex items-center space-x-1 mr-4">
                   <Button
-                    className={viewMode === 'list' ? 'btn-primary' : 'btn-outline'}
+                    className={viewMode === 'list' ? 'layera-button--primary' : 'layera-button--outline'}
                     size="sm"
                     onClick={() => setViewMode('list')}
                   >
                     <UploadIcon className="w-4 h-4" />
                   </Button>
                   <Button
-                    className={viewMode === 'grid' ? 'btn-primary' : 'btn-outline'}
+                    className={viewMode === 'grid' ? 'layera-button--primary' : 'layera-button--outline'}
                     size="sm"
                     onClick={() => setViewMode('grid')}
                   >
@@ -306,7 +306,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
                 {/* Upload Controls */}
                 {canStartUpload && (
                   <Button
-                    className="btn-primary"
+                    className="layera-button--primary"
                     onClick={handleStartUpload}
                     disabled={disabled}
                   >
@@ -317,7 +317,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
 
                 {isUploading && (
                   <Button
-                    className="btn-outline"
+                    className="layera-button--outline"
                     onClick={handlePauseUpload}
                     disabled={disabled}
                   >
@@ -327,7 +327,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
                 )}
 
                 <Button
-                  className="btn-outline"
+                  className="layera-button--outline"
                   onClick={handleClearAll}
                   disabled={disabled || isUploading}
                 >

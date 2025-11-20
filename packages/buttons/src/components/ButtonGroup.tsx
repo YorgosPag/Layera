@@ -19,9 +19,9 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
   children
 }) => {
   const classes = [
-    'layera-btn-group',
-    `layera-btn-group--${orientation}`,
-    uniform && 'layera-btn-group--uniform',
+    'layera-button-group',
+    `layera-button-group--${orientation}`,
+    uniform && 'layera-button-group--uniform',
     className
   ].filter(Boolean).join(' ');
 

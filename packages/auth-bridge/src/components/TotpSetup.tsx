@@ -113,7 +113,7 @@ export function TotpSetup({
           <button
             onClick={handleStartSetup}
             disabled={loading}
-            className="btn btn-primary"
+            className="layera-button layera-button--primary"
           >
             {loading ? 'Προετοιμασία...' : 'Ξεκίνημα Setup'}
           </button>
@@ -121,7 +121,7 @@ export function TotpSetup({
           {onCancel && (
             <button
               onClick={onCancel}
-              className="btn btn-secondary"
+              className="layera-button layera-button--secondary"
             >
               Ακύρωση
             </button>
@@ -164,7 +164,7 @@ export function TotpSetup({
                 <code>{setupData.manualEntryKey}</code>
                 <button
                   onClick={() => copyToClipboard(setupData.secret)}
-                  className="copy-btn"
+                  className="copy-button"
                   title="Αντιγραφή"
                 >
                   📋
@@ -215,7 +215,7 @@ export function TotpSetup({
             </Box>
             <button
               onClick={() => copyToClipboard(setupData.backupCodes.join('\n'))}
-              className="copy-backup-btn"
+              className="copy-backup-button"
             >
               Αντιγραφή όλων των backup codes
             </button>
@@ -226,14 +226,14 @@ export function TotpSetup({
           <button
             onClick={handleVerifyCode}
             disabled={loading || verificationCode.length !== 6}
-            className="btn btn-primary"
+            className="layera-button layera-button--primary"
           >
             {loading ? 'Επαλήθευση...' : 'Ολοκλήρωση Setup'}
           </button>
 
           <button
             onClick={() => setStep('start')}
-            className="btn btn-secondary"
+            className="layera-button layera-button--secondary"
           >
             Πίσω
           </button>
@@ -241,7 +241,7 @@ export function TotpSetup({
           {onCancel && (
             <button
               onClick={onCancel}
-              className="btn btn-secondary"
+              className="layera-button layera-button--secondary"
             >
               Ακύρωση
             </button>

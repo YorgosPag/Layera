@@ -62,10 +62,10 @@ export const UnifiedCard: React.FC<UnifiedCardProps> = React.memo(({
     title: config.title,
     icon: config.icon,
     opacityMode,
-    onClick: handleClick,
     className: config.className,
     'data-testid': testId,
     ...(config.description && { description: config.description }),
+    ...(config.onClick && { onClick: handleClick }), // ΜΟΝΟ όταν υπάρχει onClick
     ...(showInfoButton && handleInfoClick && { onInfoClick: handleInfoClick }),
     ...(config.content && { children: cardContent })
   };

@@ -31,7 +31,7 @@ export const SquareButton = forwardRef<HTMLButtonElement, SquareButtonProps>(({
   ...props
 }, ref) => {
   // Enterprise CSS classes αντί για inline styles
-  const squareClassName = `layera-square-btn layera-square-btn--${size} layera-button ${className}`;
+  const squareClassName = `layera-square-button layera-square-button--${size} layera-button ${className}`;
 
   return (
     <Button

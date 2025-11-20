@@ -47,24 +47,24 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
     switch (loadingVariant) {
       case 'dots':
         return (
-          <Box className="layera-btn-dots">
+          <Box className="layera-button-dots">
             <Box className="dot"></Box>
             <Box className="dot"></Box>
             <Box className="dot"></Box>
           </Box>
         );
       case 'pulse':
-        return <Box className="layera-btn-pulse"></Box>;
+        return <Box className="layera-button-pulse"></Box>;
       case 'spinner':
       default:
-        return <Box className="layera-btn-spinner"></Box>;
+        return <Box className="layera-button-spinner"></Box>;
     }
   };
 
   // Icon rendering
   const renderIcon = () => {
     if (!icon) return null;
-    return <span className="layera-btn-icon">{icon}</span>;
+    return <span className="layera-button-icon">{icon}</span>;
   };
 
   // Content ordering βάσει icon position

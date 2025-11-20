@@ -26,12 +26,12 @@ export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(({
 }, ref) => {
   // Υπολογισμός CSS classes (ίδιες με Button)
   const classes = [
-    'layera-btn',
-    `layera-btn--${variant}`,
-    `layera-btn--${size}`,
-    fullWidth && 'layera-btn--full-width',
-    loading && 'layera-btn--loading',
-    icon && !children && 'layera-btn--icon-only',
+    'layera-button',
+    `layera-button--${variant}`,
+    `layera-button--${size}`,
+    fullWidth && 'layera-button--full-width',
+    loading && 'layera-button--loading',
+    icon && !children && 'layera-button--icon-only',
     className
   ].filter(Boolean).join(' ');
 
@@ -45,24 +45,24 @@ export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(({
     switch (loadingVariant) {
       case 'dots':
         return (
-          <Box className="layera-btn-dots">
+          <Box className="layera-button-dots">
             <Box className="dot"></Box>
             <Box className="dot"></Box>
             <Box className="dot"></Box>
           </Box>
         );
       case 'pulse':
-        return <Box className="layera-btn-pulse"></Box>;
+        return <Box className="layera-button-pulse"></Box>;
       case 'spinner':
       default:
-        return <Box className="layera-btn-spinner"></Box>;
+        return <Box className="layera-button-spinner"></Box>;
     }
   };
 
   // Icon rendering
   const renderIcon = () => {
     if (!icon) return null;
-    return <span className="layera-btn-icon">{icon}</span>;
+    return <span className="layera-button-icon">{icon}</span>;
   };
 
   // Content ordering βάσει icon position
@@ -103,11 +103,11 @@ export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(({
       {...props}
     >
       {loading && (
-        <Box className="layera-btn-loading">
+        <Box className="layera-button-loading">
           {renderLoadingContent()}
         </Box>
       )}
-      <Box className="layera-btn-content">
+      <Box className="layera-button-content">
         {loading && loadingText ? loadingText : renderContent()}
       </Box>
     </a>

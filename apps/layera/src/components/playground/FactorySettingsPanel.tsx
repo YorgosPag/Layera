@@ -214,7 +214,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
                 onClick={() => handlePaletteChange(option.value)}
                 disabled={isLoading}
                 title={option.description}
-                className={`layera-btn layera-btn--${buttonState.size} layera-btn--${selectedPalette === option.value ? 'primary' : 'outline'}`}
+                className={`layera-button layera-button--${buttonState.size} layera-button--${selectedPalette === option.value ? 'primary' : 'outline'}`}
               >
                 {option.label}
               </Button>
@@ -226,7 +226,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
               size={buttonState.size}
               onClick={handleResetToFactory}
               disabled={isResetting || isLoading}
-              className={`layera-btn layera-btn--${buttonState.size} layera-btn--${resetSuccess ? 'success' : 'warning'}`}
+              className={`layera-button layera-button--${buttonState.size} layera-button--${resetSuccess ? 'success' : 'warning'}`}
             >
               {isResetting ? (
                 'Επιστροφή...'
@@ -263,7 +263,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
               size={buttonState.size}
               onClick={handleLoadUserSettings}
               disabled={isLoading}
-              className={`layera-btn layera-btn--${buttonState.size} layera-btn--outline`}
+              className={`layera-button layera-button--${buttonState.size} layera-button--outline`}
             >
               Φόρτωση Ρυθμίσεων
             </Button>

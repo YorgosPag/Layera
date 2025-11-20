@@ -170,7 +170,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
           variant={localAlphaEnabled ? 'primary' : 'outline'}
           size={buttonState?.size || "sm"}
           onClick={handleAlphaToggle}
-          className={`layera-btn layera-btn--${buttonState?.size || "sm"} layera-btn--${localAlphaEnabled ? 'primary' : 'outline'}`}
+          className={`layera-button layera-button--${buttonState?.size || "sm"} layera-button--${localAlphaEnabled ? 'primary' : 'outline'}`}
         >
           <SettingsIcon size="sm" />
           {localAlphaEnabled ? 'RGBA' : 'HEX'}

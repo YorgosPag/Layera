@@ -39,7 +39,7 @@ export const ColorActionsPanel: React.FC<ExtendedColorActionsPanelProps> = ({
           variant="primary"
           size={buttonState.size}
           onClick={applyColorsToApp}
-          className={`layera-btn layera-btn--${buttonState.size} layera-btn--primary`}
+          className={`layera-button layera-button--${buttonState.size} layera-button--primary`}
         >
           <RocketIcon size="sm" /> Εφαρμογή Χρωμάτων για {colorHookState.colorCategory.toUpperCase()}
         </Button>
@@ -50,7 +50,7 @@ export const ColorActionsPanel: React.FC<ExtendedColorActionsPanelProps> = ({
             variant="success"
             size={buttonState.size}
             onClick={applySquareColorsToHeader}
-            className={`layera-btn layera-btn--${buttonState.size} layera-btn--success`}
+            className={`layera-button layera-button--${buttonState.size} layera-button--success`}
           >
             <CheckIcon size="sm" /> Εφαρμογή στην Επικεφαλίδα
           </Button>

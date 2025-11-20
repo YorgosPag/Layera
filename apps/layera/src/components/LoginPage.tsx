@@ -46,7 +46,7 @@ const LoginPage: React.FC = () => {
             <Box
               as="button"
               type="submit"
-              className="layera-full-width layera-padding--md layera-btn-primary"
+              className="layera-full-width layera-padding--md layera-button-primary"
             >
               {t('auth.login')}
             </Box>

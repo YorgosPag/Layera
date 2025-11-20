@@ -69,7 +69,7 @@ export const TableSizeControl: React.FC<TableSizeControlProps> = ({
             variant={tableSize === option.value ? 'primary' : 'outline'}
             size={buttonState?.size || 'sm'}
             onClick={() => handleSizeChange(option.value)}
-            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${tableSize === option.value ? 'primary' : 'outline'}`}
+            className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${tableSize === option.value ? 'primary' : 'outline'}`}
           >
             <SettingsIcon size="sm" /> {option.label}
           </Button>

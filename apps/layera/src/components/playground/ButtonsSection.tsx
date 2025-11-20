@@ -52,7 +52,7 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
                   variant={buttonState.variant === variant ? 'primary' : 'outline'}
                   size="sm"
                   onClick={() => updateButtonState({ variant })}
-                  className={`layera-btn layera-btn--sm layera-btn--${buttonState.variant === variant ? 'primary' : 'outline'}`}
+                  className={`layera-button layera-button--sm layera-button--${buttonState.variant === variant ? 'primary' : 'outline'}`}
                 >
                   {variant}
                 </Button>
@@ -72,7 +72,7 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
                   variant={buttonState.size === size ? 'primary' : 'outline'}
                   size="sm"
                   onClick={() => updateButtonState({ size })}
-                  className={`layera-btn layera-btn--sm layera-btn--${buttonState.size === size ? 'primary' : 'outline'}`}
+                  className={`layera-button layera-button--sm layera-button--${buttonState.size === size ? 'primary' : 'outline'}`}
                 >
                   {size}
                 </Button>
@@ -103,7 +103,7 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
               variant={buttonState.withIcon ? 'success' : 'outline'}
               size="sm"
               onClick={() => updateButtonState({ withIcon: !buttonState.withIcon })}
-              className={`layera-btn layera-btn--sm layera-btn--${buttonState.withIcon ? 'success' : 'outline'}`}
+              className={`layera-button layera-button--sm layera-button--${buttonState.withIcon ? 'success' : 'outline'}`}
             >
               {buttonState.withIcon ? '✅ Enabled' : '❌ Disabled'}
             </Button>
@@ -122,7 +122,7 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
             variant={buttonState.variant}
             size={buttonState.size}
             icon={buttonState.withIcon ? <PlusIcon /> : undefined}
-            className={`layera-btn layera-btn--${buttonState.size} layera-btn--${buttonState.variant}`}
+            className={`layera-button layera-button--${buttonState.size} layera-button--${buttonState.variant}`}
           >
             {buttonState.text}
           </Button>
@@ -146,7 +146,7 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
                 variant={variant}
                 size={buttonState.size}
                 icon={buttonState.withIcon ? <SearchIcon /> : undefined}
-                className={`layera-btn layera-btn--${buttonState.size} layera-btn--${variant} layera-margin-bottom--sm`}
+                className={`layera-button layera-button--${buttonState.size} layera-button--${variant} layera-margin-bottom--sm`}
               >
                 {variant.charAt(0).toUpperCase() + variant.slice(1)}
               </Button>

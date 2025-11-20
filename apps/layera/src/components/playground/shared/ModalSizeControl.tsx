@@ -70,7 +70,7 @@ export const ModalSizeControl: React.FC<ModalSizeControlProps> = ({
             variant={modalSize === option.value ? 'primary' : 'outline'}
             size={buttonState?.size || 'sm'}
             onClick={() => handleSizeChange(option.value)}
-            className={`layera-btn layera-btn--${buttonState?.size || 'sm'} layera-btn--${modalSize === option.value ? 'primary' : 'outline'}`}
+            className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${modalSize === option.value ? 'primary' : 'outline'}`}
           >
             <SettingsIcon size="sm" /> {option.label}
           </Button>

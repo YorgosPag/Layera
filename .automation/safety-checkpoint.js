@@ -257,7 +257,7 @@ class LayeraSafetySystem {
   buildTokens() {
     this.log('Rebuilding tokens...', 'process');
     this.execCommand(
-      'pnpm --filter @layera/tokens build',
+      'cd packages/tokens && npm run build',
       'Build tokens'
     );
 

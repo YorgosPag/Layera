@@ -88,7 +88,7 @@ export function TotpVerification({
           <button
             type="submit"
             disabled={loading || code.length !== 6}
-            className="btn btn-primary"
+            className="layera-button layera-button--primary"
           >
             {loading ? 'Επαλήθευση...' : 'Επαλήθευση'}
           </button>
@@ -97,7 +97,7 @@ export function TotpVerification({
             <button
               type="button"
               onClick={() => setShowBackup(true)}
-              className="btn btn-link"
+              className="layera-button layera-button--link"
             >
               Χρήση backup κωδικού
             </button>
@@ -128,7 +128,7 @@ export function TotpVerification({
             <button
               type="submit"
               disabled={loading || !backupCode.trim()}
-              className="btn btn-primary"
+              className="layera-button layera-button--primary"
             >
               {loading ? 'Επαλήθευση...' : 'Χρήση Backup Code'}
             </button>
@@ -136,7 +136,7 @@ export function TotpVerification({
             <button
               type="button"
               onClick={() => setShowBackup(false)}
-              className="btn btn-secondary"
+              className="layera-button layera-button--secondary"
             >
               Πίσω στον TOTP
             </button>
