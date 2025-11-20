@@ -3,7 +3,7 @@
  *
  * ⚠️  DO NOT EDIT MANUALLY
  * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts, core/motion/motion.variables.ts και component/icons/icons.variables.ts and rebuild
- * Generated: 2025-11-19T23:51:46.658Z
+ * Generated: 2025-11-20T00:06:30.437Z
  */
 
 :root {
@@ -70,6 +70,9 @@
   --layera-spacing-80: 20rem;
   --layera-spacing-100: 25rem;
   --layera-spacing-112: 28rem;
+  --layera-spacing-125: 31.25rem;
+  --layera-spacing-200: 50rem;
+  --layera-spacing-300: 75rem;
   --layera-spacing-micro: 0.25rem;
   --layera-spacing-small: 0.5rem;
   --layera-spacing-medium: 1rem;
@@ -327,16 +330,16 @@
   --layera-modal-scale-enter: scale(0.95);
   --layera-modal-scale-exit: scale(0.95);
   --layera-modal-scale-open: scale(1);
-  --layera-modal-sm-width: 320px;
+  --layera-modal-sm-width: var(--layera-spacing-80);
   --layera-modal-sm-max-width: 90vw;
   --layera-modal-sm-padding: var(--layera-spacing-4);
-  --layera-modal-md-width: 500px;
+  --layera-modal-md-width: var(--layera-spacing-125);
   --layera-modal-md-max-width: 90vw;
   --layera-modal-md-padding: var(--layera-spacing-6);
-  --layera-modal-lg-width: 800px;
+  --layera-modal-lg-width: var(--layera-spacing-200);
   --layera-modal-lg-max-width: 95vw;
   --layera-modal-lg-padding: var(--layera-spacing-8);
-  --layera-modal-xl-width: 1200px;
+  --layera-modal-xl-width: var(--layera-spacing-300);
   --layera-modal-xl-max-width: 98vw;
   --layera-modal-xl-padding: var(--layera-spacing-10);
   --layera-modal-fullscreen-width: 100vw;
@@ -360,24 +363,24 @@
   --layera-input-border-success: var(--layera-border-success);
   --layera-input-border-warning: var(--layera-border-warning);
   --layera-input-border-radius: var(--layera-border-radius-4);
-  --layera-input-border-width: 1px;
+  --layera-input-border-width: var(--layera-border-width-1);
   --layera-input-text-color: var(--layera-text-primary);
   --layera-input-text-disabled: var(--layera-text-disabled);
   --layera-input-text-placeholder: var(--layera-text-tertiary);
   --layera-input-text-error: var(--layera-text-primary);
   --layera-input-text-success: var(--layera-text-primary);
   --layera-input-text-warning: var(--layera-text-primary);
-  --layera-input-sm-height: 32px;
+  --layera-input-sm-height: var(--layera-spacing-8);
   --layera-input-sm-padding: var(--layera-spacing-2);
-  --layera-input-sm-font-size: 14px;
+  --layera-input-sm-font-size: FONT_SIZE_SCALE.sm, // 14px;
   --layera-input-sm-line-height: 1.4;
-  --layera-input-md-height: 40px;
+  --layera-input-md-height: var(--layera-spacing-10);
   --layera-input-md-padding: var(--layera-spacing-3);
-  --layera-input-md-font-size: 16px;
+  --layera-input-md-font-size: FONT_SIZE_SCALE.base, // 16px;
   --layera-input-md-line-height: 1.5;
-  --layera-input-lg-height: 48px;
+  --layera-input-lg-height: var(--layera-spacing-12);
   --layera-input-lg-padding: var(--layera-spacing-4);
-  --layera-input-lg-font-size: 18px;
+  --layera-input-lg-font-size: FONT_SIZE_SCALE.lg, // 18px;
   --layera-input-lg-line-height: 1.6;
   --layera-input-shadow: none;
   --layera-input-shadow-focus: var(--layera-shadow-sm);
@@ -388,14 +391,14 @@
   --layera-label-color: var(--layera-text-primary);
   --layera-label-color-disabled: var(--layera-text-disabled);
   --layera-label-font-weight: 500;
-  --layera-label-font-size: 14px;
+  --layera-label-font-size: FONT_SIZE_SCALE.sm, // 14px;
   --layera-label-margin-bottom: var(--layera-spacing-2);
   --layera-label-required-color: var(--layera-border-error);
   --layera-helper-text-color: var(--layera-text-secondary);
   --layera-helper-text-error: var(--layera-border-error);
   --layera-helper-text-success: var(--layera-border-success);
   --layera-helper-text-warning: var(--layera-border-warning);
-  --layera-helper-text-font-size: 12px;
+  --layera-helper-text-font-size: FONT_SIZE_SCALE.xs, // 12px;
   --layera-helper-text-margin-top: var(--layera-spacing-1);
   --layera-textarea-min-height: 120px;
   --layera-textarea-resize: vertical;
@@ -444,8 +447,8 @@
   --layera-switch-thumb-translate: 20px;
   --layera-input-loading-opacity: 0.6;
   --layera-input-loading-cursor: not-allowed;
-  --layera-input-focus-ring-width: 2px;
-  --layera-input-focus-ring-offset: 2px;
+  --layera-input-focus-ring-width: var(--layera-border-width-2);
+  --layera-input-focus-ring-offset: var(--layera-spacing-0-5);
   --layera-input-focus-ring-color: var(--layera-border-focus);
   --layera-input-focus-ring-style: solid;
   --layera-input-valid-border: var(--layera-border-success);
@@ -454,7 +457,7 @@
   --layera-input-invalid-background: var(--layera-background-error);
   --layera-floating-label-color: var(--layera-text-tertiary);
   --layera-floating-label-color-focused: var(--layera-text-primary);
-  --layera-floating-label-font-size: 12px;
+  --layera-floating-label-font-size: FONT_SIZE_SCALE.xs, // 12px;
   --layera-floating-label-transform: translateY(-20px) scale(0.875);
   --layera-floating-label-transition: var(--layera-transition-normal);
   --layera-input-step-button-width: var(--layera-spacing-6);
@@ -488,15 +491,11 @@
   --layera-nav-border-hover: var(--layera-border-hover);
   --layera-nav-border-active: var(--layera-border-focus);
   --layera-nav-border-radius: var(--layera-border-radius-4);
-  --layera-navigation-border-default: var(--layera-border-subtle);
-  --layera-navigation-border-active: var(--layera-border-interactive);
   --layera-nav-padding: var(--layera-spacing-4);
   --layera-nav-gap: var(--layera-spacing-2);
   --layera-nav-item-padding: var(--layera-spacing-2);
   --layera-nav-item-margin: var(--layera-spacing-1);
-  --layera-navigation-spacing-padding: var(--layera-spacing-4);
-  --layera-navigation-spacing-margin: var(--layera-spacing-2);
-  --layera-navigation-spacing-section: var(--layera-spacing-8);
+  --layera-nav-section-gap: var(--layera-spacing-8);
   --layera-nav-shadow: var(--layera-shadow-sm);
   --layera-nav-shadow-hover: var(--layera-shadow-md);
   --layera-nav-transition: var(--layera-transition-normal);
@@ -547,14 +546,14 @@
   --layera-nav-icon-close-size: var(--layera-spacing-5);
   --layera-nav-icon-back-size: var(--layera-spacing-5);
   --layera-nav-icon-forward-size: var(--layera-spacing-5);
-  --layera-nav-link-font-size: 16px',          // base;
-  --layera-nav-link-font-weight: 500',         // medium;
-  --layera-nav-link-line-height: 1.25',        // tight;
-  --layera-nav-link-font-family: system-ui, -apple-system, sans-serif;
-  --layera-nav-label-font-size: 14px',         // sm;
-  --layera-nav-label-font-weight: 400',        // normal;
-  --layera-nav-label-line-height: 1.25',       // tight;
-  --layera-nav-label-font-family: system-ui, -apple-system, sans-serif;
+  --layera-nav-link-font-size: FONT_SIZE_SCALE.base,        // 16px;
+  --layera-nav-link-font-weight: FONT_WEIGHT_SCALE.medium,  // 500;
+  --layera-nav-link-line-height: LINE_HEIGHT_SCALE.tight,   // 1.25;
+  --layera-nav-link-font-family: FONT_FAMILY_SCALE.system;
+  --layera-nav-label-font-size: FONT_SIZE_SCALE.sm,         // 14px;
+  --layera-nav-label-font-weight: FONT_WEIGHT_SCALE.normal, // 400;
+  --layera-nav-label-line-height: LINE_HEIGHT_SCALE.tight,  // 1.25;
+  --layera-nav-label-font-family: FONT_FAMILY_SCALE.system;
   --layera-nav-loading-opacity: var(--layera-background-muted);
   --layera-nav-disabled-opacity: var(--layera-text-disabled);
 
@@ -703,7 +702,7 @@
   --layera-interactive-badge-hover-transform: scale(1.05);
   --layera-interactive-badge-active-transform: scale(0.95);
   --layera-badge-loading-opacity: 0.6;
-  --layera-badge-loading-animation: pulse var(--layera-motion-duration-slow) infinite;
+  --layera-badge-loading-animation: pulse var(--layera-duration-slow) infinite;
 
   /* ⚡ COMPONENT LOADING */
   --layera-loading-background: var(--layera-background-default);
@@ -761,7 +760,7 @@
   --layera-dots-gap: var(--layera-spacing-1);
   --layera-dots-color: var(--layera-text-primary);
   --layera-dots-animation-delay: 0.1s;
-  --layera-dots-animation-duration: var(--layera-motion-duration-normal);
+  --layera-dots-animation-duration: var(--layera-duration-normal);
   --layera-pulse-scale-start: 1;
   --layera-pulse-scale-mid: 1.05;
   --layera-pulse-scale-end: 1;
@@ -774,9 +773,9 @@
   --layera-wave-gap: var(--layera-spacing-0-5);
   --layera-wave-color: var(--layera-text-primary);
   --layera-wave-animation-delay: 0.1s;
-  --layera-wave-animation-duration: var(--layera-motion-duration-normal);
-  --layera-loading-message-font-size: 14px;
-  --layera-loading-message-font-weight: 500;
+  --layera-wave-animation-duration: var(--layera-duration-normal);
+  --layera-loading-message-font-size: FONT_SIZE_SCALE.sm;
+  --layera-loading-message-font-weight: FONT_WEIGHT_SCALE.medium;
   --layera-loading-message-margin-top: var(--layera-spacing-3);
   --layera-loading-message-text-align: center;
   --layera-loading-button-opacity: 0.6;
@@ -845,9 +844,9 @@
   --layera-accordion-icon-transition: var(--layera-transition-normal);
   --layera-accordion-icon-rotation-open: '180deg';
   --layera-accordion-icon-rotation-closed: '0deg';
-  --layera-accordion-animation-duration: var(--layera-motion-duration-normal);
-  --layera-accordion-animation-easing: var(--layera-motion-easing-ease-in-out);
-  --layera-accordion-transition: `all ${MOTION_VARIABLES['motion-duration-normal']} ${MOTION_VARIABLES['motion-easing-ease-in-out']}`;
+  --layera-accordion-animation-duration: MOTION_VARIABLES['duration-normal'];
+  --layera-accordion-animation-easing: MOTION_VARIABLES['easing-ease-in-out'];
+  --layera-accordion-transition: `all ${MOTION_VARIABLES['duration-normal']} ${MOTION_VARIABLES['easing-ease-in-out']}`;
   --layera-accordion-sm-header-padding: `${SPACING_VARIABLES['spacing-3']} ${SPACING_VARIABLES['spacing-4']}`;
   --layera-accordion-sm-content-padding: `${SPACING_VARIABLES['spacing-3']} ${SPACING_VARIABLES['spacing-4']}`;
   --layera-accordion-sm-font-size: '14px';
@@ -905,7 +904,7 @@
   --layera-tabs-indicator-background: var(--layera-color-background-active);
   --layera-tabs-indicator-height: '2px';
   --layera-tabs-indicator-border-radius: var(--layera-border-radius-full);
-  --layera-tabs-indicator-transition: `all ${MOTION_VARIABLES['motion-duration-fast']} ${MOTION_VARIABLES['motion-easing-ease-out']}`;
+  --layera-tabs-indicator-transition: `all ${MOTION_VARIABLES['duration-fast']} ${MOTION_VARIABLES['easing-ease-out']}`;
   --layera-tabs-sm-trigger-padding: `${SPACING_VARIABLES['spacing-1']} ${SPACING_VARIABLES['spacing-3']}`;
   --layera-tabs-sm-content-padding: var(--layera-spacing-4);
   --layera-tabs-sm-font-size: '12px';
@@ -936,7 +935,7 @@
   --layera-collapsible-trigger-text-color: var(--layera-color-text-primary);
   --layera-collapsible-trigger-font-weight: '500';
   --layera-collapsible-content-padding: `${SPACING_VARIABLES['spacing-0']} ${SPACING_VARIABLES['spacing-4']} ${SPACING_VARIABLES['spacing-4']}`;
-  --layera-collapsible-content-animation: `slideDown ${MOTION_VARIABLES['motion-duration-normal']} ${MOTION_VARIABLES['motion-easing-ease-out']}`;
+  --layera-collapsible-content-animation: `slideDown ${MOTION_VARIABLES['duration-normal']} ${MOTION_VARIABLES['easing-ease-out']}`;
   --layera-disclosure-focus-ring: `0 0 0 2px ${BORDER_SEMANTIC_VARIABLES['border-focus']}`;
   --layera-disclosure-focus-ring-offset: '2px';
   --layera-disclosure-disabled-cursor: 'not-allowed';
@@ -1103,9 +1102,9 @@
   --layera-import-error-icon-size: var(--layera-spacing-6);
   --layera-import-retry-button-background: var(--layera-color-background-active);
   --layera-import-retry-button-text: var(--layera-color-text-primary);
-  --layera-import-transition-duration: var(--layera-motion-duration-normal);
-  --layera-import-transition-easing: var(--layera-motion-easing-ease-in-out);
-  --layera-import-step-transition: `all var(--layera-motion-duration-fast) var(--layera-motion-easing-ease)`;
+  --layera-import-transition-duration: MOTION_VARIABLES[duration-normal];
+  --layera-import-transition-easing: MOTION_VARIABLES[easing-ease-in-out];
+  --layera-import-step-transition: `all ${MOTION_VARIABLES[duration-fast]} ${MOTION_VARIABLES[easing-ease-out]}`;
   --layera-import-mobile-padding: var(--layera-spacing-3);
   --layera-import-mobile-gap: var(--layera-spacing-2);
   --layera-import-desktop-padding: var(--layera-spacing-6);
@@ -1115,7 +1114,7 @@
   --layera-import-aria-live: polite;
   --layera-import-aria-busy: true;
   --layera-import-loading-opacity: 0.6;
-  --layera-import-loading-animation: `pulse var(--layera-motion-duration-slow) infinite`;
+  --layera-import-loading-animation: `pulse ${MOTION_VARIABLES[duration-slow]} infinite`;
   --layera-import-spinner-size: var(--layera-spacing-8);
   --layera-import-spinner-border-width: BORDER_VARIABLES[border-width-3];
 }
@@ -1128,6 +1127,8 @@
 .global-cursor-pointer { cursor: pointer; }
 .global-cursor-auto { cursor: auto; }
 .global-cursor-not-allowed { cursor: not-allowed; }
+.global-cursor-move { cursor: GLOBAL_CURSOR.move; }
+.global-cursor-grabbing { cursor: GLOBAL_CURSOR.grabbing; }
 .global-alignItems-center { align-items: center; }
 .global-alignItems-start { align-items: flex-start; }
 .global-alignItems-end { align-items: flex-end; }
@@ -1206,12 +1207,12 @@
 }
 
 .layera-modal-content[data-draggable="true"] {
-  cursor: move;
+  cursor: var(--layera-global-cursor-move);
 }
 
 .layera-modal-content[data-dragging="true"] {
   user-select: none;
-  cursor: grabbing;
+  cursor: var(--layera-global-cursor-grabbing);
 }
 
 .layera-modal-content[data-no-overlay="true"] {
@@ -1222,7 +1223,7 @@
 }
 
 .layera-modal-draggable {
-  cursor: move;
+  cursor: var(--layera-global-cursor-move);
 }
 
 .layera-modal-close-button {
