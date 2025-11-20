@@ -278,31 +278,22 @@ class LayeraSafetySystem {
   commitWithDistFiles(message) {
     this.log('Staging changes...', 'process');
 
-    // Add all changes
+    // Add all source changes
     this.execCommand('git add .', 'Stage all changes');
-
-    // Commit source changes
-    this.execCommand(
-      `git commit -m "🎯 ${message} - SAFETY CHECKPOINT" --no-verify`,
-      'Commit source changes'
-    );
 
     // Add dist files (FORCE add to bypass gitignore)
     if (fs.existsSync(path.join(this.tokensPath, 'dist'))) {
-      try {
-        // Force add dist files even if they are gitignored
-        this.execCommand(
-          'git add -f packages/tokens/dist/',
-          'Force stage dist files (bypass gitignore)'
-        );
-        this.execCommand(
-          `git commit -m "📦 Auto-generated dist files for: ${message}" --no-verify`,
-          'Commit dist files'
-        );
-      } catch (error) {
-        this.log('Dist files not committed - ERROR: ' + error.message, 'warning');
-      }
+      this.execCommand(
+        'git add -f packages/tokens/dist/',
+        'Force stage dist files (bypass gitignore)'
+      );
     }
+
+    // Commit everything together (source + dist files)
+    this.execCommand(
+      `git commit -m "🎯 ${message} - SAFETY CHECKPOINT (με dist files)" --no-verify`,
+      'Commit all changes (source + dist)'
+    );
   }
 
   verifyAppState() {
