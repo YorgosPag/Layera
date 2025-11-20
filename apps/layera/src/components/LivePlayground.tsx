@@ -542,13 +542,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {/* #9 & #10: Εργοστασιακές Ρυθμίσεις & Τρέχουσες Ρυθμίσεις (Cards 9 & 10) */}
           <Box className="layera-grid--auto-fit-280 layera-margin-bottom--xl">
             {/* #9: Εργοστασιακές Ρυθμίσεις (Factory Settings) */}
-            <Box
-              className="layera-card layera-card--warning layera-padding--lg layera-text--align-center"
-            >
-              <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
-                <SettingsIcon size="sm" /> Εργοστασιακές Ρυθμίσεις
-              </h3>
-              <FactorySettingsPanel
+            <FactorySettingsPanel
                 buttonState={buttonState}
                 onSettingsChange={(settings) => {
                   // Εφαρμόζει τις νέες ρυθμίσεις στο color state
@@ -565,21 +559,13 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 onPreview={startPreview}
                 currentUserId={user?.uid}
               />
-            </Box>
 
             {/* #10: Τρέχουσες Ρυθμίσεις (Color Value Display) */}
-            <Box
-              className="layera-card layera-card--info layera-padding--lg layera-text--align-center"
-            >
-              <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
-                <PaletteIcon size="sm" /> Τρέχουσες Ρυθμίσεις
-              </h3>
-              <SettingsDisplay
-                colorHookState={colorHookState}
-                currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
-                buttonState={buttonState}
-              />
-            </Box>
+            <SettingsDisplay
+              colorHookState={colorHookState}
+              currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
+              buttonState={buttonState}
+            />
           </Box>
     </Box>
   );

@@ -145,8 +145,8 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
         config={{
           id: 'color-category-selection',
           type: 'selection',
-          title: '🔴🔴🔴 ΕΔΏ ΕΙΝΑΙ Η ΚΑΡΤΑ - Επιλογή Κατηγορίας Αντικειμένων 🔴🔴🔴',
-          description: '⚠️ DEBUG MODE: Αν βλέπεις αυτό το μήνυμα, η κάρτα λειτουργεί! ⚠️',
+          title: 'Επιλογή Κατηγορίας Χρωμάτων',
+          description: 'Επιλέξτε ποια χρώματα θα επηρεάζονται από τις αλλαγές',
           icon: <CheckIcon size="sm" />,
           variant: 'warning',
           content: (
@@ -441,51 +441,27 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
       )}
 
 
-      {/* #3: Hover Effects (Card 3) - ΜΟΝΟ για interactive elements */}
+      {/* #3: Hover Effects Control - ΜΟΝΟ για interactive elements */}
       {isInteractiveElement && onHoverEffectChange && (
-        <UnifiedCard
-          config={{
-            id: 'hover-effects-control',
-            type: 'data',
-            title: 'Hover Effects',
-            description: `Ρυθμίστε τα hover effects για ${colorHookState.elementType}`,
-            icon: <CompassIcon size="sm" />,
-            variant: 'success',
-            content: (
-              <HoverControl
-                value={hoverEffect}
-                onChange={onHoverEffectChange}
-                elementType={colorHookState.elementType}
-                className="layera-height--auto layera-text--align-center"
-                onPreview={onPreview}
-                buttonState={buttonState}
-              />
-            )
-          }}
+        <HoverControl
+          value={hoverEffect}
+          onChange={onHoverEffectChange}
+          elementType={colorHookState.elementType}
+          className="layera-height--auto layera-text--align-center"
+          onPreview={onPreview}
+          buttonState={buttonState}
         />
       )}
 
-      {/* #4: Active Effects (Card 4) - ΜΟΝΟ για interactive elements */}
+      {/* #4: Active Effects Control - ΜΟΝΟ για interactive elements */}
       {isInteractiveElement && onActiveEffectChange && (
-        <UnifiedCard
-          config={{
-            id: 'active-effects-control',
-            type: 'data',
-            title: 'Active Effects',
-            description: `Ρυθμίστε τα active effects για ${colorHookState.elementType}`,
-            icon: <CheckIcon size="sm" />,
-            variant: 'warning',
-            content: (
-              <ActiveControl
-                value={activeEffect}
-                onChange={onActiveEffectChange}
-                elementType={colorHookState.elementType}
-                className="layera-height--auto layera-text--align-center"
-                onPreview={onPreview}
-                buttonState={buttonState}
-              />
-            )
-          }}
+        <ActiveControl
+          value={activeEffect}
+          onChange={onActiveEffectChange}
+          elementType={colorHookState.elementType}
+          className="layera-height--auto layera-text--align-center"
+          onPreview={onPreview}
+          buttonState={buttonState}
         />
       )}
     </Box>

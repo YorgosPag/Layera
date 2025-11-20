@@ -11,7 +11,7 @@
 // Core Components - Enhanced BaseCard + UnifiedCard System
 export { BaseCard } from './components/BaseCard';
 export { DashboardCard } from './components/DashboardCard';
-export { UnifiedCard } from './components/UnifiedCard/UnifiedCard';
+export { UnifiedCard } from './components/UnifiedCard';
 
 // Enhanced theme system
 export {

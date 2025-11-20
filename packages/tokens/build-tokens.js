@@ -1187,6 +1187,14 @@ function extractUtilitiesValues(content) {
             }
           }
 
+          if (varValue.includes('GLOBAL_GRID.')) {
+            const ref = varValue.match(/GLOBAL_GRID\.(\w+)/);
+            if (ref) {
+              const gridMap = { autoFit280: 'repeat(auto-fit, minmax(280px, 1fr))' };
+              varValue = gridMap[ref[1]] || varValue;
+            }
+          }
+
           // Αφαιρώ τα quotes από την τιμή
           varValue = varValue.replace(/^['"]|['"]$/g, '');
 
@@ -1223,6 +1231,9 @@ function convertUtilityToCSS(varName, varValue) {
   }
   if (varName.startsWith('global-border-')) {
     return `border-style: ${varValue};`;
+  }
+  if (varName.startsWith('layera-grid--')) {
+    return `display: grid; grid-template-columns: ${varValue};`;
   }
   if (varName.startsWith('margin-bottom-')) {
     return `margin-bottom: ${varValue};`;
