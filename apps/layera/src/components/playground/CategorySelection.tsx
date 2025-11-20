@@ -145,10 +145,10 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
         config={{
           id: 'color-category-selection',
           type: 'selection',
-          title: 'Επιλογή Κατηγορίας Αντικειμένων',
-          description: 'Επιλέξτε ποια αντικείμενα θα επηρεάσουν οι αλλαγές χρωμάτων',
+          title: '🔴🔴🔴 ΕΔΏ ΕΙΝΑΙ Η ΚΑΡΤΑ - Επιλογή Κατηγορίας Αντικειμένων 🔴🔴🔴',
+          description: '⚠️ DEBUG MODE: Αν βλέπεις αυτό το μήνυμα, η κάρτα λειτουργεί! ⚠️',
           icon: <CheckIcon size="sm" />,
-          variant: 'elevated',
+          variant: 'warning',
           content: (
             <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center">
               <Button

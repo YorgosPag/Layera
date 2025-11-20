@@ -2269,7 +2269,10 @@ function extractCardsComponentValues(content) {
         const parts = trimmedLine.split("': ");
         if (parts.length === 2) {
           const varName = parts[0].replace(/'/g, '');
-          let varValue = parts[1].replace(/,$/, '').trim();
+          // 1. Remove comments FIRST (before comma removal)
+          let varValue = parts[1].replace(/\/\/.*$/, '').trim();
+          // 2. Remove trailing comma
+          varValue = varValue.replace(/,$/, '').trim();
 
           // Resolve SPACING_VARIABLES references
           if (varValue.includes('SPACING_VARIABLES[')) {
@@ -2279,7 +2282,7 @@ function extractCardsComponentValues(content) {
             }
           }
 
-          // Remove quotes από την τιμή
+          // 3. Remove quotes από την τιμή
           varValue = varValue.replace(/^['"]|['"]$/g, '');
 
           cssVariables.push(`  --layera-${varName}: ${varValue};`);
@@ -2479,37 +2482,38 @@ ${tooltipCSS}
   transition: var(--layera-card-transition);
 }
 
-.layera-card--primary {
+/* 🎯 CARD DATA-VARIANT SELECTORS - Μία Πηγή Αλήθειας */
+.layera-card[data-variant="primary"] {
   background: var(--layera-card-background-primary);
   border: var(--layera-card-border-primary);
 }
 
-.layera-card--secondary {
+.layera-card[data-variant="secondary"] {
   background: var(--layera-card-background-secondary);
   border: var(--layera-card-border-secondary);
 }
 
-.layera-card--success {
+.layera-card[data-variant="success"] {
   background: var(--layera-card-background-success);
   border: var(--layera-card-border-success);
 }
 
-.layera-card--warning {
+.layera-card[data-variant="warning"] {
   background: var(--layera-card-background-warning);
   border: var(--layera-card-border-warning);
 }
 
-.layera-card--error {
+.layera-card[data-variant="error"] {
   background: var(--layera-card-background-error);
   border: var(--layera-card-border-error);
 }
 
-.layera-card--info {
+.layera-card[data-variant="info"] {
   background: var(--layera-card-background-info);
   border: var(--layera-card-border-info);
 }
 
-.layera-card--neutral {
+.layera-card[data-variant="neutral"] {
   background: var(--layera-card-background-neutral);
   border: var(--layera-card-border-neutral);
 }

@@ -3,7 +3,7 @@
  *
  * ⚠️  DO NOT EDIT MANUALLY
  * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts, core/motion/motion.variables.ts και component/icons/icons.variables.ts and rebuild
- * Generated: 2025-11-20T19:05:21.175Z
+ * Generated: 2025-11-20T19:37:09.999Z
  */
 
 :root {
@@ -370,23 +370,23 @@
   --layera-card-title-line-height: var(--layera-lineHeight-tight);
   --layera-card-title-color: var(--layera-color-text-primary);
   --layera-card-title-margin-bottom: var(--layera-spacing-1);
-  --layera-card-background-default: var(--layera-color-semantic-neutral-light)', // ΛΕΥΚΟ για default cards;
-  --layera-card-background-primary: var(--layera-color-semantic-warning-secondary)', // ΚΙΤΡΙΝΟ για primary cards;
-  --layera-card-background-secondary: var(--layera-color-semantic-info-secondary)', // ΜΠΛΕ για secondary cards;
-  --layera-card-background-success: var(--layera-color-semantic-success-secondary)', // ΠΡΑΣΙΝΟ για success cards;
-  --layera-card-background-warning: var(--layera-color-semantic-warning-primary)', // ΠΟΡΤΟΚΑΛΙ για warning cards;
-  --layera-card-background-error: var(--layera-color-semantic-error-secondary)', // ΚΟΚΚΙΝΟ για error cards;
-  --layera-card-background-neutral: var(--layera-color-semantic-neutral-secondary)', // ΓΚΡΙ για neutral cards;
-  --layera-card-border-default: 2px solid var(--layera-color-semantic-neutral-primary);
-  --layera-card-border-primary: 2px solid var(--layera-color-semantic-warning-primary);
-  --layera-card-border-secondary: 2px solid var(--layera-color-semantic-info-primary);
-  --layera-card-border-success: 2px solid var(--layera-color-semantic-success-primary);
-  --layera-card-border-warning: 2px solid var(--layera-color-semantic-warning-primary);
-  --layera-card-border-error: 2px solid var(--layera-color-semantic-error-primary);
-  --layera-card-border-neutral: 2px solid var(--layera-color-semantic-neutral-primary);
+  --layera-card-background-default: var(--layera-color-neutral-light);
+  --layera-card-background-primary: var(--layera-color-warning-light);
+  --layera-card-background-secondary: var(--layera-color-info-light);
+  --layera-card-background-success: var(--layera-color-success-light);
+  --layera-card-background-warning: var(--layera-color-warning-main);
+  --layera-card-background-error: var(--layera-color-error-light);
+  --layera-card-background-neutral: var(--layera-color-neutral-light);
+  --layera-card-border-default: 2px solid var(--layera-color-neutral-dark);
+  --layera-card-border-primary: 2px solid var(--layera-color-warning-main);
+  --layera-card-border-secondary: 2px solid var(--layera-color-info-main);
+  --layera-card-border-success: 2px solid var(--layera-color-success-main);
+  --layera-card-border-warning: 2px solid var(--layera-color-warning-main);
+  --layera-card-border-error: 2px solid var(--layera-color-error-main);
+  --layera-card-border-neutral: 2px solid var(--layera-color-neutral-dark);
   --layera-card-padding: var(--layera-spacing-4);
   --layera-card-margin: var(--layera-spacing-2);
-  --layera-card-min-height: 120px', // Minimum height για consistency;
+  --layera-card-min-height: 120px;
   --layera-card-display: block;
   --layera-card-position: relative;
   --layera-card-subtitle-font-size: var(--layera-fontSize-sm);
@@ -1582,37 +1582,38 @@
   transition: var(--layera-card-transition);
 }
 
-.layera-card--primary {
+/* 🎯 CARD DATA-VARIANT SELECTORS - Μία Πηγή Αλήθειας */
+.layera-card[data-variant="primary"] {
   background: var(--layera-card-background-primary);
   border: var(--layera-card-border-primary);
 }
 
-.layera-card--secondary {
+.layera-card[data-variant="secondary"] {
   background: var(--layera-card-background-secondary);
   border: var(--layera-card-border-secondary);
 }
 
-.layera-card--success {
+.layera-card[data-variant="success"] {
   background: var(--layera-card-background-success);
   border: var(--layera-card-border-success);
 }
 
-.layera-card--warning {
+.layera-card[data-variant="warning"] {
   background: var(--layera-card-background-warning);
   border: var(--layera-card-border-warning);
 }
 
-.layera-card--error {
+.layera-card[data-variant="error"] {
   background: var(--layera-card-background-error);
   border: var(--layera-card-border-error);
 }
 
-.layera-card--info {
+.layera-card[data-variant="info"] {
   background: var(--layera-card-background-info);
   border: var(--layera-card-border-info);
 }
 
-.layera-card--neutral {
+.layera-card[data-variant="neutral"] {
   background: var(--layera-card-background-neutral);
   border: var(--layera-card-border-neutral);
 }
