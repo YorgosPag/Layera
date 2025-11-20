@@ -253,7 +253,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
       />
           {/* Dynamic Content Based on Element Type Selection */}
           {colorHookState.elementType === 'buttons' && (
-            <Box className="layera-margin-bottom--xl">
+            <Box className="layera-margin-bottom--xl global-display-flex global-flexDirection-column global-alignItems-center">
               <ButtonsPlayground
                 buttonState={buttonState}
                 colorCategory={colorHookState.colorCategory}
@@ -267,7 +267,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           )}
 
           {colorHookState.elementType === 'cards' && (
-            <Box className="layera-margin-bottom--xl">
+            <Box className="layera-margin-bottom--xl global-display-flex global-flexDirection-column global-alignItems-center">
               <CardsPlayground
                 currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
@@ -281,7 +281,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           )}
 
           {colorHookState.elementType === 'modals' && (
-            <Box className="layera-margin-bottom--xl">
+            <Box className="layera-margin-bottom--xl global-display-flex global-flexDirection-column global-alignItems-center">
               <ModalsPlayground
                 currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
@@ -295,7 +295,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           )}
 
           {colorHookState.elementType === 'inputs' && (
-            <Box className="layera-margin-bottom--xl">
+            <Box className="layera-margin-bottom--xl global-display-flex global-flexDirection-column global-alignItems-center">
               <InputsPlayground
                 currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
@@ -309,7 +309,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           )}
 
           {colorHookState.elementType === 'layout' && (
-            <Box className="layera-margin-bottom--xl">
+            <Box className="layera-margin-bottom--xl global-display-flex global-flexDirection-column global-alignItems-center">
               <LayoutPlayground
                 currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
@@ -323,7 +323,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           )}
 
           {colorHookState.elementType === 'headers' && (
-            <Box className="layera-margin-bottom--xl">
+            <Box className="layera-margin-bottom--xl global-display-flex global-flexDirection-column global-alignItems-center">
               <HeaderPlayground
                 currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
@@ -338,7 +338,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
 
           {colorHookState.elementType === 'tables' && (
-            <Box className="layera-margin-bottom--xl">
+            <Box className="layera-margin-bottom--xl global-display-flex global-flexDirection-column global-alignItems-center">
               <TablesPlayground
                 currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
@@ -483,51 +483,49 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           )}
 
           {/* Color Controls Grid με Alpha Support */}
-          <Box className="layera-margin-bottom--xl">
-            <ColorControlsGridWithAlpha
-              currentColors={getColorsForCategory(colorHookState.colorCategory)}
-              currentSetters={colorActions}
-              startPreview={(key: string, value: string | ColorWithAlpha) => {
-                const previewValue = typeof value === 'string' ? value : value.rgba;
+          <ColorControlsGridWithAlpha
+            currentColors={getColorsForCategory(colorHookState.colorCategory)}
+            currentSetters={colorActions}
+            startPreview={(key: string, value: string | ColorWithAlpha) => {
+              const previewValue = typeof value === 'string' ? value : value.rgba;
 
-                if (colorHookState.elementType === 'buttons' &&
-                   colorHookState.colorCategory === 'backgrounds') {
-                  const colorValue = typeof value === 'string' ? value : value.hex;
-                  cssActions.applySpecificButtonColor(key, colorValue);
-                }
+              if (colorHookState.elementType === 'buttons' &&
+                 colorHookState.colorCategory === 'backgrounds') {
+                const colorValue = typeof value === 'string' ? value : value.hex;
+                cssActions.applySpecificButtonColor(key, colorValue);
+              }
 
-                if (colorHookState.elementType === 'cards' &&
-                   colorHookState.colorCategory === 'backgrounds') {
-                  const colorValue = typeof value === 'string' ? value : value.hex;
-                  cssActions.applySpecificCardColor(key, colorValue);
-                }
+              if (colorHookState.elementType === 'cards' &&
+                 colorHookState.colorCategory === 'backgrounds') {
+                const colorValue = typeof value === 'string' ? value : value.hex;
+                cssActions.applySpecificCardColor(key, colorValue);
+              }
 
-                if (colorHookState.elementType === 'modals' &&
-                   colorHookState.colorCategory === 'backgrounds') {
-                  const colorValue = typeof value === 'string' ? value : value.hex;
-                  cssActions.applySpecificModalColor(key, colorValue);
-                }
+              if (colorHookState.elementType === 'modals' &&
+                 colorHookState.colorCategory === 'backgrounds') {
+                const colorValue = typeof value === 'string' ? value : value.hex;
+                cssActions.applySpecificModalColor(key, colorValue);
+              }
 
-                if (colorHookState.elementType === 'layout' &&
-                   colorHookState.colorCategory === 'backgrounds') {
-                  const colorValue = typeof value === 'string' ? value : value.hex;
-                  cssActions.applySpecificLayoutColor(key, colorValue);
-                }
+              if (colorHookState.elementType === 'layout' &&
+                 colorHookState.colorCategory === 'backgrounds') {
+                const colorValue = typeof value === 'string' ? value : value.hex;
+                cssActions.applySpecificLayoutColor(key, colorValue);
+              }
 
-                if (colorHookState.elementType === 'headers' &&
-                   colorHookState.colorCategory === 'backgrounds') {
-                  const colorValue = typeof value === 'string' ? value : value.hex;
-                  cssActions.applySpecificHeaderColor(key, colorValue);
-                }
+              if (colorHookState.elementType === 'headers' &&
+                 colorHookState.colorCategory === 'backgrounds') {
+                const colorValue = typeof value === 'string' ? value : value.hex;
+                cssActions.applySpecificHeaderColor(key, colorValue);
+              }
 
-                startPreview(key, previewValue, colorHookState.colorCategory, colorHookState.elementType);
-              }}
-              colorCategory={colorHookState.colorCategory}
-              alphaEnabled={alphaEnabled}
-              onAlphaToggle={setAlphaEnabled}
-              buttonState={buttonState}
-            />
-          </Box>
+              startPreview(key, previewValue, colorHookState.colorCategory, colorHookState.elementType);
+            }}
+            colorCategory={colorHookState.colorCategory}
+            alphaEnabled={alphaEnabled}
+            onAlphaToggle={setAlphaEnabled}
+            buttonState={buttonState}
+          />
 
           {/* Apply Colors Buttons */}
           <Box className="layera-margin-bottom--xl">

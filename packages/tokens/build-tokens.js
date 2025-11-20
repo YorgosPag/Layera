@@ -1173,7 +1173,9 @@ function extractUtilitiesValues(content) {
                 justifyCenter: 'center',
                 justifyStart: 'flex-start',
                 justifyEnd: 'flex-end',
-                justifyBetween: 'space-between'
+                justifyBetween: 'space-between',
+                directionRow: 'row',
+                directionColumn: 'column'
               };
               varValue = flexMap[ref[1]] || varValue;
             }
@@ -1229,11 +1231,20 @@ function convertUtilityToCSS(varName, varValue) {
   if (varName.startsWith('global-justifyContent-')) {
     return `justify-content: ${varValue};`;
   }
+  if (varName.startsWith('global-flexDirection-')) {
+    return `flex-direction: ${varValue};`;
+  }
   if (varName.startsWith('global-border-')) {
     return `border-style: ${varValue};`;
   }
   if (varName.startsWith('layera-grid--')) {
     return `display: grid; grid-template-columns: ${varValue};`;
+  }
+  if (varName.startsWith('layera-width--')) {
+    return `width: ${varValue};`;
+  }
+  if (varName.startsWith('layera-height--')) {
+    return `height: ${varValue};`;
   }
   if (varName.startsWith('margin-bottom-')) {
     return `margin-bottom: ${varValue};`;

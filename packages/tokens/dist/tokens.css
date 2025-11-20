@@ -3,7 +3,7 @@
  *
  * ⚠️  DO NOT EDIT MANUALLY
  * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts, core/motion/motion.variables.ts και component/icons/icons.variables.ts and rebuild
- * Generated: 2025-11-20T21:14:53.703Z
+ * Generated: 2025-11-20T22:55:58.986Z
  */
 
 :root {
@@ -376,6 +376,7 @@
   --layera-card-background-success: var(--layera-color-success-light);
   --layera-card-background-warning: var(--layera-color-warning-main);
   --layera-card-background-error: var(--layera-color-error-light);
+  --layera-card-background-info: var(--layera-color-info-light);
   --layera-card-background-neutral: var(--layera-color-neutral-light);
   --layera-card-border-default: 2px solid var(--layera-color-neutral-dark);
   --layera-card-border-primary: 2px solid var(--layera-color-warning-main);
@@ -1211,12 +1212,16 @@
 .global-justifyContent-start { justify-content: flex-start; }
 .global-justifyContent-end { justify-content: flex-end; }
 .global-justifyContent-between { justify-content: space-between; }
+.global-flexDirection-row { flex-direction: row; }
+.global-flexDirection-column { flex-direction: column; }
 .global-border-none { border-style: BORDER_STYLE_SCALE.none; }
 .global-border-hidden { border-style: BORDER_STYLE_SCALE.hidden; }
 .global-border-solid { border-style: BORDER_STYLE_SCALE.solid; }
 .global-border-dashed { border-style: BORDER_STYLE_SCALE.dashed; }
 .global-border-dotted { border-style: BORDER_STYLE_SCALE.dotted; }
 .layera-grid--auto-fit-280 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.layera-width--32 { width: var(--layera-spacing-32); }
+.layera-height--10 { height: var(--layera-spacing-10); }
 .margin-bottom-xl { margin-bottom: var(--layera-spacing-8); }
 
 /* 📐 LAYOUT CLASSES */

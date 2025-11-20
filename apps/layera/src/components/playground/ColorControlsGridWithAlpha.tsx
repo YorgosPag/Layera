@@ -160,7 +160,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
   };
 
   return (
-    <Box className="layera-card layera-padding--lg layera-bg-surface--warning layera-border-color--warning layera-border-width--2">
+    <>
       {/* Alpha Mode Toggle - Compact Header */}
       <Box className="layera-text--align-center layera-margin-bottom--lg">
         <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
@@ -224,7 +224,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
         })}
       </Box>
 
-    </Box>
+    </>
   );
 });
 
