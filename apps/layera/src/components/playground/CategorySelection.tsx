@@ -266,25 +266,13 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
 
       {/* Border Width Control - ΜΟΝΟ για borders category */}
       {colorHookState.colorCategory === 'borders' && (
-        <UnifiedCard
-          config={{
-            id: 'border-width-control',
-            type: 'data',
-            title: 'Πάχος Περιγραμμάτων',
-            description: `Ρυθμίστε το πάχος των περιγραμμάτων για ${colorHookState.elementType}`,
-            icon: <PolygonIcon size="sm" />,
-            variant: 'info',
-            content: (
-              <BorderWidthControl
-                value={borderWidth}
-                onChange={onBorderWidthChange}
-                elementType={colorHookState.elementType}
-                className="layera-height--auto layera-text--align-center"
-                onPreview={onPreview}
-                buttonState={buttonState}
-              />
-            )
-          }}
+        <BorderWidthControl
+          value={borderWidth}
+          onChange={onBorderWidthChange}
+          elementType={colorHookState.elementType}
+          className="layera-height--auto layera-text--align-center"
+          onPreview={onPreview}
+          buttonState={buttonState}
         />
       )}
 
@@ -303,24 +291,12 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
 
       {/* Font Size Control - ΜΟΝΟ για text κατηγορία */}
       {colorHookState.colorCategory === 'text' && onFontSizeChange && (
-        <UnifiedCard
-          config={{
-            id: 'font-size-control',
-            type: 'data',
-            title: 'Μέγεθος Γραμματοσειράς',
-            description: 'Ρυθμίστε το μέγεθος της γραμματοσειράς για κείμενα',
-            icon: <EditIcon size="sm" />,
-            variant: 'filled',
-            content: (
-              <FontSizeControl
-                fontSize={fontSize}
-                onFontSizeChange={onFontSizeChange}
-                className="layera-height--auto layera-text--align-center"
-                onPreview={onPreview}
-                buttonState={buttonState}
-              />
-            )
-          }}
+        <FontSizeControl
+          fontSize={fontSize}
+          onFontSizeChange={onFontSizeChange}
+          className="layera-height--auto layera-text--align-center"
+          onPreview={onPreview}
+          buttonState={buttonState}
         />
       )}
 

@@ -81,7 +81,7 @@ export const FontSizeControl: React.FC<FontSizeControlProps> = ({
           data-size={fontSize}
           data-color="primary"
         >
-          <EyeIcon size="xs" /> Παράδειγμα κειμένου με {fontSize} μέγεθος
+          Παράδειγμα κειμένου με {fontSize} μέγεθος
         </Text>
         <Text className="layera-typography layera-margin-top--xs" data-size="xs" data-color="secondary">
           {fontSizeOptions.find(opt => opt.value === fontSize)?.description}

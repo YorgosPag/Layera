@@ -272,6 +272,19 @@ function extractSpacingValues(content) {
     }
   }
 
+  // Extract SIZE_SCALE values from SPACING_VARIABLES (spacing-7, spacing-14, spacing-30)
+  const sizeScaleMatch = content.match(/export const SIZE_SCALE[\s\S]*?= \{([\s\S]*?)\} as const;/);
+  if (sizeScaleMatch) {
+    const sizeScaleContent = sizeScaleMatch[1];
+    const sizeRegex = /(\d+): ['"]([^'"]+)['"]/g;
+    let match;
+
+    while ((match = sizeRegex.exec(sizeScaleContent)) !== null) {
+      const [, scale, value] = match;
+      cssVariables.push(`  --layera-spacing-${scale}: ${value};`);
+    }
+  }
+
   console.log(`📏 Εξήχθησαν ${cssVariables.length} spacing variables`);
   return cssVariables;
 }

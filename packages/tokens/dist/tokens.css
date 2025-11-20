@@ -3,7 +3,7 @@
  *
  * ⚠️  DO NOT EDIT MANUALLY
  * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts, core/motion/motion.variables.ts και component/icons/icons.variables.ts and rebuild
- * Generated: 2025-11-20T22:55:58.986Z
+ * Generated: 2025-11-20T23:16:50.913Z
  */
 
 :root {
@@ -78,6 +78,13 @@
   --layera-spacing-medium: 1rem;
   --layera-spacing-large: 2rem;
   --layera-spacing-macro: 4rem;
+  --layera-spacing-5: 1.25rem;
+  --layera-spacing-6: 1.5rem;
+  --layera-spacing-7: 1.75rem;
+  --layera-spacing-8: 2rem;
+  --layera-spacing-14: 3.5rem;
+  --layera-spacing-16: 4rem;
+  --layera-spacing-30: 7.5rem;
 
   /* 🖋️ TYPOGRAPHY */
 
@@ -387,7 +394,7 @@
   --layera-card-border-neutral: 2px solid var(--layera-color-neutral-dark);
   --layera-card-padding: var(--layera-spacing-4);
   --layera-card-margin: var(--layera-spacing-2);
-  --layera-card-min-height: 120px;
+  --layera-card-min-height: auto;
   --layera-card-display: block;
   --layera-card-position: relative;
   --layera-card-subtitle-font-size: var(--layera-fontSize-sm);
@@ -1220,8 +1227,14 @@
 .global-border-dashed { border-style: BORDER_STYLE_SCALE.dashed; }
 .global-border-dotted { border-style: BORDER_STYLE_SCALE.dotted; }
 .layera-grid--auto-fit-280 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.layera-width--30 { width: var(--layera-spacing-30); }
 .layera-width--32 { width: var(--layera-spacing-32); }
+.layera-width--20 { width: var(--layera-spacing-20); }
+.layera-width--24 { width: var(--layera-spacing-24); }
 .layera-height--10 { height: var(--layera-spacing-10); }
+.layera-height--6 { height: var(--layera-spacing-6); }
+.layera-height--8 { height: var(--layera-spacing-8); }
+.layera-height--20 { height: var(--layera-spacing-20); }
 .margin-bottom-xl { margin-bottom: var(--layera-spacing-8); }
 
 /* 📐 LAYOUT CLASSES */
