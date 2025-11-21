@@ -4,6 +4,7 @@ import { Text } from '@layera/typography';
 import { CheckIcon, CloseIcon } from '@layera/icons';
 import { useCSSVariables } from '../../hooks/useCSSVariables';
 import { PLAYGROUND_HELPERS } from '../../constants/ui-utilities';
+import type { ModalTextAlignValue } from './shared/ModalTextAlignControl';
 
 /**
  * ModalsPlayground Component
@@ -28,6 +29,8 @@ interface ModalsPlaygroundProps {
   modalRadius?: string;
   /** Modal size for styling */
   modalSize?: string;
+  /** Modal text alignment */
+  modalTextAlign?: ModalTextAlignValue;
   /** Hover effect for interactive elements */
   hoverEffect?: string;
   /** Active effect for interactive elements */
@@ -40,6 +43,7 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
   borderWidth = 2,
   modalRadius = 'lg',
   modalSize = 'md',
+  modalTextAlign = 'middle',
   hoverEffect = 'normal',
   activeEffect = 'scale'
 }) => {
@@ -76,6 +80,20 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
     return parts.join(' ');
   };
 
+  // Helper function για text alignment CSS classes
+  const getModalTextAlignClass = (textAlign: ModalTextAlignValue) => {
+    // Κάθετες τιμές χρησιμοποιούν κάθετες CSS classes
+    if (['top', 'middle', 'bottom'].includes(textAlign)) {
+      return `layera-modal-text-vertical-${textAlign}`;
+    }
+    // Οριζόντιες τιμές χρησιμοποιούν νέες οριζόντιες CSS classes
+    if (['left', 'right'].includes(textAlign)) {
+      return `layera-modal-text-horizontal-${textAlign}`;
+    }
+    // Default fallback
+    return 'layera-modal-text-vertical-middle';
+  };
+
   // Helper functions same as CardsPlayground
   const getTextColor = (colorValue: string) => {
     if (colorCategory === 'text') return colorValue;
@@ -102,7 +120,8 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
   // Debug logging
   console.log('🔲 ModalsPlayground: modalRadius prop =', modalRadius);
   console.log('🔲 ModalsPlayground: Final borderRadius =', getRadiusToken(modalRadius));
-
+  console.log('🔲 ModalsPlayground: modalTextAlign =', modalTextAlign);
+  console.log('🔲 ModalsPlayground: CSS class =', getModalTextAlignClass(modalTextAlign));
 
   const modalConfigs = [
     { key: 'primary', title: 'Primary Modal', description: 'Κύριο modal', colorValue: currentColors.primary },
@@ -112,6 +131,14 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
     { key: 'danger', title: 'Danger Modal', description: 'Modal κινδύνου', colorValue: currentColors.danger },
     { key: 'info', title: 'Info Modal', description: 'Modal πληροφοριών', colorValue: currentColors.info }
   ];
+
+  // 🚨 DEBUG: Modal configs και sizes
+  console.log('🚨 DEBUG Modal Configs:', modalConfigs.map(({key, title}) => ({
+    key,
+    title,
+    dataVariant: key === 'danger' ? 'error' : key,
+    className: `layera-modal-uniform layera-card ${getModalTextAlignClass(modalTextAlign)}`
+  })));
 
   // ✅ NO INLINE STYLES - Using useCSSVariables hook
   const { actions } = useCSSVariables();
@@ -136,11 +163,11 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
           {modalConfigs.map(({ key, title, description, colorValue }) => (
             <Box
               key={key}
-              className="layera-width--32 layera-height--6 layera-card"
-              data-variant={key === 'primary' ? undefined : key === 'secondary' ? undefined : key === 'danger' ? 'error' : key}
+              className={`layera-modal-uniform layera-card ${getModalTextAlignClass(modalTextAlign)}`}
+              data-variant={key === 'danger' ? 'error' : key}
             >
               <Text
-                className="layera-typography layera-text--align-center layera-text--align-vertical-middle"
+                className="layera-typography"
                 data-size="xs"
                 data-weight="bold"
               >

@@ -11,9 +11,11 @@ import { ActiveControl } from './shared/ActiveControl';
 import { FontSizeControl } from './shared/FontSizeControl';
 import { CardSizeControl } from './shared/CardSizeControl';
 import { ModalSizeControl } from './shared/ModalSizeControl';
+import { ModalTextAlignControl } from './shared/ModalTextAlignControl';
 import { InputSizeControl } from './shared/InputSizeControl';
 import { TableSizeControl } from './shared/TableSizeControl';
 import type { FontSizeValue, CardSizeValue, ModalSizeValue, InputSizeValue, TableSizeValue } from '../../types/sizes';
+import type { ModalTextAlignValue } from './shared/ModalTextAlignControl';
 import { ButtonRadiusControl } from './shared/ButtonRadiusControl';
 import { LayoutRadiusControl } from './shared/LayoutRadiusControl';
 import { CardRadiusControl } from './shared/CardRadiusControl';
@@ -65,6 +67,8 @@ interface ExtendedCategorySelectionProps {
   onCardSizeChange?: (value: CardSizeValue) => void;
   modalSize?: ModalSizeValue;
   onModalSizeChange?: (value: ModalSizeValue) => void;
+  modalTextAlign?: ModalTextAlignValue;
+  onModalTextAlignChange?: (value: ModalTextAlignValue) => void;
   inputSize?: InputSizeValue;
   onInputSizeChange?: (value: InputSizeValue) => void;
   tableSize?: TableSizeValue;
@@ -104,6 +108,8 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
   onCardSizeChange,
   modalSize = 'md',
   onModalSizeChange,
+  modalTextAlign = 'middle',
+  onModalTextAlignChange,
   inputSize = 'md',
   onInputSizeChange,
   tableSize = 'md',
@@ -355,6 +361,16 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
           className="layera-height--auto layera-text--align-center"
           onPreview={onPreview}
           buttonState={buttonState}
+        />
+      )}
+
+      {/* Modal Vertical Text Align Control - ΜΟΝΟ για οποιαδήποτε category με modals element */}
+      {colorHookState.elementType === 'modals' && onModalTextAlignChange && (
+        <ModalTextAlignControl
+          textAlign={modalTextAlign}
+          onTextAlignChange={onModalTextAlignChange}
+          className="layera-height--auto layera-text--align-center"
+          onPreview={onPreview}
         />
       )}
 

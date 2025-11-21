@@ -17,6 +17,7 @@ import { SettingsDisplay } from './playground/SettingsDisplay';
 import { FactorySettingsPanel } from './playground/FactorySettingsPanel';
 import type { ColorWithAlpha } from './playground/shared/ColorPickerWithAlpha';
 import type { FontSizeValue, CardSizeValue, ModalSizeValue, InputSizeValue, TableSizeValue, UnifiedSizeConfig } from '../types/sizes';
+import type { ModalTextAlignValue } from './playground/shared/ModalTextAlignControl';
 import { useAuth } from '@layera/auth-bridge';
 import { useRealTimePreview } from '../hooks/useRealTimePreview';
 import { useButtonState } from '../hooks/useButtonState';
@@ -153,6 +154,9 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   const setInputSize = (value: InputSizeValue) => setSizeConfig(prev => ({ ...prev, input: value }));
   const setTableSize = (value: TableSizeValue) => setSizeConfig(prev => ({ ...prev, table: value }));
 
+  // Modal Text Alignment State
+  const [modalTextAlign, setModalTextAlign] = useState<ModalTextAlignValue>('middle');
+
 
   // Real-time preview hook for header buttons
   const { startPreview } = useRealTimePreview({
@@ -288,6 +292,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
                 borderWidth={borderWidth}
                 modalRadius={modalRadius}
                 modalSize={modalSize}
+                modalTextAlign={modalTextAlign}
                 hoverEffect={hoverEffect}
                 activeEffect={activeEffect}
               />
@@ -385,6 +390,8 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               onCardSizeChange={setCardSize}
               modalSize={modalSize}
               onModalSizeChange={setModalSize}
+              modalTextAlign={modalTextAlign}
+              onModalTextAlignChange={setModalTextAlign}
               inputSize={inputSize}
               onInputSizeChange={setInputSize}
               tableSize={tableSize}

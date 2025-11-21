@@ -3,7 +3,7 @@
  *
  * ⚠️  DO NOT EDIT MANUALLY
  * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts, core/motion/motion.variables.ts και component/icons/icons.variables.ts and rebuild
- * Generated: 2025-11-21T01:51:28.020Z
+ * Generated: 2025-11-21T14:02:05.024Z
  */
 
 :root {
@@ -371,6 +371,32 @@
   --layera-modal-fullscreen-height: 100vh;
   --layera-modal-fullscreen-padding: var(--layera-spacing-6);
   --layera-modal-header-padding: var(--layera-spacing-6);
+  --layera-modal-header-border-bottom: var(--layera-border-subtle);
+  --layera-modal-header-background: transparent;
+  --layera-modal-title-font-weight: 600;
+  --layera-modal-title-color: var(--layera-text-primary);
+  --layera-modal-close-size: var(--layera-spacing-8);
+  --layera-modal-close-color: var(--layera-text-secondary);
+  --layera-modal-close-hover-color: var(--layera-text-primary);
+  --layera-modal-close-background-hover: var(--layera-background-hover);
+  --layera-modal-close-border-radius: var(--layera-border-radius-4);
+  --layera-modal-body-padding: var(--layera-component-padding-medium);
+  --layera-modal-body-max-height: 60vh;
+  --layera-modal-body-overflow: auto;
+  --layera-modal-body-color: var(--layera-text-primary);
+  --layera-modal-body-line-height: 1.5;
+  --layera-modal-footer-padding: var(--layera-spacing-4);
+  --layera-modal-footer-border-top: var(--layera-border-subtle);
+  --layera-modal-footer-background: transparent;
+  --layera-modal-footer-button-gap: var(--layera-spacing-3);
+  --layera-modal-footer-justify: flex-end;
+  --layera-modal-text-align-horizontal-left: var(--layera-core-text-align-left);
+  --layera-modal-text-align-horizontal-center: var(--layera-core-text-align-center);
+  --layera-modal-text-align-horizontal-right: var(--layera-core-text-align-right);
+  --layera-modal-text-align-horizontal-justify: var(--layera-core-text-align-justify);
+  --layera-modal-text-align-vertical-top: var(--layera-core-text-align-vertical-top);
+  --layera-modal-text-align-vertical-middle: var(--layera-core-text-align-vertical-middle);
+  --layera-modal-text-align-vertical-bottom: var(--layera-core-text-align-vertical-bottom);
 
   /* 🎯 COMPONENT CARDS */
   --layera-card-font-family: var(--layera-fontFamily-body);
@@ -407,6 +433,7 @@
   --layera-card-border-success: 2px solid var(--layera-color-success-main);
   --layera-card-border-warning: 2px solid var(--layera-color-warning-main);
   --layera-card-border-error: 2px solid var(--layera-color-error-main);
+  --layera-card-border-info: 2px solid var(--layera-color-info-main);
   --layera-card-border-neutral: 2px solid var(--layera-color-neutral-dark);
   --layera-card-padding: var(--layera-spacing-4);
   --layera-card-margin: var(--layera-spacing-2);
@@ -897,7 +924,7 @@
   --layera-loading-message-font-size: FONT_SIZE_SCALE.sm;
   --layera-loading-message-font-weight: FONT_WEIGHT_SCALE.medium;
   --layera-loading-message-margin-top: var(--layera-spacing-3);
-  --layera-loading-message-text-align: center;
+  --layera-loading-message-text-align: var(--layera-core-text-align-center);
   --layera-loading-button-opacity: 0.6;
   --layera-loading-button-cursor: not-allowed;
   --layera-loading-button-spinner-margin: var(--layera-spacing-2);
@@ -1264,13 +1291,6 @@
 .global-border-dashed { border-style: BORDER_STYLE_SCALE.dashed; }
 .global-border-dotted { border-style: BORDER_STYLE_SCALE.dotted; }
 .layera-grid--auto-fit-280 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-.layera-core-text-align-left { /* layera-core-text-align-left: left; */ }
-.layera-core-text-align-center { /* layera-core-text-align-center: center; */ }
-.layera-core-text-align-right { /* layera-core-text-align-right: right; */ }
-.layera-core-text-align-justify { /* layera-core-text-align-justify: justify; */ }
-.layera-core-text-align-vertical-top { /* layera-core-text-align-vertical-top: top; */ }
-.layera-core-text-align-vertical-middle { /* layera-core-text-align-vertical-middle: middle; */ }
-.layera-core-text-align-vertical-bottom { /* layera-core-text-align-vertical-bottom: bottom; */ }
 .layera-text--align-left { text-align: var(--layera-core-text-align-left); }
 .layera-text--align-center { text-align: var(--layera-core-text-align-center); }
 .layera-text--align-right { text-align: var(--layera-core-text-align-right); }
@@ -1704,14 +1724,117 @@
 
 .layera-card-text-left {
   text-align: var(--layera-card-text-align-horizontal-left);
+  display: flex;
+  align-items: var(--layera-card-text-align-vertical-top);
+  justify-content: flex-start;
+  flex-direction: column;
 }
 
 .layera-card-text-right {
   text-align: var(--layera-card-text-align-horizontal-right);
+  display: flex;
+  align-items: var(--layera-card-text-align-vertical-top);
+  justify-content: flex-end;
+  flex-direction: column;
 }
 
 .layera-card-text-justify {
   text-align: var(--layera-card-text-align-horizontal-justify);
+  display: flex;
+  align-items: var(--layera-card-text-align-vertical-top);
+  justify-content: stretch;
+  flex-direction: column;
+}
+
+/* 🎯 ENTERPRISE MODAL TEXT ALIGNMENT CLASSES */
+.layera-modal-text-center {
+  text-align: var(--layera-modal-text-align-horizontal-center);
+  display: flex;
+  align-items: var(--layera-modal-text-align-vertical-middle);
+  justify-content: center;
+  flex-direction: column;
+}
+
+.layera-modal-text-left {
+  text-align: var(--layera-modal-text-align-horizontal-left);
+  display: flex;
+  align-items: var(--layera-modal-text-align-vertical-top);
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.layera-modal-text-right {
+  text-align: var(--layera-modal-text-align-horizontal-right);
+  display: flex;
+  align-items: var(--layera-modal-text-align-vertical-top);
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
+.layera-modal-text-justify {
+  text-align: var(--layera-modal-text-align-horizontal-justify);
+  display: flex;
+  align-items: var(--layera-modal-text-align-vertical-top);
+  justify-content: stretch;
+  flex-direction: column;
+}
+
+/* 🎯 ENTERPRISE MODAL TEXT ALIGNMENT CLASSES - VERTICAL - HIGH SPECIFICITY */
+.layera-card.layera-modal-uniform.layera-modal-text-vertical-top {
+  text-align: center !important;
+}
+
+.layera-card.layera-modal-uniform.layera-modal-text-vertical-middle {
+  text-align: center !important;
+}
+
+.layera-card.layera-modal-uniform.layera-modal-text-vertical-bottom {
+  text-align: center !important;
+}
+
+/* 🎯 ENTERPRISE MODAL TEXT ALIGNMENT CLASSES - HORIZONTAL - HIGH SPECIFICITY */
+.layera-card.layera-modal-uniform.layera-modal-text-horizontal-left {
+  text-align: left !important;
+}
+
+.layera-card.layera-modal-uniform.layera-modal-text-horizontal-right {
+  text-align: right !important;
+}
+
+/* 🎯 ENTERPRISE MODAL UNIFORM SIZE CLASSES - INCREASED DIMENSIONS */
+.layera-modal-uniform {
+  width: var(--layera-spacing-scale-80) !important;
+  height: var(--layera-spacing-scale-12) !important;
+  min-width: var(--layera-spacing-scale-80) !important;
+  min-height: var(--layera-spacing-scale-12) !important;
+  max-width: var(--layera-spacing-scale-80) !important;
+  max-height: var(--layera-spacing-scale-12) !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+}
+
+/* 🎯 ENHANCED SPECIFICITY FOR MODAL CARDS - USING TOKEN SYSTEM */
+.layera-card.layera-modal-uniform {
+  width: var(--layera-spacing-scale-80) !important;
+  height: var(--layera-spacing-scale-12) !important;
+  min-width: var(--layera-spacing-scale-80) !important;
+  min-height: var(--layera-spacing-scale-12) !important;
+  max-width: var(--layera-spacing-scale-80) !important;
+  max-height: var(--layera-spacing-scale-12) !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  flex-basis: var(--layera-spacing-scale-80) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+  text-align: center !important;
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
 }
 
 /* 🎯 Layera Design Tokens System Ready */

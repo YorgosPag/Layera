@@ -1036,13 +1036,15 @@ function extractModalComponentValues(content) {
       braceCount += (line.match(/\{/g) || []).length;
       braceCount -= (line.match(/\}/g) || []).length;
 
-      // Αν βρω variable definition - απλό string matching
+      // Αν βρω variable definition - απλό string matching (quotes ή backticks)
       const trimmedLine = line.trim();
-      if (trimmedLine.startsWith("'") && trimmedLine.includes("': ")) {
-        const parts = trimmedLine.split("': ");
+      if ((trimmedLine.startsWith("'") && trimmedLine.includes("': ")) ||
+          (trimmedLine.startsWith("`") && trimmedLine.includes("`: "))) {
+        const parts = trimmedLine.includes("': ") ? trimmedLine.split("': ") : trimmedLine.split("`: ");
         if (parts.length === 2) {
-          const varName = parts[0].replace(/'/g, '');
+          const varName = parts[0].replace(/[`']/g, ''); // Αφαιρεί τόσο quotes όσο και backticks
           let varValue = parts[1].replace(/,$/, '').trim();
+
 
           // Resolve imports και references για modal
           if (varValue.includes('BACKGROUND_VARIABLES[')) {
@@ -1094,8 +1096,14 @@ function extractModalComponentValues(content) {
             }
           }
 
-          // Remove quotes αν υπάρχουν
-          if (varValue.startsWith("'") && varValue.endsWith("'")) {
+          // Handle var() references για modal text-align variables
+          // Αυτές έρχονται ήδη ως 'var(--layera-core-text-align-center)' κλπ.
+          if (varValue.startsWith("'var(--layera-") && varValue.endsWith("'")) {
+            // Ήδη σωστή μορφή, απλά αφαιρούμε τα quotes
+            varValue = varValue.slice(1, -1);
+          }
+          // Remove quotes αν υπάρχουν (για άλλες περιπτώσεις)
+          else if (varValue.startsWith("'") && varValue.endsWith("'")) {
             varValue = varValue.slice(1, -1);
           }
 
@@ -1103,8 +1111,8 @@ function extractModalComponentValues(content) {
         }
       }
 
-      // Τέλος του object
-      if (braceCount <= 0 && line.includes('}')) {
+      // Τέλος του object - αναζητάμε το συγκεκριμένο pattern '} as const;'
+      if (line.includes('} as const;')) {
         break;
       }
     }
@@ -1234,6 +1242,12 @@ function extractUtilitiesValues(content) {
 
           // Αφαιρώ τα quotes από την τιμή
           varValue = varValue.replace(/^['"]|['"]$/g, '');
+
+          // Skip core text-align variables - they should only exist as CSS custom properties
+          if (varName.startsWith('layera-core-text-align-')) {
+            // Core text-align variables are handled separately by extractCoreTextAlignVariables
+            continue;
+          }
 
           // Create CSS class instead of variable for utilities
           const className = varName.replace(/-/g, '-');
@@ -2601,14 +2615,117 @@ ${tooltipCSS}
 
 .layera-card-text-left {
   text-align: var(--layera-card-text-align-horizontal-left);
+  display: flex;
+  align-items: var(--layera-card-text-align-vertical-top);
+  justify-content: flex-start;
+  flex-direction: column;
 }
 
 .layera-card-text-right {
   text-align: var(--layera-card-text-align-horizontal-right);
+  display: flex;
+  align-items: var(--layera-card-text-align-vertical-top);
+  justify-content: flex-end;
+  flex-direction: column;
 }
 
 .layera-card-text-justify {
   text-align: var(--layera-card-text-align-horizontal-justify);
+  display: flex;
+  align-items: var(--layera-card-text-align-vertical-top);
+  justify-content: stretch;
+  flex-direction: column;
+}
+
+/* 🎯 ENTERPRISE MODAL TEXT ALIGNMENT CLASSES */
+.layera-modal-text-center {
+  text-align: var(--layera-modal-text-align-horizontal-center);
+  display: flex;
+  align-items: var(--layera-modal-text-align-vertical-middle);
+  justify-content: center;
+  flex-direction: column;
+}
+
+.layera-modal-text-left {
+  text-align: var(--layera-modal-text-align-horizontal-left);
+  display: flex;
+  align-items: var(--layera-modal-text-align-vertical-top);
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.layera-modal-text-right {
+  text-align: var(--layera-modal-text-align-horizontal-right);
+  display: flex;
+  align-items: var(--layera-modal-text-align-vertical-top);
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
+.layera-modal-text-justify {
+  text-align: var(--layera-modal-text-align-horizontal-justify);
+  display: flex;
+  align-items: var(--layera-modal-text-align-vertical-top);
+  justify-content: stretch;
+  flex-direction: column;
+}
+
+/* 🎯 ENTERPRISE MODAL TEXT ALIGNMENT CLASSES - VERTICAL - HIGH SPECIFICITY */
+.layera-card.layera-modal-uniform.layera-modal-text-vertical-top {
+  text-align: center !important;
+}
+
+.layera-card.layera-modal-uniform.layera-modal-text-vertical-middle {
+  text-align: center !important;
+}
+
+.layera-card.layera-modal-uniform.layera-modal-text-vertical-bottom {
+  text-align: center !important;
+}
+
+/* 🎯 ENTERPRISE MODAL TEXT ALIGNMENT CLASSES - HORIZONTAL - HIGH SPECIFICITY */
+.layera-card.layera-modal-uniform.layera-modal-text-horizontal-left {
+  text-align: left !important;
+}
+
+.layera-card.layera-modal-uniform.layera-modal-text-horizontal-right {
+  text-align: right !important;
+}
+
+/* 🎯 ENTERPRISE MODAL UNIFORM SIZE CLASSES - INCREASED DIMENSIONS */
+.layera-modal-uniform {
+  width: var(--layera-spacing-scale-80) !important;
+  height: var(--layera-spacing-scale-12) !important;
+  min-width: var(--layera-spacing-scale-80) !important;
+  min-height: var(--layera-spacing-scale-12) !important;
+  max-width: var(--layera-spacing-scale-80) !important;
+  max-height: var(--layera-spacing-scale-12) !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+}
+
+/* 🎯 ENHANCED SPECIFICITY FOR MODAL CARDS - USING TOKEN SYSTEM */
+.layera-card.layera-modal-uniform {
+  width: var(--layera-spacing-scale-80) !important;
+  height: var(--layera-spacing-scale-12) !important;
+  min-width: var(--layera-spacing-scale-80) !important;
+  min-height: var(--layera-spacing-scale-12) !important;
+  max-width: var(--layera-spacing-scale-80) !important;
+  max-height: var(--layera-spacing-scale-12) !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  flex-basis: var(--layera-spacing-scale-80) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+  text-align: center !important;
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
 }
 
 /* 🎯 Layera Design Tokens System Ready */
