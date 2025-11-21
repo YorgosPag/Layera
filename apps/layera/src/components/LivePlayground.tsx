@@ -16,6 +16,9 @@ import { ColorControlsGridWithAlpha } from './playground/ColorControlsGridWithAl
 import { ColorActionsPanel } from './playground/ColorActionsPanel';
 import { SettingsDisplay } from './playground/SettingsDisplay';
 import { FactorySettingsPanel } from './playground/FactorySettingsPanel';
+import { ButtonShapeControl } from './playground/shared/ButtonShapeControl';
+import { ButtonSizeControl } from './playground/shared/ButtonSizeControl';
+import { ButtonTextIconControl } from './playground/shared/ButtonTextIconControl';
 import type { ColorWithAlpha } from './playground/shared/ColorPickerWithAlpha';
 import type { FontSizeValue, CardSizeValue, ModalSizeValue, InputSizeValue, TableSizeValue, UnifiedSizeConfig } from '../types/sizes';
 import type { ModalTextAlignValue } from './playground/shared/ModalTextAlignControl';
@@ -408,136 +411,24 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               <Box
                 className="layera-grid layera-grid--gap-lg layera-margin-top--lg layera-margin-bottom--xl layera-grid--auto-fit-280 layera-padding--lg"
               >
-                {/* Shape Control - ΠΡΩΤΟ */}
-                <Box
-                  className="layera-card layera-padding--lg layera-text--align-center"
-                  data-variant="primary"
-                >
-                  <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
-                    <PolygonIcon size="sm" /> Σχήμα Πλήκτρου
-                  </h3>
-                  <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center layera-align-items--center layera-margin-bottom--md">
-                    <Button
-                      variant={buttonState.shape === 'rectangular' ? 'primary' : 'outline'}
-                      size={buttonState.size}
-                      onClick={() => buttonActions.setShape('rectangular')}
-                      className={`layera-button layera-button--${buttonState.size} layera-button--${buttonState.shape === 'rectangular' ? 'primary' : 'outline'}`}
-                    >
-                      <RulerIcon size="sm" /> Παραλληλόγραμμο
-                    </Button>
-                    <Button
-                      variant={buttonState.shape === 'square' ? 'primary' : 'outline'}
-                      size={buttonState.size}
-                      onClick={() => buttonActions.setShape('square')}
-                      className={`layera-button layera-button--${buttonState.size} layera-button--${buttonState.shape === 'square' ? 'primary' : 'outline'}`}
-                    >
-                      <PolygonIcon size="sm" /> Τετράγωνο
-                    </Button>
-                    <Button
-                      variant={buttonState.shape === 'rounded' ? 'primary' : 'outline'}
-                      size={buttonState.size}
-                      onClick={() => buttonActions.setShape('rounded')}
-                      className={`layera-button layera-button--${buttonState.size} layera-button--${buttonState.shape === 'rounded' ? 'primary' : 'outline'}`}
-                    >
-                      <CompassIcon size="sm" /> Στρογγυλό
-                    </Button>
-                  </Box>
+                {/* Button Shape Control */}
+                <ButtonShapeControl
+                  buttonState={buttonState}
+                  buttonActions={buttonActions}
+                />
 
-                  {/* CSS Info για BACKGROUNDS στα CARDS */}
-                  <Box className="layera-margin-bottom--sm layera-padding--md layera-bg--surface-primary layera-text-align--left">
-                    <Text className="layera-typography layera-margin-bottom--xs layera-flex layera-flex--align-center layera-gap--xs"
-                          data-size="xs" data-weight="bold" data-color="primary">
-                      <SettingsIcon size="sm" /> CSS Info:
-                    </Text>
-                    <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
-                      <strong>Variable:</strong> --layera-live-card-primary
-                    </Text>
-                    <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
-                      <strong>Selector:</strong> .layera-card[data-variant="primary"]
-                    </Text>
-                    <Text className="layera-typography" data-size="xs" data-color="secondary">
-                      <strong>HTML Attribute:</strong> data-layera-card-primary="active"
-                    </Text>
-                  </Box>
-                </Box>
+                {/* Button Size Control */}
+                <ButtonSizeControl
+                  buttonState={buttonState}
+                  buttonActions={buttonActions}
+                  buttonSizes={buttonSizes}
+                />
 
-                {/* Size Control - ΔΕΥΤΕΡΟ */}
-                <Box className="layera-card layera-padding--lg layera-text--align-center" data-variant="primary">
-                  <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
-                    <SettingsIcon size="sm" /> Μέγεθος Πλήκτρων
-                  </h3>
-                  <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center layera-align-items--center layera-margin-bottom--md">
-                    {buttonSizes.map((size) => (
-                      <Button
-                        key={size}
-                        variant={buttonState.size === size ? 'primary' : 'outline'}
-                        size={buttonState.size}
-                        onClick={() => buttonActions.setSize(size)}
-                        className={`layera-button layera-button--${buttonState.size} layera-button--${buttonState.size === size ? 'primary' : 'outline'}`}
-                      >
-                        {size}
-                      </Button>
-                    ))}
-                  </Box>
-
-                  {/* CSS Info για BACKGROUNDS στα CARDS */}
-                  <Box className="layera-margin-bottom--sm layera-padding--md layera-bg--surface-primary layera-text-align--left">
-                    <Text className="layera-typography layera-margin-bottom--xs layera-flex layera-flex--align-center layera-gap--xs"
-                          data-size="xs" data-weight="bold" data-color="primary">
-                      <SettingsIcon size="sm" /> CSS Info:
-                    </Text>
-                    <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
-                      <strong>Variable:</strong> --layera-live-card-primary
-                    </Text>
-                    <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
-                      <strong>Selector:</strong> .layera-card[data-variant="primary"]
-                    </Text>
-                    <Text className="layera-typography" data-size="xs" data-color="secondary">
-                      <strong>HTML Attribute:</strong> data-layera-card-primary="active"
-                    </Text>
-                  </Box>
-                </Box>
-
-                {/* Text & Icon Control - ΤΡΙΤΟ */}
-                <Box className="layera-card layera-padding--lg layera-text--align-center" data-variant="primary">
-                  <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
-                    <EditIcon size="sm" /> Κείμενο & Εικονίδιο
-                  </h3>
-                  <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--align-center layera-flex--justify-center layera-margin-bottom--md">
-                    <input
-                      type="text"
-                      value={buttonState.text}
-                      onChange={(e) => buttonActions.setText(e.target.value)}
-                      className="layera-form"
-                      data-element="input"
-                    />
-                    <Button
-                      variant={buttonState.withIcon ? 'primary' : 'outline'}
-                      size={buttonState.size}
-                      onClick={() => buttonActions.setWithIcon(!buttonState.withIcon)}
-                      className={`layera-button layera-button--${buttonState.size} layera-button--${buttonState.withIcon ? 'primary' : 'outline'}`}
-                    >
-                      {buttonState.withIcon ? <><CheckIcon size="sm" /> Με εικονίδιο</> : <><CloseIcon size="sm" /> Χωρίς εικονίδιο</>}
-                    </Button>
-                  </Box>
-
-                  {/* CSS Info για BACKGROUNDS στα CARDS */}
-                  <Box className="layera-margin-bottom--sm layera-padding--md layera-bg--surface-primary layera-text-align--left">
-                    <Text className="layera-typography layera-margin-bottom--xs layera-flex layera-flex--align-center layera-gap--xs"
-                          data-size="xs" data-weight="bold" data-color="primary">
-                      <SettingsIcon size="sm" /> CSS Info:
-                    </Text>
-                    <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
-                      <strong>Variable:</strong> --layera-live-card-primary
-                    </Text>
-                    <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
-                      <strong>Selector:</strong> .layera-card[data-variant="primary"]
-                    </Text>
-                    <Text className="layera-typography" data-size="xs" data-color="secondary">
-                      <strong>HTML Attribute:</strong> data-layera-card-primary="active"
-                    </Text>
-                  </Box>
-                </Box>
+                {/* Button Text & Icon Control */}
+                <ButtonTextIconControl
+                  buttonState={buttonState}
+                  buttonActions={buttonActions}
+                />
               </Box>
             </Box>
           )}
