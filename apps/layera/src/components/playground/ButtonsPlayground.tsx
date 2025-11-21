@@ -122,12 +122,16 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
   // Border width για outline button
   const dynamicBorderWidth = getBorderWidthToken(borderWidth);
 
-  // ✅ ARXES COMPLIANT: Χρήση κεντρικού hook για dynamic button styles
+  // ✅ ARXES COMPLIANT: Χρήση κεντρικού hook για button color styling
   React.useEffect(() => {
     if (typeof document !== 'undefined') {
-      actions.applyButtonDynamicStyles(colors, dynamicBorderWidth);
+      // Apply each color individually using the enterprise pattern
+      Object.entries(colors).forEach(([colorKey, colorValue]) => {
+        const capitalizedKey = `${colorKey}Color`;
+        actions.applySpecificButtonColor(capitalizedKey, colorValue);
+      });
     }
-  }, [colors, dynamicBorderWidth, actions]);
+  }, [colors, actions]);
 
   return (
     <Box>

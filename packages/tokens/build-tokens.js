@@ -2766,6 +2766,79 @@ html[data-layera-card-info="active"] .layera-card[data-variant="info"] {
   background-color: var(--layera-live-card-info, var(--layera-color-info-main)) !important;
 }
 
+/* 🎯 BUTTONS LIVE PREVIEW DYNAMIC COLORS - USING CSS VARIABLES */
+/* Button Primary Live Colors */
+html[data-layera-button-primary="active"] .layera-button[data-variant="primary"] {
+  background-color: var(--layera-live-button-primary, var(--layera-color-primary-main)) !important;
+  border-color: var(--layera-live-button-primary, var(--layera-color-primary-main)) !important;
+  color: var(--layera-color-text-on-primary) !important;
+}
+
+html[data-layera-button-primary="active"] .layera-button[data-variant="primary"]:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--layera-live-button-primary, var(--layera-color-primary-main)) 90%, black) !important;
+  border-color: color-mix(in srgb, var(--layera-live-button-primary, var(--layera-color-primary-main)) 90%, black) !important;
+}
+
+/* Button Secondary Live Colors */
+html[data-layera-button-secondary="active"] .layera-button[data-variant="secondary"] {
+  background-color: var(--layera-live-button-secondary, var(--layera-color-secondary-main)) !important;
+  border-color: var(--layera-live-button-secondary, var(--layera-color-secondary-main)) !important;
+  color: var(--layera-color-text-on-primary) !important;
+}
+
+html[data-layera-button-secondary="active"] .layera-button[data-variant="secondary"]:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--layera-live-button-secondary, var(--layera-color-secondary-main)) 90%, black) !important;
+  border-color: color-mix(in srgb, var(--layera-live-button-secondary, var(--layera-color-secondary-main)) 90%, black) !important;
+}
+
+/* Button Success Live Colors */
+html[data-layera-button-success="active"] .layera-button[data-variant="success"] {
+  background-color: var(--layera-live-button-success, var(--layera-color-success-main)) !important;
+  border-color: var(--layera-live-button-success, var(--layera-color-success-main)) !important;
+  color: var(--layera-color-text-on-primary) !important;
+}
+
+html[data-layera-button-success="active"] .layera-button[data-variant="success"]:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--layera-live-button-success, var(--layera-color-success-main)) 90%, black) !important;
+  border-color: color-mix(in srgb, var(--layera-live-button-success, var(--layera-color-success-main)) 90%, black) !important;
+}
+
+/* Button Warning Live Colors */
+html[data-layera-button-warning="active"] .layera-button[data-variant="warning"] {
+  background-color: var(--layera-live-button-warning, var(--layera-color-warning-main)) !important;
+  border-color: var(--layera-live-button-warning, var(--layera-color-warning-main)) !important;
+  color: var(--layera-color-text-on-primary) !important;
+}
+
+html[data-layera-button-warning="active"] .layera-button[data-variant="warning"]:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--layera-live-button-warning, var(--layera-color-warning-main)) 90%, black) !important;
+  border-color: color-mix(in srgb, var(--layera-live-button-warning, var(--layera-color-warning-main)) 90%, black) !important;
+}
+
+/* Button Danger Live Colors */
+html[data-layera-button-danger="active"] .layera-button[data-variant="danger"] {
+  background-color: var(--layera-live-button-danger, var(--layera-color-danger-main)) !important;
+  border-color: var(--layera-live-button-danger, var(--layera-color-danger-main)) !important;
+  color: var(--layera-color-text-on-primary) !important;
+}
+
+html[data-layera-button-danger="active"] .layera-button[data-variant="danger"]:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--layera-live-button-danger, var(--layera-color-danger-main)) 90%, black) !important;
+  border-color: color-mix(in srgb, var(--layera-live-button-danger, var(--layera-color-danger-main)) 90%, black) !important;
+}
+
+/* Button Info Live Colors */
+html[data-layera-button-info="active"] .layera-button[data-variant="info"] {
+  background-color: var(--layera-live-button-info, var(--layera-color-info-main)) !important;
+  border-color: var(--layera-live-button-info, var(--layera-color-info-main)) !important;
+  color: var(--layera-color-text-on-primary) !important;
+}
+
+html[data-layera-button-info="active"] .layera-button[data-variant="info"]:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--layera-live-button-info, var(--layera-color-info-main)) 90%, black) !important;
+  border-color: color-mix(in srgb, var(--layera-live-button-info, var(--layera-color-info-main)) 90%, black) !important;
+}
+
 /* 🎯 Layera Design Tokens System Ready */
 `;
 

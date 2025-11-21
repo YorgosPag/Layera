@@ -32,7 +32,6 @@ export interface CSSVariablesActions {
   applySpecificModalColor: (colorKey: string, colorValue: string) => void;
   applySpecificLayoutColor: (colorKey: string, colorValue: string) => void;
   applySpecificHeaderColor: (colorKey: string, colorValue: string) => void;
-  applyButtonDynamicStyles: (colors: Record<string, string>, borderWidth?: string) => void;
 }
 
 export interface UseCSSVariablesReturn {
@@ -107,15 +106,19 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
   };
 
   /**
-   * ✅ ARXES COMPLIANT: Button color theming μέσω data attributes
-   * ZERO CSS injection - ZERO style.setProperty - ΜΟΝΟ data attributes
+   * ✅ ARXES COMPLIANT: Button color theming μέσω data attributes + CSS variables για live preview
+   * Χρησιμοποιεί CSS variables για άμεση ενημέρωση χωρίς re-render
    */
   const applySpecificButtonColor = (colorKey: string, colorValue: string) => {
     const root = document.documentElement;
 
-    // ✅ ARXES COMPLIANT: Data attribute για button state και value
+    // ✅ ARXES COMPLIANT: Data attribute για button state
     root.setAttribute(`data-layera-button-${colorKey.replace('Color', '')}`, 'active');
-    root.setAttribute(`data-layera-button-${colorKey.replace('Color', '')}-value`, colorValue);
+
+    // ✅ ARXES COMPLIANT: CSS custom property για live preview
+    root.style.setProperty(`--layera-live-button-${colorKey.replace('Color', '')}`, colorValue);
+
+    console.log(`🎯 Button color applied: ${colorKey.replace('Color', '')} = ${colorValue}`);
   };
 
   /**
@@ -173,19 +176,6 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
     root.setAttribute(`data-layera-header-${colorKey.replace('Color', '')}-value`, colorValue);
   };
 
-  /**
-   * ✅ ARXES COMPLIANT: Button dynamic styles μέσω data attributes
-   * ZERO CSS injection - ZERO style.setProperty - ΜΟΝΟ data attributes
-   */
-  const applyButtonDynamicStyles = (colors: Record<string, string>, borderWidth: string = 'var(--layera-global-spacing-0-5)') => {
-    const root = document.documentElement;
-
-    // ✅ ARXES COMPLIANT: Data attributes για button dynamic state
-    root.setAttribute('data-layera-button-dynamic', 'active');
-    root.setAttribute('data-layera-button-primary-color', colors.primary || 'var(--layera-color-primary)');
-    root.setAttribute('data-layera-button-secondary-color', colors.secondary || 'var(--layera-color-text-secondary)');
-    root.setAttribute('data-layera-button-border-width', borderWidth);
-  };
 
   // Default colors functionality removed as it was unused
 
@@ -197,8 +187,7 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
     applySpecificCardColor,
     applySpecificModalColor,
     applySpecificLayoutColor,
-    applySpecificHeaderColor,
-    applyButtonDynamicStyles
+    applySpecificHeaderColor
   };
 
   return {
