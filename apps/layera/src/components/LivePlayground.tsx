@@ -492,7 +492,14 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {/* Color Controls Grid με Alpha Support */}
           <ColorControlsGridWithAlpha
             currentColors={getColorsForCategory(colorHookState.colorCategory)}
-            currentSetters={colorActions}
+            currentSetters={{
+              primaryColor: (value: string) => colorActions.updateCategoryPalette(colorHookState.colorCategory, 'primaryColor', value),
+              secondaryColor: (value: string) => colorActions.updateCategoryPalette(colorHookState.colorCategory, 'secondaryColor', value),
+              successColor: (value: string) => colorActions.updateCategoryPalette(colorHookState.colorCategory, 'successColor', value),
+              warningColor: (value: string) => colorActions.updateCategoryPalette(colorHookState.colorCategory, 'warningColor', value),
+              dangerColor: (value: string) => colorActions.updateCategoryPalette(colorHookState.colorCategory, 'dangerColor', value),
+              infoColor: (value: string) => colorActions.updateCategoryPalette(colorHookState.colorCategory, 'infoColor', value)
+            }}
             startPreview={(key: string, value: string | ColorWithAlpha) => {
               const previewValue = typeof value === 'string' ? value : value.rgba;
 

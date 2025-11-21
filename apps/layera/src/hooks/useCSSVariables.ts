@@ -125,9 +125,16 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
   const applySpecificCardColor = (colorKey: string, colorValue: string) => {
     const root = document.documentElement;
 
-    // ✅ ARXES COMPLIANT: Data attribute για card state και value
-    root.setAttribute(`data-layera-card-${colorKey.replace('Color', '')}`, 'active');
-    root.setAttribute(`data-layera-card-${colorKey.replace('Color', '')}-value`, colorValue);
+    // Normalize colorKey (remove 'Color' suffix if present)
+    const normalizedKey = colorKey.replace('Color', '');
+
+    // ✅ ARXES COMPLIANT: Data attribute για card state
+    root.setAttribute(`data-layera-card-${normalizedKey}`, 'active');
+
+    // ✅ ARXES COMPLIANT: CSS custom property για live preview
+    root.style.setProperty(`--layera-live-card-${normalizedKey}`, colorValue);
+
+    console.log(`🎯 Card color applied: ${normalizedKey} = ${colorValue}`);
   };
 
   /**

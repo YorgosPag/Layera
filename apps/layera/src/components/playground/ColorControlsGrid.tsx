@@ -85,7 +85,7 @@ export const ColorControlsGrid: React.FC<ColorControlsProps> = React.memo(({
       >
       {/* Primary Color Control */}
       <ColorPickerWithAlpha
-        label="Primary Color (HEX + RGBA)"
+        label="Primary Color"
         value={currentColors.primary}
         onChange={createColorHandler(currentSetters.setPrimary)}
         throttleMs={16}
@@ -93,7 +93,7 @@ export const ColorControlsGrid: React.FC<ColorControlsProps> = React.memo(({
 
       {/* Secondary Color Control */}
       <ColorPickerWithAlpha
-        label="Secondary Color (HEX + RGBA)"
+        label="Secondary Color"
         value={currentColors.secondary}
         onChange={createColorHandler(currentSetters.setSecondary)}
         throttleMs={16}
@@ -101,7 +101,7 @@ export const ColorControlsGrid: React.FC<ColorControlsProps> = React.memo(({
 
       {/* Success Color Control */}
       <ColorPickerWithAlpha
-        label="Success Color (HEX + RGBA)"
+        label="Success Color"
         value={currentColors.success}
         onChange={createColorHandler(currentSetters.setSuccess)}
         throttleMs={16}
@@ -109,7 +109,7 @@ export const ColorControlsGrid: React.FC<ColorControlsProps> = React.memo(({
 
       {/* Warning Color Control */}
       <ColorPickerWithAlpha
-        label="Warning Color (HEX + RGBA)"
+        label="Warning Color"
         value={currentColors.warning}
         onChange={createColorHandler(currentSetters.setWarning)}
         throttleMs={16}
@@ -117,7 +117,7 @@ export const ColorControlsGrid: React.FC<ColorControlsProps> = React.memo(({
 
       {/* Danger Color Control */}
       <ColorPickerWithAlpha
-        label="Danger Color (HEX + RGBA)"
+        label="Danger Color"
         value={currentColors.danger}
         onChange={createColorHandler(currentSetters.setDanger)}
         throttleMs={16}
@@ -125,7 +125,7 @@ export const ColorControlsGrid: React.FC<ColorControlsProps> = React.memo(({
 
       {/* Info Color Control */}
       <ColorPickerWithAlpha
-        label="Info Color (HEX + RGBA)"
+        label="Info Color"
         value={currentColors.info}
         onChange={createColorHandler(currentSetters.setInfo)}
         throttleMs={16}

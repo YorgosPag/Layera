@@ -145,8 +145,10 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
   };
 
   return (
-    <Box className="layera-grid--auto-fit-280 layera-margin-bottom--xl">
-      {/* #1: Επιλογή Κατηγορίας Αντικειμένων (Card 1) */}
+    <Box className="layera-margin-bottom--xl">
+      {/* First Row: Category + Element Type Selection */}
+      <Box className="layera-grid--auto-fit-280 layera-margin-bottom--lg">
+        {/* #1: Επιλογή Κατηγορίας Αντικειμένων (Card 1) */}
       <UnifiedCard
         config={{
           id: 'color-category-selection',
@@ -257,6 +259,10 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
           )
         }}
       />
+      </Box>
+
+      {/* Second Row: Control Cards */}
+      <Box className="layera-grid--auto-fit-280">
 
       {/* Button Radius Control - ΜΟΝΟ για backgrounds category με buttons element ΚΑΙ όταν το shape ΔΕΝ είναι rounded */}
       {colorHookState.colorCategory === 'backgrounds' && colorHookState.elementType === 'buttons' && onButtonRadiusChange && buttonState?.shape !== 'rounded' && (
@@ -456,6 +462,7 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
           buttonState={buttonState}
         />
       )}
+      </Box>
     </Box>
   );
 };

@@ -2735,6 +2735,37 @@ ${tooltipCSS}
   text-overflow: ellipsis !important;
 }
 
+/* 🎯 CARDS LIVE PREVIEW DYNAMIC BACKGROUNDS - USING CSS VARIABLES */
+/* Card Primary Live Background */
+html[data-layera-card-primary="active"] .layera-card[data-variant="primary"] {
+  background-color: var(--layera-live-card-primary, var(--layera-color-primary-main)) !important;
+}
+
+/* Card Secondary Live Background */
+html[data-layera-card-secondary="active"] .layera-card[data-variant="secondary"] {
+  background-color: var(--layera-live-card-secondary, var(--layera-color-secondary-main)) !important;
+}
+
+/* Card Success Live Background */
+html[data-layera-card-success="active"] .layera-card[data-variant="success"] {
+  background-color: var(--layera-live-card-success, var(--layera-color-success-main)) !important;
+}
+
+/* Card Warning Live Background */
+html[data-layera-card-warning="active"] .layera-card[data-variant="warning"] {
+  background-color: var(--layera-live-card-warning, var(--layera-color-warning-main)) !important;
+}
+
+/* Card Danger Live Background */
+html[data-layera-card-danger="active"] .layera-card[data-variant="error"] {
+  background-color: var(--layera-live-card-danger, var(--layera-color-error-main)) !important;
+}
+
+/* Card Info Live Background */
+html[data-layera-card-info="active"] .layera-card[data-variant="info"] {
+  background-color: var(--layera-live-card-info, var(--layera-color-info-main)) !important;
+}
+
 /* 🎯 Layera Design Tokens System Ready */
 `;
 

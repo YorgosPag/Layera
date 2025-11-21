@@ -3,7 +3,7 @@
  *
  * ⚠️  DO NOT EDIT MANUALLY
  * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts, core/motion/motion.variables.ts και component/icons/icons.variables.ts and rebuild
- * Generated: 2025-11-21T15:39:15.328Z
+ * Generated: 2025-11-21T16:21:07.305Z
  */
 
 :root {
@@ -1839,6 +1839,37 @@
   word-break: break-word !important;
   white-space: nowrap !important;
   text-overflow: ellipsis !important;
+}
+
+/* 🎯 CARDS LIVE PREVIEW DYNAMIC BACKGROUNDS - USING CSS VARIABLES */
+/* Card Primary Live Background */
+html[data-layera-card-primary="active"] .layera-card[data-variant="primary"] {
+  background-color: var(--layera-live-card-primary, var(--layera-color-primary-main)) !important;
+}
+
+/* Card Secondary Live Background */
+html[data-layera-card-secondary="active"] .layera-card[data-variant="secondary"] {
+  background-color: var(--layera-live-card-secondary, var(--layera-color-secondary-main)) !important;
+}
+
+/* Card Success Live Background */
+html[data-layera-card-success="active"] .layera-card[data-variant="success"] {
+  background-color: var(--layera-live-card-success, var(--layera-color-success-main)) !important;
+}
+
+/* Card Warning Live Background */
+html[data-layera-card-warning="active"] .layera-card[data-variant="warning"] {
+  background-color: var(--layera-live-card-warning, var(--layera-color-warning-main)) !important;
+}
+
+/* Card Danger Live Background */
+html[data-layera-card-danger="active"] .layera-card[data-variant="error"] {
+  background-color: var(--layera-live-card-danger, var(--layera-color-error-main)) !important;
+}
+
+/* Card Info Live Background */
+html[data-layera-card-info="active"] .layera-card[data-variant="info"] {
+  background-color: var(--layera-live-card-info, var(--layera-color-info-main)) !important;
 }
 
 /* 🎯 Layera Design Tokens System Ready */

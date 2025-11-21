@@ -4,6 +4,7 @@ import { Text } from '@layera/typography';
 import { CheckIcon } from '@layera/icons';
 import { PLAYGROUND_HELPERS } from '../../constants/ui-utilities';
 import { LayoutPlaygroundProps } from '../../types/unified-interfaces';
+import { useCSSVariables } from '../../hooks/useCSSVariables';
 
 /**
  * CardsPlayground Component
@@ -72,13 +73,22 @@ export const CardsPlayground: React.FC<ExtendedCardsPlaygroundProps> = ({
 
   // Card configurations με mapping σε data-variant values
   const cardConfigs = [
-    { key: 'primary', title: 'Primary', description: 'Κύρια κάρτα', colorValue: currentColors.primary, variant: undefined }, // Χωρίς variant = neutral/white
-    { key: 'secondary', title: 'Secondary', description: 'Δευτερεύουσα κάρτα', colorValue: currentColors.secondary, variant: undefined }, // Χωρίς variant = neutral/white
+    { key: 'primary', title: 'Primary', description: 'Κύρια κάρτα', colorValue: currentColors.primary, variant: 'primary' },
+    { key: 'secondary', title: 'Secondary', description: 'Δευτερεύουσα κάρτα', colorValue: currentColors.secondary, variant: 'secondary' },
     { key: 'success', title: 'Success', description: 'Κάρτα επιτυχίας', colorValue: currentColors.success, variant: 'success' },
     { key: 'warning', title: 'Warning', description: 'Κάρτα προειδοποίησης', colorValue: currentColors.warning, variant: 'warning' },
     { key: 'danger', title: 'Danger', description: 'Κάρτα κινδύνου', colorValue: currentColors.danger, variant: 'error' }, // danger → error
     { key: 'info', title: 'Info', description: 'Κάρτα πληροφοριών', colorValue: currentColors.info, variant: 'info' }
   ];
+
+  // ✅ Apply card colors for live preview
+  const { actions } = useCSSVariables();
+
+  React.useEffect(() => {
+    cardConfigs.forEach(({ key, colorValue }) => {
+      actions.applySpecificCardColor(key, colorValue);
+    });
+  }, [cardConfigs, actions]);
 
   // ✅ ARXES COMPLIANT: NO CSS injection - Using only @layera tokens
   // Cards use predefined CSS classes with data-variant attributes for semantic theming
@@ -101,6 +111,7 @@ export const CardsPlayground: React.FC<ExtendedCardsPlaygroundProps> = ({
               key={key}
               className="layera-width--32 layera-height--20 layera-card layera-card-text-center"
               data-variant={variant}
+              data-dynamic-color={cardConfigs.find(config => config.key === key)?.colorValue}
             >
               <Text
                 className="layera-typography"

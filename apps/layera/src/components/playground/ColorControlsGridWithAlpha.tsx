@@ -168,7 +168,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
           <LayersIcon size="sm" /> Χρώματα {colorCategory.charAt(0).toUpperCase() + colorCategory.slice(1)}
         </h3>
         <Text className="layera-typography" data-size="sm" data-color="secondary">
-          Unified HEX + RGBA Color Pickers
+          Color Pickers με Alpha Channel
         </Text>
       </Box>
 
