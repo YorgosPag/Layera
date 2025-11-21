@@ -169,8 +169,9 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
           description: 'Επιλέξτε ποια χρώματα θα επηρεάζονται από τις αλλαγές',
           icon: <CheckIcon size="sm" />,
           variant: 'primary',
+          className: 'layera-text--align-center',
           content: (
-            <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center">
+            <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center layera-text--align-center">
               <Button
                 variant={colorHookState.colorCategory === 'backgrounds' ? 'primary' : 'outline'}
                 size={buttonState?.size || 'sm'}
@@ -209,8 +210,9 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
           description: `Επιλέξτε ποια στοιχεία θα επηρεάζονται από τα ${colorHookState.colorCategory === 'backgrounds' ? 'background' : colorHookState.colorCategory === 'text' ? 'text' : 'border'} χρώματα`,
           icon: <PolygonIcon size="sm" />,
           variant: 'primary',
+          className: 'layera-text--align-center',
           content: (
-            <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center">
+            <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center layera-text--align-center">
               <Button
                 variant={colorHookState.elementType === 'cards' ? 'primary' : 'outline'}
                 size={buttonState?.size || 'sm'}
