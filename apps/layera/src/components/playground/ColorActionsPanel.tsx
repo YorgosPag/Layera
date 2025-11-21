@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
-import { RocketIcon, CheckIcon } from '@layera/icons';
+import { RocketIcon, CheckIcon, SettingsIcon } from '@layera/icons';
 import { ColorActionsProps } from '../../types/unified-interfaces';
 
 /**
@@ -33,7 +33,7 @@ export const ColorActionsPanel: React.FC<ExtendedColorActionsPanelProps> = ({
   applySquareColorsToHeader
 }) => {
   return (
-    <Box className="layera-card layera-padding--lg layera-text-center layera-margin-top--2xl layera-margin-bottom--xl layera-bg-surface--success layera-border-color--success layera-border-width--2">
+    <Box className="layera-card layera-padding--lg layera-text--align-center layera-margin-top--2xl layera-margin-bottom--xl" data-variant="primary">
       <Box className="layera-flex layera-flex--justify-center layera-flex--wrap-wrap layera-flex--gap-md layera-align-items--center">
         <Button
           variant="primary"

@@ -50,22 +50,17 @@ export const ButtonTextIconControl: React.FC<ButtonTextIconControlProps> = ({
         </Button>
       </Box>
 
-      {/* CSS Info για BACKGROUNDS στα CARDS */}
-      <Box className="layera-margin-bottom--sm layera-padding--md layera-bg--surface-primary layera-text-align--left">
-        <Text className="layera-typography layera-margin-bottom--xs layera-flex layera-flex--align-center layera-gap--xs"
-              data-size="xs" data-weight="bold" data-color="primary">
-          <SettingsIcon size="sm" /> CSS Info:
-        </Text>
-        <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
-          <strong>Variable:</strong> --layera-live-card-primary
-        </Text>
-        <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
-          <strong>Selector:</strong> .layera-card[data-variant="primary"]
-        </Text>
-        <Text className="layera-typography" data-size="xs" data-color="secondary">
-          <strong>HTML Attribute:</strong> data-layera-card-primary="active"
+      {/* Live Preview Description */}
+      <Box className="layera-margin-bottom--sm layera-padding--md layera-bg--surface-secondary layera-text-align--center">
+        <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">
+          Preview: Κείμενο "{buttonState.text}" | Εικονίδιο {buttonState.withIcon ? 'Ενεργό' : 'Ανενεργό'}
         </Text>
       </Box>
+
+      {/* Description */}
+      <Text className="layera-typography" data-size="sm" data-color="secondary">
+        Προσαρμόστε το κείμενο και την εμφάνιση εικονιδίων στα πλήκτρα
+      </Text>
     </Box>
   );
 };

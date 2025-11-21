@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
-import { EditIcon, EyeIcon } from '@layera/icons';
+import { EditIcon, EyeIcon, SettingsIcon } from '@layera/icons';
 import type { FontSizeValue } from '../../../types/sizes';
 
 /**
@@ -47,7 +47,7 @@ export const FontSizeControl: React.FC<FontSizeControlProps> = ({
   ];
 
   return (
-    <Box className={`layera-card layera-padding--lg ${className}`}>
+    <Box className={`layera-card layera-padding--lg ${className}`} data-variant="primary">
       <h4 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
         <EditIcon size="sm" /> Μέγεθος Γραμματοσειράς
       </h4>
@@ -85,6 +85,23 @@ export const FontSizeControl: React.FC<FontSizeControlProps> = ({
         </Text>
         <Text className="layera-typography layera-margin-top--xs" data-size="xs" data-color="secondary">
           {fontSizeOptions.find(opt => opt.value === fontSize)?.description}
+        </Text>
+      </Box>
+
+      {/* CSS Info για BACKGROUNDS στα CARDS */}
+      <Box className="layera-margin-bottom--sm layera-padding--md layera-bg--surface-primary layera-text-align--left">
+        <Text className="layera-typography layera-margin-bottom--xs layera-flex layera-flex--align-center layera-gap--xs"
+              data-size="xs" data-weight="bold" data-color="primary">
+          <SettingsIcon size="sm" /> CSS Info:
+        </Text>
+        <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
+          <strong>Variable:</strong> --layera-live-card-primary
+        </Text>
+        <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
+          <strong>Selector:</strong> .layera-card[data-variant="primary"]
+        </Text>
+        <Text className="layera-typography" data-size="xs" data-color="secondary">
+          <strong>HTML Attribute:</strong> data-layera-card-primary="active"
         </Text>
       </Box>
     </Box>
