@@ -146,7 +146,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
             variant="primary"
             size={buttonState.size}
             icon={buttonState.withIcon ? <CheckIcon size="sm" /> : undefined}
-            className="layera-margin-right--sm"
+            className="layera-margin-right--sm layera-text--align-center"
           >
             {buttonState.shape === 'square' ? 'P' : 'Primary'}
           </Button>
@@ -154,7 +154,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
             variant="secondary"
             size={buttonState.size}
             icon={buttonState.withIcon ? <SettingsIcon size="sm" /> : undefined}
-            className="layera-margin-right--sm"
+            className="layera-margin-right--sm layera-text--align-center"
           >
             {buttonState.shape === 'square' ? 'S' : 'Secondary'}
           </Button>
@@ -162,7 +162,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
             variant="success"
             size={buttonState.size}
             icon={buttonState.withIcon ? <CheckIcon size="sm" /> : undefined}
-            className="layera-margin-right--sm"
+            className="layera-margin-right--sm layera-text--align-center"
           >
             {buttonState.shape === 'square' ? 'Su' : 'Success'}
           </Button>
@@ -170,7 +170,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
             variant="warning"
             size={buttonState.size}
             icon={buttonState.withIcon ? <CloseIcon size="sm" /> : undefined}
-            className="layera-margin-right--sm"
+            className="layera-margin-right--sm layera-text--align-center"
           >
             {buttonState.shape === 'square' ? 'W' : 'Warning'}
           </Button>
@@ -178,7 +178,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
             variant="danger"
             size={buttonState.size}
             icon={buttonState.withIcon ? <CloseIcon size="sm" /> : undefined}
-            className="layera-margin-right--sm"
+            className="layera-margin-right--sm layera-text--align-center"
           >
             {buttonState.shape === 'square' ? 'D' : 'Danger'}
           </Button>
@@ -186,6 +186,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
             variant="info"
             size={buttonState.size}
             icon={buttonState.withIcon ? <SearchIcon size="sm" /> : undefined}
+            className="layera-text--align-center"
           >
             {buttonState.shape === 'square' ? 'I' : 'Info'}
           </Button>
@@ -193,7 +194,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
             variant="outline"
             size={buttonState.size}
             icon={buttonState.withIcon ? <PlusIcon size="sm" /> : undefined}
-            className={`layera-button layera-button--${buttonState.size} layera-button--outline`}
+            className={`layera-button layera-button--${buttonState.size} layera-button--outline layera-text--align-center`}
           >
             {buttonState.shape === 'square' ? 'O' : 'Outline'}
           </Button>
@@ -201,7 +202,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
             variant="ghost"
             size={buttonState.size}
             icon={buttonState.withIcon ? <CompassIcon size="sm" /> : undefined}
-            className={`layera-button layera-button--${buttonState.size} layera-button--ghost`}
+            className={`layera-button layera-button--${buttonState.size} layera-button--ghost layera-text--align-center`}
           >
             {buttonState.shape === 'square' ? 'G' : 'Ghost'}
           </Button>

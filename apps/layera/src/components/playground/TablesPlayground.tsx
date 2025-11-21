@@ -92,8 +92,8 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
               data-color-category={colorCategory}
               data-dynamic-color={color.value}
             >
-              <span>{color.name} Row</span>
-              <span className="layera-opacity--80 layera-fontSize--xs">
+              <span className="layera-text--align-center">{color.name} Row</span>
+              <span className="layera-opacity--80 layera-fontSize--xs layera-text--align-center">
                 Γραμμή {index + 1}
               </span>
             </Box>

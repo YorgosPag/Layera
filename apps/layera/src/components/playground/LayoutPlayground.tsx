@@ -108,14 +108,14 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
               >
                 <Box>
                   <Text
-                    className="layera-typography layera-margin-bottom--xs"
+                    className="layera-typography layera-margin-bottom--xs layera-text--align-center"
                     data-size="sm"
                     data-weight="bold"
                   >
                     {title}
                   </Text>
                   <Text
-                    className="layera-typography layera-opacity--80"
+                    className="layera-typography layera-opacity--80 layera-text--align-center"
                     data-size="xs"
                   >
                     {description}

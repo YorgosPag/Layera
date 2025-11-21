@@ -132,24 +132,19 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
           {generateFullDescription()}
         </p>
 
-        <Box className="layera-flex layera-flex--wrap-wrap layera-flex--justify-center layera-flex--align-center layera-flex--gap-md layera-padding-top--lg layera-padding-bottom--lg layera-width--full">
+        <Box className="global-display-flex global-justifyContent-center global-alignItems-center layera-flex--gap-md layera-padding-top--lg layera-padding-bottom--lg">
           {modalConfigs.map(({ key, title, description, colorValue }) => (
             <Box
               key={key}
-              className="layera-padding--md layera-flex layera-flex--column layera-flex--justify-center layera-flex--align-center layera-position--relative layera-shadow--md layera-modal--preview layera-modal--dynamic"
-              data-dynamic-bg={getBackgroundColor(colorValue)}
-              data-dynamic-text={getTextColor(colorValue)}
-              data-dynamic-border={getBorderStyle(colorValue)}
-              data-dynamic-radius={getRadiusToken(modalRadius)}
+              className="layera-width--32 layera-height--6 layera-card"
+              data-variant={key === 'primary' ? undefined : key === 'secondary' ? undefined : key === 'danger' ? 'error' : key}
             >
-              <Box className="layera-flex layera-flex--justify-between layera-flex--align-center">
-                <Text className="layera-typography" data-size="sm" data-weight="bold">
-                  {title}
-                </Text>
-                <CloseIcon size="sm" />
-              </Box>
-              <Text className="layera-typography layera-margin-top--sm layera-opacity--80" data-size="xs">
-                {description}
+              <Text
+                className="layera-typography layera-text--align-center layera-text--align-vertical-middle"
+                data-size="xs"
+                data-weight="bold"
+              >
+                {title}
               </Text>
             </Box>
           ))}

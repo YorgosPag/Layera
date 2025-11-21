@@ -150,7 +150,7 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
                     size="md"
                   />
                   <Text
-                    className="layera-typography"
+                    className="layera-typography layera-text--align-center"
                     data-size="sm"
                     data-weight="bold"
                   >
@@ -180,7 +180,7 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
                 {/* Right section - User actions */}
                 <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm">
                   <Text
-                    className="layera-typography layera-opacity--80"
+                    className="layera-typography layera-opacity--80 layera-text--align-center"
                     data-size="xs"
                   >
                     {description}

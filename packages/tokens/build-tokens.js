@@ -1259,6 +1259,12 @@ function convertUtilityToCSS(varName, varValue) {
   if (varName.startsWith('layera-height--')) {
     return `height: ${varValue};`;
   }
+  if (varName.startsWith('layera-text--align-vertical-')) {
+    return `vertical-align: ${varValue};`;
+  }
+  if (varName.startsWith('layera-text--align-')) {
+    return `text-align: ${varValue};`;
+  }
   if (varName.startsWith('margin-bottom-')) {
     return `margin-bottom: ${varValue};`;
   }

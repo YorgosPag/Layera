@@ -102,7 +102,7 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
                 as="input"
                 type="text"
                 placeholder={placeholder}
-                className="layera-input layera-width--full layera-padding--md layera-text-align--center layera-border--solid layera-border-width--1 layera-border-radius--lg"
+                className="layera-input layera-width--full layera-padding--md layera-text--align-center layera-border--solid layera-border-width--1 layera-border-radius--lg"
               />
             </Box>
           ))}
