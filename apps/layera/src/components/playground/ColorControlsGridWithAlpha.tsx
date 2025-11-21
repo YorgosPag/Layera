@@ -3,7 +3,6 @@ import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { ColorPickerWithAlpha, ColorWithAlpha } from './shared/ColorPickerWithAlpha';
-import { OptimizedColorPicker } from './shared/OptimizedColorPicker';
 import { SettingsIcon, LayersIcon } from '@layera/icons';
 import { ColorControlsProps } from '../../types/unified-interfaces';
 
@@ -32,8 +31,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
   startPreview = () => {},
   colorCategory = '',
   alphaEnabled = false,
-  onAlphaToggle,
-  buttonState
+  onAlphaToggle
 }) => {
   const [localAlphaEnabled, setLocalAlphaEnabled] = useState(alphaEnabled);
 
@@ -212,18 +210,19 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
               />
             );
           } else {
-            // HEX Mode - Use OptimizedColorPicker (legacy)
+            // HEX Mode - Use ColorPickerWithAlpha in HEX-only mode
             const hexValue = extractHex(colorValue as string);
+            const colorWithAlpha = ensureColorWithAlpha(hexValue);
 
             return (
-              <OptimizedColorPicker
+              <ColorPickerWithAlpha
                 key={colorKey}
                 label={`${colorKey.charAt(0).toUpperCase() + colorKey.slice(1)} (HEX)`}
-                value={hexValue}
-                onChange={(newValue) => handleColorChange(colorKey, newValue)}
+                value={colorWithAlpha}
+                onChange={(newValue) => handleColorChange(colorKey, newValue.hex)}
                 onPreview={(previewValue) => {
                   // Real-time preview χωρίς αλλαγή state
-                  startPreview(colorKey, previewValue);
+                  startPreview(colorKey, previewValue.hex);
                 }}
                 className="layera-height--auto layera-text--align-center"
                 variant={variant}
