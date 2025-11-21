@@ -127,6 +127,11 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   // Note: throttleMs parameter preserved for future performance optimizations
   void throttleMs;
 
+  // Μοναδικό CSS variable name για κάθε color picker
+  const uniqueId = label.toLowerCase().replace(/\s+/g, '-').replace(/color.*$/i, '');
+  const cssVariableName = `--layera-live-alpha-color-${uniqueId}`;
+
+
   // PERFORMANCE: Helper functions moved outside component για zero recreations
 
   // Sync με external value και αρχικοποίηση preview (μόνο αν δεν αλλάζει ο χρήστης το slider)
@@ -146,16 +151,16 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
       });
     }
 
-    // ✅ ARXES COMPLIANT: Αρχικοποίηση υπάρχουσας CSS variable
-    if (typeof document !== 'undefined') {
+    // ✅ ΕΝΗΜΕΡΩΣΗ CSS: Μόνο αν αλλάξει το HEX (όχι η alpha) ή δεν υπάρχει internalValue
+    if (typeof document !== 'undefined' && (!internalValue || newValue.hex !== internalValue.hex)) {
       const root = document.documentElement;
-      // Υπολογίζω το RGBA από το τρέχον χρώμα και alpha
+      // Διατήρηση της τρέχουσας alpha αντί της newValue.alpha
       const currentHex = newValue.hex?.startsWith('#') ? newValue.hex : extractHexFromValue(newValue.hex || 'var(--layera-colors-text-primary)');
-      const currentAlpha = newValue.alpha || 1.0;
-      const rgbaValue = hexToRgba(currentHex, currentAlpha);
-      root.style.setProperty('--layera-live-alpha-color', rgbaValue);
+      const preservedAlpha = internalValue?.alpha || newValue.alpha || 1.0; // Διατήρηση της τρέχουσας alpha
+      const rgbaValue = hexToRgba(currentHex, preservedAlpha);
+      root.style.setProperty(cssVariableName, rgbaValue);
     }
-  }, [value, parseValue, internalValue, isUserInteracting, recentlyInteracted]);
+  }, [value, parseValue, internalValue, isUserInteracting, recentlyInteracted, cssVariableName]);
 
   // Global event listener για το mouseup/touchend (αν ο χρήστης αφήσει το mouse έξω από το slider)
   useEffect(() => {
@@ -181,16 +186,21 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     };
   }, [isUserInteracting]);
 
-  // ✅ ARXES COMPLIANT: Ενημέρωση preview όταν αλλάζει το internal value
+  // ✅ ΒΕΛΤΙΩΜΕΝΟ: Ενημέρωση preview μόνο όταν δεν αλλάζει ο χρήστης το slider
   useEffect(() => {
+    // Αν ο χρήστης αλλάζει το slider, μην κάνεις override την alpha που επέλεξε
+    if (isUserInteracting || recentlyInteracted) {
+      return;
+    }
+
     if (typeof document !== 'undefined' && internalValue) {
       const root = document.documentElement;
       const currentHex = internalValue.hex?.startsWith('#') ? internalValue.hex : extractHexFromValue(internalValue.hex || 'var(--layera-colors-text-primary)');
       const currentAlpha = internalValue.alpha || 1.0;
       const rgbaValue = hexToRgba(currentHex, currentAlpha);
-      root.style.setProperty('--layera-live-alpha-color', rgbaValue);
+      root.style.setProperty(cssVariableName, rgbaValue);
     }
-  }, [internalValue]);
+  }, [internalValue, cssVariableName, isUserInteracting, recentlyInteracted]);
 
   // Enhanced handlers με safety checks
   const handleHexChange = useCallback((newHex: string) => {
@@ -223,12 +233,19 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
 
     setInternalValue(newValue);
 
+    // ✅ LIVE PREVIEW: Άμεση ενημέρωση CSS μεταβλητής για real-time preview
+    if (typeof document !== 'undefined') {
+      const root = document.documentElement;
+      const rgbaValue = hexToRgba(actualHex, newAlpha);
+      root.style.setProperty(cssVariableName, rgbaValue);
+    }
+
     // Χρησιμοποιούμε και onPreview και onChange για σωστή συγχρονισμό
     if (onPreview) {
       onPreview(newValue);
     }
     onChange(newValue); // ΣΗΜΑΝΤΙΚΟ: Ενημερώνουμε το parent component
-  }, [internalValue?.hex, onPreview, onChange]);
+  }, [internalValue?.hex, onPreview, onChange, cssVariableName]);
 
   // Handler για το mousedown event του slider
   const handleSliderMouseDown = useCallback(() => {
@@ -377,7 +394,10 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
       </Text>
 
       {/* Alpha Preview Box */}
-      <Box className="layera-border--default layera-border-radius--sm layera-height--10 layera-width--full layera-alpha-preview-live layera-margin-bottom--xs" />
+      <Box
+        className="layera-border--default layera-border-radius--sm layera-height--10 layera-width--full layera-margin-bottom--xs"
+        data-alpha-preview={uniqueId}
+      />
 
       {/* Alpha Slider */}
       <Box className="layera-margin-bottom--xs">
@@ -385,7 +405,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
           type="range"
           min="0"
           max="100"
-          step="1"
+          step="0.1"
           value={alphaPercentage}
           onChange={handleAlphaChange}
           onMouseDown={handleSliderMouseDown}
