@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
-import { OptimizedColorPicker } from './shared/OptimizedColorPicker';
+import { ColorPickerWithAlpha } from './shared/ColorPickerWithAlpha';
 import { ColorControlsProps } from '../../types/unified-interfaces';
 
 /**
@@ -17,6 +17,14 @@ export const ColorControlsGrid: React.FC<ColorControlsProps> = React.memo(({
   currentSetters = {},
   colorCategory = ''
 }) => {
+
+  // Helper function to convert ColorWithAlpha onChange to string setter
+  const createColorHandler = (setter?: (value: string) => void) =>
+    (colorWithAlpha: any) => {
+      const colorSetter = setter || (() => {});
+      // For backwards compatibility, pass the hex value to the setter
+      colorSetter(colorWithAlpha.hex);
+    };
 
   // Περιγραφές για κάθε κατηγορία χρωμάτων
   const getColorDescriptions = () => {
@@ -76,50 +84,50 @@ export const ColorControlsGrid: React.FC<ColorControlsProps> = React.memo(({
         className="layera-grid layera-grid--gap-2xl layera-grid--columns-auto-fit"
       >
       {/* Primary Color Control */}
-      <OptimizedColorPicker
-        label="Primary Color"
+      <ColorPickerWithAlpha
+        label="Primary Color (HEX + RGBA)"
         value={currentColors.primary}
-        onChange={currentSetters.setPrimary || (() => {})}
+        onChange={createColorHandler(currentSetters.setPrimary)}
         throttleMs={16}
       />
 
       {/* Secondary Color Control */}
-      <OptimizedColorPicker
-        label="Secondary Color"
+      <ColorPickerWithAlpha
+        label="Secondary Color (HEX + RGBA)"
         value={currentColors.secondary}
-        onChange={currentSetters.setSecondary || (() => {})}
+        onChange={createColorHandler(currentSetters.setSecondary)}
         throttleMs={16}
       />
 
       {/* Success Color Control */}
-      <OptimizedColorPicker
-        label="Success Color"
+      <ColorPickerWithAlpha
+        label="Success Color (HEX + RGBA)"
         value={currentColors.success}
-        onChange={currentSetters.setSuccess || (() => {})}
+        onChange={createColorHandler(currentSetters.setSuccess)}
         throttleMs={16}
       />
 
       {/* Warning Color Control */}
-      <OptimizedColorPicker
-        label="Warning Color"
+      <ColorPickerWithAlpha
+        label="Warning Color (HEX + RGBA)"
         value={currentColors.warning}
-        onChange={currentSetters.setWarning || (() => {})}
+        onChange={createColorHandler(currentSetters.setWarning)}
         throttleMs={16}
       />
 
       {/* Danger Color Control */}
-      <OptimizedColorPicker
-        label="Danger Color"
+      <ColorPickerWithAlpha
+        label="Danger Color (HEX + RGBA)"
         value={currentColors.danger}
-        onChange={currentSetters.setDanger || (() => {})}
+        onChange={createColorHandler(currentSetters.setDanger)}
         throttleMs={16}
       />
 
       {/* Info Color Control */}
-      <OptimizedColorPicker
-        label="Info Color"
+      <ColorPickerWithAlpha
+        label="Info Color (HEX + RGBA)"
         value={currentColors.info}
-        onChange={currentSetters.setInfo || (() => {})}
+        onChange={createColorHandler(currentSetters.setInfo)}
         throttleMs={16}
       />
       </Box>

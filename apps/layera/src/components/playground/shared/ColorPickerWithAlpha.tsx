@@ -228,16 +228,15 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
         <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-weight="medium" data-color="secondary">
           Χρώμα
         </Text>
-        <Box
+        <input
           ref={colorInputRef}
-          as="input"
           type="color"
           value={displayHex}
           onInput={handleHexInput}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleHexChange(e.target.value)}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          className="layera-input layera-width--full layera-cursor--pointer layera-transition--none"
+          className="layera-input layera-width--full global-cursor-pointer layera-height--10"
         />
       </Box>
 
@@ -265,16 +264,14 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
       {/* Alpha Slider - για συμμετρία */}
       <Box className="layera-margin-bottom--xs">
         <Box className="layera-flex layera-flex--justify-center">
-          <Box
-            as="input"
+          <input
             type="range"
             min="0"
             max="100"
             step="1"
             value={alphaPercentage}
             onChange={handleAlphaChange}
-            className="layera-input"
-            data-width="var(--layera-spacing-scale-62)"
+            className="layera-input layera-width--32"
           />
         </Box>
       </Box>

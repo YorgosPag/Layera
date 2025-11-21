@@ -88,7 +88,8 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
   // Helper function: Extract HEX για legacy compatibility
   const extractHex = (color: ColorWithAlpha | string): string => {
     if (typeof color === 'string') {
-      return color.startsWith('#') ? color : 'var(--layera-colors-surface-light)';
+      // 🎯 Επέστρεψε το αρχικό color value (HEX ή CSS variable)
+      return color;
     }
     return color.hex;
   };
@@ -161,20 +162,14 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
 
   return (
     <>
-      {/* Alpha Mode Toggle - Compact Header */}
+      {/* Unified Color Controls Header */}
       <Box className="layera-text--align-center layera-margin-bottom--lg">
         <h3 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
           <LayersIcon size="sm" /> Χρώματα {colorCategory.charAt(0).toUpperCase() + colorCategory.slice(1)}
         </h3>
-        <Button
-          variant={localAlphaEnabled ? 'primary' : 'outline'}
-          size={buttonState?.size || "sm"}
-          onClick={handleAlphaToggle}
-          className={`layera-button layera-button--${buttonState?.size || "sm"} layera-button--${localAlphaEnabled ? 'primary' : 'outline'}`}
-        >
-          <SettingsIcon size="sm" />
-          {localAlphaEnabled ? 'RGBA' : 'HEX'}
-        </Button>
+        <Text className="layera-typography" data-size="sm" data-color="secondary">
+          Unified HEX + RGBA Color Pickers
+        </Text>
       </Box>
 
       {/* Color Controls - Horizontal Layout ARXES Compliant */}

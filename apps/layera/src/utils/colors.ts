@@ -36,16 +36,37 @@ export const hexToRgba = (hex: string, alpha: number): string => {
   return `rgba(${r}, ${g}, ${b}, ${clampedAlpha})`;
 };
 
+// Import υπάρχουσων HEX τιμών από το token system
+import {
+  SEMANTIC_COLORS,
+  SURFACE_COLORS,
+  TEXT_COLORS,
+  PRIMARY_COLORS,
+  SECONDARY_COLORS
+} from '../../../../packages/tokens/src/core/colors';
+
 /**
  * Extracts hex value from CSS variable or returns hex directly
  * @param colorValue - Color value (hex, CSS variable, etc.)
- * @returns Clean hex color string
+ * @returns Clean hex color string - χρησιμοποιεί ΜΟΝΟ υπάρχουσες token τιμές
  */
 export const extractHexFromValue = (colorValue: string): string => {
-  if (!colorValue) return 'var(--layera-colors-text-primary)';
+  if (!colorValue) return TEXT_COLORS.primary;
   if (colorValue.startsWith('#')) return colorValue;
 
-  // CSS variable fallback
+  // Χρησιμοποίηση υπαρχόντων token HEX τιμών
+  if (colorValue.includes('surface-primary')) return SURFACE_COLORS.primary;
+  if (colorValue.includes('surface-secondary')) return SURFACE_COLORS.secondary;
+  if (colorValue.includes('text-primary')) return TEXT_COLORS.primary;
+  if (colorValue.includes('text-secondary')) return TEXT_COLORS.secondary;
+  if (colorValue.includes('semantic-success')) return SEMANTIC_COLORS.success.main;
+  if (colorValue.includes('semantic-warning')) return SEMANTIC_COLORS.warning.main;
+  if (colorValue.includes('semantic-error')) return SEMANTIC_COLORS.error.main;
+  if (colorValue.includes('semantic-info')) return SEMANTIC_COLORS.info.main;
+  if (colorValue.includes('color-primary')) return PRIMARY_COLORS[500];
+  if (colorValue.includes('color-secondary')) return SECONDARY_COLORS[500];
+
+  // CSS variable fallback with real HEX extraction
   const match = colorValue.match(/var\([^,]+,\s*(#[0-9a-fA-F]{6})\)/);
-  return match ? match[1] : 'var(--layera-colors-text-primary)';
+  return match ? match[1] : TEXT_COLORS.primary;
 };

@@ -90,7 +90,7 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
           {generateFullDescription()}
         </p>
 
-        <Box className="layera-flex layera-flex--wrap-wrap layera-flex--justify-center layera-flex--align-center layera-flex--gap-md layera-padding-top--lg layera-padding-bottom--lg layera-width--full">
+        <Box className="global-display-flex global-flexWrap-nowrap global-justifyContent-center global-alignItems-center layera-padding-top--lg layera-padding-bottom--lg layera-width--full">
           {layoutConfigs.map(({ key, title, description }) => {
             // Debug logging
             console.log('📐 LayoutPlayground: layoutRadius prop =', layoutRadius);

@@ -3,7 +3,7 @@
  *
  * ⚠️  DO NOT EDIT MANUALLY
  * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts, core/motion/motion.variables.ts και component/icons/icons.variables.ts and rebuild
- * Generated: 2025-11-21T14:20:14.392Z
+ * Generated: 2025-11-21T15:39:15.328Z
  */
 
 :root {
@@ -1285,6 +1285,8 @@
 .global-justifyContent-between { justify-content: space-between; }
 .global-flexDirection-row { flex-direction: row; }
 .global-flexDirection-column { flex-direction: column; }
+.global-flexWrap-nowrap { flex-wrap: nowrap; }
+.global-flexWrap-wrap { flex-wrap: wrap; }
 .global-border-none { border-style: BORDER_STYLE_SCALE.none; }
 .global-border-hidden { border-style: BORDER_STYLE_SCALE.hidden; }
 .global-border-solid { border-style: BORDER_STYLE_SCALE.solid; }
@@ -1746,59 +1748,61 @@
   flex-direction: column;
 }
 
-/* 🎯 ENTERPRISE MODAL TEXT ALIGNMENT CLASSES */
-.layera-modal-text-center {
-  text-align: var(--layera-modal-text-align-horizontal-center);
-  display: flex;
-  align-items: var(--layera-modal-text-align-vertical-middle);
-  justify-content: center;
-  flex-direction: column;
-}
-
-.layera-modal-text-left {
-  text-align: var(--layera-modal-text-align-horizontal-left);
-  display: flex;
-  align-items: var(--layera-modal-text-align-vertical-top);
-  justify-content: flex-start;
-  flex-direction: column;
-}
-
-.layera-modal-text-right {
-  text-align: var(--layera-modal-text-align-horizontal-right);
-  display: flex;
-  align-items: var(--layera-modal-text-align-vertical-top);
-  justify-content: flex-end;
-  flex-direction: column;
-}
-
-.layera-modal-text-justify {
-  text-align: var(--layera-modal-text-align-horizontal-justify);
-  display: flex;
-  align-items: var(--layera-modal-text-align-vertical-top);
-  justify-content: stretch;
-  flex-direction: column;
-}
-
-/* 🎯 ENTERPRISE MODAL TEXT ALIGNMENT CLASSES - VERTICAL - HIGH SPECIFICITY */
+/* 🎯 HIGH SPECIFICITY MODAL TEXT ALIGNMENT CLASSES - ONLY @LAYERA TOKENS */
+/* Vertical Alignment Classes */
 .layera-card.layera-modal-uniform.layera-modal-text-vertical-top {
   text-align: center !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  flex-direction: column !important;
+  width: var(--layera-spacing-full) !important;
+  height: var(--layera-spacing-full) !important;
+  padding-top: var(--layera-spacing-scale-2) !important;
 }
 
 .layera-card.layera-modal-uniform.layera-modal-text-vertical-middle {
   text-align: center !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-direction: column !important;
+  width: var(--layera-spacing-full) !important;
+  height: var(--layera-spacing-full) !important;
 }
 
 .layera-card.layera-modal-uniform.layera-modal-text-vertical-bottom {
   text-align: center !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  flex-direction: column !important;
+  width: var(--layera-spacing-full) !important;
+  height: var(--layera-spacing-full) !important;
+  padding-bottom: var(--layera-spacing-scale-2) !important;
 }
 
-/* 🎯 ENTERPRISE MODAL TEXT ALIGNMENT CLASSES - HORIZONTAL - HIGH SPECIFICITY */
+/* Horizontal Alignment Classes */
 .layera-card.layera-modal-uniform.layera-modal-text-horizontal-left {
   text-align: left !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  flex-direction: column !important;
+  width: var(--layera-spacing-full) !important;
+  height: var(--layera-spacing-full) !important;
+  padding-left: var(--layera-spacing-scale-2) !important;
 }
 
 .layera-card.layera-modal-uniform.layera-modal-text-horizontal-right {
   text-align: right !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  flex-direction: column !important;
+  width: var(--layera-spacing-full) !important;
+  height: var(--layera-spacing-full) !important;
+  padding-right: var(--layera-spacing-scale-2) !important;
 }
 
 /* 🎯 ENTERPRISE MODAL UNIFORM SIZE CLASSES - INCREASED DIMENSIONS */

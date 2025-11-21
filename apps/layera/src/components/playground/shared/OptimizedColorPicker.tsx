@@ -72,14 +72,31 @@ export const OptimizedColorPicker: React.FC<OptimizedColorPickerProps> = ({
     if (!colorValue) return getDefaultFallbackColor();
     if (colorValue.startsWith('#')) return colorValue;
 
-    // Αν είναι CSS variable, εξάγει το fallback hex value
+    // 🎯 Αν είναι CSS variable, διάβασε το computed style από το DOM
+    if (colorValue.includes('var(')) {
+      if (typeof window !== 'undefined') {
+        const computedStyle = getComputedStyle(document.documentElement);
+        const varName = colorValue.match(/var\((--[^,)]+)/)?.[1];
+        if (varName) {
+          const computedValue = computedStyle.getPropertyValue(varName).trim();
+          if (computedValue && computedValue.startsWith('#')) {
+            return computedValue;
+          }
+        }
+      }
+    }
+
+    // Αν είναι CSS variable με fallback, εξάγει το fallback hex value
     const match = colorValue.match(/var\([^,]+,\s*(#[0-9a-fA-F]{6})\)/);
     return match ? match[1] : getDefaultFallbackColor();
   };
 
   const displayValue = extractHexFromValue(localValue);
   const isVariable = localValue.includes('var(');
-  const inputType = isVariable ? 'text' : 'color';
+  // 🎯 Αν εξάγαμε επιτυχώς HEX από CSS variable, εμφάνισε color picker
+  // Έγκυρο HEX: ξεκινάει με # και έχει 7 χαρακτήρες (#RRGGBB)
+  const hasValidHex = displayValue.startsWith('#') && displayValue.length === 7;
+  const inputType = (isVariable && !hasValidHex) ? 'text' : 'color';
 
   return (
     <Box className={`layera-card layera-padding--lg ${className}`}>
@@ -89,11 +106,11 @@ export const OptimizedColorPicker: React.FC<OptimizedColorPickerProps> = ({
       <Box
         as="input"
         type={inputType}
-        value={isVariable ? localValue : displayValue}
+        value={inputType === 'text' ? localValue : displayValue}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e.target.value)}
         onInput={handleInputEvent}
         className={`layera-input layera-width--full layera-margin-bottom--sm layera-cursor--pointer layera-transition--fast ${isChanging ? 'layera-opacity--80' : 'layera-opacity--100'}`}
-        placeholder={isVariable ? 'CSS Variable or hex color...' : ''}
+        placeholder={inputType === 'text' ? 'CSS Variable or hex color...' : ''}
       />
       <Text className="layera-typography" data-size="sm" data-color="secondary">
         {isVariable ? localValue : displayValue.toUpperCase()}
