@@ -2839,6 +2839,12 @@ html[data-layera-button-info="active"] .layera-button[data-variant="info"]:hover
   border-color: color-mix(in srgb, var(--layera-live-button-info, var(--layera-color-info-main)) 90%, black) !important;
 }
 
+/* 🎨 ALPHA PREVIEW - Color picker transparency preview */
+.layera-alpha-preview-live {
+  background-color: var(--layera-live-alpha-color, #cccccc);
+  border: 1px solid var(--layera-color-border-default, #e5e5e5);
+}
+
 /* 🎯 Layera Design Tokens System Ready */
 `;
 

@@ -117,8 +117,6 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
 
     // ✅ ARXES COMPLIANT: CSS custom property για live preview
     root.style.setProperty(`--layera-live-button-${colorKey.replace('Color', '')}`, colorValue);
-
-    console.log(`🎯 Button color applied: ${colorKey.replace('Color', '')} = ${colorValue}`);
   };
 
   /**
@@ -136,8 +134,6 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
 
     // ✅ ARXES COMPLIANT: CSS custom property για live preview
     root.style.setProperty(`--layera-live-card-${normalizedKey}`, colorValue);
-
-    console.log(`🎯 Card color applied: ${normalizedKey} = ${colorValue}`);
   };
 
   /**

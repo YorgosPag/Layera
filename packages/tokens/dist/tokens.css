@@ -3,7 +3,7 @@
  *
  * ⚠️  DO NOT EDIT MANUALLY
  * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts, core/motion/motion.variables.ts και component/icons/icons.variables.ts and rebuild
- * Generated: 2025-11-21T22:45:50.063Z
+ * Generated: 2025-11-21T23:36:00.145Z
  */
 
 :root {
@@ -1943,6 +1943,12 @@ html[data-layera-button-info="active"] .layera-button[data-variant="info"] {
 html[data-layera-button-info="active"] .layera-button[data-variant="info"]:hover:not(:disabled) {
   background-color: color-mix(in srgb, var(--layera-live-button-info, var(--layera-color-info-main)) 90%, black) !important;
   border-color: color-mix(in srgb, var(--layera-live-button-info, var(--layera-color-info-main)) 90%, black) !important;
+}
+
+/* 🎨 ALPHA PREVIEW - Color picker transparency preview */
+.layera-alpha-preview-live {
+  background-color: var(--layera-live-alpha-color, #cccccc);
+  border: 1px solid var(--layera-color-border-default, #e5e5e5);
 }
 
 /* 🎯 Layera Design Tokens System Ready */

@@ -44,15 +44,56 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   colorVariant,
   showVariantInfo = false
 }) => {
-  // Optimized parse function with caching
-  const parseValue = useCallback((val: ColorWithAlpha | string): ColorWithAlpha => {
+  // Flag για να ξέρουμε αν ο χρήστης αλλάζει το slider
+  const [isUserInteracting, setIsUserInteracting] = useState(false);
+  // Flag για να αποφύγουμε το reset αμέσως μετά το mouse up
+  const [recentlyInteracted, setRecentlyInteracted] = useState(false);
+
+  // Simplified state - no complex throttling (throttleMs available for future optimization)
+  const [internalValue, setInternalValue] = useState<ColorWithAlpha>(() => {
+    // Αρχικοποίηση με απλό parse χωρίς dependency
+    if (typeof value === 'string') {
+      if (value.startsWith('#') && value.length === 7) {
+        return {
+          hex: value,
+          alpha: 1.0,
+          rgba: hexToRgba(value, 1.0)
+        };
+      }
+      if (value.startsWith('rgba')) {
+        const rgbaMatch = value.match(/rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)/);
+        if (rgbaMatch) {
+          const [, r, g, b, a] = rgbaMatch;
+          const hex = '#' +
+            parseInt(r).toString(16).padStart(2, '0') +
+            parseInt(g).toString(16).padStart(2, '0') +
+            parseInt(b).toString(16).padStart(2, '0');
+          return {
+            hex,
+            alpha: parseFloat(a),
+            rgba: value
+          };
+        }
+      }
+      return {
+        hex: 'var(--layera-colors-text-primary)',
+        alpha: 1.0,
+        rgba: hexToRgba('var(--layera-colors-text-primary)', 1.0)
+      };
+    }
+    return value;
+  });
+
+  // Optimized parse function with caching - τώρα μπορεί να χρησιμοποιηθεί safely
+  const parseValue = useCallback((val: ColorWithAlpha | string, preserveAlpha = false): ColorWithAlpha => {
     if (typeof val === 'string') {
       // Fast path for HEX colors (most common case)
       if (val.startsWith('#') && val.length === 7) {
+        const alphaToUse = preserveAlpha ? (internalValue?.alpha ?? 1.0) : 1.0;
         return {
           hex: val,
-          alpha: 1.0,
-          rgba: hexToRgba(val, 1.0)
+          alpha: alphaToUse,
+          rgba: hexToRgba(val, alphaToUse)
         };
       }
       // RGBA parsing (less common)
@@ -73,27 +114,83 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
         }
       }
       // Fallback
+      const alphaToUse = preserveAlpha ? (internalValue?.alpha ?? 1.0) : 1.0;
       return {
         hex: 'var(--layera-colors-text-primary)',
-        alpha: 1.0,
-        rgba: hexToRgba('var(--layera-colors-text-primary)', 1.0)
+        alpha: alphaToUse,
+        rgba: hexToRgba('var(--layera-colors-text-primary)', alphaToUse)
       };
     }
     return val;
-  }, []);
-
-  // Simplified state - no complex throttling (throttleMs available for future optimization)
-  const [internalValue, setInternalValue] = useState<ColorWithAlpha>(parseValue(value));
+  }, [internalValue?.alpha]);
 
   // Note: throttleMs parameter preserved for future performance optimizations
   void throttleMs;
 
   // PERFORMANCE: Helper functions moved outside component για zero recreations
 
-  // Sync με external value
+  // Sync με external value και αρχικοποίηση preview (μόνο αν δεν αλλάζει ο χρήστης το slider)
   useEffect(() => {
-    setInternalValue(parseValue(value));
-  }, [value, parseValue]);
+    // Αν ο χρήστης αλλάζει το slider ή μόλις τέλειωσε, μην κάνεις sync
+    if (isUserInteracting || recentlyInteracted) {
+      return;
+    }
+
+    const newValue = parseValue(value, true); // Διατήρηση alpha
+
+    // Μόνο αν το HEX έχει πραγματικά αλλάξει εξωτερικά (IGNORE alpha changes)
+    if (!internalValue || newValue.hex !== internalValue.hex) {
+      setInternalValue({
+        ...newValue,
+        alpha: internalValue?.alpha || newValue.alpha // Διατήρηση της τρέχουσας alpha
+      });
+    }
+
+    // ✅ ARXES COMPLIANT: Αρχικοποίηση υπάρχουσας CSS variable
+    if (typeof document !== 'undefined') {
+      const root = document.documentElement;
+      // Υπολογίζω το RGBA από το τρέχον χρώμα και alpha
+      const currentHex = newValue.hex?.startsWith('#') ? newValue.hex : extractHexFromValue(newValue.hex || 'var(--layera-colors-text-primary)');
+      const currentAlpha = newValue.alpha || 1.0;
+      const rgbaValue = hexToRgba(currentHex, currentAlpha);
+      root.style.setProperty('--layera-live-alpha-color', rgbaValue);
+    }
+  }, [value, parseValue, internalValue, isUserInteracting, recentlyInteracted]);
+
+  // Global event listener για το mouseup/touchend (αν ο χρήστης αφήσει το mouse έξω από το slider)
+  useEffect(() => {
+    const handleGlobalMouseUp = () => {
+      if (isUserInteracting) {
+        setIsUserInteracting(false);
+        setRecentlyInteracted(true);
+
+        setTimeout(() => {
+          setRecentlyInteracted(false);
+        }, 500);
+      }
+    };
+
+    if (isUserInteracting) {
+      document.addEventListener('mouseup', handleGlobalMouseUp);
+      document.addEventListener('touchend', handleGlobalMouseUp);
+    }
+
+    return () => {
+      document.removeEventListener('mouseup', handleGlobalMouseUp);
+      document.removeEventListener('touchend', handleGlobalMouseUp);
+    };
+  }, [isUserInteracting]);
+
+  // ✅ ARXES COMPLIANT: Ενημέρωση preview όταν αλλάζει το internal value
+  useEffect(() => {
+    if (typeof document !== 'undefined' && internalValue) {
+      const root = document.documentElement;
+      const currentHex = internalValue.hex?.startsWith('#') ? internalValue.hex : extractHexFromValue(internalValue.hex || 'var(--layera-colors-text-primary)');
+      const currentAlpha = internalValue.alpha || 1.0;
+      const rgbaValue = hexToRgba(currentHex, currentAlpha);
+      root.style.setProperty('--layera-live-alpha-color', rgbaValue);
+    }
+  }, [internalValue]);
 
   // Enhanced handlers με safety checks
   const handleHexChange = useCallback((newHex: string) => {
@@ -114,16 +211,40 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     if (isNaN(newAlpha)) return;
 
     const safeHex = internalValue?.hex || 'var(--layera-colors-text-primary)';
-    if (!safeHex.startsWith('#')) return;
+
+    // Αν είναι CSS variable, χρησιμοποιούμε το extractHexFromValue για να πάρουμε το HEX
+    const actualHex = safeHex.startsWith('#') ? safeHex : extractHexFromValue(safeHex);
 
     const newValue = {
-      hex: safeHex,
+      hex: safeHex, // Κρατάμε το αρχικό (μπορεί να είναι CSS variable)
       alpha: newAlpha,
-      rgba: hexToRgba(safeHex, newAlpha)
+      rgba: hexToRgba(actualHex, newAlpha)
     };
+
     setInternalValue(newValue);
-    onChange(newValue);
-  }, [internalValue?.hex, onChange]);
+
+    // Χρησιμοποιούμε και onPreview και onChange για σωστή συγχρονισμό
+    if (onPreview) {
+      onPreview(newValue);
+    }
+    onChange(newValue); // ΣΗΜΑΝΤΙΚΟ: Ενημερώνουμε το parent component
+  }, [internalValue?.hex, onPreview, onChange]);
+
+  // Handler για το mousedown event του slider
+  const handleSliderMouseDown = useCallback(() => {
+    setIsUserInteracting(true);
+  }, []);
+
+  // Handler για το mouseup event του slider
+  const handleSliderMouseUp = useCallback(() => {
+    setIsUserInteracting(false);
+    setRecentlyInteracted(true);
+
+    // Αφήνουμε λίγο χρόνο και μετά επιτρέπουμε πάλι τις external changes
+    setTimeout(() => {
+      setRecentlyInteracted(false);
+    }, 500); // Μεγαλύτερη καθυστέρηση για σιγουριά
+  }, []);
 
   // Lightweight input handler με memoization
   const handleHexInput = useCallback((e: React.FormEvent<HTMLInputElement>) => {
@@ -251,39 +372,29 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
       </Box>
 
       {/* Alpha Slider με Preview */}
-      <Box className="layera-margin-bottom--xs">
-        <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-weight="medium" data-color="secondary">
-          Διαφάνεια: {alphaPercentage}%
-        </Text>
+      <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-weight="medium" data-color="secondary">
+        Διαφάνεια: {alphaPercentage}%
+      </Text>
 
-        {/* Alpha Preview Box - με progressive alpha */}
-        <Box className="layera-margin-bottom--xs layera-flex layera-flex--justify-center">
-          <Box
-            className="layera-border--default layera-position--relative layera-height--8"
-            data-width="var(--layera-spacing-scale-62)"
-          >
-            {/* Overlay με το χρώμα και την αντίστοιχη διαφάνεια */}
-            <Box
-              className="layera-position--absolute layera-position-top--0 layera-position-left--0 layera-width--full layera-height--full layera-border-radius--sm layera-dynamic-bg"
-              data-dynamic-bg={internalValue?.rgba || 'color-mix(in srgb, var(--layera-colors-surface-light) 100%, transparent)'}
-            />
-          </Box>
-        </Box>
-      </Box>
+      {/* Alpha Preview Box */}
+      <Box className="layera-border--default layera-border-radius--sm layera-height--10 layera-width--full layera-alpha-preview-live layera-margin-bottom--xs" />
 
-      {/* Alpha Slider - για συμμετρία */}
+      {/* Alpha Slider */}
       <Box className="layera-margin-bottom--xs">
-        <Box className="layera-flex layera-flex--justify-center">
-          <input
-            type="range"
-            min="0"
-            max="100"
-            step="1"
-            value={alphaPercentage}
-            onChange={handleAlphaChange}
-            className="layera-input layera-width--32"
-          />
-        </Box>
+        <input
+          type="range"
+          min="0"
+          max="100"
+          step="1"
+          value={alphaPercentage}
+          onChange={handleAlphaChange}
+          onMouseDown={handleSliderMouseDown}
+          onMouseUp={handleSliderMouseUp}
+          onTouchStart={handleSliderMouseDown}
+          onTouchEnd={handleSliderMouseUp}
+          className="layera-input layera-width--full"
+          style={{ width: '100%' }}
+        />
       </Box>
 
       {/* Variant Info - Εμφανίζει CSS variable και selector */}
