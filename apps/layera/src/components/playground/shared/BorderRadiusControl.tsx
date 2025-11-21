@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
-import { CompassIcon } from '@layera/icons';
+import { CompassIcon, SettingsIcon } from '@layera/icons';
 
 /**
  * BorderRadiusControl Component
@@ -117,6 +117,23 @@ export const BorderRadiusControl: React.FC<BorderRadiusControlProps> = ({
       >
         <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">
           Preview: {currentOption.description}
+        </Text>
+      </Box>
+
+      {/* CSS Info για BACKGROUNDS στα CARDS */}
+      <Box className="layera-margin-bottom--sm layera-padding--md layera-bg--surface-primary layera-text-align--left">
+        <Text className="layera-typography layera-margin-bottom--xs layera-flex layera-flex--align-center layera-gap--xs"
+              data-size="xs" data-weight="bold" data-color="primary">
+          <SettingsIcon size="sm" /> CSS Info:
+        </Text>
+        <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
+          <strong>Variable:</strong> --layera-live-card-primary
+        </Text>
+        <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
+          <strong>Selector:</strong> .layera-card[data-variant="primary"]
+        </Text>
+        <Text className="layera-typography" data-size="xs" data-color="secondary">
+          <strong>HTML Attribute:</strong> data-layera-card-primary="active"
         </Text>
       </Box>
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
@@ -121,6 +121,18 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
   // Debug removed to reduce console noise
 
   // Debug function removed to reduce console noise
+
+  // Apply card background colors persistently for control cards
+  useEffect(() => {
+    const root = document.documentElement;
+
+    // Ορίζει το attribute και το CSS variable για primary card όταν υπάρχει χρώμα
+    const primaryColor = colorHookState?.backgrounds?.primaryColor;
+    if (primaryColor) {
+      root.setAttribute('data-layera-card-primary', 'active');
+      root.style.setProperty('--layera-live-card-primary', primaryColor);
+    }
+  }, [colorHookState?.backgrounds?.primaryColor]);
 
   // Check if current element type supports hover effects
   const isInteractiveElement = ['buttons', 'cards', 'inputs', 'modals', 'tables', 'layout'].includes(colorHookState.elementType);
