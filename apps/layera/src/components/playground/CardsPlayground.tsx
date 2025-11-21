@@ -99,15 +99,11 @@ export const CardsPlayground: React.FC<ExtendedCardsPlaygroundProps> = ({
           {cardConfigs.map(({ key, title, variant }) => (
             <Box
               key={key}
-              className="layera-width--32 layera-height--6 layera-card"
+              className="layera-width--32 layera-height--20 layera-card layera-card-text-center"
               data-variant={variant}
             >
               <Text
-                className="layera-typography layera-text--align-center"
-                style={{
-                  textAlign: 'var(--layera-card-text-align-horizontal-center)',
-                  verticalAlign: 'var(--layera-card-text-align-vertical-middle)'
-                }}
+                className="layera-typography"
                 data-size="xs"
                 data-weight="bold"
               >

@@ -1115,6 +1115,28 @@ function extractModalComponentValues(content) {
 }
 
 // Εξάγει utilities τιμές από το TypeScript αρχείο
+// Εξάγει core text-align μεταβλητές ως CSS variables από το utilities αρχείο
+function extractCoreTextAlignVariables(content) {
+  const cssVariables = [];
+  if (!content) {
+    console.log('🔧 Δεν βρέθηκε περιεχόμενο για core text-align variables');
+    return cssVariables;
+  }
+
+  // Ψάχνω για τις core text-align μεταβλητές
+  const coreTextAlignPattern = /'(layera-core-text-align-[^']+)':\s*'([^']+)'/g;
+  let match;
+
+  while ((match = coreTextAlignPattern.exec(content)) !== null) {
+    const varName = match[1];
+    const varValue = match[2];
+    cssVariables.push(`  --${varName}: ${varValue};`);
+  }
+
+  console.log(`🔧 Εξήχθησαν ${cssVariables.length} core text-align variables`);
+  return cssVariables;
+}
+
 function extractUtilitiesValues(content) {
   const cssVariables = [];
 
@@ -2371,6 +2393,7 @@ const feedbackSemanticVariables = extractFeedbackSemanticValues(feedbackSemantic
 const buttonsComponentVariables = extractButtonsComponentValues(buttonsComponentContent);
 const modalComponentVariables = extractModalComponentValues(modalComponentContent);
 const cardsComponentVariables = extractCardsComponentValues(cardsComponentContent);
+const coreTextAlignVariables = extractCoreTextAlignVariables(utilitiesContent);
 const utilitiesVariables = extractUtilitiesValues(utilitiesContent);
 const layoutComponentVariables = extractLayoutComponentValues(layoutComponentContent);
 const inputsComponentVariables = extractInputsComponentValues(inputsComponentContent);
@@ -2417,7 +2440,7 @@ console.log(`✅ Εξήχθη modal CSS: ${modalCSS ? 'YES' : 'NO'}`);
 console.log(`✅ Εξήχθη tooltip CSS: ${tooltipCSS ? 'YES' : 'NO'}`);
 
 // Συνδυάζει όλα τα CSS variables
-const allVariables = [...cssVariables, ...spacingVariables, ...typographyVariables, ...bordersVariables, ...shadowsVariables, ...motionVariables, ...iconsVariables, ...backgroundSemanticVariables, ...textSemanticVariables, ...borderSemanticVariables, ...feedbackSemanticVariables, ...buttonsComponentVariables, ...modalComponentVariables, ...cardsComponentVariables, ...inputsComponentVariables, ...navigationComponentVariables, ...tooltipsComponentVariables, ...badgesComponentVariables, ...loadingComponentVariables, ...disclosureComponentVariables, ...dataImportComponentVariables];
+const allVariables = [...cssVariables, ...spacingVariables, ...typographyVariables, ...bordersVariables, ...shadowsVariables, ...motionVariables, ...iconsVariables, ...backgroundSemanticVariables, ...textSemanticVariables, ...borderSemanticVariables, ...feedbackSemanticVariables, ...coreTextAlignVariables, ...buttonsComponentVariables, ...modalComponentVariables, ...cardsComponentVariables, ...inputsComponentVariables, ...navigationComponentVariables, ...tooltipsComponentVariables, ...badgesComponentVariables, ...loadingComponentVariables, ...disclosureComponentVariables, ...dataImportComponentVariables];
 
 // Συνδυάζει CSS classes και variables
 const allClasses = [...utilitiesVariables, ...layoutComponentVariables, ...navigationComponentClasses];
@@ -2452,6 +2475,9 @@ ${motionVariables.join('\n')}
 
   /* 🎯 ICONS */
 ${iconsVariables.join('\n')}
+
+  /* 🔧 CORE TEXT ALIGN */
+${coreTextAlignVariables.join('\n')}
 
   /* 🎨 SEMANTIC BACKGROUND */
 ${backgroundSemanticVariables.join('\n')}
@@ -2564,6 +2590,27 @@ ${tooltipCSS}
   transform: var(--layera-card-hover-transform);
 }
 
+/* 🎯 ENTERPRISE CARD TEXT ALIGNMENT CLASSES */
+.layera-card-text-center {
+  text-align: var(--layera-card-text-align-horizontal-center);
+  display: flex;
+  align-items: var(--layera-card-text-align-vertical-middle);
+  justify-content: center;
+  flex-direction: column;
+}
+
+.layera-card-text-left {
+  text-align: var(--layera-card-text-align-horizontal-left);
+}
+
+.layera-card-text-right {
+  text-align: var(--layera-card-text-align-horizontal-right);
+}
+
+.layera-card-text-justify {
+  text-align: var(--layera-card-text-align-horizontal-justify);
+}
+
 /* 🎯 Layera Design Tokens System Ready */
 `;
 
@@ -2594,6 +2641,7 @@ console.log(`   🎯 Badges Component: ${badgesComponentVariables.length}`);
 console.log(`   ⚡ Loading Component: ${loadingComponentVariables.length}`);
 console.log(`   🎭 Disclosure Component: ${disclosureComponentVariables.length}`);
 console.log(`   📂 Data Import Component: ${dataImportComponentVariables.length}`);
+console.log(`   🔧 Core Text Align Variables: ${coreTextAlignVariables.length}`);
 console.log(`   🔧 Utilities Classes: ${utilitiesVariables.length}`);
 console.log(`   📐 Layout Classes: ${layoutComponentVariables.length}`);
 console.log(`   🧭 Navigation Classes: ${navigationComponentClasses.length}`);
