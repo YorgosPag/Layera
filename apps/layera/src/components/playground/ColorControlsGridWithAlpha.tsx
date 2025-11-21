@@ -179,6 +179,17 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
         {Object.entries(currentColors || {}).map(([colorKey, colorValue]) => {
           const description = colorDescriptions[colorKey as keyof typeof colorDescriptions] || '';
 
+          // Υπολογισμός variant για dynamic card coloring (μόνο για cards + backgrounds)
+          // Αφαιρεί το "Color" suffix από το colorKey (π.χ. "primaryColor" → "primary")
+          // Special mapping: danger → error (για consistency με CardsPlayground)
+          const getVariantFromColorKey = (key: string): string => {
+            const baseVariant = key.replace('Color', '').toLowerCase();
+            return baseVariant === 'danger' ? 'error' : baseVariant;
+          };
+
+          const variant = (colorCategory === 'backgrounds')
+            ? getVariantFromColorKey(colorKey)
+            : undefined;
 
           if (localAlphaEnabled) {
             // Alpha Mode - Use ColorPickerWithAlpha
@@ -196,6 +207,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
                   startPreview(colorKey, previewVal);
                 }}
                 className="layera-height--auto layera-text--align-center layera-width--auto"
+                variant={variant}
               />
             );
           } else {
@@ -213,6 +225,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
                   startPreview(colorKey, previewValue);
                 }}
                 className="layera-height--auto layera-text--align-center"
+                variant={variant}
               />
             );
           }

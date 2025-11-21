@@ -27,6 +27,7 @@ interface ColorPickerWithAlphaProps {
   onPreview?: (value: ColorWithAlpha) => void; // Real-time preview για hover events
   className?: string;
   throttleMs?: number; // Currently unused but kept for future use
+  variant?: string; // Variant για dynamic card coloring (π.χ. 'primary', 'secondary')
 }
 
 export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
@@ -35,7 +36,8 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   onChange,
   onPreview,
   className = '',
-  throttleMs = 16
+  throttleMs = 16,
+  variant
 }) => {
   // Optimized parse function with caching
   const parseValue = useCallback((val: ColorWithAlpha | string): ColorWithAlpha => {
@@ -218,7 +220,10 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   }, []);
 
   return (
-    <Box className={`layera-card layera-padding--md ${className}`}>
+    <Box
+      className={`layera-card layera-padding--md ${className}`}
+      data-variant={variant}
+    >
       <h4 className="layera-typography layera-margin-bottom--sm" data-size="base" data-weight="bold" data-color="primary">
         {label}
       </h4>
