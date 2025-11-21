@@ -61,7 +61,7 @@ export const SettingsDisplay: React.FC<SettingsDisplayProps> = ({
           type: 'data',
           title: `Παλέτα Χρωμάτων για ${colorHookState.colorCategory.toUpperCase()}`,
           icon: <PaletteIcon size="sm" />,
-          variant: 'secondary',
+          variant: 'primary',
           content: (
             <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark layera-white-space--pre-wrap layera-word-wrap--break layera-overflow-wrap--break" data-family="mono">
 {`{
@@ -84,7 +84,7 @@ export const SettingsDisplay: React.FC<SettingsDisplayProps> = ({
           type: 'data',
           title: `CSS Μεταβλητές για ${colorHookState.colorCategory.toUpperCase()} στα ${colorHookState.elementType.toUpperCase()}${colorHookState.elementType === 'buttons' ? ` (${colorHookState.colorButtonShape})` : ''}`,
           icon: <SettingsIcon size="sm" />,
-          variant: 'error',
+          variant: 'primary',
           content: (
             <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark layera-white-space--pre-wrap layera-word-wrap--break layera-overflow-wrap--break" data-family="mono">
               {(() => {

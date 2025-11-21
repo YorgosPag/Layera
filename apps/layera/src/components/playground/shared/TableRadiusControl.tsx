@@ -98,7 +98,7 @@ export const TableRadiusControl: React.FC<TableRadiusControlProps> = ({
   const currentOption = getCurrentOption();
 
   return (
-    <Box className={`layera-card layera-padding--lg ${className}`}>
+    <Box className={`layera-card layera-padding--lg ${className}`} data-variant="primary">
       <h4 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
         <SettingsIcon size="sm" /> Καμπυλότητα Πινάκων
       </h4>

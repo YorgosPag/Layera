@@ -57,7 +57,7 @@ export const ModalSizeControl: React.FC<ModalSizeControlProps> = ({
   };
 
   return (
-    <Box className={`layera-card layera-padding--lg ${className}`}>
+    <Box className={`layera-card layera-padding--lg ${className}`} data-variant="primary">
       <h4 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
         <MonitorIcon size="sm" /> Μέγεθος Modals
       </h4>

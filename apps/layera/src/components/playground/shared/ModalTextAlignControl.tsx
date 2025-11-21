@@ -79,7 +79,7 @@ export const ModalTextAlignControl: React.FC<ModalTextAlignControlProps> = ({
   };
 
   return (
-    <Box className={`layera-card layera-padding--lg ${className}`}>
+    <Box className={`layera-card layera-padding--lg ${className}`} data-variant="primary">
       <h4 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
         <MoreIcon size="sm" /> Στοίχιση Κειμένου
       </h4>

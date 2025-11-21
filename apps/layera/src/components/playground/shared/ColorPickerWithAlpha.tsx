@@ -28,7 +28,8 @@ interface ColorPickerWithAlphaProps {
   onPreview?: (value: ColorWithAlpha) => void; // Real-time preview για hover events
   className?: string;
   throttleMs?: number; // Currently unused but kept for future use
-  variant?: string; // Variant για dynamic card coloring (π.χ. 'primary', 'secondary')
+  variant?: string; // Variant για CSS Info display (π.χ. 'primary', 'secondary')
+  colorVariant?: string; // Variant για dynamic card coloring (πάντα 'primary')
   showVariantInfo?: boolean; // Εμφανίζει CSS variable & selector info
 }
 
@@ -40,6 +41,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   className = '',
   throttleMs = 16,
   variant,
+  colorVariant,
   showVariantInfo = false
 }) => {
   // Optimized parse function with caching
@@ -225,7 +227,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   return (
     <Box
       className={`layera-card layera-padding--md ${className}`}
-      data-variant={variant}
+      data-variant={colorVariant || variant}
     >
       <h4 className="layera-typography layera-margin-bottom--sm" data-size="base" data-weight="bold" data-color="primary">
         {label}

@@ -87,7 +87,7 @@ export const ButtonRadiusControl: React.FC<ButtonRadiusControlProps> = ({
   const currentOption = getCurrentOption();
 
   return (
-    <Box className={`layera-card layera-padding--lg ${className}`}>
+    <Box className={`layera-card layera-padding--lg ${className}`} data-variant="primary">
       <h4 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
         <SettingsIcon size="sm" /> Καμπυλότητα Πλήκτρων
       </h4>

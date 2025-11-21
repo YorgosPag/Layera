@@ -45,7 +45,8 @@ interface OptimizedColorPickerProps {
   onPreview?: (value: string) => void; // Real-time preview για dragging
   className?: string;
   throttleMs?: number;
-  variant?: string; // Variant για dynamic card coloring (π.χ. 'primary', 'secondary')
+  variant?: string; // Variant για CSS Info display (π.χ. 'primary', 'secondary')
+  colorVariant?: string; // Variant για dynamic card coloring (πάντα 'primary')
   showVariantInfo?: boolean; // Εμφανίζει CSS variable & selector info
 }
 
@@ -57,6 +58,7 @@ export const OptimizedColorPicker: React.FC<OptimizedColorPickerProps> = ({
   className = '',
   throttleMs = 16,
   variant,
+  colorVariant,
   showVariantInfo = false
 }) => {
   const { value: localValue, isChanging, handleChange, handleInput } = useControlThrottle({
@@ -106,7 +108,7 @@ export const OptimizedColorPicker: React.FC<OptimizedColorPickerProps> = ({
   return (
     <Box
       className={`layera-card layera-padding--lg ${className}`}
-      data-variant={variant}
+      data-variant={colorVariant || variant}
     >
       <h4 className="layera-typography layera-margin-bottom--md" data-size="lg" data-weight="bold" data-color="primary">
         {label}

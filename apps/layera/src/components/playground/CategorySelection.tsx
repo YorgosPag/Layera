@@ -156,7 +156,7 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
           title: 'Επιλογή Κατηγορίας Χρωμάτων',
           description: 'Επιλέξτε ποια χρώματα θα επηρεάζονται από τις αλλαγές',
           icon: <CheckIcon size="sm" />,
-          variant: 'warning',
+          variant: 'primary',
           content: (
             <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center">
               <Button
@@ -196,7 +196,7 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
           title: `Τύπος Στοιχείων για ${colorHookState.colorCategory === 'backgrounds' ? 'Φόντα' : colorHookState.colorCategory === 'text' ? 'Κείμενα' : 'Περιγράμματα'}`,
           description: `Επιλέξτε ποια στοιχεία θα επηρεάζονται από τα ${colorHookState.colorCategory === 'backgrounds' ? 'background' : colorHookState.colorCategory === 'text' ? 'text' : 'border'} χρώματα`,
           icon: <PolygonIcon size="sm" />,
-          variant: 'outlined',
+          variant: 'primary',
           content: (
             <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center">
               <Button

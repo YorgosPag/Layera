@@ -32,7 +32,7 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
   return (
     <Box className={className}>
       {/* Button Controls Panel */}
-      <Box className="layera-card layera-padding--lg layera-margin-bottom--xl layera-text--align-center">
+      <Box className="layera-card layera-padding--lg layera-margin-bottom--xl layera-text--align-center" data-variant="primary">
         <h3 className="layera-typography layera-margin-bottom--lg" data-size="lg" data-weight="bold" data-color="primary">
           🎮 Button Controls
         </h3>
