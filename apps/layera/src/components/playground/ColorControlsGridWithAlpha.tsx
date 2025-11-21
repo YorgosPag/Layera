@@ -208,6 +208,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
                 }}
                 className="layera-height--auto layera-text--align-center layera-width--auto"
                 variant={variant}
+                showVariantInfo={!!variant}
               />
             );
           } else {
@@ -226,6 +227,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
                 }}
                 className="layera-height--auto layera-text--align-center"
                 variant={variant}
+                showVariantInfo={!!variant}
               />
             );
           }

@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect, useMemo } from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
+import { SettingsIcon } from '@layera/icons';
 import type { ColorWithAlpha } from '../../../hooks/useColorState';
 
 /**
@@ -28,6 +29,7 @@ interface ColorPickerWithAlphaProps {
   className?: string;
   throttleMs?: number; // Currently unused but kept for future use
   variant?: string; // Variant για dynamic card coloring (π.χ. 'primary', 'secondary')
+  showVariantInfo?: boolean; // Εμφανίζει CSS variable & selector info
 }
 
 export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
@@ -37,7 +39,8 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   onPreview,
   className = '',
   throttleMs = 16,
-  variant
+  variant,
+  showVariantInfo = false
 }) => {
   // Optimized parse function with caching
   const parseValue = useCallback((val: ColorWithAlpha | string): ColorWithAlpha => {
@@ -281,12 +284,26 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
         </Box>
       </Box>
 
-      {/* Compact Values */}
-      <Box>
-        <Text className="layera-typography" data-size="xs" data-color="secondary">
-          {displayHex.toUpperCase()} · α{alphaPercentage}%
-        </Text>
-      </Box>
+      {/* Variant Info - Εμφανίζει CSS variable και selector */}
+      {showVariantInfo && variant && (
+        <Box className="layera-margin-top--sm layera-padding-top--sm layera-border-top--default">
+          <Text className="layera-typography layera-margin-bottom--xs layera-flex layera-flex--align-center layera-gap--xs" data-size="xs" data-weight="bold" data-color="primary">
+            <SettingsIcon size="sm" /> CSS Info:
+          </Text>
+          <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
+            Variable: <span className="layera-typography" data-weight="mono" data-color="info">--layera-live-card-{variant}</span>
+          </Text>
+          <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
+            Selector: <span className="layera-typography" data-weight="mono" data-color="info">.layera-card[data-variant="{variant}"]</span>
+          </Text>
+          <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
+            HTML Attribute: <span className="layera-typography" data-weight="mono" data-color="info">data-layera-card-{variant}="active"</span>
+          </Text>
+          <Text className="layera-typography" data-size="xs" data-color="secondary">
+            Τρέχον χρώμα: <span className="layera-typography" data-weight="bold" data-color="success">{displayHex.toUpperCase()}</span>
+          </Text>
+        </Box>
+      )}
     </Box>
   );
 };
