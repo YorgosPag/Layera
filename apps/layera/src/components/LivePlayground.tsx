@@ -5,14 +5,7 @@ import { Button } from '@layera/buttons';
 import { SettingsIcon, CloseIcon, EditIcon, PolygonIcon, RulerIcon, CompassIcon, CheckIcon, PaletteIcon } from '@layera/icons';
 import { PlaygroundHeader } from './playground/PlaygroundHeader';
 import { PlaygroundRenderer } from './playground/PlaygroundRenderer';
-import { CategorySelection } from './playground/CategorySelection';
-import { ColorControlsGridWithAlpha } from './playground/ColorControlsGridWithAlpha';
-import { ColorActionsPanel } from './playground/ColorActionsPanel';
-import { SettingsDisplay } from './playground/SettingsDisplay';
-import { FactorySettingsPanel } from './playground/FactorySettingsPanel';
-import { ButtonShapeControl } from './playground/shared/ButtonShapeControl';
-import { ButtonSizeControl } from './playground/shared/ButtonSizeControl';
-import { ButtonTextIconControl } from './playground/shared/ButtonTextIconControl';
+import { PlaygroundControls } from './playground/PlaygroundControls';
 import type { ColorWithAlpha } from './playground/shared/ColorPickerWithAlpha';
 import type { ModalTextAlignValue } from './playground/shared/ModalTextAlignControl';
 import { useAuth } from '@layera/auth-bridge';
@@ -155,137 +148,40 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             getElementColors={getElementColors}
           />
 
-          {/* Always show color management sections */}
-          {/* Category and Element Type Selection - Πάνω από Button Controls */}
-          <Box className="layera-margin-bottom--xl">
-            <CategorySelection
-              colorHookState={colorHookState}
-              colorActions={colorActions}
-              borderWidth={borderWidth}
-              onBorderWidthChange={playgroundActions.setBorderWidth}
-              borderRadius={borderRadius}
-              onBorderRadiusChange={playgroundActions.setBorderRadius}
-              buttonRadius={buttonRadius}
-              onButtonRadiusChange={playgroundActions.setButtonRadius}
-              layoutRadius={layoutRadius}
-              onLayoutRadiusChange={playgroundActions.setLayoutRadius}
-              cardRadius={cardRadius}
-              onCardRadiusChange={playgroundActions.setCardRadius}
-              modalRadius={modalRadius}
-              onModalRadiusChange={playgroundActions.setModalRadius}
-              inputRadius={inputRadius}
-              onInputRadiusChange={playgroundActions.setInputRadius}
-              tableRadius={tableRadius}
-              onTableRadiusChange={playgroundActions.setTableRadius}
-              headerRadius={headerRadius}
-              onHeaderRadiusChange={playgroundActions.setHeaderRadius}
-              hoverEffect={hoverEffect}
-              onHoverEffectChange={playgroundActions.setHoverEffect}
-              activeEffect={activeEffect}
-              onActiveEffectChange={playgroundActions.setActiveEffect}
-              fontSize={fontSize}
-              onFontSizeChange={playgroundActions.setFontSize}
-              cardSize={cardSize}
-              onCardSizeChange={playgroundActions.setCardSize}
-              modalSize={modalSize}
-              onModalSizeChange={playgroundActions.setModalSize}
-              modalTextAlign={modalTextAlign}
-              onModalTextAlignChange={playgroundActions.setModalTextAlign}
-              inputSize={inputSize}
-              onInputSizeChange={playgroundActions.setInputSize}
-              tableSize={tableSize}
-              onTableSizeChange={playgroundActions.setTableSize}
-              onPreview={startPreview}
-              buttonState={buttonState}
-            />
-          </Box>
-
-          {/* Button Controls Grid - ΜΟΝΟ για buttons elementType */}
-          {colorHookState.elementType === 'buttons' && (
-            <Box className="layera-margin-bottom--xl">
-              <Box
-                className="layera-grid layera-grid--gap-lg layera-margin-top--lg layera-margin-bottom--xl layera-grid--auto-fit-280 layera-padding--lg"
-              >
-                {/* Button Shape Control */}
-                <ButtonShapeControl
-                  buttonState={buttonState}
-                  buttonActions={buttonActions}
-                />
-
-                {/* Button Size Control */}
-                <ButtonSizeControl
-                  buttonState={buttonState}
-                  buttonActions={buttonActions}
-                  buttonSizes={buttonSizes}
-                />
-
-                {/* Button Text & Icon Control */}
-                <ButtonTextIconControl
-                  buttonState={buttonState}
-                  buttonActions={buttonActions}
-                />
-              </Box>
-            </Box>
-          )}
-
-          {/* Color Controls Grid με Alpha Support */}
-          <ColorControlsGridWithAlpha
-            currentColors={getElementColors(colorHookState.elementType, colorHookState.colorCategory)}
-            currentSetters={{
-              primaryColor: (value: string) => colorActions.updateElementTypePalette(colorHookState.elementType, colorHookState.colorCategory, 'primaryColor', value),
-              secondaryColor: (value: string) => colorActions.updateElementTypePalette(colorHookState.elementType, colorHookState.colorCategory, 'secondaryColor', value),
-              successColor: (value: string) => colorActions.updateElementTypePalette(colorHookState.elementType, colorHookState.colorCategory, 'successColor', value),
-              warningColor: (value: string) => colorActions.updateElementTypePalette(colorHookState.elementType, colorHookState.colorCategory, 'warningColor', value),
-              dangerColor: (value: string) => colorActions.updateElementTypePalette(colorHookState.elementType, colorHookState.colorCategory, 'dangerColor', value),
-              infoColor: (value: string) => colorActions.updateElementTypePalette(colorHookState.elementType, colorHookState.colorCategory, 'infoColor', value)
-            }}
-            startPreview={(key: string, value: string | ColorWithAlpha) => {
-              handleElementPreview(key, value, colorHookState.elementType, colorHookState.colorCategory, startPreview);
-            }}
-            colorCategory={colorHookState.colorCategory}
-            alphaEnabled={alphaEnabled}
-            onAlphaToggle={playgroundActions.setAlphaEnabled}
+          {/* Playground Controls - Centralized controls management */}
+          <PlaygroundControls
+            colorHookState={colorHookState}
             buttonState={buttonState}
+            colorActions={colorActions}
+            playgroundActions={playgroundActions}
+            buttonActions={buttonActions}
+            buttonSizes={buttonSizes}
+            borderWidth={borderWidth}
+            borderRadius={borderRadius}
+            buttonRadius={buttonRadius}
+            layoutRadius={layoutRadius}
+            cardRadius={cardRadius}
+            modalRadius={modalRadius}
+            inputRadius={inputRadius}
+            tableRadius={tableRadius}
+            headerRadius={headerRadius}
+            hoverEffect={hoverEffect}
+            activeEffect={activeEffect}
+            fontSize={fontSize}
+            cardSize={cardSize}
+            modalSize={modalSize}
+            modalTextAlign={modalTextAlign}
+            inputSize={inputSize}
+            tableSize={tableSize}
+            alphaEnabled={alphaEnabled}
+            getElementColors={getElementColors}
+            convertColorPaletteWithAlphaToLegacy={convertColorPaletteWithAlphaToLegacy}
+            handleElementPreview={handleElementPreview}
+            startPreview={startPreview}
+            applyColorsToApp={applyColorsToApp}
+            applySquareColorsToHeader={applySquareColorsToHeader}
+            user={user}
           />
-
-          {/* Apply Colors Buttons */}
-          <Box className="layera-margin-bottom--xl">
-            <ColorActionsPanel
-              colorHookState={colorHookState}
-              buttonState={buttonState}
-              applyColorsToApp={applyColorsToApp}
-              applySquareColorsToHeader={applySquareColorsToHeader}
-            />
-          </Box>
-
-          {/* #9 & #10: Εργοστασιακές Ρυθμίσεις & Τρέχουσες Ρυθμίσεις (Cards 9 & 10) */}
-          <Box className="layera-grid--auto-fit-280 layera-margin-bottom--xl">
-            {/* #9: Εργοστασιακές Ρυθμίσεις (Factory Settings) */}
-            <FactorySettingsPanel
-                buttonState={buttonState}
-                onSettingsChange={(settings) => {
-                  // Εφαρμόζει τις νέες ρυθμίσεις στο color state
-                  // Φιλτράρει το outlineColor που δεν πρέπει να εμφανίζεται ως color picker
-                  Object.entries(settings).forEach(([key, value]) => {
-                    if (typeof key === 'string' && typeof value === 'string' && key !== 'outlineColor') {
-                      const validColorKeys = ['primaryColor', 'secondaryColor', 'successColor', 'warningColor', 'dangerColor', 'infoColor'];
-                      if (validColorKeys.includes(key)) {
-                        colorActions.updateCategoryPalette(colorHookState.colorCategory, key as keyof ColorPaletteWithAlpha, value);
-                      }
-                    }
-                  });
-                }}
-                onPreview={startPreview}
-                currentUserId={user?.uid}
-              />
-
-            {/* #10: Τρέχουσες Ρυθμίσεις (Color Value Display) */}
-            <SettingsDisplay
-              colorHookState={colorHookState}
-              currentColors={convertColorPaletteWithAlphaToLegacy(getElementColors(colorHookState.elementType, colorHookState.colorCategory))}
-              buttonState={buttonState}
-            />
-          </Box>
     </Box>
   );
 };
