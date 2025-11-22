@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box } from '@layera/layout';
 import { Button, SquareButton } from '@layera/buttons';
+import { Text } from '@layera/typography';
 import { PlusIcon, SearchIcon, CheckIcon, CloseIcon, SettingsIcon, CompassIcon } from '@layera/icons';
 import { ButtonState } from '../../hooks/useButtonState';
 import { useCSSVariables } from '../../hooks/useCSSVariables';
@@ -48,6 +49,8 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
   hoverEffect = 'normal',
   activeEffect = 'scale'
 }) => {
+  // State για το Variables Info Popup
+  const [showVariablesPopup, setShowVariablesPopup] = useState(false);
   // ✅ ARXES COMPLIANT: Χρήση κεντρικού hook για CSS Variables
   const { actions } = useCSSVariables();
 
@@ -229,7 +232,329 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
             {buttonState.shape === 'square' ? 'G' : 'Ghost'}
           </Button>
         </Box>
+
+        {/* Information Icon για Button Variables */}
+        <Box className="layera-text-center layera-margin-top--md">
+          <Button
+            variant="ghost"
+            size="sm"
+            icon={<SettingsIcon size="sm" />}
+            onClick={() => setShowVariablesPopup(true)}
+            className="layera-text--align-center layera-opacity--70 layera-hover--opacity-100"
+          >
+            ℹ️ Όλες οι Μεταβλητές Πλήκτρων
+          </Button>
+        </Box>
       </Box>
+
+      {/* Variables Info Popup */}
+      {showVariablesPopup && (
+        <Box className="layera-position--fixed layera-top--0 layera-left--0 layera-width--full layera-height--full layera-bg--overlay layera-z-index--modal layera-flex layera-flex--justify-center layera-flex--align-center">
+          <Box className="layera-bg--surface-primary layera-border-radius--lg layera-padding--xl layera-margin--md layera-width--modal-large layera-height--modal-large layera-overflow--auto layera-border--solid layera-border-width--2 layera-border-color--primary">
+            {/* Header */}
+            <Box className="layera-flex layera-flex--justify-between layera-flex--align-center layera-margin-bottom--lg">
+              <Text className="layera-typography" data-size="2xl" data-weight="bold" data-color="primary">
+                🎯 Όλες οι Μεταβλητές Πλήκτρων
+              </Text>
+              <Button
+                variant="ghost"
+                size="sm"
+                icon={<CloseIcon size="sm" />}
+                onClick={() => setShowVariablesPopup(false)}
+                className="layera-opacity--70 layera-hover--opacity-100"
+              >
+                ✕
+              </Button>
+            </Box>
+
+            {/* Variables Table */}
+            <Box className="layera-overflow--auto">
+              <table className="layera-table layera-width--full layera-border--solid layera-border-width--1 layera-border-color--primary layera-border-radius--md">
+                <thead className="layera-bg--surface-secondary">
+                  <tr>
+                    <th className="layera-padding--md layera-text--align-left layera-border-bottom--solid layera-border-width--1 layera-border-color--primary">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">🏷️ Κατηγορία</Text>
+                    </th>
+                    <th className="layera-padding--md layera-text--align-left layera-border-bottom--solid layera-border-width--1 layera-border-color--primary">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">🔧 CSS Variable</Text>
+                    </th>
+                    <th className="layera-padding--md layera-text--align-left layera-border-bottom--solid layera-border-width--1 layera-border-color--primary">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">🎯 Selector</Text>
+                    </th>
+                    <th className="layera-padding--md layera-text--align-left layera-border-bottom--solid layera-border-width--1 layera-border-color--primary">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">📋 HTML Attribute</Text>
+                    </th>
+                    <th className="layera-padding--md layera-text--align-left layera-border-bottom--solid layera-border-width--1 layera-border-color--primary">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">✨ Τρέχουσα Τιμή</Text>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* Background Colors */}
+                  <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--info">
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--info">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">🎨 Primary Φόντο</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--info">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">--layera-button-background-primary</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--info">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button[data-variant="primary"]</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--info">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-layera-button-background="primary"</Text>
+                    </td>
+                    <td className="layera-padding--md">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">Primary</Text>
+                    </td>
+                  </tr>
+
+                  <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--info">
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--info">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">🎨 Secondary Φόντο</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--info">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">--layera-button-background-secondary</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--info">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button[data-variant="secondary"]</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--info">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-layera-button-background="secondary"</Text>
+                    </td>
+                    <td className="layera-padding--md">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">Secondary</Text>
+                    </td>
+                  </tr>
+
+                  <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--success">
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--success">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">🎨 Success Φόντο</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--success">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">--layera-button-background-success</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--success">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button[data-variant="success"]</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--success">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-layera-button-background="success"</Text>
+                    </td>
+                    <td className="layera-padding--md">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">Success</Text>
+                    </td>
+                  </tr>
+
+                  <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--warning">
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">🎨 Warning Φόντο</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">--layera-button-background-warning</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button[data-variant="warning"]</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-layera-button-background="warning"</Text>
+                    </td>
+                    <td className="layera-padding--md">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">Warning</Text>
+                    </td>
+                  </tr>
+
+                  <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--danger">
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">🎨 Danger Φόντο</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">--layera-button-background-danger</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button[data-variant="danger"]</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-layera-button-background="danger"</Text>
+                    </td>
+                    <td className="layera-padding--md">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">Danger</Text>
+                    </td>
+                  </tr>
+
+                  <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--info">
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--info">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">🎨 Info Φόντο</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--info">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">--layera-button-background-info</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--info">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button[data-variant="info"]</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--info">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-layera-button-background="info"</Text>
+                    </td>
+                    <td className="layera-padding--md">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">Info</Text>
+                    </td>
+                  </tr>
+
+                  <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--secondary">
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--secondary">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">🎨 Outline Φόντο</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--secondary">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">--layera-button-background-outline</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--secondary">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button[data-variant="outline"]</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--secondary">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-layera-button-background="outline"</Text>
+                    </td>
+                    <td className="layera-padding--md">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">Outline</Text>
+                    </td>
+                  </tr>
+
+                  <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--secondary">
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--secondary">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">🎨 Ghost Φόντο</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--secondary">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">--layera-button-background-ghost</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--secondary">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button[data-variant="ghost"]</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--secondary">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-layera-button-background="ghost"</Text>
+                    </td>
+                    <td className="layera-padding--md">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">Ghost</Text>
+                    </td>
+                  </tr>
+
+                  <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--success">
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--success">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">📏 Μέγεθος</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--success">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">--layera-live-button-size</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--success">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button[data-size="{buttonState.size}"]</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--success">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-layera-button-size="{buttonState.size}"</Text>
+                    </td>
+                    <td className="layera-padding--md">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">{buttonState.size}</Text>
+                    </td>
+                  </tr>
+
+                  <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--warning">
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">🔷 Σχήμα</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">--layera-live-button-shape</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button[data-shape="{buttonState.shape}"]</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-layera-button-shape="{buttonState.shape}"</Text>
+                    </td>
+                    <td className="layera-padding--md">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">{buttonState.shape}</Text>
+                    </td>
+                  </tr>
+
+                  <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--danger">
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">📝 Κείμενο & Εικονίδια</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">--layera-live-button-content</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button[data-text="{buttonState.text}"]</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-layera-button-icon="{buttonState.withIcon ? 'enabled' : 'disabled'}"</Text>
+                    </td>
+                    <td className="layera-padding--md">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">"{buttonState.text}" | {buttonState.withIcon ? 'With Icon' : 'No Icon'}</Text>
+                    </td>
+                  </tr>
+
+                  <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--info">
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--info">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">🌊 Καμπυλότητα</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--info">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">--layera-live-buttons-primary</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--info">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button[data-radius="{buttonRadius}"]</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--info">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-layera-button-radius="{buttonRadius}"</Text>
+                    </td>
+                    <td className="layera-padding--md">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">{buttonRadius}</Text>
+                    </td>
+                  </tr>
+
+                  <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--success">
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--success">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">⚡ Hover Effects</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--success">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">--layera-live-button-primary</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--success">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button[data-variant="primary"]:hover</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--success">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-layera-button-hover="{hoverEffect}"</Text>
+                    </td>
+                    <td className="layera-padding--md">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">{hoverEffect}</Text>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">🎯 Active Effects</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">--layera-live-button-primary</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button[data-variant="primary"]:active</Text>
+                    </td>
+                    <td className="layera-padding--md layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
+                      <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-layera-button-active="{activeEffect}"</Text>
+                    </td>
+                    <td className="layera-padding--md">
+                      <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">{activeEffect}</Text>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </Box>
+
+            {/* Footer */}
+            <Box className="layera-margin-top--lg layera-text-center">
+              <Text className="layera-typography" data-size="sm" data-color="secondary">
+                💡 Αυτές είναι όλες οι CSS μεταβλητές που επηρεάζουν τα πλήκτρα
+              </Text>
+            </Box>
+          </Box>
+        </Box>
+      )}
 
     </Box>
   );
