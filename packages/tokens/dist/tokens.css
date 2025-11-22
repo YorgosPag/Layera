@@ -3,7 +3,7 @@
  *
  * ⚠️  DO NOT EDIT MANUALLY
  * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts, core/motion/motion.variables.ts και component/icons/icons.variables.ts and rebuild
- * Generated: 2025-11-22T18:40:37.182Z
+ * Generated: 2025-11-22T19:27:44.105Z
  */
 
 :root {
@@ -1304,6 +1304,7 @@
 .layera-width--32 { width: var(--layera-spacing-32); }
 .layera-width--20 { width: var(--layera-spacing-20); }
 .layera-width--24 { width: var(--layera-spacing-24); }
+.layera-header-width--full { /* layera-header-width--full: 100%; */ }
 .layera-height--10 { height: var(--layera-spacing-10); }
 .layera-height--6 { height: var(--layera-spacing-6); }
 .layera-height--8 { height: var(--layera-spacing-8); }

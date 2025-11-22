@@ -120,6 +120,9 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
   // Headers use predefined CSS classes with data attributes for theming
   // NO style.setProperty() - ZERO DOM manipulation
 
+  // Debug CSS κλάσης playground-fullscreen-width
+  console.warn('🚨 Checking if playground-fullscreen-width CSS exists...');
+
   return (
     <Box>
       <Box className="layera-text-center layera-padding--2xl layera-bg-surface--primary layera-border-radius--lg layera-margin-bottom--xl layera-border--dashed layera-border-width--2 layera-border-color--info">
@@ -130,71 +133,89 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
           {generateFullDescription()}
         </p>
 
-        <Box className="layera-flex layera-flex-column layera-flex--gap-md layera-padding-top--lg layera-padding-bottom--lg layera-width--full">
+        <Box className="layera-flex layera-flex-column layera-flex--gap-md layera-padding-top--lg layera-padding-bottom--lg">
           {headerConfigs.map(({ key, title, description, colorValue }) => {
-            // Debug logging
-            console.log('HeaderPlayground: headerRadius prop =', headerRadius);
-            console.log('HeaderPlayground: Final borderRadius =', getRadiusToken(headerRadius));
+            // Debug logging για width issue
+            console.log('🔍 HeaderPlayground Debug:', {
+              key,
+              headerRadius,
+              borderRadius: getRadiusToken(headerRadius),
+              className: "playground-fullscreen-width layera-height--6xl layera-flex layera-flex--align-center layera-flex--justify-space-between layera-padding--md layera-header--dynamic",
+              background: getBackgroundColor(colorValue),
+              text: getTextColor(colorValue),
+              border: getBorderStyle(colorValue)
+            });
+
+            console.log('🎯 CSS Classes applied to header:', "playground-fullscreen-width layera-height--6xl");
+
+            // Debug computed styles μετά από render
+            setTimeout(() => {
+              const headerEl = document.querySelector(`[data-header-key="${key}"]`);
+              if (headerEl) {
+                const computedStyle = window.getComputedStyle(headerEl);
+                console.log(`🎨 Computed styles for ${key} header:`, {
+                  width: computedStyle.width,
+                  maxWidth: computedStyle.maxWidth,
+                  display: computedStyle.display,
+                  position: computedStyle.position
+                });
+              }
+            }, 100);
 
 
             return (
               <Box
                 key={key}
-                className="layera-height--6xl layera-flex layera-flex--align-center layera-flex--justify-space-between layera-padding--md layera-header--dynamic"
+                data-header-key={key}
+                className="playground-fullscreen-width global-display-flex global-alignItems-center global-justifyContent-between layera-header--dynamic"
                 data-dynamic-bg={getBackgroundColor(colorValue)}
                 data-dynamic-text={getTextColor(colorValue)}
                 data-dynamic-border={getBorderStyle(colorValue)}
                 data-dynamic-radius={getRadiusToken(headerRadius)}
               >
                 {/* Left section - Logo + Title */}
-                <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm">
-                  <SquareButton
-                    icon={<PlusIcon size="sm" />}
-                    aria-label="Προσθήκη"
-                    size="md"
-                  />
-                  <Text
-                    className="layera-typography layera-text--align-center"
-                    data-size="sm"
-                    data-weight="bold"
-                  >
-                    {title}
-                  </Text>
-                </Box>
+                <SquareButton
+                  icon={<PlusIcon size="sm" />}
+                  aria-label="Προσθήκη"
+                  size="md"
+                />
+                <Text
+                  className="layera-typography layera-text--align-center"
+                  data-size="sm"
+                  data-weight="bold"
+                >
+                  {title}
+                </Text>
 
                 {/* Center section - Navigation icons */}
-                <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm">
-                  <SquareButton
-                    icon={<SearchIcon size="md" />}
-                    aria-label="Αναζήτηση"
-                    size="md"
-                  />
-                  <SquareButton
-                    icon={<LocationIcon size="md" />}
-                    aria-label="Τοποθεσία"
-                    size="md"
-                  />
-                  <SquareButton
-                    icon={<MenuIcon size="md" />}
-                    aria-label="Μενού"
-                    size="md"
-                  />
-                </Box>
+                <SquareButton
+                  icon={<SearchIcon size="md" />}
+                  aria-label="Αναζήτηση"
+                  size="md"
+                />
+                <SquareButton
+                  icon={<LocationIcon size="md" />}
+                  aria-label="Τοποθεσία"
+                  size="md"
+                />
+                <SquareButton
+                  icon={<MenuIcon size="md" />}
+                  aria-label="Μενού"
+                  size="md"
+                />
 
                 {/* Right section - User actions */}
-                <Box className="layera-flex layera-flex--align-center layera-flex--gap-sm">
-                  <Text
-                    className="layera-typography layera-opacity--80 layera-text--align-center"
-                    data-size="xs"
-                  >
-                    {description}
-                  </Text>
-                  <SquareButton
-                    icon={<UserIcon size="md" />}
-                    aria-label="Χρήστης"
-                    size="md"
-                  />
-                </Box>
+                <Text
+                  className="layera-typography layera-opacity--80 layera-text--align-center"
+                  data-size="xs"
+                >
+                  {description}
+                </Text>
+                <SquareButton
+                  icon={<UserIcon size="md" />}
+                  aria-label="Χρήστης"
+                  size="md"
+                />
               </Box>
             );
           })}
@@ -216,7 +237,7 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
 
       {/* Variables Info Section */}
       {showVariablesPopup && (
-        <Box className="layera-margin-top--xl layera-padding--lg layera-bg--surface-primary layera-border-radius--lg layera-border--solid layera-border-width--2 layera-border-color--primary layera-width--full">
+        <Box className="layera-margin-top--xl layera-padding--lg layera-bg--surface-primary layera-border-radius--lg layera-border--solid layera-border-width--2 layera-border-color--primary">
             {/* Header */}
             <Box className="layera-flex layera-flex--justify-between layera-flex--align-center layera-margin-bottom--lg">
               <Text className="layera-typography" data-size="2xl" data-weight="bold" data-color="primary">
