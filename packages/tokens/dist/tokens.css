@@ -3,7 +3,7 @@
  *
  * ⚠️  DO NOT EDIT MANUALLY
  * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts, core/motion/motion.variables.ts και component/icons/icons.variables.ts and rebuild
- * Generated: 2025-11-22T21:45:15.481Z
+ * Generated: 2025-11-22T22:12:41.429Z
  */
 
 :root {
@@ -1683,6 +1683,80 @@
 }
 
 
+
+/* 🃏 LAYERA CARD TEXT ALIGNMENT CLASSES */
+
+/* Card με uniform size (όπως τα modals) και text alignment */
+.layera-card.layera-card-uniform {
+  width: var(--layera-spacing-32) !important;
+  height: var(--layera-spacing-20) !important;
+  min-width: var(--layera-spacing-32) !important;
+  min-height: var(--layera-spacing-20) !important;
+  max-width: var(--layera-spacing-32) !important;
+  max-height: var(--layera-spacing-20) !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  flex-basis: var(--layera-spacing-32) !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+/* Vertical Text Alignment - Κάθετη στοίχιση κειμένου */
+.layera-card.layera-card-uniform.layera-card-text-vertical-top {
+  text-align: center !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+}
+
+.layera-card.layera-card-uniform.layera-card-text-vertical-middle {
+  text-align: center !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.layera-card.layera-card-uniform.layera-card-text-vertical-bottom {
+  text-align: center !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+}
+
+/* Horizontal Text Alignment - Οριζόντια στοίχιση κειμένου */
+.layera-card.layera-card-uniform.layera-card-text-horizontal-left {
+  text-align: left !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding-left: var(--layera-spacing-2) !important;
+}
+
+.layera-card.layera-card-uniform.layera-card-text-horizontal-center {
+  text-align: center !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.layera-card.layera-card-uniform.layera-card-text-horizontal-right {
+  text-align: right !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  padding-right: var(--layera-spacing-2) !important;
+}
+
+/* Card Text Center Class - Για compatibility με άλλα components */
+.layera-card-text-center {
+  text-align: center !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+
 /* 🎯 CARD CLASSES - Ορατές βαμμένες κάρτες */
 .layera-card {
   background: var(--layera-card-background-default);
@@ -1828,14 +1902,14 @@
   padding-right: var(--layera-spacing-scale-2) !important;
 }
 
-/* 🎯 ENTERPRISE MODAL UNIFORM SIZE CLASSES - INCREASED DIMENSIONS */
+/* 🎯 ENTERPRISE MODAL UNIFORM SIZE CLASSES - UNIFIED WITH CARDS */
 .layera-modal-uniform {
-  width: var(--layera-spacing-scale-80) !important;
-  height: var(--layera-spacing-scale-12) !important;
-  min-width: var(--layera-spacing-scale-80) !important;
-  min-height: var(--layera-spacing-scale-12) !important;
-  max-width: var(--layera-spacing-scale-80) !important;
-  max-height: var(--layera-spacing-scale-12) !important;
+  width: var(--layera-spacing-32) !important;
+  height: var(--layera-spacing-20) !important;
+  min-width: var(--layera-spacing-32) !important;
+  min-height: var(--layera-spacing-20) !important;
+  max-width: var(--layera-spacing-32) !important;
+  max-height: var(--layera-spacing-20) !important;
   box-sizing: border-box !important;
   flex-shrink: 0 !important;
 }
@@ -1854,16 +1928,16 @@
 
 /* 🎯 ENHANCED SPECIFICITY FOR MODAL CARDS - USING TOKEN SYSTEM */
 .layera-card.layera-modal-uniform {
-  width: var(--layera-spacing-scale-80) !important;
-  height: var(--layera-spacing-scale-12) !important;
-  min-width: var(--layera-spacing-scale-80) !important;
-  min-height: var(--layera-spacing-scale-12) !important;
-  max-width: var(--layera-spacing-scale-80) !important;
-  max-height: var(--layera-spacing-scale-12) !important;
+  width: var(--layera-spacing-32) !important;
+  height: var(--layera-spacing-20) !important;
+  min-width: var(--layera-spacing-32) !important;
+  min-height: var(--layera-spacing-20) !important;
+  max-width: var(--layera-spacing-32) !important;
+  max-height: var(--layera-spacing-20) !important;
   box-sizing: border-box !important;
   flex-shrink: 0 !important;
   flex-grow: 0 !important;
-  flex-basis: var(--layera-spacing-scale-80) !important;
+  flex-basis: var(--layera-spacing-32) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;

@@ -111,7 +111,7 @@ export const CardsPlayground: React.FC<ExtendedCardsPlaygroundProps> = ({
           {cardConfigs.map(({ key, title, variant }) => (
             <Box
               key={key}
-              className="layera-width--32 layera-height--20 layera-card layera-card-text-center"
+              className="layera-card-uniform layera-card layera-card-text-vertical-middle"
               data-variant={variant}
               data-dynamic-color={cardConfigs.find(config => config.key === key)?.colorValue}
             >

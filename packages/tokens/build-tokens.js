@@ -50,6 +50,7 @@ const buttonsComponentFile = path.join(srcDir, 'component', 'buttons', 'buttons.
 const modalComponentFile = path.join(srcDir, 'component', 'modal', 'modal.variables.ts');
 const cardsComponentFile = path.join(srcDir, 'component', 'cards', 'cards.variables.ts');
 const modalClassFile = path.join(srcDir, 'component', 'modal', 'modal.class.ts');
+const cardsClassFile = path.join(srcDir, 'component', 'cards', 'cards.class.ts');
 const layoutComponentFile = path.join(srcDir, 'component', 'layout', 'layout.variables.ts');
 const inputsComponentFile = path.join(srcDir, 'component', 'inputs', 'inputs.variables.ts');
 const navigationComponentFile = path.join(srcDir, 'component', 'navigation', 'navigation.variables.ts');
@@ -108,6 +109,8 @@ const cardsComponentContent = fs.existsSync(cardsComponentFile) ? fs.readFileSyn
 
 console.log('🎨 Διαβάζω modal CSS classes από:', modalClassFile);
 const modalClassContent = fs.existsSync(modalClassFile) ? fs.readFileSync(modalClassFile, 'utf8') : null;
+console.log('🎯 Διαβάζω cards CSS classes από:', cardsClassFile);
+const cardsClassContent = fs.existsSync(cardsClassFile) ? fs.readFileSync(cardsClassFile, 'utf8') : null;
 
 console.log('🔧 Διαβάζω utilities tokens από:', utilitiesFile);
 const utilitiesContent = fs.existsSync(utilitiesFile) ? fs.readFileSync(utilitiesFile, 'utf8') : null;
@@ -2511,6 +2514,24 @@ function extractTooltipCSS(content) {
   return '';
 }
 
+// Εξάγει CSS από LAYERA_CARD_TEXT_ALIGNMENT_CSS constant
+function extractCardTextAlignmentCSS(content) {
+  if (!content) {
+    console.log('🚨 Card class content is null or empty');
+    return '';
+  }
+
+  console.log('🔍 Searching for LAYERA_CARD_TEXT_ALIGNMENT_CSS in content...');
+  const cssMatch = content.match(/export const LAYERA_CARD_TEXT_ALIGNMENT_CSS = `([\s\S]*?)`;/);
+  if (cssMatch) {
+    console.log('✅ Found LAYERA_CARD_TEXT_ALIGNMENT_CSS');
+    return cssMatch[1];
+  } else {
+    console.log('❌ LAYERA_CARD_TEXT_ALIGNMENT_CSS not found');
+  }
+  return '';
+}
+
 // Εξάγει τις CSS variables
 const cssVariables = extractHexValues(colorsContent);
 const spacingVariables = extractSpacingValues(spacingContent);
@@ -2550,6 +2571,9 @@ const modalCSS = extractModalCSS(modalClassContent);
 // Εξάγει το tooltip CSS
 const tooltipCSS = extractTooltipCSS(tooltipsClassContent);
 
+// Εξάγει το card text alignment CSS
+const cardTextAlignmentCSS = extractCardTextAlignmentCSS(cardsClassContent);
+
 console.log(`✅ Εξήχθησαν ${cssVariables.length} color variables`);
 console.log(`✅ Εξήχθησαν ${spacingVariables.length} spacing variables`);
 console.log(`✅ Εξήχθησαν ${typographyVariables.length} typography variables`);
@@ -2577,6 +2601,7 @@ console.log(`✅ Εξήχθησαν ${disclosureComponentVariables.length} discl
 console.log(`✅ Εξήχθησαν ${dataImportComponentVariables.length} data-import component variables`);
 console.log(`✅ Εξήχθη modal CSS: ${modalCSS ? 'YES' : 'NO'}`);
 console.log(`✅ Εξήχθη tooltip CSS: ${tooltipCSS ? 'YES' : 'NO'}`);
+console.log(`✅ Εξήχθη card text alignment CSS: ${cardTextAlignmentCSS ? 'YES' : 'NO'}`);
 
 // Συνδυάζει όλα τα CSS variables
 const allVariables = [...cssVariables, ...spacingVariables, ...typographyVariables, ...bordersVariables, ...shadowsVariables, ...motionVariables, ...iconsVariables, ...backgroundSemanticVariables, ...textSemanticVariables, ...borderSemanticVariables, ...feedbackSemanticVariables, ...coreTextAlignVariables, ...buttonsComponentVariables, ...modalComponentVariables, ...cardsComponentVariables, ...inputsComponentVariables, ...navigationComponentVariables, ...tooltipsComponentVariables, ...badgesComponentVariables, ...loadingComponentVariables, ...disclosureComponentVariables, ...dataImportComponentVariables];
@@ -2676,6 +2701,8 @@ ${navigationComponentClasses.join('\n')}
 ${modalCSS}
 
 ${tooltipCSS}
+
+${cardTextAlignmentCSS}
 
 /* 🎯 CARD CLASSES - Ορατές βαμμένες κάρτες */
 .layera-card {
@@ -2822,14 +2849,14 @@ ${tooltipCSS}
   padding-right: var(--layera-spacing-scale-2) !important;
 }
 
-/* 🎯 ENTERPRISE MODAL UNIFORM SIZE CLASSES - INCREASED DIMENSIONS */
+/* 🎯 ENTERPRISE MODAL UNIFORM SIZE CLASSES - UNIFIED WITH CARDS */
 .layera-modal-uniform {
-  width: var(--layera-spacing-scale-80) !important;
-  height: var(--layera-spacing-scale-12) !important;
-  min-width: var(--layera-spacing-scale-80) !important;
-  min-height: var(--layera-spacing-scale-12) !important;
-  max-width: var(--layera-spacing-scale-80) !important;
-  max-height: var(--layera-spacing-scale-12) !important;
+  width: var(--layera-spacing-32) !important;
+  height: var(--layera-spacing-20) !important;
+  min-width: var(--layera-spacing-32) !important;
+  min-height: var(--layera-spacing-20) !important;
+  max-width: var(--layera-spacing-32) !important;
+  max-height: var(--layera-spacing-20) !important;
   box-sizing: border-box !important;
   flex-shrink: 0 !important;
 }
@@ -2848,16 +2875,16 @@ ${tooltipCSS}
 
 /* 🎯 ENHANCED SPECIFICITY FOR MODAL CARDS - USING TOKEN SYSTEM */
 .layera-card.layera-modal-uniform {
-  width: var(--layera-spacing-scale-80) !important;
-  height: var(--layera-spacing-scale-12) !important;
-  min-width: var(--layera-spacing-scale-80) !important;
-  min-height: var(--layera-spacing-scale-12) !important;
-  max-width: var(--layera-spacing-scale-80) !important;
-  max-height: var(--layera-spacing-scale-12) !important;
+  width: var(--layera-spacing-32) !important;
+  height: var(--layera-spacing-20) !important;
+  min-width: var(--layera-spacing-32) !important;
+  min-height: var(--layera-spacing-20) !important;
+  max-width: var(--layera-spacing-32) !important;
+  max-height: var(--layera-spacing-20) !important;
   box-sizing: border-box !important;
   flex-shrink: 0 !important;
   flex-grow: 0 !important;
-  flex-basis: var(--layera-spacing-scale-80) !important;
+  flex-basis: var(--layera-spacing-32) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;

@@ -85,7 +85,7 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
           {layoutConfigs.map(({ key, title }) => (
             <Box
               key={key}
-              className={`layera-layout-uniform layera-card`}
+              className="layera-card-uniform layera-card layera-card-text-vertical-middle"
               data-variant={key === 'danger' ? 'error' : key}
             >
               <Text

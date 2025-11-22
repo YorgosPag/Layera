@@ -85,18 +85,18 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
     return parts.join(' ');
   };
 
-  // Helper function για text alignment CSS classes
+  // Helper function για text alignment CSS classes - Χρησιμοποιεί κοινές card κλάσεις
   const getModalTextAlignClass = (textAlign: ModalTextAlignValue) => {
-    // Κάθετες τιμές χρησιμοποιούν κάθετες CSS classes
+    // Κάθετες τιμές χρησιμοποιούν κάθετες CSS classes (από κάρτες)
     if (['top', 'middle', 'bottom'].includes(textAlign)) {
-      return `layera-modal-text-vertical-${textAlign}`;
+      return `layera-card-text-vertical-${textAlign}`;
     }
-    // Οριζόντιες τιμές χρησιμοποιούν νέες οριζόντιες CSS classes
+    // Οριζόντιες τιμές χρησιμοποιούν οριζόντιες CSS classes (από κάρτες)
     if (['left', 'right'].includes(textAlign)) {
-      return `layera-modal-text-horizontal-${textAlign}`;
+      return `layera-card-text-horizontal-${textAlign}`;
     }
-    // Default fallback
-    return 'layera-modal-text-vertical-middle';
+    // Default fallback (από κάρτες)
+    return 'layera-card-text-vertical-middle';
   };
 
   // Helper functions same as CardsPlayground
@@ -142,7 +142,7 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
     key,
     title,
     dataVariant: key === 'danger' ? 'error' : key,
-    className: `layera-modal-uniform layera-card ${getModalTextAlignClass(modalTextAlign)}`
+    className: `layera-card-uniform layera-card ${getModalTextAlignClass(modalTextAlign)}`
   })));
 
   // ✅ NO INLINE STYLES - Using useCSSVariables hook
@@ -168,7 +168,7 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
           {modalConfigs.map(({ key, title }) => (
             <Box
               key={key}
-              className={`layera-modal-uniform layera-card ${getModalTextAlignClass(modalTextAlign)}`}
+              className={`layera-card-uniform layera-card ${getModalTextAlignClass(modalTextAlign)}`}
               data-variant={key === 'danger' ? 'error' : key}
             >
               <Text
