@@ -44,7 +44,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   variant,
   colorVariant,
   showVariantInfo = false,
-  elementType
+  elementType: _elementType
 }) => {
   // Flag για να ξέρουμε αν ο χρήστης αλλάζει το slider
   const [isUserInteracting, setIsUserInteracting] = useState(false);
