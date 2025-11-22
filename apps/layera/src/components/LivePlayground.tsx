@@ -8,14 +8,8 @@ import { PlaygroundRenderer } from './playground/PlaygroundRenderer';
 import { PlaygroundControls } from './playground/PlaygroundControls';
 import type { ColorWithAlpha } from './playground/shared/ColorPickerWithAlpha';
 import type { ModalTextAlignValue } from './playground/shared/ModalTextAlignControl';
-import { useAuth } from '@layera/auth-bridge';
-import { useRealTimePreview } from '../hooks/useRealTimePreview';
-import { useButtonState } from '../hooks/useButtonState';
-import { useColorState, ColorPaletteWithAlpha, ColorCategory } from '../hooks/useColorState';
-import { useCSSVariables } from '../hooks/useCSSVariables';
-import { useStorage } from '../hooks/useStorage';
-import { usePlaygroundState } from '../hooks/usePlaygroundState';
-import { usePlaygroundActions } from '../hooks/usePlaygroundActions';
+import { usePlaygroundHooks } from '../hooks/usePlaygroundHooks';
+import { ColorPaletteWithAlpha, ColorCategory } from '../hooks/useColorState';
 // useColorHelpers functionality merged into other hooks
 
 /**
@@ -37,28 +31,26 @@ import { LivePlaygroundProps } from '../types/unified-interfaces';
 
 export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
-  // Authentication
-  const { user } = useAuth();
-
   // ==============================
-  // HOOK INTEGRATIONS
+  // CENTRALIZED HOOKS MANAGEMENT
   // ==============================
 
-  // Button State Management
-  const { state: buttonState, actions: buttonActions, sizes: buttonSizes } = useButtonState();
-
-  // Color State Management
-  const { state: colorHookState, actions: colorActions, getCategoryPalette, getElementColors } = useColorState();
-
-  // CSS Variables Management
-  const { actions: cssActions } = useCSSVariables();
-
-  // Storage Management
-  const { actions: storageActions } = useStorage({ colorState: colorHookState, colorActions });
-
-  // Playground State Management
   const {
-    actions: playgroundActions,
+    // Authentication
+    user,
+
+    // Button Management
+    buttonState,
+    buttonActions,
+    buttonSizes,
+
+    // Color Management
+    colorHookState,
+    colorActions,
+    getElementColors,
+
+    // Playground State
+    playgroundActions,
     borderWidth,
     fontSize,
     alphaEnabled,
@@ -76,44 +68,17 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
     modalSize,
     inputSize,
     tableSize,
-    modalTextAlign
-  } = usePlaygroundState();
+    modalTextAlign,
 
-  // Playground Actions Management
-  const {
-    getColorsForCategory,
+    // Actions
     convertColorPaletteWithAlphaToLegacy,
     applyColorsToApp,
     applySquareColorsToHeader,
-    handleElementPreview
-  } = usePlaygroundActions({
-    colorHookState,
-    colorActions,
-    cssActions,
-    storageActions,
-    getCategoryPalette,
-    getElementColors,
-    user
-  });
+    handleElementPreview,
 
-
-  // Real-time preview hook for header buttons
-  const { startPreview } = useRealTimePreview({
-    onCommit: (key: string, value: string) => {
-      // ✅ ΑΠΟΦΥΓΗ OVERRIDE: ΔΕΝ κάνουμε commit όταν είμαστε σε alpha preview mode
-      // Διατηρούμε τις RGBA τιμές στα CSS variables χωρίς επαναφορά
-      if (colorHookState?.elementType === 'buttons' && colorHookState?.colorCategory === 'backgrounds') {
-        return; // ΔΕΝ καλούμε updateSquarePalette που επαναφέρει defaults
-      }
-
-      // Update the actual color state when preview is committed
-      // ΜΟΝΟ για buttons category επηρεάζει τα header buttons (legacy behavior)
-      if (key === 'buttonsSecondaryColor') {
-        colorActions.updateSquarePalette('secondaryColor', value);
-      }
-    },
-    debounceMs: 100
-  });
+    // Real-time Preview
+    startPreview
+  } = usePlaygroundHooks();
 
   return (
     <Box
