@@ -167,25 +167,31 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
               <Box
                 key={key}
                 data-header-key={key}
-                className="global-display-flex global-alignItems-center global-justifyContent-between"
+                className="layera-card global-display-flex global-alignItems-center global-justifyContent-between"
                 style={{
+                  boxSizing: "border-box", // Περιλαμβάνει border στο width
+                  marginLeft: "var(--layera-spacing-2)", // Αριστερά με tokens
+                  marginRight: "var(--layera-spacing-2)", // Δεξιά με tokens
+                  marginTop: "var(--layera-spacing-0)", // Μηδέν πάνω με tokens
+                  marginBottom: "var(--layera-spacing-0)", // Μηδέν κάτω με tokens
                   ...(key === 'primary' ? {
                     display: "grid",
                     gridTemplateColumns: "var(--layera-grid-template-columns--header)",
                     gap: "var(--layera-gap--2)",
                     alignItems: "center",
-                    border: "var(--layera-spacing-scale-2) solid var(--layera-color-primary-main)",
-                    marginBottom: "var(--layera-spacing-2)"
+                    marginBottom: "0"
                   } : key === 'secondary' ? {
                     display: "grid",
                     gridTemplateColumns: "var(--layera-grid-template-columns--header)",
                     gap: "var(--layera-gap--2)",
                     alignItems: "center",
-                    border: "var(--layera-spacing-scale-2) solid var(--layera-color-success-main)",
-                    marginBottom: "var(--layera-spacing-2)"
+                    marginBottom: "0"
                   } : {
-                    border: "var(--layera-spacing-scale-2) solid var(--layera-color-border-primary)",
-                    marginBottom: "var(--layera-spacing-2)"
+                    display: "grid",
+                    gridTemplateColumns: "var(--layera-grid-template-columns--header)",
+                    gap: "var(--layera-gap--2)",
+                    alignItems: "center",
+                    marginBottom: "0"
                   })
                 }}
                 data-dynamic-bg={getBackgroundColor(colorValue)}
@@ -300,10 +306,10 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
                     </Box>
                   </>
                 ) : (
-                  // FLEX ΠΑΡΑΔΕΙΓΜΑ - Υπόλοιπα headers με σταθερές στήλες
+                  // CSS GRID ΠΑΡΑΔΕΙΓΜΑ - Υπόλοιπα headers με ίδιο layout με Primary/Secondary
                   <>
-                    {/* Left section - Fixed width */}
-                    <Box style={{width: "var(--layera-header-center-column)", display: "flex", alignItems: "center", gap: "var(--layera-gap--2)"}}>
+                    {/* Αριστερή στήλη */}
+                    <Box style={{display: "flex", alignItems: "center", gap: "var(--layera-gap--2)", justifyContent: "flex-start"}}>
                       <SquareButton
                         icon={<PlusIcon size="sm" />}
                         aria-label="Προσθήκη"
@@ -318,8 +324,8 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
                       </Text>
                     </Box>
 
-                    {/* Center section - Fixed width */}
-                    <Box style={{width: "var(--layera-header-center-column)", display: "flex", alignItems: "center", justifyContent: "center", gap: "var(--layera-gap--2)"}}>
+                    {/* Κεντρική στήλη - 3 εικονίδια */}
+                    <Box style={{display: "flex", alignItems: "center", gap: "var(--layera-gap--2)", justifyContent: "center"}}>
                       <SquareButton
                         icon={<SearchIcon size="md" />}
                         aria-label="Αναζήτηση"
@@ -337,8 +343,8 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
                       />
                     </Box>
 
-                    {/* Right section - Fixed width */}
-                    <Box style={{width: "var(--layera-header-center-column)", display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "var(--layera-gap--2)"}}>
+                    {/* Δεξιά στήλη */}
+                    <Box style={{display: "flex", alignItems: "center", gap: "var(--layera-gap--2)", justifyContent: "flex-end"}}>
                       <Text
                         className="layera-typography layera-opacity--80"
                         data-size="xs"
