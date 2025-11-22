@@ -13,6 +13,8 @@ import { useCSSVariables } from '../../hooks/useCSSVariables';
 import { useColorState } from '../../hooks/useColorState';
 import { PLAYGROUND_HELPERS } from '../../constants/ui-utilities';
 import { ButtonPlaygroundProps, PlaygroundColors } from '../../types/unified-interfaces';
+import type { FontSizeValue, CardSizeValue, ModalSizeValue, InputSizeValue, TableSizeValue } from '../../types/sizes';
+import type { ModalTextAlignValue } from './shared/ModalTextAlignControl';
 import { VariablesInfoAccordion } from './shared/VariablesInfoAccordion';
 import { createButtonVariablesData } from './shared/ButtonVariablesData';
 import { ColorControlsGridWithAlpha } from './ColorControlsGridWithAlpha';
@@ -47,6 +49,22 @@ interface ExtendedButtonPlaygroundProps extends Omit<ButtonPlaygroundProps, 'cur
   hoverEffect?: string;
   /** Active effect for interactive elements */
   activeEffect?: string;
+  /** All radius settings */
+  layoutRadius?: string;
+  cardRadius?: string;
+  modalRadius?: string;
+  inputRadius?: string;
+  tableRadius?: string;
+  headerRadius?: string;
+  /** Size settings */
+  fontSize?: FontSizeValue;
+  cardSize?: CardSizeValue;
+  modalSize?: ModalSizeValue;
+  inputSize?: InputSizeValue;
+  tableSize?: TableSizeValue;
+  modalTextAlign?: ModalTextAlignValue;
+  /** Alpha enabled */
+  alphaEnabled?: boolean;
 }
 
 export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
@@ -56,7 +74,20 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
   borderWidth = 2,
   buttonRadius = 'md',
   hoverEffect = 'normal',
-  activeEffect = 'scale'
+  activeEffect = 'scale',
+  layoutRadius = 'md',
+  cardRadius = 'md',
+  modalRadius = 'md',
+  inputRadius = 'md',
+  tableRadius = 'md',
+  headerRadius = 'lg',
+  fontSize = 'base' as FontSizeValue,
+  cardSize = 'md' as CardSizeValue,
+  modalSize = 'md' as ModalSizeValue,
+  inputSize = 'md' as InputSizeValue,
+  tableSize = 'md' as TableSizeValue,
+  modalTextAlign = 'center' as ModalTextAlignValue,
+  alphaEnabled = true
 }) => {
   // State για το Variables Info Popup
   const [showVariablesPopup, setShowVariablesPopup] = useState(false);
@@ -108,13 +139,60 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
     hoverEffect,
     buttonRadius,
     borderWidth,
-    colorCategory
+    colorCategory,
+    // Button state values
+    buttonShape: buttonState.shape,
+    buttonSize: buttonState.size,
+    buttonText: buttonState.text,
+    buttonWithIcon: buttonState.withIcon,
+    buttonVariant: buttonState.variant,
+    // Colors
+    currentColors: currentColors || {},
+    // All other playground settings
+    layoutRadius,
+    cardRadius,
+    modalRadius,
+    inputRadius,
+    tableRadius,
+    headerRadius,
+    fontSize,
+    cardSize,
+    modalSize,
+    inputSize,
+    tableSize,
+    modalTextAlign,
+    alphaEnabled
   });
 
   // Παρακολούθηση ΜΟΝΟ πραγματικών αλλαγών
   useEffect(() => {
     const prev = prevValues.current;
-    const current = { activeEffect, hoverEffect, buttonRadius, borderWidth, colorCategory };
+    const current = {
+      activeEffect,
+      hoverEffect,
+      buttonRadius,
+      borderWidth,
+      colorCategory,
+      buttonShape: buttonState.shape,
+      buttonSize: buttonState.size,
+      buttonText: buttonState.text,
+      buttonWithIcon: buttonState.withIcon,
+      buttonVariant: buttonState.variant,
+      currentColors: currentColors || {},
+      layoutRadius,
+      cardRadius,
+      modalRadius,
+      inputRadius,
+      tableRadius,
+      headerRadius,
+      fontSize,
+      cardSize,
+      modalSize,
+      inputSize,
+      tableSize,
+      modalTextAlign,
+      alphaEnabled
+    };
 
     console.log('🔍 Checking for changes:', { prev, current });
 
@@ -147,10 +225,63 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
       highlightVariable(category, cssVariable);
     }
 
+    // Button Shape changes
+    if (prev.buttonShape !== current.buttonShape) {
+      console.log('📐 REAL CHANGE: Button Shape changed from', prev.buttonShape, 'to', current.buttonShape);
+      const cssVariable = `var(--layera-button-shape-${current.buttonShape})`;
+      const category = '📐 Shape';
+      highlightVariable(category, cssVariable);
+    }
+
+    // Button Size changes
+    if (prev.buttonSize !== current.buttonSize) {
+      console.log('📏 REAL CHANGE: Button Size changed from', prev.buttonSize, 'to', current.buttonSize);
+      const cssVariable = `var(--layera-button-size-${current.buttonSize})`;
+      const category = '📏 Size';
+      highlightVariable(category, cssVariable);
+    }
+
+    // Button Text changes
+    if (prev.buttonText !== current.buttonText) {
+      console.log('📝 REAL CHANGE: Button Text changed from', prev.buttonText, 'to', current.buttonText);
+      const cssVariable = 'Dynamic Content';
+      const category = '📝 Text Content';
+      highlightVariable(category, cssVariable);
+    }
+
+    // Button Icon toggle changes
+    if (prev.buttonWithIcon !== current.buttonWithIcon) {
+      console.log('🎨 REAL CHANGE: Button Icon changed from', prev.buttonWithIcon, 'to', current.buttonWithIcon);
+      const cssVariable = `var(--layera-button-iconSize-${current.buttonSize})`;
+      const category = '📐 Icon Size';
+      highlightVariable(category, cssVariable);
+    }
+
+    // Button Variant changes
+    if (prev.buttonVariant !== current.buttonVariant) {
+      console.log('🎨 REAL CHANGE: Button Variant changed from', prev.buttonVariant, 'to', current.buttonVariant);
+      const cssVariable = `var(--layera-button-variant-${current.buttonVariant})`;
+      const category = `🎨 ${current.buttonVariant.charAt(0).toUpperCase() + current.buttonVariant.slice(1)} Φόντο`;
+      highlightVariable(category, cssVariable);
+    }
+
     // Ενημερώνω τις προηγούμενες τιμές
     prevValues.current = current;
 
-    // Παρακολούθηση αλλαγών στα χρώματα (υπάρχον κώδικας)
+    // Enhanced color tracking με direct monitoring
+    const currentColorsString = JSON.stringify(currentColors);
+
+    // Παρακολούθηση αλλαγών στα currentColors prop
+    if (currentColors && Object.keys(currentColors).length > 0) {
+      Object.entries(currentColors).forEach(([colorKey, colorValue]) => {
+        if (colorValue && prev.currentColors?.[colorKey as keyof typeof currentColors] !== colorValue) {
+          console.log('🎨 REAL COLOR CHANGE:', colorKey, 'from', prev.currentColors?.[colorKey as keyof typeof currentColors], 'to', colorValue);
+          handleColorChangeWithHighlight(colorKey, colorValue);
+        }
+      });
+    }
+
+    // Backup: Event listener για colorsUpdate
     const handleColorsUpdate = (event: CustomEvent) => {
       console.log('🔥 colorsUpdate event received:', event.detail);
       const { detail } = event;
@@ -161,7 +292,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
       if (category === colorCategory) {
         console.log('✅ Category match! Processing colors:', colors);
         Object.entries(colors).forEach(([colorKey, colorValue]) => {
-          console.log('🎨 Processing color:', colorKey, colorValue);
+          console.log('🎨 Processing color from event:', colorKey, colorValue);
           if (colorValue && typeof colorValue === 'object' && 'hex' in colorValue) {
             const simplifiedKey = colorKey.replace('Color', '').toLowerCase();
             console.log('🔄 Simplified key:', simplifiedKey);
@@ -176,7 +307,32 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
     return () => {
       window.removeEventListener('colorsUpdate', handleColorsUpdate as EventListener);
     };
-  }, [colorCategory, activeEffect, hoverEffect, buttonRadius, borderWidth]);
+  }, [
+    colorCategory,
+    activeEffect,
+    hoverEffect,
+    buttonRadius,
+    borderWidth,
+    buttonState.shape,
+    buttonState.size,
+    buttonState.text,
+    buttonState.withIcon,
+    buttonState.variant,
+    currentColors,
+    layoutRadius,
+    cardRadius,
+    modalRadius,
+    inputRadius,
+    tableRadius,
+    headerRadius,
+    fontSize,
+    cardSize,
+    modalSize,
+    inputSize,
+    tableSize,
+    modalTextAlign,
+    alphaEnabled
+  ]);
 
   // <CheckIcon size="sm" /> Color State Hook για έλεγχο alpha preview mode
   const { state: colorHookState } = useColorState();

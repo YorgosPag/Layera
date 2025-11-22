@@ -52,9 +52,9 @@ export const VariablesInfoAccordion: React.FC<VariablesInfoAccordionProps> = ({
     const isMatch = variable.cssVariable === highlightedVariable.cssVariable ||
                     variable.category === highlightedVariable.category;
 
-    // Φωτισμός για 3 δευτερόλεπτα μετά την αλλαγή
+    // Φωτισμός για 1 λεπτό μετά την αλλαγή
     const timeSinceHighlight = Date.now() - highlightedVariable.timestamp;
-    return isMatch && timeSinceHighlight < 3000;
+    return isMatch && timeSinceHighlight < 60000;
   };
 
   // Toggle individual category
@@ -124,23 +124,27 @@ export const VariablesInfoAccordion: React.FC<VariablesInfoAccordionProps> = ({
 
         /* Highlight styling για τις γραμμές που αλλάζουν */
         .layera-row-highlighted {
-          background-color: rgba(255, 215, 0, 0.3) !important;
-          animation: highlightPulse 3s ease-out;
+          background-color: rgba(255, 215, 0, 0.25) !important;
+          animation: highlightPulse 60s ease-out;
           border-left: 4px solid #FFD700 !important;
+          box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
         }
 
         @keyframes highlightPulse {
           0% {
-            background-color: rgba(255, 215, 0, 0.6);
+            background-color: rgba(255, 215, 0, 0.5);
             border-left-color: #FFD700;
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
           }
-          50% {
-            background-color: rgba(255, 215, 0, 0.4);
+          10% {
+            background-color: rgba(255, 215, 0, 0.35);
             border-left-color: #FFA500;
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
           }
           100% {
-            background-color: rgba(255, 215, 0, 0.1);
-            border-left-color: transparent;
+            background-color: rgba(255, 215, 0, 0.15);
+            border-left-color: #DAA520;
+            box-shadow: 0 0 4px rgba(255, 215, 0, 0.2);
           }
         }
       `}</style>
