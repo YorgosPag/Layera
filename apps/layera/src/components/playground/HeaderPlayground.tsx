@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
-import { CheckIcon, PlusIcon, LocationIcon, MenuIcon, UserIcon, SettingsIcon, SearchIcon } from '@layera/icons';
-import { SquareButton } from '@layera/buttons';
+import { Button, SquareButton } from '@layera/buttons';
+import { CheckIcon, PlusIcon, LocationIcon, MenuIcon, UserIcon, SettingsIcon, SearchIcon, BellIcon, CloseIcon } from '@layera/icons';
 import { PLAYGROUND_HELPERS } from '../../constants/ui-utilities';
+import { VariablesInfoAccordion } from './shared/VariablesInfoAccordion';
+import { createHeaderVariablesData } from './shared/HeaderVariablesData';
 
 /**
  * HeaderPlayground Component
@@ -45,6 +47,8 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
   hoverEffect = 'normal',
   activeEffect = 'scale'
 }) => {
+  // State για το Variables Info Popup
+  const [showVariablesPopup, setShowVariablesPopup] = useState(false);
 
   // Χρησιμοποιούμε τις κεντρικές helper functions από το PLAYGROUND_HELPERS utility
   const { getRadiusInGreek, getRadiusToken, getHoverEffectInGreek, getActiveEffectInGreek, getSizeInGreek, getCategoryInGreek } = PLAYGROUND_HELPERS;
@@ -195,7 +199,56 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
             );
           })}
         </Box>
+
+        {/* Information Icon για Header Variables */}
+        <Box className="layera-text-center layera-margin-top--md">
+          <Button
+            variant="ghost"
+            size="sm"
+            icon={<SettingsIcon size="sm" />}
+            onClick={() => setShowVariablesPopup(true)}
+            className="layera-text--align-center layera-opacity--70 layera-hover--opacity-100"
+          >
+            <BellIcon size="sm" /> Όλες οι Μεταβλητές Headers
+          </Button>
+        </Box>
       </Box>
+
+      {/* Variables Info Section */}
+      {showVariablesPopup && (
+        <Box className="layera-margin-top--xl layera-padding--lg layera-bg--surface-primary layera-border-radius--lg layera-border--solid layera-border-width--2 layera-border-color--primary layera-width--full">
+            {/* Header */}
+            <Box className="layera-flex layera-flex--justify-between layera-flex--align-center layera-margin-bottom--lg">
+              <Text className="layera-typography" data-size="2xl" data-weight="bold" data-color="primary">
+                <LocationIcon size="sm" /> Όλες οι Μεταβλητές Headers
+              </Text>
+              <Button
+                variant="ghost"
+                size="sm"
+                icon={<CloseIcon size="sm" />}
+                onClick={() => setShowVariablesPopup(false)}
+                className="layera-opacity--70 layera-hover--opacity-100"
+              >
+                ✕
+              </Button>
+            </Box>
+
+            {/* Accordion Structure για Variables */}
+            <Box className="layera-space-y--md layera-margin-bottom--lg">
+              <VariablesInfoAccordion
+                categories={createHeaderVariablesData(
+                  colorCategory,
+                  borderWidth,
+                  headerRadius,
+                  headerSize,
+                  hoverEffect,
+                  activeEffect
+                )}
+                defaultExpandedCategory="backgroundColors"
+              />
+            </Box>
+        </Box>
+      )}
     </Box>
   );
 };

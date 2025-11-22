@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
-import { CheckIcon, CloseIcon } from '@layera/icons';
+import { Button } from '@layera/buttons';
+import { CheckIcon, CloseIcon, BellIcon, SettingsIcon, LocationIcon } from '@layera/icons';
 import { useCSSVariables } from '../../hooks/useCSSVariables';
 import { PLAYGROUND_HELPERS } from '../../constants/ui-utilities';
 import type { ModalTextAlignValue } from './shared/ModalTextAlignControl';
+import { VariablesInfoAccordion } from './shared/VariablesInfoAccordion';
+import { createModalsVariablesData } from './shared/ModalsVariablesData';
 
 /**
  * ModalsPlayground Component
@@ -47,6 +50,8 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
   hoverEffect = 'normal',
   activeEffect = 'scale'
 }) => {
+  // State για το Variables Info Popup
+  const [showVariablesPopup, setShowVariablesPopup] = useState(false);
 
   // Χρησιμοποιούμε τις κεντρικές helper functions από το PLAYGROUND_HELPERS utility
   const { getRadiusInGreek, getHoverEffectInGreek, getActiveEffectInGreek, getSizeInGreek, getCategoryInGreek, getRadiusToken } = PLAYGROUND_HELPERS;
@@ -176,7 +181,57 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
             </Box>
           ))}
         </Box>
+
+        {/* Information Icon για Modal Variables */}
+        <Box className="layera-text-center layera-margin-top--md">
+          <Button
+            variant="ghost"
+            size="sm"
+            icon={<SettingsIcon size="sm" />}
+            onClick={() => setShowVariablesPopup(true)}
+            className="layera-text--align-center layera-opacity--70 layera-hover--opacity-100"
+          >
+            <BellIcon size="sm" /> Όλες οι Μεταβλητές Modals
+          </Button>
+        </Box>
       </Box>
+
+      {/* Variables Info Section */}
+      {showVariablesPopup && (
+        <Box className="layera-margin-top--xl layera-padding--lg layera-bg--surface-primary layera-border-radius--lg layera-border--solid layera-border-width--2 layera-border-color--primary layera-width--full">
+            {/* Header */}
+            <Box className="layera-flex layera-flex--justify-between layera-flex--align-center layera-margin-bottom--lg">
+              <Text className="layera-typography" data-size="2xl" data-weight="bold" data-color="primary">
+                <LocationIcon size="sm" /> Όλες οι Μεταβλητές Modals
+              </Text>
+              <Button
+                variant="ghost"
+                size="sm"
+                icon={<CloseIcon size="sm" />}
+                onClick={() => setShowVariablesPopup(false)}
+                className="layera-opacity--70 layera-hover--opacity-100"
+              >
+                ✕
+              </Button>
+            </Box>
+
+            {/* Accordion Structure για Variables */}
+            <Box className="layera-space-y--md layera-margin-bottom--lg">
+              <VariablesInfoAccordion
+                categories={createModalsVariablesData(
+                  colorCategory,
+                  borderWidth,
+                  modalRadius,
+                  modalSize,
+                  modalTextAlign,
+                  hoverEffect,
+                  activeEffect
+                )}
+                defaultExpandedCategory="backgroundColors"
+              />
+            </Box>
+        </Box>
+      )}
     </Box>
   );
 };

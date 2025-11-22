@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
-import { CheckIcon } from '@layera/icons';
+import { Button } from '@layera/buttons';
+import { CheckIcon, BellIcon, SettingsIcon, LocationIcon, CloseIcon } from '@layera/icons';
 import { useCSSVariables } from '../../hooks/useCSSVariables';
 import { PLAYGROUND_HELPERS } from '../../constants/ui-utilities';
 import { LayoutPlaygroundProps } from '../../types/unified-interfaces';
+import { VariablesInfoAccordion } from './shared/VariablesInfoAccordion';
+import { createLayoutVariablesData } from './shared/LayoutVariablesData';
 
 export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
   currentColors,
@@ -15,6 +18,8 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
   hoverEffect = 'normal',
   activeEffect = 'scale'
 }) => {
+  // State για το Variables Info Popup
+  const [showVariablesPopup, setShowVariablesPopup] = useState(false);
 
   // ✅ ΑΝΤΙΚΑΤΑΣΤΑΣΗ ΔΙΠΛΟΤΥΠΩΝ FUNCTIONS - Χρήση κεντρικών helper functions
   const { getRadiusInGreek, getRadiusToken, getHoverEffectInGreek, getActiveEffectInGreek, getSizeInGreek, getCategoryInGreek } = PLAYGROUND_HELPERS;
@@ -93,7 +98,56 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
             </Box>
           ))}
         </Box>
+
+        {/* Information Icon για Layout Variables */}
+        <Box className="layera-text-center layera-margin-top--md">
+          <Button
+            variant="ghost"
+            size="sm"
+            icon={<SettingsIcon size="sm" />}
+            onClick={() => setShowVariablesPopup(true)}
+            className="layera-text--align-center layera-opacity--70 layera-hover--opacity-100"
+          >
+            <BellIcon size="sm" /> Όλες οι Μεταβλητές Layout
+          </Button>
+        </Box>
       </Box>
+
+      {/* Variables Info Section */}
+      {showVariablesPopup && (
+        <Box className="layera-margin-top--xl layera-padding--lg layera-bg--surface-primary layera-border-radius--lg layera-border--solid layera-border-width--2 layera-border-color--primary layera-width--full">
+            {/* Header */}
+            <Box className="layera-flex layera-flex--justify-between layera-flex--align-center layera-margin-bottom--lg">
+              <Text className="layera-typography" data-size="2xl" data-weight="bold" data-color="primary">
+                <LocationIcon size="sm" /> Όλες οι Μεταβλητές Layout
+              </Text>
+              <Button
+                variant="ghost"
+                size="sm"
+                icon={<CloseIcon size="sm" />}
+                onClick={() => setShowVariablesPopup(false)}
+                className="layera-opacity--70 layera-hover--opacity-100"
+              >
+                ✕
+              </Button>
+            </Box>
+
+            {/* Accordion Structure για Variables */}
+            <Box className="layera-space-y--md layera-margin-bottom--lg">
+              <VariablesInfoAccordion
+                categories={createLayoutVariablesData(
+                  colorCategory,
+                  borderWidth,
+                  layoutRadius,
+                  layoutSize,
+                  hoverEffect,
+                  activeEffect
+                )}
+                defaultExpandedCategory="backgroundColors"
+              />
+            </Box>
+        </Box>
+      )}
     </Box>
   );
 };

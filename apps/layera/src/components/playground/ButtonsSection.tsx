@@ -136,7 +136,7 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
       {/* Button Showcase Gallery */}
       <Box className="layera-card layera-padding--lg layera-text--align-center">
         <h3 className="layera-typography layera-margin-bottom--lg" data-size="lg" data-weight="bold" data-color="primary">
-          <PaletteIcon size="sm" /> Button Gallery - {buttonState.size.toUpperCase()} Size
+          🎨 Button Gallery - {buttonState.size.toUpperCase()} Size
         </h3>
 
         <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-lg layera-flex--justify-center layera-align-items--start">
