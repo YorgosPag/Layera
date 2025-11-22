@@ -29,6 +29,7 @@ import { useColorState, ColorPaletteWithAlpha, ColorCategory } from '../hooks/us
 import { useCSSVariables } from '../hooks/useCSSVariables';
 import { useStorage } from '../hooks/useStorage';
 import { usePlaygroundState } from '../hooks/usePlaygroundState';
+import { usePlaygroundActions } from '../hooks/usePlaygroundActions';
 // useColorHelpers functionality merged into other hooks
 
 /**
@@ -92,12 +93,22 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
     modalTextAlign
   } = usePlaygroundState();
 
-
-  // Color helper functions - simplified to use existing hooks
-  const getColorsForCategory = (category: string) => {
-    return getCategoryPalette(category as ColorCategory);
-  };
-
+  // Playground Actions Management
+  const {
+    getColorsForCategory,
+    convertColorPaletteWithAlphaToLegacy,
+    applyColorsToApp,
+    applySquareColorsToHeader,
+    handleElementPreview
+  } = usePlaygroundActions({
+    colorHookState,
+    colorActions,
+    cssActions,
+    storageActions,
+    getCategoryPalette,
+    getElementColors,
+    user
+  });
 
 
   // Real-time preview hook for header buttons
@@ -117,82 +128,6 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
     },
     debounceMs: 100
   });
-
-
-
-  // ==============================
-  // HELPER FUNCTIONS
-  // ==============================
-
-  // Conversion function for backward compatibility με playground components
-  const convertColorPaletteWithAlphaToLegacy = (palette: ColorPaletteWithAlpha) => {
-    // Helper function για safe extraction του hex value
-    const safeExtractHex = (color: string | { hex: string } | undefined): string => {
-      if (!color) return 'var(--layera-color-surface-primary)';
-      if (typeof color === 'string') return color; // Factory settings format
-      if (typeof color === 'object' && color.hex) return color.hex; // ColorWithAlpha format
-      return 'var(--layera-color-surface-primary)'; // Fallback
-    };
-
-    const converted = {
-      primary: safeExtractHex(palette.primaryColor),
-      secondary: safeExtractHex(palette.secondaryColor),
-      success: safeExtractHex(palette.successColor),
-      warning: safeExtractHex(palette.warningColor),
-      danger: safeExtractHex(palette.dangerColor),
-      info: safeExtractHex(palette.infoColor)
-    };
-
-    // Επιπλέον έλεγχος για το αν τα χρώματα είναι μηδενικά (ΜΟΝΟ πραγματικά άκυρα)
-    const hasNullColors = Object.values(converted).some(color =>
-      !color || color === 'undefined' || color === '' || color === null
-    );
-
-    if (hasNullColors) {
-      console.warn('Warning: Some colors may not be properly set:', converted);
-    }
-
-    return converted;
-  };
-
-  // ==============================
-  // EVENT HANDLERS
-  // ==============================
-
-
-  // ==============================
-  // CSS VARIABLES INTEGRATION
-  // ==============================
-
-  const applyColorsToApp = async () => {
-    // Get autonomous colors for current category
-    const categoryColors = getColorsForCategory(colorHookState.colorCategory);
-
-    // Apply colors via CSS Variables hook
-    await cssActions.applyColorsToApp(colorHookState.colorCategory, categoryColors, colorHookState.elementType);
-
-    // Save theme via Storage hook
-    const themeData = {
-      colorCategory: colorHookState.colorCategory,
-      shape: colorHookState.colorButtonShape,
-      primaryColor: categoryColors.primaryColor.hex,
-      secondaryColor: categoryColors.secondaryColor.hex,
-      successColor: categoryColors.successColor.hex,
-      warningColor: categoryColors.warningColor.hex,
-      dangerColor: categoryColors.dangerColor.hex,
-      infoColor: categoryColors.infoColor.hex
-    };
-
-    await storageActions.saveToStorage(themeData, user || undefined);
-
-    window.dispatchEvent(new CustomEvent('colorsUpdate', {
-      detail: { category: colorHookState.colorCategory, ...categoryColors }
-    }));
-  };
-
-  const applySquareColorsToHeader = () => {
-    cssActions.applySquareColorsToHeader();
-  };
 
   return (
     <Box
@@ -389,40 +324,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               infoColor: (value: string) => colorActions.updateElementTypePalette(colorHookState.elementType, colorHookState.colorCategory, 'infoColor', value)
             }}
             startPreview={(key: string, value: string | ColorWithAlpha) => {
-              const previewValue = typeof value === 'string' ? value : value.rgba;
-
-              if (colorHookState.elementType === 'buttons' &&
-                 colorHookState.colorCategory === 'backgrounds') {
-                // ✅ ALPHA SUPPORT: Χρησιμοποιούμε rgba για διαφάνεια
-                const colorValue = typeof value === 'string' ? value : (value.rgba || value.hex);
-                cssActions.applySpecificButtonColor(key, colorValue);
-              }
-
-              if (colorHookState.elementType === 'cards' &&
-                 colorHookState.colorCategory === 'backgrounds') {
-                const colorValue = typeof value === 'string' ? value : value.hex;
-                cssActions.applySpecificCardColor(key, colorValue);
-              }
-
-              if (colorHookState.elementType === 'modals' &&
-                 colorHookState.colorCategory === 'backgrounds') {
-                const colorValue = typeof value === 'string' ? value : value.hex;
-                cssActions.applySpecificModalColor(key, colorValue);
-              }
-
-              if (colorHookState.elementType === 'layout' &&
-                 colorHookState.colorCategory === 'backgrounds') {
-                const colorValue = typeof value === 'string' ? value : value.hex;
-                cssActions.applySpecificLayoutColor(key, colorValue);
-              }
-
-              if (colorHookState.elementType === 'headers' &&
-                 colorHookState.colorCategory === 'backgrounds') {
-                const colorValue = typeof value === 'string' ? value : value.hex;
-                cssActions.applySpecificHeaderColor(key, colorValue);
-              }
-
-              startPreview(key, previewValue, colorHookState.colorCategory, colorHookState.elementType);
+              handleElementPreview(key, value, colorHookState.elementType, colorHookState.colorCategory, startPreview);
             }}
             colorCategory={colorHookState.colorCategory}
             alphaEnabled={alphaEnabled}
