@@ -161,6 +161,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
           {generateFullDescription()}
         </p>
 
+
         <Box className="layera-flex layera-flex--justify-center layera-flex--wrap-wrap layera-align-items--center">
           {/* Τα 6 χρωματιστά buttons με enterprise min-width + auto logic */}
           <Button
@@ -207,7 +208,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
             variant="info"
             size={buttonState.size}
             icon={buttonState.withIcon ? <SearchIcon size="sm" /> : undefined}
-            className="layera-text--align-center"
+            className="layera-margin-right--sm layera-text--align-center"
           >
             {buttonState.shape === 'square' ? 'I' : 'Info'}
           </Button>
@@ -215,7 +216,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
             variant="outline"
             size={buttonState.size}
             icon={buttonState.withIcon ? <PlusIcon size="sm" /> : undefined}
-            className={`layera-button layera-button--${buttonState.size} layera-button--outline layera-text--align-center`}
+            className="layera-margin-right--sm layera-text--align-center"
           >
             {buttonState.shape === 'square' ? 'O' : 'Outline'}
           </Button>
@@ -223,7 +224,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
             variant="ghost"
             size={buttonState.size}
             icon={buttonState.withIcon ? <CompassIcon size="sm" /> : undefined}
-            className={`layera-button layera-button--${buttonState.size} layera-button--ghost layera-text--align-center`}
+            className="layera-text--align-center"
           >
             {buttonState.shape === 'square' ? 'G' : 'Ghost'}
           </Button>

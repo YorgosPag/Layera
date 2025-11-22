@@ -2876,6 +2876,41 @@ html[data-layera-button-info="active"] .layera-button[data-variant="info"]:hover
   border: 1px solid var(--layera-color-border-default, #e5e5e5);
 }
 
+/* 🎯 BUTTON ICON SPACING - Enterprise spacing για εικονίδια σε πλήκτρα */
+.layera-button .layera-button-icon {
+  margin-right: var(--layera-iconInteractive-sizing-margin-sm) !important;
+}
+/* 🎯 BUTTON ICON SPACING - Specific για outline και ghost variants */
+button[data-variant="outline"] .layera-button-icon,
+button[data-variant="ghost"] .layera-button-icon {
+  margin-right: var(--layera-iconInteractive-sizing-margin-sm) !important;
+}
+
+/* 🎯 SPACING UTILITY CLASSES - Enterprise spacing utilities για layout */
+.layera-margin-right--xs { margin-right: var(--layera-spacing-1) !important; }
+.layera-margin-right--sm { margin-right: var(--layera-spacing-2) !important; }
+.layera-margin-right--md { margin-right: var(--layera-spacing-3) !important; }
+.layera-margin-right--lg { margin-right: var(--layera-spacing-4) !important; }
+.layera-margin-right--xl { margin-right: var(--layera-spacing-5) !important; }
+
+.layera-margin-left--xs { margin-left: var(--layera-spacing-1) !important; }
+.layera-margin-left--sm { margin-left: var(--layera-spacing-2) !important; }
+.layera-margin-left--md { margin-left: var(--layera-spacing-3) !important; }
+.layera-margin-left--lg { margin-left: var(--layera-spacing-4) !important; }
+.layera-margin-left--xl { margin-left: var(--layera-spacing-5) !important; }
+
+.layera-padding-right--xs { padding-right: var(--layera-spacing-1) !important; }
+.layera-padding-right--sm { padding-right: var(--layera-spacing-2) !important; }
+.layera-padding-right--md { padding-right: var(--layera-spacing-3) !important; }
+.layera-padding-right--lg { padding-right: var(--layera-spacing-4) !important; }
+.layera-padding-right--xl { padding-right: var(--layera-spacing-5) !important; }
+
+.layera-padding-left--xs { padding-left: var(--layera-spacing-1) !important; }
+.layera-padding-left--sm { padding-left: var(--layera-spacing-2) !important; }
+.layera-padding-left--md { padding-left: var(--layera-spacing-3) !important; }
+.layera-padding-left--lg { padding-left: var(--layera-spacing-4) !important; }
+.layera-padding-left--xl { padding-left: var(--layera-spacing-5) !important; }
+
 /* 🎯 Layera Design Tokens System Ready */
 `;
 

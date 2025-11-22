@@ -176,25 +176,28 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
                 variant={colorHookState.colorCategory === 'backgrounds' ? 'primary' : 'outline'}
                 size={buttonState?.size || 'sm'}
                 onClick={() => colorActions.setColorCategory('backgrounds')}
+                icon={<LayersIcon size="sm" />}
                 className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.colorCategory === 'backgrounds' ? 'primary' : 'outline'}`}
               >
-                <LayersIcon size="sm" /> Backgrounds
+                Backgrounds
               </Button>
               <Button
                 variant={colorHookState.colorCategory === 'text' ? 'primary' : 'outline'}
                 size={buttonState?.size || 'sm'}
                 onClick={() => colorActions.setColorCategory('text')}
+                icon={<EditIcon size="sm" />}
                 className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.colorCategory === 'text' ? 'primary' : 'outline'}`}
               >
-                <EditIcon size="sm" /> Text
+                Text
               </Button>
               <Button
                 variant={colorHookState.colorCategory === 'borders' ? 'primary' : 'outline'}
                 size={buttonState?.size || 'sm'}
                 onClick={() => colorActions.setColorCategory('borders')}
+                icon={<PolygonIcon size="sm" />}
                 className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.colorCategory === 'borders' ? 'primary' : 'outline'}`}
               >
-                <PolygonIcon size="sm" /> Borders
+                Borders
               </Button>
             </Box>
           )
@@ -217,57 +220,64 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
                 variant={colorHookState.elementType === 'cards' ? 'primary' : 'outline'}
                 size={buttonState?.size || 'sm'}
                 onClick={() => colorActions.setElementType('cards')}
+                icon={<LayersIcon size="sm" />}
                 className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.elementType === 'cards' ? 'primary' : 'outline'}`}
               >
-                <LayersIcon size="sm" /> Κάρτες
+                Κάρτες
               </Button>
               <Button
                 variant={colorHookState.elementType === 'modals' ? 'primary' : 'outline'}
                 size={buttonState?.size || 'sm'}
                 onClick={() => colorActions.setElementType('modals')}
+                icon={<MonitorIcon size="sm" />}
                 className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.elementType === 'modals' ? 'primary' : 'outline'}`}
               >
-                <MonitorIcon size="sm" /> Modals
+                Modals
               </Button>
               <Button
                 variant={colorHookState.elementType === 'layout' ? 'primary' : 'outline'}
                 size={buttonState?.size || 'sm'}
                 onClick={() => colorActions.setElementType('layout')}
+                icon={<BuildingIcon size="sm" />}
                 className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.elementType === 'layout' ? 'primary' : 'outline'}`}
               >
-                <BuildingIcon size="sm" /> Layout
+                Layout
               </Button>
               <Button
                 variant={colorHookState.elementType === 'headers' ? 'primary' : 'outline'}
                 size={buttonState?.size || 'sm'}
                 onClick={() => colorActions.setElementType('headers')}
+                icon={<CompassIcon size="sm" />}
                 className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.elementType === 'headers' ? 'primary' : 'outline'}`}
               >
-                <CompassIcon size="sm" /> Headers
+                Headers
               </Button>
               <Button
                 variant={colorHookState.elementType === 'buttons' ? 'primary' : 'outline'}
                 size={buttonState?.size || 'sm'}
                 onClick={() => colorActions.setElementType('buttons')}
+                icon={<CheckIcon size="sm" />}
                 className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.elementType === 'buttons' ? 'primary' : 'outline'}`}
               >
-                <CheckIcon size="sm" /> Πλήκτρα
+                Πλήκτρα
               </Button>
               <Button
                 variant={colorHookState.elementType === 'inputs' ? 'primary' : 'outline'}
                 size={buttonState?.size || 'sm'}
                 onClick={() => colorActions.setElementType('inputs')}
+                icon={<EditIcon size="sm" />}
                 className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.elementType === 'inputs' ? 'primary' : 'outline'}`}
               >
-                <EditIcon size="sm" /> Πεδία
+                Πεδία
               </Button>
               <Button
                 variant={colorHookState.elementType === 'tables' ? 'primary' : 'outline'}
                 size={buttonState?.size || 'sm'}
                 onClick={() => colorActions.setElementType('tables')}
+                icon={<ChartIcon size="sm" />}
                 className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.elementType === 'tables' ? 'primary' : 'outline'}`}
               >
-                <ChartIcon size="sm" /> Πίνακες
+                Πίνακες
               </Button>
             </Box>
           )
