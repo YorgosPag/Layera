@@ -3,7 +3,7 @@
  *
  * ⚠️  DO NOT EDIT MANUALLY
  * Edit packages/tokens/src/colors/colors.variables.ts, core/spacing/spacing.variables.ts, core/typography/typography.variables.ts, core/borders/borders.variables.ts, core/shadows/shadows.variables.ts, core/motion/motion.variables.ts και component/icons/icons.variables.ts and rebuild
- * Generated: 2025-11-22T19:28:07.693Z
+ * Generated: 2025-11-22T20:35:08.337Z
  */
 
 :root {
@@ -185,6 +185,11 @@
   --layera-core-text-align-vertical-top: top;
   --layera-core-text-align-vertical-middle: middle;
   --layera-core-text-align-vertical-bottom: bottom;
+
+  /* 🏗️ HEADER GRID VARIABLES */
+  --layera-header-center-column: 250px;
+  --layera-grid-template-columns--header: 1fr var(--layera-header-center-column) 1fr;
+  --layera-gap--2: var(--layera-spacing-spacing-2);
 
   /* 🎨 SEMANTIC BACKGROUND */
   --layera-background-primary: var(--layera-color-primary-500);
@@ -1305,11 +1310,28 @@
 .layera-width--20 { width: var(--layera-spacing-20); }
 .layera-width--24 { width: var(--layera-spacing-24); }
 .layera-header-width--full { /* layera-header-width--full: 100%; */ }
+.layera-header-center-column { /* layera-header-center-column: 250px', // Σταθερή κεντρική στήλη - αυξημένο για μακρύτερα κείμενα για headers alignment; */ }
 .layera-height--10 { height: var(--layera-spacing-10); }
 .layera-height--6 { height: var(--layera-spacing-6); }
 .layera-height--8 { height: var(--layera-spacing-8); }
 .layera-height--20 { height: var(--layera-spacing-20); }
+.layera-flex { display: flex; }
+.layera-flex--align-center { align-items: center; }
+.layera-flex--align-start { align-items: flex-start; }
+.layera-flex--align-end { align-items: flex-end; }
+.layera-flex--justify-center { justify-content: center; }
+.layera-flex--justify-start { justify-content: flex-start; }
+.layera-flex--justify-end { justify-content: flex-end; }
+.layera-flex--justify-space-between { justify-content: space-between; }
+.layera-flex--justify-space-around { justify-content: space-around; }
+.layera-flex--direction-row { flex-direction: row; }
+.layera-flex--direction-column { flex-direction: column; }
+.layera-flex--wrap-nowrap { flex-wrap: nowrap; }
+.layera-flex--wrap-wrap { flex-wrap: wrap; }
 .margin-bottom-xl { margin-bottom: var(--layera-spacing-8); }
+  --layera-header-center-column: 250px;
+  --layera-grid-template-columns--header: 1fr var(--layera-header-center-column) 1fr;
+  --layera-gap--2: SPACING_VARIABLES[spacing-2];
 
 /* 📐 LAYOUT CLASSES */
 .playground-fullscreen-position { position: fixed; }

@@ -1153,9 +1153,10 @@ function extractUtilitiesValues(content) {
     return cssVariables;
   }
 
-  // Απλός line-by-line parsing για UTILITIES_VARIABLES
+  // Απλός line-by-line parsing για UTILITIES_VARIABLES και HEADER_GRID_VARIABLES
   const lines = content.split('\n');
   let insideUtilitiesVariables = false;
+  let insideHeaderGridVariables = false;
   let braceCount = 0;
 
   for (let i = 0; i < lines.length; i++) {
@@ -1164,6 +1165,13 @@ function extractUtilitiesValues(content) {
     // Αρχή του UTILITIES_VARIABLES object
     if (line.includes('export const UTILITIES_VARIABLES')) {
       insideUtilitiesVariables = true;
+      braceCount = 0;
+      continue;
+    }
+
+    // Αρχή του HEADER_GRID_VARIABLES object
+    if (line.includes('export const HEADER_GRID_VARIABLES')) {
+      insideHeaderGridVariables = true;
       braceCount = 0;
       continue;
     }
@@ -1259,12 +1267,106 @@ function extractUtilitiesValues(content) {
 
       // Τέλος του UTILITIES_VARIABLES object
       if (braceCount <= 0 && trimmedLine.includes('} as const;')) {
-        break;
+        insideUtilitiesVariables = false;
+      }
+    }
+
+    // Parsing για HEADER_GRID_VARIABLES - Γεννώνται ως CSS variables
+    if (insideHeaderGridVariables) {
+      // Μετράω τα braces
+      braceCount += (line.match(/\{/g) || []).length;
+      braceCount -= (line.match(/\}/g) || []).length;
+
+      const trimmedLine = line.trim();
+
+      // Αν έχουμε key-value pair
+      if (trimmedLine.includes(':') && !trimmedLine.startsWith('//')) {
+        const match = trimmedLine.match(/['"`]([^'"`]+)['"`]\s*:\s*(.+?)(?:,|$)/);
+        if (match) {
+          const [, varName, varValue] = match;
+
+          // Καθαρίζω το value (αφαιρώ quotes και comments)
+          let cleanValue = varValue.replace(/['"`]/g, '').replace(/,.*$/, '').trim();
+
+          // Αφαιρώ inline comments
+          cleanValue = cleanValue.replace(/\s*\/\/.*$/, '');
+
+          // Δημιουργώ CSS variable
+          cssVariables.push(`  --${varName}: ${cleanValue};`);
+        }
+      }
+
+      // Τέλος του HEADER_GRID_VARIABLES object
+      if (braceCount <= 0 && trimmedLine.includes('} as const;')) {
+        insideHeaderGridVariables = false;
       }
     }
   }
 
   console.log(`🔧 Εξήχθησαν ${cssVariables.length} utilities classes`);
+  return cssVariables;
+}
+
+// Εξάγει HEADER_GRID_VARIABLES ως CSS variables
+function extractHeaderGridVariables(content) {
+  let cssVariables = [];
+
+  if (!content) {
+    return cssVariables;
+  }
+
+  const lines = content.split('\n');
+  let insideHeaderGridVariables = false;
+  let braceCount = 0;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    // Αρχή του HEADER_GRID_VARIABLES object
+    if (line.includes('export const HEADER_GRID_VARIABLES')) {
+      insideHeaderGridVariables = true;
+      braceCount = 0;
+      continue;
+    }
+
+    if (insideHeaderGridVariables) {
+      // Μετράω τα braces
+      braceCount += (line.match(/\{/g) || []).length;
+      braceCount -= (line.match(/\}/g) || []).length;
+
+      const trimmedLine = line.trim();
+
+      // Αν έχουμε key-value pair
+      if (trimmedLine.includes(':') && !trimmedLine.startsWith('//')) {
+        const match = trimmedLine.match(/['"`]([^'"`]+)['"`]\s*:\s*(.+?)(?:,|$)/);
+        if (match) {
+          const [, varName, varValue] = match;
+
+          // Καθαρίζω το value
+          let cleanValue = varValue.replace(/['"`]/g, '').replace(/,.*$/, '').trim();
+          cleanValue = cleanValue.replace(/\s*\/\/.*$/, '');
+
+          // Αντικαθιστώ SPACING_VARIABLES references
+          if (cleanValue.includes('SPACING_VARIABLES')) {
+            const spacingMatch = cleanValue.match(/SPACING_VARIABLES\[(['"`]?)([^'"`\]]+)\1\]/);
+            if (spacingMatch) {
+              cleanValue = `var(--layera-spacing-${spacingMatch[2]})`;
+            }
+          }
+
+          // Δημιουργώ CSS variable
+          cssVariables.push(`  --${varName}: ${cleanValue};`);
+        }
+      }
+
+      // Τέλος του HEADER_GRID_VARIABLES object
+      if (braceCount <= 0 && trimmedLine.includes('} as const;')) {
+        break;
+      }
+    }
+  }
+
+  console.log(`🔧 Εξήχθησαν ${cssVariables.length} header grid variables`);
   return cssVariables;
 }
 
@@ -1308,6 +1410,22 @@ function convertUtilityToCSS(varName, varValue) {
   }
   if (varName.startsWith('margin-bottom-')) {
     return `margin-bottom: ${varValue};`;
+  }
+  // Layera Flex utilities
+  if (varName === 'layera-flex') {
+    return `display: ${varValue};`;
+  }
+  if (varName.startsWith('layera-flex--align-')) {
+    return `align-items: ${varValue};`;
+  }
+  if (varName.startsWith('layera-flex--justify-')) {
+    return `justify-content: ${varValue};`;
+  }
+  if (varName.startsWith('layera-flex--direction-')) {
+    return `flex-direction: ${varValue};`;
+  }
+  if (varName.startsWith('layera-flex--wrap-')) {
+    return `flex-wrap: ${varValue};`;
   }
 
   // Default fallback
@@ -2414,6 +2532,7 @@ const modalComponentVariables = extractModalComponentValues(modalComponentConten
 const cardsComponentVariables = extractCardsComponentValues(cardsComponentContent);
 const coreTextAlignVariables = extractCoreTextAlignVariables(utilitiesContent);
 const utilitiesVariables = extractUtilitiesValues(utilitiesContent);
+const headerGridVariables = extractHeaderGridVariables(utilitiesContent);
 const layoutComponentVariables = extractLayoutComponentValues(layoutComponentContent);
 const inputsComponentVariables = extractInputsComponentValues(inputsComponentContent);
 const navigationResult = extractNavigationComponentValues(navigationComponentContent);
@@ -2446,6 +2565,7 @@ console.log(`✅ Εξήχθησαν ${buttonsComponentVariables.length} buttons 
 console.log(`✅ Εξήχθησαν ${modalComponentVariables.length} modal component variables`);
 console.log(`✅ Εξήχθησαν ${cardsComponentVariables.length} cards component variables`);
 console.log(`✅ Εξήχθησαν ${utilitiesVariables.length} utilities classes`);
+console.log(`✅ Εξήχθησαν ${headerGridVariables.length} header grid variables`);
 console.log(`✅ Εξήχθησαν ${layoutComponentVariables.length} layout component variables/classes`);
 console.log(`✅ Εξήχθησαν ${inputsComponentVariables.length} inputs component variables`);
 console.log(`✅ Εξήχθησαν ${navigationComponentVariables.length} navigation component variables`);
@@ -2497,6 +2617,9 @@ ${iconsVariables.join('\n')}
 
   /* 🔧 CORE TEXT ALIGN */
 ${coreTextAlignVariables.join('\n')}
+
+  /* 🏗️ HEADER GRID VARIABLES */
+${headerGridVariables.join('\n')}
 
   /* 🎨 SEMANTIC BACKGROUND */
 ${backgroundSemanticVariables.join('\n')}
@@ -3040,7 +3163,8 @@ console.log(`   ⚡ Loading Component: ${loadingComponentVariables.length}`);
 console.log(`   🎭 Disclosure Component: ${disclosureComponentVariables.length}`);
 console.log(`   📂 Data Import Component: ${dataImportComponentVariables.length}`);
 console.log(`   🔧 Core Text Align Variables: ${coreTextAlignVariables.length}`);
-console.log(`   🔧 Utilities Classes: ${utilitiesVariables.length}`);
+console.log(`   🔧 Utilities Classes: ${utilitiesVariables.length}
+   🏗️ Header Grid Variables: ${headerGridVariables.length}`);
 console.log(`   📐 Layout Classes: ${layoutComponentVariables.length}`);
 console.log(`   🧭 Navigation Classes: ${navigationComponentClasses.length}`);
 console.log(`   🎯 Total Variables: ${allVariables.length}`);

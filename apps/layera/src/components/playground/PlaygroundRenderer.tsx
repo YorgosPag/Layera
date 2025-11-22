@@ -189,7 +189,7 @@ export const PlaygroundRenderer: React.FC<PlaygroundRendererProps> = ({
    */
   if (elementType === 'headers') {
     return (
-      <Box className="layera-margin-bottom--xl global-display-flex global-flexDirection-column global-alignItems-center">
+      <Box className="layera-margin-bottom--xl global-display-flex global-flexDirection-column">
         <HeaderPlayground
           currentColors={convertColorPaletteWithAlphaToLegacy(getElementColors('headers', colorCategory))}
           colorCategory={colorCategory}
