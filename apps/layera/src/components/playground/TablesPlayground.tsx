@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
-import { CheckIcon, BellIcon, SettingsIcon, LocationIcon, CloseIcon } from '@layera/icons';
+import { CheckIcon, SettingsIcon, LocationIcon, CloseIcon } from '@layera/icons';
 import { PLAYGROUND_HELPERS } from '../../constants/ui-utilities';
 import { TablesPlaygroundProps } from '../../types/unified-interfaces';
 import { VariablesInfoAccordion } from './shared/VariablesInfoAccordion';
@@ -115,7 +115,7 @@ export const TablesPlayground: React.FC<TablesPlaygroundProps> = ({
             onClick={() => setShowVariablesPopup(true)}
             className="layera-text--align-center layera-opacity--70 layera-hover--opacity-100"
           >
-            <BellIcon size="sm" /> Όλες οι Μεταβλητές Tables
+            Όλες οι Μεταβλητές Tables
           </Button>
         </Box>
       </Box>

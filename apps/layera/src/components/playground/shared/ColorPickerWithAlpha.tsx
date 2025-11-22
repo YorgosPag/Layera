@@ -464,26 +464,6 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
         />
       </Box>
 
-      {/* Variant Info - Εμφανίζει CSS variable και selector */}
-      {showVariantInfo && variant && (
-        <Box className="layera-margin-top--sm layera-padding-top--sm layera-border-top--default">
-          <Text className="layera-typography layera-margin-bottom--xs layera-flex layera-flex--align-center layera-gap--xs" data-size="xs" data-weight="bold" data-color="primary">
-            <SettingsIcon size="sm" /> CSS Info:
-          </Text>
-          <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
-            <strong>Variable:</strong> <span className="layera-typography" data-weight="mono" data-color="info">{`--layera-button-background-${variant || 'primary'}`}</span>
-          </Text>
-          <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
-            <strong>Selector:</strong> <span className="layera-typography" data-weight="mono" data-color="info">{`.layera-button[data-variant="${variant || 'primary'}"]`}</span>
-          </Text>
-          <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
-            <strong>HTML Attribute:</strong> <span className="layera-typography" data-weight="mono" data-color="info">{`data-layera-button-background="${variant || 'primary'}"`}</span>
-          </Text>
-          <Text className="layera-typography" data-size="xs" data-color="secondary">
-            Τρέχον χρώμα: <span className="layera-typography" data-weight="bold" data-color="success">{displayHex.toUpperCase()}</span>
-          </Text>
-        </Box>
-      )}
     </Box>
   );
 };

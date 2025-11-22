@@ -108,7 +108,7 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
             onClick={() => setShowVariablesPopup(true)}
             className="layera-text--align-center layera-opacity--70 layera-hover--opacity-100"
           >
-            <BellIcon size="sm" /> Όλες οι Μεταβλητές Layout
+            Όλες οι Μεταβλητές Layout
           </Button>
         </Box>
       </Box>

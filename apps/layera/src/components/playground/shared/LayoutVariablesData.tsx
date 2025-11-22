@@ -24,7 +24,7 @@ export const createLayoutVariablesData = (
       variableCount: 6,
       variables: [
         {
-          category: '📋 Primary Layout',
+          category: 'Primary Layout',
           cssVariable: '--layera-layout-background-primary',
           selector: '.layera-layout[data-variant="primary"]',
           htmlAttribute: 'data-variant="primary"',
@@ -32,7 +32,7 @@ export const createLayoutVariablesData = (
           borderColor: 'primary'
         },
         {
-          category: '📋 Secondary Layout',
+          category: 'Secondary Layout',
           cssVariable: '--layera-layout-background-secondary',
           selector: '.layera-layout[data-variant="secondary"]',
           htmlAttribute: 'data-variant="secondary"',
@@ -40,7 +40,7 @@ export const createLayoutVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '📋 Success Layout',
+          category: 'Success Layout',
           cssVariable: '--layera-layout-background-success',
           selector: '.layera-layout[data-variant="success"]',
           htmlAttribute: 'data-variant="success"',
@@ -48,7 +48,7 @@ export const createLayoutVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '📋 Warning Layout',
+          category: 'Warning Layout',
           cssVariable: '--layera-layout-background-warning',
           selector: '.layera-layout[data-variant="warning"]',
           htmlAttribute: 'data-variant="warning"',
@@ -56,7 +56,7 @@ export const createLayoutVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '📋 Danger Layout',
+          category: 'Danger Layout',
           cssVariable: '--layera-layout-background-danger',
           selector: '.layera-layout[data-variant="danger"]',
           htmlAttribute: 'data-variant="danger"',
@@ -64,7 +64,7 @@ export const createLayoutVariablesData = (
           borderColor: 'danger'
         },
         {
-          category: '📋 Info Layout',
+          category: 'Info Layout',
           cssVariable: '--layera-layout-background-info',
           selector: '.layera-layout[data-variant="info"]',
           htmlAttribute: 'data-variant="info"',
@@ -80,7 +80,7 @@ export const createLayoutVariablesData = (
       variableCount: 3,
       variables: [
         {
-          category: '🔧 Border Width',
+          category: 'Border Width',
           cssVariable: 'var(--layera-layout-borderWidth)',
           selector: '.layera-layout',
           htmlAttribute: `data-border-width="${borderWidth}"`,
@@ -88,7 +88,7 @@ export const createLayoutVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '🎨 Border Color',
+          category: 'Border Color',
           cssVariable: `var(--layera-layout-borderColor-${colorCategory})`,
           selector: '.layera-layout',
           htmlAttribute: `data-color="${colorCategory}"`,
@@ -96,7 +96,7 @@ export const createLayoutVariablesData = (
           borderColor: 'danger'
         },
         {
-          category: '🌊 Border Radius',
+          category: 'Border Radius',
           cssVariable: `var(--layera-layout-borderRadius-${layoutRadius})`,
           selector: '.layera-layout',
           htmlAttribute: `data-border-radius="${layoutRadius}"`,
@@ -108,11 +108,11 @@ export const createLayoutVariablesData = (
     {
       id: 'shadowsEffects',
       title: 'Shadows & Effects',
-      icon: <span>✨</span>,
+      icon: <SettingsIcon size="sm" />,
       variableCount: 4,
       variables: [
         {
-          category: '🌟 Layout Shadow',
+          category: 'Layout Shadow',
           cssVariable: 'var(--layera-layout-shadow)',
           selector: '.layera-layout',
           htmlAttribute: 'data-shadow="true/false"',
@@ -120,7 +120,7 @@ export const createLayoutVariablesData = (
           borderColor: 'primary'
         },
         {
-          category: '🎭 Hover Effect',
+          category: 'Hover Effect',
           cssVariable: `var(--layera-layout-hover-${colorCategory})`,
           selector: '.layera-layout:hover',
           htmlAttribute: `data-hover-effect="${hoverEffect}"`,
@@ -128,7 +128,7 @@ export const createLayoutVariablesData = (
           borderColor: 'secondary'
         },
         {
-          category: '🎯 Active Effect',
+          category: 'Active Effect',
           cssVariable: `var(--layera-layout-active-${colorCategory})`,
           selector: '.layera-layout:active',
           htmlAttribute: `data-active-effect="${activeEffect}"`,
@@ -136,7 +136,7 @@ export const createLayoutVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '💫 Transition',
+          category: 'Transition',
           cssVariable: 'var(--layera-layout-transition)',
           selector: '.layera-layout',
           htmlAttribute: 'data-transition="true/false"',
@@ -152,7 +152,7 @@ export const createLayoutVariablesData = (
       variableCount: 4,
       variables: [
         {
-          category: '📏 Size',
+          category: 'Size',
           cssVariable: `var(--layera-layout-size-${layoutSize})`,
           selector: '.layera-layout',
           htmlAttribute: `data-size="${layoutSize}"`,
@@ -160,7 +160,7 @@ export const createLayoutVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '📦 Padding',
+          category: 'Padding',
           cssVariable: `var(--layera-layout-padding-${layoutSize})`,
           selector: '.layera-layout',
           htmlAttribute: `data-padding="${layoutSize}"`,
@@ -168,7 +168,7 @@ export const createLayoutVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '📊 Width',
+          category: 'Width',
           cssVariable: 'var(--layera-layout-width)',
           selector: '.layera-layout',
           htmlAttribute: 'data-width="auto/defined"',
@@ -176,7 +176,7 @@ export const createLayoutVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '📏 Height',
+          category: 'Height',
           cssVariable: `var(--layera-layout-height-${layoutSize})`,
           selector: '.layera-layout',
           htmlAttribute: `data-height="${layoutSize}"`,
@@ -192,7 +192,7 @@ export const createLayoutVariablesData = (
       variableCount: 3,
       variables: [
         {
-          category: '🔠 Font Size',
+          category: 'Font Size',
           cssVariable: `var(--layera-layout-fontSize-${layoutSize})`,
           selector: '.layera-layout',
           htmlAttribute: `data-font-size="${layoutSize}"`,
@@ -200,7 +200,7 @@ export const createLayoutVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '💪 Font Weight',
+          category: 'Font Weight',
           cssVariable: 'var(--layera-layout-fontWeight)',
           selector: '.layera-layout',
           htmlAttribute: 'data-font-weight="auto/defined"',
@@ -208,7 +208,7 @@ export const createLayoutVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '🎨 Text Color',
+          category: 'Text Color',
           cssVariable: `var(--layera-layout-color-${colorCategory})`,
           selector: '.layera-layout',
           htmlAttribute: `data-text-color="${colorCategory}"`,
@@ -224,7 +224,7 @@ export const createLayoutVariablesData = (
       variableCount: 3,
       variables: [
         {
-          category: '🎯 Focus State',
+          category: 'Focus State',
           cssVariable: 'var(--layera-layout-focus-outline)',
           selector: '.layera-layout:focus',
           htmlAttribute: 'data-focus="true/false"',
@@ -232,7 +232,7 @@ export const createLayoutVariablesData = (
           borderColor: 'primary'
         },
         {
-          category: '🚫 Disabled State',
+          category: 'Disabled State',
           cssVariable: 'var(--layera-layout-disabled-opacity)',
           selector: '.layera-layout:disabled',
           htmlAttribute: 'data-disabled="true/false"',
@@ -240,7 +240,7 @@ export const createLayoutVariablesData = (
           borderColor: 'secondary'
         },
         {
-          category: '⏱️ Loading State',
+          category: 'Loading State',
           cssVariable: 'var(--layera-layout-loading-spinner)',
           selector: '.layera-layout .spinner',
           htmlAttribute: 'data-loading="true/false"',
@@ -256,7 +256,7 @@ export const createLayoutVariablesData = (
       variableCount: 3,
       variables: [
         {
-          category: '🔷 Size',
+          category: 'Layout Size',
           cssVariable: `var(--layera-layout-size-${layoutSize})`,
           selector: '.layera-layout',
           htmlAttribute: `data-size="${layoutSize}"`,
@@ -264,7 +264,7 @@ export const createLayoutVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '🎨 Color Category',
+          category: 'Color Category',
           cssVariable: `var(--layera-layout-colorCategory-${colorCategory})`,
           selector: '.layera-layout',
           htmlAttribute: `data-color="${colorCategory}"`,
@@ -272,7 +272,7 @@ export const createLayoutVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '🏷️ Element Type',
+          category: 'Element Type',
           cssVariable: 'var(--layera-layout-elementType)',
           selector: '.layera-layout',
           htmlAttribute: 'data-element="layout"',

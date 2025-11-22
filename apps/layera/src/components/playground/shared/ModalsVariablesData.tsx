@@ -25,7 +25,7 @@ export const createModalsVariablesData = (
       variableCount: 6,
       variables: [
         {
-          category: '🪟 Primary Modal',
+          category: 'Primary Modal',
           cssVariable: '--layera-modal-background-primary',
           selector: '.layera-modal[data-variant="primary"]',
           htmlAttribute: 'data-variant="primary"',
@@ -33,7 +33,7 @@ export const createModalsVariablesData = (
           borderColor: 'primary'
         },
         {
-          category: '🪟 Secondary Modal',
+          category: 'Secondary Modal',
           cssVariable: '--layera-modal-background-secondary',
           selector: '.layera-modal[data-variant="secondary"]',
           htmlAttribute: 'data-variant="secondary"',
@@ -41,7 +41,7 @@ export const createModalsVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '🪟 Success Modal',
+          category: 'Success Modal',
           cssVariable: '--layera-modal-background-success',
           selector: '.layera-modal[data-variant="success"]',
           htmlAttribute: 'data-variant="success"',
@@ -49,7 +49,7 @@ export const createModalsVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '🪟 Warning Modal',
+          category: 'Warning Modal',
           cssVariable: '--layera-modal-background-warning',
           selector: '.layera-modal[data-variant="warning"]',
           htmlAttribute: 'data-variant="warning"',
@@ -57,7 +57,7 @@ export const createModalsVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '🪟 Danger Modal',
+          category: 'Danger Modal',
           cssVariable: '--layera-modal-background-danger',
           selector: '.layera-modal[data-variant="danger"]',
           htmlAttribute: 'data-variant="danger"',
@@ -65,7 +65,7 @@ export const createModalsVariablesData = (
           borderColor: 'danger'
         },
         {
-          category: '🪟 Info Modal',
+          category: 'Info Modal',
           cssVariable: '--layera-modal-background-info',
           selector: '.layera-modal[data-variant="info"]',
           htmlAttribute: 'data-variant="info"',
@@ -81,7 +81,7 @@ export const createModalsVariablesData = (
       variableCount: 3,
       variables: [
         {
-          category: '🔧 Border Width',
+          category: 'Border Width',
           cssVariable: 'var(--layera-modal-borderWidth)',
           selector: '.layera-modal',
           htmlAttribute: `data-border-width="${borderWidth}"`,
@@ -89,7 +89,7 @@ export const createModalsVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '🎨 Border Color',
+          category: 'Border Color',
           cssVariable: `var(--layera-modal-borderColor-${colorCategory})`,
           selector: '.layera-modal',
           htmlAttribute: `data-color="${colorCategory}"`,
@@ -97,7 +97,7 @@ export const createModalsVariablesData = (
           borderColor: 'danger'
         },
         {
-          category: '🌊 Border Radius',
+          category: 'Border Radius',
           cssVariable: `var(--layera-modal-borderRadius-${modalRadius})`,
           selector: '.layera-modal',
           htmlAttribute: `data-border-radius="${modalRadius}"`,
@@ -109,11 +109,11 @@ export const createModalsVariablesData = (
     {
       id: 'shadowsEffects',
       title: 'Shadows & Effects',
-      icon: <span>✨</span>,
+      icon: <SettingsIcon size="sm" />,
       variableCount: 4,
       variables: [
         {
-          category: '🌟 Modal Shadow',
+          category: 'Modal Shadow',
           cssVariable: 'var(--layera-modal-shadow)',
           selector: '.layera-modal',
           htmlAttribute: 'data-shadow="true/false"',
@@ -121,7 +121,7 @@ export const createModalsVariablesData = (
           borderColor: 'primary'
         },
         {
-          category: '🎭 Hover Effect',
+          category: 'Hover Effect',
           cssVariable: `var(--layera-modal-hover-${colorCategory})`,
           selector: '.layera-modal:hover',
           htmlAttribute: `data-hover-effect="${hoverEffect}"`,
@@ -129,7 +129,7 @@ export const createModalsVariablesData = (
           borderColor: 'secondary'
         },
         {
-          category: '🎯 Active Effect',
+          category: 'Active Effect',
           cssVariable: `var(--layera-modal-active-${colorCategory})`,
           selector: '.layera-modal:active',
           htmlAttribute: `data-active-effect="${activeEffect}"`,
@@ -137,7 +137,7 @@ export const createModalsVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '💫 Transition',
+          category: 'Transition',
           cssVariable: 'var(--layera-modal-transition)',
           selector: '.layera-modal',
           htmlAttribute: 'data-transition="true/false"',
@@ -153,7 +153,7 @@ export const createModalsVariablesData = (
       variableCount: 4,
       variables: [
         {
-          category: '📏 Size',
+          category: 'Size',
           cssVariable: `var(--layera-modal-size-${modalSize})`,
           selector: '.layera-modal',
           htmlAttribute: `data-size="${modalSize}"`,
@@ -161,7 +161,7 @@ export const createModalsVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '📦 Padding',
+          category: 'Padding',
           cssVariable: `var(--layera-modal-padding-${modalSize})`,
           selector: '.layera-modal',
           htmlAttribute: `data-padding="${modalSize}"`,
@@ -169,7 +169,7 @@ export const createModalsVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '📊 Width',
+          category: 'Width',
           cssVariable: 'var(--layera-modal-width)',
           selector: '.layera-modal',
           htmlAttribute: 'data-width="auto/defined"',
@@ -177,7 +177,7 @@ export const createModalsVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '📏 Height',
+          category: 'Height',
           cssVariable: `var(--layera-modal-height-${modalSize})`,
           selector: '.layera-modal',
           htmlAttribute: `data-height="${modalSize}"`,
@@ -193,7 +193,7 @@ export const createModalsVariablesData = (
       variableCount: 4,
       variables: [
         {
-          category: '🔠 Font Size',
+          category: 'Font Size',
           cssVariable: `var(--layera-modal-fontSize-${modalSize})`,
           selector: '.layera-modal',
           htmlAttribute: `data-font-size="${modalSize}"`,
@@ -201,7 +201,7 @@ export const createModalsVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '💪 Font Weight',
+          category: 'Font Weight',
           cssVariable: 'var(--layera-modal-fontWeight)',
           selector: '.layera-modal',
           htmlAttribute: 'data-font-weight="auto/defined"',
@@ -209,7 +209,7 @@ export const createModalsVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '🎨 Text Color',
+          category: 'Text Color',
           cssVariable: `var(--layera-modal-color-${colorCategory})`,
           selector: '.layera-modal',
           htmlAttribute: `data-text-color="${colorCategory}"`,
@@ -217,7 +217,7 @@ export const createModalsVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '📝 Text Alignment',
+          category: 'Text Alignment',
           cssVariable: `var(--layera-modal-textAlign-${modalTextAlign})`,
           selector: '.layera-modal',
           htmlAttribute: `data-text-align="${modalTextAlign}"`,
@@ -233,7 +233,7 @@ export const createModalsVariablesData = (
       variableCount: 3,
       variables: [
         {
-          category: '🎯 Focus State',
+          category: 'Focus State',
           cssVariable: 'var(--layera-modal-focus-outline)',
           selector: '.layera-modal:focus',
           htmlAttribute: 'data-focus="true/false"',
@@ -241,7 +241,7 @@ export const createModalsVariablesData = (
           borderColor: 'primary'
         },
         {
-          category: '🚫 Disabled State',
+          category: 'Disabled State',
           cssVariable: 'var(--layera-modal-disabled-opacity)',
           selector: '.layera-modal:disabled',
           htmlAttribute: 'data-disabled="true/false"',
@@ -249,7 +249,7 @@ export const createModalsVariablesData = (
           borderColor: 'secondary'
         },
         {
-          category: '⏱️ Loading State',
+          category: 'Loading State',
           cssVariable: 'var(--layera-modal-loading-spinner)',
           selector: '.layera-modal .spinner',
           htmlAttribute: 'data-loading="true/false"',
@@ -265,7 +265,7 @@ export const createModalsVariablesData = (
       variableCount: 3,
       variables: [
         {
-          category: '🔷 Size',
+          category: 'Modal Size',
           cssVariable: `var(--layera-modal-size-${modalSize})`,
           selector: '.layera-modal',
           htmlAttribute: `data-size="${modalSize}"`,
@@ -273,7 +273,7 @@ export const createModalsVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '🎨 Color Category',
+          category: 'Color Category',
           cssVariable: `var(--layera-modal-colorCategory-${colorCategory})`,
           selector: '.layera-modal',
           htmlAttribute: `data-color="${colorCategory}"`,
@@ -281,7 +281,7 @@ export const createModalsVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '🏷️ Element Type',
+          category: 'Element Type',
           cssVariable: 'var(--layera-modal-elementType)',
           selector: '.layera-modal',
           htmlAttribute: 'data-element="modal"',

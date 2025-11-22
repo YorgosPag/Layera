@@ -24,7 +24,7 @@ export const createTablesVariablesData = (
       variableCount: 6,
       variables: [
         {
-          category: '📊 Primary Table',
+          category: 'Primary Table',
           cssVariable: '--layera-table-background-primary',
           selector: '.layera-table[data-variant="primary"]',
           htmlAttribute: 'data-variant="primary"',
@@ -32,7 +32,7 @@ export const createTablesVariablesData = (
           borderColor: 'primary'
         },
         {
-          category: '📊 Secondary Table',
+          category: 'Secondary Table',
           cssVariable: '--layera-table-background-secondary',
           selector: '.layera-table[data-variant="secondary"]',
           htmlAttribute: 'data-variant="secondary"',
@@ -40,7 +40,7 @@ export const createTablesVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '📊 Success Table',
+          category: 'Success Table',
           cssVariable: '--layera-table-background-success',
           selector: '.layera-table[data-variant="success"]',
           htmlAttribute: 'data-variant="success"',
@@ -48,7 +48,7 @@ export const createTablesVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '📊 Warning Table',
+          category: 'Warning Table',
           cssVariable: '--layera-table-background-warning',
           selector: '.layera-table[data-variant="warning"]',
           htmlAttribute: 'data-variant="warning"',
@@ -56,7 +56,7 @@ export const createTablesVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '📊 Danger Table',
+          category: 'Danger Table',
           cssVariable: '--layera-table-background-danger',
           selector: '.layera-table[data-variant="danger"]',
           htmlAttribute: 'data-variant="danger"',
@@ -64,7 +64,7 @@ export const createTablesVariablesData = (
           borderColor: 'danger'
         },
         {
-          category: '📊 Info Table',
+          category: 'Info Table',
           cssVariable: '--layera-table-background-info',
           selector: '.layera-table[data-variant="info"]',
           htmlAttribute: 'data-variant="info"',
@@ -80,7 +80,7 @@ export const createTablesVariablesData = (
       variableCount: 3,
       variables: [
         {
-          category: '🔧 Border Width',
+          category: 'Border Width',
           cssVariable: 'var(--layera-table-borderWidth)',
           selector: '.layera-table',
           htmlAttribute: `data-border-width="${borderWidth}"`,
@@ -88,7 +88,7 @@ export const createTablesVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '🎨 Border Color',
+          category: 'Border Color',
           cssVariable: `var(--layera-table-borderColor-${colorCategory})`,
           selector: '.layera-table',
           htmlAttribute: `data-color="${colorCategory}"`,
@@ -96,7 +96,7 @@ export const createTablesVariablesData = (
           borderColor: 'danger'
         },
         {
-          category: '🌊 Border Radius',
+          category: 'Border Radius',
           cssVariable: `var(--layera-table-borderRadius-${tableRadius})`,
           selector: '.layera-table',
           htmlAttribute: `data-border-radius="${tableRadius}"`,
@@ -108,11 +108,11 @@ export const createTablesVariablesData = (
     {
       id: 'shadowsEffects',
       title: 'Shadows & Effects',
-      icon: <span>✨</span>,
+      icon: <SettingsIcon size="sm" />,
       variableCount: 4,
       variables: [
         {
-          category: '🌟 Table Shadow',
+          category: 'Table Shadow',
           cssVariable: 'var(--layera-table-shadow)',
           selector: '.layera-table',
           htmlAttribute: 'data-shadow="true/false"',
@@ -120,7 +120,7 @@ export const createTablesVariablesData = (
           borderColor: 'primary'
         },
         {
-          category: '🎭 Hover Effect',
+          category: 'Hover Effect',
           cssVariable: `var(--layera-table-hover-${colorCategory})`,
           selector: '.layera-table:hover',
           htmlAttribute: `data-hover-effect="${hoverEffect}"`,
@@ -128,7 +128,7 @@ export const createTablesVariablesData = (
           borderColor: 'secondary'
         },
         {
-          category: '🎯 Active Effect',
+          category: 'Active Effect',
           cssVariable: `var(--layera-table-active-${colorCategory})`,
           selector: '.layera-table:focus',
           htmlAttribute: `data-active-effect="${activeEffect}"`,
@@ -136,7 +136,7 @@ export const createTablesVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '💫 Transition',
+          category: 'Transition',
           cssVariable: 'var(--layera-table-transition)',
           selector: '.layera-table',
           htmlAttribute: 'data-transition="true/false"',
@@ -152,7 +152,7 @@ export const createTablesVariablesData = (
       variableCount: 4,
       variables: [
         {
-          category: '📏 Size',
+          category: 'Size',
           cssVariable: `var(--layera-table-size-${tableSize})`,
           selector: '.layera-table',
           htmlAttribute: `data-size="${tableSize}"`,
@@ -160,7 +160,7 @@ export const createTablesVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '📦 Padding',
+          category: 'Padding',
           cssVariable: `var(--layera-table-padding-${tableSize})`,
           selector: '.layera-table',
           htmlAttribute: `data-padding="${tableSize}"`,
@@ -168,7 +168,7 @@ export const createTablesVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '📊 Width',
+          category: 'Width',
           cssVariable: 'var(--layera-table-width)',
           selector: '.layera-table',
           htmlAttribute: 'data-width="auto/defined"',
@@ -176,7 +176,7 @@ export const createTablesVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '📏 Height',
+          category: 'Height',
           cssVariable: `var(--layera-table-height-${tableSize})`,
           selector: '.layera-table',
           htmlAttribute: `data-height="${tableSize}"`,
@@ -192,7 +192,7 @@ export const createTablesVariablesData = (
       variableCount: 4,
       variables: [
         {
-          category: '🔠 Font Size',
+          category: 'Font Size',
           cssVariable: `var(--layera-table-fontSize-${tableSize})`,
           selector: '.layera-table',
           htmlAttribute: `data-font-size="${tableSize}"`,
@@ -200,7 +200,7 @@ export const createTablesVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '💪 Font Weight',
+          category: 'Font Weight',
           cssVariable: 'var(--layera-table-fontWeight)',
           selector: '.layera-table',
           htmlAttribute: 'data-font-weight="auto/defined"',
@@ -208,7 +208,7 @@ export const createTablesVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '🎨 Text Color',
+          category: 'Text Color',
           cssVariable: `var(--layera-table-color-${colorCategory})`,
           selector: '.layera-table',
           htmlAttribute: `data-text-color="${colorCategory}"`,
@@ -216,7 +216,7 @@ export const createTablesVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '📝 Header Color',
+          category: 'Header Color',
           cssVariable: `var(--layera-table-header-${colorCategory})`,
           selector: '.layera-table thead th',
           htmlAttribute: `data-header-color="${colorCategory}"`,
@@ -232,7 +232,7 @@ export const createTablesVariablesData = (
       variableCount: 4,
       variables: [
         {
-          category: '🎯 Focus State',
+          category: 'Focus State',
           cssVariable: 'var(--layera-table-focus-outline)',
           selector: '.layera-table:focus',
           htmlAttribute: 'data-focus="true/false"',
@@ -240,7 +240,7 @@ export const createTablesVariablesData = (
           borderColor: 'primary'
         },
         {
-          category: '🌓 Striped Rows',
+          category: 'Striped Rows',
           cssVariable: 'var(--layera-table-striped-background)',
           selector: '.layera-table tr:nth-child(even)',
           htmlAttribute: 'data-striped="true/false"',
@@ -248,7 +248,7 @@ export const createTablesVariablesData = (
           borderColor: 'secondary'
         },
         {
-          category: '🎯 Selected Row',
+          category: 'Selected Row',
           cssVariable: 'var(--layera-table-selected-background)',
           selector: '.layera-table tr:selected',
           htmlAttribute: 'data-selected="true/false"',
@@ -256,7 +256,7 @@ export const createTablesVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '👆 Hover Row',
+          category: 'Hover Row',
           cssVariable: 'var(--layera-table-hover-background)',
           selector: '.layera-table tr:hover',
           htmlAttribute: 'data-hover="true/false"',
@@ -272,7 +272,7 @@ export const createTablesVariablesData = (
       variableCount: 3,
       variables: [
         {
-          category: '🔷 Size',
+          category: 'Table Size',
           cssVariable: `var(--layera-table-size-${tableSize})`,
           selector: '.layera-table',
           htmlAttribute: `data-size="${tableSize}"`,
@@ -280,7 +280,7 @@ export const createTablesVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '🎨 Color Category',
+          category: 'Color Category',
           cssVariable: `var(--layera-table-colorCategory-${colorCategory})`,
           selector: '.layera-table',
           htmlAttribute: `data-color="${colorCategory}"`,
@@ -288,7 +288,7 @@ export const createTablesVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '🏷️ Element Type',
+          category: 'Element Type',
           cssVariable: 'var(--layera-table-elementType)',
           selector: '.layera-table',
           htmlAttribute: 'data-element="table"',

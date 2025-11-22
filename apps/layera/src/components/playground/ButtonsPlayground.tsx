@@ -745,7 +745,7 @@ HTML Attribute: ${row.htmlAttribute}
             onClick={() => setShowVariablesPopup(true)}
             className="layera-text--align-center layera-opacity--70 layera-hover--opacity-100"
           >
-            <BellIcon size="sm" /> Όλες οι Μεταβλητές Πλήκτρων
+            Όλες οι Μεταβλητές Πλήκτρων
           </Button>
         </Box>
       </Box>

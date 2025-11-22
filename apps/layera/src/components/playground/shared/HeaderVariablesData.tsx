@@ -1,5 +1,5 @@
 import React from 'react';
-import { PaletteIcon, RulerIcon, LayersIcon, EditIcon, CheckIcon, SettingsIcon, PolygonIcon } from '@layera/icons';
+import { PaletteIcon, RulerIcon, LayersIcon, EditIcon, CheckIcon, SettingsIcon, PolygonIcon, LocationIcon } from '@layera/icons';
 import { CategoryInfo } from './VariablesInfoAccordion';
 
 /**
@@ -24,7 +24,7 @@ export const createHeaderVariablesData = (
       variableCount: 6,
       variables: [
         {
-          category: '🏠 Primary Header',
+          category: 'Primary Header',
           cssVariable: '--layera-header-background-primary',
           selector: '.layera-header[data-variant="primary"]',
           htmlAttribute: 'data-variant="primary"',
@@ -32,7 +32,7 @@ export const createHeaderVariablesData = (
           borderColor: 'primary'
         },
         {
-          category: '🏠 Secondary Header',
+          category: 'Secondary Header',
           cssVariable: '--layera-header-background-secondary',
           selector: '.layera-header[data-variant="secondary"]',
           htmlAttribute: 'data-variant="secondary"',
@@ -40,7 +40,7 @@ export const createHeaderVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '🏠 Success Header',
+          category: 'Success Header',
           cssVariable: '--layera-header-background-success',
           selector: '.layera-header[data-variant="success"]',
           htmlAttribute: 'data-variant="success"',
@@ -48,7 +48,7 @@ export const createHeaderVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '🏠 Warning Header',
+          category: 'Warning Header',
           cssVariable: '--layera-header-background-warning',
           selector: '.layera-header[data-variant="warning"]',
           htmlAttribute: 'data-variant="warning"',
@@ -56,7 +56,7 @@ export const createHeaderVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '🏠 Danger Header',
+          category: 'Danger Header',
           cssVariable: '--layera-header-background-danger',
           selector: '.layera-header[data-variant="danger"]',
           htmlAttribute: 'data-variant="danger"',
@@ -64,7 +64,7 @@ export const createHeaderVariablesData = (
           borderColor: 'danger'
         },
         {
-          category: '🏠 Info Header',
+          category: 'Info Header',
           cssVariable: '--layera-header-background-info',
           selector: '.layera-header[data-variant="info"]',
           htmlAttribute: 'data-variant="info"',
@@ -80,7 +80,7 @@ export const createHeaderVariablesData = (
       variableCount: 3,
       variables: [
         {
-          category: '🔧 Border Width',
+          category: 'Border Width',
           cssVariable: 'var(--layera-header-borderWidth)',
           selector: '.layera-header',
           htmlAttribute: `data-border-width="${borderWidth}"`,
@@ -88,7 +88,7 @@ export const createHeaderVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '🎨 Border Color',
+          category: 'Border Color',
           cssVariable: `var(--layera-header-borderColor-${colorCategory})`,
           selector: '.layera-header',
           htmlAttribute: `data-color="${colorCategory}"`,
@@ -96,7 +96,7 @@ export const createHeaderVariablesData = (
           borderColor: 'danger'
         },
         {
-          category: '🌊 Border Radius',
+          category: 'Border Radius',
           cssVariable: `var(--layera-header-borderRadius-${headerRadius})`,
           selector: '.layera-header',
           htmlAttribute: `data-border-radius="${headerRadius}"`,
@@ -108,11 +108,11 @@ export const createHeaderVariablesData = (
     {
       id: 'shadowsEffects',
       title: 'Shadows & Effects',
-      icon: <span>✨</span>,
+      icon: <SettingsIcon size="sm" />,
       variableCount: 4,
       variables: [
         {
-          category: '🌟 Header Shadow',
+          category: 'Header Shadow',
           cssVariable: 'var(--layera-header-shadow)',
           selector: '.layera-header',
           htmlAttribute: 'data-shadow="true/false"',
@@ -120,7 +120,7 @@ export const createHeaderVariablesData = (
           borderColor: 'primary'
         },
         {
-          category: '🎭 Hover Effect',
+          category: 'Hover Effect',
           cssVariable: `var(--layera-header-hover-${colorCategory})`,
           selector: '.layera-header:hover',
           htmlAttribute: `data-hover-effect="${hoverEffect}"`,
@@ -128,7 +128,7 @@ export const createHeaderVariablesData = (
           borderColor: 'secondary'
         },
         {
-          category: '🎯 Active Effect',
+          category: 'Active Effect',
           cssVariable: `var(--layera-header-active-${colorCategory})`,
           selector: '.layera-header:active',
           htmlAttribute: `data-active-effect="${activeEffect}"`,
@@ -136,7 +136,7 @@ export const createHeaderVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '💫 Transition',
+          category: 'Transition',
           cssVariable: 'var(--layera-header-transition)',
           selector: '.layera-header',
           htmlAttribute: 'data-transition="true/false"',
@@ -149,10 +149,10 @@ export const createHeaderVariablesData = (
       id: 'layoutSpacing',
       title: 'Layout & Spacing',
       icon: <LayersIcon size="sm" />,
-      variableCount: 4,
+      variableCount: 7,
       variables: [
         {
-          category: '📏 Size',
+          category: 'Size',
           cssVariable: `var(--layera-header-size-${headerSize})`,
           selector: '.layera-header',
           htmlAttribute: `data-size="${headerSize}"`,
@@ -160,7 +160,7 @@ export const createHeaderVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '📦 Padding',
+          category: 'Padding',
           cssVariable: `var(--layera-header-padding-${headerSize})`,
           selector: '.layera-header',
           htmlAttribute: `data-padding="${headerSize}"`,
@@ -168,7 +168,7 @@ export const createHeaderVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '📊 Width',
+          category: 'Width',
           cssVariable: 'var(--layera-header-width)',
           selector: '.layera-header',
           htmlAttribute: 'data-width="auto/defined"',
@@ -176,12 +176,39 @@ export const createHeaderVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '📏 Height',
+          category: 'Height',
           cssVariable: `var(--layera-header-height-${headerSize})`,
           selector: '.layera-header',
           htmlAttribute: `data-height="${headerSize}"`,
           currentValue: `var(--layera-header-height-${headerSize})`,
           borderColor: 'danger'
+        },
+        {
+          category: 'Center Column',
+          cssVariable: 'var(--layera-header-center-column)',
+          selector: '.layera-header-grid',
+          htmlAttribute: 'data-grid-center="250px"',
+          currentValue: '250px',
+          borderColor: 'primary',
+          icon: <LayersIcon size="xs" />
+        },
+        {
+          category: 'Grid Template',
+          cssVariable: 'var(--layera-grid-template-columns--header)',
+          selector: '.layera-header-grid',
+          htmlAttribute: 'data-grid="1fr 250px 1fr"',
+          currentValue: '1fr var(--layera-header-center-column) 1fr',
+          borderColor: 'info',
+          icon: <PolygonIcon size="xs" />
+        },
+        {
+          category: 'Grid Gap',
+          cssVariable: 'var(--layera-gap--2)',
+          selector: '.layera-header-grid',
+          htmlAttribute: 'data-gap="8px"',
+          currentValue: 'var(--layera-spacing-spacing-2)',
+          borderColor: 'success',
+          icon: <LocationIcon size="xs" />
         }
       ]
     },
@@ -192,7 +219,7 @@ export const createHeaderVariablesData = (
       variableCount: 3,
       variables: [
         {
-          category: '🔠 Font Size',
+          category: 'Font Size',
           cssVariable: `var(--layera-header-fontSize-${headerSize})`,
           selector: '.layera-header',
           htmlAttribute: `data-font-size="${headerSize}"`,
@@ -200,7 +227,7 @@ export const createHeaderVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '💪 Font Weight',
+          category: 'Font Weight',
           cssVariable: 'var(--layera-header-fontWeight)',
           selector: '.layera-header',
           htmlAttribute: 'data-font-weight="auto/defined"',
@@ -208,7 +235,7 @@ export const createHeaderVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '🎨 Text Color',
+          category: 'Text Color',
           cssVariable: `var(--layera-header-color-${colorCategory})`,
           selector: '.layera-header',
           htmlAttribute: `data-text-color="${colorCategory}"`,
@@ -224,7 +251,7 @@ export const createHeaderVariablesData = (
       variableCount: 3,
       variables: [
         {
-          category: '🎯 Focus State',
+          category: 'Focus State',
           cssVariable: 'var(--layera-header-focus-outline)',
           selector: '.layera-header:focus',
           htmlAttribute: 'data-focus="true/false"',
@@ -232,7 +259,7 @@ export const createHeaderVariablesData = (
           borderColor: 'primary'
         },
         {
-          category: '🚫 Disabled State',
+          category: 'Disabled State',
           cssVariable: 'var(--layera-header-disabled-opacity)',
           selector: '.layera-header:disabled',
           htmlAttribute: 'data-disabled="true/false"',
@@ -240,7 +267,7 @@ export const createHeaderVariablesData = (
           borderColor: 'secondary'
         },
         {
-          category: '⏱️ Loading State',
+          category: 'Loading State',
           cssVariable: 'var(--layera-header-loading-spinner)',
           selector: '.layera-header .spinner',
           htmlAttribute: 'data-loading="true/false"',
@@ -256,7 +283,7 @@ export const createHeaderVariablesData = (
       variableCount: 3,
       variables: [
         {
-          category: '🔷 Size',
+          category: 'Header Size',
           cssVariable: `var(--layera-header-size-${headerSize})`,
           selector: '.layera-header',
           htmlAttribute: `data-size="${headerSize}"`,
@@ -264,7 +291,7 @@ export const createHeaderVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '🎨 Color Category',
+          category: 'Color Category',
           cssVariable: `var(--layera-header-colorCategory-${colorCategory})`,
           selector: '.layera-header',
           htmlAttribute: `data-color="${colorCategory}"`,
@@ -272,7 +299,7 @@ export const createHeaderVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '🏷️ Element Type',
+          category: 'Element Type',
           cssVariable: 'var(--layera-header-elementType)',
           selector: '.layera-header',
           htmlAttribute: 'data-element="header"',

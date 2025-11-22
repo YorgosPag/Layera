@@ -117,24 +117,6 @@ export const ButtonRadiusControl: React.FC<ButtonRadiusControlProps> = ({
         </Text>
       </Box>
 
-      {/* CSS Information για developers */}
-      <Box className="layera-border--dashed layera-border-width--1 layera-border-color--info layera-padding--md layera-margin-bottom--sm layera-bg--surface-secondary layera-border-radius--md">
-        <Text className="layera-typography layera-margin-bottom--xs layera-flex layera-flex--align-center layera-gap--xs" data-size="xs" data-weight="bold" data-color="primary">
-          <SettingsIcon size="sm" /> CSS Πληροφορίες
-        </Text>
-        <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
-          <strong>Variable:</strong> {`--layera-live-${elementType || 'buttons'}-primary`}
-        </Text>
-        <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
-          <strong>Selector:</strong> {`.layera-${elementType || 'buttons'}[data-variant="primary"]`}
-        </Text>
-        <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
-          <strong>HTML Attribute:</strong> {`data-layera-${elementType || 'buttons'}-primary="active"`}
-        </Text>
-        <Text className="layera-typography" data-size="xs" data-color="secondary">
-          Τρέχον token: <span className="layera-typography" data-weight="bold" data-color="success">{currentOption.token}</span>
-        </Text>
-      </Box>
 
       {/* Description */}
       <Text className="layera-typography" data-size="sm" data-color="secondary">

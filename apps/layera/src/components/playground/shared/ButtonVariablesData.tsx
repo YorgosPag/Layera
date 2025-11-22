@@ -1,5 +1,5 @@
 import React from 'react';
-import { PaletteIcon, RulerIcon, LayersIcon, EditIcon, CheckIcon, SettingsIcon, PolygonIcon } from '@layera/icons';
+import { PaletteIcon, RulerIcon, LayersIcon, EditIcon, CheckIcon, SettingsIcon, PolygonIcon, UserIcon, LocationIcon } from '@layera/icons';
 import { CategoryInfo } from './VariablesInfoAccordion';
 import { ButtonState } from '../../../hooks/useButtonState';
 
@@ -25,7 +25,7 @@ export const createButtonVariablesData = (
       variableCount: 8,
       variables: [
         {
-          category: '🎨 Primary Φόντο',
+          category: 'Primary Φόντο',
           cssVariable: '--layera-button-background-primary',
           selector: '.layera-button[data-variant="primary"]',
           htmlAttribute: 'data-layera-button-background="primary"',
@@ -33,7 +33,7 @@ export const createButtonVariablesData = (
           borderColor: 'primary'
         },
         {
-          category: '🎨 Secondary Φόντο',
+          category: 'Secondary Φόντο',
           cssVariable: '--layera-button-background-secondary',
           selector: '.layera-button[data-variant="secondary"]',
           htmlAttribute: 'data-layera-button-background="secondary"',
@@ -41,7 +41,7 @@ export const createButtonVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '🎨 Success Φόντο',
+          category: 'Success Φόντο',
           cssVariable: '--layera-button-background-success',
           selector: '.layera-button[data-variant="success"]',
           htmlAttribute: 'data-layera-button-background="success"',
@@ -49,7 +49,7 @@ export const createButtonVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '🎨 Warning Φόντο',
+          category: 'Warning Φόντο',
           cssVariable: '--layera-button-background-warning',
           selector: '.layera-button[data-variant="warning"]',
           htmlAttribute: 'data-layera-button-background="warning"',
@@ -57,7 +57,7 @@ export const createButtonVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '🎨 Danger Φόντο',
+          category: 'Danger Φόντο',
           cssVariable: '--layera-button-background-danger',
           selector: '.layera-button[data-variant="danger"]',
           htmlAttribute: 'data-layera-button-background="danger"',
@@ -65,7 +65,7 @@ export const createButtonVariablesData = (
           borderColor: 'danger'
         },
         {
-          category: '🎨 Info Φόντο',
+          category: 'Info Φόντο',
           cssVariable: '--layera-button-background-info',
           selector: '.layera-button[data-variant="info"]',
           htmlAttribute: 'data-layera-button-background="info"',
@@ -73,7 +73,7 @@ export const createButtonVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '🎨 Outline Φόντο',
+          category: 'Outline Φόντο',
           cssVariable: '--layera-button-background-outline',
           selector: '.layera-button[data-variant="outline"]',
           htmlAttribute: 'data-layera-button-background="outline"',
@@ -81,7 +81,7 @@ export const createButtonVariablesData = (
           borderColor: 'secondary'
         },
         {
-          category: '🎨 Ghost Φόντο',
+          category: 'Ghost Φόντο',
           cssVariable: '--layera-button-background-ghost',
           selector: '.layera-button[data-variant="ghost"]',
           htmlAttribute: 'data-layera-button-background="ghost"',
@@ -97,7 +97,7 @@ export const createButtonVariablesData = (
       variableCount: 3,
       variables: [
         {
-          category: '🔧 Border Width',
+          category: 'Border Width',
           cssVariable: 'var(--layera-button-borderWidth)',
           selector: '.layera-button',
           htmlAttribute: `data-border-width="${borderWidth}"`,
@@ -105,7 +105,7 @@ export const createButtonVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '🎨 Border Color',
+          category: 'Border Color',
           cssVariable: `var(--layera-button-borderColor-${colorCategory})`,
           selector: '.layera-button',
           htmlAttribute: `data-color="${colorCategory}"`,
@@ -113,7 +113,7 @@ export const createButtonVariablesData = (
           borderColor: 'danger'
         },
         {
-          category: '🌊 Border Radius',
+          category: 'Border Radius',
           cssVariable: `var(--layera-button-borderRadius-${borderRadius})`,
           selector: '.layera-button',
           htmlAttribute: `data-border-radius="${borderRadius}"`,
@@ -125,11 +125,11 @@ export const createButtonVariablesData = (
     {
       id: 'shadowsEffects',
       title: 'Shadows & Effects',
-      icon: <span>✨</span>,
+      icon: <SettingsIcon size="sm" />,
       variableCount: 4,
       variables: [
         {
-          category: '🌟 Box Shadow',
+          category: 'Box Shadow',
           cssVariable: 'var(--layera-button-shadow)',
           selector: '.layera-button',
           htmlAttribute: 'data-shadow="true/false"',
@@ -137,7 +137,7 @@ export const createButtonVariablesData = (
           borderColor: 'primary'
         },
         {
-          category: '🎭 Hover Effect',
+          category: 'Hover Effect',
           cssVariable: `var(--layera-button-hover-${colorCategory})`,
           selector: '.layera-button:hover',
           htmlAttribute: `data-hover-effect="${hoverEffect}"`,
@@ -145,7 +145,7 @@ export const createButtonVariablesData = (
           borderColor: 'secondary'
         },
         {
-          category: '🎯 Active Effect',
+          category: 'Active Effect',
           cssVariable: `var(--layera-button-active-${colorCategory})`,
           selector: '.layera-button:active',
           htmlAttribute: `data-active-effect="${activeEffect}"`,
@@ -153,7 +153,7 @@ export const createButtonVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '💫 Transition',
+          category: 'Transition',
           cssVariable: 'var(--layera-button-transition)',
           selector: '.layera-button',
           htmlAttribute: 'data-transition="true/false"',
@@ -169,7 +169,7 @@ export const createButtonVariablesData = (
       variableCount: 4,
       variables: [
         {
-          category: '📏 Size',
+          category: 'Size',
           cssVariable: `var(--layera-button-size-${buttonState.size})`,
           selector: '.layera-button',
           htmlAttribute: `data-size="${buttonState.size}"`,
@@ -177,7 +177,7 @@ export const createButtonVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '📦 Padding',
+          category: 'Padding',
           cssVariable: `var(--layera-button-padding-${buttonState.size})`,
           selector: '.layera-button',
           htmlAttribute: `data-padding="${buttonState.size}"`,
@@ -185,7 +185,7 @@ export const createButtonVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '📊 Min Width',
+          category: 'Min Width',
           cssVariable: 'var(--layera-button-minWidth)',
           selector: '.layera-button',
           htmlAttribute: 'data-min-width="auto/defined"',
@@ -193,7 +193,7 @@ export const createButtonVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '📏 Height',
+          category: 'Height',
           cssVariable: `var(--layera-button-height-${buttonState.size})`,
           selector: '.layera-button',
           htmlAttribute: `data-height="${buttonState.size}"`,
@@ -209,7 +209,7 @@ export const createButtonVariablesData = (
       variableCount: 4,
       variables: [
         {
-          category: '🔠 Font Size',
+          category: 'Font Size',
           cssVariable: `var(--layera-button-fontSize-${buttonState.size})`,
           selector: '.layera-button',
           htmlAttribute: `data-font-size="${buttonState.size}"`,
@@ -217,7 +217,7 @@ export const createButtonVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '💪 Font Weight',
+          category: 'Font Weight',
           cssVariable: 'var(--layera-button-fontWeight)',
           selector: '.layera-button',
           htmlAttribute: 'data-font-weight="auto/defined"',
@@ -225,7 +225,7 @@ export const createButtonVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '🎨 Text Color',
+          category: 'Text Color',
           cssVariable: `var(--layera-button-color-${colorCategory})`,
           selector: '.layera-button',
           htmlAttribute: `data-text-color="${colorCategory}"`,
@@ -233,7 +233,7 @@ export const createButtonVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '📝 Text Content',
+          category: 'Text Content',
           cssVariable: 'Dynamic Content',
           selector: '.layera-button .button-text',
           htmlAttribute: `data-text="${buttonState.text}"`,
@@ -249,7 +249,7 @@ export const createButtonVariablesData = (
       variableCount: 3,
       variables: [
         {
-          category: '📐 Icon Size',
+          category: 'Icon Size',
           cssVariable: `var(--layera-button-iconSize-${buttonState.size})`,
           selector: '.layera-button .icon',
           htmlAttribute: `data-icon-size="${buttonState.size}"`,
@@ -257,7 +257,7 @@ export const createButtonVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '🎯 Icon Position',
+          category: 'Icon Position',
           cssVariable: 'var(--layera-button-iconPosition)',
           selector: '.layera-button .icon',
           htmlAttribute: 'data-icon-position="left/right"',
@@ -265,7 +265,7 @@ export const createButtonVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '✅ Icon Status',
+          category: 'Icon Status',
           cssVariable: 'Boolean State',
           selector: '.layera-button',
           htmlAttribute: `data-with-icon="${buttonState.withIcon}"`,
@@ -281,7 +281,7 @@ export const createButtonVariablesData = (
       variableCount: 3,
       variables: [
         {
-          category: '🎯 Focus State',
+          category: 'Focus State',
           cssVariable: 'var(--layera-button-focus-outline)',
           selector: '.layera-button:focus',
           htmlAttribute: 'data-focus="true/false"',
@@ -289,7 +289,7 @@ export const createButtonVariablesData = (
           borderColor: 'primary'
         },
         {
-          category: '🚫 Disabled State',
+          category: 'Disabled State',
           cssVariable: 'var(--layera-button-disabled-opacity)',
           selector: '.layera-button:disabled',
           htmlAttribute: 'data-disabled="true/false"',
@@ -297,7 +297,7 @@ export const createButtonVariablesData = (
           borderColor: 'secondary'
         },
         {
-          category: '⏱️ Loading State',
+          category: 'Loading State',
           cssVariable: 'var(--layera-button-loading-spinner)',
           selector: '.layera-button .spinner',
           htmlAttribute: 'data-loading="true/false"',
@@ -313,7 +313,7 @@ export const createButtonVariablesData = (
       variableCount: 3,
       variables: [
         {
-          category: '🔷 Shape',
+          category: 'Shape',
           cssVariable: `var(--layera-button-shape-${buttonState.shape})`,
           selector: '.layera-button',
           htmlAttribute: `data-shape="${buttonState.shape}"`,
@@ -321,7 +321,7 @@ export const createButtonVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '🎨 Color Category',
+          category: 'Color Category',
           cssVariable: `var(--layera-button-colorCategory-${colorCategory})`,
           selector: '.layera-button',
           htmlAttribute: `data-color="${colorCategory}"`,
@@ -329,7 +329,7 @@ export const createButtonVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '🏷️ Element Type',
+          category: 'Element Type',
           cssVariable: 'var(--layera-button-elementType)',
           selector: '.layera-button',
           htmlAttribute: 'data-element="button"',

@@ -24,7 +24,7 @@ export const createInputsVariablesData = (
       variableCount: 6,
       variables: [
         {
-          category: '✏️ Primary Input',
+          category: 'Primary Input',
           cssVariable: '--layera-input-background-primary',
           selector: '.layera-input[data-variant="primary"]',
           htmlAttribute: 'data-variant="primary"',
@@ -32,7 +32,7 @@ export const createInputsVariablesData = (
           borderColor: 'primary'
         },
         {
-          category: '✏️ Secondary Input',
+          category: 'Secondary Input',
           cssVariable: '--layera-input-background-secondary',
           selector: '.layera-input[data-variant="secondary"]',
           htmlAttribute: 'data-variant="secondary"',
@@ -40,7 +40,7 @@ export const createInputsVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '✏️ Success Input',
+          category: 'Success Input',
           cssVariable: '--layera-input-background-success',
           selector: '.layera-input[data-variant="success"]',
           htmlAttribute: 'data-variant="success"',
@@ -48,7 +48,7 @@ export const createInputsVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '✏️ Warning Input',
+          category: 'Warning Input',
           cssVariable: '--layera-input-background-warning',
           selector: '.layera-input[data-variant="warning"]',
           htmlAttribute: 'data-variant="warning"',
@@ -56,7 +56,7 @@ export const createInputsVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '✏️ Danger Input',
+          category: 'Danger Input',
           cssVariable: '--layera-input-background-danger',
           selector: '.layera-input[data-variant="danger"]',
           htmlAttribute: 'data-variant="danger"',
@@ -64,7 +64,7 @@ export const createInputsVariablesData = (
           borderColor: 'danger'
         },
         {
-          category: '✏️ Info Input',
+          category: 'Info Input',
           cssVariable: '--layera-input-background-info',
           selector: '.layera-input[data-variant="info"]',
           htmlAttribute: 'data-variant="info"',
@@ -80,7 +80,7 @@ export const createInputsVariablesData = (
       variableCount: 3,
       variables: [
         {
-          category: '🔧 Border Width',
+          category: 'Border Width',
           cssVariable: 'var(--layera-input-borderWidth)',
           selector: '.layera-input',
           htmlAttribute: `data-border-width="${borderWidth}"`,
@@ -88,7 +88,7 @@ export const createInputsVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '🎨 Border Color',
+          category: 'Border Color',
           cssVariable: `var(--layera-input-borderColor-${colorCategory})`,
           selector: '.layera-input',
           htmlAttribute: `data-color="${colorCategory}"`,
@@ -96,7 +96,7 @@ export const createInputsVariablesData = (
           borderColor: 'danger'
         },
         {
-          category: '🌊 Border Radius',
+          category: 'Border Radius',
           cssVariable: `var(--layera-input-borderRadius-${inputRadius})`,
           selector: '.layera-input',
           htmlAttribute: `data-border-radius="${inputRadius}"`,
@@ -108,11 +108,11 @@ export const createInputsVariablesData = (
     {
       id: 'shadowsEffects',
       title: 'Shadows & Effects',
-      icon: <span>✨</span>,
+      icon: <SettingsIcon size="sm" />,
       variableCount: 4,
       variables: [
         {
-          category: '🌟 Input Shadow',
+          category: 'Input Shadow',
           cssVariable: 'var(--layera-input-shadow)',
           selector: '.layera-input',
           htmlAttribute: 'data-shadow="true/false"',
@@ -120,7 +120,7 @@ export const createInputsVariablesData = (
           borderColor: 'primary'
         },
         {
-          category: '🎭 Hover Effect',
+          category: 'Hover Effect',
           cssVariable: `var(--layera-input-hover-${colorCategory})`,
           selector: '.layera-input:hover',
           htmlAttribute: `data-hover-effect="${hoverEffect}"`,
@@ -128,7 +128,7 @@ export const createInputsVariablesData = (
           borderColor: 'secondary'
         },
         {
-          category: '🎯 Active Effect',
+          category: 'Active Effect',
           cssVariable: `var(--layera-input-active-${colorCategory})`,
           selector: '.layera-input:focus',
           htmlAttribute: `data-active-effect="${activeEffect}"`,
@@ -136,7 +136,7 @@ export const createInputsVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '💫 Transition',
+          category: 'Transition',
           cssVariable: 'var(--layera-input-transition)',
           selector: '.layera-input',
           htmlAttribute: 'data-transition="true/false"',
@@ -152,7 +152,7 @@ export const createInputsVariablesData = (
       variableCount: 4,
       variables: [
         {
-          category: '📏 Size',
+          category: 'Size',
           cssVariable: `var(--layera-input-size-${inputSize})`,
           selector: '.layera-input',
           htmlAttribute: `data-size="${inputSize}"`,
@@ -160,7 +160,7 @@ export const createInputsVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '📦 Padding',
+          category: 'Padding',
           cssVariable: `var(--layera-input-padding-${inputSize})`,
           selector: '.layera-input',
           htmlAttribute: `data-padding="${inputSize}"`,
@@ -168,7 +168,7 @@ export const createInputsVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '📊 Width',
+          category: 'Width',
           cssVariable: 'var(--layera-input-width)',
           selector: '.layera-input',
           htmlAttribute: 'data-width="auto/defined"',
@@ -176,7 +176,7 @@ export const createInputsVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '📏 Height',
+          category: 'Height',
           cssVariable: `var(--layera-input-height-${inputSize})`,
           selector: '.layera-input',
           htmlAttribute: `data-height="${inputSize}"`,
@@ -192,7 +192,7 @@ export const createInputsVariablesData = (
       variableCount: 4,
       variables: [
         {
-          category: '🔠 Font Size',
+          category: 'Font Size',
           cssVariable: `var(--layera-input-fontSize-${inputSize})`,
           selector: '.layera-input',
           htmlAttribute: `data-font-size="${inputSize}"`,
@@ -200,7 +200,7 @@ export const createInputsVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '💪 Font Weight',
+          category: 'Font Weight',
           cssVariable: 'var(--layera-input-fontWeight)',
           selector: '.layera-input',
           htmlAttribute: 'data-font-weight="auto/defined"',
@@ -208,7 +208,7 @@ export const createInputsVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '🎨 Text Color',
+          category: 'Text Color',
           cssVariable: `var(--layera-input-color-${colorCategory})`,
           selector: '.layera-input',
           htmlAttribute: `data-text-color="${colorCategory}"`,
@@ -216,7 +216,7 @@ export const createInputsVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '📝 Placeholder Color',
+          category: 'Placeholder Color',
           cssVariable: `var(--layera-input-placeholder-${colorCategory})`,
           selector: '.layera-input::placeholder',
           htmlAttribute: `data-placeholder-color="${colorCategory}"`,
@@ -232,7 +232,7 @@ export const createInputsVariablesData = (
       variableCount: 4,
       variables: [
         {
-          category: '🎯 Focus State',
+          category: 'Focus State',
           cssVariable: 'var(--layera-input-focus-outline)',
           selector: '.layera-input:focus',
           htmlAttribute: 'data-focus="true/false"',
@@ -240,7 +240,7 @@ export const createInputsVariablesData = (
           borderColor: 'primary'
         },
         {
-          category: '🚫 Disabled State',
+          category: 'Disabled State',
           cssVariable: 'var(--layera-input-disabled-opacity)',
           selector: '.layera-input:disabled',
           htmlAttribute: 'data-disabled="true/false"',
@@ -248,7 +248,7 @@ export const createInputsVariablesData = (
           borderColor: 'secondary'
         },
         {
-          category: '❌ Invalid State',
+          category: 'Invalid State',
           cssVariable: 'var(--layera-input-invalid-border)',
           selector: '.layera-input:invalid',
           htmlAttribute: 'data-invalid="true/false"',
@@ -256,7 +256,7 @@ export const createInputsVariablesData = (
           borderColor: 'danger'
         },
         {
-          category: '✅ Valid State',
+          category: 'Valid State',
           cssVariable: 'var(--layera-input-valid-border)',
           selector: '.layera-input:valid',
           htmlAttribute: 'data-valid="true/false"',
@@ -272,7 +272,7 @@ export const createInputsVariablesData = (
       variableCount: 3,
       variables: [
         {
-          category: '🔷 Size',
+          category: 'Input Size',
           cssVariable: `var(--layera-input-size-${inputSize})`,
           selector: '.layera-input',
           htmlAttribute: `data-size="${inputSize}"`,
@@ -280,7 +280,7 @@ export const createInputsVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '🎨 Color Category',
+          category: 'Color Category',
           cssVariable: `var(--layera-input-colorCategory-${colorCategory})`,
           selector: '.layera-input',
           htmlAttribute: `data-color="${colorCategory}"`,
@@ -288,7 +288,7 @@ export const createInputsVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '🏷️ Element Type',
+          category: 'Element Type',
           cssVariable: 'var(--layera-input-elementType)',
           selector: '.layera-input',
           htmlAttribute: 'data-element="input"',

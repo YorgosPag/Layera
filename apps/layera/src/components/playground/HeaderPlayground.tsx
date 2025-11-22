@@ -373,7 +373,7 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
             onClick={() => setShowVariablesPopup(true)}
             className="layera-text--align-center layera-opacity--70 layera-hover--opacity-100"
           >
-            <BellIcon size="sm" /> Όλες οι Μεταβλητές Headers
+            Όλες οι Μεταβλητές Headers
           </Button>
         </Box>
       </Box>

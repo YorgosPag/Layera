@@ -122,7 +122,7 @@ export const InputsPlayground: React.FC<InputsPlaygroundProps> = ({
             onClick={() => setShowVariablesPopup(true)}
             className="layera-text--align-center layera-opacity--70 layera-hover--opacity-100"
           >
-            <BellIcon size="sm" /> Όλες οι Μεταβλητές Inputs
+            Όλες οι Μεταβλητές Inputs
           </Button>
         </Box>
       </Box>

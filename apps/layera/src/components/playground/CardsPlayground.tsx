@@ -135,7 +135,7 @@ export const CardsPlayground: React.FC<ExtendedCardsPlaygroundProps> = ({
             onClick={() => setShowVariablesPopup(true)}
             className="layera-text--align-center layera-opacity--70 layera-hover--opacity-100"
           >
-            <BellIcon size="sm" /> Όλες οι Μεταβλητές Καρτών
+            Όλες οι Μεταβλητές Καρτών
           </Button>
         </Box>
       </Box>

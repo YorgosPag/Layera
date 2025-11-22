@@ -24,7 +24,7 @@ export const createCardsVariablesData = (
       variableCount: 6,
       variables: [
         {
-          category: '🃏 Primary Card',
+          category: 'Primary Card',
           cssVariable: '--layera-card-background-primary',
           selector: '.layera-card[data-variant="primary"]',
           htmlAttribute: 'data-variant="primary"',
@@ -32,7 +32,7 @@ export const createCardsVariablesData = (
           borderColor: 'primary'
         },
         {
-          category: '🃏 Secondary Card',
+          category: 'Secondary Card',
           cssVariable: '--layera-card-background-secondary',
           selector: '.layera-card[data-variant="secondary"]',
           htmlAttribute: 'data-variant="secondary"',
@@ -40,7 +40,7 @@ export const createCardsVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '🃏 Success Card',
+          category: 'Success Card',
           cssVariable: '--layera-card-background-success',
           selector: '.layera-card[data-variant="success"]',
           htmlAttribute: 'data-variant="success"',
@@ -48,7 +48,7 @@ export const createCardsVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '🃏 Warning Card',
+          category: 'Warning Card',
           cssVariable: '--layera-card-background-warning',
           selector: '.layera-card[data-variant="warning"]',
           htmlAttribute: 'data-variant="warning"',
@@ -56,7 +56,7 @@ export const createCardsVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '🃏 Danger Card',
+          category: 'Danger Card',
           cssVariable: '--layera-card-background-danger',
           selector: '.layera-card[data-variant="danger"]',
           htmlAttribute: 'data-variant="danger"',
@@ -64,7 +64,7 @@ export const createCardsVariablesData = (
           borderColor: 'danger'
         },
         {
-          category: '🃏 Info Card',
+          category: 'Info Card',
           cssVariable: '--layera-card-background-info',
           selector: '.layera-card[data-variant="info"]',
           htmlAttribute: 'data-variant="info"',
@@ -80,7 +80,7 @@ export const createCardsVariablesData = (
       variableCount: 3,
       variables: [
         {
-          category: '🔧 Border Width',
+          category: 'Border Width',
           cssVariable: 'var(--layera-card-borderWidth)',
           selector: '.layera-card',
           htmlAttribute: `data-border-width="${borderWidth}"`,
@@ -88,7 +88,7 @@ export const createCardsVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '🎨 Border Color',
+          category: 'Border Color',
           cssVariable: `var(--layera-card-borderColor-${colorCategory})`,
           selector: '.layera-card',
           htmlAttribute: `data-color="${colorCategory}"`,
@@ -96,7 +96,7 @@ export const createCardsVariablesData = (
           borderColor: 'danger'
         },
         {
-          category: '🌊 Border Radius',
+          category: 'Border Radius',
           cssVariable: `var(--layera-card-borderRadius-${cardRadius})`,
           selector: '.layera-card',
           htmlAttribute: `data-border-radius="${cardRadius}"`,
@@ -108,11 +108,11 @@ export const createCardsVariablesData = (
     {
       id: 'shadowsEffects',
       title: 'Shadows & Effects',
-      icon: <span>✨</span>,
+      icon: <SettingsIcon size="sm" />,
       variableCount: 4,
       variables: [
         {
-          category: '🌟 Card Shadow',
+          category: 'Card Shadow',
           cssVariable: 'var(--layera-card-shadow)',
           selector: '.layera-card',
           htmlAttribute: 'data-shadow="true/false"',
@@ -120,7 +120,7 @@ export const createCardsVariablesData = (
           borderColor: 'primary'
         },
         {
-          category: '🎭 Hover Effect',
+          category: 'Hover Effect',
           cssVariable: `var(--layera-card-hover-${colorCategory})`,
           selector: '.layera-card:hover',
           htmlAttribute: `data-hover-effect="${hoverEffect}"`,
@@ -128,7 +128,7 @@ export const createCardsVariablesData = (
           borderColor: 'secondary'
         },
         {
-          category: '🎯 Active Effect',
+          category: 'Active Effect',
           cssVariable: `var(--layera-card-active-${colorCategory})`,
           selector: '.layera-card:active',
           htmlAttribute: `data-active-effect="${activeEffect}"`,
@@ -136,7 +136,7 @@ export const createCardsVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '💫 Transition',
+          category: 'Transition',
           cssVariable: 'var(--layera-card-transition)',
           selector: '.layera-card',
           htmlAttribute: 'data-transition="true/false"',
@@ -152,7 +152,7 @@ export const createCardsVariablesData = (
       variableCount: 4,
       variables: [
         {
-          category: '📏 Size',
+          category: 'Size',
           cssVariable: `var(--layera-card-size-${cardSize})`,
           selector: '.layera-card',
           htmlAttribute: `data-size="${cardSize}"`,
@@ -160,7 +160,7 @@ export const createCardsVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '📦 Padding',
+          category: 'Padding',
           cssVariable: `var(--layera-card-padding-${cardSize})`,
           selector: '.layera-card',
           htmlAttribute: `data-padding="${cardSize}"`,
@@ -168,7 +168,7 @@ export const createCardsVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '📊 Width',
+          category: 'Width',
           cssVariable: 'var(--layera-card-width)',
           selector: '.layera-card',
           htmlAttribute: 'data-width="auto/defined"',
@@ -176,7 +176,7 @@ export const createCardsVariablesData = (
           borderColor: 'warning'
         },
         {
-          category: '📏 Height',
+          category: 'Height',
           cssVariable: `var(--layera-card-height-${cardSize})`,
           selector: '.layera-card',
           htmlAttribute: `data-height="${cardSize}"`,
@@ -192,7 +192,7 @@ export const createCardsVariablesData = (
       variableCount: 3,
       variables: [
         {
-          category: '🔠 Font Size',
+          category: 'Font Size',
           cssVariable: `var(--layera-card-fontSize-${cardSize})`,
           selector: '.layera-card',
           htmlAttribute: `data-font-size="${cardSize}"`,
@@ -200,7 +200,7 @@ export const createCardsVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '💪 Font Weight',
+          category: 'Font Weight',
           cssVariable: 'var(--layera-card-fontWeight)',
           selector: '.layera-card',
           htmlAttribute: 'data-font-weight="auto/defined"',
@@ -208,7 +208,7 @@ export const createCardsVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '🎨 Text Color',
+          category: 'Text Color',
           cssVariable: `var(--layera-card-color-${colorCategory})`,
           selector: '.layera-card',
           htmlAttribute: `data-text-color="${colorCategory}"`,
@@ -224,7 +224,7 @@ export const createCardsVariablesData = (
       variableCount: 3,
       variables: [
         {
-          category: '🎯 Focus State',
+          category: 'Focus State',
           cssVariable: 'var(--layera-card-focus-outline)',
           selector: '.layera-card:focus',
           htmlAttribute: 'data-focus="true/false"',
@@ -232,7 +232,7 @@ export const createCardsVariablesData = (
           borderColor: 'primary'
         },
         {
-          category: '🚫 Disabled State',
+          category: 'Disabled State',
           cssVariable: 'var(--layera-card-disabled-opacity)',
           selector: '.layera-card:disabled',
           htmlAttribute: 'data-disabled="true/false"',
@@ -240,7 +240,7 @@ export const createCardsVariablesData = (
           borderColor: 'secondary'
         },
         {
-          category: '⏱️ Loading State',
+          category: 'Loading State',
           cssVariable: 'var(--layera-card-loading-spinner)',
           selector: '.layera-card .spinner',
           htmlAttribute: 'data-loading="true/false"',
@@ -256,7 +256,7 @@ export const createCardsVariablesData = (
       variableCount: 3,
       variables: [
         {
-          category: '🔷 Size',
+          category: 'Card Size',
           cssVariable: `var(--layera-card-size-${cardSize})`,
           selector: '.layera-card',
           htmlAttribute: `data-size="${cardSize}"`,
@@ -264,7 +264,7 @@ export const createCardsVariablesData = (
           borderColor: 'info'
         },
         {
-          category: '🎨 Color Category',
+          category: 'Color Category',
           cssVariable: `var(--layera-card-colorCategory-${colorCategory})`,
           selector: '.layera-card',
           htmlAttribute: `data-color="${colorCategory}"`,
@@ -272,7 +272,7 @@ export const createCardsVariablesData = (
           borderColor: 'success'
         },
         {
-          category: '🏷️ Element Type',
+          category: 'Element Type',
           cssVariable: 'var(--layera-card-elementType)',
           selector: '.layera-card',
           htmlAttribute: 'data-element="card"',

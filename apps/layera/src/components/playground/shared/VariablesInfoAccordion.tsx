@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
-import { EyeIcon, EyeOffIcon, CopyIcon } from '@layera/icons';
+import { EyeIcon, EyeOffIcon, CopyIcon, SettingsIcon } from '@layera/icons';
 
 // Types για το reusable component
 export interface VariableInfo {
@@ -94,7 +94,7 @@ export const VariablesInfoAccordion: React.FC<VariablesInfoAccordionProps> = ({
       });
 
       await navigator.clipboard.writeText(allTablesText);
-      console.log('✅ Αντιγραφή όλων των πινάκων ολοκληρώθηκε επιτυχώς!');
+      console.log('Αντιγραφή όλων των πινάκων ολοκληρώθηκε επιτυχώς!');
     } catch (err) {
       console.error('Αποτυχία αντιγραφής πινάκων:', err);
     }
@@ -246,8 +246,8 @@ export const VariablesInfoAccordion: React.FC<VariablesInfoAccordionProps> = ({
 
       {/* Copy All Tables Button */}
       <Box className="layera-margin-top--lg layera-text-center layera-padding--lg">
-        <Text className="layera-typography layera-margin-bottom--md" data-size="sm" data-color="secondary">
-          💡 Αυτές είναι όλες οι CSS μεταβλητές που επηρεάζουν το component
+        <Text className="layera-typography layera-margin-bottom--md layera-flex layera-flex--align-center layera-flex--justify-center layera-space-x--sm" data-size="sm" data-color="secondary">
+          <SettingsIcon size="sm" /> Αυτές είναι όλες οι CSS μεταβλητές που επηρεάζουν το component
         </Text>
         <Button
           variant="primary"
@@ -256,7 +256,7 @@ export const VariablesInfoAccordion: React.FC<VariablesInfoAccordionProps> = ({
           onClick={copyAllTables}
           className="layera-button layera-button--lg layera-button--primary layera-shadow--md"
         >
-          📋 Αντιγραφή όλων των πινάκων
+          Αντιγραφή όλων των πινάκων
         </Button>
       </Box>
     </Box>

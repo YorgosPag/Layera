@@ -122,22 +122,6 @@ export const ActiveControl: React.FC<ActiveControlProps> = ({
         </Text>
       </Box>
 
-      {/* CSS Info για ACTIVE EFFECTS στα BUTTONS */}
-      <Box className="layera-margin-bottom--sm layera-padding--md layera-bg--surface-primary layera-text-align--left">
-        <Text className="layera-typography layera-margin-bottom--xs layera-flex layera-flex--align-center layera-gap--xs"
-              data-size="xs" data-weight="bold" data-color="primary">
-          <SettingsIcon size="sm" /> CSS Info:
-        </Text>
-        <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
-          <strong>Variable:</strong> --layera-live-button-primary
-        </Text>
-        <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
-          <strong>Selector:</strong> .layera-button[data-variant="primary"]
-        </Text>
-        <Text className="layera-typography" data-size="xs" data-color="secondary">
-          <strong>HTML Attribute:</strong> data-layera-button-primary="active"
-        </Text>
-      </Box>
 
       {/* Description */}
       <Text className="layera-typography" data-size="sm" data-color="secondary">
