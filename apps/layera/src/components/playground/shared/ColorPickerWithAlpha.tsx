@@ -183,6 +183,12 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     return () => {
       document.removeEventListener('mouseup', handleGlobalMouseUp);
       document.removeEventListener('touchend', handleGlobalMouseUp);
+
+      // ✅ CLEANUP: Ακύρωση throttled timeout
+      if (throttledCSSUpdate.current) {
+        clearTimeout(throttledCSSUpdate.current);
+        throttledCSSUpdate.current = null;
+      }
     };
   }, [isUserInteracting]);
 
@@ -216,36 +222,45 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     onChange(newValue);
   }, [internalValue?.alpha, onChange]);
 
+  // ✅ PERFORMANCE: Throttled CSS update για smooth slider
+  const throttledCSSUpdate = useRef<number | null>(null);
+  const alphaSliderRef = useRef<HTMLInputElement>(null);
+
   const handleAlphaChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const newAlpha = parseFloat(e.target.value) / 100;
     if (isNaN(newAlpha)) return;
 
     const safeHex = internalValue?.hex || 'var(--layera-colors-text-primary)';
-
-    // Αν είναι CSS variable, χρησιμοποιούμε το extractHexFromValue για να πάρουμε το HEX
     const actualHex = safeHex.startsWith('#') ? safeHex : extractHexFromValue(safeHex);
 
-    const newValue = {
-      hex: safeHex, // Κρατάμε το αρχικό (μπορεί να είναι CSS variable)
-      alpha: newAlpha,
-      rgba: hexToRgba(actualHex, newAlpha)
-    };
-
-    setInternalValue(newValue);
-
-    // ✅ LIVE PREVIEW: Άμεση ενημέρωση CSS μεταβλητής για real-time preview
+    // ✅ ΑΜΕΣΗ CSS ΕΝΗΜΕΡΩΣΗ: Μόνο CSS update για instant preview - όχι state!
     if (typeof document !== 'undefined') {
       const root = document.documentElement;
       const rgbaValue = hexToRgba(actualHex, newAlpha);
       root.style.setProperty(cssVariableName, rgbaValue);
     }
 
-    // Χρησιμοποιούμε και onPreview και onChange για σωστή συγχρονισμό
+    // ✅ ΕΝΗΜΕΡΩΣΗ SLIDER POSITION: Πάντα ενημερώνουμε το internalValue για το slider position
+    const newValue = {
+      hex: safeHex,
+      alpha: newAlpha,
+      rgba: hexToRgba(actualHex, newAlpha)
+    };
+
+    setInternalValue(newValue);
+
+    // ✅ PERFORMANCE: Callbacks μόνο στο τέλος (mouseup) - όχι κατά τη κίνηση
+    if (isUserInteracting) {
+      // Κατά τη διάρκεια της κίνησης, μόνο CSS update και slider position
+      return;
+    }
+
+    // Κανονικά callbacks μόνο όταν δεν αλλάζει ο χρήστης
     if (onPreview) {
       onPreview(newValue);
     }
-    onChange(newValue); // ΣΗΜΑΝΤΙΚΟ: Ενημερώνουμε το parent component
-  }, [internalValue?.hex, onPreview, onChange, cssVariableName]);
+    onChange(newValue);
+  }, [internalValue?.hex, onPreview, onChange, cssVariableName, isUserInteracting]);
 
   // Handler για το mousedown event του slider
   const handleSliderMouseDown = useCallback(() => {
@@ -254,6 +269,25 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
 
   // Handler για το mouseup event του slider
   const handleSliderMouseUp = useCallback(() => {
+    // ✅ ΒΕΛΤΙΩΣΗ: Τελική ενημέρωση state με την τρέχουσα alpha από το slider
+    if (alphaSliderRef.current && internalValue) {
+      const finalAlpha = parseFloat(alphaSliderRef.current.value) / 100;
+      const safeHex = internalValue.hex || 'var(--layera-colors-text-primary)';
+      const actualHex = safeHex.startsWith('#') ? safeHex : extractHexFromValue(safeHex);
+
+      const finalValue = {
+        hex: safeHex,
+        alpha: finalAlpha,
+        rgba: hexToRgba(actualHex, finalAlpha)
+      };
+
+      setInternalValue(finalValue);
+      if (onPreview) {
+        onPreview(finalValue);
+      }
+      onChange(finalValue);
+    }
+
     setIsUserInteracting(false);
     setRecentlyInteracted(true);
 
@@ -261,7 +295,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     setTimeout(() => {
       setRecentlyInteracted(false);
     }, 500); // Μεγαλύτερη καθυστέρηση για σιγουριά
-  }, []);
+  }, [internalValue, onPreview, onChange]);
 
   // Lightweight input handler με memoization
   const handleHexInput = useCallback((e: React.FormEvent<HTMLInputElement>) => {
@@ -402,6 +436,7 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
       {/* Alpha Slider */}
       <Box className="layera-margin-bottom--xs">
         <input
+          ref={alphaSliderRef}
           type="range"
           min="0"
           max="100"

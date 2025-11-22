@@ -2841,32 +2841,38 @@ html[data-layera-button-info="active"] .layera-button[data-variant="info"]:hover
 
 /* 🎨 ALPHA PREVIEW - Color picker transparency preview */
 [data-alpha-preview="primary"] {
-  background-color: var(--layera-live-alpha-color-primary, #cccccc);
+  background: linear-gradient(var(--layera-live-alpha-color-primary, #cccccc), var(--layera-live-alpha-color-primary, #cccccc)),
+              repeating-conic-gradient(var(--layera-color-neutral-white) 0% 25%, var(--layera-color-neutral-light) 0% 50%) 50% / 8px 8px;
   border: 1px solid var(--layera-color-border-default, #e5e5e5);
 }
 
 [data-alpha-preview="secondary"] {
-  background-color: var(--layera-live-alpha-color-secondary, #cccccc);
+  background: linear-gradient(var(--layera-live-alpha-color-secondary, #cccccc), var(--layera-live-alpha-color-secondary, #cccccc)),
+              repeating-conic-gradient(var(--layera-color-neutral-white) 0% 25%, var(--layera-color-neutral-light) 0% 50%) 50% / 8px 8px;
   border: 1px solid var(--layera-color-border-default, #e5e5e5);
 }
 
 [data-alpha-preview="success"] {
-  background-color: var(--layera-live-alpha-color-success, #cccccc);
+  background: linear-gradient(var(--layera-live-alpha-color-success, #cccccc), var(--layera-live-alpha-color-success, #cccccc)),
+              repeating-conic-gradient(var(--layera-color-neutral-white) 0% 25%, var(--layera-color-neutral-light) 0% 50%) 50% / 8px 8px;
   border: 1px solid var(--layera-color-border-default, #e5e5e5);
 }
 
 [data-alpha-preview="warning"] {
-  background-color: var(--layera-live-alpha-color-warning, #cccccc);
+  background: linear-gradient(var(--layera-live-alpha-color-warning, #cccccc), var(--layera-live-alpha-color-warning, #cccccc)),
+              repeating-conic-gradient(var(--layera-color-neutral-white) 0% 25%, var(--layera-color-neutral-light) 0% 50%) 50% / 8px 8px;
   border: 1px solid var(--layera-color-border-default, #e5e5e5);
 }
 
 [data-alpha-preview="danger"] {
-  background-color: var(--layera-live-alpha-color-danger, #cccccc);
+  background: linear-gradient(var(--layera-live-alpha-color-danger, #cccccc), var(--layera-live-alpha-color-danger, #cccccc)),
+              repeating-conic-gradient(var(--layera-color-neutral-white) 0% 25%, var(--layera-color-neutral-light) 0% 50%) 50% / 8px 8px;
   border: 1px solid var(--layera-color-border-default, #e5e5e5);
 }
 
 [data-alpha-preview="info"] {
-  background-color: var(--layera-live-alpha-color-info, #cccccc);
+  background: linear-gradient(var(--layera-live-alpha-color-info, #cccccc), var(--layera-live-alpha-color-info, #cccccc)),
+              repeating-conic-gradient(var(--layera-color-neutral-white) 0% 25%, var(--layera-color-neutral-light) 0% 50%) 50% / 8px 8px;
   border: 1px solid var(--layera-color-border-default, #e5e5e5);
 }
 
