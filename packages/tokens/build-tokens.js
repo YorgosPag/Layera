@@ -2711,8 +2711,44 @@ ${tooltipCSS}
   flex-shrink: 0 !important;
 }
 
+/* 🎯 ENTERPRISE LAYOUT UNIFORM SIZE CLASSES - SAME DIMENSIONS AS MODALS */
+.layera-layout-uniform {
+  width: var(--layera-spacing-scale-80) !important;
+  height: var(--layera-spacing-scale-12) !important;
+  min-width: var(--layera-spacing-scale-80) !important;
+  min-height: var(--layera-spacing-scale-12) !important;
+  max-width: var(--layera-spacing-scale-80) !important;
+  max-height: var(--layera-spacing-scale-12) !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+}
+
 /* 🎯 ENHANCED SPECIFICITY FOR MODAL CARDS - USING TOKEN SYSTEM */
 .layera-card.layera-modal-uniform {
+  width: var(--layera-spacing-scale-80) !important;
+  height: var(--layera-spacing-scale-12) !important;
+  min-width: var(--layera-spacing-scale-80) !important;
+  min-height: var(--layera-spacing-scale-12) !important;
+  max-width: var(--layera-spacing-scale-80) !important;
+  max-height: var(--layera-spacing-scale-12) !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  flex-basis: var(--layera-spacing-scale-80) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+  text-align: center !important;
+  word-wrap: break-word !important;
+  word-break: break-word !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+}
+
+/* 🎯 ENHANCED SPECIFICITY FOR LAYOUT CARDS - USING TOKEN SYSTEM */
+.layera-card.layera-layout-uniform {
   width: var(--layera-spacing-scale-80) !important;
   height: var(--layera-spacing-scale-12) !important;
   min-width: var(--layera-spacing-scale-80) !important;
@@ -2764,6 +2800,68 @@ html[data-layera-card-danger="active"] .layera-card[data-variant="error"] {
 /* Card Info Live Background */
 html[data-layera-card-info="active"] .layera-card[data-variant="info"] {
   background-color: var(--layera-live-card-info, var(--layera-color-info-main)) !important;
+}
+
+/* 🎯 LAYOUTS LIVE PREVIEW DYNAMIC BACKGROUNDS - USING CSS VARIABLES */
+/* Layout Primary Live Background */
+html[data-layera-layout-primary="active"] .layera-card[data-variant="primary"] {
+  background-color: var(--layera-live-layout-primary, var(--layera-color-primary-main)) !important;
+}
+
+/* Layout Secondary Live Background */
+html[data-layera-layout-secondary="active"] .layera-card[data-variant="secondary"] {
+  background-color: var(--layera-live-layout-secondary, var(--layera-color-secondary-main)) !important;
+}
+
+/* Layout Success Live Background */
+html[data-layera-layout-success="active"] .layera-card[data-variant="success"] {
+  background-color: var(--layera-live-layout-success, var(--layera-color-success-main)) !important;
+}
+
+/* Layout Warning Live Background */
+html[data-layera-layout-warning="active"] .layera-card[data-variant="warning"] {
+  background-color: var(--layera-live-layout-warning, var(--layera-color-warning-main)) !important;
+}
+
+/* Layout Danger Live Background */
+html[data-layera-layout-danger="active"] .layera-card[data-variant="error"] {
+  background-color: var(--layera-live-layout-danger, var(--layera-color-danger-main)) !important;
+}
+
+/* Layout Info Live Background */
+html[data-layera-layout-info="active"] .layera-card[data-variant="info"] {
+  background-color: var(--layera-live-layout-info, var(--layera-color-info-main)) !important;
+}
+
+/* 🎯 MODALS LIVE PREVIEW DYNAMIC COLORS - USING CSS VARIABLES */
+/* Modal Primary Live Background */
+html[data-layera-modal-primary="active"] .layera-card[data-variant="primary"] {
+  background-color: var(--layera-live-modal-primary, var(--layera-color-primary-main)) !important;
+}
+
+/* Modal Secondary Live Background */
+html[data-layera-modal-secondary="active"] .layera-card[data-variant="secondary"] {
+  background-color: var(--layera-live-modal-secondary, var(--layera-color-secondary-main)) !important;
+}
+
+/* Modal Success Live Background */
+html[data-layera-modal-success="active"] .layera-card[data-variant="success"] {
+  background-color: var(--layera-live-modal-success, var(--layera-color-success-main)) !important;
+}
+
+/* Modal Warning Live Background */
+html[data-layera-modal-warning="active"] .layera-card[data-variant="warning"] {
+  background-color: var(--layera-live-modal-warning, var(--layera-color-warning-main)) !important;
+}
+
+/* Modal Danger Live Background */
+html[data-layera-modal-danger="active"] .layera-card[data-variant="error"] {
+  background-color: var(--layera-live-modal-danger, var(--layera-color-error-main)) !important;
+}
+
+/* Modal Info Live Background */
+html[data-layera-modal-info="active"] .layera-card[data-variant="info"] {
+  background-color: var(--layera-live-modal-info, var(--layera-color-info-main)) !important;
 }
 
 /* 🎯 BUTTONS LIVE PREVIEW DYNAMIC COLORS - USING CSS VARIABLES */

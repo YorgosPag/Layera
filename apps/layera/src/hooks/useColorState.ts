@@ -80,6 +80,16 @@ export interface CategoryColorPalettes {
   borders: ColorPaletteWithAlpha;
 }
 
+export interface ElementTypeColorPalettes {
+  buttons: CategoryColorPalettes;
+  cards: CategoryColorPalettes;
+  modals: CategoryColorPalettes;
+  inputs: CategoryColorPalettes;
+  layout: CategoryColorPalettes;
+  tables: CategoryColorPalettes;
+  headers: CategoryColorPalettes;
+}
+
 export interface ColorState {
   colorCategory: ColorCategory;
   elementType: ElementType;
@@ -88,6 +98,7 @@ export interface ColorState {
   squarePalette: ColorPaletteWithAlpha;
   roundedPalette: ColorPaletteWithAlpha;
   categoryPalettes: CategoryColorPalettes;
+  elementTypePalettes: ElementTypeColorPalettes;
   // Simple color fields added for backwards compatibility with services
   primaryColor?: string;
   secondaryColor?: string;
@@ -105,6 +116,7 @@ export interface ColorStateActions {
   updateSquarePalette: (key: keyof ColorPaletteWithAlpha, value: string) => void;
   updateRoundedPalette: (key: keyof ColorPaletteWithAlpha, value: string) => void;
   updateCategoryPalette: (category: ColorCategory, key: keyof ColorPaletteWithAlpha, value: string) => void;
+  updateElementTypePalette: (elementType: ElementType, category: ColorCategory, key: keyof ColorPaletteWithAlpha, value: string) => void;
   resetToDefaults: () => void;
   // Simple color field setters added for backwards compatibility
   setPrimaryColor?: (color: string) => void;
@@ -123,6 +135,7 @@ export interface UseColorStateReturn {
   colorButtonShapes: readonly ColorButtonShape[];
   getCurrentPalette: () => ColorPaletteWithAlpha;
   getCategoryPalette: (category: ColorCategory) => ColorPaletteWithAlpha;
+  getElementColors: (elementType: ElementType, category: ColorCategory) => ColorPaletteWithAlpha;
 }
 
 const DEFAULT_RECTANGULAR_PALETTE: ColorPaletteWithAlpha = {
@@ -187,6 +200,16 @@ const DEFAULT_CATEGORY_PALETTES: CategoryColorPalettes = {
   }
 };
 
+const DEFAULT_ELEMENT_TYPE_PALETTES: ElementTypeColorPalettes = {
+  buttons: DEFAULT_CATEGORY_PALETTES,
+  cards: DEFAULT_CATEGORY_PALETTES,
+  modals: DEFAULT_CATEGORY_PALETTES,
+  inputs: DEFAULT_CATEGORY_PALETTES,
+  layout: DEFAULT_CATEGORY_PALETTES,
+  tables: DEFAULT_CATEGORY_PALETTES,
+  headers: DEFAULT_CATEGORY_PALETTES
+};
+
 const DEFAULT_COLOR_STATE: ColorState = {
   colorCategory: 'backgrounds',
   elementType: 'buttons',
@@ -194,7 +217,8 @@ const DEFAULT_COLOR_STATE: ColorState = {
   rectangularPalette: DEFAULT_RECTANGULAR_PALETTE,
   squarePalette: DEFAULT_SQUARE_PALETTE,
   roundedPalette: DEFAULT_ROUNDED_PALETTE,
-  categoryPalettes: DEFAULT_CATEGORY_PALETTES
+  categoryPalettes: DEFAULT_CATEGORY_PALETTES,
+  elementTypePalettes: DEFAULT_ELEMENT_TYPE_PALETTES
 };
 
 const COLOR_CATEGORIES: readonly ColorCategory[] = [
@@ -264,6 +288,22 @@ export const useColorState = (): UseColorStateReturn => {
       }));
     },
 
+    updateElementTypePalette: (elementType: ElementType, category: ColorCategory, key: keyof ColorPaletteWithAlpha, value: string) => {
+      setState(prev => ({
+        ...prev,
+        elementTypePalettes: {
+          ...prev.elementTypePalettes,
+          [elementType]: {
+            ...prev.elementTypePalettes[elementType],
+            [category]: {
+              ...prev.elementTypePalettes[elementType][category],
+              [key]: value
+            }
+          }
+        }
+      }));
+    },
+
     resetToDefaults: () => {
       setState(DEFAULT_COLOR_STATE);
     }
@@ -286,6 +326,10 @@ export const useColorState = (): UseColorStateReturn => {
     return state.categoryPalettes[category];
   };
 
+  const getElementColors = (elementType: ElementType, category: ColorCategory): ColorPaletteWithAlpha => {
+    return state.elementTypePalettes[elementType][category];
+  };
+
   return {
     state,
     actions,
@@ -293,6 +337,7 @@ export const useColorState = (): UseColorStateReturn => {
     elementTypes: ELEMENT_TYPES,
     colorButtonShapes: COLOR_BUTTON_SHAPES,
     getCurrentPalette,
-    getCategoryPalette
+    getCategoryPalette,
+    getElementColors
   };
 };

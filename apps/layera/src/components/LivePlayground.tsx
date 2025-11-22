@@ -60,7 +60,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   const { state: buttonState, actions: buttonActions, sizes: buttonSizes } = useButtonState();
 
   // Color State Management
-  const { state: colorHookState, actions: colorActions, getCategoryPalette } = useColorState();
+  const { state: colorHookState, actions: colorActions, getCategoryPalette, getElementColors } = useColorState();
 
   // CSS Variables Management
   const { actions: cssActions } = useCSSVariables();
@@ -271,7 +271,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               <ButtonsPlayground
                 buttonState={buttonState}
                 colorCategory={colorHookState.colorCategory}
-                currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
+                currentColors={convertColorPaletteWithAlphaToLegacy(getElementColors('buttons', colorHookState.colorCategory))}
                 borderWidth={borderWidth}
                 buttonRadius={buttonRadius}
                 hoverEffect={hoverEffect}
@@ -283,7 +283,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {colorHookState.elementType === 'cards' && (
             <Box className="layera-margin-bottom--xl global-display-flex global-flexDirection-column global-alignItems-center">
               <CardsPlayground
-                currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
+                currentColors={convertColorPaletteWithAlphaToLegacy(getElementColors('cards', colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
                 cardRadius={cardRadius}
@@ -297,7 +297,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {colorHookState.elementType === 'modals' && (
             <Box className="layera-margin-bottom--xl global-display-flex global-flexDirection-column global-alignItems-center">
               <ModalsPlayground
-                currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
+                currentColors={convertColorPaletteWithAlphaToLegacy(getElementColors('modals', colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
                 modalRadius={modalRadius}
@@ -312,7 +312,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {colorHookState.elementType === 'inputs' && (
             <Box className="layera-margin-bottom--xl global-display-flex global-flexDirection-column global-alignItems-center">
               <InputsPlayground
-                currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
+                currentColors={convertColorPaletteWithAlphaToLegacy(getElementColors('inputs', colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
                 inputRadius={inputRadius}
@@ -326,7 +326,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {colorHookState.elementType === 'layout' && (
             <Box className="layera-margin-bottom--xl global-display-flex global-flexDirection-column global-alignItems-center">
               <LayoutPlayground
-                currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
+                currentColors={convertColorPaletteWithAlphaToLegacy(getElementColors('layout', colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
                 layoutRadius={layoutRadius}
@@ -340,7 +340,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {colorHookState.elementType === 'headers' && (
             <Box className="layera-margin-bottom--xl global-display-flex global-flexDirection-column global-alignItems-center">
               <HeaderPlayground
-                currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
+                currentColors={convertColorPaletteWithAlphaToLegacy(getElementColors('headers', colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
                 headerRadius={headerRadius}
@@ -355,7 +355,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
           {colorHookState.elementType === 'tables' && (
             <Box className="layera-margin-bottom--xl global-display-flex global-flexDirection-column global-alignItems-center">
               <TablesPlayground
-                currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
+                currentColors={convertColorPaletteWithAlphaToLegacy(getElementColors('tables', colorHookState.colorCategory))}
                 colorCategory={colorHookState.colorCategory}
                 borderWidth={borderWidth}
                 tableRadius={tableRadius}
@@ -441,14 +441,14 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
 
           {/* Color Controls Grid με Alpha Support */}
           <ColorControlsGridWithAlpha
-            currentColors={getColorsForCategory(colorHookState.colorCategory)}
+            currentColors={getElementColors(colorHookState.elementType, colorHookState.colorCategory)}
             currentSetters={{
-              primaryColor: (value: string) => colorActions.updateCategoryPalette(colorHookState.colorCategory, 'primaryColor', value),
-              secondaryColor: (value: string) => colorActions.updateCategoryPalette(colorHookState.colorCategory, 'secondaryColor', value),
-              successColor: (value: string) => colorActions.updateCategoryPalette(colorHookState.colorCategory, 'successColor', value),
-              warningColor: (value: string) => colorActions.updateCategoryPalette(colorHookState.colorCategory, 'warningColor', value),
-              dangerColor: (value: string) => colorActions.updateCategoryPalette(colorHookState.colorCategory, 'dangerColor', value),
-              infoColor: (value: string) => colorActions.updateCategoryPalette(colorHookState.colorCategory, 'infoColor', value)
+              primaryColor: (value: string) => colorActions.updateElementTypePalette(colorHookState.elementType, colorHookState.colorCategory, 'primaryColor', value),
+              secondaryColor: (value: string) => colorActions.updateElementTypePalette(colorHookState.elementType, colorHookState.colorCategory, 'secondaryColor', value),
+              successColor: (value: string) => colorActions.updateElementTypePalette(colorHookState.elementType, colorHookState.colorCategory, 'successColor', value),
+              warningColor: (value: string) => colorActions.updateElementTypePalette(colorHookState.elementType, colorHookState.colorCategory, 'warningColor', value),
+              dangerColor: (value: string) => colorActions.updateElementTypePalette(colorHookState.elementType, colorHookState.colorCategory, 'dangerColor', value),
+              infoColor: (value: string) => colorActions.updateElementTypePalette(colorHookState.elementType, colorHookState.colorCategory, 'infoColor', value)
             }}
             startPreview={(key: string, value: string | ColorWithAlpha) => {
               const previewValue = typeof value === 'string' ? value : value.rgba;
@@ -526,7 +526,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             {/* #10: Τρέχουσες Ρυθμίσεις (Color Value Display) */}
             <SettingsDisplay
               colorHookState={colorHookState}
-              currentColors={convertColorPaletteWithAlphaToLegacy(getColorsForCategory(colorHookState.colorCategory))}
+              currentColors={convertColorPaletteWithAlphaToLegacy(getElementColors(colorHookState.elementType, colorHookState.colorCategory))}
               buttonState={buttonState}
             />
           </Box>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { CheckIcon } from '@layera/icons';
+import { useCSSVariables } from '../../hooks/useCSSVariables';
 import { PLAYGROUND_HELPERS } from '../../constants/ui-utilities';
 import { LayoutPlaygroundProps } from '../../types/unified-interfaces';
 
@@ -47,38 +48,23 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
     return parts.join(' ');
   };
 
-  // Layout section configurations
-  // REMOVED: All hardcoded helper functions that violated ZERO ΣΚΛΗΡΕΣ ΤΙΜΕΣ rule
-  // Layout colors are now handled EXCLUSIVELY through CSS classes and tokens
-
   const layoutConfigs = [
-    { key: 'primary', title: 'Primary', description: 'Layout Section', colorValue: currentColors.primary },
-    { key: 'secondary', title: 'Secondary', description: 'Layout Section', colorValue: currentColors.secondary },
-    { key: 'success', title: 'Success', description: 'Layout Section', colorValue: currentColors.success },
-    { key: 'warning', title: 'Warning', description: 'Layout Section', colorValue: currentColors.warning },
-    { key: 'danger', title: 'Danger', description: 'Layout Section', colorValue: currentColors.danger },
-    { key: 'info', title: 'Info', description: 'Layout Section', colorValue: currentColors.info }
+    { key: 'primary', title: 'Primary Layout', description: 'Κύριο layout', colorValue: currentColors.primary },
+    { key: 'secondary', title: 'Secondary Layout', description: 'Δευτερεύον layout', colorValue: currentColors.secondary },
+    { key: 'success', title: 'Success Layout', description: 'Layout επιτυχίας', colorValue: currentColors.success },
+    { key: 'warning', title: 'Warning Layout', description: 'Layout προειδοποίησης', colorValue: currentColors.warning },
+    { key: 'danger', title: 'Danger Layout', description: 'Layout κινδύνου', colorValue: currentColors.danger },
+    { key: 'info', title: 'Info Layout', description: 'Layout πληροφοριών', colorValue: currentColors.info }
   ];
 
-  // REMOVED: DOM manipulation violation - CSS variables are handled by useCSSVariables.ts
+  // ✅ NO INLINE STYLES - Using useCSSVariables hook
+  const { actions } = useCSSVariables();
 
-  // Helper to get appropriate CSS classes with dynamic data attributes
-  const getLayoutClasses = (_key: string) => {
-    const baseClasses = "layera-padding--md layera-height--6xl layera-width--card layera-flex layera-flex--align-center layera-flex--justify-center layera-flex-shrink--0";
-
-    switch (colorCategory) {
-      case 'backgrounds':
-        return `${baseClasses} layera-dynamic-bg layera-text-color--on-dark`;
-      case 'text':
-        return `${baseClasses} layera-bg--surface-primary layera-dynamic-text`;
-      case 'borders':
-        return `${baseClasses} layera-bg--surface-primary layera-text-color--primary layera-dynamic-border`;
-      default:
-        return baseClasses;
-    }
-  };
-
-  // ✅ NO INLINE STYLES - Using only @layera tokens and data-attributes
+  React.useEffect(() => {
+    layoutConfigs.forEach(({ key, colorValue }) => {
+      actions.applySpecificLayoutColor(key, colorValue);
+    });
+  }, [layoutConfigs, actions]);
 
   return (
     <Box>
@@ -90,40 +76,22 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
           {generateFullDescription()}
         </p>
 
-        <Box className="global-display-flex global-flexWrap-nowrap global-justifyContent-center global-alignItems-center layera-padding-top--lg layera-padding-bottom--lg layera-width--full">
-          {layoutConfigs.map(({ key, title, description }) => {
-            // Debug logging
-            console.log('📐 LayoutPlayground: layoutRadius prop =', layoutRadius);
-            console.log('📐 LayoutPlayground: Final borderRadius =', getRadiusToken(layoutRadius));
-            console.log('🎯 LayoutPlayground: key =', key);
-            console.log('🎯 LayoutPlayground: classes =', getLayoutClasses(key));
-            console.log('🎯 LayoutPlayground: colorCategory =', colorCategory);
-
-
-            return (
-              <Box
-                key={key}
-                className={getLayoutClasses(key)}
-                data-dynamic-color={layoutConfigs.find(config => config.key === key)?.colorValue}
+        <Box className="global-display-flex global-justifyContent-center global-alignItems-center layera-flex--gap-md layera-padding-top--lg layera-padding-bottom--lg">
+          {layoutConfigs.map(({ key, title, description, colorValue }) => (
+            <Box
+              key={key}
+              className={`layera-layout-uniform layera-card`}
+              data-variant={key === 'danger' ? 'error' : key}
+            >
+              <Text
+                className="layera-typography"
+                data-size="xs"
+                data-weight="bold"
               >
-                <Box>
-                  <Text
-                    className="layera-typography layera-margin-bottom--xs layera-text--align-center"
-                    data-size="sm"
-                    data-weight="bold"
-                  >
-                    {title}
-                  </Text>
-                  <Text
-                    className="layera-typography layera-opacity--80 layera-text--align-center"
-                    data-size="xs"
-                  >
-                    {description}
-                  </Text>
-                </Box>
-              </Box>
-            );
-          })}
+                {title}
+              </Text>
+            </Box>
+          ))}
         </Box>
       </Box>
     </Box>

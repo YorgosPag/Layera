@@ -138,27 +138,37 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
   };
 
   /**
-   * ✅ ARXES COMPLIANT: Modal color theming μέσω data attributes
-   * ZERO CSS injection - ZERO style.setProperty - ΜΟΝΟ data attributes
+   * ✅ ARXES COMPLIANT: Modal color theming μέσω data attributes + CSS variables για live preview
+   * Χρησιμοποιεί CSS variables για άμεση ενημέρωση χωρίς re-render
    */
   const applySpecificModalColor = (colorKey: string, colorValue: string) => {
     const root = document.documentElement;
 
-    // ✅ ARXES COMPLIANT: Data attribute για modal state και value
-    root.setAttribute(`data-layera-modal-${colorKey.replace('Color', '')}`, 'active');
-    root.setAttribute(`data-layera-modal-${colorKey.replace('Color', '')}-value`, colorValue);
+    // Normalize colorKey (remove 'Color' suffix if present)
+    const normalizedKey = colorKey.replace('Color', '');
+
+    // ✅ ARXES COMPLIANT: Data attribute για modal state
+    root.setAttribute(`data-layera-modal-${normalizedKey}`, 'active');
+
+    // ✅ ARXES COMPLIANT: CSS custom property για live preview
+    root.style.setProperty(`--layera-live-modal-${normalizedKey}`, colorValue);
   };
 
   /**
-   * Εφαρμόζει συγκεκριμένο χρώμα σε layout element για real-time preview
+   * ✅ ARXES COMPLIANT: Layout color theming μέσω data attributes + CSS variables για live preview
    * Χρησιμοποιεί CSS variables για άμεση ενημέρωση χωρίς re-render
    */
   const applySpecificLayoutColor = (colorKey: string, colorValue: string) => {
     const root = document.documentElement;
 
-    // ✅ ARXES COMPLIANT: Data attribute για layout state και value
-    root.setAttribute(`data-layera-layout-${colorKey.replace('Color', '')}`, 'active');
-    root.setAttribute(`data-layera-layout-${colorKey.replace('Color', '')}-value`, colorValue);
+    // Normalize colorKey (remove 'Color' suffix if present)
+    const normalizedKey = colorKey.replace('Color', '');
+
+    // ✅ ARXES COMPLIANT: Data attribute για layout state
+    root.setAttribute(`data-layera-layout-${normalizedKey}`, 'active');
+
+    // ✅ ARXES COMPLIANT: CSS custom property για live preview
+    root.style.setProperty(`--layera-live-layout-${normalizedKey}`, colorValue);
   };
 
   /**
