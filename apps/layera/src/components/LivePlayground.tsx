@@ -28,6 +28,7 @@ import { useButtonState } from '../hooks/useButtonState';
 import { useColorState, ColorPaletteWithAlpha, ColorCategory } from '../hooks/useColorState';
 import { useCSSVariables } from '../hooks/useCSSVariables';
 import { useStorage } from '../hooks/useStorage';
+import { usePlaygroundState } from '../hooks/usePlaygroundState';
 // useColorHelpers functionality merged into other hooks
 
 /**
@@ -68,98 +69,35 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   // Storage Management
   const { actions: storageActions } = useStorage({ colorState: colorHookState, colorActions });
 
+  // Playground State Management
+  const {
+    actions: playgroundActions,
+    borderWidth,
+    fontSize,
+    alphaEnabled,
+    borderRadius,
+    buttonRadius,
+    layoutRadius,
+    cardRadius,
+    modalRadius,
+    inputRadius,
+    tableRadius,
+    headerRadius,
+    hoverEffect,
+    activeEffect,
+    cardSize,
+    modalSize,
+    inputSize,
+    tableSize,
+    modalTextAlign
+  } = usePlaygroundState();
+
 
   // Color helper functions - simplified to use existing hooks
   const getColorsForCategory = (category: string) => {
     return getCategoryPalette(category as ColorCategory);
   };
 
-  // ==============================
-  // STATE MANAGEMENT
-  // ==============================
-
-  // ✅ UNIFIED STYLING CONFIG - multiple states → 1 object (ARXES compliant)
-  const [stylingConfig, setStylingConfig] = useState({
-    borderWidth: 2,
-    fontSize: 'base' as FontSizeValue,
-    alphaEnabled: true
-  });
-
-  // Helper functions για backward compatibility
-  const borderWidth = stylingConfig.borderWidth;
-  const fontSize = stylingConfig.fontSize;
-  const alphaEnabled = stylingConfig.alphaEnabled;
-
-  const setBorderWidth = (value: number) => setStylingConfig(prev => ({ ...prev, borderWidth: value }));
-  const setFontSize = (value: FontSizeValue) => setStylingConfig(prev => ({ ...prev, fontSize: value }));
-  const setAlphaEnabled = (value: boolean) => setStylingConfig(prev => ({ ...prev, alphaEnabled: value }));
-
-  // ✅ UNIFIED RADIUS CONFIG - 7 states → 1 object (ARXES compliant)
-  const [radiusConfig, setRadiusConfig] = useState({
-    border: 'md',
-    button: 'md',
-    layout: 'md',
-    card: 'md',
-    modal: 'md',
-    input: 'md',
-    table: 'md',
-    header: 'lg'
-  });
-
-  // Helper functions για backward compatibility
-  const borderRadius = radiusConfig.border;
-  const buttonRadius = radiusConfig.button;
-  const layoutRadius = radiusConfig.layout;
-  const cardRadius = radiusConfig.card;
-  const modalRadius = radiusConfig.modal;
-  const inputRadius = radiusConfig.input;
-  const tableRadius = radiusConfig.table;
-  const headerRadius = radiusConfig.header;
-
-  const setBorderRadius = (value: string) => setRadiusConfig(prev => ({ ...prev, border: value }));
-  const setButtonRadius = (value: string) => setRadiusConfig(prev => ({ ...prev, button: value }));
-  const setLayoutRadius = (value: string) => setRadiusConfig(prev => ({ ...prev, layout: value }));
-  const setCardRadius = (value: string) => setRadiusConfig(prev => ({ ...prev, card: value }));
-  const setModalRadius = (value: string) => setRadiusConfig(prev => ({ ...prev, modal: value }));
-  const setInputRadius = (value: string) => setRadiusConfig(prev => ({ ...prev, input: value }));
-  const setTableRadius = (value: string) => setRadiusConfig(prev => ({ ...prev, table: value }));
-  const setHeaderRadius = (value: string) => setRadiusConfig(prev => ({ ...prev, header: value }));
-
-  // ✅ UNIFIED EFFECTS CONFIG - 2 states → 1 object (ARXES compliant)
-  const [effectsConfig, setEffectsConfig] = useState({
-    hover: 'normal',
-    active: 'scale'
-  });
-
-  // Helper functions για backward compatibility
-  const hoverEffect = effectsConfig.hover;
-  const activeEffect = effectsConfig.active;
-
-  const setHoverEffect = (value: string) => setEffectsConfig(prev => ({ ...prev, hover: value }));
-  const setActiveEffect = (value: string) => setEffectsConfig(prev => ({ ...prev, active: value }));
-
-
-  // ✅ UNIFIED SIZE CONFIG - 4 states → 1 object (ARXES compliant)
-  const [sizeConfig, setSizeConfig] = useState({
-    card: 'md' as CardSizeValue,
-    modal: 'md' as ModalSizeValue,
-    input: 'md' as InputSizeValue,
-    table: 'md' as TableSizeValue
-  });
-
-  // Helper functions για backward compatibility
-  const cardSize = sizeConfig.card;
-  const modalSize = sizeConfig.modal;
-  const inputSize = sizeConfig.input;
-  const tableSize = sizeConfig.table;
-
-  const setCardSize = (value: CardSizeValue) => setSizeConfig(prev => ({ ...prev, card: value }));
-  const setModalSize = (value: ModalSizeValue) => setSizeConfig(prev => ({ ...prev, modal: value }));
-  const setInputSize = (value: InputSizeValue) => setSizeConfig(prev => ({ ...prev, input: value }));
-  const setTableSize = (value: TableSizeValue) => setSizeConfig(prev => ({ ...prev, table: value }));
-
-  // Modal Text Alignment State
-  const [modalTextAlign, setModalTextAlign] = useState<ModalTextAlignValue>('middle');
 
 
   // Real-time preview hook for header buttons
@@ -373,39 +311,39 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               colorHookState={colorHookState}
               colorActions={colorActions}
               borderWidth={borderWidth}
-              onBorderWidthChange={setBorderWidth}
+              onBorderWidthChange={playgroundActions.setBorderWidth}
               borderRadius={borderRadius}
-              onBorderRadiusChange={setBorderRadius}
+              onBorderRadiusChange={playgroundActions.setBorderRadius}
               buttonRadius={buttonRadius}
-              onButtonRadiusChange={setButtonRadius}
+              onButtonRadiusChange={playgroundActions.setButtonRadius}
               layoutRadius={layoutRadius}
-              onLayoutRadiusChange={setLayoutRadius}
+              onLayoutRadiusChange={playgroundActions.setLayoutRadius}
               cardRadius={cardRadius}
-              onCardRadiusChange={setCardRadius}
+              onCardRadiusChange={playgroundActions.setCardRadius}
               modalRadius={modalRadius}
-              onModalRadiusChange={setModalRadius}
+              onModalRadiusChange={playgroundActions.setModalRadius}
               inputRadius={inputRadius}
-              onInputRadiusChange={setInputRadius}
+              onInputRadiusChange={playgroundActions.setInputRadius}
               tableRadius={tableRadius}
-              onTableRadiusChange={setTableRadius}
+              onTableRadiusChange={playgroundActions.setTableRadius}
               headerRadius={headerRadius}
-              onHeaderRadiusChange={setHeaderRadius}
+              onHeaderRadiusChange={playgroundActions.setHeaderRadius}
               hoverEffect={hoverEffect}
-              onHoverEffectChange={setHoverEffect}
+              onHoverEffectChange={playgroundActions.setHoverEffect}
               activeEffect={activeEffect}
-              onActiveEffectChange={setActiveEffect}
+              onActiveEffectChange={playgroundActions.setActiveEffect}
               fontSize={fontSize}
-              onFontSizeChange={setFontSize}
+              onFontSizeChange={playgroundActions.setFontSize}
               cardSize={cardSize}
-              onCardSizeChange={setCardSize}
+              onCardSizeChange={playgroundActions.setCardSize}
               modalSize={modalSize}
-              onModalSizeChange={setModalSize}
+              onModalSizeChange={playgroundActions.setModalSize}
               modalTextAlign={modalTextAlign}
-              onModalTextAlignChange={setModalTextAlign}
+              onModalTextAlignChange={playgroundActions.setModalTextAlign}
               inputSize={inputSize}
-              onInputSizeChange={setInputSize}
+              onInputSizeChange={playgroundActions.setInputSize}
               tableSize={tableSize}
-              onTableSizeChange={setTableSize}
+              onTableSizeChange={playgroundActions.setTableSize}
               onPreview={startPreview}
               buttonState={buttonState}
             />
@@ -488,7 +426,7 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
             }}
             colorCategory={colorHookState.colorCategory}
             alphaEnabled={alphaEnabled}
-            onAlphaToggle={setAlphaEnabled}
+            onAlphaToggle={playgroundActions.setAlphaEnabled}
             buttonState={buttonState}
           />
 
