@@ -129,8 +129,8 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
         <Box className="layera-flex layera-flex-column layera-flex--gap-md layera-padding-top--lg layera-padding-bottom--lg layera-width--full">
           {headerConfigs.map(({ key, title, description, colorValue }) => {
             // Debug logging
-            console.log('📋 HeaderPlayground: headerRadius prop =', headerRadius);
-            console.log('📋 HeaderPlayground: Final borderRadius =', getRadiusToken(headerRadius));
+            console.log('HeaderPlayground: headerRadius prop =', headerRadius);
+            console.log('HeaderPlayground: Final borderRadius =', getRadiusToken(headerRadius));
 
 
             return (

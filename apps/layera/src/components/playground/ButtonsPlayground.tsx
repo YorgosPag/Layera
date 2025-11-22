@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import { Box } from '@layera/layout';
 import { Button, SquareButton } from '@layera/buttons';
 import { Text } from '@layera/typography';
-import { PlusIcon, SearchIcon, CheckIcon, CloseIcon, SettingsIcon, CompassIcon, CopyIcon } from '@layera/icons';
+import {
+  PlusIcon, SearchIcon, CheckIcon, CloseIcon, SettingsIcon, CompassIcon, CopyIcon,
+  PaletteIcon, FolderIcon, EyeIcon, LocationIcon, DeleteIcon, BellIcon,
+  EditIcon, LayersIcon, TagIcon, QuickIcon, LockIcon, AdvancedIcon,
+  RulerIcon, PolygonIcon, StarIcon, TransitionIcon
+} from '@layera/icons';
 import { ButtonState } from '../../hooks/useButtonState';
 import { useCSSVariables } from '../../hooks/useCSSVariables';
 import { useColorState } from '../../hooks/useColorState';
@@ -53,7 +58,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
   // State για το Variables Info Popup
   const [showVariablesPopup, setShowVariablesPopup] = useState(false);
 
-  // 🎯 Accordion State για τις κατηγορίες του πίνακα
+  // Accordion State για τις κατηγορίες του πίνακα
   const [expandedCategories, setExpandedCategories] = useState({
     backgroundColors: true,
     borders: false,
@@ -65,10 +70,10 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
     currentConfiguration: false
   });
 
-  // ✅ ARXES COMPLIANT: Χρήση κεντρικού hook για CSS Variables
+  // <CheckIcon size="sm" /> ARXES COMPLIANT: Χρήση κεντρικού hook για CSS Variables
   const { actions } = useCSSVariables();
 
-  // ✅ Color State Hook για έλεγχο alpha preview mode
+  // <CheckIcon size="sm" /> Color State Hook για έλεγχο alpha preview mode
   const { state: colorHookState } = useColorState();
 
   // Helper function για translation του shape
@@ -81,7 +86,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
     }
   };
 
-  // ✅ ΑΝΤΙΚΑΤΑΣΤΑΣΗ ΔΙΠΛΟΤΥΠΩΝ FUNCTIONS - Χρήση κεντρικών helper functions
+  // <CheckIcon size="sm" /> ΑΝΤΙΚΑΤΑΣΤΑΣΗ ΔΙΠΛΟΤΥΠΩΝ FUNCTIONS - Χρήση κεντρικών helper functions
   const { getRadiusInGreek, getHoverEffectInGreek, getActiveEffectInGreek, getSizeInGreek, getCategoryInGreek } = PLAYGROUND_HELPERS;
 
   // Δυναμική δημιουργία πλήρους περιγραφής
@@ -177,79 +182,79 @@ HTML Attribute: ${row.htmlAttribute}
 
   const copyAllTables = async () => {
     try {
-      // Δεδομένα από όλους τους πίνακες
+      // Δυναμικά δεδομένα από όλους τους πίνακες
       const backgroundColorsData = [
-        { category: "🎨 Primary Φόντο", cssVariable: "--layera-button-background-primary", selector: '.layera-button[data-variant="primary"]', htmlAttribute: 'data-layera-button-background="primary"', currentValue: "Primary" },
-        { category: "🎨 Secondary Φόντο", cssVariable: "--layera-button-background-secondary", selector: '.layera-button[data-variant="secondary"]', htmlAttribute: 'data-layera-button-background="secondary"', currentValue: "Secondary" },
-        { category: "🎨 Success Φόντο", cssVariable: "--layera-button-background-success", selector: '.layera-button[data-variant="success"]', htmlAttribute: 'data-layera-button-background="success"', currentValue: "Success" },
-        { category: "🎨 Warning Φόντο", cssVariable: "--layera-button-background-warning", selector: '.layera-button[data-variant="warning"]', htmlAttribute: 'data-layera-button-background="warning"', currentValue: "Warning" },
-        { category: "🎨 Danger Φόντο", cssVariable: "--layera-button-background-danger", selector: '.layera-button[data-variant="danger"]', htmlAttribute: 'data-layera-button-background="danger"', currentValue: "Danger" },
-        { category: "🎨 Info Φόντο", cssVariable: "--layera-button-background-info", selector: '.layera-button[data-variant="info"]', htmlAttribute: 'data-layera-button-background="info"', currentValue: "Info" },
-        { category: "🎨 Outline Φόντο", cssVariable: "--layera-button-background-outline", selector: '.layera-button[data-variant="outline"]', htmlAttribute: 'data-layera-button-background="outline"', currentValue: "Outline" },
-        { category: "🎨 Ghost Φόντο", cssVariable: "--layera-button-background-ghost", selector: '.layera-button[data-variant="ghost"]', htmlAttribute: 'data-layera-button-background="ghost"', currentValue: "Ghost" }
+        { category: "Primary Φόντο", cssVariable: "--layera-button-background-primary", selector: '.layera-button[data-variant="primary"]', htmlAttribute: 'data-layera-button-background="primary"', currentValue: buttonState.variant === 'primary' ? 'ACTIVE' : 'Primary' },
+        { category: "Secondary Φόντο", cssVariable: "--layera-button-background-secondary", selector: '.layera-button[data-variant="secondary"]', htmlAttribute: 'data-layera-button-background="secondary"', currentValue: buttonState.variant === 'secondary' ? 'ACTIVE' : 'Secondary' },
+        { category: "Success Φόντο", cssVariable: "--layera-button-background-success", selector: '.layera-button[data-variant="success"]', htmlAttribute: 'data-layera-button-background="success"', currentValue: buttonState.variant === 'success' ? 'ACTIVE' : 'Success' },
+        { category: "Warning Φόντο", cssVariable: "--layera-button-background-warning", selector: '.layera-button[data-variant="warning"]', htmlAttribute: 'data-layera-button-background="warning"', currentValue: buttonState.variant === 'warning' ? 'ACTIVE' : 'Warning' },
+        { category: "Danger Φόντο", cssVariable: "--layera-button-background-danger", selector: '.layera-button[data-variant="danger"]', htmlAttribute: 'data-layera-button-background="danger"', currentValue: buttonState.variant === 'danger' ? 'ACTIVE' : 'Danger' },
+        { category: "Info Φόντο", cssVariable: "--layera-button-background-info", selector: '.layera-button[data-variant="info"]', htmlAttribute: 'data-layera-button-background="info"', currentValue: buttonState.variant === 'info' ? 'ACTIVE' : 'Info' },
+        { category: "Outline Φόντο", cssVariable: "--layera-button-background-outline", selector: '.layera-button[data-variant="outline"]', htmlAttribute: 'data-layera-button-background="outline"', currentValue: buttonState.variant === 'outline' ? 'ACTIVE' : 'Outline' },
+        { category: "Ghost Φόντο", cssVariable: "--layera-button-background-ghost", selector: '.layera-button[data-variant="ghost"]', htmlAttribute: 'data-layera-button-background="ghost"', currentValue: buttonState.variant === 'ghost' ? 'ACTIVE' : 'Ghost' }
       ];
 
       const bordersData = [
-        { category: "🔲 Primary Περίγραμμα", cssVariable: "--layera-button-border-primary", selector: '.layera-button[data-variant="primary"]', htmlAttribute: 'data-layera-button-border="primary"', currentValue: "Primary" },
-        { category: "🔲 Secondary Περίγραμμα", cssVariable: "--layera-button-border-secondary", selector: '.layera-button[data-variant="secondary"]', htmlAttribute: 'data-layera-button-border="secondary"', currentValue: "Secondary" },
-        { category: "🔲 Success Περίγραμμα", cssVariable: "--layera-button-border-success", selector: '.layera-button[data-variant="success"]', htmlAttribute: 'data-layera-button-border="success"', currentValue: "Success" },
-        { category: "🔲 Warning Περίγραμμα", cssVariable: "--layera-button-border-warning", selector: '.layera-button[data-variant="warning"]', htmlAttribute: 'data-layera-button-border="warning"', currentValue: "Warning" },
-        { category: "🔲 Danger Περίγραμμα", cssVariable: "--layera-button-border-danger", selector: '.layera-button[data-variant="danger"]', htmlAttribute: 'data-layera-button-border="danger"', currentValue: "Danger" },
-        { category: "🔲 Info Περίγραμμα", cssVariable: "--layera-button-border-info", selector: '.layera-button[data-variant="info"]', htmlAttribute: 'data-layera-button-border="info"', currentValue: "Info" },
-        { category: "🔲 Outline Περίγραμμα", cssVariable: "--layera-button-border-outline", selector: '.layera-button[data-variant="outline"]', htmlAttribute: 'data-layera-button-border="outline"', currentValue: "Outline" },
-        { category: "🔲 Ghost Περίγραμμα", cssVariable: "--layera-button-border-ghost", selector: '.layera-button[data-variant="ghost"]', htmlAttribute: 'data-layera-button-border="ghost"', currentValue: "Ghost" }
+        { category: "🔲 Primary Περίγραμμα", cssVariable: "--layera-button-border-primary", selector: '.layera-button[data-variant="primary"]', htmlAttribute: 'data-layera-button-border="primary"', currentValue: buttonState.variant === 'primary' ? 'ACTIVE' : 'Primary' },
+        { category: "🔲 Secondary Περίγραμμα", cssVariable: "--layera-button-border-secondary", selector: '.layera-button[data-variant="secondary"]', htmlAttribute: 'data-layera-button-border="secondary"', currentValue: buttonState.variant === 'secondary' ? 'ACTIVE' : 'Secondary' },
+        { category: "🔲 Success Περίγραμμα", cssVariable: "--layera-button-border-success", selector: '.layera-button[data-variant="success"]', htmlAttribute: 'data-layera-button-border="success"', currentValue: buttonState.variant === 'success' ? 'ACTIVE' : 'Success' },
+        { category: "🔲 Warning Περίγραμμα", cssVariable: "--layera-button-border-warning", selector: '.layera-button[data-variant="warning"]', htmlAttribute: 'data-layera-button-border="warning"', currentValue: buttonState.variant === 'warning' ? 'ACTIVE' : 'Warning' },
+        { category: "🔲 Danger Περίγραμμα", cssVariable: "--layera-button-border-danger", selector: '.layera-button[data-variant="danger"]', htmlAttribute: 'data-layera-button-border="danger"', currentValue: buttonState.variant === 'danger' ? 'ACTIVE' : 'Danger' },
+        { category: "🔲 Info Περίγραμμα", cssVariable: "--layera-button-border-info", selector: '.layera-button[data-variant="info"]', htmlAttribute: 'data-layera-button-border="info"', currentValue: buttonState.variant === 'info' ? 'ACTIVE' : 'Info' },
+        { category: "🔲 Outline Περίγραμμα", cssVariable: "--layera-button-border-outline", selector: '.layera-button[data-variant="outline"]', htmlAttribute: 'data-layera-button-border="outline"', currentValue: buttonState.variant === 'outline' ? 'ACTIVE' : 'Outline' },
+        { category: "🔲 Ghost Περίγραμμα", cssVariable: "--layera-button-border-ghost", selector: '.layera-button[data-variant="ghost"]', htmlAttribute: 'data-layera-button-border="ghost"', currentValue: buttonState.variant === 'ghost' ? 'ACTIVE' : 'Ghost' }
       ];
 
       const textColorsData = [
-        { category: "🅰️ Primary Κείμενο", cssVariable: "--layera-button-text-primary", selector: '.layera-button[data-variant="primary"]', htmlAttribute: 'data-layera-button-text="primary"', currentValue: "Primary" },
-        { category: "🅰️ Secondary Κείμενο", cssVariable: "--layera-button-text-secondary", selector: '.layera-button[data-variant="secondary"]', htmlAttribute: 'data-layera-button-text="secondary"', currentValue: "Secondary" },
-        { category: "🅰️ Success Κείμενο", cssVariable: "--layera-button-text-success", selector: '.layera-button[data-variant="success"]', htmlAttribute: 'data-layera-button-text="success"', currentValue: "Success" },
-        { category: "🅰️ Warning Κείμενο", cssVariable: "--layera-button-text-warning", selector: '.layera-button[data-variant="warning"]', htmlAttribute: 'data-layera-button-text="warning"', currentValue: "Warning" },
-        { category: "🅰️ Danger Κείμενο", cssVariable: "--layera-button-text-danger", selector: '.layera-button[data-variant="danger"]', htmlAttribute: 'data-layera-button-text="danger"', currentValue: "Danger" },
-        { category: "🅰️ Info Κείμενο", cssVariable: "--layera-button-text-info", selector: '.layera-button[data-variant="info"]', htmlAttribute: 'data-layera-button-text="info"', currentValue: "Info" },
-        { category: "🅰️ Outline Κείμενο", cssVariable: "--layera-button-text-outline", selector: '.layera-button[data-variant="outline"]', htmlAttribute: 'data-layera-button-text="outline"', currentValue: "Outline" },
-        { category: "🅰️ Ghost Κείμενο", cssVariable: "--layera-button-text-ghost", selector: '.layera-button[data-variant="ghost"]', htmlAttribute: 'data-layera-button-text="ghost"', currentValue: "Ghost" }
+        { category: "🅰️ Primary Κείμενο", cssVariable: "--layera-button-text-primary", selector: '.layera-button[data-variant="primary"]', htmlAttribute: 'data-layera-button-text="primary"', currentValue: buttonState.variant === 'primary' ? 'ACTIVE' : 'Primary' },
+        { category: "🅰️ Secondary Κείμενο", cssVariable: "--layera-button-text-secondary", selector: '.layera-button[data-variant="secondary"]', htmlAttribute: 'data-layera-button-text="secondary"', currentValue: buttonState.variant === 'secondary' ? 'ACTIVE' : 'Secondary' },
+        { category: "🅰️ Success Κείμενο", cssVariable: "--layera-button-text-success", selector: '.layera-button[data-variant="success"]', htmlAttribute: 'data-layera-button-text="success"', currentValue: buttonState.variant === 'success' ? 'ACTIVE' : 'Success' },
+        { category: "🅰️ Warning Κείμενο", cssVariable: "--layera-button-text-warning", selector: '.layera-button[data-variant="warning"]', htmlAttribute: 'data-layera-button-text="warning"', currentValue: buttonState.variant === 'warning' ? 'ACTIVE' : 'Warning' },
+        { category: "🅰️ Danger Κείμενο", cssVariable: "--layera-button-text-danger", selector: '.layera-button[data-variant="danger"]', htmlAttribute: 'data-layera-button-text="danger"', currentValue: buttonState.variant === 'danger' ? 'ACTIVE' : 'Danger' },
+        { category: "🅰️ Info Κείμενο", cssVariable: "--layera-button-text-info", selector: '.layera-button[data-variant="info"]', htmlAttribute: 'data-layera-button-text="info"', currentValue: buttonState.variant === 'info' ? 'ACTIVE' : 'Info' },
+        { category: "🅰️ Outline Κείμενο", cssVariable: "--layera-button-text-outline", selector: '.layera-button[data-variant="outline"]', htmlAttribute: 'data-layera-button-text="outline"', currentValue: buttonState.variant === 'outline' ? 'ACTIVE' : 'Outline' },
+        { category: "🅰️ Ghost Κείμενο", cssVariable: "--layera-button-text-ghost", selector: '.layera-button[data-variant="ghost"]', htmlAttribute: 'data-layera-button-text="ghost"', currentValue: buttonState.variant === 'ghost' ? 'ACTIVE' : 'Ghost' }
       ];
 
       const hoverColorsData = [
-        { category: "🎯 Primary Hover", cssVariable: "--layera-button-hover-primary", selector: '.layera-button[data-variant="primary"]:hover', htmlAttribute: 'data-layera-button-hover="primary"', currentValue: "Primary Hover" },
-        { category: "🎯 Secondary Hover", cssVariable: "--layera-button-hover-secondary", selector: '.layera-button[data-variant="secondary"]:hover', htmlAttribute: 'data-layera-button-hover="secondary"', currentValue: "Secondary Hover" },
-        { category: "🎯 Success Hover", cssVariable: "--layera-button-hover-success", selector: '.layera-button[data-variant="success"]:hover', htmlAttribute: 'data-layera-button-hover="success"', currentValue: "Success Hover" },
-        { category: "🎯 Warning Hover", cssVariable: "--layera-button-hover-warning", selector: '.layera-button[data-variant="warning"]:hover', htmlAttribute: 'data-layera-button-hover="warning"', currentValue: "Warning Hover" },
-        { category: "🎯 Danger Hover", cssVariable: "--layera-button-hover-danger", selector: '.layera-button[data-variant="danger"]:hover', htmlAttribute: 'data-layera-button-hover="danger"', currentValue: "Danger Hover" },
-        { category: "🎯 Info Hover", cssVariable: "--layera-button-hover-info", selector: '.layera-button[data-variant="info"]:hover', htmlAttribute: 'data-layera-button-hover="info"', currentValue: "Info Hover" },
-        { category: "🎯 Outline Hover", cssVariable: "--layera-button-hover-outline", selector: '.layera-button[data-variant="outline"]:hover', htmlAttribute: 'data-layera-button-hover="outline"', currentValue: "Outline Hover" },
-        { category: "🎯 Ghost Hover", cssVariable: "--layera-button-hover-ghost", selector: '.layera-button[data-variant="ghost"]:hover', htmlAttribute: 'data-layera-button-hover="ghost"', currentValue: "Ghost Hover" }
+        { category: "Primary Hover", cssVariable: "--layera-button-hover-primary", selector: '.layera-button[data-variant="primary"]:hover', htmlAttribute: 'data-layera-button-hover="primary"', currentValue: buttonState.variant === 'primary' ? 'ACTIVE HOVER' : 'Primary Hover' },
+        { category: "Secondary Hover", cssVariable: "--layera-button-hover-secondary", selector: '.layera-button[data-variant="secondary"]:hover', htmlAttribute: 'data-layera-button-hover="secondary"', currentValue: buttonState.variant === 'secondary' ? 'ACTIVE HOVER' : 'Secondary Hover' },
+        { category: "Success Hover", cssVariable: "--layera-button-hover-success", selector: '.layera-button[data-variant="success"]:hover', htmlAttribute: 'data-layera-button-hover="success"', currentValue: buttonState.variant === 'success' ? 'ACTIVE HOVER' : 'Success Hover' },
+        { category: "Warning Hover", cssVariable: "--layera-button-hover-warning", selector: '.layera-button[data-variant="warning"]:hover', htmlAttribute: 'data-layera-button-hover="warning"', currentValue: buttonState.variant === 'warning' ? 'ACTIVE HOVER' : 'Warning Hover' },
+        { category: "Danger Hover", cssVariable: "--layera-button-hover-danger", selector: '.layera-button[data-variant="danger"]:hover', htmlAttribute: 'data-layera-button-hover="danger"', currentValue: buttonState.variant === 'danger' ? 'ACTIVE HOVER' : 'Danger Hover' },
+        { category: "Info Hover", cssVariable: "--layera-button-hover-info", selector: '.layera-button[data-variant="info"]:hover', htmlAttribute: 'data-layera-button-hover="info"', currentValue: buttonState.variant === 'info' ? 'ACTIVE HOVER' : 'Info Hover' },
+        { category: "Outline Hover", cssVariable: "--layera-button-hover-outline", selector: '.layera-button[data-variant="outline"]:hover', htmlAttribute: 'data-layera-button-hover="outline"', currentValue: buttonState.variant === 'outline' ? 'ACTIVE HOVER' : 'Outline Hover' },
+        { category: "Ghost Hover", cssVariable: "--layera-button-hover-ghost", selector: '.layera-button[data-variant="ghost"]:hover', htmlAttribute: 'data-layera-button-hover="ghost"', currentValue: buttonState.variant === 'ghost' ? 'ACTIVE HOVER' : 'Ghost Hover' }
       ];
 
       const focusColorsData = [
-        { category: "🔍 Primary Focus", cssVariable: "--layera-button-focus-primary", selector: '.layera-button[data-variant="primary"]:focus', htmlAttribute: 'data-layera-button-focus="primary"', currentValue: "Primary Focus" },
-        { category: "🔍 Secondary Focus", cssVariable: "--layera-button-focus-secondary", selector: '.layera-button[data-variant="secondary"]:focus', htmlAttribute: 'data-layera-button-focus="secondary"', currentValue: "Secondary Focus" },
-        { category: "🔍 Success Focus", cssVariable: "--layera-button-focus-success", selector: '.layera-button[data-variant="success"]:focus', htmlAttribute: 'data-layera-button-focus="success"', currentValue: "Success Focus" },
-        { category: "🔍 Warning Focus", cssVariable: "--layera-button-focus-warning", selector: '.layera-button[data-variant="warning"]:focus', htmlAttribute: 'data-layera-button-focus="warning"', currentValue: "Warning Focus" },
-        { category: "🔍 Danger Focus", cssVariable: "--layera-button-focus-danger", selector: '.layera-button[data-variant="danger"]:focus', htmlAttribute: 'data-layera-button-focus="danger"', currentValue: "Danger Focus" },
-        { category: "🔍 Info Focus", cssVariable: "--layera-button-focus-info", selector: '.layera-button[data-variant="info"]:focus', htmlAttribute: 'data-layera-button-focus="info"', currentValue: "Info Focus" },
-        { category: "🔍 Outline Focus", cssVariable: "--layera-button-focus-outline", selector: '.layera-button[data-variant="outline"]:focus', htmlAttribute: 'data-layera-button-focus="outline"', currentValue: "Outline Focus" },
-        { category: "🔍 Ghost Focus", cssVariable: "--layera-button-focus-ghost", selector: '.layera-button[data-variant="ghost"]:focus', htmlAttribute: 'data-layera-button-focus="ghost"', currentValue: "Ghost Focus" }
+        { category: "🔍 Primary Focus", cssVariable: "--layera-button-focus-primary", selector: '.layera-button[data-variant="primary"]:focus', htmlAttribute: 'data-layera-button-focus="primary"', currentValue: buttonState.variant === 'primary' ? 'ACTIVE FOCUS' : 'Primary Focus' },
+        { category: "🔍 Secondary Focus", cssVariable: "--layera-button-focus-secondary", selector: '.layera-button[data-variant="secondary"]:focus', htmlAttribute: 'data-layera-button-focus="secondary"', currentValue: buttonState.variant === 'secondary' ? 'ACTIVE FOCUS' : 'Secondary Focus' },
+        { category: "🔍 Success Focus", cssVariable: "--layera-button-focus-success", selector: '.layera-button[data-variant="success"]:focus', htmlAttribute: 'data-layera-button-focus="success"', currentValue: buttonState.variant === 'success' ? 'ACTIVE FOCUS' : 'Success Focus' },
+        { category: "🔍 Warning Focus", cssVariable: "--layera-button-focus-warning", selector: '.layera-button[data-variant="warning"]:focus', htmlAttribute: 'data-layera-button-focus="warning"', currentValue: buttonState.variant === 'warning' ? 'ACTIVE FOCUS' : 'Warning Focus' },
+        { category: "🔍 Danger Focus", cssVariable: "--layera-button-focus-danger", selector: '.layera-button[data-variant="danger"]:focus', htmlAttribute: 'data-layera-button-focus="danger"', currentValue: buttonState.variant === 'danger' ? 'ACTIVE FOCUS' : 'Danger Focus' },
+        { category: "🔍 Info Focus", cssVariable: "--layera-button-focus-info", selector: '.layera-button[data-variant="info"]:focus', htmlAttribute: 'data-layera-button-focus="info"', currentValue: buttonState.variant === 'info' ? 'ACTIVE FOCUS' : 'Info Focus' },
+        { category: "🔍 Outline Focus", cssVariable: "--layera-button-focus-outline", selector: '.layera-button[data-variant="outline"]:focus', htmlAttribute: 'data-layera-button-focus="outline"', currentValue: buttonState.variant === 'outline' ? 'ACTIVE FOCUS' : 'Outline Focus' },
+        { category: "🔍 Ghost Focus", cssVariable: "--layera-button-focus-ghost", selector: '.layera-button[data-variant="ghost"]:focus', htmlAttribute: 'data-layera-button-focus="ghost"', currentValue: buttonState.variant === 'ghost' ? 'ACTIVE FOCUS' : 'Ghost Focus' }
       ];
 
       const disabledColorsData = [
-        { category: "❌ Primary Disabled", cssVariable: "--layera-button-disabled-primary", selector: '.layera-button[data-variant="primary"]:disabled', htmlAttribute: 'data-layera-button-disabled="primary"', currentValue: "Primary Disabled" },
-        { category: "❌ Secondary Disabled", cssVariable: "--layera-button-disabled-secondary", selector: '.layera-button[data-variant="secondary"]:disabled', htmlAttribute: 'data-layera-button-disabled="secondary"', currentValue: "Secondary Disabled" },
-        { category: "❌ Success Disabled", cssVariable: "--layera-button-disabled-success", selector: '.layera-button[data-variant="success"]:disabled', htmlAttribute: 'data-layera-button-disabled="success"', currentValue: "Success Disabled" },
-        { category: "❌ Warning Disabled", cssVariable: "--layera-button-disabled-warning", selector: '.layera-button[data-variant="warning"]:disabled', htmlAttribute: 'data-layera-button-disabled="warning"', currentValue: "Warning Disabled" },
-        { category: "❌ Danger Disabled", cssVariable: "--layera-button-disabled-danger", selector: '.layera-button[data-variant="danger"]:disabled', htmlAttribute: 'data-layera-button-disabled="danger"', currentValue: "Danger Disabled" },
-        { category: "❌ Info Disabled", cssVariable: "--layera-button-disabled-info", selector: '.layera-button[data-variant="info"]:disabled', htmlAttribute: 'data-layera-button-disabled="info"', currentValue: "Info Disabled" },
-        { category: "❌ Outline Disabled", cssVariable: "--layera-button-disabled-outline", selector: '.layera-button[data-variant="outline"]:disabled', htmlAttribute: 'data-layera-button-disabled="outline"', currentValue: "Outline Disabled" },
-        { category: "❌ Ghost Disabled", cssVariable: "--layera-button-disabled-ghost", selector: '.layera-button[data-variant="ghost"]:disabled', htmlAttribute: 'data-layera-button-disabled="ghost"', currentValue: "Ghost Disabled" }
+        { category: "❌ Primary Disabled", cssVariable: "--layera-button-disabled-primary", selector: '.layera-button[data-variant="primary"]:disabled', htmlAttribute: 'data-layera-button-disabled="primary"', currentValue: buttonState.variant === 'primary' ? 'ACTIVE DISABLED' : 'Primary Disabled' },
+        { category: "❌ Secondary Disabled", cssVariable: "--layera-button-disabled-secondary", selector: '.layera-button[data-variant="secondary"]:disabled', htmlAttribute: 'data-layera-button-disabled="secondary"', currentValue: buttonState.variant === 'secondary' ? 'ACTIVE DISABLED' : 'Secondary Disabled' },
+        { category: "❌ Success Disabled", cssVariable: "--layera-button-disabled-success", selector: '.layera-button[data-variant="success"]:disabled', htmlAttribute: 'data-layera-button-disabled="success"', currentValue: buttonState.variant === 'success' ? 'ACTIVE DISABLED' : 'Success Disabled' },
+        { category: "❌ Warning Disabled", cssVariable: "--layera-button-disabled-warning", selector: '.layera-button[data-variant="warning"]:disabled', htmlAttribute: 'data-layera-button-disabled="warning"', currentValue: buttonState.variant === 'warning' ? 'ACTIVE DISABLED' : 'Warning Disabled' },
+        { category: "❌ Danger Disabled", cssVariable: "--layera-button-disabled-danger", selector: '.layera-button[data-variant="danger"]:disabled', htmlAttribute: 'data-layera-button-disabled="danger"', currentValue: buttonState.variant === 'danger' ? 'ACTIVE DISABLED' : 'Danger Disabled' },
+        { category: "❌ Info Disabled", cssVariable: "--layera-button-disabled-info", selector: '.layera-button[data-variant="info"]:disabled', htmlAttribute: 'data-layera-button-disabled="info"', currentValue: buttonState.variant === 'info' ? 'ACTIVE DISABLED' : 'Info Disabled' },
+        { category: "❌ Outline Disabled", cssVariable: "--layera-button-disabled-outline", selector: '.layera-button[data-variant="outline"]:disabled', htmlAttribute: 'data-layera-button-disabled="outline"', currentValue: buttonState.variant === 'outline' ? 'ACTIVE DISABLED' : 'Outline Disabled' },
+        { category: "❌ Ghost Disabled", cssVariable: "--layera-button-disabled-ghost", selector: '.layera-button[data-variant="ghost"]:disabled', htmlAttribute: 'data-layera-button-disabled="ghost"', currentValue: buttonState.variant === 'ghost' ? 'ACTIVE DISABLED' : 'Ghost Disabled' }
       ];
 
       // Ενοποίηση όλων των πινάκων
       const allTablesContent = [
-        { title: "🎨 Background Colors", data: backgroundColorsData },
+        { title: "Background Colors", data: backgroundColorsData },
         { title: "🔲 Borders", data: bordersData },
         { title: "🅰️ Text Colors", data: textColorsData },
-        { title: "🎯 Hover Colors", data: hoverColorsData },
+        { title: "Hover Colors", data: hoverColorsData },
         { title: "🔍 Focus Colors", data: focusColorsData },
         { title: "❌ Disabled Colors", data: disabledColorsData }
       ];
@@ -287,8 +292,8 @@ HTML Attribute: ${row.htmlAttribute}
     <td className="layera-padding--sm layera-text--align-center">
       <Button
         variant="ghost"
-        size="xs"
-        icon={<CopyIcon size="xs" />}
+        size="sm"
+        icon={<CopyIcon size="sm" />}
         onClick={() => copyRowData({
           category,
           cssVariable,
@@ -306,12 +311,28 @@ HTML Attribute: ${row.htmlAttribute}
     return `var(--layera-global-borderWidth-${width})`;
   };
 
-  // 🎯 Accordion Helper Function για toggle κατηγοριών
+  // Accordion Helper Function για toggle κατηγοριών
   const toggleCategory = (category: keyof typeof expandedCategories) => {
     setExpandedCategories(prev => ({
       ...prev,
       [category]: !prev[category]
     }));
+  };
+
+  // Toggle All Accordions Function
+  const toggleAllAccordions = () => {
+    const allExpanded = Object.values(expandedCategories).every(expanded => expanded);
+
+    setExpandedCategories({
+      backgroundColors: !allExpanded,
+      borders: !allExpanded,
+      shadowsEffects: !allExpanded,
+      layoutSpacing: !allExpanded,
+      typography: !allExpanded,
+      icons: !allExpanded,
+      statesAccessibility: !allExpanded,
+      currentConfiguration: !allExpanded
+    });
   };
 
   // Dynamic colors with fallbacks using design tokens
@@ -327,10 +348,10 @@ HTML Attribute: ${row.htmlAttribute}
   // Border width για outline button
   const dynamicBorderWidth = getBorderWidthToken(borderWidth);
 
-  // ✅ ARXES COMPLIANT: Χρήση κεντρικού hook για button color styling
+  // <CheckIcon size="sm" /> ARXES COMPLIANT: Χρήση κεντρικού hook για button color styling
   React.useEffect(() => {
     if (typeof document !== 'undefined') {
-      // ✅ RGBA PROTECTION: Δεν κάνουμε override αν υπάρχουν ήδη RGBA τιμές
+      // <CheckIcon size="sm" /> RGBA PROTECTION: Δεν κάνουμε override αν υπάρχουν ήδη RGBA τιμές
       // Ελέγχουμε αν τα CSS variables έχουν ήδη rgba() τιμές
       const root = document.documentElement;
 
@@ -463,7 +484,7 @@ HTML Attribute: ${row.htmlAttribute}
             onClick={() => setShowVariablesPopup(true)}
             className="layera-text--align-center layera-opacity--70 layera-hover--opacity-100"
           >
-            ℹ️ Όλες οι Μεταβλητές Πλήκτρων
+            <BellIcon size="sm" /> Όλες οι Μεταβλητές Πλήκτρων
           </Button>
         </Box>
       </Box>
@@ -474,7 +495,7 @@ HTML Attribute: ${row.htmlAttribute}
             {/* Header */}
             <Box className="layera-flex layera-flex--justify-between layera-flex--align-center layera-margin-bottom--lg">
               <Text className="layera-typography" data-size="2xl" data-weight="bold" data-color="primary">
-                🎯 Όλες οι Μεταβλητές Πλήκτρων
+                <LocationIcon size="sm" /> Όλες οι Μεταβλητές Πλήκτρων
               </Text>
               <Button
                 variant="ghost"
@@ -487,10 +508,26 @@ HTML Attribute: ${row.htmlAttribute}
               </Button>
             </Box>
 
-            {/* 🎯 Accordion Structure για Variables - Σταδιακή Εφαρμογή */}
+            {/* Accordion Structure για Variables - Σταδιακή Εφαρμογή */}
             <Box className="layera-space-y--md layera-margin-bottom--lg">
 
-              {/* 🎨 Background Colors Section */}
+              {/* 🎛️ Toggle All Accordions Button */}
+              <Box className="layera-margin-bottom--md layera-text-center">
+                <Button
+                  variant="outline"
+                  size="md"
+                  onClick={toggleAllAccordions}
+                  className="layera-button layera-button--md layera-button--outline"
+                >
+                  {Object.values(expandedCategories).every(expanded => expanded) ? (
+                    <><FolderIcon size="sm" /> Κλείσιμο όλων των ακορντεόν</>
+                  ) : (
+                    <><EyeIcon size="sm" /> Άνοιγμα όλων των ακορντεόν</>
+                  )}
+                </Button>
+              </Box>
+
+              {/* Background Colors Section */}
               <Box className="layera-border--solid layera-border-width--1 layera-border-color--primary layera-border-radius--md">
                 <Box
                   className="layera-padding--md layera-cursor--pointer layera-bg--surface-primary layera-border-bottom--dashed layera-border-width--1 layera-border-color--primary"
@@ -498,7 +535,7 @@ HTML Attribute: ${row.htmlAttribute}
                 >
                   <Box className="layera-display--flex layera-items-center layera-justify-between">
                     <Text className="layera-typography" data-size="md" data-weight="bold" data-color="primary">
-                      🎨 Background Colors (8 μεταβλητές)
+                      <PaletteIcon size="sm" /> Background Colors (8 μεταβλητές)
                     </Text>
                     <Text className="layera-typography" data-size="lg" data-color="primary">
                       {expandedCategories.backgroundColors ? '▼' : '▶'}
@@ -521,216 +558,216 @@ HTML Attribute: ${row.htmlAttribute}
                         <thead className="layera-bg--surface-secondary">
                           <tr>
                             <th className="layera-text--align-left layera-border-bottom--solid layera-border-width--1 layera-border-color--secondary">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">Κατηγορία</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">Κατηγορία</Text>
                             </th>
                             <th className="layera-text--align-left layera-border-bottom--solid layera-border-width--1 layera-border-color--secondary">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">CSS Variable</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">CSS Variable</Text>
                             </th>
                             <th className="layera-text--align-left layera-border-bottom--solid layera-border-width--1 layera-border-color--secondary">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">Selector</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">Selector</Text>
                             </th>
                             <th className="layera-text--align-left layera-border-bottom--solid layera-border-width--1 layera-border-color--secondary">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">HTML Attribute</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">HTML Attribute</Text>
                             </th>
                             <th className="layera-text--align-left layera-border-bottom--solid layera-border-width--1 layera-border-color--secondary">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">Τρέχουσα Τιμή</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">Τρέχουσα Τιμή</Text>
                             </th>
                             <th className="layera-text--align-center layera-border-bottom--solid layera-border-width--1 layera-border-color--secondary">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">📋</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary"><CopyIcon size="sm" /></Text>
                             </th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--info">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">🎨 Primary Φόντο</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary"><PaletteIcon size="sm" /> Primary Φόντο</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--info">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">--layera-button-background-primary</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="info">--layera-button-background-primary</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--info">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button[data-variant="primary"]</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">.layera-button[data-variant="primary"]</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--info">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-layera-button-background="primary"</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">data-layera-button-background="primary"</Text>
                             </td>
                             <td >
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="success">Primary</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">{buttonState.variant === 'primary' ? 'ACTIVE' : 'Primary'}</Text>
                             </td>
                             <CopyButton
-                              category="🎨 Primary Φόντο"
+                              category="Primary Φόντο"
                               cssVariable="--layera-button-background-primary"
                               selector='.layera-button[data-variant="primary"]'
                               htmlAttribute='data-layera-button-background="primary"'
-                              currentValue="Primary"
+                              currentValue={buttonState.variant === 'primary' ? 'ACTIVE' : 'Primary'}
                             />
                           </tr>
                           <tr>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--info">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">🎨 Secondary Φόντο</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary"><PaletteIcon size="sm" /> Secondary Φόντο</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--info">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">--layera-button-background-secondary</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="info">--layera-button-background-secondary</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--info">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button[data-variant="secondary"]</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">.layera-button[data-variant="secondary"]</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--info">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-layera-button-background="secondary"</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">data-layera-button-background="secondary"</Text>
                             </td>
                             <td >
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="success">Secondary</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">{buttonState.variant === 'secondary' ? 'ACTIVE' : 'Secondary'}</Text>
                             </td>
                             <CopyButton
-                              category="🎨 Secondary Φόντο"
+                              category="Secondary Φόντο"
                               cssVariable="--layera-button-background-secondary"
                               selector='.layera-button[data-variant="secondary"]'
                               htmlAttribute='data-layera-button-background="secondary"'
-                              currentValue="Secondary"
+                              currentValue={buttonState.variant === 'secondary' ? 'ACTIVE' : 'Secondary'}
                             />
                           </tr>
                           <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--success">
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--success">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">🎨 Success Φόντο</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary"><PaletteIcon size="sm" /> Success Φόντο</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--success">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">--layera-button-background-success</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="info">--layera-button-background-success</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--success">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button[data-variant="success"]</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">.layera-button[data-variant="success"]</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--success">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-layera-button-background="success"</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">data-layera-button-background="success"</Text>
                             </td>
                             <td >
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="success">Success</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">{buttonState.variant === 'success' ? 'ACTIVE' : 'Success'}</Text>
                             </td>
                             <CopyButton
-                              category="🎨 Success Φόντο"
+                              category="Success Φόντο"
                               cssVariable="--layera-button-background-success"
                               selector='.layera-button[data-variant="success"]'
                               htmlAttribute='data-layera-button-background="success"'
-                              currentValue="Success"
+                              currentValue={buttonState.variant === 'success' ? 'ACTIVE' : 'Success'}
                             />
                           </tr>
                           <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--warning">
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">🎨 Warning Φόντο</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary"><PaletteIcon size="sm" /> Warning Φόντο</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">--layera-button-background-warning</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="info">--layera-button-background-warning</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button[data-variant="warning"]</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">.layera-button[data-variant="warning"]</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-layera-button-background="warning"</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">data-layera-button-background="warning"</Text>
                             </td>
                             <td >
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="success">Warning</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">{buttonState.variant === 'warning' ? 'ACTIVE' : 'Warning'}</Text>
                             </td>
                             <CopyButton
-                              category="🎨 Warning Φόντο"
+                              category="Warning Φόντο"
                               cssVariable="--layera-button-background-warning"
                               selector='.layera-button[data-variant="warning"]'
                               htmlAttribute='data-layera-button-background="warning"'
-                              currentValue="Warning"
+                              currentValue={buttonState.variant === 'warning' ? 'ACTIVE' : 'Warning'}
                             />
                           </tr>
                           <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--danger">
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">🎨 Danger Φόντο</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary"><PaletteIcon size="sm" /> Danger Φόντο</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">--layera-button-background-danger</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="info">--layera-button-background-danger</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button[data-variant="danger"]</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">.layera-button[data-variant="danger"]</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-layera-button-background="danger"</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">data-layera-button-background="danger"</Text>
                             </td>
                             <td >
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="success">Danger</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">{buttonState.variant === 'danger' ? 'ACTIVE' : 'Danger'}</Text>
                             </td>
                             <CopyButton
-                              category="🎨 Danger Φόντο"
+                              category="Danger Φόντο"
                               cssVariable="--layera-button-background-danger"
                               selector='.layera-button[data-variant="danger"]'
                               htmlAttribute='data-layera-button-background="danger"'
-                              currentValue="Danger"
+                              currentValue={buttonState.variant === 'danger' ? 'ACTIVE' : 'Danger'}
                             />
                           </tr>
                           <tr>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--info">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">🎨 Info Φόντο</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary"><PaletteIcon size="sm" /> Info Φόντο</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--info">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">--layera-button-background-info</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="info">--layera-button-background-info</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--info">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button[data-variant="info"]</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">.layera-button[data-variant="info"]</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--info">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-layera-button-background="info"</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">data-layera-button-background="info"</Text>
                             </td>
                             <td >
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="success">Info</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">{buttonState.variant === 'info' ? 'ACTIVE' : 'Info'}</Text>
                             </td>
                             <CopyButton
-                              category="🎨 Info Φόντο"
+                              category="Info Φόντο"
                               cssVariable="--layera-button-background-info"
                               selector='.layera-button[data-variant="info"]'
                               htmlAttribute='data-layera-button-background="info"'
-                              currentValue="Info"
+                              currentValue={buttonState.variant === 'info' ? 'ACTIVE' : 'Info'}
                             />
                           </tr>
                           <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--secondary">
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--secondary">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">🎨 Outline Φόντο</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary"><PaletteIcon size="sm" /> Outline Φόντο</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--secondary">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">--layera-button-background-outline</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="info">--layera-button-background-outline</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--secondary">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button[data-variant="outline"]</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">.layera-button[data-variant="outline"]</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--secondary">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-layera-button-background="outline"</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">data-layera-button-background="outline"</Text>
                             </td>
                             <td >
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="success">Outline</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">{buttonState.variant === 'outline' ? 'ACTIVE' : 'Outline'}</Text>
                             </td>
                             <CopyButton
-                              category="🎨 Outline Φόντο"
+                              category="Outline Φόντο"
                               cssVariable="--layera-button-background-outline"
                               selector='.layera-button[data-variant="outline"]'
                               htmlAttribute='data-layera-button-background="outline"'
-                              currentValue="Outline"
+                              currentValue={buttonState.variant === 'outline' ? 'ACTIVE' : 'Outline'}
                             />
                           </tr>
                           <tr>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--secondary">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">🎨 Ghost Φόντο</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary"><PaletteIcon size="sm" /> Ghost Φόντο</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--secondary">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">--layera-button-background-ghost</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="info">--layera-button-background-ghost</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--secondary">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button[data-variant="ghost"]</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">.layera-button[data-variant="ghost"]</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--secondary">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-layera-button-background="ghost"</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">data-layera-button-background="ghost"</Text>
                             </td>
                             <td >
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="success">Ghost</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">{buttonState.variant === 'ghost' ? 'ACTIVE' : 'Ghost'}</Text>
                             </td>
                             <CopyButton
-                              category="🎨 Ghost Φόντο"
+                              category="Ghost Φόντο"
                               cssVariable="--layera-button-background-ghost"
                               selector='.layera-button[data-variant="ghost"]'
                               htmlAttribute='data-layera-button-background="ghost"'
-                              currentValue="Ghost"
+                              currentValue={buttonState.variant === 'ghost' ? 'ACTIVE' : 'Ghost'}
                             />
                           </tr>
                         </tbody>
@@ -742,7 +779,7 @@ HTML Attribute: ${row.htmlAttribute}
                 )}
               </Box>
 
-              {/* 🔲 Borders Section */}
+              {/* Borders Section */}
               <Box className="layera-border--solid layera-border-width--1 layera-border-color--primary layera-border-radius--md">
                 <Box
                   className="layera-padding--md layera-cursor--pointer layera-bg--surface-primary layera-border-bottom--dashed layera-border-width--1 layera-border-color--primary"
@@ -750,7 +787,7 @@ HTML Attribute: ${row.htmlAttribute}
                 >
                   <Box className="layera-display--flex layera-items-center layera-justify-between">
                     <Text className="layera-typography" data-size="md" data-weight="bold" data-color="primary">
-                      🔲 Borders (3 μεταβλητές)
+                      <LayersIcon size="sm" /> Borders (3 μεταβλητές)
                     </Text>
                     <Text className="layera-typography" data-size="lg" data-color="primary">
                       {expandedCategories.borders ? '▼' : '▶'}
@@ -773,38 +810,38 @@ HTML Attribute: ${row.htmlAttribute}
                         <thead className="layera-bg--surface-secondary">
                           <tr>
                             <th className="layera-text--align-left layera-border-bottom--solid layera-border-width--1 layera-border-color--secondary">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">Κατηγορία</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">Κατηγορία</Text>
                             </th>
                             <th className="layera-text--align-left layera-border-bottom--solid layera-border-width--1 layera-border-color--secondary">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">CSS Variable</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">CSS Variable</Text>
                             </th>
                             <th className="layera-text--align-left layera-border-bottom--solid layera-border-width--1 layera-border-color--secondary">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">Selector</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">Selector</Text>
                             </th>
                             <th className="layera-text--align-left layera-border-bottom--solid layera-border-width--1 layera-border-color--secondary">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">HTML Attribute</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">HTML Attribute</Text>
                             </th>
                             <th className="layera-padding--sm layera-text-align--left">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">Τρέχουσα Τιμή</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">Τρέχουσα Τιμή</Text>
                             </th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--warning">
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">🔧 Border Width</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary"><SettingsIcon size="sm" /> Border Width</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="warning">var(--layera-button-borderWidth)</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="warning">var(--layera-button-borderWidth)</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">.layera-button</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-border-width="{borderWidth}"</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">data-border-width="{borderWidth}"</Text>
                             </td>
                             <td >
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="success">{borderWidth}</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">{borderWidth}</Text>
                             </td>
                             <CopyButton
                               category="🔧 Border Width"
@@ -816,22 +853,22 @@ HTML Attribute: ${row.htmlAttribute}
                           </tr>
                           <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--danger">
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">🎨 Border Color</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary"><PaletteIcon size="sm" /> Border Color</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="danger">var(--layera-button-borderColor-{colorCategory})</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="danger">var(--layera-button-borderColor-{colorCategory})</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">.layera-button</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-color="{buttonState.colorCategory}"</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">data-color="{colorCategory}"</Text>
                             </td>
                             <td >
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="success">var(--layera-button-borderColor-{buttonState.colorCategory})</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">var(--layera-button-borderColor-{colorCategory})</Text>
                             </td>
                             <CopyButton
-                              category="🎨 Border Color"
+                              category="Border Color"
                               cssVariable={`var(--layera-button-borderColor-${colorCategory})`}
                               selector=".layera-button"
                               htmlAttribute={`data-color="${colorCategory}"`}
@@ -840,22 +877,22 @@ HTML Attribute: ${row.htmlAttribute}
                           </tr>
                           <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--success">
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--success">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">🌊 Border Radius</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary"><CompassIcon size="sm" /> Border Radius</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--success">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="success">var(--layera-button-borderRadius-{buttonState.borderRadius})</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="success">var(--layera-button-borderRadius-{buttonRadius})</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--success">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">.layera-button</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--success">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-border-radius="{buttonState.borderRadius}"</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">data-border-radius="{buttonRadius}"</Text>
                             </td>
                             <td >
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="success">{buttonRadius}</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">{buttonRadius}</Text>
                             </td>
                             <CopyButton
-                              category="🌊 Border Radius"
+                              category="Border Radius"
                               cssVariable={`var(--layera-button-borderRadius-${buttonRadius})`}
                               selector=".layera-button"
                               htmlAttribute={`data-border-radius="${buttonRadius}"`}
@@ -870,7 +907,7 @@ HTML Attribute: ${row.htmlAttribute}
                 )}
               </Box>
 
-              {/* ✨ Shadows & Effects Section */}
+              {/* Shadows & Effects Section */}
               <Box className="layera-border--solid layera-border-width--1 layera-border-color--primary layera-border-radius--md">
                 <Box
                   className="layera-padding--md layera-cursor--pointer layera-bg--surface-primary layera-border-bottom--dashed layera-border-width--1 layera-border-color--primary"
@@ -878,7 +915,7 @@ HTML Attribute: ${row.htmlAttribute}
                 >
                   <Box className="layera-display--flex layera-items-center layera-justify-between">
                     <Text className="layera-typography" data-size="md" data-weight="bold" data-color="primary">
-                      ✨ Shadows & Effects (4 μεταβλητές)
+                      <StarIcon size="sm" /> Shadows & Effects (4 μεταβλητές)
                     </Text>
                     <Text className="layera-typography" data-size="lg" data-color="primary">
                       {expandedCategories.shadowsEffects ? '▼' : '▶'}
@@ -901,38 +938,38 @@ HTML Attribute: ${row.htmlAttribute}
                         <thead className="layera-bg--surface-secondary">
                           <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--warning">
                             <th className="layera-padding--sm layera-text-align--left layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">Κατηγορία</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">Κατηγορία</Text>
                             </th>
                             <th className="layera-padding--sm layera-text-align--left layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">CSS Variable</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">CSS Variable</Text>
                             </th>
                             <th className="layera-padding--sm layera-text-align--left layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">Selector</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">Selector</Text>
                             </th>
                             <th className="layera-padding--sm layera-text-align--left layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">HTML Attribute</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">HTML Attribute</Text>
                             </th>
                             <th className="layera-padding--sm layera-text-align--left">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">Τρέχουσα Τιμή</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">Τρέχουσα Τιμή</Text>
                             </th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--primary">
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">🌟 Box Shadow</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary"><StarIcon size="sm" /> Box Shadow</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="primary">var(--layera-button-shadow)</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="primary">var(--layera-button-shadow)</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">.layera-button</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-shadow="true/false"</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">data-shadow="true/false"</Text>
                             </td>
                             <td >
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="success">var(--layera-button-shadow)</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">var(--layera-button-shadow)</Text>
                             </td>
                             <CopyButton
                               category="🌟 Box Shadow"
@@ -944,19 +981,19 @@ HTML Attribute: ${row.htmlAttribute}
                           </tr>
                           <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--secondary">
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--secondary">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">🎭 Hover Effect</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary"><EyeIcon size="sm" /> Hover Effect</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--secondary">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">var(--layera-button-hover-{buttonState.colorCategory})</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">var(--layera-button-hover-{colorCategory})</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--secondary">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button:hover</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">.layera-button:hover</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--secondary">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-hover-effect="{buttonState.hoverEffect}"</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">data-hover-effect="{hoverEffect}"</Text>
                             </td>
                             <td >
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="success">{hoverEffect}</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">{hoverEffect}</Text>
                             </td>
                             <CopyButton
                               category="🎭 Hover Effect"
@@ -968,22 +1005,22 @@ HTML Attribute: ${row.htmlAttribute}
                           </tr>
                           <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--success">
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--success">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">🎯 Active Effect</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary"><LocationIcon size="sm" /> Active Effect</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--success">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="success">var(--layera-button-active-{buttonState.colorCategory})</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="success">var(--layera-button-active-{colorCategory})</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--success">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button:active</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">.layera-button:active</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--success">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-active-effect="{buttonState.activeEffect}"</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">data-active-effect="{activeEffect}"</Text>
                             </td>
                             <td >
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="success">{activeEffect}</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">{activeEffect}</Text>
                             </td>
                             <CopyButton
-                              category="🎯 Active Effect"
+                              category="Active Effect"
                               cssVariable={`var(--layera-button-active-${colorCategory})`}
                               selector=".layera-button:active"
                               htmlAttribute={`data-active-effect="${activeEffect}"`}
@@ -992,22 +1029,22 @@ HTML Attribute: ${row.htmlAttribute}
                           </tr>
                           <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--danger">
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">💫 Transition</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary"><TransitionIcon size="sm" /> Transition</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="danger">var(--layera-button-transition)</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="danger">var(--layera-button-transition)</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">.layera-button</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-transition="true/false"</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">data-transition="true/false"</Text>
                             </td>
                             <td >
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="success">var(--layera-button-transition)</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">var(--layera-button-transition)</Text>
                             </td>
                             <CopyButton
-                              category="💫 Transition"
+                              category="Transition"
                               cssVariable="var(--layera-button-transition)"
                               selector=".layera-button"
                               htmlAttribute='data-transition="true/false"'
@@ -1021,7 +1058,7 @@ HTML Attribute: ${row.htmlAttribute}
                 )}
               </Box>
 
-              {/* 📐 Layout & Spacing Section */}
+              {/* <RulerIcon size="sm" /> Layout & Spacing Section */}
               <Box className="layera-border--solid layera-border-width--1 layera-border-color--primary layera-border-radius--md">
                 <Box
                   className="layera-padding--md layera-cursor--pointer layera-bg--surface-primary layera-border-bottom--dashed layera-border-width--1 layera-border-color--primary"
@@ -1029,7 +1066,7 @@ HTML Attribute: ${row.htmlAttribute}
                 >
                   <Box className="layera-display--flex layera-items-center layera-justify-between">
                     <Text className="layera-typography" data-size="md" data-weight="bold" data-color="primary">
-                      📐 Layout & Spacing (4 μεταβλητές)
+                      <RulerIcon size="sm" /> Layout & Spacing (4 μεταβλητές)
                     </Text>
                     <Text className="layera-typography" data-size="lg" data-color="primary">
                       {expandedCategories.layoutSpacing ? '▼' : '▶'}
@@ -1052,41 +1089,41 @@ HTML Attribute: ${row.htmlAttribute}
                         <thead className="layera-bg--surface-secondary">
                           <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--primary">
                             <th className="layera-padding--sm layera-text-align--left layera-border-right--dashed layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">Κατηγορία</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">Κατηγορία</Text>
                             </th>
                             <th className="layera-padding--sm layera-text-align--left layera-border-right--dashed layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">CSS Variable</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">CSS Variable</Text>
                             </th>
                             <th className="layera-padding--sm layera-text-align--left layera-border-right--dashed layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">Selector</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">Selector</Text>
                             </th>
                             <th className="layera-padding--sm layera-text-align--left layera-border-right--dashed layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">HTML Attribute</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">HTML Attribute</Text>
                             </th>
                             <th className="layera-padding--sm layera-text-align--left">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">Τρέχουσα Τιμή</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary">Τρέχουσα Τιμή</Text>
                             </th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--info">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">📏 Size</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary"><RulerIcon size="sm" /> Size</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--info">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">var(--layera-button-size-{buttonState.size})</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="info">var(--layera-button-size-{buttonState.size})</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--info">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">.layera-button</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--info">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-size="{buttonState.size}"</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">data-size="{buttonState.size}"</Text>
                             </td>
                             <td >
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="success">{buttonState.size}</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">{buttonState.size}</Text>
                             </td>
                             <CopyButton
-                              category="📏 Size"
+                              category="Size"
                               cssVariable={`var(--layera-button-size-${buttonState.size})`}
                               selector=".layera-button"
                               htmlAttribute={`data-size="${buttonState.size}"`}
@@ -1095,22 +1132,22 @@ HTML Attribute: ${row.htmlAttribute}
                           </tr>
                           <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--success">
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--success">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">📦 Padding</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary"><RulerIcon size="sm" /> Padding</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--success">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">var(--layera-button-padding-{buttonState.size})</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="info">var(--layera-button-padding-{buttonState.size})</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--success">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">.layera-button</Text>
                             </td>
                             <td className="layera-border-right--dashed layera-border-width--1 layera-border-color--success">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-padding="{buttonState.size}"</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">data-padding="{buttonState.size}"</Text>
                             </td>
                             <td >
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="success">var(--layera-button-padding-{buttonState.size})</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">var(--layera-button-padding-{buttonState.size})</Text>
                             </td>
                             <CopyButton
-                              category="📦 Padding"
+                              category="Padding"
                               cssVariable={`var(--layera-button-padding-${buttonState.size})`}
                               selector=".layera-button"
                               htmlAttribute={`data-padding="${buttonState.size}"`}
@@ -1119,19 +1156,19 @@ HTML Attribute: ${row.htmlAttribute}
                           </tr>
                           <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--warning">
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">📊 Min Width</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary"><RulerIcon size="sm" /> Min Width</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">var(--layera-button-minWidth)</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="info">var(--layera-button-minWidth)</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">.layera-button</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--warning">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-min-width="auto/defined"</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">data-min-width="auto/defined"</Text>
                             </td>
                             <td >
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="success">var(--layera-button-minWidth)</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">var(--layera-button-minWidth)</Text>
                             </td>
                             <CopyButton
                               category="📉 Min Width"
@@ -1143,22 +1180,22 @@ HTML Attribute: ${row.htmlAttribute}
                           </tr>
                           <tr className="layera-border-bottom--dashed layera-border-width--1 layera-border-color--danger">
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="primary">📏 Height</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="primary"><RulerIcon size="sm" /> Height</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="info">var(--layera-button-height-{buttonState.size})</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="info">var(--layera-button-height-{buttonState.size})</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">.layera-button</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">.layera-button</Text>
                             </td>
                             <td className="layera-padding--sm layera-border-right--dashed layera-border-width--1 layera-border-color--danger">
-                              <Text className="layera-typography" data-size="xs" data-weight="mono" data-color="secondary">data-height="{buttonState.size}"</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="mono" data-color="secondary">data-height="{buttonState.size}"</Text>
                             </td>
                             <td >
-                              <Text className="layera-typography" data-size="xs" data-weight="bold" data-color="success">var(--layera-button-height-{buttonState.size})</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">var(--layera-button-height-{buttonState.size})</Text>
                             </td>
                             <CopyButton
-                              category="📏 Height"
+                              category="Height"
                               cssVariable={`var(--layera-button-height-${buttonState.size})`}
                               selector=".layera-button"
                               htmlAttribute={`data-height="${buttonState.size}"`}
@@ -1172,7 +1209,7 @@ HTML Attribute: ${row.htmlAttribute}
                 )}
               </Box>
 
-              {/* 🔤 Typography Section */}
+              {/* Typography Section */}
               <Box className="layera-border--solid layera-border-width--1 layera-border-color--primary layera-border-radius--md">
                 <Box
                   className="layera-padding--md layera-cursor--pointer layera-bg--surface-primary layera-border-bottom--dashed layera-border-width--1 layera-border-color--primary"
@@ -1180,7 +1217,7 @@ HTML Attribute: ${row.htmlAttribute}
                 >
                   <Box className="layera-display--flex layera-items-center layera-justify-between">
                     <Text className="layera-typography" data-size="md" data-weight="bold" data-color="primary">
-                      🔤 Typography (4 μεταβλητές)
+                      <EditIcon size="sm" /> Typography (4 μεταβλητές)
                     </Text>
                     <Text className="layera-typography" data-size="lg" data-color="primary">
                       {expandedCategories.typography ? '▼' : '▶'}
@@ -1222,7 +1259,7 @@ HTML Attribute: ${row.htmlAttribute}
                         <tbody>
                           <tr>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="sm" data-color="secondary">🔠 Font Size</Text>
+                              <Text className="layera-typography" data-size="sm" data-color="secondary"><EditIcon size="sm" /> Font Size</Text>
                             </td>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
                               <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">var(--layera-button-fontSize-{buttonState.size})</Text>
@@ -1237,7 +1274,7 @@ HTML Attribute: ${row.htmlAttribute}
                               <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">var(--layera-button-fontSize-{buttonState.size})</Text>
                             </td>
                             <CopyButton
-                              category="🔠 Font Size"
+                              category="Font Size"
                               cssVariable={`var(--layera-button-fontSize-${buttonState.size})`}
                               selector=".layera-button"
                               htmlAttribute={`data-font-size="${buttonState.size}"`}
@@ -1246,7 +1283,7 @@ HTML Attribute: ${row.htmlAttribute}
                           </tr>
                           <tr className="layera-bg--surface-primary">
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="sm" data-color="secondary">💪 Font Weight</Text>
+                              <Text className="layera-typography" data-size="sm" data-color="secondary"><AdvancedIcon size="sm" /> Font Weight</Text>
                             </td>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
                               <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">var(--layera-button-fontWeight)</Text>
@@ -1261,7 +1298,7 @@ HTML Attribute: ${row.htmlAttribute}
                               <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">var(--layera-button-fontWeight)</Text>
                             </td>
                             <CopyButton
-                              category="💪 Font Weight"
+                              category="Font Weight"
                               cssVariable="var(--layera-button-fontWeight)"
                               selector=".layera-button"
                               htmlAttribute='data-font-weight="auto/defined"'
@@ -1270,22 +1307,22 @@ HTML Attribute: ${row.htmlAttribute}
                           </tr>
                           <tr>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="sm" data-color="secondary">🎨 Text Color</Text>
+                              <Text className="layera-typography" data-size="sm" data-color="secondary"><PaletteIcon size="sm" /> Text Color</Text>
                             </td>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">var(--layera-button-color-{buttonState.colorCategory})</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">var(--layera-button-color-{colorCategory})</Text>
                             </td>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
                               <Text className="layera-typography" data-size="sm" data-color="secondary">.layera-button</Text>
                             </td>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="sm" data-color="secondary">data-text-color="{buttonState.colorCategory}"</Text>
+                              <Text className="layera-typography" data-size="sm" data-color="secondary">data-text-color="{colorCategory}"</Text>
                             </td>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">var(--layera-button-color-{buttonState.colorCategory})</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">var(--layera-button-color-{colorCategory})</Text>
                             </td>
                             <CopyButton
-                              category="🎨 Text Color"
+                              category="Text Color"
                               cssVariable={`var(--layera-button-color-${colorCategory})`}
                               selector=".layera-button"
                               htmlAttribute={`data-text-color="${colorCategory}"`}
@@ -1294,7 +1331,7 @@ HTML Attribute: ${row.htmlAttribute}
                           </tr>
                           <tr className="layera-bg--surface-primary">
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="sm" data-color="secondary">📝 Text Content</Text>
+                              <Text className="layera-typography" data-size="sm" data-color="secondary"><EditIcon size="sm" /> Text Content</Text>
                             </td>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
                               <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">Dynamic Content</Text>
@@ -1309,7 +1346,7 @@ HTML Attribute: ${row.htmlAttribute}
                               <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">"{buttonState.text}" | {buttonState.withIcon ? 'With Icon' : 'No Icon'}</Text>
                             </td>
                             <CopyButton
-                              category="📝 Text Content"
+                              category="Text Content"
                               cssVariable="Dynamic Content"
                               selector=".layera-button .button-text"
                               htmlAttribute={`data-text="${buttonState.text}"`}
@@ -1324,7 +1361,7 @@ HTML Attribute: ${row.htmlAttribute}
                 )}
               </Box>
 
-              {/* 🎨 Icons Section */}
+              {/* <PaletteIcon size="sm" /> Icons Section */}
               <Box className="layera-border--solid layera-border-width--1 layera-border-color--primary layera-border-radius--md">
                 <Box
                   className="layera-padding--md layera-cursor--pointer layera-bg--surface-primary layera-border-bottom--dashed layera-border-width--1 layera-border-color--primary"
@@ -1332,7 +1369,7 @@ HTML Attribute: ${row.htmlAttribute}
                 >
                   <Box className="layera-display--flex layera-items-center layera-justify-between">
                     <Text className="layera-typography" data-size="md" data-weight="bold" data-color="primary">
-                      🎨 Icons (3 μεταβλητές)
+                      <PaletteIcon size="sm" /> Icons (3 μεταβλητές)
                     </Text>
                     <Text className="layera-typography" data-size="lg" data-color="primary">
                       {expandedCategories.icons ? '▼' : '▶'}
@@ -1374,7 +1411,7 @@ HTML Attribute: ${row.htmlAttribute}
                         <tbody>
                           <tr>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="sm" data-color="secondary">📐 Icon Size</Text>
+                              <Text className="layera-typography" data-size="sm" data-color="secondary"><RulerIcon size="sm" /> Icon Size</Text>
                             </td>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
                               <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">var(--layera-button-iconSize-{buttonState.size})</Text>
@@ -1389,7 +1426,7 @@ HTML Attribute: ${row.htmlAttribute}
                               <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">var(--layera-button-iconSize-{buttonState.size})</Text>
                             </td>
                             <CopyButton
-                              category="📐 Icon Size"
+                              category="Icon Size"
                               cssVariable={`var(--layera-button-iconSize-${buttonState.size})`}
                               selector=".layera-button .icon"
                               htmlAttribute={`data-icon-size="${buttonState.size}"`}
@@ -1398,7 +1435,7 @@ HTML Attribute: ${row.htmlAttribute}
                           </tr>
                           <tr className="layera-bg--surface-primary">
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="sm" data-color="secondary">🎯 Icon Position</Text>
+                              <Text className="layera-typography" data-size="sm" data-color="secondary"><LocationIcon size="sm" /> Icon Position</Text>
                             </td>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
                               <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">var(--layera-button-iconPosition)</Text>
@@ -1413,7 +1450,7 @@ HTML Attribute: ${row.htmlAttribute}
                               <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">var(--layera-button-iconPosition)</Text>
                             </td>
                             <CopyButton
-                              category="🎯 Icon Position"
+                              category="Icon Position"
                               cssVariable="var(--layera-button-iconPosition)"
                               selector=".layera-button .icon"
                               htmlAttribute='data-icon-position="left/right"'
@@ -1422,7 +1459,7 @@ HTML Attribute: ${row.htmlAttribute}
                           </tr>
                           <tr>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="sm" data-color="secondary">✅ Icon Status</Text>
+                              <Text className="layera-typography" data-size="sm" data-color="secondary"><CheckIcon size="sm" /> Icon Status</Text>
                             </td>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
                               <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">Boolean State</Text>
@@ -1437,7 +1474,7 @@ HTML Attribute: ${row.htmlAttribute}
                               <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">{buttonState.withIcon ? 'Enabled' : 'Disabled'}</Text>
                             </td>
                             <CopyButton
-                              category="✅ Icon Status"
+                              category="Icon Status"
                               cssVariable="Boolean State"
                               selector=".layera-button"
                               htmlAttribute={`data-with-icon="${buttonState.withIcon}"`}
@@ -1451,7 +1488,7 @@ HTML Attribute: ${row.htmlAttribute}
                 )}
               </Box>
 
-              {/* ♿ States & Accessibility Section */}
+              {/* States & Accessibility Section */}
               <Box className="layera-border--solid layera-border-width--1 layera-border-color--primary layera-border-radius--md">
                 <Box
                   className="layera-padding--md layera-cursor--pointer layera-bg--surface-primary layera-border-bottom--dashed layera-border-width--1 layera-border-color--primary"
@@ -1459,7 +1496,7 @@ HTML Attribute: ${row.htmlAttribute}
                 >
                   <Box className="layera-display--flex layera-items-center layera-justify-between">
                     <Text className="layera-typography" data-size="md" data-weight="bold" data-color="primary">
-                      ♿ States & Accessibility (3 μεταβλητές)
+                      <CheckIcon size="sm" /> States & Accessibility (3 μεταβλητές)
                     </Text>
                     <Text className="layera-typography" data-size="lg" data-color="primary">
                       {expandedCategories.statesAccessibility ? '▼' : '▶'}
@@ -1501,7 +1538,7 @@ HTML Attribute: ${row.htmlAttribute}
                         <tbody>
                           <tr>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="sm" data-color="secondary">🎯 Focus State</Text>
+                              <Text className="layera-typography" data-size="sm" data-color="secondary"><EyeIcon size="sm" /> Focus State</Text>
                             </td>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
                               <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">var(--layera-button-focus-outline)</Text>
@@ -1516,7 +1553,7 @@ HTML Attribute: ${row.htmlAttribute}
                               <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">var(--layera-button-focus-outline)</Text>
                             </td>
                             <CopyButton
-                              category="🎯 Focus State"
+                              category="Focus State"
                               cssVariable="var(--layera-button-focus-outline)"
                               selector=".layera-button:focus"
                               htmlAttribute='data-focus="true/false"'
@@ -1525,7 +1562,7 @@ HTML Attribute: ${row.htmlAttribute}
                           </tr>
                           <tr className="layera-bg--surface-primary">
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="sm" data-color="secondary">🚫 Disabled State</Text>
+                              <Text className="layera-typography" data-size="sm" data-color="secondary"><CloseIcon size="sm" /> Disabled State</Text>
                             </td>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
                               <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">var(--layera-button-disabled-opacity)</Text>
@@ -1549,7 +1586,7 @@ HTML Attribute: ${row.htmlAttribute}
                           </tr>
                           <tr>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="sm" data-color="secondary">⏱️ Loading State</Text>
+                              <Text className="layera-typography" data-size="sm" data-color="secondary"><QuickIcon size="sm" /> Loading State</Text>
                             </td>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
                               <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">var(--layera-button-loading-spinner)</Text>
@@ -1564,7 +1601,7 @@ HTML Attribute: ${row.htmlAttribute}
                               <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">var(--layera-button-loading-spinner)</Text>
                             </td>
                             <CopyButton
-                              category="⏱️ Loading State"
+                              category="Loading State"
                               cssVariable="var(--layera-button-loading-spinner)"
                               selector=".layera-button .spinner"
                               htmlAttribute='data-loading="true/false"'
@@ -1586,7 +1623,7 @@ HTML Attribute: ${row.htmlAttribute}
                 >
                   <Box className="layera-display--flex layera-items-center layera-justify-between">
                     <Text className="layera-typography" data-size="md" data-weight="bold" data-color="primary">
-                      ⚙️ Current Configuration (3 μεταβλητές)
+                      <AdvancedIcon size="sm" /> Current Configuration (3 μεταβλητές)
                     </Text>
                     <Text className="layera-typography" data-size="lg" data-color="primary">
                       {expandedCategories.currentConfiguration ? '▼' : '▶'}
@@ -1628,7 +1665,7 @@ HTML Attribute: ${row.htmlAttribute}
                         <tbody>
                           <tr>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="sm" data-color="secondary">🔷 Shape</Text>
+                              <Text className="layera-typography" data-size="sm" data-color="secondary"><AdvancedIcon size="sm" /> Shape</Text>
                             </td>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
                               <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">var(--layera-button-shape-{buttonState.shape})</Text>
@@ -1643,7 +1680,7 @@ HTML Attribute: ${row.htmlAttribute}
                               <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">{buttonState.shape}</Text>
                             </td>
                             <CopyButton
-                              category="🔷 Shape"
+                              category="🔧 Shape"
                               cssVariable={`var(--layera-button-shape-${buttonState.shape})`}
                               selector=".layera-button"
                               htmlAttribute={`data-shape="${buttonState.shape}"`}
@@ -1652,22 +1689,22 @@ HTML Attribute: ${row.htmlAttribute}
                           </tr>
                           <tr className="layera-bg--surface-primary">
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="sm" data-color="secondary">🎨 Color Category</Text>
+                              <Text className="layera-typography" data-size="sm" data-color="secondary"><PaletteIcon size="sm" /> Color Category</Text>
                             </td>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">var(--layera-button-colorCategory-{buttonState.colorCategory})</Text>
+                              <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">var(--layera-button-colorCategory-{colorCategory})</Text>
                             </td>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
                               <Text className="layera-typography" data-size="sm" data-color="secondary">.layera-button</Text>
                             </td>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="sm" data-color="secondary">data-color="{buttonState.colorCategory}"</Text>
+                              <Text className="layera-typography" data-size="sm" data-color="secondary">data-color="{colorCategory}"</Text>
                             </td>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
                               <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">{colorCategory}</Text>
                             </td>
                             <CopyButton
-                              category="🎨 Color Category"
+                              category="Color Category"
                               cssVariable={`var(--layera-button-colorCategory-${colorCategory})`}
                               selector=".layera-button"
                               htmlAttribute={`data-color="${colorCategory}"`}
@@ -1676,7 +1713,7 @@ HTML Attribute: ${row.htmlAttribute}
                           </tr>
                           <tr>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
-                              <Text className="layera-typography" data-size="sm" data-color="secondary">🏷️ Element Type</Text>
+                              <Text className="layera-typography" data-size="sm" data-color="secondary"><TagIcon size="sm" /> Element Type</Text>
                             </td>
                             <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
                               <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">var(--layera-button-elementType)</Text>
@@ -1691,7 +1728,7 @@ HTML Attribute: ${row.htmlAttribute}
                               <Text className="layera-typography" data-size="sm" data-weight="bold" data-color="success">Button</Text>
                             </td>
                             <CopyButton
-                              category="🏷️ Element Type"
+                              category="Element Type"
                               cssVariable="var(--layera-button-elementType)"
                               selector=".layera-button"
                               htmlAttribute='data-element="button"'
@@ -1711,7 +1748,7 @@ HTML Attribute: ${row.htmlAttribute}
             {/* Footer */}
             <Box className="layera-margin-top--lg layera-text-center">
               <Text className="layera-typography" data-size="sm" data-color="secondary">
-                💡 Αυτές είναι όλες οι CSS μεταβλητές που επηρεάζουν τα πλήκτρα
+                <BellIcon size="sm" /> Αυτές είναι όλες οι CSS μεταβλητές που επηρεάζουν τα πλήκτρα
               </Text>
             </Box>
 
@@ -1724,7 +1761,7 @@ HTML Attribute: ${row.htmlAttribute}
                 onClick={() => copyAllTables()}
                 className="layera-button layera-button--lg layera-button--primary layera-shadow--md"
               >
-                📋 Αντιγραφή όλων των πινάκων
+                Αντιγραφή όλων των πινάκων
               </Button>
             </Box>
         </Box>

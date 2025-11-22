@@ -95,7 +95,9 @@ export {
   HandshakeIcon,
   FormIcon,
   QuickIcon,
-  AdvancedIcon
+  AdvancedIcon,
+  StarIcon,
+  TransitionIcon
 } from './icons/ActionIcons';
 
 // Property & Real Estate Icons

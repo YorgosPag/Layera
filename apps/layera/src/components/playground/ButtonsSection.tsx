@@ -121,7 +121,7 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
           <Button
             variant={buttonState.variant}
             size={buttonState.size}
-            icon={buttonState.withIcon ? <PlusIcon /> : undefined}
+            icon={buttonState.withIcon ? <PlusIcon size="xs" /> : undefined}
             className={`layera-button layera-button--${buttonState.size} layera-button--${buttonState.variant}`}
           >
             {buttonState.text}
@@ -136,7 +136,7 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
       {/* Button Showcase Gallery */}
       <Box className="layera-card layera-padding--lg layera-text--align-center">
         <h3 className="layera-typography layera-margin-bottom--lg" data-size="lg" data-weight="bold" data-color="primary">
-          🎨 Button Gallery - {buttonState.size.toUpperCase()} Size
+          <PaletteIcon size="sm" /> Button Gallery - {buttonState.size.toUpperCase()} Size
         </h3>
 
         <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-lg layera-flex--justify-center layera-align-items--start">
@@ -145,7 +145,7 @@ export const ButtonsSection: React.FC<SectionProps> = ({ className = '' }) => {
               <Button
                 variant={variant}
                 size={buttonState.size}
-                icon={buttonState.withIcon ? <SearchIcon /> : undefined}
+                icon={buttonState.withIcon ? <SearchIcon size="xs" /> : undefined}
                 className={`layera-button layera-button--${buttonState.size} layera-button--${variant} layera-margin-bottom--sm`}
               >
                 {variant.charAt(0).toUpperCase() + variant.slice(1)}
