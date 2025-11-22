@@ -55,7 +55,7 @@ export const FontSizeControl: React.FC<FontSizeControlProps> = ({
         Επιλέξτε το μέγεθος του κειμένου
       </Text>
       <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center">
-        {fontSizeOptions.map(option => (
+        {fontSizeOptions.map((option, index) => (
           <Button
             key={option.value}
             variant={fontSize === option.value ? 'primary' : 'outline'}
@@ -67,7 +67,7 @@ export const FontSizeControl: React.FC<FontSizeControlProps> = ({
               }
             }}
             title={option.description}
-            className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${fontSize === option.value ? 'primary' : 'outline'}`}
+            className={`${index < fontSizeOptions.length - 1 ? 'layera-margin-right--sm' : ''} layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${fontSize === option.value ? 'primary' : 'outline'}`}
           >
             {option.label}
           </Button>

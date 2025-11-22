@@ -206,7 +206,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
 
           {/* Palette Buttons + Reset Button */}
           <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center layera-margin-bottom--sm layera-align-items--center">
-            {paletteOptions.map((option) => (
+            {paletteOptions.map((option, index) => (
               <Button
                 key={option.value}
                 variant={selectedPalette === option.value ? 'primary' : 'outline'}
@@ -214,7 +214,7 @@ export const FactorySettingsPanel: React.FC<FactorySettingsPanelProps> = ({
                 onClick={() => handlePaletteChange(option.value)}
                 disabled={isLoading}
                 title={option.description}
-                className={`layera-button layera-button--${buttonState.size} layera-button--${selectedPalette === option.value ? 'primary' : 'outline'}`}
+                className={`layera-margin-right--sm layera-button layera-button--${buttonState.size} layera-button--${selectedPalette === option.value ? 'primary' : 'outline'}`}
               >
                 {option.label}
               </Button>

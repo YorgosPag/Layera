@@ -177,7 +177,7 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
                 size={buttonState?.size || 'sm'}
                 onClick={() => colorActions.setColorCategory('backgrounds')}
                 icon={<LayersIcon size="sm" />}
-                className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.colorCategory === 'backgrounds' ? 'primary' : 'outline'}`}
+                className={`layera-margin-right--sm layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.colorCategory === 'backgrounds' ? 'primary' : 'outline'}`}
               >
                 Backgrounds
               </Button>
@@ -186,7 +186,7 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
                 size={buttonState?.size || 'sm'}
                 onClick={() => colorActions.setColorCategory('text')}
                 icon={<EditIcon size="sm" />}
-                className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.colorCategory === 'text' ? 'primary' : 'outline'}`}
+                className={`layera-margin-right--sm layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.colorCategory === 'text' ? 'primary' : 'outline'}`}
               >
                 Text
               </Button>
@@ -221,7 +221,7 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
                 size={buttonState?.size || 'sm'}
                 onClick={() => colorActions.setElementType('cards')}
                 icon={<LayersIcon size="sm" />}
-                className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.elementType === 'cards' ? 'primary' : 'outline'}`}
+                className={`layera-margin-right--sm layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.elementType === 'cards' ? 'primary' : 'outline'}`}
               >
                 Κάρτες
               </Button>
@@ -230,7 +230,7 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
                 size={buttonState?.size || 'sm'}
                 onClick={() => colorActions.setElementType('modals')}
                 icon={<MonitorIcon size="sm" />}
-                className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.elementType === 'modals' ? 'primary' : 'outline'}`}
+                className={`layera-margin-right--sm layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.elementType === 'modals' ? 'primary' : 'outline'}`}
               >
                 Modals
               </Button>
@@ -239,7 +239,7 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
                 size={buttonState?.size || 'sm'}
                 onClick={() => colorActions.setElementType('layout')}
                 icon={<BuildingIcon size="sm" />}
-                className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.elementType === 'layout' ? 'primary' : 'outline'}`}
+                className={`layera-margin-right--sm layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.elementType === 'layout' ? 'primary' : 'outline'}`}
               >
                 Layout
               </Button>
@@ -248,7 +248,7 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
                 size={buttonState?.size || 'sm'}
                 onClick={() => colorActions.setElementType('headers')}
                 icon={<CompassIcon size="sm" />}
-                className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.elementType === 'headers' ? 'primary' : 'outline'}`}
+                className={`layera-margin-right--sm layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.elementType === 'headers' ? 'primary' : 'outline'}`}
               >
                 Headers
               </Button>
@@ -257,7 +257,7 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
                 size={buttonState?.size || 'sm'}
                 onClick={() => colorActions.setElementType('buttons')}
                 icon={<CheckIcon size="sm" />}
-                className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.elementType === 'buttons' ? 'primary' : 'outline'}`}
+                className={`layera-margin-right--sm layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.elementType === 'buttons' ? 'primary' : 'outline'}`}
               >
                 Πλήκτρα
               </Button>
@@ -266,7 +266,7 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
                 size={buttonState?.size || 'sm'}
                 onClick={() => colorActions.setElementType('inputs')}
                 icon={<EditIcon size="sm" />}
-                className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.elementType === 'inputs' ? 'primary' : 'outline'}`}
+                className={`layera-margin-right--sm layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.elementType === 'inputs' ? 'primary' : 'outline'}`}
               >
                 Πεδία
               </Button>

@@ -36,13 +36,13 @@ export const ButtonSizeControl: React.FC<ButtonSizeControlProps> = ({
         <SettingsIcon size="sm" /> Μέγεθος Πλήκτρων
       </h3>
       <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center layera-align-items--center layera-margin-bottom--md">
-        {buttonSizes.map((size) => (
+        {buttonSizes.map((size, index) => (
           <Button
             key={size}
             variant={buttonState.size === size ? 'primary' : 'outline'}
             size={buttonState.size}
             onClick={() => buttonActions.setSize(size)}
-            className={`layera-button layera-button--${buttonState.size} layera-button--${buttonState.size === size ? 'primary' : 'outline'}`}
+            className={`${index < buttonSizes.length - 1 ? 'layera-margin-right--sm' : ''} layera-button layera-button--${buttonState.size} layera-button--${buttonState.size === size ? 'primary' : 'outline'}`}
           >
             {size}
           </Button>

@@ -89,13 +89,13 @@ export const ActiveControl: React.FC<ActiveControlProps> = ({
 
       {/* Active Effect Selection Buttons */}
       <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-margin-bottom--md layera-flex--justify-center">
-        {activeOptions.map((option) => (
+        {activeOptions.map((option, index) => (
           <Button
             key={option.value}
             variant={currentValue === option.value ? 'primary' : 'outline'}
             size={buttonState?.size || 'sm'}
             onClick={() => handleChange(option.value)}
-            className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${currentValue === option.value ? 'primary' : 'outline'} ${isChanging && currentValue === option.value ? 'layera-opacity--70' : 'layera-opacity--100'}`}
+            className={`${index < activeOptions.length - 1 ? 'layera-margin-right--sm' : ''} layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${currentValue === option.value ? 'primary' : 'outline'} ${isChanging && currentValue === option.value ? 'layera-opacity--70' : 'layera-opacity--100'}`}
           >
             {option.label}
           </Button>

@@ -64,13 +64,13 @@ export const ModalSizeControl: React.FC<ModalSizeControlProps> = ({
 
       {/* Modal Size Selection Buttons */}
       <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-margin-bottom--md layera-flex--justify-center">
-        {modalSizeOptions.map((option) => (
+        {modalSizeOptions.map((option, index) => (
           <Button
             key={option.value}
             variant={modalSize === option.value ? 'primary' : 'outline'}
             size={buttonState?.size || 'sm'}
             onClick={() => handleSizeChange(option.value)}
-            className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${modalSize === option.value ? 'primary' : 'outline'}`}
+            className={`${index < modalSizeOptions.length - 1 ? 'layera-margin-right--sm' : ''} layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${modalSize === option.value ? 'primary' : 'outline'}`}
           >
             <SettingsIcon size="sm" /> {option.label}
           </Button>

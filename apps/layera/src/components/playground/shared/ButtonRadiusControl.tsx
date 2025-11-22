@@ -94,13 +94,13 @@ export const ButtonRadiusControl: React.FC<ButtonRadiusControlProps> = ({
 
       {/* Button Radius Selection Buttons */}
       <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-margin-bottom--md layera-flex--justify-center">
-        {buttonRadiusOptions.map((option) => (
+        {buttonRadiusOptions.map((option, index) => (
           <Button
             key={option.value}
             variant={currentValue === option.value ? 'primary' : 'outline'}
             size={buttonState?.size || 'sm'}
             onClick={() => handleChange(option.value)}
-            className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${currentValue === option.value ? 'primary' : 'outline'} ${isChanging && currentValue === option.value ? 'layera-opacity--70' : 'layera-opacity--100'}`}
+            className={`${index < buttonRadiusOptions.length - 1 ? 'layera-margin-right--sm' : ''} layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${currentValue === option.value ? 'primary' : 'outline'} ${isChanging && currentValue === option.value ? 'layera-opacity--70' : 'layera-opacity--100'}`}
           >
             {option.label}
           </Button>

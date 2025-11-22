@@ -91,13 +91,13 @@ export const HoverControl: React.FC<ExtendedHoverControlProps> = ({
 
       {/* Hover Effect Selection Buttons */}
       <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-margin-bottom--md layera-flex--justify-center">
-        {hoverOptions.map((option) => (
+        {hoverOptions.map((option, index) => (
           <Button
             key={option.value}
             variant={value === option.value ? 'primary' : 'outline'}
             size={buttonState?.size || 'sm'}
             onClick={() => handleChange(option.value)}
-            className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${value === option.value ? 'primary' : 'outline'} ${isChanging && value === option.value ? 'layera-opacity--70' : 'layera-opacity--100'}`}
+            className={`${index < hoverOptions.length - 1 ? 'layera-margin-right--sm' : ''} layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${value === option.value ? 'primary' : 'outline'} ${isChanging && value === option.value ? 'layera-opacity--70' : 'layera-opacity--100'}`}
           >
             {option.label}
           </Button>

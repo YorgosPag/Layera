@@ -63,13 +63,13 @@ export const CardSizeControl: React.FC<CardSizeControlProps> = ({
 
       {/* Card Size Selection Buttons */}
       <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-margin-bottom--md layera-flex--justify-center">
-        {cardSizeOptions.map((option) => (
+        {cardSizeOptions.map((option, index) => (
           <Button
             key={option.value}
             variant={cardSize === option.value ? 'primary' : 'outline'}
             size={buttonState?.size || 'sm'}
             onClick={() => handleSizeChange(option.value)}
-            className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${cardSize === option.value ? 'primary' : 'outline'}`}
+            className={`${index < cardSizeOptions.length - 1 ? 'layera-margin-right--sm' : ''} layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${cardSize === option.value ? 'primary' : 'outline'}`}
           >
             <SettingsIcon size="sm" /> {option.label}
           </Button>

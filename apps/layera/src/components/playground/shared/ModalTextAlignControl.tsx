@@ -86,13 +86,13 @@ export const ModalTextAlignControl: React.FC<ModalTextAlignControlProps> = ({
 
       {/* Text Alignment Selection Buttons */}
       <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-margin-bottom--md layera-flex--justify-center">
-        {textAlignOptions.map((option) => (
+        {textAlignOptions.map((option, index) => (
           <Button
             key={option.value}
             variant={textAlign === option.value ? 'primary' : 'outline'}
             size="sm"
             onClick={() => handleTextAlignChange(option.value)}
-            className={`layera-button layera-button--sm layera-button--${textAlign === option.value ? 'primary' : 'outline'}`}
+            className={`${index < textAlignOptions.length - 1 ? 'layera-margin-right--sm' : ''} layera-button layera-button--sm layera-button--${textAlign === option.value ? 'primary' : 'outline'}`}
           >
             {option.icon} {option.label}
           </Button>

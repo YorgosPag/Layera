@@ -40,7 +40,7 @@ export const ButtonShapeControl: React.FC<ButtonShapeControlProps> = ({
           variant={buttonState.shape === 'rectangular' ? 'primary' : 'outline'}
           size={buttonState.size}
           onClick={() => buttonActions.setShape('rectangular')}
-          className={`layera-button layera-button--${buttonState.size} layera-button--${buttonState.shape === 'rectangular' ? 'primary' : 'outline'}`}
+          className={`layera-margin-right--sm layera-button layera-button--${buttonState.size} layera-button--${buttonState.shape === 'rectangular' ? 'primary' : 'outline'}`}
         >
           <RulerIcon size="sm" /> Παραλληλόγραμμο
         </Button>
@@ -48,7 +48,7 @@ export const ButtonShapeControl: React.FC<ButtonShapeControlProps> = ({
           variant={buttonState.shape === 'square' ? 'primary' : 'outline'}
           size={buttonState.size}
           onClick={() => buttonActions.setShape('square')}
-          className={`layera-button layera-button--${buttonState.size} layera-button--${buttonState.shape === 'square' ? 'primary' : 'outline'}`}
+          className={`layera-margin-right--sm layera-button layera-button--${buttonState.size} layera-button--${buttonState.shape === 'square' ? 'primary' : 'outline'}`}
         >
           <PolygonIcon size="sm" /> Τετράγωνο
         </Button>
