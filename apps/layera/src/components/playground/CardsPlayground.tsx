@@ -75,12 +75,12 @@ export const CardsPlayground: React.FC<ExtendedCardsPlaygroundProps> = ({
 
   // Card configurations με mapping σε data-variant values
   const cardConfigs = [
-    { key: 'primary', title: 'Primary', description: 'Κύρια κάρτα', colorValue: currentColors.primary, variant: 'primary' },
-    { key: 'secondary', title: 'Secondary', description: 'Δευτερεύουσα κάρτα', colorValue: currentColors.secondary, variant: 'secondary' },
-    { key: 'success', title: 'Success', description: 'Κάρτα επιτυχίας', colorValue: currentColors.success, variant: 'success' },
-    { key: 'warning', title: 'Warning', description: 'Κάρτα προειδοποίησης', colorValue: currentColors.warning, variant: 'warning' },
-    { key: 'danger', title: 'Danger', description: 'Κάρτα κινδύνου', colorValue: currentColors.danger, variant: 'error' }, // danger → error
-    { key: 'info', title: 'Info', description: 'Κάρτα πληροφοριών', colorValue: currentColors.info, variant: 'info' }
+    { key: 'primary', title: 'Primary Card', description: 'Κύρια κάρτα', colorValue: currentColors.primary, variant: 'primary' },
+    { key: 'secondary', title: 'Secondary Card', description: 'Δευτερεύουσα κάρτα', colorValue: currentColors.secondary, variant: 'secondary' },
+    { key: 'success', title: 'Success Card', description: 'Κάρτα επιτυχίας', colorValue: currentColors.success, variant: 'success' },
+    { key: 'warning', title: 'Warning Card', description: 'Κάρτα προειδοποίησης', colorValue: currentColors.warning, variant: 'warning' },
+    { key: 'danger', title: 'Danger Card', description: 'Κάρτα κινδύνου', colorValue: currentColors.danger, variant: 'error' }, // danger → error
+    { key: 'info', title: 'Info Card', description: 'Κάρτα πληροφοριών', colorValue: currentColors.info, variant: 'info' }
   ];
 
   // ✅ Apply card colors for live preview
