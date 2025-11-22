@@ -25,11 +25,17 @@ export interface CategoryInfo {
 export interface VariablesInfoAccordionProps {
   categories: CategoryInfo[];
   defaultExpandedCategory?: string;
+  highlightedVariable?: {
+    category: string;
+    cssVariable: string;
+    timestamp: number;
+  };
 }
 
 export const VariablesInfoAccordion: React.FC<VariablesInfoAccordionProps> = ({
   categories,
-  defaultExpandedCategory
+  defaultExpandedCategory,
+  highlightedVariable
 }) => {
   // Dynamic accordion state based on provided categories
   const initialState = categories.reduce((acc, category) => {
@@ -38,6 +44,18 @@ export const VariablesInfoAccordion: React.FC<VariablesInfoAccordionProps> = ({
   }, {} as Record<string, boolean>);
 
   const [expandedCategories, setExpandedCategories] = useState(initialState);
+
+  // Helper function για να ελέγχει αν μια γραμμή πρέπει να φωτίζεται
+  const isRowHighlighted = (variable: VariableInfo) => {
+    if (!highlightedVariable) return false;
+
+    const isMatch = variable.cssVariable === highlightedVariable.cssVariable ||
+                    variable.category === highlightedVariable.category;
+
+    // Φωτισμός για 3 δευτερόλεπτα μετά την αλλαγή
+    const timeSinceHighlight = Date.now() - highlightedVariable.timestamp;
+    return isMatch && timeSinceHighlight < 3000;
+  };
 
   // Toggle individual category
   const toggleCategory = (categoryId: string) => {
@@ -102,6 +120,28 @@ export const VariablesInfoAccordion: React.FC<VariablesInfoAccordionProps> = ({
         .layera-table-compact .layera-typography {
           line-height: 0.9;
           margin: 0 !important;
+        }
+
+        /* Highlight styling για τις γραμμές που αλλάζουν */
+        .layera-row-highlighted {
+          background-color: rgba(255, 215, 0, 0.3) !important;
+          animation: highlightPulse 3s ease-out;
+          border-left: 4px solid #FFD700 !important;
+        }
+
+        @keyframes highlightPulse {
+          0% {
+            background-color: rgba(255, 215, 0, 0.6);
+            border-left-color: #FFD700;
+          }
+          50% {
+            background-color: rgba(255, 215, 0, 0.4);
+            border-left-color: #FFA500;
+          }
+          100% {
+            background-color: rgba(255, 215, 0, 0.1);
+            border-left-color: transparent;
+          }
         }
       `}</style>
 
@@ -171,7 +211,10 @@ export const VariablesInfoAccordion: React.FC<VariablesInfoAccordionProps> = ({
                   </thead>
                   <tbody>
                     {category.variables.map((variable, index) => (
-                      <tr key={index}>
+                      <tr
+                        key={index}
+                        className={isRowHighlighted(variable) ? 'layera-row-highlighted' : ''}
+                      >
                         <td className="layera-padding--sm layera-border--solid layera-border-width--1 layera-border-color--primary">
                           <Text className="layera-typography" data-size="sm" data-color="secondary">{variable.category}</Text>
                         </td>

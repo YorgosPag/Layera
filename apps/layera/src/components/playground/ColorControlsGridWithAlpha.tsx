@@ -25,6 +25,7 @@ interface ColorControlsGridWithAlphaProps extends ColorControlsProps {
   onAlphaToggle?: (enabled: boolean) => void;
   buttonState?: ButtonState; // Προαιρετικό για backward compatibility
   elementType?: string; // Element type για dynamic CSS info
+  onVariableHighlight?: (category: string, cssVariable: string) => void; // Highlighting function
 }
 
 export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProps> = React.memo(({
@@ -34,7 +35,8 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
   colorCategory = '',
   alphaEnabled = false,
   onAlphaToggle,
-  elementType
+  elementType,
+  onVariableHighlight
 }) => {
   const [localAlphaEnabled, setLocalAlphaEnabled] = useState(alphaEnabled);
 
@@ -167,6 +169,13 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
       if (colorCategory === 'buttons') {
         const capitalizedKey = `${colorKey}Color`;
         actions.applySpecificButtonColor(capitalizedKey, stringValue);
+      }
+
+      // 🌟 HIGHLIGHT VARIABLE: Φώτισμα της αντίστοιχης γραμμής στο accordion
+      if (onVariableHighlight) {
+        const cssVariablePattern = `--layera-${elementType}-${colorCategory}-${colorKey}`;
+        const categoryPattern = `${colorKey.charAt(0).toUpperCase() + colorKey.slice(1)} ${colorCategory}`;
+        onVariableHighlight(categoryPattern, cssVariablePattern);
       }
     }
   };

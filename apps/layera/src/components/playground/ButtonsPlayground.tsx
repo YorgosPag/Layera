@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Box } from '@layera/layout';
 import { Button, SquareButton } from '@layera/buttons';
 import { Text } from '@layera/typography';
@@ -16,6 +16,7 @@ import { ButtonPlaygroundProps, PlaygroundColors } from '../../types/unified-int
 import { VariablesInfoAccordion } from './shared/VariablesInfoAccordion';
 import { createButtonVariablesData } from './shared/ButtonVariablesData';
 import { ColorControlsGridWithAlpha } from './ColorControlsGridWithAlpha';
+import { useVariableHighlighting } from '../../hooks/useVariableHighlighting';
 
 /**
  * ButtonsPlayground Component
@@ -60,6 +61,32 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
   // State για το Variables Info Popup
   const [showVariablesPopup, setShowVariablesPopup] = useState(false);
 
+  // Variable highlighting hook
+  const { highlightedVariable, highlightVariable } = useVariableHighlighting();
+
+  // Συνδέσω το highlighting με τις αλλαγές στα χρώματα
+  const handleColorChangeWithHighlight = (key: string, value: string) => {
+    // Βασική λογική για το mapping των color keys σε CSS variables
+    let cssVariable = '';
+    let category = '';
+
+    if (colorCategory === 'backgrounds') {
+      cssVariable = `--layera-button-background-${key}`;
+      category = `🎨 ${key.charAt(0).toUpperCase() + key.slice(1)} Φόντο`;
+    } else if (colorCategory === 'borders') {
+      cssVariable = `--layera-button-border-${key}`;
+      category = `🔲 ${key.charAt(0).toUpperCase() + key.slice(1)} Περίγραμμα`;
+    } else if (colorCategory === 'text') {
+      cssVariable = `--layera-button-color-${key}`;
+      category = `📝 ${key.charAt(0).toUpperCase() + key.slice(1)} Κείμενο`;
+    }
+
+    if (cssVariable && category) {
+      console.log('🌟 Highlighting:', { key, value, cssVariable, category });
+      highlightVariable(category, cssVariable);
+    }
+  };
+
   // Accordion State για τις κατηγορίες του πίνακα
   const [expandedCategories, setExpandedCategories] = useState({
     backgroundColors: true,
@@ -74,6 +101,82 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
 
   // <CheckIcon size="sm" /> ARXES COMPLIANT: Χρήση κεντρικού hook για CSS Variables
   const { actions } = useCSSVariables();
+
+  // Ref για να παρακολουθώ προηγούμενες τιμές
+  const prevValues = useRef({
+    activeEffect,
+    hoverEffect,
+    buttonRadius,
+    borderWidth,
+    colorCategory
+  });
+
+  // Παρακολούθηση ΜΟΝΟ πραγματικών αλλαγών
+  useEffect(() => {
+    const prev = prevValues.current;
+    const current = { activeEffect, hoverEffect, buttonRadius, borderWidth, colorCategory };
+
+    console.log('🔍 Checking for changes:', { prev, current });
+
+    // Ελέγχω κάθε τιμή ξεχωριστά για πραγματικές αλλαγές
+    if (prev.activeEffect !== current.activeEffect) {
+      console.log('🎯 REAL CHANGE: Active Effect changed from', prev.activeEffect, 'to', current.activeEffect);
+      const cssVariable = `var(--layera-button-active-${colorCategory})`;
+      const category = '🎯 Active Effect';
+      highlightVariable(category, cssVariable);
+    }
+
+    if (prev.hoverEffect !== current.hoverEffect) {
+      console.log('🎭 REAL CHANGE: Hover Effect changed from', prev.hoverEffect, 'to', current.hoverEffect);
+      const cssVariable = `var(--layera-button-hover-${colorCategory})`;
+      const category = '🎭 Hover Effect';
+      highlightVariable(category, cssVariable);
+    }
+
+    if (prev.buttonRadius !== current.buttonRadius) {
+      console.log('🌊 REAL CHANGE: Button Radius changed from', prev.buttonRadius, 'to', current.buttonRadius);
+      const cssVariable = `var(--layera-button-borderRadius-${buttonRadius})`;
+      const category = '🌊 Border Radius';
+      highlightVariable(category, cssVariable);
+    }
+
+    if (prev.borderWidth !== current.borderWidth) {
+      console.log('🔧 REAL CHANGE: Border Width changed from', prev.borderWidth, 'to', current.borderWidth);
+      const cssVariable = 'var(--layera-button-borderWidth)';
+      const category = '🔧 Border Width';
+      highlightVariable(category, cssVariable);
+    }
+
+    // Ενημερώνω τις προηγούμενες τιμές
+    prevValues.current = current;
+
+    // Παρακολούθηση αλλαγών στα χρώματα (υπάρχον κώδικας)
+    const handleColorsUpdate = (event: CustomEvent) => {
+      console.log('🔥 colorsUpdate event received:', event.detail);
+      const { detail } = event;
+      const { category, ...colors } = detail;
+
+      console.log('📊 Event category:', category, 'Current colorCategory:', colorCategory);
+
+      if (category === colorCategory) {
+        console.log('✅ Category match! Processing colors:', colors);
+        Object.entries(colors).forEach(([colorKey, colorValue]) => {
+          console.log('🎨 Processing color:', colorKey, colorValue);
+          if (colorValue && typeof colorValue === 'object' && 'hex' in colorValue) {
+            const simplifiedKey = colorKey.replace('Color', '').toLowerCase();
+            console.log('🔄 Simplified key:', simplifiedKey);
+            handleColorChangeWithHighlight(simplifiedKey, colorValue.hex);
+          }
+        });
+      }
+    };
+
+    window.addEventListener('colorsUpdate', handleColorsUpdate as EventListener);
+
+    return () => {
+      window.removeEventListener('colorsUpdate', handleColorsUpdate as EventListener);
+    };
+  }, [colorCategory, activeEffect, hoverEffect, buttonRadius, borderWidth]);
 
   // <CheckIcon size="sm" /> Color State Hook για έλεγχο alpha preview mode
   const { state: colorHookState } = useColorState();
@@ -522,6 +625,7 @@ HTML Attribute: ${row.htmlAttribute}
                   activeEffect
                 )}
                 defaultExpandedCategory="backgroundColors"
+                highlightedVariable={highlightedVariable}
               />
             </Box>
 
