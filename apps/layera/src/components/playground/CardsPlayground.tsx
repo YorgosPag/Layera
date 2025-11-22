@@ -67,9 +67,6 @@ export const CardsPlayground: React.FC<ExtendedCardsPlaygroundProps> = ({
     return parts.join(' ');
   };
 
-  // Debug logging
-  console.log('🃏 CardsPlayground: cardRadius prop =', cardRadius);
-  console.log('🃏 CardsPlayground: Final borderRadius =', getRadiusToken(cardRadius));
 
   // Card configurations με mapping σε data-variant values
   const cardConfigs = [

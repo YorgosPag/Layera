@@ -160,7 +160,7 @@ export const ModalsPlayground: React.FC<ModalsPlaygroundProps> = ({
         </p>
 
         <Box className="global-display-flex global-justifyContent-center global-alignItems-center layera-flex--gap-md layera-padding-top--lg layera-padding-bottom--lg">
-          {modalConfigs.map(({ key, title, description, colorValue }) => (
+          {modalConfigs.map(({ key, title }) => (
             <Box
               key={key}
               className={`layera-modal-uniform layera-card ${getModalTextAlignClass(modalTextAlign)}`}

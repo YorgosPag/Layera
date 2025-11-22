@@ -14,11 +14,11 @@ import { SettingsIcon, EditIcon, CheckIcon, CloseIcon } from '@layera/icons';
  * - Compatible με Material Design, Ant Design standards
  */
 
-import type { ButtonState, ButtonActions } from '../../../hooks/useButtonState.js';
+import type { ButtonState, ButtonStateActions } from '../../../hooks/useButtonState.js';
 
 interface ButtonTextIconControlProps {
   buttonState: ButtonState;
-  buttonActions: ButtonActions;
+  buttonActions: ButtonStateActions;
   className?: string;
 }
 
@@ -54,6 +54,25 @@ export const ButtonTextIconControl: React.FC<ButtonTextIconControlProps> = ({
       <Box className="layera-margin-bottom--sm layera-padding--md layera-bg--surface-secondary layera-text-align--center">
         <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">
           Preview: Κείμενο "{buttonState.text}" | Εικονίδιο {buttonState.withIcon ? 'Ενεργό' : 'Ανενεργό'}
+        </Text>
+      </Box>
+
+      {/* CSS Info για BUTTON TEXT & ICONS */}
+      <Box className="layera-border--dashed layera-border-width--1 layera-border-color--info layera-padding--md layera-margin-bottom--sm layera-bg--surface-secondary layera-border-radius--md">
+        <Text className="layera-typography layera-margin-bottom--xs layera-flex layera-flex--align-center layera-gap--xs" data-size="xs" data-weight="bold" data-color="primary">
+          <SettingsIcon size="sm" /> CSS Πληροφορίες
+        </Text>
+        <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
+          <strong>Variable:</strong> --layera-live-button-content
+        </Text>
+        <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
+          <strong>Selector:</strong> .layera-button[data-text="{buttonState.text}"]
+        </Text>
+        <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
+          <strong>HTML Attribute:</strong> data-layera-button-icon="{buttonState.withIcon ? 'enabled' : 'disabled'}"
+        </Text>
+        <Text className="layera-typography" data-size="xs" data-color="secondary">
+          Τρέχον κείμενο: <span className="layera-typography" data-weight="bold" data-color="success">"{buttonState.text}"</span>
         </Text>
       </Box>
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { PaletteIcon, SettingsIcon } from '@layera/icons';
 import { UnifiedCard } from '@layera/cards';
+import type { CardVariant } from '@layera/cards';
 import { getCSSVariablePrefix } from '../../services/theme';
 
 /**
@@ -39,7 +40,7 @@ export const SettingsDisplay: React.FC<SettingsDisplayProps> = ({
             type: 'data',
             title: 'Τρέχουσες Ρυθμίσεις',
             icon: <SettingsIcon size="sm" />,
-            variant: 'primary',
+            variant: 'info' as CardVariant,
             content: (
               <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark layera-white-space--pre-wrap layera-word-wrap--break layera-overflow-wrap--break" data-family="mono">
 {`{
@@ -61,7 +62,7 @@ export const SettingsDisplay: React.FC<SettingsDisplayProps> = ({
           type: 'data',
           title: `Παλέτα Χρωμάτων για ${colorHookState.colorCategory.toUpperCase()}`,
           icon: <PaletteIcon size="sm" />,
-          variant: 'primary',
+          variant: 'info' as CardVariant,
           content: (
             <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark layera-white-space--pre-wrap layera-word-wrap--break layera-overflow-wrap--break" data-family="mono">
 {`{
@@ -84,7 +85,7 @@ export const SettingsDisplay: React.FC<SettingsDisplayProps> = ({
           type: 'data',
           title: `CSS Μεταβλητές για ${colorHookState.colorCategory.toUpperCase()} στα ${colorHookState.elementType.toUpperCase()}${colorHookState.elementType === 'buttons' ? ` (${colorHookState.colorButtonShape})` : ''}`,
           icon: <SettingsIcon size="sm" />,
-          variant: 'primary',
+          variant: 'info' as CardVariant,
           content: (
             <pre className="layera-typography layera-margin--none layera-text-color--neutral-dark layera-white-space--pre-wrap layera-word-wrap--break layera-overflow-wrap--break" data-family="mono">
               {(() => {

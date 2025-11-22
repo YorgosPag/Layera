@@ -31,6 +31,7 @@ interface ColorPickerWithAlphaProps {
   variant?: string; // Variant για CSS Info display (π.χ. 'primary', 'secondary')
   colorVariant?: string; // Variant για dynamic card coloring (πάντα 'primary')
   showVariantInfo?: boolean; // Εμφανίζει CSS variable & selector info
+  elementType?: string; // Element type για dynamic CSS info (π.χ. 'card', 'modal', 'button')
 }
 
 export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
@@ -42,7 +43,8 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
   throttleMs = 16,
   variant,
   colorVariant,
-  showVariantInfo = false
+  showVariantInfo = false,
+  elementType
 }) => {
   // Flag για να ξέρουμε αν ο χρήστης αλλάζει το slider
   const [isUserInteracting, setIsUserInteracting] = useState(false);
@@ -469,13 +471,13 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
             <SettingsIcon size="sm" /> CSS Info:
           </Text>
           <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
-            Variable: <span className="layera-typography" data-weight="mono" data-color="info">--layera-live-card-{variant}</span>
+            <strong>Variable:</strong> <span className="layera-typography" data-weight="mono" data-color="info">{`--layera-button-background-${variant || 'primary'}`}</span>
           </Text>
           <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
-            Selector: <span className="layera-typography" data-weight="mono" data-color="info">.layera-card[data-variant="{variant}"]</span>
+            <strong>Selector:</strong> <span className="layera-typography" data-weight="mono" data-color="info">{`.layera-button[data-variant="${variant || 'primary'}"]`}</span>
           </Text>
           <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
-            HTML Attribute: <span className="layera-typography" data-weight="mono" data-color="info">data-layera-card-{variant}="active"</span>
+            <strong>HTML Attribute:</strong> <span className="layera-typography" data-weight="mono" data-color="info">{`data-layera-button-background="${variant || 'primary'}"`}</span>
           </Text>
           <Text className="layera-typography" data-size="xs" data-color="secondary">
             Τρέχον χρώμα: <span className="layera-typography" data-weight="bold" data-color="success">{displayHex.toUpperCase()}</span>

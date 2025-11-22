@@ -24,6 +24,7 @@ interface ColorControlsGridWithAlphaProps extends ColorControlsProps {
   alphaEnabled?: boolean;
   onAlphaToggle?: (enabled: boolean) => void;
   buttonState?: ButtonState; // Προαιρετικό για backward compatibility
+  elementType?: string; // Element type για dynamic CSS info
 }
 
 export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProps> = React.memo(({
@@ -32,7 +33,8 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
   startPreview = () => {},
   colorCategory = '',
   alphaEnabled = false,
-  onAlphaToggle
+  onAlphaToggle,
+  elementType
 }) => {
   const [localAlphaEnabled, setLocalAlphaEnabled] = useState(alphaEnabled);
 
@@ -196,9 +198,8 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
             return baseVariant === 'danger' ? 'error' : baseVariant;
           };
 
-          const variant = (colorCategory === 'backgrounds')
-            ? getVariantFromColorKey(colorKey)
-            : undefined;
+          // Εμφανίζουμε CSS info για όλα τα categories, όχι μόνο backgrounds
+          const variant = getVariantFromColorKey(colorKey);
 
           if (localAlphaEnabled) {
             // Alpha Mode - Use ColorPickerWithAlpha
@@ -210,6 +211,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
                 label={`${colorKey.charAt(0).toUpperCase() + colorKey.slice(1)} (RGBA)`}
                 value={colorWithAlpha}
                 onChange={(newValue) => handleColorChange(colorKey, newValue)}
+                elementType={elementType}
                 onPreview={(previewValue) => {
                   // Real-time preview χωρίς αλλαγή state
                   const previewVal = localAlphaEnabled ? previewValue.rgba : previewValue.hex;
@@ -237,6 +239,7 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
                 label={`${colorKey.charAt(0).toUpperCase() + colorKey.slice(1)} (HEX)`}
                 value={colorWithAlpha}
                 onChange={(newValue) => handleColorChange(colorKey, newValue.hex)}
+                elementType={elementType}
                 onPreview={(previewValue) => {
                   // Real-time preview χωρίς αλλαγή state
                   startPreview(colorKey, previewValue.hex);

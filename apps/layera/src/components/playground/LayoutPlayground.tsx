@@ -77,7 +77,7 @@ export const LayoutPlayground: React.FC<LayoutPlaygroundProps> = ({
         </p>
 
         <Box className="global-display-flex global-justifyContent-center global-alignItems-center layera-flex--gap-md layera-padding-top--lg layera-padding-bottom--lg">
-          {layoutConfigs.map(({ key, title, description, colorValue }) => (
+          {layoutConfigs.map(({ key, title }) => (
             <Box
               key={key}
               className={`layera-layout-uniform layera-card`}

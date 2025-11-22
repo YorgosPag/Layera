@@ -3,6 +3,7 @@ import { Box } from '@layera/layout';
 import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { UnifiedCard } from '@layera/cards';
+import type { CardVariant } from '@layera/cards';
 import { PaletteIcon, LayersIcon, EditIcon, PolygonIcon, CompassIcon, CheckIcon, MonitorIcon, BuildingIcon, ChartIcon } from '@layera/icons';
 import { BorderWidthControl } from './shared/BorderWidthControl';
 import { BorderRadiusControl } from './shared/BorderRadiusControl';
@@ -127,12 +128,12 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
     const root = document.documentElement;
 
     // Ορίζει το attribute και το CSS variable για primary card όταν υπάρχει χρώμα
-    const primaryColor = colorHookState?.backgrounds?.primaryColor;
+    const primaryColor = colorHookState?.categoryPalettes?.backgrounds?.primaryColor?.hex;
     if (primaryColor) {
       root.setAttribute('data-layera-card-primary', 'active');
       root.style.setProperty('--layera-live-card-primary', primaryColor);
     }
-  }, [colorHookState?.backgrounds?.primaryColor]);
+  }, [colorHookState?.categoryPalettes?.backgrounds?.primaryColor?.hex]);
 
   // Check if current element type supports hover effects
   const isInteractiveElement = ['buttons', 'cards', 'inputs', 'modals', 'tables', 'layout'].includes(colorHookState.elementType);
@@ -168,7 +169,7 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
           title: 'Επιλογή Κατηγορίας Χρωμάτων',
           description: 'Επιλέξτε ποια χρώματα θα επηρεάζονται από τις αλλαγές',
           icon: <CheckIcon size="sm" />,
-          variant: 'primary',
+          variant: 'info' as CardVariant,
           className: 'layera-text--align-center',
           content: (
             <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center layera-text--align-center">
@@ -212,7 +213,7 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
           title: `Τύπος Στοιχείων για ${colorHookState.colorCategory === 'backgrounds' ? 'Φόντα' : colorHookState.colorCategory === 'text' ? 'Κείμενα' : 'Περιγράμματα'}`,
           description: `Επιλέξτε ποια στοιχεία θα επηρεάζονται από τα ${colorHookState.colorCategory === 'backgrounds' ? 'background' : colorHookState.colorCategory === 'text' ? 'text' : 'border'} χρώματα`,
           icon: <PolygonIcon size="sm" />,
-          variant: 'primary',
+          variant: 'info' as CardVariant,
           className: 'layera-text--align-center',
           content: (
             <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center layera-text--align-center">
@@ -293,7 +294,7 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
         <ButtonRadiusControl
           value={buttonRadius}
           onChange={onButtonRadiusChange}
-          elementType="πλήκτρα"
+          elementType={colorHookState.elementType}
           className="layera-height--auto layera-text--align-center"
           onPreview={onPreview}
           buttonState={buttonState}

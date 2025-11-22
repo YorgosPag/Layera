@@ -14,12 +14,12 @@ import { SettingsIcon } from '@layera/icons';
  * - Compatible με Bootstrap, Chakra UI, Mantine button systems
  */
 
-import type { ButtonState, ButtonActions } from '../../../hooks/useButtonState.js';
+import type { ButtonState, ButtonStateActions } from '../../../hooks/useButtonState.js';
 import type { ButtonSize } from '../../../types/sizes';
 
 interface ButtonSizeControlProps {
   buttonState: ButtonState;
-  buttonActions: ButtonActions;
+  buttonActions: ButtonStateActions;
   buttonSizes: ButtonSize[];
   className?: string;
 }
@@ -53,6 +53,25 @@ export const ButtonSizeControl: React.FC<ButtonSizeControlProps> = ({
       <Box className="layera-margin-bottom--sm layera-padding--md layera-bg--surface-secondary layera-text-align--center">
         <Text className="layera-typography" data-size="sm" data-weight="medium" data-color="primary">
           Preview: {buttonState.size === 'xs' ? 'Πολύ μικρά - compact UI' : buttonState.size === 'sm' ? 'Μικρά - κανονικά forms' : buttonState.size === 'md' ? 'Μεσαία - default πλήκτρα' : buttonState.size === 'lg' ? 'Μεγάλα - call-to-action' : 'Πολύ μεγάλα - hero sections'}
+        </Text>
+      </Box>
+
+      {/* CSS Info για BUTTON SIZES */}
+      <Box className="layera-border--dashed layera-border-width--1 layera-border-color--info layera-padding--md layera-margin-bottom--sm layera-bg--surface-secondary layera-border-radius--md">
+        <Text className="layera-typography layera-margin-bottom--xs layera-flex layera-flex--align-center layera-gap--xs" data-size="xs" data-weight="bold" data-color="primary">
+          <SettingsIcon size="sm" /> CSS Πληροφορίες
+        </Text>
+        <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
+          <strong>Variable:</strong> --layera-live-button-size
+        </Text>
+        <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
+          <strong>Selector:</strong> .layera-button[data-size="{buttonState.size}"]
+        </Text>
+        <Text className="layera-typography layera-margin-bottom--xs" data-size="xs" data-color="secondary">
+          <strong>HTML Attribute:</strong> data-layera-button-size="{buttonState.size}"
+        </Text>
+        <Text className="layera-typography" data-size="xs" data-color="secondary">
+          Τρέχον μέγεθος: <span className="layera-typography" data-weight="bold" data-color="success">{buttonState.size}</span>
         </Text>
       </Box>
 

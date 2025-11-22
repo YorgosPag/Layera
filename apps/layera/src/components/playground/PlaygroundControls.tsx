@@ -201,6 +201,7 @@ export const PlaygroundControls: React.FC<PlaygroundControlsProps> = ({
           handleElementPreview(key, value, colorHookState.elementType, colorHookState.colorCategory, startPreview);
         }}
         colorCategory={colorHookState.colorCategory}
+        elementType={colorHookState.elementType}
         alphaEnabled={alphaEnabled}
         onAlphaToggle={playgroundActions.setAlphaEnabled}
         buttonState={buttonState}

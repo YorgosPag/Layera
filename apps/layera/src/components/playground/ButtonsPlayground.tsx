@@ -52,7 +52,7 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
   const { actions } = useCSSVariables();
 
   // ✅ Color State Hook για έλεγχο alpha preview mode
-  const { colorHookState } = useColorState();
+  const { state: colorHookState } = useColorState();
 
   // Helper function για translation του shape
   const getShapeInGreek = (shape: string) => {
