@@ -4,13 +4,7 @@ import { Text } from '@layera/typography';
 import { Button } from '@layera/buttons';
 import { SettingsIcon, CloseIcon, EditIcon, PolygonIcon, RulerIcon, CompassIcon, CheckIcon, PaletteIcon } from '@layera/icons';
 import { PlaygroundHeader } from './playground/PlaygroundHeader';
-import { ButtonsPlayground } from './playground/ButtonsPlayground';
-import { CardsPlayground } from './playground/CardsPlayground';
-import { ModalsPlayground } from './playground/ModalsPlayground';
-import { InputsPlayground } from './playground/InputsPlayground';
-import { LayoutPlayground } from './playground/LayoutPlayground';
-import { TablesPlayground } from './playground/TablesPlayground';
-import { HeaderPlayground } from './playground/HeaderPlayground';
+import { PlaygroundRenderer } from './playground/PlaygroundRenderer';
 import { CategorySelection } from './playground/CategorySelection';
 import { ColorControlsGridWithAlpha } from './playground/ColorControlsGridWithAlpha';
 import { ColorActionsPanel } from './playground/ColorActionsPanel';
@@ -20,7 +14,6 @@ import { ButtonShapeControl } from './playground/shared/ButtonShapeControl';
 import { ButtonSizeControl } from './playground/shared/ButtonSizeControl';
 import { ButtonTextIconControl } from './playground/shared/ButtonTextIconControl';
 import type { ColorWithAlpha } from './playground/shared/ColorPickerWithAlpha';
-import type { FontSizeValue, CardSizeValue, ModalSizeValue, InputSizeValue, TableSizeValue, UnifiedSizeConfig } from '../types/sizes';
 import type { ModalTextAlignValue } from './playground/shared/ModalTextAlignControl';
 import { useAuth } from '@layera/auth-bridge';
 import { useRealTimePreview } from '../hooks/useRealTimePreview';
@@ -139,105 +132,28 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
         onClose={onClose}
       />
           {/* Dynamic Content Based on Element Type Selection */}
-          {colorHookState.elementType === 'buttons' && (
-            <Box className="layera-margin-bottom--xl global-display-flex global-flexDirection-column global-alignItems-center">
-              <ButtonsPlayground
-                buttonState={buttonState}
-                colorCategory={colorHookState.colorCategory}
-                currentColors={convertColorPaletteWithAlphaToLegacy(getElementColors('buttons', colorHookState.colorCategory))}
-                borderWidth={borderWidth}
-                buttonRadius={buttonRadius}
-                hoverEffect={hoverEffect}
-                activeEffect={activeEffect}
-              />
-            </Box>
-          )}
-
-          {colorHookState.elementType === 'cards' && (
-            <Box className="layera-margin-bottom--xl global-display-flex global-flexDirection-column global-alignItems-center">
-              <CardsPlayground
-                currentColors={convertColorPaletteWithAlphaToLegacy(getElementColors('cards', colorHookState.colorCategory))}
-                colorCategory={colorHookState.colorCategory}
-                borderWidth={borderWidth}
-                cardRadius={cardRadius}
-                cardSize={cardSize}
-                hoverEffect={hoverEffect}
-                activeEffect={activeEffect}
-              />
-            </Box>
-          )}
-
-          {colorHookState.elementType === 'modals' && (
-            <Box className="layera-margin-bottom--xl global-display-flex global-flexDirection-column global-alignItems-center">
-              <ModalsPlayground
-                currentColors={convertColorPaletteWithAlphaToLegacy(getElementColors('modals', colorHookState.colorCategory))}
-                colorCategory={colorHookState.colorCategory}
-                borderWidth={borderWidth}
-                modalRadius={modalRadius}
-                modalSize={modalSize}
-                modalTextAlign={modalTextAlign}
-                hoverEffect={hoverEffect}
-                activeEffect={activeEffect}
-              />
-            </Box>
-          )}
-
-          {colorHookState.elementType === 'inputs' && (
-            <Box className="layera-margin-bottom--xl global-display-flex global-flexDirection-column global-alignItems-center">
-              <InputsPlayground
-                currentColors={convertColorPaletteWithAlphaToLegacy(getElementColors('inputs', colorHookState.colorCategory))}
-                colorCategory={colorHookState.colorCategory}
-                borderWidth={borderWidth}
-                inputRadius={inputRadius}
-                inputSize={inputSize}
-                hoverEffect={hoverEffect}
-                activeEffect={activeEffect}
-              />
-            </Box>
-          )}
-
-          {colorHookState.elementType === 'layout' && (
-            <Box className="layera-margin-bottom--xl global-display-flex global-flexDirection-column global-alignItems-center">
-              <LayoutPlayground
-                currentColors={convertColorPaletteWithAlphaToLegacy(getElementColors('layout', colorHookState.colorCategory))}
-                colorCategory={colorHookState.colorCategory}
-                borderWidth={borderWidth}
-                layoutRadius={layoutRadius}
-                layoutSize="md"
-                hoverEffect={hoverEffect}
-                activeEffect={activeEffect}
-              />
-            </Box>
-          )}
-
-          {colorHookState.elementType === 'headers' && (
-            <Box className="layera-margin-bottom--xl global-display-flex global-flexDirection-column global-alignItems-center">
-              <HeaderPlayground
-                currentColors={convertColorPaletteWithAlphaToLegacy(getElementColors('headers', colorHookState.colorCategory))}
-                colorCategory={colorHookState.colorCategory}
-                borderWidth={borderWidth}
-                headerRadius={headerRadius}
-                headerSize="md"
-                hoverEffect={hoverEffect}
-                activeEffect={activeEffect}
-              />
-            </Box>
-          )}
-
-
-          {colorHookState.elementType === 'tables' && (
-            <Box className="layera-margin-bottom--xl global-display-flex global-flexDirection-column global-alignItems-center">
-              <TablesPlayground
-                currentColors={convertColorPaletteWithAlphaToLegacy(getElementColors('tables', colorHookState.colorCategory))}
-                colorCategory={colorHookState.colorCategory}
-                borderWidth={borderWidth}
-                tableRadius={tableRadius}
-                tableSize={tableSize}
-                hoverEffect={hoverEffect}
-                activeEffect={activeEffect}
-              />
-            </Box>
-          )}
+          <PlaygroundRenderer
+            elementType={colorHookState.elementType}
+            colorCategory={colorHookState.colorCategory}
+            borderWidth={borderWidth}
+            hoverEffect={hoverEffect}
+            activeEffect={activeEffect}
+            cardSize={cardSize}
+            modalSize={modalSize}
+            modalTextAlign={modalTextAlign}
+            inputSize={inputSize}
+            tableSize={tableSize}
+            buttonRadius={buttonRadius}
+            cardRadius={cardRadius}
+            modalRadius={modalRadius}
+            inputRadius={inputRadius}
+            layoutRadius={layoutRadius}
+            headerRadius={headerRadius}
+            tableRadius={tableRadius}
+            buttonState={buttonState}
+            convertColorPaletteWithAlphaToLegacy={convertColorPaletteWithAlphaToLegacy}
+            getElementColors={getElementColors}
+          />
 
           {/* Always show color management sections */}
           {/* Category and Element Type Selection - Πάνω από Button Controls */}
