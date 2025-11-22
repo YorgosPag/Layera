@@ -44,11 +44,15 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
    * ZERO CSS injection - ZERO style.setProperty - ΜΟΝΟ data attributes
    */
   const applyHeaderButtonPreview = useCallback((color: string) => {
+    console.log('🎩 useRealTimePreview applyHeaderButtonPreview CALLED:', { color });
+
     const root = document.documentElement;
 
     // ✅ ARXES COMPLIANT: Data attributes για preview state και value
     root.setAttribute('data-layera-header-preview', 'active');
     root.setAttribute('data-layera-header-preview-color', color);
+
+    console.log('🎩 useRealTimePreview applyHeaderButtonPreview COMPLETED');
   }, []);
 
   /**
@@ -268,7 +272,9 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
         }
       } else if (category === 'buttons' && elementType === 'buttons') {
         // ✅ ARXES COMPLIANT: Button colors μέσω data attributes
+        console.log('🎯 useRealTimePreview buttons category logic:', { category, elementType, key, value });
         root.setAttribute(`data-layera-preview-button-${key}`, value);
+        console.log('🎩 Calling applyHeaderButtonPreview from buttons logic');
         applyHeaderButtonPreview(value);
       }
     } else {
@@ -331,6 +337,8 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
    * Ξεκινάει live preview για ένα συγκεκριμένο χρώμα
    */
   const startPreview = useCallback((key: string, value: string, category?: string, elementType?: string) => {
+    console.log('🚀 useRealTimePreview startPreview CALLED:', { key, value, category, elementType });
+
     // Clear previous debounce timer
     if (debounceTimerRef.current) {
       clearTimeout(debounceTimerRef.current);
@@ -343,13 +351,17 @@ export const useRealTimePreview = ({ onCommit, debounceMs = 700 }: UseRealTimePr
       previewKey: key
     }));
 
+    console.log('🎬 Calling throttledDOMUpdate:', { key, value, category, elementType });
     // Apply live preview to DOM με throttling για καλύτερη performance
     throttledDOMUpdate(key, value, category, elementType);
 
     // Set debounced commit
     debounceTimerRef.current = setTimeout(() => {
+      console.log('⏰ Debounce timeout reached, committing preview:', { key, value });
       commitPreview(key, value);
     }, debounceMs);
+
+    console.log('✅ useRealTimePreview startPreview COMPLETED');
   }, [debounceMs, throttledDOMUpdate, commitPreview]);
 
   /**

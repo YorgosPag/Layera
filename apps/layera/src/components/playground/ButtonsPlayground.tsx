@@ -4,6 +4,7 @@ import { Button, SquareButton } from '@layera/buttons';
 import { PlusIcon, SearchIcon, CheckIcon, CloseIcon, SettingsIcon, CompassIcon } from '@layera/icons';
 import { ButtonState } from '../../hooks/useButtonState';
 import { useCSSVariables } from '../../hooks/useCSSVariables';
+import { useColorState } from '../../hooks/useColorState';
 import { PLAYGROUND_HELPERS } from '../../constants/ui-utilities';
 import { ButtonPlaygroundProps, PlaygroundColors } from '../../types/unified-interfaces';
 
@@ -49,6 +50,9 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
 }) => {
   // ✅ ARXES COMPLIANT: Χρήση κεντρικού hook για CSS Variables
   const { actions } = useCSSVariables();
+
+  // ✅ Color State Hook για έλεγχο alpha preview mode
+  const { colorHookState } = useColorState();
 
   // Helper function για translation του shape
   const getShapeInGreek = (shape: string) => {
@@ -124,14 +128,35 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
 
   // ✅ ARXES COMPLIANT: Χρήση κεντρικού hook για button color styling
   React.useEffect(() => {
+    console.log('🏠 ButtonsPlayground useEffect TRIGGERED:', {
+      colors,
+      elementType: colorHookState?.elementType,
+      colorCategory: colorHookState?.colorCategory
+    });
+
     if (typeof document !== 'undefined') {
+      // ✅ RGBA PROTECTION: Δεν κάνουμε override αν υπάρχουν ήδη RGBA τιμές
+      // Ελέγχουμε αν τα CSS variables έχουν ήδη rgba() τιμές
+      const root = document.documentElement;
+
       // Apply each color individually using the enterprise pattern
       Object.entries(colors).forEach(([colorKey, colorValue]) => {
         const capitalizedKey = `${colorKey}Color`;
+        const cssVariableName = `--layera-live-button-${colorKey}`;
+
+        // Έλεγχος αν υπάρχει ήδη RGBA τιμή
+        const currentValue = root.style.getPropertyValue(cssVariableName);
+
+        if (currentValue && currentValue.includes('rgba(')) {
+          console.log('🚫 SKIPPING ButtonsPlayground - RGBA value exists:', { colorKey, currentValue });
+          return; // ΔΕΝ κάνουμε override αν υπάρχει RGBA
+        }
+
+        console.log('🏠 ButtonsPlayground applying:', { colorKey, capitalizedKey, colorValue, currentValue });
         actions.applySpecificButtonColor(capitalizedKey, colorValue);
       });
     }
-  }, [colors, actions]);
+  }, [colors, actions, colorHookState?.elementType, colorHookState?.colorCategory]);
 
   return (
     <Box>
