@@ -128,12 +128,6 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
 
   // ✅ ARXES COMPLIANT: Χρήση κεντρικού hook για button color styling
   React.useEffect(() => {
-    console.log('🏠 ButtonsPlayground useEffect TRIGGERED:', {
-      colors,
-      elementType: colorHookState?.elementType,
-      colorCategory: colorHookState?.colorCategory
-    });
-
     if (typeof document !== 'undefined') {
       // ✅ RGBA PROTECTION: Δεν κάνουμε override αν υπάρχουν ήδη RGBA τιμές
       // Ελέγχουμε αν τα CSS variables έχουν ήδη rgba() τιμές
@@ -148,11 +142,9 @@ export const ButtonsPlayground: React.FC<ExtendedButtonPlaygroundProps> = ({
         const currentValue = root.style.getPropertyValue(cssVariableName);
 
         if (currentValue && currentValue.includes('rgba(')) {
-          console.log('🚫 SKIPPING ButtonsPlayground - RGBA value exists:', { colorKey, currentValue });
           return; // ΔΕΝ κάνουμε override αν υπάρχει RGBA
         }
 
-        console.log('🏠 ButtonsPlayground applying:', { colorKey, capitalizedKey, colorValue, currentValue });
         actions.applySpecificButtonColor(capitalizedKey, colorValue);
       });
     }

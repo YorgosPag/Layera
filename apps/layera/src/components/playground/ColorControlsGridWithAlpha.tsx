@@ -150,28 +150,21 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
   const colorDescriptions = getColorDescriptions();
 
   const handleColorChange = (colorKey: string, newValue: ColorWithAlpha | string) => {
-    console.log('🔥 handleColorChange CALLED:', { colorKey, newValue, localAlphaEnabled, colorCategory });
     const setter = currentSetters[colorKey];
     if (setter) {
       // Convert to string for compatibility
       const stringValue = typeof newValue === 'string' ? newValue :
                          (localAlphaEnabled ? newValue.rgba : newValue.hex);
-      console.log('🔄 Setting new color:', { colorKey, stringValue, setter: !!setter });
 
       setter(stringValue);
-      console.log('✅ Setter completed for:', { colorKey, stringValue });
 
       // Trigger preview
-      console.log('🎬 Triggering startPreview:', { colorKey, stringValue });
       startPreview(colorKey, stringValue);
-      console.log('✅ startPreview completed');
 
       // ✅ REAL-TIME BUTTONS UPDATE: Ενημέρωση πλήκτρων όταν είμαστε σε buttons κατηγορία
       if (colorCategory === 'buttons') {
         const capitalizedKey = `${colorKey}Color`;
-        console.log('🎯 BUTTONS UPDATE STARTING:', { colorKey, capitalizedKey, stringValue, localAlphaEnabled, newValue });
         actions.applySpecificButtonColor(capitalizedKey, stringValue);
-        console.log('✅ BUTTONS UPDATE COMPLETED');
       }
     }
   };
@@ -220,17 +213,12 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
                 onPreview={(previewValue) => {
                   // Real-time preview χωρίς αλλαγή state
                   const previewVal = localAlphaEnabled ? previewValue.rgba : previewValue.hex;
-                  console.log('🎨 ALPHA onPreview CALLED:', { colorKey, previewValue, previewVal, localAlphaEnabled, colorCategory });
-
                   startPreview(colorKey, previewVal);
-                  console.log('🎨 ALPHA startPreview completed');
 
                   // ✅ LIVE BUTTONS PREVIEW: Real-time ενημέρωση πλήκτρων κατά τη κίνηση του slider
                   if (colorCategory === 'buttons') {
                     const capitalizedKey = `${colorKey}Color`;
-                    console.log('🎨 LIVE BUTTONS PREVIEW STARTING:', { colorKey, capitalizedKey, previewVal, localAlphaEnabled });
                     actions.applySpecificButtonColor(capitalizedKey, previewVal);
-                    console.log('🎨 LIVE BUTTONS PREVIEW COMPLETED');
                   }
                 }}
                 className="layera-height--auto layera-text--align-center layera-width--auto"
@@ -251,17 +239,12 @@ export const ColorControlsGridWithAlpha: React.FC<ColorControlsGridWithAlphaProp
                 onChange={(newValue) => handleColorChange(colorKey, newValue.hex)}
                 onPreview={(previewValue) => {
                   // Real-time preview χωρίς αλλαγή state
-                  console.log('🎨 HEX onPreview CALLED:', { colorKey, previewValue, localAlphaEnabled, colorCategory });
-
                   startPreview(colorKey, previewValue.hex);
-                  console.log('🎨 HEX startPreview completed');
 
                   // ✅ LIVE BUTTONS PREVIEW: Real-time ενημέρωση πλήκτρων κατά τη κίνηση του slider
                   if (colorCategory === 'buttons') {
                     const capitalizedKey = `${colorKey}Color`;
-                    console.log('🎨 HEX LIVE BUTTONS PREVIEW STARTING:', { colorKey, capitalizedKey, hex: previewValue.hex });
                     actions.applySpecificButtonColor(capitalizedKey, previewValue.hex);
-                    console.log('🎨 HEX LIVE BUTTONS PREVIEW COMPLETED');
                   }
                 }}
                 className="layera-height--auto layera-text--align-center"

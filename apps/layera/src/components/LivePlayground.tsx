@@ -165,19 +165,15 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
   // Real-time preview hook for header buttons
   const { startPreview } = useRealTimePreview({
     onCommit: (key: string, value: string) => {
-      console.log('🎯 useRealTimePreview onCommit CALLED:', { key, value, colorCategory: colorHookState?.colorCategory, elementType: colorHookState?.elementType });
-
       // ✅ ΑΠΟΦΥΓΗ OVERRIDE: ΔΕΝ κάνουμε commit όταν είμαστε σε alpha preview mode
       // Διατηρούμε τις RGBA τιμές στα CSS variables χωρίς επαναφορά
       if (colorHookState?.elementType === 'buttons' && colorHookState?.colorCategory === 'backgrounds') {
-        console.log('🚫 SKIPPING onCommit για buttons background - διατήρηση RGBA values');
         return; // ΔΕΝ καλούμε updateSquarePalette που επαναφέρει defaults
       }
 
       // Update the actual color state when preview is committed
       // ΜΟΝΟ για buttons category επηρεάζει τα header buttons (legacy behavior)
       if (key === 'buttonsSecondaryColor') {
-        console.log('🔄 Calling updateSquarePalette για legacy behavior');
         colorActions.updateSquarePalette('secondaryColor', value);
       }
     },
@@ -455,50 +451,40 @@ export const LivePlayground: React.FC<LivePlaygroundProps> = ({ onClose }) => {
               infoColor: (value: string) => colorActions.updateCategoryPalette(colorHookState.colorCategory, 'infoColor', value)
             }}
             startPreview={(key: string, value: string | ColorWithAlpha) => {
-              console.log('📡 LivePlayground startPreview CALLED:', { key, value, elementType: colorHookState.elementType, colorCategory: colorHookState.colorCategory });
-
               const previewValue = typeof value === 'string' ? value : value.rgba;
 
               if (colorHookState.elementType === 'buttons' &&
                  colorHookState.colorCategory === 'backgrounds') {
                 // ✅ ALPHA SUPPORT: Χρησιμοποιούμε rgba για διαφάνεια
                 const colorValue = typeof value === 'string' ? value : (value.rgba || value.hex);
-                console.log('🎯 LivePlayground BUTTONS CSS ACTION #1:', { key, colorValue, value, elementType: colorHookState.elementType, colorCategory: colorHookState.colorCategory });
                 cssActions.applySpecificButtonColor(key, colorValue);
-                console.log('✅ LivePlayground BUTTONS CSS ACTION #1 COMPLETED');
               }
 
               if (colorHookState.elementType === 'cards' &&
                  colorHookState.colorCategory === 'backgrounds') {
                 const colorValue = typeof value === 'string' ? value : value.hex;
-                console.log('🃏 LivePlayground CARDS ACTION:', { key, colorValue });
                 cssActions.applySpecificCardColor(key, colorValue);
               }
 
               if (colorHookState.elementType === 'modals' &&
                  colorHookState.colorCategory === 'backgrounds') {
                 const colorValue = typeof value === 'string' ? value : value.hex;
-                console.log('🪟 LivePlayground MODALS ACTION:', { key, colorValue });
                 cssActions.applySpecificModalColor(key, colorValue);
               }
 
               if (colorHookState.elementType === 'layout' &&
                  colorHookState.colorCategory === 'backgrounds') {
                 const colorValue = typeof value === 'string' ? value : value.hex;
-                console.log('📐 LivePlayground LAYOUT ACTION:', { key, colorValue });
                 cssActions.applySpecificLayoutColor(key, colorValue);
               }
 
               if (colorHookState.elementType === 'headers' &&
                  colorHookState.colorCategory === 'backgrounds') {
                 const colorValue = typeof value === 'string' ? value : value.hex;
-                console.log('🎩 LivePlayground HEADERS ACTION:', { key, colorValue });
                 cssActions.applySpecificHeaderColor(key, colorValue);
               }
 
-              console.log('🔗 Calling useRealTimePreview hook startPreview:', { key, previewValue });
               startPreview(key, previewValue, colorHookState.colorCategory, colorHookState.elementType);
-              console.log('✅ useRealTimePreview hook startPreview COMPLETED');
             }}
             colorCategory={colorHookState.colorCategory}
             alphaEnabled={alphaEnabled}

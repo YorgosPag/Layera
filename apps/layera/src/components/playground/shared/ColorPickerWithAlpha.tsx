@@ -213,15 +213,12 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
     if (!newHex || !newHex.startsWith('#')) return;
 
     const safeAlpha = internalValue?.alpha ?? 1.0; // ✅ Επαναφορά default alpha
-    console.log('🎨 handleHexChange:', { newHex, safeAlpha, internalValue });
     const newValue = {
       hex: newHex,
       alpha: safeAlpha,
       rgba: hexToRgba(newHex, safeAlpha)
     };
-    console.log('🎨 handleHexChange newValue:', newValue);
     setInternalValue(newValue);
-    console.log('🎨 handleHexChange calling onChange with:', newValue);
     onChange(newValue);
   }, [internalValue?.alpha, onChange]);
 
@@ -389,18 +386,11 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
 
   // OPTIMIZED Mouse enter handler - debounced για performance
   const handleMouseEnter = useCallback(() => {
-    console.log('🖱️ ColorPickerWithAlpha handleMouseEnter CALLED:', {
-      label,
-      internalValue,
-      hasOnPreview: !!onPreview
-    });
-
     // ✅ SKIP HOVER PREVIEW για buttons category - αποφεύγει στιγμιαία εμφάνιση
     // Η hover preview προκαλεί unintended RGBA εφαρμογή στα buttons
     if (label.toLowerCase().includes('primary') || label.toLowerCase().includes('secondary') ||
         label.toLowerCase().includes('success') || label.toLowerCase().includes('warning') ||
         label.toLowerCase().includes('danger') || label.toLowerCase().includes('info')) {
-      console.log('🚫 SKIPPING hover preview για button colors');
       return;
     }
 
@@ -412,11 +402,9 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
 
   // Mouse leave handler για να διατηρήσει το χρώμα αντί για fallback
   const handleMouseLeave = useCallback(() => {
-    console.log('🖱️ ColorPickerWithAlpha handleMouseLeave CALLED:', { label });
-
     // ΜΗ καλέσεις onPreview - αφήνει το τελευταίο preview ενεργό
     // Αυτό αποτρέπει το revert στα factory settings
-  }, [label]);
+  }, []);
 
   return (
     <Box

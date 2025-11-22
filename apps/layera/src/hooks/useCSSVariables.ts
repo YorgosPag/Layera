@@ -110,12 +110,6 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
    * Χρησιμοποιεί CSS variables για άμεση ενημέρωση χωρίς re-render
    */
   const applySpecificButtonColor = (colorKey: string, colorValue: string) => {
-    console.log('🔥 ENTER applySpecificButtonColor:', {
-      colorKey,
-      colorValue,
-      caller: new Error().stack?.split('\n')[1]?.trim() || 'unknown'
-    });
-
     const root = document.documentElement;
 
     // ✅ ARXES COMPLIANT: Data attribute για button state
@@ -123,30 +117,7 @@ export const useCSSVariables = (): UseCSSVariablesReturn => {
 
     // ✅ ARXES COMPLIANT: CSS custom property για live preview
     const cssVariableName = `--layera-live-button-${colorKey.replace('Color', '')}`;
-
-    // 🔍 BEFORE SET: Τι είχαμε πριν
-    const beforeValue = root.style.getPropertyValue(cssVariableName);
-    console.log('🔍 BEFORE SET:', { cssVariableName, beforeValue, colorValue });
-
     root.style.setProperty(cssVariableName, colorValue);
-
-    // ✅ AFTER SET: Verification αμέσως μετά το set
-    const afterValue = root.style.getPropertyValue(cssVariableName);
-    console.log('✅ AFTER SET:', { cssVariableName, afterValue });
-
-    // 🕐 DELAYED CHECK: Έλεγχος μετά από 100ms
-    setTimeout(() => {
-      const delayedValue = root.style.getPropertyValue(cssVariableName);
-      console.log('🕐 DELAYED CHECK (100ms):', { cssVariableName, delayedValue });
-
-      if (delayedValue !== colorValue) {
-        console.error('❌ CSS VARIABLE OVERRIDDEN!', {
-          expected: colorValue,
-          actual: delayedValue,
-          cssVariableName
-        });
-      }
-    }, 100);
   };
 
   /**
