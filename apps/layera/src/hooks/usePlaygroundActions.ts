@@ -2,6 +2,7 @@ import { ColorPaletteWithAlpha, ColorCategory, ColorState, ColorStateActions, El
 import { CSSVariablesActions } from './useCSSVariables';
 import { StorageActions } from './useStorage';
 import { ColorWithAlpha } from '../components/playground/shared/ColorPickerWithAlpha';
+import type { LayeraUser } from '@layera/auth-bridge';
 
 /**
  * ARXES COMPLIANT Playground Actions Management Hook
@@ -138,7 +139,7 @@ export const usePlaygroundActions = (config: PlaygroundActionsConfig): Playgroun
       infoColor: categoryColors.infoColor.hex
     };
 
-    await storageActions.saveToStorage(themeData, user as unknown);
+    await storageActions.saveToStorage(themeData, user as LayeraUser | null);
 
     window.dispatchEvent(new CustomEvent('colorsUpdate', {
       detail: { category: colorHookState.colorCategory, ...categoryColors }
