@@ -159,61 +159,17 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
 
   return (
     <Box className="layera-margin-bottom--xl">
-      {/* First Row: Category + Element Type Selection */}
+      {/* First Row: Progressive Disclosure Level 1 - Element Type Selection */}
       <Box className="layera-grid--auto-fit-280 layera-margin-bottom--lg">
-        {/* #1: Επιλογή Κατηγορίας Αντικειμένων (Card 1) */}
-      <UnifiedCard
-        config={{
-          id: 'color-category-selection',
-          type: 'selection',
-          title: 'Επιλογή Κατηγορίας Χρωμάτων',
-          description: 'Επιλέξτε ποια χρώματα θα επηρεάζονται από τις αλλαγές',
-          icon: <CheckIcon size="sm" />,
-          variant: 'info' as CardVariant,
-          className: 'layera-text--align-center',
-          content: (
-            <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center layera-text--align-center">
-              <Button
-                variant={colorHookState.colorCategory === 'backgrounds' ? 'primary' : 'outline'}
-                size={buttonState?.size || 'sm'}
-                onClick={() => colorActions.setColorCategory('backgrounds')}
-                icon={<LayersIcon size="sm" />}
-                className={`layera-margin-right--sm layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.colorCategory === 'backgrounds' ? 'primary' : 'outline'}`}
-              >
-                Backgrounds
-              </Button>
-              <Button
-                variant={colorHookState.colorCategory === 'text' ? 'primary' : 'outline'}
-                size={buttonState?.size || 'sm'}
-                onClick={() => colorActions.setColorCategory('text')}
-                icon={<EditIcon size="sm" />}
-                className={`layera-margin-right--sm layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.colorCategory === 'text' ? 'primary' : 'outline'}`}
-              >
-                Text
-              </Button>
-              <Button
-                variant={colorHookState.colorCategory === 'borders' ? 'primary' : 'outline'}
-                size={buttonState?.size || 'sm'}
-                onClick={() => colorActions.setColorCategory('borders')}
-                icon={<PolygonIcon size="sm" />}
-                className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.colorCategory === 'borders' ? 'primary' : 'outline'}`}
-              >
-                Borders
-              </Button>
-            </Box>
-          )
-        }}
-      />
-
-      {/* #2: Τύπος Στοιχείου για Περιγράμματα (Card 2) */}
+        {/* #1: PROGRESSIVE DISCLOSURE LEVEL 1 - Element Type Selection */}
       <UnifiedCard
         config={{
           id: 'element-type-selection',
           type: 'selection',
-          title: `Τύπος Στοιχείων για ${colorHookState.colorCategory === 'backgrounds' ? 'Φόντα' : colorHookState.colorCategory === 'text' ? 'Κείμενα' : 'Περιγράμματα'}`,
-          description: `Επιλέξτε ποια στοιχεία θα επηρεάζονται από τα ${colorHookState.colorCategory === 'backgrounds' ? 'background' : colorHookState.colorCategory === 'text' ? 'text' : 'border'} χρώματα`,
+          title: 'Επιλογή Τύπου Στοιχείου',
+          description: 'Πρώτα επιλέξτε τον τύπο στοιχείου που θέλετε να προσαρμόσετε',
           icon: <PolygonIcon size="sm" />,
-          variant: 'info' as CardVariant,
+          variant: 'primary' as CardVariant,
           className: 'layera-text--align-center',
           content: (
             <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center layera-text--align-center">
@@ -254,24 +210,6 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
                 Headers
               </Button>
               <Button
-                variant={colorHookState.elementType === 'buttons' ? 'primary' : 'outline'}
-                size={buttonState?.size || 'sm'}
-                onClick={() => colorActions.setElementType('buttons')}
-                icon={<CheckIcon size="sm" />}
-                className={`layera-margin-right--sm layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.elementType === 'buttons' ? 'primary' : 'outline'}`}
-              >
-                Πλήκτρα
-              </Button>
-              <Button
-                variant={colorHookState.elementType === 'inputs' ? 'primary' : 'outline'}
-                size={buttonState?.size || 'sm'}
-                onClick={() => colorActions.setElementType('inputs')}
-                icon={<EditIcon size="sm" />}
-                className={`layera-margin-right--sm layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.elementType === 'inputs' ? 'primary' : 'outline'}`}
-              >
-                Πεδία
-              </Button>
-              <Button
                 variant={colorHookState.elementType === 'tables' ? 'primary' : 'outline'}
                 size={buttonState?.size || 'sm'}
                 onClick={() => colorActions.setElementType('tables')}
@@ -280,6 +218,74 @@ export const CategorySelection: React.FC<ExtendedCategorySelectionProps> = ({
               >
                 Πίνακες
               </Button>
+            </Box>
+          )
+        }}
+      />
+
+      {/* #2: PROGRESSIVE DISCLOSURE LEVEL 2 - Color Category Selection */}
+      <UnifiedCard
+        config={{
+          id: 'color-category-selection',
+          type: 'selection',
+          title: `Κατηγορίες Χρωμάτων για ${colorHookState.elementType === 'cards' ? 'Κάρτες' : colorHookState.elementType === 'modals' ? 'Modals' : colorHookState.elementType === 'layout' ? 'Layout' : colorHookState.elementType === 'headers' ? 'Headers' : colorHookState.elementType === 'tables' ? 'Πίνακες' : 'Στοιχεία'}`,
+          description: `Επιλέξτε ποια χρώματα θα επηρεάζονται για τα ${colorHookState.elementType === 'cards' ? 'κάρτες' : colorHookState.elementType === 'modals' ? 'modals' : colorHookState.elementType === 'layout' ? 'layout στοιχεία' : colorHookState.elementType === 'headers' ? 'headers' : colorHookState.elementType === 'tables' ? 'πίνακες' : 'επιλεγμένα στοιχεία'}`,
+          icon: <CheckIcon size="sm" />,
+          variant: 'info' as CardVariant,
+          className: 'layera-text--align-center',
+          content: (
+            <Box className="layera-flex layera-flex--wrap-wrap layera-flex--gap-md layera-flex--justify-center layera-text--align-center">
+              <Button
+                variant={colorHookState.colorCategory === 'backgrounds' ? 'primary' : 'outline'}
+                size={buttonState?.size || 'sm'}
+                onClick={() => colorActions.setColorCategory('backgrounds')}
+                icon={<LayersIcon size="sm" />}
+                className={`layera-margin-right--sm layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.colorCategory === 'backgrounds' ? 'primary' : 'outline'}`}
+              >
+                Backgrounds
+              </Button>
+              <Button
+                variant={colorHookState.colorCategory === 'text' ? 'primary' : 'outline'}
+                size={buttonState?.size || 'sm'}
+                onClick={() => colorActions.setColorCategory('text')}
+                icon={<EditIcon size="sm" />}
+                className={`layera-margin-right--sm layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.colorCategory === 'text' ? 'primary' : 'outline'}`}
+              >
+                Text
+              </Button>
+              <Button
+                variant={colorHookState.colorCategory === 'borders' ? 'primary' : 'outline'}
+                size={buttonState?.size || 'sm'}
+                onClick={() => colorActions.setColorCategory('borders')}
+                icon={<PolygonIcon size="sm" />}
+                className={`layera-margin-right--sm layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.colorCategory === 'borders' ? 'primary' : 'outline'}`}
+              >
+                Borders
+              </Button>
+              {/* PROGRESSIVE DISCLOSURE: Conditional Buttons - Show when relevant */}
+              {(['cards', 'modals', 'layout', 'headers', 'tables'].includes(colorHookState.elementType)) && (
+                <Button
+                  variant={colorHookState.elementType === 'buttons' ? 'primary' : 'outline'}
+                  size={buttonState?.size || 'sm'}
+                  onClick={() => colorActions.setElementType('buttons')}
+                  icon={<CheckIcon size="sm" />}
+                  className={`layera-margin-right--sm layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.elementType === 'buttons' ? 'primary' : 'outline'}`}
+                >
+                  Πλήκτρα
+                </Button>
+              )}
+              {/* PROGRESSIVE DISCLOSURE: Conditional Inputs - Show when relevant */}
+              {(['cards', 'modals', 'layout', 'headers', 'tables'].includes(colorHookState.elementType)) && (
+                <Button
+                  variant={colorHookState.elementType === 'inputs' ? 'primary' : 'outline'}
+                  size={buttonState?.size || 'sm'}
+                  onClick={() => colorActions.setElementType('inputs')}
+                  icon={<EditIcon size="sm" />}
+                  className={`layera-button layera-button--${buttonState?.size || 'sm'} layera-button--${colorHookState.elementType === 'inputs' ? 'primary' : 'outline'}`}
+                >
+                  Πεδία
+                </Button>
+              )}
             </Box>
           )
         }}
