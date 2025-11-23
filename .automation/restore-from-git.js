@@ -16,6 +16,37 @@ class LayeraRestoreSystem {
     this.tokensPath = path.join(this.projectRoot, 'packages', 'tokens');
     this.distPath = path.join(this.tokensPath, 'dist', 'css', 'tokens.css');
     this.backupDir = path.join(this.projectRoot, '.automation', 'backups');
+    this.lockFile = path.join(this.projectRoot, '.automation', '.lock');
+
+    // 🔧 ΜΟΝΙΜΗ ΛΥΣΗ: Καθαρισμός lock file πριν ξεκινήσει
+    this.cleanupStalelock();
+  }
+
+  cleanupStalelock() {
+    try {
+      if (fs.existsSync(this.lockFile)) {
+        const lockContent = fs.readFileSync(this.lockFile, 'utf8').trim();
+        const lockPID = parseInt(lockContent);
+
+        if (lockPID) {
+          // Έλεγχος αν η διεργασία τρέχει ακόμη
+          try {
+            process.kill(lockPID, 0); // Δεν σκοτώνει, απλά ελέγχει
+            this.log(`⚠️ Άλλη διεργασία τρέχει ακόμη (PID: ${lockPID})`, 'warning');
+          } catch (error) {
+            // Η διεργασία δεν τρέχει, διαγραφή stale lock
+            fs.unlinkSync(this.lockFile);
+            this.log(`🧹 Καθαρισμός stale lock file (PID: ${lockPID} τερματίστηκε)`, 'success');
+          }
+        } else {
+          // Άκυρο lock file, διαγραφή
+          fs.unlinkSync(this.lockFile);
+          this.log('🧹 Καθαρισμός άκυρου lock file', 'success');
+        }
+      }
+    } catch (error) {
+      this.log(`Σφάλμα καθαρισμού lock: ${error.message}`, 'warning');
+    }
   }
 
   log(message, type = 'info') {
