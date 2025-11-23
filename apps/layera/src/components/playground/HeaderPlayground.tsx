@@ -36,6 +36,12 @@ interface HeaderPlaygroundProps {
   hoverEffect?: string;
   /** Active effect for interactive elements */
   activeEffect?: string;
+  /** ENTERPRISE: Optional dynamic start items (left side) */
+  dynamicStartItems?: React.ReactNode[];
+  /** ENTERPRISE: Optional dynamic center items (middle) */
+  dynamicCenterItems?: React.ReactNode[];
+  /** ENTERPRISE: Optional dynamic end items (right side) */
+  dynamicEndItems?: React.ReactNode[];
 }
 
 export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
@@ -45,7 +51,10 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
   headerRadius = 'md',
   headerSize = 'md',
   hoverEffect = 'normal',
-  activeEffect = 'scale'
+  activeEffect = 'scale',
+  dynamicStartItems,
+  dynamicCenterItems,
+  dynamicEndItems
 }) => {
   // State για το Variables Info Popup
   const [showVariablesPopup, setShowVariablesPopup] = useState(false);
@@ -105,6 +114,30 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
       return `${borderWidthToken} solid ${colorValue}`;
     }
     return 'var(--layera-spacing-scale-1) solid var(--layera-color-border-primary)'; // subtle border for others
+  };
+
+  // ENTERPRISE: Helper to render flexible header sections
+  const renderHeaderSection = (
+    position: 'start' | 'center' | 'end',
+    dynamicItems: React.ReactNode[] | undefined,
+    fallbackContent: React.ReactNode,
+    justifyClass: string
+  ) => {
+    return (
+      <Box className={`layera-flex layera-flex--align-center layera-flex--gap-2 ${justifyClass}`}>
+        {dynamicItems && dynamicItems.length > 0 ? (
+          // ENTERPRISE: Use dynamic items when provided
+          dynamicItems.map((item, index) => (
+            <Box key={`dynamic-${position}-${index}`} className="layera-flex--shrink-0">
+              {item}
+            </Box>
+          ))
+        ) : (
+          // FALLBACK: Use existing hardcoded content
+          fallbackContent
+        )}
+      </Box>
+    );
   };
 
   const headerConfigs = [
@@ -167,195 +200,218 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
               <Box
                 key={key}
                 data-header-key={key}
-                className="layera-card global-display-flex global-alignItems-center global-justifyContent-between"
+                className="layera-card layera-card-box-border layera-margin-x--2 layera-margin-top--0 layera-grid layera-grid--gap-2 layera-grid--align-center layera-margin-bottom--0"
                 style={{
-                  boxSizing: "border-box", // Περιλαμβάνει border στο width
-                  marginLeft: "var(--layera-spacing-2)", // Αριστερά με tokens
-                  marginRight: "var(--layera-spacing-2)", // Δεξιά με tokens
-                  marginTop: "var(--layera-spacing-0)", // Μηδέν πάνω με tokens
-                  backgroundColor: getBackgroundColor(colorValue), // ✅ ΠΡΟΣΘΗΚΗ: Χρωματισμός φόντου
-                  color: getTextColor(colorValue), // ✅ ΠΡΟΣΘΗΚΗ: Χρωματισμός κειμένου
-                  border: getBorderStyle(colorValue), // ✅ ΠΡΟΣΘΗΚΗ: Χρωματισμός border
-                  borderRadius: getRadiusToken(headerRadius), // ✅ ΠΡΟΣΘΗΚΗ: Border radius
-                  ...(key === 'primary' ? {
-                    display: "grid",
-                    gridTemplateColumns: "var(--layera-grid-template-columns--header)",
-                    gap: "var(--layera-gap--2)",
-                    alignItems: "center",
-                    marginBottom: "0"
-                  } : key === 'secondary' ? {
-                    display: "grid",
-                    gridTemplateColumns: "var(--layera-grid-template-columns--header)",
-                    gap: "var(--layera-gap--2)",
-                    alignItems: "center",
-                    marginBottom: "0"
-                  } : {
-                    display: "grid",
-                    gridTemplateColumns: "var(--layera-grid-template-columns--header)",
-                    gap: "var(--layera-gap--2)",
-                    alignItems: "center",
-                    marginBottom: "0"
-                  })
+                  backgroundColor: getBackgroundColor(colorValue),
+                  color: getTextColor(colorValue),
+                  border: getBorderStyle(colorValue),
+                  borderRadius: getRadiusToken(headerRadius),
+                  gridTemplateColumns: "var(--layera-grid-template-columns--header)"
                 }}
               >
                 {key === 'primary' ? (
-                  // CSS GRID ΠΑΡΑΔΕΙΓΜΑ - Primary Header με 3 στήλες
+                  // CSS GRID ΠΑΡΑΔΕΙΓΜΑ - Primary Header με ENTERPRISE FLEXIBILITY
                   <>
-                    {/* Αριστερή στήλη */}
-                    <Box style={{display: "flex", alignItems: "center", gap: "var(--layera-gap--2)", justifyContent: "flex-start"}}>
-                      <SquareButton
-                        icon={<PlusIcon size="sm" />}
-                        aria-label="Προσθήκη"
-                        size="md"
-                      />
-                      <Text
-                        className="layera-typography"
-                        data-size="sm"
-                        data-weight="bold"
-                      >
-                        {title}
-                      </Text>
-                    </Box>
+                    {/* ENTERPRISE START SECTION - Αριστερή στήλη */}
+                    {renderHeaderSection(
+                      'start',
+                      dynamicStartItems,
+                      <>
+                        <SquareButton
+                          icon={<PlusIcon size="sm" />}
+                          aria-label="Προσθήκη"
+                          size="md"
+                        />
+                        <Text
+                          className="layera-typography"
+                          data-size="sm"
+                          data-weight="bold"
+                        >
+                          {title}
+                        </Text>
+                      </>,
+                      'layera-flex--justify-start'
+                    )}
 
-                    {/* Κεντρική στήλη - 3 εικονίδια */}
-                    <Box style={{display: "flex", alignItems: "center", gap: "var(--layera-gap--2)", justifyContent: "center"}}>
-                      <SquareButton
-                        icon={<SearchIcon size="md" />}
-                        aria-label="Αναζήτηση"
-                        size="md"
-                      />
-                      <SquareButton
-                        icon={<LocationIcon size="md" />}
-                        aria-label="Τοποθεσία"
-                        size="md"
-                      />
-                      <SquareButton
-                        icon={<MenuIcon size="md" />}
-                        aria-label="Μενού"
-                        size="md"
-                      />
-                    </Box>
+                    {/* ENTERPRISE CENTER SECTION - Κεντρική στήλη */}
+                    {renderHeaderSection(
+                      'center',
+                      dynamicCenterItems,
+                      <>
+                        <SquareButton
+                          icon={<SearchIcon size="md" />}
+                          aria-label="Αναζήτηση"
+                          size="md"
+                        />
+                        <SquareButton
+                          icon={<LocationIcon size="md" />}
+                          aria-label="Τοποθεσία"
+                          size="md"
+                        />
+                        <SquareButton
+                          icon={<MenuIcon size="md" />}
+                          aria-label="Μενού"
+                          size="md"
+                        />
+                      </>,
+                      'layera-flex--justify-center'
+                    )}
 
-                    {/* Δεξιά στήλη */}
-                    <Box style={{display: "flex", alignItems: "center", gap: "var(--layera-gap--2)", justifyContent: "flex-end"}}>
-                      <Text
-                        className="layera-typography layera-opacity--80"
-                        data-size="xs"
-                      >
-                        {description}
-                      </Text>
-                      <SquareButton
-                        icon={<UserIcon size="md" />}
-                        aria-label="Χρήστης"
-                        size="md"
-                      />
-                    </Box>
+                    {/* ENTERPRISE END SECTION - Δεξιά στήλη */}
+                    {renderHeaderSection(
+                      'end',
+                      dynamicEndItems,
+                      <>
+                        <Text
+                          className="layera-typography layera-opacity--80"
+                          data-size="xs"
+                        >
+                          {description}
+                        </Text>
+                        <SquareButton
+                          icon={<UserIcon size="md" />}
+                          aria-label="Χρήστης"
+                          size="md"
+                        />
+                      </>,
+                      'layera-flex--justify-end'
+                    )}
                   </>
                 ) : key === 'secondary' ? (
-                  // CSS GRID ΠΑΡΑΔΕΙΓΜΑ - Secondary Header με 3 στήλες
+                  // CSS GRID ΠΑΡΑΔΕΙΓΜΑ - Secondary Header με ENTERPRISE FLEXIBILITY
                   <>
-                    {/* Αριστερή στήλη */}
-                    <Box style={{display: "flex", alignItems: "center", gap: "var(--layera-gap--2)", justifyContent: "flex-start"}}>
-                      <SquareButton
-                        icon={<PlusIcon size="sm" />}
-                        aria-label="Προσθήκη"
-                        size="md"
-                      />
-                      <Text
-                        className="layera-typography"
-                        data-size="lg"
-                        data-weight="bold"
-                      >
-                        {title}
-                      </Text>
-                    </Box>
+                    {/* ENTERPRISE START SECTION - Αριστερή στήλη */}
+                    {renderHeaderSection(
+                      'start',
+                      dynamicStartItems,
+                      <>
+                        <SquareButton
+                          icon={<PlusIcon size="sm" />}
+                          aria-label="Προσθήκη"
+                          size="md"
+                        />
+                        <Text
+                          className="layera-typography"
+                          data-size="lg"
+                          data-weight="bold"
+                        >
+                          {title}
+                        </Text>
+                      </>,
+                      'layera-flex--justify-start'
+                    )}
 
-                    {/* Κεντρική στήλη - 3 εικονίδια */}
-                    <Box style={{display: "flex", alignItems: "center", gap: "var(--layera-gap--2)", justifyContent: "center"}}>
-                      <SquareButton
-                        icon={<SearchIcon size="md" />}
-                        aria-label="Αναζήτηση"
-                        size="md"
-                      />
-                      <SquareButton
-                        icon={<LocationIcon size="md" />}
-                        aria-label="Τοποθεσία"
-                        size="md"
-                      />
-                      <SquareButton
-                        icon={<MenuIcon size="md" />}
-                        aria-label="Μενού"
-                        size="md"
-                      />
-                    </Box>
+                    {/* ENTERPRISE CENTER SECTION - Κεντρική στήλη */}
+                    {renderHeaderSection(
+                      'center',
+                      dynamicCenterItems,
+                      <>
+                        <SquareButton
+                          icon={<SearchIcon size="md" />}
+                          aria-label="Αναζήτηση"
+                          size="md"
+                        />
+                        <SquareButton
+                          icon={<LocationIcon size="md" />}
+                          aria-label="Τοποθεσία"
+                          size="md"
+                        />
+                        <SquareButton
+                          icon={<MenuIcon size="md" />}
+                          aria-label="Μενού"
+                          size="md"
+                        />
+                      </>,
+                      'layera-flex--justify-center'
+                    )}
 
-                    {/* Δεξιά στήλη */}
-                    <Box style={{display: "flex", alignItems: "center", gap: "var(--layera-gap--2)", justifyContent: "flex-end"}}>
-                      <Text
-                        className="layera-typography layera-opacity--80"
-                        data-size="xs"
-                      >
-                        {description}
-                      </Text>
-                      <SquareButton
-                        icon={<UserIcon size="md" />}
-                        aria-label="Χρήστης"
-                        size="md"
-                      />
-                    </Box>
+                    {/* ENTERPRISE END SECTION - Δεξιά στήλη */}
+                    {renderHeaderSection(
+                      'end',
+                      dynamicEndItems,
+                      <>
+                        <Text
+                          className="layera-typography layera-opacity--80"
+                          data-size="xs"
+                        >
+                          {description}
+                        </Text>
+                        <SquareButton
+                          icon={<UserIcon size="md" />}
+                          aria-label="Χρήστης"
+                          size="md"
+                        />
+                      </>,
+                      'layera-flex--justify-end'
+                    )}
                   </>
                 ) : (
-                  // CSS GRID ΠΑΡΑΔΕΙΓΜΑ - Υπόλοιπα headers με ίδιο layout με Primary/Secondary
+                  // CSS GRID ΠΑΡΑΔΕΙΓΜΑ - Υπόλοιπα headers με ENTERPRISE FLEXIBILITY
                   <>
-                    {/* Αριστερή στήλη */}
-                    <Box style={{display: "flex", alignItems: "center", gap: "var(--layera-gap--2)", justifyContent: "flex-start"}}>
-                      <SquareButton
-                        icon={<PlusIcon size="sm" />}
-                        aria-label="Προσθήκη"
-                        size="md"
-                      />
-                      <Text
-                        className="layera-typography"
-                        data-size="sm"
-                        data-weight="bold"
-                      >
-                        {title}
-                      </Text>
-                    </Box>
+                    {/* ENTERPRISE START SECTION - Αριστερή στήλη */}
+                    {renderHeaderSection(
+                      'start',
+                      dynamicStartItems,
+                      <>
+                        <SquareButton
+                          icon={<PlusIcon size="sm" />}
+                          aria-label="Προσθήκη"
+                          size="md"
+                        />
+                        <Text
+                          className="layera-typography"
+                          data-size="sm"
+                          data-weight="bold"
+                        >
+                          {title}
+                        </Text>
+                      </>,
+                      'layera-flex--justify-start'
+                    )}
 
-                    {/* Κεντρική στήλη - 3 εικονίδια */}
-                    <Box style={{display: "flex", alignItems: "center", gap: "var(--layera-gap--2)", justifyContent: "center"}}>
-                      <SquareButton
-                        icon={<SearchIcon size="md" />}
-                        aria-label="Αναζήτηση"
-                        size="md"
-                      />
-                      <SquareButton
-                        icon={<LocationIcon size="md" />}
-                        aria-label="Τοποθεσία"
-                        size="md"
-                      />
-                      <SquareButton
-                        icon={<MenuIcon size="md" />}
-                        aria-label="Μενού"
-                        size="md"
-                      />
-                    </Box>
+                    {/* ENTERPRISE CENTER SECTION - Κεντρική στήλη */}
+                    {renderHeaderSection(
+                      'center',
+                      dynamicCenterItems,
+                      <>
+                        <SquareButton
+                          icon={<SearchIcon size="md" />}
+                          aria-label="Αναζήτηση"
+                          size="md"
+                        />
+                        <SquareButton
+                          icon={<LocationIcon size="md" />}
+                          aria-label="Τοποθεσία"
+                          size="md"
+                        />
+                        <SquareButton
+                          icon={<MenuIcon size="md" />}
+                          aria-label="Μενού"
+                          size="md"
+                        />
+                      </>,
+                      'layera-flex--justify-center'
+                    )}
 
-                    {/* Δεξιά στήλη */}
-                    <Box style={{display: "flex", alignItems: "center", gap: "var(--layera-gap--2)", justifyContent: "flex-end"}}>
-                      <Text
-                        className="layera-typography layera-opacity--80"
-                        data-size="xs"
-                      >
-                        {description}
-                      </Text>
-                      <SquareButton
-                        icon={<UserIcon size="md" />}
-                        aria-label="Χρήστης"
-                        size="md"
-                      />
-                    </Box>
+                    {/* ENTERPRISE END SECTION - Δεξιά στήλη */}
+                    {renderHeaderSection(
+                      'end',
+                      dynamicEndItems,
+                      <>
+                        <Text
+                          className="layera-typography layera-opacity--80"
+                          data-size="xs"
+                        >
+                          {description}
+                        </Text>
+                        <SquareButton
+                          icon={<UserIcon size="md" />}
+                          aria-label="Χρήστης"
+                          size="md"
+                        />
+                      </>,
+                      'layera-flex--justify-end'
+                    )}
                   </>
                 )}
               </Box>
@@ -415,3 +471,70 @@ export const HeaderPlayground: React.FC<HeaderPlaygroundProps> = ({
     </Box>
   );
 };
+
+/**
+ * ENTERPRISE HELPER FUNCTIONS
+ * Για εύκολη δημιουργία dynamic header content
+ * Χρησιμοποιούν ΜΟΝΟ υπάρχουσες @layera μεταβλητές
+ */
+
+// Helper για δημιουργία εικονιδίων
+export const createHeaderIcon = (icon: React.ReactNode, ariaLabel: string, onClick?: () => void): React.ReactNode => (
+  <SquareButton
+    icon={icon}
+    onClick={onClick}
+    size="md"
+    aria-label={ariaLabel}
+  />
+);
+
+// Helper για δημιουργία κειμένων
+export const createHeaderText = (text: string, size: 'xs' | 'sm' | 'md' | 'lg' = 'sm', weight: 'normal' | 'medium' | 'bold' = 'medium'): React.ReactNode => (
+  <Text
+    className="layera-typography"
+    data-size={size}
+    data-weight={weight}
+  >
+    {text}
+  </Text>
+);
+
+// Helper για δημιουργία inputs
+export const createHeaderInput = (
+  placeholder: string,
+  onChange?: (value: string) => void,
+  type: 'text' | 'search' | 'email' = 'text'
+): React.ReactNode => (
+  <input
+    type={type}
+    placeholder={placeholder}
+    className="layera-input layera-input--sm"
+    onChange={(e) => onChange?.(e.target.value)}
+    style={{
+      minWidth: "var(--layera-spacing-20)",
+      maxWidth: "var(--layera-spacing-32)",
+      border: "var(--layera-border-width--1) solid var(--layera-color-border-primary)",
+      borderRadius: "var(--layera-border-radius--md)",
+      padding: "var(--layera-spacing-1) var(--layera-spacing-2)",
+      fontSize: "var(--layera-font-size--sm)",
+      backgroundColor: "var(--layera-color-surface-primary)"
+    }}
+  />
+);
+
+// Helper για δημιουργία custom button
+export const createHeaderButton = (
+  text: string,
+  onClick?: () => void,
+  variant: 'primary' | 'secondary' | 'outline' | 'ghost' = 'outline',
+  size: 'xs' | 'sm' | 'md' = 'sm'
+): React.ReactNode => (
+  <Button
+    variant={variant}
+    size={size}
+    onClick={onClick}
+    className="layera-button"
+  >
+    {text}
+  </Button>
+);

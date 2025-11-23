@@ -459,7 +459,6 @@ export const ColorPickerWithAlpha: React.FC<ColorPickerWithAlphaProps> = ({
           onTouchStart={handleSliderMouseDown}
           onTouchEnd={handleSliderMouseUp}
           className="layera-input layera-width--full"
-          style={{ width: '100%' }}
         />
       </Box>
 
